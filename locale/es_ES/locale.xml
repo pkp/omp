@@ -20,33 +20,12 @@
 	<message key="monograph.audience.rangeFrom">Audience Range (from)</message>
 	<message key="monograph.audience.rangeTo">Audience Range (to)</message>
 	<message key="monograph.audience.rangeExact">Audience Range (exact)</message>
-	<message key="monograph.description">Description</message>
-	<message key="monograph.authors">Autores</message>
-	<message key="monograph.coverage">Información de cobertura</message>
-	<message key="monograph.coverage.tip">En los campos siguientes se proporciona información acerca de la cobertura de la propuesta. La cobertura puede incluir periodos cronológicos (1920-1940, siglo XVII), y localizaciones geográficas ('Lorca, MU', o 'norte de España'). Si se desea, puede utilizarse el campo de cobertura de muestra para incluir un ejemplo relevante del propio trabajo.</message>
-	<message key="monograph.coverage.chron">Cronológica</message>
-	<message key="monograph.coverage.geo">Geográfica</message>
-	<message key="monograph.coverage.sample">Muestra</message>
 	<message key="monograph.languages">Idiomas (español, inglés, francés)</message>
 	<message key="monograph.publicationFormats">Formatos de publicación</message>
 	<message key="monograph.carousel.publicationFormats">Formatos:</message>
-	<message key="monograph.source">Fuente</message>
-	<message key="monograph.source.tip">¿Esta propuesta es derivada de otro recurso? Si es así, puede introducir una dirección URL o una descripción de ese recurso.</message>
-	<message key="monograph.subjectClass">Tema de la propuesta</message>
-	<message key="monograph.subjectClass.tip">Por favor, describa la propuesta con unas pocas frases clave. Puede refinar el tema con palabras clave específicas en la última parte del formulario.</message>
-	<message key="monograph.subjects">Temas</message>
-	<message key="monograph.rights">Derechos</message>
-	<message key="monograph.rights.tip">Si lo desea, puede introducir una breve declaración acerca de los derechos de acceso de esta propuesta.</message>
-	<message key="monograph.title">Título del libro</message>
-	<message key="monograph.title.tip"><![CDATA[El tipo de propuesta suele ser 'imagen', 'texto', u otros tipos multimedia, incluyendo 'software' o 'interactivo'. Por favor, elija el más relevante para la propuesta. Se pueden encontrar ejemplos en <a target="_blank" href="http://dublincore.org/documents/2001/04/12/usageguide/generic.shtml#type">http://dublincore.org/documents/2001/04/12/usageguide/generic.shtml#type</a>]]></message>
-	<message key="monograph.subtitle">Subtítulo</message>
 	<message key="monograph.type">Tipo de propuesta</message>
-	<message key="monograph.pageProofs">Pruebas de imprenta</message>
 	<message key="monograph.proofReadingDescription"><![CDATA[El maquetador añade aquí los ficheros preparados para producción que han sido preparados para publicación. Utiliza <em>+Asignar</em> para designar a los autores y a otras personas que vayan a realizar la corrección de pruebas, con los ficheros corregidos añadidos para su aprobación antes de su publicación.]]></message>
-	<message key="monograph.stageNotInitiated">Stage not initiated.</message>
-	<message key="monograph.attachedFile">Attached file</message>
 	<message key="monograph.task.addNote">Add to task</message>
-	<message key="monograph.task.responseDueDate">Response Due Date</message>
 	<message key="monograph.accessLogoOpen.altText">Open Access</message>
 
 
@@ -188,32 +167,7 @@
 	<message key="grid.action.addSpotlight">Add a spotlight</message>
 
 	<!-- Content Management - Footer grid keys -->
-	<message key="grid.content.navigation.footer">Footer</message>
-	<message key="grid.content.navigation.footer.noneExist">There are no current footers.</message>
-	<message key="grid.content.navigation.footer.addCategory">Añadir categoría</message>
-	<message key="grid.action.deleteFooterCategory">Delete Footer Category</message>
-	<message key="grid.content.navigation.footer.FooterLink">Footer Links</message>
-	<message key="grid.content.navigation.footer.editCategory">Editar categoría</message>
-	<message key="grid.content.navigation.footer.deleteCategory">Delete Category</message>
-	<message key="grid.content.navigation.footer.deleteCategoryConfirm">Are you sure you wish to delete this category? The action cannot be undone, and links in this category will also be removed.</message>
-	<message key="grid.content.navigation.footer.titleRequired">A title is required.</message>
-	<message key="grid.content.navigation.footer.descriptionRequired">A description is required.</message>
-	<message key="grid.content.navigation.footer.pathRequired">A path is required and it must be unique.</message>
-	<message key="grid.content.navigation.footer.pathInUse">That path is currently in use by another category.</message>
-	<message key="grid.action.addFooterCategoryLink">Add a new footer category</message>
-	<message key="grid.action.editFooterCategory">Edit this footer category</message>
-
 	<!-- Content Management - Social Media keys -->
-	<message key="grid.content.navigation.socialMedia">Social Media</message>
-	<message key="grid.content.navigation.socialMedia.platform">Platform</message>
-	<message key="grid.content.navigation.socialMedia.code">Social Sharing Code Block</message>
-	<message key="grid.content.navigation.socialMedia.platformRequired">You must enter a platform title (Facebook, Google+, etc).</message>
-	<message key="grid.content.navigation.socialMedia.codeRequired">You must enter the code you wish to use to display this social network.</message>
-	<message key="grid.content.navigation.socialMedia.addSocialLink">Add Social Link</message>
-	<message key="grid.content.navigation.socialMedia.includeInCatalog">Use this for each published monograph in the catalog?</message>
-	<message key="grid.content.navigation.socialMedia.inCatalog">Used In Catalog</message>
-	<message key="grid.action.addMedia">Add a new Social Media type</message>
-
 	<!-- Editorial policies -->
 	<message key="manager.series.open">Open Submissions</message>
 	<message key="manager.series.indexed">Indexed</message>
@@ -229,9 +183,7 @@
 	<message key="grid.action.addFormat">Añadir formato de publicación</message>
 	<message key="grid.action.approveProof">Approve the proof for indexing and inclusion in the catalog</message>
 	<message key="grid.action.pageProofApproved">Page proofs file is ready for publication</message>
-	<message key="grid.action.approveCopyedit">Approve this copyedit file for sending it to the next stage</message>
 	<message key="grid.action.addAnnouncement">Add an Announcement</message>
-	<message key="grid.action.showReviewPolicy">Read the current review policy</message>
 	<message key="grid.action.newCatalogEntry">New Catalog Entry</message>
 	<message key="grid.action.publicCatalog">Ver en el catálogo</message>
 	<message key="grid.action.feature">Marcar destacados y novedades</message>
@@ -252,72 +204,17 @@
 	<message key="grid.action.addDate">Añadir fecha de publicación</message>
 	<message key="grid.action.editDate">Edit this Date</message>
 	<message key="grid.action.deleteDate">Delete this Date</message>
-	<message key="grid.action.toggleHelp">Toggle the display of inline help</message>
-	<message key="grid.action.createPress">Create a new Press</message>
 	<message key="grid.action.addCode">Añadir código</message>
 	<message key="grid.action.addSpotlight">Añadir destacado</message>
-	<message key="grid.action.addGenre">Add Genre</message>
 	<message key="grid.action.publicationFormatTab">Show the publication format tab</message>
-	<message key="grid.action.bookInfo">Submission Info</message>
 	<message key="grid.action.moreAnnouncements">Go to press announcements page</message>
-	<message key="grid.action.monographEmail">Click to read this email</message>
-	<message key="grid.action.viewLibrary">Ver biblioteca de documentos</message>
-	<message key="grid.action.viewSignoffNotes">View signoff notes</message>
-	<message key="grid.action.fileUnconsider">Proofing corrections made. You may unconsider this task</message>
 	<message key="grid.action.approveProofs">View the proofs grid</message>
 	<message key="grid.action.proofApproved">Format has been proofed</message>
 	<message key="grid.action.availablePublicationFormat">Approve/disapprove this format</message>
 	<message key="grid.action.formatAvailable">Format is available and published</message>
 
 	<!-- Used in submission review -->
-	<message key="reviewer.reviewSteps.request">1. Request</message>
-	<message key="reviewer.reviewSteps.guidelines">2. Directrices</message>
-	<message key="reviewer.reviewSteps.download">3. Download &amp; Review</message>
-	<message key="reviewer.reviewSteps.completion">4. Completion</message>
-	<message key="reviewer.step1.request">Request for Review</message>
-	<message key="reviewer.step1.requestBoilerplate">You have been selected as a potential reviewer of the following submission.  Below is an overview of the submission, as well as the timeline for this review.  We hope that you are able to participate.</message>
-	<message key="reviewer.step1.viewAllDetails">View All Submission Details</message>
-	<message key="reviewer.monograph.reviewFiles">Review Files</message>
-	<message key="reviewer.monograph.reviewerFiles">Reviewer Files</message>
-	<message key="reviewer.monograph.declineReview">Decline Review Request</message>
-	<message key="reviewer.monograph.declineReviewMessage">You may provide the editor with any reasons why you are declining this review in the field below.</message>
-	<message key="reviewer.monograph.acceptReview">Accept Review, Continue to Step #2</message>
-	<message key="reviewer.monograph.continueToStepThree">Continue to Step #3</message>
-	<message key="reviewer.monograph.submitReview">Submit Review</message>
-	<message key="reviewer.monograph.schedule">Schedule</message>
-	<message key="reviewer.monograph.reviewSchedule">Review Schedule</message>
-	<message key="reviewer.monograph.reviewRequestDate">Editor's Request</message>
-	<message key="reviewer.monograph.responseDueDate">Response Due Date</message>
-	<message key="reviewer.monograph.reviewDueDate">Review Due Date</message>
-	<message key="reviewer.monograph.reviewerGuidelines">Reviewer Guidelines</message>
-	<message key="reviewer.monograph.enterCompetingInterests">This press has a policy for disclosure of potential competing interests from its reviewers.  Please take a moment to review this policy.</message>
-	<message key="reviewer.monograph.viewCompetingInterests">View Competing Interests Policy</message>
-	<message key="reviewer.monograph.noCompetingInterests">I do not have any competing interests</message>
-	<message key="reviewer.monograph.hasCompetingInterests">I may have competing interests (Specify below)</message>
-	<message key="reviewer.monograph.competingInterests">Competing Interests</message>
-	<message key="reviewer.monograph.guidelines">Review Guidelines</message>
-	<message key="reviewer.monograph.noGuidelines">This press has not set any reviewer guidelines.</message>
-	<message key="reviewer.monograph.downloadDescription">Click on file names to download and review (on screen or by printing) the files associated with this submission.</message>
-	<message key="reviewer.monograph.reviewDescription">Enter (or paste) your review of this submission into the form below.</message>
-	<message key="reviewer.monograph.uploadDescription">In addition, you can upload files for the editor and/or author to consult, including revised versions of the original review file(s).</message>
-	<message key="reviewer.complete">Review Submitted</message>
-	<message key="reviewer.confirmSubmit">Are you sure you want to submit this review to the press?</message>
-	<message key="reviewer.complete.whatNext">Thank you for completing the review of this submission. Your review has been submitted successfully. We appreciate your contribution to the quality of the work that we publish; the editor may contact you again for more information if need be.</message>
-	<message key="reviewer.aboutDueDates">About Due Dates</message>
-	<message key="reviewer.aboutDueDates.text">The editor asks that you either accept or decline the review before the Response Due Date and complete the review by the Review Due Date.</message>
-	<message key="workflow.review.internalReview">Revisión interna</message>
-	<message key="workflow.review.externalReview">Revisión externa</message>
-	<message key="review.blindPeerReview">
-		<![CDATA[<p>To ensure the integrity of the blind peer-review for submission to this press, every effort should be made to prevent the identities of the authors and reviewers from being known to each other. This involves the authors, editors, and reviewers (who upload documents as part of their review) checking to see if the following steps have been taken with regard to the text and the file properties:</p>
-		<ul><li>The authors of the document have deleted their names from the text, with "Author" and year used in the references and footnotes, instead of the authors' name, article title, etc.</li>
-		<li>With Microsoft Office documents, author identification should also be removed from the properties for the file (see under File in Word), by clicking on the following, beginning with File on the main menu of the Microsoft application: File &gt; Save As &gt; Tools (or Options with a Mac) &gt; Security &gt; Remove personal information from file properties on save &gt; Save.</li>
-		<li>With PDFs, the authors' names should also be removed from Document Properties found under File on Adobe Acrobat's main menu.</li>
-		</ul>]]>
-	</message>
-	<message key="review.ensuringBlindReview">Ensuring a Blind Review</message>
-
 	<!-- Review Attachments -->
-	<message key="grid.reviewAttachments.title">Reviewer's Attachments</message>
 	<message key="grid.reviewAttachments.add">Add Attachment to Review</message>
 	<message key="grid.reviewAttachments.availableFiles">Ficheros disponibles</message>
 
@@ -377,26 +274,11 @@
 	-->
 	<message key="common.prefix">Prefijo</message>
 	<message key="common.preview">Preview</message>
-	<message key="common.quality">Quality</message>
-	<message key="common.sendEmail">Send Email</message>
-	<message key="common.takeMeThere">Take Me There</message>
-	<message key="common.confirmDelete">Are you sure you wish to delete this item? This action cannot be undone.</message>
-	<message key="common.tasks">Tareas</message>
-	<message key="common.list">List</message>
-	<message key="common.grid">Grid</message>
 	<message key="common.feature">Destacar</message>
 	<message key="common.searchCatalog">Búsqueda</message>
-	<message key="common.navigation">Navegación</message>
 	<message key="common.moreInfo">More Information</message>
 	<message key="common.plusMore">+ Más</message>
 	
-	<message key="dashboard.tasks">Tareas</message>
-	<message key="dashboard.submissions">Propuestas</message>
-	<message key="grid.action.itemWorkflow">Ver flujo editorial</message>
-
-	<message key="common.queue.long.submissionsUnassigned">Propuestas sin asignar</message>
-	<message key="common.queue.long.myAssigned">Propuestas asignadas</message>
-
 	<message key="common.listbuilder.completeForm">Please fill out the form completely.</message>
 	<message key="common.listbuilder.selectValidOption">Please select a valid option from the list.</message>
 	<message key="common.listbuilder.itemExists">You cannot add the same item twice.</message>
@@ -407,17 +289,8 @@
 	<!-- Common Messages -->
 	<message key="common.openMonographPress">Open Monograph Press</message>
 	<message key="common.omp">OMP</message>
-	<message key="common.pageHeader.altText">Page Header</message>
-	<message key="common.publicKnowledgeProject">Public Knowledge Project</message>
 	<message key="common.homePageHeader.altText">Homepage Header</message>
-	<message key="common.pressHomepageImage.altText">Press Homepage Image</message>
-	<message key="common.designation">Designation</message>
-	<message key="common.name">Nombre</message>
-	<message key="common.dimensionsInches"><![CDATA[{$width}"&nbsp;x&nbsp;{$height}" @ {$dpi} DPI/PPI]]></message>
-	<message key="common.dimensionsPixels">{$width} x {$height} pixels</message>
-
 	<!-- Navigation -->
-	<message key="navigation.management">Gestión</message>
 	<message key="navigation.catalog">Catálogo</message>
 	<message key="navigation.competingInterestPolicy">Política de conflicto de intereses</message>
 	<message key="navigation.catalog.manage">Manage</message>
@@ -425,89 +298,45 @@
 	<message key="navigation.catalog.administration">Administración del catálogo</message>
 	<message key="navigation.catalog.administration.categories">Categorías</message>
 	<message key="navigation.catalog.administration.series">Series</message>
-	<message key="navigation.distributionProcess">Distribución</message>
-	<message key="navigation.goBack">Volver</message>
 	<message key="navigation.infoForAuthors">Para autores</message>
 	<message key="navigation.infoForLibrarians">Para bibliotecas</message>
 	<message key="navigation.infoForAuthors.long">Información para autores</message>
 	<message key="navigation.infoForLibrarians.long">Información para bibliotecas</message>
 	<message key="navigation.newReleases">Novedades</message>
 	<message key="navigation.published">Published</message>
-	<message key="navigation.publicationProcess">Publicación</message>
-	<message key="navigation.tools">Herramientas</message>
-	<message key="navigation.tools.importExport">Importar / Exportar</message>
 	<message key="navigation.wizard">Wizard</message>
 	<message key="navigation.linksAndMedia">Links and Social Media</message>
 
 	<!-- Common Press Terms -->
 	<message key="press.presses">Editoriales</message>
 	<message key="press.path">Ruta</message>
-	<message key="press.press">Editorial</message>
-	<message key="press.select">Seleccionar una editorial...</message>
-
 	<!-- User -->
 	<message key="user.noRoles.submitMonograph">Submit a Proposal</message>
 	<message key="user.noRoles.submitMonographRegClosed">Submit an Monograph: Author registration is currently disabled.</message>
 	<message key="user.noRoles.regReviewer">Register as a Reviewer</message>
 	<message key="user.noRoles.regReviewerClosed">Register as a Reviewer: Reviewer registration is currently disabled.</message>
-	<message key="user.noRoles.selectUsersWithoutRoles">Include users with no roles in this press.</message>
-
 	<!-- Roles -->
 	<message key="user.role.manager">Gestor editorial</message>
-	<message key="user.role.editor">Editor</message>
 	<message key="user.role.pressEditor">Editor editorial</message>
 	<message key="user.role.seriesEditor">Editor de serie</message>
-	<message key="user.role.pressAssistant">Asistente editorial</message>
 	<message key="user.role.copyeditor">Copyeditor</message>
 	<message key="user.role.seriesEditor">Series Editor</message>
 	<message key="user.role.seriesEditors">Editores de series</message>
 	<message key="user.role.proofreader">Corrector de pruebas</message>
-	<message key="user.role.author">Autor</message>
-	<message key="user.role.author_s">Autor(es)</message>
-	<message key="user.role.reviewer">Revisor</message>
 	<message key="user.role.productionEditor">Editor de producción</message>
 
-	<message key="user.role.reviewers">Revisores</message>
 	<message key="user.role.managers">Gestores editoriales</message>
 	<message key="user.role.editors">Editores</message>
 	<message key="user.role.seriesEditors">Editores de series</message>
 	<message key="user.role.copyeditors">Correctores</message>
 	<message key="user.role.proofreaders">Correctores de pruebas</message>
-	<message key="user.role.authors">Autores</message>
 	<message key="user.role.productionEditors">Editores de producción</message>
 
 	<!-- Login -->
-	<message key="user.login.registerNewAccount">Crear cuenta</message>
-	<message key="user.login.resetPasswordInstructions"><![CDATA[For security reasons, this system emails a reset password to registered users, rather than recalling the
-current password.<br /><br />Enter your email address below to reset your password. A confirmation will be sent to this email address.]]></message>
-
 	<!-- Information Center -->
-	<message key="informationCenter.informationCenter">Information Center</message>
-	<message key="informationCenter.bookInfo">Información</message>
-	<message key="informationCenter.composeNote">Compose Note</message>
-	<message key="informationCenter.addFileNote">Add to File</message>
-	<message key="informationCenter.addSubmissionNote">Add to Submission</message>
-	<message key="informationCenter.noNotes">There are no notes to display.</message>
-	<message key="informationCenter.currentNotes">Current Revision</message>
-	<message key="informationCenter.pastNotes">Earlier Revisions</message>
-	<message key="informationCenter.lastUpdated">Last Updated</message>
-	<message key="informationCenter.deleteConfirm">Are you sure you wish to delete this note?</message>
-	<message key="informationCenter.currentHistory">Current Revision</message>
-	<message key="informationCenter.pastHistory">Earlier Revisions</message>
-	<message key="informationCenter.history.noItems">There are no events logged.</message>
-	<message key="informationCenter.history.notePosted">Posted new note.</message>
-	<message key="informationCenter.history.messageSent">Notification sent to users.</message>
-	<message key="informationCenter.notify.chooseMessage">Choose a predefined message to use, or fill out the form below.</message>
-	<message key="informationCenter.notify.message">Message</message>
-	<message key="informationCenter.notify.warning">Please ensure that you have filled out the message field and selected at least one recipient.</message>
-
 	<!-- Registration -->
 	<message key="user.register.completeForm">Completa el siguiente formulario para crear una cuenta en la editorial.</message>
-	<message key="user.register.selectPress">Select a press to register with</message>
-	<message key="user.register.noPresses">There are no presses you may register with on this site.</message>
 	<message key="user.register.privacyStatement">Declaración de privacidad</message>
-	<message key="user.register.alreadyRegisteredOtherPress"><![CDATA[<a href="{$registerUrl}">Haz clic aquí</a> si ya tienes cuenta en este sitio.]]></message>
-	<message key="user.register.notAlreadyRegisteredOtherPress"><![CDATA[<a href="{$registerUrl}">Click here</a> if you are <strong>not</strong> already registered with this or another press on this site.]]></message>
 	<message key="user.register.loginToRegister">Enter your existing username and password to register with this press.</message>
 	<message key="user.register.registrationDisabled">This press is currently not accepting user registrations.</message>
 	<message key="user.register.form.passwordLengthTooShort">The password you entered is not long enough.</message>
@@ -525,11 +354,9 @@ current password.<br /><br />Enter your email address below to reset your passwo
 	<message key="about.pressContact">Contacto con la editorial</message>
 	<message key="about.aboutThePress">Acerca de la editorial</message>
 	<message key="about.editorialTeam">Equipo editorial</message>
-	<message key="about.description">Descripción</message>
 	<message key="about.editorialPolicies">Políticas editoriales</message>
 	<message key="about.focusAndScope">Focus and Scope</message>
 	<message key="about.seriesPolicies">Series and Category Policies</message>
-	<message key="about.guidelines">Directrices</message>
 	<message key="about.submissions">Propuestas</message>
 	<message key="about.sponsors">Patrocinadores</message>
 	<message key="about.contributors">Fuentes de apoyo</message>
@@ -593,8 +420,6 @@ Your server currently supports mbstring: <strong>{$supportsMBString}</strong>]]>
 	<message key="installer.additionalLocalesInstructions">Select any additional languages to support in this system. These languages will be available for use by presses hosted on the site. Additional languages can also be installed at any time from the site administration interface. Locales marked * may be incomplete.</message>
 	<message key="installer.filesDirInstructions"><![CDATA[Enter full pathname to an existing directory where uploaded files are to be kept. This directory should not be directly web-accessible. <strong>Please ensure that this directory exists and is writable prior to installation.</strong> Windows path names should use forward slashes, e.g. "C:/mypress/files".]]></message>
 	<message key="installer.databaseSettingsInstructions">OMP requires access to a SQL database to store its data. See the system requirements above for a list of supported databases. In the fields below, provide the settings to be used to connect to the database.</message>
-	<message key="installer.installOMP">Install Open Monograph Press</message>
-	<message key="installer.upgradeOMP">Upgrade Open Monograph Press</message>
 	<message key="installer.overwriteConfigFileInstructions"><![CDATA[<h4>IMPORTANT!</h4>
 <p>The installer could not automatically overwrite the configuration file. Before attempting to use the system, please open <tt>config.inc.php</tt> in a suitable text editor and replace its contents with the contents of the text field below.</p>]]></message>
 	<message key="installer.installationComplete"><![CDATA[<p>Installation of OMP has completed successfully.</p>
@@ -603,9 +428,7 @@ Your server currently supports mbstring: <strong>{$supportsMBString}</strong>]]>
 	<message key="installer.upgradeComplete"><![CDATA[<p>Upgrade of OMP to version {$version} has completed successfully.</p>
 <p>Don't forget to set the "installed" setting in your config.inc.php configuration file back to <em>On</em>.</p>
 <p>If you haven't already registered and wish to receive news and updates, <strong>please register at <a href="http://pkp.sfu.ca/omp/register" target="_blank">http://pkp.sfu.ca/omp/register</a>.</strong> If you have questions or comments, please visit the <a href="http://pkp.sfu.ca/support/forum" target="_blank">support forum</a>.</p>]]></message>
-	<message key="installer.configureXSLMessage"><![CDATA[<p>Your PHP installation does not have the XSL module enabled. Either enable it, or configure the xslt_command parameter in your config.inc.php file.</p>]]></message>
 	<!-- Monograph Logs -->
-	<message key="log.review.reviewerAssigned">{$reviewerName} has been assigned to review submission {$monographId} for review round {$round}.</message>
 	<message key="log.review.reviewCleared">The round {$round} review by {$reviewerName} for submission {$monographId} has been cleared.</message>
 	<message key="log.review.reviewDueDateSet">The due date for the round {$round} review of submission {$monographId} by {$reviewerName} has been set to {$dueDate}.</message>
 	<message key="log.review.reviewDeclined">{$reviewerName} has declined the round {$round} review for submission {$monographId}.</message>
@@ -621,9 +444,6 @@ Your server currently supports mbstring: <strong>{$supportsMBString}</strong>]]>
 	<message key="log.imported">{$userName} has imported monograph {$monographId}.</message>
 
 	<!-- Notifications -->
-	<message key="notification.addedAuditor">Auditor added.</message>
-	<message key="notification.removedAuditor">Auditor removed.</message>
-	<message key="notification.addedAuthor">Author added.</message>
 	<message key="notification.addedIdentificationCode">Identification Code added.</message>
 	<message key="notification.editedIdentificationCode">Identification Code edited.</message>
 	<message key="notification.removedIdentificationCode">Identification Code removed.</message>
@@ -642,51 +462,17 @@ Your server currently supports mbstring: <strong>{$supportsMBString}</strong>]]>
 	<message key="notification.addedMarket">Market added.</message>
 	<message key="notification.editedMarket">Market edited.</message>
 	<message key="notification.removedMarket">Market removed.</message>
-	<message key="notification.addedReviewer">Reviewer added.</message>
-	<message key="notification.addedStageParticipant">User added as a stage participant.</message>
-	<message key="notification.editedAuthor">Author edited.</message>
-	<message key="notification.editedUser">User edited.</message>
-	<message key="notification.removedReviewer">Reviewer removed.</message>
-	<message key="notification.sentNotification">Notification sent.</message>
-	<message key="notification.reviewAcknowledged">Review marked as acknowledged. Email not sent.</message>
-	<message key="notification.addedNote">Note posted.</message>
-	<message key="notification.removedNote">Note deleted.</message>
-	<message key="notification.removedFile">File deleted.</message>
-	<message key="notification.addedAnnouncementType">Announcement type added.</message>
-	<message key="notification.editedAnnouncementType">Announcement type edited.</message>
-	<message key="notification.removedAnnouncementType">Announcement type removed.</message>
-	<message key="notification.addedAnnouncement">Announcement added.</message>
-	<message key="notification.editedAnnouncement">Announcement edited.</message>
-	<message key="notification.removedAnnouncement">Announcement removed.</message>
 	<message key="notification.addedSpotlight">Spotlight added.</message>
 	<message key="notification.editedSpotlight">Spotlight edited.</message>
 	<message key="notification.removedSpotlight">Spotlight removed.</message>
 	<message key="notification.removedFooterLink">Footer Link removed.</message>
-	<message key="notification.addedFooterCategory">Category added.</message>
-	<message key="notification.editedFooterCategory">Category edited.</message>
-	<message key="notification.removedFooterCategory">Category removed.</message>
-	<message key="notification.addedSocialMedia">Social Media Network added.</message>
-	<message key="notification.editedSocialMedia">Social Media Network edited.</message>
-	<message key="notification.removedSocialMedia">Social Media Network removed.</message>
-	<message key="notification.signedFile">File considered.</message>
-	<message key="notification.updatedReviewFiles">Review files updated.</message>
 	<message key="notification.savedCatalogMetadata">Catalog metadata saved.</message>
-	<message key="notification.savedSubmissionMetadata">Submission metadata saved.</message>
 	<message key="notification.savedPublicationFormatMetadata">Publication format metadata saved.</message>
-	<message key="notification.uploadedResponse">Response uploaded.</message>
 	<message key="notification.mailListDescription">Enter your email address to be notified when new content is added to the press.</message>
 	<message key="notification.notificationsPublicDescription">This page includes updates associated with this press, such as new monographs or series. You may subscribe to these notifications through RSS feeds (by clicking on the images to the right), or <![CDATA[  <a href="{$emailUrl}">through email.</a>]]></message>
 	<message key="notification.proofsApproved">Proofs approved.</message>
-	<message key="notification.localeEnabled">Locale enabled.</message>
-	<message key="notification.localeDisabled">Locale disabled.</message>
-	<message key="notification.primaryLocaleDefined">{$locale} defined as primary locale.</message>
-	<message key="notification.localeInstalled">All selected locale(s) installed and activated.</message>
-	<message key="notification.localeUninstalled">{$locale} locale uninstalled.</message>
-	<message key="notification.localeReloaded">{$locale} locale reloaded.</message>
-	<message key="notification.localeSettingsSaved">Locale settings saved.</message>
 	<message key="notification.removedSubmission">Submission deleted.</message>
 	<!-- Notification Types -->
-	<message key="notification.type.monographSubmitted">A new monograph, "{$title}," has been submitted.</message>
 	<message key="notification.type.editing">Editing Events</message>
 	<message key="notification.type.metadataModified">"{$title}'s" metadata has been modified.</message>
 	<message key="notification.type.reviewerComment">A reviewer has commented on "{$title}".</message>
@@ -694,29 +480,12 @@ Your server currently supports mbstring: <strong>{$supportsMBString}</strong>]]>
 	<message key="notification.type.site">Site Events</message>
 	<message key="notification.type.submissions">Submission Events</message>
 	<message key="notification.type.userComment">A reader has made a comment on "{$title}".</message>
-	<message key="notification.type.editorAssignment">An editor must be assigned before review is initiated. Please add editor using Participants link above.</message>
 	<message key="notification.type.editorAssignmentTask">Una monografía ha sido propuesta y se necesita asignarle un Editor.</message>
-	<message key="notification.type.editorAssignmentEditing">A production editor must be assigned before editorial process is initiated. Please add production editor using Participants link above.</message>
-	<message key="notification.type.editorAssignmentProduction">A production editor must be assigned before production process can be initiated. Please add production editor via the Participants link above.</message>
-	<message key="notification.type.auditorRequest">You have been asked audit "{$file}"</message>
 	<message key="notification.type.copyeditorRequest">You have been asked to review copyedits for "{$file}".</message>
 	<message key="notification.type.layouteditorRequest">You have been asked to review layouts for "{$title}".</message>
 	<message key="notification.type.indexRequest">You have been asked to create an index for "{$title}".</message>
-	<message key="notification.type.reviewAssignment">You have a review pending.</message>
-	<message key="notification.type.signoff">You have an audit pending.</message>
-	<message key="notification.type.editorDecisionTitle">Latest editor decision.</message>
 	<message key="notification.type.editorDecisionInternalReview">Internal review process started.</message>
-	<message key="notification.type.editorDecisionAccept">Submission accepted.</message>
-	<message key="notification.type.editorDecisionExternalReview">External review process started.</message>
-	<message key="notification.type.editorDecisionPendingRevisions">Revision requested.</message>
-	<message key="notification.type.editorDecisionResubmit">Resubmit for review.</message>
-	<message key="notification.type.editorDecisionDecline">Submission declined.</message>
-	<message key="notification.type.editorDecisionSendToProduction">Production process started.</message>
 	<message key="notification.type.roundStatusTitle">Round {$round} Status</message>
-	<message key="notification.type.pendingRevisions">You have revisions to consider in {$stage}.</message>
-	<message key="notification.type.pendingRevisions.title">Revisions submitted to {$stage}.</message>
-	<message key="notification.type.allReviewsIn">All reviews in and a decision is needed in {$stage}.</message>
-	<message key="notification.type.allRevisionsIn">A revised file has been uploaded for your editorial consideration in {$stage}.</message>
 	<message key="notification.type.approveSubmission">This submission is currently awaiting approval in the Catalog Entry tool before it will appear in the public catalog.</message>
 	<message key="notification.type.approveSubmissionTitle">Awaiting approval.</message>
 	<message key="notification.type.formatNeedsApprovedSubmission">The metadata for the catalog entry must be approved before the publication format is included in the catalog. To approve catalog metadata, click on Monograph tab above.</message>
@@ -732,12 +501,9 @@ Your server currently supports mbstring: <strong>{$supportsMBString}</strong>]]>
 	<message key="user.authorization.monographFile">You have been denied access to the specified monograph file.</message>
 	<message key="user.authorization.invalidMonograph">Invalid monograph or no monograph requested!</message>
 	<message key="user.authorization.invalidSeriesEditorSubmission">Invalid series editor submission or no series editor submission requested!</message>
-	<message key="user.authorization.noPress">No press in context!</message>
 	<message key="user.authorization.seriesAssignment">You are trying to access a monograph that is not part of your series.</message>
 	<message key="user.authorization.workflowStageAssignmentMissing">Access denied! You have not been assigned to this workflow stage.</message>
 	<message key="user.authorization.workflowStageSettingMissing">Access denied! The user group you are currently acting under has not been assigned to this workflow stage. Please check your press settings.</message>
-	<message key="user.authorization.authorRoleMissing">You do not currently have sufficient privileges to view the submission. Please edit your profile to ensure that you have been granted the appropriate roles under "Register As".</message>
-
 	<message key="payment.directSales">Descarga del sitio web</message>
 	<message key="payment.directSales.price">Precio</message>
 	<message key="payment.directSales.availability">Disponibilidad</message>

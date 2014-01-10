@@ -13,46 +13,12 @@
 <locale name="es_ES" full_name = "Español">
 
 	<!-- Languages -->
- 	<message key="manager.language.ui">UI</message>
-	<message key="manager.language.submissions">Submissions</message>
- 	<message key="manager.language.forms">Forms</message>
 	<message key="manager.language.confirmDefaultSettingsOverwrite">This will replace any locale-specific press settings you had for this locale</message>
-	<message key="manager.language.reloadLocalizedDefaultSettings">Reload defaults</message>
 	<message key="manager.languages.languageInstructions"><![CDATA[OMP can be made available to users in any of several supported languages. As well, OMP can operate as a multilingual system, providing users with an ability to toggle between languages on each page, and allowing certain data to be entered in several additional languages.<br /><br/>If a language supported by OMP is not listed below, ask your site administrator to install the language from the site administration interface. For instructions on adding support for new languages, please consult the OMP documentation.]]></message>
 	<message key="manager.languages.noneAvailable">Sorry, no additional languages are available. Contact your site administrator if you wish to use additional languages with this press.</message>
 	<message key="manager.languages.primaryLocaleInstructions">This will be the default language for the press site.</message>	
 
 	<!-- Plugin management -->
-	<message key="manager.plugins.copyError">Plugin was not successfully copied. This may be a permissions problem. Please make sure that the web server is able to write to the plugins directory (including subdirectories) but don't forget to secure it again later.</message>
-	<message key="manager.plugins.delete">Delete Plugin</message>
-	<message key="manager.plugins.deleteConfirm">Are you sure you wish to delete this plugin from the system?</message>
-	<message key="manager.plugins.deleteDescription">By clicking delete, you will delete the plugin from the server's file system.</message>
-	<message key="manager.plugins.deleteError">Plugin "{$pluginName}" could not be deleted from the file system. This may be a permissions problem. Please make sure that the web server is able to write to the plugins directory (including subdirectories) but don't forget to secure it again later.</message>
-	<message key="manager.plugins.deleteSuccess">Plugin "{$pluginName}" successfuly deleted</message>
-	<message key="manager.plugins.description">This page allows the Press Manager to review and potentially configure the plugins that are currently installed. Plugins are divided into categories, according to their function. The categories are listed below, and within each category, its current set of plugins.</message>
-	<message key="manager.plugins.doesNotExist">Plugin "{$pluginName}" does not exist</message>
-	<message key="manager.plugins.fileSelectError">Please select a file first</message>
-	<message key="manager.plugins.install">Install A New Plugin</message>
-	<message key="manager.plugins.installDescription">This form allows you to upload and install a new plugin.  Please ensure the plugin is compressed as a .tar.gz file.</message>
-	<message key="manager.plugins.installedVersionNewer">Plugin already exists, and is newer or equal to installed version</message>
-	<message key="manager.plugins.installedVersionOlder">Plugin already exists, and is older or equal to the installed version</message>
-	<message key="manager.plugins.installFailed">Installation failed. {$errorString}</message>
-	<message key="manager.plugins.installSuccessful">Successfully installed version {$versionNumber}</message>
-	<message key="manager.plugins.invalidPluginArchive">The uploaded plugin archive does not contain a folder that corresponds to the plugin name.</message>
-	<message key="manager.plugins.wrongCategory">The uploaded plugin does not fit the category of the upgraded plugin.</message>
-	<message key="manager.plugins.wrongName">The version.xml in the uploaded plugin contains a plugin name that does not fit the name of the upgraded plugin.</message>
-	<message key="manager.plugins.pleaseInstall">Plugin does not exist.  Please Install instead</message>
-	<message key="manager.plugins.pleaseUpgrade">Plugin already exists, but is newer than installed version.  Please upgrade instead</message>
-	<message key="manager.plugins.tarCommandNotFound">The tar command is not available. Please correctly configure it in your "config.inc.php".</message>
-	<message key="manager.plugins.upgrade">Upgrade Plugin</message>
-	<message key="manager.plugins.upgradeDescription">This form allows you to upgrade a plugin.  Please ensure the plugin is compressed as a .tar.gz file.</message>
-	<message key="manager.plugins.upgradeFailed">Upgrade failed. {$errorString}</message>
-	<message key="manager.plugins.upgradeSuccessful">Successfully upgraded to version {$versionString}</message>
-	<message key="manager.plugins.uploadError">Error uploading file</message>
-	<message key="manager.plugins.uploadPluginDir">Select plugin file</message>
-	<message key="manager.plugins.versionFileInvalid">version.xml in plugin directory contains invalid data.</message>
-	<message key="manager.plugins.versionFileNotFound">version.xml not found in plugin directory</message>
-
 	<!-- Review forms -->
 	<message key="manager.reviewForms">Review Forms</message>
 	<message key="manager.reviewForms.completed">Completed</message>
@@ -123,7 +89,6 @@
 
 	<!-- Settings management -->
 	<message key="manager.settings">Settings</message>
-	<message key="manager.settings.wizard">Settings Wizard</message>
 	<message key="manager.settings.pressSettings">Ajustes de editorial</message>
 	<message key="manager.settings.press">Press</message>
 	<message key="manager.settings.pressDescription"><![CDATA[All settings specific to the press (masthead, contact, policies, guidelines, affiliation & support, categories and series).]]></message>
@@ -146,7 +111,6 @@
 	<message key="manager.users.availableRoles">Available Roles</message>
 	<message key="manager.users.currentRoles">Current Roles</message>
 	<message key="manager.users.selectRole">Select Role</message>
-	<message key="manager.users.roleRequired">You need to select at least one role to be associated with this user.</message>
 	<message key="manager.people.allEnrolledUsers">Users Enrolled in this Press</message>
 	<message key="manager.people.allPresses">All Presses</message>
 	<message key="manager.people.allSiteUsers">Enroll a User from this Site in this Press</message>
@@ -170,66 +134,14 @@ You may optionally provide the user with a reason for disabling their account.</
 	]]></message>
 
 	<!-- Library Files -->
-	<message key="settings.libraryFiles.fileRequired">A library file is required. Please ensure that you have chosen and uploaded a file.</message>
-	<message key="settings.libraryFiles.nameRequired">A name is required for this library file.</message>
-	<message key="settings.libraryFiles.typeRequired">A file type is required for this library file.</message>
-	<message key="settings.libraryFiles.category.contracts">Contracts</message>
-	<message key="settings.libraryFiles.category.marketing">Marketing</message>
-	<message key="settings.libraryFiles.category.permissions">Permissions</message>
-	<message key="settings.libraryFiles.category.reports">Reports</message>
-	<message key="settings.libraryFiles.category.other">Other</message>
-
 	<!-- Users and Roles settings page -->
-	<message key="settings.roles.roleName">Role Name</message>
 	<message key="settings.roles.gridDescription">Roles are groups of users in the press who are given access to different permission levels and associated workflows within the press. There are five different permission levels: Press Managers have access to everything in the press (all content and settings); Press Editors have access to all content within their series; Press Assistants have access to all monographs that have been explicitly assigned to them by an editor; Reviewers can see and perform the reviews they have been assigned; and Authors can see and interact with a limited amount of information on their own submissions. Additionally, there are five different stage assignments that roles may be given access to: Submission, Internal Review, External Review, Editorial and Production.</message>
-	<message key="settings.roles.roleAbbrev">Abbreviation</message>
-	<message key="settings.roles.assignedStages">Assigned Stages</message>
-	<message key="settings.roles.stages">Stages</message>
-	<message key="settings.roles.listRoles">List roles from</message>
-	<message key="settings.roles.roleDetails">Role details</message>
-	<message key="settings.roles.from">Permission level</message>
-	<message key="settings.roles.removeText">You are about to remove this role from this press. This operation will also delete related settings and all the users assignments to this role. Do you want to continue?</message>
-	<message key="settings.roles.nameRequired">You need to define a role name.</message>
-	<message key="settings.roles.abbrevRequired">You need to define a role abbreviature.</message>
-	<message key="settings.roles.uniqueName">You need to define an unique role name.</message>
-	<message key="settings.roles.uniqueAbbrev">You need to define an unique role abbreviature.</message>
-	<message key="settings.roles.roleIdRequired">You need to define a role permission level.</message>
-	<message key="settings.roles.stageIdRequired">You need to define a stage to assign to.</message>
-	<message key="manager.siteAccessOptions.siteAccessOptions">Site Access Options</message>
-
 	<!-- Press settings -->
-	<message key="manager.affiliationAndSupport">Patrocinio</message>
-
 	<!-- Website settings -->
-	<message key="manager.website.homepage">Página de inicio</message>
-	<message key="manager.website.appearance">Apariencia</message>
-	<message key="manager.website.imageFileRequired">An image file is required. Please ensure that you have chosen and uploaded a file.</message>
-
 	<!-- Publication Process settings -->
-	<message key="manager.publication.submissionStage">Submission</message>
-	<message key="manager.publication.reviewStage">Review</message>
-	<message key="manager.publication.editorialStage">Editorial</message>
-	<message key="manager.publication.productionStage">Production</message>
-	<message key="manager.publication.emails">Emails</message>
-
 	<!--  Genre grid settings -->
-	<message key="grid.action.addGenre">Add a Genre</message>
-	<message key="grid.action.editGenre">Edit this Genre</message>
-	<message key="grid.action.deleteGenre">Delete this Genre</message>
-	<message key="grid.action.restoreGenres">Restore the Genres to the default settings</message>
-
 	<!-- Distribution Process settings -->
-	<message key="manager.distribution.indexing">Indexing</message>
-
 	<!-- Payment Method settings -->
-	<message key="manager.paymentMethod">Payments</message>
-	<message key="manager.paymentMethod.title">Payment Methods</message>
-	<message key="manager.paymentMethod.description">Choose from the list of available payment methods.  The area below will update accordingly.</message>
-	<message key="manager.paymentMethod.none">No payment method selected</message>
-	<message key="manager.paymentMethod.method">Payment Method</message>
-	<message key="manager.paymentMethod.currency">Currency</message>
-	<message key="manager.paymentMethod.currency.description">Payments made directly through this website will be denominated in the selected currency.</message>
-
 	<!-- System setup -->
 	<message key="manager.system">System Settings</message>
 	<message key="manager.system.archiving">Archiving</message>
@@ -260,12 +172,10 @@ You may optionally provide the user with a reason for disabling their account.</
 	<message key="manager.setup.authorCopyrightNotice">Aviso de derechos de autor</message>
 	<message key="manager.setup.authorCopyrightNoticeAgree">Require authors to agree to Copyright Notice as part of the submission process.</message>
 	<message key="manager.setup.authorCopyrightNotice.description"><![CDATA[The Copyright Notice entered below will appear in About the Press and in each published item's metadata. While it is up to the press to determine the nature of its copyright agreement with authors, the Public Knowledge Project recommends the use of the <a href="http://creativecommons.org" target="_blank" class="action">Creative Commons</a> license. To that end, it provides <a href="{$sampleCopyrightWordingUrl}" target="_blank" class="action">sample Copyright Notice wording</a> that can be cut and pasted into the space below for presses that (a) offer open access, (b) offer delayed open access, or (c) do not offer open access.]]></message>
-	<message key="manager.setup.authorGuidelines">Directrices para autores</message>
 	<message key="manager.setup.authorGuidelines.description"><![CDATA[Set out for authors the bibliographic and formatting standards used for items submitted to the press (e.g., <em>Publication Manual of the American Psychological Association</em>, 5th edition, 2001). It is often helpful to provide examples of the common citation formats for presses and books to be used in submissions.]]></message>
 	<message key="manager.setup.contributor">Contributor</message>
 	<message key="manager.setup.contributors">Colaboradores</message>
 	<message key="manager.setup.contributors.description">Additional agencies or organizations that provide financial or in-kind support for the press will appear in About the Press and may be accompanied by a note of acknowledgement.</message>
-	<message key="manager.setup.contributors.note">You may add a note describing the relationship and policy between you and your sources of support; this will appear with the Sources of Support list on your About page.</message>
 	<message key="manager.setup.copyediting">Copyeditors</message>
 	<message key="manager.setup.copyeditInstructions">Copyedit Instructions</message>
 	<message key="manager.setup.copyeditInstructionsDescription">The Copyedit Instructions will be made available to Copyeditors, Authors, and Section Editors in the Submission Editing stage. Below is a default set of instructions in HTML, which can be modified or replaced by the Press Manager at any point (in HTML or plain text).</message>
@@ -316,7 +226,6 @@ You may optionally provide the user with a reason for disabling their account.</
 	<message key="manager.setup.enableUserRegistration.reviewer">Reviewers (available for reviewing submissions)</message>
 	<message key="manager.setup.focusAndScope">Focus and scope</message>
 	<message key="manager.setup.focusAndScope.description">Enter a statement below, which will appear in About the Press, that speaks to authors, readers, and librarians about the range of monographs and other items which the press will publish.</message>
-	<message key="manager.setup.focusAndScopeOfPress">Temática y alcance de la editorial</message>
 	<message key="manager.setup.focusScope">Focus and Scope</message>
 	<message key="manager.setup.focusScopeDescription"><![CDATA[<strong>EXAMPLE HTML DATA</strong>]]></message>
 	<message key="manager.setup.forAuthorsToIndexTheirWork">For Authors to Index Their Work</message>
@@ -334,13 +243,11 @@ You may optionally provide the user with a reason for disabling their account.</
 	<message key="manager.setup.preparingWorkflow">Step 3. Preparing the workflow</message>
 	<message key="manager.setup.homepageImage">Homepage image</message>
 	<message key="manager.setup.homepageImageDescription">Add an image or graphic file to the middle of the page. If you are using the default template and css, maximum image width will be 750px for one side bar and 540px for two side bar setup. If you use a customized template or css, those values may change.</message>
-	<message key="manager.setup.information">Information</message>
 	<message key="manager.setup.information.description">Brief descriptions of the press for librarians and prospective authors and readers are available in the "Information" section of the sidebar.</message>
 	<message key="manager.setup.information.forAuthors">For Authors</message>
 	<message key="manager.setup.information.forLibrarians">For Librarians</message>
 	<message key="manager.setup.information.forReaders">For Readers</message>
 	<message key="manager.setup.institution">Institution</message>
-	<message key="manager.setup.itemsPerPage">Items per page</message>
 	<message key="manager.setup.labelName">Label Name</message>
 	<message key="manager.setup.layoutAndGalleys">Layout Editors</message>
 	<message key="manager.setup.layoutInstructions">Layout Instructions</message>
@@ -379,7 +286,6 @@ You may optionally provide the user with a reason for disabling their account.</
 	<message key="manager.setup.peerReview.description">Outline the peer review policy and processes for readers and authors, including the number of reviewers typically used in reviewing a submission, the criteria by which reviewers are asked to judge submissions, typical time taken to conduct the reviews, and the principles for recruiting reviewers. This will appear in About the Press.</message>
 	<message key="manager.setup.policies">Policies</message>
 	<message key="manager.setup.policies.description">Focus, peer review, sections, privacy, security, and additional about items.</message>
-	<message key="manager.setup.pressAppearanceDescription">Various components of the press appearance can be configured from this page, including header and footer elements, the press style and theme, and how lists of information are presented to users.</message>
 	<message key="manager.setup.pressDescription">Descripción de la editorial</message>
 	<message key="manager.setup.pressDescription.description">Una descripción general de la editorial debiera ser incluida aquí. Esta descripción estará disponible en la página de inicio de la editorial.</message>
 	<message key="manager.setup.pressArchiving">Press Archiving</message>
@@ -389,20 +295,10 @@ You may optionally provide the user with a reason for disabling their account.</
 	<message key="manager.setup.pressHomepageHeader.altText">Press Homepage Header</message>
 	<message key="manager.setup.pressHomepageHeaderDescription">Choose between a text representation of the press name, or a graphic version of the press title (.gif, .jpg, or .png files accepted). This header and the optional accompanying logo will only appear on the press home page.  The default header expects a size of 180px x 90px.</message>
 	<message key="manager.setup.pressInitials">Iniciales de la editorial</message>
-	<message key="manager.setup.pressLayout">Press Layout</message>
-	<message key="manager.setup.pressLayoutDescription">Choose a press theme and select layout components here. A press style sheet may also be uploaded, which can be used to override style data in the system-wide style sheets and theme style sheet (if a theme is chosen).</message>
-	<message key="manager.setup.pressLogo">Press Logo</message>
-	<message key="manager.setup.pressLogo.altText">Press Logo</message>
-	<message key="manager.setup.pressPageFooter">Press Page Footer</message>
-	<message key="manager.setup.pressPageFooterDescription">This is the footer of your press. To change or update the footer, paste the HTML code in the textbox below. Examples could be another navigation bar, a counter, etc. This footer will appear on every page.</message>
-	<message key="manager.setup.pressPageHeader">Press Page Header</message>
-	<message key="manager.setup.pressPageHeaderDescription">A graphic version of the press title and logo (.gif, .jpg, or .png file), possibly a smaller version of the one used on the homepage, can be uploaded to appear as a header on press pages, which will replace the text version that otherwise appears.</message>
 	<message key="manager.setup.pressPolicies">Step 2. Press Policies</message>
 	<message key="manager.setup.pressSetup">Press Setup</message>
 	<message key="manager.setup.pressSetupUpdated">Your press setup has been updated.</message>
-	<message key="manager.setup.pressStyleSheetInvalid">Invalid press style sheet format. Accepted format is .css.</message>
 	<message key="manager.setup.pressTheme">Press Theme</message>
-	<message key="manager.setup.pressName">Nombre de la editorial</message>
 	<message key="manager.setup.principalContact">Contacto principal</message>
 	<message key="manager.setup.principalContactDescription">Este cargo, que puede ser tratado como el editor principal, el gestor editorial, o personal administrativo, se mostrará en la página de inicio de la editorial bajo Contacto, junto con el contacto de soporte técnico.</message>
 	<message key="manager.setup.printIssn">ISSN Impreso</message>
@@ -418,30 +314,21 @@ You may optionally provide the user with a reason for disabling their account.</
 	<message key="manager.setup.publisherDescription">The name of the organization publishing the press will appear in About the Press.</message>
 	<message key="manager.setup.referenceLinking">Reference Linking</message>
 	<message key="manager.setup.refLinkInstructions.description">Layout Instructions for Reference Linking</message>
-	<message key="manager.setup.registerPressForIndexing">Register Press for Indexing (Metadata Harvesting)</message>
 	<message key="manager.setup.restrictMonographAccess">Users must be registered and log in to view open access content.</message>
 	<message key="manager.setup.restrictSiteAccess">Users must be registered and log in to view the press site.</message>
 	<message key="manager.setup.reviewGuidelines">Review Guidelines</message>
 	<message key="manager.setup.reviewGuidelinesDescription"><![CDATA[The Review Guidelines will provide reviewers with criteria for judging a submission's suitability for publication in the press, and can include any special instructions for preparing an effective and helpful review. In conducting the review, reviewers are presented with with two open text boxes, the first "for author and editor," and the second "for editor." Alternatively, the Press Manager can create a peer review form under Review Forms. In all cases, editors will have the option of including the reviews in corresponding with the author.]]></message>
-	<message key="manager.setup.competingInterests">Conflicto de intereses</message>
-	<message key="manager.setup.competingInterestsDescription">Reviewers will be asked to comply with the competing interests disclosure policy you specify below.</message> <!-- FIXME #6843 (JM): should this just reference reviewers? -->
-	<message key="manager.setup.reviewOptions">Review Options</message>
 	<message key="manager.setup.reviewOptions.automatedReminders">Automated email reminders (available in OMP's default Emails) can be sent to reviewers at two points (while the editor can always email the reviewer directly as well).</message>
 	<message key="manager.setup.reviewOptions.automatedRemindersDisabled"><![CDATA[<strong>Note:</strong> To activate these options, the site administrator must enable the <tt>scheduled_tasks</tt> option in the OMP configuration file. Additional server configuration may be required to support this functionality (which may not be possible on all servers), as indicated in the OMP documentation.]]></message>
 	<message key="manager.setup.reviewOptions.blindReview">Blind Review</message>
 	<message key="manager.setup.reviewOptions.noteOnModification">These default values can be modified for any submission during the editorial process.</message>
-	<message key="manager.setup.reviewOptions.numWeeksPerReview">Time allowed for review responses (weeks)</message>
-	<message key="manager.setup.reviewOptions.numWeeksPerResponse">Time allowed for review completion (weeks)</message>
 	<message key="manager.setup.reviewOptions.onQuality">Editors will rate reviewers on a five-point quality scale after each review.</message>
-	<message key="manager.setup.reviewOptions.remindForInvite">Send a reminder if a reviewer has not responded to a review request within the following time (days):</message>
-	<message key="manager.setup.reviewOptions.remindForSubmit">Send a reminder if a reviewer has not submitted a recommendation within the following time (days):</message>
 	<message key="manager.setup.reviewOptions.restrictReviewerFileAccess">Reviewers will have access to the submission file only after agreeing to review it.</message>
 	<message key="manager.setup.reviewOptions.reviewerAccess">Reviewer Access</message>
 	<message key="manager.setup.reviewOptions.reviewerAccessKeysEnabled">Enable one-click reviewer access.</message>
 	<message key="manager.setup.reviewOptions.reviewerAccessKeysEnabled.description"><![CDATA[<strong>Note:</strong> The email invitation to reviewers will contain a special URL that takes invited reviewers directly to the Review page for the submission (with access to any other pages requiring them to log in). For security reasons with this option, editors are not able to modify email addresses or add CCs or BCCs prior to sending invitations to reviewers.]]></message>
 	<message key="manager.setup.reviewOptions.reviewerRatings">Reviewer Ratings</message>
 	<message key="manager.setup.reviewOptions.reviewerReminders">Reviewer Reminders</message>
-	<message key="manager.setup.reviewOptions.neverSendReminder">Never Remind</message>
 	<message key="manager.setup.reviewOptions.reviewTime">Review Time</message>
 	<message key="manager.setup.reviewOptions.showEnsuringLink">Provide links about ensuring a blind review on pages where authors and reviewers upload files.</message>
 	<message key="manager.setup.reviewPolicy">Política de evaluación</message>
@@ -461,9 +348,7 @@ You may optionally provide the user with a reason for disabling their account.</
 	<message key="manager.setup.selectSectionDescription">The press section for which the item will be considered.</message>
 	<message key="manager.setup.showGalleyLinksDescription">Always show galley links and indicate restricted access.</message>
 	<message key="manager.setup.siteAccess">Additional Site and Content Access Restrictions</message>
-	<message key="manager.setup.sponsors">Patrocinadores</message>
 	<message key="manager.setup.sponsors.description">The name of the organizations (e.g., scholarly associations, university departments, cooperatives, etc.) sponsoring the press will appear in About the Press and may be accompanied by a note of acknowledgement.</message>
-	<message key="manager.setup.sponsors.note">You may add a note describing your sponsor relationship and policy; this will appear with the sponsor list on your About page.</message>
 	<message key="manager.setup.stepsToPressSite">Five Steps to a Press Web Site</message>
 	<message key="manager.setup.subjectClassification">Subject Classification</message>
 	<message key="manager.setup.subjectClassificationExamples">(E.g., Mathematics Subject Classification; Library of Congress Classification)</message>
@@ -486,8 +371,6 @@ You may optionally provide the user with a reason for disabling their account.</
 	<message key="manager.setup.useImageLogo">Press Logo</message>
 	<message key="manager.setup.useImageLogoDescription">An optional press logo may be uploaded and used in conjunction with the image or text title configured above.</message>
 	<message key="manager.setup.useImageTitle">Title Image</message>
-	<message key="manager.setup.usePressStyleSheet">Press style sheet</message>
-	<message key="manager.setup.pressStyleSheetDescription">You may upload an additional Cascading Style Sheet (CSS) file to change the appearance of your press.</message>
 	<message key="manager.setup.useLayoutEditors">A Layout Editor will be assigned to prepare the HTML, PDF, etc., files for electronic publication.</message>
 	<message key="manager.setup.useProofreaders">A Proofreader will be assigned to check (along with the authors) the galleys prior to publication.</message>
 	<message key="manager.setup.userRegistration">User Registration</message>
@@ -506,16 +389,13 @@ You may optionally provide the user with a reason for disabling their account.</
 	<message key="manager.setup.genres">Genres</message>
 	<message key="manager.setup.newGenre">New Monograph Genre</message>
 	<message key="manager.setup.newGenreDescription">To create a new genre, fill out the form below and click the 'Create' button.</message>
-	<message key="manager.setup.genres.sortable">Allow files of this type to be sorted by component (e.g. by chapter)</message>
 	<message key="manager.setup.deleteSelected">Delete Selected</message>
 	<message key="manager.setup.restoreDefaults">Restore Default Settings</message>
-	<message key="manager.setup.groupType">File type grouping</message>
 	<message key="manager.setup.prospectus">Prospectus Guide</message>
 	<message key="manager.setup.prospectusDescription">The prospectus guide is a press prepared document that helps the author describe the submitted materials in a way that allows a press to determine the value of the submission. A prospectus can include a lot of items- from marketing potential to theoretical value; in any case, a press should create a prospectus guide that complements their publishing agenda.</message>
 	<message key="manager.setup.submitToCategories">Allow category submissions</message>
 	<message key="manager.setup.submitToSeries">Allow series submissions</message>
 	<message key="manager.setup.issnDescription"><![CDATA[The ISSN (International Standard Serial Number) is an eight-digit number which identifies periodical publications as such, including electronic serials. It is managed by a world wide network of National Centres coordinated by an International Centre based in Paris, backed by Unesco and the French Government. A number can be obtained from the <a href="http://www.issn.org" target="_blank">ISSN web site</a>.  This can be done at any point in operating the press.]]></message>
-	<message key="manager.setup.sortableByComponent">Sortable by component</message>
 	<message key="manager.setup.cataloguingMetadata">Cataloguing Metadata</message>
 	<message key="manager.setup.currentFormats">Current Formats</message>
 	<message key="manager.setup.category">Category</message>
@@ -532,8 +412,6 @@ You may optionally provide the user with a reason for disabling their account.</
 	<message key="manager.setup.masthead">Equipo editorial</message>
 	<message key="manager.setup.masthead.description">El Equipo Editorial debiera incluir una lista de los editores, directores generales, y demás personas asociadas con la editorial. La información introducida aquí aparecera en Acerca de la Editorial.</message>
 	<message key="manager.setup.files">Ficheros</message>
-	<message key="manager.setup.submissionDocuments">Submission Documents</message>
-	<message key="manager.setup.libraryDescription"><![CDATA[These files have been prepared by the press as templates and guides for use as part of the <span class="pkp_help_title">Submission Documents</span>.]]></message>
 	<message key="manager.setup.productionTemplates">Production Templates</message>
 	<message key="manager.files.note">Note: The Files Browser is an advanced feature that allows the files and directories associated with a press to be viewed and manipulated directly.</message>
 	<message key="manager.setup.authorCopyrightNotice.sample"><![CDATA[<h3>Proposed Creative Commons Copyright Notices</h3>
@@ -562,10 +440,4 @@ Select a model for handling these aspects of the editorial process. (To designat
 	<li><strong>Add a Reading Tool</strong><p>The Press Manager can add "Find References" to the Reading Tools that accompany published items, which enables readers to paste a reference's title and then search pre-selected scholarly databases for the cited work.</p></li>
 	<li><strong>Embed Links in the References</strong><p>The Layout Editor can add a link to references that can be found online by using the following instructions (which can be edited).</p></li>
 </ol>]]></message>
-	<message key="manager.setup.registerPressForIndexingDescription"><![CDATA[To have the contents of this press indexed within a globally distributed system of research databases, <a href="http://pkp.sfu.ca/harvester/add.php" target="_blank">register</a> your press URL with the Public Knowledge Project metadata <a href="http://pkp.sfu.ca/harvester/" target="_blank">harvester</a>. This tool collects the metadata from each indexed item in this press, enabling accurate and collective searching among the research sites that adhere to the <a href="http://www.openarchives.org/OAI/openarchivesprotocol.htm#Introduction" target="_blank">Open Archives Initiative Protocol for Metadata Harvesting</a>.
-<br /><br />
-Note that if your site administrator has already registered this site with the PKP Harvester, your press will be indexed automatically and you do not need to register your press.
-<br /><br />
-<a href="http://pkp.sfu.ca/harvester/add.php" target="_blank">Click here</a> and enter <span class="highlight">{$siteUrl}</span> under <strong>Site URL</strong>, and <span class="highlight">{$oaiUrl}</span> under <strong>Base URL for OAI Archive</strong>.]]></message>
-
 </locale>

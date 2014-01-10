@@ -13,29 +13,19 @@
 <locale name="es_ES" full_name = "Español">
 	<!-- General submission keys -->
 	<message key="submission.select">Seleccionar propuesta</message>
-	<message key="submission.submission">Propuesta</message>
 	<message key="submission.synopsis">Resumen</message>
 	<message key="submission.workType">Tipo de libro</message>
 	<message key="submission.workType.description">Una monografía se considera escrita totalmente por uno o más autores. Una obra colectiva tiene diferentes autores para cada capítulo (posteriormente se aportarían los detalles de cada capítulo).</message>
 	<message key="submission.workType.editedVolume">Obra colectiva</message>
 	<message key="submission.workType.authoredWork">Monografía</message>
-	<message key="submission.editorial">Edición</message>
-	<message key="submission.production">Producción</message>
 	<message key="submission.published">Production Ready</message>
-	<message key="submission.finalDraft">Final Draft Files</message>
 	<message key="submission.fairCopy">Fair Copy</message>
-	<message key="submission.art">Artwork</message>
 	<message key="submission.artwork.permissions">Permissions</message>
 	<message key="submission.chapter">Chapter</message>
 	<message key="submission.chapters">Chapters</message>
 	<message key="submission.chaptersDescription">You may list the chapters here, and assign contributors from the list of contributors, above. These contributors will be able to access the chapter during various stages of the publication process.</message>
 	<message key="submission.chapter.addChapter">Add Chapter</message>
 	<message key="submission.chapter.editChapter">Edit Chapter</message>
-	<message key="submission.contributors">Lista de colaboradores</message>
-	<message key="submission.contributorsDescription">La lista de colaboradores asociados a esta propuesta puede incluir otros autores; autores de capítulos de una obra colectiva; editores científicos o coordinadores de obra; y/o traductores. Un colaborador de la lista puede ser asignado como contacto principal para la correspondencia editorial, y no tiene por qué coincidir con el autor que ha realizado la propuesta.</message>
-	<message key="submission.document">Document</message>
-	<message key="submission.overview">Submission Overview</message>
-	<message key="submission.copyediting">Copyediting</message>
 	<message key="submission.copyedit">Copyedit</message>
 	<message key="submission.publicationFormats">Publication Formats</message>
 	<message key="submission.proofs">Proofs</message>
@@ -46,151 +36,64 @@
 	<message key="submissions.queuedReview">In Review</message>
 	<message key="manuscript.submissions">Manuscript Submissions</message>
 	<message key="submission.confirmSubmit">Are you sure you wish to submit this manuscript to the press?</message>
-	<message key="submission.files.downloadAll">Download All Files</message>
-	<message key="submission.mySubmissions">Todas mis propuestas</message>
 	<message key="submission.metadata">Metadata</message>
 	<message key="submission.supportingAgencies">Agencias de apoyo</message>
-	<message key="submission.previousAuthorMessages">Previous Messages</message>
-	<message key="submission.documents">Submission Documents</message>
 	<message key="grid.action.addChapter">Create a new chapter</message>
 	<message key="grid.action.editChapter">Edit this chapter</message>
 	<message key="grid.action.deleteChapter">Delete this chapter</message>
 
 	<!-- workflow navigation keys -->
-	<message key="submission.currentStage">Current stage</message>
-	<message key="submission.noActionRequired">No action required</message>
-	<message key="submission.actionNeeded">Needs action</message>
-	<message key="submission.productionReady">Book available</message>
-
 	<!-- Submission wizard -->
 	<message key="submission.submit">Comenzar nueva propuesta</message>
 	<message key="submission.submit.newSubmissionMultiple">Comenzar una nueva propuesta para</message>
 	<message key="submission.submit.newSubmissionSingle">Nueva propuesta</message>
 	<message key="submission.submit.upload">Subir propuesta</message>
-	<message key="submission.submit.uploadStep">1. Subir propuesta</message>
 	<message key="submission.submit.upload.description">Upload files associated with this submission, including manuscript, prospectus, cover letter, artwork, etc. For edited volumes, as well as monographs, upload the manuscript as a single file, if feasible.</message>
 	<message key="submission.submit.cancelSubmission">You can complete this submission at a later date by selecting Active Submissions from the Author home.</message>
 	<message key="submission.submit.copyrightNoticeAgree">Estoy de acuerdo en cumplir con los términos de la declaración de derechos de autor.</message>
-	<message key="submission.submit.howToSubmit"><![CDATA[¿Encuentra dificultades? Póngase en contacto con <a href="mailto:{$supportEmail}">{$supportName}</a> para obtener ayuda ({$supportPhone}).]]></message>
-	<message key="submission.submit.howToSubmitNoPhone"><![CDATA[Encountering difficulties? Contact <a href="mailto:{$supportEmail}">{$supportName}</a> for assistance.]]></message>
 	<message key="submission.submit.selectSeries">Seleccionar serie, colección, ...</message>
 	<message key="submission.submit.seriesPosition">Lugar que ocupa dentro de esta serie, colección, ... (por ejemplo, Libro 2, o Volumen 2)</message>
-	<message key="submission.submit.submissionLocale">Idioma de la propuesta</message>
-	<message key="submission.submit.submissionLocaleDescription">La editorial acepta propuestas en varios idiomas. Escoja el idioma principal de la propuesta abajo en el menú desplegable.</message>
 	<message key="submission.submit.form.localeRequired">Please select a submission language.</message>
 	<message key="submission.submit.submissionChecklist">Submission Checklist</message>
 	<message key="submission.submit.submissionChecklistDescription">The following requirements for submissions to this press need to be completed and checked off before proceeding (comments to the editor can be added below).</message>
 	<message key="submission.submit.privacyStatement">Declaración de privacidad</message>
-	<message key="submission.submit.selectPrincipalContact">Contacto principal para correspondencia editorial.</message>
-	<message key="submission.submit.briefSummary">Breve resumen del libro</message>
-	<message key="submission.submit.addAuthor">Añadir colaborador</message>
 	<message key="submission.submit.contributorRole">Rol del colaborador</message>
 	<message key="submission.submit.form.authorRequired">At least one author is required.</message>
 	<message key="submission.submit.form.authorRequiredFields">The first name, last name, and email address of each author is required.</message>
 	<message key="submission.submit.form.titleRequired">Please enter the title of your monograph.</message>
 	<message key="submission.submit.form.abstractRequired">Please enter a brief summary of your monograph.</message>
 	<message key="submission.submit.form.contributorRoleRequired">Please select the contributor's role.</message>
-	<message key="submission.submit.errorDeletingAuthor">There was an error removing the author.</message>
-	<message key="submission.submit.currentFile">Current file</message>
-	<message key="submission.submit.selectFile">Seleccionar fichero a subir</message>
 	<message key="submission.submit.submissionFile">Fichero de la propuesta</message>
-	<message key="submission.submit.uploadSubmissionFile">Añadir fichero de la propuesta</message>
-	<message key="submission.submit.finishSubmission">Finish Submission</message>
-	<message key="submission.submit.submissionComplete">Propuesta completada</message>
-	<message key="submission.submit.submissionCompleteThanks">Gracias por tu interés en publicar con {$pressName}.</message>
 	<message key="submission.submit.prepare">Preparar</message>
 	<message key="submission.submit.catalog">Catalogar</message>
-	<message key="submission.submit.metadataStep">2. Metadatos</message>
 	<message key="submission.submit.metadata">Metadatos</message>
 	<message key="submission.submit.finishingUp">Finishing Up</message>
-	<message key="submission.submit.finishingUpStep">3. Finishing Up</message>
-	<message key="submission.submit.metadataForm">Matices adicionales</message>
-	<message key="submission.submit.metadataForm.tip">Añada información adicional acerca de la propuesta. Pulse 'intro' después de cada término.</message>
 	<message key="submission.submit.upload">Subir</message>
 	<message key="submission.submit.nextSteps">Pasos siguientes</message>
 	<message key="submission.submit.coverNote">Nota para el Editor</message>
 	<message key="submission.submit.generalInformation">General Information</message>
-	<message key="submission.submit.whatNext">¿Qué sucede a continuación?</message>
 	<message key="submission.submit.whatNext.description">Tu propuesta ha sido notificada a la editorial, y debes haber recibido un email de confirmación. Una vez se haya examinado la propuesta nos pondremos en contacto contigo.</message>
-	<message key="submission.submit.whatNext.forNow">Por ahora, tú puedes:</message>
-	<message key="submission.submit.whatNext.review">Examinar esta propuesta</message>
-	<message key="submission.submit.whatNext.create">Crear una nueva propuesta</message>
-	<message key="submission.submit.whatNext.return">Volver a tu panel de control</message>
 	<message key="submission.submit.checklistErrors">Please read and check off the items in the submission checklist.  There are {$itemsRemaining} items left unchecked.</message>
 	<message key="submission.submit.placement">Submission Placement</message>
 	<message key="submission.submit.placement.seriesDescription">Si el libro también debiera ser considerado para una serie, colección, ...</message>
 	<message key="submission.submit.placement.seriesPositionDescription">Los libros de series, colecciones, ..., generalmente se organizan en orden inverso al que se publican, para dar una idea del desarrollo de las mismas, manteniendo el libro más actual en primer lugar.</message>
 	<message key="submission.submit.placement.categories">Categorías</message>
 	<message key="submission.submit.placement.categoriesDescription">Seleccione una o más categorías a las que corresponde este trabajo.</message>
-	<message key="submission.submit.submissionFiles">Ficheros de la propuesta</message>
-	<message key="submission.submit.fileInformation">File Information</message>
-	<message key="submission.submit.fileNameRequired">You must enter a file name for this file</message>
-	<message key="submission.submit.fileAdded">File Added</message>
-	<message key="submission.submit.newFile">Upload Another File</message>
 	<message key="submission.submit.userGroup">Realizar propuesta como...</message>
 	<message key="submission.submit.userGroupDescription">Si estás realizando la propuesta como Editor científico de la obra, deberás elegir el rol Editor científico.</message>
 	<message key="submission.submit.titleAndSummary">Título y Resumen</message>
 
 	<!-- File upload wizard -->
-	<message key="submission.upload.noteToAccompanyFile">Note to accompany file</message>
-	<message key="submission.upload.noGenre">Missing or invalid genre!</message>
-	<message key="submission.upload.invalidUserGroup">Missing or invalid user group!</message>
-	<message key="submission.upload.possibleRevision">Possible Duplication or Revision Detected</message>
-	<message key="submission.upload.possibleRevisionDescription"><![CDATA[<p>The name of the uploaded file resembles the name of the previously uploaded file "{$revisedFileName}." If the file just uploaded is to replace the earlier file, then select the file to be replaced in the pulldown. If the uploaded file is not to replace an earlier file, then set the pulldown at "Select file (to preserve history)."</p>]]></message>
-	<message key="submission.upload.selectMandatoryFileToRevise">Please select the file you would like to revise.</message>
-	<message key="submission.upload.selectOptionalFileToRevise">If you are uploading a revision of an existing file, please indicate which file.</message>
-	<message key="submission.upload.uploadNewFile">Select file (to preserve history)</message>
-	<message key="submission.upload.fileContents">Contenido del fichero</message>
-	<message key="submission.upload.userGroup">Subir este fichero con mi rol de...</message>
-	<message key="submission.upload.userGroupDescription">If you are submitting an Edited Volume, you should upload all volume chapters individually, under your role as volume editor.</message>
 	<message key="submission.upload.selectBookElement">Select book element</message>
-	<message key="submission.upload.uploadLibraryFile">Upload a Library File</message>
-	<message key="submission.upload.libraryCategory">Submission Document Category</message>
-	
 	<!-- File uploads -->
-	<message key="submission.upload.finalDraft">Añadir fichero</message>
-	<message key="submission.upload.copyeditedVersion">Upload Copyedited File</message>
-	<message key="submission.upload.fairCopy">Upload Fair Copy</message>
-	<message key="submission.upload.uploadFiles">Añadir ficheros</message>
-	<message key="submission.upload.signoff">Upload a Response</message>
-	<message key="submission.upload.response.description">After reviewing the assigned file, record any comments on the file below, and/or upload an annotated copy of the file (or another file).</message>
-	<message key="submission.upload.productionReady">Upload a Production Ready File</message>
-	<message key="submission.upload.proof">Subir una prueba</message>
-	<message key="submission.upload.noAvailableReviewFiles">There are no files for you to revise at this time.</message>
-	
 	<!-- Read/Upload/Perform Signoff -->
-	<message key="submission.signoff.selectFile">Select the file you wish to signoff on</message>
-	<message key="submission.signoff.signoffOnFile">Signoff on this file</message>
-	<message key="submission.signoff.signedOffOnFile">Signed off on this file</message>
-	<message key="submission.signoff.noAvailableSignoffs">There are no files for you respond to at this time.</message>
-	<message key="submission.signoff.fileResponse">File Response</message>
-
 	<!-- Submission statuses -->
-	<message key="submission.status.editorial">In Copyediting</message>
-	<message key="submission.status.production">In Proofreading</message>
-	<message key="submission.status.review">In Review</message>
-	<message key="submission.status.submission">Awaiting Editor Decision</message>
-	<message key="submission.status.unassigned">Unassigned</message>
-
 	<!-- Artwork Files Grid -->
-	<message key="grid.artworkFile.caption">Caption</message>
-	<message key="grid.artworkFile.credit">Credit</message>
-	<message key="grid.artworkFile.copyrightOwner">Copyright Owner</message>
-	<message key="grid.artworkFile.copyrightContact">Contact Info (if not author/publisher)</message>
-	<message key="grid.artworkFile.permissionTerms">Permission Terms</message>
-	<message key="grid.artworkFile.placement">Placement in book</message>
-
 	<!-- Chapters Grid -->
 	<message key="grid.chapters.title">Chapters</message>
-	<message key="listbuilder.contributors.addContributor">Añadir colaborador</message>
-
 	<!-- Copyediting Grid -->
 	<message key="grid.copyediting.deleteCopyeditorResponse">Delete Copyeditor Upload</message>
-	<message key="grid.copyediting.deleteSignoff">Unassign User</message>
-
 	<!-- Proofreading Grid -->
-	<message key="grid.noAuditors">No existen auditores</message>
-
 	<!-- Submission-specific catalog info -->
 	<message key="submission.catalogEntry">Catalogación</message>
 	<message key="submission.editCatalogEntry">Catalogación</message>
@@ -205,14 +108,7 @@
 	<message key="submission.catalogEntry.publicationMetadata">Publication Format</message>
 
 	<!-- Information Center -->
-	<message key="submission.informationCenter.submissionInfo">Información de la propuesta</message>
-	<message key="submission.informationCenter.metadata">Metadata</message>
-	<message key="submission.informationCenter.notes">Notes</message>
-	<message key="submission.informationCenter.notify">Notify</message>
-	<message key="submission.informationCenter.history">History</message>
-
 	<!-- Log events -->
-	<message key="submission.event.monographSubmitted">The monograph is submitted.</message>
 	<message key="submission.event.participantAdded">"{$name}" ({$username}) is added as a {$userGroupName}.</message>
 	<message key="submission.event.participantRemoved">"{$name}" ({$username}) is removed as a {$userGroupName}.</message>
 	<message key="submission.event.metadataPublished">The monograph's metadata is approved for publication.</message>
@@ -221,19 +117,8 @@
 	<message key="submission.event.publicationFormatMadeUnavailable">The publication format "{$publicationFormatName}" is no longer available.</message>
 	<message key="submission.event.publicationFormatPublished">The publication format "{$publicationFormatName}" is approved for publication.</message>
 	<message key="submission.event.publicationFormatUnpublished">The publication format "{$publicationFormatName}" is no longer published.</message>
-	<message key="submission.event.fileUploaded">A file "{$originalFileName}" was uploaded for monograph {$submissionId} by {$username}.</message>
-	<message key="submission.event.fileDeleted">A file "{$originalFileName}" was deleted for monograph {$submissionId} by {$username}.</message>
-	<message key="submission.event.revisionUploaded">A file revision "{$originalFileName}" was uploaded for monograph {$submissionId} by {$username}.</message>
-	<message key="submission.event.revisionDeleted">A file revision "{$originalFileName}" was deleted for monograph {$submissionId} by {$username}.</message>
-	<message key="submission.event.lastRevisionDeleted">A file "{$title}" had its last revision removed by {$username}.</message>
-	<message key="submission.event.fileAuditorAdded">"{$name}" ({$username}) was added as an auditor for the file "{$file}".</message>
-	<message key="submission.event.fileAuditorCleared">"{$name}" ({$username}) was removed as an auditor for the file "{$file}".</message>
-	<message key="submission.event.fileAuditUploaded">"{$name}" ({$username}) has completed an audit and uploaded "{$file}".</message>
-	<message key="submission.event.signoffSignoff">"{$name}" ({$username}) has signed off on the signoff for "{$file}".</message>
-	<message key="submission.event.proofsApproved">"{$name}" ({$username}) has approved the proofs for "{$formatName}".</message>
 	<message key="submission.event.catalogMetadataUpdated">The catalog metadata was updated.</message>
 	<message key="submission.event.publicationMetadataUpdated">The publication format metadata for "{$formatName}" was updated.</message>
 	<message key="submission.event.publicationFormatCreated">The publication format "{$formatName}" was created.</message>
 	<message key="submission.event.publicationFormatRemoved">The publication format "{$formatName}" was removed.</message>
-	<message key="submission.authorDashboard.description">In each initiated workflow stage listed below you will find information on the stage's status, as well as any associated submission files and correspondence associated with that stage. You may be asked to upload a revised file to a particular stage, or audit a file that has been previously uploaded, both actions which can be completed within the stage section specified.</message>
 </locale>

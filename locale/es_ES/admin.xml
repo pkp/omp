@@ -16,14 +16,11 @@
 	<message key="admin.settings.pressRedirectInstructions">Requests to the main site will be redirected to this press. This may be useful if the site is hosting only a single press, for example.</message>
 	<message key="admin.settings.noPressRedirect">Do not redirect</message>
 
-	<message key="admin.languages.installLocale">Install Locale</message>
 	<message key="admin.languages.primaryLocaleInstructions">This will be the default language for the site and any hosted presses.</message>
 	<message key="admin.languages.supportedLocalesInstructions">Select all locales to support on the site. The selected locales will be available for use by all presses hosted on the site, and also appear in a language select menu to appear on each site page (which can be overridden on press-specific pages). If multiple locales are not selected, the language toggle menu will not appear and extended language settings will not be available to presses.</message>
 	<message key="admin.locale.maybeIncomplete">* Marked locales may be incomplete.</message>
 	<message key="admin.languages.confirmUninstall">Are you sure you want to uninstall this locale? This may affect any hosted presses currently using the locale.</message>
 	<message key="admin.languages.installNewLocalesInstructions">Select any additional locales to install support for in this system. Locales must be installed before they can be used by hosted presses. See the OMP documentation for information on adding support for new languages.</message>
-	<message key="admin.languages.availableLocales">Available Locales</message>
-	<message key="admin.languages.downloadLocales">Download Locales</message>
 	<message key="admin.languages.noLocalesToDownload">No locales are available for download.</message>
 	<message key="admin.languages.downloadFailed">The locale download failed. The error message(s) below describe the failure.</message>
 	<message key="admin.languages.downloadUnavailable"><![CDATA[<p>Downloading language packs from the Public Knowledge Project web server is not currently available because:</p>
@@ -33,41 +30,17 @@
 	</ul>
 <p>Language packs can be manually downloaded from the <a href="http://pkp.sfu.ca" target="_blank">PKP web site</a>.</p>]]></message>
 
-	<message key="admin.languages.download">Download Locale</message>
-	<message key="admin.languages.download.cannotOpen">Cannot open language descriptor from PKP web site.</message>
-	<message key="admin.languages.download.cannotModifyRegistry">Cannot add the new locale to the locale registry file, typically "registry/locales.xml".</message>
 	<message key="admin.languages.confirmDisable">Are you sure you want to disable this locale? This may affect any hosted presses currently using the locale.</message>
-	<message key="admin.languages.cantDisable">This locale is the primary language of the site. You can't disable it until you choose another primary locale.</message>
-
-
-	<message key="admin.systemInfo.settingName">Setting Name</message>
-	<message key="admin.systemInfo.settingValue">Setting Value</message>
 	<message key="admin.systemVersion">OMP Version</message>
 	<message key="admin.systemConfiguration">OMP Configuration</message>
 	<message key="admin.systemConfigurationDescription"><![CDATA[OMP configuration settings from <tt>config.inc.php</tt>.]]></message>
 	<message key="admin.presses.pressSettings">Press Settings</message>
 	<message key="admin.presses.noneCreated">No presses have been created.</message>
-	<message key="admin.presses.confirmDelete">Are you sure you want to permanently delete this press and all of its contents?</message>
-	<message key="admin.presses.create">Create Press</message>
 	<message key="admin.presses.createInstructions">You will automatically be enrolled as the manager of this press. After creating a new press, you will be redirected to its settings wizard, to complete the initial press setup.</message>
 	<message key="admin.presses.urlWillBe">The press URL will be {$sampleUrl}</message>
-	<message key="admin.presses.form.titleRequired">A title is required.</message>
-	<message key="admin.presses.form.pathRequired">A path is required.</message>
-	<message key="admin.presses.form.pathAlphaNumeric">The path can contain only alphanumeric characters, underscores, and hyphens, and must begin and end with an alphanumeric character.</message>
-	<message key="admin.presses.form.pathExists">The selected path is already in use by another press.</message>
 	<message key="admin.presses.enablePressInstructions">Enable this press to appear publicly on the site</message>
 	<message key="admin.presses.pressDescription">Press description</message>
 	<message key="admin.presses.addPress">Añadir editorial</message>
-
-	<message key="admin.mergeUsers">Combinar usuarios</message>
-	<message key="admin.mergeUsers.mergeUser">Merge User</message>
-	<message key="admin.mergeUsers.mergeIntoUser">Merge into this User</message>
-	<message key="admin.mergeUsers.into.description">Now, you must select a user to whom to attribute the previous user's authorships, editing assignments, etc.</message>
-	<message key="admin.mergeUsers.from.description">Select a user to merge into another user account (e.g., when someone has two user accounts). The account selected first will be deleted and its submissions, assignments, etc. will be attributed to the second account.</message>
-	<message key="admin.mergeUsers.allUsers">All Enrolled Users</message>
-	<message key="admin.mergeUsers.mergeUserSelect.confirm">Are you sure you wish to merge this user with another one?  You will choose the next user on the following screen.</message>
-	<message key="admin.mergeUsers.confirm">Are you sure you wish to merge the account with the username "{$oldUsername}" into the account with the username "{$newUsername}"? The account with the username "{$oldUsername}" will not exist afterwards. This action is not reversible.</message>
-	<message key="admin.mergeUsers.noneEnrolled">No users exist with that role.</message>
 
 	<message key="admin.settings.oaiRegistrationDescription"><![CDATA[To have the contents of all presses hosted on this site indexed within a globally distributed system of research databases, <a href="http://pkp.sfu.ca/harvester/add.php" target="_blank">register</a> your site's URL with the Public Knowledge Project metadata <a href="http://pkp.sfu.ca/harvester/" target="_blank">harvester</a>. This tool collects the metadata from each indexed item in this press, enabling accurate and collective searching among the research sites that adhere to the <a href="http://www.openarchives.org/OAI/openarchivesprotocol.htm#Introduction" target="_blank">Open Archives Initiative Protocol for Metadata Harvesting</a>.
 <br /><br />
