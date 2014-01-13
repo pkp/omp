@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE locale SYSTEM "../../../../../lib/pkp/dtd/locale.dtd">
+
+<!--
+  * plugins/generic/usageStats/locale/en_US/locale.xml
+  *
+  * Copyright (c) 2003-2013 John Willinsky
+  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
+  *
+  * Localization strings
+  -->
+
+<locale name="en_US" full_name="U.S. English">
+	<message key="plugins.reports.usageStats.report.displayName">Relatório de estatísticas de uso do OMP</message>
+	<message key="plugins.reports.usageStats.report.description">Relatório de estatísticas de uso padrão do OMP (pronto para COUNTER)</message>
+	
+	<message key="plugins.reports.usageStats.metricType">OMP/COUNTER</message>
+	<message key="plugins.reports.usageStats.metricType.full">Estatísticas Open Monograph Press (pronto para COUNTER)</message>
+</locale>
