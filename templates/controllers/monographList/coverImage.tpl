@@ -17,4 +17,4 @@
 	{assign var=coverImageWidth value=$coverImage.thumbnailWidth}
 	{assign var=coverImageHeight value=$coverImage.thumbnailHeight}
 {/if}
-<img class="pkp_catalog_monograph_thumbnail pkp_helpers_container_center" height="{$coverImageHeight}" width="{$coverImageWidth}" alt="{$monograph->getLocalizedFullTitle()|escape}" src="{url router=$smarty.const.ROUTE_COMPONENT component="submission.CoverHandler" op="thumbnail" submissionId=$monograph->getId() random=$monograph->getId()|uniqid}" />
+<img class="pkp_catalog_monograph_thumbnail pkp_helpers_container_center" height="{$coverImageHeight}" width="{$coverImageWidth}" alt="{$monograph->getLocalizedFullTitle()|strip_tags|escape}" src="{url router=$smarty.const.ROUTE_COMPONENT component="submission.CoverHandler" op="thumbnail" submissionId=$monograph->getId() random=$monograph->getId()|uniqid}" />

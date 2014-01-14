@@ -17,7 +17,7 @@
 					{if $spotlight->getAssocType() == $smarty.const.SPOTLIGHT_TYPE_BOOK}
 						{assign var=coverImage value=$item->getCoverImage()}
 						{if $coverImage}
-							<a class="pkp_helpers_image_right" href="{url page="catalog" op="book" path=$item->getId()}"><img height="{$coverImage.thumbnailHeight}" width="{$coverImage.thumbnailWidth}" alt="{$item->getLocalizedFullTitle()|escape}" src="{url router=$smarty.const.ROUTE_COMPONENT component="submission.CoverHandler" op="thumbnail" submissionId=$item->getId()}" /></a>
+							<a class="pkp_helpers_image_right" href="{url page="catalog" op="book" path=$item->getId()}"><img height="{$coverImage.thumbnailHeight}" width="{$coverImage.thumbnailWidth}" alt="{$item->getLocalizedFullTitle()|strip_tags|escape}" src="{url router=$smarty.const.ROUTE_COMPONENT component="submission.CoverHandler" op="thumbnail" submissionId=$item->getId()}" /></a>
 						{/if}
 						<div class="pkp_catalog_spotlight_itemTitle">{$item->getLocalizedFullTitle()|strip_unsafe_html}</div>
 						<div class="pkp_catalog_spotlight_itemAuthorship">{$item->getAuthorString()|strip_unsafe_html}</div>
@@ -33,7 +33,7 @@
 					{if $spotlight->getAssocType() == $smarty.const.SPOTLIGHT_TYPE_SERIES}
 						{assign var=image value=$item->getImage()}
 						{if $image}
-							<a class="pkp_helpers_image_right" href="{url page="catalog" op="fullSize" type="series" id=$item->getId()}"><img height="{$image.thumbnailHeight}" width="{$image.thumbnailWidth}" alt="{$item->getLocalizedFullTitle()|escape}" src="{url page="catalog" op="thumbnail" type="series" id=$item->getId()}" /></a>
+							<a class="pkp_helpers_image_right" href="{url page="catalog" op="fullSize" type="series" id=$item->getId()}"><img height="{$image.thumbnailHeight}" width="{$image.thumbnailWidth}" alt="{$item->getLocalizedFullTitle()|strip_tags|escape}" src="{url page="catalog" op="thumbnail" type="series" id=$item->getId()}" /></a>
 						{/if}
 						<div class="pkp_catalog_spotlight_itemTitle">
 							{translate key="series.series"}: {$item->getLocalizedFullTitle()|strip_unsafe_html}
@@ -58,7 +58,7 @@
 						{if $monograph}
 							{assign var=coverImage value=$monograph->getCoverImage()}
 							{if $coverImage}
-								<a class="pkp_helpers_image_right" href="{url router=$smarty.const.ROUTE_PAGE page="catalog" op="book" path=$monograph->getId()}"><img height="{$coverImage.thumbnailHeight}" width="{$coverImage.thumbnailWidth}" alt="{$monograph->getLocalizedFullTitle()|escape}" src="{url router=$smarty.const.ROUTE_COMPONENT component="submission.CoverHandler" op="thumbnail" submissionId=$monograph->getId()}" /></a>
+								<a class="pkp_helpers_image_right" href="{url router=$smarty.const.ROUTE_PAGE page="catalog" op="book" path=$monograph->getId()}"><img height="{$coverImage.thumbnailHeight}" width="{$coverImage.thumbnailWidth}" alt="{$monograph->getLocalizedFullTitle()|strip_tags|escape}" src="{url router=$smarty.const.ROUTE_COMPONENT component="submission.CoverHandler" op="thumbnail" submissionId=$monograph->getId()}" /></a>
 							{/if}
 						{/if}
 						{assign var="authorName" value=$item->getFullName()|strip_unsafe_html}

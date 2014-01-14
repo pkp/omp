@@ -27,7 +27,7 @@
 			{assign var="submissionId" value=$publishedMonograph->getId()}
 			{if isset($featuredMonographIds[$submissionId])}
 			<li id="publishedMonograph-{$submissionId}" class="mover">
-				<span class="moverImg"><div><img src="{url router=$smarty.const.ROUTE_COMPONENT component="submission.CoverHandler" op="cover" submissionId=$publishedMonograph->getId() random=$publishedMonograph->getId()|uniqid}" alt="{$publishedMonograph->getLocalizedFullTitle()|escape}" data-caption="#publishedMonograph-{$submissionId}-caption"/></div></span>
+				<span class="moverImg"><div><img src="{url router=$smarty.const.ROUTE_COMPONENT component="submission.CoverHandler" op="cover" submissionId=$publishedMonograph->getId() random=$publishedMonograph->getId()|uniqid}" alt="{$publishedMonograph->getLocalizedFullTitle()|strip_tags|escape}" data-caption="#publishedMonograph-{$submissionId}-caption"/></div></span>
 				<div class="details_box" id="publishedMonograph-{$submissionId}-details">
 					<h4>{$publishedMonograph->getLocalizedFullTitle()|strip_unsafe_html}</h4>
 					<div class="pkp_catalog_monograph_authorship">{$publishedMonograph->getAuthorString()|escape}</div>
