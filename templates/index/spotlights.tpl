@@ -12,7 +12,7 @@
 		{foreach from=$spotlights item=spotlight name=loop}
 			{assign var="item" value=$spotlight->getSpotlightItem()}
 			<li class="pkp_helpers_align_left pkp_helpers_third">
-				<h4 class="pkp_helpers_text_center">{$spotlight->getLocalizedTitle()|escape}</h4>
+				<h4 class="pkp_helpers_text_center">{$spotlight->getLocalizedTitle()|strip_unsafe_html}</h4>
 				<div class="pkp_catalog_spotlight">
 					{if $spotlight->getAssocType() == $smarty.const.SPOTLIGHT_TYPE_BOOK}
 						{assign var=coverImage value=$item->getCoverImage()}

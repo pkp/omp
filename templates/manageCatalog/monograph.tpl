@@ -70,7 +70,7 @@
 			{$monograph->getDatePublished()|date_format:$dateFormatShort}
 	</div>
 	<div class="pkp_manageCatalog_monograph_series">
-		{$monograph->getSeriesTitle()|escape}
+		{$monograph->getSeriesTitle()|strip_unsafe_html}
 	</div>
 	<div class="pkp_manageCatalog_monograph_actions pkp_linkActions">
 			{null_link_action key="submission.editCatalogEntry" id="catalogEntry-"|concat:$submissionId} | {null_link_action key="submission.submission" id="itemWorkflow-"|concat:$submissionId}
