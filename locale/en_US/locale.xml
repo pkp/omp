@@ -319,6 +319,7 @@
 	<message key="context.select">Select a Press...</message>
 
 	<!-- User -->
+	<message key="user.noRoles.selectUsersWithoutRoles">Include users with no roles in this press.</message>
 	<message key="user.noRoles.submitMonograph">Submit a Proposal</message>
 	<message key="user.noRoles.submitMonographRegClosed">Submit an Monograph: Author registration is currently disabled.</message>
 	<message key="user.noRoles.regReviewer">Register as a Reviewer</message>
