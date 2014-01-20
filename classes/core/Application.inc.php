@@ -25,7 +25,7 @@ define('ASSOC_TYPE_PUBLICATION_FORMAT',		ASSOC_TYPE_REPRESENTATION);
 
 define('ASSOC_TYPE_PRESS',			0x0000200);
 define('ASSOC_TYPE_CATEGORY',			0x000020D);
-define('ASSOC_TYPE_SERIES',			0x000020E);
+define('ASSOC_TYPE_SERIES',			ASSOC_TYPE_SECTION);
 
 define('CONTEXT_PRESS', 1);
 
@@ -175,6 +175,14 @@ class Application extends PKPApplication {
 	 */
 	static function getSubmissionDAO() {
 		return DAORegistry::getDAO('MonographDAO');
+	}
+
+	/**
+	 * Get the section DAO.
+	 * @return SeriesDAO
+	 */
+	static function getSectionDAO() {
+		return DAORegistry::getDAO('SeriesDAO');
 	}
 
 	/**
