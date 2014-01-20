@@ -55,6 +55,13 @@ class Monograph extends Submission {
 	 * @return int
 	 */
 	function getSeriesId() {
+		return $this->getSectionId();
+	}
+
+	/**
+	 * @see Submission::getSectionId()
+	 */
+	function getSectionId() {
 		return $this->getData('seriesId');
 	}
 
