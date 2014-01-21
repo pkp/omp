@@ -1,15 +1,15 @@
 <?php
 
 /**
- * @file controllers/grid/files/copyedit/form/CopyeditingUserForm.inc.php
+ * @file controllers/grid/files/signoff/form/FileAuditorForm.inc.php
  *
  * Copyright (c) 2003-2013 John Willinsky
  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
  *
- * @class CopyeditingUserForm
- * @ingroup controllers_grid_files_copyedit
+ * @class FileAuditorForm
+ * @ingroup controllers_grid_files_signoff
  *
- * @brief Form to add files to the final draft files grid
+ * @brief File auditor form.
  */
 
 import('lib.pkp.controllers.grid.files.signoff.form.PKPFileAuditorForm');

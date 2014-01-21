@@ -1,7 +1,7 @@
 <?php
 
 /**
- * @file controllers/grid/settings/roles/form/CategoryForm.inc.php
+ * @file controllers/grid/settings/category/form/CategoryForm.inc.php
  *
  * Copyright (c) 2003-2013 John Willinsky
  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.

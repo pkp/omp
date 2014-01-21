@@ -1,15 +1,15 @@
 <?php
 
 /**
- * @file controllers/grid/files/attachment/ProofFilesGridDataProvider.inc.php
+ * @file controllers/grid/files/proof/ProofFilesGridDataProvider.inc.php
  *
  * Copyright (c) 2000-2013 John Willinsky
  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
  *
  * @class ProofFilesGridDataProvider
- * @ingroup controllers_grid_files_attachment
+ * @ingroup controllers_grid_files_proof
  *
- * @brief Provide the reviewers access to their own review attachments data for grids.
+ * @brief Provide access to proof files data for grids.
  */
 
 

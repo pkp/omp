@@ -1,7 +1,7 @@
 <?php
 
 /**
- * @file controllers/grid/settings/roles/CategoryGridCategoryRow.inc.php
+ * @file controllers/grid/settings/category/CategoryGridCategoryRow.inc.php
  *
  * Copyright (c) 2000-2009 John Willinsky
  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.

@@ -1,15 +1,15 @@
 <?php
 
 /**
- * @file classes/controllers/listbuilder/categories/CategoryListbuilderGridCellProvider.inc.php
+ * @file controllers/listbuilder/categories/CategoryListbuilderGridCellProvider.inc.php
  *
  * Copyright (c) 2000-2013 John Willinsky
  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
  *
  * @class CategoryListbuilderGridCellProvider
- * @ingroup controllers_grid
+ * @ingroup controllers_listbuilder
  *
- * @brief Base class for a cell provider that can retrieve labels from arrays
+ * @brief Class for a cell provider that provides category information
  */
 
 import('lib.pkp.classes.controllers.grid.GridCellProvider');

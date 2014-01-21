@@ -1,6 +1,6 @@
 <?php
 /**
- * @file controllers/modals/submissionMetadata/linkAction/MonographlessCatalogEntryLinkAction
+ * @file controllers/modals/submissionMetadata/linkAction/MonographlessCatalogEntryLinkAction.inc.php
  *
  * Copyright (c) 2003-2013 John Willinsky
  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.

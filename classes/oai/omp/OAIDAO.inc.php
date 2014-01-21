@@ -1,16 +1,16 @@
 <?php
 
 /**
- * @file classes/oai/ojs/OAIDAO.inc.php
+ * @file classes/oai/omp/OAIDAO.inc.php
  *
  * Copyright (c) 2003-2013 John Willinsky
  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
  *
  * @class OAIDAO
- * @ingroup oai_ojs
+ * @ingroup oai_omp
  * @see OAI
  *
- * @brief DAO operations for the OJS OAI interface.
+ * @brief DAO operations for the OMP OAI interface.
  */
 
 import('lib.pkp.classes.oai.PKPOAIDAO');
