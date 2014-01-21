@@ -1,7 +1,7 @@
 <?php
 
 /**
- * @defgroup plugins_blocks_information
+ * @defgroup plugins_blocks_information Information block plugin
  */
  
 /**

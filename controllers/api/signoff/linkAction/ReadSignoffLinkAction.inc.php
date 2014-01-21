@@ -1,6 +1,7 @@
 <?php
+
 /**
- * @defgroup controllers_api_file_linkAction
+ * @defgroup controllers_api_file_linkAction File API link action
  */
 
 /**

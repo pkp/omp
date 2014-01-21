@@ -1,7 +1,7 @@
 <?php
 
 /**
- * @defgroup tests_plugins_metadata_mods34
+ * @defgroup tests_plugins_metadata_mods34 MODS34 plugin tests
  */
 
 /**

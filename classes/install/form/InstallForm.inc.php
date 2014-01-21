@@ -1,7 +1,7 @@
 <?php
 
 /**
- * @defgroup install_form
+ * @defgroup install_form Installation form
  */
 
 /**

@@ -1,6 +1,7 @@
 <?php
+
 /**
- * @defgroup controllers_modal_signoff
+ * @defgroup controllers_modal_signoff Signoff modal controller
  */
 
 /**

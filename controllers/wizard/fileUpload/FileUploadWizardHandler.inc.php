@@ -1,6 +1,7 @@
 <?php
+
 /**
- * @defgroup controllers_wizard_fileUpload
+ * @defgroup controllers_wizard_fileUpload File upload wizard
  */
 
 /**

@@ -1,7 +1,7 @@
 <?php
 
 /**
- * @defgroup pages_catalog
+ * @defgroup pages_catalog Catalog page
  */
 
 /**

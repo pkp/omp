@@ -1,7 +1,7 @@
 <?php
 
 /**
- * @defgroup plugins_generic_addThis
+ * @defgroup plugins_generic_addThis Add This plugin
  */
 
 /**

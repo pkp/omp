@@ -1,7 +1,7 @@
 <?php
 
 /**
- * @defgroup plugins_blocks_browse
+ * @defgroup plugins_blocks_browse Browse block plugin
  */
 
 /**

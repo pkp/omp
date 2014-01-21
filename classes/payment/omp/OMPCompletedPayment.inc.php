@@ -1,7 +1,7 @@
 <?php
 
 /**
- * @defgroup payment_omp
+ * @defgroup payment_omp OMP payment concerns
  */
 
 /**

@@ -1,7 +1,7 @@
 <?php
 
 /**
- * @defgroup plugins_metadata_dc11
+ * @defgroup plugins_metadata_dc11 DC11 metadata plugin
  */
 
 /**

@@ -1,7 +1,7 @@
 <?php
 
 /**
- * @defgroup press
+ * @defgroup press Press
  */
 
 /**

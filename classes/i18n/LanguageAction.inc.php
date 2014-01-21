@@ -1,6 +1,7 @@
 <?php
+
 /**
- * @defgroup i18n
+ * @defgroup i18n Internationalization
  */
 
 /**

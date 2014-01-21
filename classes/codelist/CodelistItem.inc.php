@@ -1,7 +1,7 @@
 <?php
 
 /**
- * @defgroup codelist
+ * @defgroup codelist ONIX code lists
  */
 
 /**

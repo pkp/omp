@@ -1,7 +1,7 @@
 <?php
 
 /**
- * @defgroup plugins_importexport_onix30
+ * @defgroup plugins_importexport_onix30 ONIX 3.0 export plugin
  */
  
 /**

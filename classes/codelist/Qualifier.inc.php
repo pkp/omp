@@ -1,7 +1,7 @@
 <?php
 
 /**
- * @defgroup qualifier
+ * @defgroup qualifier BIC Qualifiers
  */
 
 /**

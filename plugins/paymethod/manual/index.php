@@ -1,7 +1,7 @@
 <?php
 
 /**
- * @defgroup plugins_paymethod_manual
+ * @defgroup plugins_paymethod_manual Manual payment plugin
  */
  
 /**

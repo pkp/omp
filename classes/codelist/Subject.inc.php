@@ -1,7 +1,7 @@
 <?php
 
 /**
- * @defgroup subject
+ * @defgroup subject BIC Subjects
  */
 
 /**

@@ -1,6 +1,7 @@
 <?php
+
 /**
- * @defgroup pages_dashboard
+ * @defgroup pages_dashboard Dashboard page
  */
 
  /**

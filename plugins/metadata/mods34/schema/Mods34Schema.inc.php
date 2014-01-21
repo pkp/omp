@@ -1,7 +1,7 @@
 <?php
 
 /**
- * @defgroup plugins_metadata_mods34_schema
+ * @defgroup plugins_metadata_mods34_schema MODS34 schema plugin
  */
 
 /**

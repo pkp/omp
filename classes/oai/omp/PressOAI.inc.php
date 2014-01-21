@@ -1,7 +1,7 @@
 <?php
 
 /**
- * @defgroup oai_omp
+ * @defgroup oai_omp OMP OAI concerns
  */
 
 /**

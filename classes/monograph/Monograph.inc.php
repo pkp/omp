@@ -1,7 +1,7 @@
 <?php
 
 /**
- * @defgroup monograph
+ * @defgroup monograph Monographs
  */
 
 /**

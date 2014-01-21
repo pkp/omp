@@ -1,6 +1,7 @@
 <?php
+
 /**
- * @defgroup controllers_api_proof_linkAction
+ * @defgroup controllers_api_proof_linkAction Proof API link action
  */
 
 /**
