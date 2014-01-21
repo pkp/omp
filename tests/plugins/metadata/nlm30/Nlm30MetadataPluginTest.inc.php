@@ -1,10 +1,6 @@
 <?php
 
 /**
- * @defgroup tests_plugins_metadata_nlm30 NLM 3.0 plugin tests
- */
-
-/**
  * @file tests/plugins/metadata/nlm30/Nlm30MetadataPluginTest.inc.php
  *
  * Copyright (c) 2000-2013 John Willinsky

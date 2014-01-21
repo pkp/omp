@@ -1,10 +1,6 @@
 <?php
 
 /**
- * @defgroup tests_plugins_metadata_mods34 MODS34 plugin tests
- */
-
-/**
  * @file tests/plugins/metadata/mods34/Mods34MetadataPluginTest.inc.php
  *
  * Copyright (c) 2000-2013 John Willinsky

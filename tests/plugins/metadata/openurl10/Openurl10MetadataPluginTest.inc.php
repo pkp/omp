@@ -1,10 +1,6 @@
 <?php
 
 /**
- * @defgroup tests_plugins_metadata_openurl10 OpenURL 1.0 plugin tests
- */
-
-/**
  * @file tests/plugins/metadata/openurl10/Openurl10MetadataPluginTest.inc.php
  *
  * Copyright (c) 2000-2013 John Willinsky

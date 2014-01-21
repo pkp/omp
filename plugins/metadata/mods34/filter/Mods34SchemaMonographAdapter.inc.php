@@ -1,10 +1,6 @@
 <?php
 
 /**
- * @defgroup plugins_metadata_mods34_filter MODS34 filter plugin
- */
-
-/**
  * @file plugins/metadata/mods34/filter/Mods34SchemaMonographAdapter.inc.php
  *
  * Copyright (c) 2000-2013 John Willinsky

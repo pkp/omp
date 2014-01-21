@@ -1,10 +1,6 @@
 <?php
 
 /**
- * @defgroup controllers_api_file_linkAction File API link action
- */
-
-/**
  * @file controllers/api/signoff/linkAction/AddSignoffFileLinkAction.inc.php
  *
  * Copyright (c) 2003-2013 John Willinsky

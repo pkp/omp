@@ -1,10 +1,6 @@
 <?php
 
 /**
- * @defgroup i18n Internationalization
- */
-
-/**
  * @file classes/i18n/LanguageAction.inc.php
  *
  * Copyright (c) 2003-2013 John Willinsky
