@@ -138,7 +138,7 @@ class PressGridHandler extends ContextGridHandler {
 			$publicFileManager->rmtree($publicFileManager->getPressFilesPath($pressId));
 
 			// If user is deleting the same press where he is...
-			if($context->getId() == $pressId) {
+			if($context && $context->getId() == $pressId) {
 				// return a redirect js event to index handler.
 				$dispatcher = $request->getDispatcher();
 				$url = $dispatcher->url($request, ROUTE_PAGE, null, 'index');
