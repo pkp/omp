@@ -71,7 +71,8 @@ class SubmissionSubmitStep1Form extends PKPSubmissionSubmitStep1Form {
 
 		// Validate that the series ID is attached to this press.
 		if ($seriesId = $this->getData('seriesId')) {
-			$context = Application::getContext();
+			$request = Application::getRequest();
+			$context = $request->getContext();
 			$seriesDao = DAORegistry::getDAO('SeriesDAO');
 			$series = $seriesDao->getById($seriesId, $context->getId());
 			if (!$series) return false;
