@@ -14,7 +14,7 @@
 	{/fbvFormSection}
 {/capture}
 {capture assign="additionalFormContent2"}
-	{include file="submission/form/series.tpl"}
+	{include file="submission/form/series.tpl" includeSeriesPosition=false}
 {/capture}
 
 {include file="core:submission/form/step1.tpl"}

@@ -24,7 +24,7 @@
 	<input type="hidden" name="submissionId" value="{$submissionId|escape}" />
 	<input type="hidden" name="stageId" value="{$stageId|escape}" />
 
-	{include file="submission/form/seriesAndCategories.tpl" readOnly=$formParams.readOnly}
+	{include file="submission/form/seriesAndCategories.tpl" readOnly=$formParams.readOnly includeSeriesPosition=true}
 
 	<p class="pkp_help">{translate key="common.catalogInformation"}</p>
 

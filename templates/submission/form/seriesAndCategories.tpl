@@ -12,4 +12,4 @@
  * controllers/modals/submissionMetadata/form/submissionMetadataViewForm.tpl
  *}
 {include file="submission/form/categories.tpl"}
-{include file="submission/form/series.tpl"}
+{include file="submission/form/series.tpl" includeSeriesPosition=$includeSeriesPosition}
