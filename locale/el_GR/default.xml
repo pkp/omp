@@ -13,33 +13,18 @@
 <locale name="el_GR" full_name="Greek">
 	<!-- Genre defaults -->
 	<message key="default.genres.appendix">Παράρτημα</message>
-	<message key="default.genres.appendix.designation">99A</message>
 	<message key="default.genres.bibliography">Βιβλιογραφία</message>
-	<message key="default.genres.bibliography.designation">99B</message>
 	<message key="default.genres.manuscript">Χειρόγραφο Βιβλίου</message>
-	<message key="default.genres.manuscript.designation">99Z</message>
 	<message key="default.genres.chapter">Χειρόγραφο Κεφαλαίου</message>
 	<message key="default.genres.glossary">Γλωσσάριο</message>
-	<message key="default.genres.glossary.designation">99G</message>
 	<message key="default.genres.index">Ευρετήριο</message>
-	<message key="default.genres.index.designation">99I</message>
 	<message key="default.genres.preface">Πρόλογος</message>
-	<message key="default.genres.preface.designation">00P</message>
 	<message key="default.genres.prospectus">Πρόταση για έκδοση Βιβλίου (Prospectus)</message>
-	<message key="default.genres.prospectus.designation">88P</message>
 	<message key="default.genres.table">Πίνακας</message>
 	<message key="default.genres.figure">Εικόνα/Figure</message>
 	<message key="default.genres.photo">Φωτογραφία</message>
 	<message key="default.genres.illustration">Εικόνογράφηση</message>
 	<message key="default.genres.other">Διάφορα</message>
-
-	<!-- Publication format defaults -->
-	<message key="default.publicationFormats.hardcover">Σκληρόδετο Εξώφυλλο</message>
-	<message key="default.publicationFormats.hardcover.designation">HC</message>
-	<message key="default.publicationFormats.softcover">Μαλακό Εξώφυλλο</message>
-	<message key="default.publicationFormats.softcover.designation">SC</message>
-	<message key="default.publicationFormats.ebook">EBook</message>
-	<message key="default.publicationFormats.ebook.designation">EBook</message>
 
 	<!-- Group defaults -->
 	<message key="default.groups.name.siteAdmin">Site Admin</message>

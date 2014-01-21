@@ -13,33 +13,18 @@
 <locale name="es_ES" full_name = "Español">
 	<!-- Genre defaults -->
 	<message key="default.genres.appendix">Apéndice</message>
-	<message key="default.genres.appendix.designation">99A</message>
 	<message key="default.genres.bibliography">Bibliografía</message>
-	<message key="default.genres.bibliography.designation">99B</message>
 	<message key="default.genres.manuscript">Manuscrito de libro</message>
-	<message key="default.genres.manuscript.designation">99Z</message>
 	<message key="default.genres.chapter">Manuscrito de capítulo</message>
 	<message key="default.genres.glossary">Glosario</message>
-	<message key="default.genres.glossary.designation">99G</message>
 	<message key="default.genres.index">Índice</message>
-	<message key="default.genres.index.designation">99I</message>
 	<message key="default.genres.preface">Prefacio</message>
-	<message key="default.genres.preface.designation">00P</message>
 	<message key="default.genres.prospectus">Documento de proyecto</message>
-	<message key="default.genres.prospectus.designation">88P</message>
 	<message key="default.genres.table">Tabla</message>
 	<message key="default.genres.figure">Figura</message>
 	<message key="default.genres.photo">Foto</message>
 	<message key="default.genres.illustration">Ilustración</message>
 	<message key="default.genres.other">Otros</message>
-
-	<!-- Publication format defaults -->
-	<message key="default.publicationFormats.hardcover">Tapa dura</message>
-	<message key="default.publicationFormats.hardcover.designation">HC</message>
-	<message key="default.publicationFormats.softcover">Tapa blanda</message>
-	<message key="default.publicationFormats.softcover.designation">SC</message>
-	<message key="default.publicationFormats.ebook">Libro electrónico</message>
-	<message key="default.publicationFormats.ebook.designation">EBook</message>
 
 	<!-- Group defaults -->
 	<message key="default.groups.name.siteAdmin">Administrador</message>

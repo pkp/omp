@@ -13,33 +13,18 @@
 <locale name="fr_CA" full_name="Français">
 	<!-- Genre defaults -->
 	<message key="default.genres.appendix">Annexe</message>
-	<message key="default.genres.appendix.designation">99A</message>
 	<message key="default.genres.bibliography">Bibliographie</message>
-	<message key="default.genres.bibliography.designation">99B</message>
 	<message key="default.genres.manuscript">Manuscrit de livre</message>
-	<message key="default.genres.manuscript.designation">99Z</message>
 	<message key="default.genres.chapter">Manuscrit de chapitre</message>
 	<message key="default.genres.glossary">Glossaire</message>
-	<message key="default.genres.glossary.designation">99G</message>
 	<message key="default.genres.index">Index</message>
-	<message key="default.genres.index.designation">99I</message>
 	<message key="default.genres.preface">Préface</message>
-	<message key="default.genres.preface.designation">00P</message>
 	<message key="default.genres.prospectus">Prospectus</message>
-	<message key="default.genres.prospectus.designation">88P</message>
 	<message key="default.genres.table">Tableau</message>
 	<message key="default.genres.figure">Figure</message>
 	<message key="default.genres.photo">Photo</message>
 	<message key="default.genres.illustration">Illustration</message>
 	<message key="default.genres.other">Autre</message>
-
-	<!-- Publication format defaults -->
-	<message key="default.publicationFormats.hardcover">Couverture rigide</message>
-	<message key="default.publicationFormats.hardcover.designation">CR</message>
-	<message key="default.publicationFormats.softcover">Couverture souple</message>
-	<message key="default.publicationFormats.softcover.designation">CS</message>
-	<message key="default.publicationFormats.ebook">Livre numérique</message>
-	<message key="default.publicationFormats.ebook.designation">EBook</message>
 
 	<!-- Group defaults -->
 	<message key="default.groups.name.editor">Rédacteur/Rédactrice en chef de la presse</message>

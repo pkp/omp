@@ -31,7 +31,6 @@
 	<sql>
 		<rename table="genres" column="press_id" to="context_id" />
 		<rename table="press_defaults" column="press_id" to="context_id" />
-		<rename table="press_defaults" to="context_defaults" />
 		<rename table="library_files" column="press_id" to="context_id" />
 		<rename table="library_files" column="monograph_id" to="submission_id" />
 		<rename table="review_round_files" column="monograph_id" to="submission_id" />

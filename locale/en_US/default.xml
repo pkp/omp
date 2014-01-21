@@ -13,33 +13,18 @@
 <locale name="en_US" full_name="U.S. English">
 	<!-- Genre defaults -->
 	<message key="default.genres.appendix">Appendix</message>
-	<message key="default.genres.appendix.designation">99A</message>
 	<message key="default.genres.bibliography">Bibliography</message>
-	<message key="default.genres.bibliography.designation">99B</message>
 	<message key="default.genres.manuscript">Book Manuscript</message>
-	<message key="default.genres.manuscript.designation">99Z</message>
 	<message key="default.genres.chapter">Chapter Manuscript</message>
 	<message key="default.genres.glossary">Glossary</message>
-	<message key="default.genres.glossary.designation">99G</message>
 	<message key="default.genres.index">Index</message>
-	<message key="default.genres.index.designation">99I</message>
 	<message key="default.genres.preface">Preface</message>
-	<message key="default.genres.preface.designation">00P</message>
 	<message key="default.genres.prospectus">Prospectus</message>
-	<message key="default.genres.prospectus.designation">88P</message>
 	<message key="default.genres.table">Table</message>
 	<message key="default.genres.figure">Figure</message>
 	<message key="default.genres.photo">Photo</message>
 	<message key="default.genres.illustration">Illustration</message>
 	<message key="default.genres.other">Other</message>
-
-	<!-- Publication format defaults -->
-	<message key="default.publicationFormats.hardcover">Hardcover</message>
-	<message key="default.publicationFormats.hardcover.designation">HC</message>
-	<message key="default.publicationFormats.softcover">Softcover</message>
-	<message key="default.publicationFormats.softcover.designation">SC</message>
-	<message key="default.publicationFormats.ebook">EBook</message>
-	<message key="default.publicationFormats.ebook.designation">EBook</message>
 
 	<!-- Group defaults -->
 	<message key="default.groups.name.manager">Press manager</message>
