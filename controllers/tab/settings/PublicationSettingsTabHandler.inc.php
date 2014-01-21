@@ -26,7 +26,7 @@ class PublicationSettingsTabHandler extends ManagerSettingsTabHandler {
 		$this->setPageTabs(array(
 			'genres' => 'controllers/tab/settings/genres.tpl',
 			'submissionStage' => 'lib.pkp.controllers.tab.settings.submissionStage.form.SubmissionStageForm',
-			'reviewStage' => 'lib.pkp.controllers.tab.settings.reviewStage.form.PKPReviewStageForm',
+			'reviewStage' => 'controllers.tab.settings.reviewStage.form.ReviewStageForm',
 			'library' => 'controllers/tab/settings/library.tpl',
 			'productionStage' => 'controllers.tab.settings.productionStage.form.ProductionStageForm',
 			'emailTemplates' => 'lib.pkp.controllers.tab.settings.emailTemplates.form.EmailTemplatesForm'
