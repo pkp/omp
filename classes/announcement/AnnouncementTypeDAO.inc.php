@@ -25,7 +25,7 @@ class AnnouncementTypeDAO extends PKPAnnouncementTypeDAO {
 	}
 
 	/**
-	 * @see PKPAnnouncementTypeDAO::newDataObject
+	 * @copydoc PKPAnnouncementTypeDAO::newDataObject
 	 */
 	function newDataObject() {
 		return new AnnouncementType();

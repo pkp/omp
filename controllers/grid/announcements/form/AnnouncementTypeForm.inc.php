@@ -34,6 +34,7 @@ class AnnouncementTypeForm extends PKPAnnouncementTypeForm {
 	//
 	/**
 	 * @see Form::fetch()
+	 * @param $request PKPRequest
 	 */
 	function fetch($request) {
 		$templateMgr = TemplateManager::getManager($request);
@@ -48,7 +49,7 @@ class AnnouncementTypeForm extends PKPAnnouncementTypeForm {
 	 * Helper function to assign the AssocType and the AssocId
 	 * @param AnnouncementType the announcement type to be modified
 	 */
-	function _setAnnouncementTypeAssocId(&$announcementType) {
+	function _setAnnouncementTypeAssocId($announcementType) {
 		$pressId = $this->pressId;
 		$announcementType->setAssocType(ASSOC_TYPE_PRESS);
 		$announcementType->setAssocId($pressId);

@@ -54,7 +54,8 @@ class AnnouncementForm extends PKPAnnouncementForm {
 	// Extended methods from Form
 	//
 	/**
-	 * @copydoc Form::fetch()
+	 * @see Form::fetch()
+	 * @param $request PKPRequest
 	 */
 	function fetch($request) {
 		$templateMgr = TemplateManager::getManager($request);
@@ -93,7 +94,8 @@ class AnnouncementForm extends PKPAnnouncementForm {
 	}
 
 	/**
-	 * @copydoc PKPAnnouncementForm::execute()
+	 * @see PKPAnnouncementForm::execute()
+	 * @param $request PKPRequest
 	 */
 	function execute($request) {
 		$announcement = parent::execute();
