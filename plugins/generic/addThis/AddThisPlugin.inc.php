@@ -15,6 +15,11 @@
 import('lib.pkp.classes.plugins.GenericPlugin');
 
 class AddThisPlugin extends GenericPlugin {
+	/**
+	 * Register the plugin.
+	 * @param $category string
+	 * @param $path string
+	 */
 	function register($category, $path) {
 		if (parent::register($category, $path)) {
 			if ($this->getEnabled()) {
@@ -35,20 +40,29 @@ class AddThisPlugin extends GenericPlugin {
 	}
 
 	/**
-	 * @see PKPPlugin::getName()
+	 * @copydoc PKPPlugin::getName()
 	 */
 	function getName() {
 		return 'AddThisPlugin';
 	}
 
+	/**
+	 * @copydoc PKPPlugin::getDisplayName()
+	 */
 	function getDisplayName() {
 		return __('plugins.generic.addThis.displayName');
 	}
 
+	/**
+	 * @copydoc PKPPlugin::getDescription()
+	 */
 	function getDescription() {
 		return __('plugins.generic.addThis.description');
 	}
 
+	/**
+	 * @copydoc PKPPlugin::getManagementVerbs()
+	 */
 	function getManagementVerbs() {
 		$verbs = parent::getManagementVerbs();
 		if ($this->getEnabled()) {
@@ -59,6 +73,8 @@ class AddThisPlugin extends GenericPlugin {
 
 	/**
 	 * Define management link actions for the settings verb.
+	 * @param $request PKPRequest
+	 * @param $verb string
 	 * @return LinkAction
 	 */
 	function getManagementVerbLinkAction($request, $verb) {
@@ -79,7 +95,7 @@ class AddThisPlugin extends GenericPlugin {
 	}
 
 	/**
-	 * Define the management functionality for this plugin.
+	 * @copydoc PKPPlugin::manage()
 	 */
 	function manage($verb, $args, &$message, &$messageParams, &$pluginModalContent = null) {
 		$request = $this->getRequest();
@@ -134,8 +150,8 @@ class AddThisPlugin extends GenericPlugin {
 	/**
 	 * Hook against Templates::Catalog::Book::BookInfo::Sharing, for including the
 	 * addThis code on submission display.
-	 * @param string $hookName
-	 * @param array $params
+	 * @param $hookName string
+	 * @param $params array
 	 */
 	function callbackSharingDisplay($hookName, $params) {
 		$templateMgr = $params[1];
@@ -155,13 +171,13 @@ class AddThisPlugin extends GenericPlugin {
 
 	/**
 	 * Determines if statistics settings have been enabled for this plugin.
-	 * @param Press $press
+	 * @param $press Press
 	 * @return boolean
 	 */
 	function statsConfigured($press) {
-		$addThisUsername =& $press->getSetting('addThisUsername');
-		$addThisPassword =& $press->getSetting('addThisPassword');
-		$addThisProfileId =& $press->getSetting('addThisProfileId');
+		$addThisUsername = $press->getSetting('addThisUsername');
+		$addThisPassword = $press->getSetting('addThisPassword');
+		$addThisProfileId = $press->getSetting('addThisProfileId');
 
 		if (isset($addThisUsername) && isset($addThisPassword) && isset($addThisProfileId)) {
 			return true;
