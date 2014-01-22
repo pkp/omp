@@ -28,7 +28,7 @@ class NotificationManager extends PKPNotificationManager {
 	// Public methods.
 	//
 	/**
-	 * @see PKPNotificationManager::getNotificationUrl()
+	 * @copydoc PKPNotificationManager::getNotificationUrl()
 	 */
 	public function getNotificationUrl($request, $notification) {
 		$router = $request->getRouter();
@@ -45,7 +45,7 @@ class NotificationManager extends PKPNotificationManager {
 	}
 
 	/**
-	 * @see PKPNotificationManager::getNotificationMessage()
+	 * @copydoc PKPNotificationManager::getNotificationMessage()
 	 */
 	public function getNotificationMessage($request, $notification) {
 		switch ($notification->getType()) {
@@ -60,7 +60,7 @@ class NotificationManager extends PKPNotificationManager {
 	}
 
 	/**
-	 * @see PKPNotificationManager::getNotificationTitle()
+	 * @copydoc PKPNotificationManager::getNotificationTitle()
 	 */
 	public function getNotificationTitle($notification) {
 		switch ($notification->getType()) {
@@ -80,7 +80,7 @@ class NotificationManager extends PKPNotificationManager {
 	}
 
 	/**
-	 * @see PKPNotificationManager::getIconClass()
+	 * @copydoc PKPNotificationManager::getIconClass()
 	 */
 	public function getIconClass($notification) {
 		switch ($notification->getType()) {
@@ -91,7 +91,7 @@ class NotificationManager extends PKPNotificationManager {
 	}
 
 	/**
-	 * @see PKPNotificationManager::getStyleClass()
+	 * @copydoc PKPNotificationManager::getStyleClass()
 	 */
 	public function getStyleClass($notification) {
 		switch ($notification->getType()) {
@@ -109,7 +109,7 @@ class NotificationManager extends PKPNotificationManager {
 	}
 
 	/**
-	 * @see PKPNotificationManager::isVisibleToAllUsers()
+	 * @copydoc PKPNotificationManager::isVisibleToAllUsers()
 	 */
 	public function isVisibleToAllUsers($notificationType, $assocType, $assocId) {
 		switch ($notificationType) {
@@ -125,7 +125,7 @@ class NotificationManager extends PKPNotificationManager {
 	}
 
 	/**
-	 * @see PKPNotificationManager::getMgrDelegate()
+	 * @copydoc PKPNotificationManager::getMgrDelegate()
 	 */
 	protected function getMgrDelegate($notificationType, $assocType, $assocId) {
 		switch ($notificationType) {
