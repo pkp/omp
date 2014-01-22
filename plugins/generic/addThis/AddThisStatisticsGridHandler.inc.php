@@ -39,7 +39,7 @@ class AddThisStatisticsGridHandler extends GridHandler {
 	 * Get the plugin associated with this grid.
 	 * @return Plugin
 	 */
-	function &getPlugin() {
+	function getPlugin() {
 		return $this->_plugin;
 	}
 
@@ -48,7 +48,7 @@ class AddThisStatisticsGridHandler extends GridHandler {
 	 * @param Plugin
 	 */
 	function setPlugin($plugin) {
-		$this->_plugin =& $plugin;
+		$this->_plugin = $plugin;
 	}
 
 	//
@@ -66,7 +66,7 @@ class AddThisStatisticsGridHandler extends GridHandler {
 		return parent::authorize($request, $args, $roleAssignments);
 	}
 
-	/*
+	/**
 	 * Configure the grid
 	 * @param $request PKPRequest
 	 */
@@ -81,7 +81,7 @@ class AddThisStatisticsGridHandler extends GridHandler {
 			LOCALE_COMPONENT_PKP_DEFAULT
 		);
 
-		$plugin =& $this->getPlugin();
+		$plugin = $this->getPlugin();
 		$plugin->addLocaleData();
 
 		// Basic grid configuration
@@ -130,7 +130,7 @@ class AddThisStatisticsGridHandler extends GridHandler {
 	}
 
 	/**
-	 * @see GridHandler::loadData
+	 * @copydoc GridHandler::loadData
 	 */
 	function loadData($request, $filter = null) {
 		$plugin = $this->getPlugin();

@@ -15,16 +15,18 @@
 import('lib.pkp.classes.form.Form');
 
 class AddThisSettingsForm extends Form {
-	/** The press associated with the plugin being edited **/
+	/** @var Press The press associated with the plugin being edited */
 	var $_press;
 
-	/** The plugin being edited **/
+	/** @var Plugin The plugin being edited */
 	var $_plugin;
 
 	/**
 	 * Constructor.
+	 * @param $plugin Plugin
+	 * @param $press Press
 	 */
-	function AddThisSettingsForm(&$plugin, &$press) {
+	function AddThisSettingsForm($plugin, $press) {
 		parent::Form($plugin->getTemplatePath() . 'settings.tpl');
 		$this->setPress($press);
 		$this->setPlugin($plugin);
@@ -40,7 +42,7 @@ class AddThisSettingsForm extends Form {
 	 * Get the Press.
 	 * @return Press
 	 */
-	function &getPress() {
+	function getPress() {
 		return $this->_press;
 	}
 
@@ -49,14 +51,14 @@ class AddThisSettingsForm extends Form {
 	 * @param Press
 	 */
 	function setPress($press) {
-		$this->_press =& $press;
+		$this->_press = $press;
 	}
 
 	/**
 	 * Get the plugin.
 	 * @return AddThisBlockPlugin
 	 */
-	function &getPlugin() {
+	function getPlugin() {
 		return $this->_plugin;
 	}
 
@@ -65,7 +67,7 @@ class AddThisSettingsForm extends Form {
 	 * @param AddThisBlockPlugin $plugin
 	 */
 	function setPlugin($plugin) {
-		$this->_plugin =& $plugin;
+		$this->_plugin = $plugin;
 	}
 
 	//
@@ -91,6 +93,7 @@ class AddThisSettingsForm extends Form {
 	/**
 	 * Fetch the form.
 	 * @see Form::fetch()
+	 * @param $request PKPRequest
 	 */
 	function fetch($request) {
 		$plugin = $this->getPlugin();

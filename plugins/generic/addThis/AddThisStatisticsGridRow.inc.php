@@ -40,6 +40,6 @@ class AddThisStatisticsGridRow extends GridRow {
 			$this->setTemplate('controllers/grid/gridRow.tpl');
 		}
 	}
-
 }
+
 ?>

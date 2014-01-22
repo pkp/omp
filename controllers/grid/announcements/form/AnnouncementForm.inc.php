@@ -43,6 +43,7 @@ class AnnouncementForm extends PKPAnnouncementForm {
 	//
 	/**
 	 * Return if this form is read only or not.
+	 * @return boolean
 	 */
 	function isReadOnly() {
 		return $this->_readOnly;
@@ -53,7 +54,7 @@ class AnnouncementForm extends PKPAnnouncementForm {
 	// Extended methods from Form
 	//
 	/**
-	 * @see Form::fetch()
+	 * @copydoc Form::fetch()
 	 */
 	function fetch($request) {
 		$templateMgr = TemplateManager::getManager($request);
@@ -66,7 +67,7 @@ class AnnouncementForm extends PKPAnnouncementForm {
 
 		$announcementTypeDao = DAORegistry::getDAO('AnnouncementTypeDAO');
 		list($assocType, $assocId) = $this->_getAnnouncementTypesAssocId();
-		$announcementTypeFactory =& $announcementTypeDao->getByAssoc($assocType, $assocId);
+		$announcementTypeFactory = $announcementTypeDao->getByAssoc($assocType, $assocId);
 
 		$announcementTypeOptions = array();
 		if (!$announcementTypeFactory->wasEmpty()) {
@@ -77,7 +78,6 @@ class AnnouncementForm extends PKPAnnouncementForm {
 		}
 		$templateMgr->assign('announcementTypes', $announcementTypeOptions);
 
-
 		return parent::fetch($request, 'controllers/grid/announcements/form/announcementForm.tpl');
 	}
 
@@ -85,7 +85,7 @@ class AnnouncementForm extends PKPAnnouncementForm {
 	// Extended methods from PKPAnnouncementForm
 	//
 	/**
-	 * @see PKPAnnouncementForm::readInputData()
+	 * @copydoc PKPAnnouncementForm::readInputData()
 	 */
 	function readInputData() {
 		parent::readInputData();
@@ -93,7 +93,7 @@ class AnnouncementForm extends PKPAnnouncementForm {
 	}
 
 	/**
-	 * @see PKPAnnouncementForm::execute()
+	 * @copydoc PKPAnnouncementForm::execute()
 	 */
 	function execute($request) {
 		$announcement = parent::execute();
@@ -131,7 +131,7 @@ class AnnouncementForm extends PKPAnnouncementForm {
 	/**
 	 * @see PKPAnnouncementForm::setDateExpire()
 	 */
-	function setDateExpire(&$announcement) {
+	function setDateExpire($announcement) {
 		/* @var $announcement Announcement */
 		$dateExpire = $this->getData('dateExpire');
 		if ($dateExpire) {
@@ -149,7 +149,7 @@ class AnnouncementForm extends PKPAnnouncementForm {
 	// Private helper methdos.
 	//
 	/**
-	 * @see PKPAnnouncementForm::_getAnnouncementTypesAssocId()
+	 * @copydoc PKPAnnouncementForm::_getAnnouncementTypesAssocId()
 	 */
 	function _getAnnouncementTypesAssocId() {
 		$pressId = $this->getContextId();
@@ -160,7 +160,7 @@ class AnnouncementForm extends PKPAnnouncementForm {
 	 * Helper function to assign the AssocType and the AssocId
 	 * @param Announcement the announcement to be modified
 	 */
-	function _setAnnouncementAssocId(&$announcement) {
+	function _setAnnouncementAssocId($announcement) {
 		$pressId = $this->getContextId();
 		$announcement->setAssocType(ASSOC_TYPE_PRESS);
 		$announcement->setAssocId($pressId);
