@@ -186,9 +186,11 @@ class CatalogBookHandler extends Handler {
 
 			// Inline viewer not available, or viewing not wanted.
 			// Download the file.
-			import('lib.pkp.classes.file.SubmissionFileManager');
-			$monographFileManager = new SubmissionFileManager($publishedMonograph->getContextId(), $monographId);
-			return $monographFileManager->downloadFile($fileId, $revision);
+			if (!HookRegistry::call('CatalogBookHandler::download', array(&$this, &$publishedMonograph, &$submissionFile))) {
+				import('lib.pkp.classes.file.SubmissionFileManager');
+				$monographFileManager = new SubmissionFileManager($publishedMonograph->getContextId(), $monographId);
+				return $monographFileManager->downloadFile($fileId, $revision);
+			}
 		}
 
 		// Fall-through: user needs to pay for purchase.
