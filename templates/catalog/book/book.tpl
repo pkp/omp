@@ -19,6 +19,9 @@
 
 {include file="catalog/book/bookInfo.tpl"}
 
+{include file="catalog/book/googlescholar.tpl"}
+{include file="catalog/book/dublincore.tpl"}
+
 </div><!-- pkp_catalog_book -->
 
 {include file="common/footer.tpl"}
