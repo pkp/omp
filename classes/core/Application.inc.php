@@ -194,13 +194,13 @@ class Application extends PKPApplication {
 				case 'mysql':
 					$checkResult = $pluginSettingsDao->retrieve('SHOW COLUMNS FROM plugin_settings LIKE ?', array('context_id'));
 					if ($checkResult->NumRows() == 0) {
-						return 'monograph_id';
+						return 'press_id';
 					}
 					break;
 				case 'postgres':
 					$checkResult = $pluginSettingsDao->retrieve('SELECT column_name FROM information_schema.columns WHERE table_name= ? AND column_name= ?', array('plugin_settings', 'context_id'));
 					if ($checkResult->NumRows() == 0) {
-						return 'monograph_id';
+						return 'press_id';
 					}
 					break;
 			}
