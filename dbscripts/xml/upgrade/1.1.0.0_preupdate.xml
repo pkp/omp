@@ -46,6 +46,7 @@
 		<rename table="monograph_comments" to="submission_comments" />
 		<!-- monographs table -->
 		<rename table="monographs" column="monograph_id" to="submission_id" />
+		<rename table="monographs" column="press_id" to="context_id" />
 		<rename table="monographs" to="submissions" />
 		<!-- monograph_categories table -->
 		<rename table="monograph_categories" column="monograph_id" to="submission_id" />
@@ -73,7 +74,5 @@
 		<rename table="features" column="monograph_id" to="submission_id" />
 		<rename table="new_releases" column="monograph_id" to="submission_id" />
 		<rename table="publication_formats" column="monograph_id" to="submission_id" />
-		<!-- various press_id columns -->
-		<rename table="submissions" column="press_id" to="context_id" />
 	</sql>
 </data>
