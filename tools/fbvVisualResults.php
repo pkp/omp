@@ -46,7 +46,7 @@ class FBVTemplateManager extends TemplateManager {
 
 		// look for templates in the test directory
 		$baseDir = Core::getBaseDir();
-		$test_template_dir = $baseDir . DIRECTORY_SEPARATOR . 'lib' . DIRECTORY_SEPARATOR . 'pkp' . DIRECTORY_SEPARATOR . 'tests' . DIRECTORY_SEPARATOR . 'ui' . DIRECTORY_SEPARATOR . 'fbv';
+		$test_template_dir = $baseDir . DIRECTORY_SEPARATOR . PKP_LIB_PATH . DIRECTORY_SEPARATOR . 'tests' . DIRECTORY_SEPARATOR . 'ui' . DIRECTORY_SEPARATOR . 'fbv';
 		$this->template_dir[] = $test_template_dir;
 
 		// $baseUrl has to be reset to properly reference the javascript files and stylesheets
