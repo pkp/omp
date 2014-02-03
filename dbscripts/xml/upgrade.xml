@@ -44,6 +44,7 @@
 		<!-- Upgrade prior versions to 1.1.0.0 -->
 		<data file="dbscripts/xml/upgrade/1.1.0.0_update.xml" />
 		<code function="fixFilenames" />
+		<code function="enableDefaultTheme" />
 	</upgrade>
 
 	<!-- Update plugin configuration - should be done as the final upgrade task -->

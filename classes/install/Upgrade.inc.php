@@ -90,6 +90,25 @@ class Upgrade extends Installer {
 		}
 		return true;
 	}
+
+	/**
+	 * Enable the default theme plugin for versions < 1.1.
+	 * @return boolean
+	 */
+	function enableDefaultTheme() {
+		$pressDao = DAORegistry::getDAO('PressDAO');
+		$contexts = $pressDao->getAll();
+		$pluginSettingsDao = DAORegistry::getDAO('PluginSettingsDAO');
+
+		// Site-wide
+		$pluginSettingsDao->updateSetting(0, 'defaultthemeplugin', 'enabled', '1', 'int');
+
+		// For each press
+		while ($context = $contexts->next()) {
+			$pluginSettingsDao->updateSetting($context->getId(), 'defaultthemeplugin', 'enabled', '1', 'int');
+		}
+		return true;
+	}
 }
 
 ?>
