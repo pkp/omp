@@ -22,7 +22,7 @@ class MastheadForm extends ContextSettingsForm {
 	function MastheadForm($wizardMode = false) {
 		$settings = array(
 			'name' => 'string',
-			'initials' => 'string',
+			'acronym' => 'string',
 			'description' => 'string',
 			'mailingAddress' => 'string',
 			'pressEnabled' => 'bool',
@@ -33,7 +33,7 @@ class MastheadForm extends ContextSettingsForm {
 		parent::ContextSettingsForm($settings, 'controllers/tab/settings/masthead/form/mastheadForm.tpl', $wizardMode);
 
 		$this->addCheck(new FormValidatorLocale($this, 'name', 'required', 'manager.setup.form.pressNameRequired'));
-		$this->addCheck(new FormValidatorLocale($this, 'initials', 'required', 'manager.setup.form.pressInitialsRequired'));
+		$this->addCheck(new FormValidatorLocale($this, 'acronym', 'required', 'manager.setup.form.pressInitialsRequired'));
 	}
 
 	//
@@ -43,7 +43,7 @@ class MastheadForm extends ContextSettingsForm {
 	 * Get all locale field names
 	 */
 	function getLocaleFieldNames() {
-		return array('name', 'initials', 'description', 'customAboutItems', 'masthead');
+		return array('name', 'acronym', 'description', 'customAboutItems', 'masthead');
 	}
 
 	//
@@ -58,12 +58,12 @@ class MastheadForm extends ContextSettingsForm {
 
 		$press = $request->getPress();
 		$this->setData('enabled', (int)$press->getEnabled());
-		if ($this->getData('initials') == null) {
-			$initials = array();
+		if ($this->getData('acronym') == null) {
+			$acronym = array();
 			foreach (array_keys($this->supportedLocales) as $locale) {
-				$initials[$locale] = $press->getPath();
+				$acronym[$locale] = $press->getPath();
 			}
-			$this->setData('initials', $initials);
+			$this->setData('acronym', $acronym);
 		}
 	}
 

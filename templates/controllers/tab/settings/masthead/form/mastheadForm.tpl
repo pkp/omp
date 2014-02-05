@@ -26,8 +26,8 @@
 			{fbvElement type="text" multilingual=true name="name" id="name" value=$name}
 		{/fbvFormSection}
 
-		{fbvFormSection title="manager.setup.pressInitials" for="initials" required=true inline=true size=$fbvStyles.size.SMALL}
-			{fbvElement type="text" multilingual=true name="initials" id="initials" value=$initials}
+		{fbvFormSection title="manager.setup.pressInitials" for="acronym" required=true inline=true size=$fbvStyles.size.SMALL}
+			{fbvElement type="text" multilingual=true name="acronym" id="acronym" value=$acronym}
 		{/fbvFormSection}
 
 		{fbvFormSection label="manager.setup.pressDescription" for="description" description="manager.setup.pressDescription.description"}

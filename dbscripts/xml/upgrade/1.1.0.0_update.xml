@@ -91,4 +91,9 @@
 	<sql>
 		<query>UPDATE user_groups SET role_id = '16' WHERE role_id = '17' AND path = 'manager'</query>
 	</sql>
+
+	<!-- Bug #8551: Ambiguity between acronym and initials -->
+	<sql>
+		<query>UPDATE press_settings SET setting_name='acronym' WHERE setting_name='initials'</query>
+	</sql>
 </data>
