@@ -221,14 +221,14 @@ class AboutContextHandler extends Handler implements IAboutContextInfoProvider {
 	 * @param $context Press
 	 */
 	static protected function getSubmissionsInfo($context) {
-		$submissionSettingNames = array('authorGuidelines', 'copyrightNotice', 'privacyStatement');
+		$submissionSettingNames = array('authorGuidelines', 'copyrightNotice', 'privacyStatement', 'reviewPolicy');
 
 		$submissionInfo = array();
 
 		foreach ($submissionSettingNames as $settingName) {
 			$settingValue = $context->getLocalizedSetting($settingName);
 			if ($settingValue) {
-				$editorialPoliciesInfo[$settingName] = $settingValue;
+				$submissionInfo[$settingName] = $settingValue;
 			}
 		}
 
