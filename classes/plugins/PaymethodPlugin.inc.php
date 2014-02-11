@@ -41,10 +41,10 @@ class PaymethodPlugin extends Plugin {
 	}
 
 	/**
-	 * Get the Template path for this plugin.
+	 * @see Plugin::getTemplatePath($inCore)
 	 */
-	function getTemplatePath() {
-		return parent::getTemplatePath() . 'templates' . DIRECTORY_SEPARATOR ;
+	function getTemplatePath($inCore = false) {
+		return parent::getTemplatePath($inCore) . 'templates' . DIRECTORY_SEPARATOR ;
 	}
 
 	/**
