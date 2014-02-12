@@ -171,8 +171,10 @@ class AppLocale extends PKPLocale {
 	static function installLocale($locale) {
 		parent::installLocale($locale);
 
+		$press = self::$request->getPress();
+
 		$genreDao = DAORegistry::getDAO('GenreDAO'); /* @var $genreDao GenreDAO */
-		$genreDao->installLocale($locale);
+		$genreDao->installDefaults($press->getId(), array($locale));
 
 		$userGroupDao = DAORegistry::getDAO('UserGroupDAO'); /* @var $userGroupDao UserGroupDAO */
 		$userGroupDao->installLocale($locale);
@@ -186,7 +188,7 @@ class AppLocale extends PKPLocale {
 		parent::uninstallLocale($locale);
 
 		$genreDao = DAORegistry::getDAO('GenreDAO');
-		$genreDao->uninstallLocale($locale);
+		$genreDao->deleteSettingsByLocale($locale);
 
 		$userGroupDao = DAORegistry::getDAO('UserGroupDAO');
 		$userGroupDao->deleteSettingsByLocale($locale);
