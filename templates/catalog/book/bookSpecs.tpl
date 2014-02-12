@@ -24,7 +24,9 @@
 			{assign var=publicationFormats value=$publishedMonograph->getPublicationFormats(true)}
 			{if count($publicationFormats) === 1}
 				{foreach from=$publicationFormats item="publicationFormat"}
-					{include file="catalog/book/bookPublicationFormatInfo.tpl" publicationFormat=$publicationFormat availableFiles=$availableFiles}
+					{if $publicationFormat->getIsApproved()}
+						{include file="catalog/book/bookPublicationFormatInfo.tpl" publicationFormat=$publicationFormat availableFiles=$availableFiles}
+					{/if}
 				{/foreach}
 			{/if}
 			{if $series}
@@ -40,7 +42,7 @@
 					<div class="publicationFormat">
 						{include file="catalog/book/bookPublicationFormatInfo.tpl" publicationFormat=$publicationFormat availableFiles=$availableFiles}
 					</div>{* publicationFormat *}
-				{/if}{* $publicationFormat->getIsAvailable() *}
+				{/if}{* $publicationFormat->getIsApproved() *}
 			{/foreach}{* $publicationFormats *}
 		{/if}{* publicationFormats > 1 *}
 
