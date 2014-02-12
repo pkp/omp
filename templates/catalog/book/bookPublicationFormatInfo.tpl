@@ -34,7 +34,7 @@
 		</div>
 	{/foreach}{* identification codes *}
 	</div>
-{/if}{* $publicationDates *}
+{/if}{* $identificationCodes *}
 {assign var=publicationDates value=$publicationFormat->getPublicationDates()}
 {assign var=publicationDates value=$publicationDates->toArray()}
 {if $publicationDates}
