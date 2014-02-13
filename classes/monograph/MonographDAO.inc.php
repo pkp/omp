@@ -253,7 +253,8 @@ class MonographDAO extends SubmissionDAO {
 			. (!$includePublished?' AND ps.date_published IS NULL' : '' )
 			. ($contextId && !is_array($contextId)?' AND s.context_id = ?':'')
 			. ($contextId && is_array($contextId)?' AND s.context_id IN  (' . join(',', array_map(array($this,'_arrayWalkIntCast'), $contextId)) . ')':'') . '
-			GROUP BY s.submission_id',
+			GROUP BY s.submission_id, ps.date_published, stl.setting_value, stpl.setting_value, sal.setting_value, sapl.setting_value',
+			// See bug #8557; the above are required to keep PostgreSQL happy (and s.submission_id is required logically).
 			$params,
 			$rangeInfo
 		);
