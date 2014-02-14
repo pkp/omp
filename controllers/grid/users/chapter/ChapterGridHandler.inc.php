@@ -345,14 +345,8 @@ class ChapterGridHandler extends CategoryGridHandler {
 		}
 
 		$chapterDao = DAORegistry::getDAO('ChapterDAO');
-		$result = $chapterDao->deleteObject($chapter);
-
-		if ($result) {
-			return DAO::getDataChangedEvent($chapter->getId());
-		} else {
-			$json = new JSONMessage(false, __('submission.chapters.grid.errorDeletingChapter'));
-		}
-		return $json->getString();
+		$chapterDao->deleteById($chapterId);
+		return DAO::getDataChangedEvent();
 	}
 
 	/**
