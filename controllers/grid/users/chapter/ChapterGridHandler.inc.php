@@ -164,6 +164,7 @@ class ChapterGridHandler extends CategoryGridHandler {
 			return array(new OrderCategoryGridItemsFeature(ORDER_CATEGORY_GRID_CATEGORIES_AND_ROWS));
 		} else {
 			$this->setReadOnly(true);
+			return array();
 		}
 	}
 
