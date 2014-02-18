@@ -1,4 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
+<!--
+  * plugins/importexport/native/onixProduct2NativeXml.xsl
+  *
+  * Copyright (c) 2014 Simon Fraser University Library
+  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
+  *
+  * Converter to take ONIX products into the OMP XML native submission format.
+  -->
 <xsl:stylesheet
 	version="1.0"
 	xmlns:xsl="http://www.w3.org/1999/XSL/Transform" 

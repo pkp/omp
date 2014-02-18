@@ -1,4 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
+<!--
+  * plugins/importexport/native/sample.xsl
+  *
+  * Copyright (c) 2014 Simon Fraser University Library
+  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
+  *
+  * Sample native XML import document.
+  -->
 <monograph xmlns="http://pkp.sfu.ca" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xmlns:onix="http://ns.editeur.org/onix/3.0/reference" locale="en_US"
 	date_published="2013-11-18" xsi:schemaLocation="http://pkp.sfu.ca native.xsd">

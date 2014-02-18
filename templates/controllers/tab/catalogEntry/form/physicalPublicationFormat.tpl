@@ -1,3 +1,12 @@
+{**
+ * templates/controllers/tab/catalogEntry/form/physicalPublicationFormat.tpl
+ *
+ * Copyright (c) 2014 Simon Fraser University Library
+ * Copyright (c) 2003-2014 John Willinsky
+ * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
+ *
+ * Physical publication format form fields for the catalog entry form.
+ *}
 {* Hardcover fields *}
 <div class="pkp_helpers_align_right pkp_helpers_half">
 	{fbvFormArea id="pageCounts" title="monograph.publicationFormat.pageCounts" class="border"}

@@ -1,4 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
+<!--
+  * plugins/importexport/users/sample.xml
+  *
+  * Copyright (c) 2014 Simon Fraser University Library
+  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
+  *
+  * Sample users XML import.
+  -->
 <PKPUsers xmlns="http://pkp.sfu.ca" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="http://pkp.sfu.ca pkp-users.xsd">
 	<user_groups xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"

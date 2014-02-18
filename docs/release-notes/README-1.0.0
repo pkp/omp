@@ -5,6 +5,47 @@ Release date: March 25, 2013
 
 New Features
 ------------
+	#8133# French (fr_CA), Spanish (es_ES), Greek (el_GR), and Portuguese (pt_BR) translations added
+	#7887# Tabs needs scroll functionality
 
 Bug Fixes
 ---------
+	#6725# Add general "don't leave page without saving" form feature
+	#7592# #7827# #7804# #7934# #7897# #7904# #7946# Styling tune-ups
+	#7629# clicking cancel on file upload wizard triggers form validation error (first time)
+	#7788# include about the author on book page
+	#7859# Textareas need "rows" and "cols" attributes to validate
+	#7863# Multilingual popover can't be accessed in disabled form fields.
+	#7869# need message that payment requires login in
+	#7870# Chapter information is not displayed in the catalog
+	#7885# "Homepage" settings tab only has sidebar options
+	#7902# Sidebar doesn't reload after press appearance modifications
+	#7903# Have "Availability" (pricing info in publication format's tab in catalog entry) default to "Not Set"
+	#7907# "Include all files from all accessible workflow stages" checkbox/search button mismatch
+	#7918# tinyMCE editor field inside a localization popover has problems when using editor commands
+	#7921# Prevent autocomplete field for spotlights from clearing when losing focus
+	#7922# Author names occasionally disappear from the Spotlight form when editing
+	#7923# ONIX codelist DAO depends on temporary directory which may not yet exist
+	#7932# Dereference symlinks in build script
+	#7938# Reduce reliance on static calls to Request in plugins
+	#7939# #7952# Call time pass by reference
+	#7944# Using the catalog search from outside of a press context generates a fatal error
+	#7945# Allow override of homepage title
+	#7947# Correct partial imports
+	#7948# System requirements on installer page need updating
+	#7951# Attempting to set terms for a proof before it is approved generates an AJAX error
+	#7953# manage catalog monographListChanged triggered before monographs are initialized
+	#7957# login source parameter needs escaping
+	#7969# Form error notifications are shown by pnotify only in the next request
+	#7970# DB Error upon new submission
+	#7995# itemsPerPage (and numPageLinks) settings not fully hidden
+	#8002# Fix translation plugin warning.
+	#8022# Users grid in admin settings needs username column
+	#8050# in_array warning in About pages while logged out
+	#8063# Datepicker doesn't like close of containing modal
+	#8125# #8167# Submission deletion
+	#8135# Double-check length of email key DB fields
+	#8144# PayPal payments never complete with site restriction enabled
+	#8165# Author/editor can't upload entirely new revision, must overwrite existing
+	#8176# Author "Upload File" modal is mistitled
+	#8177# Metadata plugins attempt re-install on upgrade
