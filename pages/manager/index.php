@@ -25,13 +25,6 @@ switch ($op) {
 		import('pages.manager.ImportExportHandler');
 		define('HANDLER_CLASS', 'ImportExportHandler');
 		break;
-	//
-	// Plugin Management
-	//
-	case 'plugin':
-		define('HANDLER_CLASS', 'PluginHandler');
-		import('lib.pkp.pages.manager.PluginHandler');
-		break;
 }
 
 ?>
