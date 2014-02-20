@@ -65,6 +65,8 @@ class MonographNativeXmlFilter extends SubmissionNativeXmlFilter {
 			$series = $seriesDao->getById($seriesId, $submission->getContextId());
 			assert($series);
 			$submissionNode->setAttribute('series', $series->getPath());
+			$submissionNode->setAttribute('series_position', $submission->getSeriesPosition());
+
 		}
 
 		return $submissionNode;

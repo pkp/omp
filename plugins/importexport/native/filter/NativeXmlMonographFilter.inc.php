@@ -51,6 +51,7 @@ class NativeXmlMonographFilter extends NativeXmlSubmissionFilter {
 	 */
 	function populateObject($submission, $node) {
 		$seriesPath = $node->getAttribute('series');
+		$seriesPosition = $node->getAttribute('series_position');
 		if ($seriesPath !== '') {
 			$seriesDao = DAORegistry::getDAO('SeriesDAO');
 			$series = $seriesDao->getByPath($seriesPath, $submission->getContextId());
@@ -58,6 +59,7 @@ class NativeXmlMonographFilter extends NativeXmlSubmissionFilter {
 				fatalError('Could not find a series with the path "' . $seriesPath . '"!');
 			}
 			$submission->setSeriesId($series->getId());
+			$submission->setSeriesPosition($seriesPosition);
 		}
 		return parent::populateObject($submission, $node);
 	}
