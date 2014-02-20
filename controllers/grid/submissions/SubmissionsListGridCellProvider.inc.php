@@ -110,6 +110,7 @@ class SubmissionsListGridCellProvider extends DataObjectGridCellProvider {
 				return array('label' => $press->getLocalizedName());
 				break;
 			case 'author':
+				if (is_a($monograph, 'ReviewerSubmission') && $monograph->getReviewMethod() == SUBMISSION_REVIEW_METHOD_DOUBLEBLIND) return array('label' => '—');
 				return array('label' => $monograph->getAuthorString(true));
 				break;
 			case 'dateAssigned':
