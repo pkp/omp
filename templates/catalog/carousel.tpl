@@ -7,6 +7,8 @@
  *
  * Display a carousel in the public-facing catalog view.
  *}
+{* Only include if there are actually monographs to display *}
+{if $publishedMonographs|@count > 0}
 
 <script type="text/javascript">
 	// Initialize JS handler for catalog header.
@@ -46,3 +48,5 @@
 		{/foreach}
 	</ul>
 </div>
+
+{/if}{* $publishedMonographs|@count > 0 *}
