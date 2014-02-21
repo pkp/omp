@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE locale SYSTEM "../../lib/pkp/dtd/locale.dtd">
 <!--
-  * locale/en_US/admin.xml
+  * locale/pt_BR/admin.xml
   *
   * Copyright (c) 2014 Simon Fraser University Library
   * Copyright (c) 2003-2014 John Willinsky
@@ -52,4 +52,10 @@ Note that the OAI interface can be disabled for this site by editing the OMP sys
 	<message key="admin.overwriteConfigFileInstructions"><![CDATA[<h4>NOTE!</div>
 <p>The system could not automatically overwrite the configuration file. To apply your configuration changes you must open <tt>config.inc.php</tt> in a suitable text editor and replace its contents with the contents of the text field below.</p>]]></message>
 
+	<message key="admin.contexts.confirmDelete">Tem certeza que deseja apagar definitivamente esta editora e todo seu conteúdo?</message>
+	<message key="admin.contexts.create">Criar Editora</message>
+	<message key="admin.contexts.form.titleRequired">Um título é necessário.</message>
+	<message key="admin.contexts.form.pathRequired">Um caminho é requerido.</message>
+	<message key="admin.contexts.form.pathAlphaNumeric">O caminho pode conter somente caracteres alfanuméricos, sublinhado, e hífens, e deve começar e terminar com um caractere alfanumérico.</message>
+	<message key="admin.contexts.form.pathExists">O caminho selecionado já é utilizado por outra editora.</message>
 </locale>

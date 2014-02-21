@@ -2,7 +2,7 @@
 <!DOCTYPE locale SYSTEM "../../../../../lib/pkp/dtd/locale.dtd">
 
 <!--
-  * locale.xml
+  * plugins/generic/translator/locale/fr_CA/locale.xml
   *
   * Copyright (c) 2014 Simon Fraser University Library
   * Copyright (c) 2003-2014 John Willinsky
@@ -66,4 +66,6 @@
 	<message key="plugins.generic.translator.deleteKey">Supprimer cette clé</message>
 	<message key="plugins.generic.translator.deleteEmail">Supprimer ce courriel</message>
 	<message key="plugins.generic.translator.saveBeforeContinuing">Assurez-vous de sauvegarder tous les changements effectués sur cette page avant de continuer ou ils seront perdus. Voulez-vous continuer? Si c'est le cas, tout changement non sauvegardé sera perdu.</message>
+	<message key="plugins.generic.translator.tarMissing">La fonction d'export de ce module d'extension a été désactivée parce que le tar binaire configuré est introuvable dans ce système. Assurez-vous que le programme tar est installé, puis configurez le chemin d'accès au tar binaire dans la section config.inc.php [cli].</message>
+	<message key="plugins.generic.translator.localeKey.description">Entrer la clé de paramètre régional complète que vous souhaitez chercher.</message>
 </locale>

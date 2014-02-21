@@ -2,7 +2,7 @@
 <!DOCTYPE locale SYSTEM "../../../../../lib/pkp/dtd/locale.dtd">
 
 <!--
-  * locale.xml
+  * plugins/blocks/information/locale/es_ES/locale.xml
   *
   * Copyright (c) 2014 Simon Fraser University Library
   * Copyright (c) 2003-2014 John Willinsky
@@ -14,6 +14,6 @@
  
 <locale name="es_ES" full_name="Español (España)">
 	<message key="plugins.block.information.displayName">Bloque de información</message>
-	<message key="plugins.block.information.description">Este Complemento proporciona un vínculo de "Información" en la barra lateral.</message>
+	<message key="plugins.block.information.description">Este complemento proporciona un enlace de información en la barra lateral.</message>
 	<message key="plugins.block.information.link">Información</message>
 </locale>

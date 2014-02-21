@@ -1,0 +1,133 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE email_texts SYSTEM "../../lib/pkp/dtd/emailTemplateData.dtd">
+<!--
+  * locale/es_ES/emailTemplateData.xml
+  *
+  * Copyright (c) 2014 Simon Fraser University Library
+  * Copyright (c) 2003-2014 John Willinsky
+  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
+  *
+  * Localized email templates XML file.
+  -->
+<email_texts locale="es_ES">
+		<email_text key="NOTIFICATION">
+		<subject>Nueva notificación de {$siteTitle}</subject>
+		<body>Tienes una nueva notificación de {$siteTitle}
+
+{$notificationContents}
+
+Enlace: {$url}
+
+{$principalContactSignature}</body>
+		<description>Este email se enviará a los usuarios registrados que hayan elegido recibir por correo este tipo de notificación.</description>
+	</email_text>
+	<email_text key="NOTIFICATION_MAILLIST">
+		<subject>Nueva notificación de {$siteTitle}</subject>
+		<body>Tienes una notificación de {$siteTitle}:
+--
+{$notificationContents}
+
+Enlace:{$url}
+--
+
+Si deseas dejar de recibir correos de notificaciones, por favor, dirígete a {$unsubscribeLink}.</body>
+		<description>Este correo se enviará a los usuarios no registrados en la lista de contactos de notificaciones</description>
+	</email_text>
+	<email_text key="NOTIFICATION_MAILLIST_WELCOME">
+		<subject>¡Bienvenido a la lista de contactos de  {$siteTitle}!</subject>
+		<body>Te has inscrito para recibir notificaciones de {$siteTitle}.
+
+Por favor, haz clic en este enlace para confirmar la petición y añadir tu dirección de correo a la lista de contactos: {$confirmLink}
+
+Si quieres dejar de recibir correos de notificaciones, por favor, dirígete a {$unsubscribeLink} e introduce tu dirección de correo y contraseña.
+
+{$principalContactSignature}</body>
+		<description>Este correo se enviará a los usuarios no registrados que se acaben de registrar a través de la lista de contactos de notificación</description>
+	</email_text>
+	<email_text key="PASSWORD_RESET_CONFIRM">
+		<subject>Confirmación de restablecimiento de la contraseña</subject>
+		<body>Hemos recibido tu petición para reestablecer la contraseña para la página web {$siteTitle}
+
+Si no realizaste esta petición, por favor, ignora este correo y tu contraseña no se cambiará. Si deseas reestablecer tu contraseña, haz clic en la URL de abajo.
+
+Reestablecer mi contraseña: {$url}
+
+{$principalContactSignature}</body>
+		<description>Este correo se enviará a los usuarios registrados cuando indiquen que han olvidado sus contraseñas o que no podían acceder. Incluye una URL que pueden seguir para reestablecer sus contraseñas.</description>
+	</email_text>
+	<email_text key="PASSWORD_RESET">
+		<subject>Reestablecer contraseña</subject>
+		<body>Tu contraseña se ha reestablecido con éxito, está lista para utilizarla en la página web {$siteTitle}. Por favor, conserva este nombre de usuario y contraseña, puesto que es necesario para todo el trabajo con la editorial.
+
+Tu nombre de usuario: {$username}
+Tu nueva contraseña: {$password}
+
+{$principalContactSignature}</body>
+		<description>Este correo se envíara al usuario registrado una vez que se haya reestablecido sus contraseñas conforme al proceso descrito en el correo CONFIRMAR_RESTABLECIMIENTO_CONTRASEÑA.</description>
+	</email_text>
+	<email_text key="USER_REGISTER">
+		<subject>Inscripción en la editorial</subject>
+		<body>{$userFullName}
+
+Te acabas de registrar como usuario con {$contextName}. Hemos incluido en este correo electrónico el nombre de usuario y contraseña, que son necesarios para cualquier trabajo con esta editorial a través de su página electrónica. Puedes pedir que se te elimine en cualquier momento de la lista de usuarios contactando conmigo. 
+
+Nombre de usuario: {$username}
+Contraseña: {$password}</body>
+		<description>Este correo electrónico se enviará a los usuarios que se acaben de registrar para darles la bienvenida al sistema y proporcionarles los datos del nombre de usuario y la contraseña.</description>
+	</email_text>
+	<email_text key="USER_VALIDATE">
+		<subject>Confirmar cuenta</subject>
+		<body>{$userFullName}
+
+Has creado una cuenta con  {$contextName}, pero antes de empezar a usarla, necesitas confirmar tu cuenta de correo electrónico. Para ello, sigue simplemente el enlace siguiente:
+
+{$activateUrl}
+
+Gracias, 
+{$principalContactSignature}</body>
+		<description>Este correo electrónico se enviará a los usuarios que se acaben de registrar para darles la bienvenida al sistema y proporcionarles los datos de su nombre de usuario y contraseña</description>
+	</email_text>
+	<email_text key="REVIEWER_REGISTER">
+		<subject>Inscripción como revisor con {$contextName}</subject>
+		<body>Teniendo en cuenta tu experiencia, nos hemos tomado la libertad de registrar tu nombre en la base de datos para {$contextName}. Esto no conlleva ninguno tipo de compromiso por tu parte, sino que simplemente nos permite facilitarte una propuesta para una posible revisión. Una vez propuesta la revisión, tendrás la oportunidad de ver el título y el resumen del documento en cuestión, y siempre podrás aceptar o rechazar la invitación. También puedes pedir que se elimine en cualquier momento tu nombre de esta lista de revisores. 
+
+Te proporcionamos un nombre de usuario y una contraseña, que se utilizarán para cualquier interacción con la editorial a través de esta página electrónica. 
+Podrás, por ejemplo, actualizar tu perfil, incluyendo tus intereses en cuanto a la revisión. 
+
+Nombre de usuario:  {$username}
+Contraseña: {$password}
+
+Gracias, 
+{$principalContactSignature}</body>
+		<description>Este correo electrónico se enviará a los revisores que se acaben de registrar para darles la bienvenida al sistema y proporcionarles los datos de sus nombres de usuario y contraseñas.</description>
+	</email_text>
+	<email_text key="PUBLISH_NOTIFY">
+		<subject>Nuevo libro publicado</subject>
+		<body>Lectores:
+
+{$contextName} acaba de publicar su último libro en {$contextUrl}. Te invitamos a que revises la Tabla de Contenidos aquí y después visites nuestra página electrónica para revisar monografías y demás documentos de interés. 
+
+Gracias por el interés constate en nuestro trabajo, 
+{$editorialContactSignature}</body>
+		<description>Este correo electrónico se enviará a los lectores registrados mediante el enlace "Notificar Usuarios" en el Área Personal. Notifica a los lectores acerca de los nuevos libros y les invita a visitar la editorial con la URL  que se proporcione.</description>
+	</email_text>
+	<email_text key="AUDITOR_REQUEST">
+		<subject>Petición de examen del texto completo</subject>
+		<body>{$auditorName}:
+
+Se han subido nuevos ficheros para el texto completo "{$submissionTitle}," y se te pide que los examines. Es importante para la editorial que los participantes revisen el texto completo en todas las etapas.
+
+Puedes encontrar los ficheros que revisar en:
+
+{$auditUrl}
+
+Nombre de usuario: {$auditorUserName}
+
+Por favor, indícanos en otro correo eléctronico si tienes problemas para completar el examen del texto para la {$weekLaterDate}
+
+Muchas gracias por tener en cuenta esta petición.
+
+{$editorialContactSignature}</body>
+		<description>El coordinador de colección enviará este correo electrónico al examinador para solicitar que se acepte o rechace la tarea de examinar una propuesta.</description>
+	</email_text>
+</email_texts>

@@ -115,4 +115,9 @@
 	<message key="submission.event.publicationMetadataUpdated">Les métadonnées du format de publication pour  "{$formatName}" ont été mises à jour.</message>
 	<message key="submission.event.publicationFormatCreated">Le format de publication "{$formatName}" a été créé.</message>
 	<message key="submission.event.publicationFormatRemoved">Le format de publication "{$formatName}" a été supprimé.</message>
+	<message key="submission.submit.title">Soumettre une monographie</message>
+	<message key="submission.title">Titre du livre</message>
+	<message key="submission.submit.confirmExpedite">Confirmer les métadonnées pour une soumission accélérée</message>
+	<message key="submission.title.tip"><![CDATA[Normalement, par type de soumission, on entend 'image', 'texte' ou autre multimédia, y compris 'logiciel' ou 'interactif'. Veuillez choisir le type qui correspond le mieux à votre soumission. Vous trouverez des exemples au 
+<a target="_blank" href="http://dublincore.org/documents/2001/04/12/usageguide/generic.shtml#type">http://dublincore.org/documents/2001/04/12/usageguide/generic.shtml#type</a>.]]></message>
 </locale>

@@ -448,4 +448,34 @@ Choisissez un modèle pour gérer ces aspects du processus éditorial. (Pour nom
 	<li><strong>Ajouter un outil de lecture</strong><p>Le directeur de la presse peut ajouter "Trouver les références" aux outils de lecture qui accompagnent les articles publiés, ce qui permet aux lecteurs de faire un copier-coller du titre d'un article cité par l'auteur et d'effectuer une recherche dans les bases de données de recherche présélectionnées.</p></li>
 	<li><strong>Intégrer des liens dans les références</strong><p>Le rédacteur metteur en page peut ajouter un lien vers les références disponibles en ligne à l'aide des instructions suivantes (qui peuvent être modifiées).</p></li>
 </ol>]]></message>
+	<message key="manager.setup.logo">Logo de la presse</message>
+	<message key="manager.setup.logo.altText">Logo de la presse</message>
+	<message key="manager.setup.contextName">Nom de la presse</message>
+	<message key="manager.series.restricted">Restreint</message>
+	<message key="manager.statistics.reports.defaultReport.monographDownloads">Téléchargement des fichiers des monographies</message>
+	<message key="manager.setup.emailHeader">En-tête du courriel</message>
+	<message key="manager.setup.homepageContent">Contenu de la page d'accueil de la presse</message>
+	<message key="manager.statistics.reports.defaultReport.monographAbstract">Vues du résumé de la monographie</message>
+	<message key="manager.statistics.reports.defaultReport.monographAbstractAndDownloads">Résumé et téléchargements de la monographie</message>
+	<message key="manager.statistics.reports.defaultReport.seriesIndexPageViews">Vues de la page d'accueil de la série</message>
+	<message key="manager.statistics.reports.defaultReport.pressIndexPageViews">Vues de la page d'accueil de la presse</message>
+	<message key="manager.statistics.reports.filters.byContext.description">Limiter les résultats par contexte (série et/ou monographie).</message>
+	<message key="manager.statistics.reports.filters.byObject.description">Limiter les résultats selon le type d'objet (presse, série, monographie, type de fichier) et/ou selon une ou plusieurs identification d'objet.</message>
+	<message key="manager.setup.editorialProcess3">L'éditeur en chef est en charge des soumissions en attente, de la révision des soumissions et de la table des matières, tandis que les éditeurs de section sont en charge de l'examen des soumissions.</message>
+	<message key="manager.setup.emailHeaderDescription">Les courriels rédigés à l'avance sont envoyés par le système au nom de la presse et contiendront l'en-tête suivante. Ces courriels afficheront le nom de la principale personne-ressource dans la case de l'expéditeur. Il est important de souligner que cette personne-ressource n'est pas nécessairement responsable du contenu du message, qui pourrait être envoyé au nom d'un utilisateur différent.</message>
+	<message key="manager.setup.appearanceDescription">Différentes composantes de l'apparence de la presse peuvent être configurées à partir de cette page, y compris des éléments de l'en-tête et du pied de page, le style et le thème de la presse, et la manière dont les listes de renseignements sont présentées aux utilisateurs.</message>
+	<message key="manager.setup.homepageContentDescription">La page d'accueil de la presse est constituée de liens de navigation par défaut. Vous pouvez ajouter du contenu à la page d'accueil à l'aide d'une ou plusieurs des options suivantes, qui apparaitront dans l'ordre montré à l'écran.</message>
+	<message key="manager.setup.layout">Mise en page de la presse</message>
+	<message key="manager.setup.internalReviewGuidelines">Lignes directrices concernant l'examen interne</message>
+	<message key="manager.setup.internalReviewGuidelinesDescription">Tout comme dans le cas des lignes directrices concernant l'examen externe, ces instructions contiennent des renseignements qui permettront aux utilisateurs d'évaluer la soumission. Ces instructions s'adressent aux examinateurs internes, qui mènent généralement un processus d'examen en faisant appel aux examinateurs internes de cette presse.</message>
+	<message key="manager.setup.reviewOptions">Options d'examen</message>
+	<message key="manager.setup.useStyleSheet">Feuille de style de la presse</message>
+	<message key="manager.setup.registerForIndexing">Inscription de la presse pour l'indexage (collecte de métadonnées)</message>
+	<message key="manager.publication.library">Bibliothèque de la presse</message>
+	<message key="manager.setup.registerForIndexingDescription"><![CDATA[Pour que le contenu de cette presse soit indexé dans un système de base de données de recherche distribué à l'échelle mondiale, <a href="http://pkp.sfu.ca/harvester/add.php" target="_blank">inscrivez</a> l'adresse URL de votre presse avec les métadonnées du <a href="http://pkp.sfu.ca/harvester/" target="_blank">récolteur</a> du Public Knowledge Project (PKP). Cet outil recueille les métadonnées de chaque item indexé dans cette presse, permettant ainsi une recherche précise et collective parmi les sites de recherche inscrits au <a href="http://www.openarchives.org/OAI/openarchivesprotocol.htm#Introduction" target="_blank"> protocole Open Archives Initiative pour la cueillette des métadonnées</a>.
+<br /><br />
+
+Veuillez noter que si l'administrateur de votre site a déjà inscrit ce site auprès du récolteur PKP, votre presse sera indexée automatiquement et vous n'avez pas à inscrire votre presse.
+<br /><br />
+<a href="http://pkp.sfu.ca/harvester/add.php" target="_blank">Cliquez ici</a> et entrez <span class="highlight">{$siteUrl}</span> sous <strong>l'URL du site</strong>, et <span class="highlight">{$oaiUrl}</span> sous <strong>la base URL pour les archives OAI </strong>.]]></message>
 </locale>

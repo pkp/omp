@@ -553,4 +553,11 @@ Votre serveur supporte actuellement mbstring: <strong>{$supportsMBString}</stron
 	<!-- RT Entities -->
 	<message key="rt.metadata.pkp.peerReviewed">Article revu par les pairs</message>
 
+	<message key="grid.action.createContext">Créer une nouvelle presse</message>
+	<message key="context.select">Sélectionner une presse...</message>
+	<message key="user.role.editors">Éditeurs</message>
+	<message key="submission.pdf.download">Télécharger ce fichier PDF</message>
+	<message key="user.noRoles.selectUsersWithoutRoles">Ajouter des utilisateurs sans rôle à cette presse.</message>
+	<message key="plugins.categories.viewableFiles">Fichier de modules d'extension publié</message>
+	<message key="plugins.categories.viewableFiles.description">Le fichier de modules d'extension publié ajoute un support permettant d'afficher différents types de documents incorporés, ex.: incorporer un PDF.</message>
 </locale>

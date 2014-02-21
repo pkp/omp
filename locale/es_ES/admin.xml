@@ -2,7 +2,7 @@
 <!DOCTYPE locale SYSTEM "../../lib/pkp/dtd/locale.dtd">
 
 <!--
-  * locale/en_US/admin.xml
+  * locale/es_ES/admin.xml
   *
   * Copyright (c) 2014 Simon Fraser University Library
   * Copyright (c) 2003-2014 John Willinsky
@@ -13,44 +13,44 @@
 
 <locale name="es_ES" full_name = "Español">
 	<message key="admin.hostedPresses">Editoriales alojadas</message>
-	<message key="admin.settings.pressRedirect">Press redirect</message>
-	<message key="admin.settings.pressRedirectInstructions">Requests to the main site will be redirected to this press. This may be useful if the site is hosting only a single press, for example.</message>
-	<message key="admin.settings.noPressRedirect">Do not redirect</message>
+	<message key="admin.settings.pressRedirect">Redirección de editoriales</message>
+	<message key="admin.settings.pressRedirectInstructions">Las solicitudes de la página principal se redirigirán a esta editorial. Esto puede ser útil si la página solo aloja una editorial, por ejemplo.</message>
+	<message key="admin.settings.noPressRedirect">No redirigir</message>
 
-	<message key="admin.languages.primaryLocaleInstructions">This will be the default language for the site and any hosted presses.</message>
-	<message key="admin.languages.supportedLocalesInstructions">Select all locales to support on the site. The selected locales will be available for use by all presses hosted on the site, and also appear in a language select menu to appear on each site page (which can be overridden on press-specific pages). If multiple locales are not selected, the language toggle menu will not appear and extended language settings will not be available to presses.</message>
-	<message key="admin.locale.maybeIncomplete">* Marked locales may be incomplete.</message>
-	<message key="admin.languages.confirmUninstall">Are you sure you want to uninstall this locale? This may affect any hosted presses currently using the locale.</message>
-	<message key="admin.languages.installNewLocalesInstructions">Select any additional locales to install support for in this system. Locales must be installed before they can be used by hosted presses. See the OMP documentation for information on adding support for new languages.</message>
-	<message key="admin.languages.noLocalesToDownload">No locales are available for download.</message>
-	<message key="admin.languages.downloadFailed">The locale download failed. The error message(s) below describe the failure.</message>
-	<message key="admin.languages.downloadUnavailable"><![CDATA[<p>Downloading language packs from the Public Knowledge Project web server is not currently available because:</p>
+	<message key="admin.languages.primaryLocaleInstructions">Este será el idioma por defecto de la página y de cualquier editorial alojada.</message>
+	<message key="admin.languages.supportedLocalesInstructions">Seleccionar todos los locales que deben tener soporte en la página. Los locales seleccionados estarán disponibles para su uso para todas las editoriales que estén alojadas en la página. Además, aparecen en un menú de idiomas en cada página del sitio (que puede ser modificado manualmente en páginas de editorial específicas). Si no se seleccionan múltiples locales, no aparecerá el menú de idiomas ni estarán disponibles las configuraciones avanzadas para las editoriales.</message>
+	<message key="admin.locale.maybeIncomplete">* Los locales marcados están incompletos.</message>
+	<message key="admin.languages.confirmUninstall">¿Seguro que quieres desinstalar este locale? Esto podría afectar a las editoriales alojadas que estén utilizando este locale.</message>
+	<message key="admin.languages.installNewLocalesInstructions">Seleccionar locales complementarios para los que instalar soporte en este sistema. Los locales deben instalarse antes de ser usados por las editoriales alojadas. Ver la documentación OMP para más información sobre añadir soporte para nuevos idiomas.</message>
+	<message key="admin.languages.noLocalesToDownload">No hay locales disponibles para su descarga.</message>
+	<message key="admin.languages.downloadFailed">La descarga de locales falló. El mensaje o mensajes del error que se muestra más abajo detalla este fallo.</message>
+	<message key="admin.languages.downloadUnavailable"><![CDATA[<p>Descargando paquetes de idiomas del servidor web de Public Knowledge Project no está disponible en estos momentos porque:</p>
 	<ul>
-		<li>Your server does not have or allow execution of the GNU "tar" utility</li>
-		<li>OMP is unable to modify the locale registry file, typically "registry/locales.xml".</li>
+		<li>Tu servidor no tiene o permite la ejecución de la herramienta GNU "tar"</li>
+		<li>OMP no puede modificar el archivo de registro de locales "registry/locales.xml".</li>
 	</ul>
-<p>Language packs can be manually downloaded from the <a href="http://pkp.sfu.ca" target="_blank">PKP web site</a>.</p>]]></message>
+<p>Los paquetes de idiomas se pueden descargar manualmente en la<a href="http://pkp.sfu.ca" target="_blank">página de PKP</a>.</p>]]></message>
 
-	<message key="admin.languages.confirmDisable">Are you sure you want to disable this locale? This may affect any hosted presses currently using the locale.</message>
-	<message key="admin.systemVersion">OMP Version</message>
-	<message key="admin.systemConfiguration">OMP Configuration</message>
-	<message key="admin.systemConfigurationDescription"><![CDATA[OMP configuration settings from <tt>config.inc.php</tt>.]]></message>
-	<message key="admin.presses.pressSettings">Press Settings</message>
-	<message key="admin.presses.noneCreated">No presses have been created.</message>
-	<message key="admin.presses.createInstructions">You will automatically be enrolled as the manager of this press. After creating a new press, you will be redirected to its settings wizard, to complete the initial press setup.</message>
-	<message key="admin.presses.urlWillBe">The press URL will be {$sampleUrl}</message>
-	<message key="admin.presses.enablePressInstructions">Enable this press to appear publicly on the site</message>
-	<message key="admin.presses.pressDescription">Press description</message>
+	<message key="admin.languages.confirmDisable">¿Seguro que quieres deshabilitar este locale? Esto podría afectar a las editoriales alojadas que estén usando este locale.</message>
+	<message key="admin.systemVersion">Versión OMP</message>
+	<message key="admin.systemConfiguration">Configuración OMP</message>
+	<message key="admin.systemConfigurationDescription"><![CDATA[Parámetros de configuración OMP de <tt>config.inc.php</tt>.]]></message>
+	<message key="admin.presses.pressSettings">Parámetros de editorial</message>
+	<message key="admin.presses.noneCreated">No se han creado editoriales.</message>
+	<message key="admin.presses.createInstructions">Serás registrado de forma automática como administrador de esta editorial. Después de crear una editorial nueva, serás redirigido al asistente de configuración para completar la configuración editorial inicial.</message>
+	<message key="admin.presses.urlWillBe">La URL de la editorial será {$sampleUrl}</message>
+	<message key="admin.presses.enablePressInstructions">Habilitar esta editorial para que aparezca de forma pública en la página</message>
+	<message key="admin.presses.pressDescription">Detalles de la editorial</message>
 	<message key="admin.presses.addPress">Añadir editorial</message>
 
-	<message key="admin.settings.oaiRegistrationDescription"><![CDATA[To have the contents of all presses hosted on this site indexed within a globally distributed system of research databases, <a href="http://pkp.sfu.ca/harvester/add.php" target="_blank">register</a> your site's URL with the Public Knowledge Project metadata <a href="http://pkp.sfu.ca/harvester/" target="_blank">harvester</a>. This tool collects the metadata from each indexed item in this press, enabling accurate and collective searching among the research sites that adhere to the <a href="http://www.openarchives.org/OAI/openarchivesprotocol.htm#Introduction" target="_blank">Open Archives Initiative Protocol for Metadata Harvesting</a>.
+	<message key="admin.settings.oaiRegistrationDescription"><![CDATA[Para acceder a los contenidos de todas las editoriales alojadas en esta página indexados en un sistema de distribución global de bases de datos de investigación, <a href="http://pkp.sfu.ca/harvester/add.php" target="_blank">registra</a> tu URL de la página con los metadatos de Public Knowledge Project <a href="http://pkp.sfu.ca/harvester/" target="_blank">harvester</a>. Esta herramienta recoge los metadatos de cada elemento indexado en esta editorial, habilitando la búsqueda precisa y colectiva entre las páginas de investigación que se adhieran al protocolo<a href="http://www.openarchives.org/OAI/openarchivesprotocol.htm#Introduction" target="_blank">Open Archives Initiative Protocol for Metadata Harvesting</a>.
 <br /><br />
-<a href="http://pkp.sfu.ca/harvester/add.php" target="_blank">Click here</a> and enter <span class="highlight">{$siteUrl}</span> under <strong>Site URL</strong>, and <span class="highlight">{$oaiUrl}</span> under <strong>Base URL for OAI Archive</strong>.
+<a href="http://pkp.sfu.ca/harvester/add.php" target="_blank">Click here</a> e introduce <span class="highlight">{$siteUrl}</span> en <strong>URL de la página</strong>, y<span class="highlight">{$oaiUrl}</span> en<strong>URL base para archivo OAI</strong>.
 <br /><br />
-Note that the OAI interface can be disabled for this site by editing the OMP system configuration. Future versions of OMP will allow the OAI interface to be enabled or disabled for individual presses within the site.]]></message>
+Ten en cuenta que la interfaz OAI se puede deshabilitar para esta página editando la configuración del sistema OMP. Futuras versiones de OMP permitirán que la interfaz OAI esté habilitada o deshabilitada para editoriales concreta dentro de la página.]]></message>
 
 	<!-- System Information -->
-	<message key="admin.overwriteConfigFileInstructions"><![CDATA[<h4>NOTE!</div>
-<p>The system could not automatically overwrite the configuration file. To apply your configuration changes you must open <tt>config.inc.php</tt> in a suitable text editor and replace its contents with the contents of the text field below.</p>]]></message>
+	<message key="admin.overwriteConfigFileInstructions"><![CDATA[<h4>¡AVISO!</div>
+<p>El sistema no ha podido sobrescribir automáticamente el archivo de configuración. Para aplicar tus cambios en la configuración, tienes que abrir <tt>config.inc.php</tt> con un editor de texto apropiado y reemplazar sus contenidos por los del campo de texto de abajo.</p>]]></message>
 
 </locale>

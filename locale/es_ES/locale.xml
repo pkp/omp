@@ -2,7 +2,7 @@
 <!DOCTYPE locale SYSTEM "../../lib/pkp/dtd/locale.dtd">
 
 <!--
-  * locale/en_US/locale.xml
+  * locale/es_ES/locale.xml
   *
   * Copyright (c) 2014 Simon Fraser University Library
   * Copyright (c) 2003-2014 John Willinsky
@@ -13,33 +13,33 @@
 
 <locale name="es_ES" full_name = "Español">
 	<!-- General monograph keys -->
-	<message key="monograph.audience">Tipo de lectores</message>
+	<message key="monograph.audience">Tipo de lector</message>
 	<message key="monograph.coverImage">Imagen de portada</message>
-	<message key="monograph.coverImage.uploadInstructions">Asegúrese de que la altura de la imagen no sea más grande que el 150% de su anchura, o de lo contrario el carrusel no mostrará toda la portada.</message>
-	<message key="monograph.currentCoverImage">Current Image</message>
-	<message key="monograph.audience.rangeQualifier">Audience Range Qualifier</message>
-	<message key="monograph.audience.rangeFrom">Audience Range (from)</message>
-	<message key="monograph.audience.rangeTo">Audience Range (to)</message>
-	<message key="monograph.audience.rangeExact">Audience Range (exact)</message>
+	<message key="monograph.coverImage.uploadInstructions">Asegúrate de que la altura de la imagen no sea más grande que el 150% de su anchura. De lo contrario el carrusel no mostrará toda la portada.</message>
+	<message key="monograph.currentCoverImage">Imagen actual</message>
+	<message key="monograph.audience.rangeQualifier">Calificador de la variedad de lector</message>
+	<message key="monograph.audience.rangeFrom">Variedad de lector (de)</message>
+	<message key="monograph.audience.rangeTo">Variedad de lector (a)</message>
+	<message key="monograph.audience.rangeExact">Variedad de lector (exacto)</message>
 	<message key="monograph.languages">Idiomas (español, inglés, francés)</message>
 	<message key="monograph.publicationFormats">Formatos de publicación</message>
 	<message key="monograph.carousel.publicationFormats">Formatos:</message>
 	<message key="monograph.type">Tipo de propuesta</message>
-	<message key="monograph.proofReadingDescription"><![CDATA[El maquetador añade aquí los ficheros preparados para producción que han sido preparados para publicación. Utiliza <em>+Asignar</em> para designar a los autores y a otras personas que vayan a realizar la corrección de pruebas, con los ficheros corregidos añadidos para su aprobación antes de su publicación.]]></message>
-	<message key="monograph.task.addNote">Add to task</message>
-	<message key="monograph.accessLogoOpen.altText">Open Access</message>
+	<message key="monograph.proofReadingDescription"><![CDATA[El maquetador añade aquí la producción: ficheros listos para que se han preparado aquí para la publicación. Utiliza <em>+Asignar</em> para designar a los autores y a otras personas que vayan a realizar la corrección de pruebas, con los ficheros corregidos subidos para su aprobación antes de su publicación.]]></message>
+	<message key="monograph.task.addNote">Añadir a tarea</message>
+	<message key="monograph.accessLogoOpen.altText">Acceso abierto</message>
 
 
 	<!--  Metadata field description keys -->
-	<message key="monograph.publicationFormat.imprint">Imprint (Brand Name)</message>
+	<message key="monograph.publicationFormat.imprint">Imprimir (nombre de marca)</message>
 	<message key="monograph.publicationFormat.pageCounts">Número de páginas</message>
-	<message key="monograph.publicationFormat.frontMatterCount">Preliminares</message>
+	<message key="monograph.publicationFormat.frontMatterCount">Páginas Preliminares</message>
 	<message key="monograph.publicationFormat.backMatterCount">Apéndices</message>
 	<message key="monograph.publicationFormat.productComposition">Composición del producto</message>
-	<message key="monograph.publicationFormat.productFormDetailCode">Detalle del producto (no requerido)</message>
+	<message key="monograph.publicationFormat.productFormDetailCode">Detalle del producto (opcional)</message>
 	<message key="monograph.publicationFormat.productIdentifierType">Identificación del producto</message>
 	<message key="monograph.publicationFormat.price">Precio</message>
-	<message key="monograph.publicationFormat.priceRequired">A price is required.</message>
+	<message key="monograph.publicationFormat.priceRequired">Se exige precio</message>
 	<message key="monograph.publicationFormat.priceType">Tipo de precio</message>
 	<message key="monograph.publicationFormat.discountAmount">Porcentaje de descuento, si es aplicable</message>
 	<message key="monograph.publicationFormat.productAvailability">Disponibilidad del producto</message>
@@ -48,7 +48,7 @@
 	<message key="monograph.publicationFormat.digitalInformation">Información digital</message>
 	<message key="monograph.publicationFormat.productDimensions">Dimensiones físicas</message>
 	<message key="monograph.publicationFormat.productFileSize">Tamaño del fichero en MB</message>
-	<message key="monograph.publicationFormat.productFileSize.override">¿Desea introducir un valor personalizado para el tamaño del fichero?</message>
+	<message key="monograph.publicationFormat.productFileSize.override">¿Deseas introducir un valor personalizado para el tamaño del fichero?</message>
 	<message key="monograph.publicationFormat.productHeight">Altura</message>
 	<message key="monograph.publicationFormat.productThickness">Grosor</message>
 	<message key="monograph.publicationFormat.productWeight">Peso</message>
@@ -56,54 +56,54 @@
 	<message key="monograph.publicationFormat.countryOfManufacture">País de fabricación</message>
 
 	<message key="monograph.publicationFormat.technicalProtection">Protección técnica digital</message>
-	<message key="monograph.publicationFormat.productRegion">Product Distribution Region</message>
-	<message key="monograph.publicationFormat.taxRate">Tasa de impuestos</message>
-	<message key="monograph.publicationFormat.taxType">Tipo de impuestos</message>
+	<message key="monograph.publicationFormat.productRegion">Región de distribución del producto</message>
+	<message key="monograph.publicationFormat.taxRate">Tipo impositivo</message>
+	<message key="monograph.publicationFormat.taxType">Tipo de impuesto</message>
 
 	<message key="monograph.publicationFormat.formatMetadata">Metadatos del formato</message>
-	<message key="monograph.publicationFormat.isApproved">Incluir los metadatos de este formato de publicación para el catálogo.</message>
-	<message key="monograph.publicationFormat.noMarketsAssigned">Missing markets and prices.</message>
-	<message key="monograph.publicationFormat.noCodesAssigned">Missing an identification code.</message>
-	<message key="monograph.publicationFormat.missingONIXFields">Missing some metadata fields.</message>
+	<message key="monograph.publicationFormat.isApproved">Incluir los metadatos de este formato de publicación en la entrada de catálogo de este libro.</message>
+	<message key="monograph.publicationFormat.noMarketsAssigned">Ausencia de mercados y precios.</message>
+	<message key="monograph.publicationFormat.noCodesAssigned">Ausencia de código de identificación.</message>
+	<message key="monograph.publicationFormat.missingONIXFields">Ausencia de varios campos de metadatos.</message>
 
-	<message key="monograph.publicationFormat.formatDoesNotExist"><![CDATA[<p>The publication format you have chosen no longer exists for this monograph.</p>]]></message>
-	<message key="monograph.publicationFormat.openTab">Open publication format tab.</message>
+	<message key="monograph.publicationFormat.formatDoesNotExist"><![CDATA[<p>El formato de publicación que has elegido ya no existe para esta monografía.</p>]]></message>
+	<message key="monograph.publicationFormat.openTab">Pestaña de formato de publicación abierta.</message>
 	<!-- assigned publication format grid and form keys  -->
-	<message key="grid.catalogEntry.publicationFormatType">Publication Format</message>
-	<message key="grid.catalogEntry.nameRequired">A name is required.</message>
-	<message key="grid.catalogEntry.validPriceRequired">A valid price is required.</message>
-	<message key="grid.catalogEntry.publicationFormatDetails">Format Details</message>
-	<message key="grid.catalogEntry.physicalFormat">Physical format</message>
-	<message key="grid.catalogEntry.monographRequired">A monograph id is required.</message>
-	<message key="grid.catalogEntry.publicationFormatRequired">A publication format must be chosen.</message>
+	<message key="grid.catalogEntry.publicationFormatType">Formato de publicación</message>
+	<message key="grid.catalogEntry.nameRequired">Se necesita un nombre.</message>
+	<message key="grid.catalogEntry.validPriceRequired">Se requiere un precio válido.</message>
+	<message key="grid.catalogEntry.publicationFormatDetails">Detalles de formato</message>
+	<message key="grid.catalogEntry.physicalFormat">Formato físico</message>
+	<message key="grid.catalogEntry.monographRequired">Se requiere identificación de monografía</message>
+	<message key="grid.catalogEntry.publicationFormatRequired">Debe elegirse formato de publicación</message>
 	<message key="grid.catalogEntry.isAvailable">Disponible</message>
 	<message key="grid.catalogEntry.proof">Prueba</message>
-	<message key="grid.catalogEntry.availablePublicationFormat.title">Format Approval</message>
-	<message key="grid.catalogEntry.availablePublicationFormat.message"><![CDATA[<p>This format will now be made <em>available</em> to readers, through downloadable files that will now appear with the book’s catalog entry and/or through further actions taken by the press to distribute the book.</p>]]></message>
-	<message key="grid.catalogEntry.availablePublicationFormat.removeMessage"><![CDATA[<p>This format will <em>no longer be made available</em> to readers, through downloadable files that previously appeared with the book’s catalog entry and/or through further actions taken by the press to distribute the book.</p>]]></message>
-	<message key="grid.catalogEntry.availablePublicationFormat.catalogNotApprovedWarning">Catalog entry not approved.</message>
-	<message key="grid.catalogEntry.availablePublicationFormat.notApprovedWarning">Format not in catalog entry.</message>
-	<message key="grid.catalogEntry.availablePublicationFormat.proofNotApproved">Proof not approved.</message>
+	<message key="grid.catalogEntry.availablePublicationFormat.title">Aprobación de formato</message>
+	<message key="grid.catalogEntry.availablePublicationFormat.message"><![CDATA[<p>Este formato estará ahora <em>disponible</em> para los lectores a través de ficheros descargables que aparecerán ahora con la entrada del catálogo del libro, y/o a través de otras acciones llevadas a cabo por la prensa para la distribución del libro.</p>]]></message>
+	<message key="grid.catalogEntry.availablePublicationFormat.removeMessage"><![CDATA[<p>Este formato <em>dejará de estar disponible</em> para los lectores, a través de archivos descargables que previamente aparecían con la entrada del catálogo del libro y/o a través de otras acciones llevadas a cabo por la prensa para la distribución del libro.</p>]]></message>
+	<message key="grid.catalogEntry.availablePublicationFormat.catalogNotApprovedWarning">Entrada de catálogo no aprobada.</message>
+	<message key="grid.catalogEntry.availablePublicationFormat.notApprovedWarning">Formato no en entrada de catálogo</message>
+	<message key="grid.catalogEntry.availablePublicationFormat.proofNotApproved">Prueba no aprobada.</message>
 
 	<!--  publication metadata required form field keys -->
-	<message key="grid.catalogEntry.fileSizeRequired">A file size for digital formats required.</message>
-	<message key="grid.catalogEntry.productAvailabilityRequired">A product availability code is required.</message>
-	<message key="grid.catalogEntry.productCompositionRequired">A product composition code must be chosen.</message>
+	<message key="grid.catalogEntry.fileSizeRequired">Se requiere un tamaño de fichero para formatos digitales</message>
+	<message key="grid.catalogEntry.productAvailabilityRequired">Se requiere un código de disponibilidad del producto.</message>
+	<message key="grid.catalogEntry.productCompositionRequired">Se debe elegir un código de composición del producto.</message>
 
 	<!-- assigned identification code grid and form keys -->
 	<message key="grid.catalogEntry.identificationCodeValue">Valor del código</message>
 	<message key="grid.catalogEntry.identificationCodeType">Tipo de código ONIX</message>
-	<message key="grid.catalogEntry.codeRequired">An identification code is required.</message>
-	<message key="grid.catalogEntry.valueRequired">A value is required.</message>
+	<message key="grid.catalogEntry.codeRequired">A code is required.</message>
+	<message key="grid.catalogEntry.valueRequired">Se requiere un valor.</message>
 
 	<!-- assigned sales rights grid and form keys -->
 	<message key="grid.catalogEntry.salesRights">Derechos de venta</message>
-	<message key="grid.catalogEntry.salesRightsValue">Code Value</message>
+	<message key="grid.catalogEntry.salesRightsValue">Valor de código</message>
 	<message key="grid.catalogEntry.salesRightsType">Tipo de derechos de venta</message>
 	<message key="grid.catalogEntry.salesRightsROW">¿Resto del mundo?</message>
-	<message key="grid.catalogEntry.salesRightsROW.tip">Check this box to use this Sales Rights entry as a catch-all for your format.  Countries and regions need not be chosen in this case.</message>
+	<message key="grid.catalogEntry.salesRightsROW.tip">Marca esta casilla para utilizar esta entrada de Derechos de venta como una "escoba" para tu formato. No hace falta elegir países y regiones en este caso.</message>
 	<message key="grid.catalogEntry.codeRequired">A code is required.</message>
-	<message key="grid.catalogEntry.oneROWPerFormat">There is already a ROW sales type defined for this publication format.</message>
+	<message key="grid.catalogEntry.oneROWPerFormat">Ya existe un tipo de ventas RDM definido para este formato de publicación.</message>
 	<message key="grid.catalogEntry.countries">Países</message>
 	<message key="grid.catalogEntry.regions">Regiones</message>
 	<message key="grid.catalogEntry.included">Incluidos</message>
@@ -115,14 +115,14 @@
 
 	<!-- assigned publication date grid and form keys -->
 	<message key="grid.catalogEntry.publicationDates">Fechas de publicación</message>
-	<message key="grid.catalogEntry.roleRequired">A date role is required.</message>
-	<message key="grid.catalogEntry.dateFormatRequired">A date format is required.</message>
+	<message key="grid.catalogEntry.roleRequired">A representative role is required.</message>
+	<message key="grid.catalogEntry.dateFormatRequired">Se requiere formato de fecha.</message>
 
 	<!-- general catalog date keys -->
 	<message key="grid.catalogEntry.dateValue">Fecha</message>
-	<message key="grid.catalogEntry.dateRole">Rol</message>
+	<message key="grid.catalogEntry.dateRole">Función</message>
 	<message key="grid.catalogEntry.dateFormat">Formato de fecha</message>
-	<message key="grid.catalogEntry.dateRequired">A date is required and the date value must match the chosen date format.</message>
+	<message key="grid.catalogEntry.dateRequired">Se requiere fecha y el valor de la fecha debe corresponder con el formato de fecha elegido.</message>
 
 	<!--  assigned representative information grid and form keys -->
 	<message key="grid.catalogEntry.representatives">Representantes</message>
@@ -132,97 +132,97 @@
 	<message key="grid.catalogEntry.agent">Agente</message>
 	<message key="grid.catalogEntry.agentTip">Puedes asignar un agente que te represente en este territorio. No es un requisito.</message>
 	<message key="grid.catalogEntry.supplier">Proveedor</message>
-	<message key="grid.catalogEntry.representativeRoleChoice">Choose a role:</message>
-	<message key="grid.catalogEntry.representativeRole">Role</message>
-	<message key="grid.catalogEntry.representativeName">Name</message>
+	<message key="grid.catalogEntry.representativeRoleChoice">Elegir una función:</message>
+	<message key="grid.catalogEntry.representativeRole">Función</message>
+	<message key="grid.catalogEntry.representativeName">Nombre</message>
 	<message key="grid.catalogEntry.roleRequired">A representative role is required.</message>
-	<message key="grid.catalogEntry.representativePhone">Phone</message>
+	<message key="grid.catalogEntry.representativePhone">Teléfono</message>
 	<message key="grid.catalogEntry.representativeFax">Fax</message>
-	<message key="grid.catalogEntry.representativeEmail">Email Address</message>
-	<message key="grid.catalogEntry.representativeWebsite">Website</message>
-	<message key="grid.catalogEntry.representativeIdValue">Representative ID</message>
-	<message key="grid.catalogEntry.representativeIdType">Representative ID Type (GLN is recommended)</message>
-	<message key="grid.catalogEntry.representativesDescription">Puede dejar vacía la siguiente sección si proporciona sus propios servicios a sus clientes.</message>
+	<message key="grid.catalogEntry.representativeEmail">Dirección de correo electrónico</message>
+	<message key="grid.catalogEntry.representativeWebsite">Página web</message>
+	<message key="grid.catalogEntry.representativeIdValue">Identificación del representante</message>
+	<message key="grid.catalogEntry.representativeIdType">Tipo de identificación del representante ( GLN recomendado)</message>
+	<message key="grid.catalogEntry.representativesDescription">Puedes dejar vacía la siguiente sección si proporcionas tus propios servicios a tus clientes.</message>
 	<message key="grid.action.addRepresentative">Añadir representante</message>
-	<message key="grid.action.editRepresentative">Edit this Representative</message>
-	<message key="grid.action.deleteRepresentative">Delete this Representative</message>
+	<message key="grid.action.editRepresentative">Editar este representante</message>
+	<message key="grid.action.deleteRepresentative">Borrar este representante</message>
 
 	<!-- Spotlight grid keys -->
 	<!--  Spotlights management -->
 	<message key="spotlight.spotlights">Destacados</message>
 	<message key="spotlight.noneExist">No existen destacados actualmente.</message>
 	<message key="spotlight.title.homePage">En primer plano</message>
-	<message key="spotlight.author">Autor, </message>
+	<message key="spotlight.author">Autor,</message>
 	<message key="grid.content.spotlights.spotlightItemTitle">Elemento destacado</message>
 	<message key="grid.content.spotlights.category.homepage">Página de inicio</message>
 	<message key="grid.content.spotlights.category.sidebar">Sidebar</message>
-	<message key="grid.content.spotlights.form.location">Spotlight Location</message>
-	<message key="grid.content.spotlights.form.item">Enter spotlighted title (autocomplete)</message>
+	<message key="grid.content.spotlights.form.location">Localización destacada</message>
+	<message key="grid.content.spotlights.form.item">Introducir título destacado (autocompletar)</message>
 	<message key="grid.content.spotlights.form.title">Título destacado</message>
-	<message key="grid.content.spotlights.form.type.book">Book</message>
-	<message key="grid.content.spotlights.itemRequired">An item is required.</message>
-	<message key="grid.content.spotlights.titleRequired">A spotlight title is required.</message>
-	<message key="grid.content.spotlights.locationRequired">Please choose a location for this spotlight.</message>
-	<message key="grid.action.editSpotlight">Edit this spotlight</message>
-	<message key="grid.action.deleteSpotlight">Delete this spotlight</message>
-	<message key="grid.action.addSpotlight">Add a spotlight</message>
+	<message key="grid.content.spotlights.form.type.book">Libro</message>
+	<message key="grid.content.spotlights.itemRequired">Se necesita un elemento.</message>
+	<message key="grid.content.spotlights.titleRequired">Se necesita un título destacado.</message>
+	<message key="grid.content.spotlights.locationRequired">Elige una localización para este destacado.</message>
+	<message key="grid.action.editSpotlight">Editar este destacado</message>
+	<message key="grid.action.deleteSpotlight">Borrar este destacado</message>
+	<message key="grid.action.addSpotlight">Añadir destacado</message>
 
 	<!-- Content Management - Footer grid keys -->
 	<!-- Content Management - Social Media keys -->
 	<!-- Editorial policies -->
-	<message key="manager.series.open">Open Submissions</message>
-	<message key="manager.series.indexed">Indexed</message>
+	<message key="manager.series.open">Abrir propuestas</message>
+	<message key="manager.series.indexed">Indizado</message>
 
 	<!-- Library Files -->
 	<message key="grid.libraryFiles.column.files">Ficheros</message>
 
 	<!--  OMP specific grid actions -->
 	<message key="grid.action.catalogEntry">Ver registro en el catálogo</message>
-	<message key="grid.action.formatInCatalogEntry">Format appears in catalog entry</message>
-	<message key="grid.action.editFormat">Edit this format</message>
-	<message key="grid.action.deleteFormat">Delete this format</message>
+	<message key="grid.action.formatInCatalogEntry">El formato aparece en el catálogo</message>
+	<message key="grid.action.editFormat">Editar este formato</message>
+	<message key="grid.action.deleteFormat">Borrar este formato</message>
 	<message key="grid.action.addFormat">Añadir formato de publicación</message>
-	<message key="grid.action.approveProof">Approve the proof for indexing and inclusion in the catalog</message>
-	<message key="grid.action.pageProofApproved">Page proofs file is ready for publication</message>
-	<message key="grid.action.addAnnouncement">Add an Announcement</message>
-	<message key="grid.action.newCatalogEntry">New Catalog Entry</message>
-	<message key="grid.action.publicCatalog">Ver en el catálogo</message>
-	<message key="grid.action.feature">Marcar destacados y novedades</message>
+	<message key="grid.action.approveProof">Aprobar la prueba para la indexación e inclusión en el catálogo</message>
+	<message key="grid.action.pageProofApproved">La página prueba que el fichero está listo para su publicación</message>
+	<message key="grid.action.addAnnouncement">Añadir un anuncio</message>
+	<message key="grid.action.newCatalogEntry">Nueva entrada de catálogo</message>
+	<message key="grid.action.publicCatalog">Ver elemento en el catálogo</message>
+	<message key="grid.action.feature">Cambiar visualización de características</message>
 	<message key="grid.action.featureMonograph">Destacar en el carrusel</message>
-	<message key="grid.action.releaseMonograph">Marcar como novedad</message>
-	<message key="grid.action.manageCategories">Configure categories for this press</message>
-	<message key="grid.action.manageSeries">Configure series for this press</message>
-	<message key="grid.action.editApprovedProof">Edit this Approved Proof</message>
-	<message key="grid.action.addCode">Add Identification Code</message>
-	<message key="grid.action.editCode">Edit this Code</message>
-	<message key="grid.action.deleteCode">Delete this Code</message>
+	<message key="grid.action.releaseMonograph">Marcar la propuesta como "novedad"</message>
+	<message key="grid.action.manageCategories">Configurar categorías para la edición</message>
+	<message key="grid.action.manageSeries">Configurar series para la edición</message>
+	<message key="grid.action.editApprovedProof">Editar esta prueba aprobada</message>
+	<message key="grid.action.addCode">Añadir código</message>
+	<message key="grid.action.editCode">Editar código</message>
+	<message key="grid.action.deleteCode">Borrar código</message>
 	<message key="grid.action.addRights">Añadir derechos de venta</message>
-	<message key="grid.action.editRights">Edit these rights</message>
-	<message key="grid.action.deleteRights">Delete these rights</message>
+	<message key="grid.action.editRights">Edit derechos</message>
+	<message key="grid.action.deleteRights">Borrar estos derechos</message>
 	<message key="grid.action.addMarket">Añadir mercado</message>
-	<message key="grid.action.editMarket">Edit this Market</message>
-	<message key="grid.action.deleteMarket">Delete this Market</message>
+	<message key="grid.action.editMarket">Editar este mercado</message>
+	<message key="grid.action.deleteMarket">Borrar este mercado</message>
 	<message key="grid.action.addDate">Añadir fecha de publicación</message>
-	<message key="grid.action.editDate">Edit this Date</message>
-	<message key="grid.action.deleteDate">Delete this Date</message>
+	<message key="grid.action.editDate">Editar esta fecha</message>
+	<message key="grid.action.deleteDate">Borrar esta fecha</message>
 	<message key="grid.action.addCode">Añadir código</message>
 	<message key="grid.action.addSpotlight">Añadir destacado</message>
-	<message key="grid.action.publicationFormatTab">Show the publication format tab</message>
-	<message key="grid.action.moreAnnouncements">Go to press announcements page</message>
-	<message key="grid.action.approveProofs">View the proofs grid</message>
-	<message key="grid.action.proofApproved">Format has been proofed</message>
-	<message key="grid.action.availablePublicationFormat">Approve/disapprove this format</message>
-	<message key="grid.action.formatAvailable">Format is available and published</message>
+	<message key="grid.action.publicationFormatTab">Mostrar la pestaña de formato de publicación</message>
+	<message key="grid.action.moreAnnouncements">Ir a página de comunicados de prensa</message>
+	<message key="grid.action.approveProofs">Ver cuadrícula de las pruebas</message>
+	<message key="grid.action.proofApproved">Se ha comprobado el formato</message>
+	<message key="grid.action.availablePublicationFormat">Aprobar / no aprobar este formato</message>
+	<message key="grid.action.formatAvailable">El formato está disponible y publicado</message>
 
 	<!-- Used in submission review -->
 	<!-- Review Attachments -->
-	<message key="grid.reviewAttachments.add">Add Attachment to Review</message>
+	<message key="grid.reviewAttachments.add">Añadir archivo a la revisión</message>
 	<message key="grid.reviewAttachments.availableFiles">Ficheros disponibles</message>
 
 	<!-- series/categories/series -->
 	<message key="series.series">Serie</message>
-	<message key="series.featured">Featured</message>
-	<message key="series.featured.description">This series will appear on the main navigation</message>
+	<message key="series.featured">Presentados</message>
+	<message key="series.featured.description">Esta serie aparecerá en la navegación principal</message>
 	<message key="series.path">Ruta</message>
 
 	<message key="grid.category.categories">Categorias</message>
@@ -231,13 +231,13 @@
 	<message key="grid.category.name">Nombre</message>
 	<message key="grid.category.path">Ruta</message>
 	<message key="grid.category.urlWillBe">La URL de la categoría será {$sampleUrl}</message>
-	<message key="grid.series.urlWillBe">The series URL will be {$sampleUrl}. The 'Path' is a string of characters used to uniquely identify a series.</message>
-	<message key="grid.category.pathAlphaNumeric">The category path must consist of only letters and numbers.</message>
-	<message key="grid.category.pathExists">The category path already exists. Please enter a unique path.</message>
+	<message key="grid.series.urlWillBe">La serie URL será  {$sampleUrl}. La 'ruta' es una cadena de caracteres utilizada únicamente para identificar una serie.</message>
+	<message key="grid.category.pathAlphaNumeric">La ruta de la categoría estará compuesta únicamente por letras y números.</message>
+	<message key="grid.category.pathExists">La ruta de la categoría ya existe. Por favor, introduzca una nueva ruta.</message>
 	<message key="grid.category.description">Descripción</message>
 	<message key="grid.category.parentCategory">Categoría superior</message>
-	<message key="grid.category.removeText">Are you sure you wish to remove this category?</message>
-	<message key="grid.category.nameRequired">Please enter a category name.</message>
+	<message key="grid.category.removeText">¿Seguro que deseas borrar esta categoría?</message>
+	<message key="grid.category.nameRequired">Introducir el nombre de una categoría.</message>
 	<message key="grid.category.categoryDetails">Detalles de categoría</message>
 
 	<!-- Catalog Management -->
@@ -249,23 +249,23 @@
 	<message key="catalog.manage.managementIntroduction">Bienvenido a la Gestión de Catálogo. Desde esta página puedes publicar nuevas entradas de catálogo; revisar y configurar el listado de Libros Destacados, el listado de Novedades y los libros por Categoría y Serie.</message>
 	<message key="catalog.selectSeries">Seleccionar serie</message>
 	<message key="catalog.selectCategory">Seleccionar categoría</message>
-	<message key="catalog.manage.entryDescription">Para mostrar un libro en el catálogo, seleccione la pestaña "Monografía" y complete la información necesaria. La información para cada uno de los formatos del libro puede ser incluida en el registro de catálogo seleccionando la pestaña el formato. La especificación de metadatos está basada en "ONIX para Libros", que es un estándar internacional utilizado por la industria del libro para comunicaciones de la información de los libros.</message>
+	<message key="catalog.manage.entryDescription">Para mostrar un libro en el catálogo, seleccione la pestaña "Monografía" y rellene la información necesaria. La información para cada uno de los formatos del libro puede incluirse en el registro de catálogo seleccionando la pestaña el formato. La especificación de metadatos está basada en "ONIX para Libros",  un estándar internacional utilizado por la industria del libro para comunicación de información sobre los libros.</message>
 	<message key="catalog.manage.spotlightDescription">Tres destacados (por ejemplo, como Libro Destacado) pueden aparecer en la página de inicio, con título, imagen, y texto.</message>
-	<message key="catalog.manage.homepageDescription">Las imágenes de portada de los libros seleccionados aparecerán en la parte superior de la página de inicio como un conjunto desplazable. Haz clic en la estrella de 'Destacado' para añadir un libro al carrusel; Haz clic en el punto de exclamación para destacar un libro como novedad; arrastra y suelta para ordenar.</message>
-	<message key="catalog.manage.categoryDescription">Click 'Feature', then the star to select a featured book for this category; drag and drop to order.</message>
-	<message key="catalog.manage.seriesDescription">Click 'Feature', then the star to select a featured book for this series; drag and drop to order. Series are identified with an editor(s) and a series title, within a category or independently.</message>
-	<message key="catalog.manage.placeIntoCarousel">Carousel</message>
-	<message key="catalog.manage.newRelease">Release</message>
+	<message key="catalog.manage.homepageDescription">La imagen de portada de los libros seleccionados aparece en la parte superior de la página de inicio como un conjunto desplazable. Haz clic en la estrella de 'Destacado' para añadir un libro al carrusel; haz clic en el punto de exclamación para destacar un libro como novedad; arrastra y suelta para ordenar.</message>
+	<message key="catalog.manage.categoryDescription">Haz clic en "destacar"; después haz clic en la estrella para seleccionar un libro destacado para esta categoría; arrastra y y suelta para ordenar.</message>
+	<message key="catalog.manage.seriesDescription">Haz clic en "destacar"; después haz  clic en la estrella para seleccionar un libro destacado para esta serie; arrastra y suelta para ordenar. Las series se identifican con un título de editor(es) y títulos de serie, dentro de una categoría o de manera independiente.</message>
+	<message key="catalog.manage.placeIntoCarousel">Carrusel</message>
+	<message key="catalog.manage.newRelease">Lanzamiento</message>
 	<message key="catalog.manage.manageSeries">Gestionar series</message>
 	<message key="catalog.manage.manageCategories">Gestionar categorías</message>
-	<message key="catalog.manage.noMonographs">No existen libros asignados.</message>
+	<message key="catalog.manage.noMonographs">No existen monografías asignadas.</message>
 
 	<!-- Catalog -->
-	<message key="catalog.browseTitles">{$numTitles} títulos</message>
+	<message key="catalog.browseTitles">Navegar {$numTitles} títulos</message>
 	<message key="catalog.feature">En primer plano</message>
 	<message key="catalog.featuredBooks">Libros destacados</message>
 	<message key="catalog.dateAdded">Añadido {$dateAdded}</message>
-	<message key="catalog.publicationInfo">Información</message>
+	<message key="catalog.publicationInfo">Información de publicación</message>
 	<message key="catalog.relatedCategories">Categorías relacionadas</message>
 
 	<!--
@@ -274,53 +274,53 @@
 	 *
 	-->
 	<message key="common.prefix">Prefijo</message>
-	<message key="common.preview">Preview</message>
+	<message key="common.preview">Vista previa</message>
 	<message key="common.feature">Destacar</message>
-	<message key="common.searchCatalog">Búsqueda</message>
-	<message key="common.moreInfo">More Information</message>
+	<message key="common.searchCatalog">Búsqueda de catálogo</message>
+	<message key="common.moreInfo">Más información</message>
 	<message key="common.plusMore">+ Más</message>
 	
-	<message key="common.listbuilder.completeForm">Please fill out the form completely.</message>
-	<message key="common.listbuilder.selectValidOption">Please select a valid option from the list.</message>
-	<message key="common.listbuilder.itemExists">You cannot add the same item twice.</message>
+	<message key="common.listbuilder.completeForm">Rellena el formulario completamente</message>
+	<message key="common.listbuilder.selectValidOption">Selecciona una opción válida de la lista</message>
+	<message key="common.listbuilder.itemExists">No puedes añadir el mismo elemento dos veces</message>
 
-	<message key="common.catalogInformation">La información de catálogo no necesita ser completada en una propuesta inicial de la obra, a excepción de Título y Resumen.</message>
-	<message key="common.prefixAndTitle.tip">Si el título del libro comienza con "Un/a" o "El/La/Los/Las" (o algo similar que no debiera ser considerado en el orden alfabético) sitúa esta palabra en Prefijo.</message>
+	<message key="common.catalogInformation">La información de catálogo no necesita completarse en una propuesta inicial de la obra, a excepción de Título y Resumen.</message>
+	<message key="common.prefixAndTitle.tip">Si el título del libro comienza con "Un/a" o "El/La/Los/Las" (o algo similar que no debiera considerarse en el orden alfabético) sitúa esta palabra en Prefijo.</message>
 
 	<!-- Common Messages -->
 	<message key="common.openMonographPress">Open Monograph Press</message>
 	<message key="common.omp">OMP</message>
-	<message key="common.homePageHeader.altText">Homepage Header</message>
+	<message key="common.homePageHeader.altText">Cabecera de inicio</message>
 	<!-- Navigation -->
 	<message key="navigation.catalog">Catálogo</message>
 	<message key="navigation.competingInterestPolicy">Política de conflicto de intereses</message>
-	<message key="navigation.catalog.manage">Manage</message>
+	<message key="navigation.catalog.manage">Administrar</message>
 	<message key="navigation.catalog.administration.short">Administración</message>
 	<message key="navigation.catalog.administration">Administración del catálogo</message>
 	<message key="navigation.catalog.administration.categories">Categorías</message>
-	<message key="navigation.catalog.administration.series">Series</message>
+	<message key="navigation.catalog.administration.series">Serie</message>
 	<message key="navigation.infoForAuthors">Para autores</message>
 	<message key="navigation.infoForLibrarians">Para bibliotecas</message>
 	<message key="navigation.infoForAuthors.long">Información para autores</message>
 	<message key="navigation.infoForLibrarians.long">Información para bibliotecas</message>
 	<message key="navigation.newReleases">Novedades</message>
-	<message key="navigation.published">Published</message>
-	<message key="navigation.wizard">Wizard</message>
-	<message key="navigation.linksAndMedia">Links and Social Media</message>
+	<message key="navigation.published">Publicado</message>
+	<message key="navigation.wizard">Asistente</message>
+	<message key="navigation.linksAndMedia">Enlaces y  redes sociales</message>
 
 	<!-- Common Press Terms -->
 	<message key="press.presses">Editoriales</message>
 	<message key="press.path">Ruta</message>
 	<!-- User -->
-	<message key="user.noRoles.submitMonograph">Submit a Proposal</message>
-	<message key="user.noRoles.submitMonographRegClosed">Submit an Monograph: Author registration is currently disabled.</message>
-	<message key="user.noRoles.regReviewer">Register as a Reviewer</message>
-	<message key="user.noRoles.regReviewerClosed">Register as a Reviewer: Reviewer registration is currently disabled.</message>
+	<message key="user.noRoles.submitMonograph">Presentar una propuesta</message>
+	<message key="user.noRoles.submitMonographRegClosed">Presentar una monografía: El registro del autor se encuentra actualmente deshabilitado</message>
+	<message key="user.noRoles.regReviewer">Registrarse como corrector</message>
+	<message key="user.noRoles.regReviewerClosed">Registrarse como corrector: El registro del corrector se encuentra actualmente deshabilitado.</message>
 	<!-- Roles -->
 	<message key="user.role.manager">Gestor editorial</message>
 	<message key="user.role.pressEditor">Editor editorial</message>
-	<message key="user.role.seriesEditor">Editor de serie</message>
-	<message key="user.role.copyeditor">Copyeditor</message>
+	<message key="user.role.seriesEditor">Series Editor</message>
+	<message key="user.role.copyeditor">Corrector de estilo</message>
 	<message key="user.role.seriesEditor">Series Editor</message>
 	<message key="user.role.seriesEditors">Editores de series</message>
 	<message key="user.role.proofreader">Corrector de pruebas</message>
@@ -338,63 +338,62 @@
 	<!-- Registration -->
 	<message key="user.register.completeForm">Completa el siguiente formulario para crear una cuenta en la editorial.</message>
 	<message key="user.register.privacyStatement">Declaración de privacidad</message>
-	<message key="user.register.loginToRegister">Enter your existing username and password to register with this press.</message>
-	<message key="user.register.registrationDisabled">This press is currently not accepting user registrations.</message>
-	<message key="user.register.form.passwordLengthTooShort">The password you entered is not long enough.</message>
-	<message key="user.register.readerDescription">Notified by email on publication of a monograph.</message>
-	<message key="user.register.authorDescription">Able to submit items to the press.</message>
-	<message key="user.register.reviewerDescriptionNoInterests">Willing to conduct peer review of submissions to the press.</message>
-	<message key="user.register.reviewerDescription">Willing to conduct peer review of submissions to the press.</message>
+	<message key="user.register.loginToRegister">Introduce tu nombre de usuario actual y contraseña para registrarte con esta editorial.</message>
+	<message key="user.register.registrationDisabled">Esta editorial no acepta cuentas de usuarios actualmente.</message>
+	<message key="user.register.form.passwordLengthTooShort">La contraseña que has introducido no es lo suficientemente larga.</message>
+	<message key="user.register.readerDescription">Publicación de una monografía notificada por correo electrónico.</message>
+	<message key="user.register.authorDescription">Es posible presentar elementos a la editorial.</message>
+	<message key="user.register.reviewerDescriptionNoInterests">Dispuesto a presentar una revisión por pares de las propuestas a la editorial.</message>
+	<message key="user.register.reviewerDescription">Dispuesto a presentar una revisión por pares de las propuestas a la página.</message>
 	<message key="user.register.reviewerInterests">Identificar los intereses de la revisión (áreas sustantivas y métodos de investigación):</message>
-	<message key="user.register.form.userGroupRequired">You must select at least one role</message>
+	<message key="user.register.form.userGroupRequired">Debes seleccionar al menos un rol.</message>
 
 	<!-- Site index -->
-	<message key="site.pressView">View Press Website</message>
+	<message key="site.pressView">Ver página web de la editorial</message>
 
 	<!-- About The Press -->
-	<message key="about.pressContact">Contacto con la editorial</message>
-	<message key="about.aboutThePress">Acerca de la editorial</message>
+	<message key="about.pressContact">Contacto de la editorial</message>
+	<message key="about.aboutThePress">Sobre la editorial</message>
 	<message key="about.editorialTeam">Equipo editorial</message>
 	<message key="about.editorialPolicies">Políticas editoriales</message>
-	<message key="about.focusAndScope">Focus and Scope</message>
-	<message key="about.seriesPolicies">Series and Category Policies</message>
+	<message key="about.focusAndScope">Enfoque y campo</message>
+	<message key="about.seriesPolicies">Políticas de categorías y series</message>
 	<message key="about.submissions">Propuestas</message>
 	<message key="about.sponsors">Patrocinadores</message>
 	<message key="about.contributors">Fuentes de apoyo</message>
 	<message key="about.onlineSubmissions">Envío electrónico de propuestas</message>
-	<message key="about.onlineSubmissions.haveAccount">¿Ya dispones de Usuario/Contraseña en {$pressTitle}?</message>
-	<message key="about.onlineSubmissions.login">Ve a Acceder</message>
-	<message key="about.onlineSubmissions.needAccount">¿Necesitas un Usuario/Contraseña?</message>
-	<message key="about.onlineSubmissions.registration">Ve a Crear cuenta</message>
-	<message key="about.onlineSubmissions.registrationRequired">Se requiere la creación de cuenta y el acceso para el envío electrónico  de propuestas y para comprobar el estado de las mismas en todo momento del proceso editorial.</message>
+	<message key="about.onlineSubmissions.haveAccount">¿Ya dispones de Nombre de usuario/Contraseña en {$pressTitle}?</message>
+	<message key="about.onlineSubmissions.login">Ir a Autenticación</message>
+	<message key="about.onlineSubmissions.needAccount">¿Necesitas un Nombre de usuario/Contraseña?</message>
+	<message key="about.onlineSubmissions.registration">Ir a Crear cuenta</message>
+	<message key="about.onlineSubmissions.registrationRequired">Se requiere cuenta y el autenticación para el envío online de propuestas y para comprobar el estado de las mismas en todo momento del proceso editorial.</message>
 	<message key="about.authorGuidelines">Directrices para autores</message>
-	<message key="about.submissionPreparationChecklist">Submission Preparation Checklist</message>
-	<message key="about.submissionPreparationChecklist.description">As part of the submission process, authors are required to check off their submission's compliance with all of the following items, and submissions may be returned to authors that do not adhere to these guidelines.</message>
-	<message key="about.copyrightNotice">Copyright Notice</message>
+	<message key="about.submissionPreparationChecklist">Lista de comprobación de preparación de propuestas</message>
+	<message key="about.submissionPreparationChecklist.description">Como parte del proceso de entrega de propuestas, se exige a los autores que comprueben que la propuesta está de acuerdo con todos los siguientes elementos, y las propuestas que no se acojan a estas directrices pueden ser devueltas a los autores.</message>
+	<message key="about.copyrightNotice">Aviso de copyright</message>
 	<message key="about.privacyStatement">Declaración de privacidad</message>
-	<message key="about.peerReviewProcess">Peer Review Process</message>
-	<message key="about.publicationFrequency">Periodicidad</message>
-	<message key="about.openAccessPolicy">Open Access Policy</message>
-	<message key="about.pressSponsorship">Press Sponsorship</message>
-	<message key="about.aboutThisPublishingSystem">Acerca de este sistema de publicación</message>
-	<message key="about.aboutThisPublishingSystem.altText">OMP Editorial and Publishing Process</message>
-	<message key="about.aboutOMPPress"><![CDATA[<p>Esta editorial utiliza Open Monograph Press {$ompVersion}, una aplicación web para la gestión y publicación en editoriales científicas. Este software es de código abierto y es desarrollado, mantenido y distribuido gratuitamente por <a href="http://pkp.sfu.ca/">Public Knowledge Project</a> bajo GNU General Public License.</p><p>La versión actual es la {$ompVersion}, instalación realizada el 17 de septiembre de 2012, con la aplicación posterior de los siguientes <a target="_blank" href="http://pkp.sfu.ca/wiki/index.php/OMP_1.0b_Recommended_Patches">parches recomendados</a> por PKP: <ul><li>#7921 (25 de septiembre de 2012)</li><li>#7922 (25 de septiembre de 2012)</li><li>#7923 (25 de septiembre de 2012)</li><li>#7939 (26 de septiembre)</li><li>#7944 (29 de septiembre)</li><li>#7946 (1 de octubre de 2012)</li><li>#7952 (5 de octubre de 2012) - <em>Pendiente</em></li><li>#7957 (11 de octubre de 2012)</li><li>#7995 (1 de noviembre de 2012)</li></ul></p>]]></message>
-	<message key="about.aboutOMPSite"><![CDATA[This site uses Open Monograph Press {$ompVersion}, which is open source press management and publishing software developed, supported, and freely distributed by the <a href="http://pkp.sfu.ca/">Public Knowledge Project</a> under the GNU General Public License.]]></message>
+	<message key="about.peerReviewProcess">Proceso de revisión por pares</message>
+	<message key="about.publicationFrequency">Periodicidad de la publicación</message>
+	<message key="about.openAccessPolicy">Política de acceso abierto</message>
+	<message key="about.pressSponsorship">Patrocinio de la editorial</message>
+	<message key="about.aboutThisPublishingSystem">Sobre este sistema de publicación</message>
+	<message key="about.aboutThisPublishingSystem.altText">OMP Proceso editorial y publicitario</message>
+	<message key="about.aboutOMPPress"><![CDATA[<p>Esta editorial utiliza Open Monograph Press {$ompVersion}, una aplicación web para la gestión y publicación en editoriales científicas. Este software es de código abierto y es desarrollado, mantenido y distribuido gratuitamente por <a href="http://pkp.sfu.ca/">Public Knowledge Project</a>  que se encuentra bajo GNU General Public License.</p><p>La versión actual es la {$ompVersion}, instalación realizada el 17 de septiembre de 2012, con la aplicación posterior de los siguientes <a target="_blank" href="http://pkp.sfu.ca/wiki/index.php/OMP_1.0b_Recommended_Patches">parches recomendados</a> por PKP: <ul><li>#7921 (25 de septiembre de 2012)</li><li>#7922 (25 de septiembre de 2012)</li><li>#7923 (25 de septiembre de 2012)</li><li>#7939 (26 de septiembre)</li><li>#7944 (29 de septiembre)</li><li>#7946 (1 de octubre de 2012)</li><li>#7952 (5 de octubre de 2012) - <em>Pendiente</em></li><li>#7957 (11 de octubre de 2012)</li><li>#7995 (1 de noviembre de 2012)</li></ul></p>]]></message>
+	<message key="about.aboutOMPSite"><![CDATA[Esta página  utiliza Open Monograph Press {$ompVersion}, un software de código abierto de gestión y publicación desarrollado, mantenido y distribuido gratuitamente  por el<a href="http://pkp.sfu.ca/">Public Knowledge Project</a> que se encuentra bajo la  GNU General Public License.]]></message>
 
 	<!-- Help -->
-	<message key="help.searchReturnResults">Return to Search Results</message>
-	<message key="help.goToEditPage">Open a new page to edit this information</message>
+	<message key="help.searchReturnResults">Volver a Búsqueda de resultados</message>
+	<message key="help.goToEditPage">Abrir una nueva página para editar esta información</message>
 
 	<!-- Installer -->
-	<message key="installer.ompInstallation">OMP Installation</message>
-	<message key="installer.ompUpgrade">OMP Upgrade</message>
-	<message key="installer.installApplication">Install Open Monograph Press</message>
-	<message key="installer.installationInstructions"><![CDATA[
-<p>Thank you for downloading the Public Knowledge Project's <strong>Open Monograph Press {$version}</strong>. Before proceeding, please read the <a href="{$baseUrl}/docs/README">README</a> file included with this software. For more information about the Public Knowledge Project and its software projects, please visit the <a href="http://pkp.sfu.ca/" target="_blank">PKP web site</a>. If you have bug reports or technical support inquiries about Open Monograph Press, see the <a href="http://pkp.sfu.ca/support/forum" target="_blank">support forum</a> or visit PKP's online <a href="http://pkp.sfu.ca/bugzilla/" target="_blank">bug reporting system</a>. Although the support forum is the preferred method of contact, you can also email the team at <a href="mailto:pkp.contact@gmail.com">pkp.contact@gmail.com</a>.</p>
+	<message key="installer.ompInstallation">Instalación OMP</message>
+	<message key="installer.ompUpgrade">Actualización OMP</message>
+	<message key="installer.installApplication">Instalar Open Monograph Press</message>
+	<message key="installer.installationInstructions"><![CDATA[<p>Gracias pro descargar Open Monograph Press <strong> de Public Knowledge Project {$version}</strong>. Antes de continuer, lee el <a href="{$baseUrl}/docs/README">README</a> fichero incluido en este software. Para más información sobre Public Knowledge Project y sus proyectos de software, visita la <a href="http://pkp.sfu.ca/" target="_blank"> página web PKP</a>. Si posses informes de fallos preguntas de carácter técnico sobre Open Monograph Press, mira el <a href="http://pkp.sfu.ca/support/forum" target="_blank">foro de soporte</a> o visita el sistema de informes de fallos<a href="http://pkp.sfu.ca/bugzilla/" target="_blank"> online de PKP</a>. Aunque el foro de soporte es el método de contacto preferido, también puedes enviar un correo electrónico a <a href="mailto:pkp.contact@gmail.com">pkp.contact@gmail.com</a>.</p>
 
-<h4>Upgrade</h4>
+<h4>Actualizar</h4>
 
-<p>If you are upgrading an existing installation of OMP 0.x, <a href="{$upgradeUrl}">click here</a> to proceed.</p>]]></message>
+<p>Si estás actualizando una instalación previa de OMP 0.x, <a href="{$upgradeUrl}">haz clic aquí</a> para continuar.</p>]]></message>
 	<message key="installer.preInstallationInstructionsTitle">Pre-Installation Steps</message>
 	<message key="installer.preInstallationInstructions"><![CDATA[<p>1. The following files and directories (and their contents) must be made writable:</p>
 <ul>
@@ -435,7 +434,7 @@ Your server currently supports mbstring: <strong>{$supportsMBString}</strong>]]>
 	<message key="log.review.reviewDeclined">{$reviewerName} has declined the round {$round} review for submission {$monographId}.</message>
 	<message key="log.review.reviewAccepted">{$reviewerName} has accepted the round {$round} review for submission {$monographId}.</message>
 	<message key="log.review.reviewUnconsidered">{$editorName} has marked the round {$round} review for submission {$monographId} as unconsidered.</message>
-	<message key="log.editor.decision">An editor decision ({$decision}) for monograph {$monographId} was recorded by {$editorName}.</message>
+	<message key="log.editor.decision">An editor decision ({$decision}) for monograph {$submissionId} was recorded by {$editorName}.</message>
 	<message key="log.editor.archived">The submission {$monographId} has been archived.</message>
 	<message key="log.editor.restored">The submission {$monographId} has been restored to the queue.</message>
 	<message key="log.editor.editorAssigned">{$editorName} has been assigned as editor to submission {$monographId}.</message>

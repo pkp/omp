@@ -2,7 +2,7 @@
 <!DOCTYPE locale SYSTEM "../../lib/pkp/dtd/locale.dtd">
 
 <!--
-  * locale/en_US/defaultSettings.xml
+  * locale/es_ES/defaultSettings.xml
   *
   * Copyright (c) 2014 Simon Fraser University Library
   * Copyright (c) 2003-2014 John Willinsky
@@ -28,60 +28,18 @@
 	<message key="default.genres.other">Otros</message>
 
 	<!-- Group defaults -->
-	<message key="default.groups.name.siteAdmin">Administrador</message>
-	<message key="default.groups.plural.siteAdmin">Administradores</message>
-	<message key="default.groups.name.pressManager">Gestor editorial</message>
-	<message key="default.groups.plural.pressManager">Gestores editoriales</message>
-	<message key="default.groups.abbrev.pressManager">GE</message>
 	<message key="default.groups.name.editor">Coordinador editorial</message>
 	<message key="default.groups.plural.editor">Coordinadores editoriales</message>
 	<message key="default.groups.abbrev.editor">CE</message>
-	<message key="default.groups.name.productionEditor">Coordinador de producción</message>
-	<message key="default.groups.plural.productionEditor">Coordinadores de producción</message>
-	<message key="default.groups.abbrev.productionEditor">CP</message>
 	<message key="default.groups.name.seriesEditor">Coordinador de obra</message>
 	<message key="default.groups.plural.seriesEditor">Coordinadores de obra</message>
 	<message key="default.groups.abbrev.seriesEditor">CO</message>
-	<message key="default.groups.name.copyeditor">Corrector de estilo</message>
-	<message key="default.groups.plural.copyeditor">Correctores de estilo</message>
-	<message key="default.groups.abbrev.copyeditor">CE</message>
-	<message key="default.groups.name.proofreader">Corrector de pruebas</message>
-	<message key="default.groups.plural.proofreader">Correctores de pruebas</message>
-	<message key="default.groups.abbrev.proofreader">CP</message>
-	<message key="default.groups.name.designer">Diseñador</message>
-	<message key="default.groups.plural.designer">Diseñadores</message>
-	<message key="default.groups.abbrev.designer">Diseñ</message>
-	<message key="default.groups.name.internalReviewer">Revisor interno</message>
-	<message key="default.groups.plural.internalReviewer">Revisores internos</message>
-	<message key="default.groups.abbrev.internalReviewer">RI</message>
-	<message key="default.groups.name.externalReviewer">Revisor externo</message>
-	<message key="default.groups.plural.externalReviewer">Revisores externos</message>
-	<message key="default.groups.abbrev.externalReviewer">RE</message>
-	<message key="default.groups.name.marketing">Coordinador de marketing y ventas</message>
-	<message key="default.groups.plural.marketing">Coordinadores de marketing y ventas</message>
-	<message key="default.groups.abbrev.marketing">CMV</message>
-	<message key="default.groups.name.funding">Coordinador de financiación</message>
-	<message key="default.groups.plural.funding">Coordinadores de financiación</message>
-	<message key="default.groups.abbrev.funding">CF</message>
-	<message key="default.groups.name.indexer">Documentalista</message>
-	<message key="default.groups.plural.indexer">Documentalistas</message>
-	<message key="default.groups.abbrev.indexer">Doc</message>
-	<message key="default.groups.name.layoutEditor">Maquetador</message>
-	<message key="default.groups.plural.layoutEditor">Maquetadores</message>
-	<message key="default.groups.abbrev.layoutEditor">Maq</message>
-	<message key="default.groups.name.author">Autor</message>
-	<message key="default.groups.plural.author">Autores</message>
-	<message key="default.groups.abbrev.author">Au</message>
 	<message key="default.groups.name.chapterAuthor">Autor de capítulo</message>
 	<message key="default.groups.plural.chapterAuthor">Autores de capítulo</message>
 	<message key="default.groups.abbrev.chapterAuthor">AC</message>
 	<message key="default.groups.name.volumeEditor">Coordinador de obra</message>
 	<message key="default.groups.plural.volumeEditor">Coordinadores de obra</message>
 	<message key="default.groups.abbrev.volumeEditor">CO</message>
-	<message key="default.groups.name.translator">Traductor</message>
-	<message key="default.groups.plural.translator">Traductores</message>
-	<message key="default.groups.abbrev.translator">Trad</message>
-
 	<!-- Default press settings -->
 	<message key="default.pressSettings.checklist.notPreviouslyPublished">La propuesta no ha sido publicada previamente, ni está bajo consideración de ninguna otra editorial (o se proporciona una explicación en "Comentarios para la editorial").</message>
 	<message key="default.pressSettings.checklist.fileFormat">El fichero de la propuesta está formato Microsoft Word, RTF, OpenDocument, o WordPerfect.</message>

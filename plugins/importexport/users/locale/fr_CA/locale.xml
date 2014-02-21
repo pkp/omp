@@ -2,7 +2,7 @@
 <!DOCTYPE locale SYSTEM "../../../../../lib/pkp/dtd/locale.dtd">
 
 <!--
-  * locale.xml
+  * plugins/importexport/users/locale/fr_CA/locale.xml
   *
   * Copyright (c) 2014 Simon Fraser University Library
   * Copyright (c) 2003-2014 John Willinsky
@@ -54,4 +54,6 @@ Exemples :
 	<message key="plugins.importexport.users.export.couldNotWriteFile">Incapable d'écrire dans le fichier "{$fileName}".</message>
 	<message key="plugins.importexport.users.import.warning">Avertissement</message>
 	<message key="plugins.importexport.users.import.encryptionMismatch">Ne peut utiliser les mots de passe hachés avec {$importHash}. OMP est configuré pour utiliser {$ompHash}. Si vous continuez, vous devrez reconfigurer les mots de passe des utilisateurs importés.</message>
+	<message key="plugins.importexport.users.results">Résultats</message>
+	<message key="plugins.importexport.users.importComplete">Importation réussie. Les utilisateurs dont les noms et adresses électroniques ne sont pas utilisés ont été importés, ainsi que les groupes d'utilisateurs connexes.</message>
 </locale>

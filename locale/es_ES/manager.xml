@@ -2,7 +2,7 @@
 <!DOCTYPE locale SYSTEM "../../lib/pkp/dtd/locale.dtd">
 
 <!--
-  * locale/en_US/manager.xml
+  * locale/es_ES/manager.xml
   *
   * Copyright (c) 2014 Simon Fraser University Library
   * Copyright (c) 2003-2014 John Willinsky
@@ -14,129 +14,128 @@
 <locale name="es_ES" full_name = "Español">
 
 	<!-- Languages -->
-	<message key="manager.language.confirmDefaultSettingsOverwrite">This will replace any locale-specific press settings you had for this locale</message>
-	<message key="manager.languages.languageInstructions"><![CDATA[OMP can be made available to users in any of several supported languages. As well, OMP can operate as a multilingual system, providing users with an ability to toggle between languages on each page, and allowing certain data to be entered in several additional languages.<br /><br/>If a language supported by OMP is not listed below, ask your site administrator to install the language from the site administration interface. For instructions on adding support for new languages, please consult the OMP documentation.]]></message>
-	<message key="manager.languages.noneAvailable">Sorry, no additional languages are available. Contact your site administrator if you wish to use additional languages with this press.</message>
-	<message key="manager.languages.primaryLocaleInstructions">This will be the default language for the press site.</message>	
+	<message key="manager.language.confirmDefaultSettingsOverwrite">Esto sustituirá la configuración editorial regional que tengas establecida para esta localización.</message>
+	<message key="manager.languages.languageInstructions"><![CDATA[OMP se encuentra disponible en diversos idiomas. OMP también funciona como un sistema multilingüe que permite a sus usuarios alternar varios idiomas en cada página, y ofrece información determinada en varios idiomas adicionales. <br /><br/>Si alguno de los idiomas compatibles con OMP no figura más adelante, pídele al administrador de tu sitio que instale el idioma desde la interfaz del administrador. Para obtener instrucciones sobre como automatizar la adición de paquetes de idiomas, por favor consulte la documentación de OMP.]]></message>
+	<message key="manager.languages.noneAvailable">Lo sentimos, no hay idiomas adicionales disponibles. Ponte en contacto con el administrador de tu sitio si deseas utilizar idiomas adicionales con esta editorial.</message>
+	<message key="manager.languages.primaryLocaleInstructions">Este será el idioma predeterminado para el sitio de la editorial.</message>	
 
 	<!-- Plugin management -->
 	<!-- Review forms -->
-	<message key="manager.reviewForms">Review Forms</message>
-	<message key="manager.reviewForms.completed">Completed</message>
-	<message key="manager.reviewForms.confirmDeletePublished">Confirm delete of a published review form...</message>
-	<message key="manager.reviewForms.confirmDeleteUnpublished">Confirm delete of an upublished review form...</message>
-	<message key="manager.reviewForms.create">Create Review Form</message>
-	<message key="manager.reviewForms.description">Description and Instructions</message>
-	<message key="manager.reviewForms.edit">Review Form</message>
-	<message key="manager.reviewForms.form.titleRequired">A title is required for the review form.</message>
-	<message key="manager.reviewForms.inReview">In Review</message>
-	<message key="manager.reviewForms.list.description">The peer review forms created here will be presented to reviewers to complete, instead of the default form which consists of two open text boxes, the first "for author and editor," and the second "for editor." Review forms can be designated for a specific press section, and editors will have the option to choose which form to use in assigning the review. In all cases, editors will have the option of including the reviews in corresponding with the author.</message>
-	<message key="manager.reviewForms.noneChosen">None / Free Form Review</message>
-	<message key="manager.reviewForms.noneCreated">No review forms have been created.</message>
-	<message key="manager.reviewForms.noneUsed">No review forms have been used.</message>
-	<message key="manager.reviewForms.preview">Preview Form</message>
-	<message key="manager.reviewForms.reviewFormData">Review Form Data</message>
-	<message key="manager.reviewForms.title">Title</message>
-	<message key="manager.reviewFormElement.changeType">Changing the form item type...</message>
-	<message key="manager.reviewFormElements">Form Items</message>
-	<message key="manager.reviewFormElements.addResponseItem">Add selection</message>
-	<message key="manager.reviewFormElements.checkboxes">Checkboxes (you can choose one or more)</message>
-	<message key="manager.reviewFormElements.chooseType">Choose item type</message>
-	<message key="manager.reviewFormElements.confirmDelete">Confirm delete of a published form item...</message>
-	<message key="manager.reviewFormElements.copyTo">Copy to:</message>
-	<message key="manager.reviewFormElements.create">Create New Item</message>
-	<message key="manager.reviewFormElements.dropdownbox">Drop-down box</message>
-	<message key="manager.reviewFormElements.edit">Edit Form Item</message>
-	<message key="manager.reviewFormElements.elementType">Item type</message>
-	<message key="manager.reviewFormElements.form.elementTypeRequired">An item type is required for the form item.</message>
-	<message key="manager.reviewFormElements.form.questionRequired">A question is required for the form item.</message>
-	<message key="manager.reviewFormElements.noneCreated">No form items have been created.</message>
-	<message key="manager.reviewFormElements.possibleResponse">Selection</message>
-	<message key="manager.reviewFormElements.question">Item</message>
-	<message key="manager.reviewFormElements.radiobuttons">Radio buttons (you can only choose one)</message>
-	<message key="manager.reviewFormElements.required">Reviewers required to complete item</message>
-	<message key="manager.reviewFormElements.smalltextfield">Single word text box</message>
-	<message key="manager.reviewFormElements.textarea">Extended text box</message>
-	<message key="manager.reviewFormElements.textfield">Single line text box</message>
-	<message key="manager.reviewFormElements.viewable">Viewable (for authors)</message>
+	<message key="manager.reviewForms">Formularios de revisión</message>
+	<message key="manager.reviewForms.completed">Completados</message>
+	<message key="manager.reviewForms.confirmDeletePublished">Confirmar la eliminación del formulario de revisión publicado...</message>
+	<message key="manager.reviewForms.confirmDeleteUnpublished">Confirmar la eliminación del formulario de revisión no publicado...</message>
+	<message key="manager.reviewForms.create">Crear formulario de revisión</message>
+	<message key="manager.reviewForms.description">Descripción e indicaciones</message>
+	<message key="manager.reviewForms.edit">Formulario de revisión</message>
+	<message key="manager.reviewForms.form.titleRequired">Se necesita un título para el formulario de revisión.</message>
+	<message key="manager.reviewForms.inReview">En revisión</message>
+	<message key="manager.reviewForms.list.description">Los formularios de revisión por pares creados aquí se presentarán a los revisores para que lo completen, en lugar de los formularios estándar, que contienen dos cuadros de texto abiertos, el primero "para el autor y coordinador", y el segundo "para el coordinador". Los formularios de revisión pueden determinarse según una sección editorial específica, y los coordinadores tendrán la opción de elegir que formulario usar para asignar la revisión. En cualquier caso, los coordinadores tendrán la opción de incluir las revisiones de acuerdo con el autor.</message>
+	<message key="manager.reviewForms.noneChosen">Ninguno / Revisión de formulario libre</message>
+	<message key="manager.reviewForms.noneCreated">No se ha creado ningún formulario de revisión.</message>
+	<message key="manager.reviewForms.noneUsed">No se ha utilizado ningún formulario de revisión.</message>
+	<message key="manager.reviewForms.preview">Previsualizar formulario</message>
+	<message key="manager.reviewForms.reviewFormData">Información del formulario de revisión</message>
+	<message key="manager.reviewForms.title">Título</message>
+	<message key="manager.reviewFormElement.changeType">Cambiando el tipo de elementos del formulario...</message>
+	<message key="manager.reviewFormElements">Elementos del formulario</message>
+	<message key="manager.reviewFormElements.addResponseItem">Añadir selección</message>
+	<message key="manager.reviewFormElements.checkboxes">Casillas (puedes elegir más de una)</message>
+	<message key="manager.reviewFormElements.chooseType">Elegir tipo de elemento</message>
+	<message key="manager.reviewFormElements.confirmDelete">Confirmar la eliminación del elemento del formulario publicado...</message>
+	<message key="manager.reviewFormElements.copyTo">Copiar a:</message>
+	<message key="manager.reviewFormElements.create">Crear un nuevo elemento</message>
+	<message key="manager.reviewFormElements.dropdownbox">Menú desplegable</message>
+	<message key="manager.reviewFormElements.edit">Editar elemento del formulario</message>
+	<message key="manager.reviewFormElements.elementType">Tipo de elemento</message>
+	<message key="manager.reviewFormElements.form.elementTypeRequired">Se necesita un tipo de elemento para el elemento del formulario.</message>
+	<message key="manager.reviewFormElements.form.questionRequired">Se necesita una pregunta para el elemento del formulario.</message>
+	<message key="manager.reviewFormElements.noneCreated">No se ha creado ningún elemento del formulario.</message>
+	<message key="manager.reviewFormElements.possibleResponse">Selección</message>
+	<message key="manager.reviewFormElements.question">Elemento</message>
+	<message key="manager.reviewFormElements.radiobuttons">Botones de selección (solo puedes elegir uno)</message>
+	<message key="manager.reviewFormElements.required">Es necesario que los revisores completen el elemento</message>
+	<message key="manager.reviewFormElements.smalltextfield">Cuadro de texto de una sola palabra</message>
+	<message key="manager.reviewFormElements.textarea">Cuadro de texto ampliado</message>
+	<message key="manager.reviewFormElements.textfield">Cuadro de texto de una sola línea</message>
+	<message key="manager.reviewFormElements.viewable">Visible (para autores)</message>
 
 	<!-- Series management -->
-	<message key="manager.series.form.mustAllowPermission">Please ensure that at least one checkbox is checked for each Series Editor assignment.</message>
-	<message key="manager.series.form.reviewFormId">Please ensure that you have chosen a valid review form.</message>
-	<message key="manager.series.submissionIndexing">Will not be included in the indexing of the press</message>
-	<message key="manager.series.editorRestriction">Items can only be submitted by Editors and Series Editors.</message>
-	<message key="manager.series.confirmDelete">Are you sure you want to permanently delete this series?</message>
-	<message key="manager.series.indexed">Indexed</message>
-	<message key="manager.series.open">Open Submissions</message>
-	<message key="manager.series.readingTools">Reading Tools</message>
-	<message key="manager.series.submissionReview">Will not be peer-reviewed</message>
-	<message key="manager.series.submissionsToThisSection">Submissions made to this series</message>
-	<message key="manager.series.abstractsNotRequired">Do not require abstracts</message>
-	<message key="manager.series.disableComments">Disable reader comments for this series.</message>
-	<message key="manager.series.book">Book Series</message>
-	<message key="manager.series.create">Create Series</message>
-	<message key="manager.series.policy">Series description</message>
-	<message key="manager.series.assigned">Editors for this Series</message>
-	<message key="manager.series.seriesEditorInstructions"><![CDATA[Add a Series Editor to this series from the available Series Editors. Once added, designate whether the Series Editor will oversee the REVIEW (peer review) and/or the EDITING (copyediting, layout and proofreading) of submissions to this series. Series Editors are created by clicking <a href="{$seriesEditorsUrl}">Series Editors</a> under Roles in Press Management.]]></message>
-	<message key="manager.series.hideAbout">Omit this series from About the Press.</message>
-	<message key="manager.series.unassigned">Available Series Editors</message>
-	<message key="manager.series.form.abbrevRequired">An abbreviated title is required for the series.</message>
-	<message key="manager.series.form.titleRequired">A title is required for the series.</message>
-	<message key="manager.series.noneCreated">No series have been created.</message>
-	<message key="manager.series.existingUsers">Existing users</message>
-	<message key="manager.series.seriesTitle">Título de la serie</message>
-	<message key="manager.series.noSeriesEditors"><![CDATA[No existen coordinadores de colecciones y/o series aún. Añade este rol antes al menos a un usuario a través de Gestión -> Ajustes -> Usuarios y Roles.]]></message>
-	<message key="manager.series.noCategories"><![CDATA[There are no categories yet.  If you wish to assign categories to this series, close this modal and click on the 'Categories' tab and create one first.]]></message>
+	<message key="manager.series.form.mustAllowPermission">Por favor, asegúrate de que se ha marcado al menos una casilla para cada tarea del coordinador de colección.</message>
+	<message key="manager.series.form.reviewFormId">Por favor, asegúrate de que has elegido un formulario de revisión válido.</message>
+	<message key="manager.series.submissionIndexing">No se incluirá en la indización de la editorial.</message>
+	<message key="manager.series.editorRestriction">Solo los coordinadores y coordinadores de colección pueden presentar elementos.</message>
+	<message key="manager.series.confirmDelete">¿Estás seguro de que deseas eliminar esta serie de forma permanente?</message>
+	<message key="manager.series.indexed">Indizado</message>
+	<message key="manager.series.open">Propuestas abiertas</message>
+	<message key="manager.series.readingTools">Herramientas de lectura</message>
+	<message key="manager.series.submissionReview">No se revisará por pares</message>
+	<message key="manager.series.submissionsToThisSection">Propuesta realizada para esta colección</message>
+	<message key="manager.series.abstractsNotRequired">No se necesitan resúmenes</message>
+	<message key="manager.series.disableComments">Desactivar comentarios de los lectores para esta colección.</message>
+	<message key="manager.series.book">Colección de libros</message>
+	<message key="manager.series.create">Crear colección</message>
+	<message key="manager.series.policy">Descripción de la colección</message>
+	<message key="manager.series.assigned">Coordinadores de esta colección</message>
+	<message key="manager.series.seriesEditorInstructions"><![CDATA[Añade uno de los coordinadores de colección disponibles a esta colección. Una vez añadido, determina si el coordinador de colección supervisará la REVISIÓN (revisión por pares) y/o la EDICIÓN (corrección de pruebas y estilo y maquetación) de las propuestas de esta colección. Los coordinadores de colección se crean haciendo clic en <a href="{$seriesEditorsUrl}">Coordinadores de colección</a> debajo de Funciones en Gestión editorial.]]></message>
+	<message key="manager.series.hideAbout">Omitir esta colección de Sobre la editorial.</message>
+	<message key="manager.series.unassigned">Coordinadores de colección disponibles</message>
+	<message key="manager.series.form.abbrevRequired">Se necesita un título abreviado para esta colección.</message>
+	<message key="manager.series.form.titleRequired">Se necesita un título para esta colección.</message>
+	<message key="manager.series.noneCreated">No se ha creado ninguna colección.</message>
+	<message key="manager.series.existingUsers">Usuarios existentes</message>
+	<message key="manager.series.seriesTitle">Título de la colección</message>
+	<message key="manager.series.noSeriesEditors"><![CDATA[No existe ningún coordinador de colección todavía. Añade primero esta función a al menos un usuario a través de Gestión> Ajustes > Usuarios &amp; Funciones.]]></message>
+	<message key="manager.series.noCategories">No hay ninguna categoría todavía. Si deseas asignar una categoría a esta colección, cierra este modal y haz clic en la pestaña de "Categorías" y crea una primero.</message>
 
 	<!-- Settings management -->
-	<message key="manager.settings">Settings</message>
-	<message key="manager.settings.pressSettings">Ajustes de editorial</message>
-	<message key="manager.settings.press">Press</message>
-	<message key="manager.settings.pressDescription"><![CDATA[All settings specific to the press (masthead, contact, policies, guidelines, affiliation & support, categories and series).]]></message>
-	<message key="manager.settings.accessDescription">All settings related to access and security management for this press (users,roles, site access options).</message>
-	<message key="manager.settings.websiteDescription">All settings specific to the public website pages (homepage, appearance, language)</message>
-	<message key="manager.settings.publicationDescription">All settings specific to the publication process (general settings, submission stage, review stage, editorial stage, production stage, email templates).</message>
-	<message key="manager.settings.publisherInformation">These fields are not required for general OMP usage, but are required in order to create valid ONIX metadata.  Please include them if you wish to use ONIX functionality.</message>
-	<message key="manager.settings.publisher">Press Publisher Name</message>
-	<message key="manager.settings.location">Geographical Location</message>
-	<message key="manager.settings.publisherCode">Publisher Code</message>
-	<message key="manager.settings.publisherCodeType.tip">If you have a publisher name code, please fill it in below.  It will be included in generated metadata.  The field is required if you generate ONIX metadata for your publications.</message>
-	<message key="manager.settings.distributionDescription">All settings specific to the distribution process (notification, indexing, archiving, payment, reading tools).</message>
+	<message key="manager.settings">Ajustes</message>
+	<message key="manager.settings.pressSettings">Ajustes editorial</message>
+	<message key="manager.settings.press">Editorial</message>
+	<message key="manager.settings.pressDescription">Todos los ajustes específicos de la editorial (equipo de trabajo, contacto, políticas, directrices, afiliación y servicio de asistencia, categorías y colecciones).</message>
+	<message key="manager.settings.accessDescription">Todos los ajustes relativos a la gestión del acceso y la seguridad de esta editorial (usuarios, funciones, opciones de acceso al sitio).</message>
+	<message key="manager.settings.websiteDescription">Todos los ajustes específicos de las páginas electrónicas públicas (página principal, configuración, idioma)</message>
+	<message key="manager.settings.publicationDescription">Todos los ajustes específicos del proceso de publicación (configuración general, estado de propuesta, estado de revisión, estado edición, estado de producción, plantillas de correo electrónico).</message>
+	<message key="manager.settings.publisherInformation">Estos campos no son necesarios para un uso general de OMP, pero se necesitan para crear metadatos en ONIX válidos. Por favor, inclúyelos si deseas utilizar la funcionalidad de ONIX.</message>
+	<message key="manager.settings.publisher">Nombre sello editorial</message>
+	<message key="manager.settings.location">Localización geográfica</message>
+	<message key="manager.settings.publisherCode">Código sello editorial</message>
+	<message key="manager.settings.publisherCodeType.tip">Si dispones de un nombre clave de sello editorial, por favor, indícalo a continuación. Se incluirá en los metadatos generados. Es necesario rellenar el campo si generas metadatos en ONIX para tus publicaciones.</message>
+	<message key="manager.settings.distributionDescription">Todos los ajustes específicos del proceso de distribución (notificación, indización, archivado, pago, herramientas de lectura).</message>
 
 	<!--  Tools management -->
-	<message key="manager.tools">Tools</message>
-	<message key="manager.tools.importExport"><![CDATA[All tools specific to importing and exporting data (presses, monographs, users)]]></message>
+	<message key="manager.tools">Herramientas</message>
+	<message key="manager.tools.importExport">Herramientas específicas para importar y exportar datos (editoriales, monografías, usuarios)</message>
 
 	<!-- User management -->
-	<message key="manager.users">User Management</message>
-	<message key="manager.users.availableRoles">Available Roles</message>
-	<message key="manager.users.currentRoles">Current Roles</message>
-	<message key="manager.users.selectRole">Select Role</message>
-	<message key="manager.people.allEnrolledUsers">Users Enrolled in this Press</message>
-	<message key="manager.people.allPresses">All Presses</message>
-	<message key="manager.people.allSiteUsers">Enroll a User from this Site in this Press</message>
-	<message key="manager.people.allUsers">All Enrolled Users</message>
-	<message key="manager.people.confirmRemove">Remove this user from this press? This action will unenroll the user from all roles within this press.</message>
-	<message key="manager.people.enrollExistingUser">Enroll an Existing User</message>
-	<message key="manager.people.existingUserRequired">An existing user must be entered.</message>
-	<message key="manager.people.enrollSyncPress">With press</message>
-	<message key="manager.people.mergeUsers.from.description">Select a user to merge into another user account (e.g., when someone has two user accounts). The account selected first will be deleted and its submissions, assignments, etc. will be attributed to the second account.</message>
-	<message key="manager.people.mergeUsers.into.description">Select a user to whom to attribute the previous user's authorships, editing assignments, etc.</message>
-	<message key="manager.people.syncUserDescription">Enrollment synchronization will enroll all users enrolled in the specified role in the specified press into the same role in this press. This function allows a common set of users (e.g., Reviewers) to be synchronized between presses.</message>
-	<message key="manager.people.confirmDisable">Disable this user? This will prevent the user from logging into the system.
+	<message key="manager.users">Gestión de usuario</message>
+	<message key="manager.users.availableRoles">Funciones disponibles</message>
+	<message key="manager.users.currentRoles">Funciones actuales</message>
+	<message key="manager.users.selectRole">Seleccionar función</message>
+	<message key="manager.people.allEnrolledUsers">Usuarios inscritos en esta editorial</message>
+	<message key="manager.people.allPresses">Todas las editoriales</message>
+	<message key="manager.people.allSiteUsers">Inscribir a un usuario de este sitio en esta editorial</message>
+	<message key="manager.people.allUsers">Todos los usuarios inscritos</message>
+	<message key="manager.people.confirmRemove">¿Desea eliminar a este usuario de esta editorial? Esta acción retirará al usuario de todas las funciones que realice en esta editorial.</message>
+	<message key="manager.people.enrollExistingUser">Inscribir a un usuario existente</message>
+	<message key="manager.people.existingUserRequired">Debe introducirse un usuario existente.</message>
+	<message key="manager.people.enrollSyncPress">Con editorial</message>
+	<message key="manager.people.mergeUsers.from.description">Selecciona un usuario para incorporarlo en otra cuenta de usuario (p.ej. cuando alguien tiene dos cuentas de usuario). La primera cuenta seleccionada se borrará y sus propuestas, encargos, etc. serán atribuidas a la segunda cuenta.</message>
+	<message key="manager.people.mergeUsers.into.description">Selecciona a un usuario al que atribuirle la autoría, encargos de edición y demás del usuario anterior.</message>
+	<message key="manager.people.syncUserDescription">La inscripción sincronizada inscribirá a todos los usuarios inscritos en una función específica en una editorial concreta, en una misma función en esta editorial. Esta operación permite a un conjunto común de usuarios (p.ej. revisores) estar sincronizados entre editoriales.</message>
+	<message key="manager.people.confirmDisable">¿Deseas desactivar a este usuario? Esto evitará que el usuario entre en el sistema.
 
-You may optionally provide the user with a reason for disabling their account.</message>
-	<message key="manager.people.noAdministrativeRights"><![CDATA[Sorry, you do not have administrative rights over this user. This may be because:
-		<ul>
-			<li>The user is a site administrator</li>
-			<li>The user is active in presses you do not manage</li>
+Puedes indicarle al usuario las razones por las que has desactivado su cuenta.</message>
+	<message key="manager.people.noAdministrativeRights"><![CDATA[Lo sentimos, no dispones de derechos administrativos respecto a este usuario. Esto puede deberse a:
+<ul>
+			<li>El usuario es el administrador del sito</li>
+			<li>El usuario está activo en editoriales que no gestionas</li>
 		</ul>
-	This task must be performed by a site administrator.
-	]]></message>
+         Solo un administrador del sitio puede realizar esta tarea.]]></message>
 
 	<!-- Library Files -->
 	<!-- Users and Roles settings page -->
-	<message key="settings.roles.gridDescription">Roles are groups of users in the press who are given access to different permission levels and associated workflows within the press. There are five different permission levels: Press Managers have access to everything in the press (all content and settings); Press Editors have access to all content within their series; Press Assistants have access to all monographs that have been explicitly assigned to them by an editor; Reviewers can see and perform the reviews they have been assigned; and Authors can see and interact with a limited amount of information on their own submissions. Additionally, there are five different stage assignments that roles may be given access to: Submission, Internal Review, External Review, Editorial and Production.</message>
+	<message key="settings.roles.gridDescription">Las funciones corresponden a grupos de usuarios de la editorial a los que se les concede acceso a distintos niveles de autorización y se les asocia un volumen de trabajo dentro de la editorial. Hay cinco niveles de autorización diferentes: Gestores editoriales, que tienen acceso a todo en la editorial (todo el contenido y ajustes); Coordinadores editoriales, que tienen acceso a todo el contenido de sus colecciones; Asistentes editoriales, que tienen acceso a todas las monografías que el coordinador les hayan asignado expresamente; Revisores, que pueden ver y llevar a cabo la revisión que se les haya asignado; y autores, que pueden ver e interaccionar con una cantidad limitada de información sobre sus propias propuestas. Además, hay cinco etapas distintas de encargos a las que las funciones pueden tener acceso: propuesta, revisión interna, revisión externa, edición y producción.</message>
 	<!-- Press settings -->
 	<!-- Website settings -->
 	<!-- Publication Process settings -->
@@ -144,58 +143,58 @@ You may optionally provide the user with a reason for disabling their account.</
 	<!-- Distribution Process settings -->
 	<!-- Payment Method settings -->
 	<!-- System setup -->
-	<message key="manager.system">System Settings</message>
-	<message key="manager.system.archiving">Archiving</message>
-	<message key="manager.system.reviewForms">Review Forms</message>
-	<message key="manager.system.readingTools">Reading Tools</message>
-	<message key="manager.system.payments">Payments</message>
+	<message key="manager.system">Ajustes del sistema</message>
+	<message key="manager.system.archiving">Archivado</message>
+	<message key="manager.system.reviewForms">Formularios de revisión</message>
+	<message key="manager.system.readingTools">Herramientas de lectura</message>
+	<message key="manager.system.payments">Pagos</message>
 
 	<!-- Press setup -->
-	<message key="manager.pressManagement">Press Management</message>
-	<message key="manager.setup">Setup</message>
-	<message key="manager.setup.aboutItemContent">Content</message>
-	<message key="manager.setup.addAboutItem">Add About Item</message>
-	<message key="manager.setup.addChecklistItem">Add Checklist Item</message>
+	<message key="manager.pressManagement">Gestión editorial</message>
+	<message key="manager.setup">Configuración</message>
+	<message key="manager.setup.aboutItemContent">Contenido</message>
+	<message key="manager.setup.addAboutItem">Añadir Acerca del elemento</message>
+	<message key="manager.setup.addChecklistItem">Añadir elemento de la lista de comprobación</message>
 	<message key="manager.setup.addContributor">Añadir colaborador</message>
-	<message key="manager.setup.addItem">Add Item</message>
-	<message key="manager.setup.addItemtoAboutPress">Add Item to Appear in "About the Press"</message>
-	<message key="manager.setup.additionalContent">Additional Content</message>
-	<message key="manager.setup.additionalContentDescription">Add the following content, using text/HTML, which will appear below the homepage image, if one is uploaded.</message>
-	<message key="manager.setup.addNavItem">Add Item</message>
-	<message key="manager.setup.addSponsor">Add Sponsoring Organization</message>
-	<message key="manager.setup.alternateHeader">Alternate Header</message>
-	<message key="manager.setup.alternateHeaderDescription">Alternately, instead of title and logo, an HTML version of the header can be inserted into the text box below. Leave textbox blank if not required.</message>
+	<message key="manager.setup.addItem">Añadir elemento</message>
+	<message key="manager.setup.addItemtoAboutPress">Añadir un elemento a "Acerca de la editorial"</message>
+	<message key="manager.setup.additionalContent">Contenido adicional</message>
+	<message key="manager.setup.additionalContentDescription">Añade el contenido siguiente utilizando texto/HTML, que aparecerá a debajo de la imagen de la página principal, en caso de que se haya subido alguna.</message>
+	<message key="manager.setup.addNavItem">Añadir elemento</message>
+	<message key="manager.setup.addSponsor">Añadir organización patrocinadora</message>
+	<message key="manager.setup.alternateHeader">Cabecera alternativa</message>
+	<message key="manager.setup.alternateHeaderDescription">Una alternativa al título y el logo, es insertar en el cuadro de texto a continuación una versión HTML de la cabecera. Deja el cuadro de texto en blanco si no optas por esta opción.</message>
 	<message key="manager.setup.announcements">Anuncios</message>
-	<message key="manager.setup.announcementsDescription">Announcements may be published to inform readers of press news and events. Published announcements will appear on the Announcements page.</message>
-	<message key="manager.setup.announcementsIntroduction">Additional Information</message>
-	<message key="manager.setup.announcementsIntroductionDescription">Enter any additional information that should be displayed to readers on the Announcements page.</message>
-	<message key="manager.setup.appearInAboutPress">(To appear in About the Press) </message>
+	<message key="manager.setup.announcementsDescription">Los anuncios pueden publicarse para informar a los lectores de la editorial sobre novedades y acontecimientos. Los anuncios publicados aparecerán en la Página de anuncios.</message>
+	<message key="manager.setup.announcementsIntroduction">Información adicional</message>
+	<message key="manager.setup.announcementsIntroductionDescription">Introduce la información adicional que quieres que se muestre a los lectores en la Página de anuncios.</message>
+	<message key="manager.setup.appearInAboutPress">(Aparecerá en Acerca de la editorial)</message>
 	<message key="manager.setup.authorCopyrightNotice">Aviso de derechos de autor</message>
-	<message key="manager.setup.authorCopyrightNoticeAgree">Require authors to agree to Copyright Notice as part of the submission process.</message>
-	<message key="manager.setup.authorCopyrightNotice.description"><![CDATA[The Copyright Notice entered below will appear in About the Press and in each published item's metadata. While it is up to the press to determine the nature of its copyright agreement with authors, the Public Knowledge Project recommends the use of the <a href="http://creativecommons.org" target="_blank" class="action">Creative Commons</a> license. To that end, it provides <a href="{$sampleCopyrightWordingUrl}" target="_blank" class="action">sample Copyright Notice wording</a> that can be cut and pasted into the space below for presses that (a) offer open access, (b) offer delayed open access, or (c) do not offer open access.]]></message>
-	<message key="manager.setup.authorGuidelines.description"><![CDATA[Set out for authors the bibliographic and formatting standards used for items submitted to the press (e.g., <em>Publication Manual of the American Psychological Association</em>, 5th edition, 2001). It is often helpful to provide examples of the common citation formats for presses and books to be used in submissions.]]></message>
-	<message key="manager.setup.contributor">Contributor</message>
-	<message key="manager.setup.contributors">Colaboradores</message>
-	<message key="manager.setup.contributors.description">Additional agencies or organizations that provide financial or in-kind support for the press will appear in About the Press and may be accompanied by a note of acknowledgement.</message>
-	<message key="manager.setup.copyediting">Copyeditors</message>
-	<message key="manager.setup.copyeditInstructions">Copyedit Instructions</message>
-	<message key="manager.setup.copyeditInstructionsDescription">The Copyedit Instructions will be made available to Copyeditors, Authors, and Section Editors in the Submission Editing stage. Below is a default set of instructions in HTML, which can be modified or replaced by the Press Manager at any point (in HTML or plain text).</message>
-	<message key="manager.setup.copyrightNotice">Copyright notice</message>
-	<message key="manager.setup.coverage">Coverage</message>
-	<message key="manager.setup.coverageChronExamples">(E.g., European Renaissance; Jurassic Period; Third Trimester; etc.)</message>
-	<message key="manager.setup.coverageChronProvideExamples">Provide examples of relevant chronological or historical terms for this field</message>
-	<message key="manager.setup.coverageDescription">Refers to geo-spatial location, chronological or historical coverage, and/or characteristics of research sample.</message>
-	<message key="manager.setup.coverageGeoExamples">(E.g., Iberian Peninsula; Stratosphere; Boreal Forest; etc.)</message>
-	<message key="manager.setup.coverageGeoProvideExamples">Provide examples of relevant geo-spatial or geographical terms for this field</message>
-	<message key="manager.setup.coverageResearchSampleExamples">(E.g., Age; Gender; Ethnicity; etc.)</message>
-	<message key="manager.setup.coverageResearchSampleProvideExamples">Provide examples of research sample characteristics for this field</message>
-	<message key="manager.setup.customizingTheLook"><![CDATA[Step 5. Customizing the Look & Feel]]></message>
-	<message key="manager.setup.customTags">Custom tags</message>
-	<message key="manager.setup.customTagsDescription">Custom HTML header tags to be inserted in the header of every page (e.g., META tags).</message>
-	<message key="manager.setup.details">Details</message>
-	<message key="manager.setup.details.description">Name of press, contacts, sponsors, and search engines.</message>
-	<message key="manager.setup.disableUserRegistration">Press Manager registers all users, with Editors or Section Editors able to register Reviewers alone.</message>
-	<message key="manager.setup.discipline">Academic Discipline and Sub-Disciplines</message>
+	<message key="manager.setup.authorCopyrightNoticeAgree">Es necesario que los autores acepten el Aviso de derechos de autor como parte del proceso de propuesta.</message>
+	<message key="manager.setup.authorCopyrightNotice.description"><![CDATA[El Aviso de derechos de autor introducido a continuación aparecerá en Acerca de la editorial y en los metadatos de cada elemento publicado. Aunque incumbe a la editorial determinar la naturaleza de su acuerdo con los autores sobre los derechos de autor, Public Knowledge Project recomienda el uso de licencias <a href="http://creativecommons.org" target="_blank" class="action">"Creative Commons"</a> . Para ello, proporciona una <a href="{$sampleCopyrightWordingUrl}" target="_blank" class="action">muestra del texto refundido del Aviso de derechos de autor</a> que se puede cortar y pegar en el espacio a continuación para las editoriales que: a) ofrezcan acceso abierto, b) ofrezcan acceso abierto diferido, o c) no ofrezcan acceso abierto.]]></message>
+	<message key="manager.setup.authorGuidelines.description"><![CDATA[Expón a los autores las normas bibliográficas y de formato utilizadas para los elementos presentados a la editorial (p.ej. <em>Manual de Publicaciones de la American Psychological Association</em>, 5ª edición, 2001). Suele ser útil ofrecer ejemplos de los principales formatos de citas para editoriales y libros de forma que se puedan utilizar en las propuestas.]]></message>
+	<message key="manager.setup.contributor">Colaborador</message>
+	<message key="manager.setup.contributors">Fuentes de apoyo</message>
+	<message key="manager.setup.contributors.description">Las agencias u organizaciones adicionales que proporcionan ayuda financiera y en especie a la editorial, aparecerán en Acerca de la editorial y podrán ir acompañadas de una nota de reconocimiento.</message>
+	<message key="manager.setup.copyediting">Correctores de estilo</message>
+	<message key="manager.setup.copyeditInstructions">Instrucciones de corrección de estilo</message>
+	<message key="manager.setup.copyeditInstructionsDescription">Las Instrucciones de corrección de estilo estarán a la disposición de correctores de estilo, autores y coordinadores de sección en la fase de Edición de propuesta. A continuación encontrarás un conjunto predeterminado de instrucciones en HTML, que el gestor editorial podrá modificar o reemplazar en cualquier momento (en HTML o texto sin formato).</message>
+	<message key="manager.setup.copyrightNotice">Aviso derechos de autor</message>
+	<message key="manager.setup.coverage">Cobertura</message>
+	<message key="manager.setup.coverageChronExamples">(P.ej. renacimiento europeo; periodo jurásico; tercer trimestre; etc.)</message>
+	<message key="manager.setup.coverageChronProvideExamples">Da ejemplos de términos cronológicos e históricos relevantes para este campo</message>
+	<message key="manager.setup.coverageDescription">Se refiere a la localización geoespacial, cobertura cronológica o histórica, y/o características de la investigación.</message>
+	<message key="manager.setup.coverageGeoExamples">(P.ej. península ibérica; estratosfera; bosques boreales; etc.)</message>
+	<message key="manager.setup.coverageGeoProvideExamples">Da ejemplos de términos geoespaciales o geográficos para este campo</message>
+	<message key="manager.setup.coverageResearchSampleExamples">(P.ej. edad; sexo; etnia; etc.)</message>
+	<message key="manager.setup.coverageResearchSampleProvideExamples">Da ejemplos de características de la muestras de investigación para este campo.</message>
+	<message key="manager.setup.customizingTheLook">Paso 5. Personalizar aspecto</message>
+	<message key="manager.setup.customTags">Etiquetas personalizadas</message>
+	<message key="manager.setup.customTagsDescription">Las etiquetas HTML personalizadas de la cabecera pueden insertarse en la cabecera de cada página (p.ej. etiquetas META).</message>
+	<message key="manager.setup.details">Detalles</message>
+	<message key="manager.setup.details.description">Nombre de la editorial, contactos, patrocinadores y motores de búsqueda.</message>
+	<message key="manager.setup.disableUserRegistration">El gestor editorial registra a todos los usuarios, aunque solo los coordinadores o coordinadores de sección pueden registrar a los revisores.</message>
+	<message key="manager.setup.discipline">Disciplinas y subdisciplinas académicas</message>
 	<message key="manager.setup.disciplineDescription">Useful when press crosses disciplinary boundaries and/or authors submit multidisciplinary items.</message>
 	<message key="manager.setup.disciplineExamples">(E.g., History; Education; Sociology; Psychology; Cultural Studies; Law)</message>
 	<message key="manager.setup.disciplineProvideExamples">Provide examples of relevant academic disciplines for this press</message>
@@ -213,7 +212,7 @@ You may optionally provide the user with a reason for disabling their account.</
 	<message key="manager.setup.emailBounceAddressDescription">Any undeliverable emails will result in an error message to this address.</message>
 	<message key="manager.setup.emailBounceAddressDisabled"><![CDATA[<strong>Note:</strong> To activate this option, the site administrator must enable the <tt>allow_envelope_sender</tt> option in the OMP configuration file. Additional server configuration may be required to support this functionality (which may not be possible on all servers), as indicated in the OMP documentation.]]></message>
 	<message key="manager.setup.emails">Email Identification</message>
-	<message key="manager.setup.emailSignature">Signature</message>
+	<message key="manager.setup.emailSignature">Firma</message>
 	<message key="manager.setup.emailSignatureDescription">The prepared emails that are sent by the system on behalf of the press will have the following signature added to the end. The body of the prepared emails are available for editing below.</message>
 	<message key="manager.setup.enableAnnouncements">Enable Press Managers to add press announcements.</message>
 	<message key="manager.setup.enableAnnouncementsHomepage1">Display</message>
@@ -377,7 +376,6 @@ You may optionally provide the user with a reason for disabling their account.</
 	<message key="manager.setup.userRegistration">User Registration</message>
 	<message key="manager.setup.useTextTitle">Title text</message>
 	<message key="manager.setup.volumePerYear">Volumes per year</message>
-	<message key="manager.setup.registerPressForIndexing">Register Press for Indexing (Metadata Harvesting)</message>
 	<message key="manager.setup.publicationFormat.code">Format</message>
 	<message key="manager.setup.publicationFormat.codeRequired">A format must be chosen.</message>
 	<message key="manager.setup.publicationFormat.nameRequired">You must assign a name to this format.</message>

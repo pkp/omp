@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE locale SYSTEM "../../lib/pkp/dtd/locale.dtd">
 <!--
-  * locale/en_US/manager.xml
+  * locale/pt_BR/manager.xml
   *
   * Copyright (c) 2014 Simon Fraser University Library
   * Copyright (c) 2003-2014 John Willinsky
@@ -442,4 +442,28 @@ Escolha um modelo para lidar com os aspectos do processo editorial (Para designa
 	<li><strong>Inclua uma ferramenta de leitura</strong><p>O Gerente da editora pode incluir a opção "Encontrar referências" na ferramenta de leitura que acompanha cada item publicado, permitindo aos leitores colar o título da referência e buscá-la em bases de dados pré-definidas.</p></li>
 	<li><strong>Embutir links nas referências</strong><p>O editor de layout pode incluir links nas referências que podem ser encontradas online, de acordo com as seguintes instruções (que podem ser personalizadas).</p></li>
 </ol>]]></message>
+	<message key="manager.setup.registerForIndexing">Registre para Indexação (Coleta de Metadados)</message>
+	<message key="manager.publication.library">Biblioteca da Editora</message>
+	<message key="manager.series.restricted">Restrito</message>
+	<message key="manager.statistics.reports.defaultReport.monographDownloads">Download arquivo da Monografia</message>
+	<message key="manager.statistics.reports.defaultReport.monographAbstract">Visualizações da página de resumo da monografia</message>
+	<message key="manager.statistics.reports.defaultReport.monographAbstractAndDownloads">Resumo e download da monografia</message>
+	<message key="manager.statistics.reports.defaultReport.pressIndexPageViews">Visualizações da página principal da editora</message>
+	<message key="manager.statistics.reports.filters.byContext.description">Restringir resultados por contexto (series e/ou monografia).</message>
+	<message key="manager.setup.emailHeader">Cabeçalho do email</message>
+	<message key="manager.setup.homepageContent">Conteúdo da Página Inicial da Editora</message>
+	<message key="manager.setup.layout">Leiaute da Editora</message>
+	<message key="manager.setup.logo">Logo da Editora</message>
+	<message key="manager.setup.logo.altText">Logo da Editora</message>
+	<message key="manager.setup.contextName">Nome da Editora</message>
+	<message key="manager.setup.internalReviewGuidelines">Diretrizes de Revisão Internas</message>
+	<message key="manager.setup.reviewOptions">Opções de Revisão</message>
+	<message key="manager.setup.useStyleSheet">Folha de estilos da Editora</message>
+	<message key="manager.statistics.reports.defaultReport.seriesIndexPageViews">Série de visitas à página principal</message>
+	<message key="manager.statistics.reports.filters.byObject.description">Restringir resultados por tipo de objeto (editora, séries, monografia, tipos de arquivos) e / ou por uma ou mais identificador(es) de objeto.</message>
+	<message key="manager.setup.emailHeaderDescription">Os e-mails preparados que são enviados pelo sistema em nome da imprensa começar com seguinte cabeçalho. Esses e-mails serão endereçados a partir do contato principal , por isso é importante esclarecer que o Contato Principal não é necessariamente o responsável pelo conteúdo da mensagem, que pode ser enviada em nome de um usuário diferente.</message>
+	<message key="manager.setup.appearanceDescription">Vários componentes da aparência da Editora podem ser configurados a partir desta página, incluindo elementos do cabeçalho e rodapé, o tema, e como listas de informações são apresentadas aos usuários.</message>
+	<message key="manager.setup.homepageContentDescription">A homepage da editora consiste, por padrão, em links de navegação. Conteúdos adicionais à página inicial podem ser anexados usando uma ou todas das seguintes opções, que serão exibidos na ordem mostrada.</message>
+	<message key="manager.setup.internalReviewGuidelinesDescription">Como as Diretrizes de Avaliação Externa, estas instruções informam os revisores sobre a avaliação da submissão. Estas instruções são para Revisores Internos, que geralmente realizam um processo de revisão usando revisores internos para a editora.</message>
+	<message key="manager.setup.registerForIndexingDescription">A definir informações para indexação.</message>
 </locale>

@@ -2,7 +2,7 @@
 <!DOCTYPE locale SYSTEM "../../../../../lib/pkp/dtd/locale.dtd">
 
 <!--
-  * locale.xml
+  * plugins/generic/translator/locale/pt_BR/locale.xml
   *
   * Copyright (c) 2014 Simon Fraser University Library
   * Copyright (c) 2003-2014 John Willinsky
@@ -66,4 +66,6 @@
 	<message key="plugins.generic.translator.deleteKey">Excluir chave</message>
 	<message key="plugins.generic.translator.deleteEmail">Excluir e-mail</message>
 	<message key="plugins.generic.translator.saveBeforeContinuing">Certifique-se de salvar qualquer alteração efetuada nesta página antes de continuar ou elas serão perdidas. Deseja continuar? Se sim, quaisquer mudança não salva será perdida.</message>
+	<message key="plugins.generic.translator.localeKey.description">Informe o idioma para busca.</message>
+	<message key="plugins.generic.translator.tarMissing">A função de exportação deste plugin foi desativado porque o tar binário configurado não pode ser encontrado no sistema. Por favor, certifique-se de que você tem o programa tar instalado e, em seguida, configure o caminho para o binário tar no arquivo config.inc.php 's [cli]!</message>
 </locale>
