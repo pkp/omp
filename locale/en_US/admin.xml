@@ -8,10 +8,10 @@
   * Copyright (c) 2003-2014 John Willinsky
   * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
   *
-  * Localization strings for the en_US (English) locale (Site administration).
+  * Localization strings (Site administration).
   -->
 
-<locale name="en_US" full_name = "English">
+<locale name="en_US" full_name="U.S. English">
 	<message key="admin.hostedPresses">Hosted Presses</message>
 	<message key="admin.settings.pressRedirect">Press redirect</message>
 	<message key="admin.settings.pressRedirectInstructions">Requests to the main site will be redirected to this press. This may be useful if the site is hosting only a single press, for example.</message>
