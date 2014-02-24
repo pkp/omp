@@ -14,48 +14,30 @@
  */
 
 // Import the base ManagementHandler.
-import('pages.management.ManagementHandler');
+import('lib.pkp.pages.management.PKPToolsHandler');
 
-class ToolsHandler extends ManagementHandler {
+class ToolsHandler extends PKPToolsHandler {
 	/**
 	 * Constructor.
 	 */
 	function ToolsHandler() {
-		parent::Handler();
-		$this->addRoleAssignment(
-			ROLE_ID_MANAGER,
-			array('tools')
-		);
+		parent::PKPToolsHandler();
 	}
 
-
-	//
-	// Public handler methods.
-	//
 	/**
-	 * Route to other Tools operations
-	 * @param $args array
+	 * @see PKPToolsHandler::getObjectTitle()
 	 */
-	function tools($args) {
-		$path = array_shift($args);
-		switch ($path) {
-			case 'index':
-				$this->index();
-				break;
+	protected function getObjectTitle($assocId, $assocType) {
+		parent::getObjectTitle($assocId, $assocType);
+
+		switch($assocType) {
+			case ASSOC_TYPE_SUBMISSION_FILE:
+				$submissionFileDao =& DAORegistry::getDAO('SubmissionFileDAO'); /* @var $submissionFileDao SubmissionFileDAO */
+				$submissionFile =& $submissionFileDao->getLatestRevision($assocId);
+				return $submissionFile->getFileLabel();
 			default:
 				assert(false);
 		}
-	}
-
-	/**
-	 * Display tools index page.
-	 * @param $request PKPRequest
-	 * @param $args array
-	 */
-	function index($args, $request) {
-		$templateMgr = TemplateManager::getManager($request);
-		$this->setupTemplate($request);
-		$templateMgr->display('management/tools/index.tpl');
 	}
 }
 
