@@ -28,16 +28,20 @@ class ToolsHandler extends PKPToolsHandler {
 	 * @see PKPToolsHandler::getObjectTitle()
 	 */
 	protected function getObjectTitle($assocId, $assocType) {
-		parent::getObjectTitle($assocId, $assocType);
-
-		switch($assocType) {
-			case ASSOC_TYPE_SUBMISSION_FILE:
-				$submissionFileDao =& DAORegistry::getDAO('SubmissionFileDAO'); /* @var $submissionFileDao SubmissionFileDAO */
-				$submissionFile =& $submissionFileDao->getLatestRevision($assocId);
-				return $submissionFile->getFileLabel();
-			default:
-				assert(false);
+		$returner = parent::getObjectTitle($assocId, $assocType);
+		if (!$returner) {
+			switch($assocType) {
+				case ASSOC_TYPE_SUBMISSION_FILE:
+					$submissionFileDao =& DAORegistry::getDAO('SubmissionFileDAO'); /* @var $submissionFileDao SubmissionFileDAO */
+					$submissionFile =& $submissionFileDao->getLatestRevision($assocId);
+					$returner = $submissionFile->getFileLabel();
+					break;
+				default:
+					assert(false);
+			}
 		}
+
+		return $returner;
 	}
 }
 

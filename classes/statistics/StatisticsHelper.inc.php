@@ -26,19 +26,25 @@ class StatisticsHelper extends PKPStatisticsHelper {
 	}
 
 	/**
-	 * @see PKPStatisticsHelper::getColumnsArray()
+	 * @see PKPStatisticsHelper::getAppColumnTitle()
 	 */
-	protected function getReportColumnsArray() {
-		$columns = parent::getReportColumnsArray();
-		$columns[STATISTICS_DIMENSION_SERIES_ID] = __('series.series');
-
-		return $columns;
+	protected function getAppColumnTitle($column) {
+		switch ($column) {
+			case STATISTICS_DIMENSION_SUBMISSION_ID:
+				return __('submission.workType.authoredWork');
+			case STATISTICS_DIMENSION_SERIES_ID:
+				return __('series.series');
+			case STATISTICS_DIMENSION_CONTEXT_ID:
+				return __('context.context');
+			default:
+				assert(false);
+		}
 	}
 
 	/**
 	 * @see PKPStatisticsHelper::getReportObjectTypesArray()
 	 */
-	function getReportObjectTypesArray() {
+	protected function getReportObjectTypesArray() {
 		$objectTypes = parent::getReportObjectTypesArray();
 		$objectTypes = $objectTypes + array(
 				ASSOC_TYPE_PRESS => __('context.context'),
