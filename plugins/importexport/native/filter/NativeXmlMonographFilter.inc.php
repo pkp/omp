@@ -61,6 +61,8 @@ class NativeXmlMonographFilter extends NativeXmlSubmissionFilter {
 			$submission->setSeriesId($series->getId());
 			$submission->setSeriesPosition($seriesPosition);
 		}
+		$workType = $node->getAttribute('work_type');
+		$submission->setWorkType($workType);
 		return parent::populateObject($submission, $node);
 	}
 

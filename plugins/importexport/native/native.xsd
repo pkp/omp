@@ -25,6 +25,7 @@
 				<extension base="pkp:submission">
 					<attribute name="series" type="normalizedString" />
 					<attribute name="series_position" type="normalizedString" />
+					<attribute name="work_type" type="int" />
 				</extension>
 			</complexContent>
 		</complexType>

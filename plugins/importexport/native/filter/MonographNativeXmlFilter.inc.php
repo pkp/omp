@@ -66,7 +66,7 @@ class MonographNativeXmlFilter extends SubmissionNativeXmlFilter {
 			assert($series);
 			$submissionNode->setAttribute('series', $series->getPath());
 			$submissionNode->setAttribute('series_position', $submission->getSeriesPosition());
-
+			$submissionNode->setAttribute('work_type', $submission->getWorkType());
 		}
 
 		return $submissionNode;
