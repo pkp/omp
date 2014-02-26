@@ -39,7 +39,7 @@ class ONIXCodelistItemDAO extends DAO {
 		$cache =& Registry::get($cacheName, true, null);
 		if ($cache === null) {
 			$cacheManager = CacheManager::getManager();
-			$cache =& $cacheManager->getFileCache(
+			$cache = $cacheManager->getFileCache(
 				$this->getListName() . '_codelistItems', $locale,
 				array($this, '_cacheMiss')
 			);
