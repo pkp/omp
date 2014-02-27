@@ -57,6 +57,10 @@ class UsageEventPlugin extends PKPUsageEventPlugin {
 					$press = $templateMgr->get_template_vars('currentContext'); /* @var $press Press */
 					$series = $templateMgr->get_template_vars('series'); /* @var $series Series */
 					$publishedMonograph = $templateMgr->get_template_vars('publishedMonograph');
+
+					// No published objects, no usage event.
+					if (!$press && !$series && !$publishedMonograph) break;
+
 					if ($press) {
 						$pubObject = $press;
 						$assocType = ASSOC_TYPE_PRESS;
