@@ -92,7 +92,7 @@ class UsageEventPlugin extends PKPUsageEventPlugin {
 					$assocType = ASSOC_TYPE_SUBMISSION_FILE;
 					$canonicalUrlOp = 'download';
 					$publishedMonograph = $hookArgs[1];
-					$canonicalUrlParams = array($publishedMonograph->getId(), $pubObject->getFileId());
+					$canonicalUrlParams = array($publishedMonograph->getId(), $pubObject->getAssocId(), $pubObject->getFileId() . '-' . $pubObject->getRevision());
 					$idParams = array('m' . $publishedMonograph->getId(), 'f' . $pubObject->getId());
 					$downloadSuccess = false;
 					break;
