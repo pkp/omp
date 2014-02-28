@@ -50,6 +50,9 @@ class Upgrade extends Installer {
 		$submissionDao = DAORegistry::getDAO('MonographDAO');
 		$submissionFileDao = DAORegistry::getDAO('SubmissionFileDAO');
 		$genreDao = DAORegistry::getDAO('GenreDAO');
+		$siteDao = DAORegistry::getDAO('SiteDAO'); /* @var $siteDao SiteDAO */
+		$site = $siteDao->getSite();
+		$adminEmail = $site->getLocalizedContactEmail();
 
 		import('lib.pkp.classes.file.SubmissionFileManager');
 
@@ -72,7 +75,8 @@ class Upgrade extends Installer {
 
 					$matchedResults = glob($basePath . $globPattern);
 					if (count($matchedResults)>1) {
-						fatalError("Duplicate potential files for \"$globPattern\"!");
+						error_log("Duplicate potential files for \"$globPattern\"!", 1, $adminEmail);
+						continue;
 					}
 					if (count($matchedResults) == 1) {
 						// 1 result matched.
@@ -84,7 +88,8 @@ class Upgrade extends Installer {
 						}
 					} else {
 						// 0 results matched.
-						fatalError("Unable to find a match for \"$globPattern\".\n");
+						error_log("Unable to find a match for \"$globPattern\".\n", 1, $adminEmail);
+						continue;
 					}
 				}
 			}
