@@ -35,7 +35,8 @@ class PublishedMonograph extends Monograph {
 	 * @return int
 	 */
 	function getViews() {
-		return $this->getData('views');
+		$application = Application::getApplication();
+		return $application->getPrimaryMetricByAssoc(ASSOC_TYPE_MONOGRAPH, $this->getId());
 	}
 
 	/**
