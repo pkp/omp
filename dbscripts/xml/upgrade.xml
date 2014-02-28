@@ -50,6 +50,14 @@
 		<code function="enableDefaultTheme" />
 	</upgrade>
 
+	<upgrade minversion="0.9.9.0" maxversion="1.0.0.0">
+		<!--
+		 - Upgrade from 1.0.0.0 (excluding 1.0.1.0, which was
+		 - briefly in the omp-stable-1_0 branch).
+		 -->
+		<data file="dbscripts/xml/upgrade/1.1.0.0_update2.xml" />
+	</upgrade>
+
 	<!-- Update plugin configuration - should be done as the final upgrade task -->
 	<code function="addPluginVersions" />
 </install>
