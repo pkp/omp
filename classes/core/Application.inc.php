@@ -101,6 +101,7 @@ class Application extends PKPApplication {
 			'LayoutAssignmentDAO' => 'submission.layoutAssignment.LayoutAssignmentDAO',
 			'MarketDAO' => 'classes.publicationFormat.MarketDAO',
 			'SubmissionCommentDAO' => 'lib.pkp.classes.submission.SubmissionCommentDAO',
+			'MetricsDAO' => 'lib.pkp.classes.statistics.PKPMetricsDAO',
 			'MonographDAO' => 'classes.monograph.MonographDAO',
 			'MonographFileEmailLogDAO' => 'classes.log.MonographFileEmailLogDAO',
 			'MonographSearchDAO' => 'classes.search.MonographSearchDAO',
