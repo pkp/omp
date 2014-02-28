@@ -110,6 +110,35 @@ class Upgrade extends Installer {
 		}
 		return true;
 	}
+
+	/**
+	 * Synchronize the ASSOC_TYPE_SERIES constant to ASSOC_TYPE_SECTION defined in PKPApplication.
+	 * @return boolean
+	 */
+	function syncSeriesAssocType() {
+		// Can be any DAO.
+		$dao =& DAORegistry::getDAO('UserDAO'); /* @var $dao DAO */
+		$tablesToUpdate = array(
+			'features',
+			'data_object_tombstone_oai_set_objects',
+			'new_releases',
+			'spotlights',
+			'notifications',
+			'email_templates',
+			'email_templates_data',
+			'controlled_vocabs',
+			'event_log',
+			'email_log',
+			'metadata_descriptions',
+			'notes',
+			'item_views');
+
+		foreach ($tablesToUpdate as $tableName) {
+			$dao->update('UPDATE ' . $tableName . ' SET assoc_type = ' . ASSOC_TYPE_SERIES . ' WHERE assoc_type = ' . "'526'");
+		}
+
+		return true;
+	}
 }
 
 ?>
