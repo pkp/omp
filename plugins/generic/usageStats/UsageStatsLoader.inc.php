@@ -42,9 +42,9 @@ class UsageStatsLoader extends PKPUsageStatsLoader {
 
 		if ($file) {
 			$fileType = $file->getFileType();
-			if ($fileType == 'pdf') {
+			if ($fileType == 'application/pdf') {
 				$type = STATISTICS_FILE_TYPE_PDF;
-			} else if ($fileType == 'html') {
+			} else if ($fileType == 'text/html') {
 				$type = STATISTICS_FILE_TYPE_HTML;
 			} else {
 				$type = STATISTICS_FILE_TYPE_OTHER;
@@ -78,25 +78,42 @@ class UsageStatsLoader extends PKPUsageStatsLoader {
 	 * @see PKPUsageStatsLoader::getAssoc()
 	 */
 	protected function getAssoc($assocType, $contextPaths, $page, $op, $args) {
-		list($assocType, $assocId) = parent::getAssoc($assocType, $contextPaths, $page, $op, $args);
+		list($assocTypeToReturn, $assocId) = parent::getAssoc($assocType, $contextPaths, $page, $op, $args);
 
-		if (!$assocId && !$assocType) {
-			if ($assocType == ASSOC_TYPE_SUBMISSION_FILE) {
-				if (!isset($args[0])) break;
-				$submissionId = $args[0];
-				$submissionDao = DAORegistry::getDAO('MonographDAO');
-				$monograph = $monographDao->getById($submissionId);
-				if (!$monograph) break;
+		if (!$assocId && !$assocTypeToReturn) {
+			switch ($assocType) {
+				case ASSOC_TYPE_SUBMISSION_FILE:
+					if (!isset($args[0])) break;
+					$submissionId = $args[0];
+					$submissionDao = DAORegistry::getDAO('MonographDAO');
+					$monograph = $submissionDao->getById($submissionId);
+					if (!$monograph) break;
 
-				if (!isset($args[1])) break;
-				$fileId = $args[1];
+					if (!isset($args[2])) break;
+					$fileIdAndRevision = $args[2];
+					list($fileId, $revision) = array_map(create_function('$a', 'return (int) $a;'), preg_split('/-/', $fileIdAndRevision));
 
-				$monographFileDao = DAORegistry::getDAO('SubmissionFileDAO'); /* @var $monographFileDao SubmissionFileDAO */
-				$monographFile = $monographFileDao->getLatestRevision($fileId);
-				if ($monographFile) {
-					$assocId = $monographFile->getId();
-				}
-				break;
+					$monographFileDao = DAORegistry::getDAO('SubmissionFileDAO'); /* @var $monographFileDao SubmissionFileDAO */
+					$monographFile = $monographFileDao->getRevision($fileId, $revision);
+					if ($monographFile) {
+						$assocId = $monographFile->getFileId();
+					}
+
+					$assocTypeToReturn = $assocType;
+					break;
+				case ASSOC_TYPE_SERIES:
+					if (!isset($args[0])) break;
+					$seriesPath = $args[0];
+					$seriesDao = Application::getSectionDAO(); /* @var $seriesDao SeriesDAO */
+					if (isset($this->_contextsByPath[current($contextPaths)])) {
+						$context =  $this->_contextsByPath[current($contextPaths)];
+						$series = $seriesDao->getByPath($seriesPath, $context->getId());
+						if ($series) {
+							$assocId = $series->getId();
+						}
+					}
+
+					break;
 			}
 		}
 
