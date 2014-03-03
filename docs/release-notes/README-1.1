@@ -1,6 +1,6 @@
 OMP 1.1 Release Notes
 CVS tag: omp-1_1_0-0
-Release date: 
+Release date: March 3, 2014
 =================================
 
 
@@ -23,3 +23,291 @@ Changed config.inc.php parameters:
 		for the replacement configuration options.
 	- debug:show_stats: This option has been removed. Profiling is available
 		in various PHP opcode caches.
+
+
+New Features
+------------
+	#8015# #8254# #8521# Introduce statistics framework
+	#8424# Implement expedited submission process
+	#8547# Introduce theming and theme plugins
+	#6434# Grid Sorting/Ordering and Paging on Grids/Listbuilders
+	#7669# provide archive/delete for monographs
+	#7788# include about the author on book page
+	#7945# Allow override of homepage title
+	#8023# Add inline PDF display options
+	#8542# Add Google Scholar metadata tags
+	#8125# Permit submission deletion
+	#8279# Re-introduce "log in as" function
+	#8438# Introduce separate guidelines for internal vs. external reviews
+	#8508# Add series ordering capability
+	#8507# Link from book page back to series
+	#7567# Introduce time zone configurability
+
+Bug Fixes
+---------
+	#6725# Add general "don't leave page without saving" form feature
+	#3696# Move TinyMCE cache (gzipped JavaScript) into cache dir
+	#5723# ISSN fields should be controlled
+	#6339# Port Citation Assistant to JS framework and remove old citation.js
+	#6455# Clean up review round, editor decision, user group, etc. DAOs
+	#6670# Redirects are broken by Firefox's redirect blocking
+	#6858# Various form pages are missing requiredField legend
+	#6883# Installer doesn't support RTL layout
+	#6901# Fontsizer Tooltips hardcoded in English Language
+	#6902# Introduce review round id and refactor all existing related code
+	#7073# Review/facilitate mbria's hosting configuration
+	#7127# 'Type of Book' can't be changed once submission process started
+	#7151# Fix URLs assembled by concatenation
+	#7166# Investigate web cache file name generation algorithm
+	#7205# Text fields have maximum lengths shorter than DB field type
+	#7226# Clean up notification manager
+	#7502# Users should not self-register as internal reviewers
+	#7592# Modals missing icons
+	#7629# clicking cancel on file upload wizard triggers form validation
+	#7657# UI: announcements
+	#7749# Create Reviewer form tweaks
+	#7804# make current stage 2px bigger than other bars both top and bottom
+	#7827# fix CSS for header logo
+	#7834# Standardize/clean up locale file headers
+	#7971# #7846# #8133# #8159# #8158# #8179# #8226# #8573# Locale updates
+	#7859# Textareas need "rows" and "cols" attributes to validate
+	#7863# Multilingual popover can't be accessed in disabled form fields.
+	#7869# need message that payment requires login in
+	#7870# Chapter information is not displayed in the catalog
+	#7877# add "start typing for autocomplete" to autocomplete fields
+	#7884# Press Creation leads to PHP error
+	#7885# "Homepage" settings tab only has sidebar options
+	#7887# Tabs needs scroll functionality
+	#7897# Add Reviewer form: "Advanced" / "Enroll" icons are grey
+	#7902# Sidebar doesn't reload after press appearance modifications
+	#7903# Have "Availability" default to "Not Set"
+	#7904# Unread notes should have some colour highlighting
+	#7907# "Include all files from all accessible workflow stages" checkbox
+	#7918# tinyMCE editor field inside a localization popover has problems
+	#7920# Remove old deprecated functions
+	#7921# Prevent autocomplete field for spotlights from clearing
+	#7922# Author names occasionally disappear from the Spotlight form
+	#7923# ONIX codelist DAO depends on temporary directory
+	#7924# Migrate install forms in WAL to FBV
+	#7932# Dereference symlinks in build script
+	#7934# Prevent title grid rows in category grids from wrapping
+	#7938# Reduce reliance on static calls to Request in plugins
+	#7939# Call time pass by reference in GridHandler
+	#7940# Simplify submission files grids
+	#7943# Request parameter missing from some HelpHandler calls
+	#7944# Using the catalog search from outside of a press context
+	#7946# jLabel CSS causes 'go' button to wrap in Chrome for OS X.
+	#7947# Correct partial imports
+	#7948# System requirements on installer page need updating
+	#7951# Attempting to set terms for a proof before it is approved
+	#7952# More call time pass by reference
+	#7953# manage catalog monographListChanged triggered before mongraphs
+	#7954# Need to hide link to about pages when there is no content
+	#7955# Adapt JS to updated jslinter
+	#7957# login source parameter needs escaping
+	#7961# Reconcile templates with OMP
+	#7969# Form error notifications are shown by pnotify only in the next
+	#7970# DB Error upon new submission
+	#7975# General solution to refresh grids based on others refreshing
+	#7980# Swap out custom SMTP mailer code for 3rd-party phpmailer class
+	#7983# move subtitle support from OMP to pkp-lib
+	#7985# Remove custom CAPTCHA classes in favour of ReCaptcha
+	#7990# Port email management to pkp-lib, then OJS & OCS
+	#7991# Port metadata controlled vocabs to PKP-lib
+	#7993# Remove unnecessary JSON library
+	#7994# Fix static calls in non-static contexts
+	#7995# itemsPerPage (and numPageLinks) settings not fully hidden
+	#7996# Remove PQP
+	#8002# Fix translation plugin warning.
+	#8004# Typo in notifications class query results in fatal DB error
+	#8008# port metadata forms from OMP to OJS
+	#8012# upgrade ADOdb to version 5 for PHP compliance
+	#8014# Spaces in base path lead to broken cookie paths.
+	#8020# port authors grid from OMP to pkp-lib
+	#8022# Users grid in admin settings needs username column
+	#8025# Footer Navigation links break footer layout
+	#8030# Port language settings controller to OJS, OCS, (OHS?)
+	#8042# Improve use of Context class and subclasses
+	#8046# Port Hosted Presses list from OMP site admin to pkp-lib
+	#8050# in_array warning in About pages while logged out
+	#8051# Reconcile Announcements grids from OMP/pkp-lib
+	#8055# Permit multiple context levels in overriding of base_url
+	#8056# Port reader announcements view
+	#8057# Implement parallel harvesting
+	#8058# Reconcile UserHandler / ProfileForm / associated code
+	#8059# Add DOI option for books
+	#8063# Datepicker doesn't like close of containing modal
+	#8066# template manager truncate given weird results when $etc...
+	#8067# configure Travis continuous integration service to run all tests
+	#8074# Author code cleanup
+	#8079# Clean up convoluted code in FBV.
+	#8080# Investigate potential FF UI problem
+	#8085# Make OJS more SPF-compatible in email sending
+	#8087# Move setup into tabbed interface, back-porting as possible
+	#8090# Transition markup doctype to HTML5
+	#8093# unloading a previous tab creates a JS error in certain situations
+	#8094# Transition basic site template to OMP style
+	#8095# Back-port flexible roles and user groups from OMP
+	#8103# Settings migration fixes/notes
+	#8109# Retrieve & implement OJS 2.4.x site settings
+	#8110# Tracker: en_US locale cleanups
+	#8115# Remove old help files
+	#8123# Reference simplification
+	#8130# Submission wizard features weird recursion
+	#8134# Can't enable new language: role permissions issue
+	#8135# Double-check length of email key DB fields
+	#8136# Post-install URLs are broken
+	#8144# PayPal payments never complete with site restriction enabled
+	#8146# IDs not validated in submission process
+	#8147# Port dashboard submission grids to OJS
+	#8148# Port submissions process to OJS
+	#8151# Investigate APC bug workaround
+	#8153# Rewrite submission queue PHP into SQL
+	#8163# Allow option to assign specific files to reviewers
+	#8165# Author/editor can't upload entirely new revision, must overwrite
+	#8167# Investigate deleting/archiving of submission items
+	#8177# Metadata plugins attempt re-install on upgrade
+	#8180# Port issue management to new UI tools
+	#8183# JBImage Plugin Locale Detection Fails
+	#8189# Port OMP-style user profile form to PKP-lib / OJS
+	#8197# Keep ONIX stuff in OMP repo
+	#8203# Fix hard-coded upload size limit
+	#8212# Port editorial workflow to OJS
+	#8216# update jquery to 1.9.1
+	#8217# Add tooltips to book download listings in catalog
+	#8218# Add "Register as Author" checkbox option to editor's rev reg
+	#8227# Scrollable tab plugin may disrupt book view
+	#8235# Rename articles/monographs table to submissions
+	#8237# JQuery fadeIn / fadeOut IE8 filter problem
+	#8239# Review Setup for missing language
+	#8240# Check and fix disable_path_info mode
+	#8245# Ensure that announcements are working
+	#8246# Ensure "Merge Users" is working
+	#8247# Upgrade with postgres fails because of not-null constraint
+	#8248# Unable to create index on article_settings with postgres
+	#8252# Non-standard sequence naming leads to PostgreSQL error
+	#8253# Create SciELO plugin to send/retrieve usage stats
+	#8262# Implement OMP-esque reader front-end in OJS
+	#8265# Fix / rewrite theme plugin support
+	#8267# context_id column in submissions table missing after install
+	#8274# Fix guiding of new installation into journal creation
+	#8275# Move administration functions out of "guessed" context
+	#8276# Refactor registration form into FBV
+	#8277# Notifications need attention
+	#8282# Scrollable Tabs layout tweaks
+	#8285# Remove unused Article::get/set file/ID functions
+	#8288# Verify/fix form error behavior in modals
+	#8291# OAIUtils::prepInput called statically but depends on $this
+	#8292# Create New Reviewer process (from within submission editing)
+	#8293# Review & centralize NotificationManager
+	#8296# "Include users with no roles in this context" filter
+	#8297# Paging does not include filter criteria
+	#8298# Date picker hangs around after tabbing activity
+	#8299# Remove deprecated mime_content_type call
+	#8301# Trigger "upload file" wizard automatically in submission step 2
+	#8302# Hide upload wizard "upload as..." selection during submission
+	#8303# "Give this file a helpful name" is not helpful
+	#8304# Change "Title and and Summary" header in metadata form
+	#8305# Add description to subtitle field on metadata form
+	#8306# Page icon in file grids is nearly invisible
+	#8308# Check & ensure promoting files into review defaults to accepting
+	#8309# Fix double escaping
+	#8311# Reviewer "considered" checkbox cannot be clicked
+	#8312# Available review's "note" icon does not change colour when viewed
+	#8313# Move periods inside quotation marks
+	#8315# Clarify notification process for copyeditors
+	#8316# Creating entries in galleys grid does not update tabset
+	#8319# Expand archive to assistant roles
+	#8322# File Upload Wizard can't be cancelled until a file is uploaded
+	#8332# Authors can always list (but not download) reviewer's attachments
+	#8341# Authorization denied when trying to access merge users grid
+	#8342# Can't edit/delete author inside authors grid
+	#8345# Prepared emails paging not working
+	#8349# Can't add new genre
+	#8353# Allow URL override of current locale
+	#8354# "Add Files" plupload button doesn't work with Firefox 22
+	#8356# Enabling announcements pushes 'about' menu item onto new line
+	#8358# Reviewers should not have to select genres on review upload
+	#8360# User management grid has issues
+	#8362# "A new article has been submitted to which an editor needs..."
+	#8363# ROLE_ID_EDITOR can probably be removed
+	#8365# Remove unused email templates
+	#8366# REVIEW_CANCEL email template not used
+	#8374# Make conditional "Journal" column on submissions grids depend
+	#8377# Fix submission title/abstract presentation on reviewer's 1st rev
+	#8378# Consistency in settings pages/tabs
+	#8380# Reviewer recommendations not included in review process
+	#8381# Share DashboardHandler
+	#8385# Galley reordering won't close
+	#8386# Check Issue Management validation around Title
+	#8387# Verify Status column in Archive
+	#8388# Sidebar plugin titles have bullets; hide them.
+	#8389# Add padding to journal titles (text only)
+	#8391# Review instructions/embedded text for OMP holdovers
+	#8392# "editor.review.personalMessageFromEditor" key appears
+	#8398# Galley file uploads may be declared revisions of files
+	#8399# Fix IE8 compatibility problem
+	#8417# AuthorCopyeditingSignoffFilesGridHandler needs porting
+	#8418# Production stage of author dashboard doesn't work
+	#8422# Resuming the submission process does not switch to correct tab
+	#8426# Series dropdown is not sorted alphabetically
+	#8427# Browse plugin checks page/op
+	#8430# HTML tags being stripped from some titles
+	#8434# Force plugins to register version information in management
+	#8436# Upgrade sometimes complains about version downgrade
+	#8439# Journal Manager's reviewing interests search does not return
+	#8445# Implement basic XML import/export.
+	#8449# ISBNdb plugin incorrectly self-identifies as CrossRef
+	#8451# Custom templates are unavailable for general use
+	#8455# Implement attachment-based and one-click reviewer settings
+	#8461# Submission file naming includes localized genre
+	#8463# Fix user import/export plugin
+	#8464# Reviewer response limit fields mislabeled in setup
+	#8467# Section Editor assignments to Sections not available
+	#8472# Author dashboard emails not listed
+	#8477# Move swordapp library to v2
+	#8479# "Download all" columns missing
+	#8480# Allow plugins to register components
+	#8481# Open Review reviewer's contributor list shows edit/delete actions
+	#8483# Not all contributors should be listed with book info
+	#8484# Add sorting options to Contributors list
+	#8485# Editor Decision emails are sending the wrong subject line
+	#8486# Double-check review requirements for review submission
+	#8490# Allow Series to be restricted to Editor submissions only
+	#8495# Review round and signoff deletes don't clean notifications
+	#8496# add OA conditional check to Download page login text
+	#8501# Double-check author and reviewer notifications
+	#8505# Fix custom email template editing
+	#8506# Check layout of author dashboard for scrolling issues
+	#8509# Language settings not consistent after creating first press
+	#8510# Move stats work to lib
+	#8515# Allow custom ordering of genres
+	#8516# Double-check translation plugin in OMP
+	#8518# Add safety check for CURL_OPT_POSTFIELDS file prefix
+	#8524# Double-check and fix file upload logging
+	#8528# Verify proper disappearance of "assign editor" task
+	#8530# Investigate/fix ellipsis problem
+	#8533# Permit listbuilder link action label overrides
+	#8534# Filter error on installation
+	#8541# Localization flags appear to be missing from TinyMCE controls
+	#8543# Fix series position field
+	#8544# Some log entry locale keys reference monographId
+	#8548# Define constant for pkp lib path and use it elsewhere in the code
+	#8550# Improve read-only behavior for TinyMCE-enabled fields
+	#8551# Ambiguity between acronym and initials settings
+	#8552# Installing/Uninstalling a new locale generates a fatal error
+	#8557# PostgreSQL compatibility
+	#8558# Author/reviewer self-registration not working
+	#8559# Chapters are created with blank titles during edited volume
+	#8560# Cannot delete chapters
+	#8561# Chapters grid does not work in read-only mode
+	#8562# Editors apparently not notified on review completion
+	#8563# Reconcile Manager's "create user" form with registration form
+	#8564# Update copyright dates to 2014; add SFU library to copyright
+	#8565# OMP clean-up: removing dead code
+	#8567# Support protocol-relative URLs in base_url[...] configs
+	#8568# Reviewers' submission lists may include author names
+	#8570# Exclude features heading/carousel when no features are available
+	#8580# Carousel next and previous button images not loading
+	#8585# PostgreSQL 1.0 to 1.1 upgrade seq null error
+	#8586# Change 1.0.0.0 version selector to include 1.0.x.x
