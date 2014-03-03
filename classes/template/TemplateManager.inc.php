@@ -75,7 +75,7 @@ class TemplateManager extends PKPTemplateManager {
 				// Assign stylesheets and footer
 				$contextStyleSheet = $context->getSetting('styleSheet');
 				if ($contextStyleSheet) {
-					$this->addStyleSheet($this->request->getBaseUrl() . '/' . $publicFileManager->getContextFilesPath($context->getId(), $context->getId()) . '/' . $contextStyleSheet['uploadName'], STYLE_SEQUENCE_LAST);
+					$this->addStyleSheet($this->request->getBaseUrl() . '/' . $publicFileManager->getContextFilesPath(ASSOC_TYPE_PRESS, $context->getId()) . '/' . $contextStyleSheet['uploadName'], STYLE_SEQUENCE_LAST);
 				}
 
 				// Include footer links if they have been defined.
