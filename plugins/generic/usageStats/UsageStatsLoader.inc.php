@@ -29,32 +29,6 @@ class UsageStatsLoader extends PKPUsageStatsLoader {
 	// Protected methods.
 	//
 	/**
-	 * @see PKPUsageStatsLoader::getFileType($assocType, $assocId)
-	 */
-	protected function getFileType($assocType, $assocId) {
-		// Check downloaded file type, if any.
-		$file = null;
-		$type = null;
-		if ($assocType == ASSOC_TYPE_SUBMISSION_FILE) {
-			$monographFileDao = DAORegistry::getDAO('SubmissionFileDAO'); /* @var $monographFileDao SubmissionFileDAO */
-			$file = $monographFileDao->getLatestRevision($assocId);
-		}
-
-		if ($file) {
-			$fileType = $file->getFileType();
-			if ($fileType == 'application/pdf') {
-				$type = STATISTICS_FILE_TYPE_PDF;
-			} else if ($fileType == 'text/html') {
-				$type = STATISTICS_FILE_TYPE_HTML;
-			} else {
-				$type = STATISTICS_FILE_TYPE_OTHER;
-			}
-		}
-
-		return $type;
-	}
-
-	/**
 	 * @see PKPUsageStatsLoader::getExpectedPageAndOp()
 	 */
 	protected function getExpectedPageAndOp() {
