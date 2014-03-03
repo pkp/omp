@@ -86,6 +86,8 @@
 	{url|assign:"oaiUrl" router=$smarty.const.ROUTE_PAGE page="oai"}
 	{url|assign:"siteUrl" router=$smarty.const.ROUTE_PAGE page="index"}
 	<p>{translate key="admin.settings.oaiRegistrationDescription" siteUrl=$siteUrl oaiUrl=$oaiUrl}</p>
+	
+	{include file="core:statistics/defaultMetricTypeFormElements.tpl"}
 
 	{fbvFormButtons id="siteSetupFormSubmit" submitText="common.save" hideCancel=true}
 </form>
