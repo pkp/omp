@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE data SYSTEM "../../../lib/pkp/dtd/xmlData.dtd">
+
+<!--
+  * 1.0.0.0_update2.xml
+  *
+  * Copyright (c) 2014 Simon Fraser University Library
+  * Copyright (c) 2003-2014 John Willinsky
+  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
+  *
+  * 1.0.0.0 database updates XML file.
+  -->
+<data>
+	<!-- Bug #8163: Allow restriction of review files in assignments -->
+	<sql>
+		<!-- For existing assignments, all files are permitted. -->
+		<query>INSERT INTO review_files (file_id, review_id) SELECT DISTINCT rrf.file_id, ra.review_id FROM review_round_files rrf, review_assignments ra WHERE ra.review_round_id = rrf.review_round_id</query>
+	</sql>
+</data>
