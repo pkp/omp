@@ -42,10 +42,12 @@ class Upgrade extends Installer {
 
 	/**
 	 * Fix broken submission filenames (bug #8461)
+	 * @param $upgrade Upgrade
+	 * @param $params array
 	 * @param $dryrun boolean True iff only a dry run (displaying rather than executing changes) should be done.
 	 * @return boolean
 	 */
-	function fixFilenames($dryrun = false) {
+	function fixFilenames($upgrade, $params, $dryrun = false) {
 		$pressDao = DAORegistry::getDAO('PressDAO');
 		$submissionDao = DAORegistry::getDAO('MonographDAO');
 		$submissionFileDao = DAORegistry::getDAO('SubmissionFileDAO');
