@@ -92,7 +92,12 @@ class LanguageToggleBlockPlugin extends BlockPlugin {
 			}
 		} else {
 			$locales =& AppLocale::getAllLocales();
-			$templateMgr->assign('languageToggleNoUser', true);
+			if (isset($_SERVER['HTTP_REFERER'])) {
+				$templateMgr->assign('languageToggleNoUser', true);
+				$templateMgr->assign('referrerUrl', $_SERVER['HTTP_REFERER']);
+			} else {
+				unset($locales); // Disable; we're not sure what URL to use
+			}
 		}
 
 		if (isset($locales) && count($locales) > 1) {
