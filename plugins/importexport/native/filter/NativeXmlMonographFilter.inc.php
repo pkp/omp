@@ -129,6 +129,14 @@ class NativeXmlMonographFilter extends NativeXmlSubmissionFilter {
 		$formatDoc->appendChild($formatDoc->importNode($n, true));
 		return $importFilter->execute($formatDoc);
 	}
+
+	/**
+	 * Get the representation export filter group name
+	 * @return string
+	 */
+	function getRepresentationExportFilterGroupName() {
+		return 'publication-format=>native-xml';
+	}
 }
 
 ?>
