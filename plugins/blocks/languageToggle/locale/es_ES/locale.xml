@@ -12,6 +12,6 @@
   -->
 
 <locale name="en_US" full_name="U.S. English">
-	<message key="plugins.block.languageToggle.displayName">Bloque de cambios entre lenguajes</message>
-	<message key="plugins.block.languageToggle.description">Este plugin permite cambiar entre lenguajes en la barra lateral.</message>
+	<message key="plugins.block.languageToggle.displayName">Bloque de conmutación lenguajes</message>
+	<message key="plugins.block.languageToggle.description">Este plugin ofrece la opción de conmutar lenguajes en la barra lateral.</message>
 </locale>

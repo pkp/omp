@@ -12,6 +12,6 @@
   -->
 
 <locale name="es_ES" full_name="Español">
-	<message key="plugins.themes.default.name">Default Theme</message>
-	<message key="plugins.themes.default.description">This theme implements the default theme.</message>
+	<message key="plugins.themes.default.name">Tema predeterminado</message>
+	<message key="plugins.themes.default.description">El tema predeterminado se aplica en esta parte.</message>
 </locale>

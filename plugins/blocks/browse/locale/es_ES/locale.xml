@@ -13,10 +13,10 @@
   -->
  
 <locale name="es_ES" full_name="Español">
-	<message key="plugins.block.browse">Browse</message>
-	<message key="plugins.block.browse.displayName">Browse Block</message>
-	<message key="plugins.block.browse.description">This plugin provides sidebar "browse" tools.</message>
-	<message key="plugins.block.browse.category">Browse a category</message>
-	<message key="plugins.block.browse.series">Browse a series</message>
-	<message key="plugins.block.browse.newReleases">Browse new releases</message>
+	<message key="plugins.block.browse">Explorar</message>
+	<message key="plugins.block.browse.displayName">Bloque de exploración</message>
+	<message key="plugins.block.browse.description">Este plugin proporciona herramientas de exploración en la barra lateral.</message>
+	<message key="plugins.block.browse.category">Categorías</message>
+	<message key="plugins.block.browse.series">Series</message>
+	<message key="plugins.block.browse.newReleases">Novedades</message>
 </locale>
