@@ -261,7 +261,7 @@
 	<message key="catalog.manage.noMonographs">No existen monografías asignadas.</message>
 
 	<!-- Catalog -->
-	<message key="catalog.browseTitles">Navegar {$numTitles} títulos</message>
+	<message key="catalog.browseTitles">{$numTitles} títulos</message>
 	<message key="catalog.feature">En primer plano</message>
 	<message key="catalog.featuredBooks">Libros destacados</message>
 	<message key="catalog.dateAdded">Añadido {$dateAdded}</message>
@@ -276,7 +276,7 @@
 	<message key="common.prefix">Prefijo</message>
 	<message key="common.preview">Vista previa</message>
 	<message key="common.feature">Destacar</message>
-	<message key="common.searchCatalog">Búsqueda de catálogo</message>
+	<message key="common.searchCatalog">Buscar aquí</message>
 	<message key="common.moreInfo">Más información</message>
 	<message key="common.plusMore">+ Más</message>
 	
@@ -394,137 +394,137 @@
 <h4>Actualizar</h4>
 
 <p>Si estás actualizando una instalación previa de OMP 0.x, <a href="{$upgradeUrl}">haz clic aquí</a> para continuar.</p>]]></message>
-	<message key="installer.preInstallationInstructionsTitle">Pre-Installation Steps</message>
-	<message key="installer.preInstallationInstructions"><![CDATA[<p>1. The following files and directories (and their contents) must be made writable:</p>
+	<message key="installer.preInstallationInstructionsTitle">Pasos para preinstalación</message>
+	<message key="installer.preInstallationInstructions"><![CDATA[<p>1. Los siguientes archivos y directorios ( y sus contenidos) deben tener permiso de escritura:</p>
 <ul>
-	<li><tt>config.inc.php</tt> is writable (optional): {$writable_config}</li>
-	<li><tt>public/</tt> is writable: {$writable_public}</li>
-	<li><tt>cache/</tt> is writable: {$writable_cache}</li>
-	<li><tt>cache/t_cache/</tt> is writable: {$writable_templates_cache}</li>
+	<li><tt>config.inc.php</tt> tiene permiso de escritura (opcional): {$writable_config}</li>
+	<li><tt>public/</tt> tiene permiso de escritura: {$writable_public}</li>
+	<li><tt>caché/</tt> tiene permiso de escritura: {$writable_cache}</li>
+	<li><tt>cache/t_cache/</tt> tiene permiso de escritura: {$writable_templates_cache}</li>
 	<li><tt>cache/t_compile/</tt> is writable: {$writable_templates_compile}</li>
 	<li><tt>cache/_db</tt> is writable: {$writable_db_cache}</li>
 </ul>
 
-<p>2. A directory to store uploaded files must be created and made writable (see "File Settings" below).</p>]]></message>
-	<message key="installer.upgradeInstructions"><![CDATA[<h4>OMP Version {$version}</h4>
+<p>2. Debe crearse un directorio con permiso de escritura para almacenar archivos actualizados (véase a continuación "Configuración de archivos" ).</p>]]></message>
+	<message key="installer.upgradeInstructions"><![CDATA[<h4>Versión OMP {$version}</h4>
 
-<p>Thank you for downloading the Public Knowledge Project's <strong>Open Monograph Press</strong>. Before proceeding, please read the <a href="{$baseUrl}/docs/README">README</a> and <a href="{$baseUrl}/docs/UPGRADE">UPGRADE</a> files included with this software. For more information about the Public Knowledge Project and its software projects, please visit the <a href="http://pkp.sfu.ca/" target="_blank">PKP web site</a>. If you have bug reports or technical support inquiries about Open Monograph Press, see the <a href="http://pkp.sfu.ca/support/forum" target="_blank">support forum</a> or visit PKP's online <a href="http://pkp.sfu.ca/bugzilla/" target="_blank">bug reporting system</a>. Although the support forum is the preferred method of contact, you can also email the team at <a href="mailto:pkp.contact@gmail.com">pkp.contact@gmail.com</a>.</p>
-<p>It is <strong>strongly recommended</strong> that you back up your database, files directory, and OMP installation directory before proceeding.</p>
-<p>If you are running in <a href="http://www.php.net/features.safe-mode" target="_blank">PHP Safe Mode</a>, please ensure that the max_execution_time directive in your php.ini configuration file is set to a high limit. If this or any other time limit (e.g. Apache's "Timeout" directive) is reached and the upgrade process is interrupted, manual intervention will be required.</p>]]></message>
-	<message key="installer.localeSettingsInstructions"><![CDATA[For complete Unicode (UTF-8) support, select UTF-8 for all character set settings. Note that this support currently requires a MySQL >= 4.1.1 or PostgreSQL >= 7.1 database server. Please also note that full Unicode support requires the <a href="http://www.php.net/mbstring" target="_blank">mbstring</a> library (enabled by default in most recent PHP installations). You may experience problems using extended character sets if your server does not meet these requirements.
+<p>Gracias pro descargar Open Monograph Press<strong>de Public Knowledge Project</strong>. Antes de continuar, lee  <a href="{$baseUrl}/docs/README">LÉEME</a> y <a href="{$baseUrl}/docs/UPGRADE">ACTUALIZAR</a> archivos incluidos en este software. Para más información sobre Public Knowledge Project y sue proyectos de software, visita <a href="http://pkp.sfu.ca/" target="_blank">la página web PKP</a>. Si tienes informes de fallos o preguntas de carácter técnico sobre Open Monograph Press, véase el <a href="http://pkp.sfu.ca/support/forum" target="_blank">foro de asistencia</a> o visita el sistema de informes de fallos online <a href="http://pkp.sfu.ca/bugzilla/" target="_blank">de PKP</a>. Aunque el foro de asistencia sea el método preferido de contacto, también puedes mandar un correo electrónico al equipo a <a href="mailto:pkp.contact@gmail.com">pkp.contact@gmail.com</a>.</p>
+<p>Es<strong>recomendable</strong> que protejas bases de datos, directorios de archivos y la instalación del directorio de OMP antes de continuar.</p>
+<p>Si estás ejecutando <a href="http://www.php.net/features.safe-mode" target="_blank">PHP Modo Seguro</a>, asegúrate de que   el tiempo_máximo_de ejecución la directrix en tu configuration php.ini archivo de configuraciónis establecido en un límite más alto. Si este u otro límite de tiempo (por ejemplo directiva de Apache"Límite de tiempo") se alcanza y el proceso de actualización se interrumpe, se necesita intervención humana.</p>]]></message>
+	<message key="installer.localeSettingsInstructions"><![CDATA[Para asistencia completa (UTF-8) Unicode, selecciona UTF-8 para toda la configuración de los caracteres. Ten en cuenta que esta asistencia necesita actualmente un servidor de bases de datos MySQL >= 4.1.1 o PostgreSQL >= 7.1. Asimismo ten en cuenta que la asistencia completa Unicode necesita la librería <a href="http://www.php.net/mbstring" target="_blank">mbstring</a> (activado por defecto en i las instalaciones PHP más recientes). Puede ser que experimente  problemas si usas conjuntos de caracteres paliados si tu servidor no cumple estos requisitos.
 <br /><br />
-Your server currently supports mbstring: <strong>{$supportsMBString}</strong>]]></message>
-	<message key="installer.allowFileUploads"><![CDATA[Your server currently allows file uploads: <strong>{$allowFileUploads}</strong>]]></message>
-	<message key="installer.maxFileUploadSize"><![CDATA[Your server currently allows a maximum file upload size of: <strong>{$maxFileUploadSize}</strong>]]></message>
-	<message key="installer.localeInstructions">The primary language to use for this system. Please consult the OMP documentation if you are interested in support for languages not listed here.</message>
-	<message key="installer.additionalLocalesInstructions">Select any additional languages to support in this system. These languages will be available for use by presses hosted on the site. Additional languages can also be installed at any time from the site administration interface. Locales marked * may be incomplete.</message>
-	<message key="installer.filesDirInstructions"><![CDATA[Enter full pathname to an existing directory where uploaded files are to be kept. This directory should not be directly web-accessible. <strong>Please ensure that this directory exists and is writable prior to installation.</strong> Windows path names should use forward slashes, e.g. "C:/mypress/files".]]></message>
-	<message key="installer.databaseSettingsInstructions">OMP requires access to a SQL database to store its data. See the system requirements above for a list of supported databases. In the fields below, provide the settings to be used to connect to the database.</message>
-	<message key="installer.overwriteConfigFileInstructions"><![CDATA[<h4>IMPORTANT!</h4>
-<p>The installer could not automatically overwrite the configuration file. Before attempting to use the system, please open <tt>config.inc.php</tt> in a suitable text editor and replace its contents with the contents of the text field below.</p>]]></message>
-	<message key="installer.installationComplete"><![CDATA[<p>Installation of OMP has completed successfully.</p>
-<p>To begin using the system, <a href="{$loginUrl}">login</a> with the username and password entered on the previous page.</p>
-<p>If you wish to receive news and updates, <strong>please register at <a href="http://pkp.sfu.ca/omp/register" target="_blank">http://pkp.sfu.ca/omp/register</a>.</strong> If you have questions or comments, please visit the <a href="http://pkp.sfu.ca/support/forum" target="_blank">support forum</a>.</p>]]></message>
-	<message key="installer.upgradeComplete"><![CDATA[<p>Upgrade of OMP to version {$version} has completed successfully.</p>
-<p>Don't forget to set the "installed" setting in your config.inc.php configuration file back to <em>On</em>.</p>
-<p>If you haven't already registered and wish to receive news and updates, <strong>please register at <a href="http://pkp.sfu.ca/omp/register" target="_blank">http://pkp.sfu.ca/omp/register</a>.</strong> If you have questions or comments, please visit the <a href="http://pkp.sfu.ca/support/forum" target="_blank">support forum</a>.</p>]]></message>
+Tu servidor soporta actualmente mbstring: <strong>{$supportsMBString}</strong>]]></message>
+	<message key="installer.allowFileUploads"><![CDATA[Tu servidor permite actualmente la subida de archivos: <strong>{$allowFileUploads}</strong>]]></message>
+	<message key="installer.maxFileUploadSize"><![CDATA[Tu servidor permite actualmente un tamaño máximo de subida de archivos de: <strong>{$maxFileUploadSize}</strong>]]></message>
+	<message key="installer.localeInstructions">La lengua principal de uso de este sistema. Consulta la documentación OMP si estás interesado en asistencia en lenguas no mencionadas aquí.</message>
+	<message key="installer.additionalLocalesInstructions">Selecciona las lenguas adicionales para la asistencia en este sistema. Estas lenguas estarán disponibles para el uso por parte de las editoriales dentro de esta página. También se pueden instalar siempre lenguas adicionales desde la interfaz de administración de la página. Los ficheros de idioma marcados pueden estar incompletos.</message>
+	<message key="installer.filesDirInstructions"><![CDATA[Introduce el nombre de la ruta en un directorio ya existente donde se deben guardar los archivos que se suban <strong>Asegúrate de que este directorio exista y que sea modificable antes de la instalación.</strong>  Las rutas de Windows deberían utilizar barras diagonales, por ejemplo "C:/mypress/files".]]></message>
+	<message key="installer.databaseSettingsInstructions">OMP requiere el acceso a la base de datos SQL para almacenar sue datos. Comprueba las necesidades del sistema anterior para hacer una lista de bases de datos que soporte. En los siguientes campos informa de la configuración que debe usarse para conectar a la base de datos.</message>
+	<message key="installer.overwriteConfigFileInstructions"><![CDATA[<h4>¡IMPORTANTE!</h4>
+<p>El instalador no pudo sobreescribir automáticamente el archivo de configuación. Antes de intentar utilizer el system, abre <tt>config.inc.php</tt> en un editor de textos adecuado y sustituye sus contenidos con los contenidos del campo de texto siguiente.</p>]]></message>
+	<message key="installer.installationComplete"><![CDATA[<p>La instalación de OMP se ha completado con éxito.</p>
+<p>Para comenzar a utilizar el sistema, <a href="{$loginUrl}">acceso</a> con el nombre de usuario y contraseña introducida en la página anterior.</p>
+<p>Si deseas recibir noticias y actualizaciones, <strong>regístrate en <a href="http://pkp.sfu.ca/omp/register" target="_blank">http://pkp.sfu.ca/omp/register</a>.</strong> Si tienes preguntas o comentarios, visita <a href="http://pkp.sfu.ca/support/forum" target="_blank">foro de asistencia</a>.</p>]]></message>
+	<message key="installer.upgradeComplete"><![CDATA[<p>La actualización de OMP a la versión {$version} se ha completado con éxito.</p>
+<p>No olvides establecer la configuración "instalada" en tu config.inc.php archivo de configuración de <em>On</em>.</p>
+<p>Si aún no te has registrado y deseas recibir notices y actualizaciones , <strong>regístrate en<a href="http://pkp.sfu.ca/omp/register" target="_blank">http://pkp.sfu.ca/omp/register</a>.</strong> Si tienes preguntas o comentarios, visita el <a href="http://pkp.sfu.ca/support/forum" target="_blank">foro de asistencia</a>.</p>]]></message>
 	<!-- Monograph Logs -->
-	<message key="log.review.reviewCleared">The round {$round} review by {$reviewerName} for submission {$monographId} has been cleared.</message>
-	<message key="log.review.reviewDueDateSet">The due date for the round {$round} review of submission {$monographId} by {$reviewerName} has been set to {$dueDate}.</message>
-	<message key="log.review.reviewDeclined">{$reviewerName} has declined the round {$round} review for submission {$monographId}.</message>
-	<message key="log.review.reviewAccepted">{$reviewerName} has accepted the round {$round} review for submission {$monographId}.</message>
-	<message key="log.review.reviewUnconsidered">{$editorName} has marked the round {$round} review for submission {$monographId} as unconsidered.</message>
-	<message key="log.editor.decision">An editor decision ({$decision}) for monograph {$submissionId} was recorded by {$editorName}.</message>
-	<message key="log.editor.archived">The submission {$monographId} has been archived.</message>
-	<message key="log.editor.restored">The submission {$monographId} has been restored to the queue.</message>
-	<message key="log.editor.editorAssigned">{$editorName} has been assigned as editor to submission {$monographId}.</message>
-	<message key="log.editor.submissionExpedited">{$editorName} has expedited the editing process for monograph {$monographId}.</message>
-	<message key="log.proofread.assign">{$assignerName} has assigned {$proofreaderName} to proofread submission {$monographId}.</message>
-	<message key="log.proofread.complete">{$proofreaderName} has submitted {$monographId} for scheduling.</message>
-	<message key="log.imported">{$userName} has imported monograph {$monographId}.</message>
+	<message key="log.review.reviewCleared">La ronda {$round} a revisar por {$reviewerName}  {$monographId} se ha aprobado.</message>
+	<message key="log.review.reviewDueDateSet">La fecha de entrega de la ronda{$round} de revisión para la entrega {$monographId} por {$reviewerName} se ha establecido a {$dueDate}.</message>
+	<message key="log.review.reviewDeclined">{$reviewerName} no ha aceptado la ronda{$round}  de revisión para la entrega {$monographId}.</message>
+	<message key="log.review.reviewAccepted">{$reviewerName} ha aceptado la ronda {$round} de revisión para la entrega {$monographId}.</message>
+	<message key="log.review.reviewUnconsidered">{$editorName} ha marcado la ronda de {$round} revisión para entrega {$monographId} como no adecuada.</message>
+	<message key="log.editor.decision">Se ha grabado una decisión  ({$decision}) para la monografía {$submissionId} por parte de {$editorName}.</message>
+	<message key="log.editor.archived">La propuesta {$monographId} se ha completado.</message>
+	<message key="log.editor.restored">La propuesta {$monographId} se ha vuelto a poner en la cola.</message>
+	<message key="log.editor.editorAssigned">{$editorName} ha sido asignado como editor para la propuesta {$monographId}.</message>
+	<message key="log.editor.submissionExpedited">{$editorName} ha acelerado el proceso de edición de la monografía {$monographId}.</message>
+	<message key="log.proofread.assign">{$assignerName} ha asignado a {$proofreaderName} para corregir la propuesta {$monographId}.</message>
+	<message key="log.proofread.complete">{$proofreaderName} ha entregado {$monographId} pa planificar.</message>
+	<message key="log.imported">{$userName} ha importado una monografía {$monographId}.</message>
 
 	<!-- Notifications -->
-	<message key="notification.addedIdentificationCode">Identification Code added.</message>
-	<message key="notification.editedIdentificationCode">Identification Code edited.</message>
-	<message key="notification.removedIdentificationCode">Identification Code removed.</message>
-	<message key="notification.addedPublicationDate">Publication Date added.</message>
-	<message key="notification.editedPublicationDate">Publication Date edited.</message>
-	<message key="notification.removedPublicationDate">Publication Date removed.</message>
-	<message key="notification.addedPublicationFormat">Publication Format added.</message>
-	<message key="notification.editedPublicationFormat">Publication Format edited.</message>
-	<message key="notification.removedPublicationFormat">Publication Format removed.</message>
-	<message key="notification.addedSalesRights">Sales Rights added.</message>
-	<message key="notification.editedSalesRights">Sales Rights edited.</message>
-	<message key="notification.removedSalesRights">Sales Rights removed.</message>
-	<message key="notification.addedRepresentative">Representative added.</message>
-	<message key="notification.editedRepresentative">Representative edited.</message>
-	<message key="notification.removedRepresentative">Representative removed.</message>
-	<message key="notification.addedMarket">Market added.</message>
-	<message key="notification.editedMarket">Market edited.</message>
-	<message key="notification.removedMarket">Market removed.</message>
-	<message key="notification.addedSpotlight">Spotlight added.</message>
-	<message key="notification.editedSpotlight">Spotlight edited.</message>
-	<message key="notification.removedSpotlight">Spotlight removed.</message>
-	<message key="notification.removedFooterLink">Footer Link removed.</message>
-	<message key="notification.savedCatalogMetadata">Catalog metadata saved.</message>
-	<message key="notification.savedPublicationFormatMetadata">Publication format metadata saved.</message>
-	<message key="notification.mailListDescription">Enter your email address to be notified when new content is added to the press.</message>
-	<message key="notification.notificationsPublicDescription">This page includes updates associated with this press, such as new monographs or series. You may subscribe to these notifications through RSS feeds (by clicking on the images to the right), or <![CDATA[  <a href="{$emailUrl}">through email.</a>]]></message>
-	<message key="notification.proofsApproved">Proofs approved.</message>
-	<message key="notification.removedSubmission">Submission deleted.</message>
+	<message key="notification.addedIdentificationCode">Código de identificación añadido.</message>
+	<message key="notification.editedIdentificationCode">Código de intensificación editado.</message>
+	<message key="notification.removedIdentificationCode">Código de identificación eliminado.</message>
+	<message key="notification.addedPublicationDate">Fecha de publicación añadida.</message>
+	<message key="notification.editedPublicationDate">Fecha de publicación editada.</message>
+	<message key="notification.removedPublicationDate">Fecha de publicación eliminada.</message>
+	<message key="notification.addedPublicationFormat">Formato de publicación añadido.</message>
+	<message key="notification.editedPublicationFormat">Formato de publicación editado.</message>
+	<message key="notification.removedPublicationFormat">Formato de publicación eliminado.</message>
+	<message key="notification.addedSalesRights">Derechos de venta añadidos.</message>
+	<message key="notification.editedSalesRights">Derechos de venta editados.</message>
+	<message key="notification.removedSalesRights">Derechos de venta eliminados.</message>
+	<message key="notification.addedRepresentative">Representante añadido.</message>
+	<message key="notification.editedRepresentative">Representante editado.</message>
+	<message key="notification.removedRepresentative">Representante eliminado.</message>
+	<message key="notification.addedMarket">Mercado añadido.</message>
+	<message key="notification.editedMarket">Mercado editado.</message>
+	<message key="notification.removedMarket">Mercado eliminado.</message>
+	<message key="notification.addedSpotlight">Destacado añadido.</message>
+	<message key="notification.editedSpotlight">Destacado editado.</message>
+	<message key="notification.removedSpotlight">Destacado eliminado.</message>
+	<message key="notification.removedFooterLink">Vínculo a pie de página eliminado.</message>
+	<message key="notification.savedCatalogMetadata">Catálogo de metadatos guardado.</message>
+	<message key="notification.savedPublicationFormatMetadata">Formato de publicación de los metadatos guardado.</message>
+	<message key="notification.mailListDescription">Introduce tu correo electrónico para recibir notificaciones cuando se añadan nuevos contenidos a la editorial.</message>
+	<message key="notification.notificationsPublicDescription"><![CDATA[Esta página incluye actualizaciones asociadas con esta editorial, como nuevas monografías o series. Puedes suscribirte para recibir estas notificaciones a través de canales RSS haciendo clic sobre los iconos de la derecha) o  <a href="{$emailUrl}">a través de correo electrónico.</a>]]></message>
+	<message key="notification.proofsApproved">Revisiones aprobadas.</message>
+	<message key="notification.removedSubmission">Propuesta eliminada.</message>
 	<!-- Notification Types -->
-	<message key="notification.type.editing">Editing Events</message>
-	<message key="notification.type.metadataModified">"{$title}'s" metadata has been modified.</message>
-	<message key="notification.type.reviewerComment">A reviewer has commented on "{$title}".</message>
-	<message key="notification.type.reviewing">Reviewing Events</message>
-	<message key="notification.type.site">Site Events</message>
-	<message key="notification.type.submissions">Submission Events</message>
-	<message key="notification.type.userComment">A reader has made a comment on "{$title}".</message>
-	<message key="notification.type.editorAssignmentTask">Una monografía ha sido propuesta y se necesita asignarle un Editor.</message>
-	<message key="notification.type.copyeditorRequest">You have been asked to review copyedits for "{$file}".</message>
-	<message key="notification.type.layouteditorRequest">You have been asked to review layouts for "{$title}".</message>
-	<message key="notification.type.indexRequest">You have been asked to create an index for "{$title}".</message>
-	<message key="notification.type.editorDecisionInternalReview">Internal review process started.</message>
-	<message key="notification.type.roundStatusTitle">Round {$round} Status</message>
-	<message key="notification.type.approveSubmission">This submission is currently awaiting approval in the Catalog Entry tool before it will appear in the public catalog.</message>
-	<message key="notification.type.approveSubmissionTitle">Awaiting approval.</message>
-	<message key="notification.type.formatNeedsApprovedSubmission">The metadata for the catalog entry must be approved before the publication format is included in the catalog. To approve catalog metadata, click on Monograph tab above.</message>
-	<message key="notification.type.configurePaymentMethod.title">No payment method configured.</message>
-	<message key="notification.type.configurePaymentMethod">A configured payment method is required before you can define e-commerce settings.</message>
-	<message key="notification.type.visitCatalog">The monograph has been approved. Please visit Catalog to manage its catalog details, using the catalog link just above.</message>
+	<message key="notification.type.editing">Editar eventos</message>
+	<message key="notification.type.metadataModified">"{$title}'s" metadatos se han modificado.</message>
+	<message key="notification.type.reviewerComment">Un revisor ha comentado en "{$title}".</message>
+	<message key="notification.type.reviewing">Revisar eventos</message>
+	<message key="notification.type.site">Eventos del sitio Web</message>
+	<message key="notification.type.submissions">Eventos de propuesta</message>
+	<message key="notification.type.userComment">Un lector ha puesto un comentario en "{$title}".</message>
+	<message key="notification.type.editorAssignmentTask">Se ha realizado una propuesta de una monografía para la cuál es necesario asignar un Editor.</message>
+	<message key="notification.type.copyeditorRequest">Se te ha solicitado que revises las correcciones de estilo para "{$file}".</message>
+	<message key="notification.type.layouteditorRequest">Se te ha solicitado que revises las maquetas "{$title}".</message>
+	<message key="notification.type.indexRequest">Se te ha solicitado que crees un índice para  "{$title}".</message>
+	<message key="notification.type.editorDecisionInternalReview">Proceso de revisión interna comenzado.</message>
+	<message key="notification.type.roundStatusTitle">Estado de la ronda {$round}</message>
+	<message key="notification.type.approveSubmission">Esta propuesta está actualmente pendiente de aprobación en la herramienta de Entrada de Catálogo antes de que pueda aparecer en el catálogo público.</message>
+	<message key="notification.type.approveSubmissionTitle">Pendiente de aprobación.</message>
+	<message key="notification.type.formatNeedsApprovedSubmission">Los metadatos del catálogo deben aprobarse antes de que el formato de publicación se incluya en el catálogo.  Para aprobar los metadatos del catálogo, haz clic en la pestaña Monografía anterior.</message>
+	<message key="notification.type.configurePaymentMethod.title">No se ha configurado ningún método de pago.</message>
+	<message key="notification.type.configurePaymentMethod">Se requiere un método de pago configurado antes de poder definir ajustes de e-commerce.</message>
+	<message key="notification.type.visitCatalog">La monografía ha sido aprobada.Visita el Catálogo para gestionar los detalles del catálogo, usando el enlace de catálogo situado a continuación.</message>
 	<message key="notification.type.visitCatalogTitle">Gestión del catálogo</message>
 
 	<!-- Authorization -->
-	<message key="user.authorization.invalidReviewAssignment">You have been denied access because you do not seem to be a valid reviewer for this monograph.</message>
-	<message key="user.authorization.monographAuthor">You have been denied access because you do not seem to be the author of this monograph.</message>
-	<message key="user.authorization.monographReviewer">You have been denied access because you do not seem to be an assigned reviewer of this monograph.</message>
-	<message key="user.authorization.monographFile">You have been denied access to the specified monograph file.</message>
-	<message key="user.authorization.invalidMonograph">Invalid monograph or no monograph requested!</message>
-	<message key="user.authorization.invalidSeriesEditorSubmission">Invalid series editor submission or no series editor submission requested!</message>
-	<message key="user.authorization.seriesAssignment">You are trying to access a monograph that is not part of your series.</message>
-	<message key="user.authorization.workflowStageAssignmentMissing">Access denied! You have not been assigned to this workflow stage.</message>
-	<message key="user.authorization.workflowStageSettingMissing">Access denied! The user group you are currently acting under has not been assigned to this workflow stage. Please check your press settings.</message>
-	<message key="payment.directSales">Descarga del sitio web</message>
+	<message key="user.authorization.invalidReviewAssignment">Se te ha denegado el acceso porque parece que no eres un revisor válido para esta monografía.</message>
+	<message key="user.authorization.monographAuthor">Se te ha denegado el acceso porque parece que no eres el autor de esta monografía.</message>
+	<message key="user.authorization.monographReviewer">Se te ha denegado el acceso porque parece que no eres el revisor asignado de esta monografía.</message>
+	<message key="user.authorization.monographFile">Se te ha denegado el acceso al fichero de la monografía especificado.</message>
+	<message key="user.authorization.invalidMonograph">¡No se ha solicitado monografía o esta no es válida!</message>
+	<message key="user.authorization.invalidSeriesEditorSubmission">¡No se ha solicitado propuesta de editor de serie o esta no es válida!</message>
+	<message key="user.authorization.seriesAssignment">Estás intentando acceder a una monografía que no es parte de tu serie.</message>
+	<message key="user.authorization.workflowStageAssignmentMissing">¡Acceso denegado! No se te ha asignado para esta etapa del flujo de trabajo.</message>
+	<message key="user.authorization.workflowStageSettingMissing">¡Acceso denegado! El grupo de usuario bajo el que estás actuando actualmente no se ha asignado a esta etapa del flujo de trabajo.</message>
+	<message key="payment.directSales">Descarga del sitio web de la editorial</message>
 	<message key="payment.directSales.price">Precio</message>
 	<message key="payment.directSales.availability">Disponibilidad</message>
-	<message key="payment.directSales.catalog">Catalogado</message>
+	<message key="payment.directSales.catalog">Catálogo</message>
 	<message key="payment.directSales.approved">Aprobado</message>
 	<message key="payment.directSales.priceCurrency">Precio ({$currency})</message>
 	<message key="payment.directSales.directSales">Ventas directas</message>
 	<message key="payment.directSales.amount">{$amount} ({$currency})</message>
-	<message key="payment.directSales.notAvailable">No descargable</message>
+	<message key="payment.directSales.notAvailable">No disponible</message>
 	<message key="payment.directSales.openAccess">Acceso abierto</message>
-	<message key="payment.directSales.price.description">Los formatos de los ficheros pueden estar disponibles para su descarga desde el sitio web de la editorial, bien con una política de acceso abierto sin coste para los lectores, o bien por venta directa (utilizando un proceso de pago online, tal y como esté configurado en Distribución). Para este fichero indique el modo de acceso.</message>
-	<message key="payment.directSales.validPriceRequired">A valid numeric price is required.</message>
+	<message key="payment.directSales.price.description">Los formatos de los ficheros pueden estar disponibles para su descarga desde el sitio web de la editorial, bien con una política de acceso abierto sin coste para los lectores, o bien por venta directa (utilizando un proceso de pago online, tal y como está configurado en Distribución). Para este fichero indica el modo de acceso.</message>
+	<message key="payment.directSales.validPriceRequired">Se necesita un precio numérico válido.</message>
 	<message key="payment.directSales.purchase">Comprar ({$amount} {$currency})</message>
 	<message key="payment.directSales.download">Descargar</message>
-	<message key="payment.directSales.monograph.name">Comprar libro o descargar capítulo</message>
-	<message key="payment.directSales.monograph.description">This transaction is for the purchase of a direct download of a single monograph or monograph chapter.</message>
+	<message key="payment.directSales.monograph.name">Comprar monografía o descargar capítulo</message>
+	<message key="payment.directSales.monograph.description">Esta transacción es relativa a la compra de una descarga directa de una monografía sola o un capítulo de una monografía.</message>
 
 	<!-- Debug messages -->
-	<message key="debug.notes.currencyListLoad">Loaded currency list "{$filename}" from XML</message>
-	<message key="debug.notes.helpMappingLoad">Reloaded XML help mapping file {$filename} in search of {$id}.</message>
+	<message key="debug.notes.currencyListLoad">Lista de divisas cargada "{$filename}" desde XML</message>
+	<message key="debug.notes.helpMappingLoad">XML actualizado ayuda al fichero de mapeo {$filename} en la búsqueda de {$id}.</message>
 
 	<!-- RT Entities -->
-	<message key="rt.metadata.pkp.peerReviewed">Peer-reviewed Article</message>
+	<message key="rt.metadata.pkp.peerReviewed">Artículo revisado por pares</message>
 </locale>
