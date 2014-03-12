@@ -34,6 +34,7 @@ class WorkflowHandler extends PKPWorkflowHandler {
 				'externalReview', // External review
 				'editorial',
 				'production', 'productionFormatsTab', // Production
+				'submissionHeader',
 				'submissionProgressBar',
 				'expedite'
 			)
@@ -96,52 +97,6 @@ class WorkflowHandler extends PKPWorkflowHandler {
 		$templateMgr->assign('currentFormatTabId', (int) $request->getUserVar('currentFormatTabId'));
 
 		return $templateMgr->fetchJson('workflow/productionFormatsTab.tpl');
-	}
-
-	/**
-	 * Fetch the JSON-encoded submission progress bar.
-	 * @param $args array
-	 * @param $request Request
-	 */
-	function submissionProgressBar($args, $request) {
-		// Assign the actions to the template.
-		$templateMgr = TemplateManager::getManager($request);
-		$press = $request->getPress();
-
-		$userGroupDao = DAORegistry::getDAO('UserGroupDAO');
-		$workflowStages = $userGroupDao->getWorkflowStageKeysAndPaths();
-		$stageNotifications = array();
-		foreach (array_keys($workflowStages) as $stageId) {
-			$stageNotifications[$stageId] = $this->_notificationOptionsByStage($request->getUser(), $stageId, $press->getId());
-		}
-
-		$templateMgr->assign('stageNotifications', $stageNotifications);
-
-		$monograph = $this->getAuthorizedContextObject(ASSOC_TYPE_MONOGRAPH);
-		$publishedMonographDao = DAORegistry::getDAO('PublishedMonographDAO');
-		$publishedMonograph = $publishedMonographDao->getById($monograph->getId());
-		if ($publishedMonograph) { // first check, there's a published monograph
-			$publicationFormats = $publishedMonograph->getPublicationFormats(true);
-			$submissionFileDao = DAORegistry::getDAO('SubmissionFileDAO');
-			import('classes.monograph.MonographFile'); // constants
-
-			foreach ($publicationFormats as $format) { // there is at least one publication format.
-				if ($format->getIsApproved()) { // it's ready to be included in the catalog
-
-					$monographFiles = $submissionFileDao->getLatestRevisionsByAssocId(
-							ASSOC_TYPE_PUBLICATION_FORMAT, $format->getId(),
-							$publishedMonograph->getId()
-					);
-
-					foreach ($monographFiles as $file) {
-						if ($file->getViewable() && !is_null($file->getDirectSalesPrice())) { // at least one file has a price set.
-							$templateMgr->assign('submissionIsReady', true);
-						}
-					}
-				}
-			}
-		}
-		return $templateMgr->fetchJson('workflow/submissionProgressBar.tpl');
 	}
 
 	/**
@@ -232,55 +187,6 @@ class WorkflowHandler extends PKPWorkflowHandler {
 		}
 	}
 
-	/**
-	 * Determine if a particular stage has a notification pending.  If so, return true.
-	 * This is used to set the CSS class of the submission progress bar.
-	 * @param $user PKPUser
-	 * @param $stageId int
-	 * @param $contextId int
-	 */
-	function _notificationOptionsByStage($user, $stageId, $contextId) {
-
-		$monograph =& $this->getAuthorizedContextObject(ASSOC_TYPE_MONOGRAPH);
-		$notificationDao = DAORegistry::getDAO('NotificationDAO');
-
-		$signOffNotificationType = $this->_getSignoffNotificationTypeByStageId($stageId);
-		$editorAssignmentNotificationType = $this->_getEditorAssignmentNotificationTypeByStageId($stageId);
-
-		$editorAssignments =& $notificationDao->getByAssoc(ASSOC_TYPE_MONOGRAPH, $monograph->getId(), null, $editorAssignmentNotificationType, $contextId);
-		if (isset($signOffNotificationType)) {
-			$signoffAssignments =& $notificationDao->getByAssoc(ASSOC_TYPE_MONOGRAPH, $monograph->getId(), $user->getId(), $signOffNotificationType, $contextId);
-		}
-
-		// if the User has assigned TASKs in this stage check, return true
-		if (!$editorAssignments->wasEmpty() || (isset($signoffAssignments) && !$signoffAssignments->wasEmpty())) {
-			return true;
-		}
-
-		// check for more specific notifications on those stages that have them.
-		if ($stageId == WORKFLOW_STAGE_ID_PRODUCTION) {
-			$submissionApprovalNotification =& $notificationDao->getByAssoc(ASSOC_TYPE_MONOGRAPH, $monograph->getId(), null, NOTIFICATION_TYPE_APPROVE_SUBMISSION, $contextId);
-			if (!$submissionApprovalNotification->wasEmpty()) {
-				return true;
-			}
-		}
-
-		if ($stageId == WORKFLOW_STAGE_ID_INTERNAL_REVIEW || $stageId == WORKFLOW_STAGE_ID_EXTERNAL_REVIEW) {
-			$reviewRoundDao = DAORegistry::getDAO('ReviewRoundDAO');
-			$reviewRounds =& $reviewRoundDao->getBySubmissionId($monograph->getId(), $stageId);
-			$notificationTypes = array(NOTIFICATION_TYPE_REVIEW_ROUND_STATUS, NOTIFICATION_TYPE_ALL_REVIEWS_IN);
-			while ($reviewRound = $reviewRounds->next()) {
-				foreach ($notificationTypes as $type) {
-					$notifications = $notificationDao->getByAssoc(ASSOC_TYPE_REVIEW_ROUND, $reviewRound->getId(), null, $type, $contextId);
-					if (!$notifications->wasEmpty()) {
-						return true;
-					}
-				}
-			}
-		}
-
-		return false;
-	}
 
 	//
 	// Protected helper methods
@@ -290,7 +196,7 @@ class WorkflowHandler extends PKPWorkflowHandler {
 	 * @param $stageId int
 	 * @return int
 	 */
-	protected function _getEditorAssignmentNotificationTypeByStageId($stageId) {
+	protected function getEditorAssignmentNotificationTypeByStageId($stageId) {
 		switch ($stageId) {
 			case WORKFLOW_STAGE_ID_SUBMISSION:
 				return NOTIFICATION_TYPE_EDITOR_ASSIGNMENT_SUBMISSION;
@@ -304,6 +210,41 @@ class WorkflowHandler extends PKPWorkflowHandler {
 				return NOTIFICATION_TYPE_EDITOR_ASSIGNMENT_PRODUCTION;
 		}
 		return null;
+	}
+
+	/**
+	* @see PKPWorkflowHandler::isSubmissionReady()
+	*/
+	protected function isSubmissionReady($monograph) {
+		$publishedMonographDao = DAORegistry::getDAO('PublishedMonographDAO');
+		$publishedMonograph = $publishedMonographDao->getById($monograph->getId());
+		if ($publishedMonograph) {
+			// first check, there's a published monograph
+			$publicationFormats = $publishedMonograph->getPublicationFormats(true);
+			$submissionFileDao = DAORegistry::getDAO('SubmissionFileDAO');
+			import('classes.monograph.MonographFile'); // constants
+
+			foreach ($publicationFormats as $format) {
+				// there is at least one publication format.
+				if ($format->getIsApproved()) {
+					// it's ready to be included in the catalog
+
+					$monographFiles = $submissionFileDao->getLatestRevisionsByAssocId(
+					ASSOC_TYPE_PUBLICATION_FORMAT, $format->getId(),
+					$publishedMonograph->getId()
+					);
+
+					foreach ($monographFiles as $file) {
+						if ($file->getViewable() && !is_null($file->getDirectSalesPrice())) {
+							// at least one file has a price set.
+							return true;
+						}
+					}
+				}
+			}
+		}
+
+		return false;
 	}
 }
 
