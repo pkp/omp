@@ -114,11 +114,7 @@ class NotificationManager extends PKPNotificationManager {
 	 */
 	public function isVisibleToAllUsers($notificationType, $assocType, $assocId) {
 		switch ($notificationType) {
-			case NOTIFICATION_TYPE_REVIEW_ROUND_STATUS:
-			case NOTIFICATION_TYPE_APPROVE_SUBMISSION:
-			case NOTIFICATION_TYPE_VISIT_CATALOG:
 			case NOTIFICATION_TYPE_FORMAT_NEEDS_APPROVED_SUBMISSION:
-			case NOTIFICATION_TYPE_CONFIGURE_PAYMENT_METHOD:
 				return true;
 			default:
 				return parent::isVisibleToAllUsers($notificationType, $assocType, $assocId);
