@@ -88,7 +88,10 @@ class ONIXParserDOMHandler extends XMLParserDOMHandler {
 	 */
 	function characterData($parser, $data) {
 		if ($this->_insideDocumentation) {
-			$this->_listItems[$this->_currentValue][] = $data;
+			if (count($this->_listItems[$this->_currentValue]) == 1)
+				$this->_listItems[$this->_currentValue][0] .= $data;
+			else
+				$this->_listItems[$this->_currentValue][0] = $data;
 		}
 	}
 
