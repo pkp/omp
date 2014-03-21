@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE locale SYSTEM "../../lib/pkp/dtd/locale.dtd">
+
+<!--
+  * locale/de_DE/manager.xml
+  *
+  * Copyright (c) 2014 Simon Fraser University Library
+  * Copyright (c) 2003-2014 John Willinsky
+  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
+  * Localization strings for the de_DE (Deutsch (Deutschland)) locale.
+  * Please contact Marco Tullney, marco.tullney@fu-berlin.de, with any questions regarding this translation.
+  -->
+
+<locale name="de_DE" full_name = "Deutsch (Deutschland)">
+
+	<!-- Languages -->
+
+	<!-- Review forms -->
+	<message key="manager.reviewForms">Begutachtungsformulare</message>
+	<message key="manager.reviewForms.completed">Abgeschlossen</message>
+	<message key="manager.reviewForms.title">Titel</message>
+	<message key="manager.reviewFormElements.viewable">Sichtbar (für Autor/innen)</message>
+
+	<!-- Series management -->
+
+	<!-- Settings management -->
+	<message key="manager.settings">Einstellungen</message>
+
+	<!--  Statistics management -->
+
+	<!--  Tools management -->
+	<message key="manager.tools">Werkzeuge</message>
+
+	<!-- User management -->
+
+
+	<!-- System setup -->
+	<message key="manager.system">Systemeinstellungen</message>
+	<message key="manager.system.archiving">Archivierung</message>
+	<message key="manager.system.payments">Zahlungen</message>
+
+	<!-- Press setup -->
+	<message key="manager.setup.doiPrefix">DOI-Prefix</message>
+	<message key="manager.setup.editorDecision">Entscheidung der Redaktion</message>
+	<message key="manager.setup.information.forAuthors">Für Autor/innen</message>
+	<message key="manager.setup.information.forLibrarians">Für Bibliothekar/innen</message>
+	<message key="manager.setup.information.forReaders">Für Leser/innen</message>
+	<message key="manager.setup.layoutTemplates">Layoutvorlagen</message>
+	<message key="manager.setup.lists">Listen</message>
+	<message key="manager.setup.onlineIssn">Online-ISSN</message>
+	<message key="manager.setup.principalContact">Hauptkontakt</message>
+	<message key="manager.setup.reviewOptions">Begutachtungsoptionen</message>
+	<message key="manager.setup.reviewOptions.blindReview">Blinde Begutachtung</message>
+</locale>
