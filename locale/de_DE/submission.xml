@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE locale SYSTEM "../../lib/pkp/dtd/locale.dtd">
+
+<!--
+  * locale/de_DE/submission.xml
+  *
+  * Copyright (c) 2014 Simon Fraser University Library
+  * Copyright (c) 2003-2014 John Willinsky
+  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
+  * Localization strings for the de_DE (Deutsch (Deutschland)) locale.
+  * Please contact Marco Tullney, marco.tullney@fu-berlin.de, with any questions regarding this translation.
+  -->
+
+<locale name="de_DE" full_name = "Deutsch (Deutschland)">
+	<!-- General submission keys -->
+	<message key="submission.title">Buchtitel</message>
+	<message key="submission.chapter">Kapitel</message>
+	<message key="submission.chapters">Kapitel</message>
+	<message key="submission.chapter.addChapter">Kapitel hinzufügen</message>
+	<message key="submission.chapter.editChapter">Kapitel bearbeiten</message>
+	<message key="submission.copyedit">Lektorat</message>
+	<message key="submission.publicationFormats">Publikationsformate</message>
+	<message key="submission.download">Download</message>
+	<message key="grid.action.addChapter">Ein neues Kapitel hinzufügen</message>
+	<message key="grid.action.editChapter">Dieses Kapitel bearbeiten</message>
+	<message key="grid.action.deleteChapter">Dieses Kapitel löschen</message>
+
+	<!-- Submission wizard -->
+	<message key="submission.submit.selectSeries">Reihe auswählen...</message>
+	<message key="submission.submit.catalog">Katalog</message>
+	<message key="submission.submit.metadata">Metadaten</message>
+
+	<!-- Chapters Grid -->
+	<message key="grid.chapters.title">Kapitel</message>
+
+	<!-- Copyediting Grid -->
+
+	<!-- Submission-specific catalog info -->
+	<message key="submission.catalogEntry">Katalog</message>
+	<message key="submission.editCatalogEntry">Eintrag</message>
+	<message key="submission.catalogEntry.new">Neuer Katalogeintrag</message>
+
+	<!--  Catalog Entry Tabs -->
+	<message key="submission.catalogEntry.catalogMetadata">Katalog</message>
+	<message key="submission.catalogEntry.publicationMetadata">Publikationsformat</message>
+
+	<!-- Log events -->
+	<message key="submission.event.participantAdded">"{$name}" ({$username}) wird als {$userGroupName} hinzugefügt.</message>
+	<message key="submission.event.participantRemoved">"{$name}" ({$username}) wird als {$userGroupName} entfernt.</message>
+	<message key="submission.submit.titleAndSummary">Titel und Zusammenfassung</message>
+</locale>
