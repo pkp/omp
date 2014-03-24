@@ -13,7 +13,7 @@
 .notifyIcon {
 	width: 16px;
 	height: 16px;
-	background-image: url(../../lib/jqueryUi/images/ui-icons_222222_256x240.png);
+	background-image: url({$baseUrl}/lib/pkp/styles/lib/jqueryUi/images/ui-icons_222222_256x240.png);
 }
 
 .notifyIconSuccess {
@@ -41,35 +41,35 @@
 }
 
 .ui-pnotify-closer .ui-icon {
-	background-image: url(../../lib/jqueryUi/images/ui-icons_222222_256x240.png);
+	background-image: url({$baseUrl}/lib/pkp/styles/lib/jqueryUi/images/ui-icons_222222_256x240.png);
 }
 
 /* Page icons */
 
 .notifyIconNewPage {
-	background-image: url(../../../templates/images/icons/page_new.gif);
+	background-image: url({$baseUrl}/templates/images/icons/page_new.gif);
 }
 
 .notifyIconPageAttachment {
-	background-image: url(../../../templates/images/icons/page_attachment.gif);
+	background-image: url({$baseUrl}/templates/images/icons/page_attachment.gif);
 }
 
 .notifyIconEdit {
-	background-image: url(../../../templates/images/icons/edit.gif);
+	background-image: url({$baseUrl}/templates/images/icons/edit.gif);
 }
 
 .notifyIconNewComment {
-	background-image: url(../../../templates/images/icons/comment_new.gif);
+	background-image: url({$baseUrl}/templates/images/icons/comment_new.gif);
 }
 
 .notifyIconPublished {
-	background-image: url(../../../templates/images/icons/list_world.gif);
+	background-image: url({$baseUrl}/templates/images/icons/list_world.gif);
 }
 
 .notifyIconNewAnnouncement {
-	background-image: url(../../../templates/images/icons/note_new.gif);
+	background-image: url({$baseUrl}/templates/images/icons/note_new.gif);
 }
 
 .notifyIconPageAlert {
-	background-image: url(../../../templates/images/icons/page_alert.gif);
+	background-image: url({$baseUrl}/templates/images/icons/page_alert.gif);
 }
