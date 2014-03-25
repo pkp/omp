@@ -146,6 +146,10 @@ class MonographDAO extends SubmissionDAO {
 	 * @param $monographId int
 	 */
 	function deleteById($monographId) {
+		// Delete monograph file directory.
+		$monograph = $this->getById($monographId);
+		assert(is_a($monograph, 'Submission'));
+
 		parent::deleteById($monographId);
 
 		// Delete chapters and assigned chapter authors.
@@ -155,10 +159,6 @@ class MonographDAO extends SubmissionDAO {
 			// also removes Chapter Author associations
 			$chapterDao->deleteObject($chapter);
 		}
-
-		// Delete monograph file directory.
-		$monograph = $this->getById($monographId);
-		assert(is_a($monograph, 'Submission'));
 
 		import('lib.pkp.classes.file.SubmissionFileManager');
 		$monographFileManager = new SubmissionFileManager($monograph->getPressId(), $monograph->getId());
