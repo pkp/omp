@@ -96,7 +96,7 @@ class SubmissionFileDAO extends PKPSubmissionFileDAO {
 	/**
 	 * @see PKPSubmissionFileDAO::assignRevisionToReviewRound()
 	 */
-	function assignRevisionToReviewRound($fileId, $revision, &$reviewRound) {
+	function assignRevisionToReviewRound($fileId, $revision, $reviewRound) {
 		if (!is_numeric($fileId) || !is_numeric($revision)) fatalError('Invalid file!');
 		return $this->update('INSERT INTO review_round_files
 						('.$this->getSubmissionEntityName().'_id, review_round_id, stage_id, file_id, revision)
@@ -107,12 +107,9 @@ class SubmissionFileDAO extends PKPSubmissionFileDAO {
 	/**
 	 * @see PKPSubmissionFileDAO::getRevisionsByReviewRound()
 	 */
-	function &getRevisionsByReviewRound(&$reviewRound, $fileStage = null,
+	function getRevisionsByReviewRound($reviewRound, $fileStage = null,
 			$uploaderUserId = null, $uploaderUserGroupId = null) {
-		if (!is_a($reviewRound, 'ReviewRound')) {
-			$nullVar = null;
-			return $nullVar;
-		}
+		if (!is_a($reviewRound, 'ReviewRound')) return null;
 		return $this->_getInternally($reviewRound->getSubmissionId(),
 			$fileStage, null, null, null, null, null,
 			$uploaderUserId, $uploaderUserGroupId, null, $reviewRound->getId()
@@ -122,7 +119,7 @@ class SubmissionFileDAO extends PKPSubmissionFileDAO {
 	/**
 	 * @see PKPSubmissionFileDAO::getLatestNewRevisionsByReviewRound()
 	 */
-	function &getLatestNewRevisionsByReviewRound($reviewRound, $fileStage = null) {
+	function getLatestNewRevisionsByReviewRound($reviewRound, $fileStage = null) {
 		if (!is_a($reviewRound, 'ReviewRound')) {
 			$emptyArray = array();
 			return $emptyArray;
