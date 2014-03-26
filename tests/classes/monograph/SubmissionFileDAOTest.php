@@ -1,7 +1,7 @@
 <?php
 
 /**
- * @file tests/classes/monograph/SubmissionFileDAOTest.inc.php
+ * @file tests/classes/monograph/SubmissionFileDAOTest.php
  *
  * Copyright (c) 2014 Simon Fraser University Library
  * Copyright (c) 2000-2014 John Willinsky
