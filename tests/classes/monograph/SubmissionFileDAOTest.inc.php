@@ -20,9 +20,11 @@ import('classes.monograph.ArtworkFileDAODelegate');
 import('classes.monograph.MonographFile');
 import('classes.monograph.ArtworkFile');
 import('classes.monograph.MonographDAO');
-import('classes.monograph.Genre');
-import('classes.monograph.reviewRound.ReviewRound');
+import('lib.pkp.classes.submission.Genre');
+import('lib.pkp.classes.submission.reviewRound.ReviewRound');
 import('lib.pkp.classes.db.DBResultRange');
+import('lib.pkp.classes.core.PKPRouter');
+import('lib.pkp.classes.core.PKPRequest');
 
 // Define test ids.
 define('SUBMISSION_FILE_DAO_TEST_PRESS_ID', 999);
@@ -41,13 +43,27 @@ class SubmissionFileDAOTest extends DatabaseTestCase {
 		// Create a test file on the file system.
 		$this->testFile = tempnam(TMP_FILES, 'SubmissionFile');
 
+		// Mock a press
+		import('classes.press.Press');
+		$press = new Press();
+		$press->setPrimaryLocale('en_US');
+		$press->setPath('press-path');
+		$press->setId(SUBMISSION_FILE_DAO_TEST_PRESS_ID);
+
+		// Mock a request
+		$mockRequest = $this->getMock('PKPRequest', array('getContext'));
+		$mockRequest->expects($this->any())
+			->method('getContext')
+			->will($this->returnValue($press));
+		Registry::get('request', true, $mockRequest);
+
 		// Register a mock monograph DAO.
-		$monographDao = $this->getMock('MonographDAO', array('getMonograph'));
+		$monographDao = $this->getMock('MonographDAO', array('getById'));
 		$monograph = new Monograph();
 		$monograph->setId(SUBMISSION_FILE_DAO_TEST_SUBMISSION_ID);
 		$monograph->setPressId(SUBMISSION_FILE_DAO_TEST_PRESS_ID);
 		$monographDao->expects($this->any())
-		             ->method('getMonograph')
+		             ->method('getById')
 		             ->will($this->returnValue($monograph));
 		DAORegistry::registerDAO('MonographDAO', $monographDao);
 
@@ -59,6 +75,13 @@ class SubmissionFileDAOTest extends DatabaseTestCase {
 		         ->will($this->returnCallback(array($this, 'getTestGenre')));
 
 		$this->_cleanFiles();
+
+		$application = PKPApplication::getApplication();
+		$request = $application->getRequest();
+		if (is_null($request->getRouter())) {
+			$router = new PKPRouter();
+			$request->setRouter($router);
+		}
 	}
 
 	protected function tearDown() {
@@ -114,9 +137,9 @@ class SubmissionFileDAOTest extends DatabaseTestCase {
 		//
 		// Persist the two test files.
 		$this->_insertFile($file1Rev1, 'test artwork', SUBMISSION_FILE_DAO_TEST_ART_GENRE_ID);
-		self::assertType('ArtworkFile', $file1Rev1);
+		self::assertTrue(is_a($file1Rev1, 'ArtworkFile'));
 		$this->_insertFile($file2Rev1, 'test monograph', SUBMISSION_FILE_DAO_TEST_DOC_GENRE_ID);
-		self::assertType('MonographFile', $file2Rev1);
+		self::assertTrue(is_a($file2Rev1, 'MonographFile'));
 
 		// Persist a second revision of the artwork file but this time with a
 		// document genre so that it needs to be downcast for insert.
@@ -127,7 +150,7 @@ class SubmissionFileDAOTest extends DatabaseTestCase {
 		$file1Rev2 =& $this->_insertFile($downcastFile, 'test downcast', SUBMISSION_FILE_DAO_TEST_DOC_GENRE_ID);
 
 		// Test whether the target type is correct.
-		self::assertType('MonographFile', $file1Rev2);
+		self::assertTrue(is_a($file1Rev2, 'MonographFile'));
 		// Test that no data on the target interface has been lost.
 		$this->_compareFiles($downcastFile, $file1Rev2);
 
@@ -138,7 +161,7 @@ class SubmissionFileDAOTest extends DatabaseTestCase {
 		$file2Rev2 =& $this->_insertFile($upcastFile, 'test upcast', SUBMISSION_FILE_DAO_TEST_ART_GENRE_ID);
 
 		// Test whether the target type is correct.
-		self::assertType('ArtworkFile', $file2Rev2);
+		self::assertTrue(is_a($file2Rev2, 'ArtworkFile'));
 		// Test that no data on the target interface has been lost.
 		$this->_compareFiles($upcastFile, $file2Rev2);
 		// Make sure that other fields contain default values as
@@ -165,16 +188,16 @@ class SubmissionFileDAOTest extends DatabaseTestCase {
 		// Update the artwork file.
 		$file1Rev1->setOriginalFileName('updated-file-name');
 		$file1Rev1->setCaption('test-caption');
-		$updatedFile =& $submissionFileDao->updateObject($file1Rev1);
+		$updatedFile = $submissionFileDao->updateObject($file1Rev1);
 
 		// Now change the genre so that the canonical file name
 		// and the file implementation will have to change.
 		$previousFilePath = $file1Rev1->getFilePath();
 		$file1Rev1->setGenreId(SUBMISSION_FILE_DAO_TEST_DOC_GENRE_ID);
-		$updatedFile =& $submissionFileDao->updateObject($file1Rev1);
+		$updatedFile = $submissionFileDao->updateObject($file1Rev1);
 
 		// Test whether the target type is correct.
-		self::assertType('MonographFile', $updatedFile);
+		self::assertTrue(is_a($updatedFile, 'MonographFile'));
 		// Test that no data on the target interface has been lost.
 		$this->_compareFiles($file1Rev1, $updatedFile);
 
@@ -190,7 +213,7 @@ class SubmissionFileDAOTest extends DatabaseTestCase {
 		$updatedFile =& $submissionFileDao->updateObject($updatedFile);
 
 		// Test whether the target type is correct.
-		self::assertType('ArtworkFile', $updatedFile);
+		self::assertTrue(is_a($updatedFile, 'ArtworkFile'));
 		// Test that no data on the target interface has been lost.
 		$this->_compareFiles($file1Rev1, $updatedFile);
 		// Make sure that other fields contain default values as
@@ -267,9 +290,9 @@ class SubmissionFileDAOTest extends DatabaseTestCase {
 		self::assertEquals(array($uniqueId1_2 => $file1Rev2),
 				$submissionFileDao->getLatestRevisionsByAssocId(ASSOC_TYPE_REVIEW_ASSIGNMENT, 5));
 		self::assertEquals(array($uniqueId1_2 => $file1Rev2),
-				$submissionFileDao->getLatestRevisionsByAssocId(ASSOC_TYPE_REVIEW_ASSIGNMENT, 5, SUBMISSION_FILE_PROOF));
+				$submissionFileDao->getLatestRevisionsByAssocId(ASSOC_TYPE_REVIEW_ASSIGNMENT, 5, null, SUBMISSION_FILE_PROOF));
 		self::assertEquals(array(),
-				$submissionFileDao->getLatestRevisionsByAssocId(ASSOC_TYPE_REVIEW_ASSIGNMENT, 5, SUBMISSION_FILE_PROOF+1));
+				$submissionFileDao->getLatestRevisionsByAssocId(ASSOC_TYPE_REVIEW_ASSIGNMENT, 5, null, SUBMISSION_FILE_PROOF+1));
 
 		// Retrieve all revisions by association.
 		self::assertNull($submissionFileDao->getAllRevisionsByAssocId(ASSOC_TYPE_REVIEW_ASSIGNMENT, null));
@@ -291,10 +314,10 @@ class SubmissionFileDAOTest extends DatabaseTestCase {
 		$uniqueId1_3 = $file1Rev3->getFileIdAndRevision();
 
 		// Insert review round file assignments.
-		$submissionFileDao->assignRevisionToReviewRound($file1Rev1->getFileId(), $file1Rev1->getRevision(),
-				WORKFLOW_STAGE_ID_INTERNAL_REVIEW, 1, SUBMISSION_FILE_DAO_TEST_SUBMISSION_ID);
-		$submissionFileDao->assignRevisionToReviewRound($file2Rev2->getFileId(), $file2Rev2->getRevision(),
-				WORKFLOW_STAGE_ID_INTERNAL_REVIEW, 1, SUBMISSION_FILE_DAO_TEST_SUBMISSION_ID);
+		$reviewRoundDao = DAORegistry::getDAO('ReviewRoundDAO');
+		$reviewRound = $reviewRoundDao->build(SUBMISSION_FILE_DAO_TEST_SUBMISSION_ID, WORKFLOW_STAGE_ID_INTERNAL_REVIEW, 1);
+		$submissionFileDao->assignRevisionToReviewRound($file1Rev1->getFileId(), $file1Rev1->getRevision(), $reviewRound);
+		$submissionFileDao->assignRevisionToReviewRound($file2Rev2->getFileId(), $file2Rev2->getRevision(), $reviewRound);
 
 
 		//
@@ -302,8 +325,7 @@ class SubmissionFileDAOTest extends DatabaseTestCase {
 		//
 		// Retrieve assigned review round files by review stage id and round.
 		self::assertEquals(array($uniqueId1_1 => $file1Rev1, $uniqueId2_2 => $file2Rev2),
-				$submissionFileDao->getRevisionsByReviewRound(SUBMISSION_FILE_DAO_TEST_SUBMISSION_ID, WORKFLOW_STAGE_ID_INTERNAL_REVIEW, 1));
-		self::assertNull($submissionFileDao->getRevisionsByReviewRound(SUBMISSION_FILE_DAO_TEST_SUBMISSION_ID, null, null));
+				$submissionFileDao->getRevisionsByReviewRound($reviewRound));
 
 
 		//
@@ -311,16 +333,15 @@ class SubmissionFileDAOTest extends DatabaseTestCase {
 		//
 		// Retrieve revisions of review round files that are newer than the review round files themselves.
 		self::assertEquals(array($uniqueId1_3 => $file1Rev3),
-				$submissionFileDao->getLatestNewRevisionsByReviewRound(SUBMISSION_FILE_DAO_TEST_SUBMISSION_ID, WORKFLOW_STAGE_ID_INTERNAL_REVIEW, 1));
-		self::assertNull($submissionFileDao->getLatestNewRevisionsByReviewRound(SUBMISSION_FILE_DAO_TEST_SUBMISSION_ID, null, null));
+				$submissionFileDao->getLatestNewRevisionsByReviewRound($reviewRound));
 
 
 		//
 		// deleteAllRevisionsByReviewRound()
 		//
-		$submissionFileDao->deleteAllRevisionsByReviewRound(SUBMISSION_FILE_DAO_TEST_SUBMISSION_ID, WORKFLOW_STAGE_ID_INTERNAL_REVIEW, 1);
+		$submissionFileDao->deleteAllRevisionsByReviewRound($reviewRound->getId());
 		self::assertEquals(array(),
-				$submissionFileDao->getRevisionsByReviewRound(SUBMISSION_FILE_DAO_TEST_SUBMISSION_ID, WORKFLOW_STAGE_ID_INTERNAL_REVIEW, 1));
+				$submissionFileDao->getRevisionsByReviewRound($reviewRound));
 
 
 		//
@@ -339,7 +360,7 @@ class SubmissionFileDAOTest extends DatabaseTestCase {
 		//
 		// Delete the latest revision of file1.
 		self::assertEquals(1, $submissionFileDao->deleteLatestRevisionById($file1Rev1->getFileId()));
-		self::assertType('ArtworkFile', $submissionFileDao->getRevision($file1Rev1->getFileId(), $file1Rev1->getRevision()));
+		self::assertTrue(is_a($submissionFileDao->getRevision($file1Rev1->getFileId(), $file1Rev1->getRevision()), 'ArtworkFile'));
 		self::assertNull($submissionFileDao->getRevision($file1Rev3->getFileId(), $file1Rev3->getRevision()));
 
 
@@ -348,7 +369,7 @@ class SubmissionFileDAOTest extends DatabaseTestCase {
 		//
 		// Delete all revisions of file1.
 		self::assertEquals(2, $submissionFileDao->deleteAllRevisionsById($file1Rev1->getFileId()));
-		self::assertType('MonographFile', $submissionFileDao->getRevision($file2Rev1->getFileId(), $file2Rev1->getRevision()));
+		self::assertTrue(is_a($submissionFileDao->getRevision($file2Rev1->getFileId(), $file2Rev1->getRevision()), 'MonographFile'));
 		self::assertNull($submissionFileDao->getRevision($file1Rev1->getFileId(), $file1Rev1->getRevision()));
 		self::assertNull($submissionFileDao->getRevision($file1Rev2->getFileId(), $file1Rev2->getRevision()));
 		// Re-insert the files for the next test.
@@ -361,7 +382,7 @@ class SubmissionFileDAOTest extends DatabaseTestCase {
 		//
 		// Delete all revisions by assoc id.
 		self::assertEquals(2, $submissionFileDao->deleteAllRevisionsByAssocId(ASSOC_TYPE_REVIEW_ASSIGNMENT, 5));
-		self::assertType('MonographFile', $submissionFileDao->getRevision($file2Rev1->getFileId(), $file2Rev1->getRevision()));
+		self::assertTrue(is_a($submissionFileDao->getRevision($file2Rev1->getFileId(), $file2Rev1->getRevision()), 'MonographFile'));
 		self::assertNull($submissionFileDao->getRevision($file1Rev1->getFileId(), $file1Rev1->getRevision()));
 		self::assertNull($submissionFileDao->getRevision($file1Rev2->getFileId(), $file1Rev2->getRevision()));
 		// Re-insert the files for the next test.
@@ -414,7 +435,7 @@ class SubmissionFileDAOTest extends DatabaseTestCase {
 		$submissionFiles =& $submissionFileDao->getAllRevisions($file1Rev1->getFileId());
 		self::assertEquals(2, count($submissionFiles));
 		foreach($submissionFiles as $submissionFile) { /* @var $submissionFile SubmissionFile */
-			self::assertType('ArtworkFile', $submissionFile);
+			self::assertTrue(is_a($submissionFile, 'ArtworkFile'));
 		}
 	}
 
@@ -424,11 +445,11 @@ class SubmissionFileDAOTest extends DatabaseTestCase {
 
 		// Test whether the newDataObjectByGenreId method will return a monograph file.
 		$fileObject = $submissionFileDao->newDataObjectByGenreId(SUBMISSION_FILE_DAO_TEST_DOC_GENRE_ID);
-		self::assertType('MonographFile', $fileObject);
+		self::assertTrue(is_a($fileObject, 'MonographFile'));
 
 		// Now set an artwork genre and try again.
 		$fileObject = $submissionFileDao->newDataObjectByGenreId(SUBMISSION_FILE_DAO_TEST_ART_GENRE_ID);
-		self::assertType('ArtworkFile', $fileObject);
+		self::assertTrue(is_a($fileObject, 'ArtworkFile'));
 	}
 
 
@@ -459,8 +480,10 @@ class SubmissionFileDAOTest extends DatabaseTestCase {
 				self::fail();
 		}
 		$genre = new Genre();
-		$press = Request::getPress();
-		$genre->setPressId($press->getId());
+		$application = PKPApplication::getApplication();
+		$request = $application->getRequest();
+		$press = $request->getContext();
+		$genre->setContextId($press->getId());
 		$genre->setId($genreId);
 		$genre->setName($name, 'en_US');
 		$genre->setDesignation($designation);
