@@ -543,7 +543,7 @@ Your server currently supports mbstring: <strong>{$supportsMBString}</strong>]]>
 	<message key="debug.notes.helpMappingLoad">Reloaded XML help mapping file {$filename} in search of {$id}.</message>
 
 	<!-- RT Entities -->
-	<message key="rt.metadata.pkp.peerReviewed">Peer-reviewed Article</message>
+	<message key="rt.metadata.pkp.dctype">Book</message>
 
 	<!-- General plugin information -->
 	<message key="plugins.categories.viewableFiles">Published File Plugins</message>

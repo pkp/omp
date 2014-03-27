@@ -129,7 +129,7 @@ class Dc11SchemaPublicationFormatAdapter extends MetadataDataObjectAdapter {
 
 		// Type
 		$types = array_merge_recursive(
-			array(AppLocale::getLocale() => __('rt.metadata.pkp.peerReviewed')),
+			array(AppLocale::getLocale() => __('rt.metadata.pkp.dctype')),
 			(array) $monograph->getType(null)
 		);
 		$this->_addLocalizedElements($dc11Description, 'dc:type', $types);
