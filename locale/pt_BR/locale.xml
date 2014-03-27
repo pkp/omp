@@ -526,8 +526,6 @@ Suporte à biblioteca mbstring: <strong>{$supportsMBString}</strong>]]></message
 	<message key="debug.notes.currencyListLoad">Lista de moedas carregadas do arquivo XML "{$filename}" </message>
 	<message key="debug.notes.helpMappingLoad">Arquivo de mapeamento de ajuda XML {$filename} recarregado, na busca por {$id}.</message>
 
-	<!-- RT Entities -->
-	<message key="rt.metadata.pkp.peerReviewed">Artigo avaliado pelos pares</message>
 	<message key="grid.action.createContext">Criar nova Editora</message>
 	<message key="grid.action.submissionEmail">Clique para ler o email</message>
 	<message key="context.context">Editora</message>

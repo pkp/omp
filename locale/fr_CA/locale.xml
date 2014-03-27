@@ -550,9 +550,6 @@ Votre serveur supporte actuellement mbstring: <strong>{$supportsMBString}</stron
 	<message key="debug.notes.currencyListLoad">La liste des devises "{$filename}" fut téléchargée à partir de XML</message>
 	<message key="debug.notes.helpMappingLoad">Le fichier de mappage d'aide XML {$filename} a été téléchargé à nouveau pour trouver {$id}.</message>
 
-	<!-- RT Entities -->
-	<message key="rt.metadata.pkp.peerReviewed">Article revu par les pairs</message>
-
 	<message key="grid.action.createContext">Créer une nouvelle presse</message>
 	<message key="context.select">Sélectionner une presse...</message>
 	<message key="user.role.editors">Éditeurs</message>
