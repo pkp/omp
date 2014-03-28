@@ -30,8 +30,8 @@ Specific requirements : [PHPunit][php-unit]. Installing with pear for example :
 
 Setting up test environment :
 
-    mysql -u root -e 'create database omp_test'
-    mysql -u root omp_test < tests/functional/testserver.sql
+    mysql -u root -e 'create database omp'
+    mysql -u root omp < tests/functional/testserver.sql
     cp config.TRAVIS.inc.php config.inc.php
 
 Running the tests :
