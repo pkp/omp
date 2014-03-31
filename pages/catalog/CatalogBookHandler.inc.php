@@ -151,6 +151,7 @@ class CatalogBookHandler extends Handler {
 	 */
 	function download($args, $request, $view = false) {
 		$this->setupTemplate($request);
+		$press = $request->getPress();
 
 		$monographId = (int) array_shift($args); // Validated thru auth
 		$publicationFormatId = (int) array_shift($args);
@@ -172,7 +173,11 @@ class CatalogBookHandler extends Handler {
 		$ompCompletedPaymentDao = DAORegistry::getDAO('OMPCompletedPaymentDAO');
 		$user = $request->getUser();
 		if ($submissionFile->getDirectSalesPrice() === '0' || ($user && $ompCompletedPaymentDao->hasPaidPurchaseFile($user->getId(), $fileIdAndRevision))) {
-			// Paid purchase or open access. Allow download.
+			// Paid purchase or open access.
+			if (!$user && $press->getSetting('restrictMonographAccess')) {
+				// User needs to register first.
+				return $request->redirect(null, 'login');
+			}
 
 			// If inline viewing is requested, permit plugins to
 			// handle the document.
@@ -205,7 +210,6 @@ class CatalogBookHandler extends Handler {
 			$request->redirect(null, 'catalog');
 		}
 
-		$press = $request->getPress();
 		$queuedPayment = $ompPaymentManager->createQueuedPayment(
 			$press->getId(),
 			PAYMENT_TYPE_PURCHASE_FILE,
