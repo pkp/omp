@@ -24,8 +24,8 @@ before_install:
   - sleep 3 # Give selenium server time to start.
 
   # Install the test database.
-  - mysql -u root -e 'create database ojs'
-  - mysql -u root ojs < tests/functional/testserver.sql
+  - mysql -u root -e 'create database omp'
+  - mysql -u root omp < tests/functional/testserver.sql
 
   # Files dependency.
   - mv config.TRAVIS.inc.php config.inc.php
