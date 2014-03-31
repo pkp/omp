@@ -10,7 +10,7 @@
   * Upgrade descriptor file.
   -->
 
-<install version="1.1.0.0">
+<install version="1.1.1.0">
 	<!-- there are some column and table name changes that need to occur first. -->
 	<upgrade minversion="0.9.9.0" maxversion="1.0.1.0">
 		<!-- Upgrade prior versions to 1.1.0.0 -->
@@ -56,6 +56,10 @@
 		 - briefly in the omp-stable-1_0 branch).
 		 -->
 		<data file="dbscripts/xml/upgrade/1.1.0.0_update2.xml" />
+	</upgrade>
+
+	<upgrade minversion="0.9.9.0" maxversion="1.1.0.9">
+		<code function="fixAuthorSettings" /><!-- Bug #8663 -->
 	</upgrade>
 
 	<!-- Update plugin configuration - should be done as the final upgrade task -->
