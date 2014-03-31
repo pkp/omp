@@ -146,6 +146,48 @@ class Upgrade extends Installer {
 
 		return true;
 	}
+
+	/**
+	 * Fix incorrectly stored author settings. (See bug #8663.)
+	 * @return boolean
+	 */
+	function fixAuthorSettings() {
+		$authorDao = DAORegistry::getDAO('AuthorDAO');
+
+		// Get all authors with broken data
+		$result = $authorDao->retrieve(
+			'SELECT DISTINCT author_id
+			FROM	author_settings
+			WHERE	(setting_name = ? OR setting_name = ?)
+				AND setting_type = ?',
+			array('affiliation', 'biography', 'object')
+		);
+
+		while (!$result->EOF) {
+			$row = $result->getRowAssoc(false);
+			$authorId = $row['author_id'];
+			$result->MoveNext();
+
+			$author = $authorDao->getById($authorId);
+			if (!$author) continue; // Bonehead check (DB integrity)
+
+			foreach ((array) $author->getAffiliation(null) as $locale => $affiliation) {
+				if (is_array($affiliation)) foreach($affiliation as $locale => $s) {
+					$author->setAffiliation($s, $locale);
+				}
+			}
+
+			foreach ((array) $author->getBiography(null) as $locale => $biography) {
+				if (is_array($biography)) foreach($biography as $locale => $s) {
+					$author->setBiography($s, $locale);
+				}
+			}
+			$authorDao->updateObject($author);
+		}
+
+		$result->Close();
+		return true;
+	}
 }
 
 ?>
