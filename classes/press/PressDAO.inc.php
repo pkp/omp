@@ -117,7 +117,7 @@ class PressDAO extends ContextDAO {
 		$emailTemplateDao->deleteEmailTemplatesByPress($pressId);
 
 		$notificationStatusDao = DAORegistry::getDAO('NotificationStatusDAO');
-		$notificationStatusDao->deleteByPressId($contextId);
+		$notificationStatusDao->deleteByPressId($pressId);
 
 		$monographDao = DAORegistry::getDAO('MonographDAO');
 		$monographDao->deleteByContextId($pressId);
