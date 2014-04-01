@@ -173,9 +173,19 @@ class AppLocale extends PKPLocale {
 		parent::installLocale($locale);
 
 		$press = self::$request->getPress();
+		if (!$press) { // multiple presses, admin context
+			$pressDao = DAORegistry::GetDAO('PressDAO');
+			$presses = $pressDao->getAll();
+			$presses = $presses->toArray();
+		} else {
+			$presses[] = $press;
+		}
 
 		$genreDao = DAORegistry::getDAO('GenreDAO'); /* @var $genreDao GenreDAO */
-		$genreDao->installDefaults($press->getId(), array($locale));
+
+		foreach ($presses as $press) {
+			$genreDao->installDefaults($press->getId(), array($locale));
+		}
 
 		$userGroupDao = DAORegistry::getDAO('UserGroupDAO'); /* @var $userGroupDao UserGroupDAO */
 		$userGroupDao->installLocale($locale);
