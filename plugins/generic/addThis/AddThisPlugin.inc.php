@@ -41,13 +41,6 @@ class AddThisPlugin extends GenericPlugin {
 	}
 
 	/**
-	 * @copydoc PKPPlugin::getName()
-	 */
-	function getName() {
-		return 'AddThisPlugin';
-	}
-
-	/**
 	 * @copydoc PKPPlugin::getDisplayName()
 	 */
 	function getDisplayName() {
