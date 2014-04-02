@@ -15,12 +15,6 @@
 
 	<!-- Languages -->
 
-	<!-- Review forms -->
-	<message key="manager.reviewForms">Begutachtungsformulare</message>
-	<message key="manager.reviewForms.completed">Abgeschlossen</message>
-	<message key="manager.reviewForms.title">Titel</message>
-	<message key="manager.reviewFormElements.viewable">Sichtbar (für Autor/innen)</message>
-
 	<!-- Series management -->
 
 	<!-- Settings management -->
