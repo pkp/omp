@@ -112,6 +112,22 @@ class Series extends PKPSection {
 	}
 
 	/**
+	 * Get path to series (in URL).
+	 * @return string
+	 */
+	function getPath() {
+		return $this->getData('path');
+	}
+
+	/**
+	 * Set path to series (in URL).
+	 * @param $path string
+	 */
+	function setPath($path) {
+		return $this->setData('path', $path);
+	}
+
+	/**
 	 * Get series description.
 	 * @return string
 	 */
@@ -165,22 +181,6 @@ class Series extends PKPSection {
 	 */
 	function setImage($image) {
 		return $this->setData('image', $image);
-	}
-
-	/**
-	 * Get sequence of series.
-	 * @return float
-	 */
-	function getSequence() {
-		return $this->getData('sequence');
-	}
-
-	/**
-	 * Set sequence of series.
-	 * @param $sequence float
-	 */
-	function setSequence($sequence) {
-		return $this->setData('sequence', $sequence);
 	}
 
 	/**

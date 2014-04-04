@@ -15,13 +15,14 @@
  */
 
 import ('classes.press.Series');
+import ('lib.pkp.classes.context.PKPSectionDAO');
 
-class SeriesDAO extends DAO {
+class SeriesDAO extends PKPSectionDAO {
 	/**
 	 * Constructor
 	 */
 	function SeriesDAO() {
-		parent::DAO();
+		parent::PKPSectionDAO();
 	}
 
 	/**
@@ -86,15 +87,13 @@ class SeriesDAO extends DAO {
 	 * @return Series
 	 */
 	function _fromRow($row) {
-		$series = $this->newDataObject();
+		$series = parent::_fromRow($row);
 
 		$series->setId($row['series_id']);
 		$series->setPressId($row['press_id']);
 		$series->setFeatured($row['featured']);
-		$series->setPath($row['path']);
 		$series->setImage(unserialize($row['image']));
-		$series->setSequence($row['seq']);
-		$series->setEditorRestricted($row['editor_restricted']);
+		$series->setPath($row['path']);
 
 		$this->getDataObjectSettings('series_settings', 'series_id', $row['series_id'], $series);
 
@@ -108,7 +107,10 @@ class SeriesDAO extends DAO {
 	 * @return array
 	 */
 	function getLocaleFieldNames() {
-		return array('title', 'description', 'prefix', 'subtitle');
+		return array_merge(
+			parent::getLocaleFieldNames(),
+			array('description', 'prefix', 'subtitle')
+		);
 	}
 
 	/**
@@ -176,24 +178,16 @@ class SeriesDAO extends DAO {
 	}
 
 	/**
-	 * Delete an series.
-	 * @param $series Series
-	 */
-	function deleteObject($series) {
-		return $this->deleteById($series->getId(), $series->getPressId());
-	}
-
-	/**
 	 * Delete an series by ID.
 	 * @param $seriesId int
-	 * @param $pressId int optional
+	 * @param $contextId int optional
 	 */
-	function deleteById($seriesId, $pressId = null) {
-		// Validate the $pressId, if supplied.
-		if (!$this->seriesExists($seriesId, $pressId)) return false;
+	function deleteById($seriesId, $contextId = null) {
+		// Validate the $contextId, if supplied.
+		if (!$this->seriesExists($seriesId, $contextId)) return false;
 
 		$seriesEditorsDao = DAORegistry::getDAO('SeriesEditorsDAO');
-		$seriesEditorsDao->deleteEditorsBySeriesId($seriesId, $pressId);
+		$seriesEditorsDao->deleteEditorsBySeriesId($seriesId, $contextId);
 
 		// Remove monographs from this series
 		$monographDao = DAORegistry::getDAO('MonographDAO');
@@ -211,10 +205,7 @@ class SeriesDAO extends DAO {
 	 * @param $pressId int
 	 */
 	function deleteByPressId($pressId) {
-		$series = $this->getByPressId($pressId);
-		while ($series = $series->next()) {
-			$this->deleteObject($series);
-		}
+		$this->deleteByContextId($pressId);
 	}
 
 	/**
@@ -255,6 +246,14 @@ class SeriesDAO extends DAO {
 	 * @return DAOResultFactory containing Series ordered by sequence
 	 */
 	function getByPressId($pressId, $rangeInfo = null) {
+		return $this->getByContextId($pressId, $rangeInfo);
+	}
+
+	/**
+	 * Retrieve all series for a press.
+	 * @return DAOResultFactory containing Series ordered by sequence
+	 */
+	function getByContextId($pressId, $rangeInfo = null) {
 		$params = array(
 			'title', AppLocale::getPrimaryLocale(),
 			'title', AppLocale::getLocale(),
