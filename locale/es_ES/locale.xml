@@ -486,6 +486,8 @@ Tu servidor soporta actualmente mbstring: <strong>{$supportsMBString}</strong>]]
 	<message key="notification.type.indexRequest">Se te ha solicitado que crees un índice para  "{$title}".</message>
 	<message key="notification.type.editorDecisionInternalReview">Proceso de revisión interna comenzado.</message>
 	<message key="notification.type.roundStatusTitle">Estado de la ronda {$round}</message>
+	<message key="notification.type.approveSubmission">Esta propuesta está actualmente pendiente de aprobación en la herramienta de Entrada de Catálogo antes de que pueda aparecer en el catálogo público.</message>
+	<message key="notification.type.approveSubmissionTitle">Pendiente de aprobación.</message>
 	<message key="notification.type.formatNeedsApprovedSubmission">Los metadatos del catálogo deben aprobarse antes de que el formato de publicación se incluya en el catálogo.  Para aprobar los metadatos del catálogo, haz clic en la pestaña Monografía anterior.</message>
 	<message key="notification.type.configurePaymentMethod.title">No se ha configurado ningún método de pago.</message>
 	<message key="notification.type.configurePaymentMethod">Se requiere un método de pago configurado antes de poder definir ajustes de e-commerce.</message>
