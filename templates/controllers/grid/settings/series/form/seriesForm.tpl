@@ -91,7 +91,7 @@
 			{translate key="grid.series.urlWillBe" sampleUrl=$sampleUrl}
 		{/capture}
 
-		{fbvFormSection title="series.path" required=true description=$instruct translate=false for="path"}
+		{fbvFormSection title="series.path"|translate required=true description=$instruct translate=false for="path"}
 			{fbvElement type="text" id="path" value=$path size=$smarty.const.SMALL maxlength="32"}
 		{/fbvFormSection}
 	{/fbvFormArea}
