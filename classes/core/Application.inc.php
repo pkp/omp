@@ -87,8 +87,6 @@ class Application extends PKPApplication {
 	 */
 	function getDAOMap() {
 		return array_merge(parent::getDAOMap(), array(
-			'AnnouncementDAO' => 'classes.announcement.AnnouncementDAO',
-			'AnnouncementTypeDAO' => 'classes.announcement.AnnouncementTypeDAO',
 			'AuthorDAO' => 'classes.monograph.AuthorDAO',
 			'ChapterAuthorDAO' => 'classes.monograph.ChapterAuthorDAO',
 			'ChapterDAO' => 'classes.monograph.ChapterDAO',
