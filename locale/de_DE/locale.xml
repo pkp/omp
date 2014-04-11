@@ -13,13 +13,14 @@
 
 <locale name="de_DE" full_name = "Deutsch (Deutschland)">
 	<!-- General monograph keys -->
+	<message key="monograph.coverImage">Titelbild</message>
 	<message key="monograph.accessLogoOpen.altText">Open Access</message>
-
 
 	<!--  Metadata field description keys -->
 	<message key="monograph.publicationFormat.price">Preis</message>
 
 	<!--  Dimension keys  -->
+	<message key="monograph.publicationFormat.productFileSize">Dateigröße in MB</message>
 
 	<!-- assigned publication format grid and form keys  -->
 
@@ -28,6 +29,10 @@
 	<!-- assigned identification code grid and form keys -->
 
 	<!-- assigned sales rights grid and form keys -->
+	<message key="grid.catalogEntry.countries">Länder</message>
+	<message key="grid.catalogEntry.regions">Regionen</message>
+	<message key="grid.catalogEntry.included">Eingeschlossen</message>
+	<message key="grid.catalogEntry.excluded">Ausgeschlossen</message>
 
 	<!--  market regions grid and form keys  -->
 
@@ -118,6 +123,12 @@
 	<!-- Monograph Logs -->
 
 	<!-- Notifications -->
+	<message key="notification.addedPublicationDate">Publikationsdatum hinzugefügt.</message>
+	<message key="notification.editedPublicationDate">Publikationsdatum bearbeitet.</message>
+	<message key="notification.removedPublicationDate">Publikationsdatum entfernt.</message>
+	<message key="notification.addedPublicationFormat">Publikationsformat hinzugefügt.</message>
+	<message key="notification.editedPublicationFormat">Publikationsformat bearbeitet.</message>
+	<message key="notification.removedPublicationFormat">Publikationsformat entfernt.</message>
 
 	<!-- Notification Types -->
 
@@ -127,7 +138,10 @@
 	<!-- Debug messages -->
 
 	<!-- RT Entities -->
+	<message key="rt.metadata.pkp.dctype">Buch</message>
 
 	<!-- General plugin information -->
+	<message key="plugins.categories.viewableFiles">Plug-Ins für veröffentlichte Dateien</message>
+	<message key="plugins.categories.viewableFiles.description">Plug-Ins für veröffentlichte Dateien fügen Unterstützung für das eingebettete Anzeigen verschiedener Dateiformate hinzu, z.B. durch PDF-Einbettung.</message>
 	 <message key="submission.pdf.download">Diese PDF-Datei herunterladen</message>
 </locale>
