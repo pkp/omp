@@ -67,6 +67,7 @@ class MonographSearchDAO extends SubmissionSearchDAO {
 		$result = $this->retrieveCached(
 			$sql = 'SELECT
 				o.submission_id,
+				ps.date_published as s_pub,
 				COUNT(*) AS count
 			FROM
 				submissions s,
@@ -81,7 +82,19 @@ class MonographSearchDAO extends SubmissionSearchDAO {
 			3600 * $cacheHours // Cache for 24 hours
 		);
 
-		return new DBRowIterator($result);
+		$returner = array();
+		while (!$result->EOF) {
+			$row = $result->getRowAssoc(false);
+			$returner[$row['submission_id']] = array(
+				'count' => $row['count'],
+				'press_id' => $row['press_id'],
+				'publicationDate' => $this->datetimeFromDB($row['s_pub'])
+			);
+			$result->MoveNext();
+		}
+		$result->Close();
+
+		return $returner;
 	}
 }
 
