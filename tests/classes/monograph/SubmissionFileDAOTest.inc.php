@@ -124,7 +124,7 @@ class SubmissionFileDAOTest extends DatabaseTestCase {
 		$downcastFile->setRevision(2);
 		$downcastFile->setDateUploaded('2011-12-05 00:00:00');
 		$downcastFile->setDateModified('2011-12-05 00:00:00');
-		$file1Rev2 =& $this->_insertFile($downcastFile, 'test downcast', SUBMISSION_FILE_DAO_TEST_DOC_GENRE_ID);
+		$file1Rev2 = $this->_insertFile($downcastFile, 'test downcast', SUBMISSION_FILE_DAO_TEST_DOC_GENRE_ID);
 
 		// Test whether the target type is correct.
 		self::assertType('MonographFile', $file1Rev2);
@@ -135,7 +135,7 @@ class SubmissionFileDAOTest extends DatabaseTestCase {
 		// artwork genre so that it needs to be upcast for insert.
 		$upcastFile = clone($file2Rev1); /* @var $upcastFile MonographFile */
 		$upcastFile->setRevision(2);
-		$file2Rev2 =& $this->_insertFile($upcastFile, 'test upcast', SUBMISSION_FILE_DAO_TEST_ART_GENRE_ID);
+		$file2Rev2 = $this->_insertFile($upcastFile, 'test upcast', SUBMISSION_FILE_DAO_TEST_ART_GENRE_ID);
 
 		// Test whether the target type is correct.
 		self::assertType('ArtworkFile', $file2Rev2);
@@ -165,13 +165,13 @@ class SubmissionFileDAOTest extends DatabaseTestCase {
 		// Update the artwork file.
 		$file1Rev1->setOriginalFileName('updated-file-name');
 		$file1Rev1->setCaption('test-caption');
-		$updatedFile =& $submissionFileDao->updateObject($file1Rev1);
+		$updatedFile = $submissionFileDao->updateObject($file1Rev1);
 
 		// Now change the genre so that the canonical file name
 		// and the file implementation will have to change.
 		$previousFilePath = $file1Rev1->getFilePath();
 		$file1Rev1->setGenreId(SUBMISSION_FILE_DAO_TEST_DOC_GENRE_ID);
-		$updatedFile =& $submissionFileDao->updateObject($file1Rev1);
+		$updatedFile = $submissionFileDao->updateObject($file1Rev1);
 
 		// Test whether the target type is correct.
 		self::assertType('MonographFile', $updatedFile);
@@ -187,7 +187,7 @@ class SubmissionFileDAOTest extends DatabaseTestCase {
 		// Now change the genre back so that we can test casting
 		// in the other direction.
 		$updatedFile->setGenreId(SUBMISSION_FILE_DAO_TEST_ART_GENRE_ID);
-		$updatedFile =& $submissionFileDao->updateObject($updatedFile);
+		$updatedFile = $submissionFileDao->updateObject($updatedFile);
 
 		// Test whether the target type is correct.
 		self::assertType('ArtworkFile', $updatedFile);
@@ -386,11 +386,11 @@ class SubmissionFileDAOTest extends DatabaseTestCase {
 		// Create two files with different file ids.
 		$file1Rev1->setFileId(null);
 		$file1Rev1->setRevision(null);
-		$file1Rev1 =& $submissionFileDao->insertObject($file1Rev1, $this->testFile);
+		$file1Rev1 = $submissionFileDao->insertObject($file1Rev1, $this->testFile);
 		$file1Rev2->setFileId(null);
 		$file1Rev2->setRevision(null);
 		$file1Rev2->setGenreId(SUBMISSION_FILE_DAO_TEST_DOC_GENRE_ID);
-		$file1Rev2 =& $submissionFileDao->insertObject($file1Rev2, $this->testFile);
+		$file1Rev2 = $submissionFileDao->insertObject($file1Rev2, $this->testFile);
 
 		// Test the file ids, revisions and identifying fields.
 		self::assertNotEquals($file1Rev1->getFileId(), $file1Rev2->getFileId());
@@ -403,7 +403,7 @@ class SubmissionFileDAOTest extends DatabaseTestCase {
 		// setAsLatestRevision()
 		//
 		// Now make the second file a revision of the first.
-		$file1Rev2 =& $submissionFileDao->setAsLatestRevision($file1Rev1->getFileId(), $file1Rev2->getFileId(),
+		$file1Rev2 = $submissionFileDao->setAsLatestRevision($file1Rev1->getFileId(), $file1Rev2->getFileId(),
 				$file1Rev1->getSubmissionId(), $file1Rev1->getFileStage());
 
 		// And test the file ids, revisions, identifying fields and types again.
@@ -411,7 +411,7 @@ class SubmissionFileDAOTest extends DatabaseTestCase {
 		self::assertEquals($file1Rev1->getGenreId(), $file1Rev2->getGenreId());
 		self::assertEquals(1, $file1Rev1->getRevision());
 		self::assertEquals(2, $submissionFileDao->getLatestRevisionNumber($file1Rev1->getFileId()));
-		$submissionFiles =& $submissionFileDao->getAllRevisions($file1Rev1->getFileId());
+		$submissionFiles = $submissionFileDao->getAllRevisions($file1Rev1->getFileId());
 		self::assertEquals(2, count($submissionFiles));
 		foreach($submissionFiles as $submissionFile) { /* @var $submissionFile SubmissionFile */
 			self::assertType('ArtworkFile', $submissionFile);
@@ -505,7 +505,7 @@ class SubmissionFileDAOTest extends DatabaseTestCase {
 
 		// Insert the file.
 		$submissionFileDao = DAORegistry::getDAO('SubmissionFileDAO'); /* @var $submissionFileDao SubmissionFileDAO */
-		$file =& $submissionFileDao->insertObject($file, $this->testFile);
+		$file = $submissionFileDao->insertObject($file, $this->testFile);
 
 		// Test the outcome.
 		self::assertFileExists($file->getFilePath());
