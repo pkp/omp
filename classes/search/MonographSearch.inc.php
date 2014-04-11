@@ -33,7 +33,8 @@ class MonographSearch extends SubmissionSearch {
 		// Calculate a well-ordered (unique) score.
 		$resultCount = count($unorderedResults);
 		$i = 0;
-		foreach ($unorderedResults as $submissionId => $data) {
+		foreach ($unorderedResults as $submissionId => &$data) {
+			// Reference is necessary to permit modification
 			$data['score'] = ($resultCount * $data['count']) + $i++;
 		}
 
@@ -77,7 +78,6 @@ class MonographSearch extends SubmissionSearch {
 			}
 		}
 
-		$i=0; // Used to prevent ties from clobbering each other
 		foreach ($unorderedResults as $submissionId => $data) {
 			// Exclude unwanted IDs.
 			if (in_array($submissionId, $exclude)) continue;
@@ -122,7 +122,7 @@ class MonographSearch extends SubmissionSearch {
 			if (!isset($orderedResults[$orderKey])) {
 				$orderedResults[$orderKey] = array();
 			}
-			$orderedResults[$orderKey][$data['score'] + $i++] = $submissionId;
+			$orderedResults[$orderKey][$data['score']] = $submissionId;
 		}
 
 		// Order the results by primary order.
