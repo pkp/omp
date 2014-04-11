@@ -67,6 +67,7 @@ class MonographSearchDAO extends SubmissionSearchDAO {
 		$result = $this->retrieveCached(
 			$sql = 'SELECT
 				o.submission_id,
+				s.context_id as press_id,
 				ps.date_published as s_pub,
 				COUNT(*) AS count
 			FROM
