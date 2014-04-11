@@ -7,12 +7,18 @@
   * Copyright (c) 2014 Simon Fraser University Library
   * Copyright (c) 2003-2014 John Willinsky
   * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
-  * Localization strings for the de_DE (Deutsch (Deutschland)) locale.
+  * Localization strings (Site administration) for the de_DE (Deutsch (Deutschland)) locale.
   * Please contact Marco Tullney, marco.tullney@fu-berlin.de, with any questions regarding this translation.
   -->
 
 <locale name="de_DE" full_name = "Deutsch (Deutschland)">
+	<message key="admin.settings.noPressRedirect">Nicht umleiten</message>
+
 	<message key="admin.systemVersion">OMP-Version</message>
 	<message key="admin.systemConfiguration">OMP-Konfiguration</message>
+
+	<!-- System Information -->
+	<message key="admin.overwriteConfigFileInstructions"><![CDATA[<h4>Beachten Sie:</div>
+<p>Das System konnte die Konfigurationsdatei nicht automatisch überschreiben. Öffnen Sie <tt>config.inc.php</tt> mit einem geeigneten Texteditor und ersetzen Sie den Inhalt durch den Text im nachstehenden Textfeld.</p>]]></message>
 
 </locale>
