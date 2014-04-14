@@ -79,4 +79,16 @@
 	<div class="separator"></div>
 {/if}
 
+{if $submissionInfo.reviewPolicy}
+	<div id="reviewPolicy">
+		<h3>{translate key="about.reviewPolicy"}</h3>
+
+		{url|assign:editUrl page="management" op="settings" path="press" anchor="policies"}
+		{include file="common/linkToEditPage.tpl" editUrl=$editUrl}
+
+		<p>{$submissionInfo.reviewPolicy|nl2br}</p>
+	</div>
+	<div class="separator"></div>
+{/if}
+
 {include file="common/footer.tpl"}
