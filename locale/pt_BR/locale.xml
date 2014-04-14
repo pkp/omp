@@ -369,7 +369,7 @@
 	<message key="about.submissionPreparationChecklist.description">Como parte do processo de submissão, é necessário que os autores verifiquem que sua submissão atende aos seguintes requisitos, sendo que elas serão devolvidas submissão que não atendam a estas diretrizes.</message>
 	<message key="about.copyrightNotice">Aviso de direito autoral</message>
 	<message key="about.privacyStatement">Declaração de privacidade</message>
-	<message key="about.peerReviewProcess">Processo de avaliação pelos pares</message>
+	<message key="about.reviewPolicy">Processo de avaliação pelos pares</message>
 	<message key="about.publicationFrequency">Periodicidade de publicação</message>
 	<message key="about.openAccessPolicy">Política de acesso aberto</message>
 	<message key="about.pressSponsorship">Patrocínio da editora</message>

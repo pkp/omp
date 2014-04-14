@@ -372,7 +372,7 @@
 	<message key="about.submissionPreparationChecklist.description">Como parte del proceso de entrega de propuestas, se exige a los autores que comprueben que la propuesta está de acuerdo con todos los siguientes elementos, y las propuestas que no se acojan a estas directrices pueden ser devueltas a los autores.</message>
 	<message key="about.copyrightNotice">Aviso de copyright</message>
 	<message key="about.privacyStatement">Declaración de privacidad</message>
-	<message key="about.peerReviewProcess">Proceso de revisión por pares</message>
+	<message key="about.reviewPolicy">Proceso de revisión por pares</message>
 	<message key="about.publicationFrequency">Periodicidad de la publicación</message>
 	<message key="about.openAccessPolicy">Política de acceso abierto</message>
 	<message key="about.pressSponsorship">Patrocinio de la editorial</message>

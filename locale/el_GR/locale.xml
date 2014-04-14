@@ -378,7 +378,7 @@
 	<message key="about.submissionPreparationChecklist.description">Ως μέρος της διαδικασίας υποβολής, είναι απαραίτητο οι συγγραφείας να ελέγχουν τη συμμόρφωση της υποβολής με όλα τα ακόλουθα τεκμήρια, ενώ οι υποβολές που δεν τηρούν τις Οδηγίες για τους συγγραφείς μπορεί να επιστραφούν στους συγγραφείς.</message>
 	<message key="about.copyrightNotice">Ενημέρωση για τα πνευματικά δικαιώματα</message>
 	<message key="about.privacyStatement">Πολιτική Προστασίας Προσωπικών Δεδομένων</message>
-	<message key="about.peerReviewProcess">Διαδικασία αξιολόγησης από ομότιμους αξιολογητές</message>
+	<message key="about.reviewPolicy">Διαδικασία αξιολόγησης από ομότιμους αξιολογητές</message>
 	<message key="about.publicationFrequency">Συχνότητα δημοσίευσης</message>
 	<message key="about.openAccessPolicy">Πολιτική Ανοικτής Πρόσβασης</message>
 	<message key="about.pressSponsorship">Χορηγοί Εκδόσεων</message>
