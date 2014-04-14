@@ -382,7 +382,7 @@
 	<message key="about.submissionPreparationChecklist.description">Dans le cadre du processus de soumission, les auteurs doivent s'assurer que leur soumission respecte les directives énoncées dans les documents suivants. Les soumissions qui ne respectent pas les lignes directrices peuvent être retournées à leur auteur.</message>
 	<message key="about.copyrightNotice">Avis de droit d'auteur</message>
 	<message key="about.privacyStatement">Énoncé de confidentialité</message>
-	<message key="about.peerReviewProcess">Processus d'évaluation par les pairs</message>
+	<message key="about.reviewPolicy">Processus d'évaluation par les pairs</message>
 	<message key="about.publicationFrequency">Fréquence de publication</message>
 	<message key="about.openAccessPolicy">Politique concernant le libre accès</message>
 	<message key="about.pressSponsorship">Parrainer la presse</message>
