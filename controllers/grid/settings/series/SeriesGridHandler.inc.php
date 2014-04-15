@@ -134,6 +134,15 @@ class SeriesGridHandler extends SetupGridHandler {
 	}
 
 	/**
+	 * Get the list of "publish data changed" events.
+	 * Used to update the site context switcher upon create/delete.
+	 * @return array
+	 */
+	function getPublishChangeEvents() {
+		return array('updateSidebar');
+	}
+
+	/**
 	 * Get the row handler - override the default row handler
 	 * @return SeriesGridRow
 	 */
