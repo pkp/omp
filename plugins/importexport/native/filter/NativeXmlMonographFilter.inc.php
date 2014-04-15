@@ -44,6 +44,14 @@ class NativeXmlMonographFilter extends NativeXmlSubmissionFilter {
 	}
 
 	/**
+	 * Get the method name for inserting a published submission.
+	 * @return string
+	 */
+	function getPublishedSubmissionInsertMethod(){
+		return 'insertObject';
+	}
+
+	/**
 	 * Populate the submission object from the node
 	 * @param $submission Submission
 	 * @param $node DOMElement
@@ -136,6 +144,16 @@ class NativeXmlMonographFilter extends NativeXmlSubmissionFilter {
 	 */
 	function getRepresentationExportFilterGroupName() {
 		return 'publication-format=>native-xml';
+	}
+
+	/**
+	 * Class-specific methods for published submissions.
+	 * @param PublishedMonograph $submission
+	 * @param DOMElement $node
+	 * @return PublishedMonograph
+	 */
+	function populatePublishedSubmission($submission, $node) {
+		return $submission;
 	}
 }
 
