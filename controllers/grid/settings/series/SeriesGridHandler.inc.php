@@ -87,7 +87,8 @@ class SeriesGridHandler extends SetupGridHandler {
 			$gridData[$seriesId] = array(
 				'title' => $series->getLocalizedTitle(),
 				'categories' => $categoriesString,
-				'editors' => $editorsString
+				'editors' => $editorsString,
+				'seq' => $series->getSequence()
 			);
 		}
 
