@@ -329,11 +329,11 @@ class SubmissionFileDAOTest extends DatabaseTestCase {
 
 
 		//
-		// getLatestNewRevisionsByReviewRound()
+		// getLatestRevisionsByReviewRound()
 		//
-		// Retrieve revisions of review round files that are newer than the review round files themselves.
-		self::assertEquals(array($uniqueId1_3 => $file1Rev3),
-				$submissionFileDao->getLatestNewRevisionsByReviewRound($reviewRound));
+		// Retrieve latest revisions of review round files
+		self::assertEquals(array($uniqueId1_3 => $file1Rev3, $uniqueId2_2 => $file2Rev2),
+				$submissionFileDao->getLatestRevisionsByReviewRound($reviewRound, null));
 
 
 		//
