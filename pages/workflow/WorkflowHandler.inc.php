@@ -182,6 +182,7 @@ class WorkflowHandler extends PKPWorkflowHandler {
 				return $json->getString();
 			}
 		} else {
+			$form->initData($args, $request);
 			$json = new JSONMessage(true, $form->fetch($request));
 			return $json->getString();
 		}
