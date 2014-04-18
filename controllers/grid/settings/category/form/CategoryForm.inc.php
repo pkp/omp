@@ -225,6 +225,7 @@ class CategoryForm extends Form {
 				case '.jpg': $image = imagecreatefromjpeg($temporaryFilePath); break;
 				case '.png': $image = imagecreatefrompng($temporaryFilePath); break;
 				case '.gif': $image = imagecreatefromgif($temporaryFilePath); break;
+				default: $image = null; // Suppress warn
 			}
 			assert($image);
 

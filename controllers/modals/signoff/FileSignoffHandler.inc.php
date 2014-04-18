@@ -280,7 +280,8 @@ class FileSignoffHandler extends FileManagementHandler {
 			// if we return the signoffId() it works for file grids, but not the category ones.
 			return DAO::getDataChangedEvent();
 		} else {
-			$json = new JSONMessage(false, array_pop($uploadForm->getErrorsArray()));
+			$errors = $uploadForm->getErrorsArray();
+			$json = new JSONMessage(false, array_pop($errors));
 		}
 		return $json->getString();
 	}

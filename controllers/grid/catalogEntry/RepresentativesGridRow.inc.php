@@ -22,7 +22,7 @@ class RepresentativesGridRow extends GridRow {
 	/**
 	 * Constructor
 	 */
-	function RepresentativesGridRow(&$monograph) {
+	function RepresentativesGridRow($monograph) {
 		$this->_monograph = $monograph;
 		parent::GridRow();
 	}
@@ -86,7 +86,7 @@ class RepresentativesGridRow extends GridRow {
 	 * Get the monograph for this row (already authorized)
 	 * @return Monograph
 	 */
-	function &getMonograph() {
+	function getMonograph() {
 		return $this->_monograph;
 	}
 }

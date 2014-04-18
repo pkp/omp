@@ -86,6 +86,7 @@ class SubmissionInformationCenterHandler extends PKPSubmissionInformationCenterH
 				$logMessage = 'informationCenter.history.notePosted';
 				break;
 			default:
+				$logMessage = null; // Suppress warn
 				assert(false);
 		}
 

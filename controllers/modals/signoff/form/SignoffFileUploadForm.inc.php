@@ -237,7 +237,7 @@ class SignoffFileUploadForm extends Form {
 				array(NOTIFICATION_TYPE_SIGNOFF_COPYEDIT, NOTIFICATION_TYPE_SIGNOFF_PROOF),
 				array($signoff->getUserId()),
 				ASSOC_TYPE_SUBMISSION,
-				$monograph->getId()
+				$this->getMonographId()
 			);
 
 			// log the event.

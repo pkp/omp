@@ -26,11 +26,16 @@ class CodelistItemDAO extends DAO {
 		parent::DAO();
 	}
 
-	function &_getCache($locale = null) {
+	/**
+	 * Get the codelist item cache.
+	 * @param $locale string Locale code (optional)
+	 * @return GenericCache
+	 */
+	function _getCache($locale = null) {
 		if ($locale == null) {
 			$locale = AppLocale::getLocale();
 		}
-		$cacheName =& $this->getCacheName();
+		$cacheName = $this->getCacheName();
 
 		$cache =& Registry::get($cacheName, true, null);
 		if ($cache === null) {
@@ -48,6 +53,12 @@ class CodelistItemDAO extends DAO {
 		return $cache;
 	}
 
+	/**
+	 * Handle a cache miss
+	 * @param $cache GenericCache
+	 * @param $id mixed ID that wasn't found in the cache
+	 * @return null
+	 */
 	function _cacheMiss($cache, $id) {
 		$allCodelistItems =& Registry::get('all' . $this->getName() . 'CodelistItems', true, null);
 		if ($allCodelistItems === null) {
@@ -62,7 +73,7 @@ class CodelistItemDAO extends DAO {
 
 			// Reload locale registry file
 			$xmlDao = new XMLDAO();
-			$nodeName =& $this->getName(); // i.e., subject
+			$nodeName = $this->getName(); // i.e., subject
 			$data = $xmlDao->parseStruct($filename, array($nodeName));
 
 			// Build array with ($charKey => array(stuff))
@@ -119,10 +130,9 @@ class CodelistItemDAO extends DAO {
 	 * @param $codelistId int
 	 * @return CodelistItem
 	 */
-	function &getByCode($code) {
-		$cache =& $this->_getCache();
-		$returner =& $this->_returnFromRow($code, $cache->get($code));
-		return $returner;
+	function getByCode($code) {
+		$cache = $this->_getCache();
+		return $this->_fromRow($code, $cache->get($code));
 	}
 
 	/**
@@ -130,11 +140,11 @@ class CodelistItemDAO extends DAO {
 	 * @param $locale an optional locale to use
 	 * @return array of CodelistItems
 	 */
-	function &getCodelistItems($locale = null) {
-		$cache =& $this->_getCache($locale);
+	function getCodelistItems($locale = null) {
+		$cache = $this->_getCache($locale);
 		$returner = array();
 		foreach ($cache->getContents() as $code => $entry) {
-			$returner[] =& $this->_returnFromRow($code, $entry);
+			$returner[] = $this->_fromRow($code, $entry);
 		}
 		return $returner;
 	}
@@ -144,29 +154,30 @@ class CodelistItemDAO extends DAO {
 	 * @param $locale an optional locale to use
 	 * @return array of CodelistItem names
 	 */
-	function &getNames($locale = null) {
-		$cache =& $this->_getCache($locale);
+	function getNames($locale = null) {
+		$cache = $this->_getCache($locale);
 		$returner = array();
-		$cacheContents =& $cache->getContents();
+		$cacheContents = $cache->getContents();
 		if (is_array($cacheContents)) {
 			foreach ($cache->getContents() as $code => $entry) {
-				$returner[] =& $entry[0];
+				$returner[] = $entry[0];
 			}
 		}
 		return $returner;
 	}
 
 	/**
-	 * Internal function to return a Codelist object from a row.
-	 * @param $row array
+	 * Internal function to construct and populate a Codelist object
+	 * @param $code string
+	 * @param $entry array
 	 * @return CodelistItem
 	 */
-	function &_returnFromRow($code, &$entry) {
+	function _fromRow($code, $entry) {
 		$codelistItem = $this->newDataObject();
 		$codelistItem->setCode($code);
 		$codelistItem->setText($entry[0]);
 
-		HookRegistry::call('CodelistItemDAO::_returnFromRow', array(&$codelistItem, &$code, &$entry));
+		HookRegistry::call('CodelistItemDAO::_fromRow', array(&$codelistItem, &$code, &$entry));
 
 		return $codelistItem;
 	}

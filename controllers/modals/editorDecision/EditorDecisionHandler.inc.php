@@ -72,6 +72,7 @@ class EditorDecisionHandler extends PKPEditorDecisionHandler {
 		} elseif ($stageId == WORKFLOW_STAGE_ID_EXTERNAL_REVIEW) {
 			$redirectOp = WORKFLOW_STAGE_PATH_EXTERNAL_REVIEW;
 		} else {
+			$redirectOp = null; // Suppress warn
 			assert(false);
 		}
 

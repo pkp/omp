@@ -25,7 +25,7 @@ class OMPCompletedPaymentDAO extends DAO {
 	 * @param $pressId int optional
 	 * @return OMPCompletedPayment
 	 */
-	function &getCompletedPayment($completedPaymentId, $pressId = null) {
+	function getCompletedPayment($completedPaymentId, $pressId = null) {
 		$params = array((int) $completedPaymentId);
 		if ($pressId) $params[] = (int) $pressId;
 
@@ -36,11 +36,10 @@ class OMPCompletedPaymentDAO extends DAO {
 
 		$returner = null;
 		if ($result->RecordCount() != 0) {
-			$returner =& $this->_returnPaymentFromRow($result->GetRowAssoc(false));
+			$returner = $this->_fromRow($result->GetRowAssoc(false));
 		}
 
 		$result->Close();
-		unset($result);
 		return $returner;
 	}
 
@@ -106,15 +105,14 @@ class OMPCompletedPaymentDAO extends DAO {
 	 * @param $pressId int
 	 * @return object DAOResultFactory containing matching payments
 	 */
-	function &getPaymentsByPressId($pressId, $rangeInfo = null) {
+	function getPaymentsByPressId($pressId, $rangeInfo = null) {
 		$result = $this->retrieveRange(
 			'SELECT * FROM completed_payments WHERE press_id = ? ORDER BY timestamp DESC',
 			(int) $pressId,
 			$rangeInfo
 		);
 
-		$returner = new DAOResultFactory($result, $this, '_returnPaymentFromRow');
-		return $returner;
+		return new DAOResultFactory($result, $this, '_fromRow');
 	}
 
 	/**
@@ -130,7 +128,7 @@ class OMPCompletedPaymentDAO extends DAO {
 	 * @param $row array
 	 * @return CompletedPayment
 	 */
-	function &_returnPaymentFromRow(&$row) {
+	function _fromRow($row) {
 		$payment = $this->newDataObject();
 		$payment->setTimestamp($this->datetimeFromDB($row['timestamp']));
 		$payment->setId($row['completed_payment_id']);

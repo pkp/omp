@@ -60,7 +60,7 @@ class ImportExportPlugin extends Plugin {
 	 * @param $args Parameters to the plugin
 	 */
 	function executeCLI($scriptName, $args) {
-		$this->usage();
+		$this->usage($scriptName);
 		// Implemented by subclasses
 	}
 
@@ -115,6 +115,7 @@ class ImportExportPlugin extends Plugin {
 	 * @see PKPPlugin::manage($verb, $args, $message, $messageParams, $pluginModalContent)
 	 */
 	function manage($verb, $args, &$message, &$messageParams, &$pluginModalContent = null) {
+		$request = $this->getRequest();
 		if ($verb === 'importexport') {
 			$request->redirectUrl($this->getManagementVerbUrl($verb));
 		}

@@ -147,8 +147,8 @@ class OAIDAO extends PKPOAIDAO {
 		$seriesId = null;
 
 		if (isset($seriesSpec)) {
-			$series =& $this->_seriesDao->getByPath($seriesSpec, $press->getId());
-			if (is_a($series, 'Series')) {
+			$series = $this->_seriesDao->getByPath($seriesSpec, $press->getId());
+			if ($series && is_a($series, 'Series')) {
 				$seriesId = $series->getId();
 			} else {
 				$seriesId = 0;

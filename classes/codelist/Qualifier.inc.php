@@ -24,7 +24,7 @@ import('classes.codelist.CodelistItem');
 class Qualifier extends CodelistItem {
 
 	/**
-	 * The numerical representation of these Subject Qualifiers in ONIX 3.0
+	 * @var int The numerical representation of these Subject Qualifiers in ONIX 3.0
 	 */
 	var $_onixSubjectSchemeIdentifier = 17;
 

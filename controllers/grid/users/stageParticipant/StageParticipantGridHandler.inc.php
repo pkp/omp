@@ -45,6 +45,7 @@ class StageParticipantGridHandler extends PKPStageParticipantGridHandler {
 				$logMessage = 'informationCenter.history.messageSent';
 				break;
 			default:
+				$logMessage = null; // Suppress warn
 				assert(false);
 		}
 

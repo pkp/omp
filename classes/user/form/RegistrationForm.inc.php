@@ -27,13 +27,14 @@ class RegistrationForm extends PKPRegistrationForm {
 	 * Register a new user.
 	 */
 	function execute($request) {
-		parent::execute($request);
+		$userId = parent::execute($request);
 
 		// By default, self-registering readers will receive
 		// context updates. (The double set is here to prevent a
 		// duplicate insert error msg if there was a notification entry
 		// left over from a previous role.)
 		if (isset($allowedRoles['reader']) && $this->getData($allowedRoles['reader'])) {
+			$context = $request->getContext();
 			$notificationStatusDao = DAORegistry::getDAO('NotificationStatusDAO');
 			$notificationStatusDao->setPressNotifications($context->getId(), $userId, false);
 			$notificationStatusDao->setPressNotifications($context->getId(), $userId, true);

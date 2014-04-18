@@ -218,9 +218,9 @@ class MarketForm extends Form {
 		if (!$market) {
 			// this is a new assigned format to this published monograph
 			$market = $marketDao->newDataObject();
+			$existingFormat = false;
 			if ($publicationFormat != null) { // ensure this assigned format is in this monograph
 				$market->setPublicationFormatId($publicationFormat->getId());
-				$existingFormat = false;
 			} else {
 				fatalError('This assigned format not in authorized monograph context!');
 			}
