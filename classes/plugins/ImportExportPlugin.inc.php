@@ -13,74 +13,14 @@
  * @brief Abstract class for import/export plugins
  */
 
-import('lib.pkp.classes.plugins.Plugin');
+import('lib.pkp.classes.plugins.PKPImportExportPlugin');
 
-class ImportExportPlugin extends Plugin {
+class ImportExportPlugin extends PKPImportExportPlugin {
+	/**
+	 * Constructor
+	 */
 	function ImportExportPlugin() {
-		parent::Plugin();
-	}
-
-	/**
-	 * Get the name of this plugin. The name must be unique within
-	 * its category.
-	 * @return String name of plugin
-	 */
-	function getName() {
-		assert(false); // Should always be overridden
-	}
-
-	/**
-	 * Get the display name of this plugin. This name is displayed on the
-	 * Press Manager's import/export page, for example.
-	 * @return String
-	 */
-	function getDisplayName() {
-		assert(false); // Should always be overridden
-	}
-
-	/**
-	 * Get a description of the plugin.
-	 */
-	function getDescription() {
-		assert(false); // Should always be overridden
-	}
-
-	/**
-	 * Display the import/export plugin UI.
-	 * @param $args Array The array of arguments the user supplied.
-	 */
-	function display($args, $request) {
-		$templateManager = TemplateManager::getManager($request);
-		$templateManager->register_function('plugin_url', array(&$this, 'smartyPluginUrl'));
-	}
-
-	/**
-	 * Execute import/export tasks using the command-line interface.
-	 * @param $scriptName The name of the command-line script (displayed as usage info)
-	 * @param $args Parameters to the plugin
-	 */
-	function executeCLI($scriptName, $args) {
-		$this->usage($scriptName);
-		// Implemented by subclasses
-	}
-
-	/**
-	 * Display the command-line usage information
-	 */
-	function usage($scriptName) {
-		// Implemented by subclasses
-	}
-
-	/**
-	 * Display verbs for the management interface.
-	 */
-	function getManagementVerbs() {
-		return array(
-			array(
-				'importexport',
-				__('manager.importExport')
-			)
-		);
+		parent::PKPImportExportPlugin();
 	}
 
 	/**
@@ -123,9 +63,9 @@ class ImportExportPlugin extends Plugin {
 	}
 
 	/**
-	 * Extend the {url ...} smarty to support import/export plugins.
+	 * @copydoc PKPImportExportPlugin::smartyPluginUrl
 	 */
-	function smartyPluginUrl($params, &$smarty) {
+	function smartyPluginUrl($params, $smarty) {
 		$path = array('plugin', $this->getName());
 		if (is_array($params['path'])) {
 			$params['path'] = array_merge($path, $params['path']);

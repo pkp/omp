@@ -207,7 +207,6 @@ class ONIXCodelistItemDAO extends DAO {
 		$codes = $this->getCodes($list);
 		$codes = array_flip($codes);
 		return $codes[$value];
-		return $code;
 	}
 
 	/**
