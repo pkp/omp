@@ -310,15 +310,11 @@ class ManageSpotlightsGridHandler extends GridHandler {
 	 * @return string Serialized JSON object
 	 */
 	function itemAutocomplete($args, $request) {
-
 		$name = $request->getUserVar('name');
-
 		$press = $this->getPress();
-
 		$itemList = array();
 
 		// get the items that match.
-
 		$matches = array();
 
 		$publishedMonographDao = DAORegistry::getDAO('PublishedMonographDAO');
@@ -330,7 +326,7 @@ class ManageSpotlightsGridHandler extends GridHandler {
 		}
 
 		if (!empty($matches)) {
-			$itemList[] = array('label' => String::strtoupper(__('submission.workType.authoredWork')), 'value' => '');
+			$itemList[] = array('label' => String::strtoupper(__('submission.monograph')), 'value' => '');
 			$itemList = array_merge($itemList, $matches);
 		}
 

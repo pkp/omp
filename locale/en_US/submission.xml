@@ -19,10 +19,11 @@
 	<message key="submission.title.tip"><![CDATA[The submission type is usually one of 'image', 'text', or other multimedia types including 'software' or 'interactive'.  Please choose the one most relevant for your submission.  Examples may be found at <a target="_blank" href="http://dublincore.org/documents/2001/04/12/usageguide/generic.shtml#type">http://dublincore.org/documents/2001/04/12/usageguide/generic.shtml#type</a>]]></message>
 	<message key="submission.select">Select Submission</message>
 	<message key="submission.synopsis">Synopsis</message>
-	<message key="submission.workType">Type of Book</message>
-	<message key="submission.workType.description">A monograph is a work authored wholly by one or more authors. An edited volume has different authors for each chapter (with the chapter details entered later in this process.)</message>
-	<message key="submission.workType.editedVolume">Edited Volume</message>
-	<message key="submission.workType.authoredWork">Monograph</message>
+	<message key="submission.workflowType">Type of Editorial Workflow</message>
+	<message key="submission.workflowType.description">A monograph is a work authored wholly by one or more authors. An edited volume has different authors for each chapter (with the chapter details entered later in this process.)</message>
+	<message key="submission.workflowType.editedVolume">Edited Volume: Authors are associated with their own chapter.</message>
+	<message key="submission.workflowType.authoredWork">Monograph: Authors are associated with the book as a whole.</message>
+	<message key="submission.monograph">Monograph</message>
 	<message key="submission.published">Production Ready</message>
 	<message key="submission.fairCopy">Fair Copy</message>
 	<message key="submission.artwork.permissions">Permissions</message>
