@@ -180,6 +180,20 @@ class NativeImportExportPlugin extends ImportExportPlugin {
 
 		return $importFilter->execute($importXml);
 	}
+
+	/**
+	 * @copydoc ImportExportPlugin::executeCLI
+	 */
+	function executeCLI($scriptName, &$args) {
+		fatalError('Not implemented.');
+	}
+
+	/**
+	 * @copydoc ImportExportPlugin::usage
+	 */
+	function usage($scriptName) {
+		fatalError('Not implemented.');
+	}
 }
 
 ?>

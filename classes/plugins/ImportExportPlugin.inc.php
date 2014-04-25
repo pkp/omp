@@ -15,7 +15,7 @@
 
 import('lib.pkp.classes.plugins.PKPImportExportPlugin');
 
-class ImportExportPlugin extends PKPImportExportPlugin {
+abstract class ImportExportPlugin extends PKPImportExportPlugin {
 	/**
 	 * Constructor
 	 */

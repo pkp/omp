@@ -127,6 +127,20 @@ class Onix30ExportPlugin extends ImportExportPlugin {
 		else fatalError('Could not convert submissions.');
 		return $xml;
 	}
+
+	/**
+	 * @copydoc ImportExportPlugin::executeCLI
+	 */
+	function executeCLI($scriptName, &$args) {
+		fatalError('Not implemented.');
+	}
+
+	/**
+	 * @copydoc ImportExportPlugin::usage
+	 */
+	function usage($scriptName) {
+		fatalError('Not implemented.');
+	}
 }
 
 ?>
