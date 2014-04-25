@@ -16,19 +16,18 @@
  *
  */
 
-
 switch ($op) {
 	//
 	// Settings
 	//
 	case 'categories':
-	case 'importExport':
 	case 'series':
 	case 'settings':
 		import('pages.management.SettingsHandler');
 		define('HANDLER_CLASS', 'SettingsHandler');
 		break;
 	case 'tools':
+	case 'importexport':
 		import('pages.management.ToolsHandler');
 		define('HANDLER_CLASS', 'ToolsHandler');
 		break;
@@ -37,4 +36,5 @@ switch ($op) {
 		define('HANDLER_CLASS', 'NavigationHandler');
 		break;
 }
+
 ?>
