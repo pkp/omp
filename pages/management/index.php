@@ -28,7 +28,7 @@ switch ($op) {
 		break;
 	case 'tools':
 	case 'importexport':
-		import('pages.management.ToolsHandler');
+		import('lib.pkp.pages.management.ToolsHandler');
 		define('HANDLER_CLASS', 'ToolsHandler');
 		break;
 	case 'navigation':
