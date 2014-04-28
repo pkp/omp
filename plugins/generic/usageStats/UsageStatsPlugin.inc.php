@@ -16,7 +16,7 @@
 
 import('lib.pkp.plugins.generic.usageStats.PKPUsageStatsPlugin');
 
-class UsageStatsPlugin extends PKPUSageStatsPlugin {
+class UsageStatsPlugin extends PKPUsageStatsPlugin {
 
 	/**
 	 * Constructor.
