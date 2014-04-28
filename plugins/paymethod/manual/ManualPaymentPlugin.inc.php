@@ -82,7 +82,7 @@ class ManualPaymentPlugin extends PaymethodPlugin {
 	/**
 	 * @see PaymentPlugin::displayPaymentForm
 	 */
-	function displayPaymentForm($queuedPaymentId, &$queuedPayment, $request) {
+	function displayPaymentForm($queuedPaymentId, $queuedPayment, $request) {
 		if (!$this->isConfigured()) return false;
 		$press = $request->getPress();
 		AppLocale::requireComponents(LOCALE_COMPONENT_APP_COMMON);
