@@ -63,6 +63,13 @@ class ManualPaymentPlugin extends PaymethodPlugin {
 	}
 
 	/**
+	 * @see PaymentPlugin::getRequiredSettingsFormFieldNames
+	 */
+	function getRequiredSettingsFormFieldNames() {
+		return array();
+	}
+
+	/**
 	 * @see PaymentPlugin::isConfigured
 	 */
 	function isConfigured() {
