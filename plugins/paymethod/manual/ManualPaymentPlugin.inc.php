@@ -70,12 +70,6 @@ class ManualPaymentPlugin extends PaymethodPlugin {
 		$press = $request->getPress();
 		if (!$press) return false;
 
-		// Make sure that all settings form fields have been filled in
-		foreach ($this->getSettingsFormFieldNames() as $settingName) {
-			$setting = $this->getSetting($press->getId(), $settingName);
-			if (empty($setting)) return false;
-		}
-
 		return true;
 	}
 
