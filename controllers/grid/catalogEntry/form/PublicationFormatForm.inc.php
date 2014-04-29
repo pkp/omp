@@ -84,7 +84,7 @@ class PublicationFormatForm extends Form {
 		if ($format) {
 			$this->_data = array(
 				'entryKey' => $format->getEntryKey(),
-				'name' => $format->getName(),
+				'name' => $format->getName(null),
 				'isPhysicalFormat' => $format->getPhysicalFormat()?true:false,
 			);
 		} else {
