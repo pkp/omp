@@ -238,7 +238,10 @@ class MonographONIX30XmlFilter extends NativeExportFilter {
 		$seriesDao = DAORegistry::getDAO('SeriesDAO');
 		$series = $seriesDao->getById($submission->getSeriesId());
 		if ($series != null) {
-			$titleElementNode->appendChild($this->_buildTextNode($doc, 'PartNumber', $submission->getSeriesPosition()));
+
+			if ($submission->getSeriesPosition() != '') {
+				$titleElementNode->appendChild($this->_buildTextNode($doc, 'PartNumber', $submission->getSeriesPosition()));
+			}
 
 			if ($series->getLocalizedPrefix() == '' || $series->getLocalizedTitle() == '') {
 				$titleElementNode->appendChild($this->_buildTextNode($doc, 'TitleText', trim(join(' ', array($series->getLocalizedPrefix(), $series->getLocalizedTitle())))));
@@ -344,11 +347,13 @@ class MonographONIX30XmlFilter extends NativeExportFilter {
 
 		foreach ($uniqueLanguages as $language) {
 			$languageNode = $doc->createElementNS($deployment->getNamespace(), 'Language');
-			$descDetailNode->appendChild($languageNode);
 
 			$languageNode->appendChild($this->_buildTextNode($doc, 'LanguageRole', '01'));
 			$onixLanguageCode = $onixCodelistItemDao->getCodeFromValue($language, 'List74');
-			$languageNode->appendChild($this->_buildTextNode($doc, 'LanguageCode', $onixLanguageCode));
+			if ($onixLanguageCode != '') {
+				$languageNode->appendChild($this->_buildTextNode($doc, 'LanguageCode', $onixLanguageCode));
+				$descDetailNode->appendChild($languageNode);
+			}
 			unset($languageNode);
 		}
 
