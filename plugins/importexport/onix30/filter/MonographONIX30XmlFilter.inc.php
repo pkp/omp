@@ -753,8 +753,8 @@ class MonographONIX30XmlFilter extends NativeExportFilter {
 	 * @param DOMDocument $doc
 	 * @param ONIX30ExportDeployment $deployment
 	 * @param string $type
-	 * @param string $measurement
-	 * @param string $unitCode
+	 * @param string $extentValue
+	 * @param string $extentUnit
 	 * @return DOMElement
 	 */
 	function _createExtentNode($doc, $deployment, $type, $extentValue, $extentUnit) {
