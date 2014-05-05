@@ -129,7 +129,7 @@ class Onix30ExportPlugin extends ImportExportPlugin {
 	}
 
 	/**
-	 * @copydoc ImportExportPlugin::executeCLI
+	 * @copydoc ImportExportPlugin::executeCLI($scriptName, $args)
 	 */
 	function executeCLI($scriptName, &$args) {
 		fatalError('Not implemented.');

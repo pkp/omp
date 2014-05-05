@@ -24,19 +24,19 @@ import('lib.pkp.classes.xml.XMLNode');
 
 class ONIXParserDOMHandler extends XMLParserDOMHandler {
 
-	/** @string  the list being searched for */
+	/** @var string the list being searched for */
 	var $_listName = null;
 
-	/** @boolean to maintain state */
+	/** @var boolean to maintain state */
 	var $_foundRequestedList = false;
 
-	/** @array of items the parser eventually returns */
+	/** @var array of items the parser eventually returns */
 	var $_listItems = null;
 
-	/** @string to store the current character data  */
+	/** @var string to store the current character data  */
 	var $_currentValue = null;
 
-	/** @boolean currently inside an xs:documentation element */
+	/** @var boolean currently inside an xs:documentation element */
 	var $_insideDocumentation = false;
 
 	/**
@@ -48,6 +48,12 @@ class ONIXParserDOMHandler extends XMLParserDOMHandler {
 		$this->_listItems = array();
 	}
 
+	/**
+	 * Callback function to act as the start element handler.
+	 * @param $parser XMLParser
+	 * @param $tag string
+	 * @param $attributes array
+	 */
 	function startElement($parser, $tag, $attributes) {
 		$this->currentData = null;
 
@@ -85,6 +91,8 @@ class ONIXParserDOMHandler extends XMLParserDOMHandler {
 
 	/**
 	 * Callback function to act as the character data handler.
+	 * @param $parser XMLParser
+	 * @param $data string
 	 */
 	function characterData($parser, $data) {
 		if ($this->_insideDocumentation) {
@@ -97,6 +105,8 @@ class ONIXParserDOMHandler extends XMLParserDOMHandler {
 
 	/**
 	 * Callback function to act as the end element handler.
+	 * @param $parser XMLParser
+	 * @param $tag string
 	 */
 	function endElement($parser, $tag) {
 
