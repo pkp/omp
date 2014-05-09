@@ -55,13 +55,7 @@ class SeriesEditorsListbuilderHandler extends SetupListbuilderHandler {
 		$seriesId = $this->getSeriesId();
 
 		$seriesEditorsDao = DAORegistry::getDAO('SeriesEditorsDAO');
-		$assignedSeriesEditors = $seriesEditorsDao->getEditorsBySeriesId($seriesId, $press->getId());
-		$returner = array();
-		foreach ($assignedSeriesEditors as $seriesEditorData) {
-			$seriesEditor = $seriesEditorData['user'];
-			$returner[$seriesEditor->getId()] = $seriesEditor;
-		}
-		return $returner;
+		return $seriesEditorsDao->getBySeriesId($seriesId, $press->getId());
 	}
 
 	/**

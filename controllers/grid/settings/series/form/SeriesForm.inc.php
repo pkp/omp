@@ -288,7 +288,7 @@ class SeriesForm extends Form {
 		}
 
 		// Otherwise, insert the row.
-		$seriesEditorsDao->insertEditor($press->getId(), $this->getSeriesId(), $userId, true, true);
+		$seriesEditorsDao->insertEditor($press->getId(), $this->getSeriesId(), $userId);
 		return true;
 	}
 

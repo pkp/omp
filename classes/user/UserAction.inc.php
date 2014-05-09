@@ -95,7 +95,7 @@ class UserAction {
 		$userSettingsDao = DAORegistry::getDAO('UserSettingsDAO');
 		$userSettingsDao->deleteSettings($oldUserId);
 		$seriesEditorsDao = DAORegistry::getDAO('SeriesEditorsDAO');
-		$seriesEditorsDao->deleteEditorsByUserId($oldUserId);
+		$seriesEditorsDao->deleteByUserId($oldUserId);
 
 		// Transfer old user's roles
 		$userGroupDao = DAORegistry::getDAO('UserGroupDAO');

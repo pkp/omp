@@ -71,14 +71,13 @@ class SeriesGridHandler extends SetupGridHandler {
 			if (empty($categoriesString)) $categoriesString = __('common.none');
 
 			// Get the series editors data for the row
-			$assignedSeriesEditors = $seriesEditorsDao->getEditorsBySeriesId($series->getId(), $press->getId());
+			$assignedSeriesEditors = $seriesEditorsDao->getBySeriesId($series->getId(), $press->getId());
 			if(empty($assignedSeriesEditors)) {
 				$editorsString = __('common.none');
 			} else {
 				$editors = array();
 				foreach ($assignedSeriesEditors as $seriesEditor) {
-					$user = $seriesEditor['user'];
-					$editors[] = $user->getLastName();
+					$editors[] = $seriesEditor->getLastName();
 				}
 				$editorsString = implode(', ', $editors);
 			}
