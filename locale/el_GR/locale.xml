@@ -321,17 +321,15 @@
 	<!-- Roles -->
 	<message key="user.role.manager">Διαχειριστής Εκδόσεων</message>
 	<message key="user.role.pressEditor">Επιμελητής Εκδόσεων</message>
-	<message key="user.role.seriesEditor">Επιμελητής Σειράς</message>
 	<message key="user.role.assistant">Βοηθός Εκδόσεων</message>
 	<message key="user.role.copyeditor">Επιμελητής Κειμένων</message>
-	<message key="user.role.seriesEditor">Επιμελητής Σειράς</message>
-	<message key="user.role.seriesEditors">Επιμελητές Σειράς</message>
+	<message key="user.role.subEditor">Επιμελητής Σειράς</message>
+	<message key="user.role.subEditors">Επιμελητές Σειράς</message>
 	<message key="user.role.proofreader">Επιμελητής Τυπογραφικών Δοκιμίων</message>
 	<message key="user.role.productionEditor">Επιμελητής Παραγωγής</message>
 
 	<message key="user.role.managers">Διαχειριστές Εκδόσεων</message>
 	<message key="user.role.editors">Επιμελητές</message>
-	<message key="user.role.seriesEditors">Επιμελητές Σειράς</message>
 	<message key="user.role.copyeditors">Επιμελητές Κειμένων</message>
 	<message key="user.role.proofreaders">Επιμελητές Τυπογραφικών Δοκιμίων</message>
 	<message key="user.role.productionEditors">Επιμελητές Παραγωγής</message>

@@ -329,14 +329,14 @@
 	<!-- OMP-specific Roles -->
 	<message key="user.role.manager">Press Manager</message>
 	<message key="user.role.pressEditor">Press Editor</message>
-	<message key="user.role.seriesEditor">Series Editor</message>
+	<message key="user.role.subEditor">Series Editor</message>
 	<message key="user.role.assistant">Press Assistant</message>
 	<message key="user.role.copyeditor">Copyeditor</message>
 	<message key="user.role.proofreader">Proofreader</message>
 	<message key="user.role.productionEditor">Production Editor</message>
 
 	<message key="user.role.managers">Press Managers</message>
-	<message key="user.role.seriesEditors">Series Editors</message>
+	<message key="user.role.subEditors">Series Editors</message>
 	<message key="user.role.editors">Editors</message>
 	<message key="user.role.copyeditors">Copyeditors</message>
 	<message key="user.role.proofreaders">Proofreaders</message>

@@ -14,39 +14,26 @@
  * stores/retrieves from an associative array
  */
 
-import('lib.pkp.classes.form.Form');
+import('lib.pkp.controllers.grid.settings.sections.form.PKPSectionForm');
 
 define('THUMBNAIL_MAX_WIDTH', 106);
 define('THUMBNAIL_MAX_HEIGHT', 100);
 
-class SeriesForm extends Form {
-	/** the id for the series being edited **/
-	var $_seriesId;
-
-	/** @var $_userId int The current user ID */
-	var $_userId;
-
-	/** @var $_imageExtension string Cover image extension */
-	var $_imageExtension;
-
-	/** @var $_sizeArray array Cover image information from getimagesize */
-	var $_sizeArray;
-
+class SeriesForm extends PKPSectionForm {
 	/**
 	 * Constructor.
+	 * @param $request Request
+	 * @param $seriesId int optional
 	 */
-	function SeriesForm($seriesId = null) {
-		$this->setSeriesId($seriesId);
-
-		$request = Application::getRequest();
-		$user = $request->getUser();
-		$this->_userId = $user->getId();
-
-		parent::Form('controllers/grid/settings/series/form/seriesForm.tpl');
+	function SeriesForm($request, $seriesId = null) {
+		parent::PKPSectionForm(
+			$request,
+			'controllers/grid/settings/series/form/seriesForm.tpl',
+			$seriesId
+		);
 
 		// Validation checks for this form
 		$this->addCheck(new FormValidatorLocale($this, 'title', 'required', 'manager.setup.form.series.nameRequired'));
-		$this->addCheck(new FormValidatorPost($this));
 	}
 
 	/**
@@ -100,7 +87,7 @@ class SeriesForm extends Form {
 	}
 
 	/**
-	 * Fetch
+	 * Fetch form contents
 	 * @param $request PKPRequest
 	 * @see Form::fetch()
 	 */
@@ -124,7 +111,8 @@ class SeriesForm extends Form {
 	 * @see Form::readInputData()
 	 */
 	function readInputData() {
-		$this->readUserVars(array('seriesId', 'path', 'featured', 'restricted', 'title', 'description', 'seriesEditors', 'categories', 'prefix', 'subtitle', 'temporaryFileId'));
+		parent::readInputData();
+		$this->readUserVars(array('seriesId', 'path', 'featured', 'restricted', 'description', 'categories', 'prefix', 'subtitle', 'temporaryFileId'));
 	}
 
 	/**
@@ -140,8 +128,7 @@ class SeriesForm extends Form {
 		if ($this->getSeriesId()) {
 			$series = $seriesDao->getById($this->getSeriesId(), $press->getId());
 		} else {
-			import('classes.press.Series');
-			$series = new Series();
+			$series = $seriesDao->newDataObject();
 			$series->setPressId($press->getId());
 		}
 
@@ -237,10 +224,10 @@ class SeriesForm extends Form {
 		// Save the series editor associations.
 		ListbuilderHandler::unpack(
 			$request,
-			$this->getData('seriesEditors'),
-			array(&$this, 'deleteSeriesEditorEntry'),
-			array(&$this, 'insertSeriesEditorEntry'),
-			array(&$this, 'updateSeriesEditorEntry')
+			$this->getData('subEditors'),
+			array(&$this, 'deleteSubEditorEntry'),
+			array(&$this, 'insertSubEditorEntry'),
+			array(&$this, 'updateSubEditorEntry')
 		);
 
 		// Save the category associations.
@@ -260,7 +247,7 @@ class SeriesForm extends Form {
 	 * @return int
 	 */
 	function getSeriesId() {
-		return $this->_seriesId;
+		return $this->getSectionId();
 	}
 
 	/**
@@ -268,55 +255,7 @@ class SeriesForm extends Form {
 	 * @param $seriesId int
 	 */
 	function setSeriesId($seriesId) {
-		$this->_seriesId = $seriesId;
-	}
-
-	/**
-	 * Persist a series editor association
-	 * @see ListbuilderHandler::insertEntry
-	 */
-	function insertSeriesEditorEntry($request, $newRowId) {
-		$press = $request->getPress();
-		$seriesId = $this->getSeriesId();
-		$userId = array_shift($newRowId);
-
-		$seriesEditorsDao = DAORegistry::getDAO('SeriesEditorsDAO');
-
-		// Make sure the membership doesn't already exist
-		if ($seriesEditorsDao->editorExists($press->getId(), $this->getSeriesId(), $userId)) {
-			return false;
-		}
-
-		// Otherwise, insert the row.
-		$seriesEditorsDao->insertEditor($press->getId(), $this->getSeriesId(), $userId);
-		return true;
-	}
-
-	/**
-	 * Delete a series editor association with this series.
-	 * @see ListbuilderHandler::deleteEntry
-	 * @param $request PKPRequest
-	 * @param $rowId int
-	 */
-	function deleteSeriesEditorEntry($request, $rowId) {
-		$seriesEditorsDao = DAORegistry::getDAO('SeriesEditorsDAO');
-		$press = $request->getPress();
-
-		$seriesEditorsDao->deleteEditor($press->getId(), $this->getSeriesId(), $rowId);
-		return true;
-	}
-
-	/**
-	 * Update a series editor association with this series.
-	 * @see ListbuilderHandler::deleteEntry
-	 * @param $request PKPRequest
-	 * @param $rowId int the old series editor
-	 * @param $newRowId array the new series editor
-	 */
-	function updateSeriesEditorEntry($request, $rowId, $newRowId) {
-		$this->deleteSeriesEditorEntry($request, $rowId);
-		$this->insertSeriesEditorEntry($request, $newRowId);
-		return true;
+		$this->setSectionId($sectionId);
 	}
 
 	/**
@@ -324,7 +263,6 @@ class SeriesForm extends Form {
 	 * @see ListbuilderHandler::insertEntry
 	 */
 	function insertCategoryEntry($request, $newRowId) {
-		$press = $request->getPress();
 		$seriesId = $this->getSeriesId();
 		$categoryId = array_shift($newRowId);
 
@@ -348,8 +286,6 @@ class SeriesForm extends Form {
 	 */
 	function deleteCategoryEntry($request, $rowId) {
 		$seriesDao = DAORegistry::getDAO('SeriesDAO');
-		$press = $request->getPress();
-
 		$seriesDao->removeCategory($this->getSeriesId(), $rowId);
 		return true;
 	}

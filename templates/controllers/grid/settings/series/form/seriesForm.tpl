@@ -71,7 +71,7 @@
 		{fbvFormSection for="context" inline=true size=$fbvStyles.size.MEDIUM}
 			{if $categoryCount > 0}
 				<div id="seriesCategoriesContainer">
-					{url|assign:seriesCategoriesUrl router=$smarty.const.ROUTE_COMPONENT component="listbuilder.settings.CategoriesListbuilderHandler" op="fetch" seriesId=$seriesId escape=false}
+					{url|assign:seriesCategoriesUrl router=$smarty.const.ROUTE_COMPONENT component="listbuilder.settings.CategoriesListbuilderHandler" op="fetch" sectionId=$seriesId escape=false}
 					{load_url_in_div id="seriesCategoriesContainer" url=$seriesCategoriesUrl}
 				</div>
 			{/if}
@@ -80,7 +80,7 @@
 			{fbvFormSection for="context" inline=true size=$fbvStyles.size.MEDIUM}
 				{if $seriesEditorCount > 0}{* only include the series editor listbuilder if there are series editors available *}
 					<div id="seriesEditorsContainer">
-						{url|assign:seriesEditorsUrl router=$smarty.const.ROUTE_COMPONENT component="listbuilder.settings.SeriesEditorsListbuilderHandler" op="fetch" seriesId=$seriesId escape=false}
+						{url|assign:seriesEditorsUrl router=$smarty.const.ROUTE_COMPONENT component="listbuilder.settings.SubEditorsListbuilderHandler" op="fetch" sectionId=$seriesId escape=false}
 						{load_url_in_div id="seriesEditorsContainer" url=$seriesEditorsUrl}
 					</div>
 				{/if}

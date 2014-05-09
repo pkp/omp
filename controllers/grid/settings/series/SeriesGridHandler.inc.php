@@ -193,7 +193,7 @@ class SeriesGridHandler extends SetupGridHandler {
 		$this->setupTemplate($request);
 
 		import('controllers.grid.settings.series.form.SeriesForm');
-		$seriesForm = new SeriesForm($seriesId);
+		$seriesForm = new SeriesForm($request, $seriesId);
 		$seriesForm->initData($args, $request);
 		$json = new JSONMessage(true, $seriesForm->fetch($request));
 		return $json->getString();
@@ -210,7 +210,7 @@ class SeriesGridHandler extends SetupGridHandler {
 		$press = $request->getPress();
 
 		import('controllers.grid.settings.series.form.SeriesForm');
-		$seriesForm = new SeriesForm($seriesId);
+		$seriesForm = new SeriesForm($request, $seriesId);
 		$seriesForm->readInputData();
 
 		if ($seriesForm->validate()) {
