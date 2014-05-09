@@ -47,20 +47,6 @@ class RoleDAO extends PKPRoleDAO {
 	}
 
 	/**
-	 * Get a role's ID based on its path.
-	 * @param $rolePath string
-	 * @return int
-	 */
-	function getRoleIdFromPath($rolePath) {
-		switch ($rolePath) {
-			case 'seriesEditor':
-				return ROLE_ID_SERIES_EDITOR;
-			default:
-				return parent::getRoleIdFromPath($rolePath);
-		}
-	}
-
-	/**
 	 * Get a mapping of role keys and i18n key names.
 	 * @param boolean $contextOnly If false, also returns site-level roles (Site admin)
 	 * @param array $roleIds Only return role names of these IDs
