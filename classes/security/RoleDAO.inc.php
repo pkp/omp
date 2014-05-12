@@ -14,9 +14,15 @@
  * @brief Operations for retrieving and modifying Role objects.
  */
 
-import('classes.security.Role');
+import('lib.pkp.classes.security.Role');
 import('lib.pkp.classes.security.PKPRoleDAO');
 import('lib.pkp.classes.security.UserGroupAssignment');
+
+/** ID codes and paths for OMP-specific roles */
+define('ROLE_ID_SERIES_EDITOR',		0x00000201);
+
+/** Fill in the blanks for roles used in PKP lib */
+define('ROLE_ID_SUB_EDITOR',		ROLE_ID_SERIES_EDITOR);
 
 class RoleDAO extends PKPRoleDAO {
 
@@ -25,14 +31,6 @@ class RoleDAO extends PKPRoleDAO {
 	 */
 	function RoleDAO() {
 		parent::PKPRoleDAO();
-	}
-
-	/**
-	 * Create new data object.
-	 * @return Role
-	 */
-	function newDataObject() {
-		return new Role();
 	}
 
 	/**
