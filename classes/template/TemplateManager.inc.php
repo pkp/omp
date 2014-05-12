@@ -22,17 +22,10 @@ class TemplateManager extends PKPTemplateManager {
 	/**
 	 * Constructor.
 	 * Initialize template engine and assign basic template variables.
-	 * @param $request PKPRequest FIXME: is optional for backwards compatibility only - make mandatory
+	 * @param $request PKPRequest
 	 */
-	function TemplateManager($request = null) {
+	function TemplateManager($request) {
 		parent::PKPTemplateManager($request);
-
-		// Retrieve the router
-		$router = $this->request->getRouter();
-		assert(is_a($router, 'PKPRouter'));
-
-		// Are we using implicit authentication?
-		$this->assign('implicitAuth', Config::getVar('security', 'implicit_auth'));
 
 		if (!defined('SESSION_DISABLE_INIT')) {
 			/**
@@ -41,8 +34,8 @@ class TemplateManager extends PKPTemplateManager {
 			 * installer pages).
 			 */
 
-			$context = $router->getContext($this->request);
-			$site = $this->request->getSite();
+			$context = $request->getContext();
+			$site = $request->getSite();
 
 			$publicFileManager = new PublicFileManager();
 			$siteFilesDir = $this->request->getBaseUrl() . '/' . $publicFileManager->getSiteFilesPath();
@@ -95,16 +88,6 @@ class TemplateManager extends PKPTemplateManager {
 				$this->assign('siteTitle', $site->getLocalizedTitle());
 			}
 		}
-	}
-
-	/**
-	 * Initialize the template manager.
-	 */
-	function initialize() {
-		// Add uncompilable styles
-		$this->addStyleSheet($this->request->getBaseUrl() . '/styles/lib.css', STYLE_SEQUENCE_CORE);
-
-		parent::initialize();
 	}
 }
 
