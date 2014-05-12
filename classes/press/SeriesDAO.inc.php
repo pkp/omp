@@ -187,7 +187,7 @@ class SeriesDAO extends PKPSectionDAO {
 		if (!$this->seriesExists($seriesId, $contextId)) return false;
 
 		$seriesEditorsDao = DAORegistry::getDAO('SeriesEditorsDAO');
-		$seriesEditorsDao->deleteEditorsBySeriesId($seriesId, $contextId);
+		$seriesEditorsDao->deleteBySeriesId($seriesId, $contextId);
 
 		// Remove monographs from this series
 		$monographDao = DAORegistry::getDAO('MonographDAO');

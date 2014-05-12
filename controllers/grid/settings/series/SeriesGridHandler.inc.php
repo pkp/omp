@@ -71,14 +71,13 @@ class SeriesGridHandler extends SetupGridHandler {
 			if (empty($categoriesString)) $categoriesString = __('common.none');
 
 			// Get the series editors data for the row
-			$assignedSeriesEditors = $seriesEditorsDao->getEditorsBySeriesId($series->getId(), $press->getId());
+			$assignedSeriesEditors = $seriesEditorsDao->getBySeriesId($series->getId(), $press->getId());
 			if(empty($assignedSeriesEditors)) {
 				$editorsString = __('common.none');
 			} else {
 				$editors = array();
 				foreach ($assignedSeriesEditors as $seriesEditor) {
-					$user = $seriesEditor['user'];
-					$editors[] = $user->getLastName();
+					$editors[] = $seriesEditor->getLastName();
 				}
 				$editorsString = implode(', ', $editors);
 			}
@@ -194,7 +193,7 @@ class SeriesGridHandler extends SetupGridHandler {
 		$this->setupTemplate($request);
 
 		import('controllers.grid.settings.series.form.SeriesForm');
-		$seriesForm = new SeriesForm($seriesId);
+		$seriesForm = new SeriesForm($request, $seriesId);
 		$seriesForm->initData($args, $request);
 		$json = new JSONMessage(true, $seriesForm->fetch($request));
 		return $json->getString();
@@ -211,7 +210,7 @@ class SeriesGridHandler extends SetupGridHandler {
 		$press = $request->getPress();
 
 		import('controllers.grid.settings.series.form.SeriesForm');
-		$seriesForm = new SeriesForm($seriesId);
+		$seriesForm = new SeriesForm($request, $seriesId);
 		$seriesForm->readInputData();
 
 		if ($seriesForm->validate()) {

@@ -319,16 +319,14 @@
 	<!-- Roles -->
 	<message key="user.role.manager">Gestor editorial</message>
 	<message key="user.role.pressEditor">Editor editorial</message>
-	<message key="user.role.seriesEditor">Series Editor</message>
 	<message key="user.role.copyeditor">Corrector de estilo</message>
-	<message key="user.role.seriesEditor">Series Editor</message>
-	<message key="user.role.seriesEditors">Editores de series</message>
+	<message key="user.role.subEditor">Series Editor</message>
+	<message key="user.role.subEditors">Editores de series</message>
 	<message key="user.role.proofreader">Corrector de pruebas</message>
 	<message key="user.role.productionEditor">Editor de producción</message>
 
 	<message key="user.role.managers">Gestores editoriales</message>
 	<message key="user.role.editors">Editores</message>
-	<message key="user.role.seriesEditors">Editores de series</message>
 	<message key="user.role.copyeditors">Correctores</message>
 	<message key="user.role.proofreaders">Correctores de pruebas</message>
 	<message key="user.role.productionEditors">Editores de producción</message>

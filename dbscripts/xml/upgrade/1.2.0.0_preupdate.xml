@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE data SYSTEM "../../../lib/pkp/dtd/xmlData.dtd">
+
+<!--
+  * dbscripts/xml/upgrade/1.2.0.0_preupdate.xml
+  *
+  * Copyright (c) 2014 Simon Fraser University Library
+  * Copyright (c) 2003-2014 John Willinsky
+  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
+  *
+  * 1.2.0.0 database updates XML file (run before schema is reconciled).
+  *
+  -->
+<data>
+	<!-- Bug #8744: Reconcile series_editors into PKP library -->
+	<sql>
+		<rename table="series_editors" column="press_id" to="context_id" />
+		<rename table="series_editors" column="series_id" to="section_id" />
+		<rename table="series_editors" to="section_editors" />
+	</sql>
+</data>

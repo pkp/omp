@@ -219,7 +219,7 @@ class Application extends PKPApplication {
 	/**
 	 * Get the DAO for ROLE_ID_SUB_EDITOR roles.
 	 */
-	static function getSubEditorDAO() {
+	static function getSubEditorsDAO() {
 		return DAORegistry::getDAO('SeriesEditorsDAO');
 	}
 
