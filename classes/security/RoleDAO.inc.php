@@ -14,9 +14,15 @@
  * @brief Operations for retrieving and modifying Role objects.
  */
 
-import('classes.security.Role');
+import('lib.pkp.classes.security.Role');
 import('lib.pkp.classes.security.PKPRoleDAO');
 import('lib.pkp.classes.security.UserGroupAssignment');
+
+/** ID codes and paths for OMP-specific roles */
+define('ROLE_ID_SERIES_EDITOR',		0x00000201);
+
+/** Fill in the blanks for roles used in PKP lib */
+define('ROLE_ID_SUB_EDITOR',		ROLE_ID_SERIES_EDITOR);
 
 class RoleDAO extends PKPRoleDAO {
 
@@ -28,14 +34,6 @@ class RoleDAO extends PKPRoleDAO {
 	}
 
 	/**
-	 * Create new data object.
-	 * @return Role
-	 */
-	function newDataObject() {
-		return new Role();
-	}
-
-	/**
 	 * Retrieve the number of users with a given role associated with the specified press.
 	 * @param $pressId int
 	 * @param $roleId int
@@ -44,20 +42,6 @@ class RoleDAO extends PKPRoleDAO {
 	function getPressUsersRoleCount($pressId, $roleId) {
 		$userGroupDao = DAORegistry::getDAO('UserGroupDAO');
 		return $userGroupDao->getContextUsersCount($pressId, null, $roleId);
-	}
-
-	/**
-	 * Get a role's ID based on its path.
-	 * @param $rolePath string
-	 * @return int
-	 */
-	function getRoleIdFromPath($rolePath) {
-		switch ($rolePath) {
-			case 'seriesEditor':
-				return ROLE_ID_SERIES_EDITOR;
-			default:
-				return parent::getRoleIdFromPath($rolePath);
-		}
 	}
 
 	/**
