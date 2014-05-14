@@ -522,7 +522,6 @@ Votre serveur supporte actuellement mbstring: <strong>{$supportsMBString}</stron
 	<message key="user.authorization.monographReviewer">Vous n'avez pas accès à cette monographie car vous ne semblez pas figurer parmi les évaluateurs reconnus de celle-ci.</message>
 	<message key="user.authorization.monographFile">Vous n'avez pas accès à ce fichier associé à la monographie.</message>
 	<message key="user.authorization.invalidMonograph">Vous avez demandé une monographie non valide ou inexistante!</message>
-	<message key="user.authorization.invalidSeriesEditorSubmission">Vous avez demandé un rédacteur en chef de série non valide ou n'avez demandé aucun rédacteur en chef de série!</message>
 	<message key="user.authorization.noContext">Aucune presse en contexte!</message>
 	<message key="user.authorization.seriesAssignment">Vous tentez d'avoir accès à une monographie qui ne fait pas partie de votre série.</message>
 	<message key="user.authorization.workflowStageAssignmentMissing">Accès refusé! On ne vous a pas assigné de travail à cette étape.</message>
