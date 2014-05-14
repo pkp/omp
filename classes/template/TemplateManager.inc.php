@@ -38,18 +38,18 @@ class TemplateManager extends PKPTemplateManager {
 			$site = $request->getSite();
 
 			$publicFileManager = new PublicFileManager();
-			$siteFilesDir = $this->request->getBaseUrl() . '/' . $publicFileManager->getSiteFilesPath();
+			$siteFilesDir = $request->getBaseUrl() . '/' . $publicFileManager->getSiteFilesPath();
 			$this->assign('sitePublicFilesDir', $siteFilesDir);
 			$this->assign('publicFilesDir', $siteFilesDir); // May be overridden by press
 
 			$siteStyleFilename = $publicFileManager->getSiteFilesPath() . '/' . $site->getSiteStyleFilename();
-			if (file_exists($siteStyleFilename)) $this->addStyleSheet($this->request->getBaseUrl() . '/' . $siteStyleFilename, STYLE_SEQUENCE_LAST);
+			if (file_exists($siteStyleFilename)) $this->addStyleSheet($request->getBaseUrl() . '/' . $siteStyleFilename, STYLE_SEQUENCE_LAST);
 
 			if (isset($context)) {
 				$this->assign('currentPress', $context);
 
 				$this->assign('siteTitle', $context->getLocalizedName());
-				$this->assign('publicFilesDir', $this->request->getBaseUrl() . '/' . $publicFileManager->getContextFilesPath($context->getAssocType(), $context->getId()));
+				$this->assign('publicFilesDir', $request->getBaseUrl() . '/' . $publicFileManager->getContextFilesPath($context->getAssocType(), $context->getId()));
 
 				$this->assign('primaryLocale', $context->getPrimaryLocale());
 				$this->assign('alternateLocales', $context->getSetting('alternateLocales'));
@@ -68,7 +68,7 @@ class TemplateManager extends PKPTemplateManager {
 				// Assign stylesheets and footer
 				$contextStyleSheet = $context->getSetting('styleSheet');
 				if ($contextStyleSheet) {
-					$this->addStyleSheet($this->request->getBaseUrl() . '/' . $publicFileManager->getContextFilesPath(ASSOC_TYPE_PRESS, $context->getId()) . '/' . $contextStyleSheet['uploadName'], STYLE_SEQUENCE_LAST);
+					$this->addStyleSheet($request->getBaseUrl() . '/' . $publicFileManager->getContextFilesPath(ASSOC_TYPE_PRESS, $context->getId()) . '/' . $contextStyleSheet['uploadName'], STYLE_SEQUENCE_LAST);
 				}
 
 				// Include footer links if they have been defined.
