@@ -68,7 +68,7 @@ class Upgrade extends Installer {
 					$generatedFilename = $submissionFile->getServerFileName();
 					$basePath = $submissionFileManager->getBasePath() . $submissionFile->_fileStageToPath($submissionFile->getFileStage()) . '/';
 					$globPattern = $submissionFile->getSubmissionId() . '-' .
-						'*' . '_' . '*' . '-' . // Genre name and designation globbed
+						'*' . '-' . // Genre name and designation globbed (together)
 						$submissionFile->getFileId() . '-' .
 						$submissionFile->getRevision() . '-' .
 						$submissionFile->getFileStage() . '-' .
