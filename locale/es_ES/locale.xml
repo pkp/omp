@@ -498,7 +498,6 @@ Tu servidor soporta actualmente mbstring: <strong>{$supportsMBString}</strong>]]
 	<message key="user.authorization.monographReviewer">Se te ha denegado el acceso porque parece que no eres el revisor asignado de esta monografía.</message>
 	<message key="user.authorization.monographFile">Se te ha denegado el acceso al fichero de la monografía especificado.</message>
 	<message key="user.authorization.invalidMonograph">¡No se ha solicitado monografía o esta no es válida!</message>
-	<message key="user.authorization.invalidSeriesEditorSubmission">¡No se ha solicitado propuesta de editor de serie o esta no es válida!</message>
 	<message key="user.authorization.seriesAssignment">Estás intentando acceder a una monografía que no es parte de tu serie.</message>
 	<message key="user.authorization.workflowStageAssignmentMissing">¡Acceso denegado! No se te ha asignado para esta etapa del flujo de trabajo.</message>
 	<message key="user.authorization.workflowStageSettingMissing">¡Acceso denegado! El grupo de usuario bajo el que estás actuando actualmente no se ha asignado a esta etapa del flujo de trabajo.</message>

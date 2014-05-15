@@ -514,7 +514,6 @@ Your server currently supports mbstring: <strong>{$supportsMBString}</strong>]]>
 	<message key="user.authorization.monographReviewer">You have been denied access because you do not seem to be an assigned reviewer of this monograph.</message>
 	<message key="user.authorization.monographFile">You have been denied access to the specified monograph file.</message>
 	<message key="user.authorization.invalidMonograph">Invalid monograph or no monograph requested!</message>
-	<message key="user.authorization.invalidSeriesEditorSubmission">Invalid series editor submission or no series editor submission requested!</message>
 	<message key="user.authorization.noContext">No press in context!</message>
 	<message key="user.authorization.seriesAssignment">You are trying to access a monograph that is not part of your series.</message>
 	<message key="user.authorization.workflowStageAssignmentMissing">Access denied! You have not been assigned to this workflow stage.</message>

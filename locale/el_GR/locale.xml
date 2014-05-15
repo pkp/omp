@@ -505,7 +505,6 @@ Your server currently supports mbstring: <strong>{$supportsMBString}</strong>]]>
 	<message key="user.authorization.monographReviewer">Η πρόσβαση δεν είναι δυνατή επειδή δεν φαίνεται να σας έχει ανατεθεί η αξιολόγηση για αυτή τη μονογραφία.</message>
 	<message key="user.authorization.monographFile">Έχετε απαγορεύσει την πρόσβαση στο συγκεκριμένο αρχείο της μονογραφίας.</message>
 	<message key="user.authorization.invalidMonograph">Μη έγκυρη μονογραφία ή δεν έχει ζητηθεί η μονογραφία!</message>
-	<message key="user.authorization.invalidSeriesEditorSubmission">Μη έγκυρη υποβολή επιμελητή σειράς ή δεν έχει ζητηθεί υποβολή επιμελητή σειράς! </message>
 	<message key="user.authorization.seriesAssignment">Προσπαθείτε να αποκτήσετε πρόσβαση σε μια μονογραφία που δεν είναι μέρος της σειράς που επιμελείστε.</message>
 	<message key="user.authorization.workflowStageAssignmentMissing">Η πρόσβαση δεν είναι δυνατή! Δεν έχετε ανάθεση σε αυτό το στάδιο της ροής εργασιών.</message>
 	<message key="user.authorization.workflowStageSettingMissing">Η πρόσβαση δεν είναι δυνατή! Η ομάδα χρηστών που πρόσφατα ενεργείτε μέσω αυτής δεν έχει ζητηθεί σε αυτό το στάδιο ροής εργασιών. Παρακαλούμε ελέγξτε τις ρυθμίσεις των εκδόσεων.</message>

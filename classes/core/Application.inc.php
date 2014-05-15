@@ -127,7 +127,6 @@ class Application extends PKPApplication {
 			'SalesRightsDAO' => 'classes.publicationFormat.SalesRightsDAO',
 			'SeriesDAO' => 'classes.press.SeriesDAO',
 			'SeriesEditorsDAO' => 'classes.press.SeriesEditorsDAO',
-			'SeriesEditorSubmissionDAO' => 'classes.submission.seriesEditor.SeriesEditorSubmissionDAO',
 			'SocialMediaDAO' => 'classes.press.SocialMediaDAO',
 			'SpotlightDAO' => 'classes.spotlight.SpotlightDAO',
 			'StageAssignmentDAO' => 'lib.pkp.classes.stageAssignment.StageAssignmentDAO',

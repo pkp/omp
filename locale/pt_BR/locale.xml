@@ -499,7 +499,6 @@ Suporte à biblioteca mbstring: <strong>{$supportsMBString}</strong>]]></message
 	<message key="user.authorization.monographReviewer">Acesso negado, pois não parece ser um avaliador designado a esta monografia.</message>
 	<message key="user.authorization.monographFile">Acesso negado ao arquivo específico da monografia.</message>
 	<message key="user.authorization.invalidMonograph">Monografia inválida ou nenhuma monografia solicitada!</message>
-	<message key="user.authorization.invalidSeriesEditorSubmission">Submissão de editor de séria inválida ou nenhuma submissão de editor de série solicitada!</message>
 	<message key="user.authorization.noContext">Nenhuma editora no contexto!</message>
 	<message key="user.authorization.seriesAssignment">Tentativa de acesso a monografia que não faz parte de sua série.</message>
 	<message key="user.authorization.workflowStageAssignmentMissing">Acesso negado! Não foi designado a este estágio do processo.</message>
