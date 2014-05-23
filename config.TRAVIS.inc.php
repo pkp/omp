@@ -82,6 +82,11 @@ allow_url_fopen = Off
 ; base_url[myPress] = http://www.myUrl.com/myPress
 ; base_url[myOtherPress] = http://myOtherPress.myUrl.com
 
+; Generate RESTful URLs using mod_rewrite.  This requires the
+; rewrite directive to be enabled in your .htaccess or httpd.conf.
+; See FAQ for more details.
+restful_urls = Off
+
 ; Allow javascript files to be served through a content delivery network (set to off to use local files)
 enable_cdn = On
 
