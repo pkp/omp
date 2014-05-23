@@ -3,8 +3,14 @@ php:
   - 5.3
 python:
   - 3.3
+git:
+  # We have to init submodules ourselves to make it recursive
+  - submodules: false
 
 before_install:
+  # Init submodules (recursively)
+  submodule update --init --recursive
+
   # Start apache and configure a virtual host.
   - sudo apt-get update > /dev/null
   - sudo apt-get install -y --force-yes apache2 libapache2-mod-php5 php5-curl php5-mysql php5-intl
@@ -55,9 +61,6 @@ before_install:
   - wget "http://jslint4java.googlecode.com/files/jslint4java-2.0.2-dist.zip"
   - unzip jslint4java-2.0.2-dist.zip
   - mv jslint4java-2.0.2/jslint4java-2.0.2.jar ~/bin/jslint4java.jar
-
-  # Init submodules
-  submodule update --init --recursive
 
 script:
   - ./lib/pkp/tools/runAllTests.sh -Ccf
