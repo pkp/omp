@@ -9,7 +9,7 @@ git:
 
 before_install:
   # Init submodules (recursively)
-  - submodule update --init --recursive
+  - git submodule update --init --recursive
 
   # Start apache and configure a virtual host.
   - sudo apt-get update > /dev/null
