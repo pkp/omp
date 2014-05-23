@@ -56,6 +56,9 @@ before_install:
   - unzip jslint4java-2.0.2-dist.zip
   - mv jslint4java-2.0.2/jslint4java-2.0.2.jar ~/bin/jslint4java.jar
 
+  # Init submodules
+  submodule update --init --recursive
+
 script:
   - ./lib/pkp/tools/runAllTests.sh -Ccf
   - ./lib/pkp/tools/validatexml.sh
