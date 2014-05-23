@@ -5,7 +5,7 @@ python:
   - 3.3
 git:
   # We have to init submodules ourselves to make it recursive
-  - submodules: false
+  submodules: false
 
 before_install:
   # Init submodules (recursively)
