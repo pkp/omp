@@ -9,7 +9,7 @@ git:
 
 before_install:
   # Init submodules (recursively)
-  - git submodule update --init --recursive
+  - ./tools/startSubmodulesTRAVIS.sh
 
   # Start apache and configure a virtual host.
   - sudo apt-get update > /dev/null
