@@ -63,6 +63,13 @@ class ManualPaymentPlugin extends PaymethodPlugin {
 	}
 
 	/**
+	 * @see PaymentPlugin::getRequiredSettingsFormFieldNames
+	 */
+	function getRequiredSettingsFormFieldNames() {
+		return array();
+	}
+
+	/**
 	 * @see PaymentPlugin::isConfigured
 	 */
 	function isConfigured() {
@@ -70,19 +77,13 @@ class ManualPaymentPlugin extends PaymethodPlugin {
 		$press = $request->getPress();
 		if (!$press) return false;
 
-		// Make sure that all settings form fields have been filled in
-		foreach ($this->getSettingsFormFieldNames() as $settingName) {
-			$setting = $this->getSetting($press->getId(), $settingName);
-			if (empty($setting)) return false;
-		}
-
 		return true;
 	}
 
 	/**
 	 * @see PaymentPlugin::displayPaymentForm
 	 */
-	function displayPaymentForm($queuedPaymentId, &$queuedPayment, $request) {
+	function displayPaymentForm($queuedPaymentId, $queuedPayment, $request) {
 		if (!$this->isConfigured()) return false;
 		$press = $request->getPress();
 		AppLocale::requireComponents(LOCALE_COMPONENT_APP_COMMON);

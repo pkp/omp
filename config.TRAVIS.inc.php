@@ -52,6 +52,14 @@ session_lifetime = 30
 ; execute periodically
 scheduled_tasks = Off
 
+; Site time zone
+; Please refer to lib/pkp/registry/timeZones.xml for a full list of supported
+; time zones.
+; I.e.:
+; <entry key="Europe/Amsterdam" name="Amsterdam" />
+; time_zone="Amsterdam"
+time_zone = "UTC"
+
 ; Short and long date formats
 date_format_trunc = "%m-%d"
 date_format_short = "%Y-%m-%d"
@@ -81,6 +89,11 @@ allow_url_fopen = Off
 ; base_url[index] = http://www.myUrl.com
 ; base_url[myPress] = http://www.myUrl.com/myPress
 ; base_url[myOtherPress] = http://myOtherPress.myUrl.com
+
+; Generate RESTful URLs using mod_rewrite.  This requires the
+; rewrite directive to be enabled in your .htaccess or httpd.conf.
+; See FAQ for more details.
+restful_urls = Off
 
 ; Allow javascript files to be served through a content delivery network (set to off to use local files)
 enable_cdn = On
@@ -218,7 +231,7 @@ session_check_ip = Off
 ; The encryption (hashing) algorithm to use for encrypting user passwords
 ; Valid values are: md5, sha1
 ; Note that sha1 requires PHP >= 4.3.0
-encryption = md5
+encryption = sha1
 
 ; Allowed HTML tags for fields that permit restricted HTML.
 ; Use e.g. "img[src,alt],p" to allow "src" and "alt" attributes to the "img"

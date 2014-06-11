@@ -184,9 +184,9 @@ class PublicationDateForm extends Form {
 		if (!$publicationDate) {
 			// this is a new publication date for this published monograph
 			$publicationDate = $publicationDateDao->newDataObject();
+			$existingFormat = false;
 			if ($publicationFormat != null) { // ensure this assigned format is in this monograph
 				$publicationDate->setPublicationFormatId($publicationFormat->getId());
-				$existingFormat = false;
 			} else {
 				fatalError('This assigned format not in authorized monograph context!');
 			}

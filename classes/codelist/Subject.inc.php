@@ -24,7 +24,7 @@ import('classes.codelist.CodelistItem');
 class Subject extends CodelistItem {
 
 	/**
-	 * The numerical representation of these Subject Qualifiers in ONIX 3.0
+	 * @var int The numerical representation of these Subject Qualifiers in ONIX 3.0
 	 */
 	var $_onixSubjectSchemeIdentifier = 12;
 
@@ -36,6 +36,7 @@ class Subject extends CodelistItem {
 	}
 
 	/**
+	 * Get the ONIX subject scheme identifier.
 	 * @return String the numerical value representing this item in the ONIX 3.0 schema
 	 */
 	function getOnixSubjectSchemeIdentifier() {

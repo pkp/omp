@@ -201,7 +201,7 @@ class PressOAI extends OAI {
 			} else {
 				$pressId = $this->pressId;
 			}
-			$records =& $this->dao->getIdentifiers(array($pressId, $sectionId), $from, $until, $set, $offset, $limit, $total);
+			$records =& $this->dao->getIdentifiers(array($pressId, $seriesId), $from, $until, $set, $offset, $limit, $total);
 		}
 		return $records;
 	}

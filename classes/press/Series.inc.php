@@ -190,14 +190,12 @@ class Series extends PKPSection {
 	 */
 	function getEditorsString() {
 		$seriesEditorsDao = DAORegistry::getDAO('SeriesEditorsDAO');
-		$editors = $seriesEditorsDao->getEditorsBySeriesId($this->getId(), $this->getPressId());
+		$editors = $seriesEditorsDao->getBySeriesId($this->getId(), $this->getPressId());
 
 		$separator = ', ';
 		$str = '';
 
-		foreach ($editors as $editorData) {
-			$editor =& $editorData['user'];
-
+		foreach ($editors as $editor) {
 			if (!empty($str)) {
 				$str .= $separator;
 			}

@@ -16,7 +16,7 @@
 <div class="unit size1of2">
 	<h4>{translate key="navigation.tools.importExport"}</h4>
 	<p>{translate key="manager.tools.importExport"}</p>
-	<a href="{url page="manager" op="importexport"}" class="button defaultButton">{translate key="common.takeMeThere"}</a>
+	<a href="{url page="management" op="importexport"}" class="button defaultButton">{translate key="common.takeMeThere"}</a>
 </div>
 
 {include file="common/footer.tpl"}

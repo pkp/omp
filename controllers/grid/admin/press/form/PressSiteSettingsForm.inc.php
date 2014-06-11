@@ -60,13 +60,12 @@ class PressSiteSettingsForm extends ContextSiteSettingsForm {
 		$press->setEnabled($this->getData('enabled'));
 
 		$isNewPress = false;
+		$site = $request->getSite();
 
 		if ($press->getId() != null) {
 			$pressDao->updateObject($press);
-			$series = null;
 		} else {
 			$isNewPress = true;
-			$site = $request->getSite();
 
 			// Give it a default primary locale
 			$press->setPrimaryLocale($site->getPrimaryLocale());
@@ -109,7 +108,7 @@ class PressSiteSettingsForm extends ContextSiteSettingsForm {
 		// Make sure all plugins are loaded for settings preload
 		PluginRegistry::loadAllPlugins();
 
-		HookRegistry::call('PressSiteSettingsForm::execute', array(&$this, &$press, &$series, &$isNewPress));
+		HookRegistry::call('PressSiteSettingsForm::execute', array(&$this, &$press, &$isNewPress));
 
 		if ($isNewPress || $pathChanged) {
 			return $press->getPath();

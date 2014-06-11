@@ -33,6 +33,20 @@ class UserImportExportPlugin extends PKPUserImportExportPlugin {
 	function register($category, $path) {
 		return parent::register($category, $path);
 	}
+
+	/**
+	 * @copydoc ImportExportPlugin::executeCLI
+	 */
+	function executeCLI($scriptName, &$args) {
+		fatalError('Not implemented.');
+	}
+
+	/**
+	 * @copydoc ImportExportPlugin::usage
+	 */
+	function usage($scriptName) {
+		fatalError('Not implemented.');
+	}
 }
 
 ?>

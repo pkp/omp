@@ -15,11 +15,11 @@
 
 import('lib.pkp.classes.plugins.Plugin');
 
-class PubIdPlugin extends Plugin {
+abstract class PubIdPlugin extends Plugin {
 
-	//
-	// Constructor
-	//
+	/**
+	 * Constructor
+	 */
 	function PubIdPlugin() {
 		parent::Plugin();
 	}
@@ -138,34 +138,26 @@ class PubIdPlugin extends Plugin {
 	 *  when true, the public identifier will not be stored
 	 * @return string
 	 */
-	function getPubId($pubObject, $preview = false) {
-		assert(false); // Should always be overridden
-	}
+	abstract function getPubId($pubObject, $preview = false);
 
 	/**
 	 * Public identifier type, see
 	 * http://dtd.nlm.nih.gov/publishing/tag-library/n-4zh0.html
 	 * @return string
 	 */
-	function getPubIdType() {
-		assert(false); // Should always be overridden
-	}
+	abstract function getPubIdType();
 
 	/**
 	 * Public identifier type that will be displayed to the reader.
 	 * @return string
 	 */
-	function getPubIdDisplayType() {
-		assert(false); // Should always be overridden
-	}
+	abstract function getPubIdDisplayType();
 
 	/**
 	 * Full name of the public identifier.
 	 * @return string
 	 */
-	function getPubIdFullName() {
-		assert(false); // Should always be overridden
-	}
+	abstract function getPubIdFullName();
 
 	/**
 	 * Get the whole resolving URL.
@@ -173,9 +165,7 @@ class PubIdPlugin extends Plugin {
 	 * @param $pubId string
 	 * @return string resolving URL
 	 */
-	function getResolvingURL($pressId, $pubId) {
-		assert(false); // Should always be overridden
-	}
+	abstract function getResolvingURL($pressId, $pubId);
 
 	/**
 	 * Get the file (path + filename)
@@ -183,17 +173,13 @@ class PubIdPlugin extends Plugin {
 	 * metadata pages.
 	 * @return string
 	 */
-	function getPubIdMetadataFile() {
-		assert(false); // Should be overridden
-	}
+	abstract function getPubIdMetadataFile();
 
 	/**
 	 * Get the class name of the settings form.
 	 * @return string
 	 */
-	function getSettingsFormName() {
-		assert(false); // Should be overridden
-	}
+	abstract function getSettingsFormName();
 
 	/**
 	 * Verify form data.
@@ -204,9 +190,7 @@ class PubIdPlugin extends Plugin {
 	 * @param $errorMsg string Return validation error messages here.
 	 * @return boolean
 	 */
-	function verifyData($fieldName, $fieldValue, &$pubObject, $monographId, &$errorMsg) {
-		assert(false); // Should be overridden
-	}
+	abstract function verifyData($fieldName, $fieldValue, &$pubObject, $monographId, &$errorMsg);
 
 	/**
 	 * Check whether the given pubId is valid.
@@ -221,17 +205,13 @@ class PubIdPlugin extends Plugin {
 	 * Get the additional form field names.
 	 * @return array
 	 */
-	function getFormFieldNames() {
-		assert(false); // Should be overridden
-	}
+	abstract function getFormFieldNames();
 
 	/**
 	 * Get additional field names to be considered for storage.
 	 * @return array
 	 */
-	function getDAOFieldNames() {
-		assert(false); // Should be overridden
-	}
+	abstract function getDAOFieldNames();
 
 
 	//
@@ -245,8 +225,8 @@ class PubIdPlugin extends Plugin {
 	 * @return boolean
 	 */
 	function checkDuplicate($pubId, &$pubObject, $pressId) {
-		// FIXME: Hack to ensure that we get a published article if possible.
-		// Remove this when we have migrated getBest...(), etc. to Article.
+		// FIXME: Hack to ensure that we get a published submission if possible.
+		// Remove this when we have migrated getBest...(), etc. to Submission.
 		if (is_a($pubObject, 'PublicationFormat')) {
 			$publicationFormatDao = DAORegistry::getDAO('PublishedFormatDAO'); /* @var $publicationFormatDao PublishedFormatDAO */
 			$format = $publicationFormatDao->getById($pubObject->getId());
@@ -267,12 +247,15 @@ class PubIdPlugin extends Plugin {
 		foreach($typesToCheck as $pubObjectType) {
 			switch($pubObjectType) {
 				case 'PublicationFormat':
-					// FIXME: We temporarily have to use the published article
-					// DAO here until we've moved pubId-generation to the Article
+					// FIXME: We temporarily have to use the published submission
+					// DAO here until we've moved pubId-generation to the submission
 					// class.
 					$publicationFormatDao = DAORegistry::getDAO('PublicationFormatDao'); /* @var $monographDao PublishedMonographDAO */
 					$objectsToCheck = $publicationFormatDao->getByPressId($pressId);
 					break;
+				default:
+					$objectsToCheck = null; // Suppress warn
+					assert(false);
 			}
 
 			$excludedId = (is_a($pubObject, $pubObjectType) ? $pubObject->getId() : null);
@@ -297,7 +280,7 @@ class PubIdPlugin extends Plugin {
 
 	/**
 	 * Add the suffix element and the public identifier
-	 * to the object (issue, article, galley, supplementary file).
+	 * to the object (submission, galley).
 	 * @param $hookName string
 	 * @param $params array ()
 	 */

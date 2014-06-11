@@ -326,7 +326,7 @@ class PublicationFormat extends Representation {
 
 	/**
 	 * Get the Market objects for this format.
-	 * @return Array Market
+	 * @return DAOResultFactory Market
 	 */
 	function getMarkets() {
 		$marketDao = DAORegistry::getDAO('MarketDAO');

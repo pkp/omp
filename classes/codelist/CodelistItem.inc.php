@@ -20,18 +20,18 @@
  */
 
 class CodelistItem extends DataObject {
+
 	/**
 	 * Constructor
 	 */
-
 	function CodelistItem() {
 		parent::DataObject();
 	}
 
+
 	//
 	// Get/set methods
 	//
-
 	/**
 	 * Get the text component of the codelist.
 	 * @return string

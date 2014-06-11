@@ -43,6 +43,7 @@ tools/genTestLocale.php						\
 tools/test							\
 lib/pkp/tests							\
 .git								\
+.openshift							\
 lib/pkp/.git							\
 lib/pkp/lib/swordappv2/.git					\
 lib/pkp/lib/swordappv2/test"
@@ -93,10 +94,5 @@ if [ ! -z "$PATCHDIR" ]; then
 fi
 
 cd ..
-
-echo -n "Building doxygen documentation... "
-doxygen docs/dev/omp.doxygen > /dev/null && cd docs/dev/doxygen && tar czf ../../../${BUILD}-doxygen.tar.gz html && cd ../../..
-
-echo "Done"
 
 rm -r $TMPDIR

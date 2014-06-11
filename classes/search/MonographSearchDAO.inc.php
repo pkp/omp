@@ -40,6 +40,7 @@ class MonographSearchDAO extends SubmissionSearchDAO {
 
 		$sqlFrom = '';
 		$sqlWhere = '';
+		$params = array();
 
 		for ($i = 0, $count = count($phrase); $i < $count; $i++) {
 			if (!empty($sqlFrom)) {

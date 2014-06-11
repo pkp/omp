@@ -137,4 +137,12 @@
 		<name>allowRegAuthor</name>
 		<value>true</value>
 	</setting>
+	<setting type="string" locale="0">
+		<name>paymentPluginName</name>
+		<value>ManualPayment</value>
+	</setting>
+	<setting type="string" locale="0">
+		<name>currency</name>
+		<value>CAD</value>
+	</setting>
 </press_settings>

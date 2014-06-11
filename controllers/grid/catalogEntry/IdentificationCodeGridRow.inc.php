@@ -22,7 +22,7 @@ class IdentificationCodeGridRow extends GridRow {
 	/**
 	 * Constructor
 	 */
-	function IdentificationCodeGridRow(&$monograph) {
+	function IdentificationCodeGridRow($monograph) {
 		$this->_monograph = $monograph;
 		parent::GridRow();
 	}
@@ -86,7 +86,7 @@ class IdentificationCodeGridRow extends GridRow {
 	 * Get the monograph for this row (already authorized)
 	 * @return Monograph
 	 */
-	function &getMonograph() {
+	function getMonograph() {
 		return $this->_monograph;
 	}
 }

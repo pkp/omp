@@ -329,14 +329,14 @@
 	<!-- OMP-specific Roles -->
 	<message key="user.role.manager">Press Manager</message>
 	<message key="user.role.pressEditor">Press Editor</message>
-	<message key="user.role.seriesEditor">Series Editor</message>
+	<message key="user.role.subEditor">Series Editor</message>
 	<message key="user.role.assistant">Press Assistant</message>
 	<message key="user.role.copyeditor">Copyeditor</message>
 	<message key="user.role.proofreader">Proofreader</message>
 	<message key="user.role.productionEditor">Production Editor</message>
 
 	<message key="user.role.managers">Press Managers</message>
-	<message key="user.role.seriesEditors">Series Editors</message>
+	<message key="user.role.subEditors">Series Editors</message>
 	<message key="user.role.editors">Editors</message>
 	<message key="user.role.copyeditors">Copyeditors</message>
 	<message key="user.role.proofreaders">Proofreaders</message>
@@ -514,7 +514,6 @@ Your server currently supports mbstring: <strong>{$supportsMBString}</strong>]]>
 	<message key="user.authorization.monographReviewer">You have been denied access because you do not seem to be an assigned reviewer of this monograph.</message>
 	<message key="user.authorization.monographFile">You have been denied access to the specified monograph file.</message>
 	<message key="user.authorization.invalidMonograph">Invalid monograph or no monograph requested!</message>
-	<message key="user.authorization.invalidSeriesEditorSubmission">Invalid series editor submission or no series editor submission requested!</message>
 	<message key="user.authorization.noContext">No press in context!</message>
 	<message key="user.authorization.seriesAssignment">You are trying to access a monograph that is not part of your series.</message>
 	<message key="user.authorization.workflowStageAssignmentMissing">Access denied! You have not been assigned to this workflow stage.</message>

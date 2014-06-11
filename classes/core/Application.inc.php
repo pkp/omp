@@ -18,6 +18,7 @@
 import('lib.pkp.classes.core.PKPApplication');
 
 define('PHP_REQUIRED_VERSION', '4.2.0');
+define('REQUIRES_XSL', true);
 
 define('ASSOC_TYPE_MONOGRAPH',			ASSOC_TYPE_SUBMISSION);
 define('ASSOC_TYPE_PUBLISHED_MONOGRAPH',	ASSOC_TYPE_PUBLISHED_SUBMISSION);
@@ -104,7 +105,6 @@ class Application extends PKPApplication {
 			'MonographFileEmailLogDAO' => 'classes.log.MonographFileEmailLogDAO',
 			'MonographSearchDAO' => 'classes.search.MonographSearchDAO',
 			'NewReleaseDAO' => 'classes.press.NewReleaseDAO',
-			'NoteDAO' => 'classes.note.NoteDAO',
 			'NotificationStatusDAO' => 'classes.press.NotificationStatusDAO',
 			'OAIDAO' => 'classes.oai.omp.OAIDAO',
 			'OMPCompletedPaymentDAO' => 'classes.payment.omp.OMPCompletedPaymentDAO',
@@ -127,7 +127,6 @@ class Application extends PKPApplication {
 			'SalesRightsDAO' => 'classes.publicationFormat.SalesRightsDAO',
 			'SeriesDAO' => 'classes.press.SeriesDAO',
 			'SeriesEditorsDAO' => 'classes.press.SeriesEditorsDAO',
-			'SeriesEditorSubmissionDAO' => 'classes.submission.seriesEditor.SeriesEditorSubmissionDAO',
 			'SocialMediaDAO' => 'classes.press.SocialMediaDAO',
 			'SpotlightDAO' => 'classes.spotlight.SpotlightDAO',
 			'StageAssignmentDAO' => 'lib.pkp.classes.stageAssignment.StageAssignmentDAO',
@@ -196,9 +195,9 @@ class Application extends PKPApplication {
 	 */
 	static function getPluginSettingsContextColumnName() {
 		if (defined('SESSION_DISABLE_INIT')) {
-			$database = Config::getVar('database', 'driver');
 			$pluginSettingsDao = DAORegistry::getDAO('PluginSettingsDAO');
-			switch ($database) {
+			$driver = $pluginSettingsDao->getDriver();
+			switch ($driver) {
 				case 'mysql':
 					$checkResult = $pluginSettingsDao->retrieve('SHOW COLUMNS FROM plugin_settings LIKE ?', array('context_id'));
 					if ($checkResult->NumRows() == 0) {
@@ -219,7 +218,7 @@ class Application extends PKPApplication {
 	/**
 	 * Get the DAO for ROLE_ID_SUB_EDITOR roles.
 	 */
-	static function getSubEditorDAO() {
+	static function getSubEditorsDAO() {
 		return DAORegistry::getDAO('SeriesEditorsDAO');
 	}
 

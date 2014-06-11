@@ -71,6 +71,8 @@ class AuthorDAO extends PKPAuthorDAO {
 				aspl.locale AS primary_locale,
 				a.suffix AS suffix,
 				a.user_group_id AS user_group_id,
+				a.include_in_browse AS include_in_browse,
+				0 AS show_title,
 				a.country
 			FROM	authors a
 				LEFT JOIN author_settings aspl ON (a.author_id = aspl.author_id AND aspl.setting_name = ? AND aspl.locale = ?)

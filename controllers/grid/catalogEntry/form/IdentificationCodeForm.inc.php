@@ -168,9 +168,9 @@ class IdentificationCodeForm extends Form {
 		if (!$identificationCode) {
 			// this is a new code to this published monograph
 			$identificationCode = $identificationCodeDao->newDataObject();
+			$existingFormat = false;
 			if ($publicationFormat != null) { // ensure this format is in this monograph
 				$identificationCode->setPublicationFormatId($publicationFormat->getId());
-				$existingFormat = false;
 			} else {
 				fatalError('This format not in authorized monograph context!');
 			}

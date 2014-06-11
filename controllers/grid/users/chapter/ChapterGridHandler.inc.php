@@ -313,7 +313,7 @@ class ChapterGridHandler extends CategoryGridHandler {
 
 		// Form validation
 		if ($chapterForm->validate()) {
-			$chapterForm->execute();
+			$chapterForm->execute($request);
 
 			$newChapter = $chapterForm->getChapter();
 

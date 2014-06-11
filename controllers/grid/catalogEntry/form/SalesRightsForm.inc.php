@@ -186,9 +186,9 @@ class SalesRightsForm extends Form {
 		if (!$salesRights) {
 			// this is a new assigned format to this published monograph
 			$salesRights = $salesRightsDao->newDataObject();
+			$existingFormat = false;
 			if ($publicationFormat != null) { // ensure this assigned format is in this monograph
 				$salesRights->setPublicationFormatId($publicationFormat->getId());
-				$existingFormat = false;
 			} else {
 				fatalError('This assigned format not in authorized monograph context!');
 			}
