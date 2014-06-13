@@ -59,7 +59,6 @@ class Handler extends PKPHandler {
 		// Get the requested path.
 		$router = $request->getRouter();
 		$requestedPath = $router->getRequestedContextPath($request);
-		$press = null;
 
 		if ($requestedPath === 'index' || $requestedPath === '') {
 			// No press requested. Check how many presses has the site.

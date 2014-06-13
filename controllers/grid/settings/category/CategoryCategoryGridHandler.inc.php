@@ -189,7 +189,7 @@ class CategoryCategoryGridHandler extends CategoryGridHandler {
 
 		$categoryForm->readInputData();
 		if($categoryForm->validate()) {
-			$category = $categoryForm->execute($request);
+			$categoryForm->execute($request);
 			return DAO::getDataChangedEvent();
 		} else {
 			$json = new JSONMessage(true, $categoryForm->fetch($request));
@@ -211,7 +211,6 @@ class CategoryCategoryGridHandler extends CategoryGridHandler {
 			$request->getUserVar('categoryId'),
 			$press->getId()
 		);
-		$categoryId = $category->getId();
 
 		// FIXME delete dependent objects?
 

@@ -97,10 +97,6 @@ class PublicationFormatForm extends Form {
 	 * @see Form::fetch()
 	 */
 	function fetch($request) {
-		$format = $this->getPublicationFormat();
-		$press = $request->getPress();
-
-
 		$templateMgr = TemplateManager::getManager($request);
 		$onixCodelistItemDao = DAORegistry::getDAO('ONIXCodelistItemDAO');
 		$templateMgr->assign('entryKeys', $onixCodelistItemDao->getCodes('List7')); // List7 is for object formats

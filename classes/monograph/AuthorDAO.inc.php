@@ -40,7 +40,6 @@ class AuthorDAO extends PKPAuthorDAO {
 	 * @return array Authors ordered by sequence
 	 */
 	function getAuthorsAlphabetizedByPress($pressId = null, $initial = null, $rangeInfo = null) {
-		$authors = array();
 		$params = array(
 			'affiliation', AppLocale::getPrimaryLocale(),
 			'affiliation', AppLocale::getLocale()

@@ -104,10 +104,7 @@ class MarketForm extends Form {
 	 * @see Form::fetch()
 	 */
 	function fetch($request) {
-
 		$templateMgr = TemplateManager::getManager($request);
-		$publicationFormatId = null;
-
 		$monograph = $this->getMonograph();
 		$templateMgr->assign('submissionId', $monograph->getId());
 		$market = $this->getMarket();
@@ -139,7 +136,6 @@ class MarketForm extends Form {
 		$templateMgr->assign('availableSuppliers', $supplierOptions);
 
 		if ($market) {
-			$publicationFormatId = $market->getPublicationFormatId();
 			$templateMgr->assign('marketId', $market->getId());
 			$templateMgr->assign('countriesIncluded', $market->getCountriesIncluded());
 			$templateMgr->assign('countriesExcluded', $market->getCountriesExcluded());

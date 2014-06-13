@@ -32,9 +32,6 @@ class PublishedMonographDAO extends MonographDAO {
 	 * @return DAOResultFactory
 	 */
 	function getByPressId($pressId, $searchText = null, $rangeInfo = null) {
-		$primaryLocale = AppLocale::getPrimaryLocale();
-		$locale = AppLocale::getLocale();
-
 		$params = array_merge(
 			array(REALLY_BIG_NUMBER),
 			$this->_getFetchParameters(),

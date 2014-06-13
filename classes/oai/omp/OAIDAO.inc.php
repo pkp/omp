@@ -136,8 +136,6 @@ class OAIDAO extends PKPOAIDAO {
 	 * @return array (int, int, int)
 	 */
 	function getSetPressSeriesId($pressSpec, $seriesSpec, $restrictPressId = null) {
-		$pressId = null;
-
 		$press =& $this->_pressDao->getByPath($pressSpec);
 		if (!isset($press) || (isset($restrictPressId) && $press->getId() != $restrictPressId)) {
 			return array(0, 0);

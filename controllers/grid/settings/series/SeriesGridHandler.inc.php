@@ -55,7 +55,7 @@ class SeriesGridHandler extends SetupGridHandler {
 
 		// Elements to be displayed in the grid
 		$seriesDao = DAORegistry::getDAO('SeriesDAO');
-		$categoryDao = DAORegistry::getDAO('CategoryDAO');
+		DAORegistry::getDAO('CategoryDAO'); // Load constants?
 		$seriesEditorsDao = DAORegistry::getDAO('SeriesEditorsDAO');
 		$seriesIterator = $seriesDao->getByPressId($press->getId());
 
@@ -207,7 +207,6 @@ class SeriesGridHandler extends SetupGridHandler {
 	 */
 	function updateSeries($args, $request) {
 		$seriesId = $request->getUserVar('seriesId');
-		$press = $request->getPress();
 
 		import('controllers.grid.settings.series.form.SeriesForm');
 		$seriesForm = new SeriesForm($request, $seriesId);

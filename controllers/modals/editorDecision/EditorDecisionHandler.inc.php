@@ -63,8 +63,6 @@ class EditorDecisionHandler extends PKPEditorDecisionHandler {
 	 * @return string Serialized JSON object
 	 */
 	function saveNewReviewRound($args, $request) {
-		// Retrieve the authorized submission.
-		$submission = $this->getAuthorizedContextObject(ASSOC_TYPE_SUBMISSION);
 		// FIXME: this can probably all be managed somewhere.
 		$stageId = $this->getAuthorizedContextObject(ASSOC_TYPE_WORKFLOW_STAGE);
 		if ($stageId == WORKFLOW_STAGE_ID_INTERNAL_REVIEW) {

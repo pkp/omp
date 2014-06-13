@@ -133,10 +133,6 @@ class PublicationFormatGridCellProvider extends DataObjectGridCellProvider {
 	 */
 	function getCellActions($request, $row, $column) {
 		$publicationFormat = $row->getData();
-		$actionArgs = array(
-			'submissionId' => $publicationFormat->getMonographId(),
-			'publicationFormatId' => $publicationFormat->getId()
-		);
 		$monographId = $publicationFormat->getMonographId();
 		$publicationFormatId = $publicationFormat->getId();
 		switch ($column->getId()) {

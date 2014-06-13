@@ -46,7 +46,6 @@ class AboutContextHandler extends Handler implements IAboutContextInfoProvider {
 	 * @param $request PKPRequest
 	 */
 	function contact($args, $request) {
-		$settingsDao = DAORegistry::getDAO('PressSettingsDAO');
 		$context = $request->getContext();
 		$templateMgr = TemplateManager::getManager($request);
 		$templateMgr->assign('contactInfo', AboutContextHandler::getContactInfo($context));
@@ -108,7 +107,6 @@ class AboutContextHandler extends Handler implements IAboutContextInfoProvider {
 	 * @param $request PKPRequest
 	 */
 	function submissions($args, $request) {
-		$settingsDao = DAORegistry::getDAO('PressSettingsDAO');
 		$context = $request->getContext();
 		$templateMgr = TemplateManager::getManager($request);
 		$templateMgr->assign('submissionInfo', AboutContextHandler::getSubmissionsInfo($context));
