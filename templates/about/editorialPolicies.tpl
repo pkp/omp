@@ -24,7 +24,7 @@
 
 {if !empty($editorialPoliciesInfo.reviewPolicy)}
 	<div id="peerReviewProcess">
-		<h3>{translate key="about.peerReviewProcess"}</h3>
+		<h3>{translate key="about.reviewPolicy"}</h3>
 		<p>{$editorialPoliciesInfo.reviewPolicy|nl2br}</p>
 	</div>
 	<div class="separator"></div>
