@@ -241,7 +241,6 @@ class SignoffFileUploadForm extends Form {
 			// log the event.
 			import('lib.pkp.classes.log.SubmissionFileLog');
 			import('lib.pkp.classes.log.SubmissionFileEventLogEntry'); // constants
-			$monographDao = DAORegistry::getDAO('MonographDAO');
 			$submissionFileDao = DAORegistry::getDAO('SubmissionFileDAO');
 			$monographFile = $submissionFileDao->getLatestRevision($signoff->getFileId());
 
