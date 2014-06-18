@@ -96,8 +96,6 @@ class NotificationStatusDAO extends DAO {
 	 * @return int
 	 */
 	function getNotifiableUsersCount($pressId) {
-		$userDao = DAORegistry::getDAO('UserDAO');
-
 		$result = $this->retrieve(
 			'SELECT count(*) FROM notification_status n WHERE n.press_id = ?',
 			(int) $pressId

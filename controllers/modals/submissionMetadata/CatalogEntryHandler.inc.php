@@ -99,18 +99,15 @@ class CatalogEntryHandler extends PublicationEntryHandler {
 	 */
 	function fetchFormatInfo($args, $request) {
 		$submission = $this->getSubmission();
-		// check to see if this submission has been published yet
-		$publishedMonographDao = DAORegistry::getDAO('PublishedMonographDAO');
-		$json = new JSONMessage();
-
 		$publicationFormatDao = DAORegistry::getDAO('PublicationFormatDAO');
 		$formats = $publicationFormatDao->getBySubmissionId($submission->getId());
+
 		$publicationFormats = array();
 		while ($format = $formats->next()) {
 			$publicationFormats[$format->getId()] = $format->getLocalizedName();
 		}
-		$json->setStatus(true);
-		$json->setContent(true);
+
+		$json = new JSONMessage(true, true);
 		$json->setAdditionalAttributes(array('formats' => $publicationFormats));
 		return $json->getString();
 	}

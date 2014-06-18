@@ -51,7 +51,7 @@ class Upgrade extends Installer {
 		$pressDao = DAORegistry::getDAO('PressDAO');
 		$submissionDao = DAORegistry::getDAO('MonographDAO');
 		$submissionFileDao = DAORegistry::getDAO('SubmissionFileDAO');
-		$genreDao = DAORegistry::getDAO('GenreDAO');
+		DAORegistry::getDAO('GenreDAO'); // Load constants
 		$siteDao = DAORegistry::getDAO('SiteDAO'); /* @var $siteDao SiteDAO */
 		$site = $siteDao->getSite();
 		$adminEmail = $site->getLocalizedContactEmail();

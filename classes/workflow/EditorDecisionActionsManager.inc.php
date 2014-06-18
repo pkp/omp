@@ -36,7 +36,6 @@ class EditorDecisionActionsManager {
 	 * @return array
 	 */
 	function getActionLabels($decisions) {
-		$allDecisionsData = array();
 		$allDecisionsData =
 			self::_submissionStageDecisions() +
 			self::_internalReviewStageDecisions() +

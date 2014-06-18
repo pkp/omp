@@ -96,16 +96,12 @@ class IdentificationCodeForm extends Form {
 	 * @see Form::fetch()
 	 */
 	function fetch($request) {
-
 		$templateMgr = TemplateManager::getManager($request);
-		$publicationFormatId = null;
-
 		$monograph = $this->getMonograph();
 		$templateMgr->assign('submissionId', $monograph->getId());
 		$identificationCode = $this->getIdentificationCode();
 
 		if ($identificationCode) {
-			$publicationFormatId = $identificationCode->getPublicationFormatId();
 			$templateMgr->assign('identificationCodeId', $identificationCode->getId());
 			$templateMgr->assign('code', $identificationCode->getCode());
 			$templateMgr->assign('value', $identificationCode->getValue());

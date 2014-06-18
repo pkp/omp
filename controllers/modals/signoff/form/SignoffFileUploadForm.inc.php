@@ -160,8 +160,6 @@ class SignoffFileUploadForm extends Form {
 	 * @return MonographFile if successful, otherwise null
 	 */
 	function execute($request) {
-		$user = $request->getUser();
-
 		// Retrieve the signoff we're working with.
 		$signoffDao = DAORegistry::getDAO('SubmissionFileSignoffDAO');
 		$signoff = $signoffDao->getById($this->getData('signoffId'));
@@ -243,8 +241,6 @@ class SignoffFileUploadForm extends Form {
 			// log the event.
 			import('lib.pkp.classes.log.SubmissionFileLog');
 			import('lib.pkp.classes.log.SubmissionFileEventLogEntry'); // constants
-			$monographDao = DAORegistry::getDAO('MonographDAO');
-			$monograph = $monographDao->getById($this->getMonographId());
 			$submissionFileDao = DAORegistry::getDAO('SubmissionFileDAO');
 			$monographFile = $submissionFileDao->getLatestRevision($signoff->getFileId());
 

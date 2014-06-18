@@ -232,9 +232,6 @@ class MonographDAO extends SubmissionDAO {
 	 * @return DAOResultFactory containing matching Submissions
 	 */
 	function getBySubEditorId($contextId = null, $subEditorId = null, $includeDeclined = true, $includePublished = true, $rangeInfo = null) {
-		$primaryLocale = AppLocale::getPrimaryLocale();
-		$locale = AppLocale::getLocale();
-
 		$params = $this->_getFetchParameters();
 		$params[] = (int) ROLE_ID_MANAGER;
 		if ($subEditorId) $params[] = (int) $subEditorId;

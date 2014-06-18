@@ -119,7 +119,7 @@ class CodelistItemDAO extends DAO {
 
 	/**
 	 * Get the name of the CodelistItem subclass.
-	 * @return String
+	 * @return CodelistItem
 	 */
 	function newDataObject() {
 		assert(false);

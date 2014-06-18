@@ -273,7 +273,7 @@ class CategoryForm extends Form {
 
 		// Update or insert the category object
 		if ($categoryId == null) {
-			$categoryId = $categoryDao->insertObject($category);
+			$categoryDao->insertObject($category);
 		} else {
 			$categoryDao->updateObject($category);
 		}

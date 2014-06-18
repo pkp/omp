@@ -57,7 +57,7 @@ class PublicationFormatTombstoneManager {
 		$publicationFormatTombstone->setSetName($setName);
 		$publicationFormatTombstone->setOAIIdentifier($oaiIdentifier);
 		$publicationFormatTombstone->setOAISetObjectsIds($OAISetObjectsIds);
-		$tombstoneId = $dataObjectTombstoneDao->insertObject($publicationFormatTombstone);
+		$dataObjectTombstoneDao->insertObject($publicationFormatTombstone);
 
 		if (HookRegistry::call('PublicationFormatTombstoneManager::insertPublicationFormatTombstone', array(&$publicationFormatTombstone, &$publicationFormat, &$press))) return;
 	}

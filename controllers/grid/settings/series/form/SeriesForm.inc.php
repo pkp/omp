@@ -255,7 +255,7 @@ class SeriesForm extends PKPSectionForm {
 	 * @param $seriesId int
 	 */
 	function setSeriesId($seriesId) {
-		$this->setSectionId($sectionId);
+		$this->setSectionId($seriesId);
 	}
 
 	/**
@@ -263,7 +263,6 @@ class SeriesForm extends PKPSectionForm {
 	 * @see ListbuilderHandler::insertEntry
 	 */
 	function insertCategoryEntry($request, $newRowId) {
-		$seriesId = $this->getSeriesId();
 		$categoryId = array_shift($newRowId);
 
 		$seriesDao = DAORegistry::getDAO('SeriesDAO');

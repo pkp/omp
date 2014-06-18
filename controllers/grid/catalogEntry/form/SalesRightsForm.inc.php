@@ -108,10 +108,7 @@ class SalesRightsForm extends Form {
 	 * @see Form::fetch()
 	 */
 	function fetch($request) {
-
 		$templateMgr = TemplateManager::getManager($request);
-		$publicationFormatId = null;
-
 		$monograph = $this->getMonograph();
 		$templateMgr->assign('submissionId', $monograph->getId());
 		$salesRights = $this->getSalesRights();
@@ -120,7 +117,6 @@ class SalesRightsForm extends Form {
 		$templateMgr->assign('regionCodes', $onixCodelistItemDao->getCodes('List49')); // regions (British Columbia, England, etc)
 
 		if ($salesRights) {
-			$publicationFormatId = $salesRights->getPublicationFormatId();
 			$templateMgr->assign('salesRightsId', $salesRights->getId());
 			$templateMgr->assign('type', $salesRights->getType());
 			$templateMgr->assign('ROWSetting', $salesRights->getROWSetting());

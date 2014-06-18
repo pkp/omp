@@ -77,8 +77,6 @@ class CatalogEntryCatalogMetadataForm extends Form {
 	 * return string
 	 */
 	function fetch($request) {
-		$monograph = $this->getMonograph();
-
 		$templateMgr = TemplateManager::getManager($request);
 		$templateMgr->assign('submissionId', $this->getMonograph()->getId());
 		$templateMgr->assign('stageId', $this->getStageId());
@@ -243,7 +241,7 @@ class CatalogEntryCatalogMetadataForm extends Form {
 				case '.png': $cover = imagecreatefrompng($temporaryFilePath); break;
 				case '.gif': $cover = imagecreatefromgif($temporaryFilePath); break;
 			}
-			assert($cover);
+			assert(isset($cover));
 
 			// Copy the new file over (involves creating the appropriate subdirectory too)
 			$filename = 'cover' . $this->_imageExtension;
@@ -293,9 +291,9 @@ class CatalogEntryCatalogMetadataForm extends Form {
 	 */
 	function _buildSurrogateImage(&$cover, $basePath, $type) {
 		// Calculate the scaling ratio for each dimension.
-
 		$maxWidth = 0;
 		$maxHeight = 0;
+		$surrogateFilename = null;
 
 		switch ($type) {
 			case SUBMISSION_IMAGE_TYPE_THUMBNAIL:

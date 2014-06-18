@@ -32,9 +32,6 @@ class PublishedMonographDAO extends MonographDAO {
 	 * @return DAOResultFactory
 	 */
 	function getByPressId($pressId, $searchText = null, $rangeInfo = null) {
-		$primaryLocale = AppLocale::getPrimaryLocale();
-		$locale = AppLocale::getLocale();
-
 		$params = array_merge(
 			array(REALLY_BIG_NUMBER),
 			$this->_getFetchParameters(),
@@ -64,7 +61,7 @@ class PublishedMonographDAO extends MonographDAO {
 				LEFT JOIN features f ON (f.submission_id = s.submission_id AND f.assoc_type = ? AND f.assoc_id = s.context_id)
 			WHERE	ps.date_published IS NOT NULL AND s.context_id = ?
 				' . ($searchText !== null?' AND (st.setting_value LIKE ? OR a.first_name LIKE ? OR a.last_name LIKE ?)':'') . '
-			ORDER BY order_by, ps.date_published',
+			ORDER BY order_by, ps.date_published DESC',
 			$params,
 			$rangeInfo
 		);

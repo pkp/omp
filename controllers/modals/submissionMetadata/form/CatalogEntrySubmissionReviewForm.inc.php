@@ -32,7 +32,6 @@ class CatalogEntrySubmissionReviewForm extends SubmissionMetadataViewForm {
 		if (array_key_exists('expeditedSubmission', $formParams)) {
 			// If we are expediting, make the confirmation checkbox mandatory.
 			$request = Application::getRequest();
-			$context = $request->getContext();
 			$this->addCheck(new FormValidator($this, 'confirm', 'required', 'submission.catalogEntry.confirm.required'));
 			$this->addCheck(new FormValidatorRegExp($this, 'price', 'optional', 'grid.catalogEntry.validPriceRequired', '/^(([1-9]\d{0,2}(,\d{3})*|[1-9]\d*|0|)(.\d{2})?|([1-9]\d{0,2}(,\d{3})*|[1-9]\d*|0|)(.\d{2})?)$/'));
 		}
