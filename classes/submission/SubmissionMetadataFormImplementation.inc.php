@@ -36,15 +36,6 @@ class SubmissionMetadataFormImplementation extends PKPSubmissionMetadataFormImpl
 			$this->_parentForm->setData('series', $seriesDao->getById($submission->getSeriesId()));
 		}
 	}
-
-	/**
-	 * @copydoc PKPSubmissionMetadataFormImplementation::addChecks
-	 */
-	function addChecks($submission) {
-		parent::addChecks($submission);
-
-		$this->_parentForm->addCheck(new FormValidatorLocale($this->_parentForm, 'abstract', 'required', 'submission.submit.form.abstractRequired'));
-	}
 }
 
 ?>
