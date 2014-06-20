@@ -83,10 +83,6 @@
 		<query driver="mysql">DELETE notifications FROM notifications LEFT JOIN signoffs ON (notifications.assoc_id=signoffs.signoff_id) WHERE notifications.assoc_type=1048582 AND signoffs.signoff_id IS NULL</query><!-- ASSOC_TYPE_SIGNOFF -->
 		<query driver="postgres7">DELETE FROM notifications n WHERE n.assoc_type=1048582 AND NOT EXISTS(SELECT 1 FROM signoffs s WHERE s.signoff_id=n.assoc_id)</query><!-- ASSOC_TYPE_SIGNOFF -->
 	</sql>
-	<!--  Bug #8095: refactor _PRESS_MANAGER to _MANAGER, change 0x011 to 0x010 for role id -->
-	<sql>
-		<query>UPDATE user_groups SET role_id = '16' WHERE role_id = '17' AND path = 'manager'</query>
-	</sql>
 
 	<!-- Bug #8551: Ambiguity between acronym and initials -->
 	<sql>
