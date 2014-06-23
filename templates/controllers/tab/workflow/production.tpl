@@ -20,7 +20,7 @@
 	{rdelim});
 </script>
 {include file="controllers/tab/workflow/stageParticipants.tpl"}
-Œ
+
 <div id="production">
 	{include file="controllers/notification/inPlaceNotification.tpl" notificationId="productionNotification" requestOptions=$productionNotificationRequestOptions}
 
