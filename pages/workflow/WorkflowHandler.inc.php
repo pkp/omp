@@ -28,7 +28,7 @@ class WorkflowHandler extends PKPWorkflowHandler {
 		$this->addRoleAssignment(
 			array(ROLE_ID_SUB_EDITOR, ROLE_ID_MANAGER, ROLE_ID_ASSISTANT),
 			array(
-				'access', 'submission',
+				'access', 'index', 'submission',
 				'editorDecisionActions', // Submission & review
 				'internalReview', // Internal review
 				'externalReview', // External review
@@ -51,35 +51,7 @@ class WorkflowHandler extends PKPWorkflowHandler {
 	 * @param $request PKPRequest
 	 */
 	function internalReview($args, $request) {
-		// Use different ops so we can identify stage by op.
-		$templateMgr = TemplateManager::getManager($request);
-		$templateMgr->assign('reviewRoundOp', 'internalReviewRound');
-		return $this->_review($args, $request);
-	}
-
-	/**
-	 * Show the production stage
-	 * @param $request PKPRequest
-	 * @param $args array
-	 */
-	function production(&$args, $request) {
-		$templateMgr = TemplateManager::getManager($request);
-		$monograph =& $this->getAuthorizedContextObject(ASSOC_TYPE_MONOGRAPH);
-		$notificationRequestOptions = array(
-			NOTIFICATION_LEVEL_NORMAL => array(
-				NOTIFICATION_TYPE_VISIT_CATALOG => array(ASSOC_TYPE_MONOGRAPH, $monograph->getId()),
-				NOTIFICATION_TYPE_APPROVE_SUBMISSION => array(ASSOC_TYPE_MONOGRAPH, $monograph->getId()),
-			),
-			NOTIFICATION_LEVEL_TRIVIAL => array()
-		);
-
-		$publicationFormatDao = DAORegistry::getDAO('PublicationFormatDAO');
-		$submission = $this->getAuthorizedContextObject(ASSOC_TYPE_SUBMISSION);
-		$publicationFormats = $publicationFormatDao->getBySubmissionId($submission->getId());
-		$templateMgr->assign('publicationFormats', $publicationFormats->toAssociativeArray());
-
-		$templateMgr->assign('productionNotificationRequestOptions', $notificationRequestOptions);
-		$templateMgr->display('workflow/production.tpl');
+		$this->_redirectToIndex($args, $request);
 	}
 
 	/**
