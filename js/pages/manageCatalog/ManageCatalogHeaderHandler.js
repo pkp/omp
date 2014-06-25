@@ -164,7 +164,7 @@
 
 		var tabIndex = this.searchTabIndex_,
 				$catalogTabs = $('#catalogTabs'),
-				selectedTabIndex = $catalogTabs.tabs('option', 'selected');
+				selectedTabIndex = $catalogTabs.tabs('option', 'active');
 
 		// Load and jump to the tab, or reload if already there
 		if (selectedTabIndex === tabIndex) {
@@ -289,7 +289,7 @@
 			prototype.showTabHandler_ = function(element, event, tabElement) {
 		// clear the search if the selected tab is not our search result tab.
 		var $catalogTabs = $('#catalogTabs').tabs(),
-				currentTabIndex = $catalogTabs.tabs('option', 'selected'),
+				currentTabIndex = $catalogTabs.tabs('option', 'active'),
 				$catalogHeader;
 
 		if (currentTabIndex !== this.searchTabIndex_) {
@@ -325,7 +325,7 @@
 			prototype.dataChangedHandler_ = function(event, element) {
 
 		var $catalogTabs = $('#catalogTabs').tabs(),
-				currentTabIndex = $catalogTabs.tabs('option', 'selected');
+				currentTabIndex = $catalogTabs.tabs('option', 'active');
 
 		switch (currentTabIndex) {
 			case 0:
