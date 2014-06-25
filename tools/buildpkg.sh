@@ -95,9 +95,4 @@ fi
 
 cd ..
 
-echo -n "Building doxygen documentation... "
-doxygen docs/dev/omp.doxygen > /dev/null && cd docs/dev/doxygen && tar czf ../../../${BUILD}-doxygen.tar.gz html && cd ../../..
-
-echo "Done"
-
 rm -r $TMPDIR
