@@ -11,7 +11,7 @@
 <script src="{$pluginJSPath}/inlinePdf.js"></script>
 <script src="{$baseUrl}/lib/pkp/lib/pdfobject/pdfobject.js"></script>
 
-{url|assign:"pdfUrl" op="download" path=$publishedMonograph->getId()|to_array:$submissionFile->getAssocId():$submissionFile->getFileIdAndRevision() escape=false}{* Assoc ID is publication format *}
+{url|assign:"pdfUrl" op="download" path=$publishedMonograph->getId()|to_array:$submissionFile->getAssocId():$submissionFile->getFileIdAndRevision() inline=true escape=false}{* Assoc ID is publication format *}
 
 {translate|assign:"noPluginText" key="submission.pdf.pluginMissing"}
 <script type="text/javascript"><!--{literal}
