@@ -187,8 +187,8 @@ class CatalogBookHandler extends Handler {
 
 			// If inline viewing is requested, permit plugins to
 			// handle the document.
+			PluginRegistry::loadCategory('viewableFiles', true);
 			if ($view) {
-				PluginRegistry::loadCategory('viewableFiles', true);
 				if (HookRegistry::call('CatalogBookHandler::view', array(&$this, &$publishedMonograph, &$submissionFile))) {
 					// If the plugin handled the hook, prevent further default activity.
 					exit();
@@ -197,10 +197,11 @@ class CatalogBookHandler extends Handler {
 
 			// Inline viewer not available, or viewing not wanted.
 			// Download the file.
-			if (!HookRegistry::call('CatalogBookHandler::download', array(&$this, &$publishedMonograph, &$submissionFile))) {
+			$inline = false;
+			if (!HookRegistry::call('CatalogBookHandler::download', array(&$this, &$publishedMonograph, &$submissionFile, &$inline))) {
 				import('lib.pkp.classes.file.SubmissionFileManager');
 				$monographFileManager = new SubmissionFileManager($publishedMonograph->getContextId(), $monographId);
-				return $monographFileManager->downloadFile($fileId, $revision);
+				return $monographFileManager->downloadFile($fileId, $revision, $inline);
 			}
 		}
 
