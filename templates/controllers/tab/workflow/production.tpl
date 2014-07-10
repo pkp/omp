@@ -42,7 +42,7 @@
 	{/if}
 
 	<div id='publicationFormatTabsContainer'>
-		{include file="workflow/productionFormatsTab.tpl" formatTabsId=$formatTabsId publicationFormats=$representations}
+		{include file="controllers/tab/workflow/productionFormatsTab.tpl" formatTabsId=$formatTabsId publicationFormats=$representations}
 	</div>
 </div>
 
