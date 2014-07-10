@@ -1,5 +1,5 @@
 {**
- * templates/workflow/production.tpl
+ * templates/controllers/tab/workflow/production.tpl
  *
  * Copyright (c) 2014 Simon Fraser University Library
  * Copyright (c) 2003-2014 John Willinsky
@@ -7,10 +7,6 @@
  *
  * Production workflow stage
  *}
-{strip}
-{include file="workflow/header.tpl"}
-{/strip}
-
 <script type="text/javascript">
 	// Initialise JS handler.
 	$(function() {ldelim}
@@ -23,6 +19,7 @@
 		);
 	{rdelim});
 </script>
+{include file="controllers/tab/workflow/stageParticipants.tpl"}
 
 <div id="production">
 	{include file="controllers/notification/inPlaceNotification.tpl" notificationId="productionNotification" requestOptions=$productionNotificationRequestOptions}
@@ -45,8 +42,7 @@
 	{/if}
 
 	<div id='publicationFormatTabsContainer'>
-		{include file="workflow/productionFormatsTab.tpl" formatTabsId=$formatTabsId publicationFormats=$publicationFormats}
+		{include file="controllers/tab/workflow/productionFormatsTab.tpl" formatTabsId=$formatTabsId publicationFormats=$representations}
 	</div>
 </div>
 
-{include file="common/footer.tpl"}

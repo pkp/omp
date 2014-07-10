@@ -30,7 +30,7 @@ $(function() {ldelim}
 		{foreach from=$publicationFormats item=format}
 			<li>{* no need to bother with the published test, since unpublished monographs will not have formats assigned to them *}
 				<a id="publication{$format->getId()|escape}"
-					href="{url router=$smarty.const.ROUTE_PAGE op="fetchPublicationFormat"
+					href="{url router=$smarty.const.ROUTE_PAGE page="workflow" op="fetchPublicationFormat"
 					publicationFormatId=$format->getId()
 					submissionId=$format->getMonographId()
 					stageId=$smarty.const.WORKFLOW_STAGE_ID_PRODUCTION}">{$format->getLocalizedName()|escape}</a>

@@ -18,6 +18,7 @@
 
 switch ($op) {
 	case 'access':
+	case 'index':
 	case 'submission':
 	case 'internalReview':
 	case 'externalReview':
