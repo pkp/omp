@@ -32,13 +32,6 @@ class UserHandler extends PKPUserHandler {
 	}
 
 	/**
-	 * Index page; redirect to profile
-	 */
-	function index($args, $request) {
-		$request->redirect(null, null, 'profile');
-	}
-
-	/**
 	 * Become a given role.
 	 * @param $args array
 	 * @param $request PKPRequest
