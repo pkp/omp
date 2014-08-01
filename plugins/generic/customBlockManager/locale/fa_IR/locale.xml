@@ -14,15 +14,8 @@
  
 <locale name="fa_IR" full_name="Persian">
 	<message key="plugins.generic.customBlockManager.displayName">اداره بلوک آزاد</message>
-	<message key="plugin.generic.customBlockManager.introduction"><![CDATA[از این پلاگین برای ایجاد یا خذف بلوک آزاد میتوانید استفاده کنید.
-پس از ایجاد محتوای آنرا در صفحه 
-<a href="{$systemPluginsUrl}">پلاگین های سیستم</a> 
-در قسمنت پلاگین های بلوک ویرایش کنید. برای قراردادن بلوک خود در محل دلخواه در حاشیه صفحه مراجعه کنید به  
-<a href="{$setupStep56}">مرحله ۵.۶ نصب</a>]]></message>
 	<message key="plugins.generic.customBlockManager.settings">تنظیمات</message>
 	<message key="plugins.generic.customBlockManager.blockName">نام بلوک</message>	
-	<message key="plugins.generic.customBlockManager.action">عمل</message>	
-	<message key="plugins.generic.customBlockManager.delete">حذف</message>	
 	<message key="plugins.generic.customBlockManager.addBlock">افزودن بلوک</message>	
 
 	<message key="plugins.generic.customBlock.content">محتوی</message>
@@ -31,5 +24,4 @@
 	<message key="plugins.generic.customBlock.description">این یک بلوک تولید شده توسط کاربر است.</message>
 	<message key="plugins.generic.customBlock.editContent">ویرایش محتوای نوار حاشیه</message>
 	<message key="plugins.generic.customBlock.contentRequired">مقداری محتوی لازم است. در راه برای خذف آن دارید: از طریق پلاگین اداره بلوک و یا در مرحله ۵ نصب مجله</message>
-	<message key="plugins.generic.customBlock.edit">ویرایش</message>
 </locale>
