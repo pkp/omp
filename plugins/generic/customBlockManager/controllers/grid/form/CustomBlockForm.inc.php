@@ -88,6 +88,7 @@ class CustomBlockForm extends Form {
 			// add the custom block to the list of the custom block plugins in the custom block manager plugin
 			$customBlockManagerPlugin = $plugin->getManagerPlugin();
 			$blocks = $customBlockManagerPlugin->getSetting($contextId, 'blocks');
+			if (!isset($blocks)) $blocks = array();
 			array_push($blocks, $this->getData('blockName'));
 			$customBlockManagerPlugin->updateSetting($contextId, 'blocks', $blocks);
 		}
