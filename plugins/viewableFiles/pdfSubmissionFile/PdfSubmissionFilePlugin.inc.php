@@ -65,8 +65,8 @@ class PdfSubmissionFilePlugin extends ViewableFilePlugin {
 	function displaySubmissionFile($publishedMonograph, $submissionFile) {
 		$request = $this->getRequest();
 		$templateMgr = TemplateManager::getManager($this->getRequest());
-		$templateMgr->assign('pluginJSPath', $this->getPluginUrl($request) . '/js');
-		$templateMgr->addStyleSheet($this->getPluginUrl($request) . '/styles.css', STYLE_SEQUENCE_LATE);
+		$templateMgr->assign('pluginJSPath', $this->_getPluginUrl($request) . '/js');
+		$templateMgr->addStyleSheet($this->_getPluginUrl($request) . '/styles.css', STYLE_SEQUENCE_LATE);
 		return parent::displaySubmissionFile($publishedMonograph, $submissionFile);
 	}
 
@@ -93,11 +93,11 @@ class PdfSubmissionFilePlugin extends ViewableFilePlugin {
 	}
 
 	/**
-	 * Get the plugin path.
+	 * Get the plugin base URL.
 	 * @param $request PKPRequest
 	 * @return string
 	 */
-	function getPluginUrl($request) {
+	private function _getPluginUrl($request) {
 		return $request->getBaseUrl() . '/' . $this->getPluginPath();
 	}
 }
