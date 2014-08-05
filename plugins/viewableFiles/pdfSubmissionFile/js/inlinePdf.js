@@ -15,7 +15,7 @@ $(document).ready(function(){
 	var inlineStyle = ''; // Store the inline style that resizable creates, and reassign it when done with fullscreen
 
 	// For the background "lightbox" effect
-	$("#container").prepend('<div id="fade" class="black_overlay"></div>');
+	$(".pkp_structure_page").prepend('<div id="fade" class="black_overlay"></div>');
 
 	$('#sidebarToggle').click(function() {
 		$('#sidebar').toggle().toggleClass("sidebar-hidden");
