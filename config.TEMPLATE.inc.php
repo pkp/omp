@@ -306,6 +306,9 @@ time_between_emails = 3600
 ; (either as To:, Cc:, or Bcc: addresses) for a non-priveleged user
 max_recipients = 10
 
+; If enabled, email addresses must be validated before login is possible.
+require_validation = Off
+
 ; Maximum number of days before an unvalidated account expires and is deleted
 validation_timeout = 14
 
