@@ -188,6 +188,40 @@ class Upgrade extends Installer {
 		$result->Close();
 		return true;
 	}
+
+	/**
+	 * Localize the URLs associated with footer links. (See bug #8867.)
+	 * @return boolean
+	 */
+	function localizeFooterLinks() {
+		$pressDao = DAORegistry::getDAO('PressDAO');
+		$footerLinkDao = DAORegistry::getDAO('FooterLinkDAO');
+
+		$contexts = $pressDao->getAll();
+		while ($context = $contexts->next()) {
+
+			$result = $footerLinkDao->retrieve(
+				'SELECT footerlink_id, url
+				FROM	footerlinks
+				WHERE	context_id = ?',
+				array((int) $context->getId())
+			);
+
+			while (!$result->EOF) {
+				$row = $result->getRowAssoc(false);
+				$footerlink_id = $row['footerlink_id'];
+				$url = $row['url'];
+				$result->MoveNext();
+
+				foreach ($context->getSupportedLocales() as $locale) {
+					$params = array((int) $footerlink_id, $locale, 'url', $url, 'string');
+					$footerLinkDao->update('INSERT INTO footerlink_settings VALUES (?, ?, ?, ?, ?)', $params);
+				}
+			}
+			$result->Close();
+		}
+		return true;
+	}
 }
 
 ?>
