@@ -56,7 +56,7 @@ class RoleDAO extends PKPRoleDAO {
 
 		$pressRoleNames = array(
 			ROLE_ID_MANAGER => 'user.role.manager',
-			ROLE_ID_SERIES_EDITOR => 'user.role.seriesEditor',
+			ROLE_ID_SERIES_EDITOR => 'user.role.subEditor',
 			ROLE_ID_ASSISTANT => 'user.role.assistant',
 		);
 		$roleNames = $parentRoleNames + $pressRoleNames;
