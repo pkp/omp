@@ -18,6 +18,10 @@
 		<data file="dbscripts/xml/upgrade/1.1.0.0_preupdate.xml" condition="return $installer->columnExists('plugin_settings', 'press_id');" />
 	</upgrade>
 
+	<upgrade minversion="0.9.9.0" maxversion="1.1.0.9">
+		<code function="localizeFooterLinks" /><!-- Bug #8867 -->
+	</upgrade>
+
 	<!-- PKP schema components -->
 	<schema file="lib/pkp/xml/schema/common.xml" />
 	<schema file="lib/pkp/xml/schema/scheduledTasks.xml" />
