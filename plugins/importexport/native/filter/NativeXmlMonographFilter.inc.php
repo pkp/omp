@@ -128,7 +128,6 @@ class NativeXmlMonographFilter extends NativeXmlSubmissionFilter {
 		$importFilter = $this->getImportFilter($n->tagName);
 		assert($importFilter); // There should be a filter
 
-		import('plugins.importexport.native.Onix30ExportDeployment');
 		$existingDeployment = $this->getDeployment();
 		$onixDeployment = new Onix30ExportDeployment(Request::getContext(), Request::getUser());
 		$onixDeployment->setSubmission($existingDeployment->getSubmission());

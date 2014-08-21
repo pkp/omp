@@ -57,8 +57,6 @@ class PublicationFormatNativeXmlFilter extends RepresentationNativeXmlFilter {
 		assert(count($nativeExportFilters) == 1); // Assert only a single serialization filter
 		$exportFilter = array_shift($nativeExportFilters);
 
-		// this is a symbolic link to the class in the onix30 export plugin.
-		import('plugins.importexport.native.Onix30ExportDeployment');
 		$exportFilter->setDeployment(new Onix30ExportDeployment(Request::getContext(), Request::getUser()));
 
 		$onixDoc  = $exportFilter->execute($submission);
