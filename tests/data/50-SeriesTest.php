@@ -36,14 +36,14 @@ class SeriesTest extends WebTestCase {
 		$this->type('css=[id^=path-]', 'education');
 
 		// Add Series Editor (David Buskins)
-		$this->waitForElementPresent('css=[id^=component-listbuilder-settings-subeditorslistbuilder-addItem-button-]');
-		$this->clickAt('css=[id^=component-listbuilder-settings-subeditorslistbuilder-addItem-button-]', '10,10');
+		$this->waitForElementPresent('css=[id^=component-listbuilder-settings-serieseditorslistbuilder-addItem-button-]');
+		$this->clickAt('css=[id^=component-listbuilder-settings-serieseditorslistbuilder-addItem-button-]', '10,10');
 
 		$this->waitForElementPresent('//select[@name=\'newRowId[name]\']//option[text()=\'David Buskins\']');
 		$this->select('name=newRowId[name]', 'label=David Buskins');
 
 		// Persist this one and add another (Stephanie Berardo)
-		$this->clickAt("css=[id^=component-listbuilder-settings-subeditorslistbuilder-addItem-button-]", "10,10");
+		$this->clickAt("css=[id^=component-listbuilder-settings-serieseditorslistbuilder-addItem-button-]", "10,10");
 		$this->waitForElementPresent('css=span:contains(\'David Buskins\')');
 		$this->waitForElementPresent('xpath=(//select[@name="newRowId[name]"])[2]//option[text()=\'Stephanie Berardo\']');
 		$this->select('xpath=(//select[@name="newRowId[name]"])[2]', 'label=Stephanie Berardo');
@@ -62,8 +62,8 @@ class SeriesTest extends WebTestCase {
 		$this->type('css=[id^=path-]', 'access');
 
 		// Add a Series Editor (Minoti Inoue)
-		$this->waitForElementPresent('css=[id^=component-listbuilder-settings-subeditorslistbuilder-addItem-button-]');
-		$this->clickAt('css=[id^=component-listbuilder-settings-subeditorslistbuilder-addItem-button-]', '10,10');
+		$this->waitForElementPresent('css=[id^=component-listbuilder-settings-serieseditorslistbuilder-addItem-button-]');
+		$this->clickAt('css=[id^=component-listbuilder-settings-serieseditorslistbuilder-addItem-button-]', '10,10');
 		$this->waitForElementPresent('//select[@name=\'newRowId[name]\']//option[text()=\'Minoti Inoue\']');
 		$this->select('name=newRowId[name]', 'label=Minoti Inoue');
 		$this->click('//form[@id=\'seriesForm\']//span[text()=\'Save\']/..');
