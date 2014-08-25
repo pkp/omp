@@ -23,7 +23,6 @@
 		{fbvFormSection list=true}
 			{fbvElement type="checkbox" id="restrictSiteAccess" value="1" checked=$restrictSiteAccess label="manager.setup.restrictSiteAccess"}
 			{fbvElement type="checkbox" id="restrictMonographAccess" value="1" checked=$restrictMonographAccess label="manager.setup.restrictMonographAccess"}
-			{fbvElement type="checkbox" id="showGalleyLinks" value="1" checked=$showGalleyLinks label="manager.setup.showGalleyLinksDescription"}
 		{/fbvFormSection}
 	{/fbvFormArea}
 
