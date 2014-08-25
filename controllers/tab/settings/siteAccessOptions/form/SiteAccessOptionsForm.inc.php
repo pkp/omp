@@ -27,7 +27,6 @@ class SiteAccessOptionsForm extends ContextSettingsForm {
 			'allowRegReviewer' => 'bool',
 			'restrictSiteAccess' => 'bool',
 			'restrictMonographAccess' => 'bool',
-			'showGalleyLinks' => 'bool'
 		);
 
 		parent::ContextSettingsForm($settings, 'controllers/tab/settings/siteAccessOptions/form/siteAccessOptionsForm.tpl', $wizardMode);
