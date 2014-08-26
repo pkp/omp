@@ -27,7 +27,7 @@
 		{/if}
 
 		{fbvFormSection for="title"}
-			{fbvElement type="autocomplete" id="assocId" required="true" value=$assocTitle autocompleteValue=$assocId label="grid.content.spotlights.form.item" autocompleteUrl=$addSpotlightItemUrl size=$fbvStyles.size.MEDIUM inline="true"}
+			{fbvElement type="autocomplete" id="assocId" required="true" value=$assocTitle autocompleteValue=$assocId label="grid.content.spotlights.form.item" autocompleteUrl=$addSpotlightItemUrl size=$fbvStyles.size.MEDIUM inline="true" disableSync="true"}
 			{fbvElement type="text" multilingual="true" id="title" required="true" label="grid.content.spotlights.form.title" value=$title maxlength="255" size=$fbvStyles.size.MEDIUM inline="true"}
 		{/fbvFormSection}
 
