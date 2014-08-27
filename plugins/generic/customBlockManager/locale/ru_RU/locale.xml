@@ -14,14 +14,10 @@
  
 <locale name="ru_RU" full_name="Russian">
 	<message key="plugins.generic.customBlockManager.displayName">Модуль собственных блоков</message>
-	<message key="plugins.generic.customBlockManager.settings">Настройки</message>
 	<message key="plugins.generic.customBlockManager.blockName">Имя блока</message>	
 	<message key="plugins.generic.customBlockManager.addBlock">Добавить блок</message>	
 
 	<message key="plugins.generic.customBlock.content">Содержание</message>
-	<message key="plugins.generic.customBlock.saved">Содержание блока сохранено.</message>
 	<message key="plugins.generic.customBlock.nameSuffix">(модуль собственных блоков)</message>
 	<message key="plugins.generic.customBlock.description">Это пользовательский блок.</message>
-	<message key="plugins.generic.customBlock.editContent">Редактировать содержимое боковой панели</message>
-	<message key="plugins.generic.customBlock.contentRequired">Требуется некоторое содержимое. Если хотите удалить блок, это можно сделать при помощи модуля собственных блоков или выключением этого блока на шаге 5 установки журнала.</message>
 </locale>

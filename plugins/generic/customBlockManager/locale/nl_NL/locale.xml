@@ -14,14 +14,10 @@
  
 <locale name="nl_NL" full_name="Nederlands">
 	<message key="plugins.generic.customBlockManager.displayName">Eigen blokken beheren</message>
-	<message key="plugins.generic.customBlockManager.settings">Instellingen</message>
 	<message key="plugins.generic.customBlockManager.blockName">Naam van het blok</message>	
 	<message key="plugins.generic.customBlockManager.addBlock">Nieuw blok</message>	
 
 	<message key="plugins.generic.customBlock.content">Inhoud</message>
-	<message key="plugins.generic.customBlock.saved">De inhoud van het blok is opgeslagen.</message>
 	<message key="plugins.generic.customBlock.nameSuffix">(Eigen blokken plugin)</message>
 	<message key="plugins.generic.customBlock.description">Dit is een zelfgemaakt blok.</message>
-	<message key="plugins.generic.customBlock.editContent">Bewerk de inhoud van de sidebar</message>
-	<message key="plugins.generic.customBlock.contentRequired">Inhoud is verplicht. Als u dit blok wilt verwijderen kun u dat met de blokkenbeheer plugin of door dit blok niet te selecteren in Stap 5 van het inrichten van het tijdschrift.</message>
 </locale>

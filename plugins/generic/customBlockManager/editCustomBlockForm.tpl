@@ -17,7 +17,6 @@
 </script>
 {url|assign:actionUrl router=$smarty.const.ROUTE_COMPONENT component="plugins.generic.customBlockManager.controllers.grid.CustomBlockGridHandler" op="updateCustomBlock" existingBlockName=$blockName escape=false}
 <form class="pkp_form" id="customBlockForm" method="post" action="{$actionUrl}">
-{include file="common/formErrors.tpl"}
 {fbvFormArea id="cusotmBlocksFormArea" class="border"}
 	{fbvFormSection}
 		{if $blockName}

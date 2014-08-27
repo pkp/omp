@@ -14,14 +14,10 @@
  
 <locale name="pt_PT" full_name="Português">
 	<message key="plugins.generic.customBlockManager.displayName">Administração de Blocos Personalizados</message>
-	<message key="plugins.generic.customBlockManager.settings">Configurações</message>
 	<message key="plugins.generic.customBlockManager.blockName">Nome do Bloco</message>	
 	<message key="plugins.generic.customBlockManager.addBlock">Adicionar Bloco</message>	
 
 	<message key="plugins.generic.customBlock.content">Conteúdo</message>
-	<message key="plugins.generic.customBlock.saved">O conteúdo do bloco foi guardado.</message>
 	<message key="plugins.generic.customBlock.nameSuffix">(Plugin Personalização Bloco)</message>
 	<message key="plugins.generic.customBlock.description">Este é um bloco gerado por utilizador.</message>
-	<message key="plugins.generic.customBlock.editContent">Editar o conteúdo da barra lateral</message>
-	<message key="plugins.generic.customBlock.contentRequired">É necessário algum conteúdo.  Se pretende eliminar este bloco, poderá fazê-lo com o Plugin de Administração de Blocos Plugin ou desmarcando este bloco no Passo 5 das configurações da revista.</message>
 </locale>

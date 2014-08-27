@@ -14,14 +14,10 @@
  
 <locale name="sr_SR" full_name="Serbian">
 	<message key="plugins.generic.customBlockManager.displayName">Menadžer prilagođenih blokova</message>
-	<message key="plugins.generic.customBlockManager.settings">Podešavanja</message>
 	<message key="plugins.generic.customBlockManager.blockName">Ime bloka</message>	
 	<message key="plugins.generic.customBlockManager.addBlock">Dodaj blok</message>	
 
 	<message key="plugins.generic.customBlock.content">Sadržaj</message>
-	<message key="plugins.generic.customBlock.saved">Sadržaj bloka je sačuvan.</message>
 	<message key="plugins.generic.customBlock.nameSuffix">(Dodatak prilagođenih blokova)</message>
 	<message key="plugins.generic.customBlock.description">Ovo je blok koji je napravio korisnik.</message>
-	<message key="plugins.generic.customBlock.editContent">Uredi sadržaj sidebar-a</message>
-	<message key="plugins.generic.customBlock.contentRequired">Sadržaj je obavezan. Ukoliko želite da obrišete ovaj blok, to možete uraditi preko "Menadžera prilagođenih blokova" ili tako što ćete u Koraku 5 podešavanja časopisa skinuti oznaku sa bloka.</message>
 </locale>

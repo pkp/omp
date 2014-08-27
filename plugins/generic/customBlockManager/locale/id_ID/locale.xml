@@ -14,14 +14,10 @@
  
 <locale name="id_ID" full_name="Indonesia">
 	<message key="plugins.generic.customBlockManager.displayName">Blok Manager Umum</message> 
-	<message key="plugins.generic.customBlockManager.settings">Pengaturan</message>
 	<message key="plugins.generic.customBlockManager.blockName">Nama Blok</message>	
 	<message key="plugins.generic.customBlockManager.addBlock">Tambah Blok</message>	
 
 	<message key="plugins.generic.customBlock.content">Konten</message>
-	<message key="plugins.generic.customBlock.saved">Konten Blok telah disimpan.</message>
 	<message key="plugins.generic.customBlock.nameSuffix">(Plugin Custom Block)</message>
 	<message key="plugins.generic.customBlock.description">Ini adalah user-generated block.</message>
-	<message key="plugins.generic.customBlock.editContent">Edit konten sidebar</message>
-	<message key="plugins.generic.customBlock.contentRequired">Beberapa konten diperlukan. Jika Anda ingin menghapus block ini, Anda dapat melakukannya dengan Plugin Block Manager atau dengan memindahkan block ini di langkah 5 setup jurnal.</message>
 </locale>

@@ -14,14 +14,10 @@
  
 <locale name="de_DE" full_name="Deutsch (Deutschland)">
 	<message key="plugins.generic.customBlockManager.displayName">Verwaltung eigener Blöcke</message>
-	<message key="plugins.generic.customBlockManager.settings">Einstellungen</message>
 	<message key="plugins.generic.customBlockManager.blockName">Name des Blocks</message>	
 	<message key="plugins.generic.customBlockManager.addBlock">Block hinzufügen</message>	
 
 	<message key="plugins.generic.customBlock.content">Inhalt</message>
-	<message key="plugins.generic.customBlock.saved">Der Inhalt des Blocks wurde gespeichert.</message>
 	<message key="plugins.generic.customBlock.nameSuffix">(Eigener-Block-Plug-In)</message>
 	<message key="plugins.generic.customBlock.description">Dies ist ein selbst angelegter Block.</message>
-	<message key="plugins.generic.customBlock.editContent">Bearbeitung des Inhalts der Sidebar</message>
-	<message key="plugins.generic.customBlock.contentRequired">Irgendein Inhalt wird benötigt. Wenn Sie diesen Block löschen möchten, können Sie dies mittels des Block-Verwaltungs-Plug-Ins tun oder durch abwählen dieses Blocks in Schritt 5 des Zeitschriftensetups.</message>
 </locale>

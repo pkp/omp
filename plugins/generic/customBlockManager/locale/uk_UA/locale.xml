@@ -16,15 +16,11 @@
  
 <locale name="uk_UA" full_name="Ukrainian">
        <message key="plugins.generic.customBlockManager.displayName">Менеджер власних блоків</message>
-       <message key="plugins.generic.customBlockManager.settings">Налаштування</message>
        <message key="plugins.generic.customBlockManager.description">Цей модуль дозволяє керувати власними блоками на панелі.  Ви можете редагувати зміст блоків, створених тут, засобами налаштувань.</message>
        <message key="plugins.generic.customBlockManager.blockName">Назва блоку</message>       
        <message key="plugins.generic.customBlockManager.addBlock">Додати блок</message>        
 
        <message key="plugins.generic.customBlock.content">Зміст</message>
-       <message key="plugins.generic.customBlock.saved">Зміст блоку був збережений.</message>
        <message key="plugins.generic.customBlock.nameSuffix">(Модуль власного блоку)</message>
        <message key="plugins.generic.customBlock.description">Це - блок, створений користувачем.</message>
-       <message key="plugins.generic.customBlock.editContent">Редагувати зміст панелі</message>
-       <message key="plugins.generic.customBlock.contentRequired">Необхідно додати певний зміст.  Якщо ви бажаєте видалити цей блок, це можна зробити у Модулі менеджера блоків або знявши відмітку для цього блоку на Кроці 5 Налаштувань журналу.</message>
 </locale>

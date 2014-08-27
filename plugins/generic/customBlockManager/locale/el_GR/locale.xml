@@ -14,14 +14,10 @@
  
 <locale name="el_GR" full_name="Greek">
 	<message key="plugins.generic.customBlockManager.displayName">Διαχείριση Custom Block</message>
-	<message key="plugins.generic.customBlockManager.settings">Ρυθμίσεις</message>
 	<message key="plugins.generic.customBlockManager.blockName">Όνομα Block</message>	
 	<message key="plugins.generic.customBlockManager.addBlock">Προσθήκη Block</message>	
 
 	<message key="plugins.generic.customBlock.content">Περιεχόμενο</message>
-	<message key="plugins.generic.customBlock.saved">Το περιεχόμενο του Block έχει αποθηκευτεί.</message>
 	<message key="plugins.generic.customBlock.nameSuffix">(Custom Block Plugin)</message>
 	<message key="plugins.generic.customBlock.description">Αυτό είναι block δημιουργημένο από χρήστη.</message>
-	<message key="plugins.generic.customBlock.editContent">Επεξεργασία περιεχομένου πλαϊνής μπάρας</message>
-	<message key="plugins.generic.customBlock.contentRequired">Απαιτείται η ύπαρξη περιεχομένου. Αν επιθυμείτε να διαγράψετε αυτό το block, μπορείτε να το κάνετε με το Block Manager Plugin ή απο-επιλέγοντας το block στο Βήμα 5 στην Οργάνωση του περιοδικού.</message>
 </locale>

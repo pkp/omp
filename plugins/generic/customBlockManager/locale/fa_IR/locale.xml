@@ -14,14 +14,10 @@
  
 <locale name="fa_IR" full_name="Persian">
 	<message key="plugins.generic.customBlockManager.displayName">اداره بلوک آزاد</message>
-	<message key="plugins.generic.customBlockManager.settings">تنظیمات</message>
 	<message key="plugins.generic.customBlockManager.blockName">نام بلوک</message>	
 	<message key="plugins.generic.customBlockManager.addBlock">افزودن بلوک</message>	
 
 	<message key="plugins.generic.customBlock.content">محتوی</message>
-	<message key="plugins.generic.customBlock.saved">محتوای بلوک ذخیره شد.</message>
 	<message key="plugins.generic.customBlock.nameSuffix">پلاگین بلوک بومی شده</message>
 	<message key="plugins.generic.customBlock.description">این یک بلوک تولید شده توسط کاربر است.</message>
-	<message key="plugins.generic.customBlock.editContent">ویرایش محتوای نوار حاشیه</message>
-	<message key="plugins.generic.customBlock.contentRequired">مقداری محتوی لازم است. در راه برای خذف آن دارید: از طریق پلاگین اداره بلوک و یا در مرحله ۵ نصب مجله</message>
 </locale>

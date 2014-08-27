@@ -14,14 +14,10 @@
  
 <locale name="da_DK" full_name="Danish">
 	<message key="plugins.generic.customBlockManager.displayName">Custom Block Manager</message>
-	<message key="plugins.generic.customBlockManager.settings">Indstilllinger</message>
 	<message key="plugins.generic.customBlockManager.blockName">Elementnavn</message>	
 	<message key="plugins.generic.customBlockManager.addBlock">Tilføj element</message>	
 
 	<message key="plugins.generic.customBlock.content">Indhold</message>
-	<message key="plugins.generic.customBlock.saved">Elementets indhold er blevet gemt.</message>
 	<message key="plugins.generic.customBlock.nameSuffix">(Custom Block Plugin)</message>
 	<message key="plugins.generic.customBlock.description">Dette er et brugerdefineret element.</message>
-	<message key="plugins.generic.customBlock.editContent">Redigér sidemenuindholdet</message>
-	<message key="plugins.generic.customBlock.contentRequired">Indhold er påkrævet. Hvis du ønsker at slette dette element, kan det ske ved hjælp af “the Block Manager Plugin” eller ved at fravælge elementet under trin 5 i konfigurationsdelen.</message>
 </locale>
