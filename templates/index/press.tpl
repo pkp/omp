@@ -13,6 +13,11 @@
 
 {call_hook name="Templates::Index::press"}
 
+{if $publishedMonographs|@count > 0}
+	{* Include the new releases *}
+	{include file="catalog/monographs.tpl" publishedMonographs=$publishedMonographs monographListTitleKey="navigation.newReleases"}
+{/if}
+
 {if $homepageImage}
 	<br />
 	<div id="homepageImage">
@@ -33,9 +38,11 @@
 	</div>
 {/if}
 
-{* Include the carousel view of featured content *}
-{url|assign:carouselUrl router=$smarty.const.ROUTE_COMPONENT component="carousel.CarouselHandler" op="fetch" escape=false}
-{load_url_in_div id="carousel" url=$carouselUrl}
+{if $displayFeaturedBooks}
+	{* Include the carousel view of featured content *}
+	{url|assign:carouselUrl router=$smarty.const.ROUTE_COMPONENT component="carousel.CarouselHandler" op="fetch" escape=false}
+	{load_url_in_div id="carousel" url=$carouselUrl}
+{/if}
 
 {if $spotlights|@count > 0}
 	{include file="index/spotlights.tpl"}

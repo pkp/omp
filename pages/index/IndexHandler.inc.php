@@ -81,6 +81,14 @@ class IndexHandler extends Handler {
 	 */
 	function _displayPressIndexPage($press, &$templateMgr) {
 
+		// Display New Releases
+		$displayNewReleases = $press->getSetting('displayNewReleases');
+		if ($displayNewReleases) {
+			$newReleaseDao = DAORegistry::getDAO('NewReleaseDAO');
+			$newReleases = $newReleaseDao->getMonographsByAssoc(ASSOC_TYPE_PRESS, $press->getId());
+			$templateMgr->assign('publishedMonographs', $newReleases);
+		}
+
 		// Assign header and content for home page.
 		$templateMgr->assign('additionalHomeContent', $press->getLocalizedSetting('additionalHomeContent'));
 		$templateMgr->assign('homepageImage', $press->getLocalizedSetting('homepageImage'));
@@ -105,10 +113,18 @@ class IndexHandler extends Handler {
 			}
 		}
 
-		// Include random spotlight items for the press home page.
-		$spotlightDao = DAORegistry::getDAO('SpotlightDAO');
-		$spotlights = $spotlightDao->getRandomByPressId($press->getId(), MAX_SPOTLIGHTS_VISIBLE);
-		$templateMgr->assign('spotlights', $spotlights);
+		// Display Featured Books
+		$displayFeaturedBooks = $press->getSetting('displayFeaturedBooks');
+		$templateMgr->assign('displayFeaturedBooks', $displayFeaturedBooks);
+
+		// Display In Spotlight
+		$displayInSpotlight = $press->getSetting('displayInSpotlight');
+		if ($displayInSpotlight) {
+			// Include random spotlight items for the press home page.
+			$spotlightDao = DAORegistry::getDAO('SpotlightDAO');
+			$spotlights = $spotlightDao->getRandomByPressId($press->getId(), MAX_SPOTLIGHTS_VISIBLE);
+			$templateMgr->assign('spotlights', $spotlights);
+		}
 
 		// Include any social media items that are configured for the press itself.
 		$socialMediaDao = DAORegistry::getDAO('SocialMediaDAO');
