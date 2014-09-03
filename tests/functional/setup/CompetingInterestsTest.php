@@ -1,30 +1,29 @@
 <?php
 
 /**
- * @file tests/regression/Bug6402Test.php
+ * @file tests/functional/setup/CompetingInterestsTest.php
  *
  * Copyright (c) 2014 Simon Fraser University Library
  * Copyright (c) 2000-2014 John Willinsky
  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
  *
- * @class Bug6402Test
- * @ingroup tests_regression
+ * @class CompetingInterestsTest
+ * @ingroup tests_functional_setup
  *
- * @brief Regression test for http://pkp.sfu.ca/bugzilla/show_bug.cgi?id=6402
+ * @brief Test for competing interests setup
  */
 
 import('tests.ContentBaseTestCase');
 
-class Bug6402Test extends ContentBaseTestCase {
+class CompetingInterestsTest extends ContentBaseTestCase {
 	/** @var $fullTitle Full title of test submission */
 	static $fullTitle = 'Learning Sustainable Design through Service';
 
 	/**
-	 * Get a list of affected tables.
-	 * @return array A list of tables to backup and restore.
+	 * @copydoc WebTestCase::getAffectedTables
 	 */
 	protected function getAffectedTables() {
-		return array('submissions', 'review_assignments', 'event_log', 'review_assignments', 'submission_comments', 'email_log', 'press_settings');
+		return WEB_TEST_ENTIRE_DB;
 	}
 
 	/**
@@ -90,6 +89,7 @@ class Bug6402Test extends ContentBaseTestCase {
 
 		// Send the submission to review
 		$this->findSubmissionAsEditor('dbarnes', null, self::$fullTitle);
+		$this->sendToReview('External');
 		$this->waitForElementPresent('css=a.externalReview');
 		$this->click('css=a.externalReview');
 		$this->assignReviewer('phudson', 'Paul Hudson');
