@@ -23,7 +23,7 @@ class CompetingInterestsTest extends ContentBaseTestCase {
 	 * @copydoc WebTestCase::getAffectedTables
 	 */
 	protected function getAffectedTables() {
-		return WEB_TEST_ENTIRE_DB;
+		return PKP_TEST_ENTIRE_DB;
 	}
 
 	/**
