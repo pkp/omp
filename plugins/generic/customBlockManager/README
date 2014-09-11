@@ -1,0 +1,38 @@
+================================
+=== OMP Custom Block Manager Plugin
+=== Version: 1.0
+=== Author: Juan Pablo Alperin <pkp@alperin.ca>
+=== Co-Author: Bozana Bokan <bozana.bokan@cedis.fu-berlin.de>
+================================
+
+About
+-----
+This plugin is intended to enable users to create customizable HTML blocks for the sidebars.
+
+License
+-------
+This plugin is licensed under the GNU General Public License v2. See the file COPYING for the complete terms of this license.
+
+System Requirements
+-------------------
+Same requirements as the OMP 1.1 core.
+
+Installation
+------------
+To install the plugin:
+ - copy the plugin tar.gz file to your OMP/plugins/generic directory
+ - to unzip the plugin inside the plugins/generic directory:
+    $ tar xvzf customBlockManager-1.1.tar.gz 
+ - from your OMP directory execute:
+    $ php tools/upgrade.php upgrade
+ - enable the plugin by going to:  Management > Website Settings > Plugins > Generic Plugins and selecting "ENABLE" under "Custom Block Manager Plugin"
+
+Management
+------------
+The Plugin management interface can be found at Management > Website Settings > Plugins > Generic Plugins > Custom Block Manager. Once the plugin is enabled, blocks can be added, edited and deleted through this interface, using the function " Manage Custom Blocks".
+NOTE: The added custom blocks will per default appear in the right sidebar, but this can be changed in Management > Website Settings > Appereance > Press Layout > Sidebar Management.
+
+
+Contact/Support
+---------------
+Please post support requests, bugfixes, or comments at the appropriate topic in the PKP Bugzilla: http://pkp.sfu.ca/bugzilla/
