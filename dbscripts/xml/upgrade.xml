@@ -19,7 +19,7 @@
 	</upgrade>
 
 	<upgrade minversion="0.9.9.0" maxversion="1.1.0.9">
-		<code function="localizeFooterLinks" /><!-- Bug #8867 -->
+		<code function="localizeFooterLinks" condition="return $installer->columnExists('footerlinks', 'url');" /><!-- Bug #8867 -->
 	</upgrade>
 
 	<!-- PKP schema components -->
