@@ -216,7 +216,7 @@ class Upgrade extends Installer {
 				foreach ($context->getSupportedLocales() as $locale) {
 					$footerLinkDao->update(
 						'INSERT INTO footerlink_settings VALUES (?, ?, ?, ?, ?)',
-						array((int) $footerLinkId, $locale, 'url', $url, 'string');
+						array((int) $footerLinkId, $locale, 'url', $url, 'string')
 					);
 				}
 			}
