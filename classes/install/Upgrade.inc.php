@@ -209,13 +209,15 @@ class Upgrade extends Installer {
 
 			while (!$result->EOF) {
 				$row = $result->getRowAssoc(false);
-				$footerlink_id = $row['footerlink_id'];
+				$footerLinkId = $row['footerlink_id'];
 				$url = $row['url'];
 				$result->MoveNext();
 
 				foreach ($context->getSupportedLocales() as $locale) {
-					$params = array((int) $footerlink_id, $locale, 'url', $url, 'string');
-					$footerLinkDao->update('INSERT INTO footerlink_settings VALUES (?, ?, ?, ?, ?)', $params);
+					$footerLinkDao->update(
+						'INSERT INTO footerlink_settings VALUES (?, ?, ?, ?, ?)',
+						array((int) $footerLinkId, $locale, 'url', $url, 'string');
+					);
 				}
 			}
 			$result->Close();
