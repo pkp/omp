@@ -127,7 +127,7 @@ class ChapterGridHandler extends CategoryGridHandler {
 				'name',
 				'author.users.contributor.name',
 				null,
-				'controllers/grid/gridCell.tpl',
+				null,
 				$cellProvider,
 				array('width' => 50, 'alignment' => COLUMN_ALIGNMENT_LEFT)
 			)
@@ -137,7 +137,7 @@ class ChapterGridHandler extends CategoryGridHandler {
 				'email',
 				'author.users.contributor.email',
 				null,
-				'controllers/grid/gridCell.tpl',
+				null,
 				$cellProvider
 			)
 		);
@@ -146,7 +146,7 @@ class ChapterGridHandler extends CategoryGridHandler {
 				'role',
 				'author.users.contributor.role',
 				null,
-				'controllers/grid/gridCell.tpl',
+				null,
 				$cellProvider
 			)
 		);

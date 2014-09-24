@@ -118,7 +118,7 @@ class ManageSpotlightsGridHandler extends GridHandler {
 			new GridColumn('title',
 				'grid.content.spotlights.form.title',
 				null,
-				'controllers/grid/gridCell.tpl',
+				null,
 				$spotlightsGridCellProvider,
 				array('width' => 40)
 			)
@@ -128,7 +128,7 @@ class ManageSpotlightsGridHandler extends GridHandler {
 			new GridColumn('itemTitle',
 				'grid.content.spotlights.spotlightItemTitle',
 				null,
-				'controllers/grid/gridCell.tpl',
+				null,
 				$spotlightsGridCellProvider,
 				array('width' => 40)
 			)
@@ -138,7 +138,7 @@ class ManageSpotlightsGridHandler extends GridHandler {
 			new GridColumn('type',
 				'common.type',
 				null,
-				'controllers/grid/gridCell.tpl',
+				null,
 				$spotlightsGridCellProvider
 			)
 		);

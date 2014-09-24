@@ -69,7 +69,7 @@ class ApprovedProofFilesGridHandler extends GridHandler {
 			'name',
 			'common.name',
 			null,
-			'controllers/grid/gridCell.tpl',
+			null,
 			$cellProvider,
 			array('width' => 60, 'alignment' => COLUMN_ALIGNMENT_LEFT)
 		));
@@ -84,7 +84,7 @@ class ApprovedProofFilesGridHandler extends GridHandler {
 			'price',
 			'payment.directSales.availability',
 			null,
-			'controllers/grid/gridCell.tpl',
+			null,
 			$cellProvider
 		));
 	}

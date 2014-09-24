@@ -139,7 +139,7 @@ class PublicationFormatGridHandler extends GridHandler {
 				'name',
 				'common.name',
 				null,
-				'controllers/grid/gridCell.tpl',
+				null,
 				$cellProvider,
 				array('width' => 50, 'alignment' => COLUMN_ALIGNMENT_LEFT)
 			)

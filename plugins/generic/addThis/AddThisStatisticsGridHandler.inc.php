@@ -96,7 +96,7 @@ class AddThisStatisticsGridHandler extends GridHandler {
 			'url',
 			'common.url',
 			null,
-			'controllers/grid/gridCell.tpl',
+			null,
 			$cellProvider,
 			array('width' => 50, 'alignment' => COLUMN_ALIGNMENT_LEFT)
 		);
@@ -110,7 +110,7 @@ class AddThisStatisticsGridHandler extends GridHandler {
 				'shares',
 				'plugins.generic.addThis.grid.shares',
 				null,
-				'controllers/grid/gridCell.tpl',
+				null,
 				$cellProvider
 			)
 		);

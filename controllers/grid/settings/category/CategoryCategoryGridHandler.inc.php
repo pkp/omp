@@ -105,7 +105,7 @@ class CategoryCategoryGridHandler extends CategoryGridHandler {
 				'title',
 				'grid.category.name',
 				null,
-				'controllers/grid/gridCell.tpl',
+				null,
 				$cellProvider
 			)
 		);
