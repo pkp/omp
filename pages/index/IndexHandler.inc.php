@@ -82,8 +82,7 @@ class IndexHandler extends Handler {
 	function _displayPressIndexPage($press, &$templateMgr) {
 
 		// Display New Releases
-		$displayNewReleases = $press->getSetting('displayNewReleases');
-		if ($displayNewReleases) {
+		if ($press->getSetting('displayNewReleases')) {
 			$newReleaseDao = DAORegistry::getDAO('NewReleaseDAO');
 			$newReleases = $newReleaseDao->getMonographsByAssoc(ASSOC_TYPE_PRESS, $press->getId());
 			$templateMgr->assign('publishedMonographs', $newReleases);
@@ -118,8 +117,7 @@ class IndexHandler extends Handler {
 		$templateMgr->assign('displayFeaturedBooks', $displayFeaturedBooks);
 
 		// Display In Spotlight
-		$displayInSpotlight = $press->getSetting('displayInSpotlight');
-		if ($displayInSpotlight) {
+		if ($press->getSetting('displayInSpotlight')) {
 			// Include random spotlight items for the press home page.
 			$spotlightDao = DAORegistry::getDAO('SpotlightDAO');
 			$spotlights = $spotlightDao->getRandomByPressId($press->getId(), MAX_SPOTLIGHTS_VISIBLE);
