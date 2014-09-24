@@ -160,6 +160,9 @@ You may optionally provide the user with a reason for disabling their account.</
 	<message key="manager.setup.disciplineExamples">(E.g., History; Education; Sociology; Psychology; Cultural Studies; Law)</message>
 	<message key="manager.setup.disciplineProvideExamples">Provide examples of relevant academic disciplines for this press</message>
 	<message key="manager.setup.displayCurrentMonograph">Add the table of contents for the current monograph (if available).</message>
+	<message key="manager.setup.displayFeaturedBooks">Display featured books on the home page.</message>
+	<message key="manager.setup.displayInSpotlight">Display books in the spotlight on the home page.</message>
+	<message key="manager.setup.displayNewReleases">Display new releases on the home page.</message>
 	<message key="manager.setup.doiPrefix">DOI Prefix</message>
 	<message key="manager.setup.doiPrefixDescription"><![CDATA[The DOI (Digital Object Identifier) Prefix is assigned by <a href="http://www.crossref.org" target="_blank">CrossRef</a> and is in the format 10.xxxx (e.g. 10.1234).]]></message>
 	<message key="manager.setup.editorDecision">Editor Decision</message>
@@ -187,6 +190,7 @@ You may optionally provide the user with a reason for disabling their account.</
 	<message key="manager.setup.enableUserRegistration.author">Authors (can submit materials to the press)</message>
 	<message key="manager.setup.enableUserRegistration.reader">Readers (will receive notifications and be counted as equivalent to a subscriber)</message>
 	<message key="manager.setup.enableUserRegistration.reviewer">Reviewers (available for reviewing submissions)</message>
+	<message key="manager.setup.featuredBooks">Featured Books</message>
 	<message key="manager.setup.focusAndScope">Focus and scope</message>
 	<message key="manager.setup.focusAndScope.description">Enter a statement below, which will appear in About the Press, that speaks to authors, readers, and librarians about the range of monographs and other items which the press will publish.</message>
 	<message key="manager.setup.focusAndScope">Focus and Scope of Press</message>
@@ -204,6 +208,7 @@ You may optionally provide the user with a reason for disabling their account.</
 	<message key="manager.setup.generalInformation">General Information</message>
 	<message key="manager.setup.gettingDownTheDetails">Step 1. Getting Down the Details</message>
 	<message key="manager.setup.guidelines">Guidelines</message>
+	<message key="manager.setup.inSpotlight">In the Spotlight</message>
 	<message key="manager.setup.preparingWorkflow">Step 3. Preparing the workflow</message>
 	<message key="manager.setup.homepageImage">Homepage image</message>
 	<message key="manager.setup.homepageImageDescription">Add an image or graphic file to the middle of the page. If you are using the default template and css, maximum image width will be 750px for one side bar and 540px for two side bar setup. If you use a customized template or css, those values may change.</message>
@@ -230,6 +235,7 @@ You may optionally provide the user with a reason for disabling their account.</
 	<message key="manager.setup.managementOfBasicEditorialSteps">Management of Basic Editorial Steps</message>
 	<message key="manager.setup.managingPublishingSetup">Management and Publishing Setup</message>
 	<message key="manager.setup.managingThePress">Step 4. Managing the Settings</message>
+	<message key="manager.setup.newReleases">New Releases</message>
 	<message key="manager.setup.noImageFileUploaded">No image file uploaded.</message>
 	<message key="manager.setup.noStyleSheetUploaded">No style sheet uploaded.</message>
 	<message key="manager.setup.note">Note</message>
