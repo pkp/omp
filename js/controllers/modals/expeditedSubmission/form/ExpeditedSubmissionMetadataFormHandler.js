@@ -17,7 +17,7 @@
 
 	/** @type {Object} */
 	$.pkp.controllers.modals.expeditedSubmission =
-		$.pkp.controllers.modals.expeditedSubmission || {form: { } };
+			$.pkp.controllers.modals.expeditedSubmission || {form: { } };
 
 
 
@@ -29,8 +29,8 @@
 	 * @param {jQueryObject} $form the wrapped HTML form element.
 	 * @param {Object} options form options.
 	 */
-	$.pkp.controllers.modals.expeditedSubmission.form.ExpeditedSubmissionMetadataFormHandler =
-			function($form, options) {
+	$.pkp.controllers.modals.expeditedSubmission.form.
+			ExpeditedSubmissionMetadataFormHandler = function($form, options) {
 
 		this.parent($form, options);
 
@@ -38,9 +38,9 @@
 				this.callbackWrapper(this.setPrices));
 	};
 	$.pkp.classes.Helper.inherits(
-			$.pkp.controllers.modals.expeditedSubmission.form.ExpeditedSubmissionMetadataFormHandler,
+			$.pkp.controllers.modals.expeditedSubmission.form.
+					ExpeditedSubmissionMetadataFormHandler,
 			$.pkp.controllers.form.AjaxFormHandler);
-
 
 
 	/**
@@ -48,15 +48,22 @@
 	 * of the autocomplete URL
 	 * @param {Object} eventObject The html element that changed.
 	 */
-	$.pkp.controllers.modals.expeditedSubmission.form.ExpeditedSubmissionMetadataFormHandler.
-			prototype.setPrices = function(eventObject) {
+	$.pkp.controllers.modals.expeditedSubmission.form.
+			ExpeditedSubmissionMetadataFormHandler.prototype.setPrices =
+			function(eventObject) {
 
 		var $form = this.getHtmlElement(),
 				salesType = $form.find('[name^="salesType"]:checked').val(),
 				$price = $form.find('[id^="price"]');
 
-		if (salesType == 'openAccess' || salesType == 'notAvailable') {
+		if (salesType == 'openAccess') {
+			$price.attr('disabled', 'disabled');
 			$price.val('0');
+		} else if (salesType == 'notAvailable') {
+			$price.attr('disabled', 'disabled');
+			$price.val('');
+		} else {
+			$price.removeAttr('disabled');
 		}
 	};
 

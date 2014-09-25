@@ -129,7 +129,7 @@ class WorkflowHandler extends PKPWorkflowHandler {
 						// Assign the sales type and price for the submission file.
 						switch ($request->getUserVar('salesType')) {
 							case 'notAvailable':
-								$submissionFile->setDirectSalesPrice(0);
+								$submissionFile->setDirectSalesPrice(null);
 								$submissionFile->setSalesType('notAvailable');
 								break;
 							case 'openAccess':
