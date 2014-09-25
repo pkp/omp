@@ -113,9 +113,7 @@ class SeriesGridHandler extends SetupGridHandler {
 		$this->addColumn(
 			new GridColumn(
 				'title',
-				'common.title',
-				null,
-				'controllers/grid/gridCell.tpl'
+				'common.title'
 			)
 		);
 		$this->addColumn(new GridColumn('categories', 'grid.category.categories'));

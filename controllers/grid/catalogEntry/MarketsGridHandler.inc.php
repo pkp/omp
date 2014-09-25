@@ -161,7 +161,7 @@ class MarketsGridHandler extends GridHandler {
 				'territory',
 				'grid.catalogEntry.marketTerritory',
 				null,
-				'controllers/grid/gridCell.tpl',
+				null,
 				$cellProvider
 			)
 		);
@@ -170,7 +170,7 @@ class MarketsGridHandler extends GridHandler {
 				'rep',
 				'grid.catalogEntry.representatives',
 				null,
-				'controllers/grid/gridCell.tpl',
+				null,
 				$cellProvider
 			)
 		);
@@ -179,7 +179,7 @@ class MarketsGridHandler extends GridHandler {
 				'price',
 				'monograph.publicationFormat.price',
 				null,
-				'controllers/grid/gridCell.tpl',
+				null,
 				$cellProvider
 			)
 		);

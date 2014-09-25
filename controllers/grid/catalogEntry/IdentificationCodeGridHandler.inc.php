@@ -161,7 +161,7 @@ class IdentificationCodeGridHandler extends GridHandler {
 				'value',
 				'grid.catalogEntry.identificationCodeValue',
 				null,
-				'controllers/grid/gridCell.tpl',
+				null,
 				$cellProvider,
 				array('width' => 50, 'alignment' => COLUMN_ALIGNMENT_LEFT)
 			)
@@ -171,7 +171,7 @@ class IdentificationCodeGridHandler extends GridHandler {
 				'code',
 				'grid.catalogEntry.identificationCodeType',
 				null,
-				'controllers/grid/gridCell.tpl',
+				null,
 				$cellProvider
 			)
 		);

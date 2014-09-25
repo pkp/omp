@@ -162,7 +162,7 @@ class SalesRightsGridHandler extends GridHandler {
 				'type',
 				'grid.catalogEntry.salesRightsType',
 				null,
-				'controllers/grid/gridCell.tpl',
+				null,
 				$cellProvider
 			)
 		);

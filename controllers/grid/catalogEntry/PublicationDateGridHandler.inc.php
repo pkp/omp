@@ -162,7 +162,7 @@ class PublicationDateGridHandler extends GridHandler {
 				'value',
 				'grid.catalogEntry.dateValue',
 				null,
-				'controllers/grid/gridCell.tpl',
+				null,
 				$cellProvider,
 				array('width' => 50, 'alignment' => COLUMN_ALIGNMENT_LEFT)
 			)
@@ -172,7 +172,7 @@ class PublicationDateGridHandler extends GridHandler {
 				'code',
 				'grid.catalogEntry.dateRole',
 				null,
-				'controllers/grid/gridCell.tpl',
+				null,
 				$cellProvider
 			)
 		);

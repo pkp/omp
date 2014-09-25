@@ -131,7 +131,7 @@ class RepresentativesGridHandler extends CategoryGridHandler {
 				'name',
 				'grid.catalogEntry.representativeName',
 				null,
-				'controllers/grid/gridCell.tpl',
+				null,
 				$cellProvider
 			)
 		);
@@ -140,7 +140,7 @@ class RepresentativesGridHandler extends CategoryGridHandler {
 				'role',
 				'grid.catalogEntry.representativeRole',
 				null,
-				'controllers/grid/gridCell.tpl',
+				null,
 				$cellProvider
 			)
 		);
