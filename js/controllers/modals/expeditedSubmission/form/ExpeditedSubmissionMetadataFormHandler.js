@@ -11,7 +11,7 @@
  * @class ExpeditedSubmissionMetadataFormHandler
  * @ingroup js_controllers_modals_expeditedSubmission_form
  *
- * @brief Handle the spotlight form.
+ * @brief Handle the expedited submission form.
  */
 (function($) {
 
