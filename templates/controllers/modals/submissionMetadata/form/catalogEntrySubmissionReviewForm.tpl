@@ -10,12 +10,16 @@
  *}
 {* generate a unique ID for the form *}
 {assign var="submissionMetadataViewFormId" value="submissionMetadataViewForm-"|uniqid|escape}
-
+{if $formParams.expeditedSubmission}
+	{assign var="formHandlerClass" value="'$.pkp.controllers.modals.expeditedSubmission.form.ExpeditedSubmissionMetadataFormHandler'"}
+{else}
+	{assign var="formHandlerClass" value="'$.pkp.controllers.form.AjaxFormHandler'"}
+{/if}
 <script type="text/javascript">
 	$(function() {ldelim}
 		// Attach the form handler.
 		$('#{$submissionMetadataViewFormId}').pkpHandler(
-			'$.pkp.controllers.form.AjaxFormHandler',
+			{$formHandlerClass},
 			{ldelim}
 				trackFormChanges: true
 			{rdelim}
