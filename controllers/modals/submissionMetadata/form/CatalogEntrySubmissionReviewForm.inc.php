@@ -34,7 +34,16 @@ class CatalogEntrySubmissionReviewForm extends SubmissionMetadataViewForm {
 			$request = Application::getRequest();
 			$context = $request->getContext();
 			$this->addCheck(new FormValidator($this, 'confirm', 'required', 'submission.catalogEntry.confirm.required'));
-			$this->addCheck(new FormValidatorRegExp($this, 'price', 'optional', 'grid.catalogEntry.validPriceRequired', '/^(([1-9]\d{0,2}(,\d{3})*|[1-9]\d*|0|)(.\d{2})?|([1-9]\d{0,2}(,\d{3})*|[1-9]\d*|0|)(.\d{2})?)$/'));
+			$this->addCheck(new FormValidator($this, 'salesType', 'required', 'submission.catalogEntry.salesType.required'));
+			$this->addCheck(new FormValidatorCustom($this, 'price', 'required', 'grid.catalogEntry.validPriceRequired',
+				create_function('$price, $form', '
+					switch ($form->getData(\'salesType\')) {
+						case \'directSales\':
+							return preg_match(\'/^(([1-9]\d{0,2}(,\d{3})*|[1-9]\d*|0|)(.\d{2})?|([1-9]\d{0,2}(,\d{3})*|[1-9]\d*|0|)(.\d{2})?)$/\', $price);
+						default:
+							return true; // set to zero in the handler for the other two possibilities.
+					}'), array(&$this))
+				);
 		}
 	}
 
@@ -44,8 +53,8 @@ class CatalogEntrySubmissionReviewForm extends SubmissionMetadataViewForm {
 	function readInputData() {
 		parent::readInputData();
 
-		// Read in the additional confirmation checkbox
-		$this->readUserVars(array('confirm'));
+		// Read in the additional confirmation checkbox and price data.
+		$this->readUserVars(array('confirm' ,'salesType', 'price'));
 	}
 
 	/**

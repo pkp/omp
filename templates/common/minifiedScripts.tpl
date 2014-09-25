@@ -128,6 +128,7 @@
 <script src="{$baseUrl}/js/controllers/modals/catalogEntry/form/RepresentativeFormHandler.js"></script>
 <script src="{$baseUrl}/js/controllers/modals/catalogEntry/form/PublicationFormatMetadataFormHandler.js"></script>
 <script src="{$baseUrl}/js/controllers/modals/submissionMetadata/MonographlessCatalogEntryHandler.js"></script>
+<script src="{$baseUrl}/js/controllers/modals/expeditedSubmission/form/ExpeditedSubmissionMetadataFormHandler.js"></script>
 <script src="{$baseUrl}/js/controllers/grid/files/proof/form/ApprovedProofFormHandler.js"></script>
 <script src="{$baseUrl}/js/controllers/tab/catalogEntry/CatalogEntryTabHandler.js"></script>
 <script src="{$baseUrl}/js/controllers/tab/publicationFormat/PublicationFormatsTabHandler.js"></script>
