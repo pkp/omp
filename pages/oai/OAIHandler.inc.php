@@ -26,6 +26,9 @@ class OAIHandler extends Handler {
 		parent::Handler();
 	}
 
+	/**
+	 * @copydoc PKPHandler::authorize
+	 */
 	function authorize($request, &$args, $roleAssignments) {
 		$returner = parent::authorize($request, $args, $roleAssignments);
 
