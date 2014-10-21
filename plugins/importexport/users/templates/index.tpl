@@ -21,7 +21,7 @@
 		$('#importExportTabs').tabs('option', 'cache', true);
 	{rdelim});
 </script>
-<div id="importExportTabs">
+<div id="importExportTabs" class="pkp_controllers_tab">
 	<ul>
 		<li><a href="#import-tab">{translate key="plugins.importexport.users.import.importUsers"}</a></li>
 		<li><a href="#export-tab">{translate key="plugins.importexport.users.export.exportUsers"}</a></li>

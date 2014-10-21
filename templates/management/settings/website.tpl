@@ -19,7 +19,7 @@
 		$('#websiteTabs').pkpHandler('$.pkp.controllers.TabHandler');
 	{rdelim});
 </script>
-<div id="websiteTabs">
+<div id="websiteTabs" class="pkp_controllers_tab">
 	<ul>
 		<li><a href="{url router=$smarty.const.ROUTE_COMPONENT component="tab.settings.WebsiteSettingsTabHandler" op="showTab" tab="appearance"}">{translate key="manager.website.appearance"}</a></li>
 		<li><a href="{url router=$smarty.const.ROUTE_COMPONENT component="tab.settings.WebsiteSettingsTabHandler" op="showTab" tab="information"}">{translate key="manager.website.information"}</a></li>

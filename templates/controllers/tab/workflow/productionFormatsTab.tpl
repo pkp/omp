@@ -25,7 +25,7 @@ $(function() {ldelim}
 	);
 {rdelim});
 </script>
-<div id="publicationFormatTabs">
+<div id="publicationFormatTabs" class="pkp_controllers_tab">
 	<ul>
 		{foreach from=$publicationFormats item=format}
 			<li>{* no need to bother with the published test, since unpublished monographs will not have formats assigned to them *}

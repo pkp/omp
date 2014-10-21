@@ -79,7 +79,7 @@
 	</div>
 
 	<div class="pkp_helpers_clear"></div>
-	<div id="catalogTabs">
+	<div id="catalogTabs" class="pkp_controllers_tab">
 		<ul>
 			<li><a href="{url op="homepage"}">{translate key="catalog.manage.homepage"}</a></li>
 			<li><a href="#categoryTab">{translate key="catalog.manage.category"}</a></li>
