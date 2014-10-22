@@ -16,6 +16,7 @@
 	<message key="plugins.generic.translator.description">This plugin allows web-based maintenance of translation files.</message>
 	<message key="plugins.generic.translator.longdescription">This area allows the Site Administrator to build, modify and check translations of OMP. This is site-wide and should not be used to customize a single OMP press. If you correct or create a translation, please consider submitting it to the Public Knowledge Project for distribution with future releases.</message>
 	<message key="plugins.generic.translator.localeDescription">This page lists all components of an OMP translation and provides the translator with the opportunity to edit each. A full translation of a translation should contain complete translations of all components.</message>
+	<message key="plugins.generic.translator.localeFileDescription">The following list contains all conventional locale files.</message>
 
 	<message key="plugins.generic.translator.tarMissing">The export function of this plugin has been deactivated because the configured tar binary cannot be found on this system. Please make sure that you have the tar program installed and then configure the path to the tar binary in config.inc.php's [cli] section!</message>
 
@@ -26,6 +27,8 @@
 	<message key="plugins.generic.translator.translate">Translate</message>
 	<message key="plugins.generic.translator.availableLocales">Available Locales</message>
 	<message key="plugins.generic.translator.check">Check</message>
+	<message key="grid.action.checkLocale">Check Locale</message>
+	<message key="grid.action.download">Download</message>
 
 	<message key="plugins.generic.translator.errors">Locale Errors</message>
 
@@ -69,4 +72,6 @@
 	<message key="plugins.generic.translator.deleteKey">Delete this key</message>
 	<message key="plugins.generic.translator.deleteEmail">Delete this email</message>
 	<message key="plugins.generic.translator.saveBeforeContinuing">Be sure to save any changes made on this page before continuing or they will be lost. Do you wish to continue? If so, any unsaved changes will be lost.</message>
+	<message key="plugins.generic.translator.couldNotWriteFile">Could not write the file "{$filename}". Double-check that file permissions are set correctly.</message>
+	<message key="plugins.generic.translator.errorEditingFile">There was a problem editing the file "{$filename}". Double-check to ensure that it follows the expected format.</message>
 </locale>
