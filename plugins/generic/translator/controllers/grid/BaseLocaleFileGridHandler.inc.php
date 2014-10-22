@@ -78,6 +78,27 @@ abstract class BaseLocaleFileGridHandler extends GridHandler {
 		return new LocaleFileGridRow($this->tabsSelector, $this->locale);
 	}
 
+	/**
+	 * @copydoc GridHandler::initFeatures()
+	 */
+	function initFeatures($request, $args) {
+		import('lib.pkp.classes.controllers.grid.feature.PagingFeature');
+		return array(new PagingFeature());
+	}
+
+	/**
+	 * @copydoc GridHandler::getRequestArgs()
+	 */
+	function getRequestArgs() {
+		return array_merge(
+			parent::getRequestArgs(),
+			array(
+				'locale' => $this->locale,
+				'tabsSelector' => $this->tabsSelector,
+			)
+		);
+	}
+
 	//
 	// Public Grid Actions
 	//

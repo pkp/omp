@@ -39,7 +39,9 @@ class LocaleFileGridHandler extends BaseLocaleFileGridHandler {
 		// Set the grid details.
 		$this->setTitle('plugins.generic.translator.localeFiles');
 		$this->setInstructions('plugins.generic.translator.localeFileDescription');
-		$this->setGridDataElements(TranslatorAction::getLocaleFiles($this->locale));
+		$files = TranslatorAction::getLocaleFiles($this->locale);
+		sort($files);
+		$this->setGridDataElements($files);
 	}
 
 	//

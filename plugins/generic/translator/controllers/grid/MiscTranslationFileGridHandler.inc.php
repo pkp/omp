@@ -37,9 +37,11 @@ class MiscTranslationFileGridHandler extends BaseLocaleFileGridHandler {
 		parent::initialize($request);
 
 		// Set the grid details.
-		$this->setTitle('plugins.generic.translator.localeFiles');
-		$this->setInstructions('plugins.generic.translator.localeFileDescription');
-		$this->setGridDataElements(TranslatorAction::getMiscLocaleFiles($this->locale));
+		$this->setTitle('plugins.generic.translator.miscFiles');
+		$this->setInstructions('plugins.generic.translator.miscFileDescription');
+		$files = TranslatorAction::getMiscLocaleFiles($this->locale);
+		sort($files);
+		$this->setGridDataElements($files);
 	}
 
 	//

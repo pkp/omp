@@ -16,7 +16,7 @@
 	<message key="plugins.generic.translator.description">This plugin allows web-based maintenance of translation files.</message>
 	<message key="plugins.generic.translator.longdescription">This area allows the Site Administrator to build, modify and check translations of OMP. This is site-wide and should not be used to customize a single OMP press. If you correct or create a translation, please consider submitting it to the Public Knowledge Project for distribution with future releases.</message>
 	<message key="plugins.generic.translator.localeDescription">This page lists all components of an OMP translation and provides the translator with the opportunity to edit each. A full translation of a translation should contain complete translations of all components.</message>
-	<message key="plugins.generic.translator.localeFileDescription">The following list contains all conventional locale files.</message>
+	<message key="plugins.generic.translator.localeFileDescription">The following list contains all conventional locale files. These map language-specific text onto language-independent locale keys.</message>
 
 	<message key="plugins.generic.translator.tarMissing">The export function of this plugin has been deactivated because the configured tar binary cannot be found on this system. Please make sure that you have the tar program installed and then configure the path to the tar binary in config.inc.php's [cli] section!</message>
 
@@ -51,6 +51,7 @@
 	<message key="plugins.generic.translator.locale">{$locale} Locale</message>
 	<message key="plugins.generic.translator.localeFiles">Locale Files</message>
 	<message key="plugins.generic.translator.miscFiles">Miscellaneous Files</message>
+	<message key="plugins.generic.translator.miscFileDescription">The following list contains all miscellaneous locale files. These are typically XML files but do not follow the standard key-value format used by most translated content.</message>
 	<message key="plugins.generic.translator.emails">Email Templates</message>
 	<message key="plugins.generic.translator.file.filename">Filename</message>
 	<message key="plugins.generic.translator.file.edit">Editing {$filename}</message>
