@@ -154,6 +154,13 @@ class SeriesForm extends Form {
 		$series->setSubtitle($this->getData('subtitle'), null); // Localized
 		$series->setEditorRestricted($this->getData('restricted'));
 
+		// Insert or update the series in the DB
+		if ($this->getSeriesId()) {
+			$seriesDao->updateObject($series);
+		} else {
+			$this->setSeriesId($seriesDao->insertObject($series));
+		}
+
 		// Handle the image upload if there was one.
 		if ($temporaryFileId = $this->getData('temporaryFileId')) {
 			// Fetch the temporary file storing the uploaded library file
@@ -225,12 +232,8 @@ class SeriesForm extends Form {
 			$temporaryFileManager->deleteFile($temporaryFileId, $this->_userId);
 		}
 
-		// Insert or update the series in the DB
-		if ($this->getSeriesId()) {
-			$seriesDao->updateObject($series);
-		} else {
-			$this->setSeriesId($seriesDao->insertObject($series));
-		}
+		// Update series object to store image information.
+		$seriesDao->updateObject($series);
 
 		import('lib.pkp.classes.controllers.listbuilder.ListbuilderHandler');
 		// Save the series editor associations.
