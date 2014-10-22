@@ -199,6 +199,13 @@ class CategoryForm extends Form {
 		$category->setParentId($this->getData('parentId'));
 		$category->setPath($this->getData('path'));
 
+		// Update or insert the category object
+		if ($categoryId == null) {
+			$category->setId($categoryDao->insertObject($category));
+		} else {
+			$categoryDao->updateObject($category);
+		}
+
 		// Handle the image upload if there was one.
 		if ($temporaryFileId = $this->getData('temporaryFileId')) {
 			// Fetch the temporary file storing the uploaded library file
@@ -271,13 +278,8 @@ class CategoryForm extends Form {
 			$temporaryFileManager->deleteFile($temporaryFileId, $this->_userId);
 		}
 
-		// Update or insert the category object
-		if ($categoryId == null) {
-			$categoryDao->insertObject($category);
-		} else {
-			$categoryDao->updateObject($category);
-		}
-
+		// Update category object to store image information.
+		$categoryDao->updateObject($category);
 		return $category;
 	}
 }
