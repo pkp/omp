@@ -71,6 +71,7 @@ class TranslatorPlugin extends GenericPlugin {
 		switch ($component) {
 			case 'plugins.generic.translator.controllers.grid.LocaleGridHandler':
 			case 'plugins.generic.translator.controllers.grid.LocaleFileGridHandler':
+			case 'plugins.generic.translator.controllers.grid.MiscTranslationFileGridHandler':
 			case 'plugins.generic.translator.controllers.listbuilder.LocaleFileListbuilderHandler':
 				// Allow the static page grid handler to get the plugin object
 				import($component);

@@ -16,65 +16,8 @@
 
 <a name="miscFiles"></a>
 
-<h3>{translate key="plugins.generic.translator.miscFiles"}</h3>
-<table class="pkp_listing" width="100%">
-	<tr><td colspan="2" class="headseparator">&nbsp;</td></tr>
-	<tr class="heading" valign="bottom">
-		<td width="85%">{translate key="plugins.generic.translator.file.filename"}</td>
-		<td width="15%">{translate key="common.action"}</td>
-	</tr>
-	<tr><td colspan="2" class="headseparator">&nbsp;</td></tr>
-
-{assign var=needsAsteriskNote value=0}
-{iterate from=miscFiles item=filename}
-{assign var=filenameEscaped value=$filename|escape:"url"|escape:"url"}
-{if file_exists($filename)}
-	{assign var=fileExists value=1}
-{else}
-	{assign var=fileExists value=0}
-	{assign var=needsAsteriskNote value=1}
-{/if}
-	<tr valign="top">
-		<td>
-			{if $fileExists}
-				<a href="{url router=$smarty.const.ROUTE_PAGE op="downloadLocaleFile" path=$locale|to_array:$filenameEscaped}">{$filename|escape}</a>
-			{else}
-				{$filename|escape}&nbsp;*
-			{/if}
-			</td>
-		<td>
-			{if $fileExists}
-				<a href="{url router=$smarty.const.ROUTE_PAGE op="editMiscFile" path=$locale|to_array:$filenameEscaped}" class="action">{translate key="common.edit"}</a>
-			{else}
-				{url|assign:"redirectUrl" router=$smarty.const.ROUTE_PAGE op="editMiscFile" path=$locale|to_array:$filenameEscaped}
-				<a href="{url router=$smarty.const.ROUTE_PAGE op="createFile" path=$locale|to_array:$filenameEscaped redirectUrl=$redirectUrl}" class="action" onclick='return confirm("{translate|escape:"javascript" key="plugins.generic.translator.file.confirmCreate" filename=$filename}")'>{translate key="common.create"}</a>
-			{/if}
-		</td>
-	</tr>
-	<tr>
-		<td colspan="2" class="{if $miscFiles->eof()}end{/if}separator">&nbsp;</td>
-	</tr>
-{/iterate}
-
-{if $miscFiles->wasEmpty()}
-	<tr>
-		<td colspan="2" class="nodata">{translate key="common.none"}</td>
-	</tr>
-	<tr>
-		<td colspan="2" class="endseparator">&nbsp;</td>
-	</tr>
-{else}
-	<tr>
-		<td align="left">{page_info iterator=$miscFiles}</td>
-		<td align="right">{page_links anchor="miscFiles" name="miscFiles" iterator=$miscFiles}</td>
-	</tr>
-{/if}
-
-</table>
-
-{if $needsAsteriskNote}
-	<span class="instruct">{translate key="plugins.generic.translator.file.doesNotExistNote"}</span>
-{/if}
+{url|assign:miscFileGridUrl router=$smarty.const.ROUTE_COMPONENT component="plugins.generic.translator.controllers.grid.MiscTranslationFileGridHandler" op="fetchGrid" locale=$locale tabsSelector=$tabsSelector escape=false}
+{load_url_in_div id="miscFileGridContainer-"|uniqid url=$miscFileGridUrl}
 
 <a name="emails"></a>
 
