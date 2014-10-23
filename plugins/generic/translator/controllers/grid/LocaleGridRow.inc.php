@@ -39,6 +39,11 @@ class LocaleGridRow extends GridRow {
 		parent::initialize($request);
 		$router = $request->getRouter();
 
+		$actionArgs = array(
+			'locale' => $this->getId(),
+			'tabsSelector' => $this->tabsSelector,
+		);
+
 		// Create the "edit" action
 		import('lib.pkp.classes.linkAction.request.AddTabAction');
 		$this->addAction(
@@ -46,10 +51,7 @@ class LocaleGridRow extends GridRow {
 				'edit',
 				new AddTabAction(
 					$this->tabsSelector,
-					$router->url($request, null, null, 'edit', null, array(
-						'locale' => $this->getId(),
-						'tabsSelector' => $this->tabsSelector,
-					)),
+					$router->url($request, null, null, 'edit', null, $actionArgs),
 					__('plugins.generic.translator.locale', array('locale' => $this->getId()))
 				),
 				__('grid.action.edit'),
@@ -57,29 +59,15 @@ class LocaleGridRow extends GridRow {
 			)
 		);
 
-		// Create the "check" action
-		/*if ($this->getId() != MASTER_LOCALE) $this->addAction(
-			new LinkAction(
-				'checkLocale',
-				new AjaxModal(
-					$router->url($request, null, null, 'checkLocale', null, array('locale' => $this->getId())),
-					__('plugins.generic.translator.check'),
-					'modal_edit',
-					true),
-				__('plugins.generic.translator.check'),
-				'edit'
-			)
-		);*/
-
 		// Create the "export" action
 		$this->addAction(
 			new LinkAction(
 				'export',
 				new RedirectAction(
-					$router->url($request, null, null, 'exportLocale', null, array('locale' => $this->getId()))
+					$router->url($request, null, null, 'export', null, array('locale' => $this->getId()))
 				),
 				__('common.export'),
-				'download'
+				'zip'
 			)
 		);
 	}

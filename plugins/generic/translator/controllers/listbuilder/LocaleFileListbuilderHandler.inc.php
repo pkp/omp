@@ -55,6 +55,9 @@ class LocaleFileListbuilderHandler extends ListbuilderHandler {
 		parent::initialize($request);
 		$context = $request->getContext();
 
+		$this->setTitle('plugins.generic.translator.localeFileContents');
+		$this->setInstructions('plugins.generic.translator.localeFileContentsDescription');
+
 		// Get and validate the locale and filename parameters
 		$this->locale = $request->getUserVar('locale');
 		if (!AppLocale::isLocaleValid($this->locale)) fatalError('Invalid locale.');

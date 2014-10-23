@@ -80,17 +80,15 @@ class LocaleFileGridHandler extends BaseLocaleFileGridHandler {
 		if (LocaleFileListbuilderHandler::unpack($request, $request->getUserVar('localeKeys'))) {
 			if ($this->file->write()) {
 				$notificationManager->createTrivialNotification($user->getId());
-				$message = new JSONMessage(true);
 			} else {
 				// Could not write the file
 				$notificationManager->createTrivialNotification($user->getId(), NOTIFICATION_TYPE_ERROR, array('contents' => __('plugins.generic.translator.couldNotWriteFile', array('filename' => $filename))));
-				$message = new JSONMessage(true);
 			}
 		} else {
 			// Some kind of error occurred (probably garbled formatting)
 			$notificationManager->createTrivialNotification($user->getId(), NOTIFICATION_TYPE_ERROR, array('contents' => __('plugins.generic.translator.errorEditingFile', array('filename' => $filename))));
-			$message = new JSONMessage(true);
 		}
+		$message = new JSONMessage(true);
 		return $message->getString();
 	}
 

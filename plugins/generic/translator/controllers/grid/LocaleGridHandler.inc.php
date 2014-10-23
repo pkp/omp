@@ -39,7 +39,7 @@ class LocaleGridHandler extends GridHandler {
 		parent::GridHandler();
 		$this->addRoleAssignment(
 			array(ROLE_ID_SITE_ADMIN),
-			array('index', 'fetchGrid', 'fetchRow', 'exportLocale', 'edit')
+			array('index', 'fetchGrid', 'fetchRow', 'export', 'edit')
 		);
 	}
 
@@ -113,21 +113,11 @@ class LocaleGridHandler extends GridHandler {
 		if (!AppLocale::isLocaleValid($locale)) fatalError('Invalid locale.');
 
 		$templateMgr = TemplateManager::getManager($request);
-		$templateMgr->assign('pluginJavaScriptURL', self::$plugin->getJavaScriptURL($request));
-		$templateMgr->assign('locale', $locale);
-		$templateMgr->assign('tabsSelector', $this->tabsSelector);
-
-		$miscFiles = TranslatorAction::getMiscLocaleFiles($locale);
-		$emails = TranslatorAction::getEmailTemplates($locale);
-
-		$miscFilesRangeInfo = $this->getRangeInfo($request, 'miscFiles');
-		$emailsRangeInfo = $this->getRangeInfo($request, 'emails');
-
-		import('lib.pkp.classes.core.ArrayItemIterator');
-		$templateMgr->assign('miscFiles', new ArrayItemIterator($miscFiles, $miscFilesRangeInfo->getPage(), $miscFilesRangeInfo->getCount()));
-		$templateMgr->assign('emails', new ArrayItemIterator($emails, $emailsRangeInfo->getPage(), $emailsRangeInfo->getCount()));
-
-		$templateMgr->assign('masterLocale', MASTER_LOCALE);
+		$templateMgr->assign(array(
+			'pluginJavaScriptURL' => self::$plugin->getJavaScriptURL($request),
+			'locale' => $locale,
+			'tabsSelector' => $this->tabsSelector
+		));
 		return $templateMgr->fetchJson(self::$plugin->getTemplatePath() . 'locale.tpl');
 	}
 
@@ -137,7 +127,7 @@ class LocaleGridHandler extends GridHandler {
 	 * @param $args array Parameters.
 	 * @param $request PKPRequest Request object.
 	 */
-	function exportLocale($args, $request) {
+	function export($args, $request) {
 		$locale = $request->getUserVar('locale');
 		if (!AppLocale::isLocaleValid($locale)) fatalError('Invalid locale.');
 

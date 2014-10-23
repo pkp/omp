@@ -75,16 +75,15 @@ class MiscTranslationFileGridHandler extends BaseLocaleFileGridHandler {
 		$notificationManager = new NotificationManager();
 		$user = $request->getUser();
 
-		$contents = str_replace("\r", "", $request->getUserVar('fileContents'));
+		$contents = $this->correctCr($request->getUserVar('fileContents'));
 
 		if (file_put_contents($filename, $contents)) {
 			$notificationManager->createTrivialNotification($user->getId());
-			$message = new JSONMessage(true);
 		} else {
 			// Could not write the file
 			$notificationManager->createTrivialNotification($user->getId(), NOTIFICATION_TYPE_ERROR, array('contents' => __('plugins.generic.translator.couldNotWriteFile', array('filename' => $filename))));
-			$message = new JSONMessage(true);
 		}
+		$message = new JSONMessage(true);
 		return $message->getString();
 	}
 

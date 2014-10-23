@@ -72,7 +72,7 @@ class LocaleFileGridRow extends GridRow {
 					$router->url($request, null, null, 'download', null, $actionArgs)
 				),
 				__('grid.action.download'),
-				'download'
+				'zip'
 			)
 		);
 	}
