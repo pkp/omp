@@ -53,6 +53,7 @@
 	<message key="plugins.generic.translator.miscFiles">Miscellaneous Files</message>
 	<message key="plugins.generic.translator.miscFileDescription">The following list contains all miscellaneous locale files. These are typically XML files but do not follow the standard key-value format used by most translated content.</message>
 	<message key="plugins.generic.translator.emails">Email Templates</message>
+	<message key="plugins.generic.translator.emailDescription">The following list contains all email templates used by the system.</message>
 	<message key="plugins.generic.translator.file.filename">Filename</message>
 	<message key="plugins.generic.translator.file.edit">Editing {$filename}</message>
 	<message key="plugins.generic.translator.email.edit">Editing {$emailKey}</message>

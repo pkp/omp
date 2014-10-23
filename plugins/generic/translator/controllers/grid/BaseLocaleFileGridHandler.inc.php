@@ -60,14 +60,19 @@ abstract class BaseLocaleFileGridHandler extends GridHandler {
 		$this->locale = $request->getUserVar('locale');
 		if (!AppLocale::isLocaleValid($this->locale)) fatalError('Invalid locale.');
 
-		// Columns
-		$cellProvider = new LiteralGridCellProvider();
+		$this->addColumns();
+	}
+
+	/**
+	 * Add columns for this grid.
+	 */
+	function addColumns() {
 		$this->addColumn(new GridColumn(
 			'name',
 			'common.name',
 			null,
 			'controllers/grid/gridCell.tpl', // Default null not supported in OMP 1.1
-			$cellProvider
+			new LiteralGridCellProvider()
 		));
 	}
 
@@ -131,11 +136,13 @@ abstract class BaseLocaleFileGridHandler extends GridHandler {
 	abstract function save($args, $request);
 
 	/**
-	 * Get the (validated) filename for the current request.
-	 * @param $request PKPRequest
-	 * @return string Filename
+	 * Convert DOS-style line endings to UNIX-style.
+	 * @param $value string
+	 * @return string
 	 */
-	abstract protected function _getFilename($request);
+	protected function correctCr($value) {
+		return str_replace("\r\n", "\n", $value);
+	}
 }
 
 ?>
