@@ -12,6 +12,9 @@
  * a particularly attractive idea.
  */
 
+/* Superfish - http://users.tpg.com.au/j_birch/plugins/superfish/ */
+@import url("../lib/pkp/styles/lib/superfish/superfish.css");
+
 /* OOCSS - http://github.com/stubbornella/oocss */
 
 @import url("../lib/pkp/styles/lib/oocss/libraries.css");
