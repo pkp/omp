@@ -11,7 +11,11 @@
 <script type="text/javascript">
 	$(function() {ldelim}
 		// Attach the form handler.
-		$('#{$saveFormId}').pkpHandler('$.pkp.controllers.form.AjaxFormHandler');
+		$('#{$saveFormId}').pkpHandler('$.pkp.controllers.form.AjaxFormHandler',
+			{ldelim}
+				trackFormChanges: true
+			{rdelim}
+		);
 	{rdelim});
 </script>
 <form id="{$saveFormId}" action="{url op="save" locale=$locale filename=$filename}" method="post" class="pkp_form">
