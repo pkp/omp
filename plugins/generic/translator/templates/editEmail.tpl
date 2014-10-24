@@ -24,6 +24,7 @@
 		{fbvFormSection}
 			{fbvElement type="text" id="referenceSubject" readonly=true value=$referenceSubject label="common.subject" size=$fbvStyles.size.LARGE}
 			{fbvElement type="textarea" id="referenceBody" readonly=true value=$referenceBody label="email.body"}
+			{fbvElement type="text" id="referenceDescription" readonly=true value=$referenceDescription label="common.description" size=$fbvStyles.size.LARGE}
 		{/fbvFormSection}
 	{/fbvFormArea}
 
@@ -32,6 +33,7 @@
 		{fbvFormSection}
 			{fbvElement type="text" id="emailSubject" value=$emailSubject label="common.subject" size=$fbvStyles.size.LARGE}
 			{fbvElement type="textarea" id="emailBody" value=$emailBody label="email.body"}
+			{fbvElement type="text" id="emailDescription" value=$emailDescription label="common.description" size=$fbvStyles.size.LARGE}
 		{/fbvFormSection}
 	{/fbvFormArea}
 

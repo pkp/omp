@@ -39,9 +39,32 @@ class LocaleFileGridHandler extends BaseLocaleFileGridHandler {
 		// Set the grid details.
 		$this->setTitle('plugins.generic.translator.localeFiles');
 		$this->setInstructions('plugins.generic.translator.localeFileDescription');
-		$files = TranslatorAction::getLocaleFiles($this->locale);
-		sort($files);
-		$this->setGridDataElements($files);
+
+		// Fetch and prepare the grid data.
+		$fileList = TranslatorAction::getLocaleFiles($this->locale);
+		sort($fileList);
+
+		$fileData = array();
+		foreach ($fileList as $file) {
+			$referenceData = LocaleFile::load(str_replace($this->locale, MASTER_LOCALE, $file));
+			$referenceCount = count($referenceData);
+
+			if ($exists = file_exists($file)) {
+				$localeData = LocaleFile::load($file);
+				$completeCount = $this->_getTranslatedCount($referenceData, $localeData);
+			}
+
+			$fileData[] = array(
+				'filename' => $file,
+				'status' => $exists?
+					($completeCount == $referenceCount ?
+						__('plugins.generic.translator.localeFile.complete', array('reference' => $referenceCount)):
+						__('plugins.generic.translator.localeFile.incompleteCount', array('complete' => $completeCount, 'reference' => $referenceCount, 'percent' => (int) ($completeCount*100/$referenceCount)))
+					):
+					__('plugins.generic.translator.localeFile.doesNotExist', array('reference' => $referenceCount))
+			);
+		}
+		$this->setGridDataElements($fileData);
 	}
 
 	//
@@ -96,14 +119,16 @@ class LocaleFileGridHandler extends BaseLocaleFileGridHandler {
 	 * @copydoc ListbuilderHandler::insertEntry()
 	 */
 	function insertEntry($request, $newRowId) {
-		return $this->file->insert($newRowId['key'], $newRowId['value']);
+		if ($newRowId['value'][$this->locale] === '') return true; // Do not insert blanks
+		return $this->file->insert($newRowId['key'], $newRowId['value'][$this->locale]);
 	}
 
 	/**
 	 * @copydoc ListbuilderHandler::updateEntry()
 	 */
 	function updateEntry($request, $rowId, $newRowId) {
-		if (!$this->file->update($newRowId['key'], $newRowId['value'])) {
+		if ($newRowId['value'][$this->locale] === '') return true; // Do not insert blanks
+		if (!$this->file->update($newRowId['key'], $newRowId['value'][$this->locale])) {
 			return $this->insertEntry($request, $newRowId);
 		}
 		return true;
@@ -127,6 +152,21 @@ class LocaleFileGridHandler extends BaseLocaleFileGridHandler {
 			fatalError('Invalid locale file specified!');
 		}
 		return $filename;
+	}
+
+	protected function _getTranslatedCount($referenceLocaleData, $localeData) {
+		$completeCount = 0;
+		foreach ($referenceLocaleData as $key => $value) {
+			if (!isset($localeData[$key])) continue; // Not translated
+			if (0 != count(array_diff(
+				PKPLocale::getParameterNames($value),
+				PKPLocale::getParameterNames($localeData[$key])
+			))) {
+				continue; // Parameters differ
+			}
+			$completeCount++;
+		}
+		return $completeCount;
 	}
 }
 

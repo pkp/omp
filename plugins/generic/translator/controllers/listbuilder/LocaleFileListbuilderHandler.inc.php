@@ -73,19 +73,21 @@ class LocaleFileListbuilderHandler extends ListbuilderHandler {
 
 		self::$plugin->import('controllers.listbuilder.LocaleFileListbuilderGridCellProvider');
 
-		$cellProvider = new LocaleFileListbuilderGridCellProvider();
+		$cellProvider = new LocaleFileListbuilderGridCellProvider($this->locale);
 		// Key column
 		$this->addColumn(new ListbuilderGridColumn(
 			$this, 'key', 'plugins.generic.translator.localeKey',
-			null, null,
+			null,
+			self::$plugin->getTemplatePath() . 'localeFileKeyGridCell.tpl',
 			$cellProvider,
 			array('tabIndex' => 1)
 		));
 
-		// Value column
+		// Value column (custom template displays English text)
 		$this->addColumn(new ListbuilderGridColumn(
 			$this, 'value', 'plugins.generic.translator.localeKeyValue',
-			null, null,
+			null,
+			self::$plugin->getTemplatePath() . 'localeFileValueGridCell.tpl',
 			$cellProvider,
 			array('tabIndex' => 2, 'width' => 70, 'alignment' => COLUMN_ALIGNMENT_LEFT)
 		));
@@ -96,7 +98,18 @@ class LocaleFileListbuilderHandler extends ListbuilderHandler {
 	 */
 	function loadData($request) {
 		import('lib.pkp.classes.file.EditableLocaleFile');
-		return EditableLocaleFile::load($this->filename);
+		$referenceLocaleContents = EditableLocaleFile::load(str_replace($this->locale, MASTER_LOCALE, $this->filename));
+		$localeContents = EditableLocaleFile::load($this->filename);
+
+		$returner = array();
+		foreach ($referenceLocaleContents as $key => $value) {
+			$returner[$key][MASTER_LOCALE] = $value;
+		}
+		foreach ($localeContents as $key => $value) {
+			$returner[$key][$this->locale] = $value;
+		}
+
+		return $returner;
 	}
 
 	/**

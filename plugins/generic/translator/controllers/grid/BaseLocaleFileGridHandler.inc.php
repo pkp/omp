@@ -61,6 +61,14 @@ abstract class BaseLocaleFileGridHandler extends GridHandler {
 		if (!AppLocale::isLocaleValid($this->locale)) fatalError('Invalid locale.');
 
 		$this->addColumns();
+		if ($this->locale != MASTER_LOCALE) $this->addColumn(new GridColumn(
+			'status',
+			'common.status',
+			null,
+			'controllers/grid/gridCell.tpl', // Null template not permitted in OMP 1.1
+			null,
+			array('html' => true, 'alignment' => COLUMN_ALIGNMENT_LEFT)
+		));
 	}
 
 	/**
@@ -68,11 +76,8 @@ abstract class BaseLocaleFileGridHandler extends GridHandler {
 	 */
 	function addColumns() {
 		$this->addColumn(new GridColumn(
-			'name',
-			'common.name',
-			null,
-			'controllers/grid/gridCell.tpl', // Default null not supported in OMP 1.1
-			new LiteralGridCellProvider()
+			'filename',
+			'common.name'
 		));
 	}
 

@@ -38,7 +38,7 @@ class EmailGridHandler extends BaseLocaleFileGridHandler {
 		// Set the grid details.
 		$this->setTitle('plugins.generic.translator.emails');
 		$this->setInstructions('plugins.generic.translator.emailDescription');
-		$emails = TranslatorAction::getEmailTemplates($this->locale);
+		$emails = self::_getEmailTemplates($this->locale);
 		ksort($emails);
 		$this->setGridDataElements($emails);
 	}
@@ -90,8 +90,10 @@ class EmailGridHandler extends BaseLocaleFileGridHandler {
 			'emailKey' => $emailKey,
 			'referenceSubject' => isset($referenceEmailData['subject'])?$referenceEmailData['subject']:'',
 			'referenceBody' => isset($referenceEmailData['body'])?$referenceEmailData['body']:'',
+			'referenceDescription' => isset($referenceEmailData['description'])?$referenceEmailData['description']:'',
 			'emailSubject' => isset($emailData['subject'])?$emailData['subject']:'',
 			'emailBody' => isset($emailData['body'])?$emailData['body']:'',
+			'emailDescription' => isset($emailData['description'])?$emailData['description']:'',
 		));
 		return $templateMgr->fetchJson(self::$plugin->getTemplatePath() . 'editEmail.tpl');
 	}
@@ -110,7 +112,7 @@ class EmailGridHandler extends BaseLocaleFileGridHandler {
 
 		$targetFilename = str_replace(MASTER_LOCALE, $this->locale, $referenceEmailData['templateDataFile']); // FIXME: Ugly.
 
-		if (!$emailData) {
+		if (!isset($emailData[$emailKey]['templateDataFile'])) {
 			// If it's a reference email but not a translated one,
 			// create a blank file. FIXME: This is ugly.
 			if (!file_exists($targetFilename)) {
@@ -136,7 +138,7 @@ class EmailGridHandler extends BaseLocaleFileGridHandler {
 
 		$subject = $this->correctCr($request->getUserVar('emailSubject'));
 		$body = $this->correctCr($request->getUserVar('emailBody'));
-		$description = $this->correctCr($request->getUserVar('description'));
+		$description = $this->correctCr($request->getUserVar('emailDescription'));
 
 		$message = new JSONMessage(true);
 		if (!$file->update($emailKey, $subject, $body, $description)) {
@@ -165,8 +167,8 @@ class EmailGridHandler extends BaseLocaleFileGridHandler {
 	 */
 	protected function _getEmailData($request, &$emailData, &$referenceEmailData) {
 		$emailKey = $request->getUserVar('emailKey');
-		$emails = TranslatorAction::getEmailTemplates($this->locale);
-		$referenceEmails = TranslatorAction::getEmailTemplates(MASTER_LOCALE);
+		$emails = self::_getEmailTemplates($this->locale);
+		$referenceEmails = self::_getEmailTemplates(MASTER_LOCALE);
 		if (isset($referenceEmails[$emailKey])) {
 			$referenceEmailData = $referenceEmails[$emailKey];
 			if (isset($emails[$emailKey])) {
@@ -175,6 +177,83 @@ class EmailGridHandler extends BaseLocaleFileGridHandler {
 			return $emailKey;
 		}
 		fatalError('Invalid email key specified!');
+	}
+
+	/**
+	 * Get a list of email templates for the supplied locale. Returns data in the
+	 * following data structure:
+	 * array(
+	 *   'emailKey' => array(
+	 *     'subject' => 'Localized Subject',
+	 *     'body' => 'Localized Body',
+	 *     'description' => 'Localized Description',
+	 *     'templateFile' => '/path/to/template-file.xml',
+	 *     'templateDataFile' => '/path/to/localized/data-file.xml'
+	 *   ), ...
+	 * )
+	 * @param $locale string Locale code
+	 * @return array Email template data
+	 */
+	static function _getEmailTemplates($locale) {
+		$files = TranslatorAction::getEmailFileMap($locale);
+
+		$returner = array();
+		foreach ($files as $templateFile => $templateDataFile) {
+			$xmlParser = new XMLParser();
+			$data = $xmlParser->parse($templateFile);
+			foreach ($data->getChildren() as $emailNode) {
+				$returner[$emailNode->getAttribute('key')] = array(
+					'subject' => null,
+					'body' => null,
+					'description' => null,
+					'templateFile' => $templateFile,
+					'statusCode' => 'doesNotExist',
+				);
+			}
+			$localeData = $xmlParser->parse($templateDataFile);
+			if ($localeData) foreach ($localeData->getChildren() as $emailNode) {
+				$key = $emailNode->getAttribute('key');
+				if (isset($returner[$key])) $returner[$key] = array_merge($returner[$key], array(
+					'subject' => $emailNode->getChildValue('subject'),
+					'body' => $emailNode->getChildValue('body'),
+					'description' => $emailNode->getChildValue('description'),
+					'templateDataFile' => $templateDataFile,
+					'statusCode' => 'exists',
+				));
+			}
+		}
+
+		// Fill in status
+		if ($locale != MASTER_LOCALE) $masterLocale = self::_getEmailTemplates(MASTER_LOCALE);
+		foreach ($returner as $key => &$emailData) {
+			switch($emailData['statusCode']) {
+				case 'doesNotExist':
+					$emailData['status'] = __('plugins.generic.translator.email.doesNotExist');
+					break;
+				case 'exists':
+					$emailData['status'] = __('plugins.generic.translator.email.complete');
+					if ($locale != MASTER_LOCALE) {
+						$referenceSubject = $masterLocale[$key]['subject'];
+						$referenceBody = $masterLocale[$key]['body'];
+
+						if (0 != count(array_diff(
+							AppLocale::getParameterNames($emailData['subject']),
+							AppLocale::getParameterNames($referenceSubject)
+						))) {
+							$emailData['status'] = __('plugins.generic.translator.errors.EMAIL_ERROR_DIFFERING_PARAMS.title');
+						}
+						if (0 != count(array_diff(
+							AppLocale::getParameterNames($emailData['body']),
+							AppLocale::getParameterNames($referenceBody)
+						))) {
+							$emailData['status'] = __('plugins.generic.translator.errors.LOCALE_ERROR_DIFFERING_PARAMS.title');
+						}
+					}
+					break;
+			}
+		}
+
+		return $returner;
 	}
 }
 

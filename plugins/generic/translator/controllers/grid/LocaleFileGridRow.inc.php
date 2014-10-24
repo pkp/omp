@@ -42,10 +42,11 @@ class LocaleFileGridRow extends GridRow {
 	function initialize($request) {
 		parent::initialize($request);
 		$router = $request->getRouter();
+		$data = $this->getData();
 
 		$actionArgs = array(
 			'locale' => $this->locale,
-			'filename' => $this->getData(),
+			'filename' => $data['filename'],
 		);
 
 		// Create the "edit" action
@@ -56,7 +57,7 @@ class LocaleFileGridRow extends GridRow {
 				new AddTabAction(
 					$this->tabsSelector,
 					$router->url($request, null, null, 'edit', null, $actionArgs),
-					$this->getData() // Title; just use filename
+					$data['filename'] // Title; just use filename
 				),
 				__('grid.action.edit'),
 				'edit'
@@ -65,7 +66,7 @@ class LocaleFileGridRow extends GridRow {
 
 		// Create the "download" action
 		import('lib.pkp.classes.linkAction.request.RedirectAction');
-		if (file_exists($this->getData())) $this->addAction(
+		if (file_exists($data['filename'])) $this->addAction(
 			new LinkAction(
 				'download',
 				new RedirectAction(

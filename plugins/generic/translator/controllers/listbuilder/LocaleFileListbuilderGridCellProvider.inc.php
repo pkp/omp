@@ -16,11 +16,16 @@
 import('lib.pkp.classes.controllers.grid.GridCellProvider');
 
 class LocaleFileListbuilderGridCellProvider extends GridCellProvider {
+	/** @var string The locale code for the locale being translated */
+	var $locale;
+
 	/**
 	 * Constructor
+	 * @param $locale string The locale being translated
 	 */
-	function LocaleFileListbuilderGridCellProvider() {
+	function LocaleFileListbuilderGridCellProvider($locale) {
 		parent::GridCellProvider();
+		$this->locale = $locale;
 	}
 
 	//
@@ -30,11 +35,28 @@ class LocaleFileListbuilderGridCellProvider extends GridCellProvider {
 	 * @copydoc GridCellProvider::getTemplateVarsFromRowColumn()
 	 */
 	function getTemplateVarsFromRowColumn($row, $column) {
+		$data = $row->getData();
 		switch ($column->getId()) {
 			case 'key':
-				return array('labelKey' => $row->getId(), 'label' => $row->getId());
+				return array(
+					'key' => $row->getId(),
+					'strong' => !isset($data[MASTER_LOCALE]) || $data[MASTER_LOCALE]==='' ||
+						!isset($data[$this->locale]) || $data[$this->locale]==='' ||
+						0!=count(array_diff( // Parameters differ
+							PKPLocale::getParameterNames($data[MASTER_LOCALE]),
+							PKPLocale::getParameterNames($data[$this->locale])
+						))
+				);
 			case 'value':
-				return array('labelKey' => $row->getId(), 'label' => $row->getData());
+				$allLocales = PKPLocale::getAllLocales();
+				return array(
+					'referenceLocale' => MASTER_LOCALE,
+					'referenceLocaleName' => $allLocales[MASTER_LOCALE],
+					'reference' => isset($data[MASTER_LOCALE])?$data[MASTER_LOCALE]:'',
+					'translationLocale' => $this->locale,
+					'translationLocaleName' => $allLocales[$this->locale],
+					'translation' => isset($data[$this->locale])?$data[$this->locale]:'',
+				);
 		}
 		assert(false);
 	}
