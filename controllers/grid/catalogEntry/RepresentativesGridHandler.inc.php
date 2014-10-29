@@ -167,9 +167,9 @@ class RepresentativesGridHandler extends CategoryGridHandler {
 	}
 
 	/**
-	 * @see CategoryGridHandler::getCategoryData()
+	 * @see CategoryGridHandler::loadCategoryData()
 	 */
-	function getCategoryData($category) {
+	function loadCategoryData($request, $category, $filter) {
 		$representativeDao = DAORegistry::getDAO('RepresentativeDAO');
 		if ($category['isSupplier']) {
 			$representatives = $representativeDao->getSuppliersByMonographId($this->getMonograph()->getId());

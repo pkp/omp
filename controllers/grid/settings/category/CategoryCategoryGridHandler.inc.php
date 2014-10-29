@@ -50,10 +50,7 @@ class CategoryCategoryGridHandler extends CategoryGridHandler {
 	// Overridden methods from PKPHandler.
 	//
 	/**
-	 * @see PKPHandler::authorize()
-	 * @param $request PKPRequest
-	 * @param $args array
-	 * @param $roleAssignments array
+	 * @copydoc PKPHandler::authorize()
 	 */
 	function authorize($request, &$args, $roleAssignments) {
 		import('lib.pkp.classes.security.authorization.PkpContextAccessPolicy');
@@ -63,9 +60,7 @@ class CategoryCategoryGridHandler extends CategoryGridHandler {
 
 
 	/**
-	 * @see PKPHandler::initialize()
-	 * Configure the grid
-	 * @param $request PKPRequest
+	 * @copydoc PKPHandler::initialize()
 	 */
 	function initialize($request) {
 
@@ -112,7 +107,7 @@ class CategoryCategoryGridHandler extends CategoryGridHandler {
 	}
 
 	/**
-	 * @see GridHandler::loadData
+	 * @copydoc GridHandler::loadData
 	 */
 	function loadData($request, $filter) {
 		// For top-level rows, only list categories without parents.
@@ -122,15 +117,14 @@ class CategoryCategoryGridHandler extends CategoryGridHandler {
 	}
 
 	/**
-	 * @see CategoryGridHandler::getCategoryRowIdParameterName()
+	 * @copydoc CategoryGridHandler::getCategoryRowIdParameterName()
 	 */
 	function getCategoryRowIdParameterName() {
 		return 'parentCategoryId';
 	}
 
 	/**
-	 * @see GridHandler::getRowInstance()
-	 * @return CategoryGridRow
+	 * @copydoc GridHandler::getRowInstance()
 	 */
 	function getRowInstance() {
 		import('controllers.grid.settings.category.CategoryGridRow');
@@ -138,17 +132,16 @@ class CategoryCategoryGridHandler extends CategoryGridHandler {
 	}
 
 	/**
-	 * @see CategoryGridHandler::geCategorytRowInstance()
-	 * @return CategoryGridCategoryRow
+	 * @copydoc CategoryGridHandler::geCategorytRowInstance()
 	 */
 	function getCategoryRowInstance() {
 		return new CategoryGridCategoryRow();
 	}
 
 	/**
-	 * @see CategoryGridHandler::getCategoryData()
+	 * @copydoc CategoryGridHandler::loadCategoryData()
 	 */
-	function getCategoryData(&$category) {
+	function loadCategoryData($request, &$category, $filter) {
 		$categoryId = $category->getId();
 		$categoryDao = DAORegistry::getDAO('CategoryDAO');
 		$categoriesIterator = $categoryDao->getByParentId($categoryId, $this->_getPressId());

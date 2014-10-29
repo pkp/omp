@@ -234,9 +234,9 @@ class ChapterGridHandler extends CategoryGridHandler {
 	}
 
 	/**
-	 * @see CategoryGridHandler::getCategoryData()
+	 * @see CategoryGridHandler::loadCategoryData()
 	 */
-	function getCategoryData(&$chapter) {
+	function loadCategoryData($request, &$chapter, $filter) {
 		$authorFactory = $chapter->getAuthors(); /* @var $authorFactory DAOResultFactory */
 		return $authorFactory->toAssociativeArray();
 	}

@@ -30,10 +30,10 @@ class SettingsPluginGridHandler extends PluginGridHandler {
 	// Extended methods from PluginGridHandler
 	//
 	/**
-	 * @see PluginGridHandler::loadData()
+	 * @copydoc PluginGridHandler::loadCategoryData()
 	 */
-	function getCategoryData($categoryDataElement, $filter) {
-		$plugins = parent::getCategoryData($categoryDataElement, $filter);
+	function loadCategoryData($request, $categoryDataElement, $filter) {
+		$plugins = parent::loadCategoryData($request, $categoryDataElement, $filter);
 
 		$pressDao = DAORegistry::getDAO('PressDAO');
 		$presses = $pressDao->getAll();
@@ -67,7 +67,7 @@ class SettingsPluginGridHandler extends PluginGridHandler {
 	// Overriden template methods.
 	//
 	/**
-	 * @see GridHandler::getRowInstance()
+	 * @copydoc GridHandler::getRowInstance()
 	 */
 	function getRowInstance() {
 		$userRoles = $this->getAuthorizedContextObject(ASSOC_TYPE_USER_ROLES);
@@ -77,7 +77,7 @@ class SettingsPluginGridHandler extends PluginGridHandler {
 	}
 
 	/**
-	 * @see GridHandler::authorize()
+	 * @copydoc GridHandler::authorize()
 	 */
 	function authorize($request, &$args, $roleAssignments) {
 		$category = $request->getUserVar('category');
