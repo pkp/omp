@@ -94,6 +94,22 @@ class LocaleFileGridHandler extends BaseLocaleFileGridHandler {
 		$notificationManager = new NotificationManager();
 		$user = $request->getUser();
 
+		if (!file_exists($filename)) {
+			$dir = dirname($filename);
+			if (!file_exists($dir)) mkdir($dir);
+			$localeList = PKPLocale::getAllLocales();
+			file_put_contents(
+				$filename,
+				strtr(
+					file_get_contents(self::$plugin->getRegistryPath() . '/locale.xml'),
+					array(
+						'{$locale}' => $this->locale,
+						'{$localeName}' => $localeList[$this->locale],
+					)
+				)
+			);
+		}
+
 		// Use the EditableLocaleFile class to handle changes.
 		import('lib.pkp.classes.file.EditableLocaleFile');
 		$this->file = new EditableLocaleFile($this->locale, $filename);

@@ -99,7 +99,7 @@ class LocaleFileListbuilderHandler extends ListbuilderHandler {
 	function loadData($request) {
 		import('lib.pkp.classes.file.EditableLocaleFile');
 		$referenceLocaleContents = EditableLocaleFile::load(str_replace($this->locale, MASTER_LOCALE, $this->filename));
-		$localeContents = EditableLocaleFile::load($this->filename);
+		$localeContents = file_exists($this->filename)?EditableLocaleFile::load($this->filename):array();
 
 		$returner = array();
 		foreach ($referenceLocaleContents as $key => $value) {
