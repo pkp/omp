@@ -110,26 +110,23 @@ class EmailGridHandler extends BaseLocaleFileGridHandler {
 		$notificationManager = new NotificationManager();
 		$user = $request->getUser();
 
-		$targetFilename = str_replace(MASTER_LOCALE, $this->locale, $referenceEmailData['templateDataFile']); // FIXME: Ugly.
+		$targetFilename = str_replace(MASTER_LOCALE, $this->locale, $referenceEmailData['templateDataFile']);
 
 		if (!isset($emailData[$emailKey]['templateDataFile'])) {
-			// If it's a reference email but not a translated one,
-			// create a blank file. FIXME: This is ugly.
+			// If it's a reference email but the translation XML file does not exist,
+			// create a blank file from a template.
 			if (!file_exists($targetFilename)) {
 				$dir = dirname($targetFilename);
 				if (!file_exists($dir)) mkdir($dir);
-				file_put_contents($targetFilename, '<?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE email_texts SYSTEM "../../../../../lib/pkp/dtd/emailTemplateData.dtd">
-<!--
-  * emailTemplateData.xml
-  *
-  * Copyright (c) 2003-2014 John Willinsky
-  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
-  *
-  * Localized email templates XML file.
-  -->
-<email_texts locale="' . $this->locale . '">
-</email_texts>');
+				file_put_contents(
+					$targetFilename,
+					strtr(
+						file_get_contents(self::$plugin->getRegistryPath() . '/emailTemplateData.xml'),
+						array(
+							'{$locale}' => $this->locale
+						)
+					)
+				);
 			}
 		}
 
@@ -199,6 +196,7 @@ class EmailGridHandler extends BaseLocaleFileGridHandler {
 
 		$returner = array();
 		foreach ($files as $templateFile => $templateDataFile) {
+			if (!file_exists($templateFile)) continue;
 			$xmlParser = new XMLParser();
 			$data = $xmlParser->parse($templateFile);
 			foreach ($data->getChildren() as $emailNode) {
@@ -210,6 +208,7 @@ class EmailGridHandler extends BaseLocaleFileGridHandler {
 					'statusCode' => 'doesNotExist',
 				);
 			}
+			if (!file_exists($templateDataFile)) continue;
 			$localeData = $xmlParser->parse($templateDataFile);
 			if ($localeData) foreach ($localeData->getChildren() as $emailNode) {
 				$key = $emailNode->getAttribute('key');

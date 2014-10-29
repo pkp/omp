@@ -158,6 +158,14 @@ class TranslatorPlugin extends GenericPlugin {
 	function getTemplatePath() {
 		return parent::getTemplatePath() . 'templates/';
 	}
+
+	/**
+	 * Get the registry path for this plugin.
+	 * @return string Registry path
+	 */
+	function getRegistryPath() {
+		return parent::getPluginPath() . '/registry';
+	}
 }
 
 ?>
