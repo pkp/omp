@@ -15,6 +15,10 @@
 /* Superfish - http://users.tpg.com.au/j_birch/plugins/superfish/ */
 @import url("../lib/pkp/styles/lib/superfish/superfish.css");
 
+/* Pines Notify - http://pines.sourceforge.net/pnotify/ */
+@import url("../lib/pkp/styles/lib/jquery.pnotify.default.css");
+
+
 /* OOCSS - http://github.com/stubbornella/oocss */
 
 @import url("../lib/pkp/styles/lib/oocss/libraries.css");
