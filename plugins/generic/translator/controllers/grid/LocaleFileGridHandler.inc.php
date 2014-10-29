@@ -154,6 +154,12 @@ class LocaleFileGridHandler extends BaseLocaleFileGridHandler {
 		return $filename;
 	}
 
+	/**
+	 * Get the count of "correctly" translated locale keys for a translation.
+	 * @param $referenceLocaleData array Array of locale keys to locale data for reference locale
+	 * @param $localeData array Array of locale keys to locale data for the work translation
+	 * @return int Number of "correctly" translated locale keys
+	 */
 	protected function _getTranslatedCount($referenceLocaleData, $localeData) {
 		$completeCount = 0;
 		foreach ($referenceLocaleData as $key => $value) {
