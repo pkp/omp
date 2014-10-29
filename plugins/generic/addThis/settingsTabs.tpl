@@ -15,7 +15,7 @@
 				'$.pkp.controllers.TabHandler');
 	{rdelim});
 </script>
-<div id="addThisSettingsTabs">
+<div id="addThisSettingsTabs" class="pkp_controllers_tab">
 	<ul>
 		<li><a href="{url router=$smarty.const.ROUTE_COMPONENT component="grid.settings.plugins.SettingsPluginGridHandler" op="plugin" category="generic" plugin="AddThisPlugin" verb="showTab" tab="settings" escape=false}">{translate key="plugins.generic.addThis.settings"}</a></li>
 		<li {if !$statsConfigured}class="ui-state-default ui-corner-top ui-state-disabled"{/if}>

@@ -26,7 +26,7 @@
 		<div class="authorName">{$publishedMonograph->getAuthorString()}</div>
 	</div>
 
-	<div id="bookInfoTabs">
+	<div id="bookInfoTabs" class="pkp_controllers_tab">
 		<ul>
 			<li><a href="#abstractTab">{translate key="submission.synopsis"}</a></li>
 			{if $publishedMonograph->getWorkType() == WORK_TYPE_EDITED_VOLUME && $chapters|@count != 0}<li><a href="#contentsTab">{translate key="common.contents"}</a></li>{/if}

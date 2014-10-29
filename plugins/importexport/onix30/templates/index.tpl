@@ -20,7 +20,7 @@
 		{rdelim});
 	{rdelim});
 </script>
-<div id="importTabs">
+<div id="importTabs" class="pkp_controllers_tab">
 	<ul>
 		<li><a href="#export-tab">{translate key="plugins.importexport.native.export"}</a></li>
 	</ul>

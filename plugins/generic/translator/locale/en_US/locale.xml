@@ -16,8 +16,9 @@
 	<message key="plugins.generic.translator.description">This plugin allows web-based maintenance of translation files.</message>
 	<message key="plugins.generic.translator.longdescription">This area allows the Site Administrator to build, modify and check translations of OMP. This is site-wide and should not be used to customize a single OMP press. If you correct or create a translation, please consider submitting it to the Public Knowledge Project for distribution with future releases.</message>
 	<message key="plugins.generic.translator.localeDescription">This page lists all components of an OMP translation and provides the translator with the opportunity to edit each. A full translation of a translation should contain complete translations of all components.</message>
-
-	<message key="plugins.generic.translator.tarMissing">The export function of this plugin has been deactivated because the configured tar binary cannot be found on this system. Please make sure that you have the tar program installed and then configure the path to the tar binary in config.inc.php's [cli] section!</message>
+	<message key="plugins.generic.translator.localeFileDescription">The following list contains all conventional locale files. These map language-specific text onto language-independent locale keys.</message>
+	<message key="plugins.generic.translator.localeFileContents">Locale File Contents</message>
+	<message key="plugins.generic.translator.localeFileContentsDescription">The selected locale file contains the following locale keys. Each locale key associates a language-independent "key" (which looks.like.this) with a piece of language-specific text.</message>
 
 	<message key="plugins.generic.translator.localeName">Locale Name</message>
 	<message key="plugins.generic.translator.localeKey">Key</message>
@@ -26,6 +27,15 @@
 	<message key="plugins.generic.translator.translate">Translate</message>
 	<message key="plugins.generic.translator.availableLocales">Available Locales</message>
 	<message key="plugins.generic.translator.check">Check</message>
+	<message key="grid.action.checkLocale">Check Locale</message>
+	<message key="grid.action.download">Download</message>
+	<message key="plugins.generic.translator.localeFile.complete">Complete ({$reference})</message>
+	<message key="plugins.generic.translator.localeFile.incompleteCount">{$complete} / {$reference} ({$percent}%)</message>
+	<message key="plugins.generic.translator.localeFile.doesNotExist">Missing ({$reference})</message>
+	<message key="plugins.generic.translator.miscFile.complete">Complete</message>
+	<message key="plugins.generic.translator.miscFile.doesNotExist">Missing</message>
+	<message key="plugins.generic.translator.email.complete">Complete</message>
+	<message key="plugins.generic.translator.email.doesNotExist">Missing</message>
 
 	<message key="plugins.generic.translator.errors">Locale Errors</message>
 
@@ -44,11 +54,13 @@
 	<message key="plugins.generic.translator.errors.EMAIL_ERROR_MISSING_EMAIL.message">The email message "{$key}" is missing from the translation.</message>
 	<message key="plugins.generic.translator.errors.EMAIL_ERROR_EXTRA_EMAIL.message">The email message "{$key}" is no longer used and can be removed.</message>
 	<message key="plugins.generic.translator.errors.EMAIL_ERROR_DIFFERING_PARAMS.message">The email message "{$key}" differs from the reference locale in its use of parameters. Please double-check that it contains all relevant parameters. The mismatching parameter(s) are:</message>
-
+	<message key="plugins.generic.translator.jumpTo">Jump To...</message>
 	<message key="plugins.generic.translator.locale">{$locale} Locale</message>
 	<message key="plugins.generic.translator.localeFiles">Locale Files</message>
 	<message key="plugins.generic.translator.miscFiles">Miscellaneous Files</message>
+	<message key="plugins.generic.translator.miscFileDescription">The following list contains all miscellaneous locale files. These are typically XML files but do not follow the standard key-value format used by most translated content.</message>
 	<message key="plugins.generic.translator.emails">Email Templates</message>
+	<message key="plugins.generic.translator.emailDescription">The following list contains all email templates used by the system.</message>
 	<message key="plugins.generic.translator.file.filename">Filename</message>
 	<message key="plugins.generic.translator.file.edit">Editing {$filename}</message>
 	<message key="plugins.generic.translator.email.edit">Editing {$emailKey}</message>
@@ -69,4 +81,6 @@
 	<message key="plugins.generic.translator.deleteKey">Delete this key</message>
 	<message key="plugins.generic.translator.deleteEmail">Delete this email</message>
 	<message key="plugins.generic.translator.saveBeforeContinuing">Be sure to save any changes made on this page before continuing or they will be lost. Do you wish to continue? If so, any unsaved changes will be lost.</message>
+	<message key="plugins.generic.translator.couldNotWriteFile">Could not write the file "{$filename}". Double-check that file permissions are set correctly.</message>
+	<message key="plugins.generic.translator.errorEditingFile">There was a problem editing the file "{$filename}". Double-check to ensure that it follows the expected format.</message>
 </locale>

@@ -21,7 +21,7 @@
 			{rdelim});
 	{rdelim});
 </script>
-<div id="settingsWizard">
+<div id="settingsWizard" class="pkp_controllers_tab">
 	<ul>
 		<li><a href="{url router=$smarty.const.ROUTE_COMPONENT component="tab.settings.PressSettingsTabHandler" op="showTab" tab="masthead" wizardMode=true}">{translate key="manager.setup.masthead"}</a></li>
 		<li><a href="{url router=$smarty.const.ROUTE_COMPONENT component="tab.settings.PressSettingsTabHandler" op="showTab" tab="contact" wizardMode=true}">{translate key="about.contact"}</a></li>

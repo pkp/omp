@@ -24,7 +24,7 @@
 	{rdelim});
 </script>
 {if not $hideHelp}<p class="pkp_help">{translate key="catalog.manage.entryDescription"}</p>{/if}
-<div id="newCatalogEntryTabs">
+<div id="newCatalogEntryTabs" class="pkp_controllers_tab">
 	<ul>
 		<li>
 			<a title="submission" href="{url router=$smarty.const.ROUTE_COMPONENT component="tab.catalogEntry.CatalogEntryTabHandler" tab="submission" op="submissionMetadata" submissionId=$submissionId stageId=$stageId tabPos="0"}">{translate key="submission.catalogEntry.monographMetadata"}</a>
