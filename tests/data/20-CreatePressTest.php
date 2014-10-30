@@ -77,4 +77,28 @@ class CreatePressTest extends WebTestCase {
 		$this->click('//form[@id=\'appearanceForm\']//span[text()=\'Save\']/..');
 		$this->waitJQuery();
 	}
+
+	/**
+	 * Configure roles to permit self-registration for Volume Editors
+	 */
+	function testSetupRoles() {
+		$this->open(self::$baseUrl);
+
+		// Users & Roles
+		$this->waitForElementPresent('link=Users & Roles');
+		$this->click('link=Users & Roles');
+		$this->waitForElementPresent('link=Roles');
+		$this->click('link=Roles');
+
+		// "Edit" link below "Volume editor" role
+		$this->waitForElementPresent('//table[starts-with(@id, \'component-grid-settings-roles-usergroupgrid-\')]//span[contains(text(), \'Volume editor\')]/../../../../../following-sibling::tr//a[contains(text(),\'Edit\')]');
+		$this->click('//table[starts-with(@id, \'component-grid-settings-roles-usergroupgrid-\')]//span[contains(text(), \'Volume editor\')]/../../../../../following-sibling::tr//a[contains(text(),\'Edit\')]');
+
+		// Click the "permit self registration" checkbox
+		$this->waitForElementPresent('//input[@id=\'permitSelfRegistration\']');
+		$this->click('//input[@id=\'permitSelfRegistration\']');
+		$this->waitForElementPresent('//form[@id=\'userGroupForm\']//span[text()=\'OK\']/..');
+		$this->click('//form[@id=\'userGroupForm\']//span[text()=\'OK\']/..');
+		$this->waitJQuery();
+	}
 }
