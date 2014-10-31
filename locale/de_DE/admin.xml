@@ -47,6 +47,6 @@ Bitte beachten Sie, dass die OAI-Schnittstelle für diese Website in der OMP-Sys
 
 	<!-- System Information -->
 	<message key="admin.overwriteConfigFileInstructions"><![CDATA[<h4>Beachten Sie:</div>
-<p>Das System konnte die Konfigurationsdatei nicht automatisch überschreiben. Öffnen Sie <tt>config.inc.php</tt> mit einem geeigneten Texteditor und ersetzen Sie den Inhalt durch den Text im nachstehenden Textfeld.</p>]]></message>
+<p>Das System konnte die Konfigurationsdatei nicht automatisch überschreiben. Um Ihre Änderungen der Konfiguration anzuwenden, öffnen Sie <tt>config.inc.php</tt> mit einem geeigneten Texteditor und ersetzen Sie den Inhalt durch den Text im nachstehenden Textfeld.</p>]]></message>
 
 </locale>
