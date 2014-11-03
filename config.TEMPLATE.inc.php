@@ -52,6 +52,12 @@ session_lifetime = 30
 ; execute periodically
 scheduled_tasks = Off
 
+; Scheduled tasks will send email about processing
+; only in case of errors. Set to off to receive
+; all other kind of notification, including success,
+; warnings and notices.
+scheduled_tasks_report_error_only = On
+
 ; Site time zone
 ; Please refer to lib/pkp/registry/timeZones.xml for a full list of supported
 ; time zones.
