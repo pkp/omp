@@ -28,12 +28,12 @@ class SeriesTest extends WebTestCase {
 		$this->waitForElementPresent('link=Series');
 		$this->click('link=Series');
 
-		// Create a new "Education" series
+		// Create a new "Library & Information Studies" series
 		$this->waitForElementPresent('css=[id^=component-grid-settings-series-seriesgrid-addSeries-button-]');
 		$this->click('css=[id^=component-grid-settings-series-seriesgrid-addSeries-button-]');
 		$this->waitForElementPresent('css=[id^=title-]');
-		$this->type('css=[id^=title-]', 'Education');
-		$this->type('css=[id^=path-]', 'education');
+		$this->type('css=[id^=title-]', 'Library & Information Studies');
+		$this->type('css=[id^=path-]', 'lis');
 
 		// Add Series Editor (David Buskins)
 		$this->waitForElementPresent('css=[id^=component-listbuilder-settings-serieseditorslistbuilder-addItem-button-]');
@@ -42,30 +42,24 @@ class SeriesTest extends WebTestCase {
 		$this->waitForElementPresent('//select[@name=\'newRowId[name]\']//option[text()=\'David Buskins\']');
 		$this->select('name=newRowId[name]', 'label=David Buskins');
 
-		// Persist this one and add another (Stephanie Berardo)
-		$this->clickAt("css=[id^=component-listbuilder-settings-serieseditorslistbuilder-addItem-button-]", "10,10");
-		$this->waitForElementPresent('css=span:contains(\'David Buskins\')');
-		$this->waitForElementPresent('xpath=(//select[@name="newRowId[name]"])[2]//option[text()=\'Stephanie Berardo\']');
-		$this->select('xpath=(//select[@name="newRowId[name]"])[2]', 'label=Stephanie Berardo');
-
 		// Save changes
 		$this->click('//form[@id=\'seriesForm\']//span[text()=\'Save\']/..');
 		$this->waitJQuery();
 
 		// Verify resulting grid row
-		$this->assertEquals('Berardo, Buskins', $this->getText('css=#cell-1-editors > span'));
+		$this->assertEquals('Buskins', $this->getText('css=#cell-1-editors > span'));
 
-		// Create a new "Access" series
+		// Create a new "Political Economy" series
 		$this->click('css=[id^=component-grid-settings-series-seriesgrid-addSeries-button-]');
 		$this->waitForElementPresent('css=[id^=title-]');
-		$this->type('css=[id^=title-]', 'Access');
-		$this->type('css=[id^=path-]', 'access');
+		$this->type('css=[id^=title-]', 'Political Economy');
+		$this->type('css=[id^=path-]', 'pe');
 
 		// Add a Series Editor (Minoti Inoue)
 		$this->waitForElementPresent('css=[id^=component-listbuilder-settings-serieseditorslistbuilder-addItem-button-]');
 		$this->clickAt('css=[id^=component-listbuilder-settings-serieseditorslistbuilder-addItem-button-]', '10,10');
-		$this->waitForElementPresent('//select[@name=\'newRowId[name]\']//option[text()=\'Minoti Inoue\']');
-		$this->select('name=newRowId[name]', 'label=Minoti Inoue');
+		$this->waitForElementPresent('//select[@name=\'newRowId[name]\']//option[text()=\'Stephanie Berardo\']');
+		$this->select('name=newRowId[name]', 'label=Stephanie Berardo');
 		$this->click('//form[@id=\'seriesForm\']//span[text()=\'Save\']/..');
 		$this->waitJQuery();
 	}
