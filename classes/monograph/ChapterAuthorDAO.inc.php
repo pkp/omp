@@ -52,6 +52,9 @@ class ChapterAuthorDAO extends DAO {
 				a.first_name,
 				a.middle_name,
 				a.last_name,
+				a.suffix,
+				a.include_in_browse,
+				ug.show_title,
 				asl.setting_value AS affiliation_l,
 				asl.locale,
 				aspl.setting_value AS affiliation_pl,
@@ -62,6 +65,7 @@ class ChapterAuthorDAO extends DAO {
 				a.user_group_id
 			FROM	authors a
 				JOIN submission_chapter_authors sca ON (a.author_id = sca.author_id)
+				JOIN user_groups ug ON (a.user_group_id = ug.user_group_id)
 				LEFT JOIN author_settings aspl ON (sca.author_id = aspl.author_id AND aspl.setting_name = ? AND aspl.locale = ?)
 				LEFT JOIN author_settings asl ON (sca.author_id = asl.author_id AND asl.setting_name = ? AND asl.locale = ?)' .
 			( (count($params)> 0)?' WHERE':'' ) .
