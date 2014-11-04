@@ -56,11 +56,12 @@ class ContentBaseTestCase extends PKPContentBaseTestCase {
 			}
 
 			// Contributors
-			foreach ($chapter['contributors'] as $contributor) {
+			foreach ($chapter['contributors'] as $i => $contributor) {
 				$this->waitForElementPresent('css=[id^=component-listbuilder-users-chapterauthorlistbuilder-addItem-button-]');
 				$this->clickAt('css=[id^=component-listbuilder-users-chapterauthorlistbuilder-addItem-button-]', '10,10');
-				$this->waitForElementPresent('//select[@name=\'newRowId[name]\']//option[text()=\'' . $contributor . '\']');
-				$this->select('name=newRowId[name]', 'label=' . $contributor);
+				$this->waitForElementPresent('xpath=(//select[@name="newRowId[name]"])[' . ($i+1) . ']//option[text()=\'' . $contributor . '\']');
+				$this->select('xpath=(//select[@name="newRowId[name]"])[' . ($i+1) . ']', 'label=' . $contributor);
+				$this->waitJQuery();
 			}
 			$this->click('//form[@id=\'editChapterForm\']//span[text()=\'Save\']/..');
 			$this->waitForElementNotPresent('css=.ui-widget-overlay');
