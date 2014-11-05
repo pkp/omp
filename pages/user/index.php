@@ -22,7 +22,6 @@ switch ($op) {
 	// Profiles
 	//
 	case 'profile':
-	case 'saveProfile':
 	case 'changePassword':
 	case 'savePassword':
 		import('lib.pkp.pages.user.ProfileHandler');
