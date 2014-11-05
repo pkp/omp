@@ -133,16 +133,16 @@ class ChapterForm extends Form {
 
 		// Save the author associations. (See insert/deleteEntry.)
 		import('lib.pkp.classes.controllers.listbuilder.ListbuilderHandler');
-		ListbuilderHandler::unpack($request, $this->getData('authors'));
+		ListbuilderHandler::unpack(null, $this->getData('authors'));
 
 		return true;
 	}
 
 	/**
 	 * Persist a new author entry insert.
-	 * @param $request Request
+	 * @param $request PKPRequest ALWAYS NULL IN THIS INSTANCE
 	 * @param $newRowId mixed New entry with data to persist
-	 * @return boolean
+	 * @return boolean True iff successful
 	 */
 	function insertEntry($request, $newRowId) {
 		$monograph = $this->getMonograph();
@@ -162,6 +162,10 @@ class ChapterForm extends Form {
 	 * The updateEntry callback was not getting called because
 	 * the this on Listbuilder unpack function was set to this
 	 * form.
+	 * @param $request PKPRequest ALWAYS NULL IN THIS INSTANCE
+	 * @param $rowId string Row ID
+	 * @param $newRowId array Array
+	 * @return boolean True iff successful
 	 */
 	function updateEntry($request, $rowId, $newRowId) {
 		if (!$this->deleteEntry($request, $rowId)) return false;
@@ -170,9 +174,9 @@ class ChapterForm extends Form {
 
 	/**
 	 * Delete an author entry.
-	 * @param $request Request
+	 * @param $request PKPRequest ALWAYS NULL IN THIS INSTANCE
 	 * @param $rowId mixed ID of row to modify
-	 * @return boolean
+	 * @return boolean True iff successful
 	 */
 	function deleteEntry($request, $rowId) {
 		$chapter = $this->getChapter();
