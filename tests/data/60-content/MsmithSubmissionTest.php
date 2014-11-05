@@ -119,12 +119,9 @@ class MsmithSubmissionTest extends ContentBaseTestCase {
 		$this->logOut();
 
 		$this->findSubmissionAsEditor('dbarnes', null, $title);
-                $this->sendToReview('Internal');
-
-		// FIXME: 2 reviewers need to be assigned (awaiting data spec)
-		// $this->assignReviewer('username here', 'Reviewer Name Here');
-		// $this->assignReviewer('username here', 'Reviewer Name Here');
-
+		$this->sendToReview('Internal');
+		$this->assignReviewer('jjanssen', 'Julie Janssen');
+		$this->assignReviewer('phudson', 'Paul Hudson');
 		$this->logOut();
 	}
 }

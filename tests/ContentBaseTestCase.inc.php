@@ -87,13 +87,21 @@ class ContentBaseTestCase extends PKPContentBaseTestCase {
 	/**
 	 * Send to review.
 	 * @param $type string "External" or "Internal"; type of review.
+	 * @param $from string "Internal" or "Submission" (for external reviews)
 	 */
-	protected function sendToReview($type = 'External') {
+	protected function sendToReview($type = 'External', $from = 'Submission') {
 		$this->waitForElementPresent('//span[text()=\'Send to ' . $this->escapeJS($type) . ' Review\']/..');
 		$this->click('//span[text()=\'Send to ' . $this->escapeJS($type) . ' Review\']/..');
-		$this->waitForElementPresent('//form[@id=\'initiateReview\']//input[@type=\'checkbox\']');
-		$this->waitForElementPresent('//form[@id=\'initiateReview\']//span[text()=\'Send to ' . $this->escapeJS($type) . ' Review\']/..');
-		$this->click('//form[@id=\'initiateReview\']//span[text()=\'Send to ' . $this->escapeJS($type) . ' Review\']/..');
+		if ($type == 'Internal' || $from != 'Internal') {
+			$this->waitForElementPresent('//form[@id=\'initiateReview\']//input[@type=\'checkbox\']');
+			$this->waitForElementPresent('//form[@id=\'initiateReview\']//span[text()=\'Send to ' . $this->escapeJS($type) . ' Review\']/..');
+			$this->click('//form[@id=\'initiateReview\']//span[text()=\'Send to ' . $this->escapeJS($type) . ' Review\']/..');
+		} else { // External review from Internal review
+			$this->waitForElementPresent('css=[id^=component-grid-files-attachment-editorselectablereviewattachmentsgrid-]');
+			$this->waitForElementPresent('css=[id^=component-grid-files-review-selectablereviewrevisionsgrid-]');
+		}
+		$this->waitForElementPresent('//div[contains(@class,\'ui-dialog\')]//button[contains(@id, \'submitFormButton-\')]');
+		$this->click('//div[contains(@class,\'ui-dialog\')]//button[contains(@id, \'submitFormButton-\')]');
 		$this->waitForElementNotPresent('css=.ui-widget-overlay');
 	}
 }

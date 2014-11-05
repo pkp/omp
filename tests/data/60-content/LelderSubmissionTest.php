@@ -108,10 +108,12 @@ class LelderSubmissionTest extends ContentBaseTestCase {
 		$this->logOut();
 
 		$this->findSubmissionAsEditor('dbarnes', null, $title);
-                $this->sendToReview('Internal');
-
-		// FIXME: reviewers need to be assigned, decision recorded
-
+		$this->sendToReview('Internal');
+		$this->assignReviewer('jjanssen', 'Julie Janssen');
+		$this->assignReviewer('phudson', 'Paul Hudson');
+		$this->assignReviewer('amccrae', 'Aisla McCrae');
 		$this->logOut();
+
+		$this->performReview('phudson', null, $title, null, 'I recommend declining this submission.');
 	}
 }
