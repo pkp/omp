@@ -17,7 +17,7 @@ import('tests.ContentBaseTestCase');
 
 class CompetingInterestsTest extends ContentBaseTestCase {
 	/** @var $fullTitle Full title of test submission */
-	static $fullTitle = 'Learning Sustainable Design through Service';
+	static $fullTitle = 'Lost Tracks: Buffalo National Park, 1909-1939';
 
 	/**
 	 * @copydoc WebTestCase::getAffectedTables
