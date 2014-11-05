@@ -35,7 +35,15 @@ class MpowerSubmissionTest extends ContentBaseTestCase {
 			'title' => $title,
 			'abstract' => 'Books and articles on instructional design in online learning abound but rarely do we get such a comprehensive picture of what instructional designers do, how they do it, and the problems they solve as their university changes. Power documents the emergence of an adapted instructional design model for transforming courses from single-mode to dual-mode instruction, making this designer’s log a unique contribution to the fi eld of online learning.',
 		));
-
 		$this->logOut();
+
+		$this->findSubmissionAsEditor('dbarnes', null, $title);
+		$this->sendToReview('External');
+		$this->assignReviewer('agallego', 'Adela Gallego');
+		$this->assignReviewer('alzacharia', 'Al Zacharia');
+		$this->assignReviewer('gfavio', 'Gonzalo Favio');
+		$this->logOut();
+
+		$this->performReview('agallego', null, $title, null, 'I recommend that the author revise this submission.');
 	}
 }

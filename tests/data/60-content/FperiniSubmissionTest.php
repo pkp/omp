@@ -96,7 +96,7 @@ class FperiniSubmissionTest extends ContentBaseTestCase {
 
 		$this->logOut();
 		$this->findSubmissionAsEditor('dbarnes', null, $title);
-                $this->sendToReview('Internal');
+		$this->sendToReview('Internal');
 		$this->logOut();
 	}
 }

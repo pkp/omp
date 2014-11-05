@@ -82,9 +82,26 @@ class MallySubmissionTest extends ContentBaseTestCase {
 		$this->logOut();
 
 		$this->findSubmissionAsEditor('dbarnes', null, $title);
-                $this->sendToReview('Internal');
 
-		// FIXME: reviewers need to be assigned, decision recorded
+		// Internal review
+		$this->sendToReview('Internal');
+		$this->assignReviewer('phudson', 'Paul Hudson');
+
+		// External review
+		$this->sendToReview('External', 'Internal');
+		$this->assignReviewer('agallego', 'Adela Gallego');
+		$this->assignReviewer('alzacharia', 'Al Zacharia');
+		$this->assignReviewer('gfavio', 'Gonzalo Favio');
+
+		$this->logOut();
+
+		// Perform reviews
+		$this->performReview('agallego', null, $title, null, 'I recommend requiring revisions.');
+		$this->performReview('gfavio', null, $title, null, 'I recommend resubmitting.');
+
+		// Accept submission
+		$this->findSubmissionAsEditor('dbarnes', null, $title);
+		$this->recordEditorialDecision('Accept Submission');
 
 		$this->logOut();
 	}

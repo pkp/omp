@@ -62,5 +62,29 @@ class SeriesTest extends WebTestCase {
 		$this->select('name=newRowId[name]', 'label=Stephanie Berardo');
 		$this->click('//form[@id=\'seriesForm\']//span[text()=\'Save\']/..');
 		$this->waitJQuery();
+
+		// Create a new "History" series
+		$this->click('css=[id^=component-grid-settings-series-seriesgrid-addSeries-button-]');
+		$this->waitForElementPresent('css=[id^=title-]');
+		$this->type('css=[id^=title-]', 'History');
+		$this->type('css=[id^=path-]', 'his');
+		$this->click('//form[@id=\'seriesForm\']//span[text()=\'Save\']/..');
+		$this->waitJQuery();
+
+		// Create a new "Education" series
+		$this->click('css=[id^=component-grid-settings-series-seriesgrid-addSeries-button-]');
+		$this->waitForElementPresent('css=[id^=title-]');
+		$this->type('css=[id^=title-]', 'Education');
+		$this->type('css=[id^=path-]', 'ed');
+		$this->click('//form[@id=\'seriesForm\']//span[text()=\'Save\']/..');
+		$this->waitJQuery();
+
+		// Create a new "Psychology" series
+		$this->click('css=[id^=component-grid-settings-series-seriesgrid-addSeries-button-]');
+		$this->waitForElementPresent('css=[id^=title-]');
+		$this->type('css=[id^=title-]', 'Psychology');
+		$this->type('css=[id^=path-]', 'psy');
+		$this->click('//form[@id=\'seriesForm\']//span[text()=\'Save\']/..');
+		$this->waitJQuery();
 	}
 }

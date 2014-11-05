@@ -96,7 +96,7 @@ class CreateUsersTest extends PKPCreateUsersTest {
 			'lastName' => 'Janssen',
 			'country' => 'Netherlands',
 			'affiliation' => 'Utrecht University',
-			'roles' => array('External Reviewer'),
+			'roles' => array('Internal Reviewer'),
 		));
 	}
 
@@ -110,7 +110,7 @@ class CreateUsersTest extends PKPCreateUsersTest {
 			'lastName' => 'Hudson',
 			'country' => 'Canada',
 			'affiliation' => 'McGill University',
-			'roles' => array('External Reviewer'),
+			'roles' => array('Internal Reviewer'),
 		));
 	}
 
@@ -124,7 +124,7 @@ class CreateUsersTest extends PKPCreateUsersTest {
 			'lastName' => 'McCrae',
 			'country' => 'Canada',
 			'affiliation' => 'University of Manitoba',
-			'roles' => array('External Reviewer'),
+			'roles' => array('Internal Reviewer'),
 		));
 	}
 
@@ -138,6 +138,34 @@ class CreateUsersTest extends PKPCreateUsersTest {
 			'lastName' => 'Gallego',
 			'country' => 'United States',
 			'affiliation' => 'State University of New York',
+			'roles' => array('External Reviewer'),
+		));
+	}
+
+	/**
+	 * Create a user
+	 */
+	function testCreateAlzacharia() {
+		$this->createUser(array(
+			'username' => 'alzacharia',
+			'firstName' => 'Al',
+			'lastName' => 'Zacharia',
+			'country' => 'Ghana',
+			'affiliation' => 'KNUST',
+			'roles' => array('External Reviewer'),
+		));
+	}
+
+	/**
+	 * Create a user
+	 */
+	function testCreateGfavio() {
+		$this->createUser(array(
+			'username' => 'gfavio',
+			'firstName' => 'Gonzalo',
+			'lastName' => 'Favio',
+			'country' => 'Spain',
+			'affiliation' => 'Madrid',
 			'roles' => array('External Reviewer'),
 		));
 	}
