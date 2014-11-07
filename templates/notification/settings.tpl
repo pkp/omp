@@ -8,15 +8,18 @@
  * Displays the notification settings page and unchecks
  *
  *}
-{strip}
-{assign var="pageTitle" value="notification.settings"}
-{include file="common/header.tpl"}
-{/strip}
-
 <script type="text/javascript">
 	$(function() {ldelim}
 		// Attach the form handler.
-		$('#notificationSettingsForm').pkpHandler('$.pkp.controllers.form.FormHandler');
+		$('#notificationSettingsForm').pkpHandler('$.pkp.controllers.form.AjaxFormHandler', {ldelim}
+			'enableDisablePairs': {ldelim}
+					{foreach from=$notificationSettingCategories item=notificationSettingCategory} 
+						{foreach name=notifications from=$notificationSettingCategory.settings item=settingId}
+						'{$notificationSettings.$settingId.settingName|escape:"javascript"}': '{$notificationSettings.$settingId.emailSettingName|escape:"javascript"}',
+						{/foreach}
+					{/foreach}
+				{rdelim}
+		{rdelim});
 	{rdelim});
 </script>
 
@@ -56,6 +59,3 @@
 
 {/fbvFormArea}
 </form>
-
-{include file="common/footer.tpl"}
-
