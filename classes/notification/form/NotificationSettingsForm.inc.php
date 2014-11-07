@@ -69,14 +69,14 @@ class NotificationSettingsForm extends PKPNotificationSettingsForm {
 		);
 	}
 
-	/*
-	 * Display the form
+	/**
+	 * @copydoc
 	 */
-	function display($request) {
+	function fetch($request) {
 		$templateMgr = TemplateManager::getManager($request);
 		$templateMgr->assign('notificationSettingCategories', $this->_getNotificationSettingCategories());
 		$templateMgr->assign('notificationSettings',  $this->_getNotificationSettingsMap());
-		return parent::display($request);
+		return parent::fetch($request);
 	}
 
 	/**
@@ -98,7 +98,7 @@ class NotificationSettingsForm extends PKPNotificationSettingsForm {
 
 		$notificationSubscriptionSettingsDao = DAORegistry::getDAO('NotificationSubscriptionSettingsDAO');
 		$notificationSubscriptionSettingsDao->updateNotificationSubscriptionSettings('blocked_notification', $blockedNotifications, $userId, $press->getId());
-		$notificationSubscriptionSettingsDao->updateNotificationSubscriptionSettings('emailed_notification', $emailSettings, $userId, $press->getId());
+		$notificationSubscriptionSettingsDao->updateNotificationSubscriptionSettings('blocked_emailed_notification', $emailSettings, $userId, $press->getId());
 
 		return true;
 	}
