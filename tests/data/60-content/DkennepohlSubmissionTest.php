@@ -35,6 +35,9 @@ class DkennepohlSubmissionTest extends ContentBaseTestCase {
 			'series' => 'Education',
 			'title' => $title,
 			'abstract' => 'Accessible Elements informs science educators about current practices in online and distance education: distance-delivered methods for laboratory coursework, the requisite administrative and institutional aspects of online and distance teaching, and the relevant educational theory.',
+			'keywords' => array(
+				'Education',
+			),
 			'additionalAuthors' => array(
 				array(
 					'firstName' => 'Terry',
@@ -98,7 +101,8 @@ class DkennepohlSubmissionTest extends ContentBaseTestCase {
 		$this->sendToReview('External');
 		$this->assignReviewer('agallego', 'Adela Gallego');
 		$this->recordEditorialDecision('Accept Submission');
-
+		$this->waitJQuery();
+		$this->assignParticipant('Copyeditor', 'Maria Fritz');
 		$this->logOut();
 	}
 }
