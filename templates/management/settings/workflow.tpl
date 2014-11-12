@@ -1,5 +1,5 @@
 {**
- * templates/management/settings/publication.tpl
+ * templates/management/settings/workflow.tpl
  *
  * Copyright (c) 2014 Simon Fraser University Library
  * Copyright (c) 2003-2014 John Willinsky
