@@ -92,12 +92,12 @@ class CompetingInterestsTest extends ContentBaseTestCase {
 		$this->sendToReview('External');
 		$this->waitForElementPresent('css=a.externalReview');
 		$this->click('css=a.externalReview');
-		$this->assignReviewer('phudson', 'Paul Hudson');
+		$this->assignReviewer('alzacharia', 'Al Zacharia');
 		$this->logOut();
 
 		// Submit review with competing interests
 		$competingInterests = 'I work for a competing company';
-		$this->logIn('phudson');
+		$this->logIn('alzacharia');
 		$this->waitForElementPresent($selector = '//a[text()=\'' . $this->escapeJS(self::$fullTitle) . '\']');
 		$this->clickAndWait($selector);
 
@@ -119,8 +119,8 @@ class CompetingInterestsTest extends ContentBaseTestCase {
 		$this->findSubmissionAsEditor('dbarnes', null, self::$fullTitle);
 		$this->waitForElementPresent('css=a.externalReview');
 		$this->click('css=a.externalReview');
-		$this->waitForElementPresent('//span[contains(text(), \'Paul Hudson\')]/../a[@title=\'Read this review\']');
-		$this->click('//span[contains(text(), \'Paul Hudson\')]/../a[@title=\'Read this review\']');
+		$this->waitForElementPresent('//span[contains(text(), \'Al Zacharia\')]/../a[@title=\'Read this review\']');
+		$this->click('//span[contains(text(), \'Al Zacharia\')]/../a[@title=\'Read this review\']');
 
 		// There should be a visible CI statement.
 		$this->waitForElementPresent('//h3[text()=\'Reviewer Comments\']');
@@ -134,8 +134,8 @@ class CompetingInterestsTest extends ContentBaseTestCase {
 		$this->findSubmissionAsEditor('dbarnes', null, self::$fullTitle);
 		$this->waitForElementPresent('css=a.externalReview');
 		$this->click('css=a.externalReview');
-		$this->waitForElementPresent('//span[contains(text(), \'Paul Hudson\')]/../a[@title=\'Read this review\']');
-		$this->click('//span[contains(text(), \'Paul Hudson\')]/../a[@title=\'Read this review\']');
+		$this->waitForElementPresent('//span[contains(text(), \'Al Zacharia\')]/../a[@title=\'Read this review\']');
+		$this->click('//span[contains(text(), \'Al Zacharia\')]/../a[@title=\'Read this review\']');
 		$this->waitForElementPresent('//h3[text()=\'Reviewer Comments\']');
 		$this->assertElementPresent('//span[text()=\'I work for a competing company\']');
 
