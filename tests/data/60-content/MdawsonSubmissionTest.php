@@ -91,6 +91,13 @@ class MdawsonSubmissionTest extends ContentBaseTestCase {
 		$this->assignParticipant('Proofreader', 'Sabine Kumar');
 		$this->waitJQuery();
 
+		// Add to catalog
+		$this->click('css=[id^=catalogEntry-button-]');
+		$this->waitForElementPresent('css=[id=confirm]');
+		$this->click('css=[id=confirm]');
+		$this->click('css=[id^=submitFormButton-]');
+		$this->waitJQuery();
+
 		$this->logOut();
 	}
 }
