@@ -37,7 +37,7 @@ before_install:
 script:
   - if [[ "$TEST" != "validation" ]]; then ./lib/pkp/tools/travis/run-tests.sh; fi
   # ./lib/tools/buildjs.sh not included in latter command pending stats porting
-  - if [[ "$TEST" == "validation" ]]; then ./lib/pkp/tools/travis/validate-xml.sh; fi
+  - if [[ "$TEST" == "validation" ]]; then ./lib/pkp/tools/travis/validate-xml.sh && ./lib/pkp/tools/buildjs.sh; fi
 
 after_script:
   # Print logs and outputs for debugging.
