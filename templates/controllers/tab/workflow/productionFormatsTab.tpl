@@ -14,7 +14,6 @@ $(function() {ldelim}
 	$('#publicationFormatTabs').pkpHandler(
 		'$.pkp.controllers.tab.publicationFormat.PublicationFormatsTabHandler',
 		{ldelim}
-			notScrollable: true,
 			tabsUrl:'{url|escape:javascript router=$smarty.const.ROUTE_PAGE
 				op='productionFormatsTab'
 				submissionId=$submission->getId()

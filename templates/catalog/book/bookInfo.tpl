@@ -11,12 +11,7 @@
 <script type="text/javascript">
 	// Attach the tab handler.
 	$(function() {ldelim}
-		$('#bookInfoTabs').pkpHandler(
-			'$.pkp.controllers.TabHandler',
-			{ldelim}
-				notScrollable: true
-			{rdelim}
-		);
+		$('#bookInfoTabs').pkpHandler('$.pkp.controllers.TabHandler');
 	{rdelim});
 </script>
 

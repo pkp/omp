@@ -15,9 +15,7 @@
 <script type="text/javascript">
 	// Attach the JS file tab handler.
 	$(function() {ldelim}
-		$('#settingsTabs').pkpHandler('$.pkp.controllers.TabHandler', {ldelim}
-				notScrollable: true
-			{rdelim});
+		$('#settingsTabs').pkpHandler('$.pkp.controllers.TabHandler');
 	{rdelim});
 </script>
 <div id="settingsTabs" class="pkp_controllers_tab">

@@ -128,12 +128,6 @@
 				regexp = /publication(\d+)/,
 				i, j, id, match, url, totalWidth = 0;
 
-		// Undo the scrollable tabs DOM changes so we can handle DOM manipulation
-		// in the normal mannner.
-		$element.unwrap();
-		$element.prev('div').remove();
-		$element.find('li').first().unwrap().unwrap();
-
 		for (j = 0; j < currentTabs.length; j++) {
 			id = currentTabs[j].getAttribute('id');
 			match = regexp.exec(id);
@@ -170,9 +164,6 @@
 						html(jsonData.formats[i]);
 			}
 		}
-
-		// make the tabs scrollable again, if necessary.
-		$element.tabs().scrollabletab();
 	};
 
 
