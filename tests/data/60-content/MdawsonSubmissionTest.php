@@ -96,7 +96,6 @@ class MdawsonSubmissionTest extends ContentBaseTestCase {
 		$this->waitForElementPresent('css=[id=confirm]');
 		$this->click('css=[id=confirm]');
 		$this->click('css=[id^=submitFormButton-]');
-		$this->waitJQuery();
 
 		$this->logOut();
 	}
