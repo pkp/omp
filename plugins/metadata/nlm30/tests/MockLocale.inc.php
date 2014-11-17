@@ -1,7 +1,7 @@
 <?php
 
 /**
- * @file tests/plugins/metadata/mods34/MockLocale.inc.php
+ * @file plugins/metadata/nlm30/tests/MockLocale.inc.php
  *
  * Copyright (c) 2014 Simon Fraser University Library
  * Copyright (c) 2000-2014 John Willinsky
