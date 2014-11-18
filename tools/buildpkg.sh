@@ -41,7 +41,10 @@ tools/buildpkg.sh						\
 tools/genLocaleReport.sh					\
 tools/genTestLocale.php						\
 tools/test							\
-lib/pkp/tests							\
+lib/pkp/plugins/*/*/tests					\
+plugins/*/*/tests						\
+tests								\
+lib/pkp/tests
 .git								\
 .openshift							\
 lib/pkp/.git							\
