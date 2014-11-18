@@ -44,7 +44,7 @@ tools/test							\
 lib/pkp/plugins/*/*/tests					\
 plugins/*/*/tests						\
 tests								\
-lib/pkp/tests
+lib/pkp/tests							\
 .git								\
 .openshift							\
 lib/pkp/.git							\
