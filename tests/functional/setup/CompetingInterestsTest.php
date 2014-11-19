@@ -59,7 +59,7 @@ class CompetingInterestsTest extends ContentBaseTestCase {
 		$this->type('css=textarea[id^=comments-]', 'This paper is suitable for publication.');
 		$this->clickLinkActionNamed('Submit Review');
 		$this->clickLinkActionNamed('OK');
-		$this->waitForText('css=#ui-tabs-4 > h2', 'Review Submitted');
+		$this->waitForElementPresent('//h2[contains(text(), \'Review Submitted\')]');
 
 		$this->logOut();
 
@@ -111,7 +111,7 @@ class CompetingInterestsTest extends ContentBaseTestCase {
 		$this->type('css=textarea[id^=comments-]', 'This paper is suitable for publication.');
 		$this->clickLinkActionNamed('Submit Review');
 		$this->clickLinkActionNamed('OK');
-		$this->waitForText('css=#ui-tabs-4 > h2', 'Review Submitted');
+		$this->waitForElementPresent('//h2[contains(text(), \'Review Submitted\')]');
 
 		$this->logOut();
 
