@@ -29,47 +29,10 @@ class NotificationManager extends PKPNotificationManager {
 	// Public methods.
 	//
 	/**
-	 * @copydoc PKPNotificationManager::getNotificationUrl()
-	 */
-	public function getNotificationUrl($request, $notification) {
-		$router = $request->getRouter();
-		$dispatcher = $router->getDispatcher();
-		$contextDao = Application::getContextDAO();
-		$context = $contextDao->getById($notification->getContextId());
-
-		switch ($notification->getType()) {
-			case NOTIFICATION_TYPE_VISIT_CATALOG:
-				return $dispatcher->url($request, ROUTE_PAGE, $context->getPath(), 'manageCatalog');
-		}
-
-		return parent::getNotificationUrl($request, $notification);
-	}
-
-	/**
-	 * @copydoc PKPNotificationManager::getNotificationMessage()
-	 */
-	public function getNotificationMessage($request, $notification) {
-		switch ($notification->getType()) {
-			case NOTIFICATION_TYPE_FORMAT_NEEDS_APPROVED_SUBMISSION:
-				assert($notification->getAssocType() == ASSOC_TYPE_SUBMISSION && is_numeric($notification->getAssocId()));
-				return __('notification.type.formatNeedsApprovedSubmission');
-			case NOTIFICATION_TYPE_VISIT_CATALOG:
-				assert($notification->getAssocType() == ASSOC_TYPE_SUBMISSION && is_numeric($notification->getAssocId()));
-				return __('notification.type.visitCatalog');
-		}
-		return parent::getNotificationMessage($request, $notification);
-	}
-
-	/**
 	 * @copydoc PKPNotificationManager::getNotificationTitle()
 	 */
 	public function getNotificationTitle($notification) {
 		switch ($notification->getType()) {
-			case NOTIFICATION_TYPE_APPROVE_SUBMISSION:
-			case NOTIFICATION_TYPE_FORMAT_NEEDS_APPROVED_SUBMISSION:
-				return __('notification.type.approveSubmissionTitle');
-			case NOTIFICATION_TYPE_VISIT_CATALOG:
-				return __('notification.type.visitCatalogTitle');
 			case NOTIFICATION_TYPE_REVIEW_ROUND_STATUS:
 				$reviewRoundDao = DAORegistry::getDAO('ReviewRoundDAO');
 				$reviewRound = $reviewRoundDao->getById($notification->getAssocId());
@@ -101,9 +64,6 @@ class NotificationManager extends PKPNotificationManager {
 			case NOTIFICATION_TYPE_CONFIGURE_PAYMENT_METHOD:
 				return NOTIFICATION_STYLE_CLASS_WARNING;
 			case NOTIFICATION_TYPE_REVIEW_ROUND_STATUS:
-			case NOTIFICATION_TYPE_APPROVE_SUBMISSION:
-			case NOTIFICATION_TYPE_VISIT_CATALOG:
-			case NOTIFICATION_TYPE_FORMAT_NEEDS_APPROVED_SUBMISSION:
 				return NOTIFICATION_STYLE_CLASS_INFORMATION;
 		}
 		return parent::getStyleClass($notification);
@@ -113,11 +73,12 @@ class NotificationManager extends PKPNotificationManager {
 	 * @copydoc PKPNotificationManager::isVisibleToAllUsers()
 	 */
 	public function isVisibleToAllUsers($notificationType, $assocType, $assocId) {
-		switch ($notificationType) {
-			case NOTIFICATION_TYPE_FORMAT_NEEDS_APPROVED_SUBMISSION:
-				return true;
-			default:
-				return parent::isVisibleToAllUsers($notificationType, $assocType, $assocId);
+			switch ($notificationType) {
+				case NOTIFICATION_TYPE_REVIEW_ROUND_STATUS:
+				case NOTIFICATION_TYPE_CONFIGURE_PAYMENT_METHOD:
+					return true;
+				default:
+					return parent::isVisibleToAllUsers($notificationType, $assocType, $assocId);
 		}
 	}
 
@@ -135,10 +96,14 @@ class NotificationManager extends PKPNotificationManager {
 				import('lib.pkp.classes.notification.managerDelegate.EditorDecisionNotificationManager');
 				return new EditorDecisionNotificationManager($notificationType);
 			case NOTIFICATION_TYPE_PENDING_INTERNAL_REVISIONS:
+				assert($assocType == ASSOC_TYPE_SUBMISSION && is_numeric($assocId));
+				import('lib.pkp.classes.notification.managerDelegate.PendingRevisionsNotificationManager');
+				return new PendingRevisionsNotificationManager($notificationType);
+			case NOTIFICATION_TYPE_APPROVE_SUBMISSION:
 			case NOTIFICATION_TYPE_FORMAT_NEEDS_APPROVED_SUBMISSION:
 			case NOTIFICATION_TYPE_VISIT_CATALOG:
 				assert($assocType == ASSOC_TYPE_SUBMISSION && is_numeric($assocId));
-				import('lib.pkp.classes.notification.managerDelegate.ApproveSubmissionNotificationManager');
+				import('classes.notification.managerDelegate.ApproveSubmissionNotificationManager');
 				return new ApproveSubmissionNotificationManager($notificationType);
 		}
 		// Otherwise, fall back on parent class
