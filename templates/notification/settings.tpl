@@ -54,8 +54,7 @@
 
 <br />
 
-{url|assign:cancelUrl page="notification"}
-{fbvFormButtons submitText="common.save" cancelUrl=$cancelUrl}
+{fbvFormButtons submitText="common.save" hideCancel=true}
 
 {/fbvFormArea}
 </form>
