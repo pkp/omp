@@ -20,6 +20,7 @@ import('lib.pkp.tests.WebTestCase');
 class FunctionalTestingEnvironmentTest extends WebTestCase {
 
 	function testTestingEnvironment() {
-		$this->logIn('admin', 'ompomp');
+		$this->logIn('admin', 'admin');
+		$this->logOut();
 	}
 }
