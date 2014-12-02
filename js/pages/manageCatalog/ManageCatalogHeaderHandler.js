@@ -167,15 +167,14 @@
 				selectedTabIndex = $catalogTabs.tabs('option', 'active');
 
 		// Load and jump to the tab, or reload if already there
+		$('a[name=\'manageSearchResults\']').attr('href', searchUrl);
 		if (selectedTabIndex === tabIndex) {
 			// It's already selected
-			$catalogTabs.tabs('url', tabIndex, searchUrl)
-				.tabs('load', tabIndex);
+			$catalogTabs.tabs('load', tabIndex);
 		} else {
 			// It's not selected yet
-			$catalogTabs.tabs('url', tabIndex, searchUrl)
-				.tabs('enable', tabIndex)
-				.tabs('select', tabIndex);
+			$catalogTabs.tabs('enable', tabIndex)
+				.tabs('option', 'active', tabIndex);
 		}
 	};
 
