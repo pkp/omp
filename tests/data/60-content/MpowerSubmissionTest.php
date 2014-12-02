@@ -34,6 +34,28 @@ class MpowerSubmissionTest extends ContentBaseTestCase {
 			'type' => 'monograph',
 			'title' => $title,
 			'abstract' => 'Books and articles on instructional design in online learning abound but rarely do we get such a comprehensive picture of what instructional designers do, how they do it, and the problems they solve as their university changes. Power documents the emergence of an adapted instructional design model for transforming courses from single-mode to dual-mode instruction, making this designer’s log a unique contribution to the fi eld of online learning.',
+			'chapters' => array(
+				array(
+					'title' => 'Foreward',
+					'contributors' => array('Michael Power'),
+				),
+				array(
+					'title' => 'Preface',
+					'contributors' => array('Michael Power'),
+				),
+				array(
+					'title' => 'The Case Studies',
+					'contributors' => array('Michael Power'),
+				),
+				array(
+					'title' => 'Conclusion',
+					'contributors' => array('Michael Power'),
+				),
+				array(
+					'title' => 'Bibliography',
+					'contributors' => array('Michael Power'),
+				),
+			),
 		));
 		$this->logOut();
 

@@ -40,6 +40,32 @@ class CallanSubmissionTest extends ContentBaseTestCase {
 				'Communication & Cultural Studies',
 				'Political & International Studies',
 			),
+			'chapters' => array(
+				array(
+					'title' => 'Prologue',
+					'contributors' => array('Chantal Allan'),
+				),
+				array(
+					'title' => 'Chapter 1: The First Five Years: 1867-1872',
+					'contributors' => array('Chantal Allan'),
+				),
+				array(
+					'title' => 'Chapter 2: Free Trade or "Freedom": 1911',
+					'contributors' => array('Chantal Allan'),
+				),
+				array(
+					'title' => 'Chapter 3: Castro, Nukes & the Cold War: 1953-1968',
+					'contributors' => array('Chantal Allan'),
+				),
+				array(
+					'title' => 'Chapter 4: Enter the Intellect: 1968-1984',
+					'contributors' => array('Chantal Allan'),
+				),
+				array(
+					'title' => 'Epilogue',
+					'contributors' => array('Chantal Allan'),
+				),
+			),
 		));
 		$this->logOut();
 
