@@ -79,16 +79,6 @@ class FileUploadWizardHandler extends PKPFileUploadWizardHandler {
 
 		return parent::authorize($request, $args, $roleAssignments);
 	}
-
-	/**
-	 * Get the list of notifications to be updated on metadata form submission.
-	 * @return array
-	 */
-	protected function _getUpdateNotifications() {
-		$updateNotifications = parent::_getUpdateNotifications();
-		$updateNotifications[] = NOTIFICATION_TYPE_PENDING_INTERNAL_REVISIONS;
-		return $updateNotifications;
-	}
 }
 
 ?>

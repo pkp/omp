@@ -198,6 +198,17 @@ class ArtworkFile extends MonographFile {
 
 		parent::copyEditableMetadataFrom($monographFile);
 	}
+
+	/**
+	 * Get the metadata form for this submission file.
+	 * @param $stageId int FILE_STAGE_...
+	 * @param $reviewRound ReviewRound
+	 * @return Form
+	 */
+	function getMetadataForm($stageId, $reviewRound) {
+		import('lib.pkp.controllers.wizard.fileUpload.form.SubmissionFilesArtworkMetadataForm');
+		return new SubmissionFilesArtworkMetadataForm($this, $stageId, $reviewRound);
+	}
 }
 
 ?>
