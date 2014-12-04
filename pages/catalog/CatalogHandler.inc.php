@@ -241,6 +241,7 @@ class CatalogHandler extends Handler {
 		$type = $request->getUserVar('type');
 		$id = $request->getUserVar('id');
 		$imageInfo = array();
+		$path = null; // Scrutinizer
 
 		switch ($type) {
 			case 'category':

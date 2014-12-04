@@ -19,12 +19,12 @@ class AddThisSettingsForm extends Form {
 	/** @var Press The press associated with the plugin being edited */
 	var $_press;
 
-	/** @var Plugin The plugin being edited */
+	/** @var AddThisBlockPlugin The plugin being edited */
 	var $_plugin;
 
 	/**
 	 * Constructor.
-	 * @param $plugin Plugin
+	 * @param $plugin AddThisBlockPlugin
 	 * @param $press Press
 	 */
 	function AddThisSettingsForm($plugin, $press) {

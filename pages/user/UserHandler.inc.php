@@ -41,6 +41,7 @@ class UserHandler extends PKPUserHandler {
 
 		$press = $request->getPress();
 		$user = $request->getUser();
+		$setting = $roleId = $deniedKey = null; // Scrutinizer
 
 		switch (array_shift($args)) {
 			case 'author':

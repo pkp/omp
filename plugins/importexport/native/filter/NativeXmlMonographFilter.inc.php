@@ -98,6 +98,7 @@ class NativeXmlMonographFilter extends NativeXmlSubmissionFilter {
 	 * @return Filter
 	 */
 	function getImportFilter($elementName) {
+		$importClass = null; // Scrutinizer
 		switch ($elementName) {
 			case 'submission_file':
 				$importClass='SubmissionFile';
