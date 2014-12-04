@@ -188,10 +188,9 @@ class NativeXmlPublicationFormatFilter extends NativeXmlRepresentationFilter {
 						case 'onix:CountriesExcluded': $salesRights->setCountriesExcluded(preg_split('/\s+/', $o->textContent)); break;
 					}
 				}
+				$salesRightsDao->insertObject($salesRights);
+				unset($salesRights);
 			}
-
-			$salesRightsDao->insertObject($salesRights);
-			unset($salesRights);
 		}
 
 		// Extract ProductSupply elements.  Contains Markets, Pricing, Suppliers, and Sales Agents.
