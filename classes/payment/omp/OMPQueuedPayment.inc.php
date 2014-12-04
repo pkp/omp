@@ -62,7 +62,7 @@ class OMPQueuedPayment extends QueuedPayment {
 
 	/**
 	 * Returns the name of the QueuedPayment.
-	 * @return string
+	 * @return string|boolean
 	 */
 	function getName() {
 		switch ($this->type) {
