@@ -134,7 +134,8 @@ class WebsiteSettingsTabHandler extends ManagerSettingsTabHandler {
 		if ($tabForm->deleteFile($settingName, $request)) {
 			return DAO::getDataChangedEvent($settingName);
 		} else {
-			return new JSONMessage(false);
+			$json = new JSONMessage(false);
+			return $json->getString();
 		}
 	}
 

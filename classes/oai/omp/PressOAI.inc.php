@@ -89,7 +89,7 @@ class PressOAI extends OAI {
 	 * Get press ID and series ID corresponding to a set specifier.
 	 * @param $setSpec string
 	 * @param $pressId int
-	 * @return int
+	 * @return array
 	 */
 	function setSpecToSeriesId($setSpec, $pressId = null) {
 		$tmpArray = preg_split('/:/', $setSpec);
