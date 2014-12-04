@@ -7,11 +7,6 @@
  *
  * Header for the catalog management tabbed interface
  *}
-{strip}
-{assign var="pageTitle" value="catalog.manage"}
-{include file="common/header.tpl"}
-{/strip}
-
 {if array_intersect(array(ROLE_ID_MANAGER), $userRoles)}
 	{assign var="isManager" value=true}
 {/if}
@@ -81,11 +76,11 @@
 	<div class="pkp_helpers_clear"></div>
 	<div id="catalogTabs" class="pkp_controllers_tab">
 		<ul>
-			<li><a href="{url op="homepage"}">{translate key="catalog.manage.homepage"}</a></li>
-			<li><a href="#categoryTab">{translate key="catalog.manage.category"}</a></li>
-			<li><a href="#seriesTab">{translate key="catalog.manage.series"}</a></li>
-			{if $isManager}<li><a href="#spotlightsTab">{translate key="spotlight.spotlights"}</a></li>{/if}
-			<li><a href="{url}">{translate key="search.searchResults"}</a></li>
+			<li><a name="manageHomepage" href="{url op="homepage"}">{translate key="catalog.manage.homepage"}</a></li>
+			<li><a name="manageCategory" href="#categoryTab">{translate key="catalog.manage.category"}</a></li>
+			<li><a name="manageSeries" href="#seriesTab">{translate key="catalog.manage.series"}</a></li>
+			{if $isManager}<li><a name="manageSpotlights" href="#spotlightsTab">{translate key="spotlight.spotlights"}</a></li>{/if}
+			<li><a name="manageSearchResults" href="{url}">{translate key="search.searchResults"}</a></li>
 		</ul>
 		<div id="categoryTab">
 				<div class="pkp_controllers_grid">
@@ -146,5 +141,3 @@
 		{/if}
 	</div>
 </div>
-
-{include file="common/footer.tpl"}

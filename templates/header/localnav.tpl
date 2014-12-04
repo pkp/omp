@@ -44,14 +44,10 @@
 			{/if}
 			{if $currentPress}
 				<li><a href="{url router=$smarty.const.ROUTE_PAGE page="catalog"}">{translate key="navigation.catalog"}</a>
-				{if array_intersect(array(ROLE_ID_MANAGER, ROLE_ID_SUB_EDITOR), $userRoles)}
+				{if array_intersect(array(ROLE_ID_MANAGER), $userRoles)}
 					<li>
 						<a href="#">{translate key="navigation.management"}</a>
 						<ul>
-							<li>
-								<a href="{url router=$smarty.const.ROUTE_PAGE page="manageCatalog"}">{translate key="navigation.catalog"}</a>
-							</li>
-							{if array_intersect(array(ROLE_ID_MANAGER), $userRoles)}
 							<li>
 								<a href="{url router=$smarty.const.ROUTE_PAGE page="management" op="settings" path="index"}">{translate key="navigation.settings"}</a>
 								<ul>
@@ -69,10 +65,9 @@
 									<li><a href="{url router=$smarty.const.ROUTE_PAGE page="management" op="tools" path="statistics"}">{translate key="navigation.tools.statistics"}</a></li>
 								</ul>
 							</li>
-							{/if}
 						</ul>
 					</li>
-				{/if}{* ROLE_ID_MANAGER || ROLE_ID_SUB_EDITOR *}
+				{/if}{* ROLE_ID_MANAGER *}
 				{$publicMenu}
 			{/if}
 		</ul>
