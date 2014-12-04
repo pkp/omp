@@ -44,3 +44,6 @@
 /* JqueryUI - http://jqueryui.com */
 
 @import url("../lib/pkp/styles/lib/jqueryUi/jqueryUi.css");
+
+/* Slick carousel */
+@import url("../lib/pkp/js/lib/slick/slick/slick.css");
