@@ -61,7 +61,7 @@
 			<div id="bookPubId-{$publicationFormat->getId()|escape}-{$pubIdType|escape}">
 				{assign var=storedPubId value=$publicationFormat->getStoredPubId($pubIdType)}
 				{if $storedPubId != ''}
-					pub-id::{$pubIdType}: {$storedPubId|escape}
+					{$pubIdType}: {$storedPubId|escape}
 				{/if}
 			</div>
 		{/foreach}
