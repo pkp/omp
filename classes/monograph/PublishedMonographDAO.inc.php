@@ -148,7 +148,7 @@ class PublishedMonographDAO extends MonographDAO {
 			$this->_getFetchParameters(),
 			array(
 				(int) $categoryId, (int) $categoryId, (int) $categoryId,
-				ASSOC_TYPE_SERIES
+				ASSOC_TYPE_CATEGORY
 			)
 		);
 
@@ -165,7 +165,7 @@ class PublishedMonographDAO extends MonographDAO {
 				LEFT JOIN submission_categories sc ON (sc.submission_id = s.submission_id AND sc.category_id = ?)
 				LEFT JOIN series_categories sca ON (sca.series_id = se.series_id)
 				LEFT JOIN categories c ON (c.category_id = sca.category_id AND c.category_id = ?)
-				LEFT JOIN features f ON (f.submission_id = s.submission_id AND f.assoc_type = ? AND f.assoc_id = ?)
+				LEFT JOIN features f ON (f.submission_id = s.submission_id AND f.assoc_id = ? AND f.assoc_type = ?)
 			WHERE	ps.date_published IS NOT NULL AND (c.category_id IS NOT NULL OR sc.category_id IS NOT NULL)
 				' . ($pressId?' AND s.context_id = ?':'' ) . '
 			ORDER BY order_by, ps.date_published',
