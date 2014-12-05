@@ -35,7 +35,7 @@
 	<message key="submission.publicationFormats">Formate</message>
 	<message key="submission.proofs">Proofs</message>
 	<message key="submission.download">Download</message>
-    <message key="submission.upload.response.description">Klicken Sie bitte auf "Protokollieren" sobald Sie bitte Ihre Kommentare zum Manuskript eingegeben haben und/oder laden Sie eine kommentierte Fassung des Manuskripts hoch.</message>
+	<message key="submission.upload.response.description">Klicken Sie bitte auf "Protokollieren" sobald Sie bitte Ihre Kommentare zum Manuskript eingegeben haben und/oder laden Sie eine kommentierte Fassung des Manuskripts hoch.</message>
 
 	<message key="submission.sharing">Teilen</message>
 	<message key="manuscript.submission">Manuskript einreichen</message>
