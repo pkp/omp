@@ -546,7 +546,7 @@ Ihr Server untersützt aktuell mbstring: <strong>{$supportsMBString}</strong>]]>
 	<message key="plugins.categories.viewableFiles">Veröffentlichte Datei-Plug-ins</message>
 	<message key="plugins.categories.viewableFiles.description">Published File Plugins add support for displaying different document types inline, e.g. using PDF embedding.</message>
 	<message key="submission.pdf.download">PDF herunterladen</message>
-    <message key="grid.user.mergeUsers.mergeUserSelect.confirm">Sind Sie sicher, dass Sie diesen Benutzer mit einem anderen zusammenführen möchten? Den zweiten Benutzer finden Sie im folgenden Fenster angezeigt.</message>
-    <message key="user.login.resetPasswordInstructions">Aus Sicherheitsgründen gibt dieses System nicht das aktuelle Passwort preis, sondern sendet per-E-Mail ein Reset-Passwort an registrierte Benutzer. </message>
+	<message key="grid.user.mergeUsers.mergeUserSelect.confirm">Sind Sie sicher, dass Sie diesen Benutzer mit einem anderen zusammenführen möchten? Den zweiten Benutzer finden Sie im folgenden Fenster angezeigt.</message>
+	<message key="user.login.resetPasswordInstructions">Aus Sicherheitsgründen gibt dieses System nicht das aktuelle Passwort preis, sondern sendet per-E-Mail ein Reset-Passwort an registrierte Benutzer. </message>
 
 </locale>
