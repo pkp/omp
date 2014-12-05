@@ -2,16 +2,16 @@
 <!DOCTYPE locale SYSTEM "../../lib/pkp/dtd/locale.dtd">
 
 <!--
-  * locale/en_US/editor.xml
-  *
-  * Copyright (c) 2014 Simon Fraser University Library
-  * Copyright (c) 2003-2014 John Willinsky
-  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
-  *
-  * Localization strings.
-  -->
+ * locale/de_DE/editor.xml
+ *
+ * Copyright (c) 2014 Simon Fraser University Library
+ * Copyright (c) 2003-2014 John Willinsky
+ * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
+ * Localization strings.
+ * Please contact Marco Tullney, marco.tullney@fu-berlin.de, with any questions regarding this translation.
+ -->
 
-<locale name="de_DE" full_name="Deutsch">
+<locale name="de_DE" full_name="Deutsch (Deutschland)">
 	<message key="editor.pressSignoff">Verlagsfreigabe</message>
 	<message key="editor.submissionArchive">Manuskriptarchiv</message>
 	<message key="editor.monograph.cancelReview">Anfrage abbrechen</message>
@@ -19,7 +19,7 @@
 	<message key="editor.monograph.enterRecommendation">Empfehlung abgeben</message>
 	<message key="editor.monograph.enterReviewerRecommendation">Empfehlung des Gutachters eingeben</message>
 	<message key="editor.monograph.recommendation">Empfehlung</message>
-	<message key="editor.monograph.selectReviewerInstructions">Wählen Sie oben einen Gutachter / eine Gutachterin aus und klicken Sie auf  'Gutachter/in auswählen'.</message>
+	<message key="editor.monograph.selectReviewerInstructions">Wählen Sie oben einen Gutachter/eine Gutachterin aus und klicken Sie auf 'Gutachter/in auswählen'.</message>
 	<message key="editor.submission.selectedReviewer">Ausgewählte Gutachter/innen</message>
 	<message key="editor.monograph.replaceReviewer">Gutachter/innen ersetzen</message>
 	<message key="editor.monograph.editorToEnter">Editor zur Eingabe der Gutachter- Empfehlungen/-Kommentare</message>
@@ -33,18 +33,18 @@
 	<message key="editor.monograph.final.selectFinalDraftFiles">Endfassungen auswählen</message>
 	<message key="editor.monograph.final.currentFiles">Aktuelle Endfassungen</message>
 	<message key="editor.monograph.copyediting.currentFiles">Aktuelle Dateien</message>
-	<message key="editor.monograph.copyediting.personalMessageToUser">Nachricht an den Benutzer / die Benutzerin</message>
+	<message key="editor.monograph.copyediting.personalMessageToUser">Nachricht an den Benutzer/die Benutzerin</message>
 	
 	<!-- Editorial Legend -->
 	<message key="editor.monograph.legend.submissionActions">Einreichungsaktionen</message>
 	<message key="editor.monograph.legend.submissionActionsDescription">Während der Einreichung mögliche Aktionen und Optionen</message>
 	<message key="editor.monograph.legend.sectionActions">Sektionsaktionen</message>
-	<message key="editor.monograph.legend.sectionActionsDescription">Für eine bestimmte Sektion spezifische Optionen, z. B. Dateien hochladen oder Benutzer/innen hinzufügen.</message>
+	<message key="editor.monograph.legend.sectionActionsDescription">Für eine bestimmte Sektion spezifische Optionen, z.B. Dateien hochladen oder Benutzer/innen hinzufügen.</message>
 	<message key="editor.monograph.legend.itemActions">Auf den Titel bezogene Aktionen</message>
 	<message key="editor.monograph.legend.itemActionsDescription">Für eine individuelle Datei spezifische Aktionen und Optionen.</message>
 	<message key="editor.monograph.legend.catalogEntry">Katalogeintrag anschauen und verwalten (einschließlich Metadaten und Formate)</message>
-	<message key="editor.monograph.legend.bookInfo">Metadaten, Anmerkungen, Benachrichtigungen sowie das  Verlaufsprotokoll zu einem Manuskript anschauen und verwalten</message>
-	<message key="editor.monograph.legend.participants">Die an der Manuskriptbearbeitung Beteiligten wie z. B. Autoren, Redakteure, Layouter ansehen und verwalten</message>
+	<message key="editor.monograph.legend.bookInfo">Metadaten, Anmerkungen, Benachrichtigungen sowie das Verlaufsprotokoll zu einem Manuskript anschauen und verwalten</message>
+	<message key="editor.monograph.legend.participants">Die an der Manuskriptbearbeitung Beteiligten wie z.B. Autoren, Redakteure, Layouter ansehen und verwalten</message>
 	<message key="editor.monograph.legend.add">Eine Datei in dieser Sektion hochladen</message>
 	<message key="editor.monograph.legend.add_user">Zu dieser Sektion einen Benutzer hinzufügen</message>
 	<message key="editor.monograph.legend.settings">Ansicht und Zugang zu den Einstellungen wie zum Beispiel für die Informations- und Löscheinstellungen.</message>
@@ -59,23 +59,23 @@
 	<message key="editor.monograph.legend.uploaded">File uploaded by the role in the grid column title</message>
 
 	<!-- Editorial related -->
-	<message key="editor.submission.introduction">Im Stadium 'Einreichung' bestimmt der zuständige Herausgeber nach Prüfung der eingereichten Dateien das weitere Vorgehen, indem er eine passende  Aktion auswählt  (der Autor wird in jedem Fall benachrichtigt): Zur internen Begutachtung senden (anschließend müssen die für die interne Begutachtung vorgesehenen Dateien ausgewählt werden); Zur externen Begutachtung senden  (anschließend müssen die für die externe Begutachtung vorgesehenen Dateien ausgewählt werden); Manuskript annnehmen  (anschließend sind die Dateien für die redaktionelle Bearbeitung auszuwählen) oder Manuskript ablehnen (das Manuskript wird im Archiv abgelegt).</message>
-	<message key="editor.submission.editorial.finalDraftDescription"><![CDATA[Bei Sammelbänden, deren Kaptiel von unterschiedlichen Autoren stammen, kann die eingereichte Manuskriptdatei zum Lektorieren in Kapiteldateien aufgesplittet werden. Die lektorierten Kapiteldateien werden unter  <span class="pkp_help_title">Copyediting</span> hochgeladen und anschließend von den jeweiligen Kapitelautoren geprüft.]]></message>
+	<message key="editor.submission.introduction">Im Stadium 'Einreichung' bestimmt der zuständige Herausgeber nach Prüfung der eingereichten Dateien das weitere Vorgehen, indem er eine passende Aktion auswählt (der Autor wird in jedem Fall benachrichtigt): Zur internen Begutachtung senden (anschließend müssen die für die interne Begutachtung vorgesehenen Dateien ausgewählt werden); Zur externen Begutachtung senden (anschließend müssen die für die externe Begutachtung vorgesehenen Dateien ausgewählt werden); Manuskript annnehmen (anschließend sind die Dateien für die redaktionelle Bearbeitung auszuwählen) oder Manuskript ablehnen (das Manuskript wird im Archiv abgelegt).</message>
+	<message key="editor.submission.editorial.finalDraftDescription"><![CDATA[Bei Sammelbänden, deren Kaptiel von unterschiedlichen Autoren stammen, kann die eingereichte Manuskriptdatei zum Lektorieren in Kapiteldateien aufgesplittet werden. Die lektorierten Kapiteldateien werden unter <span class="pkp_help_title">Copyediting</span> hochgeladen und anschließend von den jeweiligen Kapitelautoren geprüft.]]></message>
 	<message key="editor.monograph.editorial.fairCopy">Reinschrift</message>
 	<message key="editor.monograph.editorial.fairCopyDescription">Der Lektor lädt eine Reinschrift des Manuskripts zur Begutachtung durch den Herausgeber hoch, bevor er sie an die Herstellung sendet.</message>
 
 	<!-- Production/Proof related -->
-	<message key="editor.submission.production.introduction"><![CDATA[In der Herstellung wählt der Herausgeber unter <span class="pkp_help_title"> Format</span> die gewünschten Buchformate  (z. B. digital, Paperback, etc.) aus. Der Layouter formt entsprechend den spezifischen Anforderungen an das jeweilige Format die druckfertigen Dateien zu Dateien in Publikationsqualität um. Diese werden dann für jedes Format einzeln unter  <span class="pkp_help_title">Korrekturfahnen </span> hochgeladen und dort Korrektur gelesen. Das Buch wird für jedes Format einzeln unter  <span class="pkp_help_title">Format</span><em>Verfügbar</em> gemacht (also veröffentlicht). Dazu muss bei den   <em>Korrekturdateien</em> bei  'Akzeptiert" und im Katalog bei "Erstelle anhand der angegebenen Metadaten einen neuen Katalogeintrag" ein Häkchen gesetzt wurde.]]></message>
-	<message key="editor.submission.production.productionReadyFilesDescription"><![CDATA[Der Layouter/die Layouterin  gestaltet diese Dateien für jedes Format und lädt sie dann als <span class="pkp_help_title">Korrekturfahnen</span> zum Korrekturlesen hoch.]]></message>
+	<message key="editor.submission.production.introduction"><![CDATA[In der Herstellung wählt der Herausgeber unter <span class="pkp_help_title"> Format</span> die gewünschten Buchformate (z.B. digital, Paperback, etc.) aus. Der Layouter formt entsprechend den spezifischen Anforderungen an das jeweilige Format die druckfertigen Dateien zu Dateien in Publikationsqualität um. Diese werden dann für jedes Format einzeln unter <span class="pkp_help_title">Korrekturfahnen </span> hochgeladen und dort Korrektur gelesen. Das Buch wird für jedes Format einzeln unter <span class="pkp_help_title">Format</span><em>Verfügbar</em> gemacht (also veröffentlicht). Dazu muss bei den  <em>Korrekturdateien</em> bei 'Akzeptiert" und im Katalog bei "Erstelle anhand der angegebenen Metadaten einen neuen Katalogeintrag" ein Häkchen gesetzt wurde.]]></message>
+	<message key="editor.submission.production.productionReadyFilesDescription"><![CDATA[Der Layouter/die Layouterin gestaltet diese Dateien für jedes Format und lädt sie dann als <span class="pkp_help_title">Korrekturfahnen</span> zum Korrekturlesen hoch.]]></message>
 	<message key="editor.monograph.proofs">Korrekturfahnen</message>
 	<message key="editor.monograph.production.approvalAndPublishing">Freigabe und Veröffentlichung</message>
 	<message key="editor.monograph.production.approvalAndPublishingDescription">Verschiedene Formate wie zum Beispiel Hardcover, Softcover und digitale Formate können unten unter 'Formate' hochgeladen werden. Sie können die Formate-Tabelle als Checkliste verwenden, um zu prüfen, was noch für die Veröffentlichung im ausgewählten Format getan werden muss.</message>
-	<message key="editor.monograph.production.publicationFormatDescription"><![CDATA[Fügen Sie Formate (z. B.  digital, Paperback) hinzu, für die der Layouter Korrekturfahnen zum Korrekturlesen erstellen soll. Die <em>Korrekturdateien</em> müssen als "akzeptiert" gekennzeichnet und die Metadaten im <em>Katalog</em> aufgenommen und zur Veröffentlichung freigegeben worden sein, damit das Buch als <em>verfügbar</em> angezeigt (das heißt 'veröffentlicht') werden kann.]]></message>
+	<message key="editor.monograph.production.publicationFormatDescription"><![CDATA[Fügen Sie Formate (z.B. digital, Paperback) hinzu, für die der Layouter Korrekturfahnen zum Korrekturlesen erstellen soll. Die <em>Korrekturdateien</em> müssen als "akzeptiert" gekennzeichnet und die Metadaten im <em>Katalog</em> aufgenommen und zur Veröffentlichung freigegeben worden sein, damit das Buch als <em>verfügbar</em> angezeigt (das heißt 'veröffentlicht') werden kann.]]></message>
 	<message key="editor.monograph.approvedProofs.edit">Bedingungen für den Download festlegen</message>
 	<message key="editor.monograph.approvedProofs.edit.linkTitle">Bestimmungen festlegen</message>
 	<message key="editor.monograph.proof.addNote">Antwort hinzufügen</message>
 
 	<!-- Review related -->
-	<message key="editor.internalReview.introduction">In der Internen Begutachtung weist der Herausgeber den Gutachtern intern Manuskriptdateien zu und berücksichtigt  die Gutachterergebnisse, bevor er zum nächsten Schritt übergeht  (über den der Autor/die Autorin benachrichtigt wird). Zur Auswahl stehen folgende Optionen: Überarbeitung  anfordern (die überarbeiteten Manuskripte werden in diesem Fall nur vom Herausgeber überprüft); Erneut zur Begutachtung einreichen (die überarbeitete Manuskripten gehen dann in eine neue Begutachtungsrunde);  Zur externen Begutachtung senden (dazu müssen Dateien ausgewählt werden, die extern begutachtet werden sollen); Manuskript annehmen (dazu müssen Dateien für den Veröffentlichungsprozess ausgewählt werden) oder Manuskript ablehnen (das Manuskript wird archiviert).</message>
-	<message key="editor.externalReview.introduction">In der Externen Begutachtung weist der Herausgeber externen (nicht zum Verlag gehörenden) Gutachtern  Manuskriptdateien zu und berücksichtigt deren Stellungnahmen, bevor er zum nächsten Schritt übergeht (über den der Autor/die Autorin benachrichtigt wird): Überarbeitung anfordern (die überarbeiteten Manuskripte werden in diesem Fall nur vom Herausgeber überprüft); Erneut zur Begutachtung einreichen (die überarbeitete Manuskripten gehen dann in eine neue Begutachtungsrunde);  Manuskript annehmen (dazu müssen Dateien für den Veröffentlichungsprozess ausgewählt werden) oder Manuskript ablehnen (das Manuskript wird archiviert).</message>
+	<message key="editor.internalReview.introduction">In der Internen Begutachtung weist der Herausgeber den Gutachtern intern Manuskriptdateien zu und berücksichtigt die Gutachterergebnisse, bevor er zum nächsten Schritt übergeht (über den der Autor/die Autorin benachrichtigt wird). Zur Auswahl stehen folgende Optionen: Überarbeitung anfordern (die überarbeiteten Manuskripte werden in diesem Fall nur vom Herausgeber überprüft); Erneut zur Begutachtung einreichen (die überarbeitete Manuskripten gehen dann in eine neue Begutachtungsrunde); Zur externen Begutachtung senden (dazu müssen Dateien ausgewählt werden, die extern begutachtet werden sollen); Manuskript annehmen (dazu müssen Dateien für den Veröffentlichungsprozess ausgewählt werden) oder Manuskript ablehnen (das Manuskript wird archiviert).</message>
+	<message key="editor.externalReview.introduction">In der Externen Begutachtung weist der Herausgeber externen (nicht zum Verlag gehörenden) Gutachtern Manuskriptdateien zu und berücksichtigt deren Stellungnahmen, bevor er zum nächsten Schritt übergeht (über den der Autor/die Autorin benachrichtigt wird): Überarbeitung anfordern (die überarbeiteten Manuskripte werden in diesem Fall nur vom Herausgeber überprüft); Erneut zur Begutachtung einreichen (die überarbeitete Manuskripten gehen dann in eine neue Begutachtungsrunde); Manuskript annehmen (dazu müssen Dateien für den Veröffentlichungsprozess ausgewählt werden) oder Manuskript ablehnen (das Manuskript wird archiviert).</message>
 </locale>

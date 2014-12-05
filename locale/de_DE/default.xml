@@ -2,16 +2,16 @@
 <!DOCTYPE locale SYSTEM "../../lib/pkp/dtd/locale.dtd">
 
 <!--
-  * locale/en_US/default.xml
+  * locale/de_DE/default.xml
   *
   * Copyright (c) 2014 Simon Fraser University Library
   * Copyright (c) 2003-2014 John Willinsky
   * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
-  *
   * Localization strings (Default settings for setup items.).
+  * Please contact Marco Tullney, marco.tullney@fu-berlin.de, with any questions regarding this translation.  
   -->
 
-<locale name="de_DE" full_name="Deutsch">
+<locale name="de_DE" full_name="Deutsch (Deutschland)">
 	<!-- Genre defaults -->
 	<message key="default.genres.appendix">Anhang</message>
 	<message key="default.genres.bibliography">Bibliographie</message>
@@ -59,7 +59,5 @@ ________________________________________________________________________</messag
 {$indexUrl}/{$pressPath}</message>
 	<message key="default.pressSettings.forReaders"><![CDATA[Sie möchten gerne über die Neuerscheinungen unseres Verlages auf dem Laufenden gehalten werden? Als registrierter Leser erhalten Sie von jeder neu erscheinenden Monographie das Inhaltsverzeichnis per E-Mail zugeschickt. Folgen Sie  Sie den einfach dem <a href="{$indexUrl}/{$pressPath}/user/register">Registrieren</a> Link rechts oben auf der Homepage, um sich für diesen Service anzumelden.  Selbstverständlich sichern wir Ihnen  zu, dass Ihr Name und Ihre E-Mail-Adresse nicht zu anderen Zwecken verwendet werden (siehe <a href="{$indexUrl}/{$pressPath}/about/submissions#privacyStatement">Datenschutzerklärung</a>.]]></message>
 	<message key="default.pressSettings.forAuthors"><![CDATA[Haben Sie Interesse, einen Beitrag bei uns einzureichen? Dann möchten wir Sie auf die Seite  <a href="{$indexUrl}/{$pressPath}/about">Über uns</a> verweisen. Dort finden Sie die Richtlinien des Verlags. Bitte beachten Sie auch die  <a href="{$indexUrl}/{$pressPath}/about/submissions#authorGuidelines">Richtlinien für Autor/innen</a>. Autoren/Autorinnen müssen sich registrieren, bevor sie ein Buch oder einen Beitrag zu einem Sammelband einreichen können. Falls Sie bereits angemeldet sind, einfach <a href="{$indexUrl}/index/login">einloggen </a> und die "Fünf Schritte zur Einreichung" abarbeiten.]]></message>
-	<message key="default.pressSettings.forLibrarians"><![CDATA[Wir ermutigen Wissenschaftliche Bibliotheken, diesen Verlag in ihr Verzeichnis elektronisch publizierender Verlage aufzunehmen.
- 
-Möchten Sie ebenfalls Open Access publizieren? Das von uns verwendete Publikationssystem ist eine Open-Source-Software. Sie wurde für Bibliotheken entwickelt, die den Angehörigen ihrer Fakultäten die Möglichkeit geben wollen , Ihre Publikationen  online zu veröffentlichen. Siehe  <a href="http://pkp.sfu.ca/omp">Open Monograph Press</a>).]]></message>
+	<message key="default.pressSettings.forLibrarians"><![CDATA[Wir ermutigen wissenschaftliche Bibliothekar/innen, diesen Verlag in den digitalen Bestand ihrer Bibliothek aufzunehmen. Bibliotheken können dieses Open-Source-Publikationssystem außerdem zum Hosting für Verlage einsetzen, an deren Arbeit ihre Wissenschaftler/innen beteiligt sind (siehe  <a href="http://pkp.sfu.ca/omp">Open Monograph Press</a>).]]></message>
 </locale>
