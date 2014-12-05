@@ -69,6 +69,7 @@
 
 	<upgrade minversion="0.9.9.0" maxversion="1.1.0.9">
 		<code function="fixAuthorSettings" /><!-- Bug #8663 -->
+		<data file="dbscripts/xml/upgrade/1.1.1.0_update.xml" />
 	</upgrade>
 
 	<!-- Update plugin configuration - should be done as the final upgrade task -->

@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE data SYSTEM "../../../lib/pkp/dtd/xmlData.dtd">
+
+<!--
+  * 1.1.1.0_update.xml
+  *
+  * Copyright (c) 2014 Simon Fraser University Library
+  * Copyright (c) 2003-2014 John Willinsky
+  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
+  *
+  * 1.1.1.0 database updates XML file.
+  -->
+<data>
+	<!-- Bug #8883: Optional display features for the press homepage -->
+	<sql>
+		<!-- display featured books and spotlights per default -->
+		<query>INSERT INTO press_settings (press_id, setting_name, setting_value, setting_type) SELECT p.press_id, 'displayFeaturedBooks', '1', 'bool' FROM presses p</query>
+		<query>INSERT INTO press_settings (press_id, setting_name, setting_value, setting_type) SELECT p.press_id, 'displayInSpotlight', '1', 'bool' FROM presses p</query>
+	</sql>
+</data>
