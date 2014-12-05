@@ -282,7 +282,7 @@ class ChapterGridHandler extends CategoryGridHandler {
 	 * Edit a chapter
 	 * @param $args array
 	 * @param $request PKPRequest
-	 * @return string Serialized JSON object
+	 * @return JSONMessage JSON object
 	 */
 	function editChapter($args, $request) {
 		$chapter = $this->_getChapterFromRequest($request);
@@ -292,15 +292,14 @@ class ChapterGridHandler extends CategoryGridHandler {
 		$chapterForm = new ChapterForm($this->getMonograph(), $chapter);
 		$chapterForm->initData();
 
-		$json = new JSONMessage(true, $chapterForm->fetch($request));
-		return $json->getString();
+		return new JSONMessage(true, $chapterForm->fetch($request));
 	}
 
 	/**
 	 * Update a chapter
 	 * @param $args array
 	 * @param $request PKPRequest
-	 * @return string Serialized JSON object
+	 * @return JSONMessage JSON object
 	 */
 	function updateChapter($args, $request) {
 		// Identify the chapter to be updated
@@ -320,18 +319,15 @@ class ChapterGridHandler extends CategoryGridHandler {
 			return DAO::getDataChangedEvent($newChapter->getId());
 		} else {
 			// Return an error
-			$json = new JSONMessage(false);
+			return new JSONMessage(false);
 		}
-
-		// Return the serialized JSON response
-		return $json->getString();
 	}
 
 	/**
 	 * Delete a chapter
 	 * @param $args array
 	 * @param $request PKPRequest
-	 * @return string Serialized JSON object
+	 * @return JSONMessage JSON object
 	 */
 	function deleteChapter($args, $request) {
 		// Identify the chapter to be deleted

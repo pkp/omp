@@ -91,6 +91,7 @@ class PublicationFormatHandler extends Handler {
 	 * Display the publication format template (grid + actions).
 	 * @param $args array
 	 * @param $request PKPRequest
+	 * @return JSONMessage JSON object
 	 */
 	function fetchPublicationFormat($args, $request) {
 		// Fetch the template

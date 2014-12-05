@@ -205,7 +205,7 @@ class ManageSpotlightsGridHandler extends GridHandler {
 	 * Edit a spotlight entry
 	 * @param $args array
 	 * @param $request PKPRequest
-	 * @return string Serialized JSON object
+	 * @return JSONMessage JSON object
 	 */
 	function editSpotlight($args, $request) {
 		$spotlightId = (int)$request->getUserVar('spotlightId');
@@ -215,15 +215,14 @@ class ManageSpotlightsGridHandler extends GridHandler {
 		$spotlightForm = new SpotlightForm($pressId, $spotlightId);
 		$spotlightForm->initData($args, $request);
 
-		$json = new JSONMessage(true, $spotlightForm->fetch($request));
-		return $json->getString();
+		return new JSONMessage(true, $spotlightForm->fetch($request));
 	}
 
 	/**
 	 * Update a spotlight entry
 	 * @param $args array
 	 * @param $request PKPRequest
-	 * @return string Serialized JSON object
+	 * @return JSONMessage JSON object
 	 */
 	function updateSpotlight($args, $request) {
 		// Identify the spotlight entry to be updated
@@ -267,8 +266,7 @@ class ManageSpotlightsGridHandler extends GridHandler {
 			return DAO::getDataChangedEvent();
 
 		} else {
-			$json = new JSONMessage(true, $spotlightForm->fetch($request));
-			return $json->getString();
+			return new JSONMessage(true, $spotlightForm->fetch($request));
 		}
 	}
 
@@ -276,7 +274,7 @@ class ManageSpotlightsGridHandler extends GridHandler {
 	 * Delete a spotlight entry
 	 * @param $args array
 	 * @param $request PKPRequest
-	 * @return string Serialized JSON object
+	 * @return JSONMessage JSON object
 	 */
 	function deleteSpotlight($args, $request) {
 
@@ -296,8 +294,7 @@ class ManageSpotlightsGridHandler extends GridHandler {
 				$notificationMgr->createTrivialNotification($currentUser->getId(), NOTIFICATION_TYPE_SUCCESS, array('contents' => __('notification.removedSpotlight')));
 				return DAO::getDataChangedEvent();
 			} else {
-				$json = new JSONMessage(false, __('manager.setup.errorDeletingItem'));
-				return $json->getString();
+				return new JSONMessage(false, __('manager.setup.errorDeletingItem'));
 			}
 		}
 	}
@@ -307,7 +304,7 @@ class ManageSpotlightsGridHandler extends GridHandler {
 	 * based on the spotlight type chosen.
 	 * @param $args array
 	 * @param $request PKPRequest
-	 * @return string Serialized JSON object
+	 * @return JSONMessage JSON object
 	 */
 	function itemAutocomplete($args, $request) {
 		$name = $request->getUserVar('name');
@@ -367,8 +364,7 @@ class ManageSpotlightsGridHandler extends GridHandler {
 			return $this->noAutocompleteResults();
 		}
 
-		$json = new JSONMessage(true, $itemList);
-		return $json->getString();
+		return new JSONMessage(true, $itemList);
 	}
 }
 

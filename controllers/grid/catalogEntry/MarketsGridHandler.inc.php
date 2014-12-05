@@ -239,7 +239,7 @@ class MarketsGridHandler extends GridHandler {
 	 * Edit a markets entry
 	 * @param $args array
 	 * @param $request PKPRequest
-	 * @return string Serialized JSON object
+	 * @return JSONMessage JSON object
 	 */
 	function editMarket($args, $request) {
 		// Identify the market entry to be updated
@@ -254,15 +254,14 @@ class MarketsGridHandler extends GridHandler {
 		$marketForm = new MarketForm($monograph, $market);
 		$marketForm->initData();
 
-		$json = new JSONMessage(true, $marketForm->fetch($request));
-		return $json->getString();
+		return new JSONMessage(true, $marketForm->fetch($request));
 	}
 
 	/**
 	 * Update a markets entry
 	 * @param $args array
 	 * @param $request PKPRequest
-	 * @return string Serialized JSON object
+	 * @return JSONMessage JSON object
 	 */
 	function updateMarket($args, $request) {
 		// Identify the market entry to be updated
@@ -305,8 +304,7 @@ class MarketsGridHandler extends GridHandler {
 			return DAO::getDataChangedEvent();
 
 		} else {
-			$json = new JSONMessage(true, $marketForm->fetch($request));
-			return $json->getString();
+			return new JSONMessage(true, $marketForm->fetch($request));
 		}
 	}
 
@@ -314,7 +312,7 @@ class MarketsGridHandler extends GridHandler {
 	 * Delete a market entry
 	 * @param $args array
 	 * @param $request PKPRequest
-	 * @return string Serialized JSON object
+	 * @return JSONMessage JSON object
 	 */
 	function deleteMarket($args, $request) {
 
@@ -333,8 +331,7 @@ class MarketsGridHandler extends GridHandler {
 				$notificationMgr->createTrivialNotification($currentUser->getId(), NOTIFICATION_TYPE_SUCCESS, array('contents' => __('notification.removedMarket')));
 				return DAO::getDataChangedEvent();
 			} else {
-				$json = new JSONMessage(false, __('manager.setup.errorDeletingItem'));
-				return $json->getString();
+				return new JSONMessage(false, __('manager.setup.errorDeletingItem'));
 			}
 		}
 	}

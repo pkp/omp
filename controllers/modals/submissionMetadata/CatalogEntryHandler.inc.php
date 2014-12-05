@@ -56,6 +56,7 @@ class CatalogEntryHandler extends PublicationEntryHandler {
 	 * Display the tabs index page.
 	 * @param $args array
 	 * @param $request PKPRequest
+	 * @return JSONMessage JSON object
 	 */
 	function fetch($args, $request) {
 		parent::fetch($args, $request);
@@ -96,6 +97,7 @@ class CatalogEntryHandler extends PublicationEntryHandler {
 	 * for this submission.
 	 * @param $args array
 	 * @param $request Request
+	 * @return JSONMessage JSON object
 	 */
 	function fetchFormatInfo($args, $request) {
 		$submission = $this->getSubmission();
@@ -109,7 +111,7 @@ class CatalogEntryHandler extends PublicationEntryHandler {
 
 		$json = new JSONMessage(true, true);
 		$json->setAdditionalAttributes(array('formats' => $publicationFormats));
-		return $json->getString();
+		return $json;
 	}
 }
 

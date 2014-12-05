@@ -222,7 +222,7 @@ class PublicationFormatGridHandler extends GridHandler {
 	 * Edit a format
 	 * @param $args array
 	 * @param $request PKPRequest
-	 * @return string Serialized JSON object
+	 * @return JSONMessage JSON object
 	 */
 	function editFormat($args, $request) {
 		// Identify the format to be updated
@@ -237,15 +237,14 @@ class PublicationFormatGridHandler extends GridHandler {
 		$publicationFormatForm = new PublicationFormatForm($submission, $publicationFormat);
 		$publicationFormatForm->initData();
 
-		$json = new JSONMessage(true, $publicationFormatForm->fetch($request));
-		return $json->getString();
+		return new JSONMessage(true, $publicationFormatForm->fetch($request));
 	}
 
 	/**
 	 * Update a format
 	 * @param $args array
 	 * @param $request PKPRequest
-	 * @return string Serialized JSON object
+	 * @return JSONMessage JSON object
 	 */
 	function updateFormat($args, $request) {
 		// Identify the format to be updated
@@ -288,8 +287,7 @@ class PublicationFormatGridHandler extends GridHandler {
 			return DAO::getDataChangedEvent();
 
 		} else {
-			$json = new JSONMessage(true, $publicationFormatForm->fetch($request));
-			return $json->getString();
+			return new JSONMessage(true, $publicationFormatForm->fetch($request));
 		}
 	}
 
@@ -297,7 +295,7 @@ class PublicationFormatGridHandler extends GridHandler {
 	 * Delete a format
 	 * @param $args array
 	 * @param $request PKPRequest
-	 * @return string Serialized JSON object
+	 * @return JSONMessage JSON object
 	 */
 	function deleteFormat($args, $request) {
 		$context = $request->getContext();
@@ -329,8 +327,7 @@ class PublicationFormatGridHandler extends GridHandler {
 
 			return DAO::getDataChangedEvent();
 		} else {
-			$json = new JSONMessage(false, __('manager.setup.errorDeletingItem'));
-			return $json->getString();
+			return new JSONMessage(false, __('manager.setup.errorDeletingItem'));
 		}
 
 	}
@@ -339,7 +336,7 @@ class PublicationFormatGridHandler extends GridHandler {
 	 * Set a format's "available" state
 	 * @param $args array
 	 * @param $request PKPRequest
-	 * @return string Serialized JSON object
+	 * @return JSONMessage JSON object
 	 */
 	function setAvailable($args, $request) {
 		$context = $request->getContext();
@@ -379,8 +376,7 @@ class PublicationFormatGridHandler extends GridHandler {
 
 			return DAO::getDataChangedEvent($publicationFormat->getId());
 		} else {
-			$json = new JSONMessage(false, __('manager.setup.errorDeletingItem'));
-			return $json->getString();
+			return new JSONMessage(false, __('manager.setup.errorDeletingItem'));
 		}
 
 	}

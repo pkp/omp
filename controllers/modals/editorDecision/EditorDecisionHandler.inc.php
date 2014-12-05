@@ -106,7 +106,7 @@ class EditorDecisionHandler extends PKPEditorDecisionHandler {
 	 * Fetch the proofs grid handler.
 	 * @param $args array
 	 * @param $request PKPRequest
-	 * @return string Serialized JSON object
+	 * @return JSONMessage JSON object
 	 */
 	function approveProofs($args, $request) {
 		$this->setupTemplate($request);
@@ -131,6 +131,7 @@ class EditorDecisionHandler extends PKPEditorDecisionHandler {
 	 * Approve a proof submission file.
 	 * @param $args array
 	 * @param $request PKPRequest
+	 * @return JSONMessage JSON object
 	 */
 	function saveApproveProof($args, $request) {
 		$submissionFile = $this->getAuthorizedContextObject(ASSOC_TYPE_SUBMISSION_FILE);

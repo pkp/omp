@@ -41,7 +41,7 @@ class CatalogEntryTabHandler extends PublicationEntryTabHandler {
 	 * Show the catalog metadata form.
 	 * @param $request Request
 	 * @param $args array
-	 * @return string JSON message
+	 * @return JSONMessage JSON object
 	 */
 	function catalogMetadata($args, $request) {
 		import('controllers.tab.catalogEntry.form.CatalogEntryCatalogMetadataForm');
@@ -53,15 +53,14 @@ class CatalogEntryTabHandler extends PublicationEntryTabHandler {
 		$catalogEntryCatalogMetadataForm = new CatalogEntryCatalogMetadataForm($submission->getId(), $user->getId(), $stageId, array('displayedInContainer' => true));
 
 		$catalogEntryCatalogMetadataForm->initData($args, $request);
-		$json = new JSONMessage(true, $catalogEntryCatalogMetadataForm->fetch($request));
-		return $json->getString();
+		return new JSONMessage(true, $catalogEntryCatalogMetadataForm->fetch($request));
 	}
 
 	/**
 	 * Show the publication metadata form.
 	 * @param $request Request
 	 * @param $args array
-	 * @return string JSON message
+	 * @return JSONMessage JSON object
 	 */
 	function publicationMetadata($args, $request) {
 
@@ -74,22 +73,20 @@ class CatalogEntryTabHandler extends PublicationEntryTabHandler {
 		$publicationFormat = $publicationFormatDao->getById($publicationFormatId, $submission->getId());
 
 		if (!$publicationFormat) {
-			$json = new JSONMessage(false, __('monograph.publicationFormat.formatDoesNotExist'));
-			return $json->getString();
+			return new JSONMessage(false, __('monograph.publicationFormat.formatDoesNotExist'));
 		}
 
 		import('controllers.tab.catalogEntry.form.CatalogEntryFormatMetadataForm');
 		$catalogEntryPublicationMetadataForm = new CatalogEntryFormatMetadataForm($submission->getId(), $publicationFormatId, $publicationFormat->getPhysicalFormat(), $stageId, array('displayedInContainer' => true, 'tabPos' => $this->getTabPosition()));
 		$catalogEntryPublicationMetadataForm->initData($args, $request);
-		$json = new JSONMessage(true, $catalogEntryPublicationMetadataForm->fetch($request));
-		return $json->getString();
+		return new JSONMessage(true, $catalogEntryPublicationMetadataForm->fetch($request));
 	}
 
 	/**
 	 * Upload a new cover image file.
 	 * @param $args array
 	 * @param $request PKPRequest
-	 * @return string
+	 * @return JSONMessage JSON object
 	 */
 	function uploadCoverImage($args, $request) {
 		$user = $request->getUser();
@@ -102,11 +99,10 @@ class CatalogEntryTabHandler extends PublicationEntryTabHandler {
 			$json->setAdditionalAttributes(array(
 				'temporaryFileId' => $temporaryFile->getId()
 			));
+			return $json;
 		} else {
-			$json = new JSONMessage(false, __('common.uploadFailed'));
+			return new JSONMessage(false, __('common.uploadFailed'));
 		}
-
-		return $json->getString();
 	}
 
 	/**

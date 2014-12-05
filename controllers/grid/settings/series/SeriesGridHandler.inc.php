@@ -184,7 +184,7 @@ class SeriesGridHandler extends SetupGridHandler {
 	 * An action to edit a series
 	 * @param $args array
 	 * @param $request PKPRequest
-	 * @return string Serialized JSON object
+	 * @return JSONMessage JSON object
 	 */
 	function editSeries($args, $request) {
 		$seriesId = isset($args['seriesId']) ? $args['seriesId'] : null;
@@ -193,15 +193,14 @@ class SeriesGridHandler extends SetupGridHandler {
 		import('controllers.grid.settings.series.form.SeriesForm');
 		$seriesForm = new SeriesForm($request, $seriesId);
 		$seriesForm->initData($args, $request);
-		$json = new JSONMessage(true, $seriesForm->fetch($request));
-		return $json->getString();
+		return new JSONMessage(true, $seriesForm->fetch($request));
 	}
 
 	/**
 	 * Update a series
 	 * @param $args array
 	 * @param $request PKPRequest
-	 * @return string Serialized JSON object
+	 * @return JSONMessage JSON object
 	 */
 	function updateSeries($args, $request) {
 		$seriesId = $request->getUserVar('seriesId');
@@ -214,8 +213,7 @@ class SeriesGridHandler extends SetupGridHandler {
 			$seriesForm->execute($args, $request);
 			return DAO::getDataChangedEvent($seriesForm->getSeriesId());
 		} else {
-			$json = new JSONMessage(false);
-			return $json->getString();
+			return new JSONMessage(false);
 		}
 	}
 
@@ -223,7 +221,7 @@ class SeriesGridHandler extends SetupGridHandler {
 	 * Delete a series
 	 * @param $args array
 	 * @param $request PKPRequest
-	 * @return string Serialized JSON object
+	 * @return JSONMessage JSON object
 	 */
 	function deleteSeries($args, $request) {
 		$press = $request->getPress();
@@ -239,9 +237,8 @@ class SeriesGridHandler extends SetupGridHandler {
 			return DAO::getDataChangedEvent($series->getId());
 		} else {
 			AppLocale::requireComponents(LOCALE_COMPONENT_PKP_MANAGER); // manager.setup.errorDeletingItem
-			$json = new JSONMessage(false, __('manager.setup.errorDeletingItem'));
+			return new JSONMessage(false, __('manager.setup.errorDeletingItem'));
 		}
-		return $json->getString();
 	}
 }
 

@@ -72,6 +72,7 @@ class ManageCatalogHandler extends Handler {
 	 * Show the catalog management home.
 	 * @param $args array
 	 * @param $request PKPRequest
+	 * @return JSONMessage JSON object
 	 */
 	function index($args, $request) {
 		// Render the view.
@@ -121,6 +122,7 @@ class ManageCatalogHandler extends Handler {
 	 * View the tab contents for the Homepage tab.
 	 * @param $args array
 	 * @param $request PKPRequest
+	 * @return JSONMessage JSON object
 	 */
 	function homepage($args, $request) {
 		// Set up the monograph list template
@@ -146,7 +148,7 @@ class ManageCatalogHandler extends Handler {
 	 * List the available categories.
 	 * @param $args array
 	 * @param $request PKPRequest
-	 * @return string
+	 * @return JSONMessage JSON object
 	 */
 	function getCategories($args, $request) {
 		$press = $request->getPress();
@@ -156,15 +158,14 @@ class ManageCatalogHandler extends Handler {
 		while ($category = $categoryIterator->next()) {
 			$categoryArray[$category->getPath()] = $category->getLocalizedTitle();
 		}
-		$json = new JSONMessage(true, $categoryArray);
-		return $json->getString();
+		return new JSONMessage(true, $categoryArray);
 	}
 
 	/**
 	 * List the available series.
 	 * @param $args array
 	 * @param $request PKPRequest
-	 * @return string
+	 * @return JSONMessage JSON object
 	 */
 	function getSeries($args, $request) {
 		$press = $request->getPress();
@@ -174,15 +175,14 @@ class ManageCatalogHandler extends Handler {
 		while ($series = $seriesIterator->next()) {
 			$seriesArray[$series->getPath()] = $series->getLocalizedTitle();
 		}
-		$json = new JSONMessage(true, $seriesArray);
-		return $json->getString();
+		return new JSONMessage(true, $seriesArray);
 	}
 
 	/**
 	 * View the content of a category.
 	 * @param $args array
 	 * @param $request PKPRequest
-	 * @return string
+	 * @return JSONMessage JSON object
 	 */
 	function category($args, $request) {
 		$templateMgr = TemplateManager::getManager($request);
@@ -212,15 +212,14 @@ class ManageCatalogHandler extends Handler {
 		$templateMgr->assign('features', $features);
 
 		// Return the monograph list as a JSON message
-		$json = new JSONMessage(true, $templateMgr->fetch('manageCatalog/monographs.tpl'));
-		return $json->getString();
+		return new JSONMessage(true, $templateMgr->fetch('manageCatalog/monographs.tpl'));
 	}
 
 	/**
 	 * View the content of a series.
 	 * @param $args array
 	 * @param $request PKPRequest
-	 * @return string
+	 * @return JSONMessage JSON object
 	 */
 	function series($args, $request) {
 		$templateMgr = TemplateManager::getManager($request);
@@ -245,14 +244,14 @@ class ManageCatalogHandler extends Handler {
 		$templateMgr->assign('publishedMonographs', $publishedMonographs);
 
 		// Return the monograph list as a JSON message
-		$json = new JSONMessage(true, $templateMgr->fetch('manageCatalog/monographs.tpl'));
-		return $json->getString();
+		return new JSONMessage(true, $templateMgr->fetch('manageCatalog/monographs.tpl'));
 	}
 
 	/**
 	 * View the tab contents for the Search Results.
 	 * @param $args array
 	 * @param $request PKPRequest
+	 * @return JSONMessage JSON object
 	 */
 	function search($args, $request) {
 		$searchText = array_shift($args);
@@ -274,7 +273,7 @@ class ManageCatalogHandler extends Handler {
 	 * Set featured or new release status for a submission.
 	 * @param $args array
 	 * @param $request PKPRequest
-	 * @return string
+	 * @return JSONMessage JSON object
 	 */
 	function toggle($args, $request) {
 		$press = $request->getPress();
@@ -347,8 +346,7 @@ class ManageCatalogHandler extends Handler {
 				fatalError('Invalid toggle type specified.');
 		}
 
-		$json = new JSONMessage(true, $returner);
-		return $json->getString();
+		return new JSONMessage(true, $returner);
 	}
 
 	//

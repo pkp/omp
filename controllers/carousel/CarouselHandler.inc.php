@@ -44,7 +44,7 @@ class CarouselHandler extends Handler {
 	 * it to the client.
 	 * @param $args array
 	 * @param $request Request
-	 * @return string the serialized grid JSON message
+	 * @return JSONMessage JSON object
 	 */
 	function fetch($args, $request) {
 		$this->setupTemplate($request);
@@ -70,8 +70,7 @@ class CarouselHandler extends Handler {
 			$returner = $templateMgr->fetch('catalog/carousel.tpl');
 		}
 
-		$json = new JSONMessage(true, $returner);
-		return $json->getString();
+		return new JSONMessage(true, $returner);
 	}
 }
 ?>

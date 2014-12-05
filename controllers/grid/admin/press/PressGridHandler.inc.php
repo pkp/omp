@@ -32,7 +32,7 @@ class PressGridHandler extends ContextGridHandler {
 	 * Edit an existing press.
 	 * @param $args array
 	 * @param $request PKPRequest
-	 * @return string Serialized JSON object
+	 * @return JSONMessage JSON object
 	 */
 	function editContext($args, $request) {
 
@@ -42,16 +42,14 @@ class PressGridHandler extends ContextGridHandler {
 		// Form handling.
 		$settingsForm = new PressSiteSettingsForm(!isset($pressId) || empty($pressId) ? null : $pressId);
 		$settingsForm->initData();
-		$json = new JSONMessage(true, $settingsForm->fetch($args, $request));
-
-		return $json->getString();
+		return new JSONMessage(true, $settingsForm->fetch($args, $request));
 	}
 
 	/**
 	 * Update an existing press.
 	 * @param $args array
 	 * @param $request PKPRequest
-	 * @return string Serialized JSON object
+	 * @return JSONMessage JSON object
 	 */
 	function updateContext($args, $request) {
 		// Identify the press Id.
@@ -99,9 +97,8 @@ class PressGridHandler extends ContextGridHandler {
 			}
 			return DAO::getDataChangedEvent($pressId);
 		} else {
-			$json = new JSONMessage(false);
+			return new JSONMessage(false);
 		}
-		return $json->getString();
 	}
 
 	/**
@@ -118,8 +115,6 @@ class PressGridHandler extends ContextGridHandler {
 		$pressId = $request->getUserVar('rowId');
 		$pressDao = DAORegistry::getDAO('PressDAO');
 		$press = $pressDao->getById($pressId);
-
-		$json = new JSONMessage();
 
 		if ($pressId) {
 			$pressDao->deleteById($pressId);
@@ -149,7 +144,7 @@ class PressGridHandler extends ContextGridHandler {
 			return DAO::getDataChangedEvent($pressId);
 		}
 
-		return $json->getString();
+		return new JSONMessage();
 	}
 }
 
