@@ -23,10 +23,6 @@
 }
 
 .pkp_catalog_carousel_wrapper {
-	width: 100%;
-	overflow: hidden;
-	position: relative;
-	
 	.pkp_catalog_monograph_authorship {
 		.authorName;
 	}
@@ -35,116 +31,32 @@
 		.h4ItemTitle;
 	}
 		
-	.carousel_control {
-		width: 50px;
-		height: 50px;
-		position: absolute;
-		top: 65%;
-		z-index: 1000;
-		background-position: center;
-		background-repeat: no-repeat;
-	}
-	
-	.carousel_control:hover {
-		opacity: 0.6;
-		cursor: pointer;
-	}
-	
-	#nextCarouselItem {
-		left:92%;
-		background-image: url({$baseUrl}/lib/pkp/templates/images/structure/carousel_next.png);
-	}
-	
-	#previousCarouselItem {
-		background-image: url({$baseUrl}/lib/pkp/templates/images/structure/carousel_previous.png);
-	}
-		
 	.pkp_catalog_carousel {
-		width: 72%;
-		height: 380px;
-		margin:auto;
-		margin-bottom: 30px;
-		background-color: white;
-	
-		.pkp_helpers_progressIndicator {
-			background-position: 50% 50%;
-			background-color: white;
-			float: none;
-			position: absolute;
-			top: 0;
-			display: block;
-			height: 100%;
-			width: 100%;
-		}
-	
-		li.mover { 
-			width: 240px;
-			height: 303px;
-			display: table;
-			filter: none !important;
+		margin-left: 30px;
+		margin-right: 30px;
 
-			span.moverImg {
-				vertical-align:middle;
-				display: table-cell;
-			}
-			
-			div.pkp_helpers_black_bg {
-				filter: alpha(opacity=100%);
-			}
+		img {
+			float: left;
+		}
 
-			img {
-				width: 100%;
-				padding:0px;
-			}
+		.slick-prev:before, .slick-next:before {
+			color: #000000;
 		}
-		
-		li.placeholder {
-			box-shadow: none !important;
-			background-color: inherit !important;
-			margin-left: -10%;
-			padding-left: 5%;
-			padding-right: 15%;
-		}
-	
-		li.placeholder:hover {
-			cursor: default !important;
-		}
-	
-		li.mover:hover {
-			cursor: pointer;
-		}
-		
-		li.roundabout-in-focus:hover {
-			cursor: default;
-		}
-		
-		.details_box {
+
+		.monograph {
 			background-color: white;
 			border: 2px solid gray;
-			left: 150px;
-			min-height: 100px;
-			padding: 15px;
-			position: absolute;
-			top: 50px;
-			width: 85%;
-			filter: alpha(opacity=100%) !important;
-			
+			width: 100%;
+			height: 300px;
+		}
+
+		.details_box {
+			margin-top: 10px;
 			.pkp_catalog_formats {
 				margin-top: 10px;
 			}
 		}
 	}
-}
-
-/* Chrome only: prevent the carousel from getting cut off at the bottom */
-@media screen and (-webkit-min-device-pixel-ratio:0) { 
-        .pkp_catalog_carousel_wrapper {
-                padding-bottom: 15px;
-        }
-}
-
-.pkp_catalog_readMore {
-	margin-top: 10px;
 }
 
 .pkp_catalog_seriesDescription, .pkp_catalog_categoryDescription {
