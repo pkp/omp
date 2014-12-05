@@ -17,4 +17,12 @@
 		<query>INSERT INTO press_settings (press_id, setting_name, setting_value, setting_type) SELECT p.press_id, 'displayFeaturedBooks', '1', 'bool' FROM presses p</query>
 		<query>INSERT INTO press_settings (press_id, setting_name, setting_value, setting_type) SELECT p.press_id, 'displayInSpotlight', '1', 'bool' FROM presses p</query>
 	</sql>
+
+	<!-- Bug #8912: consider browse block settings -->
+	<sql>
+		<!-- enable all options per default -->
+		<query>INSERT INTO plugin_settings (plugin_name, context_id, setting_name, setting_value, setting_type) SELECT DISTINCT ps.plugin_name, ps.context_id, 'browseNewReleases', '1', 'bool' FROM plugin_settings ps WHERE ps.plugin_name = 'browseblockplugin'</query>
+		<query>INSERT INTO plugin_settings (plugin_name, context_id, setting_name, setting_value, setting_type) SELECT DISTINCT ps.plugin_name, ps.context_id, 'browseCategories', '1', 'bool' FROM plugin_settings ps WHERE ps.plugin_name = 'browseblockplugin'</query>
+		<query>INSERT INTO plugin_settings (plugin_name, context_id, setting_name, setting_value, setting_type) SELECT DISTINCT ps.plugin_name, ps.context_id, 'browseSeries', '1', 'bool' FROM plugin_settings ps WHERE ps.plugin_name = 'browseblockplugin'</query>
+	</sql>
 </data>
