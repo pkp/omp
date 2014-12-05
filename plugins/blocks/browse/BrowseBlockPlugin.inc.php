@@ -78,7 +78,6 @@ class BrowseBlockPlugin extends BlockPlugin {
 	function manage($verb, $args, &$message, &$messageParams, &$pluginModalContent = null) {
 		$request = $this->getRequest();
 		$press = $request->getPress();
-		$templateMgr = TemplateManager::getManager($request);
 
 		switch ($verb) {
 			case 'settings':
@@ -112,7 +111,6 @@ class BrowseBlockPlugin extends BlockPlugin {
 		$press = $request->getPress();
 
 		$browseNewReleases = $this->getSetting($press->getId(), 'browseNewReleases');
-		//print_r($browseNewReleases);
 		$templateMgr->assign('browseNewReleases', $browseNewReleases);
 
 		$seriesDisplay = $this->getSetting($press->getId(), 'browseSeries');

@@ -24,24 +24,9 @@ class BrowseBlockSettingsForm extends Form {
 	/** @var int press ID */
 	var $_pressId;
 
-	/**
-	 * Get the press ID.
-	 * @return int
-	 */
-	function _getPressId() {
-		return $this->_pressId;
-	}
-
 	/** @var BrowseBlockPlugin Browse block plugin */
 	var $_plugin;
 
-	/**
-	 * Get the plugin.
-	 * @return BrowseBlockPlugin
-	 */
-	function &_getPlugin() {
-		return $this->_plugin;
-	}
 
 	//
 	// Constructor
@@ -51,9 +36,9 @@ class BrowseBlockSettingsForm extends Form {
 	 * @param $plugin BrowseBlockPlugin
 	 * @param $pressId int
 	 */
-	function BrowseBlockSettingsForm(&$plugin, $pressId) {
-		$this->_pressId = $pressId;
-		$this->_plugin =& $plugin;
+	function BrowseBlockSettingsForm($plugin, $pressId) {
+		$this->setPressId($pressId);
+		$this->setPlugin($plugin);
 
 		parent::Form($plugin->getTemplatePath() . 'settingsForm.tpl');
 
@@ -63,14 +48,49 @@ class BrowseBlockSettingsForm extends Form {
 	}
 
 	//
+	// Getters and Setters
+	//
+	/**
+	 * Get the Press ID.
+	 * @return int
+	 */
+	function getPressId() {
+		return $this->_pressId;
+	}
+
+	/**
+	 * Set the Press ID.
+	 * @param $pressId int
+	 */
+	function setPressId($pressId) {
+		$this->_pressId = $pressId;
+	}
+
+	/**
+	 * Get the plugin.
+	 * @return BrowseBlockPlugin
+	 */
+	function getPlugin() {
+		return $this->_plugin;
+	}
+
+	/**
+	 * Set the plugin.
+	 * @param $plugin BrowseBlockPlugin
+	 */
+	function setPlugin($plugin) {
+		$this->_plugin = $plugin;
+	}
+
+	//
 	// Implement template methods from Form
 	//
 	/**
 	 * @see Form::initData()
 	 */
 	function initData() {
-		$pressId = $this->_getPressId();
-		$plugin =& $this->_getPlugin();
+		$pressId = $this->getPressId();
+		$plugin = $this->getPlugin();
 		foreach($this->_getFormFields() as $fieldName => $fieldType) {
 			$this->setData($fieldName, $plugin->getSetting($pressId, $fieldName));
 		}
@@ -87,8 +107,8 @@ class BrowseBlockSettingsForm extends Form {
 	 * @see Form::execute()
 	 */
 	function execute() {
-		$plugin =& $this->_getPlugin();
-		$pressId = $this->_getPressId();
+		$plugin = $this->getPlugin();
+		$pressId = $this->getPressId();
 		foreach($this->_getFormFields() as $fieldName => $fieldType) {
 			$plugin->updateSetting($pressId, $fieldName, $this->getData($fieldName), $fieldType);
 		}
