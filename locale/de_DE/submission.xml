@@ -13,16 +13,16 @@
 
 <locale name="de_DE" full_name="Deutsch (Deutschland)">
 	<!-- General submission keys -->
-	<message key="submission.submit.title">Monographie einreichen</message>
+	<message key="submission.submit.title">Monografie einreichen</message>
 	<message key="submission.upload.selectBookElement">Bitte wählen Sie aus</message>
 	<message key="submission.title">Buchtitel</message>
 	<message key="submission.title.tip"><![CDATA[Die eingereichten Manuskripte lassen in der Regel sich als 'Bild' , 'Text' oder als eine andere Multimediagattung (wie z.B. 'Software' oder 'Interaktive Medien') klassifizieren. Bitte wählen Sie den für Ihre Einreichung am besten zutreffenden Typ aus. Beispiele finden Sie unter <a target="_blank" href="http://dublincore.org/documents/2001/04/12/usageguide/generic.shtml#type">http://dublincore.org/documents/2001/04/12/usageguide/generic.shtml#type</a>]]></message>
 	<message key="submission.select">Wählen Sie ein Manuskript aus</message>
 	<message key="submission.synopsis">Über dieses Buch</message>
 	<message key="submission.workType">Art des Buches</message>
-	<message key="submission.workType.description">Eine Monographie ist ein Werk, das von einer einzigen Autorin/einem einzigen Autor oder mehreren Autoren gemeinsam verfasst worden ist. Ein Sammelband besteht aus mehreren Kapiteln jeweils unterschiedlicher Autor/innen (detaillierte Kapitelangaben sind erst zu einem späteren Zeitpunkt im Veröffentlichungsprozess zu machen).</message>
+	<message key="submission.workType.description">Eine Monografie ist ein Werk, das von einer Autor/einem Autor oder mehreren Autor/innen gemeinsam verfasst worden ist. Ein Sammelband besteht aus mehreren Kapiteln jeweils unterschiedlicher Autor/innen (detaillierte Kapitelangaben sind erst zu einem späteren Zeitpunkt im Veröffentlichungsprozess zu machen).</message>
 	<message key="submission.workType.editedVolume">Sammelband</message>
-	<message key="submission.workType.authoredWork">Monographie</message>
+	<message key="submission.workType.authoredWork">Monografie</message>
 	<message key="submission.published">Fertig zum Druck</message>
 	<message key="submission.fairCopy">Reinschrift</message>
 	<message key="submission.artwork.permissions">Rechte</message>
@@ -54,7 +54,7 @@
 	<message key="submission.submit.newSubmissionMultiple">Ein neues Buchmanuskript einreichen bei</message>
 	<message key="submission.submit.newSubmissionSingle">Ein neues Manuskript bei {$contextName} einreichen</message>
 	<message key="submission.submit.upload">Upload</message>
-	<message key="submission.submit.upload.description">Hochladen von Dateien, die im Zusammenhang mit der Einreichung stehen wie z.B. Manuskript, Exposé, Anschreiben, Bildmaterial. Es empfiehlt sich, sowohl bei Monographien als auch bei Sammelbänden das gesamte Manuskript in einer Datei hochzuladen.</message>
+	<message key="submission.submit.upload.description">Hochladen von Dateien, die im Zusammenhang mit der Einreichung stehen wie z.B. Manuskript, Exposé, Anschreiben, Bildmaterial. Es empfiehlt sich, sowohl bei Monografien als auch bei Sammelbänden das gesamte Manuskript in einer Datei hochzuladen.</message>
 	<message key="submission.submit.cancelSubmission">Sie können den Einreichungsprozess auch zu einem späteren Zeitpunkt abschließen. Gehen Sie dazu auf die Startseite und wählen Sie die entsprechenden Manuskripte aus.</message>
 	<message key="submission.submit.copyrightNoticeAgree">Ich erkenne die Datenschutzbestimmungen an.</message>
 	<message key="submission.submit.selectSeries">Reihe auswählen</message>
@@ -66,8 +66,8 @@
 	<message key="submission.submit.contributorRole">Funktion des Beiträgers/der Beiträgerin</message>
 	<message key="submission.submit.form.authorRequired">Es muss mindestens ein/e Autor/in angegeben werden.</message>
 	<message key="submission.submit.form.authorRequiredFields">Es werden Vorname, Nachname und E-Mail-Adresse aller Autor/innen benötigt.</message>
-	<message key="submission.submit.form.titleRequired">Bitte geben Sie den Titel Ihrer Monographie ein.</message>
-	<message key="submission.submit.form.abstractRequired">Bitte geben Sie eine kurze Zusammenfassung Ihrer Monographie ein.</message>
+	<message key="submission.submit.form.titleRequired">Bitte geben Sie den Titel Ihrer Monografie ein.</message>
+	<message key="submission.submit.form.abstractRequired">Bitte geben Sie eine kurze Zusammenfassung Ihrer Monografie ein.</message>
 	<message key="submission.submit.form.contributorRoleRequired">Bitte wählen Sie die Funktion der Beiträgerin/des Beiträgers.</message>
 	<message key="submission.submit.submissionFile">Manuskriptdatei</message>
 	<message key="submission.submit.prepare">Vorbereiten</message>
@@ -101,18 +101,18 @@
 	<message key="submission.catalogEntry.new">Neuer Katalogeintrag</message>
 	<message key="submission.catalogEntry.confirm">Erstelle anhand der angegebenen Metadaten einen neuen Katalogeintrag.</message>
 	<message key="submission.catalogEntry.confirm.required">Bitte bestätigen Sie, dass der Publikationsprozess abgeschlossen ist und das Buch in den Katalog aufgenommen werden soll.</message>
-	<message key="submission.catalogEntry.isAvailable">Diese Monographie ist fertig und soll in den öffentlichen Katalog aufgenommen werden.</message>
+	<message key="submission.catalogEntry.isAvailable">Diese Monografie ist fertig und soll in den öffentlichen Katalog aufgenommen werden.</message>
 
 	<!-- Catalog Entry Tabs -->
-	<message key="submission.catalogEntry.monographMetadata">Monographie</message>
+	<message key="submission.catalogEntry.monographMetadata">Monografie</message>
 	<message key="submission.catalogEntry.catalogMetadata">Katalog</message>
 	<message key="submission.catalogEntry.publicationMetadata">Format</message>
 
 	<!-- Log events -->
 	<message key="submission.event.participantAdded">"{$name}" ({$username}) wurde zu der Gruppe der {$userGroupName} hinzugefügt.</message>
 	<message key="submission.event.participantRemoved">"{$name}" ({$username}) wurde aus der Gruppe der {$userGroupName} entfernt.</message>
-	<message key="submission.event.metadataPublished">Die Metadaten der Monographie sind zur Veröffentlichung akzeptiert worden.</message>
-	<message key="submission.event.metadataUnpublished">Die Veröffentlichung der Metadaten dieser Monographie wurde eingestellt.</message>
+	<message key="submission.event.metadataPublished">Die Metadaten der Monografie sind zur Veröffentlichung akzeptiert worden.</message>
+	<message key="submission.event.metadataUnpublished">Die Veröffentlichung der Metadaten dieser Monografie wurde eingestellt.</message>
 	<message key="submission.event.publicationFormatMadeAvailable">Das "{$publicationFormatName}"-Format wurde verfügbar gemacht.</message>
 	<message key="submission.event.publicationFormatMadeUnavailable">Das "{$publicationFormatName}"-Format ist nicht länger verfügbar.</message>
 	<message key="submission.event.publicationFormatPublished">Das "{$publicationFormatName}"-Format ist für die Veröffentlichung akzeptiert worden.</message>

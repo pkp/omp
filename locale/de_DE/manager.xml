@@ -57,7 +57,7 @@
 	<message key="manager.reviewFormElements.smalltextfield">Ein-Wort-Textfeld</message>
 	<message key="manager.reviewFormElements.textarea">Erweitertes Textfeld</message>
 	<message key="manager.reviewFormElements.textfield">Einzeiliges Textfeld</message>
-	<message key="manager.reviewFormElements.viewable">Sichtbar (für Autoren)</message>
+	<message key="manager.reviewFormElements.viewable">Sichtbar (für Autor/innen)</message>
 
 	<!-- Review forms -->
 	<message key="manager.reviewForms">Begutachtungsformulare</message>
@@ -110,17 +110,17 @@
 	<message key="manager.settings.distributionDescription">Einstellungen, die den Vertrieb betreffen (Benachrichtigung, Indizierung, Archivierung, Bezahlung, Lesewerkzeuge).</message>
 
 	<!-- Statistics management -->
-	<message key="manager.statistics.reports.defaultReport.monographDownloads">Monographie herunterladen</message>
+	<message key="manager.statistics.reports.defaultReport.monographDownloads">Monografie herunterladen</message>
 	<message key="manager.statistics.reports.defaultReport.monographAbstract">Seitenaufrufe Abstract</message>
-	<message key="manager.statistics.reports.defaultReport.monographAbstractAndDownloads">Abstract der Monographie und Downloads</message>
+	<message key="manager.statistics.reports.defaultReport.monographAbstractAndDownloads">Abstract der Monografie und Downloads</message>
 	<message key="manager.statistics.reports.defaultReport.seriesIndexPageViews">Seitenaufrufe Hauptseite der Reihe</message>
 	<message key="manager.statistics.reports.defaultReport.pressIndexPageViews">Seitenaufrufe Hauptseite des Verlags</message>
-	<message key="manager.statistics.reports.filters.byContext.description">Ergebnisse über den Kontext eingrenzen (Reihe und/oder Monographie).</message>
-	<message key="manager.statistics.reports.filters.byObject.description">Ergebnisse nach Objekt-Typ (Verlag, Reihe, Monographie, Dateityp) und/oder durch eine oder mehrere Objekt-IDs eingrenzen.</message>
+	<message key="manager.statistics.reports.filters.byContext.description">Ergebnisse über den Kontext eingrenzen (Reihe und/oder Monografie).</message>
+	<message key="manager.statistics.reports.filters.byObject.description">Ergebnisse nach Objekt-Typ (Verlag, Reihe, Monografie, Dateityp) und/oder durch eine oder mehrere Objekt-IDs eingrenzen.</message>
 
 	<!-- Tools management -->
 	<message key="manager.tools">Werkzeuge</message>
-	<message key="manager.tools.importExport">Für den Datenimport/-export (Verlage, Monographien, Benutzer/innen) spezifische Werkzeuge</message>
+	<message key="manager.tools.importExport">Für den Datenimport/-export (Verlage, Monografien, Benutzer/innen) spezifische Werkzeuge</message>
 
 	<!-- User management -->
 	<message key="manager.users">Benutzerverwaltung</message>
@@ -131,20 +131,20 @@
 	<message key="manager.people.allPresses">Alle Verlage</message>
 	<message key="manager.people.allSiteUsers">Einen Benutzer über diese Website eintragen</message>
 	<message key="manager.people.allUsers">Alle registrierten Benutzer</message>
-	<message key="manager.people.confirmRemove">Möchten Sie diesen Benutzer wirklich aus dem Verlag entfernen? Mit dieser Aktion wird der Benutzer aus allen Funktionen entfernt, denen er zugeordnet war.</message>
-	<message key="manager.people.enrollExistingUser">Einen bestehenden Benutzer eintragen</message>
-	<message key="manager.people.existingUserRequired">Der Nutzer, den Sie eintragen möchten, muss bereits exisitieren.</message>
+	<message key="manager.people.confirmRemove">Möchten Sie diese/n Benutzer/in wirklich aus dem Verlag entfernen? Mit dieser Aktion wird die Person aus allen Funktionen entfernt, denen sie zugeordnet war.</message>
+	<message key="manager.people.enrollExistingUser">Eine/n bereits existierende/n Benutzer/in eintragen.</message>
+	<message key="manager.people.existingUserRequired">Sie müssen eine/n existierende/n Benutzer/in angeben.</message>
 	<message key="manager.people.enrollSyncPress">Beim Verlag</message>
-	<message key="manager.people.mergeUsers.from.description">Wählen Sie einen Benutzer aus, den Sie mit einem anderen Benutzerkonto verschmelzen möchten (zum Beispiel wenn jemand zwei Benutzerkonten besitzt). Das zuerst ausgewählte Benutzerkonto wird daraufhin gelöscht. Manuskripte, zugewiesene Funktionen etc., die diesem Konto zugeordnet waren, werden auf das zweite Konto übertragen.</message>
-	<message key="manager.people.mergeUsers.into.description">Wählen Sie einen Benutzer aus, auf den die bestehenden Autorenschaften, Funktionszuordnungen etc. übertragen werden.</message>
-	<message key="manager.people.syncUserDescription">Bei dieser Synchronisation werden alle Benutzer/innen, die in einer bestimmten Funktion bei einem bestimmten Verlag eingetragen sind, in der gleichen Funktion auch in diesem Verlag eingetragen. Damit ist möglich, eine gemeinsame Benutzergruppe (zum Beispiel Gutacher) zwischen den Verlagen zu synchronisieren.</message>
-	<message key="manager.people.confirmDisable">Möchten Sie diesen Benutzer deaktivieren? Der Benutzer wird sich dann nicht mehr einloggen können.
+	<message key="manager.people.mergeUsers.from.description">Wählen Sie eine/n Benutzer/in aus, deren/dessen Daten in einem anderen Konto zusammengeführt werden sollen (wenn jemand z.B. zwei Konten hat). Das zuerst ausgewählte Konto wird gelöscht, seine Beiträge, Aufgaben usw. werden dem zweiten Konto zugeschrieben.</message>
+	<message key="manager.people.mergeUsers.into.description">Wählen Sie ein Benutzer/innenkonto aus, auf das die bestehenden Autor/innenschaften, Aufgaben etc. übertragen werden sollen.</message>
+	<message key="manager.people.syncUserDescription">Bei dieser Synchronisation werden alle Benutzer/innen, die in einer bestimmten Funktion bei einem bestimmten Verlag eingetragen sind, in der gleichen Funktion auch in diesem Verlag eingetragen. Damit ist möglich, eine gemeinsame Benutzer/innengruppe (zum Beispiel Gutacher/innen) zwischen den Verlagen zu synchronisieren.</message>
+	<message key="manager.people.confirmDisable">Möchten Sie diese/n Benutzer/in deaktivieren? Der/die Benutzer/in wird sich dann nicht mehr einloggen können.
 
-Sie können dem Benutzer den Grund für die Deaktivierung des Kontos nennen (optional).</message>
-	<message key="manager.people.noAdministrativeRights"><![CDATA[Sie besitzen nicht die administrativen Rechte an diesem Benutzerkonto. Grund dafür kann sein, dass:
+Sie können dem/der Benutzer/in den Grund für die Deaktivierung des Kontos nennen (optional).</message>
+	<message key="manager.people.noAdministrativeRights"><![CDATA[Sie besitzen nicht die administrativen Rechte an diesem Benutzer/innenkonto. Grund dafür kann sein, dass:
 		<ul>
-			<li>der Benutzer ein Website-Administrator ist</li>
-			<li>der Benutzer in einem Verlag aktiv ist, den Sie nicht verwalten</li>
+			<li>der/die Benutzer/in Website-Administrator/in ist</li>
+			<li>der/die Benutzer/in in einem Verlag aktiv ist, den Sie nicht verwalten</li>
 		</ul>
 	Dieser Task muss von einem Website-Administrator ausgeführt werden.]]></message>
 
@@ -173,18 +173,18 @@ Sie können dem Benutzer den Grund für die Deaktivierung des Kontos nennen (opt
 	<message key="manager.setup.announcements">Bekanntmachungen</message>
 	<message key="manager.setup.announcementsDescription">Mithilfe von Bekanntmachungen können Sie Leser/innen über Neuigkeiten informieren und auf Veranstaltungen des Verlages hinweisen. Die Bekanntmachungen erscheinen auf der Seite 'Bekanntmachungen'.</message>
 	<message key="manager.setup.announcementsIntroduction">Zusätzliche Informationen</message>
-	<message key="manager.setup.announcementsIntroductionDescription">Fügen Sie weitere Informationen hinzu, die den Lesern auf der Seite 'Bekanntmachungen' angezeigt werden sollen.</message>
+	<message key="manager.setup.announcementsIntroductionDescription">Fügen Sie weitere Informationen hinzu, die den Leser/innen auf der Seite 'Bekanntmachungen' angezeigt werden sollen.</message>
 	<message key="manager.setup.appearInAboutPress">(Erscheint in 'Über uns')</message>
 	<message key="manager.setup.authorCopyrightNotice">Copyright-Vermerk</message>
-	<message key="manager.setup.authorCopyrightNoticeAgree">Aufforderung an die Autoren, dem Copyright-Vermerk zuzustimmen.</message>
+	<message key="manager.setup.authorCopyrightNoticeAgree">Aufforderung an die Autor/innen, dem Copyright-Vermerk zuzustimmen.</message>
 	<message key="manager.setup.authorCopyrightNotice.description"><![CDATA[Der unten eingefügte Copyright -Vermerk erscheint unten auf der Website in der Rubrik 'Über uns' sowie in den Metadaten jedes veröffentlichten Titels. Wenngleich es Aufgabe des Verlages ist, den Charakter der mit dem Autor getroffenen Urheberrechtsvereinbarung zu bestimmen, empfiehlt Public Knowledge Project die Verwendung einer <a href="http://creativecommons.org" target="_blank" class="action">Creative Commons</a> Lizenz. Dazu stellt PKP den Verlagen einen <a href="{$sampleCopyrightWordingUrl}" target="_blank" class="action">Mustertext für den Copyright-Vermerk</a> zur Verfügung, der ausgeschnitten und in das unten stehende Feld eingefügt werden kann. Der Mustertext kann von Verlagen verwendet werden, die (a) Open Access anbieten, (b) Open Access mit zeitlichem Abstand zur kostenpflichtigen Veröffentlichung anbieten oder (c) Open Access nicht anbieten.]]></message>
-	<message key="manager.setup.authorGuidelines.description"><![CDATA[Erläutern Sie den Autoren die in Ihrem Verlage geltenden Zitier- und Formatierungsstandards (z.B. <em>Publication Manual of the American Psychological Association</em>, 5th edition, 2001). Häufig ist es hilfreich, Beispiele für übliche Zitationsformen von Zeitschriften und Büchern zu geben.]]></message>
+	<message key="manager.setup.authorGuidelines.description"><![CDATA[Erläutern Sie den Autor/innen die in Ihrem Verlage geltenden Zitier- und Formatierungsstandards (z.B. <em>Publication Manual of the American Psychological Association</em>, 5th edition, 2001). Häufig ist es hilfreich, Beispiele für übliche Zitationsformen von Zeitschriften und Büchern zu geben.]]></message>
 	<message key="manager.setup.contributor">Beiträger/in</message>
 	<message key="manager.setup.contributors">Finanzielle Unterstützung</message>
 	<message key="manager.setup.contributors.description">Zusätzliche Einrichtungen oder Organisationen, die Finanz- oder Sachleistungen für den Verlag erbringen, erscheinen auf der Website unter 'Über uns'. Wenn gewünscht, kann dort auch eine Dankesbekundung eingefügt werden.</message>
 	<message key="manager.setup.copyediting">Lektoren</message>
 	<message key="manager.setup.copyeditInstructions">Lektoratsrichtlinien</message>
-	<message key="manager.setup.copyeditInstructionsDescription">Die Lektoratsrichtlinien sind den Lektoren, Autoren und Sektionsherausgebern im Stadium 'Redaktionelle Bearbeitung' zugänglich. Unten auf der Seite befindet sich eine Reihe an Standardvorgaben in HTML. Sie können vom Verlagsleiter an jeder Stelle verändert oder ersetzt werden (in HTML oder im Klartext).</message>
+	<message key="manager.setup.copyeditInstructionsDescription">Die Lektoratsrichtlinien sind den Lektor/innen, Autor/innen und Sektionsherausgeber/innen im Stadium 'Redaktionelle Bearbeitung' zugänglich. Unten auf der Seite befindet sich eine Reihe an Standardvorgaben in HTML. Sie können von der/dem Verlagsleiter/in an jeder Stelle verändert oder ersetzt werden (in HTML oder im Klartext).</message>
 	<message key="manager.setup.copyrightNotice">Copyright-Vermerk</message>
 	<message key="manager.setup.coverage">Inhaltlicher Umfang</message>
 	<message key="manager.setup.coverageChronExamples">(z.B. Europäische Renaissance; Jurazeitalter; Letztes Schwangerschaftsdrittel)</message>
@@ -199,19 +199,19 @@ Sie können dem Benutzer den Grund für die Deaktivierung des Kontos nennen (opt
 	<message key="manager.setup.customTagsDescription">Benutzerdefinierte HTML-Header-Tags, die auf jeder Seite in den Header eingefügt werden (zum Beispiel META-Tags).</message>
 	<message key="manager.setup.details">Angaben</message>
 	<message key="manager.setup.details.description">Verlagsname, Ansprechpartner/in, Sponsoren und Suchmaschinen.</message>
-	<message key="manager.setup.disableUserRegistration">Verlagsleiter/innen registrieren alle Benutzer/innen. Sie sind zusammen mit den Herausgebern und Sektionsherausgebern die einzigen, die Gutachter registrieren können.</message>
+	<message key="manager.setup.disableUserRegistration">Verlagsleiter/innen registrieren alle Benutzer/innen. Sie sind zusammen mit den Herausgeber/innen und Sektionsherausgeber/innen die einzigen, die Gutachter/innen registrieren können.</message>
 	<message key="manager.setup.discipline">Wissenschafltliche Disziplinen und Teildisziplinen</message>
-	<message key="manager.setup.disciplineDescription">Dies ist nützlich, wenn der Verlag Disziplingrenzen überschreitet und/oder Autoren interdisziplinäre Veröffentlichungen einreichen.</message>
+	<message key="manager.setup.disciplineDescription">Dies ist nützlich, wenn der Verlag Disziplingrenzen überschreitet und/oder Autor/innen interdisziplinäre Veröffentlichungen einreichen.</message>
 	<message key="manager.setup.disciplineExamples">(z.B. Geschichte; Erziehungswissenschaften; Soziologie; Psychologie; Kulturwissenschaften; Rechtswissenschaften)</message>
 	<message key="manager.setup.disciplineProvideExamples">Nennen Sie Beispile für relevante akademische Disziplinen Ihres Verlages</message>
-	<message key="manager.setup.displayCurrentMonograph">Fügen Sie ein Inhaltsverzeichnis für die aktuelle Monographie bei (falls verfügbar).</message>
+	<message key="manager.setup.displayCurrentMonograph">Fügen Sie ein Inhaltsverzeichnis für die aktuelle Monografie bei (falls verfügbar).</message>
 	<message key="manager.setup.doiPrefix">DOI-Präfix</message>
 	<message key="manager.setup.doiPrefixDescription"><![CDATA[Das DOI (Digital Object Identifier)-Präfix wird von <a href="http://www.crossref.org" target="_blank">CrossRef</a> vergeben und hat das Format 10.xxxx (z.B. 10.1234).]]></message>
-	<message key="manager.setup.editorDecision">Entscheidung des Herausgeber/der Herausgeberin</message>
+	<message key="manager.setup.editorDecision">Entscheidung des Herausgebers/der Herausgeberin</message>
 	<message key="manager.setup.editorialMembers">Gehen Sie zu 'Beiratsmitglieder' und fügen Sie dem Redaktionellen Beirat und/oder dem Gutachterbeirat Mitglieder hinzu. Dieser Schritt ist jederzeit möglich, auch wenn der Verlag bereits arbeitet.</message>
 	<message key="manager.setup.editorialProcess1">Einer oder mehrere Herausgeber übernehmen die Basisschritte ohne vorherige Funktionszuweisung.</message>
-	<message key="manager.setup.editorialProcess2">Der leitende Herausgeber ist zuständig für neu eingegangene, noch keinem (Reihen-)Herausgeber zugewiesene Manuskripteinreichungen und für die Korrektheit des Inhaltsverzeichnisses, der Sektionsherausgeber überwacht und leitet den Begutachtungsprozess und die redaktionelle Bearbeitung.</message>
-	<message key="manager.setup.editorialProcess3">Der leitende Herausgeber ist zuständig für neu eingegangene, noch nicht zugewiesene die Manuskripte, leitet die redaktionelle Bearbeitung und ist verantwortlich für das Inhaltsverzeichnis. Der Sektionsherausgeber überwacht den Begutachtungsprozess.</message>
+	<message key="manager.setup.editorialProcess2">Der leitende Herausgeber ist zuständig für neu eingegangene, noch keiner/keinem (Reihen-)Herausgeber/in zugewiesene Manuskripteinreichungen und für die Korrektheit des Inhaltsverzeichnisses, der Sektionsherausgeber/in überwacht und leitet den Begutachtungsprozess und die redaktionelle Bearbeitung.</message>
+	<message key="manager.setup.editorialProcess3">Der/die leitende Herausgeber/in ist zuständig für neu eingegangene, noch nicht zugewiesene die Manuskripte, leitet die redaktionelle Bearbeitung und ist verantwortlich für das Inhaltsverzeichnis. Der/die Sektionsherausgeber/in überwacht den Begutachtungsprozess.</message>
 	<message key="manager.setup.editorialReviewBoard">Redaktioneller Beirat/Gutachterbeirat</message>
 	<message key="manager.setup.editorialReviewBoardDescription">Verlage haben einen redaktionellen Beirat, um die verlegerische Richtung des Verlages zu bestimmen, an der Berufung von Herausgebern teilzuhaben und um dem Verlag durch die hohe Reputation seiner Beiratsmitglieder ein besseres Standing zu geben. Gutachterbeiräte haben eine ähnliche Funktion, leiten aber außerdem auch den Begutachtungsprozess. Mitglieder des Gutachterbeirats haben keinen Zugang zu den Administrationsbereich der Website, werden aber zur Liste jener hinzugefügt, die für die Teilnahme am Begutachtungsprozess zur Verfügung stehen.</message>
 	<message key="manager.setup.emailBounceAddress">E-Mail-Adresse für Unzustellbarkeitsnachrichten (Bounce Messages)</message>
@@ -219,21 +219,21 @@ Sie können dem Benutzer den Grund für die Deaktivierung des Kontos nennen (opt
 	<message key="manager.setup.emailBounceAddressDisabled"><![CDATA[<strong>Hinweis:</strong> Um diese Option zu aktivieren, muss der Site-Administrator die <tt>allow_envelope_sender</tt> -Option in der OMP-Konfigurationsdatei aktivieren. Es kann sein, dass zur Unterstützung dieser Funktionalität (die nicht auf allen Servern möglich ist) eine zusätzliche Serverkonfiguration nötig ist. Weitere Informationen dazu finden Sie in der OMP-Dokumentation.]]></message>
 	<message key="manager.setup.emails">E-Mail-Identifizierung</message>
 	<message key="manager.setup.emailHeader">Header der E-Mail</message>
-	<message key="manager.setup.emailHeaderDescription">Vorbereitete E-Mails, die vom System im Namen des Verlags versendet werden, beginnen mit dem folgendem Header. Als Absender dieser E-Mails wird der zentrale Ansprechpartner des Verlages genannt sein. Um Missverständnissen bei den Benutzern vorzubeugen, ist es wichtig von vornherein klarzustellen, dass der zentrale Ansprechpartner nicht notwendigerweise für den Inhalt der Nachrichten verantwortlich ist, da die Nachrichten auch im Auftrag eines anderen Benutzers versandt worden sein können.</message>
+	<message key="manager.setup.emailHeaderDescription">Vorbereitete E-Mails, die vom System im Namen des Verlags versendet werden, beginnen mit dem folgendem Header. Als Absender dieser E-Mails wird der zentrale Ansprechpartner des Verlages genannt sein. Um Missverständnissen bei den Benutzer/innen vorzubeugen, ist es wichtig von vornherein klarzustellen, dass der zentrale Ansprechpartner nicht notwendigerweise für den Inhalt der Nachrichten verantwortlich ist, da die Nachrichten auch im Namen einer anderen Benutzerin versandt worden sein können.</message>
 	<message key="manager.setup.emailSignature">Signatur</message>
 	<message key="manager.setup.emailSignatureDescription">Die folgende Signatur wird am Ende der vorbereiteten E-Mails stehen, die vom System im Namen des Verlages versendet werden. Den Inhaltsteil (Textteil) dieser E-Mails können Sie unten bearbeiten.</message>
 	<message key="manager.setup.enableAnnouncements">Bekanntmachungen freischalten.</message>
 	<message key="manager.setup.enableAnnouncementsHomepage1">Anzeige</message>
 	<message key="manager.setup.enableAnnouncementsHomepage2">der neuesten Bekanntmachungen auf der Website</message>
 	<message key="manager.setup.enablePressInstructions">Diesen Verlag für das öffentliche Erscheinen auf der Website freischalten</message>
-	<message key="manager.setup.enablePublicMonographId">Zur Identifizierung veröffentlichter Bände werden benutzerdefinierte Kennungen verwendet.</message>
+	<message key="manager.setup.enablePublicMonografid">Zur Identifizierung veröffentlichter Bände werden benutzerdefinierte Kennungen verwendet.</message>
 	<message key="manager.setup.enablePublicGalleyId">Benutzerdefinierte Kennungen werden verwendet, um Fahnen (z.B. HTML- oder PDF-Dateien) für veröffentlichte Bände zu identifizieren.</message>
 	<message key="manager.setup.enableUserRegistration">Benutzer/innen können sich in einer oder mehrerer der genannten Funktionen beim Verlag registrieren:</message>
-	<message key="manager.setup.enableUserRegistration.author">als Autoren/Autorinnen (sie können Materialien beim Verlag einreichen)</message>
+	<message key="manager.setup.enableUserRegistration.author">als Autorinnen (sie können Materialien beim Verlag einreichen)</message>
 	<message key="manager.setup.enableUserRegistration.reader">als Leser/innen (sie erhalten Benachrichtigungen und werden wie Abonennten gewertet)</message>
 	<message key="manager.setup.enableUserRegistration.reviewer">als Gutachter/innen (sie stehen für die Begutachtung der eingereichten Manuskripte zur Verfügung)</message>
 	<message key="manager.setup.focusAndScope">Focus and Scope of Press</message>
-	<message key="manager.setup.focusAndScope.description">Fügen Sie eine kurze Selbstdarstellung des Verlages (auf der Website unter 'Über uns' aufrufbar) ein, in der Sie Autoren, Lesern und Bibliothekaren einen Eindruck von dem Spektrum an Monographien und anderen Verlagsprodukten vermitteln, das der Verlag veröffentlichen wird.</message>
+	<message key="manager.setup.focusAndScope.description">Fügen Sie eine kurze Selbstdarstellung des Verlages (auf der Website unter 'Über uns' aufrufbar) ein, in der Sie Autor/innen, Leser/innen und Bibliothekar/innen einen Eindruck von dem Spektrum an Monografien und anderen Verlagsprodukten vermitteln, das der Verlag veröffentlichen wird.</message>
 	<message key="manager.setup.focusAndScope">Focus and Scope of Press</message>
 	<message key="manager.setup.focusScope">Verlagsprofil</message>
 	<message key="manager.setup.focusScopeDescription"><![CDATA[<strong>BEISPIEL HTML-DATEN</strong>]]></message>
@@ -262,7 +262,7 @@ Sie können dem Benutzer den Grund für die Deaktivierung des Kontos nennen (opt
 	<message key="manager.setup.layoutInstructions">Layoutrichtlinien</message>
 	<message key="manager.setup.layoutInstructionsDescription">Für die Formatierung von Veröffentlichungen können Layoutrichtlinien erstellt und unten entweder in HTML oder in Klartext eingefügt werden. Sie stehen dem Layouter und dem Sektionsherausgeber auf der Editierseite jedes Manuskripts zur Verfügung. (Da jeder Verlag seine eigenen Dateiformate, bibliographischen Standards, Stylesheets etc. verwenden kann, sind keine Standardlayoutrichtlinien vorgesehen.)</message>
 	<message key="manager.setup.layoutTemplates">Layoutvorlagen</message>
-	<message key="manager.setup.layoutTemplatesDescription">Als Richtlinie für Layouter und Korrektoren können Sie unter 'Layout' Templates für jedes der Standardformate des Verlags (Monographien, Buchbesprechungen etc.) in einem Dateiformat Ihrer Wahl (pdf, doc etc. ) hochladen und sie mit Anmerkungen bezüglich der zu verwendenden Schriften, Größen, Randbreiten etc. versehen.</message>
+	<message key="manager.setup.layoutTemplatesDescription">Als Richtlinie für Layouter und Korrektoren können Sie unter 'Layout' Templates für jedes der Standardformate des Verlags (Monografien, Buchbesprechungen etc.) in einem Dateiformat Ihrer Wahl (pdf, doc etc. ) hochladen und sie mit Anmerkungen bezüglich der zu verwendenden Schriften, Größen, Randbreiten etc. versehen.</message>
 	<message key="manager.setup.layoutTemplates.file">Template-Datei</message>
 	<message key="manager.setup.layoutTemplates.title">Titel</message>
 	<message key="manager.setup.lists">Listen</message>
@@ -330,7 +330,7 @@ Sie können dem Benutzer den Grund für die Deaktivierung des Kontos nennen (opt
 	<message key="manager.setup.proofingInstructionsDescription">Die Korrekturrichtlinien werden Korrektoren, Autoren, Layoutern und Bereichsherausgebern im Stadium 'Redaktionelle Bearbeitung' zugänglich gemacht. Unten finden Sie Standardrichtlinien in HTML, die vom Verlagsleiter bearbeitet oder ersetzt werden können (in HTML oder im Klartext).</message>
 	<message key="manager.setup.proofreading">Korrektoren</message>
 	<message key="manager.setup.provideRefLinkInstructions">Stelle den Layoutern Anleitungen zur Verfügung..</message>
-	<message key="manager.setup.publicationScheduleDescription">Beiträge können zusammen veröffentlicht werden, als Teile einer Monographie mit einem eigenen Inhaltsverzeichnis. Es ist aber auch möglich, sie einzeln zu publizieren, indem man die Beiträge dem Inhaltsverzeichnis eines "laufenden" Bandes hinzufügt. Informieren Sie Ihre Leser/innen unter 'Über uns' darüber, welches Verfahren der Verlag verwenden wird und wie häufig neue Publikationen erscheinen werden.</message>
+	<message key="manager.setup.publicationScheduleDescription">Beiträge können zusammen veröffentlicht werden, als Teile einer Monografie mit einem eigenen Inhaltsverzeichnis. Es ist aber auch möglich, sie einzeln zu publizieren, indem man die Beiträge dem Inhaltsverzeichnis eines "laufenden" Bandes hinzufügt. Informieren Sie Ihre Leser/innen unter 'Über uns' darüber, welches Verfahren der Verlag verwenden wird und wie häufig neue Publikationen erscheinen werden.</message>
 	<message key="manager.setup.publisher">Verlag</message>
 	<message key="manager.setup.publisherDescription">Der Name der Organisation, die den Verlag führt, erscheint unter 'Über uns'.</message>
 	<message key="manager.setup.referenceLinking">Reference Linking (Verknüpfung von Literaturzitaten mit elektronischen Volltexten)</message>
@@ -364,8 +364,8 @@ Sie können dem Benutzer den Grund für die Deaktivierung des Kontos nennen (opt
 	<message key="manager.setup.searchEngineIndexing">Suchmaschinen-Indizierung</message>
 	<message key="manager.setup.searchEngineIndexingDescription">Um den Benutzer/innen von Suchmaschinen das Auffinden Ihres Verlages zu erleichtern, beschreiben Sie bitte bitte kurz den Verlag und geben Sie, durch Semikolon getrennt, wichtige Schlüsselwörter (Keywords) an.</message>
 	<message key="manager.setup.sectionsAndSectionEditors">Sektionen und Sektionsherausgeber/innen</message>
-	<message key="manager.setup.sectionsDefaultSectionDescription">(Wurden keine Sektionen hinzugefügt, werden die Titel standardmäßig der Sektion Monographien zugeordnet.)</message>
-	<message key="manager.setup.sectionsDescription"><![CDATA[Um Sektionen anzulegen oder zu verändern (z.B. Monographien, Buchrezensionen), gehen Sie bitte zu 'Sektionsmanagement'. <br /><br />Autoren, die eine Publikation beim Verlag einreichen, werden es der entsprechenden Sektion zuordnen.]]></message>
+	<message key="manager.setup.sectionsDefaultSectionDescription">(Wurden keine Sektionen hinzugefügt, werden die Titel standardmäßig der Sektion Monografien zugeordnet.)</message>
+	<message key="manager.setup.sectionsDescription"><![CDATA[Um Sektionen anzulegen oder zu verändern (z.B. Monografien, Buchrezensionen), gehen Sie bitte zu 'Sektionsmanagement'. <br /><br />Autoren, die eine Publikation beim Verlag einreichen, werden es der entsprechenden Sektion zuordnen.]]></message>
 	<message key="manager.setup.securitySettings">Zugangs- und Sicherheitseinstellungen</message>
 	<message key="manager.setup.securitySettings.note"><![CDATA[Andere auf die Sicherheit der Website und auf deren Zugang bezogene Optionen können von der Seite <a href="{$accessAndSecurityUrl}" target="_blank" class="action">Zugang und Sicherheit</a> aus konfiguriert werden.]]></message>
 	<message key="manager.setup.selectEditorDescription">Leitender Herausgeber, der den gesamten Publikationsprozess durchführen kann.</message>
@@ -390,14 +390,14 @@ Sie können dem Benutzer den Grund für die Deaktivierung des Kontos nennen (opt
 	<message key="manager.setup.typeExamples">(z.B. historische Untersuchung; quasi-experimentelle Studie; literarische Analyse; Umfrage/Interview)</message>
 	<message key="manager.setup.typeMethodApproach">Typ (Methode/Ansatz)</message>
 	<message key="manager.setup.typeProvideExamples">Nennen Sie Beispiele für relevante Forschungsarten, -methoden und -ansätze auf diesem Feld</message>
-	<message key="manager.setup.useCopyeditors">Jedem Manuskript wird ein Lektor zugewiesen.</message>
-	<message key="manager.setup.useEditorialReviewBoard">Ein Redaktioneller Beirat/Gutachterbeirat wird vom Verlag eingesetzt. .</message>
+	<message key="manager.setup.useCopyeditors">Jedem Manuskript wird ein/e Lektor/in zugewiesen.</message>
+	<message key="manager.setup.useEditorialReviewBoard">Ein Redaktioneller Beirat/Gutachterbeirat wird vom Verlag eingesetzt.</message>
 	<message key="manager.setup.useImageLogo">Verlagslogo</message>
 	<message key="manager.setup.useImageLogoDescription">Es besteht die Möglichkeit, ein optionales Verlagslogo hochzuladen und es in Verbindung mit dem Bild oder dem oben konfigurierten Text zu verwenden.</message>
 	<message key="manager.setup.useImageTitle">Titelbild</message>
 	<message key="manager.setup.useStyleSheet">Formatvorlage des Verlags</message>
 	<message key="manager.setup.useLayoutEditors">Aufgabe des Layouters ist es, HTML-, PDF- und andere Dateien für die elektronische Veröffentlichtung vorzubereiten.</message>
-	<message key="manager.setup.useProofreaders">Ein Korrektor wird bestimmt, um (zusammen mit den Autoren) die Fahnen im letzten Schritt vor der Veröffentlichung gegenzulesen.</message>
+	<message key="manager.setup.useProofreaders">Ein/e Korrektor/in wird bestimmt, um (zusammen mit den Autoren/in) die Fahnen im letzten Schritt vor der Veröffentlichung gegenzulesen.</message>
 	<message key="manager.setup.userRegistration">Benutzerregistrierung</message>
 	<message key="manager.setup.useTextTitle">Seitentitel der Website</message>
 	<message key="manager.setup.volumePerYear">Bände pro Jahr</message>
@@ -410,7 +410,7 @@ Sie können dem Benutzer den Grund für die Deaktivierung des Kontos nennen (opt
 	<message key="manager.setup.newPublicationFormat">Neues Format</message>
 	<message key="manager.setup.newPublicationFormatDescription">Um ein neues Format anzulegen, füllen Sie bitte das unten stehende Formular aus und klicken dann auf den Button 'Erstellen'.</message>
 	<message key="manager.setup.genresDescription">Diese Genres dienen der Benennung der Dateien, sie werden beim Hochladen der Manuskriptdateien in einem Pull-down-Menü angezeigt. Genres, die mit ## gekennzeichnet sind, erlauben es den Benutzern, die jeweilige Datei sowohl mit dem ganzen Buch 99Z oder mit einem bestimmten Kapitel über Angabe der Nummer (z.B. 02) zu verbinden.</message>
-	<message key="manager.setup.reviewProcessEmailDescription">Die Herausgeber/innen senden den Gutachtern Begutachtungsanfragen per E-Mail und fügen das betreffende Manuskript als Anhang bei. Die Gutachter/innen erklären sich in einer E-Mail an die Herausgeber mit der Begutachtung einverstanden (oder lehnen sie ab) und schicken ebenfalls per E-Mail das fertige Gutachten und ihre Empfehlung hinsichtlich des Manuskripts. Die Herausgeber hinterlegen die Einverständniserklärung (oder Ablehnung) der Gutachter/innen, das Gutachten selbst und die Empfehlung in Bezug auf das eingereichte Manuskript auf der Begutachtungsseite, um den Verlauf des Begutachtungsprozess zu dokumentieren.</message>
+	<message key="manager.setup.reviewProcessEmailDescription">Die Herausgeber/innen senden den Gutachter/innen Begutachtungsanfragen per E-Mail und fügen das betreffende Manuskript als Anhang bei. Die Gutachter/innen erklären sich in einer E-Mail an die Herausgeber mit der Begutachtung einverstanden (oder lehnen sie ab) und schicken ebenfalls per E-Mail das fertige Gutachten und ihre Empfehlung hinsichtlich des Manuskripts. Die Herausgeber/innen hinterlegen die Einverständniserklärung (oder Ablehnung) der Gutachter/innen, das Gutachten selbst und die Empfehlung in Bezug auf das eingereichte Manuskript auf der Begutachtungsseite, um den Verlauf des Begutachtungsprozess zu dokumentieren.</message>
 	<message key="manager.setup.genres">Genres</message>
 	<message key="manager.setup.newGenre">Neues Genre</message>
 	<message key="manager.setup.newGenreDescription">Um ein neues Genre anzulegen, füllen Sie die unten stehenden Felder aus und klicken Sie auf 'Erstellen'.</message>
@@ -433,7 +433,7 @@ Sie können dem Benutzer den Grund für die Deaktivierung des Kontos nennen (opt
 	<message key="manager.setup.managerialRoles">Funktionen von "Manager/in"</message>
 	<message key="manager.setup.availableRoles">Verfügbare Funktionen</message>
 	<message key="manager.setup.currentRoles">Aktuelle Funktionen</message>
-	<message key="manager.setup.internalReviewRoles">Funktionen von "Interner Gutachter"</message>
+	<message key="manager.setup.internalReviewRoles">Funktionen von "Interne/r Gutachter/in"</message>
 	<message key="manager.setup.masthead">Impressum</message>
 	<message key="manager.setup.masthead.description">Das Impressum sollte ein Liste der Herausgeber/innen und Geschäftsführer/innen sowie anderer Personen enthalten, die mit dem Verlag in Verbindung stehen. Hier eingegebene Informationen erscheinen unter 'Über uns'.</message>
 	<message key="manager.setup.files">Dateien</message>
@@ -444,26 +444,26 @@ Sie können dem Benutzer den Grund für die Deaktivierung des Kontos nennen (opt
 Autoren, die in diesem Verlag veröffentlichen, stimmen den folgenden Bedingungen zu:
 <ol type="a">
 	<li>Autoren behalten das Urheberrecht an dem Werk und gewähren zu dessen Erstveröffentlichung. Parallel dazu wird das Werk unter eine <a target="_blank" href="http://creativecommons.org/licenses/by/3.0/">Creative Commons Attribution License</a> gestellt. Diese erlaubt es anderen, das Werk weiterzuverbreiten, unter der Bedingung, dass der Autor/die Autorin benannt und auf die Erstveröffentlichung in diesem Verlag hingewiesen wird..</li>
-	<li>Autoren können weitere, gesonderte Verträge für eine nicht-exklusive Verbreitung einer vom Verlag veröffentlichten Version des Buches abschließen (sie können es z. B auf einem institutionellen Repositorium einstellen oder in einem Buch veröffentlichen), jedoch unter Hinweis auf die Erstveröffentlichung in diesem Verlag.</li>
-	<li>Autoren ist es erlaubt und werden dazu ermutigt, ihr Werk bereits bevor es beim Verlag eingereicht oder veröffentlicht wurde, online zu stellen (z.B. auf institutionellen Repositorien oder auf ihrer Website), da dies zu einem produktiven Austausch einerseits als auch zu einer früheren Zitierung als auch einer höheren Zitierhäufigkeit des veröffentlichten Werke führen kann. (Siehe <a target="_blank" href="http://opcit.eprints.org/oacitation-biblio.html">Der Effekt von Open Access</a>).</li>
+	<li>Autor/innen können weitere, gesonderte Verträge für eine nicht-exklusive Verbreitung einer vom Verlag veröffentlichten Version des Buches abschließen (sie können es z. B auf einem institutionellen Repositorium einstellen oder in einem Buch veröffentlichen), jedoch unter Hinweis auf die Erstveröffentlichung in diesem Verlag.</li>
+	<li>Autor/innen ist es erlaubt und werden dazu ermutigt, ihr Werk bereits online zu stellen, bevor es beim Verlag eingereicht oder veröffentlicht wurde (z.B. auf institutionellen Repositorien oder auf ihrer Website), da dies zu einem produktiven Austausch einerseits als auch zu einer früheren Zitierung als auch einer höheren Zitierhäufigkeit des veröffentlichten Werke führen kann. (Siehe <a target="_blank" href="http://opcit.eprints.org/oacitation-biblio.html">Der Effekt von Open Access</a>).</li>
 </ol>
 
 <h4>Vorgeschlagene Leitlinie für Verlage, die eine freie Zugänglichkeit nach einem festgesetzten Verwertungszeitraum anbieten (Delayed Open Access)</h4>
-Autoren, die bei diesem Verlag publizieren, stimmen folgenden Bedingungen zu:
+Autor/innen, die bei diesem Verlag publizieren, stimmen folgenden Bedingungen zu:
 <ol type="a">
-	<li>Autoren behalten das Urheberrecht an dem Werk und gewähren dem Verlag das Recht zu dessen Erstveröffentlichung des Werkes. Das Werk wird [Zeitraum angeben] nach der Veröffentlichung parallel unter einer <a target="_blank" href="http://creativecommons.org/licenses/by/3.0/">Creative Commons Attribution License</a> lizensiert, die es anderen erlaubt, das Werk weiterzuverbreiten, unter der Bedingung, dass der Autor/die Autorin benannt und auf die Erstveröffentlichung in diesem Verlag hingewiesen wird.</li>
-	 <li>Autoren können weitere, gesonderte Verträge für eine nicht-exklusive Verbreitung einer vom Verlag veröffentlichten Version des Buches abschließen (sie können es z. B auf einem institutionellen Repositorium einstellen oder in einem Buch veröffentlichen), jedoch muss auf die Erstveröffentlichung in diesem Verlag hingewiesen werden.</li>
-	 <li>Autoren dürfen gerne ihr Werk bereits bevor es beim Verlag eingereicht oder veröffentlicht wurde online stellen (z.B. auf institutionellen Repositorien oder auf ihren Websites). Dies dient nicht nur dem produktiven Austausch untereinander, sondern kann auch zu einer früheren Zitierung und einer höheren Zitierhäufigkeit des veröffentlichten Werke beitragen. (Siehe <a target="_blank" href="http://opcit.eprints.org/oacitation-biblio.html">Der Effekt von Open Access</a>)./li>
+	<li>Autor/innen behalten das Urheberrecht an dem Werk und gewähren dem Verlag das Recht zu dessen Erstveröffentlichung des Werkes. Das Werk wird [Zeitraum angeben] nach der Veröffentlichung parallel unter einer <a target="_blank" href="http://creativecommons.org/licenses/by/3.0/">Creative Commons Attribution License</a> lizenziert, die es anderen erlaubt, das Werk weiterzuverbreiten, unter der Bedingung, dass der Autor/die Autorin benannt und auf die Erstveröffentlichung in diesem Verlag hingewiesen wird.</li>
+	 <li>Autor/innen können weitere, gesonderte Verträge für eine nicht-exklusive Verbreitung einer vom Verlag veröffentlichten Version des Buches abschließen (sie können es z. B auf einem institutionellen Repositorium einstellen oder in einem Buch veröffentlichen), jedoch muss auf die Erstveröffentlichung in diesem Verlag hingewiesen werden.</li>
+	 <li>Autor/innen dürfen gerne ihr Werk bereits online stellen, bevor es beim Verlag eingereicht oder veröffentlicht wurde (z.B. auf institutionellen Repositorien oder auf ihren Websites). Dies dient nicht nur dem produktiven Austausch untereinander, sondern kann auch zu einer früheren Zitierung und einer höheren Zitierhäufigkeit des veröffentlichten Werke beitragen. (Siehe <a target="_blank" href="http://opcit.eprints.org/oacitation-biblio.html">Der Effekt von Open Access</a>)./li>
 </ol>]]></message>
 	<message key="manager.setup.subjectClassificationDescription"><![CDATA[[Der Verlag verwendet ein Fachsystematik, die im Web verfügbar ist. <br />
 Die verwendete Fachsystematik heißt]]></message>
 	<message key="manager.setup.basicEditorialStepsDescription"><![CDATA[Schritte: Warteschlange &gt; Begutachtung &gt; Redaktionelle Bearbeitung &gt; Inhaltsverzeichnis.<br /><br />
-Wählen Sie ein Modell, um dieses Aspekte des Publikationsprozesses zu steuern. (Um einen leitenden Herausgeber und Serienherausgeber zu bestimmen, gehen Sie in der Verlagsverwaltung zu 'Herausgeber'.)]]></message>
+Wählen Sie ein Modell, um dieses Aspekte des Publikationsprozesses zu steuern. (Um eine/n leitende/n Herausgeber/in oder Serienherausgeber/in zu bestimmen, gehen Sie in der Verlagsverwaltung zu 'Herausgeber/innen'.)]]></message>
 	<message key="manager.setup.referenceLinkingDescription"><![CDATA[<p>Um Lesern das Auffinden der Onlineversion eines zitierten Werkes zu erleichtern, können Sie:</p>
 
 <ol>
-	<li><strong>Ein Lesewerkzeug hinzufügen: </strong><p>Der Verlagsleiter kann den Link "Finde Literaturnachweise" zu den Lesewerkzeugen (sie stehen in der Sidebar neben dem veröffentlichten Beitrag) hinzufügen. Durch Anklicken des Links öffnet sich ein Fenster, in dem der Leser einen zitierten Titel einfügen und anschließend in vorausgewählten wissenschaftlichen Datenbanken danach suchen kann.</p></li>
-	<li><strong>Links in die Literaturnachweise einbinden: </strong><p>Der Layouter kann einen Link zu online aufrufbaren Zitationen hinzufügen. Die folgenden Instruktionen sind dabei unter Umständen hilfreich (Bearbeitung erlaubt).</p></li>
+	<li><strong>Ein Lesewerkzeug hinzufügen: </strong><p>Der Verlagsleiter kann den Link "Finde Literaturnachweise" zu den Lesewerkzeugen (sie stehen in der Sidebar neben dem veröffentlichten Beitrag) hinzufügen. Durch Anklicken des Links öffnet sich ein Fenster, in dem der/die Leser/in einen zitierten Titel einfügen und anschließend in vorausgewählten wissenschaftlichen Datenbanken danach suchen kann.</p></li>
+	<li><strong>Links in die Literaturnachweise einbinden: </strong><p>Der/die Layouter/in kann einen Link zu online aufrufbaren Zitationen hinzufügen. Die folgenden Instruktionen sind dabei unter Umständen hilfreich (Bearbeitung erlaubt).</p></li>
 </ol>]]></message>
 	<message key="manager.setup.registerForIndexingDescription"><![CDATA[<a href="http://pkp.sfu.ca/harvester/add.php" target="_blank">Registrieren</a> Sie die URL Ihres Verlag beim <a href="http://pkp.sfu.ca/harvester/" target="_blank">Public Knowledge Project Metadata Harvester</a>, um die Inhalte Ihres Verlages in einem weltweit verbreiteten System wissenschaftlicher Datenbanken zu indizieren. Dieses Tool sammelt die Metadaten aller indizierten Einträge eines Verlages und ermöglicht dadurch genaue Suchen sowie Sammelsuchen in den Forschungswebsites, die sich dem <a href="http://www.openarchives.org/OAI/openarchivesprotocol.htm#Introduction" target="_blank">Open Archives Initiative Protokoll für Metadata Harvesting</a> angeschlossen haben.
 <br /><br />
@@ -471,6 +471,6 @@ Bitte beachten Sie: Sollte Ihr Administrator die Website bereits bei der PKP-Har
 <br /><br />Klicken Sie 
 <a href="http://pkp.sfu.ca/harvester/add.php" target="_blank">hier</a> und geben Sie <span class="highlight">{$siteUrl}</span> bei <strong>Site URL</strong> und <span class="highlight">{$oaiUrl}</span> bei <strong>Base URL for OAI Archive</strong> ein.]]></message>
 
-	<message key="settings.roles.gridDescription">Über "Funktionen" werden Benutzergruppen unterschiedlichen Berechtigungsstufen zugeordnet, die wiederum mit verschiedenen Workflows gekoppelt sind. Es gibt fünf verschiedene Berechtigungsstufen: Verlagsleiter/innen haben Zugang zu allen Verlagsinhalten und -einstellungen, Herausgeber/-innen zu allen Inhalten der Reihen, die sie betreuen, Verlagsassistenten/innen haben Zugang zu allen Monographien, die ihnen explizit vom Herausgeber zugewiesen wurden. Gutachter/innen können nur die Begutachtungen sehen und vornehmen, die ihnen zugewiesen wurden. Autoren/innen schließlich können nur einem begrenzten Umfang den Publikationsprozess ihres Buches mitverfolgen oder ihn beeiflussen. Außerdem können in den fünf verschiedenen Stadien, die ein Manuskript von der Einreichung bis zur Fertigstellung durchläuft - Einreichung, interne Begutachtung, externe Begutachtung, Redaktion und Herstellung - Funktionen festgelegt werden, die Zugriff auf das jeweilige Workflowstadium haben sollen.</message>
+	<message key="settings.roles.gridDescription">Über "Funktionen" werden Benutzer/innengruppen unterschiedlichen Berechtigungsstufen zugeordnet, die wiederum mit verschiedenen Workflows gekoppelt sind. Es gibt fünf verschiedene Berechtigungsstufen: Verlagsleiter/innen haben Zugang zu allen Verlagsinhalten und -einstellungen, Herausgeber/-innen zu allen Inhalten der Reihen, die sie betreuen, Verlagsassistenten/innen haben Zugang zu allen Monografien, die ihnen explizit vom Herausgeber zugewiesen wurden. Gutachter/innen können nur die Begutachtungen sehen und vornehmen, die ihnen zugewiesen wurden. Autor/innen schließlich können nur einem begrenzten Umfang den Publikationsprozess ihres Buches mitverfolgen oder ihn beeiflussen. Außerdem können in den fünf verschiedenen Stadien, die ein Manuskript von der Einreichung bis zur Fertigstellung durchläuft - Einreichung, interne Begutachtung, externe Begutachtung, Redaktion und Herstellung - Funktionen festgelegt werden, die Zugriff auf das jeweilige Workflowstadium haben sollen.</message>
 	<message key="manager.publication.library">Verlagsdokumentenarchiv</message>
 </locale>
