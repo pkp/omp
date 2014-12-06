@@ -67,7 +67,7 @@
 	<message key="monograph.publicationFormat.noCodesAssigned">Identifikationscode fehlt.</message>
 	<message key="monograph.publicationFormat.missingONIXFields">Einige Metadatenfelder wurden nicht ausgefüllt.</message>
 
-	<message key="monograph.publicationFormat.formatDoesNotExist"><![CDATA[<p>Das von Ihnen gewählte Format steht für diese Monographie nicht mehr zur Verfügung.</p>]]></message>
+	<message key="monograph.publicationFormat.formatDoesNotExist"><![CDATA[<p>Das von Ihnen gewählte Format steht für diese Monografie nicht mehr zur Verfügung.</p>]]></message>
 	<message key="monograph.publicationFormat.openTab">Öffne Reiter Publikationsform.</message>
 	<!-- assigned publication format grid and form keys -->
 	<message key="grid.catalogEntry.publicationFormatType">Format</message>
@@ -75,7 +75,7 @@
 	<message key="grid.catalogEntry.validPriceRequired">Eine gültige Preisangabe ist erforderlich.</message>
 	<message key="grid.catalogEntry.publicationFormatDetails">Weitere Angaben für dieses Format</message>
 	<message key="grid.catalogEntry.physicalFormat">Physisches Format</message>
-	<message key="grid.catalogEntry.monographRequired">Es wird eine Kennung für die Monographie benötigt</message>
+	<message key="grid.catalogEntry.monographRequired">Es wird eine Kennung für die Monografie benötigt</message>
 	<message key="grid.catalogEntry.publicationFormatRequired">Bitte wählen Sie ein Publikationsformat.</message>
 	<message key="grid.catalogEntry.isAvailable">Verfügbar</message>
 	<message key="grid.catalogEntry.proof">Korrekturfahne</message>
@@ -247,7 +247,7 @@
 	<message key="catalog.manage.managementIntroduction">Willkommen in der Katalogverwaltung! Hier können Sie neue Katalogeinträge veröffentlichen, Bücher zur Liste der empfohlenen Bücher oder zur Neuerscheinungsliste hinzufügen sowie Kategorien und Reihen anlegen und ihnen Bücher zuordnen.</message>
 	<message key="catalog.selectSeries">Wählen Sie eine Reihe aus</message>
 	<message key="catalog.selectCategory">Wählen Sie eine Kategorie aus</message>
-	<message key="catalog.manage.entryDescription">Um ein Buch in den Katalog aufzunehmen, wählen Sie den Reiter "Monographien" und geben dort die notwendigen Informationen an. Informationen, die sich auf ein bestimmtes Format (z.B. PDF, Paperback, Hardcover) beziehen, geben Sie auf dem Reiter mit der entsprechenden Formatbezeichnung ein. Die Metadaten-Spezifikationen basieren auf "ONIX for Books", einem internationalen Datenformatstandard, der von der Buchbranche für den Austausch von Produktinformationen verwendet wird.</message>
+	<message key="catalog.manage.entryDescription">Um ein Buch in den Katalog aufzunehmen, wählen Sie den Reiter "Monografien" und geben dort die notwendigen Informationen an. Informationen, die sich auf ein bestimmtes Format (z.B. PDF, Paperback, Hardcover) beziehen, geben Sie auf dem Reiter mit der entsprechenden Formatbezeichnung ein. Die Metadaten-Spezifikationen basieren auf "ONIX for Books", einem internationalen Datenformatstandard, der von der Buchbranche für den Austausch von Produktinformationen verwendet wird.</message>
 	<message key="catalog.manage.spotlightDescription">Auf der Homepage des Verlags werden bis zu drei Spotlights (z.B. empfohlene Bücher) mit Titel, Umschlagbild und Text angezeigt.</message>
 	<message key="catalog.manage.homepageDescription">Die Umschlagbilder der ausgewählten Bücher erscheinen auf der Homepage als scrollbare Liste. Klicken Sie auf den Icon 'Empfehlen' (rechts) und anschließend auf das entsprechende Sternchen, um ein Buch dem Karussell hinzuzufügen, und auf das Ausrufezeichen, wenn Sie es unter der Rubrik 'Neuerscheinungen" erscheinen soll. Durch Drag and Drop können Sie die Reihenfolge festlegen, in der die Bücher angezeigt werden.</message>
 	<message key="catalog.manage.categoryDescription">Um ein Buch auszuwählen, das Sie in der jeweiligen Kategorie besonders empfehlen möchten, klicken Sie zunächst auf den Icon 'Empfehlen' (rechts unterhalb dieser Erklärung) und dann auf das Sternchen. Mit Drag and Drop legen Sie die Reihenfolge der angezeigten empfohlenen Titel fest.</message>
@@ -256,7 +256,7 @@
 	<message key="catalog.manage.newRelease">Ausgabe</message>
 	<message key="catalog.manage.manageSeries">Reihen verwalten</message>
 	<message key="catalog.manage.manageCategories">Kategorien verwalten</message>
-	<message key="catalog.manage.noMonographs">Es liegen keine Ihnen zugewiesenen Monographien vor.</message>
+	<message key="catalog.manage.noMonographs">Es liegen keine Ihnen zugewiesenen Monografien vor.</message>
 
 	<!-- Catalog -->
 	<message key="catalog.browseTitles">{$numTitles} Titel</message>
@@ -320,7 +320,7 @@
 	<!-- User -->
 	<message key="user.noRoles.selectUsersWithoutRoles">Benutzer/innen ohne zugewiesene Funktion mit einbeziehen.</message>
 	<message key="user.noRoles.submitMonograph">Einen Vorschlag einreichen</message>
-	<message key="user.noRoles.submitMonographRegClosed">Einreichen einer Monographie: Die Registrierung als Autor/in ist zurzeit deaktiviert.</message>
+	<message key="user.noRoles.submitMonographRegClosed">Einreichen einer Monografie: Die Registrierung als Autor/in ist zurzeit deaktiviert.</message>
 	<message key="user.noRoles.regReviewer">Registrierung als Gutachter/in</message>
 	<message key="user.noRoles.regReviewerClosed">Registrierung als Gutachter/in: Die Gutachterregistrierung ist zurzeit deaktiviert.</message>
 
@@ -363,22 +363,22 @@
 	<!-- About The Press -->
 	<message key="about.pressContact">Pressekontakt</message>
 	<message key="about.aboutThePress">Über den Verlag</message>
-	<message key="about.editorialTeam">Herausgeberteam</message>
-	<message key="about.editorialPolicies">Herausgeberrichtlinien</message>
+	<message key="about.editorialTeam">Herausgeber/innen</message>
+	<message key="about.editorialPolicies">Herausgeber/innenrichtlinien</message>
 	<message key="about.focusAndScope">Fokus und Umfang</message>
 	<message key="about.seriesPolicies">Richtlinien für Reihen und Kategorien</message>
 	<message key="about.submissions">Manuskripte einreichen</message>
-	<message key="about.sponsors">Sponsoren/innen</message>
+	<message key="about.sponsors">Sponsor/innen</message>
 	<message key="about.contributors">Förderer</message>
 	<message key="about.onlineSubmissions">Online-Einreichungen</message>
-	<message key="about.onlineSubmissions.haveAccount">Besitzen Sie bereits einen Benutzernamen/ein Passwort für {$pressTitle}?</message>
+	<message key="about.onlineSubmissions.haveAccount">Besitzen Sie bereits einen Benutzer/innennamen/ein Passwort für {$pressTitle}?</message>
 	<message key="about.onlineSubmissions.login">Zum Login</message>
-	<message key="about.onlineSubmissions.needAccount">Benötigen Sie einen Benutzernamen/ein Passwort?</message>
+	<message key="about.onlineSubmissions.needAccount">Benötigen Sie einen Benutzer/innennamen/ein Passwort?</message>
 	<message key="about.onlineSubmissions.registration">Zur Registrierung</message>
 	<message key="about.onlineSubmissions.registrationRequired">Sie müssen registriert und eingeloggt sein, um Manuskripte einzureichen oder den aktuellen Status Ihrer Einreichung zu überprüfen.</message>
 	<message key="about.authorGuidelines">Richtlinien für Autoren/innen</message>
 	<message key="about.submissionPreparationChecklist">Checkliste zur Manuskripteinreichung</message>
-	<message key="about.submissionPreparationChecklist.description">Während des Einreichungsvorganges werden die Autoren dazu aufgefordert zu überprüfen, ob ihr Manuskript alle genannten Anforderungen erfüllt. Manuskripte, die nicht mit den Richtlinien übereinstimmen, können an die Autoren zurückgegeben werden.</message>
+	<message key="about.submissionPreparationChecklist.description">Während des Einreichungsvorganges werden die Autor/innen dazu aufgefordert zu überprüfen, ob ihr Manuskript alle genannten Anforderungen erfüllt. Manuskripte, die nicht mit den Richtlinien übereinstimmen, können an die Autor/innen zurückgegeben werden.</message>
 	<message key="about.copyrightNotice">Copyright-Vermerk</message>
 	<message key="about.privacyStatement">Datenschutzerkärung</message>
 	<message key="about.peerReviewProcess">Peer-Review-Prozess</message>
@@ -444,14 +444,14 @@ Ihr Server untersützt aktuell mbstring: <strong>{$supportsMBString}</strong>]]>
 	<message key="log.review.reviewDeclined">{$reviewerName} hat es abgelehnt, an der Begutachtungsrunde {$round} für Manuskript {$submissionId} teilzunehmen.</message>
 	<message key="log.review.reviewAccepted">{$reviewerName} hat der Teilnahme an der Begutachtungsrunde {$round} für Manuskript {$submissionId} zugestimmt.</message>
 	<message key="log.review.reviewUnconsidered">{$editorName} hat die Begutachtungsrunde {$round} für Manuskript {$submissionId} als 'nicht berücksichtigt' markiert.</message>
-	<message key="log.editor.decision">Die Entscheidung des Herausgebers ({$decision}) zu Monographie {$submissionId} wurde von {$editorName} protokolliert.</message>
+	<message key="log.editor.decision">Die Entscheidung des Herausgebers ({$decision}) zu Monografie {$submissionId} wurde von {$editorName} protokolliert.</message>
 	<message key="log.editor.archived">Manuskript {$submissionId} wurde archiviert.</message>
 	<message key="log.editor.restored">Manuskript {$submissionId} wurde in die Warteschlange zurückgestellt.</message>
 	<message key="log.editor.editorAssigned">{$editorName} wurde als Herausgeber/in des Manuskripts {$submissionId} bestimmt.</message>
-	<message key="log.editor.submissionExpedited">{$editorName} hat sich bei Monographie {$submissionId} für den beschleunigten Veröffentlichungsprozess entschieden.</message>
+	<message key="log.editor.submissionExpedited">{$editorName} hat sich bei Monografie {$submissionId} für den beschleunigten Veröffentlichungsprozess entschieden.</message>
 	<message key="log.proofread.assign">{$assignerName} hat {$proofreaderName} zum Korrektor für Manuskript {$submissionId} bestimmt.</message>
 	<message key="log.proofread.complete">{$proofreaderName} hat {$submissionId} zur Planung eingereichtng.</message>
-	<message key="log.imported">{$userName} hat Monographie {$submissionId} importiert.</message>
+	<message key="log.imported">{$userName} hat Monografie {$submissionId} importiert.</message>
 
 	<!-- Notifications -->
 	<message key="notification.addedIdentificationCode">Code hinzugefügt.</message>
@@ -483,7 +483,7 @@ Ihr Server untersützt aktuell mbstring: <strong>{$supportsMBString}</strong>]]>
 	<message key="notification.proofsApproved">Korrekurfahnen akzeptiert.</message>
 	<message key="notification.removedSubmission">Das eingereichte Manuskript wurde gelöscht.</message>
 	<!-- Notification Types -->
-	<message key="notification.type.submissionSubmitted">Eine neue Monographie, "{$title}," wurde eingereicht.</message>
+	<message key="notification.type.submissionSubmitted">Eine neue Monografie, "{$title}," wurde eingereicht.</message>
 	<message key="notification.type.editing">Bei der redaktionellen Bearbeitung aufgetretene Ereignisse</message>
 	<message key="notification.type.metadataModified">Die Metadaten von "{$title}'" wurden verändert.</message>
 	<message key="notification.type.reviewerComment">Ein Gutachter hat einen Kommentar zu "{$title}" hinterlegt.</message>
@@ -491,7 +491,7 @@ Ihr Server untersützt aktuell mbstring: <strong>{$supportsMBString}</strong>]]>
 	<message key="notification.type.site">Auf der Webite aufgetretene Ereignisse</message>
 	<message key="notification.type.submissions">Bei der Manuskripteinreichung aufgetretene Ereignisse</message>
 	<message key="notification.type.userComment">Ein Leser hat einen Kommentar zu "{$title}" geschrieben.</message>
-	<message key="notification.type.editorAssignmentTask">Eine neue Monographie wurde eingereicht. Sie muss noch einem Herausgeber/einer Herausgeberin zugewiesen werden.</message>
+	<message key="notification.type.editorAssignmentTask">Eine neue Monografie wurde eingereicht. Sie muss noch einem Herausgeber/einer Herausgeberin zugewiesen werden.</message>
 	<message key="notification.type.copyeditorRequest">Sie wurden um die Durchsicht der lektorierten Manuskripte "{$file}" gebeten.</message>
 	<message key="notification.type.layouteditorRequest">Sie wurden um die Durchsicht der Layout-Dateien "{$title}" gebeten.</message>
 	<message key="notification.type.indexRequest">Sie wurden gebeten, einen Index für "{$title}" zu erstellen.</message>
@@ -499,25 +499,25 @@ Ihr Server untersützt aktuell mbstring: <strong>{$supportsMBString}</strong>]]>
 	<message key="notification.type.roundStatusTitle">Durchgang {$round} Status</message>
 	<message key="notification.type.approveSubmission">Das eingereichte Manuskript muss noch im Katalogtool als akzeptiert gekennzeichnet werden. Sobald dies geschehen ist, wird es im öffentlichen Verlagskatalog erscheinen.</message>
 	<message key="notification.type.approveSubmissionTitle">Warten auf Freigabe.</message>
-	<message key="notification.type.formatNeedsApprovedSubmission">Damit das Format in den Katalog aufgenommen werden kann, müssen Sie die Metadaten für den Katalogeintrag akzeptieren. Aktivieren Sie dazu auf diesem Reiter die Checkbox "Übernehme die Metadaten für dieses Format in den Katalog". Wechseln Sie anschließend auf den Reiter 'Monographie' und aktvieren dort die Checkbox 'Erstelle anhand der angegebenen Metadaten einen neuen Katalogeintrag'.</message>
+	<message key="notification.type.formatNeedsApprovedSubmission">Damit das Format in den Katalog aufgenommen werden kann, müssen Sie die Metadaten für den Katalogeintrag akzeptieren. Aktivieren Sie dazu auf diesem Reiter die Checkbox "Übernehme die Metadaten für dieses Format in den Katalog". Wechseln Sie anschließend auf den Reiter 'Monografie' und aktvieren dort die Checkbox 'Erstelle anhand der angegebenen Metadaten einen neuen Katalogeintrag'.</message>
 	<message key="notification.type.configurePaymentMethod.title">Es wurde noch keine Zahlungsweise konfiguriert.</message>
 	<message key="notification.type.configurePaymentMethod">Bevor Sie die E-Commerce-Einstellungen definieren können, müssen Sie zunächst eine Zahlungsweise konfigurieren.</message>
-	<message key="notification.type.visitCatalog">Die eingereichte Monographie wurde akzeptiert. Bitte gehen Sie zum Katalog, um dort genauere Angaben zum Buch zu machen. Den Link zum Katalog befindet sich oberhalb dieses Dialogfeldes.</message>
+	<message key="notification.type.visitCatalog">Die eingereichte Monografie wurde akzeptiert. Bitte gehen Sie zum Katalog, um dort genauere Angaben zum Buch zu machen. Den Link zum Katalog befindet sich oberhalb dieses Dialogfeldes.</message>
 	<message key="notification.type.visitCatalogTitle">Katalogverwaltung</message>
 
 	<!-- Authorization -->
-	<message key="user.authorization.invalidReviewAssignment">Der Zugang wurde Ihnen verweigt, da Sie für diese Monographie nicht als Gutachter/in zugelassen sind.</message>
-	<message key="user.authorization.monographAuthor">Der Zugang wurde Ihnen verweigt, da Sie anscheinend nicht der Autor/die Autorin dieser Monographie sind.</message>
-	<message key="user.authorization.monographReviewer">Der Zugang wurde Ihnen verweigt, da diese Monographie Ihnen anscheinend nicht zur Begutachtung zugewiesen wurde.</message>
+	<message key="user.authorization.invalidReviewAssignment">Der Zugang wurde Ihnen verweigert, da Sie für diese Monografie nicht als Gutachter/in zugelassen sind.</message>
+	<message key="user.authorization.monographAuthor">Der Zugang wurde Ihnen verweigert, da Sie anscheinend nicht der Autor/die Autorin dieser Monografie sind.</message>
+	<message key="user.authorization.monographReviewer">Der Zugang wurde Ihnen verweigert, da diese Monografie Ihnen anscheinend nicht zur Begutachtung zugewiesen wurde.</message>
 	<message key="user.authorization.monographFile">Der Zugang zu dieser Buchdatei wurde verweigert.</message>
 	<message key="user.authorization.invalidMonograph">Ungültiges Buch oder kein Buch angefordert!</message>
-	<message key="user.authorization.invalidSeriesEditorSubmission">Ungültiger Reihenherausgeber oder kein Reihenherausgeber angefordert!</message>
+	<message key="user.authorization.invalidSeriesEditorSubmission">Ungültige/r Reihenherausgeber/in oder keine Reihenherausgeber/in angefordert!</message>
 	<message key="user.authorization.noContext">Kein Verlag im Kontext!</message>
-	<message key="user.authorization.seriesAssignment">Sie versuchen, auf eine Monographie zuzugreifen, die nicht mehr zu Ihrer Reihe gehört.</message>
+	<message key="user.authorization.seriesAssignment">Sie versuchen, auf eine Monografie zuzugreifen, die nicht mehr zu Ihrer Reihe gehört.</message>
 	<message key="user.authorization.workflowStageAssignmentMissing">Zugriff verweigert! Sie sind nicht für dieses Stadium des Publikationsprozesses freigeschaltet.</message>
-	<message key="user.authorization.workflowStageSettingMissing">Zugriff verweigert! Die Benutzergruppe, in der Sie aktuell aktiv sind, ist zu diesem Stadium des Publikationsprozesses nicht freigeschaltet. Bitte überprüfen Sie Ihre Benutzereinstellungen.</message>
+	<message key="user.authorization.workflowStageSettingMissing">Zugriff verweigert! Die Benutzer/innengruppe, in der Sie aktuell aktiv sind, ist nicht mit dieser Phase des Publikationsprozesses befasst. Bitte überprüfen Sie Ihre Einstellungen.</message>
 
-	<message key="payment.directSales">Download von der Verlagswebsite</message>
+	<message key="payment.directSales">Download von der Verlagswebseite</message>
 	<message key="payment.directSales.price">Preis</message>
 	<message key="payment.directSales.availability">Verfügbarkeit</message>
 	<message key="payment.directSales.catalog">Katalog</message>
@@ -532,7 +532,7 @@ Ihr Server untersützt aktuell mbstring: <strong>{$supportsMBString}</strong>]]>
 	<message key="payment.directSales.validPriceRequired">Bitte geben Sie einen gültigen Preis (als Zahl) ein.</message>
 	<message key="payment.directSales.purchase">Kaufen ({$amount} {$currency})</message>
 	<message key="payment.directSales.download">Download</message>
-	<message key="payment.directSales.monograph.name">Download einer Monographie oder eines Kapitels erwerben</message>
+	<message key="payment.directSales.monograph.name">Download einer Monografie oder eines Kapitels erwerben</message>
 	<message key="payment.directSales.monograph.description">Diese Transaktion dient dem Erwerb eines direkten Buch- oder Kapiteldownloads.</message>
 
 	<!-- Debug messages -->
@@ -543,10 +543,10 @@ Ihr Server untersützt aktuell mbstring: <strong>{$supportsMBString}</strong>]]>
 	<message key="rt.metadata.pkp.peerReviewed">Begutachteter Artikel (Peer-Review-Verfahren)</message>
 
 	<!-- General plugin information -->
-	<message key="plugins.categories.viewableFiles">Veröffentlichte Datei-Plug-ins</message>
-	<message key="plugins.categories.viewableFiles.description">Published File Plugins add support for displaying different document types inline, e.g. using PDF embedding.</message>
+	<message key="plugins.categories.viewableFiles">Plug-Ins für veröffentlichte Dateien</message>
+	<message key="plugins.categories.viewableFiles.description">Plug-Ins für veröffentlichte Dateien fügen Möglichkeiten zur eingebetteten Anzeige verschiedener Dokumenttypen hinzu, z.B. zur Einbettung von PDF.</message>
 	<message key="submission.pdf.download">PDF herunterladen</message>
-	<message key="grid.user.mergeUsers.mergeUserSelect.confirm">Sind Sie sicher, dass Sie diesen Benutzer mit einem anderen zusammenführen möchten? Den zweiten Benutzer finden Sie im folgenden Fenster angezeigt.</message>
-	<message key="user.login.resetPasswordInstructions">Aus Sicherheitsgründen gibt dieses System nicht das aktuelle Passwort preis, sondern sendet per-E-Mail ein Reset-Passwort an registrierte Benutzer. </message>
+	<message key="grid.user.mergeUsers.mergeUserSelect.confirm">Sind Sie sicher, dass Sie dieses Benutzer/innenkonto mit einem anderen zusammenführen möchten? Sie können das zweite Konto auf der folgenden Seite auswählen.</message>
+	<message key="user.login.resetPasswordInstructions">Aus Sicherheitsgründen schickt das System den registrierten Benutzer/innen ein neues Passwort statt des aktuellen Passworts per E-Mail.</message>
 
 </locale>
