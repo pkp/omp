@@ -2,14 +2,14 @@
 <!DOCTYPE locale SYSTEM "../../lib/pkp/dtd/locale.dtd">
 
 <!--
- * locale/de_DE/manager.xml
- *
- * Copyright (c) 2014 Simon Fraser University Library
- * Copyright (c) 2003-2014 John Willinsky
- * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
- * Localization strings.
- * Please contact Marco Tullney, marco.tullney@fu-berlin.de, with any questions regarding this translation. 
- -->
+  * locale/de_DE/manager.xml
+  *
+  * Copyright (c) 2014 Simon Fraser University Library
+  * Copyright (c) 2003-2014 John Willinsky
+  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
+  * Localization strings.
+  * Please contact Marco Tullney, marco.tullney@fu-berlin.de, with any questions regarding this translation. 
+  -->
 
 <locale name="de_DE" full_name="Deutsch (Deutschland)">
 
@@ -20,43 +20,9 @@
 	<message key="manager.languages.primaryLocaleInstructions">Diese Sprache wird die voreingestellte Sprache für die Verlagswebsite sein.</message>	
 
 	<!-- Review forms -->
-	<message key="manager.reviewForms">Gutachtenformular</message>
-	<message key="manager.reviewForms.completed">Vollständig</message>
-	<message key="manager.reviewForms.confirmDeletePublished">Löschen des veröffentlichten Gutachtenformulars bestätigen ...</message>
-	<message key="manager.reviewForms.confirmDeleteUnpublished">Löschen des bisher unveröffentlichten Gutachtenformular bestätigen ...</message>
-	<message key="manager.reviewForms.create">Gutachtenformular erstellen</message>
-	<message key="manager.reviewForms.description">Beschreibung und Anleitung</message>
-	<message key="manager.reviewForms.edit">Gutachtenformular</message>
-	<message key="manager.reviewForms.form.titleRequired">Es wird ein Titel für das Gutachtenformular benötigt.</message>
-	<message key="manager.reviewForms.inReview">In Begutachtung</message>
-	<message key="manager.reviewForms.list.description">Die hier erstellten Gutachtenformulare werden den Gutachtern anstelle des aus zwei offenen Textfeldern bestehenden "Standard-Gutachtenformulars (eines "Für Autor/in und Herausgeber/in", das andere "Für den Herausgeber/die Herausgeberin) angezeigt. Gutachtenformulare können einer bestimmten Verlagssektion zugeordnet werde: Die Herausgeber/innen können dann auswählen, welches Gutachtenformular für die Begutachtung am besten geeignet ist. Unabhängig davon, welches Formular gewählt wurde, kann der/die Herausgeber/in jederzeit die Gutachten in die Korrespondenz mit dem/der Autor/in einzufügen.</message>
-	<message key="manager.reviewForms.noneChosen">Keine/Ohne Begutachtung</message>
-	<message key="manager.reviewForms.noneCreated">Bisher wurden keine Gutachtenformulare erstellt.</message>
-	<message key="manager.reviewForms.noneUsed">Bisher wurde noch keine Gutachtenformulare verwendet.</message>
-	<message key="manager.reviewForms.preview">Vorschau</message>
-	<message key="manager.reviewForms.reviewFormData">Daten des Gutachtenformulars</message>
+	<message key="manager.reviewForms">Begutachtungsformulare</message>
+	<message key="manager.reviewForms.completed">Abgeschlossen</message>
 	<message key="manager.reviewForms.title">Titel</message>
-	<message key="manager.reviewFormElement.changeType">Feldtyp ändern ...</message>
-	<message key="manager.reviewFormElements">Formularfelder</message>
-	<message key="manager.reviewFormElements.addResponseItem">Auswahl hinzugefügen</message>
-	<message key="manager.reviewFormElements.checkboxes">Checkboxen (Sie können eine oder mehrere auswählen)</message>
-	<message key="manager.reviewFormElements.chooseType">Feldtyp auswählen</message>
-	<message key="manager.reviewFormElements.confirmDelete">Löschen eines veröffentlichten Formularfeldes bestätigen ...</message>
-	<message key="manager.reviewFormElements.copyTo">Kopie an:</message>
-	<message key="manager.reviewFormElements.create">Neues Feld anlegen</message>
-	<message key="manager.reviewFormElements.dropdownbox">Auswahlliste</message>
-	<message key="manager.reviewFormElements.edit">Formularfeld bearbeiten</message>
-	<message key="manager.reviewFormElements.elementType">Feldtyp</message>
-	<message key="manager.reviewFormElements.form.elementTypeRequired">Für dieses Feld wird die Angabe eines Feldtyps benötigt.</message>
-	<message key="manager.reviewFormElements.form.questionRequired">Für dieses Formularfeld wird eine Frage benötigt.</message>
-	<message key="manager.reviewFormElements.noneCreated">Es wurden keine Formularfelder angelegt.</message>
-	<message key="manager.reviewFormElements.possibleResponse">Auswahl</message>
-	<message key="manager.reviewFormElements.question">Feld</message>
-	<message key="manager.reviewFormElements.radiobuttons">Radiobuttons (keine Mehrfachauswahl möglich)</message>
-	<message key="manager.reviewFormElements.required">Um die Rubrik auszufüllen, werden Gutachter benötigt</message>
-	<message key="manager.reviewFormElements.smalltextfield">Ein-Wort-Textfeld</message>
-	<message key="manager.reviewFormElements.textarea">Erweitertes Textfeld</message>
-	<message key="manager.reviewFormElements.textfield">Einzeiliges Textfeld</message>
 	<message key="manager.reviewFormElements.viewable">Sichtbar (für Autor/innen)</message>
 
 	<!-- Series management -->
@@ -140,7 +106,8 @@ Sie können dem/der Benutzer/in den Grund für die Deaktivierung des Kontos nenn
 			<li>der/die Benutzer/in Website-Administrator/in ist</li>
 			<li>der/die Benutzer/in in einem Verlag aktiv ist, den Sie nicht verwalten</li>
 		</ul>
-	Dieser Task muss von einem Website-Administrator ausgeführt werden.]]></message>
+	Dieser Task muss von einem Website-Administrator ausgeführt werden.
+	]]></message>
 
 	<!-- System setup -->
 	<message key="manager.system">Systemeinstellungen</message>
@@ -226,7 +193,7 @@ Sie können dem/der Benutzer/in den Grund für die Deaktivierung des Kontos nenn
 	<message key="manager.setup.enableUserRegistration.author">als Autorinnen (sie können Materialien beim Verlag einreichen)</message>
 	<message key="manager.setup.enableUserRegistration.reader">als Leser/innen (sie erhalten Benachrichtigungen und werden wie Abonennten gewertet)</message>
 	<message key="manager.setup.enableUserRegistration.reviewer">als Gutachter/innen (sie stehen für die Begutachtung der eingereichten Manuskripte zur Verfügung)</message>
-	<message key="manager.setup.focusAndScope">Focus and Scope of Press</message>
+	<message key="manager.setup.focusAndScope">Verlagsprofil</message>
 	<message key="manager.setup.focusAndScope.description">Fügen Sie eine kurze Selbstdarstellung des Verlages (auf der Website unter 'Über uns' aufrufbar) ein, in der Sie Autor/innen, Leser/innen und Bibliothekar/innen einen Eindruck von dem Spektrum an Monografien und anderen Verlagsprodukten vermitteln, das der Verlag veröffentlichen wird.</message>
 	<message key="manager.setup.focusAndScope">Focus and Scope of Press</message>
 	<message key="manager.setup.focusScope">Verlagsprofil</message>
@@ -247,8 +214,8 @@ Sie können dem/der Benutzer/in den Grund für die Deaktivierung des Kontos nenn
 	<message key="manager.setup.homepageImage">Homepage-Bild</message>
 	<message key="manager.setup.homepageImageDescription">Fügen Sie ein Bild oder eine Grafikdatei in der Mitte der Seite ein. Wenn Sie das Standard-Template und -CSS verwenden, beträgt die maximale Bildbreite bei der Installation einer Sidebar 750px, bei zwei Sidebars 540px. Verwenden Sie ein benutzerdefinertes Template oder CSS, können diese Werte abweichen.</message>
 	<message key="manager.setup.information.description">Diese kurzen Beschreibungen des Verlages, gerichtet an Bibliothekare, interessierte Autoren und Leser, erscheinen in der Sidebar unter dem Punkt 'Informationen'.</message>
-	<message key="manager.setup.information.forAuthors">Für Autoren/innen</message>
-	<message key="manager.setup.information.forLibrarians">Für Bibliothekare/innen</message>
+	<message key="manager.setup.information.forAuthors">Für Autor/innen</message>
+	<message key="manager.setup.information.forLibrarians">Für Bibliothekar/innen</message>
 	<message key="manager.setup.information.forReaders">Für Leser/innen</message>
 	<message key="manager.setup.institution">Institution</message>
 	<message key="manager.setup.labelName">Labelname</message>
@@ -256,12 +223,12 @@ Sie können dem/der Benutzer/in den Grund für die Deaktivierung des Kontos nenn
 	<message key="manager.setup.layoutInstructions">Layoutrichtlinien</message>
 	<message key="manager.setup.layoutInstructionsDescription">Für die Formatierung von Veröffentlichungen können Layoutrichtlinien erstellt und unten entweder in HTML oder in Klartext eingefügt werden. Sie stehen dem Layouter und dem Sektionsherausgeber auf der Editierseite jedes Manuskripts zur Verfügung. (Da jeder Verlag seine eigenen Dateiformate, bibliographischen Standards, Stylesheets etc. verwenden kann, sind keine Standardlayoutrichtlinien vorgesehen.)</message>
 	<message key="manager.setup.layoutTemplates">Layoutvorlagen</message>
-	<message key="manager.setup.layoutTemplatesDescription">Als Richtlinie für Layouter und Korrektoren können Sie unter 'Layout' Templates für jedes der Standardformate des Verlags (Monografien, Buchbesprechungen etc.) in einem Dateiformat Ihrer Wahl (pdf, doc etc. ) hochladen und sie mit Anmerkungen bezüglich der zu verwendenden Schriften, Größen, Randbreiten etc. versehen.</message>
+	<message key="manager.setup.layoutTemplatesDescription">Als Richtlinie für Layouter/innen und Korrektor/innen können Sie unter 'Layout' Templates für jedes der Standardformate des Verlags (Monografien, Buchbesprechungen etc.) in einem Dateiformat Ihrer Wahl (pdf, doc etc. ) hochladen und sie mit Anmerkungen bezüglich der zu verwendenden Schriften, Größen, Randbreiten etc. versehen.</message>
 	<message key="manager.setup.layoutTemplates.file">Template-Datei</message>
 	<message key="manager.setup.layoutTemplates.title">Titel</message>
 	<message key="manager.setup.lists">Listen</message>
 	<message key="manager.setup.listsDescription">Geben Sie an, wie viele Einträge einer Liste (zum Beispiel Manuskripte, Benutzer, Funktionen etc.) maximal auf einer Seite erscheinen und wie viele Seitenlinks pro Seite angezeigt werden sollen.</message>
-	<message key="manager.setup.look"><![CDATA[Look & Feel]]></message>
+	<message key="manager.setup.look"><![CDATA[Aussehen]]></message>
 	<message key="manager.setup.look.description">Homepage-Header, Inhalt, Verlags-Header, Footer, Navigationsleiste und Stylesheet.</message>
 	<message key="manager.setup.mailingAddress.description">Postanschrift und E-Mail-Adresse des Verlages.</message>
 	<message key="manager.setup.settings">Einstellungen</message>
@@ -435,9 +402,9 @@ Sie können dem/der Benutzer/in den Grund für die Deaktivierung des Kontos nenn
 	<message key="manager.files.note">Hinweis: Der Dateimanager ist ein erweitertes Feature, das es erlaubt, dem Verlag zugeordnete Dateien und Verzeichnisse direkt anzuschauen und zu ändern.</message>
 	<message key="manager.setup.authorCopyrightNotice.sample"><![CDATA[<h3>Vorgeschlagener Text für den Creative Commons Copyright-Vermerk </h3>
 <h4>Vorgeschlagene Leitlinie für Verlage, die Open Access anbieten</h4>
-Autoren, die in diesem Verlag veröffentlichen, stimmen den folgenden Bedingungen zu:
+Autor/innen, die in diesem Verlag veröffentlichen, stimmen den folgenden Bedingungen zu:
 <ol type="a">
-	<li>Autoren behalten das Urheberrecht an dem Werk und gewähren zu dessen Erstveröffentlichung. Parallel dazu wird das Werk unter eine <a target="_blank" href="http://creativecommons.org/licenses/by/3.0/">Creative Commons Attribution License</a> gestellt. Diese erlaubt es anderen, das Werk weiterzuverbreiten, unter der Bedingung, dass der Autor/die Autorin benannt und auf die Erstveröffentlichung in diesem Verlag hingewiesen wird..</li>
+	<li>Autor/innen behalten das Urheberrecht an dem Werk und gewähren zu dessen Erstveröffentlichung. Parallel dazu wird das Werk unter eine <a target="_blank" href="http://creativecommons.org/licenses/by/3.0/">Creative Commons Attribution License</a> gestellt. Diese erlaubt es anderen, das Werk weiterzuverbreiten, unter der Bedingung, dass der Autor/die Autorin benannt und auf die Erstveröffentlichung in diesem Verlag hingewiesen wird..</li>
 	<li>Autor/innen können weitere, gesonderte Verträge für eine nicht-exklusive Verbreitung einer vom Verlag veröffentlichten Version des Buches abschließen (sie können es z. B auf einem institutionellen Repositorium einstellen oder in einem Buch veröffentlichen), jedoch unter Hinweis auf die Erstveröffentlichung in diesem Verlag.</li>
 	<li>Autor/innen ist es erlaubt und werden dazu ermutigt, ihr Werk bereits online zu stellen, bevor es beim Verlag eingereicht oder veröffentlicht wurde (z.B. auf institutionellen Repositorien oder auf ihrer Website), da dies zu einem produktiven Austausch einerseits als auch zu einer früheren Zitierung als auch einer höheren Zitierhäufigkeit des veröffentlichten Werke führen kann. (Siehe <a target="_blank" href="http://opcit.eprints.org/oacitation-biblio.html">Der Effekt von Open Access</a>).</li>
 </ol>
@@ -446,7 +413,7 @@ Autoren, die in diesem Verlag veröffentlichen, stimmen den folgenden Bedingunge
 Autor/innen, die bei diesem Verlag publizieren, stimmen folgenden Bedingungen zu:
 <ol type="a">
 	<li>Autor/innen behalten das Urheberrecht an dem Werk und gewähren dem Verlag das Recht zu dessen Erstveröffentlichung des Werkes. Das Werk wird [Zeitraum angeben] nach der Veröffentlichung parallel unter einer <a target="_blank" href="http://creativecommons.org/licenses/by/3.0/">Creative Commons Attribution License</a> lizenziert, die es anderen erlaubt, das Werk weiterzuverbreiten, unter der Bedingung, dass der Autor/die Autorin benannt und auf die Erstveröffentlichung in diesem Verlag hingewiesen wird.</li>
-	 <li>Autor/innen können weitere, gesonderte Verträge für eine nicht-exklusive Verbreitung einer vom Verlag veröffentlichten Version des Buches abschließen (sie können es z. B auf einem institutionellen Repositorium einstellen oder in einem Buch veröffentlichen), jedoch muss auf die Erstveröffentlichung in diesem Verlag hingewiesen werden.</li>
+	 <li>Autor/innen können weitere, gesonderte Verträge für eine nicht-exklusive Verbreitung einer vom Verlag veröffentlichten Version des Buches abschließen (sie können es z.B auf einem institutionellen Repositorium einstellen oder in einem Buch veröffentlichen), jedoch muss auf die Erstveröffentlichung in diesem Verlag hingewiesen werden.</li>
 	 <li>Autor/innen dürfen gerne ihr Werk bereits online stellen, bevor es beim Verlag eingereicht oder veröffentlicht wurde (z.B. auf institutionellen Repositorien oder auf ihren Websites). Dies dient nicht nur dem produktiven Austausch untereinander, sondern kann auch zu einer früheren Zitierung und einer höheren Zitierhäufigkeit des veröffentlichten Werke beitragen. (Siehe <a target="_blank" href="http://opcit.eprints.org/oacitation-biblio.html">Der Effekt von Open Access</a>)./li>
 </ol>]]></message>
 	<message key="manager.setup.subjectClassificationDescription"><![CDATA[[Der Verlag verwendet ein Fachsystematik, die im Web verfügbar ist. <br />
@@ -461,7 +428,7 @@ Wählen Sie ein Modell, um dieses Aspekte des Publikationsprozesses zu steuern. 
 </ol>]]></message>
 	<message key="manager.setup.registerForIndexingDescription"><![CDATA[<a href="http://pkp.sfu.ca/harvester/add.php" target="_blank">Registrieren</a> Sie die URL Ihres Verlag beim <a href="http://pkp.sfu.ca/harvester/" target="_blank">Public Knowledge Project Metadata Harvester</a>, um die Inhalte Ihres Verlages in einem weltweit verbreiteten System wissenschaftlicher Datenbanken zu indizieren. Dieses Tool sammelt die Metadaten aller indizierten Einträge eines Verlages und ermöglicht dadurch genaue Suchen sowie Sammelsuchen in den Forschungswebsites, die sich dem <a href="http://www.openarchives.org/OAI/openarchivesprotocol.htm#Introduction" target="_blank">Open Archives Initiative Protokoll für Metadata Harvesting</a> angeschlossen haben.
 <br /><br />
-Bitte beachten Sie: Sollte Ihr Administrator die Website bereits bei der PKP-Harvester-Site registriert haben, wird Ihr Verlag automatisch indiziert. Eine erneute Registrierung ist dann nicht nötig.
+Bitte beachten Sie: Sollte Ihr/e Administrator/in die Website bereits bei der PKP-Harvester-Site registriert haben, wird Ihr Verlag automatisch indiziert. Eine erneute Registrierung ist dann nicht nötig.
 <br /><br />Klicken Sie 
 <a href="http://pkp.sfu.ca/harvester/add.php" target="_blank">hier</a> und geben Sie <span class="highlight">{$siteUrl}</span> bei <strong>Site URL</strong> und <span class="highlight">{$oaiUrl}</span> bei <strong>Base URL for OAI Archive</strong> ein.]]></message>
 

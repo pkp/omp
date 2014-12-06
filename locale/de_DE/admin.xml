@@ -33,6 +33,7 @@
 	<message key="admin.presses.pressDescription">Verlagsbeschreibung</message>
 	<message key="admin.presses.addPress">Verlag hinzufügen</message>
 
+	<message key="admin.languages.confirmDisable">Sind Sie sicher, dass Sie diese Regionaleinstellung löschen wollen? Dies wird alle Verlage auf Ihrer Plattform, die diese Regionaleinstellung benutzen, betreffen.</message>
 
 	<message key="admin.settings.oaiRegistrationDescription"><![CDATA[Damit alle Inhalte aller von Ihnen auf dieser Website gehosteten Verlage in einem weltweit verbreiteten System von Forschungsdatenbanken indiziert werden, <a href="http://pkp.sfu.ca/harvester/add.php" target="_blank">registrieren /a> Sie die URL Ihrer Website im Public Knowledge Project metadata <a href="http://pkp.sfu.ca/harvester/" target="_blank">Harvester</a>. Dieses Tool sammelt Metadaten aller indizierten Titel Ihres Verlages und ermöglicht so ein genaue und umfassende Suche auf allen Forschungswebsites, die das <a href="http://www.openarchives.org/OAI/openarchivesprotocol.htm#Introduction" target="_blank">Open Archives Initiative Protocol for Metadata Harvesting</a> einhalten.
 <br /><br />

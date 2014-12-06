@@ -2,14 +2,14 @@
 <!DOCTYPE locale SYSTEM "../../lib/pkp/dtd/locale.dtd">
 
 <!--
- * locale/de_DE/submission.xml
- *
- * Copyright (c) 2014 Simon Fraser University Library
- * Copyright (c) 2003-2014 John Willinsky
- * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
- * Localization strings.
- * Please contact Marco Tullney, marco.tullney@fu-berlin.de, with any questions regarding this translation. 
- -->
+  * locale/de_DE/submission.xml
+  *
+  * Copyright (c) 2014 Simon Fraser University Library
+  * Copyright (c) 2003-2014 John Willinsky
+  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
+  * Localization strings.
+  * Please contact Marco Tullney, marco.tullney@fu-berlin.de, with any questions regarding this translation. 
+  -->
 
 <locale name="de_DE" full_name="Deutsch (Deutschland)">
 	<!-- General submission keys -->
@@ -19,11 +19,12 @@
 	<message key="submission.title.tip"><![CDATA[Die eingereichten Manuskripte lassen in der Regel sich als 'Bild' , 'Text' oder als eine andere Multimediagattung (wie z.B. 'Software' oder 'Interaktive Medien') klassifizieren. Bitte wählen Sie den für Ihre Einreichung am besten zutreffenden Typ aus. Beispiele finden Sie unter <a target="_blank" href="http://dublincore.org/documents/2001/04/12/usageguide/generic.shtml#type">http://dublincore.org/documents/2001/04/12/usageguide/generic.shtml#type</a>]]></message>
 	<message key="submission.select">Wählen Sie ein Manuskript aus</message>
 	<message key="submission.synopsis">Über dieses Buch</message>
-	<message key="submission.workType">Art des Buches</message>
-	<message key="submission.workType.description">Eine Monografie ist ein Werk, das von einer Autor/einem Autor oder mehreren Autor/innen gemeinsam verfasst worden ist. Ein Sammelband besteht aus mehreren Kapiteln jeweils unterschiedlicher Autor/innen (detaillierte Kapitelangaben sind erst zu einem späteren Zeitpunkt im Veröffentlichungsprozess zu machen).</message>
-	<message key="submission.workType.editedVolume">Sammelband</message>
-	<message key="submission.workType.authoredWork">Monografie</message>
-	<message key="submission.published">Fertig zum Druck</message>
+	<message key="submission.workflowType">Art des Buches</message>
+	<message key="submission.workflowType.description">Eine Monografie ist ein Werk, das von einer Autor/einem Autor oder mehreren Autor/innen gemeinsam verfasst worden ist. Ein Sammelband besteht aus mehreren Kapiteln jeweils unterschiedlicher Autor/innen (detaillierte Kapitelangaben sind erst zu einem späteren Zeitpunkt im Veröffentlichungsprozess zu machen).</message>
+	<message key="submission.workflowType.editedVolume">Sammelband</message>
+	<message key="submission.workflowType.authoredWork">Monografie</message>
+	<message key="submission.monograph">Monografie</message>
+	<message key="submission.published">Produktionsreif</message>
 	<message key="submission.fairCopy">Reinschrift</message>
 	<message key="submission.artwork.permissions">Rechte</message>
 	<message key="submission.chapter">Kapitel</message>
@@ -35,8 +36,6 @@
 	<message key="submission.publicationFormats">Formate</message>
 	<message key="submission.proofs">Proofs</message>
 	<message key="submission.download">Download</message>
-	<message key="submission.upload.response.description">Klicken Sie bitte auf "Protokollieren" sobald Sie bitte Ihre Kommentare zum Manuskript eingegeben haben und/oder laden Sie eine kommentierte Fassung des Manuskripts hoch.</message>
-
 	<message key="submission.sharing">Teilen</message>
 	<message key="manuscript.submission">Manuskript einreichen</message>
 	<message key="submission.round"><![CDATA[Runde&nbsp;{$round}]]></message>
