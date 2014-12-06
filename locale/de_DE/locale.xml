@@ -2,14 +2,14 @@
 <!DOCTYPE locale SYSTEM "../../lib/pkp/dtd/locale.dtd">
 
 <!--
- * locale/de_DE/locale.xml
- *
- * Copyright (c) 2014 Simon Fraser University Library
- * Copyright (c) 2003-2014 John Willinsky
- * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
- * Localization strings.
- * Please contact Marco Tullney, marco.tullney@fu-berlin.de, with any questions regarding this translation.
- -->
+  * locale/de_DE/locale.xml
+  *
+  * Copyright (c) 2014 Simon Fraser University Library
+  * Copyright (c) 2003-2014 John Willinsky
+  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
+  * Localization strings.
+  * Please contact Marco Tullney, marco.tullney@fu-berlin.de, with any questions regarding this translation.
+  -->
 
 <locale name="de_DE" full_name="Deutsch (Deutschland)">
 	<!-- General monograph keys -->
@@ -168,7 +168,7 @@
 
 	<!-- Editorial policies -->
 	<message key="manager.series.open">Offene Manuskripteinreichungen</message>
-	<message key="manager.series.indexed">Inidiziert</message>
+	<message key="manager.series.indexed">Indiziert</message>
 
 	<!-- Library Files -->
 	<message key="grid.libraryFiles.column.files">Dateien</message>
@@ -381,7 +381,7 @@
 	<message key="about.submissionPreparationChecklist.description">Während des Einreichungsvorganges werden die Autor/innen dazu aufgefordert zu überprüfen, ob ihr Manuskript alle genannten Anforderungen erfüllt. Manuskripte, die nicht mit den Richtlinien übereinstimmen, können an die Autor/innen zurückgegeben werden.</message>
 	<message key="about.copyrightNotice">Copyright-Vermerk</message>
 	<message key="about.privacyStatement">Datenschutzerkärung</message>
-	<message key="about.peerReviewProcess">Peer-Review-Prozess</message>
+	<message key="about.reviewPolicy">Peer-Review-Prozess</message>
 	<message key="about.publicationFrequency">Erscheinungsweise</message>
 	<message key="about.openAccessPolicy">Open-Access-Leitlinien</message>
 	<message key="about.pressSponsorship">Verlagssponsoren</message>
@@ -398,7 +398,8 @@
 	<message key="installer.ompInstallation">OMP-Installation</message>
 	<message key="installer.ompUpgrade">OMP-Upgrade</message>
 	<message key="installer.installApplication">Installiere Open Monograph Press</message>
-	<message key="installer.installationInstructions"><![CDATA[<p>Danke, dass Sie <strong> Version {$version} von Open Monograph Press</strong> des Public Knowledge Project heruntergeladen haben. Bitte lesen Sie die in der Software enthaltene <a href="{$baseUrl}/docs/README">README</a> -Datei, bevor Sie fortfahren. Mehr Informationen über das das Public Knowledge Project und seine Softwareprojekte finden Sie auf der PKP-Website <a href="http://pkp.sfu.ca/" target="_blank">PKP web site</a>. Wenn Sie einen Bug melden möchten oder technischen Support für Open Monograph Press benötigen, wenden Sie sich bitte an unser: <a href="http://pkp.sfu.ca/support/forum" target="_blank">support forum</a> oder besuchen Sie online PKPs <a href="http://pkp.sfu.ca/bugzilla/" target="_blank">bug reporting system</a>. Wir empfehlen Ihnen zwar, über das Supportforum Kontakt zu uns aufzunehmen, Sie können eine E-Mail an unser Team schreiben: <a href="mailto:pkp.contact@gmail.com">pkp.contact@gmail.com</a>.</p>
+	<message key="installer.installationInstructions"><![CDATA[
+<p>Danke, dass Sie <strong>Open Monograph Press {$version}</strong> des Public Knowledge Project heruntergeladen haben. Bitte lesen Sie die in der Software enthaltene <a href="{$baseUrl}/docs/README">README</a> -Datei, bevor Sie fortfahren. Mehr Informationen über das das Public Knowledge Project und seine Softwareprojekte finden Sie auf der PKP-Website <a href="http://pkp.sfu.ca/" target="_blank">PKP web site</a>. Wenn Sie einen Bug melden möchten oder technischen Support für Open Monograph Press benötigen, wenden Sie sich bitte an unser: <a href="http://pkp.sfu.ca/support/forum" target="_blank">support forum</a> oder besuchen Sie online PKPs <a href="http://pkp.sfu.ca/bugzilla/" target="_blank">bug reporting system</a>. Wir empfehlen Ihnen zwar, über das Supportforum Kontakt zu uns aufzunehmen, Sie können eine E-Mail an unser Team schreiben: <a href="mailto:pkp.contact@gmail.com">pkp.contact@gmail.com</a>.</p>
 
 <h4>Upgrade</h4>
 
@@ -511,7 +512,6 @@ Ihr Server untersützt aktuell mbstring: <strong>{$supportsMBString}</strong>]]>
 	<message key="user.authorization.monographReviewer">Der Zugang wurde Ihnen verweigert, da diese Monografie Ihnen anscheinend nicht zur Begutachtung zugewiesen wurde.</message>
 	<message key="user.authorization.monographFile">Der Zugang zu dieser Buchdatei wurde verweigert.</message>
 	<message key="user.authorization.invalidMonograph">Ungültiges Buch oder kein Buch angefordert!</message>
-	<message key="user.authorization.invalidSeriesEditorSubmission">Ungültige/r Reihenherausgeber/in oder keine Reihenherausgeber/in angefordert!</message>
 	<message key="user.authorization.noContext">Kein Verlag im Kontext!</message>
 	<message key="user.authorization.seriesAssignment">Sie versuchen, auf eine Monografie zuzugreifen, die nicht mehr zu Ihrer Reihe gehört.</message>
 	<message key="user.authorization.workflowStageAssignmentMissing">Zugriff verweigert! Sie sind nicht für dieses Stadium des Publikationsprozesses freigeschaltet.</message>
@@ -540,13 +540,13 @@ Ihr Server untersützt aktuell mbstring: <strong>{$supportsMBString}</strong>]]>
 	<message key="debug.notes.helpMappingLoad">Reloaded XML help mapping file {$filename} in search of {$id}.</message>
 
 	<!-- RT Entities -->
-	<message key="rt.metadata.pkp.peerReviewed">Begutachteter Artikel (Peer-Review-Verfahren)</message>
+	<message key="rt.metadata.pkp.dctype">Buch</message>
 
 	<!-- General plugin information -->
 	<message key="plugins.categories.viewableFiles">Plug-Ins für veröffentlichte Dateien</message>
 	<message key="plugins.categories.viewableFiles.description">Plug-Ins für veröffentlichte Dateien fügen Möglichkeiten zur eingebetteten Anzeige verschiedener Dokumenttypen hinzu, z.B. zur Einbettung von PDF.</message>
 	<message key="submission.pdf.download">PDF herunterladen</message>
-	<message key="grid.user.mergeUsers.mergeUserSelect.confirm">Sind Sie sicher, dass Sie dieses Benutzer/innenkonto mit einem anderen zusammenführen möchten? Sie können das zweite Konto auf der folgenden Seite auswählen.</message>
-	<message key="user.login.resetPasswordInstructions">Aus Sicherheitsgründen schickt das System den registrierten Benutzer/innen ein neues Passwort statt des aktuellen Passworts per E-Mail.</message>
 
+	<message key="user.profile.form.showOtherContexts">Andere Verlage anzeigen</message>
+	<message key="user.profile.form.hideOtherContexts">Andere Verlage verbergen</message>
 </locale>
