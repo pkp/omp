@@ -37,10 +37,19 @@ class SubmissionAccessPolicy extends PKPSubmissionAccessPolicy {
 			$subEditorSubmissionAccessPolicy = new PolicySet(COMBINING_DENY_OVERRIDES);
 			$subEditorSubmissionAccessPolicy->addPolicy(new RoleBasedHandlerOperationPolicy($request, ROLE_ID_SUB_EDITOR, $roleAssignments[ROLE_ID_SUB_EDITOR]));
 
-			// 2) ... but only if the requested submission is part of their series.
+			// but only if ...
+			$seriesEditorAssignmentOrSeriesPolicy = new PolicySet(COMBINING_PERMIT_OVERRIDES);
+
+			// 2a) ... the requested submission is part of their series ...
 			import('classes.security.authorization.internal.SeriesAssignmentPolicy');
-			$subEditorSubmissionAccessPolicy->addPolicy(new SeriesAssignmentPolicy($request));
-			$submissionAccessPolicy->addPolicy($subEditorSubmissionAccessPolicy);
+			$seriesEditorAssignmentOrSeriesPolicy->addPolicy(new SeriesAssignmentPolicy($request));
+
+			// 2b) ... or they have been assigned to the requested submission.
+			import('classes.security.authorization.internal.UserAccessibleWorkflowStageRequiredPolicy');
+			$seriesEditorAssignmentOrSeriesPolicy->addPolicy(new UserAccessibleWorkflowStageRequiredPolicy($request));
+
+			$seriesEditorSubmissionAccessPolicy->addPolicy($seriesEditorAssignmentOrSeriesPolicy);
+			$submissionAccessPolicy->addPolicy($seriesEditorSubmissionAccessPolicy);
 		}
 
 		$this->addPolicy($submissionAccessPolicy);
