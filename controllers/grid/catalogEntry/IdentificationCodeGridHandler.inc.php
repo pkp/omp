@@ -218,7 +218,12 @@ class IdentificationCodeGridHandler extends GridHandler {
 	//
 	// Public Identification Code Grid Actions
 	//
-
+	/**
+	 * Edit a new (empty) code
+	 * @param $args array
+	 * @param $request PKPRequest
+	 * @return JSONMessage JSON object
+	 */
 	function addCode($args, $request) {
 		return $this->editCode($args, $request);
 	}
@@ -227,7 +232,7 @@ class IdentificationCodeGridHandler extends GridHandler {
 	 * Edit a code
 	 * @param $args array
 	 * @param $request PKPRequest
-	 * @return string Serialized JSON object
+	 * @return JSONMessage JSON object
 	 */
 	function editCode($args, $request) {
 		// Identify the code to be updated
@@ -242,15 +247,14 @@ class IdentificationCodeGridHandler extends GridHandler {
 		$identificationCodeForm = new IdentificationCodeForm($monograph, $identificationCode);
 		$identificationCodeForm->initData();
 
-		$json = new JSONMessage(true, $identificationCodeForm->fetch($request));
-		return $json->getString();
+		return new JSONMessage(true, $identificationCodeForm->fetch($request));
 	}
 
 	/**
 	 * Update a code
 	 * @param $args array
 	 * @param $request PKPRequest
-	 * @return string Serialized JSON object
+	 * @return JSONMessage JSON object
 	 */
 	function updateCode($args, $request) {
 		// Identify the code to be updated
@@ -293,8 +297,7 @@ class IdentificationCodeGridHandler extends GridHandler {
 			return DAO::getDataChangedEvent();
 
 		} else {
-			$json = new JSONMessage(true, $identificationCodeForm->fetch($request));
-			return $json->getString();
+			return new JSONMessage(true, $identificationCodeForm->fetch($request));
 		}
 	}
 
@@ -302,7 +305,7 @@ class IdentificationCodeGridHandler extends GridHandler {
 	 * Delete a code
 	 * @param $args array
 	 * @param $request PKPRequest
-	 * @return string Serialized JSON object
+	 * @return JSONMessage JSON object
 	 */
 	function deleteCode($args, $request) {
 
@@ -321,8 +324,7 @@ class IdentificationCodeGridHandler extends GridHandler {
 				$notificationMgr->createTrivialNotification($currentUser->getId(), NOTIFICATION_TYPE_SUCCESS, array('contents' => __('notification.removedIdentificationCode')));
 				return DAO::getDataChangedEvent();
 			} else {
-				$json = new JSONMessage(false, __('manager.setup.errorDeletingItem'));
-				return $json->getString();
+				return new JSONMessage(false, __('manager.setup.errorDeletingItem'));
 			}
 		}
 	}

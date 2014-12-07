@@ -134,7 +134,7 @@ class FileSignoffHandler extends FileManagementHandler {
 	 * Render the file upload form in its initial state.
 	 * @param $args array
 	 * @param $request Request
-	 * @return string a serialized JSON object
+	 * @return JSONMessage JSON object
 	 */
 	function readSignoff($args, $request) {
 		$submissionFileDao = DAORegistry::getDAO('SubmissionFileDAO'); /* @var $submissionFileDao SubmissionFileDAO */
@@ -142,8 +142,7 @@ class FileSignoffHandler extends FileManagementHandler {
 
 		// Sanity check.
 		if (!$signoff) {
-			$json = new JSONMessage(false);
-			return $json->getString();
+			return new JSONMessage(false);
 		}
 
 		// Get related objects for the form to authenticate
@@ -188,10 +187,12 @@ class FileSignoffHandler extends FileManagementHandler {
 	/**
 	 * Mark the signoff as viewed?
 	 * For now, this is doing nothing (obviously).
+	 * @param $args array
+	 * @param $request Request
+	 * @return JSONMessage JSON object
 	 */
 	function signoffRead($args, $request) {
-		$json = new JSONMessage(true);
-		return $json->getString();
+		return new JSONMessage(true);
 	}
 
 
@@ -199,7 +200,7 @@ class FileSignoffHandler extends FileManagementHandler {
 	 * Render the file upload form in its initial state.
 	 * @param $args array
 	 * @param $request Request
-	 * @return string a serialized JSON object
+	 * @return JSONMessage JSON object
 	 */
 	function displayFileUploadForm($args, $request) {
 		$monograph = $this->getSubmission();
@@ -213,8 +214,7 @@ class FileSignoffHandler extends FileManagementHandler {
 		$fileForm->initData($args, $request);
 
 		// Render the form.
-		$json = new JSONMessage(true, $fileForm->fetch($request));
-		return $json->getString();
+		return new JSONMessage(true, $fileForm->fetch($request));
 	}
 
 
@@ -235,11 +235,9 @@ class FileSignoffHandler extends FileManagementHandler {
 			$json->setAdditionalAttributes(array(
 				'temporaryFileId' => $temporaryFile->getId()
 			));
-		} else {
-			$json = new JSONMessage(false, __('common.uploadFailed'));
+			return $json;
 		}
-
-		return $json->getString();
+		return new JSONMessage(false, __('common.uploadFailed'));
 	}
 
 
@@ -247,13 +245,12 @@ class FileSignoffHandler extends FileManagementHandler {
 	 * Copy the file to the right place (if any) and add the note
 	 * @param $args
 	 * @param $request
-	 * @return string
+	 * @return JSONMessage JSON object
 	 */
 	function signoff($args, $request) {
 		// Check for the case the form was displayed with no signoffs
 		if ($request->getUserVar('noSignoffs')) {
-			$json = new JSONMessage(true);
-			return $json->getString();
+			return new JSONMessage(true);
 		}
 		$monograph = $this->getSubmission();
 
@@ -280,9 +277,8 @@ class FileSignoffHandler extends FileManagementHandler {
 			return DAO::getDataChangedEvent();
 		} else {
 			$errors = $uploadForm->getErrorsArray();
-			$json = new JSONMessage(false, array_pop($errors));
+			return new JSONMessage(false, array_pop($errors));
 		}
-		return $json->getString();
 	}
 
 

@@ -219,7 +219,12 @@ class PublicationDateGridHandler extends GridHandler {
 	//
 	// Public Date Grid Actions
 	//
-
+	/**
+	 * Edit a new (empty) date
+	 * @param $args array
+	 * @param $request PKPRequest
+	 * @return JSONMessage JSON object
+	 */
 	function addDate($args, $request) {
 		return $this->editDate($args, $request);
 	}
@@ -228,7 +233,7 @@ class PublicationDateGridHandler extends GridHandler {
 	 * Edit a date
 	 * @param $args array
 	 * @param $request PKPRequest
-	 * @return string Serialized JSON object
+	 * @return JSONMessage JSON object
 	 */
 	function editDate($args, $request) {
 		// Identify the date to be updated
@@ -243,15 +248,14 @@ class PublicationDateGridHandler extends GridHandler {
 		$publicationDateForm = new PublicationDateForm($monograph, $publicationDate);
 		$publicationDateForm->initData();
 
-		$json = new JSONMessage(true, $publicationDateForm->fetch($request));
-		return $json->getString();
+		return new JSONMessage(true, $publicationDateForm->fetch($request));
 	}
 
 	/**
 	 * Update a date
 	 * @param $args array
 	 * @param $request PKPRequest
-	 * @return string Serialized JSON object
+	 * @return JSONMessage JSON object
 	 */
 	function updateDate($args, $request) {
 		// Identify the code to be updated
@@ -294,8 +298,7 @@ class PublicationDateGridHandler extends GridHandler {
 			return DAO::getDataChangedEvent();
 
 		} else {
-			$json = new JSONMessage(true, $publicationDateForm->fetch($request));
-			return $json->getString();
+			return new JSONMessage(true, $publicationDateForm->fetch($request));
 		}
 	}
 
@@ -303,7 +306,7 @@ class PublicationDateGridHandler extends GridHandler {
 	 * Delete a date
 	 * @param $args array
 	 * @param $request PKPRequest
-	 * @return string Serialized JSON object
+	 * @return JSONMessage JSON object
 	 */
 	function deleteDate($args, $request) {
 
@@ -322,8 +325,7 @@ class PublicationDateGridHandler extends GridHandler {
 				$notificationMgr->createTrivialNotification($currentUser->getId(), NOTIFICATION_TYPE_SUCCESS, array('contents' => __('notification.removedPublicationDate')));
 				return DAO::getDataChangedEvent();
 			} else {
-				$json = new JSONMessage(false, __('manager.setup.errorDeletingItem'));
-				return $json->getString();
+				return new JSONMessage(false, __('manager.setup.errorDeletingItem'));
 			}
 		}
 	}

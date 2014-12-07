@@ -162,20 +162,21 @@ class CategoryCategoryGridHandler extends CategoryGridHandler {
 	 * Handle the edit category operation.
 	 * @param $args array
 	 * @param $request PKPRequest
+	 * @return JSONMessage JSON object
 	 */
 	function editCategory($args, $request) {
 		$categoryForm = $this->_getCategoryForm($request);
 
 		$categoryForm->initData();
 
-		$json = new JSONMessage(true, $categoryForm->fetch($request));
-		return $json->getString();
+		return new JSONMessage(true, $categoryForm->fetch($request));
 	}
 
 	/**
 	 * Update category data in database and grid.
 	 * @param $args array
 	 * @param $request PKPRequest
+	 * @return JSONMessage JSON object
 	 */
 	function updateCategory($args, $request) {
 		$categoryForm = $this->_getCategoryForm($request);
@@ -185,8 +186,7 @@ class CategoryCategoryGridHandler extends CategoryGridHandler {
 			$categoryForm->execute($request);
 			return DAO::getDataChangedEvent();
 		} else {
-			$json = new JSONMessage(true, $categoryForm->fetch($request));
-			return $json->getString();
+			return new JSONMessage(true, $categoryForm->fetch($request));
 		}
 	}
 
@@ -194,7 +194,7 @@ class CategoryCategoryGridHandler extends CategoryGridHandler {
 	 * Delete a category
 	 * @param $args array
 	 * @param $request PKPRequest
-	 * @return string Serialized JSON object
+	 * @return JSONMessage JSON object
 	 */
 	function deleteCategory($args, $request) {
 		// Identify the category to be deleted
@@ -216,6 +216,7 @@ class CategoryCategoryGridHandler extends CategoryGridHandler {
 	 * Handle file uploads for cover/image art for things like Series and Categories.
 	 * @param $request PKPRequest
 	 * @param $args array
+	 * @return JSONMessage JSON object
 	 */
 	function uploadImage($args, $request) {
 		$user = $request->getUser();
@@ -228,11 +229,10 @@ class CategoryCategoryGridHandler extends CategoryGridHandler {
 			$json->setAdditionalAttributes(array(
 					'temporaryFileId' => $temporaryFile->getId()
 			));
+			return $json;
 		} else {
-			$json = new JSONMessage(false, __('common.uploadFailed'));
+			return new JSONMessage(false, __('common.uploadFailed'));
 		}
-
-		return $json->getString();
 	}
 
 	//

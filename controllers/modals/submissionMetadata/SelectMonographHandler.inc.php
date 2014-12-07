@@ -50,12 +50,12 @@ class SelectMonographHandler extends Handler {
 	 * Fetch the modal contents for the monograph selection form
 	 * @param $args array
 	 * @param $request PKPRequest
+	 * @return JSONMessage JSON object
 	 */
 	function fetch($args, $request) {
 		$templateMgr = TemplateManager::getManager($request);
 		AppLocale::requireComponents(LOCALE_COMPONENT_APP_SUBMISSION); // submission.select
-		$json = new JSONMessage(true, $templateMgr->fetch('controllers/modals/submissionMetadata/selectMonograph.tpl'));
-		return $json->getString();
+		return new JSONMessage(true, $templateMgr->fetch('controllers/modals/submissionMetadata/selectMonograph.tpl'));
 	}
 
 	/**

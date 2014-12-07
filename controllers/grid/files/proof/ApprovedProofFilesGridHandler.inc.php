@@ -127,6 +127,12 @@ class ApprovedProofFilesGridHandler extends GridHandler {
 	//
 	// Public handler methods
 	//
+	/**
+	 * Edit an approved proof.
+	 * @param $args array
+	 * @param $request PKPRequest
+	 * @return JSONMessage JSON object
+	 */
 	function editApprovedProof($args, $request) {
 		$this->initialize($request);
 
@@ -134,10 +140,15 @@ class ApprovedProofFilesGridHandler extends GridHandler {
 		$approvedProofForm = new ApprovedProofForm($this->monograph, $this->publicationFormat, $request->getUserVar('fileId'));
 		$approvedProofForm->initData();
 
-		$json = new JSONMessage(true, $approvedProofForm->fetch($request));
-		return $json->getString();
+		return new JSONMessage(true, $approvedProofForm->fetch($request));
 	}
 
+	/**
+	 * Save an approved proof.
+	 * @param $args array
+	 * @param $request PKPRequest
+	 * @return JSONMessage JSON object
+	 */
 	function saveApprovedProof($args, $request) {
 		import('controllers.grid.files.proof.form.ApprovedProofForm');
 		$approvedProofForm = new ApprovedProofForm($this->monograph, $this->publicationFormat, $request->getUserVar('fileId'));
@@ -149,8 +160,7 @@ class ApprovedProofFilesGridHandler extends GridHandler {
 			// Let the calling grid reload itself
 			return DAO::getDataChangedEvent($fileIdAndRevision);
 		} else {
-			$json = new JSONMessage(true, $approvedProofForm->fetch($request));
-			return $json->getString();
+			return new JSONMessage(true, $approvedProofForm->fetch($request));
 		}
 	}
 }

@@ -58,6 +58,7 @@ class WorkflowHandler extends PKPWorkflowHandler {
 	 * Show the production stage accordion contents
 	 * @param $request PKPRequest
 	 * @param $args array
+	 * @return JSONMessage JSON object
 	 */
 	function productionFormatsTab(&$args, $request) {
 		$templateMgr = TemplateManager::getManager($request);
@@ -75,6 +76,7 @@ class WorkflowHandler extends PKPWorkflowHandler {
 	 * Expedites a submission through the submission process, if the submitter is a manager or editor.
 	 * @param $args array
 	 * @param $request PKPRequest
+	 * @return JSONMessage JSON object
 	 */
 	function expedite($args, $request) {
 
@@ -157,16 +159,13 @@ class WorkflowHandler extends PKPWorkflowHandler {
 					$context->getId()
 				);
 
-				$json = new JSONMessage(true);
-				return $json->getString();
+				return new JSONMessage(true);
 			} else {
-				$json = new JSONMessage(true, $form->fetch($request));
-				return $json->getString();
+				return new JSONMessage(true, $form->fetch($request));
 			}
 		} else {
 			$form->initData($args, $request);
-			$json = new JSONMessage(true, $form->fetch($request));
-			return $json->getString();
+			return new JSONMessage(true, $form->fetch($request));
 		}
 	}
 

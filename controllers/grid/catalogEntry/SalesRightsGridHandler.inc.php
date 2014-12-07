@@ -218,7 +218,12 @@ class SalesRightsGridHandler extends GridHandler {
 	//
 	// Public Sales Rights Grid Actions
 	//
-
+	/**
+	 * Edit a new (empty) rights entry
+	 * @param $args array
+	 * @param $request PKPRequest
+	 * @return JSONMessage JSON object
+	 */
 	function addRights($args, $request) {
 		return $this->editRights($args, $request);
 	}
@@ -227,7 +232,7 @@ class SalesRightsGridHandler extends GridHandler {
 	 * Edit a sales rights entry
 	 * @param $args array
 	 * @param $request PKPRequest
-	 * @return string Serialized JSON object
+	 * @return JSONMessage JSON object
 	 */
 	function editRights($args, $request) {
 		// Identify the sales rights entry to be updated
@@ -242,15 +247,14 @@ class SalesRightsGridHandler extends GridHandler {
 		$salesRightsForm = new SalesRightsForm($monograph, $salesRights);
 		$salesRightsForm->initData();
 
-		$json = new JSONMessage(true, $salesRightsForm->fetch($request));
-		return $json->getString();
+		return new JSONMessage(true, $salesRightsForm->fetch($request));
 	}
 
 	/**
 	 * Update a sales rights entry
 	 * @param $args array
 	 * @param $request PKPRequest
-	 * @return string Serialized JSON object
+	 * @return JSONMessage JSON object
 	 */
 	function updateRights($args, $request) {
 		// Identify the sales rights entry to be updated
@@ -293,8 +297,7 @@ class SalesRightsGridHandler extends GridHandler {
 			return DAO::getDataChangedEvent();
 
 		} else {
-			$json = new JSONMessage(true, $salesRightsForm->fetch($request));
-			return $json->getString();
+			return new JSONMessage(true, $salesRightsForm->fetch($request));
 		}
 	}
 
@@ -302,7 +305,7 @@ class SalesRightsGridHandler extends GridHandler {
 	 * Delete a sales rights entry
 	 * @param $args array
 	 * @param $request PKPRequest
-	 * @return string Serialized JSON object
+	 * @return JSONMessage JSON object
 	 */
 	function deleteRights($args, $request) {
 
@@ -321,8 +324,7 @@ class SalesRightsGridHandler extends GridHandler {
 				$notificationMgr->createTrivialNotification($currentUser->getId(), NOTIFICATION_TYPE_SUCCESS, array('contents' => __('notification.removedSalesRights')));
 				return DAO::getDataChangedEvent();
 			} else {
-				$json = new JSONMessage(false, __('manager.setup.errorDeletingItem'));
-				return $json->getString();
+				return new JSONMessage(false, __('manager.setup.errorDeletingItem'));
 			}
 		}
 	}

@@ -223,7 +223,7 @@ class RepresentativesGridHandler extends CategoryGridHandler {
 	 * Edit a representative entry
 	 * @param $args array
 	 * @param $request PKPRequest
-	 * @return string Serialized JSON object
+	 * @return JSONMessage JSON object
 	 */
 	function editRepresentative($args, $request) {
 		// Identify the representative entry to be updated
@@ -238,15 +238,14 @@ class RepresentativesGridHandler extends CategoryGridHandler {
 		$representativeForm = new RepresentativeForm($monograph, $representative);
 		$representativeForm->initData();
 
-		$json = new JSONMessage(true, $representativeForm->fetch($request));
-		return $json->getString();
+		return new JSONMessage(true, $representativeForm->fetch($request));
 	}
 
 	/**
 	 * Update a representative entry
 	 * @param $args array
 	 * @param $request PKPRequest
-	 * @return string Serialized JSON object
+	 * @return JSONMessage JSON object
 	 */
 	function updateRepresentative($args, $request) {
 		// Identify the representative entry to be updated
@@ -289,8 +288,7 @@ class RepresentativesGridHandler extends CategoryGridHandler {
 			return DAO::getDataChangedEvent($representativeId, (int) $representative->getIsSupplier());
 
 		} else {
-			$json = new JSONMessage(true, $representativeForm->fetch($request));
-			return $json->getString();
+			return new JSONMessage(true, $representativeForm->fetch($request));
 		}
 	}
 
@@ -298,7 +296,7 @@ class RepresentativesGridHandler extends CategoryGridHandler {
 	 * Delete a representative entry
 	 * @param $args array
 	 * @param $request PKPRequest
-	 * @return string Serialized JSON object
+	 * @return JSONMessage JSON object
 	 */
 	function deleteRepresentative($args, $request) {
 
@@ -317,8 +315,7 @@ class RepresentativesGridHandler extends CategoryGridHandler {
 				$notificationMgr->createTrivialNotification($currentUser->getId(), NOTIFICATION_TYPE_SUCCESS, array('contents' => __('notification.removedRepresentative')));
 				return DAO::getDataChangedEvent($representative->getId(), (int) $representative->getIsSupplier());
 			} else {
-				$json = new JSONMessage(false, __('manager.setup.errorDeletingItem'));
-				return $json->getString();
+				return new JSONMessage(false, __('manager.setup.errorDeletingItem'));
 			}
 		}
 	}
