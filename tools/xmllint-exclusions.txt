@@ -5,6 +5,7 @@
 ./lib/pkp/tests/phpunit-env1.xml
 ./lib/pkp/tests/phpunit-env2.xml
 ./lib/pkp/tests/classes/xslt
+./lib/pkp/lib/vendor
 ./plugins/importexport/users/sample.xml
 ./plugins/importexport/native/sample.xml
 ./lib/pkp/js/lib/plupload
