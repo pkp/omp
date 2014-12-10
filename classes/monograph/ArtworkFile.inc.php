@@ -200,10 +200,7 @@ class ArtworkFile extends MonographFile {
 	}
 
 	/**
-	 * Get the metadata form for this submission file.
-	 * @param $stageId int FILE_STAGE_...
-	 * @param $reviewRound ReviewRound
-	 * @return Form
+	 * @copydoc MonographFile::getMetadataForm
 	 */
 	function getMetadataForm($stageId, $reviewRound) {
 		import('lib.pkp.controllers.wizard.fileUpload.form.SubmissionFilesArtworkMetadataForm');
