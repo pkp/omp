@@ -25,7 +25,7 @@ class FairCopyFilesGridHandler extends FileSignoffGridHandler {
 			new SubmissionFilesGridDataProvider(SUBMISSION_FILE_FAIR_COPY),
 			WORKFLOW_STAGE_ID_EDITING,
 			'SIGNOFF_FAIR_COPY',
-			FILE_GRID_ADD|FILE_GRID_DELETE|FILE_GRID_VIEW_NOTES
+			FILE_GRID_ADD|FILE_GRID_DELETE|FILE_GRID_VIEW_NOTES|FILE_GRID_EDIT
 		);
 
 		$this->addRoleAssignment(

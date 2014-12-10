@@ -71,6 +71,16 @@ class ManageFileApiHandler extends PKPManageFileApiHandler {
 		}
 
 	}
+
+	/**
+	 * Get the list of notifications to be updated on metadata form submission.
+	 * @return array
+	 */
+	protected function getUpdateNotifications() {
+		$updateNotifications = parent::getUpdateNotifications();
+		$updateNotifications[] = NOTIFICATION_TYPE_PENDING_INTERNAL_REVISIONS;
+		return $updateNotifications;
+	}
 }
 
 ?>
