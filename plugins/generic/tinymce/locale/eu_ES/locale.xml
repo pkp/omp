@@ -14,8 +14,6 @@
 <locale name="eu_ES" full_name="Euskara">
 	<message key="plugins.generic.tinymce.name">TinyMCE plugina</message>
 	<message key="plugins.generic.tinymce.description"><![CDATA[Plugin honek WYSIWYG edizioa gaitzen du,  OMP testu-areetan <a href="http://tinymce.moxiecode.com" target="_blank">TinyMCE</a> editorearekin erabiltzeko .]]></message>
-	<message key="plugins.generic.tinymce.descriptionDisabled"><![CDATA[Plugin honek WYSIWYG edizioa gaitzen du, OMP testu-areetan <a href="http://tinymce.moxiecode.com" target="_blank">TinyMCE</a> editorearekin erabiltzeko . <strong>TinyMCE ez dago instalatuta; instala ezazu {$tinyMcePath} direktorioan.</strong>]]></message>
-
 	<message key="plugins.generic.tinymce.settings">Ezarpenak</message>
 </locale>
 
