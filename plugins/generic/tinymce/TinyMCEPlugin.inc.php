@@ -30,7 +30,7 @@ class TinyMCEPlugin extends GenericPlugin {
 	 */
 	function register($category, $path) {
 		if (parent::register($category, $path)) {
-			if ($this->isMCEInstalled() && $this->getEnabled()) {
+			if ($this->getEnabled()) {
 				HookRegistry::register('TemplateManager::display',array(&$this, 'callback'));
 			}
 			return true;
@@ -114,26 +114,7 @@ class TinyMCEPlugin extends GenericPlugin {
 	 * @return string
 	 */
 	function getDescription() {
-		if ($this->isMCEInstalled()) return __('plugins.generic.tinymce.description');
-		return __('plugins.generic.tinymce.descriptionDisabled', array('tinyMcePath' => TINYMCE_INSTALL_PATH));
-	}
-
-	/**
-	 * Check whether or not the TinyMCE library is installed
-	 * @return boolean
-	 */
-	function isMCEInstalled() {
-		return file_exists(TINYMCE_JS_PATH . '/tinymce.js');
-	}
-
-	/**
-	 * Get a list of available management verbs for this plugin
-	 * @return array
-	 */
-	function getManagementVerbs() {
-		$verbs = array();
-		if ($this->isMCEInstalled()) $verbs = parent::getManagementVerbs();
-		return $verbs;
+		return __('plugins.generic.tinymce.description');
 	}
 }
 
