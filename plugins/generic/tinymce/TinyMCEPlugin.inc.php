@@ -13,12 +13,12 @@
  * @brief TinyMCE WYSIWYG plugin for textareas - to allow cross-browser HTML editing
  */
 
-
-
 import('lib.pkp.classes.plugins.GenericPlugin');
 
 define('TINYMCE_INSTALL_PATH', 'lib/pkp/lib/vendor/tinymce/tinymce');
 define('TINYMCE_JS_PATH', TINYMCE_INSTALL_PATH);
+
+define('ENVIRONMENT', dirname(__FILE__) . '/config'); // For jbimages configuration
 
 class TinyMCEPlugin extends GenericPlugin {
 	/**
@@ -74,13 +74,15 @@ class TinyMCEPlugin extends GenericPlugin {
 			$localeList[] = String::substr($key, 0, 2);
 		}
 
+		$useMinifiedJs = $templateManager->get_template_vars('useMinifiedJavaScript');
 		$tinymceScript = '
-		<script type="text/javascript" src="'.$baseUrl.'/'.TINYMCE_JS_PATH.'/tinymce.js"></script>
+		<script type="text/javascript" src="'.$baseUrl.'/'.TINYMCE_JS_PATH.'/'.($useMinifiedJs?'tinymce.min.js':'tinymce.js').'"></script>
 		<script type="text/javascript">
+			tinymce.PluginManager.load(\'jbimages\', \'' . $baseUrl . '/plugins/generic/tinymce/plugins/justboil.me/'.($useMinifiedJs?'plugin.min.js':'plugin.js').'\');
 			tinymce.init({
 				width: "100%",
 				entity_encoding: "raw",
-				plugins: "paste,fullscreen,link,code",
+				plugins: "paste,fullscreen,link,code,-jbimages",
 				language: "' . String::substr(AppLocale::getLocale(), 0, 2) . '",
 				relative_urls: false,
 				forced_root_block: "p",
@@ -89,7 +91,7 @@ class TinyMCEPlugin extends GenericPlugin {
 				theme : "modern",
 				menubar: false,
 				statusbar: false,
-				toolbar: "cut copy paste | bold italic underline bullist numlist | link unlink code fullscreen",
+				toolbar: "cut copy paste | bold italic underline bullist numlist | link unlink code fullscreen | jbimages",
 				init_instance_callback: $.pkp.controllers.SiteHandler.prototype.triggerTinyMCEInitialized,
 				setup: $.pkp.controllers.SiteHandler.prototype.triggerTinyMCESetup
 			});
