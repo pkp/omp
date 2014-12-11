@@ -14,7 +14,5 @@
 <locale name="da_DK" full_name="Dutch">
 	<message key="plugins.generic.tinymce.name">TinyMCE Plugin</message>
 	<message key="plugins.generic.tinymce.description"><![CDATA[Dette plugin aktiverer WYSIWYG redigering af OMP tekstfelter ved hjælp af <a href="http://tinymce.moxiecode.com" target="_blank">TinyMCE</a> tekstbehandleren.]]></message>
-	<message key="plugins.generic.tinymce.descriptionDisabled"><![CDATA[Dette plugin aktiverer WYSIWYG redigering af OMP tekstfelter ved hjælp af <a href="http://tinymce.moxiecode.com" target="_blank">TinyMCE</a> tekstbehandleren. <strong>TinyMCE er ikke installeret; sørg for at installere den i {$tinyMcePath}.</strong>]]></message>
-
 	<message key="plugins.generic.tinymce.settings">Indstillinger</message>
 </locale>

@@ -14,6 +14,5 @@
 <locale name="en_US" full_name="U.S. English">
 	<message key="plugins.generic.tinymce.name">TinyMCE Plugin</message>
 	<message key="plugins.generic.tinymce.description"><![CDATA[This plugin enables WYSIWYG editing of OMP textareas using the <a href="http://tinymce.moxiecode.com" target="_blank">TinyMCE</a> content editor.]]></message>
-	<message key="plugins.generic.tinymce.descriptionDisabled"><![CDATA[This plugin enables WYSIWYG editing of OMP textareas using the <a href="http://tinymce.moxiecode.com" target="_blank">TinyMCE</a> content editor. <strong>TinyMCE is not currently installed; please install it in {$tinyMcePath}.</strong>]]></message>
 	<message key="plugins.generic.tinymce.settings">Settings</message>
 </locale>
