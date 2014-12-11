@@ -15,11 +15,6 @@
 
 import('lib.pkp.classes.plugins.GenericPlugin');
 
-define('TINYMCE_INSTALL_PATH', 'lib/pkp/lib/vendor/tinymce/tinymce');
-define('TINYMCE_JS_PATH', TINYMCE_INSTALL_PATH);
-
-define('ENVIRONMENT', dirname(__FILE__) . '/config'); // For jbimages configuration
-
 class TinyMCEPlugin extends GenericPlugin {
 	/**
 	 * Register the plugin, if enabled; note that this plugin
@@ -39,7 +34,7 @@ class TinyMCEPlugin extends GenericPlugin {
 	}
 
 	/**
-	 * Get the name of the settings file to be installed on new press
+	 * Get the name of the settings file to be installed on new context
 	 * creation.
 	 * @return string
 	 */
@@ -49,11 +44,18 @@ class TinyMCEPlugin extends GenericPlugin {
 
 	/**
 	 * Get the name of the settings file to be installed site-wide when
-	 * OMP is installed.
+	 * the application is installed.
 	 * @return string
 	 */
 	function getInstallSitePluginSettingsFile() {
 		return $this->getPluginPath() . '/settings.xml';
+	}
+
+	/**
+	 * @copydoc PKPPlugin::getTemplatePath
+	 */
+	function getTemplatePath() {
+		return parent::getTemplatePath() . 'templates/';
 	}
 
 	/**
@@ -67,37 +69,17 @@ class TinyMCEPlugin extends GenericPlugin {
 		$templateManager =& $args[0];
 
 		$baseUrl = $templateManager->get_template_vars('baseUrl');
-		$additionalHeadData = $templateManager->get_template_vars('additionalHeadData');
 		$allLocales = AppLocale::getAllLocales();
 		$localeList = array();
 		foreach ($allLocales as $key => $locale) {
 			$localeList[] = String::substr($key, 0, 2);
 		}
 
-		$useMinifiedJs = $templateManager->get_template_vars('useMinifiedJavaScript');
-		$tinymceScript = '
-		<script type="text/javascript" src="'.$baseUrl.'/'.TINYMCE_JS_PATH.'/'.($useMinifiedJs?'tinymce.min.js':'tinymce.js').'"></script>
-		<script type="text/javascript">
-			tinymce.PluginManager.load(\'jbimages\', \'' . $baseUrl . '/plugins/generic/tinymce/plugins/justboil.me/'.($useMinifiedJs?'plugin.min.js':'plugin.js').'\');
-			tinymce.init({
-				width: "100%",
-				entity_encoding: "raw",
-				plugins: "paste,fullscreen,link,code,-jbimages",
-				language: "' . String::substr(AppLocale::getLocale(), 0, 2) . '",
-				relative_urls: false,
-				forced_root_block: "p",
-				paste_auto_cleanup_on_paste: true,
-				apply_source_formatting: false,
-				theme : "modern",
-				menubar: false,
-				statusbar: false,
-				toolbar: "cut copy paste | bold italic underline bullist numlist | link unlink code fullscreen | jbimages",
-				init_instance_callback: $.pkp.controllers.SiteHandler.prototype.triggerTinyMCEInitialized,
-				setup: $.pkp.controllers.SiteHandler.prototype.triggerTinyMCESetup
-			});
-		</script>';
-
-		$templateManager->assign('additionalHeadData', $additionalHeadData."\n".$tinymceScript);
+		$templateManager->assign(
+			'additionalHeadData',
+			$templateManager->get_template_vars('additionalHeadData') .
+			$templateManager->fetch($this->getTemplatePath() . 'header.tpl')
+		);
 		return false;
 	}
 
