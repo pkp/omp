@@ -7,7 +7,6 @@
  *
  * @brief TinyMCE PKP tags plugin
  */
-
 tinymce.PluginManager.add('pkpTags', function(editor, url) {
 	editor.on('init', function() {
 		var cssURL = url + '/styles/editor.css';
@@ -27,12 +26,14 @@ tinymce.PluginManager.add('pkpTags', function(editor, url) {
 		icon: 'pkpTags',
                 type: 'panelbutton',
                 panel: {
-			title: 'Insert Tag',
 			image: url + '/img/icon.png',
                         autohide: true,
 			html: function() {
 				var variableMap = $.pkp.classes.TinyMCEHelper.prototype.getVariableMap('#' + editor.id),
 						markup = '<ul>';
+				if (variableMap.length === 0) {
+					markup += '<li>No tags are available.</li>';
+				}
 				$.each(variableMap, function(variable, value) {
 					var $anchor = $('<a>').attr('href', '#' + variable).text(value);
 					var $li = $('<li/>').append($anchor);
@@ -53,6 +54,6 @@ tinymce.PluginManager.add('pkpTags', function(editor, url) {
                                 }
                         }
                 },
-                tooltip: 'PKP Tags'
+                tooltip: 'Insert Tag'
         });
 });
