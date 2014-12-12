@@ -23,10 +23,10 @@ tinymce.PluginManager.add('pkpTags', function(editor, url) {
 	});
 
         editor.addButton('pkpTags', {
-		icon: 'pkpTags',
+		icon: 'nonbreaking', // FIXME: This looks OK, but might be inappropriate
                 type: 'panelbutton',
                 panel: {
-			image: url + '/img/icon.png',
+			icon: 'nonbreaking',
                         autohide: true,
 			html: function() {
 				var variableMap = $.pkp.classes.TinyMCEHelper.prototype.getVariableMap('#' + editor.id),

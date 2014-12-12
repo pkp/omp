@@ -23,7 +23,7 @@
 		theme : "modern",
 		menubar: false,
 		statusbar: false,
-		toolbar: "cut copy paste | bold italic underline bullist numlist | link unlink code fullscreen | jbimages pkpTags",
+		toolbar: "cut copy paste | bold italic underline bullist numlist | link unlink code fullscreen | jbimages | pkpTags",
 		init_instance_callback: $.pkp.controllers.SiteHandler.prototype.triggerTinyMCEInitialized,
 		setup: $.pkp.controllers.SiteHandler.prototype.triggerTinyMCESetup,
 		content_css: "{$baseUrl}/plugins/generic/tinymce/styles/content.css"
