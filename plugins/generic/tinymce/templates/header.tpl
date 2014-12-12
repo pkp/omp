@@ -8,7 +8,6 @@
  * Header content for loading and configuring the TinyMCE control.
  *}
 <script type="text/javascript" src="{$baseUrl}/lib/pkp/lib/vendor/tinymce/tinymce/{if $useMinifiedJavaScript}tinymce.min.js{else}tinymce.js{/if}"></script>
-<script type="text/javascript" src="{$baseUrl}/plugins/generic/tinymce/js/TinyMCEHelper.js"></script>
 <script type="text/javascript">
 	tinymce.PluginManager.load('jbimages', '{$baseUrl}/plugins/generic/tinymce/plugins/justboil.me/{if $useMinifiedJavaScript}plugin.min.js{else}plugin.js{/if}');
 	tinymce.PluginManager.load('pkpTags', '{$baseUrl}/plugins/generic/tinymce/plugins/pkpTags/plugin.js');
