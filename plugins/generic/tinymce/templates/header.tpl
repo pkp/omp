@@ -13,6 +13,7 @@
 	tinymce.PluginManager.load('pkpTags', '{$baseUrl}/plugins/generic/tinymce/plugins/pkpTags/plugin.js');
 	tinymce.init({ldelim}
 		width: "100%",
+		resize: "both",
 		entity_encoding: "raw",
 		plugins: "paste,fullscreen,link,code,-jbimages,-pkpTags,noneditable",
 		language: "{$currentLocale|substr:0:2}",
@@ -22,7 +23,6 @@
 		apply_source_formatting: false,
 		theme : "modern",
 		menubar: false,
-		statusbar: false,
 		toolbar: "cut copy paste | bold italic underline bullist numlist | link unlink code fullscreen | jbimages | pkpTags",
 		init_instance_callback: $.pkp.controllers.SiteHandler.prototype.triggerTinyMCEInitialized,
 		setup: $.pkp.controllers.SiteHandler.prototype.triggerTinyMCESetup,
