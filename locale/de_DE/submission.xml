@@ -8,7 +8,7 @@
   * Copyright (c) 2003-2014 John Willinsky
   * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
   * Localization strings.
-  * Please contact Marco Tullney, marco.tullney@fu-berlin.de, with any questions regarding this translation. 
+  * locale information: https://pkp.sfu.ca/wiki/index.php?title=OMP:_German_%28de_DE%29
   -->
 
 <locale name="de_DE" full_name="Deutsch (Deutschland)">
