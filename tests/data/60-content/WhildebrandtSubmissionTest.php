@@ -42,6 +42,32 @@ class WhildebrandtSubmissionTest extends ContentBaseTestCase {
 				'Political & International Studies',
 				'Sociology',
 			),
+			'chapters' => array(
+				array(
+					'title' => 'Preface',
+					'contributors' => array('Walter Hildebrandt'),
+				),
+				array(
+					'title' => 'Chapter One: Conquest of the Prairie West',
+					'contributors' => array('Walter Hildebrandt'),
+				),
+				array(
+					'title' => 'Chapter Two: The Material Culture of Fort Battleford',
+					'contributors' => array('Walter Hildebrandt'),
+				),
+				array(
+					'title' => 'Chapter Three: Administration of the Law at Fort Battleford: 1876-1885',
+					'contributors' => array('Walter Hildebrandt'),
+				),
+				array(
+					'title' => 'Chapter Four: The Social and Economic Life of Fort Battleford',
+					'contributors' => array('Walter Hildebrandt'),
+				),
+				array(
+					'title' => 'Conclusion',
+					'contributors' => array('Walter Hildebrandt'),
+				),
+			),
 		));
 		$this->logOut();
 

@@ -37,6 +37,28 @@ class BbarnetsonSubmissionTest extends ContentBaseTestCase {
 				'Business & Economics',
 				'Political & International Studies',
 			),
+			'chapters' => array(
+				array(
+					'title' => 'Introduction',
+					'contributors' => array('Bob Barnetson'),
+				),
+				array(
+					'title' => 'Part One. Employment Relationships in Canada',
+					'contributors' => array('Bob Barnetson'),
+				),
+				array(
+					'title' => 'Part Two. Preventing Workplace Injury',
+					'contributors' => array('Bob Barnetson'),
+				),
+				array(
+					'title' => 'Part Three. Critique of OHS in Canada',
+					'contributors' => array('Bob Barnetson'),
+				),
+				array(
+					'title' => 'Part Four. Political Economy of Preventing Workplace Injury',
+					'contributors' => array('Bob Barnetson'),
+				),
+			),
 		));
 
 		$this->logOut();

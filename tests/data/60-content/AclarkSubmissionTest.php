@@ -34,6 +34,20 @@ class AclarkSubmissionTest extends ContentBaseTestCase {
 			'type' => 'monograph',
 			'title' => $title,
 			'abstract' => 'The ABCs of Human Survival examines the effect of militant nationalism and the lawlessness of powerful states on the well-being of individuals and local communities―and the essential role of global citizenship within that dynamic. Based on the analysis of world events, Dr. Arthur Clark presents militant nationalism as a pathological pattern of thinking that threatens our security, while emphasizing effective democracy and international law as indispensable frameworks for human protection.',
+			'chapters' => array(
+				array(
+					'title' => 'Choosing the Future',
+					'contributors' => array('Arthur Clark'),
+				),
+				array(
+					'title' => 'Axioms',
+					'contributors' => array('Arthur Clark'),
+				),
+				array(
+					'title' => 'Paradigm Shift',
+					'contributors' => array('Arthur Clark'),
+				),
+			),
 		));
 		$this->logOut();
 

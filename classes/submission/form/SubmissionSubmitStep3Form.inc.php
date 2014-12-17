@@ -49,8 +49,6 @@ class SubmissionSubmitStep3Form extends PKPSubmissionSubmitStep3Form {
 	function fetch($request) {
 		$templateMgr = TemplateManager::getManager($request);
 
-		$templateMgr->assign('isEditedVolume', $this->submission->getWorkType() == WORK_TYPE_EDITED_VOLUME);
-
 		// If categories are configured, present the LB.
 		$categoryDao = DAORegistry::getDAO('CategoryDAO');
 		$templateMgr->assign('categoriesExist', $categoryDao->getCountByPressId($this->context->getId()) > 0);

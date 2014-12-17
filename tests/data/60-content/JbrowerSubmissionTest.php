@@ -38,6 +38,44 @@ class JbrowerSubmissionTest extends ContentBaseTestCase {
 				'Environmental Studies',
 				'Political & International Studies',
 			),
+			'chapters' => array(
+				array(
+					'title' => 'Introduction',
+					'contributors' => array('Jennifer Brower'),
+				),
+				array(
+					'title' => 'CHAPTER ONE: Where the Buffalo Roamed',
+					'contributors' => array('Jennifer Brower'),
+				),
+				array(
+					'title' => 'CHAPTER TWO: Bison Conservation and Buffalo National Park',
+					'contributors' => array('Jennifer Brower'),
+				),
+				array(
+					'title' => 'CHAPTER THREE: A Well-Run Ranch',
+					'contributors' => array('Jennifer Brower'),
+				),
+				array(
+					'title' => 'CHAPTER FOUR: Zookeepers and Animal Breeders',
+					'contributors' => array('Jennifer Brower'),
+				),
+				array(
+					'title' => 'CHAPTER FIVE: "Evolving the Arctic Cow"',
+					'contributors' => array('Jennifer Brower'),
+				),
+				array(
+					'title' => 'CONCLUSION: The Forgotten Park',
+					'contributors' => array('Jennifer Brower'),
+				),
+				array(
+					'title' => 'Bibliography',
+					'contributors' => array('Jennifer Brower'),
+				),
+				array(
+					'title' => 'Index',
+					'contributors' => array('Jennifer Brower'),
+				),
+			),
 		));
 
 		$this->logOut();

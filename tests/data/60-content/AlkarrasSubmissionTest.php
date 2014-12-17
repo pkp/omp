@@ -42,6 +42,28 @@ class AlkarrasSubmissionTest extends ContentBaseTestCase {
 				'History',
 				'Sociology',
 			),
+			'chapters' => array(
+				array(
+					'title' => 'Introduction',
+					'contributors' => array('A.L. Karras'),
+				),
+				array(
+					'title' => '1. Road to Learning',
+					'contributors' => array('A.L. Karras'),
+				),
+				array(
+					'title' => '2. Forest Ranger',
+					'contributors' => array('A.L. Karras'),
+				),
+				array(
+					'title' => '3. From Poacher to Game Guardian',
+					'contributors' => array('A.L. Karras'),
+				),
+				array(
+					'title' => 'Epilogue',
+					'contributors' => array('A.L. Karras'),
+				),
+			),
 		));
 		$this->logOut();
 
