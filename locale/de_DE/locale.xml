@@ -80,11 +80,11 @@
 	<message key="grid.catalogEntry.isAvailable">Verfügbar</message>
 	<message key="grid.catalogEntry.proof">Korrekturfahne</message>
 	<message key="grid.catalogEntry.availablePublicationFormat.title">Annahme dieses Formats</message>
-	<message key="grid.catalogEntry.availablePublicationFormat.message"><![CDATA[<p>Das Buch wird nun in diesem Format den Leser/innen <em>verfügbar</em> gemacht: als Datei, die vom Katalog aus heruntergeladen werden kann und/oder durch weitere Vertriebsmaßnahmen des Verlags.</p>]]></message>
+	<message key="grid.catalogEntry.availablePublicationFormat.message"><![CDATA[<p>Das Buch wird nun in diesem Format den Leser/innen <em>verfügbar</em> gemacht: als Datei, die vom Katalog aus heruntergeladen werden kann, und/oder durch weitere Vertriebsmaßnahmen des Verlags.</p>]]></message>
 	<message key="grid.catalogEntry.availablePublicationFormat.removeMessage"><![CDATA[<p>In diesem Format wird das Buch nun für Leser/innen <em> nicht mehr angeboten</em> werden, weder über eine Downloadmöglichkeit im Katalog noch über weitere Vertriebsmaßnahmen des Verlags.</p>.]]></message>
 	<message key="grid.catalogEntry.availablePublicationFormat.catalogNotApprovedWarning">Katalogeintrag nicht akzeptiert.</message>
-	<message key="grid.catalogEntry.availablePublicationFormat.notApprovedWarning">Format nicht im Katalogeintrag enthalten.</message>
-	<message key="grid.catalogEntry.availablePublicationFormat.proofNotApproved"> Korrekturfahne nicht akzeptiert.</message>
+	<message key="grid.catalogEntry.availablePublicationFormat.notApprovedWarning">Dieses Format ist nicht im Katalogeintrag enthalten.</message>
+	<message key="grid.catalogEntry.availablePublicationFormat.proofNotApproved">Korrekturfahne nicht akzeptiert.</message>
 
 	<!-- publication metadata required form field keys -->
 	<message key="grid.catalogEntry.fileSizeRequired">Für digitale Formate wird eine Dateigröße benötigt.</message>
@@ -130,7 +130,7 @@
 	<message key="grid.catalogEntry.agentsCategory">Vertreter/innen</message>
 	<message key="grid.catalogEntry.suppliersCategory">Dienstleister</message>
 	<message key="grid.catalogEntry.agent">Vertreter/in</message>
-	<message key="grid.catalogEntry.agentTip">Sie können einen Vertreter bestimmen, der Sie in dem ausgewählten Gebiet repräsentiert. Diese Angabe ist nicht verpflichtend.</message>
+	<message key="grid.catalogEntry.agentTip">Sie können eine/n Vertreter/in bestimmen, um Sie in dem ausgewählten Gebiet zu repräsentieren. Diese Angabe ist nicht verpflichtend.</message>
 	<message key="grid.catalogEntry.supplier">Dienstleister</message>
 	<message key="grid.catalogEntry.representativeRoleChoice">Wählen Sie eine Funktion:</message>
 	<message key="grid.catalogEntry.representativeRole">Funktion</message>
@@ -251,7 +251,7 @@
 	<message key="catalog.manage.spotlightDescription">Auf der Homepage des Verlags werden bis zu drei Spotlights (z.B. empfohlene Bücher) mit Titel, Umschlagbild und Text angezeigt.</message>
 	<message key="catalog.manage.homepageDescription">Die Umschlagbilder der ausgewählten Bücher erscheinen auf der Homepage als scrollbare Liste. Klicken Sie auf den Icon 'Empfehlen' (rechts) und anschließend auf das entsprechende Sternchen, um ein Buch dem Karussell hinzuzufügen, und auf das Ausrufezeichen, wenn Sie es unter der Rubrik 'Neuerscheinungen" erscheinen soll. Durch Drag and Drop können Sie die Reihenfolge festlegen, in der die Bücher angezeigt werden.</message>
 	<message key="catalog.manage.categoryDescription">Um ein Buch auszuwählen, das Sie in der jeweiligen Kategorie besonders empfehlen möchten, klicken Sie zunächst auf den Icon 'Empfehlen' (rechts unterhalb dieser Erklärung) und dann auf das Sternchen. Mit Drag and Drop legen Sie die Reihenfolge der angezeigten empfohlenen Titel fest.</message>
-	<message key="catalog.manage.seriesDescription"><![CDATA[Wenn Sie innerhalb der Reihe ein Buch als empfehlenswert hervorheben möchten, klicken Sie zuerst auf den Icon 'Empfehlen' (rechts unterhalb dieser Erklärung) und dann auf das jeweilige Sternchen. Mit Drag and Drop können Sie die Reihenfolge festlegen, in der die empfohlenen Titel anzeigt werden.<p> Reihen lassen sich stets über den Herausgeber und Titel identifizieren, sie können einer Kategorie zugeordnet sein, müssen es aber nicht.]]></message>
+	<message key="catalog.manage.seriesDescription"><![CDATA[Wenn Sie innerhalb der Reihe ein Buch als empfehlenswert hervorheben möchten, klicken Sie zuerst auf den Icon 'Empfehlen' (rechts unterhalb dieser Erklärung) und dann auf das jeweilige Sternchen. Mit Drag and Drop können Sie die Reihenfolge festlegen, in der die empfohlenen Titel anzeigt werden.<p> Reihen lassen sich stets über den/die Herausgeber/in und Titel identifizieren, sie können einer Kategorie zugeordnet sein, müssen es aber nicht.]]></message>
 	<message key="catalog.manage.placeIntoCarousel">Karussell</message>
 	<message key="catalog.manage.newRelease">Ausgabe</message>
 	<message key="catalog.manage.manageSeries">Reihen verwalten</message>
@@ -353,8 +353,8 @@
 	<message key="user.register.readerDescription">Per E-Mail über das Erscheinen eines Buches benachrichtigt.</message>
 	<message key="user.register.authorDescription">Kann einen Titel beim Verlag einreichen.</message>
 	<message key="user.register.reviewerDescriptionNoInterests">Ich bin bereit, beim Verlag eingegangene Manuskripte zu begutachten.</message>
-	<message key="user.register.reviewerDescription">Erklärt sich bereit, den Peer-Review-Prozess für auf dieser Website eingereichte Manuskripten durchzuführen.</message>
-	<message key="user.register.reviewerInterests">Interessen (inhaltiche Schwerpunkte und Forschungsmethoden):</message>
+	<message key="user.register.reviewerDescription">Erklärt sich bereit, den Peer-Review-Prozess für auf dieser Website eingereichte Manuskripte durchzuführen.</message>
+	<message key="user.register.reviewerInterests">Interessen (inhaltliche Schwerpunkte und Forschungsmethoden):</message>
 	<message key="user.register.form.userGroupRequired">Sie müssen mindestens eine Funktion auswählen</message>
 
 	<!-- Site index -->
@@ -364,7 +364,7 @@
 	<message key="about.pressContact">Pressekontakt</message>
 	<message key="about.aboutThePress">Über den Verlag</message>
 	<message key="about.editorialTeam">Herausgeber/innen</message>
-	<message key="about.editorialPolicies">Herausgeber/innenrichtlinien</message>
+	<message key="about.editorialPolicies">Richtlinien für Herausgeber/innen</message>
 	<message key="about.focusAndScope">Fokus und Umfang</message>
 	<message key="about.seriesPolicies">Richtlinien für Reihen und Kategorien</message>
 	<message key="about.submissions">Manuskripte einreichen</message>
@@ -387,8 +387,8 @@
 	<message key="about.pressSponsorship">Verlagssponsoren</message>
 	<message key="about.aboutThisPublishingSystem">Über dieses Publikationssystem</message>
 	<message key="about.aboutThisPublishingSystem.altText">OMP-Redaktions- und Veröffentlichungsprozess</message>
-	<message key="about.aboutOMPPress"><![CDATA[Dieser Verlag verwendet Open Monograph Press {$ompVersion}, eine Open-Source-Presse- und Verlagsmanagement-Software, die vom <a href="http://pkp.sfu.ca/">Public Knowledge Project</a> unter der GNU General Public License entwickelt wurde. Support und Vertrieb der Software sind kostenfrei .]]></message>
-	<message key="about.aboutOMPSite"><![CDATA[Dieser Verlag verwendet Open Monograph Press {$ompVersion}, eine Open-Source-Presse- und Verlagsmanagement-Software, die vom <a href="http://pkp.sfu.ca/">Public Knowledge Project</a> unter der GNU General Public License entwickelt wurde. Support und Vertrieb der Software sind kostenfrei .]]></message>
+	<message key="about.aboutOMPPress"><![CDATA[Dieser Verlag verwendet Open Monograph Press {$ompVersion}, eine Open-Source-Presse- und Verlagsmanagement-Software, die vom <a href="http://pkp.sfu.ca/">Public Knowledge Project</a> unter der GNU General Public License entwickelt wurde. Support und Vertrieb der Software sind kostenfrei.]]></message>
+	<message key="about.aboutOMPSite"><![CDATA[Dieser Verlag verwendet Open Monograph Press {$ompVersion}, eine Open-Source-Presse- und Verlagsmanagement-Software, die vom <a href="http://pkp.sfu.ca/">Public Knowledge Project</a> unter der GNU General Public License entwickelt wurde. Support und Vertrieb der Software sind kostenfrei.]]></message>
 
 	<!-- Help -->
 	<message key="help.searchReturnResults">Zurück zu den Suchergebnissen</message>
@@ -419,9 +419,9 @@
 	<message key="installer.upgradeInstructions"><![CDATA[<h4>OMP Version {$version}</h4>
 
 <p>Vielen Dank, dass Sie <strong>Open Monograph Press</strong> des Public Knowledge Project heruntergeladen haben. Bevor Sie fortfahren, empfehlen wir Ihnen, die <a href="{$baseUrl}/docs/README">README</a> und <a href="{$baseUrl}/docs/UPGRADE">UPGRADE</a> Dateien zu lesen, die in dieser Software enthalten sind. Weitere Informationen über das Public Knowledge Project und seine Softwareprojecte finden Sie auf der <a href="http://pkp.sfu.ca/" target="_blank">PKP-Website</a>. Wenn Sie einen Bug melden möchten oder technischen Support für Open Monograph Press benötigen, wenden Sie sich bitte an unser: <a href="http://pkp.sfu.ca/support/forum" target="_blank">support forum</a> oder besuchen Sie online PKPs <a href="http://pkp.sfu.ca/bugzilla/" target="_blank">bug reporting system</a>. Wir empfehlen Ihnen zwar, über das Supportforum Kontakt zu uns aufzunehmen, Sie können eine E-Mail an unser Team schreiben: <a href="mailto:pkp.contact@gmail.com">pkp.contact@gmail.com</a>.</p>
-<p>Es wird <strong>dringend empfohlen</strong> Datenbank, Dateienverzeichnis und OMP-Installationsverzeichnis zu speichen, bevor Sie fortfahren.</p>
-<p>Wenn Sie den Upgrade im abgesicherten Modus <a href="http://www.php.net/features.safe-mode" target="_blank">PHP Safe Mode</a> durchführen, setzen Sie Sie bitte bei max_execution_time in Ihrer php.ini-Konfigurationsdatei einen hohen Wert fest. Wenn dieses oder ein anderes Zeilimit (z.B. Apache's "Timeout" ) erreicht und der Upgrade-Vorgang unterbrochen wurde, kann der Vorgang nur durch manuelles Eingreifen fortgesetzt werden.</p>]]></message>
-	<message key="installer.localeSettingsInstructions"><![CDATA[Für einen vollständigen Unicode (UTF-8)-Support wählen Sie bitte UTF-8 für alle Zeichensatz-Einstellungen. Bitte beachten Sie, dass der Support zurzeit einen MySQL >= 4.1.1 or PostgreSQL >= 9.1.5 Datenbankserver zur Voraussetzung hat. Außerdem wird für den vollen Unicode-Support die <a href="http://www.php.net/mbstring" target="_blank">mbstring</a> -Bibliothek (in jüngeren PHP-Installationen meist standardmäßig aktiviert). Sie können eventuell Probleme beim Verwenden erweiterter Zeichensätze bkommen, wenn Ihr Server diese Anforderungen nicht erfüllt.
+<p>Es wird <strong>dringend empfohlen</strong> Datenbank, Dateienverzeichnis und OMP-Installationsverzeichnis zu speichern, bevor Sie fortfahren.</p>
+<p>Wenn Sie den Upgrade im abgesicherten Modus <a href="http://www.php.net/features.safe-mode" target="_blank">PHP Safe Mode</a> durchführen, setzen Sie bitte bei max_execution_time in Ihrer php.ini-Konfigurationsdatei einen hohen Wert fest. Wenn dieses oder ein anderes Zeitlimit (z.B. Apache's "Timeout") erreicht und der Upgrade-Vorgang unterbrochen wurde, kann der Vorgang nur durch manuelles Eingreifen fortgesetzt werden.</p>]]></message>
+	<message key="installer.localeSettingsInstructions"><![CDATA[Für einen vollständigen Unicode (UTF-8)-Support wählen Sie bitte UTF-8 für alle Zeichensatz-Einstellungen. Bitte beachten Sie, dass der Support zurzeit einen MySQL >= 4.1.1 or PostgreSQL >= 9.1.5 Datenbankserver zur Voraussetzung hat. Außerdem wird für den vollen Unicode-Support die <a href="http://www.php.net/mbstring" target="_blank">mbstring</a>-Bibliothek (in jüngeren PHP-Installationen meist standardmäßig aktiviert). Sollten Sie erweiterte Zeichensätze verwenden, kann es zu Schwierigkeiten kommen, wenn Ihr Server diese Anforderungen nicht erfüllt.
 <br /><br />
 Ihr Server untersützt aktuell mbstring: <strong>{$supportsMBString}</strong>]]></message>
 	<message key="installer.allowFileUploads"><![CDATA[Ihr Server erlaubt aktuell die Datei-Uploads: <strong>{$allowFileUploads}</strong>]]></message>
