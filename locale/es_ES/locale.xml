@@ -393,7 +393,7 @@
 
 <h4>Actualizar</h4>
 
-<p>Si estás actualizando una instalación previa de OMP 0.x, <a href="{$upgradeUrl}">haz clic aquí</a> para continuar.</p>]]></message>
+<p>Si estás actualizando una instalación previa de OMP, <a href="{$upgradeUrl}">haz clic aquí</a> para continuar.</p>]]></message>
 	<message key="installer.preInstallationInstructionsTitle">Pasos para preinstalación</message>
 	<message key="installer.preInstallationInstructions"><![CDATA[<p>1. Los siguientes archivos y directorios ( y sus contenidos) deben tener permiso de escritura:</p>
 <ul>

@@ -405,7 +405,7 @@
 
 <h4>Upgrade</h4>
 
-<p>If you are upgrading an existing installation of OMP 0.x, <a href="{$upgradeUrl}">click here</a> to proceed.</p>]]></message>
+<p>If you are upgrading an existing installation of OMP, <a href="{$upgradeUrl}">click here</a> to proceed.</p>]]></message>
 	<message key="installer.preInstallationInstructionsTitle">Pre-Installation Steps</message>
 	<message key="installer.preInstallationInstructions"><![CDATA[<p>1. The following files and directories (and their contents) must be made writable:</p>
 <ul>

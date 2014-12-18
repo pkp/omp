@@ -403,7 +403,7 @@
 
 <h4>Upgrade</h4>
 
-<p>Wenn Sie eine bestehende Installation von OMP 0.x upgraden möchten, klicken Sie <a href="{$upgradeUrl}"> hier</a> um fortzufahren.</p>]]></message>
+<p>Wenn Sie eine bestehende Installation von OMP upgraden möchten, klicken Sie <a href="{$upgradeUrl}"> hier</a> um fortzufahren.</p>]]></message>
 	<message key="installer.preInstallationInstructionsTitle">Pre-Installation Steps</message>
 	<message key="installer.preInstallationInstructions"><![CDATA[<p>1. Die folgenden Dateien und Verzeichnisse (und deren Inhalte) müssen mit einer Schreibberechtigung ausgestattet sein:</p>
 <ul>

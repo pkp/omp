@@ -404,7 +404,7 @@
 
 <h4>Upgrade</h4>
 
-<p>S'il s'agit d'une mise à jour d'OMP 0.x, <a href="{$upgradeUrl}">cliquez ici</a> pour continuer.</p>]]></message>
+<p>S'il s'agit d'une mise à jour d'OMP, <a href="{$upgradeUrl}">cliquez ici</a> pour continuer.</p>]]></message>
 	<message key="installer.preInstallationInstructionsTitle">Étapes de Pré-installation</message>
 	<message key="installer.preInstallationInstructions"><![CDATA[<p>1. Les fichiers et répertoires suivants (et leur contenu) doivent être inscriptibles:</p>
 <ul>

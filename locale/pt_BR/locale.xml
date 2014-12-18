@@ -391,7 +391,7 @@
 
 <h4>Atualização</h4>
 
-<p>Caso esteja atualizando uma versão existente no OMP 0.x, <a href="{$upgradeUrl}">clique aqui</a> para proceder.</p>]]></message>
+<p>Caso esteja atualizando uma versão existente no OMP, <a href="{$upgradeUrl}">clique aqui</a> para proceder.</p>]]></message>
 	<message key="installer.preInstallationInstructionsTitle">Antes de instalar</message>
 	<message key="installer.preInstallationInstructions"><![CDATA[<p>1. Os seguintes arquivos e pastas (e seus conteúdos) devem possuir permissão de escrita:</p>
 <ul>
