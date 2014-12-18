@@ -15,7 +15,7 @@
   -->
 
 <locales>
-	<locale key="de_DE" name="Deutsch" iso639-2b="ger" iso639-3="deu" />
+	<locale key="de_DE" complete="true" name="Deutsch" iso639-2b="ger" iso639-3="deu" />
 	<locale key="el_GR" name="Greek" iso639-2b="gre" iso639-3="ell" />
 	<locale key="en_US" complete="true" name="English" iso639-2b="eng" iso639-3="eng" />
 	<locale key="es_ES" name="Español" iso639-2b="spa" iso639-3="spa" />
