@@ -371,9 +371,9 @@
 	<message key="about.sponsors">Sponsor/innen</message>
 	<message key="about.contributors">Förderer</message>
 	<message key="about.onlineSubmissions">Online-Einreichungen</message>
-	<message key="about.onlineSubmissions.haveAccount">Besitzen Sie bereits einen Benutzer/innennamen/ein Passwort für {$pressTitle}?</message>
+	<message key="about.onlineSubmissions.haveAccount">Besitzen Sie bereits einen Benutzernamen/ein Passwort für {$pressTitle}?</message>
 	<message key="about.onlineSubmissions.login">Zum Login</message>
-	<message key="about.onlineSubmissions.needAccount">Benötigen Sie einen Benutzer/innennamen/ein Passwort?</message>
+	<message key="about.onlineSubmissions.needAccount">Benötigen Sie einen Benutzernamen/ein Passwort?</message>
 	<message key="about.onlineSubmissions.registration">Zur Registrierung</message>
 	<message key="about.onlineSubmissions.registrationRequired">Sie müssen registriert und eingeloggt sein, um Manuskripte einzureichen oder den aktuellen Status Ihrer Einreichung zu überprüfen.</message>
 	<message key="about.authorGuidelines">Richtlinien für Autoren/innen</message>
