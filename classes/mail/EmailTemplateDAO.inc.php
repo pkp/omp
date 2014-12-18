@@ -80,7 +80,7 @@ class EmailTemplateDAO extends PKPEmailTemplateDAO {
 	 * Delete all email templates for a specific press.
 	 * @param $pressId int
 	 */
-	function deleteEmailTemplatesByPress($pressId) {
+	function deleteEmailTemplatesByContext($pressId) {
 		return parent::deleteEmailTemplatesByAssoc(ASSOC_TYPE_PRESS, $pressId);
 	}
 
