@@ -31,12 +31,11 @@ class RepresentativesGridRow extends GridRow {
 	// Overridden methods from GridRow
 	//
 	/**
-	 * @see GridRow::initialize()
-	 * @param $request PKPRequest
+	 * @copydoc GridRow::initialize()
 	 */
-	function initialize($request) {
+	function initialize($request, $template = null) {
 		// Do the default initialization
-		parent::initialize($request);
+		parent::initialize($request, $template);
 
 		$monograph = $this->getMonograph();
 
