@@ -16,15 +16,15 @@
 	<message key="submission.submit.title">Monografie einreichen</message>
 	<message key="submission.upload.selectBookElement">Bitte wählen Sie aus</message>
 	<message key="submission.title">Buchtitel</message>
-	<message key="submission.title.tip"><![CDATA[Die eingereichten Manuskripte lassen in der Regel sich als 'Bild' , 'Text' oder als eine andere Multimediagattung (wie z.B. 'Software' oder 'Interaktive Medien') klassifizieren. Bitte wählen Sie den für Ihre Einreichung am besten zutreffenden Typ aus. Beispiele finden Sie unter <a target="_blank" href="http://dublincore.org/documents/2001/04/12/usageguide/generic.shtml#type">http://dublincore.org/documents/2001/04/12/usageguide/generic.shtml#type</a>]]></message>
+	<message key="submission.title.tip"><![CDATA[Die eingereichten Manuskripte lassen sich in der Regel als 'Bild', 'Text' oder als eine andere Multimediagattung (wie z.B. 'Software' oder 'Interaktive Medien') klassifizieren. Bitte wählen Sie den für Ihre Einreichung am besten zutreffenden Typ aus. Beispiele finden Sie unter <a target="_blank" href="http://dublincore.org/documents/2001/04/12/usageguide/generic.shtml#type">http://dublincore.org/documents/2001/04/12/usageguide/generic.shtml#type</a>]]></message>
 	<message key="submission.select">Wählen Sie ein Manuskript aus</message>
 	<message key="submission.synopsis">Über dieses Buch</message>
 	<message key="submission.workflowType">Art des Buches</message>
-	<message key="submission.workflowType.description">Eine Monografie ist ein Werk, das von einer Autor/einem Autor oder mehreren Autor/innen gemeinsam verfasst worden ist. Ein Sammelband besteht aus mehreren Kapiteln jeweils unterschiedlicher Autor/innen (detaillierte Kapitelangaben sind erst zu einem späteren Zeitpunkt im Veröffentlichungsprozess zu machen).</message>
+	<message key="submission.workflowType.description">Eine Monografie ist ein Werk, das von einer Autorin/einem Autor oder mehreren Autor/innen gemeinsam verfasst worden ist. Ein Sammelband besteht aus mehreren Kapiteln jeweils unterschiedlicher Autor/innen (detaillierte Kapitelangaben sind erst zu einem späteren Zeitpunkt im Veröffentlichungsprozess zu machen).</message>
 	<message key="submission.workflowType.editedVolume">Sammelband</message>
 	<message key="submission.workflowType.authoredWork">Monografie</message>
 	<message key="submission.monograph">Monografie</message>
-	<message key="submission.published">Produktionsreif</message>
+	<message key="submission.published">Druckreif</message>
 	<message key="submission.fairCopy">Reinschrift</message>
 	<message key="submission.artwork.permissions">Rechte</message>
 	<message key="submission.chapter">Kapitel</message>
@@ -63,7 +63,7 @@
 	<message key="submission.submit.submissionChecklistDescription">Die eingereichten Manuskripte müssen den folgenden Vorgaben entsprechen. Um fortfahren zu können, müssen Sie die Erfüllung der Vorgaben bestätigen (Kommentare an die Redaktion können unten hinzugefügt werden).</message>
 	<message key="submission.submit.privacyStatement">Datenschutzerklärung</message>
 	<message key="submission.submit.contributorRole">Funktion des Beiträgers/der Beiträgerin</message>
-	<message key="submission.submit.form.authorRequired">Es muss mindestens ein/e Autor/in angegeben werden.</message>
+	<message key="submission.submit.form.authorRequired">Es muss mindestens ein Autor/eine Autorin angegeben werden.</message>
 	<message key="submission.submit.form.authorRequiredFields">Es werden Vorname, Nachname und E-Mail-Adresse aller Autor/innen benötigt.</message>
 	<message key="submission.submit.form.titleRequired">Bitte geben Sie den Titel Ihrer Monografie ein.</message>
 	<message key="submission.submit.form.abstractRequired">Bitte geben Sie eine kurze Zusammenfassung Ihrer Monografie ein.</message>
