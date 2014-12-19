@@ -49,7 +49,7 @@
 			outputType="xml::schema(plugins/importexport/native/native.xsd)" />
 		<!-- Publication Format native XML input -->
 		<filterGroup
-			symbolic="native-xml=>publication-format"
+			symbolic="native-xml=>PublicationFormat"
 			displayName="plugins.importexport.native.displayName"
 			description="plugins.importexport.native.description"
 			inputType="xml::schema(plugins/importexport/native/native.xsd)"
