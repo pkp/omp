@@ -41,6 +41,7 @@ tools/buildpkg.sh						\
 tools/genLocaleReport.sh					\
 tools/genTestLocale.php						\
 tools/test							\
+plugins/generic/translator					\
 lib/pkp/plugins/*/*/tests					\
 plugins/*/*/tests						\
 tests								\
@@ -48,6 +49,7 @@ lib/pkp/tests							\
 .git								\
 .openshift							\
 lib/pkp/.git							\
+lib/pkp/tools/travis						\
 lib/pkp/lib/swordappv2/.git					\
 lib/pkp/lib/swordappv2/test"
 
