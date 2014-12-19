@@ -117,7 +117,7 @@
 			isTemplate="0" />
 		<!-- Native XML publication format input -->
 		<filter
-			inGroup="native-xml=>publication-format"
+			inGroup="native-xml=>PublicationFormat"
 			class="plugins.importexport.native.filter.NativeXmlPublicationFormatFilter"
 			isTemplate="0" />
 		<!-- Native XML monograph file input -->
