@@ -1,10 +1,123 @@
 OMP 1.1.1 Release Notes
 CVS tag: omp-1_1_1-0
-Release date: November 11, 2014
+Release date: December 19, 2014
 =================================
 
 New Features
 ------------
+	#8860# Add Custom Block Manager plugin
+	#8915# Add Static Pages plugin
+	#8612# Add epub icons / MIME types
+	#8629# Add DOI display to book landing page
+	#8672# Restrict authors display list based on submission type
+	#8720# Add lang and xml:lang attributes to <html> element
+	#8857# Permit plugins to register components
+	#8858# Permit plugins to hide in plugin management
+	#8867# Make footer links multilingual-capable
+	#8883# Optional display features for the press homepage
+	#8891# Add user notification settings page
 
 Bug Fixes
 ---------
+	#6443# Correct plupload/jquery.validate localization loading problems
+	#6531# "EDITOR NOTE" text hard-coded instead of actual note fetch
+	#8204# Press' Peer Review policy should appear on About -> Submissions
+	#8315# Clarify notification process for copyeditors
+	#8336# Stage participants has visibility problems
+	#8424# Expedited submission process
+	#8432# stylesheets are listed in wrong order
+	#8445# Implement basic XML import/export.
+	#8523# "current" link does not work with path_info disabled
+	#8581# Enable/configure the manual payment plugin by default
+	#8590# Unassigned submission list row actions not working
+	#8592# changing language on installation
+	#8593# Localization updates
+	#8596# Allowed HTML syntax for attributes is incorrect
+	#8597# Localization flags overlay TinyMCE scrollbar
+	#8604# Submission progress bar doesn't refresh
+	#8609# Reviewer permission level should not allow other stages
+	#8610# After reordering series, the browse side bar doesn't refresh
+	#8611# Categories management tab is not accessible
+	#8613# Make sure footer links works
+	#8615# Non-submitting authors can't access assigned submissions
+	#8622# Custom id in custom block plugin
+	#8624# Notices while processing statistics
+	#8626# Selecting reviewers leads to HTML wierdness
+	#8627# Ensure that bullets entered in TinyMCE-enabled fields display
+	#8628# Clarify review structure
+	#8630# Warn editors when assigning a review without files
+	#8636# Warning type notifications don't show any content
+	#8637# User group stage assignment is too complicated
+	#8639# Verify required fields on payment configuration forms
+	#8641# Close notification icon image is missing
+	#8642# OAI dc:type = Peer-reviewed Article?
+	#8643# Error sending reminder to reviewer
+	#8644# Error deleting submissions
+	#8645# Signoff workflow doesn't work
+	#8659# Can't install new locale
+	#8662# access restriction for open access content doesn't work
+	#8663# 'Array' displayed instead of the bio statement in synopsis
+	#8665# search error
+	#8666# "Always show galley links and indicate restricted access" unused
+	#8671# "About The Author" displayed for all monograph participants
+	#8679# Enrolling an existing user as a reviewer does not work
+	#8685# "Log In As" small icon needs to be blue
+	#8694# No restful_url parameter in config.inc.php - No clean urls
+	#8705# OK button in file upload dialog disabled
+	#8712# Verify whether "position in series" is required for ONIX
+	#8713# Clarify "type of book" as "type of workflow"
+	#8715# Multiple presses, existing user; registering as reviewer error
+	#8717# Submit form buttons have duplicated id
+	#8724# "Users & Roles" email send doesn't use SPF changes
+	#8752# Upgrade procedure file renaming does not check if files renamed
+	#8770# DB upgrade fails because geoip city data uses ISO-8859-1 charset
+	#8771# Avoid undefined offset notices in ADODB/Postgres
+	#8773# Ensure correctly generated URL when generating OAI base URL
+	#8781# PostgreSQL install assumes MySQL based on config file
+	#8786# Travis tests fails when committing submodule changes
+	#8787# Create Selenium-based data build suite
+	#8789# Travis build sometimes hangs without explanation
+	#8795# "Include in browse lists" not checked by default for first author
+	#8807# Missing locale key about.peerReviewProcess
+	#8808# Default theme includes some broken images
+	#8810# Reverse sort order of published monographs
+	#8833# Attachment content disposition prevents PDF embedding
+	#8836# Add missing styling to PDF viewer plugin
+	#8837# Submission notification email may mix signatures
+	#8845# jQuery Roundabout carousel doesn't work with jQuery 1.11.0
+	#8850# Verify user validation on registration
+	#8855# Statistics report generator doesn't work
+	#8866# Can't control review response notification to authors
+	#8868# Check/fix translation plugin
+	#8872# Editor search uses clean titles
+	#8878# Spotlight title autocomplete is broken
+	#8879# Fix JS linting / minify problems
+	#8888# Adapt regression tests to functional testing environment
+	#8904# Report generator report range selects are not working
+	#8910# After acceptance of project, take external reviewer to d/l tab
+	#8919# Permit RedirectAction to specify window target
+	#8940# Carousel on the Category page can’t be reordered
+	#8968# Categories and Series do not correctly create cover art filenames
+	#8969# New notification with every file upload
+	#8973# Suggest username doesn't work
+	#8975# User form field issues
+	#8987# Double-check Series Editor ability to submit
+	#8995# Implement test data suite
+	#8996# Port fixes to OMP stats structure
+	#8998# Fix full DB fetch of reviewer information
+	#9001# File cache locking; unnecessary fetching
+	#9002# Filter framework includes hard-coded controlled vocab IDs
+	#9003# Introduce hooks TemplateManager::fetch, FileManager::deleteFile
+	#9005# Denied file access message appears when trying to download
+	#9009# Add support to check system emails while testing
+	#9013# Create review test
+	#9015# Move plugin tests into subdirectories of plugin directories
+	#9021# Make possible to check file downloads in functional tests
+	#9024# Series editors have permission problems accessing submissions
+	#9025# Wrong link in email to stage participants after author upload
+	#9026# Reviewer comment email to editors have no url
+	#9027# Editor decision notifications via email have no url
+	#9034# Reviewers get extra notification emails
+	#9041# Display of DOI through new DOI plugin
+	#9043# Download file action blocks concurrent AJAX requests
+	#9055# NotificationManager exception
