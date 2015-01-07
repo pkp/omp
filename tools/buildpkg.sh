@@ -42,6 +42,9 @@ tools/genLocaleReport.sh					\
 tools/genTestLocale.php						\
 tools/test							\
 plugins/generic/translator					\
+plugins/generic/customBlockManager/.git				\
+plugins/generic/emailLogger					\
+plugins/generic/staticPages/.git				\
 lib/pkp/plugins/*/*/tests					\
 plugins/*/*/tests						\
 tests								\
