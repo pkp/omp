@@ -111,18 +111,20 @@ class AnnouncementForm extends PKPAnnouncementForm {
 			$notificationUsers[] = array('id' => $user->getId());
 		}
 		$notificationManager = new NotificationManager();
-		foreach ($notificationUsers as $userRole) {
-			$notificationManager->createNotification(
-				$request, $userRole['id'], NOTIFICATION_TYPE_NEW_ANNOUNCEMENT,
-				$pressId, ASSOC_TYPE_ANNOUNCEMENT, $announcement->getId()
+		if (!$this->announcementId) { // Only for new announcements
+			foreach ($notificationUsers as $userRole) {
+				$notificationManager->createNotification(
+					$request, $userRole['id'], NOTIFICATION_TYPE_NEW_ANNOUNCEMENT,
+					$pressId, ASSOC_TYPE_ANNOUNCEMENT, $announcement->getId()
+				);
+			}
+			$notificationManager->sendToMailingList($request,
+				$notificationManager->createNotification(
+					$request, UNSUBSCRIBED_USER_NOTIFICATION, NOTIFICATION_TYPE_NEW_ANNOUNCEMENT,
+					$pressId, ASSOC_TYPE_ANNOUNCEMENT, $announcement->getId()
+				)
 			);
 		}
-		$notificationManager->sendToMailingList($request,
-			$notificationManager->createNotification(
-				$request, UNSUBSCRIBED_USER_NOTIFICATION, NOTIFICATION_TYPE_NEW_ANNOUNCEMENT,
-				$pressId, ASSOC_TYPE_ANNOUNCEMENT, $announcement->getId()
-			)
-		);
 
 		return $announcement->getId();
 	}
