@@ -21,6 +21,10 @@ If your PHP version supports built-in development server :
 
 See [Wiki][wiki-dev] for more complete development guide.
 
+## Bugs / Issues
+
+See https://github.com/pkp/pkp-lib/#issues for information on reporting issues.
+
 ## Running Tests
 
 Specific requirements : [PHPunit][php-unit]. Installing with pear for example :
