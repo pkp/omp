@@ -12,4 +12,4 @@
 	url = git://github.com/pkp/translator
 [submodule "plugins/generic/emailLogger"]
 	path = plugins/generic/emailLogger
-	url = git://github.com/beghelli/emailLogger
+	url = git://github.com/pkp/emailLogger
