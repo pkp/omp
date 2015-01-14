@@ -226,10 +226,6 @@ Sie können dem/der Benutzer/in den Grund für die Deaktivierung des Kontos nenn
 	<message key="manager.setup.enablePressInstructions">Diesen Verlag für das öffentliche Erscheinen auf der Website freischalten</message>
 	<message key="manager.setup.enablePublicMonografid">Zur Identifizierung veröffentlichter Bände werden benutzerdefinierte Kennungen verwendet.</message>
 	<message key="manager.setup.enablePublicGalleyId">Benutzerdefinierte Kennungen werden verwendet, um Fahnen (z.B. HTML- oder PDF-Dateien) für veröffentlichte Bände zu identifizieren.</message>
-	<message key="manager.setup.enableUserRegistration">Benutzer/innen können sich in einer oder mehrerer der genannten Funktionen beim Verlag registrieren:</message>
-	<message key="manager.setup.enableUserRegistration.author">als Autorinnen (sie können Materialien beim Verlag einreichen)</message>
-	<message key="manager.setup.enableUserRegistration.reader">als Leser/innen (sie erhalten Benachrichtigungen und werden wie Abonennt/innen gewertet)</message>
-	<message key="manager.setup.enableUserRegistration.reviewer">als Gutachter/innen (sie stehen für die Begutachtung der eingereichten Manuskripte zur Verfügung)</message>
 	<message key="manager.setup.featuredBooks">Ausgewählte Bücher</message>
 	<message key="manager.setup.focusAndScope">Verlagsprofil</message>
 	<message key="manager.setup.focusAndScope.description">Fügen Sie eine kurze Selbstdarstellung des Verlages (auf der Website unter 'Über uns' aufrufbar) ein, in der Sie Autor/innen, Leser/innen und Bibliothekar/innen einen Eindruck von dem Spektrum an Monografien und anderen Verlagsprodukten vermitteln, das der Verlag veröffentlichen wird.</message>

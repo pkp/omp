@@ -177,10 +177,6 @@
 	<message key="manager.setup.enablePressInstructions">Ενεργοποίηση της εμφάνισης των Εκδόσεων στον ιστότοπο</message>
 	<message key="manager.setup.enablePublicMonographId">Θα  χρησιμοποιηθούν προσαρμοσμένα αναγνωριστικά για την αναγνώριση των δημοσιευμένων τεκμηρίων.</message>
 	<message key="manager.setup.enablePublicGalleyId">Θα  χρησιμοποιηθούν προσαρμοσμένα αναγνωριστικά για τις σελιδοποιημένες μορφές (πχ. αρχεία HTML η PDF) των δημοσιευμένων τεκμηρίων.</message>
-	<message key="manager.setup.enableUserRegistration">Παροχή δυνατότητας σε χρήστες για εγγραφή στον ιστοτόπο των εκδόσεων ως:</message>
-	<message key="manager.setup.enableUserRegistration.author">Συγγραφείς (μπορούν να υποβάλλουν υλικό στις εκδόσεις)</message>
-	<message key="manager.setup.enableUserRegistration.reader">Αναγνώστες (θα λαμβάνουν ενημερώσεις και θα αντιμετωπίζονται όπως οι συνδρομητές)</message>
-	<message key="manager.setup.enableUserRegistration.reviewer">Αξιολογητές (διαθέσιμοι χρήστες για αξιολόγηση υποβολών)</message>
 	<message key="manager.setup.focusAndScope">Πεδίο και περιεχόμενο</message>
 	<message key="manager.setup.focusAndScope.description">Εισαγάγετε δήλωση παρακάτω, η οποία εμφανίζεται στο πεδίο Σχετικά με τις Εκδόσεις και αναφέρεται σε συγγραφείς, αναγνώστες και βιβλιοθηκονόμους σχετικά με το εύρος των μονογραφιών και των λοιπών τεκμηρίων που πρόκειται να δημοσιεύσουν οι εκδόσεις.</message>
 	<message key="manager.setup.focusScope">Πεδίο και περιεχόμενο</message>

@@ -177,10 +177,6 @@ Informe, se desesjar, o motivo do bloqueio.</message>
 	<message key="manager.setup.enablePressInstructions">Apresentar esta editora publicamente no site</message>
 	<message key="manager.setup.enablePublicMonographId">Identificadores personalizados adotados para identificação dos itens publicados.</message>
 	<message key="manager.setup.enablePublicGalleyId">Identificadores personalizados serão adotados para identificação de composições finais (ex.: HTML arquivos PDF) de itens publicados.</message>
-	<message key="manager.setup.enableUserRegistration">Permiter o cadastro de pessoas na editora em um ou mais dos seguintes papéis:</message>
-	<message key="manager.setup.enableUserRegistration.author">Autores (podem submeter trabalhos à editora)</message>
-	<message key="manager.setup.enableUserRegistration.reader">Leitores (recebem notificações e representam assinantes)</message>
-	<message key="manager.setup.enableUserRegistration.reviewer">Avaliadores (disponíveis para avaliar submissões)</message>
 	<message key="manager.setup.focusAndScope">Foco e escopo</message>
 	<message key="manager.setup.focusAndScope.description">Informe a seguir um texto, que aparecerá na página Sobre a editora, que apresenta a autores, leitores e bibliotecários as características das monografias e outros itens publicados pela editora.</message>
 	<message key="manager.setup.focusScope">Foco e escopo</message>
