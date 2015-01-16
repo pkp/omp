@@ -104,7 +104,7 @@ class ChapterForm extends Form {
 	 * @see Form::readInputData()
 	 */
 	function readInputData() {
-		$this->readUserVars(array('title', 'subtitle', 'authors'));
+		$this->readUserVars(array('title', 'subtitle', 'authors', 'files'));
 	}
 
 	/**
@@ -134,7 +134,19 @@ class ChapterForm extends Form {
 
 		// Save the author associations. (See insert/deleteEntry.)
 		import('lib.pkp.classes.controllers.listbuilder.ListbuilderHandler');
-		ListbuilderHandler::unpack($request, $this->getData('authors'));
+		ListbuilderHandler::unpack(
+			$request, $this->getData('authors'),
+			array($this, 'deleteAuthorsEntry'),
+			array($this, 'insertAuthorsEntry'),
+			array($this, 'updateAuthorsEntry')
+		);
+
+		ListbuilderHandler::unpack(
+			$request, $this->getData('files'),
+			array($this, 'deleteFilesEntry'),
+			array($this, 'insertFilesEntry'),
+			array($this, 'updateFilesEntry')
+		);
 
 		return true;
 	}
@@ -145,7 +157,7 @@ class ChapterForm extends Form {
 	 * @param $newRowId mixed New entry with data to persist
 	 * @return boolean
 	 */
-	function insertEntry($request, $newRowId) {
+	function insertAuthorsEntry($request, $newRowId) {
 		$monograph = $this->getMonograph();
 		$chapter = $this->getChapter();
 		$authorId = (int) $newRowId['name'];
@@ -159,14 +171,11 @@ class ChapterForm extends Form {
 	}
 
 	/**
-	 * FIXME: duplicated function from Listbuilder base class.
-	 * The updateEntry callback was not getting called because
-	 * the this on Listbuilder unpack function was set to this
-	 * form.
+	 * @copydoc ListbuilderHandler::updateEntry()
 	 */
-	function updateEntry($request, $rowId, $newRowId) {
-		if (!$this->deleteEntry($request, $rowId)) return false;
-		return $this->insertEntry($request, $newRowId);
+	function updateAuthorsEntry($request, $rowId, $newRowId) {
+		if (!$this->deleteAuthorsEntry($request, $rowId)) return false;
+		return $this->insertAuthorsEntry($request, $newRowId);
 	}
 
 	/**
@@ -175,13 +184,64 @@ class ChapterForm extends Form {
 	 * @param $rowId mixed ID of row to modify
 	 * @return boolean
 	 */
-	function deleteEntry($request, $rowId) {
+	function deleteAuthorsEntry($request, $rowId) {
 		$chapter = $this->getChapter();
 		$authorId = (int) $rowId; // this is the authorId to remove and is already an integer
 		if ($authorId) {
 			// remove the chapter author.
 			$chapterAuthorDao = DAORegistry::getDAO('ChapterAuthorDAO');
 			$chapterAuthorDao->deleteChapterAuthorById($authorId, $chapter->getId());
+			return true;
+		}
+		return false;
+	}
+
+	/**
+	 * Persist a new files entry insert.
+	 * @param $request Request
+	 * @param $newRowId mixed New entry with data to persist
+	 * @return boolean
+	 */
+	function insertFilesEntry($request, $newRowId) {
+		$monograph = $this->getMonograph();
+		$chapter = $this->getChapter();
+		$fileId = (int) $newRowId['name'];
+
+		$submissionFileDao = DAORegistry::getDAO('SubmissionFileDAO'); /* @var $submissionFileDao SubmissionFileDAO */
+		$submissionFiles = $submissionFileDao->getAllRevisions($fileId, null, $monograph->getId());
+		foreach ($submissionFiles as $submissionFile) {
+			$submissionFile->setData('chapterId', $chapter->getId());
+			$submissionFileDao->updateObject($submissionFile);
+		}
+		return true;
+	}
+
+	/**
+	 * @copydoc ListbuilderHandler::updateEntry()
+	 */
+	function updateFilesEntry($request, $rowId, $newRowId) {
+		if (!$this->deleteFilesEntry($request, $rowId)) return false;
+		return $this->insertFilesEntry($request, $newRowId);
+	}
+
+	/**
+	 * Delete a file association with a chapter.
+	 * @param $request Request
+	 * @param $rowId mixed ID of row to modify
+	 * @return boolean
+	 */
+	function deleteFilesEntry($request, $rowId) {
+		$chapter = $this->getChapter();
+		$fileId = (int) $rowId; // this is the fileId to remove and is already an integer
+		if ($fileId) {
+			// Remove the chapter/file association.
+			$submissionFileDao = DAORegistry::getDAO('SubmissionFileDAO'); /* @var $submissionFileDao SubmissionFileDAO */
+			$monograph = $this->getMonograph();
+			$submissionFiles = $submissionFileDao->getAllRevisions($fileId, null, $monograph->getId());
+			foreach ($submissionFiles as $submissionFile) {
+				$submissionFile->setData('chapterId', null);
+				$submissionFileDao->updateObject($submissionFile);
+			}
 			return true;
 		}
 		return false;
