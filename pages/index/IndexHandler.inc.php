@@ -126,7 +126,7 @@ class IndexHandler extends Handler {
 
 		// Include any social media items that are configured for the press itself.
 		$socialMediaDao = DAORegistry::getDAO('SocialMediaDAO');
-		$socialMedia =& $socialMediaDao->getEnabledForContextByContextId($press->getId());
+		$socialMedia = $socialMediaDao->getEnabledForContextByContextId($press->getId());
 		$blocks = array();
 		while ($media = $socialMedia->next()) {
 			$media->replaceCodeVars();
