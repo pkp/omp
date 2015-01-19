@@ -36,6 +36,16 @@ class ArtworkFileDAODelegate extends SubmissionArtworkFileDAODelegate {
 	function newDataObject() {
 		return new ArtworkFile();
 	}
+
+	/**
+	 * @copydoc DAO::getAdditionalFieldNames()
+	 */
+	function getAdditionalFieldNames() {
+		return array_merge(
+			parent::getAdditionalFieldNames(),
+			array('chapterId')
+		);
+	}
 }
 
 ?>

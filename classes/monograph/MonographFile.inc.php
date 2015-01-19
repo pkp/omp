@@ -26,6 +26,19 @@ class MonographFile extends SubmissionFile {
 	}
 
 
+	/**
+	 * Copy the user-facing (editable) metadata from another monograph
+	 * file.
+	 * @param $monographFile MonographFile
+	 */
+	function copyEditableMetadataFrom($monographFile) {
+		if (is_a($monographFile, 'MonographFile')) {
+			$this->setData('chapterId', $monographFile->getData('chapterId'));
+		}
+
+		parent::copyEditableMetadataFrom($monographFile);
+	}
+
 	//
 	// Get/set methods
 	//

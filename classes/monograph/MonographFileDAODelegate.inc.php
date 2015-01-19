@@ -37,6 +37,16 @@ class MonographFileDAODelegate extends SubmissionFileDAODelegate {
 	function newDataObject() {
 		return new MonographFile();
 	}
+
+	/**
+	 * @copydoc DAO::getAdditionalFieldNames()
+	 */
+	function getAdditionalFieldNames() {
+		return array_merge(
+			parent::getAdditionalFieldNames(),
+			array('chapterId')
+		);
+	}
 }
 
 ?>
