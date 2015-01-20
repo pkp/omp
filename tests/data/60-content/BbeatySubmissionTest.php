@@ -90,6 +90,7 @@ class BbeatySubmissionTest extends ContentBaseTestCase {
 		$this->sendToReview('Internal');
 		$this->assignReviewer('amccrae', 'Aisla McCrae');
 		$this->sendToReview('External', 'Internal');
+		$this->waitJQuery();
 		$this->assignReviewer('alzacharia', 'Al Zacharia');
 		$this->waitJQuery();
 		$this->recordEditorialDecision('Accept Submission');

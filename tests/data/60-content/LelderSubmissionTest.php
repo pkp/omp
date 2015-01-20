@@ -96,7 +96,7 @@ class LelderSubmissionTest extends ContentBaseTestCase {
 					'contributors' => array('Frank Tulus', 'Raymond Hyma'),
 				),
 				array(
-					'title' => 'Catalyzing Access via Telecommunications Policy ',
+					'title' => 'Catalyzing Access via Telecommunications Policy',
 					'contributors' => array('John Valk', 'Khaled Fourati'),
 				),
 				array(
