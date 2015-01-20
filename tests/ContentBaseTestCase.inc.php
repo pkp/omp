@@ -84,7 +84,7 @@ class ContentBaseTestCase extends PKPContentBaseTestCase {
 			foreach ($chapter['contributors'] as $i => $contributor) {
 				$this->waitForElementPresent('css=[id^=component-listbuilder-users-chapterauthorlistbuilder-addItem-button-]');
 				$this->clickAt('css=[id^=component-listbuilder-users-chapterauthorlistbuilder-addItem-button-]', '10,10');
-				$this->waitForElementPresent('xpath=(//div[@id="chapterAuthorContainer"]//select[@name="newRowId[name]"])[' . ($i+1) . ']//option[text()=\'' . $contributor . '\']');
+				$this->waitForElementPresent('xpath=(//div[@id="chapterAuthorContainer"]//select[@name="newRowId[name]"])[' . ($i+1) . ']//option[text()=' . $this->quoteXpath($contributor) . ']');
 				$this->select('xpath=(//div[@id="chapterAuthorContainer"]//select[@name="newRowId[name]"])[' . ($i+1) . ']', 'label=' . $contributor);
 				$this->waitJQuery();
 			}
@@ -93,7 +93,7 @@ class ContentBaseTestCase extends PKPContentBaseTestCase {
 			foreach ($chapter['files'] as $i => $file) {
 				$this->waitForElementPresent('css=[id^=component-listbuilder-files-chapterfileslistbuilder-addItem-button-]');
 				$this->clickAt('css=[id^=component-listbuilder-files-chapterfileslistbuilder-addItem-button-]', '10,10');
-				$this->waitForElementPresent('xpath=(//div[@id="chapterFilesContainer"]//select[@name="newRowId[name]"])[' . ($i+1) . ']//option[text()=\'' . $file . '\']');
+				$this->waitForElementPresent('xpath=(//div[@id="chapterFilesContainer"]//select[@name="newRowId[name]"])[' . ($i+1) . ']//option[text()=' . $this->quoteXpath($file) . ']');
 				$this->select('xpath=(//div[@id="chapterFilesContainer"]//select[@name="newRowId[name]"])[' . ($i+1) . ']', 'label=' . $file);
 				$this->waitJQuery();
 			}
