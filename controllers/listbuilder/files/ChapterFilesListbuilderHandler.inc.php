@@ -27,17 +27,11 @@ class ChapterFilesListbuilderHandler extends FilesListbuilderHandler {
 		AppLocale::requireComponents(LOCALE_COMPONENT_PKP_SUBMISSION);
 		import('classes.monograph.MonographFile');
 		parent::FilesListbuilderHandler();
-	}
 
-
-	//
-	// Implement template methods from PKPHandler
-	//
-	/**
-	 * @see PKPHandler::authorize()
-	 */
-	function authorize($request, &$args, $roleAssignments) {
-		return parent::authorize($request, $args, $roleAssignments);
+		$this->addRoleAssignment(
+			array(ROLE_ID_AUTHOR),
+			array('fetch', 'fetchRow', 'fetchOptions', 'save')
+		);
 	}
 
 
@@ -63,7 +57,7 @@ class ChapterFilesListbuilderHandler extends FilesListbuilderHandler {
 		$submissionFileDao = DAORegistry::getDAO('SubmissionFileDAO'); /* @var $submissionFileDao SubmissionFileDAO */
 		$monographFiles = $submissionFileDao->getLatestRevisions($monograph->getId());
 		$filteredFiles = array();
-		foreach ($monographFiles as $monographFile) {
+		if ($chapter) foreach ($monographFiles as $monographFile) {
 			if ($monographFile->getData('chapterId') == $chapter->getId()) $filteredFiles[$monographFile->getFileId()] = $monographFile;
 		}
 		return $filteredFiles;

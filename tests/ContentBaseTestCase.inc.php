@@ -17,6 +17,31 @@ import('lib.pkp.tests.PKPContentBaseTestCase');
 
 class ContentBaseTestCase extends PKPContentBaseTestCase {
 	/**
+	 * Create a submission with the supplied data.
+	 * @param $data array Associative array of submission information
+	 */
+	protected function createSubmission($data) {
+		// By default, if this is an edited volume, configure 1 file per
+		// chapter.
+		if ($data['type'] == 'editedVolume' && !isset($data['files'])) {
+			$files = array();
+			foreach  ($data['chapters'] as &$chapter) {
+				$files[] = array(
+					'fileTitle' => $chapter['title'],
+				);
+				$chapter['files'] = array($chapter['title']);
+			}
+			$data['files'] = $files;
+		} else {
+			foreach  ($data['chapters'] as &$chapter) {
+				if (!isset($chapter['files'])) $chapter['files'] = array();
+			}
+		}
+
+		parent::createSubmission($data);
+	}
+
+	/**
 	 * Handle any section information on submission step 1
 	 * @return string
 	 */
@@ -59,10 +84,20 @@ class ContentBaseTestCase extends PKPContentBaseTestCase {
 			foreach ($chapter['contributors'] as $i => $contributor) {
 				$this->waitForElementPresent('css=[id^=component-listbuilder-users-chapterauthorlistbuilder-addItem-button-]');
 				$this->clickAt('css=[id^=component-listbuilder-users-chapterauthorlistbuilder-addItem-button-]', '10,10');
-				$this->waitForElementPresent('xpath=(//select[@name="newRowId[name]"])[' . ($i+1) . ']//option[text()=\'' . $contributor . '\']');
-				$this->select('xpath=(//select[@name="newRowId[name]"])[' . ($i+1) . ']', 'label=' . $contributor);
+				$this->waitForElementPresent('xpath=(//div[@id="chapterAuthorContainer"]//select[@name="newRowId[name]"])[' . ($i+1) . ']//option[text()=\'' . $contributor . '\']');
+				$this->select('xpath=(//div[@id="chapterAuthorContainer"]//select[@name="newRowId[name]"])[' . ($i+1) . ']', 'label=' . $contributor);
 				$this->waitJQuery();
 			}
+
+			// Files
+			foreach ($chapter['files'] as $i => $file) {
+				$this->waitForElementPresent('css=[id^=component-listbuilder-files-chapterfileslistbuilder-addItem-button-]');
+				$this->clickAt('css=[id^=component-listbuilder-files-chapterfileslistbuilder-addItem-button-]', '10,10');
+				$this->waitForElementPresent('xpath=(//div[@id="chapterFilesContainer"]//select[@name="newRowId[name]"])[' . ($i+1) . ']//option[text()=\'' . $file . '\']');
+				$this->select('xpath=(//div[@id="chapterFilesContainer"]//select[@name="newRowId[name]"])[' . ($i+1) . ']', 'label=' . $file);
+				$this->waitJQuery();
+			}
+
 			$this->click('//form[@id=\'editChapterForm\']//span[text()=\'Save\']/..');
 			$this->waitForElementNotPresent('css=.ui-widget-overlay');
 		}
