@@ -116,6 +116,7 @@ class ContentBaseTestCase extends PKPContentBaseTestCase {
 		$this->waitForElementPresent($selector = 'css=#addPublicationFormatForm input[id^=name-]');
 		$this->type($selector, $title);
 		$this->submitAjaxForm('addPublicationFormatForm');
+		$this->waitForElementPresent('css=div[id^=component-proofFiles-]');
 		$this->assertTextPresent($title);
 	}
 
