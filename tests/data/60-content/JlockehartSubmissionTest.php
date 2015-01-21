@@ -49,8 +49,10 @@ class JlockehartSubmissionTest extends ContentBaseTestCase {
 
 		$this->findSubmissionAsEditor('dbarnes', null, $title);
 		$this->sendToReview('Internal');
+		$this->waitForElementPresent('//a[contains(text(), \'Internal Review\')]/div[contains(text(), \'Initiated\')]');
 		$this->assignReviewer('amccrae', 'Aisla McCrae');
 		$this->sendToReview('External', 'Internal');
+		$this->waitForElementPresent('//a[contains(text(), \'External Review\')]/div[contains(text(), \'Initiated\')]');
 		$this->assignReviewer('agallego', 'Adela Gallego');
 		$this->assignReviewer('gfavio', 'Gonzalo Favio');
 		$this->waitJQuery();
@@ -61,6 +63,7 @@ class JlockehartSubmissionTest extends ContentBaseTestCase {
 
 		$this->findSubmissionAsEditor('dbarnes', null, $title);
 		$this->recordEditorialDecision('Accept Submission');
+		$this->waitForElementPresent('//a[contains(text(), \'Editorial\')]/div[contains(text(), \'Initiated\')]');
 		$this->logOut();
 	}
 }

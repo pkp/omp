@@ -85,6 +85,7 @@ class MallySubmissionTest extends ContentBaseTestCase {
 
 		// Internal review
 		$this->sendToReview('Internal');
+		$this->waitForElementPresent('//a[contains(text(), \'Internal Review\')]/div[contains(text(), \'Initiated\')]');
 		$this->assignReviewer('phudson', 'Paul Hudson');
 
 		// External review
@@ -103,7 +104,7 @@ class MallySubmissionTest extends ContentBaseTestCase {
 		// Accept submission
 		$this->findSubmissionAsEditor('dbarnes', null, $title);
 		$this->recordEditorialDecision('Accept Submission');
-
+		$this->waitForElementPresent('//a[contains(text(), \'Editorial\')]/div[contains(text(), \'Initiated\')]');
 		$this->logOut();
 	}
 }

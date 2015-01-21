@@ -61,6 +61,7 @@ class MpowerSubmissionTest extends ContentBaseTestCase {
 
 		$this->findSubmissionAsEditor('dbarnes', null, $title);
 		$this->sendToReview('External');
+		$this->waitForElementPresent('//a[contains(text(), \'External Review\')]/div[contains(text(), \'Initiated\')]');
 		$this->assignReviewer('agallego', 'Adela Gallego');
 		$this->assignReviewer('alzacharia', 'Al Zacharia');
 		$this->assignReviewer('gfavio', 'Gonzalo Favio');

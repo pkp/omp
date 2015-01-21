@@ -97,6 +97,7 @@ class FperiniSubmissionTest extends ContentBaseTestCase {
 		$this->logOut();
 		$this->findSubmissionAsEditor('dbarnes', null, $title);
 		$this->sendToReview('Internal');
+		$this->waitForElementPresent('//a[contains(text(), \'Internal Review\')]/div[contains(text(), \'Initiated\')]');
 		$this->logOut();
 	}
 }

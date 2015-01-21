@@ -109,6 +109,7 @@ class LelderSubmissionTest extends ContentBaseTestCase {
 
 		$this->findSubmissionAsEditor('dbarnes', null, $title);
 		$this->sendToReview('Internal');
+		$this->waitForElementPresent('//a[contains(text(), \'Internal Review\')]/div[contains(text(), \'Initiated\')]');
 		$this->assignReviewer('jjanssen', 'Julie Janssen');
 		$this->assignReviewer('phudson', 'Paul Hudson');
 		$this->assignReviewer('amccrae', 'Aisla McCrae');
