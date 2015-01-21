@@ -81,12 +81,14 @@ class MdawsonSubmissionTest extends ContentBaseTestCase {
 		$this->sendToReview('Internal');
 		$this->assignReviewer('jjanssen', 'Julie Janssen');
 		$this->sendToReview('External', 'Internal');
+		$this->waitForElementPresent('//a[contains(text(), \'External Review\')]/div[contains(text(), \'Initiated\')]');
 		$this->assignReviewer('alzacharia', 'Al Zacharia');
 		$this->waitJQuery();
 		$this->recordEditorialDecision('Accept Submission');
-		$this->waitJQuery();
+		$this->waitForElementPresent('//a[contains(text(), \'Editorial\')]/div[contains(text(), \'Initiated\')]');
 		$this->assignParticipant('Copyeditor', 'Maria Fritz');
 		$this->recordEditorialDecision('Send To Production');
+		$this->waitForElementPresent('//a[contains(text(), \'Production\')]/div[contains(text(), \'Initiated\')]');
 		$this->assignParticipant('Layout Editor', 'Graham Cox');
 		$this->assignParticipant('Proofreader', 'Sabine Kumar');
 		$this->waitJQuery();
