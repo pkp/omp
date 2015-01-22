@@ -179,10 +179,6 @@ Puedes indicarle al usuario las razones por las que has desactivado su cuenta.</
 	<message key="manager.setup.enablePressInstructions">Habilitar que esta editorial aparezca públicamente en el sitio</message>
 	<message key="manager.setup.enablePublicMonographId">Los identificadores personalizados se usarán para identificar los elementos publicados.</message>
 	<message key="manager.setup.enablePublicGalleyId">Los identificadores personalizados se usarán para identificar galeradas (p.ej. ficheros HTML o PDF) para elementos publicados.</message>
-	<message key="manager.setup.enableUserRegistration">Los usuarios pueden registrarse ellos mismos en la editorial en una o más de las siguientes funciones:</message>
-	<message key="manager.setup.enableUserRegistration.author">Autores (pueden presentar material a la editorial)</message>
-	<message key="manager.setup.enableUserRegistration.reader">Lectores (recibirán notificaciones y se considerarán equivalentes a los suscriptores)</message>
-	<message key="manager.setup.enableUserRegistration.reviewer">Revisores (pueden revisar propuestas)</message>
 	<message key="manager.setup.focusAndScope">Orientación y ámbito de actividad de la editorial</message>
 	<message key="manager.setup.focusAndScope.description">Introduce una declaración a continuación. Ésta aparecerá en Acerca de la editorial, que informa a los autores, lectores y bibliotecarios de la variedad de monografías y otros elementos que publicará la editorial.</message>
 	<message key="manager.setup.focusScope">Orientación y ámbito de actividad</message>

@@ -46,21 +46,19 @@ class UserHandler extends PKPUserHandler {
 		switch (array_shift($args)) {
 			case 'author':
 				$roleId = ROLE_ID_AUTHOR;
-				$setting = 'allowRegAuthor';
 				$deniedKey = 'user.noRoles.submitMonographRegClosed';
 				break;
 			case 'reviewer':
 				$roleId = ROLE_ID_REVIEWER;
-				$setting = 'allowRegReviewer';
 				$deniedKey = 'user.noRoles.regReviewerClosed';
 				break;
 			default:
 				$request->redirect(null, null, 'index');
 		}
 
-		if ($press->getSetting($setting)) {
-			$userGroupDao = DAORegistry::getDAO('UserGroupDAO');
-			$userGroup = $userGroupDao->getDefaultByRoleId($press->getId(), $roleId);
+		$userGroupDao = DAORegistry::getDAO('UserGroupDAO');
+		$userGroup = $userGroupDao->getDefaultByRoleId($press->getId(), $roleId);
+		if ($userGroup->getPermitSelfRegistration()) {
 			$userGroupDao->assignUserToGroup($user->getId(), $userGroup->getId());
 			$request->redirectUrl($request->getUserVar('source'));
 		} else {

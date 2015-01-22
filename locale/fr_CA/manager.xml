@@ -178,10 +178,6 @@ Soumission, Évaluation interne, Évaluation externe, Rédaction et Production.<
 	<message key="manager.setup.enablePressInstructions">Afficher cette presse publiquement sur le site</message>
 	<message key="manager.setup.enablePublicMonographId">Des identificateurs personnalisés seront utilisés pour identifier les articles publiés.</message>
 	<message key="manager.setup.enablePublicGalleyId">Des identificateurs personnalisés seront utilisés pour identifier les épreuves en placard (ex.: fichiers HTML ou PDF) des articles publiés.</message>
-	<message key="manager.setup.enableUserRegistration">Les utilisateurs peuvent s'inscrire auprès de la presse et choisir un ou plusieurs des rôles suivants:</message>
-	<message key="manager.setup.enableUserRegistration.author">Auteurs (peuvent soumettre des articles à la presse)</message>
-	<message key="manager.setup.enableUserRegistration.reader">Lecteurs (recevront des avis et peuvent être considérés comme étant des abonnés)</message>
-	<message key="manager.setup.enableUserRegistration.reviewer">Évaluateurs (évaluent les soumissions )</message>
 	<message key="manager.setup.focusAndScope">Objectif et portée</message>
 	<message key="manager.setup.focusAndScope.description">Saisir un énoncé qui s'affichera dans la section À propos de cette presse et indiquera aux auteurs, aux lecteurs et aux bibliothécaires l'éventail des monographies et autres articles qui seront publiés par la presse.</message>
 	<message key="manager.setup.focusAndScope">Objectif et portée de la presse</message>
