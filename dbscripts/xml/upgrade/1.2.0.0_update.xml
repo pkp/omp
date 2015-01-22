@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE data SYSTEM "../../../lib/pkp/dtd/xmlData.dtd">
+
+<!--
+  * 1.2.0.0_update.xml
+  *
+  * Copyright (c) 2014 Simon Fraser University Library
+  * Copyright (c) 2003-2014 John Willinsky
+  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
+  *
+  * 1.2.0.0 database updates XML file.
+  -->
+<data>
+	<!--
+	  - Bug #8849: Fix reader role. In case any stage associations were
+	  - made using the reader role, remove them; they have been disabled
+	  - henceforth as reader roles should never be active in workflow.
+	  -->
+	<sql>
+		<query driver="mysql">DELETE ugs FROM user_group_stage ugs JOIN user_groups ug WHERE ug.role_id=1048576 AND ug.user_group_id=ugs.user_group_id</query>
+		<query driver="postgres7">DELETE FROM user_group_stage ugs USING user_groups ug WHERE ug.role_id=1048576 AND ug.user_group_id=ugs.user_group_id</query>
+	</sql>
+</data>
