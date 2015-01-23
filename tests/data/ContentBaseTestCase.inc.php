@@ -102,7 +102,7 @@ class ContentBaseTestCase extends PKPContentBaseTestCase {
 		}
 		$this->waitForElementPresent('//div[contains(@class,\'ui-dialog\')]//button[contains(@id, \'submitFormButton-\')]');
 		$this->click('//div[contains(@class,\'ui-dialog\')]//button[contains(@id, \'submitFormButton-\')]');
-		$this->waitForElementNotPresent('css=.ui-widget-overlay');
+		$this->waitForPageToLoad();
 	}
 
 	/**
