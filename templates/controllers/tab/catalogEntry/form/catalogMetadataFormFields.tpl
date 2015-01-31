@@ -17,7 +17,8 @@
 				uploaderOptions: {ldelim}
 					uploadUrl: '{url|escape:javascript op="uploadCoverImage" escape=false stageId=$stageId submissionId=$submissionId}',
 					baseUrl: '{$baseUrl|escape:javascript}'
-				{rdelim}
+				{rdelim},
+				arePermissionsAttached: {if $arePermissionsAttached}true{else}false{/if}
 			{rdelim}
 		);
 	{rdelim});
@@ -69,6 +70,17 @@
 			<!--  Formats -->
 			{url|assign:formatGridUrl router=$smarty.const.ROUTE_COMPONENT  component="grid.catalogEntry.PublicationFormatGridHandler" op="fetchGrid" submissionId=$submissionId inCatalogEntryModal=true escape=false}
 			{load_url_in_div id="formatsGridContainer"|uniqid url=$formatGridUrl}
+		{/fbvFormSection}
+	{/fbvFormArea}
+
+	{fbvFormArea id="permissions" title="submission.permissions" class="border"}
+		{fbvFormSection list=true}
+			{fbvElement type="checkbox" id="attachPermissions" label="submission.attachPermissions"}
+		{/fbvFormSection}
+		{fbvFormSection}
+			{fbvElement type="text" id="licenseURL" label="submission.licenseURL" value=$licenseURL}
+			{fbvElement type="text" id="copyrightHolder" label="submission.copyrightHolder" value=$copyrightHolder multilingual=true size=$fbvStyles.size.MEDIUM inline=true}
+			{fbvElement type="text" id="copyrightYear" label="submission.copyrightYear" value=$copyrightYear size=$fbvStyles.size.SMALL inline=true}
 		{/fbvFormSection}
 	{/fbvFormArea}
 

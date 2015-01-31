@@ -69,6 +69,8 @@ class CatalogEntryCatalogMetadataForm extends Form {
 		$this->_stageId = $stageId;
 		$this->_formParams = $formParams;
 		$this->_userId = $userId;
+
+		$this->addCheck(new FormValidatorURL($this, 'licenseURL', 'optional', 'form.url.invalid'));
 	}
 
 	/**
@@ -116,9 +118,20 @@ class CatalogEntryCatalogMetadataForm extends Form {
 			LOCALE_COMPONENT_APP_SUBMISSION
 		);
 
-		$monograph = $this->getMonograph();
+		$submission = $this->getMonograph();
 		$publishedMonographDao = DAORegistry::getDAO('PublishedMonographDAO');
-		$this->_publishedMonograph = $publishedMonographDao->getById($monograph->getId(), null, false);
+		$this->_publishedMonograph = $publishedMonographDao->getById($submission->getId(), null, false);
+
+		$copyrightHolder = $submission->getCopyrightHolder(null);
+		$copyrightYear = $submission->getCopyrightYear();
+		$licenseURL = $submission->getLicenseURL();
+
+		$this->_data = array(
+			'copyrightHolder' => $submission->getDefaultCopyrightHolder(null), // Localized
+			'copyrightYear' => $submission->getDefaultCopyrightYear(),
+			'licenseURL' => $submission->getDefaultLicenseURL(),
+			'arePermissionsAttached' => !empty($copyrightHolder) || !empty($copyrightYear) || !empty($licenseURL),
+		);
 	}
 
 
@@ -162,6 +175,7 @@ class CatalogEntryCatalogMetadataForm extends Form {
 	function readInputData() {
 		$vars = array(
 			'audience', 'audienceRangeQualifier', 'audienceRangeFrom', 'audienceRangeTo', 'audienceRangeExact',
+			'copyrightYear', 'copyrightHolder', 'licenseURL', 'attachPermissions',
 			'temporaryFileId', // Cover image
 		);
 
@@ -273,6 +287,19 @@ class CatalogEntryCatalogMetadataForm extends Form {
 			$temporaryFileManager = new TemporaryFileManager();
 			$temporaryFileManager->deleteFile($temporaryFileId, $this->_userId);
 		}
+
+		if ($this->getData('attachPermissions')) {
+			$monograph->setCopyrightYear($this->getData('copyrightYear'));
+			$monograph->setCopyrightHolder($this->getData('copyrightHolder'), null); // Localized
+			$monograph->setLicenseURL($this->getData('licenseURL'));
+		} else {
+			$monograph->setCopyrightYear(null);
+			$monograph->setCopyrightHolder(null, null);
+			$monograph->setLicenseURL(null);
+		}
+		// Update the attached permissions data
+		$monographDao = DAORegistry::getDAO('MonographDAO');
+		$monographDao->updateObject($monograph);
 
 		// Update the modified fields or insert new.
 		if ($isExistingEntry) {
