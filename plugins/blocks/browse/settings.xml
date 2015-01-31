@@ -25,5 +25,17 @@
 		<name>context</name>
 		<value>1</value><!-- BLOCK_CONTEXT_LEFT_SIDEBAR -->
 	</setting>
+	<setting type="bool">
+		<name>browseNewReleases</name>
+		<value>1</value>
+	</setting>
+	<setting type="bool">
+		<name>browseCategories</name>
+		<value>1</value>
+	</setting>
+	<setting type="bool">
+		<name>browseSeries</name>
+		<value>1</value>
+	</setting>
 </plugin_settings>
 

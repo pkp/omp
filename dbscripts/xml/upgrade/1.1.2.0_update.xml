@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE data SYSTEM "../../../lib/pkp/dtd/xmlData.dtd">
+
+<!--
+  * 1.1.2.0_update.xml
+  *
+  * Copyright (c) 2015 Simon Fraser University Library
+  * Copyright (c) 2003-2015 John Willinsky
+  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
+  *
+  * 1.1.2.0 database updates XML file.
+  -->
+<data>
+	<!-- Bug #8912: consider browse block settings -->
+	<sql>
+		<!-- enable all options per default -->
+		<query>INSERT INTO plugin_settings (plugin_name, context_id, setting_name, setting_value, setting_type) SELECT DISTINCT ps.plugin_name, ps.context_id, 'browseNewReleases', '1', 'bool' FROM plugin_settings ps WHERE ps.plugin_name = 'browseblockplugin'</query>
+		<query>INSERT INTO plugin_settings (plugin_name, context_id, setting_name, setting_value, setting_type) SELECT DISTINCT ps.plugin_name, ps.context_id, 'browseCategories', '1', 'bool' FROM plugin_settings ps WHERE ps.plugin_name = 'browseblockplugin'</query>
+		<query>INSERT INTO plugin_settings (plugin_name, context_id, setting_name, setting_value, setting_type) SELECT DISTINCT ps.plugin_name, ps.context_id, 'browseSeries', '1', 'bool' FROM plugin_settings ps WHERE ps.plugin_name = 'browseblockplugin'</query>
+	</sql>
+</data>
