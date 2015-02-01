@@ -26,7 +26,7 @@
 				{/if}
 				{if not empty($contextInfo.editorialPolicies)}
 					<li><a href="{url router=$smarty.const.ROUTE_PAGE page="about" op="editorialPolicies"}">{translate key="about.policies"}</a></li>
-				{/if}	
+				{/if}
 				<li><a href="{url router=$smarty.const.ROUTE_PAGE page="about" op="submissions"}">{translate key="about.submissions"}</a></li>
 				{if not empty($contextInfo.sponsorship)}
 					<li><a href="{url router=$smarty.const.ROUTE_PAGE page="about" op="sponsorship"}">{translate key="about.pressSponsorship"}</a></li>
@@ -70,6 +70,7 @@
 								</ul>
 							</li>
 							{/if}
+							{call_hook name="Templates::Header::Localnav::AdditionalManagementItems"}
 						</ul>
 					</li>
 				{/if}{* ROLE_ID_MANAGER || ROLE_ID_SUB_EDITOR *}
