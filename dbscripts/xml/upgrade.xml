@@ -69,6 +69,10 @@
 		<note file="docs/release-notes/README-1.1.1" />
 	</upgrade>
 
+	<upgrade minversion="0.9.9.0" maxversion="1.1.1.9">
+		<data file="dbscripts/xml/upgrade/1.1.2.0_update.xml" />
+	</upgrade>
+
 	<!-- Update plugin configuration - should be done as the final upgrade task -->
 	<code function="addPluginVersions" />
 </install>
