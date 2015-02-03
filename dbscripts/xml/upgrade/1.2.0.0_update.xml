@@ -20,4 +20,12 @@
 		<query driver="mysql">DELETE ugs FROM user_group_stage ugs JOIN user_groups ug WHERE ug.role_id=1048576 AND ug.user_group_id=ugs.user_group_id</query>
 		<query driver="postgres7">DELETE FROM user_group_stage ugs USING user_groups ug WHERE ug.role_id=1048576 AND ug.user_group_id=ugs.user_group_id</query>
 	</sql>
+
+	<!-- Bug #8912: consider browse block settings -->
+	<sql>
+		<!-- enable all options per default -->
+		<query>INSERT INTO plugin_settings (plugin_name, context_id, setting_name, setting_value, setting_type) SELECT DISTINCT ps.plugin_name, ps.context_id, 'browseNewReleases', '1', 'bool' FROM plugin_settings ps WHERE ps.plugin_name = 'browseblockplugin'</query>
+		<query>INSERT INTO plugin_settings (plugin_name, context_id, setting_name, setting_value, setting_type) SELECT DISTINCT ps.plugin_name, ps.context_id, 'browseCategories', '1', 'bool' FROM plugin_settings ps WHERE ps.plugin_name = 'browseblockplugin'</query>
+		<query>INSERT INTO plugin_settings (plugin_name, context_id, setting_name, setting_value, setting_type) SELECT DISTINCT ps.plugin_name, ps.context_id, 'browseSeries', '1', 'bool' FROM plugin_settings ps WHERE ps.plugin_name = 'browseblockplugin'</query>
+	</sql>
 </data>
