@@ -18,6 +18,6 @@
 	<date>2014-12-19</date>
 	<info>http://pkp.sfu.ca/omp/</info>
 	<package>http://pkp.sfu.ca/omp/download/omp-1.1.1.tar.gz</package>
-	<patch from="1.0.0.0">http://pkp.sfu.ca/ocs/download/patch/omp-1.0.0_to_1.1.1.patch.gz</patch>
-	<patch from="1.1.0.0">http://pkp.sfu.ca/ocs/download/patch/omp-1.1.0_to_1.1.1.patch.gz</patch>
+	<patch from="1.0.0.0">http://pkp.sfu.ca/omp/download/patch/omp-1.0.0_to_1.1.1.patch.gz</patch>
+	<patch from="1.1.0.0">http://pkp.sfu.ca/omp/download/patch/omp-1.1.0_to_1.1.1.patch.gz</patch>
 </version>
