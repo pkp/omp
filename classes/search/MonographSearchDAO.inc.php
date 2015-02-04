@@ -77,7 +77,7 @@ class MonographSearchDAO extends SubmissionSearchDAO {
 				submission_search_objects o NATURAL JOIN ' . $sqlFrom . '
 			WHERE
 				s.submission_id = ps.submission_id AND o.submission_id = s.submission_id AND ' . $sqlWhere . '
-			GROUP BY o.submission_id
+			GROUP BY o.submission_id, s.context_id, ps.date_published
 			ORDER BY count DESC
 			LIMIT ' . $limit,
 			$params,
