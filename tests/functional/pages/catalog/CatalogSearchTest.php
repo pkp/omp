@@ -13,7 +13,7 @@
  * @brief Test for catalog search
  */
 
-import('tests.data.ContentBaseTestCase');
+import('tests.ContentBaseTestCase');
 
 class CatalogSearchTest extends ContentBaseTestCase {
 	/**
