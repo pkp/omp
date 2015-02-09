@@ -71,6 +71,11 @@ class CatalogEntryCatalogMetadataForm extends Form {
 		$this->_userId = $userId;
 
 		$this->addCheck(new FormValidatorURL($this, 'licenseURL', 'optional', 'form.url.invalid'));
+
+		if (array_key_exists('expeditedSubmission', $formParams)) {
+			// If we are expediting, make the confirmation checkbox mandatory.
+			$this->addCheck(new FormValidator($this, 'confirm', 'required', 'submission.catalogEntry.confirm.required'));
+		}
 	}
 
 	/**
@@ -131,6 +136,7 @@ class CatalogEntryCatalogMetadataForm extends Form {
 			'copyrightYear' => $submission->getDefaultCopyrightYear(),
 			'licenseURL' => $submission->getDefaultLicenseURL(),
 			'arePermissionsAttached' => !empty($copyrightHolder) || !empty($copyrightYear) || !empty($licenseURL),
+			'confirm' => ($this->_publishedMonograph && $this->_publishedMonograph->getDatePublished())?true:false,
 		);
 	}
 
@@ -142,7 +148,7 @@ class CatalogEntryCatalogMetadataForm extends Form {
 	 * Get the Monograph
 	 * @return Monograph
 	 */
-	function &getMonograph() {
+	function getMonograph() {
 		return $this->_monograph;
 	}
 
@@ -150,7 +156,7 @@ class CatalogEntryCatalogMetadataForm extends Form {
 	 * Get the PublishedMonograph
 	 * @return PublishedMonograph
 	 */
-	function &getPublishedMonograph() {
+	function getPublishedMonograph() {
 		return $this->_publishedMonograph;
 	}
 
@@ -177,6 +183,7 @@ class CatalogEntryCatalogMetadataForm extends Form {
 			'audience', 'audienceRangeQualifier', 'audienceRangeFrom', 'audienceRangeTo', 'audienceRangeExact',
 			'copyrightYear', 'copyrightHolder', 'licenseURL', 'attachPermissions',
 			'temporaryFileId', // Cover image
+			'confirm',
 		);
 
 		$this->readUserVars($vars);
@@ -213,6 +220,7 @@ class CatalogEntryCatalogMetadataForm extends Form {
 		parent::execute();
 
 		$monograph = $this->getMonograph();
+		$monographDao = DAORegistry::getDAO('MonographDAO');
 		$publishedMonographDao = DAORegistry::getDAO('PublishedMonographDAO');
 		$publishedMonograph = $publishedMonographDao->getById($monograph->getId(), null, false); /* @var $publishedMonograph PublishedMonograph */
 		$isExistingEntry = $publishedMonograph?true:false;
@@ -297,8 +305,6 @@ class CatalogEntryCatalogMetadataForm extends Form {
 			$monograph->setCopyrightHolder(null, null);
 			$monograph->setLicenseURL(null);
 		}
-		// Update the attached permissions data
-		$monographDao = DAORegistry::getDAO('MonographDAO');
 		$monographDao->updateObject($monograph);
 
 		// Update the modified fields or insert new.
@@ -306,6 +312,71 @@ class CatalogEntryCatalogMetadataForm extends Form {
 			$publishedMonographDao->updateObject($publishedMonograph);
 		} else {
 			$publishedMonographDao->insertObject($publishedMonograph);
+		}
+
+		import('classes.publicationFormat.PublicationFormatTombstoneManager');
+		$publicationFormatTombstoneMgr = new PublicationFormatTombstoneManager();
+		$publicationFormatDao = DAORegistry::getDAO('PublicationFormatDAO');
+		$publicationFormatFactory = $publicationFormatDao->getBySubmissionId($monograph->getId());
+		$publicationFormats = $publicationFormatFactory->toAssociativeArray();
+		$notificationMgr = new NotificationManager();
+		if ($this->getData('confirm')) {
+			// Update the monograph status.
+			$monograph->setStatus(STATUS_PUBLISHED);
+			$monographDao->updateObject($monograph);
+
+			if (!$isExistingEntry) {
+				unset($publishedMonograph);
+				$publishedMonograph = $publishedMonographDao->newDataObject();
+				$publishedMonograph->setId($monograph->getId());
+				$publishedMonographDao->insertObject($publishedMonograph);
+			}
+			$publishedMonograph->setDatePublished(Core::getCurrentDate());
+			$publishedMonographDao->updateObject($publishedMonograph);
+
+			$notificationMgr->updateNotification(
+				$request,
+				array(NOTIFICATION_TYPE_APPROVE_SUBMISSION),
+				null,
+				ASSOC_TYPE_MONOGRAPH,
+				$publishedMonograph->getId()
+			);
+
+			// Remove publication format tombstones.
+			$publicationFormatTombstoneMgr->deleteTombstonesByPublicationFormats($publicationFormats);
+
+			// Update the search index for this published monograph.
+			import('classes.search.MonographSearchIndex');
+			MonographSearchIndex::indexMonographMetadata($monograph);
+
+			// Log the publication event.
+			import('lib.pkp.classes.log.SubmissionLog');
+			SubmissionLog::logEvent($request, $monograph, SUBMISSION_LOG_METADATA_PUBLISH, 'submission.event.metadataPublished');
+		} else {
+			if ($isExistingEntry) {
+				// Update the monograph status.
+				$monograph->setStatus(STATUS_QUEUED);
+				$monographDao->updateObject($monograph);
+
+				// Unpublish monograph.
+				$publishedMonograph->setDatePublished(null);
+				$publishedMonographDao->updateObject($publishedMonograph);
+
+				$notificationMgr->updateNotification(
+					$request,
+					array(NOTIFICATION_TYPE_APPROVE_SUBMISSION),
+					null,
+					ASSOC_TYPE_MONOGRAPH,
+					$publishedMonograph->getId()
+				);
+
+				// Create tombstones for each publication format.
+				$publicationFormatTombstoneMgr->insertTombstonesByPublicationFormats($publicationFormats, $request->getContext());
+
+				// Log the unpublication event.
+				import('lib.pkp.classes.log.SubmissionLog');
+				SubmissionLog::logEvent($request, $monograph, SUBMISSION_LOG_METADATA_UNPUBLISH, 'submission.event.metadataUnpublished');
+			}
 		}
 	}
 
@@ -316,7 +387,7 @@ class CatalogEntryCatalogMetadataForm extends Form {
 	 * @param int $type the type of image to create.
 	 * @return array the details for the image (dimensions, file name, etc).
 	 */
-	function _buildSurrogateImage(&$cover, $basePath, $type) {
+	function _buildSurrogateImage($cover, $basePath, $type) {
 		// Calculate the scaling ratio for each dimension.
 		$maxWidth = 0;
 		$maxHeight = 0;

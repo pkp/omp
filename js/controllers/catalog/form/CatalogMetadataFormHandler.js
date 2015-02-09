@@ -48,6 +48,11 @@
 				.keyup(this.callbackWrapper(this.checkAttachMetadata));
 		$('input[id^="licenseURL-"]', $form)
 				.keyup(this.callbackWrapper(this.checkAttachMetadata));
+		$('input[id="confirm"]', $form).change(function() {
+			if (this.checked) {
+				$('#attachPermissions').prop('checked', true);
+			}
+		});
 	};
 	$.pkp.classes.Helper.inherits(
 			$.pkp.controllers.catalog.form.CatalogMetadataFormHandler,

@@ -41,13 +41,6 @@
 	<input type="hidden" name="displayedInContainer" value="{$formParams.displayedInContainer|escape}" />
 	<input type="hidden" name="tab" value="submission" />
 
-	{if !$formParams.hideSubmit}
-		{fbvFormSection list="true"}
-			{if $isPublished}{assign var=confirm value=true}{else}{assign var=confirm value=false}{/if}
-			{fbvElement type="checkbox" id="confirm" checked=$confirm label="submission.catalogEntry.confirm" value="confirm"}
-		{/fbvFormSection}
-	{/if}
-
 	{if $formParams.expeditedSubmission}
 		{* pull in the approved proof form fields so the Editor has a chance to set a price and the access status *}
 		{fbvFormArea id="approvedProofInfo"}

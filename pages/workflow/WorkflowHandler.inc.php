@@ -81,92 +81,76 @@ class WorkflowHandler extends PKPWorkflowHandler {
 	function expedite($args, $request) {
 
 		$submission = $this->getAuthorizedContextObject(ASSOC_TYPE_SUBMISSION);
-		import('controllers.modals.submissionMetadata.form.CatalogEntrySubmissionReviewForm');
+		// Create trivial notification in place on the form.
+		$notificationManager = new NotificationManager();
 		$user = $request->getUser();
-		$form = new CatalogEntrySubmissionReviewForm($submission->getId(), null, array('expeditedSubmission' => true));
-		if ($submission && $request->getUserVar('confirm') != '') {
+		$notificationManager->createTrivialNotification($user->getId(), NOTIFICATION_TYPE_SUCCESS, array('contents' => __('notification.savedSubmissionMetadata')));
 
-			// Process our submitted form in order to create the catalog entry.
-			$form->readInputData();
-			if($form->validate()) {
-				$form->execute($request);
-				// Create trivial notification in place on the form.
-				$notificationManager = new NotificationManager();
-				$user = $request->getUser();
-				$notificationManager->createTrivialNotification($user->getId(), NOTIFICATION_TYPE_SUCCESS, array('contents' => __('notification.savedSubmissionMetadata')));
+		// Now, create a publication format for this submission.  Assume PDF, digital, and set to 'available'.
+		$publicationFormatDao = DAORegistry::getDAO('PublicationFormatDAO');
+		$publicationFormat = $publicationFormatDao->newDataObject();
+		$publicationFormat->setPhysicalFormat(false);
+		$publicationFormat->setIsApproved(true);
+		$publicationFormat->setIsAvailable(true);
+		$publicationFormat->setSubmissionId($submission->getId());
+		$publicationFormat->setProductAvailabilityCode('20'); // ONIX code for Available.
+		$publicationFormat->setEntryKey('DA'); // ONIX code for Digital
+		$publicationFormat->setData('name', 'PDF', $submission->getLocale());
+		$publicationFormat->setSeq(REALLY_BIG_NUMBER);
+		$publicationFormatId = $publicationFormatDao->insertObject($publicationFormat);
 
-				// Now, create a publication format for this submission.  Assume PDF, digital, and set to 'available'.
-				$publicationFormatDao = DAORegistry::getDAO('PublicationFormatDAO');
-				$publicationFormat = $publicationFormatDao->newDataObject();
-				$publicationFormat->setPhysicalFormat(false);
-				$publicationFormat->setIsApproved(true);
-				$publicationFormat->setIsAvailable(true);
-				$publicationFormat->setSubmissionId($submission->getId());
-				$publicationFormat->setProductAvailabilityCode('20'); // ONIX code for Available.
-				$publicationFormat->setEntryKey('DA'); // ONIX code for Digital
-				$publicationFormat->setData('name', 'PDF', $submission->getLocale());
-				$publicationFormat->setSeq(REALLY_BIG_NUMBER);
-				$publicationFormatId = $publicationFormatDao->insertObject($publicationFormat);
+		// Next, create a galley PROOF file out of the submission file uploaded.
+		$submissionFileDao = DAORegistry::getDAO('SubmissionFileDAO');
+		import('lib.pkp.classes.submission.SubmissionFile'); // constants.
+		$submissionFiles = $submissionFileDao->getLatestRevisions($submission->getId(), SUBMISSION_FILE_SUBMISSION);
+		// Assume a single file was uploaded, but check for something that's PDF anyway.
+		foreach ($submissionFiles as $submissionFile) {
+			// test both mime type and file extension in case the mime type isn't correct after uploading.
+			if ($submissionFile->getFileType() == 'application/pdf' || preg_match('/\.pdf$/', $submissionFile->getOriginalFileName())) {
 
-				// Next, create a galley PROOF file out of the submission file uploaded.
-				$submissionFileDao = DAORegistry::getDAO('SubmissionFileDAO');
-				import('lib.pkp.classes.submission.SubmissionFile'); // constants.
-				$submissionFiles = $submissionFileDao->getLatestRevisions($submission->getId(), SUBMISSION_FILE_SUBMISSION);
-				// Assume a single file was uploaded, but check for something that's PDF anyway.
-				foreach ($submissionFiles as $submissionFile) {
-					// test both mime type and file extension in case the mime type isn't correct after uploading.
-					if ($submissionFile->getFileType() == 'application/pdf' || preg_match('/\.pdf$/', $submissionFile->getOriginalFileName())) {
+				// Get the path of the current file because we change the file stage in a bit.
+				$currentFilePath = $submissionFile->getFilePath();
 
-						// Get the path of the current file because we change the file stage in a bit.
-						$currentFilePath = $submissionFile->getFilePath();
+				// this will be a new file based on the old one.
+				$submissionFile->setFileId(null);
+				$submissionFile->setRevision(1);
+				$submissionFile->setViewable(true);
+				$submissionFile->setFileStage(SUBMISSION_FILE_PROOF);
+				$submissionFile->setAssocType(ASSOC_TYPE_REPRESENTATION);
+				$submissionFile->setAssocId($publicationFormatId);
 
-						// this will be a new file based on the old one.
-						$submissionFile->setFileId(null);
-						$submissionFile->setRevision(1);
-						$submissionFile->setViewable(true);
-						$submissionFile->setFileStage(SUBMISSION_FILE_PROOF);
-						$submissionFile->setAssocType(ASSOC_TYPE_REPRESENTATION);
-						$submissionFile->setAssocId($publicationFormatId);
-
-						// Assign the sales type and price for the submission file.
-						switch ($request->getUserVar('salesType')) {
-							case 'notAvailable':
-								$submissionFile->setDirectSalesPrice(null);
-								$submissionFile->setSalesType('notAvailable');
-								break;
-							case 'openAccess':
-								$submissionFile->setDirectSalesPrice(0);
-								$submissionFile->setSalesType('openAccess');
-								break;
-							default:
-								$submissionFile->setDirectSalesPrice($request->getUserVar('price'));
-								$submissionFile->setSalesType('directSales');
-						}
-
-						$submissionFileDao->insertObject($submissionFile, $currentFilePath);
+				// Assign the sales type and price for the submission file.
+				switch ($request->getUserVar('salesType')) {
+					case 'notAvailable':
+						$submissionFile->setDirectSalesPrice(null);
+						$submissionFile->setSalesType('notAvailable');
 						break;
-					}
+					case 'openAccess':
+						$submissionFile->setDirectSalesPrice(0);
+						$submissionFile->setSalesType('openAccess');
+						break;
+					default:
+						$submissionFile->setDirectSalesPrice($request->getUserVar('price'));
+						$submissionFile->setSalesType('directSales');
 				}
 
-				// no errors, clear all notifications for this submission which may have been created during the submission process and close the modal.
-				$context = $request->getContext();
-				$notificationDao = DAORegistry::getDAO('NotificationDAO');
-				$notificationFactory = $notificationDao->deleteByAssoc(
-					ASSOC_TYPE_SUBMISSION,
-					$submission->getId(),
-					null,
-					null,
-					$context->getId()
-				);
-
-				return new JSONMessage(true);
-			} else {
-				return new JSONMessage(true, $form->fetch($request));
+				$submissionFileDao->insertObject($submissionFile, $currentFilePath);
+				break;
 			}
-		} else {
-			$form->initData($args, $request);
-			return new JSONMessage(true, $form->fetch($request));
 		}
+
+		// no errors, clear all notifications for this submission which may have been created during the submission process and close the modal.
+		$context = $request->getContext();
+		$notificationDao = DAORegistry::getDAO('NotificationDAO');
+		$notificationFactory = $notificationDao->deleteByAssoc(
+			ASSOC_TYPE_SUBMISSION,
+			$submission->getId(),
+			null,
+			null,
+			$context->getId()
+		);
+
+		return $request->redirectUrlJson($request->url(null, 'workflow', 'index', array($submission->getId(), WORKFLOW_STAGE_ID_PRODUCTION)));
 	}
 
 
