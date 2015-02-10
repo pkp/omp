@@ -323,6 +323,7 @@ class PubIdPlugin extends Plugin {
 	function getPubObjectType($pubObject) {
 		$allowedTypes = array(
 			'PublicationFormat' => 'PublicationFormat',
+			'PublishedMonograph' => 'PublishedMonograph',
 		);
 		$pubObjectType = null;
 		foreach ($allowedTypes as $allowedType => $pubObjectTypeCandidate) {
