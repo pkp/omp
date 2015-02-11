@@ -178,7 +178,7 @@ class OAIDAO extends PKPOAIDAO {
 	 */
 	function getRecordJoinClause($publicationFormatId = null, $setIds = array(), $set = null) {
 		assert(is_array($setIds));
-		@list($pressId, $seriesId) = $setIds;
+		list($pressId, $seriesId) = array_pad($setIds, 2, null);
 		return 'LEFT JOIN publication_formats pf ON (m.i=0' . (isset($publicationFormatId) ? ' AND pf.publication_format_id = ?' : '') . ')
 			LEFT JOIN published_submissions ps ON (ps.submission_id = pf.submission_id)
 			LEFT JOIN submissions ms ON (ms.submission_id = ps.submission_id' . (isset($pressId) ? ' AND ms.context_id = ?' : '') . (isset($seriesId) && $seriesId != 0 ? ' AND ms.series_id = ?' : '') .')
