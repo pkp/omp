@@ -4,8 +4,12 @@
  * Copyright (c) 2014 Simon Fraser University Library
  * Copyright (c) 2003-2014 John Willinsky
  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
- *
+ * 
  * Display the information pane of a public-facing book view in the catalog.
+ * 
+ * --------------------------------------------------------------------
+ * modifiedy by Simon A. Frank: Content and download in same tab
+ * --------------------------------------------------------------------
  *}
 
 <script type="text/javascript">
@@ -25,7 +29,9 @@
 		<ul>
 			<li><a href="#abstractTab">{translate key="submission.synopsis"}</a></li>
 			{if $chapters|@count != 0}<li><a href="#contentsTab">{translate key="common.contents"}</a></li>{/if}
-			{if $availableFiles|@count != 0}<li><a href="#downloadTab">{translate key="submission.download"}</a></li>{/if}
+			{* Download-Tab deactivated
+			 {if $availableFiles|@count != 0}<li><a href="#downloadTab">{translate key="submission.download"}</a></li>{/if}
+			*}
 			{call_hook|assign:"sharingCode" name="Templates::Catalog::Book::BookInfo::Sharing"}
 			{if !is_null($sharingCode) || !empty($blocks)}
 				<li><a href="#sharingTab">{translate key="submission.sharing"}</a></li>
@@ -54,10 +60,20 @@
 						{if $publishedMonograph->getAuthorString() != $chapterAuthors}
 							<div class="authorName">{$chapterAuthors}</div>
 						{/if}
+						<div>
+							{assign var=publicationFormats value=$publishedMonograph->getPublicationFormats()}
+							{assign var=currency value=$currentPress->getSetting('currency')}							
+							{foreach from=$publicationFormats item=publicationFormat}
+								{if $publicationFormat->getIsAvailable()}
+									{include file="catalog/book/bookFilesContentAndDownload.tpl" availableFile=$availableFile publicationFormatId=$publicationFormat->getId() publishedMonograph=$publishedMonograph currency=$currency chapterId=$chapter->getId()}
+								{/if}
+							{/foreach}	
+						</div>
 					</p>
 				{/foreach}
 			</div>
 		{/if}
+{* old Download-Tab
 		{if $availableFiles|@count != 0}
 		<div id="downloadTab">
 			{assign var=publicationFormats value=$publishedMonograph->getPublicationFormats()}
@@ -83,9 +99,10 @@
 						</div>
 					{/if}
 				{/foreach}
-			{/if}{* useCollapsedView *}
+			{/if}
 		</div>
 		{/if}
+*}
 		{if !is_null($sharingCode) || !empty($blocks)}
 			<div id="sharingTab">
 				{$sharingCode}
