@@ -56,7 +56,7 @@ class CatalogBookHandler extends Handler {
 	function book($args, $request) {
 		$templateMgr = TemplateManager::getManager($request);
 		$this->setupTemplate($request);
-		AppLocale::requireComponents(LOCALE_COMPONENT_APP_SUBMISSION); // submission.synopsis
+		AppLocale::requireComponents(LOCALE_COMPONENT_APP_SUBMISSION, LOCALE_COMPONENT_PKP_SUBMISSION); // submission.synopsis; submission.copyrightStatement
 
 		$publishedMonograph = $this->getAuthorizedContextObject(ASSOC_TYPE_PUBLISHED_MONOGRAPH);
 		$templateMgr->assign('publishedMonograph', $publishedMonograph);
@@ -100,6 +100,8 @@ class CatalogBookHandler extends Handler {
 		}
 		$templateMgr->assign('enabledPubIdTypes', $enabledPubIdTypes);
 		$templateMgr->assign('metaCustomHeaders', $metaCustomHeaders);
+		$templateMgr->assign('ccLicenseBadge', Application::getCCLicenseBadge($publishedMonograph->getLicenseURL()));
+
 		// e-Commerce
 		import('classes.payment.omp.OMPPaymentManager');
 		$ompPaymentManager = new OMPPaymentManager($request);

@@ -33,16 +33,29 @@
 		</ul>
 
 		<div id="abstractTab">
-			{$publishedMonograph->getLocalizedAbstract()|strip_unsafe_html}
+			<div id="abstractContents">{$publishedMonograph->getLocalizedAbstract()|strip_unsafe_html}</div>
 
-			{assign var=authors value=$publishedMonograph->getAuthors()}
-			{foreach from=$authors item=author}
-				{if $author->getIncludeInBrowse()}
-					<p>{translate key="catalog.aboutTheAuthor" roleName=$author->getLocalizedUserGroupName()}: <strong>{$author->getFullName()}</strong></p>
-					{assign var=biography value=$author->getLocalizedBiography()|strip_unsafe_html}
-					{if $biography != ''}{$biography}{else}{translate key="catalog.noBioInfo"}{/if}
+			<div id="authorContents">
+				{assign var=authors value=$publishedMonograph->getAuthors()}
+				{foreach from=$authors item=author}
+					{if $author->getIncludeInBrowse()}
+						<div id="authorContent">
+							<p>{translate key="catalog.aboutTheAuthor" roleName=$author->getLocalizedUserGroupName()}: <strong>{$author->getFullName()}</strong></p>
+							{assign var=biography value=$author->getLocalizedBiography()|strip_unsafe_html}
+							{if $biography != ''}{$biography}{else}{translate key="catalog.noBioInfo"}{/if}
+						</div>
+					{/if}
+				{/foreach}
+			</div>
+
+			<div id="permissionContents">
+				{if $currentPress->getSetting('includeCopyrightStatement')}
+					<div id="copyrightStatement">{translate|escape key="submission.copyrightStatement" copyrightYear=$publishedMonograph->getCopyrightYear() copyrightHolder=$publishedMonograph->getLocalizedCopyrightHolder()}</div>
 				{/if}
-			{/foreach}
+				{if $currentPress->getSetting('includeLicense') && $ccLicenseBadge}
+					<div id="license">{$ccLicenseBadge}</div>
+				{/if}
+			</div>
 		</div>
 		{if $chapters|@count != 0}
 			<div id="contentsTab">

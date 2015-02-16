@@ -429,4 +429,7 @@ Note that if your site administrator has already registered this site with the P
 
 	<message key="settings.roles.gridDescription">Roles are groups of users in the press who are given access to different permission levels and associated workflows within the press. There are five different permission levels: Press Managers have access to everything in the press (all content and settings); Press Editors have access to all content within their series; Press Assistants have access to all monographs that have been explicitly assigned to them by an editor; Reviewers can see and perform the reviews they have been assigned; and Authors can see and interact with a limited amount of information on their own submissions. Additionally, there are five different stage assignments that roles may be given access to: Submission, Internal Review, External Review, Editorial and Production.</message>
 	<message key="manager.publication.library">Press Library</message>
+	<message key="manager.setup.resetPermissions">Reset Monograph Permissions</message>
+	<message key="manager.setup.resetPermissions.confirm">Are you sure you wish to reset permissions data already attached to monographs?</message>
+	<message key="manager.setup.resetPermissions.description">Copyright statement and license information will be permanently attached to published content, ensuring that this data will not change in the case of a press changing policies for new submissions. To reset stored permissions information already attached to published content, use the button below.</message>
 </locale>
