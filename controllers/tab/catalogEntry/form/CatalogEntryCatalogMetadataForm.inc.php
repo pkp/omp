@@ -325,12 +325,6 @@ class CatalogEntryCatalogMetadataForm extends Form {
 			$monograph->setStatus(STATUS_PUBLISHED);
 			$monographDao->updateObject($monograph);
 
-			if (!$isExistingEntry) {
-				unset($publishedMonograph);
-				$publishedMonograph = $publishedMonographDao->newDataObject();
-				$publishedMonograph->setId($monograph->getId());
-				$publishedMonographDao->insertObject($publishedMonograph);
-			}
 			$publishedMonograph->setDatePublished(Core::getCurrentDate());
 			$publishedMonographDao->updateObject($publishedMonograph);
 
