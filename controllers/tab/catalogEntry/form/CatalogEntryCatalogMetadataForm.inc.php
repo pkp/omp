@@ -258,6 +258,7 @@ class CatalogEntryCatalogMetadataForm extends Form {
 			assert($this->_sizeArray && $this->_imageExtension);
 
 			// Load the cover image for surrogate production
+			$cover = null; // Scrutinizer
 			switch ($this->_imageExtension) {
 				case '.jpg': $cover = imagecreatefromjpeg($temporaryFilePath); break;
 				case '.png': $cover = imagecreatefrompng($temporaryFilePath); break;
