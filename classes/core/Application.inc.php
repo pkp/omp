@@ -155,6 +155,7 @@ class Application extends PKPApplication {
 			'pubIds',
 			'blocks',
 			'generic',
+			'gateways',
 			'themes',
 			'importexport',
 			'oaiMetadataFormats',
