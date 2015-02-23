@@ -8,7 +8,7 @@
  * Display the information pane of a public-facing book view in the catalog.
  * 
  * --------------------------------------------------------------------
- * modifiedy by Simon A. Frank: Content and download in same tab
+ * modifiedy by Simon A. Frank: contents and download in same tab
  * --------------------------------------------------------------------
  *}
 
@@ -54,12 +54,15 @@
 			<div id="contentsTab">
 				{foreach from=$chapters item=chapter}
 					<p>
+						{* TODO: Move style to Stylesheet *} 
+						<div style='float:left;width:70%;margin-bottom:10px'>
 						<strong>{$chapter->getLocalizedTitle()}</strong>
 						{if $chapter->getLocalizedSubtitle() != '' }<br />{$chapter->getLocalizedSubtitle()}{/if}
 						{assign var=chapterAuthors value=$chapter->getAuthorNamesAsString()}
 						{if $publishedMonograph->getAuthorString() != $chapterAuthors}
 							<div class="authorName">{$chapterAuthors}</div>
 						{/if}
+						</div>
 						<div>
 							{assign var=publicationFormats value=$publishedMonograph->getPublicationFormats()}
 							{assign var=currency value=$currentPress->getSetting('currency')}							
