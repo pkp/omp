@@ -43,7 +43,7 @@ class PublicationDateForm extends Form {
 						$dateFormats = $onixCodelistItemDao->getCodes(\'List55\');
 						$format = $dateFormats[$dateFormat];
 						if (stristr($format, \'string\') && $date != \'\') return true;
-						$format = preg_replace(\'/\s*\(H\)/i\', \'\', $format);
+						$format = trim(preg_replace(\'/\s*\(.*?\)/i\', \'\', $format));
 						if (count(str_split($date)) == count(str_split($format))) return true;
 						return false;'), array(&$this, DAORegistry::getDAO('ONIXCodelistItemDAO')
 			)
