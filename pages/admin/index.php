@@ -41,6 +41,8 @@ switch ($op) {
 	case 'expireSessions':
 	case 'clearTemplateCache':
 	case 'clearDataCache':
+	case 'downloadScheduledTaskLogFile':
+	case 'clearScheduledTaskLogFiles':
 		import('lib.pkp.pages.admin.AdminFunctionsHandler');
 		define('HANDLER_CLASS', 'AdminFunctionsHandler');
 		break;
