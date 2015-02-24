@@ -121,4 +121,6 @@
 	<message key="submission.event.publicationFormatCreated">The publication format "{$formatName}" was created.</message>
 	<message key="submission.event.publicationFormatRemoved">The publication format "{$formatName}" was removed.</message>
 	<message key="submission.submit.titleAndSummary">Title and Summary</message>
+	<message key="workflow.review.externalReview">Review</message>
+	<message key="editor.submission.decision.sendExternalReview">Send to Review</message>
 </locale>
