@@ -8,7 +8,7 @@
  * Display a public-facing series view in the catalog.
  *}
 {strip}
-{include file="common/header.tpl" suppressPageTitle=true}
+{include file="common/header.tpl" suppressPageTitle=true pageTitleTranslated=$series->getLocalizedFullTitle()}
 {/strip}
 
 <h2 class="pkp_helpers_text_center"><em>{$series->getLocalizedFullTitle()}</em></h2>
