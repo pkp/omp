@@ -25,6 +25,7 @@ class InitiateExternalReviewForm extends InitiateReviewForm {
 	 * @param $stageId int WORKFLOW_STAGE_ID_...
 	 */
 	function InitiateExternalReviewForm($submission, $decision, $stageId) {
+		AppLocale::requireComponents(LOCALE_COMPONENT_APP_SUBMISSION);
 		parent::InitiateReviewForm($submission, $decision, $stageId, 'controllers/modals/editorDecision/form/initiateExternalReviewForm.tpl');
 	}
 
