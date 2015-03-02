@@ -52,8 +52,6 @@
 	<xsl:template match="onix:NotificationType"/>
 	<xsl:template match="onix:RecordSourceType"/>
 	<xsl:template match="onix:Collection"/>
-	<xsl:template match="onix:Language"/>
-	<xsl:template match="onix:Subject"/>
 	<xsl:template match="onix:CollateralDetail"/>
 	<xsl:template match="onix:Imprint" />
 </xsl:stylesheet>

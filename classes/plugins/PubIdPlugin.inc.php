@@ -361,6 +361,7 @@ class PubIdPlugin extends Plugin {
 	function &getDAO($pubObjectType) {
 		$daos =  array(
 			'PublicationFormat' => 'PublicationFormatDAO',
+			'Monograph' => 'MonographDAO',
 		);
 		$daoName = $daos[$pubObjectType];
 		assert(!empty($daoName));
