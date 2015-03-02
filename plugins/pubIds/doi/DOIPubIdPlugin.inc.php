@@ -91,11 +91,12 @@ class DOIPubIdPlugin extends PubIdPlugin {
 
 		// Initialize variables for publication objects.
 		$publicationFormat = ($pubObjectType == 'PublicationFormat' ? $pubObject : null);
+		$monograph = ($pubObjectType == 'Monograph' ? $pubObject : null);
 
 
 		// Get the press id of the object.
-		if (in_array($pubObjectType, array('PublicationFormat'))) {
-			$pressId = $pubObject->getPressId();
+		if (in_array($pubObjectType, array('PublicationFormat', 'Monograph'))) {
+			$pressId = $pubObject->getContextId();
 		} else {
 			return null;
 		}
@@ -114,6 +115,7 @@ class DOIPubIdPlugin extends PubIdPlugin {
 
 		// Generate the DOI suffix.
 		$doiSuffixGenerationStrategy = $this->getSetting($pressId, 'doiSuffix');
+
 		switch ($doiSuffixGenerationStrategy) {
 			case 'customId':
 				$doiSuffix = $pubObject->getData('doiSuffix');
@@ -130,6 +132,10 @@ class DOIPubIdPlugin extends PubIdPlugin {
 					$doiSuffix = String::regexp_replace('/%m/', $publicationFormat->getMonographId(), $doiSuffix);
 					$doiSuffix = String::regexp_replace('/%f/', $publicationFormat->getId(), $doiSuffix);
 				}
+				if ($monograph) {
+					// %m - monograph id
+					$doiSuffix = String::regexp_replace('/%m/', $monograph->getId(), $doiSuffix);
+				}
 
 				break;
 
@@ -139,6 +145,9 @@ class DOIPubIdPlugin extends PubIdPlugin {
 				if ($publicationFormat) {
 					$doiSuffix .= '.' . $publicationFormat->getMonographId();
  					$doiSuffix .= '.' . $publicationFormat->getId();
+				}
+				if ($monograph) {
+					$doiSuffix .= '.' . $monograph->getId();
 				}
 		}
 		if (empty($doiSuffix)) return null;
