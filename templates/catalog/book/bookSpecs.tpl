@@ -6,6 +6,11 @@
  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
  *
  * Display the book specs portion of the public-facing book view.
+ *
+ * Available data:
+ *  $publicationFormatId int Publication format ID
+ *  $availableFiles array Array of available MonographFiles
+ *  $publishedMonograph PublishedMonograph The published monograph object.
  *}
 
 <script type="text/javascript">

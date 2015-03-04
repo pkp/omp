@@ -6,11 +6,12 @@
  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
  *
  * Search results page for the public-facing catalog
+ *
+ * Available data:
+ *  $publishedMonographs array Array of PublishedMonograph objects to display.
+ *  $featuredMonographIds array Array of (monographId => sequence)
  *}
-{strip}
-{assign var="pageTitle" value="search.searchResults"}
-{include file="common/header.tpl"}
-{/strip}
+{include file="common/header.tpl" pageTitle="search.searchResults"}
 
 {* Include the full monograph list *}
 {include file="catalog/monographs.tpl" publishedMonographs=$publishedMonographs}

@@ -6,10 +6,12 @@
  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
  *
  * Display a public-facing series view in the catalog.
+ *
+ * Available data:
+ *  $series Series
+ *  $publishedMonographs array Array of PublishedMonograph objects to display.
  *}
-{strip}
 {include file="common/header.tpl" suppressPageTitle=true pageTitleTranslated=$series->getLocalizedFullTitle()}
-{/strip}
 
 <h2 class="pkp_helpers_text_center"><em>{$series->getLocalizedFullTitle()}</em></h2>
 

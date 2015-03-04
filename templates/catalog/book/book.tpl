@@ -6,12 +6,13 @@
  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
  *
  * Display a public-facing book view in the catalog.
+ *
+ * Available data:
+ *  $publicationFormatId int Publication format ID
+ *  $availableFiles array Array of available MonographFiles
+ *  $publishedMonograph PublishedMonograph The published monograph object.
  *}
-{strip}
-{assign var="suppressPageTitle" value=true}
-{assign var="pageTitleTranslated" value=$publishedMonograph->getLocalizedFullTitle()}
-{include file="common/header.tpl"}
-{/strip}
+{include file="common/header.tpl" suppressPageTitle=true pageTitleTranslated=$publishedMonograph->getLocalizedFullTitle()}
 
 <div class="pkp_catalog_book">
 

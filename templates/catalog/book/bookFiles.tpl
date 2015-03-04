@@ -6,6 +6,11 @@
  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
  *
  * Displays a book file list with download/payment links in the public catalog.
+ *
+ * Available data:
+ *  $publicationFormatId int Publication format ID
+ *  $availableFiles array Array of available MonographFiles
+ *  $publishedMonograph PublishedMonograph The published monograph object.
  *}
 {foreach from=$availableFiles[$publicationFormatId] item=availableFile}{* There will be at most one of these *}
 	<li>

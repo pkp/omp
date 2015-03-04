@@ -7,7 +7,11 @@
  *
  * Metadata elements for monographs based on preferred types for Google Scholar
  *
+ * Available data:
+ *  $availableFiles array Array of available MonographFiles
+ *  $publishedMonograph PublishedMonograph The published monograph object.
  *}
+
 {**
  * Google Scholar tags should only be included when there is a single PDF
  * available. (See bug #8542.) Ensure that this is the case before

@@ -6,6 +6,10 @@
  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
  *
  * Display a single random feature in the catalog.
+ *
+ * Available data:
+ *  $publishedMonographs array Array of PublishedMonograph objects to display.
+ *  $featuredMonographIds array Array of (monographId => sequence)
  *}
 
 {* Get a random feature. *}
