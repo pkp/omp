@@ -6,10 +6,13 @@
  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
  *
  * Display a public-facing category view in the catalog.
+ *
+ * Available data:
+ *  $category Category
+ *  $publishedMonographs array Array of PublishedMonograph objects to display.
+ *  $featuredMonographIds array Array of (monographId => sequence)
  *}
-{strip}
 {include file="common/header.tpl" suppressPageTitle=true}
-{/strip}
 
 {if $category}
 	<h2 class="pkp_helpers_text_center"><em>{$category->getLocalizedTitle()}</em></h2>

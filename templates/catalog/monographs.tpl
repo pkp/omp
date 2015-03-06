@@ -6,6 +6,10 @@
  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
  *
  * Display a public-facing monograph list in the catalog.
+ *
+ * Available data:
+ *  $publishedMonographs array Array of PublishedMonograph objects to display.
+ *  $featuredMonographIds array Array of (monographId => sequence)
  *}
 <script type="text/javascript">
 	// Initialize JS handler.

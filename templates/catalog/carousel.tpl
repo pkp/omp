@@ -6,7 +6,12 @@
  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
  *
  * Display a carousel in the public-facing catalog view.
+ *
+ * Available data:
+ *  $publishedMonographs array Array of PublishedMonograph objects to display.
+ *  $featuredMonographIds array Array of (monographId => sequence)
  *}
+
 {* Only include if there are actually monographs to display *}
 {if $publishedMonographs|@count > 0}
 

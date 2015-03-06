@@ -6,8 +6,12 @@
  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
  *
  * Display a public-facing monograph in the catalog.
+ *
+ * Available data:
+ *  $publishedMonographs array Array of PublishedMonograph objects to display.
+ *  $featuredMonographIds array Array of (monographId => sequence)
+ *  $publishedMonograph PublishedMonograph The published monograph object to display
  *}
-
 <li class="pkp_catalog_monograph {if $inline}pkp_helpers_align_left{/if} pkp_helpers_text_center">
 	<a href="{url page="catalog" op="book" path=$publishedMonograph->getId()}">
 		{include file="controllers/monographList/coverImage.tpl" monograph=$publishedMonograph}

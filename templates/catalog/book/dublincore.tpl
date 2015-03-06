@@ -7,6 +7,9 @@
  *
  * Dublin Core metadata elements for published monographs.
  *
+ * Available data:
+ *  $availableFiles array Array of available MonographFiles
+ *  $publishedMonograph PublishedMonograph The published monograph object.
  *}
 <link rel="schema.DC" href="http://purl.org/dc/elements/1.1/" />
 

@@ -6,6 +6,12 @@
  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
  *
  * Publication format information to be presented in book page.
+ *
+ * Available data:
+ *  $publicationFormatId int Publication format ID
+ *  $publicationFormat PublicationFormat The publication format to present.
+ *  $availableFiles array Array of available MonographFiles
+ *  $publishedMonograph PublishedMonograph The published monograph object.
  *}
 
 <div class="bookDimensionSpecs">
