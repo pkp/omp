@@ -1,8 +1,8 @@
 {**
  * templates/catalog/book/bookInfo.tpl
  *
- * Copyright (c) 2014 Simon Fraser University Library
- * Copyright (c) 2003-2014 John Willinsky
+ * Copyright (c) 2014-2015 Simon Fraser University Library
+ * Copyright (c) 2003-2015 John Willinsky
  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
  * 
  * Display the information pane of a public-facing book view in the catalog.
@@ -76,36 +76,7 @@
 				{/foreach}
 			</div>
 		{/if}
-{* old Download-Tab
-		{if $availableFiles|@count != 0}
-		<div id="downloadTab">
-			{assign var=publicationFormats value=$publishedMonograph->getPublicationFormats()}
-			{assign var=currency value=$currentPress->getSetting('currency')}
-			{if !$loggedInUsername}<p>{translate key="catalog.loginRequiredForPayment"}</p>{/if}
-			{if $useCollapsedView}
-				<ul>
-					{foreach from=$publicationFormats item=publicationFormat}
-						{if $publicationFormat->getIsAvailable()}
-							{include file="catalog/book/bookFiles.tpl" availableFile=$availableFile publicationFormatId=$publicationFormat->getId() publishedMonograph=$publishedMonograph currency=$currency}
-						{/if}
-					{/foreach}
-				</ul>
-			{else}
-				{foreach from=$publicationFormats item=publicationFormat}
-					{assign var=publicationFormatId value=$publicationFormat->getId()}
-					{if $publicationFormat->getIsAvailable() && $availableFiles[$publicationFormatId]}
-						<div class="publicationFormatDownload" id="publicationFormat-download-{$publicationFormatId|escape}">
-							{$publicationFormat->getLocalizedName()|escape}
-							<ul>
-								{include file="catalog/book/bookFiles.tpl" availableFile=$availableFile publicationFormatId=$publicationFormatId publishedMonograph=$publishedMonograph currency=$currency}
-							</ul>
-						</div>
-					{/if}
-				{/foreach}
-			{/if}
-		</div>
-		{/if}
-*}
+
 		{if !is_null($sharingCode) || !empty($blocks)}
 			<div id="sharingTab">
 				{$sharingCode}
