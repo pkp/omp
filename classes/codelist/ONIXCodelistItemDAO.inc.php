@@ -126,7 +126,7 @@ class ONIXCodelistItemDAO extends DAO {
 	 * @return string Path and filename to ONIX codelist document
 	 */
 	function getFilename($locale) {
-		$masterLocale = AppLocale::MASTER_LOCALE;
+		$masterLocale = MASTER_LOCALE;
 		$localizedFile = "locale/$locale/ONIX_BookProduct_CodeLists.xsd";
 		if (AppLocale::isLocaleValid($locale) && file_exists($localizedFile)) {
 			return $localizedFile;
