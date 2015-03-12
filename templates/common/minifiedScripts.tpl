@@ -50,8 +50,10 @@
 <script src="{$baseUrl}/lib/pkp/js/classes/features/OrderListbuilderItemsFeature.js"></script>
 <script src="{$baseUrl}/lib/pkp/js/classes/features/OrderMultipleListsItemsFeature.js"></script>
 <script src="{$baseUrl}/lib/pkp/js/classes/features/GridCategoryAccordionFeature.js"></script>
+<script src="{$baseUrl}/lib/pkp/js/classes/features/GeneralPagingFeature.js"></script>
 <script src="{$baseUrl}/lib/pkp/js/classes/features/PagingFeature.js"></script>
-
+<script src="{$baseUrl}/lib/pkp/js/classes/features/InfiniteScrollingFeature.js"></script>
+<script src="{$baseUrl}/lib/pkp/js/classes/features/CollapsibleGridFeature.js"></script>
 {* Generic controllers *}
 <script src="{$baseUrl}/lib/pkp/js/controllers/SiteHandler.js"></script>
 <script src="{$baseUrl}/lib/pkp/js/controllers/UrlInDivHandler.js"></script>
