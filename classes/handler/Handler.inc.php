@@ -36,15 +36,9 @@ class Handler extends PKPHandler {
 			return null;
 		}
 
-		// Check for multiple presses.
-		$pressDao = DAORegistry::getDAO('PressDAO');
-
 		$user = $request->getUser();
-		if (is_a($user, 'User')) {
-			return $pressDao->getAll();
-		} else {
-			return $pressDao->getEnabledPresses();
-		}
+		$contextDao = Application::getContextDAO();
+		return $contextDao->getAll($user?false:true);
 	}
 
 	/**

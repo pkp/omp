@@ -46,51 +46,6 @@ class PressDAO extends ContextDAO {
 	}
 
 	/**
-	 * Insert a new press.
-	 * @param $press Press
-	 */
-	function insertObject(&$press) {
-		$this->update(
-			'INSERT INTO presses
-				(path, seq, enabled, primary_locale)
-				VALUES
-				(?, ?, ?, ?)',
-			array(
-				$press->getPath(),
-				(int) $press->getSequence(),
-				(int) $press->getEnabled(),
-				$press->getPrimaryLocale()
-			)
-		);
-
-		$press->setId($this->getInsertId());
-		return $press->getId();
-	}
-
-	/**
-	 * Update an existing press.
-	 * @param $press Press
-	 */
-	function updateObject(&$press) {
-		return $this->update(
-			'UPDATE presses
-				SET
-					path = ?,
-					seq = ?,
-					enabled = ?,
-					primary_locale = ?
-				WHERE press_id = ?',
-			array(
-				$press->getPath(),
-				(int) $press->getSequence(),
-				(int) $press->getEnabled(),
-				$press->getPrimaryLocale(),
-				(int) $press->getId()
-			)
-		);
-	}
-
-	/**
 	 * Retrieve all enabled presses
 	 * @return array Presses ordered by sequence
 	 */
