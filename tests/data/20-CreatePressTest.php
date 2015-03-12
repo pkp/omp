@@ -74,6 +74,7 @@ class CreatePressTest extends WebTestCase {
 		$this->click('link=Website');
 		$this->waitForElementPresent('css=[id^=pageHeaderTitle-]');
 		$this->type('css=[id^=pageHeaderTitle-]', 'Public Knowledge Press');
+		$this->type('css=[id^=itemsPerPage-]', '100'); // To avoid having to scroll down to find submissions.
 		$this->click('//form[@id=\'appearanceForm\']//span[text()=\'Save\']/..');
 		$this->waitJQuery();
 	}
