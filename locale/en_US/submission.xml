@@ -55,7 +55,6 @@
 	<message key="submission.submit.upload">Upload Submission</message>
 	<message key="submission.submit.upload.description">Upload files associated with this submission, including manuscript, prospectus, cover letter, artwork, etc. For edited volumes, as well as monographs, upload the manuscript as a single file, if feasible.</message>
 	<message key="submission.submit.cancelSubmission">You can complete this submission at a later date by selecting Active Submissions from the Author home.</message>
-	<message key="submission.submit.copyrightNoticeAgree">I agree to abide by the terms of the copyright statement.</message>
 	<message key="submission.submit.selectSeries">Select series...</message>
 	<message key="submission.submit.seriesPosition">Position within this series (i.e., Book 2, or Volume 2)</message>
 	<message key="submission.submit.form.localeRequired">Please select a submission language.</message>
