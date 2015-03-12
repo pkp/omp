@@ -28,7 +28,7 @@ class Handler extends PKPHandler {
 	/**
 	 * Get the iterator of working contexts.
 	 * @param $request PKPRequest
-	 * @return ItemIterator
+	 * @return ItemIterator|null
 	 */
 	function getWorkingContexts($request) {
 		// For installation process
@@ -38,7 +38,7 @@ class Handler extends PKPHandler {
 
 		$user = $request->getUser();
 		$contextDao = Application::getContextDAO();
-		return $contextDao->getAll($user?false:true);
+		return $contextDao->getAvailable($user?$user->getId():null);
 	}
 
 	/**

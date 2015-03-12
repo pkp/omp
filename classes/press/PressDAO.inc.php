@@ -46,18 +46,6 @@ class PressDAO extends ContextDAO {
 	}
 
 	/**
-	 * Retrieve all enabled presses
-	 * @return array Presses ordered by sequence
-	 */
-	function getEnabledPresses() {
-		$result = $this->retrieve(
-			'SELECT * FROM presses WHERE enabled=1 ORDER BY seq'
-		);
-
-		return new DAOResultFactory($result, $this, '_fromRow');
-	}
-
-	/**
 	 * Delete a press by ID, INCLUDING ALL DEPENDENT ITEMS.
 	 * @param $pressId int
 	 */
