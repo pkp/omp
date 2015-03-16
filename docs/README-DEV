@@ -6,11 +6,11 @@
 Contributing Code
 _________________
 
-The PKP team is happy to accept patches in the public "OMP Development" forum
-at <http://pkp.sfu.ca/support/forum/viewforum.php?f=26>. If you would like to
-have your patch included in the OMP codebase, we suggest discussing it with the
-OMP team before implementation to ensure that it suits upcoming development
-plans.
+The PKP team is happy to accept patches in the PKP Community Forum at
+<http://forum.pkp.sfu.ca> or via Github at <http://www.github.com/pkp>.  If you
+would like to have your patch included in the OMP codebase, we suggest
+discussing it with the OMP team before implementation to ensure that it suits
+upcoming development plans.
 
 For code that is intended for inclusion in the main codebase:
 * Pull requests against a current git clone are preferred; alternately, pull
