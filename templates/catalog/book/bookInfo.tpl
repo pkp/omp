@@ -29,9 +29,6 @@
 		<ul>
 			<li><a href="#abstractTab">{translate key="submission.synopsis"}</a></li>
 			{if $chapters|@count != 0}<li><a href="#contentsTab">{translate key="common.contents"}</a></li>{/if}
-			{* Download-Tab deactivated
-			 {if $availableFiles|@count != 0}<li><a href="#downloadTab">{translate key="submission.download"}</a></li>{/if}
-			*}
 			{call_hook|assign:"sharingCode" name="Templates::Catalog::Book::BookInfo::Sharing"}
 			{if !is_null($sharingCode) || !empty($blocks)}
 				<li><a href="#sharingTab">{translate key="submission.sharing"}</a></li>
@@ -55,7 +52,7 @@
 				{foreach from=$chapters item=chapter}
 					<p>
 						{* TODO: Move style to Stylesheet *} 
-						<div style='float:left;width:70%;margin-bottom:10px'>
+						<div style='float:left;width:60%;margin-bottom:10px'>
 						<strong>{$chapter->getLocalizedTitle()}</strong>
 						{if $chapter->getLocalizedSubtitle() != '' }<br />{$chapter->getLocalizedSubtitle()}{/if}
 						{assign var=chapterAuthors value=$chapter->getAuthorNamesAsString()}
@@ -70,7 +67,7 @@
 								{if $publicationFormat->getIsAvailable()}
 									{include file="catalog/book/bookFilesContentAndDownload.tpl" availableFile=$availableFile publicationFormatId=$publicationFormat->getId() publishedMonograph=$publishedMonograph currency=$currency chapterId=$chapter->getId()}
 								{/if}
-							{/foreach}	
+							{/foreach}
 						</div>
 					</p>
 				{/foreach}
