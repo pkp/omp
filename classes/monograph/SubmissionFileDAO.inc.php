@@ -39,7 +39,7 @@ class SubmissionFileDAO extends PKPSubmissionFileDAO {
 		return array_replace(
 			parent::getDelegateClassNames(),
 			array(
-				'artworkfile' => 'classes.monograph.ArtworkFileDAODelegate',
+				'monographartworkfile' => 'classes.monograph.ArtworkFileDAODelegate',
 				'monographfile' => 'classes.monograph.MonographFileDAODelegate', // Override parent
 			)
 		);
@@ -52,7 +52,7 @@ class SubmissionFileDAO extends PKPSubmissionFileDAO {
 		return array_replace(
 			parent::getGenreCategoryMapping(),
 			array(
-				GENRE_CATEGORY_ARTWORK => 'artworkfile',
+				GENRE_CATEGORY_ARTWORK => 'monographartworkfile', // Override parent
 				GENRE_CATEGORY_DOCUMENT => 'monographfile', // Override parent
 			)
 		);
@@ -82,7 +82,7 @@ class SubmissionFileDAO extends PKPSubmissionFileDAO {
 	 */
 	function fromRow($row) {
 		if (isset($row['artwork_file_id']) && is_numeric($row['artwork_file_id'])) {
-			return parent::fromRow($row, 'ArtworkFile');
+			return parent::fromRow($row, 'MonographArtworkFile');
 		} else {
 			return parent::fromRow($row, 'MonographFile');
 		}

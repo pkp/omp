@@ -1,32 +1,29 @@
 <?php
 
 /**
- * @file classes/monograph/MonographFile.inc.php
+ * @file classes/monograph/MonographArtworkFile.inc.php
  *
  * Copyright (c) 2014-2015 Simon Fraser University Library
  * Copyright (c) 2003-2015 John Willinsky
  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
  *
- * @class MonographFile
+ * @class MonographArtworkFile
  * @ingroup monograph
  * @see SubmissionFileDAO
  *
- * @brief Monograph file class.
+ * @brief Artwork file class.
  */
 
-import('lib.pkp.classes.submission.SubmissionFile');
+import('lib.pkp.classes.submission.SubmissionArtworkFile');
 
-class MonographFile extends SubmissionFile {
+class MonographArtworkFile extends SubmissionArtworkFile {
 	/**
-	 * Constructor.
+	 * Constructor
 	 */
-	function MonographFile() {
-		parent::SubmissionFile();
+	function MonographArtworkFile() {
+		parent::SubmissionArtworkFile();
 	}
 
-	//
-	// Getters/setters
-	//
 	/**
 	 * Get the monograph chapter id.
 	 * @return int
@@ -43,12 +40,11 @@ class MonographFile extends SubmissionFile {
 		return $this->setData('chapterId', $chapterId);
 	}
 
-
 	/**
 	 * @copydoc SubmissionFile::copyEditableMetadataForm
 	 */
 	function copyEditableMetadataFrom($submissionFile) {
-		if (is_a($submissionFile, 'MonographFile') || is_a($submissionFile, 'MonographArtworkFile')) {
+		if (is_a($submissionFile, 'MonographArtworkFile') || is_a($submissionFile, 'MonographFile')) {
 			$this->setChapterId($submissionFile->getChapterId());
 		}
 

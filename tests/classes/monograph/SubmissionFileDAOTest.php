@@ -18,7 +18,7 @@ import('lib.pkp.tests.DatabaseTestCase');
 import('classes.monograph.SubmissionFileDAO');
 import('classes.monograph.ArtworkFileDAODelegate');
 import('classes.monograph.MonographFile');
-import('classes.monograph.ArtworkFile');
+import('classes.monograph.MonographArtworkFile');
 import('classes.monograph.MonographDAO');
 import('lib.pkp.classes.submission.Genre');
 import('lib.pkp.classes.submission.reviewRound.ReviewRound');
