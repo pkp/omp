@@ -25,22 +25,6 @@ class MonographArtworkFile extends SubmissionArtworkFile {
 	}
 
 	/**
-	 * Get the monograph chapter id.
-	 * @return int
-	 */
-	function getChapterId() {
-		return $this->getData('chapterId');
-	}
-
-	/**
-	 * Set the monograph chapter id.
-	 * @param $chapterId int
-	 */
-	function setChapterId($chapterId) {
-		return $this->setData('chapterId', $chapterId);
-	}
-
-	/**
 	 * @copydoc SubmissionFile::copyEditableMetadataForm
 	 */
 	function copyEditableMetadataFrom($submissionFile) {
