@@ -360,7 +360,6 @@ We have reached a decision regarding your submission to {$contextName}, &quot;{$
 Our decision is to:<br />
 <br />
 Manuscript URL: <a href="{$submissionUrl}">{$submissionUrl}</a><br />
-Username: {$authorUsername}<br />
 <br />
 {$editorialContactSignature}<br />
 ]]></body>
@@ -375,7 +374,6 @@ We have reached a decision regarding your submission to {$contextName}, &quot;{$
 Our decision is to:<br />
 <br />
 Manuscript URL: <a href="{$submissionUrl}">{$submissionUrl}</a><br />
-Username: {$authorUsername}<br />
 <br />
 {$editorialContactSignature}<br />
 ]]></body>
@@ -388,7 +386,6 @@ Username: {$authorUsername}<br />
 The editing of your manuscript, &quot;{$submissionTitle},&quot; is complete.  We are now sending it to production.<br />
 <br />
 Manuscript URL: <a href="{$submissionUrl}">{$submissionUrl}</a><br />
-Username: {$authorUsername}<br />
 <br />
 {$editorialContactSignature}<br />
 ]]></body>
@@ -403,7 +400,6 @@ We have reached a decision regarding your submission to {$contextName}, &quot;{$
 Our decision is to:<br />
 <br />
 Manuscript URL: <a href="{$submissionUrl}">{$submissionUrl}</a><br />
-Username: {$authorUsername}<br />
 <br />
 {$editorialContactSignature}<br />
 ]]></body>
@@ -418,7 +414,6 @@ We have reached a decision regarding your submission to {$contextName}, &quot;{$
 Our decision is to:<br />
 <br />
 Manuscript URL: <a href="{$submissionUrl}">{$submissionUrl}</a><br />
-Username: {$authorUsername}<br />
 <br />
 {$editorialContactSignature}<br />
 ]]></body>
@@ -433,7 +428,6 @@ We have reached a decision regarding your submission to {$contextName}, &quot;{$
 Our decision is to:<br />
 <br />
 Manuscript URL: <a href="{$submissionUrl}">{$submissionUrl}</a><br />
-Username: {$authorUsername}<br />
 <br />
 {$editorialContactSignature}<br />
 ]]></body>

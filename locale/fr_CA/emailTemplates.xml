@@ -369,7 +369,6 @@ Nous avons pris une décision concernant votre soumission à la presse {$context
 Nous avons décidé de:<br />
 <br />
 URL du manuscrit: <a href="{$submissionUrl}">{$submissionUrl}</a><br />
-Nom d'utilisateur: {$authorUsername}<br />
 <br />
 {$editorialContactSignature}<br />
 ]]></body>
@@ -384,7 +383,6 @@ Nous avons pris une décision concernant votre soumission à la presse {$context
 Nous avons décidé de:<br />
 <br />
 URL du manuscrit: <a href="{$submissionUrl}">{$submissionUrl}</a><br />
-Nom d'utilisateur: {$authorUsername}<br />
 <br />
 {$editorialContactSignature}<br />
 ]]></body>
@@ -397,7 +395,6 @@ Nom d'utilisateur: {$authorUsername}<br />
 La révision de votre manuscrit &quot;{$submissionTitle}&quot; est terminée. Nous l'envoyons maintenant en production.<br />
 <br />
 URL du manuscrit: <a href="{$submissionUrl}">{$submissionUrl}</a><br />
-Nom d'utilisateur: {$authorUsername}<br />
 <br />
 {$editorialContactSignature}<br />
 ]]></body>
@@ -412,7 +409,6 @@ Nous avons pris une décision concernant votre soumission à la presse {$context
 Nous avons décidé de:<br />
 <br />
 URL du manuscrit: <a href="{$submissionUrl}">{$submissionUrl}</a><br />
-Nom d'utilisateur: {$authorUsername}<br />
 <br />
 {$editorialContactSignature}<br />
 ]]></body>
@@ -427,7 +423,6 @@ Nous avons pris une décision concernant votre soumission à la presse {$context
 Nous avons décidé de:<br />
 <br />
 URL du manuscrit: <a href="{$submissionUrl}">{$submissionUrl}</a><br />
-Nom d'utilisateur: {$authorUsername}<br />
 <br />
 {$editorialContactSignature}<br />
 ]]></body>
@@ -442,7 +437,6 @@ Nous avons pris une décision concernant votre soumission à la presse {$context
 Nous avons décidé de:<br />
 <br />
 URL du manuscrit: <a href="{$submissionUrl}">{$submissionUrl}</a><br />
-Nom d'utilisateur: {$authorUsername}<br />
 <br />
 {$editorialContactSignature}<br />
 ]]></body>

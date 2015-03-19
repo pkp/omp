@@ -83,7 +83,7 @@ class SubmissionSubmitStep3Form extends PKPSubmissionSubmitStep3Form {
 			$mail->setReplyTo($this->context->getSetting('contactEmail'), $this->context->getSetting('contactName'));
 			$authorMail->setReplyTo($this->context->getSetting('contactEmail'), $this->context->getSetting('contactName'));
 
-			$user = $submission->getUser();
+			$user = $request->getUser();
 			$primaryAuthor = $submission->getPrimaryAuthor();
 			if (!isset($primaryAuthor)) {
 				$authors = $submission->getAuthors();

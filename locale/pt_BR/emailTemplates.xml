@@ -359,7 +359,6 @@ A decisão editorial sobre a submissão à editora {$contextName}, &quot;{$submi
 A decisão é:<br />
 <br />
 Página do manuscrito: <a href="{$submissionUrl}">{$submissionUrl}</a><br />
-Login: {$authorUsername}<br />
 <br />
 {$editorialContactSignature}<br />
 ]]></body>
@@ -374,7 +373,6 @@ A decisão editorial sobre a submissão à editora {$contextName}, &quot;{$submi
 A decisão é:<br />
 <br />
 Página do manuscrito: <a href="{$submissionUrl}">{$submissionUrl}</a><br />
-Login: {$authorUsername}<br />
 <br />
 {$editorialContactSignature}<br />
 ]]></body>
@@ -387,7 +385,6 @@ Login: {$authorUsername}<br />
 A edição do manuscrito &quot;{$submissionTitle}&quot; foi concluída. O trabalho será enviado à produção.<br />
 <br />
 Página do manuscrito: <a href="{$submissionUrl}">{$submissionUrl}</a><br />
-Login: {$authorUsername}<br />
 <br />
 {$editorialContactSignature}<br />
 ]]></body>
@@ -402,7 +399,6 @@ A decisão editorial sobre a submissão à editora {$contextName}, &quot;{$submi
 A decisão é:<br />
 <br />
 Página do manuscrito: <a href="{$submissionUrl}">{$submissionUrl}</a><br />
-Login: {$authorUsername}<br />
 <br />
 {$editorialContactSignature}<br />
 ]]></body>
@@ -417,7 +413,6 @@ A decisão editorial sobre a submissão à editora {$contextName}, &quot;{$submi
 A decisão é:<br />
 <br />
 Página do manuscrito: <a href="{$submissionUrl}">{$submissionUrl}</a><br />
-Login: {$authorUsername}<br />
 <br />
 {$editorialContactSignature}<br />
 ]]></body>
@@ -432,7 +427,6 @@ A decisão editorial sobre a submissão à editora {$contextName}, &quot;{$submi
 A decisão é:<br />
 <br />
 Página do manuscrito: <a href="{$submissionUrl}">{$submissionUrl}</a><br />
-Login: {$authorUsername}<br />
 <br />
 {$editorialContactSignature}<br />
 ]]></body>

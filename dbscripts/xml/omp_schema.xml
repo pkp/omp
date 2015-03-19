@@ -446,9 +446,6 @@
 			<AUTOINCREMENT />
 		</field>
 		<field name="locale" type="C2" size="5" />
-		<field name="user_id" type="I8">
-			<NOTNULL />
-		</field>
 		<field name="context_id" type="I8">
 			<NOTNULL />
 		</field>
@@ -491,9 +488,6 @@
 			<DEFAULT VALUE="1"/>
 		</field>
 		<descr>Submissions</descr>
-		<index name="submissions_user_id">
-			<col>user_id</col>
-		</index>
 		<index name="submissions_context_id">
 			<col>context_id</col>
 		</index>
