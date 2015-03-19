@@ -18,7 +18,6 @@
  *  file implementations.
  */
 
-
 import('lib.pkp.classes.submission.PKPSubmissionFileDAO');
 
 class SubmissionFileDAO extends PKPSubmissionFileDAO {
@@ -34,29 +33,33 @@ class SubmissionFileDAO extends PKPSubmissionFileDAO {
 	// Implement protected template methods from PKPSubmissionFileDAO
 	//
 	/**
-	 * @see PKPSubmissionFileDAO::getDelegateClassNames()
+	 * @copydoc PKPSubmissionFileDAO::getDelegateClassNames()
 	 */
 	function getDelegateClassNames() {
-		static $delegateClasses = array(
-			'artworkfile' => 'classes.monograph.ArtworkFileDAODelegate',
-			'monographfile' => 'classes.monograph.MonographFileDAODelegate'
+		return array_replace(
+			parent::getDelegateClassNames(),
+			array(
+				'artworkfile' => 'classes.monograph.ArtworkFileDAODelegate',
+				'monographfile' => 'classes.monograph.MonographFileDAODelegate', // Override parent
+			)
 		);
-		return $delegateClasses;
 	}
 
 	/**
-	 * @see PKPSubmissionFileDAO::getGenreCategoryMapping()
+	 * @copydoc PKPSubmissionFileDAO::getGenreCategoryMapping()
 	 */
 	function getGenreCategoryMapping() {
-		static $genreCategoryMapping = array(
-			GENRE_CATEGORY_ARTWORK => 'artworkfile',
-			GENRE_CATEGORY_DOCUMENT => 'monographfile'
+		return array_replace(
+			parent::getGenreCategoryMapping(),
+			array(
+				GENRE_CATEGORY_ARTWORK => 'artworkfile',
+				GENRE_CATEGORY_DOCUMENT => 'monographfile', // Override parent
+			)
 		);
-		return $genreCategoryMapping;
 	}
 
 	/**
-	 * @see PKPSubmissionFileDAO::baseQueryForFileSelection()
+	 * @copydoc PKPSubmissionFileDAO::baseQueryForFileSelection()
 	 */
 	function baseQueryForFileSelection() {
 		// Build the basic query that joins the class tables.
@@ -75,7 +78,7 @@ class SubmissionFileDAO extends PKPSubmissionFileDAO {
 	// Protected helper methods
 	//
 	/**
-	 * @see PKPSubmissionFileDAO::fromRow()
+	 * @copydoc PKPSubmissionFileDAO::fromRow()
 	 */
 	function fromRow($row) {
 		if (isset($row['artwork_file_id']) && is_numeric($row['artwork_file_id'])) {

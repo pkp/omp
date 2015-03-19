@@ -17,7 +17,6 @@
 import('lib.pkp.classes.submission.SubmissionFile');
 
 class MonographFile extends SubmissionFile {
-
 	/**
 	 * Constructor.
 	 */
@@ -37,26 +36,6 @@ class MonographFile extends SubmissionFile {
 		}
 
 		parent::copyEditableMetadataFrom($monographFile);
-	}
-
-	//
-	// Get/set methods
-	//
-
-	/**
-	 * Get ID of monograph.
-	 * @return int
-	 */
-	function getMonographId() {
-		return $this->getSubmissionId();
-	}
-
-	/**
-	 * Set ID of monograph.
-	 * @param $monographId int
-	 */
-	function setMonographId($monographId) {
-		return $this->setSubmissionId($monographId);
 	}
 }
 
