@@ -249,7 +249,6 @@ Hemos tomado una decisión con respecto a tu propuesta sobre {$contextName}, &qu
 Nuestra decisión es la siguiente:<br />
 <br />
 URL del texto completo: <a href="{$submissionUrl}">{$submissionUrl}</a><br />
-Nombre de usuario: {$authorUsername}<br />
 <br />
 {$editorialContactSignature}]]></body>
 		<description>Este correo electrónico enviado por el coordinador o coordinador de colección al autor les informa de la decisión final sobre su propuesta.</description>
@@ -283,7 +282,6 @@ Hemos tomado una decisión con respecto a tu propuesta sobre {$contextName}, &qu
 Nuestra decisión es la siguiente:<br />
 <br />
 URL del texto completo: <a href="{$submissionUrl}">{$submissionUrl}</a><br />
-Nombre de usuario: {$authorUsername}<br />
 <br />
 {$editorialContactSignature}]]></body>
 		<description>Este correo electrónico enviado por el coordinador o coordinador de colección al autor les informa de la decisión final sobre su propuesta.</description>

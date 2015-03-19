@@ -376,7 +376,6 @@ Username: {$authorUsername}<br />
 <br />
 <br />
 URL εργασίας: <a href="{$submissionUrl}">{$submissionUrl}</a><br />
-Username: {$authorUsername}<br />
 <br />
 {$editorialContactSignature}]]></body>
 		<description>This email from the Editor or Series Editor to an Author notifies them that their submission is being sent to an external review.</description>
@@ -388,7 +387,6 @@ Username: {$authorUsername}<br />
 Η επιμέλεια της εργασίας σας με τίτλο, &quot;{$submissionTitle},&quot; έχει ολοκληρωθεί.  Η εργασία σας έχει αποσταλεί ώστε να ξεκινήσει η διαδικασία παραγωγής, επεξεργασίας και δημοσίευσης του έργου σας.<br />
 <br />
 URL εργασίας: <a href="{$submissionUrl}">{$submissionUrl}</a><br />
-Username: {$authorUsername}<br />
 <br />
 {$editorialContactSignature}]]></body>
 		<description>This email from the Editor or Series Editor to an Author notifies them that their submission is being sent to production.</description>
@@ -402,7 +400,6 @@ Username: {$authorUsername}<br />
 <br />
 <br />
 URL εργασίας: <a href="{$submissionUrl}">{$submissionUrl}</a><br />
-Username: {$authorUsername}<br />
 <br />
 {$editorialContactSignature}]]></body>
 		<description>This email from the Editor or Series Editor to an Author notifies them of a final decision regarding their submission.</description>
@@ -416,7 +413,6 @@ Username: {$authorUsername}<br />
 <br />
 <br />
 URL εργασίας: <a href="{$submissionUrl}">{$submissionUrl}</a><br />
-Username: {$authorUsername}<br />
 <br />
 {$editorialContactSignature}]]></body>
 		<description>This email from the Editor or Series Editor to an Author notifies them of a final decision regarding their submission.</description>
@@ -430,7 +426,6 @@ Username: {$authorUsername}<br />
 <br />
 <br />
 URL εργασίας: <a href="{$submissionUrl}">{$submissionUrl}</a><br />
-Username: {$authorUsername}<br />
 <br />
 {$editorialContactSignature}]]></body>
 		<description>This email from the Editor or Series Editor to an Author notifies them of a final decision regarding their submission.</description>
