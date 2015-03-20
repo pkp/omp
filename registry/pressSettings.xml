@@ -23,6 +23,14 @@
 
 <press_settings>
 	<setting type="int" locale="0">
+		<name>coverThumbnailsMaxWidth</name>
+		<value>106</value>
+	</setting>
+	<setting type="int" locale="0">
+		<name>coverThumbnailsMaxHeight</name>
+		<value>100</value>
+	</setting>
+	<setting type="int" locale="0">
 		<name>numPageLinks</name>
 		<value>10</value>
 	</setting>

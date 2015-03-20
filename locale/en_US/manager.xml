@@ -343,6 +343,13 @@ You may optionally provide the user with a reason for disabling their account.</
 	<message key="manager.setup.submissions.description">Author guidelines, copyright, and indexing (including registration).</message>
 	<message key="manager.setup.technicalSupportContact">Technical Support Contact</message>
 	<message key="manager.setup.technicalSupportContactDescription">This person will be listed on the press Contact page for the use of editors, authors, and reviewers, and should have experience working through the system from the perspective of all of its roles. As this press system requires very little technical support, this should be seen as a part-time assignment. There may be occasions, for example, when authors and reviewers have difficulties with the instructions or file formats, or there's a need to ensure that the press is regularly backed up on the server.</message>
+	<message key="manager.setup.coverThumbnails">Cover Thumbnails</message>
+	<message key="manager.setup.coverThumbnailsDescription">You may define the max width and height of the cover thumbnails. Cover thumbnails will be scaled down to fall within these dimensions, preserving aspect ratio, and not scaling up beyond the present resolution.</message>
+	<message key="manager.setup.coverThumbnailsMaxHeight">Max. height</message>
+	<message key="manager.setup.coverThumbnailsMaxHeightRequired">Cover thumbnails max height is required.</message>
+	<message key="manager.setup.coverThumbnailsMaxWidth">Max. width</message>
+	<message key="manager.setup.coverThumbnailsMaxWidthRequired">Cover thumbnails max width is required.</message>
+	<message key="manager.setup.coverThumbnailsResize">Resize all existing cover thumbnails.</message>
 	<message key="manager.setup.typeExamples">(E.g., Historical Inquiry; Quasi-Experimental; Literary Analysis; Survey/Interview)</message>
 	<message key="manager.setup.typeMethodApproach">Type (Method/Approach)</message>
 	<message key="manager.setup.typeProvideExamples">Provide examples of relevant research types, methods, and approaches for this field</message>
