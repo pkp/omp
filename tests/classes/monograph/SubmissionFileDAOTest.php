@@ -101,7 +101,7 @@ class SubmissionFileDAOTest extends DatabaseTestCase {
 		// Create test data.
 		//
 		// Create two test files, one monograph file one artwork file.
-		$file1Rev1 = new ArtworkFile();
+		$file1Rev1 = new MonographArtworkFile();
 		$file1Rev1->setName('test-artwork', 'en_US');
 		$file1Rev1->setCaption('test-caption');
 		$file1Rev1->setFileStage(SUBMISSION_FILE_PROOF);
@@ -137,13 +137,13 @@ class SubmissionFileDAOTest extends DatabaseTestCase {
 		//
 		// Persist the two test files.
 		$this->_insertFile($file1Rev1, 'test artwork', SUBMISSION_FILE_DAO_TEST_ART_GENRE_ID);
-		self::assertTrue(is_a($file1Rev1, 'ArtworkFile'));
+		self::assertTrue(is_a($file1Rev1, 'MonographArtworkFile'));
 		$this->_insertFile($file2Rev1, 'test monograph', SUBMISSION_FILE_DAO_TEST_DOC_GENRE_ID);
 		self::assertTrue(is_a($file2Rev1, 'MonographFile'));
 
 		// Persist a second revision of the artwork file but this time with a
 		// document genre so that it needs to be downcast for insert.
-		$downcastFile = clone($file1Rev1); /* @var $downcastFile ArtworkFile */
+		$downcastFile = clone($file1Rev1); /* @var $downcastFile MonographArtworkFile */
 		$downcastFile->setRevision(2);
 		$downcastFile->setDateUploaded('2011-12-05 00:00:00');
 		$downcastFile->setDateModified('2011-12-05 00:00:00');
@@ -161,7 +161,7 @@ class SubmissionFileDAOTest extends DatabaseTestCase {
 		$file2Rev2 = $this->_insertFile($upcastFile, 'test upcast', SUBMISSION_FILE_DAO_TEST_ART_GENRE_ID);
 
 		// Test whether the target type is correct.
-		self::assertTrue(is_a($file2Rev2, 'ArtworkFile'));
+		self::assertTrue(is_a($file2Rev2, 'MonographArtworkFile'));
 		// Test that no data on the target interface has been lost.
 		$this->_compareFiles($upcastFile, $file2Rev2);
 		// Make sure that other fields contain default values as
@@ -213,7 +213,7 @@ class SubmissionFileDAOTest extends DatabaseTestCase {
 		$updatedFile = $submissionFileDao->updateObject($updatedFile);
 
 		// Test whether the target type is correct.
-		self::assertTrue(is_a($updatedFile, 'ArtworkFile'));
+		self::assertTrue(is_a($updatedFile, 'MonographArtworkFile'));
 		// Test that no data on the target interface has been lost.
 		$this->_compareFiles($file1Rev1, $updatedFile);
 		// Make sure that other fields contain default values as
@@ -360,7 +360,7 @@ class SubmissionFileDAOTest extends DatabaseTestCase {
 		//
 		// Delete the latest revision of file1.
 		self::assertEquals(1, $submissionFileDao->deleteLatestRevisionById($file1Rev1->getFileId()));
-		self::assertTrue(is_a($submissionFileDao->getRevision($file1Rev1->getFileId(), $file1Rev1->getRevision()), 'ArtworkFile'));
+		self::assertTrue(is_a($submissionFileDao->getRevision($file1Rev1->getFileId(), $file1Rev1->getRevision()), 'MonographArtworkFile'));
 		self::assertNull($submissionFileDao->getRevision($file1Rev3->getFileId(), $file1Rev3->getRevision()));
 
 
@@ -435,7 +435,7 @@ class SubmissionFileDAOTest extends DatabaseTestCase {
 		$submissionFiles = $submissionFileDao->getAllRevisions($file1Rev1->getFileId());
 		self::assertEquals(2, count($submissionFiles));
 		foreach($submissionFiles as $submissionFile) { /* @var $submissionFile SubmissionFile */
-			self::assertTrue(is_a($submissionFile, 'ArtworkFile'));
+			self::assertTrue(is_a($submissionFile, 'MonographArtworkFile'));
 		}
 	}
 
@@ -449,7 +449,7 @@ class SubmissionFileDAOTest extends DatabaseTestCase {
 
 		// Now set an artwork genre and try again.
 		$fileObject = $submissionFileDao->newDataObjectByGenreId(SUBMISSION_FILE_DAO_TEST_ART_GENRE_ID);
-		self::assertTrue(is_a($fileObject, 'ArtworkFile'));
+		self::assertTrue(is_a($fileObject, 'MonographArtworkFile'));
 	}
 
 
