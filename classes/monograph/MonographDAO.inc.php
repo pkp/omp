@@ -139,34 +139,25 @@ class MonographDAO extends SubmissionDAO {
 	}
 
 	/**
-	 * Delete an monograph by ID.
-	 * @param $monographId int
+	 * @copydoc SubmissionDAO::deleteById
 	 */
-	function deleteById($monographId) {
-		// Delete monograph file directory.
-		$monograph = $this->getById($monographId);
-		assert(is_a($monograph, 'Submission'));
-
-		parent::deleteById($monographId);
+	function deleteById($submissionId) {
+		parent::deleteById($submissionId);
 
 		// Delete chapters and assigned chapter authors.
 		$chapterDao = DAORegistry::getDAO('ChapterDAO');
-		$chapters = $chapterDao->getChapters($monographId);
+		$chapters = $chapterDao->getChapters($submissionId);
 		while ($chapter = $chapters->next()) {
 			// also removes Chapter Author associations
 			$chapterDao->deleteObject($chapter);
 		}
 
-		import('lib.pkp.classes.file.SubmissionFileManager');
-		$monographFileManager = new SubmissionFileManager($monograph->getPressId(), $monograph->getId());
-		$monographFileManager->rmtree($monographFileManager->getBasePath());
-
 		// Delete references to features or new releases.
 		$featureDao = DAORegistry::getDAO('FeatureDAO');
-		$featureDao->deleteByMonographId($monographId);
+		$featureDao->deleteByMonographId($submissionId);
 
 		$newReleaseDao = DAORegistry::getDAO('NewReleaseDAO');
-		$newReleaseDao->deleteByMonographId($monographId);
+		$newReleaseDao->deleteByMonographId($submissionId);
 
 		import('classes.search.MonographSearchIndex');
 		MonographSearchIndex::deleteTextIndex($monograph->getId());
