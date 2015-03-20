@@ -16,9 +16,6 @@
 
 import('lib.pkp.classes.form.Form');
 
-define('THUMBNAIL_MAX_WIDTH', 106);
-define('THUMBNAIL_MAX_HEIGHT', 100);
-
 class SeriesForm extends Form {
 	/** the id for the series being edited **/
 	var $_seriesId;
@@ -190,9 +187,12 @@ class SeriesForm extends Form {
 			}
 			assert($image);
 
+			$coverThumbnailsMaxWidth = $press->getSetting('coverThumbnailsMaxWidth');
+			$coverThumbnailsMaxHeight = $press->getSetting('coverThumbnailsMaxHeight');
+
 			$thumbnailFilename = $series->getId() . '-series-thumbnail' . $this->_imageExtension;
-			$xRatio = min(1, THUMBNAIL_MAX_WIDTH / $this->_sizeArray[0]);
-			$yRatio = min(1, THUMBNAIL_MAX_HEIGHT / $this->_sizeArray[1]);
+			$xRatio = min(1, $coverThumbnailsMaxWidth / $this->_sizeArray[0]);
+			$yRatio = min(1, $coverThumbnailsMaxHeight / $this->_sizeArray[1]);
 
 			$ratio = min($xRatio, $yRatio);
 

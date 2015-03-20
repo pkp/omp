@@ -17,11 +17,6 @@
 define('SUBMISSION_IMAGE_TYPE_THUMBNAIL', 1);
 define('SUBMISSION_IMAGE_TYPE_CATALOG', 2);
 
-// Thumbnails will be scaled down to fall within these dimensions, preserving
-// aspect ratio, and not scaling up beyond the present resolution.
-define('THUMBNAIL_MAX_WIDTH', 106);
-define('THUMBNAIL_MAX_HEIGHT', 100);
-
 // Define a second pair for the Catalog display, to ensure correct rendering
 // of the page.
 define('CATALOG_MAX_WIDTH', 240);
@@ -250,7 +245,11 @@ class CatalogEntryCatalogMetadataForm extends Form {
 			$simpleMonographFileManager->copyFile($temporaryFile->getFilePath(), $basePath . $filename);
 
 			// Generate surrogate images (thumbnail and catalog image)
-			$thumbnailImageInfo = $this->_buildSurrogateImage($cover, $basePath, SUBMISSION_IMAGE_TYPE_THUMBNAIL);
+			$press = $request->getPress();
+			$coverThumbnailsMaxWidth = $press->getSetting('coverThumbnailsMaxWidth');
+			$coverThumbnailsMaxHeight = $press->getSetting('coverThumbnailsMaxHeight');
+
+			$thumbnailImageInfo = $this->_buildSurrogateImage($cover, $basePath, SUBMISSION_IMAGE_TYPE_THUMBNAIL, $coverThumbnailsMaxWidth, $coverThumbnailsMaxHeight);
 			$catalogImageInfo = $this->_buildSurrogateImage($cover, $basePath, SUBMISSION_IMAGE_TYPE_CATALOG);
 
 			// Clean up
@@ -291,7 +290,7 @@ class CatalogEntryCatalogMetadataForm extends Form {
 	 * @param int $type the type of image to create.
 	 * @return array the details for the image (dimensions, file name, etc).
 	 */
-	function _buildSurrogateImage(&$cover, $basePath, $type) {
+	function _buildSurrogateImage(&$cover, $basePath, $type, $coverThumbnailsMaxWidth, $coverThumbnailsMaxHeight) {
 		// Calculate the scaling ratio for each dimension.
 
 		$maxWidth = 0;
@@ -299,8 +298,8 @@ class CatalogEntryCatalogMetadataForm extends Form {
 
 		switch ($type) {
 			case SUBMISSION_IMAGE_TYPE_THUMBNAIL:
-				$maxWidth = THUMBNAIL_MAX_WIDTH;
-				$maxHeight = THUMBNAIL_MAX_HEIGHT;
+				$maxWidth = $coverThumbnailsMaxWidth;
+				$maxHeight = $coverThumbnailsMaxHeight;
 				$surrogateFilename = 'thumbnail' . $this->_imageExtension;
 				break;
 			case SUBMISSION_IMAGE_TYPE_CATALOG:
