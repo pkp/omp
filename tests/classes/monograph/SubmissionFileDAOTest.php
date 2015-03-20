@@ -216,9 +216,6 @@ class SubmissionFileDAOTest extends DatabaseTestCase {
 		self::assertTrue(is_a($updatedFile, 'MonographArtworkFile'));
 		// Test that no data on the target interface has been lost.
 		$this->_compareFiles($file1Rev1, $updatedFile);
-		// Make sure that other fields contain default values as
-		// they are lost on double recast.
-		self::assertNull($updatedFile->getCaption());
 		$file1Rev1 = $updatedFile;
 
 
@@ -226,6 +223,7 @@ class SubmissionFileDAOTest extends DatabaseTestCase {
 		// getLatestRevision()
 		//
 		// Retrieve the latest revision of file 1.
+		$file1Rev2->setData('caption', null); // Clear out caption for comparison
 		self::assertNull($submissionFileDao->getLatestRevision(null));
 		self::assertEquals($file1Rev2, $submissionFileDao->getLatestRevision($file1Rev1->getFileId()));
 		self::assertEquals($file1Rev2, $submissionFileDao->getLatestRevision($file1Rev1->getFileId(), $file1Rev1->getFileStage()));
