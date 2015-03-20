@@ -318,10 +318,8 @@ class CatalogEntryCatalogMetadataForm extends Form {
 
 		$surrogateWidth = round($ratio * $this->_sizeArray[0]);
 		$surrogateHeight = round($ratio * $this->_sizeArray[1]);
-		$surrogate = imagecreatetruecolor($maxWidth, $maxHeight);
-		$whiteColor = imagecolorallocate($surrogate, 255, 255, 255);
-		imagefill($surrogate, 0, 0, $whiteColor);
-		imagecopyresampled($surrogate, $cover, ($maxWidth - $surrogateWidth)/2, ($maxHeight - $surrogateHeight)/2, 0, 0, $surrogateWidth, $surrogateHeight, $this->_sizeArray[0], $this->_sizeArray[1]);
+		$surrogate = imagecreatetruecolor($surrogateWidth, $surrogateHeight);
+		imagecopyresampled($surrogate, $cover, 0, 0, 0, 0, $surrogateWidth, $surrogateHeight, $this->_sizeArray[0], $this->_sizeArray[1]);
 
 		switch ($this->_imageExtension) {
 			case '.jpg': imagejpeg($surrogate, $basePath . $surrogateFilename); break;
@@ -329,7 +327,7 @@ class CatalogEntryCatalogMetadataForm extends Form {
 			case '.gif': imagegif($surrogate, $basePath . $surrogateFilename); break;
 		}
 		imagedestroy($surrogate);
-		return array('filename' => $surrogateFilename, 'width' => $maxWidth, 'height' => $maxHeight);
+		return array('filename' => $surrogateFilename, 'width' => $surrogateWidth, 'height' => $surrogateHeight);
 	}
 }
 
