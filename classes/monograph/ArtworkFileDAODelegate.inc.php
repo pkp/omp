@@ -9,16 +9,16 @@
  *
  * @class ArtworkFileDAODelegate
  * @ingroup monograph
- * @see ArtworkFile
+ * @see MonographArtworkFile
  *
- * @brief Operations for retrieving and modifying ArtworkFile objects.
+ * @brief Operations for retrieving and modifying MonographArtworkFile objects.
  *
  * The SubmissionFileDAO will delegate to this class if it wishes
- * to access ArtworkFile classes.
+ * to access MonographArtworkFile classes.
  */
 
 
-import('classes.monograph.ArtworkFile');
+import('classes.monograph.MonographArtworkFile');
 import('lib.pkp.classes.submission.SubmissionArtworkFileDAODelegate');
 
 class ArtworkFileDAODelegate extends SubmissionArtworkFileDAODelegate {
@@ -34,7 +34,7 @@ class ArtworkFileDAODelegate extends SubmissionArtworkFileDAODelegate {
 	 * @return MonographFile
 	 */
 	function newDataObject() {
-		return new ArtworkFile();
+		return new MonographArtworkFile();
 	}
 
 	/**
