@@ -390,15 +390,6 @@ Si tienes alguna duda, por favor, no dudes en contactar conmigo.<br />
 		<body><![CDATA[Por favor, introduce tu mensaje.]]></body>
 		<description>Mensaje predeterminado en blanco utilizado en el generador de mensajes del centro de notificaciones.</description>
 	</email_text>
-	<email_text key="REVIEW_COMPLETE">
-		<subject>Revisión del manuscrito completada</subject>
-		<body><![CDATA[{$editorialContactName}:<br />
-<br />
-Ya he completado mi revisión de &quot;{$submissionTitle}&quot; para {$contextName}, y he enviado mi recomendación &quot;{$recommendation}.&quot;<br />
-<br />
-{$reviewerName}]]></body>
-		<description>Este correo electrónico ha sido enviado por un revisor a los editores de series para notificarles que se ha completado una revisión y que se han grabado los comentarios y las recomendaciones en el sitio Web de la editorial.</description>
-	</email_text>
 	<email_text key="REVIEW_REMIND">
 		<subject>Recordatorio de revisión de propuesta</subject>
 		<body><![CDATA[{$reviewerName}:<br />

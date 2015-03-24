@@ -283,15 +283,6 @@ Malheureusement, je ne pourrai pas évaluer &quot;{$submissionTitle}&quot; pour 
 {$reviewerName}]]></body>
 		<description>Ce courriel est envoyé par l'évaluateur au rédacteur en chef d'une série série pour indiquer qu'il ne sera pas en mesure d'évaluer l'article en question.</description>
 	</email_text>
-	<email_text key="REVIEW_COMPLETE">
-		<subject>Évaluation du manuscrit terminée</subject>
-		<body><![CDATA[{$editorialContactName}:<br />
-<br />
-Mon évaluation de l'article &quot;{$submissionTitle}&quot; pour la presse {$contextName} est terminée et j'ai envoyé ma recommandation, &quot;{$recommendation}.&quot;<br />
-<br />
-{$reviewerName}]]></body>
-		<description>Ce courriel est envoyé par l'évaluateur au rédacteur en chef d'une série pour lui indiquer que l'évaluation est terminée, et que ses commentaires et recommandations ont été enregistrés dans le dossier de l'article sur le site Web de la presse.</description>
-	</email_text>
 	<email_text key="REVIEW_ACK">
 		<subject>Accusé de réception pour l'évaluation d'un manuscrit</subject>
 		<body><![CDATA[{$reviewerName}:<br />
