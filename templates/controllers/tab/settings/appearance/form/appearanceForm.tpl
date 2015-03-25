@@ -21,7 +21,7 @@
 		{fbvElement type="checkbox" label="manager.setup.displayInSpotlight" id="displayInSpotlight" checked=$displayInSpotlight}
 	{/fbvFormSection}
 {/capture}
-{capture assign="thumbnailsSizeSettings"}
+{capture assign="additionalAppearanceSettings"}
 	{fbvFormArea id="thumbnailsSizeSettings" title="manager.setup.coverThumbnails" class="border"}
 		{fbvFormSection description="manager.setup.coverThumbnailsDescription"}
 			{fbvElement type="text" id="coverThumbnailsMaxWidth" value=$coverThumbnailsMaxWidth size=$fbvStyles.size.SMALL label="manager.setup.coverThumbnailsMaxWidth" required="true"}
@@ -34,4 +34,4 @@
 		{/fbvFormSection}
 	{/fbvFormArea}
 {/capture}
-{include file="core:controllers/tab/settings/appearance/form/appearanceForm.tpl" newContentFormContent=$newContentFormContent featuredContentFormContent=$featuredContentFormContent}
+{include file="core:controllers/tab/settings/appearance/form/appearanceForm.tpl" newContentFormContent=$newContentFormContent featuredContentFormContent=$featuredContentFormContent additionalAppearanceSettings=$additionalAppearanceSettings}
