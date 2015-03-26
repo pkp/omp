@@ -1,5 +1,5 @@
 {**
- * templates/catalog/book/bookFiles.tpl
+ * templates/catalog/book/bookFilesContentAndDownload.tpl
  *
  * Copyright (c) 2015 Simon Fraser University Library
  * Copyright (c) 2003-2015 John Willinsky
