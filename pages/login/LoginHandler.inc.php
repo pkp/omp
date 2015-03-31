@@ -17,17 +17,6 @@ import('lib.pkp.pages.login.PKPLoginHandler');
 
 class LoginHandler extends PKPLoginHandler {
 	/**
-	 * Sign in as another user.
-	 * @param $args array ($userId)
-	 * @param $request PKPRequest
-	 */
-	function signInAsUser($args, $request) {
-		$this->addCheck(new HandlerValidatorPress($this));
-
-		return parent::signInAsUser($args, $request);
-	}
-
-	/**
 	 * Get the log in URL.
 	 * @param $request PKPRequest
 	 */
