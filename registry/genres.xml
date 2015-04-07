@@ -12,6 +12,7 @@
   * N.B. The "category" attribute's value can be:
   *  1 => GENRE_CATEGORY_DOCUMENT
   *  2 => GENRE_CATEGORY_ARTWORK
+  *  3 => GENRE_CATEGORY_SUPPLEMENTARY
   * These are defined in classes/monograph/Genre.inc.php.
   -->
 <genres>
@@ -22,10 +23,10 @@
 	<genre key="GLOSSARY" sortable="0" category="1" dependent="0" supplementary="1" localeKey="default.genres.glossary" designation="99G" />
 	<genre key="INDEX" sortable="0" category="1" dependent="0" supplementary="1" localeKey="default.genres.index" designation="99I" />
 	<genre key="PREFACE" sortable="0" category="1" dependent="0" supplementary="1" localeKey="default.genres.preface" designation="00P" />
-	<genre key="PROSPECTUS" sortable="0" category="1" dependent="0" supplementary="1" localeKey="default.genres.prospectus" designation="88P" />
+	<genre key="PROSPECTUS" sortable="0" category="3" dependent="0" supplementary="1" localeKey="default.genres.prospectus" designation="88P" />
 	<genre key="TABLE" sortable="1" category="2" dependent="0" supplementary="1" localeKey="default.genres.table" designation="##" />
 	<genre key="FIGURE" sortable="1" category="2" dependent="0" supplementary="1" localeKey="default.genres.figure" designation="##" />
 	<genre key="PHOTO" sortable="1" category="2" dependent="0" supplementary="1" localeKey="default.genres.photo" designation="##" />
 	<genre key="ILLUSTRATION" sortable="1" category="2" dependent="0" supplementary="1" localeKey="default.genres.illustration" designation="##" />
-	<genre key="OTHER" sortable="1" category="1" dependent="0" supplementary="1" localeKey="default.genres.other" designation="##" />
+	<genre key="OTHER" sortable="1" category="3" dependent="0" supplementary="1" localeKey="default.genres.other" designation="##" />
 </genres>
