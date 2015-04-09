@@ -203,10 +203,9 @@
 				gridHandler = $.pkp.classes.Handler.getHandler($grid),
 				$gridRow = gridHandler.getParentRow($(sourceElement)),
 				publicationFormatId = gridHandler.getRowDataId($gridRow);
-
-		this.getHtmlElement().tabs('select',
-				/** @type {string} */ (this.getTabPositionByFormatId_(publicationFormatId,
-						this.getHtmlElement())));
+		this.getHtmlElement().tabs({
+				active: /** @type {number} */ (this.getTabPositionByFormatId_(
+						publicationFormatId, this.getHtmlElement()))});
 	};
 
 
