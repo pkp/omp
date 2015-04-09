@@ -69,7 +69,7 @@
 			{if $useCollapsedView}
 				<ul>
 					{foreach from=$publicationFormats item=publicationFormat}
-						{if $publicationFormat->getIsAvailable()}
+						{if $publicationFormat->getIsAvailable() && $publicationFormat->getIsApproved()}
 							{include file="catalog/book/bookFiles.tpl" availableFile=$availableFile publicationFormatId=$publicationFormat->getId() publishedMonograph=$publishedMonograph currency=$currency}
 						{/if}
 					{/foreach}
