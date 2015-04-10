@@ -58,21 +58,6 @@ class SubmissionFileDAO extends PKPSubmissionFileDAO {
 		);
 	}
 
-	/**
-	 * @copydoc PKPSubmissionFileDAO::baseQueryForFileSelection()
-	 */
-	function baseQueryForFileSelection() {
-		// Build the basic query that joins the class tables.
-		// The DISTINCT is required to de-dupe the review_round_files join in
-		// PKPSubmissionFileDAO.
-		return 'SELECT DISTINCT
-				sf.file_id AS submission_file_id, sf.revision AS submission_revision,
-				af.file_id AS artwork_file_id, af.revision AS artwork_revision,
-				sf.*, af.*
-			FROM	submission_files sf
-				LEFT JOIN submission_artwork_files af ON sf.file_id = af.file_id AND sf.revision = af.revision ';
-	}
-
 
 	//
 	// Protected helper methods
