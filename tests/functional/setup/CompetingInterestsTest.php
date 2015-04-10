@@ -47,9 +47,9 @@ class CompetingInterestsTest extends ContentBaseTestCase {
 
 		// Submit review with no competing interests
 		$this->logIn('agallego');
-
-		$this->waitForElementPresent($selector = '//a[text()=\'' . $this->escapeJS(self::$fullTitle) . '\']');
-		$this->clickAndWait($selector);
+		$xpath = '//span[contains(text(),' . $this->quoteXpath(self::$fullTitle) .')]/../../..//a[contains(@id, "-stage-itemWorkflow-button-")]';
+		$this->waitForElementPresent($xpath);
+		$this->clickAndWait($xpath);
 
 		$this->waitForElementPresent('id=reviewStep1Form');
 		$this->assertElementNotPresent('//label[@for=\'noCompetingInterests\']');
