@@ -28,4 +28,11 @@
 		<query>INSERT INTO plugin_settings (plugin_name, context_id, setting_name, setting_value, setting_type) SELECT DISTINCT ps.plugin_name, ps.context_id, 'browseCategories', '1', 'bool' FROM plugin_settings ps WHERE ps.plugin_name = 'browseblockplugin'</query>
 		<query>INSERT INTO plugin_settings (plugin_name, context_id, setting_name, setting_value, setting_type) SELECT DISTINCT ps.plugin_name, ps.context_id, 'browseSeries', '1', 'bool' FROM plugin_settings ps WHERE ps.plugin_name = 'browseblockplugin'</query>
 	</sql>
+	
+	<!-- Issue #412: enable size configuration of the cover thumnails. -->
+	<sql>
+		<!-- insert the default sizes -->
+		<query>INSERT INTO press_settings (press_id, setting_name, setting_value, setting_type) SELECT p.press_id, 'coverThumbnailsMaxWidth', '106', 'int' FROM presses p</query>
+		<query>INSERT INTO press_settings (press_id, setting_name, setting_value, setting_type) SELECT p.press_id, 'coverThumbnailsMaxHeight', '100', 'int' FROM presses p</query>
+	</sql>	
 </data>

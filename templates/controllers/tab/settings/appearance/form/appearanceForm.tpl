@@ -21,4 +21,17 @@
 		{fbvElement type="checkbox" label="manager.setup.displayInSpotlight" id="displayInSpotlight" checked=$displayInSpotlight}
 	{/fbvFormSection}
 {/capture}
-{include file="core:controllers/tab/settings/appearance/form/appearanceForm.tpl" newContentFormContent=$newContentFormContent featuredContentFormContent=$featuredContentFormContent}
+{capture assign="additionalAppearanceSettings"}
+	{fbvFormArea id="thumbnailsSizeSettings" title="manager.setup.coverThumbnails" class="border"}
+		{fbvFormSection description="manager.setup.coverThumbnailsDescription"}
+			{fbvElement type="text" id="coverThumbnailsMaxWidth" value=$coverThumbnailsMaxWidth size=$fbvStyles.size.SMALL label="manager.setup.coverThumbnailsMaxWidth" required="true"}
+		{/fbvFormSection}
+		{fbvFormSection}
+			{fbvElement type="text" id="coverThumbnailsMaxHeight" value=$coverThumbnailsMaxHeight size=$fbvStyles.size.SMALL label="manager.setup.coverThumbnailsMaxHeight" required="true"}
+		{/fbvFormSection}
+		{fbvFormSection list="true"}
+			{fbvElement type="checkbox" label="manager.setup.coverThumbnailsResize" id="coverThumbnailsResize" checked=$coverThumbnailsResize}
+		{/fbvFormSection}
+	{/fbvFormArea}
+{/capture}
+{include file="core:controllers/tab/settings/appearance/form/appearanceForm.tpl" newContentFormContent=$newContentFormContent featuredContentFormContent=$featuredContentFormContent additionalAppearanceSettings=$additionalAppearanceSettings}
