@@ -33,6 +33,24 @@
 		</div>
 	{/if}
 
+	{if $parentCategory}
+		<div class="pkp_catalog_parentCategory">
+			<h3>{translate key="catalog.parentCategory"}</h3>
+			<ul><li><a href="{url op="category" path=$parentCategory->getPath()}">{$parentCategory->getLocalizedTitle()}</a></li></ul>
+		</div>
+	{/if}{* parentCategory *}
+
+	{if !$subcategories->wasEmpty()}
+		<div class="pkp_catalog_subcategories">
+			<h3>{translate key="catalog.subcategories}</h3>
+			<ul>
+			{iterate from=subcategories item=subcategory}
+				<li><a href="{url op="category" path=$subcategory->getPath()}">{$subcategory->getLocalizedTitle()}</a></li>
+			{/iterate}{* subcategories *}
+			</ul>
+		</div>
+	{/if}{* !$subcategories->wasEmpty() *}
+
 	{* Include the carousel view of featured content *}
 	{if $featuredMonographIds|@count}
 		{include file="catalog/carousel.tpl" publishedMonographs=$publishedMonographs featuredMonographIds=$featuredMonographIds}
