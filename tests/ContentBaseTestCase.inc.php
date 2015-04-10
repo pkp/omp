@@ -38,6 +38,12 @@ class ContentBaseTestCase extends PKPContentBaseTestCase {
 			}
 		}
 
+		// If 'additionalFiles' is specified, it's to be used to augment the default
+		// set, rather than overriding it (as using 'files' would do). Add the arrays.
+		if (isset($data['additionalFiles'])) {
+			$data['files'] = array_merge($data['files'], $data['additionalFiles']);
+		}
+
 		parent::createSubmission($data);
 	}
 
