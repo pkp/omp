@@ -43,10 +43,13 @@
 				{assign var=authors value=$publishedMonograph->getAuthors()}
 				{foreach from=$authors item=author}
 					{if $author->getIncludeInBrowse()}
-						<div id="authorContent">
-							<p>{translate key="catalog.aboutTheAuthor" roleName=$author->getLocalizedUserGroupName()}: <strong>{$author->getFullName()}</strong></p>
+						<div class="authorContent">
+							<div class="role">{$author->getLocalizedUserGroupName()}</div>
+							<div class="name">{$author->getFullName()}</div>
 							{assign var=biography value=$author->getLocalizedBiography()|strip_unsafe_html}
-							{if $biography != ''}{$biography}{else}{translate key="catalog.noBioInfo"}{/if}
+							{if $biography}
+								<div class="biography">{$biography}</div>
+							{/if}
 						</div>
 					{/if}
 				{/foreach}

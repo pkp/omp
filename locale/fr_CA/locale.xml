@@ -271,7 +271,6 @@
 	<message key="catalog.publicationInfo">Renseignements sur la publication</message>
 	<message key="catalog.relatedCategories">Catégories connexes</message>
 	<message key="catalog.aboutTheAuthor">À propos de le {$roleName}</message>
-	<message key="catalog.noBioInfo">Aucune biographie n'est disponible pour le moment.</message>
 	<message key="catalog.loginRequiredForPayment">Note: Pour acheter des ouvrages, vous devez d'abord ouvrir une session. Choisissez un ouvrage que vous souhaitez acheter et vous serez acheminé vers la page d'ouverture de session.</message>
 
 	<!--
