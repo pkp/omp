@@ -34,14 +34,14 @@
 	{/if}
 
 	{if $parentCategory}
-		<div class="pkp_catalog_parentCategory">
+		<div class="pkp_catalog_parentCategory pkp_helpers_clear">
 			<h3>{translate key="catalog.parentCategory"}</h3>
 			<ul><li><a href="{url op="category" path=$parentCategory->getPath()}">{$parentCategory->getLocalizedTitle()}</a></li></ul>
 		</div>
 	{/if}{* parentCategory *}
 
 	{if !$subcategories->wasEmpty()}
-		<div class="pkp_catalog_subcategories">
+		<div class="pkp_catalog_subcategories pkp_helpers_clear">
 			<h3>{translate key="catalog.subcategories}</h3>
 			<ul>
 			{iterate from=subcategories item=subcategory}
