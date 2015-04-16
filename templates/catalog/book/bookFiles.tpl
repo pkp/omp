@@ -14,7 +14,7 @@
  *}
 {foreach from=$availableFiles[$publicationFormatId] item=availableFile}{* There will be at most one of these *}
 	<li>
-		<div class="publicationFormatName">{$availableFile->getLocalizedName()|escape}</div>
+		<div class="publicationFormatName pkp_helpers_clear">{$availableFile->getLocalizedName()|escape}</div>
 		<div class="publicationFormatLink">
 			{if $availableFile->getDocumentType()==$smarty.const.DOCUMENT_TYPE_PDF}
 				{url|assign:downloadUrl op="view" path=$publishedMonograph->getId()|to_array:$publicationFormatId:$availableFile->getFileIdAndRevision()}
