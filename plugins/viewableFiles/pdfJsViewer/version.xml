@@ -14,7 +14,7 @@
 	<application>pdfJsViewer</application>
 	<type>plugins.viewableFiles</type>
 	<release>1.0.0.0</release>
-	<date>2013-07-02</date>
+	<date>2015-04-16</date>
 	<lazy-load>1</lazy-load>
 	<class>PdfJsViewerPlugin</class>
 </version>
