@@ -381,7 +381,7 @@ class CatalogEntryCatalogMetadataForm extends Form {
 	 * @param int $type the type of image to create.
 	 * @return array the details for the image (dimensions, file name, etc).
 	 */
-	function _buildSurrogateImage(&$cover, $basePath, $type, $coverThumbnailsMaxWidth, $coverThumbnailsMaxHeight) {
+	function _buildSurrogateImage($cover, $basePath, $type, $coverThumbnailsMaxWidth, $coverThumbnailsMaxHeight) {
 		// Calculate the scaling ratio for each dimension.
 		$maxWidth = 0;
 		$maxHeight = 0;
