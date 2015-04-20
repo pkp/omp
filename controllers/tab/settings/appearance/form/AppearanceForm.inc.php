@@ -57,11 +57,11 @@ class AppearanceForm extends PKPAppearanceForm {
 			// resize cover thumbainls for all press series
 			$seriesBasePath = $pressFileManager->getBasePath() . 'series/';
 			$seriesDao = DAORegistry::getDAO('SeriesDAO');
-			$this->_resizeCoverThumbnails($context, $seriesDao, $coverThumbnailsMaxWidth, $coverThumbnailsMaxHeight, $categoryBasePath);
+			$this->_resizeCoverThumbnails($context, $seriesDao, $coverThumbnailsMaxWidth, $coverThumbnailsMaxHeight, $seriesBasePath);
 
 			// resize cover thumbnails for all press published monographs
 			$publishedMonographDao = DAORegistry::getDAO('PublishedMonographDAO');
-			$this->_resizeCoverThumbnails($context, $publishedMonographDao, $coverThumbnailsMaxWidth, $coverThumbnailsMaxHeight, $categoryBasePath);
+			$this->_resizeCoverThumbnails($context, $publishedMonographDao, $coverThumbnailsMaxWidth, $coverThumbnailsMaxHeight, '');
 		}
 	}
 
