@@ -182,7 +182,7 @@ class CatalogBookHandler extends Handler {
 			// Paid purchase or open access.
 			if (!$user && $press->getSetting('restrictMonographAccess')) {
 				// User needs to register first.
-				return $request->redirect(null, 'login');
+				PKPValidation::redirectLogin();
 			}
 
 			// If inline viewing is requested, permit plugins to
