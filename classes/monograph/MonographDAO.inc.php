@@ -30,9 +30,9 @@ class MonographDAO extends SubmissionDAO {
 	 * @return array
 	 */
 	function getLocaleFieldNames() {
-		return parent::getLocaleFieldNames() + array(
+		return array_merge(parent::getLocaleFieldNames(), array(
 			'copyrightNotice',
-		);
+		));
 	}
 
 	/**
