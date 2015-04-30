@@ -479,10 +479,6 @@
 			<NOTNULL/>
 			<DEFAULT VALUE="0"/>
 		</field>
-		<field name="comments_status" type="I1">
-			<NOTNULL/>
-			<DEFAULT VALUE="0"/>
-		</field>
 		<field name="stage_id" type="I8">
 			<NOTNULL/>
 			<DEFAULT VALUE="1"/>
