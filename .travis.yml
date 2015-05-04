@@ -53,7 +53,7 @@ after_script:
   - if [[ "$TEST" == "mysql" ]]; then ./lib/pkp/tools/travis/post-code-coverage.sh; fi
 
   # Upload the completed database to the PKP server for other uses
-  - if [[ "$TEST" == "mysql" ]]; then ./lib/pkp/tools/travis/post-data-build.sh; fi
+  - if [[ "$TEST" != "validation" ]]; then ./lib/pkp/tools/travis/post-data-build.sh; fi
 
   # Print logs and outputs for debugging.
   # - cat access.log
