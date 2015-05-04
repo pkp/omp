@@ -489,8 +489,6 @@ Your server currently supports mbstring: <strong>{$supportsMBString}</strong>]]>
 	<!-- Notification Types -->
 	<message key="notification.type.submissionSubmitted">A new monograph, "{$title}," has been submitted.</message>
 	<message key="notification.type.editing">Editing Events</message>
-	<message key="notification.type.metadataModified">"{$title}'s" metadata has been modified.</message>
-	<message key="notification.type.reviewerComment">A reviewer has commented on "{$title}".</message>
 	<message key="notification.type.reviewing">Reviewing Events</message>
 	<message key="notification.type.site">Site Events</message>
 	<message key="notification.type.submissions">Submission Events</message>
