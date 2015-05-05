@@ -37,7 +37,7 @@ class PublicationFormatRequiredPolicy extends DataObjectRequiredPolicy {
 		if (!$publicationFormatId) return AUTHORIZATION_DENY;
 
 		// Need a valid monograph in request.
-		$monograph =& $this->getAuthorizedContextObject(ASSOC_TYPE_MONOGRAPH);
+		$monograph = $this->getAuthorizedContextObject(ASSOC_TYPE_MONOGRAPH);
 		if (!is_a($monograph, 'Monograph')) return AUTHORIZATION_DENY;
 
 		// Make sure the publication format belongs to the monograph.

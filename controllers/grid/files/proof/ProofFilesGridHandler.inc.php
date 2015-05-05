@@ -34,6 +34,14 @@ class ProofFilesGridHandler extends SignoffFilesGridHandler {
 			SUBMISSION_EMAIL_PROOFREAD_NOTIFY_AUTHOR,
 			ASSOC_TYPE_PUBLICATION_FORMAT
 		);
+		$this->addRoleAssignment(
+			array(
+				ROLE_ID_SUB_EDITOR,
+				ROLE_ID_MANAGER,
+				ROLE_ID_ASSISTANT
+			),
+			array('selectFiles')
+		);
 
 		$this->setEmptyCategoryRowText('grid.noAuditors');
 	}
@@ -41,6 +49,19 @@ class ProofFilesGridHandler extends SignoffFilesGridHandler {
 	//
 	// Implement template methods from PKPHandler
 	//
+	/**
+	 * @copydoc PKPHandler::authorize()
+	 */
+	function authorize($request, &$args, $roleAssignments) {
+		import('lib.pkp.classes.security.authorization.internal.SubmissionRequiredPolicy');
+		$this->addPolicy(new SubmissionRequiredPolicy($request, $args, 'submissionId'));
+
+		import('classes.security.authorization.internal.PublicationFormatRequiredPolicy');
+		$this->addPolicy(new PublicationFormatRequiredPolicy($request, $args));
+
+		return parent::authorize($request, $args, $roleAssignments);
+	}
+
 	/**
 	 * Configure the grid
 	 * @param PKPRequest $request
@@ -53,6 +74,15 @@ class ProofFilesGridHandler extends SignoffFilesGridHandler {
 
 		$router = $request->getRouter();
 
+		// Add a "select files" action
+		import('lib.pkp.controllers.grid.files.fileList.linkAction.SelectFilesLinkAction');
+		$this->addAction(new SelectFilesLinkAction(
+			$request,
+			$this->getRequestArgs(),
+			__('editor.submission.selectFiles')
+		));
+
+		// Add a "view document library" action
 		$this->addAction(
 			new LinkAction(
 				'viewLibrary',
@@ -89,6 +119,26 @@ class ProofFilesGridHandler extends SignoffFilesGridHandler {
 			parent::getRequestArgs(),
 			array('publicationFormatId' => $this->getAssocId())
 		);
+	}
+
+
+	//
+	// Public handler methods
+	//
+	/**
+	 * Show the form to allow the user to select files from previous stages
+	 * @param $args array
+	 * @param $request PKPRequest
+	 * @return JSONMessage JSON object
+	 */
+	function selectFiles($args, $request) {
+		$submission = $this->getSubmission();
+		$publicationFormat = $this->getAuthorizedContextObject(ASSOC_TYPE_PUBLICATION_FORMAT);
+
+		import('controllers.grid.files.proof.form.ManageProofFilesForm');
+		$manageProofFilesForm = new ManageProofFilesForm($submission->getId(), $publicationFormat->getId());
+		$manageProofFilesForm->initData($args, $request);
+		return new JSONMessage(true, $manageProofFilesForm->fetch($request));
 	}
 }
 
