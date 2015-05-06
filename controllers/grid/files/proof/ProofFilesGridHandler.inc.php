@@ -35,11 +35,7 @@ class ProofFilesGridHandler extends SignoffFilesGridHandler {
 			ASSOC_TYPE_PUBLICATION_FORMAT
 		);
 		$this->addRoleAssignment(
-			array(
-				ROLE_ID_SUB_EDITOR,
-				ROLE_ID_MANAGER,
-				ROLE_ID_ASSISTANT
-			),
+			array(ROLE_ID_SUB_EDITOR, ROLE_ID_MANAGER),
 			array('selectFiles')
 		);
 
@@ -53,8 +49,8 @@ class ProofFilesGridHandler extends SignoffFilesGridHandler {
 	 * @copydoc PKPHandler::authorize()
 	 */
 	function authorize($request, &$args, $roleAssignments) {
-		import('lib.pkp.classes.security.authorization.internal.SubmissionRequiredPolicy');
-		$this->addPolicy(new SubmissionRequiredPolicy($request, $args, 'submissionId'));
+		import('classes.security.authorization.SubmissionAccessPolicy');
+		$this->addPolicy(new SubmissionAccessPolicy($request, $args, $roleAssignments));
 
 		import('classes.security.authorization.internal.PublicationFormatRequiredPolicy');
 		$this->addPolicy(new PublicationFormatRequiredPolicy($request, $args));
@@ -74,13 +70,16 @@ class ProofFilesGridHandler extends SignoffFilesGridHandler {
 
 		$router = $request->getRouter();
 
-		// Add a "select files" action
-		import('lib.pkp.controllers.grid.files.fileList.linkAction.SelectFilesLinkAction');
-		$this->addAction(new SelectFilesLinkAction(
-			$request,
-			$this->getRequestArgs(),
-			__('editor.submission.selectFiles')
-		));
+		// Add a "select files" action for editors / subeditors
+		$userRoles = $this->getAuthorizedContextObject(ASSOC_TYPE_USER_ROLES);
+		if (array_intersect(array(ROLE_ID_MANAGER, ROLE_ID_SUB_EDITOR), $userRoles)) {
+			import('lib.pkp.controllers.grid.files.fileList.linkAction.SelectFilesLinkAction');
+			$this->addAction(new SelectFilesLinkAction(
+				$request,
+				$this->getRequestArgs(),
+				__('editor.submission.selectFiles')
+			));
+		}
 
 		// Add a "view document library" action
 		$this->addAction(

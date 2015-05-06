@@ -46,35 +46,18 @@ class ManageProofFilesForm extends ManageSubmissionFilesForm {
 	}
 
 	/**
-	 * Save selection of proof files
-	 * @param $args array
-	 * @param $request PKPRequest
-	 * @return array a list of all submission files marked as "proof".
+	 * @copydoc ManageSubmissionFilesForm::_fileExistsInStage
 	 */
-	function execute($args, $request, $stageSubmissionFiles) {
-		$selectedFiles = (array)$this->getData('selectedFiles');
-		$submissionFileDao = DAORegistry::getDAO('SubmissionFileDAO');
-		$submissionFiles = $submissionFileDao->getLatestRevisions($this->getSubmissionId());
-
-		foreach ($submissionFiles as $submissionFile) {
-			// Get the viewable flag value.
-			$isViewable = in_array(
-				$submissionFile->getFileId(),
-				$selectedFiles);
-
-			if ($isViewable) {
-				// Import a file from a previous stage.
-				$context = $request->getContext();
-				if ($isViewable) $this->importFile($context, $submissionFile, SUBMISSION_FILE_PROOF);
-			}
-		}
+	protected function _fileExistsInStage($submissionFile, $stageSubmissionFiles) {
+		return false;
 	}
 
+
 	/**
-	 * @copydoc ManageSubmissionFilesForm::importFile()
+	 * @copydoc ManageSubmissionFilesForm::_importFile()
 	 */
-	protected function importFile($context, $submissionFile, $fileStage) {
-		$newSubmissionFile = parent::importFile($context, $submissionFile, $fileStage);
+	protected function _importFile($context, $submissionFile, $fileStage) {
+		$newSubmissionFile = parent::_importFile($context, $submissionFile, $fileStage);
 
 		$publicationFormatDao = DAORegistry::getDAO('PublicationFormatDAO');
 		$publicationFormat = $publicationFormatDao->getById($this->_publicationFormatId, $this->getSubmissionId(), $context->getId());

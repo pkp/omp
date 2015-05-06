@@ -23,22 +23,15 @@ class ManageProofFilesGridHandler extends SelectableSubmissionFileListCategoryGr
 		import('controllers.grid.files.proof.ProofFilesCategoryGridDataProvider');
 		parent::SelectableSubmissionFileListCategoryGridHandler(
 			new ProofFilesCategoryGridDataProvider(),
-			WORKFLOW_STAGE_ID_PRODUCTION,
-			0
+			WORKFLOW_STAGE_ID_PRODUCTION
 		);
 
 		$this->addRoleAssignment(
-			array(
-				ROLE_ID_SUB_EDITOR,
-				ROLE_ID_MANAGER,
-				ROLE_ID_ASSISTANT
-			),
+			array(ROLE_ID_SUB_EDITOR, ROLE_ID_MANAGER),
 			array(
 				'fetchGrid', 'fetchCategory', 'fetchRow',
-				'addFile',
-				'downloadFile',
-				'deleteFile',
-				'updateProofFiles'
+				'addFile', 'downloadFile', 'deleteFile',
+				'updateProofFiles',
 			)
 		);
 
@@ -50,8 +43,8 @@ class ManageProofFilesGridHandler extends SelectableSubmissionFileListCategoryGr
 	 * @copydoc PKPHandler::authorize()
 	 */
 	function authorize($request, &$args, $roleAssignments) {
-		import('lib.pkp.classes.security.authorization.internal.SubmissionRequiredPolicy');
-		$this->addPolicy(new SubmissionRequiredPolicy($request, $args, 'submissionId'));
+		import('classes.security.authorization.SubmissionAccessPolicy');
+		$this->addPolicy(new SubmissionAccessPolicy($request, $args, $roleAssignments));
 
 		import('classes.security.authorization.internal.PublicationFormatRequiredPolicy');
 		$this->addPolicy(new PublicationFormatRequiredPolicy($request, $args));
@@ -78,7 +71,7 @@ class ManageProofFilesGridHandler extends SelectableSubmissionFileListCategoryGr
 
 		if ($manageProofFilesForm->validate()) {
 			$dataProvider = $this->getDataProvider();
-			$manageProofFilesForm->execute($args, $request, $dataProvider->loadCategoryData($request, $this->getStageId()));
+			$manageProofFilesForm->execute($args, $request, $dataProvider->loadCategoryData($request, $this->getStageId()), SUBMISSION_FILE_PROOF);
 
 			// Let the calling grid reload itself
 			return DAO::getDataChangedEvent();

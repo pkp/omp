@@ -17,7 +17,7 @@ import('lib.pkp.controllers.grid.files.SubmissionFilesCategoryGridDataProvider')
 
 class ProofFilesCategoryGridDataProvider extends SubmissionFilesCategoryGridDataProvider {
 	/**
-	 * @copydoc SubmissionFilesCategoryGridDataprovider()
+	 * Constructor.
 	 */
 	function ProofFilesCategoryGridDataProvider() {
 		parent::SubmissionFilesCategoryGridDataProvider(SUBMISSION_FILE_PROOF);
