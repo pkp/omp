@@ -70,8 +70,11 @@ class ManageProofFilesGridHandler extends SelectableSubmissionFileListCategoryGr
 		$manageProofFilesForm->readInputData();
 
 		if ($manageProofFilesForm->validate()) {
-			$dataProvider = $this->getDataProvider();
-			$manageProofFilesForm->execute($args, $request, $dataProvider->loadCategoryData($request, $this->getStageId()), SUBMISSION_FILE_PROOF);
+			$manageProofFilesForm->execute(
+				$args, $request,
+				$this->getGridCategoryDataElements($request, $this->getStageId()),
+				SUBMISSION_FILE_PROOF
+			);
 
 			// Let the calling grid reload itself
 			return DAO::getDataChangedEvent();
