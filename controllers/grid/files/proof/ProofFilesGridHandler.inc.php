@@ -46,19 +46,6 @@ class ProofFilesGridHandler extends SignoffFilesGridHandler {
 	// Implement template methods from PKPHandler
 	//
 	/**
-	 * @copydoc PKPHandler::authorize()
-	 */
-	function authorize($request, &$args, $roleAssignments) {
-		import('classes.security.authorization.SubmissionAccessPolicy');
-		$this->addPolicy(new SubmissionAccessPolicy($request, $args, $roleAssignments));
-
-		import('classes.security.authorization.internal.PublicationFormatRequiredPolicy');
-		$this->addPolicy(new PublicationFormatRequiredPolicy($request, $args));
-
-		return parent::authorize($request, $args, $roleAssignments);
-	}
-
-	/**
 	 * Configure the grid
 	 * @param PKPRequest $request
 	 */
