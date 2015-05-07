@@ -50,7 +50,10 @@ class NotificationSettingsForm extends PKPNotificationSettingsForm {
 				'settingKey' => 'notification.type.metadataModified'),
 			NOTIFICATION_TYPE_REVIEWER_COMMENT => array('settingName' => 'notificationReviewerComment',
 				'emailSettingName' => 'emailNotificationReviewerComment',
-				'settingKey' => 'notification.type.reviewerComment')
+				'settingKey' => 'notification.type.reviewerComment'),
+			NOTIFICATION_TYPE_AUDITOR_REQUEST => array('settingName' => 'notificationAuditorRequest',
+				'emailSettingName' => 'emailNotificationAuditorRequest',
+				'settingKey' => 'notification.type.auditorRequest'),
 		);
 	}
 
@@ -63,7 +66,7 @@ class NotificationSettingsForm extends PKPNotificationSettingsForm {
 
 		$categories = array_merge($parentCategories, array(array(
 			'categoryKey' => 'notification.type.submissions',
-			'settings' => array(NOTIFICATION_TYPE_SUBMISSION_SUBMITTED, NOTIFICATION_TYPE_METADATA_MODIFIED))
+			'settings' => array(NOTIFICATION_TYPE_SUBMISSION_SUBMITTED, NOTIFICATION_TYPE_METADATA_MODIFIED, NOTIFICATION_TYPE_AUDITOR_REQUEST))
 		));
 
 		return $categories;	
