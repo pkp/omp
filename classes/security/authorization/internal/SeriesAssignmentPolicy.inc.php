@@ -47,7 +47,7 @@ class SeriesAssignmentPolicy extends AuthorizationPolicy {
 		if (!is_a($press, 'Press')) return AUTHORIZATION_DENY;
 
 		// Get the monograph
-		$monograph =& $this->getAuthorizedContextObject(ASSOC_TYPE_MONOGRAPH);
+		$monograph = $this->getAuthorizedContextObject(ASSOC_TYPE_MONOGRAPH);
 		if (!is_a($monograph, 'Monograph')) return AUTHORIZATION_DENY;
 
 		import('classes.security.authorization.internal.SeriesAssignmentRule');

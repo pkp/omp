@@ -56,8 +56,8 @@ class ApprovedProofFilesGridDataProvider extends GridDataProvider {
 	 * @see GridDataProvider::getRequestArgs
 	 */
 	function getRequestArgs() {
-		$monograph =& $this->getAuthorizedContextObject(ASSOC_TYPE_MONOGRAPH);
-		$publicationFormat =& $this->getAuthorizedContextObject(ASSOC_TYPE_PUBLICATION_FORMAT);
+		$monograph = $this->getAuthorizedContextObject(ASSOC_TYPE_MONOGRAPH);
+		$publicationFormat = $this->getAuthorizedContextObject(ASSOC_TYPE_PUBLICATION_FORMAT);
 		return array(
 			'publicationFormatId' => $publicationFormat->getId(),
 			'submissionId' => $monograph->getId(),

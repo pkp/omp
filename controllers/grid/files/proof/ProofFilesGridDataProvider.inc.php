@@ -78,7 +78,7 @@ class ProofFilesGridDataProvider extends SubmissionFilesGridDataProvider {
 	 * @return integer
 	 */
 	function _getPublicationFormatId() {
-		$publicationFormat =& $this->getAuthorizedContextObject(ASSOC_TYPE_PUBLICATION_FORMAT);
+		$publicationFormat = $this->getAuthorizedContextObject(ASSOC_TYPE_PUBLICATION_FORMAT);
 		return $publicationFormat->getId();
 	}
 }

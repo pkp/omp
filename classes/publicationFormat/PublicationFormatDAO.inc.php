@@ -56,19 +56,20 @@ class PublicationFormatDAO extends RepresentationDAO {
 	}
 
 	/**
-	 * Retrieves a list of publication formats for a submission
-	 * @param int $submissionId int
-	 * @return DAOResultFactory (PublicationFormat)
+	 * Retrieves a list of publication formats for a monograph.
+	 * @param int $submissionId int Monograph ID.
+	 * @return DAOResultFactory
 	 */
 	function getBySubmissionId($submissionId) {
-		$result = $this->retrieve(
-			'SELECT *
-			FROM	publication_formats
-			WHERE	submission_id = ?',
-			(int) $submissionId
+		return new DAOResultFactory(
+			$this->retrieve(
+				'SELECT *
+				FROM	publication_formats
+				WHERE	submission_id = ?',
+				(int) $submissionId
+			),
+			$this, '_fromRow'
 		);
-
-		return new DAOResultFactory($result, $this, '_fromRow');
 	}
 
 	/**
