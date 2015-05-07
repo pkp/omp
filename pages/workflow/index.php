@@ -24,7 +24,6 @@ switch ($op) {
 	case 'externalReview':
 	case 'editorial':
 	case 'production':
-	case 'representationsTab':
 	case 'editorDecisionActions':
 	case 'submissionHeader':
 	case 'submissionProgressBar':

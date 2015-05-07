@@ -33,7 +33,7 @@ class WorkflowHandler extends PKPWorkflowHandler {
 				'internalReview', // Internal review
 				'externalReview', // External review
 				'editorial',
-				'production', 'representationsTab', // Production
+				'production',
 				'submissionHeader',
 				'submissionProgressBar',
 				'expedite'
@@ -52,24 +52,6 @@ class WorkflowHandler extends PKPWorkflowHandler {
 	 */
 	function internalReview($args, $request) {
 		$this->_redirectToIndex($args, $request);
-	}
-
-	/**
-	 * Show the production stage accordion contents
-	 * @param $request PKPRequest
-	 * @param $args array
-	 * @return JSONMessage JSON object
-	 */
-	function representationsTab($args, $request) {
-		$templateMgr = TemplateManager::getManager($request);
-		$submission = $this->getAuthorizedContextObject(ASSOC_TYPE_SUBMISSION);
-		$representationDao = Application::getRepresentationDAO();
-		$representations = $representationDao->getBySubmissionId($submission->getId());
-		$templateMgr->assign('submission', $submission);
-		$templateMgr->assign('representations', $representations->toAssociativeArray());
-		$templateMgr->assign('currentRepresentationTabId', (int) $request->getUserVar('currentRepresentationTabId'));
-
-		return $templateMgr->fetchJson('workflow/productionFormatsTab.tpl');
 	}
 
 	/**
