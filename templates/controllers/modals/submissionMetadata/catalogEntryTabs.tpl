@@ -33,6 +33,7 @@
 			<a title="catalog" href="{url router=$smarty.const.ROUTE_COMPONENT component="tab.catalogEntry.CatalogEntryTabHandler" tab="catalog" op="catalogMetadata" submissionId=$submissionId stageId=$stageId tabPos="1"}">{translate key="submission.catalogEntry.catalogMetadata"}</a>
 		</li>
 		{counter start=2 assign="counter"}
+		{call_hook name="Templates::Controllers::Modals::SubmissionMetadata::CatalogEntryTabs::Tabs"}
 		{foreach from=$publicationFormats item=format}
 			<li>
 				<a id="publication{$format->getId()|escape}"
