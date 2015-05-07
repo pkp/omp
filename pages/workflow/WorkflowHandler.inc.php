@@ -33,7 +33,7 @@ class WorkflowHandler extends PKPWorkflowHandler {
 				'internalReview', // Internal review
 				'externalReview', // External review
 				'editorial',
-				'production', 'productionFormatsTab', // Production
+				'production', 'representationsTab', // Production
 				'submissionHeader',
 				'submissionProgressBar',
 				'expedite'
@@ -60,14 +60,14 @@ class WorkflowHandler extends PKPWorkflowHandler {
 	 * @param $args array
 	 * @return JSONMessage JSON object
 	 */
-	function productionFormatsTab(&$args, $request) {
+	function representationsTab($args, $request) {
 		$templateMgr = TemplateManager::getManager($request);
-		$publicationFormatDao = DAORegistry::getDAO('PublicationFormatDAO');
 		$submission = $this->getAuthorizedContextObject(ASSOC_TYPE_SUBMISSION);
-		$publicationFormats = $publicationFormatDao->getBySubmissionId($submission->getId());
+		$representationDao = Application::getRepresentationDAO();
+		$representations = $representationDao->getBySubmissionId($submission->getId());
 		$templateMgr->assign('submission', $submission);
-		$templateMgr->assign('publicationFormats', $publicationFormats->toAssociativeArray());
-		$templateMgr->assign('currentFormatTabId', (int) $request->getUserVar('currentFormatTabId'));
+		$templateMgr->assign('representations', $representations->toAssociativeArray());
+		$templateMgr->assign('currentRepresentationTabId', (int) $request->getUserVar('currentRepresentationTabId'));
 
 		return $templateMgr->fetchJson('workflow/productionFormatsTab.tpl');
 	}

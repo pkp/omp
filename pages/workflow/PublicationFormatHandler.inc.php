@@ -28,7 +28,7 @@ class PublicationFormatHandler extends Handler {
 
 		$this->addRoleAssignment(
 			array(ROLE_ID_SUB_EDITOR, ROLE_ID_MANAGER, ROLE_ID_ASSISTANT),
-			array('fetchPublicationFormat')
+			array('fetchRepresentation')
 		);
 	}
 
@@ -56,33 +56,6 @@ class PublicationFormatHandler extends Handler {
 		return parent::authorize($request, $args, $roleAssignments);
 	}
 
-	/**
-	 * @see PKPHandler::initialize()
-	 */
-	function initialize($request, $args) {
-		$this->setupTemplate($request);
-	}
-
-	/**
-	 * Setup variables for the template
-	 * @param $request Request
-	 */
-	function setupTemplate($request) {
-		parent::setupTemplate($request);
-		AppLocale::requireComponents(LOCALE_COMPONENT_PKP_SUBMISSION, LOCALE_COMPONENT_APP_SUBMISSION, LOCALE_COMPONENT_APP_EDITOR);
-
-		$templateMgr = TemplateManager::getManager($request);
-
-		$monograph =& $this->getAuthorizedContextObject(ASSOC_TYPE_MONOGRAPH);
-		$stageId = $this->getAuthorizedContextObject(ASSOC_TYPE_WORKFLOW_STAGE);
-		$publicationFormat =& $this->getAuthorizedContextObject(ASSOC_TYPE_PUBLICATION_FORMAT);
-
-		// Assign the authorized monograph.
-		$templateMgr->assign_by_ref('submission', $monograph);
-		$templateMgr->assign('stageId', $stageId);
-		$templateMgr->assign_by_ref('publicationFormat', $publicationFormat);
-	}
-
 
 	//
 	// Public operations
@@ -93,9 +66,14 @@ class PublicationFormatHandler extends Handler {
 	 * @param $request PKPRequest
 	 * @return JSONMessage JSON object
 	 */
-	function fetchPublicationFormat($args, $request) {
-		// Fetch the template
+	function fetchRepresentation($args, $request) {
+		AppLocale::requireComponents(LOCALE_COMPONENT_PKP_SUBMISSION, LOCALE_COMPONENT_APP_SUBMISSION, LOCALE_COMPONENT_APP_EDITOR);
 		$templateMgr = TemplateManager::getManager($request);
+		$templateMgr->assign(array(
+			'submission' => $this->getAuthorizedContextObject(ASSOC_TYPE_SUBMISSION),
+			'stageId' => $this->getAuthorizedContextObject(ASSOC_TYPE_WORKFLOW_STAGE),
+			'representation' => $this->getAuthorizedContextObject(ASSOC_TYPE_REPRESENTATION)
+		));
 		return $templateMgr->fetchJson('controllers/tab/workflow/publicationFormat.tpl');
 	}
 }

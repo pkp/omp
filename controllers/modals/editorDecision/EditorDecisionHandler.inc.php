@@ -121,7 +121,7 @@ class EditorDecisionHandler extends PKPEditorDecisionHandler {
 		}
 
 		$templateMgr = TemplateManager::getManager($request);
-		$templateMgr->assign('publicationFormat', $publicationFormat);
+		$templateMgr->assign('representation', $publicationFormat);
 		$templateMgr->assign('submission', $submission);
 
 		return $templateMgr->fetchJson('controllers/modals/editorDecision/approveProofs.tpl');

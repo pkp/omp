@@ -7,8 +7,8 @@
  *
  * Accordion with publication format grid and related actions.
  *}
-{assign var="publicationFormatId" value=$publicationFormat->getId()}
+{assign var="representationId" value=$representation->getId()}
 
-{url|assign:proofGridUrl router=$smarty.const.ROUTE_COMPONENT component="grid.files.proof.ProofFilesGridHandler" op="fetchGrid" submissionId=$submission->getId() publicationFormatId=$publicationFormatId escape=false}
-{assign var=proofContainerId value='proofGrid-'|concat:$publicationFormatId|concat:'-'|uniqid}
-{load_url_in_div id=$proofContainerId url=$proofGridUrl}
+{url|assign:representationFilesGridUrl router=$smarty.const.ROUTE_COMPONENT component="grid.files.proof.ProofFilesGridHandler" op="fetchGrid" submissionId=$submission->getId() publicationFormatId=$representationId escape=false}
+{assign var=representationContainerId value='representationFilesGrid-'|concat:$representationId|concat:'-'|uniqid}
+{load_url_in_div id=$representationContainerId url=$representationFilesGridUrl}
