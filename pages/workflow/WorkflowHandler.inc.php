@@ -79,7 +79,7 @@ class WorkflowHandler extends PKPWorkflowHandler {
 		$publicationFormat->setEntryKey('DA'); // ONIX code for Digital
 		$publicationFormat->setData('name', 'PDF', $submission->getLocale());
 		$publicationFormat->setSeq(REALLY_BIG_NUMBER);
-		$publicationFormatId = $publicationFormatDao->insertObject($publicationFormat);
+		$representationId = $publicationFormatDao->insertObject($publicationFormat);
 
 		// Next, create a galley PROOF file out of the submission file uploaded.
 		$submissionFileDao = DAORegistry::getDAO('SubmissionFileDAO');
@@ -99,7 +99,7 @@ class WorkflowHandler extends PKPWorkflowHandler {
 				$submissionFile->setViewable(true);
 				$submissionFile->setFileStage(SUBMISSION_FILE_PROOF);
 				$submissionFile->setAssocType(ASSOC_TYPE_REPRESENTATION);
-				$submissionFile->setAssocId($publicationFormatId);
+				$submissionFile->setAssocId($representationId);
 
 				// Assign the sales type and price for the submission file.
 				switch ($request->getUserVar('salesType')) {

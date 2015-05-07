@@ -49,7 +49,7 @@ class PublicationDateForm extends Form {
 			)
 		));
 
-		$this->addCheck(new FormValidator($this, 'publicationFormatId', 'required', 'grid.catalogEntry.publicationFormatRequired'));
+		$this->addCheck(new FormValidator($this, 'representationId', 'required', 'grid.catalogEntry.publicationFormatRequired'));
 		$this->addCheck(new FormValidatorPost($this));
 	}
 
@@ -123,17 +123,17 @@ class PublicationDateForm extends Form {
 			$templateMgr->assign('role', $publicationDate->getRole());
 			$templateMgr->assign('dateFormat', $publicationDate->getDateFormat());
 			$templateMgr->assign('date', $publicationDate->getDate());
-			$publicationFormatId = $publicationDate->getPublicationFormatId();
+			$representationId = $publicationDate->getPublicationFormatId();
 		} else { // loading a blank form
-			$publicationFormatId = (int) $request->getUserVar('publicationFormatId');
+			$representationId = (int) $request->getUserVar('representationId');
 			$templateMgr->assign('dateFormat', '20'); // YYYYMMDD Onix code as a default
 		}
 
 		$publicationFormatDao = DAORegistry::getDAO('PublicationFormatDAO');
-		$publicationFormat = $publicationFormatDao->getById($publicationFormatId, $monograph->getId());
+		$publicationFormat = $publicationFormatDao->getById($representationId, $monograph->getId());
 
 		if ($publicationFormat) { // the format exists for this monograph
-			$templateMgr->assign('publicationFormatId', $publicationFormatId);
+			$templateMgr->assign('representationId', $representationId);
 			$publicationDates = $publicationFormat->getPublicationDates();
 			$assignedRoles = array_keys($publicationDates->toAssociativeArray('role')); // currently assigned roles
 			if ($publicationDate) $assignedRoles = array_diff($assignedRoles, array($publicationDate->getRole())); // allow existing roles to keep their value
@@ -158,7 +158,7 @@ class PublicationDateForm extends Form {
 	function readInputData() {
 		$this->readUserVars(array(
 			'publicationDateId',
-			'publicationFormatId',
+			'representationId',
 			'role',
 			'dateFormat',
 			'date',
@@ -175,7 +175,7 @@ class PublicationDateForm extends Form {
 
 		$monograph = $this->getMonograph();
 		$publicationDate = $this->getPublicationDate();
-		$publicationFormat = $publicationFormatDao->getById($this->getData('publicationFormatId'), $monograph->getId());
+		$publicationFormat = $publicationFormatDao->getById($this->getData('representationId'), $monograph->getId());
 
 		if (!$publicationDate) {
 			// this is a new publication date for this published monograph

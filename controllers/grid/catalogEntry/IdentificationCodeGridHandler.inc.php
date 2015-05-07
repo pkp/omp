@@ -103,7 +103,7 @@ class IdentificationCodeGridHandler extends GridHandler {
 		// Retrieve the authorized monograph.
 		$this->setMonograph($this->getAuthorizedContextObject(ASSOC_TYPE_MONOGRAPH));
 		$publicationFormatDao = DAORegistry::getDAO('PublicationFormatDAO');
-		$publicationFormatId = null;
+		$representationId = null;
 
 		// Retrieve the associated publication format for this grid.
 		$identificationCodeId = (int) $request->getUserVar('identificationCodeId'); // set if editing or deleting a code
@@ -112,13 +112,13 @@ class IdentificationCodeGridHandler extends GridHandler {
 			$identificationCodeDao = DAORegistry::getDAO('IdentificationCodeDAO');
 			$identificationCode = $identificationCodeDao->getById($identificationCodeId, $this->getMonograph()->getId());
 			if ($identificationCode) {
-				$publicationFormatId = $identificationCode->getPublicationFormatId();
+				$representationId = $identificationCode->getPublicationFormatId();
 			}
 		} else { // empty form for new Code
-			$publicationFormatId = (int) $request->getUserVar('publicationFormatId');
+			$representationId = (int) $request->getUserVar('representationId');
 		}
 
-		$publicationFormat = $publicationFormatDao->getById($publicationFormatId, $this->getMonograph()->getId());
+		$publicationFormat = $publicationFormatDao->getById($representationId, $this->getMonograph()->getId());
 
 		if ($publicationFormat) {
 			$this->setPublicationFormat($publicationFormat);
@@ -200,7 +200,7 @@ class IdentificationCodeGridHandler extends GridHandler {
 
 		return array(
 			'submissionId' => $monograph->getId(),
-			'publicationFormatId' => $publicationFormat->getId()
+			'representationId' => $publicationFormat->getId()
 		);
 	}
 

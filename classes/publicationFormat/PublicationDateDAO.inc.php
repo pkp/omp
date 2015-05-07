@@ -55,13 +55,13 @@ class PublicationDateDAO extends DAO {
 
 	/**
 	 * Retrieve all publication dates for an assigned publication format
-	 * @param $publicationFormatId int
+	 * @param $representationId int
 	 * @return DAOResultFactory containing matching publication dates
 	 */
-	function getByPublicationFormatId($publicationFormatId) {
+	function getByPublicationFormatId($representationId) {
 		$result = $this->retrieveRange(
 			'SELECT * FROM publication_dates WHERE publication_format_id = ?',
-			(int) $publicationFormatId
+			(int) $representationId
 		);
 
 		return new DAOResultFactory($result, $this, '_fromRow');

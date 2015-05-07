@@ -112,10 +112,10 @@ class EditorDecisionHandler extends PKPEditorDecisionHandler {
 		$this->setupTemplate($request);
 		$context = $request->getContext();
 		$submission = $this->getAuthorizedContextObject(ASSOC_TYPE_SUBMISSION);
-		$publicationFormatId = $request->getUserVar('publicationFormatId');
+		$representationId = $request->getUserVar('representationId');
 		$publicationFormatDao = DAORegistry::getDAO('PublicationFormatDAO'); /* @var $publicationFormatDao PublicationFormatDAO */
 
-		$publicationFormat = $publicationFormatDao->getById($publicationFormatId, $submission->getId(), $context->getId());
+		$publicationFormat = $publicationFormatDao->getById($representationId, $submission->getId(), $context->getId());
 		if (!is_a($publicationFormat, 'PublicationFormat')) {
 			fatalError('Invalid publication format id!');
 		}

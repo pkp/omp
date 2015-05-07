@@ -52,7 +52,7 @@ class ApprovedProofFilesGridRow extends GridRow {
 						$router->url($request, null, null, 'editApprovedProof', null, array(
 							'fileId' => $fileId,
 							'submissionId' => $request->getUserVar('submissionId'),
-							'publicationFormatId' => $request->getUserVar('publicationFormatId'),
+							'representationId' => $request->getUserVar('representationId'),
 						)),
 						__('editor.monograph.approvedProofs.edit'),
 						'edit'

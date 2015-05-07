@@ -39,7 +39,7 @@ class SignoffFilesGridHandler extends PKPSignoffFilesGridHandler {
 	function authorize($request, &$args, $roleAssignments) {
 
 		// If a publication ID was specified, authorize it.
-		if ($request->getUserVar('publicationFormatId')) {
+		if ($request->getUserVar('representationId')) {
 			import('classes.security.authorization.internal.PublicationFormatRequiredPolicy');
 			$this->addPolicy(new PublicationFormatRequiredPolicy($request, $args));
 		}
@@ -67,11 +67,11 @@ class SignoffFilesGridHandler extends PKPSignoffFilesGridHandler {
 		$signoff = $this->getAuthorizedContextObject(ASSOC_TYPE_SIGNOFF);
 		$submission = $this->getSubmission();
 		$publicationFormat = $this->getPublicationFormat();
-		$publicationFormatId = null;
+		$representationId = null;
 		if (is_a($publicationFormat, 'PublicationFormat')) {
-			$publicationFormatId = $publicationFormat->getId();
+			$representationId = $publicationFormat->getId();
 		}
-		$auditorReminderForm = new AuditorReminderForm($signoff, $submission->getId(), $this->getStageId(), $publicationFormatId);
+		$auditorReminderForm = new AuditorReminderForm($signoff, $submission->getId(), $this->getStageId(), $representationId);
 		return $auditorReminderForm;
 	}
 
@@ -82,11 +82,11 @@ class SignoffFilesGridHandler extends PKPSignoffFilesGridHandler {
 	function _getFileAuditorForm() {
 		import('controllers.grid.files.signoff.form.FileAuditorForm');
 		$publicationFormat = $this->getPublicationFormat();
-		$publicationFormatId = null;
+		$representationId = null;
 		if (is_a($publicationFormat, 'PublicationFormat')) {
-			$publicationFormatId = $publicationFormat->getId();
+			$representationId = $publicationFormat->getId();
 		}
-		$auditorForm = new FileAuditorForm($this->getSubmission(), $this->getFileStage(), $this->getStageId(), $this->getSymbolic(), $this->getEventType(), $this->getAssocId(), $publicationFormatId);
+		$auditorForm = new FileAuditorForm($this->getSubmission(), $this->getFileStage(), $this->getStageId(), $this->getSymbolic(), $this->getEventType(), $this->getAssocId(), $representationId);
 		return $auditorForm;
 	}
 }

@@ -105,7 +105,7 @@ class PublicationFormatForm extends Form {
 		$templateMgr->assign('submissionId', $monograph->getId());
 		$publicationFormat = $this->getPublicationFormat();
 		if ($publicationFormat != null) {
-			$templateMgr->assign('publicationFormatId', $publicationFormat->getId());
+			$templateMgr->assign('representationId', $publicationFormat->getId());
 		}
 		return parent::fetch($request);
 	}
@@ -125,6 +125,7 @@ class PublicationFormatForm extends Form {
 	/**
 	 * Save the assigned format
 	 * @param PKPRequest request
+	 * @return int Publication format ID
 	 * @see Form::execute()
 	 */
 	function execute($request) {
@@ -147,16 +148,16 @@ class PublicationFormatForm extends Form {
 
 		if ($existingFormat) {
 			$publicationFormatDao->updateObject($publicationFormat);
-			$publicationFormatId = $publicationFormat->getId();
+			$representationId = $publicationFormat->getId();
 		} else {
-			$publicationFormatId = $publicationFormatDao->insertObject($publicationFormat);
+			$representationId = $publicationFormatDao->insertObject($publicationFormat);
 			// log the creation of the format.
 			import('lib.pkp.classes.log.SubmissionLog');
 			import('classes.log.SubmissionEventLogEntry');
 			SubmissionLog::logEvent($request, $monograph, SUBMISSION_LOG_PUBLICATION_FORMAT_CREATE, 'submission.event.publicationFormatCreated', array('formatName' => $publicationFormat->getLocalizedName()));
 		}
 
-		return $publicationFormatId;
+		return $representationId;
 	}
 }
 

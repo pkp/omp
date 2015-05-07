@@ -26,13 +26,13 @@ class PublicationFormatDAO extends RepresentationDAO {
 
 	/**
 	 * Retrieve a publication format by type id.
-	 * @param $publicationFormatId int
+	 * @param $representationId int
 	 * @param $monographId optional int
 	 * @param $pressId optional int
 	 * @return PublicationFormat
 	 */
-	function getById($publicationFormatId, $monographId = null, $pressId = null) {
-		$params = array((int) $publicationFormatId);
+	function getById($representationId, $monographId = null, $pressId = null) {
+		$params = array((int) $representationId);
 		if ($monographId) $params[] = (int) $monographId;
 		if ($pressId) $params[] = (int) $pressId;
 
@@ -108,19 +108,19 @@ class PublicationFormatDAO extends RepresentationDAO {
 
 	/**
 	 * Delete an publication format by ID.
-	 * @param $publicationFormatId int
+	 * @param $representationId int
 	 */
-	function deleteById($publicationFormatId) {
+	function deleteById($representationId) {
 		// remove settings, then the association itself.
-		$this->update('DELETE FROM publication_format_settings WHERE publication_format_id = ?', (int) $publicationFormatId);
-		return $this->update('DELETE FROM publication_formats WHERE publication_format_id = ?', (int) $publicationFormatId);
+		$this->update('DELETE FROM publication_format_settings WHERE publication_format_id = ?', (int) $representationId);
+		return $this->update('DELETE FROM publication_formats WHERE publication_format_id = ?', (int) $representationId);
 	}
 
 	/**
 	 * Update the settings for this object
 	 * @param $publicationFormat object
 	 */
-	function updateLocaleFields(&$publicationFormat) {
+	function updateLocaleFields($publicationFormat) {
 		$this->updateDataObjectSettings(
 			'publication_format_settings',
 			$publicationFormat,
@@ -183,7 +183,7 @@ class PublicationFormatDAO extends RepresentationDAO {
 	 * @param $publicationFormat PublicationFormat
 	 * @return int the publication format id.
 	 */
-	function insertObject(&$publicationFormat) {
+	function insertObject($publicationFormat) {
 		$this->update(
 			'INSERT INTO publication_formats
 				(is_approved, entry_key, physical_format, submission_id, seq, file_size, front_matter, back_matter, height, height_unit_code, width, width_unit_code, thickness, thickness_unit_code, weight, weight_unit_code, product_composition_code, product_form_detail_code, country_manufacture_code, imprint, product_availability_code, technical_protection_code, returnable_indicator_code, is_available)
@@ -227,7 +227,7 @@ class PublicationFormatDAO extends RepresentationDAO {
 	 * Update an existing publication format.
 	 * @param $publicationFormat PublicationFormat
 	 */
-	function updateObject(&$publicationFormat) {
+	function updateObject($publicationFormat) {
 		$this->update(
 			'UPDATE publication_formats
 			SET	is_approved = ?,

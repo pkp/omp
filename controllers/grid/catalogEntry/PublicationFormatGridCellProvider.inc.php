@@ -134,11 +134,11 @@ class PublicationFormatGridCellProvider extends DataObjectGridCellProvider {
 	function getCellActions($request, $row, $column) {
 		$publicationFormat = $row->getData();
 		$monographId = $publicationFormat->getMonographId();
-		$publicationFormatId = $publicationFormat->getId();
+		$representationId = $publicationFormat->getId();
 		switch ($column->getId()) {
 			case 'proofComplete':
 				import('controllers.api.proof.linkAction.ApproveProofsLinkAction');
-				return array(new ApproveProofsLinkAction($request, $monographId, $publicationFormatId, $this->getCellState($row, $column)));
+				return array(new ApproveProofsLinkAction($request, $monographId, $representationId, $this->getCellState($row, $column)));
 				break;
 			case 'isApproved':
 				if ($this->getInCatalogEntryModal()) {
@@ -147,7 +147,7 @@ class PublicationFormatGridCellProvider extends DataObjectGridCellProvider {
 					return array(new LinkAction('publicationFormatTab', new NullAction(), __('monograph.publicationFormat.openTab'), $this->getCellState($row, $column), $toolTip));
 				} else {
 					import('controllers.modals.submissionMetadata.linkAction.SubmissionEntryLinkAction');
-					return array(new SubmissionEntryLinkAction($request, $monographId, WORKFLOW_STAGE_ID_PRODUCTION, $publicationFormatId, $this->getCellState($row, $column)));
+					return array(new SubmissionEntryLinkAction($request, $monographId, WORKFLOW_STAGE_ID_PRODUCTION, $representationId, $this->getCellState($row, $column)));
 				}
 				break;
 			case 'isAvailable':
@@ -184,7 +184,7 @@ class PublicationFormatGridCellProvider extends DataObjectGridCellProvider {
 						$warningMarkup . __($publicationFormat->getIsAvailable()?'grid.catalogEntry.availablePublicationFormat.removeMessage':'grid.catalogEntry.availablePublicationFormat.message'),
 						__('grid.catalogEntry.availablePublicationFormat.title'),
 						$router->url($request, null, 'grid.catalogEntry.PublicationFormatGridHandler',
-							'setAvailable', null, array('publicationFormatId' => $publicationFormat->getId(), 'newAvailableState' => $publicationFormat->getIsAvailable()?0:1, 'submissionId' => $monographId)),
+							'setAvailable', null, array('representationId' => $publicationFormat->getId(), 'newAvailableState' => $publicationFormat->getIsAvailable()?0:1, 'submissionId' => $monographId)),
 						'modal_approve'),
 						__('manager.emails.disable'),
 						$this->getCellState($row, $column),
@@ -199,13 +199,13 @@ class PublicationFormatGridCellProvider extends DataObjectGridCellProvider {
 	/**
 	 * Get the monograph files associated with the passed
 	 * publication format id.
-	 * @param $publicationFormatId int
+	 * @param $representationId int
 	 * @return array
 	 */
-	function &getMonographFiles($publicationFormatId) {
+	function &getMonographFiles($representationId) {
 		$submissionFileDao = DAORegistry::getDAO('SubmissionFileDAO'); /* @var $submissionFileDao SubmissionFileDAO */
 		$monographFiles = $submissionFileDao->getLatestRevisionsByAssocId(
-			ASSOC_TYPE_PUBLICATION_FORMAT, $publicationFormatId,
+			ASSOC_TYPE_PUBLICATION_FORMAT, $representationId,
 			$this->getMonographId(), SUBMISSION_FILE_PROOF
 		);
 

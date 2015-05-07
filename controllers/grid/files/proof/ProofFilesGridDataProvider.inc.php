@@ -18,7 +18,7 @@ import('lib.pkp.controllers.grid.files.SubmissionFilesGridDataProvider');
 
 class ProofFilesGridDataProvider extends SubmissionFilesGridDataProvider {
 	/** @var integer */
-	var $_publicationFormatId;
+	var $_representationId;
 
 	/**
 	 * Constructor
@@ -49,7 +49,7 @@ class ProofFilesGridDataProvider extends SubmissionFilesGridDataProvider {
 	 * @see GridDataProvider::getRequestArgs()
 	 */
 	function getRequestArgs() {
-		return array_merge(parent::getRequestArgs(), array('publicationFormatId', $this->_getPublicationFormatId()));
+		return array_merge(parent::getRequestArgs(), array('representationId', $this->_getPublicationFormatId()));
 	}
 
 	/**

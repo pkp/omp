@@ -24,8 +24,8 @@
 			{fbvFormSection}
 				<input type="hidden" name="submissionId" value="{$submissionId|escape}" />
 				<input type="hidden" name="stageId" value="{$smarty.const.WORKFLOW_STAGE_ID_PRODUCTION}" />
-				<input type="hidden" name="publicationFormatId" value="{$publicationFormatId|escape}" />
-				{url|assign:availableReviewFilesGridUrl router=$smarty.const.ROUTE_COMPONENT component="grid.files.proof.ManageProofFilesGridHandler" op="fetchGrid" submissionId=$submissionId publicationFormatId=$publicationFormatId escape=false}
+				<input type="hidden" name="representationId" value="{$representationId|escape}" />
+				{url|assign:availableReviewFilesGridUrl router=$smarty.const.ROUTE_COMPONENT component="grid.files.proof.ManageProofFilesGridHandler" op="fetchGrid" submissionId=$submissionId representationId=$representationId escape=false}
 				{load_url_in_div id="availableReviewFilesGrid" url=$availableReviewFilesGridUrl}
 			{/fbvFormSection}
 

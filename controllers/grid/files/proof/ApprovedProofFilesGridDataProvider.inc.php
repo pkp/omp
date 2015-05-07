@@ -59,7 +59,7 @@ class ApprovedProofFilesGridDataProvider extends GridDataProvider {
 		$monograph = $this->getAuthorizedContextObject(ASSOC_TYPE_MONOGRAPH);
 		$publicationFormat = $this->getAuthorizedContextObject(ASSOC_TYPE_PUBLICATION_FORMAT);
 		return array(
-			'publicationFormatId' => $publicationFormat->getId(),
+			'representationId' => $publicationFormat->getId(),
 			'submissionId' => $monograph->getId(),
 		);
 	}

@@ -17,7 +17,7 @@
 
 <form class="pkp_form" id="addSalesRightsForm" method="post" action="{url router=$smarty.const.ROUTE_COMPONENT component="grid.catalogEntry.SalesRightsGridHandler" op="updateRights"}">
 	<input type="hidden" name="submissionId" value="{$submissionId|escape}" />
-	<input type="hidden" name="publicationFormatId" value="{$publicationFormatId|escape}" />
+	<input type="hidden" name="representationId" value="{$representationId|escape}" />
 	<input type="hidden" name="salesRightsId" value="{$salesRightsId|escape}" />
 	{fbvFormArea id="addRights"}
 		{fbvFormSection title="grid.catalogEntry.salesRightsType" for="type" required="true"}

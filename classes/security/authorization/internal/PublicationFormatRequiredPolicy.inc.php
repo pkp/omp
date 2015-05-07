@@ -22,7 +22,7 @@ class PublicationFormatRequiredPolicy extends DataObjectRequiredPolicy {
 	 * @param $submissionParameterName string the request parameter we expect
 	 *  the submission id in.
 	 */
-	function PublicationFormatRequiredPolicy($request, &$args, $parameterName = 'publicationFormatId', $operations = null) {
+	function PublicationFormatRequiredPolicy($request, &$args, $parameterName = 'representationId', $operations = null) {
 		parent::DataObjectRequiredPolicy($request, $args, $parameterName, 'user.authorization.invalidPublicationFormat', $operations);
 	}
 
@@ -33,8 +33,8 @@ class PublicationFormatRequiredPolicy extends DataObjectRequiredPolicy {
 	 * @see DataObjectRequiredPolicy::dataObjectEffect()
 	 */
 	function dataObjectEffect() {
-		$publicationFormatId = (int)$this->getDataObjectId();
-		if (!$publicationFormatId) return AUTHORIZATION_DENY;
+		$representationId = (int)$this->getDataObjectId();
+		if (!$representationId) return AUTHORIZATION_DENY;
 
 		// Need a valid monograph in request.
 		$monograph = $this->getAuthorizedContextObject(ASSOC_TYPE_MONOGRAPH);
@@ -42,7 +42,7 @@ class PublicationFormatRequiredPolicy extends DataObjectRequiredPolicy {
 
 		// Make sure the publication format belongs to the monograph.
 		$publicationFormatDao = DAORegistry::getDAO('PublicationFormatDAO');
-		$publicationFormat = $publicationFormatDao->getById($publicationFormatId, $monograph->getId());
+		$publicationFormat = $publicationFormatDao->getById($representationId, $monograph->getId());
 		if (!is_a($publicationFormat, 'PublicationFormat')) return AUTHORIZATION_DENY;
 
 		// Save the publication format to the authorization context.

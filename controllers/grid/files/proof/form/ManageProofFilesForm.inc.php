@@ -18,16 +18,16 @@ import('lib.pkp.controllers.grid.files.form.ManageSubmissionFilesForm');
 class ManageProofFilesForm extends ManageSubmissionFilesForm {
 
 	/** @var int Publication format ID. */
-	var $_publicationFormatId;
+	var $_representationId;
 
 	/**
 	 * Constructor.
 	 * @param $submissionId int Submission ID.
-	 * @param $publicationFormatId int Publication format ID.
+	 * @param $representationId int Publication format ID.
 	 */
-	function ManageProofFilesForm($submissionId, $publicationFormatId) {
+	function ManageProofFilesForm($submissionId, $representationId) {
 		parent::ManageSubmissionFilesForm($submissionId, 'controllers/grid/files/proof/manageProofFiles.tpl');
-		$this->_publicationFormatId = $publicationFormatId;
+		$this->_representationId = $representationId;
 	}
 
 
@@ -41,7 +41,7 @@ class ManageProofFilesForm extends ManageSubmissionFilesForm {
 	 */
 	function fetch($request) {
 		$templateMgr = TemplateManager::getManager($request);
-		$templateMgr->assign('publicationFormatId', $this->_publicationFormatId);
+		$templateMgr->assign('representationId', $this->_representationId);
 		return parent::fetch($request);
 	}
 
@@ -60,7 +60,7 @@ class ManageProofFilesForm extends ManageSubmissionFilesForm {
 		$newSubmissionFile = parent::_importFile($context, $submissionFile, $fileStage);
 
 		$publicationFormatDao = DAORegistry::getDAO('PublicationFormatDAO');
-		$publicationFormat = $publicationFormatDao->getById($this->_publicationFormatId, $this->getSubmissionId(), $context->getId());
+		$publicationFormat = $publicationFormatDao->getById($this->_representationId, $this->getSubmissionId(), $context->getId());
 
 		$newSubmissionFile->setAssocType(ASSOC_TYPE_PUBLICATION_FORMAT);
 		$newSubmissionFile->setAssocId($publicationFormat->getId());

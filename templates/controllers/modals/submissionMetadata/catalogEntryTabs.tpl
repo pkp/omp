@@ -40,7 +40,7 @@
 					href="{url router=$smarty.const.ROUTE_COMPONENT component="tab.catalogEntry.CatalogEntryTabHandler"
 					tab="publication"|concat:$format->getId()
 					op="publicationMetadata"
-					publicationFormatId=$format->getId()
+					representationId=$format->getId()
 					submissionId=$submissionId
 					stageId=$stageId
 					tabPos=$counter}">{$format->getLocalizedName()|escape}</a>

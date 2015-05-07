@@ -8,7 +8,7 @@
  * Display a public-facing book view in the catalog.
  *
  * Available data:
- *  $publicationFormatId int Publication format ID
+ *  $representationId int Publication format ID
  *  $availableFiles array Array of available MonographFiles
  *  $publishedMonograph PublishedMonograph The published monograph object.
  *}
