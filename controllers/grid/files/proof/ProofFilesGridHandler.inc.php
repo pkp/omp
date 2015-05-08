@@ -121,7 +121,7 @@ class ProofFilesGridHandler extends SignoffFilesGridHandler {
 		$submission = $this->getSubmission();
 		$publicationFormat = $this->getAuthorizedContextObject(ASSOC_TYPE_PUBLICATION_FORMAT);
 
-		import('controllers.grid.files.proof.form.ManageProofFilesForm');
+		import('lib.pkp.controllers.grid.files.proof.form.ManageProofFilesForm');
 		$manageProofFilesForm = new ManageProofFilesForm($submission->getId(), $publicationFormat->getId());
 		$manageProofFilesForm->initData($args, $request);
 		return new JSONMessage(true, $manageProofFilesForm->fetch($request));
