@@ -38,9 +38,9 @@ class ProofFilesGridDataProvider extends SubmissionFilesGridDataProvider {
 		// Retrieve the current policy.
 		$authorizationPolicy = parent::getAuthorizationPolicy($request, $args, $roleAssignments);
 
-		// Append the publication format policy.
-		import('classes.security.authorization.internal.PublicationFormatRequiredPolicy');
-		$authorizationPolicy->addPolicy(new PublicationFormatRequiredPolicy($request, $args));
+		// Append the representation policy.
+		import('lib.pkp.classes.security.authorization.internal.RepresentationRequiredPolicy');
+		$authorizationPolicy->addPolicy(new RepresentationRequiredPolicy($request, $args));
 
 		return $authorizationPolicy;
 	}

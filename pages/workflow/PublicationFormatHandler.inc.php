@@ -40,16 +40,16 @@ class PublicationFormatHandler extends Handler {
 	 * @see PKPHandler::authorize()
 	 */
 	function authorize($request, &$args, $roleAssignments) {
-		// Get the publication Format Policy
-		import('classes.security.authorization.internal.PublicationFormatRequiredPolicy');
-		$publicationFormatPolicy = new PublicationFormatRequiredPolicy($request, $args);
+		// Get the representation policy
+		import('lib.pkp.classes.security.authorization.internal.RepresentationRequiredPolicy');
+		$representationPolicy = new RepresentationRequiredPolicy($request, $args);
 
 		// Get the workflow stage policy
 		import('classes.security.authorization.WorkflowStageAccessPolicy');
 		$stagePolicy = new WorkflowStageAccessPolicy($request, $args, $roleAssignments, 'submissionId', WORKFLOW_STAGE_ID_PRODUCTION);
 
-		// Add the Publication Format policy to the stage policy.
-		$stagePolicy->addPolicy($publicationFormatPolicy);
+		// Add the representation policy to the stage policy.
+		$stagePolicy->addPolicy($representationPolicy);
 
 		// Add the augmented policy to the handler.
 		$this->addPolicy($stagePolicy);

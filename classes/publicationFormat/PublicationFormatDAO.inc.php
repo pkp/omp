@@ -25,24 +25,20 @@ class PublicationFormatDAO extends RepresentationDAO {
 	}
 
 	/**
-	 * Retrieve a publication format by type id.
-	 * @param $representationId int
-	 * @param $monographId optional int
-	 * @param $pressId optional int
-	 * @return PublicationFormat
+	 * @copydoc RepresentationDAO::getById()
 	 */
-	function getById($representationId, $monographId = null, $pressId = null) {
+	function getById($representationId, $submissionId = null, $contextId = null) {
 		$params = array((int) $representationId);
-		if ($monographId) $params[] = (int) $monographId;
-		if ($pressId) $params[] = (int) $pressId;
+		if ($submissionId) $params[] = (int) $submissionId;
+		if ($contextId) $params[] = (int) $contextId;
 
 		$result = $this->retrieve(
 			'SELECT pf.*
 			FROM	publication_formats pf
-			' . ($pressId?' JOIN submissions s ON (s.submission_id = pf.submission_id)':'') . '
+			' . ($contextId?' JOIN submissions s ON (s.submission_id = pf.submission_id)':'') . '
 			WHERE	pf.publication_format_id = ?' .
-			($monographId?' AND pf.submission_id = ?':'') .
-			($pressId?' AND s.context_id = ?':''),
+			($submissionId?' AND pf.submission_id = ?':'') .
+			($contextId?' AND s.context_id = ?':''),
 			$params
 		);
 
@@ -56,9 +52,7 @@ class PublicationFormatDAO extends RepresentationDAO {
 	}
 
 	/**
-	 * Retrieves a list of publication formats for a monograph.
-	 * @param int $submissionId int Monograph ID.
-	 * @return DAOResultFactory
+	 * @copydoc RepresentationDAO::getBySubmissionId()
 	 */
 	function getBySubmissionId($submissionId) {
 		return new DAOResultFactory(

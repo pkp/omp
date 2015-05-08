@@ -40,8 +40,8 @@ class SignoffFilesGridHandler extends PKPSignoffFilesGridHandler {
 
 		// If a publication ID was specified, authorize it.
 		if ($request->getUserVar('representationId')) {
-			import('classes.security.authorization.internal.PublicationFormatRequiredPolicy');
-			$this->addPolicy(new PublicationFormatRequiredPolicy($request, $args));
+			import('lib.pkp.classes.security.authorization.internal.RepresentationRequiredPolicy');
+			$this->addPolicy(new RepresentationRequiredPolicy($request, $args));
 		}
 
 		return parent::authorize($request, $args, $roleAssignments);

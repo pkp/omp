@@ -33,8 +33,8 @@ class ProofFilesListbuilderHandler extends FilesListbuilderHandler {
 	 * @see PKPHandler::authorize()
 	 */
 	function authorize($request, &$args, $roleAssignments) {
-		import('classes.security.authorization.internal.PublicationFormatRequiredPolicy');
-		$this->addPolicy(new PublicationFormatRequiredPolicy($request, $args));
+		import('lib.pkp.classes.security.authorization.internal.RepresentationRequiredPolicy');
+		$this->addPolicy(new RepresentationRequiredPolicy($request, $args));
 		return parent::authorize($request, $args, $roleAssignments, WORKFLOW_STAGE_ID_PRODUCTION);
 	}
 
