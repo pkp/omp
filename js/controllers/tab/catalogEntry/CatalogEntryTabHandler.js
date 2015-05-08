@@ -143,7 +143,7 @@
 			// i is the formatId, formats[i] is the localized name.
 			if (!currentIndexes.hasOwnProperty(i)) {
 				// this is a tab that has been added
-				url = this.tabContentUrl_ + '&publicationFormatId=' +
+				url = this.tabContentUrl_ + '&representationId=' +
 						encodeURIComponent(i);
 				// replace dollar signs in $$$call$$$ so the .add() call
 				// interpolates correctly. Is this a bug in jqueryUI?
@@ -202,10 +202,10 @@
 				this.getHtmlElement()).children('div'),
 				gridHandler = $.pkp.classes.Handler.getHandler($grid),
 				$gridRow = gridHandler.getParentRow($(sourceElement)),
-				publicationFormatId = gridHandler.getRowDataId($gridRow);
+				representationId = gridHandler.getRowDataId($gridRow);
 		this.getHtmlElement().tabs({
 				active: /** @type {number} */ (this.getTabPositionByFormatId_(
-						publicationFormatId, this.getHtmlElement()))});
+						representationId, this.getHtmlElement()))});
 	};
 
 

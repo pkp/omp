@@ -198,7 +198,7 @@ class CSVImportExportPlugin extends ImportExportPlugin {
 						$publicationDate->setDateFormat('05'); // List55, YYYY
 						$publicationDate->setRole('01'); // List163, Publication Date
 						$publicationDate->setDate($year);
-						$publicationDate->setPublicationformatId($publicationFormatId);
+						$publicationDate->setPublicationFormatId($publicationFormatId);
 						$publicationDateDao->insertObject($publicationDate);
 
 						// Submission File.

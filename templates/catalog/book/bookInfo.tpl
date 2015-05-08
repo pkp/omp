@@ -8,7 +8,7 @@
  * Display the information pane of a public-facing book view in the catalog.
  *
  * Available data:
- *  $publicationFormatId int Publication format ID
+ *  $representationId int Publication format ID
  *  $availableFiles array Array of available MonographFiles
  *  $publishedMonograph PublishedMonograph The published monograph object.
  *}
@@ -87,18 +87,18 @@
 				<ul>
 					{foreach from=$publicationFormats item=publicationFormat}
 						{if $publicationFormat->getIsAvailable() && $publicationFormat->getIsApproved()}
-							{include file="catalog/book/bookFiles.tpl" availableFile=$availableFile publicationFormatId=$publicationFormat->getId() publishedMonograph=$publishedMonograph currency=$currency}
+							{include file="catalog/book/bookFiles.tpl" availableFile=$availableFile representationId=$publicationFormat->getId() publishedMonograph=$publishedMonograph currency=$currency}
 						{/if}
 					{/foreach}
 				</ul>
 			{else}
 				{foreach from=$publicationFormats item=publicationFormat}
-					{assign var=publicationFormatId value=$publicationFormat->getId()}
-					{if $publicationFormat->getIsAvailable() && $availableFiles[$publicationFormatId]}
-						<div class="publicationFormatDownload" id="publicationFormat-download-{$publicationFormatId|escape}">
+					{assign var=representationId value=$publicationFormat->getId()}
+					{if $publicationFormat->getIsAvailable() && $availableFiles[$representationId]}
+						<div class="publicationFormatDownload" id="publicationFormat-download-{$representationId|escape}">
 							{$publicationFormat->getLocalizedName()|escape}
 							<ul>
-								{include file="catalog/book/bookFiles.tpl" availableFile=$availableFile publicationFormatId=$publicationFormatId publishedMonograph=$publishedMonograph currency=$currency}
+								{include file="catalog/book/bookFiles.tpl" availableFile=$availableFile representationId=$representationId publishedMonograph=$publishedMonograph currency=$currency}
 							</ul>
 						</div>
 					{/if}

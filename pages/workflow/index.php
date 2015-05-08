@@ -24,7 +24,6 @@ switch ($op) {
 	case 'externalReview':
 	case 'editorial':
 	case 'production':
-	case 'productionFormatsTab':
 	case 'editorDecisionActions':
 	case 'submissionHeader':
 	case 'submissionProgressBar':
@@ -32,7 +31,7 @@ switch ($op) {
 		define('HANDLER_CLASS', 'WorkflowHandler');
 		import('pages.workflow.WorkflowHandler');
 		break;
-	case 'fetchPublicationFormat':
+	case 'fetchRepresentation':
 		define('HANDLER_CLASS', 'PublicationFormatHandler');
 		import('pages.workflow.PublicationFormatHandler');
 		break;

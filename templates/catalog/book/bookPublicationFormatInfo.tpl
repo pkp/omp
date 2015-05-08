@@ -8,7 +8,7 @@
  * Publication format information to be presented in book page.
  *
  * Available data:
- *  $publicationFormatId int Publication format ID
+ *  $representationId int Publication format ID
  *  $publicationFormat PublicationFormat The publication format to present.
  *  $availableFiles array Array of available MonographFiles
  *  $publishedMonograph PublishedMonograph The published monograph object.
@@ -73,10 +73,10 @@
 		{/foreach}
 	</div>
 {/if}
-{assign var="publicationFormatId" value=$publicationFormat->getId()}
-{if !empty($availableFiles.$publicationFormatId)}
+{assign var="representationId" value=$publicationFormat->getId()}
+{if !empty($availableFiles.$representationId)}
 	<div class="ecommerce">
-		{if $availableFiles.$publicationFormatId|@count == 1}
+		{if $availableFiles.$representationId|@count == 1}
 			{* FIXME: unimplemented. One file available; shortcut to purchase *}
 		{else}
 			{* FIXME: unimplemented. Several files available; display options *}

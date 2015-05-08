@@ -103,7 +103,7 @@ class SalesRightsGridHandler extends GridHandler {
 		// Retrieve the authorized monograph.
 		$this->setMonograph($this->getAuthorizedContextObject(ASSOC_TYPE_MONOGRAPH));
 		$publicationFormatDao = DAORegistry::getDAO('PublicationFormatDAO');
-		$publicationFormatId = null;
+		$representationId = null;
 
 		// Retrieve the associated publication format for this grid.
 		$salesRightsId = (int) $request->getUserVar('salesRightsId'); // set if editing or deleting a sales rights entry
@@ -112,14 +112,14 @@ class SalesRightsGridHandler extends GridHandler {
 			$salesRightsDao = DAORegistry::getDAO('SalesRightsDAO');
 			$salesRights = $salesRightsDao->getById($salesRightsId, $this->getMonograph()->getId());
 			if ($salesRights) {
-				$publicationFormatId = $salesRights->getPublicationFormatId();
+				$representationId = $salesRights->getPublicationFormatId();
 			}
 		} else { // empty form for new SalesRights
-			$publicationFormatId = (int) $request->getUserVar('publicationFormatId');
+			$representationId = (int) $request->getUserVar('representationId');
 		}
 
 		$monograph = $this->getMonograph();
-		$publicationFormat = $publicationFormatDao->getById($publicationFormatId, $monograph->getId());
+		$publicationFormat = $publicationFormatDao->getById($representationId, $monograph->getId());
 
 		if ($publicationFormat) {
 			$this->setPublicationFormat($publicationFormat);
@@ -200,7 +200,7 @@ class SalesRightsGridHandler extends GridHandler {
 
 		return array(
 			'submissionId' => $monograph->getId(),
-			'publicationFormatId' => $publicationFormat->getId()
+			'representationId' => $publicationFormat->getId()
 		);
 	}
 

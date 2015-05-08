@@ -24,14 +24,14 @@ class AuditorReminderForm extends PKPAuditorReminderForm {
 	var $_stageId;
 
 	/** The publication format id, if any */
-	var $_publicationFormatId;
+	var $_representationId;
 
 	/**
 	 * Constructor.
 	 */
-	function AuditorReminderForm(&$signoff, $submissionId, $stageId, $publicationFormatId = null) {
+	function AuditorReminderForm(&$signoff, $submissionId, $stageId, $representationId = null) {
 		parent::PKPAuditorReminderForm($signoff, $submissionId, $stageId);
-		$this->_publicationFormatId = $publicationFormatId;
+		$this->_representationId = $representationId;
 
 		// Validation checks for this form
 		$this->addCheck(new FormValidatorPost($this));
@@ -45,7 +45,7 @@ class AuditorReminderForm extends PKPAuditorReminderForm {
 	 * @return int
 	 */
 	function getPublicationFormatId() {
-		return $this->_publicationFormatId;
+		return $this->_representationId;
 	}
 
 
@@ -59,7 +59,7 @@ class AuditorReminderForm extends PKPAuditorReminderForm {
 	 */
 	function initData($args, $request) {
 		parent::initData($args, $request);
-		$this->setData('publicationFormatId', $this->getPublicationFormatId());
+		$this->setData('representationId', $this->getPublicationFormatId());
 	}
 
 	/**

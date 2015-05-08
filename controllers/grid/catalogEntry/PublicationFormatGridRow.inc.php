@@ -47,7 +47,7 @@ class PublicationFormatGridRow extends GridRow {
 			$router = $request->getRouter();
 			$actionArgs = array(
 				'submissionId' => $monograph->getId(),
-				'publicationFormatId' => $publicationFormat->getId()
+				'representationId' => $publicationFormat->getId()
 			);
 
 			// Add row-level actions

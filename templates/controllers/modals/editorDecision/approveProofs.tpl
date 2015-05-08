@@ -17,5 +17,5 @@
 </script>
 
 <div id="approveProofsContainer">
-	{include file="controllers/tab/workflow/publicationFormat.tpl" submission=$submission publicationFormat=$publicationFormat}
+	{include file="controllers/tab/workflow/publicationFormat.tpl" submission=$submission representation=$representation}
 </div>

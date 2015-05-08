@@ -37,8 +37,8 @@ class ApprovedProofFilesGridDataProvider extends GridDataProvider {
 		$policy = new SubmissionAccessPolicy($request, $args, $roleAssignments);
 		import('lib.pkp.classes.security.authorization.internal.WorkflowStageRequiredPolicy');
 		$policy->addPolicy(new WorkflowStageRequiredPolicy(WORKFLOW_STAGE_ID_PRODUCTION));
-		import('classes.security.authorization.internal.PublicationFormatRequiredPolicy');
-		$policy->addPolicy(new PublicationFormatRequiredPolicy($request, $args));
+		import('lib.pkp.classes.security.authorization.internal.RepresentationRequiredPolicy');
+		$policy->addPolicy(new RepresentationRequiredPolicy($request, $args));
 		return $policy;
 	}	
 
@@ -56,10 +56,10 @@ class ApprovedProofFilesGridDataProvider extends GridDataProvider {
 	 * @see GridDataProvider::getRequestArgs
 	 */
 	function getRequestArgs() {
-		$monograph =& $this->getAuthorizedContextObject(ASSOC_TYPE_MONOGRAPH);
-		$publicationFormat =& $this->getAuthorizedContextObject(ASSOC_TYPE_PUBLICATION_FORMAT);
+		$monograph = $this->getAuthorizedContextObject(ASSOC_TYPE_MONOGRAPH);
+		$publicationFormat = $this->getAuthorizedContextObject(ASSOC_TYPE_PUBLICATION_FORMAT);
 		return array(
-			'publicationFormatId' => $publicationFormat->getId(),
+			'representationId' => $publicationFormat->getId(),
 			'submissionId' => $monograph->getId(),
 		);
 	}

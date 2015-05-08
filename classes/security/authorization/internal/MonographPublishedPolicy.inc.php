@@ -39,7 +39,7 @@ class MonographPublishedPolicy extends AuthorizationPolicy {
 	 */
 	function effect() {
 		// Get the monograph
-		$monograph =& $this->getAuthorizedContextObject(ASSOC_TYPE_MONOGRAPH);
+		$monograph = $this->getAuthorizedContextObject(ASSOC_TYPE_MONOGRAPH);
 		if (!is_a($monograph, 'Monograph')) return AUTHORIZATION_DENY;
 
 		// Get the published monograph; store as authorized

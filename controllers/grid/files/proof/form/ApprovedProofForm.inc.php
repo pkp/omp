@@ -55,7 +55,7 @@ class ApprovedProofForm extends Form {
 		$templateMgr = TemplateManager::getManager($request);
 		$templateMgr->assign('fileId', $this->approvedProof->getFileIdAndRevision());
 		$templateMgr->assign('submissionId', $this->monograph->getId());
-		$templateMgr->assign('publicationFormatId', $this->publicationFormat->getId());
+		$templateMgr->assign('representationId', $this->publicationFormat->getId());
 
 		$salesTypes = array(
 			'openAccess' => 'payment.directSales.openAccess',

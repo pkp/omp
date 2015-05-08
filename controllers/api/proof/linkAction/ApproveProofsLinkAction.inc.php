@@ -25,17 +25,17 @@ class ApproveProofsLinkAction extends LinkAction {
 	 * Constructor
 	 * @param $request Request
 	 * @param $monographId integer
-	 * @param $publicationFormatId integer
+	 * @param $representationId integer
 	 * @param $title string Locale key
 	 * @param $image string
 	 */
-	function ApproveProofsLinkAction($request, $monographId, $publicationFormatId, $image = null) {
+	function ApproveProofsLinkAction($request, $monographId, $representationId, $image = null) {
 
 		// Create the actionArgs array
 		$actionArgs = array();
 		$actionArgs['submissionId'] = $monographId;
 		$actionArgs['stageId'] = WORKFLOW_STAGE_ID_PRODUCTION;
-		$actionArgs['publicationFormatId'] = $publicationFormatId;
+		$actionArgs['representationId'] = $representationId;
 
 		$dispatcher = $request->getDispatcher();
 		$modal = new AjaxModal(
@@ -50,7 +50,7 @@ class ApproveProofsLinkAction extends LinkAction {
 
 		$toolTip = ($image == 'completed') ? __('grid.action.proofApproved') : null;
 		// Configure the link action.
-		parent::LinkAction('approveProofs-' . $publicationFormatId, $modal, __('editor.submission.decision.approveProofs'), $image, $toolTip);
+		parent::LinkAction('approveProofs-' . $representationId, $modal, __('editor.submission.decision.approveProofs'), $image, $toolTip);
 	}
 }
 

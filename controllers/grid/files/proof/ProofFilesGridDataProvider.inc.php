@@ -18,7 +18,7 @@ import('lib.pkp.controllers.grid.files.SubmissionFilesGridDataProvider');
 
 class ProofFilesGridDataProvider extends SubmissionFilesGridDataProvider {
 	/** @var integer */
-	var $_publicationFormatId;
+	var $_representationId;
 
 	/**
 	 * Constructor
@@ -38,9 +38,9 @@ class ProofFilesGridDataProvider extends SubmissionFilesGridDataProvider {
 		// Retrieve the current policy.
 		$authorizationPolicy = parent::getAuthorizationPolicy($request, $args, $roleAssignments);
 
-		// Append the publication format policy.
-		import('classes.security.authorization.internal.PublicationFormatRequiredPolicy');
-		$authorizationPolicy->addPolicy(new PublicationFormatRequiredPolicy($request, $args));
+		// Append the representation policy.
+		import('lib.pkp.classes.security.authorization.internal.RepresentationRequiredPolicy');
+		$authorizationPolicy->addPolicy(new RepresentationRequiredPolicy($request, $args));
 
 		return $authorizationPolicy;
 	}
@@ -49,7 +49,7 @@ class ProofFilesGridDataProvider extends SubmissionFilesGridDataProvider {
 	 * @see GridDataProvider::getRequestArgs()
 	 */
 	function getRequestArgs() {
-		return array_merge(parent::getRequestArgs(), array('publicationFormatId', $this->_getPublicationFormatId()));
+		return array_merge(parent::getRequestArgs(), array('representationId', $this->_getPublicationFormatId()));
 	}
 
 	/**
@@ -78,7 +78,7 @@ class ProofFilesGridDataProvider extends SubmissionFilesGridDataProvider {
 	 * @return integer
 	 */
 	function _getPublicationFormatId() {
-		$publicationFormat =& $this->getAuthorizedContextObject(ASSOC_TYPE_PUBLICATION_FORMAT);
+		$publicationFormat = $this->getAuthorizedContextObject(ASSOC_TYPE_PUBLICATION_FORMAT);
 		return $publicationFormat->getId();
 	}
 }

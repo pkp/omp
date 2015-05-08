@@ -25,24 +25,20 @@ class PublicationFormatDAO extends RepresentationDAO {
 	}
 
 	/**
-	 * Retrieve a publication format by type id.
-	 * @param $publicationFormatId int
-	 * @param $monographId optional int
-	 * @param $pressId optional int
-	 * @return PublicationFormat
+	 * @copydoc RepresentationDAO::getById()
 	 */
-	function getById($publicationFormatId, $monographId = null, $pressId = null) {
-		$params = array((int) $publicationFormatId);
-		if ($monographId) $params[] = (int) $monographId;
-		if ($pressId) $params[] = (int) $pressId;
+	function getById($representationId, $submissionId = null, $contextId = null) {
+		$params = array((int) $representationId);
+		if ($submissionId) $params[] = (int) $submissionId;
+		if ($contextId) $params[] = (int) $contextId;
 
 		$result = $this->retrieve(
 			'SELECT pf.*
 			FROM	publication_formats pf
-			' . ($pressId?' JOIN submissions s ON (s.submission_id = pf.submission_id)':'') . '
+			' . ($contextId?' JOIN submissions s ON (s.submission_id = pf.submission_id)':'') . '
 			WHERE	pf.publication_format_id = ?' .
-			($monographId?' AND pf.submission_id = ?':'') .
-			($pressId?' AND s.context_id = ?':''),
+			($submissionId?' AND pf.submission_id = ?':'') .
+			($contextId?' AND s.context_id = ?':''),
 			$params
 		);
 
@@ -56,19 +52,18 @@ class PublicationFormatDAO extends RepresentationDAO {
 	}
 
 	/**
-	 * Retrieves a list of publication formats for a submission
-	 * @param int $submissionId int
-	 * @return DAOResultFactory (PublicationFormat)
+	 * @copydoc RepresentationDAO::getBySubmissionId()
 	 */
 	function getBySubmissionId($submissionId) {
-		$result = $this->retrieve(
-			'SELECT *
-			FROM	publication_formats
-			WHERE	submission_id = ?',
-			(int) $submissionId
+		return new DAOResultFactory(
+			$this->retrieve(
+				'SELECT *
+				FROM	publication_formats
+				WHERE	submission_id = ?',
+				(int) $submissionId
+			),
+			$this, '_fromRow'
 		);
-
-		return new DAOResultFactory($result, $this, '_fromRow');
 	}
 
 	/**
@@ -107,19 +102,19 @@ class PublicationFormatDAO extends RepresentationDAO {
 
 	/**
 	 * Delete an publication format by ID.
-	 * @param $publicationFormatId int
+	 * @param $representationId int
 	 */
-	function deleteById($publicationFormatId) {
+	function deleteById($representationId) {
 		// remove settings, then the association itself.
-		$this->update('DELETE FROM publication_format_settings WHERE publication_format_id = ?', (int) $publicationFormatId);
-		return $this->update('DELETE FROM publication_formats WHERE publication_format_id = ?', (int) $publicationFormatId);
+		$this->update('DELETE FROM publication_format_settings WHERE publication_format_id = ?', (int) $representationId);
+		return $this->update('DELETE FROM publication_formats WHERE publication_format_id = ?', (int) $representationId);
 	}
 
 	/**
 	 * Update the settings for this object
 	 * @param $publicationFormat object
 	 */
-	function updateLocaleFields(&$publicationFormat) {
+	function updateLocaleFields($publicationFormat) {
 		$this->updateDataObjectSettings(
 			'publication_format_settings',
 			$publicationFormat,
@@ -182,7 +177,7 @@ class PublicationFormatDAO extends RepresentationDAO {
 	 * @param $publicationFormat PublicationFormat
 	 * @return int the publication format id.
 	 */
-	function insertObject(&$publicationFormat) {
+	function insertObject($publicationFormat) {
 		$this->update(
 			'INSERT INTO publication_formats
 				(is_approved, entry_key, physical_format, submission_id, seq, file_size, front_matter, back_matter, height, height_unit_code, width, width_unit_code, thickness, thickness_unit_code, weight, weight_unit_code, product_composition_code, product_form_detail_code, country_manufacture_code, imprint, product_availability_code, technical_protection_code, returnable_indicator_code, is_available)
@@ -226,7 +221,7 @@ class PublicationFormatDAO extends RepresentationDAO {
 	 * Update an existing publication format.
 	 * @param $publicationFormat PublicationFormat
 	 */
-	function updateObject(&$publicationFormat) {
+	function updateObject($publicationFormat) {
 		$this->update(
 			'UPDATE publication_formats
 			SET	is_approved = ?,

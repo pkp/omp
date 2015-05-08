@@ -22,7 +22,7 @@ class SubmissionDetailsFilesGridHandler extends FileListGridHandler {
 	 * @param $capabilities integer A bit map with zero or more
 	 *  FILE_GRID_* capabilities set.
 	 */
-	function SubmissionDetailsFilesGridHandler($capabilities) {
+	function SubmissionDetailsFilesGridHandler($capabilities = 0) {
 		import('lib.pkp.controllers.grid.files.SubmissionFilesGridDataProvider');
 		$dataProvider = new SubmissionFilesGridDataProvider(SUBMISSION_FILE_SUBMISSION);
 		parent::FileListGridHandler($dataProvider, WORKFLOW_STAGE_ID_SUBMISSION, $capabilities);

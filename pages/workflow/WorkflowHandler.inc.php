@@ -33,7 +33,7 @@ class WorkflowHandler extends PKPWorkflowHandler {
 				'internalReview', // Internal review
 				'externalReview', // External review
 				'editorial',
-				'production', 'productionFormatsTab', // Production
+				'production',
 				'submissionHeader',
 				'submissionProgressBar',
 				'expedite'
@@ -52,24 +52,6 @@ class WorkflowHandler extends PKPWorkflowHandler {
 	 */
 	function internalReview($args, $request) {
 		$this->_redirectToIndex($args, $request);
-	}
-
-	/**
-	 * Show the production stage accordion contents
-	 * @param $request PKPRequest
-	 * @param $args array
-	 * @return JSONMessage JSON object
-	 */
-	function productionFormatsTab(&$args, $request) {
-		$templateMgr = TemplateManager::getManager($request);
-		$publicationFormatDao = DAORegistry::getDAO('PublicationFormatDAO');
-		$submission = $this->getAuthorizedContextObject(ASSOC_TYPE_SUBMISSION);
-		$publicationFormats = $publicationFormatDao->getBySubmissionId($submission->getId());
-		$templateMgr->assign('submission', $submission);
-		$templateMgr->assign('publicationFormats', $publicationFormats->toAssociativeArray());
-		$templateMgr->assign('currentFormatTabId', (int) $request->getUserVar('currentFormatTabId'));
-
-		return $templateMgr->fetchJson('workflow/productionFormatsTab.tpl');
 	}
 
 	/**
@@ -97,7 +79,7 @@ class WorkflowHandler extends PKPWorkflowHandler {
 		$publicationFormat->setEntryKey('DA'); // ONIX code for Digital
 		$publicationFormat->setData('name', 'PDF', $submission->getLocale());
 		$publicationFormat->setSeq(REALLY_BIG_NUMBER);
-		$publicationFormatId = $publicationFormatDao->insertObject($publicationFormat);
+		$representationId = $publicationFormatDao->insertObject($publicationFormat);
 
 		// Next, create a galley PROOF file out of the submission file uploaded.
 		$submissionFileDao = DAORegistry::getDAO('SubmissionFileDAO');
@@ -117,7 +99,7 @@ class WorkflowHandler extends PKPWorkflowHandler {
 				$submissionFile->setViewable(true);
 				$submissionFile->setFileStage(SUBMISSION_FILE_PROOF);
 				$submissionFile->setAssocType(ASSOC_TYPE_REPRESENTATION);
-				$submissionFile->setAssocId($publicationFormatId);
+				$submissionFile->setAssocId($representationId);
 
 				// Assign the sales type and price for the submission file.
 				switch ($request->getUserVar('salesType')) {

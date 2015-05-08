@@ -118,7 +118,7 @@ class CatalogBookHandler extends Handler {
 
 			// Determine whether or not to use the collapsed view.
 			$useCollapsedView = true;
-			foreach ($availableFilesByPublicationFormat as $publicationFormatId => $availableFiles) {
+			foreach ($availableFilesByPublicationFormat as $representationId => $availableFiles) {
 				if (count($availableFiles)>1) {
 					$useCollapsedView = false;
 					break;
@@ -161,19 +161,19 @@ class CatalogBookHandler extends Handler {
 		$press = $request->getPress();
 
 		$monographId = (int) array_shift($args); // Validated thru auth
-		$publicationFormatId = (int) array_shift($args);
+		$representationId = (int) array_shift($args);
 		$fileIdAndRevision = array_shift($args);
 
 		$publishedMonograph = $this->getAuthorizedContextObject(ASSOC_TYPE_PUBLISHED_MONOGRAPH);
 		$publicationFormatDao = DAORegistry::getDAO('PublicationFormatDAO');
-		$publicationFormat = $publicationFormatDao->getById($publicationFormatId, $publishedMonograph->getId());
+		$publicationFormat = $publicationFormatDao->getById($representationId, $publishedMonograph->getId());
 		if (!$publicationFormat || !$publicationFormat->getIsApproved() || !$publicationFormat->getIsAvailable()) fatalError('Invalid publication format specified.');
 
 		$submissionFileDao = DAORegistry::getDAO('SubmissionFileDAO');
 		list($fileId, $revision) = array_map(create_function('$a', 'return (int) $a;'), preg_split('/-/', $fileIdAndRevision));
 		import('classes.monograph.MonographFile'); // File constants
 		$submissionFile = $submissionFileDao->getRevision($fileId, $revision, SUBMISSION_FILE_PROOF, $monographId);
-		if (!$submissionFile || $submissionFile->getAssocType() != ASSOC_TYPE_PUBLICATION_FORMAT || $submissionFile->getAssocId() != $publicationFormatId || $submissionFile->getDirectSalesPrice() === null) {
+		if (!$submissionFile || $submissionFile->getAssocType() != ASSOC_TYPE_PUBLICATION_FORMAT || $submissionFile->getAssocId() != $representationId || $submissionFile->getDirectSalesPrice() === null) {
 			fatalError('Invalid monograph file specified!');
 		}
 
@@ -209,7 +209,7 @@ class CatalogBookHandler extends Handler {
 		// Fall-through: user needs to pay for purchase.
 
 		// Users that are not logged in need to register/login first.
-		if (!$user) return $request->redirect(null, 'login', null, null, array('source' => $request->url(null, null, null, array($monographId, $publicationFormatId, $fileIdAndRevision))));
+		if (!$user) return $request->redirect(null, 'login', null, null, array('source' => $request->url(null, null, null, array($monographId, $representationId, $fileIdAndRevision))));
 
 		// They're logged in but need to pay to view.
 		import('classes.payment.omp.OMPPaymentManager');
