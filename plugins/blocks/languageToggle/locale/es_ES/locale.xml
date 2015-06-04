@@ -8,10 +8,10 @@
   * Copyright (c) 2003-2015 John Willinsky
   * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
   *
-  * Localization strings for the en_US (U.S. English) locale.
+  * Localization strings for the es_ES (Español) locale.
   -->
 
-<locale name="en_US" full_name="U.S. English">
+<locale name="es_ES" full_name="Español">
 	<message key="plugins.block.languageToggle.displayName">Bloque de conmutación lenguajes</message>
 	<message key="plugins.block.languageToggle.description">Este plugin ofrece la opción de conmutar lenguajes en la barra lateral.</message>
 </locale>
