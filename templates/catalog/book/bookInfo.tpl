@@ -43,7 +43,7 @@
 					{if $biography != ''}{$biography}{else}{translate key="catalog.noBioInfo"}{/if}
 				{/if}
 			{/foreach}
-		</div>
+		</div>	
 		{if $chapters|@count != 0}
 			<div id="contentsTab">
 				{foreach from=$chapters item=chapter}
