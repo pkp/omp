@@ -13,9 +13,9 @@
 						<strong>{$chapter->getLocalizedTitle()}</strong>
 						{if $chapter->getLocalizedSubtitle() != '' }<br />{$chapter->getLocalizedSubtitle()}{/if}
 						{assign var=chapterAuthors value=$chapter->getAuthorNamesAsString()}
-{*						{if $publishedMonograph->getAuthorString() != $chapterAuthors}	*}
+						{if $publishedMonograph->getAuthorString() != $chapterAuthors}
 							<div class="authorName">{$chapterAuthors}</div>
-{*						{/if} *}
+						{/if}
 				{foreach from=$publicationFormats item=publicationFormat}
 					{assign var=publicationFormatId value=$publicationFormat->getId()}
 					{if $publicationFormat->getIsAvailable() && $availableFiles[$publicationFormatId]}
