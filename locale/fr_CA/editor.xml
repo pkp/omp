@@ -20,7 +20,6 @@
 	<message key="editor.monograph.enterReviewerRecommendation">Saisir la recommendation de l'évaluateur</message>
 	<message key="editor.monograph.recommendation">Recommendation</message>
 	<message key="editor.monograph.selectReviewerInstructions">Choisir un évaluateur et une presse ci-haut, cliquer sur "Choisir un évaluateur" pour continuer.</message>
-	<message key="editor.submission.selectedReviewer">Evaluateur sélectionné</message>
 	<message key="editor.monograph.replaceReviewer">Remplacer l'évaluateur</message>
 	<message key="editor.monograph.editorToEnter">Le rédacteur en chef doit saisir sa recommandation et ses commentaires pour l'évaluateur</message>
 	<message key="editor.monograph.uploadReviewForReviewer">Télécharger l'évaluation</message>

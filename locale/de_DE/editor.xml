@@ -20,7 +20,6 @@
 	<message key="editor.monograph.enterReviewerRecommendation">Empfehlung der Gutachterin/des Gutachters eintragen</message>
 	<message key="editor.monograph.recommendation">Empfehlung</message>
 	<message key="editor.monograph.selectReviewerInstructions">Wählen Sie oben einen Gutachter/eine Gutachterin aus und klicken Sie auf 'Gutachter/in auswählen'.</message>
-	<message key="editor.submission.selectedReviewer">Ausgewählte Gutachter/innen</message>
 	<message key="editor.monograph.replaceReviewer">Gutachter/innen ersetzen</message>
 	<message key="editor.monograph.editorToEnter">Redakteur/in gibt Empfehlungen/Kommentare für Gutachter/in ein</message>
 	<message key="editor.monograph.uploadReviewForReviewer">Gutachten hochladen</message>
