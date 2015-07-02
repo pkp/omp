@@ -24,7 +24,7 @@
 	<div id="bookInfoTabs" class="pkp_controllers_tab">
 		<ul>
 			<li><a href="#abstractTab">{translate key="submission.synopsis"}</a></li>
-			{if $chapters|@count != 0}<li><a href="#contentsTab">{translate key="common.contents"}</a></li>{/if}
+{*			{if $chapters|@count != 0}<li><a href="#contentsTab">{translate key="common.contents"}</a></li>{/if}	*}
 			{if $availableFiles|@count != 0}<li><a href="#downloadTab">{translate key="submission.download"}</a></li>{/if}
 			{call_hook|assign:"sharingCode" name="Templates::Catalog::Book::BookInfo::Sharing"}
 			{if !is_null($sharingCode) || !empty($blocks)}
@@ -44,6 +44,7 @@
 				{/if}
 			{/foreach}
 		</div>	
+{*
 		{if $chapters|@count != 0}
 			<div id="contentsTab">
 				{foreach from=$chapters item=chapter}
@@ -58,6 +59,7 @@
 				{/foreach}
 			</div>
 		{/if}
+*}
 		{if $availableFiles|@count != 0}
 		<div id="downloadTab">
 			{assign var=publicationFormats value=$publishedMonograph->getPublicationFormats()}
