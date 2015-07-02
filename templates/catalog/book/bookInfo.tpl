@@ -44,14 +44,14 @@
 			{/foreach}
 		</div>
 		{if $availableFiles|@count != 0}
-		<div id="downloadTab">
-			{assign var=publicationFormats value=$publishedMonograph->getPublicationFormats()}
-			{assign var=currency value=$currentPress->getSetting('currency')}
-			{if !$loggedInUsername}<p>{translate key="catalog.loginRequiredForPayment"}</p>{/if}
+			<div id="downloadTab">
+				{assign var=publicationFormats value=$publishedMonograph->getPublicationFormats()}
+				{assign var=currency value=$currentPress->getSetting('currency')}
+				{if !$loggedInUsername}<p>{translate key="catalog.loginRequiredForPayment"}</p>{/if}
 				<ul>
 					{include file="catalog/book/bookFiles.tpl" availableFile=$availableFile publicationFormatId=$publicationFormatId publishedMonograph=$publishedMonograph currency=$currency}
 				</ul>
-		</div>
+			</div>
 		{/if}
 		{if !is_null($sharingCode) || !empty($blocks)}
 			<div id="sharingTab">
