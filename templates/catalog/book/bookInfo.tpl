@@ -65,7 +65,7 @@
 			{assign var=publicationFormats value=$publishedMonograph->getPublicationFormats()}
 			{assign var=currency value=$currentPress->getSetting('currency')}
 			{if !$loggedInUsername}<p>{translate key="catalog.loginRequiredForPayment"}</p>{/if}
-			{if $useCollapsedView}
+{*			{if $useCollapsedView}
 				<ul>
 					{foreach from=$publicationFormats item=publicationFormat}
 						{if $publicationFormat->getIsAvailable()}
@@ -77,15 +77,16 @@
 				{foreach from=$publicationFormats item=publicationFormat}
 					{assign var=publicationFormatId value=$publicationFormat->getId()}
 					{if $publicationFormat->getIsAvailable() && $availableFiles[$publicationFormatId]}
+
 						<div class="publicationFormatDownload" id="publicationFormat-download-{$publicationFormatId|escape}">
-							{$publicationFormat->getLocalizedName()|escape}
+							{$publicationFormat->getLocalizedName()|escape} *}
 							<ul>
 								{include file="catalog/book/bookFiles.tpl" availableFile=$availableFile publicationFormatId=$publicationFormatId publishedMonograph=$publishedMonograph currency=$currency}
 							</ul>
-						</div>
+{*						</div>
 					{/if}
 				{/foreach}
-			{/if}{* useCollapsedView *}
+			{/if} *}{* useCollapsedView *}
 		</div>
 		{/if}
 		{if !is_null($sharingCode) || !empty($blocks)}
