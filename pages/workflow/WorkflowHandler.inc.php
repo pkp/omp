@@ -66,6 +66,7 @@ class WorkflowHandler extends PKPWorkflowHandler {
 		// Create trivial notification in place on the form.
 		$notificationManager = new NotificationManager();
 		$user = $request->getUser();
+<<<<<<< HEAD
 		$notificationManager->createTrivialNotification($user->getId(), NOTIFICATION_TYPE_SUCCESS, array('contents' => __('notification.savedSubmissionMetadata')));
 
 		// Now, create a publication format for this submission.  Assume PDF, digital, and set to 'available'.
@@ -114,6 +115,70 @@ class WorkflowHandler extends PKPWorkflowHandler {
 					default:
 						$submissionFile->setDirectSalesPrice($request->getUserVar('price'));
 						$submissionFile->setSalesType('directSales');
+=======
+		$form = new CatalogEntrySubmissionReviewForm($submission->getId(), null, array('expeditedSubmission' => true));
+		if ($submission && $request->getUserVar('confirm') != '') {
+
+			// Process our submitted form in order to create the catalog entry.
+			$form->readInputData();
+			if($form->validate()) {
+				$form->execute($request);
+				// Create trivial notification in place on the form.
+				$notificationManager = new NotificationManager();
+				$user = $request->getUser();
+				$notificationManager->createTrivialNotification($user->getId(), NOTIFICATION_TYPE_SUCCESS, array('contents' => __('notification.savedSubmissionMetadata')));
+
+				// Now, create a publication format for this submission.  Assume PDF, digital, and set to 'available'.
+				$publicationFormatDao = DAORegistry::getDAO('PublicationFormatDAO');
+				$publicationFormat = $publicationFormatDao->newDataObject();
+				$publicationFormat->setPhysicalFormat(false);
+				$publicationFormat->setIsApproved(true);
+				$publicationFormat->setIsAvailable(true);
+				$publicationFormat->setSubmissionId($submission->getId());
+				$publicationFormat->setProductAvailabilityCode('20'); // ONIX code for Available.
+				$publicationFormat->setEntryKey('DA'); // ONIX code for Digital
+				$publicationFormat->setData('name', 'PDF', $submission->getLocale());
+				$publicationFormat->setSeq(REALLY_BIG_NUMBER);
+				$publicationFormatId = $publicationFormatDao->insertObject($publicationFormat);
+
+				// Next, create a galley PROOF file out of the submission file uploaded.
+				$submissionFileDao = DAORegistry::getDAO('SubmissionFileDAO');
+				import('lib.pkp.classes.submission.SubmissionFile'); // constants.
+				$submissionFiles = $submissionFileDao->getLatestRevisions($submission->getId(), SUBMISSION_FILE_SUBMISSION);
+				// Check for PDF files.
+				foreach ($submissionFiles as $submissionFile) {
+					// test both mime type and file extension in case the mime type isn't correct after uploading.
+					if ($submissionFile->getFileType() == 'application/pdf' || preg_match('/\.pdf$/', $submissionFile->getOriginalFileName())) {
+
+						// Get the path of the current file because we change the file stage in a bit.
+						$currentFilePath = $submissionFile->getFilePath();
+
+						// this will be a new file based on the old one.
+						$submissionFile->setFileId(null);
+						$submissionFile->setRevision(1);
+						$submissionFile->setViewable(true);
+						$submissionFile->setFileStage(SUBMISSION_FILE_PROOF);
+						$submissionFile->setAssocType(ASSOC_TYPE_REPRESENTATION);
+						$submissionFile->setAssocId($publicationFormatId);
+
+						// Assign the sales type and price for the submission file.
+						switch ($request->getUserVar('salesType')) {
+							case 'notAvailable':
+								$submissionFile->setDirectSalesPrice(null);
+								$submissionFile->setSalesType('notAvailable');
+								break;
+							case 'openAccess':
+								$submissionFile->setDirectSalesPrice(0);
+								$submissionFile->setSalesType('openAccess');
+								break;
+							default:
+								$submissionFile->setDirectSalesPrice($request->getUserVar('price'));
+								$submissionFile->setSalesType('directSales');
+						}
+
+						$submissionFileDao->insertObject($submissionFile, $currentFilePath);
+					}
+>>>>>>> 189e2c5d21eea633643680f5dfd07bbe8c9b15c3
 				}
 
 				$submissionFileDao->insertObject($submissionFile, $currentFilePath);

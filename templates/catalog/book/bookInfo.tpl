@@ -64,14 +64,15 @@
 			</div>
 		</div>
 		{if $availableFiles|@count != 0}
-		<div id="downloadTab">
-			{assign var=publicationFormats value=$publishedMonograph->getPublicationFormats()}
-			{assign var=currency value=$currentPress->getSetting('currency')}
-			{if !$loggedInUsername}<p>{translate key="catalog.loginRequiredForPayment"}</p>{/if}
+			<div id="downloadTab">
+				{assign var=publicationFormats value=$publishedMonograph->getPublicationFormats()}
+				{assign var=currency value=$currentPress->getSetting('currency')}
+				{if !$loggedInUsername}<p>{translate key="catalog.loginRequiredForPayment"}</p>{/if}
 				<ul>
 <<<<<<< HEAD
 					{include file="catalog/book/bookFiles.tpl" availableFile=$availableFile publicationFormatId=$publicationFormatId publishedMonograph=$publishedMonograph currency=$currency}
 				</ul>
+<<<<<<< HEAD
 =======
 					{foreach from=$publicationFormats item=publicationFormat}
 						{if $publicationFormat->getIsAvailable() && $publicationFormat->getIsApproved()}
@@ -94,6 +95,9 @@
 			{/if}{* useCollapsedView *}
 >>>>>>> pkp/master
 		</div>
+=======
+			</div>
+>>>>>>> 189e2c5d21eea633643680f5dfd07bbe8c9b15c3
 		{/if}
 		{if !is_null($sharingCode) || !empty($blocks)}
 			<div id="sharingTab">
