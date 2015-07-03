@@ -92,11 +92,20 @@ class DOIPubIdPlugin extends PubIdPlugin {
 		// Initialize variables for publication objects.
 		$publicationFormat = ($pubObjectType == 'PublicationFormat' ? $pubObject : null);
 		$monograph = ($pubObjectType == 'Monograph' ? $pubObject : null);
-
+		$file = ($pubObjectType == 'MonographFile' ? $pubObject : null);
 
 		// Get the press id of the object.
 		if (in_array($pubObjectType, array('PublicationFormat', 'Monograph'))) {
 			$pressId = $pubObject->getContextId();
+		} else if ($pubObjectType === 'MonographFile') {
+			$submissionId = $pubObject->getSubmissionId();
+			$submissionDao = Application::getSubmissionDAO();
+			$submission = $submissionDao->getById($submissionId);
+			if ($submission) {
+				$pressId = $submission->getContextId();
+			} else {
+				return null;
+			}
 		} else {
 			return null;
 		}
@@ -136,6 +145,10 @@ class DOIPubIdPlugin extends PubIdPlugin {
 					// %m - monograph id
 					$doiSuffix = String::regexp_replace('/%m/', $monograph->getId(), $doiSuffix);
 				}
+				if ($file) {
+					// %i - file id
+					$doiSuffix = String::regexp_replace('/%i/', $file->getId(), $doiSuffix);
+				}
 
 				break;
 
@@ -148,6 +161,9 @@ class DOIPubIdPlugin extends PubIdPlugin {
 				}
 				if ($monograph) {
 					$doiSuffix .= '.' . $monograph->getId();
+				}
+				if ($file) {
+					$doiSuffix .= '.' . $file->getId();
 				}
 		}
 		if (empty($doiSuffix)) return null;

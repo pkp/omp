@@ -98,6 +98,30 @@ class CatalogBookHandler extends Handler {
 				}
 			}
 		}
+
+		// Now do the same for PROOF files so the pubIds are fixed and the metadata headers are created.
+		$submissionFileDao = DAORegistry::getDAO('SubmissionFileDAO');
+		import('classes.monograph.MonographFile'); // File constants
+
+		foreach ((array) $pubIdPlugins as $plugin) {
+			if ($plugin->getEnabled()) {
+				foreach ($publicationFormats as $publicationFormat) {
+					$proofFiles = $submissionFileDao->getLatestRevisionsByAssocId(ASSOC_TYPE_PUBLICATION_FORMAT, $publicationFormat->getId(), $publicationFormat->getSubmissionId(), SUBMISSION_FILE_PROOF);
+					foreach ($proofFiles as $file) {
+						if ($file->getStoredPubId($plugin->getPubIdType()) == '') {
+							$plugin->getPubId($file);
+						}
+						if ($plugin->getPubIdType() == 'doi') {
+							$pubId = strip_tags($file->getStoredPubId('doi'));
+							if ($pubId != '') {
+								$metaCustomHeaders .= '<meta name="DC.Identifier.DOI" content="' . $pubId . '"/><meta name="citation_doi" content="'. $pubId . '"/>';
+							}
+						}
+					}
+				}
+			}
+		}
+
 		$templateMgr->assign('enabledPubIdTypes', $enabledPubIdTypes);
 		$templateMgr->assign('metaCustomHeaders', $metaCustomHeaders);
 		$templateMgr->assign('ccLicenseBadge', Application::getCCLicenseBadge($publishedMonograph->getLicenseURL()));
