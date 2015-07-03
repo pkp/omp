@@ -4,8 +4,8 @@
 /**
  * @file js/controllers/catalog/form/CatalogMetadataFormHandler.js
  *
- * Copyright (c) 2014 Simon Fraser University Library
- * Copyright (c) 2000-2014 John Willinsky
+ * Copyright (c) 2014-2015 Simon Fraser University Library
+ * Copyright (c) 2000-2015 John Willinsky
  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
  *
  * @class CatalogMetadataFormHandler
@@ -36,6 +36,23 @@
 
 		$('#audienceRangeExact', $form).change(
 				this.callbackWrapper(this.ensureValidAudienceRanges_));
+
+		// Permissions: If any of the permissions fields are filled, check the box
+		if (options.arePermissionsAttached) {
+			$form.find('#attachPermissions').prop('checked', true);
+		}
+
+		$('input[id^="copyrightHolder-"]', $form)
+				.keyup(this.callbackWrapper(this.checkAttachMetadata));
+		$('input[id^="copyrightYear-"]', $form)
+				.keyup(this.callbackWrapper(this.checkAttachMetadata));
+		$('input[id^="licenseURL-"]', $form)
+				.keyup(this.callbackWrapper(this.checkAttachMetadata));
+		$('input[id="confirm"]', $form).change(function() {
+			if (this.checked) {
+				$('#attachPermissions').prop('checked', true);
+			}
+		});
 	};
 	$.pkp.classes.Helper.inherits(
 			$.pkp.controllers.catalog.form.CatalogMetadataFormHandler,
@@ -84,6 +101,17 @@
 			$form.find('#audienceRangeFrom').val(this.audienceValues_[0]);
 			$form.find('#audienceRangeTo').val(this.audienceValues_[1]);
 		}
+	};
+
+
+	/**
+	 * Callback for when the selected issue changes.
+	 */
+	$.pkp.controllers.catalog.form.CatalogMetadataFormHandler.prototype.
+			checkAttachMetadata = function() {
+
+		var $element = this.getHtmlElement();
+		$element.find('#attachPermissions').prop('checked', true);
 	};
 
 

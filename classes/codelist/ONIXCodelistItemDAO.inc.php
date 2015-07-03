@@ -3,8 +3,8 @@
 /**
  * @file classes/codelist/ONIXCodelistItemDAO.inc.php
  *
- * Copyright (c) 2014 Simon Fraser University Library
- * Copyright (c) 2000-2014 John Willinsky
+ * Copyright (c) 2014-2015 Simon Fraser University Library
+ * Copyright (c) 2000-2015 John Willinsky
  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
  *
  * @class ONIXCodelistItemDAO
@@ -119,11 +119,21 @@ class ONIXCodelistItemDAO extends DAO {
 		return null;
 	}
 
+	/**
+	 * Get the filename for the ONIX codelist document. Use a localized
+	 * version if available, but if not, fall back on the master locale.
+	 * @param $locale string Locale code
+	 * @return string Path and filename to ONIX codelist document
+	 */
 	function getFilename($locale) {
-		if (!AppLocale::isLocaleValid($locale)) {
-			$locale = AppLocale::MASTER_LOCALE;
+		$masterLocale = MASTER_LOCALE;
+		$localizedFile = "locale/$locale/ONIX_BookProduct_CodeLists.xsd";
+		if (AppLocale::isLocaleValid($locale) && file_exists($localizedFile)) {
+			return $localizedFile;
 		}
-		return "locale/$locale/ONIX_BookProduct_CodeLists.xsd";
+
+		// Fall back on the version for the master locale.
+		return "locale/$masterLocale/ONIX_BookProduct_CodeLists.xsd";
 	}
 
 	/**

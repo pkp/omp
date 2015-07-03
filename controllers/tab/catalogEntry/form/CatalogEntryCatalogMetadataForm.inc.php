@@ -3,8 +3,8 @@
 /**
  * @file controllers/tab/catalogEntry/form/CatalogEntryCatalogMetadataForm.inc.php
  *
- * Copyright (c) 2014 Simon Fraser University Library
- * Copyright (c) 2003-2014 John Willinsky
+ * Copyright (c) 2014-2015 Simon Fraser University Library
+ * Copyright (c) 2003-2015 John Willinsky
  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
  *
  * @class CatalogEntryCatalogMetadataForm
@@ -16,11 +16,6 @@
 // Our two types of images.
 define('SUBMISSION_IMAGE_TYPE_THUMBNAIL', 1);
 define('SUBMISSION_IMAGE_TYPE_CATALOG', 2);
-
-// Thumbnails will be scaled down to fall within these dimensions, preserving
-// aspect ratio, and not scaling up beyond the present resolution.
-define('THUMBNAIL_MAX_WIDTH', 106);
-define('THUMBNAIL_MAX_HEIGHT', 100);
 
 // Define a second pair for the Catalog display, to ensure correct rendering
 // of the page.
@@ -69,6 +64,13 @@ class CatalogEntryCatalogMetadataForm extends Form {
 		$this->_stageId = $stageId;
 		$this->_formParams = $formParams;
 		$this->_userId = $userId;
+
+		$this->addCheck(new FormValidatorURL($this, 'licenseURL', 'optional', 'form.url.invalid'));
+
+		if (array_key_exists('expeditedSubmission', $formParams)) {
+			// If we are expediting, make the confirmation checkbox mandatory.
+			$this->addCheck(new FormValidator($this, 'confirm', 'required', 'submission.catalogEntry.confirm.required'));
+		}
 	}
 
 	/**
@@ -116,9 +118,21 @@ class CatalogEntryCatalogMetadataForm extends Form {
 			LOCALE_COMPONENT_APP_SUBMISSION
 		);
 
-		$monograph = $this->getMonograph();
+		$submission = $this->getMonograph();
 		$publishedMonographDao = DAORegistry::getDAO('PublishedMonographDAO');
-		$this->_publishedMonograph = $publishedMonographDao->getById($monograph->getId(), null, false);
+		$this->_publishedMonograph = $publishedMonographDao->getById($submission->getId(), null, false);
+
+		$copyrightHolder = $submission->getCopyrightHolder(null);
+		$copyrightYear = $submission->getCopyrightYear();
+		$licenseURL = $submission->getLicenseURL();
+
+		$this->_data = array(
+			'copyrightHolder' => $submission->getDefaultCopyrightHolder(null), // Localized
+			'copyrightYear' => $submission->getDefaultCopyrightYear(),
+			'licenseURL' => $submission->getDefaultLicenseURL(),
+			'arePermissionsAttached' => !empty($copyrightHolder) || !empty($copyrightYear) || !empty($licenseURL),
+			'confirm' => ($this->_publishedMonograph && $this->_publishedMonograph->getDatePublished())?true:false,
+		);
 	}
 
 
@@ -129,7 +143,7 @@ class CatalogEntryCatalogMetadataForm extends Form {
 	 * Get the Monograph
 	 * @return Monograph
 	 */
-	function &getMonograph() {
+	function getMonograph() {
 		return $this->_monograph;
 	}
 
@@ -137,7 +151,7 @@ class CatalogEntryCatalogMetadataForm extends Form {
 	 * Get the PublishedMonograph
 	 * @return PublishedMonograph
 	 */
-	function &getPublishedMonograph() {
+	function getPublishedMonograph() {
 		return $this->_publishedMonograph;
 	}
 
@@ -162,7 +176,9 @@ class CatalogEntryCatalogMetadataForm extends Form {
 	function readInputData() {
 		$vars = array(
 			'audience', 'audienceRangeQualifier', 'audienceRangeFrom', 'audienceRangeTo', 'audienceRangeExact',
+			'copyrightYear', 'copyrightHolder', 'licenseURL', 'attachPermissions',
 			'temporaryFileId', // Cover image
+			'confirm',
 		);
 
 		$this->readUserVars($vars);
@@ -199,6 +215,7 @@ class CatalogEntryCatalogMetadataForm extends Form {
 		parent::execute();
 
 		$monograph = $this->getMonograph();
+		$monographDao = DAORegistry::getDAO('MonographDAO');
 		$publishedMonographDao = DAORegistry::getDAO('PublishedMonographDAO');
 		$publishedMonograph = $publishedMonographDao->getById($monograph->getId(), null, false); /* @var $publishedMonograph PublishedMonograph */
 		$isExistingEntry = $publishedMonograph?true:false;
@@ -236,6 +253,7 @@ class CatalogEntryCatalogMetadataForm extends Form {
 			assert($this->_sizeArray && $this->_imageExtension);
 
 			// Load the cover image for surrogate production
+			$cover = null; // Scrutinizer
 			switch ($this->_imageExtension) {
 				case '.jpg': $cover = imagecreatefromjpeg($temporaryFilePath); break;
 				case '.png': $cover = imagecreatefrompng($temporaryFilePath); break;
@@ -248,7 +266,11 @@ class CatalogEntryCatalogMetadataForm extends Form {
 			$simpleMonographFileManager->copyFile($temporaryFile->getFilePath(), $basePath . $filename);
 
 			// Generate surrogate images (thumbnail and catalog image)
-			$thumbnailImageInfo = $this->_buildSurrogateImage($cover, $basePath, SUBMISSION_IMAGE_TYPE_THUMBNAIL);
+			$press = $request->getPress();
+			$coverThumbnailsMaxWidth = $press->getSetting('coverThumbnailsMaxWidth');
+			$coverThumbnailsMaxHeight = $press->getSetting('coverThumbnailsMaxHeight');
+
+			$thumbnailImageInfo = $this->_buildSurrogateImage($cover, $basePath, SUBMISSION_IMAGE_TYPE_THUMBNAIL, $coverThumbnailsMaxWidth, $coverThumbnailsMaxHeight);
 			$catalogImageInfo = $this->_buildSurrogateImage($cover, $basePath, SUBMISSION_IMAGE_TYPE_CATALOG);
 
 			// Clean up
@@ -274,11 +296,81 @@ class CatalogEntryCatalogMetadataForm extends Form {
 			$temporaryFileManager->deleteFile($temporaryFileId, $this->_userId);
 		}
 
+		if ($this->getData('attachPermissions')) {
+			$monograph->setCopyrightYear($this->getData('copyrightYear'));
+			$monograph->setCopyrightHolder($this->getData('copyrightHolder'), null); // Localized
+			$monograph->setLicenseURL($this->getData('licenseURL'));
+		} else {
+			$monograph->setCopyrightYear(null);
+			$monograph->setCopyrightHolder(null, null);
+			$monograph->setLicenseURL(null);
+		}
+		$monographDao->updateObject($monograph);
+
 		// Update the modified fields or insert new.
 		if ($isExistingEntry) {
 			$publishedMonographDao->updateObject($publishedMonograph);
 		} else {
 			$publishedMonographDao->insertObject($publishedMonograph);
+		}
+
+		import('classes.publicationFormat.PublicationFormatTombstoneManager');
+		$publicationFormatTombstoneMgr = new PublicationFormatTombstoneManager();
+		$publicationFormatDao = DAORegistry::getDAO('PublicationFormatDAO');
+		$publicationFormatFactory = $publicationFormatDao->getBySubmissionId($monograph->getId());
+		$publicationFormats = $publicationFormatFactory->toAssociativeArray();
+		$notificationMgr = new NotificationManager();
+		if ($this->getData('confirm')) {
+			// Update the monograph status.
+			$monograph->setStatus(STATUS_PUBLISHED);
+			$monographDao->updateObject($monograph);
+
+			$publishedMonograph->setDatePublished(Core::getCurrentDate());
+			$publishedMonographDao->updateObject($publishedMonograph);
+
+			$notificationMgr->updateNotification(
+				$request,
+				array(NOTIFICATION_TYPE_APPROVE_SUBMISSION),
+				null,
+				ASSOC_TYPE_MONOGRAPH,
+				$publishedMonograph->getId()
+			);
+
+			// Remove publication format tombstones.
+			$publicationFormatTombstoneMgr->deleteTombstonesByPublicationFormats($publicationFormats);
+
+			// Update the search index for this published monograph.
+			import('classes.search.MonographSearchIndex');
+			MonographSearchIndex::indexMonographMetadata($monograph);
+
+			// Log the publication event.
+			import('lib.pkp.classes.log.SubmissionLog');
+			SubmissionLog::logEvent($request, $monograph, SUBMISSION_LOG_METADATA_PUBLISH, 'submission.event.metadataPublished');
+		} else {
+			if ($isExistingEntry) {
+				// Update the monograph status.
+				$monograph->setStatus(STATUS_QUEUED);
+				$monographDao->updateObject($monograph);
+
+				// Unpublish monograph.
+				$publishedMonograph->setDatePublished(null);
+				$publishedMonographDao->updateObject($publishedMonograph);
+
+				$notificationMgr->updateNotification(
+					$request,
+					array(NOTIFICATION_TYPE_APPROVE_SUBMISSION),
+					null,
+					ASSOC_TYPE_MONOGRAPH,
+					$publishedMonograph->getId()
+				);
+
+				// Create tombstones for each publication format.
+				$publicationFormatTombstoneMgr->insertTombstonesByPublicationFormats($publicationFormats, $request->getContext());
+
+				// Log the unpublication event.
+				import('lib.pkp.classes.log.SubmissionLog');
+				SubmissionLog::logEvent($request, $monograph, SUBMISSION_LOG_METADATA_UNPUBLISH, 'submission.event.metadataUnpublished');
+			}
 		}
 	}
 
@@ -289,7 +381,7 @@ class CatalogEntryCatalogMetadataForm extends Form {
 	 * @param int $type the type of image to create.
 	 * @return array the details for the image (dimensions, file name, etc).
 	 */
-	function _buildSurrogateImage(&$cover, $basePath, $type) {
+	function _buildSurrogateImage($cover, $basePath, $type, $coverThumbnailsMaxWidth, $coverThumbnailsMaxHeight) {
 		// Calculate the scaling ratio for each dimension.
 		$maxWidth = 0;
 		$maxHeight = 0;
@@ -297,8 +389,8 @@ class CatalogEntryCatalogMetadataForm extends Form {
 
 		switch ($type) {
 			case SUBMISSION_IMAGE_TYPE_THUMBNAIL:
-				$maxWidth = THUMBNAIL_MAX_WIDTH;
-				$maxHeight = THUMBNAIL_MAX_HEIGHT;
+				$maxWidth = $coverThumbnailsMaxWidth;
+				$maxHeight = $coverThumbnailsMaxHeight;
 				$surrogateFilename = 'thumbnail' . $this->_imageExtension;
 				break;
 			case SUBMISSION_IMAGE_TYPE_CATALOG:
@@ -316,10 +408,8 @@ class CatalogEntryCatalogMetadataForm extends Form {
 
 		$surrogateWidth = round($ratio * $this->_sizeArray[0]);
 		$surrogateHeight = round($ratio * $this->_sizeArray[1]);
-		$surrogate = imagecreatetruecolor($maxWidth, $maxHeight);
-		$whiteColor = imagecolorallocate($surrogate, 255, 255, 255);
-		imagefill($surrogate, 0, 0, $whiteColor);
-		imagecopyresampled($surrogate, $cover, ($maxWidth - $surrogateWidth)/2, ($maxHeight - $surrogateHeight)/2, 0, 0, $surrogateWidth, $surrogateHeight, $this->_sizeArray[0], $this->_sizeArray[1]);
+		$surrogate = imagecreatetruecolor($surrogateWidth, $surrogateHeight);
+		imagecopyresampled($surrogate, $cover, 0, 0, 0, 0, $surrogateWidth, $surrogateHeight, $this->_sizeArray[0], $this->_sizeArray[1]);
 
 		switch ($this->_imageExtension) {
 			case '.jpg': imagejpeg($surrogate, $basePath . $surrogateFilename); break;
@@ -327,7 +417,7 @@ class CatalogEntryCatalogMetadataForm extends Form {
 			case '.gif': imagegif($surrogate, $basePath . $surrogateFilename); break;
 		}
 		imagedestroy($surrogate);
-		return array('filename' => $surrogateFilename, 'width' => $maxWidth, 'height' => $maxHeight);
+		return array('filename' => $surrogateFilename, 'width' => $surrogateWidth, 'height' => $surrogateHeight);
 	}
 }
 

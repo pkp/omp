@@ -1,8 +1,8 @@
 {**
  * controllers/modals/submissionMetadata/form/catalogEntrySubmissionReviewForm.tpl
  *
- * Copyright (c) 2014 Simon Fraser University Library
- * Copyright (c) 2003-2014 John Willinsky
+ * Copyright (c) 2014-2015 Simon Fraser University Library
+ * Copyright (c) 2003-2015 John Willinsky
  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
  *
  * Display a submission's catalog entry form.
@@ -40,13 +40,6 @@
 	<input type="hidden" name="stageId" value="{$stageId|escape}" />
 	<input type="hidden" name="displayedInContainer" value="{$formParams.displayedInContainer|escape}" />
 	<input type="hidden" name="tab" value="submission" />
-
-	{if !$formParams.hideSubmit}
-		{fbvFormSection list="true"}
-			{if $isPublished}{assign var=confirm value=true}{else}{assign var=confirm value=false}{/if}
-			{fbvElement type="checkbox" id="confirm" checked=$confirm label="submission.catalogEntry.confirm" value="confirm"}
-		{/fbvFormSection}
-	{/if}
 
 	{if $formParams.expeditedSubmission}
 		{* pull in the approved proof form fields so the Editor has a chance to set a price and the access status *}

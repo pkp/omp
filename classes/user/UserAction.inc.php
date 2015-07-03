@@ -3,8 +3,8 @@
 /**
  * @file classes/user/UserAction.inc.php
  *
- * Copyright (c) 2014 Simon Fraser University Library
- * Copyright (c) 2003-2014 John Willinsky
+ * Copyright (c) 2014-2015 Simon Fraser University Library
+ * Copyright (c) 2003-2015 John Willinsky
  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
  *
  * @class UserAction
@@ -32,13 +32,6 @@ class UserAction {
 	 * @param $newUserId int The user ID to receive all "assets" (i.e. submissions) from old user
 	 */
 	function mergeUsers($oldUserId, $newUserId) {
-		$monographDao = DAORegistry::getDAO('MonographDAO');
-		$monographs = $monographDao->getByUserId($oldUserId);
-		while ($monograph = $monographs->next()) {
-			$monograph->setUserId($newUserId);
-			$monographDao->updateObject($monograph);
-		}
-
 		$submissionFileDao = DAORegistry::getDAO('SubmissionFileDAO');
 		$submissionFileDao->transferOwnership($oldUserId, $newUserId);
 
@@ -107,6 +100,21 @@ class UserAction {
 			}
 		}
 		$userGroupDao->deleteAssignmentsByUserId($oldUserId);
+
+		// Transfer stage assignments.
+		$stageAssignmentDao = DAORegistry::getDAO('StageAssignmentDAO');
+			$stageAssignments = $stageAssignmentDao->getByUserId($oldUserId);
+			while ($stageAssignment = $stageAssignments->next()) {
+			$duplicateAssignments = $stageAssignmentDao->getBySubmissionAndStageId($stageAssignment->getSubmissionId(), null, $stageAssignment->getUserGroupId(), $newUserId);
+			if (!$duplicateAssignments->next()) {
+				// If no similar assignments already exist, transfer this one.
+				$stageAssignment->setUserId($newUserId);
+				$stageAssignmentDao->updateObject($stageAssignment);
+			} else {
+				// There's already a stage assignment for the new user; delete.
+				$stageAssignmentDao->deleteObject($stageAssignment);
+			}
+		}
 
 		$userDao = DAORegistry::getDAO('UserDAO');
 		$userDao->deleteUserById($oldUserId);

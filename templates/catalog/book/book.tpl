@@ -1,17 +1,18 @@
 {**
  * templates/catalog/book/book.tpl
  *
- * Copyright (c) 2014 Simon Fraser University Library
- * Copyright (c) 2003-2014 John Willinsky
+ * Copyright (c) 2014-2015 Simon Fraser University Library
+ * Copyright (c) 2003-2015 John Willinsky
  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
  *
  * Display a public-facing book view in the catalog.
+ *
+ * Available data:
+ *  $representationId int Publication format ID
+ *  $availableFiles array Array of available MonographFiles
+ *  $publishedMonograph PublishedMonograph The published monograph object.
  *}
-{strip}
-{assign var="suppressPageTitle" value=true}
-{assign var="pageTitleTranslated" value=$publishedMonograph->getLocalizedFullTitle()}
-{include file="common/header.tpl"}
-{/strip}
+{include file="common/header.tpl" suppressPageTitle=true pageTitleTranslated=$publishedMonograph->getLocalizedFullTitle()}
 
 <div class="pkp_catalog_book">
 

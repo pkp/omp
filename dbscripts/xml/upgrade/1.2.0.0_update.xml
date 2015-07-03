@@ -4,8 +4,8 @@
 <!--
   * 1.2.0.0_update.xml
   *
-  * Copyright (c) 2014 Simon Fraser University Library
-  * Copyright (c) 2003-2014 John Willinsky
+  * Copyright (c) 2014-2015 Simon Fraser University Library
+  * Copyright (c) 2003-2015 John Willinsky
   * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
   *
   * 1.2.0.0 database updates XML file.
@@ -20,4 +20,19 @@
 		<query driver="mysql">DELETE ugs FROM user_group_stage ugs JOIN user_groups ug WHERE ug.role_id=1048576 AND ug.user_group_id=ugs.user_group_id</query>
 		<query driver="postgres7">DELETE FROM user_group_stage ugs USING user_groups ug WHERE ug.role_id=1048576 AND ug.user_group_id=ugs.user_group_id</query>
 	</sql>
+
+	<!-- Bug #8912: consider browse block settings -->
+	<sql>
+		<!-- enable all options per default -->
+		<query>INSERT INTO plugin_settings (plugin_name, context_id, setting_name, setting_value, setting_type) SELECT DISTINCT ps.plugin_name, ps.context_id, 'browseNewReleases', '1', 'bool' FROM plugin_settings ps WHERE ps.plugin_name = 'browseblockplugin'</query>
+		<query>INSERT INTO plugin_settings (plugin_name, context_id, setting_name, setting_value, setting_type) SELECT DISTINCT ps.plugin_name, ps.context_id, 'browseCategories', '1', 'bool' FROM plugin_settings ps WHERE ps.plugin_name = 'browseblockplugin'</query>
+		<query>INSERT INTO plugin_settings (plugin_name, context_id, setting_name, setting_value, setting_type) SELECT DISTINCT ps.plugin_name, ps.context_id, 'browseSeries', '1', 'bool' FROM plugin_settings ps WHERE ps.plugin_name = 'browseblockplugin'</query>
+	</sql>
+	
+	<!-- Issue #412: enable size configuration of the cover thumnails. -->
+	<sql>
+		<!-- insert the default sizes -->
+		<query>INSERT INTO press_settings (press_id, setting_name, setting_value, setting_type) SELECT p.press_id, 'coverThumbnailsMaxWidth', '106', 'int' FROM presses p</query>
+		<query>INSERT INTO press_settings (press_id, setting_name, setting_value, setting_type) SELECT p.press_id, 'coverThumbnailsMaxHeight', '100', 'int' FROM presses p</query>
+	</sql>	
 </data>

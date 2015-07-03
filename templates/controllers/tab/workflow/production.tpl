@@ -1,8 +1,8 @@
 {**
  * templates/controllers/tab/workflow/production.tpl
  *
- * Copyright (c) 2014 Simon Fraser University Library
- * Copyright (c) 2003-2014 John Willinsky
+ * Copyright (c) 2014-2015 Simon Fraser University Library
+ * Copyright (c) 2003-2015 John Willinsky
  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
  *
  * Production workflow stage
@@ -13,7 +13,7 @@
 		$('#production').pkpHandler(
 			'$.pkp.pages.workflow.ProductionHandler',
 			{ldelim}
-				formatsTabContainerSelector: '#publicationFormatTabsContainer',
+				formatsTabContainerSelector: '#representationsTabsContainer',
 				submissionProgressBarSelector: '#submissionProgressBarDiv'
 			{rdelim}
 		);
@@ -30,19 +30,18 @@
 	{load_url_in_div id="productionReadyFilesGridDiv" url=$productionReadyFilesGridUrl}
 
 	{if array_intersect(array(ROLE_ID_MANAGER, ROLE_ID_SUB_EDITOR), $userRoles)}
-		{fbvFormArea id="publicationFormats"}
+		{fbvFormArea id="representations"}
 			{fbvFormSection}
-				<!--  Formats -->
-				{url|assign:formatGridUrl router=$smarty.const.ROUTE_COMPONENT component="grid.catalogEntry.PublicationFormatGridHandler" op="fetchGrid" submissionId=$submission->getId() escape=false}
-				{load_url_in_div id="formatsGridContainer"|uniqid url=$formatGridUrl}
+				<!--  Representations -->
+				{url|assign:representationsGridUrl router=$smarty.const.ROUTE_COMPONENT component="grid.catalogEntry.PublicationFormatGridHandler" op="fetchGrid" submissionId=$submission->getId() escape=false}
+				{load_url_in_div id="formatsGridContainer"|uniqid url=$representationsGridUrl}
 			{/fbvFormSection}
 		{/fbvFormArea}
 	{else}
 		<h3>{translate key="submission.publicationFormats"}</h3>
 	{/if}
 
-	<div id='publicationFormatTabsContainer'>
-		{include file="controllers/tab/workflow/productionFormatsTab.tpl" formatTabsId=$formatTabsId publicationFormats=$representations}
+	<div id="representationsTabsContainer">
+		{include file="controllers/tab/workflow/productionFormatsTab.tpl" formatTabsId=$formatTabsId representations=$representations}
 	</div>
 </div>
-

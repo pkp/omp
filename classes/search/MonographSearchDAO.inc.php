@@ -3,8 +3,8 @@
 /**
  * @file classes/search/MonographSearchDAO.inc.php
  *
- * Copyright (c) 2014 Simon Fraser University Library
- * Copyright (c) 2003-2014 John Willinsky
+ * Copyright (c) 2014-2015 Simon Fraser University Library
+ * Copyright (c) 2003-2015 John Willinsky
  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
  *
  * @class MonographSearchDAO
@@ -77,7 +77,7 @@ class MonographSearchDAO extends SubmissionSearchDAO {
 				submission_search_objects o NATURAL JOIN ' . $sqlFrom . '
 			WHERE
 				s.submission_id = ps.submission_id AND o.submission_id = s.submission_id AND ' . $sqlWhere . '
-			GROUP BY o.submission_id
+			GROUP BY o.submission_id, s.context_id, ps.date_published
 			ORDER BY count DESC
 			LIMIT ' . $limit,
 			$params,

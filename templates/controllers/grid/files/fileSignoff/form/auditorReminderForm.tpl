@@ -1,8 +1,8 @@
 {**
  * templates/controllers/grid/files/fileSignoff/auditorReminderForm.tpl
  *
- * Copyright (c) 2014 Simon Fraser University Library
- * Copyright (c) 2003-2014 John Willinsky
+ * Copyright (c) 2014-2015 Simon Fraser University Library
+ * Copyright (c) 2003-2015 John Willinsky
  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
  *
  * Display the form to send a auditing reminder-- Contains a user-editable message field (all other fields are static)
@@ -21,8 +21,8 @@
 		<input type="hidden" name="stageId" value="{$stageId|escape}" />
 		<input type="hidden" name="signoffId" value="{$signoffId|escape}" />
 		{* This form is used in production stage, where we need a publication format id *}
-		{if $publicationFormatId}
-			<input type="hidden" name="publicationFormatId" value="{$publicationFormatId}" />
+		{if $representationId}
+			<input type="hidden" name="representationId" value="{$representationId|escape}" />
 		{/if}
 
 		{fbvFormSection title="common.user"}

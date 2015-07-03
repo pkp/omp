@@ -1,13 +1,17 @@
 {**
  * templates/catalog/book/googlescholar.tpl
  *
- * Copyright (c) 2014 Simon Fraser University Library
- * Copyright (c) 2003-2014 John Willinsky
+ * Copyright (c) 2014-2015 Simon Fraser University Library
+ * Copyright (c) 2003-2015 John Willinsky
  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
  *
  * Metadata elements for monographs based on preferred types for Google Scholar
  *
+ * Available data:
+ *  $availableFiles array Array of available MonographFiles
+ *  $publishedMonograph PublishedMonograph The published monograph object.
  *}
+
 {**
  * Google Scholar tags should only be included when there is a single PDF
  * available. (See bug #8542.) Ensure that this is the case before
@@ -17,10 +21,10 @@
 {assign var=viablePdfCount value=0}
 {foreach from=$publicationFormats item=publicationFormat}
 	{if $publicationFormat->getIsApproved() && !$publicationFormat->getPhysicalFormat()}
-		{assign var="publicationFormatId" value=$publicationFormat->getId()}
-		{if !empty($availableFiles.$publicationFormatId)}
-			{assign var=publicationFormatFiles value=$availableFiles.$publicationFormatId}
-			{foreach from=$availableFiles.$publicationFormatId item=availableFile}
+		{assign var="representationId" value=$publicationFormat->getId()}
+		{if !empty($availableFiles.$representationId)}
+			{assign var=publicationFormatFiles value=$availableFiles.$representationId}
+			{foreach from=$availableFiles.$representationId item=availableFile}
 				{if $availableFile->getDocumentType()==$smarty.const.DOCUMENT_TYPE_PDF}
 					{assign var=viablePdf value=$availableFile}
 					{assign var=viablePublicationFormat value=$publicationFormat}

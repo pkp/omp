@@ -1,12 +1,15 @@
 {**
  * templates/catalog/book/dublincore.tpl
  *
- * Copyright (c) 2014 Simon Fraser University Library
- * Copyright (c) 2003-2014 John Willinsky
+ * Copyright (c) 2014-2015 Simon Fraser University Library
+ * Copyright (c) 2003-2015 John Willinsky
  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
  *
  * Dublin Core metadata elements for published monographs.
  *
+ * Available data:
+ *  $availableFiles array Array of available MonographFiles
+ *  $publishedMonograph PublishedMonograph The published monograph object.
  *}
 <link rel="schema.DC" href="http://purl.org/dc/elements/1.1/" />
 

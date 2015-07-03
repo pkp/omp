@@ -3,8 +3,8 @@
 <!--
   * locale/el_GR/emailTemplateData.xml
   *
-  * Copyright (c) 2014 Simon Fraser University Library
-  * Copyright (c) 2003-2014 John Willinsky
+  * Copyright (c) 2014-2015 Simon Fraser University Library
+  * Copyright (c) 2003-2015 John Willinsky
   * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
   *
   * Localized email templates XML file.
@@ -277,15 +277,6 @@ URL υποβολής: <a href="{$submissionReviewUrl}">{$submissionReviewUrl}</a
 {$reviewerName}]]></body>
 		<description>Το συγκεκριμένο μήνυμα αποστέλλεται από τον Αξιολογητή στον Επιμελητή Σειράς ως απάντηση στο αίτημα αξιολόγησης για να τον ενημερώσει ότι δεν μπορεί να αναλάβει την συγκεκριμένη αξιολόγηση.</description>
 	</email_text>
-	<email_text key="REVIEW_COMPLETE">
-		<subject>Ολοκλήρωση αξιολόγησης εργασίας</subject>
-		<body><![CDATA[{$editorialContactName}:<br />
-<br />
-Θα ήθελα να σας ενημέρωση ότι ολοκλήρωσα την αξιολόγηση της εργασίας &quot;{$submissionTitle}&quot; για τις εκδόσεις {$contextName}, και έχω ήδη υποβάλλει τη σχετική εισήγησή μου, &quot;{$recommendation}.&quot;<br />
-<br />
-{$reviewerName}]]></body>
-		<description>Το συγκεκριμένο μήνυμα αποστέλλεται από τον Αξιολογητή στον Επιμελητή Σειράς για να τον ενημερώσει για την ολοκλήρωση της αξιολόγησης και για την καταχώριση των σχολίων και της σχετικής εισήγησής του στον δικτυακό τόπο της έκδοσης.</description>
-	</email_text>
 	<email_text key="REVIEW_ACK">
 		<subject>Επιβεβαίωση λήψης αξιολόγησης εργασίας</subject>
 		<body><![CDATA[{$reviewerName}:<br />
@@ -376,7 +367,6 @@ Username: {$authorUsername}<br />
 <br />
 <br />
 URL εργασίας: <a href="{$submissionUrl}">{$submissionUrl}</a><br />
-Username: {$authorUsername}<br />
 <br />
 {$editorialContactSignature}]]></body>
 		<description>This email from the Editor or Series Editor to an Author notifies them that their submission is being sent to an external review.</description>
@@ -388,7 +378,6 @@ Username: {$authorUsername}<br />
 Η επιμέλεια της εργασίας σας με τίτλο, &quot;{$submissionTitle},&quot; έχει ολοκληρωθεί.  Η εργασία σας έχει αποσταλεί ώστε να ξεκινήσει η διαδικασία παραγωγής, επεξεργασίας και δημοσίευσης του έργου σας.<br />
 <br />
 URL εργασίας: <a href="{$submissionUrl}">{$submissionUrl}</a><br />
-Username: {$authorUsername}<br />
 <br />
 {$editorialContactSignature}]]></body>
 		<description>This email from the Editor or Series Editor to an Author notifies them that their submission is being sent to production.</description>
@@ -402,7 +391,6 @@ Username: {$authorUsername}<br />
 <br />
 <br />
 URL εργασίας: <a href="{$submissionUrl}">{$submissionUrl}</a><br />
-Username: {$authorUsername}<br />
 <br />
 {$editorialContactSignature}]]></body>
 		<description>This email from the Editor or Series Editor to an Author notifies them of a final decision regarding their submission.</description>
@@ -416,7 +404,6 @@ Username: {$authorUsername}<br />
 <br />
 <br />
 URL εργασίας: <a href="{$submissionUrl}">{$submissionUrl}</a><br />
-Username: {$authorUsername}<br />
 <br />
 {$editorialContactSignature}]]></body>
 		<description>This email from the Editor or Series Editor to an Author notifies them of a final decision regarding their submission.</description>
@@ -430,7 +417,6 @@ Username: {$authorUsername}<br />
 <br />
 <br />
 URL εργασίας: <a href="{$submissionUrl}">{$submissionUrl}</a><br />
-Username: {$authorUsername}<br />
 <br />
 {$editorialContactSignature}]]></body>
 		<description>This email from the Editor or Series Editor to an Author notifies them of a final decision regarding their submission.</description>

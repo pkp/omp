@@ -3,8 +3,8 @@
 /**
  * @file controllers/grid/settings/category/form/CategoryForm.inc.php
  *
- * Copyright (c) 2014 Simon Fraser University Library
- * Copyright (c) 2003-2014 John Willinsky
+ * Copyright (c) 2014-2015 Simon Fraser University Library
+ * Copyright (c) 2003-2015 John Willinsky
  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
  *
  * @class CategoryForm
@@ -14,9 +14,6 @@
  */
 
 import('lib.pkp.classes.form.Form');
-
-define('THUMBNAIL_MAX_WIDTH', 106);
-define('THUMBNAIL_MAX_HEIGHT', 100);
 
 class CategoryForm extends Form {
 	/** @var Id of the category being edited */
@@ -236,18 +233,19 @@ class CategoryForm extends Form {
 			}
 			assert($image);
 
+			$press = $request->getPress();
+			$coverThumbnailsMaxWidth = $press->getSetting('coverThumbnailsMaxWidth');
+			$coverThumbnailsMaxHeight = $press->getSetting('coverThumbnailsMaxHeight');
 			$thumbnailFilename = $category->getId() . '-category-thumbnail' . $this->_imageExtension;
-			$xRatio = min(1, THUMBNAIL_MAX_WIDTH / $this->_sizeArray[0]);
-			$yRatio = min(1, THUMBNAIL_MAX_HEIGHT / $this->_sizeArray[1]);
+			$xRatio = min(1, $coverThumbnailsMaxWidth / $this->_sizeArray[0]);
+			$yRatio = min(1, $coverThumbnailsMaxHeight / $this->_sizeArray[1]);
 
 			$ratio = min($xRatio, $yRatio);
 
 			$thumbnailWidth = round($ratio * $this->_sizeArray[0]);
 			$thumbnailHeight = round($ratio * $this->_sizeArray[1]);
-			$thumbnail = imagecreatetruecolor(THUMBNAIL_MAX_WIDTH, THUMBNAIL_MAX_HEIGHT);
-			$whiteColor = imagecolorallocate($thumbnail, 255, 255, 255);
-			imagefill($thumbnail, 0, 0, $whiteColor);
-			imagecopyresampled($thumbnail, $image, (THUMBNAIL_MAX_WIDTH - $thumbnailWidth)/2, (THUMBNAIL_MAX_HEIGHT - $thumbnailHeight)/2, 0, 0, $thumbnailWidth, $thumbnailHeight, $this->_sizeArray[0], $this->_sizeArray[1]);
+			$thumbnail = imagecreatetruecolor($thumbnailWidth, $thumbnailHeight);
+			imagecopyresampled($thumbnail, $image, 0, 0, 0, 0, $thumbnailWidth, $thumbnailHeight, $this->_sizeArray[0], $this->_sizeArray[1]);
 
 			// Copy the new file over
 			$filename = $category->getId() . '-category' . $this->_imageExtension;
@@ -266,8 +264,8 @@ class CategoryForm extends Form {
 				'width' => $this->_sizeArray[0],
 				'height' => $this->_sizeArray[1],
 				'thumbnailName' => $thumbnailFilename,
-				'thumbnailWidth' => THUMBNAIL_MAX_WIDTH,
-				'thumbnailHeight' => THUMBNAIL_MAX_HEIGHT,
+				'thumbnailWidth' => $thumbnailWidth,
+				'thumbnailHeight' => $thumbnailHeight,
 				'uploadName' => $temporaryFile->getOriginalFileName(),
 				'dateUploaded' => Core::getCurrentDate(),
 			));

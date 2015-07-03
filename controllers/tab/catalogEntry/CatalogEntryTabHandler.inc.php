@@ -3,8 +3,8 @@
 /**
  * @file controllers/tab/catalogEntry/CatalogEntryTabHandler.inc.php
  *
- * Copyright (c) 2014 Simon Fraser University Library
- * Copyright (c) 2003-2014 John Willinsky
+ * Copyright (c) 2014-2015 Simon Fraser University Library
+ * Copyright (c) 2003-2015 John Willinsky
  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
  *
  * @class CatalogEntryTabHandler
@@ -64,20 +64,20 @@ class CatalogEntryTabHandler extends PublicationEntryTabHandler {
 	 */
 	function publicationMetadata($args, $request) {
 
-		$publicationFormatId = (int) $request->getUserVar('publicationFormatId');
+		$representationId = (int) $request->getUserVar('representationId');
 		$publicationFormatDao = DAORegistry::getDAO('PublicationFormatDAO');
 
 		$submission = $this->getSubmission();
 		$stageId = $this->getStageId();
 
-		$publicationFormat = $publicationFormatDao->getById($publicationFormatId, $submission->getId());
+		$publicationFormat = $publicationFormatDao->getById($representationId, $submission->getId());
 
 		if (!$publicationFormat) {
 			return new JSONMessage(false, __('monograph.publicationFormat.formatDoesNotExist'));
 		}
 
 		import('controllers.tab.catalogEntry.form.CatalogEntryFormatMetadataForm');
-		$catalogEntryPublicationMetadataForm = new CatalogEntryFormatMetadataForm($submission->getId(), $publicationFormatId, $publicationFormat->getPhysicalFormat(), $stageId, array('displayedInContainer' => true, 'tabPos' => $this->getTabPosition()));
+		$catalogEntryPublicationMetadataForm = new CatalogEntryFormatMetadataForm($submission->getId(), $representationId, $publicationFormat->getPhysicalFormat(), $stageId, array('displayedInContainer' => true, 'tabPos' => $this->getTabPosition()));
 		$catalogEntryPublicationMetadataForm->initData($args, $request);
 		return new JSONMessage(true, $catalogEntryPublicationMetadataForm->fetch($request));
 	}
@@ -123,7 +123,7 @@ class CatalogEntryTabHandler extends PublicationEntryTabHandler {
 					break;
 				default: // publication format tabs
 					import('controllers.tab.catalogEntry.form.CatalogEntryFormatMetadataForm');
-				$publicationFormatId = $request->getUserVar('publicationFormatId');
+				$representationId = $request->getUserVar('representationId');
 
 				// perform some validation to make sure this format is enabled and assigned to this monograph
 				$publishedMonographDao = DAORegistry::getDAO('PublishedMonographDAO');
@@ -131,8 +131,8 @@ class CatalogEntryTabHandler extends PublicationEntryTabHandler {
 				$formats = $publicationFormatDao->getBySubmissionId($submission->getId());
 				$form = null;
 				while ($format = $formats->next()) {
-					if ($format->getId() == $publicationFormatId) {
-						$form = new CatalogEntryFormatMetadataForm($submission->getId(), $publicationFormatId, $format->getId(), $this->getStageId(), array('displayedInContainer' => true, 'tabPos' => $this->getTabPosition()));
+					if ($format->getId() == $representationId) {
+						$form = new CatalogEntryFormatMetadataForm($submission->getId(), $representationId, $format->getId(), $this->getStageId(), array('displayedInContainer' => true, 'tabPos' => $this->getTabPosition()));
 						$notificationKey = 'notification.savedPublicationFormatMetadata';
 						SubmissionLog::logEvent($request, $submission, SUBMISSION_LOG_PUBLICATION_FORMAT_METADATA_UPDATE, 'submission.event.publicationMetadataUpdated', array('formatName' => $format->getLocalizedName()));
 						break;

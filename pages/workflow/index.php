@@ -7,8 +7,8 @@
 /**
  * @file pages/workflow/index.php
  *
- * Copyright (c) 2014 Simon Fraser University Library
- * Copyright (c) 2003-2014 John Willinsky
+ * Copyright (c) 2014-2015 Simon Fraser University Library
+ * Copyright (c) 2003-2015 John Willinsky
  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
  *
  * @ingroup pages_workflow
@@ -24,7 +24,6 @@ switch ($op) {
 	case 'externalReview':
 	case 'editorial':
 	case 'production':
-	case 'productionFormatsTab':
 	case 'editorDecisionActions':
 	case 'submissionHeader':
 	case 'submissionProgressBar':
@@ -32,7 +31,7 @@ switch ($op) {
 		define('HANDLER_CLASS', 'WorkflowHandler');
 		import('pages.workflow.WorkflowHandler');
 		break;
-	case 'fetchPublicationFormat':
+	case 'fetchRepresentation':
 		define('HANDLER_CLASS', 'PublicationFormatHandler');
 		import('pages.workflow.PublicationFormatHandler');
 		break;

@@ -3,8 +3,8 @@
 /**
  * @file tests/functional/setup/CompetingInterestsTest.php
  *
- * Copyright (c) 2014 Simon Fraser University Library
- * Copyright (c) 2000-2014 John Willinsky
+ * Copyright (c) 2014-2015 Simon Fraser University Library
+ * Copyright (c) 2000-2015 John Willinsky
  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
  *
  * @class CompetingInterestsTest
@@ -47,9 +47,9 @@ class CompetingInterestsTest extends ContentBaseTestCase {
 
 		// Submit review with no competing interests
 		$this->logIn('agallego');
-
-		$this->waitForElementPresent($selector = '//a[text()=\'' . $this->escapeJS(self::$fullTitle) . '\']');
-		$this->clickAndWait($selector);
+		$xpath = '//span[contains(text(),' . $this->quoteXpath(self::$fullTitle) .')]/../../..//a[contains(@id, "-stage-itemWorkflow-button-")]';
+		$this->waitForElementPresent($xpath);
+		$this->clickAndWait($xpath);
 
 		$this->waitForElementPresent('id=reviewStep1Form');
 		$this->assertElementNotPresent('//label[@for=\'noCompetingInterests\']');
@@ -98,8 +98,9 @@ class CompetingInterestsTest extends ContentBaseTestCase {
 		// Submit review with competing interests
 		$competingInterests = 'I work for a competing company';
 		$this->logIn('alzacharia');
-		$this->waitForElementPresent($selector = '//a[text()=\'' . $this->escapeJS(self::$fullTitle) . '\']');
-		$this->clickAndWait($selector);
+		$xpath = '//span[contains(text(),' . $this->quoteXpath(self::$fullTitle) .')]/../../..//a[contains(@id, "-stage-itemWorkflow-button-")]';
+		$this->waitForElementPresent($xpath);
+		$this->clickAndWait($xpath);
 
 		$this->waitForElementPresent('id=reviewStep1Form');
 		$this->assertElementPresent('//label[@for=\'noCompetingInterests\']');

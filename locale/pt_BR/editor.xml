@@ -3,8 +3,8 @@
 <!--
   * locale/pt_BR/editor.xml
   *
-  * Copyright (c) 2014 Simon Fraser University Library
-  * Copyright (c) 2003-2014 John Willinsky
+  * Copyright (c) 2014-2015 Simon Fraser University Library
+  * Copyright (c) 2003-2015 John Willinsky
   * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
   *
   * Localization strings for the pt_BR (Portuguese - Brazilian) locale.
@@ -74,7 +74,6 @@
 	<!-- Review related -->
 	<message key="editor.internalReview.introduction">No estágio Avaliação interna, o editor designa avaliadores internos para avaliarem os arquivos de submissão e considera as avaliações resultantes, antes de escolher a ação apropriada (que inclui notificar o autor): Revisões necessárias (revisões avaliadas apenas pelo editor); Enviar novamente para avaliação (revisões iniciam uma nova rodada de avaliação); Enviar para avaliação externa (implica em escolher arquivos para avaliação externa); Aceitar (implica em escolher arquivos para a edição); ou Rejeitar (arquiva a submissão).</message>
 	<message key="editor.externalReview.introduction">No estágio Avaliação externa, o editor designa avaliadores externos à editora para avaliaremos arquivos de submissão e considera as avaliações resultantes, antes de escolher a ação apropriada (que inclui notificar o autor): Revisões necessárias (revisões avaliadas apenas pelo editor); Enviar novamente para avaliação (revisões iniciam uma nova rodada de avaliação); Enviar para avaliação externa (implica em escolher arquivos para avaliação externa); Aceitar (implica em escolher arquivos para a edição); ou Rejeitar (arquiva a submissão).</message>
-	<message key="editor.submission.selectedReviewer">Revisor Selecionado</message>
 	<message key="editor.submission.editorial.finalDraftDescription"><![CDATA[Para volumes editados, com diferentes autores em cada capítulo, o arquivo de submissão pode ser dividido em um arquivo por capítulo para a edição de texto, que são revisados ​​pelos autores do capítulo depois que os arquivos forem enviados para  <span class="pkp_help_title">Edição de Texto</span>.]]></message>
 	<message key="editor.submission.production.introduction"><![CDATA[Na produção, o editor seleciona os formatos de livros (por exemplo, digital, de bolso, etc) em <span class="pkp_help_title"> Formatos de Publicação </span>, para o qual o editor de layout prepara arquivos de qualidade para publicação com base nos arquivos de produção . Os arquivos com qualidade de publicação são enviados para cada formato em <span class="pkp_help_title"> Leitura de Prova </ span>, onde são validados. O livro é <em> Publicado </em> para cada formato em <span class="pkp_help_title"> Formatos de Publicação </span>, após as <em>leitura de prova </em> ser marcada como aprovada e a entrada de catálogo definida como parte integrante da entrada do catálogo do livro.]]></message>
 	<message key="editor.submission.production.productionReadyFilesDescription"><![CDATA[O editor de layout prepara esses arquivos para cada formato de publicação e envia para <span class="pkp_help_title"> Leitura de Prova </ span> apropriada.]]></message>

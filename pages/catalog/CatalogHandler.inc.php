@@ -3,8 +3,8 @@
 /**
  * @file pages/catalog/CatalogHandler.inc.php
  *
- * Copyright (c) 2014 Simon Fraser University Library
- * Copyright (c) 2003-2014 John Willinsky
+ * Copyright (c) 2014-2015 Simon Fraser University Library
+ * Copyright (c) 2003-2015 John Willinsky
  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
  *
  * @class CatalogHandler
@@ -117,6 +117,12 @@ class CatalogHandler extends Handler {
 			$newReleaseDao = DAORegistry::getDAO('NewReleaseDAO');
 			$newReleases = $newReleaseDao->getMonographsByAssoc(ASSOC_TYPE_CATEGORY, $category->getId());
 			$templateMgr->assign('newReleasesMonographs', $newReleases);
+
+			// Provide the parent category and a list of subcategories
+			$parentCategory = $categoryDao->getById($category->getParentId());
+			$subcategories = $categoryDao->getByParentId($category->getId());
+			$templateMgr->assign('parentCategory', $parentCategory);
+			$templateMgr->assign('subcategories', $subcategories);
 			// Display
 		}
 		$templateMgr->display('catalog/category.tpl');

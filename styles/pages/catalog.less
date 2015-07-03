@@ -1,8 +1,8 @@
 /**
  * @file styles/pages/catalog.less
  *
- * Copyright (c) 2014 Simon Fraser University Library
- * Copyright (c) 2003-2014 John Willinsky
+ * Copyright (c) 2014-2015 Simon Fraser University Library
+ * Copyright (c) 2003-2015 John Willinsky
  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
  *
  * @brief Styles for the public catalog
@@ -73,6 +73,7 @@
 		float: left;
 		margin: 3px 10px 3px 0;
 		color: #999;
+		text-align: center;
 
 		.pkp_catalog_monograph_thumbnail {
 			margin-bottom: 5px;
@@ -135,6 +136,20 @@
 
 		#abstractTab {
 			.monographAbstract;
+
+			.authorContent {
+				.role {
+					float: left;
+					padding-right: 1em;
+				}
+				.name {
+					font-weight: bold;
+				}
+			}
+		}
+
+		#permissionContents {
+			padding-top: 1em;
 		}
 	}
 	

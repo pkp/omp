@@ -3,8 +3,8 @@
 /**
  * @file plugins/importexport/onix30/filter/MonographONIX30XmlFilter.inc.php
  *
- * Copyright (c) 2014 Simon Fraser University Library
- * Copyright (c) 2000-2014 John Willinsky
+ * Copyright (c) 2014-2015 Simon Fraser University Library
+ * Copyright (c) 2000-2015 John Willinsky
  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
  *
  * @class MonographONIX30XmlFilter
@@ -158,10 +158,10 @@ class MonographONIX30XmlFilter extends NativeExportFilter {
 		$pubIdPlugins = PluginRegistry::loadCategory('pubIds', true);
 		if (is_array($pubIdPlugins)) {
 			foreach ($pubIdPlugins as $plugin) {
-				if ($plugin->getEnabled() && $plugin->getPubIdType() == 'doi') {
+				if ($plugin->getEnabled() && $plugin->getPubIdType() == 'doi' && $plugin->getPubId($publicationFormat) != '') {
 					$productIdentifierNode = $doc->createElementNS($deployment->getNamespace(), 'ProductIdentifier');
 					$productIdentifierNode->appendChild($this->_buildTextNode($doc, 'ProductIDType', '06')); // DOI
-					$productIdentifierNode->appendChild($this->_buildTextNode($doc, 'IDValue', $publicationFormat->getStoredPubId('doi'))); // GTIN-13 (ISBN-13 as GTIN)
+					$productIdentifierNode->appendChild($this->_buildTextNode($doc, 'IDValue', $plugin->getPubId($publicationFormat))); // GTIN-13 (ISBN-13 as GTIN)
 					$productNode->appendChild($productIdentifierNode);
 
 					unset($productIdentifierNode);
@@ -383,8 +383,6 @@ class MonographONIX30XmlFilter extends NativeExportFilter {
 		/* --- Add Subject elements --- */
 
 		$subjectNode = $doc->createElementNS($deployment->getNamespace(), 'Subject');
-		$descDetailNode->appendChild($subjectNode);
-
 		$mainSubjectNode = $doc->createElementNS($deployment->getNamespace(), 'MainSubject'); // Always empty as per 3.0 spec.
 		$subjectNode->appendChild($mainSubjectNode);
 		$subjectNode->appendChild($this->_buildTextNode($doc, 'SubjectSchemeIdentifier', '12')); // 12 is BIC subject category code list.
@@ -398,8 +396,10 @@ class MonographONIX30XmlFilter extends NativeExportFilter {
 		}
 
 		if (sizeof($uniqueSubjects) > 0) {
-			$subjectNode->appendChild($this->_buildTextNode($doc, 'SubjectCode', trim(join(' ', $uniqueSubjects))));
+			$subjectNode->appendChild($this->_buildTextNode($doc, 'SubjectCode', trim(join(', ', $uniqueSubjects))));
 		}
+
+		$descDetailNode->appendChild($subjectNode);
 
 		/* --- Add Audience elements --- */
 
@@ -433,6 +433,7 @@ class MonographONIX30XmlFilter extends NativeExportFilter {
 		}
 
 		$productNode->appendChild($descDetailNode);
+		unset($descDetailNode);
 
 		// Back to assembling Product node.
 		/* --- Collateral Detail --- */

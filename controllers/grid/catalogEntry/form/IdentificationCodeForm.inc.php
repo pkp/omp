@@ -3,8 +3,8 @@
 /**
  * @file controllers/grid/catalogEntry/form/IdentificationCodeForm.inc.php
  *
- * Copyright (c) 2014 Simon Fraser University Library
- * Copyright (c) 2003-2014 John Willinsky
+ * Copyright (c) 2014-2015 Simon Fraser University Library
+ * Copyright (c) 2003-2015 John Willinsky
  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
  *
  * @class IdentificationCodeForm
@@ -33,7 +33,7 @@ class IdentificationCodeForm extends Form {
 		// Validation checks for this form
 		$this->addCheck(new FormValidator($this, 'code', 'required', 'grid.catalogEntry.codeRequired'));
 		$this->addCheck(new FormValidator($this, 'value', 'required', 'grid.catalogEntry.valueRequired'));
-		$this->addCheck(new FormValidator($this, 'publicationFormatId', 'required', 'grid.catalogEntry.publicationFormatRequired'));
+		$this->addCheck(new FormValidator($this, 'representationId', 'required', 'grid.catalogEntry.publicationFormatRequired'));
 		$this->addCheck(new FormValidatorPost($this));
 	}
 
@@ -105,16 +105,16 @@ class IdentificationCodeForm extends Form {
 			$templateMgr->assign('identificationCodeId', $identificationCode->getId());
 			$templateMgr->assign('code', $identificationCode->getCode());
 			$templateMgr->assign('value', $identificationCode->getValue());
-			$publicationFormatId = $identificationCode->getPublicationFormatId();
+			$representationId = $identificationCode->getPublicationFormatId();
 		} else { // loading a blank form
-			$publicationFormatId = (int) $request->getUserVar('publicationFormatId');
+			$representationId = (int) $request->getUserVar('representationId');
 		}
 
 		$publicationFormatDao = DAORegistry::getDAO('PublicationFormatDAO');
-		$publicationFormat = $publicationFormatDao->getById($publicationFormatId, $monograph->getId());
+		$publicationFormat = $publicationFormatDao->getById($representationId, $monograph->getId());
 
 		if ($publicationFormat) { // the format exists for this monograph
-			$templateMgr->assign('publicationFormatId', $publicationFormatId);
+			$templateMgr->assign('representationId', $representationId);
 			$identificationCodes = $publicationFormat->getIdentificationCodes();
 			$assignedCodes = array_keys($identificationCodes->toAssociativeArray('code')); // currently assigned codes
 			if ($identificationCode) $assignedCodes = array_diff($assignedCodes, array($identificationCode->getCode())); // allow existing codes to keep their value
@@ -143,7 +143,7 @@ class IdentificationCodeForm extends Form {
 	function readInputData() {
 		$this->readUserVars(array(
 			'identificationCodeId',
-			'publicationFormatId',
+			'representationId',
 			'code',
 			'value',
 		));
@@ -159,7 +159,7 @@ class IdentificationCodeForm extends Form {
 
 		$monograph = $this->getMonograph();
 		$identificationCode = $this->getIdentificationCode();
-		$publicationFormat = $publicationFormatDao->getById($this->getData('publicationFormatId', $monograph->getId()));
+		$publicationFormat = $publicationFormatDao->getById($this->getData('representationId', $monograph->getId()));
 
 		if (!$identificationCode) {
 			// this is a new code to this published monograph

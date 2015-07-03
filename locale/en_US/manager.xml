@@ -4,8 +4,8 @@
 <!--
   * locale/en_US/manager.xml
   *
-  * Copyright (c) 2014 Simon Fraser University Library
-  * Copyright (c) 2003-2014 John Willinsky
+  * Copyright (c) 2014-2015 Simon Fraser University Library
+  * Copyright (c) 2003-2015 John Willinsky
   * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
   *
   * Localization strings.
@@ -343,6 +343,13 @@ You may optionally provide the user with a reason for disabling their account.</
 	<message key="manager.setup.submissions.description">Author guidelines, copyright, and indexing (including registration).</message>
 	<message key="manager.setup.technicalSupportContact">Technical Support Contact</message>
 	<message key="manager.setup.technicalSupportContactDescription">This person will be listed on the press Contact page for the use of editors, authors, and reviewers, and should have experience working through the system from the perspective of all of its roles. As this press system requires very little technical support, this should be seen as a part-time assignment. There may be occasions, for example, when authors and reviewers have difficulties with the instructions or file formats, or there's a need to ensure that the press is regularly backed up on the server.</message>
+	<message key="manager.setup.coverThumbnails">Cover Thumbnails</message>
+	<message key="manager.setup.coverThumbnailsDescription">You may define the max width and height of the cover thumbnails. Cover thumbnails will be scaled down to fall within these dimensions, preserving aspect ratio, and not scaling up beyond the present resolution.</message>
+	<message key="manager.setup.coverThumbnailsMaxHeight">Max. height</message>
+	<message key="manager.setup.coverThumbnailsMaxHeightRequired">Cover thumbnails max height is required.</message>
+	<message key="manager.setup.coverThumbnailsMaxWidth">Max. width</message>
+	<message key="manager.setup.coverThumbnailsMaxWidthRequired">Cover thumbnails max width is required.</message>
+	<message key="manager.setup.coverThumbnailsResize">Resize all existing cover thumbnails.</message>
 	<message key="manager.setup.typeExamples">(E.g., Historical Inquiry; Quasi-Experimental; Literary Analysis; Survey/Interview)</message>
 	<message key="manager.setup.typeMethodApproach">Type (Method/Approach)</message>
 	<message key="manager.setup.typeProvideExamples">Provide examples of relevant research types, methods, and approaches for this field</message>
@@ -429,4 +436,11 @@ Note that if your site administrator has already registered this site with the P
 
 	<message key="settings.roles.gridDescription">Roles are groups of users in the press who are given access to different permission levels and associated workflows within the press. There are five different permission levels: Press Managers have access to everything in the press (all content and settings); Press Editors have access to all content within their series; Press Assistants have access to all monographs that have been explicitly assigned to them by an editor; Reviewers can see and perform the reviews they have been assigned; and Authors can see and interact with a limited amount of information on their own submissions. Additionally, there are five different stage assignments that roles may be given access to: Submission, Internal Review, External Review, Editorial and Production.</message>
 	<message key="manager.publication.library">Press Library</message>
+	<message key="manager.setup.resetPermissions">Reset Monograph Permissions</message>
+	<message key="manager.setup.resetPermissions.confirm">Are you sure you wish to reset permissions data already attached to monographs?</message>
+	<message key="manager.setup.resetPermissions.description">Copyright statement and license information will be permanently attached to published content, ensuring that this data will not change in the case of a press changing policies for new submissions. To reset stored permissions information already attached to published content, use the button below.</message>
+
+	<message key="grid.genres.title.short">Components</message>
+	<message key="grid.genres.title">Monograph Components</message>
+	<message key="grid.genres.description">These components are used for file-naming purposes and are presented in a pull-down menu on uploading files. The genres designated ## allow the user to associate the file with either the whole book 99Z or a particular chapter by number (e.g., 02).</message>
 </locale>

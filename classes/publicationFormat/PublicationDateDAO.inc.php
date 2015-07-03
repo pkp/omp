@@ -3,8 +3,8 @@
 /**
  * @file classes/publicationFormat/PublicationDateDAO.inc.php
  *
- * Copyright (c) 2014 Simon Fraser University Library
- * Copyright (c) 2003-2014 John Willinsky
+ * Copyright (c) 2014-2015 Simon Fraser University Library
+ * Copyright (c) 2003-2015 John Willinsky
  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
  *
  * @class PublicationDateDAO
@@ -55,13 +55,13 @@ class PublicationDateDAO extends DAO {
 
 	/**
 	 * Retrieve all publication dates for an assigned publication format
-	 * @param $publicationFormatId int
+	 * @param $representationId int
 	 * @return DAOResultFactory containing matching publication dates
 	 */
-	function getByPublicationFormatId($publicationFormatId) {
+	function getByPublicationFormatId($representationId) {
 		$result = $this->retrieveRange(
 			'SELECT * FROM publication_dates WHERE publication_format_id = ?',
-			(int) $publicationFormatId
+			(int) $representationId
 		);
 
 		return new DAOResultFactory($result, $this, '_fromRow');

@@ -3,8 +3,8 @@
 /**
  * @file controllers/listbuilder/files/ProofFilesListbuilderHandler.inc.php
  *
- * Copyright (c) 2014 Simon Fraser University Library
- * Copyright (c) 2003-2014 John Willinsky
+ * Copyright (c) 2014-2015 Simon Fraser University Library
+ * Copyright (c) 2003-2015 John Willinsky
  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
  *
  * @class ProofFilesListbuilderHandler
@@ -33,8 +33,8 @@ class ProofFilesListbuilderHandler extends FilesListbuilderHandler {
 	 * @see PKPHandler::authorize()
 	 */
 	function authorize($request, &$args, $roleAssignments) {
-		import('classes.security.authorization.internal.PublicationFormatRequiredPolicy');
-		$this->addPolicy(new PublicationFormatRequiredPolicy($request, $args));
+		import('lib.pkp.classes.security.authorization.internal.RepresentationRequiredPolicy');
+		$this->addPolicy(new RepresentationRequiredPolicy($request, $args));
 		return parent::authorize($request, $args, $roleAssignments, WORKFLOW_STAGE_ID_PRODUCTION);
 	}
 
@@ -75,7 +75,7 @@ class ProofFilesListbuilderHandler extends FilesListbuilderHandler {
 	function getRequestArgs() {
 		$publicationFormat = $this->getAuthorizedContextObject(ASSOC_TYPE_PUBLICATION_FORMAT);
 		$args = parent::getRequestArgs();
-		$args['publicationFormatId'] = $publicationFormat->getId();
+		$args['representationId'] = $publicationFormat->getId();
 		return $args;
 	}
 }

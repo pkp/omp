@@ -2,8 +2,8 @@
 <!--
   * registry/pressSettings.xml
   *
-  * Copyright (c) 2014 Simon Fraser University Library
-  * Copyright (c) 2003-2014 John Willinsky
+  * Copyright (c) 2014-2015 Simon Fraser University Library
+  * Copyright (c) 2003-2015 John Willinsky
   * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
   *
   * Default press settings.
@@ -22,6 +22,14 @@
 ]>
 
 <press_settings>
+	<setting type="int" locale="0">
+		<name>coverThumbnailsMaxWidth</name>
+		<value>106</value>
+	</setting>
+	<setting type="int" locale="0">
+		<name>coverThumbnailsMaxHeight</name>
+		<value>100</value>
+	</setting>
 	<setting type="int" locale="0">
 		<name>numPageLinks</name>
 		<value>10</value>

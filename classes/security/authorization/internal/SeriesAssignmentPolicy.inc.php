@@ -2,8 +2,8 @@
 /**
  * @file classes/security/authorization/internal/SeriesAssignmentPolicy.inc.php
  *
- * Copyright (c) 2014 Simon Fraser University Library
- * Copyright (c) 2000-2014 John Willinsky
+ * Copyright (c) 2014-2015 Simon Fraser University Library
+ * Copyright (c) 2000-2015 John Willinsky
  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
  *
  * @class SeriesAssignmentPolicy
@@ -47,7 +47,7 @@ class SeriesAssignmentPolicy extends AuthorizationPolicy {
 		if (!is_a($press, 'Press')) return AUTHORIZATION_DENY;
 
 		// Get the monograph
-		$monograph =& $this->getAuthorizedContextObject(ASSOC_TYPE_MONOGRAPH);
+		$monograph = $this->getAuthorizedContextObject(ASSOC_TYPE_MONOGRAPH);
 		if (!is_a($monograph, 'Monograph')) return AUTHORIZATION_DENY;
 
 		import('classes.security.authorization.internal.SeriesAssignmentRule');

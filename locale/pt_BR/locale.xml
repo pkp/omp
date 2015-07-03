@@ -3,8 +3,8 @@
 <!--
   * locale/pt_BR/locale.xml
   *
-  * Copyright (c) 2014 Simon Fraser University Library
-  * Copyright (c) 2003-2014 John Willinsky
+  * Copyright (c) 2014-2015 Simon Fraser University Library
+  * Copyright (c) 2003-2015 John Willinsky
   * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
   *
   * Localization strings for the pt_BR (Portuguese - Brazilian) locale.
@@ -266,7 +266,6 @@
 	<message key="catalog.publicationInfo">Dados da publicação</message>
 	<message key="catalog.relatedCategories">Categorias relacionadas</message>
 	<message key="catalog.aboutTheAuthor">Sobre o {$roleName}</message>
-	<message key="catalog.noBioInfo">Nenhuma biografia disponível no momento.</message>
 	<message key="catalog.loginRequiredForPayment">Nota: Para adquirir itens, é necessário acessar o sistema primeiro. Escolher um item para compra o levará a página de login.</message>
 
 	<!--
@@ -387,7 +386,7 @@
 	<message key="installer.ompUpgrade">Atualização do OMP</message>
 	<message key="installer.installApplication">Instalar o Open Monograph Press</message>
 	<message key="installer.installationInstructions"><![CDATA[
-		<p>Agradecemos por baixar o <strong>Open Monograph Press {$version}</strong>, software desenvolvido pelo Public Knowledge Project. Antes de continuar, leia o <a href="{$baseUrl}/docs/README">README</a> incluído no pacote. Para maiores informações sobre o Public Knowledge Project e seus projetos de software, visite a página do <a href="http://pkp.sfu.ca/" target="_blank">PKP</a>. Caso encontre falhas no sistema ou tenha perguntas técnicas sobre o Open Monograph Press, acesse o <a href="http://pkp.sfu.ca/support/forum" target="_blank">fórum de suporte</a> ou o <a href="http://pkp.sfu.ca/bugzilla/" target="_blank">sistema de relatório de erros</a> do PKP. Embora o fórum seja o método preferido de contato, aceitamos mensagens à equipe no endereço <a href="mailto:pkp.contact@gmail.com">pkp.contact@gmail.com</a>.</p>
+		<p>Agradecemos por baixar o <strong>Open Monograph Press {$version}</strong>, software desenvolvido pelo Public Knowledge Project. Antes de continuar, leia o <a href="{$baseUrl}/docs/README">README</a> incluído no pacote. Para maiores informações sobre o Public Knowledge Project e seus projetos de software, visite a página do <a href="http://pkp.sfu.ca/" target="_blank">PKP</a>. Caso encontre falhas no sistema ou tenha perguntas técnicas sobre o Open Monograph Press, acesse o <a href="http://forum.pkp.sfu.ca" target="_blank">fórum de suporte</a> ou o <a href="http://pkp.sfu.ca/bugzilla/" target="_blank">sistema de relatório de erros</a> do PKP. Embora o fórum seja o método preferido de contato, aceitamos mensagens à equipe no endereço <a href="mailto:pkp.contact@gmail.com">pkp.contact@gmail.com</a>.</p>
 
 <h4>Atualização</h4>
 
@@ -406,7 +405,7 @@
 <p>2. Uma pasta para armazenar as submissões deve ser criado e deve possuir permissão de escrita (veja "Configurações de arquivo" a seguir).</p>]]></message>
 	<message key="installer.upgradeInstructions"><![CDATA[<h4>OMP versão {$version}</h4>
 
-<p>Agradecemos por baixar o <strong>Open Monograph Press</strong>, software desenvolvido pelo Public Knowledge Project. Antes de continuar, leia o <a href="{$baseUrl}/docs/README">README</a> e o <a href="{$baseUrl}/docs/UPGRADE">UPGRADE</a> incluídos no pacote. Paramaiores informações sobre o Public Knowledge Project e seus projetos de software, visite a página do <a href="http://pkp.sfu.ca/" target="_blank">PKP</a>. Caso encontre falhas no sistema ou tenha perguntas técnicas sobre o Open Monograph Press, acesse o <a href="http://pkp.sfu.ca/support/forum" target="_blank">fórum de suporte</a> ou o <a href="http://pkp.sfu.ca/bugzilla/" target="_blank">sistema de relatório de erros</a> do PKP. Embora o fórum seja o método preferido de contato, aceitamos mensagens à equipe no endereço <a href="mailto:pkp.contact@gmail.com">pkp.contact@gmail.com</a>.</p>
+<p>Agradecemos por baixar o <strong>Open Monograph Press</strong>, software desenvolvido pelo Public Knowledge Project. Antes de continuar, leia o <a href="{$baseUrl}/docs/README">README</a> e o <a href="{$baseUrl}/docs/UPGRADE">UPGRADE</a> incluídos no pacote. Paramaiores informações sobre o Public Knowledge Project e seus projetos de software, visite a página do <a href="http://pkp.sfu.ca/" target="_blank">PKP</a>. Caso encontre falhas no sistema ou tenha perguntas técnicas sobre o Open Monograph Press, acesse o <a href="http://forum.pkp.sfu.ca" target="_blank">fórum de suporte</a> ou o <a href="http://pkp.sfu.ca/bugzilla/" target="_blank">sistema de relatório de erros</a> do PKP. Embora o fórum seja o método preferido de contato, aceitamos mensagens à equipe no endereço <a href="mailto:pkp.contact@gmail.com">pkp.contact@gmail.com</a>.</p>
 <p>É <strong>altamente recomendado</strong> realizar uma cópia de segurança da base de dados, pasta de submissões e do código fonte do OMP atual antes de prosseguir.</p>
 <p>Caso esteja rodando no <a href="http://www.php.net/features.safe-mode" target="_blank">PHP Safe Mode</a>, assegure-se de que a diretiva max_execution_time no arquivo de configuração php.ini esteja definida com um limite alto. Caso este ou outro limite de tempo (ex.: diretivas de "Timeout" do Apache) seja ultrapassado e o processo de atualização interrompido, intervenção manual será necessária.</p>]]></message>
 <message key="installer.localeSettingsInstructions"><![CDATA[Para suporte total ao Unicode (UTF-8), escolha UTF-8 para todas as opções de configuração de caracteres. Note que isto exige servidores de bases de dados MySQL >= 4.1.1 ou PostgreSQL >= 9.1.5. Note também que suporte total ao Unicode exige a biblioteca <a href="http://www.php.net/mbstring" target="_blank">mbstring</a> (habilitada por padrão nas instalações do PHP mais recentes). Podem ocorrer problemas usando conjuntos de caracteres extendidos caso o servidor não atenda a estes requisitos.
@@ -423,10 +422,10 @@ Suporte à biblioteca mbstring: <strong>{$supportsMBString}</strong>]]></message
 <p>O instalador não pode alterar automaticamente o arquivo de configuração. Antes de usar o sistema, abra o arquivo <tt>config.inc.php</tt> em um editor de texto apropriado e substitua seu conteúdo pelo do campo a seguir.</p>]]></message>
 <message key="installer.installationComplete"><![CDATA[<p>Instalação do OMP concluída com sucesso.</p>
 <p>Para usar o sistema, <a href="{$loginUrl}">entre</a> com o login e senha informados no passo anterior.</p>
-<p>Caso deseje receber avisos e atualizações, <strong>cadastre-se na página <a href="http://pkp.sfu.ca/omp/register" target="_blank">http://pkp.sfu.ca/omp/register</a>.</strong> Caso tenha perguntas ou comentários, visite o <a href="http://pkp.sfu.ca/support/forum" target="_blank">fórum de suporte</a>.</p>]]></message>
+<p>Caso deseje receber avisos e atualizações, <strong>cadastre-se na página <a href="http://pkp.sfu.ca/omp/register" target="_blank">http://pkp.sfu.ca/omp/register</a>.</strong> Caso tenha perguntas ou comentários, visite o <a href="http://forum.pkp.sfu.ca" target="_blank">fórum de suporte</a>.</p>]]></message>
 <message key="installer.upgradeComplete"><![CDATA[<p>Atualização do OMP para a versão {$version} concluída com successo.</p>
 <p>Não se esqueça de alterar a variável "installed" em seu arquivo de configuração config.inc.php de volta para <em>On</em>.</p>
-<p>Caso não tenha se cadastrado ainda e deseje receber avisos e atualizações, <strong>>cadastre-se na página <a href="http://pkp.sfu.ca/omp/register" target="_blank">http://pkp.sfu.ca/omp/register</a>.</strong>  Caso tenha perguntas ou comentários, visite o <a href="http://pkp.sfu.ca/support/forum" target="_blank">fórum de suporte</a>.</p>]]></message>
+<p>Caso não tenha se cadastrado ainda e deseje receber avisos e atualizações, <strong>>cadastre-se na página <a href="http://pkp.sfu.ca/omp/register" target="_blank">http://pkp.sfu.ca/omp/register</a>.</strong>  Caso tenha perguntas ou comentários, visite o <a href="http://forum.pkp.sfu.ca" target="_blank">fórum de suporte</a>.</p>]]></message>
 	<!-- Monograph Logs -->
 	<message key="log.review.reviewCleared">A rodada de avaliação {$round} de {$reviewerName} para a submissão {$monographId} foi liberada.</message>
 	<message key="log.review.reviewDueDateSet">A data de entrega da rodada {$round} de avaliação da submissão {$monographId} por {$reviewerName} foi definida para {$dueDate}.</message>

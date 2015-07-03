@@ -3,8 +3,8 @@
 /**
  * @file controllers/grid/catalogEntry/MarketsGridHandler.inc.php
  *
- * Copyright (c) 2014 Simon Fraser University Library
- * Copyright (c) 2000-2014 John Willinsky
+ * Copyright (c) 2014-2015 Simon Fraser University Library
+ * Copyright (c) 2000-2015 John Willinsky
  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
  *
  * @class MarketsGridHandler
@@ -103,7 +103,7 @@ class MarketsGridHandler extends GridHandler {
 		$monograph = $this->getAuthorizedContextObject(ASSOC_TYPE_MONOGRAPH);
 		$this->setMonograph($monograph);
 		$publicationFormatDao = DAORegistry::getDAO('PublicationFormatDAO');
-		$publicationFormatId = null;
+		$representationId = null;
 
 		// Retrieve the associated publication format for this grid.
 		$marketId = (int) $request->getUserVar('marketId'); // set if editing or deleting a market entry
@@ -112,13 +112,13 @@ class MarketsGridHandler extends GridHandler {
 			$marketDao = DAORegistry::getDAO('MarketDAO');
 			$market = $marketDao->getById($marketId, $monograph->getId());
 			if ($market) {
-				$publicationFormatId = $market->getPublicationFormatId();
+				$representationId = $market->getPublicationFormatId();
 			}
 		} else { // empty form for new Market
-			$publicationFormatId = (int) $request->getUserVar('publicationFormatId');
+			$representationId = (int) $request->getUserVar('representationId');
 		}
 
-		$publicationFormat = $publicationFormatDao->getById($publicationFormatId, $monograph->getId());
+		$publicationFormat = $publicationFormatDao->getById($representationId, $monograph->getId());
 
 		if ($publicationFormat) {
 			$this->setPublicationFormat($publicationFormat);
@@ -208,7 +208,7 @@ class MarketsGridHandler extends GridHandler {
 
 		return array(
 			'submissionId' => $monograph->getId(),
-			'publicationFormatId' => $publicationFormat->getId()
+			'representationId' => $publicationFormat->getId()
 		);
 	}
 

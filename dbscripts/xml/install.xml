@@ -3,14 +3,14 @@
 <!--
   * dbscripts/xml/install.xml
   *
-  * Copyright (c) 2014 Simon Fraser University Library
-  * Copyright (c) 2003-2014 John Willinsky
+  * Copyright (c) 2014-2015 Simon Fraser University Library
+  * Copyright (c) 2003-2015 John Willinsky
   * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
   *
   * Installation descriptor file.
   -->
 
-<install version="0.9.9.0">
+<install version="1.2.0.0">
 	<code function="createDirectories" />
 	<code function="createDatabase" />
 

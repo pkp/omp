@@ -3,8 +3,8 @@
 /**
  * @file controllers/grid/settings/series/form/SeriesForm.inc.php
  *
- * Copyright (c) 2014 Simon Fraser University Library
- * Copyright (c) 2003-2014 John Willinsky
+ * Copyright (c) 2014-2015 Simon Fraser University Library
+ * Copyright (c) 2003-2015 John Willinsky
  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
  *
  * @class SeriesForm
@@ -15,9 +15,6 @@
  */
 
 import('lib.pkp.controllers.grid.settings.sections.form.PKPSectionForm');
-
-define('THUMBNAIL_MAX_WIDTH', 106);
-define('THUMBNAIL_MAX_HEIGHT', 100);
 
 class SeriesForm extends PKPSectionForm {
 	/**
@@ -178,18 +175,19 @@ class SeriesForm extends PKPSectionForm {
 			}
 			assert($image);
 
+			$coverThumbnailsMaxWidth = $press->getSetting('coverThumbnailsMaxWidth');
+			$coverThumbnailsMaxHeight = $press->getSetting('coverThumbnailsMaxHeight');
+
 			$thumbnailFilename = $series->getId() . '-series-thumbnail' . $this->_imageExtension;
-			$xRatio = min(1, THUMBNAIL_MAX_WIDTH / $this->_sizeArray[0]);
-			$yRatio = min(1, THUMBNAIL_MAX_HEIGHT / $this->_sizeArray[1]);
+			$xRatio = min(1, $coverThumbnailsMaxWidth / $this->_sizeArray[0]);
+			$yRatio = min(1, $coverThumbnailsMaxHeight / $this->_sizeArray[1]);
 
 			$ratio = min($xRatio, $yRatio);
 
 			$thumbnailWidth = round($ratio * $this->_sizeArray[0]);
 			$thumbnailHeight = round($ratio * $this->_sizeArray[1]);
-			$thumbnail = imagecreatetruecolor(THUMBNAIL_MAX_WIDTH, THUMBNAIL_MAX_HEIGHT);
-			$whiteColor = imagecolorallocate($thumbnail, 255, 255, 255);
-			imagefill($thumbnail, 0, 0, $whiteColor);
-			imagecopyresampled($thumbnail, $image, (THUMBNAIL_MAX_WIDTH - $thumbnailWidth)/2, (THUMBNAIL_MAX_HEIGHT - $thumbnailHeight)/2, 0, 0, $thumbnailWidth, $thumbnailHeight, $this->_sizeArray[0], $this->_sizeArray[1]);
+			$thumbnail = imagecreatetruecolor($thumbnailWidth, $thumbnailHeight);
+			imagecopyresampled($thumbnail, $image, 0, 0, 0, 0, $thumbnailWidth, $thumbnailHeight, $this->_sizeArray[0], $this->_sizeArray[1]);
 
 			// Copy the new file over
 			$filename = $series->getId() . '-series' . $this->_imageExtension;
@@ -208,8 +206,8 @@ class SeriesForm extends PKPSectionForm {
 					'width' => $this->_sizeArray[0],
 					'height' => $this->_sizeArray[1],
 					'thumbnailName' => $thumbnailFilename,
-					'thumbnailWidth' => THUMBNAIL_MAX_WIDTH,
-					'thumbnailHeight' => THUMBNAIL_MAX_HEIGHT,
+					'thumbnailWidth' => $thumbnailWidth,
+					'thumbnailHeight' => $thumbnailHeight,
 					'uploadName' => $temporaryFile->getOriginalFileName(),
 					'dateUploaded' => Core::getCurrentDate(),
 			));

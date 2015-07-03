@@ -7,8 +7,8 @@
 /**
  * @file pages/admin/index.php
  *
- * Copyright (c) 2014 Simon Fraser University Library
- * Copyright (c) 2003-2014 John Willinsky
+ * Copyright (c) 2014-2015 Simon Fraser University Library
+ * Copyright (c) 2003-2015 John Willinsky
  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
  *
  * @ingroup pages_admin
@@ -41,6 +41,8 @@ switch ($op) {
 	case 'expireSessions':
 	case 'clearTemplateCache':
 	case 'clearDataCache':
+	case 'downloadScheduledTaskLogFile':
+	case 'clearScheduledTaskLogFiles':
 		import('lib.pkp.pages.admin.AdminFunctionsHandler');
 		define('HANDLER_CLASS', 'AdminFunctionsHandler');
 		break;

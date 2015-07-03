@@ -3,8 +3,8 @@
 /**
  * @file classes/handler/Handler.inc.php
  *
- * Copyright (c) 2014 Simon Fraser University Library
- * Copyright (c) 2003-2014 John Willinsky
+ * Copyright (c) 2014-2015 Simon Fraser University Library
+ * Copyright (c) 2003-2015 John Willinsky
  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
  *
  * @class Handler
@@ -13,9 +13,7 @@
  * @brief Base request handler application class
  */
 
-
 import('lib.pkp.classes.handler.PKPHandler');
-import('classes.handler.validation.HandlerValidatorPress');
 
 class Handler extends PKPHandler {
 	/**
@@ -23,28 +21,6 @@ class Handler extends PKPHandler {
 	 */
 	function Handler() {
 		parent::PKPHandler();
-	}
-
-	/**
-	 * Get the iterator of working contexts.
-	 * @param $request PKPRequest
-	 * @return ItemIterator
-	 */
-	function getWorkingContexts($request) {
-		// For installation process
-		if (defined('SESSION_DISABLE_INIT') || !Config::getVar('general', 'installed')) {
-			return null;
-		}
-
-		// Check for multiple presses.
-		$pressDao = DAORegistry::getDAO('PressDAO');
-
-		$user = $request->getUser();
-		if (is_a($user, 'User')) {
-			return $pressDao->getAll();
-		} else {
-			return $pressDao->getEnabledPresses();
-		}
 	}
 
 	/**
@@ -71,7 +47,7 @@ class Handler extends PKPHandler {
 				$press = $presses->next();
 			}
 			if (!$press && $pressesCount > 1) {
-				// Decide wich press to return.
+				// Decide which press to return.
 				$user = $request->getUser();
 				if ($user && $bestGuess) {
 					// We have a user (private access).
@@ -90,23 +66,6 @@ class Handler extends PKPHandler {
 			return $press;
 		}
 		return null;
-	}
-
-	/**
-	 * Return the press that is configured in site redirect setting.
-	 * @param $request Request
-	 * @return mixed Either Press or null
-	 */
-	function getSiteRedirectContext($request) {
-		$pressDao = DAORegistry::getDAO('PressDAO'); /* @var $pressDao PressDAO */
-		$site = $request->getSite();
-		$press = null;
-		if ($site) {
-			if($site->getRedirect()) {
-				$press = $pressDao->getById($site->getRedirect());
-			}
-		}
-		return $press;
 	}
 }
 

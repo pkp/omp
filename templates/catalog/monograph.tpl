@@ -1,14 +1,18 @@
 {**
  * templates/catalog/monograph.tpl
  *
- * Copyright (c) 2014 Simon Fraser University Library
- * Copyright (c) 2003-2014 John Willinsky
+ * Copyright (c) 2014-2015 Simon Fraser University Library
+ * Copyright (c) 2003-2015 John Willinsky
  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
  *
  * Display a public-facing monograph in the catalog.
+ *
+ * Available data:
+ *  $publishedMonographs array Array of PublishedMonograph objects to display.
+ *  $featuredMonographIds array Array of (monographId => sequence)
+ *  $publishedMonograph PublishedMonograph The published monograph object to display
  *}
-
-<li class="pkp_catalog_monograph {if $inline}pkp_helpers_align_left{/if} pkp_helpers_text_center">
+<li class="pkp_catalog_monograph{if $inline} pkp_helpers_align_left{/if}">
 	<a href="{url page="catalog" op="book" path=$publishedMonograph->getId()}">
 		{include file="controllers/monographList/coverImage.tpl" monograph=$publishedMonograph}
 	</a>

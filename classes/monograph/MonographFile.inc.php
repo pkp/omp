@@ -3,8 +3,8 @@
 /**
  * @file classes/monograph/MonographFile.inc.php
  *
- * Copyright (c) 2014 Simon Fraser University Library
- * Copyright (c) 2003-2014 John Willinsky
+ * Copyright (c) 2014-2015 Simon Fraser University Library
+ * Copyright (c) 2003-2015 John Willinsky
  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
  *
  * @class MonographFile
@@ -17,7 +17,6 @@
 import('lib.pkp.classes.submission.SubmissionFile');
 
 class MonographFile extends SubmissionFile {
-
 	/**
 	 * Constructor.
 	 */
@@ -25,38 +24,35 @@ class MonographFile extends SubmissionFile {
 		parent::SubmissionFile();
 	}
 
-
-	/**
-	 * Copy the user-facing (editable) metadata from another monograph
-	 * file.
-	 * @param $monographFile MonographFile
-	 */
-	function copyEditableMetadataFrom($monographFile) {
-		if (is_a($monographFile, 'MonographFile')) {
-			$this->setData('chapterId', $monographFile->getData('chapterId'));
-		}
-
-		parent::copyEditableMetadataFrom($monographFile);
-	}
-
 	//
-	// Get/set methods
+	// Getters/setters
 	//
-
 	/**
-	 * Get ID of monograph.
+	 * Get the monograph chapter id.
 	 * @return int
 	 */
-	function getMonographId() {
-		return $this->getSubmissionId();
+	function getChapterId() {
+		return $this->getData('chapterId');
 	}
 
 	/**
-	 * Set ID of monograph.
-	 * @param $monographId int
+	 * Set the monograph chapter id.
+	 * @param $chapterId int
 	 */
-	function setMonographId($monographId) {
-		return $this->setSubmissionId($monographId);
+	function setChapterId($chapterId) {
+		return $this->setData('chapterId', $chapterId);
+	}
+
+
+	/**
+	 * @copydoc SubmissionFile::copyEditableMetadataForm
+	 */
+	function copyEditableMetadataFrom($submissionFile) {
+		if (is_a($submissionFile, 'MonographFile') || is_a($submissionFile, 'MonographArtworkFile')) {
+			$this->setChapterId($submissionFile->getChapterId());
+		}
+
+		parent::copyEditableMetadataFrom($submissionFile);
 	}
 }
 

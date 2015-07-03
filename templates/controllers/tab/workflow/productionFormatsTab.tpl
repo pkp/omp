@@ -1,8 +1,8 @@
 {**
  * templates/workflow/productionFormatsTab.tpl
  *
- * Copyright (c) 2014 Simon Fraser University Library
- * Copyright (c) 2003-2014 John Willinsky
+ * Copyright (c) 2014-2015 Simon Fraser University Library
+ * Copyright (c) 2003-2015 John Willinsky
  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
  *
  * Production workflow stage tabs.
@@ -11,30 +11,29 @@
 <script type="text/javascript">
 // Attach the JS file tab handler.
 $(function() {ldelim}
-	$('#publicationFormatTabs').pkpHandler(
-		'$.pkp.controllers.tab.publicationFormat.PublicationFormatsTabHandler',
+	$('#representationTabs').pkpHandler(
+		'$.pkp.controllers.tab.representations.RepresentationsTabHandler',
 		{ldelim}
 			tabsUrl:'{url|escape:javascript router=$smarty.const.ROUTE_PAGE
-				op='productionFormatsTab'
+				op='representationsTab'
 				submissionId=$submission->getId()
 				stageId=$smarty.const.WORKFLOW_STAGE_ID_PRODUCTION escape=false}',
-			{if $currentFormatTabId}currentFormatTabId: '{$currentFormatTabId}',{/if}
+			{if $currentRepresentationTabId}currentRepresentationTabId: '{$currentRepresentationTabId}',{/if}
 			emptyLastTab: true,
 		{rdelim}
 	);
 {rdelim});
 </script>
-<div id="publicationFormatTabs" class="pkp_controllers_tab">
+<div id="representationTabs" class="pkp_controllers_tab">
 	<ul>
-		{foreach from=$publicationFormats item=format}
-			<li>{* no need to bother with the published test, since unpublished monographs will not have formats assigned to them *}
-				<a id="publication{$format->getId()|escape}"
-					href="{url router=$smarty.const.ROUTE_PAGE page="workflow" op="fetchPublicationFormat"
-					publicationFormatId=$format->getId()
-					submissionId=$format->getMonographId()
-					stageId=$smarty.const.WORKFLOW_STAGE_ID_PRODUCTION}">{$format->getLocalizedName()|escape}</a>
+		{foreach from=$representations item=representation}
+			<li>
+				<a id="representation{$representation->getId()|escape}"
+					href="{url router=$smarty.const.ROUTE_PAGE page="workflow" op="fetchRepresentation"
+					representationId=$representation->getId()
+					submissionId=$representation->getSubmissionId()
+					stageId=$smarty.const.WORKFLOW_STAGE_ID_PRODUCTION}">{$representation->getLocalizedName()|escape}</a>
 			</li>
 		{/foreach}
 	</ul>
 </div>
-

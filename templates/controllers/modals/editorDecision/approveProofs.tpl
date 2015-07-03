@@ -1,8 +1,8 @@
 {**
  * templates/controllers/modals/editorDecision/approveProofs.tpl
  *
- * Copyright (c) 2014 Simon Fraser University Library
- * Copyright (c) 2003-2014 John Willinsky
+ * Copyright (c) 2014-2015 Simon Fraser University Library
+ * Copyright (c) 2003-2015 John Willinsky
  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
  *
  * Load the proofs grid.
@@ -17,5 +17,5 @@
 </script>
 
 <div id="approveProofsContainer">
-	{include file="workflow/publicationFormat.tpl" submission=$submission publicationFormat=$publicationFormat}
+	{include file="controllers/tab/workflow/publicationFormat.tpl" submission=$submission representation=$representation}
 </div>

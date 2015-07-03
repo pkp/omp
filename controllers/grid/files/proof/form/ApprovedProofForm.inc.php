@@ -2,8 +2,8 @@
 /**
  * @file controllers/grid/files/proof/form/ApprovedProofForm.inc.php
  *
- * Copyright (c) 2014 Simon Fraser University Library
- * Copyright (c) 2003-2014 John Willinsky
+ * Copyright (c) 2014-2015 Simon Fraser University Library
+ * Copyright (c) 2003-2015 John Willinsky
  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
  *
  * @class ApprovedProofForm
@@ -55,7 +55,7 @@ class ApprovedProofForm extends Form {
 		$templateMgr = TemplateManager::getManager($request);
 		$templateMgr->assign('fileId', $this->approvedProof->getFileIdAndRevision());
 		$templateMgr->assign('submissionId', $this->monograph->getId());
-		$templateMgr->assign('publicationFormatId', $this->publicationFormat->getId());
+		$templateMgr->assign('representationId', $this->publicationFormat->getId());
 
 		$salesTypes = array(
 			'openAccess' => 'payment.directSales.openAccess',

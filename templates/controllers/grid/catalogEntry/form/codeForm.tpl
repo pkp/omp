@@ -1,8 +1,8 @@
 {**
  * templates/controllers/grid/catalogEntry/form/codeForm.tpl
  *
- * Copyright (c) 2014 Simon Fraser University Library
- * Copyright (c) 2003-2014 John Willinsky
+ * Copyright (c) 2014-2015 Simon Fraser University Library
+ * Copyright (c) 2003-2015 John Willinsky
  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
  *
  * Identification Code form.
@@ -17,7 +17,7 @@
 
 <form class="pkp_form" id="addIdentificationCodeForm" method="post" action="{url router=$smarty.const.ROUTE_COMPONENT component="grid.catalogEntry.IdentificationCodeGridHandler" op="updateCode"}">
 	<input type="hidden" name="submissionId" value="{$submissionId|escape}" />
-	<input type="hidden" name="publicationFormatId" value="{$publicationFormatId|escape}" />
+	<input type="hidden" name="representationId" value="{$representationId|escape}" />
 	<input type="hidden" name="identificationCodeId" value="{$identificationCodeId|escape}" />
 	{fbvFormArea id="addCode"}
 		{fbvFormSection title="grid.catalogEntry.identificationCodeValue" for="value" required="true"}

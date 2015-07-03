@@ -3,8 +3,8 @@
 /**
  * @file controllers/modals/editorDecision/form/InitiateExternalReviewForm.inc.php
  *
- * Copyright (c) 2014 Simon Fraser University Library
- * Copyright (c) 2003-2014 John Willinsky
+ * Copyright (c) 2014-2015 Simon Fraser University Library
+ * Copyright (c) 2003-2015 John Willinsky
  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
  *
  * @class InitiateReviewForm
@@ -25,6 +25,7 @@ class InitiateExternalReviewForm extends InitiateReviewForm {
 	 * @param $stageId int WORKFLOW_STAGE_ID_...
 	 */
 	function InitiateExternalReviewForm($submission, $decision, $stageId) {
+		AppLocale::requireComponents(LOCALE_COMPONENT_APP_SUBMISSION);
 		parent::InitiateReviewForm($submission, $decision, $stageId, 'controllers/modals/editorDecision/form/initiateExternalReviewForm.tpl');
 	}
 

@@ -3,8 +3,8 @@
 /**
  * @file tests/data/20-CreatePressTest.inc.php
  *
- * Copyright (c) 2014 Simon Fraser University Library
- * Copyright (c) 2000-2014 John Willinsky
+ * Copyright (c) 2014-2015 Simon Fraser University Library
+ * Copyright (c) 2000-2015 John Willinsky
  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
  *
  * @class CreatePressTest
@@ -74,6 +74,7 @@ class CreatePressTest extends WebTestCase {
 		$this->click('link=Website');
 		$this->waitForElementPresent('css=[id^=pageHeaderTitle-]');
 		$this->type('css=[id^=pageHeaderTitle-]', 'Public Knowledge Press');
+		$this->type('css=[id^=itemsPerPage-]', '100'); // To avoid having to scroll down to find submissions.
 		$this->click('//form[@id=\'appearanceForm\']//span[text()=\'Save\']/..');
 		$this->waitJQuery();
 	}

@@ -1,8 +1,8 @@
 {**
  * templates/controllers/grid/files/signoff/form/addAuditor.tpl
  *
- * Copyright (c) 2014 Simon Fraser University Library
- * Copyright (c) 2003-2014 John Willinsky
+ * Copyright (c) 2014-2015 Simon Fraser University Library
+ * Copyright (c) 2003-2015 John Willinsky
  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
  *
  * Allows editor to add a user who should give feedback about copyedited files.
@@ -23,8 +23,8 @@
 		{include file="controllers/notification/inPlaceNotification.tpl" notificationId="addAuditorNotification"}
 
 		<input type="hidden" name="submissionId" value="{$submissionId|escape}" />
-		{if $publicationFormatId}
-			<input type="hidden" name="publicationFormatId" value="{$publicationFormatId|escape}" />
+		{if $representationId}
+			<input type="hidden" name="representationId" value="{$representationId|escape}" />
 		{/if}
 
 		<!-- User autocomplete -->
@@ -39,7 +39,7 @@
 			{url|assign:filesListbuilderUrl router=$smarty.const.ROUTE_COMPONENT component="listbuilder.files.CopyeditingFilesListbuilderHandler" op="fetch" submissionId=$submissionId escape=false}
 			{assign var="filesListbuilderId" value="copyeditingFilesListbuilder"}
 		{else $fileStage == $smarty.const.SUBMISSION_FILE_PROOF}
-			{url|assign:filesListbuilderUrl router=$smarty.const.ROUTE_COMPONENT component="listbuilder.files.ProofFilesListbuilderHandler" op="fetch" submissionId=$submissionId publicationFormatId=$publicationFormatId escape=false}
+			{url|assign:filesListbuilderUrl router=$smarty.const.ROUTE_COMPONENT component="listbuilder.files.ProofFilesListbuilderHandler" op="fetch" submissionId=$submissionId representationId=$representationId escape=false}
 			{assign var="filesListbuilderId" value="proofFilesListbuilder"}
 		{/if}
 

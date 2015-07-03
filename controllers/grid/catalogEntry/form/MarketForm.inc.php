@@ -3,8 +3,8 @@
 /**
  * @file controllers/grid/catalogEntry/form/MarketForm.inc.php
  *
- * Copyright (c) 2014 Simon Fraser University Library
- * Copyright (c) 2003-2014 John Willinsky
+ * Copyright (c) 2014-2015 Simon Fraser University Library
+ * Copyright (c) 2003-2015 John Willinsky
  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
  *
  * @class MarketForm
@@ -31,7 +31,7 @@ class MarketForm extends Form {
 		$this->setMarket($market);
 
 		// Validation checks for this form
-		$this->addCheck(new FormValidator($this, 'publicationFormatId', 'required', 'grid.catalogEntry.publicationFormatRequired'));
+		$this->addCheck(new FormValidator($this, 'representationId', 'required', 'grid.catalogEntry.publicationFormatRequired'));
 		$this->addCheck(new FormValidator($this, 'date', 'required', 'grid.catalogEntry.dateRequired'));
 		$this->addCheck(new FormValidator($this, 'price', 'required', 'grid.catalogEntry.priceRequired'));
 		$this->addCheck(new FormValidatorPost($this));
@@ -153,19 +153,19 @@ class MarketForm extends Form {
 			$templateMgr->assign('agentId', $market->getAgentId());
 			$templateMgr->assign('supplierId', $market->getSupplierId());
 
-			$publicationFormatId = $market->getPublicationFormatId();
+			$representationId = $market->getPublicationFormatId();
 		} else { // loading a blank form
-			$publicationFormatId = (int) $request->getUserVar('publicationFormatId');
+			$representationId = (int) $request->getUserVar('representationId');
 			$templateMgr->assign('dateFormat', '20'); // YYYYMMDD Onix code as a default
 			$templateMgr->assign('dateRole', '01'); // 'Date of Publication' as default
 			$templateMgr->assign('currencyCode', 'CAD');
 		}
 
 		$publicationFormatDao = DAORegistry::getDAO('PublicationFormatDAO');
-		$publicationFormat = $publicationFormatDao->getById($publicationFormatId, $monograph->getId());
+		$publicationFormat = $publicationFormatDao->getById($representationId, $monograph->getId());
 
 		if ($publicationFormat) { // the format exists for this monograph
-			$templateMgr->assign('publicationFormatId', $publicationFormatId);
+			$templateMgr->assign('representationId', $representationId);
 		} else {
 			fatalError('Format not in authorized monograph');
 		}
@@ -180,7 +180,7 @@ class MarketForm extends Form {
 	function readInputData() {
 		$this->readUserVars(array(
 			'marketId',
-			'publicationFormatId',
+			'representationId',
 			'countriesIncluded',
 			'countriesExcluded',
 			'regionsIncluded',
@@ -209,7 +209,7 @@ class MarketForm extends Form {
 
 		$monograph = $this->getMonograph();
 		$market = $this->getMarket();
-		$publicationFormat = $publicationFormatDao->getById($this->getData('publicationFormatId'), $monograph->getId());
+		$publicationFormat = $publicationFormatDao->getById($this->getData('representationId'), $monograph->getId());
 
 		if (!$market) {
 			// this is a new assigned format to this published monograph

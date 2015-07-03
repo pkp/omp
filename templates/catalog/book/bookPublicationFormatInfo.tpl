@@ -1,11 +1,17 @@
 {**
  * templates/catalog/book/bookPublicationFormatInfo.tpl
  *
- * Copyright (c) 2014 Simon Fraser University Library
- * Copyright (c) 2003-2014 John Willinsky
+ * Copyright (c) 2014-2015 Simon Fraser University Library
+ * Copyright (c) 2003-2015 John Willinsky
  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
  *
  * Publication format information to be presented in book page.
+ *
+ * Available data:
+ *  $representationId int Publication format ID
+ *  $publicationFormat PublicationFormat The publication format to present.
+ *  $availableFiles array Array of available MonographFiles
+ *  $publishedMonograph PublishedMonograph The published monograph object.
  *}
 
 <div class="bookDimensionSpecs">
@@ -67,10 +73,10 @@
 		{/foreach}
 	</div>
 {/if}
-{assign var="publicationFormatId" value=$publicationFormat->getId()}
-{if !empty($availableFiles.$publicationFormatId)}
+{assign var="representationId" value=$publicationFormat->getId()}
+{if !empty($availableFiles.$representationId)}
 	<div class="ecommerce">
-		{if $availableFiles.$publicationFormatId|@count == 1}
+		{if $availableFiles.$representationId|@count == 1}
 			{* FIXME: unimplemented. One file available; shortcut to purchase *}
 		{else}
 			{* FIXME: unimplemented. Several files available; display options *}

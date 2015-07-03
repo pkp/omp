@@ -4,8 +4,8 @@
 /**
  * @file js/controllers/tab/catalogEntry/CatalogEntryTabHandler.js
  *
- * Copyright (c) 2014 Simon Fraser University Library
- * Copyright (c) 2000-2014 John Willinsky
+ * Copyright (c) 2014-2015 Simon Fraser University Library
+ * Copyright (c) 2000-2015 John Willinsky
  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
  *
  * @class CatalogEntryTabHandler
@@ -143,7 +143,7 @@
 			// i is the formatId, formats[i] is the localized name.
 			if (!currentIndexes.hasOwnProperty(i)) {
 				// this is a tab that has been added
-				url = this.tabContentUrl_ + '&publicationFormatId=' +
+				url = this.tabContentUrl_ + '&representationId=' +
 						encodeURIComponent(i);
 				// replace dollar signs in $$$call$$$ so the .add() call
 				// interpolates correctly. Is this a bug in jqueryUI?
@@ -202,11 +202,10 @@
 				this.getHtmlElement()).children('div'),
 				gridHandler = $.pkp.classes.Handler.getHandler($grid),
 				$gridRow = gridHandler.getParentRow($(sourceElement)),
-				publicationFormatId = gridHandler.getRowDataId($gridRow);
-
-		this.getHtmlElement().tabs('select',
-				/** @type {string} */ (this.getTabPositionByFormatId_(publicationFormatId,
-						this.getHtmlElement())));
+				representationId = gridHandler.getRowDataId($gridRow);
+		this.getHtmlElement().tabs({
+				active: /** @type {number} */ (this.getTabPositionByFormatId_(
+						representationId, this.getHtmlElement()))});
 	};
 
 

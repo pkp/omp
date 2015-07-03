@@ -1,8 +1,8 @@
 {**
  * templates/header/localnav.tpl
  *
- * Copyright (c) 2014 Simon Fraser University Library
- * Copyright (c) 2003-2014 John Willinsky
+ * Copyright (c) 2014-2015 Simon Fraser University Library
+ * Copyright (c) 2003-2015 John Willinsky
  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
  *
  * Press-Specific Navigation Bar
@@ -26,7 +26,7 @@
 				{/if}
 				{if not empty($contextInfo.editorialPolicies)}
 					<li><a href="{url router=$smarty.const.ROUTE_PAGE page="about" op="editorialPolicies"}">{translate key="about.policies"}</a></li>
-				{/if}	
+				{/if}
 				<li><a href="{url router=$smarty.const.ROUTE_PAGE page="about" op="submissions"}">{translate key="about.submissions"}</a></li>
 				{if not empty($contextInfo.sponsorship)}
 					<li><a href="{url router=$smarty.const.ROUTE_PAGE page="about" op="sponsorship"}">{translate key="about.pressSponsorship"}</a></li>
@@ -65,6 +65,7 @@
 									<li><a href="{url router=$smarty.const.ROUTE_PAGE page="management" op="tools" path="statistics"}">{translate key="navigation.tools.statistics"}</a></li>
 								</ul>
 							</li>
+							{call_hook name="Templates::Header::Localnav::AdditionalManagementItems"}
 						</ul>
 					</li>
 				{/if}{* ROLE_ID_MANAGER *}

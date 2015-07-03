@@ -7,8 +7,8 @@
 ;
 ; config.TEMPLATE.inc.php
 ;
-; Copyright (c) 2014 Simon Fraser University Library
-; Copyright (c) 2003-2014 John Willinsky
+; Copyright (c) 2014-2015 Simon Fraser University Library
+; Copyright (c) 2003-2015 John Willinsky
 ; Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
 ;
 ; OMP Configuration settings.
@@ -219,7 +219,7 @@ umask = 0022
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
 [finfo]
-mime_database_path = /etc/magic.mime
+; mime_database_path = /etc/magic.mime
 
 
 ;;;;;;;;;;;;;;;;;;;;;
@@ -248,7 +248,7 @@ encryption = md5
 ; Use e.g. "img[src,alt],p" to allow "src" and "alt" attributes to the "img"
 ; tag, and also to permit the "p" paragraph tag. Unspecified attributes will be
 ; stripped.
-allowed_html = "a[href|target],em,strong,cite,code,ul,ol,li[class],dl,dt,dd,b,i,u,img[src|alt],sup,sub,br,p"
+allowed_html = "a[href|target|title],em,strong,cite,code,ul,ol,li[class],dl,dt,dd,b,i,u,img[src|alt],sup,sub,br,p"
 
 ;Is implicit authentication enabled or not
 

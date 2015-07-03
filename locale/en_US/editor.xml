@@ -4,8 +4,8 @@
 <!--
   * locale/en_US/editor.xml
   *
-  * Copyright (c) 2014 Simon Fraser University Library
-  * Copyright (c) 2003-2014 John Willinsky
+  * Copyright (c) 2014-2015 Simon Fraser University Library
+  * Copyright (c) 2003-2015 John Willinsky
   * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
   *
   * Localization strings.
@@ -20,7 +20,6 @@
 	<message key="editor.monograph.enterReviewerRecommendation">Enter Reviewer Recommendation</message>
 	<message key="editor.monograph.recommendation">Recommendation</message>
 	<message key="editor.monograph.selectReviewerInstructions">Select a reviewer above and press the 'Select Reviewer' button to continue.</message>
-	<message key="editor.submission.selectedReviewer">Selected Reviewer</message>
 	<message key="editor.monograph.replaceReviewer">Replace Reviewer</message>
 	<message key="editor.monograph.editorToEnter">Editor to enter recommendation/comments for reviewer</message>
 	<message key="editor.monograph.uploadReviewForReviewer">Upload review</message>
@@ -78,4 +77,6 @@
 	<!-- Review related -->
 	<message key="editor.internalReview.introduction">In Internal Review, the editor assigns reviewers internal to the submission files and considers the resulting reviews, before selecting the appropriate action (which includes notifying the author): Request Revisions (revisions reviewed by editor alone); Resubmit for Review (revisions initiate another round of reviews); Send External Review (entails selecting files for External Review); Accept for Submission (entails selecting files for Editorial stage); or Decline Submission (archives submission).</message>
 	<message key="editor.externalReview.introduction">In External Review, the editor assign reviewers external to the press to the submission files and consider the resulting reviews, before selecting the appropriate action (which includes notifying the author): Request Revisions (revisions reviewed by editor alone); Resubmit for Review (revisions initiate another round of reviews); Accept for Submission (entails selecting files for Editorial stage); or Decline Submission (editor archives submission).</message>
+
+	<message key="editor.submission.proof.manageProofFilesDescription">Any files that have already been uploaded to any submission stage can be added to the Proof Files listing by checking the Include checkbox below and clicking Search: all available files will be listed and can be chosen for inclusion.</message>
 </locale>

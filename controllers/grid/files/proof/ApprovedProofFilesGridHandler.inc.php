@@ -3,8 +3,8 @@
 /**
  * @file controllers/grid/files/proof/ApprovedProofFilesGridHandler.inc.php
  *
- * Copyright (c) 2014 Simon Fraser University Library
- * Copyright (c) 2003-2014 John Willinsky
+ * Copyright (c) 2014-2015 Simon Fraser University Library
+ * Copyright (c) 2003-2015 John Willinsky
  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
  *
  * @class ApprovedProofFilesGridHandler
@@ -97,10 +97,10 @@ class ApprovedProofFilesGridHandler extends GridHandler {
 		$this->addPolicy(new WorkflowStageAccessPolicy($request, $args, $roleAssignments, 'submissionId', WORKFLOW_STAGE_ID_PRODUCTION));
 
 		if (parent::authorize($request, $args, $roleAssignments)) {
-			$publicationFormatId = (int) $request->getUserVar('publicationFormatId');
+			$representationId = (int) $request->getUserVar('representationId');
 			$publicationFormatDao = DAORegistry::getDAO('PublicationFormatDAO');
 			$this->monograph = $this->getAuthorizedContextObject(ASSOC_TYPE_MONOGRAPH);
-			$this->publicationFormat = $publicationFormatDao->getById($publicationFormatId, $this->monograph->getId());
+			$this->publicationFormat = $publicationFormatDao->getById($representationId, $this->monograph->getId());
 
 			return true;
 		}
@@ -120,7 +120,7 @@ class ApprovedProofFilesGridHandler extends GridHandler {
 	function getRequestArgs() {
 		return array_merge(
 			parent::getRequestArgs(),
-			array('publicationFormatId' => $this->publicationFormat->getId())
+			array('representationId' => $this->publicationFormat->getId())
 		);
 	}
 

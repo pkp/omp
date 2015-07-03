@@ -7,8 +7,8 @@
 /**
  * @file classes/monograph/Monograph.inc.php
  *
- * Copyright (c) 2014 Simon Fraser University Library
- * Copyright (c) 2003-2014 John Willinsky
+ * Copyright (c) 2014-2015 Simon Fraser University Library
+ * Copyright (c) 2003-2015 John Willinsky
  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
  *
  * @class Monograph
@@ -170,6 +170,51 @@ class Monograph extends Submission {
 	 */
 	function isMetadataApproved() {
 		return (boolean) $this->getDatePublished();
+	}
+
+	/**
+	 * Get the value of a license field from the containing context.
+	 * @param $locale string Locale code
+	 * @param $field PERMISSIONS_FIELD_...
+	 * @return string|null
+	 */
+	function _getContextLicenseFieldValue($locale, $field) {
+		$contextDao = Application::getContextDAO();
+		$context = $contextDao->getById($this->getContextId());
+		$fieldValue = null; // Scrutinizer
+		switch ($field) {
+			case PERMISSIONS_FIELD_LICENSE_URL:
+				$fieldValue = $context->getSetting('licenseURL');
+				break;
+			case PERMISSIONS_FIELD_COPYRIGHT_HOLDER:
+				switch($context->getSetting('copyrightHolderType')) {
+					case 'author':
+						$fieldValue = array($context->getPrimaryLocale() => $this->getAuthorString());
+						break;
+					case 'other':
+						$fieldValue = $context->getSetting('copyrightHolderOther');
+						break;
+					case 'context':
+					default:
+						$fieldValue = $context->getName(null);
+						break;
+				}
+				break;
+			case PERMISSIONS_FIELD_COPYRIGHT_YEAR:
+				$fieldValue = date('Y');
+				$publishedMonographDao = DAORegistry::getDAO('PublishedMonographDAO');
+				$publishedMonograph = $publishedMonographDao->getById($this->getId());
+				if ($publishedMonograph) {
+					$fieldValue = date('Y', strtotime($publishedMonograph->getDatePublished()));
+				}
+				break;
+			default: assert(false);
+		}
+
+		// Return the fetched license field
+		if ($locale === null || !is_array($fieldValue)) return $fieldValue;
+		if (isset($fieldValue[$locale])) return $fieldValue[$locale];
+		return null;
 	}
 }
 

@@ -3,8 +3,8 @@
 /**
  * @file controllers/grid/catalogEntry/PublicationDateGridHandler.inc.php
  *
- * Copyright (c) 2014 Simon Fraser University Library
- * Copyright (c) 2000-2014 John Willinsky
+ * Copyright (c) 2014-2015 Simon Fraser University Library
+ * Copyright (c) 2000-2015 John Willinsky
  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
  *
  * @class PublicationDateGridHandler
@@ -103,7 +103,7 @@ class PublicationDateGridHandler extends GridHandler {
 		// Retrieve the authorized monograph.
 		$this->setMonograph($this->getAuthorizedContextObject(ASSOC_TYPE_MONOGRAPH));
 		$publicationFormatDao = DAORegistry::getDAO('PublicationFormatDAO');
-		$publicationFormatId = null;
+		$representationId = null;
 
 		// Retrieve the associated publication format for this grid.
 		$publicationDateId = (int) $request->getUserVar('publicationDateId'); // set if editing or deleting a date
@@ -112,14 +112,14 @@ class PublicationDateGridHandler extends GridHandler {
 			$publicationDateDao = DAORegistry::getDAO('PublicationDateDAO');
 			$publicationDate = $publicationDateDao->getById($publicationDateId, $this->getMonograph()->getId());
 			if ($publicationDate) {
-				$publicationFormatId = $publicationDate->getPublicationFormatId();
+				$representationId = $publicationDate->getPublicationFormatId();
 			}
 		} else { // empty form for new Date
-			$publicationFormatId = (int) $request->getUserVar('publicationFormatId');
+			$representationId = (int) $request->getUserVar('representationId');
 		}
 
 		$monograph = $this->getMonograph();
-		$publicationFormat = $publicationFormatDao->getById($publicationFormatId, $monograph->getId());
+		$publicationFormat = $publicationFormatDao->getById($representationId, $monograph->getId());
 
 		if ($publicationFormat) {
 			$this->setPublicationFormat($publicationFormat);
@@ -201,7 +201,7 @@ class PublicationDateGridHandler extends GridHandler {
 
 		return array(
 			'submissionId' => $monograph->getId(),
-			'publicationFormatId' => $publicationFormat->getId()
+			'representationId' => $publicationFormat->getId()
 		);
 	}
 

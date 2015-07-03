@@ -3,8 +3,8 @@
 /**
  * @file classes/publicationFormat/PublicationDate.inc.php
  *
- * Copyright (c) 2014 Simon Fraser University Library
- * Copyright (c) 2003-2014 John Willinsky
+ * Copyright (c) 2014-2015 Simon Fraser University Library
+ * Copyright (c) 2003-2015 John Willinsky
  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
  *
  * @class PublicationDate
@@ -35,15 +35,15 @@ class PublicationDate extends DataObject {
 	 * @return int
 	 */
 	function getPublicationFormatId() {
-		return $this->getData('publicationFormatId');
+		return $this->getData('representationId');
 	}
 
 	/**
 	 * set publication format id
 	 * @param $pressId int
 	 */
-	function setPublicationformatId($publicationFormatId) {
-		return $this->setData('publicationFormatId', $publicationFormatId);
+	function setPublicationformatId($representationId) {
+		return $this->setData('representationId', $representationId);
 	}
 
 	/**

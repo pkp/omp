@@ -3,8 +3,8 @@
 /**
  * @file pages/login/LoginHandler.inc.php
  *
- * Copyright (c) 2014 Simon Fraser University Library
- * Copyright (c) 2003-2014 John Willinsky
+ * Copyright (c) 2014-2015 Simon Fraser University Library
+ * Copyright (c) 2003-2015 John Willinsky
  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
  *
  * @class LoginHandler
@@ -16,17 +16,6 @@
 import('lib.pkp.pages.login.PKPLoginHandler');
 
 class LoginHandler extends PKPLoginHandler {
-	/**
-	 * Sign in as another user.
-	 * @param $args array ($userId)
-	 * @param $request PKPRequest
-	 */
-	function signInAsUser($args, $request) {
-		$this->addCheck(new HandlerValidatorPress($this));
-
-		return parent::signInAsUser($args, $request);
-	}
-
 	/**
 	 * Get the log in URL.
 	 * @param $request PKPRequest

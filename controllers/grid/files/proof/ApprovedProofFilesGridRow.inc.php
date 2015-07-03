@@ -3,8 +3,8 @@
 /**
  * @file controllers/grid/files/proof/ApprovedProofFilesGridRow.inc.php
  *
- * Copyright (c) 2014 Simon Fraser University Library
- * Copyright (c) 2003-2014 John Willinsky
+ * Copyright (c) 2014-2015 Simon Fraser University Library
+ * Copyright (c) 2003-2015 John Willinsky
  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
  *
  * @class ApprovedProofFilesGridRow
@@ -52,7 +52,7 @@ class ApprovedProofFilesGridRow extends GridRow {
 						$router->url($request, null, null, 'editApprovedProof', null, array(
 							'fileId' => $fileId,
 							'submissionId' => $request->getUserVar('submissionId'),
-							'publicationFormatId' => $request->getUserVar('publicationFormatId'),
+							'representationId' => $request->getUserVar('representationId'),
 						)),
 						__('editor.monograph.approvedProofs.edit'),
 						'edit'

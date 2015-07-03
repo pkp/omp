@@ -3,8 +3,8 @@
 /**
  * @file plugins/importexport/csv/CSVImportExportPlugin.inc.php
  *
- * Copyright (c) 2013-2014 Simon Fraser University Library
- * Copyright (c) 2003-2014 John Willinsky
+ * Copyright (c) 2013-2015 Simon Fraser University Library
+ * Copyright (c) 2003-2015 John Willinsky
  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
  *
  * @class CSVImportExportPlugin
@@ -198,7 +198,7 @@ class CSVImportExportPlugin extends ImportExportPlugin {
 						$publicationDate->setDateFormat('05'); // List55, YYYY
 						$publicationDate->setRole('01'); // List163, Publication Date
 						$publicationDate->setDate($year);
-						$publicationDate->setPublicationformatId($publicationFormatId);
+						$publicationDate->setPublicationFormatId($publicationFormatId);
 						$publicationDateDao->insertObject($publicationDate);
 
 						// Submission File.

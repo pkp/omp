@@ -2,7 +2,7 @@
 <!--
   * plugins/importexport/native/onixProduct2NativeXml.xsl
   *
-  * Copyright (c) 2014 Simon Fraser University Library
+  * Copyright (c) 2014-2015 Simon Fraser University Library
   * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
   *
   * Converter to take ONIX products into the OMP XML native submission format.
@@ -52,8 +52,6 @@
 	<xsl:template match="onix:NotificationType"/>
 	<xsl:template match="onix:RecordSourceType"/>
 	<xsl:template match="onix:Collection"/>
-	<xsl:template match="onix:Language"/>
-	<xsl:template match="onix:Subject"/>
 	<xsl:template match="onix:CollateralDetail"/>
 	<xsl:template match="onix:Imprint" />
 </xsl:stylesheet>

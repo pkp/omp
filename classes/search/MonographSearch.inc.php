@@ -3,8 +3,8 @@
 /**
  * @file classes/search/MonographSearch.inc.php
  *
- * Copyright (c) 2014 Simon Fraser University Library
- * Copyright (c) 2003-2014 John Willinsky
+ * Copyright (c) 2014-2015 Simon Fraser University Library
+ * Copyright (c) 2003-2015 John Willinsky
  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
  *
  * @class MonographSearch
@@ -78,6 +78,7 @@ class MonographSearch extends SubmissionSearch {
 			}
 		}
 
+		$i=0; // Used to prevent ties from clobbering each other
 		foreach ($unorderedResults as $submissionId => $data) {
 			// Exclude unwanted IDs.
 			if (in_array($submissionId, $exclude)) continue;
@@ -121,7 +122,7 @@ class MonographSearch extends SubmissionSearch {
 			if (!isset($orderedResults[$orderKey])) {
 				$orderedResults[$orderKey] = array();
 			}
-			$orderedResults[$orderKey][$data['score']] = $submissionId;
+			$orderedResults[$orderKey][$data['score'] + $i++] = $submissionId;
 		}
 
 		// Order the results by primary order.

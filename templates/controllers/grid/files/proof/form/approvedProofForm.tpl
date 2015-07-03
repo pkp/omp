@@ -1,8 +1,8 @@
 {**
  * templates/controllers/grid/files/proof/form/approvedProofForm.tpl
  *
- * Copyright (c) 2014 Simon Fraser University Library
- * Copyright (c) 2003-2014 John Willinsky
+ * Copyright (c) 2014-2015 Simon Fraser University Library
+ * Copyright (c) 2003-2015 John Willinsky
  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
  *
  * Form to control pricing of approved proofs for direct sales.
@@ -23,7 +23,7 @@
 	{fbvFormArea id="approvedProofInfo"}
 		<input type="hidden" name="fileId" value="{$fileId|escape}" />
 		<input type="hidden" name="submissionId" value="{$submissionId|escape}" />
-		<input type="hidden" name="publicationFormatId" value="{$publicationFormatId|escape}" />
+		<input type="hidden" name="representationId" value="{$representationId|escape}" />
 
 		{include file="controllers/grid/files/proof/form/approvedProofFormFields.tpl"}
 	{/fbvFormArea}

@@ -3,8 +3,8 @@
 /**
  * @file controllers/grid/catalogEntry/PublicationFormatGridHandler.inc.php
  *
- * Copyright (c) 2014 Simon Fraser University Library
- * Copyright (c) 2000-2014 John Willinsky
+ * Copyright (c) 2014-2015 Simon Fraser University Library
+ * Copyright (c) 2000-2015 John Willinsky
  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
  *
  * @class PublicationFormatGridHandler
@@ -226,11 +226,11 @@ class PublicationFormatGridHandler extends GridHandler {
 	 */
 	function editFormat($args, $request) {
 		// Identify the format to be updated
-		$publicationFormatId = (int) $request->getUserVar('publicationFormatId');
+		$representationId = (int) $request->getUserVar('representationId');
 		$submission = $this->getSubmission();
 
 		$publicationFormatDao = DAORegistry::getDAO('PublicationFormatDAO');
-		$publicationFormat = $publicationFormatDao->getById($publicationFormatId);
+		$publicationFormat = $publicationFormatDao->getById($representationId);
 
 		// Form handling
 		import('controllers.grid.catalogEntry.form.PublicationFormatForm');
@@ -248,22 +248,22 @@ class PublicationFormatGridHandler extends GridHandler {
 	 */
 	function updateFormat($args, $request) {
 		// Identify the format to be updated
-		$publicationFormatId = (int) $request->getUserVar('publicationFormatId');
+		$representationId = (int) $request->getUserVar('representationId');
 		$submission = $this->getSubmission();
 
 		$publicationFormatDao = DAORegistry::getDAO('PublicationFormatDAO');
-		$publicationFormat = $publicationFormatDao->getById($publicationFormatId);
+		$publicationFormat = $publicationFormatDao->getById($representationId);
 
 		// Form handling
 		import('controllers.grid.catalogEntry.form.PublicationFormatForm');
 		$publicationFormatForm = new PublicationFormatForm($submission, $publicationFormat);
 		$publicationFormatForm->readInputData();
 		if ($publicationFormatForm->validate()) {
-			$publicationFormatId = $publicationFormatForm->execute($request);
+			$representationId = $publicationFormatForm->execute($request);
 
 			if(!isset($publicationFormat)) {
 				// This is a new format
-				$publicationFormat = $publicationFormatDao->getById($publicationFormatId);
+				$publicationFormat = $publicationFormatDao->getById($representationId);
 				// New added format action notification content.
 				$notificationContent = __('notification.addedPublicationFormat');
 			} else {
@@ -279,7 +279,7 @@ class PublicationFormatGridHandler extends GridHandler {
 			// Prepare the grid row data
 			$row = $this->getRowInstance();
 			$row->setGridId($this->getId());
-			$row->setId($publicationFormatId);
+			$row->setId($representationId);
 			$row->setData($publicationFormat);
 			$row->initialize($request);
 
@@ -301,7 +301,7 @@ class PublicationFormatGridHandler extends GridHandler {
 		$context = $request->getContext();
 		$publicationFormatDao = DAORegistry::getDAO('PublicationFormatDAO');
 		$publicationFormat = $publicationFormatDao->getById(
-			$request->getUserVar('publicationFormatId'),
+			$request->getUserVar('representationId'),
 			null, // $submissionId
 			$context->getId() // Make sure to validate the context
 		);
@@ -342,7 +342,7 @@ class PublicationFormatGridHandler extends GridHandler {
 		$context = $request->getContext();
 		$publicationFormatDao = DAORegistry::getDAO('PublicationFormatDAO');
 		$publicationFormat = $publicationFormatDao->getById(
-			$request->getUserVar('publicationFormatId'),
+			$request->getUserVar('representationId'),
 			null, // $submissionId
 			$context->getId() // Make sure to validate the context.
 		);

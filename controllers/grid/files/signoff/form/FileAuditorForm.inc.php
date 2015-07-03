@@ -3,8 +3,8 @@
 /**
  * @file controllers/grid/files/signoff/form/FileAuditorForm.inc.php
  *
- * Copyright (c) 2014 Simon Fraser University Library
- * Copyright (c) 2003-2014 John Willinsky
+ * Copyright (c) 2014-2015 Simon Fraser University Library
+ * Copyright (c) 2003-2015 John Willinsky
  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
  *
  * @class FileAuditorForm
@@ -17,14 +17,14 @@ import('lib.pkp.controllers.grid.files.signoff.form.PKPFileAuditorForm');
 
 class FileAuditorForm extends PKPFileAuditorForm {
 	/** @var int */
-	var $_publicationFormatId;
+	var $_representationId;
 
 	/**
 	 * Constructor.
 	 */
-	function FileAuditorForm($submission, $fileStage, $stageId, $symbolic, $eventType, $assocId = null, $publicationFormatId = null) {
+	function FileAuditorForm($submission, $fileStage, $stageId, $symbolic, $eventType, $assocId = null, $representationId = null) {
 		parent::PKPFileAuditorForm($submission, $fileStage, $stageId, $symbolic, $eventType, $assocId);
-		$this->_publicationFormatId = $publicationFormatId;
+		$this->_representationId = $representationId;
 	}
 
 	// Getters and Setters.
@@ -33,7 +33,7 @@ class FileAuditorForm extends PKPFileAuditorForm {
 	 * @return int
 	 */
 	function getPublicationFormatId() {
-		return $this->_publicationFormatId;
+		return $this->_representationId;
 	}
 
 	//
@@ -49,7 +49,7 @@ class FileAuditorForm extends PKPFileAuditorForm {
 		parent::initData($args, $request);
 
 		if ($this->getPublicationFormatId()) {
-			$this->setData('publicationFormatId', $this->getPublicationFormatId());
+			$this->setData('representationId', $this->getPublicationFormatId());
 		}
 	}
 }
