@@ -377,6 +377,13 @@ class MonographDAO extends SubmissionDAO {
 	protected function getGroupByColumns() {
 		return 's.submission_id, ps.date_published, stl.setting_value, stpl.setting_value, sal.setting_value, sapl.setting_value';
 	}
+
+	/**
+	 * @copydoc SubmissionDAO::getCompletionConditions()
+	 */
+	protected function getCompletionConditions($completed) {
+		return ' ps.date_published IS ' . ($completed?'NOT ':'') . 'NULL ';
+	}
 }
 
 ?>
