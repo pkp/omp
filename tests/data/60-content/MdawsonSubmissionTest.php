@@ -74,6 +74,32 @@ class MdawsonSubmissionTest extends ContentBaseTestCase {
 					'contributors' => array('Michael Dawson'),
 				),
 			),
+			'additionalFiles' => array(
+				array(
+					'fileTitle' => 'Segmentation of Vascular Ultrasound Image Sequences.',
+					'file' => DUMMY_ZIP,
+					'metadata' => array(
+						'genre' => 'Other',
+						'creator' => 'Baris Kanber',
+						'description' => 'A presentation entitled "Segmentation of Vascular Ultrasound Image Sequences".',
+						'language' => 'en',
+					),
+				),
+				array(
+					'fileTitle' => 'The Canadian Nutrient File: Nutrient Value of Some Common Foods',
+					'file' => DUMMY_ZIP,
+					'metadata' => array(
+						'genre' => 'Other',
+						'creator' => 'Health Canada',
+						'publisher' => 'Health Canada',
+						'description' => 'Published by Health Canada, the Nutrient Value of Some Common Foods (NVSCF) provides Canadians with a resource that lists 19 nutrients for 1000 of the most commonly consumed foods in Canada. Use this quick and easy reference to help make informed food choices through an understanding of the nutrient content of the foods you eat. For further information, a booklet is available on this site in a downloadable or printable pdf format.',
+						'source' => 'http://open.canada.ca/data/en/dataset/a289fd54-060c-4a96-9fcf-b1c6e706426f',
+						'subject' => 'Health and Safety',
+						'dateCreated' => '2013-05-23',
+						'language' => 'en',
+					),
+				),
+			),
 		));
 		$this->logOut();
 
