@@ -256,8 +256,11 @@ abstract class PubIdPlugin extends Plugin {
 					break;
 				case 'MonographFile':
 					$submissionFileDao = DAORegistry::getDAO('SubmissionFileDAO');
-					// FIXME:  Checking all files in a context for a duplicate id has a lot of overhead.  There is no way
-					// to retrieve all files by context id.  Submissions must be retrieved first, then iterated over, for files.
+					$submissionDao = Application::getSubmissionDAO();
+					$submissions = $submissionDao->getByContextId($pressId);
+					while ($submission = $submissions->next()) {
+						$objectsToCheck = array_merge($objectsToCheck, $submissionFileDao->getLatestRevisions($submission->getId()));
+					}
 					break;
 				default:
 					$objectsToCheck = null; // Suppress warn
