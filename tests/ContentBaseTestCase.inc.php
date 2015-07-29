@@ -32,7 +32,7 @@ class ContentBaseTestCase extends PKPContentBaseTestCase {
 				$chapter['files'] = array($chapter['title']);
 			}
 			$data['files'] = $files;
-		} else {
+		} elseif (isset($data['chapters'])) {
 			foreach  ($data['chapters'] as &$chapter) {
 				if (!isset($chapter['files'])) $chapter['files'] = array();
 			}
