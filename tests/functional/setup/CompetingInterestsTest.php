@@ -47,6 +47,7 @@ class CompetingInterestsTest extends ContentBaseTestCase {
 
 		// Submit review with no competing interests
 		$this->logIn('agallego');
+		$this->scrollGridDown('assignedSubmissionsListGridContainer');
 		$xpath = '//span[contains(text(),' . $this->quoteXpath(self::$fullTitle) .')]/../../..//a[contains(@id, "-stage-itemWorkflow-button-")]';
 		$this->waitForElementPresent($xpath);
 		$this->clickAndWait($xpath);
@@ -98,6 +99,7 @@ class CompetingInterestsTest extends ContentBaseTestCase {
 		// Submit review with competing interests
 		$competingInterests = 'I work for a competing company';
 		$this->logIn('alzacharia');
+		$this->scrollGridDown('assignedSubmissionsListGridContainer');
 		$xpath = '//span[contains(text(),' . $this->quoteXpath(self::$fullTitle) .')]/../../..//a[contains(@id, "-stage-itemWorkflow-button-")]';
 		$this->waitForElementPresent($xpath);
 		$this->clickAndWait($xpath);
