@@ -68,7 +68,7 @@ class AuditorReminderForm extends PKPAuditorReminderForm {
 	 */
 	function _getMailTemplate($submission) {
 		import('classes.mail.MonographMailTemplate');
-		$email = new MonographMailTemplate($submission, 'REVIEW_REMIND', null, null, null, false);
+		$email = new MonographMailTemplate($submission, 'REVIEW_REMIND', null, null, false);
 		return $email;
 	}
 }

@@ -27,7 +27,7 @@ class OmpEditorDecisionAccessPolicy extends ContextPolicy {
 		parent::ContextPolicy($request);
 
 		// A decision can only be made if there is a valid workflow stage
-		import('classes.security.authorization.WorkflowStageAccessPolicy');
+		import('lib.pkp.classes.security.authorization.WorkflowStageAccessPolicy');
 		$this->addPolicy(new WorkflowStageAccessPolicy($request, $args, $roleAssignments, $submissionParameterName, $stageId));
 
 		// An editor decision can only be made if there is a press editor assigned to the stage

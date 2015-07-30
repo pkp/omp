@@ -27,20 +27,6 @@ class AuthorDashboardHandler extends PKPAuthorDashboardHandler {
 
 
 	//
-	// Implement template methods from PKPHandler
-	//
-	/**
-	 * @see PKPHandler::authorize()
-	 */
-	function authorize($request, &$args, $roleAssignments) {
-		import('classes.security.authorization.OmpAuthorDashboardAccessPolicy');
-		$this->addPolicy(new OmpAuthorDashboardAccessPolicy($request, $args, $roleAssignments), true);
-
-		return parent::authorize($request, $args, $roleAssignments);
-	}
-
-
-	//
 	// Public handler operations
 	//
 	/**

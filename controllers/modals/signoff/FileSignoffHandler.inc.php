@@ -75,7 +75,7 @@ class FileSignoffHandler extends FileManagementHandler {
 	 * @see PKPHandler::authorize()
 	 */
 	function authorize($request, &$args, $roleAssignments) {
-		import('classes.security.authorization.SignoffAccessPolicy');
+		import('lib.pkp.classes.security.authorization.SignoffAccessPolicy');
 
 		// Check the operation to define the access mode.
 		$router = $request->getRouter();

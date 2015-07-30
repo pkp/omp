@@ -73,8 +73,8 @@ class SubmissionSubmitStep3Form extends PKPSubmissionSubmitStep3Form {
 
 		// Send author notification email
 		import('classes.mail.MonographMailTemplate');
-		$mail = new MonographMailTemplate($submission, 'SUBMISSION_ACK', null, null, null, false);
-		$authorMail = new MonographMailTemplate($submission, 'SUBMISSION_ACK_NOT_USER', null, null, null, false);
+		$mail = new MonographMailTemplate($submission, 'SUBMISSION_ACK', null, null, false);
+		$authorMail = new MonographMailTemplate($submission, 'SUBMISSION_ACK_NOT_USER', null, null, false);
 
 		$context = $request->getContext();
 		$router = $request->getRouter();

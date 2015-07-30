@@ -45,7 +45,7 @@ class PublicationFormatHandler extends Handler {
 		$representationPolicy = new RepresentationRequiredPolicy($request, $args);
 
 		// Get the workflow stage policy
-		import('classes.security.authorization.WorkflowStageAccessPolicy');
+		import('lib.pkp.classes.security.authorization.WorkflowStageAccessPolicy');
 		$stagePolicy = new WorkflowStageAccessPolicy($request, $args, $roleAssignments, 'submissionId', WORKFLOW_STAGE_ID_PRODUCTION);
 
 		// Add the representation policy to the stage policy.

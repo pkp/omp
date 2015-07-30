@@ -50,7 +50,7 @@ class StageParticipantNotifyForm extends PKPStageParticipantNotifyForm {
 		if ($includeSignature)
 			return new MonographMailTemplate($article, $templateKey);
 		else
-			return new MonographMailTemplate($article, $templateKey, null, null, null, false);
+			return new MonographMailTemplate($article, $templateKey, null, null, false);
 	}
 }
 
