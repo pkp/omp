@@ -46,8 +46,8 @@ class EditorDecisionHandler extends PKPEditorDecisionHandler {
 	 */
 	function authorize($request, &$args, $roleAssignments) {
 		$stageId = (int) $request->getUserVar('stageId');
-		import('classes.security.authorization.OmpEditorDecisionAccessPolicy');
-		$this->addPolicy(new OmpEditorDecisionAccessPolicy($request, $args, $roleAssignments, 'submissionId', $stageId));
+		import('lib.pkp.classes.security.authorization.EditorDecisionAccessPolicy');
+		$this->addPolicy(new EditorDecisionAccessPolicy($request, $args, $roleAssignments, 'submissionId', $stageId));
 
 		return parent::authorize($request, $args, $roleAssignments);
 	}

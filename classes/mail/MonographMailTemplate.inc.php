@@ -24,13 +24,12 @@ class MonographMailTemplate extends SubmissionMailTemplate {
 	 * @param $submission Submission
 	 * @param $emailKey string optional
 	 * @param $locale string optional
-	 * @param $enableAttachments boolean optional
 	 * @param $context object optional
 	 * @param $includeSignature boolean optional
 	 * @see MailTemplate::MailTemplate()
 	 */
-	function MonographMailTemplate($submission, $emailKey = null, $locale = null, $enableAttachments = null, $context = null, $includeSignature = true) {
-		parent::SubmissionMailTemplate($submission, $emailKey, $locale, $enableAttachments, $context, $includeSignature);
+	function MonographMailTemplate($submission, $emailKey = null, $locale = null, $context = null, $includeSignature = true) {
+		parent::SubmissionMailTemplate($submission, $emailKey, $locale, $context, $includeSignature);
 	}
 
 	function assignParams($paramArray = array()) {

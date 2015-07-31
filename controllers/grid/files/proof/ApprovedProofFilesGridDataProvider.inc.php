@@ -33,7 +33,7 @@ class ApprovedProofFilesGridDataProvider extends GridDataProvider {
 	 * @see GridDataProvider::getAuthorizationPolicy
 	 */
 	function getAuthorizationPolicy($request, $args, $roleAssignments) {
-		import('classes.security.authorization.SubmissionAccessPolicy');
+		import('lib.pkp.classes.security.authorization.SubmissionAccessPolicy');
 		$policy = new SubmissionAccessPolicy($request, $args, $roleAssignments);
 		import('lib.pkp.classes.security.authorization.internal.WorkflowStageRequiredPolicy');
 		$policy->addPolicy(new WorkflowStageRequiredPolicy(WORKFLOW_STAGE_ID_PRODUCTION));

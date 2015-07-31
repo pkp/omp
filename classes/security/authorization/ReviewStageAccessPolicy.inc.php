@@ -32,12 +32,12 @@ class ReviewStageAccessPolicy extends ContextPolicy {
 		$workflowStagePolicy = new PolicySet(COMBINING_PERMIT_OVERRIDES);
 
 		// Add the workflow policy, for editorial / press roles
-		import('classes.security.authorization.WorkflowStageAccessPolicy');
+		import('lib.pkp.classes.security.authorization.WorkflowStageAccessPolicy');
 		$workflowStagePolicy->addPolicy(new WorkflowStageAccessPolicy($request, $args, $roleAssignments, $submissionParameterName, $stageId));
 
 		if ($stageId == WORKFLOW_STAGE_ID_INTERNAL_REVIEW || $stageId == WORKFLOW_STAGE_ID_EXTERNAL_REVIEW) {
 			// Add the submission policy, for reviewer roles
-			import('classes.security.authorization.SubmissionAccessPolicy');
+			import('lib.pkp.classes.security.authorization.SubmissionAccessPolicy');
 			$submissionPolicy = new SubmissionAccessPolicy($request, $args, $roleAssignments, $submissionParameterName);
 			$submissionPolicy->addPolicy(new WorkflowStageRequiredPolicy($stageId));
 			$workflowStagePolicy->addPolicy($submissionPolicy);
