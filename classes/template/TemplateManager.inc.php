@@ -71,6 +71,12 @@ class TemplateManager extends PKPTemplateManager {
 					$this->addStyleSheet($request->getBaseUrl() . '/' . $publicFileManager->getContextFilesPath(ASSOC_TYPE_PRESS, $context->getId()) . '/' . $contextStyleSheet['uploadName'], STYLE_SEQUENCE_LAST);
 				}
 
+				// Get context info for use in primary navigation items
+				import('pages.about.AboutContextHandler');;
+				if (in_array('IAboutContextInfoProvider', class_implements('AboutContextHandler'))) {
+					$this->assign('contextInfo', AboutContextHandler::getAboutInfo($context));
+				}
+
 				// Include footer links if they have been defined.
 				$footerCategoryDao = DAORegistry::getDAO('FooterCategoryDAO');
 				$footerCategories = $footerCategoryDao->getNotEmptyByContextId($context->getId());

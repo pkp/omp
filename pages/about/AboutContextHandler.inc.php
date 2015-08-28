@@ -41,40 +41,15 @@ class AboutContextHandler extends Handler implements IAboutContextInfoProvider {
 	}
 
 	/**
-	 * Display contact page.
+	 * Display about page.
 	 * @param $args array
 	 * @param $request PKPRequest
 	 */
-	function contact($args, $request) {
+	function index($args, $request) {
 		$context = $request->getContext();
 		$templateMgr = TemplateManager::getManager($request);
-		$templateMgr->assign('contactInfo', AboutContextHandler::getContactInfo($context));
-		$templateMgr->display('about/contact.tpl');
-	}
-
-	/**
-	 * Display description page.
-	 * @param $args array
-	 * @param $request PKPRequest
-	 */
-	function description($args, $request) {
-		$context = $request->getContext();
-
-		$templateMgr = TemplateManager::getManager($request);
-		$templateMgr->assign('descriptionInfo', AboutContextHandler::getDescriptionInfo($context));
-		$templateMgr->display('about/description.tpl');
-	}
-
-	/**
-	 * Display sponsorship page.
-	 * @param $args array
-	 * @param $request PKPRequest
-	 */
-	function sponsorship($args, $request) {
-		$context = $request->getContext();
-		$templateMgr = TemplateManager::getManager($request);
-		$templateMgr->assign('sponsorshipInfo', AboutContextHandler::getSponsorshipInfo($context));
-		$templateMgr->display('about/sponsorship.tpl');
+		$templateMgr->assign(AboutContextHandler::getAboutInfo($context));
+		$templateMgr->display('frontend/pages/about.tpl');
 	}
 
 	/**
@@ -87,18 +62,6 @@ class AboutContextHandler extends Handler implements IAboutContextInfoProvider {
 		$templateMgr = TemplateManager::getManager($request);
 		$templateMgr->assign('editorialTeamInfo', AboutContextHandler::getEditorialTeamInfo($context));
 		$templateMgr->display('about/editorialTeam.tpl');
-	}
-
-	/**
-	 * Display editorialPolicies page.
-	 * @param $args array
-	 * @param $request PKPRequest
-	 */
-	function editorialPolicies($args, $request) {
-		$context = $request->getContext();
-		$templateMgr = TemplateManager::getManager($request);
-		$templateMgr->assign('editorialPoliciesInfo', AboutContextHandler::getEditorialPoliciesInfo($context));
-		$templateMgr->display('about/editorialPolicies.tpl');
 	}
 
 	/**
@@ -143,21 +106,6 @@ class AboutContextHandler extends Handler implements IAboutContextInfoProvider {
 		}
 
 		return $contactSettings;
-	}
-
-	/**
-	 * Get description information used by description operation.
-	 * @param $context Press
-	 * @return Array
-	 */
-	static protected function getDescriptionInfo($context) {
-		$descriptionSettings =  array(
-				'description' => $context->getLocalizedSetting('description')
-		);
-
-		// Remove empty elements.
-		$descriptionSettings = array_filter($descriptionSettings);
-		return $descriptionSettings;
 	}
 
 	/**
@@ -251,7 +199,7 @@ class AboutContextHandler extends Handler implements IAboutContextInfoProvider {
 	static function getAboutInfo($context) {
 		return array(
 			'contact' => AboutContextHandler::getContactInfo($context),
-			'description' => AboutContextHandler::getDescriptionInfo($context),
+			'description' => $context->getLocalizedSetting('description'),
 			'sponsorship' => AboutContextHandler::getSponsorshipInfo($context),
 			'editorialTeam' => AboutContextHandler::getEditorialTeamInfo($context),
 			'editorialPolicies' => AboutContextHandler::getEditorialPoliciesInfo($context),
