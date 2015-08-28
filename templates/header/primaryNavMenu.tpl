@@ -23,10 +23,7 @@
 		</a>
 	</li>
 
-
-	{if $contextInfo.description || $contextInfo.editorialTeam ||
-			$contextInfo.editorialPolicies || $contextInfo.submissions ||
-			$contextInfo.pressSponsorship || $contextInfo.contact}
+	{if $contextInfo.editorialTeam || $contextInfo.submissions}
 		{assign var="submenu_class_attr" value=" class='has-submenu'"}
 	{/if}
 	<li{$submenu_class_attr}>
@@ -35,13 +32,6 @@
 		</a>
 		{if $submenu_class_attr}
 		<ul>
-			{if not empty($contextInfo.description)}
-			<li>
-				<a href="{url router=$smarty.const.ROUTE_PAGE page="about" op="description"}">
-					{translate key="about.description"}
-				</a>
-			</li>
-			{/if}
 			{if not empty($contextInfo.editorialTeam)}
 			<li>
 				<a href="{url router=$smarty.const.ROUTE_PAGE page="about" op="editorialTeam"}">
@@ -49,31 +39,10 @@
 				</a>
 			</li>
 			{/if}
-			{if not empty($contextInfo.editorialPolicies)}
-			<li>
-				<a href="{url router=$smarty.const.ROUTE_PAGE page="about" op="editorialPolicies"}">
-					{translate key="about.policies"}
-				</a>
-			</li>
-			{/if}
 			{if not empty($contextInfo.submissions)}
 			<li>
 				<a href="{url router=$smarty.const.ROUTE_PAGE page="about" op="submissions"}">
 					{translate key="about.submissions"}
-				</a>
-			</li>
-			{/if}
-			{if not empty($contextInfo.pressSponsorship)}
-			<li>
-				<a href="{url router=$smarty.const.ROUTE_PAGE page="about" op="pressSponsorship"}">
-					{translate key="about.pressSponsorship"}
-				</a>
-			</li>
-			{/if}
-			{if not empty($contextInfo.contact)}
-			<li>
-				<a href="{url router=$smarty.const.ROUTE_PAGE page="about" op="contact"}">
-					{translate key="about.contact"}
 				</a>
 			</li>
 			{/if}
