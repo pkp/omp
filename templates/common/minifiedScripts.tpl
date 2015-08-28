@@ -60,6 +60,7 @@
 <script src="{$baseUrl}/lib/pkp/js/controllers/ExtrasOnDemandHandler.js"></script>
 <script src="{$baseUrl}/lib/pkp/js/controllers/PageHandler.js"></script>
 <script src="{$baseUrl}/lib/pkp/js/controllers/TabHandler.js"></script>
+<script src="{$baseUrl}/lib/pkp/js/controllers/MenuHandler.js"></script>
 <script src="{$baseUrl}/lib/pkp/js/controllers/UploaderHandler.js"></script>
 <script src="{$baseUrl}/lib/pkp/js/controllers/AutocompleteHandler.js"></script>
 <script src="{$baseUrl}/lib/pkp/js/controllers/RangeSliderHandler.js"></script>
@@ -81,11 +82,9 @@
 <script src="{$baseUrl}/lib/pkp/js/controllers/modal/ConfirmationModalHandler.js"></script>
 <script src="{$baseUrl}/lib/pkp/js/controllers/modal/RedirectConfirmationModalHandler.js"></script>
 <script src="{$baseUrl}/lib/pkp/js/controllers/modal/RemoteActionConfirmationModalHandler.js"></script>
-<script src="{$baseUrl}/lib/pkp/js/controllers/modal/CallbackConfirmationModalHandler.js"></script>
 <script src="{$baseUrl}/lib/pkp/js/controllers/modal/ButtonConfirmationModalHandler.js"></script>
 <script src="{$baseUrl}/lib/pkp/js/controllers/modal/JsEventConfirmationModalHandler.js"></script>
 <script src="{$baseUrl}/lib/pkp/js/controllers/modal/AjaxModalHandler.js"></script>
-<script src="{$baseUrl}/lib/pkp/js/controllers/modal/AjaxLegacyPluginModalHandler.js"></script>
 <script src="{$baseUrl}/lib/pkp/js/controllers/modal/WizardModalHandler.js"></script>
 <script src="{$baseUrl}/lib/pkp/js/controllers/modals/editorDecision/form/EditorDecisionFormHandler.js"></script>
 <script src="{$baseUrl}/lib/pkp/js/controllers/linkAction/LinkActionHandler.js"></script>
@@ -101,8 +100,8 @@
 <script src="{$baseUrl}/lib/pkp/js/controllers/tab/settings/permissions/form/PermissionSettingsFormHandler.js"></script>
 <script src="{$baseUrl}/lib/pkp/js/controllers/tab/settings/paymentMethod/PaymentMethodHandler.js"></script>
 <script src="{$baseUrl}/lib/pkp/js/controllers/grid/notifications/NotificationsGridHandler.js"></script>
-<script src="{$baseUrl}/lib/pkp/js/pages/header/ContextSwitcherFormHandler.js"></script>
 <script src="{$baseUrl}/lib/pkp/js/pages/header/HeaderHandler.js"></script>
+<script src="{$baseUrl}/lib/pkp/js/pages/header/TasksHandler.js"></script>
 <script src="{$baseUrl}/lib/pkp/js/pages/admin/ContextsHandler.js"></script>
 <script src="{$baseUrl}/lib/pkp/js/pages/submission/SubmissionTabHandler.js"></script>
 <script src="{$baseUrl}/lib/pkp/js/controllers/grid/settings/user/form/UserFormHandler.js"></script>
