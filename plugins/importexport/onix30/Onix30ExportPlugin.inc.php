@@ -13,7 +13,7 @@
  * @brief ONIX 3.0 XML import/export plugin
  */
 
-import('classes.plugins.ImportExportPlugin');
+import('lib.pkp.classes.plugins.ImportExportPlugin');
 
 class Onix30ExportPlugin extends ImportExportPlugin {
 	/**
