@@ -29,100 +29,48 @@ abstract class PubIdPlugin extends Plugin {
 	// Implement template methods from PKPPlugin
 	//
 	/**
-	 * @see PKPPlugin::register()
+	 * @copydoc PKPPlugin::register()
 	 */
 	function register($category, $path) {
-		$success = parent::register($category, $path);
-		if ($success) {
-			// Enable storage of additional fields.
-			foreach($this->_getDAOs() as $daoName) {
-				HookRegistry::register(strtolower_codesafe($daoName).'::getAdditionalFieldNames', array($this, 'getAdditionalFieldNames'));
-			}
-		}
-		return $success;
-	}
+		if (!parent::register($category, $path)) return false;
 
-	/**
-	 * @see PKPPlugin::getManagementVerbs()
-	 */
-	function getManagementVerbs() {
-		if ($this->getEnabled()) {
-			$verbs = array(
-				array(
-					'disable',
-					__('manager.plugins.disable')
-				),
-				array(
-					'settings',
-					__('manager.plugins.settings')
-				)
-			);
-		} else {
-			$verbs = array(
-				array(
-					'enable',
-					__('manager.plugins.enable')
-				)
-			);
+		// Enable storage of additional fields.
+		foreach($this->_getDAOs() as $daoName) {
+			HookRegistry::register(strtolower_codesafe($daoName).'::getAdditionalFieldNames', array($this, 'getAdditionalFieldNames'));
 		}
-		return $verbs;
+		return true;
 	}
 
  	/**
-	 * @see PKPPlugin::manage()
+	 * @copydoc PKPPlugin::manage()
 	 */
-	function manage($verb, $args, &$message, &$messageParams, &$pluginModalContent = null) {
-		$request = $this->getRequest();
-		$templateManager = TemplateManager::getManager($request);
-		$templateManager->register_function('plugin_url', array(&$this, 'smartyPluginUrl'));
-		if (!$this->getEnabled() && $verb != 'enable') return false;
-		switch ($verb) {
-			case 'enable':
-				$this->setEnabled(true);
-				$message = NOTIFICATION_TYPE_PLUGIN_ENABLED;
-				$messageParams = array('pluginName' => $this->getDisplayName());
-				return false;
-
-			case 'disable':
-				$this->setEnabled(false);
-				$message = NOTIFICATION_TYPE_PLUGIN_DISABLED;
-				$messageParams = array('pluginName' => $this->getDisplayName());
-				return false;
-
-			case 'settings':
-				$press = $request->getPress();
-
-				$settingsFormName = $this->getSettingsFormName();
-				$settingsFormNameParts = explode('.', $settingsFormName);
-				$settingsFormClassName = array_pop($settingsFormNameParts);
-				$this->import($settingsFormName);
-				$form = new $settingsFormClassName($this, $press->getId());
-				if ($request->getUserVar('save')) {
-					$form->readInputData();
-					if ($form->validate()) {
-						$form->execute();
-						$message = NOTIFICATION_TYPE_SUCCESS;
-						$messageParams = array('contents' => __('plugins.pubIds.doi.manager.settings.doiSettingsUpdated'));
-						return false;
-					} else {
-						$pluginModalContent = $form->fetch($request);
-					}
-				} elseif ($request->getUserVar('clearPubIds')) {
-					$form->readInputData();
-					$pressDao = DAORegistry::getDAO('PressDAO');
-					$pressDao->deleteAllPubIds($press->getId(), $this->getPubIdType());
-					$message = NOTIFICATION_TYPE_SUCCESS;
-					$messageParams = array('contents' => __('plugins.pubIds.doi.manager.settings.doiReassign.success'));
-					return false;
-				} else {
-					$form->initData();
-					$pluginModalContent = $form->fetch($request);
-				}
-				return false;
-			default:
-				// Unknown management verb
-				assert(false);
-				return false;
+	function manage($args, $request) {
+		$notificationManager = new NotificationManager();
+	 	$user = $request->getUser();
+	 	$press = $request->getPress();
+ 
+		$settingsFormName = $this->getSettingsFormName();
+		$settingsFormNameParts = explode('.', $settingsFormName);
+		$settingsFormClassName = array_pop($settingsFormNameParts);
+		$this->import($settingsFormName);
+		$form = new $settingsFormClassName($this, $press->getId());
+		if ($request->getUserVar('save')) {
+			$form->readInputData();
+			if ($form->validate()) {
+				$form->execute();
+				$notificationManager->createTrivialNotification($user->getId(), NOTIFICATION_TYPE_SUCCESS);
+				return new JSONMessage(true);
+			} else {
+				return new JSONMessage(true, $form->fetch($request));
+			}
+		} elseif ($request->getUserVar('clearPubIds')) {
+			$pressDao = DAORegistry::getDAO('PressDAO');
+			$pressDao->deleteAllPubIds($press->getId(), $this->getPubIdType());
+			$notificationManager->createTrivialNotification($user->getId(), NOTIFICATION_TYPE_SUCCESS);
+			return new JSONMessage(true);
+		} else {
+			$form->initData();
+			return new JSONMessage(true, $form->fetch($request));
 		}
 	}
 

@@ -13,10 +13,15 @@
  * @brief Implements application specifics for usage event generation.
  */
 
-
 import('lib.pkp.plugins.generic.usageEvent.PKPUsageEventPlugin');
 
 class UsageEventPlugin extends PKPUsageEventPlugin {
+	/**
+	 * Constructor
+	 */
+	function UsageEventPlugin() {
+		parent::PKPUsageEventPlugin();
+	}
 
 
 	//

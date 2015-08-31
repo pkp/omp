@@ -13,8 +13,7 @@
  * @brief CSV import/export plugin
  */
 
-import('classes.plugins.ImportExportPlugin');
-
+import('lib.pkp.classes.plugins.ImportExportPlugin');
 
 class CSVImportExportPlugin extends ImportExportPlugin {
 	/**

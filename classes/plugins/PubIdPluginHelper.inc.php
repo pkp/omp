@@ -22,8 +22,8 @@ class PubIdPluginHelper {
 	 * @param $form object CatalogEntryFormatMetadataForm
 	 * @param $pubObject object A PublicationFormat object
 	 */
-	function validate($pressId, &$form, &$pubObject) {
-		$pubIdPlugins =& PluginRegistry::loadCategory('pubIds', true);
+	function validate($pressId, $form, $pubObject) {
+		$pubIdPlugins = PluginRegistry::loadCategory('pubIds', true);
 		if (is_array($pubIdPlugins)) {
 			foreach ($pubIdPlugins as $pubIdPlugin) {
 				$fieldNames = $pubIdPlugin->getFormFieldNames();
@@ -43,8 +43,8 @@ class PubIdPluginHelper {
 	 * @param $form object CatalogEntryFormatMetadataForm
 	 * @param $pubObject object A PublicationFormat object
 	 */
-	function init(&$form, &$pubObject) {
-		$pubIdPlugins =& PluginRegistry::loadCategory('pubIds', true);
+	function init($form, $pubObject) {
+		$pubIdPlugins = PluginRegistry::loadCategory('pubIds', true);
 		if (is_array($pubIdPlugins)) {
 			foreach ($pubIdPlugins as $pubIdPlugin) {
 				$fieldNames = $pubIdPlugin->getFormFieldNames();
@@ -59,8 +59,8 @@ class PubIdPluginHelper {
 	 * Read the additional input data from public identifier plugins.
 	 * @param $form object CatalogEntryFormatMetadataForm
 	 */
-	function readInputData(&$form) {
-		$pubIdPlugins =& PluginRegistry::loadCategory('pubIds', true);
+	function readInputData($form) {
+		$pubIdPlugins = PluginRegistry::loadCategory('pubIds', true);
 		if (is_array($pubIdPlugins)) {
 			foreach ($pubIdPlugins as $pubIdPlugin) {
 				$form->readUserVars($pubIdPlugin->getFormFieldNames());
@@ -73,8 +73,8 @@ class PubIdPluginHelper {
 	 * @param $form object CatalogEntryFormatMetadataForm
 	 * @param $pubObject object A PublicationFormat object
 	 */
-	function execute(&$form, &$pubObject) {
-		$pubIdPlugins =& PluginRegistry::loadCategory('pubIds', true);
+	function execute($form, $pubObject) {
+		$pubIdPlugins = PluginRegistry::loadCategory('pubIds', true);
 		if (is_array($pubIdPlugins)) {
 			foreach ($pubIdPlugins as $pubIdPlugin) {
 				// Public ID data can only be changed as long
