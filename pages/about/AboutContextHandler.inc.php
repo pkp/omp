@@ -48,6 +48,7 @@ class AboutContextHandler extends Handler implements IAboutContextInfoProvider {
 	function index($args, $request) {
 		$context = $request->getContext();
 		$templateMgr = TemplateManager::getManager($request);
+		$this->setupTemplate($request);
 		$templateMgr->assign(AboutContextHandler::getAboutInfo($context));
 		$templateMgr->display('frontend/pages/about.tpl');
 	}
@@ -60,8 +61,9 @@ class AboutContextHandler extends Handler implements IAboutContextInfoProvider {
 	function editorialTeam($args, $request) {
 		$context = $request->getContext();
 		$templateMgr = TemplateManager::getManager($request);
-		$templateMgr->assign('editorialTeamInfo', AboutContextHandler::getEditorialTeamInfo($context));
-		$templateMgr->display('about/editorialTeam.tpl');
+		$this->setupTemplate($request);
+		$templateMgr->assign('editorialTeam', $context->getLocalizedSetting('masthead'));
+		$templateMgr->display('frontend/pages/editorialTeam.tpl');
 	}
 
 	/**
@@ -72,8 +74,9 @@ class AboutContextHandler extends Handler implements IAboutContextInfoProvider {
 	function submissions($args, $request) {
 		$context = $request->getContext();
 		$templateMgr = TemplateManager::getManager($request);
+		$this->setupTemplate($request);
 		$templateMgr->assign('submissionInfo', AboutContextHandler::getSubmissionsInfo($context));
-		$templateMgr->display('about/submissions.tpl');
+		$templateMgr->display('frontend/pages/submissions.tpl');
 	}
 
 
@@ -124,21 +127,6 @@ class AboutContextHandler extends Handler implements IAboutContextInfoProvider {
 		// Remove empty elements.
 		$sponsorshipSettings = array_filter($sponsorshipSettings);
 		return $sponsorshipSettings;
-	}
-
-	/**
-	 * Get editorial team information used by editorial team operation.
-	 * @param $context Press
-	 * @return Array
-	 */
-	static protected function getEditorialTeamInfo($context) {
-		$editorialTeamInfo = array(
-				'masthead' => $context->getLocalizedSetting('masthead')
-		);
-
-		// Remove empty elements.
-		$editorialTeamInfo = array_filter($editorialTeamInfo);
-		return $editorialTeamInfo;
 	}
 
 	/**
@@ -201,7 +189,7 @@ class AboutContextHandler extends Handler implements IAboutContextInfoProvider {
 			'contact' => AboutContextHandler::getContactInfo($context),
 			'description' => $context->getLocalizedSetting('description'),
 			'sponsorship' => AboutContextHandler::getSponsorshipInfo($context),
-			'editorialTeam' => AboutContextHandler::getEditorialTeamInfo($context),
+			'editorialTeam' => $context->getLocalizedSetting('masthead'),
 			'editorialPolicies' => AboutContextHandler::getEditorialPoliciesInfo($context),
 			'submissions' => AboutContextHandler::getSubmissionsInfo($context)
 		);
