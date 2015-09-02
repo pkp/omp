@@ -21,6 +21,7 @@
 <div class="page page_about">
 	<h1 class="page_title">
 		{translate key="about.aboutThePress"}
+		{include file="frontend/components/editLink.tpl" page="management" op="settings" path="press" anchor="masthead" sectionTitleKey="about.aboutThePress"}
 	</h1>
 
 	{if $description}
@@ -30,11 +31,11 @@
 	{/if}
 
 
-
 	{* Contact section *}
 	<div class="contact_section">
 		<h2>
 			{translate key="about.pressContact"}
+			{include file="frontend/components/editLink.tpl" page="management" op="settings" path="press" anchor="contact" sectionTitleKey="about.pressContact"}
 		</h2>
 
 		{if $contact.mailingAddress}
@@ -149,6 +150,7 @@
 		<div class="focus_scope">
 			<h2>
 				{translate key="about.focusAndScope"}
+				{include file="frontend/components/editLink.tpl" page="management" op="settings" path="press" anchor="policies" sectionTitleKey="about.focusAndScope"}
 			</h2>
 			<div>
 				{$editorialPolicies.focusScopeDesc}
@@ -160,6 +162,7 @@
 		<div class="review">
 			<h2>
 				{translate key="about.reviewPolicy"}
+				{include file="frontend/components/editLink.tpl" page="management" op="settings" path="press" anchor="policies" sectionTitleKey="about.reviewPolicy"}
 			</h2>
 			{$editorialPolicies.reviewPolicy|nl2br}
 		</div>
@@ -169,6 +172,7 @@
 		<div class="open_access">
 			<h2>
 				{translate key="about.openAccessPolicy"}
+				{include file="frontend/components/editLink.tpl" page="management" op="settings" path="press" anchor="policies" sectionTitleKey="about.openAccessPolicy"}
 			</h2>
 			{$editorialPolicies.openAccessPolicy|nl2br}
 		</div>
@@ -179,6 +183,7 @@
 			<div class="custom custom-{$key|escape}">
 				<h2>
 					{$customAboutItem.title|escape}
+					{include file="frontend/components/editLink.tpl" page="management" op="settings" path="press" anchor="policies" sectionTitle=$customAboutItem.title|escape}
 				</h2>
 				{$customAboutItem.content|nl2br}
 			</div>
@@ -190,6 +195,7 @@
 		<div class="sponsors">
 			<h2>
 				{translate key="about.sponsors"}
+				{include file="frontend/components/editLink.tpl" page="management" op="settings" path="press" anchor="affiliationAndSupport" sectionTitleKey="about.sponsors"}
 			</h2>
 			{$sponsorship.sponsorNote|nl2br}
 			{if $sponsorship.sponsors}
@@ -211,6 +217,7 @@
 		<div class="contributors">
 			<h2>
 				{translate key="about.contributors"}
+				{include file="frontend/components/editLink.tpl" page="management" op="settings" path="press" anchor="affiliationAndSupport" sectionTitleKey="about.contributors"}
 			</h2>
 			{$sponsorship.contributorNote|nl2br}
 			{if $sponsorship.contributors}
