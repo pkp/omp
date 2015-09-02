@@ -13,7 +13,7 @@
  *}
 {include file="common/frontend/header.tpl" pageTitle="about.editorialTeam"}
 
-<div class="page page_about">
+<div class="page page_editorial_team">
 	<h1 class="page_title">
 		{translate key="about.editorialTeam"}
 		{include file="frontend/components/editLink.tpl" page="management" op="settings" path="press" anchor="masthead" sectionTitleKey="about.editorialTeam"}
