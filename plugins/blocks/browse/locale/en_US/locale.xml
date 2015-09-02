@@ -11,14 +11,14 @@
   * Localization strings for this plugin.
   *
   -->
- 
+
 <locale name="en_US" full_name="U.S. English">
 	<message key="plugins.block.browse">Browse</message>
 	<message key="plugins.block.browse.displayName">Browse Block</message>
 	<message key="plugins.block.browse.description">This plugin provides sidebar "browse" tools.</message>
 	<message key="plugins.block.browse.settings">Settings</message>
 	<message key="plugins.block.browse.settings.title">Browse Possibilities</message>
-	<message key="plugins.block.browse.category">Browse a category</message>
-	<message key="plugins.block.browse.series">Browse a series</message>
-	<message key="plugins.block.browse.newReleases">Browse new releases</message>
+	<message key="plugins.block.browse.category">Categories</message>
+	<message key="plugins.block.browse.series">Series</message>
+	<message key="plugins.block.browse.newReleases">New releases</message>
 </locale>

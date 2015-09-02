@@ -26,14 +26,36 @@
 		line-height: @double - 1; // account for border
 		color: @text-light;
 	}
+
+	.content ul {
+		&:extend(.pkp_unstyled_list);
+	}
 }
 
-// Strip styles from some of the block lists
-.block_information ul,
-.block_web_feed ul {
-	margin: 0;
-	padding: 0;
-	list-style: none;
+// Browse sidebar block
+.block_browse {
+
+	li {
+		line-height: @base;
+		padding: @half 0;
+	}
+
+	.has_submenu {
+		margin-top: @double;
+		font-weight: @bold;
+
+		ul {
+			font-weight: @normal;
+		}
+	}
+
+	.is_sub {
+		margin-left: @base;
+	}
+
+	a {
+		text-decoration: none;
+	}
 }
 
 // Information sidebar
