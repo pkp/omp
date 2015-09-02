@@ -77,6 +77,14 @@ class TemplateManager extends PKPTemplateManager {
 					$this->assign('contextInfo', AboutContextHandler::getAboutInfo($context));
 				}
 
+				// Get a link to the settings page for the current context.
+				// This allows us to reduce template duplication by using this
+				// variable in templates/common/header.tpl, instead of
+				// reproducing a lot of OMP/OJS-specific logic there.
+				$router = $request->getRouter();
+				$dispatcher = $request->getDispatcher();
+				$this->assign( 'contextSettingsUrl', $dispatcher->url($request, ROUTE_PAGE, null, 'management', 'settings', 'press') );
+
 				// Include footer links if they have been defined.
 				$footerCategoryDao = DAORegistry::getDAO('FooterCategoryDAO');
 				$footerCategories = $footerCategoryDao->getNotEmptyByContextId($context->getId());
