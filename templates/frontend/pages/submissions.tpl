@@ -5,8 +5,7 @@
  * Copyright (c) 2003-2015 John Willinsky
  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
  *
- * @brief Display the page to view the press's description, contact details,
- *  policies and more.
+ * @brief Display the page to view submission guidelines
  *
  * @uses $submissionInfo array Page content such as guidelines, checklist, etc
  *}
