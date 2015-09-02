@@ -8,7 +8,6 @@
  * @brief Display the page to view the press's description, contact details,
  *  policies and more.
  *
- * @uses $currentPress Press The current press
  * @uses $contact array Contact details for this press
  * @uses $description string Description of this press
  * @uses $sponshorshipInfo array Sponsor and contributor details for this press
