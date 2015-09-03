@@ -8,7 +8,7 @@
  * Common site sidebar menu -- "browse" tools.
  *
  *}
-<div class="pkp_block block_browse" id="sidebarBrowse">
+<div class="pkp_block block_browse">
 	<span class="title">
 		{translate key="plugins.block.browse"}
 	</span>
