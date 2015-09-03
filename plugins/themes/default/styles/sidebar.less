@@ -29,16 +29,27 @@
 
 	.content ul {
 		&:extend(.pkp_unstyled_list);
+
+		li {
+			line-height: @base;
+			padding: @half 0;
+		}
+
+		.current a {
+			padding-left: 0.5em;
+			border-left: 4px solid @bg;
+			color: @text-light;
+			cursor: text;
+		}
+	}
+
+	a {
+		text-decoration: none;
 	}
 }
 
 // Browse sidebar block
 .block_browse {
-
-	li {
-		line-height: @base;
-		padding: @half 0;
-	}
 
 	.has_submenu {
 		margin-top: @double;
@@ -51,17 +62,5 @@
 
 	.is_sub {
 		margin-left: @base;
-	}
-
-	a {
-		text-decoration: none;
-	}
-}
-
-// Information sidebar
-.block_information {
-
-	a {
-		text-decoration: none;
 	}
 }
