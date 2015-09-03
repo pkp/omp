@@ -28,5 +28,5 @@
 			{/foreach}
 		</ul>
 	</div>
-</div>
+</div><!-- .block_language -->
 {/if}
