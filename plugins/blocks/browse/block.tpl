@@ -5,7 +5,11 @@
  * Copyright (c) 2003-2015 John Willinsky
  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
  *
- * Common site sidebar menu -- "browse" tools.
+ * @brief Common site sidebar menu for browsing the catalog.
+ *
+ * @uses $browseNewReleases bool Whether or not to show a new releases link
+ * @uses $browseCategories array Categories that can be browsed
+ * @uses $browseSeries array Series that can be browsed
  *
  *}
 <div class="pkp_block block_browse">
