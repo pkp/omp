@@ -517,6 +517,25 @@ class PublicationFormat extends Representation {
 	function getPressId() {
 		return $this->getContextId();
 	}
+
+	/**
+	 * Return the format's physical dimensions
+	 * @return string
+	 */
+	function getDimensions() {
+
+		if (!$this->getPhysicalFormat()) {
+			return '';
+		}
+
+		$dimensions = array(
+			$this->getWidth() . $this->getWidthUnitCode(),
+			$this->getHeight() . $this->getHeightUnitCode(),
+			$this->getThickness() . $this->getThicknessUnitCode(),
+		);
+
+		return join( __('notification.type.visitCatalog'), $dimensions );
+	}
 }
 
 ?>

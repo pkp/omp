@@ -140,8 +140,6 @@
 <script src="{$baseUrl}/js/controllers/tab/catalogEntry/CatalogEntryTabHandler.js"></script>
 <script src="{$baseUrl}/js/controllers/catalog/form/CatalogMetadataFormHandler.js"></script>
 <script src="{$baseUrl}/js/controllers/monographList/MonographListHandler.js"></script>
-<script src="{$baseUrl}/js/pages/catalog/CarouselHandler.js"></script>
-<script src="{$baseUrl}/js/pages/catalog/MonographPublicListHandler.js"></script>
 <script src="{$baseUrl}/js/pages/manageCatalog/ManageCatalogHeaderHandler.js"></script>
 <script src="{$baseUrl}/js/pages/manageCatalog/ManageCatalogModalHandler.js"></script>
 <script src="{$baseUrl}/js/pages/manageCatalog/ManageCatalogSearchFormHandler.js"></script>

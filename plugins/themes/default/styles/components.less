@@ -135,46 +135,6 @@
 	}
 }
 
-// Access legend
-.cmp_access_legend {
-	margin: (@double * 2) 0;
-	padding: 0;
-	list-style: none;
-
-	&:last-child {
-		margin-bottom: 0;
-	}
-
-	li {
-		display: inline-block;
-		margin-right: 2em;
-		font-size: @font-sml;
-		line-height: @double;
-		color: @text-light;
-
-		&:before {
-			&:extend( .fa );
-			margin-right: 0.5em;
-			color: @text;
-		}
-	}
-
-	.restricted:before {
-		content: @fa-var-lock;
-		color: @offset;
-	}
-}
-
-// Pagination component
-// eg: 1-2 of 10 items
-.cmp_pagination {
-	margin-top: @double;
-	font-size: @font-sml;
-	line-height: @double;
-	color: @text-light;
-	text-align: right;
-}
-
 // Edit link to jump from frontend section to backend editing location
 // It usually appears within a heading element <h*>
 .cmp_edit_link {
@@ -217,4 +177,42 @@
 	padding: @double;
 	background: @bg;
 	text-align: center;
+}
+
+// List of monographs
+.cmp_monographs_list {
+	&:extend(.pkp_unstyled_list);
+
+	> li {
+		margin-bottom: @double * 2;
+	}
+}
+
+// Breadcrumbs
+.cmp_breadcrumbs {
+
+	ol {
+		&:extend(.pkp_unstyled_list);
+		margin-bottom: @double;
+		padding: 4px 0;
+		font-size: @font-sml;
+	}
+
+	li {
+		display: inline-block;
+	}
+
+	a {
+		display: inline-block;
+		text-decoration: none;
+	}
+
+	.separator {
+		color: @text-light;
+		padding: 0 0.5em;
+	}
+
+	.current {
+		color: @text-light;
+	}
 }

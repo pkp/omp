@@ -48,6 +48,7 @@
 	<!--  Dimension keys  -->
 	<message key="monograph.publicationFormat.digitalInformation">Digital Information</message>
 	<message key="monograph.publicationFormat.productDimensions">Physical Dimensions</message>
+	<message key="monograph.publicationFormat.productDimensionsSeparator">x</message>
 	<message key="monograph.publicationFormat.productFileSize">File Size in Mbytes</message>
 	<message key="monograph.publicationFormat.productFileSize.override">Enter your own file size value?</message>
 	<message key="monograph.publicationFormat.productHeight">Height</message>
@@ -261,15 +262,23 @@
 	<message key="catalog.manage.noMonographs">There are no assigned monographs.</message>
 
 	<!-- Catalog -->
-	<message key="catalog.browseTitles">Browse {$numTitles} Titles</message>
+	<message key="catalog.noTitles">No titles have been published yet.</message>
+	<message key="catalog.noTitlesNew">No new releases are available at this time.</message>
+	<message key="catalog.noTitlesSearch">No titles were found which matched your search for "{$searchQuery}".</message>
+	<message key="catalog.noTitlesSection">No titles have been published yet for this section.</message>
+	<message key="catalog.browseTitles">{$numTitles} Titles</message>
 	<message key="catalog.feature">Feature</message>
 	<message key="catalog.featuredBooks">Featured Books</message>
+	<message key="catalog.allBooks">All Books</message>
+	<message key="catalog.newReleases">New Releases</message>
 	<message key="catalog.dateAdded">Added {$dateAdded}</message>
 	<message key="catalog.publicationInfo">Publication Info</message>
-	<message key="catalog.relatedCategories">Related categories</message>
+	<message key="catalog.published">Published</message>
+	<message key="catalog.categories">Categories</message>
 	<message key="catalog.parentCategory">Parent Category</message>
 	<message key="catalog.subcategories">Subcategories</message>
 	<message key="catalog.aboutTheAuthor">About the {$roleName}</message>
+	<message key="catalog.coverImageTitle">Cover for {$monographTitle}</message>
 	<message key="catalog.loginRequiredForPayment">Please note: In order to purchase items, you will need to log in first. Selecting an item to purchase will direct you to the login page. Any item marked with an Open Access icon may be downloaded free of charge, without logging in.</message>
 
 	<!--
@@ -313,6 +322,8 @@
 	<message key="navigation.published">Published</message>
 	<message key="navigation.wizard">Wizard</message>
 	<message key="navigation.linksAndMedia">Links and Social Media</message>
+	<message key="navigation.breadcrumbLabel">You are here:</message>
+	<message key="navigation.breadcrumbSeparator">/</message>
 
 	<!-- Common Press Terms -->
 	<message key="press.presses">Presses</message>
