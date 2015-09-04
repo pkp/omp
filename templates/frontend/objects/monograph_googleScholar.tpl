@@ -1,15 +1,13 @@
 {**
- * templates/catalog/book/googlescholar.tpl
+ * templates/frontend/objects/monograph_googleScholar.tpl
  *
  * Copyright (c) 2014-2015 Simon Fraser University Library
  * Copyright (c) 2003-2015 John Willinsky
  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
  *
- * Metadata elements for monographs based on preferred types for Google Scholar
+ * @brief Print Google Scholar metadata for a monograph
  *
- * Available data:
- *  $availableFiles array Array of available MonographFiles
- *  $publishedMonograph PublishedMonograph The published monograph object.
+ * @uses $monograph Monograph The monograph to be displayed
  *}
 
 {**

@@ -7,11 +7,7 @@
  *
  * Press index page.
  *}
-{strip}
-{include file="common/header.tpl" suppressPageTitle=true}
-{/strip}
-
-{call_hook name="Templates::Index::press"}
+{include file="common/frontend/header.tpl"}
 
 {if $publishedMonographs|@count > 0}
 	{* Include the new releases *}
@@ -38,12 +34,6 @@
 	</div>
 {/if}
 
-{if $displayFeaturedBooks}
-	{* Include the carousel view of featured content *}
-	{url|assign:carouselUrl router=$smarty.const.ROUTE_COMPONENT component="carousel.CarouselHandler" op="fetch" escape=false}
-	{load_url_in_div id="carousel" url=$carouselUrl}
-{/if}
-
 {if $spotlights|@count > 0}
 	{include file="index/spotlights.tpl"}
 {/if}
@@ -60,4 +50,4 @@
 	</div>
 {/if}
 
-{include file="common/footer.tpl"}
+{include file="common/frontend/footer.tpl"}

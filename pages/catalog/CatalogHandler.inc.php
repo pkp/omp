@@ -61,7 +61,7 @@ class CatalogHandler extends Handler {
 		$templateMgr->assign('publishedMonographs', $publishedMonographs->toAssociativeArray());
 
 		// Display
-		$templateMgr->display('catalog/index.tpl');
+		$templateMgr->display('frontend/pages/catalog.tpl');
 	}
 
 	/**
@@ -80,7 +80,7 @@ class CatalogHandler extends Handler {
 		$templateMgr->assign('publishedMonographs', $newReleases);
 
 		// Display
-		$templateMgr->display('catalog/newReleases.tpl');
+		$templateMgr->display('frontend/pages/catalogNewReleases.tpl');
 	}
 
 	/**
@@ -100,8 +100,6 @@ class CatalogHandler extends Handler {
 		$category =& $categoryDao->getByPath($categoryPath, $press->getId());
 		if (isset($category)) {
 			$templateMgr->assign('category', $category);
-			$additionalArgs = array('type' => 'category', 'path' => $category->getPath());
-			$templateMgr->assign('additionalArgs', $additionalArgs);
 
 			// Fetch the monographs to display
 			$publishedMonographDao = DAORegistry::getDAO('PublishedMonographDAO');
@@ -125,7 +123,7 @@ class CatalogHandler extends Handler {
 			$templateMgr->assign('subcategories', $subcategories);
 			// Display
 		}
-		$templateMgr->display('catalog/category.tpl');
+		$templateMgr->display('frontend/pages/catalogCategory.tpl');
 	}
 
 	/**
@@ -144,8 +142,6 @@ class CatalogHandler extends Handler {
 		$seriesPath = array_shift($args);
 		$series = $seriesDao->getByPath($seriesPath, $press->getId());
 		$templateMgr->assign('series', $series);
-		$additionalArgs = array('type' => 'series', 'path' => $series->getPath());
-		$templateMgr->assign('additionalArgs', $additionalArgs);
 
 		// Fetch the monographs to display
 		$publishedMonographDao = DAORegistry::getDAO('PublishedMonographDAO');
@@ -163,7 +159,7 @@ class CatalogHandler extends Handler {
 		$templateMgr->assign('newReleasesMonographs', $newReleases);
 
 		// Display
-		$templateMgr->display('catalog/series.tpl');
+		$templateMgr->display('frontend/pages/catalogSeries.tpl');
 	}
 
 	/**
@@ -196,7 +192,7 @@ class CatalogHandler extends Handler {
 		$templateMgr->assign('publishedMonographs', $publishedMonographs);
 
 		// Display
-		$templateMgr->display('catalog/results.tpl');
+		$templateMgr->display('frontend/pages/searchResults.tpl');
 	}
 
 	/**
