@@ -48,7 +48,7 @@
 	<!--  Dimension keys  -->
 	<message key="monograph.publicationFormat.digitalInformation">Digital Information</message>
 	<message key="monograph.publicationFormat.productDimensions">Physical Dimensions</message>
-	<message key="monograph.publicationFormat.productDimensionsSeparator">x</message>
+	<message key="monograph.publicationFormat.productDimensionsSeparator"> x </message>
 	<message key="monograph.publicationFormat.productFileSize">File Size in Mbytes</message>
 	<message key="monograph.publicationFormat.productFileSize.override">Enter your own file size value?</message>
 	<message key="monograph.publicationFormat.productHeight">Height</message>

@@ -528,13 +528,16 @@ class PublicationFormat extends Representation {
 			return '';
 		}
 
-		$dimensions = array(
-			$this->getWidth() . $this->getWidthUnitCode(),
-			$this->getHeight() . $this->getHeightUnitCode(),
-			$this->getThickness() . $this->getThicknessUnitCode(),
-		);
+		$width = $this->getWidth();
+		$height = $this->getHeight();
+		$thickness = $this->getThickness();
 
-		return join( __('notification.type.visitCatalog'), $dimensions );
+		$dimensions = array();
+		if (!empty($width)) { $dimensions[] = $width . $this->getWidthUnitCode() }
+		if (!empty($height)) { $dimensions[] = $height . $this->getHeightUnitCode() }
+		if (!empty($thickness)) { $dimensions[] = $thickness . $this->getThicknessUnitCode() }
+
+		return join( __('monograph.publicationFormat.productDimensionsSeparator'), $dimensions );
 	}
 }
 
