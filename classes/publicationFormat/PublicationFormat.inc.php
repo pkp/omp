@@ -533,9 +533,9 @@ class PublicationFormat extends Representation {
 		$thickness = $this->getThickness();
 
 		$dimensions = array();
-		if (!empty($width)) { $dimensions[] = $width . $this->getWidthUnitCode() }
-		if (!empty($height)) { $dimensions[] = $height . $this->getHeightUnitCode() }
-		if (!empty($thickness)) { $dimensions[] = $thickness . $this->getThicknessUnitCode() }
+		if (!empty($width)) { $dimensions[] = $width . $this->getWidthUnitCode(); }
+		if (!empty($height)) { $dimensions[] = $height . $this->getHeightUnitCode(); }
+		if (!empty($thickness)) { $dimensions[] = $thickness . $this->getThicknessUnitCode(); }
 
 		return join( __('monograph.publicationFormat.productDimensionsSeparator'), $dimensions );
 	}
