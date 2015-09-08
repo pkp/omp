@@ -517,6 +517,28 @@ class PublicationFormat extends Representation {
 	function getPressId() {
 		return $this->getContextId();
 	}
+
+	/**
+	 * Return the format's physical dimensions
+	 * @return string
+	 */
+	function getDimensions() {
+
+		if (!$this->getPhysicalFormat()) {
+			return '';
+		}
+
+		$width = $this->getWidth();
+		$height = $this->getHeight();
+		$thickness = $this->getThickness();
+
+		$dimensions = array();
+		if (!empty($width)) { $dimensions[] = $width . $this->getWidthUnitCode(); }
+		if (!empty($height)) { $dimensions[] = $height . $this->getHeightUnitCode(); }
+		if (!empty($thickness)) { $dimensions[] = $thickness . $this->getThicknessUnitCode(); }
+
+		return join( __('monograph.publicationFormat.productDimensionsSeparator'), $dimensions );
+	}
 }
 
 ?>

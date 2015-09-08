@@ -1,0 +1,64 @@
+/**
+ * @file plugins/themes/default/styles/objects/monograph_summary.less
+ *
+ * Copyright (c) 2014-2015 Simon Fraser University Library
+ * Copyright (c) 2003-2015 John Willinsky
+ * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
+ *
+ * @brief Styles applying to a summary view of a monograph, used in lists
+ * @link templates/frontend/objects/monograph_summary.tpl
+ */
+.obj_monograph_summary {
+
+	.cover {
+		display: block;
+
+		img {
+			display: block;
+			margin: 0 auto @base;
+			width: 100%;
+			height: auto;
+			max-width: 10em;
+			max-height: 20em;
+		}
+	}
+
+	a {
+		text-decoration: none;
+	}
+
+	.title {
+		font-size: @font-lead;
+		line-height: @line-lead;
+	}
+
+	.author {
+		font-size: @font-bump;
+		line-height: @line-bump;
+		color: @text-light;
+	}
+
+	.date {
+		font-size: @font-sml;
+		line-height: @line-sml;
+		color: @text-light;
+	}
+
+	@media(min-width: @screen-tablet) {
+
+		> * {
+			display: block;
+			margin-left: @base * 10;
+		}
+
+		.cover {
+			float: left;
+			width: @base * 8;
+			margin-left: 0;
+
+			img {
+				margin: auto;
+			}
+		}
+	}
+}

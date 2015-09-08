@@ -1,0 +1,65 @@
+/**
+ * @file plugins/themes/default/styles/objects/monograph_full.less
+ *
+ * Copyright (c) 2014-2015 Simon Fraser University Library
+ * Copyright (c) 2003-2015 John Willinsky
+ * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
+ *
+ * @brief Styles applying to a full view of a monograph, when it is the primary
+ *  object on the page
+ * @link templates/frontend/objects/monograph_full.tpl
+ */
+.obj_monograph_full {
+
+	.title {
+		margin: 0;
+	}
+
+	> .authors {
+		margin-bottom: @double;
+		font-size: @font-bump;
+		line-height: @line-bump;
+		color: @text-light;
+	}
+
+	.cover {
+		display: inline-block;
+		margin-bottom: @double;
+	}
+
+	.categories ul {
+		&:extend(.pkp_unstyled_list);
+
+		> li {
+			display: inline-block;
+			margin-right: 0.5em;
+		}
+	}
+
+	.abstract {
+		margin-bottom: @double;
+	}
+
+	.details,
+	.author_roles,
+	.chapters {
+		&:extend(.pkp_unstyled_list);
+		margin-bottom: @double;
+	}
+
+	.details,
+	.author_roles,
+	.chapters {
+
+		> li {
+			margin-bottom: @base;
+		}
+	}
+
+	.details .label,
+	.author_roles .name,
+	.chapters .title {
+		display: block;
+		font-weight: @bold;
+	}
+}
