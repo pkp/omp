@@ -26,6 +26,7 @@ class TemplateManager extends PKPTemplateManager {
 	 */
 	function TemplateManager($request) {
 		parent::PKPTemplateManager($request);
+		AppLocale::requireComponents(LOCALE_COMPONENT_APP_COMMON);
 
 		if (!defined('SESSION_DISABLE_INIT')) {
 			/**
