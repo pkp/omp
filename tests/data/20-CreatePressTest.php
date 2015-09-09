@@ -28,12 +28,12 @@ class CreatePressTest extends WebTestCase {
 	 */
 	function testCreatePress() {
 		$this->open(self::$baseUrl);
-		$this->waitForElementPresent('link=Administration');
-		$this->click('link=Administration');
-		$this->waitForElementPresent('link=Hosted Presses');
-		$this->click('link=Hosted Presses');
-		$this->waitForElementPresent('css=[id^=component-grid-admin-press-pressgrid-createContext-button-]');
-		$this->click('css=[id^=component-grid-admin-press-pressgrid-createContext-button-]');
+		$this->waitForElementPresent($selector='link=Administration');
+		$this->click($selector);
+		$this->waitForElementPresent($selector='link=Hosted Presses');
+		$this->click($selector);
+		$this->waitForElementPresent($selector='css=[id^=component-grid-admin-press-pressgrid-createContext-button-]');
+		$this->click($selector);
 
 		// Enter press data
 		$this->waitForElementPresent('css=[id^=name-en_US-]');
@@ -43,7 +43,7 @@ class CreatePressTest extends WebTestCase {
 		$this->typeTinyMCE('description-fr_CA', 'Le Press de Public Knowledge est une presse sur le thème de l\'accès du public à la science.');
 		$this->type('css=[id^=path-]', 'publicknowledge');
 		$this->click('css=[id^=submitFormButton-]');
-		$this->waitForElementPresent('css=h2:contains(\'Settings Wizard\')');
+		$this->waitForElementPresent('css=div.header:contains(\'Settings Wizard\')');
 		$this->waitJQuery();
 	}
 
@@ -54,11 +54,13 @@ class CreatePressTest extends WebTestCase {
 		$this->open(self::$baseUrl);
 
 		// Management > Settings > Press
-		$this->waitForElementPresent('//ul[contains(@class, \'sf-js-enabled\')]//a[text()=\'Press\']');
-		$this->clickAndWait('//ul[contains(@class, \'sf-js-enabled\')]//a[text()=\'Press\']');
-		$this->waitForElementPresent('//form[@id=\'mastheadForm\']//span[text()=\'Save\']/..');
-		$this->click('//form[@id=\'mastheadForm\']//span[text()=\'Save\']/..');
-		$this->waitJQuery();
+		$this->waitForElementPresent($selector='link=Dashboard');
+		$this->clickAndWait($selector);
+		$this->waitForElementPresent($selector='css=ul#navigationPrimary a:contains(\'Press\')');
+		$this->clickAndWait($selector);
+		$this->waitForElementPresent($selector='//form[@id=\'mastheadForm\']//button[text()=\'Save\']');
+		$this->click($selector);
+		$this->waitForTextPresent('Your changes have been saved.');
 
 		// Management > Settings > Contact
 		$this->click('link=Contact');
@@ -67,16 +69,16 @@ class CreatePressTest extends WebTestCase {
 		$this->type('css=[id^=contactName-]', 'Ramiro Vaca');
 		$this->type('css=[id^=supportEmail-]', 'rvaca@mailinator.com');
 		$this->type('css=[id^=supportName-]', 'Ramiro Vaca');
-		$this->click('//form[@id=\'contactForm\']//span[text()=\'Save\']/..');
-		$this->waitJQuery();
+		$this->click('//form[@id=\'contactForm\']//button[text()=\'Save\']');
+		$this->waitForTextPresent('Your changes have been saved.');
 
 		// Management > Settings > Website
 		$this->click('link=Website');
 		$this->waitForElementPresent('css=[id^=pageHeaderTitle-]');
 		$this->type('css=[id^=pageHeaderTitle-]', 'Public Knowledge Press');
 		$this->type('css=[id^=itemsPerPage-]', '100'); // To avoid having to scroll down to find submissions.
-		$this->click('//form[@id=\'appearanceForm\']//span[text()=\'Save\']/..');
-		$this->waitJQuery();
+		$this->click('//form[@id=\'appearanceForm\']//button[text()=\'Save\']');
+		$this->waitForTextPresent('Your changes have been saved.');
 	}
 
 	/**
@@ -86,10 +88,12 @@ class CreatePressTest extends WebTestCase {
 		$this->open(self::$baseUrl);
 
 		// Users & Roles
-		$this->waitForElementPresent('link=Users & Roles');
-		$this->click('link=Users & Roles');
-		$this->waitForElementPresent('link=Roles');
-		$this->click('link=Roles');
+		$this->waitForElementPresent($selector='link=Dashboard');
+		$this->clickAndWait($selector);
+		$this->waitForElementPresent($selector='link=Users & Roles');
+		$this->click($selector);
+		$this->waitForElementPresent($selector='link=Roles');
+		$this->click($selector);
 
 		// "Edit" link below "Volume editor" role
 		$this->waitForElementPresent('//table[starts-with(@id, \'component-grid-settings-roles-usergroupgrid-\')]//span[contains(text(), \'Volume editor\')]/../../../../../following-sibling::tr//a[contains(text(),\'Edit\')]');
@@ -98,8 +102,8 @@ class CreatePressTest extends WebTestCase {
 		// Click the "permit self registration" checkbox
 		$this->waitForElementPresent('//input[@id=\'permitSelfRegistration\']');
 		$this->click('//input[@id=\'permitSelfRegistration\']');
-		$this->waitForElementPresent('//form[@id=\'userGroupForm\']//span[text()=\'OK\']/..');
-		$this->click('//form[@id=\'userGroupForm\']//span[text()=\'OK\']/..');
+		$this->waitForElementPresent($selector='//form[@id=\'userGroupForm\']//button[text()=\'OK\']');
+		$this->click($selector);
 		$this->waitJQuery();
 	}
 }

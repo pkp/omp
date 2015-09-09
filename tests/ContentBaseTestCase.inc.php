@@ -104,8 +104,8 @@ class ContentBaseTestCase extends PKPContentBaseTestCase {
 				$this->waitJQuery();
 			}
 
-			$this->click('//form[@id=\'editChapterForm\']//span[text()=\'Save\']/..');
-			$this->waitForElementNotPresent('css=.ui-widget-overlay');
+			$this->click('//form[@id=\'editChapterForm\']//button[text()=\'Save\']');
+			$this->waitForElementNotPresent('css=div.pkp_modal_panel'); // pkp/pkp-lib#655
 		}
 	}
 
@@ -131,18 +131,18 @@ class ContentBaseTestCase extends PKPContentBaseTestCase {
 	 * @param $from string "Internal" or "Submission" (for external reviews)
 	 */
 	protected function sendToReview($type = 'External', $from = 'Submission') {
-		$this->waitForElementPresent('//span[text()=\'Send to ' . $this->escapeJS($type) . ' Review\']/..');
-		$this->click('//span[text()=\'Send to ' . $this->escapeJS($type) . ' Review\']/..');
+		$this->waitForElementPresent($selector = 'css=[id^=' . ($type=='External'?'external':'internal') . 'Review-button-]');
+		$this->click($selector);
 		if ($type == 'Internal' || $from != 'Internal') {
 			$this->waitForElementPresent('//form[@id=\'initiateReview\']//input[@type=\'checkbox\']');
-			$this->waitForElementPresent('//form[@id=\'initiateReview\']//span[text()=\'Send to ' . $this->escapeJS($type) . ' Review\']/..');
-			$this->click('//form[@id=\'initiateReview\']//span[text()=\'Send to ' . $this->escapeJS($type) . ' Review\']/..');
+			$this->waitForElementPresent($selector='//form[@id=\'initiateReview\']//button[contains(., \'Send to ' . $this->escapeJS($type) . ' Review\')]');
+			$this->click($selector);
 		} else { // External review from Internal review
 			$this->waitForElementPresent('css=[id^=component-grid-files-attachment-editorselectablereviewattachmentsgrid-]');
 			$this->waitForElementPresent('css=[id^=component-grid-files-review-selectablereviewrevisionsgrid-]');
 		}
 		$this->waitForElementPresent('//div[contains(@class,\'ui-dialog\')]//button[contains(@id, \'submitFormButton-\')]');
 		$this->click('//div[contains(@class,\'ui-dialog\')]//button[contains(@id, \'submitFormButton-\')]');
-		$this->waitForElementNotPresent('css=.ui-widget-overlay');
+		$this->waitForElementNotPresent('css=div.pkp_modal_panel'); // pkp/pkp-lib#655
 	}
 }

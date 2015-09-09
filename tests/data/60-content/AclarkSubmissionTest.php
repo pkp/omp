@@ -24,7 +24,7 @@ class AclarkSubmissionTest extends ContentBaseTestCase {
 			'username' => 'aclark',
 			'firstName' => 'Arthur',
 			'lastName' => 'Clark',
-			// 'affiliation' => '',
+			'affiliation' => 'University of Calgary',
 			'country' => 'Canada',
 			'roles' => array('Author'),
 		));

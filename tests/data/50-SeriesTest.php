@@ -23,14 +23,16 @@ class SeriesTest extends WebTestCase {
 		$this->open(self::$baseUrl);
 
 		// Management > Settings > Press
-		$this->waitForElementPresent('link=Press');
-		$this->click('link=Press');
-		$this->waitForElementPresent('link=Series');
-		$this->click('link=Series');
+		$this->waitForElementPresent($selector='link=Dashboard');
+		$this->click($selector);
+		$this->waitForElementPresent($selector='link=Press');
+		$this->click($selector);
+		$this->waitForElementPresent($selector='link=Series');
+		$this->click($selector);
 
 		// Create a new "Library & Information Studies" series
-		$this->waitForElementPresent('css=[id^=component-grid-settings-series-seriesgrid-addSeries-button-]');
-		$this->click('css=[id^=component-grid-settings-series-seriesgrid-addSeries-button-]');
+		$this->waitForElementPresent($selector='css=[id^=component-grid-settings-series-seriesgrid-addSeries-button-]');
+		$this->click($selector);
 		$this->waitForElementPresent('css=[id^=title-]');
 		$this->type('css=[id^=title-]', 'Library & Information Studies');
 		$this->type('css=[id^=path-]', 'lis');
@@ -43,8 +45,9 @@ class SeriesTest extends WebTestCase {
 		$this->select('name=newRowId[name]', 'label=David Buskins');
 
 		// Save changes
-		$this->click('//form[@id=\'seriesForm\']//span[text()=\'Save\']/..');
+		$this->click('//form[@id=\'seriesForm\']//button[text()=\'Save\']');
 		$this->waitJQuery();
+		$this->waitForElementNotPresent('css=div.pkp_modal_panel'); // pkp/pkp-lib#655
 
 		// Verify resulting grid row
 		$this->assertEquals('Buskins', $this->getText('css=#cell-1-editors > span'));
@@ -60,31 +63,35 @@ class SeriesTest extends WebTestCase {
 		$this->clickAt('css=[id^=component-listbuilder-settings-subeditorslistbuilder-addItem-button-]', '10,10');
 		$this->waitForElementPresent('//select[@name=\'newRowId[name]\']//option[text()=\'Stephanie Berardo\']');
 		$this->select('name=newRowId[name]', 'label=Stephanie Berardo');
-		$this->click('//form[@id=\'seriesForm\']//span[text()=\'Save\']/..');
+		$this->click('//form[@id=\'seriesForm\']//button[text()=\'Save\']');
 		$this->waitJQuery();
+		$this->waitForElementNotPresent('css=div.pkp_modal_panel'); // pkp/pkp-lib#655
 
 		// Create a new "History" series
 		$this->click('css=[id^=component-grid-settings-series-seriesgrid-addSeries-button-]');
 		$this->waitForElementPresent('css=[id^=title-]');
 		$this->type('css=[id^=title-]', 'History');
 		$this->type('css=[id^=path-]', 'his');
-		$this->click('//form[@id=\'seriesForm\']//span[text()=\'Save\']/..');
+		$this->click('//form[@id=\'seriesForm\']//button[text()=\'Save\']');
 		$this->waitJQuery();
+		$this->waitForElementNotPresent('css=div.pkp_modal_panel'); // pkp/pkp-lib#655
 
 		// Create a new "Education" series
 		$this->click('css=[id^=component-grid-settings-series-seriesgrid-addSeries-button-]');
 		$this->waitForElementPresent('css=[id^=title-]');
 		$this->type('css=[id^=title-]', 'Education');
 		$this->type('css=[id^=path-]', 'ed');
-		$this->click('//form[@id=\'seriesForm\']//span[text()=\'Save\']/..');
+		$this->click('//form[@id=\'seriesForm\']//button[text()=\'Save\']');
 		$this->waitJQuery();
+		$this->waitForElementNotPresent('css=div.pkp_modal_panel'); // pkp/pkp-lib#655
 
 		// Create a new "Psychology" series
 		$this->click('css=[id^=component-grid-settings-series-seriesgrid-addSeries-button-]');
 		$this->waitForElementPresent('css=[id^=title-]');
 		$this->type('css=[id^=title-]', 'Psychology');
 		$this->type('css=[id^=path-]', 'psy');
-		$this->click('//form[@id=\'seriesForm\']//span[text()=\'Save\']/..');
+		$this->click('//form[@id=\'seriesForm\']//button[text()=\'Save\']');
 		$this->waitJQuery();
+		$this->waitForElementNotPresent('css=div.pkp_modal_panel'); // pkp/pkp-lib#655
 	}
 }
