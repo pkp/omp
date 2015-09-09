@@ -140,7 +140,7 @@ class ContentBaseTestCase extends PKPContentBaseTestCase {
 		} else { // External review from Internal review
 			$this->waitForElementPresent('css=[id^=component-grid-files-attachment-editorselectablereviewattachmentsgrid-]');
 			$this->waitForElementPresent('css=[id^=component-grid-files-review-selectablereviewrevisionsgrid-]');
-			$this->waitForElementPresent($selector='//form[@id=\'initiateReview\']//button[contains(., \'Record Editorial Decision\')]');
+			$this->waitForElementPresent($selector='//form[@id=\'promote\']//button[contains(., \'Record Editorial Decision\')]');
 			$this->click($selector);
 		}
 		$this->waitForElementNotPresent('css=div.pkp_modal_panel'); // pkp/pkp-lib#655
