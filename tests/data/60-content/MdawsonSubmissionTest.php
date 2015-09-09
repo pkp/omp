@@ -124,9 +124,9 @@ class MdawsonSubmissionTest extends ContentBaseTestCase {
 		$this->click('css=[id^=catalogEntry-button-]');
 		$this->waitForElementPresent($selector = '//a[@class="ui-tabs-anchor" and text()="Catalog"]');
 		$this->click($selector);
-		$this->waitForElementPresent('css=[id=confirm]');
-		$this->click('css=[id=confirm]');
-		$this->click('css=[id^=submitFormButton-]');
+		$this->waitForElementPresent($selector='css=[id=confirm]');
+		$this->click($selector);
+		$this->click('//form[@id=\'catalogMetadataEntryForm\']//button[text()=\'Save\']');
 
 		$this->logOut();
 	}
