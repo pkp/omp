@@ -24,7 +24,7 @@ class FperiniSubmissionTest extends ContentBaseTestCase {
 			'username' => 'fperini',
 			'firstName' => 'Fernando',
 			'lastName' => 'Perini',
-			// 'affiliation' => '',
+			'affiliation' => 'University of Sussex',
 			'country' => 'Canada',
 			'roles' => array('Volume editor'),
 		));
@@ -97,7 +97,7 @@ class FperiniSubmissionTest extends ContentBaseTestCase {
 		$this->logOut();
 		$this->findSubmissionAsEditor('dbarnes', null, $title);
 		$this->sendToReview('Internal');
-		$this->waitForElementPresent('//a[contains(text(), \'Internal Review\')]/div[contains(text(), \'Initiated\')]');
+		$this->waitForElementPresent('//a[contains(text(), \'Internal Review\')]/*[contains(text(), \'Initiated\')]');
 		$this->logOut();
 	}
 }

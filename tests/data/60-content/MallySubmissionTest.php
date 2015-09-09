@@ -24,7 +24,7 @@ class MallySubmissionTest extends ContentBaseTestCase {
 			'username' => 'mally',
 			'firstName' => 'Mohamed',
 			'lastName' => 'Ally',
-			// 'affiliation' => '',
+			'affiliation' => 'Athabasca University',
 			'country' => 'Canada',
 			'roles' => array('Volume editor'),
 		));
@@ -85,12 +85,12 @@ class MallySubmissionTest extends ContentBaseTestCase {
 
 		// Internal review
 		$this->sendToReview('Internal');
-		$this->waitForElementPresent('//a[contains(text(), \'Internal Review\')]/div[contains(text(), \'Initiated\')]');
+		$this->waitForElementPresent('//a[contains(text(), \'Internal Review\')]/*[contains(text(), \'Initiated\')]');
 		$this->assignReviewer('phudson', 'Paul Hudson');
 
 		// External review
 		$this->sendToReview('External', 'Internal');
-		$this->waitForElementPresent('//a[contains(text(), \'External Review\')]/div[contains(text(), \'Initiated\')]');
+		$this->waitForElementPresent('//a[contains(text(), \'External Review\')]/*[contains(text(), \'Initiated\')]');
 		$this->assignReviewer('agallego', 'Adela Gallego');
 		$this->assignReviewer('alzacharia', 'Al Zacharia');
 		$this->assignReviewer('gfavio', 'Gonzalo Favio');
@@ -104,7 +104,7 @@ class MallySubmissionTest extends ContentBaseTestCase {
 		// Accept submission
 		$this->findSubmissionAsEditor('dbarnes', null, $title);
 		$this->recordEditorialDecision('Accept Submission');
-		$this->waitForElementPresent('//a[contains(text(), \'Editorial\')]/div[contains(text(), \'Initiated\')]');
+		$this->waitForElementPresent('//a[contains(text(), \'Editorial\')]/*[contains(text(), \'Initiated\')]');
 		$this->logOut();
 	}
 }

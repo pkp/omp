@@ -24,7 +24,7 @@ class MpowerSubmissionTest extends ContentBaseTestCase {
 			'username' => 'mpower',
 			'firstName' => 'Michael',
 			'lastName' => 'Power',
-			// 'affiliation' => '',
+			'affiliation' => 'London School of Economics',
 			'country' => 'Canada',
 			'roles' => array('Author'),
 		));
@@ -61,7 +61,7 @@ class MpowerSubmissionTest extends ContentBaseTestCase {
 
 		$this->findSubmissionAsEditor('dbarnes', null, $title);
 		$this->sendToReview('External');
-		$this->waitForElementPresent('//a[contains(text(), \'External Review\')]/div[contains(text(), \'Initiated\')]');
+		$this->waitForElementPresent('//a[contains(text(), \'External Review\')]/*[contains(text(), \'Initiated\')]');
 		$this->assignReviewer('agallego', 'Adela Gallego');
 		$this->assignReviewer('alzacharia', 'Al Zacharia');
 		$this->assignReviewer('gfavio', 'Gonzalo Favio');

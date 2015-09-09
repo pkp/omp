@@ -55,7 +55,7 @@ class AclarkSubmissionTest extends ContentBaseTestCase {
 		$this->sendToReview('External');
 		$this->assignReviewer('gfavio', 'Gonzalo Favio');
 		$this->recordEditorialDecision('Accept Submission');
-		$this->waitForElementPresent('//a[contains(text(), \'Editorial\')]/div[contains(text(), \'Initiated\')]');
+		$this->waitForElementPresent('//a[contains(text(), \'Editorial\')]/*[contains(text(), \'Initiated\')]');
 		$this->waitJQuery();
 		$this->assignParticipant('Copyeditor', 'Sarah Vogt');
 

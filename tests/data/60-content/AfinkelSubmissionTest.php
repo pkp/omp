@@ -24,7 +24,7 @@ class AfinkelSubmissionTest extends ContentBaseTestCase {
 			'username' => 'afinkel',
 			'firstName' => 'Alvin',
 			'lastName' => 'Finkel',
-			// 'affiliation' => '',
+			'affiliation' => 'Athabasca University',
 			'country' => 'Canada',
 			'roles' => array('Volume editor'),
 		));

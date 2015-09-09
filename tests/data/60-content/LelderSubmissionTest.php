@@ -24,7 +24,7 @@ class LelderSubmissionTest extends ContentBaseTestCase {
 			'username' => 'lelder',
 			'firstName' => 'Laurent',
 			'lastName' => 'Elder',
-			// 'affiliation' => '',
+			'affiliation' => 'International Development Research Centre',
 			'country' => 'Canada',
 			'roles' => array('Volume editor'),
 		));
@@ -109,7 +109,7 @@ class LelderSubmissionTest extends ContentBaseTestCase {
 
 		$this->findSubmissionAsEditor('dbarnes', null, $title);
 		$this->sendToReview('Internal');
-		$this->waitForElementPresent('//a[contains(text(), \'Internal Review\')]/div[contains(text(), \'Initiated\')]');
+		$this->waitForElementPresent('//a[contains(text(), \'Internal Review\')]/*[contains(text(), \'Initiated\')]');
 		$this->assignReviewer('jjanssen', 'Julie Janssen');
 		$this->assignReviewer('phudson', 'Paul Hudson');
 		$this->assignReviewer('amccrae', 'Aisla McCrae');
