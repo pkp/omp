@@ -78,6 +78,14 @@ class UserAction {
 		$notificationDao = DAORegistry::getDAO('NotificationDAO');
 		$notificationDao->transferNotifications($oldUserId, $newUserId);
 
+		// Transfer completed payments.
+		$paymentDao = DAORegistry::getDAO('OMPCompletedPaymentDAO');
+		$paymentFactory = $paymentDao->getByUserId($oldUserId);
+		while ($payment = $paymentFactory->next()) {
+			$payment->setUserId($newUserId);
+			$paymentDao->updateObject($payment);
+		}
+
 		// Delete the old user and associated info.
 		$sessionDao = DAORegistry::getDAO('SessionDAO');
 		$sessionDao->deleteByUserId($oldUserId);
