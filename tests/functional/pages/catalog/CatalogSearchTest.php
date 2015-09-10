@@ -29,13 +29,13 @@ class CatalogSearchTest extends ContentBaseTestCase {
 	function testBombSearch() {
 		// Search for "bomb"
 		$this->open(self::$baseUrl);
-		$this->waitForElementPresent($selector = 'id=topSearchFormField');
+		$this->waitForElementPresent($selector = '//input[@name=\'query\']');
 		$this->type($selector, 'bomb');
-		$this->click('//form[@id="topSearchForm"]//button');
+		$this->click('//button[contains(.,\'Search Catalog\')]');
 
 		// Should be 1 result
-		$this->waitForElementPresent('//em[text()="Browse 1 Titles"]');
-		$this->waitForElementPresent('//a[text()="Bomb Canada and Other Unkind Remarks in the American Media"]');
+		$this->waitForElementPresent('//h2[contains(.,\'1 Titles\')]');
+		$this->waitForElementPresent('//a[contains(.,\'Bomb Canada and Other Unkind Remarks in the American Media\')]');
 	}
 
 	/**
@@ -44,11 +44,11 @@ class CatalogSearchTest extends ContentBaseTestCase {
 	function testZorgSearch() {
 		// Search for "bomb"
 		$this->open(self::$baseUrl);
-		$this->waitForElementPresent($selector = 'id=topSearchFormField');
+		$this->waitForElementPresent($selector = '//input[@name=\'query\']');
 		$this->type($selector, 'zorg');
-		$this->click('//form[@id="topSearchForm"]//button');
+		$this->click('//button[contains(.,\'Search Catalog\')]');
 
-		// Should be 1 result
-		$this->waitForElementPresent('//em[text()="Browse 0 Titles"]');
+		// Should be 0 results
+		$this->waitForElementPresent('//h2[contains(.,\'0 Titles\')]');
 	}
 }
