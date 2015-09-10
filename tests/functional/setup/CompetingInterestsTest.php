@@ -40,8 +40,6 @@ class CompetingInterestsTest extends ContentBaseTestCase {
 		// Send the submission to review
 		$this->findSubmissionAsEditor('dbarnes', null, self::$fullTitle);
 		$this->sendToReview('External');
-		$this->waitForElementPresent('css=a.externalReview');
-		$this->click('css=a.externalReview');
 		$this->assignReviewer('agallego', 'Adela Gallego');
 		$this->logOut();
 
@@ -59,15 +57,14 @@ class CompetingInterestsTest extends ContentBaseTestCase {
 		$this->waitJQuery();
 		$this->type('css=textarea[id^=comments-]', 'This paper is suitable for publication.');
 		$this->clickLinkActionNamed('Submit Review');
-		$this->clickLinkActionNamed('OK');
+		$this->waitForElementPresent($selector='link=OK');
+		$this->click($selector);
 		$this->waitForElementPresent('//h2[contains(text(), \'Review Submitted\')]');
 
 		$this->logOut();
 
 		// Find and view the review
 		$this->findSubmissionAsEditor('dbarnes', null, self::$fullTitle);
-		$this->waitForElementPresent('css=a.externalReview');
-		$this->click('css=a.externalReview');
 		$this->waitForElementPresent('//span[contains(text(), \'Adela Gallego\')]/../a[@title=\'Read this review\']');
 		$this->click('//span[contains(text(), \'Adela Gallego\')]/../a[@title=\'Read this review\']');
 
@@ -91,8 +88,6 @@ class CompetingInterestsTest extends ContentBaseTestCase {
 		// Send the submission to review
 		$this->findSubmissionAsEditor('dbarnes', null, self::$fullTitle);
 		$this->sendToReview('External');
-		$this->waitForElementPresent('css=a.externalReview');
-		$this->click('css=a.externalReview');
 		$this->assignReviewer('alzacharia', 'Al Zacharia');
 		$this->logOut();
 
@@ -105,23 +100,22 @@ class CompetingInterestsTest extends ContentBaseTestCase {
 		$this->clickAndWait($xpath);
 
 		$this->waitForElementPresent('id=reviewStep1Form');
-		$this->assertElementPresent('//label[@for=\'noCompetingInterests\']');
-		$this->click('//label[@for=\'hasCompetingInterests\']');
+		$this->assertElementPresent($selector='//input[@id=\'hasCompetingInterests\']');
+		$this->click($selector);
 		$this->type('css=textarea[id^=competingInterestsText-]', $competingInterests);
 		$this->clickLinkActionNamed('Accept Review, Continue to Step #2');
 		$this->clickLinkActionNamed('Continue to Step #3');
 		$this->waitJQuery();
 		$this->type('css=textarea[id^=comments-]', 'This paper is suitable for publication.');
 		$this->clickLinkActionNamed('Submit Review');
-		$this->clickLinkActionNamed('OK');
+		$this->waitForElementPresent($selector='link=OK');
+		$this->click($selector);
 		$this->waitForElementPresent('//h2[contains(text(), \'Review Submitted\')]');
 
 		$this->logOut();
 
 		// Find and view the review
 		$this->findSubmissionAsEditor('dbarnes', null, self::$fullTitle);
-		$this->waitForElementPresent('css=a.externalReview');
-		$this->click('css=a.externalReview');
 		$this->waitForElementPresent('//span[contains(text(), \'Al Zacharia\')]/../a[@title=\'Read this review\']');
 		$this->click('//span[contains(text(), \'Al Zacharia\')]/../a[@title=\'Read this review\']');
 
@@ -135,8 +129,6 @@ class CompetingInterestsTest extends ContentBaseTestCase {
 
 		// The CI statement entered previously should still be visible.
 		$this->findSubmissionAsEditor('dbarnes', null, self::$fullTitle);
-		$this->waitForElementPresent('css=a.externalReview');
-		$this->click('css=a.externalReview');
 		$this->waitForElementPresent('//span[contains(text(), \'Al Zacharia\')]/../a[@title=\'Read this review\']');
 		$this->click('//span[contains(text(), \'Al Zacharia\')]/../a[@title=\'Read this review\']');
 		$this->waitForElementPresent('//h3[text()=\'Reviewer Comments\']');
@@ -161,8 +153,8 @@ class CompetingInterestsTest extends ContentBaseTestCase {
 		} else {
 			$this->uncheck($selector);
 		}
-		$this->click('//form[@id=\'reviewStageForm\']//span[text()=\'Save\']/..');
-		$this->waitForElementPresent('//*[text()=\'Your changes have been saved.\']');
+		$this->click('//form[@id=\'reviewStageForm\']//button[text()=\'Save\']');
+		$this->waitForElementPresent('//*[contains(.,\'Your changes have been saved.\')]');
 
 	}
 }
