@@ -99,7 +99,6 @@ class RepresentativeDAO extends DAO {
 		$representative->setRepresentativeIdValue($row['representative_id_value']);
 		$representative->setName($row['name']);
 		$representative->setPhone($row['phone']);
-		$representative->setFax($row['fax']);
 		$representative->setEmail($row['email']);
 		$representative->setUrl($row['url']);
 		$representative->setIsSupplier($row['is_supplier']);
@@ -117,9 +116,9 @@ class RepresentativeDAO extends DAO {
 	function insertObject($representative) {
 		$this->update(
 			'INSERT INTO representatives
-				(submission_id, role, representative_id_type, representative_id_value, name, phone, fax, email, url, is_supplier)
+				(submission_id, role, representative_id_type, representative_id_value, name, phone, email, url, is_supplier)
 			VALUES
-				(?, ?, ?, ?, ?, ?, ?, ?, ?, ?)',
+				(?, ?, ?, ?, ?, ?, ?, ?, ?)',
 			array(
 				(int) $representative->getMonographId(),
 				$representative->getRole(),
@@ -127,7 +126,6 @@ class RepresentativeDAO extends DAO {
 				$representative->getRepresentativeIdValue(),
 				$representative->getName(),
 				$representative->getPhone(),
-				$representative->getFax(),
 				$representative->getEmail(),
 				$representative->getUrl(),
 				(int) $representative->getIsSupplier()
@@ -150,7 +148,6 @@ class RepresentativeDAO extends DAO {
 				representative_id_value = ?,
 				name = ?,
 				phone = ?,
-				fax = ?,
 				email = ?,
 				url = ?,
 				is_supplier = ?
@@ -161,7 +158,6 @@ class RepresentativeDAO extends DAO {
 				$representative->getRepresentativeIdValue(),
 				$representative->getName(),
 				$representative->getPhone(),
-				$representative->getFax(),
 				$representative->getEmail(),
 				$representative->getUrl(),
 				(int) $representative->getIsSupplier(),

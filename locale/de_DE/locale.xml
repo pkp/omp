@@ -136,7 +136,6 @@
 	<message key="grid.catalogEntry.representativeRole">Funktion</message>
 	<message key="grid.catalogEntry.representativeName">Name</message>
 	<message key="grid.catalogEntry.representativePhone">Telefon</message>
-	<message key="grid.catalogEntry.representativeFax">Fax</message>
 	<message key="grid.catalogEntry.representativeEmail">E-Mail-Adresse</message>
 	<message key="grid.catalogEntry.representativeWebsite">Website</message>
 	<message key="grid.catalogEntry.representativeIdValue">Identifkationsnummer des Unternehmens</message>

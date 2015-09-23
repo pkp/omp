@@ -94,7 +94,6 @@ class RepresentativeForm extends Form {
 				'representativeIdValue' => $representative->getRepresentativeIdValue(),
 				'name' => $representative->getName(),
 				'phone' => $representative->getPhone(),
-				'fax' => $representative->getFax(),
 				'email' => $representative->getEmail(),
 				'url' =>$representative->getUrl(),
 				'isSupplier' => $representative->getIsSupplier(),
@@ -126,7 +125,6 @@ class RepresentativeForm extends Form {
 			$templateMgr->assign('representativeIdValue', $representative->getRepresentativeIdValue());
 			$templateMgr->assign('name', $representative->getName());
 			$templateMgr->assign('phone', $representative->getPhone());
-			$templateMgr->assign('fax', $representative->getFax());
 			$templateMgr->assign('email', $representative->getEmail());
 			$templateMgr->assign('url', $representative->getUrl());
 			$templateMgr->assign('isSupplier', $representative->getIsSupplier() ? true : false);
@@ -150,7 +148,6 @@ class RepresentativeForm extends Form {
 			'representativeIdValue',
 			'name',
 			'phone',
-			'fax',
 			'email',
 			'url',
 			'isSupplier',
@@ -188,7 +185,6 @@ class RepresentativeForm extends Form {
 		$representative->setRepresentativeIdValue($this->getData('representativeIdValue'));
 		$representative->setName($this->getData('name'));
 		$representative->setPhone($this->getData('phone'));
-		$representative->setFax($this->getData('fax'));
 		$representative->setEmail($this->getData('email'));
 		$representative->setUrl($this->getData('url'));
 		$representative->setIsSupplier($this->getData('isSupplier') ? true : false);

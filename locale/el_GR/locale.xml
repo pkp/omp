@@ -138,7 +138,6 @@
 	<message key="grid.catalogEntry.representativeName">Όνομα</message>
 	<message key="grid.catalogEntry.roleRequired">Απαιτείται ένας ρόλος αντιπροσώπου.</message>
 	<message key="grid.catalogEntry.representativePhone">Τηλέφωνο</message>
-	<message key="grid.catalogEntry.representativeFax">Fax</message>
 	<message key="grid.catalogEntry.representativeEmail">Email</message>
 	<message key="grid.catalogEntry.representativeWebsite">Ιστότοπος</message>
 	<message key="grid.catalogEntry.representativeIdValue">Αναγνωριστικό Αντιπροσώπου</message>

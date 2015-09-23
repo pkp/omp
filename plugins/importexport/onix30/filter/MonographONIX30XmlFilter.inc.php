@@ -627,9 +627,6 @@ class MonographONIX30XmlFilter extends NativeExportFilter {
 				if ($supplier->getPhone()) {
 					$supplierNode->appendChild($this->_buildTextNode($doc, 'TelephoneNumber', $supplier->getPhone()));
 				}
-				if ($supplier->getFax()) {
-					$supplierNode->appendChild($this->_buildTextNode($doc, 'FaxNumber', $supplier->getFax()));
-				}
 				if ($supplier->getEmail()) {
 					$supplierNode->appendChild($this->_buildTextNode($doc, 'EmailAddress', $supplier->getEmail()));
 				}

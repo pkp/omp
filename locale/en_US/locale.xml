@@ -139,7 +139,6 @@
 	<message key="grid.catalogEntry.representativeName">Name</message>
 	<message key="grid.catalogEntry.roleRequired">A representative role is required.</message>
 	<message key="grid.catalogEntry.representativePhone">Phone</message>
-	<message key="grid.catalogEntry.representativeFax">Fax</message>
 	<message key="grid.catalogEntry.representativeEmail">Email Address</message>
 	<message key="grid.catalogEntry.representativeWebsite">Website</message>
 	<message key="grid.catalogEntry.representativeIdValue">Representative ID</message>

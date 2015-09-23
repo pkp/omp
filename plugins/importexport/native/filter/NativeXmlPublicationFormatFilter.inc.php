@@ -253,7 +253,6 @@ class NativeXmlPublicationFormatFilter extends NativeXmlRepresentationFilter {
 					$representative->setRole($this->_extractTextFromNode($supplierNode, $onixDeployment, 'SupplierRole'));
 					$representative->setName($this->_extractTextFromNode($supplierNode, $onixDeployment, 'SupplierName'));
 					$representative->setPhone($this->_extractTextFromNode($supplierNode, $onixDeployment, 'TelephoneNumber'));
-					$representative->setFax($this->_extractTextFromNode($supplierNode, $onixDeployment, 'FaxNumber'));
 					$representative->setEmail($this->_extractTextFromNode($supplierNode, $onixDeployment, 'EmailAddress'));
 					$representative->setUrl($this->_extractTextFromNode($supplierNode, $onixDeployment, 'WebsiteLink'));
 					$representative->setIsSupplier(true);
@@ -263,7 +262,7 @@ class NativeXmlPublicationFormatFilter extends NativeXmlRepresentationFilter {
 					$foundSupplier = false;
 					while ($supplier = $existingSuppliers->next()) {
 						if ($supplier->getRole() == $representative->getRole() && $supplier->getName() == $representative->getName() &&
-							$supplier->getUrl() == $representative->getUrl() && $supplier->getFax() == $representative->getFax() &&
+							$supplier->getUrl() == $representative->getUrl() &&
 							$supplier->getPhone() == $representative-> getPhone() && $supplier->getEmail() == $representative->getEmail()) {
 							$market->setSupplierId($supplier->getId());
 							$foundSupplier = true;

@@ -134,22 +134,6 @@ class Representative extends DataObject {
 	}
 
 	/**
-	 * Get the representative fax.
-	 * @return string
-	 */
-	function getFax() {
-		return $this->getData('fax');
-	}
-
-	/**
-	 * Set the representative fax.
-	 * @param string $fax
-	 */
-	function setFax($fax) {
-		$this->setData('fax', $fax);
-	}
-
-	/**
 	 * Get the representative email address.
 	 * @return string
 	 */

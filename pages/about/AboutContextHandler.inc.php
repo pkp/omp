@@ -90,9 +90,11 @@ class AboutContextHandler extends Handler implements IAboutContextInfoProvider {
 	*/
 	static protected function getContactInfo($context) {
 		$pressSettings = $context->getSettings();
-		$contactSettingNames = array('mailingAddress', 'contactPhone',
-				'contactFax', 'contactEmail', 'contactName', 'supportName',
-				'supportPhone', 'supportEmail');
+		$contactSettingNames = array(
+			'mailingAddress', 'contactPhone', 'contactEmail',
+			'contactName', 'supportName',
+			'supportPhone', 'supportEmail'
+		);
 		$contactSettings = array_intersect_key($pressSettings, array_fill_keys($contactSettingNames, null));
 
 		// Remove empty elements.
