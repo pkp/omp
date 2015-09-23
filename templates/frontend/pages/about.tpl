@@ -44,7 +44,7 @@
 		{/if}
 
 		{* Primary contact *}
-		{if $contact.contactTitle || $contact.contactName || $contact.contactAffiliation || $contact.contactMailingAddress || $contact.contactPhone || $contact.contactEmail}
+		{if $contact.contactTitle || $contact.contactName || $contact.contactAffiliation || $contact.contactPhone || $contact.contactEmail}
 			<div class="contact primary">
 				<h3>
 					{translate key="about.contact.principalContact"}
@@ -65,12 +65,6 @@
 				{if $contact.contactAffiliation}
 				<div class="affiliation">
 					{$contact.contactAffiliation|strip_unsafe_html}
-				</div>
-				{/if}
-
-				{if $contact.contactMailingAddress}
-				<div class="address">
-					{$contact.contactMailingAddress|strip_unsafe_html}
 				</div>
 				{/if}
 

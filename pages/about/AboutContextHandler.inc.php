@@ -100,8 +100,7 @@ class AboutContextHandler extends Handler implements IAboutContextInfoProvider {
 		// Remove empty elements.
 		$contactSettings = array_filter($contactSettings);
 
-		$contactLocalizedSettingNames = array('contactTitle', 'contactAffiliation', 'contactMailingAddress',
-				'contactTitle', 'contactAffiliation', 'contactMailingAddress');
+		$contactLocalizedSettingNames = array('contactTitle', 'contactAffiliation');
 
 		foreach ($contactLocalizedSettingNames as $settingName) {
 			$settingValue = $context->getLocalizedSetting($settingName);
