@@ -103,6 +103,7 @@ class CompetingInterestsTest extends ContentBaseTestCase {
 		$this->assertElementPresent($selector='//input[@id=\'hasCompetingInterests\']');
 		$this->click($selector);
 		$this->type('css=textarea[id^=competingInterestsText-]', $competingInterests);
+		$this->typeTinyMCE('competingInterestsText', $competingInterests);
 		$this->clickLinkActionNamed('Accept Review, Continue to Step #2');
 		$this->clickLinkActionNamed('Continue to Step #3');
 		$this->waitJQuery();
