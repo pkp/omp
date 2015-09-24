@@ -116,7 +116,7 @@
 				<li>
 					<span class="title">
 						{$chapter->getLocalizedTitle()}
-						{if !empty($chapter->getLocalizedSubtitle())}
+						{if $chapter->getLocalizedSubtitle() != ''}
 							<span class="subtitle">
 								{$chapter->getLocalizedSubtitle()}
 							</span>
