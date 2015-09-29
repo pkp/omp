@@ -102,7 +102,6 @@ class CompetingInterestsTest extends ContentBaseTestCase {
 		$this->waitForElementPresent('id=reviewStep1Form');
 		$this->assertElementPresent($selector='//input[@id=\'hasCompetingInterests\']');
 		$this->click($selector);
-		$this->type('css=textarea[id^=competingInterestsText-]', $competingInterests);
 		$this->typeTinyMCE('competingInterestsText', $competingInterests);
 		$this->clickLinkActionNamed('Accept Review, Continue to Step #2');
 		$this->clickLinkActionNamed('Continue to Step #3');
@@ -122,7 +121,7 @@ class CompetingInterestsTest extends ContentBaseTestCase {
 
 		// There should be a visible CI statement.
 		$this->waitForElementPresent('//h3[text()=\'Reviewer Comments\']');
-		$this->assertElementPresent('//span[text()=\'I work for a competing company\']');
+		$this->assertElementPresent('//*[contains(.,=\'' . $competingInterests . '\')]');
 
 		// Disable the CI requirement again
 		$this->_setReviewerCIRequirement(true);
@@ -133,7 +132,7 @@ class CompetingInterestsTest extends ContentBaseTestCase {
 		$this->waitForElementPresent('//span[contains(text(), \'Al Zacharia\')]/../a[@title=\'Read this review\']');
 		$this->click('//span[contains(text(), \'Al Zacharia\')]/../a[@title=\'Read this review\']');
 		$this->waitForElementPresent('//h3[text()=\'Reviewer Comments\']');
-		$this->assertElementPresent('//span[text()=\'I work for a competing company\']');
+		$this->assertElementPresent('//*[contains(.,=\'' . $competingInterests . '\')]');
 
 		// Finished.
 		$this->logOut();
