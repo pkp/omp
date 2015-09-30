@@ -121,7 +121,7 @@ class CompetingInterestsTest extends ContentBaseTestCase {
 
 		// There should be a visible CI statement.
 		$this->waitForElementPresent('//h3[text()=\'Reviewer Comments\']');
-		$this->assertElementPresent('//*[contains(.,=\'' . $competingInterests . '\')]');
+		$this->assertElementPresent('//*[contains(.,\'' . $competingInterests . '\')]');
 
 		// Disable the CI requirement again
 		$this->_setReviewerCIRequirement(true);
@@ -132,7 +132,7 @@ class CompetingInterestsTest extends ContentBaseTestCase {
 		$this->waitForElementPresent('//span[contains(text(), \'Al Zacharia\')]/../a[@title=\'Read this review\']');
 		$this->click('//span[contains(text(), \'Al Zacharia\')]/../a[@title=\'Read this review\']');
 		$this->waitForElementPresent('//h3[text()=\'Reviewer Comments\']');
-		$this->assertElementPresent('//*[contains(.,=\'' . $competingInterests . '\')]');
+		$this->assertElementPresent('//*[contains(.,\'' . $competingInterests . '\')]');
 
 		// Finished.
 		$this->logOut();
