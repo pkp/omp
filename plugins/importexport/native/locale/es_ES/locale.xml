@@ -11,7 +11,7 @@
   * Localization strings for the en_US (U.S. English) locale.
   -->
 
-<locale name="es_ES" full_name="Español">
+<locale name="es_ES" full_name="Español (España)">
 	<message key="plugins.importexport.native.displayName">Complemento XML nativo</message>
 	<message key="plugins.importexport.native.description">Importar y exportar libros en el formato XML nativo de OMP.</message>
 	<message key="plugins.importexport.native.import">Importar</message>
