@@ -11,7 +11,7 @@
   * Localization strings for the en_US (U.S. English) locale.
   -->
 
-<locale name="es_ES" full_name="Español">
+<locale name="es_ES" full_name="Español (España)">
 	<message key="plugins.metadata.mods34.monographAdapter.displayName">Adaptador de monografías MODS 3.4</message>
 	<message key="plugins.metadata.mods34.monographAdapter.description">Extrae/introduce metadatos de/a monografías.</message>
 </locale>

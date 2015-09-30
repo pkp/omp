@@ -12,7 +12,7 @@
   *
   -->
 
-<locale name="es_ES" full_name="Español">
+<locale name="es_ES" full_name="Español (España)">
 	<message key="plugins.importexport.onix30.displayName">Complemento de exportación de monografías ONIX 3.0</message>
 	<message key="plugins.importexport.onix30.description">Exportar metadatos de monografías en formato ONIX 3.0</message>
 	<message key="plugins.importexport.onix30.cliUsage">Uso: {$scriptName} {$pluginName} [xmlFileName] [pressPath] [monographId]</message>

@@ -11,7 +11,7 @@
   * Localization strings.
   -->
 
-<locale name="el_GR" full_name="Greek">
+<locale name="el_GR" full_name="ελληνικά">
 
 	<!-- Languages -->
 	<message key="manager.language.confirmDefaultSettingsOverwrite">Αυτό θα αντικαταστήσει όλες τις παραμέτρους τοπικής ρύθμισης που είχατε ορίσει για την έκδοση σας</message>

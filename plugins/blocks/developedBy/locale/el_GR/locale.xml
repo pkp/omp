@@ -18,7 +18,7 @@
   * Papaxristopoulos Leonidas (leonidasp@lis.upatras.gr)
   -->
 
-<locale name="el_GR" full_name="Greek">
+<locale name="el_GR" full_name="ελληνικά">
 	<message key="plugins.block.developedBy.displayName">"Αναπτύχθηκε από" Block</message>
 	<message key="plugins.block.developedBy.description">Το plugin αυτό παρέχει ένα σύνδεσμο "Αναπτύχθηκε από" στην πλαϊνή μπάρα.</message>
 </locale>
