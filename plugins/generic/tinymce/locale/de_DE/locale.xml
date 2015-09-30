@@ -14,7 +14,7 @@
 
   -->
 
-<locale name="de_DE" full_name="German">
+<locale name="de_DE" full_name="Deutsch (Deutschland)">
 	<message key="plugins.generic.tinymce.name">TinyMCE-Plug-In</message>
 	<message key="plugins.generic.tinymce.description"><![CDATA[Dieses Plug-In aktiviert eine WSYWIG-Eingabe für OMP-Textfelder mittels des <a href="http://tinymce.moxiecode.com" target="_blank">TinyMCE</a>-Editors.]]></message>
 	<message key="plugins.generic.tinymce.descriptionDisabled"><![CDATA[Dieses Plug-In aktiviert eine WSYWIG-Eingabe für OMP-Textfelder mittels des <a href="http://tinymce.moxiecode.com" target="_blank">TinyMCE</a>-Editors. <strong>TinyMCE ist derzeit noch nicht installiert; bitte installieren Sie in {$tinyMcePath}.</strong>]]></message>

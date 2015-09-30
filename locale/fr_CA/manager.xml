@@ -11,7 +11,7 @@
   * Localization strings.
   -->
 
-<locale name="fr_CA" full_name="Français">
+<locale name="fr_CA" full_name="Français (Canada)">
 
 	<!-- Languages -->
 	<message key="manager.language.confirmDefaultSettingsOverwrite">Ceci remplacera tous les paramètres spécifiques aux données de la presse que vous aviez spécifiés pour ce paramètre.</message>

@@ -11,7 +11,7 @@
   * Localization strings.
   -->
 
-<locale name="fr_CA" full_name="Français">
+<locale name="fr_CA" full_name="Français (Canada)">
 	<!-- General monograph keys -->
 	<message key="monograph.audience">Public</message>
 	<message key="monograph.coverImage">Illustration de couverture</message>

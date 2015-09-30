@@ -11,7 +11,7 @@
   * Localization strings.
   -->
 
-<locale name="es_ES" full_name="Español">
+<locale name="es_ES" full_name="Español (España)">
 	<message key="plugins.viewableFiles.pdfSubmissionFile.displayName">Galerada de artículos PDF</message>
 	<message key="plugins.viewableFiles.pdfSubmissionFile.description">Este complemento proporciona soporte de renderizado para galeradas de artículos PDF.</message>
 </locale>

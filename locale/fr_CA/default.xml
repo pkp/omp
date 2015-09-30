@@ -11,7 +11,7 @@
   * Localization strings.
   -->
 
-<locale name="fr_CA" full_name="Français">
+<locale name="fr_CA" full_name="Français (Canada)">
 	<!-- Genre defaults -->
 	<message key="default.genres.appendix">Annexe</message>
 	<message key="default.genres.bibliography">Bibliographie</message>
