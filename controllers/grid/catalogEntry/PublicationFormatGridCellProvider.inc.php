@@ -186,7 +186,7 @@ class PublicationFormatGridCellProvider extends DataObjectGridCellProvider {
 						$router->url($request, null, 'grid.catalogEntry.PublicationFormatGridHandler',
 							'setAvailable', null, array('representationId' => $publicationFormat->getId(), 'newAvailableState' => $publicationFormat->getIsAvailable()?0:1, 'submissionId' => $monographId)),
 						'modal_approve'),
-						__('manager.emails.disable'),
+						__('common.disable'),
 						$this->getCellState($row, $column),
 						$toolTip
 				));
