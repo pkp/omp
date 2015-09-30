@@ -14,7 +14,7 @@
   * Traducción de la versión original 1.2 por Sergio Ruiz (sruiz@revistaesalud.com) - 2005/09/27
   -->
 
-<locale name="es_ES" full_name="Español">
+<locale name="es_ES" full_name="Español (España)">
 	<message key="plugins.importexport.users.displayName">Complemeto XML de usuarios</message>
 	<message key="plugins.importexport.users.description">Importación y exportación de usuarios</message>
 

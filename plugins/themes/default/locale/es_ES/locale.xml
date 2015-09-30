@@ -11,7 +11,7 @@
   * Localization strings
   -->
 
-<locale name="es_ES" full_name="Español">
+<locale name="es_ES" full_name="Español (España)">
 	<message key="plugins.themes.default.name">Tema predeterminado</message>
 	<message key="plugins.themes.default.description">El tema predeterminado se aplica en esta parte.</message>
 </locale>
