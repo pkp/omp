@@ -19,9 +19,9 @@
 			{ldelim}
 				searchTabIndex: {if $isManager}4{else}3{/if},
 				spotlightTabName: 'spotlightsTab',
-				seriesFetchUrlTemplate: '{url|escape:"javascript" op="series" path=SERIES_PATH escape=false}',
-				categoryFetchUrlTemplate: '{url|escape:"javascript" op="category" path=CATEGORY_PATH escape=false}',
-				spotlightsUrl: '{url router=$smarty.const.ROUTE_COMPONENT component="tab.content.ContentTabHandler" op="showTab" tab="spotlights"}'
+				seriesFetchUrlTemplate: {url|json_encode op="series" path=SERIES_PATH escape=false},
+				categoryFetchUrlTemplate: {url|json_encode op="category" path=CATEGORY_PATH escape=false},
+				spotlightsUrl: {url|json_encode router=$smarty.const.ROUTE_COMPONENT component="tab.content.ContentTabHandler" op="showTab" tab="spotlights" escape=false}
 			{rdelim}
 		);
 	{rdelim});
@@ -39,7 +39,7 @@
 		$('#selectSeriesForm').pkpHandler(
 			'$.pkp.controllers.form.DropdownHandler',
 			{ldelim}
-				getOptionsUrl: '{url|escape:"javascript" op="getSeries" escape=false}',
+				getOptionsUrl: {url|json_encode op="getSeries" escape=false},
 				eventName: 'selectSeries'
 			{rdelim}
 		);
@@ -49,7 +49,7 @@
 		$('#selectCategoryForm').pkpHandler(
 			'$.pkp.controllers.form.DropdownHandler',
 			{ldelim}
-				getOptionsUrl: '{url|escape:"javascript" op="getCategories" escape=false}',
+				getOptionsUrl: {url|json_encode op="getCategories" escape=false},
 				eventName: 'selectCategory'
 			{rdelim}
 		);

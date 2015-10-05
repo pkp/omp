@@ -15,8 +15,8 @@
 				trackFormChanges: true,
 				$uploader: $('#plupload_catalogMetadata'),
 				uploaderOptions: {ldelim}
-					uploadUrl: '{url|escape:javascript router=$smarty.const.ROUTE_COMPONENT component="tab.catalogEntry.CatalogEntryTabHandler" op="uploadCoverImage" escape=false stageId=$stageId submissionId=$submissionId}',
-					baseUrl: '{$baseUrl|escape:javascript}'
+					uploadUrl: {url|json_encode router=$smarty.const.ROUTE_COMPONENT component="tab.catalogEntry.CatalogEntryTabHandler" op="uploadCoverImage" escape=false stageId=$stageId submissionId=$submissionId},
+					baseUrl: {$baseUrl|json_encode}
 				{rdelim},
 				arePermissionsAttached: {if $arePermissionsAttached}true{else}false{/if}
 			{rdelim}

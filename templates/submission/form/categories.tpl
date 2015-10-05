@@ -10,7 +10,7 @@
 {if $categoriesExist}
 	{if !$readOnly}
 		{assign var="monographCategoriesContainer" value="monographCategoriesContainer-"|uniqid|escape}
-		<div id={$monographCategoriesContainer}>
+		<div id="{$monographCategoriesContainer|escape}">
 			{url|assign:monographCategoriesUrl router=$smarty.const.ROUTE_COMPONENT component="submission.CategoriesListbuilderHandler" op="fetch" submissionId=$submissionId readOnly=$readOnly escape=false}
 			{load_url_in_div id=$monographCategoriesContainer url=$monographCategoriesUrl}
 		</div>

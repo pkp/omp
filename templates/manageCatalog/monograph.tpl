@@ -33,21 +33,21 @@
 			{ldelim}
 				{* Parameters for MonographHandler *}
 				submissionId: {$submissionId},
-				setFeaturedUrlTemplate: '{url|escape:"javascript" op="toggle" path=$submissionId|to_array:$assocType:$assocId:"setFeatured":"FEATURED_DUMMY":"SEQ_DUMMY" escape=false}',
-				setNewReleaseUrlTemplate: '{url|escape:"javascript" op="toggle" path=$submissionId|to_array:$assocType:$assocId:"setNewRelease":"RELEASE_DUMMY" escape=false}',
+				setFeaturedUrlTemplate: {url|json_encode op="toggle" path=$submissionId|to_array:$assocType:$assocId:"setFeatured":"FEATURED_DUMMY":"SEQ_DUMMY" escape=false},
+				setNewReleaseUrlTemplate: {url|json_encode op="toggle" path=$submissionId|to_array:$assocType:$assocId:"setNewRelease":"RELEASE_DUMMY" escape=false},
 				isFeatured: {$isFeatured},
 				isNewRelease: {$isNewRelease},
 				seq: {$featureSequence},
 				datePublished: new Date('{$monograph->getDatePublished()|date_format:$datetimeFormatShort|escape:"javascript"}'),
-				workflowUrl: '{url|escape:"javascript" router=$smarty.const.ROUTE_PAGE page="workflow" op="access" path=$submissionId}',
-				catalogUrl: '{url router=$smarty.const.ROUTE_PAGE page="catalog" op="book" path=$submissionId}',
+				workflowUrl: {url|json_encode router=$smarty.const.ROUTE_PAGE page="workflow" op="access" path=$submissionId escape=false},
+				catalogUrl: {url|json_encode router=$smarty.const.ROUTE_PAGE page="catalog" op="book" path=$submissionId escape=false},
 				{* Parameters for parent LinkActionHandler *}
 				actionRequest: '$.pkp.classes.linkAction.ModalRequest',
 				actionRequestOptions: {ldelim}
-					title: '{translate|escape:"javascript" key="submission.catalogEntry"}',
+					title: {translate|json_encode key="submission.catalogEntry"},
 					modalHandler: '$.pkp.controllers.modal.AjaxModalHandler',
 					titleIcon: 'modal_more_info',
-					url: '{url|escape:"javascript" router=$smarty.const.ROUTE_COMPONENT component="modals.submissionMetadata.CatalogEntryHandler" op="fetch" submissionId=$submissionId stageId=$smarty.const.WORKFLOW_STAGE_ID_PRODUCTION escape=false}'
+					url: {url|json_encode router=$smarty.const.ROUTE_COMPONENT component="modals.submissionMetadata.CatalogEntryHandler" op="fetch" submissionId=$submissionId stageId=$smarty.const.WORKFLOW_STAGE_ID_PRODUCTION escape=false}
 				{rdelim}
 			{rdelim}
 		);

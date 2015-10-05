@@ -16,7 +16,7 @@
 		$('#selectMonographForm').pkpHandler(
 			'$.pkp.controllers.form.DropdownHandler',
 			{ldelim}
-				getOptionsUrl: '{url|escape:"javascript" router=$smarty.const.ROUTE_COMPONENT op="getSubmissions" escape=false}',
+				getOptionsUrl: {url|json_encode router=$smarty.const.ROUTE_COMPONENT op="getSubmissions" escape=false},
 				eventName: 'selectMonograph'
 			{rdelim}
 		);
@@ -24,7 +24,7 @@
 		$('#selectMonographContainer').pkpHandler(
 			'$.pkp.controllers.modals.submissionMetadata.MonographlessCatalogEntryHandler',
 			{ldelim}
-				metadataFormUrlTemplate: '{url|escape:"javascript" router=$smarty.const.ROUTE_COMPONENT component="modals.submissionMetadata.CatalogEntryHandler" op="fetch" submissionId=MONOGRAPH_ID stageId=STAGE_ID escape=false}'
+				metadataFormUrlTemplate: {url|json_encode router=$smarty.const.ROUTE_COMPONENT component="modals.submissionMetadata.CatalogEntryHandler" op="fetch" submissionId=MONOGRAPH_ID stageId=STAGE_ID escape=false}
 			{rdelim}
 		);
 	{rdelim});
