@@ -13,7 +13,7 @@
 		// Attach the form handler.
 		$('#spotlightForm').pkpHandler('$.pkp.controllers.grid.content.spotlights.form.SpotlightFormHandler',
 			{ldelim}
-				autocompleteUrl: '{$addSpotlightItemUrl}'
+				autocompleteUrl: {$addSpotlightItemUrl|json_encode}
 			{rdelim}
 		);
 	{rdelim});

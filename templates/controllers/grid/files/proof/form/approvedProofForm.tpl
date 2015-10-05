@@ -12,7 +12,7 @@
 		// Attach the form handler.
 		$('#approvedProofForm').pkpHandler('$.pkp.controllers.grid.files.proof.form.ApprovedProofFormHandler',
 			{ldelim}
-				salesType: '{$salesType|escape:"javascript"}'
+				salesType: {$salesType|json_encode}
 			{rdelim}
 		);
 	{rdelim});
