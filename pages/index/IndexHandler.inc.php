@@ -85,7 +85,7 @@ class IndexHandler extends Handler {
 		if ($press->getSetting('displayNewReleases')) {
 			$newReleaseDao = DAORegistry::getDAO('NewReleaseDAO');
 			$newReleases = $newReleaseDao->getMonographsByAssoc(ASSOC_TYPE_PRESS, $press->getId());
-			$templateMgr->assign('publishedMonographs', $newReleases);
+			$templateMgr->assign('newReleases', $newReleases);
 		}
 
 		// Assign header and content for home page.

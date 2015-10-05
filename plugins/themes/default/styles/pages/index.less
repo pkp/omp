@@ -8,22 +8,108 @@
  * @brief Styles applying to the front page of the site
  * @link templates/frontend/pages/index.tpl
  */
-.pkp_op_index {
+.pkp_page_index {
 
-    // Put first row flush with navigation menu
-    .pkp_structure_main {
-        padding-top: 0;
-    }
+	// Put first row flush with navigation menu
+	.pkp_structure_main {
+		padding-top: 0;
+	}
 
-    @media(min-width: @screen-desktop) {
+	.row {
+		padding-top: @double * 2;
+		padding-bottom: @double * 2;
+		border-bottom: @bg-border;
 
-        // Implement full-width rows throughout the content
-        .pkp_structure_content {
-            width: 100%;
-        }
+		&:last-child {
+			border-bottom: none;
+		}
 
-        .row_spotlights {
-            background: @bg-dark;
-        }
-    }
+		h2 {
+			display: block;
+			margin-top: 0;
+			margin-bottom: @base;
+			font-size: @font-lead;
+			line-height: @line-lead;
+			font-weight: @bold;
+		}
+
+		@media (min-width: @screen-tablet) {
+
+			h2 {
+				text-align: center;
+				margin-bottom: @double;
+			}
+		}
+
+		@media (min-width: @screen-desktop) {
+
+			h2 {
+				font-size: @font-header;
+				line-height: @line-header;
+			}
+		}
+	}
+
+	.row_new_releases {
+
+		h2 {
+			margin-bottom: @double * 2;
+		}
+
+		.title {
+			font-size: @font-bump;
+			line-height: @line-bump;
+		}
+
+		.author {
+			font-size: @font-base;
+			line-height: @line-base;
+		}
+
+		@media (min-width: @screen-tablet) {
+
+			h2,
+			.cmp_monographs_list {
+				width: @screen-tablet-container;
+				margin-left: auto;
+				margin-right: auto;
+			}
+		}
+
+		@media (min-width: @screen-desktop) {
+
+			h2,
+			.cmp_monographs_list {
+				width: @screen-desktop-container;
+				margin-left: auto;
+				margin-right: auto;
+			}
+
+			.cmp_monographs_list {
+				max-width: 40em;
+			}
+		}
+
+		@media (min-width: @screen-lg-desktop) {
+
+			h2,
+			.cmp_monographs_list {
+				width: @screen-lg-desktop-container;
+				margin-left: auto;
+				margin-right: auto;
+			}
+		}
+	}
+
+	@media (min-width: @screen-desktop) {
+
+		// Implement full-width rows throughout the content
+		.pkp_structure_content {
+			width: 100%;
+		}
+
+		.row_spotlights {
+			background: @bg-dark;
+		}
+	}
 }

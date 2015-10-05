@@ -185,6 +185,10 @@
 
 	> li {
 		margin-bottom: @double * 2;
+
+		&:last-child {
+			margin-bottom: 0;
+		}
 	}
 }
 
@@ -222,11 +226,6 @@
 
 	> ul {
 		&:extend(.pkp_unstyled_list);
-
-		 > li {
-			padding: @double * 2 0;
-			border-bottom: 1px solid @bg-dark;
-		}
 	}
 
 	@media (min-width: @screen-desktop) {
@@ -234,7 +233,6 @@
 		> ul > li {
 			width: @screen-desktop-container;
 			margin: 0 auto;
-			padding: (@double * 3) 0;
 			border-bottom: none;
 		}
 	}
@@ -249,15 +247,6 @@
 
 // Large search input on homepage
 .cmp_search_homepage {
-	padding: (@double * 2) 0;
-
-	label {
-		display: block;
-		margin-bottom: @base;
-		font-size: @font-lead;
-		line-height: @line-lead;
-		font-weight: @bold;
-	}
 
 	input {
 		margin-bottom: @base;
@@ -280,20 +269,8 @@
 		margin: 0 auto;
 		max-width: 36em;
 
-		label {
-			margin-bottom: @double;
-		}
-
 		input[type="text"] {
 			margin-bottom: 0;
-		}
-	}
-
-	@media (min-width: @screen-desktop) {
-
-		label {
-			font-size: @font-header;
-			line-height: @line-header;
 		}
 	}
 }
@@ -301,7 +278,7 @@
 // List of categories and series to browse
 .cmp_browse_list {
 	&:extend(.pkp_unstyled_list);
-	padding: @double 0;
+	margin-top: @double * 2;
 
 	> li {
 		font-weight: @bold;
@@ -323,7 +300,8 @@
 
 	@media (min-width: @screen-tablet) {
 		.pkp_helpers_clear;
-		margin: 0 auto;
+		margin-left: auto;
+		margin-right: auto;
 		text-align: center;
 
 		> li {

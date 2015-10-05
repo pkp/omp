@@ -9,9 +9,8 @@
  *
  *}
 <form class="cmp_search_homepage pkp_form" action="{url router=$smarty.const.ROUTE_PAGE page="catalog" op="results"}" method="post">
-
-	<label for="search_query_homepage">
-		{translate key="common.searchOrBrowse"}
+	<label for="search_query_homepage" class="pkp_screen_reader">
+		{translate key="common.searchCatalog"}
 	</label>
 	<input name="query" id="search_query_homepage" type="text">
 	<button>{translate key="common.searchCatalog"}</button>
