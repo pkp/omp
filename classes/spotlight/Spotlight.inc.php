@@ -18,7 +18,7 @@
 define('SPOTLIGHT_TYPE_BOOK',	3);
 define('SPOTLIGHT_TYPE_SERIES',	4);
 define('SPOTLIGHT_TYPE_AUTHOR',	5);
-define('MAX_SPOTLIGHTS_VISIBLE', 3);
+define('MAX_SPOTLIGHTS_VISIBLE', 1);
 
 class Spotlight extends DataObject {
 	/**

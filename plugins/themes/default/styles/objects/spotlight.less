@@ -1,0 +1,113 @@
+/**
+ * @file plugins/themes/default/styles/objects/spotlight.less
+ *
+ * Copyright (c) 2014-2015 Simon Fraser University Library
+ * Copyright (c) 2003-2015 John Willinsky
+ * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
+ *
+ * @brief Styles applying to a view of a spotlight, typically displayed on the
+ *  homepage in a full-width space.
+ * @link templates/frontend/objects/spotlight.tpl
+ */
+.obj_spotlight {
+	.pkp_helpers_clear;
+	position: relative;
+
+	.call_to_action {
+
+		> a {
+			display: inline-block;
+			margin-top: @base;
+		}
+	}
+
+	.cover_image {
+		display: block;
+		margin-bottom: @double;
+
+		img {
+			display: block;
+			max-width: @double * 8;
+			margin: 0 auto;
+		}
+	}
+
+	.title {
+		margin: 0;
+		font-size: @font-lead;
+		line-height: @line-lead;
+	}
+
+	.description > p {
+		line-height: @line-base;
+	}
+
+	@media (min-width: @screen-tablet) {
+
+		.call_to_action a {
+			margin-top: @double;
+		}
+
+		.description > p {
+			line-height: @double;
+		}
+
+		.cover_image {
+			float: left;
+		}
+
+		&.has_image {
+
+			.call_to_action {
+				margin-left: @double * 9;
+			}
+		}
+	}
+
+	@media (min-width: @screen-desktop) {
+
+		.cover_image {
+			width: 352px;
+			margin-left: @double * 2;
+			margin-bottom: 0;
+
+			img {
+				max-width: 100%;
+				box-shadow: 8px 8px 8px darken(@bg-dark, 10%);
+			}
+		}
+
+		.call_to_action {
+			margin: 0 auto;
+			max-width: 50%;
+		}
+
+		&.has_image {
+
+			.call_to_action {
+				margin-left: (@screen-desktop-container / 2) + (@double * 2);
+				margin-right: @double * 2;
+			}
+
+		}
+
+	}
+
+	@media (min-width: @screen-lg-desktop) {
+
+		.cover_image {
+			margin-left: @double * 3;
+		}
+
+		&.has_image {
+
+			.call_to_action {
+				margin-top: @double * 2;
+				margin-left: (@screen-desktop-container / 2) + (@double * 4);
+				margin-right: @double * 3;
+			}
+
+		}
+
+	}
+}
