@@ -1,0 +1,29 @@
+/**
+ * @file  plugins/themes/default/styles/pages/index.less
+ *
+ * Copyright (c) 2014-2015 Simon Fraser University Library
+ * Copyright (c) 2003-2015 John Willinsky
+ * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
+ *
+ * @brief Styles applying to the front page of the site
+ * @link templates/frontend/pages/index.tpl
+ */
+.pkp_op_index {
+
+    // Put first row flush with navigation menu
+    .pkp_structure_main {
+        padding-top: 0;
+    }
+
+    @media(min-width: @screen-desktop) {
+
+        // Implement full-width rows throughout the content
+        .pkp_structure_content {
+            width: 100%;
+        }
+
+        .row_spotlights {
+            background: @bg-dark;
+        }
+    }
+}
