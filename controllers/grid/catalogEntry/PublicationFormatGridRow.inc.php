@@ -86,7 +86,7 @@ class PublicationFormatGridRow extends GridRow {
 	 * Get the monograph for this row (already authorized)
 	 * @return Monograph
 	 */
-	function &getMonograph() {
+	function getMonograph() {
 		return $this->_monograph;
 	}
 }
