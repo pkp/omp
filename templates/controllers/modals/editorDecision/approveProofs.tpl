@@ -17,5 +17,5 @@
 </script>
 
 <div id="approveProofsContainer">
-	{include file="controllers/tab/workflow/publicationFormat.tpl" submission=$submission representation=$representation}
+	{include file="controllers/tab/workflow/publicationFormat.tpl" submission=$submission representation=$representation stageId=$smarty.const.WORKFLOW_STAGE_ID_EDITING}
 </div>
