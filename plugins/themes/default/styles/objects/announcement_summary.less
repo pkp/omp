@@ -1,0 +1,36 @@
+/**
+ * @file  plugins/themes/default/styles/objects/announcement_summary.less
+ *
+ * Copyright (c) 2014-2015 Simon Fraser University Library
+ * Copyright (c) 2003-2015 John Willinsky
+ * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
+ *
+ * @brief Styles applying to the summary view of an announcement
+ * @link templates/frontend/objects/announcement_summary.tpl
+ */
+.obj_announcement_summary {
+
+	h4 {
+		margin: 0;
+		font-size: @font-bump;
+		line-height: @line-bump;
+	}
+
+	.date {
+		color: @text-light;
+	}
+
+	.summary {
+		font-size: @font-sml;
+		line-height: @line-sml;
+		margin-top: @base;
+
+		p:first-child {
+			margin-top: 0;
+		}
+
+		p:last-child {
+			margin-bottom: 0;
+		}
+	}
+}
