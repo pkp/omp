@@ -109,6 +109,7 @@ You may optionally provide the user with a reason for disabling their account.</
 	<message key="manager.system.reviewForms">Review Forms</message>
 	<message key="manager.system.readingTools">Reading Tools</message>
 	<message key="manager.system.payments">Payments</message>
+	<message key="user.authorization.pluginLevel">You do not have sufficient privileges to manage this plugin.</message>
 
 	<!-- Press setup -->
 	<message key="manager.pressManagement">Press Management</message>
