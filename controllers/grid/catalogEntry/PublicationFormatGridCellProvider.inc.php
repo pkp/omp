@@ -177,7 +177,13 @@ class PublicationFormatGridCellProvider extends DataObjectGridCellProvider {
 				}
 				// If we have any notifications, wrap them in the appropriately styled div
 				if ($warningMarkup !== '') $warningMarkup = "<div class=\"pkp_notification\">$warningMarkup</div>";
-				$toolTip = ($this->getCellState($row, $column) == 'completed') ? __('grid.action.formatAvailable') : null;
+				if ($this->getCellState($row, $column) == 'completed') {
+					$toolTip = __('grid.action.disableFormat');
+					$label = __('common.disable');
+				} else {
+					$toolTip = __('grid.action.enableFormat');
+					$label = __('common.enable');
+				}
 				return array(new LinkAction(
 					'availablePublicationFormat',
 					new RemoteActionConfirmationModal(
@@ -186,7 +192,7 @@ class PublicationFormatGridCellProvider extends DataObjectGridCellProvider {
 						$router->url($request, null, 'grid.catalogEntry.PublicationFormatGridHandler',
 							'setAvailable', null, array('representationId' => $publicationFormat->getId(), 'newAvailableState' => $publicationFormat->getIsAvailable()?0:1, 'submissionId' => $monographId)),
 						'modal_approve'),
-						__('common.disable'),
+						$label,
 						$this->getCellState($row, $column),
 						$toolTip
 				));

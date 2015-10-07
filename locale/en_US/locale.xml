@@ -78,7 +78,7 @@
 	<message key="grid.catalogEntry.physicalFormat">Physical format</message>
 	<message key="grid.catalogEntry.monographRequired">A monograph id is required.</message>
 	<message key="grid.catalogEntry.publicationFormatRequired">A publication format must be chosen.</message>
-	<message key="grid.catalogEntry.isAvailable">Available</message>
+	<message key="grid.catalogEntry.availability">Availability</message>
 	<message key="grid.catalogEntry.proof">Proof</message>
 	<message key="grid.catalogEntry.availablePublicationFormat.title">Format Approval</message>
 	<message key="grid.catalogEntry.availablePublicationFormat.message"><![CDATA[<p>This format will now be made <em>available</em> to readers, through downloadable files that will now appear with the book’s catalog entry and/or through further actions taken by the press to distribute the book.</p>]]></message>
@@ -213,7 +213,8 @@
 	<message key="grid.action.approveProofs">View the proofs grid</message>
 	<message key="grid.action.proofApproved">Format has been proofed</message>
 	<message key="grid.action.availablePublicationFormat">Approve/disapprove this format</message>
-	<message key="grid.action.formatAvailable">Format is available and published</message>
+	<message key="grid.action.disableFormat">Disable this publication format</message>
+	<message key="grid.action.enableFormat">Enable this publication format</message>
 
 	<!-- Review Attachments -->
 	<message key="grid.reviewAttachments.add">Add Attachment to Review</message>
