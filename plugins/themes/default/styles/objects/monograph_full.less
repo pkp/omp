@@ -62,4 +62,42 @@
 		display: block;
 		font-weight: @bold;
 	}
+
+	.files {
+		&:extend(.pkp_unstyled_list);
+
+		> li {
+			margin-bottom: @double;
+
+			&:last-child {
+				margin-bottom: 0;
+			}
+		}
+
+		.label {
+			font-weight: @bold;
+		}
+
+		.value {
+
+			> ul {
+				&:extend(.pkp_unstyled_list);
+			}
+
+			li {
+				padding-top: ( @double - @line-sml ) / 2;
+				padding-bottom: ( @double - @line-sml ) / 2;
+			}
+		}
+
+		.supplementary_label {
+			margin-top: @base;
+			font-style: italic;
+			color: @text-light;
+		}
+
+		.cmp_file_download_button {
+			margin-right: 0.5em;
+		}
+	}
 }

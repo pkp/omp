@@ -116,7 +116,7 @@
 				<li>
 					<span class="title">
 						{$chapter->getLocalizedTitle()}
-						{if $chapter->getLocalizedSubtitle() != ''}
+						{if !empty($chapter->getLocalizedSubtitle())}
 							<span class="subtitle">
 								{$chapter->getLocalizedSubtitle()}
 							</span>
@@ -133,6 +133,7 @@
 		</ul>
 	{/if}
 
+	{* Sort and display the download files if there are more than 1 *}
 	{if $availableFiles|@count}
 		<ul class="files">
 			{assign var=publicationFormats value=$publishedMonograph->getPublicationFormats()}
@@ -140,36 +141,74 @@
 			{foreach from=$publicationFormats item=publicationFormat}
 				{assign var=representationId value=$publicationFormat->getId()}
 				{if $publicationFormat->getIsAvailable() && $availableFiles[$representationId]}
-					<li class="{$representationId|escape}">
+					<li>
 						<span class="label">
 							{$publicationFormat->getLocalizedName()|escape}
 						</span>
 						<span class="value">
-							<ul>
-								{* There will be at most one of these *}
-								{foreach from=$availableFiles[$representationId] item=availableFile}
-									<li>
-										<span class="name">
-											{$availableFile->getLocalizedName()|escape}
-										</span>
-										<span class="link">
-											{if $availableFile->getDocumentType()==$smarty.const.DOCUMENT_TYPE_PDF}
-												{url|assign:downloadUrl op="view" path=$publishedMonograph->getId()|to_array:$representationId:$availableFile->getFileIdAndRevision()}
-											{else}
-												{url|assign:downloadUrl op="download" path=$publishedMonograph->getId()|to_array:$representationId:$availableFile->getFileIdAndRevision()}
+
+							{* Count the types of files that we have *}
+							{assign var=monographFiles value=0}
+							{assign var=supplementaryFiles value=0}
+							{foreach from=$availableFiles[$representationId] item=availableFile}
+								{if get_class($availableFile) == 'MonographFile'}
+									{assign var=monographFiles value=$monographFiles+1}
+								{else}
+									{assign var=supplementaryFiles value=$supplementaryFiles+1}
+								{/if}
+							{/foreach}
+
+							{* Monograph files *}
+							{if $monographFiles > 0}
+								<ul>
+									{assign var=hasSupplementaryFiles value=0}
+									{foreach from=$availableFiles[$representationId] item=availableFile}
+										{if get_class($availableFile) != 'MonographFile'}
+											{php}continue;{/php}
+										{/if}
+										<li>
+											{include file="frontend/components/file_downloadButton.tpl"}
+
+											{* Only display file names if
+											there's more than one file
+											in this group. *}
+											{if $monographFiles > 1}
+												<span class="name">
+													{$availableFile->getLocalizedName()|escape}
+												</span>
 											{/if}
-											<a href="{$downloadUrl}" class="{$availableFile->getDocumentType()}">
-												{if $availableFile->getDirectSalesPrice()}
-													{translate key="payment.directSales.purchase" amount=$availableFile->getDirectSalesPrice() currency=$currency}
-												{else}
-													{translate key="payment.directSales.download"}
-													{* @todo make the open access icon appear *}
-												{/if}
-											</a>
-										</span>
-									</li>
-								{/foreach}
-							</ul>
+										</li>
+									{/foreach}
+								</ul>
+							{/if}
+
+
+							{* Supplementary and artwork files *}
+							{if $supplementaryFiles > 0}
+
+								{* If we have no monograph files we probably
+								   don't need a label here to separate the
+								   supplementary files. *}
+								{if $monographFiles > 0}
+									<div class="supplementary_label">
+										{translate key=monograph.supplementaryFiles}
+									</div>
+								{/if}
+								<ul>
+									{foreach from=$availableFiles[$representationId] item=availableFile}
+											{if get_class($availableFile) == 'MonographFile'}
+												{php}continue;{/php}
+											{/if}
+											<li>
+												{include file="frontend/components/file_downloadButton.tpl"}
+												<span class="name">
+													{$availableFile->getLocalizedName()|escape}
+												</span>
+											</li>
+									{/foreach}
+								</ul>
+							{/if}
+
 						</span><!-- .value -->
 					</li>
 				{/if}

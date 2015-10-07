@@ -333,3 +333,36 @@
 		}
 	}
 }
+
+// Link to download a file
+.cmp_file_download_button {
+	&:extend(.cmp_button_wire);
+
+	&:hover,
+	&:focus {
+		&:extend(.cmp_button_wire:hover);
+	}
+
+	&:before {
+		&:extend(.fa);
+		content: @fa-var-download;
+		margin-right: 0.25em;
+	}
+
+	&.pdf:before {
+		content: @fa-var-file-pdf-o;
+	}
+
+	&.purchase_required {
+
+		&:before {
+			content: @fa-var-lock;
+			color: @offset;
+		}
+
+		&:hover:before,
+		&:focus:before {
+			color: #fff;
+		}
+	}
+}

@@ -29,6 +29,7 @@
 	<message key="monograph.proofReadingDescription"><![CDATA[The layout editor uploads the production-ready files that have been prepared for publication here. Use <em>+Assign</em> to designate authors and others to proofread the page proofs, with corrected files uploaded for approval prior to publication.]]></message>
 	<message key="monograph.task.addNote">Add to task</message>
 	<message key="monograph.accessLogoOpen.altText">Open Access</message>
+	<message key="monograph.supplementaryFiles">Supplementary Files</message>
 
 
 	<!--  Metadata field description keys -->
