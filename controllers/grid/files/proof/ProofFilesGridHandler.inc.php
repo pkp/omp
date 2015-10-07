@@ -36,6 +36,12 @@ class ProofFilesGridHandler extends FileListGridHandler {
 				'deleteFile',
 			)
 		);
+		$this->addRoleAssignment(
+			array(ROLE_ID_SUB_EDITOR, ROLE_ID_MANAGER),
+			array(
+				'setApproval',
+			)
+		);
 	}
 
 	//
@@ -69,6 +75,16 @@ class ProofFilesGridHandler extends FileListGridHandler {
 		$this->setId('proofFiles-' . $representation->getId());
 		$this->setTitle('submission.pageProofs');
 		$this->setInstructions('monograph.proofReadingDescription');
+
+		import('controllers.grid.files.proof.ProofFilesGridCellProvider');
+		$cellProvider = new ProofFilesGridCellProvider();
+		$this->addColumn(new GridColumn(
+			'approved',
+			'editor.signoff.approved',
+			null,
+			'controllers/grid/common/cell/statusCell.tpl',
+			$cellProvider
+		));
 	}
 
 	/**
@@ -106,6 +122,38 @@ class ProofFilesGridHandler extends FileListGridHandler {
 		$manageProofFilesForm = new ManageProofFilesForm($submission->getId(), $publicationFormat->getId());
 		$manageProofFilesForm->initData($args, $request);
 		return new JSONMessage(true, $manageProofFilesForm->fetch($request));
+	}
+
+	/**
+	 * Set the approval status for a file.
+	 * @param $args array
+	 * @param $request PKPRequest
+	 */
+	function setApproval($args, $request) {
+		$submission = $this->getSubmission();
+		$publicationFormat = $this->getAuthorizedContextObject(ASSOC_TYPE_PUBLICATION_FORMAT);
+		$submissionFileDao = DAORegistry::getDAO('SubmissionFileDAO');
+		import('lib.pkp.classes.submission.SubmissionFile'); // Constants
+		$submissionFile = $submissionFileDao->getRevision(
+			$request->getUserVar('fileId'),
+			$request->getUserVar('revision'),
+			SUBMISSION_FILE_PROOF,
+			$submission->getId()
+		);
+		if ($submissionFile && $submissionFile->getAssocType()==ASSOC_TYPE_REPRESENTATION && $submissionFile->getAssocId()==$publicationFormat->getId()) {
+			// Update the approval flag
+			$submissionFile->setViewable($request->getUserVar('approval')?1:0);
+			$submissionFileDao->updateObject($submissionFile);
+
+			// Log the event
+			import('lib.pkp.classes.log.SubmissionFileLog');
+			import('lib.pkp.classes.log.SubmissionFileEventLogEntry'); // constants
+			$user = $request->getUser();
+			SubmissionFileLog::logEvent($request, $submissionFile, SUBMISSION_LOG_FILE_SIGNOFF_SIGNOFF, 'submission.event.signoffSignoff', array('file' => $submissionFile->getOriginalFileName(), 'name' => $user->getFullName(), 'username' => $user->getUsername()));
+
+			return DAO::getDataChangedEvent($submissionFile->getFileId());
+		}
+		return new JSONMessage(false);
 	}
 }
 
