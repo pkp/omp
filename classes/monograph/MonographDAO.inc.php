@@ -159,7 +159,7 @@ class MonographDAO extends SubmissionDAO {
 		$newReleaseDao->deleteByMonographId($submissionId);
 
 		import('classes.search.MonographSearchIndex');
-		MonographSearchIndex::deleteTextIndex($monograph->getId());
+		MonographSearchIndex::deleteTextIndex($submissionId);
 	}
 
 	/**
