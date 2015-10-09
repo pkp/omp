@@ -75,6 +75,7 @@
 	<upgrade minversion="0.9.9.0" maxversion="1.1.9.9">
 		<code function="htmlifyEmailTemplates" /><!-- Bug #8929 -->
 		<data file="dbscripts/xml/upgrade/1.2.0.0_update.xml" />
+		<code function="convertQueries" />
 	</upgrade>
 
 	<!-- Update plugin configuration - should be done as the final upgrade task -->
