@@ -37,7 +37,8 @@
 @text-light:             rgba(0,0,0,0.54);
 
 // Border colors
-@bg-border-color:        @bg-dark;
+@bg-border-color:        @bg;
+@bg-border-dark-color:   @bg-dark;
 
 //
 // Spacing
@@ -53,6 +54,7 @@
 @double:                 @base * 2;
 @triple:                 @base * 3;
 @quadruple:              @base * 4;
+@quintuple:              @base * 5;
 
 //
 // Typography
@@ -67,7 +69,7 @@
 @font-lead:              18px;
 @line-lead:              @triple;
 @font-header:            24px;
-@line-header:            @quadruple;
+@line-header:            @triple;
 
 // Font weights
 @normal:                 400;
@@ -77,6 +79,7 @@
 // Borders
 //
 @bg-border:              1px solid @bg-border-color;
+@bg-border-dark:         1px solid @bg-border-dark-color;
 @radius:                 3px;
 
 
@@ -90,3 +93,7 @@
 @screen-desktop-container:    @screen-desktop - (@double * 2);
 @screen-lg-desktop:           1200px;
 @screen-lg-desktop-container: @screen-lg-desktop - (@double * 2);
+
+// Fixed widths and heights
+@sidebar-width:               300px;
+@logo-height:                 @quadruple * 3;

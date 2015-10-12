@@ -10,26 +10,69 @@
  * @brief Classes for the page header structural elements
  */
 
-// Wrapper elements which construct the full-width vertical segments of the header
+// Structural components of the header layout
 .pkp_structure_head {
-	padding-top: @double; // Make room for the user nav at the top
-	background-color: @primary;
+	padding-top: @quintuple; // Make room for the user nav at the top
+	background-color: @bg-base;
+}
+
+.pkp_head_wrapper {
+	position: relative;
+
+	@media(min-width: @screen-desktop) {
+		min-height: @logo-height;
+	}
 }
 
 .pkp_navigation_user_wrapper {
 	position: absolute;
-	top: 0;
+	bottom: 100%;
 	left: 0;
 	right: 0;
-	background: @primary;
+	padding-left: @base;
+	padding-right: @base;
 }
 
 .pkp_site_name_wrapper {
-	background-color: @primary-lift;
+	padding-left: @base;
+	padding-right: @base;
+	background-color: @bg;
+
+	@media(min-width: @screen-desktop) {
+		position: absolute;
+		bottom: 0;
+		left: 0;
+		width: @sidebar-width;
+	}
 }
 
 .pkp_navigation_primary_row {
-	background: @bg;
+	padding-left: @base;
+	padding-right: @base;
+	background: @lift;
+
+	@media(min-width: @screen-desktop) {
+		position: absolute;
+		bottom: 0;
+		right: 0;
+		width: @screen-desktop-container - @sidebar-width;
+		height: @logo-height;
+		padding: 0;
+	}
+
+	@media(min-width: @screen-lg-desktop) {
+		width: @screen-lg-desktop-container - @sidebar-width;
+	}
+}
+
+.pkp_navigation_primary_wrapper {
+	position: relative;
+
+	@media(min-width: @screen-desktop) {
+		padding-left: @triple;
+		padding-right: @triple;
+		border-bottom: @bg-border;
+	}
 }
 
 // User-focused navigation menu with login/logout, tasks, etc
@@ -42,31 +85,32 @@
 	}
 
 	a {
-		padding-top: 4px;
-		padding-bottom: 4px;
-		line-height: @line-base;
-		color: #ddd;
-		color: rgba(255,255,255,0.7);
+		padding-top: (@quintuple - @line-sml) / 2;
+		padding-bottom: (@quintuple - @line-sml) / 2;
+		line-height: @line-sml;
+		color: #fff;
 
 		&:hover,
 		&:focus {
-			color: #fff;
+			color: #fff; // override default a hover styles
 		}
 	}
 
 	ul {
-		padding: 0 2px 2px;
+		padding: 0 2px 2px; // Creates a border
 		border-bottom-left-radius: @radius;
 		border-bottom-right-radius: @radius;
 		width: 10em;
-		background: @primary;
+		background: @bg-base;
 
 		a {
+			padding-top: @half;
+			padding-bottom: @half;
 
 			&:hover,
 			&:focus {
-				background: @primary-lift;
-				color: #fff;
+				background: @bg;
+				color: @text;
 			}
 		}
 	}
@@ -90,15 +134,15 @@
 	position: relative;
 
 	.task-count {
-		display: inline-block;
-		width: 22px;
-		height: 22px;
-		margin-left: 0.25em;
+		display: block;
+		float: right;
+		width: 20px;
+		height: 20px;
+		margin-left: 0.5em;
 		border-radius: 50%;
 		background: rgba(255,255,255,0.5);
-		line-height: 22px;
-		color: @primary;
-		vertical-align: middle;
+		line-height: 20px;
+		color: @text;
 		text-align: center;
 
 		&.hasTasks {
@@ -119,7 +163,7 @@
 	top: 100%;
 	right: 0;
 	width: 30em;
-	background: @primary;
+	background: @bg-base;
 	color: #fff;
 
 	a {
@@ -190,19 +234,23 @@
 
 // Site logo/name
 .pkp_site_name {
+	margin: 0;
 
 	.is_img {
 		display: inline-block;
+		width: 100%;
 		// Trick to vertically align the image
-		height: 128px;
-		line-height: 128px;
+		height: @logo-height;
+		padding-top: @double;
+		padding-bottom: @double;
+		line-height: @logo-height;
 		font-size: 0; // prevent extra spacing from inline content
+		text-align: center;
 
 		img {
-			max-height: 128px;
+			max-height: (@logo-height) - @quadruple; // must match height - padding of .is_img
 			width: auto;
 			height: auto;
-			vertical-align: middle;
 		}
 	}
 
@@ -210,59 +258,133 @@
 		display: inline-block;
 		padding-top: @double;
 		padding-bottom: @double;
-		font-size: @font-lead;
-		line-height: @line-lead;
+		font-size: @font-header;
+		line-height: @line-header;
 		font-weight: @bold;
 		color: #fff;
 		text-decoration: none;
-
-		&:hover,
-		&:focus {
-			color: rgba(255,255,255,0.7);
-		}
 	}
 }
 
 // Primary site navigation menu
 .pkp_navigation_primary {
-	display: inline-block;
-
-	// Align to the left edge of the screen
-	> li:first-child a {
-		padding-left: 0;
-	}
+	text-align: center;
 
 	a {
 		line-height: @double;
+		padding-top: (@quintuple - @double) / 2;
+		padding-bottom: (@quintuple - @double) / 2;
 	}
 
 	ul {
-		padding: 0 4px 4px;
-		border-bottom-left-radius: @radius;
-		border-bottom-right-radius: @radius;
-		background: @bg;
+		padding: 2px;
+		border-radius: @radius;
+		background: @bg-base;
+		text-align: left;
 
 		a {
+			padding-top: @base;
+			padding-bottom: @base;
+			color: #fff;
 
 			&:hover,
 			&:focus {
-				background: @lift;
+				background: @bg;
 			}
+		}
+	}
+
+	// Arrow linking top-level menu items with submenus
+	.has-submenu:hover,
+	.has-submenu.in_focus {
+
+		&:before {
+			content: '';
+			position: absolute;
+			bottom: 0;
+			left: 50%;
+			.transform(translateX(-100%)); // Extra 50% centers under text, accounting for extra space from dropdown caret on the right.
+			width: 0;
+			height: 0;
+			color: @bg-base;
+			border-bottom: @base solid;
+			border-right: @base solid transparent;
+			border-left: @base solid transparent;
+			vertical-align: middle;
+		}
+	}
+
+	@media(min-width: @screen-desktop) {
+		display: inline-block;
+		text-align: left;
+
+		> li:first-child > a {
+			padding-left: 0;
 		}
 	}
 }
 
 // Search bar
 .pkp_search {
-	display: inline-block;
-	float: right;
-	margin-left: 2em;
-	padding: @half 0;
+	display: block;
+	padding: @base 0;
 	font-size: @font-sml;
 	line-height: @double;
+	text-align: center;
 
 	button {
 		&:extend( .cmp_button );
+		width: 100%;
+		margin-top: @base;
+
+
+		@media(min-width: @screen-phone) {
+			width: auto;
+			margin-top: 0;
+		}
+	}
+
+	input[type="text"] {
+		&:extend(.pkp_form input[type="text"]);
+	}
+
+	.search_prompt {
+		display: none;
+		padding: ((@quintuple - @double) / 2) @double;
+		color: @primary-lift;
+		cursor: pointer;
+		border-left: @bg-border;
+
+		&:before {
+			&:extend(.fa);
+			content: @fa-var-search;
+			font-size: @font-bump;
+			margin-right: 0.25em;
+		}
+
+		&:hover {
+			background: @bg;
+		}
+	}
+
+	@media(min-width: @screen-desktop) {
+		position: absolute;
+		top: 0;
+		right: 0;
+		height: @quintuple;
+		font-size: @font-base;
+		line-height: @line-base;
+		padding: 0;
+
+		button,
+		input[type="text"] {
+			position: absolute;
+			left: -9999px;
+		}
+
+		.search_prompt {
+			display: block;
+		}
 	}
 
 }
