@@ -266,14 +266,26 @@
 	}
 }
 
+// The padding to apply to top-level items in the navigation row
+// Total height - line height (divided by 2 since it will be applied to top and bottom)
+@pkp_nav_primary_row_el_padding: (@quintuple - @double) / 2;
+
 // Primary site navigation menu
 .pkp_navigation_primary {
+	line-height: @double;
 	text-align: center;
 
-	a {
-		line-height: @double;
-		padding-top: (@quintuple - @double) / 2;
-		padding-bottom: (@quintuple - @double) / 2;
+	> li > a {
+		margin: 0 1em;
+		padding: @pkp_nav_primary_row_el_padding 0 (@pkp_nav_primary_row_el_padding - 2); // -2 to account for border size
+		border-bottom: 2px solid transparent;
+
+		&:hover,
+		&:focus {
+			outline: 0;
+			border-color: @primary-lift;
+			color: @primary-lift;
+		}
 	}
 
 	ul {
@@ -312,6 +324,10 @@
 			border-left: @base solid transparent;
 			vertical-align: middle;
 		}
+
+		> a {
+			border-color: transparent;
+		}
 	}
 
 	@media(min-width: @screen-desktop) {
@@ -319,7 +335,7 @@
 		text-align: left;
 
 		> li:first-child > a {
-			padding-left: 0;
+			margin-left: 0;
 		}
 	}
 }
@@ -350,10 +366,11 @@
 
 	.search_prompt {
 		display: none;
-		padding: ((@quintuple - @double) / 2) @double;
+		padding: @pkp_nav_primary_row_el_padding @double;
 		color: @primary-lift;
 		cursor: pointer;
 		border-left: @bg-border;
+		text-decoration: none;
 
 		&:before {
 			&:extend(.fa);
@@ -362,8 +379,11 @@
 			margin-right: 0.25em;
 		}
 
-		&:hover {
-			background: @bg;
+		&:hover,
+		&:focus {
+			outline: 0;
+			padding-bottom: @pkp_nav_primary_row_el_padding - 2;
+			border-bottom: 2px solid @primary-lift;
 		}
 	}
 

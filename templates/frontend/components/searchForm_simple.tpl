@@ -10,9 +10,9 @@
  * @uses $searchQuery string Previously input search query
  *}
 <form class="pkp_search" action="{url router=$smarty.const.ROUTE_PAGE page="catalog" op="results"}" method="post">
-	<span class="search_prompt" aria-hidden="true">
+	<a href="{url router=$smarty.const.ROUTE_PAGE page="catalog" op="results"}" class="search_prompt" aria-hidden="true">
 		{translate key="common.search"}
-	</span>
+	</a>
 	<input name="query" value="{$searchQuery|escape}" type="text">
 	<button>{translate key="common.search"}</button>
 </form>
