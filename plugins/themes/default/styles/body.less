@@ -78,11 +78,32 @@ a {
 		padding: 0 @triple @triple;
 		width: @screen-desktop-container - @sidebar-width;
 	}
+
+	// Full-height background layers
+	.pkp_structure_sidebar:before,
+	.pkp_structure_main:before, {
+		content: '';
+		position: absolute;
+		top: 0;
+		left: 0;
+		width: @sidebar-width;
+		height: 100%;
+		background: @bg;
+		z-index: -1;
+	}
+
+	.pkp_structure_main:before {
+		left: auto;
+		right: 0;
+		width: @screen-desktop-container - @sidebar-width;
+		background: @lift;
+	}
 }
 
 @media( min-width: @screen-lg-desktop ) {
 
-	.has_left_sidebar .pkp_structure_main {
+	.pkp_structure_main,
+	.pkp_structure_main:before {
 		width: @screen-lg-desktop-container - @sidebar-width;
 	}
 }
