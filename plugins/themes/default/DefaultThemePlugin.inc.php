@@ -21,6 +21,8 @@ class DefaultThemePlugin extends ThemePlugin {
 	 */
 	function DefaultThemePlugin() {
 		parent::ThemePlugin();
+
+		HookRegistry::register('Templates::Common::Footer::PageFooter', array($this, 'printJavascript'));
 	}
 
 	/**
@@ -63,6 +65,18 @@ class DefaultThemePlugin extends ThemePlugin {
 	function getLessStylesheet() {
 		return 'styles/index.less';
 	}
+
+	/**
+	 * Print JavaScript file into the footer
+	 *
+	 * @return null
+	 */
+	function printJavascript() {
+		$request = Registry::get('request');
+		$baseUrl = $request->getBaseUrl();
+		echo '<script src="' . $baseUrl . '/' . $this->getPluginPath() . '/js/main.js" type="text/javascript"></script>';
+	}
+
 }
 
 ?>
