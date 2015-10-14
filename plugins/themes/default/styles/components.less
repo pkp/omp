@@ -227,22 +227,6 @@
 	> ul {
 		&:extend(.pkp_unstyled_list);
 	}
-
-	@media (min-width: @screen-desktop) {
-
-		> ul > li {
-			width: @screen-desktop-container;
-			margin: 0 auto;
-			border-bottom: none;
-		}
-	}
-
-	@media (min-width: @screen-lg-desktop) {
-
-		> ul > li {
-			width: @screen-lg-desktop-container;
-		}
-	}
 }
 
 // Large search input on homepage
@@ -322,14 +306,6 @@
 				text-align: left;
 				padding-bottom: 0;
 			}
-		}
-	}
-
-	@media (min-width: @screen-desktop) {
-		max-width: 50em;
-
-		> li {
-			width: 24em;
 		}
 	}
 }

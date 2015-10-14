@@ -67,8 +67,7 @@
 	@media (min-width: @screen-desktop) {
 
 		.cover_image {
-			width: 352px;
-			margin-left: @double * 2;
+			width: 200px;
 			margin-bottom: 0;
 
 			img {
@@ -77,34 +76,10 @@
 			}
 		}
 
-		.call_to_action {
-			margin: 0 auto;
-			max-width: 50%;
-		}
-
 		&.has_image {
 
 			.call_to_action {
-				margin-left: (@screen-desktop-container / 2) + (@double * 2);
-				margin-right: @double * 2;
-			}
-
-		}
-
-	}
-
-	@media (min-width: @screen-lg-desktop) {
-
-		.cover_image {
-			margin-left: @double * 3;
-		}
-
-		&.has_image {
-
-			.call_to_action {
-				margin-top: @double * 2;
-				margin-left: (@screen-desktop-container / 2) + (@double * 4);
-				margin-right: @double * 3;
+				margin-left: 200px + @quadruple;
 			}
 
 		}
