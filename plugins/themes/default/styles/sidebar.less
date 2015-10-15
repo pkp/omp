@@ -10,20 +10,21 @@
  */
 
 .pkp_block {
-	margin-bottom: @double;
-	font-size: @font-sml;
-	line-height: @line-sml;
+	padding: @base @double;
+	border-top: @bg-border-dark;
+	font-size: @font-base;
+	line-height: @line-base;
 
-	&:last-child {
-		margin-bottom: 0;
+	&:first-child {
+		border-top: none;
 	}
 
 	.title {
-		display: inline-block;
+		display: block;
 		margin-bottom: @base;
-		border-bottom: @bg-border;
+		font-size: @font-bump;
 		font-weight: @bold;
-		line-height: @double - 1; // account for border
+		line-height: @line-bump;
 		color: @text-light;
 	}
 
@@ -31,13 +32,13 @@
 		&:extend(.pkp_unstyled_list);
 
 		li {
-			line-height: @base;
+			line-height: @line-base;
 			padding: @half 0;
 		}
 
 		.current a {
 			padding-left: 0.5em;
-			border-left: 4px solid @bg;
+			border-left: 4px solid @bg-border-dark;
 			color: @text-light;
 			cursor: text;
 		}
@@ -46,6 +47,14 @@
 	a {
 		text-decoration: none;
 	}
+
+	@media(min-width: @screen-phone) {
+		padding: @double;
+	}
+
+	@media(min-width: @screen-desktop) {
+		padding: @triple;
+	}
 }
 
 // Browse sidebar block
@@ -53,9 +62,15 @@
 
 	.has_submenu {
 		margin-top: @double;
+		font-size: @font-sml;
 		font-weight: @bold;
+		color: @text-light;
 
 		ul {
+			margin-top: @half - 1; // account for border
+			padding-top: @half;
+			border-top: @bg-border-dark;
+			font-size: @font-base;
 			font-weight: @normal;
 		}
 	}

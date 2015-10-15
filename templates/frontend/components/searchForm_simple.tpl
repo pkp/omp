@@ -11,5 +11,14 @@
  *}
 <form class="pkp_search" action="{url router=$smarty.const.ROUTE_PAGE page="catalog" op="results"}" method="post">
 	<input name="query" value="{$searchQuery|escape}" type="text">
-	<button>{translate key="common.searchCatalog"}</button>
+	<button>
+		{translate key="common.search"}
+	</button>
+	<div class="search_controls" aria-hidden="true">
+		<a href="{url router=$smarty.const.ROUTE_PAGE page="catalog" op="results"}" class="headerSearchPrompt search_prompt" aria-hidden="true">
+			{translate key="common.search"}
+		</a>
+		<a href="#" class="search_cancel headerSearchCancel" aria-hidden="true"></a>
+		<span class="search_loading" aria-hidden="true"></span>
+	</div>
 </form>

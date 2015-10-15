@@ -12,7 +12,7 @@
  * @uses $series array List of series in this press
  * @uses $newReleases array List of new releases in this press
  *}
-{include file="common/frontend/header.tpl" isFullWidth=1}
+{include file="common/frontend/header.tpl"}
 
 <div class="page page_homepage">
 
@@ -53,4 +53,4 @@
 	{/if}
 
 </div>
-{include file="common/frontend/footer.tpl" isFullWidth=1}
+{include file="common/frontend/footer.tpl"}
