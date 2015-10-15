@@ -188,7 +188,6 @@
 	<message key="grid.action.releaseMonograph">Diesen Titel als 'Neuerscheinung' kennzeichnen</message>
 	<message key="grid.action.manageCategories">Kategorien konfigurieren</message>
 	<message key="grid.action.manageSeries">Reihen konfigurieren</message>
-	<message key="grid.action.editApprovedProof">Die akzeptierte Korrekturfahne bearbeiten</message>
 	<message key="grid.action.addCode">Code hinzufügen</message>
 	<message key="grid.action.editCode">Diesen Code bearbeiten</message>
 	<message key="grid.action.deleteCode">Diesen Code löschen</message>

@@ -191,7 +191,6 @@
 	<message key="grid.action.releaseMonograph">Marcar la propuesta como "novedad"</message>
 	<message key="grid.action.manageCategories">Configurar categorías para la edición</message>
 	<message key="grid.action.manageSeries">Configurar series para la edición</message>
-	<message key="grid.action.editApprovedProof">Editar esta prueba aprobada</message>
 	<message key="grid.action.addCode">Añadir código</message>
 	<message key="grid.action.editCode">Editar código</message>
 	<message key="grid.action.deleteCode">Borrar código</message>

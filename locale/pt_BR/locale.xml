@@ -189,7 +189,6 @@
 	<message key="grid.action.releaseMonograph">Marcar submissão como 'novo lançamento'</message>
 	<message key="grid.action.manageCategories">Configurar categorias para esta editora</message>
 	<message key="grid.action.manageSeries">Configurar séries para esta editora</message>
-	<message key="grid.action.editApprovedProof">Editar esta prova homologada</message>
 	<message key="grid.action.addCode">Incluir código de identificação</message>
 	<message key="grid.action.editCode">Editar código</message>
 	<message key="grid.action.deleteCode">Excluir código</message>

@@ -41,7 +41,6 @@ class ApprovedProofFilesGridHandler extends GridHandler {
 			array(ROLE_ID_MANAGER, ROLE_ID_SUB_EDITOR),
 			array(
 				'fetchGrid', 'fetchRow',
-				'editApprovedProof', 'saveApprovedProof',
 			)
 		);
 	}

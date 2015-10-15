@@ -23,19 +23,13 @@ class PublicationFormatGridCellProvider extends DataObjectGridCellProvider {
 	/** @var int */
 	var $_monographId;
 
-	/** @var boolean */
-	var $_inCatalogEntryModal;
-
 	/**
 	 * Constructor
 	 * @param $monographId int
-	 * @param $inCatalogEntryModal boolean Tells if grid is loaded inside
-	 * catalog entry modal.
 	 */
-	function PublicationFormatGridCellProvider($monographId, $inCatalogEntryModal) {
+	function PublicationFormatGridCellProvider($monographId) {
 		parent::DataObjectGridCellProvider();
 		$this->_monographId = $monographId;
-		$this->_inCatalogEntryModal = $inCatalogEntryModal;
 	}
 
 
@@ -50,15 +44,6 @@ class PublicationFormatGridCellProvider extends DataObjectGridCellProvider {
 		return $this->_monographId;
 	}
 
-	/**
-	 * Get a flag that tells if grid is loaded
-	 * inside the catalog entry modal.
-	 * @return boolean
-	 */
-	function getInCatalogEntryModal() {
-		return $this->_inCatalogEntryModal;
-	}
-
 
 	//
 	// Template methods from GridCellProvider
@@ -71,19 +56,29 @@ class PublicationFormatGridCellProvider extends DataObjectGridCellProvider {
 	 * @return array
 	 */
 	function getTemplateVarsFromRowColumn($row, $column) {
-		$publicationFormat = $row->getData();
-		$columnId = $column->getId();
-		assert(is_a($publicationFormat, 'DataObject') && !empty($columnId));
-		switch ($columnId) {
+		$data = $row->getData();
+		$publishedMonographDao = DAORegistry::getDAO('PublishedMonographDAO');
+		if (is_a($data, 'PublicationFormat')) switch ($column->getId()) {
+			case 'indent': return array();
 			case 'name':
-				$label = $publicationFormat->getLocalizedName() . ' (' .$publicationFormat->getNameForONIXCode() . ')';
-				return array('label' => $label);
-			case 'proofComplete':
+				return array('label' => $data->getLocalizedName() . ' (' . $data->getNameForONIXCode() . ')');
+			case 'isComplete':
+				return array('status' => $data->getIsApproved()?'completed':'new');
 			case 'isAvailable':
-			case 'isApproved':
-				return array('status' => $this->getCellState($row, $column));
-			default:
-				assert(false);
+				return array('status' => $data->getIsAvailable()?'completed':'new');
+			default: assert(false);
+		} else {
+			assert(is_array($data) && isset($data['submissionFile']));
+			$proofFile = $data['submissionFile'];
+			switch ($column->getId()) {
+				case 'name':
+					return array('label' => $proofFile->getLocalizedName());
+				case 'isComplete':
+					return array('status' => $proofFile->getViewable()?'completed':'new');
+				case 'isAvailable':
+					return array('status' => ($proofFile->getSalesType() != null && $proofFile->getDirectSalesPrice() != null)?'completed':'new');
+				default: assert(false);
+			}
 		}
 	}
 
@@ -107,87 +102,116 @@ class PublicationFormatGridCellProvider extends DataObjectGridCellProvider {
 	}
 
 	/**
-	 * Gathers the state of a given cell given a $row/$column combination
-	 * @param $row GridRow
-	 * @param $column GridColumn
-	 * @return string
-	 */
-	function getCellState($row, $column) {
-		$publicationFormat = $row->getData();
-		switch ($column->getId()) {
-			case 'proofComplete':
-				return $this->isProofComplete($publicationFormat)?'completed':'new';
-			case 'isApproved':
-				$publishedMonographDao = DAORegistry::getDAO('PublishedMonographDAO');
-				$publishedMonograph = $publishedMonographDao->getById($publicationFormat->getMonographId());
-				return ($publicationFormat->getIsApproved() && $publishedMonograph)?'completed':'new';
-			case 'isAvailable':
-				return $publicationFormat->getIsAvailable()?'completed':'new';
-			default:
-				assert(false);
-		}
-	}
-
-	/**
 	 * @see GridCellProvider::getCellActions()
 	 */
 	function getCellActions($request, $row, $column) {
-		$publicationFormat = $row->getData();
-		$monographId = $publicationFormat->getMonographId();
-		$representationId = $publicationFormat->getId();
-		switch ($column->getId()) {
-			case 'proofComplete':
-				import('controllers.api.proof.linkAction.ApproveProofsLinkAction');
-				return array(new ApproveProofsLinkAction($request, $monographId, $representationId, $this->getCellState($row, $column)));
-			case 'isApproved':
-				if ($this->getInCatalogEntryModal()) {
-					import('lib.pkp.classes.linkAction.request.NullAction');
-					$toolTip = ($this->getCellState($row, $column) == 'completed') ? __('grid.action.formatInCatalogEntry') : null;
-					return array(new LinkAction('publicationFormatTab', new NullAction(), __('monograph.publicationFormat.openTab'), $this->getCellState($row, $column), $toolTip));
-				} else {
+		$data = $row->getData();
+		$router = $request->getRouter();
+		if (is_a($data, 'PublicationFormat')) {
+			$monographId = $data->getMonographId();
+			switch ($column->getId()) {
+				case 'name':
+					import('lib.pkp.controllers.api.file.linkAction.AddFileLinkAction');
+					import('lib.pkp.controllers.grid.files.fileList.linkAction.SelectFilesLinkAction');
+					AppLocale::requireComponents(LOCALE_COMPONENT_PKP_EDITOR);
+					return array(
+						new AddFileLinkAction(
+							$request, $data->getSubmissionId(), WORKFLOW_STAGE_ID_PRODUCTION,
+							array(ROLE_ID_MANAGER, ROLE_ID_SUB_EDITOR, ROLE_ID_ASSISTANT), null, SUBMISSION_FILE_PROOF,
+							ASSOC_TYPE_REPRESENTATION, $data->getId()
+						),
+						new SelectFilesLinkAction(
+							$request,
+							array(
+								'submissionId' => $data->getSubmissionId(),
+								'assocType' => ASSOC_TYPE_REPRESENTATION,
+								'assocId' => $data->getId(),
+								'representationId' => $data->getId(),
+								'stageId' => WORKFLOW_STAGE_ID_PRODUCTION,
+								'fileStage' => SUBMISSION_FILE_PROOF,
+							),
+							__('editor.submission.selectFiles')
+						)
+					);
+				case 'isComplete':
 					import('controllers.modals.submissionMetadata.linkAction.SubmissionEntryLinkAction');
-					return array(new SubmissionEntryLinkAction($request, $monographId, WORKFLOW_STAGE_ID_PRODUCTION, $representationId, $this->getCellState($row, $column)));
-				}
-			case 'isAvailable':
-				$router = $request->getRouter();
-				$publishedMonographDao = DAORegistry::getDAO('PublishedMonographDAO');
-				$publishedMonograph = $publishedMonographDao->getById($publicationFormat->getMonographId());
+					return array(new SubmissionEntryLinkAction($request, $monographId, WORKFLOW_STAGE_ID_PRODUCTION, $data->getId(), $data->getIsApproved()?'completed':'new'));
+				case 'isAvailable':
+					$publishedMonographDao = DAORegistry::getDAO('PublishedMonographDAO');
+					$publishedMonograph = $publishedMonographDao->getById($data->getMonographId());
 
-				// FIXME: Bug #7715
-				$warningMarkup = '';
-				$templateMgr = TemplateManager::getManager();
-				$templateMgr->assign('notificationStyleClass', 'notifyWarning');
-				$templateMgr->assign('notificationTitle', __('common.warning'));
-				if (!$publishedMonograph) {
-					$templateMgr->assign('notificationId', uniqid('notPublished'));
-					$templateMgr->assign('notificationContents', __('grid.catalogEntry.availablePublicationFormat.catalogNotApprovedWarning'));
-					$warningMarkup .= $templateMgr->fetch('controllers/notification/inPlaceNotificationContent.tpl');
-				}
-				if (!$publicationFormat->getIsApproved()) {
-					$templateMgr->assign('notificationId', uniqid('notAvailable'));
-					$templateMgr->assign('notificationContents', __('grid.catalogEntry.availablePublicationFormat.notApprovedWarning'));
-					$warningMarkup .= $templateMgr->fetch('controllers/notification/inPlaceNotificationContent.tpl');
-				}
-				if (!$this->isProofComplete($publicationFormat)) {
-					$templateMgr->assign('notificationId', uniqid('notProofed'));
-					$templateMgr->assign('notificationContents', __('grid.catalogEntry.availablePublicationFormat.proofNotApproved'));
-					$warningMarkup .= $templateMgr->fetch('controllers/notification/inPlaceNotificationContent.tpl');
-				}
-				// If we have any notifications, wrap them in the appropriately styled div
-				if ($warningMarkup !== '') $warningMarkup = "<div class=\"pkp_notification\">$warningMarkup</div>";
-				$toolTip = ($this->getCellState($row, $column) == 'completed') ? __('grid.action.formatAvailable') : null;
-				return array(new LinkAction(
-					'availablePublicationFormat',
-					new RemoteActionConfirmationModal(
-						$warningMarkup . __($publicationFormat->getIsAvailable()?'grid.catalogEntry.availablePublicationFormat.removeMessage':'grid.catalogEntry.availablePublicationFormat.message'),
-						__('grid.catalogEntry.availablePublicationFormat.title'),
-						$router->url($request, null, 'grid.catalogEntry.PublicationFormatGridHandler',
-							'setAvailable', null, array('representationId' => $publicationFormat->getId(), 'newAvailableState' => $publicationFormat->getIsAvailable()?0:1, 'submissionId' => $monographId)),
-						'modal_approve'),
+					// FIXME: Bug #7715
+					$warningMarkup = '';
+					$templateMgr = TemplateManager::getManager();
+					$templateMgr->assign('notificationStyleClass', 'notifyWarning');
+					$templateMgr->assign('notificationTitle', __('common.warning'));
+					if (!$publishedMonograph) {
+						$templateMgr->assign('notificationId', uniqid('notPublished'));
+						$templateMgr->assign('notificationContents', __('grid.catalogEntry.availablePublicationFormat.catalogNotApprovedWarning'));
+						$warningMarkup .= $templateMgr->fetch('controllers/notification/inPlaceNotificationContent.tpl');
+					}
+					if (!$data->getIsApproved()) {
+						$templateMgr->assign('notificationId', uniqid('notAvailable'));
+						$templateMgr->assign('notificationContents', __('grid.catalogEntry.availablePublicationFormat.notApprovedWarning'));
+						$warningMarkup .= $templateMgr->fetch('controllers/notification/inPlaceNotificationContent.tpl');
+					}
+					if (!$this->isProofComplete($data)) {
+						$templateMgr->assign('notificationId', uniqid('notProofed'));
+						$templateMgr->assign('notificationContents', __('grid.catalogEntry.availablePublicationFormat.proofNotApproved'));
+						$warningMarkup .= $templateMgr->fetch('controllers/notification/inPlaceNotificationContent.tpl');
+					}
+					// If we have any notifications, wrap them in the appropriately styled div
+					if ($warningMarkup !== '') $warningMarkup = "<div class=\"pkp_notification\">$warningMarkup</div>";
+					return array(new LinkAction(
+						'availablePublicationFormat',
+						new RemoteActionConfirmationModal(
+							$warningMarkup . __($data->getIsAvailable()?'grid.catalogEntry.availablePublicationFormat.removeMessage':'grid.catalogEntry.availablePublicationFormat.message'),
+							__('grid.catalogEntry.availablePublicationFormat.title'),
+							$router->url($request, null, 'grid.catalogEntry.PublicationFormatGridHandler',
+								'setAvailable', null, array('representationId' => $data->getId(), 'newAvailableState' => $data->getIsAvailable()?0:1, 'submissionId' => $monographId)),
+							'modal_approve'
+						),
 						__('common.disable'),
-						$this->getCellState($row, $column),
-						$toolTip
-				));
+						$data->getIsAvailable()?'completed':'new',
+						$data->getIsAvailable()?__('grid.action.formatAvailable'):null
+					));
+			}
+		} else {
+			assert(is_array($data) && isset($data['submissionFile']));
+			$submissionFile = $data['submissionFile'];
+			switch ($column->getId()) {
+				case 'isComplete':
+					import('lib.pkp.classes.linkAction.request.AjaxAction');
+					return array(new LinkAction(
+						$submissionFile->getViewable()?'disapprove':'approve',
+						new AjaxAction($router->url(
+							$request, null, null, 'setProofFileCompletion',
+							null,
+							array(
+								'submissionId' => $submissionFile->getSubmissionId(),
+								'fileId' => $submissionFile->getFileId(),
+								'revision' => $submissionFile->getRevision(),
+								'approval' => !$submissionFile->getViewable(),
+							)
+						)),
+						$submissionFile->getViewable()?__('grid.action.disapprove'):__('grid.action.approve')
+					));
+				case 'isAvailable':
+					return array(new LinkAction(
+						'editApprovedProof',
+						new AjaxModal(
+							$router->url($request, null, null, 'editApprovedProof', null, array(
+								'fileId' => $submissionFile->getFileId() . '-' . $submissionFile->getRevision(),
+								'submissionId' => $submissionFile->getSubmissionId(),
+								'representationId' => $submissionFile->getAssocId(),
+							)),
+							__('editor.monograph.approvedProofs.edit'),
+							'edit'
+						),
+						__('editor.monograph.approvedProofs.edit.linkTitle'),
+						'edit'
+					));
+			}
 		}
 		return parent::getCellActions($request, $row, $column);
 	}

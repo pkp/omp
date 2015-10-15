@@ -193,7 +193,6 @@
 	<message key="grid.action.releaseMonograph">Qualifier cette soumission de 'nouveauté'</message>
 	<message key="grid.action.manageCategories">Configurer les catégories de cette presse</message>
 	<message key="grid.action.manageSeries">Configurer la série de cette presse</message>
-	<message key="grid.action.editApprovedProof">Modifier cette épreuve approuvée</message>
 	<message key="grid.action.addCode">Ajouter un code d'identification</message>
 	<message key="grid.action.editCode">Modifier ce code</message>
 	<message key="grid.action.deleteCode">Supprimer ce code</message>

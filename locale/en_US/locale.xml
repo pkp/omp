@@ -191,7 +191,6 @@
 	<message key="grid.action.releaseMonograph">Mark this submission as a 'new release'</message>
 	<message key="grid.action.manageCategories">Configure categories for this press</message>
 	<message key="grid.action.manageSeries">Configure series for this press</message>
-	<message key="grid.action.editApprovedProof">Edit this Approved Proof</message>
 	<message key="grid.action.addCode">Add Identification Code</message>
 	<message key="grid.action.editCode">Edit this Code</message>
 	<message key="grid.action.deleteCode">Delete this Code</message>

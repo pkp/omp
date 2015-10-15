@@ -192,7 +192,6 @@
 	<message key="grid.action.releaseMonograph">Επισήμανση της υποβολής στις "νέες κυκλοφορίες"</message>
 	<message key="grid.action.manageCategories">Ρυθμίσεις κατηγοριών για αυτές τις εκδόσεις</message>
 	<message key="grid.action.manageSeries">Ρυθμίσεις σειρών για αυτές τις εκδόσεις</message>
-	<message key="grid.action.editApprovedProof">Επεξεργασία του εγκεκριμένου τυπογραφικού δοκιμίου</message>
 	<message key="grid.action.addCode">Προσθήκη Κωδικού</message>
 	<message key="grid.action.editCode">Επεξεργασία Κωδικού</message>
 	<message key="grid.action.deleteCode">Διαγραφή Κωδικού</message>

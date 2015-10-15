@@ -1,31 +1,46 @@
 <?php
 
 /**
- * @file controllers/grid/catalogEntry/PublicationFormatGridRow.inc.php
+ * @file controllers/grid/catalogEntry/PublicationFormatGridCategoryRow.inc.php
  *
  * Copyright (c) 2014-2015 Simon Fraser University Library
  * Copyright (c) 2000-2015 John Willinsky
  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
  *
- * @class PublicationFormatGridRow
+ * @class PublicationFormatGridCategoryRow
  * @ingroup controllers_grid_catalogEntry
  *
  * @brief Publication Format grid row definition
  */
 
-import('lib.pkp.classes.controllers.grid.GridRow');
+import('lib.pkp.classes.controllers.grid.GridCategoryRow');
 
-class PublicationFormatGridRow extends GridRow {
+class PublicationFormatGridCategoryRow extends GridCategoryRow {
 	/** @var Monograph **/
 	var $_monograph;
 
 	/**
 	 * Constructor
+	 * @param $monograph Submission
+	 * @param $cellProvider GridCellProvider
 	 */
-	function PublicationFormatGridRow($monograph) {
+	function PublicationFormatGridCategoryRow($monograph, $cellProvider) {
 		$this->_monograph = $monograph;
-		parent::GridRow();
+		parent::GridCategoryRow();
+		$this->setCellProvider($cellProvider);
 	}
+
+	//
+	// Overridden methods from GridCategoryRow
+	//
+	/**
+	 * @copydoc GridCategoryRow::getCategoryLabel()
+	 */
+	function getCategoryLabel() {
+		$publicationFormat = $this->getData();
+		return $publicationFormat->getLocalizedName();
+	}
+	
 
 	//
 	// Overridden methods from GridRow
