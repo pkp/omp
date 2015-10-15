@@ -29,9 +29,9 @@ class CatalogSearchTest extends ContentBaseTestCase {
 	function testBombSearch() {
 		// Search for "bomb"
 		$this->open(self::$baseUrl);
-		$this->waitForElementPresent($selector = '//input[@name=\'query\']');
+		$this->waitForElementPresent($selector = '//form[contains(@class, \'cmp_search_homepage\')]//input[@name=\'query\']');
 		$this->type($selector, 'bomb');
-		$this->click('//button[contains(.,\'Search Catalog\')]');
+		$this->click('//form[contains(@class, \'cmp_search_homepage\')]//button[contains(.,\'Search Catalog\')]');
 
 		// Should be 1 result
 		$this->waitForElementPresent('//h2[contains(.,\'1 Titles\')]');
@@ -44,9 +44,9 @@ class CatalogSearchTest extends ContentBaseTestCase {
 	function testZorgSearch() {
 		// Search for "bomb"
 		$this->open(self::$baseUrl);
-		$this->waitForElementPresent($selector = '//input[@name=\'query\']');
+		$this->waitForElementPresent($selector = '//form[contains(@class, \'cmp_search_homepage\')]//input[@name=\'query\']');
 		$this->type($selector, 'zorg');
-		$this->click('//button[contains(.,\'Search Catalog\')]');
+		$this->click('//form[contains(@class, \'cmp_search_homepage\')]//button[contains(.,\'Search Catalog\')]');
 
 		// Should be 0 results
 		$this->waitForElementPresent('//h2[contains(.,\'0 Titles\')]');
