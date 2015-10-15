@@ -68,13 +68,14 @@ class DefaultThemePlugin extends ThemePlugin {
 
 	/**
 	 * Print JavaScript file into the footer
-	 *
-	 * @return null
+	 * @param $hookName string
+	 * @param $args array
+	 * @return boolean Normal hook handling conventions.
 	 */
 	function printJavascript() {
 		$request = Registry::get('request');
-		$baseUrl = $request->getBaseUrl();
-		echo '<script src="' . $baseUrl . '/' . $this->getPluginPath() . '/js/main.js" type="text/javascript"></script>';
+		echo '<script src="' . $request->getBaseUrl() . '/' . $this->getPluginPath() . '/js/main.js" type="text/javascript"></script>';
+		return false;
 	}
 
 }
