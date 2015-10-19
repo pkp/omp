@@ -61,7 +61,7 @@ class PublicationFormatGridCellProvider extends DataObjectGridCellProvider {
 		if (is_a($data, 'PublicationFormat')) switch ($column->getId()) {
 			case 'indent': return array();
 			case 'name':
-				return array('label' => $data->getLocalizedName() . ' (' . $data->getNameForONIXCode() . ')');
+				return array('label' => htmlspecialchars($data->getLocalizedName()) . '<span class="onix_code">' . $data->getNameForONIXCode() . '</span>');
 			case 'isComplete':
 				return array('status' => $data->getIsApproved()?'completed':'new');
 			case 'isAvailable':
@@ -72,7 +72,7 @@ class PublicationFormatGridCellProvider extends DataObjectGridCellProvider {
 			$proofFile = $data['submissionFile'];
 			switch ($column->getId()) {
 				case 'name':
-					return array('label' => $proofFile->getLocalizedName());
+					return array('label' => htmlspecialchars($proofFile->getLocalizedName()));
 				case 'isComplete':
 					return array('status' => $proofFile->getViewable()?'completed':'new');
 				case 'isAvailable':

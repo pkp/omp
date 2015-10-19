@@ -134,7 +134,8 @@ class PublicationFormatGridHandler extends CategoryGridHandler {
 				'common.name',
 				null,
 				null,
-				$this->_cellProvider
+				$this->_cellProvider,
+				array('width' => 60, 'html' => true)
 			)
 		);
 		$this->addColumn(
@@ -144,7 +145,7 @@ class PublicationFormatGridHandler extends CategoryGridHandler {
 				null,
 				'controllers/grid/common/cell/statusCell.tpl',
 				$this->_cellProvider,
-				array('alignment' => COLUMN_ALIGNMENT_CENTER)
+				array('width' => 20, 'alignment' => COLUMN_ALIGNMENT_CENTER)
 			)
 		);
 		$this->addColumn(
@@ -154,7 +155,7 @@ class PublicationFormatGridHandler extends CategoryGridHandler {
 				null,
 				'controllers/grid/common/cell/statusCell.tpl',
 				$this->_cellProvider,
-				array('alignment' => COLUMN_ALIGNMENT_CENTER)
+				array('width' => 20, 'alignment' => COLUMN_ALIGNMENT_CENTER)
 			)
 		);
 	}
