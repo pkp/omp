@@ -72,7 +72,9 @@ class PublicationFormatGridCellProvider extends DataObjectGridCellProvider {
 			$proofFile = $data['submissionFile'];
 			switch ($column->getId()) {
 				case 'name':
-					return array('label' => htmlspecialchars($proofFile->getLocalizedName()));
+					import('lib.pkp.controllers.grid.files.FileNameGridColumn');
+					$fileNameGridColumn = new FileNameGridColumn(true, WORKFLOW_STAGE_ID_PRODUCTION);
+					return $fileNameGridColumn->getTemplateVarsFromRow($row);
 				case 'isComplete':
 					return array('status' => $proofFile->getViewable()?'completed':'new');
 				case 'isAvailable':
@@ -180,6 +182,10 @@ class PublicationFormatGridCellProvider extends DataObjectGridCellProvider {
 			assert(is_array($data) && isset($data['submissionFile']));
 			$submissionFile = $data['submissionFile'];
 			switch ($column->getId()) {
+				case 'name':
+					import('lib.pkp.controllers.grid.files.FileNameGridColumn');
+					$fileNameColumn = new FileNameGridColumn(true, WORKFLOW_STAGE_ID_PRODUCTION, true);
+					return $fileNameColumn->getCellActions($request, $row);
 				case 'isComplete':
 					import('lib.pkp.classes.linkAction.request.AjaxAction');
 					return array(new LinkAction(
