@@ -33,12 +33,6 @@
 
 	<h3>{translate key="monograph.publicationFormat.formatMetadata"}</h3>
 
-	{fbvFormArea id="catalogInclusion"}
-		{fbvFormSection list="true"}
-			{fbvElement type="checkbox" id="isApproved" checked=$isApproved label="monograph.publicationFormat.isApproved"}
-		{/fbvFormSection}
-	{/fbvFormArea}
-
 	{fbvFormArea id="productIdentifier"}
 		{fbvFormSection}
 			<!-- Product Identification Codes -->

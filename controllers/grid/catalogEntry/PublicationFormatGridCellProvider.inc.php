@@ -136,38 +136,24 @@ class PublicationFormatGridCellProvider extends DataObjectGridCellProvider {
 						)
 					);
 				case 'isComplete':
-					import('controllers.modals.submissionMetadata.linkAction.SubmissionEntryLinkAction');
-					return array(new SubmissionEntryLinkAction($request, $monographId, WORKFLOW_STAGE_ID_PRODUCTION, $data->getId(), $data->getIsApproved()?'complete':'incomplete'));
+					return array(new LinkAction(
+						'approvePublicationFormat',
+						new RemoteActionConfirmationModal(
+							__($data->getIsApproved()?'grid.catalogEntry.approvedPublicationFormat.removeMessage':'grid.catalogEntry.approvedPublicationFormat.message'),
+							__('grid.catalogEntry.approvedPublicationFormat.title'),
+							$router->url($request, null, 'grid.catalogEntry.PublicationFormatGridHandler',
+								'setApproved', null, array('representationId' => $data->getId(), 'newApprovedState' => $data->getIsApproved()?0:1, 'submissionId' => $monographId)),
+							'modal_approve'
+						),
+						$data->getIsApproved()?__('common.disable'):__('common.enable'),
+						$data->getIsApproved()?'complete':'incomplete',
+						__('grid.action.formatApproved')
+					));
 				case 'isAvailable':
-					$publishedMonographDao = DAORegistry::getDAO('PublishedMonographDAO');
-					$publishedMonograph = $publishedMonographDao->getById($data->getMonographId());
-
-					// FIXME: Bug #7715
-					$warningMarkup = '';
-					$templateMgr = TemplateManager::getManager();
-					$templateMgr->assign('notificationStyleClass', 'notifyWarning');
-					$templateMgr->assign('notificationTitle', __('common.warning'));
-					if (!$publishedMonograph) {
-						$templateMgr->assign('notificationId', uniqid('notPublished'));
-						$templateMgr->assign('notificationContents', __('grid.catalogEntry.availablePublicationFormat.catalogNotApprovedWarning'));
-						$warningMarkup .= $templateMgr->fetch('controllers/notification/inPlaceNotificationContent.tpl');
-					}
-					if (!$data->getIsApproved()) {
-						$templateMgr->assign('notificationId', uniqid('notAvailable'));
-						$templateMgr->assign('notificationContents', __('grid.catalogEntry.availablePublicationFormat.notApprovedWarning'));
-						$warningMarkup .= $templateMgr->fetch('controllers/notification/inPlaceNotificationContent.tpl');
-					}
-					if (!$this->isProofComplete($data)) {
-						$templateMgr->assign('notificationId', uniqid('notProofed'));
-						$templateMgr->assign('notificationContents', __('grid.catalogEntry.availablePublicationFormat.proofNotApproved'));
-						$warningMarkup .= $templateMgr->fetch('controllers/notification/inPlaceNotificationContent.tpl');
-					}
-					// If we have any notifications, wrap them in the appropriately styled div
-					if ($warningMarkup !== '') $warningMarkup = "<div class=\"pkp_notification\">$warningMarkup</div>";
 					return array(new LinkAction(
 						'availablePublicationFormat',
 						new RemoteActionConfirmationModal(
-							$warningMarkup . __($data->getIsAvailable()?'grid.catalogEntry.availablePublicationFormat.removeMessage':'grid.catalogEntry.availablePublicationFormat.message'),
+							__($data->getIsAvailable()?'grid.catalogEntry.availablePublicationFormat.removeMessage':'grid.catalogEntry.availablePublicationFormat.message'),
 							__('grid.catalogEntry.availablePublicationFormat.title'),
 							$router->url($request, null, 'grid.catalogEntry.PublicationFormatGridHandler',
 								'setAvailable', null, array('representationId' => $data->getId(), 'newAvailableState' => $data->getIsAvailable()?0:1, 'submissionId' => $monographId)),
@@ -187,19 +173,25 @@ class PublicationFormatGridCellProvider extends DataObjectGridCellProvider {
 					$fileNameColumn = new FileNameGridColumn(true, WORKFLOW_STAGE_ID_PRODUCTION, true);
 					return $fileNameColumn->getCellActions($request, $row);
 				case 'isComplete':
+					AppLocale::requireComponents(LOCALE_COMPONENT_PKP_EDITOR);
 					import('lib.pkp.classes.linkAction.request.AjaxAction');
 					return array(new LinkAction(
 						$submissionFile->getViewable()?'disapprove':'approve',
-						new AjaxAction($router->url(
-							$request, null, null, 'setProofFileCompletion',
-							null,
-							array(
-								'submissionId' => $submissionFile->getSubmissionId(),
-								'fileId' => $submissionFile->getFileId(),
-								'revision' => $submissionFile->getRevision(),
-								'approval' => !$submissionFile->getViewable(),
-							)
-						)),
+						new RemoteActionConfirmationModal(
+							__($submissionFile->getViewable()?'editor.submission.proofreading.confirmRemoveCompletion':'editor.submission.proofreading.confirmCompletion'),
+							__('editor.submission.proofreading.completionTitle'),
+							$router->url(
+								$request, null, null, 'setProofFileCompletion',
+								null,
+								array(
+									'submissionId' => $submissionFile->getSubmissionId(),
+									'fileId' => $submissionFile->getFileId(),
+									'revision' => $submissionFile->getRevision(),
+									'approval' => !$submissionFile->getViewable(),
+								)
+							),
+							'modal_approve'
+						),
 						$submissionFile->getViewable()?__('grid.action.disapprove'):__('grid.action.approve')
 					));
 				case 'isAvailable':

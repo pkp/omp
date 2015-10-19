@@ -43,7 +43,7 @@ class PublicationFormatGridHandler extends CategoryGridHandler {
 			array(
 				'fetchGrid', 'fetchRow', 'fetchCategory',
 				'addFormat', 'editFormat', 'updateFormat', 'deleteFormat',
-				'setAvailable',
+				'setAvailable', 'setApproved',
 				'setProofFileCompletion', 'editApprovedProof', 'saveApprovedProof',
 				'selectFiles',
 			)
@@ -328,38 +328,81 @@ class PublicationFormatGridHandler extends CategoryGridHandler {
 			$context->getId() // Make sure to validate the context.
 		);
 
-		if ($publicationFormat) {
-			$newAvailableState = (int) $request->getUserVar('newAvailableState');
-			$publicationFormat->setIsAvailable($newAvailableState);
-			$publicationFormatDao->updateObject($publicationFormat);
+		if (!$publicationFormat) return new JSONMessage(false, __('manager.setup.errorDeletingItem'));
 
-			// log the state changing of the format.
-			import('lib.pkp.classes.log.SubmissionLog');
-			import('classes.log.SubmissionEventLogEntry');
-			SubmissionLog::logEvent(
-				$request, $this->getSubmission(),
-				$newAvailableState?SUBMISSION_LOG_PUBLICATION_FORMAT_AVAILABLE:SUBMISSION_LOG_PUBLICATION_FORMAT_UNAVAILABLE,
-				$newAvailableState?'submission.event.publicationFormatMadeAvailable':'submission.event.publicationFormatMadeUnavailable',
-				array('publicationFormatName' => $publicationFormat->getLocalizedName())
-			);
+		$newAvailableState = (int) $request->getUserVar('newAvailableState');
+		$publicationFormat->setIsAvailable($newAvailableState);
+		$publicationFormatDao->updateObject($publicationFormat);
 
-			// Update the formats tombstones.
-			import('classes.publicationFormat.PublicationFormatTombstoneManager');
-			$publicationFormatTombstoneMgr = new PublicationFormatTombstoneManager();
+		// log the state changing of the format.
+		import('lib.pkp.classes.log.SubmissionLog');
+		import('classes.log.SubmissionEventLogEntry');
+		SubmissionLog::logEvent(
+			$request, $this->getSubmission(),
+			$newAvailableState?SUBMISSION_LOG_PUBLICATION_FORMAT_AVAILABLE:SUBMISSION_LOG_PUBLICATION_FORMAT_UNAVAILABLE,
+			$newAvailableState?'submission.event.publicationFormatMadeAvailable':'submission.event.publicationFormatMadeUnavailable',
+			array('publicationFormatName' => $publicationFormat->getLocalizedName())
+		);
 
-			if ($newAvailableState) {
-				// Delete any existing tombstone.
-				$publicationFormatTombstoneMgr->deleteTombstonesByPublicationFormats(array($publicationFormat));
-			} else {
-				// Create a tombstone for this publication format.
-				$publicationFormatTombstoneMgr->insertTombstoneByPublicationFormat($publicationFormat, $context);
-			}
-
-			return DAO::getDataChangedEvent($publicationFormat->getId());
+		// Update the formats tombstones.
+		import('classes.publicationFormat.PublicationFormatTombstoneManager');
+		$publicationFormatTombstoneMgr = new PublicationFormatTombstoneManager();
+		if ($publicationFormat->getIsAvailable() && $publicationFormat->getIsApproved()) {
+			// Delete any existing tombstone.
+			$publicationFormatTombstoneMgr->deleteTombstonesByPublicationFormats(array($publicationFormat));
 		} else {
-			return new JSONMessage(false, __('manager.setup.errorDeletingItem'));
+			// (Re)create a tombstone for this publication format.
+			$publicationFormatTombstoneMgr->deleteTombstonesByPublicationFormats(array($publicationFormat));
+			$publicationFormatTombstoneMgr->insertTombstoneByPublicationFormat($publicationFormat, $context);
 		}
 
+		return DAO::getDataChangedEvent($publicationFormat->getId());
+	}
+
+	/**
+	 * Set a format's "approved" state
+	 * @param $args array
+	 * @param $request PKPRequest
+	 * @return JSONMessage JSON object
+	 */
+	function setApproved($args, $request) {
+		$context = $request->getContext();
+		$publicationFormatDao = DAORegistry::getDAO('PublicationFormatDAO');
+		$publicationFormat = $publicationFormatDao->getById(
+			$request->getUserVar('representationId'),
+			null, // $submissionId
+			$context->getId() // Make sure to validate the context.
+		);
+
+		if (!$publicationFormat) return new JSONMessage(false, __('manager.setup.errorDeletingItem'));
+
+		$newApprovedState = (int) $request->getUserVar('newApprovedState');
+		$publicationFormat->setIsApproved($newApprovedState);
+		$publicationFormatDao->updateObject($publicationFormat);
+
+		// log the state changing of the format.
+		import('lib.pkp.classes.log.SubmissionLog');
+		import('classes.log.SubmissionEventLogEntry');
+		SubmissionLog::logEvent(
+			$request, $this->getSubmission(),
+			$newApprovedState?SUBMISSION_LOG_PUBLICATION_FORMAT_PUBLISH:SUBMISSION_LOG_PUBLICATION_FORMAT_UNPUBLISH,
+			$newApprovedState?'submission.event.publicationFormatPublished':'submission.event.publicationFormatUnpublished',
+			array('publicationFormatName' => $publicationFormat->getLocalizedName())
+		);
+
+		// Update the formats tombstones.
+		import('classes.publicationFormat.PublicationFormatTombstoneManager');
+		$publicationFormatTombstoneMgr = new PublicationFormatTombstoneManager();
+		if ($publicationFormat->getIsAvailable() && $publicationFormat->getIsApproved()) {
+			// Delete any existing tombstone.
+			$publicationFormatTombstoneMgr->deleteTombstonesByPublicationFormats(array($publicationFormat));
+		} else {
+			// (Re)create a tombstone for this publication format.
+			$publicationFormatTombstoneMgr->deleteTombstonesByPublicationFormats(array($publicationFormat));
+			$publicationFormatTombstoneMgr->insertTombstoneByPublicationFormat($publicationFormat, $context);
+		}
+
+		return DAO::getDataChangedEvent($publicationFormat->getId());
 	}
 
 	/**

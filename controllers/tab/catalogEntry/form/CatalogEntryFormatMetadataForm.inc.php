@@ -74,7 +74,6 @@ class CatalogEntryFormatMetadataForm extends Form {
 		$templateMgr->assign('isPhysicalFormat', (bool) $this->getPhysicalFormat()); // included to load format-specific template
 		$templateMgr->assign('stageId', $this->getStageId());
 		$templateMgr->assign('formParams', $this->getFormParams());
-		$templateMgr->assign('submissionApproved', $monograph->getDatePublished());
 
 		$onixCodelistItemDao = DAORegistry::getDAO('ONIXCodelistItemDAO');
 
@@ -155,7 +154,6 @@ class CatalogEntryFormatMetadataForm extends Form {
 			'productAvailabilityCode' => $publicationFormat->getProductAvailabilityCode() != '' ? $publicationFormat->getProductAvailabilityCode() : '20',
 			'technicalProtectionCode' => $publicationFormat->getTechnicalProtectionCode() != '' ? $publicationFormat->getTechnicalProtectionCode() : '00',
 			'returnableIndicatorCode' => $publicationFormat->getReturnableIndicatorCode() != '' ? $publicationFormat->getReturnableIndicatorCode() : 'Y',
-			'isApproved' => (bool) $publicationFormat->getIsApproved(),
 			// the pubId plugin needs the format object.
 			'publicationFormat' => $publicationFormat
 		);
@@ -190,7 +188,6 @@ class CatalogEntryFormatMetadataForm extends Form {
 			'productAvailabilityCode',
 			'technicalProtectionCode',
 			'returnableIndicatorCode',
-			'isApproved'
 		));
 
 		// consider the additional field names from the public identifer plugins
@@ -208,28 +205,6 @@ class CatalogEntryFormatMetadataForm extends Form {
 		$publicationFormatDao = DAORegistry::getDAO('PublicationFormatDAO');
 		$publicationFormat = $publicationFormatDao->getById($this->getPublicationFormatId(), $monograph->getId());
 		assert($publicationFormat);
-
-		// Manage tombstones for the publication format.
-		if ($publicationFormat->getIsApproved() && !$this->getData('isApproved')) {
-			// Publication format was approved and its being disabled. Create
-			// a tombstone for it.
-			$press = $request->getPress();
-			import('classes.publicationFormat.PublicationFormatTombstoneManager');
-			$publicationFormatTombstoneMgr = new PublicationFormatTombstoneManager();
-			$publicationFormatTombstoneMgr->insertTombstoneByPublicationFormat($publicationFormat, $press);
-
-			// Log unpublish event.
-			import('lib.pkp.classes.log.SubmissionLog');
-			SubmissionLog::logEvent($request, $monograph, SUBMISSION_LOG_PUBLICATION_FORMAT_UNPUBLISH, 'submission.event.publicationFormatUnpublished', array('publicationFormatName' => $publicationFormat->getLocalizedName()));
-		} elseif (!$publicationFormat->getIsApproved() && $this->getData('isApproved')) {
-			// Wasn't approved and now it is. Delete tombstone.
-			$tombstoneDao = DAORegistry::getDAO('DataObjectTombstoneDAO');
-			$tombstoneDao->deleteByDataObjectId($publicationFormat->getId());
-
-			// Log publish event.
-			import('lib.pkp.classes.log.SubmissionLog');
-			SubmissionLog::logEvent($request, $monograph, SUBMISSION_LOG_PUBLICATION_FORMAT_PUBLISH, 'submission.event.publicationFormatPublished', array('publicationFormatName' => $publicationFormat->getLocalizedName()));
-		}
 
 		// populate the published monograph with the cataloging metadata
 		$publicationFormat->setFileSize($this->getData('override') ? $this->getData('fileSize'):null);
@@ -250,7 +225,6 @@ class CatalogEntryFormatMetadataForm extends Form {
 		$publicationFormat->setProductAvailabilityCode($this->getData('productAvailabilityCode'));
 		$publicationFormat->setTechnicalProtectionCode($this->getData('technicalProtectionCode'));
 		$publicationFormat->setReturnableIndicatorCode($this->getData('returnableIndicatorCode'));
-		$publicationFormat->setIsApproved($this->getData('isApproved')?true:false);
 
 		// consider the additional field names from the public identifer plugins
 		$pubIdPluginHelper = $this->_getPubIdPluginHelper();
