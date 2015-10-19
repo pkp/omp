@@ -77,4 +77,53 @@
         padding-left: @double * 2;
     }
 
+    // Complete checkboxes
+    .pkp_linkaction_approve,
+    .pkp_linkaction_disapprove,
+    .pkp_linkaction_availablePublicationFormat,
+    .pkp_linkaction_editApprovedProof,
+    .pkp_linkaction_catalogEntry {
+        display: block;
+        margin: 0 auto;
+        width: @line-base;
+        height: @line-base;
+        line-height: @line-base;
+        overflow: hidden;
+
+        &:before {
+            &:extend(.fa);
+        }
+
+        &.pkp_controllers_linkAction:hover:before,
+        &.pkp_controllers_linkAction:focus:before {
+            color: @primary-lift;
+        }
+    }
+
+    .pkp_linkaction_approve:before,
+    .pkp_linkaction_icon_incomplete:before {
+        content: @fa-var-square-o;
+    }
+
+    .pkp_linkaction_disapprove:before,
+    .pkp_linkaction_icon_complete:before {
+        content: @fa-var-check-square-o;
+        color: @yes;
+    }
+
+    .pkp_linkaction_editApprovedProof:before,
+    .pkp_linkaction_editApprovedProof.pkp_linkaction_icon_notAvailable:before {
+        content: @fa-var-ban;
+        color: @no;
+    }
+
+    .pkp_linkaction_editApprovedProof.pkp_linkaction_icon_openAccess:before {
+        content: @fa-var-unlock-alt;
+        color: @yes;
+    }
+
+    .pkp_linkaction_editApprovedProof.pkp_linkaction_icon_directSales:before {
+        content: @fa-var-money;
+        color: @primary-lift;
+    }
 }

@@ -135,7 +135,7 @@ class PublicationFormatGridCellProvider extends DataObjectGridCellProvider {
 					);
 				case 'isComplete':
 					import('controllers.modals.submissionMetadata.linkAction.SubmissionEntryLinkAction');
-					return array(new SubmissionEntryLinkAction($request, $monographId, WORKFLOW_STAGE_ID_PRODUCTION, $data->getId(), $data->getIsApproved()?'completed':'new'));
+					return array(new SubmissionEntryLinkAction($request, $monographId, WORKFLOW_STAGE_ID_PRODUCTION, $data->getId(), $data->getIsApproved()?'complete':'incomplete'));
 				case 'isAvailable':
 					$publishedMonographDao = DAORegistry::getDAO('PublishedMonographDAO');
 					$publishedMonograph = $publishedMonographDao->getById($data->getMonographId());
@@ -171,9 +171,9 @@ class PublicationFormatGridCellProvider extends DataObjectGridCellProvider {
 								'setAvailable', null, array('representationId' => $data->getId(), 'newAvailableState' => $data->getIsAvailable()?0:1, 'submissionId' => $monographId)),
 							'modal_approve'
 						),
-						__('common.disable'),
-						$data->getIsAvailable()?'completed':'new',
-						$data->getIsAvailable()?__('grid.action.formatAvailable'):null
+						$data->getIsAvailable()?__('common.disable'):__('common.enable'),
+						$data->getIsAvailable()?'complete':'incomplete',
+						__('grid.action.formatAvailable')
 					));
 			}
 		} else {
@@ -209,7 +209,7 @@ class PublicationFormatGridCellProvider extends DataObjectGridCellProvider {
 							'edit'
 						),
 						__('editor.monograph.approvedProofs.edit.linkTitle'),
-						'edit'
+						preg_replace('/[^\da-z]/i', '', $submissionFile->getSalesType())
 					));
 			}
 		}

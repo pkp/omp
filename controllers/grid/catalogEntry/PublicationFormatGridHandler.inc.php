@@ -406,7 +406,7 @@ class PublicationFormatGridHandler extends CategoryGridHandler {
 			$request->getUserVar('representationId'),
 			$submission->getId()
 		);
-		
+
 		import('controllers.grid.files.proof.form.ApprovedProofForm');
 		$approvedProofForm = new ApprovedProofForm($submission, $representation, $request->getUserVar('fileId'));
 		$approvedProofForm->initData();

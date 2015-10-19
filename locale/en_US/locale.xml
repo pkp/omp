@@ -212,7 +212,7 @@
 	<message key="grid.action.approveProofs">View the proofs grid</message>
 	<message key="grid.action.proofApproved">Format has been proofed</message>
 	<message key="grid.action.availablePublicationFormat">Approve/disapprove this format</message>
-	<message key="grid.action.formatAvailable">Format is available and published</message>
+	<message key="grid.action.formatAvailable">Toggle the availability of this format on and off</message>
 
 	<!-- Review Attachments -->
 	<message key="grid.reviewAttachments.add">Add Attachment to Review</message>
