@@ -29,6 +29,52 @@
  * imported below. Re-usablee components should be declared first, followed by
  * unique or one-off styling required by individual pages.
  */
+// Workflow > Publication > Publication Formats Grid
+[id^=formatsGridContainer] {
 
-// Styles pertaining to specific pages
-// @todo not used now but will likely be used as we refactor the backend
+    .category {
+        font-size: @font-base;
+    }
+
+    .pkp_controllers_grid .label.before_actions {
+        display: block;
+        margin: 0;
+        padding: 0;
+        background: transparent;
+        font-size: @font-sml;
+        font-weight: @bold;
+        color: @text;
+    }
+
+    .pkp_linkaction_deleteFormat {
+        color: @no;
+    }
+
+    .gridRow.category {
+
+        .first_column .pkp_controllers_linkAction {
+            margin-right: 1em;
+        }
+    }
+
+    .gridRow {
+        font-size: @font-sml;
+
+        &:not(.category) {
+
+            .first_column {
+                padding-left: @double * 2;
+            }
+
+            .sprite.show_extras,
+            .sprite.hide_extras {
+                left: @double;
+            }
+        }
+    }
+
+    .row_controls:not(.category_controls) td:first-child {
+        padding-left: @double * 2;
+    }
+
+}
