@@ -165,7 +165,7 @@ class PublicationFormatGridHandler extends GridHandler {
 		$this->addColumn(
 			new GridColumn(
 				'isAvailable',
-				'grid.catalogEntry.isAvailable',
+				'grid.catalogEntry.availability',
 				null,
 				'controllers/grid/common/cell/statusCell.tpl',
 				$cellProvider
