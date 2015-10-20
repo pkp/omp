@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE locale SYSTEM "../../../../../lib/pkp/dtd/locale.dtd">
+
+<!--
+  * plugins/blocks/browse/locale/en_US/locale.xml
+  *
+  * Copyright (c) 2014 Simon Fraser University Library
+  * Copyright (c) 2003-2014 John Willinsky
+  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
+  *
+  * Localization strings for this plugin.
+  *
+  -->
+ 
+<locale name="ca_ES" full_name="Català">
+	<message key="plugins.block.browse">Navega</message>
+	<message key="plugins.block.browse.displayName">Browse Block</message>
+	<message key="plugins.block.browse.description">This plugin provides sidebar &quot;browse&quot; tools.</message>
+	<message key="plugins.block.browse.category">Browse a category</message>
+	<message key="plugins.block.browse.series">Browse a series</message>
+	<message key="plugins.block.browse.newReleases">Browse new releases</message>
+</locale>

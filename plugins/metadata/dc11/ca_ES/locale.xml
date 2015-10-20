@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE locale SYSTEM "../../../../lib/pkp/dtd/locale.dtd">
+
+<!--
+  * locale.xml
+  *
+  * Copyright (c) 2014 Simon Fraser University Library
+  * Copyright (c) 2003-2014 John Willinsky
+  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
+  *
+  * Localization strings for the en_US (U.S. English) locale.
+  -->
+
+<locale name="ca_ES" full_name="Català">
+	<message key="plugins.metadata.dc11.publicationFormatAdapter.displayName">DC 1.1 Publication Format Adapter</message>
+	<message key="plugins.metadata.dc11.publicationFormatAdapter.description">Extracts/injects meta-data from/into publication format.</message>
+</locale>

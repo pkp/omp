@@ -9,11 +9,9 @@
   * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
   *
   * Localization strings for the en_US (U.S. English) locale.
-  *
   -->
- 
+
 <locale name="ca_ES" full_name="Català">
-	<message key="plugins.block.information.displayName">Bloc d&apos;informació</message>
-	<message key="plugins.block.information.description">Aquest connector proporciona un enllaç d&apos;informació a la barra lateral.</message>
-	<message key="plugins.block.information.link">Informació</message>
+	<message key="plugins.block.developedBy.displayName">Bloc «Desenvolupat per»</message>
+	<message key="plugins.block.developedBy.description">Aquest mòdul proporciona l&apos;enllaç «Desenvolupat per» a la barra lateral.</message>
 </locale>

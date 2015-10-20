@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE locale SYSTEM "../../../../../lib/pkp/dtd/locale.dtd">
+
+<!--
+  * locale.xml
+  *
+  * Copyright (c) 2014 Simon Fraser University Library
+  * Copyright (c) 2003-2014 John Willinsky
+  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
+  *
+  * Localization strings for the en_US (U.S. English) locale.
+  -->
+
+<locale name="ca_ES" full_name="Català">
+	<message key="plugins.importexport.users.displayName">Mòdul XML d&apos;usuaris/àries</message>
+	<message key="plugins.importexport.users.description">Importa i exporta usuaris/àries.</message>
+
+	<message key="plugins.importexport.users.cliUsage"><![CDATA[Usage: {$scriptName} {$pluginName} [command] ... Commands: import [xmlFileName] [press_path] [optional flags] export [xmlFileName] [press_path] export [xmlFileName] [press_path] [role_path1] [role_path2] ... Optional flags: continue_on_error: If specified, do not stop importing users if an error occurs send_notify: If specified, send notification emails containing usernames and passwords to imported users Examples: Import users into myPress from myImportFile.xml, continuing on error: {$scriptName} {$pluginName} import myImportFile.xml myPress continue_on_error Export all users from myPress: {$scriptName} {$pluginName} export myExportFile.xml myPress Export all users registered as reviewers, along with their reviewer roles only: {$scriptName} {$pluginName} export myExportFile.xml myPress reviewer]]></message>
+	<message key="plugins.importexport.users.import.importUsers">Importa els usuaris/àries</message>
+	<message key="plugins.importexport.users.import.instructions"><![CDATA[Select an XML data file containing user information to import into this press. See the press help for details on the format of this file.<br /><br />Note that if the imported file contains any usernames or email addresses that already exist in the system, the user data for those users will not be imported and any new roles to be created will be assigned to the existing users.]]></message>
+	<message key="plugins.importexport.users.import.dataFile">Fitxer de dades de l&apos;usuari/ària</message>
+	<message key="plugins.importexport.users.import.sendNotify">Envia una notificació per correu electrònic amb el nom d&apos;usuari/ària i la contrasenya a cada usuari/ària importat.</message>
+	<message key="plugins.importexport.users.import.continueOnError">Continua important la resta d&apos;usuaris/àries si es produeix un error.</message>
+	<message key="plugins.importexport.users.import.usersWereImported">Els usuaris/àries següents s&apos;han importat correctament al sistema:</message>
+	<message key="plugins.importexport.users.import.errorsOccurred">S&apos;han produït errors durant la importació.</message>
+	<message key="plugins.importexport.users.import.confirmUsers">Confirmeu que aquests són els usuaris/àries que voleu importar al sistema.</message>
+	<message key="plugins.importexport.users.import.warning">Advertiment</message>
+	<message key="plugins.importexport.users.import.encryptionMismatch">Cannot use passwords hashed with {$importHash}; OMP is configured to use {$ompHash}. If you continue, you will need to reset the imported users&apos; passwords.</message>
+	<message key="plugins.importexport.users.unknownPress">An unknown press path &quot;{$pressPath}&quot; was specified.</message>
+
+	<message key="plugins.importexport.users.export.exportUsers">Exporta els usuaris/àries</message>
+	<message key="plugins.importexport.users.export.exportByRole">Exporta per rol</message>
+	<message key="plugins.importexport.users.export.exportAllUsers">Exporta&apos;ls tots</message>
+	<message key="plugins.importexport.users.export.errorsOccurred">S&apos;han produït errors durant l&apos;exportació.</message>
+	<message key="plugins.importexport.users.export.couldNotWriteFile">Could not write to the file &quot;{$fileName}&quot;.</message>
+	<message key="plugins.importexport.users.importComplete">The import completed successfully.  Users with usernames and email addresses that are not already in use have been imported, along with accompanying user groups.</message>
+	<message key="plugins.importexport.users.results">Results</message>
+</locale>
