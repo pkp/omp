@@ -135,7 +135,7 @@ class PublicationFormatGridHandler extends CategoryGridHandler {
 				null,
 				null,
 				$this->_cellProvider,
-				array('width' => 60, 'html' => true)
+				array('width' => 60, 'anyhtml' => true)
 			)
 		);
 		$this->addColumn(
