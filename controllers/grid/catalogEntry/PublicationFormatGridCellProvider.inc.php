@@ -145,7 +145,7 @@ class PublicationFormatGridCellProvider extends DataObjectGridCellProvider {
 								'setApproved', null, array('representationId' => $data->getId(), 'newApprovedState' => $data->getIsApproved()?0:1, 'submissionId' => $monographId)),
 							'modal_approve'
 						),
-						$data->getIsApproved()?__('common.disable'):__('common.enable'),
+						$data->getIsApproved()?__('submission.catalogEntry'):__('submission.noCatalogEntry'),
 						$data->getIsApproved()?'complete':'incomplete',
 						__('grid.action.formatApproved')
 					));
@@ -159,7 +159,7 @@ class PublicationFormatGridCellProvider extends DataObjectGridCellProvider {
 								'setAvailable', null, array('representationId' => $data->getId(), 'newAvailableState' => $data->getIsAvailable()?0:1, 'submissionId' => $monographId)),
 							'modal_approve'
 						),
-						$data->getIsAvailable()?__('common.disable'):__('common.enable'),
+						$data->getIsAvailable()?__('grid.catalogEntry.isAvailable'):__('grid.catalogEntry.isNotAvailable'),
 						$data->getIsAvailable()?'complete':'incomplete',
 						__('grid.action.formatAvailable')
 					));
@@ -176,10 +176,10 @@ class PublicationFormatGridCellProvider extends DataObjectGridCellProvider {
 					AppLocale::requireComponents(LOCALE_COMPONENT_PKP_EDITOR);
 					import('lib.pkp.classes.linkAction.request.AjaxAction');
 					return array(new LinkAction(
-						$submissionFile->getViewable()?'disapprove':'approve',
+						$submissionFile->getViewable()?'approved':'not_approved',
 						new RemoteActionConfirmationModal(
 							__($submissionFile->getViewable()?'editor.submission.proofreading.confirmRemoveCompletion':'editor.submission.proofreading.confirmCompletion'),
-							__('editor.submission.proofreading.completionTitle'),
+							__($submissionFile->getViewable()?'editor.submission.proofreading.revokeProofApproval':'editor.submission.proofreading.approveProof'),
 							$router->url(
 								$request, null, null, 'setProofFileCompletion',
 								null,
@@ -192,9 +192,18 @@ class PublicationFormatGridCellProvider extends DataObjectGridCellProvider {
 							),
 							'modal_approve'
 						),
-						$submissionFile->getViewable()?__('grid.action.disapprove'):__('grid.action.approve')
+						$submissionFile->getViewable()?__('grid.catalogEntry.availablePublicationFormat.approved'):__('grid.catalogEntry.availablePublicationFormat.notApproved')
 					));
 				case 'isAvailable':
+					$salesType = preg_replace('/[^\da-z]/i', '', $submissionFile->getSalesType());
+					$salesTypeString = 'editor.monograph.approvedProofs.edit.linkTitle';
+					if ($salesType == 'openAccess') {
+						$salesTypeString = 'payment.directSales.openAccess';
+					} elseif ($salesType == 'directSales') {
+						$salesTypeString = 'payment.directSales.directSales';
+					} elseif ($salesType == 'notAvailable') {
+						$salesTypeString = 'payment.directSales.notAvailable';
+					}
 					return array(new LinkAction(
 						'editApprovedProof',
 						new AjaxModal(
@@ -206,8 +215,8 @@ class PublicationFormatGridCellProvider extends DataObjectGridCellProvider {
 							__('editor.monograph.approvedProofs.edit'),
 							'edit'
 						),
-						__('editor.monograph.approvedProofs.edit.linkTitle'),
-						preg_replace('/[^\da-z]/i', '', $submissionFile->getSalesType())
+						__($salesTypeString),
+						$salesType
 					));
 			}
 		}

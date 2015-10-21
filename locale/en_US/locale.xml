@@ -78,17 +78,21 @@
 	<message key="grid.catalogEntry.physicalFormat">Physical format</message>
 	<message key="grid.catalogEntry.monographRequired">A monograph id is required.</message>
 	<message key="grid.catalogEntry.publicationFormatRequired">A publication format must be chosen.</message>
+	<message key="grid.catalogEntry.availability">Availability</message>
 	<message key="grid.catalogEntry.isAvailable">Available</message>
+	<message key="grid.catalogEntry.isNotAvailable">Not Available</message>
 	<message key="grid.catalogEntry.proof">Proof</message>
 	<message key="grid.catalogEntry.approvedPublicationFormat.title">Format Approval</message>
-	<message key="grid.catalogEntry.approvedPublicationFormat.message"><![CDATA[<p>This format will now be marked <em>approved</em> and added to the catalog.]]></message>
-	<message key="grid.catalogEntry.approvedPublicationFormat.removeMessage"><![CDATA[<p>This format will <em>no longer be marked approved</em> and will be removed from the catalog.</p>]]></message>
+	<message key="grid.catalogEntry.approvedPublicationFormat.message"><![CDATA[<p>Add this format to the catalog entry.</p>]]></message>
+	<message key="grid.catalogEntry.approvedPublicationFormat.removeMessage"><![CDATA[<p>Remove this format from the catalog entry.</p>]]></message>
 	<message key="grid.catalogEntry.availablePublicationFormat.title">Format Availability</message>
-	<message key="grid.catalogEntry.availablePublicationFormat.message"><![CDATA[<p>This format will now be made <em>available</em> to readers, through downloadable files that will now appear with the book’s catalog entry and/or through further actions taken by the press to distribute the book.</p>]]></message>
-	<message key="grid.catalogEntry.availablePublicationFormat.removeMessage"><![CDATA[<p>This format will <em>no longer be made available</em> to readers, through downloadable files that previously appeared with the book’s catalog entry and/or through further actions taken by the press to distribute the book.</p>]]></message>
+	<message key="grid.catalogEntry.availablePublicationFormat.message"><![CDATA[<p>Make this format <em>available to readers</em>. Downloadable files and any other distributions will appear in the book's catalog entry.</p>]]></message>
+	<message key="grid.catalogEntry.availablePublicationFormat.removeMessage"><![CDATA[<p>This format will <em>unavailable to readers</em>. Any downloadable files or other distributions will no longer appear in the book's catalog entry.</p>]]></message>
 	<message key="grid.catalogEntry.availablePublicationFormat.catalogNotApprovedWarning">Catalog entry not approved.</message>
 	<message key="grid.catalogEntry.availablePublicationFormat.notApprovedWarning">Format not in catalog entry.</message>
 	<message key="grid.catalogEntry.availablePublicationFormat.proofNotApproved">Proof not approved.</message>
+	<message key="grid.catalogEntry.availablePublicationFormat.approved">Approved</message>
+	<message key="grid.catalogEntry.availablePublicationFormat.notApproved">Awaiting Approval</message>
 
 	<!--  publication metadata required form field keys -->
 	<message key="grid.catalogEntry.fileSizeRequired">A file size for digital formats required.</message>

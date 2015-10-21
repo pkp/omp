@@ -95,6 +95,7 @@
 
 	<!-- Submission-specific catalog info -->
 	<message key="submission.catalogEntry">Catalog Entry</message>
+	<message key="submission.noCatalogEntry">No Catalog Entry</message>
 	<message key="submission.editCatalogEntry">Entry</message>
 	<message key="submission.catalogEntry.new">New Catalog Entry</message>
 	<message key="submission.catalogEntry.confirm">Create a catalog entry for this book based on the metadata below.</message>

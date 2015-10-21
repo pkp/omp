@@ -36,6 +36,10 @@
         font-size: @font-base;
     }
 
+    .pkp_controllers_grid td {
+        line-height: 30px; // larger to fit our special buttons
+    }
+
     .onix_code {
         margin-left: 1em;
         font-size: 12px;
@@ -85,52 +89,100 @@
     }
 
     // Complete checkboxes
-    .pkp_linkaction_approve,
-    .pkp_linkaction_disapprove,
+    .pkp_linkaction_approved,
+    .pkp_linkaction_not_approved,
     .pkp_linkaction_approvePublicationFormat,
     .pkp_linkaction_availablePublicationFormat,
     .pkp_linkaction_editApprovedProof {
-        display: block;
-        margin: 0 auto;
-        width: @line-base;
-        height: @line-base;
-        line-height: @line-base;
-        overflow: hidden;
+        display: inline-block;
+        padding: 5px 1em;
+        border: 1px solid fade(@primary-lift, 60%);
+        border-radius: @radius;
+        font-size: 12px;
+        line-height: 20px;
+        text-decoration: none;
 
         &:before {
             &:extend(.fa);
+            margin-right:  0.5em;
         }
 
-        &.pkp_controllers_linkAction:hover:before,
-        &.pkp_controllers_linkAction:focus:before {
-            color: @primary-lift;
+        &:hover,
+        &:focus {
+            border-color: @primary-lift;
+            background: @primary-lift;
+            color: #fff;
+
+            &:before {
+                color: #fff;
+            }
         }
     }
 
-    .pkp_linkaction_approve:before,
+    .pkp_linkaction_icon_complete,
+    .pkp_linkaction_approved {
+        border-color: @yes;
+        background: @yes;
+        color: #fff;
+
+        &:before {
+            color: #fff;
+        }
+
+        &:hover,
+        &:focus {
+            border-color: @yes-lift;
+            background: @yes-lift;
+        }
+    }
+
+    .pkp_linkaction_not_approved:before,
     .pkp_linkaction_icon_incomplete:before {
         content: @fa-var-square-o;
     }
 
-    .pkp_linkaction_disapprove:before,
+    .pkp_linkaction_approved:before,
     .pkp_linkaction_icon_complete:before {
         content: @fa-var-check-square-o;
-        color: @yes;
     }
 
-    .pkp_linkaction_editApprovedProof:before,
-    .pkp_linkaction_editApprovedProof.pkp_linkaction_icon_notAvailable:before {
-        content: @fa-var-ban;
-        color: @no;
+    .pkp_linkaction_editApprovedProof.pkp_linkaction_icon_:before {
+        content: @fa-var-pencil;
+    }
+
+    .pkp_linkaction_editApprovedProof.pkp_linkaction_icon_notAvailable {
+        border-color: @no;
+        background: @no;
+        color: #fff;
+
+        &:before {
+            content: @fa-var-ban;
+            color: #fff;
+        }
+
+        &:hover,
+        &:focus {
+            background: @no-lift;
+        }
+    }
+
+    .pkp_linkaction_editApprovedProof.pkp_linkaction_icon_openAccess,
+    .pkp_linkaction_editApprovedProof.pkp_linkaction_icon_directSales {
+        border-color: @yes;
+        background: @yes;
+        color: #fff;
+
+        &:hover,
+        &:focus {
+            background: @yes-lift;
+        }
     }
 
     .pkp_linkaction_editApprovedProof.pkp_linkaction_icon_openAccess:before {
         content: @fa-var-unlock-alt;
-        color: @yes;
     }
 
     .pkp_linkaction_editApprovedProof.pkp_linkaction_icon_directSales:before {
         content: @fa-var-money;
-        color: @primary-lift;
     }
 }

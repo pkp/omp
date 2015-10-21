@@ -145,17 +145,17 @@ class PublicationFormatGridHandler extends CategoryGridHandler {
 				null,
 				'controllers/grid/common/cell/statusCell.tpl',
 				$this->_cellProvider,
-				array('width' => 20, 'alignment' => COLUMN_ALIGNMENT_CENTER)
+				array('width' => 20)
 			)
 		);
 		$this->addColumn(
 			new GridColumn(
 				'isAvailable',
-				'grid.catalogEntry.isAvailable',
+				'grid.catalogEntry.availability',
 				null,
 				'controllers/grid/common/cell/statusCell.tpl',
 				$this->_cellProvider,
-				array('width' => 20, 'alignment' => COLUMN_ALIGNMENT_CENTER)
+				array('width' => 20)
 			)
 		);
 	}
