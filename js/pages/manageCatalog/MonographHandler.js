@@ -444,7 +444,7 @@
 			function(callingHandler, event, seq, informServer) {
 
 		// Default param value for informServer: true.
-		if (typeof(informServer) === 'undefined') {
+		if (informServer === undefined) {
 			informServer = true;
 		}
 
