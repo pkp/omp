@@ -38,11 +38,19 @@
 	padding-right: @base;
 	background-color: @bg;
 
+	@media( min-width: @screen-phone ) {
+		padding-left: @double;
+		padding-right: @double;
+	}
+
 	@media(min-width: @screen-desktop) {
 		position: absolute;
 		bottom: 0;
 		left: 0;
+		padding-left: @triple;
+		padding-right: @triple;
 		width: @sidebar-width;
+		min-height: @logo-height;
 	}
 }
 
@@ -235,6 +243,7 @@
 // Site logo/name
 .pkp_site_name {
 	margin: 0;
+	text-align: center;
 
 	.is_img {
 		display: inline-block;
@@ -245,7 +254,6 @@
 		padding-bottom: @double;
 		line-height: @logo-height;
 		font-size: 0; // prevent extra spacing from inline content
-		text-align: center;
 
 		img {
 			max-height: (@logo-height) - @quadruple; // must match height - padding of .is_img
@@ -256,13 +264,21 @@
 
 	.is_text {
 		display: inline-block;
+		position: relative;
 		padding-top: @double;
 		padding-bottom: @double;
-		font-size: @font-header;
-		line-height: @line-header;
-		font-weight: @bold;
-		color: #fff;
+		font-size: @font-bump;
+		line-height: 25px;
+		color: @text-light;
 		text-decoration: none;
+	}
+
+	@media(min-width: @screen-desktop) {
+		text-align: left;
+
+		.is_img {
+			text-align: center;
+		}
 	}
 }
 
