@@ -13,23 +13,9 @@
  * @brief Handle publication format grid requests.
  */
 
-// import grid base classes
-import('lib.pkp.classes.controllers.grid.CategoryGridHandler');
+import('lib.pkp.controllers.grid.representations.RepresentationsGridHandler');
 
-// import format grid specific classes
-import('controllers.grid.catalogEntry.PublicationFormatGridCellProvider');
-import('controllers.grid.catalogEntry.PublicationFormatGridCategoryRow');
-import('lib.pkp.controllers.grid.representations.RepresentationsCategoryGridDataProvider');
-import('lib.pkp.controllers.grid.files.SubmissionFilesGridRow');
-import('lib.pkp.classes.controllers.grid.files.FilesGridCapabilities');
-
-// Link action & modal classes
-import('lib.pkp.classes.linkAction.request.AjaxModal');
-
-class PublicationFormatGridHandler extends CategoryGridHandler {
-	/** @var Submission */
-	var $_submission;
-
+class PublicationFormatGridHandler extends RepresentationsGridHandler {
 	/** @var PublicationFormatGridCellProvider */
 	var $_cellProvider;
 
@@ -37,56 +23,17 @@ class PublicationFormatGridHandler extends CategoryGridHandler {
 	 * Constructor
 	 */
 	function PublicationFormatGridHandler() {
-		parent::CategoryGridHandler(new RepresentationsCategoryGridDataProvider());
+		parent::RepresentationsGridHandler();
 		$this->addRoleAssignment(
 			array(ROLE_ID_MANAGER, ROLE_ID_SUB_EDITOR),
 			array(
-				'fetchGrid', 'fetchRow', 'fetchCategory',
-				'addFormat', 'editFormat', 'updateFormat', 'deleteFormat',
-				'setAvailable', 'setApproved',
-				'setProofFileCompletion', 'editApprovedProof', 'saveApprovedProof',
-				'selectFiles',
+				'setAvailable', 'editApprovedProof', 'saveApprovedProof',
 			)
 		);
 	}
 
 
-	//
-	// Getters/Setters
-	//
 	/**
-	 * Get the submission associated with this publication format grid.
-	 * @return Submission
-	 */
-	function getSubmission() {
-		return $this->_submission;
-	}
-
-	/**
-	 * Set the submission
-	 * @param $submission Submission
-	 */
-	function setSubmission($submission) {
-		$this->_submission = $submission;
-	}
-
-
-	//
-	// Overridden methods from PKPHandler
-	//
-	/**
-	 * @see PKPHandler::authorize()
-	 * @param $request PKPRequest
-	 * @param $args array
-	 * @param $roleAssignments array
-	 */
-	function authorize($request, &$args, $roleAssignments) {
-		import('lib.pkp.classes.security.authorization.SubmissionAccessPolicy');
-		$this->addPolicy(new SubmissionAccessPolicy($request, $args, $roleAssignments));
-		return parent::authorize($request, $args, $roleAssignments);
-	}
-
-	/*
 	 * Configure the grid
 	 * @param $request PKPRequest
 	 */
@@ -96,16 +43,10 @@ class PublicationFormatGridHandler extends CategoryGridHandler {
 		$this->setTitle('monograph.publicationFormats');
 		$this->setInstructions('editor.monograph.production.publicationFormatDescription');
 
-		// Retrieve the authorized submission.
-		$this->setSubmission($this->getAuthorizedContextObject(ASSOC_TYPE_SUBMISSION));
-
 		// Load submission-specific translations
 		AppLocale::requireComponents(
 			LOCALE_COMPONENT_APP_SUBMISSION,
-			LOCALE_COMPONENT_PKP_SUBMISSION,
-			LOCALE_COMPONENT_PKP_USER,
 			LOCALE_COMPONENT_APP_DEFAULT,
-			LOCALE_COMPONENT_PKP_DEFAULT,
 			LOCALE_COMPONENT_APP_EDITOR
 		);
 
@@ -127,6 +68,7 @@ class PublicationFormatGridHandler extends CategoryGridHandler {
 
 		// Columns
 		$submission = $this->getSubmission();
+		import('controllers.grid.catalogEntry.PublicationFormatGridCellProvider');
 		$this->_cellProvider = new PublicationFormatGridCellProvider($submission->getId());
 		$this->addColumn(
 			new GridColumn(
@@ -166,51 +108,16 @@ class PublicationFormatGridHandler extends CategoryGridHandler {
 	//
 	/**
 	 * @see GridHandler::getRowInstance()
-	 * @return PublicationFormatGridCategoryRow
+	 * @return RepresentationsGridCategoryRow
 	 */
 	function getCategoryRowInstance() {
-		return new PublicationFormatGridCategoryRow($this->getSubmission(), $this->_cellProvider);
+		return new RepresentationsGridCategoryRow($this->getSubmission(), $this->_cellProvider);
 	}
-
-	/**
-	 * @copydoc GridHandler::getRowInstance()
-	 */
-	function getRowInstance() {
-		return new SubmissionFilesGridRow(
-			new FilesGridCapabilities(FILE_GRID_ADD | FILE_GRID_DELETE | FILE_GRID_MANAGE | FILE_GRID_EDIT),
-			WORKFLOW_STAGE_ID_PRODUCTION
-		);
-	}
-
-	/**
-	 * Get the arguments that will identify the data in the grid
-	 * In this case, the submission.
-	 * @return array
-	 */
-	function getRequestArgs() {
-		$submission = $this->getSubmission();
-
-		return array(
-			'submissionId' => $submission->getId(),
-		);
-	}
-
-	/**
-	 * @see CategoryGridHandler::getCategoryRowIdParameterName()
-	 */
-/*	function getCategoryRowIdParameterName() {
-		return 'publicationFormatId';
-	}*/
 
 
 	//
 	// Public Publication Format Grid Actions
 	//
-
-	function addFormat($args, $request) {
-		return $this->editFormat($args, $request);
-	}
-
 	/**
 	 * Edit a format
 	 * @param $args array
@@ -218,16 +125,15 @@ class PublicationFormatGridHandler extends CategoryGridHandler {
 	 * @return JSONMessage JSON object
 	 */
 	function editFormat($args, $request) {
-		// Identify the format to be updated
-		$representationId = (int) $request->getUserVar('representationId');
 		$submission = $this->getSubmission();
+		$representationDao = Application::getRepresentationDAO();
+		$representation = $representationDao->getById(
+			$request->getUserVar('representationId'),
+			$submission->getId()
+		);
 
-		$publicationFormatDao = DAORegistry::getDAO('PublicationFormatDAO');
-		$publicationFormat = $publicationFormatDao->getById($representationId);
-
-		// Form handling
 		import('controllers.grid.catalogEntry.form.PublicationFormatForm');
-		$publicationFormatForm = new PublicationFormatForm($submission, $publicationFormat);
+		$publicationFormatForm = new PublicationFormatForm($submission, $representation);
 		$publicationFormatForm->initData();
 
 		return new JSONMessage(true, $publicationFormatForm->fetch($request));
@@ -240,36 +146,21 @@ class PublicationFormatGridHandler extends CategoryGridHandler {
 	 * @return JSONMessage JSON object
 	 */
 	function updateFormat($args, $request) {
-		// Identify the format to be updated
-		$representationId = (int) $request->getUserVar('representationId');
 		$submission = $this->getSubmission();
+		$representationDao = Application::getRepresentationDAO();
+		$representation = $representationDao->getById(
+			$request->getUserVar('representationId'),
+			$submission->getId()
+		);
 
-		$publicationFormatDao = DAORegistry::getDAO('PublicationFormatDAO');
-		$publicationFormat = $publicationFormatDao->getById($representationId);
-
-		// Form handling
 		import('controllers.grid.catalogEntry.form.PublicationFormatForm');
-		$publicationFormatForm = new PublicationFormatForm($submission, $publicationFormat);
+		$publicationFormatForm = new PublicationFormatForm($submission, $representation);
 		$publicationFormatForm->readInputData();
 		if ($publicationFormatForm->validate()) {
-			$representationId = $publicationFormatForm->execute($request);
-
-			if(!isset($publicationFormat)) {
-				// This is a new format
-				$publicationFormat = $publicationFormatDao->getById($representationId);
-				// New added format action notification content.
-				$notificationContent = __('notification.addedPublicationFormat');
-			} else {
-				// Format edit action notification content.
-				$notificationContent = __('notification.editedPublicationFormat');
-			}
-
-			// Render the row into a JSON response
+			$publicationFormatForm->execute($request);
 			return DAO::getDataChangedEvent();
-
-		} else {
-			return new JSONMessage(true, $publicationFormatForm->fetch($request));
 		}
+		return new JSONMessage(true, $publicationFormatForm->fetch($request));
 	}
 
 	/**
@@ -280,37 +171,77 @@ class PublicationFormatGridHandler extends CategoryGridHandler {
 	 */
 	function deleteFormat($args, $request) {
 		$context = $request->getContext();
-		$publicationFormatDao = DAORegistry::getDAO('PublicationFormatDAO');
-		$publicationFormat = $publicationFormatDao->getById(
+		$submission = $this->getSubmission();
+		$representationDao = Application::getRepresentationDAO();
+		$representation = $representationDao->getById(
 			$request->getUserVar('representationId'),
-			null, // $submissionId
-			$context->getId() // Make sure to validate the context
+			$submission->getId()
 		);
-		$result = false;
-		if ($publicationFormat) {
-			$result = $publicationFormatDao->deleteById($publicationFormat->getId());
-		}
 
-		if ($result) {
-			// Create a tombstone for this publication format.
-			import('classes.publicationFormat.PublicationFormatTombstoneManager');
-			$publicationFormatTombstoneMgr = new PublicationFormatTombstoneManager();
-			$publicationFormatTombstoneMgr->insertTombstoneByPublicationFormat($publicationFormat, $context);
-
-			$currentUser = $request->getUser();
-			$notificationMgr = new NotificationManager();
-			$notificationMgr->createTrivialNotification($currentUser->getId(), NOTIFICATION_TYPE_SUCCESS, array('contents' => __('notification.removedPublicationFormat')));
-
-			// log the deletion of the format.
-			import('lib.pkp.classes.log.SubmissionLog');
-			import('classes.log.SubmissionEventLogEntry');
-			SubmissionLog::logEvent($request, $this->getSubmission(), SUBMISSION_LOG_PUBLICATION_FORMAT_REMOVE, 'submission.event.publicationFormatRemoved', array('formatName' => $publicationFormat->getLocalizedName()));
-
-			return DAO::getDataChangedEvent();
-		} else {
+		if (!$representation || !$representationDao->deleteById($representation->getId())) {
 			return new JSONMessage(false, __('manager.setup.errorDeletingItem'));
 		}
 
+		// Create a tombstone for this publication format.
+		import('classes.publicationFormat.PublicationFormatTombstoneManager');
+		$publicationFormatTombstoneMgr = new PublicationFormatTombstoneManager();
+		$publicationFormatTombstoneMgr->insertTombstoneByPublicationFormat($representation, $context);
+
+		$currentUser = $request->getUser();
+		$notificationMgr = new NotificationManager();
+		$notificationMgr->createTrivialNotification($currentUser->getId(), NOTIFICATION_TYPE_SUCCESS, array('contents' => __('notification.removedPublicationFormat')));
+
+		// Log the deletion of the format.
+		import('lib.pkp.classes.log.SubmissionLog');
+		import('classes.log.SubmissionEventLogEntry');
+		SubmissionLog::logEvent($request, $this->getSubmission(), SUBMISSION_LOG_PUBLICATION_FORMAT_REMOVE, 'submission.event.publicationFormatRemoved', array('formatName' => $representation->getLocalizedName()));
+
+		return DAO::getDataChangedEvent();
+	}
+
+	/**
+	 * Set a format's "approved" state
+	 * @param $args array
+	 * @param $request PKPRequest
+	 * @return JSONMessage JSON object
+	 */
+	function setApproved($args, $request) {
+		$submission = $this->getSubmission();
+		$representationDao = Application::getRepresentationDAO();
+		$representation = $representationDao->getById(
+			$request->getUserVar('representationId'),
+			$submission->getId()
+		);
+
+		if (!$representation) return new JSONMessage(false, __('manager.setup.errorDeletingItem'));
+
+		$newApprovedState = (int) $request->getUserVar('newApprovedState');
+		$representation->setIsApproved($newApprovedState);
+		$representationDao->updateObject($representation);
+
+		// log the state changing of the format.
+		import('lib.pkp.classes.log.SubmissionLog');
+		import('classes.log.SubmissionEventLogEntry');
+		SubmissionLog::logEvent(
+			$request, $this->getSubmission(),
+			$newApprovedState?SUBMISSION_LOG_PUBLICATION_FORMAT_PUBLISH:SUBMISSION_LOG_PUBLICATION_FORMAT_UNPUBLISH,
+			$newApprovedState?'submission.event.publicationFormatPublished':'submission.event.publicationFormatUnpublished',
+			array('publicationFormatName' => $representation->getLocalizedName())
+		);
+
+		// Update the formats tombstones.
+		import('classes.publicationFormat.PublicationFormatTombstoneManager');
+		$publicationFormatTombstoneMgr = new PublicationFormatTombstoneManager();
+		if ($representation->getIsAvailable() && $representation->getIsApproved()) {
+			// Delete any existing tombstone.
+			$publicationFormatTombstoneMgr->deleteTombstonesByPublicationFormats(array($representation));
+		} else {
+			// (Re)create a tombstone for this publication format.
+			$publicationFormatTombstoneMgr->deleteTombstonesByPublicationFormats(array($representation));
+			$publicationFormatTombstoneMgr->insertTombstoneByPublicationFormat($representation, $request->getContext());
+		}
+
+		return DAO::getDataChangedEvent($representation->getId());
 	}
 
 	/**
@@ -360,83 +291,6 @@ class PublicationFormatGridHandler extends CategoryGridHandler {
 	}
 
 	/**
-	 * Set a format's "approved" state
-	 * @param $args array
-	 * @param $request PKPRequest
-	 * @return JSONMessage JSON object
-	 */
-	function setApproved($args, $request) {
-		$context = $request->getContext();
-		$publicationFormatDao = DAORegistry::getDAO('PublicationFormatDAO');
-		$publicationFormat = $publicationFormatDao->getById(
-			$request->getUserVar('representationId'),
-			null, // $submissionId
-			$context->getId() // Make sure to validate the context.
-		);
-
-		if (!$publicationFormat) return new JSONMessage(false, __('manager.setup.errorDeletingItem'));
-
-		$newApprovedState = (int) $request->getUserVar('newApprovedState');
-		$publicationFormat->setIsApproved($newApprovedState);
-		$publicationFormatDao->updateObject($publicationFormat);
-
-		// log the state changing of the format.
-		import('lib.pkp.classes.log.SubmissionLog');
-		import('classes.log.SubmissionEventLogEntry');
-		SubmissionLog::logEvent(
-			$request, $this->getSubmission(),
-			$newApprovedState?SUBMISSION_LOG_PUBLICATION_FORMAT_PUBLISH:SUBMISSION_LOG_PUBLICATION_FORMAT_UNPUBLISH,
-			$newApprovedState?'submission.event.publicationFormatPublished':'submission.event.publicationFormatUnpublished',
-			array('publicationFormatName' => $publicationFormat->getLocalizedName())
-		);
-
-		// Update the formats tombstones.
-		import('classes.publicationFormat.PublicationFormatTombstoneManager');
-		$publicationFormatTombstoneMgr = new PublicationFormatTombstoneManager();
-		if ($publicationFormat->getIsAvailable() && $publicationFormat->getIsApproved()) {
-			// Delete any existing tombstone.
-			$publicationFormatTombstoneMgr->deleteTombstonesByPublicationFormats(array($publicationFormat));
-		} else {
-			// (Re)create a tombstone for this publication format.
-			$publicationFormatTombstoneMgr->deleteTombstonesByPublicationFormats(array($publicationFormat));
-			$publicationFormatTombstoneMgr->insertTombstoneByPublicationFormat($publicationFormat, $context);
-		}
-
-		return DAO::getDataChangedEvent($publicationFormat->getId());
-	}
-
-	/**
-	 * Set the approval status for a file.
-	 * @param $args array
-	 * @param $request PKPRequest
-	 */
-	function setProofFileCompletion($args, $request) {
-		$submission = $this->getSubmission();
-		$submissionFileDao = DAORegistry::getDAO('SubmissionFileDAO');
-		import('lib.pkp.classes.submission.SubmissionFile'); // Constants
-		$submissionFile = $submissionFileDao->getRevision(
-			$request->getUserVar('fileId'),
-			$request->getUserVar('revision'),
-			SUBMISSION_FILE_PROOF,
-			$submission->getId()
-		);
-		if ($submissionFile && $submissionFile->getAssocType()==ASSOC_TYPE_REPRESENTATION) {
-			// Update the approval flag
-			$submissionFile->setViewable($request->getUserVar('approval')?1:0);
-			$submissionFileDao->updateObject($submissionFile);
-
-			// Log the event
-			import('lib.pkp.classes.log.SubmissionFileLog');
-			import('lib.pkp.classes.log.SubmissionFileEventLogEntry'); // constants
-			$user = $request->getUser();
-			SubmissionFileLog::logEvent($request, $submissionFile, SUBMISSION_LOG_FILE_SIGNOFF_SIGNOFF, 'submission.event.signoffSignoff', array('file' => $submissionFile->getOriginalFileName(), 'name' => $user->getFullName(), 'username' => $user->getUsername()));
-
-			return DAO::getDataChangedEvent();
-		}
-		return new JSONMessage(false);
-	}
-
-	/**
 	 * Edit an approved proof.
 	 * @param $args array
 	 * @param $request PKPRequest
@@ -478,32 +332,9 @@ class PublicationFormatGridHandler extends CategoryGridHandler {
 
 		if ($approvedProofForm->validate()) {
 			$fileIdAndRevision = $approvedProofForm->execute($request);
-
-			// Let the calling grid reload itself
 			return DAO::getDataChangedEvent();
-		} else {
-			return new JSONMessage(true, $approvedProofForm->fetch($request));
 		}
-	}
-
-	/**
-	 * Show the form to allow the user to select files from previous stages
-	 * @param $args array
-	 * @param $request PKPRequest
-	 * @return JSONMessage JSON object
-	 */
-	function selectFiles($args, $request) {
-		$submission = $this->getSubmission();
-		$representationDao = Application::getRepresentationDAO();
-		$representation = $representationDao->getById(
-			$request->getUserVar('representationId'),
-			$submission->getId()
-		);
-
-		import('lib.pkp.controllers.grid.files.proof.form.ManageProofFilesForm');
-		$manageProofFilesForm = new ManageProofFilesForm($submission->getId(), $representation->getId());
-		$manageProofFilesForm->initData($args, $request);
-		return new JSONMessage(true, $manageProofFilesForm->fetch($request));
+		return new JSONMessage(true, $approvedProofForm->fetch($request));
 	}
 }
 

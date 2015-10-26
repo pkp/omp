@@ -79,12 +79,12 @@
 	<message key="grid.catalogEntry.publicationFormatRequired">Bitte wählen Sie ein Publikationsformat.</message>
 	<message key="grid.catalogEntry.isAvailable">Verfügbar</message>
 	<message key="grid.catalogEntry.proof">Korrekturfahne</message>
-	<message key="grid.catalogEntry.availablePublicationFormat.title">Annahme dieses Formats</message>
-	<message key="grid.catalogEntry.availablePublicationFormat.message"><![CDATA[<p>Das Buch wird nun in diesem Format den Leser/innen <em>verfügbar</em> gemacht: als Datei, die vom Katalog aus heruntergeladen werden kann, und/oder durch weitere Vertriebsmaßnahmen des Verlags.</p>]]></message>
-	<message key="grid.catalogEntry.availablePublicationFormat.removeMessage"><![CDATA[<p>In diesem Format wird das Buch nun für Leser/innen <em> nicht mehr angeboten</em> werden, weder über eine Downloadmöglichkeit im Katalog noch über weitere Vertriebsmaßnahmen des Verlags.</p>.]]></message>
-	<message key="grid.catalogEntry.availablePublicationFormat.catalogNotApprovedWarning">Katalogeintrag nicht akzeptiert.</message>
-	<message key="grid.catalogEntry.availablePublicationFormat.notApprovedWarning">Dieses Format ist nicht im Katalogeintrag enthalten.</message>
-	<message key="grid.catalogEntry.availablePublicationFormat.proofNotApproved">Korrekturfahne nicht akzeptiert.</message>
+	<message key="grid.catalogEntry.availableRepresentation.title">Annahme dieses Formats</message>
+	<message key="grid.catalogEntry.availableRepresentation.message"><![CDATA[<p>Das Buch wird nun in diesem Format den Leser/innen <em>verfügbar</em> gemacht: als Datei, die vom Katalog aus heruntergeladen werden kann, und/oder durch weitere Vertriebsmaßnahmen des Verlags.</p>]]></message>
+	<message key="grid.catalogEntry.availableRepresentation.removeMessage"><![CDATA[<p>In diesem Format wird das Buch nun für Leser/innen <em> nicht mehr angeboten</em> werden, weder über eine Downloadmöglichkeit im Katalog noch über weitere Vertriebsmaßnahmen des Verlags.</p>.]]></message>
+	<message key="grid.catalogEntry.availableRepresentation.catalogNotApprovedWarning">Katalogeintrag nicht akzeptiert.</message>
+	<message key="grid.catalogEntry.availableRepresentation.notApprovedWarning">Dieses Format ist nicht im Katalogeintrag enthalten.</message>
+	<message key="grid.catalogEntry.availableRepresentation.proofNotApproved">Korrekturfahne nicht akzeptiert.</message>
 
 	<!-- publication metadata required form field keys -->
 	<message key="grid.catalogEntry.fileSizeRequired">Für digitale Formate wird eine Dateigröße benötigt.</message>
@@ -208,7 +208,7 @@
 	<message key="grid.action.submissionEmail">Zum Lesen der E-Mail bitte klicken</message>
 	<message key="grid.action.approveProofs">Korrekturfahnen anzeigen</message>
 	<message key="grid.action.proofApproved">Das Format wurde geprüft</message>
-	<message key="grid.action.availablePublicationFormat">Format akzeptieren/ablehnen</message>
+	<message key="grid.action.availableRepresentation">Format akzeptieren/ablehnen</message>
 	<message key="grid.action.formatAvailable">Format ist verfügbar und wurde veröffentlicht</message>
 
 	<!-- Review Attachments -->

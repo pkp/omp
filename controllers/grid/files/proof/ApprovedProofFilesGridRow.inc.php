@@ -62,7 +62,7 @@ class ApprovedProofFilesGridRow extends GridRow {
 				)
 			);
 		} else {
-			$this->setNoActionMessage(__('grid.catalogEntry.availablePublicationFormat.proofNotApproved'));
+			$this->setNoActionMessage(__('grid.catalogEntry.availableRepresentation.proofNotApproved'));
 		}
 	}
 }

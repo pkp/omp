@@ -25,22 +25,6 @@ class PublicationFormat extends Representation {
 	}
 
 	/**
-	 * get approved flag
-	 * @return int
-	 */
-	function getIsApproved() {
-		return $this->getData('approved');
-	}
-
-	/**
-	 * set approved flag
-	 * @param $approved int
-	 */
-	function setIsApproved($approved) {
-		return $this->setData('approved', $approved);
-	}
-
-	/**
 	 * get physical format flag
 	 * @return bool
 	 */

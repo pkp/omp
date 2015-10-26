@@ -78,12 +78,12 @@
 	<message key="grid.catalogEntry.publicationFormatRequired">Debe elegirse formato de publicación</message>
 	<message key="grid.catalogEntry.isAvailable">Disponible</message>
 	<message key="grid.catalogEntry.proof">Prueba</message>
-	<message key="grid.catalogEntry.availablePublicationFormat.title">Aprobación de formato</message>
-	<message key="grid.catalogEntry.availablePublicationFormat.message"><![CDATA[<p>Este formato estará ahora <em>disponible</em> para los lectores a través de ficheros descargables que aparecerán ahora con la entrada del catálogo del libro, y/o a través de otras acciones llevadas a cabo por la prensa para la distribución del libro.</p>]]></message>
-	<message key="grid.catalogEntry.availablePublicationFormat.removeMessage"><![CDATA[<p>Este formato <em>dejará de estar disponible</em> para los lectores, a través de archivos descargables que previamente aparecían con la entrada del catálogo del libro y/o a través de otras acciones llevadas a cabo por la prensa para la distribución del libro.</p>]]></message>
-	<message key="grid.catalogEntry.availablePublicationFormat.catalogNotApprovedWarning">Entrada de catálogo no aprobada.</message>
-	<message key="grid.catalogEntry.availablePublicationFormat.notApprovedWarning">Formato no en entrada de catálogo</message>
-	<message key="grid.catalogEntry.availablePublicationFormat.proofNotApproved">Prueba no aprobada.</message>
+	<message key="grid.catalogEntry.availableRepresentation.title">Aprobación de formato</message>
+	<message key="grid.catalogEntry.availableRepresentation.message"><![CDATA[<p>Este formato estará ahora <em>disponible</em> para los lectores a través de ficheros descargables que aparecerán ahora con la entrada del catálogo del libro, y/o a través de otras acciones llevadas a cabo por la prensa para la distribución del libro.</p>]]></message>
+	<message key="grid.catalogEntry.availableRepresentation.removeMessage"><![CDATA[<p>Este formato <em>dejará de estar disponible</em> para los lectores, a través de archivos descargables que previamente aparecían con la entrada del catálogo del libro y/o a través de otras acciones llevadas a cabo por la prensa para la distribución del libro.</p>]]></message>
+	<message key="grid.catalogEntry.availableRepresentation.catalogNotApprovedWarning">Entrada de catálogo no aprobada.</message>
+	<message key="grid.catalogEntry.availableRepresentation.notApprovedWarning">Formato no en entrada de catálogo</message>
+	<message key="grid.catalogEntry.availableRepresentation.proofNotApproved">Prueba no aprobada.</message>
 
 	<!--  publication metadata required form field keys -->
 	<message key="grid.catalogEntry.fileSizeRequired">Se requiere un tamaño de fichero para formatos digitales</message>
@@ -209,7 +209,7 @@
 	<message key="grid.action.moreAnnouncements">Ir a página de comunicados de prensa</message>
 	<message key="grid.action.approveProofs">Ver cuadrícula de las pruebas</message>
 	<message key="grid.action.proofApproved">Se ha comprobado el formato</message>
-	<message key="grid.action.availablePublicationFormat">Aprobar / no aprobar este formato</message>
+	<message key="grid.action.availableRepresentation">Aprobar / no aprobar este formato</message>
 	<message key="grid.action.formatAvailable">El formato está disponible y publicado</message>
 
 	<!-- Used in submission review -->

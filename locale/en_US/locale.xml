@@ -82,17 +82,17 @@
 	<message key="grid.catalogEntry.isAvailable">Available</message>
 	<message key="grid.catalogEntry.isNotAvailable">Not Available</message>
 	<message key="grid.catalogEntry.proof">Proof</message>
-	<message key="grid.catalogEntry.approvedPublicationFormat.title">Format Approval</message>
-	<message key="grid.catalogEntry.approvedPublicationFormat.message"><![CDATA[<p>Add this format to the catalog entry.</p>]]></message>
-	<message key="grid.catalogEntry.approvedPublicationFormat.removeMessage"><![CDATA[<p>Remove this format from the catalog entry.</p>]]></message>
-	<message key="grid.catalogEntry.availablePublicationFormat.title">Format Availability</message>
-	<message key="grid.catalogEntry.availablePublicationFormat.message"><![CDATA[<p>Make this format <em>available to readers</em>. Downloadable files and any other distributions will appear in the book's catalog entry.</p>]]></message>
-	<message key="grid.catalogEntry.availablePublicationFormat.removeMessage"><![CDATA[<p>This format will <em>unavailable to readers</em>. Any downloadable files or other distributions will no longer appear in the book's catalog entry.</p>]]></message>
-	<message key="grid.catalogEntry.availablePublicationFormat.catalogNotApprovedWarning">Catalog entry not approved.</message>
-	<message key="grid.catalogEntry.availablePublicationFormat.notApprovedWarning">Format not in catalog entry.</message>
-	<message key="grid.catalogEntry.availablePublicationFormat.proofNotApproved">Proof not approved.</message>
-	<message key="grid.catalogEntry.availablePublicationFormat.approved">Approved</message>
-	<message key="grid.catalogEntry.availablePublicationFormat.notApproved">Awaiting Approval</message>
+	<message key="grid.catalogEntry.approvedRepresentation.title">Format Approval</message>
+	<message key="grid.catalogEntry.approvedRepresentation.message"><![CDATA[<p>Add this format to the catalog entry.</p>]]></message>
+	<message key="grid.catalogEntry.approvedRepresentation.removeMessage"><![CDATA[<p>Remove this format from the catalog entry.</p>]]></message>
+	<message key="grid.catalogEntry.availableRepresentation.title">Format Availability</message>
+	<message key="grid.catalogEntry.availableRepresentation.message"><![CDATA[<p>Make this format <em>available to readers</em>. Downloadable files and any other distributions will appear in the book's catalog entry.</p>]]></message>
+	<message key="grid.catalogEntry.availableRepresentation.removeMessage"><![CDATA[<p>This format will <em>unavailable to readers</em>. Any downloadable files or other distributions will no longer appear in the book's catalog entry.</p>]]></message>
+	<message key="grid.catalogEntry.availableRepresentation.catalogNotApprovedWarning">Catalog entry not approved.</message>
+	<message key="grid.catalogEntry.availableRepresentation.notApprovedWarning">Format not in catalog entry.</message>
+	<message key="grid.catalogEntry.availableRepresentation.proofNotApproved">Proof not approved.</message>
+	<message key="grid.catalogEntry.availableRepresentation.approved">Approved</message>
+	<message key="grid.catalogEntry.availableRepresentation.notApproved">Awaiting Approval</message>
 
 	<!--  publication metadata required form field keys -->
 	<message key="grid.catalogEntry.fileSizeRequired">A file size for digital formats required.</message>
@@ -218,7 +218,7 @@
 	<message key="grid.action.submissionEmail">Click to read this email</message>
 	<message key="grid.action.approveProofs">View the proofs grid</message>
 	<message key="grid.action.proofApproved">Format has been proofed</message>
-	<message key="grid.action.availablePublicationFormat">Approve/disapprove this format</message>
+	<message key="grid.action.availableRepresentation">Approve/disapprove this format</message>
 	<message key="grid.action.formatAvailable">Toggle the availability of this format on and off</message>
 
 	<!-- Review Attachments -->

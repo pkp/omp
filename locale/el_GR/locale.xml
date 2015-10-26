@@ -79,12 +79,12 @@
 	<message key="grid.catalogEntry.publicationFormatRequired">Ένα μορφότυπο της έκδοσης πρέπει να επιλεγεί.</message>
 	<message key="grid.catalogEntry.isAvailable">Διαθέσιμο</message>
 	<message key="grid.catalogEntry.proof">Τυπογραφικό Δοκίμιο</message>
-	<message key="grid.catalogEntry.availablePublicationFormat.title">Έγκριση Μορφότυπου</message>
-	<message key="grid.catalogEntry.availablePublicationFormat.message"><![CDATA[<p>Αυτό το μορφότυπο θα γίνει τώρα <em>διαθέσιμο</em> στους αναγνώστες, μέσω αρχείων διαθέσιμων για λήψη που θα εμφανίζονται με την καταχώρηση του βιβλίου στον κατάλογο και/ή μέσω περαιτέρω ενεργειών από τις εκδόσεις για τη διανομή του βιβλίου.</p>]]></message>
-	<message key="grid.catalogEntry.availablePublicationFormat.removeMessage"><![CDATA[<p>Αυτό το μορφότυπο <em>δεν διατίθεται πλεόν</em> στους αναγνώστες, μέσω αρχείων διαθέσιμων για λήψη που προηγούμένως εμφανίζονταν με την καταχώρηση του βιβλίου στον κατάλογο και/ή μέσω περαιτέρω ενεργειών από τις εκδόσεις για τη διανομή του βιβλίου.</p>]]></message>
-	<message key="grid.catalogEntry.availablePublicationFormat.catalogNotApprovedWarning">Η καταχώρηση στον κατάλογο δεν έγινε αποδεκτή</message>
-	<message key="grid.catalogEntry.availablePublicationFormat.notApprovedWarning">Το μορφότυπο δεν είναι καταχωρημένο στον κατάλογο</message>
-	<message key="grid.catalogEntry.availablePublicationFormat.proofNotApproved">Το τυπογραφικό δοκίμιο δεν έγινε αποδεκτό</message>
+	<message key="grid.catalogEntry.availableRepresentation.title">Έγκριση Μορφότυπου</message>
+	<message key="grid.catalogEntry.availableRepresentation.message"><![CDATA[<p>Αυτό το μορφότυπο θα γίνει τώρα <em>διαθέσιμο</em> στους αναγνώστες, μέσω αρχείων διαθέσιμων για λήψη που θα εμφανίζονται με την καταχώρηση του βιβλίου στον κατάλογο και/ή μέσω περαιτέρω ενεργειών από τις εκδόσεις για τη διανομή του βιβλίου.</p>]]></message>
+	<message key="grid.catalogEntry.availableRepresentation.removeMessage"><![CDATA[<p>Αυτό το μορφότυπο <em>δεν διατίθεται πλεόν</em> στους αναγνώστες, μέσω αρχείων διαθέσιμων για λήψη που προηγούμένως εμφανίζονταν με την καταχώρηση του βιβλίου στον κατάλογο και/ή μέσω περαιτέρω ενεργειών από τις εκδόσεις για τη διανομή του βιβλίου.</p>]]></message>
+	<message key="grid.catalogEntry.availableRepresentation.catalogNotApprovedWarning">Η καταχώρηση στον κατάλογο δεν έγινε αποδεκτή</message>
+	<message key="grid.catalogEntry.availableRepresentation.notApprovedWarning">Το μορφότυπο δεν είναι καταχωρημένο στον κατάλογο</message>
+	<message key="grid.catalogEntry.availableRepresentation.proofNotApproved">Το τυπογραφικό δοκίμιο δεν έγινε αποδεκτό</message>
 
 	<!--  publication metadata required form field keys -->
 	<message key="grid.catalogEntry.fileSizeRequired">Απαιτείται μέγεθος αρχείου για τα ψηφιακά μορφότυπα.</message>
@@ -211,7 +211,7 @@
 	<message key="grid.action.submissionEmail">Επιλέξτε για να διαβάσετε αυτό το email</message>
 	<message key="grid.action.approveProofs">Προβολή πλέγματος (grid) τυπογραφικών δοκιμίων</message>
 	<message key="grid.action.proofApproved">Έχει γίνει το τυπογραφικό δοκίμιο αυτού του μορφότυπου.</message>
-	<message key="grid.action.availablePublicationFormat">Αποδοχή/απόριψη αυτού του μορφότυπου</message>
+	<message key="grid.action.availableRepresentation">Αποδοχή/απόριψη αυτού του μορφότυπου</message>
 	<message key="grid.action.formatAvailable">Το μορφότυπο είναι διαθέσιμο και έχει δημοσιευθεί</message>
 
 	<!-- Used in submission review -->
