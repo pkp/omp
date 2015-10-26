@@ -246,7 +246,6 @@
 		var $element = this.getHtmlElement();
 		$.get(jsonContent.tabsUrl, function(data) {
 			var jsonData = $.parseJSON(data);
-			$element.unwrap();
 			$element.prev('div').remove();
 			$element.replaceWith(jsonData.content);
 		});
