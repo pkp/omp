@@ -16,9 +16,9 @@
 	<h1 class="page_title">
 		{translate key="search.searchResults"}
 	</h1>
-	<h2 class="page_subtitle">
+	<div class="monograph_count">
 		{translate key="catalog.browseTitles" numTitles=$publishedMonographs|@count}
-	</h2>
+	</div
 
 	{* No published titles *}
 	{if !$publishedMonographs|@count}
