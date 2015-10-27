@@ -26,7 +26,7 @@ class PublicationFormatTombstoneManager {
 	 * @param $publicationFormat PublicationFormat
 	 * @param $press Press
 	 */
-	function insertTombstoneByPublicationFormat(&$publicationFormat, &$press) {
+	function insertTombstoneByPublicationFormat($publicationFormat, $press) {
 		$monographDao = DAORegistry::getDAO('MonographDAO');
 		$monograph = $monographDao->getById($publicationFormat->getMonographId());
 		$seriesDao = DAORegistry::getDAO('SeriesDAO');
