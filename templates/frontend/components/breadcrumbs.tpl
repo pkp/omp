@@ -27,7 +27,7 @@
 				{if $currentTitleKey}
 					{translate key=$currentTitleKey}
 				{else}
-					{$currentTitle}
+					{$currentTitle|escape}
 				{/if}
 			</h1>
 		</li>
