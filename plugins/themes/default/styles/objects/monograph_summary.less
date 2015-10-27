@@ -11,6 +11,15 @@
 .obj_monograph_summary {
 	.pkp_helpers_clear;
 
+	.featured {
+		display: inline-block;
+		margin-bottom: @base;
+		border-bottom: @bg-border;
+		font-size: @font-sml;
+		line-height: @line-sml;
+		color: @text-light;
+	}
+
 	.cover {
 		display: block;
 
@@ -29,8 +38,9 @@
 	}
 
 	.title {
+		display: block;
 		font-size: @font-base;
-		line-height: @line-base;
+		line-height: 25px;
 	}
 
 	.author {

@@ -1,0 +1,55 @@
+/**
+ * @file  plugins/themes/default/styles/pages/catalogCategory.less
+ *
+ * Copyright (c) 2014-2015 Simon Fraser University Library
+ * Copyright (c) 2003-2015 John Willinsky
+ * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
+ *
+ * @brief Styles applying to a category page in the catalog
+ * @link templates/frontend/pages/catalogCategory.tpl
+ */
+.page_catalog_category {
+
+	.subcategories {
+
+		ul {
+			&:extend(.pkp_unstyled_list);
+		}
+
+		li {
+			padding-top: @half;
+			padding-bottom: @half;
+		}
+
+		a {
+			text-decoration: none;
+		}
+
+		@media(min-width: @screen-tablet) {
+			position: relative;
+			margin-top: @triple * 2;
+			margin-left: -@double;
+			margin-right: -@double;
+			padding: @triple;
+			border-top: @bg-border;
+			border-bottom: @bg-border;
+
+			h3 {
+				position: absolute;
+				top: -15px;
+				left: @double;
+				margin: 0;
+				padding-left: @base;
+				padding-right: @base;
+				line-height: @triple;
+				background: @lift;
+				color: @text-light;
+			}
+		}
+
+		@media(min-width: @screen-desktop) {
+			margin-left: -@triple;
+			margin-right: -@triple;
+		}
+	}
+}

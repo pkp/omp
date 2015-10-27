@@ -19,25 +19,14 @@
 
 	{* No published titles *}
 	{if !$publishedMonographs|@count}
+		<h3>
+			{translate key="catalog.allBooks"}
+		</h3>
 		<p>{translate key="catalog.noTitles"}</p>
 
 	{* Monograph List *}
 	{else}
-		<div class="cmp_monographs_list">
-			{foreach name="monographLoop" from=$publishedMonographs item=monograph}
-				{if $smarty.foreach.monographLoop.iteration is odd by 1}
-					<div class="row">
-				{/if}
-					{include file="frontend/objects/monograph_summary.tpl" monograph=$monograph}
-				{if $smarty.foreach.monographLoop.iteration is even by 1}
-					</div>
-				{/if}
-			{/foreach}
-			{* Close .row if we have an odd number of titles *}
-			{if $smarty.foreach.monographLoop.iteration is odd by 1}
-				</div>
-			{/if}
-		</div>
+		{include file="frontend/components/monographList.tpl" monographs=$publishedMonographs}
 	{/if}
 
 </div><!-- .page -->
