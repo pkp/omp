@@ -13,6 +13,8 @@
  * @uses $newReleasesMonographs array List of new monographs in this category
  * @uses $parentCategory Category Parent category if one exists
  * @uses $subcategories array List of subcategories if they exist
+ * @uses $alreadyShown array Array of monograph IDs which have already been
+ *       displayed. These IDs are excluded from later sections.
  *}
 {include file="common/frontend/header.tpl" pageTitleTranslated=$category->getLocalizedTitle()}
 
@@ -54,54 +56,25 @@
 				</li>
 			{/iterate}
 		</ul>
-	<nav>
+	</nav>
 	{/if}
 
 	{* No published titles in this category *}
 	{if empty($publishedMonographs)}
+		<h3>
+			{translate key="catalog.allBooks"}
+		</h3>
 		<p>{translate key="catalog.noTitlesSection"}</p>
 
 	{else}
 
-		{* Featured monographs *}
-		{if !empty($featuredMonographIds)}
-			<h3>
-				{translate key="catalog.featuredBooks"}
-			</h3>
-			<div class="cmp_monographs_list featured">
-				{assign var="counter" value=1}
-				{foreach from=$featuredMonographIds item=featuredMonographId}
-					{if array_key_exists($featuredMonographId, $publishedMonographs)}
-						{if $counter is odd by 1}
-							<div class="row">
-						{/if}
-							{include file="frontend/objects/monograph_summary.tpl" monograph=$publishedMonographs[$featuredMonographId]}
-						{if $counter is even by 1}
-							</div>
-						{/if}
-						{assign var=counter value=$counter+1}
-					{/if}
-				{/foreach}
-				{* Close .row if we have an odd number of titles *}
-				{if $counter > 1 && $counter is even by 1}
-					</div>
-				{/if}
-			</div>
-		{/if}
-
 		{* New releases *}
 		{if !empty($newReleasesMonographs)}
-			<h3>
-				{translate key="catalog.newReleases"}
-			</h3>
-			{include file="frontend/components/monographList.tpl" monographs=$newReleasesMonographs}
+			{include file="frontend/components/monographList.tpl" monographs=$newReleasesMonographs titleKey="catalog.newReleases"}
 		{/if}
 
 		{* All monographs *}
-		<h3>
-			{translate key="catalog.allBooks"}
-		</h3>
-		{include file="frontend/components/monographList.tpl" monographs=$publishedMonographs}
+		{include file="frontend/components/monographList.tpl" monographs=$publishedMonographs featured=$featuredMonographIds titleKey="catalog.allBooks"}
 
 	{/if}
 
