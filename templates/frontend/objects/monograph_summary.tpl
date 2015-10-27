@@ -20,6 +20,6 @@
 		{$monograph->getAuthorString()|escape}
 	</div>
 	<div class="date">
-		{$monograph->getDatePublished()|date_format:$dateFormatShort}
+		{$monograph->getDatePublished()|date_format:$dateFormatLong}
 	</div>
 </div><!-- .obj_monograph_summary -->

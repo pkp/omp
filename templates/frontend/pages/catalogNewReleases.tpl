@@ -14,28 +14,19 @@
 <div class="page page_catalog_new_releases">
 
 	{* Breadcrumb *}
-	{include file="frontend/components/breadcrumbs.tpl" currentTitleKey="catalog.newReleases"}
+	{include file="frontend/components/breadcrumbs_catalog.tpl" currentTitleKey="catalog.newReleases"}
 
-	{* Page title *}
-	<h1 class="page_title">
-		{translate key="catalog.newReleases"}
-	</h1>
-	<h2 class="page_subtitle">
+	{* Count of new releases being dispalyed *}
+	<div class="monograph_count">
 		{translate key="catalog.browseTitles" numTitles=$publishedMonographs|@count}
-	</h2>
+	</div>
 
 	{* No published titles in this category *}
 	{if empty($publishedMonographs)}
 		<p>{translate key="catalog.noTitlesNew"}</p>
 
 	{else}
-		<ul class="cmp_monographs_list">
-			{foreach from=$publishedMonographs item=monograph}
-				<li>
-					{include file="frontend/objects/monograph_summary.tpl" monograph=$monograph}
-				</li>
-			{/foreach}
-		</ul>
+		{include file="frontend/components/monographList.tpl" monographs=$publishedMonographs}
 
 	{/if}
 

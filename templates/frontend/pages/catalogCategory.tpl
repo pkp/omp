@@ -19,26 +19,26 @@
 <div class="page page_catalog_category">
 
 	{* Breadcrumb *}
-	{include file="frontend/components/breadcrumbs.tpl" type="category" parent=$parentCategory currentTitle=$category->getLocalizedTitle()}
+	{include file="frontend/components/breadcrumbs_catalog.tpl" type="category" parent=$parentCategory currentTitle=$category->getLocalizedTitle()}
 
-	{* Page title *}
-	<h1 class="page_title">
-		{$category->getLocalizedTitle()}
-	</h1>
-	<h2 class="page_subtitle">
+	{* Count of monographs in this category *}
+	<div class="monograph_count">
 		{translate key="catalog.browseTitles" numTitles=$publishedMonographs|@count}
-	</h2>
+	</div>
 
-	{* Image *}
+	{* Image and description *}
 	{assign var="image" value=$category->getImage()}
-	{if $image}
-		<a class="cover" href="{url router=$smarty.const.ROUTE_PAGE page="catalog" op="fullSize" type="category" id=$category->getId()}">
-			<img src="{url router=$smarty.const.ROUTE_PAGE page="catalog" op="thumbnail" type="category" id=$category->getId()}" alt="{$category->getLocalizedTitle()|escape}" />
-		</a>
-	{/if}
-
-	{* Description *}
-	{$category->getLocalizedDescription()|strip_unsafe_html}
+	{assign var="description" value=$category->getLocalizedDescription()|strip_unsafe_html}
+	<div class="about_section{if $image} has_image{/if}{if $description} has_description{/if}">
+		{if $image}
+			<div class="cover" href="{url router=$smarty.const.ROUTE_PAGE page="catalog" op="fullSize" type="category" id=$category->getId()}">
+				<img src="{url router=$smarty.const.ROUTE_PAGE page="catalog" op="thumbnail" type="category" id=$category->getId()}" alt="{$category->getLocalizedTitle()|escape}" />
+			</div>
+		{/if}
+		<div class="description">
+			{$description}
+		</div>
+	</div>
 
 	{if !$subcategories->wasEmpty()}
 	<nav class="subcategories" role="navigation">
@@ -68,15 +68,25 @@
 			<h3>
 				{translate key="catalog.featuredBooks"}
 			</h3>
-			<ul class="cmp_monographs_list featured">
+			<div class="cmp_monographs_list featured">
+				{assign var="counter" value=1}
 				{foreach from=$featuredMonographIds item=featuredMonographId}
 					{if array_key_exists($featuredMonographId, $publishedMonographs)}
-						<li>
+						{if $counter is odd by 1}
+							<div class="row">
+						{/if}
 							{include file="frontend/objects/monograph_summary.tpl" monograph=$publishedMonographs[$featuredMonographId]}
-						</li>
+						{if $counter is even by 1}
+							</div>
+						{/if}
+						{assign var=counter value=$counter+1}
 					{/if}
 				{/foreach}
-			</ul>
+				{* Close .row if we have an odd number of titles *}
+				{if $counter > 1 && $counter is even by 1}
+					</div>
+				{/if}
+			</div>
 		{/if}
 
 		{* New releases *}
@@ -84,26 +94,14 @@
 			<h3>
 				{translate key="catalog.newReleases"}
 			</h3>
-			<ul class="cmp_monographs_list new">
-				{foreach from=$newReleasesMonographs item=monograph}
-					<li>
-						{include file="frontend/objects/monograph_summary.tpl" monograph=$monograph}
-					</li>
-				{/foreach}
-			</ul>
+			{include file="frontend/components/monographList.tpl" monographs=$newReleasesMonographs}
 		{/if}
 
 		{* All monographs *}
 		<h3>
 			{translate key="catalog.allBooks"}
 		</h3>
-		<ul class="cmp_monographs_list">
-			{foreach from=$publishedMonographs item=monograph}
-				<li>
-					{include file="frontend/objects/monograph_summary.tpl" monograph=$monograph}
-				</li>
-			{/foreach}
-		</ul>
+		{include file="frontend/components/monographList.tpl" monographs=$publishedMonographs}
 
 	{/if}
 

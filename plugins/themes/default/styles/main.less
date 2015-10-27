@@ -66,14 +66,47 @@
 		margin-bottom: 0;
 	}
 
-	// Page titles shuld always have h1 styles
-	.page_title {
-		&:extend(.pkp_structure_main h1);
-		margin-top: 0;
-	}
+	.page {
 
-	.page_subtitle {
-		&:extend(.pkp_structure_main h3);
-		margin-top: 0;
+		// Count of catalog entries on the current page
+		// used in catalog, category, series and search pages
+		.monograph_count {
+			float: right;
+			padding: @base 0;
+			font-size: @font-sml;
+			color: @text-light;
+		}
+
+		// Description and image for catalog category/series
+		.about_section {
+			.pkp_helpers_clear;
+			color: @text-light;
+			line-height: @triple;
+
+			.cover {
+				float: right;
+				width: 20%;
+				margin-left: 10%;
+				margin-right: 10%;
+
+				img {
+					display: block;
+					margin: 0 auto;
+				}
+			}
+
+			.description p:first-child {
+				margin-top: 0;
+			}
+
+			.description p:last-child {
+				margin-bottom: 0;
+			}
+
+			@media(min-width: @screen-phone) {
+				font-size: @font-bump;
+				font-style: italic;
+			}
+		}
 	}
 }

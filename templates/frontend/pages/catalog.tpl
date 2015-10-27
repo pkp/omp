@@ -12,12 +12,10 @@
 {include file="common/frontend/header.tpl" pageTitle="navigation.catalog"}
 
 <div class="page page_catalog">
-	<h1 class="page_title">
-		{translate key="navigation.catalog"}
-	</h1>
-	<h2 class="page_subtitle">
+	{include file="frontend/components/breadcrumbs.tpl" currentTitleKey="navigation.catalog"}
+	<div class="monograph_count">
 		{translate key="catalog.browseTitles" numTitles=$publishedMonographs|@count}
-	</h2>
+	</div>
 
 	{* No published titles *}
 	{if !$publishedMonographs|@count}
@@ -25,13 +23,21 @@
 
 	{* Monograph List *}
 	{else}
-		<ul class="cmp_monographs_list">
-			{foreach from=$publishedMonographs item=monograph}
-				<li>
+		<div class="cmp_monographs_list">
+			{foreach name="monographLoop" from=$publishedMonographs item=monograph}
+				{if $smarty.foreach.monographLoop.iteration is odd by 1}
+					<div class="row">
+				{/if}
 					{include file="frontend/objects/monograph_summary.tpl" monograph=$monograph}
-				</li>
+				{if $smarty.foreach.monographLoop.iteration is even by 1}
+					</div>
+				{/if}
 			{/foreach}
-		</ul>
+			{* Close .row if we have an odd number of titles *}
+			{if $smarty.foreach.monographLoop.iteration is odd by 1}
+				</div>
+			{/if}
+		</div>
 	{/if}
 
 </div><!-- .page -->
