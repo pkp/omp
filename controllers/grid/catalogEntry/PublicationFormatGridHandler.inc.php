@@ -331,7 +331,7 @@ class PublicationFormatGridHandler extends RepresentationsGridHandler {
 		$approvedProofForm->readInputData();
 
 		if ($approvedProofForm->validate()) {
-			$fileIdAndRevision = $approvedProofForm->execute($request);
+			$approvedProofForm->execute($request);
 			return DAO::getDataChangedEvent();
 		}
 		return new JSONMessage(true, $approvedProofForm->fetch($request));
