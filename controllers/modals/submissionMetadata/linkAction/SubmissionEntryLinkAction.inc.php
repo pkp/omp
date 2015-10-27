@@ -27,31 +27,32 @@ class SubmissionEntryLinkAction extends LinkAction {
 	 * @param $image string
 	 */
 	function SubmissionEntryLinkAction($request, $monographId, $stageId, $selectedFormatId = null, $image = 'information') {
-		// Instantiate the modal.
-		$dispatcher = $request->getDispatcher();
-		import('lib.pkp.classes.linkAction.request.AjaxModal');
-
-		$actionArgs = array();
-		$actionArgs['submissionId'] = $monographId;
-		$actionArgs['stageId'] = $stageId;
+		$actionArgs = array(
+			'submissionId' => $monographId,
+			'stageId' => $stageId,
+		);
 		if ($selectedFormatId) {
 			$actionArgs['selectedFormatId'] = $selectedFormatId;
 		}
 
-		$modal = new AjaxModal(
-			$dispatcher->url(
-				$request, ROUTE_COMPONENT, null,
-				'modals.submissionMetadata.CatalogEntryHandler',
-				'fetch', null,
-				$actionArgs
+		$dispatcher = $request->getDispatcher();
+		import('lib.pkp.classes.linkAction.request.AjaxModal');
+		parent::LinkAction(
+			'catalogEntry',
+			new AjaxModal(
+				$dispatcher->url(
+					$request, ROUTE_COMPONENT, null,
+					'modals.submissionMetadata.CatalogEntryHandler',
+					'fetch', null,
+					$actionArgs
+				),
+				__('submission.catalogEntry'),
+				'modal_more_info'
 			),
 			__('submission.catalogEntry'),
-			'modal_more_info'
+			$image,
+			$image == 'completed'?__('grid.action.formatInCatalogEntry'):null
 		);
-
-		// Configure the link action.
-		$toolTip = ($image == 'completed') ? __('grid.action.formatInCatalogEntry') : null;
-		parent::LinkAction('catalogEntry', $modal, __('submission.catalogEntry'), $image, $toolTip);
 	}
 }
 

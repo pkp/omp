@@ -82,13 +82,5 @@
 		{/fbvFormSection}
 	{/fbvFormArea}
 
-	{fbvFormArea id="publicationFormats"}
-		{fbvFormSection}
-			<!--  Formats -->
-			{url|assign:formatGridUrl router=$smarty.const.ROUTE_COMPONENT  component="grid.catalogEntry.PublicationFormatGridHandler" op="fetchGrid" submissionId=$submissionId inCatalogEntryModal=true escape=false}
-			{load_url_in_div id="formatsGridContainer"|uniqid url=$formatGridUrl}
-		{/fbvFormSection}
-	{/fbvFormArea}
-
 	{fbvFormButtons id="catalogMetadataFormSubmit" submitText="common.save"}
 </form>

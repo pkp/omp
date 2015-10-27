@@ -33,18 +33,6 @@
 
 	<h3>{translate key="monograph.publicationFormat.formatMetadata"}</h3>
 
-	{fbvFormArea id="catalogInclusion"}
-		{fbvFormSection list="true"}
-			{fbvElement type="checkbox" id="isApproved" checked=$isApproved label="monograph.publicationFormat.isApproved"}
-		{/fbvFormSection}
-	{/fbvFormArea}
-
-	{* E-commerce settings *}
-	{if $paymentConfigured}
-		{url|assign:approvedProofGridUrl router=$smarty.const.ROUTE_COMPONENT component="grid.files.proof.ApprovedProofFilesGridHandler" op="fetchGrid" submissionId=$submissionId representationId=$representationId escape=false}
-		{load_url_in_div id="approvedProofGrid-$representationId" url=$approvedProofGridUrl}
-	{/if}
-
 	{fbvFormArea id="productIdentifier"}
 		{fbvFormSection}
 			<!-- Product Identification Codes -->

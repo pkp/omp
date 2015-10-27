@@ -80,12 +80,12 @@
 	<message key="grid.catalogEntry.publicationFormatRequired">Vous devez choisir un format de publication.</message>
 	<message key="grid.catalogEntry.isAvailable">Disponible</message>
 	<message key="grid.catalogEntry.proof">Épreuve</message>
-	<message key="grid.catalogEntry.availablePublicationFormat.title">Approbation du format</message>
-	<message key="grid.catalogEntry.availablePublicationFormat.message"><![CDATA[<p>Ce format sera <em>accessible</em> aux lecteurs. Ils pourront consulter des fichiers téléchargeables qui apparaitront désormais dans l'entrée de catalogue du livre et/ou par le biais d'autres actions entreprises par la presse pour la distribution du livre.</p>]]></message>
-	<message key="grid.catalogEntry.availablePublicationFormat.removeMessage"><![CDATA[<p>Ce format <em>ne sera plus accessible</em> aux lecteurs par le biais de fichiers téléchargeables qui auparavant apparaissaient dans l'entrée de catalogue du livre et/ou par le biais d'autres actions entreprises par la presse pour la distribution du livre.</p>]]></message>
-	<message key="grid.catalogEntry.availablePublicationFormat.catalogNotApprovedWarning">L'entrée de catalogue n'a pas été approuvée.</message>
-	<message key="grid.catalogEntry.availablePublicationFormat.notApprovedWarning">Ce format n'est pas disponible dans l'entrée de catalogue.</message>
-	<message key="grid.catalogEntry.availablePublicationFormat.proofNotApproved">L'épreuve n'a pas été approuvée.</message>
+	<message key="grid.catalogEntry.availableRepresentation.title">Approbation du format</message>
+	<message key="grid.catalogEntry.availableRepresentation.message"><![CDATA[<p>Ce format sera <em>accessible</em> aux lecteurs. Ils pourront consulter des fichiers téléchargeables qui apparaitront désormais dans l'entrée de catalogue du livre et/ou par le biais d'autres actions entreprises par la presse pour la distribution du livre.</p>]]></message>
+	<message key="grid.catalogEntry.availableRepresentation.removeMessage"><![CDATA[<p>Ce format <em>ne sera plus accessible</em> aux lecteurs par le biais de fichiers téléchargeables qui auparavant apparaissaient dans l'entrée de catalogue du livre et/ou par le biais d'autres actions entreprises par la presse pour la distribution du livre.</p>]]></message>
+	<message key="grid.catalogEntry.availableRepresentation.catalogNotApprovedWarning">L'entrée de catalogue n'a pas été approuvée.</message>
+	<message key="grid.catalogEntry.availableRepresentation.notApprovedWarning">Ce format n'est pas disponible dans l'entrée de catalogue.</message>
+	<message key="grid.catalogEntry.availableRepresentation.proofNotApproved">L'épreuve n'a pas été approuvée.</message>
 
 	<!--  publication metadata required form field keys -->
 	<message key="grid.catalogEntry.fileSizeRequired">Pour les formats numériques, vous devez indiquer la taille du fichier.</message>
@@ -193,7 +193,6 @@
 	<message key="grid.action.releaseMonograph">Qualifier cette soumission de 'nouveauté'</message>
 	<message key="grid.action.manageCategories">Configurer les catégories de cette presse</message>
 	<message key="grid.action.manageSeries">Configurer la série de cette presse</message>
-	<message key="grid.action.editApprovedProof">Modifier cette épreuve approuvée</message>
 	<message key="grid.action.addCode">Ajouter un code d'identification</message>
 	<message key="grid.action.editCode">Modifier ce code</message>
 	<message key="grid.action.deleteCode">Supprimer ce code</message>
@@ -213,7 +212,7 @@
 	<message key="grid.action.submissionEmail">Cliquer pour lire ce courriel</message>
 	<message key="grid.action.approveProofs">Visionner la grille des épreuves</message>
 	<message key="grid.action.proofApproved">Le format a été vérifié</message>
-	<message key="grid.action.availablePublicationFormat">Approuver/ne pas approuver ce format</message>
+	<message key="grid.action.availableRepresentation">Approuver/ne pas approuver ce format</message>
 	<message key="grid.action.formatAvailable">Le format est disponible et publié</message>
 
 	<!-- Used in submission review -->

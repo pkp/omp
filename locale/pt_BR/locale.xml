@@ -76,12 +76,12 @@
 	<message key="grid.catalogEntry.publicationFormatRequired">Um formato de publicação deve ser escolhido.</message>
 	<message key="grid.catalogEntry.isAvailable">Disponível</message>
 	<message key="grid.catalogEntry.proof">Prova</message>
-	<message key="grid.catalogEntry.availablePublicationFormat.title">Aprovação de formato</message>
-	<message key="grid.catalogEntry.availablePublicationFormat.message"><![CDATA[<p>Este formato estará agora <em>disponível</em> para os leitores, por meio de aruqivos para baixar que aparecerão no catálogo de entradas do livro e/ou por meio de ações adicionais definidas pela editora para distribuição.</p>]]></message>
-	<message key="grid.catalogEntry.availablePublicationFormat.removeMessage"><![CDATA[<p>Este formato <em>não estará mais disponível</em> para leitores, por meio de arquivos para baixar que apareciam anteriormente no catálogo de entradas do livro ou por meio de ações adicionais definidas pela editora para distribuição.</p>]]></message>
-	<message key="grid.catalogEntry.availablePublicationFormat.catalogNotApprovedWarning">Entrada de catálogo não aprovada.</message>
-	<message key="grid.catalogEntry.availablePublicationFormat.notApprovedWarning">Formato indisponível para a entrada do catálog.</message>
-	<message key="grid.catalogEntry.availablePublicationFormat.proofNotApproved">Prova não aprovada.</message>
+	<message key="grid.catalogEntry.availableRepresentation.title">Aprovação de formato</message>
+	<message key="grid.catalogEntry.availableRepresentation.message"><![CDATA[<p>Este formato estará agora <em>disponível</em> para os leitores, por meio de aruqivos para baixar que aparecerão no catálogo de entradas do livro e/ou por meio de ações adicionais definidas pela editora para distribuição.</p>]]></message>
+	<message key="grid.catalogEntry.availableRepresentation.removeMessage"><![CDATA[<p>Este formato <em>não estará mais disponível</em> para leitores, por meio de arquivos para baixar que apareciam anteriormente no catálogo de entradas do livro ou por meio de ações adicionais definidas pela editora para distribuição.</p>]]></message>
+	<message key="grid.catalogEntry.availableRepresentation.catalogNotApprovedWarning">Entrada de catálogo não aprovada.</message>
+	<message key="grid.catalogEntry.availableRepresentation.notApprovedWarning">Formato indisponível para a entrada do catálog.</message>
+	<message key="grid.catalogEntry.availableRepresentation.proofNotApproved">Prova não aprovada.</message>
 
 	<!--  publication metadata required form field keys -->
 	<message key="grid.catalogEntry.fileSizeRequired">É obrigatório informar o tamanho de arquivo para formatos digitais.</message>
@@ -189,7 +189,6 @@
 	<message key="grid.action.releaseMonograph">Marcar submissão como 'novo lançamento'</message>
 	<message key="grid.action.manageCategories">Configurar categorias para esta editora</message>
 	<message key="grid.action.manageSeries">Configurar séries para esta editora</message>
-	<message key="grid.action.editApprovedProof">Editar esta prova homologada</message>
 	<message key="grid.action.addCode">Incluir código de identificação</message>
 	<message key="grid.action.editCode">Editar código</message>
 	<message key="grid.action.deleteCode">Excluir código</message>
@@ -208,7 +207,7 @@
 	<message key="grid.action.moreAnnouncements">Acessar página de notícias</message>
 	<message key="grid.action.approveProofs">Ver grid de provas</message>
 	<message key="grid.action.proofApproved">Prova de formato produzida</message>
-	<message key="grid.action.availablePublicationFormat">Des/Aprovar este formato</message>
+	<message key="grid.action.availableRepresentation">Des/Aprovar este formato</message>
 	<message key="grid.action.formatAvailable">Formato disponível e publicado</message>
 
 	<!-- Used in submission review -->
