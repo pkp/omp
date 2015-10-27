@@ -32,7 +32,7 @@
 		{if $parent}
 			<li>
 				<a href="{url op=$type path=$parent->getPath()}">
-					{$parent->getLocalizedTitle()}
+					{$parent->getLocalizedTitle()|escape}
 				</a>
 				<span class="separator">{translate key="navigation.breadcrumbSeparator"}</span>
 			</li>
@@ -42,7 +42,7 @@
 				{if $currentTitleKey}
 					{translate key=$currentTitleKey}
 				{else}
-					{$currentTitle}
+					{$currentTitle|escape}
 				{/if}
 			</h1>
 		</li>
