@@ -17,74 +17,43 @@
 <div class="page page_catalog_series">
 
 	{* Breadcrumb *}
-	{include file="frontend/components/breadcrumbs.tpl" type="series" currentTitle=$series->getLocalizedTitle()}
+	{include file="frontend/components/breadcrumbs_catalog.tpl" type="series" currentTitle=$series->getLocalizedTitle()}
 
-	{* Page title *}
-	<h1 class="page_title">
-		{$series->getLocalizedTitle()}
-	</h1>
-	<h2 class="page_subtitle">
+	{* Count of monographs in this series *}
+	<div class="monograph_count">
 		{translate key="catalog.browseTitles" numTitles=$publishedMonographs|@count}
-	</h2>
+	</div>
 
-	{* Image *}
+	{* Image and description *}
 	{assign var="image" value=$series->getImage()}
-	{if $image}
-		<a class="cover" href="{url router=$smarty.const.ROUTE_PAGE page="catalog" op="fullSize" type="series" id=$series->getId()}">
-			<img src="{url router=$smarty.const.ROUTE_PAGE page="catalog" op="thumbnail" type="series" id=$series->getId()}" alt="{$series->getLocalizedTitle()|escape}" />
-		</a>
-	{/if}
-
-	{* Description *}
-	{$series->getLocalizedDescription()|strip_unsafe_html}
+	{assign var="description" value=$series->getLocalizedDescription()|strip_unsafe_html}
+	<div class="about_section{if $image} has_image{/if}{if $description} has_description{/if}">
+		{if $image}
+			<div class="cover" href="{url router=$smarty.const.ROUTE_PAGE page="catalog" op="fullSize" type="series" id=$series->getId()}">
+				<img src="{url router=$smarty.const.ROUTE_PAGE page="catalog" op="thumbnail" type="series" id=$series->getId()}" alt="{$series->getLocalizedTitle()|escape}" />
+			</div>
+		{/if}
+		<div class="description">
+			{$description|nl2br|strip_unsafe_html}
+		</div>
+	</div>
 
 	{* No published titles in this category *}
 	{if empty($publishedMonographs)}
+		<h3>
+			{translate key="catalog.allBooks"}
+		</h3>
 		<p>{translate key="catalog.noTitlesSection"}</p>
 
 	{else}
 
-		{* Featured monographs *}
-		{if !empty($featuredMonographIds)}
-			<h3>
-				{translate key="catalog.featuredBooks"}
-			</h3>
-			<ul class="cmp_monographs_list featured">
-				{foreach from=$featuredMonographIds item=featuredMonographId}
-					{if array_key_exists($featuredMonographId, $publishedMonographs)}
-						<li>
-							{include file="frontend/objects/monograph_summary.tpl" monograph=$publishedMonographs[$featuredMonographId]}
-						</li>
-					{/if}
-				{/foreach}
-			</ul>
-		{/if}
-
 		{* New releases *}
 		{if !empty($newReleasesMonographs)}
-			<h3>
-				{translate key="catalog.newReleases"}
-			</h3>
-			<ul class="cmp_monographs_list new">
-				{foreach from=$newReleasesMonographs item=monograph}
-					<li>
-						{include file="frontend/objects/monograph_summary.tpl" monograph=$monograph}
-					</li>
-				{/foreach}
-			</ul>
+			{include file="frontend/components/monographList.tpl" monographs=$newReleasesMonographs titleKey="catalog.newReleases"}
 		{/if}
 
 		{* All monographs *}
-		<h3>
-			{translate key="catalog.allBooks"}
-		</h3>
-		<ul class="cmp_monographs_list">
-			{foreach from=$publishedMonographs item=monograph}
-				<li>
-					{include file="frontend/objects/monograph_summary.tpl" monograph=$monograph}
-				</li>
-			{/foreach}
-		</ul>
+		{include file="frontend/components/monographList.tpl" monographs=$publishedMonographs featured=$featuredMonographIds titleKey="catalog.allBooks"}
 
 	{/if}
 

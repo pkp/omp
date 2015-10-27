@@ -13,26 +13,27 @@
 {include file="common/frontend/header.tpl" pageTitle="search.searchResults"}
 
 <div class="page page_catalog">
-	<h1 class="page_title">
-		{translate key="search.searchResults"}
-	</h1>
-	<h2 class="page_subtitle">
+
+	{* Breadcrumb *}
+	{include file="frontend/components/breadcrumbs.tpl" type="category" currentTitleKey="search.searchResults"}
+	<div class="monograph_count">
 		{translate key="catalog.browseTitles" numTitles=$publishedMonographs|@count}
-	</h2>
+	</div>
 
 	{* No published titles *}
 	{if !$publishedMonographs|@count}
-		<p>{translate key="catalog.noTitlesSearch" searchQuery=$searchQuery}</p>
+		<div>{translate key="catalog.noTitlesSearch" searchQuery=$searchQuery}</div>
 
 	{* Monograph List *}
 	{else}
-		<ul class="cmp_monographs_list">
-			{foreach from=$publishedMonographs item=monograph}
-				<li>
-					{include file="frontend/objects/monograph_summary.tpl" monograph=$monograph}
-				</li>
-			{/foreach}
-		</ul>
+		<div>
+			{if $publishedMonographs|@count > 1}
+				{translate key="catalog.foundTitlesSearch" searchQuery=$searchQuery number=$publishedMonographs|@count}
+			{else}
+				{translate key="catalog.foundTitleSearch" searchQuery=$searchQuery}
+			{/if}
+		</div>
+		{include file="frontend/components/monographList.tpl" monographs=$publishedMonographs}
 	{/if}
 
 </div><!-- .page -->

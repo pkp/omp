@@ -11,6 +11,15 @@
 .obj_monograph_summary {
 	.pkp_helpers_clear;
 
+	.featured {
+		display: inline-block;
+		margin-bottom: @base;
+		border-bottom: @bg-border;
+		font-size: @font-sml;
+		line-height: @line-sml;
+		color: @text-light;
+	}
+
 	.cover {
 		display: block;
 
@@ -29,18 +38,19 @@
 	}
 
 	.title {
-		font-size: @font-lead;
-		line-height: @line-lead;
+		display: block;
+		font-size: @font-base;
+		line-height: 25px;
 	}
 
 	.author {
-		padding: 4px 0;
-		font-size: @font-bump;
-		line-height: @line-bump;
-		color: @text-light;
+		padding-top: @half;
+		font-size: @font-sml;
+		line-height: @line-sml;
 	}
 
 	.date {
+		padding-top: @half;
 		font-size: @font-sml;
 		line-height: @line-sml;
 		color: @text-light;
@@ -50,7 +60,7 @@
 
 		> * {
 			display: block;
-			margin-left: @base * 10;
+			margin-left: @base * 11;
 		}
 
 		.cover {

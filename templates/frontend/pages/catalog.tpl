@@ -12,26 +12,21 @@
 {include file="common/frontend/header.tpl" pageTitle="navigation.catalog"}
 
 <div class="page page_catalog">
-	<h1 class="page_title">
-		{translate key="navigation.catalog"}
-	</h1>
-	<h2 class="page_subtitle">
+	{include file="frontend/components/breadcrumbs.tpl" currentTitleKey="navigation.catalog"}
+	<div class="monograph_count">
 		{translate key="catalog.browseTitles" numTitles=$publishedMonographs|@count}
-	</h2>
+	</div>
 
 	{* No published titles *}
 	{if !$publishedMonographs|@count}
+		<h3>
+			{translate key="catalog.allBooks"}
+		</h3>
 		<p>{translate key="catalog.noTitles"}</p>
 
 	{* Monograph List *}
 	{else}
-		<ul class="cmp_monographs_list">
-			{foreach from=$publishedMonographs item=monograph}
-				<li>
-					{include file="frontend/objects/monograph_summary.tpl" monograph=$monograph}
-				</li>
-			{/foreach}
-		</ul>
+		{include file="frontend/components/monographList.tpl" monographs=$publishedMonographs}
 	{/if}
 
 </div><!-- .page -->

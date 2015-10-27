@@ -13,32 +13,34 @@
  * @uses $newReleasesMonographs array List of new monographs in this category
  * @uses $parentCategory Category Parent category if one exists
  * @uses $subcategories array List of subcategories if they exist
+ * @uses $alreadyShown array Array of monograph IDs which have already been
+ *       displayed. These IDs are excluded from later sections.
  *}
 {include file="common/frontend/header.tpl" pageTitleTranslated=$category->getLocalizedTitle()}
 
 <div class="page page_catalog_category">
 
 	{* Breadcrumb *}
-	{include file="frontend/components/breadcrumbs.tpl" type="category" parent=$parentCategory currentTitle=$category->getLocalizedTitle()}
+	{include file="frontend/components/breadcrumbs_catalog.tpl" type="category" parent=$parentCategory currentTitle=$category->getLocalizedTitle()}
 
-	{* Page title *}
-	<h1 class="page_title">
-		{$category->getLocalizedTitle()}
-	</h1>
-	<h2 class="page_subtitle">
+	{* Count of monographs in this category *}
+	<div class="monograph_count">
 		{translate key="catalog.browseTitles" numTitles=$publishedMonographs|@count}
-	</h2>
+	</div>
 
-	{* Image *}
+	{* Image and description *}
 	{assign var="image" value=$category->getImage()}
-	{if $image}
-		<a class="cover" href="{url router=$smarty.const.ROUTE_PAGE page="catalog" op="fullSize" type="category" id=$category->getId()}">
-			<img src="{url router=$smarty.const.ROUTE_PAGE page="catalog" op="thumbnail" type="category" id=$category->getId()}" alt="{$category->getLocalizedTitle()|escape}" />
-		</a>
-	{/if}
-
-	{* Description *}
-	{$category->getLocalizedDescription()|strip_unsafe_html}
+	{assign var="description" value=$category->getLocalizedDescription()|strip_unsafe_html}
+	<div class="about_section{if $image} has_image{/if}{if $description} has_description{/if}">
+		{if $image}
+			<div class="cover" href="{url router=$smarty.const.ROUTE_PAGE page="catalog" op="fullSize" type="category" id=$category->getId()}">
+				<img src="{url router=$smarty.const.ROUTE_PAGE page="catalog" op="thumbnail" type="category" id=$category->getId()}" alt="{$category->getLocalizedTitle()|escape}" />
+			</div>
+		{/if}
+		<div class="description">
+			{$description|nl2br|strip_unsafe_html}
+		</div>
+	</div>
 
 	{if !$subcategories->wasEmpty()}
 	<nav class="subcategories" role="navigation">
@@ -49,61 +51,30 @@
 			{iterate from=subcategories item=subcategory}
 				<li>
 					<a href="{url op="category" path=$subcategory->getPath()}">
-						{$subcategory->getLocalizedTitle()}
+						{$subcategory->getLocalizedTitle()|escape}
 					</a>
 				</li>
 			{/iterate}
 		</ul>
-	<nav>
+	</nav>
 	{/if}
 
 	{* No published titles in this category *}
 	{if empty($publishedMonographs)}
+		<h3>
+			{translate key="catalog.allBooks"}
+		</h3>
 		<p>{translate key="catalog.noTitlesSection"}</p>
 
 	{else}
 
-		{* Featured monographs *}
-		{if !empty($featuredMonographIds)}
-			<h3>
-				{translate key="catalog.featuredBooks"}
-			</h3>
-			<ul class="cmp_monographs_list featured">
-				{foreach from=$featuredMonographIds item=featuredMonographId}
-					{if array_key_exists($featuredMonographId, $publishedMonographs)}
-						<li>
-							{include file="frontend/objects/monograph_summary.tpl" monograph=$publishedMonographs[$featuredMonographId]}
-						</li>
-					{/if}
-				{/foreach}
-			</ul>
-		{/if}
-
 		{* New releases *}
 		{if !empty($newReleasesMonographs)}
-			<h3>
-				{translate key="catalog.newReleases"}
-			</h3>
-			<ul class="cmp_monographs_list new">
-				{foreach from=$newReleasesMonographs item=monograph}
-					<li>
-						{include file="frontend/objects/monograph_summary.tpl" monograph=$monograph}
-					</li>
-				{/foreach}
-			</ul>
+			{include file="frontend/components/monographList.tpl" monographs=$newReleasesMonographs titleKey="catalog.newReleases"}
 		{/if}
 
 		{* All monographs *}
-		<h3>
-			{translate key="catalog.allBooks"}
-		</h3>
-		<ul class="cmp_monographs_list">
-			{foreach from=$publishedMonographs item=monograph}
-				<li>
-					{include file="frontend/objects/monograph_summary.tpl" monograph=$monograph}
-				</li>
-			{/foreach}
-		</ul>
+		{include file="frontend/components/monographList.tpl" monographs=$publishedMonographs featured=$featuredMonographIds titleKey="catalog.allBooks"}
 
 	{/if}
 

@@ -181,24 +181,107 @@
 
 // List of monographs
 .cmp_monographs_list {
-	&:extend(.pkp_unstyled_list);
+	margin-left: -@base;
+	margin-right: -@base;
 
-	> li {
-		margin-bottom: @double * 2;
+	> .title {
+		font-size: @font-bump;
+		line-height: @triple;
+		padding: 0 @base;
+	}
 
-		&:last-child {
-			margin-bottom: 0;
+	.obj_monograph_summary {
+		padding: @double @base;
+	}
+
+	@media(min-width: @screen-tablet) {
+		position: relative;
+		margin-top: @triple * 2;
+		margin-left: -@double;
+		margin-right: -@double;
+		border-top: @bg-border;
+
+		> .title {
+			position: absolute;
+			top: -15px;
+			left: @double;
+			margin: 0;
+			padding: 0 @base;
+			background: @lift;
+			color: @text-light;
+		}
+
+		.obj_monograph_summary {
+			padding: @triple;
+			border-bottom: @bg-border;
+		}
+
+		.row:last-child .obj_monograph_summary:last-child,
+		> .obj_monograph_summary:last-child { // if last is a featured monograph
+			border-bottom: none;
+		}
+	}
+
+	@media(min-width: @screen-desktop) {
+		margin-left: -@triple;
+		margin-right: -@triple;
+
+		.obj_monograph_summary {
+			padding: @triple;
+		}
+	}
+
+	@media(min-width: @screen-lg-desktop) {
+		border-top: @bg-border;
+
+		.row {
+			.pkp_helpers_clear;
+			border-bottom: @bg-border;
+		}
+
+		.obj_monograph_summary {
+			position: relative;
+			float: left;
+			width: 50%;
+			border-bottom: none;
+
+			&:first-child {
+				padding-right: @triple;
+				border-top: none;
+				border-right: @bg-border;
+			}
+		}
+
+		.obj_monograph_summary + .obj_monograph_summary {
+			padding-left: @triple;
+			margin-left: -1px; // ensure right/left borders overlap
+			border-left: @bg-border;
+		}
+
+		.obj_monograph_summary.is_featured {
+			float: none;
+			width: 100%;
+			border-right: none;
+			border-left: none;
+			border-bottom: @bg-border;
+
+			&:last-child {
+				border-bottom: none;
+			}
 		}
 	}
 }
 
 // Breadcrumbs
 .cmp_breadcrumbs {
+	display: inline-block;
+
 
 	ol {
 		&:extend(.pkp_unstyled_list);
-		margin-bottom: @double;
-		padding: 4px 0;
+		margin-bottom: @triple;
+		padding: 5px 0;
+		line-height: @double;
 		font-size: @font-sml;
 	}
 
@@ -218,6 +301,12 @@
 
 	.current {
 		color: @text-light;
+
+		h1 {
+			margin: 0;
+			font-size: @font-sml;
+			font-weight: @normal;
+		}
 	}
 }
 
