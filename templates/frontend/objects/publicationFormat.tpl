@@ -21,7 +21,7 @@
 				{translate key="monograph.publicationFormat.productDimensions"}
 			</span>
 			<span class="value">
-				{$publicationFormat->getDimensions()}
+				{$publicationFormat->getDimensions()|escape}
 			</span>
 		</li>
 

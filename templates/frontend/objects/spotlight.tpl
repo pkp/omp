@@ -28,11 +28,11 @@
 
 	<div class="call_to_action">
 		<h3 class="title">
-			{$spotlight->getLocalizedTitle()|strip_unsafe_html}
+			{$spotlight->getLocalizedTitle()|escape}
 		</h3>
 		{if $description}
 		<div class="description">
-			{$description}
+			{$description|strip_unsafe_html}
 		</div>
 		{/if}
 		<a href="{$targetUrl}" title="{translate|escape key="common.readMoreWithTitle" title=$spotlight->getLocalizedTitle()}">

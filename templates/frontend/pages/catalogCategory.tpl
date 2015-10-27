@@ -38,7 +38,7 @@
 			</div>
 		{/if}
 		<div class="description">
-			{$description}
+			{$description|nl2br|strip_unsafe_html}
 		</div>
 	</div>
 
@@ -51,7 +51,7 @@
 			{iterate from=subcategories item=subcategory}
 				<li>
 					<a href="{url op="category" path=$subcategory->getPath()}">
-						{$subcategory->getLocalizedTitle()}
+						{$subcategory->getLocalizedTitle()|escape}
 					</a>
 				</li>
 			{/iterate}

@@ -25,7 +25,7 @@
 
 	{if $description}
 	<div class="description">
-		{$description|nl2br}
+		{$description|nl2br|strip_unsafe_html}
 	</div>
 	{/if}
 
@@ -39,7 +39,7 @@
 
 		{if $contact.mailingAddress}
 			<div class="address">
-				{$contact.mailingAddress}
+				{$contact.mailingAddress|nl2br|strip_unsafe_html}
 			</div>
 		{/if}
 
@@ -132,7 +132,7 @@
 				{include file="frontend/components/editLink.tpl" page="management" op="settings" path="press" anchor="policies" sectionTitleKey="about.focusAndScope"}
 			</h2>
 			<div>
-				{$editorialPolicies.focusScopeDesc}
+				{$editorialPolicies.focusScopeDesc|strip_unsafe_html}
 			</div>
 		</div>
 	{/if}
@@ -143,7 +143,7 @@
 				{translate key="about.reviewPolicy"}
 				{include file="frontend/components/editLink.tpl" page="management" op="settings" path="press" anchor="policies" sectionTitleKey="about.reviewPolicy"}
 			</h2>
-			{$editorialPolicies.reviewPolicy|nl2br}
+			{$editorialPolicies.reviewPolicy|nl2br|strip_unsafe_html}
 		</div>
 	{/if}
 
@@ -153,7 +153,7 @@
 				{translate key="about.openAccessPolicy"}
 				{include file="frontend/components/editLink.tpl" page="management" op="settings" path="press" anchor="policies" sectionTitleKey="about.openAccessPolicy"}
 			</h2>
-			{$editorialPolicies.openAccessPolicy|nl2br}
+			{$editorialPolicies.openAccessPolicy|nl2br|strip_unsafe_html}
 		</div>
 	{/if}
 
@@ -164,7 +164,7 @@
 					{$customAboutItem.title|escape}
 					{include file="frontend/components/editLink.tpl" page="management" op="settings" path="press" anchor="policies" sectionTitle=$customAboutItem.title|escape}
 				</h2>
-				{$customAboutItem.content|nl2br}
+				{$customAboutItem.content|nl2br|strip_unsafe_html}
 			</div>
 		{/if}
 	{/foreach}

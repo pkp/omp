@@ -35,7 +35,7 @@
 				{translate key="about.authorGuidelines"}
 				{include file="frontend/components/editLink.tpl" page="management" op="settings" path="press" anchor="guidelines" sectionTitleKey="about.authorGuidelines"}
 			</h2>
-			{$submissionInfo.authorGuidelines|nl2br}
+			{$submissionInfo.authorGuidelines|nl2br|strip_unsafe_html}
 		</div>
 	{/if}
 
@@ -49,7 +49,7 @@
 			<ul>
 				{foreach from=$submissionInfo.checklist item=checklistItem}
 					<li>
-						{$checklistItem.content|nl2br}
+						{$checklistItem.content|nl2br|strip_unsafe_html}
 					</li>
 				{/foreach}
 			</ul>
@@ -62,7 +62,7 @@
 				{translate key="about.copyrightNotice"}
 				{include file="frontend/components/editLink.tpl" page="management" op="settings" path="distribution" anchor="permissions" sectionTitleKey="about.copyrightNotice"}
 			</h2>
-			{$submissionInfo.copyrightNotice|nl2br}
+			{$submissionInfo.copyrightNotice|nl2br|strip_unsafe_html}
 		</div>
 	{/if}
 
@@ -72,7 +72,7 @@
 				{translate key="about.privacyStatement"}
 				{include file="frontend/components/editLink.tpl" page="management" op="settings" path="press" anchor="policies" sectionTitleKey="about.privacyStatement"}
 			</h2>
-			{$submissionInfo.privacyStatement|nl2br}
+			{$submissionInfo.privacyStatement|nl2br|strip_unsafe_html}
 		</div>
 	{/if}
 
@@ -82,7 +82,7 @@
 				{translate key="about.reviewPolicy"}
 				{include file="frontend/components/editLink.tpl" page="management" op="settings" path="press" anchor="policies" sectionTitleKey="about.reviewPolicy"}
 			</h2>
-			{$submissionInfo.reviewPolicy|nl2br}
+			{$submissionInfo.reviewPolicy|nl2br|strip_unsafe_html}
 		</div>
 	{/if}
 

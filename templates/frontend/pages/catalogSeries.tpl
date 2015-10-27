@@ -34,7 +34,7 @@
 			</div>
 		{/if}
 		<div class="description">
-			{$description}
+			{$description|nl2br|strip_unsafe_html}
 		</div>
 	</div>
 

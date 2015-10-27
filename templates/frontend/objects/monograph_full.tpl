@@ -21,10 +21,10 @@
  *}
 <div class="obj_monograph_full">
 	<h1 class="title">
-		{$monograph->getLocalizedFullTitle()}
+		{$monograph->getLocalizedFullTitle()|escape}
 	</h1>
 	<div class="authors">
-		{$publishedMonograph->getAuthorString()}
+		{$publishedMonograph->getAuthorString()|escape}
 	</div>
 
 	<a href="{url router=$smarty.const.ROUTE_COMPONENT component="submission.CoverHandler" op="cover" submissionId=$monograph->getId()}" class="cover">
@@ -47,7 +47,7 @@
 				</span>
 				<span class="value">
 					<a href="{url page="catalog" op="series" path=$series->getPath()}">
-						{$series->getLocalizedFullTitle()}
+						{$series->getLocalizedFullTitle()|escape}
 					</a>
 				</span>
 			</li>
@@ -94,15 +94,15 @@
 			{if $author->getIncludeInBrowse()}
 				<li>
 					<span class="name">
-						{$author->getFullName()}
+						{$author->getFullName()|escape}
 					</span>
 					<span class="role">
-						{$author->getLocalizedUserGroupName()}
+						{$author->getLocalizedUserGroupName()|escape}
 					</span>
 					{assign var=biography value=$author->getLocalizedBiography()|strip_unsafe_html}
 					{if $biography}
 						<span class="bio">
-							{$biography}
+							{$biography|strip_unsafe_html}
 						</span>
 					{/if}
 				</li>
@@ -118,14 +118,14 @@
 						{$chapter->getLocalizedTitle()}
 						{if $chapter->getLocalizedSubtitle() != ''}
 							<span class="subtitle">
-								{$chapter->getLocalizedSubtitle()}
+								{$chapter->getLocalizedSubtitle()|escape}
 							</span>
 						{/if}
 					</span>
 					{assign var=chapterAuthors value=$chapter->getAuthorNamesAsString()}
 					{if $publishedMonograph->getAuthorString() != $chapterAuthors}
 						<span class="authors">
-							{$chapterAuthors}
+							{$chapterAuthors|escape}
 						</span>
 					{/if}
 				</li>
