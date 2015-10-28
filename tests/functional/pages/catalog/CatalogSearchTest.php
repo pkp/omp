@@ -34,7 +34,7 @@ class CatalogSearchTest extends ContentBaseTestCase {
 		$this->click('//form[contains(@class, \'cmp_search_homepage\')]//button[contains(.,\'Search Catalog\')]');
 
 		// Should be 1 result
-		$this->waitForElementPresent('//h2[contains(.,\'1 Titles\')]');
+		$this->waitForElementPresent('//div[contains(.,\'1 Titles\')]');
 		$this->waitForElementPresent('//a[contains(.,\'Bomb Canada and Other Unkind Remarks in the American Media\')]');
 	}
 
@@ -49,6 +49,6 @@ class CatalogSearchTest extends ContentBaseTestCase {
 		$this->click('//form[contains(@class, \'cmp_search_homepage\')]//button[contains(.,\'Search Catalog\')]');
 
 		// Should be 0 results
-		$this->waitForElementPresent('//h2[contains(.,\'0 Titles\')]');
+		$this->waitForElementPresent('//div[contains(.,\'0 Titles\')]');
 	}
 }
