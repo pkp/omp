@@ -11,9 +11,9 @@
 .page_about {
 
     h3 {
-        font-size: @font-bump;
-        line-height: @line-bump;
-        margin-bottom: @base;
+        font-size: @font-base;
+        line-height: @line-base;
+        margin: @double 0 @base;
     }
 
     .address,
@@ -41,11 +41,6 @@
         margin-top: @double * 2;
     }
 
-    // Sponsor and Contributor lists
-    ul {
-        &:extend(.pkp_unstyled_list);
-    }
-
     @media(min-width: @screen-tablet) {
 
         .contact_section {
@@ -61,10 +56,6 @@
             }
 
             &.support {
-                margin-top: 0;
-            }
-
-            h3 {
                 margin-top: 0;
             }
         }
