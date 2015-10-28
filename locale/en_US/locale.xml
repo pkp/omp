@@ -23,6 +23,8 @@
 	<message key="monograph.audience.rangeExact">Audience Range (exact)</message>
 	<message key="monograph.languages">Languages (English, French, Spanish)</message>
 	<message key="monograph.publicationFormats">Publication Formats</message>
+	<message key="monograph.publicationFormat">Format</message>
+	<message key="monograph.publicationFormatDetails">Details about the available publication formats:</message>
 	<message key="monograph.carousel.publicationFormats">Formats:</message>
 	<message key="monograph.type">Type of Submission</message>
 	<message key="submission.pageProofs">Page Proofs</message>
