@@ -12,10 +12,8 @@
 {include file="common/frontend/header.tpl" pageTitle="about.submissions"}
 
 <div class="page page_submissions">
-	<h1 class="page_title">
-		{translate key="about.submissions"}
-		{include file="frontend/components/editLink.tpl" page="management" op="settings" path="press" anchor="guidelines" sectionTitleKey="about.submissions"}
-	</h1>
+	{include file="frontend/components/breadcrumbs.tpl" currentTitleKey="about.submissions"}
+	{include file="frontend/components/editLink.tpl" page="management" op="settings" path="press" anchor="guidelines" sectionTitleKey="about.submissions"}
 
 	{* Login/register prompt *}
 	{capture assign="login"}
@@ -72,7 +70,9 @@
 				{translate key="about.privacyStatement"}
 				{include file="frontend/components/editLink.tpl" page="management" op="settings" path="press" anchor="policies" sectionTitleKey="about.privacyStatement"}
 			</h2>
-			{$submissionInfo.privacyStatement|nl2br|strip_unsafe_html}
+			<p>
+				{$submissionInfo.privacyStatement|nl2br|strip_unsafe_html}
+			</p>
 		</div>
 	{/if}
 
@@ -82,7 +82,9 @@
 				{translate key="about.reviewPolicy"}
 				{include file="frontend/components/editLink.tpl" page="management" op="settings" path="press" anchor="policies" sectionTitleKey="about.reviewPolicy"}
 			</h2>
-			{$submissionInfo.reviewPolicy|nl2br|strip_unsafe_html}
+			<p>
+				{$submissionInfo.reviewPolicy|nl2br|strip_unsafe_html}
+			</p>
 		</div>
 	{/if}
 

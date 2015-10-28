@@ -18,10 +18,8 @@
 {include file="common/frontend/header.tpl" pageTitle="about.aboutThePress"}
 
 <div class="page page_about">
-	<h1 class="page_title">
-		{translate key="about.aboutThePress"}
-		{include file="frontend/components/editLink.tpl" page="management" op="settings" path="press" anchor="masthead" sectionTitleKey="about.aboutThePress"}
-	</h1>
+	{include file="frontend/components/breadcrumbs.tpl" currentTitleKey="about.aboutThePress"}
+	{include file="frontend/components/editLink.tpl" page="management" op="settings" path="press" anchor="masthead" sectionTitleKey="about.aboutThePress"}
 
 	{if $description}
 	<div class="description">
@@ -131,9 +129,9 @@
 				{translate key="about.focusAndScope"}
 				{include file="frontend/components/editLink.tpl" page="management" op="settings" path="press" anchor="policies" sectionTitleKey="about.focusAndScope"}
 			</h2>
-			<div>
-				{$editorialPolicies.focusScopeDesc|strip_unsafe_html}
-			</div>
+			<p>
+				{$editorialPolicies.focusScopeDesc|nl2br|strip_unsafe_html}
+			</p>
 		</div>
 	{/if}
 
@@ -143,7 +141,9 @@
 				{translate key="about.reviewPolicy"}
 				{include file="frontend/components/editLink.tpl" page="management" op="settings" path="press" anchor="policies" sectionTitleKey="about.reviewPolicy"}
 			</h2>
-			{$editorialPolicies.reviewPolicy|nl2br|strip_unsafe_html}
+			<p>
+				{$editorialPolicies.reviewPolicy|nl2br|strip_unsafe_html}
+			</p>
 		</div>
 	{/if}
 
@@ -153,7 +153,9 @@
 				{translate key="about.openAccessPolicy"}
 				{include file="frontend/components/editLink.tpl" page="management" op="settings" path="press" anchor="policies" sectionTitleKey="about.openAccessPolicy"}
 			</h2>
-			{$editorialPolicies.openAccessPolicy|nl2br|strip_unsafe_html}
+			<p>
+				{$editorialPolicies.openAccessPolicy|nl2br|strip_unsafe_html}
+			</p>
 		</div>
 	{/if}
 
@@ -164,7 +166,9 @@
 					{$customAboutItem.title|escape}
 					{include file="frontend/components/editLink.tpl" page="management" op="settings" path="press" anchor="policies" sectionTitle=$customAboutItem.title|escape}
 				</h2>
-				{$customAboutItem.content|nl2br|strip_unsafe_html}
+				<p>
+					{$customAboutItem.content|nl2br|strip_unsafe_html}
+				</p>
 			</div>
 		{/if}
 	{/foreach}
