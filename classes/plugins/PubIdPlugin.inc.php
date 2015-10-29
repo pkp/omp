@@ -161,6 +161,28 @@ abstract class PubIdPlugin extends Plugin {
 	 */
 	abstract function getDAOFieldNames();
 
+	/**
+	 * @copydoc Plugin::getActions()
+	 */
+	function getActions($request, $actionArgs) {
+		$router = $request->getRouter();
+		import('lib.pkp.classes.linkAction.request.AjaxModal');
+		return array_merge(
+			$this->getEnabled()?array(
+				new LinkAction(
+					'settings',
+					new AjaxModal(
+						$router->url($request, null, null, 'manage', null, $actionArgs),
+						$this->getDisplayName()
+					),
+					__('manager.plugins.settings'),
+					null
+				),
+			):array(),
+			parent::getActions($request, $actionArgs)
+		);
+	}
+
 
 	//
 	// Public API
@@ -297,40 +319,6 @@ abstract class PubIdPlugin extends Plugin {
 		$daoName = $daos[$pubObjectType];
 		assert(!empty($daoName));
 		return DAORegistry::getDAO($daoName);
-	}
-
-	/**
-	 * Determine whether or not this plugin is enabled.
-	 * @return boolean
-	 */
-	function getEnabled($pressId = null) {
-		if (!$pressId) {
-			$request = $this->getRequest();
-			$router = $request->getRouter();
-			$press = $router->getContext($request);
-
-			if (!$press) return false;
-			$pressId = $press->getid();
-		}
-		return $this->getSetting($pressId, 'enabled');
-	}
-
-	/**
-	 * Set the enabled/disabled state of this plugin.
-	 * @param $enabled boolean
-	 */
-	function setEnabled($enabled) {
-		$request = $this->getRequest();
-		$press = $request->getPress();
-		if ($press) {
-			$this->updateSetting(
-				$press->getId(),
-				'enabled',
-				$enabled?true:false
-			);
-			return true;
-		}
-		return false;
 	}
 
 

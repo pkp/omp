@@ -52,32 +52,13 @@ class DOIPubIdPlugin extends PubIdPlugin {
 	}
 
 	/**
-	 * @see Plugin::getTemplatePath($inCore)
+	 * @see Plugin::getTemplatePath()
+	 * @param $inCore boolean True iff a core template should be preferred
 	 */
 	function getTemplatePath($inCore = false) {
 		return parent::getTemplatePath($inCore) . 'templates/';
 	}
 
-	/**
-	 * Define management link actions for the settings verb.
-	 * @return LinkAction
-	 */
-	function getManagementVerbLinkAction($request, $verb) {
-		$router = $request->getRouter();
-
-		list($verbName, $verbLocalized) = $verb;
-
-		if ($verbName === 'settings') {
-			import('lib.pkp.classes.linkAction.request.AjaxLegacyPluginModal');
-			$actionRequest = new AjaxLegacyPluginModal(
-					$router->url($request, null, null, 'plugin', null, array('verb' => 'settings', 'plugin' => $this->getName(), 'category' => 'pubIds')),
-					$this->getDisplayName()
-			);
-			return new LinkAction($verbName, $actionRequest, $verbLocalized, null);
-		}
-
-		return null;
-	}
 
 	//
 	// Implement template methods from PubIdPlugin.
