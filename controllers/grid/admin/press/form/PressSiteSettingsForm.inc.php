@@ -98,7 +98,9 @@ class PressSiteSettingsForm extends ContextSiteSettingsForm {
 				'indexUrl' => $request->getIndexUrl(),
 				'pressPath' => $this->getData('path'),
 				'primaryLocale' => $site->getPrimaryLocale(),
-				'pressName' => $titles[$site->getPrimaryLocale()]
+				'contextName' => $titles[$site->getPrimaryLocale()],
+				'ldelim' => '{', // Used to add variables to settings without translating now
+				'rdelim' => '}',
 			));
 		}
 		$press->updateSetting('supportedLocales', $site->getSupportedLocales());
