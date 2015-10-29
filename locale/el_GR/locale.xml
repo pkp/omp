@@ -167,8 +167,6 @@
 	<message key="grid.action.deleteSpotlight">Διαγραφής αυτής της Βιτρίνας</message>
 	<message key="grid.action.addSpotlight">Προσθήκη Βιτρίνας</message>
 
-	<!-- Content Management - Footer grid keys -->
-	<!-- Content Management - Social Media keys -->
 	<!-- Editorial policies -->
 	<message key="manager.series.open">Ανοικτές Υποβολές</message>
 	<message key="manager.series.indexed">Έχει ευρετηριαστεί</message>
@@ -467,7 +465,6 @@ Your server currently supports mbstring: <strong>{$supportsMBString}</strong>]]>
 	<message key="notification.addedSpotlight">Η Βιτρίνα έχει προστεθεί.</message>
 	<message key="notification.editedSpotlight">Η Βιτρίνα έχει επεξεργαστεί.</message>
 	<message key="notification.removedSpotlight">Η Βιτρίνα έχει αφαιρεθεί.</message>
-	<message key="notification.removedFooterLink">Ο Σύνδεσμος του Υποσέλιδου έχει αφαιρεθεί.</message>
 	<message key="notification.savedCatalogMetadata">Τα μεταδεδομένα του Καταλόγου έχουν αποθηκευτεί.</message>
 	<message key="notification.savedPublicationFormatMetadata">Τα μεταδεδομένα του μορφότυπου της έκδοσης έχουν αποθηκευτεί.</message>
 	<message key="notification.mailListDescription">Καταχωρήστε τη διεύθυνση του ηλεκτονικού σας ταχυδρομείου για να λάβετε ενημέρωση όταν προστεθεί νέο περιεχόμενο στις εκδόσεις μας.</message>

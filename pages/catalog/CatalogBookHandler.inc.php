@@ -61,17 +61,6 @@ class CatalogBookHandler extends Handler {
 		$publishedMonograph = $this->getAuthorizedContextObject(ASSOC_TYPE_PUBLISHED_MONOGRAPH);
 		$templateMgr->assign('publishedMonograph', $publishedMonograph);
 
-		// Get Social media blocks enabled for the catalog
-		$socialMediaDao = DAORegistry::getDAO('SocialMediaDAO');
-		$socialMedia = $socialMediaDao->getEnabledForContextByContextId($publishedMonograph->getContextId());
-		$blocks = array();
-		while ($media = $socialMedia->next()) {
-			$media->replaceCodeVars($publishedMonograph);
-			$blocks[] = $media->getCode();
-		}
-
-		$templateMgr->assign_by_ref('blocks', $blocks);
-
 		// Assign chapters (if they exist)
 		$chapterDao = DAORegistry::getDAO('ChapterDAO');
 		$chapters = $chapterDao->getChapters($publishedMonograph->getId());
