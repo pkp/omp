@@ -505,7 +505,6 @@ Your server currently supports mbstring: <strong>{$supportsMBString}</strong>]]>
 	<message key="notification.addedSpotlight">Spotlight added.</message>
 	<message key="notification.editedSpotlight">Spotlight edited.</message>
 	<message key="notification.removedSpotlight">Spotlight removed.</message>
-	<message key="notification.removedFooterLink">Footer Link removed.</message>
 	<message key="notification.savedCatalogMetadata">Catalog metadata saved.</message>
 	<message key="notification.savedPublicationFormatMetadata">Publication format metadata saved.</message>
 	<message key="notification.mailListDescription">Enter your email address to be notified when new content is added to the press.</message>

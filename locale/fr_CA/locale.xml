@@ -168,8 +168,6 @@
 	<message key="grid.action.deleteSpotlight">Retirer un titre de la rubrique Sous les projecteurs</message>
 	<message key="grid.action.addSpotlight">Ajouter un titre à la rubrique Sous les projecteurs</message>
 
-	<!-- Content Management - Footer grid keys -->
-	<!-- Content Management - Social Media keys -->
 	<!-- Editorial policies -->
 	<message key="manager.series.open">Soumissions libres</message>
 	<message key="manager.series.indexed">Indexé</message>
@@ -482,7 +480,6 @@ Votre serveur supporte actuellement mbstring: <strong>{$supportsMBString}</stron
 	<message key="notification.addedSpotlight">Ajout à la rubrique "Sous les projecteurs".</message>
 	<message key="notification.editedSpotlight">Modification dans la rubrique "Sous les projecteurs".</message>
 	<message key="notification.removedSpotlight">Titre supprimé de la rubrique "Sous les projecteurs".</message>
-	<message key="notification.removedFooterLink">Lien en bas de page supprimé.</message>
 	<message key="notification.savedCatalogMetadata">Les métadonnées du catalogue ont été sauvegardées.</message>
 	<message key="notification.savedPublicationFormatMetadata">Les métadonnées du format de publication ont été sauvegardées.</message>
 	<message key="notification.mailListDescription">Indiquez votre adresse courriel afin de recevoir un avis lorsqu'on ajoutera de nouveaux titres à la presse.</message>

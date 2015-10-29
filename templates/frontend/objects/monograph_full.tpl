@@ -236,15 +236,6 @@
 				</div>
 			{/if}
 
-			{* Custom blocks *}
-			{if !empty($blocks)}
-				{foreach from=$blocks item=block key=blockKey}
-					<div class="item block {$blockKey|escape}">
-						{$block}
-					</div>
-				{/foreach}
-			{/if}
-
 			{* Copyright statement *}
 			{if $currentPress->getSetting('includeCopyrightStatement')}
 				<div class="item copyright">

@@ -23,10 +23,6 @@
 		<data file="dbscripts/xml/upgrade/1.2.0.0_preupdate.xml" condition="return $installer->tableExists('series_editors');" />
 	</upgrade>
 
-	<upgrade minversion="0.9.9.0" maxversion="1.1.0.9">
-		<code function="localizeFooterLinks" condition="return $installer->columnExists('footerlinks', 'url');" /><!-- Bug #8867 -->
-	</upgrade>
-
 	<!-- PKP schema components -->
 	<schema file="lib/pkp/xml/schema/common.xml" />
 	<schema file="lib/pkp/xml/schema/scheduledTasks.xml" />
@@ -37,7 +33,6 @@
 	<schema file="lib/pkp/xml/schema/metadata.xml" />
 	<schema file="lib/pkp/xml/schema/announcements.xml" />
 	<schema file="lib/pkp/xml/schema/signoff.xml" />
-	<schema file="lib/pkp/xml/schema/content.xml" />
 	<schema file="lib/pkp/xml/schema/reviews.xml" />
 	<schema file="lib/pkp/xml/schema/reviewForms.xml" />
 	<schema file="lib/pkp/xml/schema/submissions.xml" />
