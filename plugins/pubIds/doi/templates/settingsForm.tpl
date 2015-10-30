@@ -16,7 +16,7 @@
 		$('#doiSettingsForm').pkpHandler('$.pkp.controllers.form.AjaxFormHandler');
 	{rdelim});
 </script>
-<form class="pkp_form" id="doiSettingsForm" method="post" action="{url router=$smarty.const.ROUTE_COMPONENT op="plugin" category="pubIds" plugin=$pluginName verb="settings" save="true"}">
+<form class="pkp_form" id="doiSettingsForm" method="post" action="{url router=$smarty.const.ROUTE_COMPONENT op="manage" category="pubIds" plugin=$pluginName verb="settings" save="true"}">
 	{include file="common/formErrors.tpl"}
 	{fbvFormArea id="enableDoiSettingsFormArea" class="border" title="plugins.pubIds.doi.manager.settings.doiSettings"}
 		{fbvFormSection}
