@@ -67,7 +67,6 @@ class DOISettingsForm extends Form {
 		import('lib.pkp.classes.linkAction.request.RemoteActionConfirmationModal');
 		$application = PKPApplication::getApplication();
 		$request = $application->getRequest();
-		$clearPubIdsLinkAction =
 		$this->setData(
 			'clearPubIdsLinkAction',
 			new LinkAction(
