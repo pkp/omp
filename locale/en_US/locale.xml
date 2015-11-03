@@ -331,8 +331,6 @@
 	<message key="navigation.published">Published</message>
 	<message key="navigation.wizard">Wizard</message>
 	<message key="navigation.linksAndMedia">Links and Social Media</message>
-	<message key="navigation.breadcrumbLabel">You are here:</message>
-	<message key="navigation.breadcrumbSeparator">/</message>
 
 	<!-- Common Press Terms -->
 	<message key="press.presses">Presses</message>
