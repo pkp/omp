@@ -118,6 +118,14 @@ class CatalogBookHandler extends Handler {
 
 			// Expose variables to template
 			$templateMgr->assign('availableFiles', $availableFilesByPublicationFormat);
+
+		}
+
+		// Provide the currency to the template, if configured.
+		$currencyDao = DAORegistry::getDAO('CurrencyDAO');
+		$press = $request->getPress();
+		if ($currency = $press->getSetting('currency')) {
+			$templateMgr->assign('currency', $currencyDao->getCurrencyByAlphaCode($currency));
 		}
 
 		if ($seriesId = $publishedMonograph->getSeriesId()) {

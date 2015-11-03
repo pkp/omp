@@ -18,6 +18,7 @@
  * @uses $chapters array List of chapters in monograph. Associative array
  * @uses $sharingCode string Code snippet for a social sharing widget
  * @uses $blocks array List of HTML snippets to display block elements
+ * @uses $currency Currency The Currency object representing the press's currency, if configured.
  *}
 <div class="obj_monograph_full">
 	<h1 class="title">
@@ -107,7 +108,6 @@
 			{if $availableFiles|@count}
 				<div class="item files">
 					{assign var=publicationFormats value=$publishedMonograph->getPublicationFormats()}
-					{assign var=currency value=$currentPress->getSetting('currency')}
 					{foreach from=$publicationFormats item=publicationFormat}
 						{assign var=representationId value=$publicationFormat->getId()}
 						{if $publicationFormat->getIsAvailable() && $availableFiles[$representationId]}
@@ -131,7 +131,7 @@
 													{/if}
 													<a href="{$downloadUrl}" class="{$availableFile->getDocumentType()}">
 														{if $availableFile->getDirectSalesPrice()}
-															{translate key="payment.directSales.purchase" amount=$availableFile->getDirectSalesPrice() currency=$currency}
+															{translate key="payment.directSales.purchase" amount=$currency->format($availableFile->getDirectSalesPrice()) currency=$currency->getCodeAlpha()}
 														{else}
 															{translate key="payment.directSales.download"}
 															{* @todo make the open access icon appear *}
