@@ -72,7 +72,7 @@
 			.error {
 				position: absolute;
 				left: 0.5em; // Sit off the rounded edge of input fields
-				bottom: 9px; // Sit on the bottom line of the input field above
+				bottom: -3px; // Sit on the bottom line of the input field above
 				padding: 4px 0.5em; // Keep it tight so it doesn't bleed into next field
 				background: @no;
 				border-bottom-left-radius: 2px;
@@ -152,34 +152,6 @@
 	}
 }
 
-// Search result filter
-.cmp_search_filter {
-	margin-bottom: @base;
-	font-size: @font-sml;
-
-	&:last-child {
-		margin-bottom: 0;
-	}
-
-	label {
-		font-style: italic;
-	}
-
-	.delete {
-		color: @no;
-	}
-}
-
-// Notification
-// @todo needs work and styles for error/warning/notice instances
-.cmp_notification {
-	display: block;
-	width: 100%;
-	padding: @double;
-	background: @bg;
-	text-align: center;
-}
-
 // List of monographs
 .cmp_monographs_list {
 	margin-left: -@base;
@@ -187,6 +159,7 @@
 
 	> .title {
 		font-size: @font-bump;
+		font-weight: @normal;
 		line-height: @triple;
 		padding: 0 @base;
 	}
