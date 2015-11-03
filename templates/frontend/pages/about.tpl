@@ -27,7 +27,6 @@
 	</div>
 	{/if}
 
-
 	{* Contact section *}
 	<div class="contact_section">
 		<h2>
