@@ -156,6 +156,7 @@
 .cmp_monographs_list {
 	margin-left: -@base;
 	margin-right: -@base;
+	border-top: @bg-border;
 
 	> .title {
 		font-size: @font-bump;
@@ -165,15 +166,28 @@
 	}
 
 	.obj_monograph_summary {
-		padding: @double @base;
+		padding: @triple @base;
+		border-bottom: @bg-border;
+	}
+
+	.row:last-child .obj_monograph_summary:last-child,
+	> .obj_monograph_summary:last-child { // if last is a featured monograph
+		border-bottom: none;
+	}
+
+	@media(min-width: @screen-phone) {
+		margin-left: -@double;
+		margin-right: -@double;
+
+		.obj_monograph_summary {
+			padding-left: @double;
+			padding-right: @double;
+		}
 	}
 
 	@media(min-width: @screen-tablet) {
 		position: relative;
 		margin-top: @triple * 2;
-		margin-left: -@double;
-		margin-right: -@double;
-		border-top: @bg-border;
 
 		> .title {
 			position: absolute;
@@ -187,12 +201,6 @@
 
 		.obj_monograph_summary {
 			padding: @triple;
-			border-bottom: @bg-border;
-		}
-
-		.row:last-child .obj_monograph_summary:last-child,
-		> .obj_monograph_summary:last-child { // if last is a featured monograph
-			border-bottom: none;
 		}
 	}
 
