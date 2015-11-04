@@ -102,16 +102,24 @@ allow_url_fopen = Off
 restful_urls = Off
 
 ; Allow the X_FORWARDED_FOR header to override the REMOTE_ADDR as the source IP
-; Set this to "On" if you are behind a reverse proxy and you control the X_FORWARDED_FOR
+; Set this to "On" if you are behind a reverse proxy and you control the
+; X_FORWARDED_FOR header.
 ; Warning: This defaults to "On" if unset for backwards compatibility.
 trust_x_forwarded_for = Off
 
-; Allow javascript files to be served through a content delivery network (set to off to use local files)
+; Allow javascript files to be served through a content delivery network (set to
+; off to use local files)
 enable_cdn = On
 
-; Set the following parameter to off if you want to work with the uncompiled (non-minified) JavaScript
-; source for debugging or if you are working off a development branch without compiled JavaScript.
+; Set the following parameter to off if you want to work with the uncompiled
+; (non-minified) JavaScript source for debugging or if you are working off a
+; development branch without compiled JavaScript.
 enable_minified = Off
+
+; Provide a unique site ID and OAI base URL to PKP for statistics and security
+; alert purposes only.
+enable_beacon = On
+
 
 ;;;;;;;;;;;;;;;;;;;;;
 ; Database Settings ;
@@ -248,7 +256,8 @@ encryption = sha1
 ; The unique salt to use for generating password reset hashes
 salt = "YouMustSetASecretKeyHere!!"
 
-; The number of seconds before a password reset hash expires (defaults to 7200 / 2 hours)
+; The number of seconds before a password reset hash expires (defaults to
+; 7200 seconds (2 hours)
 reset_seconds = 7200
 
 ; Allowed HTML tags for fields that permit restricted HTML.

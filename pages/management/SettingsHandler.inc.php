@@ -129,6 +129,22 @@ class SettingsHandler extends ManagementHandler {
 	function press($args, $request) {
 		$templateMgr = TemplateManager::getManager($request);
 		$this->setupTemplate($request);
+
+		// Display a warning message if there is a new version of OMP available
+		if (Config::getVar('general', 'show_upgrade_warning')) {
+			import('lib.pkp.classes.site.VersionCheck');
+			if ($latestVersion = VersionCheck::checkIfNewVersionExists()) {
+				$templateMgr->assign('newVersionAvailable', true);
+				$templateMgr->assign('latestVersion', $latestVersion);
+				$currentVersion = VersionCheck::getCurrentDBVersion();
+				$templateMgr->assign('currentVersion', $currentVersion->getVersionString());
+
+				// Get contact information for site administrator
+				$roleDao = DAORegistry::getDAO('RoleDAO');
+				$siteAdmins = $roleDao->getUsersByRoleId(ROLE_ID_SITE_ADMIN);
+				$templateMgr->assign('siteAdmin', $siteAdmins->next());
+			}
+		}
 		$templateMgr->display('management/settings/press.tpl');
 	}
 
