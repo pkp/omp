@@ -1,7 +1,7 @@
 <?php
 
 /**
- * @file plugins/generic/addThis/AddThisStatisticsGridHandler.inc.php
+ * @file plugins/generic/addThis/controllers/grid/AddThisStatisticsGridHandler.inc.php
  *
  * Copyright (c) 2014-2015 Simon Fraser University Library
  * Copyright (c) 2000-2015 John Willinsky
@@ -18,18 +18,17 @@ import('lib.pkp.classes.controllers.grid.GridHandler');
 
 class AddThisStatisticsGridHandler extends GridHandler {
 	/** @var Plugin */
-	var $_plugin;
+	static $_plugin;
 
 	/**
 	 * Constructor
 	 */
-	function AddThisStatisticsGridHandler($plugin) {
+	function AddThisStatisticsGridHandler() {
 		parent::GridHandler();
 		$this->addRoleAssignment(
-				array(ROLE_ID_MANAGER),
-				array('fetchGrid', 'fetchRow'));
-
-		$this->setPlugin($plugin);
+			array(ROLE_ID_MANAGER),
+			array('fetchGrid', 'fetchRow')
+		);
 	}
 
 
@@ -40,16 +39,16 @@ class AddThisStatisticsGridHandler extends GridHandler {
 	 * Get the plugin associated with this grid.
 	 * @return Plugin
 	 */
-	function getPlugin() {
-		return $this->_plugin;
+	static function getPlugin() {
+		return self::$_plugin;
 	}
 
 	/**
 	 * Set the Plugin
 	 * @param Plugin
 	 */
-	function setPlugin($plugin) {
-		$this->_plugin = $plugin;
+	static function setPlugin($plugin) {
+		self::$_plugin = $plugin;
 	}
 
 	//
@@ -90,7 +89,7 @@ class AddThisStatisticsGridHandler extends GridHandler {
 		$this->setTitle('plugins.generic.addThis.grid.title');
 
 		// Columns
-		$plugin->import('AddThisStatisticsGridCellProvider');
+		$plugin->import('controllers.grid.AddThisStatisticsGridCellProvider');
 		$cellProvider = new AddThisStatisticsGridCellProvider();
 		$gridColumn = new GridColumn(
 			'url',

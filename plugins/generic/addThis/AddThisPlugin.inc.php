@@ -24,8 +24,26 @@ class AddThisPlugin extends GenericPlugin {
 	function register($category, $path) {
 		if (parent::register($category, $path)) {
 			if ($this->getEnabled()) {
-				HookRegistry::register('Templates::Catalog::Book::BookInfo::Sharing',array(&$this, 'callbackSharingDisplay'));
+				HookRegistry::register('Templates::Catalog::Book::BookInfo::Sharing', array($this, 'callbackSharingDisplay'));
+				// Register the components this plugin implements
+				HookRegistry::register('LoadComponentHandler', array($this, 'setupGridHandler'));
 			}
+			return true;
+		}
+		return false;
+	}
+
+	/**
+	 * Permit requests to the statistics grid handler
+	 * @param $hookName string The name of the hook being invoked
+	 * @param $args array The parameters to the invoked hook
+	 */
+	function setupGridHandler($hookName, $params) {
+		$component =& $params[0];
+		if ($component == 'plugins.generic.addThis.controllers.grid.AddThisStatisticsGridHandler') {
+			// Allow the static page grid handler to get the plugin object
+			import($component);
+			AddThisStatisticsGridHandler::setPlugin($this);
 			return true;
 		}
 		return false;
@@ -55,90 +73,69 @@ class AddThisPlugin extends GenericPlugin {
 	}
 
 	/**
-	 * @copydoc PKPPlugin::getManagementVerbs()
+	 * @copydoc PKPPlugin::getTemplatePath
 	 */
-	function getManagementVerbs() {
-		$verbs = parent::getManagementVerbs();
-		if ($this->getEnabled()) {
-			$verbs[] = array('settings', __('plugins.generic.addThis.settings'));
-		}
-		return $verbs;
+	function getTemplatePath() {
+		return parent::getTemplatePath() . 'templates/';
 	}
 
 	/**
-	 * Define management link actions for the settings verb.
-	 * @param $request PKPRequest
-	 * @param $verb string
-	 * @return LinkAction
+	 * @copydoc Plugin::getActions()
 	 */
-	function getManagementVerbLinkAction($request, $verb) {
+	function getActions($request, $actionArgs) {
 		$router = $request->getRouter();
-
-		list($verbName, $verbLocalized) = $verb;
-
-		if ($verbName === 'settings') {
-			import('lib.pkp.classes.linkAction.request.AjaxLegacyPluginModal');
-			$actionRequest = new AjaxLegacyPluginModal(
-				$router->url($request, null, null, 'plugin', null, array('verb' => 'settings', 'plugin' => $this->getName(), 'category' => 'generic')),
-				$this->getDisplayName()
-			);
-			return new LinkAction($verbName, $actionRequest, $verbLocalized, null);
-		}
-
-		return null;
+		import('lib.pkp.classes.linkAction.request.AjaxModal');
+		return array_merge(
+			$this->getEnabled()?array(
+				new LinkAction(
+					'settings',
+					new AjaxModal(
+						$router->url($request, null, null, 'manage', null, array_merge($actionArgs, array('verb' => 'settings'))),
+						$this->getDisplayName()
+					),
+					__('manager.plugins.settings'),
+					null
+				),
+			):array(),
+			parent::getActions($request, $actionArgs)
+		);
 	}
 
 	/**
 	 * @copydoc PKPPlugin::manage()
 	 */
-	function manage($verb, $args, &$message, &$messageParams, &$pluginModalContent = null) {
+	function manage($args, $args) {
 		$request = $this->getRequest();
 		$press = $request->getPress();
 		$templateMgr = TemplateManager::getManager($request);
 
-		switch ($verb) {
-
+		switch ($request->getUserVar('verb')) {
+			case 'showTab':
+				switch ($request->getUserVar('tab')) {
+					case 'settings':
+						$this->import('AddThisSettingsForm');
+						$form = new AddThisSettingsForm($this, $press);
+						if ($request->getUserVar('save')) {
+							$form->readInputData();
+							if ($form->validate()) {
+								$form->execute();
+								return new JSONMessage();
+							}
+						} else {
+							$form->initData();
+						}
+						return new JSONMessage(true, $form->fetch($request));
+					case 'statistics':
+						return $templateMgr->fetchJson($this->getTemplatePath() . 'statistics.tpl');
+					default: assert(false);
+				}
 			case 'settings':
 				$templateMgr->assign('statsConfigured', $this->statsConfigured($press));
-				$pluginModalContent = $templateMgr->fetch($this->getTemplatePath() . 'settingsTabs.tpl');
-				return true;
+				$templateMgr->assign('pluginName', $this->getName());
+				return $templateMgr->fetchJson($this->getTemplatePath() . 'settingsTabs.tpl');
 
-			case 'showTab':
-				if ($request->getUserVar('tab') == 'settings') {
-					$this->import('AddThisSettingsForm');
-					$form = new AddThisSettingsForm($this, $press);
-					if ($request->getUserVar('save')) {
-						$form->readInputData();
-						if ($form->validate()) {
-							$form->execute();
-							$message = NOTIFICATION_TYPE_SUCCESS;
-							$messageParams = array('contents' => __('plugins.generic.addThis.form.saved'));
-							return false;
-						} else {
-							$pluginModalContent = $form->fetch($request);
-						}
-					} else {
-						$form->initData();
-						$pluginModalContent = $form->fetch($request);
-					}
-				} else {
-					$pluginModalContent = $templateMgr->fetch($this->getTemplatePath() . 'statistics.tpl');
-				}
-				return true;
-
-			case 'showStatistics':
-					$this->import('AddThisStatisticsGridHandler');
-					$gridHandler = new AddThisStatisticsGridHandler($this);
-					$gridHandler->initialize($request);
-
-					$jsonMessage = json_decode($gridHandler->fetchGrid($args, $request));
-					$pluginModalContent = $jsonMessage->content;
-				return true;
-
-			default:
-				// let the parent handle it.
-				return parent::manage($verb, $args, $message, $messageParams);
 		}
+		return parent::manage($verb, $args);
 	}
 
 	/**
@@ -172,12 +169,7 @@ class AddThisPlugin extends GenericPlugin {
 		$addThisUsername = $press->getSetting('addThisUsername');
 		$addThisPassword = $press->getSetting('addThisPassword');
 		$addThisProfileId = $press->getSetting('addThisProfileId');
-
-		if (isset($addThisUsername) && isset($addThisPassword) && isset($addThisProfileId)) {
-			return true;
-		}
-
-		return false;
+		return (isset($addThisUsername) && isset($addThisPassword) && isset($addThisProfileId));
 	}
 }
 

@@ -1,5 +1,5 @@
 {**
- * plugins/generic/addThis/settingsTabs.tpl
+ * plugins/generic/addThis/templates/settingsTabs.tpl
  *
  * Copyright (c) 2014-2015 Simon Fraser University Library
  * Copyright (c) 2003-2015 John Willinsky
@@ -17,9 +17,9 @@
 </script>
 <div id="addThisSettingsTabs" class="pkp_controllers_tab">
 	<ul>
-		<li><a href="{url router=$smarty.const.ROUTE_COMPONENT component="grid.settings.plugins.SettingsPluginGridHandler" op="plugin" category="generic" plugin="AddThisPlugin" verb="showTab" tab="settings" escape=false}">{translate key="plugins.generic.addThis.settings"}</a></li>
+		<li><a href="{url router=$smarty.const.ROUTE_COMPONENT component="grid.settings.plugins.SettingsPluginGridHandler" op="manage" category="generic" plugin=$pluginName verb="showTab" tab="settings" escape=false}">{translate key="plugins.generic.addThis.settings"}</a></li>
 		<li {if !$statsConfigured}class="ui-state-default ui-corner-top ui-state-disabled"{/if}>
-			<a href="{url router=$smarty.const.ROUTE_COMPONENT component="grid.settings.plugins.SettingsPluginGridHandler" op="plugin" category="generic" plugin="AddThisPlugin" verb="showTab" tab="statistics" escape=false}">{translate key="plugins.generic.addThis.settings.statistics"}</a>
+			<a href="{url router=$smarty.const.ROUTE_COMPONENT component="grid.settings.plugins.SettingsPluginGridHandler" op="manage" category="generic" plugin=$pluginName verb="showTab" tab="statistics" escape=false}">{translate key="plugins.generic.addThis.settings.statistics"}</a>
 		</li>
 	</ul>
 </div>
