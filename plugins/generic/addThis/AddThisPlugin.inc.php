@@ -104,8 +104,7 @@ class AddThisPlugin extends GenericPlugin {
 	/**
 	 * @copydoc PKPPlugin::manage()
 	 */
-	function manage($args, $args) {
-		$request = $this->getRequest();
+	function manage($args, $request) {
 		$press = $request->getPress();
 		$templateMgr = TemplateManager::getManager($request);
 
@@ -135,7 +134,7 @@ class AddThisPlugin extends GenericPlugin {
 				return $templateMgr->fetchJson($this->getTemplatePath() . 'settingsTabs.tpl');
 
 		}
-		return parent::manage($verb, $args);
+		return parent::manage($args, $request);
 	}
 
 	/**
