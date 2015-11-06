@@ -15,7 +15,7 @@
 		$('#browseBlockSettingsForm').pkpHandler('$.pkp.plugins.blocks.browse.BrowseBlockSettingsFormHandler');
 	{rdelim});
 </script>
-<form class="pkp_form" id="browseBlockSettingsForm" method="post" action="{url router=$smarty.const.ROUTE_COMPONENT op="plugin" category="blocks" plugin=$pluginName verb="settings" save="true"}">
+<form class="pkp_form" id="browseBlockSettingsForm" method="post" action="{url router=$smarty.const.ROUTE_COMPONENT op="manage" category="blocks" plugin=$pluginName verb="settings" save="true"}">
 	{include file="common/formErrors.tpl"}
 	{fbvFormArea id="browseBlockSettingsFormArea" class="border" title="plugins.block.browse.settings.title"}
 		{fbvFormSection list=true}

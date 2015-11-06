@@ -40,46 +40,34 @@ class BrowseBlockPlugin extends BlockPlugin {
 	}
 
 	/**
-	 * @copydoc PKPPlugin::getManagementVerbs()
+	 * @copydoc Plugin::getActions()
 	 */
-	function getManagementVerbs() {
-		$verbs = parent::getManagementVerbs();
-		if ($this->getEnabled()) {
-			$verbs[] = array('settings', __('plugins.block.browse.settings'));
-		}
-		return $verbs;
-	}
-
-	/**
-	 * @copydoc Plugin::getManagementVerbLinkAction()
-	 */
-	function getManagementVerbLinkAction($request, $verb) {
+	function getActions($request, $actionArgs) {
 		$router = $request->getRouter();
-
-		list($verbName, $verbLocalized) = $verb;
-
-		if ($verbName === 'settings') {
-			// Generate a link action for the "settings" action
-			import('lib.pkp.classes.linkAction.request.AjaxLegacyPluginModal');
-			$actionRequest = new AjaxLegacyPluginModal(
-				$router->url($request, null, null, 'plugin', null, array('verb' => 'settings', 'plugin' => $this->getName(), 'category' => 'blocks')),
-				$this->getDisplayName()
-			);
-			return new LinkAction($verbName, $actionRequest, $verbLocalized, null);
-		}
-
-		return null;
+		import('lib.pkp.classes.linkAction.request.AjaxModal');
+		return array_merge(
+			$this->getEnabled()?array(
+				new LinkAction(
+					'settings',
+					new AjaxModal(
+						$router->url($request, null, null, 'manage', null, array_merge($actionArgs, array('verb' => 'settings'))),
+						$this->getDisplayName()
+					),
+					__('manager.plugins.settings'),
+					null
+				),
+			):array(),
+			parent::getActions($request, $actionArgs)
+		);
 	}
-
 
 	/**
 	 * @copydoc PKPPlugin::manage()
 	 */
-	function manage($verb, $args, &$message, &$messageParams, &$pluginModalContent = null) {
-		$request = $this->getRequest();
+	function manage($args, $request) {
 		$press = $request->getPress();
 
-		switch ($verb) {
+		switch ($request->getUserVar('verb')) {
 			case 'settings':
 				$this->import('BrowseBlockSettingsForm');
 				$form = new BrowseBlockSettingsForm($this, $press->getId());
@@ -87,19 +75,14 @@ class BrowseBlockPlugin extends BlockPlugin {
 					$form->readInputData();
 					if ($form->validate()) {
 						$form->execute();
-						$message = NOTIFICATION_TYPE_SUCCESS;
-						return false;
-					} else {
-						$pluginModalContent = $form->fetch($request);
+						return new JSONMessage(true);
 					}
 				} else {
 					$form->initData();
-					$pluginModalContent = $form->fetch($request);
 				}
-				return true;
-			default:
-				return parent::manage($verb, $args, $message, $messageParams);
+				return new JSONMessage(true, $form->fetch($request));
 		}
+		return parent::manage($args, $request);
 	}
 
 	/**
