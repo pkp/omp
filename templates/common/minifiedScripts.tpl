@@ -105,14 +105,12 @@
 <script src="{$baseUrl}/lib/pkp/js/pages/submission/SubmissionTabHandler.js"></script>
 <script src="{$baseUrl}/lib/pkp/js/controllers/grid/settings/user/form/UserFormHandler.js"></script>
 <script src="{$baseUrl}/lib/pkp/js/controllers/grid/settings/roles/form/UserGroupFormHandler.js"></script>
-<script src="{$baseUrl}/lib/pkp/js/controllers/grid/files/signoff/form/AddAuditorFormHandler.js"></script>
 <script src="{$baseUrl}/lib/pkp/js/controllers/tab/settings/siteAccessOptions/form/SiteAccessOptionsFormHandler.js"></script>
 <script src="{$baseUrl}/lib/pkp/js/controllers/tab/settings/managementSettings/UsersAndRolesTabHandler.js"></script>
 <script src="{$baseUrl}/lib/pkp/js/controllers/tab/workflow/WorkflowTabHandler.js"></script>
 <script src="{$baseUrl}/lib/pkp/js/controllers/tab/representations/RepresentationsTabHandler.js"></script>
 <script src="{$baseUrl}/lib/pkp/js/controllers/dashboard/form/DashboardTaskFormHandler.js"></script>
 <script src="{$baseUrl}/lib/pkp/js/controllers/informationCenter/NotesHandler.js"></script>
-<script src="{$baseUrl}/lib/pkp/js/controllers/informationCenter/SignoffNotesHandler.js"></script>
 <script src="{$baseUrl}/lib/pkp/js/controllers/statistics/ReportGeneratorFormHandler.js"></script>
 <script src="{$baseUrl}/lib/pkp/js/pages/submission/SubmissionStep2FormHandler.js"></script>
 <script src="{$baseUrl}/lib/pkp/js/pages/submission/SubmissionStep3FormHandler.js"></script>
