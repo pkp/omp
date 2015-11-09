@@ -16,8 +16,8 @@
 (function($) {
 
 	/** @type {Object} */
-	$.pkp.controllers.grid.files.proof =
-			$.pkp.controllers.grid.files.proof || {form: {} };
+	$.pkp.controllers.grid.files = $.pkp.controllers.grid.files ||
+			{ proof: { form: { } } };
 
 
 
