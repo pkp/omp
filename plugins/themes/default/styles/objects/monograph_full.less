@@ -21,17 +21,33 @@
 		margin-bottom: @quadruple;
 	}
 
-	.author_roles {
-		&:extend(.pkp_unstyled_list);
+	.main_entry {
 
-		.name {
-			display: block;
+		.item {
+			padding: 30px 0;
+
+			&:first-child {
+				padding-top: 0;
+			}
+		}
+
+		.sub_item {
+			margin-bottom: @double;
+
+			&:last-child {
+				margin-bottom: 0;
+			}
+		}
+
+		.label {
+			margin: 0 0 @double;
+			font-size: @font-base;
 			font-weight: @bold;
 		}
 	}
 
-	h3 {
-		font-size: @font-base;
+	.authors .label {
+		margin-bottom: 0;
 	}
 
 	.entry_details {
@@ -44,8 +60,15 @@
 			border-bottom: @bg-border;
 		}
 
+		.sub_item {
+			margin-bottom: @double;
+
+			&:last-child {
+				margin-bottom: 0;
+			}
+		}
+
 		.label {
-			display: block;
 			font-size: @font-sml;
 			font-weight: @normal;
 			color: @text-light;
@@ -59,14 +82,6 @@
 	.cover img {
 		display: block;
 		margin: 0 auto;
-	}
-
-	.format_detail {
-		margin-bottom: @base;
-
-		&:last-child {
-			margin-bottom: 0;
-		}
 	}
 
 	.files {
