@@ -51,4 +51,6 @@
 	<message key="plugins.pubIds.doi.editor.doiObjectTypePublicationFormat">publication format</message>
 	<message key="plugins.pubIds.doi.editor.doiNotYetGenerated">What you see is a preview of the DOI that may be incomplete. A DOI has not yet been generated. Publishing the monograph and viewing the public Monograph Catalog page will automatically generate a unique DOI for this publication format.</message>
 	<message key="plugins.pubIds.doi.editor.doiSuffixCustomIdentifierNotUnique">The given DOI suffix is already in use for another published item. Please enter a unique DOI suffix for each item.</message>
+	<message key="plugins.pubIds.doi.editor.excludePubObject">Exclude this {$pubObjectType} from assigning it a DOI.</message>
+	<message key="plugins.pubIds.doi.editor.doiReassign.description">Select this checkbox to clear the existing DOI for this {$pubObjectType}.</message>
 </locale>
