@@ -8,6 +8,47 @@
  * @brief Display a full view of a monograph. Expected to be primary object on
  *  the page.
  *
+ * Many presses will need to add custom data to this object, either through
+ * plugins which attach to hooks on the page or by editing the template
+ * themselves. In order to facilitate this, a flexible layout markup pattern has
+ * been implemented. If followed, plugins and other content can provide markup
+ * in a way that will render consistently with other items on the page. This
+ * pattern is used in the .main_entry column and the .entry_details column. It
+ * consists of the following:
+ *
+ * <!-- Wrapper class which provides proper spacing between components -->
+ * <div class="item">
+ *     <!-- Title/value combination -->
+ *     <div class="label">Abstract</div>
+ *     <div class="value">Value</div>
+ * </div>
+ *
+ * All styling should be applied by class name, so that titles may use heading
+ * elements (eg, <h3>) or any element required.
+ *
+ * <!-- Example: component with multiple title/value combinations -->
+ * <div class="item">
+ *     <div class="sub_item">
+ *         <div class="label">DOI</div>
+ *         <div class="value">12345678</div>
+ *     </div>
+ *     <div class="sub_item">
+ *         <div class="label">Published Date</div>
+ *         <div class="value">2015-01-01</div>
+ *     </div>
+ * </div>
+ *
+ * <!-- Example: component with no title -->
+ * <div class="item">
+ *     <div class="value">Whatever you'd like</div>
+ * </div>
+ *
+ * Core components are produced manually below, but can also be added via
+ * plugins using the hooks provided:
+ *
+ * Templates::Catalog::Book::Main
+ * Templates::Catalog::Book::Details
+ *
  * @uses $currentPress Press The press currently being viewed
  * @uses $monograph Monograph The monograph to be displayed
  * @uses $dateFormatShort string String defining date format that is passed to
@@ -28,56 +69,65 @@
 	<div class="row">
 		<div class="main_entry">
 
-			<ul class="author_roles">
+			<div class="item authors">
 				{foreach from=$publishedMonograph->getAuthors() item=author}
 					{if $author->getIncludeInBrowse()}
-						<li>
-							<span class="name">
+						<div class="sub_item">
+							<div class="label">
 								{$author->getFullName()|escape}
-							</span>
-							<span class="role">
-								{$author->getLocalizedUserGroupName()|escape}
-							</span>
-							{assign var=biography value=$author->getLocalizedBiography()|strip_unsafe_html}
-							{if $biography}
-								<span class="bio">
-									{$biography|strip_unsafe_html}
-								</span>
-							{/if}
-						</li>
+							</div>
+							<div class="value">
+								<div class="role">
+									{$author->getLocalizedUserGroupName()|escape}
+								</div>
+								{assign var=biography value=$author->getLocalizedBiography()|strip_unsafe_html}
+								{if $biography}
+									<div class="bio">
+										{$biography|strip_unsafe_html}
+									</div>
+								{/if}
+							</div>
+						</div>
 					{/if}
 				{/foreach}
-			</ul>
+			</div>
 
-			<div class="abstract">
-				<h3>
+			<div class="item abstract">
+				<h3 class="label">
 					{translate key="submission.synopsis"}
 				</h3>
-				{$publishedMonograph->getLocalizedAbstract()|strip_unsafe_html}
+				<div class="value">
+					{$publishedMonograph->getLocalizedAbstract()|strip_unsafe_html}
+				</div>
 			</div>
 
 			{if $chapters|@count}
-				<ul class="chapters">
-					{foreach from=$chapters item=chapter}
-						<li>
-							<span class="title">
-								{$chapter->getLocalizedTitle()}
-								{if $chapter->getLocalizedSubtitle() != ''}
-									<span class="subtitle">
-										{$chapter->getLocalizedSubtitle()|escape}
-									</span>
+				<div class="item chapters">
+					<ul class="chapters">
+						{foreach from=$chapters item=chapter}
+							<li>
+								<div class="title">
+									{$chapter->getLocalizedTitle()}
+									{if $chapter->getLocalizedSubtitle() != ''}
+										<div class="subtitle">
+											{$chapter->getLocalizedSubtitle()|escape}
+										</div>
+									{/if}
+								</div>
+								{assign var=chapterAuthors value=$chapter->getAuthorNamesAsString()}
+								{if $publishedMonograph->getAuthorString() != $chapterAuthors}
+									<div class="authors">
+										{$chapterAuthors|escape}
+									</div>
 								{/if}
-							</span>
-							{assign var=chapterAuthors value=$chapter->getAuthorNamesAsString()}
-							{if $publishedMonograph->getAuthorString() != $chapterAuthors}
-								<span class="authors">
-									{$chapterAuthors|escape}
-								</span>
-							{/if}
-						</li>
-					{/foreach}
-				</ul>
+							</li>
+						{/foreach}
+					</ul>
+				</div>
 			{/if}
+
+			{call_hook name="Templates::Catalog::Book::Main"}
+
 		</div><!-- .main_entry -->
 
 		<div class="entry_details">
@@ -151,14 +201,14 @@
 			{* Series *}
 			{if $series}
 				<div class="item series">
-					<span class="label">
+					<div class="label">
 						{translate key="series.series"}
-					</span>
-					<span class="value">
+					</div>
+					<div class="value">
 						<a href="{url page="catalog" op="series" path=$series->getPath()}">
 							{$series->getLocalizedFullTitle()|escape}
 						</a>
-					</span>
+					</div>
 				</div>
 			{/if}
 
@@ -166,10 +216,10 @@
 			{assign var=categories value=$publishedMonograph->getCategories()}
 			{if !$categories->wasEmpty()}
 				<div class="item categories">
-					<span class="label">
+					<div class="label">
 						{translate key="catalog.categories"}
-					</span>
-					<span class="value">
+					</div>
+					<div class="value">
 						<ul>
 							{iterate from=categories item=category}
 								<li>
@@ -179,7 +229,7 @@
 								</li>
 							{/iterate}
 						</ul>
-					</span>
+					</div>
 				</div>
 			{/if}
 
@@ -215,13 +265,13 @@
 								{translate key="monograph.publicationFormatDetails"}
 							</h3>
 
-							<div class="format_detail format">
-								<span class="label">
+							<div class="sub_item format">
+								<div class="label">
 									{translate key="monograph.publicationFormat"}
-								</span>
-								<span class="value">
+								</div>
+								<div class="value">
 									{$publicationFormat->getLocalizedName()|escape}
-								</span>
+								</div>
 							</div>
 
 							{* DOI's and other identification codes *}
@@ -229,13 +279,13 @@
 							{assign var=identificationCodes value=$identificationCodes->toArray()}
 							{if $identificationCodes}
 								{foreach from=$identificationCodes item=identificationCode}
-									<div class="format_detail identification_code">
-										<span class="label">
+									<div class="sub_item identification_code">
+										<div class="label">
 											{$identificationCode->getNameForONIXCode()|escape}
-										</span>
-										<span class="value">
+										</div>
+										<div class="value">
 											{$identificationCode->getValue()|escape}
-										</span>
+										</div>
 									</div>
 								{/foreach}
 							{/if}
@@ -245,11 +295,11 @@
 							{assign var=publicationDates value=$publicationDates->toArray()}
 							{if $publicationDates}
 								{foreach from=$publicationDates item=publicationDate}
-									<div class="format_detail date">
-										<span class="label">
+									<div class="sub_item date">
+										<div class="label">
 											{$publicationDate->getNameForONIXCode()|escape}
-										</span>
-										<span class="value">
+										</div>
+										<div class="value">
 											{assign var=dates value=$publicationDate->getReadableDates()}
 											{* note: these dates have dateFormatShort applied to them in getReadableDates() if they need it *}
 											{if $publicationDate->isFreeText() || $dates|@count == 1}
@@ -259,10 +309,11 @@
 												{$dates[0]|escape}&mdash;{$dates[1]|escape}
 											{/if}
 											{if $publicationDate->isHijriCalendar()}
-												<span class="hijri">
+												<div class="hijri">
 													{translate key="common.dateHijri"}
-												</span>
+												</div>
 											{/if}
+										</div>
 									</div>
 								{/foreach}
 							{/if}
@@ -272,13 +323,13 @@
 								{foreach from=$enabledPubIdTypes item=pubIdType}
 									{assign var=storedPubId value=$publicationFormat->getStoredPubId($pubIdType)}
 									{if $storePubId != ''}
-										<div class="format_detail pubid {$publicationFormat->getId()|escape}">
-											<span class="label">
+										<div class="sub_item pubid {$publicationFormat->getId()|escape}">
+											<div class="label">
 												{$pubIdType}
-											</span>
-											<span class="value">
+											</div>
+											<div class="value">
 												{$storedPubId|escape}
-											</span>
+											</div>
 										</div>
 									{/if}
 								{/foreach}
@@ -286,19 +337,21 @@
 
 							{* Physical dimensions *}
 							{if $publicationFormat->getPhysicalFormat()}
-								<div class="format_detail dimensions">
-									<span class="label">
+								<div class="sub_item dimensions">
+									<div class="label">
 										{translate key="monograph.publicationFormat.productDimensions"}
-									</span>
-									<span class="value">
+									</div>
+									<div class="value">
 										{$publicationFormat->getDimensions()|escape}
-									</span>
+									</div>
 								</div>
 							{/if}
 						</div>
 					{/if}
 				{/foreach}
 			{/if}
+
+			{call_hook name="Templates::Catalog::Book::Details"}
 
 		</div><!-- .details -->
 	</div><!-- .row -->

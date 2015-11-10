@@ -24,7 +24,7 @@ class AddThisPlugin extends GenericPlugin {
 	function register($category, $path) {
 		if (parent::register($category, $path)) {
 			if ($this->getEnabled()) {
-				HookRegistry::register('Templates::Catalog::Book::BookInfo::Sharing', array($this, 'callbackSharingDisplay'));
+				HookRegistry::register('Templates::Catalog::Book::Details', array($this, 'callbackSharingDisplay'));
 				// Register the components this plugin implements
 				HookRegistry::register('LoadComponentHandler', array($this, 'setupGridHandler'));
 			}
