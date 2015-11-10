@@ -9,7 +9,6 @@
  *
  * @uses $category Category Current category being viewed
  * @uses $publishedMonographs array List of published monographs in this category
- * @uses $featuredMonographIds array List of featured monograph IDs in this category
  * @uses $newReleasesMonographs array List of new monographs in this category
  * @uses $parentCategory Category Parent category if one exists
  * @uses $subcategories array List of subcategories if they exist
@@ -74,7 +73,7 @@
 		{/if}
 
 		{* All monographs *}
-		{include file="frontend/components/monographList.tpl" monographs=$publishedMonographs featured=$featuredMonographIds titleKey="catalog.allBooks"}
+		{include file="frontend/components/monographList.tpl" monographs=$publishedMonographs titleKey="catalog.allBooks"}
 
 	{/if}
 

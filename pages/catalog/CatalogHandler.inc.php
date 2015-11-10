@@ -106,11 +106,6 @@ class CatalogHandler extends Handler {
 			$publishedMonographs =& $publishedMonographDao->getByCategoryId($category->getId(), $press->getId());
 			$templateMgr->assign('publishedMonographs', $publishedMonographs->toAssociativeArray());
 
-			// Expose the featured monograph IDs and associated params
-			$featureDao = DAORegistry::getDAO('FeatureDAO');
-			$featuredMonographIds = $featureDao->getSequencesByAssoc(ASSOC_TYPE_CATEGORY, $category->getId());
-			$templateMgr->assign('featuredMonographIds', $featuredMonographIds);
-
 			// Provide a list of new releases to browse
 			$newReleaseDao = DAORegistry::getDAO('NewReleaseDAO');
 			$newReleases = $newReleaseDao->getMonographsByAssoc(ASSOC_TYPE_CATEGORY, $category->getId());
@@ -147,11 +142,6 @@ class CatalogHandler extends Handler {
 		$publishedMonographDao = DAORegistry::getDAO('PublishedMonographDAO');
 		$publishedMonographs = $publishedMonographDao->getBySeriesId($series->getId(), $press->getId());
 		$templateMgr->assign('publishedMonographs', $publishedMonographs->toAssociativeArray());
-
-		// Expose the featured monograph IDs and associated params
-		$featureDao = DAORegistry::getDAO('FeatureDAO');
-		$featuredMonographIds = $featureDao->getSequencesByAssoc(ASSOC_TYPE_SERIES, $series->getId());
-		$templateMgr->assign('featuredMonographIds', $featuredMonographIds);
 
 		// Provide a list of new releases to browse
 		$newReleaseDao = DAORegistry::getDAO('NewReleaseDAO');

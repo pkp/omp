@@ -9,7 +9,6 @@
  *
  * @uses $series Series Current series being viewed
  * @uses $publishedMonographs array List of published monographs in this series
- * @uses $featuredMonographIds array List of featured monograph IDs in this series
  * @uses $newReleasesMonographs array List of new monographs in this series
  *}
 {include file="common/frontend/header.tpl" pageTitleTranslated=$series->getLocalizedTitle()}
@@ -53,7 +52,7 @@
 		{/if}
 
 		{* All monographs *}
-		{include file="frontend/components/monographList.tpl" monographs=$publishedMonographs featured=$featuredMonographIds titleKey="catalog.allBooks"}
+		{include file="frontend/components/monographList.tpl" monographs=$publishedMonographs titleKey="catalog.allBooks"}
 
 	{/if}
 

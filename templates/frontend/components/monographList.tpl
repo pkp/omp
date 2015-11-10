@@ -8,7 +8,6 @@
  * @brief Display a list of monographs.
  *
  * @uses $monographs array List of monographs to display
- * @uses $featured array Optional list of monograph IDs to feature in the list
  * @uses $titleKey string Optional translation key for a title for the list
  *}
 <div class="cmp_monographs_list">
@@ -20,18 +19,8 @@
 		</h3>
 	{/if}
 
-	{* Show featured items first *}
-	{if $featured && count($featured) > 0}
-		{foreach from=$featured key=id item=array_key}
-			{include file="frontend/objects/monograph_summary.tpl" monograph=$monographs[$id] isFeatured=1}
-		{/foreach}
-	{/if}
-
 	{assign var=counter value=1}
 	{foreach name="monographListLoop" from=$monographs item=monograph key=key}
-		{if is_array($featured) && array_key_exists($key, $featured)}
-			{php}continue;{/php}
-		{/if}
 		{if $counter is odd by 1}
 			<div class="row">
 		{/if}
