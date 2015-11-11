@@ -109,7 +109,7 @@ class PubIdPluginHelper {
 	 */
 	function _clearPubId($pubIdPlugin, $pubObject) {
 		// clear the pubId:
-		// delte the pubId from the DB
+		// delete the pubId from the DB
 		$pubObjectType = $pubIdPlugin->getPubObjectType($pubObject);
 		$dao = $pubIdPlugin->getDAO($pubObjectType);
 		$dao->deletePubId($pubObject->getId(), $pubIdPlugin->getPubIdType());

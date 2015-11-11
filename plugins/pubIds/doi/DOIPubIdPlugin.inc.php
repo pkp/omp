@@ -86,82 +86,82 @@ class DOIPubIdPlugin extends PubIdPlugin {
 	 * @see PubIdPlugin::getPubId()
 	 */
 	function getPubId(&$pubObject, $preview = false) {
-		$doi = null;
-		if (!$this->isExcluded($pubObject)) {
-			// Determine the type of the publishing object.
-			$pubObjectType = $this->getPubObjectType($pubObject);
+		if ($this->isExcluded($pubObject)) return null;
 
-			// Initialize variables for publication objects.
-			$publicationFormat = ($pubObjectType == 'PublicationFormat' ? $pubObject : null);
-			$monograph = ($pubObjectType == 'Monograph' ? $pubObject : null);
+		// Determine the type of the publishing object.
+		$pubObjectType = $this->getPubObjectType($pubObject);
+
+		// Initialize variables for publication objects.
+		$publicationFormat = ($pubObjectType == 'PublicationFormat' ? $pubObject : null);
+		$monograph = ($pubObjectType == 'Monograph' ? $pubObject : null);
 
 
-			// Get the press id of the object.
-			if (in_array($pubObjectType, array('PublicationFormat', 'Monograph'))) {
-				$pressId = $pubObject->getContextId();
-			} else {
-				return null;
-			}
-
-			$press = $this->_getPress($pressId);
-			if (!$press) return null;
-			$pressId = $press->getId();
-
-			// If we already have an assigned DOI, use it.
-			$storedDOI = $pubObject->getStoredPubId('doi');
-			if ($storedDOI) return $storedDOI;
-
-			// Retrieve the DOI prefix.
-			$doiPrefix = $this->getSetting($pressId, 'doiPrefix');
-			if (empty($doiPrefix)) return null;
-
-			// Generate the DOI suffix.
-			$doiSuffixGenerationStrategy = $this->getSetting($pressId, 'doiSuffix');
-
-			switch ($doiSuffixGenerationStrategy) {
-				case 'customId':
-					$doiSuffix = $pubObject->getData('doiSuffix');
-					break;
-
-				case 'pattern':
-					$doiSuffix = $this->getSetting($pressId, "doi${pubObjectType}SuffixPattern");
-
-					// %p - press initials
-					$doiSuffix = String::regexp_replace('/%p/', String::strtolower($press->getPath()), $doiSuffix);
-
-					if ($publicationFormat) {
-						// %m - monograph id, %f - publication format id
-						$doiSuffix = String::regexp_replace('/%m/', $publicationFormat->getMonographId(), $doiSuffix);
-						$doiSuffix = String::regexp_replace('/%f/', $publicationFormat->getId(), $doiSuffix);
-					}
-					if ($monograph) {
-						// %m - monograph id
-						$doiSuffix = String::regexp_replace('/%m/', $monograph->getId(), $doiSuffix);
-					}
-
-					break;
-
-				default:
-					$doiSuffix = String::strtolower($press->getPath());
-
-					if ($publicationFormat) {
-						$doiSuffix .= '.' . $publicationFormat->getMonographId();
-						$doiSuffix .= '.' . $publicationFormat->getId();
-					}
-					if ($monograph) {
-						$doiSuffix .= '.' . $monograph->getId();
-					}
-			}
-			if (empty($doiSuffix)) return null;
-
-			// Join prefix and suffix.
-			$doi = $doiPrefix . '/' . $doiSuffix;
-
-			if (!$preview) {
-				// Save the generated DOI.
-				$this->setStoredPubId($pubObject, $pubObjectType, $doi);
-			}
+		// Get the press id of the object.
+		if (in_array($pubObjectType, array('PublicationFormat', 'Monograph'))) {
+			$pressId = $pubObject->getContextId();
+		} else {
+			return null;
 		}
+
+		$press = $this->_getPress($pressId);
+		if (!$press) return null;
+		$pressId = $press->getId();
+
+		// If we already have an assigned DOI, use it.
+		$storedDOI = $pubObject->getStoredPubId('doi');
+		if ($storedDOI) return $storedDOI;
+
+		// Retrieve the DOI prefix.
+		$doiPrefix = $this->getSetting($pressId, 'doiPrefix');
+		if (empty($doiPrefix)) return null;
+
+		// Generate the DOI suffix.
+		$doiSuffixGenerationStrategy = $this->getSetting($pressId, 'doiSuffix');
+
+		switch ($doiSuffixGenerationStrategy) {
+			case 'customId':
+				$doiSuffix = $pubObject->getData('doiSuffix');
+				break;
+
+			case 'pattern':
+				$doiSuffix = $this->getSetting($pressId, "doi${pubObjectType}SuffixPattern");
+
+				// %p - press initials
+				$doiSuffix = String::regexp_replace('/%p/', String::strtolower($press->getPath()), $doiSuffix);
+
+				if ($publicationFormat) {
+					// %m - monograph id, %f - publication format id
+					$doiSuffix = String::regexp_replace('/%m/', $publicationFormat->getMonographId(), $doiSuffix);
+					$doiSuffix = String::regexp_replace('/%f/', $publicationFormat->getId(), $doiSuffix);
+				}
+				if ($monograph) {
+					// %m - monograph id
+					$doiSuffix = String::regexp_replace('/%m/', $monograph->getId(), $doiSuffix);
+				}
+
+				break;
+
+			default:
+				$doiSuffix = String::strtolower($press->getPath());
+
+				if ($publicationFormat) {
+					$doiSuffix .= '.' . $publicationFormat->getMonographId();
+					$doiSuffix .= '.' . $publicationFormat->getId();
+				}
+				if ($monograph) {
+					$doiSuffix .= '.' . $monograph->getId();
+				}
+		}
+		if (empty($doiSuffix)) return null;
+
+		// Join prefix and suffix.
+		$doi = $doiPrefix . '/' . $doiSuffix;
+
+		if (!$preview) {
+			// Save the generated DOI.
+			$this->setStoredPubId($pubObject, $pubObjectType, $doi);
+		}
+
 		return $doi;
 	}
 
