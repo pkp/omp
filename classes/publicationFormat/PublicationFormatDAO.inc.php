@@ -327,6 +327,25 @@ class PublicationFormatDAO extends RepresentationDAO {
 	}
 
 	/**
+	 * Delete the public ID of a format.
+	 * @param $formatId int
+	 * @param $pubIdType string One of the NLM pub-id-type values or
+	 * 'other::something' if not part of the official NLM list
+	 * (see <http://dtd.nlm.nih.gov/publishing/tag-library/n-4zh0.html>).
+	 */
+	function deletePubId($formatId, $pubIdType) {
+		$settingName = 'pub-id::'.$pubIdType;
+		$this->update(
+			'DELETE FROM publication_format_settings WHERE setting_name = ? AND publication_format_id = ?',
+			array(
+				$settingName,
+				(int)$formatId
+			)
+		);
+		$this->flushCache();
+	}
+
+	/**
 	 * Change the public ID of a format.
 	 * @param $formatId int
 	 * @param $pubIdType string One of the NLM pub-id-type values or

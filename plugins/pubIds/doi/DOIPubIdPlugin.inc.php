@@ -86,6 +86,8 @@ class DOIPubIdPlugin extends PubIdPlugin {
 	 * @see PubIdPlugin::getPubId()
 	 */
 	function getPubId(&$pubObject, $preview = false) {
+		if ($this->isExcluded($pubObject)) return null;
+
 		// Determine the type of the publishing object.
 		$pubObjectType = $this->getPubObjectType($pubObject);
 
@@ -144,7 +146,7 @@ class DOIPubIdPlugin extends PubIdPlugin {
 
 				if ($publicationFormat) {
 					$doiSuffix .= '.' . $publicationFormat->getMonographId();
- 					$doiSuffix .= '.' . $publicationFormat->getId();
+					$doiSuffix .= '.' . $publicationFormat->getId();
 				}
 				if ($monograph) {
 					$doiSuffix .= '.' . $monograph->getId();
@@ -188,14 +190,21 @@ class DOIPubIdPlugin extends PubIdPlugin {
 	 * @see PubIdPlugin::getResolvingURL()
 	 */
 	function getResolvingURL($pressId, $pubId) {
-		return 'http://dx.doi.org/'.urlencode($pubId);
+		return 'http://dx.doi.org/'.$this->_doiURLEncode($pubId);
 	}
 
 	/**
 	 * @see PubIdPlugin::getFormFieldNames()
 	 */
 	function getFormFieldNames() {
-		return array('doiSuffix');
+		return array('doiSuffix', 'excludeDoi');
+	}
+
+	/**
+	 * @see PubIdPlugin::getExcludeFormFieldName()
+	 */
+	function getExcludeFormFieldName() {
+		return 'excludeDoi';
 	}
 
 	/**
@@ -224,28 +233,29 @@ class DOIPubIdPlugin extends PubIdPlugin {
 	 */
 	function verifyData($fieldName, $fieldValue, &$pubObject, $pressId, &$errorMsg) {
 		// Verify DOI uniqueness.
-		assert($fieldName == 'doiSuffix');
-		if (empty($fieldValue)) return true;
+		if ($fieldName == 'doiSuffix') {
+			if (empty($fieldValue)) return true;
 
-		// Construct the potential new DOI with the posted suffix.
-		$doiPrefix = $this->getSetting($pressId, 'doiPrefix');
-		if (empty($doiPrefix)) return true;
-		$newDoi = $doiPrefix . '/' . $fieldValue;
+			// Construct the potential new DOI with the posted suffix.
+			$doiPrefix = $this->getSetting($pressId, 'doiPrefix');
+			if (empty($doiPrefix)) return true;
+			$newDoi = $doiPrefix . '/' . $fieldValue;
 
-		if($this->checkDuplicate($newDoi, $pubObject, $pressId)) {
-			return true;
-		} else {
-			$errorMsg = __('plugins.pubIds.doi.editor.doiSuffixCustomIdentifierNotUnique');
-			return false;
+			if($this->checkDuplicate($newDoi, $pubObject, $pressId)) {
+				return true;
+			} else {
+				$errorMsg = __('plugins.pubIds.doi.editor.doiSuffixCustomIdentifierNotUnique');
+				return false;
+			}
 		}
+		return true;
 	}
 
 	/**
 	 * @see PubIdPlugin::validatePubId()
 	 */
 	function validatePubId($pubId) {
-		$doiParts = explode('/', $pubId, 2);
-		return count($doiParts) == 2;
+		return preg_match('/^\d+(.\d+)+\//', $pubId);
 	}
 
 
@@ -274,6 +284,19 @@ class DOIPubIdPlugin extends PubIdPlugin {
 
 		return $press;
 	}
+
+	/**
+	 * Encode DOI according to ANSI/NISO Z39.84-2005, Appendix E.
+	 * @param $pubId string
+	 * @return string
+	 */
+	function _doiURLEncode($pubId) {
+		$search = array ('%', '"', '#', ' ', '<', '>', '{');
+		$replace = array ('%25', '%22', '%23', '%20', '%3c', '%3e', '%7b');
+		$pubId = str_replace($search, $replace, $pubId);
+		return $pubId;
+	}
+
 }
 
 ?>

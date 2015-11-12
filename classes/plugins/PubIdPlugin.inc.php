@@ -226,6 +226,26 @@ class PubIdPlugin extends Plugin {
 	}
 
 	/**
+	 * Get the checkbox form field name that is used to define
+	 * if a pub object should be excluded from assigning the pub id to it.
+	 * @return string
+	 */
+	function getExcludeFormFieldName() {
+		assert(false); // Should be overridden
+	}
+
+	/**
+	 * Should the object be excluded from assigning the pub id
+	 * @param $pubObject object
+	 * @return boolean
+	 */
+	function isExcluded($pubObject) {
+		$excludeFormFieldName = $this->getExcludeFormFieldName();
+		$excluded = $pubObject->getData($excludeFormFieldName);
+		return $excluded;
+	}
+
+	/**
 	 * Get additional field names to be considered for storage.
 	 * @return array
 	 */
