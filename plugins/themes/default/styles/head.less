@@ -343,6 +343,7 @@
 			&:hover,
 			&:focus {
 				background: @bg;
+				color: @text;
 			}
 		}
 	}
@@ -393,6 +394,11 @@
 		&:extend( .cmp_button );
 		width: 100%;
 		margin-top: @base;
+
+		&:hover,
+		&:focus {
+			&:extend(.cmp_button:hover);
+		}
 
 
 		@media(min-width: @screen-phone) {

@@ -10,67 +10,46 @@
  */
 .pkp_page_index {
 
-	// Put first row flush with navigation menu
-	.pkp_structure_main {
-		padding-top: 0;
-	}
+	.homepage_image,
+	.cmp_spotlights {
+		margin-left: -@base;
+		margin-right: -@base;
 
-	.row {
-		padding-top: @double * 2;
-		padding-bottom: @double * 2;
-		border-bottom: @bg-border;
-
-		&:last-child {
-			border-bottom: none;
+		@media (min-width: @screen-phone) {
+			margin-left: -@double;
+			margin-right: -@double;
 		}
 
-		h2 {
-			display: block;
-			margin-top: 0;
-			margin-bottom: @base;
-			font-size: @font-lead;
-			line-height: @line-lead;
-			font-weight: @bold;
+		@media (min-width: @screen-desktop) {
+			margin-left: -@triple;
+			margin-right: -@triple;
+		}
+	}
+
+	.cmp_spotlights {
+		padding: (@triple * 2) @base;
+
+		@media (min-width: @screen-phone) {
+			padding-left: @triple;
+			padding-right: @triple;
 		}
 
 		@media (min-width: @screen-tablet) {
-
-			h2 {
-				text-align: center;
-				margin-bottom: @double;
-			}
-		}
-
-		@media (min-width: @screen-desktop) {
-
-			h2 {
-				font-size: @font-header;
-				line-height: @line-header;
-			}
+			padding: 0;
 		}
 	}
 
-	.row_new_releases {
+	.homepage_image {
 
-		h2 {
-			margin-bottom: @double * 2;
-		}
-
-		.title {
-			font-size: @font-bump;
-			line-height: @line-bump;
-		}
-
-		.author {
-			font-size: @font-base;
-			line-height: @line-base;
+		img {
+			display: block;
+			width: 100%;
+			height: auto;
 		}
 
 		@media (min-width: @screen-desktop) {
-
-			.cmp_monographs_list {
-				max-width: 40em;
-			}
+			margin-top: -70px; // flush with top nav
 		}
 	}
+
 }

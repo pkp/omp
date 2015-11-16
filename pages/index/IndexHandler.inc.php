@@ -116,6 +116,21 @@ class IndexHandler extends Handler {
 		$displayFeaturedBooks = $press->getSetting('displayFeaturedBooks');
 		$templateMgr->assign('displayFeaturedBooks', $displayFeaturedBooks);
 
+		$featureDao = DAORegistry::getDAO('FeatureDAO');
+		$featuredMonographIds = $featureDao->getSequencesByAssoc(ASSOC_TYPE_PRESS, $press->getId());
+		if (!empty( $featuredMonographIds)) {
+			$featuredMonographs = array();
+			$publishedMonographDao = DAORegistry::getDAO('PublishedMonographDAO');
+			$publishedMonographs = $publishedMonographDao->getByPressId($press->getId());
+			$publishedMonographs = $publishedMonographs->toAssociativeArray();
+			foreach($featuredMonographIds as $key => $val) {
+				if (array_key_exists($key, $publishedMonographs)) {
+					$featuredMonographs[$key] = $publishedMonographs[$key];
+				}
+			}
+		}
+		$templateMgr->assign('featuredMonographs', $featuredMonographs);
+
 		// Display In Spotlight
 		if ($press->getSetting('displayInSpotlight')) {
 			// Include random spotlight items for the press home page.
@@ -123,16 +138,6 @@ class IndexHandler extends Handler {
 			$spotlights = $spotlightDao->getRandomByPressId($press->getId(), MAX_SPOTLIGHTS_VISIBLE);
 			$templateMgr->assign('spotlights', $spotlights);
 		}
-
-		// Retrieve categories
-		$categoryDao = DAORegistry::getDAO('CategoryDAO');
-		$categories = $categoryDao->getByPressId($press->getId());
-		$templateMgr->assign('categories', $categories);
-
-		// Retrieve series
-		$seriesDao = DAORegistry::getDAO('SeriesDAO');
-		$series = $seriesDao->getByPressId($press->getId());
-		$templateMgr->assign('series', $series);
 
 		// Include any social media items that are configured for the press itself.
 		$socialMediaDao = DAORegistry::getDAO('SocialMediaDAO');
