@@ -46,19 +46,10 @@
 
 	{* Additional Homepage Content *}
 	{if $additionalHomeContent}
-		<div class="row row_additional_content">
+		<div class="additional_content">
 			{$additionalHomeContent}
 		</div>
 	{/if}
-
-	{* Search section *}
-	<div class="row row_find">
-		<h2>
-			{translate key="common.searchOrBrowse"}
-		</h2>
-
-		{include file="frontend/components/searchForm_homepage.tpl"}
-	</div>
 
 </div>
 {include file="common/frontend/footer.tpl"}
