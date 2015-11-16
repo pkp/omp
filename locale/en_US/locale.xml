@@ -230,7 +230,6 @@
 
 	<!-- series/categories/series -->
 	<message key="series.series">Series</message>
-	<message key="series.featured">Featured</message>
 	<message key="series.featured.description">This series will appear on the main navigation</message>
 	<message key="series.path">Path</message>
 
@@ -276,6 +275,7 @@
 	<message key="catalog.noTitlesSection">No titles have been published yet for this section.</message>
 	<message key="catalog.browseTitles">{$numTitles} Titles</message>
 	<message key="catalog.feature">Feature</message>
+	<message key="catalog.featured">Featured</message>
 	<message key="catalog.featuredBooks">Featured Books</message>
 	<message key="catalog.foundTitleSearch">One title was found which matched your search for "{$searchQuery}".</message>
 	<message key="catalog.foundTitlesSearch">{$number} titles were found which matched your search for "{$searchQuery}".</message>
