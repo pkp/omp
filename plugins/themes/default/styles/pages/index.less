@@ -11,7 +11,8 @@
 .pkp_page_index {
 
 	.homepage_image,
-	.cmp_spotlights {
+	.cmp_spotlights,
+	.additional_content {
 		margin-left: -@base;
 		margin-right: -@base;
 
@@ -52,4 +53,27 @@
 		}
 	}
 
+	.additional_content {
+		margin-top: @triple * 2;
+		padding: @triple @base 0 @base;
+		border-top: @bg-border;
+
+		@media (min-width: @screen-phone) {
+			padding-left: @double;
+			padding-right: @double;
+		}
+
+		@media (min-width: @screen-desktop) {
+			padding-left: @triple;
+			padding-right: @triple;
+		}
+
+		> p:first-child {
+			margin-top: 0;
+		}
+
+		> p:last-child {
+			margin-bottom: 0;
+		}
+	}
 }
