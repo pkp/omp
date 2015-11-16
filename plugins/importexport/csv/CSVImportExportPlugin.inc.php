@@ -53,6 +53,13 @@ class CSVImportExportPlugin extends ImportExportPlugin {
 	}
 
 	/**
+         * @copydoc Plugin::getActions()
+         */
+        function getActions($request, $actionArgs) {
+		return array(); // Not available via the web interface
+	}
+
+	/**
 	 * Execute import/export tasks using the command-line interface.
 	 * @param $args Parameters to the plugin
 	 */
