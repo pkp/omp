@@ -17,6 +17,13 @@
 	.date {
 		margin: 16px 0;
 		color: @text-light;
+
+		&:before {
+			&:extend(.fa);
+			content: @fa-var-calendar;
+			margin-right: 0.5em;
+			color: @bg-dark;
+		}
 	}
 
 	.description {

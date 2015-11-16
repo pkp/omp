@@ -618,3 +618,40 @@
 		}
 	}
 }
+
+// Announcements
+.cmp_announcements {
+	&:extend(.pkp_unstyled_list);
+	margin-left: -@base;
+	margin-right: -@base;
+
+	> li {
+		padding: @triple @base;
+		border-bottom: @bg-border;
+
+		&:last-child {
+			border-bottom: none;
+		}
+	}
+
+	@media(min-width: @screen-phone) {
+		margin-left: -@double;
+		margin-right: -@double;
+
+		> li {
+			padding-left: @double;
+			padding-right: @double;
+		}
+	}
+
+	@media(min-width: @screen-desktop) {
+		margin-left: -@triple;
+		margin-right: -@triple;
+
+		> li {
+			padding-left: @triple;
+			padding-right: @triple;
+		}
+
+	}
+}

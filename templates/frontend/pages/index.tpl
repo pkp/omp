@@ -7,10 +7,13 @@
  *
  * @brief Display the front page of the site
  *
- * @uses $spotlights array Selected spotlights to promote on the homepage
- * @uses $newReleases array List of new releases in this press
- * @uses $featuredMonographs array List of featured releases in this press
  * @uses $homepageImage array Details about the uploaded homepage image
+ * @uses $spotlights array Selected spotlights to promote on the homepage
+ * @uses $featuredMonographs array List of featured releases in this press
+ * @uses $newReleases array List of new releases in this press
+ * @uses $announcements array List of announcements
+ * @uses $numAnnouncementsHomepage int Number of announcements to display on the
+ *       homepage
  * @uses $additionalHomeContent string HTML blob of arbitrary content added by
  *  an editor/admin.
  *}
@@ -42,6 +45,33 @@
 	{* New releases *}
 	{if $newReleases && $newReleases|count}
 		{include file="frontend/components/monographList_featured.tpl" monographs=$newReleases titleKey="catalog.newReleases"}
+	{/if}
+
+	{* Announcements *}
+	{if $numAnnouncementsHomepage}
+		<div class="cmp_announcements highlight_first">
+			{foreach name=announcements from=$announcements item=announcement}
+				{if $smarty.foreach.announcements.iteration > $numAnnouncementsHomepage}
+					{php}break;{/php}
+				{/if}
+				{if $smarty.foreach.announcements.iteration == 1}
+					{include file="frontend/objects/announcement_summary.tpl"}
+					<div class="more">
+				{else}
+					<article class="obj_announcement_summary">
+						<h4>
+							<a href="{url router=$smarty.const.ROUTE_PAGE page="announcement" op="view" path=$announcement->getId()}">
+								{$announcement->getLocalizedTitle()}
+							</a>
+						</h4>
+						<div class="date">
+							{$announcement->getDatePosted()}
+						</div>
+					</article>
+				{/if}
+			{/foreach}
+			</div><!-- .more -->
+		</div>
 	{/if}
 
 	{* Additional Homepage Content *}
