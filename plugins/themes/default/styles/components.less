@@ -26,27 +26,11 @@
 
 	&:hover,
 	&:focus {
-		box-shadow: inset 0 1em 1em rgba(0, 0, 0, 0.1);
-		color: @primary;
-	}
-}
-
-// Wire button
-.cmp_button_wire {
-	display: inline-block;
-	padding: 0 1em;
-	background: #fff;
-	border: 1px solid @primary-lift;
-	border-radius: @radius;
-	font-size: @font-sml;
-	line-height: @triple - 2; // account for border
-	color: @primary-lift;
-	text-decoration: none;
-
-	&:hover,
-	&:focus {
+		box-shadow: inset 0 -1em 1em rgba(0, 0, 0, 0.1);
 		background: @primary-lift;
+		border-color: @primary-lift;
 		color: #fff;
+		text-shadow: none;
 	}
 }
 
@@ -77,6 +61,35 @@
 	&:focus:after {
 		box-shadow: inset 0 1em 1em rgba(0, 0, 0, 0.2);
 		background: @primary;
+	}
+}
+
+// Text button with an icon
+.cmp_button_text( @icon ) {
+	display: inline-block;
+	position: relative;
+	padding-right: @triple;
+	font-size: @font-sml;
+	font-weight: @bold;
+	line-height: @triple;
+	color: @primary-lift;
+	text-decoration: none;
+
+	&:after {
+		&:extend(.fa);
+		content: @icon;
+		position: absolute;
+		top: 2px;
+		right: 0;
+		width: @triple;
+		height: @triple;
+		line-height: @triple;
+		text-align: center;
+	}
+
+	&:hover,
+	&:focus {
+		color: @primary;
 	}
 }
 
@@ -580,41 +593,6 @@
 			.read_more {
 				float: left;
 			}
-		}
-	}
-}
-
-// Large search input on homepage
-.cmp_search_homepage {
-
-	input {
-		margin-bottom: @base;
-	}
-
-	button {
-		&:extend(.cmp_button);
-		width: 100%;
-
-		&:hover,
-		&:focus {
-			&:extend(.cmp_button:hover);
-		}
-	}
-
-	@media (min-width: @screen-phone) {
-
-		button {
-			width: auto;
-		}
-	}
-
-	@media (min-width: @screen-tablet) {
-		text-align: center;
-		margin: 0 auto;
-		max-width: 36em;
-
-		input[type="text"] {
-			margin-bottom: 0;
 		}
 	}
 }
