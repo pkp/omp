@@ -159,6 +159,7 @@
 
 	<!-- Spotlight grid keys -->
 	<!--  Spotlights management -->
+	<message key="spotlight">Spotlight</message>
 	<message key="spotlight.spotlights">Spotlights</message>
 	<message key="spotlight.noneExist">There are no current spotlights.</message>
 	<message key="spotlight.title.homePage">In the Spotlight</message>
