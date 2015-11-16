@@ -18,7 +18,7 @@
  *       is empty or set to the desired CSS class
  * @uses $description string A description to display with this spotlight
  *}
-<div class="obj_spotlight {$hasCoverImage}">
+<div class="obj_spotlight {$hasCoverImage} {$type}">
 
 	{if $coverImage}
 		<a class="cover_image" href="{$targetUrl}">
@@ -30,12 +30,21 @@
 		<h3 class="title">
 			{$spotlight->getLocalizedTitle()|escape}
 		</h3>
+		<div class="type">
+			{if $assocType == $smarty.const.SPOTLIGHT_TYPE_SERIES}
+				{translate key="series.series"}
+			{elseif $assocType == $smarty.const.SPOTLIGHT_TYPE_AUTHOR}
+				{translate key="user.role.author"}
+			{else}
+				{translate key="spotlight"}
+			{/if}
+		</div>
 		{if $description}
 		<div class="description">
 			{$description|strip_unsafe_html}
 		</div>
 		{/if}
-		<a href="{$targetUrl}" title="{translate|escape key="common.readMoreWithTitle" title=$spotlight->getLocalizedTitle()}">
+		<a class="read_more" href="{$targetUrl}" title="{translate|escape key="common.readMoreWithTitle" title=$spotlight->getLocalizedTitle()}">
 			{translate key="common.readMore"}
 		</a>
 	</div>

@@ -20,6 +20,11 @@
 
 			.suggest_username {
 				&:extend(.cmp_button);
+
+				&:hover,
+				&:focus {
+					&:extend(.cmp_button:hover);
+				}
 			}
 		}
 	}
@@ -32,6 +37,11 @@
 
 	.buttons button {
 		&:extend(.cmp_button);
+
+		&:hover,
+		&:focus {
+			&:extend(.cmp_button:hover);
+		}
 	}
 
 	// Styles for form error list, which is still tied to a template shared by
