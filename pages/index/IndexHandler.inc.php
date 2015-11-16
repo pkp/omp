@@ -119,10 +119,11 @@ class IndexHandler extends Handler {
 				$featuredMonographs = array();
 				$publishedMonographDao = DAORegistry::getDAO('PublishedMonographDAO');
 				$publishedMonographs = $publishedMonographDao->getByPressId($press->getId());
-				$publishedMonographs = $publishedMonographs->toAssociativeArray();
-				foreach($featuredMonographIds as $key => $val) {
-					if (array_key_exists($key, $publishedMonographs)) {
-						$featuredMonographs[$key] = $publishedMonographs[$key];
+				while ($publishedMonograph = $publishedMonographs->next()) {
+					foreach($featuredMonographIds as $key => $val) {
+						if ($publishedMonograph->getId() == $key) {
+							$featuredMonographs[] = $publishedMonograph;
+						}
 					}
 				}
 			}
