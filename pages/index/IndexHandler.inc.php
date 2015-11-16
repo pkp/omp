@@ -113,23 +113,22 @@ class IndexHandler extends Handler {
 		}
 
 		// Display Featured Books
-		$displayFeaturedBooks = $press->getSetting('displayFeaturedBooks');
-		$templateMgr->assign('displayFeaturedBooks', $displayFeaturedBooks);
-
-		$featureDao = DAORegistry::getDAO('FeatureDAO');
-		$featuredMonographIds = $featureDao->getSequencesByAssoc(ASSOC_TYPE_PRESS, $press->getId());
-		if (!empty( $featuredMonographIds)) {
-			$featuredMonographs = array();
-			$publishedMonographDao = DAORegistry::getDAO('PublishedMonographDAO');
-			$publishedMonographs = $publishedMonographDao->getByPressId($press->getId());
-			$publishedMonographs = $publishedMonographs->toAssociativeArray();
-			foreach($featuredMonographIds as $key => $val) {
-				if (array_key_exists($key, $publishedMonographs)) {
-					$featuredMonographs[$key] = $publishedMonographs[$key];
+		if ( $press->getSetting('displayFeaturedBooks') ) {
+			$featureDao = DAORegistry::getDAO('FeatureDAO');
+			$featuredMonographIds = $featureDao->getSequencesByAssoc(ASSOC_TYPE_PRESS, $press->getId());
+			if (!empty( $featuredMonographIds)) {
+				$featuredMonographs = array();
+				$publishedMonographDao = DAORegistry::getDAO('PublishedMonographDAO');
+				$publishedMonographs = $publishedMonographDao->getByPressId($press->getId());
+				$publishedMonographs = $publishedMonographs->toAssociativeArray();
+				foreach($featuredMonographIds as $key => $val) {
+					if (array_key_exists($key, $publishedMonographs)) {
+						$featuredMonographs[$key] = $publishedMonographs[$key];
+					}
 				}
 			}
+			$templateMgr->assign('featuredMonographs', $featuredMonographs);
 		}
-		$templateMgr->assign('featuredMonographs', $featuredMonographs);
 
 		// Display In Spotlight
 		if ($press->getSetting('displayInSpotlight')) {
