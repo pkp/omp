@@ -14,10 +14,24 @@
 		margin: 0;
 		font-size: @font-base;
 		line-height: @line-base;
+
+		a {
+			text-decoration: none;
+		}
 	}
 
 	.date {
+		font-size: @font-sml;
+		line-height: @line-base-large;
 		color: @text-light;
+
+		&:before {
+			&:extend(.fa);
+			content: @fa-var-calendar;
+			margin-right: 0.5em;
+			font-size: @font-base;
+			color: @bg-dark;
+		}
 	}
 
 	.summary {
@@ -31,6 +45,16 @@
 
 		p:last-child {
 			margin-bottom: 0;
+		}
+	}
+
+	.read_more {
+		&:extend(.cmp_button);
+		.cmp_button_icon(@fa-var-chevron-right);
+
+		&:hover,
+		&:focus {
+			&:extend(.cmp_button:hover);
 		}
 	}
 }
