@@ -9,7 +9,6 @@
  *
  * @uses $spotlights array Selected spotlights to promote on the homepage
  * @uses $newReleases array List of new releases in this press
- * @uses $displayFeaturedBooks bool Should featured books be displayed?
  * @uses $featuredMonographs array List of featured releases in this press
  * @uses $homepageImage array Details about the uploaded homepage image
  * @uses $additionalHomeContent string HTML blob of arbitrary content added by
@@ -36,17 +35,13 @@
 
 
 	{* Featured *}
-	{if $featuredMonographs|count}
-		<div class="row row_new_releases">
-			{include file="frontend/components/monographList.tpl" monographs=$featuredMonographs titleKey="catalog.feature"}
-		</div>
+	{if $featuredMonographs && $featuredMonographs|count}
+		{include file="frontend/components/monographList_featured.tpl" monographs=$featuredMonographs titleKey="catalog.featured"}
 	{/if}
 
 	{* New releases *}
-	{if $newReleases|count}
-		<div class="row row_new_releases">
-			{include file="frontend/components/monographList.tpl" monographs=$newReleases titleKey="catalog.newReleases"}
-		</div>
+	{if $newReleases && $newReleases|count}
+		{include file="frontend/components/monographList_featured.tpl" monographs=$newReleases titleKey="catalog.newReleases"}
 	{/if}
 
 	{* Additional Homepage Content *}
