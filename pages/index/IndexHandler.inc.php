@@ -104,7 +104,7 @@ class IndexHandler extends Handler {
 				$numAnnouncementsHomepage = $press->getSetting('numAnnouncementsHomepage');
 				$announcementDao = DAORegistry::getDAO('AnnouncementDAO');
 				$announcements =& $announcementDao->getAnnouncementsNotExpiredByAssocId(ASSOC_TYPE_PRESS, $press->getId());
-				$templateMgr->assign_by_ref('announcements', $announcements->toArray());
+				$templateMgr->assign('announcements', $announcements->toArray());
 				if (isset($numAnnouncementsHomepage)) {
 					$templateMgr->assign('numAnnouncementsHomepage', $numAnnouncementsHomepage);
 				}
