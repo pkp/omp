@@ -102,10 +102,9 @@ class IndexHandler extends Handler {
 			$enableAnnouncementsHomepage = $press->getSetting('enableAnnouncementsHomepage');
 			if ($enableAnnouncementsHomepage) {
 				$numAnnouncementsHomepage = $press->getSetting('numAnnouncementsHomepage');
-				$templateMgr->assign('enableAnnouncementsHomepage', true);
 				$announcementDao = DAORegistry::getDAO('AnnouncementDAO');
 				$announcements =& $announcementDao->getAnnouncementsNotExpiredByAssocId(ASSOC_TYPE_PRESS, $press->getId());
-				$templateMgr->assign_by_ref('announcements', $announcements);
+				$templateMgr->assign_by_ref('announcements', $announcements->toArray());
 				if (isset($numAnnouncementsHomepage)) {
 					$templateMgr->assign('numAnnouncementsHomepage', $numAnnouncementsHomepage);
 				}
@@ -113,7 +112,7 @@ class IndexHandler extends Handler {
 		}
 
 		// Display Featured Books
-		if ( $press->getSetting('displayFeaturedBooks') ) {
+		if ($press->getSetting('displayFeaturedBooks')) {
 			$featureDao = DAORegistry::getDAO('FeatureDAO');
 			$featuredMonographIds = $featureDao->getSequencesByAssoc(ASSOC_TYPE_PRESS, $press->getId());
 			if (!empty( $featuredMonographIds)) {
