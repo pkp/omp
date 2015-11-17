@@ -102,10 +102,9 @@ class IndexHandler extends Handler {
 			$enableAnnouncementsHomepage = $press->getSetting('enableAnnouncementsHomepage');
 			if ($enableAnnouncementsHomepage) {
 				$numAnnouncementsHomepage = $press->getSetting('numAnnouncementsHomepage');
-				$templateMgr->assign('enableAnnouncementsHomepage', true);
 				$announcementDao = DAORegistry::getDAO('AnnouncementDAO');
 				$announcements =& $announcementDao->getAnnouncementsNotExpiredByAssocId(ASSOC_TYPE_PRESS, $press->getId());
-				$templateMgr->assign_by_ref('announcements', $announcements);
+				$templateMgr->assign('announcements', $announcements->toArray());
 				if (isset($numAnnouncementsHomepage)) {
 					$templateMgr->assign('numAnnouncementsHomepage', $numAnnouncementsHomepage);
 				}
@@ -113,8 +112,23 @@ class IndexHandler extends Handler {
 		}
 
 		// Display Featured Books
-		$displayFeaturedBooks = $press->getSetting('displayFeaturedBooks');
-		$templateMgr->assign('displayFeaturedBooks', $displayFeaturedBooks);
+		if ($press->getSetting('displayFeaturedBooks')) {
+			$featureDao = DAORegistry::getDAO('FeatureDAO');
+			$featuredMonographIds = $featureDao->getSequencesByAssoc(ASSOC_TYPE_PRESS, $press->getId());
+			if (!empty( $featuredMonographIds)) {
+				$featuredMonographs = array();
+				$publishedMonographDao = DAORegistry::getDAO('PublishedMonographDAO');
+				$publishedMonographs = $publishedMonographDao->getByPressId($press->getId());
+				while ($publishedMonograph = $publishedMonographs->next()) {
+					foreach($featuredMonographIds as $key => $val) {
+						if ($publishedMonograph->getId() == $key) {
+							$featuredMonographs[] = $publishedMonograph;
+						}
+					}
+				}
+			}
+			$templateMgr->assign('featuredMonographs', $featuredMonographs);
+		}
 
 		// Display In Spotlight
 		if ($press->getSetting('displayInSpotlight')) {
@@ -123,16 +137,6 @@ class IndexHandler extends Handler {
 			$spotlights = $spotlightDao->getRandomByPressId($press->getId(), MAX_SPOTLIGHTS_VISIBLE);
 			$templateMgr->assign('spotlights', $spotlights);
 		}
-
-		// Retrieve categories
-		$categoryDao = DAORegistry::getDAO('CategoryDAO');
-		$categories = $categoryDao->getByPressId($press->getId());
-		$templateMgr->assign('categories', $categories);
-
-		// Retrieve series
-		$seriesDao = DAORegistry::getDAO('SeriesDAO');
-		$series = $seriesDao->getByPressId($press->getId());
-		$templateMgr->assign('series', $series);
 
 		// Include any social media items that are configured for the press itself.
 		$socialMediaDao = DAORegistry::getDAO('SocialMediaDAO');

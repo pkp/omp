@@ -88,4 +88,36 @@
 		},300)
 	}
 
+	// Spotlights
+	var spotlightComponent = $('.cmp_spotlights');
+	if (spotlightComponent.length) {
+
+		// Store references to the tabs in the list and the spotlights themselves
+		var tabs = spotlightComponent.find('> .list a');
+		var spotlights = spotlightComponent.find('.spotlights > li');
+
+		// Handle click events on the tabs
+		tabs.click(function(e) {
+
+			// Intercept the link's normal action and prevent the event from
+			// bubbling up the DOM
+			e.preventDefault();
+			e.stopPropagation();
+
+			// Get the link that was clicked on and exit if it's already the
+			// current link
+			var target = $(e.target);
+			if (target.hasClass('current')) {
+				return;
+			}
+
+			// Reset the element classes so the spotlight clicked on is now
+			// assigned the `current` class
+			tabs.parent().removeClass('current');
+			spotlights.removeClass('current');
+			target.parent().addClass('current');
+			spotlights.filter('.spotlight_' + target.data('spotlight')).addClass('current');
+		});
+	}
+
 })(jQuery);

@@ -11,7 +11,7 @@
 // Button
 .cmp_button {
 	display: inline-block;
-	padding: 0 1em;
+	padding: 0 (@triple / 2);
 	background: #eee;
 	border: 1px solid #aaa;
 	border-top-color: #bbb;
@@ -21,24 +21,75 @@
 	line-height: @triple - 2; // account for border
 	font-weight: @bold;
 	color: @primary-lift;
-}
-
-// Wire button
-.cmp_button_wire {
-	display: inline-block;
-	padding: 0 1em;
-	background: #fff;
-	border: 1px solid @primary-lift;
-	border-radius: @radius;
-	font-size: @font-sml;
-	line-height: @triple - 2; // account for border
-	color: @primary-lift;
 	text-decoration: none;
+	text-shadow: 0px 1px #fff;
 
 	&:hover,
 	&:focus {
+		box-shadow: inset 0 -1em 1em rgba(0, 0, 0, 0.1);
 		background: @primary-lift;
+		border-color: @primary-lift;
 		color: #fff;
+		text-shadow: none;
+	}
+}
+
+// Add an icon to the button
+.cmp_button_icon( @icon ) {
+	position: relative;
+	padding-right: @triple + (@triple / 2);
+	border-right: none;
+
+	&:after {
+		&:extend(.fa);
+		content: @icon;
+		position: absolute;
+		top: -1px; // border;
+		right: 0;
+		width: @triple;
+		height: @triple;
+		border-top-right-radius: @radius;
+		border-bottom-right-radius: @radius;
+		line-height: @triple;
+		text-align: center;
+		background: @primary-lift;
+		box-shadow: inset 0 -1em 1em rgba(0, 0, 0, 0.2);
+		color: #fff;
+	}
+
+	&:hover:after,
+	&:focus:after {
+		box-shadow: inset 0 1em 1em rgba(0, 0, 0, 0.2);
+		background: @primary;
+	}
+}
+
+// Text button with an icon
+.cmp_button_text( @icon ) {
+	display: inline-block;
+	position: relative;
+	padding-right: @triple;
+	font-size: @font-sml;
+	font-weight: @bold;
+	line-height: @triple;
+	color: @primary-lift;
+	text-decoration: none;
+
+	&:after {
+		&:extend(.fa);
+		content: @icon;
+		position: absolute;
+		top: 2px;
+		right: 0;
+		width: @triple;
+		height: @triple;
+		line-height: @triple;
+		text-align: center;
+	}
+
+	&:hover,
+	&:focus {
+		color: @primary;
 	}
 }
 
@@ -231,15 +282,22 @@
 
 // List of monographs
 .cmp_monographs_list {
-	margin-left: -@base;
-	margin-right: -@base;
+	position: relative;
+	margin: (@triple * 2) -@base;
 	border-top: @bg-border;
 
 	> .title {
+		padding: 0 @base;
+		position: absolute;
+		top: -15px;
+		left: @base;
+		margin: 0;
+		padding: 0 @base;
+		background: @lift;
 		font-size: @font-bump;
 		font-weight: @normal;
 		line-height: @triple;
-		padding: 0 @base;
+		color: @text-light;
 	}
 
 	.obj_monograph_summary {
@@ -263,17 +321,9 @@
 	}
 
 	@media(min-width: @screen-tablet) {
-		position: relative;
-		margin-top: @triple * 2;
 
 		> .title {
-			position: absolute;
-			top: -15px;
 			left: @double;
-			margin: 0;
-			padding: 0 @base;
-			background: @lift;
-			color: @text-light;
 		}
 
 		.obj_monograph_summary {
@@ -331,6 +381,60 @@
 	}
 }
 
+// List of monographs
+.cmp_monographs_list_featured {
+	&:extend(.cmp_monographs_list);
+	padding-top: @double;
+
+	> .title {
+		&:extend(.cmp_monographs_list > .title);
+	}
+
+	> ul {
+		&:extend(.pkp_unstyled_list);
+
+		> li {
+			display: inline-block;
+
+			.cover {
+				display: block;
+				padding: @base;
+				position: relative;
+				top: 0;
+				transition: top 0.2s;
+
+				&:hover,
+				&:focus {
+					top: -@base;
+				}
+			}
+
+			img {
+				display: block;
+			}
+		}
+	}
+
+	@media(min-width: @screen-phone) {
+		margin-left: -@double;
+		margin-right: -@double;
+	}
+
+	@media(min-width: @screen-tablet) {
+
+		> ul {
+			text-align: center;
+		}
+	}
+
+	@media(min-width: @screen-desktop) {
+		margin-left: -@triple;
+		margin-right: -@triple;
+		padding-left: @double;
+		padding-right: @double;
+	}
+}
+
 // Breadcrumbs
 .cmp_breadcrumbs {
 	display: inline-block;
@@ -371,89 +475,161 @@
 
 // Spotlights
 .cmp_spotlights {
+	.pkp_helpers_clear;
 
 	> ul {
 		&:extend(.pkp_unstyled_list);
 	}
-}
 
-// Large search input on homepage
-.cmp_search_homepage {
-
-	input {
-		margin-bottom: @base;
+	.list {
+		display: none;
 	}
 
-	button {
-		&:extend(.cmp_button);
-		width: 100%;
-	}
-
-	@media (min-width: @screen-phone) {
-
-		button {
-			width: auto;
-		}
-	}
-
-	@media (min-width: @screen-tablet) {
-		text-align: center;
-		margin: 0 auto;
-		max-width: 36em;
-
-		input[type="text"] {
-			margin-bottom: 0;
-		}
-	}
-}
-
-// List of categories and series to browse
-.cmp_browse_list {
-	&:extend(.pkp_unstyled_list);
-	margin-top: @double * 2;
-
-	> li {
-		font-weight: @bold;
-
-		> ul {
-			&:extend(.pkp_unstyled_list);
-			padding: @base 0 @double;
-			font-weight: @normal;
-
-			> li {
-				padding: 4px 0;
-			}
-		}
-
-		&:last-child > ul {
-			padding-bottom: 0;
-		}
-	}
-
-	@media (min-width: @screen-tablet) {
-		.pkp_helpers_clear;
-		margin-left: auto;
-		margin-right: auto;
-		text-align: center;
+	.spotlights {
 
 		> li {
-			display: inline-block;
-			width: 45%;
-			padding: 0 2em;
-			vertical-align: top;
-
-			&:first-child {
-				padding-left: 0;
-			}
+			margin-bottom: @triple * 2;
 
 			&:last-child {
-				padding-right: 0;
-			}
-
-			> ul {
-				text-align: left;
-				padding-bottom: 0;
+				margin-bottom: 0;
 			}
 		}
+	}
+
+	@media(min-width: @screen-tablet) {
+		padding-left: 0;
+		padding-right: 0;
+		border-top: @bg-border;
+		border-bottom: @bg-border;
+
+		.list {
+			display: block;
+			position: relative;
+			float: right;
+			width: 35%;
+			font-size: @font-sml;
+
+			// Left border
+			&:before {
+				content: ' ';
+				position: absolute;
+				top: 0;
+				left: 0;
+				width: 1px;
+				height: 100%;
+				border-left: @bg-border;
+			}
+
+			a {
+				display: block;
+				padding: @double (@triple / 2);
+				border-left: 5px solid transparent;
+				text-decoration: none;
+
+				&:hover,
+				&:focus {
+					border-left-color: @primary-lift;
+				}
+			}
+
+			> li {
+				border-bottom: @bg-border;
+			}
+
+			.current {
+
+				a {
+					color: @text-light;
+					border-left-color: @bg;
+
+					&:hover,
+					&:focus {
+						border-left-color: @primary-lift;
+					}
+				}
+			}
+		}
+
+		.spotlights {
+			float: left;
+			position: relative;
+			width: 65%;
+
+			// Right border
+			&:before {
+				content: ' ';
+				position: absolute;
+				top: 0;
+				right: -1px;
+				width: 1px;
+				height: 100%;
+				border-left: @bg-border;
+			}
+
+			> li {
+				position: absolute;
+				top: 0;
+				left: -9999px;
+				margin-bottom: 0;
+
+				&.current {
+					position: relative;
+					left: auto;
+				}
+			}
+		}
+
+		.obj_spotlight {
+			padding: @triple;
+
+			.description {
+				font-size: @font-sml;
+
+				> p {
+					line-height: @line-sml;
+				}
+			}
+
+			.read_more {
+				float: left;
+			}
+		}
+	}
+}
+
+// Announcements
+.cmp_announcements {
+	&:extend(.pkp_unstyled_list);
+	margin-left: -@base;
+	margin-right: -@base;
+
+	> li {
+		padding: @triple @base;
+		border-bottom: @bg-border;
+
+		&:last-child {
+			border-bottom: none;
+		}
+	}
+
+	@media(min-width: @screen-phone) {
+		margin-left: -@double;
+		margin-right: -@double;
+
+		> li {
+			padding-left: @double;
+			padding-right: @double;
+		}
+	}
+
+	@media(min-width: @screen-desktop) {
+		margin-left: -@triple;
+		margin-right: -@triple;
+
+		> li {
+			padding-left: @triple;
+			padding-right: @triple;
+		}
+
 	}
 }
