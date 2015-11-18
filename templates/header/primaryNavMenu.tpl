@@ -31,6 +31,9 @@
 			{translate key="navigation.about"}
 		</a>
 		{if $submenu_class_attr}
+			<span class="caret"></span>
+		{/if}
+		{if $submenu_class_attr}
 		<ul>
 			{if not empty($contextInfo.editorialTeam)}
 			<li>
