@@ -159,6 +159,7 @@
 
 	<!-- Spotlight grid keys -->
 	<!--  Spotlights management -->
+	<message key="spotlight">Spotlight</message>
 	<message key="spotlight.spotlights">Spotlights</message>
 	<message key="spotlight.noneExist">There are no current spotlights.</message>
 	<message key="spotlight.title.homePage">In the Spotlight</message>
@@ -229,7 +230,6 @@
 
 	<!-- series/categories/series -->
 	<message key="series.series">Series</message>
-	<message key="series.featured">Featured</message>
 	<message key="series.featured.description">This series will appear on the main navigation</message>
 	<message key="series.path">Path</message>
 
@@ -275,6 +275,7 @@
 	<message key="catalog.noTitlesSection">No titles have been published yet for this section.</message>
 	<message key="catalog.browseTitles">{$numTitles} Titles</message>
 	<message key="catalog.feature">Feature</message>
+	<message key="catalog.featured">Featured</message>
 	<message key="catalog.featuredBooks">Featured Books</message>
 	<message key="catalog.foundTitleSearch">One title was found which matched your search for "{$searchQuery}".</message>
 	<message key="catalog.foundTitlesSearch">{$number} titles were found which matched your search for "{$searchQuery}".</message>
@@ -299,7 +300,6 @@
 	<message key="common.preview">Preview</message>
 	<message key="common.feature">Feature</message>
 	<message key="common.searchCatalog">Search Catalog</message>
-	<message key="common.searchOrBrowse">Search or browse our catalog</message>
 	<message key="common.moreInfo">More Information</message>
 
 
