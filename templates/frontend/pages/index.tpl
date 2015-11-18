@@ -29,7 +29,7 @@
 	{/if}
 
 	{* Spotlights *}
-	{if count($spotlights)}
+	{if !empty($spotlights)}
 		<h2 class="pkp_screen_reader">
 			{translate key="spotlight.spotlights"}
 		</h2>
@@ -38,12 +38,12 @@
 
 
 	{* Featured *}
-	{if $featuredMonographs && $featuredMonographs|count}
+	{if !empty($featuredMonographs)}
 		{include file="frontend/components/monographList_featured.tpl" monographs=$featuredMonographs titleKey="catalog.featured"}
 	{/if}
 
 	{* New releases *}
-	{if $newReleases && $newReleases|count}
+	{if !empty($newReleases)}
 		{include file="frontend/components/monographList_featured.tpl" monographs=$newReleases titleKey="catalog.newReleases"}
 	{/if}
 
