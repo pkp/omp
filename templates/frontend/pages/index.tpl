@@ -7,48 +7,77 @@
  *
  * @brief Display the front page of the site
  *
+ * @uses $homepageImage array Details about the uploaded homepage image
  * @uses $spotlights array Selected spotlights to promote on the homepage
- * @uses $categories array List of categories in this press
- * @uses $series array List of series in this press
+ * @uses $featuredMonographs array List of featured releases in this press
  * @uses $newReleases array List of new releases in this press
+ * @uses $announcements array List of announcements
+ * @uses $numAnnouncementsHomepage int Number of announcements to display on the
+ *       homepage
+ * @uses $additionalHomeContent string HTML blob of arbitrary content added by
+ *  an editor/admin.
  *}
 {include file="common/frontend/header.tpl"}
 
 <div class="page page_homepage">
 
-	{* Spotlights *}
-	{if count($spotlights)}
-		<div class="row row_spotlights">
-			{include file="frontend/components/spotlights.tpl"}
+	{* Homepage Image *}
+	{if $homepageImage}
+		<div class="homepage_image">
+			<img src="{$publicFilesDir}/{$homepageImage.uploadName|escape:"url"}" alt="{$homepageImage.altText|escape}">
 		</div>
 	{/if}
 
-	{* Search and browse section *}
-	<div class="row row_find">
-		<h2>
-			{translate key="common.searchOrBrowse"}
+	{* Spotlights *}
+	{if count($spotlights)}
+		<h2 class="pkp_screen_reader">
+			{translate key="spotlight.spotlights"}
 		</h2>
+		{include file="frontend/components/spotlights.tpl"}
+	{/if}
 
-		{include file="frontend/components/searchForm_homepage.tpl"}
 
-		{if count($categories) || count($series)}
-			{include file="frontend/components/browseList.tpl"}
-		{/if}
-	</div>
+	{* Featured *}
+	{if $featuredMonographs && $featuredMonographs|count}
+		{include file="frontend/components/monographList_featured.tpl" monographs=$featuredMonographs titleKey="catalog.featured"}
+	{/if}
 
 	{* New releases *}
-	{if $newReleases|count}
-		<div class="row row_new_releases">
-			<h2>
-				{translate key="catalog.newReleases"}
-			</h2>
-			<ul class="cmp_monographs_list">
-				{foreach from=$newReleases item=monograph}
-					<li>
-						{include file="frontend/objects/monograph_summary.tpl" monograph=$monograph}
-					</li>
-				{/foreach}
-			</ul>
+	{if $newReleases && $newReleases|count}
+		{include file="frontend/components/monographList_featured.tpl" monographs=$newReleases titleKey="catalog.newReleases"}
+	{/if}
+
+	{* Announcements *}
+	{if $numAnnouncementsHomepage}
+		<div class="cmp_announcements highlight_first">
+			{foreach name=announcements from=$announcements item=announcement}
+				{if $smarty.foreach.announcements.iteration > $numAnnouncementsHomepage}
+					{php}break;{/php}
+				{/if}
+				{if $smarty.foreach.announcements.iteration == 1}
+					{include file="frontend/objects/announcement_summary.tpl"}
+					<div class="more">
+				{else}
+					<article class="obj_announcement_summary">
+						<h4>
+							<a href="{url router=$smarty.const.ROUTE_PAGE page="announcement" op="view" path=$announcement->getId()}">
+								{$announcement->getLocalizedTitle()|escape}
+							</a>
+						</h4>
+						<div class="date">
+							{$announcement->getDatePosted()}
+						</div>
+					</article>
+				{/if}
+			{/foreach}
+			</div><!-- .more -->
+		</div>
+	{/if}
+
+	{* Additional Homepage Content *}
+	{if $additionalHomeContent}
+		<div class="additional_content">
+			{$additionalHomeContent}
 		</div>
 	{/if}
 
