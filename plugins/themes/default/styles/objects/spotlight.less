@@ -60,15 +60,9 @@
 	}
 
 	.read_more {
-		&:extend(.cmp_button);
-		.cmp_button_icon(@fa-var-chevron-right);
+		.cmp_button_text(@fa-var-chevron-right);
 		float: right;
 		margin-top: @double;
-
-		&:hover,
-		&:focus {
-			&:extend(.cmp_button:hover);
-		}
 	}
 
 	@media (min-width: @screen-tablet) {
