@@ -316,16 +316,34 @@
 	line-height: @double;
 	text-align: center;
 
-	> li > a {
-		margin: 0 1em;
-		padding: @pkp_nav_primary_row_el_padding 0 (@pkp_nav_primary_row_el_padding - 2); // -2 to account for border size
-		border-bottom: 2px solid transparent;
+	> li {
 
-		&:hover,
-		&:focus {
-			outline: 0;
-			border-color: @primary-lift;
-			color: @primary-lift;
+		> a {
+			margin: 0 1em;
+			padding: @pkp_nav_primary_row_el_padding 0 (@pkp_nav_primary_row_el_padding - 2); // -2 to account for border size
+			border-bottom: 2px solid transparent;
+
+			&:hover,
+			&:focus {
+				outline: 0;
+				border-color: @primary-lift;
+				color: @primary-lift;
+			}
+		}
+
+		&:first-child {
+
+			a {
+				margin-left: 0;
+			}
+		}
+
+		&:last-child {
+
+			a,
+			.caret {
+				margin-right: 0;
+			}
 		}
 	}
 
