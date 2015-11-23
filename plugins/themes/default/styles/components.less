@@ -381,60 +381,6 @@
 	}
 }
 
-// List of monographs
-.cmp_monographs_list_featured {
-	&:extend(.cmp_monographs_list);
-	padding-top: @double;
-
-	> .title {
-		&:extend(.cmp_monographs_list > .title);
-	}
-
-	> ul {
-		&:extend(.pkp_unstyled_list);
-
-		> li {
-			display: inline-block;
-
-			.cover {
-				display: block;
-				padding: @base;
-				position: relative;
-				top: 0;
-				transition: top 0.2s;
-
-				&:hover,
-				&:focus {
-					top: -@base;
-				}
-			}
-
-			img {
-				display: block;
-			}
-		}
-	}
-
-	@media(min-width: @screen-phone) {
-		margin-left: -@double;
-		margin-right: -@double;
-	}
-
-	@media(min-width: @screen-tablet) {
-
-		> ul {
-			text-align: center;
-		}
-	}
-
-	@media(min-width: @screen-desktop) {
-		margin-left: -@triple;
-		margin-right: -@triple;
-		padding-left: @double;
-		padding-right: @double;
-	}
-}
-
 // Breadcrumbs
 .cmp_breadcrumbs {
 	display: inline-block;
