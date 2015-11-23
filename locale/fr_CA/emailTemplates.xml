@@ -146,7 +146,7 @@ Merci de l'intérêt que vous portez à nos publications.<br />
 <br />
 Merci d'avoir envoyé votre manuscrit &quot;{$submissionTitle}&quot; à la presse {$contextName}. Le système de gestion virtuel de la presse que nous utilisons vous permet de suivre les progrès de votre article tout au long du processus de publication. Il suffit d'ouvrir une session sur le site Web:<br />
 <br />
-URL du manuscrit: <a href="{$submissionUrl}">{$submissionUrl}</a><br />
+URL du manuscrit: {$submissionUrl}<br />
 Nom d'utilisateur: {$authorUsername}<br />
 <br />
 Si vous avez des questions, n'hésitez pas à me contacter. Merci d'avoir envoyé votre article à cette presse.<br />
@@ -180,7 +180,7 @@ Une première évaluation de &quot;{$submissionTitle}&quot; a révélé que cett
 <br />
 La soumission &quot;{$submissionTitle}&quot; à la presse {$contextName} vous a été assignée. En tant que rédacteur en chef, vous devrez superviser le processus éditorial de cette soumission.<br />
 <br />
-URL de la soumission: <a href="{$submissionUrl}">{$submissionUrl}</a><br />
+URL de la soumission: {$submissionUrl}<br />
 Nom d'utilisateur: {$editorUsername}<br />
 <br />
 Merci,<br />
@@ -359,7 +359,7 @@ Nous avons pris une décision concernant votre soumission à la presse {$context
 <br />
 Nous avons décidé de:<br />
 <br />
-URL du manuscrit: <a href="{$submissionUrl}">{$submissionUrl}</a><br />
+URL du manuscrit: {$submissionUrl}<br />
 <br />
 {$editorialContactSignature}<br />
 ]]></body>
@@ -373,7 +373,7 @@ Nous avons pris une décision concernant votre soumission à la presse {$context
 <br />
 Nous avons décidé de:<br />
 <br />
-URL du manuscrit: <a href="{$submissionUrl}">{$submissionUrl}</a><br />
+URL du manuscrit: {$submissionUrl}<br />
 <br />
 {$editorialContactSignature}<br />
 ]]></body>
@@ -385,7 +385,7 @@ URL du manuscrit: <a href="{$submissionUrl}">{$submissionUrl}</a><br />
 <br />
 La révision de votre manuscrit &quot;{$submissionTitle}&quot; est terminée. Nous l'envoyons maintenant en production.<br />
 <br />
-URL du manuscrit: <a href="{$submissionUrl}">{$submissionUrl}</a><br />
+URL du manuscrit: {$submissionUrl}<br />
 <br />
 {$editorialContactSignature}<br />
 ]]></body>
@@ -399,7 +399,7 @@ Nous avons pris une décision concernant votre soumission à la presse {$context
 <br />
 Nous avons décidé de:<br />
 <br />
-URL du manuscrit: <a href="{$submissionUrl}">{$submissionUrl}</a><br />
+URL du manuscrit: {$submissionUrl}<br />
 <br />
 {$editorialContactSignature}<br />
 ]]></body>
@@ -413,7 +413,7 @@ Nous avons pris une décision concernant votre soumission à la presse {$context
 <br />
 Nous avons décidé de:<br />
 <br />
-URL du manuscrit: <a href="{$submissionUrl}">{$submissionUrl}</a><br />
+URL du manuscrit: {$submissionUrl}<br />
 <br />
 {$editorialContactSignature}<br />
 ]]></body>
@@ -427,7 +427,7 @@ Nous avons pris une décision concernant votre soumission à la presse {$context
 <br />
 Nous avons décidé de:<br />
 <br />
-URL du manuscrit: <a href="{$submissionUrl}">{$submissionUrl}</a><br />
+URL du manuscrit: {$submissionUrl}<br />
 <br />
 {$editorialContactSignature}<br />
 ]]></body>
@@ -464,7 +464,7 @@ Il faut maintenant préparer les épreuves en placard de la soumission &quot;{$s
 3. Envoyez le courriel COMPLET au rédacteur en chef.<br />
 <br />
 {$contextName} URL: <a href="{$contextUrl}">{$contextUrl}</a><br />
-URL de la soumission: <a href="{$submissionUrl}">{$submissionUrl}</a><br />
+URL de la soumission: {$submissionUrl}<br />
 Nom d'utilisateur: {$layoutEditorUsername}<br />
 <br />
 Si vous ne pouvez pas faire ce travail en ce moment ou si vous avez des questions, n'hésitez pas à me contacter. Merci d'avoir contribué à cette presse.<br />
@@ -494,7 +494,7 @@ La soumission &quot;{$submissionTitle}&quot; par la presse {$contextName} doit d
 3. Envoyez le courriel COMPLET au rédacteur en chef.<br />
 <br />
 {$contextName} URL: <a href="{$contextUrl}">{$contextUrl}</a><br />
-URL de la soumission: <a href="{$submissionUrl}">{$submissionUrl}</a><br />
+URL de la soumission: {$submissionUrl}<br />
 Nom d'utilisateur: {$indexerUsername}<br />
 <br />
 Si vous ne pouvez pas faire ce travail en ce moment ou si vous avez des questions, n'hésitez pas à me contacter. Merci d'avoir contribué à cette presse.<br />

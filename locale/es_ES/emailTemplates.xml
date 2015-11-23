@@ -136,7 +136,7 @@ Muchas gracias por tener en cuenta esta petición.<br />
 <br />
 Gracias por enviar el texto completo &quot;{$submissionTitle}&quot; a {$contextName}. Con el sistema de gestión editorial en línea que usamos, podrás seguir su progreso a través del proceso editorial registrándote en la página web editorial:<br />
 <br />
-URL del texto completo: <a href="{$submissionUrl}">{$submissionUrl}</a><br />
+URL del texto completo: {$submissionUrl}<br />
 Nombre de usuario: {$authorUsername}<br />
 <br />
 Si tienes alguna duda, por favor, contacta conmigo. Gracias por utilizar esta editorial para tu trabajo.<br />
@@ -170,7 +170,7 @@ Una revisión inicial de &quot;{$submissionTitle}&quot; ha mostrado que esta pro
 <br />
 La propuesta &quot;{$submissionTitle},&quot; a {$contextName} te ha sido asignada por el proceso editorial por tu participación como editor.<br />
 <br />
-URL de la propuesta: <a href="{$submissionUrl}">{$submissionUrl}</a><br />
+URL de la propuesta: {$submissionUrl}<br />
 Nombre de usuario: {$editorUsername}<br />
 <br />
 Gracias,<br />
@@ -248,7 +248,7 @@ Hemos tomado una decisión con respecto a tu propuesta sobre {$contextName}, &qu
 <br />
 Nuestra decisión es la siguiente:<br />
 <br />
-URL del texto completo: <a href="{$submissionUrl}">{$submissionUrl}</a><br />
+URL del texto completo: {$submissionUrl}<br />
 <br />
 {$editorialContactSignature}]]></body>
 		<description>Este correo electrónico enviado por el coordinador o coordinador de colección al autor les informa de la decisión final sobre su propuesta.</description>
@@ -281,7 +281,7 @@ Hemos tomado una decisión con respecto a tu propuesta sobre {$contextName}, &qu
 <br />
 Nuestra decisión es la siguiente:<br />
 <br />
-URL del texto completo: <a href="{$submissionUrl}">{$submissionUrl}</a><br />
+URL del texto completo: {$submissionUrl}<br />
 <br />
 {$editorialContactSignature}]]></body>
 		<description>Este correo electrónico enviado por el coordinador o coordinador de colección al autor les informa de la decisión final sobre su propuesta.</description>
@@ -347,7 +347,7 @@ Ahora se necesita crear índices para la propuesta &quot;{$submissionTitle}&quot
 3. Envía el correo electrónico COMPLETO al coordinador.<br />
 <br />
 URL de {$contextName}: <a href="{$contextUrl}">{$contextUrl}</a><br />
-URL de la propuesta: <a href="{$submissionUrl}">{$submissionUrl}</a><br />
+URL de la propuesta: {$submissionUrl}<br />
 Nombre de ususario: {$indexerUsername}<br />
 <br />
 Si no puedes realizar este tarea en este momento o tienes alguna duda, por favor, no dudes en contactar conmigo. Gracias por tu colaboración con esta editorial.<br />
