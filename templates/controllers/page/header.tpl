@@ -7,6 +7,6 @@
  *
  * Common site header div contents.
  *}
-{assign var="logoImage" value="templates/images/structure/omp_logo.png"}
+{assign var="logoImage" value="templates/images/structure/logo.png"}
 {url|assign:"homeUrl" page="index" router=$smarty.const.ROUTE_PAGE}
 {include file="core:controllers/page/header.tpl"}
