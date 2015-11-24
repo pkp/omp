@@ -8,20 +8,41 @@
  * Website appearance management form.
  *
  *}
-{capture assign="newContentFormContent"}
-	{fbvFormSection list="true" label="manager.setup.newReleases"}
+{include file="core:controllers/tab/settings/appearance/form/setup.tpl"}
+<form id="appearanceForm" class="pkp_form" method="post" action="{url router=$smarty.const.ROUTE_COMPONENT component="tab.settings.WebsiteSettingsTabHandler" op="saveFormData" tab="appearance"}">
+	{include file="controllers/notification/inPlaceNotification.tpl" notificationId="appearanceFormNotification"}
+	{include file="controllers/tab/settings/wizardMode.tpl" wizardMode=$wizardMode}
+
+	{* Header *}
+	{include file="core:controllers/tab/settings/appearance/form/header.tpl"}
+
+	{* Footer *}
+	{include file="core:controllers/tab/settings/appearance/form/footer.tpl"}
+
+	{* Theme and stylesheet *}
+	{include file="core:controllers/tab/settings/appearance/form/theme.tpl"}
+	{include file="core:controllers/tab/settings/appearance/form/stylesheet.tpl"}
+
+	{* Sidebar *}
+	{include file="core:controllers/tab/settings/appearance/form/sidebar.tpl"}
+
+	{* Homepage Image *}
+	{include file="core:controllers/tab/settings/appearance/form/homepageImage.tpl"}
+
+	{* New/Featured/Spotlight Display Toggles *}
+	{fbvFormSection list="true" label="manager.setup.displayOnHomepage"}
+		{fbvElement type="checkbox" label="manager.setup.displayInSpotlight" id="displayInSpotlight" checked=$displayInSpotlight}
+		{fbvElement type="checkbox" label="manager.setup.displayFeaturedBooks" id="displayFeaturedBooks" checked=$displayFeaturedBooks}
 		{fbvElement type="checkbox" label="manager.setup.displayNewReleases" id="displayNewReleases" checked=$displayNewReleases}
 	{/fbvFormSection}
-{/capture}
-{capture assign="featuredContentFormContent"}
-	{fbvFormSection list="true" label="manager.setup.featuredBooks"}
-		{fbvElement type="checkbox" label="manager.setup.displayFeaturedBooks" id="displayFeaturedBooks" checked=$displayFeaturedBooks}
-	{/fbvFormSection}
-	{fbvFormSection list="true" label="manager.setup.inSpotlight"}
-		{fbvElement type="checkbox" label="manager.setup.displayInSpotlight" id="displayInSpotlight" checked=$displayInSpotlight}
-	{/fbvFormSection}
-{/capture}
-{capture assign="additionalAppearanceSettings"}
+
+	{* Additional Homepage Content *}
+	{include file="core:controllers/tab/settings/appearance/form/additionalHomepageContent.tpl"}
+
+	{* List Display Options *}
+	{include file="core:controllers/tab/settings/appearance/form/lists.tpl"}
+
+	{* Cover Thumbnails Size *}
 	{fbvFormArea id="thumbnailsSizeSettings" title="manager.setup.coverThumbnails" class="border"}
 		{fbvFormSection description="manager.setup.coverThumbnailsDescription"}
 			{fbvElement type="text" id="coverThumbnailsMaxWidth" value=$coverThumbnailsMaxWidth size=$fbvStyles.size.SMALL label="manager.setup.coverThumbnailsMaxWidth" required="true"}
@@ -33,5 +54,9 @@
 			{fbvElement type="checkbox" label="manager.setup.coverThumbnailsResize" id="coverThumbnailsResize" checked=$coverThumbnailsResize}
 		{/fbvFormSection}
 	{/fbvFormArea}
-{/capture}
-{include file="core:controllers/tab/settings/appearance/form/appearanceForm.tpl" newContentFormContent=$newContentFormContent featuredContentFormContent=$featuredContentFormContent additionalAppearanceSettings=$additionalAppearanceSettings}
+
+	{* Save button *}
+	{if !$wizardMode}
+		{fbvFormButtons id="appearanceFormSubmit" submitText="common.save" hideCancel=true}
+	{/if}
+</form>
