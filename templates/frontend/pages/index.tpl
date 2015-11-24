@@ -39,12 +39,12 @@
 
 	{* Featured *}
 	{if !empty($featuredMonographs)}
-		{include file="frontend/components/monographList_featured.tpl" monographs=$featuredMonographs titleKey="catalog.featured"}
+		{include file="frontend/components/monographList.tpl" monographs=$featuredMonographs titleKey="catalog.featured"}
 	{/if}
 
 	{* New releases *}
 	{if !empty($newReleases)}
-		{include file="frontend/components/monographList_featured.tpl" monographs=$newReleases titleKey="catalog.newReleases"}
+		{include file="frontend/components/monographList.tpl" monographs=$newReleases titleKey="catalog.newReleases"}
 	{/if}
 
 	{* Announcements *}
