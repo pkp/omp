@@ -167,12 +167,6 @@ You may optionally provide the user with a reason for disabling their account.</
 	<message key="manager.setup.doiPrefix">DOI Prefix</message>
 	<message key="manager.setup.doiPrefixDescription"><![CDATA[The DOI (Digital Object Identifier) Prefix is assigned by <a href="http://www.crossref.org" target="_blank">CrossRef</a> and is in the format 10.xxxx (e.g. 10.1234).]]></message>
 	<message key="manager.setup.editorDecision">Editor Decision</message>
-	<message key="manager.setup.editorialMembers">Go to Board Members and add Editorial Board and/or Review Board members. This can be done at any point in operating the press.</message>
-	<message key="manager.setup.editorialProcess1">One or more editors handle the basic steps without designated roles.</message>
-	<message key="manager.setup.editorialProcess2">Managing Editor handles Submission Queue, and Table of Contents, while Section Editors handle Submission Review and Submission Editing.</message>
-	<message key="manager.setup.editorialProcess3">Managing Editor handles Submission Queue, Submission Editing, and Table of Contents, while the Section Editors handle Submission Review.</message>
-	<message key="manager.setup.editorialReviewBoard">Editorial / Review Board</message>
-	<message key="manager.setup.editorialReviewBoardDescription">Presses have Editorial Boards to oversee the editorial direction of the press, participate in the appointment of editors, and, by virtue of board members' reputations, give the press some standing in the field. Review Boards play a similar role but in addition, they lead the peer review process. Review Board members will not have access to the web site's administrative system but will be added to the list of those available to participate in the peer review process.</message>
 	<message key="manager.setup.emailBounceAddress">Bounce Address</message>
 	<message key="manager.setup.emailBounceAddressDescription">Any undeliverable emails will result in an error message to this address.</message>
 	<message key="manager.setup.emailBounceAddressDisabled"><![CDATA[<strong>Note:</strong> To activate this option, the site administrator must enable the <tt>allow_envelope_sender</tt> option in the OMP configuration file. Additional server configuration may be required to support this functionality (which may not be possible on all servers), as indicated in the OMP documentation.]]></message>

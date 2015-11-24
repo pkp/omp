@@ -159,12 +159,6 @@ Informe, se desesjar, o motivo do bloqueio.</message>
 	<message key="manager.setup.doiPrefix">Prefixo DOI</message>
 	<message key="manager.setup.doiPrefixDescription"><![CDATA[O prefixo DOI (Digital Object Identifier) é designado pelo <a href="http://www.crossref.org" target="_blank">CrossRef</a>, no formato 10.xxxx (ex.: 10.1234).]]></message>
 	<message key="manager.setup.editorDecision">Decisão editorial</message>
-	<message key="manager.setup.editorialMembers">Ir para Membros do Conselho e Comitê Editorial e/ou de Avaliadores. Pode ser feito a qualquer momento, durante o uso do sistema.</message>
-	<message key="manager.setup.editorialProcess1">Um ou mais editores lidam com os passos básicos, sem papéis definidos.</message>
-	<message key="manager.setup.editorialProcess2">Editor gerencia a fila de submissão e o sumário, enquanto editores de seção lidam com a fila de avaliação e edição da submissão.</message>
-	<message key="manager.setup.editorialProcess3">Editor gerencia a fila de submissão, a edição da submissão e o sumário, enquanto editores de seção lidam apenas com a fila de avaliação.</message>
-	<message key="manager.setup.editorialReviewBoard">Comitê Editorial / de Avaliadores</message>
-	<message key="manager.setup.editorialReviewBoardDescription">Editoras possuem Comitês Editoriais para orientar na direção editorial, participar da nomeação de editores e, em virtude da reputação dos membros, proporcionar à editora status na área de atuação. O Comitê Avaliador desempenha um papel semelhante, mas também orientam o processo de avaliaçao. Membros do Comitê Avaliador podem não ter acesso ao sistema e suas atividades, mas serão listados como disponíveis a participar do processo de avaliação pelos pares.</message>
 	<message key="manager.setup.emailBounceAddress">Endereço de retorno</message>
 	<message key="manager.setup.emailBounceAddressDescription">Qualquer mensagem não entregue resultará em uma mensagem de erro que será enderçada a este destinatário.</message>
 	<message key="manager.setup.emailBounceAddressDisabled"><![CDATA[<strong>Nota:</strong> Para ativar esta opção, o administrador do sistema deverá habilitar a opção <tt>allow_envelope_sender</tt> no arquivo de configuração do OMP. Além disso, configurações adicionais no servidor podem ser necessárias para dar suporte a funcionalidade (que pode não estar disponível em todos os servidores), como indicado na documentação do OMP.]]></message>
