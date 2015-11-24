@@ -17,7 +17,7 @@
 	<message key="manager.language.confirmDefaultSettingsOverwrite">This will replace any locale-specific press settings you had for this locale</message>
 	<message key="manager.languages.languageInstructions"><![CDATA[OMP can be made available to users in any of several supported languages. As well, OMP can operate as a multilingual system, providing users with an ability to toggle between languages on each page, and allowing certain data to be entered in several additional languages.<br /><br/>If a language supported by OMP is not listed below, ask your site administrator to install the language from the site administration interface. For instructions on adding support for new languages, please consult the OMP documentation.]]></message>
 	<message key="manager.languages.noneAvailable">Sorry, no additional languages are available. Contact your site administrator if you wish to use additional languages with this press.</message>
-	<message key="manager.languages.primaryLocaleInstructions">This will be the default language for the press site.</message>	
+	<message key="manager.languages.primaryLocaleInstructions">This will be the default language for the press site.</message>
 
 	<!-- Series management -->
 	<message key="manager.series.form.mustAllowPermission">Please ensure that at least one checkbox is checked for each Series Editor assignment.</message>
@@ -121,7 +121,7 @@ You may optionally provide the user with a reason for disabling their account.</
 	<message key="manager.setup.addItem">Add Item</message>
 	<message key="manager.setup.addItemtoAboutPress">Add Item to Appear in "About the Press"</message>
 	<message key="manager.setup.additionalContent">Additional Content</message>
-	<message key="manager.setup.additionalContentDescription">Add the following content, using text/HTML, which will appear below the homepage image, if one is uploaded.</message>
+	<message key="manager.setup.additionalContentDescription">Add any additional content you'd like to appear on the homepage.</message>
 	<message key="manager.setup.addNavItem">Add Item</message>
 	<message key="manager.setup.addSponsor">Add Sponsoring Organization</message>
 	<message key="manager.setup.alternateHeader">Alternate Header</message>
@@ -161,6 +161,7 @@ You may optionally provide the user with a reason for disabling their account.</
 	<message key="manager.setup.disciplineExamples">(E.g., History; Education; Sociology; Psychology; Cultural Studies; Law)</message>
 	<message key="manager.setup.disciplineProvideExamples">Provide examples of relevant academic disciplines for this press</message>
 	<message key="manager.setup.displayCurrentMonograph">Add the table of contents for the current monograph (if available).</message>
+	<message key="manager.setup.displayOnHomepage">Homepage Content</message>
 	<message key="manager.setup.displayFeaturedBooks">Display featured books on the home page.</message>
 	<message key="manager.setup.displayInSpotlight">Display books in the spotlight on the home page.</message>
 	<message key="manager.setup.displayNewReleases">Display new releases on the home page.</message>
@@ -187,7 +188,6 @@ You may optionally provide the user with a reason for disabling their account.</
 	<message key="manager.setup.enablePressInstructions">Enable this press to appear publicly on the site</message>
 	<message key="manager.setup.enablePublicMonographId">Custom identifiers will be used to identify published items.</message>
 	<message key="manager.setup.enablePublicGalleyId">Custom identifiers will be used to identify galleys (e.g. HTML or PDF files) for published items.</message>
-	<message key="manager.setup.featuredBooks">Featured Books</message>
 	<message key="manager.setup.focusAndScope">Focus and Scope of Press</message>
 	<message key="manager.setup.focusAndScope.description">Enter a statement below, which will appear in About the Press, that speaks to authors, readers, and librarians about the range of monographs and other items which the press will publish.</message>
 	<message key="manager.setup.focusScope">Focus and Scope</message>
@@ -204,10 +204,9 @@ You may optionally provide the user with a reason for disabling their account.</
 	<message key="manager.setup.generalInformation">General Information</message>
 	<message key="manager.setup.gettingDownTheDetails">Step 1. Getting Down the Details</message>
 	<message key="manager.setup.guidelines">Guidelines</message>
-	<message key="manager.setup.inSpotlight">In the Spotlight</message>
 	<message key="manager.setup.preparingWorkflow">Step 3. Preparing the workflow</message>
 	<message key="manager.setup.homepageImage">Homepage image</message>
-	<message key="manager.setup.homepageImageDescription">Add an image or graphic file to the middle of the page. If you are using the default template and css, maximum image width will be 750px for one side bar and 540px for two side bar setup. If you use a customized template or css, those values may change.</message>
+	<message key="manager.setup.homepageImageDescription">Upload an image to display prominently on the homepage.</message>
 	<message key="manager.setup.information.description">Brief descriptions of the press for librarians and prospective authors and readers are available in the "Information" section of the sidebar.</message>
 	<message key="manager.setup.information.forAuthors">For Authors</message>
 	<message key="manager.setup.information.forLibrarians">For Librarians</message>
@@ -222,7 +221,7 @@ You may optionally provide the user with a reason for disabling their account.</
 	<message key="manager.setup.layoutTemplates.file">Template File</message>
 	<message key="manager.setup.layoutTemplates.title">Title</message>
 	<message key="manager.setup.lists">Lists</message>
-	<message key="manager.setup.listsDescription">Enter the maximum number of items (for example, submissions, users, or editing assignments) that appear on each page of a list, and the number of pages links to display on each page.</message>
+	<message key="manager.setup.listsDescription">Limit the number of items (for example, submissions, users, or editing assignments) to show in a list before showing subsequent items in another page. Also, limit the number of links to display to subsequent pages of the list..</message>
 	<message key="manager.setup.look"><![CDATA[Look & Feel]]></message>
 	<message key="manager.setup.look.description">Homepage header, content, press header, footer, navigation bar, and style sheet.</message>
 	<message key="manager.setup.mailingAddress.description">The physical location and mailing address of the press.</message>
@@ -231,7 +230,6 @@ You may optionally provide the user with a reason for disabling their account.</
 	<message key="manager.setup.managementOfBasicEditorialSteps">Management of Basic Editorial Steps</message>
 	<message key="manager.setup.managingPublishingSetup">Management and Publishing Setup</message>
 	<message key="manager.setup.managingThePress">Step 4. Managing the Settings</message>
-	<message key="manager.setup.newReleases">New Releases</message>
 	<message key="manager.setup.noImageFileUploaded">No image file uploaded.</message>
 	<message key="manager.setup.noStyleSheetUploaded">No style sheet uploaded.</message>
 	<message key="manager.setup.note">Note</message>
@@ -268,9 +266,9 @@ You may optionally provide the user with a reason for disabling their account.</
 	<message key="manager.setup.logo">Press Logo</message>
 	<message key="manager.setup.logo.altText">Press Logo</message>
 	<message key="manager.setup.pageFooter">Press Page Footer</message>
-	<message key="manager.setup.pageFooterDescription">This is the footer of your press. To change or update the footer, paste the HTML code in the textbox below. Examples could be another navigation bar, a counter, etc. This footer will appear on every page.</message>
+	<message key="manager.setup.pageFooterDescription">Enter any images, text or HTML code that you'd like to appear at the bottom of your press's website.</message>
 	<message key="manager.setup.pageHeader">Press Page Header</message>
-	<message key="manager.setup.pageHeaderDescription">A graphic version of the press title and logo (.gif, .jpg, or .png file), possibly a smaller version of the one used on the homepage, can be uploaded to appear as a header on press pages, which will replace the text version that otherwise appears.</message>
+	<message key="manager.setup.pageHeaderDescription">Most themes will display the press's name in the header if no logo has been uploaded.</message>
 	<message key="manager.setup.pressPolicies">Step 2. Press Policies</message>
 	<message key="manager.setup.pressSetup">Press Setup</message>
 	<message key="manager.setup.pressSetupUpdated">Your press setup has been updated.</message>
@@ -345,7 +343,7 @@ You may optionally provide the user with a reason for disabling their account.</
 	<message key="manager.setup.technicalSupportContact">Technical Support Contact</message>
 	<message key="manager.setup.technicalSupportContactDescription">This person will be listed on the press Contact page for the use of editors, authors, and reviewers, and should have experience working through the system from the perspective of all of its roles. As this press system requires very little technical support, this should be seen as a part-time assignment. There may be occasions, for example, when authors and reviewers have difficulties with the instructions or file formats, or there's a need to ensure that the press is regularly backed up on the server.</message>
 	<message key="manager.setup.coverThumbnails">Cover Thumbnails</message>
-	<message key="manager.setup.coverThumbnailsDescription">You may define the max width and height of the cover thumbnails. Cover thumbnails will be scaled down to fall within these dimensions, preserving aspect ratio, and not scaling up beyond the present resolution.</message>
+	<message key="manager.setup.coverThumbnailsDescription">Set the max width and height of the cover thumbnails. They will be resized when they are larger than these settings but will not be enlarged if they are smaller. The images will never be stretched to fit these dimensions.</message>
 	<message key="manager.setup.coverThumbnailsMaxHeight">Max. height</message>
 	<message key="manager.setup.coverThumbnailsMaxHeightRequired">Cover thumbnails max height is required.</message>
 	<message key="manager.setup.coverThumbnailsMaxWidth">Max. width</message>
@@ -357,7 +355,7 @@ You may optionally provide the user with a reason for disabling their account.</
 	<message key="manager.setup.useCopyeditors">A Copyeditor will be assigned to work with each submission.</message>
 	<message key="manager.setup.useEditorialReviewBoard">An editorial/review board will be used by the press.</message>
 	<message key="manager.setup.useImageLogo">Press Logo</message>
-	<message key="manager.setup.useImageLogoDescription">An optional press logo may be uploaded and used in conjunction with the image or text title configured above.</message>
+	<message key="manager.setup.useImageLogoDescription">Upload a logo for the press. To comply with WCAG standards, be sure to enter Alternative Text that describes the image (usually the name of the press) when requested during upload.</message>
 	<message key="manager.setup.useImageTitle">Title Image</message>
 	<message key="manager.setup.useStyleSheet">Press style sheet</message>
 	<message key="manager.setup.useLayoutEditors">A Layout Editor will be assigned to prepare the HTML, PDF, etc., files for electronic publication.</message>
