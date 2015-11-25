@@ -60,7 +60,6 @@ Reestablecer mi contraseña: {$url}<br />
 		<body><![CDATA[Tu contraseña se ha restablecido con éxito, está lista para utilizarla en la página web {$siteTitle}. Por favor, conserva este nombre de usuario y contraseña, puesto que es necesario para todo el trabajo con la editorial.<br />
 <br />
 Tu nombre de usuario: {$username}<br />
-Tu nueva contraseña: {$password}<br />
 <br />
 {$principalContactSignature}]]></body>
 		<description>Este correo se envíara al usuario registrado una vez que se hayan restablecido sus contraseñas conforme al proceso descrito en el correo CONFIRMAR_RESTABLECIMIENTO_CONTRASEÑA.</description>

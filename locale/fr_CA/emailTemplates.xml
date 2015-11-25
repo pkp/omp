@@ -83,7 +83,6 @@ Modifier mon mot de passe: {$url}<br />
 		<body><![CDATA[Votre mot de passe vous permettant d'avoir accès au site Web {$siteTitle} a été réinitialisé. Veuillez noter votre nom d'utilisateur et mot de passe dans vos dossiers, car vous en aurez besoin pour vos travaux auprès de la presse.<br />
 <br />
 Votre nom d'utilisateur: {$username}<br />
-Votre nouveau mot de passe: {$password}<br />
 <br />
 {$principalContactSignature}]]></body>
 		<description>Ce courriel est envoyé à un utilisateur lorsque son mot de passe a été réinitialisé après avoir suivi les instructions du courriel "PASSWORD_RESET_CONFIRM".</description>
