@@ -1,0 +1,23 @@
+================================
+=== OMP Web Feeds Plugin
+=== Author: Alec Smecher <alec@smecher.bc.ca>
+=== Based on the OJS Web Feed Plugin
+================================
+
+About
+-----
+This plugin for OMP provides a set of syndication feeds for the current issue in RSS1.0/RDF and Atom formats.  Feed links
+are embedded into the HTML page header and are available to all RSS/Atom-aware browsers and aggregators as per standard web
+specifications.
+
+Known Issues
+------------
+- Improperly-formatted (non-RFC2822) email addresses within monographs or contact addresses may cause invalid feeds to be
+generated.
+- Monographs with no abstract (eg. editorials) will create Atom warnings due to lack of entry:content or entry:summary
+elements.
+- Multiple monographs with the same publish date/time (eg. in an issue) may create an Atom warning.
+
+Contact/Support
+---------------
+Please email the authors for support, bugfixes, or comments.
