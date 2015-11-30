@@ -21,8 +21,9 @@ class SpotlightsGridRow extends GridRow {
 
 	/**
 	 * Constructor
+	 * @param $press Press
 	 */
-	function SpotlightsGridRow(&$press) {
+	function SpotlightsGridRow($press) {
 		$this->setPress($press);
 		parent::GridRow();
 	}
@@ -84,7 +85,7 @@ class SpotlightsGridRow extends GridRow {
 	 * Get the press for this row (already authorized)
 	 * @return Press
 	 */
-	function &getPress() {
+	function getPress() {
 		return $this->_press;
 	}
 
@@ -93,7 +94,7 @@ class SpotlightsGridRow extends GridRow {
 	 * @return Press
 	 */
 	function setPress($press) {
-		$this->_press =& $press;
+		$this->_press = $press;
 	}
 }
 ?>

@@ -63,10 +63,9 @@ abstract class ViewableFilePlugin extends PKPViewableFilePlugin {
 
 	/**
 	 * Callback that renders the galley.
-	 *
 	 * @param $hookName string
 	 * @param $args array
-	 * @return string
+	 * @return boolean
 	 */
 	function callback($hookName, $args) {
 		$publishedMonograph =& $args[1];

@@ -50,7 +50,7 @@ class SubjectDAO extends CodelistItemDAO {
 
 	/**
 	 * Get the name of the CodelistItem class.
-	 * @return String
+	 * @return Subject
 	 */
 	function newDataObject() {
 		return new Subject();

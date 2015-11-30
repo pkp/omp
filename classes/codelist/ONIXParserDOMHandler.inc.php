@@ -41,10 +41,11 @@ class ONIXParserDOMHandler extends XMLParserDOMHandler {
 
 	/**
 	 * Constructor.
+	 * @param $listName string
 	 */
 	function ONIXParserDOMHandler($listName) {
 		parent::XMLParserHandler();
-		$this->_listName =& $listName;
+		$this->_listName = $listName;
 		$this->_listItems = array();
 	}
 
@@ -83,10 +84,10 @@ class ONIXParserDOMHandler extends XMLParserDOMHandler {
 			$node->setParent($this->currentNode);
 
 		} else {
-			$this->rootNode =& $node;
+			$this->rootNode = $node;
 		}
 
-		$this->currentNode =& $node;
+		$this->currentNode = $node;
 	}
 
 	/**

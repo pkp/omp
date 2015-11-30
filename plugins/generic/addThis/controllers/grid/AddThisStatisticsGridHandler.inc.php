@@ -45,7 +45,7 @@ class AddThisStatisticsGridHandler extends GridHandler {
 
 	/**
 	 * Set the Plugin
-	 * @param Plugin
+	 * @param $plugin Plugin
 	 */
 	static function setPlugin($plugin) {
 		self::$_plugin = $plugin;

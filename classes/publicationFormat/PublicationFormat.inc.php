@@ -188,7 +188,7 @@ class PublicationFormat extends Representation {
 
 	/**
 	 * Set the thickness of a publication format.
-	 * @param string $thinkness
+	 * @param string $thickness
 	 */
 	function setThickness($thickness) {
 		return $this->setData('thickness', $thickness);

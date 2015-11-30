@@ -63,12 +63,11 @@ class PressOAI extends OAI {
 
 	/**
 	 * Convert monograph ID to OAI identifier.
-	 * @param $monographId int
+	 * @param $publicationFormatId int
 	 * @return string
 	 */
 	function publicationFormatIdToIdentifier($publicationFormatId) {
-		$prefix = $this->_getIdentifierPrefix();
-		return $prefix . $publicationFormatId;
+		return $this->_getIdentifierPrefix() . $publicationFormatId;
 	}
 
 	/**

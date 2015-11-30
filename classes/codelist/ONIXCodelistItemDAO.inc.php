@@ -154,7 +154,7 @@ class ONIXCodelistItemDAO extends DAO {
 
 	/**
 	 * Get the name of the CodelistItem subclass.
-	 * @return String
+	 * @return ONIXCodelistItem
 	 */
 	function newDataObject() {
 		return new ONIXCodelistItem();

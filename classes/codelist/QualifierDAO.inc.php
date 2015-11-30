@@ -51,7 +51,7 @@ class QualifierDAO extends CodelistItemDAO {
 
 	/**
 	 * Get the name of the CodelistItem subclass.
-	 * @return String
+	 * @return Qualifier
 	 */
 	function newDataObject() {
 		return new Qualifier();
