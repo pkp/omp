@@ -86,5 +86,6 @@ class DbernnardSubmissionTest extends ContentBaseTestCase {
 
 		$this->findSubmissionAsEditor('dbarnes', null, $title);
 		$this->assignParticipant('Series editor', 'David Buskins');
+		$this->logOut();
 	}
 }
