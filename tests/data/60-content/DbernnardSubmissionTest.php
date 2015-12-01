@@ -29,9 +29,10 @@ class DbernnardSubmissionTest extends ContentBaseTestCase {
 			'roles' => array('Volume editor'),
 		));
 
+		$title = 'The Information Literacy User’s Guide';
 		$this->createSubmission(array(
 			'type' => 'editedVolume',
-			'title' => 'The Information Literacy User’s Guide',
+			'title' => $title,
 			'abstract' => 'Good researchers have a host of tools at their disposal that make navigating today’s complex information ecosystem much more manageable. Gaining the knowledge, abilities, and self-reflection necessary to be a good researcher helps not only in academic settings, but is invaluable in any career, and throughout one’s life. The Information Literacy User’s Guide will start you on this route to success.',
 			'series' => 'Library & Information Studies',
 			'keywords' => array(
