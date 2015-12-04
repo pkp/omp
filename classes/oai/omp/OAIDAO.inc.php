@@ -90,12 +90,12 @@ class OAIDAO extends PKPOAIDAO {
 	 * @param $total int
 	 * @return array OAISet
 	 */
-	function &getSets($pressId = null, $offset, $limit, &$total) {
+	function getSets($pressId = null, $offset, $limit, &$total) {
 		if (isset($pressId)) {
 			$presses = array($this->getPress($pressId));
 		} else {
 			$pressFactory = $this->_pressDao->getAll();
-			$presses =& $pressFactory->toArray();
+			$presses = $pressFactory->toArray();
 		}
 
 		// FIXME Set descriptions
@@ -108,7 +108,7 @@ class OAIDAO extends PKPOAIDAO {
 			$dataObjectTombstoneDao = DAORegistry::getDAO('DataObjectTombstoneDAO');
 			$publicationFormatSets = $dataObjectTombstoneDao->getSets(ASSOC_TYPE_PRESS, $press->getId());
 
-			$seriesFactory =& $this->_seriesDao->getByPressId($press->getId());
+			$seriesFactory = $this->_seriesDao->getByPressId($press->getId());
 			foreach ($seriesFactory->toArray() as $series) {
 				if (array_key_exists(urlencode($abbrev) . ':' . urlencode($series->getPath()), $publicationFormatSets)) {
 					unset($publicationFormatSets[urlencode($abbrev) . ':' . urlencode($series->getPath())]);
@@ -136,7 +136,7 @@ class OAIDAO extends PKPOAIDAO {
 	 * @return array (int, int, int)
 	 */
 	function getSetPressSeriesId($pressSpec, $seriesSpec, $restrictPressId = null) {
-		$press =& $this->_pressDao->getByPath($pressSpec);
+		$press = $this->_pressDao->getByPath($pressSpec);
 		if (!isset($press) || (isset($restrictPressId) && $press->getId() != $restrictPressId)) {
 			return array(0, 0);
 		}
@@ -208,7 +208,7 @@ class OAIDAO extends PKPOAIDAO {
 	/**
 	 * @see lib/pkp/classes/oai/PKPOAIDAO::setOAIData()
 	 */
-	function &setOAIData(&$record, &$row, $isRecord = true) {
+	function setOAIData($record, $row, $isRecord = true) {
 		$press = $this->getPress($row['press_id']);
 		$series = $this->getSeries($row['series_id']);
 		$publicationFormatId = $row['data_object_id'];

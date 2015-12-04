@@ -114,7 +114,7 @@ class PressOAI extends OAI {
 	/**
 	 * @see OAI#repositoryInfo
 	 */
-	function &repositoryInfo() {
+	function repositoryInfo() {
 		$info = new OAIRepository();
 
 		if (isset($this->press)) {
@@ -131,7 +131,7 @@ class PressOAI extends OAI {
 
 		$info->toolkitTitle = 'Open Monograph Press';
 		$versionDao = DAORegistry::getDAO('VersionDAO');
-		$currentVersion =& $versionDao->getCurrentVersion();
+		$currentVersion = $versionDao->getCurrentVersion();
 		$info->toolkitVersion = $currentVersion->getVersionString(false);
 		$info->toolkitURL = 'http://pkp.sfu.ca/omp/';
 
@@ -160,10 +160,10 @@ class PressOAI extends OAI {
 	/**
 	 * @see OAI#record
 	 */
-	function &record($identifier) {
+	function record($identifier) {
 		$publicationFormatId = $this->identifierToPublicationFormatId($identifier);
 		if ($publicationFormatId) {
-			$record =& $this->dao->getRecord($publicationFormatId, array($this->pressId));
+			$record = $this->dao->getRecord($publicationFormatId, array($this->pressId));
 		}
 		if (!isset($record)) {
 			$record = false;
@@ -174,7 +174,7 @@ class PressOAI extends OAI {
 	/**
 	 * @see OAI#records
 	 */
-	function &records($metadataPrefix, $from, $until, $set, $offset, $limit, &$total) {
+	function records($metadataPrefix, $from, $until, $set, $offset, $limit, &$total) {
 		$records = null;
 		if (!HookRegistry::call('PressOAI::records', array(&$this, $from, $until, $set, $offset, $limit, $total, &$records))) {
 			$seriesId = null;
@@ -183,7 +183,7 @@ class PressOAI extends OAI {
 			} else {
 				$pressId = $this->pressId;
 			}
-			$records =& $this->dao->getRecords(array($pressId, $seriesId), $from, $until, $set, $offset, $limit, $total);
+			$records = $this->dao->getRecords(array($pressId, $seriesId), $from, $until, $set, $offset, $limit, $total);
 		}
 		return $records;
 	}
@@ -191,7 +191,7 @@ class PressOAI extends OAI {
 	/**
 	 * @see OAI#identifiers
 	 */
-	function &identifiers($metadataPrefix, $from, $until, $set, $offset, $limit, &$total) {
+	function identifiers($metadataPrefix, $from, $until, $set, $offset, $limit, &$total) {
 		$records = null;
 		if (!HookRegistry::call('PressOAI::identifiers', array(&$this, $from, $until, $set, $offset, $limit, $total, &$records))) {
 			$seriesId = null;
@@ -200,7 +200,7 @@ class PressOAI extends OAI {
 			} else {
 				$pressId = $this->pressId;
 			}
-			$records =& $this->dao->getIdentifiers(array($pressId, $seriesId), $from, $until, $set, $offset, $limit, $total);
+			$records = $this->dao->getIdentifiers(array($pressId, $seriesId), $from, $until, $set, $offset, $limit, $total);
 		}
 		return $records;
 	}
@@ -208,10 +208,10 @@ class PressOAI extends OAI {
 	/**
 	 * @see OAI#sets
 	 */
-	function &sets($offset, $limit, &$total) {
+	function sets($offset, $limit, &$total) {
 		$sets = null;
 		if (!HookRegistry::call('PressOAI::sets', array(&$this, $offset, $limit, $total, &$sets))) {
-			$sets =& $this->dao->getSets($this->pressId, $offset, $limit, $total);
+			$sets = $this->dao->getSets($this->pressId, $offset, $limit, $total);
 		}
 		return $sets;
 	}
@@ -219,7 +219,7 @@ class PressOAI extends OAI {
 	/**
 	 * @see OAI#resumptionToken
 	 */
-	function &resumptionToken($tokenId) {
+	function resumptionToken($tokenId) {
 		$this->dao->clearTokens();
 		$token = $this->dao->getToken($tokenId);
 		if (!isset($token)) {
@@ -231,7 +231,7 @@ class PressOAI extends OAI {
 	/**
 	 * @see OAI#saveResumptionToken
 	 */
-	function &saveResumptionToken($offset, $params) {
+	function saveResumptionToken($offset, $params) {
 		$token = new OAIResumptionToken(null, $offset, $params, time() + $this->config->tokenLifetime);
 		$this->dao->insertToken($token);
 		return $token;
