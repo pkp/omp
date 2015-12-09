@@ -96,8 +96,8 @@ class CreatePressTest extends WebTestCase {
 		$this->click($selector);
 
 		// "Edit" link below "Volume editor" role
-		$this->waitForElementPresent('//table[starts-with(@id, \'component-grid-settings-roles-usergroupgrid-\')]//span[contains(text(), \'Volume editor\')]/../../../../../following-sibling::tr//a[contains(text(),\'Edit\')]');
-		$this->click('//table[starts-with(@id, \'component-grid-settings-roles-usergroupgrid-\')]//span[contains(text(), \'Volume editor\')]/../../../../../following-sibling::tr//a[contains(text(),\'Edit\')]');
+		$this->waitForElementPresent('//table[starts-with(@id, \'component-grid-settings-roles-usergroupgrid-\')]//span[contains(text(), \'Volume editor\')]/../../../following-sibling::tr//a[contains(text(),\'Edit\')]');
+		$this->click('//table[starts-with(@id, \'component-grid-settings-roles-usergroupgrid-\')]//span[contains(text(), \'Volume editor\')]/../../../following-sibling::tr//a[contains(text(),\'Edit\')]');
 
 		// Click the "permit self registration" checkbox
 		$this->waitForElementPresent('//input[@id=\'permitSelfRegistration\']');
