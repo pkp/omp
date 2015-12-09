@@ -204,8 +204,8 @@
 				$gridRow = gridHandler.getParentRow($(sourceElement)),
 				representationId = gridHandler.getRowDataId($gridRow);
 		this.getHtmlElement().tabs({
-				active: /** @type {number} */ (this.getTabPositionByFormatId_(
-						representationId, this.getHtmlElement()))});
+			active: /** @type {number} */ (this.getTabPositionByFormatId_(
+					representationId, this.getHtmlElement()))});
 	};
 
 
