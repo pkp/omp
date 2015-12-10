@@ -33,8 +33,6 @@
 		<div class="type">
 			{if $assocType == $smarty.const.SPOTLIGHT_TYPE_SERIES}
 				{translate key="series.series"}
-			{elseif $assocType == $smarty.const.SPOTLIGHT_TYPE_AUTHOR}
-				{translate key="user.role.author"}
 			{else}
 				{translate key="spotlight"}
 			{/if}

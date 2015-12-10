@@ -17,7 +17,6 @@
 // type constants for spotlights
 define('SPOTLIGHT_TYPE_BOOK',	3);
 define('SPOTLIGHT_TYPE_SERIES',	4);
-define('SPOTLIGHT_TYPE_AUTHOR',	5);
 define('MAX_SPOTLIGHTS_VISIBLE', 3);
 
 class Spotlight extends DataObject {
@@ -140,7 +139,6 @@ class Spotlight extends DataObject {
 		$spotlightTypes = array(
 				SPOTLIGHT_TYPE_BOOK => __('grid.content.spotlights.form.type.book'),
 				SPOTLIGHT_TYPE_SERIES => __('series.series'),
-				SPOTLIGHT_TYPE_AUTHOR => __('user.role.author')
 		);
 
 		return $spotlightTypes[$this->getAssocType()];
@@ -159,10 +157,6 @@ class Spotlight extends DataObject {
 			case SPOTLIGHT_TYPE_SERIES:
 				$seriesDao = DAORegistry::getDAO('SeriesDAO');
 				return $seriesDao->getById($this->getAssocId(), $this->getPressId());
-				break;
-			case SPOTLIGHT_TYPE_AUTHOR:
-				$authorDao = DAORegistry::getDAO('AuthorDAO');
-				return $authorDao->getById($this->getAssocId());
 				break;
 			default:
 				assert(false);

@@ -151,11 +151,6 @@ class SpotlightForm extends Form {
 				$series = $seriesDao->getById($assocId, $this->getPressId());
 				$returner = isset($series) ? $series->getLocalizedTitle() : '';
 				break;
-			case SPOTLIGHT_TYPE_AUTHOR:
-				$authorDao = DAORegistry::getDAO('AuthorDAO');
-				$author = $authorDao->getById($assocId);
-				$returner = isset($author) ? $author->getFullName() : '';
-				break;
 			default:
 				fatalError('invalid type specified');
 		}
@@ -168,7 +163,7 @@ class SpotlightForm extends Form {
 	 * @return boolean
 	 */
 	function _isValidSpotlightType($type) {
-		$validTypes = array(SPOTLIGHT_TYPE_AUTHOR, SPOTLIGHT_TYPE_BOOK, SPOTLIGHT_TYPE_SERIES);
+		$validTypes = array(SPOTLIGHT_TYPE_BOOK, SPOTLIGHT_TYPE_SERIES);
 		return in_array((int) $type, $validTypes);
 	}
 }

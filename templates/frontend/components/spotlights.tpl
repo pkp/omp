@@ -38,14 +38,6 @@
 				{assign var=coverImage value=$item->getImage()}
 				{url|assign:targetUrl router=$smarty.const.ROUTE_PAGE page="catalog" op="series" path=$item->getPath()}
 				{url|assign:coverImageUrl page="catalog" op="thumbnail" type="series" id=$item->getId()}
-			{elseif $assocType == $smarty.const.SPOTLIGHT_TYPE_AUTHOR}
-				{assign var=type value="is_author"}
-				{assign var=monograph value=$item->getPublishedMonograph()}
-				{if $monograph}
-					{assign var=coverImage value=$monograph->getCoverImage()}
-					{url|assign:targetUrl router=$smarty.const.ROUTE_PAGE page="catalog" op="book" path=$monograph->getId()}
-					{url|assign:coverImageUrl router=$smarty.const.ROUTE_COMPONENT component="submission.CoverHandler" op="thumbnail" submissionId=$monograph->getId()}
-				{/if}
 			{/if}
 			{assign var=hasCoverImage value=""}
 			{if $coverImage}
@@ -59,8 +51,6 @@
 					{assign var=description value=$item->getLocalizedDescription()|truncate:600|strip_unsafe_html}
 				{elseif $assocType == $smarty.const.SPOTLIGHT_TYPE_BOOK}
 					{assign var=description value=$item->getLocalizedAbstract()|truncate:600|strip_unsafe_html}
-				{elseif $assocType == $smarty.const.SPOTLIGHT_TYPE_AUTHOR && $monograph}
-					{assign var=description value=$monograph->getLocalizedAbstract()}
 				{/if}
 			{/if}
 
