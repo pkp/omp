@@ -92,7 +92,6 @@ class ContentBaseTestCase extends PKPContentBaseTestCase {
 				$this->clickAt('css=[id^=component-listbuilder-users-chapterauthorlistbuilder-addItem-button-]', '10,10');
 				$this->waitForElementPresent('xpath=(//div[@id="chapterAuthorContainer"]//select[@name="newRowId[name]"])[' . ($i+1) . ']//option[text()=' . $this->quoteXpath($contributor) . ']');
 				$this->select('xpath=(//div[@id="chapterAuthorContainer"]//select[@name="newRowId[name]"])[' . ($i+1) . ']', 'label=' . $contributor);
-				$this->waitJQuery();
 			}
 
 			// Files
@@ -101,7 +100,6 @@ class ContentBaseTestCase extends PKPContentBaseTestCase {
 				$this->clickAt('css=[id^=component-listbuilder-files-chapterfileslistbuilder-addItem-button-]', '10,10');
 				$this->waitForElementPresent('xpath=(//div[@id="chapterFilesContainer"]//select[@name="newRowId[name]"])[' . ($i+1) . ']//option[text()=' . $this->quoteXpath($file) . ']');
 				$this->select('xpath=(//div[@id="chapterFilesContainer"]//select[@name="newRowId[name]"])[' . ($i+1) . ']', 'label=' . $file);
-				$this->waitJQuery();
 			}
 
 			$this->click('//form[@id=\'editChapterForm\']//button[text()=\'Save\']');
