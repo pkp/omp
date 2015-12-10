@@ -46,8 +46,7 @@ class SeriesTest extends WebTestCase {
 
 		// Save changes
 		$this->click('//form[@id=\'seriesForm\']//button[text()=\'Save\']');
-		$this->waitJQuery();
-		$this->waitForElementNotPresent('css=div.pkp_modal_panel'); // pkp/pkp-lib#655
+		$this->waitForElementNotPresent('css=div.pkp_modal_panel');
 
 		// Verify resulting grid row
 		$this->assertEquals('Buskins', $this->getText('css=#cell-1-editors > span'));
@@ -64,8 +63,7 @@ class SeriesTest extends WebTestCase {
 		$this->waitForElementPresent('//select[@name=\'newRowId[name]\']//option[text()=\'Stephanie Berardo\']');
 		$this->select('name=newRowId[name]', 'label=Stephanie Berardo');
 		$this->click('//form[@id=\'seriesForm\']//button[text()=\'Save\']');
-		$this->waitJQuery();
-		$this->waitForElementNotPresent('css=div.pkp_modal_panel'); // pkp/pkp-lib#655
+		$this->waitForElementNotPresent('css=div.pkp_modal_panel');
 
 		// Create a new "History" series
 		$this->click('css=[id^=component-grid-settings-series-seriesgrid-addSeries-button-]');
@@ -73,8 +71,7 @@ class SeriesTest extends WebTestCase {
 		$this->type('css=[id^=title-]', 'History');
 		$this->type('css=[id^=path-]', 'his');
 		$this->click('//form[@id=\'seriesForm\']//button[text()=\'Save\']');
-		$this->waitJQuery();
-		$this->waitForElementNotPresent('css=div.pkp_modal_panel'); // pkp/pkp-lib#655
+		$this->waitForElementNotPresent('css=div.pkp_modal_panel');
 
 		// Create a new "Education" series
 		$this->click('css=[id^=component-grid-settings-series-seriesgrid-addSeries-button-]');
@@ -82,8 +79,7 @@ class SeriesTest extends WebTestCase {
 		$this->type('css=[id^=title-]', 'Education');
 		$this->type('css=[id^=path-]', 'ed');
 		$this->click('//form[@id=\'seriesForm\']//button[text()=\'Save\']');
-		$this->waitJQuery();
-		$this->waitForElementNotPresent('css=div.pkp_modal_panel'); // pkp/pkp-lib#655
+		$this->waitForElementNotPresent('css=div.pkp_modal_panel');
 
 		// Create a new "Psychology" series
 		$this->click('css=[id^=component-grid-settings-series-seriesgrid-addSeries-button-]');
@@ -91,7 +87,6 @@ class SeriesTest extends WebTestCase {
 		$this->type('css=[id^=title-]', 'Psychology');
 		$this->type('css=[id^=path-]', 'psy');
 		$this->click('//form[@id=\'seriesForm\']//button[text()=\'Save\']');
-		$this->waitJQuery();
-		$this->waitForElementNotPresent('css=div.pkp_modal_panel'); // pkp/pkp-lib#655
+		$this->waitForElementNotPresent('css=div.pkp_modal_panel');
 	}
 }
