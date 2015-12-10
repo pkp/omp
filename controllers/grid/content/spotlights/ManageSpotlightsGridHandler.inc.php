@@ -342,24 +342,6 @@ class ManageSpotlightsGridHandler extends GridHandler {
 			$itemList = array_merge($itemList, $matches);
 		}
 
-		$matches = array();
-
-		$authorDao = DAORegistry::getDAO('AuthorDAO');
-		$authors = $authorDao->getAuthorsAlphabetizedByPress($press->getId());
-		while ($author = $authors->next()) {
-			if ($name == '' || preg_match('/'. preg_quote($name, '/') . '/i', $author->getFullName())) {
-				$publishedMonograph = $publishedMonographDao->getById($author->getSubmissionId());
-				if ($publishedMonograph) { // only include Authors if they are authors on published monographs.
-					$matches[] = array('label' => $author->getFullName() . ' (' . $publishedMonograph->getLocalizedTitle() . ')', 'value' => $author->getId() . ':' . SPOTLIGHT_TYPE_AUTHOR);
-				}
-			}
-		}
-
-		if (!empty($matches)) {
-			$itemList[] = array('label' => String::strtoupper(__('user.role.author')), 'value' => '');
-			$itemList = array_merge($itemList, $matches);
-		}
-
 		if (count($itemList) == 0) {
 			return $this->noAutocompleteResults();
 		}
