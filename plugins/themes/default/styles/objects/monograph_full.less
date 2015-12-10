@@ -87,6 +87,16 @@
 	.files {
 		.pkp_helpers_clear;
 
+		> div,
+		.value li {
+			.pkp_helpers_clear;
+			margin-bottom: @double;
+
+			&:last-child {
+				margin-bottom: 0;
+			}
+		}
+
 		.name {
 			display: inline-block;
 			padding: @half 0;
