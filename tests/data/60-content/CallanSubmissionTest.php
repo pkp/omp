@@ -76,7 +76,6 @@ class CallanSubmissionTest extends ContentBaseTestCase {
 		$this->sendToReview('External', 'Internal');
 		$this->waitForElementPresent('//a[contains(text(), \'External Review\')]/*[contains(text(), \'Initiated\')]');
 		$this->assignReviewer('gfavio', 'Gonzalo Favio');
-		$this->waitJQuery();
 		$this->recordEditorialDecision('Accept Submission');
 		$this->waitForElementPresent('//a[contains(text(), \'Editorial\')]/*[contains(text(), \'Initiated\')]');
 		$this->assignParticipant('Copyeditor', 'Sarah Vogt');
@@ -84,7 +83,6 @@ class CallanSubmissionTest extends ContentBaseTestCase {
 		$this->waitForElementPresent('//a[contains(text(), \'Production\')]/*[contains(text(), \'Initiated\')]');
 		$this->assignParticipant('Layout Editor', 'Stephen Hellier');
 		$this->assignParticipant('Proofreader', 'Catherine Turner');
-		$this->waitJQuery();
 
 		// Add to catalog
 		$this->click('css=[id^=catalogEntry-button-]');

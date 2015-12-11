@@ -92,16 +92,13 @@ class BbeatySubmissionTest extends ContentBaseTestCase {
 		$this->assignReviewer('amccrae', 'Aisla McCrae');
 		$this->sendToReview('External', 'Internal');
 		$this->waitForElementPresent('//a[contains(text(), \'External Review\')]/*[contains(text(), \'Initiated\')]');
-		$this->waitJQuery();
 		$this->assignReviewer('alzacharia', 'Al Zacharia');
-		$this->waitJQuery();
 		$this->recordEditorialDecision('Accept Submission');
 		$this->waitForElementPresent('//a[contains(text(), \'Editorial\')]/*[contains(text(), \'Initiated\')]');
 		$this->assignParticipant('Copyeditor', 'Maria Fritz');
 		$this->recordEditorialDecision('Send To Production');
 		$this->waitForElementPresent('//a[contains(text(), \'Production\')]/*[contains(text(), \'Initiated\')]');
 		$this->assignParticipant('Layout Editor', 'Graham Cox');
-		$this->waitJQuery();
 
 		$this->logOut();
 	}
