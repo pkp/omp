@@ -47,7 +47,7 @@
 	<!-- Submission wizard -->
 	<message key="submission.submit">Entreprendre une nouvelle soumission de livre</message>
 	<message key="submission.submit.newSubmissionMultiple">Commencer une nouvelle soumission dans</message>
-	<message key="submission.submit.newSubmissionSingle">Commencer une nouvelle soumission dans {$contextName}</message>
+	<message key="submission.submit.newSubmissionSingle">Commencer une nouvelle soumission</message>
 	<message key="submission.submit.upload">Télécharger la soumission</message>
 	<message key="submission.submit.upload.description">Les fichiers téléchargés associés à cette soumision, y compris le manuscrit, le prospectus, la lettre de présentation, les illustrations, etc. Pour les volumes édités, ainsi que pour les monographies, téléchargez le manuscrit en un seul fichier, si possible.</message>
 	<message key="submission.submit.cancelSubmission">Vous pouvez compléter cette soumission plus tard. Il suffit de sélectionner Soumissions actives à partir de la page Auteur.</message>

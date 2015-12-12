@@ -51,7 +51,6 @@
 	<!-- Submission wizard -->
 	<message key="submission.submit">Ein neues Buchmanuskript einreichen</message>
 	<message key="submission.submit.newSubmissionMultiple">Ein neues Buchmanuskript einreichen bei</message>
-	<message key="submission.submit.newSubmissionSingle">Ein neues Manuskript bei {$contextName} einreichen</message>
 	<message key="submission.submit.upload">Upload</message>
 	<message key="submission.submit.upload.description">Hochladen von Dateien, die im Zusammenhang mit der Einreichung stehen wie z.B. Manuskript, Exposé, Anschreiben, Bildmaterial. Es empfiehlt sich, sowohl bei Monografien als auch bei Sammelbänden das gesamte Manuskript in einer Datei hochzuladen.</message>
 	<message key="submission.submit.cancelSubmission">Sie können den Einreichungsprozess auch zu einem späteren Zeitpunkt abschließen. Gehen Sie dazu auf die Startseite und wählen Sie die entsprechenden Manuskripte aus.</message>

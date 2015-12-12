@@ -46,7 +46,6 @@
 	<!-- Submission wizard -->
 	<message key="submission.submit">Iniiciar nova submissão de livro</message>
 	<message key="submission.submit.newSubmissionMultiple">Iniciar nova submissão em</message>
-	<message key="submission.submit.newSubmissionSingle">Iniciar nova submissão em {$pressName}</message>
 	<message key="submission.submit.upload">Enviar submissão</message>
 	<message key="submission.submit.upload.description">Envie os arquivos associados à submissõao, incluindo manuscrito, prospecto, carta de apresentação, arte, etc. Para volumes editados e monografias, envie o manuscrito como arquivo único, caso seja possível.</message>
 	<message key="submission.submit.cancelSubmission">A submissão pode ser concluída posteriormente, escolhendo da lista de Submissões ativas, na página inicial do papel de autor.</message>

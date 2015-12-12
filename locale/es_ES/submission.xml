@@ -48,7 +48,6 @@
 	<!-- Submission wizard -->
 	<message key="submission.submit">Comenzar nueva propuesta</message>
 	<message key="submission.submit.newSubmissionMultiple">Comenzar una nueva propuesta para</message>
-	<message key="submission.submit.newSubmissionSingle">Comenzar una nueva propuesta en {$contextName}</message>
 	<message key="submission.submit.upload">Subir</message>
 	<message key="submission.submit.upload.description">Subir archivos asociados con la propuesta, incluyendo el manuscrito, documento de proyecto, carta de presentación, material gráfico etc. Para obras colectivas, así como para las monografías, sube los manuscritos como un único fichero, si es factible.</message>
 	<message key="submission.submit.cancelSubmission">Puedes completar esta propuesta más tarde seleccionando Propuestas Activas desde la página de inicio del autor.</message>

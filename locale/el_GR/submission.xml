@@ -48,7 +48,6 @@
 	<!-- Submission wizard -->
 	<message key="submission.submit">Εισαγωγή Νέας Υποβολής Βιβλίου</message>
 	<message key="submission.submit.newSubmissionMultiple">Ξεκινήστε μια νέα υποβολή στις Εκδόσεις</message>
-	<message key="submission.submit.newSubmissionSingle">Ξεκινήστε μια νέα υποβολή στις Εκδόσεις {$pressName}</message>
 	<message key="submission.submit.upload">Μεταφόρτωση Αρχείου</message>
 	<message key="submission.submit.upload.description">Η μεταφόρτωση αρχείων που σχετίζεται με αυτή την υποβολή, συμπεριλαμβάνει χειρόγραφα, πρόταση για μια έκδοση, συνοδευτική επιστολή, καλλιτεχνικά έργα κλπ. Έαν είναι εφικτό, για τα έργα υπο επιμέλεια, καθώς και για τις μονογραφίες, ανεβάστε το κείμενο του έργου σε ξεχωριστό αρχείο.</message>
 	<message key="submission.submit.cancelSubmission">Μπορείτε να ολοκληρώσετε τη διαδικασία υποβολής μετέπειτα, επιλέγοντας Ενεργές Υποβολές από την Αρχική Σελίδα του Συγγραφέα.</message>
