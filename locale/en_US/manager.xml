@@ -60,6 +60,7 @@
 	<message key="manager.settings.publisher">Press Publisher Name</message>
 	<message key="manager.settings.location">Geographical Location</message>
 	<message key="manager.settings.publisherCode">Publisher Code</message>
+	<message key="manager.settings.publisherCodeType">Publisher Code Type</message>
 	<message key="manager.settings.publisherCodeType.tip">If you have a publisher name code, please fill it in below.  It will be included in generated metadata.  The field is required if you generate ONIX metadata for your publications.</message>
 	<message key="manager.settings.distributionDescription">All settings specific to the distribution process (notification, indexing, archiving, payment, reading tools).</message>
 
