@@ -22,21 +22,19 @@
 	<p class="pkp_help">{translate key="manager.settings.publisherInformation"}</p>
 	{fbvFormArea id="publisherInformation"}
 		{fbvFormSection id="publisher" label="manager.settings.publisher"}
-			{fbvElement type="text" name="publisher" required="true" id="publisher" value=$publisher maxlength="255"}
+			{fbvElement type="text" name="publisher" id="publisher" value=$publisher maxlength="255"}
 		{/fbvFormSection}
 		{fbvFormSection id="location" label="manager.settings.location"}
-			{fbvElement type="text" name="location" required="true" id="location" value=$location maxlength="255"}
+			{fbvElement type="text" name="location" id="location" value=$location maxlength="255"}
 		{/fbvFormSection}
 	{/fbvFormArea}
 
-	<div class="separator"></div>
-
-	{fbvFormArea id="audienceInformation" title="manager.settings.publisherCode" class="border"}
+	{fbvFormArea id="audienceInformation" title="manager.settings.publisherCode"}
 		{fbvFormSection for="codeType" description="manager.settings.publisherCodeType.tip"}
-			{fbvElement type="select" from=$codeTypes selected=$codeType translate=false id="codeType" defaultValue="" defaultLabel=""}
+			{fbvElement type="select" from=$codeTypes selected=$codeType translate=false id="codeType" defaultValue="" defaultLabel="" label="manager.settings.publisherCodeType"}
 		{/fbvFormSection}
-		{fbvFormSection description="manager.settings.publisherCode" for="codeValue"}
-			{fbvElement type="text" id="codeValue" value=$codeValue}
+		{fbvFormSection for="codeValue"}
+			{fbvElement type="text" id="codeValue" value=$codeValue label="manager.settings.publisherCode"}
 		{/fbvFormSection}
 	{/fbvFormArea}
 
@@ -46,4 +44,3 @@
 		{fbvFormButtons id="productionStageFormSubmit" submitText="common.save" hideCancel=true}
 	{/if}
 </form>
-<p><span class="formRequired">{translate key="common.requiredField"}</span></p>
