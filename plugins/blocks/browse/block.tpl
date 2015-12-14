@@ -28,7 +28,7 @@
 				</li>
 			{/if}
 
-			{if $browseCategories}
+			{if $browseCategories->count}
 				<li class="has_submenu">
 					{translate key="plugins.block.browse.category"}
 					<ul>
@@ -43,7 +43,7 @@
 				</li>
 			{/if}
 
-			{if $browseSeries}
+			{if $browseSeries->count}
 				<li class="has_submenu">
 					{translate key="plugins.block.browse.series"}
 					<ul>
