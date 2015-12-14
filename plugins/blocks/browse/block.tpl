@@ -8,8 +8,10 @@
  * @brief Common site sidebar menu for browsing the catalog.
  *
  * @uses $browseNewReleases bool Whether or not to show a new releases link
- * @uses $browseCategories array Categories that can be browsed
- * @uses $browseSeries array Series that can be browsed
+ * @uses $browseCategoryFactory object Category factory providing access to
+ *  browseable categories.
+ * @uses $browseSeriesFactory object Series factory providing access to
+ *  browseable series.
  *
  *}
 <div class="pkp_block block_browse">
@@ -28,11 +30,11 @@
 				</li>
 			{/if}
 
-			{if $browseCategories}
+			{if $browseCategoryFactory->getCount()}
 				<li class="has_submenu">
 					{translate key="plugins.block.browse.category"}
 					<ul>
-						{iterate from=browseCategories item=browseCategory}
+						{iterate from=browseCategoryFactory item=browseCategory}
 							<li class="category_{$browseCategory->getId()}{if $browseCategory->getParentId()} is_sub{/if}{if $browseBlockSelectedCategory == $browseCategory->getPath()} current{/if}">
 								<a href="{url router=$smarty.const.ROUTE_PAGE page="catalog" op="category" path=$browseCategory->getPath()|escape}">
 									{$browseCategory->getLocalizedTitle()|escape}
@@ -43,11 +45,11 @@
 				</li>
 			{/if}
 
-			{if $browseSeries}
+			{if $browseSeriesFactory->getCount()}
 				<li class="has_submenu">
 					{translate key="plugins.block.browse.series"}
 					<ul>
-						{iterate from=browseSeries item=browseSeriesItem}
+						{iterate from=browseSeriesFactory item=browseSeriesItem}
 							<li class="series_{$browseSeriesItem->getId()}{if $browseBlockSelectedSeries == $browseSeriesItem->getPath()} current{/if}">
 								<a href="{url router=$smarty.const.ROUTE_PAGE page="catalog" op="series" path=$browseSeriesItem->getPath()|escape}">
 									{$browseSeriesItem->getLocalizedTitle()|escape}
