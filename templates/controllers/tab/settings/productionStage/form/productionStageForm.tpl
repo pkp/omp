@@ -22,10 +22,10 @@
 	<p class="pkp_help">{translate key="manager.settings.publisherInformation"}</p>
 	{fbvFormArea id="publisherInformation"}
 		{fbvFormSection id="publisher" label="manager.settings.publisher"}
-			{fbvElement type="text" name="publisher" required="true" id="publisher" value=$publisher maxlength="255"}
+			{fbvElement type="text" name="publisher" id="publisher" value=$publisher maxlength="255"}
 		{/fbvFormSection}
 		{fbvFormSection id="location" label="manager.settings.location"}
-			{fbvElement type="text" name="location" required="true" id="location" value=$location maxlength="255"}
+			{fbvElement type="text" name="location" id="location" value=$location maxlength="255"}
 		{/fbvFormSection}
 	{/fbvFormArea}
 
