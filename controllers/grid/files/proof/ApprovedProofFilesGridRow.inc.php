@@ -61,8 +61,6 @@ class ApprovedProofFilesGridRow extends GridRow {
 					'edit'
 				)
 			);
-		} else {
-			$this->setNoActionMessage(__('grid.catalogEntry.availableRepresentation.proofNotApproved'));
 		}
 	}
 }
