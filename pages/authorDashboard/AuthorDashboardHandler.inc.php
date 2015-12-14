@@ -63,24 +63,6 @@ class AuthorDashboardHandler extends PKPAuthorDashboardHandler {
 	}
 
 	/**
-	 * Get the last review round numbers in an array by stage name.
-	 * @param $submission Submission
-	 * @return array(stageName => lastReviewRoundNumber, 0 iff none)
-	 */
-	protected function _getLastReviewRoundNumbers($submission) {
-		$reviewRoundDao = DAORegistry::getDAO('ReviewRoundDAO');
-		$lastInternalReviewRound = $reviewRoundDao->getLastReviewRoundBySubmissionId($submission->getId(), WORKFLOW_STAGE_ID_INTERNAL_REVIEW);
-		if ($lastInternalReviewRound) {
-			$lastInternalReviewRoundNumber = $lastInternalReviewRound->getRound();
-		} else {
-			$lastInternalReviewRoundNumber = 0;
-		}
-		$lastReviewRoundNumbers = parent::_getLastReviewRoundNumbers($submission);
-		$lastReviewRoundNumbers['internalReview'] = $lastInternalReviewRoundNumber;
-		return $lastReviewRoundNumbers;
-	}
-
-	/**
 	 * Get the notification request options.
 	 * @param $submission Submission
 	 * @return array
