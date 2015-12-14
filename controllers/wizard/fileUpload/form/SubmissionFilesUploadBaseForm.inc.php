@@ -39,8 +39,7 @@ class SubmissionFilesUploadBaseForm extends PKPSubmissionFilesUploadBaseForm {
 	 * @see PKPSubmissionFilesUploadBaseForm::getSubmissionFiles() for the rest of this.  This function
 	 * exists in this subclass for Monograph-specific submission files.
 	 */
-
-	function &getSubmissionFiles() {
+	function getSubmissionFiles() {
 		if (is_null($this->_submissionFiles)) {
 			if ($this->getStageId() == WORKFLOW_STAGE_ID_PRODUCTION &&
 				$this->getAssocType() == ASSOC_TYPE_PUBLICATION_FORMAT && is_int($this->getAssocId())) {
