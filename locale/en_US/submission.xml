@@ -44,6 +44,7 @@
 	<message key="submission.confirmSubmit">Are you sure you wish to submit this manuscript to the press?</message>
 	<message key="submission.metadata">Metadata</message>
 	<message key="submission.supportingAgencies">Supporting Agencies</message>
+	<message key="submission.grid.titleColumn">Author; Book Title</message.
 	<message key="grid.action.addChapter">Create a new chapter</message>
 	<message key="grid.action.editChapter">Edit this chapter</message>
 	<message key="grid.action.deleteChapter">Delete this chapter</message>
