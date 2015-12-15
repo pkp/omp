@@ -79,6 +79,26 @@
 		}
 	}
 
+	.chapters {
+
+		> ul {
+			&:extend(.pkp_unstyled_list);
+		}
+
+		li {
+			padding: @base 0;
+		}
+
+		.title {
+			margin-bottom: 0;
+			font-weight: @bold;
+		}
+
+		.authors {
+			color: @text-light;
+		}
+	}
+
 	.cover img {
 		display: block;
 		margin: 0 auto;
