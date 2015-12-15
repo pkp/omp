@@ -103,7 +103,10 @@
 
 			{if $chapters|@count}
 				<div class="item chapters">
-					<ul class="chapters">
+					<h3 class="pkp_screen_reader">
+						{translate key="submission.chapters"}
+					</h3>
+					<ul>
 						{foreach from=$chapters item=chapter}
 							<li>
 								<div class="title">
