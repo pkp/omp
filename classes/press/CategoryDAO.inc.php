@@ -94,7 +94,8 @@ class CategoryDAO extends DAO {
 				l.setting_name = ? AND
 				l.setting_value = ?
 				AND a.press_id = ?
-				' . ($locale?' AND locale = ?':''),
+				' . ($locale?' AND locale = ?':'') . '
+			ORDER BY seq',
 			$params
 		);
 
@@ -143,6 +144,7 @@ class CategoryDAO extends DAO {
 		$category->setParentId($row['parent_id']);
 		$category->setPath($row['path']);
 		$category->setImage(unserialize($row['image']));
+		$category->setSequence($row['seq']);
 
 		$this->getDataObjectSettings('category_settings', 'category_id', $row['category_id'], $category);
 
@@ -180,14 +182,15 @@ class CategoryDAO extends DAO {
 	function insertObject($category) {
 		$this->update(
 			'INSERT INTO categories
-				(press_id, parent_id, path, image)
+				(press_id, parent_id, path, image, seq)
 				VALUES
-				(?, ?, ?, ?)',
+				(?, ?, ?, ?, ?)',
 			array(
 				(int) $category->getPressId(),
 				(int) $category->getParentId(),
 				$category->getPath(),
 				serialize($category->getImage() ? $category->getImage() : array()),
+				(int) $category->getSequence()
 			)
 		);
 
@@ -206,18 +209,50 @@ class CategoryDAO extends DAO {
 			SET	press_id = ?,
 				parent_id = ?,
 				path = ?,
-				image = ?
+				image = ?,
+				seq = ?
 			WHERE	category_id = ?',
 			array(
 				(int) $category->getPressId(),
 				(int) $category->getParentId(),
 				$category->getPath(),
 				serialize($category->getImage() ? $category->getImage() : array()),
+				(int) $category->getSequence(),
 				(int) $category->getId()
 			)
 		);
 		$this->updateLocaleFields($category);
 		return $returner;
+	}
+
+	/**
+	 * Sequentially renumber categories in their sequence order by press ID and optionally parent category ID.
+	 * @param $pressId int
+	 * @param $parentCategoryId int Optional parent category ID
+	 */
+	function resequenceCategories($pressId, $parentCategoryId = null) {
+		$params = array((int) $pressId);
+		if ($parentCategoryId) $params[] = (int) $parentCategoryId;
+		$result = $this->retrieve(
+			'SELECT category_id FROM categories WHERE press_id = ?' .
+			($parentCategoryId?' AND parent_id = ?':''),
+			$params
+		);
+
+		for ($i=1; !$result->EOF; $i++) {
+			list($categoryId) = $result->fields;
+			$this->update(
+				'UPDATE categories SET seq = ? WHERE category_id = ?',
+				array(
+					(int) $i,
+					(int) $categoryId
+				)
+			);
+
+			$result->MoveNext();
+		}
+
+		$result->Close();
 	}
 
 	/**
@@ -287,7 +322,7 @@ class CategoryDAO extends DAO {
 			'SELECT	*
 			FROM	categories
 			WHERE	press_id = ?
-			ORDER BY CASE WHEN parent_id = 0 THEN category_id * 2 ELSE (parent_id * 2) + 1 END ASC',
+			ORDER BY CASE WHEN parent_id = 0 THEN category_id * 2 ELSE (parent_id * 2) + 1 END ASC, seq',
 			array((int) $pressId)
 		);
 
@@ -323,7 +358,8 @@ class CategoryDAO extends DAO {
 			'SELECT	*
 			FROM	categories
 			WHERE	parent_id = ?
-			' . ($pressId?' AND press_id = ?':''),
+			' . ($pressId?' AND press_id = ?':'') . '
+			ORDER BY seq',
 			$params
 		);
 		return new DAOResultFactory($result, $this, '_fromRow');

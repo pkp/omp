@@ -41,7 +41,8 @@ class CategoryCategoryGridHandler extends CategoryGridHandler {
 				'editCategory',
 				'updateCategory',
 				'deleteCategory',
-				'uploadImage'
+				'uploadImage',
+				'saveSequence',
 			)
 		);
 	}
@@ -117,6 +118,51 @@ class CategoryCategoryGridHandler extends CategoryGridHandler {
 	}
 
 	/**
+	 * @copydoc GridHandler::initFeatures()
+	 */
+	function initFeatures($request, $args) {
+		import('lib.pkp.classes.controllers.grid.feature.OrderCategoryGridItemsFeature');
+		return array_merge(
+			parent::initFeatures($request, $args),
+			array(new OrderCategoryGridItemsFeature(ORDER_CATEGORY_GRID_CATEGORIES_AND_ROWS))
+		);
+	}
+
+	/**
+	 * @copydoc CategoryGridHandler::getDataElementInCategorySequence()
+	 */
+	function getDataElementInCategorySequence($categoryId, $category) {
+		return $category->getSequence();
+	}
+
+	/**
+	 * @copydoc CategoryGridHandler::setDataElementInCategorySequence()
+	 */
+	function setDataElementInCategorySequence($parentCategoryId, $category, $newSequence) {
+		$category->setSequence($newSequence);
+		$categoryDao = DAORegistry::getDAO('CategoryDAO');
+		$categoryDao->updateObject($category);
+		$categoryDao->resequenceCategories($category->getPressId(), $parentCategoryId);
+	}
+
+	/**
+	 * @copydoc GridHandler::getDataElementSequence()
+	 */
+	function getDataElementSequence($category) {
+		return $category->getSequence();
+	}
+
+	/**
+	 * @copydoc GridHandler::setDataElementSequence()
+	 */
+	function setDataElementSequence($request, $categoryId, $category, $newSequence) {
+		$category->setSequence($newSequence);
+		$categoryDao = DAORegistry::getDAO('CategoryDAO');
+		$categoryDao->updateObject($category);
+		$categoryDao->resequenceCategories($category->getPressId());
+	}
+
+	/**
 	 * @copydoc CategoryGridHandler::getCategoryRowIdParameterName()
 	 */
 	function getCategoryRowIdParameterName() {
@@ -145,8 +191,7 @@ class CategoryCategoryGridHandler extends CategoryGridHandler {
 		$categoryId = $category->getId();
 		$categoryDao = DAORegistry::getDAO('CategoryDAO');
 		$categoriesIterator = $categoryDao->getByParentId($categoryId, $this->_getPressId());
-		$categories = $categoriesIterator->toAssociativeArray();
-		return $categories;
+		return $categoriesIterator->toAssociativeArray();
 	}
 
 	/**
@@ -209,7 +254,7 @@ class CategoryCategoryGridHandler extends CategoryGridHandler {
 
 		// Delete the category
 		$categoryDao->deleteObject($category);
-		return DAO::getDataChangedEvent($category->getId(), $category->getParentId());
+		return DAO::getDataChangedEvent();
 	}
 
 	/**

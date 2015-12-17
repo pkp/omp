@@ -29,6 +29,7 @@
 		<field name="parent_id" type="I8">
 			<NOTNULL/>
 		</field>
+		<field name="seq" type="I8" />
 		<field name="path" type="C2" size="255">
 			<NOTNULL />
 		</field>

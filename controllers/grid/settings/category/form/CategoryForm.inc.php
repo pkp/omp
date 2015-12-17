@@ -200,7 +200,9 @@ class CategoryForm extends Form {
 		if ($categoryId == null) {
 			$category->setId($categoryDao->insertObject($category));
 		} else {
+			$categoryDao->setSequence(REALLY_BIG_NUMBER);
 			$categoryDao->updateObject($category);
+			$categoryDao->resequenceCategories($this->getPressId());
 		}
 
 		// Handle the image upload if there was one.

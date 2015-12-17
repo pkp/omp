@@ -55,6 +55,22 @@ class Category extends DataObject {
 	}
 
 	/**
+	 * Get sequence of category.
+	 * @return int
+	 */
+	function getSequence() {
+		return $this->getData('sequence');
+	}
+
+	/**
+	 * Set sequence of category.
+	 * @param $sequence int
+	 */
+	function setSequence($sequence) {
+		return $this->setData('sequence', $sequence);
+	}
+
+	/**
 	 * Get category path.
 	 * @return string
 	 */
