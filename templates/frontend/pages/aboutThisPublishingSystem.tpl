@@ -10,7 +10,7 @@
  * @uses $currentPress Press The press currently being viewed
  * @uses $appVersion string Current version of OMP
  *}
-{include file="common/frontend/header.tpl" pageTitle="about.aboutThisPublishingSystem"}
+{include file="frontend/components/header.tpl" pageTitle="about.aboutThisPublishingSystem"}
 
 <div class="page page_about_publishing_system">
 	<h1 class="page_title">
@@ -27,4 +27,4 @@
 
 </div><!-- .page -->
 
-{include file="common/frontend/footer.tpl"}
+{include file="frontend/components/footer.tpl"}

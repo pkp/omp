@@ -9,7 +9,7 @@
  *
  * @uses $submissionInfo array Page content such as guidelines, checklist, etc
  *}
-{include file="common/frontend/header.tpl" pageTitle="about.submissions"}
+{include file="frontend/components/header.tpl" pageTitle="about.submissions"}
 
 <div class="page page_submissions">
 	{include file="frontend/components/breadcrumbs.tpl" currentTitleKey="about.submissions"}
@@ -90,4 +90,4 @@
 
 </div><!-- .page -->
 
-{include file="common/frontend/footer.tpl"}
+{include file="frontend/components/footer.tpl"}

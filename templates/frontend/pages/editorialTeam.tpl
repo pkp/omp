@@ -10,7 +10,7 @@
  * @uses $currentPress Press The current press
  * @uses $editorialTeam string Masthead with members of the editorial team
  *}
-{include file="common/frontend/header.tpl" pageTitle="about.editorialTeam"}
+{include file="frontend/components/header.tpl" pageTitle="about.editorialTeam"}
 
 <div class="page page_editorial_team">
 	{include file="frontend/components/breadcrumbs.tpl" currentTitleKey="about.editorialTeam"}
@@ -20,4 +20,4 @@
 
 </div><!-- .page -->
 
-{include file="common/frontend/footer.tpl"}
+{include file="frontend/components/footer.tpl"}

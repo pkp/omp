@@ -9,7 +9,7 @@
  *
  * @uses $publishedMonographs array List of published monographs
  *}
-{include file="common/frontend/header.tpl" pageTitle="navigation.catalog"}
+{include file="frontend/components/header.tpl" pageTitle="navigation.catalog"}
 
 <div class="page page_catalog">
 	{include file="frontend/components/breadcrumbs.tpl" currentTitleKey="navigation.catalog"}
@@ -31,4 +31,4 @@
 
 </div><!-- .page -->
 
-{include file="common/frontend/footer.tpl"}
+{include file="frontend/components/footer.tpl"}

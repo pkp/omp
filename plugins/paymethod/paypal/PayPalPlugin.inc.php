@@ -318,7 +318,7 @@ class PayPalPlugin extends PaymethodPlugin {
 					'backLink' => $request->getUserVar('ompReturnUrl'),
 					'backLinkLabel' => 'common.continue'
 				));
-				$templateMgr->display('common/message.tpl');
+				$templateMgr->display('frontend/pages/message.tpl');
 				exit();
 				break;
 		}
