@@ -146,7 +146,7 @@ class ManualPaymentPlugin extends PaymethodPlugin {
 					'backLink' => $queuedPayment->getRequestUrl(),
 					'backLinkLabel' => 'common.continue',
 				));
-				return $templateMgr->display('common/message.tpl');
+				return $templateMgr->display('frontend/pages/message.tpl');
 		}
 		return parent::handle($args, $request); // Don't know what to do with it
 	}

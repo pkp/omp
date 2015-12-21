@@ -12,7 +12,7 @@
  * @uses $publishedMonograph PublishedMonograph The published monograph object.
  * @uses $series Series The series this monograph is assigned to, if any.
  *}
-{include file="common/frontend/header.tpl" pageTitleTranslated=$publishedMonograph->getLocalizedFullTitle()}
+{include file="frontend/components/header.tpl" pageTitleTranslated=$publishedMonograph->getLocalizedFullTitle()}
 
 <div class="page page_book">
 
@@ -27,4 +27,4 @@
 
 </div><!-- .page -->
 
-{include file="common/frontend/footer.tpl"}
+{include file="frontend/components/footer.tpl"}

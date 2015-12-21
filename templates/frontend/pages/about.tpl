@@ -15,7 +15,7 @@
  * @has $editorialTeam array Info on members of the editorial team
  * @has $submissions array Info on the submission policy
  *}
-{include file="common/frontend/header.tpl" pageTitle="about.aboutThePress"}
+{include file="frontend/components/header.tpl" pageTitle="about.aboutThePress"}
 
 <div class="page page_about">
 	{include file="frontend/components/breadcrumbs.tpl" currentTitleKey="about.aboutThePress"}
@@ -218,4 +218,4 @@
 
 </div><!-- .page -->
 
-{include file="common/frontend/footer.tpl"}
+{include file="frontend/components/footer.tpl"}

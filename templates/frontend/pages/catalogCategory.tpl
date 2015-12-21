@@ -16,7 +16,7 @@
  * @uses $alreadyShown array Array of monograph IDs which have already been
  *       displayed. These IDs are excluded from later sections.
  *}
-{include file="common/frontend/header.tpl" pageTitleTranslated=$category->getLocalizedTitle()}
+{include file="frontend/components/header.tpl" pageTitleTranslated=$category->getLocalizedTitle()}
 
 <div class="page page_catalog_category">
 
@@ -80,4 +80,4 @@
 
 </div><!-- .page -->
 
-{include file="common/frontend/footer.tpl"}
+{include file="frontend/components/footer.tpl"}

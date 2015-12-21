@@ -9,7 +9,7 @@
  *
  * @uses $publishedMonographs array List of published monographs in this category
  *}
-{include file="common/frontend/header.tpl" pageTitle="catalog.newReleases"}
+{include file="frontend/components/header.tpl" pageTitle="catalog.newReleases"}
 
 <div class="page page_catalog_new_releases">
 
@@ -32,4 +32,4 @@
 
 </div><!-- .page -->
 
-{include file="common/frontend/footer.tpl"}
+{include file="frontend/components/footer.tpl"}

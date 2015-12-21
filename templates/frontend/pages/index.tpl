@@ -17,7 +17,7 @@
  * @uses $additionalHomeContent string HTML blob of arbitrary content added by
  *  an editor/admin.
  *}
-{include file="common/frontend/header.tpl"}
+{include file="frontend/components/header.tpl"}
 
 <div class="page page_homepage">
 
@@ -82,4 +82,4 @@
 	{/if}
 
 </div>
-{include file="common/frontend/footer.tpl"}
+{include file="frontend/components/footer.tpl"}
