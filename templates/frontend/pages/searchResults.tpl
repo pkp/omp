@@ -10,7 +10,7 @@
  * @uses $publishedMonographs array List of published monographs
  * @uses $searchQuery string The search query, if one was just made
  *}
-{include file="common/frontend/header.tpl" pageTitle="common.search"}
+{include file="frontend/components/header.tpl" pageTitle="common.search"}
 
 <div class="page page_search">
 
@@ -53,4 +53,4 @@
 
 </div><!-- .page -->
 
-{include file="common/frontend/footer.tpl"}
+{include file="frontend/components/footer.tpl"}

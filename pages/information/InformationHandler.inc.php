@@ -72,7 +72,7 @@ class InformationHandler extends Handler {
 		$templateMgr->assign('content', $content);
 		$templateMgr->assign('contentOnly', $contentOnly); // Hide the header and footer code
 
-		$templateMgr->display('information/information.tpl');
+		$templateMgr->display('frontend/pages/information.tpl');
 	}
 
 	function readers($args, $request) {

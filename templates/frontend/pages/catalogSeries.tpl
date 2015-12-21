@@ -12,7 +12,7 @@
  * @uses $featuredMonographIds array List of featured monograph IDs in this series
  * @uses $newReleasesMonographs array List of new monographs in this series
  *}
-{include file="common/frontend/header.tpl" pageTitleTranslated=$series->getLocalizedTitle()}
+{include file="frontend/components/header.tpl" pageTitleTranslated=$series->getLocalizedTitle()}
 
 <div class="page page_catalog_series">
 
@@ -59,4 +59,4 @@
 
 </div><!-- .page -->
 
-{include file="common/frontend/footer.tpl"}
+{include file="frontend/components/footer.tpl"}
