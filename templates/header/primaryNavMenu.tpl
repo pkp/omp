@@ -31,10 +31,12 @@
 			{translate key="navigation.about"}
 		</a>
 		{if $submenu_class_attr}
-			<span class="caret"></span>
-		{/if}
-		{if $submenu_class_attr}
 		<ul>
+			<li>
+				<a href="{url router=$smarty.const.ROUTE_PAGE page="about"}">
+					{translate key="about.aboutThePress"}
+				</a>
+			</li>
 			{if not empty($contextInfo.editorialTeam)}
 			<li>
 				<a href="{url router=$smarty.const.ROUTE_PAGE page="about" op="editorialTeam"}">
