@@ -8,7 +8,7 @@
  * Display usage stats privacy information and an opt-out option.
  *
  *}
-{include file="common/header.tpl"}
+{include file="frontend/components/header.tpl"}
 
 {translate key="plugins.generic.usageStats.optout.description" privacyStatementUrl=$privacyStatementUrl}
 <form action="{url}" method="POST">
@@ -21,4 +21,4 @@
 	{/if}
 </form>
 
-{include file="common/footer.tpl"}
+{include file="frontend/components/footer.tpl"}
