@@ -15,6 +15,6 @@
 	<type>plugins.pubIds</type>
 	<release>1.0.0.0</release>
 	<date>2012-12-18</date>
-	<lazy-load>1</lazy-load>
+	<lazy-load>0</lazy-load>
 	<class>DOIPubIdPlugin</class>
 </version>
