@@ -104,7 +104,7 @@ class MallySubmissionTest extends ContentBaseTestCase {
 		// Accept submission
 		$this->findSubmissionAsEditor('dbarnes', null, $title);
 		$this->recordEditorialDecision('Accept Submission');
-		$this->waitForElementPresent('//a[contains(text(), \'Editorial\')]/*[contains(text(), \'Initiated\')]');
+		$this->waitForElementPresent('//a[contains(text(), \'Copyediting\')]/*[contains(text(), \'Initiated\')]');
 		$this->logOut();
 	}
 }
