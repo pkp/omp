@@ -24,7 +24,7 @@
 	</li>
 
 	{if $contextInfo.editorialTeam || $contextInfo.submissions}
-		{assign var="submenu_class_attr" value=" class='has-submenu'"}
+		{assign var="submenu_class_attr" value=" class='has_submenu'"}
 	{/if}
 	<li{$submenu_class_attr}>
 		<a href="{url router=$smarty.const.ROUTE_PAGE page="about"}">
