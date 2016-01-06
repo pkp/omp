@@ -15,7 +15,7 @@
 // supports nested lists that will be displayed on hover/focus.
 //
 // <ul class="pkp_nav_list">
-//   <li class="has-submenu">
+//   <li class="has_submenu">
 //     <a href="#">1</a>
 //     <ul>
 //       <li>
@@ -113,11 +113,11 @@
 
 	// Dropdown caret indicating submenus
 	// @todo these can probably abstracted into reusable components
-	.has-submenu a:first-child {
+	.has_submenu a:first-child {
 		margin-right: 0;
 	}
 
-	.has-submenu > a:after {
+	.has_submenu > a:after {
 		position: relative;
 		display: inline-block;
 		content: '';
@@ -131,16 +131,16 @@
 		overflow: hidden;
 	}
 
-	ul .has-submenu > a:after {
+	ul .has_submenu > a:after {
 		border-left: 4px solid;
 		border-top: 4px solid transparent;
 		border-bottom: 4px solid transparent;
 		border-right: 4px solid transparent;
 	}
 
-	.has-submenu:hover > a:after,
-	.has-submenu:focus > a:after,
-	.has-submenu.in_focus > a:after {
+	.has_submenu:hover > a:after,
+	.has_submenu:focus > a:after,
+	.has_submenu.in_focus > a:after {
 		opacity: 0;
 	}
 }
