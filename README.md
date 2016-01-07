@@ -34,10 +34,7 @@ See https://github.com/pkp/pkp-lib/#issues for information on reporting issues.
 
 ## Running Tests
 
-Specific requirements : [PHPunit][php-unit]. Installing with pear for example :
-
-    pear channel-discover pear.phpunit.de
-    pear install phpunit/PHPUnit
+Specific requirements : [PHPunit][php-unit]. [Installation instructions.](https://phpunit.de/getting-started.html)
 
 Setting up test environment :
 
