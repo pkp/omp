@@ -34,20 +34,7 @@ See https://github.com/pkp/pkp-lib/#issues for information on reporting issues.
 
 ## Running Tests
 
-Specific requirements : [PHPunit][php-unit]. Installing with pear for example :
-
-    pear channel-discover pear.phpunit.de
-    pear install phpunit/PHPUnit
-
-Setting up test environment :
-
-    mysql -u root -e 'create database omp'
-    mysql -u root omp < tests/functional/testserver.sql
-    cp config.TRAVIS.inc.php config.inc.php
-
-Running the tests :
-
-    ./lib/pkp/tools/runAllTests.sh -Cc
+See [Unit Tests](https://pkp.sfu.ca/wiki/index.php?title=Unit_Tests), and also [Github Documentation for PKP Contributors](https://pkp.sfu.ca/wiki/index.php?title=Github_Documentation_for_PKP_Contributors) for Travis-based continuous integration testing.
 
 ## License
 
