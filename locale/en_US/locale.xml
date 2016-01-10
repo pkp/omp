@@ -336,7 +336,8 @@
 	<message key="press.presses">Presses</message>
 	<message key="press.path">Path</message>
 	<message key="context.context">Press</message>
-	<message key="context.select">Select a Press...</message>
+	<message key="context.current">Current Press:</message>
+	<message key="context.select">Switch to another press:</message>
 
 	<!-- User -->
 	<message key="user.noRoles.selectUsersWithoutRoles">Include users with no roles in this press.</message>
