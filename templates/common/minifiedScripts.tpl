@@ -72,6 +72,7 @@
 <script src="{$baseUrl}/lib/pkp/js/controllers/form/FileUploadFormHandler.js"></script>
 <script src="{$baseUrl}/lib/pkp/js/controllers/form/MultilingualInputHandler.js"></script>
 <script src="{$baseUrl}/lib/pkp/js/controllers/form/CancelActionAjaxFormHandler.js"></script>
+<script src="{$baseUrl}/lib/pkp/js/controllers/form/UserFormHandler.js"></script>
 <script src="{$baseUrl}/lib/pkp/js/controllers/form/reviewer/ReviewerReviewStep3FormHandler.js"></script>
 <script src="{$baseUrl}/lib/pkp/js/controllers/grid/GridHandler.js"></script>
 <script src="{$baseUrl}/lib/pkp/js/controllers/grid/CategoryGridHandler.js"></script>
@@ -103,7 +104,7 @@
 <script src="{$baseUrl}/lib/pkp/js/pages/header/TasksHandler.js"></script>
 <script src="{$baseUrl}/lib/pkp/js/pages/admin/ContextsHandler.js"></script>
 <script src="{$baseUrl}/lib/pkp/js/pages/submission/SubmissionTabHandler.js"></script>
-<script src="{$baseUrl}/lib/pkp/js/controllers/grid/settings/user/form/UserFormHandler.js"></script>
+<script src="{$baseUrl}/lib/pkp/js/controllers/grid/settings/user/form/UserDetailsFormHandler.js"></script>
 <script src="{$baseUrl}/lib/pkp/js/controllers/grid/settings/roles/form/UserGroupFormHandler.js"></script>
 <script src="{$baseUrl}/lib/pkp/js/controllers/tab/settings/siteAccessOptions/form/SiteAccessOptionsFormHandler.js"></script>
 <script src="{$baseUrl}/lib/pkp/js/controllers/tab/settings/managementSettings/UsersAndRolesTabHandler.js"></script>
