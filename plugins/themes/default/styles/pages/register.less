@@ -74,6 +74,23 @@
 
 	// Styles for user group panel, which is still tied to a template
 	// shared by the backend
+	.pkp_user_group_other_contexts {
+		margin-top: @base;
+
+		.container .section {
+			margin-bottom: @base;
+
+			ul > label {
+				font-style: italic;
+				margin-bottom: @half;
+			}
+
+			&:last-child {
+				margin-bottom: 0;
+			}
+		}
+	}
+
 	.checkbox_and_radiobutton {
 		&:extend(.pkp_unstyled_list);
 	}
