@@ -564,6 +564,6 @@ Your server currently supports mbstring: <strong>{$supportsMBString}</strong>]]>
 	<message key="plugins.categories.viewableFiles.description">Published File Plugins add support for displaying different document types inline, e.g. using PDF embedding.</message>
 	<message key="submission.pdf.download">Download this PDF file</message>
 
-	<message key="user.profile.form.showOtherContexts">Show Other Presses</message>
-	<message key="user.profile.form.hideOtherContexts">Hide Other Presses</message>
+	<message key="user.profile.form.showOtherContexts">Register with other presses</message>
+	<message key="user.profile.form.hideOtherContexts">Hide other presses</message>
 </locale>
