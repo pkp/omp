@@ -243,9 +243,6 @@ Soumission, Évaluation interne, Évaluation externe, Rédaction et Production.<
 	<message key="manager.setup.pressArchiving">Archivage de la presse</message>
 	<message key="manager.setup.pressHomepageContent">Contenu de la page d'accueil de la presse</message>
 	<message key="manager.setup.pressHomepageContentDescription">La page d'accueil de la presse contient les liens de navigation par défaut. Vous pouvez ajouter du texte sur la page d'accueil à l'aide d'une ou de toutes les options suivantes, qui s'afficheront dans l'ordre indiqué.</message>
-	<message key="manager.setup.pressHomepageHeader">En-tête de la page d'accueil de la presse</message>
-	<message key="manager.setup.pressHomepageHeader.altText">En-tête de la page d'accueil de la presse</message>
-	<message key="manager.setup.pressHomepageHeaderDescription">Choisir entre une représentation textuelle du nom de la presse ou une version graphique du titre (fichiers .gif, .jpg, ou .png acceptés). Cette en-tête et le logo d'accompagnement optionnel s'afficheront uniquement sur la page d'accueil de la presse. L'en-tête par défaut mesure 180px x 90px.</message>
 	<message key="manager.setup.pressInitials">Sigles de la presse</message>
 	<message key="manager.setup.pageFooter">Bas de page de la presse</message>
 	<message key="manager.setup.pageFooterDescription">Voici le bas de page de votre presse. Pour modifier ou mettre à jour le bas de page, copiez-collez le code HTML dans la zone d'entrée de texte ci-dessous. Vous pourriez par exemple ajouter une autre barre de navigation ou un compteur. Ce bas de page apparaitra sur chaque page.</message>

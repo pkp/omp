@@ -125,8 +125,6 @@ You may optionally provide the user with a reason for disabling their account.</
 	<message key="manager.setup.additionalContentDescription">Add any additional content you'd like to appear on the homepage.</message>
 	<message key="manager.setup.addNavItem">Add Item</message>
 	<message key="manager.setup.addSponsor">Add Sponsoring Organization</message>
-	<message key="manager.setup.alternateHeader">Alternate Header</message>
-	<message key="manager.setup.alternateHeaderDescription">Alternately, instead of title and logo, an HTML version of the header can be inserted into the text box below. Leave textbox blank if not required.</message>
 	<message key="manager.setup.announcements">Announcements</message>
 	<message key="manager.setup.announcementsDescription">Announcements may be published to inform readers of press news and events. Published announcements will appear on the Announcements page.</message>
 	<message key="manager.setup.announcementsIntroduction">Additional Information</message>
@@ -253,9 +251,6 @@ You may optionally provide the user with a reason for disabling their account.</
 	<message key="manager.setup.homepageContentDescription">The press homepage consists of navigation links by default. Additional homepage content can be appended by using one or all of the following options, which will appear in the order shown.</message>
 	<message key="manager.setup.pressHomepageContent">Press Homepage Content</message>
 	<message key="manager.setup.pressHomepageContentDescription">The press homepage consists of navigation links by default. Additional homepage content can be appended by using one or all of the following options, which will appear in the order shown.</message>
-	<message key="manager.setup.pressHomepageHeader">Press Homepage Header</message>
-	<message key="manager.setup.pressHomepageHeader.altText">Press Homepage Header</message>
-	<message key="manager.setup.pressHomepageHeaderDescription">Choose between a text representation of the press name, or a graphic version of the press title (.gif, .jpg, or .png files accepted). This header and the optional accompanying logo will only appear on the press home page.  The default header expects a size of 180px x 90px.</message>
 	<message key="manager.setup.pressInitials">Press Initials</message>
 	<message key="manager.setup.layout">Press Layout</message>
 	<message key="manager.setup.logo">Press Logo</message>
@@ -263,7 +258,7 @@ You may optionally provide the user with a reason for disabling their account.</
 	<message key="manager.setup.pageFooter">Press Page Footer</message>
 	<message key="manager.setup.pageFooterDescription">Enter any images, text or HTML code that you'd like to appear at the bottom of your press's website.</message>
 	<message key="manager.setup.pageHeader">Press Page Header</message>
-	<message key="manager.setup.pageHeaderDescription">Most themes will display the press's name in the header if no logo has been uploaded.</message>
+	<message key="manager.setup.pageHeaderDescription"></message>
 	<message key="manager.setup.pressPolicies">Step 2. Press Policies</message>
 	<message key="manager.setup.pressSetup">Press Setup</message>
 	<message key="manager.setup.pressSetupUpdated">Your press setup has been updated.</message>
@@ -350,7 +345,7 @@ You may optionally provide the user with a reason for disabling their account.</
 	<message key="manager.setup.useCopyeditors">A Copyeditor will be assigned to work with each submission.</message>
 	<message key="manager.setup.useEditorialReviewBoard">An editorial/review board will be used by the press.</message>
 	<message key="manager.setup.useImageLogo">Press Logo</message>
-	<message key="manager.setup.useImageLogoDescription">Upload a logo for the press. To comply with WCAG standards, be sure to enter Alternative Text that describes the image (usually the name of the press) when requested during upload.</message>
+	<message key="manager.setup.useImageLogoDescription">Upload a logo for the press. To comply with WCAG standards, be sure to enter Alternative Text that describes the image (usually the name of the press) when requested during upload. Note that most themes will display the press's name in the header if no logo has been uploaded.</message>
 	<message key="manager.setup.useImageTitle">Title Image</message>
 	<message key="manager.setup.useStyleSheet">Press style sheet</message>
 	<message key="manager.setup.useLayoutEditors">A Layout Editor will be assigned to prepare the HTML, PDF, etc., files for electronic publication.</message>

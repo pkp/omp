@@ -293,9 +293,6 @@ Sie können dem/der Benutzer/in den Grund für die Deaktivierung des Kontos nenn
 	<message key="manager.setup.homepageContentDescription">Die Verlagshomepage besteht standardmäßig aus Links zur Navigation. Zusätzlicher Inhalt kann zur Homepage hinzugefügt werden, indem eine oder mehrere der folgenden Optionen verwendet werden. Sie erscheinen auf der Homepage in der Reihenfolge, wie sie auf dieser Seite aufgeführt sind.</message>
 	<message key="manager.setup.pressHomepageContent">Inhalt</message>
 	<message key="manager.setup.pressHomepageContentDescription">Die Verlagshomepage besteht standardmäßig aus Links zur Navigation. Zusätzlicher Inhalt kann zur Homepage hinzugefügt werden, indem eine oder mehrere der folgenden Optionen verwendet werden. Sie erscheinen auf der Homepage in der Reihenfolge, wie sie auf dieser Seite aufgeführt sind.</message>
-	<message key="manager.setup.pressHomepageHeader">Header der Verlagshomepage</message>
-	<message key="manager.setup.pressHomepageHeader.altText">Header der Verlagshomepage</message>
-	<message key="manager.setup.pressHomepageHeaderDescription">Wählen Sie zwischen einer textlichen Repräsentierung des Verlagsnamens und einer grafischen Version des Verlagstitels ( akzeptiert werden Dateien in den Formaten .gif, .jpg und .png). Der Header und das optionale begleitende Logo werden nur auf der Homepage des Verlages erscheinen. Der Standardheader hat eine Größe von 180px x 90px.</message>
 	<message key="manager.setup.pressInitials">Verlagsinitialen</message>
 	<message key="manager.setup.layout">Verlagslayout</message>
 	<message key="manager.setup.logo">Verlagslogo</message>

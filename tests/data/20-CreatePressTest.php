@@ -71,14 +71,6 @@ class CreatePressTest extends WebTestCase {
 		$this->type('css=[id^=supportName-]', 'Ramiro Vaca');
 		$this->click('//form[@id=\'contactForm\']//button[text()=\'Save\']');
 		$this->waitForTextPresent('Your changes have been saved.');
-
-		// Management > Settings > Website
-		$this->click('link=Website');
-		$this->waitForElementPresent('css=[id^=pageHeaderTitle-]');
-		$this->type('css=[id^=pageHeaderTitle-]', 'Public Knowledge Press');
-		$this->type('css=[id^=itemsPerPage-]', '100'); // To avoid having to scroll down to find submissions.
-		$this->click('//form[@id=\'appearanceForm\']//button[text()=\'Save\']');
-		$this->waitForTextPresent('Your changes have been saved.');
 	}
 
 	/**

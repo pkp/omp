@@ -58,7 +58,6 @@ class TemplateManager extends PKPTemplateManager {
 				// Assign page header
 				$this->assign('displayPageHeaderTitle', $context->getPageHeaderTitle());
 				$this->assign('displayPageHeaderLogo', $context->getPageHeaderLogo());
-				$this->assign('alternatePageHeader', $context->getLocalizedSetting('pageHeader'));
 				$this->assign('metaSearchDescription', $context->getLocalizedSetting('searchDescription'));
 				$this->assign('metaSearchKeywords', $context->getLocalizedSetting('searchKeywords'));
 				$this->assign('metaCustomHeaders', $context->getLocalizedSetting('customHeaders'));
@@ -98,8 +97,6 @@ class TemplateManager extends PKPTemplateManager {
 				// Add the site-wide logo, if set for this locale or the primary locale
 				$displayPageHeaderTitle = $site->getLocalizedPageHeaderTitle();
 				$this->assign('displayPageHeaderTitle', $displayPageHeaderTitle);
-				if (isset($displayPageHeaderTitle['altText'])) $this->assign('displayPageHeaderTitleAltText', $displayPageHeaderTitle['altText']);
-
 				$this->assign('siteTitle', $site->getLocalizedTitle());
 			}
 		}

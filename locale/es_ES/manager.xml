@@ -240,9 +240,6 @@ Puedes indicarle al usuario las razones por las que has desactivado su cuenta.</
 	<message key="manager.setup.pressArchiving">Press Archiving</message>
 	<message key="manager.setup.pressHomepageContent">Press Homepage Content</message>
 	<message key="manager.setup.pressHomepageContentDescription">The press homepage consists of navigation links by default. Additional homepage content can be appended by using one or all of the following options, which will appear in the order shown.</message>
-	<message key="manager.setup.pressHomepageHeader">Press Homepage Header</message>
-	<message key="manager.setup.pressHomepageHeader.altText">Press Homepage Header</message>
-	<message key="manager.setup.pressHomepageHeaderDescription">Choose between a text representation of the press name, or a graphic version of the press title (.gif, .jpg, or .png files accepted). This header and the optional accompanying logo will only appear on the press home page.  The default header expects a size of 180px x 90px.</message>
 	<message key="manager.setup.pressInitials">Iniciales de la editorial</message>
 	<message key="manager.setup.pressPolicies">Step 2. Press Policies</message>
 	<message key="manager.setup.pressSetup">Press Setup</message>

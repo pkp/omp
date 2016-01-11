@@ -34,18 +34,9 @@ class Press extends Context {
 	 * @return string
 	 */
 	function getPageHeaderTitle() {
-		$typeArray = $this->getSetting('pageHeaderTitleType');
-		$imageArray = $this->getSetting('pageHeaderTitleImage');
-		$titleArray = $this->getSetting('pageHeaderTitle');
-
-		$title = null;
-
+		$titleArray = $this->getSetting('name');
 		foreach (array(AppLocale::getLocale(), AppLocale::getPrimaryLocale()) as $locale) {
-			if (isset($typeArray[$locale]) && $typeArray[$locale]) {
-				if (isset($imageArray[$locale])) $title = $imageArray[$locale];
-			}
-			if (empty($title) && isset($titleArray[$locale])) $title = $titleArray[$locale];
-			if (!empty($title)) return $title;
+			if (isset($titleArray[$locale])) return $titleArray[$locale];
 		}
 		return null;
 	}

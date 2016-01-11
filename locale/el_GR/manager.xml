@@ -238,9 +238,6 @@
 	<message key="manager.setup.pressArchiving">Αρχειοθέτηση Εκδόσεων</message>
 	<message key="manager.setup.pressHomepageContent">Περιεχόμενα Αρχικής Σελίδας Εκδόσεων</message>
 	<message key="manager.setup.pressHomepageContentDescription">Εξ’ορισμού, η αρχική σελίδα των εκδόσεων αποτελείται από δεσμούς πλοήγησης. Η προσθήκη πρόσθετου περιεχομένου αρχικής σελίδας μπορεί να γίνει χρησιμοποιώντας κάποιες ή όλες τις ακόλουθες επιλογές, που θα εμφανιστούν με την σειρά αυτή.</message>
-	<message key="manager.setup.pressHomepageHeader">Κεφαλίδα Αρχικής Σελίδας Εκδόσεων</message>
-	<message key="manager.setup.pressHomepageHeader.altText">Κεφαλίδα Αρχικής Σελίδας Εκδόσεων (κείμενο)</message>
-	<message key="manager.setup.pressHomepageHeaderDescription">Επιλέξτε ανάμεσα σε ένα κείμενο αναπαράστασης του ονόματος των Εκδόσεων  ή μιας γραφικής έκδοσης του τίτλου των Εκδόσεων (ως αρχεία σε μορφή .gif, .jpg, ή .png)  Αυτή η κεφαλίδα και το προαιρετικό συνοδευτικό λογότυπο θα εμφανίζεται μόνο στην αρχική σελίδα των Εκδόσεων. Η εξ' ορισμού κεφαλίδα αναμένεται να έχει μέγεθος 180px x 90 px. </message>
 	<message key="manager.setup.pressInitials">Αρχικά Εκδόσεων</message>
 	<message key="manager.setup.pressPolicies">Βήμα 2. Πολιτικές</message>
 	<message key="manager.setup.pressSetup">Οργάνωση Εκδόσεων</message>

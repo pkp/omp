@@ -238,9 +238,6 @@ Informe, se desesjar, o motivo do bloqueio.</message>
 	<message key="manager.setup.pressArchiving">Arquivamento</message>
 	<message key="manager.setup.pressHomepageContent">Conteúdo da página inicial da editora</message>
 	<message key="manager.setup.pressHomepageContentDescription">A página inicial da editora consiste, por padrão, de links de navegação. Conteúdo adicional pode ser incluído usando uma ou mais das opções a seguir, que aparecerão na ordem exibida.</message>
-	<message key="manager.setup.pressHomepageHeader">Cabeçalho</message>
-	<message key="manager.setup.pressHomepageHeader.altText">Cabeçalho da página inicial da editora</message>
-	<message key="manager.setup.pressHomepageHeaderDescription">Escolha entre uma representação textual ou gráfica do nome da editora (arquivos permitidos são .gif, .jpg, ou .png). Este cabeçalho e o logotipo opcional serão apresentados paenas na página inicial. O cabeçalho padrão espera tamanhos de imagem de 180px x 90px.</message>
 	<message key="manager.setup.pressInitials">Sigla</message>
 	<message key="manager.setup.pageFooter">Rodapé</message>
 	<message key="manager.setup.pageFooterDescription">Este é o rodapé da editora. Para alterar ou atualizar o rodapé, cole código HTML no campo a seguir. Exemplos podem incluir outra barra de navegação, um contador, etc. O rodapé aparecerá em todas as páginas.</message>
