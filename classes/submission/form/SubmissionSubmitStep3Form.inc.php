@@ -68,85 +68,12 @@ class SubmissionSubmitStep3Form extends PKPSubmissionSubmitStep3Form {
 		// handle category assignment.
 		ListbuilderHandler::unpack($request, $this->getData('categories'));
 
-		$submissionDao = Application::getSubmissionDAO();
-		$submission = $submissionDao->getById($this->submissionId);
-
-		// Send author notification email
-		import('classes.mail.MonographMailTemplate');
-		$mail = new MonographMailTemplate($submission, 'SUBMISSION_ACK', null, null, false);
-		$authorMail = new MonographMailTemplate($submission, 'SUBMISSION_ACK_NOT_USER', null, null, false);
-
-		$context = $request->getContext();
-		$router = $request->getRouter();
-		if ($mail->isEnabled()) {
-			// submission ack emails should be from the contact.
-			$mail->setReplyTo($this->context->getSetting('contactEmail'), $this->context->getSetting('contactName'));
-			$authorMail->setReplyTo($this->context->getSetting('contactEmail'), $this->context->getSetting('contactName'));
-
-			$user = $request->getUser();
-			$primaryAuthor = $submission->getPrimaryAuthor();
-			if (!isset($primaryAuthor)) {
-				$authors = $submission->getAuthors();
-				$primaryAuthor = $authors[0];
-			}
-			$mail->addRecipient($user->getEmail(), $user->getFullName());
-
-			if ($user->getEmail() != $primaryAuthor->getEmail()) {
-				$authorMail->addRecipient($primaryAuthor->getEmail(), $primaryAuthor->getFullName());
-			}
-			if ($context->getSetting('copySubmissionAckPrimaryContact')) {
-				$authorMail->addBcc(
-					$context->getSetting('contactEmail'),
-					$context->getSetting('contactName')
-				);
-			}
-			if ($copyAddress = $context->getSetting('copySubmissionAckAddress')) {
-				$authorMail->addBcc($copyAddress);
-			}
-
-			$assignedAuthors = $submission->getAuthors();
-
-			foreach ($assignedAuthors as $author) {
-				$authorEmail = $author->getEmail();
-				// only add the author email if they have not already been added as the primary author
-				// or user creating the submission.
-				if ($authorEmail != $primaryAuthor->getEmail() && $authorEmail != $user->getEmail()) {
-					$authorMail->addRecipient($author->getEmail(), $author->getFullName());
-				}
-			}
-			$mail->bccAssignedSeriesEditors($submission->getId(), WORKFLOW_STAGE_ID_SUBMISSION);
-
-			$mail->assignParams(array(
-				'authorName' => $user->getFullName(),
-				'authorUsername' => $user->getUsername(),
-				'editorialContactSignature' => $context->getSetting('contactName') . "\n" . $context->getLocalizedName(),
-				'submissionUrl' => $router->url($request, null, 'authorDashboard', 'submission', $submission->getId()),
-			));
-
-			$authorMail->assignParams(array(
-				'submitterName' => $user->getFullName(),
-				'editorialContactSignature' => $context->getSetting('contactName') . "\n" . $context->getLocalizedName(),
-			));
-
-			$mail->send($request);
-
-			$recipients = $authorMail->getRecipients();
-			if (!empty($recipients)) {
-				$authorMail->send($request);
-			}
-		}
-
-		// Log submission.
-		import('lib.pkp.classes.log.SubmissionLog');
-		import('classes.log.SubmissionEventLogEntry'); // constants
-		SubmissionLog::logEvent($request, $submission, SUBMISSION_LOG_SUBMISSION_SUBMIT, 'submission.event.submissionSubmitted');
-
 		return $this->submissionId;
 	}
 
 	/**
 	 * Associate a category with a submission.
-	 * @see ListbuilderHandler::insertEntry
+	 * @copydoc ListbuilderHandler::insertEntry
 	 */
 	function insertEntry($request, $newRowId) {
 
@@ -163,15 +90,13 @@ class SubmissionSubmitStep3Form extends PKPSubmissionSubmitStep3Form {
 		if (!$category) return true;
 
 		// Associate the category with the submission
-		$submissionDao->addCategory(
-				$submission->getId(),
-				$categoryId
-		);
+		$submissionDao->addCategory($submission->getId(), $categoryId);
+		return true;
 	}
 
 	/**
 	 * Delete a category association.
-	 * @see ListbuilderHandler::deleteEntry
+	 * @copydoc ListbuilderHandler::deleteEntry
 	 */
 	function deleteEntry($request, $rowId) {
 		if ($rowId) {
@@ -191,12 +116,12 @@ class SubmissionSubmitStep3Form extends PKPSubmissionSubmitStep3Form {
 
 	/**
 	 * Update a category association.
-	 * @see ListbuilderHandler::updateEntry
+	 * @copydoc ListbuilderHandler::updateEntry
 	 */
 	function updateEntry($request, $rowId, $newRowId) {
-
 		$this->deleteEntry($request, $rowId);
 		$this->insertEntry($request, $newRowId);
+		return true;
 	}
 }
 
