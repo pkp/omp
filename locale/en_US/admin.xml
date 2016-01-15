@@ -35,7 +35,6 @@
 
 	<message key="admin.systemVersion">OMP Version</message>
 	<message key="admin.systemConfiguration">OMP Configuration</message>
-	<message key="admin.systemConfigurationDescription"><![CDATA[OMP configuration settings from <tt>config.inc.php</tt>.]]></message>
 	<message key="admin.presses.pressSettings">Press Settings</message>
 	<message key="admin.presses.noneCreated">No presses have been created.</message>
 	<message key="admin.contexts.confirmDelete">Are you sure you want to permanently delete this press and all of its contents?</message>

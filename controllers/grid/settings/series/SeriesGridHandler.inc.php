@@ -51,8 +51,6 @@ class SeriesGridHandler extends SetupGridHandler {
 		// Set the grid title.
 		$this->setTitle('catalog.manage.series');
 
-		$this->setInstructions('manager.setup.series.description');
-
 		// Elements to be displayed in the grid
 		$seriesDao = DAORegistry::getDAO('SeriesDAO');
 		DAORegistry::getDAO('CategoryDAO'); // Load constants?

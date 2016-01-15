@@ -15,7 +15,6 @@
 
 	<!-- Languages -->
 	<message key="manager.language.confirmDefaultSettingsOverwrite">This will replace any locale-specific press settings you had for this locale</message>
-	<message key="manager.languages.languageInstructions"><![CDATA[OMP can be made available to users in any of several supported languages. As well, OMP can operate as a multilingual system, providing users with an ability to toggle between languages on each page, and allowing certain data to be entered in several additional languages.<br /><br/>If a language supported by OMP is not listed below, ask your site administrator to install the language from the site administration interface. For instructions on adding support for new languages, please consult the OMP documentation.]]></message>
 	<message key="manager.languages.noneAvailable">Sorry, no additional languages are available. Contact your site administrator if you wish to use additional languages with this press.</message>
 	<message key="manager.languages.primaryLocaleInstructions">This will be the default language for the press site.</message>
 
@@ -326,7 +325,6 @@ You may optionally provide the user with a reason for disabling their account.</
 	<message key="manager.setup.subjectProvideExamples">Provide examples of keywords or topics as a guide for authors</message>
 	<message key="manager.setup.submissionGuidelines">Submission guidelines</message>
 	<message key="manager.setup.submissionPreparationChecklist">Submission Preparation Checklist</message>
-	<message key="manager.setup.submissionPreparationChecklistDescription">On making a submission to the press, authors are first asked to check each item on the Submission Preparation Checklist as completed, before proceeding. The checklist also appears in the Author Guidelines, under About the Press. The list can be edited below, but all items on the list will require a checkmark before authors can proceed with their submission.</message>
 	<message key="maganer.setup.submissionChecklistItemRequired">Checklist item is required.</message>
 	<message key="manager.setup.workflow">Workflow</message>
 	<message key="manager.setup.submissions.description">Author guidelines, copyright, and indexing (including registration).</message>
@@ -423,7 +421,6 @@ Note that if your site administrator has already registered this site with the P
 <br /><br />
 <a href="http://pkp.sfu.ca/harvester/add.php" target="_blank">Click here</a> and enter <span class="highlight">{$siteUrl}</span> under <strong>Site URL</strong>, and <span class="highlight">{$oaiUrl}</span> under <strong>Base URL for OAI Archive</strong>.]]></message>
 
-	<message key="settings.roles.gridDescription">Roles are groups of users in the press who are given access to different permission levels and associated workflows within the press. There are five different permission levels: Press Managers have access to everything in the press (all content and settings); Press Editors have access to all content within their series; Press Assistants have access to all monographs that have been explicitly assigned to them by an editor; Reviewers can see and perform the reviews they have been assigned; and Authors can see and interact with a limited amount of information on their own submissions. Additionally, there are five different stage assignments that roles may be given access to: Submission, Internal Review, External Review, Editorial and Production.</message>
 	<message key="manager.publication.library">Press Library</message>
 	<message key="manager.setup.resetPermissions">Reset Monograph Permissions</message>
 	<message key="manager.setup.resetPermissions.confirm">Are you sure you wish to reset permissions data already attached to monographs?</message>
@@ -431,5 +428,4 @@ Note that if your site administrator has already registered this site with the P
 
 	<message key="grid.genres.title.short">Components</message>
 	<message key="grid.genres.title">Monograph Components</message>
-	<message key="grid.genres.description">These components are used for file-naming purposes and are presented in a pull-down menu on uploading files. The genres designated ## allow the user to associate the file with either the whole book 99Z or a particular chapter by number (e.g., 02).</message>
 </locale>

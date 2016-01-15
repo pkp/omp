@@ -54,7 +54,6 @@
 	<message key="submission.submit.newSubmissionMultiple">Start a New Submission in</message>
 	<message key="submission.submit.newSubmissionSingle">New Submission</message>
 	<message key="submission.submit.upload">Upload Submission</message>
-	<message key="submission.submit.upload.description">Upload files associated with this submission, including manuscript, prospectus, cover letter, artwork, etc. For edited volumes, as well as monographs, upload the manuscript as a single file, if feasible.</message>
 	<message key="submission.submit.cancelSubmission">You can complete this submission at a later date by selecting Active Submissions from the Author home.</message>
 	<message key="submission.submit.selectSeries">Select series...</message>
 	<message key="submission.submit.seriesPosition">Position within this series (i.e., Book 2, or Volume 2)</message>
