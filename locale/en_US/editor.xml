@@ -59,13 +59,10 @@
 
 	<!-- Editorial related -->
 	<message key="editor.submission.introduction">In Submission, the editor, after the consulting the files submitted, selects the appropriate action (which includes notifying the author): Send to Internal Review (entails selecting files for Internal Review); Send to External Review (entails selecting files for External Review); Accept Submission (entails selecting files for Editorial stage); or Decline Submission (archives submission).</message>
-	<message key="editor.submission.editorial.finalDraftDescription"><![CDATA[For edited volumes, with different authors for each chapter, the submission file can be split up into into chapter-sized files for copyediting, which are reviewed by chapter-authors after the copyedited files are uploaded to <span class="pkp_help_title">Copyediting</span>.]]></message>
 	<message key="editor.monograph.editorial.fairCopy">Fair Copy</message>
-	<message key="editor.monograph.editorial.fairCopyDescription">The copyeditor uploads a clean or fair copy of the submission for review by the editor, prior to sending it to Production.</message>
 
 	<!-- Production/Proof related -->
 	<message key="editor.submission.production.introduction"><![CDATA[In Production, the editor selects book formats (e.g., digital, paperback, etc.) in <span class="pkp_help_title">Publication Formats</span>, for which the layout editor prepares publication-quality files based on the production ready files. The publication-quality files are uploaded for each format in <span class="pkp_help_title">Page Proofs</span>, where they are proof read. The book is made <em>Available</em> (i.e., published) for each format in <span class="pkp_help_title">Publication Formats</span>, after the <em>Proofs</em> is checked as approved, and the Catalog entry is checked as included in the book’s catalog entry.]]></message>
-	<message key="editor.submission.production.productionReadyFilesDescription"><![CDATA[The layout editor prepares these files for each publication format and then uploads to the appropriate <span class="pkp_help_title">Page Proofs</span> for proofreading.]]></message>
 	<message key="editor.monograph.proofs">Proofs</message>
 	<message key="editor.monograph.production.approvalAndPublishing">Approval and Publishing</message>
 	<message key="editor.monograph.production.approvalAndPublishingDescription">Different publication formats, such as hardcover, softcover and digital, can be uploaded in the Publication Formats section below. You can use the publication formats grid below as a checklist for what still needs to be done to publish a publication format.</message>

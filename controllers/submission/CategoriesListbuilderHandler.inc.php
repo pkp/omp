@@ -164,7 +164,6 @@ class CategoriesListbuilderHandler extends ListbuilderHandler {
 		// Basic configuration
 		$this->setPress($request->getPress());
 		$this->setTitle('submission.submit.placement.categories');
-		$this->setInstructions('submission.submit.placement.categoriesDescription');
 		$this->setSourceType(LISTBUILDER_SOURCE_TYPE_SELECT);
 		$this->setSaveType(LISTBUILDER_SAVE_TYPE_EXTERNAL);
 		$this->setSaveFieldName('categories');

@@ -75,8 +75,6 @@ class CategoryCategoryGridHandler extends CategoryGridHandler {
 		// Set the grid title.
 		$this->setTitle('grid.category.categories');
 
-		$this->setInstructions('manager.setup.categories.description');
-
 		// Add grid-level actions.
 		$router = $request->getRouter();
 		$this->addAction(

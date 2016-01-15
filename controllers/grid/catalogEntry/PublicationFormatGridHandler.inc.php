@@ -39,9 +39,7 @@ class PublicationFormatGridHandler extends RepresentationsGridHandler {
 	 */
 	function initialize($request) {
 		parent::initialize($request);
-
 		$this->setTitle('monograph.publicationFormats');
-		$this->setInstructions('editor.monograph.production.publicationFormatDescription');
 
 		// Load submission-specific translations
 		AppLocale::requireComponents(

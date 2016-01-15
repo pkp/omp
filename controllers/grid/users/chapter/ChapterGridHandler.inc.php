@@ -96,7 +96,6 @@ class ChapterGridHandler extends CategoryGridHandler {
 		parent::initialize($request);
 
 		$this->setTitle('submission.chapters');
-		$this->setInstructions('submission.chaptersDescription');
 
 		AppLocale::requireComponents(LOCALE_COMPONENT_APP_DEFAULT, LOCALE_COMPONENT_PKP_DEFAULT, LOCALE_COMPONENT_APP_SUBMISSION);
 
