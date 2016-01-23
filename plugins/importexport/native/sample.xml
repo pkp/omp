@@ -17,7 +17,7 @@
 	<abstract locale="en_US">the abstract</abstract>
 	<authors xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 		xsi:schemaLocation="http://pkp.sfu.ca native.xsd">
-		<author primary_contact="true" user_group="Author">
+		<author primary_contact="true" user_group_ref="Author">
 			<firstname>John</firstname>
 			<lastname>Public</lastname>
 			<email>john_q_public@email.com</email>
@@ -27,7 +27,8 @@
 		stage="submission" id="1" xsi:schemaLocation="http://pkp.sfu.ca native.xsd">
 		<revision number="1" genre="Book Manuscript" filename="Submission.pdf"
 			viewable="true" date_uploaded="2013-11-05" date_modified="2013-11-05"
-			user_group="Author" uploader="author_username">
+			user_group_ref="Author" uploader="author_username"
+			filesize="10" filetype="application/pdf">
 			<name locale="en_US">Submission Title</name>
 			<embed encoding="base64">base64 encoded file contents go here</embed>
 		</revision>
@@ -36,7 +37,8 @@
 		stage="proof" id="2" xsi:schemaLocation="http://pkp.sfu.ca native.xsd">
 		<revision number="1" genre="Book Manuscript" filename="Submission.pdf"
 			viewable="true" date_uploaded="2013-11-05" date_modified="2013-11-05"
-			direct_sales_price="10" user_group="Author" uploader="author_username">
+			direct_sales_price="10" user_group_ref="Author" uploader="author_username"
+			filesize="10" filetype="application/pdf">
 			<name locale="en_US">Submission Title</name>
 			<embed encoding="base64">base64 encoded file contents go here</embed>
 		</revision>
