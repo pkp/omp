@@ -27,11 +27,34 @@ class AppearanceForm extends PKPAppearanceForm {
 			'coverThumbnailsMaxWidth' => 'int',
 			'coverThumbnailsMaxHeight' => 'int',
 			'coverThumbnailsResize' => 'bool',
+			'catalogSortOption' => 'string',
 		));
 
 		$this->addCheck(new FormValidator($this, 'coverThumbnailsMaxWidth', 'required', 'manager.setup.coverThumbnailsMaxWidthRequired'));
 		$this->addCheck(new FormValidator($this, 'coverThumbnailsMaxHeight', 'required', 'manager.setup.coverThumbnailsMaxHeightRequired'));
 
+	}
+
+	/**
+	 * @copydoc ContextSettingsForm::initData()
+	 */
+	function initData($request) {
+		parent::initData($request);
+		$context = $request->getContext();
+		$publishedMonographDao = DAORegistry::getDAO('PublishedMonographDAO');
+		$sortOption = $context->getSetting('catalogSortOption') ? $context->getSetting('catalogSortOption') : $publishedMonographDao->getDefaultSortOption();
+		$this->setData('catalogSortOption', $sortOption);
+	}
+
+	/**
+	 * @copydoc ContextSettingsForm::fetch()
+	 */
+	function fetch($request) {
+		// Sort options.
+		$templateMgr = TemplateManager::getManager($request);
+		$publishedMonographDao = DAORegistry::getDAO('PublishedMonographDAO');
+		$templateMgr->assign('sortOptions', $publishedMonographDao->getSortSelectOptions());
+		return parent::fetch($request);
 	}
 
 	/**

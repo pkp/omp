@@ -103,6 +103,10 @@ class CategoryForm extends Form {
 			$this->setData('parentId', $category->getParentId());
 			$this->setData('path', $category->getPath());
 			$this->setData('image', $category->getImage());
+
+			$publishedMonographDao = DAORegistry::getDAO('PublishedMonographDAO');
+			$sortOption = $category->getSortOption() ? $category->getSortOption() : $publishedMonographDao->getDefaultSortOption();
+			$this->setData('sortOption', $sortOption);
 		}
 	}
 
@@ -131,7 +135,7 @@ class CategoryForm extends Form {
 	 * @see Form::readInputData()
 	 */
 	function readInputData() {
-		$this->readUserVars(array('name', 'parentId', 'path', 'description', 'temporaryFileId'));
+		$this->readUserVars(array('name', 'parentId', 'path', 'description', 'temporaryFileId', 'sortOption'));
 
 		// For path duplicate checking; excuse the current path.
 		if ($categoryId = $this->getCategoryId()) {
@@ -171,6 +175,9 @@ class CategoryForm extends Form {
 				$templateMgr->assign('cannotSelectChild', true);
 			}
 		}
+		// Sort options.
+		$publishedMonographDao = DAORegistry::getDAO('PublishedMonographDAO');
+		$templateMgr->assign('sortOptions', $publishedMonographDao->getSortSelectOptions());
 
 		return parent::fetch($request);
 	}
@@ -195,12 +202,13 @@ class CategoryForm extends Form {
 		$category->setDescription($this->getData('description'), null); // Localized
 		$category->setParentId($this->getData('parentId'));
 		$category->setPath($this->getData('path'));
+		$category->setSortOption($this->getData('sortOption'));
 
 		// Update or insert the category object
 		if ($categoryId == null) {
 			$category->setId($categoryDao->insertObject($category));
 		} else {
-			$categoryDao->setSequence(REALLY_BIG_NUMBER);
+			$category->setSequence(REALLY_BIG_NUMBER);
 			$categoryDao->updateObject($category);
 			$categoryDao->resequenceCategories($this->getPressId());
 		}

@@ -54,7 +54,11 @@
 		{/fbvFormSection}
 
 		{fbvFormSection title="grid.category.description" for="context"}
-		 	{fbvElement type="textarea" multilingual="true" id="description" value=$description rich=true}
+			{fbvElement type="textarea" multilingual="true" id="description" value=$description rich=true}
+		{/fbvFormSection}
+
+		{fbvFormSection label="catalog.sortBy" description="catalog.sortBy.categoryDescription" for="sortOption"}
+			{fbvElement type="select" id="sortOption" from=$sortOptions selected=$sortOption translate=false}
 		{/fbvFormSection}
 
 		{fbvFormSection title="grid.category.path" required=true for="path"}

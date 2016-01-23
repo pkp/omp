@@ -14,6 +14,9 @@
 	<a href="{url page="catalog" op="book" path=$monograph->getId()}" class="cover">
 		<img alt="{translate key="catalog.coverImageTitle" monographTitle=$monograph->getLocalizedFullTitle()|strip_tags|escape}" src="{url router=$smarty.const.ROUTE_COMPONENT component="submission.CoverHandler" op="thumbnail" submissionId=$monograph->getId() random=$monograph->getId()|uniqid}" />
 	</a>
+	<div class="seriesPosition">
+		{$monograph->getSeriesPosition()|escape}
+	</div>
 	<a href="{url router=$smarty.const.ROUTE_PAGE page="catalog" op="book" path=$monograph->getId()}" class="title">
 		{$monograph->getLocalizedFullTitle()|escape}
 	</a>

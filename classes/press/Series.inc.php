@@ -184,6 +184,24 @@ class Series extends PKPSection {
 	}
 
 	/**
+	 * Get the option how the books in this series should be sorted,
+	 * in the form: concat(sortBy, sortDir).
+	 * @return string
+	 */
+	function getSortOption() {
+		return $this->getData('sortOption');
+	}
+
+	/**
+	 * Set the option how the books in this series should be sorted,
+	 * in the form: concat(sortBy, sortDir).
+	 * @param $sortOption string
+	 */
+	function setSortOption($sortOption) {
+		return $this->setData('sortOption', $sortOption);
+	}
+
+	/**
 	 * Returns a string with the full name of all series
 	 * editors, separated by a comma.
 	 * @return string

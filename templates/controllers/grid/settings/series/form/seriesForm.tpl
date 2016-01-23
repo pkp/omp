@@ -67,6 +67,10 @@
 			{fbvElement type="checkbox" id="restricted" value=1 label="manager.series.restricted" checked=$restricted}
 		{/fbvFormSection}
 
+		{fbvFormSection label="catalog.sortBy" description="catalog.sortBy.seriesDescription" for="sortOption"}
+			{fbvElement type="select" id="sortOption" from=$sortOptions selected=$sortOption translate=false}
+		{/fbvFormSection}
+
 		<input type="hidden" name="seriesId" value="{$seriesId|escape}"/>
 		{fbvFormSection for="context" inline=true size=$fbvStyles.size.MEDIUM}
 			{if $categoryCount > 0}
