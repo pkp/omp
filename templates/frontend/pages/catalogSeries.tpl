@@ -40,9 +40,9 @@
 
 	{* No published titles in this category *}
 	{if empty($publishedMonographs)}
-		<h3>
+		<h2>
 			{translate key="catalog.allBooks"}
-		</h3>
+		</h2>
 		<p>{translate key="catalog.noTitlesSection"}</p>
 
 	{else}

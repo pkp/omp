@@ -19,9 +19,9 @@
 
 	{* No published titles *}
 	{if !$publishedMonographs|@count}
-		<h3>
+		<h2>
 			{translate key="catalog.allBooks"}
-		</h3>
+		</h2>
 		<p>{translate key="catalog.noTitles"}</p>
 
 	{* Monograph List *}

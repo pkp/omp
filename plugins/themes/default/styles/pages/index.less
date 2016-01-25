@@ -58,6 +58,10 @@
 		border-top: @bg-border;
 		border-bottom: @bg-border;
 
+		h2 {
+			&:extend(.pkp_screen_reader all);
+		}
+
 		> .obj_announcement_summary {
 			position: relative;
 			padding: @triple @base;

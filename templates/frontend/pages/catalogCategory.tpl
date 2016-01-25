@@ -44,9 +44,9 @@
 
 	{if !$subcategories->wasEmpty()}
 	<nav class="subcategories" role="navigation">
-		<h3>
+		<h2>
 			{translate key="catalog.subcategories"}
-		</h3>
+		</h2>
 		<ul>
 			{iterate from=subcategories item=subcategory}
 				<li>
@@ -61,9 +61,9 @@
 
 	{* No published titles in this category *}
 	{if empty($publishedMonographs)}
-		<h3>
+		<h2>
 			{translate key="catalog.allBooks"}
-		</h3>
+		</h2>
 		<p>{translate key="catalog.noTitlesSection"}</p>
 
 	{else}
