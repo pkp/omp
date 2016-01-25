@@ -166,7 +166,6 @@
 	<message key="spotlight.author">Author, </message>
 	<message key="grid.content.spotlights.spotlightItemTitle">Spotlight Item</message>
 	<message key="grid.content.spotlights.category.homepage">Homepage</message>
-	<message key="grid.content.spotlights.category.sidebar">Sidebar</message>
 	<message key="grid.content.spotlights.form.location">Spotlight Location</message>
 	<message key="grid.content.spotlights.form.item">Enter spotlighted title (autocomplete)</message>
 	<message key="grid.content.spotlights.form.title">Spotlight title</message>

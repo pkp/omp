@@ -10,14 +10,18 @@
  * @uses $monographs array List of monographs to display
  * @uses $featured array Optional list of monograph IDs to feature in the list
  * @uses $titleKey string Optional translation key for a title for the list
+ * @uses $heading string HTML heading element, default: h2
  *}
+{if !$heading}
+	{assign var="heading" value="h2"}
+{/if}
 <div class="cmp_monographs_list">
 
 	{* Optional title *}
 	{if $titleKey}
-		<h3 class="title">
+		<{$heading} class="title">
 			{translate key=$titleKey}
-		</h3>
+		</{$heading}>
 	{/if}
 
 	{* Show featured items first *}

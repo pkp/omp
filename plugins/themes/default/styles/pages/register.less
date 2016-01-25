@@ -35,12 +35,16 @@
 		color: @text-light;
 	}
 
-	.buttons button {
-		&:extend(.cmp_button);
+	.buttons {
+		.pkp_helpers_clear;
 
-		&:hover,
-		&:focus {
-			&:extend(.cmp_button:hover);
+		button {
+			&:extend(.cmp_button);
+
+			&:hover,
+			&:focus {
+				&:extend(.cmp_button:hover);
+			}
 		}
 	}
 
