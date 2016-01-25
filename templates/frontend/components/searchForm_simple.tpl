@@ -11,7 +11,7 @@
  *}
 <form class="pkp_search" action="{url router=$smarty.const.ROUTE_PAGE page="catalog" op="results"}" method="post">
 	<input name="query" value="{$searchQuery|escape}" type="text">
-	<button>
+	<button type="submit">
 		{translate key="common.search"}
 	</button>
 	<div class="search_controls" aria-hidden="true">
