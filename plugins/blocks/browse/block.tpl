@@ -19,7 +19,7 @@
 		{translate key="plugins.block.browse"}
 	</span>
 
-	<div class="content">
+	<nav class="content" role="navigation" aria-label="{translate|escape key="plugins.block.browse"}">
 		<ul>
 
 			{if $browseNewReleases}
@@ -61,5 +61,5 @@
 			{/if}
 
 		</ul>
-	</div>
+	</nav>
 </div><!-- .block_browse -->
