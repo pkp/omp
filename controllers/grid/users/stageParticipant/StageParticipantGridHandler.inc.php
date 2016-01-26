@@ -22,6 +22,7 @@ class StageParticipantGridHandler extends PKPStageParticipantGridHandler {
 	 */
 	function StageParticipantGridHandler() {
 		parent::PKPStageParticipantGridHandler();
+		$this->setTitle('editor.submission.stageParticipants');
 	}
 
 	/**
