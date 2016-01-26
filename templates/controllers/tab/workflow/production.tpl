@@ -9,13 +9,13 @@
  *}
 
 <div id="production">
+	{include file="controllers/notification/inPlaceNotification.tpl" notificationId="productionNotification" requestOptions=$productionNotificationRequestOptions}
 
 	<div class="pkp_context_sidebar">
 		{include file="controllers/tab/workflow/stageParticipants.tpl"}
 	</div>
 
 	<div class="pkp_content_panel">
-		{include file="controllers/notification/inPlaceNotification.tpl" notificationId="productionNotification" requestOptions=$productionNotificationRequestOptions}
 
 		<p class="pkp_help">{translate key="editor.submission.production.introduction"}</p>
 
