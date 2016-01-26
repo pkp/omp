@@ -4,16 +4,18 @@
 <!--
   * locale.xml
   *
-  * Copyright (c) 2014 Simon Fraser University Library
-  * Copyright (c) 2003-2014 John Willinsky
+  * Copyright (c) 2015 Simon Fraser University Library
+  * Copyright (c) 2003-2015 John Willinsky
   * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
   *
-  * Localization strings for the en_US (U.S. English) locale.
+  * Credits: http://pkp.sfu.ca/wiki/index.php?title=OMP:_Catalan_%28ca_ES%29
+  *
+  * Localization strings for the ca_ES (Català) locale.
   *
   -->
  
 <locale name="ca_ES" full_name="Català">
-	<message key="plugins.block.information.displayName">Bloc d&apos;informació</message>
-	<message key="plugins.block.information.description">Aquest connector proporciona un enllaç d&apos;informació a la barra lateral.</message>
+	<message key="plugins.block.information.displayName">Bloc d'informació</message>
+	<message key="plugins.block.information.description">Aquest connector proporciona un enllaç d'informació a la barra lateral.</message>
 	<message key="plugins.block.information.link">Informació</message>
 </locale>

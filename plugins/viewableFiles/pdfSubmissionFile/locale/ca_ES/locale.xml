@@ -2,10 +2,10 @@
 <!DOCTYPE locale SYSTEM "../../../../../lib/pkp/dtd/locale.dtd">
 
 <!--
-  * plugins/viewableFiles/pdfSubmissionFile/locale/en_US/locale.xml
+  * plugins/viewableFiles/pdfSubmissionFile/locale/ca_ES/locale.xml
   *
-  * Copyright (c) 2014 Simon Fraser University Library
-  * Copyright (c) 2003-2014 John Willinsky
+  * Copyright (c) 2015 Simon Fraser University Library
+  * Copyright (c) 2003-2015 John Willinsky
   * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
   * 
   * Credits: http://pkp.sfu.ca/wiki/index.php?title=OMP:_Catalan_%28ca_ES%29
@@ -14,6 +14,6 @@
   -->
 
 <locale name="ca_ES" full_name="Català">
-	<message key="plugins.viewableFiles.pdfSubmissionFile.displayName">PDF Article Galley</message>
-	<message key="plugins.viewableFiles.pdfSubmissionFile.description">This plugin provides rendering support for PDF Article Galleys.</message>
+	<message key="plugins.viewableFiles.pdfSubmissionFile.displayName">Galerada de l'article en PDF</message>
+	<message key="plugins.viewableFiles.pdfSubmissionFile.description">Aquest mòdul proporciona la funcionalitat d'afegir galerades d'article en PDF.</message>
 </locale>

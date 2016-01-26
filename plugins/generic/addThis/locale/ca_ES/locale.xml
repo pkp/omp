@@ -2,33 +2,29 @@
 <!DOCTYPE locale SYSTEM "../../../../../lib/pkp/dtd/locale.dtd">
 
 <!--
-  * plugins/generic/addThis/locale/en_US/locale.xml
+  * plugins/generic/addThis/locale/ca_ES/locale.xml
   *
-  * Copyright (c) 2014 Simon Fraser University Library
-  * Copyright (c) 2003-2014 John Willinsky
+  * Copyright (c) 2015 Simon Fraser University Library
+  * Copyright (c) 2003-2015 John Willinsky
   * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
   *
-  * Localization strings for this plugin.
+  * Credits: http://pkp.sfu.ca/wiki/index.php?title=OMP:_Catalan_%28ca_ES%29
+  *
+  * Localization strings for the ca_ES (Català) locale.
   *
   -->
 
 <locale name="ca_ES" full_name="Català">
 	<message key="plugins.generic.addThis.displayName">AddThis</message>
-	<message key="plugins.generic.addThis.description">This plugin provides the addThis social media sharing for submissions.</message>
 	<message key="plugins.generic.addThis.title">AddThis</message>
 	<message key="plugins.generic.addThis.settings">Configuració</message>
 	<message key="plugins.generic.addThis.settings.statistics">Estadístiques</message>
 
 	<!-- AddThis form locale keys and messages -->
-	<message key="plugins.generic.addThis.form.saved">AddThis form settings saved.</message>
-	<message key="plugins.generic.addThis.form.profileId">AddThis Profile ID</message>
-	<message key="plugins.generic.addThis.form.username">AddThis Username</message>
-	<message key="plugins.generic.addThis.form.password">AddThis Password (required for displaying stats)</message>
-	<message key="plugins.generic.addThis.form.registerLink"><![CDATA[<a href="https://www.addthis.com/register">Register</a> for free in-depth analytics reports and better understand your site&#39;s social traffic.]]></message>
-	<message key="plugins.generic.addThis.settings.displayStyle">Please choose how AddThis should display</message>
+	<message key="plugins.generic.addThis.form.profileId">Identificador de perfil AddThis</message>
+	<message key="plugins.generic.addThis.form.username">Usuari AddThis</message>
+	<message key="plugins.generic.addThis.form.password">Contrasenya AddThis (necessària per mostrar les estadístiques)</message>
 
 	<!-- AddThis grid keys (only a few, since the grid does very little) -->
-	<message key="plugins.generic.addThis.grid.shares">Shares</message>
-	<message key="plugins.generic.addThis.grid.title">Top Shared Links</message>
-	<message key="plugins.generic.addThis.statistics.instructions"><![CDATA[This list shows your most popular shared links for the past week. For all of the possible AddThis statistics, please visit the <a href="http://www.addthis.com/analytics" target="_blank">AddThis Analytics</a> website and log in.]]></message>
+	<message key="plugins.generic.addThis.grid.shares">Compartit</message>
 </locale>

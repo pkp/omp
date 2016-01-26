@@ -4,16 +4,18 @@
 <!--
   * locale.xml
   *
-  * Copyright (c) 2014 Simon Fraser University Library
-  * Copyright (c) 2003-2014 John Willinsky
+  * Copyright (c) 2015 Simon Fraser University Library
+  * Copyright (c) 2003-2015 John Willinsky
   * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
   *
-  * Localization strings for the en_US (U.S. English) locale.
+  * Credits: http://pkp.sfu.ca/wiki/index.php?title=OMP:_Catalan_%28ca_ES%29
+  *
+  * Localization strings for the ca_ES (Català) locale.
   -->
 
 <locale name="ca_ES" full_name="Català">
-	<message key="plugins.generic.tinymce.name">Connector TinyMCE</message>
-	<message key="plugins.generic.tinymce.description"><![CDATA[This plugin enables WYSIWYG editing of OMP textareas using the <a href="http://tinymce.moxiecode.com" target="_blank">TinyMCE</a> content editor.]]></message>
-	<message key="plugins.generic.tinymce.descriptionDisabled"><![CDATA[This plugin enables WYSIWYG editing of OMP textareas using the <a href="http://tinymce.moxiecode.com" target="_blank">TinyMCE</a> content editor. <strong>TinyMCE is not currently installed; please install it in {$tinyMcePath}.</strong>]]></message>
+	<message key="plugins.generic.tinymce.name">Mòdul d'integració amb TinyMCE</message>
+	<message key="plugins.generic.tinymce.description"><![CDATA[Aquest mòdul activa l'edició WYSIWYG ("el que veus, és el que tens") a les àrees de text de l'OMP utilitzant l'editor de contingut <a href="http://tinymce.moxiecode.com" target="_blank">TinyMCE</a>.]]></message>
+	<message key="plugins.generic.tinymce.descriptionDisabled"><![CDATA[Aques mòdul activa l'edició WYSIWYG (el que veus, és el que tens") a les àrees de text de l'OMP utilitzant l'editor de contingut <a href="http://tinymce.moxiecode.com" target="_blank">TinyMCE</a>. <strong>TinyMCE no està instalat. si us plau, instal·la'l al directori {$tinyMcePath}.</strong>]]></message>
 	<message key="plugins.generic.tinymce.settings">Configuració</message>
 </locale>

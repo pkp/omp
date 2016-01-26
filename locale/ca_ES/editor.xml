@@ -24,60 +24,60 @@
 	<message key="editor.monograph.selectReviewerInstructions">Seleccioneu un revisor/a dels de dalt i premeu la tecla «seleccionar revisor/a» per continuar.</message>
 	<message key="editor.submission.selectedReviewer">Revisor/a seleccionat</message>
 	<message key="editor.monograph.replaceReviewer">Reemplaça el revisor/a</message>
-	<message key="editor.monograph.editorToEnter">L’editor/a ha d&apos;introduir recomanacions o comentaris per al revisor/a</message>
+	<message key="editor.monograph.editorToEnter">L’editor/a ha d'introduir recomanacions o comentaris per al revisor/a</message>
 	<message key="editor.monograph.uploadReviewForReviewer">Carrega la revisió</message>
 	<message key="editor.monograph.peerReviewOptions">Opcions per a la revisió de persones expertes</message>
 	<message key="editor.monograph.selectProofreadingFiles">Fitxers de correcció de proves</message>
 	<message key="editor.monograph.internalReview">Comença la revisió interna</message>
-	<message key="editor.monograph.internalReviewDescription">Esteu a punt de començar una revisió interna d&apos;aquesta tramesa.  Els fitxers que formen part de la tramesa s&apos;enumeren a sota i els podeu seleccionar per revisar-los.</message>
+	<message key="editor.monograph.internalReviewDescription">Esteu a punt de començar una revisió interna d'aquesta tramesa.  Els fitxers que formen part de la tramesa s'enumeren a sota i els podeu seleccionar per revisar-los.</message>
 	<message key="editor.monograph.externalReview">Comença la revisió externa</message>
 	<message key="editor.submissions.lastAssigned">Darrera tramesa</message>
-	<message key="editor.monograph.final.selectFinalDraftFiles">Seleccioneu els fitxers d&apos;esborrany final</message>
-	<message key="editor.monograph.final.currentFiles">Fitxers d&apos;esborrany final actuals</message>
+	<message key="editor.monograph.final.selectFinalDraftFiles">Seleccioneu els fitxers d'esborrany final</message>
+	<message key="editor.monograph.final.currentFiles">Fitxers d'esborrany final actuals</message>
 	<message key="editor.monograph.copyediting.currentFiles">Fitxers actuals</message>
-	<message key="editor.monograph.copyediting.personalMessageToUser">Missatge per a l&apos;usuari/ària</message>
+	<message key="editor.monograph.copyediting.personalMessageToUser">Missatge per a l'usuari/ària</message>
 	
 	<!-- Editorial Legend -->
 	<message key="editor.monograph.legend.submissionActions">Accions de tramesa</message>
 	<message key="editor.monograph.legend.submissionActionsDescription">Accions i opcions generals de tramesa.</message>
 	<message key="editor.monograph.legend.sectionActions">Accions de secció</message>
-	<message key="editor.monograph.legend.sectionActionsDescription">Opcions especials d&apos;una determinada secció. Per exemple, carregar fitxers o afegir-hi usuaris/àries.</message>
-	<message key="editor.monograph.legend.itemActions">Accions d&apos;element</message>
-	<message key="editor.monograph.legend.itemActionsDescription">Accions i opcions específiques d&apos;un fitxer determinat.</message>
-	<message key="editor.monograph.legend.catalogEntry">Visió i gestió de l&apos;entrada del catàleg de la tramesa, que inclou les metadades i els formats de publicació</message>
-	<message key="editor.monograph.legend.bookInfo">Visió i gestió de les metadades, anotacions,notificacions i l&apos;historial</message>
-	<message key="editor.monograph.legend.participants">Visió i gestió dels participants de la tramesa: autors/ores, editors/ores, dissenyadors/ores i d&apos;altres</message>
+	<message key="editor.monograph.legend.sectionActionsDescription">Opcions especials d'una determinada secció. Per exemple, carregar fitxers o afegir-hi usuaris/àries.</message>
+	<message key="editor.monograph.legend.itemActions">Accions d'element</message>
+	<message key="editor.monograph.legend.itemActionsDescription">Accions i opcions específiques d'un fitxer determinat.</message>
+	<message key="editor.monograph.legend.catalogEntry">Visió i gestió de l'entrada del catàleg de la tramesa, que inclou les metadades i els formats de publicació</message>
+	<message key="editor.monograph.legend.bookInfo">Visió i gestió de les metadades, anotacions,notificacions i l'historial</message>
+	<message key="editor.monograph.legend.participants">Visió i gestió dels participants de la tramesa: autors/ores, editors/ores, dissenyadors/ores i d'altres</message>
 	<message key="editor.monograph.legend.add">Carrega un fitxer a la secció</message>
 	<message key="editor.monograph.legend.add_user">Afegeix un usuari/ària a la secció</message>
-	<message key="editor.monograph.legend.settings">Visió i accés a la configuració d&apos;elements com les opcions d&apos;informació i d&apos;eliminació</message>
-	<message key="editor.monograph.legend.more_info">Més informació: anotacions de l&apos;fitxer, opcions de notificacions i historial</message>
-	<message key="editor.monograph.legend.notes_none">Informació de l&apos;fitxer: anotacions, opcions de notificacions i historial (sense anotacions afegides encara)</message>
-	<message key="editor.monograph.legend.notes">Informació de l&apos;fitxer: anotacions, opcions de notificacions i historial (amb anotacions disponibles)</message>
-	<message key="editor.monograph.legend.notes_new">Informació de l&apos;fitxer: anotacions, opcions de notificacions i historial (noves anotacions afegides des de l&apos;última visita)</message>
-	<message key="editor.monograph.legend.edit">Edita l&apos;element</message>
+	<message key="editor.monograph.legend.settings">Visió i accés a la configuració d'elements com les opcions d'informació i d'eliminació</message>
+	<message key="editor.monograph.legend.more_info">Més informació: anotacions de l'fitxer, opcions de notificacions i historial</message>
+	<message key="editor.monograph.legend.notes_none">Informació de l'fitxer: anotacions, opcions de notificacions i historial (sense anotacions afegides encara)</message>
+	<message key="editor.monograph.legend.notes">Informació de l'fitxer: anotacions, opcions de notificacions i historial (amb anotacions disponibles)</message>
+	<message key="editor.monograph.legend.notes_new">Informació de l'fitxer: anotacions, opcions de notificacions i historial (noves anotacions afegides des de l'última visita)</message>
+	<message key="editor.monograph.legend.edit">Edita l'element</message>
 	<message key="editor.monograph.legend.delete">Elimina aquest element</message>
-	<message key="editor.monograph.legend.in_progress">L&apos;acció s&apos;està desenvolupant o encara no s&apos;ha completat</message>
+	<message key="editor.monograph.legend.in_progress">L'acció s'està desenvolupant o encara no s'ha completat</message>
 	<message key="editor.monograph.legend.complete">Acció finalitzada</message>
 	<message key="editor.monograph.legend.uploaded">Fitxer carregat pel rol del títol de la columna de la taula</message>
 
 	<!-- Editorial related -->
-	<message key="editor.submission.introduction">Durant la tramesa, l&apos;editor/a, després de consultar els fitxers enviats, selecciona l&apos;acció apropiada (inclou també la notificació a l&apos;autor/a): envia a revisió interna (comporta la selecció d&apos;fitxers per a revisió interna), envia a revisió externa (comporta la selecció d&apos;fitxers per a revisió externa), accepta la tramesa (comporta la selecció d&apos;fitxers per a la fase editorial) o rebutja la tramesa (l&apos;arxiva).</message>
-	<message key="editor.submission.editorial.finalDraftDescription"><![CDATA[En el cas dels volums editats que tinguin més d&#39;un autor/a per a cada capítol, el fitxer enviat es pot dividir en fitxers de capítols per corregir, que revisen autors/ores de capítols un cop els fitxers corregits s&#39;hagin carregat a <span class="pkp_help_title">Correcció</span>.]]></message>
+	<message key="editor.submission.introduction">Durant la tramesa, l'editor/a, després de consultar els fitxers enviats, selecciona l'acció apropiada (inclou també la notificació a l'autor/a): envia a revisió interna (comporta la selecció d'fitxers per a revisió interna), envia a revisió externa (comporta la selecció d'fitxers per a revisió externa), accepta la tramesa (comporta la selecció d'fitxers per a la fase editorial) o rebutja la tramesa (l'arxiva).</message>
+	<message key="editor.submission.editorial.finalDraftDescription"><![CDATA[En el cas dels volums editats que tinguin més d'un autor/a per a cada capítol, el fitxer enviat es pot dividir en fitxers de capítols per corregir, que revisen autors/ores de capítols un cop els fitxers corregits s'hagin carregat a <span class="pkp_help_title">Correcció</span>.]]></message>
 	<message key="editor.monograph.editorial.fairCopy">Còpia original</message>
-	<message key="editor.monograph.editorial.fairCopyDescription">El corrector/a carrega una còpia en net o original de la tramesa perquè l&apos;editor/a la revisi abans d&apos;enviar-la a Producció.</message>
+	<message key="editor.monograph.editorial.fairCopyDescription">El corrector/a carrega una còpia en net o original de la tramesa perquè l'editor/a la revisi abans d'enviar-la a Producció.</message>
 
 	<!-- Production/Proof related -->
-	<message key="editor.submission.production.introduction"><![CDATA[Durant la producció, l&#39;editor/a selecciona el format del llibre (p. ex. digital, en paper, etc.) a <span class="pkp_help_title">Formats de publicació</span>, per als quals el maquetador/a prepara fitxers amb qualitat per publicar basats en els fitxers ja preparats per produir. Els fitxers amb qualitat per publicar es carregaran per a cada format a <span class="pkp_help_title">Galerades</span>, on es farà la correcció de proves. El llibre estarà <em>Disponible</em> (p. ex. publicat) en cada format a <span class="pkp_help_title">Formats de publicació</span>, després d&#39;aprovar les <em>Galerades</em> i incloure l&#39;entrada de catàleg en l&#39;entrada de catàleg del llibre.]]></message>
+	<message key="editor.submission.production.introduction"><![CDATA[Durant la producció, l'editor/a selecciona el format del llibre (p. ex. digital, en paper, etc.) a <span class="pkp_help_title">Formats de publicació</span>, per als quals el maquetador/a prepara fitxers amb qualitat per publicar basats en els fitxers ja preparats per produir. Els fitxers amb qualitat per publicar es carregaran per a cada format a <span class="pkp_help_title">Galerades</span>, on es farà la correcció de proves. El llibre estarà <em>Disponible</em> (p. ex. publicat) en cada format a <span class="pkp_help_title">Formats de publicació</span>, després d'aprovar les <em>Galerades</em> i incloure l'entrada de catàleg en l'entrada de catàleg del llibre.]]></message>
 	<message key="editor.submission.production.productionReadyFilesDescription"><![CDATA[El maquetador/a prepara aquests fitxers per a cada format de publicació i els carrega a les <span class="pkp_help_title">Galerades</span> apropiades perquè es faci la correcció de proves.]]></message>
 	<message key="editor.monograph.proofs">Galerades</message>
 	<message key="editor.monograph.production.approvalAndPublishing">Aprovació i publicació</message>
 	<message key="editor.monograph.production.approvalAndPublishingDescription">Podeu carregar diversos formats de publicació, com tapa dura, llibre en rústica i digital, en la secció Formats de publicació de sota. Podeu utilitzar la graella de formats de publicació de sota com a llista de verificació per veure què queda pendent per fer abans de publicar el format de publicació.</message>
-	<message key="editor.monograph.production.publicationFormatDescription"><![CDATA[Afegeix formats de publicació (p. ex. digital, en paper) per als quals el maquetador/a ha preparat galerades per fer la correcció de proves. Haureu d&#39;aprovar les <em>Galerades</em> i publicar l&#39;entrada de <em>Catàleg</em> a l&#39;entrada de catàleg del llibre per poder posar com a <em>Disponible</em> (p. ex. publicat) un format.]]></message>
+	<message key="editor.monograph.production.publicationFormatDescription"><![CDATA[Afegeix formats de publicació (p. ex. digital, en paper) per als quals el maquetador/a ha preparat galerades per fer la correcció de proves. Haureu d'aprovar les <em>Galerades</em> i publicar l'entrada de <em>Catàleg</em> a l'entrada de catàleg del llibre per poder posar com a <em>Disponible</em> (p. ex. publicat) un format.]]></message>
 	<message key="editor.monograph.approvedProofs.edit">Estableix terminis per a la descàrrega</message>
 	<message key="editor.monograph.approvedProofs.edit.linkTitle">Estableix terminis</message>
 	<message key="editor.monograph.proof.addNote">Afegeix-hi una resposta</message>
 
 	<!-- Review related -->
-	<message key="editor.internalReview.introduction">Durant la revisió interna, l&apos;editor/a assigna revisors/ores interns als fitxers enviats i valora els resultats de les revisions abans de seleccionar l&apos;acció apropiada (inclou també la notificació a l&apos;autor/a): sol·licita revisió (revisions fetes només per l&apos;editor/a), torna a enviar a revisió (comença una nova ronda de revisions), envia a revisió externa (comporta la selecció d&apos;fitxers per a revisió externa), accepta per a la tramesa (comporta la selecció d&apos;fitxers per a la fase editorial) o rebutja la tramesa (l&apos;arxiva).</message>
-	<message key="editor.externalReview.introduction">Durant la revisió externa, l&apos;editor/a assigna revisors/ores externs a la publicació per als fitxers enviats i valora els resultats de les revisions abans de seleccionar l&apos;acció apropiada (inclou també la notificació a l&apos;autor/a): sol·licita revisió (revisions fetes només per l&apos;editor/a), torna a enviar a revisió (comença una nova ronda de revisions), accepta per a la tramesa (comporta la selecció d&apos;fitxers per a la fase editorial) o rebutja la tramesa (l&apos;arxiva).</message>
+	<message key="editor.internalReview.introduction">Durant la revisió interna, l'editor/a assigna revisors/ores interns als fitxers enviats i valora els resultats de les revisions abans de seleccionar l'acció apropiada (inclou també la notificació a l'autor/a): sol·licita revisió (revisions fetes només per l'editor/a), torna a enviar a revisió (comença una nova ronda de revisions), envia a revisió externa (comporta la selecció d'fitxers per a revisió externa), accepta per a la tramesa (comporta la selecció d'fitxers per a la fase editorial) o rebutja la tramesa (l'arxiva).</message>
+	<message key="editor.externalReview.introduction">Durant la revisió externa, l'editor/a assigna revisors/ores externs a la publicació per als fitxers enviats i valora els resultats de les revisions abans de seleccionar l'acció apropiada (inclou també la notificació a l'autor/a): sol·licita revisió (revisions fetes només per l'editor/a), torna a enviar a revisió (comença una nova ronda de revisions), accepta per a la tramesa (comporta la selecció d'fitxers per a la fase editorial) o rebutja la tramesa (l'arxiva).</message>
 </locale>

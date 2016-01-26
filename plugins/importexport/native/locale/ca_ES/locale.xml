@@ -4,20 +4,19 @@
 <!--
   * locale.xml
   *
-  * Copyright (c) 2014 Simon Fraser University Library
-  * Copyright (c) 2003-2014 John Willinsky
+  * Copyright (c) 2015 Simon Fraser University Library
+  * Copyright (c) 2003-2015 John Willinsky
   * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
   *
-  * Localization strings for the en_US (U.S. English) locale.
+  * Credits: http://pkp.sfu.ca/wiki/index.php?title=OMP:_Catalan_%28ca_ES%29
+  *
+  * Localization strings for the ca_ES (Català) locale.
   -->
 
 <locale name="ca_ES" full_name="Català">
-	<message key="plugins.importexport.native.displayName">Native XML Plugin</message>
-	<message key="plugins.importexport.native.description">Import and export books in OMP&apos;s native XML format.</message>
+	<message key="plugins.importexport.native.displayName">Mòdul XML nadiu</message>
+	<message key="plugins.importexport.native.description">Importa i exporta llibres a OMP en format nadiu XML.</message>
 	<message key="plugins.importexport.native.import">Importa</message>
-	<message key="plugins.importexport.native.import.instructions">Please select an XML file to upload and press &quot;Start Upload&quot;. When the upload has completed, press &quot;OK&quot; to import the document into OMP.</message>
 	<message key="plugins.importexport.native.export">Exporta</message>
 	<message key="plugins.importexport.native.results">Results</message>
-	<message key="plugins.inportexport.native.uploadFile">Please upload a file under &quot;Import&quot; in order to continue.</message>
-	<message key="plugins.importexport.native.importComplete">The import completed successfully. The following items were imported:</message>
 </locale>

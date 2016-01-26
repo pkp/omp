@@ -2,20 +2,21 @@
 <!DOCTYPE locale SYSTEM "../../../../../lib/pkp/dtd/locale.dtd">
 
 <!--
-  * plugins/generic/usageStats/locale/en_US/locale.xml
+  * plugins/generic/usageStats/locale/ca_ES/locale.xml
   *
-  * Copyright (c) 2013 Simon Fraser University Library
-  * Copyright (c) 2014 Simon Fraser University Library
-  * Copyright (c) 2003-2014 John Willinsky
+  * Copyright (c) 2015 Simon Fraser University Library
+  * Copyright (c) 2003-2015 John Willinsky
   * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
   *
-  * Localization strings
+  * Credits: http://pkp.sfu.ca/wiki/index.php?title=OMP:_Catalan_%28ca_ES%29
+  *
+  * Localization strings for the ca_ES (Català) locale.
   -->
 
 <locale name="ca_ES" full_name="Català">
-	<message key="plugins.reports.usageStats.report.displayName">Informe de l&apos;OJS d&apos;estadístiques d&apos;ús</message>
-	<message key="plugins.reports.usageStats.report.description">Informe predeterminat de l&apos;OJS d&apos;estadístiques d&apos;ús (compatible amb COUNTER)</message>
+	<message key="plugins.reports.usageStats.report.displayName">Informe de l'OJS d'estadístiques d'ús</message>
+	<message key="plugins.reports.usageStats.report.description">Informe predeterminat de l'OJS d'estadístiques d'ús (compatible amb COUNTER)</message>
 	
 	<message key="plugins.reports.usageStats.metricType">OMP/COUNTER</message>
-	<message key="plugins.reports.usageStats.metricType.full">Estadístiques de l&apos;Open Journal Systems (compatible amb COUNTER)</message>
+	<message key="plugins.reports.usageStats.metricType.full">Estadístiques de l'Open Journal Systems (compatible amb COUNTER)</message>
 </locale>

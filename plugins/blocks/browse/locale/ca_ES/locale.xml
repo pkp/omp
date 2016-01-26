@@ -2,21 +2,23 @@
 <!DOCTYPE locale SYSTEM "../../../../../lib/pkp/dtd/locale.dtd">
 
 <!--
-  * plugins/blocks/browse/locale/en_US/locale.xml
+  * plugins/blocks/browse/locale/ca_ES/locale.xml
   *
-  * Copyright (c) 2014 Simon Fraser University Library
-  * Copyright (c) 2003-2014 John Willinsky
+  * Copyright (c) 2015 Simon Fraser University Library
+  * Copyright (c) 2003-2015 John Willinsky
   * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
   *
-  * Localization strings for this plugin.
+  * Credits: http://pkp.sfu.ca/wiki/index.php?title=OMP:_Catalan_%28ca_ES%29
+  *
+  * Localization strings for the ca_ES (Català) locale.
   *
   -->
  
 <locale name="ca_ES" full_name="Català">
 	<message key="plugins.block.browse">Navega</message>
-	<message key="plugins.block.browse.displayName">Browse Block</message>
-	<message key="plugins.block.browse.description">This plugin provides sidebar &quot;browse&quot; tools.</message>
-	<message key="plugins.block.browse.category">Browse a category</message>
-	<message key="plugins.block.browse.series">Browse a series</message>
-	<message key="plugins.block.browse.newReleases">Browse new releases</message>
+	<message key="plugins.block.browse.displayName">Bloc de navegació</message>
+	<message key="plugins.block.browse.description">Aquest mòdul proporciona les eines de "navegació" a la barra lateral.</message>
+	<message key="plugins.block.browse.category">Navega per categories</message>
+	<message key="plugins.block.browse.series">Navega per sèries</message>
+	<message key="plugins.block.browse.newReleases">Navega per noves publicacions</message>
 </locale>
