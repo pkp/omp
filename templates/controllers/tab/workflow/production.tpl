@@ -10,7 +10,7 @@
 
 <div id="production">
 
-	<div class="pkp_tab_sidebar">
+	<div class="pkp_context_sidebar">
 		{include file="controllers/tab/workflow/stageParticipants.tpl"}
 	</div>
 
