@@ -335,12 +335,12 @@ class PublishedMonographDAO extends MonographDAO {
 	 */
 	function getSortSelectOptions() {
 		return array(
-			ORDERBY_TITLE . SORT_DIRECTION_ASC => __('catalog.sortBy.titleAsc'),
-			ORDERBY_TITLE . SORT_DIRECTION_DESC => __('catalog.sortBy.titleDesc'),
-			ORDERBY_DATE_PUBLISHED . SORT_DIRECTION_ASC => __('catalog.sortBy.datePublishedAsc'),
-			ORDERBY_DATE_PUBLISHED . SORT_DIRECTION_DESC => __('catalog.sortBy.datePublishedDesc'),
-			ORDERBY_SERIES_POSITION . SORT_DIRECTION_ASC => __('catalog.sortBy.seriesPositionAsc'),
-			ORDERBY_SERIES_POSITION . SORT_DIRECTION_DESC => __('catalog.sortBy.seriesPositionDesc'),
+			$this->getSortOption(ORDERBY_TITLE, SORT_DIRECTION_ASC) => __('catalog.sortBy.titleAsc'),
+			$this->getSortOption(ORDERBY_TITLE, SORT_DIRECTION_DESC) => __('catalog.sortBy.titleDesc'),
+			$this->getSortOption(ORDERBY_DATE_PUBLISHED, SORT_DIRECTION_ASC) => __('catalog.sortBy.datePublishedAsc'),
+			$this->getSortOption(ORDERBY_DATE_PUBLISHED, SORT_DIRECTION_DESC) => __('catalog.sortBy.datePublishedDesc'),
+			$this->getSortOption(ORDERBY_SERIES_POSITION, SORT_DIRECTION_ASC) => __('catalog.sortBy.seriesPositionAsc'),
+			$this->getSortOption(ORDERBY_SERIES_POSITION, SORT_DIRECTION_DESC) => __('catalog.sortBy.seriesPositionDesc'),
 		);
 	}
 
@@ -351,7 +351,7 @@ class PublishedMonographDAO extends MonographDAO {
 	 * @return string
 	 */
 	function getSortOption($sortBy, $sortDir) {
-		return $sortBy . $sortDir;
+		return $sortBy .'-' . $sortDir;
 	}
 
 	/**
@@ -359,46 +359,27 @@ class PublishedMonographDAO extends MonographDAO {
 	 * @return string
 	 */
 	function getDefaultSortOption() {
-		return ORDERBY_DATE_PUBLISHED . SORT_DIRECTION_DESC;
+		return $this->getSortOption(ORDERBY_DATE_PUBLISHED, SORT_DIRECTION_DESC);
 	}
 
 	/**
 	 * Get sort way for a sort option.
-	 * @param $sortOption string concat(sortBy, sortDir)
+	 * @param $sortOption string concat(sortBy, '-', sortDir)
 	 * @return string
 	 */
 	function getSortBy($sortOption) {
-		switch ($sortOption) {
-			case ORDERBY_TITLE . SORT_DIRECTION_ASC:
-			case ORDERBY_TITLE . SORT_DIRECTION_DESC:
-				return ORDERBY_TITLE;
-			case ORDERBY_DATE_PUBLISHED . SORT_DIRECTION_ASC:
-			case ORDERBY_DATE_PUBLISHED . SORT_DIRECTION_DESC:
-				return ORDERBY_DATE_PUBLISHED;
-			case ORDERBY_SERIES_POSITION . SORT_DIRECTION_ASC:
-			case ORDERBY_SERIES_POSITION . SORT_DIRECTION_DESC:
-				return ORDERBY_SERIES_POSITION;
-			default: return null;
-		}
+		list($sortBy, $sortDir) = explode("-", $sortOption);
+		return $sortBy;
 	}
 
 	/**
 	 * Get sort direction for a sort option.
-	 * @param $sortOption string concat(sortBy, sortDir)
+	 * @param $sortOption string concat(sortBy, '-', sortDir)
 	 * @return int
 	 */
 	function getSortDirection($sortOption) {
-		switch ($sortOption) {
-			case ORDERBY_TITLE . SORT_DIRECTION_ASC:
-			case ORDERBY_DATE_PUBLISHED . SORT_DIRECTION_ASC:
-			case ORDERBY_SERIES_POSITION . SORT_DIRECTION_ASC:
-				return SORT_DIRECTION_ASC;
-			case ORDERBY_TITLE . SORT_DIRECTION_DESC:
-			case ORDERBY_DATE_PUBLISHED . SORT_DIRECTION_DESC:
-			case ORDERBY_SERIES_POSITION . SORT_DIRECTION_DESC:
-				return SORT_DIRECTION_DESC;
-			default: return null;
-		}
+		list($sortBy, $sortDir) = explode("-", $sortOption);
+		return $sortDir;
 	}
 }
 
