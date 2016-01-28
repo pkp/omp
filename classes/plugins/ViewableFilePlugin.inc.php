@@ -41,11 +41,12 @@ abstract class ViewableFilePlugin extends PKPViewableFilePlugin {
 	 * @param $publishedMonograph PublishedMonograph
 	 * @param $submissionFile SubmissionFile
 	 */
-	function displaySubmissionFile($publishedMonograph, $submissionFile) {
+	function displaySubmissionFile($publishedMonograph, $publicationFormat, $submissionFile) {
 		$templateMgr = TemplateManager::getManager($this->getRequest());
 		$templateFilename = $this->getTemplateFilename();
 		if ($templateFilename === null) return '';
 		$templateMgr->assign('publishedMonograph', $publishedMonograph);
+		$templateMgr->assign('publicationFormat', $publicationFormat);
 		$templateMgr->assign('submissionFile', $submissionFile);
 		$templateMgr->assign('viewableFileContent', $templateMgr->fetch($this->getTemplatePath() . $templateFilename));
 		$templateMgr->display('catalog/book/viewFile.tpl');
@@ -54,10 +55,11 @@ abstract class ViewableFilePlugin extends PKPViewableFilePlugin {
 	/**
 	 * Determine whether this plugin can handle the specified content.
 	 * @param $publishedMonograph PublishedMonograph
+	 * @param $publicationFormat PublicationFormat
 	 * @param $submissionFile SubmissionFile
 	 * @return boolean True iff the plugin can handle the content
 	 */
-	function canHandle($publishedMonograph, $submissionFile) {
+	function canHandle($publishedMonograph, $publicationFormat, $submissionFile) {
 		return false;
 	}
 
@@ -69,10 +71,11 @@ abstract class ViewableFilePlugin extends PKPViewableFilePlugin {
 	 */
 	function callback($hookName, $args) {
 		$publishedMonograph =& $args[1];
-		$submissionFile =& $args[2];
+		$publicationFormat =& $args[2];
+		$submissionFile =& $args[3];
 
-		if ($this->canHandle($publishedMonograph, $submissionFile)) {
-			$this->displaySubmissionFile($publishedMonograph, $submissionFile);
+		if ($this->canHandle($publishedMonograph, $publicationFormat, $submissionFile)) {
+			$this->displaySubmissionFile($publishedMonograph, $publicationFormat, $submissionFile);
 			return true;
 		}
 

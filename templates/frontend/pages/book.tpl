@@ -22,9 +22,6 @@
 	{* Display Dublin Core metadata *}
 	{include file="frontend/objects/monograph_dublinCore.tpl" monograph=$publishedMonograph}
 
-	{* Display Google Scholar metadata *}
-	{include file="frontend/objects/monograph_googleScholar.tpl" monograph=$publishedMonograph}
-
 </div><!-- .page -->
 
 {include file="common/frontend/footer.tpl"}
