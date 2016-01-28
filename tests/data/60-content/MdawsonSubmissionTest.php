@@ -56,7 +56,7 @@ class MdawsonSubmissionTest extends ContentBaseTestCase {
 					'role' => 'Author',
 				),
 			),
-			'chapters' => array(
+			'chapters' => $chapters = array(
 				array(
 					'title' => 'Chapter 1: Mind Control—Internal or External?',
 					'contributors' => array('Michael Dawson'),
@@ -74,7 +74,7 @@ class MdawsonSubmissionTest extends ContentBaseTestCase {
 					'contributors' => array('Michael Dawson'),
 				),
 			),
-			'additionalFiles' => array(
+			'additionalFiles' => $additionalFiles = array(
 				array(
 					'fileTitle' => 'Segmentation of Vascular Ultrasound Image Sequences.',
 					'file' => DUMMY_ZIP,
@@ -117,6 +117,51 @@ class MdawsonSubmissionTest extends ContentBaseTestCase {
 		$this->waitForElementPresent('//a[contains(text(), \'Production\')]/*[contains(text(), \'Initiated\')]');
 		$this->assignParticipant('Layout Editor', 'Graham Cox');
 		$this->assignParticipant('Proofreader', 'Sabine Kumar');
+
+		// Add a publication format
+		$this->waitForElementPresent($selector='css=[id^=component-grid-catalogentry-publicationformatgrid-addFormat-button-]');
+		$this->click($selector);
+		$this->waitForElementPresent($selector='css=[id^=name-]');
+		$this->type($selector, 'PDF');
+		$this->click('//button[text()=\'OK\']');
+		$this->waitForElementNotPresent('css=div.pkp_modal_panel');
+
+		// Select proof files
+		$this->waitForElementPresent($selector='//table[contains(@id,\'component-grid-catalogentry-publicationformatgrid-\')]//span[contains(.,\'PDF\')]/../a[contains(@id,\'-name-selectFiles-button-\')]');
+		$this->click($selector);
+		$this->waitForElementPresent($selector='id=allStages');
+		$this->click($selector);
+		$proofFiles = array();
+		foreach ($chapters as $chapter) $proofFiles[] = $chapter['title'];
+		foreach ($additionalFiles as $additionalFile) $proofFiles[] = $additionalFile['fileTitle'];
+		foreach ($proofFiles as $proofFile) {
+			$this->waitForElementPresent($selector='//tbody[starts-with(@id,\'component-grid-files-proof-manageprooffilesgrid-category-\')][1]//a[text()=\'' . $proofFile . '\']/../../..//input[@type=\'checkbox\']');
+			$this->click($selector);
+		}
+		$this->click('//form[@id=\'manageProofFilesForm\']//button[starts-with(@id,\'submitFormButton-\')]');
+		$this->waitForElementNotPresent('css=div.pkp_modal_panel');
+
+		// Approvals for PDF publication format
+		$this->click('//table[starts-with(@id,\'component-grid-catalogentry-publicationformatgrid-\')]//span[contains(text(),\'PDF\')]/../../..//a[contains(@id,\'-isComplete-approveRepresentation-button-\')]');
+		$this->click('css=.pkpModalConfirmButton');
+		$this->waitForElementNotPresent('css=div.pkp_modal_panel');
+		$this->click('//table[starts-with(@id,\'component-grid-catalogentry-publicationformatgrid-\')]//span[contains(text(),\'PDF\')]/../../..//a[contains(@id,\'-isAvailable-availableRepresentation-button-\')]');
+		$this->click('css=.pkpModalConfirmButton');
+		$this->waitForElementNotPresent('css=div.pkp_modal_panel');
+
+		// Approvals for files
+		foreach ($proofFiles as $proofFile) {
+			// Completion
+			$this->click('//table[starts-with(@id,\'component-grid-catalogentry-publicationformatgrid-\')]//a[contains(text(),\'' . $proofFile . '\')]/../../..//a[contains(@id,\'-isComplete-not_approved-button-\')]');
+			$this->click('css=.pkpModalConfirmButton');
+			$this->waitForElementNotPresent('css=div.pkp_modal_panel');
+			// Availability
+			$this->click('//table[starts-with(@id,\'component-grid-catalogentry-publicationformatgrid-\')]//a[contains(text(),\'' . $proofFile . '\')]/../../..//a[contains(@id,\'-isAvailable-editApprovedProof-button-\')]');
+			$this->waitForElementPresent($selector='//input[@id=\'openAccess\']');
+			$this->click($selector);
+			$this->click('css=#approvedProofForm .submitFormButton');
+			$this->waitForElementNotPresent('css=div.pkp_modal_panel');
+		}
 
 		// Add to catalog
 		$this->click('css=[id^=catalogEntry-button-]');
