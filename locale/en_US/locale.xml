@@ -289,6 +289,16 @@
 	<message key="catalog.aboutTheAuthor">About the {$roleName}</message>
 	<message key="catalog.coverImageTitle">Cover for {$monographTitle}</message>
 	<message key="catalog.loginRequiredForPayment">Please note: In order to purchase items, you will need to log in first. Selecting an item to purchase will direct you to the login page. Any item marked with an Open Access icon may be downloaded free of charge, without logging in.</message>
+    <message key="catalog.sortBy">Order of monographs</message>
+    <message key="catalog.sortBy.seriesDescription">Choose how to order the books of this series.</message>
+    <message key="catalog.sortBy.categoryDescription">Choose how to order the books of this category.</message>
+    <message key="catalog.sortBy.catalogDescription">Choose how to order the books in the catalog.</message>
+    <message key="catalog.sortBy.titleAsc">Title (A-Z)</message>
+    <message key="catalog.sortBy.titleDesc">Title (Z-A)</message>
+    <message key="catalog.sortBy.datePublishedAsc">Publication date (oldest first)</message>
+    <message key="catalog.sortBy.datePublishedDesc">Publication date (newest first)</message>
+    <message key="catalog.sortBy.seriesPositionAsc">Series position (lowest first)</message>
+    <message key="catalog.sortBy.seriesPositionDesc">Series position (highest first)</message>
 
 	<!--
 	 *

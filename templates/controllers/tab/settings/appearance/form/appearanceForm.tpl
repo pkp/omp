@@ -39,6 +39,11 @@
 	{* Additional Homepage Content *}
 	{include file="core:controllers/tab/settings/appearance/form/additionalHomepageContent.tpl"}
 
+	{* Catalog sorting option *}
+	{fbvFormSection label="catalog.sortBy" description="catalog.sortBy.catalogDescription" for="catalogSortOption"}
+		{fbvElement type="select" id="catalogSortOption" from=$sortOptions selected=$catalogSortOption translate=false}
+	{/fbvFormSection}
+
 	{* List Display Options *}
 	{include file="core:controllers/tab/settings/appearance/form/lists.tpl"}
 

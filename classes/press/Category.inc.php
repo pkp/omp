@@ -153,6 +153,25 @@ class Category extends DataObject {
 	function setImage($image) {
 		return $this->setData('image', $image);
 	}
+
+	/**
+	 * Get the option how the books in this category should be sorted,
+	 * in the form: concat(sortBy, sortDir).
+	 * @return string
+	 */
+	function getSortOption() {
+		return $this->getData('sortOption');
+	}
+
+	/**
+	 * Set the option how the books in this categpry should be sorted,
+	 * in the form: concat(sortBy, sortDir).
+	 * @param $sortOption string
+	 */
+	function setSortOption($sortOption) {
+		return $this->setData('sortOption', $sortOption);
+	}
+
 }
 
 ?>

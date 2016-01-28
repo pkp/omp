@@ -48,6 +48,8 @@ class SeriesForm extends PKPSectionForm {
 		}
 
 		if (isset($series) ) {
+			$publishedMonographDao = DAORegistry::getDAO('PublishedMonographDAO');
+			$sortOption = $series->getSortOption() ? $series->getSortOption() : $publishedMonographDao->getDefaultSortOption();
 			$this->_data = array(
 				'seriesId' => $seriesId,
 				'title' => $series->getTitle(null),
@@ -58,6 +60,7 @@ class SeriesForm extends PKPSectionForm {
 				'subtitle' => $series->getSubtitle(null),
 				'image' => $series->getImage(),
 				'restricted' => $series->getEditorRestricted(),
+				'sortOption' => $sortOption,
 			);
 		}
 	}
@@ -100,6 +103,11 @@ class SeriesForm extends PKPSectionForm {
 		$categoryDao = DAORegistry::getDAO('CategoryDAO');
 		$categoryCount = $categoryDao->getCountByPressId($press->getId());
 		$templateMgr->assign('categoryCount', $categoryCount);
+
+		// Sort options.
+		$publishedMonographDao = DAORegistry::getDAO('PublishedMonographDAO');
+		$templateMgr->assign('sortOptions', $publishedMonographDao->getSortSelectOptions());
+
 		return parent::fetch($request);
 	}
 
@@ -109,7 +117,7 @@ class SeriesForm extends PKPSectionForm {
 	 */
 	function readInputData() {
 		parent::readInputData();
-		$this->readUserVars(array('seriesId', 'path', 'featured', 'restricted', 'description', 'categories', 'prefix', 'subtitle', 'temporaryFileId'));
+		$this->readUserVars(array('seriesId', 'path', 'featured', 'restricted', 'description', 'categories', 'prefix', 'subtitle', 'temporaryFileId', 'sortOption'));
 	}
 
 	/**
@@ -137,6 +145,7 @@ class SeriesForm extends PKPSectionForm {
 		$series->setPrefix($this->getData('prefix'), null); // Localized
 		$series->setSubtitle($this->getData('subtitle'), null); // Localized
 		$series->setEditorRestricted($this->getData('restricted'));
+		$series->setSortOption($this->getData('sortOption'));
 
 		// Insert or update the series in the DB
 		if ($this->getSeriesId()) {

@@ -162,6 +162,19 @@ class CategoryDAO extends DAO {
 	}
 
 	/**
+	 * Get a list of additional fields.
+	 * @return array
+	 */
+	function getAdditionalFieldNames() {
+		return array_merge(
+			parent::getAdditionalFieldNames(),
+			array(
+				'sortOption',
+			)
+		);
+	}
+
+	/**
 	 * Update the localized fields for this table
 	 * @param $category object
 	 */

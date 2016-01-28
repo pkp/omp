@@ -17,6 +17,10 @@
 import('classes.monograph.PublishedMonograph');
 import('classes.monograph.MonographDAO');
 
+define('ORDERBY_DATE_PUBLISHED', 'datePublished');
+define('ORDERBY_TITLE', 'title');
+define('ORDERBY_SERIES_POSITION', 'seriesPosition');
+
 class PublishedMonographDAO extends MonographDAO {
  	/**
 	 * Constructor.
@@ -31,7 +35,7 @@ class PublishedMonographDAO extends MonographDAO {
 	 * @param $rangeInfo object optional
 	 * @return DAOResultFactory
 	 */
-	function getByPressId($pressId, $searchText = null, $rangeInfo = null) {
+	function getByPressId($pressId, $searchText = null, $rangeInfo = null, $sortBy = ORDERBY_DATE_PUBLISHED, $sortDirection = SORT_DIRECTION_DESC) {
 		$params = array_merge(
 			array(REALLY_BIG_NUMBER),
 			$this->getFetchParameters(),
@@ -56,12 +60,14 @@ class PublishedMonographDAO extends MonographDAO {
 				' . $this->getFetchJoins() . '
 				' . ($searchText !== null?'
 					LEFT JOIN authors a ON s.submission_id = a.submission_id
-					LEFT JOIN submission_settings st ON (st.submission_id = s.submission_id AND st.setting_name = \'title\')
+				':'') . '
+				' . ($searchText !== null || $sortBy == ORDERBY_TITLE?'
+						LEFT JOIN submission_settings st ON (st.submission_id = s.submission_id AND st.setting_name = \'title\')
 				':'') . '
 				LEFT JOIN features f ON (f.submission_id = s.submission_id AND f.assoc_type = ? AND f.assoc_id = s.context_id)
 			WHERE	ps.date_published IS NOT NULL AND s.context_id = ?
 				' . ($searchText !== null?' AND (st.setting_value LIKE ? OR a.first_name LIKE ? OR a.last_name LIKE ?)':'') . '
-			ORDER BY order_by, ps.date_published DESC',
+			ORDER BY order_by, '. $this->getSortMapping($sortBy) . ' ' . $this->getDirectionMapping($sortDirection),
 			$params,
 			$rangeInfo
 		);
@@ -104,7 +110,7 @@ class PublishedMonographDAO extends MonographDAO {
 	 * @param $rangeInfo object optional
 	 * @return DAOResultFactory
 	 */
-	function getBySeriesId($seriesId, $pressId = null, $rangeInfo = null) {
+	function getBySeriesId($seriesId, $pressId = null, $rangeInfo = null, $sortBy = ORDERBY_DATE_PUBLISHED, $sortDirection = SORT_DIRECTION_DESC) {
 		$params = array_merge(
 			$this->getFetchParameters(),
 			array(ASSOC_TYPE_SERIES, (int) $seriesId)
@@ -121,10 +127,13 @@ class PublishedMonographDAO extends MonographDAO {
 			FROM	published_submissions ps
 				JOIN submissions s ON ps.submission_id = s.submission_id
 				' . $this->getFetchJoins() . '
+				' . ($sortBy == ORDERBY_TITLE?'
+					LEFT JOIN submission_settings st ON (st.submission_id = s.submission_id AND st.setting_name = \'title\')
+				':'') . '
 				LEFT JOIN features f ON (f.submission_id = s.submission_id AND f.assoc_type = ? AND f.assoc_id = se.series_id)
 			WHERE	ps.date_published IS NOT NULL AND se.series_id = ?
 				' . ($pressId?' AND s.context_id = ?':'' ) . '
-			ORDER BY COALESCE(f.seq, ?) ASC, ps.date_published',
+			ORDER BY COALESCE(f.seq, ?) ASC, '. $this->getSortMapping($sortBy) . ' ' . $this->getDirectionMapping($sortDirection),
 			$params,
 			$rangeInfo
 		);
@@ -139,7 +148,7 @@ class PublishedMonographDAO extends MonographDAO {
 	 * @param $rangeInfo object optional
 	 * @return DAOResultFactory
 	 */
-	function getByCategoryId($categoryId, $pressId = null, $rangeInfo = null) {
+	function getByCategoryId($categoryId, $pressId = null, $rangeInfo = null, $sortBy = ORDERBY_DATE_PUBLISHED, $sortDirection = SORT_DIRECTION_DESC) {
 		$params = array_merge(
 			array(REALLY_BIG_NUMBER),
 			$this->getFetchParameters(),
@@ -159,13 +168,16 @@ class PublishedMonographDAO extends MonographDAO {
 			FROM	published_submissions ps
 				JOIN submissions s ON ps.submission_id = s.submission_id
 				' . $this->getFetchJoins() . '
+				' . ($sortBy == ORDERBY_TITLE?'
+					LEFT JOIN submission_settings st ON (st.submission_id = s.submission_id AND st.setting_name = \'title\')
+				':'') . '
 				LEFT JOIN submission_categories sc ON (sc.submission_id = s.submission_id AND sc.category_id = ?)
 				LEFT JOIN series_categories sca ON (sca.series_id = se.series_id)
 				LEFT JOIN categories c ON (c.category_id = sca.category_id AND c.category_id = ?)
 				LEFT JOIN features f ON (f.submission_id = s.submission_id AND f.assoc_id = ? AND f.assoc_type = ?)
 			WHERE	ps.date_published IS NOT NULL AND (c.category_id IS NOT NULL OR sc.category_id IS NOT NULL)
 				' . ($pressId?' AND s.context_id = ?':'' ) . '
-			ORDER BY order_by, ps.date_published',
+			ORDER BY order_by, ' . $this->getSortMapping($sortBy) . ' ' . $this->getDirectionMapping($sortDirection),
 			$params,
 			$rangeInfo
 		);
@@ -298,6 +310,76 @@ class PublishedMonographDAO extends MonographDAO {
 				(int) $publishedMonograph->getId()
 			)
 		);
+	}
+
+	/**
+	 * Map a column heading value to a database value for sorting
+	 * @param $sortBy string
+	 * @return string
+	 */
+	static function getSortMapping($sortBy) {
+		switch ($sortBy) {
+			case ORDERBY_TITLE:
+				return 'st.setting_value';
+			case ORDERBY_DATE_PUBLISHED:
+				return 'ps.date_published';
+			case ORDERBY_SERIES_POSITION:
+				return 's.series_position';
+			default: return null;
+		}
+	}
+
+	/**
+	 * Get possible sort options.
+	 * @return array
+	 */
+	function getSortSelectOptions() {
+		return array(
+			$this->getSortOption(ORDERBY_TITLE, SORT_DIRECTION_ASC) => __('catalog.sortBy.titleAsc'),
+			$this->getSortOption(ORDERBY_TITLE, SORT_DIRECTION_DESC) => __('catalog.sortBy.titleDesc'),
+			$this->getSortOption(ORDERBY_DATE_PUBLISHED, SORT_DIRECTION_ASC) => __('catalog.sortBy.datePublishedAsc'),
+			$this->getSortOption(ORDERBY_DATE_PUBLISHED, SORT_DIRECTION_DESC) => __('catalog.sortBy.datePublishedDesc'),
+			$this->getSortOption(ORDERBY_SERIES_POSITION, SORT_DIRECTION_ASC) => __('catalog.sortBy.seriesPositionAsc'),
+			$this->getSortOption(ORDERBY_SERIES_POSITION, SORT_DIRECTION_DESC) => __('catalog.sortBy.seriesPositionDesc'),
+		);
+	}
+
+	/**
+	 * Get sort option.
+	 * @param $sortBy string
+	 * @param $sortDir int
+	 * @return string
+	 */
+	function getSortOption($sortBy, $sortDir) {
+		return $sortBy .'-' . $sortDir;
+	}
+
+	/**
+	 * Get default sort option.
+	 * @return string
+	 */
+	function getDefaultSortOption() {
+		return $this->getSortOption(ORDERBY_DATE_PUBLISHED, SORT_DIRECTION_DESC);
+	}
+
+	/**
+	 * Get sort way for a sort option.
+	 * @param $sortOption string concat(sortBy, '-', sortDir)
+	 * @return string
+	 */
+	function getSortBy($sortOption) {
+		list($sortBy, $sortDir) = explode("-", $sortOption);
+		return $sortBy;
+	}
+
+	/**
+	 * Get sort direction for a sort option.
+	 * @param $sortOption string concat(sortBy, '-', sortDir)
+	 * @return int
+	 */
+	function getSortDirection($sortOption) {
+		list($sortBy, $sortDir) = explode("-", $sortOption);
+		return $sortDir;
 	}
 }
 
