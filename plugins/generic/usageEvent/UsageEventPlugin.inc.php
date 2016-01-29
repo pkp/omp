@@ -93,7 +93,7 @@ class UsageEventPlugin extends PKPUsageEventPlugin {
 					// Publication format file.
 				case 'CatalogBookHandler::view':
 				case 'CatalogBookHandler::download':
-					$pubObject = $hookArgs[2];
+					$pubObject = $hookArgs[3];
 					$assocType = ASSOC_TYPE_SUBMISSION_FILE;
 					$canonicalUrlOp = 'download';
 					$publishedMonograph = $hookArgs[1];

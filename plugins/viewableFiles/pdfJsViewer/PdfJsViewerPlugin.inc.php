@@ -62,20 +62,20 @@ class PdfJsViewerPlugin extends ViewableFilePlugin {
 	/**
 	 * @copydoc ViewableFilePlugin::canHandle
 	 */
-	function canHandle($publishedMonograph, $submissionFile) {
+	function canHandle($publishedMonograph, $publicationFormat, $submissionFile) {
 		return ($submissionFile->getFileType() == 'application/pdf');
 	}
 
 	/**
 	 * @copydoc ViewableFilePlugin::displaySubmissionFile
 	 */
-	function displaySubmissionFile($publishedMonograph, $submissionFile) {
+	function displaySubmissionFile($publishedMonograph, $publicationFormat, $submissionFile) {
 		$templateMgr = TemplateManager::getManager($this->getRequest());
 		$templateMgr->assign(array(
 			'pluginTemplatePath' => $this->getTemplatePath(),
 			'pluginUrl' => $this->getRequest()->getBaseUrl() . DIRECTORY_SEPARATOR . $this->getPluginPath(),
 		));
-		return parent::displaySubmissionFile($publishedMonograph, $submissionFile);
+		return parent::displaySubmissionFile($publishedMonograph, $publicationFormat, $submissionFile);
 	}
 
 	/**
@@ -86,10 +86,11 @@ class PdfJsViewerPlugin extends ViewableFilePlugin {
 	 */
 	function downloadCallback($hookName, $params) {
 		$publishedMonograph =& $params[1];
-		$submissionFile =& $params[2];
-		$inline =& $params[3];
+		$publicationFormat =& $params[2];
+		$submissionFile =& $params[3];
+		$inline =& $params[4];
 
-		if ($this->canHandle($publishedMonograph, $submissionFile) && Request::getUserVar('inline')) {
+		if ($this->canHandle($publishedMonograph, $publicationFormat, $submissionFile) && Request::getUserVar('inline')) {
 			// Turn on the inline flag to ensure that the content
 			// disposition header doesn't foil the PDF embedding
 			// plugin.

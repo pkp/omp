@@ -28,6 +28,7 @@ class ContentBaseTestCase extends PKPContentBaseTestCase {
 			foreach  ($data['chapters'] as &$chapter) {
 				$files[] = array(
 					'fileTitle' => $chapter['title'],
+					'metadata' => array('genre' => 'Chapter Manuscript'),
 				);
 				$chapter['files'] = array($chapter['title']);
 			}
