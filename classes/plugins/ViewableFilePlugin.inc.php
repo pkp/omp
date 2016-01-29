@@ -49,7 +49,7 @@ abstract class ViewableFilePlugin extends PKPViewableFilePlugin {
 		$templateMgr->assign('publicationFormat', $publicationFormat);
 		$templateMgr->assign('submissionFile', $submissionFile);
 		$templateMgr->assign('viewableFileContent', $templateMgr->fetch($this->getTemplatePath() . $templateFilename));
-		$templateMgr->display('catalog/book/viewFile.tpl');
+		$templateMgr->display('frontend/pages/viewFile.tpl');
 	}
 
 	/**
