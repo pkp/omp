@@ -32,7 +32,7 @@ class ChapterGridCategoryRow extends GridCategoryRow {
 	/**
 	 * Constructor
 	 */
-	function ChapterGridCategoryRow(&$monograph, $readOnly = false) {
+	function ChapterGridCategoryRow($monograph, $readOnly = false) {
 		$this->_monograph = $monograph;
 		$this->_readOnly = $readOnly;
 		parent::GridCategoryRow();
@@ -88,7 +88,7 @@ class ChapterGridCategoryRow extends GridCategoryRow {
 	 * Get the monograph for this row (already authorized)
 	 * @return Monograph
 	 */
-	function &getMonograph() {
+	function getMonograph() {
 		return $this->_monograph;
 	}
 
@@ -96,7 +96,7 @@ class ChapterGridCategoryRow extends GridCategoryRow {
 	 * Get the chapter for this row
 	 * @return Chapter
 	 */
-	function &getChapter() {
+	function getChapter() {
 		return $this->_chapter;
 	}
 

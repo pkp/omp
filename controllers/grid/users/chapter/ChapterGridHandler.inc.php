@@ -52,7 +52,7 @@ class ChapterGridHandler extends CategoryGridHandler {
 	 * Get the monograph associated with this chapter grid.
 	 * @return Monograph
 	 */
-	function &getMonograph() {
+	function getMonograph() {
 		return $this->getAuthorizedContextObject(ASSOC_TYPE_MONOGRAPH);
 	}
 
