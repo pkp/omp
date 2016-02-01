@@ -32,13 +32,13 @@
 		{fbvElement type="text" name="subtitle" id="subtitle" value=$subtitle maxlength="255" multilingual=true}
 	{/fbvFormSection}
 
-	{fbvFormSection inline=true size=$fbvStyles.size.MEDIUM}
+	{fbvFormSection}
 		<!--  Chapter Contributors -->
 		{url|assign:chapterAuthorUrl router=$smarty.const.ROUTE_COMPONENT component="listbuilder.users.ChapterAuthorListbuilderHandler" op="fetch" submissionId=$submissionId chapterId=$chapterId escape=false}
 		{load_url_in_div id="chapterAuthorContainer" url=$chapterAuthorUrl}
 	{/fbvFormSection}
 
-	{fbvFormSection inline=true size=$fbvStyles.size.MEDIUM}
+	{fbvFormSection}
 		<!-- Chapter Files -->
 		{url|assign:chapterFilesUrl router=$smarty.const.ROUTE_COMPONENT component="listbuilder.files.ChapterFilesListbuilderHandler" op="fetch" submissionId=$submissionId chapterId=$chapterId escape=false}
 		{load_url_in_div id="chapterFilesContainer" url=$chapterFilesUrl}
