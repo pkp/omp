@@ -9,21 +9,8 @@
  *
  * @uses $monograph Monograph The monograph to be displayed
  *}
-
-{* We have now set $submissionFile, $publicationFormat *}
-
 <meta name="gs_meta_revision" content="1.1" />
-
-{foreach name="authors" from=$publishedMonograph->getAuthors() item=author}
-	<meta name="citation_author" content="{$author->getFirstName()|escape}{if $author->getMiddleName() != ""} {$author->getMiddleName()|escape}{/if} {$author->getLastName()|escape}"/>
-{/foreach}
-<meta name="citation_title" content="{$publishedMonograph->getLocalizedTitle()|strip_tags|escape}"/>
-
-{if is_a($publishedMonograph, 'PublishedMonograph') && $publishedMonograph->getDatePublished()}
-	<meta name="citation_publication_date" content="{$publishedMonograph->getDatePublished()|date_format:"%Y/%m/%d"}"/>
-{/if}
-
-<meta name="citation_publisher" content="{$currentPress->getSetting('publisher')|escape}"/>
+<meta name="citation_issn" content="{$issn|strip_tags|escape}"/>
 
 {* Get the ISBN *}
 {assign var=identificationCodes value=$publicationFormat->getIdentificationCodes()}
@@ -33,13 +20,26 @@
 	{/if}
 {/foreach}
 
+{foreach name="authors" from=$publishedMonograph->getAuthors() item=author}
+	<meta name="citation_author" content="{$author->getFirstName()|escape}{if $author->getMiddleName() != ""} {$author->getMiddleName()|escape}{/if} {$author->getLastName()|escape}"/>
+	{if $author->getLocalizedAffiliation() != ""}
+		<meta name="citation_author_institution" content="{$author->getLocalizedAffiliation()|strip_tags|escape}"/>
+	{/if}
+{/foreach}
+
+<meta name="citation_title" content="{$publishedMonograph->getLocalizedTitle()|strip_tags|escape}"/>
+
+{if is_a($publishedMonograph, 'PublishedMonograph') && $publishedMonograph->getDatePublished()}
+	<meta name="citation_publication_date" content="{$publishedMonograph->getDatePublished()|date_format:"%Y/%m/%d"}"/>
+{/if}
+
+<meta name="citation_publisher" content="{$currentPress->getSetting('publisher')|escape}"/>
+
 {url|assign:downloadUrl op="download" path=$publishedMonograph->getId()|to_array:$publicationFormat->getId():$submissionFile->getFileIdAndRevision()}
 <meta name="citation_pdf_url" content="{$downloadUrl}"/>
 
-{if $publishedMonograph->getSubject(null)}{foreach from=$publishedMonograph->getSubject(null) key=metaLocale item=metaValue}
-	{foreach from=$metaValue|explode:"; " item=gsKeyword}
-		{if $gsKeyword}
-			<meta name="citation_keywords" xml:lang="{$metaLocale|String_substr:0:2|escape}" content="{$gsKeyword|escape}"/>
-		{/if}
+{foreach from=$submissionKeywords key=keywordLocale item=languageKeywords}
+	{foreach from=$languageKeywords item=keyword}
+		<meta name="citation_keywords" xml:lang="{$keywordLocale|String_substr:0:2|escape}" content="{$keyword|escape}"/>
 	{/foreach}
-{/foreach}{/if}
+{/foreach}

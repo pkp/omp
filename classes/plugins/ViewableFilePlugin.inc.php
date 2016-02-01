@@ -45,10 +45,20 @@ abstract class ViewableFilePlugin extends PKPViewableFilePlugin {
 		$templateMgr = TemplateManager::getManager($this->getRequest());
 		$templateFilename = $this->getTemplateFilename();
 		if ($templateFilename === null) return '';
-		$templateMgr->assign('publishedMonograph', $publishedMonograph);
-		$templateMgr->assign('publicationFormat', $publicationFormat);
-		$templateMgr->assign('submissionFile', $submissionFile);
+
+		// Set up the viewable file template variables.
+		$submissionKeywordDao = DAORegistry::getDAO('SubmissionKeywordDAO');
+		$templateMgr->assign(array(
+			'submissionKeywords' => $submissionKeywordDao->getKeywords($publishedMonograph->getId(), array(AppLocale::getLocale(), array_keys(AppLocale::getSupportedLocales()))),
+			'publishedMonograph' => $publishedMonograph,
+			'publicationFormat' => $publicationFormat,
+			'submissionFile' => $submissionFile,
+		));
+
+		// Fetch the viewable file template render.
 		$templateMgr->assign('viewableFileContent', $templateMgr->fetch($this->getTemplatePath() . $templateFilename));
+
+		// Show the front-end.
 		$templateMgr->display('frontend/pages/viewFile.tpl');
 	}
 
