@@ -190,42 +190,6 @@ class Upgrade extends Installer {
 	}
 
 	/**
-	 * Localize the URLs associated with footer links. (See bug #8867.)
-	 * @return boolean
-	 */
-	function localizeFooterLinks() {
-		$pressDao = DAORegistry::getDAO('PressDAO');
-		$footerLinkDao = DAORegistry::getDAO('FooterLinkDAO');
-
-		$contexts = $pressDao->getAll();
-		while ($context = $contexts->next()) {
-
-			$result = $footerLinkDao->retrieve(
-				'SELECT footerlink_id, url
-				FROM	footerlinks
-				WHERE	context_id = ?',
-				array((int) $context->getId())
-			);
-
-			while (!$result->EOF) {
-				$row = $result->getRowAssoc(false);
-				$footerLinkId = $row['footerlink_id'];
-				$url = $row['url'];
-				$result->MoveNext();
-
-				foreach ($context->getSupportedLocales() as $locale) {
-					$footerLinkDao->update(
-						'INSERT INTO footerlink_settings VALUES (?, ?, ?, ?, ?)',
-						array((int) $footerLinkId, $locale, 'url', $url, 'string')
-					);
-				}
-			}
-			$result->Close();
-		}
-		return true;
-	}
-
-	/**
 	 * Convert email templates to HTML.
 	 * @return boolean True indicates success.
 	 */

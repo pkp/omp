@@ -164,8 +164,6 @@
 	<message key="grid.action.deleteSpotlight">Excluir este destaque</message>
 	<message key="grid.action.addSpotlight">Incluir destaque</message>
 
-	<!-- Content Management - Footer grid keys -->
-	<!-- Content Management - Social Media keys -->
 	<!-- Editorial policies -->
 	<message key="manager.series.open">Submissões abertas</message>
 	<message key="manager.series.indexed">Indexado</message>
@@ -461,7 +459,6 @@ Suporte à biblioteca mbstring: <strong>{$supportsMBString}</strong>]]></message
 	<message key="notification.addedSpotlight">Destaque incluído.</message>
 	<message key="notification.editedSpotlight">Destaque editado.</message>
 	<message key="notification.removedSpotlight">Destaque excluído.</message>
-	<message key="notification.removedFooterLink">Link de rodapé excluído.</message>
 	<message key="notification.savedCatalogMetadata">Metadados do catálogo salvos.</message>
 	<message key="notification.savedPublicationFormatMetadata">Metadados do formato de publicação salvos.</message>
 	<message key="notification.mailListDescription">Informe seu endereço de e-mail para ser notificado quando da publicação de novo conteúdo pela editora.</message>

@@ -166,8 +166,6 @@
 	<message key="grid.action.deleteSpotlight">Borrar este destacado</message>
 	<message key="grid.action.addSpotlight">Añadir destacado</message>
 
-	<!-- Content Management - Footer grid keys -->
-	<!-- Content Management - Social Media keys -->
 	<!-- Editorial policies -->
 	<message key="manager.series.open">Abrir propuestas</message>
 	<message key="manager.series.indexed">Indizado</message>
@@ -461,7 +459,6 @@ Tu servidor soporta actualmente mbstring: <strong>{$supportsMBString}</strong>]]
 	<message key="notification.addedSpotlight">Destacado añadido.</message>
 	<message key="notification.editedSpotlight">Destacado editado.</message>
 	<message key="notification.removedSpotlight">Destacado eliminado.</message>
-	<message key="notification.removedFooterLink">Vínculo a pie de página eliminado.</message>
 	<message key="notification.savedCatalogMetadata">Catálogo de metadatos guardado.</message>
 	<message key="notification.savedPublicationFormatMetadata">Formato de publicación de los metadatos guardado.</message>
 	<message key="notification.mailListDescription">Introduce tu correo electrónico para recibir notificaciones cuando se añadan nuevos contenidos a la editorial.</message>

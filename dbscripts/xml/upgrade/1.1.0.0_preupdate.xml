@@ -21,12 +21,6 @@
 	<sql>
 		<rename table="user_group_stage" column="press_id" to="context_id" />
 	</sql>
-	<!-- Bug #8087: Move content management into PKP lib -->
-	<sql>
-		<rename table="footerlinks" column="press_id" to="context_id" />
-		<rename table="social_media" column="press_id" to="context_id" />
-		<rename table="footer_categories" column="press_id" to="context_id" />
-	</sql>
 
 	<!-- Bug #8148: Move Genres, context, submission defaults into PKP lib -->
 	<sql>

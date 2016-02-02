@@ -473,7 +473,6 @@ Ihr Server untersützt aktuell mbstring: <strong>{$supportsMBString}</strong>]]>
 	<message key="notification.addedSpotlight">Spotlight hinzugefügt.</message>
 	<message key="notification.editedSpotlight">Spotlight bearbeitet.</message>
 	<message key="notification.removedSpotlight">Spotlight entfernt.</message>
-	<message key="notification.removedFooterLink">Link im Footer entfernt.</message>
 	<message key="notification.savedCatalogMetadata">Die Katalogmetadaten wurden gespeichert.</message>
 	<message key="notification.savedPublicationFormatMetadata">Die Metadaten dieses Formats wurden gespeichert.</message>
 	<message key="notification.mailListDescription">Geben Sie Ihre E-Mail-Adresse ein, um über Neuerscheinungen benachrichtigt zu werden.</message>
