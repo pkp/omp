@@ -70,11 +70,17 @@ class PdfJsViewerPlugin extends ViewableFilePlugin {
 	 * @copydoc ViewableFilePlugin::displaySubmissionFile
 	 */
 	function displaySubmissionFile($publishedMonograph, $publicationFormat, $submissionFile) {
-		$templateMgr = TemplateManager::getManager($this->getRequest());
+		$request = $this->getRequest();
+		$router = $request->getRouter();
+		$dispatcher = $request->getDispatcher();
+		$templateMgr = TemplateManager::getManager($request);
 		$templateMgr->assign(array(
 			'pluginTemplatePath' => $this->getTemplatePath(),
-			'pluginUrl' => $this->getRequest()->getBaseUrl() . DIRECTORY_SEPARATOR . $this->getPluginPath(),
+			'pluginUrl' => $request->getBaseUrl() . DIRECTORY_SEPARATOR . $this->getPluginPath(),
+			'downloadUrl' => $dispatcher->url($request, ROUTE_PAGE, null, null, 'download', array($publishedMonograph->getId(), $submissionFile->getAssocId(), $submissionFile->getFileIdAndRevision()), array('inline' => true)),
 		));
+
+
 		return parent::displaySubmissionFile($publishedMonograph, $publicationFormat, $submissionFile);
 	}
 

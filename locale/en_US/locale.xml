@@ -299,6 +299,8 @@
     <message key="catalog.sortBy.datePublishedDesc">Publication date (newest first)</message>
     <message key="catalog.sortBy.seriesPositionAsc">Series position (lowest first)</message>
     <message key="catalog.sortBy.seriesPositionDesc">Series position (highest first)</message>
+    <message key="catalog.viewableFile.title">{$type} view of the file {$title}</message>
+    <message key="catalog.viewableFile.return">Return to view details about {$monographTitle}</message>
 
 	<!--
 	 *
