@@ -375,7 +375,7 @@
 
 	<!-- Registration -->
 	<message key="user.register.completeForm">Fill in this form to register with this press.</message>
-	<message key="user.register.selectContext">Select a press to register with</message>
+	<message key="user.register.selectContext">Select a press to register with:</message>
 	<message key="user.register.noContexts">There are no presses you may register with on this site.</message>
 	<message key="user.register.privacyStatement">Privacy Statement</message>
 	<message key="user.register.alreadyRegisteredOtherContext"><![CDATA[<a href="{$registerUrl}">Click here</a> if you are already registered with this or another press on this site.]]></message>
