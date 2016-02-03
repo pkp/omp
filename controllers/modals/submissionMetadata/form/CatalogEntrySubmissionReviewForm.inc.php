@@ -29,19 +29,6 @@ class CatalogEntrySubmissionReviewForm extends SubmissionMetadataViewForm {
 	function CatalogEntrySubmissionReviewForm($monographId, $stageId = null, $formParams = null) {
 		parent::SubmissionMetadataViewForm($monographId, $stageId, $formParams, 'controllers/modals/submissionMetadata/form/catalogEntrySubmissionReviewForm.tpl');
 		AppLocale::requireComponents(LOCALE_COMPONENT_APP_COMMON, LOCALE_COMPONENT_APP_SUBMISSION);
-		if (array_key_exists('expeditedSubmission', $formParams)) {
-			// If we are expediting, add field requirements.
-			$this->addCheck(new FormValidator($this, 'salesType', 'required', 'submission.catalogEntry.salesType.required'));
-			$this->addCheck(new FormValidatorCustom($this, 'price', 'required', 'grid.catalogEntry.validPriceRequired',
-				create_function('$price, $form', '
-					switch ($form->getData(\'salesType\')) {
-						case \'directSales\':
-							return preg_match(\'/^(([1-9]\d{0,2}(,\d{3})*|[1-9]\d*|0|)(.\d{2})?|([1-9]\d{0,2}(,\d{3})*|[1-9]\d*|0|)(.\d{2})?)$/\', $price);
-						default:
-							return true; // set to zero in the handler for the other two possibilities.
-					}'), array($this))
-				);
-		}
 	}
 
 	/**
@@ -51,25 +38,7 @@ class CatalogEntrySubmissionReviewForm extends SubmissionMetadataViewForm {
 		parent::readInputData();
 
 		// Read in the additional fields price data.
-		$this->readUserVars(array('salesType', 'price'));
-	}
-
-	/**
-	 * @see SubmissionMetadataViewForm::fetch()
-	 */
-	function fetch($request) {
-
-		$templateMgr = TemplateManager::getManager($request);
-
-		// Make this available for expedited submissions.
-		$salesTypes = array(
-			'openAccess' => 'payment.directSales.openAccess',
-			'directSales' => 'payment.directSales.directSales',
-			'notAvailable' => 'payment.directSales.notAvailable',
-		);
-
-		$templateMgr->assign('salesTypes', $salesTypes);
-		return parent::fetch($request);
+		$this->readUserVars(array('price'));
 	}
 }
 
