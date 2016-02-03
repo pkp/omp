@@ -74,6 +74,11 @@
 			color: @text-light;
 		}
 
+		// Labels without values
+		.item_heading .label {
+			font-weight: @bold;
+		}
+
 		ul {
 			&:extend(.pkp_unstyled_list);
 		}
@@ -109,7 +114,6 @@
 
 		> div,
 		.value li {
-			.pkp_helpers_clear;
 			margin-bottom: @double;
 
 			&:last-child {
@@ -117,14 +121,22 @@
 			}
 		}
 
+		.value li {
+			position: relative;
+
+			&:first-child {
+				margin-top: @half;
+			}
+		}
+
 		.name {
-			display: inline-block;
-			padding: @half 0;
+			display: block;
+			padding-left: @quadruple;
 			line-height: @double;
 		}
 
-		.link {
-			float: right;
+		.link,
+		.pub_format_single {
 
 			a {
 				&:extend(.cmp_button);
@@ -139,10 +151,37 @@
 					content: @fa-var-download;
 					margin-right: 0.25em;
 				}
+			}
+		}
 
-				&.pdf:before {
-					content: @fa-var-file-pdf-o;
+		.link {
+			position: absolute;
+			top: 0;
+			left: 0;
+
+			a {
+				padding: 0;
+				width: @triple;
+				height: @triple;
+				line-height: @triple;
+				text-align: center;
+				overflow: hidden;
+
+				&:before {
+					content: @fa-var-download; // Always use download icon
+					position: relative;
+					top: -1px;
+					margin-right: 0;
 				}
+			}
+		}
+
+		.pub_format_single a {
+			width: 100%;
+			text-align: center;
+
+			&.pdf:before {
+				content: @fa-var-file-pdf-o;
 			}
 		}
 	}
