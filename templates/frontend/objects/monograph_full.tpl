@@ -162,40 +162,64 @@
 				<div class="item files">
 					{assign var=publicationFormats value=$publishedMonograph->getPublicationFormats()}
 					{foreach from=$publicationFormats item=publicationFormat}
-						{assign var=representationId value=$publicationFormat->getId()}
-						{if $publicationFormat->getIsAvailable() && $availableFiles[$representationId]}
-							<div class="{$representationId|escape}">
-								<span class="label">
-									{$publicationFormat->getLocalizedName()|escape}
-								</span>
-								<span class="value">
-									<ul>
-										{* There will be at most one of these *}
-										{foreach from=$availableFiles[$representationId] item=availableFile}
-											<li>
-												<span class="name">
-													{$availableFile->getLocalizedName()|escape}
-												</span>
-												<span class="link">
-													{if $availableFile->getDocumentType()==$smarty.const.DOCUMENT_TYPE_PDF}
-														{url|assign:downloadUrl op="view" path=$publishedMonograph->getId()|to_array:$representationId:$availableFile->getFileIdAndRevision()}
-													{else}
-														{url|assign:downloadUrl op="download" path=$publishedMonograph->getId()|to_array:$representationId:$availableFile->getFileIdAndRevision()}
-													{/if}
-													<a href="{$downloadUrl}" class="{$availableFile->getDocumentType()}">
-														{if $availableFile->getDirectSalesPrice()}
-															{translate key="payment.directSales.purchase" amount=$currency->format($availableFile->getDirectSalesPrice()) currency=$currency->getCodeAlpha()}
+						{assign var=pubicationFormatId value=$publicationFormat->getId()}
+						{if $publicationFormat->getIsAvailable() && $availableFiles[$pubicationFormatId]}
+
+							{* Use a simplified presentation if only one file exists *}
+							{if $availableFiles[$pubicationFormatId]|@count == 1}
+								<div class="{$pubicationFormatId|escape} pub_format_single">
+									{foreach from=$availableFiles[$pubicationFormatId] item=availableFile}
+										{if $availableFile->getDocumentType()==$smarty.const.DOCUMENT_TYPE_PDF}
+											{url|assign:downloadUrl op="view" path=$publishedMonograph->getId()|to_array:$pubicationFormatId:$availableFile->getFileIdAndRevision()}
+										{else}
+											{url|assign:downloadUrl op="download" path=$publishedMonograph->getId()|to_array:$pubicationFormatId:$availableFile->getFileIdAndRevision()}
+										{/if}
+										<a href="{$downloadUrl}" class="{$availableFile->getDocumentType()|escape}">
+											{if $availableFile->getDirectSalesPrice()}
+												{translate key="payment.directSales.purchase" format=$publicationFormat->getLocalizedName() amount=$currency->format($availableFile->getDirectSalesPrice()) currency=$currency->getCodeAlpha()}
+											{else}
+												{translate key="payment.directSales.download" format=$publicationFormat->getLocalizedName()}
+												{* @todo make the open access icon appear *}
+											{/if}
+										</a>
+									{/foreach}
+								</div>
+
+							{* Use an itemized presentation if multiple files exists *}
+							{else}
+								<div class="{$pubicationFormatId|escape}">
+									<span class="label">
+										{$publicationFormat->getLocalizedName()|escape}
+									</span>
+									<span class="value">
+										<ul>
+											{* There will be at most one of these *}
+											{foreach from=$availableFiles[$pubicationFormatId] item=availableFile}
+												<li>
+													<span class="name">
+														{$availableFile->getLocalizedName()|escape}
+													</span>
+													<span class="link">
+														{if $availableFile->getDocumentType()==$smarty.const.DOCUMENT_TYPE_PDF}
+															{url|assign:downloadUrl op="view" path=$publishedMonograph->getId()|to_array:$pubicationFormatId:$availableFile->getFileIdAndRevision()}
 														{else}
-															{translate key="payment.directSales.download"}
-															{* @todo make the open access icon appear *}
+															{url|assign:downloadUrl op="download" path=$publishedMonograph->getId()|to_array:$pubicationFormatId:$availableFile->getFileIdAndRevision()}
 														{/if}
-													</a>
-												</span>
-											</li>
-										{/foreach}
-									</ul>
-								</span><!-- .value -->
-							</div>
+														<a href="{$downloadUrl}" class="{$availableFile->getDocumentType()}">
+															{if $availableFile->getDirectSalesPrice()}
+																{translate key="payment.directSales.purchase" format=$publicationFormat->getLocalizedName() amount=$currency->format($availableFile->getDirectSalesPrice()) currency=$currency->getCodeAlpha()}
+															{else}
+																{translate key="payment.directSales.download" format=$publicationFormat->getLocalizedName()}
+																{* @todo make the open access icon appear *}
+															{/if}
+														</a>
+													</span>
+												</li>
+											{/foreach}
+										</ul>
+									</span><!-- .value -->
+								</div>
+							{/if}
 						{/if}
 					{/foreach}
 				</div>
@@ -255,18 +279,24 @@
 				{foreach from=$publicationFormats item="publicationFormat"}
 					{if $publicationFormat->getIsApproved()}
 						<div class="item publication_format">
-							<h3 class="pkp_screen_reader">
-								{translate key="monograph.publicationFormatDetails"}
-							</h3>
 
-							<div class="sub_item format">
-								<div class="label">
-									{translate key="monograph.publicationFormat"}
+							{* Only add the format-specific heading if multiple publication formats exist *}
+							{if count($publicationFormats) > 1}
+								<h3 class="pkp_screen_reader">
+									{translate key="monograph.publicationFormatDetails" format=$publicationFormat->getLocalizedName}
+								</h3>
+
+								<div class="sub_item item_heading format">
+									<div class="label">
+										{$publicationFormat->getLocalizedName()|escape}
+									</div>
 								</div>
-								<div class="value">
-									{$publicationFormat->getLocalizedName()|escape}
-								</div>
-							</div>
+							{else}
+								<h3 class="pkp_screen_reader">
+									{translate key="monograph.miscellaneousDetails"}
+								</h3>
+							{/if}
+
 
 							{* DOI's and other identification codes *}
 							{assign var=identificationCodes value=$publicationFormat->getIdentificationCodes()}
