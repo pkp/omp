@@ -66,11 +66,6 @@ class CatalogEntryCatalogMetadataForm extends Form {
 		$this->_userId = $userId;
 
 		$this->addCheck(new FormValidatorURL($this, 'licenseURL', 'optional', 'form.url.invalid'));
-
-		if (array_key_exists('expeditedSubmission', $formParams)) {
-			// If we are expediting, make the confirmation checkbox mandatory.
-			$this->addCheck(new FormValidator($this, 'confirm', 'required', 'submission.catalogEntry.confirm.required'));
-		}
 	}
 
 	/**
