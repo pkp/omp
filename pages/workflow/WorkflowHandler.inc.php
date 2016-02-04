@@ -36,7 +36,6 @@ class WorkflowHandler extends PKPWorkflowHandler {
 				'production',
 				'submissionHeader',
 				'submissionProgressBar',
-				''
 			)
 		);
 	}
