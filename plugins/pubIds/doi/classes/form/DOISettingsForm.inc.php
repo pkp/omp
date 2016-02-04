@@ -60,7 +60,6 @@ class DOISettingsForm extends Form {
 
 		$this->addCheck(new FormValidatorRegExp($this, 'doiPrefix', 'required', 'plugins.pubIds.doi.manager.settings.doiPrefixPattern', '/^10\.[0-9][0-9][0-9][0-9][0-9]?$/'));
 		$this->addCheck(new FormValidatorCustom($this, 'doiPublicationFormatSuffixPattern', 'required', 'plugins.pubIds.doi.manager.settings.doiPublicationFormatSuffixPatternRequired', create_function('$doiPublicationFormatSuffixPattern,$form', 'if ($form->getData(\'doiSuffix\') == \'pattern\') return $doiPublicationFormatSuffixPattern != \'\';return true;'), array(&$this)));
-		$this->addCheck(new FormValidator($this, 'doiSuffix' ,'required', 'plugins.pubIds.doi.manager.settings.doiSuffixRequired'));
 		$this->addCheck(new FormValidatorPost($this));
 
 		// for DOI reset requests
