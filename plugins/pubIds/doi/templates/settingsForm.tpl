@@ -10,10 +10,11 @@
  *}
 <div id="description">{translate key="plugins.pubIds.doi.manager.settings.description"}</div>
 
+<script src="{$baseUrl}/plugins/pubIds/doi/js/DOISettingsFormHandler.js"></script>
 <script type="text/javascript">
 	$(function() {ldelim}
 		// Attach the form handler.
-		$('#doiSettingsForm').pkpHandler('$.pkp.controllers.form.AjaxFormHandler');
+		$('#doiSettingsForm').pkpHandler('$.pkp.plugins.pubIds.doi.js.DOISettingsFormHandler');
 	{rdelim});
 </script>
 <form class="pkp_form" id="doiSettingsForm" method="post" action="{url router=$smarty.const.ROUTE_COMPONENT op="manage" category="pubIds" plugin=$pluginName verb="settings" save="true"}">
@@ -25,33 +26,32 @@
 		{/fbvFormSection}
 	{/fbvFormArea}
 	{fbvFormArea id="doiSuffixPatternFormArea" class="border" title="plugins.pubIds.doi.manager.settings.doiSuffix"}
-		{fbvFormSection label="plugins.pubIds.doi.manager.settings.doiSuffixDescription" list="true"}
+		<p class="pkp_help">{translate key="plugins.pubIds.doi.manager.settings.doiSuffixDescription"}</p>
+		{fbvFormSection list="true"}
+			{if !in_array($doiSuffix, array("pattern", "customId"))}
+				{assign var="checked" value=true}
+			{else}
+				{assign var="checked" value=false}
+			{/if}
+			{fbvElement type="radio" id="doiSuffixDefault" name="doiSuffix" value="default" checked=$checked label="plugins.pubIds.doi.manager.settings.doiSuffixDefault"}
+			<span class="instruct">{translate key="plugins.pubIds.doi.manager.settings.doiSuffixDefault.description"}</span>
+		{/fbvFormSection}
+		{fbvFormSection list="true"}
+			{if $doiSuffix eq "customId"}
+				{assign var="checked" value=true}
+			{else}
+				{assign var="checked" value=false}
+			{/if}
+			{fbvElement type="radio" id="doiSuffixCustomIdentifier" name="doiSuffix" value="customId" checked=$checked label="plugins.pubIds.doi.manager.settings.doiSuffixCustomIdentifier"}
+		{/fbvFormSection}
+		{fbvFormSection list="true"}
 			{if $doiSuffix eq "pattern"}
 				{assign var="checked" value=true}
 			{else}
 				{assign var="checked" value=false}
 			{/if}
 			{fbvElement type="radio" id="doiSuffix" name="doiSuffix" value="pattern" checked=$checked label="plugins.pubIds.doi.manager.settings.doiSuffixPattern"}
-		{/fbvFormSection}
-		{fbvFormSection}
-			<p class="pkp_help">{fieldLabel name="doiSuffixPattern" key="plugins.pubIds.doi.manager.settings.doiSuffixPattern.example"}</p>
-			{fbvElement type="text" label="plugins.pubIds.doi.manager.settings.doiSuffixPattern.publicationFormats" id="doiPublicationFormatSuffixPattern" value=$doiPublicationFormatSuffixPattern maxlength="40" inline=true size=$fbvStyles.size.MEDIUM}
-		{/fbvFormSection}
-
-		{fbvFormSection list="true"}
-			{if !in_array($doiSuffix, array("pattern", "publisherId", "customId"))}
-				{assign var="checked" value=true}
-			{else}
-				{assign var="checked" value=false}
-			{/if}
-			{fbvElement type="radio" id="doiSuffixDefault" name="doiSuffix" required="true" value="default" checked=$checked label="plugins.pubIds.doi.manager.settings.doiSuffixDefault"}
-			<span class="instruct">{translate key="plugins.pubIds.doi.manager.settings.doiSuffixDefault.description"}</span>
-			{if $doiSuffix eq "customId"}
-				{assign var="checked" value=true}
-			{else}
-				{assign var="checked" value=false}
-			{/if}
-			{fbvElement type="radio" id="doiSuffixCustomIdentifier" name="doiSuffix" required="true" value="customId" checked=$checked label="plugins.pubIds.doi.manager.settings.doiSuffixCustomIdentifier"}
+			{fbvElement type="text" label="plugins.pubIds.doi.manager.settings.doiSuffixPattern.example" id="doiPublicationFormatSuffixPattern" value=$doiPublicationFormatSuffixPattern maxlength="40"}
 		{/fbvFormSection}
 	{/fbvFormArea}
 	{fbvFormArea id="doiSuffixReassignFormArea" class="border" title="plugins.pubIds.doi.manager.settings.doiReassign"}
