@@ -1,5 +1,5 @@
 /**
- * @file plugins/themes/default/styles/components.less
+ * @file plugins/themes/default/styles/helpers.less
  *
  * Copyright (c) 2014-2016 Simon Fraser University Library
  * Copyright (c) 2003-2016 John Willinsky
@@ -37,16 +37,11 @@
 
 	a {
 		display: inline-block;
-		padding-left: 1em;
-		padding-right: 1em;
+		padding-left: @base;
+		padding-right: @base;
 		text-decoration: none;
 		padding-top: @half;
 		padding-bottom: @half;
-
-		&:hover,
-		&:focus {
-			color: @primary;
-		}
 	}
 
 	ul {
@@ -57,31 +52,35 @@
 		width: 15em;
 		margin: 0;
 		padding: 0;
-		background: @primary-lift;
+		background: @bg;
+		border-radius: @radius;
+		box-shadow: 0 0 5px rgba(0,0,0,0.3);
 
 		li {
 			display: block;
 		}
 
-		ul {
-			top: 0;
-			background: @primary-lift;
-			border-left: 4px solid @primary;
-		}
-
 		a {
 			display: block;
+			padding-left: @half;
+			border-left: @half solid transparent;
 
 			&:hover,
 			&:focus {
-				background: @primary;
+				outline: 0;
+				background: @bg-shade;
+				border-color: @primary;
 			}
 		}
 
-		li:hover > ul,
-		li:focus > ul,
-		li.in_focus > ul {
-			left: 100%;
+		li:first-child a {
+			border-top-left-radius: @radius;
+			border-top-right-radius: @radius;
+		}
+
+		li:last-child a {
+			border-bottom-left-radius: @radius;
+			border-bottom-right-radius: @radius;
 		}
 	}
 
@@ -89,6 +88,27 @@
 	li:focus > ul,
 	li.in_focus > ul {
 		left: 0;
+	}
+
+	// Arrow linking top-level menu items with submenus
+	.has_submenu:hover,
+	.has_submenu.in_focus {
+
+		&:before {
+			content: '';
+			position: absolute;
+			bottom: 0;
+			left: 50%;
+			.transform(translateX(-100%)); // Extra 50% centers under text, accounting for extra space from dropdown caret on the right.
+			width: 0;
+			height: 0;
+			color: @bg;
+			border-bottom: @base solid;
+			border-right: @base solid transparent;
+			border-left: @base solid transparent;
+			vertical-align: middle;
+			z-index: 1001;
+		}
 	}
 
 	// Ensure a dropdown doesn't open beyond the edge of the screen by aligning

@@ -16,14 +16,15 @@
 			margin: @double 0 0;
 			padding: 0;
 			list-style: none;
-			background: @bg;
 			font-size: @font-sml;
+			border: @bg-border;
+			border-bottom: none;
 		}
 
 		li {
 			position: relative;
 			padding: @base @base @base @double;
-			border-bottom: 1px solid @lift;
+			border-bottom: @bg-border;
 
 			&:before {
 				&:extend(.fa);
