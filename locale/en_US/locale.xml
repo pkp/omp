@@ -256,6 +256,7 @@
 	<message key="catalog.manage.series">Series</message>
 	<message key="catalog.manage.series.issn">ISSN</message>
 	<message key="catalog.manage.series.issn.validation">Please enter a valid ISSN.</message>
+	<message key="catalog.manage.series.issn.equalValidation">Online and print ISSN must not be the same.</message>
 	<message key="catalog.manage.series.onlineIssn">Online ISSN</message>
 	<message key="catalog.manage.series.printIssn">Print ISSN</message>
 	<message key="catalog.manage.managementIntroduction">Welcome to Catalog Management. From this page you can publish new catalog entries; review and configure your Featured Books listing; review and configure your New Releases listing; and review and configure your books by Category and Series.</message>

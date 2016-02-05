@@ -33,6 +33,7 @@ class SeriesForm extends PKPSectionForm {
 		$this->addCheck(new FormValidatorLocale($this, 'title', 'required', 'manager.setup.form.series.nameRequired'));
 		$this->addCheck(new FormValidatorISSN($this, 'onlineIssn', 'optional', 'catalog.manage.series.issn.validation'));
 		$this->addCheck(new FormValidatorISSN($this, 'printIssn', 'optional', 'catalog.manage.series.issn.validation'));
+		$this->addCheck(new FormValidatorCustom($this, 'printIssn', 'optional', 'catalog.manage.series.issn.equalValidation', create_function('$printIssn,$form', 'if ($form->getData(\'onlineIssn\') != \'\' && $form->getData(\'onlineIssn\') == $printIssn)return false;return true;'), array(&$this)));
 	}
 
 	/**
