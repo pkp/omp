@@ -184,6 +184,38 @@ class Series extends PKPSection {
 	}
 
 	/**
+	 * Get online ISSN.
+	 * @return string
+	 */
+	function getOnlineISSN() {
+		return $this->getData('onlineIssn');
+	}
+
+	/**
+	 * Set online ISSN.
+	 * @param $onlineIssn string
+	 */
+	function setOnlineISSN($onlineIssn) {
+		return $this->setData('onlineIssn', $onlineIssn);
+	}
+
+	/**
+	 * Get print ISSN.
+	 * @return string
+	 */
+	function getPrintISSN() {
+		return $this->getData('printIssn');
+	}
+
+	/**
+	 * Set print ISSN.
+	 * @param $printIssn string
+	 */
+	function setPrintISSN($printIssn) {
+		return $this->setData('printIssn', $printIssn);
+	}
+
+	/**
 	 * Get the option how the books in this series should be sorted,
 	 * in the form: concat(sortBy, sortDir).
 	 * @return string

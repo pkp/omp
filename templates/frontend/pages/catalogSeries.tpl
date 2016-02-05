@@ -36,6 +36,16 @@
 		<div class="description">
 			{$description|nl2br|strip_unsafe_html}
 		</div>
+		{if $series->getOnlineISSN()}
+			<div class="onlineISSN">
+				{translate key="catalog.manage.series.onlineIssn"} {$series->getOnlineISSN()|escape}
+			</div>
+		{/if}
+		{if $series->getPrintISSN()}
+			<div class="printISSN">
+				{translate key="catalog.manage.series.printIssn"} {$series->getPrintISSN()|escape}
+			</div>
+		{/if}
 	</div>
 
 	{* No published titles in this category *}

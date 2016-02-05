@@ -121,7 +121,7 @@ class SeriesDAO extends PKPSectionDAO {
 		return array_merge(
 			parent::getAdditionalFieldNames(),
 			array(
-				'sortOption',
+				'onlineIssn', 'printIssn', 'sortOption',
 			)
 		);
 	}
