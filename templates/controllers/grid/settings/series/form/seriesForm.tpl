@@ -68,8 +68,8 @@
 		{/fbvFormSection}
 
 		{fbvFormSection label="catalog.manage.series.issn" description="manager.setup.issnDescription"}
-			{fbvElement type="text" id="onlineIssn" label="catalog.manage.series.onlineIssn" value=$onlineIssn maxlength="32" size=$fbvStyles.size.MEDIUM inline=true}
-			{fbvElement type="text" id="printIssn" label="catalog.manage.series.printIssn" value=$printIssn maxlength="80" size=$fbvStyles.size.MEDIUM inline=true}
+			{fbvElement type="text" id="onlineIssn" label="catalog.manage.series.onlineIssn" value=$onlineIssn maxlength="16" size=$fbvStyles.size.MEDIUM inline=true}
+			{fbvElement type="text" id="printIssn" label="catalog.manage.series.printIssn" value=$printIssn maxlength="16" size=$fbvStyles.size.MEDIUM inline=true}
 		{/fbvFormSection}
 
 		{fbvFormSection label="catalog.sortBy" description="catalog.sortBy.seriesDescription" for="sortOption"}
