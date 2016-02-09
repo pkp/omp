@@ -164,6 +164,7 @@ class PublicationFormatDAO extends RepresentationDAO {
 		$publicationFormat->setProductAvailabilityCode($row['product_availability_code']);
 		$publicationFormat->setTechnicalProtectionCode($row['technical_protection_code']);
 		$publicationFormat->setReturnableIndicatorCode($row['returnable_indicator_code']);
+		$publicationFormat->setRemoteURL($row['remote_url']);
 		$publicationFormat->setIsAvailable($row['is_available']);
 
 		$this->getDataObjectSettings('publication_format_settings', 'publication_format_id', $row['publication_format_id'], $publicationFormat);
@@ -180,9 +181,9 @@ class PublicationFormatDAO extends RepresentationDAO {
 	function insertObject($publicationFormat) {
 		$this->update(
 			'INSERT INTO publication_formats
-				(is_approved, entry_key, physical_format, submission_id, seq, file_size, front_matter, back_matter, height, height_unit_code, width, width_unit_code, thickness, thickness_unit_code, weight, weight_unit_code, product_composition_code, product_form_detail_code, country_manufacture_code, imprint, product_availability_code, technical_protection_code, returnable_indicator_code, is_available)
+				(is_approved, entry_key, physical_format, submission_id, seq, file_size, front_matter, back_matter, height, height_unit_code, width, width_unit_code, thickness, thickness_unit_code, weight, weight_unit_code, product_composition_code, product_form_detail_code, country_manufacture_code, imprint, product_availability_code, technical_protection_code, returnable_indicator_code, remote_url, is_available)
 			VALUES
-				(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)',
+				(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)',
 			array(
 				(int) $publicationFormat->getIsApproved(),
 				$publicationFormat->getEntryKey(),
@@ -207,6 +208,7 @@ class PublicationFormatDAO extends RepresentationDAO {
 				$publicationFormat->getProductAvailabilityCode(),
 				$publicationFormat->getTechnicalProtectionCode(),
 				$publicationFormat->getReturnableIndicatorCode(),
+				$publicationFormat->getRemoteURL(),
 				(int) $publicationFormat->getIsAvailable(),
 			)
 		);
@@ -246,6 +248,7 @@ class PublicationFormatDAO extends RepresentationDAO {
 				product_availability_code = ?,
 				technical_protection_code = ?,
 				returnable_indicator_code = ?,
+				remote_url = ?,
 				is_available = ?
 			WHERE	publication_format_id = ?',
 			array(
@@ -271,6 +274,7 @@ class PublicationFormatDAO extends RepresentationDAO {
 				$publicationFormat->getProductAvailabilityCode(),
 				$publicationFormat->getTechnicalProtectionCode(),
 				$publicationFormat->getReturnableIndicatorCode(),
+				$publicationFormat->getRemoteURL(),
 				(int) $publicationFormat->getIsAvailable(),
 				(int) $publicationFormat->getId()
 			)
