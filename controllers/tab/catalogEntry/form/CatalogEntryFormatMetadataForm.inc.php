@@ -30,8 +30,8 @@ class CatalogEntryFormatMetadataForm extends Form {
 	/** @var boolean is this a physical, non-digital format? */
 	var $_isPhysicalFormat;
 
-    /** @var string a remote URL to retrieve the contents in this format */
-    var $_remoteURL;
+	/** @var string a remote URL to retrieve the contents in this format */
+	var $_remoteURL;
 
 	/** @var array Parameters to configure the form template */
 	var $_formParams;
@@ -41,9 +41,9 @@ class CatalogEntryFormatMetadataForm extends Form {
 	 * @param $monograph Monograph
 	 * @param $representationId integer
 	 * @param $isPhysicalFormat integer
-     * @param $remoteURL string
-	 * @param $stageId integer
-	 * @param $formParams array
+	 * @param $remoteURL string
+	 * @param $stageId param
+	 * @integer $formParams array
 	 */
 	function CatalogEntryFormatMetadataForm($monographId, $representationId, $isPhysicalFormat = true, $remoteURL = null, $stageId = null, $formParams = null) {
 		parent::Form('controllers/tab/catalogEntry/form/publicationMetadataFormFields.tpl');
@@ -55,7 +55,7 @@ class CatalogEntryFormatMetadataForm extends Form {
 		$this->_stageId = $stageId;
 		$this->_representationId = $representationId;
 		$this->_isPhysicalFormat = $isPhysicalFormat;
-        $this->_remoteURL = $remoteURL;
+		$this->_remoteURL = $remoteURL;
 		$this->_formParams = $formParams;
 
 		$this->addCheck(new FormValidator($this, 'productAvailabilityCode', 'required', 'grid.catalogEntry.productAvailabilityRequired'));
@@ -77,9 +77,9 @@ class CatalogEntryFormatMetadataForm extends Form {
 		$templateMgr->assign('submissionId', $monograph->getId());
 		$templateMgr->assign('representationId', (int) $this->getPublicationFormatId());
 
-        // included to load format-specific templates
+		// included to load format-specific templates
 		$templateMgr->assign('isPhysicalFormat', (bool) $this->getPhysicalFormat());
-        $templateMgr->assign('remoteURL', $this->getRemoteURL());
+		$templateMgr->assign('remoteURL', $this->getRemoteURL());
 
 		$templateMgr->assign('stageId', $this->getStageId());
 		$templateMgr->assign('formParams', $this->getFormParams());
