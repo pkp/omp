@@ -147,7 +147,7 @@ class PublicationFormatForm extends Form {
 		$publicationFormat->setName($this->getData('name'));
 		$publicationFormat->setEntryKey($this->getData('entryKey'));
 		$publicationFormat->setPhysicalFormat($this->getData('isPhysicalFormat')?true:false);
-		$publicationFormat->setRemoteURL($this->getData('remoteURL');
+		$publicationFormat->setRemoteURL($this->getData('remoteURL'));
 
 		if ($existingFormat) {
 			$publicationFormatDao->updateObject($publicationFormat);
