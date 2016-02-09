@@ -30,6 +30,9 @@ class CatalogEntryFormatMetadataForm extends Form {
 	/** @var boolean is this a physical, non-digital format? */
 	var $_isPhysicalFormat;
 
+    /** @var string a remote URL to retrieve the contents in this format */
+    var $_remoteURL;
+
 	/** @var array Parameters to configure the form template */
 	var $_formParams;
 
@@ -38,10 +41,11 @@ class CatalogEntryFormatMetadataForm extends Form {
 	 * @param $monograph Monograph
 	 * @param $representationId integer
 	 * @param $isPhysicalFormat integer
+     * @param $remoteURL string
 	 * @param $stageId integer
 	 * @param $formParams array
 	 */
-	function CatalogEntryFormatMetadataForm($monographId, $representationId, $isPhysicalFormat = true, $stageId = null, $formParams = null) {
+	function CatalogEntryFormatMetadataForm($monographId, $representationId, $isPhysicalFormat = true, $remoteURL = null, $stageId = null, $formParams = null) {
 		parent::Form('controllers/tab/catalogEntry/form/publicationMetadataFormFields.tpl');
 		$monographDao = DAORegistry::getDAO('MonographDAO');
 		$this->_monograph = $monographDao->getById($monographId);
@@ -51,6 +55,7 @@ class CatalogEntryFormatMetadataForm extends Form {
 		$this->_stageId = $stageId;
 		$this->_representationId = $representationId;
 		$this->_isPhysicalFormat = $isPhysicalFormat;
+        $this->_remoteURL = $remoteURL;
 		$this->_formParams = $formParams;
 
 		$this->addCheck(new FormValidator($this, 'productAvailabilityCode', 'required', 'grid.catalogEntry.productAvailabilityRequired'));
@@ -71,7 +76,11 @@ class CatalogEntryFormatMetadataForm extends Form {
 		$templateMgr = TemplateManager::getManager($request);
 		$templateMgr->assign('submissionId', $monograph->getId());
 		$templateMgr->assign('representationId', (int) $this->getPublicationFormatId());
-		$templateMgr->assign('isPhysicalFormat', (bool) $this->getPhysicalFormat()); // included to load format-specific template
+
+        // included to load format-specific templates
+		$templateMgr->assign('isPhysicalFormat', (bool) $this->getPhysicalFormat());
+        $templateMgr->assign('remoteURL', $this->getRemoteURL());
+
 		$templateMgr->assign('stageId', $this->getStageId());
 		$templateMgr->assign('formParams', $this->getFormParams());
 
@@ -258,6 +267,14 @@ class CatalogEntryFormatMetadataForm extends Form {
 	 */
 	function getPhysicalFormat() {
 		return $this->_isPhysicalFormat;
+	}
+
+	/**
+	 * Get the remote URL
+	 * @return string
+	 */
+	function getRemoteURL() {
+		return $this->_remoteURL;
 	}
 
 	/**
