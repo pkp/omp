@@ -79,6 +79,7 @@
 	<message key="grid.catalogEntry.validPriceRequired">A valid price is required.</message>
 	<message key="grid.catalogEntry.publicationFormatDetails">Format Details</message>
 	<message key="grid.catalogEntry.physicalFormat">Physical format</message>
+	<message key="grid.catalogEntry.remoteURL">URL of remotely-hosted content</message>
 	<message key="grid.catalogEntry.monographRequired">A monograph id is required.</message>
 	<message key="grid.catalogEntry.publicationFormatRequired">A publication format must be chosen.</message>
 	<message key="grid.catalogEntry.availability">Availability</message>
