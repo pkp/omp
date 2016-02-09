@@ -95,7 +95,7 @@
 
 	{if $isPhysicalFormat}
 		{include file="controllers/tab/catalogEntry/form/physicalPublicationFormat.tpl"}
-	{else}
+	{elseif !$remoteURL}
 		{include file="controllers/tab/catalogEntry/form/digitalPublicationFormat.tpl"}
 	{/if}
 
