@@ -236,6 +236,16 @@
 							{$series->getLocalizedFullTitle()|escape}
 						</a>
 					</div>
+					{if $series->getOnlineISSN()}
+						<div class="onlineISSN">
+							<span class="label">{translate key="catalog.manage.series.onlineIssn"}</span> <span class="value">{$series->getOnlineISSN()|escape}</span>
+						</div>
+					{/if}
+					{if $series->getPrintISSN()}
+						<div class="printISSN">
+							<span class="label">{translate key="catalog.manage.series.printIssn"}</span> <span class="value">{$series->getPrintISSN()|escape}</span>
+						</div>
+					{/if}
 				</div>
 			{/if}
 

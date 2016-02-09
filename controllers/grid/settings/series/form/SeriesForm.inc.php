@@ -31,6 +31,9 @@ class SeriesForm extends PKPSectionForm {
 
 		// Validation checks for this form
 		$this->addCheck(new FormValidatorLocale($this, 'title', 'required', 'manager.setup.form.series.nameRequired'));
+		$this->addCheck(new FormValidatorISSN($this, 'onlineIssn', 'optional', 'catalog.manage.series.issn.validation'));
+		$this->addCheck(new FormValidatorISSN($this, 'printIssn', 'optional', 'catalog.manage.series.issn.validation'));
+		$this->addCheck(new FormValidatorCustom($this, 'printIssn', 'optional', 'catalog.manage.series.issn.equalValidation', create_function('$printIssn,$form', 'return !($form->getData(\'onlineIssn\') != \'\' && $form->getData(\'onlineIssn\') == $printIssn);'), array(&$this)));
 	}
 
 	/**
@@ -60,6 +63,8 @@ class SeriesForm extends PKPSectionForm {
 				'subtitle' => $series->getSubtitle(null),
 				'image' => $series->getImage(),
 				'restricted' => $series->getEditorRestricted(),
+				'onlineIssn' => $series->getOnlineISSN(),
+				'printIssn' => $series->getPrintISSN(),
 				'sortOption' => $sortOption,
 			);
 		}
@@ -117,7 +122,7 @@ class SeriesForm extends PKPSectionForm {
 	 */
 	function readInputData() {
 		parent::readInputData();
-		$this->readUserVars(array('seriesId', 'path', 'featured', 'restricted', 'description', 'categories', 'prefix', 'subtitle', 'temporaryFileId', 'sortOption'));
+		$this->readUserVars(array('seriesId', 'path', 'featured', 'restricted', 'description', 'categories', 'prefix', 'subtitle', 'temporaryFileId', 'onlineIssn', 'printIssn', 'sortOption'));
 	}
 
 	/**
@@ -145,6 +150,8 @@ class SeriesForm extends PKPSectionForm {
 		$series->setPrefix($this->getData('prefix'), null); // Localized
 		$series->setSubtitle($this->getData('subtitle'), null); // Localized
 		$series->setEditorRestricted($this->getData('restricted'));
+		$series->setOnlineISSN($this->getData('onlineIssn'));
+		$series->setPrintISSN($this->getData('printIssn'));
 		$series->setSortOption($this->getData('sortOption'));
 
 		// Insert or update the series in the DB
