@@ -434,7 +434,7 @@ class PublicationFormat extends Representation {
 	 * @return string
 	 */
 	function getRemoteURL() {
-		return $this->getData('remoteUrl')
+		return $this->getData('remoteUrl');
 	}
 
 	/**
