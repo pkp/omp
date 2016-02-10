@@ -228,22 +228,26 @@
 			{* Series *}
 			{if $series}
 				<div class="item series">
-					<div class="label">
-						{translate key="series.series"}
-					</div>
-					<div class="value">
-						<a href="{url page="catalog" op="series" path=$series->getPath()}">
-							{$series->getLocalizedFullTitle()|escape}
-						</a>
+					<div class="sub_item">
+						<div class="label">
+							{translate key="series.series"}
+						</div>
+						<div class="value">
+							<a href="{url page="catalog" op="series" path=$series->getPath()}">
+								{$series->getLocalizedFullTitle()|escape}
+							</a>
+						</div>
 					</div>
 					{if $series->getOnlineISSN()}
-						<div class="onlineISSN">
-							<span class="label">{translate key="catalog.manage.series.onlineIssn"}</span> <span class="value">{$series->getOnlineISSN()|escape}</span>
+						<div class="sub_item">
+							<div class="label">{translate key="catalog.manage.series.onlineIssn"}</div>
+							<div class="value">{$series->getOnlineISSN()|escape}</div>
 						</div>
 					{/if}
 					{if $series->getPrintISSN()}
-						<div class="printISSN">
-							<span class="label">{translate key="catalog.manage.series.printIssn"}</span> <span class="value">{$series->getPrintISSN()|escape}</span>
+						<div class="sub_item">
+							<div class="label">{translate key="catalog.manage.series.printIssn"}</div>
+							<div class="value">{$series->getPrintISSN()|escape}</div>
 						</div>
 					{/if}
 				</div>
