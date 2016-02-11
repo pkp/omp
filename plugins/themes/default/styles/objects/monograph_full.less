@@ -151,6 +151,15 @@
 					&:extend(.fa);
 					margin-right: 0.25em;
 				}
+				&.pub_format_remote:before {
+					&:extend(.fa);
+					content: @fa-var-external-link;
+				}
+				&.pub_format_single:before {
+					&:extend(.fa);
+					content: @fa-var-download;
+				}
+
 			}
 		}
 
@@ -184,15 +193,6 @@
 			&.pdf:before {
 				content: @fa-var-file-pdf-o;
 			}
-			&.pub_format_remote:before {
-				&:extend(.fa);
-				content: @fa-var-external-link;
-			}
-			&.pub_format_single:before {
-				&:extend(.fa);
-				content: @fa-var-download;
-			}
-
 		}
 	}
 
