@@ -154,6 +154,24 @@
 			}
 		}
 
+		.pub_format_remote {
+
+			a {
+				&:extend(.cmp_button);
+
+				&:hover,
+				&:focus {
+					&:extend(.cmp_button:hover);
+				}
+
+				&:before {
+					&:extend(.fa);
+					content: @fa-var-external-link;
+					margin-right: 0.25em;
+				}
+			}
+		}
+
 		.link {
 			position: absolute;
 			top: 0;
