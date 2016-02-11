@@ -42,8 +42,8 @@ class CatalogEntryFormatMetadataForm extends Form {
 	 * @param $representationId integer
 	 * @param $isPhysicalFormat integer
 	 * @param $remoteURL string
-	 * @param $stageId param
-	 * @integer $formParams array
+	 * @param $stageId integer
+	 * @param $formParams array
 	 */
 	function CatalogEntryFormatMetadataForm($monographId, $representationId, $isPhysicalFormat = true, $remoteURL = null, $stageId = null, $formParams = null) {
 		parent::Form('controllers/tab/catalogEntry/form/publicationMetadataFormFields.tpl');
