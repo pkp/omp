@@ -105,8 +105,17 @@ class CatalogBookHandler extends Handler {
 				$availableFilesByPublicationFormat[$availableFile->getAssocId()][] = $availableFile;
 			}
 
+			$remoteResourcesByPublicationFormat = array();
+			foreach ($publishedMonograph->getPublicationFormats(true) as $publicationFormat) {
+				$remoteURL = $publicationFormat->getRemoteURL();
+				if ($remoteURL != null) {
+					$remoteResourcesByPublicationFormat[$publicationFormat->getId()] = $remoteURL;
+				}
+			}
+
 			// Expose variables to template
 			$templateMgr->assign('availableFiles', $availableFilesByPublicationFormat);
+			$templateMgr->assign('remoteResources', $remoteResourcesByPublicationFormat);
 
 		}
 
