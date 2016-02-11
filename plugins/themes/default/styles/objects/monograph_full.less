@@ -136,6 +136,7 @@
 		}
 
 		.link,
+		.pub_format_remote,
 		.pub_format_single {
 
 			a {
@@ -148,25 +149,6 @@
 
 				&:before {
 					&:extend(.fa);
-					content: @fa-var-download;
-					margin-right: 0.25em;
-				}
-			}
-		}
-
-		.pub_format_remote {
-
-			a {
-				&:extend(.cmp_button);
-
-				&:hover,
-				&:focus {
-					&:extend(.cmp_button:hover);
-				}
-
-				&:before {
-					&:extend(.fa);
-					content: @fa-var-external-link;
 					margin-right: 0.25em;
 				}
 			}
@@ -194,6 +176,7 @@
 			}
 		}
 
+		.pub_format_remote a,
 		.pub_format_single a {
 			width: 100%;
 			text-align: center;
@@ -201,6 +184,15 @@
 			&.pdf:before {
 				content: @fa-var-file-pdf-o;
 			}
+			&.pub_format_remote:before {
+				&:extend(.fa);
+				content: @fa-var-external-link;
+			}
+			&.pub_format_single:before {
+				&:extend(.fa);
+				content: @fa-var-download;
+			}
+
 		}
 	}
 
