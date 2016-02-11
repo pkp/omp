@@ -166,7 +166,9 @@
 						{if $publicationFormat->getIsAvailable() && $remoteResources[$publicationFormatId]}
 							{* Only one resource allowed per format, so mimic single-file-download *}
 							<div class="{$publicationFormatId|escape} pub_format_single">
-								<a href="{$publicationFormat->getRemoteURL()}" class="{$publicationFormat->getName()|escape}">
+								<a href="{$publicationFormat->getRemoteURL()}" class="{$publicationFormat->getLocalizedName()|escape}">
+									{translate key="payment.directSales.readRemotely" format=$publicationFormat->getLocalizedName()}
+								</a>
 							</div>
 						{elseif $publicationFormat->getIsAvailable() && $availableFiles[$publicationFormatId]}
 
