@@ -26,6 +26,16 @@
 					<attribute name="series" type="normalizedString" />
 					<attribute name="series_position" type="normalizedString" />
 					<attribute name="work_type" type="int" />
+					<attribute name="stage" use="required">
+						<simpleType>
+							<restriction base="string">
+								<enumeration value="submission" />
+								<enumeration value="externalReview" />
+								<enumeration value="editing" />
+								<enumeration value="production" />
+							</restriction>
+						</simpleType>
+					</attribute>
 				</extension>
 			</complexContent>
 		</complexType>
