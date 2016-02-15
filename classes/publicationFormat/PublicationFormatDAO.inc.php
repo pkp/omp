@@ -63,7 +63,7 @@ class PublicationFormatDAO extends RepresentationDAO {
 				'SELECT pf.*
 				FROM	publication_formats pf ' .
 				($contextId?'INNER JOIN submissions s ON (pf.submission_id = s.submission_id) ':'') .
-				'WHERE	g.submission_id = ? ' .
+				'WHERE	pf.submission_id = ? ' .
 				($contextId?' AND s.context_id = ? ':'') .
 				'ORDER BY pf.seq',
 				$params
