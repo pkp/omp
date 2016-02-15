@@ -54,13 +54,19 @@ class PublicationFormatDAO extends RepresentationDAO {
 	/**
 	 * @copydoc RepresentationDAO::getBySubmissionId()
 	 */
-	function getBySubmissionId($submissionId) {
+	function getBySubmissionId($submissionId, $contextId = null) {
+		$params = array((int) $submissionId);
+		if ($contextId) $params[] = (int) $contextId;
+
 		return new DAOResultFactory(
 			$this->retrieve(
-				'SELECT *
-				FROM	publication_formats
-				WHERE	submission_id = ?',
-				(int) $submissionId
+				'SELECT pf.*
+				FROM	publication_formats pf ' .
+				($contextId?'INNER JOIN submissions s ON (pf.submission_id = s.submission_id) ':'') .
+				'WHERE	g.submission_id = ? ' .
+				($contextId?' AND s.context_id = ? ':'') .
+				'ORDER BY pf.seq',
+				$params
 			),
 			$this, '_fromRow'
 		);
