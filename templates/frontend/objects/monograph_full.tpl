@@ -165,8 +165,8 @@
 						{assign var=publicationFormatId value=$publicationFormat->getId()}
 						{if $publicationFormat->getIsAvailable() && $remoteResources[$publicationFormatId]}
 							{* Only one resource allowed per format, so mimic single-file-download *}
-							<div class="{$publicationFormatId|escape} pub_format_remote">
-								<a href="{$publicationFormat->getRemoteURL()|escape}" class="{$publicationFormat->getLocalizedName()|escape}">
+							<div class="pub_format_{$publicationFormatId|escape} pub_format_remote">
+								<a href="{$publicationFormat->getRemoteURL()|escape}" class="remote_resource">
 									{translate key="payment.directSales.readRemotely" format=$publicationFormat->getLocalizedName()}
 								</a>
 							</div>
@@ -174,7 +174,7 @@
 
 							{* Use a simplified presentation if only one file exists *}
 							{if $availableFiles[$publicationFormatId]|@count == 1}
-								<div class="{$publicationFormatId|escape} pub_format_single">
+								<div class="pub_format_{$publicationFormatId|escape} pub_format_single">
 									{foreach from=$availableFiles[$publicationFormatId] item=availableFile}
 										{if $availableFile->getDocumentType()==$smarty.const.DOCUMENT_TYPE_PDF}
 											{url|assign:downloadUrl op="view" path=$publishedMonograph->getId()|to_array:$publicationFormatId:$availableFile->getFileIdAndRevision()}
@@ -194,7 +194,7 @@
 
 							{* Use an itemized presentation if multiple files exists *}
 							{else}
-								<div class="{$publicationFormatId|escape}">
+								<div class="pub_format_{$publicationFormatId|escape}">
 									<span class="label">
 										{$publicationFormat->getLocalizedName()|escape}
 									</span>
