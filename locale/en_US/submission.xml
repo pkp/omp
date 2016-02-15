@@ -86,7 +86,6 @@
 	<message key="submission.submit.placement.categoriesDescription">Select one of the press’s categories for which this work should be considered.</message>
 	<message key="submission.submit.userGroup">Submit in my role as...</message>
 	<message key="submission.submit.userGroupDescription">If you are submitting an Edited Volume, you should choose the volume editor role.</message>
-	<message key="submission.submit.confirmExpedite">Confirm Metadata for Expedited Submission</message>
 
 	<!-- Chapters Grid -->
 	<message key="grid.chapters.title">Chapters</message>
