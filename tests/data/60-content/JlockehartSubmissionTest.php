@@ -61,7 +61,7 @@ class JlockehartSubmissionTest extends ContentBaseTestCase {
 		$this->performReview('gfavio', null, $title, null, 'I recommend that the author resubmit this submission.');
 
 		$this->findSubmissionAsEditor('dbarnes', null, $title);
-		$this->recordEditorialDecision('Accept Submission');
+		$this->recordEditorialDecision('Send to Copyediting');
 		$this->waitForElementPresent('//a[contains(text(), \'Copyediting\')]/*[contains(text(), \'Initiated\')]');
 		$this->logOut();
 	}

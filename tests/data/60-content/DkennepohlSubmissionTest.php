@@ -101,7 +101,7 @@ class DkennepohlSubmissionTest extends ContentBaseTestCase {
 		$this->sendToReview('External');
 		$this->waitForElementPresent('//a[contains(text(), \'External Review\')]/*[contains(text(), \'Initiated\')]');
 		$this->assignReviewer('agallego', 'Adela Gallego');
-		$this->recordEditorialDecision('Accept Submission');
+		$this->recordEditorialDecision('Send to Copyediting');
 		$this->waitForElementPresent('//a[contains(text(), \'Copyediting\')]/*[contains(text(), \'Initiated\')]');
 		$this->assignParticipant('Copyeditor', 'Maria Fritz');
 		$this->logOut();
