@@ -560,6 +560,7 @@
 		<field name="product_availability_code" type="C2" size="255"/>
 		<field name="technical_protection_code" type="C2" size="255"/>
 		<field name="returnable_indicator_code" type="C2" size="255"/>
+		<field name="remote_url" type="C2" size="2047"/>
 		<field name="is_approved" type="I1">
 			<NOTNULL />
 			<DEFAULT VALUE="0" />

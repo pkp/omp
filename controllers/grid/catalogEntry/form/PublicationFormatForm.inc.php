@@ -86,6 +86,7 @@ class PublicationFormatForm extends Form {
 				'entryKey' => $format->getEntryKey(),
 				'name' => $format->getName(null),
 				'isPhysicalFormat' => $format->getPhysicalFormat()?true:false,
+				'remoteURL' => $format->getRemoteURL(),
 			);
 		} else {
 			$this->setData('entryKey', 'DA');
@@ -119,6 +120,7 @@ class PublicationFormatForm extends Form {
 			'name',
 			'entryKey',
 			'isPhysicalFormat',
+			'remoteURL',
 		));
 	}
 
@@ -145,6 +147,7 @@ class PublicationFormatForm extends Form {
 		$publicationFormat->setName($this->getData('name'));
 		$publicationFormat->setEntryKey($this->getData('entryKey'));
 		$publicationFormat->setPhysicalFormat($this->getData('isPhysicalFormat')?true:false);
+		$publicationFormat->setRemoteURL($this->getData('remoteURL'));
 
 		if ($existingFormat) {
 			$publicationFormatDao->updateObject($publicationFormat);

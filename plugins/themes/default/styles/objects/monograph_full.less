@@ -136,6 +136,7 @@
 		}
 
 		.link,
+		.pub_format_remote,
 		.pub_format_single {
 
 			a {
@@ -148,9 +149,17 @@
 
 				&:before {
 					&:extend(.fa);
-					content: @fa-var-download;
 					margin-right: 0.25em;
 				}
+			}
+
+			&.pub_format_remote a:before {
+				&:extend(.fa);
+				content: @fa-var-external-link;
+			}
+			&.pub_format_single a:before {
+				&:extend(.fa);
+				content: @fa-var-download;
 			}
 		}
 
@@ -176,6 +185,7 @@
 			}
 		}
 
+		.pub_format_remote a,
 		.pub_format_single a {
 			width: 100%;
 			text-align: center;

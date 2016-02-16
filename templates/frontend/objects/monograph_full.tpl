@@ -157,22 +157,29 @@
 				</div>
 			{/if}
 
-			{* Files *}
-			{if $availableFiles|@count}
+			{* Files and remote resources *}
+			{if $availableFiles|@count || $remoteResources|@count}
 				<div class="item files">
 					{assign var=publicationFormats value=$publishedMonograph->getPublicationFormats()}
 					{foreach from=$publicationFormats item=publicationFormat}
-						{assign var=pubicationFormatId value=$publicationFormat->getId()}
-						{if $publicationFormat->getIsAvailable() && $availableFiles[$pubicationFormatId]}
+						{assign var=publicationFormatId value=$publicationFormat->getId()}
+						{if $publicationFormat->getIsAvailable() && $remoteResources[$publicationFormatId]}
+							{* Only one resource allowed per format, so mimic single-file-download *}
+							<div class="pub_format_{$publicationFormatId|escape} pub_format_remote">
+								<a href="{$publicationFormat->getRemoteURL()|escape}" class="remote_resource">
+									{translate key="payment.directSales.readRemotely" format=$publicationFormat->getLocalizedName()}
+								</a>
+							</div>
+						{elseif $publicationFormat->getIsAvailable() && $availableFiles[$publicationFormatId]}
 
 							{* Use a simplified presentation if only one file exists *}
-							{if $availableFiles[$pubicationFormatId]|@count == 1}
-								<div class="{$pubicationFormatId|escape} pub_format_single">
-									{foreach from=$availableFiles[$pubicationFormatId] item=availableFile}
+							{if $availableFiles[$publicationFormatId]|@count == 1}
+								<div class="pub_format_{$publicationFormatId|escape} pub_format_single">
+									{foreach from=$availableFiles[$publicationFormatId] item=availableFile}
 										{if $availableFile->getDocumentType()==$smarty.const.DOCUMENT_TYPE_PDF}
-											{url|assign:downloadUrl op="view" path=$publishedMonograph->getId()|to_array:$pubicationFormatId:$availableFile->getFileIdAndRevision()}
+											{url|assign:downloadUrl op="view" path=$publishedMonograph->getId()|to_array:$publicationFormatId:$availableFile->getFileIdAndRevision()}
 										{else}
-											{url|assign:downloadUrl op="download" path=$publishedMonograph->getId()|to_array:$pubicationFormatId:$availableFile->getFileIdAndRevision()}
+											{url|assign:downloadUrl op="download" path=$publishedMonograph->getId()|to_array:$publicationFormatId:$availableFile->getFileIdAndRevision()}
 										{/if}
 										<a href="{$downloadUrl}" class="{$availableFile->getDocumentType()|escape}">
 											{if $availableFile->getDirectSalesPrice()}
@@ -187,23 +194,23 @@
 
 							{* Use an itemized presentation if multiple files exists *}
 							{else}
-								<div class="{$pubicationFormatId|escape}">
+								<div class="pub_format_{$publicationFormatId|escape}">
 									<span class="label">
 										{$publicationFormat->getLocalizedName()|escape}
 									</span>
 									<span class="value">
 										<ul>
 											{* There will be at most one of these *}
-											{foreach from=$availableFiles[$pubicationFormatId] item=availableFile}
+											{foreach from=$availableFiles[$publicationFormatId] item=availableFile}
 												<li>
 													<span class="name">
 														{$availableFile->getLocalizedName()|escape}
 													</span>
 													<span class="link">
 														{if $availableFile->getDocumentType()==$smarty.const.DOCUMENT_TYPE_PDF}
-															{url|assign:downloadUrl op="view" path=$publishedMonograph->getId()|to_array:$pubicationFormatId:$availableFile->getFileIdAndRevision()}
+															{url|assign:downloadUrl op="view" path=$publishedMonograph->getId()|to_array:$publicationFormatId:$availableFile->getFileIdAndRevision()}
 														{else}
-															{url|assign:downloadUrl op="download" path=$publishedMonograph->getId()|to_array:$pubicationFormatId:$availableFile->getFileIdAndRevision()}
+															{url|assign:downloadUrl op="download" path=$publishedMonograph->getId()|to_array:$publicationFormatId:$availableFile->getFileIdAndRevision()}
 														{/if}
 														<a href="{$downloadUrl}" class="{$availableFile->getDocumentType()}">
 															{if $availableFile->getDirectSalesPrice()}

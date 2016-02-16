@@ -50,7 +50,7 @@ class PublicationFormat extends Representation {
 
 	/**
 	 * Sets the ONIX code for the publication format
-	 * @param string $code
+	 * @param $code string
 	 */
 	function setEntryKey($entryKey) {
 		$this->setData('entryKey', $entryKey);
@@ -92,7 +92,7 @@ class PublicationFormat extends Representation {
 
 	/**
 	 * Set the country of manufacture code for a publication format.
-	 * @param string $countryManufactureCode
+	 * @param $countryManufactureCode string
 	 */
 	function setCountryManufactureCode($countryManufactureCode) {
 		return $this->setData('countryManufactureCode', $countryManufactureCode);
@@ -108,7 +108,7 @@ class PublicationFormat extends Representation {
 
 	/**
 	 * Set the product availability code (ONIX value) for a publication format.
-	 * @param string $productAvailabilityCode
+	 * @param $productAvailabilityCode string
 	 */
 	function setProductAvailabilityCode($productAvailabilityCode) {
 		return $this->setData('productAvailabilityCode', $productAvailabilityCode);
@@ -124,7 +124,7 @@ class PublicationFormat extends Representation {
 
 	/**
 	 * Set the height of a publication format.
-	 * @param string $height
+	 * @param $height string
 	 */
 	function setHeight($height) {
 		return $this->setData('height', $height);
@@ -140,7 +140,7 @@ class PublicationFormat extends Representation {
 
 	/**
 	 * Set the height unit (ONIX value) for a publication format.
-	 * @param string $heightUnitCode
+	 * @param $heightUnitCode string
 	 */
 	function setHeightUnitCode($heightUnitCode) {
 		return $this->setData('heightUnitCode', $heightUnitCode);
@@ -156,7 +156,7 @@ class PublicationFormat extends Representation {
 
 	/**
 	 * Set the width of a publication format.
-	 * @param string $width
+	 * @param $width string
 	 */
 	function setWidth($width) {
 		return $this->setData('width', $width);
@@ -172,7 +172,7 @@ class PublicationFormat extends Representation {
 
 	/**
 	 * Set the width unit code (ONIX value) for a publication format.
-	 * @param string $widthUnitCode
+	 * @param $widthUnitCode string
 	 */
 	function setWidthUnitCode($widthUnitCode) {
 		return $this->setData('widthUnitCode', $widthUnitCode);
@@ -188,7 +188,7 @@ class PublicationFormat extends Representation {
 
 	/**
 	 * Set the thickness of a publication format.
-	 * @param string $thickness
+	 * @param $thickness string
 	 */
 	function setThickness($thickness) {
 		return $this->setData('thickness', $thickness);
@@ -204,7 +204,7 @@ class PublicationFormat extends Representation {
 
 	/**
 	 * Set the thickness unit code (ONIX value) for a publication format.
-	 * @param string $thicknessUnitCode
+	 * @param $thicknessUnitCode string
 	 */
 	function setThicknessUnitCode($thicknessUnitCode) {
 		return $this->setData('thicknessUnitCode', $thicknessUnitCode);
@@ -220,7 +220,7 @@ class PublicationFormat extends Representation {
 
 	/**
 	 * Set the weight for a publication format.
-	 * @param string $weight
+	 * @param $weight string
 	 */
 	function setWeight($weight) {
 		return $this->setData('weight', $weight);
@@ -236,7 +236,7 @@ class PublicationFormat extends Representation {
 
 	/**
 	 * Set the weight unit code (ONIX value) for a publication format.
-	 * @param string $weightUnitCode
+	 * @param $weightUnitCode string
 	 */
 	function setWeightUnitCode($weightUnitCode) {
 		return $this->setData('weightUnitCode', $weightUnitCode);
@@ -275,7 +275,7 @@ class PublicationFormat extends Representation {
 
 	/**
 	 * Set the file size of the publication format.
-	 * @param string $fileSize
+	 * @param $fileSize string
 	 */
 	function setFileSize($fileSize) {
 		return $this->setData('fileSize', $fileSize);
@@ -327,7 +327,7 @@ class PublicationFormat extends Representation {
 
 	/**
 	 * Set the product form detail code (ONIX value) for a publication format.
-	 * @param string $productFormDetailCode
+	 * @param $productFormDetailCode string
 	 */
 	function setProductFormDetailCode($productFormDetailCode) {
 		return $this->setData('productFormDetailCode', $productFormDetailCode);
@@ -343,7 +343,7 @@ class PublicationFormat extends Representation {
 
 	/**
 	 * Set the product composition code (ONIX value) for a publication format.
-	 * @param string $productCompositionCode
+	 * @param $productCompositionCode string
 	 */
 	function setProductCompositionCode($productCompositionCode) {
 		return $this->setData('productCompositionCode', $productCompositionCode);
@@ -359,7 +359,7 @@ class PublicationFormat extends Representation {
 
 	/**
 	 * Set the front matter page count for a publication format.
-	 * @param string $frontMatter
+	 * @param $frontMatter string
 	 */
 	function setFrontMatter($frontMatter) {
 		return $this->setData('frontMatter', $frontMatter);
@@ -375,7 +375,7 @@ class PublicationFormat extends Representation {
 
 	/**
 	 * Set the back matter page count for a publication format.
-	 * @param string $backMatter
+	 * @param $backMatter string
 	 */
 	function setBackMatter($backMatter) {
 		return $this->setData('backMatter', $backMatter);
@@ -391,7 +391,7 @@ class PublicationFormat extends Representation {
 
 	/**
 	 * Set the imprint brand name for a publication format.
-	 * @param string $imprint
+	 * @param $imprint string
 	 */
 	function setImprint($imprint) {
 		return $this->setData('imprint', $imprint);
@@ -407,7 +407,7 @@ class PublicationFormat extends Representation {
 
 	/**
 	 * Set the technical protection code for a publication format.
-	 * @param string $technicalProtectionCode
+	 * @param $technicalProtectionCode string
 	 */
 	function setTechnicalProtectionCode($technicalProtectionCode) {
 		return $this->setData('technicalProtectionCode', $technicalProtectionCode);
@@ -423,10 +423,26 @@ class PublicationFormat extends Representation {
 
 	/**
 	 * Set the return code for a publication format.
-	 * @param string $returnableIndicatorCode
+	 * @param $returnableIndicatorCode string
 	 */
 	function setReturnableIndicatorCode($returnableIndicatorCode) {
 		return $this->setData('returnableIndicatorCode', $returnableIndicatorCode);
+	}
+
+	/**
+	 * Get the remote URL at which this format is retrievable.
+	 * @return string
+	 */
+	function getRemoteURL() {
+		return $this->getData('remoteUrl');
+	}
+
+	/**
+	 * Set the remote URL for retrieving this format.
+	 * @param $remoteURL string
+	 */
+	function setRemoteURL($remoteURL) {
+		return $this->setData('remoteUrl', $remoteURL);
 	}
 
 	/**

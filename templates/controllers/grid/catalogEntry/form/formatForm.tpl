@@ -26,6 +26,9 @@
 		{fbvFormSection for="publicationFormat" size=$fbvStyles.size.MEDIUM list=true}
 			{fbvElement type="checkbox" label="grid.catalogEntry.physicalFormat" id="isPhysicalFormat" checked=$isPhysicalFormat}
 		{/fbvFormSection}
+		{fbvFormSection for="remote"}
+			{fbvElement type="text" id="remoteURL" label="grid.catalogEntry.remoteURL" value=$remoteURL}
+		{/fbvFormSection}
 	{/fbvFormArea}
 	{fbvFormButtons}
 </form>
