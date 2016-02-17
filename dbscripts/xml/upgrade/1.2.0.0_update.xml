@@ -35,4 +35,11 @@
 		<query>INSERT INTO press_settings (press_id, setting_name, setting_value, setting_type) SELECT p.press_id, 'coverThumbnailsMaxWidth', '106', 'int' FROM presses p</query>
 		<query>INSERT INTO press_settings (press_id, setting_name, setting_value, setting_type) SELECT p.press_id, 'coverThumbnailsMaxHeight', '100', 'int' FROM presses p</query>
 	</sql>	
+
+	<!-- Issue #562: automatic review reminders. -->
+	<table name="scheduled_tasks">
+		<row>
+			<field name="class_name">lib.pkp.classes.task.ReviewReminder</field>
+		</row>
+	</table>
 </data>
