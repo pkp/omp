@@ -30,7 +30,7 @@
 
 	{fbvFormArea id="file"}
 		{fbvFormSection title="monograph.coverImage"}
-			<div id="plupload"></div>
+			{include file="controllers/fileUploadContainer.tpl" id="plupload"}
 		{/fbvFormSection}
 	{/fbvFormArea}
 	{* Container for uploaded file *}
