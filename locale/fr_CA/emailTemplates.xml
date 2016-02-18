@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE email_texts SYSTEM "../../lib/pkp/dtd/emailTemplateData.dtd">
 <!--
-  * locale/fr_CA/emailTemplateData.xml
+  * locale/fr_CA/emailTemplates.xml
   *
   * Copyright (c) 2014-2016 Simon Fraser University Library
   * Copyright (c) 2003-2016 John Willinsky
@@ -10,27 +10,6 @@
   * Localized email templates XML file.
   -->
 <email_texts locale="fr_CA">
-	<email_text key="AUDITOR_REQUEST">
-		<subject>Requête de vérification d'un manuscrit</subject>
-		<body><![CDATA[{$auditorName}:<br />
-<br />
-De nouveaux fichiers ont été téléchargés pour le manuscrit &quot;{$submissionTitle}&quot; et nous vous prions de bien vouloir les vérifier. Il est important que les participants de la presse examinent le manuscrit à chaque étape.<br />
-<br />
-<br />
-Le fichier est disponible au: <br />
-<br />
-<a href="{$auditUrl}">{$auditUrl}</a><br />
-<br />
-Nom de l'utilisateur : {$auditorUserName}<br />
-<br />
-Si vous ne pouvez pas vérifier ce fichier avant le {$weekLaterDate}, veuillez nous en informer en répondant à ce courriel.<br />
-<br />
-Nous vous remercions à l'avance pour votre collaboration.<br />
-<br />
-{$editorialContactSignature}<br />
-]]></body>
-		<description>Ce courriel est envoyé par le rédacteur en chef d'une série à un vérificateur pour lui demander s'il accepte ou refuse de vérifier une soumission.</description>
-	</email_text>
 	<email_text key="NOTIFICATION">
 		<subject>Nouvelle notification de {$siteTitle}</subject>
 		<body><![CDATA[Vous avez reçu une nouvelle notification de {$siteTitle}:<br />

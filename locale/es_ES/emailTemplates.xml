@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE email_texts SYSTEM "../../lib/pkp/dtd/emailTemplateData.dtd">
 <!--
-  * locale/es_ES/emailTemplateData.xml
+  * locale/es_ES/emailTemplates.xml
   *
   * Copyright (c) 2014-2016 Simon Fraser University Library
   * Copyright (c) 2003-2016 John Willinsky
@@ -109,25 +109,6 @@ Gracias, <br />
 Gracias por el constante interés en nuestro trabajo, <br />
 {$editorialContactSignature}]]></body>
 		<description>Este correo electrónico se enviará a los lectores registrados mediante el enlace "Notificar Usuarios" en el Área Personal. Notifica a los lectores acerca de los nuevos libros y les invita a visitar la editorial con la URL que se proporcione.</description>
-	</email_text>
-	<email_text key="AUDITOR_REQUEST">
-		<subject>Petición de examen del texto completo</subject>
-		<body><![CDATA[{$auditorName}:<br />
-<br />
-Se han subido nuevos ficheros para el texto completo &quot;{$submissionTitle},&quot; y se te pide que los examines. Es importante para la editorial que los participantes revisen el texto completo en todas las etapas.<br />
-<br />
-Puedes encontrar los ficheros que revisar en:<br />
-<br />
-<a href="{$auditUrl}">{$auditUrl}</a><br />
-<br />
-Nombre de usuario: {$auditorUserName}<br />
-<br />
-Por favor, indícanos en otro correo eléctronico si tienes problemas para completar el examen del texto para la {$weekLaterDate}<br />
-<br />
-Muchas gracias por tener en cuenta esta petición.<br />
-<br />
-{$editorialContactSignature}]]></body>
-		<description>El coordinador de colección enviará este correo electrónico al examinador para solicitar que se acepte o rechace la tarea de examinar una propuesta.</description>
 	</email_text>
 	<email_text key="SUBMISSION_ACK">
 		<subject>Propuesta recibida</subject>
