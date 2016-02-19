@@ -78,9 +78,9 @@ class LanguageToggleBlockPlugin extends BlockPlugin {
 	}
 
 	/**
-	 * Get the HTML contents for this block.
+	 * @copydoc BlockPlugin::getContents()
 	 */
-	function getContents(&$templateMgr, $request = null) {
+	function getContents($templateMgr, $request = null) {
 		if (!defined('SESSION_DISABLE_INIT')) {
 			$press = $request->getPress();
 			if (isset($press)) {

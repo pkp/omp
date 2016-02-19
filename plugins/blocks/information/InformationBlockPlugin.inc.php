@@ -40,11 +40,9 @@ class InformationBlockPlugin extends BlockPlugin {
 	}
 
 	/**
-	 * Get the HTML contents for this block.
-	 * @param $templateMgr object
-	 * @return $string
+	 * @copydoc BlockPlugin::getContents()
 	 */
-	function getContents(&$templateMgr, $request = null) {
+	function getContents($templateMgr, $request = null) {
 		$press = $request->getPress();
 		if (!$press) return '';
 
