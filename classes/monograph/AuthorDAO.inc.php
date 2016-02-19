@@ -47,7 +47,7 @@ class AuthorDAO extends PKPAuthorDAO {
 
 		if (isset($pressId)) $params[] = $pressId;
 		if (isset($initial)) {
-			$params[] = String::strtolower($initial) . '%';
+			$params[] = PKPString::strtolower($initial) . '%';
 			$initialSql = ' AND LOWER(a.last_name) LIKE LOWER(?)';
 		} else {
 			$initialSql = '';

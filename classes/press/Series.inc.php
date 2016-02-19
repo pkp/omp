@@ -53,7 +53,7 @@ class Series extends PKPSection {
 		$fullTitle .= $this->getLocalizedTitle();
 
 		if ($subtitle = $this->getLocalizedSubtitle()) {
-			$fullTitle = String::concatTitleFields(array($fullTitle, $subtitle));
+			$fullTitle = PKPString::concatTitleFields(array($fullTitle, $subtitle));
 		}
 
 		return $fullTitle;

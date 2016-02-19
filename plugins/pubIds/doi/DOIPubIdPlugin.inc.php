@@ -106,22 +106,22 @@ class DOIPubIdPlugin extends PubIdPlugin {
 				$doiSuffix = $this->getSetting($pressId, "doi${pubObjectType}SuffixPattern");
 
 				// %p - press initials
-				$doiSuffix = String::regexp_replace('/%p/', String::strtolower($press->getPath()), $doiSuffix);
+				$doiSuffix = PKPString::regexp_replace('/%p/', PKPString::strtolower($press->getPath()), $doiSuffix);
 
 				if ($publicationFormat) {
 					// %m - monograph id, %f - publication format id
-					$doiSuffix = String::regexp_replace('/%m/', $publicationFormat->getMonographId(), $doiSuffix);
-					$doiSuffix = String::regexp_replace('/%f/', $publicationFormat->getId(), $doiSuffix);
+					$doiSuffix = PKPString::regexp_replace('/%m/', $publicationFormat->getMonographId(), $doiSuffix);
+					$doiSuffix = PKPString::regexp_replace('/%f/', $publicationFormat->getId(), $doiSuffix);
 				}
 				if ($monograph) {
 					// %m - monograph id
-					$doiSuffix = String::regexp_replace('/%m/', $monograph->getId(), $doiSuffix);
+					$doiSuffix = PKPString::regexp_replace('/%m/', $monograph->getId(), $doiSuffix);
 				}
 
 				break;
 
 			default:
-				$doiSuffix = String::strtolower($press->getPath());
+				$doiSuffix = PKPString::strtolower($press->getPath());
 
 				if ($publicationFormat) {
 					$doiSuffix .= '.' . $publicationFormat->getMonographId();

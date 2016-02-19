@@ -39,7 +39,7 @@ class AddThisStatisticsGridCellProvider extends DataObjectGridCellProvider {
 		assert(!empty($columnId));
 		switch ($columnId) {
 			case 'url':
-				return array('label' => '<a href="' . String::stripUnsafeHtml($element['url']) . '" target="_blank">' . String::stripUnsafeHtml($element['url']) . '</a>');
+				return array('label' => '<a href="' . PKPString::stripUnsafeHtml($element['url']) . '" target="_blank">' . PKPString::stripUnsafeHtml($element['url']) . '</a>');
 			case 'shares':
 				return array('label' => $element['shares']);
 		}
