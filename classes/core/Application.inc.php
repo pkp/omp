@@ -197,6 +197,7 @@ class Application extends PKPApplication {
 			$driver = $pluginSettingsDao->getDriver();
 			switch ($driver) {
 				case 'mysql':
+				case 'mysqli':
 					$checkResult = $pluginSettingsDao->retrieve('SHOW COLUMNS FROM plugin_settings LIKE ?', array('context_id'));
 					if ($checkResult->NumRows() == 0) {
 						return 'press_id';
