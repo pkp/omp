@@ -42,6 +42,8 @@
 			$form.find('#attachPermissions').prop('checked', true);
 		}
 
+		this.coverImageMessage_ = options.coverImageMessage;
+
 		$('input[id^="copyrightHolder-"]', $form)
 				.keyup(this.callbackWrapper(this.checkAttachMetadata));
 		$('input[id^="copyrightYear-"]', $form)
@@ -53,6 +55,8 @@
 				$('#attachPermissions').prop('checked', true);
 			}
 		});
+
+		this.bind('fileUploaded', this.callbackWrapper(this.handleCoverImageUpload));
 	};
 	$.pkp.classes.Helper.inherits(
 			$.pkp.controllers.catalog.form.CatalogMetadataFormHandler,
@@ -71,6 +75,15 @@
 	 */
 	$.pkp.controllers.catalog.form.CatalogMetadataFormHandler.prototype.
 			audienceValues_ = null;
+
+	/**
+	 * A message to display in place of the cover image when it has been
+	 * replaced.
+	 * @private
+	 * @type {String?}
+	 */
+	$.pkp.controllers.catalog.form.CatalogMetadataFormHandler.prototype.
+			coverImageMessage_ = null;
 
 
 	//
@@ -112,6 +125,25 @@
 
 		var $element = this.getHtmlElement();
 		$element.find('#attachPermissions').prop('checked', true);
+	};
+
+
+	/**
+	 * Callback for when a new cover image is uploaded
+	 *
+	 * @param {Object} caller The original context in which the callback was called.
+	 * @param {Event} event The event triggered on caller.
+	 * @see $.pkp.controllers.form.FileUploadFormHandler.prototype.handleUploadResponse
+	 */
+	$.pkp.controllers.catalog.form.CatalogMetadataFormHandler.prototype.
+			handleCoverImageUpload = function(caller, event) {
+
+		var $coverImage = this.getHtmlElement().find('.currentCoverImage')
+			.addClass('changed');
+
+		$coverImage.find('img').remove();
+		$coverImage.find('.coverImageMessage').html(
+				/** @type {string} */ (this.coverImageMessage_));
 	};
 
 

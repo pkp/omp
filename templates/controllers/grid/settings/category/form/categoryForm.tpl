@@ -18,7 +18,12 @@
 				$uploader: $('#plupload'),
 				uploaderOptions: {ldelim}
 					uploadUrl: {url|json_encode op="uploadImage" escape=false},
-					baseUrl: {$baseUrl|json_encode}
+					baseUrl: {$baseUrl|json_encode},
+					filters: {ldelim}
+						mime_types : [
+							{ldelim} title : "Image files", extensions : "jpg,jpeg,png" {rdelim}
+						]
+					{rdelim}
 				{rdelim}
 			{rdelim}
 		);
@@ -27,19 +32,6 @@
 
 <form class="pkp_form" id="categoryForm" method="post" action="{url router=$smarty.const.ROUTE_COMPONENT component="grid.settings.category.CategoryCategoryGridHandler" op="updateCategory" categoryId=$categoryId}">
 	{include file="controllers/notification/inPlaceNotification.tpl" notificationId="categoryFormNotification"}
-
-	{fbvFormArea id="file"}
-		{fbvFormSection title="monograph.coverImage"}
-			<div id="plupload"></div>
-		{/fbvFormSection}
-	{/fbvFormArea}
-	{* Container for uploaded file *}
-	<input type="hidden" name="temporaryFileId" id="temporaryFileId" value="" />
-
-	{if $image}
-		{translate|assign:"altTitle" key="monograph.currentCoverImage"}
-		<img class="pkp_helpers_container_center" height="{$image.thumbnailHeight}" width="{$image.thumbnailWidth}" src="{url router=$smarty.const.ROUTE_PAGE page="catalog" op="thumbnail" type="category" id=$categoryId}" alt="{$altTitle|escape}" />
-	{/if}
 
 	{fbvFormArea id="categoryDetails"}
 
@@ -53,6 +45,13 @@
 			{fbvElement type="select" id="parentId" from=$rootCategories selected=$parentId translate=false disabled=$cannotSelectChild}
 		{/fbvFormSection}
 
+		{fbvFormSection title="grid.category.path" required=true for="path"}
+			{fbvElement type="text" id="path" value=$path size=$smarty.const.SMALL maxlength="32"}
+			{url|assign:"sampleUrl" router=$smarty.const.ROUTE_PAGE page="catalog" op="category" path="path"}
+			{** FIXME: is this class instruct still the right one? **}
+			<span class="instruct">{translate key="grid.category.urlWillBe" sampleUrl=$sampleUrl}</span>
+		{/fbvFormSection}
+
 		{fbvFormSection title="grid.category.description" for="context"}
 			{fbvElement type="textarea" multilingual="true" id="description" value=$description rich=true}
 		{/fbvFormSection}
@@ -61,12 +60,18 @@
 			{fbvElement type="select" id="sortOption" from=$sortOptions selected=$sortOption translate=false}
 		{/fbvFormSection}
 
-		{fbvFormSection title="grid.category.path" required=true for="path"}
-			{fbvElement type="text" id="path" value=$path size=$smarty.const.SMALL maxlength="32"}
-			{url|assign:"sampleUrl" router=$smarty.const.ROUTE_PAGE page="catalog" op="category" path="path"}
-			{** FIXME: is this class instruct still the right one? **}
-			<span class="instruct">{translate key="grid.category.urlWillBe" sampleUrl=$sampleUrl}</span>
+		{fbvFormSection title="monograph.coverImage"}
+			{include file="controllers/fileUploadContainer.tpl" id="plupload"}
+			<input type="hidden" name="temporaryFileId" id="temporaryFileId" value="" />
 		{/fbvFormSection}
+
+		{if $image}
+			{fbvFormSection}
+				{translate|assign:"altTitle" key="monograph.currentCoverImage"}
+				<img class="pkp_helpers_container_center" height="{$image.thumbnailHeight}" width="{$image.thumbnailWidth}" src="{url router=$smarty.const.ROUTE_PAGE page="catalog" op="thumbnail" type="category" id=$categoryId}" alt="{$altTitle|escape}" />
+			{/fbvFormSection}
+		{/if}
+
 		{fbvFormButtons}
 
 	{/fbvFormArea}

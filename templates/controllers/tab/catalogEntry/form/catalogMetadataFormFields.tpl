@@ -6,6 +6,7 @@
  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
  *
  *}
+{capture assign="coverImageMessage"}{translate key="monograph.currentCoverImageReload"}{/capture}
 <script type="text/javascript">
 	$(function() {ldelim}
 		// Attach the form handler.
@@ -13,12 +14,18 @@
 			'$.pkp.controllers.catalog.form.CatalogMetadataFormHandler',
 			{ldelim}
 				trackFormChanges: true,
-				$uploader: $('#plupload_catalogMetadata'),
+				$uploader: $('#plupload'),
 				uploaderOptions: {ldelim}
 					uploadUrl: {url|json_encode router=$smarty.const.ROUTE_COMPONENT component="tab.catalogEntry.CatalogEntryTabHandler" op="uploadCoverImage" escape=false stageId=$stageId submissionId=$submissionId},
-					baseUrl: {$baseUrl|json_encode}
+					baseUrl: {$baseUrl|json_encode},
+					filters: {ldelim}
+						mime_types : [
+							{ldelim} title : "Image files", extensions : "jpg,jpeg,png" {rdelim}
+						]
+					{rdelim}
 				{rdelim},
-				arePermissionsAttached: {if $arePermissionsAttached}true{else}false{/if}
+				arePermissionsAttached: {if $arePermissionsAttached}true{else}false{/if},
+				coverImageMessage: "{$coverImageMessage|escape:"javascript"}"
 			{rdelim}
 		);
 	{rdelim});
@@ -51,12 +58,12 @@
 	{/fbvFormArea}
 
 	{fbvFormSection title="monograph.coverImage"}
-		<div class="pkp_help">{translate key="monograph.coverImage.uploadInstructions"}</div>
-		<div id="plupload_catalogMetadata" class="pkp_helpers_threeQuarter pkp_helpers_align_right"></div>
-		<div class="pkp_helpers_align_left">
+		<div class="currentCoverImage">
 			{capture assign="altTitle"}{translate key="monograph.currentCoverImage"}{/capture}
 			<img height="{$coverImage.thumbnailHeight}" width="{$coverImage.thumbnailWidth}" src="{url router=$smarty.const.ROUTE_COMPONENT component="submission.CoverHandler" op="thumbnail" submissionId=$submissionId random=$submissionId|uniqid}" alt="{$altTitle|escape}" />
+			<span class="coverImageMessage description"></span>
 		</div>
+		{include file="controllers/fileUploadContainer.tpl" id="plupload"}
 	{/fbvFormSection}
 
 	<input type="hidden" name="temporaryFileId" id="temporaryFileId" value="" />

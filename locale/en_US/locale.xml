@@ -15,8 +15,8 @@
 	<!-- General monograph keys -->
 	<message key="monograph.audience">Audience</message>
 	<message key="monograph.coverImage">Cover Image</message>
-	<message key="monograph.coverImage.uploadInstructions">Make sure that the image height is not bigger than 150% of it's width, otherwise the carousel will not show the entire cover.</message>
 	<message key="monograph.currentCoverImage">Current Image</message>
+	<message key="monograph.currentCoverImageReload">Save your changes to view the new cover image.</message>
 	<message key="monograph.audience.rangeQualifier">Audience Range Qualifier</message>
 	<message key="monograph.audience.rangeFrom">Audience Range (from)</message>
 	<message key="monograph.audience.rangeTo">Audience Range (to)</message>
