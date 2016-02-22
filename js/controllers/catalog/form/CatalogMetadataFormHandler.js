@@ -80,7 +80,7 @@
 	 * A message to display in place of the cover image when it has been
 	 * replaced.
 	 * @private
-	 * @type {String}
+	 * @type {String?}
 	 */
 	$.pkp.controllers.catalog.form.CatalogMetadataFormHandler.prototype.
 			coverImageMessage_ = null;
@@ -142,7 +142,8 @@
 			.addClass('changed');
 
 		$coverImage.find('img').remove();
-		$coverImage.find('.coverImageMessage').html(this.coverImageMessage_);
+		$coverImage.find('.coverImageMessage').html(
+				/** @type {string} */ (this.coverImageMessage_));
 	};
 
 
