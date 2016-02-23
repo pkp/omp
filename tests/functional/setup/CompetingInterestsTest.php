@@ -65,8 +65,8 @@ class CompetingInterestsTest extends ContentBaseTestCase {
 
 		// Find and view the review
 		$this->findSubmissionAsEditor('dbarnes', null, self::$fullTitle);
-		$this->waitForElementPresent('//span[contains(text(), \'Adela Gallego\')]/../a[@title=\'Read this review\']');
-		$this->click('//span[contains(text(), \'Adela Gallego\')]/../a[@title=\'Read this review\']');
+		$this->waitForElementPresent($selector='//span[contains(text(), \'Adela Gallego\')]/../../..//a[@title=\'Read this review\']');
+		$this->click($selector);
 
 		// There should not be a visible CI statement.
 		$this->waitForElementPresent('//h3[text()=\'Reviewer Comments\']');
@@ -116,8 +116,8 @@ class CompetingInterestsTest extends ContentBaseTestCase {
 
 		// Find and view the review
 		$this->findSubmissionAsEditor('dbarnes', null, self::$fullTitle);
-		$this->waitForElementPresent('//span[contains(text(), \'Al Zacharia\')]/../a[@title=\'Read this review\']');
-		$this->click('//span[contains(text(), \'Al Zacharia\')]/../a[@title=\'Read this review\']');
+		$this->waitForElementPresent($selector='//span[contains(text(), \'Al Zacharia\')]/../../..//a[@title=\'Read this review\']');
+		$this->click($selector);
 
 		// There should be a visible CI statement.
 		$this->waitForElementPresent('//h3[text()=\'Reviewer Comments\']');
@@ -129,8 +129,8 @@ class CompetingInterestsTest extends ContentBaseTestCase {
 
 		// The CI statement entered previously should still be visible.
 		$this->findSubmissionAsEditor('dbarnes', null, self::$fullTitle);
-		$this->waitForElementPresent('//span[contains(text(), \'Al Zacharia\')]/../a[@title=\'Read this review\']');
-		$this->click('//span[contains(text(), \'Al Zacharia\')]/../a[@title=\'Read this review\']');
+		$this->waitForElementPresent($selector='//span[contains(text(), \'Al Zacharia\')]/../../..//a[@title=\'Read this review\']');
+		$this->click($selector);
 		$this->waitForElementPresent('//h3[text()=\'Reviewer Comments\']');
 		$this->assertElementPresent('//*[contains(.,\'' . $competingInterests . '\')]');
 
