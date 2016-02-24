@@ -55,7 +55,7 @@ class CompetingInterestsTest extends ContentBaseTestCase {
 		$this->clickLinkActionNamed('Accept Review, Continue to Step #2');
 		$this->clickLinkActionNamed('Continue to Step #3');
 		$this->waitJQuery();
-		$this->type('css=textarea[id^=comments-]', 'This paper is suitable for publication.');
+		$this->typeTinyMCE('comments', 'This paper is suitable for publication.');
 		$this->clickLinkActionNamed('Submit Review');
 		$this->waitForElementPresent($selector='link=OK');
 		$this->click($selector);
@@ -106,7 +106,7 @@ class CompetingInterestsTest extends ContentBaseTestCase {
 		$this->clickLinkActionNamed('Accept Review, Continue to Step #2');
 		$this->clickLinkActionNamed('Continue to Step #3');
 		$this->waitJQuery();
-		$this->type('css=textarea[id^=comments-]', 'This paper is suitable for publication.');
+		$this->typeTinyMCE('comments', 'This paper is suitable for publication.');
 		$this->clickLinkActionNamed('Submit Review');
 		$this->waitForElementPresent($selector='link=OK');
 		$this->click($selector);
