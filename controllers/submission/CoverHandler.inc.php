@@ -107,22 +107,6 @@ class CoverHandler extends PKPHandler {
 		$simpleMonographFileManager->downloadFile($simpleMonographFileManager->getBasePath() . $coverImage['thumbnailName'], null, true);
 	}
 
-	/**
-	 * Serve the cover catalog image for a published monograph.
-	 */
-	function catalog($args, $request) {
-		$publishedMonograph = $this->getAuthorizedContextObject(ASSOC_TYPE_PUBLISHED_MONOGRAPH);
-		if (!$coverImage = $publishedMonograph->getCoverImage()) {
-			// Can't use Request::redirectUrl; FireFox doesn't
-			// seem to like it for images.
-			header('Location: ' . $request->getBaseUrl() . '/templates/images/book-default.png');
-			exit;
-		}
-
-		import('classes.file.SimpleMonographFileManager');
-		$simpleMonographFileManager = new SimpleMonographFileManager($publishedMonograph->getPressId(), $publishedMonograph->getId());
-		$simpleMonographFileManager->downloadFile($simpleMonographFileManager->getBasePath() . $coverImage['catalogName'], null, true);
-	}
 }
 
 ?>

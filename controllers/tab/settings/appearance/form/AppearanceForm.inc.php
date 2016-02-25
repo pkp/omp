@@ -153,9 +153,6 @@ class AppearanceForm extends PKPAppearanceForm {
 						'thumbnailName' => $cover['thumbnailName'],
 						'thumbnailWidth' => $thumbnailWidth,
 						'thumbnailHeight' => $thumbnailHeight,
-						'catalogName' => $cover['catalogName'],
-						'catalogWidth' => $cover['v'],
-						'catalogHeight' => $cover['catalogHeight'],
 						'uploadName' => $cover['uploadName'],
 						'dateUploaded' => $cover['dateUploaded'],
 					));

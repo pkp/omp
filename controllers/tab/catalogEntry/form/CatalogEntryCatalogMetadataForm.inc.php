@@ -13,14 +13,8 @@
  * @brief Displays a submission's catalog metadata entry form.
  */
 
-// Our two types of images.
+// Image tpye.
 define('SUBMISSION_IMAGE_TYPE_THUMBNAIL', 1);
-define('SUBMISSION_IMAGE_TYPE_CATALOG', 2);
-
-// Define a second pair for the Catalog display, to ensure correct rendering
-// of the page.
-define('CATALOG_MAX_WIDTH', 240);
-define('CATALOG_MAX_HEIGHT', 303);
 
 import('lib.pkp.classes.form.Form');
 
@@ -240,7 +234,6 @@ class CatalogEntryCatalogMetadataForm extends Form {
 			$oldSetting = $publishedMonograph->getCoverImage();
 			if ($oldSetting) {
 				$simpleMonographFileManager->deleteFile($basePath . $oldSetting['thumbnailName']);
-				$simpleMonographFileManager->deleteFile($basePath . $oldSetting['catalogName']);
 				$simpleMonographFileManager->deleteFile($basePath . $oldSetting['name']);
 			}
 
@@ -260,13 +253,12 @@ class CatalogEntryCatalogMetadataForm extends Form {
 			$filename = 'cover' . $this->_imageExtension;
 			$simpleMonographFileManager->copyFile($temporaryFile->getFilePath(), $basePath . $filename);
 
-			// Generate surrogate images (thumbnail and catalog image)
+			// Generate thumbnail image
 			$press = $request->getPress();
 			$coverThumbnailsMaxWidth = $press->getSetting('coverThumbnailsMaxWidth');
 			$coverThumbnailsMaxHeight = $press->getSetting('coverThumbnailsMaxHeight');
 
 			$thumbnailImageInfo = $this->_buildSurrogateImage($cover, $basePath, SUBMISSION_IMAGE_TYPE_THUMBNAIL, $coverThumbnailsMaxWidth, $coverThumbnailsMaxHeight);
-			$catalogImageInfo = $this->_buildSurrogateImage($cover, $basePath, SUBMISSION_IMAGE_TYPE_CATALOG);
 
 			// Clean up
 			imagedestroy($cover);
@@ -278,9 +270,6 @@ class CatalogEntryCatalogMetadataForm extends Form {
 				'thumbnailName' => $thumbnailImageInfo['filename'],
 				'thumbnailWidth' => $thumbnailImageInfo['width'],
 				'thumbnailHeight' => $thumbnailImageInfo['height'],
-				'catalogName' => $catalogImageInfo['filename'],
-				'catalogWidth' => $catalogImageInfo['width'],
-				'catalogHeight' => $catalogImageInfo['height'],
 				'uploadName' => $temporaryFile->getOriginalFileName(),
 				'dateUploaded' => Core::getCurrentDate(),
 			));
@@ -370,7 +359,7 @@ class CatalogEntryCatalogMetadataForm extends Form {
 	}
 
 	/**
-	 * Generates a surrogate image used either as a thumbnail or in the catalog.
+	 * Generates a surrogate image used as a thumbnail.
 	 * @param resource $cover the cover image uploaded.
 	 * @param string $basePath base file path.
 	 * @param int $type the type of image to create.
@@ -387,11 +376,6 @@ class CatalogEntryCatalogMetadataForm extends Form {
 				$maxWidth = $coverThumbnailsMaxWidth;
 				$maxHeight = $coverThumbnailsMaxHeight;
 				$surrogateFilename = 'thumbnail' . $this->_imageExtension;
-				break;
-			case SUBMISSION_IMAGE_TYPE_CATALOG:
-				$maxWidth = CATALOG_MAX_WIDTH;
-				$maxHeight = CATALOG_MAX_HEIGHT;
-				$surrogateFilename = 'catalog' . $this->_imageExtension;
 				break;
 		}
 
