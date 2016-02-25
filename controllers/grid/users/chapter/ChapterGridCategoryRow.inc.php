@@ -75,12 +75,11 @@ class ChapterGridCategoryRow extends GridCategoryRow {
 							$router->url($request, null, null, 'deleteChapter', null, $actionArgs),
 							'modal_delete'
 						),
-						null,
+						__('common.delete'),
 						'delete'
-					), GRID_ACTION_POSITION_ROW_LEFT
+					)
 				);
 			}
-
 		}
 	}
 
