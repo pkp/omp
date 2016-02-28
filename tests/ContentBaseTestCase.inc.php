@@ -99,8 +99,9 @@ class ContentBaseTestCase extends PKPContentBaseTestCase {
 			foreach ($chapter['files'] as $i => $file) {
 				$this->waitForElementPresent('css=[id^=component-listbuilder-files-chapterfileslistbuilder-addItem-button-]');
 				$this->clickAt('css=[id^=component-listbuilder-files-chapterfileslistbuilder-addItem-button-]', '10,10');
-				$this->waitForElementPresent('xpath=(//div[@id="chapterFilesContainer"]//select[@name="newRowId[name]"])[' . ($i+1) . ']//option[text()=' . $this->quoteXpath($file) . ']');
-				$this->select('xpath=(//div[@id="chapterFilesContainer"]//select[@name="newRowId[name]"])[' . ($i+1) . ']', 'label=' . $file);
+				$this->waitForElementPresent($selector='xpath=(//div[@id="chapterFilesContainer"]//select[@name="newRowId[name]"])[' . ($i+1) . ']//option[contains(text(),' . $this->quoteXpath($file) . ')]');
+				$optionFullText = $this->getText($selector);
+				$this->select('xpath=(//div[@id="chapterFilesContainer"]//select[@name="newRowId[name]"])[' . ($i+1) . ']', 'label=' . $optionFullText);
 			}
 
 			$this->click('//form[@id=\'editChapterForm\']//button[text()=\'Save\']');
