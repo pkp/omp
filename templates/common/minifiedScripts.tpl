@@ -106,6 +106,7 @@
 <script src="{$baseUrl}/lib/pkp/js/pages/submission/SubmissionTabHandler.js"></script>
 <script src="{$baseUrl}/lib/pkp/js/controllers/grid/settings/user/form/UserDetailsFormHandler.js"></script>
 <script src="{$baseUrl}/lib/pkp/js/controllers/grid/settings/roles/form/UserGroupFormHandler.js"></script>
+<script src="{$baseUrl}/lib/pkp/js/controllers/grid/settings/metadata/MetadataGridHandler.js"></script>
 <script src="{$baseUrl}/lib/pkp/js/controllers/tab/settings/siteAccessOptions/form/SiteAccessOptionsFormHandler.js"></script>
 <script src="{$baseUrl}/lib/pkp/js/controllers/tab/settings/managementSettings/UsersAndRolesTabHandler.js"></script>
 <script src="{$baseUrl}/lib/pkp/js/controllers/tab/workflow/WorkflowTabHandler.js"></script>
