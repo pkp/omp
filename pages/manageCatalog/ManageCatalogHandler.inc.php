@@ -115,7 +115,7 @@ class ManageCatalogHandler extends Handler {
 
 		$templateMgr->assign('manageCategoriesLinkAction', $manageCategoriesLinkAction);
 		$templateMgr->assign('manageSeriesLinkAction', $manageSeriesLinkAction);
-		return $templateMgr->fetchJson('manageCatalog/index.tpl');
+		return $templateMgr->display('manageCatalog/index.tpl');
 	}
 
 	/**
@@ -141,7 +141,7 @@ class ManageCatalogHandler extends Handler {
 		$templateMgr->assign('publishedMonographs', $publishedMonographs);
 
 		// Display the monograph list
-		return $templateMgr->fetchJson('manageCatalog/monographs.tpl');
+		return $templateMgr->fetch('manageCatalog/monographs.tpl');
 	}
 
 	/**

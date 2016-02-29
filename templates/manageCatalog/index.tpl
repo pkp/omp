@@ -7,6 +7,11 @@
  *
  * Header for the catalog management tabbed interface
  *}
+{strip}
+{assign var="pageTitle" value="navigation.catalog"}
+{include file="common/header.tpl"}
+{/strip}
+
 {if array_intersect(array(ROLE_ID_MANAGER), $userRoles)}
 	{assign var="isManager" value=true}
 {/if}
@@ -141,3 +146,5 @@
 		{/if}
 	</div>
 </div>
+
+{include file="common/footer.tpl"}

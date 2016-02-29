@@ -1,25 +1,25 @@
 <?php
 
 /**
- * @defgroup pages_dashboard Dashboard page
+ * @defgroup pages_submissions Submissions page
  */
 
  /**
- * @file pages/dashboard/index.php
+ * @file pages/submissions/index.php
  *
  * Copyright (c) 2014-2016 Simon Fraser University Library
  * Copyright (c) 2003-2016 John Willinsky
  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
  *
- * @ingroup pages_about
- * @brief Handle requests for dashboard functions.
+ * @ingroup pages_submissions
+ * @brief Handle requests for submissions functions.
  *
  */
 
 switch($op) {
 	case 'index':
 	case 'tasks':
-	case 'submissions':
+	case 'myQueue':
 	case 'active':
 	case 'archives':
 		define('HANDLER_CLASS', 'DashboardHandler');
