@@ -138,13 +138,6 @@
 	<message key="manager.setup.copyeditInstructionsDescription">Οι Οδηγίες επιμέλειας των κειμένων είναι διαθέσιμες για τους Επιμελητές κειμένων, τους Συγγραφείς και τους Επιμελητές ενοτήτων στο στάδιο της επιμέλειας της υποβολής. Παρακάτω θα βρείτε σε μορφή HTML σετ οδηγιών πο μπορούν να τροποποιηθούν ή να αντικατασταθούν από τον Διαχειριστή των Εκδόσεων ανά πάσα στιγμή (σε μορφή HTML ή απλού κειμένου).</message>
 	<message key="manager.setup.copyrightNotice">Δήλωση Πνευματικών Δικαιωμάτων</message>
 	<message key="manager.setup.coverage">Κάλυψη</message>
-	<message key="manager.setup.coverageChronExamples">(Π.χ., Ευρωπαϊκή Αναγέννηση; Ιουρασική περίδος; Τρίτο τρίμηνο; κτλ.)</message>
-	<message key="manager.setup.coverageChronProvideExamples">Παραθέστε μερικά παραδείγματα σχετικών χρονολογικών ή ιστορικών όρων για το συγκεκριμένο πεδίο</message>
-	<message key="manager.setup.coverageDescription">Αναφέρεται τη γεω-χωρική τοποθεσία, τη χρονολογική ή ιστορική κάλυψη, ή/και τα χαρακτηριστικά του δείγματος της έρευνας.</message>
-	<message key="manager.setup.coverageGeoExamples">(Π.χ., Ιβηρική χερσόνησος; Στρατόσφαιρα; Αρκτικό δάσος; κτλ.)</message>
-	<message key="manager.setup.coverageGeoProvideExamples">Παραθέστε μερικά παραδείγματα σχετικών γεω-χωρικών ή γεωγραφικών όρων για το συγκεκριμένο πεδίο</message>
-	<message key="manager.setup.coverageResearchSampleExamples">(Π.χ.,Ηλικία; Φύλο; Εθνικότητα; κτλ.)</message>
-	<message key="manager.setup.coverageResearchSampleProvideExamples">Παραθέστε μερικά παραδείγματα χαρακτηριστικών του δείγματος της έρευνας για το συγκεκριμένο πεδίο</message>
 	<message key="manager.setup.customizingTheLook"><![CDATA[Βήμα 5. Διαμόρφωση της όψης των εκδόσεων]]></message>
 	<message key="manager.setup.customTags">Ειδικά προσαρμοσμένες ετικέτες</message>
 	<message key="manager.setup.customTagsDescription">Ειδικά προσαρμοσμένες ετικέτες κεφαλίδας HTML που προορίζονται για προσθήκη στην κεφαλίδα κάθε σελίδας (π.χ., ετικέτες META).</message>

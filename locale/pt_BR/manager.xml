@@ -138,13 +138,6 @@ Informe, se desesjar, o motivo do bloqueio.</message>
 	<message key="manager.setup.copyeditInstructionsDescription">As instruções de edição de texto estarão disponíveis para editores de texto, autores e editores de seção, durante o estágio de edição. Segu um modelo de instruções em HTML, que pode ser modificado ou substituído pelo gerente da editora a qualquer momento (em HTML ou texto puro).</message>
 	<message key="manager.setup.copyrightNotice">Aviso de direito autoral</message>
 	<message key="manager.setup.coverage">Cobertura</message>
-	<message key="manager.setup.coverageChronExamples">(Ex.. Renascimento; Período Jurássico; Terceiro Trimestre; etc.)</message>
-	<message key="manager.setup.coverageChronProvideExamples">Ofereça exemplos de termos cronológicos ou históricos relevantes para este campo.</message>
-	<message key="manager.setup.coverageDescription">Refere-se a cobertura geoespacial, cronológica ou histórica, bem como características de amostragem da pesquisa.</message>
-	<message key="manager.setup.coverageGeoExamples">(Ex.: Península Ibérica; Estratosfera; Floresta Boreal; etc.)</message>
-	<message key="manager.setup.coverageGeoProvideExamples">Ofereça exemplos de termos geoespaciais ou geográficos relevantes para este campo</message>
-	<message key="manager.setup.coverageResearchSampleExamples">(Ex.: Idade; Gênero; Raça; etc.)</message>
-	<message key="manager.setup.coverageResearchSampleProvideExamples">Ofereça exemplos de termos de amostragem de pesquisa relevantes para este campo.</message>
 	<message key="manager.setup.customizingTheLook"><![CDATA[Passo 5. Personalizano o visual & a experiência]]></message>
 	<message key="manager.setup.customTags">Marcações personalizadas</message>
 	<message key="manager.setup.customTagsDescription">Marcações de cabeçalho de páginas HTML personalizdas, a serem incluídas em todas as páginas (ex.: marcações META).</message>

@@ -140,13 +140,6 @@ Soumission, Évaluation interne, Évaluation externe, Rédaction et Production.<
 	<message key="manager.setup.copyeditInstructionsDescription">Les réviseurs de textes, les auteurs et les rédacteurs en chef de la section auront accès aux Instructions pour la révision à l'étape de révision de la soumission. Voici l'ensemble des instructions par défaut en HTML, qui peuvent être modifiées ou remplacées par le directeur de la presse en tout temps (en HTML ou texte clair).</message>
 	<message key="manager.setup.copyrightNotice">Avis de droit d'auteur</message>
 	<message key="manager.setup.coverage">Champ couvert</message>
-	<message key="manager.setup.coverageChronExamples">(ex.: Renaissance européenne; ère jurassique; troisième trimestre; etc.)</message>
-	<message key="manager.setup.coverageChronProvideExamples">Fournir des exemples de termes chronologiques ou historiques pertinents pour ce champ.</message>
-	<message key="manager.setup.coverageDescription">Indique un champ d'emplacement géo-spatial, un champ chronologique ou un champ historique, et/ou les caractéristiques d'un échantillon de recherche.</message>
-	<message key="manager.setup.coverageGeoExamples">(ex.: péninsule Ibérique; la stratosphère; la forêt boréale; etc.)</message>
-	<message key="manager.setup.coverageGeoProvideExamples">Fournir des exemples de termes géo-spatiaux ou géographiques pertinents pour ce champ</message>
-	<message key="manager.setup.coverageResearchSampleExamples">(ex.: âge; sexe; ethnicité; etc.)</message>
-	<message key="manager.setup.coverageResearchSampleProvideExamples">Fournir des exemples de caractéristiques d'échantillon de recherche pour ce champ.</message>
 	<message key="manager.setup.customizingTheLook"><![CDATA[Étape 5. Personnaliser l'apparence]]></message>
 	<message key="manager.setup.customTags">Marqueurs personnalisés</message>
 	<message key="manager.setup.customTagsDescription">Vous pouvez ajouter des marqueurs HTML personnalisés dans l'en-tête de chaque page. (ex.: marqueurs Méta).</message>

@@ -140,13 +140,6 @@ Puedes indicarle al usuario las razones por las que has desactivado su cuenta.</
 	<message key="manager.setup.copyeditInstructionsDescription">Las Instrucciones de corrección de estilo estarán a la disposición de correctores de estilo, autores y coordinadores de sección en la fase de Edición de propuesta. A continuación encontrarás un conjunto predeterminado de instrucciones en HTML, que el gestor editorial podrá modificar o reemplazar en cualquier momento (en HTML o texto sin formato).</message>
 	<message key="manager.setup.copyrightNotice">Aviso derechos de autor</message>
 	<message key="manager.setup.coverage">Cobertura</message>
-	<message key="manager.setup.coverageChronExamples">(P.ej. renacimiento europeo; periodo jurásico; tercer trimestre; etc.)</message>
-	<message key="manager.setup.coverageChronProvideExamples">Da ejemplos de términos cronológicos e históricos relevantes para este campo</message>
-	<message key="manager.setup.coverageDescription">Se refiere a la localización geoespacial, cobertura cronológica o histórica, y/o características de la investigación.</message>
-	<message key="manager.setup.coverageGeoExamples">(P.ej. península ibérica; estratosfera; bosques boreales; etc.)</message>
-	<message key="manager.setup.coverageGeoProvideExamples">Da ejemplos de términos geoespaciales o geográficos para este campo</message>
-	<message key="manager.setup.coverageResearchSampleExamples">(P.ej. edad; sexo; etnia; etc.)</message>
-	<message key="manager.setup.coverageResearchSampleProvideExamples">Da ejemplos de características de la muestras de investigación para este campo.</message>
 	<message key="manager.setup.customizingTheLook">Paso 5. Personalizar aspecto</message>
 	<message key="manager.setup.customTags">Etiquetas personalizadas</message>
 	<message key="manager.setup.customTagsDescription">Las etiquetas HTML personalizadas de la cabecera pueden insertarse en la cabecera de cada página (p.ej. etiquetas META).</message>

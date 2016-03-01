@@ -182,13 +182,6 @@ Sie können dem/der Benutzer/in den Grund für die Deaktivierung des Kontos nenn
 	<message key="manager.setup.copyeditInstructionsDescription">Die Lektoratsrichtlinien sind den Lektor/innen, Autor/innen und Sektionsherausgeber/innen im Stadium 'Redaktionelle Bearbeitung' zugänglich. Unten auf der Seite befindet sich eine Reihe an Standardvorgaben in HTML. Sie können von der/dem Verlagsleiter/in an jeder Stelle verändert oder ersetzt werden (in HTML oder im Klartext).</message>
 	<message key="manager.setup.copyrightNotice">Copyright-Vermerk</message>
 	<message key="manager.setup.coverage">Inhaltlicher Umfang</message>
-	<message key="manager.setup.coverageChronExamples">(z.B. Europäische Renaissance; Jurazeitalter; Letztes Schwangerschaftsdrittel)</message>
-	<message key="manager.setup.coverageChronProvideExamples">Nennen Sie Beispiele relevanter chronologischer oder historischer Fachtermini</message>
-	<message key="manager.setup.coverageDescription">Bezieht sich auf Geodaten, chronologische oder historische Zeiträume und/oder Charakteristika der Stichprobenauswahl.</message>
-	<message key="manager.setup.coverageGeoExamples">(z.B. Iberische Halbinsel, Stratosphäre; Taiga)</message>
-	<message key="manager.setup.coverageGeoProvideExamples">Geben Sie Beispiele relevanter Geodaten- oder geographische Termini für dieses Feld</message>
-	<message key="manager.setup.coverageResearchSampleExamples">(z.B. Alter; Geschlecht; Ethnie)</message>
-	<message key="manager.setup.coverageResearchSampleProvideExamples">Geben Sie Beispiele für Stichprobencharakteristica</message>
 	<message key="manager.setup.customizingTheLook"><![CDATA[Schritt 5. Look & Feel anpassen]]></message>
 	<message key="manager.setup.customTags">Benutzerdefinierte Tags</message>
 	<message key="manager.setup.customTagsDescription">Benutzerdefinierte HTML-Header-Tags, die auf jeder Seite in den Header eingefügt werden (zum Beispiel META-Tags).</message>
