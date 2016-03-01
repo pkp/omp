@@ -354,8 +354,6 @@ Sie können dem/der Benutzer/in den Grund für die Deaktivierung des Kontos nenn
 	<message key="manager.setup.siteAccess">Zusätzliche Beschränken zur Website und deren Inhalten</message>
 	<message key="manager.setup.sponsors.description">Die Namen der sponsernden Organisationen (zum Beispiel Wissenschaftsorganisationen, Institute der Universität, Kooperativen) erscheint unter 'Über uns' und können mit einem Dank versehen werden.</message>
 	<message key="manager.setup.stepsToPressSite">Fünf Schritte zur Verlagswebsite</message>
-	<message key="manager.setup.subjectClassification">Schlagwortklassifikation</message>
-	<message key="manager.setup.subjectClassificationExamples">(z.B. Mathematics Subject Classification; Regensburger Verbundklassifikation; Library of Congress Classification)</message>
 	<message key="manager.setup.subjectExamples">(z.B. Photosynthese; Schwarze Löcher; Vier-Farben-Satz; Bayes'scher Wahrscheinlichkeitsbegriff)</message>
 	<message key="manager.setup.subjectKeywordTopic">Schlüsselwörter</message>
 	<message key="manager.setup.subjectProvideExamples">Geben Sie Beispiele für Schlüsselwörter oder Themengebiete als Orientierung für die Autoren</message>
@@ -435,8 +433,6 @@ Autor/innen, die bei diesem Verlag publizieren, stimmen folgenden Bedingungen zu
 	 <li>Autor/innen können weitere, gesonderte Verträge für eine nicht-exklusive Verbreitung einer vom Verlag veröffentlichten Version des Buches abschließen (sie können es z.B auf einem institutionellen Repositorium einstellen oder in einem Buch veröffentlichen), jedoch muss auf die Erstveröffentlichung in diesem Verlag hingewiesen werden.</li>
 	 <li>Autor/innen dürfen gerne ihr Werk bereits online stellen, bevor es beim Verlag eingereicht oder veröffentlicht wurde (z.B. auf institutionellen Repositorien oder auf ihren Websites). Dies dient nicht nur dem produktiven Austausch untereinander, sondern kann auch zu einer früheren Zitierung und einer höheren Zitierhäufigkeit des veröffentlichten Werke beitragen. (Siehe <a target="_blank" href="http://opcit.eprints.org/oacitation-biblio.html">Der Effekt von Open Access</a>)./li>
 </ol>]]></message>
-	<message key="manager.setup.subjectClassificationDescription"><![CDATA[[Der Verlag verwendet ein Fachsystematik, die im Web verfügbar ist. <br />
-Die verwendete Fachsystematik heißt]]></message>
 	<message key="manager.setup.basicEditorialStepsDescription"><![CDATA[Schritte: Warteschlange &gt; Begutachtung &gt; Redaktionelle Bearbeitung &gt; Inhaltsverzeichnis.<br /><br />
 Wählen Sie ein Modell, um diese Aspekte des Publikationsprozesses zu steuern. (Um leitende Herausgeber/innen oder Serienherausgeber/innen zu bestimmen, gehen Sie in der Verlagsverwaltung zu 'Herausgeber/innen'.)]]></message>
 	<message key="manager.setup.referenceLinkingDescription"><![CDATA[<p>Um Leser/innen das Auffinden der Onlineversion eines zitierten Werkes zu erleichtern, können Sie:</p>

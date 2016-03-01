@@ -119,7 +119,7 @@ class MonographSearchIndex extends SubmissionSearchIndex {
 		self::updateTextIndex($monographId, SUBMISSION_SEARCH_ABSTRACT, $monograph->getAbstract(null));
 
 		self::updateTextIndex($monographId, SUBMISSION_SEARCH_DISCIPLINE, (array) $monograph->getDiscipline(null));
-		self::updateTextIndex($monographId, SUBMISSION_SEARCH_SUBJECT, array_merge(array_values((array) $monograph->getSubjectClass(null)), array_values((array) $monograph->getSubject(null))));
+		self::updateTextIndex($monographId, SUBMISSION_SEARCH_SUBJECT, (array) $monograph->getSubject(null));
 		self::updateTextIndex($monographId, SUBMISSION_SEARCH_TYPE, $monograph->getType(null));
 		self::updateTextIndex($monographId, SUBMISSION_SEARCH_COVERAGE, (array) $monograph->getCoverage(null));
 		// FIXME Index sponsors too?

@@ -298,8 +298,6 @@ Soumission, Évaluation interne, Évaluation externe, Rédaction et Production.<
 	<message key="manager.setup.siteAccess">Autres réserves de consultation du site et de son contenu.</message>
 	<message key="manager.setup.sponsors.description">Les noms des organismes (ex.: associations universitaires, départements universitaires, coopératives, etc.) qui parrainent la presse apparaitront dans la section À propos de cette presse et peuvent être accompagnés d'une note de remerciement.</message>
 	<message key="manager.setup.stepsToPressSite">Cinq étapes pour établir le site Web d'une presse</message>
-	<message key="manager.setup.subjectClassification">Classification des domaines</message>
-	<message key="manager.setup.subjectClassificationExamples">(ex.: Mathematics Subject Classification (MSC); classification de la Bibliothèque du Congrès)</message>
 	<message key="manager.setup.subjectExamples">(ex.: la photosynthèse; les trous noirs; le théorème des quatre couleurs; le théorème de Bayes)</message>
 	<message key="manager.setup.subjectKeywordTopic">Mots clés</message>
 	<message key="manager.setup.subjectProvideExamples">Fournir des exemples de mots clés ou sujets pour guider les auteurs.</message>
@@ -379,8 +377,6 @@ Les auteurs dont les articles seront publiés par cette presse acceptent les con
 	 <li>Les auteurs peuvent signer une entente contractuelle complémentaire distincte pour la distribution non exclusive de la version de leur oeuvre publiée par la presse (ex.: déposer l'oeuvre auprès d'un service d'archivage d'établissement ou la publier dans un livre), avec une attestation de sa première impression dans cette presse.
 	 <li>On permet et on encourage les auteurs à publier leur article en ligne (ex.: dans un service d'archivage d'établissement ou sur leur site Web) avant et pendant le processus de soumission, car il pourrait en résulter des échanges productifs avec leurs pairs, et l'article pourrait être cité plus tôt et plus fréquemment lorsqu'il sera publié (voir <a target="_blank" href="http://opcit.eprints.org/oacitation-biblio.html"> Les effets positifs d'un libre accès</a>).</li>
 </ol>]]></message>
-	<message key="manager.setup.subjectClassificationDescription"><![CDATA[[La presse utilisera un système de classification idéologique disponible sur le Web. <br />
-Titre du système de classification]]></message>
 	<message key="manager.setup.basicEditorialStepsDescription"><![CDATA[Étapes: Soumission en attente &gt; évaluation de la soumission &gt; révision de la soumission &gt; table des matières.<br /><br />
 Choisissez un modèle pour gérer ces aspects du processus éditorial. (Pour nommer un éditeur en chef et les rédacteurs de série, allez dans la rubrique Rédacteurs de Gestion de la presse.)]]></message>
 	<message key="manager.setup.referenceLinkingDescription"><![CDATA[<p>Pour permettre aux lecteurs de trouver les articles cités par l'auteur sur Internet, vous pouvez utiliser les options suivantes.</p>
