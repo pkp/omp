@@ -138,13 +138,6 @@ Informe, se desesjar, o motivo do bloqueio.</message>
 	<message key="manager.setup.copyeditInstructionsDescription">As instruções de edição de texto estarão disponíveis para editores de texto, autores e editores de seção, durante o estágio de edição. Segu um modelo de instruções em HTML, que pode ser modificado ou substituído pelo gerente da editora a qualquer momento (em HTML ou texto puro).</message>
 	<message key="manager.setup.copyrightNotice">Aviso de direito autoral</message>
 	<message key="manager.setup.coverage">Cobertura</message>
-	<message key="manager.setup.coverageChronExamples">(Ex.. Renascimento; Período Jurássico; Terceiro Trimestre; etc.)</message>
-	<message key="manager.setup.coverageChronProvideExamples">Ofereça exemplos de termos cronológicos ou históricos relevantes para este campo.</message>
-	<message key="manager.setup.coverageDescription">Refere-se a cobertura geoespacial, cronológica ou histórica, bem como características de amostragem da pesquisa.</message>
-	<message key="manager.setup.coverageGeoExamples">(Ex.: Península Ibérica; Estratosfera; Floresta Boreal; etc.)</message>
-	<message key="manager.setup.coverageGeoProvideExamples">Ofereça exemplos de termos geoespaciais ou geográficos relevantes para este campo</message>
-	<message key="manager.setup.coverageResearchSampleExamples">(Ex.: Idade; Gênero; Raça; etc.)</message>
-	<message key="manager.setup.coverageResearchSampleProvideExamples">Ofereça exemplos de termos de amostragem de pesquisa relevantes para este campo.</message>
 	<message key="manager.setup.customizingTheLook"><![CDATA[Passo 5. Personalizano o visual & a experiência]]></message>
 	<message key="manager.setup.customTags">Marcações personalizadas</message>
 	<message key="manager.setup.customTagsDescription">Marcações de cabeçalho de páginas HTML personalizdas, a serem incluídas em todas as páginas (ex.: marcações META).</message>
@@ -299,8 +292,6 @@ Informe, se desesjar, o motivo do bloqueio.</message>
 	<message key="manager.setup.siteAccess">Restrições de acesso adicionais ao site e ao conteúdo</message>
 	<message key="manager.setup.sponsors.description">O nome das organizaçõess (ex.: associações de pesquisa, departamentos de universidades, cooperativas, etc.) que patrocinam a editora aparecerá na página Sobre a editora e pode ser acompanhado de uma nota de agradecimento.</message>
 	<message key="manager.setup.stepsToPressSite">Cinco passos para montar o site da editora</message>
-	<message key="manager.setup.subjectClassification">Classificação de assunto</message>
-	<message key="manager.setup.subjectClassificationExamples">(Ex.: Classificação de assunto da matemática; Classificação da Biblioteca do Congresso Americano)</message>
 	<message key="manager.setup.subjectExamples">(Ex.: Fotossíntese; Buracos Negros; Problema do mapa de quatro cores; Teoria Bayesiana)</message>
 	<message key="manager.setup.subjectKeywordTopic">Palavras-chave</message>
 	<message key="manager.setup.subjectProvideExamples">Ofereça exemplos de termos ou assuntos como auxílio ao autores</message>
@@ -379,8 +370,6 @@ Autores que publicam nesta editora concordam com os seguintes termos:
 	 <li>Autores podem assumir outros contratos adicionais em separado, para a distribuição não exclusiva da versão publicada pela editora (ex.: publicação em repositório institucional ou em um livro), com reconhecimento de publicação inicial nesta editora.</li>
 	 <li>>Autores podem e são incentivados a publicar seu trabalho online (ex.: em repositórios institucionais ou seu próprio site) antes e durante o processo de submissão, pois podem levar a trocas produtivas de informação, bem como citação maior e mais rápida do trabalho publicado (veja <a target="_blank" href="http://opcit.eprints.org/oacitation-biblio.html">O efeito do acesso aberto</a>)</li>
 </ol>]]></message>
-	<message key="manager.setup.subjectClassificationDescription"><![CDATA[[A editora usará um sistema de classificação de assunto disponível na web.<br />
-Título do sistema de classificação]]></message>
 		<message key="manager.setup.basicEditorialStepsDescription"><![CDATA[Passos: Fila de submissão &gt; Avaliação &gt; Edição &gt; Sumário.<br /><br />
 Escolha um modelo para lidar com os aspectos do processo editorial (Para designar um editor gerente e editor de séries, acesse Editores, na administração da editora.)]]></message>
 	<message key="manager.setup.referenceLinkingDescription"><![CDATA[<p>Para abilitar leitores a localizar versões online do trabalho citado pelo autor, estão disponíveis as opções a seguir.</p>

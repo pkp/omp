@@ -94,9 +94,9 @@ class Dc11SchemaPublicationFormatAdapter extends MetadataDataObjectAdapter {
 
 		// Subject
 		$subjects = array_merge_recursive(
-				(array) $monograph->getDiscipline(null),
-				(array) $monograph->getSubject(null),
-				(array) $monograph->getSubjectClass(null));
+			(array) $monograph->getDiscipline(null),
+			(array) $monograph->getSubject(null)
+		);
 		$this->_addLocalizedElements($dc11Description, 'dc:subject', $subjects);
 
 		// Description
@@ -168,10 +168,7 @@ class Dc11SchemaPublicationFormatAdapter extends MetadataDataObjectAdapter {
 		// Relation
 
 		// Coverage
-		$coverage = array_merge_recursive(
-				(array) $monograph->getCoverageGeo(null),
-				(array) $monograph->getCoverageChron(null),
-				(array) $monograph->getCoverageSample(null));
+		$coverage = (array) $monograph->getCoverageGeo(null);
 		$this->_addLocalizedElements($dc11Description, 'dc:coverage', $coverage);
 
 		// Rights

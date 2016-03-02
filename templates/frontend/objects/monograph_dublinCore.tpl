@@ -14,14 +14,8 @@
 {if $monograph->getSponsor(null)}{foreach from=$monograph->getSponsor(null) key=metaLocale item=metaValue}
 	<meta name="DC.Contributor.Sponsor" xml:lang="{$metaLocale|String_substr:0:2|escape}" content="{$metaValue|strip_tags|escape}"/>
 {/foreach}{/if}
-{if $monograph->getCoverageSample(null)}{foreach from=$monograph->getCoverageSample(null) key=metaLocale item=metaValue}
+{if $monograph->getCoverage(null)}{foreach from=$monograph->getCoverage(null) key=metaLocale item=metaValue}
 	<meta name="DC.Coverage" xml:lang="{$metaLocale|String_substr:0:2|escape}" content="{$metaValue|strip_tags|escape}"/>
-{/foreach}{/if}
-{if $monograph->getCoverageGeo(null)}{foreach from=$monograph->getCoverageGeo(null) key=metaLocale item=metaValue}
-	<meta name="DC.Coverage.spatial" xml:lang="{$metaLocale|String_substr:0:2|escape}" content="{$metaValue|strip_tags|escape}"/>
-{/foreach}{/if}
-{if $monograph->getCoverageChron(null)}{foreach from=$monograph->getCoverageChron(null) key=metaLocale item=metaValue}
-	<meta name="DC.Coverage.temporal" xml:lang="{$metaLocale|String_substr:0:2|escape}" content="{$metaValue|strip_tags|escape}"/>
 {/foreach}{/if}
 {foreach from=$monograph->getAuthorString()|explode:", " item=dc_author}
 	<meta name="DC.Creator.PersonalName" content="{$dc_author|escape}"/>

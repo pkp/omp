@@ -45,6 +45,7 @@ class SubmissionSubmitStep3Form extends PKPSubmissionSubmitStep3Form {
 
 	/**
 	 * Fetch the form
+	 * @param $request
 	 */
 	function fetch($request) {
 		$templateMgr = TemplateManager::getManager($request);
