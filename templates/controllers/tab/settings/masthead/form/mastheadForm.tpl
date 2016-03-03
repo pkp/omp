@@ -22,7 +22,7 @@
 
 	{include file="controllers/notification/inPlaceNotification.tpl" notificationId="mastheadNotification"}
 
-	{fbvFormArea id="mastheadFormArea"}
+	{fbvFormArea}
 		{fbvFormSection title="manager.setup.contextName" for="name" required=true inline=true size=$fbvStyles.size.MEDIUM}
 			{fbvElement type="text" multilingual=true name="name" id="name" value=$name}
 		{/fbvFormSection}
@@ -30,7 +30,8 @@
 		{fbvFormSection title="manager.setup.pressInitials" for="acronym" required=true inline=true size=$fbvStyles.size.SMALL}
 			{fbvElement type="text" multilingual=true name="acronym" id="acronym" value=$acronym}
 		{/fbvFormSection}
-
+	{/fbvFormArea}
+	{fbvFormArea}
 		{fbvFormSection label="manager.setup.pressDescription" for="description" description="manager.setup.pressDescription.description"}
 			{fbvElement type="textarea" multilingual=true name="description" id="description" value=$description rich=true height=$fbvStyles.height.SHORT}
 		{/fbvFormSection}
