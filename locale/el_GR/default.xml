@@ -84,7 +84,7 @@
 
 	<!-- Default press settings -->
 	<message key="default.pressSettings.checklist.notPreviouslyPublished">Η υποβολή δεν έχει δημοσιευτεί εκ των προτέρων, ούτε έχει υποβληθεί σε άλλες εκδόσεις για εξέταση (ή δεν έχει δοθεί εξήγηση στα Σχόλια προς τον επιμελητή).</message>
-	<message key="default.pressSettings.checklist.fileFormat">Το αρχείο υποβολής είναι σε μορφή αρχείου εγγράφου OpenOffice, Microsoft Word, RTF, ή WordPerfect.</message>
+	<message key="default.pressSettings.checklist.fileFormat">Το αρχείο υποβολής είναι σε μορφή αρχείου εγγράφου OpenOffice, Microsoft Word ή RTF.</message>
 	<message key="default.pressSettings.checklist.addressesLinked">Όταν είναι διαθέσιμα, παρέχονται τα URL για πρόσβαση σε αναφορές online.</message>
 	<message key="default.pressSettings.checklist.submissionAppearance">Το κείμενο έχει μονό διάκενο, χρησιμοποιεί γραμματοσειρά μεγέθους 12, χρησιμοποιεί όπου απαιτείται κείμενο σε πλάγια γραφή και όχι με υπογράμμιση (εκτός από τις διευθύνσεις URL) και όλες οι εικόνες, τα διαγράμματα και οι πίνακες τοποθετούνται εντός του κειμένου σε κατάλληλα σημεία, και όχι στο τέλος αυτού.</message>
 	<message key="default.pressSettings.checklist.bibliographicRequirements"><![CDATA[Το κείμενο τηρεί τις στιλιστικές και βιβλιογραφικές απαιτήσεις που ορίζονται στις Οδηγίες προς τους συγγραφείς <a href="{$indexUrl}/{$pressPath}/about/submissions#authorGuidelines" target="_blank">Οδηγίες προς Συγγραφείς</a>, που βρίσκονται στο μενού "Σχετικά με το περιοδικό".]]></message>

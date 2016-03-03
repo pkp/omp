@@ -46,7 +46,7 @@
 
 	<!-- Default press settings -->
 	<message key="default.pressSettings.checklist.notPreviouslyPublished">Das eingereichte Manuskript wurde nicht bereits vorher veröffentlicht und liegt zurzeit auch nicht einem anderen Verlag zur Begutachtung vor (oder es wurde im Feld 'Vermerk für den/die Herausgeber/in" eine entsprechende Erklärung dazu abgegeben).</message>
-	<message key="default.pressSettings.checklist.fileFormat">Die eingereichten Dateien liegen im Format Microsoft Word, RTF, OpenDocument oder WordPerfect vor.</message>
+	<message key="default.pressSettings.checklist.fileFormat">Die eingereichten Dateien liegen im Format Microsoft Word, RTF oder OpenDocument vor.</message>
 	<message key="default.pressSettings.checklist.addressesLinked">Soweit möglich, wurden den Literaturangaben URLs beigefügt.</message>
 	<message key="default.pressSettings.checklist.submissionAppearance">Der Text ist mit einzeiligen Zeilenabstand in einer 12-Punkt-Schrift geschrieben; Hervorhebungen sind kursiv gesetzt, auf Unterstreichungen, wird - mit Ausnahme der URL-Adressen - verzichtet; alle Illustrationen, Abbildungen und Tabellen stehen an der Stelle im Text, an der sie auch in der endgültigen Fassung stehen sollen (nicht am Textende).</message>
 	<message key="default.pressSettings.checklist.bibliographicRequirements"><![CDATA[Der Text entspricht den im <a href="{$indexUrl}/{$pressPath}/about/submissions#authorGuidelines" target="_blank">Leitfaden für Autor/innen</a> beschriebenen stilistischen und bibliographischen Anforderungen (s. den Reiter 'Über uns').]]></message>

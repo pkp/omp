@@ -42,7 +42,7 @@
 	<message key="default.groups.abbrev.volumeEditor">CO</message>
 	<!-- Default press settings -->
 	<message key="default.pressSettings.checklist.notPreviouslyPublished">La propuesta no ha sido publicada previamente, ni está bajo consideración de ninguna otra editorial (o se proporciona una explicación en "Comentarios para la editorial").</message>
-	<message key="default.pressSettings.checklist.fileFormat">El fichero de la propuesta está formato Microsoft Word, RTF, OpenDocument, o WordPerfect.</message>
+	<message key="default.pressSettings.checklist.fileFormat">El fichero de la propuesta está formato Microsoft Word, RTF o OpenDocument.</message>
 	<message key="default.pressSettings.checklist.addressesLinked">Se proporcionan las direcciones URLs de las referencias si están disponibles.</message>
 	<message key="default.pressSettings.checklist.submissionAppearance">El texto tiene interlineado simple; utiliza un tipo de letra de 12 puntos; se utiliza cursiva en lugar de subrayado (exceptuando las direcciones URL); y todas las ilustraciones, figuras y tablas están dentro del texto en los lugares apropiados, y no al final</message>
 	<message key="default.pressSettings.checklist.bibliographicRequirements"><![CDATA[El texto se adhiere a los requisitos bibliográficos y de estilo indicados en las <a href="{$indexUrl}/{$pressPath}/about/submissions#authorGuidelines" target="_blank">Directrices para autores</a>, que se encuentran en Acerca de la editorial.]]></message>

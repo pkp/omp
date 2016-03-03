@@ -46,7 +46,7 @@
 
 	<!-- Default press settings -->
 	<message key="default.pressSettings.checklist.notPreviouslyPublished">The submission has not been previously published, nor is it before another press for consideration (or an explanation has been provided in Comments to the Editor).</message>
-	<message key="default.pressSettings.checklist.fileFormat">The submission file is in the Microsoft Word, RTF, OpenDocument, or WordPerfect file format.</message>
+	<message key="default.pressSettings.checklist.fileFormat">The submission file is in the Microsoft Word, RTF, or OpenDocument file format.</message>
 	<message key="default.pressSettings.checklist.addressesLinked">Where available, URLs for the references have been provided.</message>
 	<message key="default.pressSettings.checklist.submissionAppearance">The text is single-spaced; uses a 12-point font; employs italics, rather than underlining (except with URL addresses); and all illustrations, figures, and tables are placed within the text at the appropriate points, rather than at the end.</message>
 	<message key="default.pressSettings.checklist.bibliographicRequirements"><![CDATA[The text adheres to the stylistic and bibliographic requirements outlined in the <a href="{$indexUrl}/{$pressPath}/about/submissions#authorGuidelines" target="_blank">Author Guidelines</a>, which is found in About the Press.]]></message>
