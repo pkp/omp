@@ -4,12 +4,10 @@
 <!--
   * locale/ca_ES/locale.xml
   *
-  * Copyright (c) 2015 Simon Fraser University Library
+  * Copyright (c) 2014-2015 Simon Fraser University Library
   * Copyright (c) 2003-2015 John Willinsky
   * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
-  * 
   * Credits: http://pkp.sfu.ca/wiki/index.php?title=OMP:_Catalan_%28ca_ES%29
-  * 
   * Localization strings.
   -->
 
@@ -425,7 +423,9 @@
 <p>Gràcies per descarregar el projecte <strong>Open Monograph Press</strong> del Public Knowledge Project. Abans de continuar, llegiu els fitxers <a href="{$baseUrl}/docs/README">README</a> i <a href="{$baseUrl}/docs/UPGRADE">UPGRADE</a> inclosos en aquest programari. Per obtenir més informació sobre el Public Knowledge Project i els seus projectes de programari, visiteu el <a href="http://pkp.sfu.ca/" target="_blank">lloc web de PKP</a>. Si teniu informes d'errors o preguntes que requereixin assistència tècnica sobre l'Open Monograph Press, consulteu el <a href="http://pkp.sfu.ca/support/forum" target="_blank">fòrum d'ajuda</a> o visiteu el <a href="http://pkp.sfu.ca/bugzilla/" target="_blank">sistema d'informació d'errors</a> de PKP en línia. Malgrat que el fòrum d'ajuda és el mètode preferit de contacte, també podeu enviar un correu electrònic a l'equip a <a href="mailto:pkp.contact@gmail.com">pkp.contact@gmail.com</a>.</p>
 <p>És <strong>molt recomanable</strong> que feu una còpia de seguretat de la vostra base de dades, del vostre directori de fitxers i del directori d'instal·lació de l'OMP abans de continuar.</p>
 <p>Si esteu executant el programari en el <a href="http://www.php.net/features.safe-mode" target="_blank">Mode Segur de PHP</a>, comproveu que la directriu max_execution_time al vostre fitxer de configuració php.ini està limitada per un valor màxim. Si se sobrepassa aquesta o qualsevol altra limitació de temps (p. ex., la directriu «Timeout» d'Apache), i s'interromp el procés d'actualització, caldrà intervenir-hi manualment.</p>]]></message>
-	<message key="installer.localeSettingsInstructions"><![CDATA[Per garantir la compatibilitat amb Unicode (UTF-8), seleccioneu UTF-8 per a totes les configuracions de jocs de caràcters. Tingueu en compte que per garantir la compatibilitat cal un servidor de base de dades MySQL >= 4.1.1 o PostgreSQL >= 9.1.5. Tingueu en compte també que per garantir la màxima compatibilitat amb Unicode necessiteu la biblioteca <a href="http://www.php.net/mbstring" target="_blank">mbstring</a> (habilitada per defecte a la majoria d'instal·lacions recents de PHP). Podríeu experimentar problemes en utilitzar els caràcters avançats si el vostre servidor no compleix aquests requisits. <br /><br /> El vostre servidor actual és compatible amb mbstring: <strong>{$supportsMBString}</strong>]]></message>
+	<message key="installer.localeSettingsInstructions"><![CDATA[Per garantir la compatibilitat amb Unicode (UTF-8), seleccioneu UTF-8 per a totes les configuracions de jocs de caràcters. Tingueu en compte que per garantir la compatibilitat cal un servidor de base de dades MySQL >= 4.1.1 o PostgreSQL >= 9.1.5. Tingueu en compte també que per garantir la màxima compatibilitat amb Unicode necessiteu la biblioteca <a href="http://www.php.net/mbstring" target="_blank">mbstring</a> (habilitada per defecte a la majoria d'instal·lacions recents de PHP). Podríeu experimentar problemes en utilitzar els caràcters avançats si el vostre servidor no compleix aquests requisits.
+<br /><br />
+El vostre servidor actual és compatible amb mbstring: <strong>{$supportsMBString}</strong>]]></message>
 	<message key="installer.allowFileUploads"><![CDATA[Actualment, el vostre servidor permet carregar fitxers: <strong>{$allowFileUploads}</strong>]]></message>
 	<message key="installer.maxFileUploadSize"><![CDATA[Actualment, el vostre servidor permet la càrrega de fitxers amb una mida màxima de: <strong>{$maxFileUploadSize}</strong>]]></message>
 	<message key="installer.localeInstructions">Llengua principal per a aquest sistema. Consulteu la documentació de l'OMP si voleu utilitzar alguna llengua no llistada.</message>
