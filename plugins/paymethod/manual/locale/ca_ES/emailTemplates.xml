@@ -2,7 +2,7 @@
 <!DOCTYPE email_texts SYSTEM "../../../../../lib/pkp/dtd/emailTemplateData.dtd">
 
 <!--
-  * plugins/paymethod/manual/locale/en_US/emailTemplates.xml
+  * plugins/paymethod/manual/locale/ca_ES/emailTemplates.xml
   *
   * Copyright (c) 2014 Simon Fraser University Library
   * Copyright (c) 2003-2014 John Willinsky
