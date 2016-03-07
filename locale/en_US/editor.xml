@@ -33,7 +33,7 @@
 	<message key="editor.monograph.final.currentFiles">Current Final Draft Files</message>
 	<message key="editor.monograph.copyediting.currentFiles">Current Files</message>
 	<message key="editor.monograph.copyediting.personalMessageToUser">Message to user</message>
-	
+
 	<!-- Editorial Legend -->
 	<message key="editor.monograph.legend.submissionActions">Submission Actions</message>
 	<message key="editor.monograph.legend.submissionActionsDescription">Overall submission actions and options.</message>
@@ -70,10 +70,6 @@
 	<message key="editor.monograph.approvedProofs.edit">Set Terms for Downloading</message>
 	<message key="editor.monograph.approvedProofs.edit.linkTitle">Set Terms</message>
 	<message key="editor.monograph.proof.addNote">Add response</message>
-
-	<!-- Review related -->
-	<message key="editor.internalReview.introduction">In Internal Review, the editor assigns reviewers internal to the submission files and considers the resulting reviews, before selecting the appropriate action (which includes notifying the author): Request Revisions (revisions reviewed by editor alone); Resubmit for Review (revisions initiate another round of reviews); Send External Review (entails selecting files for External Review); Accept for Submission (entails selecting files for Editorial stage); or Decline Submission (archives submission).</message>
-	<message key="editor.externalReview.introduction">In External Review, the editor assign reviewers external to the press to the submission files and consider the resulting reviews, before selecting the appropriate action (which includes notifying the author): Request Revisions (revisions reviewed by editor alone); Resubmit for Review (revisions initiate another round of reviews); Accept for Submission (entails selecting files for Editorial stage); or Decline Submission (editor archives submission).</message>
 
 	<message key="editor.submission.proof.manageProofFilesDescription">Any files that have already been uploaded to any submission stage can be added to the Proof Files listing by checking the Include checkbox below and clicking Search: all available files will be listed and can be chosen for inclusion.</message>
 </locale>
