@@ -55,8 +55,9 @@
 	<message key="submission.submit.newSubmissionSingle">New Submission</message>
 	<message key="submission.submit.upload">Upload Submission</message>
 	<message key="submission.submit.cancelSubmission">You can complete this submission at a later date by selecting Active Submissions from the Author home.</message>
-	<message key="submission.submit.selectSeries">Select series...</message>
-	<message key="submission.submit.seriesPosition">Position within this series (i.e., Book 2, or Volume 2)</message>
+	<message key="submission.submit.selectSeries">Select series (optional)</message>
+	<message key="submission.submit.seriesPosition">Series Position</message>
+	<message key="submission.submit.seriesPosition.description">Examples: Book 2, Volume 2</message>
 	<message key="submission.submit.form.localeRequired">Please select a submission language.</message>
 	<message key="submission.submit.submissionChecklist">Submission Checklist</message>
 	<message key="submission.submit.submissionChecklistDescription">The following requirements for submissions to this press need to be completed and checked off before proceeding (comments to the editor can be added below).</message>
@@ -80,8 +81,6 @@
 	<message key="submission.submit.whatNext.description">The press has been notified of your submission, and you've been emailed a confirmation for your records.  Once the editor has reviewed the submission, they will contact you.</message>
 	<message key="submission.submit.checklistErrors">Please read and check off the items in the submission checklist.  There are {$itemsRemaining} items left unchecked.</message>
 	<message key="submission.submit.placement">Submission Placement</message>
-	<message key="submission.submit.placement.seriesDescription">If the book should also be considered for a series...</message>
-	<message key="submission.submit.placement.seriesPositionDescription">Books in series are usually kept in the reverse order in which they are published, to give a sense of the series developing as well as keeping the current at the front.</message>
 	<message key="submission.submit.placement.categories">Categories</message>
 	<message key="submission.submit.placement.categoriesDescription">Select one of the press’s categories for which this work should be considered.</message>
 	<message key="submission.submit.userGroup">Submit in my role as...</message>
@@ -98,7 +97,7 @@
 	<message key="submission.noCatalogEntry">No Catalog Entry</message>
 	<message key="submission.editCatalogEntry">Entry</message>
 	<message key="submission.catalogEntry.new">New Catalog Entry</message>
-	<message key="submission.catalogEntry.confirm">Create a catalog entry for this book based on the metadata below.</message>
+	<message key="submission.catalogEntry.confirm">Add this book to the public catalog</message>
 	<message key="submission.catalogEntry.confirm.required">Please confirm that the submission is ready to be placed in the catalog.</message>
 	<message key="submission.catalogEntry.isAvailable">This monograph is ready to be included in the public catalog.</message>
 

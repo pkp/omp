@@ -23,7 +23,6 @@
 				{rdelim});
 	{rdelim});
 </script>
-{if not $hideHelp}<p class="pkp_help">{translate key="catalog.manage.entryDescription"}</p>{/if}
 <div id="newCatalogEntryTabs" class="pkp_controllers_tab">
 	<ul>
 		<li>

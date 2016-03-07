@@ -35,7 +35,7 @@
 	<!-- Stage Participants grid -->
 	<message key="editor.monograph.copyediting.currentFiles">Current Files</message>
 	<message key="editor.monograph.copyediting.personalMessageToUser">Message to user</message>
-	
+
 	<!-- Editorial Legend -->
 	<message key="editor.monograph.legend.submissionActions">Submission Actions</message>
 	<message key="editor.monograph.legend.submissionActionsDescription">Overall submission actions and options.</message>
@@ -60,7 +60,6 @@
 	<message key="editor.monograph.legend.uploaded">File uploaded by the role in the grid column title</message>
 
 	<!-- Editorial related -->
-	<message key="editor.submission.introduction">In Submission, the editor, after the consulting the files submitted, selects the appropriate action (which includes notifying the author): Send to Internal Review (entails selecting files for Internal Review); Send to External Review (entails selecting files for External Review); Accept Submission (entails selecting files for Editorial stage); or Decline Submission (archives submission).</message>
 	<message key="editor.monograph.editorial.fairCopy">Fair Copy</message>
 	<message key="editor.monograph.editorial.fairCopyDescription">The copyeditor uploads a clean or fair copy of the submission for review by the editor, prior to sending it to Production.</message>
 	<!-- Production/Proof related -->
