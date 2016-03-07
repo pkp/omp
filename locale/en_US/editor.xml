@@ -62,7 +62,6 @@
 	<message key="editor.monograph.editorial.fairCopy">Fair Copy</message>
 
 	<!-- Production/Proof related -->
-	<message key="editor.submission.production.introduction"><![CDATA[In Production, the editor selects book formats (e.g., digital, paperback, etc.) in <span class="pkp_help_title">Publication Formats</span>, for which the layout editor prepares publication-quality files based on the production ready files. The publication-quality files are uploaded for each format in <span class="pkp_help_title">Page Proofs</span>, where they are proof read. The book is made <em>Available</em> (i.e., published) for each format in <span class="pkp_help_title">Publication Formats</span>, after the <em>Proofs</em> is checked as approved, and the Catalog entry is checked as included in the book’s catalog entry.]]></message>
 	<message key="editor.monograph.proofs">Proofs</message>
 	<message key="editor.monograph.production.approvalAndPublishing">Approval and Publishing</message>
 	<message key="editor.monograph.production.approvalAndPublishingDescription">Different publication formats, such as hardcover, softcover and digital, can be uploaded in the Publication Formats section below. You can use the publication formats grid below as a checklist for what still needs to be done to publish a publication format.</message>
