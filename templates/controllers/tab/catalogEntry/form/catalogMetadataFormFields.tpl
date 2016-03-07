@@ -41,7 +41,7 @@
 	<input type="hidden" name="tab" value="catalog" />
 
 	{if !$formParams.hideSubmit}
-		{fbvFormSection list="true"}
+		{fbvFormSection title="submission.catalogEntry" list="true"}
 			{fbvElement type="checkbox" id="confirm" checked=$confirm label="submission.catalogEntry.confirm" value="confirm"}
 		{/fbvFormSection}
 	{/if}
@@ -52,6 +52,8 @@
 		{/fbvFormSection}
 		{fbvFormSection}
 			{fbvElement type="text" id="licenseURL" label="submission.licenseURL" value=$licenseURL}
+		{/fbvFormSection}
+		{fbvFormSection}
 			{fbvElement type="text" id="copyrightHolder" label="submission.copyrightHolder" value=$copyrightHolder multilingual=true size=$fbvStyles.size.MEDIUM inline=true}
 			{fbvElement type="text" id="copyrightYear" label="submission.copyrightYear" value=$copyrightYear size=$fbvStyles.size.SMALL inline=true}
 		{/fbvFormSection}
@@ -73,9 +75,17 @@
 	{fbvFormArea id="audienceInformation" title="monograph.audience" class="border"}
 		{fbvFormSection for="audience"}
 			{fbvElement label="monograph.audience" type="select" from=$audienceCodes selected=$audience translate=false id="audience" defaultValue="" defaultLabel=""}
+		{/fbvFormSection}
+		{fbvFormSection}
 			{fbvElement label="monograph.audience.rangeQualifier" type="select" from=$audienceRangeQualifiers selected=$audienceRangeQualifier translate=false id="audienceRangeQualifier" defaultValue="" defaultLabel=""}
+		{/fbvFormSection}
+		{fbvFormSection}
 			{fbvElement label="monograph.audience.rangeFrom" type="select" from=$audienceRanges selected=$audienceRangeFrom translate=false id="audienceRangeFrom" defaultValue="" defaultLabel=""}
+		{/fbvFormSection}
+		{fbvFormSection}
 			{fbvElement label="monograph.audience.rangeTo" type="select" from=$audienceRanges selected=$audienceRangeTo translate=false id="audienceRangeTo" defaultValue="" defaultLabel=""}
+		{/fbvFormSection}
+		{fbvFormSection}
 			{fbvElement label="monograph.audience.rangeExact" type="select" from=$audienceRanges selected=$audienceRangeExact translate=false id="audienceRangeExact" defaultValue="" defaultLabel=""}
 		{/fbvFormSection}
 	{/fbvFormArea}
