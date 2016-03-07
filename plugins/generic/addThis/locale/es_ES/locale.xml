@@ -16,7 +16,7 @@
 	<message key="plugins.generic.addThis.displayName">AddThis</message>
 	<message key="plugins.generic.addThis.description">Este complemento permite el uso compartido de addthis en las redes sociales para las propuestas</message>
 	<message key="plugins.generic.addThis.title">AddThis</message>
-	<message key="plugins.generic.addThis.settings">Ajustes</message>
+	<message key="plugins.generic.addThis.settings">Preferéncias</message>
 	<message key="plugins.generic.addThis.settings.statistics">Estadísticas</message>
 
 	<!-- AddThis form locale keys and messages -->
@@ -24,12 +24,11 @@
 	<message key="plugins.generic.addThis.form.profileId">Identificación del perfil AddThis</message>
 	<message key="plugins.generic.addThis.form.username">Nombre de usuario de AddThis</message>
 	<message key="plugins.generic.addThis.form.password">Contraseña de AddThis (necesaria para mostrar estadísticas)</message>
-	<message key="plugins.generic.addThis.form.registerLink"><![CDATA[<a href="https://www.addthis.com/register">Register</a> 
-para unos informes de análisis detallados y una mejor comprensión social traffic es tu página web.]]></message>
+	<message key="plugins.generic.addThis.form.registerLink"><![CDATA[<a href="https://www.addthis.com/register">Regístrese</a> para obtener informes de análisis exahustivos y entender mejor el tráfico social de su sitio web.]]></message>
 	<message key="plugins.generic.addThis.settings.displayStyle">Por favor, escoge la forma en que Addthis debería visualizarse</message>
 
 	<!-- AddThis grid keys (only a few, since the grid does very little) -->
-	<message key="plugins.generic.addThis.grid.shares">Shares</message>
+	<message key="plugins.generic.addThis.grid.shares">Compartidos</message>
 	<message key="plugins.generic.addThis.grid.title">Enlaces más compartidos</message>
-	<message key="plugins.generic.addThis.statistics.instructions"><![CDATA[Esta lista muestra tus enlaces compartidos durante la última semana. Para todas las estadísticas posibls de AddThis, por favor, dirígete a la página web <a href="http://www.addthis.com/analytics" target="_blank">AddThis Analytics</a> e inicia sesión.]]></message>
+	<message key="plugins.generic.addThis.statistics.instructions"><![CDATA[Esta lista muestra los enlaces más compartidos durante la última semana. Para visualizar todas las estadísticas de AddThis, visite el sitio web <a href="http://www.addthis.com/analytics" target="_blank">AddThis Analytics</a> e inicie sesión.]]></message>
 </locale>

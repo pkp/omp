@@ -13,7 +13,7 @@
   -->
  
 <locale name="es_ES" full_name="Español (España)">
-	<message key="plugins.block.browse">Explorar</message>
+	<message key="plugins.block.browse">Navegar</message>
 	<message key="plugins.block.browse.displayName">Bloque de exploración</message>
 	<message key="plugins.block.browse.description">Este plugin proporciona herramientas de exploración en la barra lateral.</message>
 	<message key="plugins.block.browse.category">Categorías</message>

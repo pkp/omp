@@ -15,11 +15,11 @@
 <locale name="es_ES" full_name="Español (España)">
 	<message key="plugins.importexport.onix30.displayName">Complemento de exportación de monografías ONIX 3.0</message>
 	<message key="plugins.importexport.onix30.description">Exportar metadatos de monografías en formato ONIX 3.0</message>
-	<message key="plugins.importexport.onix30.cliUsage">Uso: {$scriptName} {$pluginName} [xmlFileName] [pressPath] [monographId]</message>
+	<message key="plugins.importexport.onix30.cliUsage"><![CDATA[Uso: {$scriptName} {$pluginName} [xmlFileName] [pressPath] [monographId]]]></message>
 	<message key="plugins.importexport.onix30.cliError">ERROR:</message>
-	<message key="plugins.importexport.onix30.error.unknownPress">La ruta editorial, "{$pressPath}," no existe.</message>
-	<message key="plugins.importexport.onix30.export.error.couldNotWrite">No se pudo escribir en el fichero "{$fileName}".</message>
-	<message key="plugins.importexport.onix30.export.error.monographNotFound">Ninguna monografía coincide con el ID de monografías indicado "{$monographId}".</message>
+	<message key="plugins.importexport.onix30.error.unknownPress">La ruta editorial indicada , &quot;{$pressPath},&quot; no existe.</message>
+	<message key="plugins.importexport.onix30.export.error.couldNotWrite">No se puede modificar el archivo &quot;{$fileName}&quot;.</message>
+	<message key="plugins.importexport.onix30.export.error.monographNotFound">Ninguna monografía coincide con el ID. de monografías indicado. &quot;{$monographId}&quot;.</message>
 	<message key="plugins.importexport.onix30.noFormats">No se muestran las monografías sin formato de publicación.</message>
 	<message key="plugins.importexport.onix30.selectMonograph">Selecciona la monografía que deseas exportar:</message>
 	<message key="plugins.importexport.onix30.exportButton">Exportar</message>
@@ -28,9 +28,9 @@
 	<message key="plugins.importexport.onix30.validityStatus">Estado ONIX</message>
 	<message key="plugins.importexport.onix30.formatValid">Válido</message>
 	<message key="plugins.importexport.onix30.formatInvalid">No válido</message>
-	<message key="plugins.importexport.onix30.pressMissingFields"><![CDATA[Falta información necesaria en esta editorial. Por favor, ve a Administración > Ajustes > Publicación > Producción e introduce los datos que faltan.]]></message>
+	<message key="plugins.importexport.onix30.pressMissingFields">A la editorial le falta alguna información requerida.  Vaya a Gestión > Ajustes > Publicación > Producción y rellene los detalles que faltan.</message>
 	
 	<!-- Information form keys -->
 	<message key="plugins.importexport.onix30.form.addresseeField">Destinatario (receptor) de esta exportación</message>
-	<message key="plugins.importexport.onix30.form.addresseeField.tip"><![CDATA[Debes dejar este campo en blanco y crear una exportación general. Esto supondrá que la exportación ONIX no tenga &lt;Destinatario%gt; .]]></message>
+	<message key="plugins.importexport.onix30.form.addresseeField.tip"><![CDATA[Puede dejar en blanco este campo y crear una exportación general. Esto supondrá que la exportación ONIX no tenga el compuesto &lt;Addressee>.]]></message>
 </locale>

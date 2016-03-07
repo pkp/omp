@@ -12,6 +12,6 @@
   -->
 
 <locale name="es_ES" full_name="Español (España)">
-	<message key="plugins.block.developedBy.displayName">Bloque "Creado por"</message>
-	<message key="plugins.block.developedBy.description">Este complemento proporciona una barra lateral con un enlace a "Creado por".</message>
+	<message key="plugins.block.developedBy.displayName">Bloque &quot;Creado por&quot;</message>
+	<message key="plugins.block.developedBy.description">Este complemento proporciona una barra lateral con un enlace a &quot;Creado por&quot;.</message>
 </locale>
