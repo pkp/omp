@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE locale SYSTEM "../../../../../lib/pkp/dtd/locale.dtd">
+
+<!--
+  * plugins/paymethod/paypal/locale/en_US/locale.xml
+  *
+  * Copyright (c) 2014 Simon Fraser University Library
+  * Copyright (c) 2006-2009 Gunther Eysenbach, Juan Pablo Alperin, MJ Suhonos
+  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
+  *
+  * Localization strings for the en_US (U.S. English) locale.
+  -->
+ 
+<locale name="es_ES" full_name="Español (España)">
+	<message key="plugins.paymethod.paypal.displayName">Pago de cuotas mediante PayPal</message>
+
+	<!-- PayPal Settings Form -->
+	<message key="plugins.paymethod.paypal.settings.paypalenable">Habilitar PayPal</message>
+	<message key="plugins.paymethod.paypal.settings.paypalurl">URL de IPN</message>
+	<message key="plugins.paymethod.paypal.settings.paypalurl.description"><![CDATA[Esta es la URL para el servicio de notificación de pago instantáneo (IPN) de Paypal. Para probarlo, use <u>https://www.sandbox.paypal.com/cgi-bin/webscr</u>; para los sistemas producción, use <u>https://www.paypal.com/cgi-bin/webscr</u>.]]></message>
+	<message key="plugins.paymethod.paypal.settings.selleraccount">Cuenta de vendedor/a</message>
+	<message key="plugins.paymethod.paypal.settings.selleraccount.description">Este es el nombre de usuario/a de una cuenta PayPal para una cuenta de vendedor, suele ser una dirección de correo electrónico. Asegúrese de activar la noficación de pago instantáneo (IPN) en el perfil de su cuenta de vendedor.</message>
+	<message key="plugins.paymethod.paypal.settings.curlNotInstalled">Advertencia: el soporte de CURL para PHP no está instalado. El soporte de pago de PayPal necesita la biblioteca CURL y no funcionará hasta que no esté instalada.</message>
+	<message key="plugins.paymethod.paypal.settings">Configuración de PayPal</message>
+
+	<!-- PayPal -->
+	<message key="plugins.paymethod.paypal">Pago de cuotas mediante PayPal</message>
+	<message key="plugins.paymethod.paypal.description"><![CDATA[PayPal permite a los usuarios, sean o no miembros de Paypal, utilizar las principales tarjetas de crédito . El gestor/a necesitará configurar una <a href="http://www.paypal.com" target="_blank">Cuenta Business de PayPal</a>.]]></message>
+	<message key="plugins.paymethod.paypal.warning">El botón Continuar le dirige al sitio web de PayPal, donde podrá utilizar una tarjeta de crédito (sin unirse a PayPal). Haga clic al botón &quot;Volver al vendedor&quot; de Paypal después de realizar el pago,este le dirigirá de vuelta a este sitio web, donde el título comprado estará disponible para ser descargado.</message>
+	<message key="plugins.paymethod.paypal.purchase.title">Título</message>
+	<message key="plugins.paymethod.paypal.purchase.fee">Cuota</message>
+	<message key="plugins.paymethod.paypal.purchase.description">Descripción</message>
+	<message key="plugins.paymethod.paypal.purchase.cancelled">Se canceló su compra.</message>
+	<message key="plugins.paymethod.paypal.purchase.cancelled.title">Compra cancelada</message>
+</locale>
