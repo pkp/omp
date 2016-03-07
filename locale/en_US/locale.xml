@@ -263,7 +263,6 @@
 	<message key="catalog.manage.managementIntroduction">Welcome to Catalog Management. From this page you can publish new catalog entries; review and configure your Featured Books listing; review and configure your New Releases listing; and review and configure your books by Category and Series.</message>
 	<message key="catalog.selectSeries">Select Series</message>
 	<message key="catalog.selectCategory">Select Category</message>
-	<message key="catalog.manage.entryDescription">To list a book in the catalog, select the Monograph tab and fill in the necessary information. Information for each of the book’s formats can be included in the catalog entry by selecting the tab for the format. The metadata specifications are based on ONIX for Books which is an international standard used by the book industry for communication of product information.</message>
 	<message key="catalog.manage.spotlightDescription">Three spotlights (e.g., Featured Book) appear on the press homepage, with spotlight title, image, and text.</message>
 	<message key="catalog.manage.homepageDescription">The cover image of selected books appears toward the top of the homepage as a scrollable set. Click 'Feature', then the star to add a book to the carousel; click the exclamation point to feature as a new release; drag and drop to order.</message>
 	<message key="catalog.manage.categoryDescription">Click 'Feature', then the star to select a featured book for this category; drag and drop to order.</message>
@@ -324,9 +323,6 @@
 	<message key="common.listbuilder.completeForm">Please fill out the form completely.</message>
 	<message key="common.listbuilder.selectValidOption">Please select a valid option from the list.</message>
 	<message key="common.listbuilder.itemExists">You cannot add the same item twice.</message>
-
-	<message key="common.catalogInformation">The catalog information need not be completed on initial submission of the work, apart from Title and Summary.</message>
-	<message key="common.prefixAndTitle.tip">If book title begins “A'” or “The” (or something similar re alphabetical order) place word in Prefix.</message>
 
 	<!-- Common Messages -->
 	<message key="common.openMonographPress">Open Monograph Press</message>
