@@ -239,8 +239,8 @@
 	<message key="grid.category.edit">Edit Category</message>
 	<message key="grid.category.name">Name</message>
 	<message key="grid.category.path">Path</message>
-	<message key="grid.category.urlWillBe">The category's URL will be {$sampleUrl}</message>
-	<message key="grid.series.urlWillBe">The series URL will be {$sampleUrl}. The 'Path' is a string of characters used to uniquely identify a series.</message>
+	<message key="grid.category.urlWillBe">The category's URL will be: {$sampleUrl}</message>
+	<message key="grid.series.urlWillBe">The series's URL will be: {$sampleUrl}</message>
 	<message key="grid.category.pathAlphaNumeric">The category path must consist of only letters and numbers.</message>
 	<message key="grid.category.pathExists">The category path already exists. Please enter a unique path.</message>
 	<message key="grid.category.description">Description</message>
@@ -296,9 +296,9 @@
 	<message key="catalog.coverImageTitle">Cover for {$monographTitle}</message>
 	<message key="catalog.loginRequiredForPayment">Please note: In order to purchase items, you will need to log in first. Selecting an item to purchase will direct you to the login page. Any item marked with an Open Access icon may be downloaded free of charge, without logging in.</message>
     <message key="catalog.sortBy">Order of monographs</message>
-    <message key="catalog.sortBy.seriesDescription">Choose how to order the books of this series.</message>
-    <message key="catalog.sortBy.categoryDescription">Choose how to order the books of this category.</message>
-    <message key="catalog.sortBy.catalogDescription">Choose how to order the books in the catalog.</message>
+    <message key="catalog.sortBy.seriesDescription">Choose how to order books in this series.</message>
+    <message key="catalog.sortBy.categoryDescription">Choose how to order books in this category.</message>
+    <message key="catalog.sortBy.catalogDescription">Choose how to order books in the catalog.</message>
     <message key="catalog.sortBy.titleAsc">Title (A-Z)</message>
     <message key="catalog.sortBy.titleDesc">Title (Z-A)</message>
     <message key="catalog.sortBy.datePublishedAsc">Publication date (oldest first)</message>

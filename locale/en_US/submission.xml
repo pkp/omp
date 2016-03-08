@@ -41,7 +41,6 @@
 	<message key="submission.round"><![CDATA[Round&nbsp;{$round}]]></message>
 	<message key="submissions.queuedReview">In Review</message>
 	<message key="manuscript.submissions">Manuscript Submissions</message>
-	<message key="submission.confirm.message">Your submission has been uploaded and is ready to be sent to the press. You may review and adjust any of the information you have entered before continuing. When you are ready, click "Finish Submission".</message>
 	<message key="submission.confirmSubmit">Are you sure you wish to submit this manuscript to the press?</message>
 	<message key="submission.metadata">Metadata</message>
 	<message key="submission.supportingAgencies">Supporting Agencies</message>
