@@ -27,9 +27,6 @@ before_install:
   # Start xvfb
   - if [[ "$TEST" != "validation" ]]; then ./lib/pkp/tools/travis/start-xvfb.sh; fi
 
-  # Configure firefox profile
-  - if [[ "$TEST" != "validation" ]]; then ./lib/pkp/tools/travis/config-ff-profile.sh; fi
-
   # Start Selenium
   - if [[ "$TEST" != "validation" ]]; then ./lib/pkp/tools/travis/start-selenium.sh; fi
 
