@@ -37,19 +37,20 @@
 
 		<h3>{translate key="grid.category.categoryDetails"}</h3>
 
-		{fbvFormSection title="grid.category.name" for="name" required="true" size=$fbvStyles.size.MEDIUM inline="true"}
+		{fbvFormSection title="grid.category.name" for="name" required="true"}
 			{fbvElement type="text" multilingual="true" name="name" value=$name id="name"}
 		{/fbvFormSection}
 
-		{fbvFormSection title="grid.category.parentCategory" for="context" inline="true" size=$fbvStyles.size.MEDIUM}
+		{fbvFormSection title="grid.category.parentCategory" for="context"}
 			{fbvElement type="select" id="parentId" from=$rootCategories selected=$parentId translate=false disabled=$cannotSelectChild}
 		{/fbvFormSection}
 
 		{fbvFormSection title="grid.category.path" required=true for="path"}
-			{fbvElement type="text" id="path" value=$path size=$smarty.const.SMALL maxlength="32"}
-			{url|assign:"sampleUrl" router=$smarty.const.ROUTE_PAGE page="catalog" op="category" path="path"}
-			{** FIXME: is this class instruct still the right one? **}
-			<span class="instruct">{translate key="grid.category.urlWillBe" sampleUrl=$sampleUrl}</span>
+			{capture assign="instruct"}
+				{url|assign:"sampleUrl" router=$smarty.const.ROUTE_PAGE page="catalog" op="category" path="path"}
+				{translate key="grid.category.urlWillBe" sampleUrl=$sampleUrl}
+			{/capture}
+			{fbvElement type="text" id="path" value=$path maxlength="32" label=$instruct subLabelTranslate=false}
 		{/fbvFormSection}
 
 		{fbvFormSection title="grid.category.description" for="context"}

@@ -33,14 +33,6 @@
 <form class="pkp_form" id="seriesForm" method="post" action="{url router=$smarty.const.ROUTE_COMPONENT component="grid.settings.series.SeriesGridHandler" op="updateSeries" seriesId=$seriesId}">
 	{include file="controllers/notification/inPlaceNotification.tpl" notificationId="seriesFormNotification"}
 
-	{if $categoryCount == 0}
-		<span class="pkp_form_error"><p>{translate key="manager.series.noCategories"}</p></span>
-	{/if}
-
-	{if $seriesEditorCount == 0}
-		<span class="pkp_form_error"><p>{translate key="manager.series.noSeriesEditors"}</p></span>
-	{/if}
-
 	{fbvFormArea id="file"}
 		{fbvFormSection title="monograph.coverImage"}
 			{include file="controllers/fileUploadContainer.tpl" id="plupload"}
@@ -55,13 +47,17 @@
 	{/if}
 
 	{fbvFormArea id="seriesInfo"}
-		{fbvFormSection for="title" required=true description="common.prefixAndTitle.tip" title="manager.series.seriesTitle"}
-			{fbvElement type="text" multilingual=true id="prefix" label="common.prefix" value=$prefix maxlength="32" size=$fbvStyles.size.SMALL inline=true}
-			{fbvElement type="text" multilingual=true id="title" label="common.title" value=$title maxlength="80" size=$fbvStyles.size.LARGE inline=true}
-		{/fbvFormSection}
+		<div class="pkp_helpers_clear">
+			{fbvFormSection for="title" title="common.prefix" inline="true" size=$fbvStyles.size.SMALL}
+				{fbvElement label="common.prefixAndTitle.tip" type="text" multilingual=true name="prefix" id="prefix" value=$prefix}
+			{/fbvFormSection}
+			{fbvFormSection for="title" title="common.title" inline="true" size=$fbvStyles.size.LARGE required=true}
+				{fbvElement type="text" multilingual=true name="title" id="title" value=$title}
+			{/fbvFormSection}
+		</div>
 
 		{fbvFormSection for="subtitle" title="common.subtitle"}
-			{fbvElement type="text" multilingual=true name="subtitle" id="subtitle" value=$subtitle maxlength="255"}
+			{fbvElement label="common.subtitle.tip" type="text" multilingual=true name="subtitle" id="subtitle" value=$subtitle maxlength="255"}
 		{/fbvFormSection}
 
 		{fbvFormSection title="common.description" for="description"}
@@ -82,31 +78,30 @@
 		{/fbvFormSection}
 
 		<input type="hidden" name="seriesId" value="{$seriesId|escape}"/>
-		{fbvFormSection for="context" inline=true size=$fbvStyles.size.MEDIUM}
-			{if $categoryCount > 0}
+		{if $categoryCount > 0}
+			{fbvFormSection for="context"}
 				<div id="seriesCategoriesContainer">
 					{url|assign:seriesCategoriesUrl router=$smarty.const.ROUTE_COMPONENT component="listbuilder.settings.CategoriesListbuilderHandler" op="fetch" sectionId=$seriesId escape=false}
 					{load_url_in_div id="seriesCategoriesContainer" url=$seriesCategoriesUrl}
 				</div>
+			{/fbvFormSection}
+		{/if}
+
+		{fbvFormSection for="context"}
+			{if $seriesEditorCount > 0}{* only include the series editor listbuilder if there are series editors available *}
+				<div id="seriesEditorsContainer">
+					{url|assign:seriesEditorsUrl router=$smarty.const.ROUTE_COMPONENT component="listbuilder.settings.SubEditorsListbuilderHandler" op="fetch" sectionId=$seriesId escape=false}
+					{load_url_in_div id="seriesEditorsContainer" url=$seriesEditorsUrl}
+				</div>
 			{/if}
 		{/fbvFormSection}
-
-			{fbvFormSection for="context" inline=true size=$fbvStyles.size.MEDIUM}
-				{if $seriesEditorCount > 0}{* only include the series editor listbuilder if there are series editors available *}
-					<div id="seriesEditorsContainer">
-						{url|assign:seriesEditorsUrl router=$smarty.const.ROUTE_COMPONENT component="listbuilder.settings.SubEditorsListbuilderHandler" op="fetch" sectionId=$seriesId escape=false}
-						{load_url_in_div id="seriesEditorsContainer" url=$seriesEditorsUrl}
-					</div>
-				{/if}
-			{/fbvFormSection}
 
 		{capture assign="instruct"}
 			{url|assign:"sampleUrl" router=$smarty.const.ROUTE_PAGE page="catalog" op="series" path="Path"}
 			{translate key="grid.series.urlWillBe" sampleUrl=$sampleUrl}
 		{/capture}
-
-		{fbvFormSection title="series.path"|translate required=true description=$instruct translate=false for="path"}
-			{fbvElement type="text" id="path" value=$path size=$smarty.const.SMALL maxlength="32"}
+		{fbvFormSection title="series.path" required=true for="path"}
+			{fbvElement type="text" id="path" label=$instruct subLabelTranslate=false value=$path maxlength="32"}
 		{/fbvFormSection}
 	{/fbvFormArea}
 

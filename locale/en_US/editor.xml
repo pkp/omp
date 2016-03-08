@@ -26,7 +26,7 @@
 	<message key="editor.monograph.peerReviewOptions">Peer Review Options</message>
 	<message key="editor.monograph.selectProofreadingFiles">Proofreading Files</message>
 	<message key="editor.monograph.internalReview">Initiate Internal Review</message>
-	<message key="editor.monograph.internalReviewDescription">You are about to initiate an internal review for this submission.  Files that are part of the submission are listed below and can be selected for review.</message>
+	<message key="editor.monograph.internalReviewDescription">Select files below to send them to the internal review stage.</message>
 	<message key="editor.monograph.externalReview">Initiate External Review</message>
 	<message key="editor.submissions.lastAssigned">Latest</message>
 	<message key="editor.monograph.final.selectFinalDraftFiles">Select Final Draft Files</message>
