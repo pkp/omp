@@ -1,4 +1,4 @@
-c<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE locale SYSTEM "../../../../../lib/pkp/dtd/locale.dtd">
 
 <!--
@@ -7,13 +7,13 @@ c<?xml version="1.0" encoding="UTF-8"?>
   * Copyright (c) 2014-2015 Simon Fraser University Library
   * Copyright (c) 2003-2015 John Willinsky
   * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
-  * Credits: http://pkp.sfu.ca/wiki/index.php?title=OMP:_Catalan_%28ca_ES%29
+  * Credits: https://pkp.sfu.ca/wiki/index.php?title=OMP:_Catalan_(ca_ES)
   * Localization strings for the ca_ES (Català) locale.
   -->
 
 <locale name="ca_ES" full_name="Català">
 	<message key="plugins.paymethod.manual.displayName">Pagament manual de la quota</message>
-	<message key="plugins.paymethod.manual.description">L&apos;administrador/a registrarà manualment el rebut del pagament que fa l&apos;usuari (fora del programari).</message>
+	<message key="plugins.paymethod.manual.description">L'administrador/a registrarà manualment el rebut del pagament que fa l'usuari (fora del programari).</message>
 	<message key="plugins.paymethod.manual">Pagament manual de la quota</message>
 	<message key="plugins.paymethod.manual.settings">Configuració del pagament manual</message>
 	<message key="plugins.paymethod.manual.settings.instructions">Instruccions</message>
@@ -21,7 +21,7 @@ c<?xml version="1.0" encoding="UTF-8"?>
 
 	<message key="plugins.paymethod.manual.sendNotificationOfPayment">Envia una notificació del pagament</message>
 	<message key="plugins.paymethod.manual.paymentNotification">Notificació del pagament</message>
-	<message key="plugins.paymethod.manual.notificationSent">S&apos;ha enviat la notificació del pagament</message>
+	<message key="plugins.paymethod.manual.notificationSent">S'ha enviat la notificació del pagament</message>
 
 	<message key="plugins.paymethod.manual.purchase.title">Títol</message>
 	<message key="plugins.paymethod.manual.purchase.fee">Quota</message>
