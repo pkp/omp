@@ -45,7 +45,7 @@
 			{fbvElement type="textarea" multilingual=true id="intro" value=$intro}
 		{/fbvFormSection}
 		{fbvFormSection title="admin.settings.aboutDescription"}
-			{fbvElement type="textarea" multilingual=true id="aboutField" value=$about}
+			{fbvElement type="textarea" multilingual=true id="about" value=$about}
 		{/fbvFormSection}
 	{/fbvFormArea}
 	{fbvFormArea id="siteRedirection"}
