@@ -16,5 +16,5 @@
 	<message key="plugins.importexport.native.description">Importa i exporta llibres a OMP en format nadiu XML.</message>
 	<message key="plugins.importexport.native.import">Importa</message>
 	<message key="plugins.importexport.native.export">Exporta</message>
-	<message key="plugins.importexport.native.results">Results</message>
+	<message key="plugins.importexport.native.results">Resultats</message>
 </locale>

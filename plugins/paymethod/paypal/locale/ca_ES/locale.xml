@@ -17,16 +17,11 @@
 	<!-- PayPal Settings Form -->
 	<message key="plugins.paymethod.paypal.settings.paypalenable">Habilita PayPal</message>
 	<message key="plugins.paymethod.paypal.settings.paypalurl">URL de NPI</message>
-	<message key="plugins.paymethod.paypal.settings.paypalurl.description"><![CDATA[This is the URL to PayPal&#39;s Instant Payment Notification (IPN) service. For testing, use <u>https://www.sandbox.paypal.com/cgi-bin/webscr</u>; for production systems, use <u>https://www.paypal.com/cgi-bin/webscr</u>.]]></message>
 	<message key="plugins.paymethod.paypal.settings.selleraccount">Compte del venedor</message>
-	<message key="plugins.paymethod.paypal.settings.selleraccount.description">This is the PayPal account username for the sellers' account to be used, typically an email address. Ensure that you activate Instant Payment Notification (IPN) in your seller account Profile.</message>
-	<message key="plugins.paymethod.paypal.settings.curlNotInstalled">Warning: CURL support for PHP is not installed. PayPal payment support requires the CURL library and will not function until it is installed.</message>
 	<message key="plugins.paymethod.paypal.settings">Configuració de PayPal</message>
 
 	<!-- PayPal -->
 	<message key="plugins.paymethod.paypal">Pagament de quota PayPal</message>
-	<message key="plugins.paymethod.paypal.description"><![CDATA[PayPal enables users, whether or not they are PayPal members, to use all major credit cards. The Manager will need to set up a <a href="http://www.paypal.com" target="_blank">PayPal Business Account</a>.]]></message>
-	<message key="plugins.paymethod.paypal.warning">The Continue button below leads to the PayPal site, where a credit card can be used (without joining PayPal). Use Paypal's "Return to Merchant" button after making the payment, which leads back to this site, where the purchased title will be available for downloading.</message>
 	<message key="plugins.paymethod.paypal.purchase.title">Títol</message>
 	<message key="plugins.paymethod.paypal.purchase.fee">Quota</message>
 	<message key="plugins.paymethod.paypal.purchase.description">Descripció</message>
