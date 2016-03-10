@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE locale SYSTEM "../../../../../lib/pkp/dtd/locale.dtd">
 
 <!--
@@ -7,14 +7,13 @@
   * Copyright (c) 2014-2015 Simon Fraser University Library
   * Copyright (c) 2003-2015 John Willinsky
   * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
-  *
+  * Credits: https://pkp.sfu.ca/wiki/index.php?title=OMP:_Catalan_(ca_ES)
   * Localization strings for the ca_ES (Català) locale.
   -->
 
 <locale name="ca_ES" full_name="Català">
-	<message key="plugins.generic.tinymce.name">Connector TinyMCE</message>
-	<message key="plugins.generic.tinymce.description"><![CDATA[Aquest connector habilita l'edició WYSIWYG de les àrees de text de l'OMP mitjançant l'editor de continguts <a href="http://tinymce.moxiecode.com" target="_blank">TinyMCE</a>.]]></message>
-	<message key="plugins.generic.tinymce.descriptionDisabled"><![CDATA[Aquest connector habilita l'edició WYSIWYG de les àrees de text de l'OMP amb l'editor de contingut <a href="http://tinymce.moxiecode.com" target="_blank">TinyMCE</a> <strong>El TinyMCE no està instal·lat actualment; instal·leu-lo a {$tinyMcePath}.</strong>]]></message>
-
+	<message key="plugins.generic.tinymce.name">Mòdul d'integració amb TinyMCE</message>
+	<message key="plugins.generic.tinymce.description"><![CDATA[Aquest mòdul activa l'edició WYSIWYG ("el que veus, és el que tens") a les àrees de text de l'OMP utilitzant l'editor de contingut <a href="http://tinymce.moxiecode.com" target="_blank">TinyMCE</a>.]]></message>
+	<message key="plugins.generic.tinymce.descriptionDisabled"><![CDATA[Aques mòdul activa l'edició WYSIWYG (el que veus, és el que tens") a les àrees de text de l'OMP utilitzant l'editor de contingut <a href="http://tinymce.moxiecode.com" target="_blank">TinyMCE</a>. <strong>TinyMCE no està instalat. si us plau, instal·la'l al directori {$tinyMcePath}.</strong>]]></message>
 	<message key="plugins.generic.tinymce.settings">Configuració</message>
 </locale>

@@ -2,18 +2,16 @@
 <!DOCTYPE locale SYSTEM "../../../../../lib/pkp/dtd/locale.dtd">
 
 <!--
-  * locale.xml
+  * plugins/viewableFiles/pdfSubmissionFile/locale/ca_ES/locale.xml
   *
   * Copyright (c) 2014-2015 Simon Fraser University Library
   * Copyright (c) 2003-2015 John Willinsky
   * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
   * Credits: https://pkp.sfu.ca/wiki/index.php?title=OMP:_Catalan_(ca_ES)
-  * Localization strings for the ca_ES (Català) locale.
-  *
+  * Localization strings.
   -->
- 
+
 <locale name="ca_ES" full_name="Català">
-	<message key="plugins.block.information.displayName">Bloc d'informació</message>
-	<message key="plugins.block.information.description">Aquest connector proporciona un enllaç d'informació a la barra lateral.</message>
-	<message key="plugins.block.information.link">Informació</message>
+	<message key="plugins.viewableFiles.pdfSubmissionFile.displayName">Galerada de l'article en PDF</message>
+	<message key="plugins.viewableFiles.pdfSubmissionFile.description">Aquest mòdul proporciona la funcionalitat d'afegir galerades d'article en PDF.</message>
 </locale>
