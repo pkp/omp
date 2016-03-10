@@ -11,7 +11,7 @@
   * Localization strings.
   -->
 
-<locale name="es_ES" full_name="(España)">
+<locale name="es_ES" full_name="Español (España)">
 	<message key="editor.pressSignoff">Pulse Cerrar sesión</message>
 	<message key="editor.submissionArchive">Archivo de envíos</message>
 	<message key="editor.monograph.cancelReview">Cancelar solicitud</message>
