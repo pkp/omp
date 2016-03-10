@@ -2,12 +2,12 @@
 <!DOCTYPE locale SYSTEM "../../../../../lib/pkp/dtd/locale.dtd">
 
 <!--
-  * plugins/importexport/onix30/locale/es_ES/locale.xml
+  * locale.xml
   *
   * Copyright (c) 2014-2015 Simon Fraser University Library
   * Copyright (c) 2003-2015 John Willinsky
   * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
-  *
+  * Credits: https://pkp.sfu.ca/wiki/index.php?title=OMP:_Spanish_(es_ES)
   * Localization strings for the es_ES (Español (España)) locale.
   *
   -->
@@ -17,9 +17,9 @@
 	<message key="plugins.importexport.onix30.description">Exportar metadatos de monografías en formato ONIX 3.0</message>
 	<message key="plugins.importexport.onix30.cliUsage"><![CDATA[Uso: {$scriptName} {$pluginName} [xmlFileName] [pressPath] [monographId]]]></message>
 	<message key="plugins.importexport.onix30.cliError">ERROR:</message>
-	<message key="plugins.importexport.onix30.error.unknownPress">La ruta editorial indicada , &quot;{$pressPath},&quot; no existe.</message>
-	<message key="plugins.importexport.onix30.export.error.couldNotWrite">No se puede modificar el archivo &quot;{$fileName}&quot;.</message>
-	<message key="plugins.importexport.onix30.export.error.monographNotFound">Ninguna monografía coincide con el ID. de monografías indicado. &quot;{$monographId}&quot;.</message>
+	<message key="plugins.importexport.onix30.error.unknownPress">La ruta editorial indicada , "{$pressPath}," no existe.</message>
+	<message key="plugins.importexport.onix30.export.error.couldNotWrite">No se puede modificar el archivo "{$fileName}".</message>
+	<message key="plugins.importexport.onix30.export.error.monographNotFound">Ninguna monografía coincide con el ID. de monografías indicado. "{$monographId}".</message>
 	<message key="plugins.importexport.onix30.noFormats">No se muestran las monografías sin formato de publicación.</message>
 	<message key="plugins.importexport.onix30.selectMonograph">Selecciona la monografía que deseas exportar:</message>
 	<message key="plugins.importexport.onix30.exportButton">Exportar</message>

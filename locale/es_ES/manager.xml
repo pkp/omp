@@ -2,14 +2,12 @@
 <!DOCTYPE locale SYSTEM "../../lib/pkp/dtd/locale.dtd">
 
 <!--
-  * locale/en_US/manager.xml
+  * locale/es_ES/manager.xml
   *
-  * Copyright (c) 2014 Simon Fraser University Library
-  * Copyright (c) 2003-2014 John Willinsky
+  * Copyright (c) 2014-2015 Simon Fraser University Library
+  * Copyright (c) 2003-2015 John Willinsky
   * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
-  *
-  * Credits: http://pkp.sfu.ca/wiki/index.php?title=OMP:_Spanish_%28es_ES%29
-  *
+  * Credits: https://pkp.sfu.ca/wiki/index.php?title=OMP:_Spanish_(es_ES)
   * Localization strings.
   -->
 
@@ -31,7 +29,7 @@
 	<message key="manager.reviewForms.edit">Formulario de revisión</message>
 	<message key="manager.reviewForms.form.titleRequired">Se necesita un título para el formulario de revisión.</message>
 	<message key="manager.reviewForms.inReview">En revisión</message>
-	<message key="manager.reviewForms.list.description">Los formularios de evaluación por pares creados aquí se presentarán a los revisores/as para que los completen, en lugar del formulario por defecto, que contiene dos cuadros de texto abiertos, el primero &quot;para el autor/a y el editor/a&quot;, y el segundo &quot;para el editor/a&quot;. Los formularios de revisión pueden designarse para una sección específica de la publicación, y los editores/as tendrán la opción de elegir qué formulario usar para asignar la revisión. En todos los casos los editores/as podrán incluir las revisiones correspondientes a cada autor/a.</message>
+	<message key="manager.reviewForms.list.description">Los formularios de evaluación por pares creados aquí se presentarán a los revisores/as para que los completen, en lugar del formulario por defecto, que contiene dos cuadros de texto abiertos, el primero "para el autor/a y el editor/a", y el segundo "para el editor/a". Los formularios de revisión pueden designarse para una sección específica de la publicación, y los editores/as tendrán la opción de elegir qué formulario usar para asignar la revisión. En todos los casos los editores/as podrán incluir las revisiones correspondientes a cada autor/a.</message>
 	<message key="manager.reviewForms.noneChosen">Ninguno / Revisión de formulario libre</message>
 	<message key="manager.reviewForms.noneCreated">No se ha creado ningún formulario de revisión.</message>
 	<message key="manager.reviewForms.noneUsed">No se ha utilizado ningún formulario de revisión.</message>
@@ -87,7 +85,7 @@
 	<message key="manager.series.existingUsers">Usuarios existentes</message>
 	<message key="manager.series.seriesTitle">Título de la colección</message>
 	<message key="manager.series.noSeriesEditors"><![CDATA[Todavía no hay editores/as de la serie. Añadir antes el rol a al menos un usuario/a a través de Gestión > Configuración > Usuarios/as y Roles.]]></message>
-	<message key="manager.series.noCategories"><![CDATA[Todavía no hay categorías. Si desea asignar categorías a la serie, cierre antes este menú, haga clic en la pestaña &quot;Categorías&quot; y cree una.]]></message>
+	<message key="manager.series.noCategories"><![CDATA[Todavía no hay categorías. Si desea asignar categorías a la serie, cierre antes este menú, haga clic en la pestaña "Categorías" y cree una.]]></message>
 	<message key="manager.series.restricted">Restricciones</message>
 
 	<!-- Settings management -->
@@ -157,7 +155,7 @@ Podrá ofrecer una razón al usuario/a para deshabilitar su cuenta.</message>
 	<message key="manager.setup.addChecklistItem">Añadir elemento de la lista de comprobación</message>
 	<message key="manager.setup.addContributor">Añadir colaborador</message>
 	<message key="manager.setup.addItem">Agregar ítem</message>
-	<message key="manager.setup.addItemtoAboutPress">Añadir un elemento a &quot;Acerca de la editorial&quot;</message>
+	<message key="manager.setup.addItemtoAboutPress">Añadir un elemento a "Acerca de la editorial"</message>
 	<message key="manager.setup.additionalContent">Contenido adicional</message>
 	<message key="manager.setup.additionalContentDescription">Añade el contenido siguiente utilizando texto/HTML, que aparecerá a debajo de la imagen de la página principal, en caso de que se haya subido alguna.</message>
 	<message key="manager.setup.addNavItem">Agregar ítem</message>
@@ -236,7 +234,7 @@ Podrá ofrecer una razón al usuario/a para deshabilitar su cuenta.</message>
 	<message key="manager.setup.focusScope">Orientación y ámbito de actividad</message>
 	<message key="manager.setup.focusScopeDescription"><![CDATA[<strong>EJEMPLO DE DATOS HTML</strong>]]></message>
 	<message key="manager.setup.forAuthorsToIndexTheirWork">Para que los autores indicen su obra</message>
-	<message key="manager.setup.forAuthorsToIndexTheirWorkDescription"><![CDATA[OMP cumple el protocolo sobre recopilación de metadatos <a href="http://www.openarchives.org/" target="_blank">Iniciativa de archivos abiertos</a>, que es un estándar emergente que proporciona acceso bien indexado a los recursos electrónicos de investigación a escala global. Los autores/as usarán una plantilla similar para proporcionar metadatos a su envío. El jefe/a editorial deberá seleccionar las categorías para indexar y presentar a los autores/as ejemplos relevantes para ayudarles a indexar su trabajo, separando términos con punto y coma (p. ej. término1; término2). Las entradas deben introducirse como ejemplos utilizando &quot;P. ej.&quot; o &quot;Por ejemplo&quot;.]]></message>
+	<message key="manager.setup.forAuthorsToIndexTheirWorkDescription"><![CDATA[OMP cumple el protocolo sobre recopilación de metadatos <a href="http://www.openarchives.org/" target="_blank">Iniciativa de archivos abiertos</a>, que es un estándar emergente que proporciona acceso bien indexado a los recursos electrónicos de investigación a escala global. Los autores/as usarán una plantilla similar para proporcionar metadatos a su envío. El jefe/a editorial deberá seleccionar las categorías para indexar y presentar a los autores/as ejemplos relevantes para ayudarles a indexar su trabajo, separando términos con punto y coma (p. ej. término1; término2). Las entradas deben introducirse como ejemplos utilizando "P. ej." o "Por ejemplo".]]></message>
 	<message key="manager.setup.form.contactEmailRequired">Se necesita el correo electrónico del contacto principal.</message>
 	<message key="manager.setup.form.contactNameRequired">Se necesita el nombre del contacto principal.</message>
 	<message key="manager.setup.form.pressNameRequired">Se necesita el nombre de la editorial.</message>
@@ -251,7 +249,7 @@ Podrá ofrecer una razón al usuario/a para deshabilitar su cuenta.</message>
 	<message key="manager.setup.preparingWorkflow">Paso 3. Preparando el flujo de trabajo</message>
 	<message key="manager.setup.homepageImage">Imagen página principal</message>
 	<message key="manager.setup.homepageImageDescription">Añada una imagen o un gráfico en el centro de la página. Si usa la plantilla y la css por defecto, la anchura máxima de la imagen será de 750 px para la configuración de una barra lateral y de 540 px para la de dos barras laterales. Si usa una plantilla o una css personalizada, los valores pueden cambiar.</message>
-	<message key="manager.setup.information.description">En la sección &quot;Información&quot; de la barra lateral se encuentran disponibles unas breves descripciones de la editorial para bibliotecarios y posibles autores y lectores.</message>
+	<message key="manager.setup.information.description">En la sección "Información" de la barra lateral se encuentran disponibles unas breves descripciones de la editorial para bibliotecarios y posibles autores y lectores.</message>
 	<message key="manager.setup.information.forAuthors">Para autores</message>
 	<message key="manager.setup.information.forLibrarians">Para bibliotecarios</message>
 	<message key="manager.setup.information.forReaders">Para lectoras/es</message>
@@ -330,7 +328,7 @@ Podrá ofrecer una razón al usuario/a para deshabilitar su cuenta.</message>
 	<message key="manager.setup.proofingInstructionsDescription">Las instrucciones de correcciones de pruebas estarán disponibles en la fase de edición del envío para correctores/as de pruebas, autores/as y editores/as de sección A continuación se detallan unas instrucciones por defecto en HTML que el jefe/a editorial puede editar o reemplazar en cualquier momento (en HTML o texto plano).</message>
 	<message key="manager.setup.proofreading">Correctores de pruebas</message>
 	<message key="manager.setup.provideRefLinkInstructions">Proporcione instrucciones a los maquetadores/as</message>
-	<message key="manager.setup.publicationScheduleDescription"><![CDATA[Los elementos de la publicación se pueden publicar de forma colectiva, como parte de una monografía con su propia tabla de contenidos. Además, los elementos individuales pueden publicarse en cuanto estén preparados, añadiéndolos a la tabla de contenidos &quot;actual&quot;. En Acerca de la publicación proporcione a los lectores/as información sobre el sistema que la editorial usará y su frecuencia estimada de publicación.]]></message>
+	<message key="manager.setup.publicationScheduleDescription"><![CDATA[Los elementos de la publicación se pueden publicar de forma colectiva, como parte de una monografía con su propia tabla de contenidos. Además, los elementos individuales pueden publicarse en cuanto estén preparados, añadiéndolos a la tabla de contenidos "actual". En Acerca de la publicación proporcione a los lectores/as información sobre el sistema que la editorial usará y su frecuencia estimada de publicación.]]></message>
 	<message key="manager.setup.publisher">Editor</message>
 	<message key="manager.setup.publisherDescription">El nombre de la organización que publica la publicación aparecerá en Acerca de la publicación.</message>
 	<message key="manager.setup.referenceLinking">Enlaces de referencia</message>
@@ -338,7 +336,7 @@ Podrá ofrecer una razón al usuario/a para deshabilitar su cuenta.</message>
 	<message key="manager.setup.restrictMonographAccess">Los usuarios/as deben registrarse e iniciar sesión para ver el contenido de acceso abierto.</message>
 	<message key="manager.setup.restrictSiteAccess">Los usuarios/as deben registrarse e iniciar sesión para ver el sitio de la publicación.</message>
 	<message key="manager.setup.reviewGuidelines">Review Guidelines</message>
-	<message key="manager.setup.reviewGuidelinesDescription"><![CDATA[Las directrices de revisión externa proporcionarán a los revisores/as externos criterios para juzgar la adecuación de un envío para su publicación en la editorial y podrán incluir instrucciones especiales para conseguir una revisión eficaz y útil. Cuando se lleva a cabo la revisión, se les entrega a los revisores/as externos dos cuadros de texto abiertos, el primero &quot;para autor/a y editor/a&quot; y el segundo &quot;para editor/a&quot;. Además el jefe/a editorial puede crear una evaluación por pares en Formularios de revisión. En todos los casos los editores/as podrán incluir las revisiones correspondientes a cada autor/a.]]></message>
+	<message key="manager.setup.reviewGuidelinesDescription"><![CDATA[Las directrices de revisión externa proporcionarán a los revisores/as externos criterios para juzgar la adecuación de un envío para su publicación en la editorial y podrán incluir instrucciones especiales para conseguir una revisión eficaz y útil. Cuando se lleva a cabo la revisión, se les entrega a los revisores/as externos dos cuadros de texto abiertos, el primero "para autor/a y editor/a" y el segundo "para editor/a". Además el jefe/a editorial puede crear una evaluación por pares en Formularios de revisión. En todos los casos los editores/as podrán incluir las revisiones correspondientes a cada autor/a.]]></message>
 	<message key="manager.setup.internalReviewGuidelines">Directrices de revisión interna</message>
 	<message key="manager.setup.internalReviewGuidelinesDescription"><![CDATA[Al igual que las directrices de revisión externa, estas instrucciones proporcionarán a los revisores/as información sobre la evaluación del envío. Estas instrucciones son para los revisores/as internos, que normalmente hacen un proceso de revisión usando revisores/as internos de la editorial.]]></message>
 	<message key="manager.setup.reviewOptions">Opciones de revisión</message>
@@ -408,12 +406,12 @@ Podrá ofrecer una razón al usuario/a para deshabilitar su cuenta.</message>
 	<message key="manager.setup.publicationFormat.physicalFormat">¿Es un formato físico (no digital)?</message>
 	<message key="manager.setup.publicationFormat.inUse">No se puede eliminar el formato de publicación porque se está utilizando en una monografía de su publicación.</message>
 	<message key="manager.setup.newPublicationFormat">Nuevo formato de publicación</message>
-	<message key="manager.setup.newPublicationFormatDescription">Para crear un formato de publicación nuevo, rellene el formulario siguiente y haga clic en el botón &quot;Crear&quot;.</message>
+	<message key="manager.setup.newPublicationFormatDescription">Para crear un formato de publicación nuevo, rellene el formulario siguiente y haga clic en el botón "Crear".</message>
 	<message key="manager.setup.genresDescription">Los géneros se utilizan para nombrar archivos y se presentan en un menú desplegable en el momento de subir los archivos.  Los géneros designados como ## permiten que el usuario/a asocie el archivo con el libro entero 99Z o con un capítulo concreto por número (p. ej., 02).</message>
 	<message key="manager.setup.reviewProcessEmailDescription">Los editores/as mandan a los revisores/as la solicitud para que revisen el envío adjunto al correo electrónico. Los revisores/as mandan un correo electrónico a los editores/as con su aceptación (o rechazo), así como la revisión y la recomendación. Los editores/as abren la aceptación (o rechazo) de los revisores/as, así como la revisión y la recomendación en la página de revisión del envío para grabar el proceso de revisión.</message>
 	<message key="manager.setup.genres">Géneros</message>
 	<message key="manager.setup.newGenre">Nuevo género de monografía</message>
-	<message key="manager.setup.newGenreDescription">Para crear un género nuevo, rellene el formulario siguiente y haga clic en el botón &quot;Crear&quot;.</message>
+	<message key="manager.setup.newGenreDescription">Para crear un género nuevo, rellene el formulario siguiente y haga clic en el botón "Crear".</message>
 	<message key="manager.setup.deleteSelected">Eliminar selección</message>
 	<message key="manager.setup.restoreDefaults">Restaurar la configuración por defecto</message>
 	<message key="manager.setup.prospectus">Guía del prospecto</message>
@@ -456,7 +454,7 @@ Podrá ofrecer una razón al usuario/a para deshabilitar su cuenta.</message>
 	<message key="manager.setup.referenceLinkingDescription"><![CDATA[<p>Para permitir a los lectores/as buscar versiones en línea de la obra citada por un autor/a, dispone de las siguientes opciones.</p>
 
 <ol>
-	<li><strong>Añadir una herramienta de lectura</strong><p>El jefe/a editorial puede añadir &quot;Buscar referencias&quot; a las herramientas de lectura que acompañan a los elementos publicados, lo que permite a los lectores/as pegar el título de una referencia y buscarlo en las bases de datos académicas preseleccionadas para dicha obra.</p></li>
+	<li><strong>Añadir una herramienta de lectura</strong><p>El jefe/a editorial puede añadir "Buscar referencias" a las herramientas de lectura que acompañan a los elementos publicados, lo que permite a los lectores/as pegar el título de una referencia y buscarlo en las bases de datos académicas preseleccionadas para dicha obra.</p></li>
 	<li><strong>Enlaces incorporados en las referencias</strong><p>El maquetador/a puede añadir un enlace a las referencias que pueden consultarse en línea usando las siguiente instrucciones (que se pueden editar).</p></li>
 </ol>]]></message>
 	<message key="manager.setup.registerForIndexingDescription"><![CDATA[Para indexar los contenidos de la publicación dentro de un sistema global de bases de datos de investigación, <a href="http://pkp.sfu.ca/harvester/add.php" target="_blank">registre</a> la URL de su publicación con el <a href="http://pkp.sfu.ca/harvester/" target="_blank">recopilador</a> de metadatos de Public Knowledge Project. La herramienta recoge los metadatos de cada elemento indexado en la publicación, permitiendo búsquedas colectivas y adecuadas entre las páginas de investigación que se acojan al <a href="http://www.openarchives.org/OAI/openarchivesprotocol.htm#Introduction" target="_blank">Protocolo de iniciativa de archivos abiertos para recopilación de metadatos</a>. <br /><br /> Tenga en cuenta que si el administrador/a del sitio ya ha registrado el sitio con la recopilación PKP, su publicación se indexará automáticamente y no tendrá que registrar su publicación. <br /><br /> <a href="http://pkp.sfu.ca/harvester/add.php" target="_blank">Haga clic aquí</a> e introduzca <span class="highlight">{$siteUrl}</span> en <strong>la URL del sitio</strong>, y <span class="highlight">{$oaiUrl}</span> en <strong>el archivo de la base URL para OAI.</strong>.]]></message>

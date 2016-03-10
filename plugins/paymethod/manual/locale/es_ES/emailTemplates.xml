@@ -2,21 +2,21 @@
 <!DOCTYPE email_texts SYSTEM "../../../../../lib/pkp/dtd/emailTemplateData.dtd">
 
 <!--
-  * plugins/paymethod/manual/locale/en_US/emailTemplates.xml
+  * plugins/paymethod/manual/locale/es_ES/emailTemplates.xml
   *
-  * Copyright (c) 2014 Simon Fraser University Library
-  * Copyright (c) 2003-2014 John Willinsky
+  * Copyright (c) 2014-2015 Simon Fraser University Library
+  * Copyright (c) 2003-2015 John Willinsky
   * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
-  *
+  * Credits: https://pkp.sfu.ca/wiki/index.php?title=OMP:_Spanish_(es_ES)
   * Localized email templates XML file.
   -->
 
-<email_texts locale="en_US">
+<email_texts locale="es_ES">
 	<email_text key="MANUAL_PAYMENT_NOTIFICATION">
 		<subject>Notificación de pago manual</subject>
-		<body>Se debe procesar un pago manual para la prensa {$contextName} y el usuario/a {$userFullName} (nombre de usuario/a &quot;{$userName}&quot;).
+		<body>Se debe procesar un pago manual para la prensa {$contextName} y el usuario/a {$userFullName} (nombre de usuario/a "{$userName}").
 
-El producto a pagar es &quot;{$itemName}&quot;.
+El producto a pagar es "{$itemName}".
 El coste es {$itemCost} ({$itemCurrencyCode}).
 
 Este correo electrónico fue generado por el complemento de pago manual de Open Monograph Press.</body>

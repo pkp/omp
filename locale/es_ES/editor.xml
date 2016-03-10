@@ -7,9 +7,7 @@
   * Copyright (c) 2014-2015 Simon Fraser University Library
   * Copyright (c) 2003-2015 John Willinsky
   * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
-  *
-  * Credits: http://pkp.sfu.ca/wiki/index.php?title=OMP:_Spanish_%28es_ES%29
-  *
+  * Credits: https://pkp.sfu.ca/wiki/index.php?title=OMP:_Spanish_(es_ES)
   * Localization strings.
   -->
 
@@ -21,7 +19,7 @@
 	<message key="editor.monograph.enterRecommendation">Introducir recomendación</message>
 	<message key="editor.monograph.enterReviewerRecommendation">Introducir recomendación del revisor/a</message>
 	<message key="editor.monograph.recommendation">Recomendación</message>
-	<message key="editor.monograph.selectReviewerInstructions">Seleccione un revisor/a y pulse el botón &quot;Seleccionar revisor/a&quot; para continuar.</message>
+	<message key="editor.monograph.selectReviewerInstructions">Seleccione un revisor/a y pulse el botón "Seleccionar revisor/a" para continuar.</message>
 	<message key="editor.submission.selectedReviewer">Revisor/a seleccionado</message>
 	<message key="editor.monograph.replaceReviewer">Reemplazar revisor/a</message>
 	<message key="editor.monograph.editorToEnter">Recomendaciones/comentarios del editor/a para el revisor/a</message>

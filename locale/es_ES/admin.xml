@@ -26,8 +26,8 @@
 	<message key="admin.languages.downloadFailed">No se pudo realizar la descarga de la configuración regional. El(los) siguiente(s) mensaje(s) de error describe(n) el error en la descarga. </message>
 	<message key="admin.languages.downloadUnavailable"><![CDATA[<p>La descarga de paquetes de idiomas del servidor web de Public Knowledge Project actualmente no está disponible porque:</p>
 	<ul>
-		<li>Su servidor no dispone o no permite la ejecución de la aplicación &quot;tar&quot; de GNU.</li>
-		<li>OMP no puede modificar el archivo del registro de la configuración regional, por lo general llamado &quot;registry/locales.xml&quot;.</li>
+		<li>Su servidor no dispone o no permite la ejecución de la aplicación "tar" de GNU.</li>
+		<li>OMP no puede modificar el archivo del registro de la configuración regional, por lo general llamado "registry/locales.xml".</li>
 	</ul>
 <p>Los paquetes de idioma pueden descargarse manualmente del <a href="http://pkp.sfu.ca" target="_blank">sitio web de PKP</a>.</p>]]></message>
 

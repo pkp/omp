@@ -1,20 +1,20 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE email_texts SYSTEM "../../lib/pkp/dtd/emailTemplateData.dtd">
 <!--
-  * locale/en_US/emailTemplateData.xml
+  * locale/es_ES/emailTemplateData.xml
   *
-  * Copyright (c) 2014 Simon Fraser University Library
-  * Copyright (c) 2003-2014 John Willinsky
+  * Copyright (c) 2014-2015 Simon Fraser University Library
+  * Copyright (c) 2003-2015 John Willinsky
   * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
   *
   * Localized email templates XML file.
   -->
-<email_texts locale="en_US">
+<email_texts locale="es_ES">
 	<email_text key="AUDITOR_REQUEST">
 		<subject>Solicitud de auditoría del manuscrito</subject>
 		<body>{$auditorName}:
 
-Se subieron nuevos archivos para el manuscrito&quot;{$submissionTitle}&quot;, y desearía que los revisara. Es importante para la publicación que los participantes revisen todas las fases del manuscrito.
+Se subieron nuevos archivos para el manuscrito"{$submissionTitle}", y desearía que los revisara. Es importante para la publicación que los participantes revisen todas las fases del manuscrito.
 
 Puede encontrar los archivos que necesitan revisión en: 
 
@@ -133,13 +133,13 @@ Gracias,
 
 Gracias por el interés mostrado en nuestro trabajo,
 {$editorialContactSignature}</body>
-		<description>Este correo electrónico se envía a los lectores/as registrados a través del enlace &quot;Notificar a los usuarios/as&quot; en el área personal del editor/a. Notifica a los lectores/as que se publicó un nuevo libro y les invita a visitar la publicación mediante la URL proporcionada.</description>
+		<description>Este correo electrónico se envía a los lectores/as registrados a través del enlace "Notificar a los usuarios/as" en el área personal del editor/a. Notifica a los lectores/as que se publicó un nuevo libro y les invita a visitar la publicación mediante la URL proporcionada.</description>
 	</email_text>
 	<email_text key="SUBMISSION_ACK">
 		<subject>Acuse de recibo del envío</subject>
 		<body>{$authorName}:
 
-Gracias por enviar el manuscrito &quot;{$submissionTitle}&quot; a {$contextName}. Con el sistema de gestión de publicaciones en línea que utilizamos podrá seguir el progreso a través del proceso editorial tras iniciar sesión en el sitio web de la publicación:
+Gracias por enviar el manuscrito "{$submissionTitle}" a {$contextName}. Con el sistema de gestión de publicaciones en línea que utilizamos podrá seguir el progreso a través del proceso editorial tras iniciar sesión en el sitio web de la publicación:
 
 URL del manuscrito: {$submissionUrl}
 Nombre de usuario/a: {$authorUsername}
@@ -153,7 +153,7 @@ Si tiene alguna duda puede ponerse en contacto conmigo. Gracias por elegir esta 
 		<subject>Acuse de recibo del envío</subject>
 		<body>Hola:
 
-{$submitterName} envió el manuscrito &quot;{$submissionTitle}&quot; a {$contextName}. 
+{$submitterName} envió el manuscrito "{$submissionTitle}" a {$contextName}. 
 
 Si tiene alguna duda, puede ponerse en contacto conmigo. Gracias por elegir esta editorial para mostrar su trabajo.
 
@@ -164,7 +164,7 @@ Si tiene alguna duda, puede ponerse en contacto conmigo. Gracias por elegir esta
 		<subject>Envío inapropiado</subject>
 		<body>{$authorName}:
 
-Una revisión inicial de &quot;{$submissionTitle}&quot; determinó que este envío no se ajusta al ámbito y al objetivo de {$contextName}. Le recomiendo consultar la descripción de esta editorial en la sección Acerca de, así como sus contenidos actuales, para conocer más sobre las obras que publicamos. Quizá considere apropiado enviar este manuscrito a otra editorial que se ajuste mejor a sus necesidades.
+Una revisión inicial de "{$submissionTitle}" determinó que este envío no se ajusta al ámbito y al objetivo de {$contextName}. Le recomiendo consultar la descripción de esta editorial en la sección Acerca de, así como sus contenidos actuales, para conocer más sobre las obras que publicamos. Quizá considere apropiado enviar este manuscrito a otra editorial que se ajuste mejor a sus necesidades.
 
 {$editorialContactSignature}</body>
 	</email_text>
@@ -172,7 +172,7 @@ Una revisión inicial de &quot;{$submissionTitle}&quot; determinó que este env�
 		<subject>Tarea editorial</subject>
 		<body>{$editorialContactName}:
 
-El envío &quot;{$submissionTitle}&quot; a {$contextName} se le asignó para llevar a cabo el proceso editorial en calidad de editor/a.
+El envío "{$submissionTitle}" a {$contextName} se le asignó para llevar a cabo el proceso editorial en calidad de editor/a.
 
 URL de envío: {$submissionUrl}
 Nombre de usuario/a: {$editorUsername}
@@ -207,7 +207,7 @@ Un saludo cordial,
 		<subject>Solicitud de revisión de manuscrito</subject>
 		<body>{$reviewerName}:
 
-Creo que puede ser un excelente revisor/a para el manuscrito &quot;{$submissionTitle}&quot; que se envió a {$contextName}. El resumen del envío se incluye debajo. Espero que considere llevar a cabo esta importante tarea para nosotros.
+Creo que puede ser un excelente revisor/a para el manuscrito "{$submissionTitle}" que se envió a {$contextName}. El resumen del envío se incluye debajo. Espero que considere llevar a cabo esta importante tarea para nosotros.
 
 Inicie sesión en la página web de la publicación antes del {$weekLaterDate} para indicar si podrá o no realizar la revisión, así como para acceder al envío y registrar su revisión y recomendación.
 
@@ -221,7 +221,7 @@ Gracias por considerar esta solicitud.
 
 
 
-&quot;{$submissionTitle}&quot;
+"{$submissionTitle}"
 
 {$abstractTermIfEnabled}
 {$submissionAbstract}</body>
@@ -231,7 +231,7 @@ Gracias por considerar esta solicitud.
 		<subject>Solicitud de revisión de manuscrito</subject>
 		<body>{$reviewerName}:
 
-Creo que puede ser un excelente revisor/a para el manuscrito &quot;{$submissionTitle}&quot; , por ese motivo le pido que considere llevar a cabo esta importante tarea para nosotros. Las indicaciones para la revisión de la publicación se incluyen más abajo y el envío se adjunta al presente correo electrónico. Debe mandarme por correo electrónico la revisión que haga del envío, junto con su recomendación, antes del {$reviewDueDate}.
+Creo que puede ser un excelente revisor/a para el manuscrito "{$submissionTitle}" , por ese motivo le pido que considere llevar a cabo esta importante tarea para nosotros. Las indicaciones para la revisión de la publicación se incluyen más abajo y el envío se adjunta al presente correo electrónico. Debe mandarme por correo electrónico la revisión que haga del envío, junto con su recomendación, antes del {$reviewDueDate}.
 
 Indique mediante un correo electrónico antes del {$weekLaterDate} si puede y desea realizar la revisión.
 
@@ -250,7 +250,7 @@ Directrices para la revisión
 		<subject>Solicitud de revisión cancelada</subject>
 		<body>{$reviewerName}:
 
-Hemos decidido cancelar nuestra solicitud de que usted revise el envío &quot;{$submissionTitle}&quot; para {$contextName}. Pedimos disculpas por cualquier inconveniente que esta decisión pueda causar y esperamos poder contar con usted para participar en este proceso de revisión en el futuro.
+Hemos decidido cancelar nuestra solicitud de que usted revise el envío "{$submissionTitle}" para {$contextName}. Pedimos disculpas por cualquier inconveniente que esta decisión pueda causar y esperamos poder contar con usted para participar en este proceso de revisión en el futuro.
 
 Si tiene alguna duda, puede ponerse en contacto conmigo.
 
@@ -261,7 +261,7 @@ Si tiene alguna duda, puede ponerse en contacto conmigo.
 		<subject>Disponible para revisar</subject>
 		<body>{$editorialContactName}:
 
-Estoy disponible y puedo revisar el envío &quot;{$submissionTitle}&quot; para {$contextName}. Gracias por pensar en mí. Tengo previsto completar la revisión en la fecha establecida, el {$reviewDueDate}, o antes.
+Estoy disponible y puedo revisar el envío "{$submissionTitle}" para {$contextName}. Gracias por pensar en mí. Tengo previsto completar la revisión en la fecha establecida, el {$reviewDueDate}, o antes.
 
 {$reviewerName}</body>
 		<description>El revisor/a envía este correo electrónico al editor/a de la serie como respuesta a la solicitud de revisión para notificar al editor/a de la serie que la solicitud se aceptó y que la revisión estará terminada en el plazo especificado.</description>
@@ -270,7 +270,7 @@ Estoy disponible y puedo revisar el envío &quot;{$submissionTitle}&quot; para {
 		<subject>No disponible para revisar</subject>
 		<body>{$editorialContactName}:
 
-Me temo que en este momento no puedo revisar el envío &quot;{$submissionTitle}&quot; para {$contextName}. Gracias por pensar en mí, pueden contar conmigo en futuras ocasiones.
+Me temo que en este momento no puedo revisar el envío "{$submissionTitle}" para {$contextName}. Gracias por pensar en mí, pueden contar conmigo en futuras ocasiones.
 
 {$reviewerName}</body>
 		<description>El revisor/a envía este correo electrónico al editor/a de la serie como respuesta a una solicitud de revisión para notificar al editor/a de la serie que la petición se rechazó.</description>
@@ -279,7 +279,7 @@ Me temo que en este momento no puedo revisar el envío &quot;{$submissionTitle}&
 		<subject>Revisión del manuscrito completada</subject>
 		<body>{$editorialContactName}:
 
-He completado la revisión de &quot;{$submissionTitle}&quot; para {$contextName} y enviado la recomendación &quot;{$recommendation}&quot;.
+He completado la revisión de "{$submissionTitle}" para {$contextName} y enviado la recomendación "{$recommendation}".
 
 {$reviewerName}</body>
 		<description>El revisor/a envía este correo electrónico al editor/a de la serie para notificarle que la revisión se completó y que los comentarios y recomendaciones se registraron en la página web de la publicación.</description>
@@ -288,7 +288,7 @@ He completado la revisión de &quot;{$submissionTitle}&quot; para {$contextName}
 		<subject>Acuse de recibo de la revisión del manuscrito</subject>
 		<body>{$reviewerName}:
 
-Gracias por completar la revisión del envío &quot;{$submissionTitle}&quot; para {$contextName}. Agradecemos su aportación a la calidad de los trabajos que publicamos.
+Gracias por completar la revisión del envío "{$submissionTitle}" para {$contextName}. Agradecemos su aportación a la calidad de los trabajos que publicamos.
 
 {$editorialContactSignature}</body>
 		<description>El editor/a de la serie envía este correo electrónico para confirmar la recepción de una revisión completada y dar las gracias al revisor/a por su contribución.</description>
@@ -297,7 +297,7 @@ Gracias por completar la revisión del envío &quot;{$submissionTitle}&quot; par
 		<subject>Recordatorio de revisión del envío</subject>
 		<body>{$reviewerName}:
 
-Este es un pequeño recordatorio de que realizamos una solicitud para que revisara el envío &quot;{$submissionTitle}&quot; para {$contextName}. Esperábamos que la revisión estuviera lista para el {$reviewDueDate} y nos complacería recibirla tan pronto como la tenga preparada.
+Este es un pequeño recordatorio de que realizamos una solicitud para que revisara el envío "{$submissionTitle}" para {$contextName}. Esperábamos que la revisión estuviera lista para el {$reviewDueDate} y nos complacería recibirla tan pronto como la tenga preparada.
 
 En caso de no tener nombre de usuario/a y contraseña para la página web, puede usar este enlace para restablecer su contraseña (posteriormente se le enviará por correo electrónico junto con el nombre de usuario/a). {$passwordResetUrl}
 
@@ -314,7 +314,7 @@ Confirme que puede completar esta fundamental contribución al trabajo de la edi
 		<subject>Recordatorio de revisión del envío</subject>
 		<body>{$reviewerName}:
 
-Este es un pequeño recordatorio de que realizamos una solicitud para que revisara el envío &quot;{$submissionTitle}&quot; para {$contextName}. Esperábamos que la revisión estuviera lista para el {$reviewDueDate} y nos complacería recibirla tan pronto como la tenga preparada.
+Este es un pequeño recordatorio de que realizamos una solicitud para que revisara el envío "{$submissionTitle}" para {$contextName}. Esperábamos que la revisión estuviera lista para el {$reviewDueDate} y nos complacería recibirla tan pronto como la tenga preparada.
 
 URL del envío: {$submissionReviewUrl}
 
@@ -327,7 +327,7 @@ Confirme que puede completar esta contribución fundamental al trabajo de la edi
 		<subject>Recordatorio automatizado de revisión del envío</subject>
 		<body>{$reviewerName}:
 
-Este es un pequeño recordatorio de que realizamos una solicitud para que revisara el envío &quot;{$submissionTitle}&quot; para {$contextName}. Esperábamos que la revisión estuviera lista para el {$reviewDueDate}. Este correo electrónico se genera y envía automáticamente cuando se supera el plazo establecido. Aun así, nos complacería recibirla tan pronto como la tenga preparada.
+Este es un pequeño recordatorio de que realizamos una solicitud para que revisara el envío "{$submissionTitle}" para {$contextName}. Esperábamos que la revisión estuviera lista para el {$reviewDueDate}. Este correo electrónico se genera y envía automáticamente cuando se supera el plazo establecido. Aun así, nos complacería recibirla tan pronto como la tenga preparada.
 
 En caso de no tener nombre de usuario/a y contraseña para la página web, puede usar este enlace para restablecer su contraseña (posteriormente se le enviará por correo electrónico junto con el nombre de usuario/a). {$passwordResetUrl}
 
@@ -342,7 +342,7 @@ Confirme que puede completar esta contribución fundamental al trabajo de la edi
 		<subject>Recordatorio automatizado de revisión del envío</subject>
 		<body>{$reviewerName}:
 
-Este es un pequeño recordatorio de que realizamos una solicitud para que revisara el envío &quot;{$submissionTitle}&quot; para {$contextName}. Esperábamos que la revisión estuviera lista para el {$reviewDueDate}. Este correo electrónico se genera y envía automáticamente cuando se supera el plazo establecido. Aun así, nos complacería recibirla tan pronto como la tenga preparada.
+Este es un pequeño recordatorio de que realizamos una solicitud para que revisara el envío "{$submissionTitle}" para {$contextName}. Esperábamos que la revisión estuviera lista para el {$reviewDueDate}. Este correo electrónico se genera y envía automáticamente cuando se supera el plazo establecido. Aun así, nos complacería recibirla tan pronto como la tenga preparada.
 
 URL del envío: {$submissionReviewUrl}
 
@@ -355,7 +355,7 @@ Confirme que puede completar esta contribución fundamental al trabajo de la edi
 		<subject>Decisión del coordinador</subject>
 		<body>{$authorName}:
 
-Hemos tomado una decisión con respecto al envío que realizó a {$contextName}, &quot;{$submissionTitle}&quot;.
+Hemos tomado una decisión con respecto al envío que realizó a {$contextName}, "{$submissionTitle}".
 
 Nuestra decisión es:
 
@@ -370,7 +370,7 @@ Nombre de usuario/a: {$authorUsername}
 		<subject>Decisión del coordinador</subject>
 		<body>{$authorName}:
 
-Hemos tomado una decisión con respecto al envío que realizó a {$contextName}, &quot;{$submissionTitle}&quot;.
+Hemos tomado una decisión con respecto al envío que realizó a {$contextName}, "{$submissionTitle}".
 
 Nuestra decisión es:
 
@@ -385,7 +385,7 @@ Nombre de usuario/a: {$authorUsername}
 		<subject>Decisión del coordinador</subject>
 		<body>{$authorName}:
 
-La edición de su manuscrito, &quot;{$submissionTitle}&quot;, se completó.  Se procede al envío para producción.
+La edición de su manuscrito, "{$submissionTitle}", se completó.  Se procede al envío para producción.
 
 URL del manuscrito: {$submissionUrl}
 Nombre de usuario/a: {$authorUsername}
@@ -398,7 +398,7 @@ Nombre de usuario/a: {$authorUsername}
 		<subject>Decisión del coordinador</subject>
 		<body>{$authorName}:
 
-Hemos tomado una decisión con respecto al envío que realizó a {$contextName}, &quot;{$submissionTitle}&quot;.
+Hemos tomado una decisión con respecto al envío que realizó a {$contextName}, "{$submissionTitle}".
 
 Nuestra decisión es:
 
@@ -413,7 +413,7 @@ Nombre de usuario/a: {$authorUsername}
 		<subject>Decisión del coordinador</subject>
 		<body>{$authorName}:
 
-Hemos tomado una decisión con respecto al envío que realizó a {$contextName}, &quot;{$submissionTitle}&quot;.
+Hemos tomado una decisión con respecto al envío que realizó a {$contextName}, "{$submissionTitle}".
 
 Nuestra decisión es:
 
@@ -428,7 +428,7 @@ Nombre de usuario/a: {$authorUsername}
 		<subject>Decisión del coordinador</subject>
 		<body>{$authorName}:
 
-Hemos tomado una decisión con respecto al envío que realizó a {$contextName}, &quot;{$submissionTitle}&quot;.
+Hemos tomado una decisión con respecto al envío que realizó a {$contextName}, "{$submissionTitle}".
 
 Nuestra decisión es:
 
@@ -443,7 +443,7 @@ Nombre de usuario/a: {$authorUsername}
 		<subject>Solicitud de corrección de originales</subject>
 		<body>{$copyeditorName}:
 
-Solicito que realice la corrección del original &quot;{$submissionTitle}&quot; para {$contextName} siguiendo los siguientes pasos.
+Solicito que realice la corrección del original "{$submissionTitle}" para {$contextName} siguiendo los siguientes pasos.
 1. Haga clic en la URL del envío que aparece debajo.
 2. Inicie sesión en la publicación y haga clic en el archivo que aparece en el paso 1.
 3. Consulte las Instrucciones de corrección publicadas en la página web.
@@ -462,7 +462,7 @@ Nombre de usuario/a: {$copyeditorUsername}
 		<subject>Solicitud de galeradas</subject>
 		<body>{$layoutEditorName}:
 
-Es necesario extraer galeradas del envío &quot;{$submissionTitle}&quot; a {$contextName} siguiendo los siguientes pasos.
+Es necesario extraer galeradas del envío "{$submissionTitle}" a {$contextName} siguiendo los siguientes pasos.
 1. Haga clic en la URL del envío que aparece debajo.
 2. Inicie sesión en la publicación y use el archivo Versión para maquetar para crear las galeradas según los estándares de publicación.
 3. Envíe el correo electrónico COMPLETO al editor/a.
@@ -480,7 +480,7 @@ Si no puede realizar esta tarea en este momento o tiene alguna duda, póngase en
 		<subject>Galeradas de maquetación completadas</subject>
 		<body>{$editorialContactName}:
 
-Las galeradas para el manuscrito &quot;{$submissionTitle}&quot; para {$contextName} están preparadas y listas para la corrección de pruebas.
+Las galeradas para el manuscrito "{$submissionTitle}" para {$contextName} están preparadas y listas para la corrección de pruebas.
 
 Si tiene alguna duda, puede ponerse en contacto conmigo.
 
@@ -491,7 +491,7 @@ Si tiene alguna duda, puede ponerse en contacto conmigo.
 		<subject>Solicitud de índice</subject>
 		<body>{$indexerName}:
 
-Es necesario crear índices al envío &quot;{$submissionTitle}&quot; a {$contextName} siguiendo los siguientes pasos.
+Es necesario crear índices al envío "{$submissionTitle}" a {$contextName} siguiendo los siguientes pasos.
 1. Haga clic en la URL del envío que aparece debajo.
 2. Inicie sesión en la publicación y use el fichero Galeradas de la página para crear galeradas según los estándares de publicación.
 3. Envíe el correo electrónico COMPLETO al editor/a.
@@ -509,7 +509,7 @@ Si no puede realizar esta tarea en este momento o tiene alguna duda, póngase en
 		<subject>Galeradas de índice completadas</subject>
 		<body>{$editorialContactName}:
 
-Los índices para el manuscrito &quot;{$submissionTitle}&quot; para {$contextName} están preparados y listos para la corrección de pruebas.
+Los índices para el manuscrito "{$submissionTitle}" para {$contextName} están preparados y listos para la corrección de pruebas.
 
 Si tiene alguna duda, puede ponerse en contacto conmigo.
 
@@ -518,12 +518,12 @@ Si tiene alguna duda, puede ponerse en contacto conmigo.
 	</email_text>
 	<email_text key="EMAIL_LINK">
 		<subject>Manuscrito de posible interés</subject>
-		<body>Quizá le interese consultar &quot;{$submissionTitle}&quot; de {$authorName} publicado en el vol. {$volume}, n.º {$number} ({$year}) de {$contextName} en &quot;{$monographUrl}&quot;.</body>
+		<body>Quizá le interese consultar "{$submissionTitle}" de {$authorName} publicado en el vol. {$volume}, n.º {$number} ({$year}) de {$contextName} en "{$monographUrl}".</body>
 		<description>Esta plantilla de correo electrónico da al lector/a registrado la oportunidad de enviar información sobre una monografía a alguien que pueda estar interesado. Está disponible en las Herramientas de lectura y debe ser habilitada por el jefe/a editorial en la página de Administración de herramientas de lectura.</description>
 	</email_text>
 		<email_text key="NOTIFY_SUBMISSION">
 		<subject>Notificación de envío</subject>
-		<body>Tiene un mensaje de {$sender} en relación con &quot;{$submissionTitle}&quot; ({$monographDetailsUrl}):
+		<body>Tiene un mensaje de {$sender} en relación con "{$submissionTitle}" ({$monographDetailsUrl}):
 
 		{$message}
 
@@ -532,7 +532,7 @@ Si tiene alguna duda, puede ponerse en contacto conmigo.
 	</email_text>
 		<email_text key="NOTIFY_FILE">
 		<subject>Notificación de envío de fichero</subject>
-		<body>Tiene un mensaje de {$sender} en relación con el fichero &quot;{$fileName}&quot; en &quot;{$submissionTitle}&quot; ({$monographDetailsUrl}):
+		<body>Tiene un mensaje de {$sender} en relación con el fichero "{$fileName}" en "{$submissionTitle}" ({$monographDetailsUrl}):
 
 		{$message}
 

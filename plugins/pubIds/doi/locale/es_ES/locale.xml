@@ -7,7 +7,7 @@
   * Copyright (c) 2014-2015 Simon Fraser University Library
   * Copyright (c) 2003-2015 John Willinsky
   * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
-  *
+  * Credits: https://pkp.sfu.ca/wiki/index.php?title=OMP:_Spanish_(es_ES)
   * DOI plugin localization strings
   -->
  
@@ -36,8 +36,8 @@
 	<message key="plugins.pubIds.doi.manager.settings.doiSuffixPattern.example">Por ejemplo, seleccionar%ppub%f puede crear un DOI como 10.1234/pressESPpub100</message>
 	<message key="plugins.pubIds.doi.manager.settings.doiSuffixDefault">Usar modelos predeterminados.</message>
 	<message key="plugins.pubIds.doi.manager.settings.doiSuffixDefault.description"><![CDATA[%p.%m.%f para formatos de publicación.]]></message>
-	<message key="plugins.pubIds.doi.manager.settings.doiSuffixPublisherId">Use el &quot;Identificador personalizado&quot; para elementos publicados como el sufijo DOI (es necesario habilitarlo en el paso 4). Este es el mismo identificador que se usará para las URL públicas.</message>
-	<message key="plugins.pubIds.doi.manager.settings.doiSuffixCustomIdentifier">Introduzca un sufijo del DOI individual por cada elemento independiente publicado que sea diferente al &quot;Identificador personalizado&quot; mencionado en la opción anterior. Encontrará un campo de entrada DOI adicional en cada elemento de la página de metadatos.</message>
+	<message key="plugins.pubIds.doi.manager.settings.doiSuffixPublisherId">Use el "Identificador personalizado" para elementos publicados como el sufijo DOI (es necesario habilitarlo en el paso 4). Este es el mismo identificador que se usará para las URL públicas.</message>
+	<message key="plugins.pubIds.doi.manager.settings.doiSuffixCustomIdentifier">Introduzca un sufijo del DOI individual por cada elemento independiente publicado que sea diferente al "Identificador personalizado" mencionado en la opción anterior. Encontrará un campo de entrada DOI adicional en cada elemento de la página de metadatos.</message>
 	<message key="plugins.pubIds.doi.manager.settings.doiPublicationFormatSuffixPatternRequired">Introduzca el modelo de sufijo del DOI para los formatos de publicación.</message>
 	
 	<message key="plugins.pubIds.doi.manager.settings.doiReassign">Asignar los DOI de nuevo</message>

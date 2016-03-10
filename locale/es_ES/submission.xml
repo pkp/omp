@@ -2,23 +2,21 @@
 <!DOCTYPE locale SYSTEM "../../lib/pkp/dtd/locale.dtd">
 
 <!--
-  * locale/en_US/submission.xml
+  * locale/es_ES/submission.xml
   *
-  * Copyright (c) 2014 Simon Fraser University Library
-  * Copyright (c) 2003-2014 John Willinsky
+  * Copyright (c) 2014-2015 Simon Fraser University Library
+  * Copyright (c) 2003-2015 John Willinsky
   * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
-  *
-  * Credits: http://pkp.sfu.ca/wiki/index.php?title=OMP:_Spanish_%28es_ES%29
-  *
+  * Credits: https://pkp.sfu.ca/wiki/index.php?title=OMP:_Spanish_(es_ES)
   * Localization strings.
   -->
 
-<locale name="es_ES" full_name="(España)">
+<locale name="es_ES" full_name="Español (España)">
 	<!-- General submission keys -->
 	<message key="submission.submit.title">Enviar una monografía</message>
 	<message key="submission.upload.selectBookElement">Selecciona un elemento del libro</message>
 	<message key="submission.title">Título de libro</message>
-	<message key="submission.title.tip"><![CDATA[El tipo de envío suele ser de &quot;imagen&quot;, &quot;texto&quot; u otros archivos multimedia entre los que se incluyen &quot;software&quot; e &quot;interactivo&quot;. Elija el que sea más pertinente para su envío. Pueden encontrarse ejemplos en <a target="_blank" href="http://dublincore.org/documents/2001/04/12/usageguide/generic.shtml#type">http://dublincore.org/documents/2001/04/12/usageguide/generic.shtml#type</a>]]></message>
+	<message key="submission.title.tip"><![CDATA[El tipo de envío suele ser de "imagen", "texto" u otros archivos multimedia entre los que se incluyen "software" e "interactivo". Elija el que sea más pertinente para su envío. Pueden encontrarse ejemplos en <a target="_blank" href="http://dublincore.org/documents/2001/04/12/usageguide/generic.shtml#type">http://dublincore.org/documents/2001/04/12/usageguide/generic.shtml#type</a>]]></message>
 	<message key="submission.select">Seleccionar propuesta</message>
 	<message key="submission.synopsis">Sinopsis</message>
 	<message key="submission.workflowType">Tipo de libro</message>
@@ -110,17 +108,17 @@
 	<message key="submission.catalogEntry.publicationMetadata">Formato de publicación</message>
 
 	<!-- Log events -->
-	<message key="submission.event.participantAdded">&quot;{$name}&quot; ({$username}) añadido como {$userGroupName}.</message>
-	<message key="submission.event.participantRemoved">&quot;{$name}&quot; ({$username}) eliminado como {$userGroupName}.</message>
+	<message key="submission.event.participantAdded">"{$name}" ({$username}) añadido como {$userGroupName}.</message>
+	<message key="submission.event.participantRemoved">"{$name}" ({$username}) eliminado como {$userGroupName}.</message>
 	<message key="submission.event.metadataPublished">Los metadatos de la monografía  se han aprobado para su publicación.</message>
 	<message key="submission.event.metadataUnpublished">Los metadatos de la monografía no están ya publicados.</message>
-	<message key="submission.event.publicationFormatMadeAvailable">El formato de publicación &quot;{$publicationFormatName}&quot; está disponible.</message>
-	<message key="submission.event.publicationFormatMadeUnavailable">El formato de publicación &quot;{$publicationFormatName}&quot; ya no está disponible.</message>
-	<message key="submission.event.publicationFormatPublished">El formato de publicación &quot;{$publicationFormatName}&quot; está aprobado para su publicación.</message>
-	<message key="submission.event.publicationFormatUnpublished">El formato de publicación &quot;{$publicationFormatName}&quot; ya no se publica.</message>
+	<message key="submission.event.publicationFormatMadeAvailable">El formato de publicación "{$publicationFormatName}" está disponible.</message>
+	<message key="submission.event.publicationFormatMadeUnavailable">El formato de publicación "{$publicationFormatName}" ya no está disponible.</message>
+	<message key="submission.event.publicationFormatPublished">El formato de publicación "{$publicationFormatName}" está aprobado para su publicación.</message>
+	<message key="submission.event.publicationFormatUnpublished">El formato de publicación "{$publicationFormatName}" ya no se publica.</message>
 	<message key="submission.event.catalogMetadataUpdated">Se han subido los metadatos del catálogo.</message>
-	<message key="submission.event.publicationMetadataUpdated">Se actualizaron los metadatos del formato de publicación &quot;{$formatName}&quot;.</message>
-	<message key="submission.event.publicationFormatCreated">Se creó el formato de publicación &quot;{$formatName}&quot;.</message>
-	<message key="submission.event.publicationFormatRemoved">Se eliminó el formato de publicación &quot;{$formatName}&quot;.</message>
+	<message key="submission.event.publicationMetadataUpdated">Se actualizaron los metadatos del formato de publicación "{$formatName}".</message>
+	<message key="submission.event.publicationFormatCreated">Se creó el formato de publicación "{$formatName}".</message>
+	<message key="submission.event.publicationFormatRemoved">Se eliminó el formato de publicación "{$formatName}".</message>
 	<message key="submission.submit.titleAndSummary">Título y Resumen</message>
 </locale>

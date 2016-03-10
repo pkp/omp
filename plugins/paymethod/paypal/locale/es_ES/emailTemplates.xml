@@ -2,16 +2,16 @@
 <!DOCTYPE email_texts SYSTEM "../../../../../lib/pkp/dtd/emailTemplateData.dtd">
 
 <!--
-  * plugins/paymethod/paypal/locale/en_US/emailTemplates.xml
+  * plugins/paymethod/paypal/locale/es_ES/emailTemplates.xml
   *
-  * Copyright (c) 2014 Simon Fraser University Library
-  * Copyright (c) 2003-2014 John Willinsky
+  * Copyright (c) 2014-2015 Simon Fraser University Library
+  * Copyright (c) 2003-2015 John Willinsky
   * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
-  *
+  * Credits: https://pkp.sfu.ca/wiki/index.php?title=OMP:_Spanish_(es_ES)
   * Localized email templates XML file.
   -->
 
-<email_texts locale="en_US">
+<email_texts locale="es_ES">
 	<email_text key="PAYPAL_INVESTIGATE_PAYMENT">
 		<subject>Actividad inusual en PayPal</subject>
 		<body>Open Monograph Press ha detectado una actividad inusual en relación a la asistencia de pago de Paypal para la editorial{$contextName}. Esta actividad puede requerir de una investigación más exahustiva o de una intervención manual.
