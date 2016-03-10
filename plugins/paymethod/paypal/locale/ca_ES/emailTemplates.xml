@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE email_texts SYSTEM "../../../../../lib/pkp/dtd/emailTemplateData.dtd">
+
+<!--
+  * plugins/paymethod/paypal/locale/ca_ES/emailTemplates.xml
+  *
+  * Copyright (c) 2015 Simon Fraser University Library
+  * Copyright (c) 2003-2015 John Willinsky
+  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
+  *
+  * Credits: https://pkp.sfu.ca/wiki/index.php?title=OMP:_Catalan_(ca_ES)
+  *
+  * Localized email templates XML file for ca_ES (Català).
+  -->
+
+<email_texts locale="ca_ES">
+	<email_text key="PAYPAL_INVESTIGATE_PAYMENT">
+		<subject>Activitat inusual a PayPal</subject>
+		<body>Open Monograph Press ha notat una activitat inusual relacionada amb el suport de pagament PayPal per la publicació {$contextName}. Aquesta activitat pot requerir de més investigació o una intervenció manual.
+                       
+Aquest correu l'ha generat el plubin de PayPal de Open Monograph Press PayPal.
+
+Informació completa de la petició:
+{$postInfo}
+
+Informació addicional (si s'escau):
+{$additionalInfo}
+
+Variables de servidor:
+{$serverVars}
+</body>
+		<description>Aquesta plantilla de correu s'utilitza per notificar al contacte principal de la publicació que hi ha hagut una activiat sospitosa o que requereix d'una intervenció manual amb el mòdul de PayPal.</description>
+	</email_text>
+</email_texts>
