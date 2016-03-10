@@ -2,12 +2,12 @@
 <!DOCTYPE locale SYSTEM "../../../../../lib/pkp/dtd/locale.dtd">
 
 <!--
-  * plugins/importexport/native/locale/es_ES/locale.xml
+  * locale.xml
   *
   * Copyright (c) 2014-2015 Simon Fraser University Library
   * Copyright (c) 2003-2015 John Willinsky
   * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
-  *
+  * Credits: https://pkp.sfu.ca/wiki/index.php?title=OMP:_Spanish_(es_ES)
   * Localization strings for the es_ES (Español (España)) locale.
   -->
 
@@ -15,9 +15,9 @@
 	<message key="plugins.importexport.native.displayName">Complemento XML nativo</message>
 	<message key="plugins.importexport.native.description">Importar y exportar libros en el formato XML nativo de OMP.</message>
 	<message key="plugins.importexport.native.import">Importar</message>
-	<message key="plugins.importexport.native.import.instructions">Por favor, selecciona un fichero XML para subir y pincha en "Iniciar subida". Cuando se haya completado la subida del fichero, pincha en "OK" para importarlo a OMP.</message>
+	<message key="plugins.importexport.native.import.instructions">Seleccione un archivo en formato XML para importar y haga click en "Comenzar a cargar". Cuando se haya terminado de cargar el archivo, haga click en "Aceptar" para importar el documento a OMP.</message>
 	<message key="plugins.importexport.native.export">Exportar</message>
 	<message key="plugins.importexport.native.results">Resultados</message>
 	<message key="plugins.inportexport.native.uploadFile">Por favor, sube un fichero en "Importar" para continuar.</message>
-	<message key="plugins.importexport.native.importComplete">La importación se ha completado con éxito. Se han importado los siguientes elementos:</message>
+	<message key="plugins.importexport.native.importComplete">La importación se ha completado correctamente. Los siguientes elementos fueron importados:</message>
 </locale>

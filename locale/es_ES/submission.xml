@@ -7,16 +7,20 @@
   * Copyright (c) 2014-2015 Simon Fraser University Library
   * Copyright (c) 2003-2015 John Willinsky
   * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
-  *
-  * Localization strings for the es_ES (Español (España)) locale.
+  * Credits: https://pkp.sfu.ca/wiki/index.php?title=OMP:_Spanish_(es_ES)
+  * Localization strings.
   -->
 
-<locale name="es_ES" full_name = "Español">
+<locale name="es_ES" full_name="Español (España)">
 	<!-- General submission keys -->
+	<message key="submission.submit.title">Enviar una monografía</message>
+	<message key="submission.upload.selectBookElement">Selecciona un elemento del libro</message>
+	<message key="submission.title">Título de libro</message>
+	<message key="submission.title.tip"><![CDATA[El tipo de envío suele ser de "imagen", "texto" u otros archivos multimedia entre los que se incluyen "software" e "interactivo". Elija el que sea más pertinente para su envío. Pueden encontrarse ejemplos en <a target="_blank" href="http://dublincore.org/documents/2001/04/12/usageguide/generic.shtml#type">http://dublincore.org/documents/2001/04/12/usageguide/generic.shtml#type</a>]]></message>
 	<message key="submission.select">Seleccionar propuesta</message>
 	<message key="submission.synopsis">Sinopsis</message>
 	<message key="submission.workflowType">Tipo de libro</message>
-	<message key="submission.workflowType.description">Una monografía es una obra escrita totalmente por uno o más autores. Una obra colectiva tiene diferentes autores para cada capítulo (posteriormente se aportarán los detalles de cada capítulo).</message>
+	<message key="submission.workflowType.description">Una monografía es una obra escrita totalmente por uno o más autores/as. Una obra colectiva tiene diferentes autores/as para cada capítulo (los detalles de capítulo se introducen posteriormente durante el proceso).</message>
 	<message key="submission.workflowType.editedVolume">Obra colectiva</message>
 	<message key="submission.workflowType.authoredWork">Monografía</message>
 	<message key="submission.monograph">Monografía</message>
@@ -25,16 +29,16 @@
 	<message key="submission.artwork.permissions">Permisos</message>
 	<message key="submission.chapter">Capítulo</message>
 	<message key="submission.chapters">Capítulos</message>
-	<message key="submission.chaptersDescription">Puedes hacer una lista de los capítulos aquí, y asignar a los colaboradores de la lista de colaboradores localizada anteriormente.</message>
+	<message key="submission.chaptersDescription">Puede hacer una lista de los capítulos aquí y asignarlos a los colaboradores que figuran en la lista de colaboradores más arriba. Los colaboradores/as podrán acceder al capítulo durante varias fases del proceso de publicación.</message>
 	<message key="submission.chapter.addChapter">Añadir capítulo</message>
 	<message key="submission.chapter.editChapter">Editar capítulo</message>
 	<message key="submission.copyedit">Corregir el estilo</message>
 	<message key="submission.publicationFormats">Formatos de publicación</message>
-	<message key="submission.proofs">Correcciones</message>
+	<message key="submission.proofs">Pruebas</message>
 	<message key="submission.download">Descargar</message>
 	<message key="submission.sharing">Compartir</message>
 	<message key="manuscript.submission">Propuesta de manuscrito</message>
-	<message key="submission.round"><![CDATA[Round&nbsp;{$round}]]></message>
+	<message key="submission.round"><![CDATA[Ronda {$round}]]></message>
 	<message key="submissions.queuedReview">En revisión</message>
 	<message key="manuscript.submissions">Propuestas de manuscritos</message>
 	<message key="submission.confirmSubmit">¿Seguro que deseas proponer este manuscrito a la editorial?</message>
@@ -44,19 +48,18 @@
 	<message key="grid.action.editChapter">Editar este capítulo</message>
 	<message key="grid.action.deleteChapter">Eliminar este capítulo</message>
 
-	<!-- workflow navigation keys -->
 	<!-- Submission wizard -->
 	<message key="submission.submit">Comenzar nueva propuesta</message>
 	<message key="submission.submit.newSubmissionMultiple">Comenzar una nueva propuesta para</message>
-	<message key="submission.submit.newSubmissionSingle">Comenzar una nueva propuesta en {$contextName}</message>
-	<message key="submission.submit.upload">Subir</message>
-	<message key="submission.submit.upload.description">Subir archivos asociados con la propuesta, incluyendo el manuscrito, documento de proyecto, carta de presentación, material gráfico etc. Para obras colectivas, así como para las monografías, sube los manuscritos como un único fichero, si es factible.</message>
+	<message key="submission.submit.newSubmissionSingle">Empezar un nuevo envío de libro en {$contextName}</message>
+	<message key="submission.submit.upload">Cargar envío</message>
+	<message key="submission.submit.upload.description">Cargar los archivos asociados con el envío, incluido el manuscrito, el prospecto, la carta de presentación, las ilustraciones, etc. Para obras colectivas, así como monografías, cargue el manuscrito como un archivo único, si es factible.</message>
 	<message key="submission.submit.cancelSubmission">Puedes completar esta propuesta más tarde seleccionando Propuestas Activas desde la página de inicio del autor.</message>
 	<message key="submission.submit.copyrightNoticeAgree">Estoy de acuerdo con los términos de la declaración de derechos de autor.</message>
 	<message key="submission.submit.selectSeries">Seleccionar serie, colección, ...</message>
 	<message key="submission.submit.seriesPosition">Lugar que ocupa dentro de esta serie, colección, ... (por ejemplo, Libro 2, o Volumen 2)</message>
 	<message key="submission.submit.form.localeRequired">Selecciona una lengua para la propuesta.</message>
-	<message key="submission.submit.submissionChecklist">Lista de comprobación de la propuesta</message>
+	<message key="submission.submit.submissionChecklist">Lista de comprobación de la presentación</message>
 	<message key="submission.submit.submissionChecklistDescription">Tienen que completarse y marcarse las siguientes exigencias para la propuesta a esta editorial antes de continuar (se pueden añadir a continuación comentarios al editor) .</message>
 	<message key="submission.submit.privacyStatement">Declaración de privacidad</message>
 	<message key="submission.submit.contributorRole">Rol del colaborador</message>
@@ -67,15 +70,15 @@
 	<message key="submission.submit.form.contributorRoleRequired">Selecciona el rol del colaborador.</message>
 	<message key="submission.submit.submissionFile">Fichero de la propuesta</message>
 	<message key="submission.submit.prepare">Preparar</message>
-	<message key="submission.submit.catalog">Catalogar</message>
+	<message key="submission.submit.catalog">Catálogo</message>
 	<message key="submission.submit.metadata">Metadatos</message>
 	<message key="submission.submit.finishingUp">Finalizar</message>
 	<message key="submission.submit.upload">Subir</message>
 	<message key="submission.submit.nextSteps">Pasos siguientes</message>
 	<message key="submission.submit.coverNote">Nota para el Editor</message>
 	<message key="submission.submit.generalInformation">Información general</message>
-	<message key="submission.submit.whatNext.description">Tu propuesta se ha notificado a la editorial, y has recibido un email de confirmación por tus registros. Una vez se haya examinado la propuesta nos pondremos en contacto contigo.</message>
-	<message key="submission.submit.checklistErrors">Lee y marca los items en la lista de comprobación de la propuesta. Quedan {$itemsRemaining} ítems sin comprobar.</message>
+	<message key="submission.submit.whatNext.description">El envío se notificó a la editorial y usted recibió un correo electrónico de confirmación por sus registros.  Una vez revisado el envío por el editor/a, este contactará con usted.</message>
+	<message key="submission.submit.checklistErrors">Lea y marque los elementos en la lista de comprobación del envío.  No se marcaron {$itemsRemaining} elementos.</message>
 	<message key="submission.submit.placement">Disposición de la propuesta</message>
 	<message key="submission.submit.placement.seriesDescription">Si el libro también debiera ser considerado para una serie, colección, ...</message>
 	<message key="submission.submit.placement.seriesPositionDescription">Los libros de series, colecciones, ..., generalmente se organizan en orden inverso al que se publican, para dar una idea del desarrollo de las mismas, y para mantener el libro más actual en primer lugar.</message>
@@ -83,23 +86,18 @@
 	<message key="submission.submit.placement.categoriesDescription">Selecciona una o más categorías de la editorial a las que este trabajo se debería corresponder.</message>
 	<message key="submission.submit.userGroup">Realizar propuesta como...</message>
 	<message key="submission.submit.userGroupDescription">Si estás realizando la obra conjunta, deberás elegir el rol Editor de obra conjunta.</message>
-	<message key="submission.submit.titleAndSummary">Título y Resumen</message>
+	<message key="submission.submit.confirmExpedite">Confirmar los metadatos del envío acelerado</message>
 
-	<!-- File upload wizard -->
-	<message key="submission.upload.selectBookElement">Selecciona un elemento del libro</message>
-	<!-- File uploads -->
-	<!-- Read/Upload/Perform Signoff -->
-	<!-- Submission statuses -->
-	<!-- Artwork Files Grid -->
 	<!-- Chapters Grid -->
 	<message key="grid.chapters.title">Capítulos</message>
+
 	<!-- Copyediting Grid -->
 	<message key="grid.copyediting.deleteCopyeditorResponse">Borrar archivo subido del corrector</message>
-	<!-- Proofreading Grid -->
+
 	<!-- Submission-specific catalog info -->
-	<message key="submission.catalogEntry">Catalogación</message>
+	<message key="submission.catalogEntry">Catálogo</message>
 	<message key="submission.editCatalogEntry">Registro</message>
-	<message key="submission.catalogEntry.new">Nuevo registro de catálogo</message>
+	<message key="submission.catalogEntry.new">Nueva entrada de catálogo</message>
 	<message key="submission.catalogEntry.confirm">Crear un registro de este libro en el catálogo para basado en los metadatos situados a continuación.</message>
 	<message key="submission.catalogEntry.confirm.required">Confirma que la propuesta está lista para situarse en el catálogo.</message>
 	<message key="submission.catalogEntry.isAvailable">Esta monografía está lista para incluirse en un catalogo público.</message>
@@ -109,18 +107,18 @@
 	<message key="submission.catalogEntry.catalogMetadata">Catálogo</message>
 	<message key="submission.catalogEntry.publicationMetadata">Formato de publicación</message>
 
-	<!-- Information Center -->
 	<!-- Log events -->
-	<message key="submission.event.participantAdded">Se ha añadido a "{$name}" ({$username}) como {$userGroupName}.</message>
-	<message key="submission.event.participantRemoved">Se ha eliminado a "{$name}" ({$username}) como{$userGroupName}.</message>
+	<message key="submission.event.participantAdded">"{$name}" ({$username}) añadido como {$userGroupName}.</message>
+	<message key="submission.event.participantRemoved">"{$name}" ({$username}) eliminado como {$userGroupName}.</message>
 	<message key="submission.event.metadataPublished">Los metadatos de la monografía  se han aprobado para su publicación.</message>
 	<message key="submission.event.metadataUnpublished">Los metadatos de la monografía no están ya publicados.</message>
-	<message key="submission.event.publicationFormatMadeAvailable">El formato de publicación"{$publicationFormatName}" está disponible.</message>
+	<message key="submission.event.publicationFormatMadeAvailable">El formato de publicación "{$publicationFormatName}" está disponible.</message>
 	<message key="submission.event.publicationFormatMadeUnavailable">El formato de publicación "{$publicationFormatName}" ya no está disponible.</message>
-	<message key="submission.event.publicationFormatPublished">El formato de publicación "{$publicationFormatName}" se ha aprobado para su publicación.</message>
-	<message key="submission.event.publicationFormatUnpublished">El formato de publicación "{$publicationFormatName}" no está ya publicado.</message>
+	<message key="submission.event.publicationFormatPublished">El formato de publicación "{$publicationFormatName}" está aprobado para su publicación.</message>
+	<message key="submission.event.publicationFormatUnpublished">El formato de publicación "{$publicationFormatName}" ya no se publica.</message>
 	<message key="submission.event.catalogMetadataUpdated">Se han subido los metadatos del catálogo.</message>
-	<message key="submission.event.publicationMetadataUpdated">Los metadatos del formato de publicación "{$formatName}" se han actualizado.</message>
-	<message key="submission.event.publicationFormatCreated">Se ha creado el formato de publicación "{$formatName}".</message>
-	<message key="submission.event.publicationFormatRemoved">Se ha eliminado el formato de publiación "{$formatName}".</message>
+	<message key="submission.event.publicationMetadataUpdated">Se actualizaron los metadatos del formato de publicación "{$formatName}".</message>
+	<message key="submission.event.publicationFormatCreated">Se creó el formato de publicación "{$formatName}".</message>
+	<message key="submission.event.publicationFormatRemoved">Se eliminó el formato de publicación "{$formatName}".</message>
+	<message key="submission.submit.titleAndSummary">Título y Resumen</message>
 </locale>
