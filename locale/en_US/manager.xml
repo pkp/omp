@@ -53,7 +53,7 @@
 	<message key="manager.settings.accessDescription">All settings related to access and security management for this press (users,roles, site access options).</message>
 	<message key="manager.settings.websiteDescription">All settings specific to the public website pages (homepage, appearance, language)</message>
 	<message key="manager.settings.publicationDescription">All settings specific to the publication process (general settings, submission stage, review stage, editorial stage, production stage, email templates).</message>
-	<message key="manager.settings.publisherInformation">These fields are not required for general OMP usage, but are required in order to create valid ONIX metadata.  Please include them if you wish to use ONIX functionality.</message>
+	<message key="manager.settings.publisherInformation"><![CDATA[These fields are required to create valid <a href="https://en.wikipedia.org/wiki/ONIX_for_Books">ONIX metadata</a>. Please include them if you wish to publish ONIX metadata.]]></message>
 	<message key="manager.settings.publisher">Press Publisher Name</message>
 	<message key="manager.settings.location">Geographical Location</message>
 	<message key="manager.settings.publisherCode">Publisher Code</message>
@@ -118,8 +118,6 @@ You may optionally provide the user with a reason for disabling their account.</
 	<message key="manager.setup.addContributor">Add Contributor</message>
 	<message key="manager.setup.addItem">Add Item</message>
 	<message key="manager.setup.addItemtoAboutPress">Add Item to Appear in "About the Press"</message>
-	<message key="manager.setup.additionalContent">Additional Content</message>
-	<message key="manager.setup.additionalContentDescription">Add any additional content you'd like to appear on the homepage.</message>
 	<message key="manager.setup.addNavItem">Add Item</message>
 	<message key="manager.setup.addSponsor">Add Sponsoring Organization</message>
 	<message key="manager.setup.announcements">Announcements</message>
@@ -157,7 +155,7 @@ You may optionally provide the user with a reason for disabling their account.</
 	<message key="manager.setup.emailHeader">Email Header</message>
 	<message key="manager.setup.emailHeaderDescription">The prepared emails that are sent by the system on behalf of the press will begin with the following header. These emails will be addressed from the Principal Contact, so it's important to clarify that the Primary Contact is not necessarily responsible for the message content, which may be sent on behalf of a different user.</message>
 	<message key="manager.setup.emailSignature">Signature</message>
-	<message key="manager.setup.emailSignatureDescription">The prepared emails that are sent by the system on behalf of the press will have the following signature added to the end. The body of the prepared emails are available for editing below.</message>
+	<message key="manager.setup.emailSignatureDescription">The prepared emails that are sent by the system on behalf of the press will have the following signature added to the end.</message>
 	<message key="manager.setup.enableAnnouncements">Enable announcements.</message>
 	<message key="manager.setup.enableAnnouncementsHomepage1">Display</message>
 	<message key="manager.setup.enableAnnouncementsHomepage2">of the most recent announcements on the press homepage.</message>
@@ -181,9 +179,7 @@ You may optionally provide the user with a reason for disabling their account.</
 	<message key="manager.setup.gettingDownTheDetails">Step 1. Getting Down the Details</message>
 	<message key="manager.setup.guidelines">Guidelines</message>
 	<message key="manager.setup.preparingWorkflow">Step 3. Preparing the workflow</message>
-	<message key="manager.setup.homepageImage">Homepage image</message>
-	<message key="manager.setup.homepageImageDescription">Upload an image to display prominently on the homepage.</message>
-	<message key="manager.setup.information.description">Brief descriptions of the press for librarians and prospective authors and readers are available in the "Information" section of the sidebar.</message>
+	<message key="manager.setup.information.description">Brief descriptions of the press for librarians and prospective authors and readers. These are made available in the site's sidebar when the Information block has been added.</message>
 	<message key="manager.setup.information.forAuthors">For Authors</message>
 	<message key="manager.setup.information.forLibrarians">For Librarians</message>
 	<message key="manager.setup.information.forReaders">For Readers</message>
@@ -208,10 +204,6 @@ You may optionally provide the user with a reason for disabling their account.</
 	<message key="manager.setup.noImageFileUploaded">No image file uploaded.</message>
 	<message key="manager.setup.noStyleSheetUploaded">No style sheet uploaded.</message>
 	<message key="manager.setup.note">Note</message>
-	<message key="manager.setup.notifications">Notification of Author Submission</message>
-	<message key="manager.setup.notifications.copyPrimaryContact">Send a copy to the primary contact, identified in Setup Step 1.</message>
-	<message key="manager.setup.notifications.copySpecifiedAddress">Send a copy to this email address:</message>
-	<message key="manager.setup.notifications.description">On completing the submission process, authors are automatically sent an acknowledgement email (which can be viewed and edited in Prepared Emails). In addition, a copy of the acknowledgement email can be sent as follows:</message>
 	<message key="manager.setup.notifyAllAuthorsOnDecision">When using the Notify Author email, include the email addresses of all co-authors for multiple-author submissions, and not just the submitting user.</message>
 	<message key="manager.setup.noUseCopyeditors">Copyediting will be undertaken by an Editor or Section Editor assigned to the submission.</message>
 	<message key="manager.setup.noUseLayoutEditors">An Editor or Section Editor assigned to the submission will prepare the HTML, PDF, etc., files.</message>
@@ -231,10 +223,6 @@ You may optionally provide the user with a reason for disabling their account.</
 	<message key="manager.setup.pressHomepageContentDescription">The press homepage consists of navigation links by default. Additional homepage content can be appended by using one or all of the following options, which will appear in the order shown.</message>
 	<message key="manager.setup.pressInitials">Press Initials</message>
 	<message key="manager.setup.layout">Press Layout</message>
-	<message key="manager.setup.logo">Press Logo</message>
-	<message key="manager.setup.logo.altText">Press Logo</message>
-	<message key="manager.setup.pageFooter">Press Page Footer</message>
-	<message key="manager.setup.pageFooterDescription">Enter any images, text or HTML code that you'd like to appear at the bottom of your press's website.</message>
 	<message key="manager.setup.pageHeader">Press Page Header</message>
 	<message key="manager.setup.pageHeaderDescription"></message>
 	<message key="manager.setup.pressPolicies">Step 2. Press Policies</message>
@@ -256,14 +244,13 @@ You may optionally provide the user with a reason for disabling their account.</
 	<message key="manager.setup.restrictMonographAccess">Users must be registered and log in to view open access content.</message>
 	<message key="manager.setup.restrictSiteAccess">Users must be registered and log in to view the press site.</message>
 	<message key="manager.setup.reviewGuidelines">External Review Guidelines</message>
-	<message key="manager.setup.reviewGuidelinesDescription"><![CDATA[The External Review Guidelines will provide external reviewers with criteria for judging a submission's suitability for publication in the press, and can include any special instructions for preparing an effective and helpful review. In conducting the review, external reviewers are presented with with two open text boxes, the first "for author and editor," and the second "for editor." Alternatively, the Press Manager can create a peer review form under Review Forms. In all cases, editors will have the option of including the reviews in corresponding with the author.]]></message>
+	<message key="manager.setup.reviewGuidelinesDescription">Provide external reviewers with criteria for judging a submission's suitability for publication in the press, which may include instructions for preparing an effective and helpful review. Reviewers will have an opportunity to provide comments intended for the author and editor, as well as separate comments only for the editor.</message>
 	<message key="manager.setup.internalReviewGuidelines">Internal Review Guidelines</message>
 	<message key="manager.setup.internalReviewGuidelinesDescription"><![CDATA[Like the External Review Guidelines, these instructions will provide reviewers with information on assessing the submission. These instructions are for Internal Reviewers, who generally perform a review process using reviewers internal to the press.]]></message>
 	<message key="manager.setup.reviewOptions">Review Options</message>
-	<message key="manager.setup.reviewOptions.automatedReminders">Automated email reminders (available in OMP's default Emails) can be sent to reviewers at two points (while the editor can always email the reviewer directly as well).</message>
-	<message key="manager.setup.reviewOptions.automatedRemindersDisabled"><![CDATA[<strong>Note:</strong> To activate these options, the site administrator must enable the <tt>scheduled_tasks</tt> option in the OMP configuration file. Additional server configuration may be required to support this functionality (which may not be possible on all servers), as indicated in the OMP documentation.]]></message>
+	<message key="manager.setup.reviewOptions.automatedReminders">Automated Email Reminders</message>
+	<message key="manager.setup.reviewOptions.automatedRemindersDisabled"><![CDATA[To activate these options, the site administrator must enable the <tt>scheduled_tasks</tt> option in the OMP configuration file. Additional server configuration may be required to support this functionality (which may not be possible on all servers), as indicated in the OMP documentation.]]></message>
 	<message key="manager.setup.reviewOptions.blindReview">Blind Review</message>
-	<message key="manager.setup.reviewOptions.noteOnModification">These default values can be modified for any submission during the editorial process.</message>
 	<message key="manager.setup.reviewOptions.onQuality">Editors will rate reviewers on a five-point quality scale after each review.</message>
 	<message key="manager.setup.reviewOptions.restrictReviewerFileAccess">Reviewers will have access to the submission file only after agreeing to review it.</message>
 	<message key="manager.setup.reviewOptions.reviewerAccess">Reviewer Access</message>
@@ -271,7 +258,6 @@ You may optionally provide the user with a reason for disabling their account.</
 	<message key="manager.setup.reviewOptions.reviewerAccessKeysEnabled.description"><![CDATA[<strong>Note:</strong> The email invitation to reviewers will contain a special URL that takes invited reviewers directly to the Review page for the submission (with access to any other pages requiring them to log in). For security reasons with this option, editors are not able to modify email addresses or add CCs or BCCs prior to sending invitations to reviewers.]]></message>
 	<message key="manager.setup.reviewOptions.reviewerRatings">Reviewer Ratings</message>
 	<message key="manager.setup.reviewOptions.reviewerReminders">Reviewer Reminders</message>
-	<message key="manager.setup.reviewOptions.reviewTime">Review Time</message>
 	<message key="manager.setup.reviewOptions.showEnsuringLink">Provide links about ensuring a blind review on pages where authors and reviewers upload files.</message>
 	<message key="manager.setup.reviewPolicy">Review Policy</message>
 	<message key="manager.setup.reviewProcess">Review Process</message>
@@ -311,8 +297,6 @@ You may optionally provide the user with a reason for disabling their account.</
 	<message key="manager.setup.typeProvideExamples">Provide examples of relevant research types, methods, and approaches for this field</message>
 	<message key="manager.setup.useCopyeditors">A Copyeditor will be assigned to work with each submission.</message>
 	<message key="manager.setup.useEditorialReviewBoard">An editorial/review board will be used by the press.</message>
-	<message key="manager.setup.useImageLogo">Press Logo</message>
-	<message key="manager.setup.useImageLogoDescription">Upload a logo for the press. To comply with WCAG standards, be sure to enter Alternative Text that describes the image (usually the name of the press) when requested during upload. Note that most themes will display the press's name in the header if no logo has been uploaded.</message>
 	<message key="manager.setup.useImageTitle">Title Image</message>
 	<message key="manager.setup.useStyleSheet">Press style sheet</message>
 	<message key="manager.setup.useLayoutEditors">A Layout Editor will be assigned to prepare the HTML, PDF, etc., files for electronic publication.</message>
