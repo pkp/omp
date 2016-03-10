@@ -13,3 +13,6 @@
 [submodule "plugins/generic/tinymce"]
 	path = plugins/generic/tinymce
 	url = git://github.com/pkp/tinymce
+[submodule "docs/manual"]
+	path = docs/manual
+	url = https://github.com/pkp/omp-user-guide
