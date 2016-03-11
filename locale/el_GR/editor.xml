@@ -11,7 +11,7 @@
   * Localization strings for the el_Gr (Greek) locale.
   -->
 
-<locale name="el_GR" full_name = "Greek">
+<locale name="el_GR" full_name = "ελληνικά">
 	<message key="editor.pressSignoff">Υπογραφή Εκδόσεων</message>
 	<message key="editor.submissionArchive">Αρχείο Υποβολών</message>
 	<message key="editor.monograph.cancelReview">Ακύρωση Αιτήματος</message>
