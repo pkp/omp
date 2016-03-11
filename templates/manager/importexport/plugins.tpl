@@ -7,10 +7,9 @@
  *
  * List available import/export plugins.
  *}
-{strip}
-{assign var="pageTitle" value="manager.importExport"}
-{include file="common/header.tpl"}
-{/strip}
+{include file="common/header.tpl" pageTitle="manager.importExport"}
+
+{help file="chapter7/import-export.md" class="pkp_helpers_align_right"}
 
 <ul>
 	{foreach from=$plugins item=plugin}
