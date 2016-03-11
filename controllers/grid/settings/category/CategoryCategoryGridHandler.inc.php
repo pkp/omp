@@ -176,7 +176,7 @@ class CategoryCategoryGridHandler extends CategoryGridHandler {
 	}
 
 	/**
-	 * @copydoc CategoryGridHandler::geCategorytRowInstance()
+	 * @copydoc CategoryGridHandler::getCategoryRowInstance()
 	 */
 	function getCategoryRowInstance() {
 		return new CategoryGridCategoryRow();

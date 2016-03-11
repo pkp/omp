@@ -56,18 +56,16 @@ class CategoryGridRow extends GridRow {
 			));
 
 			import('lib.pkp.classes.linkAction.request.RemoteActionConfirmationModal');
-			$confirmationModal = new RemoteActionConfirmationModal(
-				__('grid.category.removeText'),
-				null,
-				$router->url($request, null, null, 'deleteCategory', null, $actionArgs)
-			);
-			$removeCategoryLinkAction = new LinkAction(
+			$this->addAction(new LinkAction(
 				'removeCategory',
-				$confirmationModal,
+				new RemoteActionConfirmationModal(
+					__('grid.category.removeText'),
+					null,
+					$router->url($request, null, null, 'deleteCategory', null, $actionArgs)
+				),
 				__('grid.action.remove'),
 				'delete'
-			);
-			$this->addAction($removeCategoryLinkAction);
+			));
 		}
 	}
 }

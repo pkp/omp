@@ -51,11 +51,12 @@ class CategoryGridCategoryRow extends GridCategoryRow {
 					new RemoteActionConfirmationModal(
 						__('common.confirmDelete'),
 						__('common.delete'),
-						$router->url($request, null, null, 'deleteCategory', null, array('categoryId' => $categoryId)), 'modal_delete'
+						$router->url($request, null, null, 'deleteCategory', null, array('categoryId' => $categoryId)),
+						'modal_delete'
 					),
-					null,
+					__('grid.action.remove'),
 					'delete'
-				), GRID_ACTION_POSITION_ROW_LEFT
+				)
 			);
 
 			$this->addAction(new LinkAction(
