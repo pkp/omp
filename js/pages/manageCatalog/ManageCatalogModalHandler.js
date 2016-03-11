@@ -30,11 +30,8 @@
 	 */
 	$.pkp.pages.manageCatalog.ManageCatalogModalHandler =
 			function($handledElement, options) {
-		this.parent($handledElement, options);
 
-		// Activate the cancel button (if present).
-		$('#cancelFormButton', $handledElement).click(
-				this.callbackWrapper(this.cancelForm));
+		this.parent($handledElement, options);
 	};
 	$.pkp.classes.Helper.inherits(
 			$.pkp.pages.manageCatalog.ManageCatalogModalHandler,
@@ -45,21 +42,22 @@
 	// Public methods
 	//
 	/**
-	 * Internal callback called to cancel the form.
-	 *
-	 * @param {HTMLElement} cancelButton The cancel button.
-	 * @param {Event} event The event that triggered the
-	 *  cancel button.
-	 * @return {boolean} false.
+	 * Bind a handler for container (e.g. modal) close events to permit forms
+	 * to clean up.blur handler on tinyMCE instances inside this form
+	 * @param {HTMLElement} input The input element that triggered the
+	 * event.
+	 * @param {Event} event The initialized event.
+	 * @return {boolean} Event handling success.
 	 */
-	$.pkp.pages.manageCatalog.ManageCatalogModalHandler.prototype.cancelForm =
-			function(cancelButton, event) {
+	$.pkp.pages.manageCatalog.ManageCatalogModalHandler
+			.prototype.containerCloseHandler = function(input, event) {
+		this.parent('containerCloseHandler', input, event);
 
-		// Trigger the event which will cause the DropdownHandler to
-		// fetch its items again.
+		// Make sure any containing tab reloads in Catalog Management
+		// (e.g. if a new category has been created that needs listing)
 		this.trigger('containerReloadRequested');
-		this.trigger('formCanceled');
-		return false;
+
+		return true;
 	};
 
 

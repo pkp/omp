@@ -55,6 +55,8 @@
 		// React to "select series" events from the series tab.
 		this.bind('selectSeries', this.selectSeriesHandler_);
 
+		this.bind('containerReloadRequested', this.callbackWrapper(this.containerReloadHandler_));
+
 		$catalogTabs.bind('tabsselect', this.callbackWrapper(this.selectTabHandler_));
 		$catalogTabs.bind('tabsshow', this.callbackWrapper(this.showTabHandler_));
 
@@ -176,6 +178,22 @@
 			$catalogTabs.tabs('enable', tabIndex)
 				.tabs('option', 'active', tabIndex);
 		}
+	};
+
+
+	/**
+	 * Handle a "container reload requested" event.
+	 * @private
+	 *
+	 * @param {jQueryObject} callingElement The element that triggered
+	 *  the event.
+	 * @param {Event} event The event.
+	 */
+	$.pkp.pages.manageCatalog.ManageCatalogHeaderHandler.
+			prototype.containerReloadHandler_ =
+			function(callingElement, event) {
+		$(this.getHtmlElement()).find('#categorySelect, #seriesSelect')
+				.trigger('containerReloadRequested');
 	};
 
 
