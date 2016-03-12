@@ -49,13 +49,6 @@ class UserAction {
 			$noteDao->updateObject($monographNote);
 		}
 
-		$signoffDao = DAORegistry::getDAO('SignoffDAO');
-		$stageSignoffs = $signoffDao->getByUserId($oldUserId);
-		while ($stageSignoff = $stageSignoffs->next()) {
-			$stageSignoff->setUserId($newUserId);
-			$signoffDao->updateObject($stageSignoff);
-		}
-
 		$editDecisionDao = DAORegistry::getDAO('EditDecisionDAO');
 		$editDecisionDao->transferEditorDecisions($oldUserId, $newUserId);
 

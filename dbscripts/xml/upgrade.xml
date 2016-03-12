@@ -32,7 +32,6 @@
 	<schema file="lib/pkp/xml/schema/controlledVocab.xml" />
 	<schema file="lib/pkp/xml/schema/metadata.xml" />
 	<schema file="lib/pkp/xml/schema/announcements.xml" />
-	<schema file="lib/pkp/xml/schema/signoff.xml" />
 	<schema file="lib/pkp/xml/schema/reviews.xml" />
 	<schema file="lib/pkp/xml/schema/reviewForms.xml" />
 	<schema file="lib/pkp/xml/schema/submissions.xml" />
@@ -73,6 +72,7 @@
 		<code function="convertQueries" />
 		<code function="installEmailTemplate" key="REVIEW_REQUEST_REMIND_AUTO" locales="de_DE,el_GR,en_US,es_ES,fr_CA,pt_BR" />
 		<code function="installEmailTemplate" key="REVIEW_REQUEST_REMIND_AUTO_ONECLICK" locales="de_DE,el_GR,en_US,es_ES,fr_CA,pt_BR" />
+		<data file="dbscripts/xml/upgrade/1.2.0.0_postupdate.xml" />
 		<note file="docs/release-notes/README-BEACON" />
 	</upgrade>
 
