@@ -19,12 +19,6 @@
 switch ($op) {
 	case 'index':
 	case 'homepage':
-	case 'getCategories':
-	case 'category':
-	case 'getSeries':
-	case 'series':
-	case 'search':
-	case 'toggle':
 		define('HANDLER_CLASS', 'ManageCatalogHandler');
 		import('pages.manageCatalog.ManageCatalogHandler');
 		break;

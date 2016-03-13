@@ -204,8 +204,8 @@ class ChapterGridHandler extends CategoryGridHandler {
 	/**
 	 * @see GridHandler::getDataElementSequence()
 	 */
-	function getDataElementSequence($chapter) {
-		return $chapter->getSequence();
+	function getDataElementSequence($gridDataElement) {
+		return $gridDataElement->getSequence();
 	}
 
 	/**

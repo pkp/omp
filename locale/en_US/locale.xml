@@ -252,7 +252,6 @@
 
 	<!-- Catalog Management -->
 	<message key="catalog.manage">Catalog Management</message>
-	<message key="catalog.manage.homepage">Homepage</message>
 	<message key="catalog.manage.newReleases">New Releases</message>
 	<message key="catalog.manage.category">Category</message>
 	<message key="catalog.manage.series">Series</message>
@@ -273,6 +272,18 @@
 	<message key="catalog.manage.manageSeries">Manage Series</message>
 	<message key="catalog.manage.manageCategories">Manage Categories</message>
 	<message key="catalog.manage.noMonographs">There are no assigned monographs.</message>
+	<message key="catalog.manage.featured">Featured</message>
+	<message key="catalog.manage.categoryFeatured">Featured in category</message>
+	<message key="catalog.manage.seriesFeatured">Featured in series</message>
+	<message key="catalog.manage.featuredSuccess">Monograph is featured.</message>
+	<message key="catalog.manage.notFeaturedSuccess">Monograph is not featured.</message>
+	<message key="catalog.manage.newReleaseSuccess">Monograph is marked as a new release.</message>
+	<message key="catalog.manage.notNewReleaseSuccess">Monograph is unmarked as a new release.</message>
+	<message key="catalog.manage.feature.newRelease">New release</message>
+	<message key="catalog.manage.feature.categoryNewRelease">New release in category</message>
+	<message key="catalog.manage.feature.seriesNewRelease">New release in series</message>
+	<message key="catalog.manage.nonOrderable">This monograph is not orderable until it's featured.</message>
+	<message key="catalog.manage.filter.searchByAuthorOrTitle">Search by title or author</message>
 
 	<!-- Catalog -->
 	<message key="catalog.noTitles">No titles have been published yet.</message>

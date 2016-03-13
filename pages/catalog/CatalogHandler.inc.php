@@ -57,11 +57,13 @@ class CatalogHandler extends Handler {
 
 		// Fetch the monographs to display
 		$publishedMonographDao = DAORegistry::getDAO('PublishedMonographDAO');
-		$sortOption = $press->getSetting('catalogSortOption') ? $press->getSetting('catalogSortOption') : $publishedMonographDao->getDefaultSortOption();
-		$sortBy = $publishedMonographDao->getSortBy($sortOption);
-		$sortDirection = $publishedMonographDao->getSortDirection($sortOption);
-		$publishedMonographs = $publishedMonographDao->getByPressId($press->getId(), null, null, $sortBy, $sortDirection);
+		$publishedMonographs = $publishedMonographDao->getByPressId($press->getId());
 		$templateMgr->assign('publishedMonographs', $publishedMonographs->toAssociativeArray());
+
+		// Expose the featured monograph IDs and associated params
+		$featureDao = DAORegistry::getDAO('FeatureDAO');
+		$featuredMonographIds = $featureDao->getSequencesByAssoc(ASSOC_TYPE_PRESS, $press->getId());
+		$templateMgr->assign('featuredMonographIds', $featuredMonographIds);
 
 		// Display
 		$templateMgr->display('frontend/pages/catalog.tpl');
@@ -106,10 +108,7 @@ class CatalogHandler extends Handler {
 
 			// Fetch the monographs to display
 			$publishedMonographDao = DAORegistry::getDAO('PublishedMonographDAO');
-			$sortOption = $category->getSortOption() ? $category->getSortOption() : $publishedMonographDao->getDefaultSortOption();
-			$sortBy = $publishedMonographDao->getSortBy($sortOption);
-			$sortDirection = $publishedMonographDao->getSortDirection($sortOption);
-			$publishedMonographs =& $publishedMonographDao->getByCategoryId($category->getId(), $press->getId(), null, $sortBy, $sortDirection);
+			$publishedMonographs =& $publishedMonographDao->getByCategoryId($category->getId(), $press->getId());
 			$templateMgr->assign('publishedMonographs', $publishedMonographs->toAssociativeArray());
 
 			// Expose the featured monograph IDs and associated params
@@ -151,10 +150,7 @@ class CatalogHandler extends Handler {
 
 		// Fetch the monographs to display
 		$publishedMonographDao = DAORegistry::getDAO('PublishedMonographDAO');
-		$sortOption = $series->getSortOption() ? $series->getSortOption() : $publishedMonographDao->getDefaultSortOption();
-		$sortBy = $publishedMonographDao->getSortBy($sortOption);
-		$sortDirection = $publishedMonographDao->getSortDirection($sortOption);
-		$publishedMonographs = $publishedMonographDao->getBySeriesId($series->getId(), $press->getId(), null, $sortBy, $sortDirection);
+		$publishedMonographs = $publishedMonographDao->getBySeriesId($series->getId(), $press->getId());
 		$templateMgr->assign('publishedMonographs', $publishedMonographs->toAssociativeArray());
 
 		// Expose the featured monograph IDs and associated params

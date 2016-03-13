@@ -250,5 +250,7 @@
 			$element.replaceWith(jsonData.content);
 		});
 	};
+
+
 /** @param {jQuery} $ jQuery closure. */
 }(jQuery));
