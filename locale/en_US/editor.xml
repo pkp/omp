@@ -12,7 +12,6 @@
   -->
 
 <locale name="en_US" full_name="English">
-	<message key="editor.pressSignoff">Press signoff</message>
 	<message key="editor.submissionArchive">Submission Archive</message>
 	<message key="editor.monograph.cancelReview">Cancel Request</message>
 	<message key="editor.monograph.clearReview">Clear Reviewer</message>

@@ -141,7 +141,7 @@ class Upgrade extends Installer {
 			'item_views');
 
 		foreach ($tablesToUpdate as $tableName) {
-			$dao->update('UPDATE ' . $tableName . ' SET assoc_type = ' . ASSOC_TYPE_SERIES . ' WHERE assoc_type = ' . "'526'");
+			$dao->update('UPDATE ' . $tableName . ' SET assoc_type = ' . ASSOC_TYPE_SERIES . ' WHERE assoc_type = 526');
 		}
 
 		return true;
@@ -261,11 +261,10 @@ class Upgrade extends Installer {
 	 * @return boolean True indicates success.
 	 */
 	function convertQueries() {
-		$signoffDao = DAORegistry::getDAO('SignoffDAO');
 		$submissionFileDao = DAORegistry::getDAO('SubmissionFileDAO');
 		import('lib.pkp.classes.submission.SubmissionFile');
 
-		$filesResult = $signoffDao->retrieve(
+		$filesResult = $submissionFileDao->retrieve(
 			'SELECT DISTINCT sf.file_id, sf.assoc_type, sf.assoc_id, s.symbolic, s.date_notified, s.date_completed, s.user_id, s.signoff_id FROM submission_files sf, signoffs s WHERE s.assoc_type=? AND s.assoc_id=sf.file_id AND s.symbolic IN (?, ?)',
 			array(ASSOC_TYPE_SUBMISSION_FILE, 'SIGNOFF_COPYEDITING', 'SIGNOFF_PROOFING')
 		);
@@ -396,10 +395,9 @@ class Upgrade extends Installer {
 	private function _transferSignoffData($signoffId, $queryId) {
 		$noteDao = DAORegistry::getDAO('NoteDAO');
 		$submissionFileDao = DAORegistry::getDAO('SubmissionFileDAO');
-		$signoffDao = DAORegistry::getDAO('SignoffDAO');
 		$userDao = DAORegistry::getDAO('UserDAO');
 
-		$notes = $noteDao->getByAssoc(ASSOC_TYPE_SIGNOFF, $signoffId);
+		$notes = $noteDao->getByAssoc(1048582 /* ASSOC_TYPE_SIGNOFF */, $signoffId);
 		while ($note = $notes->next()) {
 			$note->setAssocType(ASSOC_TYPE_QUERY);
 			$note->setAssocId($queryId);
@@ -416,9 +414,9 @@ class Upgrade extends Installer {
 		}
 
 		// Transfer signoff signoffs into notes
-		$signoffsResult = $signoffDao->retrieve(
+		$signoffsResult = $submissionFileDao->retrieve(
 			'SELECT * FROM signoffs WHERE symbolic = ? AND assoc_type = ? AND assoc_id = ?',
-			array('SIGNOFF_SIGNOFF', ASSOC_TYPE_SIGNOFF, $signoffId)
+			array('SIGNOFF_SIGNOFF', 1048582 /* ASSOC_TYPE_SIGNOFF */, $signoffId)
 		);
 		while (!$signoffsResult->EOF) {
 			$row = $signoffsResult->getRowAssoc(false);
@@ -438,11 +436,11 @@ class Upgrade extends Installer {
 				$note->setDateCreated(Core::getCurrentDate());
 				$noteDao->updateObject($note);
 			}
-			$signoffDao->deleteObjectById($metaSignoffId);
+			$submissionFileDao->update('DELETE FROM signoffs WHERE signoff_id=?', array($metaSignoffId));
 		}
 		$signoffsResult->Close();
 
-		$signoffDao->deleteObjectById($signoffId);
+		$submissionFileDao->update('DELETE FROM signoffs WHERE signoff_id=?', array($signoffId));
 	}
 }
 

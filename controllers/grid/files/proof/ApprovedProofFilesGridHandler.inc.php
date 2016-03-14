@@ -13,7 +13,7 @@
  * @brief Subclass of file grid for approved proof files.
  */
 
-// import grid signoff files grid base classes
+// import grid base classes
 import('lib.pkp.classes.controllers.grid.GridHandler');
 
 // Import monograph file class which contains the SUBMISSION_FILE_* constants.
