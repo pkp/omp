@@ -135,7 +135,7 @@ You may optionally provide the user with a reason for disabling their account.</
 	<message key="manager.setup.customTagsDescription">Custom HTML header tags to be inserted in the header of every page (e.g., META tags).</message>
 	<message key="manager.setup.details">Details</message>
 	<message key="manager.setup.details.description">Name of press, contacts, sponsors, and search engines.</message>
-	<message key="manager.setup.disableUserRegistration">Press Manager registers all users, with Editors or Section Editors able to register Reviewers alone.</message>
+	<message key="manager.setup.disableUserRegistration">The Press Manager will register all user accounts. Editors or Section Editors may register user accounts for reviewers.</message>
 	<message key="manager.setup.discipline">Academic Discipline and Sub-Disciplines</message>
 	<message key="manager.setup.disciplineDescription">Useful when press crosses disciplinary boundaries and/or authors submit multidisciplinary items.</message>
 	<message key="manager.setup.disciplineExamples">(E.g., History; Education; Sociology; Psychology; Cultural Studies; Law)</message>
@@ -162,6 +162,7 @@ You may optionally provide the user with a reason for disabling their account.</
 	<message key="manager.setup.enablePressInstructions">Enable this press to appear publicly on the site</message>
 	<message key="manager.setup.enablePublicMonographId">Custom identifiers will be used to identify published items.</message>
 	<message key="manager.setup.enablePublicGalleyId">Custom identifiers will be used to identify galleys (e.g. HTML or PDF files) for published items.</message>
+	<message key="manager.setup.enableUserRegistration">Visitors can register a user account with the press.</message>
 	<message key="manager.setup.focusAndScope">Focus and Scope of Press</message>
 	<message key="manager.setup.focusAndScope.description">Describe to authors, readers, and librarians the range of monographs and other items the press will publish.</message>
 	<message key="manager.setup.focusScope">Focus and Scope</message>
@@ -266,7 +267,7 @@ You may optionally provide the user with a reason for disabling their account.</
 	<message key="manager.setup.reviewProcessStandard">Standard Review Process</message>
 	<message key="manager.setup.reviewProcessStandardDescription">Editors will email selected Reviewers the title and abstract of the submission, as well as an invitation to log into the press web site to complete the review. Reviewers enter the press web site to agree to do the review, to download submissions, submit their comments, and select a recommendation.</message>
 	<message key="manager.setup.searchEngineIndexing">Search Engine Indexing</message>
-	<message key="manager.setup.searchEngineIndexingDescription">To assist the users of search engines in discovering this press, provide a brief description of the press and relevant keywords (separated by semicolons).</message>
+	<message key="manager.setup.searchEngineIndexingDescription">Provide a brief description of the press which search engines can display when listing the press in search results.</message>
 	<message key="manager.setup.sectionsAndSectionEditors">Sections and Section Editors</message>
 	<message key="manager.setup.sectionsDefaultSectionDescription">(If sections are not added, then items are submitted to the Monographs section by default.)</message>
 	<message key="manager.setup.sectionsDescription"><![CDATA[To create or modify sections for the press (e.g., Monographs, Book Reviews, etc.), go to Section Management.<br /><br />Authors on submitting items to the press will designate...]]></message>
@@ -304,7 +305,6 @@ You may optionally provide the user with a reason for disabling their account.</
 	<message key="manager.setup.userRegistration">User Registration</message>
 	<message key="manager.setup.useTextTitle">Title text</message>
 	<message key="manager.setup.volumePerYear">Volumes per year</message>
-	<message key="manager.setup.registerForIndexing">Register Press for Indexing (Metadata Harvesting)</message>
 	<message key="manager.setup.publicationFormat.code">Format</message>
 	<message key="manager.setup.publicationFormat.codeRequired">A format must be chosen.</message>
 	<message key="manager.setup.publicationFormat.nameRequired">You must assign a name to this format.</message>
@@ -366,12 +366,6 @@ Select a model for handling these aspects of the editorial process. (To designat
 	<li><strong>Add a Reading Tool</strong><p>The Press Manager can add "Find References" to the Reading Tools that accompany published items, which enables readers to paste a reference's title and then search pre-selected scholarly databases for the cited work.</p></li>
 	<li><strong>Embed Links in the References</strong><p>The Layout Editor can add a link to references that can be found online by using the following instructions (which can be edited).</p></li>
 </ol>]]></message>
-	<message key="manager.setup.registerForIndexingDescription"><![CDATA[To have the contents of this press indexed within a globally distributed system of research databases, <a href="http://pkp.sfu.ca/harvester/add.php" target="_blank">register</a> your press URL with the Public Knowledge Project metadata <a href="http://pkp.sfu.ca/harvester/" target="_blank">harvester</a>. This tool collects the metadata from each indexed item in this press, enabling accurate and collective searching among the research sites that adhere to the <a href="http://www.openarchives.org/OAI/openarchivesprotocol.htm#Introduction" target="_blank">Open Archives Initiative Protocol for Metadata Harvesting</a>.
-<br /><br />
-Note that if your site administrator has already registered this site with the PKP Harvester, your press will be indexed automatically and you do not need to register your press.
-<br /><br />
-<a href="http://pkp.sfu.ca/harvester/add.php" target="_blank">Click here</a> and enter <span class="highlight">{$siteUrl}</span> under <strong>Site URL</strong>, and <span class="highlight">{$oaiUrl}</span> under <strong>Base URL for OAI Archive</strong>.]]></message>
-
 	<message key="manager.publication.library">Press Library</message>
 	<message key="manager.setup.resetPermissions">Reset Monograph Permissions</message>
 	<message key="manager.setup.resetPermissions.confirm">Are you sure you wish to reset permissions data already attached to monographs?</message>
