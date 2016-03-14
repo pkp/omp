@@ -52,9 +52,6 @@
 
 	{if !$formParams.hideSubmit}
 		{fbvFormButtons id="submissionMetadataFormSubmit" submitText="common.save"}
-	{else}
-		{assign var=cancelButtonId value="cancelFormButton"|concat:"-"|uniqid}
-		{fbvElement type="button" class="cancelFormButton" id=$cancelButtonId label="common.close"}
 	{/if}
 
 </form>

@@ -19,7 +19,7 @@
 	<message key="submission.title.tip"><![CDATA[The submission type is usually one of 'image', 'text', or other multimedia types including 'software' or 'interactive'.  Please choose the one most relevant for your submission.  Examples may be found at <a target="_blank" href="http://dublincore.org/documents/2001/04/12/usageguide/generic.shtml#type">http://dublincore.org/documents/2001/04/12/usageguide/generic.shtml#type</a>]]></message>
 	<message key="submission.select">Select Submission</message>
 	<message key="submission.synopsis">Synopsis</message>
-	<message key="submission.workflowType">Type of Editorial Workflow</message>
+	<message key="submission.workflowType">Submission Type</message>
 	<message key="submission.workflowType.description">A monograph is a work authored wholly by one or more authors. An edited volume has different authors for each chapter (with the chapter details entered later in this process.)</message>
 	<message key="submission.workflowType.editedVolume">Edited Volume: Authors are associated with their own chapter.</message>
 	<message key="submission.workflowType.authoredWork">Monograph: Authors are associated with the book as a whole.</message>
@@ -59,7 +59,7 @@
 	<message key="submission.submit.seriesPosition.description">Examples: Book 2, Volume 2</message>
 	<message key="submission.submit.form.localeRequired">Please select a submission language.</message>
 	<message key="submission.submit.submissionChecklist">Submission Checklist</message>
-	<message key="submission.submit.submissionChecklistDescription">The following requirements for submissions to this press need to be completed and checked off before proceeding (comments to the editor can be added below).</message>
+	<message key="submission.submit.submissionChecklistDescription">You must read and acknowledge that you've completed the requirements below before proceeding.</message>
 	<message key="submission.submit.privacyStatement">Privacy Statement</message>
 	<message key="submission.submit.contributorRole">Contributor's role</message>
 	<message key="submission.submit.form.authorRequired">At least one author is required.</message>
