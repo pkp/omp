@@ -43,15 +43,14 @@
 			{fbvFormArea id="importForm"}
 				{* Container for uploaded file *}
 				<input type="hidden" name="temporaryFileId" id="temporaryFileId" value="" />
-				<p>{translate key="plugins.importexport.native.import.instructions"}</p>
 
 				{fbvFormArea id="file"}
-					{fbvFormSection title="common.file"}
+					{fbvFormSection title="plugins.importexport.native.import.instructions"}
 						{include file="controllers/fileUploadContainer.tpl" id="plupload"}
 					{/fbvFormSection}
 				{/fbvFormArea}
 
-				{fbvFormButtons hideCancel="true"}
+				{fbvFormButtons submitText="plugins.importexport.native.import" hideCancel="true"}
 			{/fbvFormArea}
 		</form>
 	</div>
@@ -66,7 +65,7 @@
 			{fbvFormArea id="exportForm"}
 				{url|assign:submissionsListGridUrl router=$smarty.const.ROUTE_COMPONENT component="grid.submissions.exportableSubmissions.ExportableSubmissionsListGridHandler" op="fetchGrid" escape=false}
 				{load_url_in_div id="submissionsListGridContainer" url=$submissionsListGridUrl}
-				{fbvFormButtons hideCancel="true"}
+				{fbvFormButtons submitText="plugins.importexport.native.export" hideCancel="true"}
 			{/fbvFormArea}
 		</form>
 	</div>
