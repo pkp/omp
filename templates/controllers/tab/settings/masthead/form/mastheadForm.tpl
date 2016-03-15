@@ -17,7 +17,7 @@
 </script>
 
 <form class="pkp_form" id="mastheadForm" method="post" action="{url router=$smarty.const.ROUTE_COMPONENT component="tab.settings.PressSettingsTabHandler" op="saveFormData" tab="masthead"}">
-	{help file="chapter6/press/masthead.md" class="pkp_helpers_align_right"}
+	{help file="chapter6/context/masthead.md" class="pkp_helpers_align_right"}
 
 	{include file="controllers/tab/settings/wizardMode.tpl" wizardMode=$wizardMode}
 

@@ -15,7 +15,7 @@
 	{rdelim});
 </script>
 <form class="pkp_form" id="seriesGridFormContainer">
-	{help file="chapter6/press/series.md" class="pkp_helpers_align_right"}
+	{help file="chapter6/context/series.md" class="pkp_helpers_align_right"}
 	<div class="pkp_helpers_clear"></div>
 
 	{url|assign:seriesGridUrl router=$smarty.const.ROUTE_COMPONENT component="grid.settings.series.SeriesGridHandler" op="fetchGrid" escape=false}
