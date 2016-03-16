@@ -66,12 +66,7 @@ class CSVImportExportPlugin extends ImportExportPlugin {
 	 */
 	function display($args, $request) {
 		$templateMgr = TemplateManager::getManager($request);
-		$press = $request->getPress();
-
 		parent::display($args, $request);
-
-		$templateMgr->assign('plugin', $this);
-
 		switch (array_shift($args)) {
 			case 'index':
 			case '':
