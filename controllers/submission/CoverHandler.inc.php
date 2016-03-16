@@ -36,8 +36,35 @@ class CoverHandler extends PKPHandler {
 	 * @param $roleAssignments array
 	 */
 	function authorize($request, &$args, $roleAssignments) {
-		import('classes.security.authorization.OmpPublishedMonographAccessPolicy');
-		$this->addPolicy(new OmpPublishedMonographAccessPolicy($request, $args, $roleAssignments));
+		import('lib.pkp.classes.security.authorization.ContextRequiredPolicy');
+		$this->addPolicy(new ContextRequiredPolicy($request, 'user.authorization.noContext'));
+
+		// Access may be made either as a member of the public, or
+		// via pre-publication access to editorial users.
+		$monographAccessPolicy = new PolicySet(COMBINING_PERMIT_OVERRIDES);
+		// Published monograph access for the public
+		$publishedMonographAccessPolicy = new PolicySet(COMBINING_DENY_OVERRIDES);
+		import('lib.pkp.classes.security.authorization.internal.SubmissionRequiredPolicy');
+		$publishedMonographAccessPolicy->addPolicy(new SubmissionRequiredPolicy($request, $args));
+		$monographAccessPolicy->addPolicy($publishedMonographAccessPolicy);
+
+		// Pre-publication access for editorial roles
+		import('lib.pkp.classes.security.authorization.SubmissionAccessPolicy');
+		$monographAccessPolicy->addPolicy(
+			new SubmissionAccessPolicy(
+				$request, $args,
+				array_intersect_key(
+					$roleAssignments,
+					array( // Only permit these roles
+						ROLE_ID_MANAGER,
+						ROLE_ID_SUB_EDITOR,
+					)
+				)
+			)
+		);
+
+		$this->addPolicy($monographAccessPolicy);
+
 		return parent::authorize($request, $args, $roleAssignments);
 	}
 
@@ -77,6 +104,7 @@ class CoverHandler extends PKPHandler {
 	 * Serve the cover image for a published monograph.
 	 */
 	function cover($args, $request) {
+		// this function is only used on the book page i.e. for published monographes
 		$publishedMonograph = $this->getAuthorizedContextObject(ASSOC_TYPE_PUBLISHED_MONOGRAPH);
 		if (!$coverImage = $publishedMonograph->getCoverImage()) {
 			// Can't use Request::redirectUrl; FireFox doesn't
@@ -94,8 +122,14 @@ class CoverHandler extends PKPHandler {
 	 * Serve the cover thumbnail for a published monograph.
 	 */
 	function thumbnail($args, $request) {
-		$publishedMonograph = $this->getAuthorizedContextObject(ASSOC_TYPE_PUBLISHED_MONOGRAPH);
-		if (!$coverImage = $publishedMonograph->getCoverImage()) {
+		// use ASSOC_TYPE_MONOGRAPH to set the cover at any workflow stage
+		// i.e. also if the monograph has not been published yet
+		$monograph = $this->getAuthorizedContextObject(ASSOC_TYPE_MONOGRAPH);
+
+		$publishedMonographDao = DAORegistry::getDAO('PublishedMonographDAO');
+		$publishedMonograph = $publishedMonographDao->getById($monograph->getId(), null, false);
+
+		if (!$publishedMonograph || !$coverImage = $publishedMonograph->getCoverImage()) {
 			// Can't use Request::redirectUrl; FireFox doesn't
 			// seem to like it for images.
 			header('Location: ' . $request->getBaseUrl() . '/templates/images/book-default-small.png');
