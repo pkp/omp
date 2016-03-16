@@ -14,6 +14,11 @@
 <locale name="en_US" full_name="U.S. English">
 	<message key="plugins.importexport.csv.displayName">Tab Delimited Content Import Plugin</message>
 	<message key="plugins.importexport.csv.description">Import submissions into presses from tab delimited data.</message>
+	<message key="plugins.importexport.csv.cliOnly"><![CDATA[
+		<p>This plugin currently supports command-line operation only. Execute...
+			<pre>php tools/importExport.php CSVImportExportPlugin</pre>
+			...for more information.</p>
+	]]></message>
 
 	<message key="plugins.importexport.csv.cliUsage"><![CDATA[Command-line tool for importing CSV data into OMP
 			Usage:

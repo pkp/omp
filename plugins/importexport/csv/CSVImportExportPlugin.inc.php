@@ -53,10 +53,31 @@ class CSVImportExportPlugin extends ImportExportPlugin {
 	}
 
 	/**
-         * @copydoc Plugin::getActions()
-         */
-        function getActions($request, $actionArgs) {
+	 * @copydoc Plugin::getActions()
+	 */
+	function getActions($request, $actionArgs) {
 		return array(); // Not available via the web interface
+	}
+
+	/**
+	 * Display the plugin.
+	 * @param $args array
+	 * @param $request PKPRequest
+	 */
+	function display($args, $request) {
+		$templateMgr = TemplateManager::getManager($request);
+		$press = $request->getPress();
+
+		parent::display($args, $request);
+
+		$templateMgr->assign('plugin', $this);
+
+		switch (array_shift($args)) {
+			case 'index':
+			case '':
+				$templateMgr->display($this->getTemplatePath() . '/index.tpl');
+				break;
+		}
 	}
 
 	/**
