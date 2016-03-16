@@ -36,35 +36,8 @@ class CoverHandler extends PKPHandler {
 	 * @param $roleAssignments array
 	 */
 	function authorize($request, &$args, $roleAssignments) {
-		import('lib.pkp.classes.security.authorization.ContextRequiredPolicy');
-		$this->addPolicy(new ContextRequiredPolicy($request, 'user.authorization.noContext'));
-
-		// Access may be made either as a member of the public, or
-		// via pre-publication access to editorial users.
-		$monographAccessPolicy = new PolicySet(COMBINING_PERMIT_OVERRIDES);
-		// Published monograph access for the public
-		$publishedMonographAccessPolicy = new PolicySet(COMBINING_DENY_OVERRIDES);
-		import('lib.pkp.classes.security.authorization.internal.SubmissionRequiredPolicy');
-		$publishedMonographAccessPolicy->addPolicy(new SubmissionRequiredPolicy($request, $args));
-		$monographAccessPolicy->addPolicy($publishedMonographAccessPolicy);
-
-		// Pre-publication access for editorial roles
-		import('lib.pkp.classes.security.authorization.SubmissionAccessPolicy');
-		$monographAccessPolicy->addPolicy(
-			new SubmissionAccessPolicy(
-				$request, $args,
-				array_intersect_key(
-					$roleAssignments,
-					array( // Only permit these roles
-						ROLE_ID_MANAGER,
-						ROLE_ID_SUB_EDITOR,
-					)
-				)
-			)
-		);
-
-		$this->addPolicy($monographAccessPolicy);
-
+		import('classes.security.authorization.OmpPublishedMonographAccessPolicy');
+		$this->addPolicy(new OmpPublishedMonographAccessPolicy($request, $args, $roleAssignments, 'submissionId', false));
 		return parent::authorize($request, $args, $roleAssignments);
 	}
 

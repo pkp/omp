@@ -21,9 +21,10 @@ class OmpPublishedMonographAccessPolicy extends ContextPolicy {
 	 * @param $args array request parameters
 	 * @param $roleAssignments array
 	 * @param $submissionParameterName string the request parameter we
+	 * @param $publishedMonographsOnly boolean whether the MonographPublishedPolicy has to be considered/added
 	 *  expect the submission id in.
 	 */
-	function OmpPublishedMonographAccessPolicy($request, $args, $roleAssignments, $submissionParameterName = 'submissionId') {
+	function OmpPublishedMonographAccessPolicy($request, $args, $roleAssignments, $submissionParameterName = 'submissionId', $publishedMonographsOnly = true) {
 		parent::ContextPolicy($request);
 
 		// Access may be made either as a member of the public, or
@@ -33,8 +34,10 @@ class OmpPublishedMonographAccessPolicy extends ContextPolicy {
 		$publishedMonographAccessPolicy = new PolicySet(COMBINING_DENY_OVERRIDES);
 		import('lib.pkp.classes.security.authorization.internal.SubmissionRequiredPolicy');
 		$publishedMonographAccessPolicy->addPolicy(new SubmissionRequiredPolicy($request, $args, $submissionParameterName));
-		import('classes.security.authorization.internal.MonographPublishedPolicy');
-		$publishedMonographAccessPolicy->addPolicy(new MonographPublishedPolicy($request));
+		if ($publishedMonographsOnly) {
+			import('classes.security.authorization.internal.MonographPublishedPolicy');
+			$publishedMonographAccessPolicy->addPolicy(new MonographPublishedPolicy($request));
+		}
 		$monographAccessPolicy->addPolicy($publishedMonographAccessPolicy);
 
 		// Pre-publication access for editorial roles
