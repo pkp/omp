@@ -13,7 +13,7 @@
   -->
 
 <locale name="en_US" full_name="U.S. English">
-	<message key="plugins.importexport.onix30.displayName">ONIX 3.0 Monograph  Export Plugin</message>
+	<message key="plugins.importexport.onix30.displayName">ONIX 3.0 Monograph Export Plugin</message>
 	<message key="plugins.importexport.onix30.description">Export monograph metadata in the ONIX 3.0 format</message>
 	<message key="plugins.importexport.onix30.cliUsage"><![CDATA[Usage: {$scriptName} {$pluginName} [xmlFileName] [pressPath] [monographId] ]]></message>
 	<message key="plugins.importexport.onix30.cliError">ERROR:</message>

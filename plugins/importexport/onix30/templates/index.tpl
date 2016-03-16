@@ -20,13 +20,17 @@
 </script>
 <div id="importTabs" class="pkp_controllers_tab">
 	<ul>
-		<li><a href="#export-tab">{translate key="plugins.importexport.native.export"}</a></li>
+		<li><a href="#export-tab">{translate key="plugins.importexport.onix30.exportButton"}</a></li>
 	</ul>
 	<div id="export-tab">
-		{fbvFormArea id="exportForm"}
-			{url|assign:submissionsListGridUrl router=$smarty.const.ROUTE_COMPONENT component="grid.submissions.exportableSubmissions.ExportableSubmissionsListGridHandler" op="fetchGrid" pluginName="Onix30ExportPlugin" hideSelectColumn="true" escape=false}
-			{load_url_in_div id="submissionsListGridContainer" url=$submissionsListGridUrl}
-		{/fbvFormArea}
+		{if !$currentContext->getSetting('publisher') || !$currentContext->getSetting('location') || !$currentContext->getSetting('codeType') || !$currentContext->getSetting('codeValue')}
+			{translate key="plugins.importexport.onix30.pressMissingFields"}
+		{else}
+			{fbvFormArea id="exportForm"}
+				{url|assign:submissionsListGridUrl router=$smarty.const.ROUTE_COMPONENT component="grid.submissions.exportableSubmissions.ExportableSubmissionsListGridHandler" op="fetchGrid" pluginName="Onix30ExportPlugin" hideSelectColumn="true" escape=false}
+				{load_url_in_div id="submissionsListGridContainer" url=$submissionsListGridUrl}
+			{/fbvFormArea}
+		{/if}
 	</div>
 </div>
 
