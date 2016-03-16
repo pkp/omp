@@ -9,10 +9,8 @@
  *
  *}
 {capture assign="additionalReviewFormContents"}
-	{fbvFormArea id="internalReviewParts"}
-		{fbvFormSection label="manager.setup.internalReviewGuidelines" description="manager.setup.internalReviewGuidelinesDescription"}
-			{fbvElement type="textarea" multilingual="true" name="internalReviewGuidelines" id="internalReviewGuidelines" value=$internalReviewGuidelines rich=true}
-		{/fbvFormSection}
-	{/fbvFormArea}
+	{fbvFormSection label="manager.setup.internalReviewGuidelines" description="manager.setup.internalReviewGuidelinesDescription"}
+		{fbvElement type="textarea" multilingual="true" name="internalReviewGuidelines" id="internalReviewGuidelines" value=$internalReviewGuidelines rich=true}
+	{/fbvFormSection}
 {/capture}
 {include file="core:controllers/tab/settings/reviewStage/form/reviewStageForm.tpl" additionalReviewFormContents=$additionalReviewFormContents}
