@@ -7,11 +7,19 @@
  *
  * Assigned Publication Format form.
  *}
-
+{if $remoteURL}
+	{assign var="remoteFormat" value=true}
+{else}
+	{assign var="remoteFormat" value=false}
+{/if}
 <script type="text/javascript">
 	$(function() {ldelim}
 		// Attach the form handler.
-		$('#addPublicationFormatForm').pkpHandler('$.pkp.controllers.form.AjaxFormHandler');
+		$('#addPublicationFormatForm').pkpHandler('$.pkp.controllers.grid.catalogEntry.form.PublicationFormatFormHandler',
+			{ldelim}
+				remoteFormat: {$remoteFormat|json_encode escape=false}
+			{rdelim}
+		);
 	{rdelim});
 </script>
 
@@ -26,8 +34,11 @@
 		{fbvFormSection for="publicationFormat" size=$fbvStyles.size.MEDIUM list=true}
 			{fbvElement type="checkbox" label="grid.catalogEntry.physicalFormat" id="isPhysicalFormat" checked=$isPhysicalFormat}
 		{/fbvFormSection}
-		{fbvFormSection for="remote"}
-			{fbvElement type="text" id="remoteURL" label="grid.catalogEntry.remoteURL" value=$remoteURL}
+		{fbvFormSection for="remotelyHostedContent" list=true}
+			{fbvElement type="checkbox" label="grid.catalogEntry.remotelyHostedContent" id="remotelyHostedContent"}
+			<div id="remote" style="display:none">
+				{fbvElement type="text" id="remoteURL" label="grid.catalogEntry.remoteURL" value=$remoteURL}
+			</div>
 		{/fbvFormSection}
 	{/fbvFormArea}
 	{fbvFormButtons}

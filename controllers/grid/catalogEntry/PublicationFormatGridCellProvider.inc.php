@@ -40,6 +40,10 @@ class PublicationFormatGridCellProvider extends RepresentationsGridCellProvider 
 		$data = $row->getData();
 		if (is_a($data, 'Representation')) switch ($column->getId()) {
 			case 'name':
+				$remoteURL = $data->getRemoteURL();
+				if ($remoteURL) {
+					return array('label' => '<a href="'.htmlspecialchars($remoteURL).'" target="_blank">'.htmlspecialchars($data->getLocalizedName()).'</a>' . '<span class="onix_code">' . $data->getNameForONIXCode() . '</span>');
+				}
 				return array('label' => htmlspecialchars($data->getLocalizedName()) . '<span class="onix_code">' . $data->getNameForONIXCode() . '</span>');
 			case 'isAvailable':
 				return array('status' => $data->getIsAvailable()?'completed':'new');
