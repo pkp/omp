@@ -1,5 +1,5 @@
 {**
- * templates/frontend/objects/monograph_googleScholar.tpl
+ * templates/frontend/objects/monographFile_googleScholar.tpl
  *
  * Copyright (c) 2014-2016 Simon Fraser University Library
  * Copyright (c) 2003-2016 John Willinsky
@@ -7,7 +7,10 @@
  *
  * @brief Print Google Scholar metadata for a monograph
  *
- * @uses $monograph Monograph The monograph to be displayed
+ * @uses $monograph Monograph The monograph this file belongs to
+ * @uses $publicationFormat PublictionFormat The publication format this file belongs to
+ * @uses $submissionFile SubmissionFile The submission file to be presented
+ * @uses $chapter Chapter The (optional) chapter associated with this file
  *}
 <meta name="gs_meta_revision" content="1.1" />
 <meta name="citation_issn" content="{$issn|strip_tags|escape}"/>
@@ -20,6 +23,14 @@
 	{/if}
 {/foreach}
 
+{* Authors *}
+{if $chapter}
+	{* Only include metadata for authors associated with this chapter *}
+	{assign var=authors value=$chapter->getAuthors()}
+{else}
+	{* Include metadata for all authors of the submission *}
+	{assign var=authors value=$monograph->getAuthors()}
+{/if}
 {foreach name="authors" from=$publishedMonograph->getAuthors() item=author}
 	<meta name="citation_author" content="{$author->getFirstName()|escape}{if $author->getMiddleName() != ""} {$author->getMiddleName()|escape}{/if} {$author->getLastName()|escape}"/>
 	{if $author->getLocalizedAffiliation() != ""}

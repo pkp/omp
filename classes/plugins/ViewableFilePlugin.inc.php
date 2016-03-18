@@ -48,11 +48,13 @@ abstract class ViewableFilePlugin extends PKPViewableFilePlugin {
 
 		// Set up the viewable file template variables.
 		$submissionKeywordDao = DAORegistry::getDAO('SubmissionKeywordDAO');
+		$chapterDao = DAORegistry::getDAO('ChapterDAO');
 		$templateMgr->assign(array(
-			'submissionKeywords' => $submissionKeywordDao->getKeywords($publishedMonograph->getId(), array(AppLocale::getLocale(), array_keys(AppLocale::getSupportedLocales()))),
+			'submissionKeywords' => $submissionKeywordDao->getKeywords($publishedMonograph->getId(), array_merge(array(AppLocale::getLocale()), array_keys(AppLocale::getSupportedLocales()))),
 			'publishedMonograph' => $publishedMonograph,
 			'publicationFormat' => $publicationFormat,
 			'submissionFile' => $submissionFile,
+			'chapter' => $chapterDao->getChapter($submissionFile->getData('chapterId')),
 		));
 
 		// Fetch the viewable file template render.

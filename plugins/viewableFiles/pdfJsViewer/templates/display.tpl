@@ -11,7 +11,8 @@
  * @uses $downloadUrl string (optional) A URL to download this file
  * @uses $pluginUrl string URL to this plugin's files
  *}
-{* Display Google Scholar metadata *}
+{* Display metadata *}
+{include file="frontend/objects/monographFile_dublinCore.tpl" monograph=$publishedMonograph}
 {include file="frontend/objects/monographFile_googleScholar.tpl" monograph=$publishedMonograph}
 
 <div class="viewable_file_frame">

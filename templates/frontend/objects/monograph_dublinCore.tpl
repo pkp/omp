@@ -40,10 +40,10 @@
 		{/if}
 	{/foreach}
 {/foreach}{/if}
-	<meta name="DC.Title" content="{$monograph->getLocalizedTitle()|strip_tags|escape}"/>
+	<meta name="DC.Title" content="{$monograph->getLocalizedTitle()|escape}"/>
 {foreach from=$monograph->getTitle(null) item=alternate key=metaLocale}
 	{if $alternate != $monograph->getLocalizedTitle()}
-		<meta name="DC.Title.Alternative" xml:lang="{$metaLocale|String_substr:0:2|escape}" content="{$alternate|strip_tags|escape}"/>
+		<meta name="DC.Title.Alternative" xml:lang="{$metaLocale|String_substr:0:2|escape}" content="{$alternate|escape}"/>
 	{/if}
 {/foreach}
 	<meta name="DC.Type" content="Text.Book"/>
