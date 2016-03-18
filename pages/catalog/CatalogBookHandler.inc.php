@@ -163,7 +163,7 @@ class CatalogBookHandler extends Handler {
 		$publishedMonograph = $this->getAuthorizedContextObject(ASSOC_TYPE_PUBLISHED_MONOGRAPH);
 		$publicationFormatDao = DAORegistry::getDAO('PublicationFormatDAO');
 		$publicationFormat = $publicationFormatDao->getById($representationId, $publishedMonograph->getId());
-		if (!$publicationFormat || !$publicationFormat->getIsApproved() || !$publicationFormat->getIsAvailable()) fatalError('Invalid publication format specified.');
+		if (!$publicationFormat || !$publicationFormat->getIsApproved() || !$publicationFormat->getIsAvailable() || $remoteURL = $publicationFormat->getRemoteURL()) fatalError('Invalid publication format specified.');
 
 		$submissionFileDao = DAORegistry::getDAO('SubmissionFileDAO');
 		list($fileId, $revision) = array_map(create_function('$a', 'return (int) $a;'), preg_split('/-/', $fileIdAndRevision));

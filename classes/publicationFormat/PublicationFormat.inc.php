@@ -430,22 +430,6 @@ class PublicationFormat extends Representation {
 	}
 
 	/**
-	 * Get the remote URL at which this format is retrievable.
-	 * @return string
-	 */
-	function getRemoteURL() {
-		return $this->getData('remoteUrl');
-	}
-
-	/**
-	 * Set the remote URL for retrieving this format.
-	 * @param $remoteURL string
-	 */
-	function setRemoteURL($remoteURL) {
-		return $this->setData('remoteUrl', $remoteURL);
-	}
-
-	/**
 	 * Get whether or not this format is available in the catalog.
 	 * @return int
 	 */
