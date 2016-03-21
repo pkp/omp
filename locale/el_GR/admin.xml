@@ -11,7 +11,7 @@
   * Localization strings for the el_GR (ελληνικά) locale (Site administration).
   -->
 
-<locale name="el_GR" full_name = "Greek">
+<locale name="el_GR" full_name = "ελληνικά">
 	<message key="admin.hostedPresses">Φιλοξενούμενες Εκδόσεις</message>
 	<message key="admin.settings.pressRedirect">Προώθηση σε URL της Έκδοσης</message>
 	<message key="admin.settings.pressRedirectInstructions">Αιτήματα πρόσβασης στον κυρίως ιστότοπο της συλλογής θα προωθούνται στην ιστοσελίδα της έκδοσης. Αυτό μπορεί να φανεί χρήσιμο αν η συλλογή φιλοξενεί για παράδειγμα μόνο μία έκδοση.</message>
@@ -33,7 +33,7 @@
 	<message key="admin.languages.confirmDisable">Είστε σίγουρος ότι επιθυμείτε να απενεργοποιήσετε αυτή την τοπική ρύθμιση; Αυτό θα επηρεάσει όσες φιλοξενούμενες εκδόσεις χρησιμοποιούν τη συγκεκριμένη ρύθμιση.</message>
 	<message key="admin.systemVersion">OMP Έκδοση</message>
 	<message key="admin.systemConfiguration">Ρυθμίσεις OMP</message>
-	<message key="admin.systemConfigurationDescription"><![CDATA[Διαμόρφωση Ρυθμίσεων (Configuration) OMP από <tt>config.inc.php<tt>]]></message>
+	<message key="admin.systemConfigurationDescription"><![CDATA[Διαμόρφωση Ρυθμίσεων (Configuration) OMP από <tt>config.inc.php</tt>]]></message>
 	<message key="admin.presses.pressSettings">Ρυθμίσεις Έκδοσης</message>
 	<message key="admin.presses.noneCreated">Καμία Έκδοση δεν έχει δημιουργηθεί.</message>
 	<message key="admin.presses.createInstructions">Αυτόματα θα σας  αποδοθεί ο  ρόλος του Διαχειριστή  για αυτή την έκδοση. Μόλις δημιουργήσετε  μία νέα έκδοση, θα είστε σε θέση να ανακατευθύνετε τις ρυθμίσεις με τον οδηγό που σας δίνεται και  επομένως να ολοκληρώσετε τις αρχικές ρυθμίσεις σχετικά με την έκδοση.</message>
@@ -49,7 +49,7 @@
 Έχετε υπόψη ότι το OAI περιβάλλον μπορεί να απενεργοποιηθεί για τη συλλογή διαμορφώνοντας κατάλληλα τις ρυθμίσεις(congiguration) του συστήματος OMP. Μελλοντικές εκδόσεις του OMP θα επιτρέπουν την ενεργοποίηση ή απενεργοποίηση του OAI περιβάλλοντος σε επίπεδο τίτλου βιβλίων εντός της συλλογής.]]></message>
 
 	<!-- System Information -->
-	<message key="admin.overwriteConfigFileInstructions"><![CDATA[<h4>ΣΗΜΕΙΩΣΗ!</div>
+	<message key="admin.overwriteConfigFileInstructions"><![CDATA[<h4>ΣΗΜΕΙΩΣΗ!</h4>
 <p>Δεν ήταν δυνατή η αυτόματη αντικατάσταση του αρχείου ρυθμίσεων από το σύστημα. Για να εφαρμόσετε τις αλλαγές στις ρυθμίσεις πρέπει να ανοίξετε <tt>config.inc.php</tt> με κατάλληλο πρόγραμμα διόρθωσης κειμένων και να αντικαταστήσετε τα περιεχόμενα αυτού με τα περιεχόμενα του πεδίου κειμένου που βρίκεται παρακάτω.</p>]]></message>
 
 </locale>

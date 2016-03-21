@@ -58,7 +58,7 @@ Veuillez noter que l'interface OAI peut être désactivée sur ce site en modifi
 
 
 	<!-- System Information -->
-	<message key="admin.overwriteConfigFileInstructions"><![CDATA[<h4>NOTE!</div>
+	<message key="admin.overwriteConfigFileInstructions"><![CDATA[<h4>NOTE!</h4>
 <p>Le système ne peut pas réécrire automatiquement le fichier de configuration. Pour appliquer les modifications de configuration, vous devez ouvrir <tt>config.inc.php</tt> dans un éditeur de texte approprié et remplacer le contenu par le contenu de la zone de texte ci-dessous.</p>]]></message>
 
 </locale>
