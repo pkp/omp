@@ -9,7 +9,7 @@
  *}
 {include file="common/header.tpl" pageTitle="manager.importExport"}
 
-{help file="chapter7/import-export.md" class="pkp_helpers_align_right"}
+{help file="chapter7/import-export.md"}
 
 <ul>
 	{foreach from=$plugins item=plugin}
@@ -18,4 +18,3 @@
 </ul>
 
 {include file="common/footer.tpl"}
-
