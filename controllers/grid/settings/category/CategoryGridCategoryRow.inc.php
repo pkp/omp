@@ -40,24 +40,28 @@ class CategoryGridCategoryRow extends GridCategoryRow {
 		// Is this a new row or an existing row?
 		$categoryId = $this->getId();
 		if (!empty($categoryId) && is_numeric($categoryId)) {
-			$category = $this->getData();
-
 			// Only add row actions if this is an existing row
-			import('lib.pkp.classes.linkAction.request.RemoteActionConfirmationModal');
+			$category = $this->getData();
 			$router = $request->getRouter();
-			$this->addAction(
-				new LinkAction(
-					'deleteCategory',
-					new RemoteActionConfirmationModal(
-						__('common.confirmDelete'),
-						__('common.delete'),
-						$router->url($request, null, null, 'deleteCategory', null, array('categoryId' => $categoryId)),
-						'modal_delete'
-					),
-					__('grid.action.remove'),
-					'delete'
-				)
-			);
+
+			$categoryDao = DAORegistry::getDAO('CategoryDAO');
+			$childCategories = $categoryDao->getByParentId($categoryId);
+			if ($childCategories->getCount() == 0) {
+				import('lib.pkp.classes.linkAction.request.RemoteActionConfirmationModal');
+				$this->addAction(
+					new LinkAction(
+						'deleteCategory',
+						new RemoteActionConfirmationModal(
+							__('common.confirmDelete'),
+							__('common.delete'),
+							$router->url($request, null, null, 'deleteCategory', null, array('categoryId' => $categoryId)),
+							'modal_delete'
+						),
+						__('grid.action.remove'),
+						'delete'
+					)
+				);
+			}
 
 			$this->addAction(new LinkAction(
 				'editCategory',
