@@ -402,7 +402,7 @@ URL εργασίας: {$submissionUrl}<br />
 	</email_text>
 		<email_text key="COPYEDIT_REQUEST">
 		<subject>Αίτημα Επιμέλειας Κειμένων</subject>
-		<body><![CDATA[{$copyeditorName}:<br />
+		<body><![CDATA[{$participantName}:<br />
 <br />
 Θα ήθελα να σας ζητήσω να αναλάβετε την επιμέλεια του κειμένου της εργασίας &quot;{$submissionTitle}&quot; που υποβλήθηκε στις εκδόσεις {$contextName} ακολουθώντας τα παρακάτω βήματα:<br />
 1. Κάντε κλικ στο URL υποβολής που βρίσκεται παρακάτω.<br />
@@ -413,15 +413,15 @@ URL εργασίας: {$submissionUrl}<br />
 6. Αποστείλετε το σχετικό email ΟΛΟΚΛΗΡΩΣΗΣ στον επιμελητή.<br />
 <br />
 {$contextName} URL: <a href="{$contextUrl}">{$contextUrl}</a><br />
-URL Υποβολής: <a href="{$submissionCopyeditingUrl}">{$submissionCopyeditingUrl}</a><br />
-Όνομα Χρήστη: {$copyeditorUsername}<br />
+URL Υποβολής: <a href="{$submissionUrl}">{$submissionUrl}</a><br />
+Όνομα Χρήστη: {$participantUsername}<br />
 <br />
 {$editorialContactSignature}]]></body>
 		<description>Το συγκεκριμένο μήνυμα ηλεκτρονικού ταχυδρομείου αποστέλλεται από τον Επιμελητή μιας Σειράς  σε κάποιον από τους υπεύθυνους επιμέλειας κειμένων της υποβολής για να ζητήσει την έναρξη της διαδικασίας επιμέλειας κειμένων (copyediting). Παρέχει πληροφορίες σχετικά με την επιμέλεια της  υποβολής και τον τρόπο πρόσβασης σε αυτή.</description>
 	</email_text>
 									<email_text key="LAYOUT_REQUEST">
 		<subject>Αίτημα σελιδοποίησης</subject>
-		<body><![CDATA[{$layoutEditorName}:<br />
+		<body><![CDATA[{$participantName}:<br />
 <br />
 Στο στάδιο αυτό θα πρέπει να δημιουργηθούν τα κατάλληλα τυπογραφικά δοκίμια για την υποβολή με τίτλο &quot;{$submissionTitle}&quot; των εκδόσεων {$contextName} ακολουθώντας τα παρακάτω βήματα:<br />
 <br />
@@ -431,7 +431,7 @@ URL Υποβολής: <a href="{$submissionCopyeditingUrl}">{$submissionCopyedit
 <br />
 {$contextName} URL: <a href="{$contextUrl}">{$contextUrl}</a><br />
 Submission URL: {$submissionUrl}<br />
-Username: {$layoutEditorUsername}<br />
+Username: {$participantUsername}<br />
 <br />
 Εάν δεν μπορείτε να αναλάβετε τη συγκεκριμένη εργασία αυτή τη στιγμή ή έχετε απορίες, επικοινωνήστε μαζί μας. Ευχαριστούμε για την συμβολή σας σε αυτή την έκδοση.<br />
 <br />
@@ -451,7 +451,7 @@ Username: {$layoutEditorUsername}<br />
 	</email_text>
 		<email_text key="INDEX_REQUEST">
 		<subject>Αίτημα Ευρετηρίασης</subject>
-		<body><![CDATA[{$indexerName}:<br />
+		<body><![CDATA[{$participantName}:<br />
 <br />
 Στο στάδιο αυτό της υποβολής με τίτλο &quot;{$submissionTitle}&quot; για τις εκδόσεις {$contextName} θα πρέπει να γίνει η Ευρετηρίαση της ακολουθώντας τα παρακάτω βήματα:<br />
 1. Κάντε κλικ στο URL υποβολής που βρίσκεται παρακάτω.<br />
@@ -460,7 +460,7 @@ Username: {$layoutEditorUsername}<br />
 <br />
 {$contextName} URL: <a href="{$contextUrl}">{$contextUrl}</a><br />
 URL Υποβολής: {$submissionUrl}<br />
-όνομα Χρήστη: {$indexerUsername}<br />
+όνομα Χρήστη: {$participantUsername}<br />
 <br />
 Εάν δεν μπορείτε να αναλάβετε την συγκεκριμένη εργασία αυτή τη στιγμή ή έχετε απορίες, επικοινωνήστε μαζί μας. Ευχαριστούμε για την συμβολή σας στη συγκεκριμένη έκδοση.<br />
 <br />

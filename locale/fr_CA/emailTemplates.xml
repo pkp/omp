@@ -413,7 +413,7 @@ URL du manuscrit: {$submissionUrl}<br />
 	</email_text>
 	<email_text key="COPYEDIT_REQUEST">
 		<subject>Requête de révision</subject>
-		<body><![CDATA[{$copyeditorName}:<br />
+		<body><![CDATA[{$participantName}:<br />
 <br />
 J'aimerais que vous entamiez le processus de révision de l'article &quot;{$submissionTitle}&quot; pour la presse {$contextName}. Veuillez suivre les étapes suivantes.<br />
 <br />
@@ -425,15 +425,15 @@ J'aimerais que vous entamiez le processus de révision de l'article &quot;{$subm
 6. Envoyez le courriel COMPLET au rédacteur en chef.<br />
 <br />
 {$contextName} URL: <a href="{$contextUrl}">{$contextUrl}</a><br />
-URL de la soumission: <a href="{$submissionCopyeditingUrl}">{$submissionCopyeditingUrl}</a><br />
-Nom d'utilisateur: {$copyeditorUsername}<br />
+URL de la soumission: <a href="{$submissionUrl}">{$submissionUrl}</a><br />
+Nom d'utilisateur: {$participantUsername}<br />
 <br />
 {$editorialContactSignature}]]></body>
 		<description>Ce courriel est envoyé par le rédacteur en chef d'une série au réviseur de la soumission afin qu'il entame de processus de révision, lorsque l'évaluation par les pairs est terminée. Il explique comment accéder à la soumission.</description>
 	</email_text>
 	<email_text key="LAYOUT_REQUEST">
 		<subject>Requête des épreuves en placard</subject>
-		<body><![CDATA[{$layoutEditorName}:<br />
+		<body><![CDATA[{$participantName}:<br />
 <br />
 Il faut maintenant préparer les épreuves en placard de la soumission &quot;{$submissionTitle}&quot; pour la presse {$contextName}. Pour ce faire, veuillez suivre les étapes suivantes:<br />
 <br />
@@ -443,7 +443,7 @@ Il faut maintenant préparer les épreuves en placard de la soumission &quot;{$s
 <br />
 {$contextName} URL: <a href="{$contextUrl}">{$contextUrl}</a><br />
 URL de la soumission: {$submissionUrl}<br />
-Nom d'utilisateur: {$layoutEditorUsername}<br />
+Nom d'utilisateur: {$participantUsername}<br />
 <br />
 Si vous ne pouvez pas faire ce travail en ce moment ou si vous avez des questions, n'hésitez pas à me contacter. Merci d'avoir contribué à cette presse.<br />
 <br />
@@ -463,7 +463,7 @@ Si vous avez questions, n'hésitez pas à me contacter.<br />
 	</email_text>
 	<email_text key="INDEX_REQUEST">
 		<subject>Requête d'indexage</subject>
-		<body><![CDATA[{$indexerName}:<br />
+		<body><![CDATA[{$participantName}:<br />
 <br />
 La soumission &quot;{$submissionTitle}&quot; par la presse {$contextName} doit désormais être indexée. Veuillez suivre les étapes suivantes:<br />
 <br />
@@ -473,7 +473,7 @@ La soumission &quot;{$submissionTitle}&quot; par la presse {$contextName} doit d
 <br />
 {$contextName} URL: <a href="{$contextUrl}">{$contextUrl}</a><br />
 URL de la soumission: {$submissionUrl}<br />
-Nom d'utilisateur: {$indexerUsername}<br />
+Nom d'utilisateur: {$participantUsername}<br />
 <br />
 Si vous ne pouvez pas faire ce travail en ce moment ou si vous avez des questions, n'hésitez pas à me contacter. Merci d'avoir contribué à cette presse.<br />
 <br />

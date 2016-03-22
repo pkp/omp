@@ -42,4 +42,29 @@
 			<field name="class_name">lib.pkp.classes.task.ReviewReminder</field>
 		</row>
 	</table>
+
+	<!-- Issue #1296: clean up notification emails for participants grid -->
+	<sql>
+		<!-- submissionCopyeditingUrl to submissionUrl -->
+		<query>UPDATE email_templates_default_data SET body=REPLACE(body, '{$submissionCopyeditingUrl}', '{$submissionUrl}')</query>
+		<query>UPDATE email_templates_data SET body=REPLACE(body, '{$submissionCopyeditingUrl}', '{$submissionUrl}')</query>
+		<!-- layoutEditorName to participantName -->
+		<query>UPDATE email_templates_default_data SET body=REPLACE(body, '{$layoutEditorName}', '{$participantName}')</query>
+		<query>UPDATE email_templates_data SET body=REPLACE(body, '{$layoutEditorName}', '{$participantName}')</query>
+		<!-- layoutEditorUsername to participantUsername -->
+		<query>UPDATE email_templates_default_data SET body=REPLACE(body, '{$layoutEditorUsername}', '{$participantUsername}')</query>
+		<query>UPDATE email_templates_data SET body=REPLACE(body, '{$layoutEditorUsername}', '{$participantUsername}')</query>
+		<!-- copyeditorName to participantName -->
+		<query>UPDATE email_templates_default_data SET body=REPLACE(body, '{$copyeditorName}', '{$participantName}')</query>
+		<query>UPDATE email_templates_data SET body=REPLACE(body, '{$copyeditorName}', '{$participantName}')</query>
+		<!-- copyeditorUsername to participantUsername -->
+		<query>UPDATE email_templates_default_data SET body=REPLACE(body, '{$copyeditorUsername}', '{$participantUsername}')</query>
+		<query>UPDATE email_templates_data SET body=REPLACE(body, '{$copyeditorUsername}', '{$participantUsername}')</query>
+		<!-- indexerName to participantName -->
+		<query>UPDATE email_templates_default_data SET body=REPLACE(body, '{$indexerName}', '{$participantName}')</query>
+		<query>UPDATE email_templates_data SET body=REPLACE(body, '{$indexerName}', '{$participantName}')</query>
+		<!-- indexerUsername to participantUsername -->
+		<query>UPDATE email_templates_default_data SET body=REPLACE(body, '{$indexerUsername}', '{$participantUsername}')</query>
+		<query>UPDATE email_templates_data SET body=REPLACE(body, '{$indexerUsername}', '{$participantUsername}')</query>
+	</sql>
 </data>

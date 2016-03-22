@@ -277,7 +277,7 @@ Siento comunicarle de que en estos momentos no puedo realizar la revisión de la
 	</email_text>
 	<email_text key="COPYEDIT_REQUEST">
 		<subject>Solicitud de corrección de estilo</subject>
-		<body><![CDATA[{$copyeditorName}:<br />
+		<body><![CDATA[{$participantName}:<br />
 <br />
 Te ruego lleves a cabo la corrección de estilo de &quot;{$submissionTitle}&quot; sobre {$contextName} siguiendo los siguientes pasos.<br />
 1. Haz clic en el URL de la propuesta que aparece al final.<br />
@@ -288,15 +288,15 @@ Te ruego lleves a cabo la corrección de estilo de &quot;{$submissionTitle}&quot
 6. Envía el correo electrónico COMPLETO al coordinador.<br />
 <br />
 URL de {$contextName}: <a href="{$contextUrl}">{$contextUrl}</a><br />
-URL de la propuesta: <a href="{$submissionCopyeditingUrl}">{$submissionCopyeditingUrl}</a><br />
-Nombre de ususario: {$copyeditorUsername}<br />
+URL de la propuesta: <a href="{$submissionUrl}">{$submissionUrl}</a><br />
+Nombre de ususario: {$participantUsername}<br />
 <br />
 {$editorialContactSignature}]]></body>
 		<description>El coordinador de colección enviará este correo electrónico al corrector de estilo de una  propuesta para pedirle que comience el proceso de revisión. Este correo proporciona información sobre la propuesta y sobre cómo acceder a ella.</description>
 	</email_text>
 	<email_text key="LAYOUT_REQUEST">
 		<subject>Solicitud de galeradas</subject>
-		<body><![CDATA[{$layoutEditorName}:<br />
+		<body><![CDATA[{$participantName}:<br />
 <br />
 La propuesta &quot;{$submissionTitle}&quot; sobre {$contextName} necesita ahora galeradas maquetadas siguiendo estos pasos.<br />
 1. Haz clic en la URL de la propuesta al final.<br />
@@ -319,7 +319,7 @@ Si tienes alguna duda, por favor, no dudes en contactar conmigo.<br />
 	</email_text>
 	<email_text key="INDEX_REQUEST">
 		<subject>Índice de solicitud</subject>
-		<body><![CDATA[{$indexerName}:<br />
+		<body><![CDATA[{$participantName}:<br />
 <br />
 Ahora se necesita crear índices para la propuesta &quot;{$submissionTitle}&quot; sobre {$contextName} siguiendo los siguientes pasos.<br />
 1. Haz clic en la URL de la propuesta al final.<br />
@@ -328,7 +328,7 @@ Ahora se necesita crear índices para la propuesta &quot;{$submissionTitle}&quot
 <br />
 URL de {$contextName}: <a href="{$contextUrl}">{$contextUrl}</a><br />
 URL de la propuesta: {$submissionUrl}<br />
-Nombre de ususario: {$indexerUsername}<br />
+Nombre de ususario: {$participantUsername}<br />
 <br />
 Si no puedes realizar este tarea en este momento o tienes alguna duda, por favor, no dudes en contactar conmigo. Gracias por tu colaboración con esta editorial.<br />
 <br />
