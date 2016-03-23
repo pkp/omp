@@ -30,8 +30,9 @@
 						<simpleType>
 							<restriction base="string">
 								<enumeration value="submission" />
+								<enumeration value="internalReview" />
 								<enumeration value="externalReview" />
-								<enumeration value="editing" />
+								<enumeration value="editorial" />
 								<enumeration value="production" />
 							</restriction>
 						</simpleType>
