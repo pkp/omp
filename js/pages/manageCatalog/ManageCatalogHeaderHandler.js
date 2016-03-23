@@ -55,7 +55,8 @@
 		// React to "select series" events from the series tab.
 		this.bind('selectSeries', this.selectSeriesHandler_);
 
-		this.bind('containerReloadRequested', this.callbackWrapper(this.containerReloadHandler_));
+		this.bind('containerReloadRequested',
+				this.callbackWrapper(this.containerReloadHandler_));
 
 		$catalogTabs.bind('tabsselect', this.callbackWrapper(this.selectTabHandler_));
 		$catalogTabs.bind('tabsshow', this.callbackWrapper(this.showTabHandler_));
