@@ -68,6 +68,7 @@ class NativeXmlPublicationFormatFilter extends NativeXmlRepresentationFilter {
 		$representation = parent::handleElement($node);
 
 		if ($node->getAttribute('approved') == 'true') $representation->setIsApproved(true);
+		if ($node->getAttribute('available') == 'true') $representation->setIsAvailable(true);
 		if ($node->getAttribute('physical_format') == 'true') $representation->setPhysicalFormat(true);
 
 		$representationDao = Application::getRepresentationDAO();

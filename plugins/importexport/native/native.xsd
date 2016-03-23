@@ -53,6 +53,7 @@
 						<element maxOccurs="1" minOccurs="0" name="Product"/>
 					</sequence>
 					<attribute name="approved" type="boolean"/>
+					<attribute name="available" type="boolean"/>
 					<attribute name="physical_format" type="boolean"/>
 				</extension>
 			</complexContent>
