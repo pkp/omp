@@ -287,7 +287,7 @@
 	<message key="catalog.foundTitlesSearch">{$number} titles were found which matched your search for "{$searchQuery}".</message>
 	<message key="catalog.allBooks">All Books</message>
 	<message key="catalog.newReleases">New Releases</message>
-	<message key="catalog.dateAdded">Added {$dateAdded}</message>
+	<message key="catalog.dateAdded">Added</message>
 	<message key="catalog.publicationInfo">Publication Info</message>
 	<message key="catalog.published">Published</message>
 	<message key="catalog.categories">Categories</message>

@@ -262,7 +262,7 @@
 	<message key="catalog.browseTitles">Περιήγηση σε {$numTitles} Τίτλους</message>
 	<message key="catalog.feature">Εμφάνιση</message>
 	<message key="catalog.featuredBooks">Προτεινόμενα βιβλία</message>
-	<message key="catalog.dateAdded">Προστέθηκε {$dateAdded}</message>
+	<message key="catalog.dateAdded">Προστέθηκε</message>
 	<message key="catalog.publicationInfo">Πληροφορίες Έκδοσης</message>
 	<message key="catalog.relatedCategories">Σχετιζόμενες κατηγορίες</message>
 

@@ -258,7 +258,7 @@
 	<message key="catalog.browseTitles">Navegar nos {$numTitles} títulos</message>
 	<message key="catalog.feature">Destacar</message>
 	<message key="catalog.featuredBooks">Livros em destaque</message>
-	<message key="catalog.dateAdded">Incluído em {$dateAdded}</message>
+	<message key="catalog.dateAdded">Incluído em</message>
 	<message key="catalog.publicationInfo">Dados da publicação</message>
 	<message key="catalog.relatedCategories">Categorias relacionadas</message>
 	<message key="catalog.aboutTheAuthor">Sobre o {$roleName}</message>

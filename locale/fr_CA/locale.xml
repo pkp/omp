@@ -263,7 +263,7 @@
 	<message key="catalog.browseTitles">Explorer {$numTitles} les titres</message>
 	<message key="catalog.feature">En vedette</message>
 	<message key="catalog.featuredBooks">Livres en vedette</message>
-	<message key="catalog.dateAdded">Ajouté le {$dateAdded}</message>
+	<message key="catalog.dateAdded">Ajouté le</message>
 	<message key="catalog.publicationInfo">Renseignements sur la publication</message>
 	<message key="catalog.relatedCategories">Catégories connexes</message>
 	<message key="catalog.aboutTheAuthor">À propos de le {$roleName}</message>

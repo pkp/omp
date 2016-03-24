@@ -260,7 +260,7 @@
 	<message key="catalog.browseTitles">{$numTitles} Titel</message>
 	<message key="catalog.feature">Empfehlen</message>
 	<message key="catalog.featuredBooks">Empfohlene Bücher</message>
-	<message key="catalog.dateAdded">Hinzugefügt {$dateAdded}</message>
+	<message key="catalog.dateAdded">Hinzugefügt</message>
 	<message key="catalog.publicationInfo">Informationen zum Buch</message>
 	<message key="catalog.relatedCategories">Verwandte Kategorien</message>
 	<message key="catalog.aboutTheAuthor">Über den/die {$roleName}</message>

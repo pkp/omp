@@ -143,7 +143,7 @@
 			{* Date published *}
 			<div class="item published_date">
 				<span class="label">
-					{translate key="catalog.published"}
+					{translate key="catalog.dateAdded"}
 				</span>
 				<span class="value">
 					{$monograph->getDatePublished()|date_format:$dateFormatShort}
