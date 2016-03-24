@@ -76,6 +76,7 @@
 	$.pkp.controllers.catalog.form.CatalogMetadataFormHandler.prototype.
 			audienceValues_ = null;
 
+
 	/**
 	 * A message to display in place of the cover image when it has been
 	 * replaced.
