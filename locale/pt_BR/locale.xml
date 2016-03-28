@@ -15,7 +15,7 @@
 	<!-- General monograph keys -->
 	<message key="monograph.audience">Audiência</message>
 	<message key="monograph.coverImage">Capa</message>
-	<message key="monograph.currentCoverImage">Imagem atual</message>	
+	<message key="monograph.currentCoverImage">Imagem atual</message>
 	<message key="monograph.currentCoverImageReload">Salve as modificações para ver a nova imagem de capa.</message>
 	<message key="monograph.audience.rangeQualifier">Qualificador de faixa de audiência</message>
 	<message key="monograph.audience.rangeFrom">Faixa de audiência (de)</message>

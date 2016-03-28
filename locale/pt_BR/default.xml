@@ -90,16 +90,15 @@
 	<message key="default.pressSettings.checklist.bibliographicRequirements"><![CDATA[O texto segue as normas bibliográficas e de estilo definida na página <a href="{$indexUrl}/{$pressPath}/about/submissions#authorGuidelines" target="_blank">Diretrizes para Autores</a>, disponível na página Sobre a editora.]]></message>
 	<message key="default.pressSettings.privacyStatement">Os nomes e endereços de e-mail informados nesta editora serão usados exclusivamente para os propósitos da mesma e não serão divulgados ou oferecidos para nenhum outro propósito ou a terceiros.</message>
 	<message key="default.pressSettings.openAccessPolicy">Esta editora oferece acesso aberto imediato ao seu conteúdo, seguindo o princípio que tornar a pesquisa acessível ao público abertamente proporciona maior intercâmbio de conhecimento de forma global.</message>
-	<message key="default.pressSettings.emailSignature"><![CDATA[________________________________________________________________________
-{$contextName}
-{$indexUrl}/{$pressPath}
-]]></message>
+	<message key="default.pressSettings.emailHeader">A seguinte mensagem será enviada em nome de {$ldelim}$contextName{$rdelim}.
+________________________________________________________________________</message>
+	<message key="default.pressSettings.emailSignature"><![CDATA[<br/>
+________________________________________________________________________<br/>
+<a href="{$ldelim}$contextUrl{$rdelim}">{$ldelim}$contextName{$rdelim}</a>]]></message>
 	<message key="default.pressSettings.forReaders"><![CDATA[Estimulamos os leitores a se cadastrarem no site para receber notificações da editora. Acesse a página <a href="{$indexUrl}/{$pressPath}/user/register">Cadastro</a> no topo da págin. O cadastro permitirá ao leitor receber em seu e-mail o Sumário de cada monografia publicada. A lista também permite à editora afirmar o apoio de seus seguidores ou de leitura de suas publicações. Acesse a página sobre a <a href="{$indexUrl}/{$pressPath}/about/submissions#privacyStatement">Declaração de Privacidade</a>, que assegura aos leitores que seus nomes e endereços de e-mail não serão usados para outros propósitos.]]></message>
 	<message key="default.pressSettings.forAuthors"><![CDATA[Interessado em publicar nesta editora? Recomendamos que leia atentamente a página <a href="{$indexUrl}/{$pressPath}/about">Sobre a editora</a>, que contém as políticas de seções, bem como as <a href="{$indexUrl}/{$pressPath}/about/submissions#authorGuidelines">Diretrize para autores</a>. É necessário que os autores façam um <a href="{$indexUrl}/{$pressPath}/user/register">cadastro</a> no sistema antes de realizar a submissão, ou, caso já possuam um, basta fazer o <a href="{$indexUrl}/index/login">acesso</a> e iniciar os 5 passos do processo de submissão.]]></message>
 	<message key="default.pressSettings.forLibrarians"><![CDATA[Estimulamos bibliotecas de pesquisa a listar esta editora como um fonte de conteúdo eletrônico. Este sistema de código aberto também é útil para bibliotecas, universidades e seus membros, para uso em conjunto com as editoras com as quais possuem envolvimento editorial (saiba mais acessando <a href="http://pkp.sfu.ca/omp">Open Monograph Press</a>).]]></message>
 	<message key="default.groups.name.manager">Gerente da editora</message>
 	<message key="default.groups.plural.manager">Gerentes da editora</message>
 	<message key="default.groups.abbrev.manager">GE</message>
-	<message key="default.pressSettings.emailHeader">A seguinte mensagem será enviada em nome de {$contextName}.
-________________________________________________________________________</message>
 </locale>

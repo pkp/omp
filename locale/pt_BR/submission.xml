@@ -26,7 +26,7 @@
 	<message key="submission.monograph">Monografia</message>
 	<message key="submission.published">Pronto para produção</message>
 	<message key="submission.fairCopy">Cópia limpa</message>
-	<message key="submission.artwork.permissions">Permissões</message> 
+	<message key="submission.artwork.permissions">Permissões</message>
 	<message key="submission.chapter">Capítulo</message>
 	<message key="submission.chapters">Capítulos</message>
 	<message key="submission.chaptersDescription">Liste os capítulos aqui, aos quais também pode designar contribuidores a partir da lista acima. Os contribuidores poderão acessar o capítulo durante os vários estágios do processo de publicação.</message>
@@ -53,13 +53,11 @@
 	<message key="submission.submit.newSubmissionMultiple">Iniciar novo envio em</message>	
 	<message key="submission.submit.newSubmissionSingle">Novo envio</message>
 	<message key="submission.submit.upload">Enviar</message>
-	<message key="submission.submit.upload.description">Envie os arquivos associados à submissõao, incluindo manuscrito, prospecto, carta de apresentação, arte, etc. Para volumes editados e monografias, envie o manuscrito como arquivo único, caso seja possível.</message>
 	<message key="submission.submit.cancelSubmission">O envio pode ser concluído posteriormente, escolhendo da lista de Submissões ativas, na página inicial do papel de autor.</message>
-	<message key="submission.submit.placement.seriesDescription">Caso o livro também deva ser considerado para uma série...</message>
-	<message key="submission.submit.placement.seriesPositionDescription">Livros em séries são normalmente mantidos na ordem inversa em que são publicados, para proporcionar uma visão do desenvolvimento da série, bem como manter as mais recentes à frente.</message>
-	<message key="submission.submit.copyrightNoticeAgree">Concordo em cumprir os termos da declaração de direito autoral.</message>
 	<message key="submission.submit.selectSeries">Escolher séries...</message>
 	<message key="submission.submit.seriesPosition">Posição na série (ex.: Livro 2, ou Volume 2)</message>
+	<message key="submission.submit.placement.seriesDescription">Caso o livro também deva ser considerado para uma série...</message>
+	<message key="submission.submit.placement.seriesPositionDescription">Livros em séries são normalmente mantidos na ordem inversa em que são publicados, para proporcionar uma visão do desenvolvimento da série, bem como manter as mais recentes à frente.</message>
 	<message key="submission.submit.form.localeRequired">Escolha o idioma da submissão.</message>
 	<message key="submission.submit.submissionChecklist">Itens de verificação para submissão</message>
 	<message key="submission.submit.submissionChecklistDescription">É necessário concluir os seguintes requisitos para submissão a esta editora, assim como marcá-los antes de prosseguir (comentários ao editor podem ser inluídos a seguir).</message>
