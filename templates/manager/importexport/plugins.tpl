@@ -9,7 +9,7 @@
  *}
 {include file="common/header.tpl" pageTitle="manager.importExport"}
 
-{help file="chapter7/import-export.md"}
+{help file="tools.md" section="import-export"}
 
 <ul>
 	{foreach from=$plugins item=plugin}
