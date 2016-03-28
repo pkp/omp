@@ -93,8 +93,8 @@
 
 	<!-- Submission-specific catalog info -->
 	<message key="submission.catalogEntry">Catalog Entry</message>
-	<message key="submission.complete">Complete</message>
-	<message key="submission.incomplete">Not Complete</message>
+	<message key="submission.complete">Approved</message>
+	<message key="submission.incomplete">Awaiting Approval</message>
 	<message key="submission.editCatalogEntry">Entry</message>
 	<message key="submission.catalogEntry.new">New Catalog Entry</message>
 	<message key="submission.catalogEntry.confirm">Add this book to the public catalog</message>
