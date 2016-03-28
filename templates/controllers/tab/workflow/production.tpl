@@ -11,7 +11,7 @@
 <div id="production">
 
 	{* Help Link *}
-	{help file="chapter5/production.md" class="pkp_help_tab"}
+	{help file="editorial-workflow/production.md" class="pkp_help_tab"}
 
 	{include file="controllers/notification/inPlaceNotification.tpl" notificationId="productionNotification" requestOptions=$productionNotificationRequestOptions}
 

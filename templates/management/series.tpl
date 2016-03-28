@@ -9,7 +9,7 @@
  *}
 
 {* Help Link *}
-{help file="chapter6/context/series.md" class="pkp_help_tab"}
+{help file="settings.md" section="context" class="pkp_help_tab"}
 
 {url|assign:seriesGridUrl router=$smarty.const.ROUTE_COMPONENT component="grid.settings.series.SeriesGridHandler" op="fetchGrid" escape=false}
 {load_url_in_div id="seriesGridContainer" url=$seriesGridUrl}

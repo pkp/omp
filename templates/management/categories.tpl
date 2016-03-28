@@ -9,7 +9,7 @@
  *}
 
 {* Help Link *}
-{help file="chapter6/context/categories.md" class="pkp_help_tab"}
+{help file="settings.md" section="context" class="pkp_help_tab"}
 
 {url|assign:categoriesUrl router=$smarty.const.ROUTE_COMPONENT component="grid.settings.category.CategoryCategoryGridHandler" op="fetchGrid" escape=false}
 {load_url_in_div id="categoriesContainer" url=$categoriesUrl}
