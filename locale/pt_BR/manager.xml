@@ -149,6 +149,10 @@ Informe, se desesjar, o motivo do bloqueio.</message>
 	<message key="manager.setup.disciplineExamples">(Ex.: História; Educação; Sociologia; Psicologia; Estudos Culturais; Direito)</message>
 	<message key="manager.setup.disciplineProvideExamples">Ofereça exemplos de termos de áreas do conhecimento relevantes a esta editora.</message>
 	<message key="manager.setup.displayCurrentMonograph">Incluir o sumário da monografia atual, caso esteja disponível.</message>
+	<message key="manager.setup.displayOnHomepage">Cnteúdo da página inicial</message>	
+	<message key="manager.setup.displayFeaturedBooks">Display featured books on the home page.</message>
+	<message key="manager.setup.displayInSpotlight">Display books in the spotlight on the home page.</message>
+	<message key="manager.setup.displayNewReleases">Display new releases on the home page.</message>
 	<message key="manager.setup.doiPrefix">Prefixo DOI</message>
 	<message key="manager.setup.doiPrefixDescription"><![CDATA[O prefixo DOI (Digital Object Identifier) é designado pelo <a href="http://www.crossref.org" target="_blank">CrossRef</a>, no formato 10.xxxx (ex.: 10.1234).]]></message>
 	<message key="manager.setup.editorDecision">Decisão editorial</message>
@@ -300,6 +304,13 @@ Informe, se desesjar, o motivo do bloqueio.</message>
 	<message key="manager.setup.submissionPreparationChecklistDescription">Ao submter à editora, autores precisam primeiro marcar cada item de verificação da submissão como realizados, antes de proceder. A lista também aparece nas diretrizes de submissão, na página Sobre a editora. A lista pode ser editada a seguir, porém, é obrigatório marcar todos os itens na lista antes de continuar o processo de submissão.</message>
 	<message key="maganer.setup.submissionChecklistItemRequired">Item de verificação obrigatório.</message>
 	<message key="manager.setup.workflow">Fluxo de trabalho</message>
+	<message key="manager.setup.coverThumbnails">Cover Thumbnails</message>
+	<message key="manager.setup.coverThumbnailsDescription">Set the max width and height of the cover thumbnails. They will be resized when they are larger than these settings but will not be enlarged if they are smaller. The images will never be stretched to fit these dimensions.</message>
+	<message key="manager.setup.coverThumbnailsMaxHeight">Max. height</message>
+	<message key="manager.setup.coverThumbnailsMaxHeightRequired">Cover thumbnails max height is required.</message>
+	<message key="manager.setup.coverThumbnailsMaxWidth">Max. width</message>
+	<message key="manager.setup.coverThumbnailsMaxWidthRequired">Cover thumbnails max width is required.</message>
+	<message key="manager.setup.coverThumbnailsResize">Resize all existing cover thumbnails.</message>
 	<message key="manager.setup.submissions.description">Diretrizes de submissão, direito autoral e indexação (incluindo o cadastro).</message>
 	<message key="manager.setup.technicalSupportContact">Contato de suporte técnico</message>
 	<message key="manager.setup.technicalSupportContactDescription">Esta pessoa aparecera na página Contato, como suporte a editores, autores e avaliadores, devendo possuir experiência com o sistema sob a ótica de todos os papéis. O sistema exige pouco suporte técnico, e a posição pode ser considerada de meio-período. Pode haver situações, como por exemplo, problemas de envio de arquivos, execução de tarefas ou com formatos de arquivo por parte de autores ou avaliadores, ou a necessidade de garantir cópias de segurança regulares do sistema.</message>
@@ -401,5 +412,17 @@ Escolha um modelo para lidar com os aspectos do processo editorial (Para designa
 	<message key="manager.setup.appearanceDescription">Vários componentes da aparência da Editora podem ser configurados a partir desta página, incluindo elementos do cabeçalho e rodapé, o tema, e como listas de informações são apresentadas aos usuários.</message>
 	<message key="manager.setup.homepageContentDescription">A homepage da editora consiste, por padrão, em links de navegação. Conteúdos adicionais à página inicial podem ser anexados usando uma ou todas das seguintes opções, que serão exibidos na ordem mostrada.</message>
 	<message key="manager.setup.internalReviewGuidelinesDescription">Como as Diretrizes de Avaliação Externa, estas instruções informam os revisores sobre a avaliação da submissão. Estas instruções são para Revisores Internos, que geralmente realizam um processo de revisão usando revisores internos para a editora.</message>
-	<message key="manager.setup.registerForIndexingDescription">A definir informações para indexação.</message>
+	<message key="manager.setup.registerForIndexingDescription">A definir informações para indexação.<![CDATA[To have the contents of this press indexed within a globally distributed system of research databases, <a href="http://pkp.sfu.ca/harvester/add.php" target="_blank">register</a> your press URL with the Public Knowledge Project metadata <a href="http://pkp.sfu.ca/harvester/" target="_blank">harvester</a>. This tool collects the metadata from each indexed item in this press, enabling accurate and collective searching among the research sites that adhere to the <a href="http://www.openarchives.org/OAI/openarchivesprotocol.htm#Introduction" target="_blank">Open Archives Initiative Protocol for Metadata Harvesting</a>.
+<br /><br />
+Note that if your site administrator has already registered this site with the PKP Harvester, your press will be indexed automatically and you do not need to register your press.
+<br /><br />
+<a href="http://pkp.sfu.ca/harvester/add.php" target="_blank">Click here</a> and enter <span class="highlight">{$siteUrl}</span> under <strong>Site URL</strong>, and <span class="highlight">{$oaiUrl}</span> under <strong>Base URL for OAI Archive</strong>.]]></message>
+	
+		<message key="manager.publication.library">Press Library</message>
+	<message key="manager.setup.resetPermissions">Reset Monograph Permissions</message>
+	<message key="manager.setup.resetPermissions.confirm">Are you sure you wish to reset permissions data already attached to monographs?</message>
+	<message key="manager.setup.resetPermissions.description">Copyright statement and license information will be permanently attached to published content, ensuring that this data will not change in the case of a press changing policies for new submissions. To reset stored permissions information already attached to published content, use the button below.</message>
+	
+	<message key="grid.genres.title.short">Components</message>
+	<message key="grid.genres.title">Monograph Components</message>
 </locale>

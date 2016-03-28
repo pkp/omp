@@ -10,10 +10,10 @@
   * Localization strings for the pt_BR (Português (Brasil)) locale (Site administration).
   -->
 <locale name="pt_BR" full_name="Português (Brasil)">
-	<message key="admin.hostedPresses">Hosted Presses</message>
-	<message key="admin.settings.pressRedirect">Press redirect</message>
-	<message key="admin.settings.pressRedirectInstructions">Requests to the main site will be redirected to this press. This may be useful if the site is hosting only a single press, for example.</message>
-	<message key="admin.settings.noPressRedirect">Do not redirect</message>
+	<message key="admin.hostedPresses">Editoras hospedadas</message>
+	<message key="admin.settings.pressRedirect">Redirecionar para editora</message>
+	<message key="admin.settings.pressRedirectInstructions">Solicitações para o site principal serão redirecionados para esta editora. Isso pode ser útil se o site está hospedando apenas uma editora, por exemplo.</message>
+	<message key="admin.settings.noPressRedirect">Não redirecionar</message>
 
 	<message key="admin.languages.primaryLocaleInstructions">This will be the default language for the site and any hosted presses.</message>
 	<message key="admin.languages.supportedLocalesInstructions">Select all locales to support on the site. The selected locales will be available for use by all presses hosted on the site, and also appear in a language select menu to appear on each site page (which can be overridden on press-specific pages). If multiple locales are not selected, the language toggle menu will not appear and extended language settings will not be available to presses.</message>

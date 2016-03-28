@@ -404,7 +404,7 @@ Página do manuscrito: <a href="{$submissionUrl}">{$submissionUrl}</a><br />
 	</email_text>
 		<email_text key="COPYEDIT_REQUEST">
 		<subject>Solicitação de edição de texto</subject>
-		<body><![CDATA[{$participantName},<br />
+		<body><![CDATA[{$copyeditorName},<br />
 <br />
 Solicito realizar a edição de texto da submissão &quot;{$submissionTitle}&quot; à editora {$contextName}, conforme os seguintes passos:<br />
 1. Acesse a página da submissão abaixo.<br />
@@ -415,15 +415,15 @@ Solicito realizar a edição de texto da submissão &quot;{$submissionTitle}&quo
 6. Envie a mensagem CONCLUÍDA ao editor.<br />
 <br />
 Página da editora {$contextName}: <a href="{$contextUrl}">{$contextUrl}</a><br />
-Página da submissão: <a href="{$submissionUrl}">{$submissionUrl}</a><br />
-Login: {$participantUsername}<br />
+Página da submissão: <a href="{$submissionCopyeditingUrl}">{$submissionCopyeditingUrl}</a><br />
+Login: {$copyeditorUsername}<br />
 <br />
 {$editorialContactSignature}]]></body>
 		<description>Esta mensagem é enviada pelo editor de série ao editor de texto da submissão, solicitando o início da edição de texto. Fornece informações sobre a submissão e como acessá-la.</description>
 	</email_text>
 									<email_text key="LAYOUT_REQUEST">
 		<subject>Solicitação de composição</subject>
-		<body><![CDATA[{$participantName}.<br />
+		<body><![CDATA[{$layoutEditorName}.<br />
 <br />
 A submissão &quot;{$submissionTitle}&quot;, enviada à editora {$contextName}, precisa agora ser transformada em composição final conforme os seguintes passos:<br />
 1. Acesse a página da submissão abaixo.<br />
@@ -432,7 +432,7 @@ A submissão &quot;{$submissionTitle}&quot;, enviada à editora {$contextName}, 
 <br />
 Página da editora {$contextName}: <a href="{$contextUrl}">{$contextUrl}</a><br />
 Página da submissão: <a href="{$submissionUrl}">{$submissionUrl}</a><br />
-Login: {$participantUsername}<br />
+Login: {$layoutEditorUsername}<br />
 <br />
 Caso não tenha disponibilidade para assumir esta tarefa no momento, ou em caso de dúvidas, entre em contato. Agradecemos sua contribuição aos trabalhos da editora.<br />
 <br />
@@ -452,7 +452,7 @@ Em caso de dúvidas, entre em contato.<br />
 	</email_text>
 		<email_text key="INDEX_REQUEST">
 		<subject>Solicitação de índice</subject>
-		<body><![CDATA[{$participantName},<br />
+		<body><![CDATA[{$indexerName},<br />
 <br />
 A submissão &quot;{$submissionTitle}&quot;, enviada à editora {$contextName}, precisa da produção de índices conforme os seguintes passos:<br />
 1. Acesse a página da submissão abaixo.<br />
@@ -461,7 +461,7 @@ A submissão &quot;{$submissionTitle}&quot;, enviada à editora {$contextName}, 
 <br />
 Página da editora {$contextName}: <a href="{$contextUrl}">{$contextUrl}</a><br />
 Página da submissão: <a href="{$submissionUrl}">{$submissionUrl}</a><br />
-Login: {$participantUsername}<br />
+Login: {$indexerUsername}<br />
 <br />
 Caso não tenha disponibilidade para assumir esta tarefa no momento, ou em caso de dúvidas, entre em contato. Agradecemos sua contribuição aos trabalhos da editora.<br />
 <br />
