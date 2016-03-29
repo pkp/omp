@@ -6,7 +6,7 @@
   * Copyright (c) 2014-2016 Simon Fraser University Library
   * Copyright (c) 2003-2016 John Willinsky
   * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
-  *
+  * Locale information: https://pkp.sfu.ca/wiki/index.php?title=OMP:_Portuguese_(pt_BR)
   * Localized email templates XML file.
   -->
 <email_texts locale="pt_BR">
@@ -147,7 +147,7 @@ A avaliação do trabalho &quot;{$submissionTitle}&quot; deixou claro que esta s
 <br />
 {$editorialContactSignature}]]></body>
 	</email_text>
-			<email_text key="EDITOR_ASSIGN">
+	<email_text key="EDITOR_ASSIGN">
 		<subject>Tarefa editorial</subject>
 		<body><![CDATA[{$editorialContactName},<br />
 <br />
@@ -175,6 +175,7 @@ Página da submissão: <a href="{$submissionReviewUrl}">{$submissionReviewUrl}</
 Login: {$reviewerUserName}<br />
 <br />
 Agradecemos por considerar nossa solicitação.<br />
+<br />
 <br />
 Atenciosamente,<br />
 {$editorialContactSignature}<br />
@@ -390,7 +391,7 @@ Página do manuscrito: <a href="{$submissionUrl}">{$submissionUrl}</a><br />
 	</email_text>
 	<email_text key="EDITOR_DECISION_DECLINE">
 		<subject>Decisão editorial</subject>
-		<body><![CDATA[{$authorName}:<br />
+		<body><![CDATA[{$authorName},<br />
 <br />
 A decisão editorial sobre a submissão à editora {$contextName}, &quot;{$submissionTitle}&quot;, foi tomada.<br />
 <br />
@@ -402,7 +403,7 @@ Página do manuscrito: <a href="{$submissionUrl}">{$submissionUrl}</a><br />
 ]]></body>
 		<description>Esta mensagem é enviada pelo editor ou editor de série ao autor, notificando-o da decisão final sobre a submissão.</description>
 	</email_text>
-		<email_text key="COPYEDIT_REQUEST">
+	<email_text key="COPYEDIT_REQUEST">
 		<subject>Solicitação de edição de texto</subject>
 		<body><![CDATA[{$participantName},<br />
 <br />
@@ -421,9 +422,9 @@ Login: {$participantUsername}<br />
 {$editorialContactSignature}]]></body>
 		<description>Esta mensagem é enviada pelo editor de série ao editor de texto da submissão, solicitando o início da edição de texto. Fornece informações sobre a submissão e como acessá-la.</description>
 	</email_text>
-									<email_text key="LAYOUT_REQUEST">
+	<email_text key="LAYOUT_REQUEST">
 		<subject>Solicitação de composição</subject>
-		<body><![CDATA[{$participantName}.<br />
+		<body><![CDATA[{$participantName},<br />
 <br />
 A submissão &quot;{$submissionTitle}&quot;, enviada à editora {$contextName}, precisa agora ser transformada em composição final conforme os seguintes passos:<br />
 1. Acesse a página da submissão abaixo.<br />
@@ -431,7 +432,7 @@ A submissão &quot;{$submissionTitle}&quot;, enviada à editora {$contextName}, 
 3. Envie a mensagem CONCLUÍDA ao editor.<br />
 <br />
 Página da editora {$contextName}: <a href="{$contextUrl}">{$contextUrl}</a><br />
-Página da submissão: <a href="{$submissionUrl}">{$submissionUrl}</a><br />
+Página da submissão: {$submissionUrl}<br />
 Login: {$participantUsername}<br />
 <br />
 Caso não tenha disponibilidade para assumir esta tarefa no momento, ou em caso de dúvidas, entre em contato. Agradecemos sua contribuição aos trabalhos da editora.<br />
@@ -443,14 +444,14 @@ Caso não tenha disponibilidade para assumir esta tarefa no momento, ou em caso 
 		<subject>Composição de layout concluída</subject>
 		<body><![CDATA[{$editorialContactName},<br />
 <br />
-As composições solicitadas para o manuscrito &quot;{$submissionTitle}&quot;, enviado à editora ($pressName}, estão prontas para leitura de provas.<br />
+As composições solicitadas para o manuscrito &quot;{$submissionTitle}&quot;, enviado à editora {$contextName}, estão prontas para leitura de provas.<br />
 <br />
 Em caso de dúvidas, entre em contato.<br />
 <br />
 {$signatureFullName}]]></body>
 		<description>Esta mensagem é enviada pelo editor de layout ao editor de série, notificando-o da conclusão da criação das composições.</description>
 	</email_text>
-		<email_text key="INDEX_REQUEST">
+	<email_text key="INDEX_REQUEST">
 		<subject>Solicitação de índice</subject>
 		<body><![CDATA[{$participantName},<br />
 <br />
@@ -460,7 +461,7 @@ A submissão &quot;{$submissionTitle}&quot;, enviada à editora {$contextName}, 
 3. Envie a mensagem CONCLUÍDA ao editor.<br />
 <br />
 Página da editora {$contextName}: <a href="{$contextUrl}">{$contextUrl}</a><br />
-Página da submissão: <a href="{$submissionUrl}">{$submissionUrl}</a><br />
+Página da submissão: {$submissionUrl}<br />
 Login: {$participantUsername}<br />
 <br />
 Caso não tenha disponibilidade para assumir esta tarefa no momento, ou em caso de dúvidas, entre em contato. Agradecemos sua contribuição aos trabalhos da editora.<br />
@@ -472,14 +473,14 @@ Caso não tenha disponibilidade para assumir esta tarefa no momento, ou em caso 
 		<subject>Composição de índices concluída</subject>
 		<body><![CDATA[{$editorialContactName},<br />
 <br />
-A composição dos índices solicitados para o manuscrito &quot;{$submissionTitle}&quot;, enviado à editora ($pressName}, está concluída e pronta para leitura de provas.<br />
+A composição dos índices solicitados para o manuscrito &quot;{$submissionTitle}&quot;, enviado à editora {$contextName}, está concluída e pronta para leitura de provas.<br />
 <br />
 Em caso de dúvidas, entre em contato.<br />
 <br />
 {$signatureFullName}]]></body>
 		<description>Esta mensagem é enviada pelo indexador ao editor de série, notificando da criação dos índices para a submissão.</description>
 	</email_text>
-										<email_text key="EMAIL_LINK">
+	<email_text key="EMAIL_LINK">
 		<subject>Manuscrito de seu interesse</subject>
 		<body><![CDATA[Pensei que poderia se interessar em ler o &quot;{$submissionTitle}&quot;, escrito por {$authorName} e publicado no v.{$volume} n.{$number} {$year} da editora {$contextName}, disponível no endereço &quot;<a href="{$monographUrl}">{$monographUrl}</a>&quot;.]]></body>
 		<description>Este modelo de mensagem fornece aos leitores cadastrados a oportunidade e enviar a sua rede informações sobre a monografia que podem ser de interesse. Está disponível por meio das ferramentas de leitura, habilitadas pelo Gerenete da editora na página de administração das ferramentas de leitura.</description>
@@ -502,7 +503,7 @@ Em caso de dúvidas, entre em contato.<br />
 		]]></body>
 		<description>Notificação de usuário enviada pela janela modal do centro de informações de arquivos submissão.</description>
 	</email_text>
-		<email_text key="NOTIFICATION_CENTER_DEFAULT">
+	<email_text key="NOTIFICATION_CENTER_DEFAULT">
 		<subject>Uma mensagem sobre a editora {$contextName}</subject>
 		<body><![CDATA[Informe sua mensagem aqui.]]></body>
 		<description>Uma mensagem padrão em branco, a ser usada no centro de mensagens.</description>

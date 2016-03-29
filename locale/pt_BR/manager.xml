@@ -1,19 +1,20 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE locale SYSTEM "../../lib/pkp/dtd/locale.dtd">
+
 <!--
   * locale/pt_BR/manager.xml
   *
   * Copyright (c) 2014-2016 Simon Fraser University Library
   * Copyright (c) 2003-2016 John Willinsky
   * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
-  *
-  * Localization strings for the pt_BR (Português (Brasil)) locale.
+  * Locale information: https://pkp.sfu.ca/wiki/index.php?title=OMP:_Portuguese_(pt_BR)
+  * Localization strings.
   -->
+
 <locale name="pt_BR" full_name="Português (Brasil)">
 
 	<!-- Languages -->
 	<message key="manager.language.confirmDefaultSettingsOverwrite">Isto substituirá qualquer configuração de idioma específica desta editora para este idioma.</message>
-	<message key="manager.languages.languageInstructions"><![CDATA[OMP pode ser oferecido em vários dos idiomas suportados. O OMP também pode operar com um sistema multilíngue, permitindo ao público alternar entre idiomas em qualquer página, assim como a entrada de alguns dados em vários idiomas. <br /><br/>Caso um idioma suportado pelo OMP não esteja listado a seguir, solicite ao administrador do sistema sua instalação, a partir da interface de administração. Para instruções sobre suporte a novos idiomas, consulte a documentação do OMP.]]></message>
 	<message key="manager.languages.noneAvailable">Nenhum idioma adicional disponível. Enter em contato com o administrador do site caso deseje usar idiomas adicionais nesta editora.</message>
 	<message key="manager.languages.primaryLocaleInstructions">Este será o idioma padrão para o site da editora.</message>	
 
@@ -42,8 +43,7 @@
 	<message key="manager.series.noneCreated">Nenhuma série criada.</message>
 	<message key="manager.series.existingUsers">Usuários existentes</message>
 	<message key="manager.series.seriesTitle">Título da séries</message>
-	<message key="manager.series.noSeriesEditors"><![CDATA[Não há editores ainda. Inclua este papel a pelo menos um usuário em Administração > Configurações > Usuários &amp; papéis primeiro.]]></message>
-	<message key="manager.series.noCategories"><![CDATA[Não há categorias ainda. Caso deseje designar categorias a esta série, feche esta janela modal e acesse a aba 'Categorias' e crie uma primeiro.]]></message>
+	<message key="manager.series.restricted">Restrito</message>
 
 	<!-- Settings management -->
 	<message key="manager.settings">Configurações</message>
@@ -59,6 +59,15 @@
 	<message key="manager.settings.publisherCode">Código da publicadora</message>
 	<message key="manager.settings.publisherCodeType.tip">Caso tenha um código de nome de publicadora, informe-o a seguir. Ele será incluído nos metadados gerais. O campo é obrigatório caso deseje usar metadados ONIX para suas publicações.</message>
 	<message key="manager.settings.distributionDescription">Todas as configurações específicas ao processo de distribuição (notificação, indexação, arquivamento, pagamento, ferramentas de leitura).</message>
+
+	<!--  Statistics management -->
+	<message key="manager.statistics.reports.defaultReport.monographDownloads">Download arquivo da Monografia</message>
+	<message key="manager.statistics.reports.defaultReport.monographAbstract">Visualizações da página de resumo da monografia</message>
+	<message key="manager.statistics.reports.defaultReport.monographAbstractAndDownloads">Resumo e download da monografia</message>
+	<message key="manager.statistics.reports.defaultReport.seriesIndexPageViews">Série de visitas à página principal</message>
+	<message key="manager.statistics.reports.defaultReport.pressIndexPageViews">Visualizações da página principal da editora</message>
+	<message key="manager.statistics.reports.filters.byContext.description">Restringir resultados por contexto (series e/ou monografia).</message>
+	<message key="manager.statistics.reports.filters.byObject.description">Restringir resultados por tipo de objeto (editora, séries, monografia, tipos de arquivos) e / ou por uma ou mais identificador(es) de objeto.</message>
 
 	<!--  Tools management -->
 	<message key="manager.tools">Ferramentas</message>
@@ -91,14 +100,6 @@ Informe, se desesjar, o motivo do bloqueio.</message>
 	Esta tarefa deve ser realizada por um administrador do site.
 	]]></message>
 
-	<!-- Library Files -->
-	<!-- Users and Roles settings page -->
-	<message key="settings.roles.gridDescription">Papéis são grupos de usuários na editora, que possuem diferentes níveis de acesso e fluxos de trabalho associados dentro da editora. Existem cinco níveis de permissão distintos: Gerentes de editora possuem acesso a tudo na editora (todo o conteúdo e configurações); Editores possuem acesso a todo o conteúdo dentro de suas séries; Assistentes possuem acesso a todas as monografias designadas explicitamente a eles por um editor; Avaliadores podem ver e executar avaliações designadas a eles; e Autores podem ver e interagir com um conjunto de informações limitadas em suas próprias submissões. Além disso, existem cinco estágios distintos de tarefas aos quais papéis podem ter acesso: Submissão, Avaliação interna, Avaliação externa, Edição e Produção.</message>
-	<!-- Press settings -->
-	<!-- Publication Process settings -->
-	<!--  Genre grid settings -->
-	<!-- Distribution Process settings -->
-	<!-- Payment Method settings -->
 	<!-- System setup -->
 	<message key="manager.system">Configurações do sistema</message>
 	<message key="manager.system.archiving">Arquivamento</message>
@@ -149,6 +150,7 @@ Informe, se desesjar, o motivo do bloqueio.</message>
 	<message key="manager.setup.disciplineExamples">(Ex.: História; Educação; Sociologia; Psicologia; Estudos Culturais; Direito)</message>
 	<message key="manager.setup.disciplineProvideExamples">Ofereça exemplos de termos de áreas do conhecimento relevantes a esta editora.</message>
 	<message key="manager.setup.displayCurrentMonograph">Incluir o sumário da monografia atual, caso esteja disponível.</message>
+	<message key="manager.setup.displayOnHomepage">Cnteúdo da página inicial</message>	
 	<message key="manager.setup.doiPrefix">Prefixo DOI</message>
 	<message key="manager.setup.doiPrefixDescription"><![CDATA[O prefixo DOI (Digital Object Identifier) é designado pelo <a href="http://www.crossref.org" target="_blank">CrossRef</a>, no formato 10.xxxx (ex.: 10.1234).]]></message>
 	<message key="manager.setup.editorDecision">Decisão editorial</message>
@@ -156,6 +158,8 @@ Informe, se desesjar, o motivo do bloqueio.</message>
 	<message key="manager.setup.emailBounceAddressDescription">Qualquer mensagem não entregue resultará em uma mensagem de erro que será enderçada a este destinatário.</message>
 	<message key="manager.setup.emailBounceAddressDisabled"><![CDATA[<strong>Nota:</strong> Para ativar esta opção, o administrador do sistema deverá habilitar a opção <tt>allow_envelope_sender</tt> no arquivo de configuração do OMP. Além disso, configurações adicionais no servidor podem ser necessárias para dar suporte a funcionalidade (que pode não estar disponível em todos os servidores), como indicado na documentação do OMP.]]></message>
 	<message key="manager.setup.emails">Identificação das mensagens</message>
+	<message key="manager.setup.emailHeader">Cabeçalho do email</message>
+	<message key="manager.setup.emailHeaderDescription">Os e-mails preparados que são enviados pelo sistema em nome da imprensa começar com seguinte cabeçalho. Esses e-mails serão endereçados a partir do contato principal , por isso é importante esclarecer que o Contato Principal não é necessariamente o responsável pelo conteúdo da mensagem, que pode ser enviada em nome de um usuário diferente.</message>
 	<message key="manager.setup.emailSignature">Assinatura</message>
 	<message key="manager.setup.emailSignatureDescription">Os modelos de mensagens são enviados pelo sistema em nome da editora, apresentando a seguinte assinatura no final. O corpo das mensagens está disponível para personalização mais adiante.</message>
 	<message key="manager.setup.enableAnnouncements">Permitir a Gerentes da editora incluir notícias.</message>
@@ -226,12 +230,16 @@ Informe, se desesjar, o motivo do bloqueio.</message>
 	<message key="manager.setup.peerReview.description">Defina a política de avaliação pelos pares para os leitores e autores, incluindo o número de avaliadores normalmente usado na avaliação de uma submissão, os critérios julgados pelos avalidores, tempo padrão para realização de uma avaliação, bem como os princípios de recrutamento de avaliadores. O conteúdo aparecerá na página Sobre a editora.</message>
 	<message key="manager.setup.policies">Políticas</message>
 	<message key="manager.setup.policies.description">Foco, avaliação pelos pares seções, privacidade, segurança e itens adicionais sobre a editora.</message>
+	<message key="manager.setup.appearanceDescription">Vários componentes da aparência da Editora podem ser configurados a partir desta página, incluindo elementos do cabeçalho e rodapé, o tema, e como listas de informações são apresentadas aos usuários.</message>
 	<message key="manager.setup.pressDescription">Apresentação</message>
 	<message key="manager.setup.pressDescription.description">A apresentação da editora deve ser incluída aqui. O texto aparecerá na página inicial da editora.</message>
 	<message key="manager.setup.pressArchiving">Arquivamento</message>
+	<message key="manager.setup.homepageContent">Conteúdo da Página Inicial da Editora</message>
+	<message key="manager.setup.homepageContentDescription">A homepage da editora consiste, por padrão, em links de navegação. Conteúdos adicionais à página inicial podem ser anexados usando uma ou todas das seguintes opções, que serão exibidos na ordem mostrada.</message>
 	<message key="manager.setup.pressHomepageContent">Conteúdo da página inicial da editora</message>
 	<message key="manager.setup.pressHomepageContentDescription">A página inicial da editora consiste, por padrão, de links de navegação. Conteúdo adicional pode ser incluído usando uma ou mais das opções a seguir, que aparecerão na ordem exibida.</message>
 	<message key="manager.setup.pressInitials">Sigla</message>
+	<message key="manager.setup.layout">Leiaute da Editora</message>
 	<message key="manager.setup.pageFooter">Rodapé</message>
 	<message key="manager.setup.pageFooterDescription">Este é o rodapé da editora. Para alterar ou atualizar o rodapé, cole código HTML no campo a seguir. Exemplos podem incluir outra barra de navegação, um contador, etc. O rodapé aparecerá em todas as páginas.</message>
 	<message key="manager.setup.pageHeader">Cabeçalho interno</message>
@@ -241,6 +249,7 @@ Informe, se desesjar, o motivo do bloqueio.</message>
 	<message key="manager.setup.pressSetupUpdated">As configurações foram atualizadas.</message>
 	<message key="manager.setup.styleSheetInvalid">Formato de folha de estilo inválido. O formato é .css.</message>
 	<message key="manager.setup.pressTheme">Tema</message>
+	<message key="manager.setup.contextName">Nome da Editora</message>
 	<message key="manager.setup.principalContact">Contato principal</message>
 	<message key="manager.setup.principalContactDescription">Esta posição, que pode ser considerada como o editor científico, editor-chefe, ou algum outro cargo administrativo, será apresentado na página inicial na seção Contato, junto com o contato de suporte técnico.</message>
 	<message key="manager.setup.printIssn">ISSN impresso</message>
@@ -260,6 +269,9 @@ Informe, se desesjar, o motivo do bloqueio.</message>
 	<message key="manager.setup.restrictSiteAccess">Usuários devem se cadastrar e acessar o sistema para ver o site da editora.</message>
 	<message key="manager.setup.reviewGuidelines">Diretrizes de avaliação</message>
 	<message key="manager.setup.reviewGuidelinesDescription"><![CDATA[As diretrizes de avaliação definirão os critérios a serem julgados em uma submissão, para garantir sua publicação, e podem incluir instruções especiais para preparar uma avaliação efetiva e construtiva. Ao realizar uma avaliação, os avaliadores terão, por padrão, dois campos de texto aberto, o primeiro de conteúdo "para autor e editor," e o segundo "para o editor." Opcionalmente, o gerente pode criar formulários de avaliação na área específica. Em todos os casos, os editores terão a opção de incluir as avaliações ao se comunicarem com o autor.]]></message>
+	<message key="manager.setup.internalReviewGuidelines">Diretrizes de Revisão Internas</message>
+	<message key="manager.setup.internalReviewGuidelinesDescription">Como as Diretrizes de Avaliação Externa, estas instruções informam os revisores sobre a avaliação da submissão. Estas instruções são para Revisores Internos, que geralmente realizam um processo de revisão usando revisores internos para a editora.</message>
+	<message key="manager.setup.reviewOptions">Opções de Revisão</message>
 	<message key="manager.setup.reviewOptions.automatedReminders">Lembretes automáticos (disponíveis nos modelos de mensagens do OMP) podem ser enviados aos avaliadores em dois momentos (enquanto o editor pode sempre se comunicar diretamente com o avaliador, a qualquer momento).</message>
 	<message key="manager.setup.reviewOptions.automatedRemindersDisabled"><![CDATA[<strong>Nota:</strong> Para ativar estas opções, o administrador do site deve habilitar a opção <tt>scheduled_tasks</tt> no arquivo de configuração do OMP. Configurações adicionais no servidor podem ser necessárias para oferecer suporte à funcionalidade (que pode não ser possível em todos os servidores), conforme indicado na documentação do OMP.]]></message>
 	<message key="manager.setup.reviewOptions.blindReview">Avaliação cega</message>
@@ -311,6 +323,7 @@ Informe, se desesjar, o motivo do bloqueio.</message>
 	<message key="manager.setup.useImageLogo">Logotipo</message>
 	<message key="manager.setup.useImageLogoDescription">Um logotipo opcional pode ser enviado e usado junto à imagem ou texto definido para o título, configurado anteriormente.</message>
 	<message key="manager.setup.useImageTitle">Imagem de título</message>
+	<message key="manager.setup.useStyleSheet">Folha de estilos da Editora</message>
 	<message key="manager.setup.useLayoutEditors">Um editor de layout será designado para preparar os arquivos nos formatos HTML, PDF, etc., para publicação eletrônica.</message>
 	<message key="manager.setup.useProofreaders">Um leitor de provas será designado para verificar (junto com os autores) as composições finais antes da publicação.</message>
 	<message key="manager.setup.userRegistration">Cadastro de usuário</message>
@@ -378,28 +391,6 @@ Escolha um modelo para lidar com os aspectos do processo editorial (Para designa
 	<li><strong>Inclua uma ferramenta de leitura</strong><p>O Gerente da editora pode incluir a opção "Encontrar referências" na ferramenta de leitura que acompanha cada item publicado, permitindo aos leitores colar o título da referência e buscá-la em bases de dados pré-definidas.</p></li>
 	<li><strong>Embutir links nas referências</strong><p>O editor de layout pode incluir links nas referências que podem ser encontradas online, de acordo com as seguintes instruções (que podem ser personalizadas).</p></li>
 </ol>]]></message>
-	<message key="manager.setup.registerForIndexing">Registre para Indexação (Coleta de Metadados)</message>
+
 	<message key="manager.publication.library">Biblioteca da Editora</message>
-	<message key="manager.series.restricted">Restrito</message>
-	<message key="manager.statistics.reports.defaultReport.monographDownloads">Download arquivo da Monografia</message>
-	<message key="manager.statistics.reports.defaultReport.monographAbstract">Visualizações da página de resumo da monografia</message>
-	<message key="manager.statistics.reports.defaultReport.monographAbstractAndDownloads">Resumo e download da monografia</message>
-	<message key="manager.statistics.reports.defaultReport.pressIndexPageViews">Visualizações da página principal da editora</message>
-	<message key="manager.statistics.reports.filters.byContext.description">Restringir resultados por contexto (series e/ou monografia).</message>
-	<message key="manager.setup.emailHeader">Cabeçalho do email</message>
-	<message key="manager.setup.homepageContent">Conteúdo da Página Inicial da Editora</message>
-	<message key="manager.setup.layout">Leiaute da Editora</message>
-	<message key="manager.setup.logo">Logo da Editora</message>
-	<message key="manager.setup.logo.altText">Logo da Editora</message>
-	<message key="manager.setup.contextName">Nome da Editora</message>
-	<message key="manager.setup.internalReviewGuidelines">Diretrizes de Revisão Internas</message>
-	<message key="manager.setup.reviewOptions">Opções de Revisão</message>
-	<message key="manager.setup.useStyleSheet">Folha de estilos da Editora</message>
-	<message key="manager.statistics.reports.defaultReport.seriesIndexPageViews">Série de visitas à página principal</message>
-	<message key="manager.statistics.reports.filters.byObject.description">Restringir resultados por tipo de objeto (editora, séries, monografia, tipos de arquivos) e / ou por uma ou mais identificador(es) de objeto.</message>
-	<message key="manager.setup.emailHeaderDescription">Os e-mails preparados que são enviados pelo sistema em nome da imprensa começar com seguinte cabeçalho. Esses e-mails serão endereçados a partir do contato principal , por isso é importante esclarecer que o Contato Principal não é necessariamente o responsável pelo conteúdo da mensagem, que pode ser enviada em nome de um usuário diferente.</message>
-	<message key="manager.setup.appearanceDescription">Vários componentes da aparência da Editora podem ser configurados a partir desta página, incluindo elementos do cabeçalho e rodapé, o tema, e como listas de informações são apresentadas aos usuários.</message>
-	<message key="manager.setup.homepageContentDescription">A homepage da editora consiste, por padrão, em links de navegação. Conteúdos adicionais à página inicial podem ser anexados usando uma ou todas das seguintes opções, que serão exibidos na ordem mostrada.</message>
-	<message key="manager.setup.internalReviewGuidelinesDescription">Como as Diretrizes de Avaliação Externa, estas instruções informam os revisores sobre a avaliação da submissão. Estas instruções são para Revisores Internos, que geralmente realizam um processo de revisão usando revisores internos para a editora.</message>
-	<message key="manager.setup.registerForIndexingDescription">A definir informações para indexação.</message>
 </locale>
