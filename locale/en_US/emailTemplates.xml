@@ -18,6 +18,7 @@
 <br />
 Link: <a href="{$url}">{$url}</a><br />
 <br />
+This is an automatically generated email; please do not reply to this message.<br />
 {$principalContactSignature}]]></body>
 		<description>The email is sent to registered users that have selected to have this type of notification emailed to them.</description>
 	</email_text>
