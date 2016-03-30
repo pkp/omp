@@ -7,31 +7,36 @@
  *
  * Manual payment page
  *}
-{strip}
-{assign var="pageTitle" value="plugins.paymethod.manual"}
-{include file="common/header.tpl"}
-{/strip}
+{include file="frontend/components/header.tpl" pageTitle="plugins.paymethod.manual"}
 
-<div id="paymentForm">
-<table class="data" width="100%">
-	<tr>
-		<td class="label" width="20%">{translate key="plugins.paymethod.manual.purchase.title"}</td>
-		<td class="value" width="80%"><strong>{$itemName|escape}</strong></td>
-	</tr>
-	{if $itemAmount}
+
+<div class="page page_payment">
+	{include file="frontend/components/breadcrumbs.tpl" currentTitleKey="plugins.paymethod.manual"}
+
+	<p>{$manualInstructions|nl2br}</p>
+
+	<table class="data" width="100%">
 		<tr>
-			<td class="label" width="20%">{translate key="plugins.paymethod.manual.purchase.fee"}</td>
-			<td class="value" width="80%"><strong>{$itemAmount|string_format:"%.2f"}{if $itemCurrencyCode} ({$itemCurrencyCode|escape}){/if}</strong></td>
+			<td class="label" width="20%">{translate key="plugins.paymethod.manual.purchase.title"}</td>
+			<td class="value" width="80%"><strong>{$itemName|escape}</strong></td>
 		</tr>
-	{/if}
-	{if $itemDescription}
-	<tr>
-		<td colspan="2">{$itemDescription|nl2br}</td>
-	</tr>
-	{/if}
-</table>
-<p>{$manualInstructions|nl2br}</p>
+		{if $itemAmount}
+			<tr>
+				<td class="label" width="20%">{translate key="plugins.paymethod.manual.purchase.fee"}</td>
+				<td class="value" width="80%"><strong>{$itemAmount|string_format:"%.2f"}{if $itemCurrencyCode} ({$itemCurrencyCode|escape}){/if}</strong></td>
+			</tr>
+		{/if}
+		{if $itemDescription}
+		<tr>
+			<td colspan="2">{$itemDescription|nl2br}</td>
+		</tr>
+		{/if}
+	</table>
 
-<p><a href="{url page="payment" op="plugin" path="ManualPayment"|to_array:"notify":$queuedPaymentId|escape}" class="action">{translate key="plugins.paymethod.manual.sendNotificationOfPayment"}</a>
-</div>
-{include file="common/footer.tpl"}
+	<p>
+		<a href="{url page="payment" op="plugin" path="ManualPayment"|to_array:"notify":$queuedPaymentId|escape}" class="action">{translate key="plugins.paymethod.manual.sendNotificationOfPayment"}</a>
+	</p>
+
+</div><!-- .page -->
+
+{include file="common/frontend/footer.tpl"}
