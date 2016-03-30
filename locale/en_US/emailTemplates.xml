@@ -16,7 +16,7 @@
 <br />
 {$notificationContents}<br />
 <br />
-Link: {$url}<br />
+Link: <a href="{$url}">{$url}</a><br />
 <br />
 {$principalContactSignature}]]></body>
 		<description>The email is sent to registered users that have selected to have this type of notification emailed to them.</description>
