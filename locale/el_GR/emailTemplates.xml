@@ -240,7 +240,7 @@ URL υποβολής: <a href="{$submissionReviewUrl}">{$submissionReviewUrl}</a
 	</email_text>
 	<email_text key="REVIEW_CONFIRM">
 		<subject>Δυνατότητα πραγματοποίησης αξιολόγησης</subject>
-		<body><![CDATA[{$editorialContactName}:<br />
+		<body><![CDATA[Επιμελητές:<br />
 <br />
 Θα ήθελα να σας ενημερώσω ότι είμαι διαθέσιμος και πρόθυμος να αναλάβω την αξιολόγηση της εργασίας, &quot;{$submissionTitle},&quot; για τις εκδόσεις {$contextName}. Ευχαριστώ για την εμπιστοσύνη σας και σκοπεύω να έχω την υποβολή έτοιμη μέχρι την προθεσμία, {$reviewDueDate}, αν όχι νωρίτερα.<br />
 <br />
@@ -249,7 +249,7 @@ URL υποβολής: <a href="{$submissionReviewUrl}">{$submissionReviewUrl}</a
 	</email_text>
 	<email_text key="REVIEW_DECLINE">
 		<subject>Μη δυνατότητα πραγματοποίησης αξιολόγησης</subject>
-		<body><![CDATA[{$editorialContactName}:<br />
+		<body><![CDATA[Επιμελητές:<br />
 <br />
 Θα ήθελα να σας ενημερώσω ότι την τρέχουσα περίοδο, δυστυχώς δεν δύναμαι να αναλάβω την αξιολόγηση της εργασίας, &quot;{$submissionTitle},&quot; για τις εκδόσεις {$contextName}. Θα ήθελα να σας ευχαριστήσω για την εμπιστοσύνη σας και μη διστάσετε να επικοινωνήσετε μαζί μου ξανά στο μέλλον για μια πιθανή συνεργασία.<br />
 <br />

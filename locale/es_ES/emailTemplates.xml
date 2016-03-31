@@ -246,7 +246,7 @@ Si tienes alguna duda, por favor, contacta conmigo.<br />
 	</email_text>
 	<email_text key="REVIEW_CONFIRM">
 		<subject>Disponible para la revisión</subject>
-		<body><![CDATA[{$editorialContactName}:<br />
+		<body><![CDATA[Editores:<br />
 <br />
 Estoy disponible y quiero revisar la propuesta &quot;{$submissionTitle},&quot; para {$contextName}. Gracias por pensar en mí. Tendré la revisión terminada en el plazo indicado, {$reviewDueDate}, o antes.<br />
 <br />
@@ -255,7 +255,7 @@ Estoy disponible y quiero revisar la propuesta &quot;{$submissionTitle},&quot; p
 	</email_text>
 	<email_text key="EDITOR_DECISION_DECLINE">
 		<subject>Decisión del coordinador</subject>
-		<body><![CDATA[{$authorName}:<br />
+		<body><![CDATA[Editores:<br />
 <br />
 Hemos tomado una decisión con respecto a tu propuesta sobre {$contextName}, &quot;{$submissionTitle}&quot;.<br />
 <br />

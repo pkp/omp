@@ -245,7 +245,7 @@ Si vous avez des questions, n'hésitez pas à me contacter.<br />
 	</email_text>
 	<email_text key="REVIEW_CONFIRM">
 		<subject>En mesure d'évaluer</subject>
-		<body><![CDATA[{$editorialContactName}:<br />
+		<body><![CDATA[Éditeurs:<br />
 <br />
 Je peux et je souhaite évaluer la soumission &quot;{$submissionTitle}&quot; pour la presse {$contextName}. Merci de m'avoir invité à évaluer cet article. Je prévois terminer mon évaluation d'ici le {$reviewDueDate}.<br />
 <br />
@@ -254,7 +254,7 @@ Je peux et je souhaite évaluer la soumission &quot;{$submissionTitle}&quot; pou
 	</email_text>
 	<email_text key="REVIEW_DECLINE">
 		<subject>Ne peux pas évaluer</subject>
-		<body><![CDATA[{$editorialContactName}:<br />
+		<body><![CDATA[Éditeurs:<br />
 <br />
 Malheureusement, je ne pourrai pas évaluer &quot;{$submissionTitle}&quot; pour la presse {$contextName}. Merci de m'avoir invité à évaluer cet article et n'hésitez pas à me contacter dans un avenir prochain.<br />
 <br />
