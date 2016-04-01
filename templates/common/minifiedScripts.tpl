@@ -138,10 +138,6 @@
 <script src="{$baseUrl}/js/controllers/catalog/form/CatalogMetadataFormHandler.js"></script>
 <script src="{$baseUrl}/js/controllers/monographList/MonographListHandler.js"></script>
 <script src="{$baseUrl}/js/pages/manageCatalog/ManageCatalogHeaderHandler.js"></script>
-<script src="{$baseUrl}/js/pages/manageCatalog/ManageCatalogModalHandler.js"></script>
-<script src="{$baseUrl}/js/pages/manageCatalog/ManageCatalogSearchFormHandler.js"></script>
-<script src="{$baseUrl}/js/pages/manageCatalog/MonographManagementListHandler.js"></script>
-<script src="{$baseUrl}/js/pages/manageCatalog/MonographHandler.js"></script>
 
 {* Our own plug-in (depends on classes) *}
 <script src="{$baseUrl}/lib/pkp/js/lib/jquery/plugins/jquery.pkp.js"></script>

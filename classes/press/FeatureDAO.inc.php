@@ -122,6 +122,55 @@ class FeatureDAO extends DAO {
 	}
 
 	/**
+	 * Check if the passed monograph id is featured on the
+	 * passed associated object.
+	 * @param $monographId int The monograph id to check the feature state.
+	 * @param $assocType int The associated object type that the monograph
+	 * is featured.
+	 * @param $assocId int The associated object id that the monograph is
+	 * featured.
+	 * @return boolean Whether or not the monograph is featured.
+	 */
+	function isFeatured($monographId, $assocType, $assocId) {
+		$result = $this->retrieve(
+			'SELECT submission_id FROM features WHERE submission_id = ? AND assoc_type = ? AND assoc_id = ?',
+			array((int) $monographId, (int) $assocType, (int) $assocId)
+		);
+		if ($result->RecordCount() > 0) {
+			return true;
+		}
+
+		return false;
+	}
+
+	/**
+	 * Get the current sequence position of the passed monograph id.
+	 * @param $monographId int The monograph id to check the sequence position.
+	 * @param $assocType int The monograph associated object type.
+	 * @param $assocId int The monograph associated object id.
+	 * @return int or boolean The monograph sequence position or false if no
+	 * monograph feature is set.
+	 */
+	function getSequencePosition($monographId, $assocType, $assocId) {
+		$result = $this->retrieve(
+			'SELECT seq FROM features WHERE submission_id = ? AND assoc_type = ? AND assoc_id = ?',
+			array((int) $monographId, (int) $assocType, (int) $assocId)
+		);
+		if ($result->RecordCount() > 0) {
+			return current($result->fields);
+		}
+
+		return false;
+	}
+
+	function setSequencePosition($monographId, $assocType, $assocId, $sequencePosition) {
+		$this->update(
+			'UPDATE features SET seq = ? WHERE submission_id = ? AND assoc_type = ? AND assoc_id = ?',
+			array((int) $sequencePosition, (int) $monographId, (int) $assocType, (int) $assocId)
+		);
+	}
+
+	/**
 	 * Resequence features by association.
 	 * @param $assocType int ASSOC_TYPE_...
 	 * @param $assocId int per $assocType

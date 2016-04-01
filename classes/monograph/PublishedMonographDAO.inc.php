@@ -31,48 +31,50 @@ class PublishedMonographDAO extends MonographDAO {
 
 	/**
 	 * Retrieve all published monographs in a press.
-	 * @param $pressId int
-	 * @param $rangeInfo object optional
-	 * @return DAOResultFactory
+	 * @param $pressId int The monograhps press id.
+	 * @param $searchText string optional Search text for title and authors.
+	 * @param $rangeInfo DBResultRange optional Object with result range information.
+	 * @param $sortBy int optional Sort monographs by passed column option.
+	 * @param $sortDirection int optional Sort monographs by passed direction.
+	 * @param $featuredOnly boolean optional Whether the monographs are featured on press or not.
+	 * @param $newReleasedOnly boolean optional Whether the monographs are marked as new releases on press or not.
+	 * @return DAOResultFactory DB Object that fetches monographs objects.
 	 */
-	function getByPressId($pressId, $searchText = null, $rangeInfo = null, $sortBy = ORDERBY_DATE_PUBLISHED, $sortDirection = SORT_DIRECTION_DESC) {
-		$params = array_merge(
-			array(REALLY_BIG_NUMBER),
-			$this->getFetchParameters(),
-			array(
-				ASSOC_TYPE_PRESS,
-				(int) $pressId
-			)
-		);
+	function getByPressId($pressId, $searchText = null, $rangeInfo = null, $sortBy = null, $sortDirection = null, $featuredOnly = false, $newReleasedOnly = false) {
+		return $this->_getByAssoc($pressId, ASSOC_TYPE_PRESS, $pressId, $searchText, $rangeInfo, $sortBy, $sortDirection, $featuredOnly, $newReleasedOnly);
+	}
 
-		if ($searchText !== null) {
-			$params[] = $params[] = $params[] = "%$searchText%";
-		}
 
-		$result = $this->retrieveRange(
-			'SELECT	' . ($searchText !== null?'DISTINCT ':'') . '
-				ps.*,
-				s.*,
-				COALESCE(f.seq, ?) AS order_by,
-				' . $this->getFetchColumns() . '
-			FROM	published_submissions ps
-				JOIN submissions s ON ps.submission_id = s.submission_id
-				' . $this->getFetchJoins() . '
-				' . ($searchText !== null?'
-					LEFT JOIN authors a ON s.submission_id = a.submission_id
-				':'') . '
-				' . ($searchText !== null || $sortBy == ORDERBY_TITLE?'
-						LEFT JOIN submission_settings st ON (st.submission_id = s.submission_id AND st.setting_name = \'title\')
-				':'') . '
-				LEFT JOIN features f ON (f.submission_id = s.submission_id AND f.assoc_type = ? AND f.assoc_id = s.context_id)
-			WHERE	ps.date_published IS NOT NULL AND s.context_id = ?
-				' . ($searchText !== null?' AND (st.setting_value LIKE ? OR a.first_name LIKE ? OR a.last_name LIKE ?)':'') . '
-			ORDER BY order_by, '. $this->getSortMapping($sortBy) . ' ' . $this->getDirectionMapping($sortDirection),
-			$params,
-			$rangeInfo
-		);
+	/**
+	 * Retrieve all published monographs associated with the passed series id.
+	 * @param $seriesId int The series id monographs are associated with.
+	 * @param $pressId int The monograhps press id.
+	 * @param $searchText string optional Search text for title and authors.
+	 * @param $rangeInfo DBResultRange optional Object with result range information.
+	 * @param $sortBy int optional Sort monographs by passed column option.
+	 * @param $sortDirection int optional Sort monographs by passed direction.
+	 * @param $featuredOnly boolean optional Whether the monographs are featured on series or not.
+	 * @param $newReleasedOnly boolean optional Whether the monographs are marked as new releases on series or not.
+	 * @return DAOResultFactory DB Object that fetches monographs objects.
+	 */
+	function getBySeriesId($seriesId, $pressId = null, $searchText = null, $rangeInfo = null, $sortBy = null, $sortDirection = null, $featuredOnly = false, $newReleasedOnly = false) {
+		return $this->_getByAssoc($pressId, ASSOC_TYPE_SERIES, $seriesId, $searchText, $rangeInfo, $sortBy, $sortDirection, $featuredOnly, $newReleasedOnly);
+	}
 
-		return new DAOResultFactory($result, $this, '_fromRow');
+	/**
+	 * Retrieve all published monographs associated with the passed category id.
+	 * @param $seriesId int The category id monographs are associated with.
+	 * @param $pressId int The monograhps press id.
+	 * @param $searchText string optional Search text for title and authors.
+	 * @param $rangeInfo DBResultRange optional Object with result range information.
+	 * @param $sortBy int optional Sort monographs by passed column option.
+	 * @param $sortDirection int optional Sort monographs by passed direction.
+	 * @param $featuredOnly boolean optional Whether the monographs are featured on category or not.
+	 * @param $newReleasedOnly boolean optional Whether the monographs are marked as new releases on category or not.
+	 * @return DAOResultFactory DB Object that fetches monographs objects.
+	 */
+	function getByCategoryId($categoryId, $pressId = null, $searchText = null, $rangeInfo = null, $sortBy = null, $sortDirection = null, $featuredOnly = false, $newReleasedOnly = false) {
+		return $this->_getByAssoc($pressId, ASSOC_TYPE_CATEGORY, $categoryId, $searchText, $rangeInfo, $sortBy, $sortDirection, $featuredOnly, $newReleasedOnly);
 	}
 
 	/**
@@ -96,88 +98,6 @@ class PublishedMonographDAO extends MonographDAO {
 				JOIN features f ON (f.submission_id = s.submission_id AND f.assoc_type = ? AND f.assoc_id = s.context_id)
 			WHERE	ps.date_published IS NOT NULL AND s.context_id = ?
 			ORDER BY f.seq, ps.date_published',
-			$params,
-			$rangeInfo
-		);
-
-		return new DAOResultFactory($result, $this, '_fromRow');
-	}
-
-	/**
-	 * Retrieve all published monographs in a series.
-	 * @param $seriesId int
-	 * @param $pressId int
-	 * @param $rangeInfo object optional
-	 * @return DAOResultFactory
-	 */
-	function getBySeriesId($seriesId, $pressId = null, $rangeInfo = null, $sortBy = ORDERBY_DATE_PUBLISHED, $sortDirection = SORT_DIRECTION_DESC) {
-		$params = array_merge(
-			$this->getFetchParameters(),
-			array(ASSOC_TYPE_SERIES, (int) $seriesId)
-		);
-
-		if ($pressId) $params[] = (int) $pressId;
-
-		$params[] = REALLY_BIG_NUMBER; // For feature sorting
-
-		$result = $this->retrieveRange(
-			'SELECT	ps.*,
-				s.*,
-				' . $this->getFetchColumns() . '
-			FROM	published_submissions ps
-				JOIN submissions s ON ps.submission_id = s.submission_id
-				' . $this->getFetchJoins() . '
-				' . ($sortBy == ORDERBY_TITLE?'
-					LEFT JOIN submission_settings st ON (st.submission_id = s.submission_id AND st.setting_name = \'title\')
-				':'') . '
-				LEFT JOIN features f ON (f.submission_id = s.submission_id AND f.assoc_type = ? AND f.assoc_id = se.series_id)
-			WHERE	ps.date_published IS NOT NULL AND se.series_id = ?
-				' . ($pressId?' AND s.context_id = ?':'' ) . '
-			ORDER BY COALESCE(f.seq, ?) ASC, '. $this->getSortMapping($sortBy) . ' ' . $this->getDirectionMapping($sortDirection),
-			$params,
-			$rangeInfo
-		);
-
-		return new DAOResultFactory($result, $this, '_fromRow');
-	}
-
-	/**
-	 * Retrieve all published monographs in a category.
-	 * @param $categoryId int
-	 * @param $pressId int
-	 * @param $rangeInfo object optional
-	 * @return DAOResultFactory
-	 */
-	function getByCategoryId($categoryId, $pressId = null, $rangeInfo = null, $sortBy = ORDERBY_DATE_PUBLISHED, $sortDirection = SORT_DIRECTION_DESC) {
-		$params = array_merge(
-			array(REALLY_BIG_NUMBER),
-			$this->getFetchParameters(),
-			array(
-				(int) $categoryId, (int) $categoryId, (int) $categoryId,
-				ASSOC_TYPE_CATEGORY
-			)
-		);
-
-		if ($pressId) $params[] = (int) $pressId;
-
-		$result = $this->retrieveRange(
-			'SELECT	DISTINCT ps.*,
-				s.*,
-				COALESCE(f.seq, ?) AS order_by,
-				' . $this->getFetchColumns() . '
-			FROM	published_submissions ps
-				JOIN submissions s ON ps.submission_id = s.submission_id
-				' . $this->getFetchJoins() . '
-				' . ($sortBy == ORDERBY_TITLE?'
-					LEFT JOIN submission_settings st ON (st.submission_id = s.submission_id AND st.setting_name = \'title\')
-				':'') . '
-				LEFT JOIN submission_categories sc ON (sc.submission_id = s.submission_id AND sc.category_id = ?)
-				LEFT JOIN series_categories sca ON (sca.series_id = se.series_id)
-				LEFT JOIN categories c ON (c.category_id = sca.category_id AND c.category_id = ?)
-				LEFT JOIN features f ON (f.submission_id = s.submission_id AND f.assoc_id = ? AND f.assoc_type = ?)
-			WHERE	ps.date_published IS NOT NULL AND (c.category_id IS NOT NULL OR sc.category_id IS NOT NULL)
-				' . ($pressId?' AND s.context_id = ?':'' ) . '
-			ORDER BY order_by, ' . $this->getSortMapping($sortBy) . ' ' . $this->getDirectionMapping($sortDirection),
 			$params,
 			$rangeInfo
 		);
@@ -225,29 +145,6 @@ class PublishedMonographDAO extends MonographDAO {
 	function newDataObject() {
 		return new PublishedMonograph();
 	}
-
-	/**
-	 * Creates and returns a published monograph object from a row
-	 * @param $row array
-	 * @return PublishedMonograph object
-	 */
-	function _fromRow($row) {
-		// Get the PublishedMonograph object, populated with Monograph data
-		$publishedMonograph = parent::_fromRow($row);
-
-		// Add the additional PublishedMonograph data
-		$publishedMonograph->setDatePublished($this->datetimeFromDB($row['date_published']));
-		$publishedMonograph->setAudience($row['audience']);
-		$publishedMonograph->setAudienceRangeQualifier($row['audience_range_qualifier']);
-		$publishedMonograph->setAudienceRangeFrom($row['audience_range_from']);
-		$publishedMonograph->setAudienceRangeTo($row['audience_range_to']);
-		$publishedMonograph->setAudienceRangeExact($row['audience_range_exact']);
-		$publishedMonograph->setCoverImage(unserialize($row['cover_image']));
-
-		HookRegistry::call('PublishedMonographDAO::_fromRow', array(&$publishedMonograph, &$row));
-		return $publishedMonograph;
-	}
-
 
 	/**
 	 * Inserts a new published monograph into published_submissions table
@@ -380,6 +277,155 @@ class PublishedMonographDAO extends MonographDAO {
 	function getSortDirection($sortOption) {
 		list($sortBy, $sortDir) = explode("-", $sortOption);
 		return $sortDir;
+	}
+
+	/**
+	 * Creates and returns a published monograph object from a row
+	 * @param $row array
+	 * @return PublishedMonograph object
+	 */
+	function _fromRow($row) {
+		// Get the PublishedMonograph object, populated with Monograph data
+		$publishedMonograph = parent::_fromRow($row);
+
+		// Add the additional PublishedMonograph data
+		$publishedMonograph->setDatePublished($this->datetimeFromDB($row['date_published']));
+		$publishedMonograph->setAudience($row['audience']);
+		$publishedMonograph->setAudienceRangeQualifier($row['audience_range_qualifier']);
+		$publishedMonograph->setAudienceRangeFrom($row['audience_range_from']);
+		$publishedMonograph->setAudienceRangeTo($row['audience_range_to']);
+		$publishedMonograph->setAudienceRangeExact($row['audience_range_exact']);
+		$publishedMonograph->setCoverImage(unserialize($row['cover_image']));
+
+		HookRegistry::call('PublishedMonographDAO::_fromRow', array(&$publishedMonograph, &$row));
+		return $publishedMonograph;
+	}
+
+
+	//
+	// Private helper methods.
+	//
+	/**
+	 * Retrieve all published monographs by associated object.
+	 * @param $pressId int The monograhps press id.
+	 * @param $assocType int The associated object type.
+	 * @param $assocId int The associated object id.
+	 * @param $searchText string optional Search text for title and authors.
+	 * @param $rangeInfo DBResultRange optional Object with result range information.
+	 * @param $sortBy int optional Sort monographs by passed column option.
+	 * @param $sortDirection int optional Sort monographs by passed direction.
+	 * @param $featuredOnly boolean optional Whether the monographs are featured on passed associated object or not.
+	 * @param $newReleasedOnly boolean optional Whether the monographs are marked as new releases on associated object or not.
+	 * @return DAOResultFactory DB Object that fetches monographs objects.
+	 */
+	private function _getByAssoc($pressId, $assocType, $assocId, $searchText = null, $rangeInfo = null, $sortBy = null, $sortDirection = null, $featuredOnly = false, $newReleasedOnly = false) {
+		// Cast parameters.
+		$pressId = (int) $pressId;
+		$assocType = (int) $assocType;
+		$assocId = (int) $assocId;
+		$featuredOnly = (boolean) $featuredOnly;
+		$newReleasedOnly = (boolean) $newReleasedOnly;
+
+		// If no associated object is passed, return.
+		if (!$assocId || !$assocType) {
+			return new DAOResultFactory();
+		} else {
+			// Check if the associated object exists.
+			switch ($assocType) {
+				case ASSOC_TYPE_PRESS:
+					$assocObject = DAORegistry::getDAO('PressDAO')->getById($assocId);
+					break;
+				case ASSOC_TYPE_SERIES:
+					$assocObject = DAORegistry::getDAO('SeriesDAO')->getById($assocId);
+					break;
+				case ASSOC_TYPE_CATEGORY:
+					$assocObject = DAORegistry::getDAO('CategoryDAO')->getById($assocId);
+					break;
+				default:
+					$assocObject = null;
+			}
+			if (!$assocObject) {
+				assert(false);
+				return new DAOResultFactory();
+			}
+		}
+
+		// If no sort by options passed, sort by the passed associated object default.
+		if ($assocType && $assocId && (!$sortBy || !$sortDirection)) {
+			$sortOption = null;
+			switch ($assocType) {
+				case ASSOC_TYPE_PRESS:
+					$sortOption = $assocObject->getSetting('catalogSortOption') ? $assocObject->getSetting('catalogSortOption') : $this->getDefaultSortOption();
+					break;
+				case ASSOC_TYPE_SERIES:
+				case ASSOC_TYPE_CATEGORY:
+					$sortOption = $assocObject->getSortOption() ? $assocObject->getSortOption() : $this->getDefaultSortOption();
+					break;
+			}
+			$sortBy = $this->getSortBy($sortOption);
+			$sortDirection = $this->getSortDirection($sortOption);
+		}
+
+		$params = array_merge(
+			array(REALLY_BIG_NUMBER),
+			$this->getFetchParameters(),
+			array(
+				$assocType,
+				$assocId,
+				$assocType,
+				$assocId,
+				$pressId
+			)
+		);
+
+		if ($searchText !== null) {
+			$params[] = $params[] = $params[] = "%$searchText%";
+		}
+
+		if ($featuredOnly) {
+			$params[] = $assocType;
+			$params[] = $assocId;
+		}
+
+		if ($newReleasedOnly) {
+			$params[] = $assocType;
+			$params[] = $assocId;
+		}
+
+		$result = $this->retrieveRange(
+			'SELECT	' . ($searchText !== null?'DISTINCT ':'') . '
+				ps.*,
+				s.*,
+				COALESCE(f.seq, ?) AS order_by,
+				' . $this->getFetchColumns() . '
+			FROM	published_submissions ps
+				JOIN submissions s ON ps.submission_id = s.submission_id
+				' . $this->getFetchJoins() . '
+				' . ($searchText !== null?'
+					LEFT JOIN authors a ON s.submission_id = a.submission_id
+				':'') . '
+				' . ($searchText !== null || $sortBy == ORDERBY_TITLE?'
+					LEFT JOIN submission_settings st ON (st.submission_id = s.submission_id AND st.setting_name = \'title\')
+				':'') . '
+				' . ($assocType == ASSOC_TYPE_CATEGORY?'
+					LEFT JOIN submission_categories sc ON (sc.submission_id = s.submission_id AND sc.category_id = ' . $assocId . ')
+					LEFT JOIN series_categories sca ON (sca.series_id = se.series_id)
+					LEFT JOIN categories c ON (c.category_id = sca.category_id AND c.category_id = ' . $assocId . ')
+				':'') . '
+				LEFT JOIN features f ON (f.submission_id = s.submission_id AND f.assoc_type = ? AND f.assoc_id = ?)
+				LEFT JOIN new_releases nr ON (nr.submission_id = s.submission_id AND nr.assoc_type = ? AND nr.assoc_id = ?)
+			WHERE	ps.date_published IS NOT NULL AND s.context_id = ?
+				' . ($searchText !== null?' AND (st.setting_value LIKE ? OR a.first_name LIKE ? OR a.last_name LIKE ?)':'') . '
+				' . ($assocType == ASSOC_TYPE_CATEGORY?' AND (c.category_id IS NOT NULL OR sc.category_id IS NOT NULL)':'') . '
+				' . ($assocType == ASSOC_TYPE_SERIES?' AND se.series_id = ' . $assocId:'') . '
+				' . ($featuredOnly?' AND (f.assoc_type = ? AND f.assoc_id = ?)':'') . '
+				' . ($newReleasedOnly?' AND (nr.assoc_type = ? AND nr.assoc_id = ?)':'') . '
+			ORDER BY order_by, '. $this->getSortMapping($sortBy) . ' ' . $this->getDirectionMapping($sortDirection),
+			$params,
+			$rangeInfo
+		);
+
+		return new DAOResultFactory($result, $this, '_fromRow');
 	}
 }
 

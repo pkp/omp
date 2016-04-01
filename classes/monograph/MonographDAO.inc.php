@@ -46,6 +46,7 @@ class MonographDAO extends SubmissionDAO {
 		$monograph->setSeriesId($row['series_id']);
 		$monograph->setSeriesPosition($row['series_position']);
 		$monograph->setSeriesAbbrev(isset($row['series_abbrev'])?$row['series_abbrev']:null);
+		$monograph->setSeriesTitle($row['series_title']);
 		$monograph->setWorkType($row['edited_volume']);
 
 		HookRegistry::call('MonographDAO::_fromRow', array(&$monograph, &$row));
@@ -264,7 +265,8 @@ class MonographDAO extends SubmissionDAO {
 
 	/**
 	 * Get the categories associated with a given monograph.
-	 * @param $monographId int
+	 * @param $monographId int The monograph id.
+	 * @param $pressId int (optional) The monograph press id.
 	 * @return DAOResultFactory
 	 */
 	function getCategories($monographId, $pressId = null) {
@@ -365,7 +367,7 @@ class MonographDAO extends SubmissionDAO {
 			LEFT JOIN series_settings sapl ON (se.series_id = sapl.series_id AND sapl.setting_name = ? AND sapl.locale = ?)
 			LEFT JOIN series_settings sal ON (se.series_id = sal.series_id AND sal.setting_name = ? AND sal.locale = ?)';
 	}
-	
+
 	/**
 	 * @copydoc SubmissionDAO::getSubEditorJoin()
  	 */

@@ -149,8 +149,8 @@ class SeriesGridHandler extends SetupGridHandler {
 	/**
 	 * @copydoc GridHandler::getDataElementSequence()
 	 */
-	function getDataElementSequence($row) {
-		return $row['seq'];
+	function getDataElementSequence($gridDataElement) {
+		return $gridDataElement['seq'];
 	}
 
 	/**

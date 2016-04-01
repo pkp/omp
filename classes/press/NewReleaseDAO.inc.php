@@ -137,6 +137,28 @@ class NewReleaseDAO extends DAO {
 			)
 		);
 	}
+
+	/**
+	 * Check if the passed monograph id is marked as new release
+	 * on the passed associated object.
+	 * @param $monographId int The monograph id to check the new release state.
+	 * @param $assocType int The associated object type that the monograph
+	 * is checked for a new release mark.
+	 * @param $assocId int The associated object id that the monograph is
+	 * checked for a new release mark.
+	 * @return boolean Whether or not the monograph is marked as a new release.
+	 */
+	function isNewRelease($monographId, $assocType, $assocId) {
+		$result = $this->retrieve(
+			'SELECT submission_id FROM new_releases WHERE submission_id = ? AND assoc_type = ? AND assoc_id = ?',
+			array((int) $monographId, (int) $assocType, (int) $assocId)
+		);
+		if ($result->RecordCount() > 0) {
+			return true;
+		}
+
+		return false;
+	}
 }
 
 ?>

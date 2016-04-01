@@ -26,7 +26,7 @@
 
 	{* Monograph List *}
 	{else}
-		{include file="frontend/components/monographList.tpl" monographs=$publishedMonographs}
+		{include file="frontend/components/monographList.tpl" monographs=$publishedMonographs featured=$featuredMonographIds}
 	{/if}
 
 </div><!-- .page -->

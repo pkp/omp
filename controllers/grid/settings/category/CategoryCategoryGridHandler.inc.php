@@ -146,8 +146,8 @@ class CategoryCategoryGridHandler extends CategoryGridHandler {
 	/**
 	 * @copydoc GridHandler::getDataElementSequence()
 	 */
-	function getDataElementSequence($category) {
-		return $category->getSequence();
+	function getDataElementSequence($gridDataElement) {
+		return $gridDataElement->getSequence();
 	}
 
 	/**
