@@ -13,7 +13,8 @@
 	{/foreach}
 {/fbvFormSection}
 
-{fbvFormSection for="price" size=$fbvStyles.size.MEDIUM inline=true}
+{fbvFormSection for="price"}
 	{translate|assign:"priceLabel" key="payment.directSales.priceCurrency" currency=$currentPress->getSetting('currency')}
-	{fbvElement type="text" id="price" label=$priceLabel subLabelTranslate=false value=$price maxlength="255"}
+	{fbvElement type="text" id="price" label=$priceLabel subLabelTranslate=false size=$fbvStyles.size.MEDIUM value=$price maxlength="255"}
+	<p>{translate key="payment.directSales.numericOnly"}</p>
 {/fbvFormSection}
