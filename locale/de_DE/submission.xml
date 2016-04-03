@@ -7,14 +7,14 @@
   * Copyright (c) 2014-2016 Simon Fraser University Library
   * Copyright (c) 2003-2016 John Willinsky
   * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
+  * locale information: https://pkp.sfu.ca/wiki/index.php?title=OMP:_German_(de_DE)
   * Localization strings.
-  * locale information: https://pkp.sfu.ca/wiki/index.php?title=OMP:_German_%28de_DE%29
   -->
 
 <locale name="de_DE" full_name="Deutsch (Deutschland)">
 	<!-- General submission keys -->
 	<message key="submission.submit.title">Monografie einreichen</message>
-	<message key="submission.upload.selectBookElement">Bitte wählen Sie aus</message>
+	<message key="submission.upload.selectComponent">Artikel-Komponente auswählen</message>
 	<message key="submission.title">Buchtitel</message>
 	<message key="submission.title.tip"><![CDATA[Die eingereichten Manuskripte lassen sich in der Regel als 'Bild', 'Text' oder als eine andere Multimediagattung (wie z.B. 'Software' oder 'Interaktive Medien') klassifizieren. Bitte wählen Sie den für Ihre Einreichung am besten zutreffenden Typ aus. Beispiele finden Sie unter <a target="_blank" href="http://dublincore.org/documents/2001/04/12/usageguide/generic.shtml#type">http://dublincore.org/documents/2001/04/12/usageguide/generic.shtml#type</a>]]></message>
 	<message key="submission.select">Wählen Sie ein Manuskript aus</message>
@@ -51,12 +51,12 @@
 	<!-- Submission wizard -->
 	<message key="submission.submit">Ein neues Buchmanuskript einreichen</message>
 	<message key="submission.submit.newSubmissionMultiple">Ein neues Buchmanuskript einreichen bei</message>
-	<message key="submission.submit.upload">Upload</message>
-	<message key="submission.submit.upload.description">Hochladen von Dateien, die im Zusammenhang mit der Einreichung stehen wie z.B. Manuskript, Exposé, Anschreiben, Bildmaterial. Es empfiehlt sich, sowohl bei Monografien als auch bei Sammelbänden das gesamte Manuskript in einer Datei hochzuladen.</message>
+	<message key="submission.submit.newSubmissionSingle">Ein neues Manuskript bei {$contextName} einreichen</message>
+	<message key="submission.submit.upload">Einreichung hochladen</message>
 	<message key="submission.submit.cancelSubmission">Sie können den Einreichungsprozess auch zu einem späteren Zeitpunkt abschließen. Gehen Sie dazu auf die Startseite und wählen Sie die entsprechenden Manuskripte aus.</message>
-	<message key="submission.submit.copyrightNoticeAgree">Ich erkenne die Datenschutzbestimmungen an.</message>
 	<message key="submission.submit.selectSeries">Reihe auswählen</message>
 	<message key="submission.submit.seriesPosition">Position innerhalb der Reihe (z.B. Band 2)</message>
+	<message key="submission.submit.seriesPosition.description">Beispiel: Buch 2, Band 2</message>
 	<message key="submission.submit.form.localeRequired">Bitte wählen Sie die Sprache des Manuskripts aus.</message>
 	<message key="submission.submit.submissionChecklist">Checkliste für den Einreichungsprozess</message>
 	<message key="submission.submit.submissionChecklistDescription">Die eingereichten Manuskripte müssen den folgenden Vorgaben entsprechen. Um fortfahren zu können, müssen Sie die Erfüllung der Vorgaben bestätigen (Kommentare an die Redaktion können unten hinzugefügt werden).</message>
@@ -72,20 +72,17 @@
 	<message key="submission.submit.catalog">Katalog</message>
 	<message key="submission.submit.metadata">Metadaten</message>
 	<message key="submission.submit.finishingUp">Fertigstellen</message>
-	<message key="submission.submit.upload">Upload</message>
+	<message key="submission.submit.confirmation">Bestätigung</message>
 	<message key="submission.submit.nextSteps">Die nächsten Schritte</message>
 	<message key="submission.submit.coverNote">Vermerk für den/die Herausgeber/in</message>
 	<message key="submission.submit.generalInformation">Allgemeine Informationen</message>
 	<message key="submission.submit.whatNext.description">Der Verlag wurde über die Einsendung Ihres Manuskriptes informiert. Für Ihre Unterlagen haben wir Ihnen eine Bestätigung per E-Mail zugesandt. Sobald der/die Herausgeber/in das Manuskript geprüft hat, wird er sich mit Ihnen in Verbindung setzen.</message>
 	<message key="submission.submit.checklistErrors">Bitte lesen und bestätigen Sie die Punkte der Einreichungscheckliste. {$itemsRemaining} Punkte wurden bisher noch nicht bestätigt.</message>
 	<message key="submission.submit.placement">Manuskriptplatzierung</message>
-	<message key="submission.submit.placement.seriesDescription">Wenn das Buch in einer Reihe erscheinen soll ...</message>
-	<message key="submission.submit.placement.seriesPositionDescription">In Reihen erscheinende Bücher werden normalerweise in umgekehrter Reihenfolge zum Publikationszeitpunkt angezeigt. Dadurch erhält der/die Leser/in einen besseren Eindruck, wie sich die Reihe entwickelt, und das aktuelle Buch wird stets an erster Stelle angezeigt.</message>
 	<message key="submission.submit.placement.categories">Kategorien</message>
 	<message key="submission.submit.placement.categoriesDescription">Wählen Sie eine Kategorie aus, unter der dieses Werk klassifiziert werden soll.</message>
 	<message key="submission.submit.userGroup">Einreichen in meiner Funktion als ...</message>
 	<message key="submission.submit.userGroupDescription">Wenn Sie einen Sammelband einreichen, sollten Sie die Funktion "Sammelbandherausgeber/in" auswählen.</message>
-	<message key="submission.submit.confirmExpedite">Bestätigen Sie die Metadaten für das beschleunigte Einreichungsverfahren</message>
 
 	<!-- Chapters Grid -->
 	<message key="grid.chapters.title">Kapitel</message>
@@ -95,6 +92,8 @@
 
 	<!-- Submission-specific catalog info -->
 	<message key="submission.catalogEntry">Katalog</message>
+	<message key="submission.complete">Freigegeben</message>
+	<message key="submission.incomplete">Warte auf Freigabe</message>
 	<message key="submission.editCatalogEntry">Eintrag</message>
 	<message key="submission.catalogEntry.new">Neuer Katalogeintrag</message>
 	<message key="submission.catalogEntry.confirm">Erstelle anhand der angegebenen Metadaten einen neuen Katalogeintrag.</message>
@@ -120,4 +119,8 @@
 	<message key="submission.event.publicationFormatCreated">Das Format "{$formatName}" wurde erstellt.</message>
 	<message key="submission.event.publicationFormatRemoved">Das Format "{$formatName}" wurde entfernt.</message>
 	<message key="submission.submit.titleAndSummary">Titel und Zusammenfassung</message>
+	<message key="workflow.review.externalReview">Externe Begutachtung</message>
+	<message key="editor.submission.decision.sendExternalReview">In externe Begutachtung geben</message>
+
+	<message key="submission.upload.fileContents">Einreichungs-Komponente</message>
 </locale>
