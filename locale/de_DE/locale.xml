@@ -553,6 +553,7 @@ Ihr Server untersützt aktuell mbstring: <strong>{$supportsMBString}</strong>]]>
 	<message key="payment.directSales.catalog">Katalog</message>
 	<message key="payment.directSales.approved">Akzeptiert</message>
 	<message key="payment.directSales.priceCurrency">Preis ({$currency})</message>
+	<message key="payment.directSales.numericOnly">Preise sollten ausschließlich numerisch sein. Geben Sie keine Währungssymbole mit ein.</message>
 	<message key="payment.directSales.directSales">Direktvertrieb</message>
 	<message key="payment.directSales.amount">{$amount} ({$currency})</message>
 	<message key="payment.directSales.notAvailable">Nicht verfügbar</message>
