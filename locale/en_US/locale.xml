@@ -34,7 +34,7 @@
 	<message key="monograph.accessLogoOpen.altText">Open Access</message>
 
 
-	<!--  Metadata field description keys -->
+	<!-- Metadata field description keys -->
 	<message key="monograph.publicationFormat.imprint">Imprint (Brand Name)</message>
 	<message key="monograph.publicationFormat.pageCounts">Page Counts</message>
 	<message key="monograph.publicationFormat.frontMatterCount">Front Matter</message>
@@ -48,7 +48,7 @@
 	<message key="monograph.publicationFormat.discountAmount">Discount percentage, if applicable</message>
 	<message key="monograph.publicationFormat.productAvailability">Product Availability</message>
 	<message key="monograph.publicationFormat.returnInformation">Returnable Indicator</message>
-	<!--  Dimension keys  -->
+	<!-- Dimension keys -->
 	<message key="monograph.publicationFormat.digitalInformation">Digital Information</message>
 	<message key="monograph.publicationFormat.productDimensions">Physical Dimensions</message>
 	<message key="monograph.publicationFormat.productDimensionsSeparator"> x </message>
@@ -99,7 +99,7 @@
 	<message key="grid.catalogEntry.availableRepresentation.approved">Approved</message>
 	<message key="grid.catalogEntry.availableRepresentation.notApproved">Awaiting Approval</message>
 
-	<!--  publication metadata required form field keys -->
+	<!-- publication metadata required form field keys -->
 	<message key="grid.catalogEntry.fileSizeRequired">A file size for digital formats required.</message>
 	<message key="grid.catalogEntry.productAvailabilityRequired">A product availability code is required.</message>
 	<message key="grid.catalogEntry.productCompositionRequired">A product composition code must be chosen.</message>
@@ -116,14 +116,13 @@
 	<message key="grid.catalogEntry.salesRightsType">Sales Rights Type</message>
 	<message key="grid.catalogEntry.salesRightsROW">Rest of World?</message>
 	<message key="grid.catalogEntry.salesRightsROW.tip">Check this box to use this Sales Rights entry as a catch-all for your format.  Countries and regions need not be chosen in this case.</message>
-	<message key="grid.catalogEntry.codeRequired">A code is required.</message>
 	<message key="grid.catalogEntry.oneROWPerFormat">There is already a ROW sales type defined for this publication format.</message>
 	<message key="grid.catalogEntry.countries">Countries</message>
 	<message key="grid.catalogEntry.regions">Regions</message>
 	<message key="grid.catalogEntry.included">Included</message>
 	<message key="grid.catalogEntry.excluded">Excluded</message>
 
-	<!--  market regions grid and form keys  -->
+	<!-- market regions grid and form keys -->
 	<message key="grid.catalogEntry.markets">Market Territories</message>
 	<message key="grid.catalogEntry.marketTerritory">Territory</message>
 
@@ -138,7 +137,7 @@
 	<message key="grid.catalogEntry.dateFormat">Date Format</message>
 	<message key="grid.catalogEntry.dateRequired">A date is required and the date value must match the chosen date format.</message>
 
-	<!--  assigned representative information grid and form keys -->
+	<!-- assigned representative information grid and form keys -->
 	<message key="grid.catalogEntry.representatives">Representatives</message>
 	<message key="grid.catalogEntry.representativeType">Representative Type</message>
 	<message key="grid.catalogEntry.agentsCategory">Agents</message>
@@ -161,7 +160,7 @@
 	<message key="grid.action.deleteRepresentative">Delete this Representative</message>
 
 	<!-- Spotlight grid keys -->
-	<!--  Spotlights management -->
+	<!-- Spotlights management -->
 	<message key="spotlight">Spotlight</message>
 	<message key="spotlight.spotlights">Spotlights</message>
 	<message key="spotlight.noneExist">There are no current spotlights.</message>
@@ -187,7 +186,7 @@
 	<!-- Library Files -->
 	<message key="grid.libraryFiles.column.files">Files</message>
 
-	<!--  OMP specific grid actions -->
+	<!-- OMP specific grid actions -->
 	<message key="grid.action.catalogEntry">View the catalog entry form</message>
 	<message key="grid.action.formatInCatalogEntry">Format appears in catalog entry</message>
 	<message key="grid.action.editFormat">Edit this format</message>
@@ -307,18 +306,18 @@
 	<message key="catalog.aboutTheAuthor">About the {$roleName}</message>
 	<message key="catalog.coverImageTitle">Cover for {$monographTitle}</message>
 	<message key="catalog.loginRequiredForPayment">Please note: In order to purchase items, you will need to log in first. Selecting an item to purchase will direct you to the login page. Any item marked with an Open Access icon may be downloaded free of charge, without logging in.</message>
-    <message key="catalog.sortBy">Order of monographs</message>
-    <message key="catalog.sortBy.seriesDescription">Choose how to order books in this series.</message>
-    <message key="catalog.sortBy.categoryDescription">Choose how to order books in this category.</message>
-    <message key="catalog.sortBy.catalogDescription">Choose how to order books in the catalog.</message>
-    <message key="catalog.sortBy.titleAsc">Title (A-Z)</message>
-    <message key="catalog.sortBy.titleDesc">Title (Z-A)</message>
-    <message key="catalog.sortBy.datePublishedAsc">Publication date (oldest first)</message>
-    <message key="catalog.sortBy.datePublishedDesc">Publication date (newest first)</message>
-    <message key="catalog.sortBy.seriesPositionAsc">Series position (lowest first)</message>
-    <message key="catalog.sortBy.seriesPositionDesc">Series position (highest first)</message>
-    <message key="catalog.viewableFile.title">{$type} view of the file {$title}</message>
-    <message key="catalog.viewableFile.return">Return to view details about {$monographTitle}</message>
+	<message key="catalog.sortBy">Order of monographs</message>
+	<message key="catalog.sortBy.seriesDescription">Choose how to order books in this series.</message>
+	<message key="catalog.sortBy.categoryDescription">Choose how to order books in this category.</message>
+	<message key="catalog.sortBy.catalogDescription">Choose how to order books in the catalog.</message>
+	<message key="catalog.sortBy.titleAsc">Title (A-Z)</message>
+	<message key="catalog.sortBy.titleDesc">Title (Z-A)</message>
+	<message key="catalog.sortBy.datePublishedAsc">Publication date (oldest first)</message>
+	<message key="catalog.sortBy.datePublishedDesc">Publication date (newest first)</message>
+	<message key="catalog.sortBy.seriesPositionAsc">Series position (lowest first)</message>
+	<message key="catalog.sortBy.seriesPositionDesc">Series position (highest first)</message>
+	<message key="catalog.viewableFile.title">{$type} view of the file {$title}</message>
+	<message key="catalog.viewableFile.return">Return to view details about {$monographTitle}</message>
 
 	<!--
 	 *

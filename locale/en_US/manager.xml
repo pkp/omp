@@ -61,7 +61,7 @@
 	<message key="manager.settings.publisherCodeType.tip">If you have a publisher name code, please fill it in below.  It will be included in generated metadata.  The field is required if you generate ONIX metadata for your publications.</message>
 	<message key="manager.settings.distributionDescription">All settings specific to the distribution process (notification, indexing, archiving, payment, reading tools).</message>
 
-	<!--  Statistics management -->
+	<!-- Statistics management -->
 	<message key="manager.statistics.reports.defaultReport.monographDownloads">Monograph file downloads</message>
 	<message key="manager.statistics.reports.defaultReport.monographAbstract">Monograph abstract page views</message>
 	<message key="manager.statistics.reports.defaultReport.monographAbstractAndDownloads">Monograph abstract and downloads</message>
@@ -70,7 +70,7 @@
 	<message key="manager.statistics.reports.filters.byContext.description">Narrow results by context (series and/or monograph).</message>
 	<message key="manager.statistics.reports.filters.byObject.description">Narrow results by object type (press, series, monograph, file types) and/or by one or more object id(s).</message>
 
-	<!--  Tools management -->
+	<!-- Tools management -->
 	<message key="manager.tools">Tools</message>
 	<message key="manager.tools.importExport"><![CDATA[All tools specific to importing and exporting data (presses, monographs, users)]]></message>
 
