@@ -367,7 +367,7 @@
 							{if $enabledPubIdTypes|@count}
 								{foreach from=$enabledPubIdTypes item=pubIdType}
 									{assign var=storedPubId value=$publicationFormat->getStoredPubId($pubIdType)}
-									{if $storePubId != ''}
+									{if $storedPubId != ''}
 										<div class="sub_item pubid {$publicationFormat->getId()|escape}">
 											<div class="label">
 												{$pubIdType}
