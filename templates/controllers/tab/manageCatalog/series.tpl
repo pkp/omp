@@ -8,5 +8,8 @@
  * Catalog management series tab content.
  *}
 
+{* Help Link *}
+{help file="catalog.md#categories-and-series" class="pkp_help_tab"}
+
 {url|assign:seriesMonographsGridUrl router=$smarty.const.ROUTE_COMPONENT component="grid.manageCatalog.SeriesMonographsGridHandler" op="fetchGrid" escape=false}
 {load_url_in_div id="seriesMonographsGridContainer" url=$seriesMonographsGridUrl}
