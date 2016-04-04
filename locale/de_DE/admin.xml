@@ -7,11 +7,11 @@
   * Copyright (c) 2014-2016 Simon Fraser University Library
   * Copyright (c) 2003-2016 John Willinsky
   * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
-  * Localization strings (Site administration) for the de_DE (Deutsch (Deutschland)) locale.
-  * locale information: https://pkp.sfu.ca/wiki/index.php?title=OMP:_German_%28de_DE%29
+  * locale information: https://pkp.sfu.ca/wiki/index.php?title=OMP:_German_(de_DE)
+  * Localization strings (Site administration).
   -->
 
-<locale name="de_DE" full_name = "Deutsch (Deutschland)">
+<locale name="de_DE" full_name="Deutsch (Deutschland)">
 	<message key="admin.hostedPresses">Gehostete Verlage</message>
 	<message key="admin.settings.pressRedirect">Weiterleitung an den Verlag</message>
 	<message key="admin.settings.pressRedirectInstructions">Auf der Startseite eingehende Fragen werden an diesen Verlag weitergeleitet. Dies kann beispielsweise eine praktische Lösung sein, wenn die Website nur einen einzigen Verlag hostet.</message>
@@ -35,7 +35,6 @@
 
 	<message key="admin.systemVersion">OMP-Version</message>
 	<message key="admin.systemConfiguration">OMP-Konfiguration</message>
-	<message key="admin.systemConfigurationDescription"><![CDATA[OMP-Konfigurationseinstellungen von <tt>config.inc.php</tt>.]]></message>
 	<message key="admin.presses.pressSettings">Verlagseinstellungen</message>
 	<message key="admin.presses.noneCreated">Es wurden noch keine Verlage angelegt.</message>
 	<message key="admin.contexts.confirmDelete">Sind Sie sicher, dass Sie diesen Verlag und alle Verlagsinhalte endgültig löschen möchten?</message>
@@ -58,7 +57,7 @@
 Bitte beachten Sie, dass die OAI-Schnittstelle für diese Website in der OMP-Systemkonfiguration deaktiviert werden kann. Zukünftige Versionen von OMP werden es ermöglichen, die OAI-Schnittstelle für jeden Verlag einer Website gesondert zu aktivieren oder zu deaktivieren.]]></message>
 
 	<!-- System Information -->
-	<message key="admin.overwriteConfigFileInstructions"><![CDATA[<h4>Beachten Sie:</div>
+	<message key="admin.overwriteConfigFileInstructions"><![CDATA[<h4>Beachten Sie:</h4>
 <p>Das System konnte die Konfigurationsdatei nicht automatisch überschreiben. Um Ihre Änderungen der Konfiguration anzuwenden, öffnen Sie <tt>config.inc.php</tt> mit einem geeigneten Texteditor und ersetzen Sie den Inhalt durch den Text im nachstehenden Textfeld.</p>]]></message>
 
 </locale>

@@ -7,22 +7,25 @@
   * Copyright (c) 2014-2016 Simon Fraser University Library
   * Copyright (c) 2003-2016 John Willinsky
   * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
+  * locale information: https://pkp.sfu.ca/wiki/index.php?title=OMP:_German_(de_DE)
   * Localization strings.
-  * locale information: https://pkp.sfu.ca/wiki/index.php?title=OMP:_German_%28de_DE%29
   -->
 
 <locale name="de_DE" full_name="Deutsch (Deutschland)">
 	<!-- General monograph keys -->
 	<message key="monograph.audience">Zielgruppe</message>
 	<message key="monograph.coverImage">Titelbild</message>
-	<message key="monograph.coverImage.uploadInstructions">Stellen Sie sicher, dass die Bildhöhe nicht mehr als 150% der Bildbreite beträgt, da sonst das Titelbild nicht vollständig angezeigt werden kann.</message>
 	<message key="monograph.currentCoverImage">Aktuelles Bild</message>
+	<message key="monograph.currentCoverImageReload">Speichern Sie Ihre Änderungen, um das neue Titelbild zu sehen.</message>
 	<message key="monograph.audience.rangeQualifier">Grundlage der Eingrenzung der Zielgruppe</message>
 	<message key="monograph.audience.rangeFrom">Bildungsstand (von)</message>
 	<message key="monograph.audience.rangeTo">Bildungsstand (bis)</message>
 	<message key="monograph.audience.rangeExact">Bildungsstand (genau)</message>
 	<message key="monograph.languages">Sprachen (Englisch, Französisch, Spanisch)</message>
 	<message key="monograph.publicationFormats">Publikationsformate</message>
+	<message key="monograph.publicationFormat">Format</message>
+	<message key="monograph.publicationFormatDetails">Details über das verfügbare Publikationsformat {$format}</message>
+	<message key="monograph.miscellaneousDetails">Details über diese Monographie</message>
 	<message key="monograph.carousel.publicationFormats">Formate:</message>
 	<message key="monograph.type">Art der Einreichung</message>
 	<message key="submission.pageProofs">Korrekturfahnen</message>
@@ -48,6 +51,7 @@
 	<!-- Dimension keys -->
 	<message key="monograph.publicationFormat.digitalInformation">Digitale Informationen</message>
 	<message key="monograph.publicationFormat.productDimensions">Abmessungen</message>
+	<message key="monograph.publicationFormat.productDimensionsSeparator">x</message>
 	<message key="monograph.publicationFormat.productFileSize">Dateigröße in MB</message>
 	<message key="monograph.publicationFormat.productFileSize.override">Möchten Sie eine eigene Dateigröße eingeben?</message>
 	<message key="monograph.publicationFormat.productHeight">Höhe</message>
@@ -75,16 +79,25 @@
 	<message key="grid.catalogEntry.validPriceRequired">Eine gültige Preisangabe ist erforderlich.</message>
 	<message key="grid.catalogEntry.publicationFormatDetails">Weitere Angaben für dieses Format</message>
 	<message key="grid.catalogEntry.physicalFormat">Physisches Format</message>
+	<message key="grid.catalogEntry.remotelyHostedContent">Dieses Format wird auf einer gesonderten Website bereitgestellt werden.</message>
+	<message key="grid.catalogEntry.remoteURL">URL des remote bereitgestellten Inhalts</message>
 	<message key="grid.catalogEntry.monographRequired">Es wird eine Kennung für die Monografie benötigt</message>
 	<message key="grid.catalogEntry.publicationFormatRequired">Bitte wählen Sie ein Publikationsformat.</message>
+	<message key="grid.catalogEntry.availability">Verfügbarkeit</message>
 	<message key="grid.catalogEntry.isAvailable">Verfügbar</message>
+	<message key="grid.catalogEntry.isNotAvailable">Nicht verfügbar</message>
 	<message key="grid.catalogEntry.proof">Korrekturfahne</message>
-	<message key="grid.catalogEntry.availableRepresentation.title">Annahme dieses Formats</message>
-	<message key="grid.catalogEntry.availableRepresentation.message"><![CDATA[<p>Das Buch wird nun in diesem Format den Leser/innen <em>verfügbar</em> gemacht: als Datei, die vom Katalog aus heruntergeladen werden kann, und/oder durch weitere Vertriebsmaßnahmen des Verlags.</p>]]></message>
-	<message key="grid.catalogEntry.availableRepresentation.removeMessage"><![CDATA[<p>In diesem Format wird das Buch nun für Leser/innen <em> nicht mehr angeboten</em> werden, weder über eine Downloadmöglichkeit im Katalog noch über weitere Vertriebsmaßnahmen des Verlags.</p>.]]></message>
+	<message key="grid.catalogEntry.approvedRepresentation.title">Format-Freigabe</message>
+	<message key="grid.catalogEntry.approvedRepresentation.message"><![CDATA[<p>Freigabe der Metadaten für dieses Format. Die Metadaten können im Katalogeintrag-Panel kontrolliert werden.</p>]]></message>
+	<message key="grid.catalogEntry.approvedRepresentation.removeMessage"><![CDATA[<p>Indicate that the metadata for this format has not been approved.</p>]]></message>
+	<message key="grid.catalogEntry.availableRepresentation.title">Format-Verfügbarkeit</message>
+	<message key="grid.catalogEntry.availableRepresentation.message"><![CDATA[<p>Dieses Format <em>für Leser/innen</a> verfügbar</em> machen. Herunterladbare Dateien und alle anderen Vertriebswege werden im Katalogeintrag des Buchs angezeigt.</p>]]></message>
+	<message key="grid.catalogEntry.availableRepresentation.removeMessage"><![CDATA[<p>Dieses Format wird <em>für Leser/innen nicht verfügbar</em> sein. Alle herunterladbaren Dateien oder andere Vertriebswege werden nicht mehr im Katalogeintrag des Buchs angezeigt.</p>]]></message>
 	<message key="grid.catalogEntry.availableRepresentation.catalogNotApprovedWarning">Katalogeintrag nicht akzeptiert.</message>
-	<message key="grid.catalogEntry.availableRepresentation.notApprovedWarning">Dieses Format ist nicht im Katalogeintrag enthalten.</message>
-	<message key="grid.catalogEntry.availableRepresentation.proofNotApproved">Korrekturfahne nicht akzeptiert.</message>
+	<message key="grid.catalogEntry.availableRepresentation.notApprovedWarning">Format nicht im Katalogeintrag.</message>
+	<message key="grid.catalogEntry.availableRepresentation.proofNotApproved">Fahne nicht akzeptiert.</message>
+	<message key="grid.catalogEntry.availableRepresentation.approved">Akzeptiert</message>
+	<message key="grid.catalogEntry.availableRepresentation.notApproved">Warte auf Freigabe</message>
 
 	<!-- publication metadata required form field keys -->
 	<message key="grid.catalogEntry.fileSizeRequired">Für digitale Formate wird eine Dateigröße benötigt.</message>
@@ -135,6 +148,7 @@
 	<message key="grid.catalogEntry.representativeRoleChoice">Wählen Sie eine Funktion:</message>
 	<message key="grid.catalogEntry.representativeRole">Funktion</message>
 	<message key="grid.catalogEntry.representativeName">Name</message>
+	<message key="grid.catalogEntry.roleRequired">Die Angabe einer Vertreter/in ist erforderlich.</message>
 	<message key="grid.catalogEntry.representativePhone">Telefon</message>
 	<message key="grid.catalogEntry.representativeEmail">E-Mail-Adresse</message>
 	<message key="grid.catalogEntry.representativeWebsite">Website</message>
@@ -147,13 +161,13 @@
 
 	<!-- Spotlight grid keys -->
 	<!-- Spotlights management -->
+	<message key="spotlight">Spotlight</message>
 	<message key="spotlight.spotlights">Spotlights</message>
 	<message key="spotlight.noneExist">Aktuell sind keine Spotlights vorhanden</message>
 	<message key="spotlight.title.homePage">Im Rampenlicht</message>
 	<message key="spotlight.author">Autor,</message>
 	<message key="grid.content.spotlights.spotlightItemTitle">Spotlight-Titel</message>
 	<message key="grid.content.spotlights.category.homepage">Homepage</message>
-	<message key="grid.content.spotlights.category.sidebar">Sidebar</message>
 	<message key="grid.content.spotlights.form.location">Spotlightplatzierung</message>
 	<message key="grid.content.spotlights.form.item">Geben Sie den Titel des Spotlights ein (Auto-Vervollständigen)</message>
 	<message key="grid.content.spotlights.form.title">Spotlight-Titel (wie er auf der Website erscheinen soll)</message>
@@ -208,7 +222,7 @@
 	<message key="grid.action.submissionEmail">Zum Lesen der E-Mail bitte klicken</message>
 	<message key="grid.action.approveProofs">Korrekturfahnen anzeigen</message>
 	<message key="grid.action.proofApproved">Das Format wurde geprüft</message>
-	<message key="grid.action.availableRepresentation">Format akzeptieren/ablehnen</message>
+	<message key="grid.action.availableRepresentation">Dieses Format freigeben/nicht freigeben</message>
 	<message key="grid.action.formatAvailable">Format ist verfügbar und wurde veröffentlicht</message>
 
 	<!-- Review Attachments -->
@@ -217,7 +231,6 @@
 
 	<!-- series/categories/series -->
 	<message key="series.series">Reihe</message>
-	<message key="series.featured">Empfohlen</message>
 	<message key="series.featured.description">Diese Reihen werden in der Hauptnavigation erscheinen</message>
 	<message key="series.path">Pfad</message>
 
@@ -242,10 +255,14 @@
 	<message key="catalog.manage.newReleases">Neuerscheinungen</message>
 	<message key="catalog.manage.category">Kategorie</message>
 	<message key="catalog.manage.series">Reihe</message>
+	<message key="catalog.manage.series.issn">ISSN</message>
+	<message key="catalog.manage.series.issn.validation">Bitte geben Sie eine gültige ISSN an.</message>
+	<message key="catalog.manage.series.issn.equalValidation">Online- und Print-ISSN dürfen nicht gleich sein.</message>
+	<message key="catalog.manage.series.onlineIssn">Online-ISSN</message>
+	<message key="catalog.manage.series.printIssn">Print-ISSN</message>
 	<message key="catalog.manage.managementIntroduction">Willkommen in der Katalogverwaltung! Hier können Sie neue Katalogeinträge veröffentlichen, Bücher zur Liste der empfohlenen Bücher oder zur Neuerscheinungsliste hinzufügen sowie Kategorien und Reihen anlegen und ihnen Bücher zuordnen.</message>
 	<message key="catalog.selectSeries">Wählen Sie eine Reihe aus</message>
 	<message key="catalog.selectCategory">Wählen Sie eine Kategorie aus</message>
-	<message key="catalog.manage.entryDescription">Um ein Buch in den Katalog aufzunehmen, wählen Sie den Reiter "Monografien" und geben dort die notwendigen Informationen an. Informationen, die sich auf ein bestimmtes Format (z.B. PDF, Paperback, Hardcover) beziehen, geben Sie auf dem Reiter mit der entsprechenden Formatbezeichnung ein. Die Metadaten-Spezifikationen basieren auf "ONIX for Books", einem internationalen Datenformatstandard, der von der Buchbranche für den Austausch von Produktinformationen verwendet wird.</message>
 	<message key="catalog.manage.spotlightDescription">Auf der Homepage des Verlags werden bis zu drei Spotlights (z.B. empfohlene Bücher) mit Titel, Umschlagbild und Text angezeigt.</message>
 	<message key="catalog.manage.homepageDescription">Die Umschlagbilder der ausgewählten Bücher erscheinen auf der Homepage als scrollbare Liste. Klicken Sie auf den Icon 'Empfehlen' (rechts) und anschließend auf das entsprechende Sternchen, um ein Buch dem Karussell hinzuzufügen, und auf das Ausrufezeichen, wenn Sie es unter der Rubrik 'Neuerscheinungen" erscheinen soll. Durch Drag and Drop können Sie die Reihenfolge festlegen, in der die Bücher angezeigt werden.</message>
 	<message key="catalog.manage.categoryDescription">Um ein Buch auszuwählen, das Sie in der jeweiligen Kategorie besonders empfehlen möchten, klicken Sie zunächst auf den Icon 'Empfehlen' (rechts unterhalb dieser Erklärung) und dann auf das Sternchen. Mit Drag and Drop legen Sie die Reihenfolge der angezeigten empfohlenen Titel fest.</message>
@@ -257,14 +274,39 @@
 	<message key="catalog.manage.noMonographs">Es liegen keine Ihnen zugewiesenen Monografien vor.</message>
 
 	<!-- Catalog -->
+	<message key="catalog.noTitles">Bisher wurden keine Titel veröffentlicht.</message>
+	<message key="catalog.noTitlesNew">Zur Zeit sind keine neuen Veröffentlichungen verfügbar.</message>
+	<message key="catalog.noTitlesSearch">Zu Ihrer Suche nach "{$searchQuery}" wurden keine passenden Titel gefunden.</message>
+	<message key="catalog.noTitlesSection">In dieser Rubrik wurden bisher keine Titel veröffentlicht.</message>
 	<message key="catalog.browseTitles">{$numTitles} Titel</message>
 	<message key="catalog.feature">Empfehlen</message>
+	<message key="catalog.featured">Empfohlen</message>
 	<message key="catalog.featuredBooks">Empfohlene Bücher</message>
-	<message key="catalog.dateAdded">Hinzugefügt</message>
+	<message key="catalog.foundTitleSearch">Zu Ihrer Suche nach "{$searchQuery}" wurde ein Titel gefunden.</message>
+	<message key="catalog.foundTitlesSearch">Zu Ihrer Suche nach "{$searchQuery}" wurden {$number} Titel gefunden.</message>
+	<message key="catalog.allBooks">Alle Bücher</message>
+	<message key="catalog.newReleases">Neuerscheinungen</message>
+	<message key="catalog.dateAdded">Hinzugefügt {$dateAdded}</message>
 	<message key="catalog.publicationInfo">Informationen zum Buch</message>
-	<message key="catalog.relatedCategories">Verwandte Kategorien</message>
+	<message key="catalog.published">Veröffentlicht</message>
+	<message key="catalog.categories">Kategorien</message>
+	<message key="catalog.parentCategory">Oberkategorie</message>
+	<message key="catalog.subcategories">Unterkategorie</message>
 	<message key="catalog.aboutTheAuthor">Über den/die {$roleName}</message>
+	<message key="catalog.coverImageTitle">Titelbild für {$monographTitle}</message>
 	<message key="catalog.loginRequiredForPayment">Bitte beachten Sie: Um einen Band zu kaufen, müssen Sie angemeldet sein. Sobald Sie einen Band ausgewählt haben, den Sie erwerben möchten, gelangen Sie automatisch zur Anmeldeseite. Alle Titel, die mit einem Open-Access-Symbol (geöffnetes Schloss) gekennzeichnet sind, können kostenlos heruntergeladen werden. Eine Anmeldung ist dazu nicht erforderlich.</message>
+	<message key="catalog.sortBy">Reihenfolge der Bücher</message>
+	<message key="catalog.sortBy.seriesDescription">Wählen Sie aus, in welcher Reihenfolge Bücher in dieser Reihe angezeigt werden sollen.</message>
+	<message key="catalog.sortBy.categoryDescription">Wählen Sie aus, in welcher Reihenfolge Bücher in dieser Kategorie angezeigt werden sollen.</message>
+	<message key="catalog.sortBy.catalogDescription">Wählen Sie aus, in welcher Reihenfolge Bücher im Katalog angezeigt werden sollen.</message>
+	<message key="catalog.sortBy.titleAsc">Titel (A-Z)</message>
+	<message key="catalog.sortBy.titleDesc">Titel (Z-A)</message>
+	<message key="catalog.sortBy.datePublishedAsc">Erscheinungsdatum (älteste zuerst)</message>
+	<message key="catalog.sortBy.datePublishedDesc">Erscheinungsdatum (neueste zuerst)</message>
+	<message key="catalog.sortBy.seriesPositionAsc">Position in Reihe (niedrigste zuerst)</message>
+	<message key="catalog.sortBy.seriesPositionDesc">Position in Reihe (höchste zuerst)</message>
+	<message key="catalog.viewableFile.title">{$type}-Ansicht der Datei {$title}</message>
+	<message key="catalog.viewableFile.return">Zurück zur Detailanzeige von {$monographTitle}</message>
 
 	<!--
 	 *
@@ -276,15 +318,11 @@
 	<message key="common.feature">Empfehlen</message>
 	<message key="common.searchCatalog">Suche im Katalog</message>
 	<message key="common.moreInfo">Weitere Informationen</message>
-	<message key="common.plusMore">+ mehr</message>
-	
+
 
 	<message key="common.listbuilder.completeForm">Bitte füllen Sie dieses Formular vollständig aus.</message>
 	<message key="common.listbuilder.selectValidOption">Bitte wählen Sie eine gültige Option aus dieser Liste aus.</message>
 	<message key="common.listbuilder.itemExists">Sie können nicht den gleichen Eintrag ein zweites Mal hinzufügen.</message>
-
-	<message key="common.catalogInformation">An dieser Stelle müssen Sie im Katalog zunächst nur die Felder 'Titel' und 'Zusammenfassung' ausfüllen.</message>
-	<message key="common.prefixAndTitle.tip">Wenn ein Titel mit einem Artikelwort wie "der" oder "ein" beginnt (oder einem ähnlichen Wort, das bei der Sortierung übergangen werden soll), setzen Sie es bitte in das Feld "Präfix".</message>
 
 	<!-- Common Messages -->
 	<message key="common.openMonographPress">Open Monograph Press</message>
@@ -312,6 +350,7 @@
 	<message key="press.presses">Verlage</message>
 	<message key="press.path">Pfad</message>
 	<message key="context.context">Verlag</message>
+	<message key="context.current">Aktueller Verlag:</message>
 	<message key="context.select">Wählen Sie einen Verlag ...</message>
 
 	<!-- User -->
@@ -324,14 +363,14 @@
 	<!-- OMP-specific Roles -->
 	<message key="user.role.manager">Verlagsleiter/in</message>
 	<message key="user.role.pressEditor">Leitender Herausgeber/Leitende Herausgeberin</message>
-	<message key="user.role.seriesEditor">Reihenherausgeber/in</message>
+	<message key="user.role.subEditor">Reihenherausgeber/in</message>
 	<message key="user.role.assistant">Verlagsassistent/in</message>
 	<message key="user.role.copyeditor">Lektor/in</message>
 	<message key="user.role.proofreader">Korrektor/in</message>
 	<message key="user.role.productionEditor">Hersteller/in</message>
 
 	<message key="user.role.managers">Verlagsleiter/in</message>
-	<message key="user.role.seriesEditors">Reihenherausgeber/in</message>
+	<message key="user.role.subEditors">Reihenherausgeber/innen</message>
 	<message key="user.role.editors">Herausgeber/innen</message>
 	<message key="user.role.copyeditors">Lektoren/innen</message>
 	<message key="user.role.proofreaders">Korrektoren/innen</message>
@@ -368,11 +407,9 @@
 	<message key="about.sponsors">Sponsor/innen</message>
 	<message key="about.contributors">Förderer</message>
 	<message key="about.onlineSubmissions">Online-Einreichungen</message>
-	<message key="about.onlineSubmissions.haveAccount">Besitzen Sie bereits einen Benutzernamen/ein Passwort für {$pressTitle}?</message>
 	<message key="about.onlineSubmissions.login">Zum Login</message>
-	<message key="about.onlineSubmissions.needAccount">Benötigen Sie einen Benutzernamen/ein Passwort?</message>
-	<message key="about.onlineSubmissions.registration">Zur Registrierung</message>
-	<message key="about.onlineSubmissions.registrationRequired">Sie müssen registriert und eingeloggt sein, um Manuskripte einzureichen oder den aktuellen Status Ihrer Einreichung zu überprüfen.</message>
+	<message key="about.onlineSubmissions.register">Registrieren</message>
+	<message key="about.onlineSubmissions.registrationRequired">Sie müssen registriert und eingeloggt sein, um Manuskripte einzureichen oder den aktuellen Status Ihrer Einreichung zu überprüfen. Mit einem bestehenden Account {$login} oder einen neuen Account {$register}.</message>
 	<message key="about.authorGuidelines">Richtlinien für Autoren/innen</message>
 	<message key="about.submissionPreparationChecklist">Checkliste zur Manuskripteinreichung</message>
 	<message key="about.submissionPreparationChecklist.description">Während des Einreichungsvorganges werden die Autor/innen dazu aufgefordert zu überprüfen, ob ihr Manuskript alle genannten Anforderungen erfüllt. Manuskripte, die nicht mit den Richtlinien übereinstimmen, können an die Autor/innen zurückgegeben werden.</message>
@@ -396,7 +433,7 @@
 	<message key="installer.ompUpgrade">OMP-Upgrade</message>
 	<message key="installer.installApplication">Installiere Open Monograph Press</message>
 	<message key="installer.installationInstructions"><![CDATA[
-<p>Danke, dass Sie <strong>Open Monograph Press {$version}</strong> des Public Knowledge Project heruntergeladen haben. Bitte lesen Sie die in der Software enthaltene <a href="{$baseUrl}/docs/README">README</a> -Datei, bevor Sie fortfahren. Mehr Informationen über das das Public Knowledge Project und seine Softwareprojekte finden Sie auf der PKP-Website <a href="http://pkp.sfu.ca/" target="_blank">PKP web site</a>. Wenn Sie einen Bug melden möchten oder technischen Support für Open Monograph Press benötigen, wenden Sie sich bitte an unser: <a href="http://forum.pkp.sfu.ca" target="_blank">support forum</a> oder besuchen Sie online PKPs <a href="http://pkp.sfu.ca/bugzilla/" target="_blank">bug reporting system</a>. Wir empfehlen Ihnen zwar, über das Supportforum Kontakt zu uns aufzunehmen, Sie können eine E-Mail an unser Team schreiben: <a href="mailto:pkp.contact@gmail.com">pkp.contact@gmail.com</a>.</p>
+<p>Danke, dass Sie <strong>Open Monograph Press {$version}</strong> des Public Knowledge Project heruntergeladen haben. Bitte lesen Sie die in der Software enthaltene <a href="{$baseUrl}/docs/README">README</a> -Datei, bevor Sie fortfahren. Mehr Informationen über das das Public Knowledge Project und seine Softwareprojekte finden Sie auf der PKP-Website <a href="http://pkp.sfu.ca/" target="_blank">PKP web site</a>. Wenn Sie einen Bug melden möchten oder technischen Support für Open Monograph Press benötigen, wenden Sie sich bitte an unser: <a href="http://pkp.sfu.ca/support/forum" target="_blank">support forum</a> oder besuchen Sie online PKPs <a href="http://pkp.sfu.ca/bugzilla/" target="_blank">bug reporting system</a>. Wir empfehlen Ihnen zwar, über das Supportforum Kontakt zu uns aufzunehmen, Sie können eine E-Mail an unser Team schreiben: <a href="mailto:pkp.contact@gmail.com">pkp.contact@gmail.com</a>.</p>
 
 <h4>Upgrade</h4>
 
@@ -415,7 +452,7 @@
 <p>2. Es muss ein Verzeichnis angelegt und mit Schreibrechten ausgestattet werden, in dem die hochgeladenen Dateien gespeichert werden können (siehe "Dateieinstellungen" unten).</p>]]></message>
 	<message key="installer.upgradeInstructions"><![CDATA[<h4>OMP Version {$version}</h4>
 
-<p>Vielen Dank, dass Sie <strong>Open Monograph Press</strong> des Public Knowledge Project heruntergeladen haben. Bevor Sie fortfahren, empfehlen wir Ihnen, die <a href="{$baseUrl}/docs/README">README</a> und <a href="{$baseUrl}/docs/UPGRADE">UPGRADE</a> Dateien zu lesen, die in dieser Software enthalten sind. Weitere Informationen über das Public Knowledge Project und seine Softwareprojecte finden Sie auf der <a href="http://pkp.sfu.ca/" target="_blank">PKP-Website</a>. Wenn Sie einen Bug melden möchten oder technischen Support für Open Monograph Press benötigen, wenden Sie sich bitte an unser: <a href="http://forum.pkp.sfu.ca" target="_blank">support forum</a> oder besuchen Sie online PKPs <a href="http://pkp.sfu.ca/bugzilla/" target="_blank">bug reporting system</a>. Wir empfehlen Ihnen zwar, über das Supportforum Kontakt zu uns aufzunehmen, Sie können eine E-Mail an unser Team schreiben: <a href="mailto:pkp.contact@gmail.com">pkp.contact@gmail.com</a>.</p>
+<p>Vielen Dank, dass Sie <strong>Open Monograph Press</strong> des Public Knowledge Project heruntergeladen haben. Bevor Sie fortfahren, empfehlen wir Ihnen, die <a href="{$baseUrl}/docs/README">README</a> und <a href="{$baseUrl}/docs/UPGRADE">UPGRADE</a> Dateien zu lesen, die in dieser Software enthalten sind. Weitere Informationen über das Public Knowledge Project und seine Softwareprojecte finden Sie auf der <a href="http://pkp.sfu.ca/" target="_blank">PKP-Website</a>. Wenn Sie einen Bug melden möchten oder technischen Support für Open Monograph Press benötigen, wenden Sie sich bitte an unser: <a href="http://pkp.sfu.ca/support/forum" target="_blank">support forum</a> oder besuchen Sie online PKPs <a href="http://pkp.sfu.ca/bugzilla/" target="_blank">bug reporting system</a>. Wir empfehlen Ihnen zwar, über das Supportforum Kontakt zu uns aufzunehmen, Sie können eine E-Mail an unser Team schreiben: <a href="mailto:pkp.contact@gmail.com">pkp.contact@gmail.com</a>.</p>
 <p>Es wird <strong>dringend empfohlen</strong> Datenbank, Dateienverzeichnis und OMP-Installationsverzeichnis zu speichern, bevor Sie fortfahren.</p>
 <p>Wenn Sie den Upgrade im abgesicherten Modus <a href="http://www.php.net/features.safe-mode" target="_blank">PHP Safe Mode</a> durchführen, setzen Sie bitte bei max_execution_time in Ihrer php.ini-Konfigurationsdatei einen hohen Wert fest. Wenn dieses oder ein anderes Zeitlimit (z.B. Apache's "Timeout") erreicht und der Upgrade-Vorgang unterbrochen wurde, kann der Vorgang nur durch manuelles Eingreifen fortgesetzt werden.</p>]]></message>
 	<message key="installer.localeSettingsInstructions"><![CDATA[Für einen vollständigen Unicode (UTF-8)-Support wählen Sie bitte UTF-8 für alle Zeichensatz-Einstellungen. Bitte beachten Sie, dass der Support zurzeit einen MySQL >= 4.1.1 or PostgreSQL >= 9.1.5 Datenbankserver zur Voraussetzung hat. Außerdem wird für den vollen Unicode-Support die <a href="http://www.php.net/mbstring" target="_blank">mbstring</a>-Bibliothek (in jüngeren PHP-Installationen meist standardmäßig aktiviert). Sollten Sie erweiterte Zeichensätze verwenden, kann es zu Schwierigkeiten kommen, wenn Ihr Server diese Anforderungen nicht erfüllt.
@@ -432,10 +469,10 @@ Ihr Server untersützt aktuell mbstring: <strong>{$supportsMBString}</strong>]]>
 <p>Der Installer konnte die Konfigurationsdatei nicht automatisch überschreiben. Bevor Sie versuchen, das System zu verwenden, öffnen Sie bitte <tt>config.inc.php</tt> in einem geeigneten Texteditor und ersetzen Sie dessen Inhalte durch die Inhalte der unten stehenden Textbox.</p>]]></message>
 	<message key="installer.installationComplete"><![CDATA[<p>Die OMP-Installation wurde erfolgreich abgeschlossen.</p>
 <p>Um das System zu verwenden, loggen Sie sich auf der <a href="{$loginUrl}">Login</a>-Seite mit Ihrem Benutzernamen und Ihrem Passwort ein.</p>
-<p>Wenn Sie Nachrichten und Updates erhalten möchten, <strong>melden Sie sich bitte bei <a href="http://pkp.sfu.ca/omp/register" target="_blank">http://pkp.sfu.ca/omp/register</a> an.</strong> Wenn Sie irgendwelche Fragen stellen oder Kommentare abgeben möchten, besuchen Sie bitte das <a href="http://forum.pkp.sfu.ca" target="_blank">Supportforum</a>.</p>]]></message>
+<p>Wenn Sie Nachrichten und Updates erhalten möchten, <strong>melden Sie sich bitte bei <a href="http://pkp.sfu.ca/omp/register" target="_blank">http://pkp.sfu.ca/omp/register</a> an.</strong> Wenn Sie irgendwelche Fragen stellen oder Kommentare abgeben möchten, besuchen Sie bitte das <a href="http://pkp.sfu.ca/support/forum" target="_blank">Supportforum</a>.</p>]]></message>
 	<message key="installer.upgradeComplete"><![CDATA[<p>Der Upgrade von OMP auf Version {$version} wurde erfolgreich abgeschlossen.</p>
 <p>Vergessen Sie nicht, die "installiert"-Einstellung in Ihrer config.inc.php Konfigurationsdatei auf <em>Ein</em> zurückzusetzen.</p>
-<p>Wenn Sie bisher noch nicht registriert sind und Neuigkeiten und Updates empfangen möchten, <strong>registireren Sie sich bitte unter <a href="http://pkp.sfu.ca/omp/register" target="_blank">http://pkp.sfu.ca/omp/register</a>.</strong> Falls Sie Fragen oder Anmerkungen haben, besuchen Sie bitte das <a href="http://forum.pkp.sfu.ca" target="_blank">Supportforum</a>.</p>]]></message>
+<p>Wenn Sie bisher noch nicht registriert sind und Neuigkeiten und Updates empfangen möchten, <strong>registireren Sie sich bitte unter <a href="http://pkp.sfu.ca/omp/register" target="_blank">http://pkp.sfu.ca/omp/register</a>.</strong> Falls Sie Fragen oder Anmerkungen haben, besuchen Sie bitte das <a href="http://pkp.sfu.ca/support/forum" target="_blank">Supportforum</a>.</p>]]></message>
 	<!-- Monograph Logs -->
 	<message key="log.review.reviewCleared">Die Gutachtenrunde {$round} von Gutachter/in {$reviewerName} für Manuskript {$submissionId} wurde abgeschlossen.</message>
 	<message key="log.review.reviewDueDateSet">Das Abgabedatum für Begutachtungsrunde {$round} von Manuskript {$submissionId} durch {$reviewerName} wurde auf den {$dueDate} festgesetzt.</message>
@@ -446,7 +483,6 @@ Ihr Server untersützt aktuell mbstring: <strong>{$supportsMBString}</strong>]]>
 	<message key="log.editor.archived">Manuskript {$submissionId} wurde archiviert.</message>
 	<message key="log.editor.restored">Manuskript {$submissionId} wurde in die Warteschlange zurückgestellt.</message>
 	<message key="log.editor.editorAssigned">{$editorName} wurde als Herausgeber/in des Manuskripts {$submissionId} bestimmt.</message>
-	<message key="log.editor.submissionExpedited">{$editorName} hat sich bei Monografie {$submissionId} für den beschleunigten Veröffentlichungsprozess entschieden.</message>
 	<message key="log.proofread.assign">{$assignerName} hat {$proofreaderName} zum Korrektor für Manuskript {$submissionId} bestimmt.</message>
 	<message key="log.proofread.complete">{$proofreaderName} hat {$submissionId} zur Planung eingereichtng.</message>
 	<message key="log.imported">{$userName} hat Monografie {$submissionId} importiert.</message>
@@ -482,8 +518,6 @@ Ihr Server untersützt aktuell mbstring: <strong>{$supportsMBString}</strong>]]>
 	<!-- Notification Types -->
 	<message key="notification.type.submissionSubmitted">Eine neue Monografie, "{$title}," wurde eingereicht.</message>
 	<message key="notification.type.editing">Bei der redaktionellen Bearbeitung aufgetretene Ereignisse</message>
-	<message key="notification.type.metadataModified">Die Metadaten von "{$title}'" wurden verändert.</message>
-	<message key="notification.type.reviewerComment">Ein Gutachter hat einen Kommentar zu "{$title}" hinterlegt.</message>
 	<message key="notification.type.reviewing">Bei der Begutachtung aufgetretene Ereignisse</message>
 	<message key="notification.type.site">Auf der Webite aufgetretene Ereignisse</message>
 	<message key="notification.type.submissions">Bei der Manuskripteinreichung aufgetretene Ereignisse</message>
@@ -519,6 +553,7 @@ Ihr Server untersützt aktuell mbstring: <strong>{$supportsMBString}</strong>]]>
 	<message key="payment.directSales.catalog">Katalog</message>
 	<message key="payment.directSales.approved">Akzeptiert</message>
 	<message key="payment.directSales.priceCurrency">Preis ({$currency})</message>
+	<message key="payment.directSales.numericOnly">Preise sollten ausschließlich numerisch sein. Geben Sie keine Währungssymbole mit ein.</message>
 	<message key="payment.directSales.directSales">Direktvertrieb</message>
 	<message key="payment.directSales.amount">{$amount} ({$currency})</message>
 	<message key="payment.directSales.notAvailable">Nicht verfügbar</message>
@@ -526,8 +561,9 @@ Ihr Server untersützt aktuell mbstring: <strong>{$supportsMBString}</strong>]]>
 	<message key="payment.directSales.openAccess">Open Access</message>
 	<message key="payment.directSales.price.description">Dateiformate können den Lesern auf der Verlagswebseite entweder im Open Access oder gegen Bezahlung zum Download angeboten werden. (Für den kostenpflichten Download wird das unter 'Vertrieb' konfigurierte Online-Bezahlsystem verwendet.) Bitte geben Sie die Zugriffsbedingungen für diese Datei an.</message>
 	<message key="payment.directSales.validPriceRequired">Bitte geben Sie einen gültigen Preis (als Zahl) ein.</message>
-	<message key="payment.directSales.purchase">Kaufen ({$amount} {$currency})</message>
-	<message key="payment.directSales.download">Download</message>
+	<message key="payment.directSales.purchase">{$format} kaufen ({$amount} {$currency})</message>
+	<message key="payment.directSales.download">{$format} herunterladen</message>
+	<message key="payment.directSales.readRemotely">{$format} ansehen</message>
 	<message key="payment.directSales.monograph.name">Download einer Monografie oder eines Kapitels erwerben</message>
 	<message key="payment.directSales.monograph.description">Diese Transaktion dient dem Erwerb eines direkten Buch- oder Kapiteldownloads.</message>
 

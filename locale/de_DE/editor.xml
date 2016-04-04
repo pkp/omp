@@ -7,12 +7,11 @@
   * Copyright (c) 2014-2016 Simon Fraser University Library
   * Copyright (c) 2003-2016 John Willinsky
   * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
+  * locale information: https://pkp.sfu.ca/wiki/index.php?title=OMP:_German_(de_DE)
   * Localization strings.
-  * locale information: https://pkp.sfu.ca/wiki/index.php?title=OMP:_German_%28de_DE%29
   -->
 
 <locale name="de_DE" full_name="Deutsch (Deutschland)">
-	<message key="editor.pressSignoff">Verlagsfreigabe</message>
 	<message key="editor.submissionArchive">Manuskriptarchiv</message>
 	<message key="editor.monograph.cancelReview">Anfrage abbrechen</message>
 	<message key="editor.monograph.clearReview">Gutachter/innen löschen</message>
@@ -33,7 +32,7 @@
 	<message key="editor.monograph.final.currentFiles">Aktuelle Endfassungen</message>
 	<message key="editor.monograph.copyediting.currentFiles">Aktuelle Dateien</message>
 	<message key="editor.monograph.copyediting.personalMessageToUser">Nachricht an den Benutzer/die Benutzerin</message>
-	
+
 	<!-- Editorial Legend -->
 	<message key="editor.monograph.legend.submissionActions">Einreichungsaktionen</message>
 	<message key="editor.monograph.legend.submissionActionsDescription">Während der Einreichung mögliche Aktionen und Optionen</message>
@@ -55,17 +54,13 @@
 	<message key="editor.monograph.legend.delete">Titel entfernen</message>
 	<message key="editor.monograph.legend.in_progress">Aktion wird noch ausgeführt oder ist noch nicht vollständig</message>
 	<message key="editor.monograph.legend.complete">Aktion vollständig</message>
-	<message key="editor.monograph.legend.uploaded">File uploaded by the role in the grid column title</message>
+	<message key="editor.monograph.legend.uploaded">Datei wurde hochgeladen durch die im Spaltentitel angegebene Rolle</message>
 
 	<!-- Editorial related -->
 	<message key="editor.submission.introduction">Im Stadium 'Einreichung' bestimmt der/die zuständige Herausgeber/in nach Prüfung der eingereichten Dateien das weitere Vorgehen, indem er/sie eine passende Aktion auswählt (der Autor/die Autorin wird darüber grundsätzlich informiert): Zur internen Begutachtung senden (anschließend müssen die für die interne Begutachtung vorgesehenen Dateien ausgewählt werden); Zur externen Begutachtung senden (anschließend müssen die für die externe Begutachtung vorgesehenen Dateien ausgewählt werden); Manuskript annnehmen (anschließend sind die Dateien für die redaktionelle Bearbeitung auszuwählen) oder Manuskript ablehnen (das Manuskript wird im Archiv abgelegt).</message>
-	<message key="editor.submission.editorial.finalDraftDescription"><![CDATA[Bei Sammelbänden, deren Kapitel von unterschiedlichen Autor/innen stammen, kann die eingereichte Manuskriptdatei zum Lektorieren in Kapiteldateien aufgesplittet werden. Die lektorierten Kapiteldateien werden unter <span class="pkp_help_title">Copyediting</span> hochgeladen und anschließend von den jeweiligen Kapitelautor/innen geprüft.]]></message>
 	<message key="editor.monograph.editorial.fairCopy">Reinschrift</message>
-	<message key="editor.monograph.editorial.fairCopyDescription">Der/die Lektor/in lädt eine Reinschrift des Manuskripts zur Begutachtung durch den/die Herausgeber/in hoch, bevor es in die Herstellung geschickt wird.</message>
 
 	<!-- Production/Proof related -->
-	<message key="editor.submission.production.introduction"><![CDATA[In der Herstellung wählt der/die Herausgeber/in unter <span class="pkp_help_title"> Format</span> die gewünschten Buchformate (digital, Paperback etc.) aus. Der/die Layouter/in formt entsprechend den spezifischen Anforderungen an das jeweilige Format die druckfertigen Dateien zu Dateien in Publikationsqualität um. Diese werden dann für jedes Format einzeln unter <span class="pkp_help_title">Korrekturfahnen </span> hochgeladen und dort Korrektur gelesen. Das Buch wird für jedes Format einzeln unter <span class="pkp_help_title">Format</span> <em>verfügbar</em> gemacht (also veröffentlicht). Dazu muss bei den <em>Korrekturdateien</em> bei 'Akzeptiert" und im Katalog bei "Erstelle anhand der angegebenen Metadaten einen neuen Katalogeintrag" ein Häkchen gesetzt werden.]]></message>
-	<message key="editor.submission.production.productionReadyFilesDescription"><![CDATA[Der Layouter/die Layouterin gestaltet diese Dateien für jedes Format und lädt sie dann als <span class="pkp_help_title">Korrekturfahnen</span> zum Korrekturlesen hoch.]]></message>
 	<message key="editor.monograph.proofs">Korrekturfahnen</message>
 	<message key="editor.monograph.production.approvalAndPublishing">Freigabe und Veröffentlichung</message>
 	<message key="editor.monograph.production.approvalAndPublishingDescription">Verschiedene Formate wie zum Beispiel Hardcover, Softcover und digitale Formate können unten unter 'Formate' hochgeladen werden. Sie können die Formate-Tabelle als Checkliste verwenden, um zu prüfen, was noch für die Veröffentlichung im ausgewählten Format getan werden muss.</message>
@@ -74,7 +69,5 @@
 	<message key="editor.monograph.approvedProofs.edit.linkTitle">Bestimmungen festlegen</message>
 	<message key="editor.monograph.proof.addNote">Antwort hinzufügen</message>
 
-	<!-- Review related -->
-	<message key="editor.internalReview.introduction">In der Internen Begutachtung weist der/die Herausgeber/in den Gutachter/innen intern Manuskriptdateien zu und berücksichtigt die Begutachtungsergebnisse, bevor er/sie zum nächsten Schritt übergeht (über den der Autor/die Autorin benachrichtigt wird). Zur Auswahl stehen folgende Optionen: Überarbeitung anfordern (die überarbeiteten Manuskripte werden in diesem Fall nur von der/dem Herausgeber/in überprüft); Erneut zur Begutachtung einreichen (die überarbeitete Manuskripten gehen dann in eine neue Begutachtungsrunde); Zur externen Begutachtung senden (dazu müssen Dateien ausgewählt werden, die extern begutachtet werden sollen); Manuskript annehmen (dazu müssen Dateien für den Veröffentlichungsprozess ausgewählt werden) oder Manuskript ablehnen (das Manuskript wird archiviert).</message>
-	<message key="editor.externalReview.introduction">In der Externen Begutachtung weist der Herausgeber externen (nicht zum Verlag gehörenden) Gutachter/innen Manuskriptdateien zu und berücksichtigt deren Stellungnahmen, bevor er/sie zum nächsten Schritt übergeht (über den der Autor/die Autorin benachrichtigt wird): Überarbeitung anfordern (die überarbeiteten Manuskripte werden in diesem Fall nur von dem/der Herausgeber/in überprüft); Erneut zur Begutachtung einreichen (die überarbeitete Manuskripten gehen dann in eine neue Begutachtungsrunde); Manuskript annehmen (dazu müssen Dateien für den Veröffentlichungsprozess ausgewählt werden) oder Manuskript ablehnen (das Manuskript wird archiviert).</message>
+	<message key="editor.submission.proof.manageProofFilesDescription">Alle Dateien, die schon zu irgendeiner Einreichungsphase hochgeladen worden sind, können zur Liste der Korrekturfahnen hinzugefügt werden, indem Sie die Einschließen-Checkbox unten aktivieren und danach auf Suche klicken: Alle verfügbaren Dateien werden angezeigt und können ausgewählt werden, um sie in die Liste aufzunehmen.</message>
 </locale>
