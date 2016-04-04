@@ -20,4 +20,5 @@
 	<message key="plugins.importexport.native.results">Results</message>
 	<message key="plugins.inportexport.native.uploadFile">Please upload a file under "Import" in order to continue.</message>
 	<message key="plugins.importexport.native.importComplete">The import completed successfully. The following items were imported:</message>
+	<message key="plugins.importexport.native.onix30.pressMissingFields">This press is missing some required information for ONIX metadata used in this export. Please go to Settings &gt; Workflow &gt; Production and fill in the missing details.</message>
 </locale>

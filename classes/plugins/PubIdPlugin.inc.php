@@ -48,7 +48,7 @@ abstract class PubIdPlugin extends Plugin {
 		$notificationManager = new NotificationManager();
 	 	$user = $request->getUser();
 	 	$press = $request->getPress();
- 
+
 		$settingsFormName = $this->getSettingsFormName();
 		$settingsFormNameParts = explode('.', $settingsFormName);
 		$settingsFormClassName = array_pop($settingsFormNameParts);
@@ -198,7 +198,7 @@ abstract class PubIdPlugin extends Plugin {
 		// FIXME: Hack to ensure that we get a published submission if possible.
 		// Remove this when we have migrated getBest...(), etc. to Submission.
 		if (is_a($pubObject, 'PublicationFormat')) {
-			$publicationFormatDao = DAORegistry::getDAO('PublishedFormatDAO'); /* @var $publicationFormatDao PublishedFormatDAO */
+			$publicationFormatDao = DAORegistry::getDAO('PublicationFormatDAO'); /* @var $publicationFormatDao PublicationFormatDAO */
 			$format = $publicationFormatDao->getById($pubObject->getId());
 			if (is_a($format, 'PublicationFormat')) {
 				unset($pubObject);
@@ -220,7 +220,7 @@ abstract class PubIdPlugin extends Plugin {
 					// FIXME: We temporarily have to use the published submission
 					// DAO here until we've moved pubId-generation to the submission
 					// class.
-					$publicationFormatDao = DAORegistry::getDAO('PublicationFormatDao'); /* @var $monographDao PublishedMonographDAO */
+					$publicationFormatDao = DAORegistry::getDAO('PublicationFormatDAO'); /* @var $publicationFormatDao PublicationFormatDAO */
 					$objectsToCheck = $publicationFormatDao->getByPressId($pressId);
 					break;
 				default:
@@ -276,7 +276,7 @@ abstract class PubIdPlugin extends Plugin {
 	function getPubObjectType($pubObject) {
 		$allowedTypes = array(
 			'PublicationFormat' => 'PublicationFormat',
-			'PublishedMonograph' => 'PublishedMonograph',
+			'Monograph' => 'Monograph',
 		);
 		$pubObjectType = null;
 		foreach ($allowedTypes as $allowedType => $pubObjectTypeCandidate) {
