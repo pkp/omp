@@ -216,7 +216,10 @@ class ONIXCodelistItemDAO extends DAO {
 	function getCodeFromValue($value, $list) {
 		$codes = $this->getCodes($list);
 		$codes = array_flip($codes);
-		return $codes[$value];
+		if (array_key_exists($value, $codes)) {
+			return $codes[$value];
+		}
+		return '';
 	}
 
 	/**
