@@ -78,6 +78,7 @@ class NativeXmlPublicationFormatFilter extends NativeXmlRepresentationFilter {
 		// creates other DataObjects which depend on a representation id.
 		for ($n = $node->firstChild; $n !== null; $n=$n->nextSibling) if (is_a($n, 'DOMElement')) switch($n->tagName) {
 			case 'Product': $this->_processProductNode($n, $this->getDeployment(), $representation); break;
+			case 'submission_file_ref': $this->_processFileRef($n, $deployment, $representation); break;
 			default:
 		}
 
@@ -85,6 +86,26 @@ class NativeXmlPublicationFormatFilter extends NativeXmlRepresentationFilter {
 		$representationDao->updateObject($representation);
 
 		return $representation;
+	}
+
+	/**
+	 * Process the self_file_ref node found inside the publication_format node.
+	 * @param $node DOMElement
+	 * @param $deployment Onix30ExportDeployment
+	 * @param $representation PublicationFormat
+	 */
+	function _processFileRef($node, $deployment, &$representation) {
+		$fileId = $node->getAttribute('id');
+		$revisionId = $node->getAttribute('revision');
+		$DBId = $deployment->getFileDBId($fileId, $revisionId);
+		if ($DBId) {
+			// Update the submission file.
+			$submissionFileDao = DAORegistry::getDAO('SubmissionFileDAO');
+			$submissionFile = $submissionFileDao->getRevision($DBId, $revisionId);
+			$submissionFile->setAssocType(ASSOC_TYPE_REPRESENTATION);
+			$submissionFile->setAssocId($representation->getId());
+			$submissionFileDao->updateObject($submissionFile);
+		}
 	}
 
 	/**
