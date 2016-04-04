@@ -132,6 +132,7 @@ class NativeXmlMonographFilter extends NativeXmlSubmissionFilter {
 		$existingDeployment = $this->getDeployment();
 		$onixDeployment = new Onix30ExportDeployment(Request::getContext(), Request::getUser());
 		$onixDeployment->setSubmission($existingDeployment->getSubmission());
+		$onixDeployment->setFileDBIds($existingDeployment->getFileDBIds());
 		$importFilter->setDeployment($onixDeployment);
 		$formatDoc = new DOMDocument();
 		$formatDoc->appendChild($formatDoc->importNode($n, true));
