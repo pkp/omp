@@ -30,7 +30,7 @@
 				</li>
 			{/if}
 
-			{if $browseCategoryFactory->getCount()}
+			{if $browseCategoryFactory && $browseCategoryFactory->getCount()}
 				<li class="has_submenu">
 					{translate key="plugins.block.browse.category"}
 					<ul>
@@ -45,7 +45,7 @@
 				</li>
 			{/if}
 
-			{if $browseSeriesFactory->getCount()}
+			{if $browseSeriesFactory && $browseSeriesFactory->getCount()}
 				<li class="has_submenu">
 					{translate key="plugins.block.browse.series"}
 					<ul>
