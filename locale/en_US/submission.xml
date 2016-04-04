@@ -72,7 +72,6 @@
 	<message key="submission.submit.catalog">Catalog</message>
 	<message key="submission.submit.metadata">Metadata</message>
 	<message key="submission.submit.finishingUp">Finishing Up</message>
-	<message key="submission.submit.upload">Upload</message>
 	<message key="submission.submit.confirmation">Confirmation</message>
 	<message key="submission.submit.nextSteps">Next Steps</message>
 	<message key="submission.submit.coverNote">Cover Note to Editor</message>
@@ -101,7 +100,7 @@
 	<message key="submission.catalogEntry.confirm.required">Please confirm that the submission is ready to be placed in the catalog.</message>
 	<message key="submission.catalogEntry.isAvailable">This monograph is ready to be included in the public catalog.</message>
 
-	<!--  Catalog Entry Tabs -->
+	<!-- Catalog Entry Tabs -->
 	<message key="submission.catalogEntry.monographMetadata">Monograph</message>
 	<message key="submission.catalogEntry.catalogMetadata">Catalog</message>
 	<message key="submission.catalogEntry.publicationMetadata">Publication Format</message>
