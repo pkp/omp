@@ -51,28 +51,32 @@ class PublicationFormatNativeXmlFilter extends RepresentationNativeXmlFilter {
 		$representationNode->setAttribute('available', $representation->getIsAvailable()?'true':'false');
 		$representationNode->setAttribute('physical_format', $representation->getPhysicalFormat()?'true':'false');
 
-		$submission = $this->getDeployment()->getSubmission();
+		// If all nexessary press settings exist, export ONIX metadata
+		$context = $this->getDeployment()->getContext();
+		if ($context->getSetting('publisher') && $context->getSetting('location') && $context->getSetting('codeType') && $context->getSetting('codeValue')) {
+			$submission = $this->getDeployment()->getSubmission();
 
-		$filterDao = DAORegistry::getDAO('FilterDAO');
-		$nativeExportFilters = $filterDao->getObjectsByGroup('monograph=>onix30-xml');
-		assert(count($nativeExportFilters) == 1); // Assert only a single serialization filter
-		$exportFilter = array_shift($nativeExportFilters);
+			$filterDao = DAORegistry::getDAO('FilterDAO');
+			$nativeExportFilters = $filterDao->getObjectsByGroup('monograph=>onix30-xml');
+			assert(count($nativeExportFilters) == 1); // Assert only a single serialization filter
+			$exportFilter = array_shift($nativeExportFilters);
 
-		$exportFilter->setDeployment(new Onix30ExportDeployment(Request::getContext(), Request::getUser()));
+			$exportFilter->setDeployment(new Onix30ExportDeployment(Request::getContext(), Request::getUser()));
 
-		$onixDoc  = $exportFilter->execute($submission);
-		if ($onixDoc) { // we do this to ensure validation.
-			// assemble just the Product node we want.
-			$publicationFormatDOMElement = $exportFilter->createProductNode($doc, $submission, $representation);
-			if ($publicationFormatDOMElement instanceof DOMElement) {
-				import('lib.pkp.classes.xslt.XSLTransformer');
-				$xslTransformer = new XSLTransformer();
-				$xslFile = 'plugins/importexport/native/onixProduct2NativeXml.xsl';
-				$productXml = $publicationFormatDOMElement->ownerDocument->saveXML($publicationFormatDOMElement);
-				$filteredXml = $xslTransformer->transform($productXml, XSL_TRANSFORMER_DOCTYPE_STRING, $xslFile, XSL_TRANSFORMER_DOCTYPE_FILE, XSL_TRANSFORMER_DOCTYPE_STRING);
-				$representationFragment = $doc->createDocumentFragment();
-				$representationFragment->appendXML($filteredXml);
-				$representationNode->appendChild($representationFragment);
+			$onixDoc  = $exportFilter->execute($submission);
+			if ($onixDoc) { // we do this to ensure validation.
+				// assemble just the Product node we want.
+				$publicationFormatDOMElement = $exportFilter->createProductNode($doc, $submission, $representation);
+				if ($publicationFormatDOMElement instanceof DOMElement) {
+					import('lib.pkp.classes.xslt.XSLTransformer');
+					$xslTransformer = new XSLTransformer();
+					$xslFile = 'plugins/importexport/native/onixProduct2NativeXml.xsl';
+					$productXml = $publicationFormatDOMElement->ownerDocument->saveXML($publicationFormatDOMElement);
+					$filteredXml = $xslTransformer->transform($productXml, XSL_TRANSFORMER_DOCTYPE_STRING, $xslFile, XSL_TRANSFORMER_DOCTYPE_FILE, XSL_TRANSFORMER_DOCTYPE_STRING);
+					$representationFragment = $doc->createDocumentFragment();
+					$representationFragment->appendXML($filteredXml);
+					$representationNode->appendChild($representationFragment);
+				}
 			}
 		}
 		return $representationNode;

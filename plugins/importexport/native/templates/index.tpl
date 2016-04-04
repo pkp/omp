@@ -55,6 +55,9 @@
 		</form>
 	</div>
 	<div id="export-tab">
+		{if !$currentContext->getSetting('publisher') || !$currentContext->getSetting('location') || !$currentContext->getSetting('codeType') || !$currentContext->getSetting('codeValue')}
+			{translate key="plugins.importexport.native.onix30.pressMissingFields"}
+		{/if}
 		<script type="text/javascript">
 			$(function() {ldelim}
 				// Attach the form handler.
