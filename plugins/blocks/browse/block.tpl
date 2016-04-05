@@ -50,7 +50,7 @@
 					{translate key="plugins.block.browse.series"}
 					<ul>
 						{iterate from=browseSeriesFactory item=browseSeriesItem}
-							<li class="series_{$browseSeriesItem->getId()}{if $browseBlockSelectedSeries == $browseSeriesItem->getPath()} current{/if}">
+							<li class="series_{$browseSeriesItem->getId()}{if $browseBlockSelectedSeries == $browseSeriesItem->getPath() && $browseBlockSelectedSeries != ''} current{/if}">
 								<a href="{url router=$smarty.const.ROUTE_PAGE page="catalog" op="series" path=$browseSeriesItem->getPath()|escape}">
 									{$browseSeriesItem->getLocalizedTitle()|escape}
 								</a>

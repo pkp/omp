@@ -27,7 +27,9 @@
 	{* Show featured items first *}
 	{if $featured && count($featured) > 0}
 		{foreach from=$featured key=id item=array_key}
-			{include file="frontend/objects/monograph_summary.tpl" monograph=$monographs[$id] isFeatured=1}
+			{if isset($monographs[$id])}
+				{include file="frontend/objects/monograph_summary.tpl" monograph=$monographs[$id] isFeatured=1}
+			{/if}
 		{/foreach}
 	{/if}
 
