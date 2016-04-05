@@ -118,10 +118,12 @@ class BrowseBlockPlugin extends BlockPlugin {
 		$router = $request->getRouter();
 		switch ($router->getRequestedOp($request)) {
 			case 'category':
-				$templateMgr->assign('browseBlockSelectedCategory', reset($router->getRequestedArgs($request)));
+				$args = $router->getRequestedArgs($request);
+				$templateMgr->assign('browseBlockSelectedCategory', reset($args));
 				break;
 			case 'series':
-				$templateMgr->assign('browseBlockSelectedSeries', reset($router->getRequestedArgs($request)));
+				$args = $router->getRequestedArgs($request);
+				$templateMgr->assign('browseBlockSelectedSeries', reset($args));
 				break;
 		}
 
