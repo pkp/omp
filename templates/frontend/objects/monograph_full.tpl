@@ -167,7 +167,7 @@
 							{* Only one resource allowed per format, so mimic single-file-download *}
 							<div class="pub_format_{$publicationFormatId|escape} pub_format_remote">
 								<a href="{$publicationFormat->getRemoteURL()|escape}" target="_blank" class="remote_resource">
-									{$publicationFormat->getLocalizedName()}
+									{$publicationFormat->getLocalizedName()|escape}
 								</a>
 							</div>
 						{elseif $publicationFormat->getIsAvailable() && $availableFiles[$publicationFormatId]}
@@ -323,7 +323,8 @@
 							{* Only add the format-specific heading if multiple publication formats exist *}
 							{if count($publicationFormats) > 1}
 								<h3 class="pkp_screen_reader">
-									{translate key="monograph.publicationFormatDetails" format=$publicationFormat->getLocalizedName}
+									{assign var=publicationFormatName value=$publicationFormat->getLocalizedName()}
+									{translate key="monograph.publicationFormatDetails" format=$publicationFormatName|escape}
 								</h3>
 
 								<div class="sub_item item_heading format">
