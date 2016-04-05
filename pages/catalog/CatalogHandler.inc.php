@@ -127,8 +127,9 @@ class CatalogHandler extends Handler {
 			$templateMgr->assign('parentCategory', $parentCategory);
 			$templateMgr->assign('subcategories', $subcategories);
 			// Display
+			return $templateMgr->display('frontend/pages/catalogCategory.tpl');
 		}
-		$templateMgr->display('frontend/pages/catalogCategory.tpl');
+		$request->redirect(null, 'catalog');
 	}
 
 	/**
@@ -146,25 +147,28 @@ class CatalogHandler extends Handler {
 		$seriesDao = DAORegistry::getDAO('SeriesDAO');
 		$seriesPath = array_shift($args);
 		$series = $seriesDao->getByPath($seriesPath, $press->getId());
-		$templateMgr->assign('series', $series);
+		if (isset($series)) {
+			$templateMgr->assign('series', $series);
 
-		// Fetch the monographs to display
-		$publishedMonographDao = DAORegistry::getDAO('PublishedMonographDAO');
-		$publishedMonographs = $publishedMonographDao->getBySeriesId($series->getId(), $press->getId());
-		$templateMgr->assign('publishedMonographs', $publishedMonographs->toAssociativeArray());
+			// Fetch the monographs to display
+			$publishedMonographDao = DAORegistry::getDAO('PublishedMonographDAO');
+			$publishedMonographs = $publishedMonographDao->getBySeriesId($series->getId(), $press->getId());
+			$templateMgr->assign('publishedMonographs', $publishedMonographs->toAssociativeArray());
 
-		// Expose the featured monograph IDs and associated params
-		$featureDao = DAORegistry::getDAO('FeatureDAO');
-		$featuredMonographIds = $featureDao->getSequencesByAssoc(ASSOC_TYPE_SERIES, $series->getId());
-		$templateMgr->assign('featuredMonographIds', $featuredMonographIds);
+			// Expose the featured monograph IDs and associated params
+			$featureDao = DAORegistry::getDAO('FeatureDAO');
+			$featuredMonographIds = $featureDao->getSequencesByAssoc(ASSOC_TYPE_SERIES, $series->getId());
+			$templateMgr->assign('featuredMonographIds', $featuredMonographIds);
 
-		// Provide a list of new releases to browse
-		$newReleaseDao = DAORegistry::getDAO('NewReleaseDAO');
-		$newReleases = $newReleaseDao->getMonographsByAssoc(ASSOC_TYPE_SERIES, $series->getId());
-		$templateMgr->assign('newReleasesMonographs', $newReleases);
+			// Provide a list of new releases to browse
+			$newReleaseDao = DAORegistry::getDAO('NewReleaseDAO');
+			$newReleases = $newReleaseDao->getMonographsByAssoc(ASSOC_TYPE_SERIES, $series->getId());
+			$templateMgr->assign('newReleasesMonographs', $newReleases);
 
-		// Display
-		$templateMgr->display('frontend/pages/catalogSeries.tpl');
+			// Display
+			return $templateMgr->display('frontend/pages/catalogSeries.tpl');
+		}
+		$request->redirect(null, 'catalog');
 	}
 
 	/**
