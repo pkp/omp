@@ -151,18 +151,25 @@
 
 				&:before {
 					&:extend(.fa);
-					margin-right: 0.25em;
+					content: @fa-var-download;
 				}
 			}
+		}
 
-			&.pub_format_remote a:before {
-				&:extend(.fa);
-				content: @fa-var-external-link;
+		.pub_format_single a:before {
+			margin-right: 0.25em;
+		}
+
+		.pub_format_remote a {
+
+			&:before {
+				display: none;
 			}
 
-			&.pub_format_single a:before {
+			&:after {
 				&:extend(.fa);
-				content: @fa-var-download;
+				content: @fa-var-external-link;
+				margin-left: 0.25em;
 			}
 		}
 

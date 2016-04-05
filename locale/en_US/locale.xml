@@ -574,7 +574,6 @@ Your server currently supports mbstring: <strong>{$supportsMBString}</strong>]]>
 	<message key="payment.directSales.validPriceRequired">A valid numeric price is required.</message>
 	<message key="payment.directSales.purchase">Purchase {$format} ({$amount} {$currency})</message>
 	<message key="payment.directSales.download">Download {$format}</message>
-	<message key="payment.directSales.readRemotely">Go to {$format}</message>
 	<message key="payment.directSales.monograph.name">Purchase Monograph or Chapter Download</message>
 	<message key="payment.directSales.monograph.description">This transaction is for the purchase of a direct download of a single monograph or monograph chapter.</message>
 
