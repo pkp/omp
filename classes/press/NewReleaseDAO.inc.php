@@ -52,24 +52,24 @@ class NewReleaseDAO extends DAO {
 	 * @return array Monograph
 	 */
 	function getMonographsByAssoc($assocType, $assocId) {
-		$returner = array();
 		$result = $this->retrieve(
 			'SELECT	n.submission_id
 			FROM	new_releases n,
 				published_submissions ps
-			WHERE	n.submission_id = ps.submission_id AND
-				n.assoc_type = ? AND n.assoc_id = ?
+			WHERE	n.submission_id = ps.submission_id
+				AND n.assoc_type = ? AND n.assoc_id = ?
+				AND ps.date_published IS NOT NULL
 			ORDER BY ps.date_published DESC',
 			array((int) $assocType, (int) $assocId)
 		);
 
+		$returner = array();
 		$publishedMonographDao = DAORegistry::getDAO('PublishedMonographDAO');
 		while (!$result->EOF) {
 			list($monographId) = $result->fields;
 			$returner[] = $publishedMonographDao->getById($monographId);
 			$result->MoveNext();
 		}
-
 		$result->Close();
 		return $returner;
 	}

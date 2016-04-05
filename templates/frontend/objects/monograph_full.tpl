@@ -167,7 +167,7 @@
 							{* Only one resource allowed per format, so mimic single-file-download *}
 							<div class="pub_format_{$publicationFormatId|escape} pub_format_remote">
 								<a href="{$publicationFormat->getRemoteURL()|escape}" target="_blank" class="remote_resource">
-									{translate key="payment.directSales.readRemotely" format=$publicationFormat->getLocalizedName()}
+									{$publicationFormat->getLocalizedName()|escape}
 								</a>
 							</div>
 						{elseif $publicationFormat->getIsAvailable() && $availableFiles[$publicationFormatId]}
@@ -299,12 +299,32 @@
 			{if count($publicationFormats)}
 				{foreach from=$publicationFormats item="publicationFormat"}
 					{if $publicationFormat->getIsApproved()}
+
+						{assign var=identificationCodes value=$publicationFormat->getIdentificationCodes()}
+						{assign var=identificationCodes value=$identificationCodes->toArray()}
+						{assign var=publicationDates value=$publicationFormat->getPublicationDates()}
+						{assign var=publicationDates value=$publicationDates->toArray()}
+						{assign var=hasPubId value=false}
+						{if $enabledPubIdTypes|@count}
+							{foreach from=$enabledPubIdTypes item=pubIdType}
+								{if $publicationFormat->getStoredPubId($pubIdType)}
+									{php}break;{/php}
+								{/if}
+							{/foreach}
+						{/if}
+
+						{* Skip if we don't have any information to print about this pub format *}
+						{if !$identificationCodes && !$publicationDates && !$hasPubId && !$publicationFormat->getPhysicalFormat()}
+							{php}continue;{/php}
+						{/if}
+
 						<div class="item publication_format">
 
 							{* Only add the format-specific heading if multiple publication formats exist *}
 							{if count($publicationFormats) > 1}
 								<h3 class="pkp_screen_reader">
-									{translate key="monograph.publicationFormatDetails" format=$publicationFormat->getLocalizedName}
+									{assign var=publicationFormatName value=$publicationFormat->getLocalizedName()}
+									{translate key="monograph.publicationFormatDetails" format=$publicationFormatName|escape}
 								</h3>
 
 								<div class="sub_item item_heading format">
@@ -320,8 +340,6 @@
 
 
 							{* DOI's and other identification codes *}
-							{assign var=identificationCodes value=$publicationFormat->getIdentificationCodes()}
-							{assign var=identificationCodes value=$identificationCodes->toArray()}
 							{if $identificationCodes}
 								{foreach from=$identificationCodes item=identificationCode}
 									<div class="sub_item identification_code">
@@ -336,8 +354,6 @@
 							{/if}
 
 							{* Dates of publication *}
-							{assign var=publicationDates value=$publicationFormat->getPublicationDates()}
-							{assign var=publicationDates value=$publicationDates->toArray()}
 							{if $publicationDates}
 								{foreach from=$publicationDates item=publicationDate}
 									<div class="sub_item date">
