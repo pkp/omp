@@ -66,7 +66,10 @@ class NewReleaseDAO extends DAO {
 		$publishedMonographDao = DAORegistry::getDAO('PublishedMonographDAO');
 		while (!$result->EOF) {
 			list($monographId) = $result->fields;
-			$returner[] = $publishedMonographDao->getById($monographId);
+			$monograph = $publishedMonographDao->getById($monographId);
+			if ( !empty( $monograph ) ) {
+				$returner[] = $monograph;
+			}
 			$result->MoveNext();
 		}
 
