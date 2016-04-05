@@ -114,7 +114,8 @@
 
 		> div,
 		.value li {
-			margin-bottom: @double;
+			.pkp_helpers_clear;
+			margin-bottom: @base * 3;
 
 			&:last-child {
 				margin-bottom: 0;
@@ -123,6 +124,7 @@
 
 		.value li {
 			position: relative;
+			margin-bottom: @base;
 
 			&:first-child {
 				margin-top: @half;
@@ -131,7 +133,7 @@
 
 		.name {
 			display: block;
-			padding-left: @quadruple;
+			padding: @half 0 @half @quadruple;
 			line-height: @double;
 		}
 
@@ -157,6 +159,7 @@
 				&:extend(.fa);
 				content: @fa-var-external-link;
 			}
+
 			&.pub_format_single a:before {
 				&:extend(.fa);
 				content: @fa-var-download;
