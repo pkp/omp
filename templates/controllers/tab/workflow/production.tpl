@@ -9,11 +9,14 @@
  *}
 
 <div id="production">
+
+	{* Help Link *}
+	{help file="editorial-workflow/production.md" class="pkp_help_tab"}
+
 	{include file="controllers/notification/inPlaceNotification.tpl" notificationId="productionNotification" requestOptions=$productionNotificationRequestOptions}
 
 	<div class="pkp_context_sidebar">
 		{include file="controllers/tab/workflow/stageParticipants.tpl"}
-		{help file="chapter5/production.md"}
 	</div>
 
 	<div class="pkp_content_panel">

@@ -8,6 +8,8 @@
  * Catalog management spotlights tab content.
  *}
 
-<p>{translate key="catalog.manage.spotlightDescription"}</p>
+{* Help Link *}
+{help file="catalog.md#spotlights" class="pkp_help_tab"}
+
 {url|assign:spotlightsGridUrl router=$smarty.const.ROUTE_COMPONENT component="grid.content.spotlights.ManageSpotlightsGridHandler" op="fetchGrid" escape=false}
 {load_url_in_div id="spotlightsGridContainer" url=$spotlightsGridUrl}

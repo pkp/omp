@@ -259,10 +259,8 @@
 	<message key="catalog.manage.series.issn.equalValidation">Online and print ISSN must not be the same.</message>
 	<message key="catalog.manage.series.onlineIssn">Online ISSN</message>
 	<message key="catalog.manage.series.printIssn">Print ISSN</message>
-	<message key="catalog.manage.managementIntroduction">Welcome to Catalog Management. From this page you can publish new catalog entries; review and configure your Featured Books listing; review and configure your New Releases listing; and review and configure your books by Category and Series.</message>
 	<message key="catalog.selectSeries">Select Series</message>
 	<message key="catalog.selectCategory">Select Category</message>
-	<message key="catalog.manage.spotlightDescription">Three spotlights (e.g., Featured Book) appear on the press homepage, with spotlight title, image, and text.</message>
 	<message key="catalog.manage.homepageDescription">The cover image of selected books appears toward the top of the homepage as a scrollable set. Click 'Feature', then the star to add a book to the carousel; click the exclamation point to feature as a new release; drag and drop to order.</message>
 	<message key="catalog.manage.categoryDescription">Click 'Feature', then the star to select a featured book for this category; drag and drop to order.</message>
 	<message key="catalog.manage.seriesDescription">Click 'Feature', then the star to select a featured book for this series; drag and drop to order. Series are identified with an editor(s) and a series title, within a category or independently.</message>
