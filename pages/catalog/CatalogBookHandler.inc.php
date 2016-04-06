@@ -55,10 +55,10 @@ class CatalogBookHandler extends Handler {
 	 */
 	function book($args, $request) {
 		$templateMgr = TemplateManager::getManager($request);
+		$publishedMonograph = $this->getAuthorizedContextObject(ASSOC_TYPE_PUBLISHED_MONOGRAPH);
 		$this->setupTemplate($request, $publishedMonograph);
 		AppLocale::requireComponents(LOCALE_COMPONENT_APP_SUBMISSION, LOCALE_COMPONENT_PKP_SUBMISSION); // submission.synopsis; submission.copyrightStatement
 
-		$publishedMonograph = $this->getAuthorizedContextObject(ASSOC_TYPE_PUBLISHED_MONOGRAPH);
 		$templateMgr->assign('publishedMonograph', $publishedMonograph);
 
 		// Assign chapters (if they exist)
