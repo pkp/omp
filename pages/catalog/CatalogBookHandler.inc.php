@@ -55,7 +55,7 @@ class CatalogBookHandler extends Handler {
 	 */
 	function book($args, $request) {
 		$templateMgr = TemplateManager::getManager($request);
-		$this->setupTemplate($request);
+		$this->setupTemplate($request, $publishedMonograph);
 		AppLocale::requireComponents(LOCALE_COMPONENT_APP_SUBMISSION, LOCALE_COMPONENT_PKP_SUBMISSION); // submission.synopsis; submission.copyrightStatement
 
 		$publishedMonograph = $this->getAuthorizedContextObject(ASSOC_TYPE_PUBLISHED_MONOGRAPH);
@@ -64,7 +64,7 @@ class CatalogBookHandler extends Handler {
 		// Assign chapters (if they exist)
 		$chapterDao = DAORegistry::getDAO('ChapterDAO');
 		$chapters = $chapterDao->getChapters($publishedMonograph->getId());
-		$templateMgr->assign_by_ref('chapters', $chapters->toAssociativeArray());
+		$templateMgr->assign('chapters', $chapters->toAssociativeArray());
 
 		// Determine which pubId plugins are enabled.
 		$pubIdPlugins = PluginRegistry::loadCategory('pubIds', true);
@@ -87,9 +87,11 @@ class CatalogBookHandler extends Handler {
 				}
 			}
 		}
-		$templateMgr->assign('enabledPubIdTypes', $enabledPubIdTypes);
-		$templateMgr->assign('metaCustomHeaders', $metaCustomHeaders);
-		$templateMgr->assign('ccLicenseBadge', Application::getCCLicenseBadge($publishedMonograph->getLicenseURL()));
+		$templateMgr->assign(array(
+			'enabledPubIdTypes' => $enabledPubIdTypes,
+			'metaCustomHeaders' => $metaCustomHeaders,
+			'ccLicenseBadge' => Application::getCCLicenseBadge($publishedMonograph->getLicenseURL())
+		));
 
 		// e-Commerce
 		import('classes.payment.omp.OMPPaymentManager');
@@ -126,12 +128,6 @@ class CatalogBookHandler extends Handler {
 			$templateMgr->assign('currency', $currencyDao->getCurrencyByAlphaCode($currency));
 		}
 
-		if ($seriesId = $publishedMonograph->getSeriesId()) {
-			$seriesDao = DAORegistry::getDAO('SeriesDAO');
-			$series = $seriesDao->getById($seriesId, $publishedMonograph->getContextId());
-			$templateMgr->assign('series', $series);
-		}
-
 		// Display
 		$templateMgr->display('frontend/pages/book.tpl');
 	}
@@ -153,14 +149,14 @@ class CatalogBookHandler extends Handler {
 	 * @param $view boolean True iff inline viewer should be used, if available
 	 */
 	function download($args, $request, $view = false) {
-		$this->setupTemplate($request);
+		$publishedMonograph = $this->getAuthorizedContextObject(ASSOC_TYPE_PUBLISHED_MONOGRAPH);
+		$this->setupTemplate($request, $publishedMonograph);
 		$press = $request->getPress();
 
 		$monographId = (int) array_shift($args); // Validated thru auth
 		$representationId = (int) array_shift($args);
 		$fileIdAndRevision = array_shift($args);
 
-		$publishedMonograph = $this->getAuthorizedContextObject(ASSOC_TYPE_PUBLISHED_MONOGRAPH);
 		$publicationFormatDao = DAORegistry::getDAO('PublicationFormatDAO');
 		$publicationFormat = $publicationFormatDao->getById($representationId, $publishedMonograph->getId());
 		if (!$publicationFormat || !$publicationFormat->getIsApproved() || !$publicationFormat->getIsAvailable() || $remoteURL = $publicationFormat->getRemoteURL()) fatalError('Invalid publication format specified.');
@@ -227,6 +223,22 @@ class CatalogBookHandler extends Handler {
 			$ompPaymentManager->queuePayment($queuedPayment),
 			$queuedPayment
 		);
+	}
+
+	/**
+	 * Set up common template variables.
+	 * @param $request PKPRequest
+	 * @param $publishedMonograph PublishedMonograph
+	 */
+	function setupTemplate($request, $publishedMonograph) {
+		$templateMgr = TemplateManager::getmanager($request);
+		if ($seriesId = $publishedMonograph->getSeriesId()) {
+			$seriesDao = DAORegistry::getDAO('SeriesDAO');
+			$series = $seriesDao->getById($seriesId, $publishedMonograph->getContextId());
+			$templateMgr->assign('series', $series);
+		}
+
+		parent::setupTemplate($request);
 	}
 }
 

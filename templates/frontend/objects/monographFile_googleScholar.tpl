@@ -13,7 +13,9 @@
  * @uses $chapter Chapter The (optional) chapter associated with this file
  *}
 <meta name="gs_meta_revision" content="1.1" />
-<meta name="citation_issn" content="{$issn|strip_tags|escape}"/>
+{if $series && $series->getOnlineISSN()}
+	<meta name="citation_issn" content="{$series->getOnlineISSN()|escape}"/>
+{/if}
 
 {* Get the ISBN *}
 {assign var=identificationCodes value=$publicationFormat->getIdentificationCodes()}
@@ -33,18 +35,26 @@
 {/if}
 {foreach name="authors" from=$publishedMonograph->getAuthors() item=author}
 	<meta name="citation_author" content="{$author->getFirstName()|escape}{if $author->getMiddleName() != ""} {$author->getMiddleName()|escape}{/if} {$author->getLastName()|escape}"/>
-	{if $author->getLocalizedAffiliation() != ""}
-		<meta name="citation_author_institution" content="{$author->getLocalizedAffiliation()|strip_tags|escape}"/>
+	{assign var=affiliation value=$author->getAffiliation($currentPress->getPrimaryLocale())}
+	{if $affiliation}
+		<meta name="citation_author_institution" content="{$affiliation|escape}"/>
 	{/if}
 {/foreach}
 
-<meta name="citation_title" content="{$publishedMonograph->getLocalizedTitle()|strip_tags|escape}"/>
+{if $chapter}
+	<meta name="citation_title" content="{$chapter->getTitle($currentPress->getPrimaryLocale())|escape}"/>
+{else}
+	<meta name="citation_title" content="{$publishedMonograph->getTitle($currentPress->getPrimaryLocale())|escape}"/>
+{/if}
 
 {if is_a($publishedMonograph, 'PublishedMonograph') && $publishedMonograph->getDatePublished()}
 	<meta name="citation_publication_date" content="{$publishedMonograph->getDatePublished()|date_format:"%Y/%m/%d"}"/>
 {/if}
 
-<meta name="citation_publisher" content="{$currentPress->getSetting('publisher')|escape}"/>
+{assign var=publisher value=$currentPress->getSetting('publisher')}
+{if $publisher}
+	<meta name="citation_publisher" content="{$publisher|escape}"/>
+{/if}
 
 {url|assign:downloadUrl op="download" path=$publishedMonograph->getId()|to_array:$publicationFormat->getId():$submissionFile->getFileIdAndRevision()}
 <meta name="citation_pdf_url" content="{$downloadUrl}"/>
