@@ -8,10 +8,12 @@
  * Website appearance management form.
  *
  *}
+
+{* Help Link *}
+{help file="settings.md" section="website" class="pkp_help_tab"}
+
 {include file="core:controllers/tab/settings/appearance/form/setup.tpl"}
 <form id="appearanceForm" class="pkp_form" method="post" action="{url router=$smarty.const.ROUTE_COMPONENT component="tab.settings.WebsiteSettingsTabHandler" op="saveFormData" tab="appearance"}">
-	{help file="chapter6/website/appearance.md" class="pkp_helpers_align_right"}
-	<div class="pkp_helpers_clear"></div>
 
 	{include file="controllers/notification/inPlaceNotification.tpl" notificationId="appearanceFormNotification"}
 	{include file="controllers/tab/settings/wizardMode.tpl" wizardMode=$wizardMode}

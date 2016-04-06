@@ -10,6 +10,9 @@
  *
  *}
 
+{* Help Link *}
+{help file="catalog.md#new-catalog-entry" class="pkp_help_modal"}
+
 <script type="text/javascript">
 	$(function() {ldelim}
 		// Attach the form handler. (Triggers selectMonograph event.)
@@ -31,8 +34,6 @@
 </script>
 
 <div id="selectMonographContainer">
-	{help file="chapter4/catalog/new-catalog-entry.md" class="pkp_helpers_align_right"}
-	<div class="pkp_helpers_clear"></div>
 
 	<form class="pkp_form" id="selectMonographForm">
 		{fbvFormArea id="monographSelectForm"}

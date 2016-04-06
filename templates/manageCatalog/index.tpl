@@ -26,10 +26,7 @@
 </script>
 
 <div id="catalogHeader">
-	<div class="pkp_helpers_clear"></div>
-	<p>{translate key="catalog.manage.managementIntroduction"}</p>
 
-	<div class="pkp_helpers_clear"></div>
 	<div id="catalogTabs" class="pkp_controllers_tab">
 		<ul>
 			<li><a name="manageHomepage" href="{url router=$smarty.const.ROUTE_COMPONENT component="tab.manageCatalog.ManageCatalogTabHandler" op="catalog"}">{translate key="navigation.catalog"}</a></li>
