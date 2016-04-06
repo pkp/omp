@@ -8,6 +8,10 @@
  * Review stage management form (extension for OMP).
  *
  *}
+
+{* Help Link *}
+{help file="settings.md" section="workflow" class="pkp_help_tab"}
+
 {capture assign="additionalReviewFormContents"}
 	{fbvFormSection label="manager.setup.internalReviewGuidelines" description="manager.setup.internalReviewGuidelinesDescription"}
 		{fbvElement type="textarea" multilingual="true" name="internalReviewGuidelines" id="internalReviewGuidelines" value=$internalReviewGuidelines rich=true}
