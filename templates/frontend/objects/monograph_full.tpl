@@ -140,16 +140,6 @@
 				<img alt="{translate key="catalog.coverImageTitle" monographTitle=$monograph->getLocalizedFullTitle()|strip_tags|escape}" src="{url router=$smarty.const.ROUTE_COMPONENT component="submission.CoverHandler" op="thumbnail" submissionId=$monograph->getId() random=$monograph->getId()|uniqid}" />
 			</div>
 
-			{* Date published *}
-			<div class="item published_date">
-				<span class="label">
-					{translate key="catalog.dateAdded"}
-				</span>
-				<span class="value">
-					{$monograph->getDatePublished()|date_format:$dateFormatShort}
-				</span>
-			</div>
-
 			{* Sharing code *}
 			{if !is_null($sharingCode)}
 				<div class="item sharing">
