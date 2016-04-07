@@ -149,7 +149,7 @@ class PublicationFormatDAO extends RepresentationDAO {
 		$publicationFormat->setIsApproved($row['is_approved']);
 		$publicationFormat->setEntryKey($row['entry_key']);
 		$publicationFormat->setPhysicalFormat($row['physical_format']);
-		$publicationFormat->setSeq($row['seq']);
+		$publicationFormat->setSequence($row['seq']);
 		$publicationFormat->setId($row['publication_format_id']);
 		$publicationFormat->setSubmissionId($row['submission_id']);
 		$publicationFormat->setFileSize($row['file_size']);
@@ -195,7 +195,7 @@ class PublicationFormatDAO extends RepresentationDAO {
 				$publicationFormat->getEntryKey(),
 				(int) $publicationFormat->getPhysicalFormat(),
 				(int) $publicationFormat->getMonographId(),
-				(int) $publicationFormat->getSeq(),
+				(int) $publicationFormat->getSequence(),
 				$publicationFormat->getFileSize(),
 				$publicationFormat->getFrontMatter(),
 				$publicationFormat->getBackMatter(),
@@ -261,7 +261,7 @@ class PublicationFormatDAO extends RepresentationDAO {
 				(int) $publicationFormat->getIsApproved(),
 				$publicationFormat->getEntryKey(),
 				(int) $publicationFormat->getPhysicalFormat(),
-				(int) $publicationFormat->getSeq(),
+				(int) $publicationFormat->getSequence(),
 				$publicationFormat->getFileSize(),
 				$publicationFormat->getFrontMatter(),
 				$publicationFormat->getBackMatter(),
