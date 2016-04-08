@@ -155,6 +155,7 @@ class Application extends PKPApplication {
 			'themes',
 			'importexport',
 			'oaiMetadataFormats',
+			'paymethod',
 		);
 	}
 
