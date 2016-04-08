@@ -116,7 +116,7 @@ To install OMP:
 	   "PATCH_FILE" should be replaced with the path to the patch file that 
 	   was downloaded, e.g. "6276-omp.patch".
 
-	   5. Open a web browser to <http://yourdomain.com/path/to/omp/> and
+	5. Open a web browser to <http://yourdomain.com/path/to/omp/> and
 	   follow the on-screen installation instructions.
 	   
 	   Alternatively, the command-line installer can be used instead by
@@ -130,6 +130,8 @@ To install OMP:
 	     * Review config.inc.php for additional configuration settings
 	     * Review the FAQ document for frequently asked technical and
 	       server configuration questions.
+	     * Review the plugins/generic/usageStats/README file for additional
+	       statistics processing requirements/configuration.
 
 
 Localization
