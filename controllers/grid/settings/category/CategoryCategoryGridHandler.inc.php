@@ -140,7 +140,6 @@ class CategoryCategoryGridHandler extends CategoryGridHandler {
 		$category->setSequence($newSequence);
 		$categoryDao = DAORegistry::getDAO('CategoryDAO');
 		$categoryDao->updateObject($category);
-		$categoryDao->resequenceCategories($category->getPressId(), $parentCategoryId);
 	}
 
 	/**
@@ -157,7 +156,6 @@ class CategoryCategoryGridHandler extends CategoryGridHandler {
 		$category->setSequence($newSequence);
 		$categoryDao = DAORegistry::getDAO('CategoryDAO');
 		$categoryDao->updateObject($category);
-		$categoryDao->resequenceCategories($category->getPressId());
 	}
 
 	/**
