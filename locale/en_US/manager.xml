@@ -73,6 +73,7 @@
 	<!-- Tools management -->
 	<message key="manager.tools">Tools</message>
 	<message key="manager.tools.importExport"><![CDATA[All tools specific to importing and exporting data (presses, monographs, users)]]></message>
+	<message key="manager.tools.statistics">Tools to generate reports related to usage statistics (catalog index page view, monograph abstract page views, monograph file downloads)</message>
 
 	<!-- User management -->
 	<message key="manager.users">User Management</message>
