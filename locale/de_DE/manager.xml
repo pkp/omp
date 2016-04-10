@@ -73,6 +73,7 @@
 	<!-- Tools management -->
 	<message key="manager.tools">Werkzeuge</message>
 	<message key="manager.tools.importExport">Für den Datenimport/-export (Verlage, Monografien, Benutzer/innen) spezifische Werkzeuge</message>
+	<message key="manager.tools.statistics">Werkzeuge um Berichte zu erzeugen, die sich auf Nutzungsstatistiken beziehen (Anzeigen des Katalogs, Anzeigen von Buchabstracts, Buchdownloads)</message> 
 
 	<!-- User management -->
 	<message key="manager.users">Benutzer/innenverwaltung</message>
@@ -245,7 +246,7 @@ Sie können dem/der Benutzer/in den Grund für die Deaktivierung des Kontos nenn
 	<message key="manager.setup.restrictMonographAccess">Benutzer/innen müssen registriert und eingeloggt sein, um Open-Access-Inhalte sehen zu können</message>
 	<message key="manager.setup.restrictSiteAccess">Benutzer/innen müssen registriert und eingeloggt sein, um sich die Verlagswebsite anschauen zu können.</message>
 	<message key="manager.setup.reviewGuidelines">Leitfäden für externe Begutachtungen</message>
-	<message key="manager.setup.reviewGuidelinesDescription">Die Leitfäden für die externe Begutachtachtung geben den externen Gutachter/innen Kriterien an die Hand, mit denen sie die Eignung des eingereichten Manuskripts beurteilen können. Die Leitfäden können auch genaue Anweisungen zur Erstellung eines gelungenen und aussagekräftigen Gutachens enthalten. Den Gutachter/innen werden bei der Erstellung der Gutachten zwei offene Textboxen angezeigt, die erste ist für Gutachten, die "an Autor/in und Herausgeber/in" adressiert werden sollen, die zweite für Gutachten, die nur "an den/die Herausgeber/in" gehen sollen. Alternativ dazu kann der Verlagsleiter auch selbst Peer-Review-Formulare unter 'Gutachen-Formulare' anlegen. In allen Fällen haben die Herausgeber/innen aber immer die Möglichkeit, die Gutachten in ihre Korrespondenz mit dem Autor/der Autorin einzufügen.</message>
+	<message key="manager.setup.reviewGuidelinesDescription">Die Leitfäden für die externe Begutachtachtung geben den externen Gutachter/innen Kriterien an die Hand, mit denen sie die Eignung des eingereichten Manuskripts beurteilen können. Die Leitfäden können auch genaue Anweisungen zur Erstellung eines gelungenen und aussagekräftigen Gutachens enthalten. Den Gutachter/innen werden bei der Erstellung der Gutachten zwei offene Textboxen angezeigt, die erste ist für Gutachten, die "an Autor/in und Herausgeber/in" adressiert werden sollen, die zweite für Gutachten, die nur "an den/die Herausgeber/in" gehen sollen. Alternativ dazu kann der Verlagsleiter auch selbst Begutachtungsformulare unter 'Gutachen-Formulare' anlegen. In allen Fällen haben die Herausgeber/innen aber immer die Möglichkeit, die Gutachten in ihre Korrespondenz mit dem Autor/der Autorin einzufügen.</message>
 	<message key="manager.setup.internalReviewGuidelines">Leitfäden für interne Begutachtungen</message>
 	<message key="manager.setup.internalReviewGuidelinesDescription">Wie die Leitfäden für die externe Begutachtung liefern diese Anleitungen den Gutachter/innen Informationen zu Bewertung des eingereichten Manuskripts. Diese Anleitungen sind für interne Gutachter/innen, die generell den Begutachtungsprozess verlagsintern durchführen.</message>
 	<message key="manager.setup.reviewOptions">Begutachtungsoptionen</message>
