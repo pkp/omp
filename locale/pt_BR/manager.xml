@@ -54,9 +54,9 @@
 	<message key="manager.settings.websiteDescription">Todas as configurações específicas à páginas públicas do site (página inicial, visual, idioma)</message>
 	<message key="manager.settings.publicationDescription">Todas as configurações específicas ao processo de publicação (configurações gerais, submissão, avaliação, edição, produção, modelos de mensagens).</message>
 	<message key="manager.settings.publisherInformation">Estes campos não são obrigatórios para uso do OMP, porém são obrigatórios para criar mentados ONIX válidos. Inclua-os caso deseje usar a funcionalidade ONIX.</message>
-	<message key="manager.settings.publisher">Nome da publicadora</message>
+	<message key="manager.settings.publisher">Nome da editora</message>
 	<message key="manager.settings.location">Localização geográfica</message>
-	<message key="manager.settings.publisherCode">Código da publicadora</message>
+	<message key="manager.settings.publisherCode">Código da editora</message>
 	<message key="manager.settings.publisherCodeType.tip">Caso tenha um código de nome de publicadora, informe-o a seguir. Ele será incluído nos metadados gerais. O campo é obrigatório caso deseje usar metadados ONIX para suas publicações.</message>
 	<message key="manager.settings.distributionDescription">Todas as configurações específicas ao processo de distribuição (notificação, indexação, arquivamento, pagamento, ferramentas de leitura).</message>
 
@@ -393,4 +393,22 @@ Escolha um modelo para lidar com os aspectos do processo editorial (Para designa
 </ol>]]></message>
 
 	<message key="manager.publication.library">Biblioteca da Editora</message>
+	<message key="manager.settings.publisherCodeType">Tipo de código da editora</message>
+	<message key="user.authorization.pluginLevel">Você não possui permissões adequadas para gerenciar este plugin.</message>
+	<message key="manager.setup.displayFeaturedBooks">Mostrar publicações aprimoradas na página inicial.</message>
+	<message key="manager.setup.displayInSpotlight">Mostrar publicações em destaque na página inicial.</message>
+	<message key="manager.setup.displayNewReleases">Mostrar novos lançamentos na página inicial.</message>
+	<message key="manager.setup.enableUserRegistration">Visitantes podem criar contas de usuário na editora.</message>
+	<message key="manager.setup.coverThumbnails">Miniaturas da capa</message>
+	<message key="manager.setup.coverThumbnailsDescription">Definir a largura e altura máximas das miniaturas da capa. Elas serão redimensionadas quando maiores do que estas definições, mas não serão ampliada se menores. As imagens nunca serão esticadas para caber nessas dimensões.</message>
+	<message key="manager.setup.coverThumbnailsMaxHeight">Altura max.</message>
+	<message key="manager.setup.coverThumbnailsMaxHeightRequired">A altura máxima das miniaturas da capa é requerida.</message>
+	<message key="manager.setup.coverThumbnailsMaxWidth">Largura max.</message>
+	<message key="manager.setup.coverThumbnailsMaxWidthRequired">A largura máxima das miniaturas da capa é requerida.</message>
+	<message key="manager.setup.coverThumbnailsResize">Redimensionar todas as miniaturas existentes.</message>
+	<message key="manager.setup.resetPermissions">Redefinir as Permissões das Submissões</message>
+	<message key="manager.setup.resetPermissions.confirm">Tem certeza que deseja redefinir as permissões definidas nas submissões?</message>
+	<message key="manager.setup.resetPermissions.description">As declarações de direitos autorais e informações sobre a licença serão permanentemente ligados aos conteúdos publicados, assegurando que esses dados não mudarão no caso de uma editora mudar as políticas relativas aos novas submissões. Para redefinir as permissões já associadas aos conteúdos publicados, use o botão abaixo.</message>
+	<message key="grid.genres.title.short">Componentes</message>
+	<message key="grid.genres.title">Componentes da Publicação</message>
 </locale>
