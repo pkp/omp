@@ -7,8 +7,8 @@
   * Copyright (c) 2014-2016 Simon Fraser University Library
   * Copyright (c) 2003-2016 John Willinsky
   * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
-  *
-  * Localization strings for the de_DE (Deutsch (Deutschland)) locale.
+  * locale information: https://pkp.sfu.ca/wiki/index.php?title=OMP:_German_(de_DE)
+  * Localization strings
   -->
 
 <locale name="de_DE" full_name = "Deutsch (Deutschland)">
@@ -16,23 +16,27 @@
 	<message key="plugins.reports.usageStats.report.description">OMP-Standardbericht zur Nutzungsstatistik (COUNTER-fähig)</message>
 
 	<message key="plugins.generic.usageStats.optout.description"><![CDATA[
-		<h3>Allgemeine Datenschutz-Hinweise</h3>
-		<p>Unsere allgemeinen Datenschutz-Hinweise finden Sie <a href="{$privacyStatementUrl}">hier</a>.</p>
-		<h3>Nutzungsstatistik</h3>
-		<p>Zum Zwecke der Analyse von Nutzung und Reichweite der Publikationen dokumentieren und speichern wir die Zugriffe auf die Startseite, auf Kategorien, Reihen, Bücher sowie heruntergeladenen Dateien. Dabei werden alle Informationen anonymisiert. IP-Adressen werden mittels eines Hash-Algorithmus (<em>SHA 256</em>) in Kombination mit einem <em>sicheren 64-Zeichen Salt</em> anonymisiert. Der Salt wird <em>automatisch zufallsgeneriert und täglich überschrieben.</em> Auf diese Weise können IP-Adressen nachträglich nicht mehr rekonstruiert werden.</p>
-		<p>Über die anonymisierten IP-Adressen hinaus werden folgende Daten erhoben:</p>
+		<h3>Allgemeine Datenschutzinformationen</h3>
+		<p>Bitte beachten Sie unsere <a href="{$privacyStatementUrl}">Datenschutzerklärung</a>.</p>
+		<h3>Nutzungsstatistiken</h3>
+		<p>Um Nutzung und Einfluss unserer Publikationen analysieren zu können, protokollieren wir Zugriffe auf die Homepage, Kategorien, Reihen, Bücher und Dateien. Während dieses Vorgangs werden alle Daten anonymisiert. Es werden keine personenbezogenen Daten protokolliert. IP-Adressen werden anonymisiert, in dem sie gehasht werden (mit <em>SHA 256</em>) und durch einen <em>sicheren 64 Zeichen langes Salt</em>, das automatisch <em>zufällig generiert und täglich überschrieben</em> wird. Daher können IP-Adressen nicht rekonstruiert werden.</p>
+		<p>Die folgenden Informationen werden zusammen mit den anonymisierten IP-Adressen gespeichert:</p>
 		<ul>
-		<li>Zugriffsart (z.B. administrative Zugriffe)</li>
-		<li>Zugriffszeit</li>
-		<li>aufgerufene URL</li>
-		<li>HTTP-Status-Code</li>
+		<li>Art des Zugriffs (z.B. administrativ)</li>
+		<li>Zeitpunkt des Zugriffs</li>
+		<li>Angeforderte URL</li>
+		<li>HTTP status code</li>
 		<li>Browser</li>
 		</ul>
-		<p>Die gesammelten Informationen werden nur verwendet, um die Nutzung der Inhalte statistisch auszuwerten. Es findet keine Zuordnung von IP-Adressen zu Benutzer-IDs statt. Es ist technisch unmöglich, nachträglich einen spezifischen Datensatz zu einer spezifischen IP-Adresse nachzuverfolgen.</p>]]></message> 
+		<p>Die gesammelten Daten werden ausschließlich zu Auswertungszwecken genutzt. Es findet keine Zuordnung von IP-Adressen zu Nutzer-Accounts statt. Es ist nicht möglich, einen bestimmten Datensatz einer bestimmten IP-Adresse zuzuordnen.</p>]]></message> 
+	<message key="plugins.generic.usageStats.optout.done"><![CDATA[
+		<p>Sie haben der Nutzung Ihrer Daten für die Nutzungsstatistik erfolgreich widersprochen. Solange Sie diese Nachricht sehen, werden keine statistischen Daten aus Ihrer Nutzung dieser Seite gewonnen. Klicken Sie den Knopf unten, um Ihre Entscheidung zurückzunehmen.</p>]]></message>
+	<message key="plugins.generic.usageStats.optin">Opt In (Einwilligen)</message>
+	<message key="plugins.generic.usageStats.optout">Opt Out (Widersprechen)</message>
 	<message key="plugins.generic.usageStats.optout.cookie"><![CDATA[
-		<p>Sollten sie den Wunsch haben, dass Ihre anonymisierten Daten nicht gespeichert werden, bieten wir Ihnen die Möglichkeit, die Teilnahme am Auswertungsprozess zu unterbinden. Durch einen Klick auf den unten stehenden Opt-out-Button wird ein sog. <em>Cookie</em> auf Ihrem System erstellt, das Ihre Entscheidung dokumentiert und speichert. Sollten die Sicherheits- oder Privatsphären-Einstellungen Ihres Browser Cookies automatisch nach Beendigung löschen, müssen Sie beim nächsten Zugriff auf diese Seite erneut dem Auswertungsprozess widersprechen. Das Cookie ist jeweils nur für einen Browser gültig. Sollten Sie unterschiedliche Browser benutzen, so müssen Sie für jeden Browser Ihren Widerspruch dokumentieren und auf den unten stehenden Button klicken. Innerhalb des Cookies werden keinerlei personenbezogene Daten gespeichert, sondern lediglich Ihr Widerspruch dokumentiert. Dieses Cookie wird bei jedem Zugriff auf diese Website automatisch um ein Jahr verlängert.</p>
-		<p>Bitte berücksichtigen Sie, dass die allgemeinen Server-Logs von Ihrer Entscheidung unberührt bleiben, am detaillierten Evaluationsprozess nicht teilzunehmen. Berücksichtigen Sie daher auch unsere <a href="{$privacyStatementUrl}">allgemeinen Datenschutz-Hinweise</a>.</p>]]></message>
-	
+		<p>Sollten Sie den Wunsch haben, dass Ihre anonymisierten Daten nicht gespeichert werden, bieten wir Ihnen die Möglichkeit, die Teilnahme am Auswertungsprozess zu unterbinden. Durch einen Klick auf den unten stehenden Opt-out-Button wird ein sog. <em>Cookie</em> auf Ihrem System erstellt, das Ihre Entscheidung dokumentiert und speichert. Sollten die Sicherheits- oder Privatsphären-Einstellungen Ihres Browser Cookies automatisch nach Beendigung löschen, müssen Sie beim nächsten Zugriff auf diese Seite erneut dem Auswertungsprozess widersprechen. Das Cookie ist jeweils nur für einen Browser gültig. Sollten Sie unterschiedliche Browser benutzen, so müssen Sie für jeden Browser Ihren Widerspruch dokumentieren und auf den unten stehenden Button klicken. Innerhalb des Cookies werden keinerlei personenbezogene Daten gespeichert, sondern lediglich Ihr Widerspruch dokumentiert. Dieses Cookie wird bei jedem Zugriff auf dieses Journal automatisch um ein Jahr verlängert.</p>
+		<p>Bitte berücksichtigen Sie, dass die allgemeinen Server-Logs von Ihrer Entscheidung unberührt bleiben, am detaillierten Evaluationsprozess nicht teilzunehmen. Berücksichtigen Sie daher auch unsere <a href="{$privacyStatementUrl}">allgemeinen Datenschutzhinweise</a>.</p>]]></message>
+
 	<message key="plugins.reports.usageStats.metricType">OMP/COUNTER</message>
 	<message key="plugins.reports.usageStats.metricType.full">Open-Monograph-Press-Statistiken (COUNTER-fähig)</message>
 </locale>
