@@ -73,6 +73,7 @@
 	<!-- Tools management -->
 	<message key="manager.tools">Werkzeuge</message>
 	<message key="manager.tools.importExport">Für den Datenimport/-export (Verlage, Monografien, Benutzer/innen) spezifische Werkzeuge</message>
+	<message key="manager.tools.statistics">Werkzeuge um Berichte zu erzeugen, die sich auf Nutzungsstatistiken beziehen (Anzeigen des Katalogs, Anzeigen von Buchabstracts, Buchdownloads)</message> 
 
 	<!-- User management -->
 	<message key="manager.users">Benutzer/innenverwaltung</message>
@@ -205,7 +206,7 @@ Sie können dem/der Benutzer/in den Grund für die Deaktivierung des Kontos nenn
 	<message key="manager.setup.noImageFileUploaded">Es wurde kein Bild hochgeladen.</message>
 	<message key="manager.setup.noStyleSheetUploaded">Es wurde kein Stylesheet hochgeladen.</message>
 	<message key="manager.setup.note">Hinweis</message>
-	<message key="manager.setup.notifyAllAuthorsOnDecision">Wurde der Beitrag bzw. das Buch von mehreren Autor/innen gemeinschaftlich verfasst, fügen Sie bitte in der Benachrichtungsmail an den Autor die E-Mail-Adressen aller Autor/innen mit ein, nicht nur diejenige der Person, die das Manuskript eingereicht hat.</message>
+	<message key="manager.setup.notifyAllAuthorsOnDecision">Wurde das Manuskript von mehreren Autor/innen gemeinschaftlich verfasst, fügen Sie bitte in der Benachrichtungsmail an den Autor die E-Mail-Adressen aller Autor/innen mit ein, nicht nur diejenige der Person, die das Manuskript eingereicht hat.</message>
 	<message key="manager.setup.noUseCopyeditors">Das Lektorat liegt in der Zuständigkeit von Herausgeber/in oder Sektionsherausgeber/in.</message>
 	<message key="manager.setup.noUseLayoutEditors">Ein Herausgeber oder Sektionsherausgeber, dem das Manuskript zugewiesen wurden, bearbeitet die HTML-, PDF (etc.)-Dateien.</message>
 	<message key="manager.setup.noUseProofreaders">Ein Herausgeber oder Sektionsherausgeber, dem das Manuskript zugewiesen wurde, prüft die Fahnen.</message>
@@ -245,7 +246,7 @@ Sie können dem/der Benutzer/in den Grund für die Deaktivierung des Kontos nenn
 	<message key="manager.setup.restrictMonographAccess">Benutzer/innen müssen registriert und eingeloggt sein, um Open-Access-Inhalte sehen zu können</message>
 	<message key="manager.setup.restrictSiteAccess">Benutzer/innen müssen registriert und eingeloggt sein, um sich die Verlagswebsite anschauen zu können.</message>
 	<message key="manager.setup.reviewGuidelines">Leitfäden für externe Begutachtungen</message>
-	<message key="manager.setup.reviewGuidelinesDescription">Die Leitfäden für die externe Begutachtachtung geben den externen Gutachter/innen Kriterien an die Hand, mit denen sie die Eignung des eingereichten Manuskripts beurteilen können. Die Leitfäden können auch genaue Anweisungen zur Erstellung eines gelungenen und aussagekräftigen Gutachens enthalten. Den Gutachter/innen werden bei der Erstellung der Gutachten zwei offene Textboxen angezeigt, die erste ist für Gutachten, die "an Autor/in und Herausgeber/in" adressiert werden sollen, die zweite für Gutachten, die nur "an den/die Herausgeber/in" gehen sollen. Alternativ dazu kann der Verlagsleiter auch selbst Peer-Review-Formulare unter 'Gutachen-Formulare' anlegen. In allen Fällen haben die Herausgeber/innen aber immer die Möglichkeit, die Gutachten in ihre Korrespondenz mit dem Autor/der Autorin einzufügen.</message>
+	<message key="manager.setup.reviewGuidelinesDescription">Die Leitfäden für die externe Begutachtachtung geben den externen Gutachter/innen Kriterien an die Hand, mit denen sie die Eignung des eingereichten Manuskripts beurteilen können. Die Leitfäden können auch genaue Anweisungen zur Erstellung eines gelungenen und aussagekräftigen Gutachens enthalten. Den Gutachter/innen werden bei der Erstellung der Gutachten zwei offene Textboxen angezeigt, die erste ist für Gutachten, die "an Autor/in und Herausgeber/in" adressiert werden sollen, die zweite für Gutachten, die nur "an den/die Herausgeber/in" gehen sollen. Alternativ dazu kann der Verlagsleiter auch selbst Begutachtungsformulare unter 'Gutachen-Formulare' anlegen. In allen Fällen haben die Herausgeber/innen aber immer die Möglichkeit, die Gutachten in ihre Korrespondenz mit dem Autor/der Autorin einzufügen.</message>
 	<message key="manager.setup.internalReviewGuidelines">Leitfäden für interne Begutachtungen</message>
 	<message key="manager.setup.internalReviewGuidelinesDescription">Wie die Leitfäden für die externe Begutachtung liefern diese Anleitungen den Gutachter/innen Informationen zu Bewertung des eingereichten Manuskripts. Diese Anleitungen sind für interne Gutachter/innen, die generell den Begutachtungsprozess verlagsintern durchführen.</message>
 	<message key="manager.setup.reviewOptions">Begutachtungsoptionen</message>
@@ -356,14 +357,14 @@ Autor/innen, die bei diesem Verlag publizieren, stimmen folgenden Bedingungen zu
 <ol type="a">
 	<li>Autor/innen behalten das Urheberrecht an dem Werk und gewähren dem Verlag das Recht zu dessen Erstveröffentlichung. Das Werk wird [Zeitraum angeben] nach der Veröffentlichung parallel unter einer <a target="_blank" href="http://creativecommons.org/licenses/by/3.0/">Creative Commons Attribution License</a> lizenziert, die es anderen erlaubt, das Werk weiterzuverbreiten, unter der Bedingung, dass der Autor/die Autorin benannt und auf die Erstveröffentlichung in diesem Verlag hingewiesen wird.</li>
 	 <li>Autor/innen können weitere, gesonderte Verträge für eine nicht-exklusive Verbreitung einer vom Verlag veröffentlichten Version des Buches abschließen (sie können es z.B auf einem institutionellen Repositorium einstellen oder in einem Buch veröffentlichen), jedoch muss auf die Erstveröffentlichung in diesem Verlag hingewiesen werden.</li>
-	 <li>Autor/innen dürfen gerne ihr Werk bereits online stellen, bevor es beim Verlag eingereicht oder veröffentlicht wurde (z.B. auf institutionellen Repositorien oder auf ihren Websites). Dies dient nicht nur dem produktiven Austausch untereinander, sondern kann auch zu einer früheren Zitierung und einer höheren Zitierhäufigkeit des veröffentlichten Werke beitragen. (Siehe <a target="_blank" href="http://opcit.eprints.org/oacitation-biblio.html">Der Effekt von Open Access</a>)./li>
+	 <li>Autor/innen dürfen gerne ihr Werk bereits online stellen, bevor es beim Verlag eingereicht oder veröffentlicht wurde (z.B. auf institutionellen Repositorien oder auf ihren Websites). Dies dient nicht nur dem produktiven Austausch untereinander, sondern kann auch zu einer früheren Zitierung und einer höheren Zitierhäufigkeit des veröffentlichten Werks beitragen. (Siehe <a target="_blank" href="http://opcit.eprints.org/oacitation-biblio.html">Der Effekt von Open Access</a>)./li>
 </ol>]]></message>
 	<message key="manager.setup.basicEditorialStepsDescription"><![CDATA[Schritte: Warteschlange &gt; Begutachtung &gt; Redaktionelle Bearbeitung &gt; Inhaltsverzeichnis.<br /><br />
 Wählen Sie ein Modell, um diese Aspekte des Publikationsprozesses zu steuern. (Um leitende Herausgeber/innen oder Serienherausgeber/innen zu bestimmen, gehen Sie in der Verlagsverwaltung zu 'Herausgeber/innen'.)]]></message>
 	<message key="manager.setup.referenceLinkingDescription"><![CDATA[<p>Um Leser/innen das Auffinden der Onlineversion eines zitierten Werkes zu erleichtern, können Sie:</p>
 
 <ol>
-	<li><strong>Ein Lesewerkzeug hinzufügen: </strong><p>Der Verlagsleiter kann den Link "Finde Literaturnachweise" zu den Lesewerkzeugen (sie stehen in der Sidebar neben dem veröffentlichten Beitrag) hinzufügen. Durch Anklicken des Links öffnet sich ein Fenster, in dem Leser/innen einen zitierten Titel einfügen und anschließend in vorausgewählten wissenschaftlichen Datenbanken danach suchen können.</p></li>
+	<li><strong>Ein Lesewerkzeug hinzufügen: </strong><p>Der Verlagsleiter kann den Link "Finde Literaturnachweise" zu den Lesewerkzeugen (sie stehen in der Sidebar neben dem veröffentlichten Werk) hinzufügen. Durch Anklicken des Links öffnet sich ein Fenster, in dem Leser/innen einen zitierten Titel einfügen und anschließend in vorausgewählten wissenschaftlichen Datenbanken danach suchen können.</p></li>
 	<li><strong>Links in die Literaturnachweise einbinden: </strong><p>Der/die Layouter/in kann einen Link zu online aufrufbaren Zitationen hinzufügen. Die folgenden Instruktionen sind dabei unter Umständen hilfreich (Bearbeitung erlaubt).</p></li>
 </ol>]]></message>
 	<message key="manager.publication.library">Verlagsdokumentenarchiv</message>

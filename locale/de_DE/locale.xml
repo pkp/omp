@@ -260,10 +260,8 @@
 	<message key="catalog.manage.series.issn.equalValidation">Online- und Print-ISSN dürfen nicht gleich sein.</message>
 	<message key="catalog.manage.series.onlineIssn">Online-ISSN</message>
 	<message key="catalog.manage.series.printIssn">Print-ISSN</message>
-	<message key="catalog.manage.managementIntroduction">Willkommen in der Katalogverwaltung! Hier können Sie neue Katalogeinträge veröffentlichen, Bücher zur Liste der empfohlenen Bücher oder zur Neuerscheinungsliste hinzufügen sowie Kategorien und Reihen anlegen und ihnen Bücher zuordnen.</message>
 	<message key="catalog.selectSeries">Wählen Sie eine Reihe aus</message>
 	<message key="catalog.selectCategory">Wählen Sie eine Kategorie aus</message>
-	<message key="catalog.manage.spotlightDescription">Auf der Homepage des Verlags werden bis zu drei Spotlights (z.B. empfohlene Bücher) mit Titel, Umschlagbild und Text angezeigt.</message>
 	<message key="catalog.manage.homepageDescription">Die Umschlagbilder der ausgewählten Bücher erscheinen auf der Homepage als scrollbare Liste. Klicken Sie auf den Icon 'Empfehlen' (rechts) und anschließend auf das entsprechende Sternchen, um ein Buch dem Karussell hinzuzufügen, und auf das Ausrufezeichen, wenn Sie es unter der Rubrik 'Neuerscheinungen" erscheinen soll. Durch Drag and Drop können Sie die Reihenfolge festlegen, in der die Bücher angezeigt werden.</message>
 	<message key="catalog.manage.categoryDescription">Um ein Buch auszuwählen, das Sie in der jeweiligen Kategorie besonders empfehlen möchten, klicken Sie zunächst auf den Icon 'Empfehlen' (rechts unterhalb dieser Erklärung) und dann auf das Sternchen. Mit Drag and Drop legen Sie die Reihenfolge der angezeigten empfohlenen Titel fest.</message>
 	<message key="catalog.manage.seriesDescription"><![CDATA[Wenn Sie innerhalb der Reihe ein Buch als empfehlenswert hervorheben möchten, klicken Sie zuerst auf den Icon 'Empfehlen' (rechts unterhalb dieser Erklärung) und dann auf das jeweilige Sternchen. Mit Drag and Drop können Sie die Reihenfolge festlegen, in der die empfohlenen Titel anzeigt werden.<p> Reihen lassen sich stets über den/die Herausgeber/in und Titel identifizieren, sie können einer Kategorie zugeordnet sein, müssen es aber nicht.]]></message>
@@ -563,7 +561,6 @@ Ihr Server untersützt aktuell mbstring: <strong>{$supportsMBString}</strong>]]>
 	<message key="payment.directSales.validPriceRequired">Bitte geben Sie einen gültigen Preis (als Zahl) ein.</message>
 	<message key="payment.directSales.purchase">{$format} kaufen ({$amount} {$currency})</message>
 	<message key="payment.directSales.download">{$format} herunterladen</message>
-	<message key="payment.directSales.readRemotely">{$format} ansehen</message>
 	<message key="payment.directSales.monograph.name">Download einer Monografie oder eines Kapitels erwerben</message>
 	<message key="payment.directSales.monograph.description">Diese Transaktion dient dem Erwerb eines direkten Buch- oder Kapiteldownloads.</message>
 

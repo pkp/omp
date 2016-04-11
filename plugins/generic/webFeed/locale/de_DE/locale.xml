@@ -7,19 +7,20 @@
   * Copyright (c) 2014-2016 Simon Fraser University Library
   * Copyright (c) 2003-2016 John Willinsky
   * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
-  * Localization strings for the de_DE (Deutsch (Deutschland)) locale.
-  * Please contact Marco Tullney, marco.tullney@fu-berlin.de, with any questions regarding this translation.
-  *
+  * locale information: https://pkp.sfu.ca/wiki/index.php?title=OMP:_German_(de_DE)
+  * Localization strings
   -->
-  
+ 
 <locale name="de_DE" full_name="Deutsch (Deutschland)">
 	<message key="plugins.generic.webfeed.displayName">Web-Feed-Plug-In</message>
 	<message key="plugins.generic.webfeed.description">Dieses Plug-In erzeugt RSS/Atom-Feeds für die aktuelle Ausgabe.</message>
+	<message key="plugins.generic.webfeed.newcontent">Neuer Inhalt</message>
 
 	<message key="plugins.generic.webfeed.settings">Einstellungen</message>
 	<message key="plugins.generic.webfeed.settings.homepage">Web-Feed-Links nur auf der Hauptseite und den Ausgaben-Seiten anzeigen</message>
-	<message key="plugins.generic.webfeed.settings.all">>Links zu Web-Feeds auf allen Zeitschriftenseiten anzeigen.</message>
+	<message key="plugins.generic.webfeed.settings.all">Links zu Web-Feeds auf allen Zeitschriftenseiten anzeigen.</message>
 
+	<message key="plugins.generic.webfeed.settings.recentBooks">Anzahl anzuzeigender Titel</message>
 	<message key="plugins.generic.webfeed.settings.recentItemsRequired">Bitte geben sie eine positive, ganze Zahl für aktuelle Veröffentlichungen an.</message>
 	<message key="plugins.generic.webfeed.atom.altText">Atom-Logo</message>
 	<message key="plugins.generic.webfeed.rss1.altText">RSS1-Logo</message>
