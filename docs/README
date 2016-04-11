@@ -1,9 +1,9 @@
 	==================================
 	=== Open Monograph Press
 	=== The Public Knowledge Project
-	=== Version: 1.1.0
-	=== GIT tag: omp-1_1_0-0
-	=== Release date: January 31, 2014
+	=== Version: 1.2.0
+	=== GIT tag: omp-1_2_0-0
+	=== Release date: April 11, 2016
 	==================================
 
 About
@@ -154,10 +154,6 @@ interface.
 	
 Translations can be contributed back to PKP for distribution with future
 releases of OMP.
-
-Server requirements for full Unicode (UTF-8) support:
-
-	* MySQL >= 4.1.1 or PostgreSQL >= 7.1
 
 
 Third-party Libraries

@@ -15,7 +15,7 @@
 	<type>core</type>
 	<release>1.2.0.0</release>
 	<tag>omp-1_2_0-0</tag>
-	<date>2015-04-31</date>
+	<date>2016-04-11</date>
 	<info>http://pkp.sfu.ca/omp/</info>
 	<package>http://pkp.sfu.ca/omp/download/omp-1.2.0.tar.gz</package>
 </version>

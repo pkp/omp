@@ -1,7 +1,19 @@
-OMP 1.0b Release Notes
-GIT tag: ojs-0_9_9-0
-Release date: Sept 17, 2012
-=============================
+OMP 1.2 Release Notes
+CVS tag: omp-1_2_0-0
+Release date: April 11, 2016
+=================================
 
-This is the initial public release of OMP, 1.0b (beta). For comparison purposes
-it is sometimes called OMP 0.9.9 internally.
+As this is a major release, we recommend performing a test upgrade and
+reviewing the system before upgrading in production. There are numerous
+workflow, setup, and layout changes.
+
+Configuration Changes
+---------------------
+
+The Press Name setting, inside the Appearance tab under Settings -> Website
+page is removed. 
+The system now is using only one Press name, and it can be defined at
+Masthead tab, under Settings -> Website page. Please, check if your press name
+is displayed as you expect at the top left of your site (if you are using a logo, 
+the name will not appear). If it's not the name you wanted to show, change the
+Masthead press name setting.
