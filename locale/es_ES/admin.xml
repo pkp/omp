@@ -7,50 +7,53 @@
   * Copyright (c) 2014-2016 Simon Fraser University Library
   * Copyright (c) 2003-2016 John Willinsky
   * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
-  *
-  * Localization strings for the es_ES (Español (España)) locale (Site administration).
+  * Credits: https://pkp.sfu.ca/wiki/index.php?title=OMP:_Spanish_(es_ES)
+  * Localization strings (Site administration) for the es_ES (Español (España)) locale.
   -->
 
-<locale name="es_ES" full_name = "Español">
+<locale name="es_ES" full_name="Español (España)">
 	<message key="admin.hostedPresses">Editoriales alojadas</message>
 	<message key="admin.settings.pressRedirect">Redirección de editoriales</message>
-	<message key="admin.settings.pressRedirectInstructions">Las solicitudes de la página principal se redirigirán a esta editorial. Esto puede ser útil si la página solo aloja una editorial, por ejemplo.</message>
+	<message key="admin.settings.pressRedirectInstructions">Las solicitudes de la página principal se redirigirán a esta editorial. Esto puede ser útil si el sitio solo aloja una editorial, por ejemplo.</message>
 	<message key="admin.settings.noPressRedirect">No redirigir</message>
 
 	<message key="admin.languages.primaryLocaleInstructions">Este será el idioma por defecto de la página y de cualquier editorial alojada.</message>
-	<message key="admin.languages.supportedLocalesInstructions">Seleccionar todos los locales que deben tener soporte en la página. Los locales seleccionados estarán disponibles para su uso para todas las editoriales que estén alojadas en la página. Además, aparecen en un menú de idiomas en cada página del sitio (que puede ser modificado manualmente en páginas de editorial específicas). Si no se seleccionan múltiples locales, no aparecerá el menú de idiomas ni estarán disponibles las configuraciones avanzadas para las editoriales.</message>
+	<message key="admin.languages.supportedLocalesInstructions">Seleccione todas las configuraciones regionales para que sean compatibles con el sitio. Las configuraciones locales seleccionadas estarán disponibles para su uso por todas las editoriales alojadas en el sitio, y también aparecerán en el menú de selección de idioma que figura en cada página del sitio (que puede invalidarse en páginas de editoriales específicas). Si no se seleccionan varias configuraciones locales, el menú de cambio de idioma no aparecerá y la configuración de idioma ampliada no estará disponible para las editoriales.</message>
 	<message key="admin.locale.maybeIncomplete">* Los locales marcados están incompletos.</message>
-	<message key="admin.languages.confirmUninstall">¿Seguro que quieres desinstalar este locale? Esto podría afectar a las editoriales alojadas que estén utilizando este locale.</message>
-	<message key="admin.languages.installNewLocalesInstructions">Seleccionar locales complementarios para los que instalar soporte en este sistema. Los locales deben instalarse antes de ser usados por las editoriales alojadas. Ver la documentación OMP para más información sobre añadir soporte para nuevos idiomas.</message>
+	<message key="admin.languages.confirmUninstall">¿Está seguro/a de que desea desinstalar esta configuración regional? Esto puede afectar a cualquier editorial alojada que esté utilizando actualmente la configuración regional.</message>
+	<message key="admin.languages.installNewLocalesInstructions">Seleccione cualquier configuración regional adicional para instalar soporte en este sistema. Las configuraciones regionales deben instalarse antes de que las editoriales alojadas puedan usarlas. Véase la documentación de OMP para obtener información acerca de cómo añadir soporte para nuevos idiomas.</message>
 	<message key="admin.languages.noLocalesToDownload">No hay locales disponibles para su descarga.</message>
-	<message key="admin.languages.downloadFailed">La descarga de locales falló. El mensaje o mensajes del error que se muestra más abajo detalla este fallo.</message>
-	<message key="admin.languages.downloadUnavailable"><![CDATA[<p>Descargando paquetes de idiomas del servidor web de Public Knowledge Project no está disponible en estos momentos porque:</p>
+	<message key="admin.languages.downloadFailed">No se pudo realizar la descarga de la configuración regional. El(los) siguiente(s) mensaje(s) de error describe(n) el error en la descarga. </message>
+	<message key="admin.languages.downloadUnavailable"><![CDATA[<p>La descarga de paquetes de idiomas del servidor web de Public Knowledge Project actualmente no está disponible porque:</p>
 	<ul>
-		<li>Tu servidor no tiene o permite la ejecución de la herramienta GNU "tar"</li>
-		<li>OMP no puede modificar el archivo de registro de locales "registry/locales.xml".</li>
+		<li>Su servidor no dispone o no permite la ejecución de la aplicación "tar" de GNU.</li>
+		<li>OMP no puede modificar el archivo del registro de la configuración regional, por lo general llamado "registry/locales.xml".</li>
 	</ul>
-<p>Los paquetes de idiomas se pueden descargar manualmente en la<a href="http://pkp.sfu.ca" target="_blank">página de PKP</a>.</p>]]></message>
+<p>Los paquetes de idioma pueden descargarse manualmente del <a href="http://pkp.sfu.ca" target="_blank">sitio web de PKP</a>.</p>]]></message>
 
-	<message key="admin.languages.confirmDisable">¿Seguro que quieres deshabilitar este locale? Esto podría afectar a las editoriales alojadas que estén usando este locale.</message>
+	<message key="admin.languages.confirmDisable">¿Está seguro/a de que desea desactivar esta configuración regional? Esto puede afectar a cualquier editorial alojada que esté utilizando actualmente la configuración regional.</message>
+
 	<message key="admin.systemVersion">Versión OMP</message>
 	<message key="admin.systemConfiguration">Configuración OMP</message>
-	<message key="admin.systemConfigurationDescription"><![CDATA[Parámetros de configuración OMP de <tt>config.inc.php</tt>.]]></message>
-	<message key="admin.presses.pressSettings">Parámetros de editorial</message>
+	<message key="admin.presses.pressSettings">Ajustes editorial</message>
 	<message key="admin.presses.noneCreated">No se han creado editoriales.</message>
-	<message key="admin.presses.createInstructions">Serás registrado de forma automática como administrador de esta editorial. Después de crear una editorial nueva, serás redirigido al asistente de configuración para completar la configuración editorial inicial.</message>
+	<message key="admin.contexts.confirmDelete">¿Está seguro/a de que desea eliminar de forma permanente esta editorial y todo su contenido?</message>
+	<message key="admin.contexts.create">Crear editorial</message>
+	<message key="admin.presses.createInstructions">Se le asignará automáticamente el rol del gestor/a de esta editorial. Después de crear una nueva editorial, será redirigido/a al asistente de configuración para completar la configuración inicial de la editorial.</message>
 	<message key="admin.presses.urlWillBe">La URL de la editorial será {$sampleUrl}</message>
-	<message key="admin.presses.enablePressInstructions">Habilitar esta editorial para que aparezca de forma pública en la página</message>
+	<message key="admin.contexts.form.titleRequired">Es necesario introducir el título.</message>
+	<message key="admin.contexts.form.pathRequired">Inserte una ruta.</message>
+	<message key="admin.contexts.form.pathAlphaNumeric">La ruta sólo puede contener caracteres alfanuméricos, guiones y guiones bajos, y debe empezar y terminar con un carácter alfanumérico.</message>
+	<message key="admin.contexts.form.pathExists">La ruta seleccionada ya está siendo utilizada por otra editorial.</message>
+	<message key="admin.presses.enablePressInstructions">Habilitar que esta editorial aparezca públicamente en el sitio</message>
 	<message key="admin.presses.pressDescription">Detalles de la editorial</message>
 	<message key="admin.presses.addPress">Añadir editorial</message>
 
-	<message key="admin.settings.oaiRegistrationDescription"><![CDATA[Para acceder a los contenidos de todas las editoriales alojadas en esta página indexados en un sistema de distribución global de bases de datos de investigación, <a href="http://pkp.sfu.ca/harvester/add.php" target="_blank">registra</a> tu URL de la página con los metadatos de Public Knowledge Project <a href="http://pkp.sfu.ca/harvester/" target="_blank">harvester</a>. Esta herramienta recoge los metadatos de cada elemento indexado en esta editorial, habilitando la búsqueda precisa y colectiva entre las páginas de investigación que se adhieran al protocolo<a href="http://www.openarchives.org/OAI/openarchivesprotocol.htm#Introduction" target="_blank">Open Archives Initiative Protocol for Metadata Harvesting</a>.
-<br /><br />
-<a href="http://pkp.sfu.ca/harvester/add.php" target="_blank">Click here</a> e introduce <span class="highlight">{$siteUrl}</span> en <strong>URL de la página</strong>, y<span class="highlight">{$oaiUrl}</span> en<strong>URL base para archivo OAI</strong>.
-<br /><br />
-Ten en cuenta que la interfaz OAI se puede deshabilitar para esta página editando la configuración del sistema OMP. Futuras versiones de OMP permitirán que la interfaz OAI esté habilitada o deshabilitada para editoriales concreta dentro de la página.]]></message>
+
+	<message key="admin.settings.oaiRegistrationDescription"><![CDATA[Para que se indexen los contenidos de todas las editoriales alojadas en el sitio dentro de un sistema de bases de datos de investigación globalmente distribuido, <a href="http://pkp.sfu.ca/harvester/add.php" target="_blank">registre</a> la URL de su sitio con el <a href="http://pkp.sfu.ca/harvester/" target="_blank">recolector</a> de metadatos de Public Knowledge Project. La herramienta recoge los metadatos de cada elemento indexado en la publicación, permitiendo búsquedas colectivas y adecuadas entre las páginas de investigación que se acojan al <a href="http://www.openarchives.org/OAI/openarchivesprotocol.htm#Introduction" target="_blank">Protocolo de iniciativa de archivos abiertos para recopilación de metadatos</a>. <br /><br /> <a href="http://pkp.sfu.ca/harvester/add.php" target="_blank">Haga clic aquí</a> e introduzca <span class="highlight">{$siteUrl}</span>en <strong>URL de sitio</strong> y <span class="highlight">{$oaiUrl}</span> en <strong>Base URL para archivo OAI</strong>. <br /><br /> Tenga en cuenta que la interfaz OAI puede desactivarse para el sitio al editar el sistema de configuración OMP. Las versiones futuras de OMP permitirán a la interfaz OAI activarse o desactivarse para editoriales individuales dentro del sitio.]]></message>
 
 	<!-- System Information -->
-	<message key="admin.overwriteConfigFileInstructions"><![CDATA[<h4>¡AVISO!</div>
-<p>El sistema no ha podido sobrescribir automáticamente el archivo de configuración. Para aplicar tus cambios en la configuración, tienes que abrir <tt>config.inc.php</tt> con un editor de texto apropiado y reemplazar sus contenidos por los del campo de texto de abajo.</p>]]></message>
+	<message key="admin.overwriteConfigFileInstructions"><![CDATA[<h4>Aviso</h4>
+<p>El sistema no puede sobrescribir automáticamente el archivo de configuración. Para aplicar los cambios de la configuración es necesario abrir <tt>config.inc.php</tt> en un editor de texto adecuado y reemplazar su contenido por los del campo de texto que figuran a continuación.</p>]]></message>
 
 </locale>

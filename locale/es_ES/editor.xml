@@ -7,72 +7,77 @@
   * Copyright (c) 2014-2016 Simon Fraser University Library
   * Copyright (c) 2003-2016 John Willinsky
   * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
-  *
-  * Localization strings for the es_ES (Español (España)) locale.
+  * Credits: https://pkp.sfu.ca/wiki/index.php?title=OMP:_Spanish_(es_ES)
+  * Localization strings.
   -->
 
-<locale name="es_ES" full_name = "Español">
-	<message key="editor.pressSignoff">Press signoff</message>
-	<message key="editor.submissionArchive">Submission Archive</message>
-	<message key="editor.monograph.cancelReview">Cancel Request</message>
-	<message key="editor.monograph.clearReview">Clear Reviewer</message>
-	<message key="editor.monograph.enterRecommendation">Enter Recommendation</message>
-	<message key="editor.monograph.enterReviewerRecommendation">Enter Reviewer Recommendation</message>
-	<message key="editor.monograph.recommendation">Recommendation</message>
-	<message key="editor.monograph.selectReviewerInstructions">Select a reviewer above and press the 'Select Reviewer' button to continue.</message>
-	<message key="editor.monograph.replaceReviewer">Replace Reviewer</message>
-	<message key="editor.monograph.editorToEnter">Editor to enter recommendation/comments for reviewer</message>
-	<message key="editor.monograph.uploadReviewForReviewer">Upload review</message>
-	<message key="editor.monograph.peerReviewOptions">Peer Review Options</message>
-	<message key="editor.monograph.selectProofreadingFiles">Proofreading Files</message>
-	<message key="editor.monograph.internalReview">Initiate Internal Review</message>
-	<message key="editor.monograph.internalReviewDescription">You are about to initiate an internal review for this submission.  Files that are part of the submission are listed below and can be selected for review.</message>
-	<message key="editor.monograph.externalReview">Initiate External Review</message>
-	<message key="editor.submissions.lastAssigned">Latest</message>
-	<message key="editor.monograph.final.selectFinalDraftFiles">Select Final Draft Files</message>
-	<message key="editor.monograph.final.currentFiles">Current Final Draft Files</message>
-
-	<!-- Stage Participants grid -->
-	<message key="editor.monograph.copyediting.currentFiles">Current Files</message>
-	<message key="editor.monograph.copyediting.personalMessageToUser">Message to user</message>
-
+<locale name="es_ES" full_name="Español (España)">
+	<message key="editor.pressSignoff">Pulse Cerrar sesión</message>
+	<message key="editor.submissionArchive">Archivo de envíos</message>
+	<message key="editor.monograph.cancelReview">Cancelar solicitud</message>
+	<message key="editor.monograph.clearReview">Eliminar revisor/a</message>
+	<message key="editor.monograph.enterRecommendation">Introducir recomendación</message>
+	<message key="editor.monograph.enterReviewerRecommendation">Introducir recomendación del revisor/a</message>
+	<message key="editor.monograph.recommendation">Recomendación</message>
+	<message key="editor.monograph.selectReviewerInstructions">Seleccione un revisor/a y pulse el botón "Seleccionar revisor/a" para continuar.</message>
+	<message key="editor.submission.selectedReviewer">Revisor/a seleccionado</message>
+	<message key="editor.monograph.replaceReviewer">Reemplazar revisor/a</message>
+	<message key="editor.monograph.editorToEnter">Recomendaciones/comentarios del editor/a para el revisor/a</message>
+	<message key="editor.monograph.uploadReviewForReviewer">Cargar revisión</message>
+	<message key="editor.monograph.peerReviewOptions">Opciones de evaluación por pares</message>
+	<message key="editor.monograph.selectProofreadingFiles">Corrección de archivos</message>
+	<message key="editor.monograph.internalReview">Iniciar revisión interna</message>
+	<message key="editor.monograph.internalReviewDescription">Está a punto de iniciar una revisión interna para este envío.  Los archivos que formen parte de este envío se enumeran abajo y se pueden seleccionar para su revisión.</message>
+	<message key="editor.monograph.externalReview">Iniciar revisión externa</message>
+	<message key="editor.submissions.lastAssigned">Última(s)</message>
+	<message key="editor.monograph.final.selectFinalDraftFiles">Seleccionar los archivos del borrador final</message>
+	<message key="editor.monograph.final.currentFiles">Archivos actuales del borrador final</message>
+	<message key="editor.monograph.copyediting.currentFiles">Archivos actuales</message>
+	<message key="editor.monograph.copyediting.personalMessageToUser">Mensaje al usuario</message>
+	
 	<!-- Editorial Legend -->
-	<message key="editor.monograph.legend.submissionActions">Submission Actions</message>
-	<message key="editor.monograph.legend.submissionActionsDescription">Overall submission actions and options.</message>
-	<message key="editor.monograph.legend.sectionActions">Section Actions</message>
-	<message key="editor.monograph.legend.sectionActionsDescription">Options particular to a given section, for example uploading files or adding users.</message>
-	<message key="editor.monograph.legend.itemActions">Item Actions</message>
-	<message key="editor.monograph.legend.itemActionsDescription">Actions and options particular to an individual file.</message>
-	<message key="editor.monograph.legend.catalogEntry">View and manage the submission catalog entry, including metadata and publishing formats</message>
-	<message key="editor.monograph.legend.bookInfo">View and manage submission metadata, notes, notifications, and history</message>
-	<message key="editor.monograph.legend.participants">View and manage this submission's participants: authors, editors, designers, and more</message>
-	<message key="editor.monograph.legend.add">Upload a file to the section</message>
-	<message key="editor.monograph.legend.add_user">Add a user to the section</message>
-	<message key="editor.monograph.legend.settings">View and access item settings, such as information and delete options</message>
-	<message key="editor.monograph.legend.more_info">More Information: file notes, notification options, and history</message>
-	<message key="editor.monograph.legend.notes_none">File information: notes, notification options, and history (No notes added yet)</message>
-	<message key="editor.monograph.legend.notes">File information: notes, notification options, and history (Notes are available)</message>
-	<message key="editor.monograph.legend.notes_new">File information: notes, notification options, and history (New notes added since last visit)</message>
-	<message key="editor.monograph.legend.edit">Edit item</message>
-	<message key="editor.monograph.legend.delete">Delete item</message>
-	<message key="editor.monograph.legend.in_progress">Action in progress or not yet complete</message>
-	<message key="editor.monograph.legend.complete">Action complete</message>
-	<message key="editor.monograph.legend.uploaded">File uploaded by the role in the grid column title</message>
+	<message key="editor.monograph.legend.submissionActions">Acciones de envío</message>
+	<message key="editor.monograph.legend.submissionActionsDescription">Opciones y acciones generales de envío.</message>
+	<message key="editor.monograph.legend.sectionActions">Acciones de sección</message>
+	<message key="editor.monograph.legend.sectionActionsDescription">Opciones específicas de una sección determinada, por ejemplo, cargar archivos o añadir usuarios.</message>
+	<message key="editor.monograph.legend.itemActions">Acciones de elemento</message>
+	<message key="editor.monograph.legend.itemActionsDescription">Acciones y opciones específicas de un archivo individual.</message>
+	<message key="editor.monograph.legend.catalogEntry">Ver y gestionar la entrada de catálogo del envío, incluso formatos de metadatos y publicación</message>
+	<message key="editor.monograph.legend.bookInfo">Ver y gestionar metadatos, notas, notificaciones y el historial del envío</message>
+	<message key="editor.monograph.legend.participants">Ver y gestionar los participantes de este envío: autores/as, editores/as, diseñadores/as, etc.</message>
+	<message key="editor.monograph.legend.add">Cargar un archivo a la sección</message>
+	<message key="editor.monograph.legend.add_user">Añadir un usuario/a a la sección</message>
+	<message key="editor.monograph.legend.settings">Ver y acceder a la configuración de elemento, como información y opciones de eliminación</message>
+	<message key="editor.monograph.legend.more_info">Más información: notas de archivo, opciones de notificación e historial</message>
+	<message key="editor.monograph.legend.notes_none">Información de archivo: notas, opciones de notificación e historial (sin notas todavía)</message>
+	<message key="editor.monograph.legend.notes">Información de archivo: notas, opciones de notificación e historial (con notas)</message>
+	<message key="editor.monograph.legend.notes_new">Información de archivo: notas, opciones de notificación e historial (nuevas notas añadidas desde la última visita)</message>
+	<message key="editor.monograph.legend.edit">Editar elemento</message>
+	<message key="editor.monograph.legend.delete">Eliminar elemento</message>
+	<message key="editor.monograph.legend.in_progress">Acción en curso o incompleta</message>
+	<message key="editor.monograph.legend.complete">Acción completa</message>
+	<message key="editor.monograph.legend.uploaded">Archivo cargado por el rol en el título de la columna de cuadrícula</message>
 
 	<!-- Editorial related -->
-	<message key="editor.monograph.editorial.fairCopy">Fair Copy</message>
-	<message key="editor.monograph.editorial.fairCopyDescription">The copyeditor uploads a clean or fair copy of the submission for review by the editor, prior to sending it to Production.</message>
+	<message key="editor.submission.introduction">Durante el envío, el editor/a, después de consultar los archivos enviados, selecciona la acción adecuada (la cual incluye notificar al autor/a): enviar a revisión interna (implica seleccionar los archivos para la revisión interna), enviar a revisión externa (implica seleccionar los archivos para la revisión externa), aceptar el envío (implica seleccionar los archivos para la fase editorial), o rechazar el envío (envío de archivos).</message>
+	<message key="editor.submission.editorial.finalDraftDescription"><![CDATA[Para volúmenes editados con diferentes autores/as por capítulo, el archivo de envío puede dividirse en varios archivos de tamaño de un capítulo cada uno. Éstos se revisan por el autor/a de cada capítulo después de que los archivos corregidos se suban a <span class="pkp_help_title">Corrección de originales</span>.]]></message>
+	<message key="editor.monograph.editorial.fairCopy">Copia en limpio</message>
+	<message key="editor.monograph.editorial.fairCopyDescription">El corrector/a sube una copia original o en limpio del envío para su revisión por el editor/a, antes de enviarla a producción.</message>
+
 	<!-- Production/Proof related -->
+	<message key="editor.submission.production.introduction"><![CDATA[Durante la producción, el editor/a selecciona formatos del libro (por ejemplo digital, en rústica, etc) en <span class="pkp_help_title">Formatos de publicación</span>, para los cuales el/la maquetista prepara archivos de calidad de publicación basándose en los archivos listos para producción. Los archivos de calidad de publicación se suben para cada formato en <span class="pkp_help_title">Pruebas de página</span>, dónde se revisan. El libro se hace <em>Disponible</em> (i.e., publicado) para cada formato en <span class="pkp_help_title">Formatos de publicación</span>, tras marcar la opción <em>Pruebas</em> como aprobada, y la entrada de Catálogo como incluida en la entrada de catálogo del libro.]]></message>
+	<message key="editor.submission.production.productionReadyFilesDescription"><![CDATA[El/la maquetista prepara estos archivos para cada formato de publicación y después los sube a las <span class="pkp_help_title">Pruebas de página</span> correspondientes para su corrección.]]></message>
 	<message key="editor.monograph.proofs">Pruebas</message>
-	<message key="editor.monograph.production.approvalAndPublishing">Approval and Publishing</message>
-	<message key="editor.monograph.production.approvalAndPublishingDescription">Different publication formats, such as hardcover, softcover and digital, can be uploaded in the Publication Formats section below. You can use the publication formats grid below as a checklist for what still needs to be done to publish a publication format.</message>
-	<message key="editor.monograph.production.publicationFormatDescription"><![CDATA[Añade formatos de publicación (por ejemplo, digital, rústica) para que el maquetador prepare pruebas de imprenta para corrección de pruebas. Las <em>Pruebas</em> necesitan ser marcadas como aprobadas y catalogadas antes de que un formato puede ser hecho <em>Disponible</em> (por ejemplo, publicado).]]></message>
+	<message key="editor.monograph.production.approvalAndPublishing">Aprobación y publicaciones</message>
+	<message key="editor.monograph.production.approvalAndPublishingDescription">Los diferentes formatos de publicación, como tapa dura, tapa blanda y digital, pueden cargarse a la sección Formatos de publicación que se ve a continuación. Se puede usar la cuadrícula de formatos de publicación mostrada a continuación, como una lista de comprobación de lo que todavía queda por hacer para publicar un formato de publicación.</message>
+	<message key="editor.monograph.production.publicationFormatDescription"><![CDATA[Añadir formatos de publicación (p.ej., digital, en rústica) para los cuales el/la maquetista prepara pruebas de página para su corrección. Las <em>Pruebas</em> deben marcarse como aprobadas y la entrada de <em>Catálogo</em> para el formato debe marcarse como publicada en la entrada de catálogo del libro, antes de que un formato se pueda hacer <em>Disponible</em> (i.e., publicado).]]></message>
 	<message key="editor.monograph.approvedProofs.edit">Establecer condiciones para la descarga</message>
 	<message key="editor.monograph.approvedProofs.edit.linkTitle">Establecer condiciones</message>
-	<message key="editor.monograph.proof.addNote">Add response</message>
+	<message key="editor.monograph.proof.addNote">Añadir respuesta</message>
 
 	<!-- Add file or auditor to editor/audit grids -->
 	<!-- Review related -->
-	<message key="editor.internalReview.introduction">In Internal Review, the editor assigns reviewers internal to the submission files and considers the resulting reviews, before selecting the appropriate action (which includes notifying the author): Request Revisions (revisions reviewed by editor alone); Resubmit for Review (revisions initiate another round of reviews); Send External Review (entails selecting files for External Review); Accept for Submission (entails selecting files for Editorial stage); or Decline Submission (archives submission).</message>
-	<message key="editor.externalReview.introduction">In External Review, the editor assign reviewers external to the press to the submission files and consider the resulting reviews, before selecting the appropriate action (which includes notifying the author): Request Revisions (revisions reviewed by editor alone); Resubmit for Review (revisions initiate another round of reviews); Accept for Submission (entails selecting files for Editorial stage); or Decline Submission (editor archives submission).</message>
+	<message key="editor.internalReview.introduction">Durante la revisión interna, el editor/a asigna revisores/as internos a los archivos de envío y verifica los resultados de la revisión, antes de seleccionar la acción apropiada (la cual incluye notificar al autor/a): solicitar revisiones (revisiones hechas sólo por el editor/a), reenviar para revisión (se inicia otra ronda de revisiones), enviar para revisión externa (implica seleccionar los archivos para la revisión externa), aceptar el envío (implica seleccionar los archivos para la fase editorial), o rechazar el envío (archiva el envío).</message>
+	<message key="editor.externalReview.introduction">Durante la revisión externa, el editor/a asigna revisores/as externos a los archivos de envío y verifica los resultados de la revisión, antes de seleccionar la acción apropiada (la cual incluye notificar al autor/a): solicitar revisiones (revisiones hechas sólo por el editor), reenviar a revisión (se inicia otra ronda de revisiones), aceptar el envío (implica seleccionar los archivos para la fase editorial), o rechazar el envío (el editor/a archiva el envío).</message>
+	<message key="editor.submission.proof.manageProofFilesDescription">Cualquier fichero que ya haya sido subido en cualquier fase del envío puede añadirse al listado "Ficheros de prueba" marcando la siguiente casilla "Añadir" y pulsando "Buscar": todos los ficheros disponibles se listarán y podrán incluirse.</message>
 </locale>
