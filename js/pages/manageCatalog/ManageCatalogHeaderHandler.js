@@ -54,7 +54,7 @@
 	 * @private
 	 * @param {Object} element The HTML element which generated the event.
 	 * @param {Event} event The data changed event.
-	 * @return {boolean} 
+	 * @return {boolean}
 	 */
 	$.pkp.pages.manageCatalog.ManageCatalogHeaderHandler.
 			prototype.dataChangedHandler_ = function(element, event) {
@@ -65,20 +65,20 @@
 		switch (currentTabIndex) {
 			case 0:
 				// Homepage.
-				if ($(event.target).attr('id') == 'homepageMonographsGridContainer') { 
+				if ($(event.target).attr('id') == 'homepageMonographsGridContainer') {
 					return false;
 				}
-				$("div[id^='component-grid-managecatalog-homepagemonographsgrid']", 
+				$("div[id^='component-grid-managecatalog-homepagemonographsgrid']",
 						this.getHtmlElement()).trigger('dataChanged');
 				break;
-	
+
 			case 1:
 				// Category.
 				// Avoid refresh requested events coming from category monographs grid.
 				if ($(event.target).attr('id') == 'categoryMonographsGridContainer') {
 					return false;
 				}
-				$("div[id^='component-grid-managecatalog-categorymonographsgrid']", 
+				$("div[id^='component-grid-managecatalog-categorymonographsgrid']",
 						this.getHtmlElement()).trigger('dataChanged');
 				break;
 			case 2:
@@ -87,7 +87,7 @@
 				if ($(event.target).attr('id') == 'seriesMonographsGridContainer') {
 					return false;
 				}
-				$("div[id^='component-grid-managecatalog-seriesmonographsgrid']", 
+				$("div[id^='component-grid-managecatalog-seriesmonographsgrid']",
 						this.getHtmlElement()).trigger('dataChanged');
 				break;
 		}

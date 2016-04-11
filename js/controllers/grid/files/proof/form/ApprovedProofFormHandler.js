@@ -44,7 +44,8 @@
 		var $priceElement = $('input[id^="price"]');
 
 		// Disable/enable the submit controls based on a price being entered
-		$priceElement.on('change keyup paste', this.callbackWrapper(this.changeHandler_));
+		$priceElement.on('change keyup paste',
+				this.callbackWrapper(this.changeHandler_));
 
 		// Set up the default enabled/disabled state of the checkbox controls
 		if (this.salesType_ !== '') {
