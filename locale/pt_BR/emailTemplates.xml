@@ -203,7 +203,7 @@ Agradecemos por considerar nossa solicitação.<br />
 &quot;{$submissionTitle}&quot;<br />
 <br />
 {$abstractTermIfEnabled}<br />
-{$monographAbstract}]]></body>
+{$submissionAbstract}]]></body>
 		<description>Esta mensagem do editor de série solicita ao avaliador que aceite ou não avaliar a submissão. Fornece informações sobre a submissão, como título e resumo, a data de entrega da avaliação e como acessar a submissão. A mensagem é usada quando o processo de avaliação padrão é o definido no passo 2 da configuração da editora e o acesso rápido foi habilitado.</description>
 	</email_text>
 	<email_text key="REVIEW_REQUEST_ATTACHED">
@@ -507,5 +507,65 @@ Em caso de dúvidas, entre em contato.<br />
 		<subject>Uma mensagem sobre a editora {$contextName}</subject>
 		<body><![CDATA[Informe sua mensagem aqui.]]></body>
 		<description>Uma mensagem padrão em branco, a ser usada no centro de mensagens.</description>
+	</email_text>
+	<email_text key="REVIEW_REQUEST_REMIND_AUTO">
+		<subject>Pedido de Avaliação de Manuscrito</subject>
+		<body><![CDATA[Caro(a) {$reviewerName},<br />
+Apenas relembrando gentilmente do nosso pedido para revisão 
+da submissão &quot;{$submissionTitle},&quot; para {$contextName}. 
+Nos esperamos ter sua resposta em {$responseDueDate},
+sendo que esse email foi gerado e enviado automaticamente devido ao tempo.
+<br />
+{$messageToReviewer}<br />
+<br />
+Por favor, entre no site da editora para indicar se aceita a revisão,
+bem como a submissão e os registros de revisão e recomendação.<br />
+<br />
+A revisão até: {$reviewDueDate}.<br />
+<br />
+Endereço da Submissão: <a
+href="{$submissionReviewUrl}">{$submissionReviewUrl}</a><br />
+<br />
+Usuário: {$reviewerUserName}<br />
+<br />
+Obrigado por considerar o pedido.<br />
+<br />
+<br />
+Attenciosamente,<br />
+{$editorialContactSignature}<br />]]></body>
+		<description><![CDATA[Este Email é automaticamente enviado quando o revisor é confirmado devido ao tempo (veja a opção de revisores sobre as configurações > Fluxo de submissão  > Revisão) e o botão de acesso ao revisor fica desativado. tarefas programadas devem ser ativadas e configuradas (veja o site de configuração)]]></description>
+	</email_text>
+	<email_text key="REVIEW_REQUEST_REMIND_AUTO_ONECLICK">
+		<subject>Pedido de Avaliação de Manuscrito</subject>
+		<body><![CDATA[{$reviewerName}:<br />
+Apenas relembrando gentilmente do nosso pedido para revisão 
+da submissão &quot;{$submissionTitle},&quot; para {$contextName}. 
+Nos esperamos ter sua resposta em {$responseDueDate},
+sendo que esse email foi gerado e enviado automaticamente devido ao tempo.
+<br />
+Acreditamos que você é um excelente avaliador para o manuscrito. 
+O resumo da submissão está inserido abaixo e esperamos que considere aceitar essa importante tarefa para nos. 
+
+<br />
+<br />
+Por favor, entre no site da editora para indicar se aceita a revisão,
+bem como a submissão e os registros de revisão e recomendação.<br />
+<br />
+A revisão até: {$reviewDueDate}.<br />
+<br />
+Endereço da Submissão: <a
+href="{$submissionReviewUrl}">{$submissionReviewUrl}</a><br />
+<br />
+Obrigado por considerar o pedido. <br />
+<br />
+{$editorialContactSignature}<br />
+<br />
+<br />
+<br />
+&quot;{$submissionTitle}&quot;<br />
+<br />
+{$abstractTermIfEnabled}<br />
+{$submissionAbstract}]]></body>
+		<description><![CDATA[Este Email é automaticamente enviado quando o revisor é confirmado devido ao tempo (veja a opção de revisores sobre as configurações > Fluxo de submissão  > Revisão) e o botão de acesso ao revisor fica desativado. tarefas programadas devem ser ativadas e configuradas (veja o site de configuração)]]></description>
 	</email_text>
 </email_texts>

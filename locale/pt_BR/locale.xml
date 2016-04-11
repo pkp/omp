@@ -385,7 +385,7 @@
 	<message key="about.contributors">Apoio</message>
 	<message key="about.onlineSubmissions">Submissões online></message>
 	<message key="about.onlineSubmissions.login">Login</message>
-	<message key="about.onlineSubmissions.registrationRequired">Realizar um cadastro e consequente login são necessários para submeter trabalhos e acompanar a situação de submissões correntes.</message>
+	<message key="about.onlineSubmissions.registrationRequired">Realizar um cadastro e consequente login são necessários para submeter trabalhos e acompanhar a situação de submissões correntes. {$login} em uma conta existente ou {$register} uma nova conta.</message>
 	<message key="about.authorGuidelines">Diretrizes para autores</message>
 	<message key="about.submissionPreparationChecklist">Verificação da submissão</message>
 	<message key="about.submissionPreparationChecklist.description">Como parte do processo de submissão, é necessário que os autores verifiquem que sua submissão atende aos seguintes requisitos, sendo que elas serão devolvidas submissão que não atendam a estas diretrizes.</message>
@@ -450,18 +450,18 @@ Suporte à biblioteca mbstring: <strong>{$supportsMBString}</strong>]]></message
 <p>Não se esqueça de alterar a variável "installed" em seu arquivo de configuração config.inc.php de volta para <em>On</em>.</p>
 <p>Caso não tenha se cadastrado ainda e deseje receber avisos e atualizações, <strong>>cadastre-se na página <a href="http://pkp.sfu.ca/omp/register" target="_blank">http://pkp.sfu.ca/omp/register</a>.</strong>  Caso tenha perguntas ou comentários, visite o <a href="http://forum.pkp.sfu.ca" target="_blank">fórum de suporte</a>.</p>]]></message>
 	<!-- Monograph Logs -->
-	<message key="log.review.reviewCleared">A rodada de avaliação {$round} de {$reviewerName} para a submissão {$monographId} foi liberada.</message>
-	<message key="log.review.reviewDueDateSet">A data de entrega da rodada {$round} de avaliação da submissão {$monographId} por {$reviewerName} foi definida para {$dueDate}.</message>
-	<message key="log.review.reviewDeclined">{$reviewerName} recusou realizar a rodada {$round} de avaliação da submissão {$monographId}.</message>
-	<message key="log.review.reviewAccepted">{$reviewerName} aceitou realizar a rodada {$round} de avaliação da submissão {$monographId}.</message>
-	<message key="log.review.reviewUnconsidered">{$editorName} marcou realizar a rodada {$round} de avaliação da submissão {$monographId} como não considerada.</message>
-	<message key="log.editor.decision">Decisão editorial ({$decision}) para a monografia {$monographId} foi registrada por {$editorName}.</message>
-	<message key="log.editor.archived">A submissão {$monographId} foi arquivada.</message>
-	<message key="log.editor.restored">A sumissão {$monographId} foi restaurada para a fila.</message>
-	<message key="log.editor.editorAssigned">{$editorName} foi designado como editor da submissão {$monographId}.</message>
-	<message key="log.proofread.assign">{$assignerName} designou {$proofreaderName} como leitor de provas da submissão {$monographId}.</message>
-	<message key="log.proofread.complete">{$proofreaderName} enviou {$monographId} para agendamento.</message>
-	<message key="log.imported">{$userName} importou a monografia {$monographId}.</message>
+	<message key="log.review.reviewCleared">A rodada de avaliação {$round} de {$reviewerName} para a submissão {$submissionId} foi liberada.</message>
+	<message key="log.review.reviewDueDateSet">A data de entrega da rodada {$round} de avaliação da submissão {$submissionId} por {$reviewerName} foi definida para {$dueDate}.</message>
+	<message key="log.review.reviewDeclined">{$reviewerName} recusou realizar a rodada {$round} de avaliação da submissão {$submissionId}.</message>
+	<message key="log.review.reviewAccepted">{$reviewerName} aceitou realizar a rodada {$round} de avaliação da submissão {$submissionId}.</message>
+	<message key="log.review.reviewUnconsidered">{$editorName} marcou realizar a rodada {$round} de avaliação da submissão {$submissionId} como não considerada.</message>
+	<message key="log.editor.decision">Decisão editorial ({$decision}) para a monografia {$submissionId} foi registrada por {$editorName}.</message>
+	<message key="log.editor.archived">A submissão {$submissionId} foi arquivada.</message>
+	<message key="log.editor.restored">A sumissão {$submissionId} foi restaurada para a fila.</message>
+	<message key="log.editor.editorAssigned">{$editorName} foi designado como editor da submissão {$submissionId}.</message>
+	<message key="log.proofread.assign">{$assignerName} designou {$proofreaderName} como leitor de provas da submissão {$submissionId}.</message>
+	<message key="log.proofread.complete">{$proofreaderName} enviou {$submissionId} para agendamento.</message>
+	<message key="log.imported">{$userName} importou a monografia {$submissionId}.</message>
 
 	<!-- Notifications -->
 	<message key="notification.addedIdentificationCode">Código de identificação incluído.</message>
@@ -536,8 +536,8 @@ Suporte à biblioteca mbstring: <strong>{$supportsMBString}</strong>]]></message
 	<message key="payment.directSales.openAccess">Acesso aberto</message>
 	<message key="payment.directSales.price.description">Formatos de arquivo podem estar disponíveis para baixar do site da editora por meio de acesso aberto, sem custos para leitores ou por meio de venda direta (usando um processador de pagamento online, configurado na Distribuição). Indique a forma de acesso para este arquivo.</message>
 	<message key="payment.directSales.validPriceRequired">É necessário um valor numérico válido para o preço.</message>
-	<message key="payment.directSales.purchase">Adquirir ({$amount} {$currency})</message>
-	<message key="payment.directSales.download">Baixar</message>
+	<message key="payment.directSales.purchase">Adquirir  {$format} ({$amount} {$currency})</message>
+	<message key="payment.directSales.download">Baixar {$format}</message>
 	<message key="payment.directSales.monograph.name">Adquirir monografia ou capítulo para baixar</message>
 	<message key="payment.directSales.monograph.description">Esta transação é para a compra direta de um arquivo para baixar de uma única mongrafia ou capítulo.</message>
 
@@ -552,4 +552,35 @@ Suporte à biblioteca mbstring: <strong>{$supportsMBString}</strong>]]></message
 	<message key="plugins.categories.viewableFiles.description">Plugins para arquivos publicados adicionam suporte para a exibição de diferentes tipos de documentos em linha, por exemplo, PDF incorporados na página.</message>
 	<message key="submission.pdf.download">Baixar PDF</message>
 
+	<message key="monograph.publicationFormat">Formato</message>
+	<message key="monograph.publicationFormatDetails">Detalhes sobre o formato disponível para publicação: {$format}</message>
+	<message key="monograph.miscellaneousDetails">Detalhes sobre essa publicação</message>
+	<message key="monograph.publicationFormat.productDimensionsSeparator">x</message>
+	<message key="grid.catalogEntry.remotelyHostedContent">Este formato estará disponíivel em um site remoto</message>
+	<message key="catalog.noTitles">Sem publicações disponíveis.</message>
+	<message key="catalog.noTitlesNew">Sem novos títulos disponíveis neste momento.</message>
+	<message key="catalog.noTitlesSearch">Nenhuma publicação  que atenda a busca por "{$searchQuery}" foi encontrada.</message>
+	<message key="catalog.noTitlesSection">Sem publicações para esta seção no momento.</message>
+	<message key="catalog.foundTitleSearch">Uma publicação que atende a busca por "{$searchQuery}" foi encontrada.</message>
+	<message key="catalog.foundTitlesSearch">{$number} publicações foram encontradas que atendem a busca por "{$searchQuery}".</message>
+	<message key="catalog.sortBy">Ordem das publicações</message>
+	<message key="catalog.sortBy.seriesDescription">Escolha como ordenar as publicações desta série.</message>
+	<message key="catalog.sortBy.categoryDescription">Escolha como ordenar as publicações desta categoria.</message>
+	<message key="catalog.sortBy.catalogDescription">Escolha como ordenar as publicações no catálogo.</message>
+	<message key="catalog.sortBy.titleAsc">Título (A-Z)</message>
+	<message key="catalog.sortBy.titleDesc">Título (Z-A)</message>
+	<message key="catalog.sortBy.datePublishedAsc">Data de publicação (antigos primeiro)</message>
+	<message key="catalog.sortBy.datePublishedDesc">Data de publicação (novos primeiro)</message>
+	<message key="catalog.sortBy.seriesPositionAsc">Posição da série (menor primeiro)</message>
+	<message key="catalog.sortBy.seriesPositionDesc">Posição da série (maior primeiro)</message>
+	<message key="catalog.viewableFile.title">Versão {$type} do arquivo {$title}</message>
+	<message key="catalog.viewableFile.return">Retorne para ver os detalhes sobre  {$monographTitle}</message>
+	<message key="context.current">Editora Atual:</message>
+	<message key="about.onlineSubmissions.register">Registrar</message>
+	<message key="payment.directSales.numericOnly">Preços devem ser exclusivamente numéricos. Não inclua símbolos monetários.</message>
+	<message key="payment.directSales.readRemotely">Ir para  {$format}</message>
+	<message key="rt.metadata.pkp.dctype">Livro</message>
+	<message key="user.profile.form.showOtherContexts">Registrar em outras editoras</message>
+	<message key="user.profile.form.hideOtherContexts">Ocultar outras editoras</message>
+	<message key="spotlight">Em destaque</message>
 </locale>

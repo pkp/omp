@@ -121,4 +121,10 @@
 	<message key="submission.event.publicationFormatRemoved">O formato de publicação "{$formatName}" foi excluído.</message>
 	<message key="submission.submit.titleAndSummary">Título e Resumo</message>
 
+	<message key="submission.submit.seriesPosition.description">Exemplos: Livro 2, Volume 2</message>
+	<message key="submission.complete">Aprovado</message>
+	<message key="submission.incomplete">Esperando Aprovação</message>
+	<message key="workflow.review.externalReview">Avaliador Externo</message>
+	<message key="editor.submission.decision.sendExternalReview">Enviar ao Avaliador Externo</message>
+	<message key="submission.upload.fileContents">Componente da Submissão</message>
 </locale>

@@ -69,4 +69,5 @@
 	<message key="editor.monograph.approvedProofs.edit.linkTitle">Estabelecer termos</message>
 	<message key="editor.monograph.proof.addNote">Incluir resposta</message>
 
+	<message key="editor.submission.proof.manageProofFilesDescription">Qualquer arquivo já enviado para qualquer estágio do processo editorial pode ser adicionado aos arquivos de prova assinalando a opção 'incluir' abaixo e clicando em 'Buscar': todos os arquivos disponíveis serão listados e podem ser incluídos.</message>
 </locale>
