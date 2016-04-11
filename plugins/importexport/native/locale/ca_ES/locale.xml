@@ -9,11 +9,12 @@
   * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
   * Credits: https://pkp.sfu.ca/wiki/index.php?title=OMP:_Catalan_(ca_ES)
   * Localization strings for the ca_ES (Català) locale.
-  *
   -->
- 
+
 <locale name="ca_ES" full_name="Català">
-	<message key="plugins.block.information.displayName">Bloc d'informació</message>
-	<message key="plugins.block.information.description">Aquest connector proporciona un enllaç d'informació a la barra lateral.</message>
-	<message key="plugins.block.information.link">Informació</message>
+	<message key="plugins.importexport.native.displayName">Mòdul XML nadiu</message>
+	<message key="plugins.importexport.native.description">Importa i exporta llibres a OMP en format nadiu XML.</message>
+	<message key="plugins.importexport.native.import">Importa</message>
+	<message key="plugins.importexport.native.export">Exporta</message>
+	<message key="plugins.importexport.native.results">Resultats</message>
 </locale>

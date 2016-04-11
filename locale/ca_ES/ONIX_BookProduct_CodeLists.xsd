@@ -143,7 +143,7 @@
 			<xs:enumeration value="04">
 				<xs:annotation>
 					<xs:documentation>Update (partial)</xs:documentation>
-					<xs:documentation>In ONIX 3.0 only, use when sending a &apos;block update&apos; record. In previous ONIX releases, ONIX updating has generally been by complete record replacement using code 03, and code 04 is not used.</xs:documentation>
+					<xs:documentation>In ONIX 3.0 only, use when sending a 'block update' record. In previous ONIX releases, ONIX updating has generally been by complete record replacement using code 03, and code 04 is not used.</xs:documentation>
 				</xs:annotation>
 			</xs:enumeration>
 			<xs:enumeration value="05">
@@ -167,19 +167,19 @@
 			<xs:enumeration value="12">
 				<xs:annotation>
 					<xs:documentation>Update - SupplyDetail only</xs:documentation>
-					<xs:documentation>ONIX Books 2.1 supply update - &lt;SupplyDetail> only (not used in ONIX 3.0).</xs:documentation>
+					<xs:documentation>ONIX Books 2.1 supply update - &lt;SupplyDetail&gt; only (not used in ONIX 3.0).</xs:documentation>
 				</xs:annotation>
 			</xs:enumeration>
 			<xs:enumeration value="13">
 				<xs:annotation>
 					<xs:documentation>Update - MarketRepresentation only</xs:documentation>
-					<xs:documentation>ONIX Books 2.1 supply update - &lt;MarketRepresentation> only (not used in ONIX 3.0).</xs:documentation>
+					<xs:documentation>ONIX Books 2.1 supply update - &lt;MarketRepresentation&gt; only (not used in ONIX 3.0).</xs:documentation>
 				</xs:annotation>
 			</xs:enumeration>
 			<xs:enumeration value="14">
 				<xs:annotation>
 					<xs:documentation>Update - SupplyDetail and MarketRepresentation</xs:documentation>
-					<xs:documentation>ONIX Books 2.1 supply update - both &lt;SupplyDetail> and &lt;MarketRepresentation> (not used in ONIX 3.0).</xs:documentation>
+					<xs:documentation>ONIX Books 2.1 supply update - both &lt;SupplyDetail&gt; and &lt;MarketRepresentation&gt; (not used in ONIX 3.0).</xs:documentation>
 				</xs:annotation>
 			</xs:enumeration>
 		</xs:restriction>
