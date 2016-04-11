@@ -7,48 +7,48 @@
   * Copyright (c) 2014-2016 Simon Fraser University Library
   * Copyright (c) 2003-2016 John Willinsky
   * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
-  *
+  * Credits: https://pkp.sfu.ca/wiki/index.php?title=OMP:_Spanish_(es_ES)
   * DOI plugin localization strings
   -->
  
-<locale name="pt_BR" full_name="Português (Brasil)">
-	<message key="plugins.pubIds.doi.displayName">DOI</message>
-	<message key="plugins.pubIds.doi.description">This plugin enables the assignment of the Digital Object Identifiers to publication formats in OMP.</message>
+<locale name="es_ES" full_name="Español (España)">
+	<message key="plugins.pubIds.doi.displayName">Identificador de objeto digital (DOI)</message>
+	<message key="plugins.pubIds.doi.description">Este complemento habilita la asignación del Identificador de Objetos Digitales para los formatos de publicación en OMP.</message>
 
 	<!-- settings form -->
-	<message key="plugins.pubIds.doi.manager.settings.doiSettings">DOI Plugin Settings</message>
-	<message key="plugins.pubIds.doi.manager.settings.description">Please configure the DOI plug-in to be able to manage and use DOIs in OMP:</message>
-	<message key="plugins.pubIds.doi.manager.settings.doiSettingsUpdated">DOI Plugin Settings Updated</message>
+	<message key="plugins.pubIds.doi.manager.settings.doiSettings">Configuración del módulo DOI</message>
+	<message key="plugins.pubIds.doi.manager.settings.description">Configure el complemento DOI para poder gestionar y usar los elementos DOI en OMP:</message>
+	<message key="plugins.pubIds.doi.manager.settings.doiSettingsUpdated">Configuraciones del complemento DOI actualizadas</message>
 
-	<message key="plugins.pubIds.doi.manager.settings.doiObjects">Publication Format Content</message>
-	<message key="plugins.pubIds.doi.manager.settings.doiObjectsRequired">Please choose the objects DOIs should be assigned to.</message>
-	<message key="plugins.pubIds.doi.manager.settings.explainDois">Please select the publishing objects that will have Digital Object Identifiers (DOI) assigned:</message>
+	<message key="plugins.pubIds.doi.manager.settings.doiObjects">Contenido de los formatos de publicación</message>
+	<message key="plugins.pubIds.doi.manager.settings.doiObjectsRequired">Seleccione los elementos DOI que desea asignar.</message>
+	<message key="plugins.pubIds.doi.manager.settings.explainDois">Seleccione los objetos publicados a los que desea asignar el Identificador de objetos digitales (DOI):</message>
 	
-	<message key="plugins.pubIds.doi.manager.settings.doiPrefix">DOI Prefix</message>
-	<message key="plugins.pubIds.doi.manager.settings.doiPrefixDescription"><![CDATA[The DOI Prefix is assigned by registration agencies (e.g. <a href="http://www.crossref.org" target="_new">CrossRef</a>) and is in the format 10.xxxx (e.g. 10.1234):]]></message>
-	<message key="plugins.pubIds.doi.manager.settings.doiPrefixPattern">The DOI prefix is mandatory and must be in the form 10.xxxx.</message>
+	<message key="plugins.pubIds.doi.manager.settings.doiPrefix">Prefijo DOI</message>
+	<message key="plugins.pubIds.doi.manager.settings.doiPrefixDescription"><![CDATA[El prefijo DOI se asigna por organizaciones de registro (p.ej. <a href="http://www.crossref.org" target="_new">CrossRef</a>) y se encuentra en el formato 10.xxxx (p. ej. 10.1234):]]></message>
+	<message key="plugins.pubIds.doi.manager.settings.doiPrefixPattern">El prefijo del DOI es obligatorio y debe respetar la forma 10.xxxx.</message>
 
-	<message key="plugins.pubIds.doi.manager.settings.doiSuffix">DOI Suffix</message>
-	<message key="plugins.pubIds.doi.manager.settings.doiSuffixRequired">A DOI Suffix choice is required.</message>
-	<message key="plugins.pubIds.doi.manager.settings.doiSuffixDescription">A DOI suffix can take any form, but must be unique among all publishing objects with the same DOI prefix assigned:</message>
-	<message key="plugins.pubIds.doi.manager.settings.doiSuffixPattern">Use the pattern entered below to generate DOI suffixes. Use %p for press initials, %m for the monograph id, and %f for the publication format unique id.</message>
-	<message key="plugins.pubIds.doi.manager.settings.doiSuffixPattern.publicationFormats">for publication formats</message>
-	<message key="plugins.pubIds.doi.manager.settings.doiSuffixPattern.example">For example, press%ppub%f could create a DOI such as 10.1234/pressESPpub100</message>
-	<message key="plugins.pubIds.doi.manager.settings.doiSuffixDefault">Use default patterns.</message>
-	<message key="plugins.pubIds.doi.manager.settings.doiSuffixDefault.description"><![CDATA[%p.%m.%f for publication formats.]]></message>
-	<message key="plugins.pubIds.doi.manager.settings.doiSuffixPublisherId">Use the "Custom Identifier" for published items as the DOI suffix (must be enabled in Step 4). This is the same identifier that will be used for public URLs.</message>
-	<message key="plugins.pubIds.doi.manager.settings.doiSuffixCustomIdentifier">Enter an individual DOI suffix for each published item independent and different from the "Custom Identifier" mentioned in the previous option. You'll find an additional DOI input field on each item's meta-data page.</message>
-	<message key="plugins.pubIds.doi.manager.settings.doiPublicationFormatSuffixPatternRequired">Please enter the DOI suffix pattern for publication formats.</message>
+	<message key="plugins.pubIds.doi.manager.settings.doiSuffix">Sufijo del DOI</message>
+	<message key="plugins.pubIds.doi.manager.settings.doiSuffixRequired">Se requiere una opción de sufijo del DOI.</message>
+	<message key="plugins.pubIds.doi.manager.settings.doiSuffixDescription">El sufijo del DOI puede tener cualquier forma, pero debe ser único para cada elemento publicado con un mismo prefijo.</message>
+	<message key="plugins.pubIds.doi.manager.settings.doiSuffixPattern">Use el patrón suministrado abajo para generar el sufijo del DOI. Use %p para las inciales de la editorial, %m para el ID. de la monografía y %f para el ID. único del formato de publicación.</message>
+	<message key="plugins.pubIds.doi.manager.settings.doiSuffixPattern.publicationFormats">para formatos de publicación</message>
+	<message key="plugins.pubIds.doi.manager.settings.doiSuffixPattern.example">Por ejemplo, seleccionar%ppub%f puede crear un DOI como 10.1234/pressESPpub100</message>
+	<message key="plugins.pubIds.doi.manager.settings.doiSuffixDefault">Usar modelos predeterminados.</message>
+	<message key="plugins.pubIds.doi.manager.settings.doiSuffixDefault.description"><![CDATA[%p.%m.%f para formatos de publicación.]]></message>
+	<message key="plugins.pubIds.doi.manager.settings.doiSuffixPublisherId">Use el "Identificador personalizado" para elementos publicados como el sufijo DOI (es necesario habilitarlo en el paso 4). Este es el mismo identificador que se usará para las URL públicas.</message>
+	<message key="plugins.pubIds.doi.manager.settings.doiSuffixCustomIdentifier">Introduzca un sufijo del DOI individual por cada elemento independiente publicado que sea diferente al "Identificador personalizado" mencionado en la opción anterior. Encontrará un campo de entrada DOI adicional en cada elemento de la página de metadatos.</message>
+	<message key="plugins.pubIds.doi.manager.settings.doiPublicationFormatSuffixPatternRequired">Introduzca el modelo de sufijo del DOI para los formatos de publicación.</message>
 	
-	<message key="plugins.pubIds.doi.manager.settings.doiReassign">Reassign DOIs</message>
-	<message key="plugins.pubIds.doi.manager.settings.doiReassign.description">If you change your DOI configuration, DOIs that have already been assigned will not be affected. Once the DOI configuration is saved, use this button to clear all existing DOIs so that the new settings will take effect with existing publication formats.</message>
-	<message key="plugins.pubIds.doi.manager.settings.doiReassign.confirm">Are you sure you wish to delete all existing DOIs?</message>
-	<message key="plugins.pubIds.doi.manager.settings.doiReassign.success">DOIs reassigned.</message>
-	<message key="grid.action.reassignDOIs">Reassign existing DOIs</message>
+	<message key="plugins.pubIds.doi.manager.settings.doiReassign">Asignar los DOI de nuevo</message>
+	<message key="plugins.pubIds.doi.manager.settings.doiReassign.description">Si modifica su configuración DOI, los elementos DOI que ya hayan sido asignados no se verán afectados. Una vez que la configuración DOI se haya guardado, utilice este botón para eliminar todos los elementos DOI existentes de manera que la nueva configuración se aplique en los formatos de publicación existentes.</message>
+	<message key="plugins.pubIds.doi.manager.settings.doiReassign.confirm">¿Está seguro/a de que desea eliminar todos los DOI existentes?</message>
+	<message key="plugins.pubIds.doi.manager.settings.doiReassign.success">Elementos DOI reasignados.</message>
+	<message key="grid.action.reassignDOIs">Reasignar los elemento DOI existentes</message>
 
 	<!-- metadata form -->
-	<message key="plugins.pubIds.doi.editor.doi">DOI</message>
-	<message key="plugins.pubIds.doi.editor.doiObjectTypePublicationFormat">publication format</message>
-	<message key="plugins.pubIds.doi.editor.doiNotYetGenerated">What you see is a preview of the DOI that may be incomplete. A DOI has not yet been generated. Publishing the monograph and viewing the public Monograph Catalog page will automatically generate a unique DOI for this publication format.</message>
-	<message key="plugins.pubIds.doi.editor.doiSuffixCustomIdentifierNotUnique">The given DOI suffix is already in use for another published item. Please enter a unique DOI suffix for each item.</message>
+	<message key="plugins.pubIds.doi.editor.doi">Identificador de objeto digital (DOI)</message>
+	<message key="plugins.pubIds.doi.editor.doiObjectTypePublicationFormat">formato de publicación</message>
+	<message key="plugins.pubIds.doi.editor.doiNotYetGenerated">Está visualizando una vista previa del DOI que puede estar incompleta. Aún no se generó el DOI. El publicar la monografía y el acceder al catálogo de monografía pública generará de forma automática un DOI único para este formato de publicación.</message>
+	<message key="plugins.pubIds.doi.editor.doiSuffixCustomIdentifierNotUnique">El sufijo del DOI suministrado ya se encuentra en uso en otro elemento publicado. Introduzca un único sufjo del DOI para cada elemento.</message>
 </locale>

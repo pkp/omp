@@ -6,412 +6,522 @@
   * Copyright (c) 2014-2016 Simon Fraser University Library
   * Copyright (c) 2003-2016 John Willinsky
   * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
-  *
+  * Credits: https://pkp.sfu.ca/wiki/index.php?title=OMP:_Spanish_(es_ES)
   * Localized email templates XML file.
   -->
 <email_texts locale="es_ES">
-		<email_text key="NOTIFICATION">
+	<email_text key="NOTIFICATION">
 		<subject>Nueva notificación de {$siteTitle}</subject>
-		<body><![CDATA[Tienes una nueva notificación de {$siteTitle}<br />
-<br />
-{$notificationContents}<br />
-<br />
-Enlace: {$url}<br />
-<br />
-{$principalContactSignature}]]></body>
-		<description>Este email se enviará a los usuarios registrados que hayan elegido recibir por correo este tipo de notificación.</description>
+		<body>Tiene una nueva notificación de {$siteTitle}:
+
+{$notificationContents}
+
+Enlace: {$url}
+
+{$principalContactSignature}</body>
+		<description>El correo electrónico se envía a los usuarios/as registrados que seleccionaron este tipo de notificación.</description>
 	</email_text>
 	<email_text key="NOTIFICATION_MAILLIST">
 		<subject>Nueva notificación de {$siteTitle}</subject>
-		<body><![CDATA[Tienes una nueva notificación de {$siteTitle}:<br />
---<br />
-{$notificationContents}<br />
-<br />
-Enlace:{$url}<br />
---<br />
-<br />
-Si deseas dejar de recibir correos de notificaciones, por favor, dirígete a {$unsubscribeLink}.]]></body>
-		<description>Este correo se enviará a los usuarios no registrados en la lista de contactos de notificaciones</description>
+		<body>Tiene una nueva notificación de {$siteTitle}:
+--
+{$notificationContents}
+
+Enlace: {$url}
+--
+
+Si desea dejar de recibir notificaciones por correo electrónico, diríjase a {$unsubscribeLink}.
+
+{$principalContactSignature}</body>
+		<description>Este correo electrónico se envía a los usuarios/as no registrados que están en la lista de distribución.</description>
 	</email_text>
 	<email_text key="NOTIFICATION_MAILLIST_WELCOME">
-		<subject>¡Bienvenido a la lista de contactos de  {$siteTitle}!</subject>
-		<body><![CDATA[Te has inscrito para recibir notificaciones de {$siteTitle}.<br />
-<br />
-Por favor, haz clic en este enlace para confirmar la petición y añadir tu dirección de correo a la lista de contactos: {$confirmLink}<br />
-<br />
-Si quieres dejar de recibir correos de notificaciones, por favor, dirígete a {$unsubscribeLink} e introduce tu dirección de correo y contraseña.<br />
-<br />
-{$principalContactSignature}]]></body>
-		<description>Este correo se enviará a los usuarios no registrados que se acaben de registrar a través de la lista de contactos de notificación</description>
+		<subject>¡Bienvenido/a a la lista de distribución {$siteTitle}!</subject>
+		<body>Se inscribió para recibir notificaciones de {$siteTitle}.
+
+Haga clic en este enlace para confirmar su solicitud y añadir su dirección de correo electrónico a la lista de distribución: {$confirmLink}
+
+Si desea dejar de recibir notificaciones, diríjase a {$unsubscribeLink} e introduzca su dirección y contraseña de correo electrónico.
+
+{$principalContactSignature}</body>
+		<description>Este correo electrónico se envía a un usuario/a no registrado que se inscribió recientemente en la lista de distribución de notificaciones.</description>
 	</email_text>
 	<email_text key="PASSWORD_RESET_CONFIRM">
-		<subject>Confirmación de restablecimiento de la contraseña</subject>
-		<body><![CDATA[Hemos recibido tu petición para restablecer la contraseña para la página web{$siteTitle}<br />
-<br />
-Si no realizaste esta petición, por favor, ignora este correo y tu contraseña no se cambiará. Si deseas restablecer tu contraseña, haz clic en la URL de abajo.<br />
-<br />
-Reestablecer mi contraseña: {$url}<br />
-<br />
-{$principalContactSignature}]]></body>
-		<description>Este correo se enviará a los usuarios registrados cuando indiquen que han olvidado sus contraseñas o que no podían acceder. Incluye una URL que pueden seguir para restablecer sus contraseñas.</description>
+		<subject>Confirmación para restablecer la contraseña</subject>
+		<body>Se recibió una solicitud para restablecer su contraseña en la página web {$siteTitle}.
+
+Si no realizó esta solicitud, ignore este correo electrónico y su contraseña no se cambiará. Si desea restablecer su contraseña, haga clic en la URL que aparece debajo.
+
+Restablecer contraseña: {$url}
+
+{$principalContactSignature}</body>
+		<description>Este correo electrónico se envía a un usuario/a registrado cuando indica que olvidó su contraseña o cuando no puede iniciar sesión. Proporciona una URL con la que se puede restablecer la contraseña.</description>
 	</email_text>
 	<email_text key="PASSWORD_RESET">
 		<subject>Restablecer contraseña</subject>
-		<body><![CDATA[Tu contraseña se ha restablecido con éxito, está lista para utilizarla en la página web {$siteTitle}. Por favor, conserva este nombre de usuario y contraseña, puesto que es necesario para todo el trabajo con la editorial.<br />
-<br />
-Tu nombre de usuario: {$username}<br />
-<br />
-{$principalContactSignature}]]></body>
-		<description>Este correo se envíara al usuario registrado una vez que se hayan restablecido sus contraseñas conforme al proceso descrito en el correo CONFIRMAR_RESTABLECIMIENTO_CONTRASEÑA.</description>
+		<body>La contraseña se restableció con éxito en la página web {$siteTitle}. Recuerde el nombre de usuario/a y contraseña, son necesarios para trabajar en la publicación.
+
+Nombre de usuario/a: {$username}
+Nueva contraseña: {$password}
+
+{$principalContactSignature}</body>
+		<description>Este correo electrónico se envía a un usuario/a registrado cuando se restablece su contraseña con éxito tras seguir el proceso descrito en el correo RESTABLECER_CONTRASEÑA_CONFIRMACIÓN.</description>
 	</email_text>
 	<email_text key="USER_REGISTER">
-		<subject>Inscripción en la editorial</subject>
-		<body><![CDATA[{$userFullName}<br />
-<br />
-Te acabas de registrar como usuario con {$contextName}. Hemos incluido en este correo electrónico el nombre de usuario y contraseña, que son necesarios para cualquier trabajo con esta editorial a través de su página web. Puedes pedir que se te elimine en cualquier momento de la lista de usuarios contactando conmigo. <br />
-<br />
-Nombre de usuario: {$username}<br />
-Contraseña: {$password}]]></body>
-		<description>Este correo electrónico se enviará a los usuarios que se acaben de registrar para darles la bienvenida al sistema y proporcionarles los datos del nombre de usuario y la contraseña.</description>
+		<subject>Registro en la publicación</subject>
+		<body>{$userFullName}
+
+Se registró como usuario/a con {$contextName}. En este correo electrónico hemos incluido el nombre de usuario/a y contraseña que necesitará para trabajar con esta publicación a través de su página web. En cualquier momento puede contactar conmigo para pedir que se le elimine de la lista de usuarios/as.
+
+Nombre de usuario/a: {$username}
+Contraseña: {$password}
+
+Gracias,
+{$principalContactSignature}</body>
+		<description>Este correo electrónico se envía a un nuevo usuario/a registrado para darle la bienvenida al sistema y proporcionarle un documento con su nombre de usuario/a y contraseña.</description>
 	</email_text>
 	<email_text key="USER_VALIDATE">
-		<subject>Confirmar cuenta</subject>
-		<body><![CDATA[{$userFullName}<br />
-<br />
-Has creado una cuenta con  {$contextName}, pero antes de empezar a usarla, necesitas confirmar tu cuenta de correo electrónico. Para ello, sigue simplemente el siguiente enlace:<br />
-<br />
-<a href="{$activateUrl}">{$activateUrl}</a><br />
-<br />
-Gracias, <br />
-{$principalContactSignature}]]></body>
-		<description>Este correo electrónico se enviará a los usuarios que se acaben de registrar para darles la bienvenida al sistema y proporcionarles los datos de su nombre de usuario y contraseña</description>
+		<subject>Validar la cuenta</subject>
+		<body>{$userFullName}
+
+Creó una cuenta con {$contextName}, pero antes de empezar a utilizarla es necesario que valide su cuenta de correo electrónico. Para hacerlo, haga clic en el enlace que aparece debajo:
+
+{$activateUrl}
+
+Gracias,
+{$principalContactSignature}</body>
+		<description>Este correo electrónico se envía a un nuevo usuario/a registrado para darle la bienvenida al sistema y proporcionarle un documento con su nombre de usuario/a y contraseña.</description>
 	</email_text>
 	<email_text key="REVIEWER_REGISTER">
-		<subject>Inscripción como revisor con {$contextName}</subject>
-		<body><![CDATA[Teniendo en cuenta tu experiencia, nos hemos tomado la libertad de registrar tu nombre en la base de datos para {$contextName}. Esto no conlleva ninguno tipo de compromiso por tu parte, sino que simplemente nos permite facilitarte una propuesta para una posible revisión. Una vez propuesta la revisión, tendrás la oportunidad de ver el título y el resumen del documento en cuestión, y siempre podrás aceptar o rechazar la invitación. También puedes pedir que se elimine en cualquier momento tu nombre de esta lista de revisores. <br />
-<br />
-Te proporcionamos un nombre de usuario y una contraseña, que se utilizarán para cualquier contacto con la editorial a través de esta página web. <br />
-Podrás, por ejemplo, actualizar tu perfil, incluyendo tus intereses en cuanto a la revisión. <br />
-<br />
-Nombre de usuario:  {$username}<br />
-Contraseña: {$password}<br />
-<br />
-Gracias, <br />
-{$principalContactSignature}]]></body>
-		<description>Este correo electrónico se enviará a los revisores que se acaben de registrar para darles la bienvenida al sistema y proporcionarles los datos de sus nombres de usuario y contraseñas.</description>
+		<subject>Registro como revisor/a con {$contextName}</subject>
+		<body>Dada su experiencia, nos hemos tomado la libertad de registrar su nombre en la base de datos de revisores/as para {$contextName}. Esto no implica ningún tipo de compromiso por su parte, simplemente permite que nos pongamos en contacto con usted si tenemos un envío que quizás pueda revisar. Si se le invita a realizar una revisión, tendrá la oportunidad de ver el título y el resumen de dicho trabajo y en todo momento podrá aceptar o rechazar la invitación. Asimismo, puede pedir que se elimine su nombre de la lista de revisores/as.
+
+Le proporcionamos un nombre de usuario/a y una contraseña que se utilizan para trabajar con la publicación a través de su página web. Si lo desea puede, por ejemplo, actualizar su perfil y sus preferencias de revisión.
+
+Nombre de usuario/a: {$username}
+Contraseña: {$password}
+
+Gracias,
+{$principalContactSignature}</body>
+		<description>Este correo electrónico se envía a un nuevo revisor/a registrado para darle la bienvenida al sistema y proporcionarle un documento con su nombre de usuario/a y contraseña.</description>
 	</email_text>
 	<email_text key="PUBLISH_NOTIFY">
 		<subject>Nuevo libro publicado</subject>
-		<body><![CDATA[Lectores:<br />
-<br />
-{$contextName} acaba de publicar su último libro en <a href="{$contextUrl}">{$contextUrl}</a>. Te invitamos a que revises la Tabla de Contenidos aquí y después visites nuestra página web para revisar monografías y demás documentos de interés. <br />
-<br />
-Gracias por el constante interés en nuestro trabajo, <br />
-{$editorialContactSignature}]]></body>
-		<description>Este correo electrónico se enviará a los lectores registrados mediante el enlace "Notificar Usuarios" en el Área Personal. Notifica a los lectores acerca de los nuevos libros y les invita a visitar la editorial con la URL que se proporcione.</description>
+		<body>Lectores/as:
+
+{$contextName} acaba de publicar su último libro en {$contextUrl}. Les invitamos a revisar la tabla de contenidos que les proporcionamos y a visitar nuestra página web para ver monografías y elementos de interés.
+
+Gracias por el interés mostrado en nuestro trabajo,
+{$editorialContactSignature}</body>
+		<description>Este correo electrónico se envía a los lectores/as registrados a través del enlace "Notificar a los usuarios/as" en el área personal del editor/a. Notifica a los lectores/as que se publicó un nuevo libro y les invita a visitar la publicación mediante la URL proporcionada.</description>
 	</email_text>
 	<email_text key="SUBMISSION_ACK">
-		<subject>Propuesta recibida</subject>
-		<body><![CDATA[{$authorName}:<br />
-<br />
-Gracias por enviar el texto completo &quot;{$submissionTitle}&quot; a {$contextName}. Con el sistema de gestión editorial en línea que usamos, podrás seguir su progreso a través del proceso editorial registrándote en la página web editorial:<br />
-<br />
-URL del texto completo: {$submissionUrl}<br />
-Nombre de usuario: {$authorUsername}<br />
-<br />
-Si tienes alguna duda, por favor, contacta conmigo. Gracias por utilizar esta editorial para tu trabajo.<br />
-<br />
-{$editorialContactSignature}]]></body>
-		<description>Cuando este correo electrónico está habilitado, es enviado de forma automática a un autor cuando completa el proceso de enviar un texto completo a la editorial. Proporciona información sobre el progreso de la propuesta a través del proceso editorial y da las gracias al autor por la propuesta.</description>
+		<subject>Acuse de recibo del envío</subject>
+		<body>{$authorName}:
+
+Gracias por enviar el manuscrito "{$submissionTitle}" a {$contextName}. Con el sistema de gestión de publicaciones en línea que utilizamos podrá seguir el progreso a través del proceso editorial tras iniciar sesión en el sitio web de la publicación:
+
+URL del manuscrito: {$submissionUrl}
+Nombre de usuario/a: {$authorUsername}
+
+Si tiene alguna duda puede ponerse en contacto conmigo. Gracias por elegir esta editorial para mostrar su trabajo.
+
+{$editorialContactSignature}</body>
+		<description>Este correo electrónico, si está activado, se envía automáticamente a un autor/a cuando completa el proceso de envío de un manuscrito a la editorial. Proporciona información sobre el seguimiento del envío en el proceso y agradece al autor/a el envío.</description>
 	</email_text>
 	<email_text key="SUBMISSION_ACK_NOT_USER">
-		<subject>Propuesta recibida</subject>
-		<body><![CDATA[Hola:<br />
-<br />
-{$submitterName} ha enviado el texto completo &quot;{$submissionTitle}&quot; a {$contextName}. <br />
-<br />
-Si tienes alguna duda, por favor, contacta conmigo. Gracias por utilizar esta editorial para tu trabajo.<br />
-<br />
-{$editorialContactSignature}]]></body>
-		<description>Cuando este correo electrónico está habilitado, es enviado de forma automática a los demás autores que no sean usuarios de OMP indicados durante el proceso del envío.</description>
+		<subject>Acuse de recibo del envío</subject>
+		<body>Hola:
+
+{$submitterName} envió el manuscrito "{$submissionTitle}" a {$contextName}. 
+
+Si tiene alguna duda, puede ponerse en contacto conmigo. Gracias por elegir esta editorial para mostrar su trabajo.
+
+{$editorialContactSignature}</body>
+		<description>Este correo electrónico, si está activado, se envía automáticamente a otros autores/as que no son usuarios/as de OMP según lo especificado en el proceso de envío.</description>
 	</email_text>
 	<email_text key="SUBMISSION_UNSUITABLE">
-		<subject>Propuesta inadecuada</subject>
-		<body><![CDATA[{$authorName}:<br />
-<br />
-Una revisión inicial de &quot;{$submissionTitle}&quot; ha mostrado que esta propuesta no se ajusta al alcance y enfoque de {$contextName}. Te recomiendo que consultes la descripción de la editorial en Acerca de, así como sus contenidos actuales, para saber más acerca del trabajo que publicamos. También podrías enviar este texto completo a otra editorial más apropiada.<br />
-<br />
-{$editorialContactSignature}]]></body>
-		<description></description>
+		<subject>Envío inapropiado</subject>
+		<body>{$authorName}:
+
+Una revisión inicial de "{$submissionTitle}" determinó que este envío no se ajusta al ámbito y al objetivo de {$contextName}. Le recomiendo consultar la descripción de esta editorial en la sección Acerca de, así como sus contenidos actuales, para conocer más sobre las obras que publicamos. Quizá considere apropiado enviar este manuscrito a otra editorial que se ajuste mejor a sus necesidades.
+
+{$editorialContactSignature}</body>
 	</email_text>
 	<email_text key="EDITOR_ASSIGN">
-		<subject>Asignación de editorial</subject>
-		<body><![CDATA[{$editorialContactName}:<br />
-<br />
-La propuesta &quot;{$submissionTitle},&quot; a {$contextName} te ha sido asignada por el proceso editorial por tu participación como editor.<br />
-<br />
-URL de la propuesta: {$submissionUrl}<br />
-Nombre de usuario: {$editorUsername}<br />
-<br />
-Gracias,<br />
-{$editorialContactSignature}]]></body>
-		<description>Este correo electrónico avisa a un coordinador de colección de que el editor les ha asignado la tarea de supervisar una propuesta a través del proceso editorial. Proporciona información sobre la propuesta y sobre cómo acceder a la página web editorial.</description>
+		<subject>Tarea editorial</subject>
+		<body>{$editorialContactName}:
+
+El envío "{$submissionTitle}" a {$contextName} se le asignó para llevar a cabo el proceso editorial en calidad de editor/a.
+
+URL de envío: {$submissionUrl}
+Nombre de usuario/a: {$editorUsername}
+
+Gracias,
+{$editorialContactSignature}</body>
+		<description>Este correo electrónico notifica al editor/a de la serie que el editor/a le asignó la tarea de supervisar un envío a lo largo del proceso de edición. Proporciona información sobre el envío y sobre cómo acceder al sitio de la publicación.</description>
 	</email_text>
 	<email_text key="REVIEW_REQUEST">
-		<subject>Petición de revisión del texto completo</subject>
-		<body><![CDATA[Estimado/a {$reviewerName}:<br />
-<br />
-{$messageToReviewer}<br />
-<br />
-Por favor, regístrate en la página web editorial antes del {$responseDueDate} para indicar si quieres realizar la revisión o no, así como para acceder a la propuesta y para guardar tu revisión y tus sugerencias.<br />
-<br />
-La fecha límite de la revisión es {$reviewDueDate}.<br />
-<br />
-URL de la propuesta: <a href="{$submissionReviewUrl}">{$submissionReviewUrl}</a><br />
-<br />
-Nombre de usuario: {$reviewerUserName}<br />
-<br />
-Gracias por tener en cuenta esta petición.<br />
-<br />
-<br />
-Atentamente,<br />
-{$editorialContactSignature}]]></body>
-		<description><![CDATA[Este correo electrónico del coordinador de colección a un revisor pide al revisor que acepte o rechace la tarea de revisar una propuesta. Proporciona las siguientes informaciones sobre la propuesta: título y resumen, fecha límite de revisión y cómo acceder a la propuesta. Este mensaje se utiliza cuando se selecciona el proceso de revisión estándar en Adminstración > Ajustes > Flujo de trabajo > Revisión. (Si no, ver REVIEW_REQUEST_ATTACHED.)]]></description>
+		<subject>Solicitud de revisión de manuscrito</subject>
+		<body>Estimado/a {$reviewerName}:
+
+{$messageToReviewer}
+
+Inicie sesión en el sitio web de la publicación antes del {$responseDueDate} para indicar si llevará o no a cabo la revisión, así como para acceder al envío y registrar su revisión y recomendación.
+
+La revisión debe estar preparada antes del {$reviewDueDate}.
+
+URL de envío: {$submissionReviewUrl}
+
+Nombre de usuario/a: {$reviewerUserName}
+
+Gracias por considerar esta solicitud.
+
+
+Un saludo cordial,
+{$editorialContactSignature}
+</body>
+		<description>El editor/a de la serie envía este correo electrónico al revisor/a para solicitar a este último que acepte o rechace la tarea de revisión de un envío. Proporciona información sobre el envío, como el título y el resumen, una fecha límite para la revisión y cómo acceder al propio envío. Este mensaje se emplea cuando se selecciona el proceso de revisión estándar en Gestión > Configuración > Circuito de publicación > Revisión. (Véase SOLICITUD_REVISIÓN_ADJUNTA).</description>
 	</email_text>
 	<email_text key="REVIEW_REQUEST_ONECLICK">
-		<subject>Petición de revisión del texto completo</subject>
-		<body><![CDATA[{$reviewerName}:<br />
-<br />
-Creo que serías un revisor excelente para el texto completo &quot;{$submissionTitle},&quot; que ha sido enviado a {$contextName}. Puedes consultar el resumen de la propuesta más abajo. Espero que puedas realizar esta importante tarea para nosotros.<br />
-<br />
-Por favor, regístrate en la página web editorial antes del {$weekLaterDate} para indicar si quieres realizar la revisión o no, así como para acceder a la propuesta y guardar tu revisión y tus sugerencias.<br />
-<br />
-La fecha límite de la revisión es {$reviewDueDate}.<br />
-<br />
-URL de la propuesta: <a href="{$submissionReviewUrl}">{$submissionReviewUrl}</a><br />
-<br />
-Gracias por tener en cuenta esta petición.<br />
-<br />
-{$editorialContactSignature}<br />
-<br />
-<br />
-<br />
-&quot;{$submissionTitle}&quot;<br />
-<br />
-{$abstractTermIfEnabled}<br />
-{$submissionAbstract}]]></body>
-		<description><![CDATA[Este correo electrónico del coordinador de colección a un revisor pide al revisor que acepte o rechace la tarea de revisar una propuesta. Proporciona las siguientes informaciones sobre la propuesta: título y resumen, fecha límite de revisión y cómo acceder a la propuesta. Este mensaje se utiliza cuando se selecciona el proceso de revisión estándar en Administración > Ajustes > Flujo de trabajo > Revisión, y el acceso de revisor un-clic esté habilitado.]]></description>
+		<subject>Solicitud de revisión de manuscrito</subject>
+		<body>{$reviewerName}:
+
+Creo que puede ser un excelente revisor/a para el manuscrito "{$submissionTitle}" que se envió a {$contextName}. El resumen del envío se incluye debajo. Espero que considere llevar a cabo esta importante tarea para nosotros.
+
+Inicie sesión en la página web de la publicación antes del {$weekLaterDate} para indicar si podrá o no realizar la revisión, así como para acceder al envío y registrar su revisión y recomendación.
+
+La revisión debe estar preparada antes del {$reviewDueDate}.
+
+URL del envío: {$submissionReviewUrl}
+
+Gracias por considerar esta solicitud.
+
+{$editorialContactSignature}
+
+
+
+"{$submissionTitle}"
+
+{$abstractTermIfEnabled}
+{$submissionAbstract}</body>
+		<description>El editor/a de la serie envía este correo electrónico al revisor/a para solicitar a este último que acepte o rechace la tarea de revisión de un envío. Proporciona información sobre el envío, como el título y el resumen, una fecha límite para la revisión y cómo acceder al propio envío. Este mensaje se emplea cuando se selecciona el proceso de revisión estándar en Gestión > Configuración > Circuito de publicación > Revisión y el acceso al revisor/a con un solo clic está habilitado.</description>
 	</email_text>
 	<email_text key="REVIEW_REQUEST_ATTACHED">
-		<subject>Petición de revisión del texto completo</subject>
-		<body><![CDATA[{$reviewerName}:<br />
-<br />
-Creo que serías un excelente revisor para el texto completo &quot;{$submissionTitle},&quot; y te pido que realices esta importante tarea para nosotros. Las normas de revisión para esta editorial aparecen más abajo, y la propuesta se adjunta a este correo electrónico. Tendrás que enviarme tu revisión de la propuesta, junto a tus sugerencias, por correo electrónico antes del {$reviewDueDate}.<br />
-<br />
-Por favor, indica en una respuesta por correo electrónico antes del {$weekLaterDate} si quieres y puedes hacer la revisión.<br />
-<br />
-Gracias por tener en cuenta esta petición.<br />
-<br />
-{$editorialContactSignature}<br />
-<br />
-<br />
-Normas de revisión<br />
-<br />
-{$reviewGuidelines}]]></body>
-		<description><![CDATA[Este correo electrónico del coordinador de colección a un revisor pide al revisor que acepte o rechace la tarea de revisar una propuesta. Incluye como adjunto la propuesta. Este mensaje se utiliza cuando está seleccionado el proceso de revisión con correo electrónico adjunto en Administración > Ajustes > Flujo de trabajo > Revisión. (Si no, ver REVIEW_REQUEST.)]]></description>
-	</email_text>
-	<email_text key="EDITOR_DECISION_RESUBMIT">
-		<subject>Decisión coordinador</subject>
-		<body><![CDATA[{$authorName}:<br />
-<br />
-Hemos tomado una decisión con respecto a tu propuesta sobre {$contextName}, &quot;{$submissionTitle}&quot;.<br />
-<br />
-Nuestra decisión es la siguiente:<br />
-<br />
-URL del texto completo: {$submissionUrl}<br />
-<br />
-{$editorialContactSignature}]]></body>
-		<description>Este correo electrónico enviado por el coordinador o coordinador de colección al autor les informa de la decisión final sobre su propuesta.</description>
+		<subject>Solicitud de revisión de manuscrito</subject>
+		<body>{$reviewerName}:
+
+Creo que puede ser un excelente revisor/a para el manuscrito "{$submissionTitle}" , por ese motivo le pido que considere llevar a cabo esta importante tarea para nosotros. Las indicaciones para la revisión de la publicación se incluyen más abajo y el envío se adjunta al presente correo electrónico. Debe mandarme por correo electrónico la revisión que haga del envío, junto con su recomendación, antes del {$reviewDueDate}.
+
+Indique mediante un correo electrónico antes del {$weekLaterDate} si puede y desea realizar la revisión.
+
+Gracias por considerar la solicitud.
+
+{$editorialContactSignature}
+
+
+Directrices para la revisión
+
+{$reviewGuidelines}
+</body>
+		<description>El editor/a de la serie envía este correo electrónico al revisor/a para solicitar a este último que acepte o rechace la tarea de revisión de un envío. Incluye el envío como archivo adjunto. Este mensaje se usa cuando se selecciona el proceso de revisión mediante archivos adjuntos a los correos electrónicos en Gestión > Configuración > Circuito de publicación > Revisión. (Véase SOLICITUD_REVISIÓN).</description>
 	</email_text>
 	<email_text key="REVIEW_CANCEL">
-		<subject>Petición de revisión cancelada</subject>
-		<body><![CDATA[{$reviewerName}:<br />
-<br />
-Hemos decidido cancelar nuestra petición de que revises la propuesta &quot;{$submissionTitle},&quot; para {$contextName}. Pedimos disculpas por cualquier molestia que esto haya podido causar y esperamos contar contigo para esta revisión en el futuro.<br />
-<br />
-Si tienes alguna duda, por favor, contacta conmigo.<br />
-<br />
-{$editorialContactSignature}]]></body>
-		<description>Este correo electrónico es enviado por el coordinador de colección a un revisor que tenga una revisión de propuesta en proceso para avisarle de que la revisión ha sido cancelada.</description>
+		<subject>Solicitud de revisión cancelada</subject>
+		<body>{$reviewerName}:
+
+Hemos decidido cancelar nuestra solicitud de que usted revise el envío "{$submissionTitle}" para {$contextName}. Pedimos disculpas por cualquier inconveniente que esta decisión pueda causar y esperamos poder contar con usted para participar en este proceso de revisión en el futuro.
+
+Si tiene alguna duda, puede ponerse en contacto conmigo.
+
+{$editorialContactSignature}</body>
+		<description>El editor/a de la serie envía este correo al revisor/a que inició el proceso de revisión de un envío para notificarle que el mismo se canceló.</description>
 	</email_text>
 	<email_text key="REVIEW_CONFIRM">
-		<subject>Disponible para la revisión</subject>
-		<body><![CDATA[Editores:<br />
-<br />
-Estoy disponible y quiero revisar la propuesta &quot;{$submissionTitle},&quot; para {$contextName}. Gracias por pensar en mí. Tendré la revisión terminada en el plazo indicado, {$reviewDueDate}, o antes.<br />
-<br />
-{$reviewerName}]]></body>
-		<description>Este correo electrónico es enviado por el revisor al coordinador de colección en respuesta a la petición de revisión para avisar al coordinador de colección de que la petición ha sido aceptada y se realizará en el plazo indicado.</description>
+		<subject>Disponible para revisar</subject>
+		<body>{$editorialContactName}:
+
+Estoy disponible y puedo revisar el envío "{$submissionTitle}" para {$contextName}. Gracias por pensar en mí. Tengo previsto completar la revisión en la fecha establecida, el {$reviewDueDate}, o antes.
+
+{$reviewerName}</body>
+		<description>El revisor/a envía este correo electrónico al editor/a de la serie como respuesta a la solicitud de revisión para notificar al editor/a de la serie que la solicitud se aceptó y que la revisión estará terminada en el plazo especificado.</description>
+	</email_text>
+	<email_text key="REVIEW_DECLINE">
+		<subject>No disponible para revisar</subject>
+		<body>{$editorialContactName}:
+
+Me temo que en este momento no puedo revisar el envío "{$submissionTitle}" para {$contextName}. Gracias por pensar en mí, pueden contar conmigo en futuras ocasiones.
+
+{$reviewerName}</body>
+		<description>El revisor/a envía este correo electrónico al editor/a de la serie como respuesta a una solicitud de revisión para notificar al editor/a de la serie que la petición se rechazó.</description>
+	</email_text>
+	<email_text key="REVIEW_COMPLETE">
+		<subject>Revisión del manuscrito completada</subject>
+		<body>{$editorialContactName}:
+
+He completado la revisión de "{$submissionTitle}" para {$contextName} y enviado la recomendación "{$recommendation}".
+
+{$reviewerName}</body>
+		<description>El revisor/a envía este correo electrónico al editor/a de la serie para notificarle que la revisión se completó y que los comentarios y recomendaciones se registraron en la página web de la publicación.</description>
+	</email_text>
+	<email_text key="REVIEW_ACK">
+		<subject>Acuse de recibo de la revisión del manuscrito</subject>
+		<body>{$reviewerName}:
+
+Gracias por completar la revisión del envío "{$submissionTitle}" para {$contextName}. Agradecemos su aportación a la calidad de los trabajos que publicamos.
+
+{$editorialContactSignature}</body>
+		<description>El editor/a de la serie envía este correo electrónico para confirmar la recepción de una revisión completada y dar las gracias al revisor/a por su contribución.</description>
+	</email_text>
+	<email_text key="REVIEW_REMIND">
+		<subject>Recordatorio de revisión del envío</subject>
+		<body>{$reviewerName}:
+
+Este es un pequeño recordatorio de que realizamos una solicitud para que revisara el envío "{$submissionTitle}" para {$contextName}. Esperábamos que la revisión estuviera lista para el {$reviewDueDate} y nos complacería recibirla tan pronto como la tenga preparada.
+
+En caso de no tener nombre de usuario/a y contraseña para la página web, puede usar este enlace para restablecer su contraseña (posteriormente se le enviará por correo electrónico junto con el nombre de usuario/a). {$passwordResetUrl}
+
+URL del envío: {$submissionReviewUrl}
+
+Nombre de usuario/a: {$reviewerUserName}
+
+Confirme que puede completar esta fundamental contribución al trabajo de la editorial. Espero tener noticias suyas.
+
+{$editorialContactSignature}</body>
+		<description>El editor/a de la serie envía este correo electrónico para recordar al revisor/a que finaliza el plazo de revisión.</description>
+	</email_text>
+	<email_text key="REVIEW_REMIND_ONECLICK">
+		<subject>Recordatorio de revisión del envío</subject>
+		<body>{$reviewerName}:
+
+Este es un pequeño recordatorio de que realizamos una solicitud para que revisara el envío "{$submissionTitle}" para {$contextName}. Esperábamos que la revisión estuviera lista para el {$reviewDueDate} y nos complacería recibirla tan pronto como la tenga preparada.
+
+URL del envío: {$submissionReviewUrl}
+
+Confirme que puede completar esta contribución fundamental al trabajo de la editorial. Espero tener noticias suyas.
+
+{$editorialContactSignature}</body>
+		<description>El editor/a de la serie envía este correo electrónico para recordar al revisor/a que finaliza el plazo de revisión.</description>
+	</email_text>
+	<email_text key="REVIEW_REMIND_AUTO">
+		<subject>Recordatorio automatizado de revisión del envío</subject>
+		<body>{$reviewerName}:
+
+Este es un pequeño recordatorio de que realizamos una solicitud para que revisara el envío "{$submissionTitle}" para {$contextName}. Esperábamos que la revisión estuviera lista para el {$reviewDueDate}. Este correo electrónico se genera y envía automáticamente cuando se supera el plazo establecido. Aun así, nos complacería recibirla tan pronto como la tenga preparada.
+
+En caso de no tener nombre de usuario/a y contraseña para la página web, puede usar este enlace para restablecer su contraseña (posteriormente se le enviará por correo electrónico junto con el nombre de usuario/a). {$passwordResetUrl}
+
+URL del envío: {$submissionReviewUrl}
+
+Confirme que puede completar esta contribución fundamental al trabajo de la editorial. Espero tener noticias suyas.
+
+{$editorialContactSignature}</body>
+		<description>Este correo electrónico se envía automáticamente cuando se supera el plazo indicado al revisor/a (véase Opciones de revisión en Gestión > Configuración > Circuito de publicación > Revisión) y el acceso al revisor/a con un solo clic está deshabilitado. Las tareas programadas se deben habilitar y configurar (véase el archivo de configuración del sitio).</description>
+	</email_text>
+	<email_text key="REVIEW_REMIND_AUTO_ONECLICK">
+		<subject>Recordatorio automatizado de revisión del envío</subject>
+		<body>{$reviewerName}:
+
+Este es un pequeño recordatorio de que realizamos una solicitud para que revisara el envío "{$submissionTitle}" para {$contextName}. Esperábamos que la revisión estuviera lista para el {$reviewDueDate}. Este correo electrónico se genera y envía automáticamente cuando se supera el plazo establecido. Aun así, nos complacería recibirla tan pronto como la tenga preparada.
+
+URL del envío: {$submissionReviewUrl}
+
+Confirme que puede completar esta contribución fundamental al trabajo de la editorial. Espero tener noticias suyas.
+
+{$editorialContactSignature}</body>
+		<description>Este correo se envía automáticamente cuando se supera el plazo indicado al revisor/a (véase Opciones de revisión en Gestión > Configuración > Circuito de publicación > Revisión) y el acceso al revisor/a con un solo clic está habilitado. Las tareas programadas se deben habilitar y configurar (véase el archivo de configuración del sitio).</description>
+	</email_text>
+	<email_text key="EDITOR_DECISION_ACCEPT">
+		<subject>Decisión del coordinador</subject>
+		<body>{$authorName}:
+
+Hemos tomado una decisión con respecto al envío que realizó a {$contextName}, "{$submissionTitle}".
+
+Nuestra decisión es:
+
+URL del manuscrito: {$submissionUrl}
+Nombre de usuario/a: {$authorUsername}
+
+{$editorialContactSignature}
+</body>
+		<description>El editor/a o el editor/a de la serie envía este correo electrónico a un autor/a para notificar la decisión final con respecto a su envío.</description>
+	</email_text>
+	<email_text key="EDITOR_DECISION_SEND_TO_EXTERNAL">
+		<subject>Decisión del coordinador</subject>
+		<body>{$authorName}:
+
+Hemos tomado una decisión con respecto al envío que realizó a {$contextName}, "{$submissionTitle}".
+
+Nuestra decisión es:
+
+URL del manuscrito: {$submissionUrl}
+Nombre de usuario/a: {$authorUsername}
+
+{$editorialContactSignature}
+</body>
+		<description>El editor/a o el editor/a de la serie envía este correo electrónico a un autor/a para notificar la remisión de su envío a una revisión externa.</description>
+	</email_text>
+	<email_text key="EDITOR_DECISION_SEND_TO_PRODUCTION">
+		<subject>Decisión del coordinador</subject>
+		<body>{$authorName}:
+
+La edición de su manuscrito, "{$submissionTitle}", se completó.  Se procede al envío para producción.
+
+URL del manuscrito: {$submissionUrl}
+Nombre de usuario/a: {$authorUsername}
+
+{$editorialContactSignature}
+</body>
+		<description>El editor/a o el editor/a de la serie envía este correo electrónico a un autor/a para notificar la remisión de su envío para producción.</description>
+	</email_text>
+	<email_text key="EDITOR_DECISION_REVISIONS">
+		<subject>Decisión del coordinador</subject>
+		<body>{$authorName}:
+
+Hemos tomado una decisión con respecto al envío que realizó a {$contextName}, "{$submissionTitle}".
+
+Nuestra decisión es:
+
+URL del manuscrito: {$submissionUrl}
+Nombre de usuario/a: {$authorUsername}
+
+{$editorialContactSignature}
+</body>
+		<description>El editor/a o el editor/a de la serie envía este correo electrónico a un autor/a para notificar la decisión final con respecto a su envío.</description>
+	</email_text>
+	<email_text key="EDITOR_DECISION_RESUBMIT">
+		<subject>Decisión del coordinador</subject>
+		<body>{$authorName}:
+
+Hemos tomado una decisión con respecto al envío que realizó a {$contextName}, "{$submissionTitle}".
+
+Nuestra decisión es:
+
+URL del manuscrito: {$submissionUrl}
+Nombre de usuario/a: {$authorUsername}
+
+{$editorialContactSignature}
+</body>
+		<description>El editor/a o el editor/a de la serie envía este correo electrónico a un autor/a para notificar la decisión final con respecto a su envío.</description>
 	</email_text>
 	<email_text key="EDITOR_DECISION_DECLINE">
 		<subject>Decisión del coordinador</subject>
-		<body><![CDATA[Editores:<br />
-<br />
-Hemos tomado una decisión con respecto a tu propuesta sobre {$contextName}, &quot;{$submissionTitle}&quot;.<br />
-<br />
-Nuestra decisión es la siguiente:<br />
-<br />
-URL del texto completo: {$submissionUrl}<br />
-<br />
-{$editorialContactSignature}]]></body>
-		<description>Este correo electrónico enviado por el coordinador o coordinador de colección al autor les informa de la decisión final sobre su propuesta.</description>
-	</email_text>
-	<email_text key="REVIEW_DECLINE">
-		<subject>No disponible para la revisión</subject>
-		<body><![CDATA[{$editorialContactName}:<br />
-<br />
-Siento comunicarle de que en estos momentos no puedo realizar la revisión de la propuesta, &quot;{$submissionTitle},&quot; para {$contextName}. Gracias por pensar en mí. Por favor, cuente conmigo para futuras tareas.<br />
-<br />
-{$reviewerName}]]></body>
-		<description>Este correo electrónico es enviado por el revisor al coordinador de colección en respuesta a una petición de revisión para avisar al coordinador de colección de que la petición se ha rechazado.</description>
+		<body>{$authorName}:
+
+Hemos tomado una decisión con respecto al envío que realizó a {$contextName}, "{$submissionTitle}".
+
+Nuestra decisión es:
+
+URL del manuscrito: {$submissionUrl}
+Nombre de usuario/a: {$authorUsername}
+
+{$editorialContactSignature}
+</body>
+		<description>El editor/a o el editor/a de la serie envía este correo electrónico a un autor/a para notificar la decisión final con respecto a su envío.</description>
 	</email_text>
 	<email_text key="COPYEDIT_REQUEST">
-		<subject>Solicitud de corrección de estilo</subject>
-		<body><![CDATA[{$participantName}:<br />
-<br />
-Te ruego lleves a cabo la corrección de estilo de &quot;{$submissionTitle}&quot; sobre {$contextName} siguiendo los siguientes pasos.<br />
-1. Haz clic en el URL de la propuesta que aparece al final.<br />
-2. Inicia sesión en la editorial y haz clic en el fichero que aparece en Paso 1.<br />
-3. Consulta las Instrucciones de corrección de estilo publicadas en nuestra página electrónica.<br />
-4. Abre el fichero descargado y corrígelo. Si lo necesitas, añade &quot;Consultas al autor&quot;. <br />
-5. Guarda el fichero revisado y súbelo al Paso 1 de Corrección de estilo.<br />
-6. Envía el correo electrónico COMPLETO al coordinador.<br />
-<br />
-URL de {$contextName}: <a href="{$contextUrl}">{$contextUrl}</a><br />
-URL de la propuesta: <a href="{$submissionUrl}">{$submissionUrl}</a><br />
-Nombre de ususario: {$participantUsername}<br />
-<br />
-{$editorialContactSignature}]]></body>
-		<description>El coordinador de colección enviará este correo electrónico al corrector de estilo de una  propuesta para pedirle que comience el proceso de revisión. Este correo proporciona información sobre la propuesta y sobre cómo acceder a ella.</description>
+		<subject>Solicitud de corrección de originales</subject>
+		<body>{$copyeditorName}:
+
+Solicito que realice la corrección del original "{$submissionTitle}" para {$contextName} siguiendo los siguientes pasos.
+1. Haga clic en la URL del envío que aparece debajo.
+2. Inicie sesión en la publicación y haga clic en el archivo que aparece en el paso 1.
+3. Consulte las Instrucciones de corrección publicadas en la página web.
+4. Abra el archivo descargado, corríjalo y añada consultas al autor/a si es necesario.
+5. Guarde el archivo corregido y súbalo al paso 1 de corrección.
+6. Envíe el correo electrónico COMPLETO al editor/a.
+
+{$contextName} URL: {$contextUrl}
+URL del envío: {$submissionCopyeditingUrl}
+Nombre de usuario/a: {$copyeditorUsername}
+
+{$editorialContactSignature}</body>
+		<description>El editor/a de la serie envía este correo electrónico al corrector/a del envío para solicitar que se inicie el proceso de corrección. Proporciona información sobre el envío y cómo acceder al mismo.</description>
 	</email_text>
 	<email_text key="LAYOUT_REQUEST">
 		<subject>Solicitud de galeradas</subject>
-		<body><![CDATA[{$participantName}:<br />
-<br />
-La propuesta &quot;{$submissionTitle}&quot; sobre {$contextName} necesita ahora galeradas maquetadas siguiendo estos pasos.<br />
-1. Haz clic en la URL de la propuesta al final.<br />
-2. Inicia sesión en la editorial y utiliza el fichero de la versión maquetada para crear las galeradas de acuerdo con las normas de la editorial.<br />
-3. Envía el correo electrónico COMPLETO al coordinador.<br />
-<br />
-URL de {$contextName}: <a href="{$contextUrl}">{$contextUrl}</a>]]></body>
-		<description>Este correo electrónico enviado por el coordinador de colección al maquetador les informa de que se les ha asignado la tarea de maquetar una propuesta. Esta correo proporciona información sobre la propuesta y sobre cómo acceder a ella.</description>
+		<body>{$layoutEditorName}:
+
+Es necesario extraer galeradas del envío "{$submissionTitle}" a {$contextName} siguiendo los siguientes pasos.
+1. Haga clic en la URL del envío que aparece debajo.
+2. Inicie sesión en la publicación y use el archivo Versión para maquetar para crear las galeradas según los estándares de publicación.
+3. Envíe el correo electrónico COMPLETO al editor/a.
+
+{$contextName} URL: {$contextUrl}
+URL del envío: {$submissionUrl}
+Nombre de usuario/a: {$layoutEditorUsername}
+
+Si no puede realizar esta tarea en este momento o tiene alguna duda, póngase en contacto conmigo. Gracias por su contribución a la publicación.
+
+{$editorialContactSignature}</body>
+		<description>El editor/a de la serie envía este correo electrónico al maquetador/a para notificar que se les asignó la tarea de llevar a cabo la maquetación de un envío. Proporciona información sobre el envío y cómo acceder al mismo.</description>
 	</email_text>
 	<email_text key="LAYOUT_COMPLETE">
-		<subject>Galeradas maquetadas terminadas</subject>
-		<body><![CDATA[{$editorialContactName}:<br />
-<br />
-Las galeradas ya están preparadas para el texto completo, &quot;{$submissionTitle},&quot; sobre {$contextName} y están listas para la corrección de pruebas.<br />
-<br />
-Si tienes alguna duda, por favor, no dudes en contactar conmigo.<br />
-<br />
-{$signatureFullName}]]></body>
-		<description>Este correo electrónico enviado por el maquetador al coordinador de colección les informa de que el proceso de maquetación ya ha terminado.</description>
+		<subject>Galeradas de maquetación completadas</subject>
+		<body>{$editorialContactName}:
+
+Las galeradas para el manuscrito "{$submissionTitle}" para {$contextName} están preparadas y listas para la corrección de pruebas.
+
+Si tiene alguna duda, puede ponerse en contacto conmigo.
+
+{$signatureFullName}</body>
+		<description>El maquetador/a envía este correo electrónico al editor/a de la serie para notificar que el proceso de maquetación se completó.</description>
 	</email_text>
 	<email_text key="INDEX_REQUEST">
-		<subject>Índice de solicitud</subject>
-		<body><![CDATA[{$participantName}:<br />
-<br />
-Ahora se necesita crear índices para la propuesta &quot;{$submissionTitle}&quot; sobre {$contextName} siguiendo los siguientes pasos.<br />
-1. Haz clic en la URL de la propuesta al final.<br />
-2. Inicia sesión en la editorial y utiliza el fichero Pruebas de página para crear las galeradas de acuerdo con las normas de la editorial.<br />
-3. Envía el correo electrónico COMPLETO al coordinador.<br />
-<br />
-URL de {$contextName}: <a href="{$contextUrl}">{$contextUrl}</a><br />
-URL de la propuesta: {$submissionUrl}<br />
-Nombre de ususario: {$participantUsername}<br />
-<br />
-Si no puedes realizar este tarea en este momento o tienes alguna duda, por favor, no dudes en contactar conmigo. Gracias por tu colaboración con esta editorial.<br />
-<br />
-{$editorialContactSignature}]]></body>
-		<description>Este correo electrónico es enviado por el Coordinador de colección al Documentalista y les informa de que se les ha asignado la tarea de crear índices para la propuesta. Este correo proporciona información sobre la propuesta y sobre cómo acceder a ella.</description>
+		<subject>Solicitud de índice</subject>
+		<body>{$indexerName}:
+
+Es necesario crear índices al envío "{$submissionTitle}" a {$contextName} siguiendo los siguientes pasos.
+1. Haga clic en la URL del envío que aparece debajo.
+2. Inicie sesión en la publicación y use el fichero Galeradas de la página para crear galeradas según los estándares de publicación.
+3. Envíe el correo electrónico COMPLETO al editor/a.
+
+{$contextName} URL: {$contextUrl}
+URL del envío: {$submissionUrl}
+Nombre de usuario/a: {$indexerUsername}
+
+Si no puede realizar esta tarea en este momento o tiene alguna duda, póngase en contacto conmigo. Gracias por su contribución a la publicación.
+
+{$editorialContactSignature}</body>
+		<description>El editor/a de la serie envía este correo electrónico al indexador/a para notificar que se les asignó la tarea de creación de índices para un envío. Proporciona información sobre el envío y cómo acceder al mismo.</description>
 	</email_text>
 	<email_text key="INDEX_COMPLETE">
-		<subject>Galeradas de índice terminadas</subject>
-		<body><![CDATA[{$editorialContactName}:<br />
-<br />
-Los índices ya están preparados para el texto completo, &quot;{$submissionTitle},&quot; sobre {$contextName} y están listos para ser revisados.<br />
-<br />
-Si tienes alguna duda, por favor, no dudes en contactar conmigo.<br />
-<br />
-{$signatureFullName}]]></body>
-		<description>Este correo electrónico enviado por el documentalista al coordinador de colección les informa de que el proceso de creación del índice ha terminado.</description>
+		<subject>Galeradas de índice completadas</subject>
+		<body>{$editorialContactName}:
+
+Los índices para el manuscrito "{$submissionTitle}" para {$contextName} están preparados y listos para la corrección de pruebas.
+
+Si tiene alguna duda, puede ponerse en contacto conmigo.
+
+{$signatureFullName}</body>
+		<description>El indexador/a envía este correo electrónico al editor/a de la serie para notificar que el proceso de creación de índices se completó.</description>
 	</email_text>
 	<email_text key="EMAIL_LINK">
-		<subject>Texto completo que podría ser de tu interés</subject>
-		<body><![CDATA[Pensamos que quizás podrías estar interesado en &quot;{$submissionTitle}&quot; por {$authorName} publicado en vol. {$volume}, nº {$number} ({$year}) sobre {$contextName} en &quot;<a href="{$monographUrl}">{$monographUrl}</a>&quot;.]]></body>
-		<description>Esta plantilla de correo electrónico le ofrece a un lector registrado la oportunidad de enviar información sobre una monografía a otra persona que pueda estar interesada. Esta disponible a través de Herramientas de lectura y debe activarse por el Gestor editorial en las Herramientas de lectura de la página Administración.</description>
+		<subject>Manuscrito de posible interés</subject>
+		<body>Quizá le interese consultar "{$submissionTitle}" de {$authorName} publicado en el vol. {$volume}, n.º {$number} ({$year}) de {$contextName} en "{$monographUrl}".</body>
+		<description>Esta plantilla de correo electrónico da al lector/a registrado la oportunidad de enviar información sobre una monografía a alguien que pueda estar interesado. Está disponible en las Herramientas de lectura y debe ser habilitada por el jefe/a editorial en la página de Administración de herramientas de lectura.</description>
 	</email_text>
-	<email_text key="NOTIFY_SUBMISSION">
-		<subject>Notificación de propuesta</subject>
-		<body><![CDATA[Tienes un mensaje de {$sender} sobre &quot;{$submissionTitle}&quot; (<a href="{$monographDetailsUrl}">{$monographDetailsUrl}</a>):<br />
-<br />
-		{$message}]]></body>
-		<description>Una notificación de un usuario envidada desde el centro de información de la propuesta.</description>
+		<email_text key="NOTIFY_SUBMISSION">
+		<subject>Notificación de envío</subject>
+		<body>Tiene un mensaje de {$sender} en relación con "{$submissionTitle}" ({$monographDetailsUrl}):
+
+		{$message}
+
+		</body>
+		<description>Notificación de un usuario/a enviada desde un centro de información sobre envíos.</description>
 	</email_text>
-	<email_text key="NOTIFY_FILE">
-		<subject>Notificación de fichero de propuesta</subject>
-		<body><![CDATA[Tienes un mensaje de {$sender} sobre el fichero &quot;{$fileName}&quot; en &quot;{$submissionTitle}&quot; (<a href="{$monographDetailsUrl}">{$monographDetailsUrl}</a>):<br />
-<br />
-		{$message}]]></body>
-		<description>Una notificación de un usuario enviada desde el centro de información del fichero.</description>
+		<email_text key="NOTIFY_FILE">
+		<subject>Notificación de envío de fichero</subject>
+		<body>Tiene un mensaje de {$sender} en relación con el fichero "{$fileName}" en "{$submissionTitle}" ({$monographDetailsUrl}):
+
+		{$message}
+
+		</body>
+		<description>Notificación de un usuario/a enviada desde un centro de información sobre archivos</description>
 	</email_text>
 	<email_text key="NOTIFICATION_CENTER_DEFAULT">
-		<subject>Un mensaje sobre {$contextName}</subject>
-		<body><![CDATA[Por favor, introduce tu mensaje.]]></body>
-		<description>Mensaje predeterminado en blanco utilizado en el generador de mensajes del centro de notificaciones.</description>
-	</email_text>
-	<email_text key="REVIEW_REMIND">
-		<subject>Recordatorio de revisión de propuesta</subject>
-		<body><![CDATA[{$reviewerName}:<br />
-<br />
-Sólo un simple recordatorio de nuestra solicitud de revisión de la propuesta, &quot;{$submissionTitle},&quot; para  {$contextName}. Esperamos tener la revisión {$reviewDueDate}, y estaríamos encantados de recibirla tan pronto como fuera posible.<br />
-<br />
-Si no tienes nombre de usuario y contraseña para el sitio web, puedes utilizar este enlace para restablecer tu contraseña (que se te enviará junto con tu nombre de usuario). <a href="{$passwordResetUrl}">{$passwordResetUrl}</a><br />
-<br />
-URL de la propuesta: {$reviewerUserName}<br />
-<br />
-Te rogamos que confirmes la posibilidad de completar esta importantísima contribución al trabajo de la editorial. Espero tener noticias tuyas pronto.<br />
-<br />
-{$editorialContactSignature}]]></body>
-		<description>Este correo electrónico ha sido enviado por un editor de series para recordar al revisor que falta su revisión.</description>
-	</email_text>
-	<email_text key="REVIEW_ACK">
-		<subject>Agradecimiento de la revisión del manuscrito</subject>
-		<body><![CDATA[{$reviewerName}:<br />
-<br />
-Gracias por completar la revisión de la propuesta, &quot;{$submissionTitle},&quot; para {$contextName}. Agradecemos su contribución a la calidad del trabajo que publicamos.<br />
-<br />
-{$editorialContactSignature}]]></body>
-		<description>Este correo electrónico es enviado por un Editor de Series para confirmar el recibo de una revisión completa y agradece al que recibe el mensaje por su contribución.</description>
-	</email_text>
-	<email_text key="REVIEW_REMIND_ONECLICK">
-		<subject>Recordatorio de revisión de propuesta</subject>
-		<body><![CDATA[{$reviewerName}:<br />
-<br />
-Sólo un simple recordatorio de nuestra solicitud de revisión de la propuesta, &quot;{$submissionTitle},&quot; para {$contextName}. Esperábamos la revisión el {$reviewDueDate}, y estaríamos encantados de recibirla tan pronto como fuera posible. <br />
-<br />
-URL de la propuesta: <a href="{$submissionReviewUrl}">{$submissionReviewUrl}</a><br />
-<br />
-Por favor, confirma la posibilidad de completar esta importantísima contribución al trabajo de la editorial. Espero noticias suyas.]]></body>
-		<description>Este correo electrónico es enviado por un editor de series para recordar a un revisor que falta su revisión.</description>
-	</email_text>
-	<email_text key="REVIEW_REMIND_AUTO">
-		<subject>Recordatorio de revisión de propuesta automático</subject>
-		<body><![CDATA[{$reviewerName}:<br />
-<br />
-Sólo un simple recordatorio de nuestra solicitud de revisión de la propuesta &quot;{$submissionTitle},&quot; para {$contextName}. Esperamos recibir esta revisión {$reviewDueDate}, y se ha generado y enviado automáticamente este correo electrónico al cumplimiento de esa fecha.  Aún estaríamos encantados de recibirlo tan pronto como fuera posible.<br />
-<br />
-Si no tienes nombre de usuario y contraseña para el sitio web, puedes usar este enlace para restablecer tu contraseña (que se te enviaría al correo electrónico junto con tu nombre de usuario). <a href="{$passwordResetUrl}">{$passwordResetUrl}</a>]]></body>
-		<description><![CDATA[Este correo electrónico se envía automáticamente cuando la fecha de entrega de un revisor se ha sobrepasado (véase Opciones de revisión bajo gestión > ajustes > flujo de trabajo > revisión) y se desactiva el acceso del revisor con un solo clic. Los trabajos planificados deben habilitarse y configurarse (véase el archivo de configuración del sitio).]]></description>
+		<subject>Mensaje sobre {$contextName}</subject>
+		<body>Introduzca su mensaje.</body>
+		<description>El mensaje por defecto (en blanco) usado en el Creador de listas de mensajes del Centro de notificación.</description>
 	</email_text>
 </email_texts>
