@@ -40,6 +40,7 @@ tools/buildpkg.sh						\
 tools/genLocaleReport.sh					\
 tools/genTestLocale.php						\
 tools/test							\
+lib/pkp/tools/travis						\
 plugins/generic/translator					\
 plugins/generic/customBlockManager/.git				\
 plugins/generic/emailLogger					\
@@ -74,6 +75,12 @@ lib/pkp/lib/vendor/robloach					\
 lib/pkp/lib/vendor/smarty/smarty/demo				\
 lib/pkp/lib/vendor/symfony					\
 lib/pkp/lib/vendor/phpunit					\
+lib/pkp/lib/vendor/phpdocumentor/reflection-docblock		\
+lib/pkp/lib/vendor/doctrine/instantiator/tests			\
+lib/pkp/lib/vendor/sebastian/global-state/tests			\
+lib/pkp/lib/vendor/sebastian/comparator/tests			\
+lib/pkp/lib/vendor/sebastian/diff/tests				\
+lib/pkp/lib/vendor/oyejorge/less.php/test			\
 lib/pkp/lib/swordappv2/.git					\
 lib/pkp/lib/swordappv2/test"
 
