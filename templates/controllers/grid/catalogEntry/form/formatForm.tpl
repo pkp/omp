@@ -8,16 +8,16 @@
  * Assigned Publication Format form.
  *}
 {if $remoteURL}
-	{assign var="remoteFormat" value=true}
+	{assign var="remoteRepresentation" value=true}
 {else}
-	{assign var="remoteFormat" value=false}
+	{assign var="remoteRepresentation" value=false}
 {/if}
 <script type="text/javascript">
 	$(function() {ldelim}
 		// Attach the form handler.
-		$('#addPublicationFormatForm').pkpHandler('$.pkp.controllers.grid.catalogEntry.form.PublicationFormatFormHandler',
+		$('#addPublicationFormatForm').pkpHandler('$.pkp.controllers.grid.representations.form.RepresentationFormHandler',
 			{ldelim}
-				remoteFormat: {$remoteFormat|json_encode escape=false}
+				remoteRepresentation: {$remoteRepresentation|json_encode escape=false}
 			{rdelim}
 		);
 	{rdelim});
