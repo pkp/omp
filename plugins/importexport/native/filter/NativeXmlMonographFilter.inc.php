@@ -44,14 +44,6 @@ class NativeXmlMonographFilter extends NativeXmlSubmissionFilter {
 	}
 
 	/**
-	 * Get the method name for inserting a published submission.
-	 * @return string
-	 */
-	function getPublishedSubmissionInsertMethod(){
-		return 'insertObject';
-	}
-
-	/**
 	 * Populate the submission object from the node
 	 * @param $submission Submission
 	 * @param $node DOMElement
