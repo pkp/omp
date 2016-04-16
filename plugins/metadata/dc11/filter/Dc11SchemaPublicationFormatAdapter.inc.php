@@ -150,7 +150,7 @@ class Dc11SchemaPublicationFormatAdapter extends MetadataDataObjectAdapter {
 		// Identifier: others
 		$identificationCodeFactory = $publicationFormat->getIdentificationCodes();
 		while ($identificationCode = $identificationCodeFactory->next()) {
-			$dc11Description->addStatement('dc:identifier', $identificationCode->getNameForONIXCode());
+			$dc11Description->addStatement('dc:identifier', $identificationCode->getValue());
 		}
 
 		// Source (press title and pages)
