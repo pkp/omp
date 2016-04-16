@@ -168,7 +168,7 @@ class Dc11SchemaPublicationFormatAdapter extends MetadataDataObjectAdapter {
 		// Relation
 
 		// Coverage
-		$coverage = (array) $monograph->getCoverageGeo(null);
+		$coverage = (array) $monograph->getCoverage(null);
 		$this->_addLocalizedElements($dc11Description, 'dc:coverage', $coverage);
 
 		// Rights
