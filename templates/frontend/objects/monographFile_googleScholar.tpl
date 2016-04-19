@@ -12,6 +12,8 @@
  * @uses $submissionFile SubmissionFile The submission file to be presented
  * @uses $chapter Chapter The (optional) chapter associated with this file
  *}
+{if $genre && !$genre->getSupplementary()}
+
 <meta name="gs_meta_revision" content="1.1" />
 {if $series && $series->getOnlineISSN()}
 	<meta name="citation_issn" content="{$series->getOnlineISSN()|escape}"/>
@@ -64,3 +66,5 @@
 		<meta name="citation_keywords" xml:lang="{$keywordLocale|String_substr:0:2|escape}" content="{$keyword|escape}"/>
 	{/foreach}
 {/foreach}
+
+{/if}{* Exclude supplemental *}
