@@ -23,22 +23,11 @@
 
 		li {
 			position: relative;
-			padding: @base @base @base @double;
+			padding: @base;
 			border-bottom: @bg-border;
 
 			&:before {
-				&:extend(.fa);
-				content: @fa-var-check;
-				position: absolute;
-				left: @base;
-				top: 50%;
-				-webkit-transform: translate(-50%, -50%);
-				-moz-transform: translate(-50%, -50%);
-				-ms-transform: translate(-50%, -50%);
-				-o-transform: translate(-50%, -50%);
-				transform: translate(-50%, -50%);
-				font-size: @font-base;
-				color: @yes;
+				&:extend(.fa all);
 			}
 		}
 	}
@@ -49,8 +38,17 @@
 				padding: @double @double @double (@double * 2);
 
 				&:before {
+					content: @fa-var-check;
+					position: absolute;
 					left: @double;
+					top: 50%;
+					-webkit-transform: translate(-50%, -50%);
+					-moz-transform: translate(-50%, -50%);
+					-ms-transform: translate(-50%, -50%);
+					-o-transform: translate(-50%, -50%);
+					transform: translate(-50%, -50%);
 					font-size: @font-lead;
+					color: @yes;
 				}
 		}
 	}
