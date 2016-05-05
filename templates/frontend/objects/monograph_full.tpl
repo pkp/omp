@@ -57,6 +57,7 @@
  * @uses $publicationFormats array List of PublicationFormat objects to display
  * @uses $availableFiles array List of available MonographFiles
  * @uses $chapters array List of chapters in monograph. Associative array
+ * @uses $chapterFiles array List of chapters with files attached. Associative array
  * @uses $sharingCode string Code snippet for a social sharing widget
  * @uses $blocks array List of HTML snippets to display block elements
  * @uses $currency Currency The Currency object representing the press's currency, if configured.
@@ -130,6 +131,7 @@
 					</h3>
 					<ul>
 						{foreach from=$chapters item=chapter}
+							{assign var=chapterId value=$chapter->getId()}
 							<li>
 								<div class="title">
 									{$chapter->getLocalizedTitle()}
@@ -143,6 +145,41 @@
 								{if $monograph->getAuthorString() != $chapterAuthors}
 									<div class="authors">
 										{$chapterAuthors|escape}
+									</div>
+								{/if}
+
+								{* Display any files that are assigned to this chapter *}
+								{if $chapterFiles[$chapterId]|@count}
+									<div class="files">
+										{foreach from=$chapterFiles[$chapterId] key=pubFormatId item=pubFormatFiles}
+
+											{* By default, use the publication format name in the download link *}
+											{foreach from=$publicationFormats item=publicationFormat}
+												{if $publicationFormat->getId() == $pubFormatId}
+													{assign var=downloadName value=$publicationFormat->getLocalizedName()}
+												{/if}
+											{/foreach}
+
+											{foreach from=$pubFormatFiles item=file}
+
+												{* If a publication format has more than one file, use the file name in the download link *}
+												{if $downloadName == '' || $pubFormatFiles|@count > 1}
+													{assign var=downloadName value=$file->getLocalizedName()}
+												{/if}
+
+												{* Generate the download URL *}
+												{if $file->getDocumentType()==$smarty.const.DOCUMENT_TYPE_PDF}
+													{url|assign:downloadUrl op="view" path=$monograph->getId()|to_array:$publicationFormatId:$file->getFileIdAndRevision()}
+												{else}
+													{url|assign:downloadUrl op="download" path=$monograph->getId()|to_array:$publicationFormatId:$file->getFileIdAndRevision()}
+												{/if}
+
+												{* Display the download link *}
+												<a href="{$downloadUrl}" class="download {$file->getDocumentType()|escape}">
+													{$downloadName}
+												</a>
+											{/foreach}
+										{/foreach}
 									</div>
 								{/if}
 							</li>
@@ -207,9 +244,11 @@
 			{* Files and remote resources *}
 			{if $availableFiles|@count || $remoteResources|@count}
 				<div class="item files">
-					{assign var=publicationFormats value=$monograph->getPublicationFormats()}
 					{foreach from=$publicationFormats item=publicationFormat}
 						{assign var=publicationFormatId value=$publicationFormat->getId()}
+
+
+						{* Remote resources *}
 						{if $publicationFormat->getIsAvailable() && $remoteResources[$publicationFormatId]}
 							{* Only one resource allowed per format, so mimic single-file-download *}
 							<div class="pub_format_{$publicationFormatId|escape} pub_format_remote">
@@ -217,62 +256,91 @@
 									{$publicationFormat->getLocalizedName()|escape}
 								</a>
 							</div>
+
+						{* File downloads *}
 						{elseif $publicationFormat->getIsAvailable() && $availableFiles[$publicationFormatId]}
 
-							{* Use a simplified presentation if only one file exists *}
-							{if $availableFiles[$publicationFormatId]|@count == 1}
-								<div class="pub_format_{$publicationFormatId|escape} pub_format_single">
-									{foreach from=$availableFiles[$publicationFormatId] item=availableFile}
-										{if $availableFile->getDocumentType()==$smarty.const.DOCUMENT_TYPE_PDF}
-											{url|assign:downloadUrl op="view" path=$monograph->getId()|to_array:$publicationFormatId:$availableFile->getFileIdAndRevision()}
-										{else}
-											{url|assign:downloadUrl op="download" path=$monograph->getId()|to_array:$publicationFormatId:$availableFile->getFileIdAndRevision()}
-										{/if}
-										<a href="{$downloadUrl}" class="{$availableFile->getDocumentType()|escape}">
-											{if $availableFile->getDirectSalesPrice()}
-												{translate key="payment.directSales.purchase" format=$publicationFormat->getLocalizedName() amount=$currency->format($availableFile->getDirectSalesPrice()) currency=$currency->getCodeAlpha()}
-											{else}
-												{translate key="payment.directSales.download" format=$publicationFormat->getLocalizedName()}
-												{* @todo make the open access icon appear *}
-											{/if}
-										</a>
-									{/foreach}
-								</div>
+							{* Skip any formats that have no non-chapter files, because
+							   these will have already been displayed *}
+							{assign var=hasRemainingFiles value=false}
+							{foreach from=$availableFiles[$publicationFormatId] item=availableFile}
+								{if !method_exists($availableFile, 'getChapterId') || $availableFile->getChapterId() == ''}
+									{assign var=hasRemainingFiles value=true}
+								{/if}
+							{/foreach}
+							{if $hasRemainingFiles}
 
-							{* Use an itemized presentation if multiple files exists *}
-							{else}
-								<div class="pub_format_{$publicationFormatId|escape}">
-									<span class="label">
-										{$publicationFormat->getLocalizedName()|escape}
-									</span>
-									<span class="value">
-										<ul>
-											{* There will be at most one of these *}
-											{foreach from=$availableFiles[$publicationFormatId] item=availableFile}
-												<li>
-													<span class="name">
-														{$availableFile->getLocalizedName()|escape}
-													</span>
-													<span class="link">
-														{if $availableFile->getDocumentType()==$smarty.const.DOCUMENT_TYPE_PDF}
-															{url|assign:downloadUrl op="view" path=$monograph->getId()|to_array:$publicationFormatId:$availableFile->getFileIdAndRevision()}
-														{else}
-															{url|assign:downloadUrl op="download" path=$monograph->getId()|to_array:$publicationFormatId:$availableFile->getFileIdAndRevision()}
-														{/if}
-														<a href="{$downloadUrl}" class="{$availableFile->getDocumentType()}">
-															{if $availableFile->getDirectSalesPrice()}
-																{translate key="payment.directSales.purchase" format=$publicationFormat->getLocalizedName() amount=$currency->format($availableFile->getDirectSalesPrice()) currency=$currency->getCodeAlpha()}
-															{else}
-																{translate key="payment.directSales.download" format=$publicationFormat->getLocalizedName()}
-																{* @todo make the open access icon appear *}
-															{/if}
-														</a>
-													</span>
-												</li>
-											{/foreach}
-										</ul>
-									</span><!-- .value -->
-								</div>
+								{* Use a simplified presentation if only one file exists *}
+								{if $availableFiles[$publicationFormatId]|@count == 1}
+									<div class="pub_format_{$publicationFormatId|escape} pub_format_single">
+										{foreach from=$availableFiles[$publicationFormatId] item=availableFile}
+
+											{* Don't display files already listed with chapters *}
+											{if !method_exists($availableFile, 'getChapterId') || $availableFile->getChapterId() == ''}
+
+												{* Generate the download URL *}
+												{if $availableFile->getDocumentType()==$smarty.const.DOCUMENT_TYPE_PDF}
+													{url|assign:downloadUrl op="view" path=$monograph->getId()|to_array:$publicationFormatId:$availableFile->getFileIdAndRevision()}
+												{else}
+													{url|assign:downloadUrl op="download" path=$monograph->getId()|to_array:$publicationFormatId:$availableFile->getFileIdAndRevision()}
+												{/if}
+
+												{* Display the download link *}
+												<a href="{$downloadUrl}" class="{$availableFile->getDocumentType()|escape}">
+													{if $availableFile->getDirectSalesPrice()}
+														{translate key="payment.directSales.purchase" format=$publicationFormat->getLocalizedName() amount=$currency->format($availableFile->getDirectSalesPrice()) currency=$currency->getCodeAlpha()}
+													{else}
+														{translate key="payment.directSales.download" format=$publicationFormat->getLocalizedName()}
+														{* @todo make the open access icon appear *}
+													{/if}
+												</a>
+											{/if}
+										{/foreach}
+									</div>
+
+								{* Use an itemized presentation if multiple files exists *}
+								{else}
+									<div class="pub_format_{$publicationFormatId|escape}">
+										<span class="label">
+											{$publicationFormat->getLocalizedName()|escape}
+										</span>
+										<span class="value">
+											<ul>
+												{foreach from=$availableFiles[$publicationFormatId] item=availableFile}
+
+													{* Don't display files already listed with chapters *}
+													{if !method_exists($availableFile, 'getChapterId') || $availableFile->getChapterId() == ''}
+
+														<li>
+															<span class="name">
+																{$availableFile->getLocalizedName()|escape}
+															</span>
+															<span class="link">
+
+																{* Generate the download URL *}
+																{if $availableFile->getDocumentType()==$smarty.const.DOCUMENT_TYPE_PDF}
+																	{url|assign:downloadUrl op="view" path=$monograph->getId()|to_array:$publicationFormatId:$availableFile->getFileIdAndRevision()}
+																{else}
+																	{url|assign:downloadUrl op="download" path=$monograph->getId()|to_array:$publicationFormatId:$availableFile->getFileIdAndRevision()}
+																{/if}
+
+																{* Display the download link *}
+																<a href="{$downloadUrl}" class="{$availableFile->getDocumentType()}">
+																	{if $availableFile->getDirectSalesPrice()}
+																		{translate key="payment.directSales.purchase" format=$publicationFormat->getLocalizedName() amount=$currency->format($availableFile->getDirectSalesPrice()) currency=$currency->getCodeAlpha()}
+																	{else}
+																		{translate key="payment.directSales.download" format=$publicationFormat->getLocalizedName()}
+																		{* @todo make the open access icon appear *}
+																	{/if}
+																</a>
+															</span>
+														</li>
+													{/if}
+												{/foreach}
+											</ul>
+										</span><!-- .value -->
+									</div>
+								{/if}
 							{/if}
 						{/if}
 					{/foreach}
