@@ -40,9 +40,9 @@ class PublicationDate extends DataObject {
 
 	/**
 	 * set publication format id
-	 * @param $pressId int
+	 * @param $representationId int
 	 */
-	function setPublicationformatId($representationId) {
+	function setPublicationFormatId($representationId) {
 		return $this->setData('representationId', $representationId);
 	}
 
@@ -208,6 +208,25 @@ class PublicationDate extends DataObject {
 			$dates[] = $this->getDate();
 		}
 		return $dates;
+	}
+
+	/**
+	 * Return a best guess of the UNIX time corresponding to this date
+	 * @return int? Number of seconds since the UNIX epoch, or null if it could not be determined
+	 * FIXME: Hirji support
+	 */
+	function getUnixTime() {
+		$date = $this->getDate();
+		switch ($this->getDateFormat()) {
+			case '12': return strtotime($date);
+			case '05': return strtotime("$date-01-01");
+			case '01': return strtotime("$date-01");
+			case '13': // FIXME: improve resolution below day
+			case '14': // FIXME: improve resolution below day
+			case '06': // FIXME: improve resolution below day
+			case '00': return strtotime(substr($date, 0, 4) . '-' . substr($date, 4, 2) . '-' . substr($date, 6, 2));
+		}
+		return null;
 	}
 }
 

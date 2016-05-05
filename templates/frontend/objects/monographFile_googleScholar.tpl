@@ -49,8 +49,8 @@
 	<meta name="citation_title" content="{$publishedMonograph->getTitle($currentPress->getPrimaryLocale())|escape}"/>
 {/if}
 
-{if is_a($publishedMonograph, 'PublishedMonograph') && $publishedMonograph->getDatePublished()}
-	<meta name="citation_publication_date" content="{$publishedMonograph->getDatePublished()|date_format:"%Y/%m/%d"}"/>
+{if $bestPublicationDate}
+	<meta name="citation_publication_date" content="{$bestPublicationDate|date_format:"%Y/%m/%d"}"/>
 {/if}
 
 {assign var=publisher value=$currentPress->getSetting('publisher')}
