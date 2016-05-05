@@ -69,6 +69,7 @@
 	<div class="row">
 		<div class="main_entry">
 
+			{* Author list *}
 			<div class="item authors">
 				<h2 class="pkp_screen_reader">
 					{translate key="submission.authors"}
@@ -111,6 +112,7 @@
 				{/if}
 			</div>
 
+			{* Abstract *}
 			<div class="item abstract">
 				<h3 class="label">
 					{translate key="submission.synopsis"}
@@ -120,6 +122,7 @@
 				</div>
 			</div>
 
+			{* Chapters *}
 			{if $chapters|@count}
 				<div class="item chapters">
 					<h3 class="pkp_screen_reader">
@@ -157,6 +160,8 @@
 					{assign var="hasBiographies" value=true}
 				{/if}
 			{/foreach}
+
+			{* Author biographies *}
 			{if $hasBiographies}
 				<div class="item author_bios">
 					<h3 class="label">
