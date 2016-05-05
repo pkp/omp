@@ -50,6 +50,19 @@ abstract class ViewableFilePlugin extends PKPViewableFilePlugin {
 		$submissionKeywordDao = DAORegistry::getDAO('SubmissionKeywordDAO');
 		$chapterDao = DAORegistry::getDAO('ChapterDAO');
 		$genreDao = DAORegistry::getDAO('GenreDAO');
+
+		// Find a good candidate for a publication date
+		$publicationDateDao = DAORegistry::getDAO('PublicationDateDAO');
+		$publicationDates = $publicationDateDao->getByPublicationFormatId($publicationFormat->getId());
+		$bestPublicationDate = null;
+		while ($publicationDate = $publicationDates->next()) {
+			// 11: Date of first publication; 01: Publication date
+			if ($publicationDate->getRole() != '11' && $publicationDate->getRole() != '01') continue;
+
+			if ($bestPublicationDate) $bestPublicationDate = min($bestPublicationDate, $publicationDate->getUnixTime());
+			else $bestPublicationDate = $publicationDate->getUnixTime();
+		}
+
 		$templateMgr->assign(array(
 			'submissionKeywords' => $submissionKeywordDao->getKeywords($publishedMonograph->getId(), array_merge(array(AppLocale::getLocale()), array_keys(AppLocale::getSupportedLocales()))),
 			'publishedMonograph' => $publishedMonograph,
@@ -57,6 +70,7 @@ abstract class ViewableFilePlugin extends PKPViewableFilePlugin {
 			'submissionFile' => $submissionFile,
 			'chapter' => $chapterDao->getChapter($submissionFile->getData('chapterId')),
 			'genre' => $genreDao->getById($submissionFile->getGenreId()),
+			'bestPublicationDate' => $bestPublicationDate,
 		));
 
 		// Fetch the viewable file template render.
