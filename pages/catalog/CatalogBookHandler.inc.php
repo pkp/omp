@@ -61,6 +61,10 @@ class CatalogBookHandler extends Handler {
 
 		$templateMgr->assign('publishedMonograph', $publishedMonograph);
 
+		// Provide the publication formats to the template
+		$publicationFormats = $publishedMonograph->getPublicationFormats(true);
+		$templateMgr->assign('publicationFormats', $publicationFormats);
+
 		// Assign chapters (if they exist)
 		$chapterDao = DAORegistry::getDAO('ChapterDAO');
 		$chapters = $chapterDao->getChapters($publishedMonograph->getId());
@@ -75,7 +79,6 @@ class CatalogBookHandler extends Handler {
 			if ($plugin->getEnabled()) {
 				$enabledPubIdTypes[] = $plugin->getPubIdType();
 				// check to see if the format has a pubId set.  If not, generate one.
-				$publicationFormats = $publishedMonograph->getPublicationFormats(true);
 				foreach ($publicationFormats as $publicationFormat) {
 					if ($publicationFormat->getStoredPubId($plugin->getPubIdType()) == '') {
 						$plugin->getPubId($publicationFormat);
@@ -108,7 +111,7 @@ class CatalogBookHandler extends Handler {
 			}
 
 			$remoteResourcesByPublicationFormat = array();
-			foreach ($publishedMonograph->getPublicationFormats(true) as $publicationFormat) {
+			foreach ($publicationFormats as $publicationFormat) {
 				$remoteURL = $publicationFormat->getRemoteURL();
 				if ($remoteURL != null) {
 					$remoteResourcesByPublicationFormat[$publicationFormat->getId()] = $remoteURL;
@@ -120,6 +123,25 @@ class CatalogBookHandler extends Handler {
 			$templateMgr->assign('remoteResources', $remoteResourcesByPublicationFormat);
 
 		}
+
+		// Compile array of chapters with files attached to them
+		$chapterFiles = array();
+		foreach ($publicationFormats as $publicationFormat) {
+			if ($publicationFormat->getIsAvailable() && isset($availableFilesByPublicationFormat[$publicationFormat->getId()])) {
+				foreach ($availableFilesByPublicationFormat[$publicationFormat->getId()] as $file) {
+					if (method_exists($file, 'getChapterId') && $file->getChapterId()) {
+						if (!array_key_exists($file->getChapterId(), $chapterFiles)) {
+							$chapterFiles[$file->getChapterId()] = array();
+						}
+						if (!array_key_exists($publicationFormat->getId(), $chapterFiles[$file->getChapterId()])) {
+							$chapterFiles[$file->getChapterId()][$publicationFormat->getId()] = array();
+						}
+						$chapterFiles[$file->getChapterId()][$publicationFormat->getId()][] = $file;
+					}
+				}
+			}
+		}
+		$templateMgr->assign('chapterFiles', $chapterFiles);
 
 		// Provide the currency to the template, if configured.
 		$currencyDao = DAORegistry::getDAO('CurrencyDAO');
