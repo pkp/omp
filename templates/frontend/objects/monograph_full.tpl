@@ -70,26 +70,45 @@
 		<div class="main_entry">
 
 			<div class="item authors">
-				{foreach from=$publishedMonograph->getAuthors() item=author}
-					{if $author->getIncludeInBrowse()}
+				<h2 class="pkp_screen_reader">
+					{translate key="submission.authors"}
+				</h2>
+
+				{assign var="authors" value=$monograph->getAuthors()}
+
+				{* Show short author lists on multiple lines *}
+				{if $authors|@count < 5}
+					{foreach from=$authors item=author}
 						<div class="sub_item">
 							<div class="label">
 								{$author->getFullName()|escape}
 							</div>
-							<div class="value">
-								<div class="role">
-									{$author->getLocalizedUserGroupName()|escape}
+							{if $author->getLocalizedAffiliation()}
+								<div class="value">
+									{$author->getLocalizedAffiliation()|escape}
 								</div>
-								{assign var=biography value=$author->getLocalizedBiography()|strip_unsafe_html}
-								{if $biography}
-									<div class="bio">
-										{$biography|strip_unsafe_html}
-									</div>
-								{/if}
-							</div>
+							{/if}
 						</div>
-					{/if}
-				{/foreach}
+					{/foreach}
+
+				{* Show long author lists on one line *}
+				{else}
+					{foreach name="authors" from=$authors item=author}
+						{* strip removes excess white-space which creates gaps between separators *}
+						{strip}
+							{if $author->getLocalizedAffiliation()}
+								{capture assign="authorName"}<span class="label">{$author->getFullName()|escape}</span>{/capture}
+								{capture assign="authorAffiliation"}<span class="value">{$author->getLocalizedAffiliation()|escape}</span>{/capture}
+								{translate key="submission.authorWithAffiliation" name=$authorName affiliation=$authorAffiliation}
+							{else}
+								<span class="label">{$author->getFullName()|escape}</span>
+							{/if}
+							{if !$smarty.foreach.authors.last}
+								{translate key="submission.authorListSeparator"}
+							{/if}
+						{/strip}
+					{/foreach}
+				{/if}
 			</div>
 
 			<div class="item abstract">
@@ -97,7 +116,7 @@
 					{translate key="submission.synopsis"}
 				</h3>
 				<div class="value">
-					{$publishedMonograph->getLocalizedAbstract()|strip_unsafe_html}
+					{$monograph->getLocalizedAbstract()|strip_unsafe_html}
 				</div>
 			</div>
 
@@ -118,7 +137,7 @@
 									{/if}
 								</div>
 								{assign var=chapterAuthors value=$chapter->getAuthorNamesAsString()}
-								{if $publishedMonograph->getAuthorString() != $chapterAuthors}
+								{if $monograph->getAuthorString() != $chapterAuthors}
 									<div class="authors">
 										{$chapterAuthors|escape}
 									</div>
@@ -130,6 +149,39 @@
 			{/if}
 
 			{call_hook name="Templates::Catalog::Book::Main"}
+
+			{* Determine if any authors have biographies to display *}
+			{assign var="hasBiographies" value=false}
+			{foreach from=$monograph->getAuthors() item=author}
+				{if $author->getLocalizedBiography()}
+					{assign var="hasBiographies" value=true}
+				{/if}
+			{/foreach}
+			{if $hasBiographies}
+				<div class="item author_bios">
+					<h3 class="label">
+						{translate key="submission.authorBiographies"}
+					</h3>
+					{foreach from=$monograph->getAuthors() item=author}
+						{if $author->getLocalizedBiography()}
+							<div class="sub_item">
+								<div class="label">
+									{if $author->getLocalizedAffiliation()}
+										{capture assign="authorName"}{$author->getFullName()|escape}{/capture}
+										{capture assign="authorAffiliation"}<span class="affiliation">{$author->getLocalizedAffiliation()|escape}</span>{/capture}
+										{translate key="submission.authorWithAffiliation" name=$authorName affiliation=$authorAffiliation}
+									{else}
+										{$author->getFullName()|escape}
+									{/if}
+								</div>
+								<div class="value">
+									{$author->getLocalizedBiography()|strip_unsafe_html}
+								</div>
+							</div>
+						{/if}
+					{/foreach}
+				</div>
+			{/if}
 
 		</div><!-- .main_entry -->
 
@@ -150,7 +202,7 @@
 			{* Files and remote resources *}
 			{if $availableFiles|@count || $remoteResources|@count}
 				<div class="item files">
-					{assign var=publicationFormats value=$publishedMonograph->getPublicationFormats()}
+					{assign var=publicationFormats value=$monograph->getPublicationFormats()}
 					{foreach from=$publicationFormats item=publicationFormat}
 						{assign var=publicationFormatId value=$publicationFormat->getId()}
 						{if $publicationFormat->getIsAvailable() && $remoteResources[$publicationFormatId]}
@@ -167,9 +219,9 @@
 								<div class="pub_format_{$publicationFormatId|escape} pub_format_single">
 									{foreach from=$availableFiles[$publicationFormatId] item=availableFile}
 										{if $availableFile->getDocumentType()==$smarty.const.DOCUMENT_TYPE_PDF}
-											{url|assign:downloadUrl op="view" path=$publishedMonograph->getId()|to_array:$publicationFormatId:$availableFile->getFileIdAndRevision()}
+											{url|assign:downloadUrl op="view" path=$monograph->getId()|to_array:$publicationFormatId:$availableFile->getFileIdAndRevision()}
 										{else}
-											{url|assign:downloadUrl op="download" path=$publishedMonograph->getId()|to_array:$publicationFormatId:$availableFile->getFileIdAndRevision()}
+											{url|assign:downloadUrl op="download" path=$monograph->getId()|to_array:$publicationFormatId:$availableFile->getFileIdAndRevision()}
 										{/if}
 										<a href="{$downloadUrl}" class="{$availableFile->getDocumentType()|escape}">
 											{if $availableFile->getDirectSalesPrice()}
@@ -198,9 +250,9 @@
 													</span>
 													<span class="link">
 														{if $availableFile->getDocumentType()==$smarty.const.DOCUMENT_TYPE_PDF}
-															{url|assign:downloadUrl op="view" path=$publishedMonograph->getId()|to_array:$publicationFormatId:$availableFile->getFileIdAndRevision()}
+															{url|assign:downloadUrl op="view" path=$monograph->getId()|to_array:$publicationFormatId:$availableFile->getFileIdAndRevision()}
 														{else}
-															{url|assign:downloadUrl op="download" path=$publishedMonograph->getId()|to_array:$publicationFormatId:$availableFile->getFileIdAndRevision()}
+															{url|assign:downloadUrl op="download" path=$monograph->getId()|to_array:$publicationFormatId:$availableFile->getFileIdAndRevision()}
 														{/if}
 														<a href="{$downloadUrl}" class="{$availableFile->getDocumentType()}">
 															{if $availableFile->getDirectSalesPrice()}
@@ -251,7 +303,7 @@
 			{/if}
 
 			{* Categories *}
-			{assign var=categories value=$publishedMonograph->getCategories()}
+			{assign var=categories value=$monograph->getCategories()}
 			{if !$categories->wasEmpty()}
 				<div class="item categories">
 					<div class="label">
@@ -274,7 +326,7 @@
 			{* Copyright statement *}
 			{if $currentPress->getSetting('includeCopyrightStatement')}
 				<div class="item copyright">
-					{translate|escape key="submission.copyrightStatement" copyrightYear=$publishedMonograph->getCopyrightYear() copyrightHolder=$publishedMonograph->getLocalizedCopyrightHolder()}
+					{translate|escape key="submission.copyrightStatement" copyrightYear=$monograph->getCopyrightYear() copyrightHolder=$monograph->getLocalizedCopyrightHolder()}
 				</div>
 			{/if}
 
