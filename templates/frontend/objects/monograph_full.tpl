@@ -69,38 +69,60 @@
 	<div class="row">
 		<div class="main_entry">
 
+			{* Author list *}
 			<div class="item authors">
-				{foreach from=$publishedMonograph->getAuthors() item=author}
-					{if $author->getIncludeInBrowse()}
+				<h2 class="pkp_screen_reader">
+					{translate key="submission.authors"}
+				</h2>
+
+				{assign var="authors" value=$monograph->getAuthors()}
+
+				{* Show short author lists on multiple lines *}
+				{if $authors|@count < 5}
+					{foreach from=$authors item=author}
 						<div class="sub_item">
 							<div class="label">
 								{$author->getFullName()|escape}
 							</div>
-							<div class="value">
-								<div class="role">
-									{$author->getLocalizedUserGroupName()|escape}
+							{if $author->getLocalizedAffiliation()}
+								<div class="value">
+									{$author->getLocalizedAffiliation()|escape}
 								</div>
-								{assign var=biography value=$author->getLocalizedBiography()|strip_unsafe_html}
-								{if $biography}
-									<div class="bio">
-										{$biography|strip_unsafe_html}
-									</div>
-								{/if}
-							</div>
+							{/if}
 						</div>
-					{/if}
-				{/foreach}
+					{/foreach}
+
+				{* Show long author lists on one line *}
+				{else}
+					{foreach name="authors" from=$authors item=author}
+						{* strip removes excess white-space which creates gaps between separators *}
+						{strip}
+							{if $author->getLocalizedAffiliation()}
+								{capture assign="authorName"}<span class="label">{$author->getFullName()|escape}</span>{/capture}
+								{capture assign="authorAffiliation"}<span class="value">{$author->getLocalizedAffiliation()|escape}</span>{/capture}
+								{translate key="submission.authorWithAffiliation" name=$authorName affiliation=$authorAffiliation}
+							{else}
+								<span class="label">{$author->getFullName()|escape}</span>
+							{/if}
+							{if !$smarty.foreach.authors.last}
+								{translate key="submission.authorListSeparator"}
+							{/if}
+						{/strip}
+					{/foreach}
+				{/if}
 			</div>
 
+			{* Abstract *}
 			<div class="item abstract">
 				<h3 class="label">
 					{translate key="submission.synopsis"}
 				</h3>
 				<div class="value">
-					{$publishedMonograph->getLocalizedAbstract()|strip_unsafe_html}
+					{$monograph->getLocalizedAbstract()|strip_unsafe_html}
 				</div>
 			</div>
 
+			{* Chapters *}
 			{if $chapters|@count}
 				<div class="item chapters">
 					<h3 class="pkp_screen_reader">
@@ -108,6 +130,7 @@
 					</h3>
 					<ul>
 						{foreach from=$chapters item=chapter}
+							{assign var=chapterId value=$chapter->getId()}
 							<li>
 								<div class="title">
 									{$chapter->getLocalizedTitle()}
@@ -118,9 +141,34 @@
 									{/if}
 								</div>
 								{assign var=chapterAuthors value=$chapter->getAuthorNamesAsString()}
-								{if $publishedMonograph->getAuthorString() != $chapterAuthors}
+								{if $monograph->getAuthorString() != $chapterAuthors}
 									<div class="authors">
 										{$chapterAuthors|escape}
+									</div>
+								{/if}
+
+
+								{* Display any files that are assigned to this chapter *}
+								{pluck_files assign="chapterFiles" files=$availableFiles by="chapter" value=$chapterId}
+								{if $chapterFiles|@count}
+									<div class="files">
+
+										{* Display chapter files sorted by publication format so that they are ordered
+										   consistently across all chapters. *}
+										{foreach from=$publicationFormats item=format}
+											{pluck_files assign="pubFormatFiles" files=$chapterFiles by="publicationFormat" value=$format->getId()}
+
+											{foreach from=$pubFormatFiles item=file}
+
+												{* Use the publication format name in the download link unless a pub format has multiple files *}
+												{assign var=useFileName value=false}
+												{if $pubFormatFiles|@count > 1}
+													{assign var=useFileName value=true}
+												{/if}
+
+												{include file="frontend/components/downloadLink.tpl" downloadFile=$file monograph=$monograph publicationFormat=$format currency=$currency useFilename=$useFileName}
+											{/foreach}
+										{/foreach}
 									</div>
 								{/if}
 							</li>
@@ -130,6 +178,41 @@
 			{/if}
 
 			{call_hook name="Templates::Catalog::Book::Main"}
+
+			{* Determine if any authors have biographies to display *}
+			{assign var="hasBiographies" value=false}
+			{foreach from=$monograph->getAuthors() item=author}
+				{if $author->getLocalizedBiography()}
+					{assign var="hasBiographies" value=true}
+				{/if}
+			{/foreach}
+
+			{* Author biographies *}
+			{if $hasBiographies}
+				<div class="item author_bios">
+					<h3 class="label">
+						{translate key="submission.authorBiographies"}
+					</h3>
+					{foreach from=$monograph->getAuthors() item=author}
+						{if $author->getLocalizedBiography()}
+							<div class="sub_item">
+								<div class="label">
+									{if $author->getLocalizedAffiliation()}
+										{capture assign="authorName"}{$author->getFullName()|escape}{/capture}
+										{capture assign="authorAffiliation"}<span class="affiliation">{$author->getLocalizedAffiliation()|escape}</span>{/capture}
+										{translate key="submission.authorWithAffiliation" name=$authorName affiliation=$authorAffiliation}
+									{else}
+										{$author->getFullName()|escape}
+									{/if}
+								</div>
+								<div class="value">
+									{$author->getLocalizedBiography()|strip_unsafe_html}
+								</div>
+							</div>
+						{/if}
+					{/foreach}
+				</div>
+			{/if}
 
 		</div><!-- .main_entry -->
 
@@ -147,69 +230,51 @@
 				</div>
 			{/if}
 
-			{* Files and remote resources *}
-			{if $availableFiles|@count || $remoteResources|@count}
+			{* Any non-chapter files and remote resources *}
+			{pluck_files assign=nonChapterFiles files=$availableFiles by="chapter" value=0}
+			{if $nonChapterFiles|@count}
 				<div class="item files">
-					{assign var=publicationFormats value=$publishedMonograph->getPublicationFormats()}
-					{foreach from=$publicationFormats item=publicationFormat}
-						{assign var=publicationFormatId value=$publicationFormat->getId()}
-						{if $publicationFormat->getIsAvailable() && $remoteResources[$publicationFormatId]}
+					{foreach from=$publicationFormats item=format}
+						{assign var=publicationFormatId value=$format->getId()}
+
+						{* Remote resources *}
+						{if $format->getRemoteUrl()}
 							{* Only one resource allowed per format, so mimic single-file-download *}
 							<div class="pub_format_{$publicationFormatId|escape} pub_format_remote">
-								<a href="{$publicationFormat->getRemoteURL()|escape}" target="_blank" class="remote_resource">
-									{$publicationFormat->getLocalizedName()|escape}
+								<a href="{$format->getRemoteURL()|escape}" target="_blank" class="remote_resource">
+									{$format->getLocalizedName()|escape}
 								</a>
 							</div>
-						{elseif $publicationFormat->getIsAvailable() && $availableFiles[$publicationFormatId]}
+
+						{* File downloads *}
+						{else}
+
+							{* Only display files that haven't been displayed in a chapter *}
+							{pluck_files assign=pubFormatFiles files=$nonChapterFiles by="publicationFormat" value=$format->getId()}
 
 							{* Use a simplified presentation if only one file exists *}
-							{if $availableFiles[$publicationFormatId]|@count == 1}
+							{if $pubFormatFiles|@count == 1}
 								<div class="pub_format_{$publicationFormatId|escape} pub_format_single">
-									{foreach from=$availableFiles[$publicationFormatId] item=availableFile}
-										{if $availableFile->getDocumentType()==$smarty.const.DOCUMENT_TYPE_PDF}
-											{url|assign:downloadUrl op="view" path=$publishedMonograph->getId()|to_array:$publicationFormatId:$availableFile->getFileIdAndRevision()}
-										{else}
-											{url|assign:downloadUrl op="download" path=$publishedMonograph->getId()|to_array:$publicationFormatId:$availableFile->getFileIdAndRevision()}
-										{/if}
-										<a href="{$downloadUrl}" class="{$availableFile->getDocumentType()|escape}">
-											{if $availableFile->getDirectSalesPrice()}
-												{translate key="payment.directSales.purchase" format=$publicationFormat->getLocalizedName() amount=$currency->format($availableFile->getDirectSalesPrice()) currency=$currency->getCodeAlpha()}
-											{else}
-												{translate key="payment.directSales.download" format=$publicationFormat->getLocalizedName()}
-												{* @todo make the open access icon appear *}
-											{/if}
-										</a>
+									{foreach from=$pubFormatFiles item=file}
+										{include file="frontend/components/downloadLink.tpl" downloadFile=$file monograph=$monograph publicationFormat=$format currency=$currency}
 									{/foreach}
 								</div>
 
-							{* Use an itemized presentation if multiple files exists *}
-							{else}
+							{* Use an itemized presentation if multiple files exist *}
+							{elseif $pubFormatFiles|@count > 1}
 								<div class="pub_format_{$publicationFormatId|escape}">
 									<span class="label">
-										{$publicationFormat->getLocalizedName()|escape}
+										{$format->getLocalizedName()|escape}
 									</span>
 									<span class="value">
 										<ul>
-											{* There will be at most one of these *}
-											{foreach from=$availableFiles[$publicationFormatId] item=availableFile}
+											{foreach from=$pubFormatFiles item=file}
 												<li>
 													<span class="name">
-														{$availableFile->getLocalizedName()|escape}
+														{$file->getLocalizedName()|escape}
 													</span>
 													<span class="link">
-														{if $availableFile->getDocumentType()==$smarty.const.DOCUMENT_TYPE_PDF}
-															{url|assign:downloadUrl op="view" path=$publishedMonograph->getId()|to_array:$publicationFormatId:$availableFile->getFileIdAndRevision()}
-														{else}
-															{url|assign:downloadUrl op="download" path=$publishedMonograph->getId()|to_array:$publicationFormatId:$availableFile->getFileIdAndRevision()}
-														{/if}
-														<a href="{$downloadUrl}" class="{$availableFile->getDocumentType()}">
-															{if $availableFile->getDirectSalesPrice()}
-																{translate key="payment.directSales.purchase" format=$publicationFormat->getLocalizedName() amount=$currency->format($availableFile->getDirectSalesPrice()) currency=$currency->getCodeAlpha()}
-															{else}
-																{translate key="payment.directSales.download" format=$publicationFormat->getLocalizedName()}
-																{* @todo make the open access icon appear *}
-															{/if}
-														</a>
+														{include file="frontend/components/downloadLink.tpl" downloadFile=$file monograph=$monograph publicationFormat=$format currency=$currency useFilename=true}
 													</span>
 												</li>
 											{/foreach}
@@ -218,7 +283,7 @@
 								</div>
 							{/if}
 						{/if}
-					{/foreach}
+					{/foreach}{* Publication formats loop *}
 				</div>
 			{/if}
 
@@ -251,7 +316,7 @@
 			{/if}
 
 			{* Categories *}
-			{assign var=categories value=$publishedMonograph->getCategories()}
+			{assign var=categories value=$monograph->getCategories()}
 			{if !$categories->wasEmpty()}
 				<div class="item categories">
 					<div class="label">
@@ -274,7 +339,7 @@
 			{* Copyright statement *}
 			{if $currentPress->getSetting('includeCopyrightStatement')}
 				<div class="item copyright">
-					{translate|escape key="submission.copyrightStatement" copyrightYear=$publishedMonograph->getCopyrightYear() copyrightHolder=$publishedMonograph->getLocalizedCopyrightHolder()}
+					{translate|escape key="submission.copyrightStatement" copyrightYear=$monograph->getCopyrightYear() copyrightHolder=$monograph->getLocalizedCopyrightHolder()}
 				</div>
 			{/if}
 
