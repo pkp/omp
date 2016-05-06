@@ -57,7 +57,6 @@
  * @uses $publicationFormats array List of PublicationFormat objects to display
  * @uses $availableFiles array List of available MonographFiles
  * @uses $chapters array List of chapters in monograph. Associative array
- * @uses $chapterFiles array List of chapters with files attached. Associative array
  * @uses $sharingCode string Code snippet for a social sharing widget
  * @uses $blocks array List of HTML snippets to display block elements
  * @uses $currency Currency The Currency object representing the press's currency, if configured.
@@ -148,36 +147,26 @@
 									</div>
 								{/if}
 
-								{* Display any files that are assigned to this chapter *}
-								{if $chapterFiles[$chapterId]|@count}
-									<div class="files">
-										{foreach from=$chapterFiles[$chapterId] key=pubFormatId item=pubFormatFiles}
 
-											{* By default, use the publication format name in the download link *}
-											{foreach from=$publicationFormats item=publicationFormat}
-												{if $publicationFormat->getId() == $pubFormatId}
-													{assign var=downloadName value=$publicationFormat->getLocalizedName()}
-												{/if}
-											{/foreach}
+								{* Display any files that are assigned to this chapter *}
+								{pluck_files assign="chapterFiles" files=$availableFiles by="chapter" value=$chapterId}
+								{if $chapterFiles|@count}
+									<div class="files">
+
+										{* Display chapter files sorted by publication format so that they are ordered
+										   consistently across all chapters. *}
+										{foreach from=$publicationFormats item=format}
+											{pluck_files assign="pubFormatFiles" files=$chapterFiles by="publicationFormat" value=$format->getId()}
 
 											{foreach from=$pubFormatFiles item=file}
 
-												{* If a publication format has more than one file, use the file name in the download link *}
-												{if $downloadName == '' || $pubFormatFiles|@count > 1}
-													{assign var=downloadName value=$file->getLocalizedName()}
+												{* Use the publication format name in the download link unless a pub format has multiple files *}
+												{assign var=useFileName value=false}
+												{if $pubFormatFiles|@count > 1}
+													{assign var=useFileName value=true}
 												{/if}
 
-												{* Generate the download URL *}
-												{if $file->getDocumentType()==$smarty.const.DOCUMENT_TYPE_PDF}
-													{url|assign:downloadUrl op="view" path=$monograph->getId()|to_array:$publicationFormatId:$file->getFileIdAndRevision()}
-												{else}
-													{url|assign:downloadUrl op="download" path=$monograph->getId()|to_array:$publicationFormatId:$file->getFileIdAndRevision()}
-												{/if}
-
-												{* Display the download link *}
-												<a href="{$downloadUrl}" class="download {$file->getDocumentType()|escape}">
-													{$downloadName}
-												</a>
+												{include file="frontend/components/downloadLink.tpl" downloadFile=$file monograph=$monograph publicationFormat=$format currency=$currency useFilename=$useFileName}
 											{/foreach}
 										{/foreach}
 									</div>
@@ -241,109 +230,60 @@
 				</div>
 			{/if}
 
-			{* Files and remote resources *}
-			{if $availableFiles|@count || $remoteResources|@count}
+			{* Any non-chapter files and remote resources *}
+			{pluck_files assign=nonChapterFiles files=$availableFiles by="chapter" value=0}
+			{if $nonChapterFiles|@count}
 				<div class="item files">
-					{foreach from=$publicationFormats item=publicationFormat}
-						{assign var=publicationFormatId value=$publicationFormat->getId()}
-
+					{foreach from=$publicationFormats item=format}
+						{assign var=publicationFormatId value=$format->getId()}
 
 						{* Remote resources *}
-						{if $publicationFormat->getIsAvailable() && $remoteResources[$publicationFormatId]}
+						{if $format->getRemoteUrl()}
 							{* Only one resource allowed per format, so mimic single-file-download *}
 							<div class="pub_format_{$publicationFormatId|escape} pub_format_remote">
-								<a href="{$publicationFormat->getRemoteURL()|escape}" target="_blank" class="remote_resource">
-									{$publicationFormat->getLocalizedName()|escape}
+								<a href="{$format->getRemoteURL()|escape}" target="_blank" class="remote_resource">
+									{$format->getLocalizedName()|escape}
 								</a>
 							</div>
 
 						{* File downloads *}
-						{elseif $publicationFormat->getIsAvailable() && $availableFiles[$publicationFormatId]}
+						{else}
 
-							{* Skip any formats that have no non-chapter files, because
-							   these will have already been displayed *}
-							{assign var=hasRemainingFiles value=false}
-							{foreach from=$availableFiles[$publicationFormatId] item=availableFile}
-								{if !method_exists($availableFile, 'getChapterId') || $availableFile->getChapterId() == ''}
-									{assign var=hasRemainingFiles value=true}
-								{/if}
-							{/foreach}
-							{if $hasRemainingFiles}
+							{* Only display files that haven't been displayed in a chapter *}
+							{pluck_files assign=pubFormatFiles files=$nonChapterFiles by="publicationFormat" value=$format->getId()}
 
-								{* Use a simplified presentation if only one file exists *}
-								{if $availableFiles[$publicationFormatId]|@count == 1}
-									<div class="pub_format_{$publicationFormatId|escape} pub_format_single">
-										{foreach from=$availableFiles[$publicationFormatId] item=availableFile}
+							{* Use a simplified presentation if only one file exists *}
+							{if $pubFormatFiles|@count == 1}
+								<div class="pub_format_{$publicationFormatId|escape} pub_format_single">
+									{foreach from=$pubFormatFiles item=file}
+										{include file="frontend/components/downloadLink.tpl" downloadFile=$file monograph=$monograph publicationFormat=$format currency=$currency}
+									{/foreach}
+								</div>
 
-											{* Don't display files already listed with chapters *}
-											{if !method_exists($availableFile, 'getChapterId') || $availableFile->getChapterId() == ''}
-
-												{* Generate the download URL *}
-												{if $availableFile->getDocumentType()==$smarty.const.DOCUMENT_TYPE_PDF}
-													{url|assign:downloadUrl op="view" path=$monograph->getId()|to_array:$publicationFormatId:$availableFile->getFileIdAndRevision()}
-												{else}
-													{url|assign:downloadUrl op="download" path=$monograph->getId()|to_array:$publicationFormatId:$availableFile->getFileIdAndRevision()}
-												{/if}
-
-												{* Display the download link *}
-												<a href="{$downloadUrl}" class="{$availableFile->getDocumentType()|escape}">
-													{if $availableFile->getDirectSalesPrice()}
-														{translate key="payment.directSales.purchase" format=$publicationFormat->getLocalizedName() amount=$currency->format($availableFile->getDirectSalesPrice()) currency=$currency->getCodeAlpha()}
-													{else}
-														{translate key="payment.directSales.download" format=$publicationFormat->getLocalizedName()}
-														{* @todo make the open access icon appear *}
-													{/if}
-												</a>
-											{/if}
-										{/foreach}
-									</div>
-
-								{* Use an itemized presentation if multiple files exists *}
-								{else}
-									<div class="pub_format_{$publicationFormatId|escape}">
-										<span class="label">
-											{$publicationFormat->getLocalizedName()|escape}
-										</span>
-										<span class="value">
-											<ul>
-												{foreach from=$availableFiles[$publicationFormatId] item=availableFile}
-
-													{* Don't display files already listed with chapters *}
-													{if !method_exists($availableFile, 'getChapterId') || $availableFile->getChapterId() == ''}
-
-														<li>
-															<span class="name">
-																{$availableFile->getLocalizedName()|escape}
-															</span>
-															<span class="link">
-
-																{* Generate the download URL *}
-																{if $availableFile->getDocumentType()==$smarty.const.DOCUMENT_TYPE_PDF}
-																	{url|assign:downloadUrl op="view" path=$monograph->getId()|to_array:$publicationFormatId:$availableFile->getFileIdAndRevision()}
-																{else}
-																	{url|assign:downloadUrl op="download" path=$monograph->getId()|to_array:$publicationFormatId:$availableFile->getFileIdAndRevision()}
-																{/if}
-
-																{* Display the download link *}
-																<a href="{$downloadUrl}" class="{$availableFile->getDocumentType()}">
-																	{if $availableFile->getDirectSalesPrice()}
-																		{translate key="payment.directSales.purchase" format=$publicationFormat->getLocalizedName() amount=$currency->format($availableFile->getDirectSalesPrice()) currency=$currency->getCodeAlpha()}
-																	{else}
-																		{translate key="payment.directSales.download" format=$publicationFormat->getLocalizedName()}
-																		{* @todo make the open access icon appear *}
-																	{/if}
-																</a>
-															</span>
-														</li>
-													{/if}
-												{/foreach}
-											</ul>
-										</span><!-- .value -->
-									</div>
-								{/if}
+							{* Use an itemized presentation if multiple files exist *}
+							{elseif $pubFormatFiles|@count > 1}
+								<div class="pub_format_{$publicationFormatId|escape}">
+									<span class="label">
+										{$format->getLocalizedName()|escape}
+									</span>
+									<span class="value">
+										<ul>
+											{foreach from=$pubFormatFiles item=file}
+												<li>
+													<span class="name">
+														{$file->getLocalizedName()|escape}
+													</span>
+													<span class="link">
+														{include file="frontend/components/downloadLink.tpl" downloadFile=$file monograph=$monograph publicationFormat=$format currency=$currency useFilename=true}
+													</span>
+												</li>
+											{/foreach}
+										</ul>
+									</span><!-- .value -->
+								</div>
 							{/if}
 						{/if}
-					{/foreach}
+					{/foreach}{* Publication formats loop *}
 				</div>
 			{/if}
 
