@@ -14,9 +14,8 @@
  */
 
 import('classes.handler.Handler');
-import('lib.pkp.classes.pages.about.IAboutContextInfoProvider');
 
-class AboutContextHandler extends Handler implements IAboutContextInfoProvider {
+class AboutContextHandler extends Handler {
 	/**
 	 * Constructor
 	 */
@@ -49,7 +48,7 @@ class AboutContextHandler extends Handler implements IAboutContextInfoProvider {
 		$context = $request->getContext();
 		$templateMgr = TemplateManager::getManager($request);
 		$this->setupTemplate($request);
-		$templateMgr->assign(AboutContextHandler::getAboutInfo($context));
+		$templateMgr->assign('aboutPress', $context->getLocalizedSetting('aboutPress'));
 		$templateMgr->display('frontend/pages/about.tpl');
 	}
 
@@ -77,6 +76,19 @@ class AboutContextHandler extends Handler implements IAboutContextInfoProvider {
 		$this->setupTemplate($request);
 		$templateMgr->assign('submissionInfo', AboutContextHandler::getSubmissionsInfo($context));
 		$templateMgr->display('frontend/pages/submissions.tpl');
+	}
+
+	/**
+	 * Display contact page.
+	 * @param $args array
+	 * @param $request PKPRequest
+	 */
+	function contact($args, $request) {
+		$context = $request->getContext();
+		$templateMgr = TemplateManager::getManager($request);
+		$this->setupTemplate($request);
+		$templateMgr->assign('contact', AboutContextHandler::getContactInfo($context));
+		$templateMgr->display('frontend/pages/contact.tpl');
 	}
 
 
@@ -113,51 +125,11 @@ class AboutContextHandler extends Handler implements IAboutContextInfoProvider {
 	}
 
 	/**
-	 * Get sponsorship information used by sponsorship operation.
-	 * @param $context Press
-	 * @return Array
-	 */
-	static protected function getSponsorshipInfo($context) {
-		$sponsorshipSettings = array(
-				'contributorNote' => $context->getLocalizedSetting('contributorNote'),
-				'contributors' => $context->getSetting('contributors'),
-				'sponsorNote' => $context->getLocalizedSetting('sponsorNote'),
-				'sponsors' => $context->getSetting('sponsors')
-		);
-
-		// Remove empty elements.
-		$sponsorshipSettings = array_filter($sponsorshipSettings);
-		return $sponsorshipSettings;
-	}
-
-	/**
-	 * Get editorial policies information used by editorial
-	 * policies operation.
-	 * @param $context Press
-	 * @return Array
-	 */
-	static protected function getEditorialPoliciesInfo($context) {
-		$editorialPoliciesSettingNames = array('focusScopeDesc', 'reviewPolicy',
-				'openAccessPolicy', 'customAboutItems');
-
-		$editorialPoliciesInfo = array();
-
-		foreach ($editorialPoliciesSettingNames as $settingName) {
-			$settingValue = $context->getLocalizedSetting($settingName);
-			if ($settingValue) {
-				$editorialPoliciesInfo[$settingName] = $settingValue;
-			}
-		}
-
-		return $editorialPoliciesInfo;
-	}
-
-	/**
 	 * Get submissions information used by submissions operation.
 	 * @param $context Press
 	 */
 	static protected function getSubmissionsInfo($context) {
-		$submissionSettingNames = array('authorGuidelines', 'copyrightNotice', 'privacyStatement', 'reviewPolicy');
+		$submissionSettingNames = array('authorGuidelines', 'copyrightNotice');
 
 		$submissionInfo = array();
 
@@ -176,24 +148,6 @@ class AboutContextHandler extends Handler implements IAboutContextInfoProvider {
 		}
 
 		return $submissionInfo;
-	}
-
-
-	//
-	// Static public methods.
-	//
-	/**
-	* @see IAboutContextInfoProvider::getAboutInfo()
-	*/
-	static function getAboutInfo($context) {
-		return array(
-			'contact' => AboutContextHandler::getContactInfo($context),
-			'description' => $context->getLocalizedSetting('description'),
-			'sponsorship' => AboutContextHandler::getSponsorshipInfo($context),
-			'editorialTeam' => $context->getLocalizedSetting('masthead'),
-			'editorialPolicies' => AboutContextHandler::getEditorialPoliciesInfo($context),
-			'submissions' => AboutContextHandler::getSubmissionsInfo($context)
-		);
 	}
 }
 

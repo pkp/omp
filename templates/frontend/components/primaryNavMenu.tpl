@@ -7,6 +7,7 @@
  *
  * Primary navigation menu list for OMP
  *}
+
 <ul id="navigationPrimary" class="pkp_navigation_primary pkp_nav_list">
 
 	{if $enableAnnouncements}
@@ -23,7 +24,7 @@
 		</a>
 	</li>
 
-	{if $contextInfo.editorialTeam || $contextInfo.submissions}
+	{if $currentPress->getLocalizedSetting('masthead') || $currentPress->getLocalizedSetting('submissions')}
 		{assign var="submenu_class_attr" value=" class='has_submenu'"}
 	{/if}
 	<li{$submenu_class_attr}>
@@ -37,19 +38,24 @@
 					{translate key="about.aboutThePress"}
 				</a>
 			</li>
-			{if not empty($contextInfo.editorialTeam)}
-			<li>
-				<a href="{url router=$smarty.const.ROUTE_PAGE page="about" op="editorialTeam"}">
-					{translate key="about.editorialTeam"}
-				</a>
-			</li>
+			{if not empty($currentPress->getLocalizedSetting('masthead'))}
+				<li>
+					<a href="{url router=$smarty.const.ROUTE_PAGE page="about" op="editorialTeam"}">
+						{translate key="about.editorialTeam"}
+					</a>
+				</li>
 			{/if}
-			{if not empty($contextInfo.submissions)}
 			<li>
 				<a href="{url router=$smarty.const.ROUTE_PAGE page="about" op="submissions"}">
 					{translate key="about.submissions"}
 				</a>
 			</li>
+			{if $currentPress->getSetting('mailingAddress') || $currentPress->getSetting('contactName')}
+				<li>
+					<a href="{url router=$smarty.const.ROUTE_PAGE page="about" op="contact"}">
+						{translate key="about.contact"}
+					</a>
+				</li>
 			{/if}
 		</ul>
 		{/if}

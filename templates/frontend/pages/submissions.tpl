@@ -54,40 +54,6 @@
 		</div>
 	{/if}
 
-	{if $submissionInfo.copyrightNotice}
-		<div class="copyright">
-			<h2>
-				{translate key="about.copyrightNotice"}
-				{include file="frontend/components/editLink.tpl" page="management" op="settings" path="distribution" anchor="permissions" sectionTitleKey="about.copyrightNotice"}
-			</h2>
-			{$submissionInfo.copyrightNotice|nl2br|strip_unsafe_html}
-		</div>
-	{/if}
-
-	{if $submissionInfo.privacyStatement}
-		<div class="privacy">
-			<h2>
-				{translate key="about.privacyStatement"}
-				{include file="frontend/components/editLink.tpl" page="management" op="settings" path="press" anchor="policies" sectionTitleKey="about.privacyStatement"}
-			</h2>
-			<p>
-				{$submissionInfo.privacyStatement|nl2br|strip_unsafe_html}
-			</p>
-		</div>
-	{/if}
-
-	{if $submissionInfo.reviewPolicy}
-		<div class="review">
-			<h2>
-				{translate key="about.reviewPolicy"}
-				{include file="frontend/components/editLink.tpl" page="management" op="settings" path="press" anchor="policies" sectionTitleKey="about.reviewPolicy"}
-			</h2>
-			<p>
-				{$submissionInfo.reviewPolicy|nl2br|strip_unsafe_html}
-			</p>
-		</div>
-	{/if}
-
 </div><!-- .page -->
 
 {include file="common/frontend/footer.tpl"}

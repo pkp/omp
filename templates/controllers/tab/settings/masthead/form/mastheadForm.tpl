@@ -36,21 +36,14 @@
 	{/fbvFormArea}
 	{fbvFormArea id="mastheadDetailsContainer"}
 		{fbvFormSection label="manager.setup.pressDescription" for="description" description="manager.setup.pressDescription.description"}
-			{fbvElement type="textarea" multilingual=true name="description" id="description" value=$description rich=true height=$fbvStyles.height.SHORT}
-		{/fbvFormSection}
-
-		{fbvFormSection list=true}
-			{if $enabled}{assign var="enabled" value="checked"}{/if}
-			{fbvElement type="checkbox" id="pressEnabled" value="1" checked=$enabled label="manager.setup.enablePressInstructions"}
+			{fbvElement type="textarea" multilingual=true name="description" id="description" value=$description rich=true}
 		{/fbvFormSection}
 		{fbvFormSection label="manager.masthead.title" for="masthead" description="manager.setup.masthead.description"}
-			{fbvElement type="textarea" multilingual=true id="masthead" value=$masthead rich=true height=$fbvStyles.height.SHORT}
+			{fbvElement type="textarea" multilingual=true id="masthead" value=$masthead rich=true}
 		{/fbvFormSection}
-		<div {if $wizardMode}class="pkp_form_hidden"{/if}>
-			{fbvFormSection label="common.mailingAddress" for="mailingAddress" group=true}
-				{fbvElement type="textarea" id="mailingAddress" value=$mailingAddress height=$fbvStyles.height.SHORT}
-			{/fbvFormSection}
-		</div>
+		{fbvFormSection label="manager.setup.aboutPress" for="aboutPress" description="manager.setup.aboutPress.description"}
+			{fbvElement type="textarea" multilingual=true name="aboutPress" id="aboutPress" value=$aboutPress rich="extended" rows=30}
+		{/fbvFormSection}
 	{/fbvFormArea}
 
 	{if !$wizardMode}
