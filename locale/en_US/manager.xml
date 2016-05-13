@@ -116,7 +116,6 @@ You may optionally provide the user with a reason for disabling their account.</
 	<message key="manager.setup.aboutItemContent">Content</message>
 	<message key="manager.setup.addAboutItem">Add About Item</message>
 	<message key="manager.setup.addChecklistItem">Add Checklist Item</message>
-	<message key="manager.setup.addContributor">Add Contributor</message>
 	<message key="manager.setup.addItem">Add Item</message>
 	<message key="manager.setup.addItemtoAboutPress">Add Item to Appear in "About the Press"</message>
 	<message key="manager.setup.addNavItem">Add Item</message>

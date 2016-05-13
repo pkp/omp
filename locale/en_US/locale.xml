@@ -413,8 +413,6 @@
 	<message key="about.focusAndScope">Focus and Scope</message>
 	<message key="about.seriesPolicies">Series and Category Policies</message>
 	<message key="about.submissions">Submissions</message>
-	<message key="about.sponsors">Sponsors</message>
-	<message key="about.contributors">Sources of Support</message>
 	<message key="about.onlineSubmissions">Online Submissions</message>
 	<message key="about.onlineSubmissions.login">Login</message>
 	<message key="about.onlineSubmissions.register">Register</message>
