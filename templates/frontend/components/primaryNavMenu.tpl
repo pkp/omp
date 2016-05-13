@@ -35,7 +35,7 @@
 		<ul>
 			<li>
 				<a href="{url router=$smarty.const.ROUTE_PAGE page="about"}">
-					{translate key="about.aboutThePress"}
+					{translate key="about.aboutContext"}
 				</a>
 			</li>
 			{if not empty($currentPress->getLocalizedSetting('masthead'))}
