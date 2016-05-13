@@ -45,10 +45,8 @@ class AboutContextHandler extends Handler {
 	 * @param $request PKPRequest
 	 */
 	function index($args, $request) {
-		$context = $request->getContext();
 		$templateMgr = TemplateManager::getManager($request);
 		$this->setupTemplate($request);
-		$templateMgr->assign('aboutPress', $context->getLocalizedSetting('aboutPress'));
 		$templateMgr->display('frontend/pages/about.tpl');
 	}
 

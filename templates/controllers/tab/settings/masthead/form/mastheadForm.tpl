@@ -41,8 +41,8 @@
 		{fbvFormSection label="manager.masthead.title" for="masthead" description="manager.setup.masthead.description"}
 			{fbvElement type="textarea" multilingual=true id="masthead" value=$masthead rich=true}
 		{/fbvFormSection}
-		{fbvFormSection label="manager.setup.aboutPress" for="aboutPress" description="manager.setup.aboutPress.description"}
-			{fbvElement type="textarea" multilingual=true name="aboutPress" id="aboutPress" value=$aboutPress rich="extended" rows=30}
+		{fbvFormSection label="manager.setup.aboutPress" for="about" description="manager.setup.aboutPress.description"}
+			{fbvElement type="textarea" multilingual=true name="about" id="about" value=$about rich="extended" rows=30}
 		{/fbvFormSection}
 	{/fbvFormArea}
 
