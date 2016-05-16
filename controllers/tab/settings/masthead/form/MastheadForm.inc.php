@@ -24,11 +24,12 @@ class MastheadForm extends ContextSettingsForm {
 		$settings = array(
 			'name' => 'string',
 			'acronym' => 'string',
-			'description' => 'string',
 			'mailingAddress' => 'string',
 			'pressEnabled' => 'bool',
 			'customAboutItems' => 'object',
-			'masthead' => 'string'
+			'description' => 'string',
+			'masthead' => 'string',
+			'about' => 'string',
 		);
 
 		parent::ContextSettingsForm($settings, 'controllers/tab/settings/masthead/form/mastheadForm.tpl', $wizardMode);
@@ -44,7 +45,7 @@ class MastheadForm extends ContextSettingsForm {
 	 * Get all locale field names
 	 */
 	function getLocaleFieldNames() {
-		return array('name', 'acronym', 'description', 'customAboutItems', 'masthead');
+		return array('name', 'acronym', 'description', 'customAboutItems', 'masthead', 'about');
 	}
 
 	//

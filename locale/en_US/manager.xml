@@ -116,7 +116,6 @@ You may optionally provide the user with a reason for disabling their account.</
 	<message key="manager.setup.aboutItemContent">Content</message>
 	<message key="manager.setup.addAboutItem">Add About Item</message>
 	<message key="manager.setup.addChecklistItem">Add Checklist Item</message>
-	<message key="manager.setup.addContributor">Add Contributor</message>
 	<message key="manager.setup.addItem">Add Item</message>
 	<message key="manager.setup.addItemtoAboutPress">Add Item to Appear in "About the Press"</message>
 	<message key="manager.setup.addNavItem">Add Item</message>
@@ -216,8 +215,10 @@ You may optionally provide the user with a reason for disabling their account.</
 	<message key="manager.setup.policies">Policies</message>
 	<message key="manager.setup.policies.description">Focus, peer review, sections, privacy, security, and additional about items.</message>
 	<message key="manager.setup.appearanceDescription">Various components of the press appearance can be configured from this page, including header and footer elements, the press style and theme, and how lists of information are presented to users.</message>
-	<message key="manager.setup.pressDescription">Press Description</message>
-	<message key="manager.setup.pressDescription.description">This description will normally appear on the publicly available About page.</message>
+	<message key="manager.setup.pressDescription">Press Summary</message>
+	<message key="manager.setup.pressDescription.description">A brief description of your press.</message>
+	<message key="manager.setup.aboutPress">About the Press</message>
+	<message key="manager.setup.aboutPress.description">Include any information about your press which may be of interest to readers, authors or reviewers. This could include your open access policy, the focus and scope of the journal, copyright notice, sponsorship disclosure, history of the journal, and a privacy statement.</message>
 	<message key="manager.setup.pressArchiving">Press Archiving</message>
 	<message key="manager.setup.homepageContent">Press Homepage Content</message>
 	<message key="manager.setup.homepageContentDescription">The press homepage consists of navigation links by default. Additional homepage content can be appended by using one or all of the following options, which will appear in the order shown.</message>
@@ -339,7 +340,7 @@ You may optionally provide the user with a reason for disabling their account.</
 	<message key="manager.setup.currentRoles">Current Roles</message>
 	<message key="manager.setup.internalReviewRoles">Internal Review Roles</message>
 	<message key="manager.setup.masthead">Masthead</message>
-	<message key="manager.setup.masthead.description">A list of editors, managing directors, and other individuals associated with the press.</message>
+	<message key="manager.setup.masthead.description">List of editors, managing directors, and other individuals associated with the press.</message>
 	<message key="manager.setup.files">Files</message>
 	<message key="manager.setup.productionTemplates">Production Templates</message>
 	<message key="manager.files.note">Note: The Files Browser is an advanced feature that allows the files and directories associated with a press to be viewed and manipulated directly.</message>

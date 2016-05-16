@@ -70,12 +70,6 @@ class TemplateManager extends PKPTemplateManager {
 					$this->addStyleSheet($request->getBaseUrl() . '/' . $publicFileManager->getContextFilesPath(ASSOC_TYPE_PRESS, $context->getId()) . '/' . $contextStyleSheet['uploadName'], STYLE_SEQUENCE_LAST);
 				}
 
-				// Get context info for use in primary navigation items
-				import('pages.about.AboutContextHandler');;
-				if (in_array('IAboutContextInfoProvider', class_implements('AboutContextHandler'))) {
-					$this->assign('contextInfo', AboutContextHandler::getAboutInfo($context));
-				}
-
 				// Get a link to the settings page for the current context.
 				// This allows us to reduce template duplication by using this
 				// variable in templates/common/header.tpl, instead of
