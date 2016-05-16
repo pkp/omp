@@ -112,8 +112,19 @@ class CatalogBookHandler extends Handler {
 				create_function('$a', 'return $a->getViewable() && $a->getDirectSalesPrice() !== null && $a->getAssocType() == ASSOC_TYPE_PUBLICATION_FORMAT;')
 			);
 
+			// Only pass files in pub formats that are also available
+			$filteredAvailableFiles = array();
+			foreach ($availableFiles as $file) {
+				foreach ($availablePublicationFormats as $format) {
+					if ($file->getAssocId() == $format->getId()) {
+						$filteredAvailableFiles[] = $file;
+						break;
+					}
+				}
+			}
+
 			// Expose variables to template
-			$templateMgr->assign('availableFiles', $availableFiles);
+			$templateMgr->assign('availableFiles', $filteredAvailableFiles);
 		}
 
 		// Provide the currency to the template, if configured.
