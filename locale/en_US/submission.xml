@@ -60,8 +60,6 @@
 	<message key="submission.submit.seriesPosition">Series Position</message>
 	<message key="submission.submit.seriesPosition.description">Examples: Book 2, Volume 2</message>
 	<message key="submission.submit.form.localeRequired">Please select a submission language.</message>
-	<message key="submission.submit.submissionChecklist">Submission Checklist</message>
-	<message key="submission.submit.submissionChecklistDescription">You must read and acknowledge that you've completed the requirements below before proceeding.</message>
 	<message key="submission.submit.privacyStatement">Privacy Statement</message>
 	<message key="submission.submit.contributorRole">Contributor's role</message>
 	<message key="submission.submit.form.authorRequired">At least one author is required.</message>
