@@ -368,6 +368,11 @@
 	<message key="user.noRoles.submitMonographRegClosed">Submit an Monograph: Author registration is currently disabled.</message>
 	<message key="user.noRoles.regReviewer">Register as a Reviewer</message>
 	<message key="user.noRoles.regReviewerClosed">Register as a Reviewer: Reviewer registration is currently disabled.</message>
+	<message key="user.reviewerPrompt">Would you be willing to review submissions to this press?</message>
+	<message key="user.reviewerPrompt.userGroup">Yes, request the {$userGroup} role.</message>
+	<message key="user.register.contextsPrompt">Which journals on this site would you like to register with?</message>
+	<message key="user.register.otherContextRoles">Request the following roles.</message>
+	<message key="user.register.noContextReviewerInterests">If you requested to be a reviewer on any journal, please enter your subject interests.</message>
 
 	<!-- OMP-specific Roles -->
 	<message key="user.role.manager">Press Manager</message>
@@ -386,13 +391,9 @@
 	<message key="user.role.productionEditors">Production Editors</message>
 
 	<!-- Registration -->
-	<message key="user.register.completeForm">Fill in this form to register with this press.</message>
 	<message key="user.register.selectContext">Select a press to register with:</message>
 	<message key="user.register.noContexts">There are no presses you may register with on this site.</message>
 	<message key="user.register.privacyStatement">Privacy Statement</message>
-	<message key="user.register.alreadyRegisteredOtherContext"><![CDATA[<a href="{$registerUrl}">Click here</a> if you are already registered with this or another press on this site.]]></message>
-	<message key="user.register.notAlreadyRegisteredOtherContext"><![CDATA[<a href="{$registerUrl}">Click here</a> if you are <strong>not</strong> already registered with this or another press on this site.]]></message>
-	<message key="user.register.loginToRegister">Enter your existing username and password to register with this press.</message>
 	<message key="user.register.registrationDisabled">This press is currently not accepting user registrations.</message>
 	<message key="user.register.form.passwordLengthTooShort">The password you entered is not long enough.</message>
 	<message key="user.register.readerDescription">Notified by email on publication of a monograph.</message>
