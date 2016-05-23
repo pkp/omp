@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE locale SYSTEM "../../lib/pkp/dtd/locale.dtd">
+
+<!--
+  * locale/it_IT/locale.xml
+  *
+  * Copyright (c) 2014-2016 Simon Fraser University Library
+  * Copyright (c) 2003-2016 John Willinsky
+  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
+  *
+  * Localization strings.
+  * Credits: https://pkp.sfu.ca/wiki/index.php?title=OMP:_Italian_(it_IT)
+  -->
+
+<locale name="it_IT" full_name="Italiano">
+	<!-- General monograph keys -->
+
+	<!-- Metadata field description keys -->
+
+	<!-- Dimension keys -->
+
+	<!-- assigned publication format grid and form keys  -->
+
+	<!-- publication metadata required form field keys -->
+
+	<!-- assigned identification code grid and form keys -->
+
+	<!-- assigned sales rights grid and form keys -->
+
+	<!-- market regions grid and form keys -->
+
+	<!-- assigned publication date grid and form keys -->
+
+	<!-- general catalog date keys -->
+
+	<!-- assigned representative information grid and form keys -->
+
+	<!-- Spotlight grid keys -->
+	<!-- Spotlights management -->
+
+	<!-- Editorial policies -->
+
+	<!-- Library Files -->
+
+	<!-- OMP specific grid actions -->
+
+	<!-- Review Attachments -->
+
+	<!-- series/categories/series -->
+
+	<!-- Catalog Management -->
+
+	<!-- Catalog -->
+
+	<!--
+	 *
+	 * COMMON - This section contains the most frequently-used words
+	 *
+	-->
+
+	<!-- Common Messages -->
+
+	<!-- Navigation -->
+
+	<!-- Common Press Terms -->
+
+	<!-- User -->
+
+	<!-- OMP-specific Roles -->
+
+	<!-- Registration -->
+
+	<!-- Site index -->
+
+	<!-- About The Press -->
+
+	<!-- Help -->
+
+	<!-- Installer -->
+	<!-- Monograph Logs -->
+
+	<!-- Notifications -->
+
+	<!-- Notification Types -->
+
+	<!-- Authorization -->
+
+	<!-- Debug messages -->
+
+	<!-- RT Entities -->
+
+	<!-- General plugin information -->
+</locale>
