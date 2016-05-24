@@ -25,7 +25,6 @@ class MastheadForm extends ContextSettingsForm {
 			'name' => 'string',
 			'acronym' => 'string',
 			'mailingAddress' => 'string',
-			'pressEnabled' => 'bool',
 			'customAboutItems' => 'object',
 			'description' => 'string',
 			'masthead' => 'string',
@@ -67,22 +66,6 @@ class MastheadForm extends ContextSettingsForm {
 			}
 			$this->setData('acronym', $acronym);
 		}
-	}
-
-	/**
-	 * @see ContextSettingsForm::execute()
-	 * @param $request Request
-	 */
-	function execute($request) {
-		$press = $request->getPress();
-
-		if ($press->getEnabled() !== $this->getData('pressEnabled')) {
-			$pressDao = DAORegistry::getDAO('PressDAO');
-			$press->setEnabled($this->getData('pressEnabled'));
-			$pressDao->updateObject($press);
-		}
-
-		parent::execute($request);
 	}
 }
 
