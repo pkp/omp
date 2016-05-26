@@ -26,7 +26,6 @@ class AclarkSubmissionTest extends ContentBaseTestCase {
 			'lastName' => 'Clark',
 			'affiliation' => 'University of Calgary',
 			'country' => 'Canada',
-			'roles' => array('Author'),
 		));
 
 		$title = 'The ABCs of Human Survival: A Paradigm for Global Citizenship';
