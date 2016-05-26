@@ -26,7 +26,6 @@ class LelderSubmissionTest extends ContentBaseTestCase {
 			'lastName' => 'Elder',
 			'affiliation' => 'International Development Research Centre',
 			'country' => 'Canada',
-			'roles' => array('Volume editor'),
 		));
 
 		$title = 'Connecting ICTs to Development';
