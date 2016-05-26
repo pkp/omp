@@ -26,7 +26,6 @@ class MforanSubmissionTest extends ContentBaseTestCase {
 			'lastName' => 'Foran',
 			'affiliation' => 'University of Calgary',
 			'country' => 'Canada',
-			'roles' => array('Author'),
 		));
 
 		$title = 'Expansive Discourses: Urban Sprawl in Calgary, 1945-1978';

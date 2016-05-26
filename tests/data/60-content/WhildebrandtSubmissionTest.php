@@ -26,7 +26,6 @@ class WhildebrandtSubmissionTest extends ContentBaseTestCase {
 			'lastName' => 'Hildebrandt',
 			'affiliation' => 'Canada',
 			'country' => 'Canada',
-			'roles' => array('Author'),
 		));
 
 		$title = 'Views From Fort Battleford: Constructed Visions of an Anglo-Canadian West';
