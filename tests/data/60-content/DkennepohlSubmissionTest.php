@@ -26,6 +26,7 @@ class DkennepohlSubmissionTest extends ContentBaseTestCase {
 			'lastName' => 'Kennepohl',
 			'affiliation' => 'Athabasca University',
 			'country' => 'Canada',
+			'roles' => array('Volume editor'),
 		));
 
 		$title = 'Accessible Elements: Teaching Science Online and at a Distance';

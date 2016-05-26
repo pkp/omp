@@ -26,6 +26,7 @@ class MpowerSubmissionTest extends ContentBaseTestCase {
 			'lastName' => 'Power',
 			'affiliation' => 'London School of Economics',
 			'country' => 'Canada',
+			'roles' => array('Author'),
 		));
 
 		$title = 'A Designer\'s Log: Case Studies in Instructional Design';

@@ -26,6 +26,7 @@ class DcoatesSubmissionTest extends ContentBaseTestCase {
 			'lastName' => 'Coates',
 			'affiliation' => 'University of Calgary',
 			'country' => 'Canada',
+			'roles' => array('Volume editor'),
 		));
 
 		$title = 'Wild Words: Essays on Alberta Literature';

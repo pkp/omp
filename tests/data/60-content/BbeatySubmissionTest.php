@@ -26,6 +26,7 @@ class BbeatySubmissionTest extends ContentBaseTestCase {
 			'lastName' => 'Beaty',
 			'affiliation' => 'University of British Columbia',
 			'country' => 'Canada',
+			'roles' => array('Volume editor'),
 		));
 
 		$title = 'How Canadians Communicate: Contexts of Canadian Popular Culture';

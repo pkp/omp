@@ -26,6 +26,7 @@ class AfinkelSubmissionTest extends ContentBaseTestCase {
 			'lastName' => 'Finkel',
 			'affiliation' => 'Athabasca University',
 			'country' => 'Canada',
+			'roles' => array('Volume editor'),
 		));
 
 		$title = 'The West and Beyond: New Perspectives on an Imagined Region';

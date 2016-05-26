@@ -26,6 +26,7 @@ class CallanSubmissionTest extends ContentBaseTestCase {
 			'lastName' => 'Allan',
 			'affiliation' => 'University of Southern California',
 			'country' => 'Canada',
+			'roles' => array('Author'),
 		));
 
 		$title = 'Bomb Canada and Other Unkind Remarks in the American Media';

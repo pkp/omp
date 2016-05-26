@@ -26,6 +26,7 @@ class MallySubmissionTest extends ContentBaseTestCase {
 			'lastName' => 'Ally',
 			'affiliation' => 'Athabasca University',
 			'country' => 'Canada',
+			'roles' => array('Volume editor'),
 		));
 
 		$title = 'Mobile Learning: Transforming the Delivery of Education and Training';

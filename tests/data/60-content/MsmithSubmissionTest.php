@@ -26,6 +26,7 @@ class MsmithSubmissionTest extends ContentBaseTestCase {
 			'lastName' => 'Smith',
 			'affiliation' => 'International Development Research Centre',
 			'country' => 'Canada',
+			'roles' => array('Volume editor'),
 		));
 
 		$title = 'Open Development: Networked Innovations in International Development';

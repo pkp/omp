@@ -26,6 +26,7 @@ class FperiniSubmissionTest extends ContentBaseTestCase {
 			'lastName' => 'Perini',
 			'affiliation' => 'University of Sussex',
 			'country' => 'Canada',
+			'roles' => array('Volume editor'),
 		));
 
 		$title = 'Enabling Openness: The future of the information society in Latin America and the Caribbean';
