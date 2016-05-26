@@ -12,13 +12,11 @@
 {include file="common/header.tpl"}
 {/strip}
 
-<h3>{translate key="manager.tools"}</h3>
-<div class="unit size1of2">
+<div class="pkp_page_content pkp_page_tools">
+	<h3>{translate key="manager.tools"}</h3>
 	<h4>{translate key="navigation.tools.importExport"}</h4>
 	<p>{translate key="manager.tools.importExport"}</p>
 	<a href="{url page="management" op="importexport"}" class="button defaultButton">{translate key="common.takeMeThere"}</a>
-</div>
-<div class="unit size1of2">
 	<h4>{translate key="navigation.tools.statistics"}</h4>
 	<p>{translate key="manager.tools.statistics"}</p>
 	<a href="{url page="management" op="statistics"}" class="button defaultButton">{translate key="common.takeMeThere"}</a>

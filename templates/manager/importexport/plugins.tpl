@@ -9,12 +9,14 @@
  *}
 {include file="common/header.tpl" pageTitle="manager.importExport"}
 
-{help file="tools.md" section="import-export"}
+<div class="pkp_page_content pkp_page_tools">
+	{help file="tools.md" section="import-export"}
 
-<ul>
-	{foreach from=$plugins item=plugin}
-	<li><a href="{url op="importexport" path="plugin"|to_array:$plugin->getName()}">{$plugin->getDisplayName()|escape}</a>:&nbsp;{$plugin->getDescription()|escape}</li>
-	{/foreach}
-</ul>
+	<ul>
+		{foreach from=$plugins item=plugin}
+		<li><a href="{url op="importexport" path="plugin"|to_array:$plugin->getName()}">{$plugin->getDisplayName()|escape}</a>:&nbsp;{$plugin->getDescription()|escape}</li>
+		{/foreach}
+	</ul>
+</div>
 
 {include file="common/footer.tpl"}
