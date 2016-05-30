@@ -26,7 +26,6 @@ class CallanSubmissionTest extends ContentBaseTestCase {
 			'lastName' => 'Allan',
 			'affiliation' => 'University of Southern California',
 			'country' => 'Canada',
-			'roles' => array('Author'),
 		));
 
 		$title = 'Bomb Canada and Other Unkind Remarks in the American Media';
@@ -40,6 +39,7 @@ class CallanSubmissionTest extends ContentBaseTestCase {
 				'Communication & Cultural Studies',
 				'Political & International Studies',
 			),
+			'submitterRole' => 'Author',
 			'chapters' => $chapters = array(
 				array(
 					'title' => 'Prologue',

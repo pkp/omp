@@ -26,7 +26,6 @@ class MforanSubmissionTest extends ContentBaseTestCase {
 			'lastName' => 'Foran',
 			'affiliation' => 'University of Calgary',
 			'country' => 'Canada',
-			'roles' => array('Author'),
 		));
 
 		$title = 'Expansive Discourses: Urban Sprawl in Calgary, 1945-1978';
@@ -34,6 +33,7 @@ class MforanSubmissionTest extends ContentBaseTestCase {
 			'type' => 'monograph',
 			'title' => $title,
 			'abstract' => 'A groundbreaking study of urban sprawl in Calgary after the Second World War. The interactions of land developers and the local government influenced how the pattern grew: developers met market demands and optimized profits by building houses as efficiently as possible, while the City had to consider wider planning constraints and infrastructure costs. Foran examines the complexity of their interactions from a historical perspective, why each party acted as it did, and where each can be criticized.',
+			'submitterRole' => 'Author',
 			'chapters' => array(
 				array(
 					'title' => 'Setting the Stage',

@@ -26,7 +26,6 @@ class MdawsonSubmissionTest extends ContentBaseTestCase {
 			'lastName' => 'Dawson',
 			'affiliation' => 'University of Alberta',
 			'country' => 'Canada',
-			'roles' => array('Volume editor'),
 		));
 
 		$title = 'From Bricks to Brains: The Embodied Cognitive Science of LEGO Robots';
@@ -38,6 +37,7 @@ class MdawsonSubmissionTest extends ContentBaseTestCase {
 			'keywords' => array(
 				'Psychology',
 			),
+			'submitterRole' => 'Volume editor',
 			'additionalAuthors' => array(
 				array(
 					'firstName' => 'Brian',

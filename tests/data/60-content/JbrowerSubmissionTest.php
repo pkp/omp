@@ -26,7 +26,6 @@ class JbrowerSubmissionTest extends ContentBaseTestCase {
 			'lastName' => 'Brower',
 			'affiliation' => 'Buffalo National Park Foundation',
 			'country' => 'Canada',
-			'roles' => array('Author'),
 		));
 
 		$this->createSubmission(array(
@@ -38,6 +37,7 @@ class JbrowerSubmissionTest extends ContentBaseTestCase {
 				'Environmental Studies',
 				'Political & International Studies',
 			),
+			'submitterRole' => 'Author',
 			'chapters' => array(
 				array(
 					'title' => 'Introduction',
