@@ -41,6 +41,7 @@ class AlkarrasSubmissionTest extends ContentBaseTestCase {
 				'History',
 				'Sociology',
 			),
+			'submitterRole' => 'Author',
 			'chapters' => array(
 				array(
 					'title' => 'Introduction',

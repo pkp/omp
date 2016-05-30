@@ -38,6 +38,7 @@ class DbernnardSubmissionTest extends ContentBaseTestCase {
 				'information literacy',
 				'academic libraries',
 			),
+			'submitterRole' => 'Volume editor',
 			'additionalAuthors' => array(
 				array(
 					'firstName' => 'Greg',

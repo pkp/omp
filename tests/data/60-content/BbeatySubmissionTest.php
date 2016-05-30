@@ -38,6 +38,7 @@ class BbeatySubmissionTest extends ContentBaseTestCase {
 				'Canadian Studies',
 				'Communication & Cultural Studies',
 			),
+			'submitterRole' => 'Volume editor',
 			'additionalAuthors' => array(
 				array(
 					'firstName' => 'Toby',

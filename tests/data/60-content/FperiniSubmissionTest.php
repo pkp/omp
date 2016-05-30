@@ -39,6 +39,7 @@ class FperiniSubmissionTest extends ContentBaseTestCase {
 				'society',
 				'ICT',
 			),
+			'submitterRole' => 'Volume editor',
 			'additionalAuthors' => array(
 				array(
 					'firstName' => 'Robin',

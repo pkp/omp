@@ -38,6 +38,7 @@ class DcoatesSubmissionTest extends ContentBaseTestCase {
 				'History',
 				'Literary Studies',
 			),
+			'submitterRole' => 'Volume editor',
 			'additionalAuthors' => array(
 				array(
 					'firstName' => 'Douglas',

@@ -37,6 +37,7 @@ class LelderSubmissionTest extends ContentBaseTestCase {
 				'International Development',
 				'ICT',
 			),
+			'submitterRole' => 'Volume editor',
 			'additionalAuthors' => array(
 				array(
 					'firstName' => 'Heloise',
