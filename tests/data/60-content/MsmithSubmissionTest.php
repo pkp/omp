@@ -37,6 +37,7 @@ class MsmithSubmissionTest extends ContentBaseTestCase {
 				'International Development',
 				'ICT',
 			),
+			'submitterRole' => 'Volume editor',
 			'additionalAuthors' => array(
 				array(
 					'firstName' => 'Yochai',

@@ -37,6 +37,7 @@ class MdawsonSubmissionTest extends ContentBaseTestCase {
 			'keywords' => array(
 				'Psychology',
 			),
+			'submitterRole' => 'Volume editor',
 			'additionalAuthors' => array(
 				array(
 					'firstName' => 'Brian',

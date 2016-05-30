@@ -87,6 +87,12 @@ class ContentBaseTestCase extends PKPContentBaseTestCase {
 				$this->type('//form[@id=\'editChapterForm\']//input[starts-with(@id,\'subtitle-\')]', $chapter['subtitle']);
 			}
 
+			// Set submitter's role
+			$this->waitForElementPresent('css=[id^=component-grid-users-author-authorgrid]//css=[id*=editAuthor-button]');
+			$this->click('css=[id^=component-grid-users-author-authorgrid]//css=[id*=editAuthor-button]');
+			$this->waitForElementPresent('css=[id=userGroupId]');
+			$this->click('//button[starts-with(., ' . $data['submitterRole'] . ')]';
+
 			// Contributors
 			foreach ($chapter['contributors'] as $i => $contributor) {
 				$this->waitForElementPresent('css=[id^=component-listbuilder-users-chapterauthorlistbuilder-addItem-button-]');

@@ -37,6 +37,7 @@ class JbrowerSubmissionTest extends ContentBaseTestCase {
 				'Environmental Studies',
 				'Political & International Studies',
 			),
+			'submitterRole' => 'Author',
 			'chapters' => array(
 				array(
 					'title' => 'Introduction',

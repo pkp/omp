@@ -36,6 +36,7 @@ class BbarnetsonSubmissionTest extends ContentBaseTestCase {
 				'Business & Economics',
 				'Political & International Studies',
 			),
+			'submitterRole' => 'Author',
 			'chapters' => array(
 				array(
 					'title' => 'Introduction',

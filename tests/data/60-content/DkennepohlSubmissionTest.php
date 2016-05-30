@@ -37,6 +37,7 @@ class DkennepohlSubmissionTest extends ContentBaseTestCase {
 			'keywords' => array(
 				'Education',
 			),
+			'submitterRole' => 'Volume editor',
 			'additionalAuthors' => array(
 				array(
 					'firstName' => 'Terry',

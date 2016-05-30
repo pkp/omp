@@ -41,6 +41,7 @@ class WhildebrandtSubmissionTest extends ContentBaseTestCase {
 				'Political & International Studies',
 				'Sociology',
 			),
+			'submitterRole' => 'Author',
 			'chapters' => array(
 				array(
 					'title' => 'Preface',

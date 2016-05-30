@@ -36,6 +36,7 @@ class MallySubmissionTest extends ContentBaseTestCase {
 			'keywords' => array(
 				'Educational Technology',
 			),
+			'submitterRole' => 'Volume editor',
 			'additionalAuthors' => array(
 				array(
 					'firstName' => 'John',

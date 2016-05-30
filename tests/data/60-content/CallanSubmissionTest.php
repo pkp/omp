@@ -39,6 +39,7 @@ class CallanSubmissionTest extends ContentBaseTestCase {
 				'Communication & Cultural Studies',
 				'Political & International Studies',
 			),
+			'submitterRole' => 'Author',
 			'chapters' => $chapters = array(
 				array(
 					'title' => 'Prologue',
