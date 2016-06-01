@@ -79,6 +79,15 @@ class ContentBaseTestCase extends PKPContentBaseTestCase {
 	protected function _handleStep3($data) {
 		parent::_handleStep3($data);
 
+		// Set submitter's role
+		// assumes the submitter is first in the contributors list
+		$this->waitForElementPresent('css=[id^=component-grid-users-author-authorgrid]//css=[id*=editAuthor-button]');
+		$this->click('css=[id^=component-grid-users-author-authorgrid]//css=[id*=editAuthor-button]');
+		$this->waitForElementPresent('css=[id=userGroupId]');
+		$this->click('//label[contains(.,\'' . $this->escapeJS($data['submitterRole']) . '\')]');
+		$this->click('//button[text()=\'Save\']');
+		$this->waitForElementNotPresent('css=div.pkp_modal_panel');
+
 		if (isset($data['chapters'])) foreach ($data['chapters'] as $chapter) {
 			$this->click('css=[id^=component-grid-users-chapter-chaptergrid-addChapter-button-]');
 			$this->waitForElementPresent('//form[@id=\'editChapterForm\']//input[starts-with(@id,\'title-\')]');
@@ -86,12 +95,6 @@ class ContentBaseTestCase extends PKPContentBaseTestCase {
 			if (isset($chapter['subtitle'])) {
 				$this->type('//form[@id=\'editChapterForm\']//input[starts-with(@id,\'subtitle-\')]', $chapter['subtitle']);
 			}
-
-			// Set submitter's role
-			$this->waitForElementPresent('css=[id^=component-grid-users-author-authorgrid]//css=[id*=editAuthor-button]');
-			$this->click('css=[id^=component-grid-users-author-authorgrid]//css=[id*=editAuthor-button]');
-			$this->waitForElementPresent('css=[id=userGroupId]');
-			$this->click('//button[starts-with(., ' . $data['submitterRole'] . ')]';
 
 			// Contributors
 			foreach ($chapter['contributors'] as $i => $contributor) {
