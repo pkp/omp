@@ -77,6 +77,7 @@ class NativeXmlPublicationFormatFilter extends NativeXmlRepresentationFilter {
 		// Handle metadata in subelements.  Do this after the insertObject() call because it
 		// creates other DataObjects which depend on a representation id.
 		for ($n = $node->firstChild; $n !== null; $n=$n->nextSibling) if (is_a($n, 'DOMElement')) switch($n->tagName) {
+			case 'name': $representation->setName($n->textContent, $n->getAttribute('locale')); break;
 			case 'Product': $this->_processProductNode($n, $this->getDeployment(), $representation); break;
 			case 'submission_file_ref': $this->_processFileRef($n, $deployment, $representation); break;
 			default:
