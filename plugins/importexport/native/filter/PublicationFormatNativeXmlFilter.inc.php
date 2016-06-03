@@ -47,6 +47,7 @@ class PublicationFormatNativeXmlFilter extends RepresentationNativeXmlFilter {
 	 */
 	function createRepresentationNode($doc, $representation) {
 		$representationNode = parent::createRepresentationNode($doc, $representation);
+		$this->createLocalizedNodes($doc, $representationNode, 'name', $representation->getName(null));
 		$representationNode->setAttribute('approved', $representation->getIsApproved()?'true':'false');
 		$representationNode->setAttribute('available', $representation->getIsAvailable()?'true':'false');
 		$representationNode->setAttribute('physical_format', $representation->getPhysicalFormat()?'true':'false');

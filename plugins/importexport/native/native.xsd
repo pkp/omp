@@ -50,6 +50,7 @@
 			<complexContent>
 				<extension base="pkp:representation">
 					<sequence>
+						<element name="name" type="pkp:localizedNode" minOccurs="1" maxOccurs="unbounded" />
 						<element maxOccurs="1" minOccurs="0" name="Product"/>
 					</sequence>
 					<attribute name="approved" type="boolean"/>
