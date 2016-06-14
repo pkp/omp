@@ -26,7 +26,6 @@ class AfinkelSubmissionTest extends ContentBaseTestCase {
 			'lastName' => 'Finkel',
 			'affiliation' => 'Athabasca University',
 			'country' => 'Canada',
-			'roles' => array('Volume editor'),
 		));
 
 		$title = 'The West and Beyond: New Perspectives on an Imagined Region';
@@ -34,6 +33,7 @@ class AfinkelSubmissionTest extends ContentBaseTestCase {
 			'type' => 'editedVolume',
 			'title' => $title,
 			'abstract' => 'The West and Beyond explores the state of Western Canadian history, showcasing the research interests of a new generation of scholars while charting new directions for the future and stimulating further interrogation of our past. This dynamic collection encourages dialogue among generations of historians of the West, and among practitioners of diverse approaches to the past. It also reflects a broad range of disciplinary and professional boundaries, offering new ways to understand the West.',
+			'submitterRole' => 'Volume editor',
 			'additionalAuthors' => array(
 				array(
 					'firstName' => 'Sarah',

@@ -26,7 +26,6 @@ class DbernnardSubmissionTest extends ContentBaseTestCase {
 			'lastName' => 'Bernnard',
 			'affiliation' => 'SUNY',
 			'country' => 'United States',
-			'roles' => array('Volume editor'),
 		));
 
 		$title = 'The Information Literacy User’s Guide';
@@ -39,6 +38,7 @@ class DbernnardSubmissionTest extends ContentBaseTestCase {
 				'information literacy',
 				'academic libraries',
 			),
+			'submitterRole' => 'Volume editor',
 			'additionalAuthors' => array(
 				array(
 					'firstName' => 'Greg',
