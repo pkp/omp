@@ -16,7 +16,7 @@
 import('classes.publicationFormat.PublicationFormat');
 import('lib.pkp.classes.submission.RepresentationDAO');
 
-class PublicationFormatDAO extends RepresentationDAO {
+class PublicationFormatDAO extends RepresentationDAO implements PKPPubIdPluginDAO {
 	/**
 	 * Constructor
 	 */
@@ -77,7 +77,7 @@ class PublicationFormatDAO extends RepresentationDAO {
 	 * @param int pressId
 	 * @return DAOResultFactory (PublicationFormat)
 	 */
-	function getByPressId($pressId) {
+	function getByContextId($pressId) {
 		$params = array((int) $pressId);
 		$result = $this->retrieve(
 			'SELECT pf.*
@@ -302,59 +302,12 @@ class PublicationFormatDAO extends RepresentationDAO {
 	 */
 	function getAdditionalFieldNames() {
 		$additionalFields = parent::getAdditionalFieldNames();
-		$additionalFields[] = 'pub-id::doi';
-		$additionalFields[] = 'doiSuffix';
+		$additionalFields[] = 'pub-id::publisher-id';
 		return $additionalFields;
 	}
 
 	/**
-	 * Delete the public IDs of all publication formats in a press.
-	 * @param $pressId int
-	 * @param $pubIdType string One of the NLM pub-id-type values or
-	 * 'other::something' if not part of the official NLM list
-	 * (see <http://dtd.nlm.nih.gov/publishing/tag-library/n-4zh0.html>).
-	 */
-	function deleteAllPubIds($pressId, $pubIdType) {
-		$pressId = (int) $pressId;
-		$settingName = 'pub-id::'.$pubIdType;
-
-		$formats = $this->getByPressId($pressId);
-		while ($format = $formats->next()) {
-			$this->update(
-				'DELETE FROM publication_format_settings WHERE setting_name = ? AND publication_format_id = ?',
-				array(
-					$settingName,
-					(int)$format->getId()
-				)
-			);
-		}
-		$this->flushCache();
-	}
-
-	/**
-	 * Change the public ID of a format.
-	 * @param $formatId int
-	 * @param $pubIdType string One of the NLM pub-id-type values or
-	 * 'other::something' if not part of the official NLM list
-	 * (see <http://dtd.nlm.nih.gov/publishing/tag-library/n-4zh0.html>).
-	 * @param $pubId string
-	 */
-	function changePubId($formatId, $pubIdType, $pubId) {
-		$publicationFormat = $this->getById($formatId);
-		$publicationFormat->setData('pub-id::'.$pubIdType, $pubId);
-		$this->updateObject($publicationFormat);
-	}
-
-	/**
-	 * Checks if public identifier exists (other than for the specified
-	 * publication format ID, which is treated as an exception).
-	 * @param $pubIdType string One of the NLM pub-id-type values or
-	 * 'other::something' if not part of the official NLM list
-	 * (see <http://dtd.nlm.nih.gov/publishing/tag-library/n-4zh0.html>).
-	 * @param $pubId string
-	 * @param $formatId int An ID to be excluded from the search.
-	 * @param $pressId int
-	 * @return boolean
+	 * @copydoc PKPPubIdPluginDAO::pubIdExists()
 	 */
 	function pubIdExists($pubIdType, $pubId, $formatId, $pressId) {
 		$result = $this->retrieve(
@@ -374,6 +327,59 @@ class PublicationFormatDAO extends RepresentationDAO {
 		$result->Close();
 		return $returner;
 	}
+
+	/**
+	 * @copydoc PKPPubIdPluginDAO::changePubId()
+	 */
+	function changePubId($formatId, $pubIdType, $pubId) {
+		$idFields = array(
+				'publication_format_id', 'locale', 'setting_name'
+		);
+		$updateArray = array(
+				'publication_format_id' => $formatId,
+				'locale' => '',
+				'setting_name' => 'pub-id::'.$pubIdType,
+				'setting_type' => 'string',
+				'setting_value' => (string)$pubId
+		);
+		$this->replace('publication_format_settings', $updateArray, $idFields);
+	}
+
+	/**
+	 * @copydoc PKPPubIdPluginDAO::deletePubId()
+	 */
+	function deletePubId($formatId, $pubIdType) {
+		$settingName = 'pub-id::'.$pubIdType;
+		$this->update(
+			'DELETE FROM publication_format_settings WHERE setting_name = ? AND publication_format_id = ?',
+			array(
+				$settingName,
+				(int)$formatId
+			)
+		);
+		$this->flushCache();
+	}
+
+	/**
+	 * @copydoc PKPPubIdPluginDAO::deleteAllPubIds()
+	 */
+	function deleteAllPubIds($pressId, $pubIdType) {
+		$pressId = (int) $pressId;
+		$settingName = 'pub-id::'.$pubIdType;
+
+		$formats = $this->getByContextId($pressId);
+		while ($format = $formats->next()) {
+			$this->update(
+				'DELETE FROM publication_format_settings WHERE setting_name = ? AND publication_format_id = ?',
+				array(
+					$settingName,
+					(int)$format->getId()
+				)
+			);
+		}
+		$this->flushCache();
+	}
+
 }
 
 ?>

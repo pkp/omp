@@ -20,7 +20,6 @@
 		);
 	{rdelim});
 </script>
-
 <form class="pkp_form" id="{$publicationFormId|escape}" method="post" action="{url router=$smarty.const.ROUTE_COMPONENT op="saveForm"}">
 	{include file="controllers/notification/inPlaceNotification.tpl" notificationId=$publicationFormId|concat:"-notification" requestOptions=$notificationRequestOptions}
 
@@ -32,6 +31,14 @@
 	<input type="hidden" name="tab" value="publication" />
 
 	<h3>{translate key="monograph.publicationFormat.formatMetadata"}</h3>
+
+	{if !$pubObject->getRemoteURL()}
+		{foreach from=$pubIdPlugins item=pubIdPlugin}
+			{assign var=pubIdMetadataFile value=$pubIdPlugin->getPubIdMetadataFile()}
+			{assign var=canBeAssigned value=$pubIdPlugin->canBeAssigned($pubObject)}
+			{include file="$pubIdMetadataFile" pubObject=$pubObject canBeAssigned=$canBeAssigned}
+		{/foreach}
+	{/if}
 
 	{fbvFormArea id="productIdentifier"}
 		{fbvFormSection}
@@ -87,11 +94,6 @@
 			{fbvElement type="text" name="imprint" id="imprint" value=$imprint maxlength="255"}
 		{/fbvFormSection}
 	{/fbvFormArea}
-
-	{foreach from=$pubIdPlugins item=pubIdPlugin}
-		{assign var=pubIdMetadataFile value=$pubIdPlugin->getPubIdMetadataFile()}
-		{include file=$pubIdMetadataFile pubObject=$publicationFormat}
-	{/foreach}
 
 	{if $isPhysicalFormat}
 		{include file="controllers/tab/catalogEntry/form/physicalPublicationFormat.tpl"}

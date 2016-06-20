@@ -28,6 +28,7 @@ class CatalogEntryTabHandler extends PublicationEntryTabHandler {
 				'catalogMetadata',
 				'publicationMetadata',
 				'uploadCoverImage',
+				'identifiers', 'clearPubId', 'updateIdentifiers',
 			)
 		);
 	}
@@ -63,7 +64,6 @@ class CatalogEntryTabHandler extends PublicationEntryTabHandler {
 	 * @return JSONMessage JSON object
 	 */
 	function publicationMetadata($args, $request) {
-
 		$representationId = (int) $request->getUserVar('representationId');
 		$publicationFormatDao = DAORegistry::getDAO('PublicationFormatDAO');
 
@@ -106,6 +106,72 @@ class CatalogEntryTabHandler extends PublicationEntryTabHandler {
 	}
 
 	/**
+	 * Edit submission pub ids
+	 * @param $args array
+	 * @param $request Request
+	 * @return JSONMessage JSON object
+	 */
+	function identifiers($args, $request) {
+		import('lib.pkp.controllers.tab.pubIds.form.PKPPublicIdentifiersForm');
+		$submission = $this->getSubmission();
+		$stageId = $this->getStageId();
+		$identifiersForm = new PKPPublicIdentifiersForm($submission, $stageId, array('displayedInContainer' => true));
+		$identifiersForm->initData();
+		return new JSONMessage(true, $identifiersForm->fetch($request));
+	}
+
+	/**
+	 * Clear submission pub id.
+	 * @param $args array
+	 * @param $request Request
+	 * @return JSONMessage JSON object
+	 */
+	function clearPubId($args, $request) {
+		import('lib.pkp.controllers.tab.pubIds.form.PKPPublicIdentifiersForm');
+		$submission = $this->getSubmission();
+		$stageId = $this->getStageId();
+		if ($this->getCurrentTab() == 'identifiers') {
+			$identifiersForm = new PKPPublicIdentifiersForm($submission, $stageId, array('displayedInContainer' => true));
+		} else { // publication format tabs
+			$representationId = (int) $request->getUserVar('representationId');
+			$publicationFormatDao = DAORegistry::getDAO('PublicationFormatDAO');
+			$publicationFormat = $publicationFormatDao->getById($representationId, $submission->getId());
+			$identifiersForm = new PKPPublicIdentifiersForm($publicationFormat);
+		}
+		$identifiersForm->clearPubId($request->getUserVar('pubIdPlugIn'));
+		return new JSONMessage(true);
+	}
+
+	/**
+	 * Update submission pub ids.
+	 * @param $args array
+	 * @param $request PKPRequest
+	 * @return JSONMessage JSON object
+	 */
+	function updateIdentifiers($args, $request) {
+		import('lib.pkp.controllers.tab.pubIds.form.PKPPublicIdentifiersForm');
+		$submission = $this->getSubmission();
+		$stageId = $this->getStageId();
+		$form = new PKPPublicIdentifiersForm($submission, $stageId, array('displayedInContainer' => true));
+		$form->readInputData();
+		if ($form->validate($request)) {
+			$form->execute($request);
+			$json = new JSONMessage();
+			if ($request->getUserVar('displayedInContainer')) {
+				$router = $request->getRouter();
+				$dispatcher = $router->getDispatcher();
+				$url = $dispatcher->url($request, ROUTE_COMPONENT, null, $this->_getHandlerClassPath(), 'fetch', null, array('submissionId' => $submission->getId(), 'stageId' => $stageId, 'tabPos' => $this->getTabPosition(), 'hideHelp' => true));
+				$json->setAdditionalAttributes(array('reloadContainer' => true, 'tabsUrl' => $url));
+				$json->setContent(true); // prevents modal closure
+			}
+			return $json;
+		} else {
+			return new JSONMessage(true, $form->fetch($request));
+		}
+	}
+
+
+	/**
 	 * Get the form for a particular tab.
 	 */
 	function _getFormFromCurrentTab(&$form, &$notificationKey, $request) {
@@ -121,24 +187,29 @@ class CatalogEntryTabHandler extends PublicationEntryTabHandler {
 					$notificationKey = 'notification.savedCatalogMetadata';
 					SubmissionLog::logEvent($request, $submission, SUBMISSION_LOG_CATALOG_METADATA_UPDATE, 'submission.event.catalogMetadataUpdated');
 					break;
+				case 'identifiers':
+					import('lib.pkp.controllers.tab.pubIds.form.PKPPublicIdentifiersForm');
+					$form = new PKPPublicIdentifiersForm($submission, $this->getStageId(), array('displayedInContainer' => true, 'tabPos' => $this->getTabPosition()));
+					$notificationKey = 'common.changesSaved';
+					break;
 				default: // publication format tabs
 					import('controllers.tab.catalogEntry.form.CatalogEntryFormatMetadataForm');
-				$representationId = $request->getUserVar('representationId');
+					$representationId = $request->getUserVar('representationId');
 
-				// perform some validation to make sure this format is enabled and assigned to this monograph
-				$publishedMonographDao = DAORegistry::getDAO('PublishedMonographDAO');
-				$publicationFormatDao = DAORegistry::getDAO('PublicationFormatDAO');
-				$formats = $publicationFormatDao->getBySubmissionId($submission->getId());
-				$form = null;
-				while ($format = $formats->next()) {
-					if ($format->getId() == $representationId) {
-						$form = new CatalogEntryFormatMetadataForm($submission->getId(), $representationId, $format->getPhysicalFormat(), $format->getRemoteURL(), $this->getStageId(), array('displayedInContainer' => true, 'tabPos' => $this->getTabPosition()));
-						$notificationKey = 'notification.savedPublicationFormatMetadata';
-						SubmissionLog::logEvent($request, $submission, SUBMISSION_LOG_PUBLICATION_FORMAT_METADATA_UPDATE, 'submission.event.publicationMetadataUpdated', array('formatName' => $format->getLocalizedName()));
-						break;
+					// perform some validation to make sure this format is enabled and assigned to this monograph
+					$publishedMonographDao = DAORegistry::getDAO('PublishedMonographDAO');
+					$publicationFormatDao = DAORegistry::getDAO('PublicationFormatDAO');
+					$formats = $publicationFormatDao->getBySubmissionId($submission->getId());
+					$form = null;
+					while ($format = $formats->next()) {
+						if ($format->getId() == $representationId) {
+							$form = new CatalogEntryFormatMetadataForm($submission->getId(), $representationId, $format->getPhysicalFormat(), $format->getRemoteURL(), $this->getStageId(), array('displayedInContainer' => true, 'tabPos' => $this->getTabPosition()));
+							$notificationKey = 'notification.savedPublicationFormatMetadata';
+							SubmissionLog::logEvent($request, $submission, SUBMISSION_LOG_PUBLICATION_FORMAT_METADATA_UPDATE, 'submission.event.publicationMetadataUpdated', array('formatName' => $format->getLocalizedName()));
+							break;
+						}
 					}
-				}
-				break;
+					break;
 			}
 		}
 	}

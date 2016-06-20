@@ -117,12 +117,35 @@ class PublicationFormatGridHandler extends RepresentationsGridHandler {
 	// Public Publication Format Grid Actions
 	//
 	/**
-	 * Edit a format
+	 * Edit a publication format modal
 	 * @param $args array
 	 * @param $request PKPRequest
 	 * @return JSONMessage JSON object
 	 */
 	function editFormat($args, $request) {
+		$submission = $this->getSubmission();
+		$representationDao = Application::getRepresentationDAO();
+		$representationId = $request->getUserVar('representationId');
+		$representation = $representationDao->getById(
+			$representationId,
+			$submission->getId()
+		);
+		// Check if this is a remote galley
+		$remoteURL = isset($representation) ? $representation->getRemoteURL() : null;
+		$templateMgr = TemplateManager::getManager($request);
+		$templateMgr->assign('submissionId', $submission->getId());
+		$templateMgr->assign('representationId', $representationId);
+		$templateMgr->assign('remoteRepresentation', $remoteURL);
+		return new JSONMessage(true, $templateMgr->fetch('controllers/grid/catalogEntry/editFormat.tpl'));
+	}
+
+	/**
+	 * Edit a format
+	 * @param $args array
+	 * @param $request PKPRequest
+	 * @return JSONMessage JSON object
+	 */
+	function editFormatTab($args, $request) {
 		$submission = $this->getSubmission();
 		$representationDao = Application::getRepresentationDAO();
 		$representation = $representationDao->getById(
@@ -212,6 +235,24 @@ class PublicationFormatGridHandler extends RepresentationsGridHandler {
 		);
 
 		if (!$representation) return new JSONMessage(false, __('manager.setup.errorDeletingItem'));
+
+		$confirmationText = __('grid.catalogEntry.approvedRepresentation.removeMessage');
+		if ($request->getUserVar('newApprovedState')) {
+			$confirmationText = __('grid.catalogEntry.approvedRepresentation.message');
+		}
+		import('lib.pkp.controllers.grid.pubIds.form.PKPAssignPublicIdentifiersForm');
+		$formTemplate = $this->getAssignPublicIdentifiersFormTemplate();
+		$assignPublicIdentifiersForm = new PKPAssignPublicIdentifiersForm($formTemplate, $representation, $request->getUserVar('newApprovedState'), $confirmationText);
+		if (!$request->getUserVar('confirmed')) {
+			// Display assign pub ids modal
+			$assignPublicIdentifiersForm->initData($args, $request);
+			return new JSONMessage(true, $assignPublicIdentifiersForm->fetch($request));
+		}
+		if ($request->getUserVar('newApprovedState')) {
+			// Asign pub ids
+			$assignPublicIdentifiersForm->readInputData();
+			$assignPublicIdentifiersForm->execute($request);
+		}
 
 		$newApprovedState = (int) $request->getUserVar('newApprovedState');
 		$representation->setIsApproved($newApprovedState);
@@ -333,6 +374,13 @@ class PublicationFormatGridHandler extends RepresentationsGridHandler {
 			return DAO::getDataChangedEvent();
 		}
 		return new JSONMessage(true, $approvedProofForm->fetch($request));
+	}
+
+	/**
+	 * @copydoc RepresentationsGridHandler::getAssignPublicIdentifiersFormTemplate()
+	 */
+	function getAssignPublicIdentifiersFormTemplate() {
+		return 'controllers/grid/pubIds/form/assignPublicIdentifiersForm.tpl';
 	}
 }
 

@@ -8,32 +8,41 @@
  * DOI plugin settings
  *
  *}
+
 <div id="description">{translate key="plugins.pubIds.doi.manager.settings.description"}</div>
 
 <script src="{$baseUrl}/plugins/pubIds/doi/js/DOISettingsFormHandler.js"></script>
-<script type="text/javascript">
+<script>
 	$(function() {ldelim}
 		// Attach the form handler.
 		$('#doiSettingsForm').pkpHandler('$.pkp.plugins.pubIds.doi.js.DOISettingsFormHandler');
 	{rdelim});
 </script>
-<form class="pkp_form" id="doiSettingsForm" method="post" action="{url router=$smarty.const.ROUTE_COMPONENT op="manage" category="pubIds" plugin=$pluginName verb="settings" save="true"}">
+<form class="pkp_form" id="doiSettingsForm" method="post" action="{url router=$smarty.const.ROUTE_COMPONENT op="manage" category="pubIds" plugin=$pluginName verb="save"}">
 	{include file="common/formErrors.tpl"}
-	{fbvFormArea id="enableDoiSettingsFormArea" class="border" title="plugins.pubIds.doi.manager.settings.doiSettings"}
-		{fbvFormSection}
-			<p class="pkp_help">{translate key="plugins.pubIds.doi.manager.settings.doiPrefixPattern"}</p>
-			{fbvElement type="text" label="plugins.pubIds.doi.manager.settings.doiPrefix" required="true" id="doiPrefix" value=$doiPrefix maxlength="40" size=$fbvStyles.size.MEDIUM}
+	{fbvFormArea id="doiObjectsFormArea" title="plugins.pubIds.doi.manager.settings.doiObjects"}
+		{fbvFormSection list="true"}
+			<p class="pkp_help">{translate key="plugins.pubIds.doi.manager.settings.explainDois"}</p>
+			{fbvElement type="checkbox" id="enableSubmissionDoi" label="plugins.pubIds.doi.manager.settings.enableSubmissionDoi" maxlength="40" checked=$enableSubmissionDoi|compare:true}
+			{fbvElement type="checkbox" id="enableRepresentationDoi" label="plugins.pubIds.doi.manager.settings.enableRepresentationDoi" maxlength="40" checked=$enableRepresentationDoi|compare:true}
+			{fbvElement type="checkbox" id="enableSubmissionFileDoi" label="plugins.pubIds.doi.manager.settings.enableSubmissionFileDoi" maxlength="40" checked=$enableSubmissionFileDoi|compare:true}
 		{/fbvFormSection}
 	{/fbvFormArea}
-	{fbvFormArea id="doiSuffixPatternFormArea" class="border" title="plugins.pubIds.doi.manager.settings.doiSuffix"}
-		<p class="pkp_help">{translate key="plugins.pubIds.doi.manager.settings.doiSuffixDescription"}</p>
+	{fbvFormArea id="doiPrefixFormArea" title="plugins.pubIds.doi.manager.settings.doiPrefix"}
+		{fbvFormSection}
+			<p class="pkp_help">{translate key="plugins.pubIds.doi.manager.settings.doiPrefix.description"}</p>
+			{fbvElement type="text" id="doiPrefix" value=$doiPrefix required="true" label="plugins.pubIds.doi.manager.settings.doiPrefix" maxlength="40" size=$fbvStyles.size.MEDIUM}
+		{/fbvFormSection}
+	{/fbvFormArea}
+	{fbvFormArea id="doiSuffixFormArea" title="plugins.pubIds.doi.manager.settings.doiSuffix"}
+		<p class="pkp_help">{translate key="plugins.pubIds.doi.manager.settings.doiSuffix.description"}</p>
 		{fbvFormSection list="true"}
 			{if !in_array($doiSuffix, array("pattern", "customId"))}
 				{assign var="checked" value=true}
 			{else}
 				{assign var="checked" value=false}
 			{/if}
-			{fbvElement type="radio" id="doiSuffixDefault" name="doiSuffix" value="default" checked=$checked label="plugins.pubIds.doi.manager.settings.doiSuffixDefault"}
+			{fbvElement type="radio" id="doiSuffixDefault" name="doiSuffix" value="default" required="true" label="plugins.pubIds.doi.manager.settings.doiSuffixDefault" checked=$checked}
 			<span class="instruct">{translate key="plugins.pubIds.doi.manager.settings.doiSuffixDefault.description"}</span>
 		{/fbvFormSection}
 		{fbvFormSection list="true"}
@@ -42,7 +51,7 @@
 			{else}
 				{assign var="checked" value=false}
 			{/if}
-			{fbvElement type="radio" id="doiSuffixCustomIdentifier" name="doiSuffix" value="customId" checked=$checked label="plugins.pubIds.doi.manager.settings.doiSuffixCustomIdentifier"}
+			{fbvElement type="radio" id="doiSuffixCustomId" name="doiSuffix" value="customId" required="true" label="plugins.pubIds.doi.manager.settings.doiSuffixCustomIdentifier" checked=$checked}
 		{/fbvFormSection}
 		{fbvFormSection list="true"}
 			{if $doiSuffix eq "pattern"}
@@ -50,11 +59,14 @@
 			{else}
 				{assign var="checked" value=false}
 			{/if}
-			{fbvElement type="radio" id="doiSuffix" name="doiSuffix" value="pattern" checked=$checked label="plugins.pubIds.doi.manager.settings.doiSuffixPattern"}
-			{fbvElement type="text" label="plugins.pubIds.doi.manager.settings.doiSuffixPattern.example" id="doiPublicationFormatSuffixPattern" value=$doiPublicationFormatSuffixPattern maxlength="40"}
+			{fbvElement type="radio" id="doiSuffixPattern" name="doiSuffix" value="pattern" label="plugins.pubIds.doi.manager.settings.doiSuffixPattern" checked=$checked}
+			<p class="pkp_help">{translate key="plugins.pubIds.doi.manager.settings.doiSuffixPattern.example"}</p>
+			{fbvElement type="text" id="doiSubmissionSuffixPattern" value=$doiSubmissionSuffixPattern label="plugins.pubIds.doi.manager.settings.doiSuffixPattern.submissions" maxlength="40" inline=true size=$fbvStyles.size.MEDIUM}
+			{fbvElement type="text" id="doiRepresentationSuffixPattern" value=$doiRepresentationSuffixPattern label="plugins.pubIds.doi.manager.settings.doiSuffixPattern.representations" maxlength="40" inline=true size=$fbvStyles.size.MEDIUM}
+			{fbvElement type="text" id="doiSubmissionFileSuffixPattern" value=$doiSubmissionFileSuffixPattern label="plugins.pubIds.doi.manager.settings.doiSuffixPattern.files" maxlength="40" inline=true size=$fbvStyles.size.MEDIUM}
 		{/fbvFormSection}
 	{/fbvFormArea}
-	{fbvFormArea id="doiSuffixReassignFormArea" class="border" title="plugins.pubIds.doi.manager.settings.doiReassign"}
+	{fbvFormArea id="doiReassignFormArea" title="plugins.pubIds.doi.manager.settings.doiReassign"}
 		{fbvFormSection}
 			<span class="instruct">{translate key="plugins.pubIds.doi.manager.settings.doiReassign.description"}</span><br/>
 			{include file="linkAction/linkAction.tpl" action=$clearPubIdsLinkAction contextId="doiSettingsForm"}
