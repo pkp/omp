@@ -32,7 +32,7 @@ class CompetingInterestsTest extends ContentBaseTestCase {
 	function testCIDisabled() {
 		// FIXME: With PostgreSQL, the grid scrolling code doesn't appear to permit
 		// the test to find the submission as reviewer. For now, skip it.
-		if (getenv('DBTYPE') == 'PostgreSQL') $this->markTestSkipped();
+		if (getenv('DBTYPE') == 'PostgreSQL') $this->markTestSkipped('Scrolling broken with PostgreSQL.');
 
 		$this->open(self::$baseUrl);
 
@@ -84,7 +84,7 @@ class CompetingInterestsTest extends ContentBaseTestCase {
 	function testCIRequired() {
 		// FIXME: With PostgreSQL, the grid scrolling code doesn't appear to permit
 		// the test to find the submission as reviewer. For now, skip it.
-		if (getenv('DBTYPE') == 'PostgreSQL') $this->markTestSkipped();
+		if (getenv('DBTYPE') == 'PostgreSQL') $this->markTestSkipped('Scrolling broken with PostgreSQL.');
 
 		$this->open(self::$baseUrl);
 
