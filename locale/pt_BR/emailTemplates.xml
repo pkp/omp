@@ -62,6 +62,7 @@ Redefinir senha: {$url}<br />
 		<body><![CDATA[Sua senha foi redefinida com sucesso e já pode ser usada para acesso ao site {$siteTitle}. Guarde seu login e sua senha, pois são essenciais para execução das atividades na editora.<br />
 <br />
 Login: {$username}<br />
+Nova senha: {$password}<br />
 <br />
 {$principalContactSignature}]]></body>
 		<description>Esta mensagem é enviada a usuário cadastrado quando a senha é redefinida com sucesso, seguindo o processo descrito em PASSWORD_RESET_CONFIRM.</description>
