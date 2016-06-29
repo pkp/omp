@@ -158,10 +158,10 @@ class MonographONIX30XmlFilter extends NativeExportFilter {
 		$pubIdPlugins = PluginRegistry::loadCategory('pubIds', true);
 		if (is_array($pubIdPlugins)) {
 			foreach ($pubIdPlugins as $plugin) {
-				if ($plugin->getEnabled() && $plugin->getPubIdType() == 'doi' && $plugin->getPubId($publicationFormat) != '') {
+				if ($plugin->getEnabled() && $plugin->getPubIdType() == 'doi' && $publicationFormat->getStoredPubId('doi')) {
 					$productIdentifierNode = $doc->createElementNS($deployment->getNamespace(), 'ProductIdentifier');
 					$productIdentifierNode->appendChild($this->_buildTextNode($doc, 'ProductIDType', '06')); // DOI
-					$productIdentifierNode->appendChild($this->_buildTextNode($doc, 'IDValue', $plugin->getPubId($publicationFormat))); // GTIN-13 (ISBN-13 as GTIN)
+					$productIdentifierNode->appendChild($this->_buildTextNode($doc, 'IDValue', $publicationFormat->getStoredPubId('doi'))); // GTIN-13 (ISBN-13 as GTIN)
 					$productNode->appendChild($productIdentifierNode);
 
 					unset($productIdentifierNode);

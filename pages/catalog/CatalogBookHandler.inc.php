@@ -86,10 +86,7 @@ class CatalogBookHandler extends Handler {
 				$enabledPubIdTypes[] = $plugin->getPubIdType();
 				// check to see if the format has a pubId set.  If not, generate one.
 				foreach ($publicationFormats as $publicationFormat) {
-					if ($publicationFormat->getStoredPubId($plugin->getPubIdType()) == '') {
-						$plugin->getPubId($publicationFormat);
-					}
-					if ($plugin->getPubIdType() == 'doi') {
+					if ($plugin->getPubIdType() == 'doi' && $publicationFormat->getStoredPubId('doi')) {
 						$pubId = strip_tags($publicationFormat->getStoredPubId('doi'));
 						$metaCustomHeaders .= '<meta name="DC.Identifier.DOI" content="' . $pubId . '"/><meta name="citation_doi" content="'. $pubId . '"/>';
 					}
