@@ -101,7 +101,7 @@ class PressDAO extends ContextDAO {
 
 	/**
 	 * Check whether the given public ID exists for any publishing
-	 * object in a journal.
+	 * object in a press.
 	 * @param $pressId int
 	 * @param $pubIdType string One of the NLM pub-id-type values or
 	 * 'other::something' if not part of the official NLM list
