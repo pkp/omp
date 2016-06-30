@@ -41,8 +41,8 @@ class SubmissionSubmitStep4Form extends PKPSubmissionSubmitStep4Form {
 		$router = $request->getRouter();
 		if ($mail->isEnabled()) {
 			// submission ack emails should be from the contact.
-			$mail->setReplyTo($this->context->getSetting('contactEmail'), $this->context->getSetting('contactName'));
-			$authorMail->setReplyTo($this->context->getSetting('contactEmail'), $this->context->getSetting('contactName'));
+			$mail->setFrom($this->context->getSetting('contactEmail'), $this->context->getSetting('contactName'));
+			$authorMail->setFrom($this->context->getSetting('contactEmail'), $this->context->getSetting('contactName'));
 
 			$user = $request->getUser();
 			$primaryAuthor = $this->submission->getPrimaryAuthor();

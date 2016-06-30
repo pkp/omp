@@ -52,9 +52,6 @@
 	<message key="default.pressSettings.checklist.bibliographicRequirements"><![CDATA[El text compleix els requisits estilístics i bibliogràfics descrits a les <a href="{$indexUrl}/{$pressPath}/about/submissions#authorGuidelines" target="_blank">indicacions per als autors/ores</a>, que es troben a Sobre la publicació.]]></message>
 	<message key="default.pressSettings.privacyStatement">Els noms i les adreces de correu electrònic que hi ha en aquest lloc de publicació només s'utilitzaran per als usos indicats en aquesta publicació i no estaran disponibles per a cap altre ús ni per a terceres parts.</message>
 	<message key="default.pressSettings.openAccessPolicy">La publicació proporciona accés lliure immediat al contingut basant-se en el principi que fer que la cerca estigui disponible al públic facilita un intercanvi de coneixement més ampli i global.</message>
-	<message key="default.pressSettings.emailHeader"><![CDATA[El següent missatge es lliura en nom de {$ldelim}$contextName{$rdelim}.<br/>
-________________________________________________________________________<br/>
-]]></message>
 	<message key="default.pressSettings.emailSignature"><![CDATA[<br/>
 ________________________________________________________________________<br/>
 <a href="{$ldelim}$contextUrl{$rdelim}">{$ldelim}$contextName{$rdelim}</a>]]></message>

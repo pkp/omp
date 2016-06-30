@@ -146,8 +146,6 @@ Podeu proporcionar una raó a l'usuari/ària per la qual heu desactivat el seu c
 	<message key="manager.setup.emailBounceAddressDescription">S’enviarà un missatge d’error a aquesta adreça cada vegada que no s’hagi pogut entregar un missatge de correu electrònic.</message>
 	<message key="manager.setup.emailBounceAddressDisabled"><![CDATA[<strong>Nota:</strong> Per activar aquesta opció, l'administrador/a del lloc web ha d'activar l'opció <tt>allow_envelope_sender</tt> del fitxer de configuració de l'OMP. Pot ser necessària una configuració del servidor addicional perquè aquesta funcionalitat estigui disponible (la qual cosa pot no ser possible en tots els servidors), tal com s'indica en la documentació de l'OMP.]]></message>
 	<message key="manager.setup.emails">Identificació per correu electrònic</message>
-	<message key="manager.setup.emailHeader">Capçalera dels correus electrònics</message>
-	<message key="manager.setup.emailHeaderDescription">Les plantilles dels missatges de correu electrònic enviats pel sistema en nom de la publicació començaran amb la següent capçalera. Aquests correus electrònics s'enviaran des del contacte principal, per la qual cosa és important deixar clar que el contacte principal no és necessàriament el responsable del contingut del missatge, que es pot enviar en nom d'un altre usuari/ària.</message>
 	<message key="manager.setup.emailSignature">Signatura</message>
 	<message key="manager.setup.emailSignatureDescription">Les plantilles dels missatges de correu electrònic enviats pel sistema en nom de la publicació tindran la següent signatura al final. Podeu editar el cos de les plantilles de correus electrònics a continuació.</message>
 	<message key="manager.setup.enableAnnouncements">Habilita els avisos.</message>

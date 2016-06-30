@@ -390,7 +390,6 @@ Choisissez un modèle pour gérer ces aspects du processus éditorial. (Pour nom
 	<message key="manager.setup.contextName">Nom de la presse</message>
 	<message key="manager.series.restricted">Restreint</message>
 	<message key="manager.statistics.reports.defaultReport.monographDownloads">Téléchargement des fichiers des monographies</message>
-	<message key="manager.setup.emailHeader">En-tête du courriel</message>
 	<message key="manager.setup.homepageContent">Contenu de la page d'accueil de la presse</message>
 	<message key="manager.statistics.reports.defaultReport.monographAbstract">Vues du résumé de la monographie</message>
 	<message key="manager.statistics.reports.defaultReport.monographAbstractAndDownloads">Résumé et téléchargements de la monographie</message>
@@ -399,7 +398,6 @@ Choisissez un modèle pour gérer ces aspects du processus éditorial. (Pour nom
 	<message key="manager.statistics.reports.filters.byContext.description">Limiter les résultats par contexte (série et/ou monographie).</message>
 	<message key="manager.statistics.reports.filters.byObject.description">Limiter les résultats selon le type d'objet (presse, série, monographie, type de fichier) et/ou selon une ou plusieurs identification d'objet.</message>
 	<message key="manager.setup.editorialProcess3">L'éditeur en chef est en charge des soumissions en attente, de la révision des soumissions et de la table des matières, tandis que les éditeurs de section sont en charge de l'examen des soumissions.</message>
-	<message key="manager.setup.emailHeaderDescription">Les courriels rédigés à l'avance sont envoyés par le système au nom de la presse et contiendront l'en-tête suivante. Ces courriels afficheront le nom de la principale personne-ressource dans la case de l'expéditeur. Il est important de souligner que cette personne-ressource n'est pas nécessairement responsable du contenu du message, qui pourrait être envoyé au nom d'un utilisateur différent.</message>
 	<message key="manager.setup.appearanceDescription">Différentes composantes de l'apparence de la presse peuvent être configurées à partir de cette page, y compris des éléments de l'en-tête et du pied de page, le style et le thème de la presse, et la manière dont les listes de renseignements sont présentées aux utilisateurs.</message>
 	<message key="manager.setup.homepageContentDescription">La page d'accueil de la presse est constituée de liens de navigation par défaut. Vous pouvez ajouter du contenu à la page d'accueil à l'aide d'une ou plusieurs des options suivantes, qui apparaitront dans l'ordre montré à l'écran.</message>
 	<message key="manager.setup.layout">Mise en page de la presse</message>

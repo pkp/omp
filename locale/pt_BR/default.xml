@@ -90,8 +90,6 @@
 	<message key="default.pressSettings.checklist.bibliographicRequirements"><![CDATA[O texto segue as normas bibliográficas e de estilo definida na página <a href="{$indexUrl}/{$pressPath}/about/submissions#authorGuidelines" target="_blank">Diretrizes para Autores</a>, disponível na página Sobre a editora.]]></message>
 	<message key="default.pressSettings.privacyStatement">Os nomes e endereços de e-mail informados nesta editora serão usados exclusivamente para os propósitos da mesma e não serão divulgados ou oferecidos para nenhum outro propósito ou a terceiros.</message>
 	<message key="default.pressSettings.openAccessPolicy">Esta editora oferece acesso aberto imediato ao seu conteúdo, seguindo o princípio que tornar a pesquisa acessível ao público abertamente proporciona maior intercâmbio de conhecimento de forma global.</message>
-	<message key="default.pressSettings.emailHeader">A seguinte mensagem será enviada em nome de {$ldelim}$contextName{$rdelim}.
-________________________________________________________________________</message>
 	<message key="default.pressSettings.emailSignature"><![CDATA[<br/>
 ________________________________________________________________________<br/>
 <a href="{$ldelim}$contextUrl{$rdelim}">{$ldelim}$contextName{$rdelim}</a>]]></message>
