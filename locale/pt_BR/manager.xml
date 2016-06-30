@@ -158,8 +158,6 @@ Informe, se desesjar, o motivo do bloqueio.</message>
 	<message key="manager.setup.emailBounceAddressDescription">Qualquer mensagem não entregue resultará em uma mensagem de erro que será enderçada a este destinatário.</message>
 	<message key="manager.setup.emailBounceAddressDisabled"><![CDATA[<strong>Nota:</strong> Para ativar esta opção, o administrador do sistema deverá habilitar a opção <tt>allow_envelope_sender</tt> no arquivo de configuração do OMP. Além disso, configurações adicionais no servidor podem ser necessárias para dar suporte a funcionalidade (que pode não estar disponível em todos os servidores), como indicado na documentação do OMP.]]></message>
 	<message key="manager.setup.emails">Identificação das mensagens</message>
-	<message key="manager.setup.emailHeader">Cabeçalho do email</message>
-	<message key="manager.setup.emailHeaderDescription">Os e-mails preparados que são enviados pelo sistema em nome da imprensa começar com seguinte cabeçalho. Esses e-mails serão endereçados a partir do contato principal , por isso é importante esclarecer que o Contato Principal não é necessariamente o responsável pelo conteúdo da mensagem, que pode ser enviada em nome de um usuário diferente.</message>
 	<message key="manager.setup.emailSignature">Assinatura</message>
 	<message key="manager.setup.emailSignatureDescription">Os modelos de mensagens são enviados pelo sistema em nome da editora, apresentando a seguinte assinatura no final. O corpo das mensagens está disponível para personalização mais adiante.</message>
 	<message key="manager.setup.enableAnnouncements">Permitir a Gerentes da editora incluir notícias.</message>

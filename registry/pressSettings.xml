@@ -59,10 +59,6 @@
 		<value>{translate key="default.pressSettings.openAccessPolicy"}</value>
 	</setting>
 	<setting type="string" locale="0">
-		<name>emailHeader</name>
-		<value>{translate key="default.pressSettings.emailHeader"}</value>
-	</setting>
-	<setting type="string" locale="0">
 		<name>emailSignature</name>
 		<value>{translate key="default.pressSettings.emailSignature"}</value>
 	</setting>

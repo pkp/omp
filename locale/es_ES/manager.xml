@@ -213,8 +213,6 @@ Podrá ofrecer una razón al usuario/a para deshabilitar su cuenta.</message>
 	<message key="manager.setup.emailBounceAddressDescription">Cualquier correo electrónico que no pueda entregarse generará un mensaje de error a esta dirección.</message>
 	<message key="manager.setup.emailBounceAddressDisabled"><![CDATA[<strong>Nota:</strong> Para activar esta opción, el administrador/a del sitio debe permitir la opción <tt>permitir_envío_del_remitente</tt> en el archivo de configuración de OMP. Será necesario modificar la configuración del servidor para que sea compatible con esta funcionalidad (que puede no estar disponible en todos los servidores), como se indica en la documentación de OMP.]]></message>
 	<message key="manager.setup.emails">Identificación de correo electrónico</message>
-	<message key="manager.setup.emailHeader">Encabezado del correo electrónico</message>
-	<message key="manager.setup.emailHeaderDescription">Las plantillas de correo que el sistema enviará en nombre de la publicación empezarán con el siguiente encabezado. Los correos electrónicos se enviarán desde el contacto principal, por tanto es importante aclarar que el contacto principal no es necesariamente responsable del contenido del mensaje, que se mandará en nombre de un usuario/a diferente. </message>
 	<message key="manager.setup.emailSignature">Firma</message>
 	<message key="manager.setup.emailSignatureDescription">Las plantillas de correo que el sistema envía en nombre de la publicación tendrán la siguiente firma al final. El cuerpo de las plantillas de correo podrá editarse a continuación.</message>
 	<message key="manager.setup.enableAnnouncements">Habilitar anuncios.</message>

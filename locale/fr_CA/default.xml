@@ -63,6 +63,4 @@
 	<message key="default.groups.name.manager">Gestionnaire de la presse</message>
 	<message key="default.groups.plural.manager">Gestionnaires de la presse</message>
 	<message key="default.groups.abbrev.manager">MP</message>
-	<message key="default.pressSettings.emailHeader">Le message suivant est envoyé au nom de {$pressName}.
-________________________________________________________________________</message>
 </locale>
