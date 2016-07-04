@@ -104,7 +104,8 @@ class CallanSubmissionTest extends ContentBaseTestCase {
 
 		// Approvals for PDF publication format
 		$this->click('//table[starts-with(@id,\'component-grid-catalogentry-publicationformatgrid-\')]//span[contains(text(),\'PDF\')]/../../..//a[contains(@id,\'-isComplete-approveRepresentation-button-\')]');
-		$this->click('css=.pkpModalConfirmButton');
+		$this->waitForElementPresent($selector='//form[@id=\'assignPublicIdentifierForm\']//button[starts-with(@id,\'submitFormButton-\')]');
+		$this->click($selector);
 		$this->waitForElementNotPresent('css=div.pkp_modal_panel');
 		$this->click('//table[starts-with(@id,\'component-grid-catalogentry-publicationformatgrid-\')]//span[contains(text(),\'PDF\')]/../../..//a[contains(@id,\'-isAvailable-availableRepresentation-button-\')]');
 		$this->click('css=.pkpModalConfirmButton');
@@ -112,7 +113,8 @@ class CallanSubmissionTest extends ContentBaseTestCase {
 
 		// File completion
 		$this->click('//table[starts-with(@id,\'component-grid-catalogentry-publicationformatgrid-\')]//a[contains(text(),\'' . $title . '\')]/../../..//a[contains(@id,\'-isComplete-not_approved-button-\')]');
-		$this->click('css=.pkpModalConfirmButton');
+		$this->waitForElementPresent($selector='//form[@id=\'assignPublicIdentifierForm\']//button[starts-with(@id,\'submitFormButton-\')]');
+		$this->click($selector);
 		$this->waitForElementNotPresent('css=div.pkp_modal_panel');
 		// File availability
 		$this->click('//table[starts-with(@id,\'component-grid-catalogentry-publicationformatgrid-\')]//a[contains(text(),\'' . $title . '\')]/../../..//a[contains(@id,\'-isAvailable-editApprovedProof-button-\')]');

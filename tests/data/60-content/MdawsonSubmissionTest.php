@@ -143,7 +143,8 @@ class MdawsonSubmissionTest extends ContentBaseTestCase {
 
 		// Approvals for PDF publication format
 		$this->click('//table[starts-with(@id,\'component-grid-catalogentry-publicationformatgrid-\')]//span[contains(text(),\'PDF\')]/../../..//a[contains(@id,\'-isComplete-approveRepresentation-button-\')]');
-		$this->click('css=.pkpModalConfirmButton');
+		$this->waitForElementPresent($selector='//form[@id=\'assignPublicIdentifierForm\']//button[starts-with(@id,\'submitFormButton-\')]');
+		$this->click($selector);
 		$this->waitForElementNotPresent('css=div.pkp_modal_panel');
 		$this->click('//table[starts-with(@id,\'component-grid-catalogentry-publicationformatgrid-\')]//span[contains(text(),\'PDF\')]/../../..//a[contains(@id,\'-isAvailable-availableRepresentation-button-\')]');
 		$this->click('css=.pkpModalConfirmButton');
@@ -153,7 +154,8 @@ class MdawsonSubmissionTest extends ContentBaseTestCase {
 		foreach ($proofFiles as $proofFile) {
 			// Completion
 			$this->click('//table[starts-with(@id,\'component-grid-catalogentry-publicationformatgrid-\')]//a[contains(text(),\'' . $proofFile . '\')]/../../..//a[contains(@id,\'-isComplete-not_approved-button-\')]');
-			$this->click('css=.pkpModalConfirmButton');
+			$this->waitForElementPresent($selector='//form[@id=\'assignPublicIdentifierForm\']//button[starts-with(@id,\'submitFormButton-\')]');
+			$this->click($selector);
 			$this->waitForElementNotPresent('css=div.pkp_modal_panel');
 			// Availability
 			$this->click('//table[starts-with(@id,\'component-grid-catalogentry-publicationformatgrid-\')]//a[contains(text(),\'' . $proofFile . '\')]/../../..//a[contains(@id,\'-isAvailable-editApprovedProof-button-\')]');

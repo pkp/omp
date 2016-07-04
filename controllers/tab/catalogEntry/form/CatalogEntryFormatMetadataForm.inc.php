@@ -14,7 +14,7 @@
  */
 
 import('lib.pkp.classes.form.Form');
-import('classes.plugins.PubIdPluginHelper');
+import('lib.pkp.classes.plugins.PKPPubIdPluginHelper');
 
 class CatalogEntryFormatMetadataForm extends Form {
 
@@ -24,8 +24,11 @@ class CatalogEntryFormatMetadataForm extends Form {
 	/** @var int The current stage id */
 	var $_stageId;
 
-	/** @var int The publication format id */
-	var $_representationId;
+	/** @var PublicationFormat The publication format */
+	var $_publicationFormat;
+
+	/** @var int The pub id plugin helper */
+	var $_pubIdPluginHelper;
 
 	/** @var boolean is this a physical, non-digital format? */
 	var $_isPhysicalFormat;
@@ -50,10 +53,13 @@ class CatalogEntryFormatMetadataForm extends Form {
 		$monographDao = DAORegistry::getDAO('MonographDAO');
 		$this->_monograph = $monographDao->getById($monographId);
 
-		$this->_pubIdPluginHelper = new PubIdPluginHelper();
+		$publicationFormatDao = DAORegistry::getDAO('PublicationFormatDAO');
+		$this->_publicationFormat = $publicationFormatDao->getById($representationId, $monographId);
+		assert($this->_publicationFormat);
+
+		$this->_pubIdPluginHelper = new PKPPubIdPluginHelper();
 
 		$this->_stageId = $stageId;
-		$this->_representationId = $representationId;
 		$this->_isPhysicalFormat = $isPhysicalFormat;
 		$this->_remoteURL = $remoteURL;
 		$this->_formParams = $formParams;
@@ -71,11 +77,12 @@ class CatalogEntryFormatMetadataForm extends Form {
 	 */
 	function fetch($request) {
 		$monograph = $this->getMonograph();
+		$publicationFormat = $this->getPublicationFormat();
 		$press = $request->getPress();
 
 		$templateMgr = TemplateManager::getManager($request);
 		$templateMgr->assign('submissionId', $monograph->getId());
-		$templateMgr->assign('representationId', (int) $this->getPublicationFormatId());
+		$templateMgr->assign('representationId', (int) $publicationFormat->getId());
 
 		// included to load format-specific templates
 		$templateMgr->assign('isPhysicalFormat', (bool) $this->getPhysicalFormat());
@@ -114,6 +121,7 @@ class CatalogEntryFormatMetadataForm extends Form {
 		// consider public identifiers
 		$pubIdPlugins = PluginRegistry::loadCategory('pubIds', true);
 		$templateMgr->assign('pubIdPlugins', $pubIdPlugins);
+		$templateMgr->assign('pubObject', $publicationFormat);
 
 		$templateMgr->assign('notificationRequestOptions', array(
 			NOTIFICATION_LEVEL_NORMAL => array(
@@ -135,10 +143,8 @@ class CatalogEntryFormatMetadataForm extends Form {
 			LOCALE_COMPONENT_APP_SUBMISSION
 		);
 
-		$publicationFormatDao = DAORegistry::getDAO('PublicationFormatDAO');
 		$monograph = $this->getMonograph();
-		$publicationFormat = $publicationFormatDao->getById($this->getPublicationFormatId(), $monograph->getId());
-		assert($publicationFormat);
+		$publicationFormat = $this->getPublicationFormat();
 
 		$this->_data = array(
 			'fileSize' => (boolean) $publicationFormat->getFileSize() ? $publicationFormat->getFileSize() : $publicationFormat->getCalculatedFileSize(),
@@ -166,13 +172,16 @@ class CatalogEntryFormatMetadataForm extends Form {
 
 		// initialize the pubId fields.
 		$pubIdPluginHelper = $this->_getPubIdPluginHelper();
-		$pubIdPluginHelper->init($this, $publicationFormat);
+		$pubIdPluginHelper->init($monograph->getContextId(), $this, $publicationFormat);
+		$pubIdPluginHelper->setLinkActions($monograph->getContextId(), $this, $publicationFormat);
+
 	}
 
 	/**
 	 * Assign form data to user-submitted data.
 	 */
 	function readInputData() {
+		$monograph = $this->getMonograph();
 		$this->readUserVars(array(
 			'directSalesPrice',
 			'fileSize',
@@ -198,7 +207,19 @@ class CatalogEntryFormatMetadataForm extends Form {
 
 		// consider the additional field names from the public identifer plugins
 		$pubIdPluginHelper = $this->_getPubIdPluginHelper();
-		$pubIdPluginHelper->readInputData($this);
+		$pubIdPluginHelper->readInputData($monograph->getContextId(), $this);
+
+	}
+
+	/**
+	 * @copydoc Form::validate()
+	 */
+	function validate() {
+		$monograph = $this->getMonograph();
+		$publicationFormat = $this->getPublicationFormat();
+		$pubIdPluginHelper = $this->_getPubIdPluginHelper();
+		$pubIdPluginHelper->validate($monograph->getContextId(), $this, $publicationFormat);
+		return parent::validate();
 	}
 
 	/**
@@ -208,9 +229,7 @@ class CatalogEntryFormatMetadataForm extends Form {
 		parent::execute();
 
 		$monograph = $this->getMonograph();
-		$publicationFormatDao = DAORegistry::getDAO('PublicationFormatDAO');
-		$publicationFormat = $publicationFormatDao->getById($this->getPublicationFormatId(), $monograph->getId());
-		assert($publicationFormat);
+		$publicationFormat = $this->getPublicationFormat();
 
 		// populate the published monograph with the cataloging metadata
 		$publicationFormat->setFileSize($this->getData('override') ? $this->getData('fileSize'):null);
@@ -234,8 +253,9 @@ class CatalogEntryFormatMetadataForm extends Form {
 
 		// consider the additional field names from the public identifer plugins
 		$pubIdPluginHelper = $this->_getPubIdPluginHelper();
-		$pubIdPluginHelper->execute($this, $publicationFormat);
+		$pubIdPluginHelper->execute($monograph->getContextId(), $this, $publicationFormat);
 
+		$publicationFormatDao = DAORegistry::getDAO('PublicationFormatDAO');
 		$publicationFormatDao->updateObject($publicationFormat);
 	}
 
@@ -275,11 +295,11 @@ class CatalogEntryFormatMetadataForm extends Form {
 	}
 
 	/**
-	 * Get the publication format id
-	 * @return int
+	 * Get the publication format
+	 * @return PublicationFormat
 	 */
-	function getPublicationFormatId() {
-		return $this->_representationId;
+	function getPublicationFormat() {
+		return $this->_publicationFormat;
 	}
 
 	/**
@@ -290,12 +310,13 @@ class CatalogEntryFormatMetadataForm extends Form {
 	}
 
 	/**
-	 * returns the PubIdPluginHelper associated with this form.
-	 * @return PubIdPluginHelper
+	 * returns the PKPPubIdPluginHelper associated with this form.
+	 * @return PKPPubIdPluginHelper
 	 */
 	function _getPubIdPluginHelper() {
 		return $this->_pubIdPluginHelper;
 	}
+
 }
 
 ?>
