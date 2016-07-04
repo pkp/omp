@@ -27,7 +27,7 @@ class CatalogEntryFormatMetadataForm extends Form {
 	/** @var PublicationFormat The publication format */
 	var $_publicationFormat;
 
-	/** @var int The pub id plugin helper */
+	/** @var PKPPubIdPluginHelper The pub id plugin helper */
 	var $_pubIdPluginHelper;
 
 	/** @var boolean is this a physical, non-digital format? */
