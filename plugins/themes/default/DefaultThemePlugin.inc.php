@@ -17,6 +17,21 @@ import('lib.pkp.classes.plugins.ThemePlugin');
 
 class DefaultThemePlugin extends ThemePlugin {
 	/**
+	 * Constructor
+	 */
+	function DefaultThemePlugin() {
+		parent::ThemePlugin();
+	}
+
+	/**
+	 * @copydoc ThemePlugin::isActive()
+	 */
+	public function isActive() {
+                if (defined('SESSION_DISABLE_INIT')) return true;
+		return parent::isActive();
+	}
+
+	/**
 	 * Initialize the theme's styles, scripts and hooks. This is run on the
 	 * currently active theme and it's parent themes.
 	 *
