@@ -24,33 +24,50 @@ class UsageStatsPlugin extends PKPUsageStatsPlugin {
 	function UsageStatsPlugin() {
 		parent::PKPUsageStatsPlugin();
 	}
+
 	/**
-	 * Get the template path where the statistics should be displayed.
-	 * @return string
+	 * Register assets and output hooks to display statistics on the reader
+	 * frontend.
+	 *
+	 * @return null
 	 */
-	function getStatisticsDisplayTemplate() {
-		return 'frontend/pages/book.tpl';
+	function displayReaderStatistics() {
+
+		// Add chart to article view page
+		HookRegistry::register('Templates::Catalog::Book::Main', array($this, 'displayReaderMonographGraph'));
 	}
 
 	/**
-	 * Get the hook that should be used for the statistics display.
-	 * @return string
+	 * Add chart to article view page
+	 *
+	 * Hooked to `Templates::Catalog::Book::Main`
+	 * @param $hookName string
+	 * @param $params array
+	 *   [1] $smarty object
+	 *   [2] $output string HTML output to return
 	 */
-	function getStatisticsDisplayTemplateHook() {
-		return 'Templates::Catalog::Book::Main';
-	}
+	function displayReaderMonographGraph($hookName, $params) {
+		$smarty =& $params[1];
+		$output =& $params[2];
 
-	/**
-	 * Get the publication object ID (from the template)
-	 * the statistics should be displayed for.
-	 * @param $smarty TemplateManager
-	 * @return integer
-	 */
-	function getPubObjectId($smarty) {
 		$pubObject =& $smarty->get_template_vars('publishedMonograph');
 		assert(is_a($pubObject, 'PublishedMonograph'));
-		$pubObjectId = $pubObject->getId();
-		return $pubObjectId;
+		$pubObjectId = $pubObject->getID();
+		$pubObjectType = 'PublishedMonograph';
+
+		$output .= $this->getTemplate(
+			array(
+				'pubObjectType' => $pubObjectType,
+				'pubObjectId'   => $pubObjectId,
+			),
+			'outputFrontend.tpl',
+			$smarty
+		);
+
+		$this->addJavascriptData($this->getAllDownloadsStats($pubObjectId), $pubObjectType, $pubObjectId, 'frontend-catalog-book');
+		$this->loadJavascript('frontend-catalog-book' );
+
+		return false;
 	}
 }
 

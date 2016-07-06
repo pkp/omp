@@ -44,7 +44,15 @@ class TemplateManager extends PKPTemplateManager {
 			$this->assign('publicFilesDir', $siteFilesDir); // May be overridden by press
 
 			$siteStyleFilename = $publicFileManager->getSiteFilesPath() . '/' . $site->getSiteStyleFilename();
-			if (file_exists($siteStyleFilename)) $this->addStyleSheet($request->getBaseUrl() . '/' . $siteStyleFilename, STYLE_SEQUENCE_LAST);
+			if (file_exists($siteStyleFilename)) {
+				$this->addStyleSheet(
+					'siteStylesheet',
+					$request->getBaseUrl() . '/' . $siteStyleFilename,
+					array(
+						'priority' => STYLE_SEQUENCE_LAST
+					)
+				);
+			}
 
 			// Get a count of unread tasks.
 			if ($user = $request->getUser()) {
@@ -66,8 +74,6 @@ class TemplateManager extends PKPTemplateManager {
 				// Assign page header
 				$this->assign('displayPageHeaderTitle', $context->getPageHeaderTitle());
 				$this->assign('displayPageHeaderLogo', $context->getPageHeaderLogo());
-				$this->assign('metaSearchDescription', $context->getLocalizedSetting('searchDescription'));
-				$this->assign('metaCustomHeaders', $context->getLocalizedSetting('customHeaders'));
 				$this->assign('numPageLinks', $context->getSetting('numPageLinks'));
 				$this->assign('itemsPerPage', $context->getSetting('itemsPerPage'));
 				$this->assign('enableAnnouncements', $context->getSetting('enableAnnouncements'));
@@ -76,7 +82,13 @@ class TemplateManager extends PKPTemplateManager {
 				// Assign stylesheets and footer
 				$contextStyleSheet = $context->getSetting('styleSheet');
 				if ($contextStyleSheet) {
-					$this->addStyleSheet($request->getBaseUrl() . '/' . $publicFileManager->getContextFilesPath(ASSOC_TYPE_PRESS, $context->getId()) . '/' . $contextStyleSheet['uploadName'], STYLE_SEQUENCE_LAST);
+					$this->addStyleSheet(
+						'contextStylesheet',
+						$request->getBaseUrl() . '/' . $publicFileManager->getContextFilesPath(ASSOC_TYPE_PRESS, $context->getId()) . '/' . $contextStyleSheet['uploadName'],
+						array(
+							'priority' => STYLE_SEQUENCE_LAST
+						)
+					);
 				}
 
 				// Get a link to the settings page for the current context.

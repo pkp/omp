@@ -9,6 +9,15 @@
  */
 (function($) {
 
+	// Update nav menu ARIA states on focus, blur and mouse over/out events
+	$('.navDropdownMenu ul').on('focus.default  mouseenter.default', '[aria-haspopup="true"]', function (e) {
+		$(e.currentTarget).attr('aria-expanded', true);
+	});
+
+	$('.navDropdownMenu ul').on('blur.default  mouseleave.default', '[aria-haspopup="true"]', function (e) {
+		$(e.currentTarget).attr('aria-expanded', false);
+	});
+
 	// Register click handlers for the search panel
 	var headerSearchPanelIsClosing = false,
 	    headerSearchForm = $('#headerNavigationContainer .pkp_search'),
@@ -88,37 +97,11 @@
 		},300)
 	}
 
-	// Spotlights
-	var spotlightComponent = $('.cmp_spotlights');
-	if (spotlightComponent.length) {
-
-		// Store references to the tabs in the list and the spotlights themselves
-		var tabs = spotlightComponent.find('> .list a');
-		var spotlights = spotlightComponent.find('.spotlights > li');
-
-		// Handle click events on the tabs
-		tabs.click(function(e) {
-
-			// Intercept the link's normal action and prevent the event from
-			// bubbling up the DOM
-			e.preventDefault();
-			e.stopPropagation();
-
-			// Get the link that was clicked on and exit if it's already the
-			// current link
-			var target = $(e.target);
-			if (target.hasClass('current')) {
-				return;
-			}
-
-			// Reset the element classes so the spotlight clicked on is now
-			// assigned the `current` class
-			tabs.parent().removeClass('current');
-			spotlights.removeClass('current');
-			target.parent().addClass('current');
-			spotlights.filter('.spotlight_' + target.data('spotlight')).addClass('current');
-		});
-	}
+	// Modify the Chart.js display options used by UsageStats plugin
+	document.addEventListener('usageStatsChartOptions.pkp', function(e) {
+		e.chartOptions.elements.line.backgroundColor = 'rgba(0, 122, 178, 0.6)';
+		e.chartOptions.elements.rectangle.backgroundColor = 'rgba(0, 122, 178, 0.6)';
+	});
 
 	// Initialize tag-it components
 	//
