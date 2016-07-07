@@ -94,8 +94,6 @@ class WebFeedPlugin extends GenericPlugin {
 
 		$templateManager =& $args[0];
 		$currentPress = $templateManager->get_template_vars('currentPress');
-		$requestedPage = $request->getRequestedPage();
-
 		$displayPage = $this->getSetting($currentPress->getId(), 'displayPage');
 
 		// Define when the <link> elements should appear
