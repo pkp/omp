@@ -57,12 +57,10 @@ class DefaultThemePlugin extends ThemePlugin {
 		$min = Config::getVar('general', 'enable_minified') ? '.min' : '';
 		if (Config::getVar('general', 'enable_cdn')) {
 			$jquery = '//ajax.googleapis.com/ajax/libs/jquery/' . CDN_JQUERY_VERSION . '/jquery' . $min . '.js';
-			$jqueryUI = '//ajax.googleapis.com/ajax/libs/jqueryui/' . CDN_JQUERY_UI_VERSION . '/jquery-ui' . $min . '.js';
 		} else {
 			// Use OJS's built-in jQuery files
 			$request = Application::getRequest();
 			$jquery = $request->getBaseUrl() . '/lib/pkp/lib/vendor/components/jquery/jquery' . $min . '.js';
-			$jqueryUI = $request->getBaseUrl() . '/lib/pkp/lib/vendor/components/jqueryui/jquery-ui' . $min . '.js';
 		}
 		// Use an empty `baseUrl` argument to prevent the theme from looking for
 		// the files within the theme directory
