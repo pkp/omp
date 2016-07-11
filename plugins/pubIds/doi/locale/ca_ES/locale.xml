@@ -15,8 +15,6 @@
 	<message key="plugins.pubIds.doi.displayName">Mòdul DOI</message>
 
 	<!-- settings form -->
-	<message key="plugins.pubIds.doi.manager.settings.doiSettings">Configuració del mòdul DOI</message>
-
 	<message key="plugins.pubIds.doi.manager.settings.doiPrefix">Prefix DOI</message>
 
 	<message key="plugins.pubIds.doi.manager.settings.doiSuffix">Sufix DOI</message>
