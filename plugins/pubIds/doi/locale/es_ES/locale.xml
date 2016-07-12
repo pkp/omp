@@ -13,7 +13,6 @@
  
 <locale name="es_ES" full_name="Español (España)">
 	<message key="plugins.pubIds.doi.displayName">Identificador de objeto digital (DOI)</message>
-	<message key="plugins.pubIds.doi.description">Este complemento habilita la asignación del Identificador de Objetos Digitales para los formatos de publicación en OMP.</message>
 
 	<!-- settings form -->
 	<message key="plugins.pubIds.doi.manager.settings.description">Configure el complemento DOI para poder gestionar y usar los elementos DOI en OMP:</message>
@@ -33,7 +32,6 @@
 	<message key="plugins.pubIds.doi.manager.settings.doiRepresentationSuffixPatternRequired">Introduzca el modelo de sufijo del DOI para los formatos de publicación.</message>
 	
 	<message key="plugins.pubIds.doi.manager.settings.doiReassign">Asignar los DOI de nuevo</message>
-	<message key="plugins.pubIds.doi.manager.settings.doiReassign.description">Si modifica su configuración DOI, los elementos DOI que ya hayan sido asignados no se verán afectados. Una vez que la configuración DOI se haya guardado, utilice este botón para eliminar todos los elementos DOI existentes de manera que la nueva configuración se aplique en los formatos de publicación existentes.</message>
 	<message key="plugins.pubIds.doi.manager.settings.doiReassign.confirm">¿Está seguro/a de que desea eliminar todos los DOI existentes?</message>
 
 	<!-- metadata form -->
