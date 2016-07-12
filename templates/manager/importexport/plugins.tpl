@@ -7,8 +7,6 @@
  *
  * List available import/export plugins.
  *}
-{include file="common/header.tpl" pageTitle="manager.importExport"}
-
 <div class="pkp_page_content pkp_page_tools">
 	{help file="tools.md" section="import-export"}
 
@@ -18,5 +16,3 @@
 		{/foreach}
 	</ul>
 </div>
-
-{include file="common/footer.tpl"}
