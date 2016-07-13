@@ -18,10 +18,11 @@
 			{if empty($storedPubId)} {* edit custom suffix *}
 				{fbvFormSection}
 					<p class="pkp_help">{translate key="plugins.pubIds.doi.manager.settings.doiSuffix.description"}</p>
-					{fbvElement type="text" label="plugins.pubIds.doi.manager.settings.doiPrefix" id="doiPrefix" disabled=true value=$pubIdPlugin->getSetting($currentContext->getId(), 'doiPrefix') size=$fbvStyles.size.SMALL}
-					{fbvElement type="text" label="plugins.pubIds.doi.manager.settings.doiSuffix" id="doiSuffix" value=$doiSuffix size=$fbvStyles.size.MEDIUM}
+					{fbvElement type="text" label="plugins.pubIds.doi.manager.settings.doiPrefix" id="doiPrefix" disabled=true value=$pubIdPlugin->getSetting($currentContext->getId(), 'doiPrefix') size=$fbvStyles.size.SMALL inline=true}
+					{fbvElement type="text" label="plugins.pubIds.doi.manager.settings.doiSuffix" id="doiSuffix" value=$doiSuffix size=$fbvStyles.size.MEDIUM inline=true}
 				{/fbvFormSection}
 				{if $canBeAssigned}
+					<p class="pkp_help">{translate key="plugins.pubIds.doi.editor.canBeAssigned"}</p>
 					{assign var=templatePath value=$pubIdPlugin->getTemplatePath()}
 					{include file="`$templatePath`doiAssignCheckBox.tpl" pubId="" pubObjectType=$pubObjectType}
 				{else}

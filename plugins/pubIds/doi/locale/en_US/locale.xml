@@ -13,7 +13,7 @@
  
 <locale name="en_US" full_name="U.S. English">
 	<message key="plugins.pubIds.doi.displayName">DOI</message>
-	<message key="plugins.pubIds.doi.description">This plugin enables the assignment of the Digital Object Identifiers to publication formats in OMP.</message>
+	<message key="plugins.pubIds.doi.description">This plugin enables the assignment of the Digital Object Identifiers to monographs, publication formats and files in OMP.</message>
 
 	<!-- settings form -->
 	<message key="plugins.pubIds.doi.manager.settings.description">Please configure the DOI plug-in to be able to manage and use DOIs in OMP:</message>
@@ -44,7 +44,7 @@
 	<message key="plugins.pubIds.doi.manager.settings.doiSubmissionFileSuffixPatternRequired">Please enter the DOI suffix pattern for files.</message>
 	
 	<message key="plugins.pubIds.doi.manager.settings.doiReassign">Reassign DOIs</message>
-	<message key="plugins.pubIds.doi.manager.settings.doiReassign.description">If you change your DOI configuration, DOIs that have already been assigned will not be affected. Once the DOI configuration is saved, use this button to clear all existing DOIs so that the new settings will take effect with existing publication formats.</message>
+	<message key="plugins.pubIds.doi.manager.settings.doiReassign.description">If you change your DOI configuration, DOIs that have already been assigned will not be affected. Once the DOI configuration is saved, use this button to clear all existing DOIs so that the new settings will take effect with all existing objects.</message>
 	<message key="plugins.pubIds.doi.manager.settings.doiReassign.confirm">Are you sure you wish to delete all existing DOIs?</message>
 
 	<!-- metadata form -->

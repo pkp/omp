@@ -13,7 +13,6 @@
  
 <locale name="pt_BR" full_name="Português (Brasil)">
 	<message key="plugins.pubIds.doi.displayName">DOI</message>
-	<message key="plugins.pubIds.doi.description">Este plugin permite a atribuição de identificadores digitais de objetos a formatos de publicação no OMP.</message>
 
 	<!-- settings form -->
 	<message key="plugins.pubIds.doi.manager.settings.description">Por favor, configure o plug-in DOI para ser capaz de gerir e utilizar DOIs no OMP:</message>
@@ -33,7 +32,6 @@
 	<message key="plugins.pubIds.doi.manager.settings.doiRepresentationSuffixPatternRequired">Por favor entre o padrão de sufixo DOI para formatos de publicação.</message>
 	
 	<message key="plugins.pubIds.doi.manager.settings.doiReassign">Reatribuir DOIs</message>
-	<message key="plugins.pubIds.doi.manager.settings.doiReassign.description">Se você alterar a configuração do DOI, nomes DOI que já foram atribuídos não serão afetados. Uma vez que a configuração é salva, use este botão para limpar todos os DOIs existente para que as novas configurações tenham efeito com formatos de publicação existentes.</message>
 	<message key="plugins.pubIds.doi.manager.settings.doiReassign.confirm">Você tem certeza que deseja deletar todos DOIs existentes?</message>
 
 	<!-- metadata form -->
