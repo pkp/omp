@@ -37,7 +37,6 @@ class DOIPubIdPlugin extends PubIdPlugin {
 
 	/**
 	 * @copydoc Plugin::getTemplatePath()
-	 * @param $inCore boolean True iff a core template should be preferred
 	 */
 	function getTemplatePath($inCore = false) {
 		return parent::getTemplatePath($inCore) . 'templates/';
@@ -180,7 +179,7 @@ class DOIPubIdPlugin extends PubIdPlugin {
 	 * @copydoc PKPPubIdPlugin::isObjectTypeEnabled()
 	 */
 	function isObjectTypeEnabled($pubObjectType, $contextId) {
-		return $this->getSetting($contextId, "enable${pubObjectType}Doi") == '1';
+		return (boolean) $this->getSetting($contextId, "enable${pubObjectType}Doi");
 	}
 
 	/**
