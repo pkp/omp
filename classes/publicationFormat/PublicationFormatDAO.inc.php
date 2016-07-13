@@ -52,6 +52,86 @@ class PublicationFormatDAO extends RepresentationDAO implements PKPPubIdPluginDA
 	}
 
 	/**
+	 * Find publication format by querying publication format settings.
+	 * @param $settingName string
+	 * @param $settingValue mixed
+	 * @param $submissionId int optional
+	 * @param $pressId int optional
+	 * @return array The publication formats identified by setting.
+	 */
+	function getBySetting($settingName, $settingValue, $submissionId = null, $pressId = null) {
+		$params = array($settingName);
+
+		$sql = 'SELECT	pf.*
+			FROM	publication_formats pf
+				INNER JOIN submissions s ON s.submission_id = pf.submission_id
+				LEFT JOIN published_submissions ps ON pf.submission_id = ps.submission_id ';
+		if (is_null($settingValue)) {
+			$sql .= 'LEFT JOIN publication_format_settings pfs ON pf.publication_format_id = pfs.publication_format_id AND pfs.setting_name = ?
+				WHERE	(pfs.setting_value IS NULL OR pfs.setting_value = "")';
+		} else {
+			$params[] = (string) $settingValue;
+			$sql .= 'INNER JOIN publication_format_settings pfs ON pf.publication_format_id = pfs.publication_format_id
+				WHERE	pfs.setting_name = ? AND pfs.setting_value = ?';
+		}
+		if ($submissionId) {
+			$params[] = (int) $submissionId;
+			$sql .= ' AND pf.submission_id = ?';
+		}
+		if ($pressId) {
+			$params[] = (int) $pressId;
+			$sql .= ' AND s.context_id = ?';
+		}
+		$sql .= ' ORDER BY s.context_id, pf.publication_format_id';
+		$result = $this->retrieve($sql, $params);
+
+		$publicationFormats = array();
+		while (!$result->EOF) {
+			$publicationFormats[] = $this->_fromRow($result->GetRowAssoc(false));
+			$result->MoveNext();
+		}
+		$result->Close();
+
+		return $publicationFormats;
+	}
+
+	/**
+	 * Retrieve publication format by public ID
+	 * @param $pubIdType string One of the NLM pub-id-type values or
+	 * 'other::something' if not part of the official NLM list
+	 * (see <http://dtd.nlm.nih.gov/publishing/tag-library/n-4zh0.html>).
+	 * @param $pubId string
+	 * @param $submissionId int optional
+	 * @param $pressId int optional
+	 * @return PublicationFormat|null
+	 */
+	function getByPubId($pubIdType, $pubId, $submissionId = null, $pressId = null) {
+		$publicationFormat = null;
+		if (!empty($pubId)) {
+			$publicationFormats = $this->getBySetting('pub-id::'.$pubIdType, $pubId, $submissionId, $pressId);
+			if (!empty($publicationFormats)) {
+				assert(count($publicationFormats) == 1);
+				$publicationFormat = $publicationFormats[0];
+			}
+		}
+		return $publicationFormat;
+	}
+
+	/**
+	 * Retrieve publication format by public ID or, failing that,
+	 * internal ID; public ID takes precedence.
+	 * @param $representationId string
+	 * @param $submissionId int
+	 * @return PublicationFormat|null
+	 */
+	function getByBestId($representationId, $submissionId) {
+		$publicationFormat = null;
+		if ($representationId != '') $publicationFormat = $this->getByPubId('publisher-id', $representationId, $submissionId);
+		if (!isset($publicationFormat) && ctype_digit("$representationId")) $publicationFormat = $this->getById((int) $representationId, $submissionId);
+		return $publicationFormat;
+	}
+
+	/**
 	 * @copydoc RepresentationDAO::getBySubmissionId()
 	 */
 	function getBySubmissionId($submissionId, $contextId = null) {

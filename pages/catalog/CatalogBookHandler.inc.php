@@ -39,8 +39,12 @@ class CatalogBookHandler extends Handler {
 	 * @param $roleAssignments array
 	 */
 	function authorize($request, &$args, $roleAssignments) {
-		import('classes.security.authorization.OmpPublishedMonographAccessPolicy');
-		$this->addPolicy(new OmpPublishedMonographAccessPolicy($request, $args, $roleAssignments));
+		import('lib.pkp.classes.security.authorization.ContextRequiredPolicy');
+		$this->addPolicy(new ContextRequiredPolicy($request));
+
+		import('classes.security.authorization.OmpPublishedMonographRequiredPolicy');
+		$this->addPolicy(new OmpPublishedMonographRequiredPolicy($request, $args, array('book', 'view', 'download')));
+
 		return parent::authorize($request, $args, $roleAssignments);
 	}
 
@@ -156,22 +160,23 @@ class CatalogBookHandler extends Handler {
 		$this->setupTemplate($request, $publishedMonograph);
 		$press = $request->getPress();
 
-		$monographId = (int) array_shift($args); // Validated thru auth
-		$representationId = (int) array_shift($args);
-		$fileIdAndRevision = array_shift($args);
+		$monographId = array_shift($args); // Validated thru auth
+		$representationId = array_shift($args);
+		$bestFileId = array_shift($args);
 
 		$publicationFormatDao = DAORegistry::getDAO('PublicationFormatDAO');
-		$publicationFormat = $publicationFormatDao->getById($representationId, $publishedMonograph->getId());
+		$publicationFormat = $publicationFormatDao->getByBestId($representationId, $publishedMonograph->getId());
 		if (!$publicationFormat || !$publicationFormat->getIsApproved() || !$publicationFormat->getIsAvailable() || $remoteURL = $publicationFormat->getRemoteURL()) fatalError('Invalid publication format specified.');
 
 		$submissionFileDao = DAORegistry::getDAO('SubmissionFileDAO');
-		list($fileId, $revision) = array_map(create_function('$a', 'return (int) $a;'), preg_split('/-/', $fileIdAndRevision));
 		import('classes.monograph.MonographFile'); // File constants
-		$submissionFile = $submissionFileDao->getRevision($fileId, $revision, SUBMISSION_FILE_PROOF, $monographId);
-		if (!$submissionFile || $submissionFile->getAssocType() != ASSOC_TYPE_PUBLICATION_FORMAT || $submissionFile->getAssocId() != $representationId || $submissionFile->getDirectSalesPrice() === null) {
+		$submissionFile = $submissionFileDao->getByBestId($bestFileId, $publishedMonograph->getId());
+		if (!$submissionFile || $submissionFile->getAssocType() != ASSOC_TYPE_PUBLICATION_FORMAT || $submissionFile->getAssocId() != $publicationFormat->getId() || $submissionFile->getDirectSalesPrice() === null) {
 			fatalError('Invalid monograph file specified!');
 		}
 
+		$fileIdAndRevision = $submissionFile->getFileIdAndRevision();
+		list($fileId, $revision) = array_map(create_function('$a', 'return (int) $a;'), preg_split('/-/', $fileIdAndRevision));
 		$ompCompletedPaymentDao = DAORegistry::getDAO('OMPCompletedPaymentDAO');
 		$user = $request->getUser();
 		if ($submissionFile->getDirectSalesPrice() === '0' || ($user && $ompCompletedPaymentDao->hasPaidPurchaseFile($user->getId(), $fileIdAndRevision))) {
@@ -196,7 +201,7 @@ class CatalogBookHandler extends Handler {
 			$inline = false;
 			if (!HookRegistry::call('CatalogBookHandler::download', array(&$this, &$publishedMonograph, &$publicationFormat, &$submissionFile, &$inline))) {
 				import('lib.pkp.classes.file.SubmissionFileManager');
-				$monographFileManager = new SubmissionFileManager($publishedMonograph->getContextId(), $monographId);
+				$monographFileManager = new SubmissionFileManager($publishedMonograph->getContextId(), $publishedMonograph->getId());
 				return $monographFileManager->downloadFile($fileId, $revision, $inline);
 			}
 		}
@@ -204,7 +209,7 @@ class CatalogBookHandler extends Handler {
 		// Fall-through: user needs to pay for purchase.
 
 		// Users that are not logged in need to register/login first.
-		if (!$user) return $request->redirect(null, 'login', null, null, array('source' => $request->url(null, null, null, array($monographId, $representationId, $fileIdAndRevision))));
+		if (!$user) return $request->redirect(null, 'login', null, null, array('source' => $request->url(null, null, null, array($monographId, $representationId, $bestFileId))));
 
 		// They're logged in but need to pay to view.
 		import('classes.payment.omp.OMPPaymentManager');

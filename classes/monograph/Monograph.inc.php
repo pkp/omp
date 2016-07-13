@@ -51,6 +51,17 @@ class Monograph extends Submission {
 	}
 
 	/**
+	 * Return the "best" monograph ID -- If a public ID is set,
+	 * use it; otherwise use the internal ID.
+	 * @return string
+	 */
+	function getBestId() {
+		$publicMonographId = $this->getStoredPubId('publisher-id');
+		if (!empty($publicMonographId)) return $publicMonographId;
+		return $this->getId();
+	}
+
+	/**
 	 * Get the series id.
 	 * @return int
 	 */

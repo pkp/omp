@@ -11,13 +11,13 @@
  * @uses $isFeatured bool Is this a featured monograph?
  *}
 <div class="obj_monograph_summary{if $isFeatured} is_featured{/if}">
-	<a href="{url page="catalog" op="book" path=$monograph->getId()}" class="cover">
+	<a href="{url page="catalog" op="book" path=$monograph->getBestId()}" class="cover">
 		<img alt="{translate key="catalog.coverImageTitle" monographTitle=$monograph->getLocalizedFullTitle()|strip_tags|escape}" src="{url router=$smarty.const.ROUTE_COMPONENT component="submission.CoverHandler" op="thumbnail" submissionId=$monograph->getId() random=$monograph->getId()|uniqid}" />
 	</a>
 	<div class="seriesPosition">
 		{$monograph->getSeriesPosition()|escape}
 	</div>
-	<a href="{url router=$smarty.const.ROUTE_PAGE page="catalog" op="book" path=$monograph->getId()}" class="title">
+	<a href="{url router=$smarty.const.ROUTE_PAGE page="catalog" op="book" path=$monograph->getBestId()}" class="title">
 		{$monograph->getLocalizedFullTitle()|escape}
 	</a>
 	<div class="author">

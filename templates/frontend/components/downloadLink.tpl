@@ -14,13 +14,13 @@
  * @uses $useFilename string Whether or not to use the file name in link. Default is false and pub format name is used
  *}
 
-{assign var=publicationFormatId value=$publicationFormat->getId()}
+{assign var=publicationFormatId value=$publicationFormat->getBestId()}
 
 {* Generate the download URL *}
 {if $downloadFile->getDocumentType()==$smarty.const.DOCUMENT_TYPE_PDF}
-	{url|assign:downloadUrl op="view" path=$monograph->getId()|to_array:$publicationFormatId:$downloadFile->getFileIdAndRevision()}
+	{url|assign:downloadUrl op="view" path=$monograph->getBestId()|to_array:$publicationFormatId:$downloadFile->getBestId()}
 {else}
-	{url|assign:downloadUrl op="download" path=$monograph->getId()|to_array:$publicationFormatId:$downloadFile->getFileIdAndRevision()}
+	{url|assign:downloadUrl op="download" path=$monograph->getBestId()|to_array:$publicationFormatId:$downloadFile->getBestId()}
 {/if}
 
 {* Display the download link *}

@@ -25,6 +25,17 @@ class PublicationFormat extends Representation {
 	}
 
 	/**
+	 * Return the "best" publication format ID -- If a public ID is set,
+	 * use it; otherwise use the internal ID.
+	 * @return string
+	 */
+	function getBestId() {
+		$publicationFormatId = $this->getStoredPubId('publisher-id');
+		if (!empty($publicationFormatId)) return $publicationFormatId;
+		return $this->getId();
+	}
+
+	/**
 	 * get physical format flag
 	 * @return bool
 	 */
