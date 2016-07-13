@@ -7,7 +7,7 @@
  *
  * Edit custom URN suffix for an object (submission, representation, file)
  *}
-<script src="{$baseUrl}/plugins/pubIds/urn/js/checkNumber.js"></script>
+{load_script context="publicIdentifiersForm" scripts=$scripts}
 
 {assign var=pubObjectType value=$pubIdPlugin->getPubObjectType($pubObject)}
 {assign var=enableObjectURN value=$pubIdPlugin->getSetting($currentContext->getId(), "enable`$pubObjectType`URN")}

@@ -13,7 +13,7 @@
 
 <locale name="en_US" full_name="U.S. English">
 	<message key="plugins.pubIds.urn.displayName">URN</message>
-	<message key="plugins.pubIds.urn.description">This plugin enables the assignment of the Uniform Resource Names to monographs, publication formts and files in OMP.</message>
+	<message key="plugins.pubIds.urn.description">This plugin enables the assignment of the Uniform Resource Names to monographs, publication formats and files in OMP.</message>
 
 	<!-- settings form -->
 	<message key="plugins.pubIds.urn.manager.settings.description">Please configure the URN plug-in to be able to manage and use URNs in OMP:</message>
@@ -32,7 +32,7 @@
 	<message key="plugins.pubIds.urn.manager.settings.urnSuffix">URN Suffix</message>
 	<message key="plugins.pubIds.urn.manager.settings.urnSuffix.description">A URN suffix can take any form, but must be unique among all publishing objects with the same URN prefix assigned:</message>
 	<message key="plugins.pubIds.urn.manager.settings.urnSuffixPattern">Use the pattern entered below to generate URN suffixes. Use %p for press initials, %m for the monograph id, %f for the publication format id, %s for the file id and %x for "Custom Identifier".</message>
-	<message key="plugins.pubIds.urn.manager.settings.urnSuffixPattern.example">For example, press%ppub%r ould create the URN suffix pressESPpub100</message>
+	<message key="plugins.pubIds.urn.manager.settings.urnSuffixPattern.example">For example, press%ppub%r would create the URN suffix "pressESPpub100".</message>
 	<message key="plugins.pubIds.urn.manager.settings.urnSuffixPattern.submissions">for monographs</message>
 	<message key="plugins.pubIds.urn.manager.settings.urnSuffixPattern.representations">for publication formats</message>
 	<message key="plugins.pubIds.urn.manager.settings.urnSuffixPattern.files">for files</message>
