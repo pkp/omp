@@ -139,6 +139,84 @@ class PublishedMonographDAO extends MonographDAO {
 	}
 
 	/**
+	 * Find published monographs by querying monograph settings.
+	 * @param $settingName string
+	 * @param $settingValue mixed
+	 * @param $pressId int optional
+	 * @return array The monographs identified by setting.
+	 */
+	function getBySetting($settingName, $settingValue, $pressId = null) {
+		$params = $this->getFetchParameters();
+		$params[] = $settingName;
+
+		$sql = 'SELECT	ps.*,
+				s.*,
+				' . $this->getFetchColumns() . '
+			FROM	published_submissions ps
+				JOIN submissions s ON (ps.submission_id = s.submission_id)
+				' . $this->getFetchJoins();
+
+		if (is_null($settingValue)) {
+			$sql .= 'LEFT JOIN submission_settings sst ON s.submission_id = sst.submission_id AND sst.setting_name = ?
+				WHERE	(sst.setting_value IS NULL OR sst.setting_value = \'\')';
+		} else {
+			$params[] = (string) $settingValue;
+			$sql .= 'INNER JOIN submission_settings sst ON s.submission_id = sst.submission_id
+				WHERE	sst.setting_name = ? AND sst.setting_value = ?';
+		}
+		if ($pressId) {
+			$params[] = (int) $pressId;
+			$sql .= ' AND s.context_id = ?';
+		}
+		$sql .= ' ORDER BY s.submission_id';
+		$result = $this->retrieve($sql, $params);
+
+		$publishedMonographs = array();
+		while (!$result->EOF) {
+			$publishedMonographs[] = $this->_fromRow($result->GetRowAssoc(false));
+			$result->MoveNext();
+		}
+		$result->Close();
+
+		return $publishedMonographs;
+	}
+
+	/**
+	 * Retrieve published monograph by public monograph ID
+	 * @param $pubIdType string One of the NLM pub-id-type values or
+	 * 'other::something' if not part of the official NLM list
+	 * (see <http://dtd.nlm.nih.gov/publishing/tag-library/n-4zh0.html>).
+	 * @param $pubId string
+	 * @param $pressId int
+	 * @return PublishedMonograph|null
+	 */
+	function getByPubId($pubIdType, $pubId, $pressId = null) {
+		$publishedMonograph = null;
+		if (!empty($pubId)) {
+			$publishedMonographs = $this->getBySetting('pub-id::'.$pubIdType, $pubId, $pressId);
+			if (!empty($publishedMonographs)) {
+				assert(count($publishedMonographs) == 1);
+				$publishedMonograph = $publishedMonographs[0];
+			}
+		}
+		return $publishedMonograph;
+	}
+
+	/**
+	 * Retrieve published monograph by public monograph ID or, failing that,
+	 * internal monograph ID; public monograph ID takes precedence.
+	 * @param $monographId string
+	 * @param $pressId int
+	 * @return PublishedMonograph|null
+	 */
+	function getByBestId($monographId, $pressId) {
+		$publishedMonograph = null;
+		if ($monographId != '') $publishedMonograph = $this->getByPubId('publisher-id', $monographId, $pressId);
+		if (!isset($publishedMonograph) && ctype_digit("$monographId")) $publishedMonograph = $this->getById((int) $monographId, $pressId);
+		return $publishedMonograph;
+	}
+
+	/**
 	 * Generate and return a new data object.
 	 * @return PublishedMonograph
 	 */

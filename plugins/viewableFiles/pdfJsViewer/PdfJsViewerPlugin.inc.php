@@ -77,7 +77,7 @@ class PdfJsViewerPlugin extends ViewableFilePlugin {
 		$templateMgr->assign(array(
 			'pluginTemplatePath' => $this->getTemplatePath(),
 			'pluginUrl' => $request->getBaseUrl() . DIRECTORY_SEPARATOR . $this->getPluginPath(),
-			'downloadUrl' => $dispatcher->url($request, ROUTE_PAGE, null, null, 'download', array($publishedMonograph->getId(), $submissionFile->getAssocId(), $submissionFile->getFileIdAndRevision()), array('inline' => true)),
+			'downloadUrl' => $dispatcher->url($request, ROUTE_PAGE, null, null, 'download', array($publishedMonograph->getBestId(), $publicationFormat->getBestId(), $submissionFile->getBestId()), array('inline' => true)),
 		));
 
 

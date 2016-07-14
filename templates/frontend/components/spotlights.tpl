@@ -31,7 +31,7 @@
 			{if $assocType == $smarty.const.SPOTLIGHT_TYPE_BOOK}
 				{assign var=type value="is_book"}
 				{assign var=coverImage value=$item->getCoverImage()}
-				{url|assign:targetUrl router=$smarty.const.ROUTE_PAGE page="catalog" op="book" path=$item->getId()}
+				{url|assign:targetUrl router=$smarty.const.ROUTE_PAGE page="catalog" op="book" path=$item->getBestId()}
 				{url|assign:coverImageUrl router=$smarty.const.ROUTE_COMPONENT component="submission.CoverHandler" op="thumbnail" submissionId=$item->getId()}
 			{elseif $assocType == $smarty.const.SPOTLIGHT_TYPE_SERIES}
 				{assign var=type value="is_series"}

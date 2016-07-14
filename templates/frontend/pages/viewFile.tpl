@@ -15,7 +15,7 @@
  *}
 
 {* Get URL to the related book *}
-{url|assign:"parentUrl" page="catalog" op="book" path=$publishedMonograph->getId()}
+{url|assign:"parentUrl" page="catalog" op="book" path=$publishedMonograph->getBestId()}
 
 <!DOCTYPE html>
 <html lang="{$currentLocale|replace:"_":"-"}" xml:lang="{$currentLocale|replace:"_":"-"}">
@@ -54,7 +54,7 @@
 
 	{$viewableFileContent}
 
-	{load_scripts context="frontend" scripts=$scripts}
+	{load_script context="frontend" scripts=$scripts}
 	{call_hook name="Templates::Common::Footer::PageFooter"}
 
 </body>

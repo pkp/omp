@@ -21,7 +21,7 @@ class OmpPublishedMonographAccessPolicy extends ContextPolicy {
 	 * @param $args array request parameters
 	 * @param $roleAssignments array
 	 * @param $submissionParameterName string the request parameter we
-	 * @param $publishedMonographsOnly boolean whether the MonographPublishedPolicy has to be considered/added
+	 * @param $publishedMonographsOnly boolean whether the OmpPublishedMonographRequiredPolicy has to be considered/added
 	 *  expect the submission id in.
 	 */
 	function OmpPublishedMonographAccessPolicy($request, $args, $roleAssignments, $submissionParameterName = 'submissionId', $publishedMonographsOnly = true) {
@@ -32,11 +32,12 @@ class OmpPublishedMonographAccessPolicy extends ContextPolicy {
 		$monographAccessPolicy = new PolicySet(COMBINING_PERMIT_OVERRIDES);
 		// Published monograph access for the public
 		$publishedMonographAccessPolicy = new PolicySet(COMBINING_DENY_OVERRIDES);
-		import('lib.pkp.classes.security.authorization.internal.SubmissionRequiredPolicy');
-		$publishedMonographAccessPolicy->addPolicy(new SubmissionRequiredPolicy($request, $args, $submissionParameterName));
 		if ($publishedMonographsOnly) {
-			import('classes.security.authorization.internal.MonographPublishedPolicy');
-			$publishedMonographAccessPolicy->addPolicy(new MonographPublishedPolicy($request));
+			import('classes.security.authorization.OmpPublishedMonographRequiredPolicy');
+			$publishedMonographAccessPolicy->addPolicy(new OmpPublishedMonographRequiredPolicy($request, $args, $submissionParameterName));
+		} else {
+			import('lib.pkp.classes.security.authorization.internal.SubmissionRequiredPolicy');
+			$publishedMonographAccessPolicy->addPolicy(new SubmissionRequiredPolicy($request, $args, $submissionParameterName));
 		}
 		$monographAccessPolicy->addPolicy($publishedMonographAccessPolicy);
 
