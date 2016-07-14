@@ -68,7 +68,7 @@ class PublicationFormatDAO extends RepresentationDAO implements PKPPubIdPluginDA
 				LEFT JOIN published_submissions ps ON pf.submission_id = ps.submission_id ';
 		if (is_null($settingValue)) {
 			$sql .= 'LEFT JOIN publication_format_settings pfs ON pf.publication_format_id = pfs.publication_format_id AND pfs.setting_name = ?
-				WHERE	(pfs.setting_value IS NULL OR pfs.setting_value = "")';
+				WHERE	(pfs.setting_value IS NULL OR pfs.setting_value = \'\')';
 		} else {
 			$params[] = (string) $settingValue;
 			$sql .= 'INNER JOIN publication_format_settings pfs ON pf.publication_format_id = pfs.publication_format_id

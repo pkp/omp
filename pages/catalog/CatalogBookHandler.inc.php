@@ -39,12 +39,8 @@ class CatalogBookHandler extends Handler {
 	 * @param $roleAssignments array
 	 */
 	function authorize($request, &$args, $roleAssignments) {
-		import('lib.pkp.classes.security.authorization.ContextRequiredPolicy');
-		$this->addPolicy(new ContextRequiredPolicy($request));
-
-		import('classes.security.authorization.OmpPublishedMonographRequiredPolicy');
-		$this->addPolicy(new OmpPublishedMonographRequiredPolicy($request, $args, array('book', 'view', 'download')));
-
+		import('classes.security.authorization.OmpPublishedMonographAccessPolicy');
+		$this->addPolicy(new OmpPublishedMonographAccessPolicy($request, $args, $roleAssignments));
 		return parent::authorize($request, $args, $roleAssignments);
 	}
 

@@ -22,10 +22,12 @@ class OmpPublishedMonographRequiredPolicy extends DataObjectRequiredPolicy {
 	 * Constructor
 	 * @param $request PKPRequest
 	 * @param $args array request parameters
+	 * @param $submissionParameterName string the request parameter we expect
+	 *  the submission id in.
 	 * @param $operations array
 	 */
-	function OmpPublishedMonographRequiredPolicy($request, &$args, $operations = null) {
-		parent::DataObjectRequiredPolicy($request, $args, 'publishedMonographId', 'user.authorization.invalidPublishedMonograph', $operations);
+	function OmpPublishedMonographRequiredPolicy($request, &$args, $submissionParameterName = 'submissionId', $operations = null) {
+		parent::DataObjectRequiredPolicy($request, $args, $submissionParameterName, 'user.authorization.invalidPublishedMonograph', $operations);
 		$this->context = $request->getContext();
 	}
 
