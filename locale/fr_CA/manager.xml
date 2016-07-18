@@ -51,10 +51,6 @@
 	<message key="manager.settings">Paramètres</message>
 	<message key="manager.settings.pressSettings">Paramètres de la presse</message>
 	<message key="manager.settings.press">Presse</message>
-	<message key="manager.settings.pressDescription"><![CDATA[Tous les paramètres spécifiques à la presse (bloc générique du titre, coordonnées, politiques, lignes directrices, affiliation & support, catégories et séries).]]></message>
-	<message key="manager.settings.accessDescription">Tous les paramètres liés à l'accès et à l'administration de la sécurité de cette presse (utilisateurs, rôles, options d'accès au site).</message>
-	<message key="manager.settings.websiteDescription">Tous les paramètres spécifiques aux pages publiques de ce site Web (page d'accueil, apparence, langue)</message>
-	<message key="manager.settings.publicationDescription">Tous les paramètres spécifiques au processus de publication (paramètres généraux, étapes de soumission, étapes d'évaluation, étapes éditoriales, modèles de courriels).</message>
 	<message key="manager.settings.publisherInformation">Ces champs ne sont pas nécessaires pour l'usage général d'OMP, mais sont nécessaires pour créer des métadonnées ONIX valides. Veuillez les ajouter si vous souhaitez utiliser la fonctionnalité ONIX.</message>
 	<message key="manager.settings.publisher">Nom de l'éditeur de la presse</message>
 	<message key="manager.settings.location">Lieu géographique</message>

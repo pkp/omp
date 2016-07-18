@@ -49,10 +49,6 @@
 	<message key="manager.settings">Settings</message>
 	<message key="manager.settings.pressSettings">Press Settings</message>
 	<message key="manager.settings.press">Press</message>
-	<message key="manager.settings.pressDescription"><![CDATA[All settings specific to the press (masthead, contact, policies, guidelines, affiliation & support, categories and series).]]></message>
-	<message key="manager.settings.accessDescription">All settings related to access and security management for this press (users,roles, site access options).</message>
-	<message key="manager.settings.websiteDescription">All settings specific to the public website pages (homepage, appearance, language)</message>
-	<message key="manager.settings.publicationDescription">All settings specific to the publication process (general settings, submission stage, review stage, editorial stage, production stage, email templates).</message>
 	<message key="manager.settings.publisherInformation"><![CDATA[These fields are required to create valid <a href="https://en.wikipedia.org/wiki/ONIX_for_Books">ONIX metadata</a>. Please include them if you wish to publish ONIX metadata.]]></message>
 	<message key="manager.settings.publisher">Press Publisher Name</message>
 	<message key="manager.settings.location">Geographical Location</message>

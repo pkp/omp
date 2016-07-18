@@ -51,10 +51,6 @@
 	<message key="manager.settings">Ρυθμίσεις</message>
 	<message key="manager.settings.pressSettings">Ρυθμίσεις Έκδοσης</message>
 	<message key="manager.settings.press">Εκδόσεις</message>
-	<message key="manager.settings.pressDescription"><![CDATA[Όλες οι ρυθμίσεις σχετικά με τις Εκδόσεις (ταυτότητα έκδοσης, επικοινωνία, πολιτικές, οδηγίες, φορέας & υποστήριξη, κατηγορίες και σειρές).]]></message>
-	<message key="manager.settings.accessDescription">Όλες οι ρυθμίσεις σχετικά με τη διαχείριση της πρόσβασης και την ασφάλεια για τις εκδόσεις (χρήστες, ρόλοι, επιλογές πρόσβασης ιστοτόπου).</message>
-	<message key="manager.settings.websiteDescription">Όλες οι ρυθμίσεις σχετικά με τη δημόσια εμφάνιση της ιστοσελίδας των Εκδόσεων (Αρχική Σελίδα, εμφάνιση, γλώσσα)</message>
-	<message key="manager.settings.publicationDescription">Όλες οι ρυθμίσεις σχετικά με την εκδοτική διαδικασία (γενικές ρυθμίσεις, στάδια υποβολής, στάδια αξιολόγησης, στάδιο σύνταξης, στάδιο παραγωγής, έτοιμα email).</message>
 	<message key="manager.settings.publisherInformation">Αυτά τα πεδία δεν είναι απαραίτητα για τη γενική χρήση του OMP, αλλά απαιτούνται για τη δημιουργία έγκυρων ONIX μεταδεδομένων. Παρακαλούμε να τα συμπεριλάβετε αν επιθυμείτε να επιτύχετε τη λειτουργικότητα των ΟΝΙΧ.</message>
 	<message key="manager.settings.publisher">Όνομα Εκδότη(Press Publisher Name)</message>
 	<message key="manager.settings.location">Γεωγραφική Τοποθεσία</message>

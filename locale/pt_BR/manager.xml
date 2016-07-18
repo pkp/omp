@@ -49,10 +49,6 @@
 	<message key="manager.settings">Configurações</message>
 	<message key="manager.settings.pressSettings">Configurações da editora</message>
 	<message key="manager.settings.press">Editora</message>
-	<message key="manager.settings.pressDescription"><![CDATA[Todas as configurações específicas à editora (expediente, contato, políticas, diretrizes, patrocínio & apoio, categorias e séries).]]></message>
-	<message key="manager.settings.accessDescription">Todas as configurações relacionadas à administração da seguirança desta editora (usuários, papéis, opções de acesso).</message>
-	<message key="manager.settings.websiteDescription">Todas as configurações específicas à páginas públicas do site (página inicial, visual, idioma)</message>
-	<message key="manager.settings.publicationDescription">Todas as configurações específicas ao processo de publicação (configurações gerais, submissão, avaliação, edição, produção, modelos de mensagens).</message>
 	<message key="manager.settings.publisherInformation">Estes campos não são obrigatórios para uso do OMP, porém são obrigatórios para criar mentados ONIX válidos. Inclua-os caso deseje usar a funcionalidade ONIX.</message>
 	<message key="manager.settings.publisher">Nome da editora</message>
 	<message key="manager.settings.location">Localização geográfica</message>

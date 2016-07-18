@@ -92,10 +92,6 @@
 	<message key="manager.settings">Preferéncias</message>
 	<message key="manager.settings.pressSettings">Ajustes editorial</message>
 	<message key="manager.settings.press">Editorial</message>
-	<message key="manager.settings.pressDescription"><![CDATA[Toda la configuración específica de la publicación (equipo editorial, contacto, políticas, directrices, afiliación y asistencia, categorías y series).]]></message>
-	<message key="manager.settings.accessDescription">Todos los ajustes relativos a la gestión del acceso y la seguridad de esta editorial (usuarios, funciones, opciones de acceso al sitio).</message>
-	<message key="manager.settings.websiteDescription">Todos los ajustes específicos de las páginas electrónicas públicas (página principal, configuración, idioma)</message>
-	<message key="manager.settings.publicationDescription">Todos los ajustes específicos del proceso de publicación (configuración general, estado de propuesta, estado de revisión, estado edición, estado de producción, plantillas de correo electrónico).</message>
 	<message key="manager.settings.publisherInformation">Los campos no son necesarios para un uso general de OMP, pero se necesitan para crear metadatos ONIX válidos.  Inclúyalos si desea utilizar la funcionalidad de ONIX.</message>
 	<message key="manager.settings.publisher">Nombre sello editorial</message>
 	<message key="manager.settings.location">Localización geográfica</message>

@@ -49,10 +49,6 @@
 	<message key="manager.settings">Configuració</message>
 	<message key="manager.settings.pressSettings">Configuració de la publicació</message>
 	<message key="manager.settings.press">Publicació</message>
-	<message key="manager.settings.pressDescription"><![CDATA[Tota la configuració concreta de la publicació (encapçalament, contacte, polítiques, directrius, institució, ajuda, categories i col·leccions).]]></message>
-	<message key="manager.settings.accessDescription">Tota la configuració relacionada amb la gestió de l'accés i la seguretat per a aquesta publicació (usuaris/àries, rols, opcions d'accés al lloc).</message>
-	<message key="manager.settings.websiteDescription">Tota la configuració concreta de les pàgines del lloc web públic (pàgina d'inici, aparença, llengua)</message>
-	<message key="manager.settings.publicationDescription">Tota la configuració concreta del procés de publicació (configuració general, fase de la tramesa, fase de revisió, fase editorial, fase de producció, plantilles de correu electrònic).</message>
 	<message key="manager.settings.publisherInformation">Aquests camps no són necessaris per a l'ús general de l'OMP, però sí que ho són per crear metadades ONIX vàlides.  Incloeu-los-hi si voleu utilitzar la funcionalitat d'ONIX.</message>
 	<message key="manager.settings.publisher">Nom de la institució publicadora</message>
 	<message key="manager.settings.location">Ubicació geogràfica</message>

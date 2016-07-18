@@ -49,10 +49,6 @@
 	<message key="manager.settings">Einstellungen</message>
 	<message key="manager.settings.pressSettings">Verlagseinstellungen</message>
 	<message key="manager.settings.press">Verlag</message>
-	<message key="manager.settings.pressDescription">Verlagsspezifische Einstellungen (Impressum, Kontakt, Leitlinien, Leitfaden, Institutionen, Support, Kategorien und Reihen).</message>
-	<message key="manager.settings.accessDescription">Einstellungen, die mit dem Zugang zur Website und dem Sicherheitsmanagement des Verlages zusammenhängen (Benutzer/innen, Funktionen, Zugang zu Websites etc.).</message>
-	<message key="manager.settings.websiteDescription">Einstellungen, die die öffentlich zugänglichen Seiten der Verlagswebsite betreffen (Homepage, Erscheinungsbild, Sprache)</message>
-	<message key="manager.settings.publicationDescription">Einstellungen, die den Veröffentlichungsprozess betreffen (generelle Einstellungen, Einreichungsstadium, Begutachtung, Redaktion, Herstellung sowie E-Mail-Vorlagen).</message>
 	<message key="manager.settings.publisherInformation">Diese Felder werden zwar nicht grundsätzlich für die Verwendung von OMP, aber zur Erzeugung gültiger ONIX-Metadaten benötigt. Bitte fügen Sie sie ein, wenn Sie die ONIX-Funktionalität verwenden möchten.</message>
 	<message key="manager.settings.publisher">Verlagsname</message>
 	<message key="manager.settings.location">Standort</message>
