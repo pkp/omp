@@ -9,15 +9,14 @@
  *
  *}
 
-{* Help Link *}
-{help file="settings.md" section="users" class="pkp_help_tab"}
-
 <script type="text/javascript">
 	$(function() {ldelim}
 		// Attach the form handler.
 		$('#siteAccessOptionsForm').pkpHandler('$.pkp.controllers.tab.settings.siteAccessOptions.form.SiteAccessOptionsFormHandler');
 	{rdelim});
 </script>
+
+{help file="users-and-roles.md" section="accessOptions" class="pkp_help_tab"}
 
 <form class="pkp_form" id="siteAccessOptionsForm" method="post" action="{url router=$smarty.const.ROUTE_COMPONENT component="tab.settings.AccessSettingsTabHandler" op="saveFormData" tab="siteAccessOptions"}">
 	{include file="controllers/notification/inPlaceNotification.tpl" notificationId="siteAccessOptionsFormNotification"}
