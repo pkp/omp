@@ -42,7 +42,7 @@
 		{load_url_in_div id=$chaptersGridContainer url=$chaptersGridUrl}
 	{/if}
 
-	{include file="core:submission/submissionMetadataFormFields.tpl" readOnly=$formParams.readOnly}
+	{include file="submission/submissionMetadataFormFields.tpl" readOnly=$formParams.readOnly}
 
 	{if !$formParams.readOnly}
 		{fbvFormButtons id="submissionMetadataFormSubmit" submitText="common.save"}
