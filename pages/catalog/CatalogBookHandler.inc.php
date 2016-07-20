@@ -96,6 +96,7 @@ class CatalogBookHandler extends Handler {
 		$templateMgr->assign(array(
 			'enabledPubIdTypes' => $enabledPubIdTypes,
 			'metaCustomHeaders' => $metaCustomHeaders,
+			'licenseUrl' => $publishedMonograph->getLicenseURL(),
 			'ccLicenseBadge' => Application::getCCLicenseBadge($publishedMonograph->getLicenseURL())
 		));
 

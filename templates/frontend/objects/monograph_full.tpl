@@ -60,6 +60,9 @@
  * @uses $sharingCode string Code snippet for a social sharing widget
  * @uses $blocks array List of HTML snippets to display block elements
  * @uses $currency Currency The Currency object representing the press's currency, if configured.
+ * @uses $licenseUrl string The URL which provides license information.
+ * @uses $ccLicenseBadge string An HTML string containing a CC license image and
+ *       text. Only appears when license URL matches a known CC license.
  *}
 <div class="obj_monograph_full">
 	<h1 class="title">
@@ -337,16 +340,22 @@
 			{/if}
 
 			{* Copyright statement *}
-			{if $currentPress->getSetting('includeCopyrightStatement')}
+			{if $monograph->getCopyrightYear() && $monograph->getLocalizedCopyrightHolder()}
 				<div class="item copyright">
 					{translate|escape key="submission.copyrightStatement" copyrightYear=$monograph->getCopyrightYear() copyrightHolder=$monograph->getLocalizedCopyrightHolder()}
 				</div>
 			{/if}
 
 			{* License *}
-			{if $currentPress->getSetting('includeLicense') && $ccLicenseBadge}
+			{if $licenseUrl}
 				<div class="item license">
-					{$ccLicenseBadge}
+					{if $ccLicenseBadge}
+						{$ccLicenseBadge}
+					{else}
+						<a href="{$licenseUrl|escape}">
+							{translate key="submission.license"}
+						</a>
+					{/if}
 				</div>
 			{/if}
 
