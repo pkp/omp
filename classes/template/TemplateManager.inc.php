@@ -54,6 +54,13 @@ class TemplateManager extends PKPTemplateManager {
 				);
 			}
 
+			// Pass app-specific details to template
+			$this->assign(array(
+				'brandImage' => 'templates/images/omp_brand.png',
+				'packageKey' => 'common.openMonographPress',
+				'pkpLink'    => 'http://pkp.sfu.ca/omp',
+			));
+
 			// Get a count of unread tasks.
 			if ($user = $request->getUser()) {
 				$notificationDao = DAORegistry::getDAO('NotificationDAO');
