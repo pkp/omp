@@ -16,6 +16,7 @@
 </script>
 
 <form class="pkp_form" id="statisticsSettingsForm" method="post" action="{url op="tools" path="saveStatisticsSettings"}">
+	{csrf}
 	{include file="controllers/notification/inPlaceNotification.tpl" notificationId="statisticsSettingsNotification"}
 	
 	{include file="core:statistics/defaultMetricTypeFormElements.tpl"}

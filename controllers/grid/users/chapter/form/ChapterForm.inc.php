@@ -39,6 +39,7 @@ class ChapterForm extends Form {
 		// Validation checks for this form
 		$this->addCheck(new FormValidator($this, 'title', 'required', 'metadata.property.validationMessage.title'));
 		$this->addCheck(new FormValidatorPost($this));
+		$this->addCheck(new FormValidatorCSRF($this));
 	}
 
 

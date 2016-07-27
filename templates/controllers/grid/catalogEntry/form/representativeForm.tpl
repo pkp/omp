@@ -16,6 +16,7 @@
 </script>
 
 <form class="pkp_form" id="representativeForm" method="post" action="{url router=$smarty.const.ROUTE_COMPONENT component="grid.catalogEntry.RepresentativesGridHandler" op="updateRepresentative"}">
+	{csrf}
 	{include file="controllers/notification/inPlaceNotification.tpl" notificationId="representativesFormNotification"}
 	<input type="hidden" name="submissionId" value="{$submissionId|escape}" />
 	<input type="hidden" name="representativeId" value="{$representativeId|escape}" />

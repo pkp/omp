@@ -70,6 +70,7 @@ class PublicationDateGridRow extends GridRow {
 				new LinkAction(
 					'deleteDate',
 					new RemoteActionConfirmationModal(
+						$request->getSession(),
 						__('common.confirmDelete'),
 						__('common.delete'),
 						$router->url($request, null, null, 'deleteDate', null, $actionArgs),

@@ -18,6 +18,7 @@
 
 <p>{translate key="editor.monograph.internalReviewDescription"}</p>
 <form class="pkp_form" id="initiateReview" method="post" action="{url op="saveInternalReview"}" >
+	{csrf}
 	<input type="hidden" name="submissionId" value="{$submissionId|escape}" />
 	<input type="hidden" name="stageId" value="{$stageId|escape}" />
 

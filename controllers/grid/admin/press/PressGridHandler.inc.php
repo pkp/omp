@@ -110,7 +110,7 @@ class PressGridHandler extends ContextGridHandler {
 		$pressDao = DAORegistry::getDAO('PressDAO');
 		$press = $pressDao->getById($pressId);
 
-		if ($pressId) {
+		if ($press && $request->checkCSRF()) {
 			$pressDao->deleteById($pressId);
 			// Add publication formats tombstones for all press published monographs.
 			import('classes.publicationFormat.PublicationFormatTombstoneManager');
@@ -138,7 +138,7 @@ class PressGridHandler extends ContextGridHandler {
 			return DAO::getDataChangedEvent($pressId);
 		}
 
-		return new JSONMessage();
+		return new JSONMessage(false);
 	}
 }
 

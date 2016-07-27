@@ -16,6 +16,7 @@
 </script>
 
 <form class="pkp_form" id="marketForm" method="post" action="{url router=$smarty.const.ROUTE_COMPONENT component="grid.catalogEntry.MarketsGridHandler" op="updateMarket"}">
+	{csrf}
 	<input type="hidden" name="submissionId" value="{$submissionId|escape}" />
 	<input type="hidden" name="representationId" value="{$representationId|escape}" />
 	<input type="hidden" name="marketId" value="{$marketId|escape}" />

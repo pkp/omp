@@ -58,6 +58,7 @@ class SeriesGridRow extends GridRow {
 				new LinkAction(
 					'deleteSeries',
 					new RemoteActionConfirmationModal(
+						$request->getSession(),
 						__('common.confirmDelete'),
 						__('grid.action.delete'),
 						$router->url($request, null, null, 'deleteSeries', null, array('seriesId' => $seriesId)), 'modal_delete'

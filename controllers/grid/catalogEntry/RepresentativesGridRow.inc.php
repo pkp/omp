@@ -69,6 +69,7 @@ class RepresentativesGridRow extends GridRow {
 				new LinkAction(
 					'deleteRepresentative',
 					new RemoteActionConfirmationModal(
+						$request->getSession(),
 						__('common.confirmDelete'),
 						__('common.delete'),
 						$router->url($request, null, null, 'deleteRepresentative', null, $actionArgs),

@@ -40,6 +40,7 @@ class SpotlightForm extends Form {
 		$this->addCheck(new FormValidatorCustom($this, 'assocId', 'required', 'grid.content.spotlights.itemRequired', create_function('$assocId, $form', 'list($id, $type) = preg_split("/:/", $assocId) ; return is_numeric($id) && $id > 0 && $form->_isValidSpotlightType($type);'), array(&$this)));
 		$this->addCheck(new FormValidator($this, 'title', 'required', 'grid.content.spotlights.titleRequired'));
 		$this->addCheck(new FormValidatorPost($this));
+		$this->addCheck(new FormValidatorCSRF($this));
 	}
 
 

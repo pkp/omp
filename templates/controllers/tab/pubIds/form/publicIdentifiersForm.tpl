@@ -43,6 +43,7 @@
 
 {/if}
 
+{csrf}
 {fbvFormSection}
 	{fbvElement type="text" label="submission.publisherId" id="publisherId" name="publisherId" value=$publisherId size=$fbvStyles.size.MEDIUM}
 {/fbvFormSection}

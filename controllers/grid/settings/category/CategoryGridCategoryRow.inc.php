@@ -52,6 +52,7 @@ class CategoryGridCategoryRow extends GridCategoryRow {
 					new LinkAction(
 						'deleteCategory',
 						new RemoteActionConfirmationModal(
+							$request->getSession(),
 							__('common.confirmDelete'),
 							__('common.delete'),
 							$router->url($request, null, null, 'deleteCategory', null, array('categoryId' => $categoryId)),

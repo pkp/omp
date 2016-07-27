@@ -40,6 +40,7 @@
 			{rdelim});
 		</script>
 		<form id="importXmlForm" class="pkp_form" action="{plugin_url path="importBounce"}" method="post">
+			{csrf}
 			{fbvFormArea id="importForm"}
 				{* Container for uploaded file *}
 				<input type="hidden" name="temporaryFileId" id="temporaryFileId" value="" />
@@ -65,6 +66,7 @@
 			{rdelim});
 		</script>
 		<form id="exportXmlForm" class="pkp_form" action="{plugin_url path="export"}" method="post">
+			{csrf}
 			{fbvFormArea id="exportForm"}
 				{url|assign:submissionsListGridUrl router=$smarty.const.ROUTE_COMPONENT component="grid.submissions.exportableSubmissions.ExportableSubmissionsListGridHandler" op="fetchGrid" escape=false}
 				{load_url_in_div id="submissionsListGridContainer" url=$submissionsListGridUrl}

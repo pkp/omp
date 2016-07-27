@@ -199,7 +199,7 @@ class PublicationFormatGridHandler extends RepresentationsGridHandler {
 			$submission->getId()
 		);
 
-		if (!$representation || !$representationDao->deleteById($representation->getId())) {
+		if (!$request->checkCSRF() || !$representation || !$representationDao->deleteById($representation->getId())) {
 			return new JSONMessage(false, __('manager.setup.errorDeletingItem'));
 		}
 
