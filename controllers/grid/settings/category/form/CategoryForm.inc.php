@@ -58,6 +58,7 @@ class CategoryForm extends Form {
 			array(&$this, DAORegistry::getDAO('CategoryDAO'), $pressId)
 		));
 		$this->addCheck(new FormValidatorPost($this));
+		$this->addCheck(new FormValidatorCSRF($this));
 	}
 
 	//

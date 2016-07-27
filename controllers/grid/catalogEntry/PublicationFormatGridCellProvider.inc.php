@@ -70,6 +70,7 @@ class PublicationFormatGridCellProvider extends RepresentationsGridCellProvider 
 					return array(new LinkAction(
 						'availableRepresentation',
 						new RemoteActionConfirmationModal(
+							$request->getSession(),
 							__($data->getIsAvailable()?'grid.catalogEntry.availableRepresentation.removeMessage':'grid.catalogEntry.availableRepresentation.message'),
 							__('grid.catalogEntry.availableRepresentation.title'),
 							$router->url(

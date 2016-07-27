@@ -14,6 +14,7 @@
 	{rdelim});
 </script>
 <form class="pkp_form" id="addThisPluginSettingsForm" method="post" action="{url router=$smarty.const.ROUTE_COMPONENT op="manage" category="generic" plugin=$pluginName verb="showTab" tab="basic" save="true"}">
+	{csrf}
 	<input type="hidden" name="tab" value="settings" />
 	{fbvFormArea id="addThisDisplayStyle" title="plugins.generic.addThis.settings.displayStyle" class="border"}
 		{foreach from=$displayStyles key=style item=image}

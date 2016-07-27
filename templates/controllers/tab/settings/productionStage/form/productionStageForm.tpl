@@ -20,6 +20,7 @@
 </script>
 
 <form class="pkp_form" id="productionStageForm" method="post" action="{url router=$smarty.const.ROUTE_COMPONENT component="tab.settings.PublicationSettingsTabHandler" op="saveFormData" tab="productionStage"}">
+	{csrf}
 	{include file="controllers/notification/inPlaceNotification.tpl" notificationId="productionStageFormNotification"}
 
 	<p class="pkp_help">{translate key="manager.settings.publisherInformation"}</p>

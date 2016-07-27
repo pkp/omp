@@ -34,6 +34,7 @@ class AddThisSettingsForm extends Form {
 
 		// Validation checks for this form
 		$this->addCheck(new FormValidatorPost($this));
+		$this->addCheck(new FormValidatorCSRF($this));
 	}
 
 	//

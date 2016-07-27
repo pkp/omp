@@ -39,6 +39,7 @@ class RepresentativeForm extends Form {
 				), array(&$this, DAORegistry::getDAO('ONIXCodelistItemDAO'), Request::getUserVar('agentRole'), Request::getUserVar('supplierRole'))
 		));
 		$this->addCheck(new FormValidatorPost($this));
+		$this->addCheck(new FormValidatorCSRF($this));
 	}
 
 	//

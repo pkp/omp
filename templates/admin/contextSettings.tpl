@@ -16,6 +16,7 @@
 </script>
 
 <form class="pkp_form" id="pressSettingsForm" method="post" action="{url router=$smarty.const.ROUTE_COMPONENT component="grid.admin.press.PressGridHandler" op="updateContext"}">
+	{csrf}
 	{include file="controllers/notification/inPlaceNotification.tpl" notificationId="pressSettingsNotification"}
 
 	{if $contextId}

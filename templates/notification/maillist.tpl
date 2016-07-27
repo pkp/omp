@@ -1,5 +1,5 @@
 {**
- * index.tpl
+ * templates/notification/maillist.tpl
  *
  * Copyright (c) 2014-2016 Simon Fraser University Library
  * Copyright (c) 2003-2016 John Willinsky
@@ -23,6 +23,7 @@
 <p><span class="instruct">{translate key="notification.mailListDescription"}</span></p>
 
 <form class="pkp_form" id="notificationMailListForm" method="post" action="{url op="saveSubscribeMailList"}">
+	{csrf}
 	{include file="controllers/notification/inPlaceNotification.tpl" notificationId="notificationMailListFormNotification"}
 
 	{fbvFormArea id="notificationMailList"}

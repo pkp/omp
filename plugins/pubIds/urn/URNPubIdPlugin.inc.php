@@ -167,6 +167,7 @@ class URNPubIdPlugin extends PubIdPlugin {
 		$linkActions['clearPubIdLinkActionURN'] = new LinkAction(
 			'clearPubId',
 			new RemoteActionConfirmationModal(
+				$request->getSession(),
 				__('plugins.pubIds.urn.editor.clearObjectsURN.confirm'),
 				__('common.delete'),
 				$request->url(null, null, 'clearPubId', null, $userVars),
