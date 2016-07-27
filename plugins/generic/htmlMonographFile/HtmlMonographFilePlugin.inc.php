@@ -92,7 +92,6 @@ class HtmlMonographFilePlugin extends GenericPlugin {
 	 * @return string
 	 */
 	function _getHTMLContents($request, $monograph, $publicationFormat, $submissionFile) {
-		$press = $request->getPress();
 		$contents = file_get_contents($submissionFile->getFilePath());
 
 		// Replace media file references
@@ -131,8 +130,8 @@ class HtmlMonographFilePlugin extends GenericPlugin {
 
 		// Perform replacement for ojs://... URLs
 		$contents = preg_replace_callback(
-				'/(<[^<>]*")[Oo][Jj][Ss]:\/\/([^"]+)("[^<>]*>)/',
-				array(&$this, '_handleOjsUrl'),
+				'/(<[^<>]*")[Oo][Mm][Pp]:\/\/([^"]+)("[^<>]*>)/',
+				array(&$this, '_handleOmpUrl'),
 				$contents
 		);
 
@@ -153,7 +152,7 @@ class HtmlMonographFilePlugin extends GenericPlugin {
 		return $contents;
 	}
 
-	function _handleOjsUrl($matchArray) {
+	function _handleOmpUrl($matchArray) {
 		$request = Application::getRequest();
 		$url = $matchArray[2];
 		$anchor = null;
