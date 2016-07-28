@@ -99,7 +99,7 @@ class PressGridHandler extends ContextGridHandler {
 	 * Delete a press.
 	 * @param $args array
 	 * @param $request PKPRequest
-	 * @return string Serialized JSON object
+	 * @return JSONMessage
 	 */
 	function deleteContext($args, $request) {
 		// Identify the current context.
