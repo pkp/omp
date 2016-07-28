@@ -13,32 +13,88 @@
  * @brief Handle publication format grid requests.
  */
 
-import('lib.pkp.controllers.grid.representations.RepresentationsGridHandler');
+// import grid base classes
+import('lib.pkp.classes.controllers.grid.CategoryGridHandler');
 
-class PublicationFormatGridHandler extends RepresentationsGridHandler {
+// import format grid specific classes
+import('lib.pkp.controllers.grid.files.SubmissionFilesGridRow');
+import('lib.pkp.classes.controllers.grid.files.FilesGridCapabilities');
+import('controllers.grid.catalogEntry.PublicationFormatGridCategoryRow');
+import('controllers.grid.catalogEntry.PublicationFormatCategoryGridDataProvider');
+
+// Link action & modal classes
+import('lib.pkp.classes.linkAction.request.AjaxModal');
+
+class PublicationFormatGridHandler extends CategoryGridHandler {
 	/** @var PublicationFormatGridCellProvider */
 	var $_cellProvider;
+
+	/** @var Submission */
+	var $_submission;
 
 	/**
 	 * Constructor
 	 */
 	function PublicationFormatGridHandler() {
-		parent::RepresentationsGridHandler();
+		parent::CategoryGridHandler(new PublicationFormatCategoryGridDataProvider($this));
 		$this->addRoleAssignment(
 			array(ROLE_ID_MANAGER, ROLE_ID_SUB_EDITOR),
 			array(
 				'setAvailable', 'editApprovedProof', 'saveApprovedProof',
 			)
 		);
+		$this->addRoleAssignment(
+			array(ROLE_ID_MANAGER, ROLE_ID_SUB_EDITOR, ROLE_ID_ASSISTANT),
+			array(
+				'fetchGrid', 'fetchRow', 'fetchCategory',
+				'addFormat', 'editFormat', 'editFormatTab', 'updateFormat', 'deleteFormat',
+				'setApproved', 'setProofFileCompletion', 'selectFiles',
+				'identifiers', 'updateIdentifiers', 'clearPubId',
+			)
+		);
 	}
 
 
+	//
+	// Getters/Setters
+	//
+	/**
+	 * Get the submission associated with this publication format grid.
+	 * @return Submission
+	 */
+	function getSubmission() {
+		return $this->_submission;
+	}
+
+	/**
+	 * Set the submission
+	 * @param $submission Submission
+	 */
+	function setSubmission($submission) {
+		$this->_submission = $submission;
+	}
+
+
+	//
+	// Overridden methods from PKPHandler
+	//
 	/**
 	 * Configure the grid
 	 * @param $request PKPRequest
 	 */
 	function initialize($request) {
 		parent::initialize($request);
+
+		// Retrieve the authorized submission.
+		$this->setSubmission($this->getAuthorizedContextObject(ASSOC_TYPE_SUBMISSION));
+
+		// Load submission-specific translations
+		AppLocale::requireComponents(
+			LOCALE_COMPONENT_PKP_SUBMISSION,
+			LOCALE_COMPONENT_PKP_EDITOR,
+			LOCALE_COMPONENT_PKP_USER,
+			LOCALE_COMPONENT_PKP_DEFAULT
+		);
 		$this->setTitle('monograph.publicationFormats');
 
 		// Load submission-specific translations
@@ -100,16 +156,28 @@ class PublicationFormatGridHandler extends RepresentationsGridHandler {
 		);
 	}
 
+	/**
+	 * @see PKPHandler::authorize()
+	 * @param $request PKPRequest
+	 * @param $args array
+	 * @param $roleAssignments array
+	 */
+	function authorize($request, &$args, $roleAssignments) {
+		import('lib.pkp.classes.security.authorization.SubmissionAccessPolicy');
+		$this->addPolicy(new SubmissionAccessPolicy($request, $args, $roleAssignments));
+		return parent::authorize($request, $args, $roleAssignments);
+	}
+
 
 	//
 	// Overridden methods from GridHandler
 	//
 	/**
 	 * @see GridHandler::getRowInstance()
-	 * @return RepresentationsGridCategoryRow
+	 * @return PublicationFormatGridCategoryRow
 	 */
 	function getCategoryRowInstance() {
-		return new RepresentationsGridCategoryRow($this->getSubmission(), $this->_cellProvider);
+		return new PublicationFormatGridCategoryRow($this->getSubmission(), $this->_cellProvider);
 	}
 
 
@@ -377,11 +445,183 @@ class PublicationFormatGridHandler extends RepresentationsGridHandler {
 	}
 
 	/**
-	 * @copydoc RepresentationsGridHandler::getAssignPublicIdentifiersFormTemplate()
+	 * Get the filename of the "assign public identifiers" form template.
+	 * @return string
 	 */
 	function getAssignPublicIdentifiersFormTemplate() {
 		return 'controllers/grid/pubIds/form/assignPublicIdentifiersForm.tpl';
 	}
+
+	//
+	// Overridden methods from GridHandler
+	//
+	/**
+	 * @copydoc GridHandler::getRowInstance()
+	 */
+	function getRowInstance() {
+		return new SubmissionFilesGridRow(
+			new FilesGridCapabilities(FILE_GRID_ADD | FILE_GRID_DELETE | FILE_GRID_MANAGE | FILE_GRID_EDIT | FILE_GRID_VIEW_NOTES),
+			WORKFLOW_STAGE_ID_PRODUCTION
+		);
+	}
+
+	/**
+	 * Get the arguments that will identify the data in the grid
+	 * In this case, the submission.
+	 * @return array
+	 */
+	function getRequestArgs() {
+		return array(
+			'submissionId' => $this->getSubmission()->getId(),
+		);
+	}
+
+
+	//
+	// Public grid actions
+	//
+	/**
+	 * Add a new publication format
+	 * @param $args array
+	 * @param $request PKPRequest
+	 * @return JSONMessage JSON object
+	 */
+	function addFormat($args, $request) {
+		return $this->editFormat($args, $request);
+	}
+
+	/**
+	 * Set the approval status for a file.
+	 * @param $args array
+	 * @param $request PKPRequest
+	 */
+	function setProofFileCompletion($args, $request) {
+		$submission = $this->getSubmission();
+		$submissionFileDao = DAORegistry::getDAO('SubmissionFileDAO');
+		import('lib.pkp.classes.submission.SubmissionFile'); // Constants
+		$submissionFile = $submissionFileDao->getRevision(
+			$request->getUserVar('fileId'),
+			$request->getUserVar('revision'),
+			SUBMISSION_FILE_PROOF,
+			$submission->getId()
+		);
+		$confirmationText = __('editor.submission.proofreading.confirmRemoveCompletion');
+		if ($request->getUserVar('approval')) {
+			$confirmationText = __('editor.submission.proofreading.confirmCompletion');
+		}
+		if ($submissionFile && $submissionFile->getAssocType()==ASSOC_TYPE_REPRESENTATION) {
+			import('lib.pkp.controllers.grid.pubIds.form.PKPAssignPublicIdentifiersForm');
+			$formTemplate = $this->getAssignPublicIdentifiersFormTemplate();
+			$assignPublicIdentifiersForm = new PKPAssignPublicIdentifiersForm($formTemplate, $submissionFile, $request->getUserVar('approval'), $confirmationText);
+			if (!$request->getUserVar('confirmed')) {
+				// Display assign pub ids modal
+				$assignPublicIdentifiersForm->initData($args, $request);
+				return new JSONMessage(true, $assignPublicIdentifiersForm->fetch($request));
+			}
+			if ($request->getUserVar('approval')) {
+				// Asign pub ids
+				$assignPublicIdentifiersForm->readInputData();
+				$assignPublicIdentifiersForm->execute($request);
+			}
+			// Update the approval flag
+			$submissionFile->setViewable($request->getUserVar('approval')?1:0);
+			$submissionFileDao->updateObject($submissionFile);
+
+			// Log the event
+			import('lib.pkp.classes.log.SubmissionFileLog');
+			import('lib.pkp.classes.log.SubmissionFileEventLogEntry'); // constants
+			$user = $request->getUser();
+			SubmissionFileLog::logEvent($request, $submissionFile, SUBMISSION_LOG_FILE_SIGNOFF_SIGNOFF, 'submission.event.signoffSignoff', array('file' => $submissionFile->getOriginalFileName(), 'name' => $user->getFullName(), 'username' => $user->getUsername()));
+
+			return DAO::getDataChangedEvent();
+		}
+		return new JSONMessage(false);
+	}
+
+	/**
+	 * Show the form to allow the user to select files from previous stages
+	 * @param $args array
+	 * @param $request PKPRequest
+	 * @return JSONMessage JSON object
+	 */
+	function selectFiles($args, $request) {
+		$submission = $this->getSubmission();
+		$representationDao = Application::getRepresentationDAO();
+		$representation = $representationDao->getById(
+			$request->getUserVar('representationId'),
+			$submission->getId()
+		);
+
+		import('lib.pkp.controllers.grid.files.proof.form.ManageProofFilesForm');
+		$manageProofFilesForm = new ManageProofFilesForm($submission->getId(), $representation->getId());
+		$manageProofFilesForm->initData($args, $request);
+		return new JSONMessage(true, $manageProofFilesForm->fetch($request));
+	}
+
+	/**
+	 * Edit pub ids
+	 * @param $args array
+	 * @param $request PKPRequest
+	 * @return JSONMessage JSON object
+	 */
+	function identifiers($args, $request) {
+		$submission = $this->getSubmission();
+		$representationDao = Application::getRepresentationDAO();
+		$representation = $representationDao->getById(
+			$request->getUserVar('representationId'),
+			$submission->getId()
+		);
+		import('lib.pkp.controllers.tab.pubIds.form.PKPPublicIdentifiersForm');
+		$form = new PKPPublicIdentifiersForm($representation);
+		$form->initData($request);
+		return new JSONMessage(true, $form->fetch($request));
+	}
+
+	/**
+	 * Update pub ids
+	 * @param $args array
+	 * @param $request PKPRequest
+	 * @return JSONMessage JSON object
+	 */
+	function updateIdentifiers($args, $request) {
+		$submission = $this->getSubmission();
+		$representationDao = Application::getRepresentationDAO();
+		$representation = $representationDao->getById(
+			$request->getUserVar('representationId'),
+			$submission->getId()
+		);
+		import('lib.pkp.controllers.tab.pubIds.form.PKPPublicIdentifiersForm');
+		$form = new PKPPublicIdentifiersForm($representation);
+		$form->readInputData();
+		if ($form->validate($request)) {
+			$form->execute($request);
+			return DAO::getDataChangedEvent();
+		} else {
+			return new JSONMessage(true, $form->fetch($request));
+		}
+	}
+
+	/**
+	 * Clear pub id
+	 * @param $args array
+	 * @param $request PKPRequest
+	 * @return JSONMessage JSON object
+	 */
+	function clearPubId($args, $request) {
+		if (!$request->checkCSRF()) return new JSONMessage(false);
+
+		$submission = $this->getSubmission();
+		$representationDao = Application::getRepresentationDAO();
+		$representation = $representationDao->getById(
+			$request->getUserVar('representationId'),
+			$submission->getId()
+		);
+		import('lib.pkp.controllers.tab.pubIds.form.PKPPublicIdentifiersForm');
+		$form = new PKPPublicIdentifiersForm($representation);
+		$form->clearPubId($request->getUserVar('pubIdPlugIn'));
+		return new JSONMessage(true);
+	}
+
 }
 
 ?>
