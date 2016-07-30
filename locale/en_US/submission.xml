@@ -123,4 +123,5 @@
 	<message key="editor.submission.decision.sendExternalReview">Send to External Review</message>
 
 	<message key="submission.upload.fileContents">Submission Component</message>
+	<message key="submission.dependentFiles">Dependent Files</message>
 </locale>

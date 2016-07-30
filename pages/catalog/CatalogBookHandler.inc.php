@@ -153,6 +153,7 @@ class CatalogBookHandler extends Handler {
 	 * @param $view boolean True iff inline viewer should be used, if available
 	 */
 	function download($args, $request, $view = false) {
+		$dispatcher = $request->getDispatcher();
 		$publishedMonograph = $this->getAuthorizedContextObject(ASSOC_TYPE_PUBLISHED_MONOGRAPH);
 		$this->setupTemplate($request, $publishedMonograph);
 		$press = $request->getPress();
@@ -168,12 +169,26 @@ class CatalogBookHandler extends Handler {
 		$submissionFileDao = DAORegistry::getDAO('SubmissionFileDAO');
 		import('classes.monograph.MonographFile'); // File constants
 		$submissionFile = $submissionFileDao->getByBestId($bestFileId, $publishedMonograph->getId());
-		if (!$submissionFile || $submissionFile->getAssocType() != ASSOC_TYPE_PUBLICATION_FORMAT || $submissionFile->getAssocId() != $publicationFormat->getId() || $submissionFile->getDirectSalesPrice() === null) {
-			fatalError('Invalid monograph file specified!');
-		}
+		if (!$submissionFile) $dispatcher->handle404();
 
 		$fileIdAndRevision = $submissionFile->getFileIdAndRevision();
 		list($fileId, $revision) = array_map(create_function('$a', 'return (int) $a;'), preg_split('/-/', $fileIdAndRevision));
+		import('lib.pkp.classes.file.SubmissionFileManager');
+		$monographFileManager = new SubmissionFileManager($publishedMonograph->getContextId(), $publishedMonograph->getId());
+
+		switch ($submissionFile->getAssocType()) {
+			case ASSOC_TYPE_PUBLICATION_FORMAT: // Publication format file
+				if ($submissionFile->getAssocId() != $publicationFormat->getId() || $submissionFile->getDirectSalesPrice() === null) fatalError('Invalid monograph file specified!');
+				break;
+			case ASSOC_TYPE_SUBMISSION_FILE: // Dependent file
+				$genreDao = DAORegistry::getDAO('GenreDAO');
+				$genre = $genreDao->getById($submissionFile->getGenreId());
+				if (!$genre->getDependent()) fatalError('Invalid monograph file specified!');
+				return $monographFileManager->downloadFile($fileId, $revision, $inline);
+				break;
+			default: fatalError('Invalid monograph file specified!');
+		}
+
 		$ompCompletedPaymentDao = DAORegistry::getDAO('OMPCompletedPaymentDAO');
 		$user = $request->getUser();
 		if ($submissionFile->getDirectSalesPrice() === '0' || ($user && $ompCompletedPaymentDao->hasPaidPurchaseFile($user->getId(), $fileIdAndRevision))) {
@@ -197,8 +212,6 @@ class CatalogBookHandler extends Handler {
 			// Download the file.
 			$inline = false;
 			if (!HookRegistry::call('CatalogBookHandler::download', array(&$this, &$publishedMonograph, &$publicationFormat, &$submissionFile, &$inline))) {
-				import('lib.pkp.classes.file.SubmissionFileManager');
-				$monographFileManager = new SubmissionFileManager($publishedMonograph->getContextId(), $publishedMonograph->getId());
 				return $monographFileManager->downloadFile($fileId, $revision, $inline);
 			}
 		}

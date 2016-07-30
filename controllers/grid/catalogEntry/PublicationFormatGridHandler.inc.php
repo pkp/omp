@@ -17,8 +17,7 @@
 import('lib.pkp.classes.controllers.grid.CategoryGridHandler');
 
 // import format grid specific classes
-import('lib.pkp.controllers.grid.files.SubmissionFilesGridRow');
-import('lib.pkp.classes.controllers.grid.files.FilesGridCapabilities');
+import('controllers.grid.catalogEntry.PublicationFormatGridRow');
 import('controllers.grid.catalogEntry.PublicationFormatGridCategoryRow');
 import('controllers.grid.catalogEntry.PublicationFormatCategoryGridDataProvider');
 
@@ -50,6 +49,7 @@ class PublicationFormatGridHandler extends CategoryGridHandler {
 				'addFormat', 'editFormat', 'editFormatTab', 'updateFormat', 'deleteFormat',
 				'setApproved', 'setProofFileCompletion', 'selectFiles',
 				'identifiers', 'updateIdentifiers', 'clearPubId',
+				'dependentFiles',
 			)
 		);
 	}
@@ -459,10 +459,7 @@ class PublicationFormatGridHandler extends CategoryGridHandler {
 	 * @copydoc GridHandler::getRowInstance()
 	 */
 	function getRowInstance() {
-		return new SubmissionFilesGridRow(
-			new FilesGridCapabilities(FILE_GRID_ADD | FILE_GRID_DELETE | FILE_GRID_MANAGE | FILE_GRID_EDIT | FILE_GRID_VIEW_NOTES),
-			WORKFLOW_STAGE_ID_PRODUCTION
-		);
+		return new PublicationFormatGridRow();
 	}
 
 	/**
@@ -622,6 +619,30 @@ class PublicationFormatGridHandler extends CategoryGridHandler {
 		return new JSONMessage(true);
 	}
 
+	/**
+	 * Show dependent files for a monograph file.
+	 * @param $args array
+	 * @param $request PKPRequest
+	 */
+	function dependentFiles($args, $request) {
+		$submission = $this->getSubmission();
+		$submissionFileDao = DAORegistry::getDAO('SubmissionFileDAO');
+		import('lib.pkp.classes.submission.SubmissionFile'); // Constants
+		$submissionFile = $submissionFileDao->getRevision(
+			$request->getUserVar('fileId'),
+			$request->getUserVar('revision'),
+			SUBMISSION_FILE_PROOF,
+			$submission->getId()
+		);
+
+		// Check if this is a remote galley
+		$templateMgr = TemplateManager::getManager($request);
+		$templateMgr->assign(array(
+			'submissionId' => $this->getSubmission()->getId(),
+			'submissionFile' => $submissionFile,
+		));
+		return new JSONMessage(true, $templateMgr->fetch('controllers/grid/catalogEntry/dependentFiles.tpl'));
+	}
 }
 
 ?>

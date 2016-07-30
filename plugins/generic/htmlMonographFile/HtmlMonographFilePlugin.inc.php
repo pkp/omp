@@ -103,7 +103,7 @@ class HtmlMonographFilePlugin extends GenericPlugin {
 		);
 
 		foreach ($embeddableFiles as $embeddableFile) {
-			$fileUrl = $request->url(null, 'cagalog', 'download', array($monograph->getBestId(), $publicationFormat->getBestId(), $submissionFile->getBestId()));
+			$fileUrl = $request->url(null, 'catalog', 'download', array($monograph->getBestId(), $publicationFormat->getBestId(), $embeddableFile->getBestId()));
 			$pattern = preg_quote($embeddableFile->getOriginalFileName());
 
 			$contents = preg_replace(
@@ -119,7 +119,7 @@ class HtmlMonographFilePlugin extends GenericPlugin {
 					$contents
 			);
 
-			// Replacement for other players (ested with odeo; yahoo and google player won't work w/ OJS URLs, might work for others)
+			// Replacement for other players (tested with odeo; yahoo and google player won't work w/ OJS URLs, might work for others)
 			$contents = preg_replace(
 					'/[Uu][Rr][Ll]=([^"]*' . $pattern . ')/',
 					'url=' . $fileUrl ,
