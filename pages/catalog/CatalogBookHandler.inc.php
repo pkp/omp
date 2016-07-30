@@ -184,7 +184,7 @@ class CatalogBookHandler extends Handler {
 				$genreDao = DAORegistry::getDAO('GenreDAO');
 				$genre = $genreDao->getById($submissionFile->getGenreId());
 				if (!$genre->getDependent()) fatalError('Invalid monograph file specified!');
-				return $monographFileManager->downloadFile($fileId, $revision, $inline);
+				return $monographFileManager->downloadFile($fileId, $revision);
 				break;
 			default: fatalError('Invalid monograph file specified!');
 		}
