@@ -43,7 +43,7 @@ class PublicationFormatGridRow extends SubmissionFilesGridRow {
 		$submissionFile =& $submissionFileData['submissionFile']; /* @var $submissionFile SubmissionFile */
 		import('lib.pkp.classes.linkAction.request.AjaxModal');
 		$router = $request->getRouter();
-		$this->addAction(new LinkAction(
+		if ($submissionFile->getFileType() == 'text/html') $this->addAction(new LinkAction(
 			'dependentFiles',
 			new AjaxModal(
 				$router->url($request, null, null, 'dependentFiles', null, array_merge(
