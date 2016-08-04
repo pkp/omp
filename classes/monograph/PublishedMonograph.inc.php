@@ -184,22 +184,6 @@ class PublishedMonograph extends Monograph {
 	}
 
 	/**
-	 * Get the cover image.
-	 * @return array
-	 */
-	function getCoverImage() {
-		return $this->getData('coverImage');
-	}
-
-	/**
-	 * Set the cover image.
-	 * @param $coverImage array
-	 */
-	function setCoverImage($coverImage) {
-		return $this->setData('coverImage', $coverImage);
-	}
-
-	/**
 	 * Get whether or not this monograph is available in the catalog.
 	 * A monograph is available if it has at least one publication format that
 	 * has been flagged as 'available' in the catalog and if it has metadata
