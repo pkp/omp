@@ -75,8 +75,7 @@ class HtmlMonographFilePlugin extends GenericPlugin {
 				'htmlContents' => $this->_getHTMLContents($request, $publishedMonograph, $publicationFormat, $submissionFile),
 			));
 			$templateMgr->display($this->getTemplatePath() . '/display.tpl');
-
-			return true;
+			exit();
 		}
 
 		return false;
