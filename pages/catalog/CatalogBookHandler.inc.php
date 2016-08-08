@@ -167,7 +167,7 @@ class CatalogBookHandler extends Handler {
 		if (!$publicationFormat || !$publicationFormat->getIsApproved() || !$publicationFormat->getIsAvailable() || $remoteURL = $publicationFormat->getRemoteURL()) fatalError('Invalid publication format specified.');
 
 		$submissionFileDao = DAORegistry::getDAO('SubmissionFileDAO');
-		import('classes.monograph.MonographFile'); // File constants
+		import('lib.pkp.classes.submission.SubmissionFile'); // File constants
 		$submissionFile = $submissionFileDao->getByBestId($bestFileId, $publishedMonograph->getId());
 		if (!$submissionFile) $dispatcher->handle404();
 

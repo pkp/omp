@@ -88,7 +88,7 @@ class WorkflowHandler extends PKPWorkflowHandler {
 			// first check, there's a published monograph
 			$publicationFormats = $publishedMonograph->getPublicationFormats(true);
 			$submissionFileDao = DAORegistry::getDAO('SubmissionFileDAO');
-			import('classes.monograph.MonographFile'); // constants
+			import('lib.pkp.classes.submission.SubmissionFile'); // constants
 
 			foreach ($publicationFormats as $format) {
 				// there is at least one publication format.

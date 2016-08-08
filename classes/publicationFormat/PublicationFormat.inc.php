@@ -269,7 +269,7 @@ class PublicationFormat extends Representation {
 	function getCalculatedFileSize() {
 		$fileSize = 0;
 		$submissionFileDao = DAORegistry::getDAO('SubmissionFileDAO');
-		import('classes.monograph.MonographFile'); // File constants
+		import('lib.pkp.classes.submission.SubmissionFile'); // File constants
 		$stageMonographFiles = $submissionFileDao->getLatestRevisionsByAssocId(
 			ASSOC_TYPE_PUBLICATION_FORMAT, $this->getId(),
 			$this->getMonographId(), SUBMISSION_FILE_PROOF

@@ -9,10 +9,10 @@
  *
  * @class SubmissionFileDAO
  * @ingroup monograph
- * @see MonographFile
- * @see ArtworkFile
- * @see MonographFileDAODelegate
- * @see ArtworkFileDAODelegate
+ * @see SubmissionFile
+ * @see SubmissionArtworkFile
+ * @see SubmissionFileDAODelegate
+ * @see SubmissionArtworkFileDAODelegate
  *
  * @brief Operations for retrieving and modifying OMP-specific submission
  *  file implementations.
@@ -30,36 +30,6 @@ class SubmissionFileDAO extends PKPSubmissionFileDAO {
 
 
 	//
-	// Implement protected template methods from PKPSubmissionFileDAO
-	//
-	/**
-	 * @copydoc PKPSubmissionFileDAO::getDelegateClassNames()
-	 */
-	function getDelegateClassNames() {
-		return array_replace(
-			parent::getDelegateClassNames(),
-			array(
-				'monographartworkfile' => 'classes.monograph.ArtworkFileDAODelegate',
-				'monographfile' => 'classes.monograph.MonographFileDAODelegate', // Override parent
-			)
-		);
-	}
-
-	/**
-	 * @copydoc PKPSubmissionFileDAO::getGenreCategoryMapping()
-	 */
-	function getGenreCategoryMapping() {
-		return array_replace(
-			parent::getGenreCategoryMapping(),
-			array(
-				GENRE_CATEGORY_ARTWORK => 'monographartworkfile', // Override parent
-				GENRE_CATEGORY_DOCUMENT => 'monographfile', // Override parent
-			)
-		);
-	}
-
-
-	//
 	// Protected helper methods
 	//
 	/**
@@ -67,11 +37,11 @@ class SubmissionFileDAO extends PKPSubmissionFileDAO {
 	 */
 	function fromRow($row) {
 		if (isset($row['artwork_file_id']) && is_numeric($row['artwork_file_id'])) {
-			return parent::fromRow($row, 'MonographArtworkFile');
+			return parent::fromRow($row, 'SubmissionArtworkFile');
 		} elseif (isset($row['supplementary_file_id']) && is_numeric($row['supplementary_file_id'])) {
 			return parent::fromRow($row, 'SupplementaryFile');
 		} else {
-			return parent::fromRow($row, 'MonographFile');
+			return parent::fromRow($row, 'SubmissionFile');
 		}
 	}
 }

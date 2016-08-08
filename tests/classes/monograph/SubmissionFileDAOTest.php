@@ -16,9 +16,9 @@
 
 import('lib.pkp.tests.DatabaseTestCase');
 import('classes.monograph.SubmissionFileDAO');
-import('classes.monograph.ArtworkFileDAODelegate');
-import('classes.monograph.MonographFile');
-import('classes.monograph.MonographArtworkFile');
+import('lib.pkp.classes.submission.SubmissionArtworkFileDAODelegate');
+import('lib.pkp.classes.submission.SubmissionFile');
+import('lib.pkp.classes.submission.SubmissionArtworkFile');
 import('classes.monograph.MonographDAO');
 import('lib.pkp.classes.submission.Genre');
 import('lib.pkp.classes.submission.reviewRound.ReviewRound');
@@ -92,8 +92,8 @@ class SubmissionFileDAOTest extends DatabaseTestCase {
 	/**
 	 * @covers SubmissionFileDAO
 	 * @covers PKPSubmissionFileDAO
-	 * @covers MonographFileDAODelegate
-	 * @covers ArtworkFileDAODelegate
+	 * @covers SubmissionFileDAODelegate
+	 * @covers SubmissionArtworkFileDAODelegate
 	 * @covers SubmissionFileDAODelegate
 	 */
 	public function testSubmissionFileCrud() {
@@ -101,7 +101,7 @@ class SubmissionFileDAOTest extends DatabaseTestCase {
 		// Create test data.
 		//
 		// Create two test files, one monograph file one artwork file.
-		$file1Rev1 = new MonographArtworkFile();
+		$file1Rev1 = new SubmissionArtworkFile();
 		$file1Rev1->setName('test-artwork', 'en_US');
 		$file1Rev1->setCaption('test-caption');
 		$file1Rev1->setFileStage(SUBMISSION_FILE_PROOF);
@@ -113,7 +113,7 @@ class SubmissionFileDAOTest extends DatabaseTestCase {
 		$file1Rev1->setAssocType(ASSOC_TYPE_REVIEW_ASSIGNMENT);
 		$file1Rev1->setAssocId(5);
 
-		$file2Rev1 = new MonographFile();
+		$file2Rev1 = new SubmissionFile();
 		$file2Rev1->setName('test-document', 'en_US');
 		$file2Rev1->setFileStage(SUBMISSION_FILE_PROOF);
 		$file2Rev1->setSubmissionId(SUBMISSION_FILE_DAO_TEST_SUBMISSION_ID);
@@ -137,31 +137,31 @@ class SubmissionFileDAOTest extends DatabaseTestCase {
 		//
 		// Persist the two test files.
 		$this->_insertFile($file1Rev1, 'test artwork', SUBMISSION_FILE_DAO_TEST_ART_GENRE_ID);
-		self::assertTrue(is_a($file1Rev1, 'MonographArtworkFile'));
+		self::assertTrue(is_a($file1Rev1, 'SubmissionArtworkFile'));
 		$this->_insertFile($file2Rev1, 'test monograph', SUBMISSION_FILE_DAO_TEST_DOC_GENRE_ID);
-		self::assertTrue(is_a($file2Rev1, 'MonographFile'));
+		self::assertTrue(is_a($file2Rev1, 'SubmissionFile'));
 
 		// Persist a second revision of the artwork file but this time with a
 		// document genre so that it needs to be downcast for insert.
-		$downcastFile = clone($file1Rev1); /* @var $downcastFile MonographArtworkFile */
+		$downcastFile = clone($file1Rev1); /* @var $downcastFile SubmissionArtworkFile */
 		$downcastFile->setRevision(2);
 		$downcastFile->setDateUploaded('2011-12-05 00:00:00');
 		$downcastFile->setDateModified('2011-12-05 00:00:00');
 		$file1Rev2 = $this->_insertFile($downcastFile, 'test downcast', SUBMISSION_FILE_DAO_TEST_DOC_GENRE_ID);
 
 		// Test whether the target type is correct.
-		self::assertTrue(is_a($file1Rev2, 'MonographFile'));
+		self::assertTrue(is_a($file1Rev2, 'SubmissionFile'));
 		// Test that no data on the target interface has been lost.
 		$this->_compareFiles($downcastFile, $file1Rev2);
 
 		// Persist a second revision of the monograph file but this time with an
 		// artwork genre so that it needs to be upcast for insert.
-		$upcastFile = clone($file2Rev1); /* @var $upcastFile MonographFile */
+		$upcastFile = clone($file2Rev1); /* @var $upcastFile SubmissionFile */
 		$upcastFile->setRevision(2);
 		$file2Rev2 = $this->_insertFile($upcastFile, 'test upcast', SUBMISSION_FILE_DAO_TEST_ART_GENRE_ID);
 
 		// Test whether the target type is correct.
-		self::assertTrue(is_a($file2Rev2, 'MonographArtworkFile'));
+		self::assertTrue(is_a($file2Rev2, 'SubmissionArtworkFile'));
 		// Test that no data on the target interface has been lost.
 		$this->_compareFiles($upcastFile, $file2Rev2);
 		// Make sure that other fields contain default values as
@@ -197,7 +197,7 @@ class SubmissionFileDAOTest extends DatabaseTestCase {
 		$updatedFile = $submissionFileDao->updateObject($file1Rev1);
 
 		// Test whether the target type is correct.
-		self::assertTrue(is_a($updatedFile, 'MonographFile'));
+		self::assertTrue(is_a($updatedFile, 'SubmissionFile'));
 		// Test that no data on the target interface has been lost.
 		$this->_compareFiles($file1Rev1, $updatedFile);
 
@@ -213,7 +213,7 @@ class SubmissionFileDAOTest extends DatabaseTestCase {
 		$updatedFile = $submissionFileDao->updateObject($updatedFile);
 
 		// Test whether the target type is correct.
-		self::assertTrue(is_a($updatedFile, 'MonographArtworkFile'));
+		self::assertTrue(is_a($updatedFile, 'SubmissionArtworkFile'));
 		// Test that no data on the target interface has been lost.
 		$this->_compareFiles($file1Rev1, $updatedFile);
 		$file1Rev1 = $updatedFile;
@@ -358,7 +358,7 @@ class SubmissionFileDAOTest extends DatabaseTestCase {
 		//
 		// Delete the latest revision of file1.
 		self::assertEquals(1, $submissionFileDao->deleteLatestRevisionById($file1Rev1->getFileId()));
-		self::assertTrue(is_a($submissionFileDao->getRevision($file1Rev1->getFileId(), $file1Rev1->getRevision()), 'MonographArtworkFile'));
+		self::assertTrue(is_a($submissionFileDao->getRevision($file1Rev1->getFileId(), $file1Rev1->getRevision()), 'SubmissionArtworkFile'));
 		self::assertNull($submissionFileDao->getRevision($file1Rev3->getFileId(), $file1Rev3->getRevision()));
 
 
@@ -367,7 +367,7 @@ class SubmissionFileDAOTest extends DatabaseTestCase {
 		//
 		// Delete all revisions of file1.
 		self::assertEquals(2, $submissionFileDao->deleteAllRevisionsById($file1Rev1->getFileId()));
-		self::assertTrue(is_a($submissionFileDao->getRevision($file2Rev1->getFileId(), $file2Rev1->getRevision()), 'MonographFile'));
+		self::assertTrue(is_a($submissionFileDao->getRevision($file2Rev1->getFileId(), $file2Rev1->getRevision()), 'SubmissionFile'));
 		self::assertNull($submissionFileDao->getRevision($file1Rev1->getFileId(), $file1Rev1->getRevision()));
 		self::assertNull($submissionFileDao->getRevision($file1Rev2->getFileId(), $file1Rev2->getRevision()));
 		// Re-insert the files for the next test.
@@ -380,7 +380,7 @@ class SubmissionFileDAOTest extends DatabaseTestCase {
 		//
 		// Delete all revisions by assoc id.
 		self::assertEquals(2, $submissionFileDao->deleteAllRevisionsByAssocId(ASSOC_TYPE_REVIEW_ASSIGNMENT, 5));
-		self::assertTrue(is_a($submissionFileDao->getRevision($file2Rev1->getFileId(), $file2Rev1->getRevision()), 'MonographFile'));
+		self::assertTrue(is_a($submissionFileDao->getRevision($file2Rev1->getFileId(), $file2Rev1->getRevision()), 'SubmissionFile'));
 		self::assertNull($submissionFileDao->getRevision($file1Rev1->getFileId(), $file1Rev1->getRevision()));
 		self::assertNull($submissionFileDao->getRevision($file1Rev2->getFileId(), $file1Rev2->getRevision()));
 		// Re-insert the files for the next test.
@@ -433,7 +433,7 @@ class SubmissionFileDAOTest extends DatabaseTestCase {
 		$submissionFiles = $submissionFileDao->getAllRevisions($file1Rev1->getFileId());
 		self::assertEquals(2, count($submissionFiles));
 		foreach($submissionFiles as $submissionFile) { /* @var $submissionFile SubmissionFile */
-			self::assertTrue(is_a($submissionFile, 'MonographArtworkFile'));
+			self::assertTrue(is_a($submissionFile, 'SubmissionArtworkFile'));
 		}
 	}
 
@@ -443,11 +443,11 @@ class SubmissionFileDAOTest extends DatabaseTestCase {
 
 		// Test whether the newDataObjectByGenreId method will return a monograph file.
 		$fileObject = $submissionFileDao->newDataObjectByGenreId(SUBMISSION_FILE_DAO_TEST_DOC_GENRE_ID);
-		self::assertTrue(is_a($fileObject, 'MonographFile'));
+		self::assertTrue(is_a($fileObject, 'SubmissionFile'));
 
 		// Now set an artwork genre and try again.
 		$fileObject = $submissionFileDao->newDataObjectByGenreId(SUBMISSION_FILE_DAO_TEST_ART_GENRE_ID);
-		self::assertTrue(is_a($fileObject, 'MonographArtworkFile'));
+		self::assertTrue(is_a($fileObject, 'SubmissionArtworkFile'));
 	}
 
 
@@ -497,8 +497,8 @@ class SubmissionFileDAOTest extends DatabaseTestCase {
 	 * Compare the common properties of monograph and
 	 * artwork files even when the two files do not have the
 	 * same implementation.
-	 * @param $sourceFile MonographFile
-	 * @param $targetFile MonographFile
+	 * @param $sourceFile SubmissionFile
+	 * @param $targetFile SubmissionFile
 	 */
 	function _compareFiles($sourceFile, $targetFile) {
 		self::assertEquals($sourceFile->getName('en_US'), $targetFile->getName('en_US'));
