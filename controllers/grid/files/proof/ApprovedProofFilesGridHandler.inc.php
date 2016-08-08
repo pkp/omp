@@ -16,8 +16,8 @@
 // import grid base classes
 import('lib.pkp.classes.controllers.grid.GridHandler');
 
-// Import monograph file class which contains the SUBMISSION_FILE_* constants.
-import('classes.monograph.MonographFile');
+// Import submission file class which contains the SUBMISSION_FILE_* constants.
+import('lib.pkp.classes.submission.SubmissionFile');
 
 // Import the various classes for this grid
 import('controllers.grid.files.proof.ApprovedProofFilesGridDataProvider');

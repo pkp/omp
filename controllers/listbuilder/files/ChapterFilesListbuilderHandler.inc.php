@@ -25,7 +25,7 @@ class ChapterFilesListbuilderHandler extends FilesListbuilderHandler {
 	function ChapterFilesListbuilderHandler() {
 		// Get access to the monograph file constants.
 		AppLocale::requireComponents(LOCALE_COMPONENT_PKP_SUBMISSION);
-		import('classes.monograph.MonographFile');
+		import('lib.pkp.classes.submission.SubmissionFile');
 		parent::FilesListbuilderHandler();
 
 		$this->addRoleAssignment(

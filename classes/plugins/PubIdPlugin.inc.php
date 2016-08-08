@@ -132,12 +132,6 @@ abstract class PubIdPlugin extends PKPPubIdPlugin {
 		return $pubId;
 	}
 
-	/**
-	 * @copydoc PKPPubIdPlugin::getDAODelegates()
-	 */
-	function getFileDAODelegates()  {
-		return array('MonographFileDAODelegate', 'SupplementaryFileDAODelegate', 'ArtworkFileDAODelegate');
-	}
 
 }
 

@@ -96,7 +96,7 @@ class NativeXmlMonographFilter extends NativeXmlSubmissionFilter {
 				$importClass='SubmissionFile';
 				break;
 			case 'artwork_file':
-				$importClass='ArtworkFile';
+				$importClass='SubmissionArtworkFile';
 				break;
 			case 'publication_format':
 				$importClass='PublicationFormat';

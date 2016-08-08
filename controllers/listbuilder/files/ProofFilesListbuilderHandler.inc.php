@@ -21,7 +21,7 @@ class ProofFilesListbuilderHandler extends FilesListbuilderHandler {
 	 */
 	function ProofFilesListbuilderHandler() {
 		// Get access to the monograph file constants.
-		import('classes.monograph.MonographFile');
+		import('lib.pkp.classes.submission.SubmissionFile');
 		parent::FilesListbuilderHandler(SUBMISSION_FILE_PROOF);
 	}
 
@@ -56,7 +56,7 @@ class ProofFilesListbuilderHandler extends FilesListbuilderHandler {
 	 * @see FilesListbuilderHandler::getOptions()
 	 */
 	function getOptions() {
-		import('classes.monograph.MonographFile');
+		import('lib.pkp.classes.submission.SubmissionFile');
 		$monograph = $this->getAuthorizedContextObject(ASSOC_TYPE_MONOGRAPH);
 		$publicationFormat = $this->getAuthorizedContextObject(ASSOC_TYPE_PUBLICATION_FORMAT);
 

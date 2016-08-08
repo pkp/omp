@@ -132,7 +132,7 @@ class MonographSearchIndex extends SubmissionSearchIndex {
 	function indexMonographFiles(&$monograph) {
 		// Index galley files
 		$submissionFileDao = DAORegistry::getDAO('SubmissionFileDAO'); /* @var $submissionFileDao SubmissionFileDAO */
-		import('classes.monograph.MonographFile'); // Constants
+		import('lib.pkp.classes.submission.SubmissionFile'); // Constants
 		import('classes.search.MonographSearch'); // Constants
 		$files = $submissionFileDao->getLatestRevisions($monograph->getId(), SUBMISSION_FILE_PROOF);
 

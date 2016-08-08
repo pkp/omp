@@ -16,7 +16,7 @@
 import('lib.pkp.classes.form.Form');
 
 class ApprovedProofForm extends Form {
-	/** @var $approvedProof MonographFile */
+	/** @var $approvedProof SubmissionFile */
 	var $approvedProof;
 
 	/** @var $monograph Monograph */

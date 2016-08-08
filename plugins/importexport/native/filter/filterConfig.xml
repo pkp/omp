@@ -59,7 +59,7 @@
 			symbolic="ArtworkFile=>native-xml"
 			displayName="plugins.importexport.native.displayName"
 			description="plugins.importexport.native.description"
-			inputType="class::classes.monograph.ArtworkFile"
+			inputType="class::lib.pkp.classes.submission.SubmissionArtworkFile"
 			outputType="xml::schema(plugins/importexport/native/native.xsd)" />
 		<!-- Monograph file native XML input -->
 		<filterGroup
@@ -67,20 +67,20 @@
 			displayName="plugins.importexport.native.displayName"
 			description="plugins.importexport.native.description"
 			inputType="xml::schema(plugins/importexport/native/native.xsd)"
-			outputType="class::classes.monograph.MonographFile" />
+			outputType="class::lib.pkp.classes.submission.SubmissionFile" />
 		<!-- Artwork file native XML input -->
 		<filterGroup
 			symbolic="native-xml=>ArtworkFile"
 			displayName="plugins.importexport.native.displayName"
 			description="plugins.importexport.native.description"
 			inputType="xml::schema(plugins/importexport/native/native.xsd)"
-			outputType="class::classes.monograph.ArtworkFile" />
+			outputType="class::lib.pkp.classes.submission.SubmissionArtworkFile" />
 		<!-- Monograph file native XML output -->
 		<filterGroup
-			symbolic="MonographFile=>native-xml"
+			symbolic="SubmissionFile=>native-xml"
 			displayName="plugins.importexport.native.displayName"
 			description="plugins.importexport.native.description"
-			inputType="class::classes.monograph.MonographFile"
+			inputType="class::lib.pkp.classes.submission.SubmissionFile"
 			outputType="xml::schema(plugins/importexport/native/native.xsd)" />
 		<filterGroup
 			symbolic="monograph=>onix30-xml"
@@ -136,7 +136,7 @@
 			class="plugins.importexport.native.filter.ArtworkFileNativeXmlFilter"
 			isTemplate="0" />
 		<filter
-			inGroup="MonographFile=>native-xml"
+			inGroup="SubmissionFile=>native-xml"
 			class="lib.pkp.plugins.importexport.native.filter.SubmissionFileNativeXmlFilter"
 			isTemplate="0" />
 		<!-- ONIX 3.0 XML monograph output -->

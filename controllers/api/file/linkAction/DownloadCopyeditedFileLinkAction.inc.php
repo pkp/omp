@@ -24,7 +24,7 @@ class DownloadCopyeditedFileLinkAction extends DownloadFileLinkAction {
 	/**
 	 * Constructor
 	 * @param $request Request
-	 * @param $monographFile MonographFile the monograph file to
+	 * @param $monographFile SubmissionFile the monograph file to
 	 *  link to.
 	 */
 	function DownloadCopyeditedFileLinkAction($request, $monographFile, $user, $userGroup) {
@@ -36,7 +36,7 @@ class DownloadCopyeditedFileLinkAction extends DownloadFileLinkAction {
 
 	/**
 	 * Get the label for the file download action.
-	 * @param $monographFile MonographFile
+	 * @param $monographFile SubmissionFile
 	 * @return string
 	 */
 	function getLabel(&$monographFile) {
