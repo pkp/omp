@@ -54,34 +54,48 @@
 			description="plugins.importexport.native.description"
 			inputType="xml::schema(plugins/importexport/native/native.xsd)"
 			outputType="class::classes.publicationFormat.PublicationFormat[]" />
-		<!-- Submission file native XML output -->
+		<!-- Artwork file native XML output -->
 		<filterGroup
-			symbolic="ArtworkFile=>native-xml"
+			symbolic="SubmissionArtworkFile=>native-xml"
 			displayName="plugins.importexport.native.displayName"
 			description="plugins.importexport.native.description"
 			inputType="class::lib.pkp.classes.submission.SubmissionArtworkFile"
 			outputType="xml::schema(plugins/importexport/native/native.xsd)" />
-		<!-- Monograph file native XML input -->
+		<!-- Supplementary file native XML output -->
 		<filterGroup
-			symbolic="native-xml=>SubmissionFile"
+			symbolic="SupplementaryFile=>native-xml"
 			displayName="plugins.importexport.native.displayName"
 			description="plugins.importexport.native.description"
-			inputType="xml::schema(plugins/importexport/native/native.xsd)"
-			outputType="class::lib.pkp.classes.submission.SubmissionFile" />
-		<!-- Artwork file native XML input -->
-		<filterGroup
-			symbolic="native-xml=>ArtworkFile"
-			displayName="plugins.importexport.native.displayName"
-			description="plugins.importexport.native.description"
-			inputType="xml::schema(plugins/importexport/native/native.xsd)"
-			outputType="class::lib.pkp.classes.submission.SubmissionArtworkFile" />
-		<!-- Monograph file native XML output -->
+			inputType="class::lib.pkp.classes.submission.SupplementaryFile"
+			outputType="xml::schema(plugins/importexport/native/native.xsd)" />
+		<!-- Submission file native XML output -->
 		<filterGroup
 			symbolic="SubmissionFile=>native-xml"
 			displayName="plugins.importexport.native.displayName"
 			description="plugins.importexport.native.description"
 			inputType="class::lib.pkp.classes.submission.SubmissionFile"
 			outputType="xml::schema(plugins/importexport/native/native.xsd)" />
+		<!-- Artwork file native XML input -->
+		<filterGroup
+			symbolic="native-xml=>SubmissionArtworkFile"
+			displayName="plugins.importexport.native.displayName"
+			description="plugins.importexport.native.description"
+			inputType="xml::schema(plugins/importexport/native/native.xsd)"
+			outputType="class::lib.pkp.classes.submission.SubmissionArtworkFile" />
+		<!-- Supplementary file native XML input -->
+		<filterGroup
+			symbolic="native-xml=>SupplementaryFile"
+			displayName="plugins.importexport.native.displayName"
+			description="plugins.importexport.native.description"
+			inputType="xml::schema(plugins/importexport/native/native.xsd)"
+			outputType="class::lib.pkp.classes.submission.SupplementaryFile" />
+		<!-- Submission file native XML input -->
+		<filterGroup
+			symbolic="native-xml=>SubmissionFile"
+			displayName="plugins.importexport.native.displayName"
+			description="plugins.importexport.native.description"
+			inputType="xml::schema(plugins/importexport/native/native.xsd)"
+			outputType="class::lib.pkp.classes.submission.SubmissionFile" />
 		<filterGroup
 			symbolic="monograph=>onix30-xml"
 			displayName="plugins.importexport.onix30.displayName"
@@ -120,24 +134,35 @@
 			inGroup="native-xml=>PublicationFormat"
 			class="plugins.importexport.native.filter.NativeXmlPublicationFormatFilter"
 			isTemplate="0" />
-		<!-- Native XML monograph file input -->
+		<!-- Native XML submission file input -->
 		<filter
 			inGroup="native-xml=>SubmissionFile"
 			class="plugins.importexport.native.filter.NativeXmlMonographFileFilter"
 			isTemplate="0" />
 		<!-- Native XML artwork file input -->
 		<filter
-			inGroup="native-xml=>ArtworkFile"
+			inGroup="native-xml=>SubmissionArtworkFile"
 			class="plugins.importexport.native.filter.NativeXmlArtworkFileFilter"
+			isTemplate="0" />
+		<!-- Native XML supplementary file input -->
+		<filter
+			inGroup="native-xml=>SupplementaryFile"
+			class="plugins.importexport.native.filter.NativeXmlSupplementaryFileFilter"
 			isTemplate="0" />
 		<!-- Native XML submission file output -->
 		<filter
-			inGroup="ArtworkFile=>native-xml"
-			class="plugins.importexport.native.filter.ArtworkFileNativeXmlFilter"
-			isTemplate="0" />
-		<filter
 			inGroup="SubmissionFile=>native-xml"
 			class="lib.pkp.plugins.importexport.native.filter.SubmissionFileNativeXmlFilter"
+			isTemplate="0" />
+		<!-- Native XML artwork file output -->
+		<filter
+			inGroup="SubmissionArtworkFile=>native-xml"
+			class="plugins.importexport.native.filter.ArtworkFileNativeXmlFilter"
+			isTemplate="0" />
+		<!-- Native XML supplementary file output -->
+		<filter
+			inGroup="SupplementaryFile=>native-xml"
+			class="plugins.importexport.native.filter.SupplementaryFileNativeXmlFilter"
 			isTemplate="0" />
 		<!-- ONIX 3.0 XML monograph output -->
 		<filter

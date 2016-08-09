@@ -76,6 +76,9 @@ class NativeXmlMonographFilter extends NativeXmlSubmissionFilter {
 			case 'artwork_file':
 				$this->parseSubmissionFile($n, $submission);
 				break;
+			case 'supplementary_file':
+				$this->parseSubmissionFile($n, $submission);
+				break;
 			case 'publication_format':
 				$this->parsePublicationFormat($n, $submission);
 				break;
@@ -97,6 +100,9 @@ class NativeXmlMonographFilter extends NativeXmlSubmissionFilter {
 				break;
 			case 'artwork_file':
 				$importClass='SubmissionArtworkFile';
+				break;
+			case 'supplementary_file':
+				$importClass='SupplementaryFile';
 				break;
 			case 'publication_format':
 				$importClass='PublicationFormat';
