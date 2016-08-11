@@ -437,7 +437,7 @@
 	<message key="help.goToEditPage">Open a new page to edit this information</message>
 
 	<!-- Installer -->
-	<message key="installer.ompInstallation">OMP Installation</message>
+	<message key="installer.appInstallation">OMP Installation</message>
 	<message key="installer.ompUpgrade">OMP Upgrade</message>
 	<message key="installer.installApplication">Install Open Monograph Press</message>
 	<message key="installer.installationInstructions"><![CDATA[
