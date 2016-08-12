@@ -74,6 +74,7 @@ class NativeXmlMonographFilter extends NativeXmlSubmissionFilter {
 	function handleChildElement($n, $submission) {
 		switch ($n->tagName) {
 			case 'artwork_file':
+			case 'supplementary_file':
 				$this->parseSubmissionFile($n, $submission);
 				break;
 			case 'publication_format':
@@ -97,6 +98,9 @@ class NativeXmlMonographFilter extends NativeXmlSubmissionFilter {
 				break;
 			case 'artwork_file':
 				$importClass='SubmissionArtworkFile';
+				break;
+			case 'supplementary_file':
+				$importClass='SupplementaryFile';
 				break;
 			case 'publication_format':
 				$importClass='PublicationFormat';
