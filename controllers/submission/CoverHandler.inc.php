@@ -78,7 +78,11 @@ class CoverHandler extends PKPHandler {
 	 */
 	function cover($args, $request) {
 		// this function is only used on the book page i.e. for published monographes
-		$publishedMonograph = $this->getAuthorizedContextObject(ASSOC_TYPE_PUBLISHED_MONOGRAPH);
+		$monograph = $this->getAuthorizedContextObject(ASSOC_TYPE_MONOGRAPH);
+
+		$publishedMonographDao = DAORegistry::getDAO('PublishedMonographDAO');
+		$publishedMonograph = $publishedMonographDao->getById($monograph->getId(), null, false);
+
 		if (!$coverImage = $publishedMonograph->getCoverImage()) {
 			// Can't use Request::redirectUrl; FireFox doesn't
 			// seem to like it for images.
