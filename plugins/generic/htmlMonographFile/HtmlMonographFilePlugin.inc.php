@@ -102,7 +102,7 @@ class HtmlMonographFilePlugin extends GenericPlugin {
 		);
 
 		foreach ($embeddableFiles as $embeddableFile) {
-			$fileUrl = $request->url(null, 'catalog', 'download', array($monograph->getBestId(), $publicationFormat->getBestId(), $embeddableFile->getBestId()));
+			$fileUrl = $request->url(null, 'catalog', 'download', array($monograph->getBestId(), $publicationFormat->getBestId(), $embeddableFile->getBestId()), array('inline' => true));
 			$pattern = preg_quote($embeddableFile->getOriginalFileName());
 
 			$contents = preg_replace(
