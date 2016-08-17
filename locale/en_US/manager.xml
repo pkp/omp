@@ -212,7 +212,7 @@ You may optionally provide the user with a reason for disabling their account.</
 	<message key="manager.setup.pressDescription">Press Summary</message>
 	<message key="manager.setup.pressDescription.description">A brief description of your press.</message>
 	<message key="manager.setup.aboutPress">About the Press</message>
-	<message key="manager.setup.aboutPress.description">Include any information about your press which may be of interest to readers, authors or reviewers. This could include your open access policy, the focus and scope of the journal, copyright notice, sponsorship disclosure, history of the journal, and a privacy statement.</message>
+	<message key="manager.setup.aboutPress.description">Include any information about your press which may be of interest to readers, authors or reviewers. This could include your open access policy, the focus and scope of the press, copyright notice, sponsorship disclosure, history of the press, and a privacy statement.</message>
 	<message key="manager.setup.pressArchiving">Press Archiving</message>
 	<message key="manager.setup.homepageContent">Press Homepage Content</message>
 	<message key="manager.setup.homepageContentDescription">The press homepage consists of navigation links by default. Additional homepage content can be appended by using one or all of the following options, which will appear in the order shown.</message>
