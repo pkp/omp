@@ -16,3 +16,6 @@
 [submodule "docs/manual"]
 	path = docs/manual
 	url = https://github.com/pkp/omp-user-guide
+[submodule "plugins/blocks/makeSubmission"]
+	path = plugins/blocks/makeSubmission
+	url = https://github.com/pkp/makeSubmission.git
