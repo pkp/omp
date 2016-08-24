@@ -469,7 +469,6 @@ El vostre servidor actual és compatible amb mbstring: <strong>{$supportsMBStrin
 	<message key="notification.type.layouteditorRequest">Se us ha demanat revisar la maquetació per a «{$title}».</message>
 	<message key="notification.type.indexRequest">Se us ha demanat crear un índex per a «{$title}».</message>
 	<message key="notification.type.editorDecisionInternalReview">El procés de revisió interna ha començat.</message>
-	<message key="notification.type.roundStatusTitle">Ronda {$round} Estat</message>
 	<message key="notification.type.approveSubmission">Aquesta tramesa espera aprovació a l'eina d'entrades del catàleg abans d'aparèixer al catàleg públic.</message>
 	<message key="notification.type.approveSubmissionTitle">Esperant l'aprovació.</message>
 	<message key="notification.type.formatNeedsApprovedSubmission">S'ha d'aprovar l'entrada al catàleg de les metadades abans d'incloure el format de publicació al catàleg. Per aprovar les metadades d'un catàleg, feu clic a la pestanya superior «Monografia».</message>

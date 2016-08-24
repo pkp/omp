@@ -497,7 +497,6 @@
 	<message key="notification.type.layouteditorRequest">Le pedimos que revise la maquetación para "{$title}".</message>
 	<message key="notification.type.indexRequest">Le pedimos que cree un índice para "{$title}".</message>
 	<message key="notification.type.editorDecisionInternalReview">Proceso de revisión interna comenzado.</message>
-	<message key="notification.type.roundStatusTitle">Estado de ronda {$round}</message>
 	<message key="notification.type.approveSubmission">Esta propuesta está actualmente pendiente de aprobación en la herramienta de Entrada de Catálogo antes de que pueda aparecer en el catálogo público.</message>
 	<message key="notification.type.approveSubmissionTitle">Pendiente de aprobación.</message>
 	<message key="notification.type.formatNeedsApprovedSubmission">Los metadatos de la entrada de catálogo deben aprobarse antes de que el formato de publicación se incluya en el catálogo. Para aprobar los metadatos del catálogo, haga clic en la pestaña Monografía de la parte superior.</message>

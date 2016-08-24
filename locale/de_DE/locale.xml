@@ -525,7 +525,6 @@ Ihr Server untersützt aktuell mbstring: <strong>{$supportsMBString}</strong>]]>
 	<message key="notification.type.layouteditorRequest">Sie wurden um die Durchsicht der Layout-Dateien "{$title}" gebeten.</message>
 	<message key="notification.type.indexRequest">Sie wurden gebeten, einen Index für "{$title}" zu erstellen.</message>
 	<message key="notification.type.editorDecisionInternalReview">Der interne Begutachtungsprozess wurde gestartet.</message>
-	<message key="notification.type.roundStatusTitle">Durchgang {$round} Status</message>
 	<message key="notification.type.approveSubmission">Das eingereichte Manuskript muss noch im Katalogtool als akzeptiert gekennzeichnet werden. Sobald dies geschehen ist, wird es im öffentlichen Verlagskatalog erscheinen.</message>
 	<message key="notification.type.approveSubmissionTitle">Warten auf Freigabe.</message>
 	<message key="notification.type.formatNeedsApprovedSubmission">Damit das Format in den Katalog aufgenommen werden kann, müssen Sie die Metadaten für den Katalogeintrag akzeptieren. Aktivieren Sie dazu auf diesem Reiter die Checkbox "Übernehme die Metadaten für dieses Format in den Katalog". Wechseln Sie anschließend auf den Reiter 'Monografie' und aktvieren dort die Checkbox 'Erstelle anhand der angegebenen Metadaten einen neuen Katalogeintrag'.</message>

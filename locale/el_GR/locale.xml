@@ -485,7 +485,6 @@ Your server currently supports mbstring: <strong>{$supportsMBString}</strong>]]>
 	<message key="notification.type.layouteditorRequest">Έχετε κληθεί να θεωρήσετε την επιμέλεια σελιδοποίησης για το "{$title}".</message>
 	<message key="notification.type.indexRequest">Έχετε κληθεί να ευρετηριάσετε το "{$title}".</message>
 	<message key="notification.type.editorDecisionInternalReview">Η διαδικασία εσωτερικής αξιολόγησης έχει ξεκινήσει.</message>
-	<message key="notification.type.roundStatusTitle">Κατάσταση γύρου {$round}.</message>
 	<message key="notification.type.approveSubmission">Αυτή η υποβολή αναμένει πρόσφατα για Καταχώριση στον Κατάλογο πριν αυτή εμφανιστεί δημόσια στον κατάλογο.</message>
 	<message key="notification.type.approveSubmissionTitle">Εν αναμονή έγκρισης.</message>
 	<message key="notification.type.formatNeedsApprovedSubmission">Τα μεταδεδομένα για την καταχώρηση στο κατάλογο θα πρέπει να εγκριθούν πριν το μορφότυπο δημοσίεσυης συμπεριληφθεί στον κατάλογο. Για την έγκριση των μεταδεδομένων για τον κατάλογο, επιλέξετε στην παραπάνω καρτέλα Μονογραφία.</message>

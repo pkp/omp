@@ -503,7 +503,6 @@ Suporte à biblioteca mbstring: <strong>{$supportsMBString}</strong>]]></message
 	<message key="notification.type.layouteditorRequest">Solicitação de revisão dos layouts de "{$title}".</message>
 	<message key="notification.type.indexRequest">Solicitação de criação de sumário de "{$title}".</message>
 	<message key="notification.type.editorDecisionInternalReview">Avaliação interna iniciada.</message>
-	<message key="notification.type.roundStatusTitle">Situação da rodada {$round}</message>
 	<message key="notification.type.approveSubmission">Submissão atualmente aguardando aprovação na ferramenta de entrada de catálogo antes de ser publicada no catálogo.</message>
 	<message key="notification.type.approveSubmissionTitle">Aguardando aprovação.</message>
 	<message key="notification.type.formatNeedsApprovedSubmission">Os metadados para a entrada do catálogo devem ser aprovados antes de incluir o formato de publicação. Para aprovar os metadados, clique na aba Monografia acima.</message>
