@@ -20,7 +20,7 @@
 
 	// Register click handlers for the search panel
 	var headerSearchPanelIsClosing = false,
-	    headerSearchForm = $('#headerNavigationContainer .pkp_search'),
+	    headerSearchForm = $('#headerNavigationContainer .cmp_search'),
 	    headerSearchPrompt = $('.headerSearchPrompt', headerSearchForm),
 		headerSearchCancel = $('.headerSearchCancel', headerSearchForm),
 		headerSearchInput = $('input[name="query"]', headerSearchForm);
