@@ -114,7 +114,7 @@
 	<message key="submission.event.publicationFormatCreated">Se creó el formato de publicación "{$formatName}".</message>
 	<message key="submission.event.publicationFormatRemoved">Se eliminó el formato de publicación "{$formatName}".</message>
 	<message key="submission.submit.titleAndSummary">Título y Resumen</message>
-	<message key="submission.upload.selectComponent">Selecciona el componente del artículo</message>
+	<message key="submission.upload.selectComponent">Selecciona el componente</message>
 	<message key="submission.submit.seriesPosition.description">Ejemplos: libro 2, volumen 2</message>
 	<message key="submission.submit.confirmation">Confirmación</message>
 	<message key="submission.complete">Aceptado</message>
