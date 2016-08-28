@@ -535,7 +535,6 @@ Your server currently supports mbstring: <strong>{$supportsMBString}</strong>]]>
 	<message key="notification.type.layouteditorRequest">You have been asked to review layouts for "{$title}".</message>
 	<message key="notification.type.indexRequest">You have been asked to create an index for "{$title}".</message>
 	<message key="notification.type.editorDecisionInternalReview">Internal review process started.</message>
-	<message key="notification.type.roundStatusTitle">Round {$round} Status</message>
 	<message key="notification.type.approveSubmission">This submission is currently awaiting approval in the Catalog Entry tool before it will appear in the public catalog.</message>
 	<message key="notification.type.approveSubmissionTitle">Awaiting approval.</message>
 	<message key="notification.type.formatNeedsApprovedSubmission">The monograph will not be listed in the catalog until a catalog entry has been created. To add this book to the catalog, click on the Catalog Entry above and find the Catalog tab.</message>

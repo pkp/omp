@@ -501,7 +501,6 @@ Votre serveur supporte actuellement mbstring: <strong>{$supportsMBString}</stron
 	<message key="notification.type.layouteditorRequest">On vous a demandé de réviser la mise en page de "{$title}".</message>
 	<message key="notification.type.indexRequest">On vous a demandé de créer un index pour "{$title}".</message>
 	<message key="notification.type.editorDecisionInternalReview">Le processus d'évaluation interne a débuté.</message>
-	<message key="notification.type.roundStatusTitle">Statut de la série {$round} </message>
 	<message key="notification.type.approveSubmission">Cette soumission est en attente d'approbation dans l'outil d'entrée de catalogue avant d'apparaitre dans le catalogue public.</message>
 	<message key="notification.type.approveSubmissionTitle">En attente d'approbation.</message>
 	<message key="notification.type.formatNeedsApprovedSubmission">Les métadonnées pour l'entrée de catalogue doivent être approuvées avant d'ajouter le format de publication dans le catalogue. Pour approuver les métadonnées du catalogue, cliquez sur l'onglet Monographie ci-haut.</message>

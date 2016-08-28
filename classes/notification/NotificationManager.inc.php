@@ -33,10 +33,6 @@ class NotificationManager extends PKPNotificationManager {
 	 */
 	public function getNotificationTitle($notification) {
 		switch ($notification->getType()) {
-			case NOTIFICATION_TYPE_REVIEW_ROUND_STATUS:
-				$reviewRoundDao = DAORegistry::getDAO('ReviewRoundDAO');
-				$reviewRound = $reviewRoundDao->getById($notification->getAssocId());
-				return __('notification.type.roundStatusTitle', array('round' => $reviewRound->getRound()));
 			case NOTIFICATION_TYPE_CONFIGURE_PAYMENT_METHOD:
 				return __('notification.type.configurePaymentMethod.title');
 		}
@@ -63,8 +59,6 @@ class NotificationManager extends PKPNotificationManager {
 			case NOTIFICATION_TYPE_INDEX_ASSIGNMENT:
 			case NOTIFICATION_TYPE_CONFIGURE_PAYMENT_METHOD:
 				return NOTIFICATION_STYLE_CLASS_WARNING;
-			case NOTIFICATION_TYPE_REVIEW_ROUND_STATUS:
-				return NOTIFICATION_STYLE_CLASS_INFORMATION;
 		}
 		return parent::getStyleClass($notification);
 	}
@@ -74,7 +68,6 @@ class NotificationManager extends PKPNotificationManager {
 	 */
 	public function isVisibleToAllUsers($notificationType, $assocType, $assocId) {
 			switch ($notificationType) {
-				case NOTIFICATION_TYPE_REVIEW_ROUND_STATUS:
 				case NOTIFICATION_TYPE_CONFIGURE_PAYMENT_METHOD:
 					return true;
 				default:
