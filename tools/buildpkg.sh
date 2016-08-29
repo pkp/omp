@@ -81,6 +81,7 @@ lib/pkp/lib/vendor/sebastian/global-state/tests			\
 lib/pkp/lib/vendor/sebastian/comparator/tests			\
 lib/pkp/lib/vendor/sebastian/diff/tests				\
 lib/pkp/lib/vendor/oyejorge/less.php/test			\
+lib/pkp/js/lib/pnotify/build-tools				\
 lib/pkp/lib/swordappv2/.git					\
 lib/pkp/lib/swordappv2/test"
 
