@@ -19,8 +19,10 @@ class ContentBaseTestCase extends PKPContentBaseTestCase {
 	/**
 	 * Create a submission with the supplied data.
 	 * @param $data array Associative array of submission information
+	 * @param $location string Whether or not the submission wll be created
+	 *   from the frontend or backend
 	 */
-	protected function createSubmission($data) {
+	protected function createSubmission($data, $location = 'frontend') {
 		// By default, if this is an edited volume, configure 1 file per
 		// chapter.
 		if ($data['type'] == 'editedVolume' && !isset($data['files'])) {
@@ -45,7 +47,7 @@ class ContentBaseTestCase extends PKPContentBaseTestCase {
 			$data['files'] = array_merge($data['files'], $data['additionalFiles']);
 		}
 
-		parent::createSubmission($data);
+		parent::createSubmission($data, $location);
 	}
 
 	/**

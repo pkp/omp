@@ -27,7 +27,7 @@ class EditorialSubmissionTest extends ContentBaseTestCase {
 			'title' => 'Editorial',
 			'abstract' => 'A Note From The Publisher',
 			'submitterRole' => 'Author',
-		));
+		), 'backend');
 
 		$this->logOut();
 	}
