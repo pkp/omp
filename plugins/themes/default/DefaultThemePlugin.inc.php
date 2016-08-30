@@ -47,9 +47,9 @@ class DefaultThemePlugin extends ThemePlugin {
 			)
 		));
 
-		$this->addOption('baseColor', 'color', array(
-			'label' => 'plugins.themes.default.option.color.label',
-			'description' => 'plugins.themes.default.option.color.description',
+		$this->addOption('baseColour', 'colour', array(
+			'label' => 'plugins.themes.default.option.colour.label',
+			'description' => 'plugins.themes.default.option.colour.description',
 			'default' => '#1E6292',
 		));
 
@@ -119,10 +119,10 @@ class DefaultThemePlugin extends ThemePlugin {
 			}
 		}
 
-		// Update color based on theme option
-		if ($this->getOption('baseColor') !== '#1E6292') {
-			$additionalLessVariables .= '@bg-base:' . $this->getOption('baseColor') . ';';
-			if (!$this->isColorDark($this->getOption('baseColor'))) {
+		// Update colour based on theme option
+		if ($this->getOption('baseColour') !== '#1E6292') {
+			$additionalLessVariables .= '@bg-base:' . $this->getOption('baseColour') . ';';
+			if (!$this->isColourDark($this->getOption('baseColour'))) {
 				$additionalLessVariables .= '@text-bg-base:rgba(0,0,0,0.84);';
 			}
 		}
