@@ -69,9 +69,7 @@
 				{$cssView}
 			</div>
 		{/fbvFormSection}
-		{fbvFormSection label="manager.setup.layout.theme" description="manager.setup.layout.themeDescription"}
-			{fbvElement type="select" id="themePluginPath" from=$themePluginOptions selected=$themePluginPath translate=false size=$fbvStyles.size.MEDIUM}
-		{/fbvFormSection}
+		{include file="controllers/tab/settings/appearance/form/theme.tpl"}
 	{/fbvFormArea}
 	{fbvFormArea id="oai"}
 		{fbvFormSection title="admin.settings.oaiRegistration"}
