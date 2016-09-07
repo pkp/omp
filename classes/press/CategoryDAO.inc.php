@@ -326,16 +326,19 @@ class CategoryDAO extends DAO {
 
 	/**
 	 * Retrieve all categories for a press.
+	 * @param $pressId int Press ID.
+	 * @param $rangeInfo Object Optional range information.
 	 * @return DAOResultFactory containing Category ordered by sequence
 	 */
 	function getByPressId($pressId, $rangeInfo = null) {
 		// The strange ORDER BY clause is to return subcategories
 		// immediately after their parent category's entry.
 		$result = $this->retrieveRange(
-			'SELECT	*
-			FROM	categories
-			WHERE	press_id = ?
-			ORDER BY CASE WHEN parent_id = 0 THEN category_id * 2 ELSE (parent_id * 2) + 1 END ASC, seq',
+			'SELECT	c.*
+			FROM	categories c
+				LEFT JOIN categories pc ON (pc.category_id = c.parent_id)
+			WHERE	c.press_id = ?
+			ORDER BY (COALESCE(pc.seq, 0)*16384) + CASE WHEN pc.seq IS NULL THEN 16384 * c.seq ELSE c.seq END',
 			array((int) $pressId)
 		);
 
@@ -344,6 +347,7 @@ class CategoryDAO extends DAO {
 
 	/**
 	 * Retrieve the number of categories for a press.
+	 * @param $pressId int Press ID.
 	 * @return DAOResultFactory containing Category ordered by sequence
 	 */
 	function getCountByPressId($pressId) {
@@ -361,6 +365,9 @@ class CategoryDAO extends DAO {
 
 	/**
 	 * Retrieve all categories for a parent category.
+	 * @param $parentId int Parent category ID.
+	 * @param $pressId int Press ID (optional).
+	 * @param $rangeInfo Object Range info (optional).
 	 * @return DAOResultFactory containing Category ordered by sequence
 	 */
 	function getByParentId($parentId, $pressId = null, $rangeInfo = null) {
