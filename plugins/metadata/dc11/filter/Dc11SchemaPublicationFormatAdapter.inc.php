@@ -151,6 +151,15 @@ class Dc11SchemaPublicationFormatAdapter extends MetadataDataObjectAdapter {
 			$dc11Description->addStatement('dc:identifier', Request::url($press->getPath(), 'catalog', 'book', array($monograph->getId())));
 		}
 
+		// Public idntifiers (e.g. DOI, URN)
+		$pubIdPlugins = PluginRegistry::loadCategory('pubIds', true);
+		foreach ((array) $pubIdPlugins as $plugin) {
+			$pubId = $plugin->getPubId($publicationFormat);
+			if ($pubId) {
+				$dc11Description->addStatement('dc:identifier', $pubId);
+			}
+		}
+
 		// Identifier: others
 		$identificationCodeFactory = $publicationFormat->getIdentificationCodes();
 		while ($identificationCode = $identificationCodeFactory->next()) {
