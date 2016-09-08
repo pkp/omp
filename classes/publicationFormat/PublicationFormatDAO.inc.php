@@ -15,6 +15,7 @@
 
 import('classes.publicationFormat.PublicationFormat');
 import('lib.pkp.classes.submission.RepresentationDAO');
+import('lib.pkp.classes.plugins.PKPPubIdPluginDAO');
 
 class PublicationFormatDAO extends RepresentationDAO implements PKPPubIdPluginDAO {
 	/**
