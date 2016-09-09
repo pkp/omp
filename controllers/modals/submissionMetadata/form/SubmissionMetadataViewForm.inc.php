@@ -63,7 +63,7 @@ class SubmissionMetadataViewForm extends PKPSubmissionMetadataViewForm {
 		$this->readUserVars(array('categories', 'seriesId', 'seriesPosition'));
 		$application = PKPApplication::getApplication();
 		$request = $application->getRequest();
-		ListbuilderHandler::unpack($request, $this->getData('categories'));
+		ListbuilderHandler::unpack($request, $this->getData('categories'), array($this, 'deleteEntry'), array($this, 'insertEntry'), array($this, 'updateEntry'));
 	}
 
 	/**
