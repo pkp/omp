@@ -28,7 +28,7 @@
 	<message key="plugins.importexport.onix30.validityStatus">ONIX Status</message>
 	<message key="plugins.importexport.onix30.formatValid">Valid</message>
 	<message key="plugins.importexport.onix30.formatInvalid">Invalid</message>
-	<message key="plugins.importexport.onix30.pressMissingFields">This press is missing some required information.  Please go to Management &gt; Settings &gt; Publication &gt; Production and fill in the missing details.</message>
+	<message key="plugins.importexport.onix30.pressMissingFields">This press is missing some required information.  Please go to Settings &gt; Workflow &gt; Production and fill in the missing details.</message>
 	
 	<!-- Information form keys -->
 	<message key="plugins.importexport.onix30.form.addresseeField">Addressee (recipient) for this export</message>
