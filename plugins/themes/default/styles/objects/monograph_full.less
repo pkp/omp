@@ -31,18 +31,18 @@
 			}
 		}
 
-		.sub_item {
-			margin-bottom: @double;
-
-			&:last-child {
-				margin-bottom: 0;
-			}
-		}
-
 		.label {
 			margin: 0 0 @double;
 			font-size: @font-base;
 			font-weight: @bold;
+		}
+	}
+
+	.sub_item {
+		margin-bottom: @double;
+
+		&:last-child {
+			margin-bottom: 0;
 		}
 	}
 
@@ -51,21 +51,13 @@
 	}
 
 	.entry_details {
-		margin-left: -@base;
-		margin-right: -@base;
+		margin-left: -@double;
+		margin-right: -@double;
 		border-top: @bg-border;
 
 		.item {
 			padding: @double @base;
 			border-bottom: @bg-border;
-		}
-
-		.sub_item {
-			margin-bottom: @double;
-
-			&:last-child {
-				margin-bottom: 0;
-			}
 		}
 
 		.label {
@@ -99,8 +91,19 @@
 			font-weight: @bold;
 		}
 
-		.authors {
-			color: @text-light;
+		.files {
+			margin-top: @half;
+		}
+	}
+
+	.author_bios {
+
+		.sub_item .label {
+			margin-bottom: 0;
+		}
+
+		.sub_item .value p:first-child {
+			margin-top: 0;
 		}
 	}
 

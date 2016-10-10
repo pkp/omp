@@ -61,6 +61,16 @@ class CatalogBookHandler extends Handler {
 
 		$templateMgr->assign('publishedMonograph', $publishedMonograph);
 
+		// Provide the publication formats to the template
+		$publicationFormats = $publishedMonograph->getPublicationFormats(true);
+		$availablePublicationFormats = array();
+		foreach ($publicationFormats as $format) {
+			if ($format->getIsAvailable()) {
+				$availablePublicationFormats[] = $format;
+			}
+		}
+		$templateMgr->assign('publicationFormats', $availablePublicationFormats);
+
 		// Assign chapters (if they exist)
 		$chapterDao = DAORegistry::getDAO('ChapterDAO');
 		$chapters = $chapterDao->getChapters($publishedMonograph->getId());
@@ -75,7 +85,6 @@ class CatalogBookHandler extends Handler {
 			if ($plugin->getEnabled()) {
 				$enabledPubIdTypes[] = $plugin->getPubIdType();
 				// check to see if the format has a pubId set.  If not, generate one.
-				$publicationFormats = $publishedMonograph->getPublicationFormats(true);
 				foreach ($publicationFormats as $publicationFormat) {
 					if ($publicationFormat->getStoredPubId($plugin->getPubIdType()) == '') {
 						$plugin->getPubId($publicationFormat);
@@ -102,23 +111,20 @@ class CatalogBookHandler extends Handler {
 				$submissionFileDao->getLatestRevisions($publishedMonograph->getId()),
 				create_function('$a', 'return $a->getViewable() && $a->getDirectSalesPrice() !== null && $a->getAssocType() == ASSOC_TYPE_PUBLICATION_FORMAT;')
 			);
-			$availableFilesByPublicationFormat = array();
-			foreach ($availableFiles as $availableFile) {
-				$availableFilesByPublicationFormat[$availableFile->getAssocId()][] = $availableFile;
-			}
 
-			$remoteResourcesByPublicationFormat = array();
-			foreach ($publishedMonograph->getPublicationFormats(true) as $publicationFormat) {
-				$remoteURL = $publicationFormat->getRemoteURL();
-				if ($remoteURL != null) {
-					$remoteResourcesByPublicationFormat[$publicationFormat->getId()] = $remoteURL;
+			// Only pass files in pub formats that are also available
+			$filteredAvailableFiles = array();
+			foreach ($availableFiles as $file) {
+				foreach ($availablePublicationFormats as $format) {
+					if ($file->getAssocId() == $format->getId()) {
+						$filteredAvailableFiles[] = $file;
+						break;
+					}
 				}
 			}
 
 			// Expose variables to template
-			$templateMgr->assign('availableFiles', $availableFilesByPublicationFormat);
-			$templateMgr->assign('remoteResources', $remoteResourcesByPublicationFormat);
-
+			$templateMgr->assign('availableFiles', $filteredAvailableFiles);
 		}
 
 		// Provide the currency to the template, if configured.
