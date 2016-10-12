@@ -54,7 +54,7 @@ class CreatePressTest extends WebTestCase {
 		$this->open(self::$baseUrl);
 
 		// Management > Settings > Press
-		$this->waitForElementPresent($selector='css=li.profile a:contains(\'Submissions\')');
+		$this->waitForElementPresent($selector='css=li.profile a:contains(\'Dashboard\')');
 		$this->clickAndWait($selector);
 		$this->waitForElementPresent($selector='css=ul#navigationPrimary a:contains(\'Press\')');
 		$this->clickAndWait($selector);
@@ -80,7 +80,7 @@ class CreatePressTest extends WebTestCase {
 		$this->open(self::$baseUrl);
 
 		// Users & Roles
-		$this->waitForElementPresent($selector='css=li.profile a:contains(\'Submissions\')');
+		$this->waitForElementPresent($selector='css=li.profile a:contains(\'Dashboard\')');
 		$this->clickAndWait($selector);
 		$this->waitForElementPresent($selector='link=Users & Roles');
 		$this->click($selector);
