@@ -48,7 +48,7 @@ class CategoryForm extends Form {
 
 		// Validation checks for this form
 		$this->addCheck(new FormValidatorLocale($this, 'name', 'required', 'grid.category.nameRequired'));
-		$this->addCheck(new FormValidatorAlphaNum($this, 'path', 'required', 'grid.category.pathAlphaNumeric'));
+		$this->addCheck(new FormValidatorRegExp($this, 'path', 'required', 'grid.category.pathAlphaNumeric', '/^[a-zA-Z0-9\/._-]+$/'));
 		$this->addCheck(new FormValidatorCustom(
 			$this, 'path', 'required', 'grid.category.pathExists',
 			create_function(
