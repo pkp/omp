@@ -17,11 +17,7 @@
 {assign var=publicationFormatId value=$publicationFormat->getBestId()}
 
 {* Generate the download URL *}
-{if $downloadFile->getDocumentType()==$smarty.const.DOCUMENT_TYPE_PDF}
-	{url|assign:downloadUrl op="view" path=$monograph->getBestId()|to_array:$publicationFormatId:$downloadFile->getBestId()}
-{else}
-	{url|assign:downloadUrl op="download" path=$monograph->getBestId()|to_array:$publicationFormatId:$downloadFile->getBestId()}
-{/if}
+{url|assign:downloadUrl op="view" path=$monograph->getBestId()|to_array:$publicationFormatId:$downloadFile->getBestId()}
 
 {* Display the download link *}
 <a href="{$downloadUrl}" class="cmp_download_link {$downloadFile->getDocumentType()}">

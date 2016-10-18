@@ -22,6 +22,7 @@ class HtmlMonographFilePlugin extends GenericPlugin {
 	function register($category, $path) {
 		if (parent::register($category, $path)) {
 			if ($this->getEnabled()) {
+				HookRegistry::register('CatalogBookHandler::view', array($this, 'viewCallback'));
 				HookRegistry::register('CatalogBookHandler::download', array($this, 'downloadCallback'));
 			}
 			return true;
@@ -57,22 +58,30 @@ class HtmlMonographFilePlugin extends GenericPlugin {
 	 * @param string $hookName
 	 * @param array $args
 	 */
-	function downloadCallback($hookName, $params) {
+	function viewCallback($hookName, $params) {
 		$publishedMonograph =& $params[1];
 		$publicationFormat =& $params[2];
 		$submissionFile =& $params[3];
 		$inline =& $params[4];
 		$request = Application::getRequest();
 
-		$templateMgr = TemplateManager::getManager($request);
 		if ($submissionFile && $submissionFile->getFileType() == 'text/html') {
+			$templateMgr = TemplateManager::getManager($request);
+			$templateMgr->addStyleSheet(
+				'htmlArticleGalleyStyles',
+				$request->getBaseUrl() . '/plugins/generic/htmlMonographFile/display.css',
+				array(
+					'priority' => STYLE_SEQUENCE_CORE,
+					'contexts' => 'frontend',
+				)
+			);
 			$templateMgr->assign(array(
 				'pluginTemplatePath' => $this->getTemplatePath(),
 				'pluginUrl' => $request->getBaseUrl() . '/' . $this->getPluginPath(),
 				'submissionFile' => $submissionFile,
 				'monograph' => $publishedMonograph,
 				'publicationFormat' => $publicationFormat,
-				'htmlContents' => $this->_getHTMLContents($request, $publishedMonograph, $publicationFormat, $submissionFile),
+				'downloadFile' => $submissionFile,
 			));
 			$templateMgr->display($this->getTemplatePath() . '/display.tpl');
 			exit();
@@ -81,6 +90,25 @@ class HtmlMonographFilePlugin extends GenericPlugin {
 		return false;
 	}
 
+	/**
+	 * Callback to rewrite and serve HTML content.
+	 * @param string $hookName
+	 * @param array $args
+	 */
+	function downloadCallback($hookName, $params) {
+		$publishedMonograph =& $params[1];
+		$publicationFormat =& $params[2];
+		$submissionFile =& $params[3];
+		$inline =& $params[4];
+		$request = Application::getRequest();
+
+		if ($submissionFile && $submissionFile->getFileType() == 'text/html') {
+			echo $this->_getHTMLContents($request, $publishedMonograph, $publicationFormat, $submissionFile);
+			return true;
+		}
+
+		return false;
+	}
 	/**
 	 * Return string containing the contents of the HTML file.
 	 * This function performs any necessary filtering, like image URL replacement.
