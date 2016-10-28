@@ -26,7 +26,6 @@ class JlockehartSubmissionTest extends ContentBaseTestCase {
 			'lastName' => 'Locke Hart',
 			'affiliation' => 'University of Alberta',
 			'country' => 'Canada',
-			'roles' => array('Author'),
 		));
 
 		$title = 'Dreamwork';

@@ -23,7 +23,7 @@ class SeriesTest extends WebTestCase {
 		$this->open(self::$baseUrl);
 
 		// Management > Settings > Press
-		$this->waitForElementPresent($selector='css=li.profile a:contains(\'Submissions\')');
+		$this->waitForElementPresent($selector='css=li.profile a:contains(\'Dashboard\')');
 		$this->click($selector);
 		$this->waitForElementPresent($selector='link=Press');
 		$this->click($selector);

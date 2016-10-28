@@ -26,7 +26,6 @@ class AlkarrasSubmissionTest extends ContentBaseTestCase {
 			'lastName' => 'Karras',
 			'affiliation' => 'Saskatchewan',
 			'country' => 'Canada',
-			'roles' => array('Author'),
 		));
 
 		$title = 'Northern Rover: The Life Story of Olaf Hanson';

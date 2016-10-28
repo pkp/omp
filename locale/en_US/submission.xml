@@ -26,6 +26,8 @@
 	<message key="submission.monograph">Monograph</message>
 	<message key="submission.published">Production Ready</message>
 	<message key="submission.fairCopy">Fair Copy</message>
+	<message key="submission.authorWithAffiliation">{$name}, {$affiliation}</message>
+	<message key="submission.authorListSeparator">; </message>
 	<message key="submission.artwork.permissions">Permissions</message>
 	<message key="submission.chapter">Chapter</message>
 	<message key="submission.chapters">Chapters</message>

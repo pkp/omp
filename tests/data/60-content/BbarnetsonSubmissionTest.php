@@ -26,7 +26,6 @@ class BbarnetsonSubmissionTest extends ContentBaseTestCase {
 			'lastName' => 'Barnetson',
 			'affiliation' => 'Athabasca University',
 			'country' => 'Canada',
-			'roles' => array('Author'),
 		));
 
 		$this->createSubmission(array(
