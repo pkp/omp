@@ -76,6 +76,10 @@
 		<note file="docs/release-notes/README-BEACON" />
 	</upgrade>
 
+	<upgrade minversion="1.2.0.0" maxversion="1.2.0.9">
+		<code function="fixQueriesAssocTypes" />
+	</upgrade>
+
 	<!-- Update plugin configuration - should be done as the final upgrade task -->
 	<code function="addPluginVersions" />
 </install>
