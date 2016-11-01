@@ -39,7 +39,7 @@ class Handler extends PKPHandler {
 		if ($requestedPath === 'index' || $requestedPath === '') {
 			// No press requested. Check how many presses has the site.
 			$pressDao = DAORegistry::getDAO('PressDAO'); /* @var $pressDao PressDAO */
-			$presses = $pressDao->getAll();
+			$presses = $pressDao->getAll(true);
 			$pressesCount = $presses->getCount();
 			$press = null;
 			if ($pressesCount === 1) {
