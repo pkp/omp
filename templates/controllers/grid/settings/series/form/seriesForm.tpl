@@ -53,7 +53,7 @@
 				{fbvElement label="common.prefixAndTitle.tip" type="text" multilingual=true name="prefix" id="prefix" value=$prefix}
 			{/fbvFormSection}
 			{fbvFormSection for="title" title="common.title" inline="true" size=$fbvStyles.size.LARGE required=true}
-				{fbvElement type="text" multilingual=true name="title" id="title" value=$title}
+				{fbvElement type="text" multilingual=true name="title" id="title" value=$title required=true}
 			{/fbvFormSection}
 		</div>
 
