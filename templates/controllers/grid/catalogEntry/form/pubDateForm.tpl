@@ -22,13 +22,13 @@
 	<input type="hidden" name="publicationDateId" value="{$publicationDateId|escape}" />
 	{fbvFormArea id="addDate"}
 		{fbvFormSection title="grid.catalogEntry.dateValue" for="date" required="true"}
-			{fbvElement type="text" id="date" value=$date size=$fbvStyles.size.MEDIUM}
+			{fbvElement type="text" id="date" value=$date size=$fbvStyles.size.MEDIUM required="true"}
 		{/fbvFormSection}
 		{fbvFormSection title="grid.catalogEntry.dateFormat" for="dateFormat" required="true" size=$fbvStyles.size.MEDIUM}
-			{fbvElement type="select" from=$publicationDateFormats selected=$dateFormat id="dateFormat" translate=false}
+			{fbvElement type="select" from=$publicationDateFormats selected=$dateFormat id="dateFormat" translate=false required="true"}
 		{/fbvFormSection}
 		{fbvFormSection title="grid.catalogEntry.dateRole" for="role" required="true" size=$fbvStyles.size.MEDIUM}
-			{fbvElement type="select" from=$publicationDateRoles selected=$role id="role" translate=false}
+			{fbvElement type="select" from=$publicationDateRoles selected=$role id="role" translate=false required="true"}
 		{/fbvFormSection}
 		{fbvFormButtons}
 	{/fbvFormArea}

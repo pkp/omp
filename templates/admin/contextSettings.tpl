@@ -27,13 +27,13 @@
 
 	{fbvFormArea id="pressSettings"}
 		{fbvFormSection title="manager.setup.contextName" required=true for="name"}
-			{fbvElement type="text" id="name" value=$name multilingual=true}
+			{fbvElement type="text" id="name" value=$name multilingual=true required=true}
 		{/fbvFormSection}
 		{fbvFormSection title="admin.presses.pressDescription" for="description"}
 			{fbvElement type="textarea" id="description" value=$description multilingual=true rich=true}
 		{/fbvFormSection}
 		{fbvFormSection title="press.path" required=true for="path"}
-			{fbvElement type="text" id="path" value=$path size=$smarty.const.SMALL maxlength="32"}
+			{fbvElement type="text" id="path" value=$path size=$smarty.const.SMALL maxlength="32" required=true}
 			{url|assign:"sampleUrl" router=$smarty.const.ROUTE_PAGE press="path"}
 			{** FIXME: is this class instruct still the right one? **}
 			<span class="instruct">{translate key="admin.presses.urlWillBe" sampleUrl=$sampleUrl}</span>
