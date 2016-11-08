@@ -67,9 +67,9 @@ class SpotlightsGridRow extends GridRow {
 			import('lib.pkp.classes.linkAction.request.RemoteActionConfirmationModal');
 			$this->addAction(
 				new LinkAction(
-					$request->getSession(),
 					'deleteSpotlight',
 					new RemoteActionConfirmationModal(
+						$request->getSession(),
 						__('common.confirmDelete'),
 						__('common.delete'),
 						$router->url($request, null, null, 'deleteSpotlight', null, $actionArgs),
