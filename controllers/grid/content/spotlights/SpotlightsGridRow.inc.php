@@ -69,6 +69,7 @@ class SpotlightsGridRow extends GridRow {
 				new LinkAction(
 					'deleteSpotlight',
 					new RemoteActionConfirmationModal(
+						$request->getSession(),
 						__('common.confirmDelete'),
 						__('common.delete'),
 						$router->url($request, null, null, 'deleteSpotlight', null, $actionArgs),
