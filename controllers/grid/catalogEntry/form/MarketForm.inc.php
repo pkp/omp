@@ -25,8 +25,8 @@ class MarketForm extends Form {
 	/**
 	 * Constructor.
 	 */
-	function MarketForm($monograph, $market) {
-		parent::Form('controllers/grid/catalogEntry/form/marketForm.tpl');
+	function __construct($monograph, $market) {
+		parent::__construct('controllers/grid/catalogEntry/form/marketForm.tpl');
 		$this->setMonograph($monograph);
 		$this->setMarket($market);
 

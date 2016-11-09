@@ -19,8 +19,8 @@ class PressSettingsDAO extends SettingsDAO {
 	/**
 	 * Constructor
 	 */
-	function PressSettingsDAO() {
-		parent::SettingsDAO();
+	function __construct() {
+		parent::__construct();
 	}
 
 	/**

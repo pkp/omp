@@ -20,8 +20,8 @@ class RepresentativeDAO extends DAO {
 	/**
 	 * Constructor
 	 */
-	function RepresentativeDAO() {
-		parent::DAO();
+	function __construct() {
+		parent::__construct();
 	}
 
 	/**

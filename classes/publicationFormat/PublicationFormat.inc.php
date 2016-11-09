@@ -20,8 +20,8 @@ class PublicationFormat extends Representation {
 	/**
 	 * Constructor.
 	 */
-	function PublicationFormat() {
-		parent::Representation();
+	function __construct() {
+		parent::__construct();
 	}
 
 	/**

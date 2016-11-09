@@ -18,7 +18,7 @@ class PublicationFormatTombstoneManager {
 	/**
 	 * Constructor
 	 */
-	function PublicationFormatTombstoneManager() {
+	function __construct() {
 	}
 
 	/**

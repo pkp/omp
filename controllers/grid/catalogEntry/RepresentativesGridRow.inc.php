@@ -22,9 +22,9 @@ class RepresentativesGridRow extends GridRow {
 	/**
 	 * Constructor
 	 */
-	function RepresentativesGridRow($monograph) {
+	function __construct($monograph) {
 		$this->_monograph = $monograph;
-		parent::GridRow();
+		parent::__construct();
 	}
 
 	//

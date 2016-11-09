@@ -24,8 +24,8 @@ class OmpPublishedMonographAccessPolicy extends ContextPolicy {
 	 * @param $publishedMonographsOnly boolean whether the OmpPublishedMonographRequiredPolicy has to be considered/added
 	 *  expect the submission id in.
 	 */
-	function OmpPublishedMonographAccessPolicy($request, $args, $roleAssignments, $submissionParameterName = 'submissionId', $publishedMonographsOnly = true) {
-		parent::ContextPolicy($request);
+	function __construct($request, $args, $roleAssignments, $submissionParameterName = 'submissionId', $publishedMonographsOnly = true) {
+		parent::__construct($request);
 
 		// Access may be made either as a member of the public, or
 		// via pre-publication access to editorial users.

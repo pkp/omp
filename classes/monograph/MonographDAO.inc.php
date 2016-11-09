@@ -21,8 +21,8 @@ class MonographDAO extends SubmissionDAO {
 	/**
 	 * Constructor.
 	 */
-	function MonographDAO() {
-		parent::SubmissionDAO();
+	function __construct() {
+		parent::__construct();
 	}
 
 	/**

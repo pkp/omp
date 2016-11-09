@@ -31,8 +31,8 @@ class Qualifier extends CodelistItem {
 	/**
 	 * Constructor
 	 */
-	function Qualifier() {
-		parent::CodelistItem();
+	function __construct() {
+		parent::__construct();
 	}
 
 	/**

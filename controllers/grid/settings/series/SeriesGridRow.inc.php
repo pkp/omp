@@ -19,8 +19,8 @@ class SeriesGridRow extends GridRow {
 	/**
 	 * Constructor
 	 */
-	function SeriesGridRow() {
-		parent::GridRow();
+	function __construct() {
+		parent::__construct();
 	}
 
 	//

@@ -26,8 +26,8 @@ class PublishedMonograph extends Monograph {
 	/**
 	 * Constructor.
 	 */
-	function PublishedMonograph() {
-		parent::Monograph();
+	function __construct() {
+		parent::__construct();
 	}
 
 	/**

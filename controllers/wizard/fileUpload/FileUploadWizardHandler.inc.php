@@ -26,8 +26,8 @@ class FileUploadWizardHandler extends PKPFileUploadWizardHandler {
 	/**
 	 * Constructor
 	 */
-	function FileUploadWizardHandler() {
-		parent::PKPFileUploadWizardHandler();
+	function __construct() {
+		parent::__construct();
 	}
 
 	//

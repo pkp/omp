@@ -20,8 +20,8 @@ class MonographFileEmailLogEntry extends EmailLogEntry {
 	/**
 	 * Constructor.
 	 */
-	function MonographFileEmailLogEntry() {
-		parent::EmailLogEntry();
+	function __construct() {
+		parent::__construct();
 	}
 
 	function setFileId($fileId) {

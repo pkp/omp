@@ -17,8 +17,8 @@ class NotificationStatusDAO extends DAO {
 	/**
 	 * Constructor
 	 */
-	function NotificationStatusDAO() {
-		parent::DAO();
+	function __construct() {
+		parent::__construct();
 	}
 
 	function getPressNotifications($userId) {

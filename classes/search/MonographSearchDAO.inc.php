@@ -21,8 +21,8 @@ class MonographSearchDAO extends SubmissionSearchDAO {
 	/**
 	 * Constructor
 	 */
-	function MonographSearchDAO() {
-		parent::SubmissionSearchDAO();
+	function __construct() {
+		parent::__construct();
 	}
 
 	/**

@@ -27,11 +27,11 @@ class DownloadCopyeditedFileLinkAction extends DownloadFileLinkAction {
 	 * @param $monographFile SubmissionFile the monograph file to
 	 *  link to.
 	 */
-	function DownloadCopyeditedFileLinkAction($request, $monographFile, $user, $userGroup) {
+	function __construct($request, $monographFile, $user, $userGroup) {
 		$this->_user = $user;
 		$this->_userGroup = $userGroup;
 
-		parent::DownloadFileLinkAction($request, $monographFile);
+		parent::__construct($request, $monographFile);
 	}
 
 	/**

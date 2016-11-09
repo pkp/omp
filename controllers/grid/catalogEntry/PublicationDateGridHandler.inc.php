@@ -34,8 +34,8 @@ class PublicationDateGridHandler extends GridHandler {
 	/**
 	 * Constructor
 	 */
-	function PublicationDateGridHandler() {
-		parent::GridHandler();
+	function __construct() {
+		parent::__construct();
 		$this->addRoleAssignment(
 				array(ROLE_ID_MANAGER),
 				array('fetchGrid', 'fetchRow', 'addDate', 'editDate',

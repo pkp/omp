@@ -20,8 +20,8 @@ class PressDAO extends ContextDAO {
 	/**
 	 * Constructor
 	 */
-	function PressDAO() {
-		parent::ContextDAO();
+	function __construct() {
+		parent::__construct();
 	}
 
 	/**

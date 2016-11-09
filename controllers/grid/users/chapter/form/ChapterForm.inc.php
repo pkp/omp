@@ -28,8 +28,8 @@ class ChapterForm extends Form {
 	 * @param $monograph Monograph
 	 * @param $chapter Chapter
 	 */
-	function ChapterForm($monograph, $chapter) {
-		parent::Form('controllers/grid/users/chapter/form/chapterForm.tpl');
+	function __construct($monograph, $chapter) {
+		parent::__construct('controllers/grid/users/chapter/form/chapterForm.tpl');
 		$this->setMonograph($monograph);
 
 		if ($chapter) {

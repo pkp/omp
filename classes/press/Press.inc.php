@@ -24,8 +24,8 @@ class Press extends Context {
 	/**
 	 * Constructor
 	 */
-	function Press() {
-		parent::Context();
+	function __construct() {
+		parent::__construct();
 	}
 
 	/**

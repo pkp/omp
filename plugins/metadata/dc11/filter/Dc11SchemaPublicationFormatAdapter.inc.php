@@ -24,8 +24,8 @@ class Dc11SchemaPublicationFormatAdapter extends MetadataDataObjectAdapter {
 	 * Constructor
 	 * @param $filterGroup FilterGroup
 	 */
-	function Dc11SchemaPublicationFormatAdapter(&$filterGroup) {
-		parent::MetadataDataObjectAdapter($filterGroup);
+	function __construct(&$filterGroup) {
+		parent::__construct($filterGroup);
 	}
 
 

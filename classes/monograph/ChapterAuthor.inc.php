@@ -22,8 +22,8 @@ class ChapterAuthor extends Author {
 	/**
 	 * Constructor.
 	 */
-	function ChapterAuthor() {
-		parent::Author();
+	function __construct() {
+		parent::__construct();
 	}
 
 	//

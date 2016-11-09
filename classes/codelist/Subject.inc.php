@@ -31,8 +31,8 @@ class Subject extends CodelistItem {
 	/**
 	 * Constructor
 	 */
-	function Subject() {
-		parent::CodelistItem();
+	function __construct() {
+		parent::__construct();
 	}
 
 	/**

@@ -32,8 +32,8 @@ class RepresentativesGridHandler extends CategoryGridHandler {
 	/**
 	 * Constructor
 	 */
-	function RepresentativesGridHandler() {
-		parent::CategoryGridHandler();
+	function __construct() {
+		parent::__construct();
 		$this->addRoleAssignment(
 				array(ROLE_ID_MANAGER),
 				array('fetchGrid', 'fetchCategory', 'fetchRow', 'addRepresentative', 'editRepresentative',

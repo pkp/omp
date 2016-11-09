@@ -23,8 +23,8 @@ class Spotlight extends DataObject {
 	/**
 	 * Constructor
 	 */
-	function Spotlight() {
-		parent::DataObject();
+	function __construct() {
+		parent::__construct();
 	}
 
 	//

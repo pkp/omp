@@ -21,8 +21,8 @@ class MonographFileEmailLogDAO extends EmailLogDAO {
 	/**
 	 * Constructor
 	 */
-	function MonographFileEmailLogDAO() {
-		parent::EmailLogDAO();
+	function __construct() {
+		parent::__construct();
 	}
 
 	/**

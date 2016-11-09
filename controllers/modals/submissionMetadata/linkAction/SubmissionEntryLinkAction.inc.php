@@ -26,7 +26,7 @@ class SubmissionEntryLinkAction extends LinkAction {
 	 * none is passed, the first catalog entry tab will be opened.
 	 * @param $image string
 	 */
-	function SubmissionEntryLinkAction($request, $monographId, $stageId, $selectedFormatId = null, $image = 'information') {
+	function __construct($request, $monographId, $stageId, $selectedFormatId = null, $image = 'information') {
 		$actionArgs = array(
 			'submissionId' => $monographId,
 			'stageId' => $stageId,
@@ -37,7 +37,7 @@ class SubmissionEntryLinkAction extends LinkAction {
 
 		$dispatcher = $request->getDispatcher();
 		import('lib.pkp.classes.linkAction.request.AjaxModal');
-		parent::LinkAction(
+		parent::__construct(
 			'catalogEntry',
 			new AjaxModal(
 				$dispatcher->url(

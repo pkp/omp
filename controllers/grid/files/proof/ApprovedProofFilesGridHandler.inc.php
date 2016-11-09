@@ -34,8 +34,8 @@ class ApprovedProofFilesGridHandler extends GridHandler {
 	/**
 	 * Constructor
 	 */
-	function ApprovedProofFilesGridHandler() {
-		parent::GridHandler(new ApprovedProofFilesGridDataProvider());
+	function __construct() {
+		parent::__construct(new ApprovedProofFilesGridDataProvider());
 
 		$this->addRoleAssignment(
 			array(ROLE_ID_MANAGER, ROLE_ID_SUB_EDITOR),

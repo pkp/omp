@@ -25,8 +25,8 @@ class CoverHandler extends PKPHandler {
 	/**
 	 * Constructor
 	 */
-	function CoverHandler() {
-		parent::PKPHandler();
+	function __construct() {
+		parent::__construct();
 	}
 
 	/**

@@ -28,8 +28,8 @@ class CatalogMonographsGridHandler extends GridHandler {
 	/**
 	 * Constructor.
 	 */
-	function CatalogMonographsGridHandler() {
-		parent::GridHandler();
+	function __construct() {
+		parent::__construct();
 		$this->addRoleAssignment(
 			array(ROLE_ID_MANAGER, ROLE_ID_SUB_EDITOR),
 			array('fetchGrid', 'fetchRows', 'fetchRow', 'toggle', 'saveSequence')

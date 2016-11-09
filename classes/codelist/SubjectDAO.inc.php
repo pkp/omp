@@ -23,8 +23,8 @@ class SubjectDAO extends CodelistItemDAO {
 	/**
 	 * Constructor.
 	 */
-	function SubjectDAO() {
-		parent::CodelistItemDAO();
+	function __construct() {
+		parent::__construct();
 	}
 
 	/**

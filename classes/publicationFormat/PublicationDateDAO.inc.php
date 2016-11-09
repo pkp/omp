@@ -20,8 +20,8 @@ class PublicationDateDAO extends DAO {
 	/**
 	 * Constructor
 	 */
-	function PublicationDateDAO() {
-		parent::DAO();
+	function __construct() {
+		parent::__construct();
 	}
 
 	/**

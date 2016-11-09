@@ -22,8 +22,8 @@ class ChapterGridCategoryRowCellProvider extends GridCellProvider {
 	/**
 	 * Constructor
 	 */
-	function ChapterGridCategoryRowCellProvider() {
-		parent::GridCellProvider();
+	function __construct() {
+		parent::__construct();
 	}
 
 	/**

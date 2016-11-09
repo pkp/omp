@@ -20,10 +20,10 @@ class ProductionStageForm extends ContextSettingsForm {
 	/**
 	 * Constructor.
 	 */
-	function ProductionStageForm($wizardMode = false) {
+	function __construct($wizardMode = false) {
 		$settings = array('publisher' => 'string', 'location' => 'string', 'codeType' => 'string', 'codeValue' => 'string');
 
-		parent::ContextSettingsForm($settings, 'controllers/tab/settings/productionStage/form/productionStageForm.tpl', $wizardMode);
+		parent::__construct($settings, 'controllers/tab/settings/productionStage/form/productionStageForm.tpl', $wizardMode);
 	}
 
 

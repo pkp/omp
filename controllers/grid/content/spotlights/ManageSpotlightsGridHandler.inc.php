@@ -38,8 +38,8 @@ class ManageSpotlightsGridHandler extends GridHandler {
 	/**
 	 * Constructor
 	 */
-	function ManageSpotlightsGridHandler() {
-		parent::GridHandler();
+	function __construct() {
+		parent::__construct();
 		$this->addRoleAssignment(
 				array(ROLE_ID_MANAGER),
 				array('fetchGrid', 'fetchRow', 'addSpotlight', 'editSpotlight',

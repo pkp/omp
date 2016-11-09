@@ -18,8 +18,8 @@ class Market extends DataObject {
 	/**
 	 * Constructor
 	 */
-	function Market() {
-		parent::DataObject();
+	function __construct() {
+		parent::__construct();
 	}
 
 	/**

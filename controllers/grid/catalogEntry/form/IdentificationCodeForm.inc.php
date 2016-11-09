@@ -25,8 +25,8 @@ class IdentificationCodeForm extends Form {
 	/**
 	 * Constructor.
 	 */
-	function IdentificationCodeForm($monograph, $identificationCode) {
-		parent::Form('controllers/grid/catalogEntry/form/codeForm.tpl');
+	function __construct($monograph, $identificationCode) {
+		parent::__construct('controllers/grid/catalogEntry/form/codeForm.tpl');
 		$this->setMonograph($monograph);
 		$this->setIdentificationCode($identificationCode);
 

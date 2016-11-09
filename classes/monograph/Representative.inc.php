@@ -18,8 +18,8 @@ class Representative extends DataObject {
 	/**
 	 * Constructor
 	 */
-	function Representative() {
-		parent::DataObject();
+	function __construct() {
+		parent::__construct();
 	}
 
 	/**

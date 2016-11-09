@@ -21,7 +21,7 @@ class MonographlessCatalogEntryLinkAction extends LinkAction {
 	 * Constructor
 	 * @param $request Request
 	 */
-	function MonographlessCatalogEntryLinkAction($request) {
+	function __construct($request) {
 		$router = $request->getRouter();
 		$dispatcher = $router->getDispatcher();
 
@@ -41,7 +41,7 @@ class MonographlessCatalogEntryLinkAction extends LinkAction {
 		if (!isset($action)) {
 			$action = 'newCatalogEntry';
 		}
-		parent::LinkAction($action, $modal, __('submission.catalogEntry.new'), 'information');
+		parent::__construct($action, $modal, __('submission.catalogEntry.new'), 'information');
 	}
 }
 

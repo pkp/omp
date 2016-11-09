@@ -19,8 +19,8 @@ abstract class ViewableFilePlugin extends PKPViewableFilePlugin {
 	/**
 	 * Constructor
 	 */
-	function ViewableFilePlugin() {
-		parent::PKPViewableFilePlugin();
+	function __construct() {
+		parent::__construct();
 	}
 
 	/**

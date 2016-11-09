@@ -20,8 +20,8 @@ class MonographNativeXmlFilter extends SubmissionNativeXmlFilter {
 	 * Constructor
 	 * @param $filterGroup FilterGroup
 	 */
-	function MonographNativeXmlFilter($filterGroup) {
-		parent::SubmissionNativeXmlFilter($filterGroup);
+	function __construct($filterGroup) {
+		parent::__construct($filterGroup);
 	}
 
 

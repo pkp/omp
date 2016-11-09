@@ -25,8 +25,8 @@ class RepresentativeForm extends Form {
 	/**
 	 * Constructor.
 	 */
-	function RepresentativeForm($monograph, $representative) {
-		parent::Form('controllers/grid/catalogEntry/form/representativeForm.tpl');
+	function __construct($monograph, $representative) {
+		parent::__construct('controllers/grid/catalogEntry/form/representativeForm.tpl');
 		$this->setMonograph($monograph);
 		$this->setRepresentative($representative);
 

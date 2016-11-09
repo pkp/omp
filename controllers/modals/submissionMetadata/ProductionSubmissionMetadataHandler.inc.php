@@ -22,8 +22,8 @@ class ProductionSubmissionMetadataHandler extends SubmissionMetadataHandler {
 	/**
 	 * Constructor.
 	 */
-	function ProductionSubmissionMetadataHandler() {
-		parent::SubmissionMetadataHandler();
+	function __construct() {
+		parent::__construct();
 		$this->addRoleAssignment(array(ROLE_ID_MANAGER, ROLE_ID_SUB_EDITOR, ROLE_ID_ASSISTANT), array('fetch', 'saveForm'));
 	}
 

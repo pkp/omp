@@ -30,8 +30,8 @@ class ReviewerSubmission extends Monograph {
 	/**
 	 * Constructor.
 	 */
-	function ReviewerSubmission() {
-		parent::Monograph();
+	function __construct() {
+		parent::__construct();
 	}
 
 	/**

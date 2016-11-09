@@ -22,8 +22,8 @@ class MonographSearch extends SubmissionSearch {
 	/**
 	 * Constructor
 	 */
-	function MonographSearch() {
-		parent::SubmissionSearch();
+	function __construct() {
+		parent::__construct();
 	}
 
 	/**

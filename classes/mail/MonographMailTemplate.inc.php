@@ -28,8 +28,8 @@ class MonographMailTemplate extends SubmissionMailTemplate {
 	 * @param $includeSignature boolean optional
 	 * @see MailTemplate::MailTemplate()
 	 */
-	function MonographMailTemplate($submission, $emailKey = null, $locale = null, $context = null, $includeSignature = true) {
-		parent::SubmissionMailTemplate($submission, $emailKey, $locale, $context, $includeSignature);
+	function __construct($submission, $emailKey = null, $locale = null, $context = null, $includeSignature = true) {
+		parent::__construct($submission, $emailKey, $locale, $context, $includeSignature);
 	}
 
 	function assignParams($paramArray = array()) {

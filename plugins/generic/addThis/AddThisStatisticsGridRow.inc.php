@@ -19,8 +19,8 @@ class AddThisStatisticsGridRow extends GridRow {
 	/**
 	 * Constructor
 	 */
-	function AddThisStatisticsGridRow() {
-		parent::GridRow();
+	function __construct() {
+		parent::__construct();
 	}
 
 	//

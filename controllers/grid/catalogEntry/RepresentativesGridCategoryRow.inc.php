@@ -23,8 +23,8 @@ class RepresentativesGridCategoryRow extends GridCategoryRow {
 	/**
 	 * Constructor
 	 */
-	function RepresentativesGridCategoryRow() {
-		parent::GridCategoryRow();
+	function __construct() {
+		parent::__construct();
 	}
 
 	//

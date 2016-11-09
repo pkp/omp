@@ -20,8 +20,8 @@ class IdentificationCodeDAO extends DAO {
 	/**
 	 * Constructor
 	 */
-	function IdentificationCodeDAO() {
-		parent::DAO();
+	function __construct() {
+		parent::__construct();
 	}
 
 	/**

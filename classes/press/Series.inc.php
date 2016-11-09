@@ -20,8 +20,8 @@ class Series extends PKPSection {
 	/**
 	 * Constructor.
 	 */
-	function Series() {
-		parent::PKPSection();
+	function __construct() {
+		parent::__construct();
 	}
 
 	/**

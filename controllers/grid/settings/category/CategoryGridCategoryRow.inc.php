@@ -22,8 +22,8 @@ class CategoryGridCategoryRow extends GridCategoryRow {
 	/**
 	 * Constructor
 	 */
-	function CategoryGridCategoryRow() {
-		parent::GridCategoryRow();
+	function __construct() {
+		parent::__construct();
 	}
 
 	//

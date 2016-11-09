@@ -24,8 +24,8 @@ class AnnouncementTypeForm extends PKPAnnouncementTypeForm {
 	 * @param $pressId int
 	 * @param $announcementTypeId int leave as default for new announcement
 	 */
-	function AnnouncementTypeForm($pressId, $announcementTypeId = null) {
-		parent::PKPAnnouncementTypeForm($announcementTypeId);
+	function __construct($pressId, $announcementTypeId = null) {
+		parent::__construct($announcementTypeId);
 		$this->pressId = $pressId;
 	}
 

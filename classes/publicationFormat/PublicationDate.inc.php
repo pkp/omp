@@ -22,12 +22,12 @@ class PublicationDate extends DataObject {
 	/**
 	 * Constructor
 	 */
-	function PublicationDate() {
+	function __construct() {
 
 		$onixCodelistItemDao = DAORegistry::getDAO('ONIXCodelistItemDAO');
 		$this->dateFormats =& $onixCodelistItemDao->getCodes('List55');
 
-		parent::DataObject();
+		parent::__construct();
 	}
 
 	/**

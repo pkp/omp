@@ -20,8 +20,8 @@ class SalesRightsDAO extends DAO {
 	/**
 	 * Constructor
 	 */
-	function SalesRightsDAO() {
-		parent::DAO();
+	function __construct() {
+		parent::__construct();
 	}
 
 	/**

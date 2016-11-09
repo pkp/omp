@@ -21,8 +21,8 @@ class EmailTemplateDAO extends PKPEmailTemplateDAO {
 	/**
 	 * Constructor
 	 */
-	function EmailTemplateDAO() {
-		parent::PKPEmailTemplateDAO();
+	function __construct() {
+		parent::__construct();
 	}
 
 	/**

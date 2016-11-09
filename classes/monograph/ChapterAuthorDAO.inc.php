@@ -24,8 +24,8 @@ class ChapterAuthorDAO extends DAO {
 	/**
 	 * Constructor
 	 */
-	function ChapterAuthorDAO() {
-		parent::DAO();
+	function __construct() {
+		parent::__construct();
 	}
 
 	/**

@@ -19,8 +19,8 @@ class ProfileForm extends PKPProfileForm {
 	/**
 	 * Constructor.
 	 */
-	function ProfileForm($user) {
-		parent::PKPProfileForm($user);
+	function __construct($user) {
+		parent::__construct($user);
 	}
 
 	/**

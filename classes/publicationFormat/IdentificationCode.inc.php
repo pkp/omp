@@ -18,8 +18,8 @@ class IdentificationCode extends DataObject {
 	/**
 	 * Constructor
 	 */
-	function IdentificationCode() {
-		parent::DataObject();
+	function __construct() {
+		parent::__construct();
 	}
 
 	/**

@@ -23,8 +23,8 @@ class InitiateInternalReviewForm extends InitiateReviewForm {
 	 * @param $decision int SUBMISSION_EDITOR_DECISION_...
 	 * @param $stageId int WORKFLOW_STAGE_ID_...
 	 */
-	function InitiateInternalReviewForm($submission, $decision, $stageId) {
-		parent::InitiateReviewForm($submission, $decision, $stageId, 'controllers/modals/editorDecision/form/initiateInternalReviewForm.tpl');
+	function __construct($submission, $decision, $stageId) {
+		parent::__construct($submission, $decision, $stageId, 'controllers/modals/editorDecision/form/initiateInternalReviewForm.tpl');
 	}
 
 	/**

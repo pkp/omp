@@ -26,8 +26,8 @@ class OmpPublishedMonographRequiredPolicy extends DataObjectRequiredPolicy {
 	 *  the submission id in.
 	 * @param $operations array
 	 */
-	function OmpPublishedMonographRequiredPolicy($request, &$args, $submissionParameterName = 'submissionId', $operations = null) {
-		parent::DataObjectRequiredPolicy($request, $args, $submissionParameterName, 'user.authorization.invalidPublishedMonograph', $operations);
+	function __construct($request, &$args, $submissionParameterName = 'submissionId', $operations = null) {
+		parent::__construct($request, $args, $submissionParameterName, 'user.authorization.invalidPublishedMonograph', $operations);
 		$this->context = $request->getContext();
 	}
 

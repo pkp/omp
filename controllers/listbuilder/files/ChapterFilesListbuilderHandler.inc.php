@@ -22,11 +22,11 @@ class ChapterFilesListbuilderHandler extends FilesListbuilderHandler {
 	/**
 	 * Constructor
 	 */
-	function ChapterFilesListbuilderHandler() {
+	function __construct() {
 		// Get access to the monograph file constants.
 		AppLocale::requireComponents(LOCALE_COMPONENT_PKP_SUBMISSION);
 		import('lib.pkp.classes.submission.SubmissionFile');
-		parent::FilesListbuilderHandler();
+		parent::__construct();
 
 		$this->addRoleAssignment(
 			array(ROLE_ID_AUTHOR),

@@ -21,8 +21,8 @@ define('STATISTICS_DIMENSION_SERIES_ID', STATISTICS_DIMENSION_PKP_SECTION_ID);
 
 class StatisticsHelper extends PKPStatisticsHelper {
 
-	function StatisticsHelper() {
-		parent::PKPStatisticsHelper();
+	function __construct() {
+		parent::__construct();
 	}
 
 	/**

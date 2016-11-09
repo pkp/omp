@@ -24,10 +24,10 @@ class PublicationFormatCategoryGridDataProvider extends SubmissionFilesCategoryG
 	/**
 	 * Constructor
 	 */
-	function PublicationFormatCategoryGridDataProvider($gridHandler) {
+	function __construct($gridHandler) {
 		$this->_gridHandler = $gridHandler;
 		import('lib.pkp.classes.submission.SubmissionFile');
-		parent::SubmissionFilesCategoryGridDataProvider(SUBMISSION_FILE_PROOF);
+		parent::__construct(SUBMISSION_FILE_PROOF);
 		$this->setStageId(WORKFLOW_STAGE_ID_PRODUCTION);
 	}
 

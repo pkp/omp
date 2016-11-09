@@ -27,8 +27,8 @@ class ReviewerSubmissionDAO extends MonographDAO {
 	/**
 	 * Constructor.
 	 */
-	function ReviewerSubmissionDAO() {
-		parent::MonographDAO();
+	function __construct() {
+		parent::__construct();
 		$this->authorDao = DAORegistry::getDAO('AuthorDAO');
 		$this->userDao = DAORegistry::getDAO('UserDAO');
 		$this->reviewAssignmentDao = DAORegistry::getDAO('ReviewAssignmentDAO');

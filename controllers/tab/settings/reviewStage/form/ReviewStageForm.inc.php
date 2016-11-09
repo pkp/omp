@@ -20,8 +20,8 @@ class ReviewStageForm extends PKPReviewStageForm {
 	/**
 	 * Constructor.
 	 */
-	function ReviewStageForm($wizardMode = false, $settings = array(), $template = 'controllers/tab/settings/reviewStage/form/reviewStageForm.tpl') {
-		parent::PKPReviewStageForm(
+	function __construct($wizardMode = false, $settings = array(), $template = 'controllers/tab/settings/reviewStage/form/reviewStageForm.tpl') {
+		parent::__construct(
 			$wizardMode,
 			array_merge(
 				$settings,

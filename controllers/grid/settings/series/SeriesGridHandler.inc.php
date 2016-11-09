@@ -20,8 +20,8 @@ class SeriesGridHandler extends SetupGridHandler {
 	/**
 	 * Constructor
 	 */
-	function SeriesGridHandler() {
-		parent::SetupGridHandler();
+	function __construct() {
+		parent::__construct();
 		$this->addRoleAssignment(
 			array(ROLE_ID_MANAGER),
 			array('fetchGrid', 'fetchRow', 'addSeries', 'editSeries', 'updateSeries', 'deleteSeries', 'saveSequence')

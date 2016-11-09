@@ -20,8 +20,8 @@ class PressSiteSettingsForm extends ContextSiteSettingsForm {
 	 * Constructor.
 	 * @param $contextId omit for a new press
 	 */
-	function PressSiteSettingsForm($contextId = null) {
-		parent::ContextSiteSettingsForm($contextId);
+	function __construct($contextId = null) {
+		parent::__construct($contextId);
 	}
 
 	/**

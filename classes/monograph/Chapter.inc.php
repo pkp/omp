@@ -18,8 +18,8 @@ class Chapter extends DataObject {
 	/**
 	 * Constructor
 	 */
-	function Chapter() {
-		parent::DataObject();
+	function __construct() {
+		parent::__construct();
 	}
 
 	//

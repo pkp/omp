@@ -19,8 +19,8 @@ class Onix30ExportPlugin extends ImportExportPlugin {
 	/**
 	 * Constructor
 	 */
-	function Onix30ExportPlugin() {
-		parent::ImportExportPlugin();
+	function __construct() {
+		parent::__construct();
 	}
 
 	/**

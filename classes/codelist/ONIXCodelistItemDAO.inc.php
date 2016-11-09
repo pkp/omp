@@ -25,8 +25,8 @@ class ONIXCodelistItemDAO extends DAO {
 	/**
 	 * Constructor.
 	 */
-	function ONIXCodelistItemDAO() {
-		parent::DAO();
+	function __construct() {
+		parent::__construct();
 	}
 
 	function &_getCache($locale = null) {

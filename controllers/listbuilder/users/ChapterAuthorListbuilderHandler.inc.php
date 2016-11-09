@@ -22,8 +22,8 @@ class ChapterAuthorListbuilderHandler extends ListbuilderHandler {
 	/**
 	 * Constructor
 	 */
-	function ChapterAuthorListbuilderHandler() {
-		parent::ListbuilderHandler();
+	function __construct() {
+		parent::__construct();
 		$this->addRoleAssignment(
 			array(ROLE_ID_AUTHOR, ROLE_ID_SUB_EDITOR, ROLE_ID_MANAGER),
 			array('fetch', 'fetchRow', 'fetchOptions', 'save')

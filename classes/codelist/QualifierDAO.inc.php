@@ -24,8 +24,8 @@ class QualifierDAO extends CodelistItemDAO {
 	/**
 	 * Constructor.
 	 */
-	function QualifierDAO() {
-		parent::CodelistItemDAO();
+	function __construct() {
+		parent::__construct();
 	}
 
 	/**

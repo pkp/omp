@@ -20,8 +20,8 @@ class NativeXmlMonographFileFilter extends NativeXmlSubmissionFileFilter {
 	 * Constructor
 	 * @param $filterGroup FilterGroup
 	 */
-	function NativeXmlMonographFileFilter($filterGroup) {
-		parent::NativeXmlSubmissionFileFilter($filterGroup);
+	function __construct($filterGroup) {
+		parent::__construct($filterGroup);
 	}
 
 

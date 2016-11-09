@@ -19,8 +19,8 @@ class ManageCatalogTabHandler extends Handler {
 	/**
 	 * Constructor
 	 */
-	function ManageCatalogTabHandler() {
-		parent::Handler();
+	function __construct() {
+		parent::__construct();
 
 		$this->addRoleAssignment(
 			array(ROLE_ID_SUB_EDITOR, ROLE_ID_MANAGER),

@@ -25,9 +25,9 @@ class PublicationFormatGridCategoryRow extends GridCategoryRow {
 	 * @param $submission Submission
 	 * @param $cellProvider GridCellProvider
 	 */
-	function PublicationFormatGridCategoryRow($submission, $cellProvider) {
+	function __construct($submission, $cellProvider) {
 		$this->_submission = $submission;
-		parent::GridCategoryRow();
+		parent::__construct();
 		$this->setCellProvider($cellProvider);
 	}
 

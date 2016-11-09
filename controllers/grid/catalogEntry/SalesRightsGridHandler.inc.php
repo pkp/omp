@@ -34,8 +34,8 @@ class SalesRightsGridHandler extends GridHandler {
 	/**
 	 * Constructor
 	 */
-	function SalesRightsGridHandler() {
-		parent::GridHandler();
+	function __construct() {
+		parent::__construct();
 		$this->addRoleAssignment(
 				array(ROLE_ID_MANAGER),
 				array('fetchGrid', 'fetchRow', 'addRights', 'editRights',

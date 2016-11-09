@@ -31,8 +31,8 @@ class SpotlightForm extends Form {
 	 * @param $pressId int
 	 * @param $spotlightId int leave as default for new spotlight
 	 */
-	function SpotlightForm($pressId, $spotlightId = null) {
-		parent::Form('controllers/grid/content/spotlights/form/spotlightForm.tpl');
+	function __construct($pressId, $spotlightId = null) {
+		parent::__construct('controllers/grid/content/spotlights/form/spotlightForm.tpl');
 
 		$this->_spotlightId = $spotlightId;
 		$this->_pressId = $pressId;

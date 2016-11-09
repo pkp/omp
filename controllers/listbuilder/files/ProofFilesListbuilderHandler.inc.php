@@ -19,10 +19,10 @@ class ProofFilesListbuilderHandler extends FilesListbuilderHandler {
 	/**
 	 * Constructor
 	 */
-	function ProofFilesListbuilderHandler() {
+	function __construct() {
 		// Get access to the monograph file constants.
 		import('lib.pkp.classes.submission.SubmissionFile');
-		parent::FilesListbuilderHandler(SUBMISSION_FILE_PROOF);
+		parent::__construct(SUBMISSION_FILE_PROOF);
 	}
 
 

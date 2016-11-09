@@ -34,8 +34,8 @@ class PublicationFormatGridHandler extends CategoryGridHandler {
 	/**
 	 * Constructor
 	 */
-	function PublicationFormatGridHandler() {
-		parent::CategoryGridHandler(new PublicationFormatCategoryGridDataProvider($this));
+	function __construct() {
+		parent::__construct(new PublicationFormatCategoryGridDataProvider($this));
 		$this->addRoleAssignment(
 			array(ROLE_ID_MANAGER, ROLE_ID_SUB_EDITOR),
 			array(

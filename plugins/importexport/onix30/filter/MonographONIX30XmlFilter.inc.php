@@ -24,9 +24,9 @@ class MonographONIX30XmlFilter extends NativeExportFilter {
 	 * Constructor
 	 * @param $filterGroup FilterGroup
 	 */
-	function MonographONIX30XmlFilter($filterGroup) {
+	function __construct($filterGroup) {
 		$this->setDisplayName('ONIX 3.0 XML monograph export');
-		parent::NativeExportFilter($filterGroup);
+		parent::__construct($filterGroup);
 	}
 
 

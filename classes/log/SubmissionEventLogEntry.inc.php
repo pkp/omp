@@ -33,8 +33,8 @@ class SubmissionEventLogEntry extends PKPSubmissionEventLogEntry {
 	/**
 	 * Constructor.
 	 */
-	function SubmissionEventLogEntry() {
-		parent::PKPSubmissionEventLogEntry();
+	function __construct() {
+		parent::__construct();
 	}
 }
 

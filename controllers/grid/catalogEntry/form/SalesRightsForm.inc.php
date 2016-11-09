@@ -25,8 +25,8 @@ class SalesRightsForm extends Form {
 	/**
 	 * Constructor.
 	 */
-	function SalesRightsForm($monograph, $salesRights) {
-		parent::Form('controllers/grid/catalogEntry/form/salesRightsForm.tpl');
+	function __construct($monograph, $salesRights) {
+		parent::__construct('controllers/grid/catalogEntry/form/salesRightsForm.tpl');
 		$this->setMonograph($monograph);
 		$this->setSalesRights($salesRights);
 

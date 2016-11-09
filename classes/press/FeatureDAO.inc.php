@@ -18,8 +18,8 @@ class FeatureDAO extends DAO {
 	/**
 	 * Constructor
 	 */
-	function FeatureDAO() {
-		parent::DAO();
+	function __construct() {
+		parent::__construct();
 	}
 
 	/**

@@ -24,8 +24,8 @@ class CodelistItem extends DataObject {
 	/**
 	 * Constructor
 	 */
-	function CodelistItem() {
-		parent::DataObject();
+	function __construct() {
+		parent::__construct();
 	}
 
 

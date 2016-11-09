@@ -36,11 +36,11 @@ class BrowseBlockSettingsForm extends Form {
 	 * @param $plugin BrowseBlockPlugin
 	 * @param $pressId int
 	 */
-	function BrowseBlockSettingsForm($plugin, $pressId) {
+	function __construct($plugin, $pressId) {
 		$this->setPressId($pressId);
 		$this->setPlugin($plugin);
 
-		parent::Form($plugin->getTemplatePath() . 'settingsForm.tpl');
+		parent::__construct($plugin->getTemplatePath() . 'settingsForm.tpl');
 
 		$this->addCheck(new FormValidatorPost($this));
 		$this->addCheck(new FormValidatorCSRF($this));

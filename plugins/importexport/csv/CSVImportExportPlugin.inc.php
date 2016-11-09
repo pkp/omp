@@ -19,8 +19,8 @@ class CSVImportExportPlugin extends ImportExportPlugin {
 	/**
 	 * Constructor
 	 */
-	function CSVImportExportPlugin() {
-		parent::ImportExportPlugin();
+	function __construct() {
+		parent::__construct();
 	}
 
 	/**

@@ -20,8 +20,8 @@ class ApprovedProofFilesGridDataProvider extends GridDataProvider {
 	/**
 	 * Constructor
 	 */
-	function ApprovedProofFilesGridDataProvider() {
-		parent::GridDataProvider();
+	function __construct() {
+		parent::__construct();
 	}
 
 

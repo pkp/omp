@@ -24,8 +24,8 @@ class CatalogEntryHandler extends PublicationEntryHandler {
 	/**
 	 * Constructor.
 	 */
-	function CatalogEntryHandler() {
-		parent::PublicationEntryHandler();
+	function __construct() {
+		parent::__construct();
 	}
 
 

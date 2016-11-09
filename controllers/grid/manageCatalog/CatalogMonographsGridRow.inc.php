@@ -20,8 +20,8 @@ class CatalogMonographsGridRow extends GridRow {
 	/**
 	 * Constructor.
 	 */
-	function CatalogMonographsGridRow() {
-		parent::GridRow();
+	function __construct() {
+		parent::__construct();
 	}
 
 

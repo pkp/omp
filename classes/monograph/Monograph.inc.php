@@ -30,8 +30,8 @@ class Monograph extends Submission {
 	 * @return int
 	 * Constructor.
 	 */
-	function Monograph() {
-		parent::Submission();
+	function __construct() {
+		parent::__construct();
 	}
 
 	/**

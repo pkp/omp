@@ -21,8 +21,8 @@ class SeriesDAO extends PKPSectionDAO {
 	/**
 	 * Constructor
 	 */
-	function SeriesDAO() {
-		parent::PKPSectionDAO();
+	function __construct() {
+		parent::__construct();
 	}
 
 	/**

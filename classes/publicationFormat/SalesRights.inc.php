@@ -18,8 +18,8 @@ class SalesRights extends DataObject {
 	/**
 	 * Constructor
 	 */
-	function SalesRights() {
-		parent::DataObject();
+	function __construct() {
+		parent::__construct();
 	}
 
 	/**

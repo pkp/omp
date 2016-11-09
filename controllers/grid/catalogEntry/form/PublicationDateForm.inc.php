@@ -25,8 +25,8 @@ class PublicationDateForm extends Form {
 	/**
 	 * Constructor.
 	 */
-	function PublicationDateForm($monograph, $publicationDate) {
-		parent::Form('controllers/grid/catalogEntry/form/pubDateForm.tpl');
+	function __construct($monograph, $publicationDate) {
+		parent::__construct('controllers/grid/catalogEntry/form/pubDateForm.tpl');
 		$this->setMonograph($monograph);
 		$this->setPublicationDate($publicationDate);
 

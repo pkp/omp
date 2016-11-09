@@ -31,8 +31,8 @@ class ApprovedProofForm extends Form {
 	 * @param $publicationFormat PublicationFormat
 	 * @param $fileId string fileId-revision
 	 */
-	function ApprovedProofForm($monograph, $publicationFormat, $fileIdAndRevision) {
-		parent::Form('controllers/grid/files/proof/form/approvedProofForm.tpl');
+	function __construct($monograph, $publicationFormat, $fileIdAndRevision) {
+		parent::__construct('controllers/grid/files/proof/form/approvedProofForm.tpl');
 
 		$this->monograph =& $monograph;
 		$this->publicationFormat =& $publicationFormat;

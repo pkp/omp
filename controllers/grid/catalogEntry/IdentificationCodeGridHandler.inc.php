@@ -34,8 +34,8 @@ class IdentificationCodeGridHandler extends GridHandler {
 	/**
 	 * Constructor
 	 */
-	function IdentificationCodeGridHandler() {
-		parent::GridHandler();
+	function __construct() {
+		parent::__construct();
 		$this->addRoleAssignment(
 				array(ROLE_ID_MANAGER),
 				array('fetchGrid', 'fetchRow', 'addCode', 'editCode',

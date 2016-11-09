@@ -18,8 +18,8 @@ class Category extends DataObject {
 	/**
 	 * Constructor.
 	 */
-	function Category() {
-		parent::DataObject();
+	function __construct() {
+		parent::__construct();
 	}
 
 	/**

@@ -21,9 +21,9 @@ class Dc11Schema extends PKPDc11Schema {
 	/**
 	 * Constructor
 	 */
-	function Dc11Schema() {
+	function __construct() {
 		// Configure the MODS schema.
-		parent::PKPDc11Schema(ASSOC_TYPE_PUBLICATION_FORMAT);
+		parent::__construct(ASSOC_TYPE_PUBLICATION_FORMAT);
 	}
 }
 ?>

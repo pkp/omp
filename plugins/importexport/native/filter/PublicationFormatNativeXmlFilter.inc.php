@@ -20,8 +20,8 @@ class PublicationFormatNativeXmlFilter extends RepresentationNativeXmlFilter {
 	 * Constructor
 	 * @param $filterGroup FilterGroup
 	 */
-	function PublicationFormatNativeXmlFilter($filterGroup) {
-		parent::RepresentationNativeXmlFilter($filterGroup);
+	function __construct($filterGroup) {
+		parent::__construct($filterGroup);
 	}
 
 

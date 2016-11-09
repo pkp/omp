@@ -25,8 +25,8 @@ class PublicationFormatForm extends Form {
 	/**
 	 * Constructor.
 	 */
-	function PublicationFormatForm($monograph, $publicationFormat) {
-		parent::Form('controllers/grid/catalogEntry/form/formatForm.tpl');
+	function __construct($monograph, $publicationFormat) {
+		parent::__construct('controllers/grid/catalogEntry/form/formatForm.tpl');
 		$this->setMonograph($monograph);
 		$this->setPublicationFormat($publicationFormat);
 

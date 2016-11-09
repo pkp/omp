@@ -19,8 +19,8 @@ class Notification extends PKPNotification {
 	/**
 	 * Constructor.
 	 */
-	function Notification() {
-		parent::PKPNotification();
+	function __construct() {
+		parent::__construct();
 	}
 }
 

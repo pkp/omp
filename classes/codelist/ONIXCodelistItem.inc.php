@@ -20,8 +20,8 @@ class ONIXCodelistItem extends DataObject {
 	 * Constructor
 	 */
 
-	function ONIXCodelistItem() {
-		parent::DataObject();
+	function __construct() {
+		parent::__construct();
 	}
 
 

@@ -37,8 +37,8 @@ class CategoryForm extends Form {
 	 * @param $pressId Press id.
 	 * @param $categoryId Category id.
 	 */
-	function CategoryForm($pressId, $categoryId = null) {
-		parent::Form('controllers/grid/settings/category/form/categoryForm.tpl');
+	function __construct($pressId, $categoryId = null) {
+		parent::__construct('controllers/grid/settings/category/form/categoryForm.tpl');
 		$this->_pressId = $pressId;
 		$this->_categoryId = $categoryId;
 

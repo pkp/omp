@@ -20,8 +20,8 @@ class MarketDAO extends DAO {
 	/**
 	 * Constructor
 	 */
-	function MarketDAO() {
-		parent::DAO();
+	function __construct() {
+		parent::__construct();
 	}
 
 	/**

@@ -20,8 +20,8 @@ class PressGridHandler extends ContextGridHandler {
 	/**
 	 * Constructor
 	 */
-	function PressGridHandler() {
-		parent::ContextGridHandler();
+	function __construct() {
+		parent::__construct();
 	}
 
 

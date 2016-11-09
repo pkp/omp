@@ -20,8 +20,8 @@ class NotificationManager extends PKPNotificationManager {
 	/**
 	 * Constructor.
 	 */
-	function NotificationManager() {
-		parent::PKPNotificationManager();
+	function __construct() {
+		parent::__construct();
 	}
 
 

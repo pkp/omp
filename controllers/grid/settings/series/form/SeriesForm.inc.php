@@ -22,8 +22,8 @@ class SeriesForm extends PKPSectionForm {
 	 * @param $request Request
 	 * @param $seriesId int optional
 	 */
-	function SeriesForm($request, $seriesId = null) {
-		parent::PKPSectionForm(
+	function __construct($request, $seriesId = null) {
+		parent::__construct(
 			$request,
 			'controllers/grid/settings/series/form/seriesForm.tpl',
 			$seriesId

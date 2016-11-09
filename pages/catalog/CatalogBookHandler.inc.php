@@ -24,8 +24,8 @@ class CatalogBookHandler extends Handler {
 	/**
 	 * Constructor
 	 */
-	function CatalogBookHandler() {
-		parent::Handler();
+	function __construct() {
+		parent::__construct();
 	}
 
 

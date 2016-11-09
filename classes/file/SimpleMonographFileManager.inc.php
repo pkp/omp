@@ -24,8 +24,8 @@ class SimpleMonographFileManager extends BaseSubmissionFileManager {
 	/**
 	 * Constructor.
 	 */
-	function SimpleMonographFileManager($pressId, $monographId) {
-		parent::BaseSubmissionFileManager($pressId, $monographId);
+	function __construct($pressId, $monographId) {
+		parent::__construct($pressId, $monographId);
 	}
 
 	/**

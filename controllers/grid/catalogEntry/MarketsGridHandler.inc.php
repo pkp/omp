@@ -33,8 +33,8 @@ class MarketsGridHandler extends GridHandler {
 	/**
 	 * Constructor
 	 */
-	function MarketsGridHandler() {
-		parent::GridHandler();
+	function __construct() {
+		parent::__construct();
 		$this->addRoleAssignment(
 				array(ROLE_ID_MANAGER),
 				array('fetchGrid', 'fetchRow', 'addMarket', 'editMarket',

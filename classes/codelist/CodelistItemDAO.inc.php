@@ -22,8 +22,8 @@ class CodelistItemDAO extends DAO {
 	/**
 	 * Constructor.
 	 */
-	function CodelistItemDAO() {
-		parent::DAO();
+	function __construct() {
+		parent::__construct();
 	}
 
 	/**

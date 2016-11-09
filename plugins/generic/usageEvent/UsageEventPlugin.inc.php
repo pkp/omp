@@ -19,8 +19,8 @@ class UsageEventPlugin extends PKPUsageEventPlugin {
 	/**
 	 * Constructor
 	 */
-	function UsageEventPlugin() {
-		parent::PKPUsageEventPlugin();
+	function __construct() {
+		parent::__construct();
 	}
 
 

@@ -20,14 +20,14 @@ class SiteAccessOptionsForm extends ContextSettingsForm {
 	/**
 	 * Constructor.
 	 */
-	function SiteAccessOptionsForm($wizardMode = false) {
+	function __construct($wizardMode = false) {
 		$settings = array(
 			'disableUserReg' => 'bool',
 			'restrictSiteAccess' => 'bool',
 			'restrictMonographAccess' => 'bool',
 		);
 
-		parent::ContextSettingsForm($settings, 'controllers/tab/settings/siteAccessOptions/form/siteAccessOptionsForm.tpl', $wizardMode);
+		parent::__construct($settings, 'controllers/tab/settings/siteAccessOptions/form/siteAccessOptionsForm.tpl', $wizardMode);
 	}
 
 }

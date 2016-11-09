@@ -23,8 +23,8 @@ class PublicationFormatGridRow extends SubmissionFilesGridRow {
 	 * @param $capabilities FilesGridCapabilities
 	 * @param $stageId int Stage ID (optional)
 	 */
-	function PublicationFormatGridRow() {
-		parent::SubmissionFilesGridRow(
+	function __construct() {
+		parent::__construct(
 			new FilesGridCapabilities(FILE_GRID_ADD | FILE_GRID_DELETE | FILE_GRID_MANAGE | FILE_GRID_EDIT | FILE_GRID_VIEW_NOTES),
 			WORKFLOW_STAGE_ID_PRODUCTION
 		);

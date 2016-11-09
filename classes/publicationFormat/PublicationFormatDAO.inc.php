@@ -21,8 +21,8 @@ class PublicationFormatDAO extends RepresentationDAO implements PKPPubIdPluginDA
 	/**
 	 * Constructor
 	 */
-	function PublicationFormatDAO() {
-		parent::RepresentationDAO();
+	function __construct() {
+		parent::__construct();
 	}
 
 	/**

@@ -29,8 +29,8 @@ class OMPCompletedPayment extends Payment {
 	/**
 	 * Constructor
 	 */
-	function OMPCompletedPayment() {
-		parent::Payment();
+	function __construct() {
+		parent::__construct();
 	}
 
 	/**

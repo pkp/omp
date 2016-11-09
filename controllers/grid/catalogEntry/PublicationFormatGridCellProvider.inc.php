@@ -27,8 +27,8 @@ class PublicationFormatGridCellProvider extends DataObjectGridCellProvider {
 	 * Constructor
 	 * @param $submissionId int Submission ID
 	 */
-	function PublicationFormatGridCellProvider($submissionId) {
-		parent::DataObjectGridCellProvider();
+	function __construct($submissionId) {
+		parent::__construct();
 		$this->_submissionId = $submissionId;
 	}
 

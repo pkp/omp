@@ -23,9 +23,9 @@ class Mods34SchemaMonographAdapter extends Mods34SchemaSubmissionAdapter {
 	 * Constructor
 	 * @param $filterGroup FilterGroup
 	 */
-	function Mods34SchemaMonographAdapter(&$filterGroup) {
+	function __construct(&$filterGroup) {
 		// Configure the submission adapter
-		parent::Mods34SchemaSubmissionAdapter($filterGroup);
+		parent::__construct($filterGroup);
 	}
 
 

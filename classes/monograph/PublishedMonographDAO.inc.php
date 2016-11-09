@@ -25,8 +25,8 @@ class PublishedMonographDAO extends MonographDAO {
  	/**
 	 * Constructor.
 	 */
-	function PublishedMonographDAO() {
-		parent::MonographDAO();
+	function __construct() {
+		parent::__construct();
 	}
 
 	/**

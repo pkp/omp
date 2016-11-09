@@ -21,8 +21,8 @@ class AuthorDashboardHandler extends PKPAuthorDashboardHandler {
 	/**
 	 * Constructor
 	 */
-	function AuthorDashboardHandler() {
-		parent::PKPAuthorDashboardHandler();
+	function __construct() {
+		parent::__construct();
 	}
 
 

@@ -22,8 +22,8 @@ class PressSettingsTabHandler extends ManagerSettingsTabHandler {
 	/**
 	 * Constructor
 	 */
-	function PressSettingsTabHandler() {
-		parent::ManagerSettingsTabHandler();
+	function __construct() {
+		parent::__construct();
 		$this->setPageTabs(array(
 			'masthead' => 'controllers.tab.settings.masthead.form.MastheadForm',
 			'contact' => 'lib.pkp.controllers.tab.settings.contact.form.ContactForm',

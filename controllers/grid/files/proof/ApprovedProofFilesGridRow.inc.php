@@ -22,8 +22,8 @@ class ApprovedProofFilesGridRow extends GridRow {
 	/**
 	 * Constructor
 	 */
-	function ApprovedProofFilesGridRow() {
-		parent::GridRow();
+	function __construct() {
+		parent::__construct();
 	}
 
 	//

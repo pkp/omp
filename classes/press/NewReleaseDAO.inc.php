@@ -18,8 +18,8 @@ class NewReleaseDAO extends DAO {
 	/**
 	 * Constructor
 	 */
-	function NewReleaseDAO() {
-		parent::DAO();
+	function __construct() {
+		parent::__construct();
 	}
 
 	/**

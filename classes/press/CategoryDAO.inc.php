@@ -21,8 +21,8 @@ class CategoryDAO extends DAO {
 	/**
 	 * Constructor
 	 */
-	function CategoryDAO() {
-		parent::DAO();
+	function __construct() {
+		parent::__construct();
 	}
 
 	/**

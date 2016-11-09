@@ -20,8 +20,8 @@ class SpotlightDAO extends DAO {
 	/**
 	 * Constructor
 	 */
-	function SpotlightDAO() {
-		parent::DAO();
+	function __construct() {
+		parent::__construct();
 	}
 
 	/**

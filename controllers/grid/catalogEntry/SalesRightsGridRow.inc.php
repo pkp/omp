@@ -22,9 +22,9 @@ class SalesRightsGridRow extends GridRow {
 	/**
 	 * Constructor
 	 */
-	function SalesRightsGridRow($monograph) {
+	function __construct($monograph) {
 		$this->_monograph = $monograph;
-		parent::GridRow();
+		parent::__construct();
 	}
 
 	//

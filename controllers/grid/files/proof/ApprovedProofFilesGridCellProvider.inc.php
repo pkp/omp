@@ -22,9 +22,9 @@ class ApprovedProofFilesGridCellProvider extends DataObjectGridCellProvider {
 	/**
 	 * Constructor
 	 */
-	function ApprovedProofFilesGridCellProvider($currency) {
+	function __construct($currency) {
 		$this->currency = $currency;
-		parent::DataObjectGridCellProvider();
+		parent::__construct();
 	}
 
 	//

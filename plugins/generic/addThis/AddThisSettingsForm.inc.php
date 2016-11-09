@@ -27,8 +27,8 @@ class AddThisSettingsForm extends Form {
 	 * @param $plugin AddThisBlockPlugin
 	 * @param $press Press
 	 */
-	function AddThisSettingsForm($plugin, $press) {
-		parent::Form($plugin->getTemplatePath() . 'settings.tpl');
+	function __construct($plugin, $press) {
+		parent::__construct($plugin->getTemplatePath() . 'settings.tpl');
 		$this->setPress($press);
 		$this->setPlugin($plugin);
 
