@@ -315,8 +315,8 @@ class Upgrade extends Installer {
 					}
 					$query = $queryDao->newDataObject();
 					assert($anyFile->getAssocType()==ASSOC_TYPE_REPRESENTATION);
-					$query->setAssocType($assocType = $anyFile->getAssocType());
-					$query->setAssocId($assocId = $anyFile->getAssocId());
+					$query->setAssocType($assocType = ASSOC_TYPE_SUBMISSION);
+					$query->setAssocId($assocId = $anyFile->getSubmissionId());
 					$query->setStageId(WORKFLOW_STAGE_ID_PRODUCTION);
 					break;
 				default: assert(false);
@@ -361,14 +361,6 @@ class Upgrade extends Installer {
 			$headNote->setDateCreated($dateNotified);
 			$noteDao->updateObject($headNote);
 
-			// Associate the files with the query.
-			foreach ($submissionFiles as $submissionFile) {
-				$submissionFile->setAssocType(ASSOC_TYPE_NOTE);
-				$submissionFile->setAssocId($headNote->getId());
-				$submissionFile->setFileStage(SUBMISSION_FILE_QUERY);
-				$submissionFileDao->updateObject($submissionFile);
-			}
-
 			// Add completion as a note
 			if ($dateCompleted) {
 				$completionNote = $noteDao->newDataObject();
@@ -384,6 +376,54 @@ class Upgrade extends Installer {
 			$this->_transferSignoffData($signoffId, $query->getId());
 		}
 		$filesResult->Close();
+		return true;
+	}
+
+	/**
+	 * The assoc_type = ASSOC_TYPE_REPRESENTATION (from SIGNOFF_PROOFING migration)
+	 * should be changed to assoc_type = ASSOC_TYPE_SUBMISSION, for queries to be
+	 * displayed in the production discussions list.
+	 * After changing this, the submission queries should be resequenced, in their
+	 * order in the DB table.
+	 * @return boolean True indicates success.
+	 */
+	function fixQueriesAssocTypes() {
+		// Get queries by submission ids, in order to resequence them correctly after the assoc_type change
+		$queryDao = DAORegistry::getDAO('QueryDAO');
+		$allQueriesResult = $queryDao->retrieve(
+			'SELECT DISTINCT q.*,
+				COALESCE(pf.submission_id, qs.assoc_id) AS submission_id
+			FROM queries q
+			LEFT JOIN publication_formats pf ON (q.assoc_type = ? AND q.assoc_id = pf.publication_format_id AND q.stage_id = ?)
+			LEFT JOIN queries qs ON (qs.assoc_type = ?)
+			WHERE q.assoc_type = ? OR q.assoc_type = ?
+			ORDER BY query_id',
+			array((int) ASSOC_TYPE_REPRESENTATION, (int) WORKFLOW_STAGE_ID_PRODUCTION, (int) ASSOC_TYPE_SUBMISSION, (int) ASSOC_TYPE_SUBMISSION, (int) ASSOC_TYPE_REPRESENTATION)
+		);
+		$allQueries = array();
+		while (!$allQueriesResult->EOF) {
+			$row = $allQueriesResult->getRowAssoc(false);
+			$allQueries[$row['submission_id']]['queries'][] = $query = $queryDao->_fromRow($row);
+			// mark if this submission queries should be fixed
+			$fix = array_key_exists('fix', $allQueries[$row['submission_id']]) ? $allQueries[$row['submission_id']]['fix'] : false;
+			$allQueries[$row['submission_id']]['fix'] = ($query->getAssocType() == ASSOC_TYPE_REPRESENTATION) || $fix;
+			$allQueriesResult->MoveNext();
+		}
+		$allQueriesResult->Close();
+		foreach ($allQueries as $submissionId => $queriesBySubmission) {
+			// Touch i.e. fix and resequence only the submission queries that contained assoc_type = ASSOC_TYPE_REPRESENTATION
+			if ($allQueries[$submissionId]['fix']) {
+				foreach($queriesBySubmission['queries'] as $query) {
+					if ($query->getAssocType() == ASSOC_TYPE_REPRESENTATION) {
+						$query->setAssocType(ASSOC_TYPE_SUBMISSION);
+						$query->setAssocId($submissionId);
+					}
+					$query->setSequence($i);
+					$queryDao->updateObject($query);
+					$i++;
+				}
+			}
+		}
 		return true;
 	}
 
