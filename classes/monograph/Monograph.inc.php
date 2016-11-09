@@ -26,8 +26,6 @@ import('classes.monograph.Author');
 
 class Monograph extends Submission {
 	/**
-	 * get monograph id
-	 * @return int
 	 * Constructor.
 	 */
 	function __construct() {
