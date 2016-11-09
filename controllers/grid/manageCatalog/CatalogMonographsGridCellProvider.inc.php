@@ -35,6 +35,7 @@ class CatalogMonographsGridCellProvider extends GridCellProvider {
 	 * @param $requestArgs array Grid request arguments.
 	 */
 	function CatalogMonographsGridCellProvider($assocType, $assocId, $requestArgs) {
+		parent::GridCellProvider();
 		$this->_assocType = $assocType;
 		$this->_assocId = $assocId;
 		$this->_requestArgs = $requestArgs;

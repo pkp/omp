@@ -44,7 +44,7 @@ class ONIXParserDOMHandler extends XMLParserDOMHandler {
 	 * @param $listName string
 	 */
 	function ONIXParserDOMHandler($listName) {
-		parent::XMLParserHandler();
+		parent::XMLParserDOMHandler();
 		$this->_listName = $listName;
 		$this->_listItems = array();
 	}
