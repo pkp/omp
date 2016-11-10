@@ -55,7 +55,7 @@ class SeriesForm extends PKPSectionForm {
 			$sortOption = $series->getSortOption() ? $series->getSortOption() : $publishedMonographDao->getDefaultSortOption();
 			$this->_data = array(
 				'seriesId' => $seriesId,
-				'title' => $series->getTitle(null),
+				'title' => $series->getTitle(null, false),
 				'featured' => $series->getFeatured(),
 				'path' => $series->getPath(),
 				'description' => $series->getDescription(null),

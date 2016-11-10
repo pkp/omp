@@ -96,7 +96,7 @@ class MonographSearch extends SubmissionSearch {
 
 				case 'title':
 					$submission = $monographDao->getById($submissionId);
-					$orderKey = $submission->getLocalizedTitle();
+					$orderKey = $submission->getLocalizedTitle(null, false);
 					break;
 
 				case 'pressTitle':

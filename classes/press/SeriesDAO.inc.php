@@ -297,10 +297,10 @@ class SeriesDAO extends PKPSectionDAO {
 		while ($series = $seriesIterator->next()) {
 			if ($submittableOnly) {
 				if (!$series->getEditorRestricted()) {
-					$seriesTitles[$series->getId()] = join(' ', array($series->getLocalizedPrefix(), $series->getLocalizedTitle()));
+					$seriesTitles[$series->getId()] = $series->getLocalizedTitle();
 				}
 			} else {
-				$seriesTitles[$series->getId()] = join(' ', array($series->getLocalizedPrefix(), $series->getLocalizedTitle()));
+				$seriesTitles[$series->getId()] = $series->getLocalizedTitle();
 			}
 		}
 

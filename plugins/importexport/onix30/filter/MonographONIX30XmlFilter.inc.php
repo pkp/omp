@@ -243,14 +243,14 @@ class MonographONIX30XmlFilter extends NativeExportFilter {
 				$titleElementNode->appendChild($this->_buildTextNode($doc, 'PartNumber', $submission->getSeriesPosition()));
 			}
 
-			if ($series->getLocalizedPrefix() == '' || $series->getLocalizedTitle() == '') {
-				$titleElementNode->appendChild($this->_buildTextNode($doc, 'TitleText', trim(join(' ', array($series->getLocalizedPrefix(), $series->getLocalizedTitle())))));
+			if ($series->getLocalizedPrefix() == '' || $series->getLocalizedTitle(false) == '') {
+				$titleElementNode->appendChild($this->_buildTextNode($doc, 'TitleText', trim(join(' ', array($series->getLocalizedPrefix(), $series->getLocalizedTitle(false))))));
 			} else {
 				if ($series->getLocalizedPrefix() != '') {
 					$titleElementNode->appendChild($this->_buildTextNode($doc, 'TitlePrefix', $series->getLocalizedPrefix()));
 				}
 
-				$titleElementNode->appendChild($this->_buildTextNode($doc, 'TitleWithoutPrefix', $series->getLocalizedTitle()));
+				$titleElementNode->appendChild($this->_buildTextNode($doc, 'TitleWithoutPrefix', $series->getLocalizedTitle(false)));
 			}
 
 			if ($series->getLocalizedSubtitle() != '') {
@@ -269,13 +269,13 @@ class MonographONIX30XmlFilter extends NativeExportFilter {
 
 		$productTitleDetailNode->appendChild($titleElementNode);
 
-		if ($submission->getLocalizedPrefix() == '' || $submission->getLocalizedTitle() == '') {
-			$titleElementNode->appendChild($this->_buildTextNode($doc, 'TitleText', trim(join(' ', array($submission->getLocalizedPrefix(), $submission->getLocalizedTitle())))));
+		if ($submission->getLocalizedPrefix() == '' || $submission->getLocalizedTitle(false) == '') {
+			$titleElementNode->appendChild($this->_buildTextNode($doc, 'TitleText', trim(join(' ', array($submission->getLocalizedPrefix(), $submission->getLocalizedTitle(false))))));
 		} else {
 			if ($submission->getLocalizedPrefix() != '') {
 				$titleElementNode->appendChild($this->_buildTextNode($doc, 'TitlePrefix', $submission->getLocalizedPrefix()));
 			}
-			$titleElementNode->appendChild($this->_buildTextNode($doc, 'TitleWithoutPrefix', $submission->getLocalizedTitle()));
+			$titleElementNode->appendChild($this->_buildTextNode($doc, 'TitleWithoutPrefix', $submission->getLocalizedTitle(false)));
 		}
 
 		if ($submission->getLocalizedSubtitle() != '') {

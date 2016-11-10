@@ -115,7 +115,7 @@ class MonographSearchIndex extends SubmissionSearchIndex {
 		import('classes.search.MonographSearch');
 		$monographId = $monograph->getId();
 		self::updateTextIndex($monographId, SUBMISSION_SEARCH_AUTHOR, $authorText);
-		self::updateTextIndex($monographId, SUBMISSION_SEARCH_TITLE, $monograph->getTitle(null));
+		self::updateTextIndex($monographId, SUBMISSION_SEARCH_TITLE, $monograph->getTitle(null, false));
 		self::updateTextIndex($monographId, SUBMISSION_SEARCH_ABSTRACT, $monograph->getAbstract(null));
 
 		self::updateTextIndex($monographId, SUBMISSION_SEARCH_DISCIPLINE, (array) $monograph->getDiscipline(null));
