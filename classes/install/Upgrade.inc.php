@@ -413,6 +413,7 @@ class Upgrade extends Installer {
 		foreach ($allQueries as $submissionId => $queriesBySubmission) {
 			// Touch i.e. fix and resequence only the submission queries that contained assoc_type = ASSOC_TYPE_REPRESENTATION
 			if ($allQueries[$submissionId]['fix']) {
+				$i = 1;
 				foreach($queriesBySubmission['queries'] as $query) {
 					if ($query->getAssocType() == ASSOC_TYPE_REPRESENTATION) {
 						$query->setAssocType(ASSOC_TYPE_SUBMISSION);
