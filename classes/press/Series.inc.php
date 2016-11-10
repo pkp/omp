@@ -41,16 +41,44 @@ class Series extends PKPSection {
 	}
 
 	/**
+	 * Get localized title of section.
+	 * @param $includePrefix bool
+	 * @return string
+	 */
+	function getLocalizedTitle($includePrefix = true) {
+		$title = $this->getLocalizedData('title');
+		if ($includePrefix) {
+			$title = $this->getLocalizedPrefix() . ' ' . $title;
+		}
+		return $title;
+	}
+
+	/**
+	 * Get title of section.
+	 * @param $locale
+	 * @param $includePrefix bool
+	 * @return string
+	 */
+	function getTitle($locale, $includePrefix = true) {
+		$title = $this->getData('title', $locale);
+		if ($includePrefix) {
+			if (is_array($title)) {
+				foreach($title as $locale => $currentTitle) {
+					$title[$locale] = $this->getPrefix($locale) . ' ' . $currentTitle;
+				}
+			} else {
+				$title = $this->getPrefix($locale) . ' ' . $title;
+			}
+		}
+		return $title;
+	}
+
+	/**
 	 * Get the series full title (with title and subtitle).
 	 * @return string
 	 */
 	function getLocalizedFullTitle() {
-		$fullTitle = null;
-		if ($prefix = $this->getLocalizedPrefix()) {
-			$fullTitle = $prefix . ' ';
-		}
-
-		$fullTitle .= $this->getLocalizedTitle();
+		$fullTitle = $this->getLocalizedTitle();
 
 		if ($subtitle = $this->getLocalizedSubtitle()) {
 			$fullTitle = PKPString::concatTitleFields(array($fullTitle, $subtitle));
