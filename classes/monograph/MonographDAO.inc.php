@@ -36,6 +36,18 @@ class MonographDAO extends SubmissionDAO {
 	}
 
 	/**
+	 * Get a list of additional fields that do not have
+	 * dedicated accessors.
+	 * @return array
+	 */
+	function getAdditionalFieldNames() {
+		return array_merge(
+			parent::getAdditionalFieldNames(), array(
+				'coverImage', 'coverImageAltText',
+		));
+	}
+
+	/**
 	 * Internal function to return an Monograph object from a row.
 	 * @param $row array
 	 * @return Monograph
