@@ -117,6 +117,7 @@ class NativeImportExportPlugin extends ImportExportPlugin {
 				));
 				return $json->getString();
 			case 'import':
+				AppLocale::requireComponents(LOCALE_COMPONENT_PKP_SUBMISSION);
 				$temporaryFileId = $request->getUserVar('temporaryFileId');
 				$temporaryFileDao = DAORegistry::getDAO('TemporaryFileDAO');
 				$user = $request->getUser();
@@ -126,12 +127,31 @@ class NativeImportExportPlugin extends ImportExportPlugin {
 					return $json->getString();
 				}
 				$temporaryFilePath = $temporaryFile->getFilePath();
+
+				$deployment = new NativeImportExportDeployment($press, $user);
+
 				libxml_use_internal_errors(true);
-				$submissions = $this->importSubmissions(file_get_contents($temporaryFilePath), $press, $user);
+				$submissions = $this->importSubmissions(file_get_contents($temporaryFilePath), $deployment);
+				$templateMgr->assign('submissions', $submissions);
 				$validationErrors = array_filter(libxml_get_errors(), create_function('$a', 'return $a->level == LIBXML_ERR_ERROR ||  $a->level == LIBXML_ERR_FATAL;'));
 				$templateMgr->assign('validationErrors', $validationErrors);
 				libxml_clear_errors();
-				$templateMgr->assign('submissions', $submissions);
+
+				// Are there any submissions import errors
+				$processedSubmissionsIds = $deployment->getProcessedObjectsIds(ASSOC_TYPE_SUBMISSION);
+				if (!empty($processedSubmissionsIds)) {
+					$submissionsErrors = array_filter($processedSubmissionsIds, create_function('$a', 'return !empty($a);'));
+					if (!empty($submissionsErrors)) {
+						$templateMgr->assign('submissionsErrors', $processedSubmissionsIds);
+					}
+				}
+				// If there are any submissions or validataion errors
+				// delete imported submissions.
+				if (!empty($submissionsErrors) || !empty($validationErrors)) {
+					// remove all imported sumissions
+					$deployment->removeImportedObjects(ASSOC_TYPE_SUBMISSION);
+				}
+				// Display the results
 				$json = new JSONMessage(true, $templateMgr->fetch($this->getTemplatePath() . 'results.tpl'));
 				return $json->getString();
 			case 'export':
@@ -182,17 +202,15 @@ class NativeImportExportPlugin extends ImportExportPlugin {
 	/**
 	 * Get the XML for a set of submissions.
 	 * @param $importXml string XML contents to import
-	 * @param $context Context
-	 * @param $user User
+	 * @param $deployment PKPImportExportDeployment
 	 * @return array Set of imported submissions
 	 */
-	function importSubmissions($importXml, $context, $user) {
+	function importSubmissions($importXml, $deployment) {
 		$filterDao = DAORegistry::getDAO('FilterDAO');
 		$nativeImportFilters = $filterDao->getObjectsByGroup('native-xml=>monograph');
 		assert(count($nativeImportFilters) == 1); // Assert only a single unserialization filter
 		$importFilter = array_shift($nativeImportFilters);
-		$importFilter->setDeployment(new NativeImportExportDeployment($context, $user));
-
+		$importFilter->setDeployment($deployment);
 		return $importFilter->execute($importXml);
 	}
 

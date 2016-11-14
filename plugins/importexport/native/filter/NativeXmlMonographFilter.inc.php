@@ -50,16 +50,18 @@ class NativeXmlMonographFilter extends NativeXmlSubmissionFilter {
 	 * @return Submission
 	 */
 	function populateObject($submission, $node) {
+		$deployment = $this->getDeployment();
 		$seriesPath = $node->getAttribute('series');
 		$seriesPosition = $node->getAttribute('series_position');
 		if ($seriesPath !== '') {
 			$seriesDao = DAORegistry::getDAO('SeriesDAO');
 			$series = $seriesDao->getByPath($seriesPath, $submission->getContextId());
 			if (!$series) {
-				fatalError('Could not find a series with the path "' . $seriesPath . '"!');
+				$deployment->addError(ASSOC_TYPE_SUBMISSION, $submission->getId(), __('plugins.importexport.native.error.unknownSeries', array('param' => $seriesPath)));
+			} else {
+				$submission->setSeriesId($series->getId());
+				$submission->setSeriesPosition($seriesPosition);
 			}
-			$submission->setSeriesId($series->getId());
-			$submission->setSeriesPosition($seriesPosition);
 		}
 		$workType = $node->getAttribute('work_type');
 		$submission->setWorkType($workType);
@@ -91,6 +93,8 @@ class NativeXmlMonographFilter extends NativeXmlSubmissionFilter {
 	 * @return Filter
 	 */
 	function getImportFilter($elementName) {
+		$deployment = $this->getDeployment();
+		$submission = $deployment->getSubmission();
 		$importClass = null; // Scrutinizer
 		switch ($elementName) {
 			case 'submission_file':
@@ -106,7 +110,7 @@ class NativeXmlMonographFilter extends NativeXmlSubmissionFilter {
 				$importClass='PublicationFormat';
 				break;
 			default:
-				fatalError('Unknown submission file node ' . $elementName);
+				$deployment->addError(ASSOC_TYPE_SUBMISSION, $submission->getId(), __('plugins.importexport.common.error.unknownElement', array('param' => $elementName)));
 		}
 		// Caps on class name for consistency with imports, whose filter
 		// group names are generated implicitly.
