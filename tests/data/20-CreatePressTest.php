@@ -80,7 +80,7 @@ class CreatePressTest extends WebTestCase {
 		$this->open(self::$baseUrl);
 
 		// Users & Roles
-		$this->waitForElementPresent($selector='css=li.profile a:contains(\'Dashboard\')');
+		$this->waitForElementPresent($selector='css=li.profile a:contains(\'Submissions\')');
 		$this->clickAndWait($selector);
 		$this->waitForElementPresent($selector='link=Users & Roles');
 		$this->click($selector);
