@@ -139,6 +139,20 @@ Em caso de dúvidas, entre em contato. Agradecemos por considerar nossa editora 
 {$editorialContactSignature}]]></body>
 		<description>Quando habilitada, esta mensagem é enviada automaticamente aos coautores informados durante o processo de submissão, que não estão cadastrados no OMP.</description>
 	</email_text>
+	<email_text key="SUBMISSION_ACK">
+		<subject>Agradecimento pela submissão</subject>
+		<body><![CDATA[{$authorName},<br />
+<br />
+Agradecmos a submissão do seu manuscrito, &quot;{$submissionTitle}&quot; à editora {$contextName}. Por meio de nosso sistema online de adminstração, poderá acompanhar o progresso através das estapas do processo editorial, acessando o sistema com as informações a seguir:<br />
+<br />
+Página do manuscrito: <a href="{$submissionUrl}">{$submissionUrl}</a><br />
+Login: {$authorUsername}<br />
+<br />
+Em caso de dúvidas, entre em contato. Agradecemos por considerar nossa editora como um veículo para seus trabalhos.<br />
+<br />
+{$editorialContactSignature}]]></body>
+		<description>Quando habilitada, esta mensagem é enviada automaticamente ao autor ao concluir o processo de submissão. Fornece informações sobre como acompanhar a submissão através do processo editorial, agradecendo o autor pela submissão.</description>
+	</email_text>
 	<email_text key="SUBMISSION_UNSUITABLE">
 		<subject>Submissão rejeitada</subject>
 		<body><![CDATA[{$authorName},<br />
