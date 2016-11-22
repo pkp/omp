@@ -23,7 +23,7 @@ class MonographSearchIndex extends SubmissionSearchIndex {
 	 * @param $text string
 	 * @param $position int
 	 */
-	function indexObjectKeywords($objectId, $text, &$position) {
+	static function indexObjectKeywords($objectId, $text, &$position) {
 		$searchDao = DAORegistry::getDAO('MonographSearchDAO');
 		$keywords = self::filterKeywords($text);
 		for ($i = 0, $count = count($keywords); $i < $count; $i++) {
@@ -40,7 +40,7 @@ class MonographSearchIndex extends SubmissionSearchIndex {
 	 * @param $text string
 	 * @param $assocId int optional
 	 */
-	function updateTextIndex($monographId, $type, $text, $assocId = null) {
+	static function updateTextIndex($monographId, $type, $text, $assocId = null) {
 		$searchDao = DAORegistry::getDAO('MonographSearchDAO');
 		$objectId = $searchDao->insertObject($monographId, $type, $assocId);
 		$position = 0;
@@ -53,7 +53,7 @@ class MonographSearchIndex extends SubmissionSearchIndex {
 	 * @param $type int
 	 * @param $fileId int
 	 */
-	function updateFileIndex($monographId, $type, $fileId) {
+	static function updateFileIndex($monographId, $type, $fileId) {
 		$submissionFileDao = DAORegistry::getDAO('SubmissionFileDAO'); /* @var $submissionFileDao SubmissionFileDAO */
 		$file = $submissionFileDao->getLatestRevision($fileId);
 
@@ -83,7 +83,7 @@ class MonographSearchIndex extends SubmissionSearchIndex {
 	 * @param $type int optional
 	 * @param $assocId int optional
 	 */
-	function deleteTextIndex($monographId, $type = null, $assocId = null) {
+	static function deleteTextIndex($monographId, $type = null, $assocId = null) {
 		$searchDao = DAORegistry::getDAO('MonographSearchDAO');
 		return $searchDao->deleteSubmissionKeywords($monographId, $type, $assocId);
 	}
@@ -92,7 +92,7 @@ class MonographSearchIndex extends SubmissionSearchIndex {
 	 * Index monograph metadata.
 	 * @param $monograph Monograph
 	 */
-	function indexMonographMetadata(&$monograph) {
+	static function indexMonographMetadata($monograph) {
 		// Build author keywords
 		$authorText = array();
 		$authorDao = DAORegistry::getDAO('AuthorDAO');
@@ -129,7 +129,7 @@ class MonographSearchIndex extends SubmissionSearchIndex {
 	 * Index all monograph files (galley files).
 	 * @param $monograph Monograph
 	 */
-	function indexMonographFiles(&$monograph) {
+	static function indexMonographFiles($monograph) {
 		// Index galley files
 		$submissionFileDao = DAORegistry::getDAO('SubmissionFileDAO'); /* @var $submissionFileDao SubmissionFileDAO */
 		import('lib.pkp.classes.submission.SubmissionFile'); // Constants
@@ -147,15 +147,16 @@ class MonographSearchIndex extends SubmissionSearchIndex {
 	 * Remove indexed file contents for a monograph
 	 * @param $monograph Monograph
 	 */
-	function clearMonographFiles($monograph) {
+	static function clearMonographFiles($monograph) {
 		$searchDao = DAORegistry::getDAO('MonographSearchDAO');
 		$searchDao->deleteSubmissionKeywords($monograph->getId(), SUBMISSION_SEARCH_GALLEY_FILE);
 	}
 
 	/**
 	 * Rebuild the search index for all presses.
+	 * @param $log boolean Whether or not to log progress to the console.
 	 */
-	function rebuildIndex($log = false) {
+	static function rebuildIndex($log = false) {
 		// Clear index
 		if ($log) echo 'Clearing index ... ';
 		$searchDao = DAORegistry::getDAO('MonographSearchDAO');
