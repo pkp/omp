@@ -26,8 +26,8 @@ class OMPUpgradeTool extends UpgradeTool {
 	 * Constructor.
 	 * @param $argv array command-line arguments
 	 */
-	function OMPUpgradeTool($argv = array()) {
-		parent::UpgradeTool($argv);
+	function __construct($argv = array()) {
+		parent::__construct($argv);
 	}
 }
 

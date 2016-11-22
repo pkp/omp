@@ -158,6 +158,9 @@ class MonographDAO extends SubmissionDAO {
 	function deleteById($submissionId) {
 		parent::deleteById($submissionId);
 
+		$publishedMonographDao = DAORegistry::getDAO('PublishedMonographDAO');
+		$publishedMonographDao->deleteById($submissionId);
+
 		// Delete chapters and assigned chapter authors.
 		$chapterDao = DAORegistry::getDAO('ChapterDAO');
 		$chapters = $chapterDao->getChapters($submissionId);
