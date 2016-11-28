@@ -124,4 +124,5 @@
 
 	<message key="submission.upload.fileContents">Submission Component</message>
 	<message key="submission.dependentFiles">Dependent Files</message>
+	<message key="section.any">Any Series</message>
 </locale>
