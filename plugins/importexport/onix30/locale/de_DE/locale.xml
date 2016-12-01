@@ -16,4 +16,20 @@
 	<message key="plugins.importexport.onix30.displayName">ONIX 3.0 Monographie-Export-Plugin</message>
 	
 	<!-- Information form keys -->
+	<message key="plugins.importexport.onix30.description">Exportiere die Monographie-Metadaten in das ONIX 3.0-Format.</message>
+	<message key="plugins.importexport.onix30.cliUsage">Usage: {$scriptName} {$pluginName} [xmlFileName] [pressPath] [monographId]</message>
+	<message key="plugins.importexport.onix30.cliError">FEHLER:</message>
+	<message key="plugins.importexport.onix30.error.unknownPress">Der angegebene Verlags-Pfadname, "{$pressPath}" existiert nicht.</message>
+	<message key="plugins.importexport.onix30.export.error.couldNotWrite">Die Datei "{$fileName}" konnte nicht geschrieben werden.</message>
+	<message key="plugins.importexport.onix30.export.error.monographNotFound">Es gibt keine Monographie mit der Monographie-ID "{$monographId}".</message>
+	<message key="plugins.importexport.onix30.noFormats">Monographien, für die keine Publikationsformate angelegt wurden, können nicht gezeigt werden.</message>
+	<message key="plugins.importexport.onix30.selectMonograph">Wählen Sie eine Monographie aus, die exportiert werden soll.</message>
+	<message key="plugins.importexport.onix30.exportButton">Exportieren</message>
+	<message key="plugins.importexport.onix30.exportFormats">Verfügbare Formate</message>
+	<message key="plugins.importexport.onix30.unavailable">Nicht verfügbar</message>
+	<message key="plugins.importexport.onix30.validityStatus">ONIX-Status</message>
+	<message key="plugins.importexport.onix30.formatValid">Gültig</message>
+	<message key="plugins.importexport.onix30.formatInvalid">Ungültig</message>
+	<message key="plugins.importexport.onix30.pressMissingFields"><![CDATA[Bei den Verlagsangaben fehlen eine Angaben, die für ONIX-Export notwendig sind. Bitte gehen Sie zu Management -> Einstellungen -> Veröffentlichung -> Herstellung und ergänzen Sie die fehlenden Angaben.]]></message>
+	<message key="plugins.importexport.onix30.form.addresseeField">Adresse (Empfänger) für diesen Export</message>
 </locale>

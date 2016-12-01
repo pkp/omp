@@ -14,7 +14,7 @@
 <locale name="de_DE" full_name="Deutsch (Deutschland)">
 	<!-- General submission keys -->
 	<message key="submission.submit.title">Monografie einreichen</message>
-	<message key="submission.upload.selectComponent">Komponente auswählen</message>
+	<message key="submission.upload.selectComponent">Artikel-Komponente auswählen</message>
 	<message key="submission.title">Buchtitel</message>
 	<message key="submission.title.tip"><![CDATA[Die eingereichten Manuskripte lassen sich in der Regel als 'Bild', 'Text' oder als eine andere Multimediagattung (wie z.B. 'Software' oder 'Interaktive Medien') klassifizieren. Bitte wählen Sie den für Ihre Einreichung am besten zutreffenden Typ aus. Beispiele finden Sie unter <a target="_blank" href="http://dublincore.org/documents/2001/04/12/usageguide/generic.shtml#type">http://dublincore.org/documents/2001/04/12/usageguide/generic.shtml#type</a>]]></message>
 	<message key="submission.select">Wählen Sie ein Manuskript aus</message>

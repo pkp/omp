@@ -15,10 +15,10 @@
 <locale name="de_DE" full_name="Deutsch (Deutschland)">
 	<message key="plugins.block.browse">Browsen</message>
 	<message key="plugins.block.browse.displayName">Browse-Block</message>
-	<message key="plugins.block.browse.description">Dieses Plug-in stellt Werkzeuge zum "Browsen" in der Sidebar bereit.</message>
+	<message key="plugins.block.browse.description">Dieses Plug-in stellt "Browse"-Werkzeuge in der Sidebar bereit.</message>
 	<message key="plugins.block.browse.settings">Einstellungen</message>
 	<message key="plugins.block.browse.settings.title">Browsing-Möglichkeiten</message>
-	<message key="plugins.block.browse.category">Durch eine Kategorie browsen</message>
-	<message key="plugins.block.browse.series">Durch eine Reihe browsen</message>
-	<message key="plugins.block.browse.newReleases">Durch Neuerscheinungen browsen</message>
+	<message key="plugins.block.browse.category">Kategorien</message>
+	<message key="plugins.block.browse.series">Reihen</message>
+	<message key="plugins.block.browse.newReleases">Neuerscheinungen</message>
 </locale>

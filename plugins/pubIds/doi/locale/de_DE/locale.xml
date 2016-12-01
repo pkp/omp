@@ -20,4 +20,20 @@
 
 	<!-- metadata form -->
 
+	<message key="plugins.pubIds.doi.description">Dieses Plug-In ermöglicht die Zuweisung eines Digital Object Identifiers (DOI) zu einem Publikationsformat in OMP.</message>
+	<message key="plugins.pubIds.doi.manager.settings.doiSettings">DOI Plug-In-Einstellungen</message>
+	<message key="plugins.pubIds.doi.manager.settings.description">Bitte konfigurieren Sie das DOI-Plug-In, damit Sie in OMP DOIs verwalten und benutzen können.</message>
+	<message key="plugins.pubIds.doi.manager.settings.doiSettingsUpdated">Einstellungen des DOI-Plug-Ins wurden aktualisiert.</message>
+	<message key="plugins.pubIds.doi.manager.settings.doiObjects">Inhalt des Publikationsformat</message>
+	<message key="plugins.pubIds.doi.manager.settings.doiObjectsRequired">Bitte wählen Sie die Objekte aus, denen DOIs zugewiesen werden sollen.</message>
+	<message key="plugins.pubIds.doi.manager.settings.doiPrefixDescription"><![CDATA[Das DOI-Präfix wird von den Regristrierungsagenturen vergeben (z. B. <a href="http://www.crossref.org" target="_new">CrossRef</a>) und hat die Form 10.xxxx (e.g. 10.1234):]]></message>
+	<message key="plugins.pubIds.doi.manager.settings.doiPrefixPattern">Das DOI-Präfix ist obligatorisch und muss die Form 10.xxxx haben</message>
+	<message key="plugins.pubIds.doi.manager.settings.doiSuffix">DOI-Suffix</message>
+	<message key="plugins.pubIds.doi.manager.settings.doiSuffixRequired">Wählen Sie einen DOI-Suffix.</message>
+	<message key="plugins.pubIds.doi.manager.settings.doiSuffixDescription">Ein DOI-Suffix kann jegliche Form haben, darf aber nur ein einziges Mal in Verbindung mit dem DOi-Präfix vergeben werden, um einen eindeutige Gesamt-DOI zu erzeugen.</message>
+	<message key="plugins.pubIds.doi.manager.settings.doiSuffixPattern.publicationFormats">Für Publikationsformate</message>
+	<message key="plugins.pubIds.doi.editor.doi">DOI</message>
+	<message key="plugins.pubIds.doi.editor.doiObjectTypePublicationFormat">Publikationsformat</message>
+	<message key="plugins.pubIds.doi.editor.doiNotYetGenerated">Sie sehen die Vorschau der DOI, ihre Generierung ist aber eventuell noch nicht abgeschlossen. Die Generierung der DOI geschieht erst in dem Moment endgültig, in dem die Monographie veröffentlicht und im öffentlichen Katalog aufgerufen wurde.</message>
+	<message key="plugins.pubIds.doi.editor.doiSuffixCustomIdentifierNotUnique">Das vergebenen DOI-Suffix wird bereits verwendet für eine ander Publikation. Bitter geben Sie ein DOI-Suffix ein, dass bisher noch nicht vergeben wurde.</message>
 </locale>
