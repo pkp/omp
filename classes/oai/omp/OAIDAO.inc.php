@@ -193,7 +193,7 @@ class OAIDAO extends PKPOAIDAO {
 	 * @see lib/pkp/classes/oai/PKPOAIDAO::getAccessibleRecordWhereClause()
 	 */
 	function getAccessibleRecordWhereClause() {
-		return 'WHERE ((p.enabled = 1 AND ms.status <> ' . STATUS_DECLINED . ' AND pf.is_available = 1) OR dot.data_object_id IS NOT NULL)';
+		return 'WHERE ((p.enabled = 1 AND ms.status <> ' . STATUS_DECLINED . ' AND pf.is_available = 1 AND ps.date_published IS NOT NULL) OR dot.data_object_id IS NOT NULL)';
 	}
 
 	/**
