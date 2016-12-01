@@ -39,8 +39,8 @@ import('lib.pkp.classes.form.Form');
 //      allowing Form::display() to use FBVTemplateManager
 class FBVTemplateManager extends TemplateManager {
 
-	function FBVTemplateManager() {
-		parent::TemplateManager();
+	function __construct() {
+		parent::__construct();
 
 		$this->caching = 0;
 
@@ -86,7 +86,7 @@ class FBVTemplateManager extends TemplateManager {
 // main class for this tool
 class fbvVisualResults {
 	// constructor: set FBVTemplateManager instance in the registry
-	function fbvVisualResults() {
+	function __construct() {
 		FBVTemplateManager::getManager();
 	}
 

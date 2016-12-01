@@ -24,8 +24,8 @@ class OMPInstallTool extends InstallTool {
 	 * Constructor.
 	 * @param $argv array command-line arguments
 	 */
-	function OMPInstallTool($argv = array()) {
-		parent::InstallTool($argv);
+	function __construct($argv = array()) {
+		parent::__construct($argv);
 	}
 
 	/**

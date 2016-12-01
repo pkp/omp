@@ -27,8 +27,8 @@ class fixFilenames extends CommandLineTool {
 	 * Constructor.
 	 * @param $argv array command-line arguments
 	 */
-	function fixFilenames($argv = array()) {
-		parent::CommandLineTool($argv);
+	function __construct($argv = array()) {
+		parent::__construct($argv);
 
 		if (($arg = array_pop($this->argv)) == '--dry-run') {
 			$this->dryrun = true;
