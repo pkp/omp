@@ -191,7 +191,7 @@ class CatalogMonographsGridHandler extends GridHandler {
 		$press = $request->getPress();
 
 		// Identification of item to set new state state on
-		$monographId = $this->getAuthorizedContextObject(ASSOC_TYPE_MONOGRAPH)->getId();
+		$monographId = $this->getAuthorizedContextObject(ASSOC_TYPE_PUBLISHED_MONOGRAPH)->getId();
 		$assocType = (int) $request->getUserVar('assocType');
 		$assocId = (int) $request->getUserVar('assocId');
 
