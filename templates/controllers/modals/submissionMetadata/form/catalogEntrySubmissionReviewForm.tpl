@@ -32,6 +32,7 @@
 	<input type="hidden" name="displayedInContainer" value="{$formParams.displayedInContainer|escape}" />
 	<input type="hidden" name="tab" value="submission" />
 
+	{include file="core:submission/submissionLocale.tpl" readOnly=$formParams.readOnly}
 	{include file="core:submission/submissionMetadataFormTitleFields.tpl" readOnly=$formParams.readOnly}
 	{include file="submission/form/seriesAndCategories.tpl" readOnly=$formParams.readOnly includeSeriesPosition=true}
 

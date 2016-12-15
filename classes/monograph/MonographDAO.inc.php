@@ -117,7 +117,8 @@ class MonographDAO extends SubmissionDAO {
 	function updateObject($monograph) {
 		$this->update(
 			sprintf('UPDATE	submissions
-				SET	series_id = ?,
+				SET	locale = ?,
+					series_id = ?,
 					series_position = ?,
 					language = ?,
 					comments_to_ed = ?,
@@ -134,6 +135,7 @@ class MonographDAO extends SubmissionDAO {
 				WHERE	submission_id = ?',
 				$this->datetimeToDB($monograph->getDateSubmitted()), $this->datetimeToDB($monograph->getDateStatusModified()), $this->datetimeToDB($monograph->getLastModified())),
 			array(
+				$monograph->getLocale(),
 				(int) $monograph->getSeriesId(),
 				$monograph->getSeriesPosition(),
 				$monograph->getLanguage(),
