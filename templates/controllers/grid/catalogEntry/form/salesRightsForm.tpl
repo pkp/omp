@@ -22,10 +22,10 @@
 	<input type="hidden" name="salesRightsId" value="{$salesRightsId|escape}" />
 	{fbvFormArea id="addRights"}
 		{fbvFormSection title="grid.catalogEntry.salesRightsType" for="type" required="true"}
-			{fbvElement type="select" from=$salesRights selected=$type id="type" translate=false}
+			{fbvElement type="select" from=$salesRights selected=$type id="type" translate=false required="true"}
 		{/fbvFormSection}
 		{fbvFormSection for="value" list="true" description="grid.catalogEntry.salesRightsROW.tip"}
-		
+
 			{if $ROWSetting}
 				{assign var="checked" value=true}
 			{else}
@@ -34,7 +34,7 @@
 
 			{fbvElement type="checkbox" id="ROWSetting" checked=$checked list="true" label="grid.catalogEntry.salesRightsROW"}
 		{/fbvFormSection}
-		
+
 		{include file="controllers/grid/catalogEntry/form/countriesAndRegions.tpl"}
 
 		{fbvFormButtons}
