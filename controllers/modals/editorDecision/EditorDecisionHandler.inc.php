@@ -32,7 +32,6 @@ class EditorDecisionHandler extends PKPEditorDecisionHandler {
 				'externalReview', 'saveExternalReview',
 				'sendReviews', 'saveSendReviews',
 				'promote', 'savePromote',
-				'approveProofs', 'saveApproveProof'
 			), $this->_getReviewRoundOps())
 		);
 	}
@@ -100,76 +99,6 @@ class EditorDecisionHandler extends PKPEditorDecisionHandler {
 			WORKFLOW_STAGE_PATH_INTERNAL_REVIEW,
 			SUBMISSION_EDITOR_DECISION_INTERNAL_REVIEW
 		);
-	}
-
-	/**
-	 * Fetch the proofs grid handler.
-	 * @param $args array
-	 * @param $request PKPRequest
-	 * @return JSONMessage JSON object
-	 */
-	function approveProofs($args, $request) {
-		$this->setupTemplate($request);
-		$context = $request->getContext();
-		$submission = $this->getAuthorizedContextObject(ASSOC_TYPE_SUBMISSION);
-		$representationId = $request->getUserVar('representationId');
-		$publicationFormatDao = DAORegistry::getDAO('PublicationFormatDAO'); /* @var $publicationFormatDao PublicationFormatDAO */
-
-		$publicationFormat = $publicationFormatDao->getById($representationId, $submission->getId(), $context->getId());
-		if (!is_a($publicationFormat, 'PublicationFormat')) {
-			fatalError('Invalid publication format id!');
-		}
-
-		$templateMgr = TemplateManager::getManager($request);
-		$templateMgr->assign('representation', $publicationFormat);
-		$templateMgr->assign('submission', $submission);
-
-		return $templateMgr->fetchJson('controllers/modals/editorDecision/approveProofs.tpl');
-	}
-
-	/**
-	 * Approve a proof submission file.
-	 * @param $args array
-	 * @param $request PKPRequest
-	 * @return JSONMessage JSON object
-	 */
-	function saveApproveProof($args, $request) {
-		$submissionFile = $this->getAuthorizedContextObject(ASSOC_TYPE_SUBMISSION_FILE);
-		$submission = $this->getAuthorizedContextObject(ASSOC_TYPE_SUBMISSION);
-
-		// Make sure we only alter files associated with a publication format.
-		if ($submissionFile->getAssocType() !== ASSOC_TYPE_PUBLICATION_FORMAT) {
-			fatalError('The requested file is not associated with any publication format.');
-		}
-		if ($submissionFile->getViewable()) {
-
-			// No longer expose the file to readers.
-			$submissionFile->setViewable(false);
-		} else {
-
-			// Expose the file to readers (e.g. via e-commerce).
-			$submissionFile->setViewable(true);
-
-			// Log the approve proof event.
-			import('lib.pkp.classes.log.SubmissionLog');
-			import('classes.log.SubmissionEventLogEntry'); // constants
-			$user = $request->getUser();
-
-			$publicationFormatDao = DAORegistry::getDAO('PublicationFormatDAO');
-			$publicationFormat = $publicationFormatDao->getById($submissionFile->getAssocId(), $submission->getId());
-
-			SubmissionLog::logEvent($request, $submission, SUBMISSION_LOG_PROOFS_APPROVED, 'submission.event.proofsApproved', array('formatName' => $publicationFormat->getLocalizedName(),'name' => $user->getFullName(), 'username' => $user->getUsername()));
-		}
-
-		$submissionFileDao = DAORegistry::getDAO('SubmissionFileDAO');
-		$submissionFileDao->updateObject($submissionFile);
-
-		// update the submission's file index
-		import('classes.search.MonographSearchIndex');
-		MonographSearchIndex::clearMonographFiles($submission);
-		MonographSearchIndex::indexMonographFiles($submission);
-
-		return DAO::getDataChangedEvent($submissionFile->getId());
 	}
 
 
