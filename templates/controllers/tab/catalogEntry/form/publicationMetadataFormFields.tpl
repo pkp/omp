@@ -86,7 +86,7 @@
 
 	{fbvFormArea id="productAvailability" title="monograph.publicationFormat.productAvailability" class="border"}
 		{fbvFormSection for="productAvailability" required="true"}
-			{fbvElement type="select" from=$productAvailabilityCodes required=true selected=$productAvailabilityCode translate=false id="productAvailabilityCode"}
+			{fbvElement type="select" from=$productAvailabilityCodes required=true selected=$productAvailabilityCode translate=false id="productAvailabilityCode" required="true"}
 		{/fbvFormSection}
 	{/fbvFormArea}
 

@@ -22,10 +22,10 @@
 	<input type="hidden" name="identificationCodeId" value="{$identificationCodeId|escape}" />
 	{fbvFormArea id="addCode"}
 		{fbvFormSection title="grid.catalogEntry.identificationCodeValue" for="value" required="true"}
-			{fbvElement type="text" id="value" value=$value size=$fbvStyles.size.MEDIUM}
+			{fbvElement type="text" id="value" value=$value size=$fbvStyles.size.MEDIUM required="true"}
 		{/fbvFormSection}
 		{fbvFormSection title="grid.catalogEntry.identificationCodeType" for="code" required="true" size=$fbvStyles.size.MEDIUM}
-			{fbvElement type="select" from=$identificationCodes selected=$code id="code" translate=false}
+			{fbvElement type="select" from=$identificationCodes selected=$code id="code" translate=false required="true"}
 		{/fbvFormSection}
 		{fbvFormButtons}
 	{/fbvFormArea}

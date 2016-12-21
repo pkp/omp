@@ -39,7 +39,7 @@
 		<h3>{translate key="grid.category.categoryDetails"}</h3>
 
 		{fbvFormSection title="grid.category.name" for="name" required="true"}
-			{fbvElement type="text" multilingual="true" name="name" value=$name id="name"}
+			{fbvElement type="text" multilingual="true" name="name" value=$name id="name" required="true"}
 		{/fbvFormSection}
 
 		{fbvFormSection title="grid.category.parentCategory" for="context"}
@@ -48,7 +48,7 @@
 
 		{fbvFormSection title="grid.category.path" required=true for="path"}
 			{capture assign="instruct"}
-				{url|assign:"sampleUrl" router=$smarty.const.ROUTE_PAGE page="catalog" op="category" path="path"}
+				{url|assign:"sampleUrl" router=$smarty.const.ROUTE_PAGE page="catalog" op="category" path="path" required=true}
 				{translate key="grid.category.urlWillBe" sampleUrl=$sampleUrl}
 			{/capture}
 			{fbvElement type="text" id="path" value=$path maxlength="32" label=$instruct subLabelTranslate=false}

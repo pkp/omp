@@ -49,15 +49,15 @@
 
 	{fbvFormArea id="siteContact"}
 		{fbvFormSection title="admin.settings.contactName" required=true}
-			{fbvElement type="text" multilingual=true name="contactName" id="contatcName" value=$contactName size=$fbvStyles.size.MEDIUM}
+			{fbvElement type="text" multilingual=true name="contactName" id="contatcName" value=$contactName size=$fbvStyles.size.MEDIUM required=true}
 		{/fbvFormSection}
 		{fbvFormSection title="admin.settings.contactEmail" required=true}
-			{fbvElement type="text" multilingual=true name="contactEmail" id="contactEmail" value=$contactEmail size=$fbvStyles.size.MEDIUM}
+			{fbvElement type="text" multilingual=true name="contactEmail" id="contactEmail" value=$contactEmail size=$fbvStyles.size.MEDIUM required=true}
 		{/fbvFormSection}
 	{/fbvFormArea}
 	{fbvFormArea id="security"}
 		{fbvFormSection title="admin.settings.minPasswordLength" required=true}
-			{fbvElement type="text" id="minPasswordLength" value=$minPasswordLength size=$fbvStyles.size.MEDIUM}
+			{fbvElement type="text" id="minPasswordLength" value=$minPasswordLength size=$fbvStyles.size.MEDIUM required=true}
 		{/fbvFormSection}
 	{/fbvFormArea}
 	{fbvFormArea id="appearance"}

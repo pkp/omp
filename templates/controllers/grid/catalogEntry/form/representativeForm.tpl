@@ -27,12 +27,12 @@
 		{/fbvFormSection}
 		{fbvFormSection title="grid.catalogEntry.representativeRole" for="role" required="true"}
 			{if $isSupplier}{assign var="agentClass" value="hidden"}{/if}
-			{fbvElement type="select" from=$agentRoleCodes selected=$role id="agentRole" translate=false inline="true" class=$agentClass size=$fbvStyles.size.MEDIUM defaultValue="" defaultLabel=""}
+			{fbvElement type="select" from=$agentRoleCodes selected=$role id="agentRole" translate=false inline="true" class=$agentClass size=$fbvStyles.size.MEDIUM defaultValue="" defaultLabel="" required="true"}
 			{if !$isSupplier}{assign var="supplierClass" value="hidden"}{/if}
-			{fbvElement type="select" from=$supplierRoleCodes selected=$role id="supplierRole" translate=false inline="true" class=$supplierClass size=$fbvStyles.size.MEDIUM defaultValue="" defaultLabel=""}
+			{fbvElement type="select" from=$supplierRoleCodes selected=$role id="supplierRole" translate=false inline="true" class=$supplierClass size=$fbvStyles.size.MEDIUM defaultValue="" defaultLabel="" required="true"}
 		{/fbvFormSection}
 		{fbvFormSection title="grid.catalogEntry.representativeName" for="name" required="true"}
-			{fbvElement type="text" id="name" value=$name size=$fbvStyles.size.MEDIUM}
+			{fbvElement type="text" id="name" value=$name size=$fbvStyles.size.MEDIUM required="true"}
 		{/fbvFormSection}
 		{fbvFormSection}
 			{fbvElement type="select" label="grid.catalogEntry.representativeIdType" from=$idTypeCodes selected=$representativeIdType id="representativeIdType" defaultValue="" defaultLabel="" translate=false size=$fbvStyles.size.MEDIUM inline="true"}
