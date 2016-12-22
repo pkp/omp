@@ -193,9 +193,18 @@ class NativeImportExportPlugin extends ImportExportPlugin {
 			$submission = $submissionDao->getById($submissionId, $context->getId());
 			if ($submission) $submissions[] = $submission;
 		}
-		$submissionXml = $exportFilter->execute($submissions);
-		if ($submissionXml) $xml = $submissionXml->saveXml();
-		else fatalError('Could not convert submissions.');
+		libxml_use_internal_errors(true);
+		$submissionXml = $exportFilter->execute($submissions, true);
+		$xml = $submissionXml->saveXml();
+		$errors = array_filter(libxml_get_errors(), create_function('$a', 'return $a->level == LIBXML_ERR_ERROR || $a->level == LIBXML_ERR_FATAL;'));
+		if (!empty($errors)) {
+			$charset = Config::getVar('i18n', 'client_charset');
+			header('Content-type: text/html; charset=' . $charset);
+			echo '<html><body>';
+			$this->displayXMLValidationErrors($errors, $xml);
+			echo '</body></html>';
+			fatalError(__('plugins.importexport.common.error.validation'));
+		}
 		return $xml;
 	}
 
