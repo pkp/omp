@@ -14,7 +14,7 @@
 
 <locale name="de_DE" full_name="Deutsch (Deutschland)">
 	<message key="plugins.generic.addThis.displayName">AddThis</message>
-	<message key="plugins.generic.addThis.description">Dieses Plug-In stellt das Teilen von Beiträgen über AddThis bereit.</message>
+	<message key="plugins.generic.addThis.description">Dieses Plugin stellt das Teilen von Beiträgen über AddThis bereit.</message>
 	<message key="plugins.generic.addThis.title">AddThis</message>
 	<message key="plugins.generic.addThis.settings">Einstellungen</message>
 	<message key="plugins.generic.addThis.settings.statistics">Statistik</message>

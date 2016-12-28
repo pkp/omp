@@ -29,7 +29,7 @@
 	<message key="monograph.carousel.publicationFormats">Formate:</message>
 	<message key="monograph.type">Art der Einreichung</message>
 	<message key="submission.pageProofs">Korrekturfahnen</message>
-	<message key="monograph.proofReadingDescription"><![CDATA[Der Layouter/die Layouterin lädt hier die für die Publikation vorbereiteten druckfertigen Dateien hoch. Verwenden Sie <em>+Zuweisen</em>, um jene Autoren/innen und anderen Beteiligten zu bestimmen, die diese Dateien Korrektur lesen und ihre Zustimmung zur Veröffentlichung geben sollen. (Bitte die korrigierten Dateien mit hochladen.)]]></message>
+	<message key="monograph.proofReadingDescription"><![CDATA[Der Layouter/die Layouterin lädt hier die für die Publikation vorbereiteten herstellungsreifen Dateien hoch. Verwenden Sie <em>+Zuweisen</em>, um jene Autor/innen und anderen Beteiligten zu bestimmen, die diese Dateien Korrektur lesen und ihre Zustimmung zur Veröffentlichung geben sollen. (Bitte die korrigierten Dateien mit hochladen.)]]></message>
 	<message key="monograph.task.addNote">Zu den Aufgaben hinzufügen</message>
 	<message key="monograph.accessLogoOpen.altText">Open Access</message>
 

@@ -31,7 +31,7 @@
 
 	<!-- metadata form -->
 	<message key="plugins.pubIds.doi.editor.doi">DOI</message>
-	<message key="plugins.pubIds.doi.editor.doiSuffixCustomIdentifierNotUnique">Das vergebenen DOI-Suffix wird bereits verwendet für eine ander Publikation. Bitter geben Sie ein DOI-Suffix ein, dass bisher noch nicht vergeben wurde.</message>
+	<message key="plugins.pubIds.doi.editor.doiSuffixCustomIdentifierNotUnique">Der angegebene DOI-Suffix wird bereits für ein anderes veröffentlichtes Element benutzt. Bitte vergeben Sie einen eindeutigen DOI-Suffix für jedes Element.</message>
 
 	<!-- assignment form -->
 
