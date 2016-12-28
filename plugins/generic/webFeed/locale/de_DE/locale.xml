@@ -12,8 +12,8 @@
   -->
  
 <locale name="de_DE" full_name="Deutsch (Deutschland)">
-	<message key="plugins.generic.webfeed.displayName">Web-Feed-Plug-In</message>
-	<message key="plugins.generic.webfeed.description">Dieses Plug-In erzeugt RSS/Atom-Feeds für die aktuelle Ausgabe.</message>
+	<message key="plugins.generic.webfeed.displayName">Web-Feed-Plugin</message>
+	<message key="plugins.generic.webfeed.description">Dieses Plugin erzeugt RSS/Atom-Feeds für die aktuelle Ausgabe.</message>
 	<message key="plugins.generic.webfeed.newcontent">Neuer Inhalt</message>
 
 	<message key="plugins.generic.webfeed.settings">Einstellungen</message>
@@ -21,7 +21,7 @@
 	<message key="plugins.generic.webfeed.settings.all">Links zu Web-Feeds auf allen Zeitschriftenseiten anzeigen.</message>
 
 	<message key="plugins.generic.webfeed.settings.recentBooks">Anzahl anzuzeigender Titel</message>
-	<message key="plugins.generic.webfeed.settings.recentItemsRequired">Bitte geben sie eine positive, ganze Zahl für aktuelle Veröffentlichungen an.</message>
+	<message key="plugins.generic.webfeed.settings.recentItemsRequired">Bitte geben Sie eine positive, ganze Zahl für aktuelle Veröffentlichungen an.</message>
 	<message key="plugins.generic.webfeed.atom.altText">Atom-Logo</message>
 	<message key="plugins.generic.webfeed.rss1.altText">RSS1-Logo</message>
 	<message key="plugins.generic.webfeed.rss2.altText">RSS2-Logo</message>

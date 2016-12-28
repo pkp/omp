@@ -12,6 +12,6 @@
   -->
 
 <locale name="de_DE" full_name="Deutsch (Deutschland)">
-	<message key="plugins.metadata.mods34.monographAdapter.displayName">MODS 3.4 Monographie-Adapter</message>
-	<message key="plugins.metadata.mods34.monographAdapter.description">Extrahiert/importiert Metadaten aus/in Monographien.</message>
+	<message key="plugins.metadata.mods34.monographAdapter.displayName">MODS 3.4 Monografie-Adapter</message>
+	<message key="plugins.metadata.mods34.monographAdapter.description">Extrahiert/importiert Metadaten aus/in Monografien.</message>
 </locale>

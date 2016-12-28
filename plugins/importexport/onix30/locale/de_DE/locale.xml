@@ -13,15 +13,15 @@
   -->
 
 <locale name="de_DE" full_name="Deutsch (Deutschland)">
-	<message key="plugins.importexport.onix30.displayName">ONIX 3.0 Monographie-Export-Plugin</message>
-	<message key="plugins.importexport.onix30.description">Exportiere die Monographie-Metadaten in das ONIX 3.0-Format.</message>
+	<message key="plugins.importexport.onix30.displayName">ONIX 3.0 Monografie-Export-Plugin</message>
+	<message key="plugins.importexport.onix30.description">Exportiere die Monografie-Metadaten in das ONIX 3.0-Format.</message>
 	<message key="plugins.importexport.onix30.cliUsage"><![CDATA[Nutzung: {$scriptName} {$pluginName} [xmlFileName] [pressPath] [monographId] ]]></message>
 	<message key="plugins.importexport.onix30.cliError">FEHLER:</message>
 	<message key="plugins.importexport.onix30.error.unknownPress">Der angegebene Verlags-Pfadname, "{$pressPath}" existiert nicht.</message>
 	<message key="plugins.importexport.onix30.export.error.couldNotWrite">Die Datei "{$fileName}" konnte nicht geschrieben werden.</message>
-	<message key="plugins.importexport.onix30.export.error.monographNotFound">Es gibt keine Monographie mit der Monographie-ID "{$monographId}".</message>
-	<message key="plugins.importexport.onix30.noFormats">Monographien, für die keine Publikationsformate angelegt wurden, können nicht angezeigt werden.</message>
-	<message key="plugins.importexport.onix30.selectMonograph">Wählen Sie eine Monographie aus, die exportiert werden soll.</message>
+	<message key="plugins.importexport.onix30.export.error.monographNotFound">Es gibt keine Monografie mit der Monografie-ID "{$monographId}".</message>
+	<message key="plugins.importexport.onix30.noFormats">Monografien, für die keine Publikationsformate angelegt wurden, können nicht angezeigt werden.</message>
+	<message key="plugins.importexport.onix30.selectMonograph">Wählen Sie eine Monografie aus, die exportiert werden soll.</message>
 	<message key="plugins.importexport.onix30.exportButton">Exportieren</message>
 	<message key="plugins.importexport.onix30.exportFormats">Verfügbare Formate</message>
 	<message key="plugins.importexport.onix30.unavailable">Nicht verfügbar</message>

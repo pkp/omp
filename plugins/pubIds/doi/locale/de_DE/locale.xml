@@ -13,10 +13,10 @@
  
 <locale name="de_DE" full_name="Deutsch (Deutschland)">
 	<message key="plugins.pubIds.doi.displayName">DOI</message>
-	<message key="plugins.pubIds.doi.description">Dieses Plug-In ermöglicht die Zuweisung eines Digital Object Identifiers (DOI) zu einem Publikationsformat in OMP.</message>
+	<message key="plugins.pubIds.doi.description">Dieses Plugin ermöglicht die Zuweisung eines Digital Object Identifiers (DOI) zu einem Publikationsformat in OMP.</message>
 
 	<!-- settings form -->
-	<message key="plugins.pubIds.doi.manager.settings.description">Bitte konfigurieren Sie das DOI-Plug-In, damit Sie in OMP DOIs verwalten und benutzen können.</message>
+	<message key="plugins.pubIds.doi.manager.settings.description">Bitte konfigurieren Sie das DOI-Plugin, damit Sie in OMP DOIs verwalten und benutzen können.</message>
 
 	<message key="plugins.pubIds.doi.manager.settings.doiObjects">Inhalt des Publikationsformat</message>
 	<message key="plugins.pubIds.doi.manager.settings.doiObjectsRequired">Bitte wählen Sie die Objekte aus, denen DOIs zugewiesen werden sollen.</message>

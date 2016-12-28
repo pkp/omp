@@ -362,8 +362,8 @@ Wählen Sie ein Modell, um diese Aspekte des Publikationsprozesses zu steuern. (
 	<li><strong>Links in die Literaturnachweise einbinden: </strong><p>Der/die Layouter/in kann einen Link zu online aufrufbaren Zitationen hinzufügen. Die folgenden Instruktionen sind dabei unter Umständen hilfreich (Bearbeitung erlaubt).</p></li>
 </ol>]]></message>
 	<message key="manager.publication.library">Verlagsdokumentenarchiv</message>
-	<message key="manager.setup.resetPermissions">Rechte für Monographien zurücksetzen</message>
-	<message key="manager.setup.resetPermissions.confirm">Sind Sie sicher, dass Sie die bereits vergebenen Rechte für Monographien zurücksetzen wollen?</message>
+	<message key="manager.setup.resetPermissions">Rechte für Monografien zurücksetzen</message>
+	<message key="manager.setup.resetPermissions.confirm">Sind Sie sicher, dass Sie die bereits vergebenen Rechte für Monografien zurücksetzen wollen?</message>
 	<message key="manager.setup.resetPermissions.description">Copyright-Angaben und Lizenzinformationen werden dauerhaft mit dem veröffentlichten Inhalt verknüpft, damit diese Daten sich nicht ändern, wenn ein Verlag die Regeln für neue Einreichungen ändert. Um vergebene Rechte für bereits veröffentlichte Inhalte zurückzusetzen, nutzen Sie den Knopf unten.</message>
 
 	<message key="grid.genres.title.short">Komponenten</message>
