@@ -20,7 +20,7 @@
 	<message key="editor.monograph.recommendation">Empfehlung</message>
 	<message key="editor.monograph.selectReviewerInstructions">Wählen Sie oben einen Gutachter/eine Gutachterin aus und klicken Sie auf 'Gutachter/in auswählen'.</message>
 	<message key="editor.monograph.replaceReviewer">Gutachter/innen ersetzen</message>
-	<message key="editor.monograph.editorToEnter">Herausgeber pflegen die Empfehlungen/Kommentare für Gutachter/in ein</message>
+	<message key="editor.monograph.editorToEnter">Herausgeber/innen pflegen die Empfehlungen/Kommentare für Gutachter/in ein</message>
 	<message key="editor.monograph.uploadReviewForReviewer">Gutachten hochladen</message>
 	<message key="editor.monograph.peerReviewOptions">Gutachten-Optionen</message>
 	<message key="editor.monograph.selectProofreadingFiles">Korrekturfahnen-Dateien</message>
@@ -57,8 +57,8 @@
 	<message key="editor.monograph.legend.uploaded">Datei wurde hochgeladen durch die im Spaltentitel angegebene Rolle</message>
 
 	<!-- Editorial related -->
-	<message key="editor.submission.introduction">In der Einreichungsphase bestimmt der prüft der zuständige Herausgeber die eingereichten Manuskripte und prüft das weitere Vorgehen. Dazu wählt er/sie eine passende Aktion aus (über die der Autor/die Autorin grundsätzlich informiert wird): Zur internen Begutachtung senden (anschließend müssen die für die interne Begutachtung vorgesehenen Dateien ausgewählt werden); Zur externen Begutachtung senden (anschließend müssen die für die externe Begutachtung vorgesehenen Dateien ausgewählt werden); Manuskript annnehmen (anschließend sind die Dateien für die redaktionelle Bearbeitung auszuwählen) oder Manuskript ablehnen (das Manuskript wird im Archiv abgelegt).</message>
-	<message key="editor.monograph.editorial.fairCopy">Vom Autor genehmigte satzfertige Manuskriptfassung</message>
+	<message key="editor.submission.introduction">In der Einreichungsphase bestimmt der zuständige Herausgeber/die zuständige Herausgeberin nach Prüfung der eingereichten Manuskripte die passende Aktion aus (über die der Autor/die Autorin grundsätzlich informiert wird): Zur internen Begutachtung senden (anschließend müssen die für die interne Begutachtung vorgesehenen Dateien ausgewählt werden); Zur externen Begutachtung senden (anschließend müssen die für die externe Begutachtung vorgesehenen Dateien ausgewählt werden); Manuskript annnehmen (anschließend sind die Dateien für die redaktionelle Bearbeitung auszuwählen) oder Manuskript ablehnen (das Manuskript wird im Archiv abgelegt).</message>
+	<message key="editor.monograph.editorial.fairCopy">Freigegebene satzfertige Manuskriptfassung</message>
 
 	<!-- Production/Proof related -->
 	<message key="editor.monograph.proofs">Korrekturfahnen</message>

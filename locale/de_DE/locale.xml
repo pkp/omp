@@ -25,11 +25,11 @@
 	<message key="monograph.publicationFormats">Publikationsformate</message>
 	<message key="monograph.publicationFormat">Format</message>
 	<message key="monograph.publicationFormatDetails">Genauere Angaben zum verfügbaren Publikationsformat {$format}</message>
-	<message key="monograph.miscellaneousDetails">Angaben zur Monographie</message>
+	<message key="monograph.miscellaneousDetails">Angaben zur Monografie</message>
 	<message key="monograph.carousel.publicationFormats">Formate:</message>
 	<message key="monograph.type">Art der Einreichung</message>
 	<message key="submission.pageProofs">Korrekturfahnen</message>
-	<message key="monograph.proofReadingDescription"><![CDATA[Der Layouter lädt hier die für die Publikation vorbereiteten druckfertigen Dateien hoch. Verwenden Sie <em>+Zuweisen</em>, um jene Autoren und anderen Beteiligten zu bestimmen, die diese Dateien Korrektur lesen und ihre Zustimmung zur Veröffentlichung geben sollen. (Bitte die korrigierten Dateien mit hochladen.)]]></message>
+	<message key="monograph.proofReadingDescription"><![CDATA[Der Layouter/die Layouterin lädt hier die für die Publikation vorbereiteten druckfertigen Dateien hoch. Verwenden Sie <em>+Zuweisen</em>, um jene Autoren/innen und anderen Beteiligten zu bestimmen, die diese Dateien Korrektur lesen und ihre Zustimmung zur Veröffentlichung geben sollen. (Bitte die korrigierten Dateien mit hochladen.)]]></message>
 	<message key="monograph.task.addNote">Zu den Aufgaben hinzufügen</message>
 	<message key="monograph.accessLogoOpen.altText">Open Access</message>
 
@@ -91,7 +91,7 @@
 	<message key="grid.catalogEntry.approvedRepresentation.message"><![CDATA[<p>Die Metadaten für dieses Format freigeben. Die Metadaten können im Katalogeintrag-Panel kontrolliert werden.</p>]]></message>
 	<message key="grid.catalogEntry.approvedRepresentation.removeMessage"><![CDATA[<p>Anzeigen, dass die Metadaten für dieses Format noch nicht genehmigt wurden.</p>]]></message>
 	<message key="grid.catalogEntry.availableRepresentation.title">Format-Verfügbarkeit</message>
-	<message key="grid.catalogEntry.availableRepresentation.message"><![CDATA[<p>Dieses Format veröffentlichen. Herunterladbare Dateien und alle anderen Vertriebswege werden im Katalogeintrag des Buchs angezeigt.</p>]]></message>
+	<message key="grid.catalogEntry.availableRepresentation.message"><![CDATA[<p>Dieses Format <em>für Leser/innen zugänglich</em> machen. Herunterladbare Dateien und alle anderen Vertriebswege werden im Katalogeintrag des Buchs angezeigt.</p>]]></message>
 	<message key="grid.catalogEntry.availableRepresentation.removeMessage"><![CDATA[<p>Dieses Format wird <em>für Leser/innen nicht verfügbar</em> sein. Alle herunterladbaren Dateien oder andere Vertriebswege werden nicht mehr im Katalogeintrag des Buchs angezeigt.</p>]]></message>
 	<message key="grid.catalogEntry.availableRepresentation.catalogNotApprovedWarning">Der Katalogeintrag wurde nicht akzeptiert.</message>
 	<message key="grid.catalogEntry.availableRepresentation.notApprovedWarning">Format nicht im Katalogeintrag.</message>
@@ -270,6 +270,12 @@
 	<message key="catalog.manage.manageSeries">Reihen verwalten</message>
 	<message key="catalog.manage.manageCategories">Kategorien verwalten</message>
 	<message key="catalog.manage.noMonographs">Es liegen keine Ihnen zugewiesenen Monografien vor.</message>
+	<message key="catalog.manage.newReleaseSuccess">Die Monografie wurde als Neuerscheinung gekennzeichnet.</message>
+	<message key="catalog.manage.notNewReleaseSuccess">Die Kenntlichmachung als Neuerscheinung wurde entfernt.</message>
+	<message key="catalog.manage.feature.newRelease">Neuerscheinung</message>
+	<message key="catalog.manage.feature.categoryNewRelease">Neuerscheinung in der Kategorie</message>
+	<message key="catalog.manage.feature.seriesNewRelease">Neuerscheinung in der Reihe</message>
+	<message key="catalog.manage.filter.searchByAuthorOrTitle">Nach Titel oder Autor/in suchen</message>
 
 	<!-- Catalog -->
 	<message key="catalog.noTitles">Bisher wurden keine Titel veröffentlicht.</message>
@@ -577,10 +583,4 @@ Ihr Server untersützt aktuell mbstring: <strong>{$supportsMBString}</strong>]]>
 
 	<message key="user.profile.form.showOtherContexts">Andere Verlage anzeigen</message>
 	<message key="user.profile.form.hideOtherContexts">Andere Verlage verbergen</message>
-	<message key="catalog.manage.newReleaseSuccess">Die Monographie wurde als Neuerscheinung gekennzeichnet.</message>
-	<message key="catalog.manage.notNewReleaseSuccess">Die Kenntlichmachung als Neuerscheinung wurde entfernt.</message>
-	<message key="catalog.manage.feature.newRelease">Neuerscheinung</message>
-	<message key="catalog.manage.feature.categoryNewRelease">Neuerscheinung in der Kategorie</message>
-	<message key="catalog.manage.feature.seriesNewRelease">Neuerscheinung in der Reihe</message>
-	<message key="catalog.manage.filter.searchByAuthorOrTitle">Nach Titel oder Autor suchen</message>
 </locale>
