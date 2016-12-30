@@ -16,7 +16,7 @@
 	<message key="monograph.audience">Zielgruppe</message>
 	<message key="monograph.coverImage">Titelbild</message>
 	<message key="monograph.currentCoverImage">Aktuelles Bild</message>
-	<message key="monograph.currentCoverImageReload">Speichern Sie Ihre Änderungen, um das neue Titelbild zu sehen.</message>
+	<message key="monograph.currentCoverImageReload">Speichern Sie Ihre Änderungen, um das neue Titelbild angezeigt zu bekommen.</message>
 	<message key="monograph.audience.rangeQualifier">Grundlage der Eingrenzung der Zielgruppe</message>
 	<message key="monograph.audience.rangeFrom">Bildungsstand (von)</message>
 	<message key="monograph.audience.rangeTo">Bildungsstand (bis)</message>
@@ -24,12 +24,12 @@
 	<message key="monograph.languages">Sprachen (Englisch, Französisch, Spanisch)</message>
 	<message key="monograph.publicationFormats">Publikationsformate</message>
 	<message key="monograph.publicationFormat">Format</message>
-	<message key="monograph.publicationFormatDetails">Details über das verfügbare Publikationsformat {$format}</message>
-	<message key="monograph.miscellaneousDetails">Details über diese Monographie</message>
+	<message key="monograph.publicationFormatDetails">Genauere Angaben zum verfügbaren Publikationsformat {$format}</message>
+	<message key="monograph.miscellaneousDetails">Angaben zur Monographie</message>
 	<message key="monograph.carousel.publicationFormats">Formate:</message>
 	<message key="monograph.type">Art der Einreichung</message>
 	<message key="submission.pageProofs">Korrekturfahnen</message>
-	<message key="monograph.proofReadingDescription"><![CDATA[Der Layouter/die Layouterin lädt hier die für die Publikation vorbereiteten produktionsreifen Dateien hoch. Verwenden Sie <em>+Zuweisen</em>, um jene Autor/innen und anderen Beteiligten zu bestimmen, die diese Dateien Korrektur lesen und ihre Zustimmung zur Veröffentlichung geben sollen. (Bitte die korrigierten Dateien mit hochladen.)]]></message>
+	<message key="monograph.proofReadingDescription"><![CDATA[Der Layouter lädt hier die für die Publikation vorbereiteten druckfertigen Dateien hoch. Verwenden Sie <em>+Zuweisen</em>, um jene Autoren und anderen Beteiligten zu bestimmen, die diese Dateien Korrektur lesen und ihre Zustimmung zur Veröffentlichung geben sollen. (Bitte die korrigierten Dateien mit hochladen.)]]></message>
 	<message key="monograph.task.addNote">Zu den Aufgaben hinzufügen</message>
 	<message key="monograph.accessLogoOpen.altText">Open Access</message>
 
@@ -79,7 +79,7 @@
 	<message key="grid.catalogEntry.validPriceRequired">Eine gültige Preisangabe ist erforderlich.</message>
 	<message key="grid.catalogEntry.publicationFormatDetails">Weitere Angaben für dieses Format</message>
 	<message key="grid.catalogEntry.physicalFormat">Physisches Format</message>
-	<message key="grid.catalogEntry.remotelyHostedContent">Dieses Format wird auf einer gesonderten Website bereitgestellt werden.</message>
+	<message key="grid.catalogEntry.remotelyHostedContent">Dieses Format wird auf einer externen Website bereitgestellt werden.</message>
 	<message key="grid.catalogEntry.remoteURL">URL des remote bereitgestellten Inhalts</message>
 	<message key="grid.catalogEntry.monographRequired">Es wird eine Kennung für die Monografie benötigt</message>
 	<message key="grid.catalogEntry.publicationFormatRequired">Bitte wählen Sie ein Publikationsformat.</message>
@@ -88,12 +88,12 @@
 	<message key="grid.catalogEntry.isNotAvailable">Nicht verfügbar</message>
 	<message key="grid.catalogEntry.proof">Korrekturfahne</message>
 	<message key="grid.catalogEntry.approvedRepresentation.title">Format-Freigabe</message>
-	<message key="grid.catalogEntry.approvedRepresentation.message"><![CDATA[<p>Freigabe der Metadaten für dieses Format. Die Metadaten können im Katalogeintrag-Panel kontrolliert werden.</p>]]></message>
-	<message key="grid.catalogEntry.approvedRepresentation.removeMessage"><![CDATA[<p>Indicate that the metadata for this format has not been approved.</p>]]></message>
+	<message key="grid.catalogEntry.approvedRepresentation.message"><![CDATA[<p>Die Metadaten für dieses Format freigeben. Die Metadaten können im Katalogeintrag-Panel kontrolliert werden.</p>]]></message>
+	<message key="grid.catalogEntry.approvedRepresentation.removeMessage"><![CDATA[<p>Anzeigen, dass die Metadaten für dieses Format noch nicht genehmigt wurden.</p>]]></message>
 	<message key="grid.catalogEntry.availableRepresentation.title">Format-Verfügbarkeit</message>
-	<message key="grid.catalogEntry.availableRepresentation.message"><![CDATA[<p>Dieses Format <em>für Leser/innen</a> verfügbar</em> machen. Herunterladbare Dateien und alle anderen Vertriebswege werden im Katalogeintrag des Buchs angezeigt.</p>]]></message>
+	<message key="grid.catalogEntry.availableRepresentation.message"><![CDATA[<p>Dieses Format veröffentlichen. Herunterladbare Dateien und alle anderen Vertriebswege werden im Katalogeintrag des Buchs angezeigt.</p>]]></message>
 	<message key="grid.catalogEntry.availableRepresentation.removeMessage"><![CDATA[<p>Dieses Format wird <em>für Leser/innen nicht verfügbar</em> sein. Alle herunterladbaren Dateien oder andere Vertriebswege werden nicht mehr im Katalogeintrag des Buchs angezeigt.</p>]]></message>
-	<message key="grid.catalogEntry.availableRepresentation.catalogNotApprovedWarning">Katalogeintrag nicht akzeptiert.</message>
+	<message key="grid.catalogEntry.availableRepresentation.catalogNotApprovedWarning">Der Katalogeintrag wurde nicht akzeptiert.</message>
 	<message key="grid.catalogEntry.availableRepresentation.notApprovedWarning">Format nicht im Katalogeintrag.</message>
 	<message key="grid.catalogEntry.availableRepresentation.proofNotApproved">Fahne nicht akzeptiert.</message>
 	<message key="grid.catalogEntry.availableRepresentation.approved">Akzeptiert</message>
@@ -247,7 +247,7 @@
 	<message key="grid.category.parentCategory">Übergeordnete Kategorie</message>
 	<message key="grid.category.removeText">Sind Sie sicher, dass Sie diese Kategorie entfernen möchten?</message>
 	<message key="grid.category.nameRequired">Bitte geben Sie einen Namen für die Kategorie ein.</message>
-	<message key="grid.category.categoryDetails">Kategoriedetails</message>
+	<message key="grid.category.categoryDetails">Genauere Angaben zur Kategorie</message>
 
 	<!-- Catalog Management -->
 	<message key="catalog.manage">Katalogverwaltung</message>
@@ -383,7 +383,7 @@
 	<message key="user.register.notAlreadyRegisteredOtherContext"><![CDATA[<a href="{$registerUrl}">Klicken Sie hier</a>, wenn Sie sich noch <strong>nicht</strong> bei diesem oder einem anderen Verlag dieser Website registriert haben.]]></message>
 	<message key="user.register.loginToRegister">Geben Sie Ihren Benutzernamen und Ihr Passwort ein, um sich zu registrieren.</message>
 	<message key="user.register.registrationDisabled">Zurzeit ist keine Registrierung möglich.</message>
-	<message key="user.register.form.passwordLengthTooShort">Das Passwort, das Sie eingegeben haben, ist nicht lang genug.not long enough.</message>
+	<message key="user.register.form.passwordLengthTooShort">Das eingegebene Passwort ist zu kurz.</message>
 	<message key="user.register.readerDescription">Per E-Mail über das Erscheinen eines Buches benachrichtigt.</message>
 	<message key="user.register.authorDescription">Kann einen Titel beim Verlag einreichen.</message>
 	<message key="user.register.reviewerDescriptionNoInterests">Ich bin bereit, beim Verlag eingegangene Manuskripte zu begutachten.</message>
@@ -577,4 +577,10 @@ Ihr Server untersützt aktuell mbstring: <strong>{$supportsMBString}</strong>]]>
 
 	<message key="user.profile.form.showOtherContexts">Andere Verlage anzeigen</message>
 	<message key="user.profile.form.hideOtherContexts">Andere Verlage verbergen</message>
+	<message key="catalog.manage.newReleaseSuccess">Die Monographie wurde als Neuerscheinung gekennzeichnet.</message>
+	<message key="catalog.manage.notNewReleaseSuccess">Die Kenntlichmachung als Neuerscheinung wurde entfernt.</message>
+	<message key="catalog.manage.feature.newRelease">Neuerscheinung</message>
+	<message key="catalog.manage.feature.categoryNewRelease">Neuerscheinung in der Kategorie</message>
+	<message key="catalog.manage.feature.seriesNewRelease">Neuerscheinung in der Reihe</message>
+	<message key="catalog.manage.filter.searchByAuthorOrTitle">Nach Titel oder Autor suchen</message>
 </locale>
