@@ -38,7 +38,7 @@ class SubmissionMetadataViewForm extends PKPSubmissionMetadataViewForm {
 
 		// Get series for this press
 		$seriesDao = DAORegistry::getDAO('SeriesDAO');
-		$seriesOptions = array('0' => __('submission.submit.selectSeries')) + $seriesDao->getTitlesByPressId($submission->getContextId());
+		$seriesOptions = array('' => __('submission.submit.selectSeries')) + $seriesDao->getTitlesByPressId($submission->getContextId());
 		$templateMgr->assign('seriesOptions', $seriesOptions);
 		$templateMgr->assign('seriesId', $submission->getSeriesId());
 		$templateMgr->assign('seriesPosition', $submission->getSeriesPosition());
