@@ -57,6 +57,7 @@
 	<message key="submission.submit.upload">Upload Submission</message>
 	<message key="submission.submit.cancelSubmission">You can complete this submission at a later date by selecting Active Submissions from the Author home.</message>
 	<message key="submission.submit.selectSeries">Select series (optional)</message>
+	<message key="author.submit.seriesRequired">A valid series is required.</message>
 	<message key="submission.submit.seriesPosition">Series Position</message>
 	<message key="submission.submit.seriesPosition.description">Examples: Book 2, Volume 2</message>
 	<message key="submission.submit.form.localeRequired">Please select a submission language.</message>

@@ -22,6 +22,7 @@ class SubmissionSubmitStep1Form extends PKPSubmissionSubmitStep1Form {
 	 */
 	function __construct($context, $submission = null) {
 		parent::__construct($context, $submission);
+		$this->addCheck(new FormValidatorCustom($this, 'seriesId', 'optional', 'author.submit.seriesRequired', array(DAORegistry::getDAO('SeriesDAO'), 'getById'), array($context->getId())));
 	}
 
 	/**
@@ -61,25 +62,6 @@ class SubmissionSubmitStep1Form extends PKPSubmissionSubmitStep1Form {
 			'workType', 'seriesId', 'seriesPosition',
 		));
 		parent::readInputData();
-	}
-
-	/**
-	 * Perform additional validation checks
-	 * @copydoc Form::validate
-	 */
-	function validate() {
-		if (!parent::validate()) return false;
-
-		// Validate that the series ID is attached to this press.
-		if ($seriesId = $this->getData('seriesId')) {
-			$request = Application::getRequest();
-			$context = $request->getContext();
-			$seriesDao = DAORegistry::getDAO('SeriesDAO');
-			$series = $seriesDao->getById($seriesId, $context->getId());
-			if (!$series) return false;
-		}
-
-		return true;
 	}
 
 	/**
