@@ -70,7 +70,7 @@ class MsmithSubmissionTest extends ContentBaseTestCase {
 				array(
 					'firstName' => 'Mark',
 					'lastName' => 'Graham',
-					'country' => 'United Kingdom',
+					'country' => 'United Kingdom of Great Britain and Nothern Ireland',
 					// 'affiliation' => '',
 					'email' => 'mgraham@mailinator.com',
 				),

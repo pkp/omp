@@ -41,7 +41,7 @@ class MallySubmissionTest extends ContentBaseTestCase {
 				array(
 					'firstName' => 'John',
 					'lastName' => 'Traxler',
-					'country' => 'United Kingdom',
+					'country' => 'United Kingdom of Great Britain and Nothern Ireland',
 					// 'affiliation' => '',
 					'email' => 'jtraxler@mailinator.com',
 				),
