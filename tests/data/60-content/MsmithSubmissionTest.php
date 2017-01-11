@@ -42,7 +42,7 @@ class MsmithSubmissionTest extends ContentBaseTestCase {
 				array(
 					'firstName' => 'Yochai',
 					'lastName' => 'Benkler',
-					'country' => 'United States',
+					'country' => 'United States of America',
 					// 'affiliation' => '',
 					'email' => 'ybenkler@mailinator.com',
 				),
@@ -56,7 +56,7 @@ class MsmithSubmissionTest extends ContentBaseTestCase {
 				array(
 					'firstName' => 'Melissa',
 					'lastName' => 'Loudon',
-					'country' => 'United States',
+					'country' => 'United States of America',
 					// 'affiliation' => '',
 					'email' => 'mloudon@mailinator.com',
 				),
@@ -84,7 +84,7 @@ class MsmithSubmissionTest extends ContentBaseTestCase {
 				array(
 					'firstName' => 'Marshall',
 					'lastName' => 'Smith',
-					'country' => 'United States',
+					'country' => 'United States of America',
 					// 'affiliation' => '',
 					'email' => 'masmith@mailinator.com',
 				),
