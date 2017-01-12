@@ -104,6 +104,8 @@ class HtmlMonographFilePlugin extends GenericPlugin {
 
 		if ($submissionFile && $submissionFile->getFileType() == 'text/html') {
 			echo $this->_getHTMLContents($request, $publishedMonograph, $publicationFormat, $submissionFile);
+			$returner = true;
+			HookRegistry::call('HtmlMonographFilePlugin::monographDownloadFinished', array(&$returner));
 			return true;
 		}
 

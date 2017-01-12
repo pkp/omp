@@ -35,9 +35,19 @@ class UsageEventPlugin extends PKPUsageEventPlugin {
 		$ompHooks = array(
 			'CatalogBookHandler::view',
 			'CatalogBookHandler::download',
+			'HtmlMonographFilePlugin::monographDownloadFinished',
 		);
 
 		return array_merge($hooks, $ompHooks);
+	}
+
+	/**
+	 * @copydoc PKPUsageEventPlugin::getDownloadFinishedEventHooks()
+	 */
+	protected function getDownloadFinishedEventHooks() {
+		return array_merge(parent::getDownloadFinishedEventHooks(), array(
+			'HtmlMonographFilePlugin::monographDownloadFinished'
+		));
 	}
 
 	/**
