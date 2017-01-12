@@ -183,18 +183,20 @@
 			{call_hook name="Templates::Catalog::Book::Main"}
 
 			{* Determine if any authors have biographies to display *}
-			{assign var="hasBiographies" value=false}
+			{assign var="hasBiographies" value=0}
 			{foreach from=$monograph->getAuthors() item=author}
 				{if $author->getLocalizedBiography()}
-					{assign var="hasBiographies" value=true}
+					{assign var="hasBiographies" value=$hasBiographies+1}
 				{/if}
 			{/foreach}
-
-			{* Author biographies *}
 			{if $hasBiographies}
 				<div class="item author_bios">
 					<h3 class="label">
-						{translate key="submission.authorBiographies"}
+						{if $hasBiographies > 1}
+							{translate key="submission.authorBiographies"}
+						{else}
+							{translate key="submission.authorBiography"}
+						{/if}
 					</h3>
 					{foreach from=$monograph->getAuthors() item=author}
 						{if $author->getLocalizedBiography()}
