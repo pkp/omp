@@ -35,9 +35,19 @@ class UsageEventPlugin extends PKPUsageEventPlugin {
 		$ompHooks = array(
 			'CatalogBookHandler::view',
 			'CatalogBookHandler::download',
+			'HtmlMonographFilePlugin::monographDownloadFinished',
 		);
 
 		return array_merge($hooks, $ompHooks);
+	}
+
+	/**
+	 * @copydoc PKPUsageEventPlugin::getDownloadFinishedEventHooks()
+	 */
+	protected function getDownloadFinishedEventHooks() {
+		return array_merge(parent::getDownloadFinishedEventHooks(), array(
+			'HtmlMonographFilePlugin::monographDownloadFinished'
+		));
 	}
 
 	/**
@@ -97,6 +107,9 @@ class UsageEventPlugin extends PKPUsageEventPlugin {
 					$assocType = ASSOC_TYPE_SUBMISSION_FILE;
 					$canonicalUrlOp = 'download';
 					$publishedMonograph = $hookArgs[1];
+					$publicationFormat = $hookArgs[2];
+					// if file is not a publication format file (e.g. CSS or images), there is no usage event.
+					if ($pubObject->getAssocId() != $publicationFormat->getId()) return false;
 					$canonicalUrlParams = array($publishedMonograph->getId(), $pubObject->getAssocId(), $pubObject->getFileId() . '-' . $pubObject->getRevision());
 					$idParams = array('m' . $publishedMonograph->getId(), 'f' . $pubObject->getId());
 					$downloadSuccess = false;
