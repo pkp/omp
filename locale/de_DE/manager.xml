@@ -14,7 +14,7 @@
 <locale name="de_DE" full_name="Deutsch (Deutschland)">
 
 	<!-- Languages -->
-	<message key="manager.language.confirmDefaultSettingsOverwrite">Damit ersetzen Sie alle bisher vorgenommenen regionalspezifischen Einstellungen.</message>
+	<message key="manager.language.confirmDefaultSettingsOverwrite">Damit ersetzen Sie alle bisher vorgenommenen Anpassungen für diese Regionaleinstellungen.</message>
 	<message key="manager.languages.noneAvailable">Leider sind keine weiteren Sprachen verfügbar. Kontaktieren Sie Ihre/n Website-Administrator/in, wenn Sie weitere Sprachen verwenden möchten.</message>
 	<message key="manager.languages.primaryLocaleInstructions">Diese Sprache wird die voreingestellte Sprache für die Verlagswebsite sein.</message>	
 
@@ -307,7 +307,7 @@ Sie können dem/der Benutzer/in den Grund für die Deaktivierung des Kontos nenn
 	<message key="manager.setup.publicationFormat.inUse">Dieses Format kann nicht gelöscht werden, da zurzeit ein Buch Ihres Verlages in diesem Format erscheint.</message>
 	<message key="manager.setup.newPublicationFormat">Neues Format</message>
 	<message key="manager.setup.newPublicationFormatDescription">Um ein neues Format anzulegen, füllen Sie bitte das unten stehende Formular aus und klicken dann auf den Button 'Erstellen'.</message>
-	<message key="manager.setup.genresDescription">Diese Genres dienen der Benennung der Dateien, sie werden beim Hochladen der Manuskriptdateien in einem Pull-down-Menü angezeigt. Genres, die mit ## gekennzeichnet sind, erlauben es den Benutzern, die jeweilige Datei sowohl mit dem ganzen Buch 99Z oder mit einem bestimmten Kapitel über Angabe der Nummer (z.B. 02) zu verbinden.</message>
+	<message key="manager.setup.genresDescription">Diese Genres bilden einen Bestandteil des Dateinamen.  Beim Hochladeprozess werden die Manuskriptdateien in einem Pull-down-Menü angezeigt. Genres, die mit ## gekennzeichnet sind, können sowohl mit dem ganzen Buch 99Z oder mit einem bestimmten Kapitel über Angabe einer Nummer (z.B. 02) verbunden werden.</message>
 	<message key="manager.setup.reviewProcessEmailDescription">Die Herausgeber/innen senden den Gutachter/innen Begutachtungsanfragen per E-Mail und fügen das betreffende Manuskript als Anhang bei. Die Gutachter/innen erklären sich in einer E-Mail an die Herausgeber mit der Begutachtung einverstanden (oder lehnen sie ab) und schicken ebenfalls per E-Mail das fertige Gutachten und ihre Empfehlung hinsichtlich des Manuskripts. Die Herausgeber/innen hinterlegen die Einverständniserklärung (oder Ablehnung) der Gutachter/innen, das Gutachten selbst und die Empfehlung in Bezug auf das eingereichte Manuskript auf der Begutachtungsseite, um den Verlauf des Begutachtungsprozess zu dokumentieren.</message>
 	<message key="manager.setup.genres">Genres</message>
 	<message key="manager.setup.newGenre">Neues Genre</message>
@@ -362,10 +362,10 @@ Wählen Sie ein Modell, um diese Aspekte des Publikationsprozesses zu steuern. (
 	<li><strong>Links in die Literaturnachweise einbinden: </strong><p>Der/die Layouter/in kann einen Link zu online aufrufbaren Zitationen hinzufügen. Die folgenden Instruktionen sind dabei unter Umständen hilfreich (Bearbeitung erlaubt).</p></li>
 </ol>]]></message>
 	<message key="manager.publication.library">Verlagsdokumentenarchiv</message>
-	<message key="manager.setup.resetPermissions">Rechte für Monographien zurücksetzen</message>
-	<message key="manager.setup.resetPermissions.confirm">Sind Sie sicher, dass Sie die bereits vergebenen Rechte für Monographien zurücksetzen wollen?</message>
+	<message key="manager.setup.resetPermissions">Rechte für Monografien zurücksetzen</message>
+	<message key="manager.setup.resetPermissions.confirm">Sind Sie sicher, dass Sie die bereits vergebenen Rechte für Monografien zurücksetzen wollen?</message>
 	<message key="manager.setup.resetPermissions.description">Copyright-Angaben und Lizenzinformationen werden dauerhaft mit dem veröffentlichten Inhalt verknüpft, damit diese Daten sich nicht ändern, wenn ein Verlag die Regeln für neue Einreichungen ändert. Um vergebene Rechte für bereits veröffentlichte Inhalte zurückzusetzen, nutzen Sie den Knopf unten.</message>
 
 	<message key="grid.genres.title.short">Komponenten</message>
-	<message key="grid.genres.title">Monographie-Komponenten</message>
+	<message key="grid.genres.title">Monografie-Komponenten</message>
 </locale>

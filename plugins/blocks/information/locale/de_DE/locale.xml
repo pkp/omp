@@ -14,6 +14,6 @@
  
 <locale name="de_DE" full_name="Deutsch (Deutschland)">
 	<message key="plugins.block.information.displayName">Informationen-Block</message>
-	<message key="plugins.block.information.description">Dieses Plug-In stellt den Informationen-Link für die Sidebar bereit.</message>
+	<message key="plugins.block.information.description">Dieses Plugin stellt den Informationen-Link für die Sidebar bereit.</message>
 	<message key="plugins.block.information.link">Informationen</message>
 </locale>

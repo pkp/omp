@@ -12,6 +12,6 @@
   -->
 
 <locale name="de_DE" full_name="Deutsch (Deutschland)">
-	<message key="plugins.viewableFiles.pdfJsViewer.displayName">PDF.JS-PDF-Viewer-Plug-In</message>
-	<message key="plugins.viewableFiles.pdfJsViewer.description"><![CDATA[Dieses Plug-In benutzt den <a href="http://mozilla.github.io/pdf.js">pdf.js PDF viewer</a>, um PDFs auf den Fahnenseiten von Artikeln und Ausgaben anzuzeigen.]]></message>
+	<message key="plugins.viewableFiles.pdfJsViewer.displayName">PDF.JS-PDF-Viewer-Plugin</message>
+	<message key="plugins.viewableFiles.pdfJsViewer.description"><![CDATA[Dieses Plugin benutzt den <a href="http://mozilla.github.io/pdf.js">pdf.js PDF viewer</a>, um PDFs auf den Fahnenseiten von Artikeln und Ausgaben anzuzeigen.]]></message>
 </locale>

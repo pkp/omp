@@ -13,5 +13,5 @@
 
 <locale name="de_DE" full_name="Deutsch (Deutschland)">
 	<message key="plugins.block.developedBy.displayName">"Entwickelt von"</message>
-	<message key="plugins.block.developedBy.description">Dieses Plug-In stellt den "Entwickelt von"-Link für die Sidebar bereit.</message>
+	<message key="plugins.block.developedBy.description">Dieses Plugin stellt den "Entwickelt von"-Link für die Sidebar bereit.</message>
 </locale>
