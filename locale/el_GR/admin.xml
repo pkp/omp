@@ -42,12 +42,6 @@
 	<message key="admin.presses.pressDescription">Περιγραφή Έκδοσης</message>
 	<message key="admin.presses.addPress">Προσθήκη Έκδοσης</message>
 
-	<message key="admin.settings.oaiRegistrationDescription"><![CDATA[Για να ευρητηριάζονται τα περιεχόμενα των εκδόσεων της συλλογής, μέσω ενός αποκεντρωμένου συστήματος βάσεων δεδομένων ανά τον κόσμο, μπορείτε να  <a href="http://pkp.sfu.ca/harvester/add.php" target="_blank">δηλώσετε</a> το URL του ιστότοπου της συλλογής στο <a href="http://pkp.sfu.ca/harvester/" target="_blank">Σύστημα Συλλογής Μεταδεδομένων (Harvester)</a> του Public Knowledge Project. Το σύστημα συλλέγει τα μεταδεδομένα κάθε ευρητηριαζόμενου τεκμηρίου των εκδόσεων της συλλογής, ενεργοποιώντας τη δυνατότητα της ακριβής και συγκεντρωτικής αναζήτησης του περιεχομένου μεταξύ όλων των συλλογών που υλοποιούν το <a href="http://www.openarchives.org/OAI/openarchivesprotocol.htm#Introduction" target="_blank">Open Archives Initiative Protocol for Metadata Harvesting</a>.
-<br /><br />
-<a href="http://pkp.sfu.ca/harvester/add.php" target="_blank">Συνδεθείτε εδώ</a> και εισάγετε <span class="highlight">{$siteUrl}</span> στο πεδίο <strong>Site URL</strong>, και <span class="highlight">{$oaiUrl}</span> στο πεδίο <strong>Base URL for OAI Archive</strong>.
-<br /><br />
-Έχετε υπόψη ότι το OAI περιβάλλον μπορεί να απενεργοποιηθεί για τη συλλογή διαμορφώνοντας κατάλληλα τις ρυθμίσεις(congiguration) του συστήματος OMP. Μελλοντικές εκδόσεις του OMP θα επιτρέπουν την ενεργοποίηση ή απενεργοποίηση του OAI περιβάλλοντος σε επίπεδο τίτλου βιβλίων εντός της συλλογής.]]></message>
-
 	<!-- System Information -->
 	<message key="admin.overwriteConfigFileInstructions"><![CDATA[<h4>ΣΗΜΕΙΩΣΗ!</div>
 <p>Δεν ήταν δυνατή η αυτόματη αντικατάσταση του αρχείου ρυθμίσεων από το σύστημα. Για να εφαρμόσετε τις αλλαγές στις ρυθμίσεις πρέπει να ανοίξετε <tt>config.inc.php</tt> με κατάλληλο πρόγραμμα διόρθωσης κειμένων και να αντικαταστήσετε τα περιεχόμενα αυτού με τα περιεχόμενα του πεδίου κειμένου που βρίκεται παρακάτω.</p>]]></message>

@@ -50,13 +50,6 @@
 	<message key="admin.presses.pressDescription">Description de la presse</message>
 	<message key="admin.presses.addPress">Ajouter la presse</message>
 
-	<message key="admin.settings.oaiRegistrationDescription"><![CDATA[Pour que le contenu de cette presse soit indexé dans un système de bases de données de recherche réparti à l'échelle mondiale, <a href="http://pkp.sfu.ca/harvester/add.php" target="_blank">enregistrez</a> l'adresse URL de votre presse afin qu'elle soit utilisée pour la <a href="http://pkp.sfu.ca/harvester/" target="_blank">collecte</a> de métadonnées du Public Knowledge Project. Cet outil cueille les métadonnées de chaque élément indexé dans cette presse, ce qui facilite une recherche précise et collective parmi les sites de recherche qui adoptent le <a href="http://www.openarchives.org/OAI/openarchivesprotocol.htm#Introduction" target="_blank">protocole de l'Open Archives pour la collecte de métadonnées</a>.
-<br /><br />
-<a href="http://pkp.sfu.ca/harvester/add.php" target="_blank">Cliquez ici</a> et saisissez <span class="highlight">{$siteUrl}</span> dans <strong>l'adresse URL du site</strong>, et <span class="highlight">{$oaiUrl}</span> dans <strong>Base URL pour les archives OAI.</strong>.
-<br /><br />
-Veuillez noter que l'interface OAI peut être désactivée sur ce site en modifiant le système de configuration OMP. Les prochaines versions de l'OMP permettront aux presses d'activer ou de désactiver l'interface OAI sur ce site.]]></message>
-
-
 	<!-- System Information -->
 	<message key="admin.overwriteConfigFileInstructions"><![CDATA[<h4>NOTE!</div>
 <p>Le système ne peut pas réécrire automatiquement le fichier de configuration. Pour appliquer les modifications de configuration, vous devez ouvrir <tt>config.inc.php</tt> dans un éditeur de texte approprié et remplacer le contenu par le contenu de la zone de texte ci-dessous.</p>]]></message>

@@ -50,12 +50,6 @@
 	<message key="admin.presses.addPress">Verlag hinzufügen</message>
 
 
-	<message key="admin.settings.oaiRegistrationDescription"><![CDATA[Um den Inhalt aller von dieser Website angebotenen Verlage bei einem allgemein verbreiteten System von Forschungsdatenbanken zu indizieren, <a href="http://pkp.sfu.ca/harvester/add.php" target="_blank">registrieren Sie</a> die URL Ihrer Website beim Metadaten-Harvester des Public Knowledge Project <a href="http://pkp.sfu.ca/harvester/" target="_blank"></a>. Der Harvester sammelt die Metadaten aller indizierten Titel dieses Verlags und ermöglicht somit eine umfassende und genaue Suche auf allen Forschungs-Webseiten, die sich an dem Projekt <a href="http://www.openarchives.org/OAI/openarchivesprotocol.htm#Introduction" target="_blank"> Open Archives Initiative Protocol for Metadata Harvesting</a> beteiligen.
-<br /><br />
-<a href="http://pkp.sfu.ca/harvester/add.php" target="_blank">Klicken Sie hier</a> und geben Sie <span class="highlight">{$siteUrl}</span> unter <strong>URL</strong> und <span class="highlight">{$oaiUrl}</span> unter <strong>OAI Base URL</strong> ein.
-<br /><br />
-Bitte beachten Sie, dass die OAI-Schnittstelle für diese Website in der OMP-Systemkonfiguration deaktiviert werden kann. Zukünftige Versionen von OMP werden es ermöglichen, die OAI-Schnittstelle für jeden Verlag einer Website gesondert zu aktivieren oder zu deaktivieren.]]></message>
-
 	<!-- System Information -->
 	<message key="admin.overwriteConfigFileInstructions"><![CDATA[<h4>Beachten Sie:</h4>
 <p>Das System konnte die Konfigurationsdatei nicht automatisch überschreiben. Um Ihre Änderungen der Konfiguration anzuwenden, öffnen Sie <tt>config.inc.php</tt> mit einem geeigneten Texteditor und ersetzen Sie den Inhalt durch den Text im nachstehenden Textfeld.</p>]]></message>

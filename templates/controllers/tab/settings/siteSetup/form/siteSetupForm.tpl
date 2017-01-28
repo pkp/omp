@@ -71,15 +71,8 @@
 		{/fbvFormSection}
 		{include file="controllers/tab/settings/appearance/form/theme.tpl"}
 	{/fbvFormArea}
-	{fbvFormArea id="oai"}
-		{fbvFormSection title="admin.settings.oaiRegistration"}
-			{url|assign:"oaiUrl" router=$smarty.const.ROUTE_PAGE page="oai"}
-			{url|assign:"siteUrl" router=$smarty.const.ROUTE_PAGE page="index"}
-			<p>{translate key="admin.settings.oaiRegistrationDescription" siteUrl=$siteUrl oaiUrl=$oaiUrl}</p>
 
-			{include file="core:statistics/defaultMetricTypeFormElements.tpl"}
-		{/fbvFormSection}
-	{/fbvFormArea}
+	{include file="core:statistics/defaultMetricTypeFormElements.tpl"}
 
 	<p><span class="formRequired">{translate key="common.requiredField"}</span></p>
 	{fbvFormButtons id="siteSetupFormSubmit" submitText="common.save" hideCancel=true}
