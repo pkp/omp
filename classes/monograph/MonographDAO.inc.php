@@ -83,9 +83,9 @@ class MonographDAO extends SubmissionDAO {
 		$monograph->stampModified();
 		$this->update(
 			sprintf('INSERT INTO submissions
-				(locale, context_id, series_id, series_position, language, comments_to_ed, date_submitted, date_status_modified, last_modified, status, submission_progress, stage_id, pages, hide_author, edited_volume, citations)
+				(locale, context_id, series_id, series_position, language, date_submitted, date_status_modified, last_modified, status, submission_progress, stage_id, pages, hide_author, edited_volume, citations)
 				VALUES
-				(?, ?, ?, ?, ?, ?, %s, %s, %s, ?, ?, ?, ?, ?, ?, ?)',
+				(?, ?, ?, ?, ?, %s, %s, %s, ?, ?, ?, ?, ?, ?, ?)',
 				$this->datetimeToDB($monograph->getDateSubmitted()), $this->datetimeToDB($monograph->getDateStatusModified()), $this->datetimeToDB($monograph->getLastModified())),
 			array(
 				$monograph->getLocale(),
@@ -93,7 +93,6 @@ class MonographDAO extends SubmissionDAO {
 				(int) $monograph->getSeriesId(),
 				$monograph->getSeriesPosition(),
 				$monograph->getLanguage(),
-				$monograph->getCommentsToEditor(),
 				$monograph->getStatus() === null ? STATUS_QUEUED : (int) $monograph->getStatus(),
 				$monograph->getSubmissionProgress() === null ? 1 : (int) $monograph->getSubmissionProgress(),
 				$monograph->getStageId() === null ? 1 : (int) $monograph->getStageId(),
@@ -121,7 +120,6 @@ class MonographDAO extends SubmissionDAO {
 					series_id = ?,
 					series_position = ?,
 					language = ?,
-					comments_to_ed = ?,
 					date_submitted = %s,
 					date_status_modified = %s,
 					last_modified = %s,
@@ -139,7 +137,6 @@ class MonographDAO extends SubmissionDAO {
 				(int) $monograph->getSeriesId(),
 				$monograph->getSeriesPosition(),
 				$monograph->getLanguage(),
-				$monograph->getCommentsToEditor(),
 				(int) $monograph->getStatus(),
 				(int) $monograph->getContextId(),
 				(int) $monograph->getSubmissionProgress(),
