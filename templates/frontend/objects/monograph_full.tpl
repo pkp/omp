@@ -219,6 +219,18 @@
 				</div>
 			{/if}
 
+			{* References *}
+			{if $monograph->getCitations()}
+				<div class="item references">
+					<h3 class="label">
+						{translate key="submission.citations"}
+					</h3>
+					<div class="value">
+						{$monograph->getCitations()|nl2br}
+					</div>
+				</div>
+			{/if}
+
 		</div><!-- .main_entry -->
 
 		<div class="entry_details">
