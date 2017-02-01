@@ -3,8 +3,8 @@
 /**
  * @file tools/genTestLocale.php
  *
- * Copyright (c) 2014-2016 Simon Fraser University Library
- * Copyright (c) 2003-2016 John Willinsky
+ * Copyright (c) 2014-2017 Simon Fraser University Library
+ * Copyright (c) 2003-2017 John Willinsky
  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
  *
  * @class genTestLocale
@@ -123,8 +123,8 @@ class genTestLocale extends CommandLineTool {
 					"<!--\n" .
 					"  * $localeFile\n" .
 					"  *\n" .
-					"  * Copyright (c) 2013-2016 Simon Fraser University Library\n" .
-					"  * Copyright (c) 2003-2016 John Willinsky\n" .
+					"  * Copyright (c) 2013-2017 Simon Fraser University Library\n" .
+					"  * Copyright (c) 2003-2017 John Willinsky\n" .
 					"  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.\n" .
 					"  *\n" .
 					sprintf("  * Localization strings for the %s (%s) locale.\n", $this->outLocale, DEFAULT_OUT_LOCALE_NAME) .
