@@ -35,6 +35,7 @@ class UsageEventPlugin extends PKPUsageEventPlugin {
 		$ompHooks = array(
 			'CatalogBookHandler::view',
 			'CatalogBookHandler::download',
+			'HtmlMonographFilePlugin::monographDownload',
 			'HtmlMonographFilePlugin::monographDownloadFinished',
 		);
 
@@ -103,6 +104,7 @@ class UsageEventPlugin extends PKPUsageEventPlugin {
 					// Publication format file.
 				case 'CatalogBookHandler::view':
 				case 'CatalogBookHandler::download':
+				case 'HtmlMonographFilePlugin::monographDownload':
 					$pubObject = $hookArgs[3];
 					$assocType = ASSOC_TYPE_SUBMISSION_FILE;
 					$canonicalUrlOp = 'download';
