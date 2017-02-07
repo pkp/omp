@@ -28,8 +28,6 @@ define('ASSOC_TYPE_PRESS',			0x0000200);
 define('ASSOC_TYPE_CATEGORY',			0x000020D);
 define('ASSOC_TYPE_SERIES',			ASSOC_TYPE_SECTION);
 
-define('CONTEXT_PRESS', 1);
-
 class Application extends PKPApplication {
 	/**
 	 * Constructor
@@ -53,8 +51,8 @@ class Application extends PKPApplication {
 	 * Get a list of contexts for this application.
 	 * @return array
 	 */
-	function getContextList() {
-		return array('press');
+	function getContextName() {
+		return 'press';
 	}
 
 	/**

@@ -34,10 +34,8 @@ class AdminPluginGridHandler extends PluginGridHandler {
 	 * @see GridHandler::getRowInstance()
 	 */
 	function getRowInstance() {
-		$userRoles = $this->getAuthorizedContextObject(ASSOC_TYPE_USER_ROLES);
-
-		import('controllers.grid.plugins.PluginGridRow');
-		return new PluginGridRow($userRoles, CONTEXT_PRESS);
+		import('lib.pkp.controllers.grid.plugins.PluginGridRow');
+		return new PluginGridRow($this->getAuthorizedContextObject(ASSOC_TYPE_USER_ROLES));
 	}
 
 	/**
@@ -52,14 +50,14 @@ class AdminPluginGridHandler extends PluginGridHandler {
 		$verb = $request->getUserVar('verb');
 
 		if ($category && $pluginName) {
-			import('classes.security.authorization.OmpPluginAccessPolicy');
+			import('lib.pkp.classes.security.authorization.PluginAccessPolicy');
 			if ($verb) {
 				$accessMode = ACCESS_MODE_MANAGE;
 			} else {
 				$accessMode = ACCESS_MODE_ADMIN;
 			}
 
-			$this->addPolicy(new OmpPluginAccessPolicy($request, $args, $roleAssignments, $accessMode));
+			$this->addPolicy(new PluginAccessPolicy($request, $args, $roleAssignments, $accessMode));
 		}
 
 		return parent::authorize($request, $args, $roleAssignments);
