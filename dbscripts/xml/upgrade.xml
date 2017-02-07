@@ -25,6 +25,7 @@
 
 	<upgrade minversion="0.9.9.0" maxversion="1.2.0.9">
 		<data file="dbscripts/xml/upgrade/3.1.0_preupdate_commentsToEditor.xml" condition="return $installer->columnExists('submissions', 'comments_to_ed');" />
+		<data file="dbscripts/xml/upgrade/3.1.0_preupdate.xml" />
 	</upgrade>
 
 	<!-- PKP schema components -->
