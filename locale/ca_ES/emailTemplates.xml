@@ -10,26 +10,6 @@
   * Localized email templates XML file.
   -->
 <email_texts locale="ca_ES">
-	<email_text key="AUDITOR_REQUEST">
-		<subject>Sol·licitud d'auditoria del manuscrit</subject>
-		<body><![CDATA[{$auditorName}:<br />
-<br />
-S'han carregat nous fitxers al manuscrit «{$submissionTitle},» i us voldria demanar que els auditeu. És important per a la publicació que els participants revisin el manuscrit en cada fase.<br />
-<br />
-Podeu trobar els fitxers a revisar a:<br />
-<br />
-<a href="{$auditUrl}">{$auditUrl}</a><br />
-<br />
-Nom d'usuari/ària: {$auditorUserName}<br />
-<br />
-Indiqueu un correu electrònic si no podeu completar l'auditoria pel dia {$weekLaterDate}.<br />
-<br />
-Gràcies per considerar aquesta sol·licitud.<br />
-<br />
-{$editorialContactSignature}<br />
-]]></body>
-		<description>Aquest correu electrònic l'envia l'editor/a de la sèrie a un auditor/a per demanar-li que accepti o rebutgi d'auditar una tramesa.</description>
-	</email_text>
 	<email_text key="NOTIFICATION">
 		<subject>Notificació nova de {$siteTitle}</subject>
 		<body><![CDATA[Teniu una notificació nova de {$siteTitle}:<br />
