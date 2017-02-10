@@ -465,13 +465,11 @@ class SubmissionFileDAOTest extends DatabaseTestCase {
 			case SUBMISSION_FILE_DAO_TEST_DOC_GENRE_ID:
 				$category = GENRE_CATEGORY_DOCUMENT;
 				$name = 'Document Genre';
-				$designation = 'D';
 				break;
 
 			case SUBMISSION_FILE_DAO_TEST_ART_GENRE_ID:
 				$category = GENRE_CATEGORY_ARTWORK;
 				$name = 'Artwork Genre';
-				$designation = 'A';
 				break;
 
 			default:
@@ -484,7 +482,6 @@ class SubmissionFileDAOTest extends DatabaseTestCase {
 		$genre->setContextId($press->getId());
 		$genre->setId($genreId);
 		$genre->setName($name, 'en_US');
-		$genre->setDesignation($designation);
 		$genre->setCategory($category);
 		return $genre;
 	}

@@ -68,14 +68,6 @@
 		<query>UPDATE email_templates_data SET body=REPLACE(body, '{$monographAbstract}', '{$submissionAbstract}'), subject=REPLACE(subject, '{$monographAbstract}', '{$submissionAbstract}')</query>
 	</sql>
 
-	<!-- Bug #8461: Un-localize designation, as it's used in filenames -->
-	<sql>
-		<!-- Remove designation entries not in the primary locale -->
-		<query driver="mysql">DELETE genre_settings FROM genre_settings, genres, presses WHERE genre_settings.locale &lt;&gt; presses.primary_locale AND genre_settings.locale &lt;&gt; '' AND genre_settings.locale IS NOT NULL AND genre_settings.setting_name='designation' AND genre_settings.genre_id=genres.genre_id AND genres.context_id=presses.press_id</query>
-		<query driver="postgres7">DELETE FROM genre_settings USING genres, presses WHERE genre_settings.locale &lt;&gt; presses.primary_locale AND genre_settings.locale &lt;&gt; '' AND genre_settings.locale IS NOT NULL AND genre_settings.setting_name='designation' AND genre_settings.genre_id=genres.genre_id AND genres.context_id=presses.press_id</query>
-		<!-- Use the primary locale designation going forward -->
-		<query>UPDATE genre_settings SET locale='' WHERE setting_name='designation'</query>
-	</sql>
 	<!-- Bug #8495: Review round and signoff deletes leave orphaned notifications. -->
 	<sql>
 		<query driver="mysql">DELETE notifications FROM notifications LEFT JOIN review_rounds ON (notifications.assoc_id=review_rounds.review_round_id) WHERE notifications.assoc_type=523 AND review_rounds.review_round_id IS NULL</query><!-- ASSOC_TYPE_REVIEW_ROUND -->
