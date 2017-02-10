@@ -104,8 +104,6 @@
 	<message key="submission.catalogEntry.publicationMetadata">Format de publication</message>
 
 	<!-- Log events -->
-	<message key="submission.event.participantAdded">"{$name}" ({$username}) fait partie du groupe {$userGroupName}.</message>
-	<message key="submission.event.participantRemoved">"{$name}" ({$username}) ne fait plus partie du groupe {$userGroupName}.</message>
 	<message key="submission.event.metadataPublished">Les métadonnées de la monographie ont été approuvées pour la publication.</message>
 	<message key="submission.event.metadataUnpublished">Les métadonnées de la monographie ne sont plus publiées.</message>
 	<message key="submission.event.publicationFormatMadeAvailable">Le format de publication "{$publicationFormatName}" est disponible.</message>

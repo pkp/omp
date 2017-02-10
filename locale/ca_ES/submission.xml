@@ -101,8 +101,6 @@
 	<message key="submission.catalogEntry.publicationMetadata">Format de publicació</message>
 
 	<!-- Log events -->
-	<message key="submission.event.participantAdded">S'ha afegit«{$name}» ({$username}) com a {$userGroupName}.</message>
-	<message key="submission.event.participantRemoved">Suprimeix «{$name}» ({$username}) com a {$userGroupName}.</message>
 	<message key="submission.event.metadataPublished">Les metadades de la monografia estan aprovades per a la publicació.</message>
 	<message key="submission.event.metadataUnpublished">Les metadades de la monografia ja no estan publicades.</message>
 	<message key="submission.event.publicationFormatMadeAvailable">El format de publicació «{$publicationFormatName}» ja està disponible.</message>

@@ -110,8 +110,6 @@
 
 	<!-- Information Center -->
 	<!-- Log events -->
-	<message key="submission.event.participantAdded">Ο/Η "{$name}" ({$username}) έχει προστεθεί ως {$userGroupName}.</message>
-	<message key="submission.event.participantRemoved">Ο/Η "{$name}" ({$username}) έχει αφαιρεθεί από {$userGroupName}.</message>
 	<message key="submission.event.metadataPublished">Τα μεταδεδομένα της μονογραφίας έχουν εγκριθεί για δημοσίευση.</message>
 	<message key="submission.event.metadataUnpublished">Τα μεταδεδομένα της μονογραφίας δεν είναι πλέον δημοσιευμένα.</message>
 	<message key="submission.event.publicationFormatMadeAvailable">Το μορφότυπο της δημοσίευσης "{$publicationFormatName}" είναι διαθέσιμο.</message>
