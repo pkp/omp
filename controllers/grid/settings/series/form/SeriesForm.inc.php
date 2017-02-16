@@ -17,6 +17,9 @@
 import('lib.pkp.controllers.grid.settings.sections.form.PKPSectionForm');
 
 class SeriesForm extends PKPSectionForm {
+	/** @var $_pressId int */
+	var $_pressId;
+
 	/**
 	 * Constructor.
 	 * @param $request Request
@@ -29,11 +32,23 @@ class SeriesForm extends PKPSectionForm {
 			$seriesId
 		);
 
+		$this->_pressId = $request->getContext()->getId();
+
 		// Validation checks for this form
 		$this->addCheck(new FormValidatorLocale($this, 'title', 'required', 'manager.setup.form.series.nameRequired'));
 		$this->addCheck(new FormValidatorISSN($this, 'onlineIssn', 'optional', 'catalog.manage.series.issn.validation'));
 		$this->addCheck(new FormValidatorISSN($this, 'printIssn', 'optional', 'catalog.manage.series.issn.validation'));
 		$this->addCheck(new FormValidatorCustom($this, 'printIssn', 'optional', 'catalog.manage.series.issn.equalValidation', create_function('$printIssn,$form', 'return !($form->getData(\'onlineIssn\') != \'\' && $form->getData(\'onlineIssn\') == $printIssn);'), array(&$this)));
+		$this->addCheck(new FormValidatorRegExp($this, 'path', 'required', 'grid.series.pathAlphaNumeric', '/^[a-zA-Z0-9\/._-]+$/'));
+		$this->addCheck(new FormValidatorCustom(
+			$this, 'path', 'required', 'grid.series.pathExists',
+			create_function(
+				'$path,$form,$seriesDao,$pressId',
+				'return !$seriesDao->getByPath($path,$pressId) || ($form->getData(\'oldPath\') != null && $form->getData(\'oldPath\') == $path);'
+			),
+			array(&$this, DAORegistry::getDAO('SeriesDAO'), $this->_pressId)
+		));
+
 	}
 
 	/**
@@ -123,6 +138,12 @@ class SeriesForm extends PKPSectionForm {
 	function readInputData() {
 		parent::readInputData();
 		$this->readUserVars(array('seriesId', 'path', 'featured', 'restricted', 'description', 'categories', 'prefix', 'subtitle', 'temporaryFileId', 'onlineIssn', 'printIssn', 'sortOption'));
+		// For path duplicate checking; excuse the current path.
+		if ($seriesId = $this->getSeriesId()) {
+			$seriesDao = DAORegistry::getDAO('SeriesDAO');
+			$series = $seriesDao->getById($seriesId, $this->_pressId);
+			$this->setData('oldPath', $series->getPath());
+		}
 	}
 
 	/**
