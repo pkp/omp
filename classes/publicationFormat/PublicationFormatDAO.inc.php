@@ -83,7 +83,7 @@ class PublicationFormatDAO extends RepresentationDAO implements PKPPubIdPluginDA
 			$params[] = (int) $pressId;
 			$sql .= ' AND s.context_id = ?';
 		}
-		$sql .= ' ORDER BY s.context_id, pf.publication_format_id';
+		$sql .= ' ORDER BY s.context_id, pf.seq, pf.publication_format_id';
 		$result = $this->retrieve($sql, $params);
 
 		$publicationFormats = array();
@@ -164,7 +164,8 @@ class PublicationFormatDAO extends RepresentationDAO implements PKPPubIdPluginDA
 			'SELECT pf.*
 			FROM	publication_formats pf
 			JOIN	submissions s ON (s.submission_id = pf.submission_id)
-			WHERE	s.context_id = ?',
+			WHERE	s.context_id = ?
+			ORDER BY pf.seq',
 			$params
 		);
 
@@ -180,7 +181,8 @@ class PublicationFormatDAO extends RepresentationDAO implements PKPPubIdPluginDA
 		$result = $this->retrieve(
 			'SELECT *
 			FROM	publication_formats
-			WHERE	submission_id = ? AND is_approved = 1',
+			WHERE	submission_id = ? AND is_approved = 1
+			ORDER BY seq',
 			(int) $submissionId
 		);
 
@@ -460,7 +462,6 @@ class PublicationFormatDAO extends RepresentationDAO implements PKPPubIdPluginDA
 		}
 		$this->flushCache();
 	}
-
 }
 
 ?>
