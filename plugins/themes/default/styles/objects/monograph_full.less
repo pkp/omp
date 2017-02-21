@@ -48,8 +48,25 @@
 		}
 	}
 
-	.authors .label {
-		margin-bottom: 0;
+	.authors {
+
+		.label {
+			margin-bottom: 0;
+		}
+
+		.orcid {
+			display: block;
+			font-size: @font-tiny;
+			line-height: @double;
+
+			&:before {
+				content:url('//orcid.org/sites/default/files/images/orcid_16x16.png');
+				display: inline-block;
+				margin-right: 0.25em;
+				height: @double;
+				vertical-align: middle;
+			}
+		}
 	}
 
 	.entry_details {
