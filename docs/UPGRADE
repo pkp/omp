@@ -1,8 +1,9 @@
 Upgrading an OMP Installation
 -----------------------------
 
-Note: backing up your current data files and database is strongly recommended
-prior to upgrading OMP.
+Note: Before upgrading your installation, perform a complete backup of your
+data files and database. If the upgrade process fails, you will need to recover
+from backup before continuing.
 
 If you are using PHP Safe Mode, please ensure that the max_execution_time
 directive in your php.ini configuration file is set to a high limit. If this
@@ -26,17 +27,18 @@ package, and from read-only github access.
 
 1. Full Package
 
-It is also possible to upgrade by downloading the complete package for the
-latest release of OMP:
+If you have not made local code modifications to the system, upgrade by 
+downloading the complete package for the latest release of OMP:
 
-    - Download and decompress the package from the OMP web site
-    - Make a copy of the config.inc.php provided in the new package
+    - Download and decompress the package from the OMP web site into an empty
+      directory (NOT over top of your current OJS installation)
     - Move or copy the following files and directories from your current OMP
       installation:
         - config.inc.php
         - public/
         - Your uploaded files directory ("files_dir" in config.inc.php), if it
           resides within your OMP directory
+    - Synchronize new changes from config.TEMPLATE.inc.php to config.inc.php
     - Replace the current OMP directory with the new OMP directory, moving the
       old one to a safe location as a backup
     - Be sure to review the Configuration Changes section of the release notes
@@ -44,8 +46,8 @@ latest release of OMP:
       original version and the new version. You may need to manually add
       new items to your config.inc.php file.
 
-Patching or updating from github is the recommended approach if you have made
-local modifications to the system.
+Updating from github is the recommended approach if you have made local
+modifications to the system.
 
 2. git
 
@@ -74,41 +76,6 @@ tag to obtain the bleeding-edge OMP code) is not recommended for anyone other
 than OMP or third-party developers; using experimental code on a production
 deployment is strongly discouraged and will not be supported in any way by
 the OMP team.
-
-
-Applying the Latest Recommended Patches
----------------------------------------
-
-The Public Knowledge Project development team maintains a publicly-available
-list of recommended patches for each release. These will add no new
-functionality and will typically consist of small, easy-to-read patches for
-specific issues. A Recommended Patches list for your version of OMP can be
-found on the PKP development wiki:
-
-    <http://pkp.sfu.ca/wiki/index.php/OMP_Recommended_Patches>
-
-Regardless of the method you used to download and apply the official system
-files, you will also want to review the list of recommended patches specific
-to your OMP version, and apply as necessary.
-
-To apply a recommended patch, open the bug report and download the attached
-patch file(s). (Note that bug reports can quite often include a number of
-patches, some relevant to the application (ie. OMP) and version you are
-running, and some not. Ensure that you download all and only the patches
-specific to your application and version.) For each patch you download,
-first attempt a dry-run application of the patch, to ensure that it applies
-cleanly:
-
-    $ patch -p1 --dry-run < PATCH_FILE
-
-If the patch applies cleanly, then run the following command, which will
-actually apply the patch:
-
-    $ patch -p1 < PATCH_FILE
-
-"PATCH_FILE" should be replaced with the path to the patch file that was
-downloaded, e.g. "1234-omp.patch".
-
 
 
 Upgrading the OMP database
