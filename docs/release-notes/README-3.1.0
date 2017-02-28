@@ -1,0 +1,18 @@
+OMP 3.1.0 Release Notes
+CVS tag: omp-3_1_0-0
+Release date: March 1, 2017
+=================================
+
+
+Version Numbering
+-----------------
+The OMP version number is bumped with this release to 3.1.0 (from the previous
+1.2.0). This change is made to align the OMP version numbering with OJS version
+numbering, in order to prepare for the two applications to move to simultaneous
+releases.
+
+New Features
+------------
+
+Bug Fixes
+---------

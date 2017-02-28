@@ -13,9 +13,9 @@
 <version>
 	<application>omp</application>
 	<type>core</type>
-	<release>1.2.0.0</release>
-	<tag>omp-1_2_0-0</tag>
-	<date>2016-04-11</date>
+	<release>3.1.0.0</release>
+	<tag>omp-3_1_0-0</tag>
+	<date>2017-03-01</date>
 	<info>http://pkp.sfu.ca/omp/</info>
-	<package>http://pkp.sfu.ca/omp/download/omp-1.2.0.tar.gz</package>
+	<package>http://pkp.sfu.ca/omp/download/omp-3.1.0.tar.gz</package>
 </version>
