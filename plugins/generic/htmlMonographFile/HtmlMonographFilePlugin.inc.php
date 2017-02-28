@@ -79,9 +79,6 @@ class HtmlMonographFilePlugin extends GenericPlugin {
 			$templateMgr->assign(array(
 				'pluginTemplatePath' => $this->getTemplatePath(),
 				'pluginUrl' => $request->getBaseUrl() . '/' . $this->getPluginPath(),
-				'submissionFile' => $submissionFile,
-				'monograph' => $publishedMonograph,
-				'publicationFormat' => $publicationFormat,
 				'downloadFile' => $submissionFile,
 			));
 			$templateMgr->display($this->getTemplatePath() . '/display.tpl');
