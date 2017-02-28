@@ -76,26 +76,9 @@ class CatalogBookHandler extends Handler {
 		$chapters = $chapterDao->getChapters($publishedMonograph->getId());
 		$templateMgr->assign('chapters', $chapters->toAssociativeArray());
 
-		// Determine which pubId plugins are enabled.
 		$pubIdPlugins = PluginRegistry::loadCategory('pubIds', true);
-		$enabledPubIdTypes = array();
-		$metaCustomHeaders = '';
-
-		foreach ((array) $pubIdPlugins as $plugin) {
-			if ($plugin->getEnabled()) {
-				$enabledPubIdTypes[] = $plugin->getPubIdType();
-				// check to see if the format has a pubId set.  If not, generate one.
-				foreach ($publicationFormats as $publicationFormat) {
-					if ($plugin->getPubIdType() == 'doi' && $publicationFormat->getStoredPubId('doi')) {
-						$pubId = strip_tags($publicationFormat->getStoredPubId('doi'));
-						$metaCustomHeaders .= '<meta name="DC.Identifier.DOI" content="' . $pubId . '"/><meta name="citation_doi" content="'. $pubId . '"/>';
-					}
-				}
-			}
-		}
 		$templateMgr->assign(array(
-			'enabledPubIdTypes' => $enabledPubIdTypes,
-			'metaCustomHeaders' => $metaCustomHeaders,
+			'pubIdPlugins' => PluginRegistry::loadCategory('pubIds', true),
 			'licenseUrl' => $publishedMonograph->getLicenseURL(),
 			'ccLicenseBadge' => Application::getCCLicenseBadge($publishedMonograph->getLicenseURL())
 		));
@@ -133,7 +116,9 @@ class CatalogBookHandler extends Handler {
 		}
 
 		// Display
-		$templateMgr->display('frontend/pages/book.tpl');
+		if (!HookRegistry::call('CatalogBookHandler::book', array(&$request, &$publishedMonograph))) {
+			return $templateMgr->display('frontend/pages/book.tpl');
+		}
 	}
 
 	/**
@@ -189,6 +174,16 @@ class CatalogBookHandler extends Handler {
 			default: fatalError('Invalid monograph file specified!');
 		}
 
+		$chapterDao = DAORegistry::getDAO('ChapterDAO');
+		$templateMgr = TemplateManager::getManager($request);
+		$templateMgr->assign(array(
+			'publishedMonograph' => $publishedMonograph,
+			'publicationFormat' => $publicationFormat,
+			'submissionFile' => $submissionFile,
+			'chapter' => $chapterDao->getChapter($submissionFile->getData('chapterId')),
+			'downloadUrl' => $dispatcher->url($request, ROUTE_PAGE, null, null, 'download', array($publishedMonograph->getBestId(), $publicationFormat->getBestId(), $submissionFile->getBestId()), array('inline' => true)),
+		));
+
 		$ompCompletedPaymentDao = DAORegistry::getDAO('OMPCompletedPaymentDAO');
 		$user = $request->getUser();
 		if ($submissionFile->getDirectSalesPrice() === '0' || ($user && $ompCompletedPaymentDao->hasPaidPurchaseFile($user->getId(), $fileIdAndRevision))) {
@@ -198,9 +193,6 @@ class CatalogBookHandler extends Handler {
 				Validation::redirectLogin();
 			}
 
-			// If inline viewing is requested, permit plugins to
-			// handle the document.
-			PluginRegistry::loadCategory('viewableFiles', true);
 			if ($view) {
 				if (HookRegistry::call('CatalogBookHandler::view', array(&$this, &$publishedMonograph, &$publicationFormat, &$submissionFile))) {
 					// If the plugin handled the hook, prevent further default activity.

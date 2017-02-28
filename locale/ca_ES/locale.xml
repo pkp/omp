@@ -513,8 +513,5 @@ El vostre servidor actual és compatible amb mbstring: <strong>{$supportsMBStrin
 	<!-- RT Entities -->
 	<message key="rt.metadata.pkp.dctype">Llibre</message>
 
-	<!-- General plugin information -->
-	<message key="plugins.categories.viewableFiles">Mòduls de fitxer de publicació</message>
-	<message key="plugins.categories.viewableFiles.description">Els mòduls de fitxer de publicació augmenten la compatibilitat a l'hora de mostrar diferents tipus de documents en línia, p. ex., amb PDF incrustats.</message>
 	<message key="submission.pdf.download">Descarrega aquest fitxer PDF</message>
 </locale>

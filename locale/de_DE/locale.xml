@@ -576,9 +576,6 @@ Ihr Server untersützt aktuell mbstring: <strong>{$supportsMBString}</strong>]]>
 	<!-- RT Entities -->
 	<message key="rt.metadata.pkp.dctype">Buch</message>
 
-	<!-- General plugin information -->
-	<message key="plugins.categories.viewableFiles">Plugins für veröffentlichte Dateien</message>
-	<message key="plugins.categories.viewableFiles.description">Plugins für veröffentlichte Dateien fügen Möglichkeiten zur eingebetteten Anzeige verschiedener Dokumenttypen hinzu, z.B. zur Einbettung von PDF.</message>
 	<message key="submission.pdf.download">PDF herunterladen</message>
 
 	<message key="user.profile.form.showOtherContexts">Andere Verlage anzeigen</message>

@@ -2,7 +2,7 @@
 <!DOCTYPE locale SYSTEM "../../../../../lib/pkp/dtd/locale.dtd">
 
 <!--
-  * plugins/viewableFiles/pdfJsViewer/locale/ca_ES/locale.xml
+  * plugins/generic/dublinCoreMeta/locale/ar_IQ/locale.xml
   *
   * Copyright (c) 2014-2017 Simon Fraser University
   * Copyright (c) 2003-2017 John Willinsky
@@ -11,5 +11,6 @@
   * Localization strings.
   -->
 
-<locale name="ca_ES" full_name="Català">
+<locale name="ar_IQ" full_name="العربية">
+	<message key="plugins.generic.dublinCoreMeta.name">إضافة الفهرسة Dublin Core</message>
 </locale>

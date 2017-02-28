@@ -542,10 +542,7 @@
 	<!-- RT Entities -->
 	<message key="rt.metadata.pkp.dctype">Libro</message>
 
-	<!-- General plugin information -->
-	<message key="plugins.categories.viewableFiles">Complementos publicados del archivo</message>
-	<message key="plugins.categories.viewableFiles.description">Los complementos publicados del archivo favorecen la visualización de diferentes tipos de documentos en línea, por ejemplo, añadiendo encriptación de PDF.</message>
-	 <message key="submission.pdf.download">Descargar el archivo PDF</message>
+	<message key="submission.pdf.download">Descargar el archivo PDF</message>
 	<message key="monograph.currentCoverImageReload">Guarde los cambios para ver la nueva imagen de portada.</message>
 	<message key="monograph.publicationFormat">Formato</message>
 	<message key="monograph.publicationFormatDetails">Detalles sobre los formatos de publicación disponibles: {$format}</message>

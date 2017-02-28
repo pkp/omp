@@ -2,14 +2,15 @@
 <!DOCTYPE locale SYSTEM "../../../../../lib/pkp/dtd/locale.dtd">
 
 <!--
-  * plugins/viewableFiles/pdfJsViewer/locale/es_ES/locale.xml
+  * plugins/generic/dublinCoreMeta/locale/ru_RU/locale.xml
   *
   * Copyright (c) 2014-2017 Simon Fraser University
   * Copyright (c) 2003-2017 John Willinsky
   * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
-  * Credits: https://pkp.sfu.ca/wiki/index.php?title=OMP:_Spanish_(es_ES)
+  * Localization information: https://pkp.sfu.ca/wiki/index.php?title=OJS:_Russian_(ru_RU)
   * Localization strings.
   -->
 
-<locale name="es_ES" full_name="Español (España)">
+<locale name="ru_RU" full_name="Русский">
+	<message key="plugins.generic.dublinCoreMeta.name">Модуль «Индексирование Dublin Core»</message>
 </locale>

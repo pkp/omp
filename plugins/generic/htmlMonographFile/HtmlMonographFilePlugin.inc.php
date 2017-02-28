@@ -54,9 +54,10 @@ class HtmlMonographFilePlugin extends GenericPlugin {
 	}
 
 	/**
-	 * Callback to view HTML content rather than downloading.
-	 * @param string $hookName
-	 * @param array $args
+	 * Callback to view the HTML content rather than downloading.
+	 * @param $hookName string
+	 * @param $args array
+	 * @return boolean
 	 */
 	function viewCallback($hookName, $params) {
 		$publishedMonograph =& $params[1];
