@@ -28,6 +28,8 @@ class SubmissionFilesUploadBaseForm extends PKPSubmissionFilesUploadBaseForm {
 	 * @param $revisionOnly boolean
 	 * @param $reviewRound ReviewRound
 	 * @param $revisedFileId integer
+	 * @param $assocType int optional
+	 * @param $assocId int optional
 	 */
 	function __construct($request, $template, $submissionId, $stageId, $fileStage,
 			$revisionOnly = false, $reviewRound = null, $revisedFileId = null, $assocType = null, $assocId = null) {
