@@ -84,7 +84,7 @@ class HtmlMonographFilePlugin extends GenericPlugin {
 				'downloadFile' => $submissionFile,
 			));
 			$templateMgr->display($this->getTemplatePath() . '/display.tpl');
-			exit();
+			return true;
 		}
 
 		return false;

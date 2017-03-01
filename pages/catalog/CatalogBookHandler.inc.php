@@ -211,9 +211,11 @@ class CatalogBookHandler extends Handler {
 			// Inline viewer not available, or viewing not wanted.
 			// Download or show the file.
 			$inline = $request->getUserVar('inline')?true:false;
-			if (!HookRegistry::call('CatalogBookHandler::download', array(&$this, &$publishedMonograph, &$publicationFormat, &$submissionFile, &$inline))) {
-				return $monographFileManager->downloadFile($fileId, $revision, $inline);
+			if (HookRegistry::call('CatalogBookHandler::download', array(&$this, &$publishedMonograph, &$publicationFormat, &$submissionFile, &$inline))) {
+				// If the plugin handled the hook, prevent further default activity.
+				exit();
 			}
+			return $monographFileManager->downloadFile($fileId, $revision, $inline);
 		}
 
 		// Fall-through: user needs to pay for purchase.
