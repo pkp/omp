@@ -575,4 +575,5 @@ Your server currently supports mbstring: <strong>{$supportsMBString}</strong>]]>
 
 	<message key="user.profile.form.showOtherContexts">Register with other presses</message>
 	<message key="user.profile.form.hideOtherContexts">Hide other presses</message>
+	<message key="grid.category.categories">Categories</message>
 </locale>

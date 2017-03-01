@@ -371,7 +371,6 @@ Select a model for handling these aspects of the editorial process. (To designat
 	<message key="grid.genres.title">Monograph Components</message>
 	<message key="manager.setup.notifications.copyPrimaryContact">Send a copy to the primary contact, identified in the Press Settings.</message>
 
-	<message key="grid.category.categories">Categories</message>
 	<message key="grid.category.add">Add Category</message>
 	<message key="grid.category.edit">Edit Category</message>
 	<message key="grid.category.name">Name</message>
