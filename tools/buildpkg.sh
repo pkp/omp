@@ -51,6 +51,7 @@ tests								\
 lib/pkp/tests							\
 .git								\
 .openshift							\
+.travis.yml							\
 lib/pkp/.git							\
 lib/pkp/lib/components/*.js					\
 lib/pkp/lib/components/*.css					\
