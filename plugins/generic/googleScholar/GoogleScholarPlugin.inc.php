@@ -60,7 +60,7 @@ class GoogleScholarPlugin extends GenericPlugin {
 			$series = $templateMgr->get_template_vars('series');
 
 			$templateMgr->addHeader('googleScholarRevision', '<meta name="gs_meta_revision" content="1.1"/>');
-			$templateMgr->addHeader('googleScholarJournalTitle', '<meta name="citation_journal_title" content="' . htmlspecialchars($press->getName($press->getPrimaryLocale())) . '"/>');
+			$templateMgr->addHeader('googleScholarPressTitle', '<meta name="citation_journal_title" content="' . htmlspecialchars($press->getName($press->getPrimaryLocale())) . '"/>');
 			if ($series && $issn = $series->getOnlineISSN()) {
 				$templateMgr->addHeader('googleScholarIssn', '<meta name="citation_issn" content="' . htmlspecialchars($issn) . '"/> ');
 			}
