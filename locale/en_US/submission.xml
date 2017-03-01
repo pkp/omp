@@ -122,5 +122,6 @@
 
 	<message key="submission.upload.fileContents">Submission Component</message>
 	<message key="submission.dependentFiles">Dependent Files</message>
+	<message key="submission.metadataDescription">These specifications are based on the Dublin Core metadata set, an international standard used to describe press content.</message>
 	<message key="section.any">Any Series</message>
 </locale>
