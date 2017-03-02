@@ -25,12 +25,9 @@ class LoginHandler extends PKPLoginHandler {
 	}
 
 	/**
-	 * Helper Function - set mail from address
-	 * @param $request PKPRequest
-	 * @param MailTemplate $mail
+	 * @copydoc PKPLoginhandler::_setMailFrom
 	 */
-	function _setMailFrom($request, &$mail) {
-		$site = $request->getSite();
+	function _setMailFrom($request, $mail, $site) {
 		$press = $request->getPress();
 
 		// Set the sender based on the current context
