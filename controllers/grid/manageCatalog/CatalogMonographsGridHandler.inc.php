@@ -64,8 +64,8 @@ class CatalogMonographsGridHandler extends GridHandler {
 	/**
 	 * @copydoc GridHandler::initialize()
 	 */
-	function initialize($request) {
-		parent::initialize($request);
+	function initialize($request, $args = null) {
+		parent::initialize($request, $args);
 		import('controllers.grid.manageCatalog.CatalogMonographsGridCellProvider');
 		$cellProvider = new CatalogMonographsGridCellProvider($this->assocType, $this->assocId, $this->getRequestArgs());
 

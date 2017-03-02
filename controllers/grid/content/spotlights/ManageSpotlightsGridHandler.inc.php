@@ -92,12 +92,11 @@ class ManageSpotlightsGridHandler extends GridHandler {
 		return $returner;
 	}
 
-	/*
-	 * Configure the grid
-	 * @param $request PKPRequest
+	/**
+	 * @copydoc GridHandler::initialize()
 	 */
-	function initialize($request) {
-		parent::initialize($request);
+	function initialize($request, $args = null) {
+		parent::initialize($request, $args);
 
 		// Load locale components.
 		AppLocale::requireComponents(LOCALE_COMPONENT_APP_SUBMISSION, LOCALE_COMPONENT_APP_MANAGER);

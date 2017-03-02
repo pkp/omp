@@ -93,12 +93,11 @@ class SalesRightsGridHandler extends GridHandler {
 		return parent::authorize($request, $args, $roleAssignments);
 	}
 
-	/*
-	 * Configure the grid
-	 * @param $request PKPRequest
+	/**
+	 * @copydoc GridHandler::initialize()
 	 */
-	function initialize($request) {
-		parent::initialize($request);
+	function initialize($request, $args = null) {
+		parent::initialize($request, $args);
 
 		// Retrieve the authorized monograph.
 		$this->setMonograph($this->getAuthorizedContextObject(ASSOC_TYPE_MONOGRAPH));
