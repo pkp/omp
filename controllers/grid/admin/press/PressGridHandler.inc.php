@@ -42,7 +42,7 @@ class PressGridHandler extends ContextGridHandler {
 		// Form handling.
 		$settingsForm = new PressSiteSettingsForm(!isset($pressId) || empty($pressId) ? null : $pressId);
 		$settingsForm->initData();
-		return new JSONMessage(true, $settingsForm->fetch($args, $request));
+		return new JSONMessage(true, $settingsForm->fetch($request));
 	}
 
 	/**

@@ -24,8 +24,8 @@ class OAIMetadataFormat_DC extends PKPOAIMetadataFormat_DC {
 	/**
 	 * @see lib/pkp/plugins/oaiMetadataFormats/dc/PKPOAIMetadataFormat_DC::toXml()
 	 */
-	function toXml(&$record, $format = null) {
-		$publicationFormat =& $record->getData('publicationFormat');
+	function toXml($record, $format = null) {
+		$publicationFormat = $record->getData('publicationFormat');
 		return parent::toXml($publicationFormat, $format);
 	}
 }

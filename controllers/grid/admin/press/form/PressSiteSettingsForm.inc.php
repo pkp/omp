@@ -26,9 +26,9 @@ class PressSiteSettingsForm extends ContextSiteSettingsForm {
 
 	/**
 	 * Save press settings.
-	 * @param $request PKPRequest
 	 */
-	function execute($request) {
+	function execute() {
+		$request = Application::getRequest();
 		$pressDao = DAORegistry::getDAO('PressDAO');
 
 		if (isset($this->contextId)) {

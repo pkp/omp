@@ -30,43 +30,6 @@ class UserHandler extends PKPUserHandler {
 		AppLocale::requireComponents(LOCALE_COMPONENT_PKP_GRID);
 		parent::initialize($request, $args);
 	}
-
-	/**
-	 * Become a given role.
-	 * @param $args array
-	 * @param $request PKPRequest
-	 */
-	function become($args, $request) {
-		parent::validate(true);
-
-		$press = $request->getPress();
-		$user = $request->getUser();
-		$roleId = $deniedKey = null; // Scrutinizer
-
-		switch (array_shift($args)) {
-			case 'author':
-				$roleId = ROLE_ID_AUTHOR;
-				$deniedKey = 'user.noRoles.submitMonographRegClosed';
-				break;
-			case 'reviewer':
-				$roleId = ROLE_ID_REVIEWER;
-				$deniedKey = 'user.noRoles.regReviewerClosed';
-				break;
-			default:
-				$request->redirect(null, null, 'index');
-		}
-
-		$userGroupDao = DAORegistry::getDAO('UserGroupDAO');
-		$userGroup = $userGroupDao->getDefaultByRoleId($press->getId(), $roleId);
-		if ($userGroup->getPermitSelfRegistration()) {
-			$userGroupDao->assignUserToGroup($user->getId(), $userGroup->getId());
-			$request->redirectUrl($request->getUserVar('source'));
-		} else {
-			$templateMgr = TemplateManager::getManager($request);
-			$templateMgr->assign('message', $deniedKey);
-			return $templateMgr->display('frontend/pages/message.tpl');
-		}
-	}
 }
 
 ?>

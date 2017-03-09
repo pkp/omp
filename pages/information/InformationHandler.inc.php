@@ -29,7 +29,7 @@ class InformationHandler extends Handler {
 	 * @param $request PKPRequest
 	 */
 	function index($args, $request) {
-		$this->validate();
+		$this->validate(null, $request);
 		$press = $request->getPress();
 		if ($press == null) $request->redirect('index');
 
