@@ -40,7 +40,6 @@ switch ($op) {
 	//
 	case 'index':
 	case 'setLocale':
-	case 'become':
 	case 'authorizationDenied':
 	case 'getInterests':
 	case 'toggleHelp':
