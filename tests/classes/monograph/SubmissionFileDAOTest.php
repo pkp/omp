@@ -164,6 +164,7 @@ class SubmissionFileDAOTest extends DatabaseTestCase {
 		// getRevision()
 		//
 		// Retrieve the first revision of the artwork file.
+		$submissionFileDao = DAORegistry::getDAO('SubmissionFileDAO'); /* @var $submissionFileDao SubmissionFileDAO */
 		self::assertNull($submissionFileDao->getRevision(null, $file1Rev1->getRevision()));
 		self::assertNull($submissionFileDao->getRevision($file1Rev1->getFileId(), null));
 		self::assertEquals($file1Rev1, $submissionFileDao->getRevision($file1Rev1->getFileId(), $file1Rev1->getRevision()));
