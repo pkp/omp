@@ -124,15 +124,6 @@ class SubmissionFileDAOTest extends DatabaseTestCase {
 
 
 		//
-		// isInlineable()
-		//
-		// Test the isInlineable method.
-		$submissionFileDao = DAORegistry::getDAO('SubmissionFileDAO'); /* @var $submissionFileDao SubmissionFileDAO */
-		self::assertFalse($submissionFileDao->isInlineable($file2Rev1));
-		self::assertTrue($submissionFileDao->isInlineable($file1Rev1));
-
-
-		//
 		// insertObject()
 		//
 		// Persist the two test files.
