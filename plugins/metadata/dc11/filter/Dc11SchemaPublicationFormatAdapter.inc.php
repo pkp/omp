@@ -47,9 +47,8 @@ class Dc11SchemaPublicationFormatAdapter extends MetadataDataObjectAdapter {
 	 * @see MetadataDataObjectAdapter::injectMetadataIntoDataObject()
 	 * @param $dc11Description MetadataDescription
 	 * @param $publicationFormat PublicationFormat
-	 * @param $authorClassName string the application specific author class name
 	 */
-	function &injectMetadataIntoDataObject(&$dc11Description, &$publicationFormat, $authorClassName) {
+	function &injectMetadataIntoDataObject(&$dc11Description, &$publicationFormat) {
 		// Not implemented
 		assert(false);
 	}
@@ -59,7 +58,7 @@ class Dc11SchemaPublicationFormatAdapter extends MetadataDataObjectAdapter {
 	 * @param $publicationFormat PublicationFormat
 	 * @return MetadataDescription
 	 */
-	function extractMetadataFromDataObject($publicationFormat) {
+	function extractMetadataFromDataObject(&$publicationFormat) {
 		assert(is_a($publicationFormat, 'PublicationFormat'));
 
 		AppLocale::requireComponents(LOCALE_COMPONENT_APP_COMMON);
