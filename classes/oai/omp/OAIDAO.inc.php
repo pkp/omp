@@ -49,10 +49,10 @@ class OAIDAO extends PKPOAIDAO {
 	}
 
 	/**
-	 * @see lib/pkp/classes/oai/PKPOAIDAO::getEarliestDatestamp()
+	 * @copydoc PKPOAIDAO::getEarliestDatestampQuery()
 	 */
-	function getEarliestDatestamp($setIds) {
-		return parent::getEarliestDatestamp('SELECT	MIN(COALESCE(dot.date_deleted, ms.last_modified))', $setIds);
+	function getEarliestDatestampQuery() {
+		return 'SELECT MIN(COALESCE(dot.date_deleted, ms.last_modified))';
 	}
 
 	/**
