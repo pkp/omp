@@ -32,7 +32,7 @@ class EmailTemplateDAO extends PKPEmailTemplateDAO {
 	 * @return BaseEmailTemplate Email template
 	 */
 	function getBaseEmailTemplate($emailKey, $pressId) {
-		return parent::_getBaseEmailTemplate($emailKey, ASSOC_TYPE_PRESS, $pressId);
+		return $this->_getBaseEmailTemplate($emailKey, ASSOC_TYPE_PRESS, $pressId);
 	}
 
 	/**
