@@ -92,7 +92,7 @@ class Application extends PKPApplication {
 			'ChapterAuthorDAO' => 'classes.monograph.ChapterAuthorDAO',
 			'ChapterDAO' => 'classes.monograph.ChapterDAO',
 			'CategoryDAO' => 'classes.press.CategoryDAO',
-			'EmailTemplateDAO' => 'classes.mail.EmailTemplateDAO',
+			'EmailTemplateDAO' => 'lib.pkp.classes.mail.EmailTemplateDAO',
 			'FeatureDAO' => 'classes.press.FeatureDAO',
 			'IdentificationCodeDAO' => 'classes.publicationFormat.IdentificationCodeDAO',
 			'LayoutAssignmentDAO' => 'submission.layoutAssignment.LayoutAssignmentDAO',
