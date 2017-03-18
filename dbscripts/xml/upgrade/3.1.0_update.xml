@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE data SYSTEM "../../../lib/pkp/dtd/xmlData.dtd">
+
+<!--
+  * 1.2.0.0_update.xml
+  *
+  * Copyright (c) 2014-2017 Simon Fraser University
+  * Copyright (c) 2003-2017 John Willinsky
+  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
+  *
+  * 1.2.0.0 database updates XML file.
+  -->
+<data>
+	<sql><!--pkp/pkp-lib#2064: update the already existing <a href="{$url}">{$url}</a> pattern to {$url}-->
+		<!--<a href="{$activateUrl}">{$activateUrl}</a>-->
+		<query>UPDATE email_templates_default_data SET body=REPLACE(body, '&lt;a href=&quot;{$activateUrl}&quot;&gt;{$activateUrl}&lt;/a&gt;', '{$activateUrl}')</query>
+		<query>UPDATE email_templates_data SET body=REPLACE(body, '&lt;a href=&quot;{$activateUrl}&quot;&gt;{$activateUrl}&lt;/a&gt;', '{$activateUrl}')</query>
+		<!--<a href="{$contextUrl}">{$contextUrl}</a>-->
+		<query>UPDATE email_templates_default_data SET body=REPLACE(body, '&lt;a href=&quot;{$contextUrl}&quot;&gt;{$contextUrl}&lt;/a&gt;', '{$contextUrl}')</query>
+		<query>UPDATE email_templates_data SET body=REPLACE(body, '&lt;a href=&quot;{$contextUrl}&quot;&gt;{$contextUrl}&lt;/a&gt;', '{$contextUrl}')</query>
+		<!--<a href="{$submissionUrl}">{$submissionUrl}</a>-->
+		<query>UPDATE email_templates_default_data SET body=REPLACE(body, '&lt;a href=&quot;{$submissionUrl}&quot;&gt;{$submissionUrl}&lt;/a&gt;', '{$submissionUrl}')</query>
+		<query>UPDATE email_templates_data SET body=REPLACE(body, '&lt;a href=&quot;{$submissionUrl}&quot;&gt;{$submissionUrl}&lt;/a&gt;', '{$submissionUrl}')</query>
+		<!--<a href="{$submissionReviewUrl}">{$submissionReviewUrl}</a>-->
+		<query>UPDATE email_templates_default_data SET body=REPLACE(body, '&lt;a href=&quot;{$submissionReviewUrl}&quot;&gt;{$submissionReviewUrl}&lt;/a&gt;', '{$submissionReviewUrl}')</query>
+		<query>UPDATE email_templates_data SET body=REPLACE(body, '&lt;a href=&quot;{$submissionReviewUrl}&quot;&gt;{$submissionReviewUrl}&lt;/a&gt;', '{$submissionReviewUrl}')</query>
+		<!--<a href="{$passwordResetUrl}">{$passwordResetUrl}</a>-->
+		<query>UPDATE email_templates_default_data SET body=REPLACE(body, '&lt;a href=&quot;{$passwordResetUrl}&quot;&gt;{$passwordResetUrl}&lt;/a&gt;', '{$passwordResetUrl}')</query>
+		<query>UPDATE email_templates_data SET body=REPLACE(body, '&lt;a href=&quot;{$passwordResetUrl}&quot;&gt;{$passwordResetUrl}&lt;/a&gt;', '{$passwordResetUrl}')</query>
+		<!--<a href="{$monographUrl}">{$monographUrl}</a>-->
+		<query>UPDATE email_templates_default_data SET body=REPLACE(body, '&lt;a href=&quot;{$monographUrl}&quot;&gt;{$monographUrl}&lt;/a&gt;', '{$monographUrl}')</query>
+		<query>UPDATE email_templates_data SET body=REPLACE(body, '&lt;a href=&quot;{$monographUrl}&quot;&gt;{$monographUrl}&lt;/a&gt;', '{$monographUrl}')</query>
+		<!--<a href="{$monographDetailsUrl}">{$monographDetailsUrl}</a>-->
+		<query>UPDATE email_templates_default_data SET body=REPLACE(body, '&lt;a href=&quot;{$monographDetailsUrl}&quot;&gt;{$monographDetailsUrl}&lt;/a&gt;', '{$monographDetailsUrl}')</query>
+		<query>UPDATE email_templates_data SET body=REPLACE(body, '&lt;a href=&quot;{$monographDetailsUrl}&quot;&gt;{$monographDetailsUrl}&lt;/a&gt;', '{$monographDetailsUrl}')</query>
+		<!--<a href="{$submissionCopyeditingUrl}">{$submissionCopyeditingUrl}</a>-->
+		<query>UPDATE email_templates_default_data SET body=REPLACE(body, '&lt;a href=&quot;{$submissionCopyeditingUrl}&quot;&gt;{$submissionCopyeditingUrl}&lt;/a&gt;', '{$submissionCopyeditingUrl}')</query>
+		<query>UPDATE email_templates_data SET body=REPLACE(body, '&lt;a href=&quot;{$submissionCopyeditingUrl}&quot;&gt;{$submissionCopyeditingUrl}&lt;/a&gt;', '{$submissionCopyeditingUrl}')</query>
+		<!--<a href="{$url}">{$url}</a>-->
+		<query>UPDATE email_templates_default_data SET body=REPLACE(body, '&lt;a href=&quot;{$url}&quot;&gt;{$url}&lt;/a&gt;', '{$url}')</query>
+		<query>UPDATE email_templates_data SET body=REPLACE(body, '&lt;a href=&quot;{$url}&quot;&gt;{$url}&lt;/a&gt;', '{$url}')</query>
+	</sql>
+</data>
