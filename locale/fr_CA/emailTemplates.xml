@@ -88,7 +88,7 @@ Merci,<br />
 Vous avez ouvert un compte chez {$contextName}. Mais avant de pouvoir l'utiliser, vous devez confirmer votre adresse courriel. Il suffit de cliquer sur le lien ci-dessous.<br />
 <br />
 <br />
-<a href="{$activateUrl}">{$activateUrl}</a><br />
+{$activateUrl}<br />
 <br />
 Merci,<br />
 {$principalContactSignature}]]></body>
@@ -112,7 +112,7 @@ Merci,<br />
 		<subject>Nouveau livre publié</subject>
 		<body><![CDATA[Chers lecteurs,<br />
 <br />
-{$contextName} a récemment publié son dernier livre au <a href="{$contextUrl}">{$contextUrl}</a>. Nous vous invitons à consulter la table des matières ici et à consulter notre site Web afin de lire les monographies et les articles qui vous intéressent.<br />
+{$contextName} a récemment publié son dernier livre au {$contextUrl}. Nous vous invitons à consulter la table des matières ici et à consulter notre site Web afin de lire les monographies et les articles qui vous intéressent.<br />
 <br />
 Merci de l'intérêt que vous portez à nos publications.<br />
 <br />
@@ -177,7 +177,7 @@ Veuillez ouvrir une session sur le site Web de la presse d'ici le {$responseDueD
 <br />
 L'évaluation doit être terminée d'ici le {$reviewDueDate}.<br />
 <br />
-URL de la soumission: <a href="{$submissionReviewUrl}">{$submissionReviewUrl}</a><br />
+URL de la soumission: {$submissionReviewUrl}<br />
 <br />
 Nom d'utilisateur: {$reviewerUserName}<br />
 <br />
@@ -197,7 +197,7 @@ Veuillez ouvrir une session sur le site Web d'ici le {$weekLaterDate} pour indiq
 <br />
 L'évaluation doit être terminée d'ici le {$reviewDueDate}.<br />
 <br />
-URL de la soumission: <a href="{$submissionReviewUrl}">{$submissionReviewUrl}</a><br />
+URL de la soumission: {$submissionReviewUrl}<br />
 <br />
 Merci de votre intérêt à évaluer des articles pour notre presse.<br />
 <br />
@@ -278,9 +278,9 @@ Merci d'avoir terminé l'évaluation de l'article &quot;{$submissionTitle}&quot;
 <br />
 Nous vous remercions d'avoir accepté d'évaluer &quot;{$submissionTitle}&quot; pour la presse {$contextName}. Veuillez noter que cette évaluation doit nous parvenir avant le {$reviewDueDate}. Nous vous serions reconnaissants si vous pouviez nous faire parvenir votre évaluation dans les plus brefs délais.<br />
 <br />
-Si vous n'avez plus votre nom d'utilisateur et mot de passe pour le site Web, vous pouvez réinitialiser votre mot de passe en cliquant sur le lien suivant. Votre mot de passe et nom d'utilisateur vous seront envoyés par courriel. <a href="{$passwordResetUrl}">{$passwordResetUrl}</a><br />
+Si vous n'avez plus votre nom d'utilisateur et mot de passe pour le site Web, vous pouvez réinitialiser votre mot de passe en cliquant sur le lien suivant. Votre mot de passe et nom d'utilisateur vous seront envoyés par courriel. {$passwordResetUrl}<br />
 <br />
-URL de la soumission: <a href="{$submissionReviewUrl}">{$submissionReviewUrl}</a><br />
+URL de la soumission: {$submissionReviewUrl}<br />
 <br />
 Nom d'utilisateur: {$reviewerUserName}<br />
 <br />
@@ -295,7 +295,7 @@ Nous vous prions de confirmer si vous êtes encore disponible pour participer à
 <br />
 Nous vous remercions d'avoir accepté d'évaluer &quot;{$submissionTitle}&quot; pour la presse {$contextName}. Veuillez noter que cette évaluation doit nous parvenir avant le {$reviewDueDate}. Nous vous serions reconnaissants si vous pouviez nous faire parvenir votre évaluation dans les plus brefs délais<br />
 <br />
-URL de la soumission: <a href="{$submissionReviewUrl}">{$submissionReviewUrl}</a><br />
+URL de la soumission: {$submissionReviewUrl}<br />
 <br />
 Nous vous prions de confirmer si vous êtes encore disponible pour participer à cette étape cruciale de notre processus éditorial. Nous vous prions d'agréer l'expression de nos sentiments les plus distingués. <br />
 <br />
@@ -308,9 +308,9 @@ Nous vous prions de confirmer si vous êtes encore disponible pour participer à
 <br />
 Nous vous remercions d'avoir accepté d'évaluer &quot;{$submissionTitle}&quot; pour la presse {$contextName}. Veuillez noter que cette évaluation doit nous parvenir avant le {$reviewDueDate}. Ce courriel a été généré et envoyé automatiquement parce que vous avez dépassé la date d'échéance. Toutefois, nous vous serions reconnaissants si vous pouviez nous faire parvenir votre évaluation dans les plus brefs délais.<br />
 <br />
-Si vous n'avez plus votre nom d'utilisateur et mot de passe pour le site Web, vous pouvez réinitialiser votre mot de passe en cliquant sur le lien suivant. Votre mot de passe et nom d'utilisateur vous seront envoyés par courriel. <a href="{$passwordResetUrl}">{$passwordResetUrl}</a><br />
+Si vous n'avez plus votre nom d'utilisateur et mot de passe pour le site Web, vous pouvez réinitialiser votre mot de passe en cliquant sur le lien suivant. Votre mot de passe et nom d'utilisateur vous seront envoyés par courriel. {$passwordResetUrl}<br />
 <br />
-URL de la soumission: <a href="{$submissionReviewUrl}">{$submissionReviewUrl}</a><br />
+URL de la soumission: {$submissionReviewUrl}<br />
 <br />
 Nous vous prions de confirmer si vous êtes encore disponible pour participer à cette étape cruciale de notre processus éditorial. Veuillez agréer l'expression de nos sentiments les plus distingués. <br />
 <br />
@@ -323,7 +323,7 @@ Nous vous prions de confirmer si vous êtes encore disponible pour participer à
 <br />
 Nous vous remercions d'avoir accepté d'évaluer &quot;{$submissionTitle}&quot; pour la presse {$contextName}. Veuillez noter que cette évaluation doit nous parvenir avant le {$reviewDueDate}. Ce courriel a été généré et envoyé automatiquement parce que vous avez dépassé la date d'échéance. Toutefois, nous vous serions reconnaissants si vous pouviez nous faire parvenir votre évaluation dans les plus brefs délais.<br />
 <br />
-URL de la soumission: <a href="{$submissionReviewUrl}">{$submissionReviewUrl}</a><br />
+URL de la soumission: {$submissionReviewUrl}<br />
 <br />
 Nous vous prions de confirmer si vous êtes encore disponible pour participer à cette étape cruciale de notre processus éditorial. Veuillez agréer l'expression de nos sentiments les plus distingués. <br />
 <br />
@@ -425,8 +425,8 @@ J'aimerais que vous entamiez le processus de révision de l'article &quot;{$subm
 5. Sauvegardez le fichier révisé et téléchargez-le à l'étape 1 de Révision.<br />
 6. Envoyez le courriel COMPLET au rédacteur en chef.<br />
 <br />
-{$contextName} URL: <a href="{$contextUrl}">{$contextUrl}</a><br />
-URL de la soumission: <a href="{$submissionUrl}">{$submissionUrl}</a><br />
+{$contextName} URL: {$contextUrl}<br />
+URL de la soumission: {$submissionUrl}<br />
 Nom d'utilisateur: {$participantUsername}<br />
 <br />
 {$editorialContactSignature}]]></body>
@@ -442,7 +442,7 @@ Il faut maintenant préparer les épreuves en placard de la soumission &quot;{$s
 2. Ouvrez une session sur la presse et utilisez le fichier Version de mise en page pour créer les épreuves en placard conformément aux normes de la presse.<br />
 3. Envoyez le courriel COMPLET au rédacteur en chef.<br />
 <br />
-{$contextName} URL: <a href="{$contextUrl}">{$contextUrl}</a><br />
+{$contextName} URL: {$contextUrl}<br />
 URL de la soumission: {$submissionUrl}<br />
 Nom d'utilisateur: {$participantUsername}<br />
 <br />
@@ -472,7 +472,7 @@ La soumission &quot;{$submissionTitle}&quot; par la presse {$contextName} doit d
 2. Ouvrez une session sur la presse et utilisez les fichiers d'épreuves de mise en page pour créer les épreuves en placard conformément aux normes de la presse.<br />
 3. Envoyez le courriel COMPLET au rédacteur en chef.<br />
 <br />
-{$contextName} URL: <a href="{$contextUrl}">{$contextUrl}</a><br />
+{$contextName} URL: {$contextUrl}<br />
 URL de la soumission: {$submissionUrl}<br />
 Nom d'utilisateur: {$participantUsername}<br />
 <br />
@@ -494,12 +494,12 @@ Si vous avez questions, n'hésitez pas à me contacter.<br />
 	</email_text>
 	<email_text key="EMAIL_LINK">
 		<subject>Manuscrit susceptible d'intéresser</subject>
-		<body><![CDATA[Nous crayons que l'article intitulé &quot;{$submissionTitle}&quot; par {$authorName} publié dans le Volume {$volume}, No {$number} ({$year}) de la presse {$contextName} au &quot;<a href="{$monographUrl}">{$monographUrl}</a>&quot; pourrait vous intéresser.]]></body>
+		<body><![CDATA[Nous crayons que l'article intitulé &quot;{$submissionTitle}&quot; par {$authorName} publié dans le Volume {$volume}, No {$number} ({$year}) de la presse {$contextName} au &quot;{$monographUrl}&quot; pourrait vous intéresser.]]></body>
 		<description>Ce modèle de courriel permet à un lecteur inscrit d'envoyer des renseignements sur une monographie à une personne qui pourrait être intéressée. Il est disponible dans les Outils de lecture et peut être activé par le gestionnaire de la presse sur la page Administration des outils de lecture.</description>
 	</email_text>
 		<email_text key="NOTIFY_SUBMISSION">
 		<subject>Avis de soumission</subject>
-		<body><![CDATA[Vous avez reçu un message de {$sender} concernant la monographie &quot;{$submissionTitle}&quot; (<a href="{$monographDetailsUrl}">{$monographDetailsUrl}</a>):<br />
+		<body><![CDATA[Vous avez reçu un message de {$sender} concernant la monographie &quot;{$submissionTitle}&quot; ({$monographDetailsUrl}):<br />
 <br />
 		{$message}<br />
 <br />
@@ -508,7 +508,7 @@ Si vous avez questions, n'hésitez pas à me contacter.<br />
 	</email_text>
 		<email_text key="NOTIFY_FILE">
 		<subject>Avis de soumission d'un fichier</subject>
-		<body><![CDATA[Vous avez un message de {$sender} concernant le fichier &quot;{$fileName}&quot; dans &quot;{$submissionTitle}&quot; (<a href="{$monographDetailsUrl}">{$monographDetailsUrl}</a>):<br />
+		<body><![CDATA[Vous avez un message de {$sender} concernant le fichier &quot;{$fileName}&quot; dans &quot;{$submissionTitle}&quot; ({$monographDetailsUrl}):<br />
 <br />
 		{$message}<br />
 <br />

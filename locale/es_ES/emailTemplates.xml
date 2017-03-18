@@ -86,7 +86,7 @@ Gracias,<br />
 <br />
 Creó una cuenta con {$contextName}, pero antes de empezar a utilizarla es necesario que valide su cuenta de correo electrónico. Para hacerlo, haga clic en el enlace que aparece debajo:<br />
 <br />
-<a href="{$activateUrl}">{$activateUrl}</a><br />
+{$activateUrl}<br />
 <br />
 Gracias,<br />
 {$principalContactSignature}]]></body>
@@ -109,7 +109,7 @@ Gracias,<br />
 		<subject>Nuevo libro publicado</subject>
 		<body><![CDATA[Lectores/as:<br />
 <br />
-{$contextName} acaba de publicar su último libro en <a href="{$contextUrl}">{$contextUrl}</a>. Les invitamos a revisar la tabla de contenidos que les proporcionamos y a visitar nuestra página web para ver monografías y elementos de interés.<br />
+{$contextName} acaba de publicar su último libro en {$contextUrl}. Les invitamos a revisar la tabla de contenidos que les proporcionamos y a visitar nuestra página web para ver monografías y elementos de interés.<br />
 <br />
 Gracias por el interés mostrado en nuestro trabajo,<br />
 {$editorialContactSignature}]]></body>
@@ -121,7 +121,7 @@ Gracias por el interés mostrado en nuestro trabajo,<br />
 <br />
 Gracias por enviar el manuscrito &quot;{$submissionTitle}&quot; a {$contextName}. Con el sistema de gestión de publicaciones en línea que utilizamos podrá seguir el progreso a través del proceso editorial tras iniciar sesión en el sitio web de la publicación:<br />
 <br />
-URL del manuscrito: <a href="{$submissionUrl}">{$submissionUrl}</a><br />
+URL del manuscrito: {$submissionUrl}<br />
 Nombre de usuario/a: {$authorUsername}<br />
 <br />
 Si tiene alguna duda puede ponerse en contacto conmigo. Gracias por elegir esta editorial para mostrar su trabajo.<br />
@@ -154,7 +154,7 @@ Una revisión inicial de &quot;{$submissionTitle}&quot; determinó que este env�
 <br />
 El envío &quot;{$submissionTitle}&quot; a {$contextName} se le asignó para llevar a cabo el proceso editorial en calidad de editor/a.<br />
 <br />
-URL de envío: <a href="{$submissionUrl}">{$submissionUrl}</a><br />
+URL de envío: {$submissionUrl}<br />
 Nombre de usuario/a: {$editorUsername}<br />
 <br />
 Gracias,<br />
@@ -171,7 +171,7 @@ Inicie sesión en el sitio web de la publicación antes del {$responseDueDate} p
 <br />
 La revisión debe estar preparada antes del {$reviewDueDate}.<br />
 <br />
-URL de envío: <a href="{$submissionReviewUrl}">{$submissionReviewUrl}</a><br />
+URL de envío: {$submissionReviewUrl}<br />
 <br />
 Nombre de usuario/a: {$reviewerUserName}<br />
 <br />
@@ -193,7 +193,7 @@ Inicie sesión en la página web de la publicación antes del {$weekLaterDate} p
 <br />
 La revisión debe estar preparada antes del {$reviewDueDate}.<br />
 <br />
-URL del envío: <a href="{$submissionReviewUrl}">{$submissionReviewUrl}</a><br />
+URL del envío: {$submissionReviewUrl}<br />
 <br />
 Gracias por considerar esta solicitud.<br />
 <br />
@@ -279,9 +279,9 @@ Gracias por completar la revisión del envío &quot;{$submissionTitle}&quot; par
 <br />
 Este es un pequeño recordatorio de que realizamos una solicitud para que revisara el envío &quot;{$submissionTitle}&quot; para {$contextName}. Esperábamos que la revisión estuviera lista para el {$reviewDueDate} y nos complacería recibirla tan pronto como la tenga preparada.<br />
 <br />
-En caso de no tener nombre de usuario/a y contraseña para la página web, puede usar este enlace para restablecer su contraseña (posteriormente se le enviará por correo electrónico junto con el nombre de usuario/a). <a href="{$passwordResetUrl}">{$passwordResetUrl}</a><br />
+En caso de no tener nombre de usuario/a y contraseña para la página web, puede usar este enlace para restablecer su contraseña (posteriormente se le enviará por correo electrónico junto con el nombre de usuario/a). {$passwordResetUrl}<br />
 <br />
-URL del envío: <a href="{$submissionReviewUrl}">{$submissionReviewUrl}</a><br />
+URL del envío: {$submissionReviewUrl}<br />
 <br />
 Nombre de usuario/a: {$reviewerUserName}<br />
 <br />
@@ -296,7 +296,7 @@ Confirme que puede completar esta fundamental contribución al trabajo de la edi
 <br />
 Este es un pequeño recordatorio de que realizamos una solicitud para que revisara el envío &quot;{$submissionTitle}&quot; para {$contextName}. Esperábamos que la revisión estuviera lista para el {$reviewDueDate} y nos complacería recibirla tan pronto como la tenga preparada.<br />
 <br />
-URL del envío: <a href="{$submissionReviewUrl}">{$submissionReviewUrl}</a><br />
+URL del envío: {$submissionReviewUrl}<br />
 <br />
 Confirme que puede completar esta contribución fundamental al trabajo de la editorial. Espero tener noticias suyas.<br />
 <br />
@@ -309,9 +309,9 @@ Confirme que puede completar esta contribución fundamental al trabajo de la edi
 <br />
 Este es un pequeño recordatorio de que realizamos una solicitud para que revisara el envío &quot;{$submissionTitle}&quot; para {$contextName}. Esperábamos que la revisión estuviera lista para el {$reviewDueDate}. Este correo electrónico se genera y envía automáticamente cuando se supera el plazo establecido. Aun así, nos complacería recibirla tan pronto como la tenga preparada.<br />
 <br />
-En caso de no tener nombre de usuario/a y contraseña para la página web, puede usar este enlace para restablecer su contraseña (posteriormente se le enviará por correo electrónico junto con el nombre de usuario/a). <a href="{$passwordResetUrl}">{$passwordResetUrl}</a><br />
+En caso de no tener nombre de usuario/a y contraseña para la página web, puede usar este enlace para restablecer su contraseña (posteriormente se le enviará por correo electrónico junto con el nombre de usuario/a). {$passwordResetUrl}<br />
 <br />
-URL del envío: <a href="{$submissionReviewUrl}">{$submissionReviewUrl}</a><br />
+URL del envío: {$submissionReviewUrl}<br />
 <br />
 Confirme que puede completar esta contribución fundamental al trabajo de la editorial. Espero tener noticias suyas.<br />
 <br />
@@ -324,7 +324,7 @@ Confirme que puede completar esta contribución fundamental al trabajo de la edi
 <br />
 Este es un pequeño recordatorio de que realizamos una solicitud para que revisara el envío &quot;{$submissionTitle}&quot; para {$contextName}. Esperábamos que la revisión estuviera lista para el {$reviewDueDate}. Este correo electrónico se genera y envía automáticamente cuando se supera el plazo establecido. Aun así, nos complacería recibirla tan pronto como la tenga preparada.<br />
 <br />
-URL del envío: <a href="{$submissionReviewUrl}">{$submissionReviewUrl}</a><br />
+URL del envío: {$submissionReviewUrl}<br />
 <br />
 Confirme que puede completar esta contribución fundamental al trabajo de la editorial. Espero tener noticias suyas.<br />
 <br />
@@ -339,7 +339,7 @@ Hemos tomado una decisión con respecto al envío que realizó a {$contextName},
 <br />
 Nuestra decisión es:<br />
 <br />
-URL del manuscrito: <a href="{$submissionUrl}">{$submissionUrl}</a><br />
+URL del manuscrito: {$submissionUrl}<br />
 Nombre de usuario/a: {$authorUsername}<br />
 <br />
 {$editorialContactSignature}<br />
@@ -354,7 +354,7 @@ Hemos tomado una decisión con respecto al envío que realizó a {$contextName},
 <br />
 Nuestra decisión es:<br />
 <br />
-URL del manuscrito: <a href="{$submissionUrl}">{$submissionUrl}</a><br />
+URL del manuscrito: {$submissionUrl}<br />
 Nombre de usuario/a: {$authorUsername}<br />
 <br />
 {$editorialContactSignature}<br />
@@ -367,7 +367,7 @@ Nombre de usuario/a: {$authorUsername}<br />
 <br />
 La edición de su manuscrito, &quot;{$submissionTitle}&quot;, se completó.  Se procede al envío para producción.<br />
 <br />
-URL del manuscrito: <a href="{$submissionUrl}">{$submissionUrl}</a><br />
+URL del manuscrito: {$submissionUrl}<br />
 Nombre de usuario/a: {$authorUsername}<br />
 <br />
 {$editorialContactSignature}<br />
@@ -382,7 +382,7 @@ Hemos tomado una decisión con respecto al envío que realizó a {$contextName},
 <br />
 Nuestra decisión es:<br />
 <br />
-URL del manuscrito: <a href="{$submissionUrl}">{$submissionUrl}</a><br />
+URL del manuscrito: {$submissionUrl}<br />
 Nombre de usuario/a: {$authorUsername}<br />
 <br />
 {$editorialContactSignature}<br />
@@ -397,7 +397,7 @@ Hemos tomado una decisión con respecto al envío que realizó a {$contextName},
 <br />
 Nuestra decisión es:<br />
 <br />
-URL del manuscrito: <a href="{$submissionUrl}">{$submissionUrl}</a><br />
+URL del manuscrito: {$submissionUrl}<br />
 Nombre de usuario/a: {$authorUsername}<br />
 <br />
 {$editorialContactSignature}<br />
@@ -412,7 +412,7 @@ Hemos tomado una decisión con respecto al envío que realizó a {$contextName},
 <br />
 Nuestra decisión es:<br />
 <br />
-URL del manuscrito: <a href="{$submissionUrl}">{$submissionUrl}</a><br />
+URL del manuscrito: {$submissionUrl}<br />
 Nombre de usuario/a: {$authorUsername}<br />
 <br />
 {$editorialContactSignature}<br />
@@ -431,8 +431,8 @@ Solicito que realice la corrección del original &quot;{$submissionTitle}&quot; 
 5. Guarde el archivo corregido y súbalo al paso 1 de corrección.<br />
 6. Envíe el correo electrónico COMPLETO al editor/a.<br />
 <br />
-{$contextName} URL: <a href="{$contextUrl}">{$contextUrl}</a><br />
-URL del envío: <a href="{$submissionCopyeditingUrl}">{$submissionCopyeditingUrl}</a><br />
+{$contextName} URL: {$contextUrl}<br />
+URL del envío: {$submissionCopyeditingUrl}<br />
 Nombre de usuario/a: {$copyeditorUsername}<br />
 <br />
 {$editorialContactSignature}]]></body>
@@ -447,8 +447,8 @@ Es necesario extraer galeradas del envío &quot;{$submissionTitle}&quot; a {$con
 2. Inicie sesión en la publicación y use el archivo Versión para maquetar para crear las galeradas según los estándares de publicación.<br />
 3. Envíe el correo electrónico COMPLETO al editor/a.<br />
 <br />
-{$contextName} URL: <a href="{$contextUrl}">{$contextUrl}</a><br />
-URL del envío: <a href="{$submissionUrl}">{$submissionUrl}</a><br />
+{$contextName} URL: {$contextUrl}<br />
+URL del envío: {$submissionUrl}<br />
 Nombre de usuario/a: {$layoutEditorUsername}<br />
 <br />
 Si no puede realizar esta tarea en este momento o tiene alguna duda, póngase en contacto conmigo. Gracias por su contribución a la publicación.<br />
@@ -476,8 +476,8 @@ Es necesario crear índices al envío &quot;{$submissionTitle}&quot; a {$context
 2. Inicie sesión en la publicación y use el fichero Galeradas de la página para crear galeradas según los estándares de publicación.<br />
 3. Envíe el correo electrónico COMPLETO al editor/a.<br />
 <br />
-{$contextName} URL: <a href="{$contextUrl}">{$contextUrl}</a><br />
-URL del envío: <a href="{$submissionUrl}">{$submissionUrl}</a><br />
+{$contextName} URL: {$contextUrl}<br />
+URL del envío: {$submissionUrl}<br />
 Nombre de usuario/a: {$indexerUsername}<br />
 <br />
 Si no puede realizar esta tarea en este momento o tiene alguna duda, póngase en contacto conmigo. Gracias por su contribución a la publicación.<br />
@@ -498,12 +498,12 @@ Si tiene alguna duda, puede ponerse en contacto conmigo.<br />
 	</email_text>
 	<email_text key="EMAIL_LINK">
 		<subject>Manuscrito de posible interés</subject>
-		<body><![CDATA[Quizá le interese consultar &quot;{$submissionTitle}&quot; de {$authorName} publicado en el vol. {$volume}, n.º {$number} ({$year}) de {$contextName} en &quot;<a href="{$monographUrl}">{$monographUrl}</a>&quot;.]]></body>
+		<body><![CDATA[Quizá le interese consultar &quot;{$submissionTitle}&quot; de {$authorName} publicado en el vol. {$volume}, n.º {$number} ({$year}) de {$contextName} en &quot;{$monographUrl}&quot;.]]></body>
 		<description>Esta plantilla de correo electrónico da al lector/a registrado la oportunidad de enviar información sobre una monografía a alguien que pueda estar interesado. Está disponible en las Herramientas de lectura y debe ser habilitada por el jefe/a editorial en la página de Administración de herramientas de lectura.</description>
 	</email_text>
 		<email_text key="NOTIFY_SUBMISSION">
 		<subject>Notificación de envío</subject>
-		<body><![CDATA[Tiene un mensaje de {$sender} en relación con &quot;{$submissionTitle}&quot; (<a href="{$monographDetailsUrl}">{$monographDetailsUrl}</a>):<br />
+		<body><![CDATA[Tiene un mensaje de {$sender} en relación con &quot;{$submissionTitle}&quot; ({$monographDetailsUrl}):<br />
 <br />
 		{$message}<br />
 <br />
@@ -512,7 +512,7 @@ Si tiene alguna duda, puede ponerse en contacto conmigo.<br />
 	</email_text>
 		<email_text key="NOTIFY_FILE">
 		<subject>Notificación de envío de fichero</subject>
-		<body><![CDATA[Tiene un mensaje de {$sender} en relación con el fichero &quot;{$fileName}&quot; en &quot;{$submissionTitle}&quot; (<a href="{$monographDetailsUrl}">{$monographDetailsUrl}</a>):<br />
+		<body><![CDATA[Tiene un mensaje de {$sender} en relación con el fichero &quot;{$fileName}&quot; en &quot;{$submissionTitle}&quot; ({$monographDetailsUrl}):<br />
 <br />
 		{$message}<br />
 <br />
