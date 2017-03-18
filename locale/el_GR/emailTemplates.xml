@@ -87,7 +87,7 @@
 <br />
 Έχετε δημιουργήσει λογαριασμό στις εκδόσεις {$contextName}, αλλά πριν αρχίσετε να το χρησιμοποιείται, πρέπει να επικυρώσετε τον λογαριασμό του ηλεκτρονικού σας ταχυδρομείου. Για να την επικύρωση, ακολουθήστε τον παρακάτω σύνδεσμο:<br />
 <br />
-<a href="{$activateUrl}">{$activateUrl}</a><br />
+{$activateUrl}<br />
 <br />
 Σας ευχαριστούμε,<br />
 {$principalContactSignature}]]></body>
@@ -110,7 +110,7 @@
 		<subject>Έκδοση νέου βιβλίου</subject>
 		<body><![CDATA[Αγαπητοί Αναγνώστες:<br />
 <br />
-Οι εκδόσεις{$contextName} μόλις δημοσίευσε τη νέα της έκδοση <a href="{$contextUrl}">{$contextUrl}</a>. <br />
+Οι εκδόσεις{$contextName} μόλις δημοσίευσε τη νέα της έκδοση {$contextUrl}. <br />
 Μπορείτε να συμβουλευτείτε τον Πίνακα περιεχομένων και, στη συνέχεια, να επισκεφτείτε τον ιστότοπο των εκδόσεων για να δείτε το πλήρες κείμενο των μονογραφιών ή/και τεκμηρίων που σας ενδιαφέρουν.<br />
 <br />
 Σας ευχαριστούμε για το συνεχές ενδιαφέρον σας για την εργασία μας,<br />
@@ -175,7 +175,7 @@ Thank you,<br />
 <br />
 Η προθεσμία ολοκλήρωσης της αξιολόγηση λήγει στις {$reviewDueDate}.<br />
 <br />
-URL υποβολής: <a href="{$submissionReviewUrl}">{$submissionReviewUrl}</a><br />
+URL υποβολής: {$submissionReviewUrl}<br />
 <br />
 Username: {$reviewerUserName}<br />
 <br />
@@ -196,7 +196,7 @@ Username: {$reviewerUserName}<br />
 <br />
 Η αξιολόγηση λήγει στις {$reviewDueDate}.<br />
 <br />
-URL υποβολής: <a href="{$submissionReviewUrl}">{$submissionReviewUrl}</a><br />
+URL υποβολής: {$submissionReviewUrl}<br />
 <br />
 Σας ευχαριστούμε εκ των προτέρων για την εξέταση του αιτήματός μας.<br />
 <br />
@@ -272,9 +272,9 @@ URL υποβολής: <a href="{$submissionReviewUrl}">{$submissionReviewUrl}</a
 <br />
 JΤο μήνυμα αυτό αποτελεί μια απλή υπενθύμιση σχετικά με την αξιολόγηση της υποβολής, &quot;{$submissionTitle},&quot; για τις εκδόσεις {$contextName} που έχετε αναλάβει. Ελπίζουμε ότι η αξιολόγηση να είναι έτοιμη μέχρι την σχετική προθεσμία  {$reviewDueDate}, και θα είμαστε ευγνώμονες να τη λάβουμε το συντομότερο δυνατό.<br />
 <br />
-Εάν για οποιοδήποτε λόγο δεν διαθέτετε το όνομα χρήστη και κωδικό πρόσβασης σας για τον ιστότοπο των εκδόσων e-books, μπορείτε να χρησιμοποιήσετε τον παρακάτω σύνδεσμο για να επαναφέρετε τον κωδικό πρόσβασης σας (το οποίο θα σας αποσταλεί με email μαζί με το όνομα χρήστη). <a href="{$passwordResetUrl}">{$passwordResetUrl}</a><br />
+Εάν για οποιοδήποτε λόγο δεν διαθέτετε το όνομα χρήστη και κωδικό πρόσβασης σας για τον ιστότοπο των εκδόσων e-books, μπορείτε να χρησιμοποιήσετε τον παρακάτω σύνδεσμο για να επαναφέρετε τον κωδικό πρόσβασης σας (το οποίο θα σας αποσταλεί με email μαζί με το όνομα χρήστη). {$passwordResetUrl}<br />
 <br />
-URL Υποβολής: <a href="{$submissionReviewUrl}">{$submissionReviewUrl}</a><br />
+URL Υποβολής: {$submissionReviewUrl}<br />
 <br />
 Username: {$reviewerUserName}<br />
 <br />
@@ -289,7 +289,7 @@ Username: {$reviewerUserName}<br />
 <br />
 Το μήνυμα αυτό αποτελεί μια απλή υπενθύμιση σχετικά με την αξιολόγηση της υποβολής, &quot;{$submissionTitle},&quot; για τις εκδόσεις {$contextName} που έχετε αναλάβει. Ελπίζουμε ότι η αξιολόγηση να είναι έτοιμη μέχρι την σχετική προθεσμία {$reviewDueDate}, και θα είμαστε ευγνώμονες να τη λάβουμε το συντομότερο δυνατό.<br />
 <br />
-URL υποβολής: <a href="{$submissionReviewUrl}">{$submissionReviewUrl}</a><br />
+URL υποβολής: {$submissionReviewUrl}<br />
 <br />
 Θα σας παρακαλούσαμε να μας επιβεβαιώσετε ότι είστε σε θέση να ολοκληρώσετε επιτυχώς την, τόσο σημαντική για την έκδοση μας, εργασία της αξιολόγησης . Ελπίζουμε να λάβουμε σύντομα την απάντησή σας.<br />
 <br />
@@ -302,9 +302,9 @@ URL υποβολής: <a href="{$submissionReviewUrl}">{$submissionReviewUrl}</a
 <br />
 Το μήνυμα αυτό αποτελεί μια απλή υπενθύμιση σχετικά με την αξιολόγηση της υποβολής, &quot;{$submissionTitle},&quot; για τις εκδόσεις {$contextName} που έχετε αναλάβει. Ελπίζουμε ότι η αξιολόγηση να είναι έτοιμη μέχρι την σχετική προθεσμία {$reviewDueDate}. Λάβετε υπόψη σας ότι το μήνυμα αυτό δημιουργήθηκε αυτόματα και αποστέλλεται μετά την πάροδο της ημερομηνίας αυτής. Παρόλα αυτά θα είμαστε ευγνώμονες να λάβουμε την αξιολόγησή σας το συντομότερο δυνατό.<br />
 <br />
-IΕάν για οποιοδήποτε λόγο δεν διαθέτετε το όνομα χρήστη και κωδικό πρόσβασης σας για τον ιστότοπο της Τιμαίας, μπορείτε να χρησιμοποιήσετε τον παρακάτω σύνδεσμο για να επαναφέρετε τον κωδικό πρόσβασης σας (το οποίο θα σας αποσταλλεί με email μαζί με το όνομα χρήστη). <a href="{$passwordResetUrl}">{$passwordResetUrl}</a><br />
+IΕάν για οποιοδήποτε λόγο δεν διαθέτετε το όνομα χρήστη και κωδικό πρόσβασης σας για τον ιστότοπο της Τιμαίας, μπορείτε να χρησιμοποιήσετε τον παρακάτω σύνδεσμο για να επαναφέρετε τον κωδικό πρόσβασης σας (το οποίο θα σας αποσταλλεί με email μαζί με το όνομα χρήστη). {$passwordResetUrl}<br />
 <br />
-URL Υποβολής: <a href="{$submissionReviewUrl}">{$submissionReviewUrl}</a><br />
+URL Υποβολής: {$submissionReviewUrl}<br />
 <br />
 Θα σας παρακαλούσαμε να μας επιβεβαιώσετε ότι είστε σε θέση να ολοκληρώσετε επιτυχώς την, τόσο σημαντική για το περιοδικό, εργασία της αξιολόγησης . Ελπίζουμε να λάβουμε σύντομα την απάντησή σας.<br />
 <br />
@@ -317,7 +317,7 @@ URL Υποβολής: <a href="{$submissionReviewUrl}">{$submissionReviewUrl}</a
 <br />
 Το μήνυμα αυτό αποτελεί μια απλή υπενθύμιση σχετικά με την αξιολόγηση της υποβολής, &quot;{$submissionTitle},&quot; για τις εκδόσεις {$contextName} που έχετε αναλάβει.Ελπίζουμε ότι η αξιολόγηση να είναι έτοιμη μέχρι την σχετική προθεσμία {$reviewDueDate}.  Λάβετε υπόψη σας ότι το μήνυμα αυτό δημιουργήθηκε αυτόματα και αποστέλλεται μετά την πάροδο της ημερομηνίας αυτής. Παρόλα αυτά θα είμαστε ευγνώμονες να λάβουμε την αξιολόγησή σας το συντομότερο δυνατό.<br />
 <br />
-URL Υποβολής: <a href="{$submissionReviewUrl}">{$submissionReviewUrl}</a><br />
+URL Υποβολής: {$submissionReviewUrl}<br />
 <br />
 Θα σας παρακαλούσαμε να μας επιβεβαιώσετε ότι είστε σε θέση να ολοκληρώσετε επιτυχώς την, τόσο σημαντική για το περιοδικό, εργασία της αξιολόγησης . Ελπίζουμε να λάβουμε σύντομα την απάντησή σας.<br />
 <br />
@@ -413,8 +413,8 @@ URL εργασίας: {$submissionUrl}<br />
 5. Αποθηκεύστε το αρχείο με το διαμορφωμένο κείμενο και μεταφορτώστε το  στο Βήμα 1 της Επιμέλειας Κειμένων.<br />
 6. Αποστείλετε το σχετικό email ΟΛΟΚΛΗΡΩΣΗΣ στον επιμελητή.<br />
 <br />
-{$contextName} URL: <a href="{$contextUrl}">{$contextUrl}</a><br />
-URL Υποβολής: <a href="{$submissionUrl}">{$submissionUrl}</a><br />
+{$contextName} URL: {$contextUrl}<br />
+URL Υποβολής: {$submissionUrl}<br />
 Όνομα Χρήστη: {$participantUsername}<br />
 <br />
 {$editorialContactSignature}]]></body>
@@ -430,7 +430,7 @@ URL Υποβολής: <a href="{$submissionUrl}">{$submissionUrl}</a><br />
 2. Συνδεθείτε στις εκδόσεις και χρησιμοποιήστε το αρχείο της Έκδοσης Σελιδοποίησης για τη δημιουργία των εντύπων σύμφωνα με τα πρότυπα του περιοδικού.<br />
 3. Αποστείλατε το μήνυμα ΟΛΟΚΛΗΡΩΜΕΝΟ στον επιμελητή.<br />
 <br />
-{$contextName} URL: <a href="{$contextUrl}">{$contextUrl}</a><br />
+{$contextName} URL: {$contextUrl}<br />
 Submission URL: {$submissionUrl}<br />
 Username: {$participantUsername}<br />
 <br />
@@ -459,7 +459,7 @@ Username: {$participantUsername}<br />
 2. 2. Συνδεθείτε στις εκδόσεις και χρησιμοποιήστε το αρχείο του Τυπογραφικού Δοκιμίου για τη δημιουργία εκτυπωμένων κειμένων σύμφωνα με τα πρότυπα των εκδόσεων.<br />
 3. Αποστείλατε το μήνυμα ΟΛΟΚΛΗΡΩΜΕΝΟ στον επιμελητή.<br />
 <br />
-{$contextName} URL: <a href="{$contextUrl}">{$contextUrl}</a><br />
+{$contextName} URL: {$contextUrl}<br />
 URL Υποβολής: {$submissionUrl}<br />
 όνομα Χρήστη: {$participantUsername}<br />
 <br />
@@ -481,19 +481,19 @@ URL Υποβολής: {$submissionUrl}<br />
 	</email_text>
 										<email_text key="EMAIL_LINK">
 		<subject>E-book πιθανού ενδιαφέροντος</subject>
-		<body><![CDATA[Ίσως να σας ενδιαφέρει το κείμενο με τίτλο &quot;{$submissionTitle}&quot; του/των {$authorName} που δημοσιεύτηκε στον Τομ. {$volume}, No {$number} ({$year}) των εκδόσεων {$contextName} στον σύνδεσμο &quot;<a href="{$monographUrl}">{$monographUrl}</a>&quot;.]]></body>
+		<body><![CDATA[Ίσως να σας ενδιαφέρει το κείμενο με τίτλο &quot;{$submissionTitle}&quot; του/των {$authorName} που δημοσιεύτηκε στον Τομ. {$volume}, No {$number} ({$year}) των εκδόσεων {$contextName} στον σύνδεσμο &quot;{$monographUrl}&quot;.]]></body>
 		<description>Το συγκεκριμένο πρότυπο μηνύματος email παρέχει σε εγγεγραμμένο αναγνώστη τη δυνατότητα αποστολής πληροφοριών σχετικά με μία έκδοση σε οποιονδήποτε μπορεί να έχει εκδηλώσει ενδιαφέρον. Είναι διαθέσιμο μέσω των Εργαλείων ανάγνωσης και πρέπει να ενεργοποιηθεί από Υπεύθυνο διαχείρισης των εκδόσεων στη σελίδα Διαχείρισης εργαλείων ανάγνωσης.</description>
 	</email_text>
 		<email_text key="NOTIFY_SUBMISSION">
 		<subject>Ειδοποίηση Υποβολής</subject>
-		<body><![CDATA[Έχετε μια νέα ειδοποίηση από {$sender} σχετικά με την έκδοση &quot;{$submissionTitle}&quot; (<a href="{$monographDetailsUrl}">{$monographDetailsUrl}</a>):<br />
+		<body><![CDATA[Έχετε μια νέα ειδοποίηση από {$sender} σχετικά με την έκδοση &quot;{$submissionTitle}&quot; ({$monographDetailsUrl}):<br />
 <br />
 		{$message}]]></body>
 		<description>A notification from a user sent from a submission information center modal.</description>
 	</email_text>
 		<email_text key="NOTIFY_FILE">
 		<subject>Ειδοποίηση Αρχείου Υποβολής</subject>
-		<body><![CDATA[Έχετε ένα νέο μήνυμα {$sender} σχετικά με το αρχείο &quot;{$fileName}&quot; της έκδοσης &quot;{$submissionTitle}&quot; (<a href="{$monographDetailsUrl}">{$monographDetailsUrl}</a>):<br />
+		<body><![CDATA[Έχετε ένα νέο μήνυμα {$sender} σχετικά με το αρχείο &quot;{$fileName}&quot; της έκδοσης &quot;{$submissionTitle}&quot; ({$monographDetailsUrl}):<br />
 <br />
 		{$message}]]></body>
 		<description>A notification from a user sent from a file information center modal</description>
