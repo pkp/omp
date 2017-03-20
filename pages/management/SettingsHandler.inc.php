@@ -81,6 +81,7 @@ class SettingsHandler extends ManagementHandler {
 			case 'index':
 			case '':
 			case 'press':
+			case 'context':
 				$this->press($args, $request);
 				break;
 			case 'website':
