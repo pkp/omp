@@ -140,7 +140,7 @@
 			handleCoverImageUpload = function(caller, event) {
 
 		var $coverImage = this.getHtmlElement().find('.currentCoverImage')
-			.addClass('changed');
+				.addClass('changed');
 
 		$coverImage.find('img').remove();
 		$coverImage.find('.coverImageMessage').html(
