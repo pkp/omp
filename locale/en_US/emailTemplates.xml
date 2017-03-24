@@ -16,7 +16,7 @@
 <br />
 {$notificationContents}<br />
 <br />
-Link: <a href="{$url}">{$url}</a><br />
+Link: {$url}<br />
 <br />
 This is an automatically generated email; please do not reply to this message.<br />
 {$principalContactSignature}]]></body>
@@ -28,7 +28,7 @@ This is an automatically generated email; please do not reply to this message.<b
 --<br />
 {$notificationContents}<br />
 <br />
-Link: <a href="{$url}">{$url}</a><br />
+Link: {$url}<br />
 --<br />
 <br />
 If you wish to stop receiving notification emails, please go to {$unsubscribeLink}.<br />
@@ -53,7 +53,7 @@ If you wish to stop receiving notification emails, please go to {$unsubscribeLin
 <br />
 If you did not make this request, please ignore this email and your password will not be changed. If you wish to reset your password, click on the below URL.<br />
 <br />
-Reset my password: <a href="{$url}">{$url}</a><br />
+Reset my password: {$url}<br />
 <br />
 {$principalContactSignature}]]></body>
 		<description>This email is sent to a registered user when they indicate that they have forgotten their password or are unable to login. It provides a URL they can follow to reset their password.</description>
@@ -87,7 +87,7 @@ Thank you,<br />
 <br />
 You have created an account with {$contextName}, but before you can start using it, you need to validate your email account. To do this, simply follow the link below:<br />
 <br />
-<a href="{$activateUrl}">{$activateUrl}</a><br />
+{$activateUrl}<br />
 <br />
 Thank you,<br />
 {$principalContactSignature}]]></body>
@@ -110,7 +110,7 @@ Thank you,<br />
 		<subject>New Book Published</subject>
 		<body><![CDATA[Readers:<br />
 <br />
-{$contextName} has just published its latest book at <a href="{$contextUrl}">{$contextUrl}</a>. We invite you to review the Table of Contents here and then visit our web site to review monographs and items of interest.<br />
+{$contextName} has just published its latest book at {$contextUrl}. We invite you to review the Table of Contents here and then visit our web site to review monographs and items of interest.<br />
 <br />
 Thanks for the continuing interest in our work,<br />
 {$editorialContactSignature}]]></body>
@@ -122,7 +122,7 @@ Thanks for the continuing interest in our work,<br />
 <br />
 Thank you for submitting the manuscript, &quot;{$submissionTitle}&quot; to {$contextName}. With the online press management system that we are using, you will be able to track its progress through the editorial process by logging in to the press web site:<br />
 <br />
-Manuscript URL: <a href="{$submissionUrl}">{$submissionUrl}</a><br />
+Manuscript URL: {$submissionUrl}<br />
 Username: {$authorUsername}<br />
 <br />
 If you have any questions, please contact me. Thank you for considering this press as a venue for your work.<br />
@@ -155,7 +155,7 @@ An initial review of &quot;{$submissionTitle}&quot; has made it clear that this 
 <br />
 The submission, &quot;{$submissionTitle},&quot; to {$contextName} has been assigned to you to see through the editorial process in your role as an Editor.<br />
 <br />
-Submission URL: <a href="{$submissionUrl}">{$submissionUrl}</a><br />
+Submission URL: {$submissionUrl}<br />
 Username: {$editorUsername}<br />
 <br />
 Thank you,<br />
@@ -172,7 +172,7 @@ Please log into the press web site by {$responseDueDate} to indicate whether you
 <br />
 The review itself is due {$reviewDueDate}.<br />
 <br />
-Submission URL: <a href="{$submissionReviewUrl}">{$submissionReviewUrl}</a><br />
+Submission URL: {$submissionReviewUrl}<br />
 <br />
 Username: {$reviewerUserName}<br />
 <br />
@@ -194,7 +194,7 @@ Please log into the press web site by {$weekLaterDate} to indicate whether you w
 <br />
 The review itself is due {$reviewDueDate}.<br />
 <br />
-Submission URL: <a href="{$submissionReviewUrl}">{$submissionReviewUrl}</a><br />
+Submission URL: {$submissionReviewUrl}<br />
 <br />
 Thank you for considering this request.<br />
 <br />
@@ -219,7 +219,7 @@ Please log into the press web site to indicate whether you will undertake the re
 <br />
 The review itself is due {$reviewDueDate}.<br />
 <br />
-Submission URL: <a href="{$submissionReviewUrl}">{$submissionReviewUrl}</a><br />
+Submission URL: {$submissionReviewUrl}<br />
 <br />
 Username: {$reviewerUserName}<br />
 <br />
@@ -242,7 +242,7 @@ Please log into the press web site to indicate whether you will undertake the re
 <br />
 The review itself is due {$reviewDueDate}.<br />
 <br />
-Submission URL: <a href="{$submissionReviewUrl}">{$submissionReviewUrl}</a><br />
+Submission URL: {$submissionReviewUrl}<br />
 <br />
 Thank you for considering this request.<br />
 <br />
@@ -319,9 +319,9 @@ Thank you for completing the review of the submission, &quot;{$submissionTitle},
 <br />
 Just a gentle reminder of our request for your review of the submission, &quot;{$submissionTitle},&quot; for {$contextName}. We were hoping to have this review by {$reviewDueDate}, and would be pleased to receive it as soon as you are able to prepare it.<br />
 <br />
-If you do not have your username and password for the web site, you can use this link to reset your password (which will then be emailed to you along with your username). <a href="{$passwordResetUrl}">{$passwordResetUrl}</a><br />
+If you do not have your username and password for the web site, you can use this link to reset your password (which will then be emailed to you along with your username). {$passwordResetUrl}<br />
 <br />
-Submission URL: <a href="{$submissionReviewUrl}">{$submissionReviewUrl}</a><br />
+Submission URL: {$submissionReviewUrl}<br />
 <br />
 Username: {$reviewerUserName}<br />
 <br />
@@ -336,7 +336,7 @@ Please confirm your ability to complete this vital contribution to the work of t
 <br />
 Just a gentle reminder of our request for your review of the submission, &quot;{$submissionTitle},&quot; for {$contextName}. We were hoping to have this review by {$reviewDueDate}, and would be pleased to receive it as soon as you are able to prepare it.<br />
 <br />
-Submission URL: <a href="{$submissionReviewUrl}">{$submissionReviewUrl}</a><br />
+Submission URL: {$submissionReviewUrl}<br />
 <br />
 Please confirm your ability to complete this vital contribution to the work of the press. I look forward to hearing from you.<br />
 <br />
@@ -349,9 +349,9 @@ Please confirm your ability to complete this vital contribution to the work of t
 <br />
 Just a gentle reminder of our request for your review of the submission, &quot;{$submissionTitle},&quot; for {$contextName}. We were hoping to have this review by {$reviewDueDate}, and this email has been automatically generated and sent with the passing of that date. We would still be pleased to receive it as soon as you are able to prepare it.<br />
 <br />
-If you do not have your username and password for the web site, you can use this link to reset your password (which will then be emailed to you along with your username). <a href="{$passwordResetUrl}">{$passwordResetUrl}</a><br />
+If you do not have your username and password for the web site, you can use this link to reset your password (which will then be emailed to you along with your username). {$passwordResetUrl}<br />
 <br />
-Submission URL: <a href="{$submissionReviewUrl}">{$submissionReviewUrl}</a><br />
+Submission URL: {$submissionReviewUrl}<br />
 <br />
 Username: {$reviewerUserName}<br />
 <br />
@@ -366,7 +366,7 @@ Please confirm your ability to complete this vital contribution to the work of t
 <br />
 Just a gentle reminder of our request for your review of the submission, &quot;{$submissionTitle},&quot; for {$contextName}. We were hoping to have this review by {$reviewDueDate}, and this email has been automatically generated and sent with the passing of that date. We would still be pleased to receive it as soon as you are able to prepare it.<br />
 <br />
-Submission URL: <a href="{$submissionReviewUrl}">{$submissionReviewUrl}</a><br />
+Submission URL: {$submissionReviewUrl}<br />
 <br />
 Please confirm your ability to complete this vital contribution to the work of the press. I look forward to hearing from you.<br />
 <br />
@@ -381,7 +381,7 @@ We have reached a decision regarding your submission to {$contextName}, &quot;{$
 <br />
 Our decision is to:<br />
 <br />
-Manuscript URL: <a href="{$submissionUrl}">{$submissionUrl}</a><br />
+Manuscript URL: {$submissionUrl}<br />
 <br />
 {$editorialContactSignature}<br />
 ]]></body>
@@ -395,7 +395,7 @@ We have reached a decision regarding your submission to {$contextName}, &quot;{$
 <br />
 Our decision is to:<br />
 <br />
-Manuscript URL: <a href="{$submissionUrl}">{$submissionUrl}</a><br />
+Manuscript URL: {$submissionUrl}<br />
 <br />
 {$editorialContactSignature}<br />
 ]]></body>
@@ -407,7 +407,7 @@ Manuscript URL: <a href="{$submissionUrl}">{$submissionUrl}</a><br />
 <br />
 The editing of your manuscript, &quot;{$submissionTitle},&quot; is complete.  We are now sending it to production.<br />
 <br />
-Manuscript URL: <a href="{$submissionUrl}">{$submissionUrl}</a><br />
+Manuscript URL: {$submissionUrl}<br />
 <br />
 {$editorialContactSignature}<br />
 ]]></body>
@@ -421,7 +421,7 @@ We have reached a decision regarding your submission to {$contextName}, &quot;{$
 <br />
 Our decision is to:<br />
 <br />
-Manuscript URL: <a href="{$submissionUrl}">{$submissionUrl}</a><br />
+Manuscript URL: {$submissionUrl}<br />
 <br />
 {$editorialContactSignature}<br />
 ]]></body>
@@ -435,7 +435,7 @@ We have reached a decision regarding your submission to {$contextName}, &quot;{$
 <br />
 Our decision is to:<br />
 <br />
-Manuscript URL: <a href="{$submissionUrl}">{$submissionUrl}</a><br />
+Manuscript URL: {$submissionUrl}<br />
 <br />
 {$editorialContactSignature}<br />
 ]]></body>
@@ -449,7 +449,7 @@ We have reached a decision regarding your submission to {$contextName}, &quot;{$
 <br />
 Our decision is to:<br />
 <br />
-Manuscript URL: <a href="{$submissionUrl}">{$submissionUrl}</a><br />
+Manuscript URL: {$submissionUrl}<br />
 <br />
 {$editorialContactSignature}<br />
 ]]></body>
@@ -467,8 +467,8 @@ I would ask that you undertake the copyediting of &quot;{$submissionTitle}&quot;
 5. Save copyedited file, and upload to Step 1 of Copyediting.<br />
 6. Send the COMPLETE email to the editor.<br />
 <br />
-{$contextName} URL: <a href="{$contextUrl}">{$contextUrl}</a><br />
-Submission URL: <a href="{$submissionUrl}">{$submissionUrl}</a><br />
+{$contextName} URL: {$contextUrl}<br />
+Submission URL: {$submissionUrl}<br />
 Username: {$participantUsername}<br />
 <br />
 {$editorialContactSignature}]]></body>
@@ -483,8 +483,8 @@ The submission &quot;{$submissionTitle}&quot; to {$contextName} now needs galley
 2. Log into the press and use the Layout Version file to create the galleys according to press standards.<br />
 3. Send the COMPLETE email to the editor.<br />
 <br />
-{$contextName} URL: <a href="{$contextUrl}">{$contextUrl}</a><br />
-Submission URL: <a href="{$submissionUrl}">{$submissionUrl}</a><br />
+{$contextName} URL: {$contextUrl}<br />
+Submission URL: {$submissionUrl}<br />
 Username: {$participantUsername}<br />
 <br />
 If you are unable to undertake this work at this time or have any questions, please contact me. Thank you for your contribution to this press.<br />
@@ -512,8 +512,8 @@ The submission &quot;{$submissionTitle}&quot; to {$contextName} now needs indexe
 2. Log into the press and use the Page Proofs file to create the galleys according to press standards.<br />
 3. Send the COMPLETE email to the editor.<br />
 <br />
-{$contextName} URL: <a href="{$contextUrl}">{$contextUrl}</a><br />
-Submission URL: <a href="{$submissionUrl}">{$submissionUrl}</a><br />
+{$contextName} URL: {$contextUrl}<br />
+Submission URL: {$submissionUrl}<br />
 Username: {$participantUsername}<br />
 <br />
 If you are unable to undertake this work at this time or have any questions, please contact me. Thank you for your contribution to this press.<br />
@@ -534,12 +534,12 @@ If you have any questions, please contact me.<br />
 	</email_text>
 	<email_text key="EMAIL_LINK">
 		<subject>Manuscript of Possible Interest</subject>
-		<body><![CDATA[Thought you might be interested in seeing &quot;{$submissionTitle}&quot; by {$authorName} published in Vol {$volume}, No {$number} ({$year}) of {$contextName} at &quot;<a href="{$monographUrl}">{$monographUrl}</a>&quot;.]]></body>
+		<body><![CDATA[Thought you might be interested in seeing &quot;{$submissionTitle}&quot; by {$authorName} published in Vol {$volume}, No {$number} ({$year}) of {$contextName} at &quot;{$monographUrl}&quot;.]]></body>
 		<description>This email template provides a registered reader with the opportunity to send information about a monograph to somebody who may be interested. It is available via the Reading Tools and must be enabled by the Press Manager in the Reading Tools Administration page.</description>
 	</email_text>
 		<email_text key="NOTIFY_SUBMISSION">
 		<subject>Submission Notification</subject>
-		<body><![CDATA[You have a message from {$sender} regarding &quot;{$submissionTitle}&quot; (<a href="{$monographDetailsUrl}">{$monographDetailsUrl}</a>):<br />
+		<body><![CDATA[You have a message from {$sender} regarding &quot;{$submissionTitle}&quot; ({$monographDetailsUrl}):<br />
 <br />
 		{$message}<br />
 <br />
@@ -548,7 +548,7 @@ If you have any questions, please contact me.<br />
 	</email_text>
 		<email_text key="NOTIFY_FILE">
 		<subject>Submission File Notification</subject>
-		<body><![CDATA[You have a message from {$sender} regarding the file &quot;{$fileName}&quot; in &quot;{$submissionTitle}&quot; (<a href="{$monographDetailsUrl}">{$monographDetailsUrl}</a>):<br />
+		<body><![CDATA[You have a message from {$sender} regarding the file &quot;{$fileName}&quot; in &quot;{$submissionTitle}&quot; ({$monographDetailsUrl}):<br />
 <br />
 		{$message}<br />
 <br />

@@ -85,7 +85,7 @@ Gràcies,<br />
 <br />
 Heu creat un compte amb {$contextName}, però abans de començar a utilitzar-lo heu de validar la vostra adreça de correu electrònic. Per fer-ho, només heu de seguir l'enllaç de sota:<br />
 <br />
-<a href="{$activateUrl}">{$activateUrl}</a><br />
+{$activateUrl}<br />
 <br />
 Gràcies,<br />
 {$principalContactSignature}]]></body>
@@ -108,7 +108,7 @@ Gràcies,<br />
 		<subject>Llibre nou publicat</subject>
 		<body><![CDATA[Lectors:<br />
 <br />
-{$contextName} ha publicat el seu últim llibre a <a href="{$contextUrl}">{$contextUrl}</a>. Us convidem a revisar la taula de continguts aquí i a visitar després el nostre lloc web per revisar monografies i elements d'interès.<br />
+{$contextName} ha publicat el seu últim llibre a {$contextUrl}. Us convidem a revisar la taula de continguts aquí i a visitar després el nostre lloc web per revisar monografies i elements d'interès.<br />
 <br />
 Gràcies per l'interès continu en la nostra feina,<br />
 {$editorialContactSignature}]]></body>
@@ -119,7 +119,7 @@ Gràcies per l'interès continu en la nostra feina,<br />
 		<body><![CDATA[{$authorName}:<br />
 Gràcies per enviar el manuscrit, «{$submissionTitle}» a {$contextName}. A través del servei de gestió de publicacions en línia que utilitzem, podreu fer un seguiment del progrés al llarg del procés editorial si inicieu sessió al lloc web de la publicació:<br />
 <br />
-URL del manuscrit: <a href="{$submissionUrl}">{$submissionUrl}</a><br />
+URL del manuscrit: {$submissionUrl}<br />
 Nom d'usuari/ària: {$authorUsername}<br />
 <br />
 Si teniu cap dubte, contacteu amb mi. Gràcies per tenir en compte aquesta publicació per desenvolupar la vostra feina.<br />
@@ -152,7 +152,7 @@ Una revisió inicial de «{$submissionTitle}» ha deixat clar que aquesta trames
 <br />
 Se us ha assignat la tramesa de «{$submissionTitle},» a {$contextName} perquè superviseu el procés editorial en el vostre rol d'editor/a.<br />
 <br />
-URL de la tramesa: <a href="{$submissionUrl}">{$submissionUrl}</a><br />
+URL de la tramesa: {$submissionUrl}<br />
 Nom d'usuari/ària: {$editorUsername}<br />
 <br />
 Gràcies,<br />
@@ -169,7 +169,7 @@ Inicieu sessió al lloc web de la publicació a través de {$responseDueDate} pe
 <br />
 La revisió s'ha de lliurar el {$reviewDueDate}.<br />
 <br />
-URL de la tramesa: <a href="{$submissionReviewUrl}">{$submissionReviewUrl}</a><br />
+URL de la tramesa: {$submissionReviewUrl}<br />
 <br />
 Nom d'usuari/ària: {$reviewerUserName}<br />
 <br />
@@ -191,7 +191,7 @@ Accediu al lloc web de la publicació a través de {$weekLaterDate} per indicar 
 <br />
 La revisió s'ha de lliurar el {$reviewDueDate}.<br />
 <br />
-URL de tramesa: <a href="{$submissionReviewUrl}">{$submissionReviewUrl}</a><br />
+URL de tramesa: {$submissionReviewUrl}<br />
 <br />
 Gràcies per considerar aquesta sol·licitud.<br />
 <br />
@@ -277,8 +277,8 @@ Gràcies per completar la revisió de la tramesa «{$submissionTitle},» per {$c
 <br />
 Aquest missatge és només un recordatori de la nostra sol·licitud de revisió de la tramesa «{$submissionTitle},» per {$contextName}. Teníem previst tenir aquesta revisió pel {$reviewDueDate} i ens agradaria rebre-la tan aviat com la tingueu enllestida.<br />
 <br />
-Si no teniu el vostre nom d'usuari/ària i la contrasenya del lloc web, podeu utilitzar l'enllaç per restablir la contrasenya (que se us enviarà per correu electrònic juntament amb el vostre nom d'usuari/ària). <a href="{$passwordResetUrl}">{$passwordResetUrl}</a><br />
-URL de la tramesa: <a href="{$submissionReviewUrl}">{$submissionReviewUrl}</a><br />
+Si no teniu el vostre nom d'usuari/ària i la contrasenya del lloc web, podeu utilitzar l'enllaç per restablir la contrasenya (que se us enviarà per correu electrònic juntament amb el vostre nom d'usuari/ària). {$passwordResetUrl}<br />
+URL de la tramesa: {$submissionReviewUrl}<br />
 <br />
 Nom d'usuari/ària: {$reviewerUserName}<br />
 <br />
@@ -293,7 +293,7 @@ Confirmeu que esteu disponibles per completar aquesta contribució de vital impo
 <br />
 Aquest missatge és només un recordatori de la nostra sol·licitud de revisió de la tramesa «{$submissionTitle},» per {$contextName}. Teníem previst tenir aquesta revisió pel {$reviewDueDate} i ens agradaria rebre-la tan aviat com la tingueu enllestida.<br />
 <br />
-URL de tramesa: <a href="{$submissionReviewUrl}">{$submissionReviewUrl}</a><br />
+URL de tramesa: {$submissionReviewUrl}<br />
 <br />
 Confirmeu que esteu disponible per completar aquesta contribució de vital importància per a la publicació. Espero rebre notícies vostres.<br />
 <br />
@@ -306,9 +306,9 @@ Confirmeu que esteu disponible per completar aquesta contribució de vital impor
 <br />
 Aquest missatge és només un recordatori de la nostra sol·licitud de revisió de la tramesa «{$submissionTitle},» per {$contextName}. Comptàvem amb tenir la revisió el {$reviewDueDate}. Aquest correu s'ha generat automàticament i s'ha enviat quan ha passat la data marcada. També ens anirà bé de rebre-la tan aviat com la tingueu enllestida.<br />
 <br />
-Si no teniu el vostre nom d'usuari/ària i la contrasenya del lloc web, podeu utilitzar l'enllaç per restablir la contrasenya (que se us enviarà per correu electrònic juntament amb el vostre nom d'usuari/ària). <a href="{$passwordResetUrl}">{$passwordResetUrl}</a><br />
+Si no teniu el vostre nom d'usuari/ària i la contrasenya del lloc web, podeu utilitzar l'enllaç per restablir la contrasenya (que se us enviarà per correu electrònic juntament amb el vostre nom d'usuari/ària). {$passwordResetUrl}<br />
 <br />
-URL de tramesa: <a href="{$submissionReviewUrl}">{$submissionReviewUrl}</a><br />
+URL de tramesa: {$submissionReviewUrl}<br />
 <br />
 Confirmeu que esteu disponibles per completar aquesta contribució de vital importància per a la publicació. Espero rebre notícies vostres.<br />
 <br />
@@ -321,7 +321,7 @@ Confirmeu que esteu disponibles per completar aquesta contribució de vital impo
 <br />
 Aquest missatge és només un recordatori de la nostra sol·licitud de revisió de la tramesa «{$submissionTitle},» per {$contextName}. Comptàvem amb tenir la revisió el {$reviewDueDate}. Aquest correu s'ha generat automàticament i s'ha enviat quan ha passat la data marcada. També ens anirà bé de rebre-la tan aviat com la tingueu enllestida.<br />
 <br />
-URL de tramesa: <a href="{$submissionReviewUrl}">{$submissionReviewUrl}</a><br />
+URL de tramesa: {$submissionReviewUrl}<br />
 <br />
 Confirmeu que esteu disponible per completar aquesta contribució de vital importància per a la publicació. Espero rebre notícies vostres.<br />
 <br />
@@ -336,7 +336,7 @@ Hem pres una decisió respecte a la vostra tramesa de {$contextName}, «{$submis
 <br />
 La nostra decisió és:<br />
 <br />
-URL del manuscrit: <a href="{$submissionUrl}">{$submissionUrl}</a><br />
+URL del manuscrit: {$submissionUrl}<br />
 Nom d'usuari/ària: {$authorUsername}<br />
 <br />
 {$editorialContactSignature}<br />
@@ -351,7 +351,7 @@ Hem pres una decisió respecte a la vostra tramesa de {$contextName}, «{$submis
 <br />
 La nostra decisió és:<br />
 <br />
-URL del manuscrit: <a href="{$submissionUrl}">{$submissionUrl}</a><br />
+URL del manuscrit: {$submissionUrl}<br />
 Nom d'usuari/ària: {$authorUsername}<br />
 <br />
 {$editorialContactSignature}<br />
@@ -364,7 +364,7 @@ Nom d'usuari/ària: {$authorUsername}<br />
 <br />
 L'edició del vostre manuscrit «{$submissionTitle},» està completada.  Procedim a enviar-la a producció.<br />
 <br />
-URL del manuscrit: <a href="{$submissionUrl}">{$submissionUrl}</a><br />
+URL del manuscrit: {$submissionUrl}<br />
 Nom d'usuari/ària: {$authorUsername}<br />
 <br />
 {$editorialContactSignature}<br />
@@ -379,7 +379,7 @@ Hem pres una decisió respecte a la vostra tramesa de {$contextName}, «{$submis
 <br />
 La nostra decisió és:<br />
 <br />
-URL del manuscrit: <a href="{$submissionUrl}">{$submissionUrl}</a><br />
+URL del manuscrit: {$submissionUrl}<br />
 Nom d'usuari/ària: {$authorUsername}<br />
 <br />
 {$editorialContactSignature}<br />
@@ -394,7 +394,7 @@ Hem pres una decisió respecte a la vostra tramesa de {$contextName}, «{$submis
 <br />
 La nostra decisió és:<br />
 <br />
-URL del manuscrit: <a href="{$submissionUrl}">{$submissionUrl}</a><br />
+URL del manuscrit: {$submissionUrl}<br />
 Nom d'usuari/ària: {$authorUsername}<br />
 <br />
 {$editorialContactSignature}<br />
@@ -409,7 +409,7 @@ Hem pres una decisió respecte a la vostra tramesa de {$contextName}, «{$submis
 <br />
 La nostra decisió és:<br />
 <br />
-URL del manuscrit: <a href="{$submissionUrl}">{$submissionUrl}</a><br />
+URL del manuscrit: {$submissionUrl}<br />
 Nom d'usuari/ària: {$authorUsername}<br />
 <br />
 {$editorialContactSignature}<br />
@@ -428,8 +428,8 @@ Us vull demanar que realitzeu la correcció de «{$submissionTitle}» per {$cont
 5. Guardeu l'fitxer corregit i carregueu-lo al pas 1 de la correcció de textos.<br />
 6. Envieu el correu electrònic COMPLET a l'editor/a.<br />
 <br />
-{$contextName} URL: <a href="{$contextUrl}">{$contextUrl}</a><br />
-URL de tramesa: <a href="{$submissionCopyeditingUrl}">{$submissionCopyeditingUrl}</a><br />
+{$contextName} URL: {$contextUrl}<br />
+URL de tramesa: {$submissionCopyeditingUrl}<br />
 Nom d'usuari/ària: {$copyeditorUsername}<br />
 <br />
 {$editorialContactSignature}]]></body>
@@ -444,8 +444,8 @@ La tramesa «{$submissionTitle}» a {$contextName} necessita galerades per poder
 2. Inicieu sessió a la publicació i utilitzeu la versió maquetada de l'fitxer per crear galerades d'acord amb els estàndards de la publicació.<br />
 3. Envieu el correu electrònic COMPLET a l'editor/a.<br />
 <br />
-{$contextName} URL: <a href="{$contextUrl}">{$contextUrl}</a><br />
-URL de la tramesa: <a href="{$submissionUrl}">{$submissionUrl}</a><br />
+{$contextName} URL: {$contextUrl}<br />
+URL de la tramesa: {$submissionUrl}<br />
 Nom d'usuari/ària: {$layoutEditorUsername}<br />
 <br />
 Si no podeu realitzar aquesta tasca en aquests moments o teniu cap pregunta, poseu-vos en contacte amb mi. Gràcies per la vostra contribució a la publicació.<br />
@@ -472,8 +472,8 @@ La tramesa «{$submissionTitle}» a {$contextName} necessita índexs creats segu
 2. Inicieu sessió a la publicació i utilitzeu l'fitxer de galerades per crear galerades d'acord amb els estàndards de la publicació.<br />
 3. Envieu el correu electrònic COMPLET a l'editor/a.<br />
 <br />
-{$contextName} URL: <a href="{$contextUrl}">{$contextUrl}</a><br />
-URL de la tramesa: <a href="{$submissionUrl}">{$submissionUrl}</a><br />
+{$contextName} URL: {$contextUrl}<br />
+URL de la tramesa: {$submissionUrl}<br />
 Nom d'usuari/ària: {$indexerUsername}<br />
 <br />
 Si no podeu realitzar aquesta tasca en aquests moments o teniu cap pregunta, poseu-vos en contacte amb mi. Gràcies per la vostra contribució a la publicació.<br />
@@ -494,12 +494,12 @@ Si teniu cap pregunta, contacteu amb mi.<br />
 	</email_text>
 	<email_text key="EMAIL_LINK">
 		<subject>Manuscrit de possible interès</subject>
-		<body><![CDATA[Crec que us pot interessar veure «{$submissionTitle}» de {$authorName} publicat en el vol. {$volume}, núm. {$number} ({$year}) de {$contextName} a «<a href="{$monographUrl}">{$monographUrl}</a>».]]></body>
+		<body><![CDATA[Crec que us pot interessar veure «{$submissionTitle}» de {$authorName} publicat en el vol. {$volume}, núm. {$number} ({$year}) de {$contextName} a «{$monographUrl}».]]></body>
 		<description>Aquesta plantilla de correu electrònic proporciona a un lector/a registrat l'oportunitat d'enviar informació sobre una monografia a algú que pugui estar-hi interessat. Està disponible a través de les eines de lectura i ho ha d'activar el cap editorial a la pàgina d'administració de les eines de lectura.</description>
 	</email_text>
 		<email_text key="NOTIFY_SUBMISSION">
 		<subject>Notificació de tramesa</subject>
-		<body><![CDATA[Teniu un missatge de {$sender} sobre «{$submissionTitle}» (<a href="{$monographDetailsUrl}">{$monographDetailsUrl}</a>):<br />
+		<body><![CDATA[Teniu un missatge de {$sender} sobre «{$submissionTitle}» ({$monographDetailsUrl}):<br />
 <br />
 		{$message}<br />
 <br />
@@ -508,7 +508,7 @@ Si teniu cap pregunta, contacteu amb mi.<br />
 	</email_text>
 		<email_text key="NOTIFY_FILE">
 		<subject>Notificació de fitxer de la tramesa</subject>
-		<body><![CDATA[Teniu un missatge de {$sender} referent a l'fitxer «{$fileName}» a «{$submissionTitle}» (<a href="{$monographDetailsUrl}">{$monographDetailsUrl}</a>):<br />
+		<body><![CDATA[Teniu un missatge de {$sender} referent a l'fitxer «{$fileName}» a «{$submissionTitle}» ({$monographDetailsUrl}):<br />
 <br />
 		{$message}<br />
 <br />
