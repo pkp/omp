@@ -86,7 +86,7 @@ Atenciosamente,<br />
 <br />
 Seu cadastro foi realizado com sucesso na editora {$contextName}, mas é necessário validar seu e-mail antes de poder acessar o sistema. Para isto, basta seguir o link:<br />
 <br />
-<a href="{$activateUrl}">{$activateUrl}</a><br />
+{$activateUrl}<br />
 <br />
 Atenciosamente,<br />
 {$principalContactSignature}]]></body>
@@ -109,7 +109,7 @@ Atenciosamente,<br />
 		<subject>Novo livro publicado</subject>
 		<body><![CDATA[Caros leitores,<br />
 <br />
-{$contextName} acabou de publicar seu último livro, disponível na página <a href="{$contextUrl}">{$contextUrl}</a>. Convidamos todos a avaliar o sumário nesta mensagem e em seguida visitar o site para ver as monografias e encontrar os itens de seu interesse.<br />
+{$contextName} acabou de publicar seu último livro, disponível na página {$contextUrl}. Convidamos todos a avaliar o sumário nesta mensagem e em seguida visitar o site para ver as monografias e encontrar os itens de seu interesse.<br />
 <br />
 Agradecendo pelo seu apoio contínuo ao nosso trabalho,<br />
 {$editorialContactSignature}]]></body>
@@ -121,7 +121,7 @@ Agradecendo pelo seu apoio contínuo ao nosso trabalho,<br />
 <br />
 Agradecmos a submissão do seu manuscrito, &quot;{$submissionTitle}&quot; à editora {$contextName}. Por meio de nosso sistema online de adminstração, poderá acompanhar o progresso através das estapas do processo editorial, acessando o sistema com as informações a seguir:<br />
 <br />
-Página do manuscrito: <a href="{$submissionUrl}">{$submissionUrl}</a><br />
+Página do manuscrito: {$submissionUrl}<br />
 Login: {$authorUsername}<br />
 <br />
 Em caso de dúvidas, entre em contato. Agradecemos por considerar nossa editora como um veículo para seus trabalhos.<br />
@@ -146,7 +146,7 @@ Em caso de dúvidas, entre em contato. Agradecemos por considerar nossa editora 
 <br />
 Agradecmos a submissão do seu manuscrito, &quot;{$submissionTitle}&quot; à editora {$contextName}. Por meio de nosso sistema online de adminstração, poderá acompanhar o progresso através das estapas do processo editorial, acessando o sistema com as informações a seguir:<br />
 <br />
-Página do manuscrito: <a href="{$submissionUrl}">{$submissionUrl}</a><br />
+Página do manuscrito: {$submissionUrl}<br />
 Login: {$authorUsername}<br />
 <br />
 Em caso de dúvidas, entre em contato. Agradecemos por considerar nossa editora como um veículo para seus trabalhos.<br />
@@ -168,7 +168,7 @@ A avaliação do trabalho &quot;{$submissionTitle}&quot; deixou claro que esta s
 <br />
 A submissão &quot;{$submissionTitle}&quot; a editora {$contextName} está sob sua responsabilidade para acompanhamento durante o processo editorial, como editor.<br />
 <br />
-Página da submissão: <a href="{$submissionUrl}">{$submissionUrl}</a><br />
+Página da submissão: {$submissionUrl}<br />
 Login: {$editorUsername}<br />
 <br />
 Atenciosamente,<br />
@@ -185,7 +185,7 @@ Acesse o site da editora até {$responseDueDate} para indicar se está disponív
 <br />
 O prazo de entrega da avaliação é {$reviewDueDate}.<br />
 <br />
-Página da submissão: <a href="{$submissionReviewUrl}">{$submissionReviewUrl}</a><br />
+Página da submissão: {$submissionReviewUrl}<br />
 <br />
 Login: {$reviewerUserName}<br />
 <br />
@@ -207,7 +207,7 @@ Acesse o sistema até {$weekLaterDate} para indicar se aceitará ou não realiza
 <br />
 O prazo de entrega da avaliação é {$reviewDueDate}.<br />
 <br />
-Página da submissão: <a href="{$submissionReviewUrl}">{$submissionReviewUrl}</a><br />
+Página da submissão: {$submissionReviewUrl}<br />
 <br />
 Agradecemos por considerar nossa solicitação.<br />
 <br />
@@ -284,9 +284,9 @@ Agradecmos por concluir a avaliação da submissão &quot;{$submissionTitle}&quo
 <br />
 Este é apenas um lembrete sobre nossa solicitação de avaliar a submissão &quot;{$submissionTitle}&quot;, enviada à editora {$contextName}. Esperamos que possa concluí-la até {$reviewDueDate}, e agradeceríamos muito recebê-la assim que estiver concluída.<br />
 <br />
-Caso não tenha seu login ou senha de acesso ao sistema, use o endereço a seguir para redefinir sua senha (que será encaminhada junto com seu login). <a href="{$passwordResetUrl}">{$passwordResetUrl}</a><br />
+Caso não tenha seu login ou senha de acesso ao sistema, use o endereço a seguir para redefinir sua senha (que será encaminhada junto com seu login). {$passwordResetUrl}<br />
 <br />
-Página da submissão: <a href="{$submissionReviewUrl}">{$submissionReviewUrl}</a><br />
+Página da submissão: {$submissionReviewUrl}<br />
 <br />
 Login: {$reviewerUserName}<br />
 <br />
@@ -301,7 +301,7 @@ Confirme sua disponibilidade em concluir esta contribuição vital aos trabalhos
 <br />
 Este é apenas um lembrete sobre nossa solicitação de avaliar a submissão &quot;{$submissionTitle}&quot;, enviada à editora {$contextName}. Esperamos que possa concluí-la até {$reviewDueDate}, e agradeceríamos muito recebê-la assim que estiver concluída.<br />
 <br />
-Página da submissão: <a href="{$submissionReviewUrl}">{$submissionReviewUrl}</a><br />
+Página da submissão: {$submissionReviewUrl}<br />
 <br />
 Confirme sua disponibilidade em concluir esta contribuição vital aos trabalhos da editora. Aguardamos seu contato.<br />
 <br />
@@ -314,9 +314,9 @@ Confirme sua disponibilidade em concluir esta contribuição vital aos trabalhos
 <br />
 Este é apenas um lembrete de nossa solicitação de avaliar a submissão &quot;{$submissionTitle}&quot;, enviada à editora {$contextName}. Esperamos que possa concluí-la até {$reviewDueDate}. Esta mensagem é gerada e enviada automaticamente passado o prazo de entrega. Ainda assim, agradeceríamos recebê-la assim que estiver concluída<br />
 <br />
-Caso não tenha seu login ou senha de acesso ao sistema, use o endereço a seguir para redefinir sua senha (que será encaminhada junto com seu login). <a href="{$passwordResetUrl}">{$passwordResetUrl}</a><br />
+Caso não tenha seu login ou senha de acesso ao sistema, use o endereço a seguir para redefinir sua senha (que será encaminhada junto com seu login). {$passwordResetUrl}<br />
 <br />
-Página da submissão: <a href="{$submissionReviewUrl}">{$submissionReviewUrl}</a><br />
+Página da submissão: {$submissionReviewUrl}<br />
 <br />
 Confirme sua disponibilidade em concluir esta contribuição vital aos trabalhos da editora. Aguardamos seu contato.<br />
 <br />
@@ -329,7 +329,7 @@ Confirme sua disponibilidade em concluir esta contribuição vital aos trabalhos
 <br />
 Este é apenas um lembrete de nossa solicitação de avaliar a submissão &quot;{$submissionTitle}&quot;, enviada à editora {$contextName}. Esperamos que possa concluí-la até {$reviewDueDate}. Esta mensagem é gerada e enviada automaticamente passado o prazo de entrega. Ainda assim, agradeceríamos recebê-la assim que estiver concluída.<br />
 <br />
-Página da submissão: <a href="{$submissionReviewUrl}">{$submissionReviewUrl}</a><br />
+Página da submissão: {$submissionReviewUrl}<br />
 <br />
 Confirme sua disponibilidade em concluir esta contribuição vital aos trabalhos da editora. Aguardamos seu contato.<br />
 <br />
@@ -344,7 +344,7 @@ A decisão editorial sobre a submissão à editora {$contextName}, &quot;{$submi
 <br />
 A decisão é:<br />
 <br />
-Página do manuscrito: <a href="{$submissionUrl}">{$submissionUrl}</a><br />
+Página do manuscrito: {$submissionUrl}<br />
 <br />
 {$editorialContactSignature}<br />
 ]]></body>
@@ -358,7 +358,7 @@ A decisão editorial sobre a submissão à editora {$contextName}, &quot;{$submi
 <br />
 A decisão é:<br />
 <br />
-Página do manuscrito: <a href="{$submissionUrl}">{$submissionUrl}</a><br />
+Página do manuscrito: {$submissionUrl}<br />
 <br />
 {$editorialContactSignature}<br />
 ]]></body>
@@ -370,7 +370,7 @@ Página do manuscrito: <a href="{$submissionUrl}">{$submissionUrl}</a><br />
 <br />
 A edição do manuscrito &quot;{$submissionTitle}&quot; foi concluída. O trabalho será enviado à produção.<br />
 <br />
-Página do manuscrito: <a href="{$submissionUrl}">{$submissionUrl}</a><br />
+Página do manuscrito: {$submissionUrl}<br />
 <br />
 {$editorialContactSignature}<br />
 ]]></body>
@@ -384,7 +384,7 @@ A decisão editorial sobre a submissão à editora {$contextName}, &quot;{$submi
 <br />
 A decisão é:<br />
 <br />
-Página do manuscrito: <a href="{$submissionUrl}">{$submissionUrl}</a><br />
+Página do manuscrito: {$submissionUrl}<br />
 <br />
 {$editorialContactSignature}<br />
 ]]></body>
@@ -398,7 +398,7 @@ A decisão editorial sobre a submissão à editora {$contextName}, &quot;{$submi
 <br />
 A decisão é:<br />
 <br />
-Página do manuscrito: <a href="{$submissionUrl}">{$submissionUrl}</a><br />
+Página do manuscrito: {$submissionUrl}<br />
 <br />
 {$editorialContactSignature}<br />
 ]]></body>
@@ -412,7 +412,7 @@ A decisão editorial sobre a submissão à editora {$contextName}, &quot;{$submi
 <br />
 A decisão é:<br />
 <br />
-Página do manuscrito: <a href="{$submissionUrl}">{$submissionUrl}</a><br />
+Página do manuscrito: {$submissionUrl}<br />
 <br />
 {$editorialContactSignature}<br />
 ]]></body>
@@ -430,8 +430,8 @@ Solicito realizar a edição de texto da submissão &quot;{$submissionTitle}&quo
 5. Salve o arquivo editado e envie-o ao passo 1 da edição de texto.<br />
 6. Envie a mensagem CONCLUÍDA ao editor.<br />
 <br />
-Página da editora {$contextName}: <a href="{$contextUrl}">{$contextUrl}</a><br />
-Página da submissão: <a href="{$submissionUrl}">{$submissionUrl}</a><br />
+Página da editora {$contextName}: {$contextUrl}<br />
+Página da submissão: {$submissionUrl}<br />
 Login: {$participantUsername}<br />
 <br />
 {$editorialContactSignature}]]></body>
@@ -446,7 +446,7 @@ A submissão &quot;{$submissionTitle}&quot;, enviada à editora {$contextName}, 
 2. Acesse o sistema e use o arquivo de versão de layout disponível para produzir a composição de acordo com esse padrão.<br />
 3. Envie a mensagem CONCLUÍDA ao editor.<br />
 <br />
-Página da editora {$contextName}: <a href="{$contextUrl}">{$contextUrl}</a><br />
+Página da editora {$contextName}: {$contextUrl}<br />
 Página da submissão: {$submissionUrl}<br />
 Login: {$participantUsername}<br />
 <br />
@@ -475,7 +475,7 @@ A submissão &quot;{$submissionTitle}&quot;, enviada à editora {$contextName}, 
 2. Acesse o sistema e use o arquivo de provas de página para criar composições conforme o padrão.<br />
 3. Envie a mensagem CONCLUÍDA ao editor.<br />
 <br />
-Página da editora {$contextName}: <a href="{$contextUrl}">{$contextUrl}</a><br />
+Página da editora {$contextName}: {$contextUrl}<br />
 Página da submissão: {$submissionUrl}<br />
 Login: {$participantUsername}<br />
 <br />
@@ -497,12 +497,12 @@ Em caso de dúvidas, entre em contato.<br />
 	</email_text>
 	<email_text key="EMAIL_LINK">
 		<subject>Manuscrito de seu interesse</subject>
-		<body><![CDATA[Pensei que poderia se interessar em ler o &quot;{$submissionTitle}&quot;, escrito por {$authorName} e publicado no v.{$volume} n.{$number} {$year} da editora {$contextName}, disponível no endereço &quot;<a href="{$monographUrl}">{$monographUrl}</a>&quot;.]]></body>
+		<body><![CDATA[Pensei que poderia se interessar em ler o &quot;{$submissionTitle}&quot;, escrito por {$authorName} e publicado no v.{$volume} n.{$number} {$year} da editora {$contextName}, disponível no endereço &quot;{$monographUrl}&quot;.]]></body>
 		<description>Este modelo de mensagem fornece aos leitores cadastrados a oportunidade e enviar a sua rede informações sobre a monografia que podem ser de interesse. Está disponível por meio das ferramentas de leitura, habilitadas pelo Gerenete da editora na página de administração das ferramentas de leitura.</description>
 	</email_text>
 		<email_text key="NOTIFY_SUBMISSION">
 		<subject>Notificação de submissão</subject>
-		<body><![CDATA[Você recebeu uma nova mensagem de {$sender} com relação à monografia &quot;{$submissionTitle}&quot; (<a href="{$monographDetailsUrl}">{$monographDetailsUrl}</a>):<br />
+		<body><![CDATA[Você recebeu uma nova mensagem de {$sender} com relação à monografia &quot;{$submissionTitle}&quot; ({$monographDetailsUrl}):<br />
 <br />
 		{$message}<br />
 <br />
@@ -511,7 +511,7 @@ Em caso de dúvidas, entre em contato.<br />
 	</email_text>
 		<email_text key="NOTIFY_FILE">
 		<subject>Notificação de arquivo de submissão</subject>
-		<body><![CDATA[Você recebeu uma nova mensagem de {$sender} com relação ao arquivo &quot;{$fileName}&quot; da monografia &quot;{$submissionTitle}&quot; (<a href="{$monographDetailsUrl}">{$monographDetailsUrl}</a>):<br />
+		<body><![CDATA[Você recebeu uma nova mensagem de {$sender} com relação ao arquivo &quot;{$fileName}&quot; da monografia &quot;{$submissionTitle}&quot; ({$monographDetailsUrl}):<br />
 <br />
 		{$message}<br />
 <br />
