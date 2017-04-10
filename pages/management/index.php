@@ -23,6 +23,7 @@ switch ($op) {
 	case 'categories':
 	case 'series':
 	case 'settings':
+	case 'access':
 		import('pages.management.SettingsHandler');
 		define('HANDLER_CLASS', 'SettingsHandler');
 		break;
