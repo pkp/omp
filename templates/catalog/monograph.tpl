@@ -8,7 +8,7 @@
  * Display a public-facing monograph in the catalog.
  *}
 
-<li class="pkp_catalog_monograph {if $inline}pkp_helpers_align_left{/if} pkp_helpers_text_center">
+<li class="pkp_catalog_monograph{if $inline} pkp_helpers_align_left{/if}">
 	<a href="{url page="catalog" op="book" path=$publishedMonograph->getId()}">
 		{include file="controllers/monographList/coverImage.tpl" monograph=$publishedMonograph}
 	</a>
