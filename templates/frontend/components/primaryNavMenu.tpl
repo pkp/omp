@@ -24,7 +24,7 @@
 		</a>
 	</li>
 
-	{if $currentPress && ($currentPress->getLocalizedSetting('masthead') || $currentPress->getLocalizedSetting('submissions'))}
+	{if $currentPress && ($currentPress->getLocalizedSetting('editorialTeam') || $currentPress->getLocalizedSetting('submissions'))}
 		{assign var="submenu_attr" value=" aria-haspopup='true' aria-expanded='false'"}
 	{/if}
 	<li{$submenu_attr}>
@@ -38,7 +38,7 @@
 					{translate key="about.aboutContext"}
 				</a>
 			</li>
-			{if $currentPress && $currentPress->getLocalizedSetting('masthead') != ''}
+			{if $currentPress && $currentPress->getLocalizedSetting('editorialTeam') != ''}
 				<li>
 					<a href="{url router=$smarty.const.ROUTE_PAGE page="about" op="editorialTeam"}">
 						{translate key="about.editorialTeam"}

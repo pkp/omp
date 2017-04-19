@@ -39,8 +39,8 @@
 		{fbvFormSection label="manager.setup.pressDescription" for="description" description="manager.setup.pressDescription.description"}
 			{fbvElement type="textarea" multilingual=true name="description" id="description" value=$description rich=true}
 		{/fbvFormSection}
-		{fbvFormSection label="manager.masthead.title" for="masthead" description="manager.setup.masthead.description"}
-			{fbvElement type="textarea" multilingual=true id="masthead" value=$masthead rich=true}
+		{fbvFormSection label="manager.setup.editorialTeam" for="editorialTeam" description="manager.setup.editorialTeam.description"}
+			{fbvElement type="textarea" multilingual=true id="editorialTeam" value=$editorialTeam rich=true}
 		{/fbvFormSection}
 		{fbvFormSection label="manager.setup.aboutPress" for="about" description="manager.setup.aboutPress.description"}
 			{fbvElement type="textarea" multilingual=true name="about" id="about" value=$about rich="extended" rows=30}
