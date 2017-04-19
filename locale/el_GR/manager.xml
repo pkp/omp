@@ -339,7 +339,8 @@
 	<message key="manager.setup.currentRoles">Τρέχον Ρόλοι</message>
 	<message key="manager.setup.internalReviewRoles">Ρόλοι Εσωτερικής Αξιολόγησης</message>
 	<message key="manager.setup.masthead">Ταυτότητα</message>
-	<message key="manager.setup.masthead.description">Η Ταυτότητα πρέπει να περιέχει μια λίστα από επιμελητές, υπεύθυνους διαχείρισης, και άλλα πρόσωπα που συνδέονται με τις Εκδόσεις. Πληροφορίες που  καταχωρούνται εδώ θα εμφανιστούν στη σελίδα "Σχετικά" των εκδόσεων</message>
+	<message key="manager.setup.editorialTeam">Συντακτική ομάδα</message>
+	<message key="manager.setup.editorialTeam.description">Η Ταυτότητα πρέπει να περιέχει μια λίστα από επιμελητές, υπεύθυνους διαχείρισης, και άλλα πρόσωπα που συνδέονται με τις Εκδόσεις. Πληροφορίες που  καταχωρούνται εδώ θα εμφανιστούν στη σελίδα "Σχετικά" των εκδόσεων</message>
 	<message key="manager.setup.files">Αρχεία</message>
 	<message key="manager.setup.productionTemplates">Πρότυπα Παραγωγής</message>
 	<message key="manager.files.note">Σημείωση: To ευρετήριο αρχείων αποτελεί προηγμένη λειτουργία που παρέχει τη δυνατότητα σε αρχεία και καταλόγους που αφορούν τις εκδόσεις να προβάλλονται και να χειρίζονται άμεσα.</message>
