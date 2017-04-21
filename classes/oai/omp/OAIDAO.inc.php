@@ -49,13 +49,6 @@ class OAIDAO extends PKPOAIDAO {
 	}
 
 	/**
-	 * @copydoc PKPOAIDAO::getEarliestDatestampQuery()
-	 */
-	function getEarliestDatestampQuery() {
-		return 'SELECT MIN(COALESCE(dot.date_deleted, ms.last_modified))';
-	}
-
-	/**
 	 * Cached function to get a press
 	 * @param $pressId int
 	 * @return Press
@@ -161,51 +154,6 @@ class OAIDAO extends PKPOAIDAO {
 	// Protected methods.
 	//
 	/**
-	 * @see lib/pkp/classes/oai/PKPOAIDAO::getRecordSelectStatement()
-	 */
-	function getRecordSelectStatement() {
-		return 'SELECT	COALESCE(dot.date_deleted, ms.last_modified) AS last_modified,
-			COALESCE(pf.publication_format_id, dot.data_object_id) AS data_object_id,
-			COALESCE(p.press_id, tsop.assoc_id) AS press_id,
-			COALESCE(tsos.assoc_id, s.series_id) AS series_id,
-			dot.tombstone_id,
-			dot.set_spec,
-			dot.oai_identifier';
-	}
-
-	/**
-	 * @see lib/pkp/classes/oai/PKPOAIDAO::getRecordJoinClause()
-	 */
-	function getRecordJoinClause($publicationFormatId = null, $setIds = array(), $set = null) {
-		assert(is_array($setIds));
-		list($pressId, $seriesId) = array_pad($setIds, 2, null);
-		return 'JOIN publication_formats pf ON (m.i=0' . (isset($publicationFormatId) ? ' AND pf.publication_format_id = ?' : '') . ')
-			JOIN published_submissions ps ON (ps.submission_id = pf.submission_id)
-			JOIN submissions ms ON (ms.submission_id = ps.submission_id' . (isset($pressId) ? ' AND ms.context_id = ?' : '') . (isset($seriesId) && $seriesId != 0 ? ' AND ms.series_id = ?' : '') .')
-			LEFT JOIN series s ON (s.series_id = ms.series_id)
-			LEFT JOIN presses p ON (p.press_id = ms.context_id)
-			LEFT JOIN data_object_tombstones dot ON (m.i = 1' . (isset($publicationFormatId) ? ' AND dot.data_object_id = ?' : '') . (isset($set) ? ' AND dot.set_spec = ?' : '') . ')
-			LEFT JOIN data_object_tombstone_oai_set_objects tsop ON ' . (isset($pressId) ? '(tsop.tombstone_id = dot.tombstone_id AND tsop.assoc_type = ' . ASSOC_TYPE_PRESS . ' AND tsop.assoc_id = ?)' : 'tsop.assoc_id = null') .
-			' LEFT JOIN data_object_tombstone_oai_set_objects tsos ON ' . (isset($seriesId) ? '(tsos.tombstone_id = dot.tombstone_id AND tsos.assoc_type = ' . ASSOC_TYPE_SERIES . ' AND tsos.assoc_id = ?)' : 'tsos.assoc_id = null');
-	}
-
-	/**
-	 * @see lib/pkp/classes/oai/PKPOAIDAO::getAccessibleRecordWhereClause()
-	 */
-	function getAccessibleRecordWhereClause() {
-		return 'WHERE ((p.enabled = 1 AND ms.status <> ' . STATUS_DECLINED . ' AND pf.is_available = 1 AND ps.date_published IS NOT NULL) OR dot.data_object_id IS NOT NULL)';
-	}
-
-	/**
-	 * @see lib/pkp/classes/oai/PKPOAIDAO::getDateRangeWhereClause()
-	 */
-	function getDateRangeWhereClause($from, $until) {
-		return (isset($from) ? ' AND ((dot.date_deleted IS NOT NULL AND dot.date_deleted >= '. $this->datetimeToDB($from) .') OR (dot.date_deleted IS NULL AND ms.last_modified >= ' . $this->datetimeToDB($from) .'))' : '')
-			. (isset($until) ? ' AND ((dot.date_deleted IS NOT NULL AND dot.date_deleted <= ' .$this->datetimeToDB($until) .') OR (dot.date_deleted IS NULL AND ms.last_modified <= ' . $this->datetimeToDB($until) .'))' : '')
-			. ' ORDER BY press_id';
-	}
-
-	/**
 	 * @see lib/pkp/classes/oai/PKPOAIDAO::setOAIData()
 	 */
 	function setOAIData($record, $row, $isRecord = true) {
@@ -226,6 +174,76 @@ class OAIDAO extends PKPOAIDAO {
 		}
 
 		return $record;
+	}
+
+	/**
+	 * Get a OAI records record set.
+	 * @param $setIds array Objects ids that specify an OAI set,
+	 * in hierarchical order.
+	 * @param $from int/string *nix timestamp or ISO datetime string
+	 * @param $until int/string *nix timestamp or ISO datetime string
+	 * @param $set string
+	 * @param $submissionId int Optional
+	 * @param $orderBy string UNFILTERED
+	 * @return ADORecordSet
+	 */
+	function _getRecordsRecordSet($setIds, $from, $until, $set, $submissionId = null, $orderBy = 'press_id, data_object_id') {
+		$pressId = array_shift($setIds);
+		$seriesId = array_shift($setIds);
+
+		$params = array();
+		if ($pressId) $params[] = (int) $pressId;
+		if ($seriesId) $params[] = (int) $seriesId;
+		if ($submissionId) $params[] = (int) $submissionId;
+		if ($pressId) $params[] = (int) $pressId;
+		if ($seriesId) $params[] = (int) $seriesId;
+		if (isset($set)) $params[] = $set;
+		if ($submissionId) $params[] = (int) $submissionId;
+
+		$result = $this->retrieve(
+			'SELECT	ms.last_modified AS last_modified,
+				pf.publication_format_id AS data_object_id,
+				p.press_id AS press_id,
+				s.series_id AS series_id,
+				NULL AS tombstone_id,
+				NULL AS set_spec,
+				NULL AS oai_identifier
+			FROM	publication_formats pf
+				JOIN published_submissions ps ON (ps.submission_id = pf.submission_id)
+				JOIN submissions ms ON (ms.submission_id = ps.submission_id)
+				LEFT JOIN series s ON (s.series_id = ms.series_id)
+				JOIN presses p ON (p.press_id = ms.context_id)
+			WHERE	p.enabled = 1
+				' . ($pressId?' AND p.press_id = ?':'') . '
+				' . ($seriesId?' AND s.series_id = ?':'') . '
+				AND ms.status <> ' . STATUS_DECLINED . '
+				AND pf.is_available = 1
+				AND ps.date_published IS NOT NULL
+				' . ($from?' AND ms.last_modified >= ' . $this->datetimeToDB($from):'') . '
+				' . ($until?' AND ms.last_modified <= ' . $this->datetimeToDB($until):'') . '
+				' . ($submissionId?' AND pf.publication_format_id=?':'') . '
+			UNION
+			SELECT	dot.date_deleted AS last_modified,
+				dot.data_object_id AS data_object_id,
+				tsop.assoc_id AS press_id,
+				tsos.assoc_id AS series_id,
+				dot.tombstone_id,
+				dot.set_spec,
+				dot.oai_identifier
+			FROM
+				data_object_tombstones dot
+				LEFT JOIN data_object_tombstone_oai_set_objects tsop ON ' . (isset($pressId) ? '(tsop.tombstone_id = dot.tombstone_id AND tsop.assoc_type = ' . ASSOC_TYPE_PRESS . ' AND tsop.assoc_id = ?)' : 'tsop.assoc_id = null') . '
+				LEFT JOIN data_object_tombstone_oai_set_objects tsos ON ' . (isset($seriesId) ? '(tsos.tombstone_id = dot.tombstone_id AND tsos.assoc_type = ' . ASSOC_TYPE_SERIES . ' AND tsos.assoc_id = ?)' : 'tsos.assoc_id = null') . '
+			WHERE	1=1
+				' . ($from?' AND dot.date_deleted >= ' . $this->datetimeToDB($from):'') . '
+				' . ($until?' AND dot.date_deleted <= ' . $this->datetimeToDB($until):'') . '
+				' . (isset($set)?' AND dot.set_spec = ?':'') . '
+				' . ($submission?' dot.data_object_id = ?':'') . '
+			ORDER BY ' . $orderBy,
+			$params
+		);
+
+		return $result;
 	}
 }
 
