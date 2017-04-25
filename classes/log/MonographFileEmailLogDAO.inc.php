@@ -43,7 +43,7 @@ class MonographFileEmailLogDAO extends EmailLogDAO {
 	 * @return DAOResultFactory
 	 */
 	function getByEventType($fileId, $eventType, $userId = null) {
-		return parent::getByEventType(ASSOC_TYPE_SUBMISSION_FILE, $fileId, $eventType, $userId);
+		return parent::_getByEventType(ASSOC_TYPE_SUBMISSION_FILE, $fileId, $eventType, $userId);
 	}
 }
 

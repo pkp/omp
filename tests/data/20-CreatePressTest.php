@@ -84,7 +84,7 @@ class CreatePressTest extends WebTestCase {
 		$this->waitForElementPresent($selector='css=li.profile a:contains(\'Dashboard\')');
 		$this->clickAndWait($selector);
 		$this->waitForElementPresent($selector='link=Users & Roles');
-		$this->click($selector);
+		$this->mouseOver($selector);
 		$this->waitForElementPresent($selector='link=Roles');
 		$this->click($selector);
 

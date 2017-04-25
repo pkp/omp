@@ -232,6 +232,7 @@ class CSVImportExportPlugin extends ImportExportPlugin {
 						$temporaryFileManager->copyFile($pdfUrl, $temporaryFilename);
 						$submissionFile = $submissionFileDao->newDataObjectByGenreId($genre->getId());
 						$submissionFile->setSubmissionId($submissionId);
+						$submissionFile->setSubmissionLocale($submission->getLocale());
 						$submissionFile->setGenreId($genre->getId());
 						$submissionFile->setFileStage(SUBMISSION_FILE_PROOF);
 						$submissionFile->setDateUploaded(Core::getCurrentDate());
