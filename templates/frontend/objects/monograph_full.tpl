@@ -390,13 +390,13 @@
 						{assign var=publicationDates value=$publicationFormat->getPublicationDates()}
 						{assign var=publicationDates value=$publicationDates->toArray()}
 						{assign var=hasPubId value=false}
-						{if $enabledPubIdTypes|@count}
-							{foreach from=$enabledPubIdTypes item=pubIdType}
-								{if $publicationFormat->getStoredPubId($pubIdType)}
-									{php}break;{/php}
-								{/if}
-							{/foreach}
-						{/if}
+						{foreach from=$pubIdPlugins item=pubIdPlugin}
+							{assign var=pubIdType value=$pubIdPlugin->getPubIdType()}
+							{if $publicationFormat->getStoredPubId($pubIdType)}
+								{assign var=hasPubId value=true}
+								{php}break;{/php}
+							{/if}
+						{/foreach}
 
 						{* Skip if we don't have any information to print about this pub format *}
 						{if !$identificationCodes && !$publicationDates && !$hasPubId && !$publicationFormat->getPhysicalFormat()}
@@ -465,21 +465,20 @@
 							{/if}
 
 							{* PubIDs *}
-							{if $enabledPubIdTypes|@count}
-								{foreach from=$enabledPubIdTypes item=pubIdType}
-									{assign var=storedPubId value=$publicationFormat->getStoredPubId($pubIdType)}
-									{if $storedPubId != ''}
-										<div class="sub_item pubid {$publicationFormat->getId()|escape}">
-											<div class="label">
-												{$pubIdType}
-											</div>
-											<div class="value">
-												{$storedPubId|escape}
-											</div>
+							{foreach from=$pubIdPlugins item=pubIdPlugin}
+								{assign var=pubIdType value=$pubIdPlugin->getPubIdType()}
+								{assign var=storedPubId value=$publicationFormat->getStoredPubId($pubIdType)}
+								{if $storedPubId != ''}
+									<div class="sub_item pubid {$publicationFormat->getId()|escape}">
+										<div class="label">
+											{$pubIdType}
 										</div>
-									{/if}
-								{/foreach}
-							{/if}
+										<div class="value">
+											{$storedPubId|escape}
+										</div>
+									</div>
+								{/if}
+							{/foreach}
 
 							{* Physical dimensions *}
 							{if $publicationFormat->getPhysicalFormat()}

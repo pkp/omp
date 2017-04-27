@@ -54,9 +54,10 @@ class HtmlMonographFilePlugin extends GenericPlugin {
 	}
 
 	/**
-	 * Callback to view HTML content rather than downloading.
-	 * @param string $hookName
-	 * @param array $args
+	 * Callback to view the HTML content rather than downloading.
+	 * @param $hookName string
+	 * @param $args array
+	 * @return boolean
 	 */
 	function viewCallback($hookName, $params) {
 		$publishedMonograph =& $params[1];
@@ -78,9 +79,6 @@ class HtmlMonographFilePlugin extends GenericPlugin {
 			$templateMgr->assign(array(
 				'pluginTemplatePath' => $this->getTemplatePath(),
 				'pluginUrl' => $request->getBaseUrl() . '/' . $this->getPluginPath(),
-				'submissionFile' => $submissionFile,
-				'monograph' => $publishedMonograph,
-				'publicationFormat' => $publicationFormat,
 				'downloadFile' => $submissionFile,
 			));
 			$templateMgr->display($this->getTemplatePath() . '/display.tpl');

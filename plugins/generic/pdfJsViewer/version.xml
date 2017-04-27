@@ -2,7 +2,7 @@
 <!DOCTYPE version SYSTEM "../../../lib/pkp/dtd/pluginVersion.dtd">
 
 <!--
-  * plugins/viewableFiles/pdfJsViewer/version.xml
+  * plugins/generic/pdfJsViewer/version.xml
   *
   * Copyright (c) 2014-2017 Simon Fraser University
   * Copyright (c) 2003-2017 John Willinsky
@@ -12,7 +12,7 @@
   -->
 <version>
 	<application>pdfJsViewer</application>
-	<type>plugins.viewableFiles</type>
+	<type>plugins.generic</type>
 	<release>1.0.0.0</release>
 	<date>2015-04-16</date>
 	<lazy-load>1</lazy-load>

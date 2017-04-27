@@ -546,9 +546,6 @@ Suporte à biblioteca mbstring: <strong>{$supportsMBString}</strong>]]></message
 
 	<!-- RT Entities -->
 
-	<!-- General plugin information -->
-	<message key="plugins.categories.viewableFiles">Plugins de Arquivos Publicados</message>
-	<message key="plugins.categories.viewableFiles.description">Plugins para arquivos publicados adicionam suporte para a exibição de diferentes tipos de documentos em linha, por exemplo, PDF incorporados na página.</message>
 	<message key="submission.pdf.download">Baixar PDF</message>
 
 	<message key="monograph.publicationFormat">Formato</message>

@@ -15,13 +15,8 @@
 {include file="frontend/components/header.tpl" pageTitleTranslated=$publishedMonograph->getLocalizedFullTitle()}
 
 <div class="page page_book">
-
 	{* Display book details *}
 	{include file="frontend/objects/monograph_full.tpl" monograph=$publishedMonograph}
-
-	{* Display Dublin Core metadata *}
-	{include file="frontend/objects/monograph_dublinCore.tpl" monograph=$publishedMonograph}
-
 </div><!-- .page -->
 
 {include file="frontend/components/footer.tpl"}

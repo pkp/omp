@@ -1,28 +1,29 @@
 <?php
 
 /**
- * @file plugins/viewableFiles/pdfJsViewer/PdfJsViewerPlugin.inc.php
+ * @file plugins/generic/pdfJsViewer/PdfJsViewerPlugin.inc.php
  *
  * Copyright (c) 2014-2017 Simon Fraser University
  * Copyright (c) 2003-2017 John Willinsky
  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
  *
  * @class PdfJsViewerPlugin
- * @ingroup plugins_viewableFiles_pdfJsViewer
+ * @ingroup plugins_generic_pdfJsViewer
  *
  * @brief Class for PdfJsViewer plugin
  */
 
-import('classes.plugins.ViewableFilePlugin');
+import('lib.pkp.classes.plugins.GenericPlugin');
 
-class PdfJsViewerPlugin extends ViewableFilePlugin {
+class PdfJsViewerPlugin extends GenericPlugin {
 	/**
 	 * @copydoc Plugin::register()
 	 */
 	function register($category, $path) {
 		if (parent::register($category, $path)) {
 			if ($this->getEnabled()) {
-				HookRegistry::register('CatalogBookHandler::download', array($this, 'downloadCallback'));
+				HookRegistry::register('CatalogBookHandler::view', array($this, 'viewCallback'), HOOK_SEQUENCE_LATE);
+				HookRegistry::register('CatalogBookHandler::download', array($this, 'downloadCallback'), HOOK_SEQUENCE_LATE);
 			}
 			return true;
 		}
@@ -30,7 +31,7 @@ class PdfJsViewerPlugin extends ViewableFilePlugin {
 	}
 
 	/**
-	 * Install default settings on journal creation.
+	 * Install default settings on press creation.
 	 * @return string
 	 */
 	function getContextSpecificPluginSettingsFile() {
@@ -49,39 +50,42 @@ class PdfJsViewerPlugin extends ViewableFilePlugin {
 	 * @return String
 	 */
 	function getDisplayName() {
-		return __('plugins.viewableFiles.pdfJsViewer.displayName');
+		return __('plugins.generic.pdfJsViewer.displayName');
 	}
 
 	/**
 	 * Get a description of the plugin.
 	 */
 	function getDescription() {
-		return __('plugins.viewableFiles.pdfJsViewer.description');
+		return __('plugins.generic.pdfJsViewer.description');
 	}
 
 	/**
-	 * @copydoc ViewableFilePlugin::canHandle
+	 * Callback to view the PDF content rather than downloading.
+	 * @param $hookName string
+	 * @param $args array
+	 * @return boolean
 	 */
-	function canHandle($publishedMonograph, $publicationFormat, $submissionFile) {
-		return ($submissionFile->getFileType() == 'application/pdf');
-	}
+	function viewCallback($hookName, $args) {
+		$publishedMonograph =& $args[1];
+		$publicationFormat =& $args[2];
+		$submissionFile =& $args[3];
 
-	/**
-	 * @copydoc ViewableFilePlugin::displaySubmissionFile
-	 */
-	function displaySubmissionFile($publishedMonograph, $publicationFormat, $submissionFile) {
-		$request = $this->getRequest();
-		$router = $request->getRouter();
-		$dispatcher = $request->getDispatcher();
-		$templateMgr = TemplateManager::getManager($request);
-		$templateMgr->assign(array(
-			'pluginTemplatePath' => $this->getTemplatePath(),
-			'pluginUrl' => $request->getBaseUrl() . DIRECTORY_SEPARATOR . $this->getPluginPath(),
-			'downloadUrl' => $dispatcher->url($request, ROUTE_PAGE, null, null, 'download', array($publishedMonograph->getBestId(), $publicationFormat->getBestId(), $submissionFile->getBestId()), array('inline' => true)),
-		));
+		if ($submissionFile->getFileType() == 'application/pdf') {
+			$request = $this->getRequest();
+			$router = $request->getRouter();
+			$dispatcher = $request->getDispatcher();
+			$templateMgr = TemplateManager::getManager($request);
+			$templateMgr->assign(array(
+				'pluginTemplatePath' => $this->getTemplatePath(),
+				'pluginUrl' => $request->getBaseUrl() . DIRECTORY_SEPARATOR . $this->getPluginPath(),
+			));
 
+			$templateMgr->display($this->getTemplatePath() . '/display.tpl');
+			return true;
+		}
 
-		return parent::displaySubmissionFile($publishedMonograph, $publicationFormat, $submissionFile);
+		return false;
 	}
 
 	/**
@@ -96,7 +100,7 @@ class PdfJsViewerPlugin extends ViewableFilePlugin {
 		$submissionFile =& $params[3];
 		$inline =& $params[4];
 
-		if ($this->canHandle($publishedMonograph, $publicationFormat, $submissionFile) && Request::getUserVar('inline')) {
+		if ($submissionFile->getFileType() == 'application/pdf' && Request::getUserVar('inline')) {
 			// Turn on the inline flag to ensure that the content
 			// disposition header doesn't foil the PDF embedding
 			// plugin.
