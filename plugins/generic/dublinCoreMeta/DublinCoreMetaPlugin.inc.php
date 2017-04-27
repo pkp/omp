@@ -98,10 +98,16 @@ class DublinCoreMetaPlugin extends GenericPlugin {
 		$templateMgr->addHeader('dublinCoreSourceUri', '<meta name="DC.Source.URI" content="' . $request->url($press->getPath()) . '"/>');
 
 		$i=0;
-		if ($subjects = $monograph->getSubject(null)) foreach ($subjects as $locale => $localeSubject) {
-			foreach (explode($localeSubject, '; ') as $subject) if ($subject) {
-				$templateMgr->addHeader('dublinCoreSubject' . $i++, '<meta name="DC.Subject" xml:lang="' . htmlspecialchars(substr($locale, 0, 2)) . '" content="' . htmlspecialchars($subject) . '"/>');
-			}
+		$submissionSubjectDao = DAORegistry::getDAO('SubmissionSubjectDAO');
+		$supportedLocales = array_keys(AppLocale::getSupportedFormLocales());
+		if ($subjects = $submissionSubjectDao->getSubjects($monograph->getId(), $supportedLocales)) foreach ($subjects as $locale => $subjectLocale) {
+			foreach ($subjectLocale as $subject) $templateMgr->addHeader('dublinCoreSubject' . $i++, '<meta name="DC.Subject" xml:lang="' . htmlspecialchars(substr($locale, 0, 2)) . '" content="' . htmlspecialchars($subject) . '"/>');
+		}
+
+		$i=0;
+		$submissionKeywordDao = DAORegistry::getDAO('SubmissionKeywordDAO');
+		if ($keywords = $submissionKeywordDao->getKeywords($monograph->getId(), $supportedLocales)) foreach ($keywords as $locale => $keywordLocale) {
+			foreach ($keywordLocale as $keyword) $templateMgr->addHeader('dublinCoreKeyword' . $i++, '<meta name="DC.Subject" xml:lang="' . htmlspecialchars(substr($locale, 0, 2)) . '" content="' . htmlspecialchars($keyword) . '"/>');
 		}
 
 		$templateMgr->addHeader('dublinCoreTitle', '<meta name="DC.Title" content="' . htmlspecialchars($monograph->getTitle($monograph->getLocale())) . '"/>');
@@ -188,11 +194,18 @@ class DublinCoreMetaPlugin extends GenericPlugin {
 		$templateMgr->addHeader('dublinCoreSourceUri', '<meta name="DC.Source.URI" content="' . $request->url($press->getPath()) . '"/>');
 
 		$i=0;
-		if ($subjects = $monograph->getSubject(null)) foreach ($subjects as $locale => $localeSubject) {
-			foreach (explode($localeSubject, '; ') as $subject) if ($subject) {
-				$templateMgr->addHeader('dublinCoreSubject' . $i++, '<meta name="DC.Subject" xml:lang="' . htmlspecialchars(substr($locale, 0, 2)) . '" content="' . htmlspecialchars($subject) . '"/>');
-			}
+		$submissionSubjectDao = DAORegistry::getDAO('SubmissionSubjectDAO');
+		$supportedLocales = array_keys(AppLocale::getSupportedFormLocales());
+		if ($subjects = $submissionSubjectDao->getSubjects($monograph->getId(), $supportedLocales)) foreach ($subjects as $locale => $subjectLocale) {
+			foreach ($subjectLocale as $subject) $templateMgr->addHeader('dublinCoreSubject' . $i++, '<meta name="DC.Subject" xml:lang="' . htmlspecialchars(substr($locale, 0, 2)) . '" content="' . htmlspecialchars($subject) . '"/>');
 		}
+
+		$i=0;
+		$submissionKeywordDao = DAORegistry::getDAO('SubmissionKeywordDAO');
+		if ($keywords = $submissionKeywordDao->getKeywords($monograph->getId(), $supportedLocales)) foreach ($keywords as $locale => $keywordLocale) {
+			foreach ($keywordLocale as $keyword) $templateMgr->addHeader('dublinCoreKeyword' . $i++, '<meta name="DC.Subject" xml:lang="' . htmlspecialchars(substr($locale, 0, 2)) . '" content="' . htmlspecialchars($keyword) . '"/>');
+		}
+
 
 		if ($chapter) {
 			$templateMgr->addHeader('dublinCoreTitle', '<meta name="DC.Title" content="' . htmlspecialchars($chapter->getTitle($monograph->getLocale())) . '"/>');

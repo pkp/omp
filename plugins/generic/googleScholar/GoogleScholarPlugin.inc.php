@@ -97,10 +97,16 @@ class GoogleScholarPlugin extends GenericPlugin {
 			if ($language = $monograph->getLanguage()) $templateMgr->addHeader('googleScholarLanguage', '<meta name="citation_language" content="' . htmlspecialchars($language) . '"/>');
 
 			$i=0;
-			if ($subject = $monograph->getSubject(null)) foreach ($subject as $locale => $localeSubject) {
-				foreach (explode($localeSubject, '; ') as $gsKeyword) if ($gsKeyword) {
-					$templateMgr->addHeader('googleScholarKeyword' . $i++, '<meta name="citation_keywords" xml:lang="' . htmlspecialchars(substr($locale, 0, 2)) . '" content="' . htmlspecialchars($gsKeyword) . '"/>');
-				}
+			$submissionSubjectDao = DAORegistry::getDAO('SubmissionSubjectDAO');
+			$supportedLocales = array_keys(AppLocale::getSupportedFormLocales());
+			if ($subjects = $submissionSubjectDao->getSubjects($monograph->getId(), $supportedLocales)) foreach ($subjects as $locale => $subjectLocale) {
+				foreach ($subjectLocale as $gsKeyword) $templateMgr->addHeader('googleScholarSubject' . $i++, '<meta name="citation_keywords" xml:lang="' . htmlspecialchars(substr($locale, 0, 2)) . '" content="' . htmlspecialchars($gsKeyword) . '"/>');
+			}
+
+			$i=0;
+			$submissionKeywordDao = DAORegistry::getDAO('SubmissionKeywordDAO');
+			if ($keywords = $submissionKeywordDao->getKeywords($monograph->getId(), $supportedLocales)) foreach ($keywords as $locale => $keywordLocale) {
+				foreach ($keywordLocale as $gsKeyword) $templateMgr->addHeader('googleScholarKeyword' . $i++, '<meta name="citation_keywords" xml:lang="' . htmlspecialchars(substr($locale, 0, 2)) . '" content="' . htmlspecialchars($gsKeyword) . '"/>');
 			}
 
 			$templateMgr->addHeader('googleScholarPdfUrl' . $i++, '<meta name="citation_pdf_url" content="' . $request->url(null, 'catalog', 'download', array($monograph->getBestId(), $publicationFormat->getId(), $submissionFile->getFileIdAndRevision())) . '"/>');
