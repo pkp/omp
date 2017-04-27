@@ -40,9 +40,4 @@
 		<query>UPDATE email_templates_default_data SET body=REPLACE(body, '&lt;a href=&quot;{$url}&quot;&gt;{$url}&lt;/a&gt;', '{$url}')</query>
 		<query>UPDATE email_templates_data SET body=REPLACE(body, '&lt;a href=&quot;{$url}&quot;&gt;{$url}&lt;/a&gt;', '{$url}')</query>
 	</sql>
-	<sql><!-- Issue #1815 -->
-		<query>INSERT INTO plugin_settings (plugin_name, setting_name, setting_value, setting_type, context_id) SELECT 'googlescholarplugin', 'enabled', '1', 'bool', press_id FROM presses</query>
-		<query>INSERT INTO plugin_settings (plugin_name, setting_name, setting_value, setting_type, context_id) SELECT 'dublincoremetaplugin', 'enabled', '1', 'bool', press_id FROM presses</query>
-		<query>UPDATE versions SET product_type='plugins.generic' WHERE product_type='plugins.viewableFiles'</query>
-	</sql>
 </data>

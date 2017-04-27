@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE data SYSTEM "../../../lib/pkp/dtd/xmlData.dtd">
+
+<!--
+  * 3.1.1_update.xml
+  *
+  * Copyright (c) 2014-2017 Simon Fraser University
+  * Copyright (c) 2003-2017 John Willinsky
+  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
+  *
+  * 3.1.1 database updates XML file.
+  -->
+<data>
+	<sql><!-- Issue #1815 -->
+		<query>INSERT INTO plugin_settings (plugin_name, setting_name, setting_value, setting_type, context_id) SELECT 'googlescholarplugin', 'enabled', '1', 'bool', p.press_id FROM presses p WHERE NOT EXISTS (SELECT ps.plugin_name FROM plugin_settings ps WHERE ps.plugin_name = 'googlescholarplugin' AND ps.context_id = p.press_id)</query>
+		<query>INSERT INTO plugin_settings (plugin_name, setting_name, setting_value, setting_type, context_id) SELECT 'dublincoremetaplugin', 'enabled', '1', 'bool', p.press_id FROM presses p WHERE NOT EXISTS (SELECT ps.plugin_name FROM plugin_settings ps WHERE ps.plugin_name = 'dublincoremetaplugin' AND ps.context_id = p.press_id)</query>
+		<query>UPDATE versions SET product_type='plugins.generic' WHERE product_type='plugins.viewableFiles'</query>
+	</sql>
+</data>
