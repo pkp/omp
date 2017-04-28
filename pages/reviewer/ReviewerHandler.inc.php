@@ -37,7 +37,14 @@ class ReviewerHandler extends PKPReviewerHandler {
 	 */
 	function authorize($request, &$args, $roleAssignments) {
 		import('lib.pkp.classes.security.authorization.SubmissionAccessPolicy');
-		$this->addPolicy(new SubmissionAccessPolicy($request, $args, $roleAssignments));
+		$router = $request->getRouter();
+		$this->addPolicy(new SubmissionAccessPolicy(
+			$request,
+			$args,
+			$roleAssignments,
+			'submissionId',
+			$router->getRequestedOp()=='submission' || (in_array($router->getRequestedOp(), array('step', 'saveStep')) && $request->getUserVar('step') == 1) // Limit declined review views to step 1
+		));
 		return parent::authorize($request, $args, $roleAssignments);
 	}
 }
