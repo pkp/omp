@@ -100,7 +100,7 @@ echo "Done"
 
 echo -n "Installing composer dependencies ... "
 cd lib/pkp
-composer.phar update
+composer.phar install
 cd ../..
 
 echo -n "Preparing package ... "
