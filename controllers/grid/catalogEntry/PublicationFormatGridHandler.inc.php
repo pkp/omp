@@ -31,6 +31,9 @@ class PublicationFormatGridHandler extends CategoryGridHandler {
 	/** @var Submission */
 	var $_submission;
 
+	/** @var boolean */
+	protected $_canManage;
+
 	/**
 	 * Constructor
 	 */
@@ -45,11 +48,16 @@ class PublicationFormatGridHandler extends CategoryGridHandler {
 		$this->addRoleAssignment(
 			array(ROLE_ID_MANAGER, ROLE_ID_SUB_EDITOR, ROLE_ID_ASSISTANT),
 			array(
-				'fetchGrid', 'fetchRow', 'fetchCategory',
 				'addFormat', 'editFormat', 'editFormatTab', 'updateFormat', 'deleteFormat',
 				'setApproved', 'setProofFileCompletion', 'selectFiles',
 				'identifiers', 'updateIdentifiers', 'clearPubId',
 				'dependentFiles',
+			)
+		);
+		$this->addRoleAssignment(
+			array(ROLE_ID_AUTHOR, ROLE_ID_MANAGER, ROLE_ID_SUB_EDITOR, ROLE_ID_ASSISTANT),
+			array(
+				'fetchGrid', 'fetchRow', 'fetchCategory',
 			)
 		);
 	}
@@ -107,7 +115,9 @@ class PublicationFormatGridHandler extends CategoryGridHandler {
 		// Grid actions
 		$router = $request->getRouter();
 		$actionArgs = $this->getRequestArgs();
-		$this->addAction(
+		$userRoles = $this->getAuthorizedContextObject(ASSOC_TYPE_USER_ROLES);
+		$this->_canManage = 0 != count(array_intersect($userRoles, array(ROLE_ID_MANAGER, ROLE_ID_SUB_EDITOR, ROLE_ID_ASSISTANT)));
+		if ($this->_canManage) $this->addAction(
 			new LinkAction(
 				'addFormat',
 				new AjaxModal(
@@ -123,7 +133,7 @@ class PublicationFormatGridHandler extends CategoryGridHandler {
 		// Columns
 		$submission = $this->getSubmission();
 		import('controllers.grid.catalogEntry.PublicationFormatGridCellProvider');
-		$this->_cellProvider = new PublicationFormatGridCellProvider($submission->getId());
+		$this->_cellProvider = new PublicationFormatGridCellProvider($submission->getId(), $this->_canManage);
 		$this->addColumn(
 			new GridColumn(
 				'name',
@@ -134,26 +144,28 @@ class PublicationFormatGridHandler extends CategoryGridHandler {
 				array('width' => 60, 'anyhtml' => true)
 			)
 		);
-		$this->addColumn(
-			new GridColumn(
-				'isComplete',
-				'common.complete',
-				null,
-				'controllers/grid/common/cell/statusCell.tpl',
-				$this->_cellProvider,
-				array('width' => 20)
-			)
-		);
-		$this->addColumn(
-			new GridColumn(
-				'isAvailable',
-				'grid.catalogEntry.availability',
-				null,
-				'controllers/grid/common/cell/statusCell.tpl',
-				$this->_cellProvider,
-				array('width' => 20)
-			)
-		);
+		if ($this->_canManage) {
+			$this->addColumn(
+				new GridColumn(
+					'isComplete',
+					'common.complete',
+					null,
+					'controllers/grid/common/cell/statusCell.tpl',
+					$this->_cellProvider,
+					array('width' => 20)
+				)
+			);
+			$this->addColumn(
+				new GridColumn(
+					'isAvailable',
+					'grid.catalogEntry.availability',
+					null,
+					'controllers/grid/common/cell/statusCell.tpl',
+					$this->_cellProvider,
+					array('width' => 20)
+				)
+			);
+		}
 	}
 
 	/**
@@ -177,7 +189,7 @@ class PublicationFormatGridHandler extends CategoryGridHandler {
 	 * @return PublicationFormatGridCategoryRow
 	 */
 	function getCategoryRowInstance() {
-		return new PublicationFormatGridCategoryRow($this->getSubmission(), $this->_cellProvider);
+		return new PublicationFormatGridCategoryRow($this->getSubmission(), $this->_cellProvider, $this->_canManage);
 	}
 
 
@@ -459,7 +471,7 @@ class PublicationFormatGridHandler extends CategoryGridHandler {
 	 * @copydoc GridHandler::getRowInstance()
 	 */
 	function getRowInstance() {
-		return new PublicationFormatGridRow();
+		return new PublicationFormatGridRow($this->_canManage);
 	}
 
 	/**
