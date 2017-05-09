@@ -264,22 +264,6 @@ class ReviewerSubmission extends Monograph {
 	}
 
 	/**
-	 * Get the replaced value.
-	 * @return boolean
-	 */
-	function getReplaced() {
-		return $this->getData('replaced');
-	}
-
-	/**
-	 * Set the reviewer's replaced value.
-	 * @param $replaced boolean
-	 */
-	function setReplaced($replaced) {
-		return $this->setData('replaced', $replaced);
-	}
-
-	/**
 	 * Get reviewer file id.
 	 * @return int
 	 */
