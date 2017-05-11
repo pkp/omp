@@ -22,7 +22,7 @@ class PublicationFormatGridRow extends SubmissionFilesGridRow {
 
 	/**
 	 * Constructor
-	 * @param $_canManage boolean
+	 * @param $canManage boolean
 	 */
 	function __construct($canManage) {
 		$this->_canManage = $canManage;
