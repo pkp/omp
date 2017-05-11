@@ -20,13 +20,18 @@ class PublicationFormatGridCategoryRow extends GridCategoryRow {
 	/** @var Submission **/
 	var $_submission;
 
+	/** @var boolean */
+	protected $_canManage;
+
 	/**
 	 * Constructor
 	 * @param $submission Submission
 	 * @param $cellProvider GridCellProvider
+	 * @param $canManage boolean
 	 */
-	function __construct($submission, $cellProvider) {
+	function __construct($submission, $cellProvider, $canManage) {
 		$this->_submission = $submission;
+		$this->_canManage = $canManage;
 		parent::__construct();
 		$this->setCellProvider($cellProvider);
 	}
@@ -57,7 +62,7 @@ class PublicationFormatGridCategoryRow extends GridCategoryRow {
 
 		// Is this a new row or an existing row?
 		$representation = $this->getData();
-		if ($representation && is_numeric($representation->getId())) {
+		if ($representation && is_numeric($representation->getId()) && $this->_canManage) {
 			$router = $request->getRouter();
 			$actionArgs = array(
 				'submissionId' => $submission->getId(),

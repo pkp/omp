@@ -23,13 +23,18 @@ class PublicationFormatGridCellProvider extends DataObjectGridCellProvider {
 	/** @var int Submission ID */
 	var $_submissionId;
 
+	/** @var boolean */
+	protected $_canManage;
+
 	/**
 	 * Constructor
 	 * @param $submissionId int Submission ID
+	 * @param $canManage boolean
 	 */
-	function __construct($submissionId) {
+	function __construct($submissionId, $canManage) {
 		parent::__construct();
 		$this->_submissionId = $submissionId;
+		$this->_canManage = $canManage;
 	}
 
 
@@ -122,6 +127,8 @@ class PublicationFormatGridCellProvider extends DataObjectGridCellProvider {
 					if ($remoteURL) {
 						return array();
 					}
+					// If this is just an author account, don't give any actions
+					if (!$this->_canManage) return array();
 					import('lib.pkp.controllers.api.file.linkAction.AddFileLinkAction');
 					import('lib.pkp.controllers.grid.files.fileList.linkAction.SelectFilesLinkAction');
 					AppLocale::requireComponents(LOCALE_COMPONENT_PKP_EDITOR);
