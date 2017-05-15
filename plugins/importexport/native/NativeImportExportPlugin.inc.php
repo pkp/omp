@@ -137,13 +137,15 @@ class NativeImportExportPlugin extends ImportExportPlugin {
 				$templateMgr->assign('validationErrors', $validationErrors);
 				libxml_clear_errors();
 
-				// Are there any submissions import errors
-				$processedSubmissionsIds = $deployment->getProcessedObjectsIds(ASSOC_TYPE_SUBMISSION);
-				if (!empty($processedSubmissionsIds)) {
-					$submissionsErrors = array_filter($processedSubmissionsIds, create_function('$a', 'return !empty($a);'));
-					if (!empty($submissionsErrors)) {
-						$templateMgr->assign('submissionsErrors', $processedSubmissionsIds);
-					}
+				// Are there any submissions import errors?
+				$submissionsErrors = $deployment->getProcessedObjectsErrors(ASSOC_TYPE_SUBMISSION);
+				if (!empty($submissionsErrors)) {
+					$templateMgr->assign('submissionsErrors', $submissionsErrors);
+				}
+				// Are there any submissions import warnings?
+				$submissionsWarnings = $deployment->getProcessedObjectsWarnings(ASSOC_TYPE_SUBMISSION);
+				if (!empty($submissionsWarnings)) {
+					$templateMgr->assign('submissionsWarnings', $submissionsWarnings);
 				}
 				// If there are any submissions or validataion errors
 				// delete imported submissions.

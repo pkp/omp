@@ -5,9 +5,21 @@
  * Copyright (c) 2003-2017 John Willinsky
  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
  *
- * List of operations this plugin can perform
+ * Result of operations this plugin performed
  *}
-
+{if $submissionsWarnings}
+	<h2>{translate key="plugins.importexport.common.warningsEncountered"}</h2>
+	{foreach from=$submissionsWarnings item=submissionsWarningMessages name=submissionsWarnings}
+		{if $submissionsWarningMessages|@count > 0}
+			<p>$smarty.foreach.submissionsWarnings.iteration}. {translate key="submissions.submission"}</p>
+			<ul>
+				{foreach from=$submissionsWarningMessages item=submissionsWarningMessage}
+					<li>{$submissionsWarningMessage|escape}</li>
+				{/foreach}
+			</ul>
+		{/if}
+	{/foreach}
+{/if}
 {if $validationErrors}
 	<h2>{translate key="plugins.importexport.common.validationErrors"}</h2>
 	<ul>
