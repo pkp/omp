@@ -144,6 +144,30 @@ class FeatureDAO extends DAO {
 	}
 
 	/**
+	 * Return the monograph's featured settings in all assoc types
+	 * @param $monographId int The monograph id to get the feature state.
+	 * @return array
+	 */
+	function getFeaturedAll($monographId) {
+		$result = $this->retrieve(
+			'SELECT assoc_type, assoc_id, seq FROM features WHERE submission_id = ?',
+			array((int) $monographId)
+		);
+
+		$featured = array();
+		while (!$result->EOF) {
+			$featured[] = array(
+				'assoc_type' => (int) $result->fields['assoc_type'],
+				'assoc_id' => (int) $result->fields['assoc_id'],
+				'seq' => (int) $result->fields['seq'],
+			);
+			$result->MoveNext();
+		}
+
+		return $featured;
+	}
+
+	/**
 	 * Get the current sequence position of the passed monograph id.
 	 * @param $monographId int The monograph id to check the sequence position.
 	 * @param $assocType int The monograph associated object type.

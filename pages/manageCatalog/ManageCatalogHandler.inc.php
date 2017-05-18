@@ -67,6 +67,15 @@ class ManageCatalogHandler extends Handler {
 	function index($args, $request) {
 		// Render the view.
 		$templateMgr = TemplateManager::getManager($request);
+
+		// Catalog list
+		import('controllers.list.submissions.CatalogSubmissionsListHandler');
+		$catalogListHandler = new CatalogSubmissionsListHandler(array(
+			'title' => 'submission.list.monographs',
+		));
+		$templateMgr->assign('catalogListData', json_encode($catalogListHandler->getConfig()));
+
+
 		return $templateMgr->display('manageCatalog/index.tpl');
 	}
 }

@@ -96,9 +96,13 @@
 	<message key="submission.incomplete">Awaiting Approval</message>
 	<message key="submission.editCatalogEntry">Entry</message>
 	<message key="submission.catalogEntry.new">New Catalog Entry</message>
+	<message key="submission.catalogEntry.add">Add Selected to Catalog</message>
+	<message key="submission.catalogEntry.select">Select monographs to add to the catalog</message>
+	<message key="submission.catalogEntry.selectionMissing">You must select at least one monograph to add to the catalog.</message>
 	<message key="submission.catalogEntry.confirm">Add this book to the public catalog</message>
 	<message key="submission.catalogEntry.confirm.required">Please confirm that the submission is ready to be placed in the catalog.</message>
 	<message key="submission.catalogEntry.isAvailable">This monograph is ready to be included in the public catalog.</message>
+	<message key="submission.catalogEntry.viewSubmission">View Submission</message>
 
 	<!-- Catalog Entry Tabs -->
 	<message key="submission.catalogEntry.monographMetadata">Monograph</message>
@@ -124,4 +128,9 @@
 	<message key="submission.dependentFiles">Dependent Files</message>
 	<message key="submission.metadataDescription">These specifications are based on the Dublin Core metadata set, an international standard used to describe press content.</message>
 	<message key="section.any">Any Series</message>
+
+	<!-- Submission Lists -->
+	<message key="submission.list.monographs">Monographs</message>
+	<message key="submission.list.countMonographs">{$count} monographs</message>
+	<message key="submission.list.itemsOfTotalMonographs">{$count} of {$total} monographs</message>
 </locale>

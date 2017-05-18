@@ -27,7 +27,7 @@ class SelectMonographHandler extends Handler {
 		parent::__construct();
 		$this->addRoleAssignment(
 			array(ROLE_ID_SUB_EDITOR, ROLE_ID_MANAGER),
-			array('fetch', 'getSubmissions')
+			array('fetch', 'select')
 		);
 	}
 
@@ -54,26 +54,50 @@ class SelectMonographHandler extends Handler {
 	 */
 	function fetch($args, $request) {
 		$templateMgr = TemplateManager::getManager($request);
-		AppLocale::requireComponents(LOCALE_COMPONENT_APP_SUBMISSION); // submission.select
+		import('lib.pkp.controllers.list.submissions.SelectSubmissionsListHandler');
+		$selectNewEntryHandler = new SelectSubmissionsListHandler(array(
+			'title' => 'submission.catalogEntry.select',
+			'count' => 20,
+			'inputName' => 'selectedSubmissions[]',
+			'getParams' => array(
+				'status' => STATUS_QUEUED,
+			),
+		));
+		$templateMgr->assign('selectNewEntryData', json_encode($selectNewEntryHandler->getConfig()));
 		return new JSONMessage(true, $templateMgr->fetch('controllers/modals/submissionMetadata/selectMonograph.tpl'));
 	}
 
 	/**
-	 * Get a list of submission options for new catalog entries.
+	 * Add selected submissions to the catalog
+	 *
 	 * @param $args array
 	 * @param $request PKPRequest
+	 * @return JSONMessage JSON object
 	 */
-	function getSubmissions($args, $request) {
-		$press = $request->getPress();
-		$monographDao = DAORegistry::getDAO('MonographDAO');
-		$submissionsIterator = $monographDao->getUnpublishedMonographsByPressId($press->getId());
-		$submissions = array();
-		while ($monograph = $submissionsIterator->next()) {
-			$submissions[$monograph->getId()] = $monograph->getLocalizedTitle();
+	function select($args, $request) {
+
+		if (!$request->checkCSRF() || !$context = $request->getContext()) {
+			return new JSONMessage(false, __('form.csrfInvalid'));
 		}
 
-		$jsonMessage = new JSONMessage(true, $submissions);
-		return $jsonMessage->getString();
+		$selectedSubmissions = empty($args['selectedSubmissions']) ? array() : array_map('intval', $args['selectedSubmissions']);
+
+		if (empty($selectedSubmissions)) {
+			return new JSONMessage(false, __('submission.catalogEntry.selectionMissing'));
+		}
+
+		import('classes.core.ServicesContainer');
+		$submissionService = ServicesContainer::instance()->get('submission');
+		$submissionDao = Application::getSubmissionDAO();
+		foreach ($selectedSubmissions as $submissionId) {
+			$submissionService->addToCatalog($submissionDao->getById($submissionId));
+		}
+
+		$json = new JSONMessage(true);
+		$json->setGlobalEvent('catalogEntryAdded', array(
+			'submissionsAdded' => $selectedSubmissions,
+		));
+		return $json;
 	}
 }
 

@@ -1,0 +1,97 @@
+/**
+ * @file styles/controllers/catalogSubmissionsListPanel.less
+ *
+ * Copyright (c) 2014-2016 Simon Fraser University Library
+ * Copyright (c) 2003-2016 John Willinsky
+ * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
+ *
+ * @brief Styles for the CatalogSubmissionsListPanel controller
+ */
+.pkpListPanel--catalogSubmissions {
+
+    .pkpListPanelItem--submission__item {
+        display: block;
+        float: none;
+        width: 100%;
+        padding-right: @base * 17;
+
+        a {
+            text-decoration: none;
+        }
+    }
+
+    .pkpListPanelItem__selectItem {
+        position: absolute;
+        top: 0;
+        right: @base * 8;
+        width: @base * 8;
+        height: 100%;
+        border-left: @grid-border;
+
+        label {
+            &:extend(.pkp_screen_reader all);
+        }
+
+        input {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            cursor: pointer;
+        }
+
+        + .pkpListPanelItem__selectItem {
+            right: 0;
+        }
+    }
+
+    &.--isLoading {
+
+        // Hide the list when loading because the featured and new release
+        // actions change depending on the filter used. This prevents a brief
+        // period while a list is loading when a user may click on the featured/
+        // new release actions on an item that isn't in the filter that's been
+        // requested.
+        .pkpListPanel__content--catalogSubmissions:after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: #fff;
+            opacity: 0.5;
+        }
+
+		// Hide column labels while loading. See above.
+		.pkpListPanel__columnLabel > span {
+			opacity: 0;
+		}
+    }
+}
+
+.pkpListPanel__columnLabels--catalogSubmissions {
+
+    .pkpListPanel__columnLabel {
+        position: absolute;
+        top: 0;
+        right: @base * 8;
+        width: @base * 8;
+        height: 100%;
+        border-left: @grid-border;
+        line-height: @base;
+
+        + .pkpListPanel__columnLabel {
+            right: 0;
+        }
+
+        span {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 90%;
+            transform: translate(-50%, -50%);
+            text-align: center;
+        }
+    }
+}
