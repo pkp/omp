@@ -41,10 +41,11 @@
 				<ul class="pkpListPanel__items">
 					<catalog-submissions-list-item
 						v-for="item in collection.items"
+						@catalogFeatureUpdated="sortByFeaturedSequence"
 						:submission="item"
 						:catalogEntryUrl="catalogEntryUrl"
-						:filterParams="filterParams"
-						:assocTypes="constants.assocTypes"
+						:filterAssocType="filterAssocType"
+						:filterAssocId="filterAssocId"
 						:apiPath="apiPath"
 						:i18n="i18n"
 					/>
@@ -96,9 +97,9 @@ export default _.extend({}, SubmissionsListPanel, {
 		 * if we're looking at a filtered view
 		 */
 		featuredLabel: function() {
-			if (_.has(this.filterParams, 'categoryIds')) {
+			if (this.filterAssocType === this.constants.assocTypes.category) {
 				return this.i18n.featuredCategory;
-			} else if (_.has(this.filterParams, 'seriesIds')) {
+			} else if (this.filterAssocType === this.constants.assocTypes.series) {
 				return this.i18n.featuredSeries;
 			}
 			return this.i18n.featured;
@@ -109,12 +110,46 @@ export default _.extend({}, SubmissionsListPanel, {
 		 * if we're looking at a filtered view
 		 */
 		newReleaseLabel: function() {
-			if (_.has(this.filterParams, 'categoryIds')) {
+			if (this.filterAssocType === this.constants.assocTypes.category) {
 				return this.i18n.newReleaseCategory;
-			} else if (_.has(this.filterParams, 'seriesIds')) {
+			} else if (this.filterAssocType === this.constants.assocTypes.series) {
 				return this.i18n.newReleaseSeries;
 			}
 			return this.i18n.newRelease;
+		},
+
+		/**
+		 * The assoc_type value which matches the current filter
+		 *
+		 * The assoc_type will match constants indicating a press, category or
+		 * series
+		 *
+		 * @return int
+		 */
+		filterAssocType: function() {
+			if (_.has(this.filterParams, 'categoryIds')) {
+				return this.constants.assocTypes.category;
+			} else if (_.has(this.filterParams, 'seriesIds')) {
+				return this.constants.assocTypes.series;
+			}
+			return this.constants.assocTypes.press;
+		},
+
+		/**
+		 * The assoc_id value which matches the current filter
+		 *
+		 * The assoc_id will match the pressId, categoryId or seriesId
+		 *
+		 * @return int
+		 */
+		filterAssocId: function() {
+			if (_.has(this.filterParams, 'categoryIds')) {
+				return this.filterParams.categoryIds;
+			} else if (_.has(this.filterParams, 'seriesIds')) {
+				return this.filterParams.seriesIds;
+			}
+			// in OMP, there's only one press context and it's always 1
+			return 1;
 		},
 	}),
 	methods: _.extend({}, SubmissionsListPanel.methods, {
@@ -131,12 +166,31 @@ export default _.extend({}, SubmissionsListPanel, {
 			$('<div id="' + $.pkp.classes.Helper.uuid() + '" ' +
 					'class="pkp_modal pkpModalWrapper" tabindex="-1"></div>')
 				.pkpHandler('$.pkp.controllers.modal.AjaxModalHandler', opts);
+		},
+
+		/**
+		 * Sort submissions by featured sequence
+		 */
+		sortByFeaturedSequence: function() {
+			this.collection.items = _.sortBy(this.collection.items, function(submission) {
+				var featured = _.findWhere(submission.featured, {assoc_type: this.filterAssocType});
+				return typeof featured === 'undefined' ? 9999999 : featured.seq;
+			}, this);
 		}
 	}),
 	mounted: function() {
 		SubmissionsListPanel.mounted.call(this);
 
+		this.sortByFeaturedSequence();
+		this.$watch('collection', function(newVal, oldVal) {
+			if (oldVal === newVal) {
+				return;
+			}
+			this.sortByFeaturedSequence();
+		});
+
 		var self = this;
+
 		pkp.eventBus.$on('catalogEntryAdded', function(data) {
 			self.get();
 		});

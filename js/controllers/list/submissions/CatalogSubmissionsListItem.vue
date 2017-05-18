@@ -40,7 +40,7 @@
 <script>
 export default {
 	name: 'CatalogSubmissionsListItem',
-	props: ['submission', 'i18n', 'filterParams', 'assocTypes', 'catalogEntryUrl', 'apiPath'],
+	props: ['submission', 'i18n', 'filterAssocType', 'filterAssocId', 'catalogEntryUrl', 'apiPath'],
 	data: function() {
 		return {
 			isSaving: false,
@@ -83,40 +83,6 @@ export default {
 		 */
 		newReleaseInputId: function() {
 			return 'newRelease-' + this.submission.id.toString();
-		},
-
-		/**
-		 * The assoc_type value which matches the current filter
-		 *
-		 * The assoc_type will match constants indicating a press, category or
-		 * series
-		 *
-		 * @return int
-		 */
-		filterAssocType: function() {
-			if (_.has(this.filterParams, 'categoryIds')) {
-				return this.assocTypes.category;
-			} else if (_.has(this.filterParams, 'seriesIds')) {
-				return this.assocTypes.series;
-			}
-			return this.assocTypes.press;
-		},
-
-		/**
-		 * The assoc_id value which matches the current filter
-		 *
-		 * The assoc_id will match the pressId, categoryId or seriesId
-		 *
-		 * @return int
-		 */
-		filterAssocId: function() {
-			if (_.has(this.filterParams, 'categoryIds')) {
-				return this.filterParams.categoryIds;
-			} else if (_.has(this.filterParams, 'seriesIds')) {
-				return this.filterParams.seriesIds;
-			}
-			// in OMP, there's only one press context and it's always 1
-			return 1;
 		},
 	},
 	methods: {
@@ -175,6 +141,7 @@ export default {
 				success: function(r) {
 					if (typeof r.featured !== 'undefined') {
 						self.submission.featured = r.featured;
+						self.$emit('catalogFeatureUpdated', self.submission);
 					}
 					if (typeof r.newRelease !== 'undefined') {
 						self.submission.newRelease = r.newRelease;
@@ -200,6 +167,6 @@ export default {
 					'class="pkp_modal pkpModalWrapper" tabindex="-1"></div>')
 				.pkpHandler('$.pkp.controllers.modal.AjaxModalHandler', opts);
 		}
-	}
+	},
 };
 </script>
