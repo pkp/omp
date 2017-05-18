@@ -1,5 +1,5 @@
 <template>
-	<div class="pkpListPanel__filter pkpListPanel__filter--catalogSubmissions" :class="{'--is-visible': isVisible}">
+	<div class="pkpListPanel__filter pkpListPanel__filter--catalogSubmissions" :class="{'--isVisible': isVisible}">
 		<div class="pkpListPanel__filterHeader pkpListPanel__filterHeader--catalogSubmissions">
 			<span class="fa fa-filter"></span>
 			{{ i18n.filter }}
