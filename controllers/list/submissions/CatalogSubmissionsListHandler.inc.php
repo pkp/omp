@@ -22,12 +22,25 @@ class CatalogSubmissionsListHandler extends SubmissionsListHandler {
 	 */
 	public function getConfig() {
 		AppLocale::requireComponents(LOCALE_COMPONENT_APP_SUBMISSION);
-		$this->_getParams = array_merge($this->_getParams, array('status' => STATUS_PUBLISHED, 'orderByFeatured' => true));
-		$config = parent::getConfig();
-
 
 		$request = Application::getRequest();
 		$context = $request->getContext();
+
+		list($catalogSortBy, $catalogSortDir) = explode('-', $context->getSetting('catalogSortOption'));
+		$catalogSortBy = empty($catalogSortBy) ? ORDERBY_DATE_PUBLISHED : $catalogSortBy;
+		$catalogSortDir = $catalogSortDir == SORT_DIRECTION_ASC ? 'ASC' : 'DESC';
+
+		$this->_getParams = array_merge(
+			$this->_getParams,
+			array(
+				'status' => STATUS_PUBLISHED,
+				'orderByFeatured' => true,
+				'orderBy' => $catalogSortBy,
+				'orderDirection' => $catalogSortDir,
+			)
+		);
+
+		$config = parent::getConfig();
 
 		$config['i18n']['add'] = __('submission.catalogEntry.new');
 		$config['i18n']['categories'] = __('catalog.categories');
@@ -70,6 +83,8 @@ class CatalogSubmissionsListHandler extends SubmissionsListHandler {
 			$categories = $categoryDao->getByPressId($context->getId());
 			while (!$categories->eof()) {
 				$category = $categories->next();
+				list($categorySortBy, $categorySortDir) = explode('-', $category->getSortOption());
+				$categorySortDir = empty($categorySortDir) ? $catalogSortDir : $categorySortDir == SORT_DIRECTION_ASC ? 'ASC' : 'DESC';
 				$config['categories'][] = array(
 					'id' => (int) $category->getId(),
 					'parent_id' => (int) $category->getParentId(),
@@ -77,7 +92,8 @@ class CatalogSubmissionsListHandler extends SubmissionsListHandler {
 					'description' => $category->getLocalizedDescription(),
 					'path' => $category->getPath(),
 					'image' => $category->getImage(),
-					'sort' => $category->getSortOption(),
+					'sortBy' => $categorySortBy,
+					'sortDir' => $categorySortDir,
 					'sequence' => (int) $category->getSequence(),
 				);
 			}
@@ -89,6 +105,8 @@ class CatalogSubmissionsListHandler extends SubmissionsListHandler {
 			$seriesResult = $seriesDao->getByPressId($context->getId());
 			while (!$seriesResult->eof()) {
 				$series = $seriesResult->next();
+				list($seriesSortBy, $seriesSortDir) = explode('-', $series->getSortOption());
+				$seriesSortDir = empty($seriesSortDir) ? $catalogSortDir : $seriesSortDir == SORT_DIRECTION_ASC ? 'ASC' : 'DESC';
 				$config['series'][] = array(
 					'id' => (int) $series->getId(),
 					'title' => $series->getLocalizedTitle(),
@@ -100,7 +118,8 @@ class CatalogSubmissionsListHandler extends SubmissionsListHandler {
 					'onlineIssn' => $series->getOnlineIssn(),
 					'printIssn' => $series->getPrintIssn(),
 					'image' => $series->getImage(),
-					'sort' => $series->getSortOption(),
+					'sortBy' => $seriesSortBy,
+					'sortDir' => $seriesSortDir,
 					'editors' => $series->getEditorsString(),
 				);
 			}
@@ -112,6 +131,8 @@ class CatalogSubmissionsListHandler extends SubmissionsListHandler {
 				'category' => ASSOC_TYPE_CATEGORY,
 				'series' => ASSOC_TYPE_SERIES,
 			),
+			'catalogSortBy' => $catalogSortBy,
+			'catalogSortDir' => $catalogSortDir,
 		);
 
 		return $config;

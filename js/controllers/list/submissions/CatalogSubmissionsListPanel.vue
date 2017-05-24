@@ -176,11 +176,50 @@ export default _.extend({}, SubmissionsListPanel, {
 				var featured = _.findWhere(submission.featured, {assoc_type: this.filterAssocType});
 				return typeof featured === 'undefined' ? 9999999 : featured.seq;
 			}, this);
-		}
+		},
+
+		/**
+		 * Set the sort order for get requests. This can change depending on
+		 * whether the full catalog or a series/category is being viewed.
+		 */
+		updateSortOrder: function() {
+			if (typeof this.filterParams.categoryIds !== 'undefined') {
+				var cat = _.findWhere(this.categories, {id: this.filterParams.categoryIds});
+				this.getParams.orderBy = cat.sortBy;
+				this.getParams.orderDirection = cat.sortDir || this.constants.catalogSortDir;
+			} else if (typeof this.filterParams.seriesIds !== 'undefined') {
+				var series = _.findWhere(this.series, {id: this.filterParams.seriesIds});
+				this.getParams.orderBy = series.sortBy || this.constants.catalogSortBy;
+				this.getParams.orderDirection = series.sortDir || this.constants.catalogSortDir;
+				console.log('sort', series, series.sortBy, series.sortDir, this.getParams);
+			} else {
+				this.getParams.orderBy = this.constants.catalogSortBy;
+				this.getParams.orderDirection = this.constants.catalogSortDir;
+			}
+		},
 	}),
 	mounted: function() {
+
+		/**
+		 * When a filter is set, update the sort order to match the setting of
+		 * the series or catalog
+		 *
+		 * Set this watcher before calling SubmissionsListPanel.mounted() so
+		 * that the get params are updated before the ajax request is made.
+		 */
+		this.$watch('filterParams', function(newVal, oldVal) {
+			if (newVal === oldVal) {
+				return;
+			}
+			this.updateSortOrder();
+		});
+
 		SubmissionsListPanel.mounted.call(this);
 
+		/**
+		 * Resort featured items to the top of the collection whenever it
+		 * changes
+		 */
 		this.sortByFeaturedSequence();
 		this.$watch('collection', function(newVal, oldVal) {
 			if (oldVal === newVal) {
@@ -189,8 +228,10 @@ export default _.extend({}, SubmissionsListPanel, {
 			this.sortByFeaturedSequence();
 		});
 
+		/**
+		 * Update when a new entry has been added to the catalog
+		 */
 		var self = this;
-
 		pkp.eventBus.$on('catalogEntryAdded', function(data) {
 			self.get();
 		});

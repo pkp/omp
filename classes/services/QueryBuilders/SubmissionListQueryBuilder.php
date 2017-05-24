@@ -69,20 +69,20 @@ class SubmissionListQueryBuilder extends PKPSubmissionListQueryBuilder {
 	 * @return \App\Services\QueryBuilders\SubmissionListQueryBuilder
 	 */
 	public function orderBy($column, $direction = 'DESC') {
+		// Bring in orderby constants
+		import('classes.monograph.PublishedMonographDAO');
 		switch ($column) {
-			case 'title':
-				$this->orderColumn = 'st.setting_value';
-				break;
-			case 'datePublished':
+			case ORDERBY_DATE_PUBLISHED:
 				$this->orderColumn = 'ps.date_published';
 				break;
-			case 'seriesPosition':
+			case ORDERBY_SERIES_POSITION:
 				$this->orderColumn = 's.series_position';
 				break;
 			default:
 				return parent::orderBy($column, $direction);
 		}
 		$this->orderDirection = $direction;
+
 		return $this;
 	}
 
@@ -108,14 +108,8 @@ class SubmissionListQueryBuilder extends PKPSubmissionListQueryBuilder {
 		}
 
 		if (!empty($this->categoryIds)) {
-			$q->leftJoin('submission_categories as sc','s.submission_id','=','sc.submission_id')
+			$q->leftJoin('submission_categories as sc', 's.submission_id', '=', 'sc.submission_id')
 				->whereIn('sc.category_id', $this->categoryIds);
-		}
-
-		if ($this->orderColumn === 'ps.date_published') {
-			$q->leftJoin('published_submissions as ps', 's.submission_id', '=', 'ps.submission_id');
-		} elseif ($this->orderColumn === 'st.setting_value') {
-			$q->leftJoin('submission_settings as st', 's.submission_id'. '=', 'st.submission_id'); //@todo
 		}
 
 		if (!empty($this->orderByFeaturedSeq)) {

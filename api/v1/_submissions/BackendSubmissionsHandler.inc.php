@@ -51,6 +51,12 @@ class BackendSubmissionsHandler extends PKPBackendSubmissionsHandler {
 
 		$originalParams = $slimRequest->getQueryParams();
 
+		// Add allowed order by options for OMP
+		import('classes.monograph.PublishedMonographDAO'); // load constants
+		if (in_array($originalParams['orderBy'], array(ORDERBY_DATE_PUBLISHED, ORDERBY_SERIES_POSITION))) {
+			$params['orderBy'] = $originalParams['orderBy'];
+		}
+
 		// Add allowed order by option for featured/new releases
 		if (isset($originalParams['orderByFeatured'])) {
 			$params['orderByFeatured'] = true;
