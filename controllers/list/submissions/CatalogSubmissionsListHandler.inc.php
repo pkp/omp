@@ -22,7 +22,7 @@ class CatalogSubmissionsListHandler extends SubmissionsListHandler {
 	 */
 	public function getConfig() {
 		AppLocale::requireComponents(LOCALE_COMPONENT_APP_SUBMISSION);
-		$this->_getParams = array_merge($this->_getParams, array('status' => STATUS_PUBLISHED));
+		$this->_getParams = array_merge($this->_getParams, array('status' => STATUS_PUBLISHED, 'orderByFeatured' => true));
 		$config = parent::getConfig();
 
 

@@ -52,8 +52,8 @@ class BackendSubmissionsHandler extends PKPBackendSubmissionsHandler {
 		$originalParams = $slimRequest->getQueryParams();
 
 		// Add allowed order by option for featured/new releases
-		if (isset($originalParams['orderBy']) && $originalParams['orderBy'] === 'isFeatured') {
-			$params['orderBy'] = 'isFeatured';
+		if (isset($originalParams['orderByFeatured'])) {
+			$params['orderByFeatured'] = true;
 		}
 
 		if (!empty($originalParams['categoryIds'])) {

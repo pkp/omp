@@ -157,6 +157,10 @@ class SubmissionService extends PKPSubmissionService {
 			$submissionListQB->filterBySeries($args['seriesIds']);
 		}
 
+		if (!empty($args['orderByFeatured'])) {
+			$submissionListQB->orderByFeatured();
+		}
+
 		return $submissionListQB;
 	}
 

@@ -25,6 +25,9 @@ class SubmissionListQueryBuilder extends PKPSubmissionListQueryBuilder {
 	/** @var int|array Series ID(s) */
 	protected $seriesIds = null;
 
+	/** @var bool Order featured items first */
+	protected $orderByFeaturedSeq = null;
+
 	/**
 	 * Set category filter
 	 *
@@ -54,6 +57,44 @@ class SubmissionListQueryBuilder extends PKPSubmissionListQueryBuilder {
 		$this->seriesIds = $seriesIds;
 		return $this;
 	}
+
+	/**
+	 * Implement app-specific ordering options for catalog
+	 *
+	 * Publication date, Title or Series position, with featured items first
+	 *
+	 * @param string $column
+	 * @param string $direction
+	 *
+	 * @return \App\Services\QueryBuilders\SubmissionListQueryBuilder
+	 */
+	public function orderBy($column, $direction = 'DESC') {
+		switch ($column) {
+			case 'title':
+				$this->orderColumn = 'st.setting_value';
+				break;
+			case 'datePublished':
+				$this->orderColumn = 'ps.date_published';
+				break;
+			case 'seriesPosition':
+				$this->orderColumn = 's.series_position';
+				break;
+			default:
+				return parent::orderBy($column, $direction);
+		}
+		$this->orderDirection = $direction;
+		return $this;
+	}
+
+	/**
+	 * Order featured items first
+	 *
+	 * @return \App\Services\QueryBuilders\SubmissionListQueryBuilder
+	 */
+	public function orderByFeatured() {
+		$this->orderByFeaturedSeq = true;
+	}
+
 	/**
 	 * Execute additional actions for app-specific query objects
 	 *
@@ -69,6 +110,40 @@ class SubmissionListQueryBuilder extends PKPSubmissionListQueryBuilder {
 		if (!empty($this->categoryIds)) {
 			$q->leftJoin('submission_categories as sc','s.submission_id','=','sc.submission_id')
 				->whereIn('sc.category_id', $this->categoryIds);
+		}
+
+		if ($this->orderColumn === 'ps.date_published') {
+			$q->leftJoin('published_submissions as ps', 's.submission_id', '=', 'ps.submission_id');
+		} elseif ($this->orderColumn === 'st.setting_value') {
+			$q->leftJoin('submission_settings as st', 's.submission_id'. '=', 'st.submission_id'); //@todo
+		}
+
+		if (!empty($this->orderByFeaturedSeq)) {
+			if (!empty($this->seriesIds)) {
+				$assocType = ASSOC_TYPE_SERIES;
+				$assocIds = $this->seriesIds;
+			} elseif (!empty($this->categoryIds)) {
+				$assocType = ASSOC_TYPE_CATEGORY;
+				$assocIds = $this->categoryIds;
+			} else {
+				$assocType = ASSOC_TYPE_PRESS;
+				$assocIds = array(1); // OMP only supports a single press
+			}
+			$q->leftJoin('features as psf', function($join) use ($assocType, $assocIds) {
+				$join->on('s.submission_id', '=', 'psf.submission_id')
+					->on('psf.assoc_type', '=', Capsule::raw($assocType));
+				foreach ($assocIds as $assocId) {
+					$join->on('psf.assoc_id', '=', Capsule::raw(intval($assocId)));
+				}
+			});
+
+			// Featured sorting should be the first sort parameter. We sort by
+			// the seq parameter, with null values last
+			array_unshift(
+				$q->orders,
+				array('type' => 'raw', 'sql' => 'case when psf.seq is null then 1 else 0 end'),
+				array('column' => 'psf.seq', 'direction' => 'ASC')
+			);
 		}
 
 		return $q;
