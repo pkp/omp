@@ -57,6 +57,11 @@ class CatalogSubmissionsListHandler extends SubmissionsListHandler {
 		$config['i18n']['editCatalogEntry'] = __('submission.editCatalogEntry');
 		$config['i18n']['viewSubmission'] = __('submission.catalogEntry.viewSubmission');
 		$config['i18n']['saving'] = __('common.saving');
+		$config['i18n']['orderFeatures'] = __('submission.list.orderFeatures');
+		$config['i18n']['orderingFeatures'] = __('submission.list.orderingFeatures');
+		$config['i18n']['orderingFeaturesSection'] = __('submission.list.orderingFeaturesSection');
+		$config['i18n']['saveFeatureOrder'] = __('submission.list.saveFeatureOrder');
+		$config['i18n']['cancel'] = __('common.cancel');
 
 		$config['addUrl'] = $request->getDispatcher()->url(
 			$request,

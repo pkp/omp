@@ -1,5 +1,12 @@
 <template>
-	<li class="pkpListPanelItem pkpListPanelItem--submission pkpListPanelItem--catalog" :class="{'--isLoading': isSaving}">
+	<li class="pkpListPanelItem pkpListPanelItem--submission pkpListPanelItem--catalog" :class="{'--isLoading': isSaving, '--isFeatured': isFeatured}">
+		<list-panel-item-orderer
+			v-if="isOrdering"
+			@itemOrderUp="itemOrderUp"
+			@itemOrderDown="itemOrderDown"
+			i18n="i18n"
+			itemTitle="submission.title"
+		/>
 		<div class="pkpListPanelItem--submission__item">
 			<a :href="submission.urlPublished">
 				<div class="pkpListPanelItem--submission__title">
@@ -38,9 +45,15 @@
 </template>
 
 <script>
-export default {
+import ListPanelItem from '../../../../lib/pkp/js/controllers/list/ListPanelItem.vue';
+import ListPanelItemOrderer from '../../../../lib/pkp/js/controllers/list/ListPanelItemOrderer.vue';
+
+export default _.extend({}, ListPanelItem, {
 	name: 'CatalogSubmissionsListItem',
-	props: ['submission', 'i18n', 'filterAssocType', 'filterAssocId', 'catalogEntryUrl', 'apiPath'],
+	props: ['submission', 'i18n', 'filterAssocType', 'filterAssocId', 'catalogEntryUrl', 'isOrdering', 'apiPath'],
+	components: {
+		ListPanelItemOrderer,
+	},
 	data: function() {
 		return {
 			isSaving: false,
@@ -85,7 +98,7 @@ export default {
 			return 'newRelease-' + this.submission.id.toString();
 		},
 	},
-	methods: {
+	methods: _.extend({}, ListPanelItem.methods, {
 		/**
 		 * Toggle the checkbox when clicked
 		 */
@@ -123,7 +136,7 @@ export default {
 		 */
 		saveDisplayFlags: function() {
 
-			this.isSaving = true;
+			this.isLoading = true;
 
 			var self = this;
 			$.ajax({
@@ -148,7 +161,7 @@ export default {
 					}
 				},
 				complete: function(r) {
-					self.isSaving = false;
+					self.isLoading = false;
 				}
 			});
 		},
@@ -166,7 +179,7 @@ export default {
 			$('<div id="' + $.pkp.classes.Helper.uuid() + '" ' +
 					'class="pkp_modal pkpModalWrapper" tabindex="-1"></div>')
 				.pkpHandler('$.pkp.controllers.modal.AjaxModalHandler', opts);
-		}
-	},
-};
+		},
+	}),
+});
 </script>

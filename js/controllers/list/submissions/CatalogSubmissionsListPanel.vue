@@ -4,13 +4,31 @@
 			<div class="pkpListPanel__title">{{ i18n.title }}</div>
 			<ul class="pkpListPanel__actions">
 				<li v-if="hasFilters">
-					<button @click.prevent="toggleFilter" :class="{'--isActive': this.isFilterVisible}">
+					<button @click.prevent="toggleFilter" :class="{'--isActive': isFilterVisible}">
 						<span class="fa fa-filter"></span>
 						{{ i18n.filter }}
 					</button>
 				</li>
+				<li class="pkpListPanel__orderToggle">
+					<button @click.prevent="toggleOrdering" :class="{'--isActive': isOrdering}">
+						<span class="fa fa-sort"></span>
+						<template v-if="isOrdering">
+							{{ i18n.saveFeatureOrder }}
+						</template>
+						<template v-else>
+							{{ i18n.orderFeatures }}
+						</template>
+					</button>
+				</li>
+				<li v-if="isOrdering" class="pkpListPanel__orderToggleCancel">
+					<button @click.prevent="cancelOrdering" class="--isWarnable">
+						{{ i18n.cancel }}
+					</button>
+				</li>
 				<li>
-					<a href="#" @click.prevent="openNewEntryModal">{{ i18n.add }}</a>
+					<button @click.prevent="openNewEntryModal">
+						{{ i18n.add }}
+					</button>
 				</li>
 			</ul>
 			<list-panel-search
@@ -21,6 +39,10 @@
 			/>
 		</div>
 		<div class="pkpListPanel__body pkpListPanel__body--catalogSubmissions">
+			<div v-if="isOrdering" class="pkpListPanel__notice">
+				<span class="pkpListPanel__noticeInfo fa fa-info-circle"></span>
+				{{ featuredNotice }}
+			</div>
 			<catalog-submissions-list-filter
 				v-if="hasFilters"
 				@filterList="updateFilter"
@@ -39,16 +61,21 @@
 					</span>
 				</div>
 				<ul class="pkpListPanel__items">
-					<catalog-submissions-list-item
-						v-for="item in collection.items"
-						@catalogFeatureUpdated="sortByFeaturedSequence"
-						:submission="item"
-						:catalogEntryUrl="catalogEntryUrl"
-						:filterAssocType="filterAssocType"
-						:filterAssocId="filterAssocId"
-						:apiPath="apiPath"
-						:i18n="i18n"
-					/>
+					<draggable v-model="collection.items" :options="draggableOptions" @start="drag=true" @end="drag=false">
+						<catalog-submissions-list-item
+							v-for="item in collection.items"
+							@catalogFeatureUpdated="sortByFeaturedSequence"
+							@itemOrderUp="itemOrderUp"
+							@itemOrderDown="itemOrderDown"
+							:submission="item"
+							:catalogEntryUrl="catalogEntryUrl"
+							:filterAssocType="filterAssocType"
+							:filterAssocId="filterAssocId"
+							:isOrdering="isOrdering"
+							:apiPath="apiPath"
+							:i18n="i18n"
+						/>
+					</draggable>
 				</ul>
 			</div>
 		</div>
@@ -72,12 +99,14 @@
 import SubmissionsListPanel from '../../../../lib/pkp/js/controllers/list/submissions/SubmissionsListPanel.vue';
 import CatalogSubmissionsListItem from './CatalogSubmissionsListItem.vue';
 import CatalogSubmissionsListFilter from './CatalogSubmissionsListFilter.vue';
+import draggable from 'vuedraggable';
 
 export default _.extend({}, SubmissionsListPanel, {
 	name: 'CatalogSubmissionsListPanel',
 	components: _.extend({}, SubmissionsListPanel.components, {
 		CatalogSubmissionsListItem,
 		CatalogSubmissionsListFilter,
+		draggable,
 	}),
 	data: function() {
 		return _.extend({}, SubmissionsListPanel.data(), {
@@ -85,6 +114,13 @@ export default _.extend({}, SubmissionsListPanel, {
 		});
 	},
 	computed: _.extend({}, SubmissionsListPanel.computed, {
+		/**
+		 * Set status on the component
+		 */
+		classLoading: function() {
+			return { '--isLoading': this.isLoading, '--isOrdering': this.isOrdering };
+		},
+
 		/**
 		 * Are there any filters available?
 		 */
@@ -116,6 +152,19 @@ export default _.extend({}, SubmissionsListPanel, {
 				return this.i18n.newReleaseSeries;
 			}
 			return this.i18n.newRelease;
+		},
+
+		/**
+		 * Return the appropriate label for the featured column depending on
+		 * if we're looking at a filtered view
+		 */
+		featuredNotice: function() {
+			if (this.filterAssocType === this.constants.assocTypes.category) {
+				return this.__('orderingFeaturesSection', {title: _.findWhere(this.categories, {id: this.filterAssocId}).title});
+			} else if (this.filterAssocType === this.constants.assocTypes.series) {
+				return this.__('orderingFeaturesSection', {title: _.findWhere(this.series, {id: this.filterAssocId}).title});
+			}
+			return this.i18n.orderingFeatures;
 		},
 
 		/**
@@ -191,11 +240,50 @@ export default _.extend({}, SubmissionsListPanel, {
 				var series = _.findWhere(this.series, {id: this.filterParams.seriesIds});
 				this.getParams.orderBy = series.sortBy || this.constants.catalogSortBy;
 				this.getParams.orderDirection = series.sortDir || this.constants.catalogSortDir;
-				console.log('sort', series, series.sortBy, series.sortDir, this.getParams);
 			} else {
 				this.getParams.orderBy = this.constants.catalogSortBy;
 				this.getParams.orderDirection = this.constants.catalogSortDir;
 			}
+		},
+
+		/**
+		 * Update the order sequence property for items in this list based on
+		 * the new order of items
+		 */
+		setItemOrderSequence: function() {
+			var featured = [],
+				seq = 0;
+			_.each(this.collection.items, function(item) {
+				var feature = _.findWhere(item.featured, {assoc_type: this.filterAssocType});
+				if (typeof feature !== 'undefined') {
+					feature.seq = seq;
+					featured.push({
+						id: item.id,
+						seq: feature.seq,
+					});
+					seq++;
+				}
+			}, this);
+
+			this.isLoading = true;
+
+			var self = this;
+			$.ajax({
+				url: $.pkp.app.apiBaseUrl + '/' + this.apiPath + '/' + 'saveFeaturedOrder',
+				type: 'POST',
+				data: {
+					assocType: this.filterAssocType,
+					assocId: this.filterAssocId,
+					featured: featured,
+					csrfToken: $.pkp.currentUser.csrfToken,
+				},
+				error: function(r) {
+					self.ajaxErrorCallback(r);
+				},
+				complete: function(r) {
+					self.isLoading = false;
+				}
+			});
 		},
 	}),
 	mounted: function() {

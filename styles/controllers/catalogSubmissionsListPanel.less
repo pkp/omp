@@ -95,3 +95,22 @@
         }
     }
 }
+
+.pkpListPanel--catalogSubmissions.--isOrdering {
+
+    .pkpListPanel__actions > li:not(.pkpListPanel__orderToggle):not(.pkpListPanel__orderToggleCancel),
+    .pkpListPanel__search,
+    .pkpListPanelItem__selectItem,
+    .pkpListPanelItem__actions,
+    .pkpListPanel__columnLabels {
+        display: none;
+    }
+
+    .pkpListPanelItem--submission__item {
+        padding-right: 0;
+    }
+
+    .pkpListPanelItem:not(.--isFeatured) {
+        display: none;
+    }
+}

@@ -33,6 +33,14 @@ class BackendSubmissionsHandler extends PKPBackendSubmissionsHandler {
 						ROLE_ID_MANAGER,
 					),
 				),
+				array(
+					'pattern' => "{$rootPattern}/saveFeaturedOrder",
+					'handler' => array($this, 'saveFeaturedOrder'),
+					'roles' => array(
+						ROLE_ID_SITE_ADMIN,
+						ROLE_ID_MANAGER,
+					),
+				),
 			),
 		);
 		parent::__construct();
@@ -130,5 +138,48 @@ class BackendSubmissionsHandler extends PKPBackendSubmissionsHandler {
 		);
 
 		return $response->withJson($output);
+	}
+
+	/**
+	 * Save changes to the sequence of featured items in the catalog, series or
+	 * category.
+	 *
+	 * @param $slimRequest Request Slim request object
+	 * @param $response Response object
+	 * @param $args array {
+	 * 		@option int assocType Whether these featured items are for a
+	 *			press, category or series. Values: ASSOC_TYPE_*
+	 * 		@option int assocId The press, category or series id
+	 *		@option array featured List of assoc arrays with submission ids and
+	 *			seq value.
+	 *		@option bool append Whether to replace or append the features to
+	 *			the existing features for this assoc type and id. Default: false
+	 * }
+	 *
+	 * @return Response
+	 */
+	public function saveFeaturedOrder($slimRequest, $response, $args) {
+		$params = $slimRequest->getParsedBody();
+
+		if (!\Application::getRequest()->checkCSRF()) {
+			return $response->withStatus(403)->withJsonError('api.submissions.403.csrfTokenFailure');
+		}
+
+		$assocType = isset($params['assocType']) && in_array($params['assocType'], array(ASSOC_TYPE_PRESS, ASSOC_TYPE_CATEGORY, ASSOC_TYPE_SERIES)) ?  (int) $params['assocType'] : null;
+		$assocId = isset($params['assocId']) ?  (int) $params['assocId'] : null;
+
+		if (empty($assocType) || empty($assocId)) {
+			return $response->withStatus(400)->withJsonError('api.submissions.400.missingRequired');
+		}
+
+		$featureDao = \DAORegistry::getDAO('FeatureDAO');
+		$featureDao->deleteByAssoc($assocType, $assocId);
+		if (!empty($params['featured'])) {
+			foreach($params['featured'] as $feature) {
+				$featureDao->insertFeature($feature['id'], $assocType, $assocId, $feature['seq']);
+			}
+		}
+
+		return $response->withJson(true);
 	}
 }
