@@ -21,24 +21,10 @@
     }
 
     .pkpListPanelItem__selectItem {
-        position: absolute;
-        top: 0;
         right: @base * 8;
         width: @base * 8;
-        height: 100%;
+        border-right: none;
         border-left: @grid-border;
-
-        label {
-            &:extend(.pkp_screen_reader all);
-        }
-
-        input {
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            cursor: pointer;
-        }
 
         + .pkpListPanelItem__selectItem {
             right: 0;

@@ -25,14 +25,30 @@
 				</a>
 			</div>
 		</div>
-		<div class="pkpListPanelItem__selectItem" @click.prevent="toggleFeatured">
-			<label :for="featuredInputId">{{ i18n.featured }}</label>
-			<input type="checkbox" :id="featuredInputId" :checked="isFeatured" @click.stop>
-		</div>
-		<div class="pkpListPanelItem__selectItem" @click.prevent="toggleNewRelease">
-			<label :for="newReleaseInputId">{{ i18n.newRelease }}</label>
-			<input type="checkbox" :id="newReleaseInputId" :checked="isNewRelease" @click.stop>
-		</div>
+		<button class="pkpListPanelItem__selectItem" @click.prevent="toggleFeatured">
+			<span v-if="isFeatured" class="fa fa-check-square-o"></span>
+			<span v-else class="fa fa-square-o"></span>
+			<span class="pkp_screen_reader">
+				<template v-if="isFeatured">
+					This monograph is featured. Make this monograph not featured.
+				</template>
+				<template v-else>
+					This monograph is not featured. Make this monograph featured.
+				</template>
+			</span>
+		</button>
+		<button class="pkpListPanelItem__selectItem" @click.prevent="toggleNewRelease">
+			<span v-if="isNewRelease" class="fa fa-check-square-o"></span>
+			<span v-else class="fa fa-square-o"></span>
+			<span class="pkp_screen_reader">
+				<template v-if="isNewRelease">
+					This monograph is a new release. Make this monograph not a new release.
+				</template>
+				<template v-else>
+					This monograph is not a new release. Make this monograph a new release.
+				</template>
+			</span>
+		</button>
 		<div class="pkpListPanelItem__mask" :class="{'--active': isSaving}">
 			<div class="pkpListPanelItem__maskLabel">
 				<span class="pkpListPanelItem__maskLabel_loading">
@@ -85,24 +101,6 @@ export default _.extend({}, ListPanelItem, {
 		 */
 		isNewRelease: function() {
 			return typeof _.findWhere(this.submission.newRelease, {assoc_type: this.filterAssocType}) !== 'undefined';
-		},
-
-		/**
-		 * The id attribute of the featured checkbox
-		 *
-		 * @return string
-		 */
-		featuredInputId: function() {
-			return 'featured-' + this.submission.id.toString();
-		},
-
-		/**
-		 * The id attribute of the new release checkbox
-		 *
-		 * @return string
-		 */
-		newReleaseInputId: function() {
-			return 'newRelease-' + this.submission.id.toString();
 		},
 	},
 	methods: _.extend({}, ListPanelItem.methods, {
