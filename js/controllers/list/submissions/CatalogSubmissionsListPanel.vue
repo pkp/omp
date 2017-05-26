@@ -9,7 +9,7 @@
 						{{ i18n.filter }}
 					</button>
 				</li>
-				<li class="pkpListPanel__orderToggle">
+				<li class="pkpListPanel__orderToggle" v-if="canOrder">
 					<button @click.prevent="toggleOrdering" :class="{'--isActive': isOrdering}">
 						<span class="fa fa-sort"></span>
 						<template v-if="isOrdering">
@@ -114,6 +114,20 @@ export default _.extend({}, SubmissionsListPanel, {
 		});
 	},
 	computed: _.extend({}, SubmissionsListPanel.computed, {
+		/**
+		 * Can any monographs be ordered?
+		 */
+		canOrder: function() {
+			var canOrder = false;
+			_.each(this.collection.items, function(item) {
+				if (typeof _.findWhere(item.featured, {assoc_type: this.filterAssocType}) !== 'undefined') {
+					canOrder = true;
+					return false;
+				}
+			}, this);
+			return canOrder;
+		},
+
 		/**
 		 * Set status on the component
 		 */
