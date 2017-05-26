@@ -61,6 +61,13 @@ export default _.extend({}, ListPanelItem, {
 	},
 	computed: {
 		/**
+		 * Map the submission id to the list item id
+		 */
+		id: function() {
+			return this.submission.id;
+		},
+
+		/**
 		 * Is the submission featured in the current filtered view?
 		 * press, category or series
 		 *

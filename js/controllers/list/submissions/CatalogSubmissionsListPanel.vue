@@ -285,6 +285,21 @@ export default _.extend({}, SubmissionsListPanel, {
 				}
 			});
 		},
+
+		/**
+		 * Override the ListPanel method to only handle featured items
+		 */
+		itemOrderDown: function(data) {
+			var featuredItems = _.filter(this.collection.items, function(item) {
+				return typeof _.findWhere(item.featured, {assoc_type: this.filterAssocType}) !== 'undefined';
+			}, this);
+			var index = _.findIndex(this.collection.items, function(item) { return item.id == data.id });
+			if (index === featuredItems.length - 1) {
+				return;
+			}
+			this.collection.items.splice(index + 1, 0, this.collection.items.splice(index, 1)[0]);
+			this.itemOrderResetFocus(data.id, 'down');
+		},
 	}),
 	mounted: function() {
 
