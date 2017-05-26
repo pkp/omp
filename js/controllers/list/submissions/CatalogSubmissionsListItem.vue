@@ -4,8 +4,8 @@
 			v-if="isOrdering"
 			@itemOrderUp="itemOrderUp"
 			@itemOrderDown="itemOrderDown"
-			i18n="i18n"
-			itemTitle="submission.title"
+			:itemTitle="submission.title"
+			:i18n="i18n"
 		/>
 		<div class="pkpListPanelItem--submission__item">
 			<a :href="submission.urlPublished">
