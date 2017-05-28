@@ -1,5 +1,5 @@
 <template>
-	<div class="pkpListPanel pkpListPanel--submissions pkpListPanel--catalogSubmissions" :class="classLoading">
+	<div class="pkpListPanel pkpListPanel--submissions pkpListPanel--catalogSubmissions" :class="classStatus">
 		<div class="pkpListPanel__header">
 			<div class="pkpListPanel__title">{{ i18n.title }}</div>
 			<ul class="pkpListPanel__actions">
@@ -131,7 +131,7 @@ export default _.extend({}, SubmissionsListPanel, {
 		/**
 		 * Set status on the component
 		 */
-		classLoading: function() {
+		classStatus: function() {
 			return { '--isLoading': this.isLoading, '--isOrdering': this.isOrdering };
 		},
 
