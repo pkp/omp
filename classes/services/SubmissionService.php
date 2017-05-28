@@ -226,10 +226,6 @@ class SubmissionService extends PKPSubmissionService {
 		$params = $args[1];
 		$submissions = $args[2];
 
-		if (empty($params['category']) && empty($params['series'])) {
-			return true;
-		}
-
 		// Create array of Submission objects with keys matching the $output
 		// array
 		$submissionObjects = array();
