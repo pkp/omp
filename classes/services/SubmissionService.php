@@ -269,6 +269,19 @@ class SubmissionService extends PKPSubmissionService {
 				$newReleaseDao = \DAORegistry::getDAO('NewReleaseDAO');
 				$output[$key]['newRelease'] = $newReleaseDao->getNewReleaseAll($submission->getId());
 			}
+
+			if (!empty($params['urlPublished'])) {
+				$request = \Application::getRequest();
+				$dispatcher = $request->getDispatcher();
+				$output[$key]['urlPublished'] = $dispatcher->url(
+					$request,
+					ROUTE_PAGE,
+					null,
+					'catalog',
+					'book',
+					$submission->getId()
+				);
+			}
 		}
 
 		return true;
