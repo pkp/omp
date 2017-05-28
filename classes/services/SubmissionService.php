@@ -203,6 +203,8 @@ class SubmissionService extends PKPSubmissionService {
 
 		$defaultParams['category'] = true;
 		$defaultParams['series'] = true;
+		$defaultParams['featured'] = true;
+		$defaultParams['newRelease'] = true;
 
 		return true;
 	}
@@ -256,13 +258,17 @@ class SubmissionService extends PKPSubmissionService {
 				);
 			}
 
-			$featureDao = \DAORegistry::getDAO('FeatureDAO');
-			$output[$key]['featured'] = $featureDao->getFeaturedAll($submission->getId());
-
-			$newReleaseDao = \DAORegistry::getDAO('NewReleaseDAO');
-			$output[$key]['newRelease'] = $newReleaseDao->getNewReleaseAll($submission->getId());
-
 			// @todo categories
+
+			if (!empty($params['featured'])) {
+				$featureDao = \DAORegistry::getDAO('FeatureDAO');
+				$output[$key]['featured'] = $featureDao->getFeaturedAll($submission->getId());
+			}
+
+			if (!empty($params['newRelease'])) {
+				$newReleaseDao = \DAORegistry::getDAO('NewReleaseDAO');
+				$output[$key]['newRelease'] = $newReleaseDao->getNewReleaseAll($submission->getId());
+			}
 		}
 
 		return true;
