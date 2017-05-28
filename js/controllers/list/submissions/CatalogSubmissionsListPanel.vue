@@ -39,7 +39,7 @@
 			/>
 		</div>
 		<div class="pkpListPanel__body pkpListPanel__body--catalogSubmissions">
-			<div v-if="isOrdering" class="pkpListPanel__notice">
+			<div v-if="isOrdering" class="pkpListPanel__notice" tabindex="0">
 				<span class="pkpListPanel__noticeInfo fa fa-info-circle"></span>
 				{{ featuredNotice }}
 			</div>
