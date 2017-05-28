@@ -254,7 +254,10 @@ class SubmissionService extends PKPSubmissionService {
 				);
 			}
 
-			// @todo categories
+			if (!empty($params['category'])) {
+				$categoryDao = \DAORegistry::getDAO('CategoryDAO');
+				$output[$key]['category'] = $categoryDao->getBySubmissionId($submission->getId());
+			}
 
 			if (!empty($params['featured'])) {
 				$featureDao = \DAORegistry::getDAO('FeatureDAO');
