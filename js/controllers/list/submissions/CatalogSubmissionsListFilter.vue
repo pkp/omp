@@ -1,6 +1,6 @@
 <template>
-	<div class="pkpListPanel__filter pkpListPanel__filter--catalogSubmissions" :class="{'--isVisible': isVisible}">
-		<div class="pkpListPanel__filterHeader pkpListPanel__filterHeader--catalogSubmissions">
+	<div class="pkpListPanel__filter pkpListPanel__filter--catalogSubmissions" :class="{'--isVisible': isVisible}" :aria-hidden="!isVisible">
+		<div class="pkpListPanel__filterHeader pkpListPanel__filterHeader--catalogSubmissions" tabindex="0">
 			<span class="fa fa-filter"></span>
 			{{ i18n.filter }}
 		</div>
@@ -14,6 +14,7 @@
 						<a href="#"
 							@click.prevent.stop="filterByCategory(category.id)"
 							:class="{'--isActive': isFilterActive('category', category.id)}"
+							:tabindex="tabIndex"
 						>{{ category.title }}</a>
 						<button
 							v-if="isFilterActive('category', category.id)"
@@ -36,6 +37,7 @@
 						<a href="#"
 							@click.prevent.stop="filterBySeries(seriesItem.id)"
 							:class="{'--isActive': isFilterActive('series', seriesItem.id)}"
+							:tabindex="tabIndex"
 						>{{ seriesItem.title }}</a>
 						<button
 							v-if="isFilterActive('series', seriesItem.id)"
