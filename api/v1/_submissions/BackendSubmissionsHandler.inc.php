@@ -22,6 +22,9 @@ class BackendSubmissionsHandler extends PKPBackendSubmissionsHandler {
 	 * Constructor
 	 */
 	public function __construct() {
+
+		\HookRegistry::register('API::_submissions::params', array($this, 'addAppSubmissionsParams'));
+
 		$rootPattern = '/{contextPath}/api/{version}/_submissions';
 		$this->_endpoints = array(
 			'POST' => array(
@@ -49,13 +52,17 @@ class BackendSubmissionsHandler extends PKPBackendSubmissionsHandler {
 	/**
 	 * Add omp-specific parameters to the getSubmissions request
 	 *
-	 * @param $params array
-	 * @param $slimRequest Request Slim request object
-	 * @param $response Response object
-	 *
-	 * @return array
+	 * @param $hookName string
+	 * @param $args array [
+	 * 		@option $params array
+	 * 		@option $slimRequest Request Slim request object
+	 * 		@option $response Response object
+	 * ]
 	 */
-	public function addAppSubmissionsParams($params, $slimRequest, $response) {
+	public function addAppSubmissionsParams($hookName, $args) {
+		$params =& $args[0];
+		$slimRequest = $args[1];
+		$response = $args[2];
 
 		$originalParams = $slimRequest->getQueryParams();
 
@@ -85,8 +92,6 @@ class BackendSubmissionsHandler extends PKPBackendSubmissionsHandler {
 				$params['seriesIds'] = array((int) $originalParams['seriesIds']);
 			}
 		}
-
-		return $params;
 	}
 
 	/**
