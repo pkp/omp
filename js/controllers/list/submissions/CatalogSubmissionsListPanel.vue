@@ -52,7 +52,7 @@
 				:i18n="i18n"
 			/>
 			<div class="pkpListPanel__content pkpListPanel__content--catalogSubmissions">
-				<div class="pkpListPanel__columnLabels pkpListPanel__columnLabels--catalogSubmissions">
+				<div v-if="collection.items.length" class="pkpListPanel__columnLabels pkpListPanel__columnLabels--catalogSubmissions">
 					<span class="pkpListPanel__columnLabel">
 						<span>{{ featuredLabel }}</span>
 					</span>
