@@ -60,7 +60,7 @@
 						<span>{{ newReleaseLabel }}</span>
 					</span>
 				</div>
-				<ul class="pkpListPanel__items">
+				<ul class="pkpListPanel__items" aria-live="polite">
 					<draggable v-model="collection.items" :options="draggableOptions" @start="drag=true" @end="drag=false">
 						<catalog-submissions-list-item
 							v-for="item in collection.items"
