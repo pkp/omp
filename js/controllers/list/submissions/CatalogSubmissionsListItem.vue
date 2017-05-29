@@ -75,7 +75,7 @@ export default _.extend({}, ListPanelItem, {
 			isSaving: false,
 		});
 	},
-	computed: {
+	computed: _.extend({}, ListPanelItem.computed, {
 		/**
 		 * Map the submission id to the list item id
 		 */
@@ -102,7 +102,7 @@ export default _.extend({}, ListPanelItem, {
 		isNewRelease: function() {
 			return typeof _.findWhere(this.submission.newRelease, {assoc_type: this.filterAssocType}) !== 'undefined';
 		},
-	},
+	}),
 	methods: _.extend({}, ListPanelItem.methods, {
 		/**
 		 * Toggle the checkbox when clicked
