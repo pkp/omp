@@ -1,5 +1,5 @@
 <template>
-	<li class="pkpListPanelItem pkpListPanelItem--submission pkpListPanelItem--catalog" :class="{'--isLoading': isSaving, '--isFeatured': isFeatured}">
+	<li class="pkpListPanelItem pkpListPanelItem--submission pkpListPanelItem--catalog" :class="{'--has-focus': 'isFocused', '--isLoading': isSaving, '--isFeatured': isFeatured}">
 		<list-panel-item-orderer
 			v-if="isOrdering"
 			@itemOrderUp="itemOrderUp"
@@ -8,7 +8,7 @@
 			:i18n="i18n"
 		/>
 		<div class="pkpListPanelItem--submission__item">
-			<a :href="submission.urlPublished">
+			<a :href="submission.urlPublished" @focus="focusItem" @blur="blurItem">
 				<div class="pkpListPanelItem--submission__title">
 					{{ submission.title }}
 				</div>
@@ -17,15 +17,15 @@
 				</div>
 			</a>
 			<div class="pkpListPanelItem__actions">
-				<button @click.prevent="viewCatalogEntry">
+				<button @click.prevent="viewCatalogEntry" @focus="focusItem" @blur="blurItem">
 					{{ i18n.editCatalogEntry }}
 				</button>
-				<a :href="submission.urlWorkflow">
+				<a :href="submission.urlWorkflow" @focus="focusItem" @blur="blurItem">
 					{{ i18n.viewSubmission }}
 				</a>
 			</div>
 		</div>
-		<button class="pkpListPanelItem__selectItem" @click.prevent="toggleFeatured">
+		<button class="pkpListPanelItem__selectItem" @click.prevent="toggleFeatured" @focus="focusItem" @blur="blurItem">
 			<span v-if="isFeatured" class="fa fa-check-square-o"></span>
 			<span v-else class="fa fa-square-o"></span>
 			<span class="pkp_screen_reader">
@@ -37,7 +37,7 @@
 				</template>
 			</span>
 		</button>
-		<button class="pkpListPanelItem__selectItem" @click.prevent="toggleNewRelease">
+		<button class="pkpListPanelItem__selectItem" @click.prevent="toggleNewRelease" @focus="focusItem" @blur="blurItem">
 			<span v-if="isNewRelease" class="fa fa-check-square-o"></span>
 			<span v-else class="fa fa-square-o"></span>
 			<span class="pkp_screen_reader">
