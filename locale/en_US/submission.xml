@@ -95,7 +95,7 @@
 	<message key="submission.complete">Approved</message>
 	<message key="submission.incomplete">Awaiting Approval</message>
 	<message key="submission.editCatalogEntry">Entry</message>
-	<message key="submission.catalogEntry.new">New Catalog Entry</message>
+	<message key="submission.catalogEntry.new">Add Entry</message>
 	<message key="submission.catalogEntry.add">Add Selected to Catalog</message>
 	<message key="submission.catalogEntry.select">Select monographs to add to the catalog</message>
 	<message key="submission.catalogEntry.selectionMissing">You must select at least one monograph to add to the catalog.</message>
