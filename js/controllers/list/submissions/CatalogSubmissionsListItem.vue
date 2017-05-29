@@ -1,5 +1,5 @@
 <template>
-	<li class="pkpListPanelItem pkpListPanelItem--submission pkpListPanelItem--catalog" :class="{'--has-focus': 'isFocused', '--isLoading': isSaving, '--isFeatured': isFeatured}">
+	<li class="pkpListPanelItem pkpListPanelItem--submission pkpListPanelItem--catalog" :class="{'--hasFocus': isFocused, '--isLoading': isSaving, '--isFeatured': isFeatured}">
 		<list-panel-item-orderer
 			v-if="isOrdering"
 			@itemOrderUp="itemOrderUp"
@@ -71,9 +71,9 @@ export default _.extend({}, ListPanelItem, {
 		ListPanelItemOrderer,
 	},
 	data: function() {
-		return {
+		return _.extend({}, ListPanelItem.data(), {
 			isSaving: false,
-		}
+		});
 	},
 	computed: {
 		/**
