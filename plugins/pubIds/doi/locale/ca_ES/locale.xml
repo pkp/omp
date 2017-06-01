@@ -13,6 +13,7 @@
  
 <locale name="ca_ES" full_name="Català">
 	<message key="plugins.pubIds.doi.displayName">Mòdul DOI</message>
+	<message key="plugins.pubIds.doi.readerDisplayName">DOI:</message>
 
 	<!-- settings form -->
 	<message key="plugins.pubIds.doi.manager.settings.doiPrefix">Prefix DOI</message>

@@ -83,6 +83,10 @@ class CatalogBookHandler extends Handler {
 			'ccLicenseBadge' => Application::getCCLicenseBadge($publishedMonograph->getLicenseURL())
 		));
 
+		// Consider public identifiers
+		$pubIdPlugins = PluginRegistry::loadCategory('pubIds', true);
+		$templateMgr->assign('pubIdPlugins', $pubIdPlugins);
+
 		// e-Commerce
 		import('classes.payment.omp.OMPPaymentManager');
 		$ompPaymentManager = new OMPPaymentManager($request);

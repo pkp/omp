@@ -13,6 +13,7 @@
  
 <locale name="pt_BR" full_name="Português (Brasil)">
 	<message key="plugins.pubIds.doi.displayName">DOI</message>
+	<message key="plugins.pubIds.doi.readerDisplayName">DOI:</message>
 
 	<!-- settings form -->
 	<message key="plugins.pubIds.doi.manager.settings.description">Por favor, configure o plug-in DOI para ser capaz de gerir e utilizar DOIs no OMP:</message>
