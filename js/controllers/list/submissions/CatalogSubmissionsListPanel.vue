@@ -32,15 +32,15 @@
 				</li>
 			</ul>
 			<list-panel-search
-				@searchPhraseChanged="set"
+				@searchPhraseChanged="setSearchPhrase"
 				:isSearching="isSearching"
 				:searchPhrase="searchPhrase"
 				:i18n="i18n"
 			/>
 		</div>
 		<div class="pkpListPanel__body pkpListPanel__body--catalogSubmissions">
-			<div v-if="isOrdering" class="pkpListPanel__notice" tabindex="0">
-				<span class="pkpListPanel__noticeInfo fa fa-info-circle"></span>
+			<div v-if="isOrdering" class="pkpListPanel__notice pkpListPanel__notice--info" tabindex="0">
+				<span class="fa fa-info-circle"></span>
 				{{ featuredNotice }}
 			</div>
 			<catalog-submissions-list-filter

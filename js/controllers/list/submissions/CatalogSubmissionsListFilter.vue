@@ -13,6 +13,7 @@
 					<li v-for="category in categories">
 						<a href="#"
 							@click.prevent.stop="filterByCategory(category.id)"
+							class="pkpListPanel__filterLabel"
 							:class="{'--isActive': isFilterActive('category', category.id)}"
 							:tabindex="tabIndex"
 						>{{ category.title }}</a>
@@ -36,6 +37,7 @@
 					<li v-for="seriesItem in series">
 						<a href="#"
 							@click.prevent.stop="filterBySeries(seriesItem.id)"
+							class="pkpListPanel__filterLabel"
 							:class="{'--isActive': isFilterActive('series', seriesItem.id)}"
 							:tabindex="tabIndex"
 						>{{ seriesItem.title }}</a>
