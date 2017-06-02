@@ -121,7 +121,28 @@
 					{/foreach}
 				{/if}
 			</div>
-
+			
+			{* DOI (requires plugin) *}
+			{foreach from=$pubIdPlugins item=pubIdPlugin}
+				{if $pubIdPlugin->getPubIdType() != 'doi'}
+					{php}continue;{/php}
+				{/if}
+				{assign var=pubId value=$monograph->getStoredPubId($pubIdPlugin->getPubIdType())}
+				{if $pubId}
+					{assign var="doiUrl" value=$pubIdPlugin->getResolvingURL($currentPress->getId(), $pubId)|escape}
+					<div class="item doi">
+						<span class="label">
+							{translate key="plugins.pubIds.doi.readerDisplayName"}
+						</span>
+						<span class="value">
+							<a href="{$doiUrl}">
+								{$doiUrl}
+							</a>
+						</span>
+					</div>
+				{/if}
+			{/foreach}
+			
 			{* Abstract *}
 			<div class="item abstract">
 				<h3 class="label">

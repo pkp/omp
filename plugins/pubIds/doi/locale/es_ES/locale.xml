@@ -13,6 +13,7 @@
  
 <locale name="es_ES" full_name="Español (España)">
 	<message key="plugins.pubIds.doi.displayName">Identificador de objeto digital (DOI)</message>
+	<message key="plugins.pubIds.doi.readerDisplayName">DOI:</message>
 
 	<!-- settings form -->
 	<message key="plugins.pubIds.doi.manager.settings.description">Configure el complemento DOI para poder gestionar y usar los elementos DOI en OMP:</message>
