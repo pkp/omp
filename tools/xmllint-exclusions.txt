@@ -9,3 +9,4 @@
 ./plugins/importexport/users/sample.xml
 ./plugins/importexport/native/sample.xml
 ./lib/pkp/js/lib/plupload
+./node_modules
