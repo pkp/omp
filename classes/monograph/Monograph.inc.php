@@ -99,22 +99,6 @@ class Monograph extends Submission {
 	}
 
 	/**
-	 * Get the series's abbreviated identifier.
-	 * @return string
-	 */
-	function getSeriesAbbrev() {
-		return $this->getData('seriesAbbrev');
-	}
-
-	/**
-	 * Set the series's abbreviated identifier.
-	 * @param $abbrev string
-	 */
-	function setSeriesAbbrev($abbrev) {
-		$this->setData('seriesAbbrev', $abbrev);
-	}
-
-	/**
 	 * Get the position of this monograph within a series.
 	 * @return string
 	 */

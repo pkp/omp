@@ -49,8 +49,7 @@ class ReviewerSubmissionDAO extends MonographDAO {
 			'SELECT	m.*, pm.date_published,
 				r.*,
 				u.first_name, u.last_name,
-				COALESCE(stl.setting_value, stpl.setting_value) AS series_title,
-				COALESCE(sal.setting_value, sapl.setting_value) AS series_abbrev
+				COALESCE(stl.setting_value, stpl.setting_value) AS series_title
 			FROM	submissions m
 				LEFT JOIN published_submissions pm ON (m.submission_id = pm.submission_id)
 				LEFT JOIN review_assignments r ON (m.submission_id = r.submission_id)
@@ -58,14 +57,10 @@ class ReviewerSubmissionDAO extends MonographDAO {
 				LEFT JOIN users u ON (r.reviewer_id = u.user_id)
 				LEFT JOIN series_settings stpl ON (s.series_id = stpl.series_id AND stpl.setting_name = ? AND stpl.locale = ?)
 				LEFT JOIN series_settings stl ON (s.series_id = stl.series_id AND stl.setting_name = ? AND stl.locale = ?)
-				LEFT JOIN series_settings sapl ON (s.series_id = sapl.series_id AND sapl.setting_name = ? AND sapl.locale = ?)
-				LEFT JOIN series_settings sal ON (s.series_id = sal.series_id AND sal.setting_name = ? AND sal.locale = ?)
 			WHERE	r.review_id = ?',
 			array(
 				'title', $primaryLocale, // Series title
 				'title', $locale, // Series title
-				'abbrev', $primaryLocale, // Series abbreviation
-				'abbrev', $locale, // Series abbreviation
 				(int) $reviewId
 			)
 		);
@@ -191,7 +186,6 @@ class ReviewerSubmissionDAO extends MonographDAO {
 				u.first_name, u.last_name,
 				atl.setting_value AS submission_title,
 				COALESCE(stl.setting_value, stpl.setting_value) AS series_title,
-				COALESCE(sal.setting_value, sapl.setting_value) AS series_abbrev
 			FROM	submissions m
 				LEFT JOIN published_submissions pm ON (pm.submission_id = m.submission_id)
 				LEFT JOIN review_assignments r ON (m.submission_id = r.submission_id)
@@ -200,8 +194,6 @@ class ReviewerSubmissionDAO extends MonographDAO {
 				LEFT JOIN users u ON (r.reviewer_id = u.user_id)
 				LEFT JOIN series_settings stpl ON (s.series_id = stpl.series_id AND stpl.setting_name = ? AND stpl.locale = ?)
 				LEFT JOIN series_settings stl ON (s.series_id = stl.series_id AND stl.setting_name = ? AND stl.locale = ?)
-				LEFT JOIN series_settings sapl ON (s.series_id = sapl.series_id AND sapl.setting_name = ? AND sapl.locale = ?)
-				LEFT JOIN series_settings sal ON (s.series_id = sal.series_id AND sal.setting_name = ? AND sal.locale = ?)
 			WHERE r.reviewer_id = ? ' . ($pressId?	' AND m.context_id = ? ':'') .
 				'AND r.date_notified IS NOT NULL';
 
@@ -223,8 +215,6 @@ class ReviewerSubmissionDAO extends MonographDAO {
 			'title', $locale, // Monograph title
 			'title', $primaryLocale, // Series title
 			'title', $locale, // Series title
-			'abbrev', $primaryLocale, // Series abbreviation
-			'abbrev', $locale, // Series abbreviation
 			(int) $reviewerId
 		);
 		if ($pressId) $params[] = (int) $pressId;

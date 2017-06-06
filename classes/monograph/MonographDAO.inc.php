@@ -57,7 +57,6 @@ class MonographDAO extends SubmissionDAO {
 
 		$monograph->setSeriesId($row['series_id']);
 		$monograph->setSeriesPosition($row['series_position']);
-		$monograph->setSeriesAbbrev(isset($row['series_abbrev'])?$row['series_abbrev']:null);
 		$monograph->setSeriesTitle($row['series_title']);
 		$monograph->setWorkType($row['edited_volume']);
 
@@ -358,8 +357,6 @@ class MonographDAO extends SubmissionDAO {
 		return array(
 			'title', $primaryLocale, // Series title
 			'title', $locale, // Series title
-			'abbrev', $primaryLocale, // Series abbreviation
-			'abbrev', $locale, // Series abbreviation
 		);
 	}
 
@@ -367,8 +364,7 @@ class MonographDAO extends SubmissionDAO {
 	 * @copydoc SubmissionDAO::getFetchColumns()
 	 */
 	protected function getFetchColumns() {
-		return 'COALESCE(stl.setting_value, stpl.setting_value) AS series_title,
-			COALESCE(sal.setting_value, sapl.setting_value) AS series_abbrev';
+		return 'COALESCE(stl.setting_value, stpl.setting_value) AS series_title';
 	}
 
 	/**
@@ -377,9 +373,7 @@ class MonographDAO extends SubmissionDAO {
 	protected function getFetchJoins() {
 		return 'LEFT JOIN series se ON se.series_id = s.series_id
 			LEFT JOIN series_settings stpl ON (se.series_id = stpl.series_id AND stpl.setting_name = ? AND stpl.locale = ?)
-			LEFT JOIN series_settings stl ON (se.series_id = stl.series_id AND stl.setting_name = ? AND stl.locale = ?)
-			LEFT JOIN series_settings sapl ON (se.series_id = sapl.series_id AND sapl.setting_name = ? AND sapl.locale = ?)
-			LEFT JOIN series_settings sal ON (se.series_id = sal.series_id AND sal.setting_name = ? AND sal.locale = ?)';
+			LEFT JOIN series_settings stl ON (se.series_id = stl.series_id AND stl.setting_name = ? AND stl.locale = ?)';
 	}
 
 	/**
@@ -393,7 +387,7 @@ class MonographDAO extends SubmissionDAO {
 	 * @copydoc SubmissionDAO::getGroupByColumns()
 	 */
 	protected function getGroupByColumns() {
-		return 's.submission_id, ps.date_published, stl.setting_value, stpl.setting_value, sal.setting_value, sapl.setting_value';
+		return 's.submission_id, ps.date_published, stl.setting_value, stpl.setting_value';
 	}
 
 	/**
