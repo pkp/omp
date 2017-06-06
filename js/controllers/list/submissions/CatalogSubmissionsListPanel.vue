@@ -101,19 +101,20 @@ import CatalogSubmissionsListItem from './CatalogSubmissionsListItem.vue';
 import CatalogSubmissionsListFilter from './CatalogSubmissionsListFilter.vue';
 import draggable from 'vuedraggable';
 
-export default _.extend({}, SubmissionsListPanel, {
+export default {
+	extends: SubmissionsListPanel,
 	name: 'CatalogSubmissionsListPanel',
-	components: _.extend({}, SubmissionsListPanel.components, {
+	components: {
 		CatalogSubmissionsListItem,
 		CatalogSubmissionsListFilter,
 		draggable,
-	}),
-	data: function() {
-		return _.extend({}, SubmissionsListPanel.data(), {
-			constants: {},
-		});
 	},
-	computed: _.extend({}, SubmissionsListPanel.computed, {
+	data: function() {
+		return {
+			constants: {},
+		};
+	},
+	computed: {
 		/**
 		 * Can any monographs be ordered?
 		 */
@@ -214,8 +215,8 @@ export default _.extend({}, SubmissionsListPanel, {
 			// in OMP, there's only one press context and it's always 1
 			return 1;
 		},
-	}),
-	methods: _.extend({}, SubmissionsListPanel.methods, {
+	},
+	methods: {
 		/**
 		 * Open the new catalog entry modal
 		 */
@@ -314,7 +315,7 @@ export default _.extend({}, SubmissionsListPanel, {
 			this.collection.items.splice(index + 1, 0, this.collection.items.splice(index, 1)[0]);
 			this.itemOrderResetFocus(data.id, 'down');
 		},
-	}),
+	},
 	mounted: function() {
 
 		/**
@@ -353,5 +354,5 @@ export default _.extend({}, SubmissionsListPanel, {
 			self.get();
 		});
 	}
-});
+};
 </script>

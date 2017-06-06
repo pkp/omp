@@ -64,18 +64,19 @@
 import ListPanelItem from '../../../../lib/pkp/js/controllers/list/ListPanelItem.vue';
 import ListPanelItemOrderer from '../../../../lib/pkp/js/controllers/list/ListPanelItemOrderer.vue';
 
-export default _.extend({}, ListPanelItem, {
+export default {
+	extends: ListPanelItem,
 	name: 'CatalogSubmissionsListItem',
 	props: ['submission', 'i18n', 'filterAssocType', 'filterAssocId', 'catalogEntryUrl', 'isOrdering', 'apiPath'],
 	components: {
 		ListPanelItemOrderer,
 	},
 	data: function() {
-		return _.extend({}, ListPanelItem.data(), {
+		return {
 			isSaving: false,
-		});
+		};
 	},
-	computed: _.extend({}, ListPanelItem.computed, {
+	computed: {
 		/**
 		 * Map the submission id to the list item id
 		 */
@@ -102,8 +103,8 @@ export default _.extend({}, ListPanelItem, {
 		isNewRelease: function() {
 			return typeof _.findWhere(this.submission.newRelease, {assoc_type: this.filterAssocType}) !== 'undefined';
 		},
-	}),
-	methods: _.extend({}, ListPanelItem.methods, {
+	},
+	methods: {
 		/**
 		 * Toggle the checkbox when clicked
 		 */
@@ -185,6 +186,6 @@ export default _.extend({}, ListPanelItem, {
 					'class="pkp_modal pkpModalWrapper" tabindex="-1"></div>')
 				.pkpHandler('$.pkp.controllers.modal.AjaxModalHandler', opts);
 		},
-	}),
-});
+	},
+};
 </script>

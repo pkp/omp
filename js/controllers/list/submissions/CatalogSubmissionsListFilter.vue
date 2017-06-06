@@ -60,10 +60,11 @@
 <script>
 import ListPanelFilter from '../../../../lib/pkp/js/controllers/list/ListPanelFilter.vue';
 
-export default _.extend({}, ListPanelFilter, {
+export default {
+	extends: ListPanelFilter,
 	name: 'CatalogSubmissionsListFilter',
 	props: ['isVisible', 'categories', 'series', 'i18n'],
-	methods: _.extend({}, ListPanelFilter.methods, {
+	methods: {
 		/**
 		 * Check if a filter is currently active
 		 */
@@ -96,6 +97,6 @@ export default _.extend({}, ListPanelFilter, {
 			this.activeFilters.push({type: 'series', id: id});
 			this.filterList({seriesIds: id});
 		},
-	}),
-});
+	},
+};
 </script>
