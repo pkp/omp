@@ -37,7 +37,6 @@
 	<message key="admin.systemConfiguration">OMP Configuration</message>
 	<message key="admin.presses.pressSettings">Press Settings</message>
 	<message key="admin.presses.noneCreated">No presses have been created.</message>
-	<message key="admin.contexts.confirmDelete">Are you sure you want to permanently delete this press and all of its contents?</message>
 	<message key="admin.contexts.create">Create Press</message>
 	<message key="admin.presses.createInstructions">You will automatically be enrolled as the manager of this press. After creating a new press, you will be redirected to its settings wizard, to complete the initial press setup.</message>
 	<message key="admin.presses.urlWillBe">The press URL will be {$sampleUrl}</message>
