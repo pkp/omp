@@ -12,6 +12,7 @@
   -->
 
 <locale name="en_US" full_name="U.S. English">
+	<message key="plugins.generic.usageStats.settings.statsDisplayOptions.siteWide">Each press can override these settings from the press's plugins page.</message>
 	<message key="plugins.generic.usageStats.optout.description"><![CDATA[
 		<h3>General Privacy Information</h3>
 		<p>Please refer to our general <a href="{$privacyStatementUrl}">privacy statement</a>.</p>
