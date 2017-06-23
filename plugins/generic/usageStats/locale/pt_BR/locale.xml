@@ -25,8 +25,4 @@
 		<li>Navegador</li>
 		</ul>
 		<p>Os dados coletados são usados apenas para propósitos de avaliação. Nenhum endereço de IP é mapeado para identidades de usuários. É tecnicamente impossível rastrear um conjunto de dados a um IP específico</p>]]></message>
-	<message key="plugins.generic.usageStats.optout.done"><![CDATA[<p> Você optou pela coleta de estatísticas de uso. Enquanto você ver esta mensagem há estatísticas sendo neste site. Clique no botão abaixo para reverter sua decisão.</p>]]></message>
-	<message key="plugins.generic.usageStats.optin">Ativar</message>
-	<message key="plugins.generic.usageStats.optout">Desativar</message>
-	<message key="plugins.generic.usageStats.optout.cookie"><![CDATA[<p>Se quiser, você pode optar por sair do processo de coleta de dados. Ao clicar no botão desabilitar abaixo, você pode decidir ativamente em não participar na análise estatística. Ao clicar no botão de desabilitar, um <em> cookies </ em> será criado em seu sistema para armazenar a sua decisão. Se as configurações de privacidade seu navegador faz com que os cookies sejam apagados automaticamente você terá que optar por desabilitar novamente na próxima vez que você acessar este site. O cookie é válido apenas para um navegador. Se você usar um navegador diferente, você terá que optar por sair novamente. Nenhuma informação pessoal é armazenada dentro deste cookie. Este cookie é válido por um ano após o seu último acesso. </p> <p> Por favor, tenha em mente que os registros gerais do servidor não são afetados por sua decisão de optar por sair do processo de avaliação detalhado. Por favor, consulte o nossa <a href="{$privacyStatementUrl}"> declaração de privacidade </a>. </p>]]></message>
 </locale>
