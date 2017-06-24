@@ -505,7 +505,7 @@ Suporte à biblioteca mbstring: <strong>{$supportsMBString}</strong>]]></message
 	<message key="notification.type.editorDecisionInternalReview">Avaliação interna iniciada.</message>
 	<message key="notification.type.approveSubmission">Submissão atualmente aguardando aprovação na ferramenta de entrada de catálogo antes de ser publicada no catálogo.</message>
 	<message key="notification.type.approveSubmissionTitle">Aguardando aprovação.</message>
-	<message key="notification.type.formatNeedsApprovedSubmission">Os metadados para a entrada do catálogo devem ser aprovados antes de incluir o formato de publicação. Para aprovar os metadados, clique na aba Monografia acima.</message>
+	<message key="notification.type.formatNeedsApprovedSubmission">A monografia não aparecerá no catálogo enquanto a "Entrada no catálogo" não for criada. Para adicionar este livro ao catálogo, clique em "Entrada no catálogo" acima e encontre a guia "catálogo".</message>
 	<message key="notification.type.configurePaymentMethod.title">Nenhuma forma de pagamento configurada.</message>
 	<message key="notification.type.configurePaymentMethod">Uma forma de pagamento configurada é necessária para definir configurações de comércio eletrônico.</message>
 	<message key="notification.type.visitCatalog">A monografia foi aprovada. Visite o catálogo para administrar os detalhes, usando o link acima.</message>
