@@ -30,12 +30,13 @@ class CatalogMonographsGridCellProvider extends GridCellProvider {
 
 	/**
 	 * Constructor.
+	 * @param $request PKPRequest
 	 * @param $assocType int
 	 * @param $assocId int
 	 * @param $requestArgs array Grid request arguments.
 	 */
-	function __construct($assocType, $assocId, $requestArgs) {
-		parent::__construct();
+	function __construct($request, $assocType, $assocId, $requestArgs) {
+		parent::__construct($request);
 		$this->_assocType = $assocType;
 		$this->_assocId = $assocId;
 		$this->_requestArgs = $requestArgs;
@@ -56,9 +57,9 @@ class CatalogMonographsGridCellProvider extends GridCellProvider {
 			case 'title':
 				// Delegate to the submission grid cell provider that holds the logic
 				// for the submission title plus author name.
-				$user = Application::getRequest()->getUser();
+				$user = $this->_request->getUser();
 				import('lib.pkp.controllers.grid.submissions.SubmissionsListGridCellProvider');
-				$submissionsListCellProvider = new SubmissionsListGridCellProvider($user);
+				$submissionsListCellProvider = new SubmissionsListGridCellProvider($this->_request, $user);
 				return $submissionsListCellProvider->getTemplateVarsFromRowColumn($row, $column);
 			case 'isFeatured':
 				$featureDao = DAORegistry::getDAO('FeatureDAO');
@@ -74,10 +75,10 @@ class CatalogMonographsGridCellProvider extends GridCellProvider {
 	/**
 	 * @see GridCellProvider::getCellActions()
 	 */
-	function getCellActions($request, $row, $column) {
+	function getCellActions($row, $column) {
 		import('lib.pkp.classes.linkAction.request.AjaxAction');
 		$monograph = $row->getData();
-		$router = $request->getRouter();
+		$router = $this->_request->getRouter();
 		$currentState = $toggleType = null;
 		switch ($column->getId()) {
 			case 'isFeatured':
@@ -97,7 +98,7 @@ class CatalogMonographsGridCellProvider extends GridCellProvider {
 				'toggleFeature',
 				new AjaxAction(
 					$router->url(
-						$request, null, null, 'toggle', null,
+						$this->_request, null, null, 'toggle', null,
 						array_merge(array(
 							'rowId' => $monograph->getId(),
 							'assocType' => $this->_assocType,
@@ -109,7 +110,7 @@ class CatalogMonographsGridCellProvider extends GridCellProvider {
 				)
 			));
 		} else {
-			return parent::getCellActions($request, $row, $column);
+			return parent::getCellActions($row, $column);
 		}
 	}
 }

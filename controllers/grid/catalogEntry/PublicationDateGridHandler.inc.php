@@ -155,7 +155,7 @@ class PublicationDateGridHandler extends GridHandler {
 		);
 
 		// Columns
-		$cellProvider = new PublicationDateGridCellProvider();
+		$cellProvider = new PublicationDateGridCellProvider($request);
 		$this->addColumn(
 			new GridColumn(
 				'value',

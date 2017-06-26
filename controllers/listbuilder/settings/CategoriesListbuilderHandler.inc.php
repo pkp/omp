@@ -131,7 +131,7 @@ class CategoriesListbuilderHandler extends SetupListbuilderHandler {
 		$nameColumn = new ListbuilderGridColumn($this, 'name', 'common.name');
 
 		import('controllers.listbuilder.categories.CategoryListbuilderGridCellProvider');
-		$nameColumn->setCellProvider(new CategoryListbuilderGridCellProvider());
+		$nameColumn->setCellProvider(new CategoryListbuilderGridCellProvider($request));
 		$this->addColumn($nameColumn);
 	}
 }

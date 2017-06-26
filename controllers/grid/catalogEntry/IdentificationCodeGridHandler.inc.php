@@ -154,7 +154,7 @@ class IdentificationCodeGridHandler extends GridHandler {
 		);
 
 		// Columns
-		$cellProvider = new IdentificationCodeGridCellProvider();
+		$cellProvider = new IdentificationCodeGridCellProvider($request);
 		$this->addColumn(
 			new GridColumn(
 				'value',

@@ -120,7 +120,7 @@ class ChapterGridHandler extends CategoryGridHandler {
 
 		// Columns
 		// reuse the cell providers for the AuthorGrid
-		$cellProvider = new PKPAuthorGridCellProvider();
+		$cellProvider = new PKPAuthorGridCellProvider($request);
 		$this->addColumn(
 			new GridColumn(
 				'name',
