@@ -133,7 +133,7 @@ class PublicationFormatGridHandler extends CategoryGridHandler {
 		// Columns
 		$submission = $this->getSubmission();
 		import('controllers.grid.catalogEntry.PublicationFormatGridCellProvider');
-		$this->_cellProvider = new PublicationFormatGridCellProvider($submission->getId(), $this->_canManage);
+		$this->_cellProvider = new PublicationFormatGridCellProvider($request, $submission->getId(), $this->_canManage);
 		$this->addColumn(
 			new GridColumn(
 				'name',

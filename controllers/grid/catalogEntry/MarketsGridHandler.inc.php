@@ -154,7 +154,7 @@ class MarketsGridHandler extends GridHandler {
 		);
 
 		// Columns
-		$cellProvider = new MarketsGridCellProvider();
+		$cellProvider = new MarketsGridCellProvider($request);
 		$this->addColumn(
 			new GridColumn(
 				'territory',

@@ -112,7 +112,7 @@ class ManageSpotlightsGridHandler extends GridHandler {
 
 		// Columns
 		import('controllers.grid.content.spotlights.SpotlightsGridCellProvider');
-		$spotlightsGridCellProvider = new SpotlightsGridCellProvider();
+		$spotlightsGridCellProvider = new SpotlightsGridCellProvider($request);
 		$this->addColumn(
 			new GridColumn('title',
 				'grid.content.spotlights.form.title',

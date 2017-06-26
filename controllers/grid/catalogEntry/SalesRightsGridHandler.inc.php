@@ -155,7 +155,7 @@ class SalesRightsGridHandler extends GridHandler {
 		);
 
 		// Columns
-		$cellProvider = new SalesRightsGridCellProvider();
+		$cellProvider = new SalesRightsGridCellProvider($request);
 		$this->addColumn(
 			new GridColumn(
 				'type',

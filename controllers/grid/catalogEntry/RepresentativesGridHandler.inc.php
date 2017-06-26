@@ -125,7 +125,7 @@ class RepresentativesGridHandler extends CategoryGridHandler {
 		);
 
 		// Columns
-		$cellProvider = new RepresentativesGridCellProvider();
+		$cellProvider = new RepresentativesGridCellProvider($request);
 		$this->addColumn(
 			new GridColumn(
 				'name',

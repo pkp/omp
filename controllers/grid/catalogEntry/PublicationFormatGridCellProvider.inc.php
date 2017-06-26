@@ -28,11 +28,12 @@ class PublicationFormatGridCellProvider extends DataObjectGridCellProvider {
 
 	/**
 	 * Constructor
+	 * @param $request PKPRequest
 	 * @param $submissionId int Submission ID
 	 * @param $canManage boolean
 	 */
-	function __construct($submissionId, $canManage) {
-		parent::__construct();
+	function __construct($request, $submissionId, $canManage) {
+		parent::__construct($request);
 		$this->_submissionId = $submissionId;
 		$this->_canManage = $canManage;
 	}
@@ -94,20 +95,20 @@ class PublicationFormatGridCellProvider extends DataObjectGridCellProvider {
 	/**
 	 * @see GridCellProvider::getCellActions()
 	 */
-	function getCellActions($request, $row, $column) {
+	function getCellActions($row, $column) {
 		$data = $row->getData();
-		$router = $request->getRouter();
+		$router = $this->_request->getRouter();
 		if (is_a($data, 'Representation')) {
 			switch ($column->getId()) {
 				case 'isAvailable':
 					return array(new LinkAction(
 						'availableRepresentation',
 						new RemoteActionConfirmationModal(
-							$request->getSession(),
+							$this->_request->getSession(),
 							__($data->getIsAvailable()?'grid.catalogEntry.availableRepresentation.removeMessage':'grid.catalogEntry.availableRepresentation.message'),
 							__('grid.catalogEntry.availableRepresentation.title'),
 							$router->url(
-								$request, null, null, 'setAvailable', null,
+								$this->_request, null, null, 'setAvailable', null,
 								array(
 									'representationId' => $data->getId(),
 									'newAvailableState' => $data->getIsAvailable()?0:1,
@@ -134,12 +135,12 @@ class PublicationFormatGridCellProvider extends DataObjectGridCellProvider {
 					AppLocale::requireComponents(LOCALE_COMPONENT_PKP_EDITOR);
 					return array(
 						new AddFileLinkAction(
-							$request, $data->getSubmissionId(), WORKFLOW_STAGE_ID_PRODUCTION,
+							$this->_request, $data->getSubmissionId(), WORKFLOW_STAGE_ID_PRODUCTION,
 							array(ROLE_ID_MANAGER, ROLE_ID_SUB_EDITOR, ROLE_ID_ASSISTANT), null, SUBMISSION_FILE_PROOF,
 							ASSOC_TYPE_REPRESENTATION, $data->getId()
 						),
 						new SelectFilesLinkAction(
-							$request,
+							$this->_request,
 							array(
 								'submissionId' => $data->getSubmissionId(),
 								'assocType' => ASSOC_TYPE_REPRESENTATION,
@@ -157,7 +158,7 @@ class PublicationFormatGridCellProvider extends DataObjectGridCellProvider {
 						'approveRepresentation',
 						new AjaxModal(
 							$router->url(
-								$request, null, null, 'setApproved', null,
+								$this->_request, null, null, 'setApproved', null,
 								array(
 									'representationId' => $data->getId(),
 									'newApprovedState' => $data->getIsApproved()?0:1,
@@ -189,7 +190,7 @@ class PublicationFormatGridCellProvider extends DataObjectGridCellProvider {
 					return array(new LinkAction(
 						'editApprovedProof',
 						new AjaxModal(
-							$router->url($request, null, null, 'editApprovedProof', null, array(
+							$router->url($this->_request, null, null, 'editApprovedProof', null, array(
 								'fileId' => $submissionFile->getFileId() . '-' . $submissionFile->getRevision(),
 								'submissionId' => $submissionFile->getSubmissionId(),
 								'representationId' => $submissionFile->getAssocId(),
@@ -203,7 +204,7 @@ class PublicationFormatGridCellProvider extends DataObjectGridCellProvider {
 				case 'name':
 					import('lib.pkp.controllers.grid.files.FileNameGridColumn');
 					$fileNameColumn = new FileNameGridColumn(true, WORKFLOW_STAGE_ID_PRODUCTION, true);
-					return $fileNameColumn->getCellActions($request, $row);
+					return $fileNameColumn->getCellActions($this->_request, $row);
 				case 'isComplete':
 					AppLocale::requireComponents(LOCALE_COMPONENT_PKP_EDITOR);
 					import('lib.pkp.classes.linkAction.request.AjaxModal');
@@ -212,7 +213,7 @@ class PublicationFormatGridCellProvider extends DataObjectGridCellProvider {
 						$submissionFile->getViewable()?'approved':'not_approved',
 						new AjaxModal(
 							$router->url(
-								$request, null, null, 'setProofFileCompletion',
+								$this->_request, null, null, 'setProofFileCompletion',
 								null,
 								array(
 									'submissionId' => $submissionFile->getSubmissionId(),
@@ -230,7 +231,7 @@ class PublicationFormatGridCellProvider extends DataObjectGridCellProvider {
 					));
 			}
 		}
-		return parent::getCellActions($request, $row, $column);
+		return parent::getCellActions($this->_request, $row, $column);
 	}
 }
 

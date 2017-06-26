@@ -20,16 +20,9 @@ class ChapterGridCategoryRowCellProvider extends GridCellProvider {
 	var $_readOnly;
 
 	/**
-	 * Constructor
-	 */
-	function __construct() {
-		parent::__construct();
-	}
-
-	/**
 	 * @see GridCellProvider::getCellActions()
 	 */
-	function getCellActions($request, $row, $column) {
+	function getCellActions($row, $column) {
 		if ($column->getId() == 'name' && !$row->isReadOnly()) {
 			$chapter = $row->getData();
 			$monograph = $row->getMonograph();
@@ -43,7 +36,7 @@ class ChapterGridCategoryRowCellProvider extends GridCellProvider {
 			return array(new LinkAction(
 					'editChapter',
 					new AjaxModal(
-						$router->url($request, null, null, 'editChapter', null, $actionArgs),
+						$router->url($this->_request, null, null, 'editChapter', null, $actionArgs),
 						__('submission.chapter.editChapter'),
 						'modal_edit'
 					),
