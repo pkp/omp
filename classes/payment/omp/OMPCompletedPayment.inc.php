@@ -1,154 +1,96 @@
 <?php
 
 /**
- * @defgroup payment_omp OMP payment concerns
- */
-
-/**
  * @file classes/payment/omp/OMPCompletedPayment.inc.php
  *
  * Copyright (c) 2014-2017 Simon Fraser University
- * Copyright (c) 2006-2009 Gunther Eysenbach, Juan Pablo Alperin, MJ Suhonos
+ * Copyright (c) 2003-2017 John Willinsky
  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
  *
  * @class OMPCompletedPayment
- * @ingroup payment_omp
+ * @ingroup payment
  * @see OMPCompletedPaymentDAO
  *
- * @brief Class describing a payment ready to be in the database.
- *
+ * @brief Class describing a completed payment.
  */
+
 import('lib.pkp.classes.payment.Payment');
 
 class OMPCompletedPayment extends Payment {
-	var $pressId;
-	var $type;
-	var $timestamp;
-	var $payMethod;
+	/** @var int Press ID */
+	var $_pressId;
+
+	/** @var string Payment completion timestamp */
+	var $_timestamp;
+
+	/** @var int PAYMENT_TYPE_... */
+	var $_type;
+
+	/** @var string Payment plugin name */
+	var $_paymentPluginName;
 
 	/**
-	 * Constructor
-	 */
-	function __construct() {
-		parent::__construct();
-	}
-
-	/**
-	 * Get/set methods
-	 */
-
-	/**
-	 * Get the press ID of the payment.
+	 * Get the press ID for the payment.
 	 * @return int
 	 */
 	function getPressId() {
-		return $this->pressId;
+		return $this->_pressId;
 	}
 
 	/**
-	 * Set the press ID of the payment.
+	 * Set the press ID for the payment.
 	 * @param $pressId int
 	 */
 	function setPressId($pressId) {
-		$this->pressId = $pressId;
+		$this->_pressId = $pressId;
 	}
 
 	/**
-	 * Set the Payment Type
-	 * @param $type int
-	 */
-	function setType($type) {
-		$this->type = $type;
-	}
-
-	/**
-	 * Set the Payment Type
-	 * @return $type int
-	 */
-	function getType() {
-		return $this->type;
-	}
-
-	/**
-	 * Returns the description of the CompletedPayment.
-	 * Pulled from Press Settings if present, or from locale file otherwise.
-	 * For subscriptions, pulls subscription type name.
+	 * Get the payment completion timestamp.
 	 * @return string
-	 */
-	function getName() {
-		switch ($this->type) {
-			case PAYMENT_TYPE_PURCHASE_FILE:
-				fatalError('unimplemented');
-			default:
-				assert(false);
-		}
-	}
-
-	/**
-	 * Returns the description of the CompletedPayment.
-	 * Pulled from Press Settings if present, or from locale file otherwise.
-	 * For subscriptions, pulls subscription type name.
-	 * @return string
-	 */
-	function getDescription() {
-		switch ($this->type) {
-			case PAYMENT_TYPE_PURCHASE_FILE:
-				fatalError('unimplemented');
-			default:
-				assert(false);
-		}
-	}
-
-	/**
-	 * Get the row id of the payment.
-	 * @return int
 	 */
 	function getTimestamp() {
-		return $this->timestamp;
+		return $this->_timestamp;
 	}
 
 	/**
-	 * Set the id of payment
-	 * @param $dt int/string *nix timestamp or ISO datetime string
+	 * Set the payment completion timestamp.
+	 * @param $timestamp string Timestamp
 	 */
 	function setTimestamp($timestamp) {
-		$this->timestamp = $timestamp;
+		$this->_timestamp = $timestamp;
 	}
 
 	/**
-	 * Get the  method of payment.
-	 * @return String
+	 * Set the payment type.
+	 * @param $type int PAYMENT_TYPE_...
+	 */
+	function setType($type) {
+		$this->_type = $type;
+	}
+
+	/**
+	 * Set the payment type.
+	 * @return $type int PAYMENT_TYPE_...
+	 */
+	function getType() {
+		return $this->_type;
+	}
+
+	/**
+	 * Get the payment plugin name.
+	 * @return string
 	 */
 	function getPayMethodPluginName() {
-		return $this->payMethod;
+		return $this->_paymentPluginName;
 	}
 
 	/**
-	 * Set the method of payment.
-	 * @param $pressId String
+	 * Set the payment plugin name.
+	 * @param $paymentPluginName string
 	 */
-	function setPayMethodPluginName($payMethod){
-		$this->payMethod = $payMethod;
-	}
-
-	/**
-	 * Display-related get Methods
-	 */
-
-	/**
-	 * Get some information about the assocId for display.
-	 * @return String
-	 */
-	function getAssocDescription() {
-		if (!$this->assocId) return false;
-		switch ($this->type) {
-			case PAYMENT_TYPE_PURCHASE_FILE:
-				fatalError('unimplemented');
-			default:
-				assert(false);
-		}
-
-		return false;
+	function setPayMethodPluginName($paymentPluginName) {
+		$this->_paymentPluginName = $paymentPluginName;
 	}
 }
 
