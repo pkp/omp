@@ -1,7 +1,7 @@
 <?php
 
 /**
- * @file classes/services/OJSServiceProvider.php
+ * @file classes/services/OJSServiceProvider.inc.php
  *
  * Copyright (c) 2014-2017 Simon Fraser University
  * Copyright (c) 2000-2017 John Willinsky
@@ -13,7 +13,7 @@
  * @brief Utility class to package all OJS services
  */
 
-namespace App\Services;
+namespace OMP\Services;
 
 require_once(dirname(__FILE__) . '/../../lib/pkp/lib/vendor/pimple/pimple/src/Pimple/Container.php');
 require_once(dirname(__FILE__) . '/../../lib/pkp/lib/vendor/pimple/pimple/src/Pimple/ServiceProviderInterface.php');

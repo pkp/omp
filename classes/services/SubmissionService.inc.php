@@ -1,7 +1,7 @@
 <?php
 
 /**
- * @file classes/services/SubmissionService.php
+ * @file classes/services/SubmissionService.inc.php
  *
  * Copyright (c) 2014-2017 Simon Fraser University
  * Copyright (c) 2000-2017 John Willinsky
@@ -14,9 +14,9 @@
  *  requirements.
  */
 
-namespace App\Services;
+namespace OMP\Services;
 
-class SubmissionService extends PKPSubmissionService {
+class SubmissionService extends \PKP\Services\PKPSubmissionService {
 
 	/**
 	 * Initialize hooks for extending PKPSubmissionService
@@ -24,10 +24,10 @@ class SubmissionService extends PKPSubmissionService {
     public function __construct() {
 		parent::__construct();
 
-		\HookRegistry::register('Submission::getSubmissionList::queryBuilder', array($this, 'getSubmissionListQueryBuilder'));
-		\HookRegistry::register('Submission::listQueryBuilder::get', array($this, 'getSubmissionListQueryObject'));
-		\HookRegistry::register('Submission::toArray::defaultParams', array($this, 'toArrayDefaultParams'));
-		\HookRegistry::register('Submission::toArray::output', array($this, 'toArrayOutput'));
+		\HookRegistry::register('Submission::getSubmissionList::queryBuilder', array($this, 'modifySubmissionListQueryBuilder'));
+		\HookRegistry::register('Submission::listQueryBuilder::get', array($this, 'modifySubmissionListQueryObject'));
+		\HookRegistry::register('Submission::toArray::defaultParams', array($this, 'modifyToArrayDefaultParams'));
+		\HookRegistry::register('Submission::toArray::output', array($this, 'modifyToArrayOutput'));
 	}
 
 	/**
@@ -144,7 +144,7 @@ class SubmissionService extends PKPSubmissionService {
 	 *
 	 * @return QueryBuilders\SubmissionListQueryBuilder
 	 */
-	public function getSubmissionListQueryBuilder($hookName, $args) {
+	public function modifySubmissionListQueryBuilder($hookName, $args) {
 		$submissionListQB =& $args[0];
 		$contextId = $args[1];
 		$args = $args[2];
@@ -175,7 +175,7 @@ class SubmissionService extends PKPSubmissionService {
 	 *
 	 * @return object
 	 */
-	public function getSubmissionListQueryObject($hookName, $args) {
+	public function modifySubmissionListQueryObject($hookName, $args) {
 		$queryObject =& $args[0];
 		$queryBuilder = $args[1];
 
@@ -196,7 +196,7 @@ class SubmissionService extends PKPSubmissionService {
 	 *
 	 * @return array
 	 */
-	public function toArrayDefaultParams($hookName, $args) {
+	public function modifyToArrayDefaultParams($hookName, $args) {
 		$defaultParams =& $args[0];
 		$params = $args[1];
 		$submissions = $args[2];
@@ -221,7 +221,7 @@ class SubmissionService extends PKPSubmissionService {
 	 *
 	 * @return array
 	 */
-	public function toArrayOutput($hookName, $args) {
+	public function modifyToArrayOutput($hookName, $args) {
 		$output =& $args[0];
 		$params = $args[1];
 		$submissions = $args[2];
@@ -249,7 +249,6 @@ class SubmissionService extends PKPSubmissionService {
 				$output[$key]['series'] = array(
 					'id' => $submission->getSeriesId(),
 					'title' => $submission->getSeriesTitle(),
-					'abbreviation' => $submission->getSeriesAbbrev(),
 					'position' => $submission->getSeriesPosition(),
 				);
 			}
@@ -284,5 +283,14 @@ class SubmissionService extends PKPSubmissionService {
 		}
 
 		return true;
+	}
+
+	/**
+	 * Helper function to return the app-specific submission list query builder
+	 *
+	 * @return \OMP\Services\QueryBuilders\SubmissionListQueryBuilder
+	 */
+	public function getSubmissionListQueryBuilder($contextId) {
+		return new \OMP\Services\QueryBuilders\SubmissionListQueryBuilder($contextId);
 	}
 }

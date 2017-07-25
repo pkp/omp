@@ -13,11 +13,11 @@
  * @brief Submission list Query builder
  */
 
-namespace App\Services\QueryBuilders;
+namespace OMP\Services\QueryBuilders;
 
 use Illuminate\Database\Capsule\Manager as Capsule;
 
-class SubmissionListQueryBuilder extends PKPSubmissionListQueryBuilder {
+class SubmissionListQueryBuilder extends \PKP\Services\QueryBuilders\PKPSubmissionListQueryBuilder {
 
 	/** @var int|array Category ID(s) */
 	protected $categoryIds = null;
@@ -33,7 +33,7 @@ class SubmissionListQueryBuilder extends PKPSubmissionListQueryBuilder {
 	 *
 	 * @param int|array $categoryIds
 	 *
-	 * @return \App\Services\QueryBuilders\SubmissionListQueryBuilder
+	 * @return \OMP\Services\QueryBuilders\SubmissionListQueryBuilder
 	 */
 	public function filterByCategories($categoryIds) {
 		if (!is_null($categoryIds) && !is_array($categoryIds)) {

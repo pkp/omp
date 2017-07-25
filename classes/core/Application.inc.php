@@ -37,7 +37,7 @@ class Application extends PKPApplication {
 	function __construct() {
 		parent::__construct();
 
-		// Register custom autoloader function for OJS namespace
+		// Register custom autoloader function for OMP namespace
 		spl_autoload_register(function($class) {
 			$prefix = 'OMP\\';
 			$rootPath = BASE_SYS_DIR . "/classes";
