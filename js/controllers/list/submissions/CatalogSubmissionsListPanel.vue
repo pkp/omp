@@ -284,7 +284,7 @@ export default {
 
 			var self = this;
 			$.ajax({
-				url: $.pkp.app.apiBaseUrl + '/' + this.apiPath + '/' + 'saveFeaturedOrder',
+				url: this.getApiUrl(this.apiPath + '/' + 'saveFeaturedOrder'),
 				type: 'POST',
 				data: {
 					assocType: this.filterAssocType,

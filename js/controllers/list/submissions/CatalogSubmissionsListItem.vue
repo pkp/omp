@@ -146,7 +146,7 @@ export default {
 
 			var self = this;
 			$.ajax({
-				url: $.pkp.app.apiBaseUrl + '/' + this.apiPath + '/' + 'saveDisplayFlags',
+				url: this.getApiUrl(this.apiPath + '/' + 'saveDisplayFlags'),
 				type: 'POST',
 				data: {
 					submissionId: this.submission.id,
