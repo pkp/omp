@@ -12,26 +12,31 @@
 {include file="common/header.tpl"}
 {/strip}
 
-<script type="text/javascript">
-	// Attach the JS file tab handler.
-	$(function() {ldelim}
-		$('#importTabs').pkpHandler('$.pkp.controllers.TabHandler');
-	{rdelim});
-</script>
-<div id="importTabs" class="pkp_controllers_tab">
-	<ul>
-		<li><a href="#export-tab">{translate key="plugins.importexport.onix30.exportButton"}</a></li>
-	</ul>
-	<div id="export-tab">
-		{if !$currentContext->getSetting('publisher') || !$currentContext->getSetting('location') || !$currentContext->getSetting('codeType') || !$currentContext->getSetting('codeValue')}
-			{translate key="plugins.importexport.onix30.pressMissingFields"}
-		{else}
+<div class="pkp_page_content">
+	{if !$currentContext->getSetting('publisher') || !$currentContext->getSetting('location') || !$currentContext->getSetting('codeType') || !$currentContext->getSetting('codeValue')}
+		{translate key="plugins.importexport.onix30.pressMissingFields"}
+	{else}
+		<script type="text/javascript">
+			$(function() {ldelim}
+				// Attach the form handler.
+				$('#exportXmlForm').pkpHandler('$.pkp.controllers.form.FormHandler');
+			{rdelim});
+		</script>
+		<form id="exportXmlForm" class="pkp_form" action="{plugin_url path="export"}" method="post">
+			{csrf}
 			{fbvFormArea id="exportForm"}
-				{url|assign:submissionsListGridUrl router=$smarty.const.ROUTE_COMPONENT component="grid.submissions.exportableSubmissions.ExportableSubmissionsListGridHandler" op="fetchGrid" pluginName="Onix30ExportPlugin" hideSelectColumn="true" escape=false}
-				{load_url_in_div id="submissionsListGridContainer" url=$submissionsListGridUrl}
+				{fbvFormSection}
+					{assign var="uuid" value=""|uniqid|escape}
+					<div id="export-submissions-list-handler-{$uuid}">
+						<script type="text/javascript">
+							pkp.registry.init('export-submissions-list-handler-{$uuid}', 'SelectSubmissionsListPanel', {$exportSubmissionsListData});
+						</script>
+					</div>
+				{/fbvFormSection}
+				{fbvFormButtons submitText="plugins.importexport.native.export" hideCancel="true"}
 			{/fbvFormArea}
-		{/if}
-	</div>
+		</form>
+	{/if}
 </div>
 
 

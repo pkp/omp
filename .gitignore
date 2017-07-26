@@ -9,3 +9,6 @@ temp
 .settings/
 .htaccess
 te_ST/
+node_modules
+js/build.js
+js/build.js.map

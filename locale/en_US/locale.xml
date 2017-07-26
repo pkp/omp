@@ -326,6 +326,7 @@
 	<!-- Navigation -->
 	<message key="navigation.catalog">Catalog</message>
 	<message key="navigation.competingInterestPolicy">Competing Interest Policy</message>
+	<message key="navigation.catalog.allMonographs">All Monographs</message>
 	<message key="navigation.catalog.manage">Manage</message>
 	<message key="navigation.catalog.administration.short">Administration</message>
 	<message key="navigation.catalog.administration">Catalog Administration</message>

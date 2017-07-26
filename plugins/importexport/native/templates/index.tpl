@@ -68,8 +68,14 @@
 		<form id="exportXmlForm" class="pkp_form" action="{plugin_url path="export"}" method="post">
 			{csrf}
 			{fbvFormArea id="exportForm"}
-				{url|assign:submissionsListGridUrl router=$smarty.const.ROUTE_COMPONENT component="grid.submissions.exportableSubmissions.ExportableSubmissionsListGridHandler" op="fetchGrid" escape=false}
-				{load_url_in_div id="submissionsListGridContainer" url=$submissionsListGridUrl}
+				{fbvFormSection}
+					{assign var="uuid" value=""|uniqid|escape}
+					<div id="export-submissions-list-handler-{$uuid}">
+						<script type="text/javascript">
+							pkp.registry.init('export-submissions-list-handler-{$uuid}', 'SelectSubmissionsListPanel', {$exportSubmissionsListData});
+						</script>
+					</div>
+				{/fbvFormSection}
 				{fbvFormButtons submitText="plugins.importexport.native.export" hideCancel="true"}
 			{/fbvFormArea}
 		</form>

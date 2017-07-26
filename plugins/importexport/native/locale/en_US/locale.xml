@@ -17,6 +17,7 @@
 	<message key="plugins.importexport.native.import">Import</message>
 	<message key="plugins.importexport.native.import.instructions">Upload XML file to import</message>
 	<message key="plugins.importexport.native.export">Export</message>
+	<message key="plugins.importexport.native.exportSubmissionsSelect">Select monographs to export</message>
 	<message key="plugins.importexport.native.results">Results</message>
 	<message key="plugins.inportexport.native.uploadFile">Please upload a file under "Import" in order to continue.</message>
 	<message key="plugins.importexport.native.importComplete">The import completed successfully. The following items were imported:</message>

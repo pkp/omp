@@ -386,6 +386,36 @@ class CategoryDAO extends DAO {
 	}
 
 	/**
+	 * Retrieve all categories assigned to a submission
+	 * @param $submissionId int Submission ID
+	 * @return DAOResultFactory containing Category ordered by sequence
+	 */
+	public function getBySubmissionId($submissionId) {
+		$result = $this->retrieveRange(
+			'SELECT *
+			FROM	categories
+			LEFT JOIN submission_categories AS sc ON (sc.category_id = categories.category_id)
+			WHERE	sc.submission_id = ?
+			ORDER BY seq',
+			array((int) $submissionId)
+		);
+
+		$categories = array();
+		while (!$result->EOF) {
+			$categories[] = array(
+				'id' => (int) $result->fields['category_id'],
+				'press_id' => (int) $result->fields['press_id'],
+				'parent_id' => (int) $result->fields['parent_id'],
+				'path' => $result->fields['path'],
+				'image' => $result->fields['image'],
+				'seq' => (int) $result->fields['seq'],
+			);
+			$result->MoveNext();
+		}
+		return $categories;
+	}
+
+	/**
 	 * Get the ID of the last inserted category.
 	 * @return int
 	 */

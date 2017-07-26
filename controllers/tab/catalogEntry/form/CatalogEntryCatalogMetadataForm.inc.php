@@ -298,63 +298,12 @@ class CatalogEntryCatalogMetadataForm extends Form {
 			$publishedMonographDao->insertObject($publishedMonograph);
 		}
 
-		import('classes.publicationFormat.PublicationFormatTombstoneManager');
-		$publicationFormatTombstoneMgr = new PublicationFormatTombstoneManager();
-		$publicationFormatDao = DAORegistry::getDAO('PublicationFormatDAO');
-		$publicationFormatFactory = $publicationFormatDao->getBySubmissionId($monograph->getId());
-		$publicationFormats = $publicationFormatFactory->toAssociativeArray();
-		$notificationMgr = new NotificationManager();
+		import('classes.core.ServicesContainer');
+		$submissionService = ServicesContainer::instance()->get('submission');
 		if ($this->getData('confirm')) {
-			// Update the monograph status.
-			$monograph->setStatus(STATUS_PUBLISHED);
-			$monographDao->updateObject($monograph);
-
-			$publishedMonograph->setDatePublished(Core::getCurrentDate());
-			$publishedMonographDao->updateObject($publishedMonograph);
-
-			$notificationMgr->updateNotification(
-				$request,
-				array(NOTIFICATION_TYPE_APPROVE_SUBMISSION),
-				null,
-				ASSOC_TYPE_MONOGRAPH,
-				$publishedMonograph->getId()
-			);
-
-			// Remove publication format tombstones.
-			$publicationFormatTombstoneMgr->deleteTombstonesByPublicationFormats($publicationFormats);
-
-			// Update the search index for this published monograph.
-			import('classes.search.MonographSearchIndex');
-			MonographSearchIndex::indexMonographMetadata($monograph);
-
-			// Log the publication event.
-			import('lib.pkp.classes.log.SubmissionLog');
-			SubmissionLog::logEvent($request, $monograph, SUBMISSION_LOG_METADATA_PUBLISH, 'submission.event.metadataPublished');
-		} else {
-			if ($isExistingEntry) {
-				// Update the monograph status.
-				$monograph->setStatus(STATUS_QUEUED);
-				$monographDao->updateObject($monograph);
-
-				// Unpublish monograph.
-				$publishedMonograph->setDatePublished(null);
-				$publishedMonographDao->updateObject($publishedMonograph);
-
-				$notificationMgr->updateNotification(
-					$request,
-					array(NOTIFICATION_TYPE_APPROVE_SUBMISSION),
-					null,
-					ASSOC_TYPE_MONOGRAPH,
-					$publishedMonograph->getId()
-				);
-
-				// Create tombstones for each publication format.
-				$publicationFormatTombstoneMgr->insertTombstonesByPublicationFormats($publicationFormats, $request->getContext());
-
-				// Log the unpublication event.
-				import('lib.pkp.classes.log.SubmissionLog');
-				SubmissionLog::logEvent($request, $monograph, SUBMISSION_LOG_METADATA_UNPUBLISH, 'submission.event.metadataUnpublished');
-			}
+			$submissionService->addToCatalog($monograph);
+		} elseif ($isExistingEntry) {
+			$submissionService->removeFromCatalog($monograph);
 		}
 	}
 

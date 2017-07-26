@@ -30,12 +30,6 @@ class CompetingInterestsTest extends ContentBaseTestCase {
 	 * Test the system's operations with reviewer CIs enabled.
 	 */
 	function testCIDisabled() {
-		// FIXME: With PostgreSQL, the grid scrolling code doesn't appear to permit
-		// the test to find the submission as reviewer. For now, skip it.
-		// http://stackoverflow.com/questions/9467063/phpunit-selenium-after-updating-to-3-6-10-version-it-seems-that-marktestskip
-		$this->captureScreenshotOnFailure = false;
-		if (getenv('DBTYPE') == 'PostgreSQL') $this->markTestSkipped('Scrolling broken with PostgreSQL.');
-
 		$this->open(self::$baseUrl);
 
 		// Unset the CI requirement setting
@@ -51,10 +45,8 @@ class CompetingInterestsTest extends ContentBaseTestCase {
 
 		// Submit review with no competing interests
 		$this->logIn('agallego');
-		$this->scrollPageDown();
-		$xpath = '//span[contains(text(),' . $this->quoteXpath(self::$fullTitle) .')]/../../..//a[contains(@id, "-stage-itemWorkflow-button-")]';
-		$this->waitForElementPresent($xpath);
-		$this->clickAndWait($xpath);
+		$this->waitForElementPresent($selector='//a[contains(string(), ' . $this->quoteXpath(self::$fullTitle) . ')]');
+		$this->clickAndWait($selector);
 
 		$this->waitForElementPresent('id=reviewStep1Form');
 		$this->assertElementNotPresent('//label[@for=\'noCompetingInterests\']');
@@ -84,12 +76,6 @@ class CompetingInterestsTest extends ContentBaseTestCase {
 	 * Test the system's operations with reviewer CIs enabled.
 	 */
 	function testCIRequired() {
-		// FIXME: With PostgreSQL, the grid scrolling code doesn't appear to permit
-		// the test to find the submission as reviewer. For now, skip it.
-		// http://stackoverflow.com/questions/9467063/phpunit-selenium-after-updating-to-3-6-10-version-it-seems-that-marktestskip
-		$this->captureScreenshotOnFailure = false;
-		if (getenv('DBTYPE') == 'PostgreSQL') $this->markTestSkipped('Scrolling broken with PostgreSQL.');
-
 		$this->open(self::$baseUrl);
 
 		// Set the CI requirement setting
@@ -106,10 +92,8 @@ class CompetingInterestsTest extends ContentBaseTestCase {
 		// Submit review with competing interests
 		$competingInterests = 'I work for a competing company';
 		$this->logIn('alzacharia');
-		$this->scrollPageDown();
-		$xpath = '//span[contains(text(),' . $this->quoteXpath(self::$fullTitle) .')]/../../..//a[contains(@id, "-stage-itemWorkflow-button-")]';
-		$this->waitForElementPresent($xpath);
-		$this->clickAndWait($xpath);
+		$this->waitForElementPresent($selector='//a[contains(string(), ' . $this->quoteXpath(self::$fullTitle) . ')]');
+		$this->clickAndWait($selector);
 
 		$this->waitForElementPresent('id=reviewStep1Form');
 		$this->assertElementPresent($selector='//input[@id=\'hasCompetingInterests\']');

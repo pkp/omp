@@ -19,22 +19,35 @@
 <script type="text/javascript">
 	// Initialize JS handler for catalog header.
 	$(function() {ldelim}
-		$('#catalogTabs').pkpHandler(
-			'$.pkp.pages.manageCatalog.ManageCatalogHeaderHandler'
-		);
+		$('#catalogTabs').pkpHandler('$.pkp.controllers.TabHandler');
 	{rdelim});
 </script>
 
-<div id="catalogHeader">
-
-	<div id="catalogTabs" class="pkp_controllers_tab">
-		<ul>
-			<li><a name="manageHomepage" href="{url router=$smarty.const.ROUTE_COMPONENT component="tab.manageCatalog.ManageCatalogTabHandler" op="catalog"}">{translate key="navigation.catalog"}</a></li>
-			<li><a name="manageCategory" href="{url router=$smarty.const.ROUTE_COMPONENT component="tab.manageCatalog.ManageCatalogTabHandler" op="category"}">{translate key="navigation.catalog.administration.categories"}</a></li>
-			<li><a name="manageSeries" href="{url router=$smarty.const.ROUTE_COMPONENT component="tab.manageCatalog.ManageCatalogTabHandler" op="series"}">{translate key="catalog.manage.series"}</a></li>
-			{if $isManager}<li><a name="manageSpotlights" href="{url router=$smarty.const.ROUTE_COMPONENT component="tab.manageCatalog.ManageCatalogTabHandler" op="spotlights"}">{translate key="spotlight.spotlights"}</a></li>{/if}
-		</ul>
+<div id="catalogTabs" class="pkp_controllers_tab">
+	<ul>
+		<li><a name="monographs" href="#monographs">{translate key="navigation.catalog.allMonographs"}</a></li>
+		{if $isManager}<li><a name="spotlights" href="#spotlights">{translate key="spotlight.spotlights"}</a></li>{/if}
+	</ul>
+	<div id="monographs">
+		{help file="catalog.md" class="pkp_help_tab"}
+		<div class="pkp_content_panel">
+			{assign var="uuid" value=""|uniqid|escape}
+			<div id="catalog-submissions-list-handler-{$uuid}">
+			    <script type="text/javascript">
+			        pkp.registry.init('catalog-submissions-list-handler-{$uuid}', 'CatalogSubmissionsListPanel', {$catalogListData});
+			    </script>
+			</div>
+		</div>
 	</div>
+	{if $isManager}
+		<div id="spotlights">
+			{help file="catalog.md#spotlights" class="pkp_help_tab"}
+			<div class="pkp_content_panel">
+				{url|assign:spotlightsGridUrl router=$smarty.const.ROUTE_COMPONENT component="grid.content.spotlights.ManageSpotlightsGridHandler" op="fetchGrid" escape=false}
+				{load_url_in_div id="spotlightsGridContainer" url=$spotlightsGridUrl}
+			</div>
+		</div>
+	{/if}
 </div>
 
 {include file="common/footer.tpl"}

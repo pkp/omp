@@ -21,6 +21,7 @@
 	<message key="plugins.importexport.onix30.export.error.couldNotWrite">Could not write to the file "{$fileName}".</message>
 	<message key="plugins.importexport.onix30.export.error.monographNotFound">No monograph matched the specified monograph ID "{$monographId}".</message>
 	<message key="plugins.importexport.onix30.noFormats">Monographs with no publication formats are not shown.</message>
+	<message key="plugins.importexport.onix30.exportSubmissionsSelect">Select monographs to export</message>
 	<message key="plugins.importexport.onix30.selectMonograph">Select a monograph to export:</message>
 	<message key="plugins.importexport.onix30.exportButton">Export</message>
 	<message key="plugins.importexport.onix30.exportFormats">Available Formats</message>
@@ -29,7 +30,7 @@
 	<message key="plugins.importexport.onix30.formatValid">Valid</message>
 	<message key="plugins.importexport.onix30.formatInvalid">Invalid</message>
 	<message key="plugins.importexport.onix30.pressMissingFields">This press is missing some required information.  Please go to Settings &gt; Workflow &gt; Production and fill in the missing details.</message>
-	
+
 	<!-- Information form keys -->
 	<message key="plugins.importexport.onix30.form.addresseeField">Addressee (recipient) for this export</message>
 	<message key="plugins.importexport.onix30.form.addresseeField.tip"><![CDATA[You may leave this field blank and create a general export.  This will result in the ONIX export having no &lt;Addressee&gt; composite. ]]></message>
