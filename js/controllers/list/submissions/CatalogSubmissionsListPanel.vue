@@ -3,7 +3,7 @@
 		<div class="pkpListPanel__header">
 			<div class="pkpListPanel__title">{{ i18n.title }}</div>
 			<ul class="pkpListPanel__actions">
-				<li v-if="hasFilters">
+				<li>
 					<button @click.prevent="toggleFilter" :class="{'--isActive': isFilterVisible}">
 						<span class="fa fa-filter"></span>
 						{{ i18n.filter }}
@@ -44,11 +44,9 @@
 				{{ featuredNotice }}
 			</div>
 			<catalog-submissions-list-filter
-				v-if="hasFilters"
 				@filterList="updateFilter"
 				:isVisible="isFilterVisible"
-				:categories="categories"
-				:series="series"
+				:filters="filters"
 				:i18n="i18n"
 			/>
 			<div class="pkpListPanel__content pkpListPanel__content--catalogSubmissions">
@@ -137,13 +135,6 @@ export default {
 		},
 
 		/**
-		 * Are there any filters available?
-		 */
-		hasFilters: function() {
-			return (this.categories.length + this.series.length) > 0;
-		},
-
-		/**
 		 * Return the appropriate label for the featured column depending on
 		 * if we're looking at a filtered view
 		 */
@@ -175,9 +166,9 @@ export default {
 		 */
 		featuredNotice: function() {
 			if (this.filterAssocType === this.constants.assocTypes.category) {
-				return this.__('orderingFeaturesSection', {title: _.findWhere(this.categories, {id: this.filterAssocId}).title});
+				return this.__('orderingFeaturesSection', {title: _.findWhere(this.filters.categoryIds.filters, {val: this.filterAssocId}).title});
 			} else if (this.filterAssocType === this.constants.assocTypes.series) {
-				return this.__('orderingFeaturesSection', {title: _.findWhere(this.series, {id: this.filterAssocId}).title});
+				return this.__('orderingFeaturesSection', {title: _.findWhere(this.filters.seriesIds.filters, {val: this.filterAssocId}).title});
 			}
 			return this.i18n.orderingFeatures;
 		},
@@ -208,9 +199,9 @@ export default {
 		 */
 		filterAssocId: function() {
 			if (_.has(this.filterParams, 'categoryIds')) {
-				return this.filterParams.categoryIds;
+				return this.filterParams.categoryIds[0];
 			} else if (_.has(this.filterParams, 'seriesIds')) {
-				return this.filterParams.seriesIds;
+				return this.filterParams.seriesIds[0];
 			}
 			// in OMP, there's only one press context and it's always 1
 			return 1;
@@ -248,11 +239,11 @@ export default {
 		 */
 		updateSortOrder: function() {
 			if (typeof this.filterParams.categoryIds !== 'undefined') {
-				var cat = _.findWhere(this.categories, {id: this.filterParams.categoryIds});
+				var cat = _.findWhere(this.filters.categoryIds.filters, {val: this.filterParams.categoryIds[0]});
 				this.getParams.orderBy = cat.sortBy;
 				this.getParams.orderDirection = cat.sortDir || this.constants.catalogSortDir;
 			} else if (typeof this.filterParams.seriesIds !== 'undefined') {
-				var series = _.findWhere(this.series, {id: this.filterParams.seriesIds});
+				var series = _.findWhere(this.filters.seriesIds.filters, {val: this.filterParams.seriesIds[0]});
 				this.getParams.orderBy = series.sortBy || this.constants.catalogSortBy;
 				this.getParams.orderDirection = series.sortDir || this.constants.catalogSortDir;
 			} else {

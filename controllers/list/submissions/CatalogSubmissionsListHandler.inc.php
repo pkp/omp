@@ -11,7 +11,7 @@
  *
  * @brief Instantiates and manages a UI component to list submissions.
  */
-import('lib.pkp.controllers.list.submissions.SubmissionsListHandler');
+import('controllers.list.submissions.SubmissionsListHandler');
 import('lib.pkp.classes.db.DBResultRange');
 import('classes.monograph.PublishedMonograph');
 
@@ -43,8 +43,6 @@ class CatalogSubmissionsListHandler extends SubmissionsListHandler {
 		$config = parent::getConfig();
 
 		$config['i18n']['add'] = __('submission.catalogEntry.new');
-		$config['i18n']['categories'] = __('catalog.categories');
-		$config['i18n']['series'] = __('catalog.manage.series');
 		$config['i18n']['itemCount'] = __('submission.list.countMonographs');
 		$config['i18n']['itemsOfTotal'] = __('submission.list.itemsOfTotalMonographs');
 		$config['i18n']['featured'] = __('catalog.featured');
@@ -82,50 +80,49 @@ class CatalogSubmissionsListHandler extends SubmissionsListHandler {
 			array('stageId' => WORKFLOW_STAGE_ID_PRODUCTION, 'submissionId' => '__id__')
 		);
 
-		$config['categories'] = array();
+		$config['filters'] = array();
+
 		if ($context) {
+
+			$categories = array();
 			$categoryDao = DAORegistry::getDAO('CategoryDAO');
-			$categories = $categoryDao->getByPressId($context->getId());
-			while (!$categories->eof()) {
-				$category = $categories->next();
+			$categoriesResult = $categoryDao->getByPressId($context->getId());
+			while (!$categoriesResult->eof()) {
+				$category = $categoriesResult->next();
 				list($categorySortBy, $categorySortDir) = explode('-', $category->getSortOption());
 				$categorySortDir = empty($categorySortDir) ? $catalogSortDir : $categorySortDir == SORT_DIRECTION_ASC ? 'ASC' : 'DESC';
-				$config['categories'][] = array(
-					'id' => (int) $category->getId(),
-					'parent_id' => (int) $category->getParentId(),
+				$categories[] = array(
+					'val' => (int) $category->getId(),
 					'title' => $category->getLocalizedTitle(),
-					'description' => $category->getLocalizedDescription(),
-					'path' => $category->getPath(),
-					'image' => $category->getImage(),
 					'sortBy' => $categorySortBy,
 					'sortDir' => $categorySortDir,
-					'sequence' => (int) $category->getSequence(),
 				);
 			}
-		}
+			if (count($categories)) {
+				$config['filters']['categoryIds'] = array(
+					'heading' => __('catalog.categories'),
+					'filters' => $categories,
+				);
+			}
 
-		$config['series'] = array();
-		if ($context) {
+			$series = array();
 			$seriesDao = DAORegistry::getDAO('SeriesDAO');
 			$seriesResult = $seriesDao->getByPressId($context->getId());
 			while (!$seriesResult->eof()) {
-				$series = $seriesResult->next();
-				list($seriesSortBy, $seriesSortDir) = explode('-', $series->getSortOption());
+				$seriesObj = $seriesResult->next();
+				list($seriesSortBy, $seriesSortDir) = explode('-', $seriesObj->getSortOption());
 				$seriesSortDir = empty($seriesSortDir) ? $catalogSortDir : $seriesSortDir == SORT_DIRECTION_ASC ? 'ASC' : 'DESC';
-				$config['series'][] = array(
-					'id' => (int) $series->getId(),
-					'title' => $series->getLocalizedTitle(),
-					'prefix' => $series->getLocalizedPrefix(),
-					'subtitle' => $series->getLocalizedSubtitle(),
-					'description' => $series->getLocalizedDescription(),
-					'path' => $series->getPath(),
-					'featured' => $series->getFeatured(),
-					'onlineIssn' => $series->getOnlineIssn(),
-					'printIssn' => $series->getPrintIssn(),
-					'image' => $series->getImage(),
+				$series[] = array(
+					'val' => (int) $seriesObj->getId(),
+					'title' => $seriesObj->getLocalizedTitle(),
+				);
+			}
+			if (count($series)) {
+				$config['filters']['seriesIds'] = array(
+					'heading' => __('catalog.manage.series'),
+					'filters' => $series,
 					'sortBy' => $seriesSortBy,
 					'sortDir' => $seriesSortDir,
-					'editors' => $series->getEditorsString(),
 				);
 			}
 		}
