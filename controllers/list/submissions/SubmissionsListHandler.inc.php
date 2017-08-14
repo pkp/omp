@@ -23,22 +23,27 @@ class SubmissionsListHandler extends PKPSubmissionsListHandler {
 	public function getWorkflowStages() {
 		return array(
 			array(
+				'param' => 'stageIds',
 				'val' => WORKFLOW_STAGE_ID_SUBMISSION,
 				'title' => __('manager.publication.submissionStage'),
 			),
 			array(
+				'param' => 'stageIds',
 				'val' => WORKFLOW_STAGE_ID_INTERNAL_REVIEW,
 				'title' => __('workflow.review.internalReview'),
 			),
 			array(
+				'param' => 'stageIds',
 				'val' => WORKFLOW_STAGE_ID_EXTERNAL_REVIEW,
 				'title' => __('workflow.review.externalReview'),
 			),
 			array(
+				'param' => 'stageIds',
 				'val' => WORKFLOW_STAGE_ID_EDITING,
 				'title' => __('submission.copyediting'),
 			),
 			array(
+				'param' => 'stageIds',
 				'val' => WORKFLOW_STAGE_ID_PRODUCTION,
 				'title' => __('manager.publication.productionStage'),
 			),
