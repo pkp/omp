@@ -92,6 +92,7 @@ class CatalogSubmissionsListHandler extends SubmissionsListHandler {
 				list($categorySortBy, $categorySortDir) = explode('-', $category->getSortOption());
 				$categorySortDir = empty($categorySortDir) ? $catalogSortDir : $categorySortDir == SORT_DIRECTION_ASC ? 'ASC' : 'DESC';
 				$categories[] = array(
+					'param' => 'categoryIds',
 					'val' => (int) $category->getId(),
 					'title' => $category->getLocalizedTitle(),
 					'sortBy' => $categorySortBy,
@@ -113,6 +114,7 @@ class CatalogSubmissionsListHandler extends SubmissionsListHandler {
 				list($seriesSortBy, $seriesSortDir) = explode('-', $seriesObj->getSortOption());
 				$seriesSortDir = empty($seriesSortDir) ? $catalogSortDir : $seriesSortDir == SORT_DIRECTION_ASC ? 'ASC' : 'DESC';
 				$series[] = array(
+					'param' => 'seriesIds',
 					'val' => (int) $seriesObj->getId(),
 					'title' => $seriesObj->getLocalizedTitle(),
 				);
