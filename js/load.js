@@ -21,6 +21,7 @@ window.pkp = {
 		'SelectSubmissionsListPanel': SelectSubmissionsListPanel,
 		'CatalogSubmissionsListPanel': CatalogSubmissionsListPanel,
 	},
+	const: {},
 	/**
 	 * Helper function to determine if the current user has a role
 	 *

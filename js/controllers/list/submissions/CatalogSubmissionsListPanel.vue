@@ -108,7 +108,8 @@ export default {
 	},
 	data: function() {
 		return {
-			constants: {},
+			catalogSortBy: '',
+			catalogSortDir: '',
 		};
 	},
 	computed: {
@@ -138,9 +139,9 @@ export default {
 		 * if we're looking at a filtered view
 		 */
 		featuredLabel: function() {
-			if (this.filterAssocType === this.constants.assocTypes.category) {
+			if (this.filterAssocType === pkp.const.ASSOC_TYPE_CATEGORY) {
 				return this.i18n.featuredCategory;
-			} else if (this.filterAssocType === this.constants.assocTypes.series) {
+			} else if (this.filterAssocType === pkp.const.ASSOC_TYPE_SERIES) {
 				return this.i18n.featuredSeries;
 			}
 			return this.i18n.featured;
@@ -151,9 +152,9 @@ export default {
 		 * if we're looking at a filtered view
 		 */
 		newReleaseLabel: function() {
-			if (this.filterAssocType === this.constants.assocTypes.category) {
+			if (this.filterAssocType === pkp.const.ASSOC_TYPE_CATEGORY) {
 				return this.i18n.newReleaseCategory;
-			} else if (this.filterAssocType === this.constants.assocTypes.series) {
+			} else if (this.filterAssocType === pkp.const.ASSOC_TYPE_SERIES) {
 				return this.i18n.newReleaseSeries;
 			}
 			return this.i18n.newRelease;
@@ -164,9 +165,9 @@ export default {
 		 * if we're looking at a filtered view
 		 */
 		featuredNotice: function() {
-			if (this.filterAssocType === this.constants.assocTypes.category) {
+			if (this.filterAssocType === pkp.const.ASSOC_TYPE_CATEGORY) {
 				return this.__('orderingFeaturesSection', {title: _.findWhere(this.filters.categoryIds.filters, {val: this.filterAssocId}).title});
-			} else if (this.filterAssocType === this.constants.assocTypes.series) {
+			} else if (this.filterAssocType === pkp.const.ASSOC_TYPE_SERIES) {
 				return this.__('orderingFeaturesSection', {title: _.findWhere(this.filters.seriesIds.filters, {val: this.filterAssocId}).title});
 			}
 			return this.i18n.orderingFeatures;
@@ -182,11 +183,11 @@ export default {
 		 */
 		filterAssocType: function() {
 			if (_.has(this.filterParams, 'categoryIds')) {
-				return this.constants.assocTypes.category;
+				return pkp.const.ASSOC_TYPE_CATEGORY;
 			} else if (_.has(this.filterParams, 'seriesIds')) {
-				return this.constants.assocTypes.series;
+				return pkp.const.ASSOC_TYPE_SERIES;
 			}
-			return this.constants.assocTypes.press;
+			return pkp.const.ASSOC_TYPE_PRESS;
 		},
 
 		/**
@@ -240,14 +241,14 @@ export default {
 			if (typeof this.filterParams.categoryIds !== 'undefined') {
 				var cat = _.findWhere(this.filters.categoryIds.filters, {val: this.filterParams.categoryIds[0]});
 				this.getParams.orderBy = cat.sortBy;
-				this.getParams.orderDirection = cat.sortDir || this.constants.catalogSortDir;
+				this.getParams.orderDirection = cat.sortDir || this.catalogSortDir;
 			} else if (typeof this.filterParams.seriesIds !== 'undefined') {
 				var series = _.findWhere(this.filters.seriesIds.filters, {val: this.filterParams.seriesIds[0]});
-				this.getParams.orderBy = series.sortBy || this.constants.catalogSortBy;
-				this.getParams.orderDirection = series.sortDir || this.constants.catalogSortDir;
+				this.getParams.orderBy = series.sortBy || this.catalogSortBy;
+				this.getParams.orderDirection = series.sortDir || this.catalogSortDir;
 			} else {
-				this.getParams.orderBy = this.constants.catalogSortBy;
-				this.getParams.orderDirection = this.constants.catalogSortDir;
+				this.getParams.orderBy = this.catalogSortBy;
+				this.getParams.orderDirection = this.catalogSortDir;
 			}
 		},
 
