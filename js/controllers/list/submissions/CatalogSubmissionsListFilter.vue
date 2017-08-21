@@ -5,50 +5,26 @@
 			{{ i18n.filter }}
 		</div>
 		<div class="pkpListPanel__filterOptions pkpListPanel__filterOptions--catalogSubmissions">
-			<div v-if="categories.length > 0" class="pkpListPanel__filterSet">
-				<div class="pkpListPanel__filterSetLabel">
-					{{ i18n.categories }}
+			<div v-for="filter in filters" class="pkpListPanel__filterSet">
+				<div v-if="filter.heading" class="pkpListPanel__filterSetLabel">
+					{{ filter.heading }}
 				</div>
 				<ul>
-					<li v-for="category in categories">
+					<li v-for="filterItem in filter.filters">
 						<a href="#"
-							@click.prevent.stop="filterByCategory(category.id)"
+							@click.prevent.stop="filterBy(filterItem.param, filterItem.val)"
 							class="pkpListPanel__filterLabel"
-							:class="{'--isActive': isFilterActive('category', category.id)}"
+							:class="{'--isActive': isFilterActive(filterItem.param, filterItem.val)}"
 							:tabindex="tabIndex"
-						>{{ category.title }}</a>
+						>{{ filterItem.title }}</a>
 						<button
-							v-if="isFilterActive('category', category.id)"
+							v-if="isFilterActive(filterItem.param, filterItem.val)"
 							href="#"
 							class="pkpListPanel__filterRemove"
-							@click.prevent.stop="clearFilters()"
+							@click.prevent.stop="clearFilter(filterItem.param, filterItem.val)"
 						>
 							<span class="fa fa-times-circle-o"></span>
-							<span class="pkpListPanel__filterRemoveLabel">{{ __('filterRemove', {filterTitle: category.title}) }}</span>
-						</button>
-					</li>
-				</ul>
-			</div>
-			<div v-if="series.length > 0" class="pkpListPanel__filterSet">
-				<div class="pkpListPanel__filterSetLabel">
-					{{ i18n.series}}
-				</div>
-				<ul>
-					<li v-for="seriesItem in series">
-						<a href="#"
-							@click.prevent.stop="filterBySeries(seriesItem.id)"
-							class="pkpListPanel__filterLabel"
-							:class="{'--isActive': isFilterActive('series', seriesItem.id)}"
-							:tabindex="tabIndex"
-						>{{ seriesItem.title }}</a>
-						<button
-							v-if="isFilterActive('series', seriesItem.id)"
-							href="#"
-							class="pkpListPanel__filterRemove"
-							@click.prevent.stop="clearFilters()"
-						>
-							<span class="fa fa-times-circle-o"></span>
-							<span class="pkpListPanel__filterRemoveLabel">{{ __('filterRemove', {filterTitle: seriesItem.title}) }}</span>
+							<span class="pkpListPanel__filterRemoveLabel">{{ __('filterRemove', {filterTitle: filterItem.title}) }}</span>
 						</button>
 					</li>
 				</ul>
@@ -63,39 +39,22 @@ import ListPanelFilter from '../../../../lib/pkp/js/controllers/list/ListPanelFi
 export default {
 	extends: ListPanelFilter,
 	name: 'CatalogSubmissionsListFilter',
-	props: ['isVisible', 'categories', 'series', 'i18n'],
+	props: ['isVisible', 'filters', 'i18n'],
 	methods: {
 		/**
-		 * Check if a filter is currently active
+		 * Add a filter
+		 *
+		 * Only allow a single filter to be enabled at a time, so that the ordering
+		 * features can be applied to a single category or series.
 		 */
-		isFilterActive: function(type, id) {
-			return typeof _.findWhere(this.activeFilters, {type: type, id: id}) !== 'undefined';
-		},
-
-		/**
-		 * Filter by a category
-		 */
-		filterByCategory: function(id) {
-			if (this.isFilterActive('category', id)) {
+		filterBy: function(type, val) {
+			if (this.isFilterActive(type, val)) {
 				this.clearFilters();
 				return;
 			}
 			this.clearFilters();
-			this.activeFilters.push({type: 'category', id: id});
-			this.filterList({categoryIds: id});
-		},
-
-		/**
-		 * Filter by a series
-		 */
-		filterBySeries: function(id) {
-			if (this.isFilterActive('series', id)) {
-				this.clearFilters();
-				return;
-			}
-			this.clearFilters();
-			this.activeFilters.push({type: 'series', id: id});
-			this.filterList({seriesIds: id});
+			this.activeFilters.push({type: type, val: val});
+			this.filterList(this.compileFilterParams());
 		},
 	},
 };
