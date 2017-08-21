@@ -9,21 +9,21 @@
  *
  * @class OMPCompletedPaymentDAO
  * @ingroup payment
- * @see OMPCompletedPayment, Payment
+ * @see CompletedPayment, Payment
  *
  * @brief Operations for retrieving and querying past payments
  *
  */
 
 import('classes.payment.omp.OMPPaymentManager'); // PAYMENT_TYPE_... consts
-import('classes.payment.omp.OMPCompletedPayment');
+import('lib.pkp.classes.payment.CompletedPayment');
 
 class OMPCompletedPaymentDAO extends DAO {
 	/**
 	 * Retrieve a ComplatedPayment by its ID.
 	 * @param $completedPaymentId int
 	 * @param $pressId int optional
-	 * @return OMPCompletedPayment
+	 * @return CompletedPayment
 	 */
 	function getCompletedPayment($completedPaymentId, $pressId = null) {
 		$params = array((int) $completedPaymentId);
@@ -45,7 +45,7 @@ class OMPCompletedPaymentDAO extends DAO {
 
 	/**
 	 * Insert a new completed payment.
-	 * @param $completedPayment OMPCompletedPayment
+	 * @param $completedPayment CompletedPayment
 	 */
 	function insertCompletedPayment($completedPayment) {
 		$this->update(
@@ -70,7 +70,7 @@ class OMPCompletedPaymentDAO extends DAO {
 
 	/**
 	 * Update an existing completed payment.
-	 * @param $completedPayment OMPCompletedPayment
+	 * @param $completedPayment CompletedPayment
 	 * @return boolean
 	 */
 	function updateObject($completedPayment) {
@@ -169,14 +169,14 @@ class OMPCompletedPaymentDAO extends DAO {
 
 	/**
 	 * Return a new data object.
-	 * @return OMPCompletedPayment
+	 * @return CompletedPayment
 	 */
 	function newDataObject() {
-		return new OMPCompletedPayment();
+		return new CompletedPayment();
 	}
 
 	/**
-	 * Internal function to return a OMPCompletedPayment object from a row.
+	 * Internal function to return a CompletedPayment object from a row.
 	 * @param $row array
 	 * @return CompletedPayment
 	 */
