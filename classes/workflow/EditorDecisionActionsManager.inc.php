@@ -179,17 +179,6 @@ class EditorDecisionActionsManager {
 				'operation' => 'sendReviewsInReview',
 				'name' => 'requestRevisions',
 				'title' => 'editor.submission.decision.requestRevisions',
-				'image' => 'revisions',
-				'help' => 'editor.review.NotifyAuthorRevisions',
-				'titleIcon' => 'revisions_required',
-			),
-			SUBMISSION_EDITOR_DECISION_RESUBMIT => array(
-				'operation' => 'sendReviewsInReview',
-				'name' => 'resubmit',
-				'title' => 'editor.submission.decision.resubmit',
-				'image' => 'resubmit',
-				'help' => 'editor.review.NotifyAuthorResubmit',
-				'titleIcon' => 'please_resubmit',
 			),
 			SUBMISSION_EDITOR_DECISION_EXTERNAL_REVIEW => array(
 				'operation' => 'promoteInReview',
