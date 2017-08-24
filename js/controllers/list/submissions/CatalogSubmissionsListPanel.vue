@@ -33,7 +33,6 @@
 			</ul>
 			<list-panel-search
 				@searchPhraseChanged="setSearchPhrase"
-				:isSearching="isSearching"
 				:searchPhrase="searchPhrase"
 				:i18n="i18n"
 			/>
@@ -65,7 +64,7 @@
 							@catalogFeatureUpdated="sortByFeaturedSequence"
 							@itemOrderUp="itemOrderUp"
 							@itemOrderDown="itemOrderDown"
-							:submission="item"
+							:item="item"
 							:catalogEntryUrl="catalogEntryUrl"
 							:filterAssocType="filterAssocType"
 							:filterAssocId="filterAssocId"
@@ -227,8 +226,8 @@ export default {
 		 * Sort submissions by featured sequence
 		 */
 		sortByFeaturedSequence: function() {
-			this.collection.items = _.sortBy(this.collection.items, function(submission) {
-				var featured = _.findWhere(submission.featured, {assoc_type: this.filterAssocType});
+			this.collection.items = _.sortBy(this.collection.items, function(item) {
+				var featured = _.findWhere(item.featured, {assoc_type: this.filterAssocType});
 				return typeof featured === 'undefined' ? 9999999 : featured.seq;
 			}, this);
 		},

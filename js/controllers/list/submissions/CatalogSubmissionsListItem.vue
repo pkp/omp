@@ -4,23 +4,27 @@
 			v-if="isOrdering"
 			@itemOrderUp="itemOrderUp"
 			@itemOrderDown="itemOrderDown"
-			:itemTitle="submission.title"
+			:itemTitle="item.title"
 			:i18n="i18n"
 		/>
 		<div class="pkpListPanelItem--submission__item">
-			<a :href="submission.urlPublished" @focus="focusItem" @blur="blurItem">
-				<div class="pkpListPanelItem--submission__title">
-					{{ submission.title }}
+			<div class="pkpListPanelItem--submission__id">
+				<span class="pkp_screen_reader">{{ i18n.id }}</span>
+				{{ item.id }}
+			</div>
+			<a :href="item.urlPublished" @focus="focusItem" @blur="blurItem" class="pkpListPanelItem--submission__link">
+				<div v-if="item.author" class="pkpListPanelItem--submission__author">
+					{{ item.author.authorString }}
 				</div>
-				<div v-if="submission.author" class="pkpListPanelItem--submission__author">
-					{{ submission.author.authorString }}
+				<div class="pkpListPanelItem--submission__title">
+					{{ item.title }}
 				</div>
 			</a>
 			<div class="pkpListPanelItem__actions">
 				<button @click.prevent="viewCatalogEntry" @focus="focusItem" @blur="blurItem">
 					{{ i18n.editCatalogEntry }}
 				</button>
-				<a :href="submission.urlWorkflow" @focus="focusItem" @blur="blurItem">
+				<a :href="item.urlWorkflow" @focus="focusItem" @blur="blurItem">
 					{{ i18n.viewSubmission }}
 				</a>
 			</div>
@@ -67,7 +71,7 @@ import ListPanelItemOrderer from '../../../../lib/pkp/js/controllers/list/ListPa
 export default {
 	extends: ListPanelItem,
 	name: 'CatalogSubmissionsListItem',
-	props: ['submission', 'i18n', 'filterAssocType', 'filterAssocId', 'catalogEntryUrl', 'isOrdering', 'apiPath'],
+	props: ['item', 'i18n', 'filterAssocType', 'filterAssocId', 'catalogEntryUrl', 'isOrdering', 'apiPath'],
 	components: {
 		ListPanelItemOrderer,
 	},
@@ -81,7 +85,7 @@ export default {
 		 * Map the submission id to the list item id
 		 */
 		id: function() {
-			return this.submission.id;
+			return this.item.id;
 		},
 
 		/**
@@ -91,7 +95,7 @@ export default {
 		 * @return bool
 		 */
 		isFeatured: function() {
-			return typeof _.findWhere(this.submission.featured, {assoc_type: this.filterAssocType}) !== 'undefined';
+			return typeof _.findWhere(this.item.featured, {assoc_type: this.filterAssocType}) !== 'undefined';
 		},
 
 		/**
@@ -101,7 +105,7 @@ export default {
 		 * @return bool
 		 */
 		isNewRelease: function() {
-			return typeof _.findWhere(this.submission.newRelease, {assoc_type: this.filterAssocType}) !== 'undefined';
+			return typeof _.findWhere(this.item.newRelease, {assoc_type: this.filterAssocType}) !== 'undefined';
 		},
 	},
 	methods: {
@@ -109,10 +113,10 @@ export default {
 		 * Toggle the checkbox when clicked
 		 */
 		toggleFeatured: function() {
-			if (_.findWhere(this.submission.featured, {assoc_type: this.filterAssocType})) {
-				this.submission.featured = _.reject(this.submission.featured, {assoc_type: this.filterAssocType});
+			if (_.findWhere(this.item.featured, {assoc_type: this.filterAssocType})) {
+				this.item.featured = _.reject(this.item.featured, {assoc_type: this.filterAssocType});
 			} else {
-				this.submission.featured.push({
+				this.item.featured.push({
 					assoc_type: this.filterAssocType,
 					assoc_id: this.filterAssocId,
 					seq: 1,
@@ -125,10 +129,10 @@ export default {
 		 * Toggle the checkbox when clicked
 		 */
 		toggleNewRelease: function() {
-			if (_.findWhere(this.submission.newRelease, {assoc_type: this.filterAssocType})) {
-				this.submission.newRelease = _.reject(this.submission.newRelease, {assoc_type: this.filterAssocType});
+			if (_.findWhere(this.item.newRelease, {assoc_type: this.filterAssocType})) {
+				this.item.newRelease = _.reject(this.item.newRelease, {assoc_type: this.filterAssocType});
 			} else {
-				this.submission.newRelease.push({
+				this.item.newRelease.push({
 					assoc_type: this.filterAssocType,
 					assoc_id: this.filterAssocId,
 					seq: 1,
@@ -149,9 +153,9 @@ export default {
 				url: this.getApiUrl(this.apiPath + '/' + 'saveDisplayFlags'),
 				type: 'POST',
 				data: {
-					submissionId: this.submission.id,
-					featured: this.submission.featured,
-					newRelease: this.submission.newRelease,
+					submissionId: this.item.id,
+					featured: this.item.featured,
+					newRelease: this.item.newRelease,
 					csrfToken: $.pkp.currentUser.csrfToken,
 				},
 				error: function(r) {
@@ -159,11 +163,11 @@ export default {
 				},
 				success: function(r) {
 					if (typeof r.featured !== 'undefined') {
-						self.submission.featured = r.featured;
+						self.item.featured = r.featured;
 						self.$emit('catalogFeatureUpdated', self.submission);
 					}
 					if (typeof r.newRelease !== 'undefined') {
-						self.submission.newRelease = r.newRelease;
+						self.item.newRelease = r.newRelease;
 					}
 				},
 				complete: function(r) {
@@ -179,7 +183,7 @@ export default {
 
 			var opts = {
 				title: this.i18n.catalogEntry,
-				url: this.catalogEntryUrl.replace('__id__', this.submission.id),
+				url: this.catalogEntryUrl.replace('__id__', this.item.id),
 			};
 
 			$('<div id="' + $.pkp.classes.Helper.uuid() + '" ' +
