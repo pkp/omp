@@ -103,6 +103,10 @@ cd lib/pkp
 composer.phar install
 cd ../..
 
+echo -n "Run webpack build process"
+npm run build
+echo "Done"
+
 echo -n "Preparing package ... "
 cp config.TEMPLATE.inc.php config.inc.php
 find . \( -name .gitignore -o -name .gitmodules -o -name .keepme \) -exec rm '{}' \;
