@@ -353,7 +353,8 @@ Soumission, Évaluation interne, Évaluation externe, Rédaction et Production.<
 	<message key="manager.setup.currentRoles">Rôles actuels</message>
 	<message key="manager.setup.internalReviewRoles">Rôles des évaluateurs internes</message>
 	<message key="manager.setup.masthead">Bloc générique</message>
-	<message key="manager.setup.masthead.description">Le bloc générique devrait contenir la liste des rédacteurs en chef, directeurs généraux et autres individus associés à la presse. Les renseignements saisis ici s'afficheront dans la section À propos de cette presse.</message>
+	<message key="manager.setup.editorialTeam">Équipe de rédaction</message>
+	<message key="manager.setup.editorialTeam.description">Le bloc générique devrait contenir la liste des rédacteurs en chef, directeurs généraux et autres individus associés à la presse. Les renseignements saisis ici s'afficheront dans la section À propos de cette presse.</message>
 	<message key="manager.setup.files">Fichier</message>
 	<message key="manager.setup.productionTemplates">Modèles de production</message>
 	<message key="manager.files.note">Note: Le navigateur Fichiers est une fonctionnalité avancée qui permet de visionner et de manipuler directement les fichiers et les répertoires associés à la presse.</message>

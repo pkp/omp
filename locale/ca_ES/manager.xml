@@ -320,7 +320,8 @@ Podeu proporcionar una raó a l'usuari/ària per la qual heu desactivat el seu c
 	<message key="manager.setup.currentRoles">Rols actuals</message>
 	<message key="manager.setup.internalReviewRoles">Rols de revisió interna</message>
 	<message key="manager.setup.masthead">Capçalera</message>
-	<message key="manager.setup.masthead.description">La capçalera ha de contenir una llista d'editors/ores, directors/es de redacció i altres persones relacionades amb la publicació. La informació que introduïu aquí apareix a la pàgina Sobre la publicació.</message>
+	<message key="manager.setup.editorialTeam">Equip editorial</message>
+	<message key="manager.setup.editorialTeam.description">La capçalera ha de contenir una llista d'editors/ores, directors/es de redacció i altres persones relacionades amb la publicació. La informació que introduïu aquí apareix a la pàgina Sobre la publicació.</message>
 	<message key="manager.setup.files">Fitxers</message>
 	<message key="manager.setup.productionTemplates">Plantilles de producció</message>
 	<message key="manager.files.note">Nota: El Navegador de fitxers és una funció avançada que us permet visualitzar i manipular directament els fitxers i els directoris associats amb una publicació.</message>

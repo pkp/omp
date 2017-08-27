@@ -427,7 +427,8 @@ Podrá ofrecer una razón al usuario/a para deshabilitar su cuenta.</message>
 	<message key="manager.setup.currentRoles">Funciones actuales</message>
 	<message key="manager.setup.internalReviewRoles">Roles de revisión interna</message>
 	<message key="manager.setup.masthead">Equipo editorial</message>
-	<message key="manager.setup.masthead.description">El equipo editorial debe contener una lista de editores/as, directores/as de gestión y otros cargos asociados a la editorial. La información que introduzca aquí aparecerá en Acerca de la publicación.</message>
+	<message key="manager.setup.editorialTeam">Equipo editorial</message>
+	<message key="manager.setup.editorialTeam.description">El equipo editorial debe contener una lista de editores/as, directores/as de gestión y otros cargos asociados a la editorial. La información que introduzca aquí aparecerá en Acerca de la publicación.</message>
 	<message key="manager.setup.files">Archivos</message>
 	<message key="manager.setup.productionTemplates">Plantillas de producción</message>
 	<message key="manager.files.note">Nota: El explorador de archivos es una función avanzada que permite visualizar y manipular directamente archivos y directorios asociados a una publicación.</message>
