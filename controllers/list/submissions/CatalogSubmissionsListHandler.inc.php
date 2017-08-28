@@ -29,6 +29,8 @@ class CatalogSubmissionsListHandler extends SubmissionsListHandler {
 		list($catalogSortBy, $catalogSortDir) = explode('-', $context->getSetting('catalogSortOption'));
 		$catalogSortBy = empty($catalogSortBy) ? ORDERBY_DATE_PUBLISHED : $catalogSortBy;
 		$catalogSortDir = $catalogSortDir == SORT_DIRECTION_ASC ? 'ASC' : 'DESC';
+		$config['catalogSortBy'] = $catalogSortBy;
+		$config['catalogSortDir'] = $catalogSortDir;
 
 		$this->_getParams = array_merge(
 			$this->_getParams,
@@ -129,14 +131,10 @@ class CatalogSubmissionsListHandler extends SubmissionsListHandler {
 			}
 		}
 
-		$config['constants'] = array(
-			'assocTypes' => array(
-				'press' => ASSOC_TYPE_PRESS,
-				'category' => ASSOC_TYPE_CATEGORY,
-				'series' => ASSOC_TYPE_SERIES,
-			),
-			'catalogSortBy' => $catalogSortBy,
-			'catalogSortDir' => $catalogSortDir,
+		$config['_constants'] = array(
+			'ASSOC_TYPE_PRESS' => ASSOC_TYPE_PRESS,
+			'ASSOC_TYPE_CATEGORY' => ASSOC_TYPE_CATEGORY,
+			'ASSOC_TYPE_SERIES' => ASSOC_TYPE_SERIES,
 		);
 
 		return $config;
