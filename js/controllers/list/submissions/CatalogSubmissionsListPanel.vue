@@ -4,13 +4,13 @@
 			<div class="pkpListPanel__title">{{ i18n.title }}</div>
 			<ul class="pkpListPanel__actions">
 				<li>
-					<button @click.prevent="toggleFilter" :class="{'--isActive': isFilterVisible}">
+					<button @click.prevent="toggleFilter" :class="{'-isActive': isFilterVisible}">
 						<span class="fa fa-filter"></span>
 						{{ i18n.filter }}
 					</button>
 				</li>
 				<li class="pkpListPanel__orderToggle" v-if="canOrder">
-					<button @click.prevent="toggleOrdering" :class="{'--isActive': isOrdering}">
+					<button @click.prevent="toggleOrdering" :class="{'-isActive': isOrdering}">
 						<span class="fa fa-sort"></span>
 						<template v-if="isOrdering">
 							{{ i18n.saveFeatureOrder }}
@@ -21,7 +21,7 @@
 					</button>
 				</li>
 				<li v-if="isOrdering" class="pkpListPanel__orderToggleCancel">
-					<button @click.prevent="cancelOrdering" class="--isWarnable">
+					<button @click.prevent="cancelOrdering" class="-isWarnable">
 						{{ i18n.cancel }}
 					</button>
 				</li>
@@ -131,7 +131,7 @@ export default {
 		 * Set status on the component
 		 */
 		classStatus: function() {
-			return { '--isLoading': this.isLoading, '--isOrdering': this.isOrdering };
+			return { '-isLoading': this.isLoading, '-isOrdering': this.isOrdering };
 		},
 
 		/**
