@@ -1,5 +1,5 @@
 <template>
-	<li class="pkpListPanelItem pkpListPanelItem--submission pkpListPanelItem--catalog" :class="{'--hasFocus': isFocused, '--isLoading': isSaving, '--isFeatured': isFeatured}">
+	<li class="pkpListPanelItem pkpListPanelItem--submission pkpListPanelItem--catalog" :class="{'--hasFocus': isFocused, '-isLoading': isSaving, '-isFeatured': isFeatured}">
 		<list-panel-item-orderer
 			v-if="isOrdering"
 			@itemOrderUp="itemOrderUp"

@@ -37,7 +37,7 @@
         }
     }
 
-    &.--isLoading {
+    &.-isLoading {
 
         // Hide the list when loading because the featured and new release
         // actions change depending on the filter used. This prevents a brief
@@ -88,7 +88,7 @@
     }
 }
 
-.pkpListPanel--catalogSubmissions.--isOrdering {
+.pkpListPanel--catalogSubmissions.-isOrdering {
 
     .pkpListPanel__actions > li:not(.pkpListPanel__orderToggle):not(.pkpListPanel__orderToggleCancel),
     .pkpListPanel__search,
@@ -102,7 +102,7 @@
         padding-right: 0;
     }
 
-    .pkpListPanelItem:not(.--isFeatured) {
+    .pkpListPanelItem:not(.-isFeatured) {
         display: none;
     }
 }
