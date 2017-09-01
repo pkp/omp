@@ -25,13 +25,13 @@
 	</li>
 
 	{if $currentPress && ($currentPress->getLocalizedSetting('masthead') || $currentPress->getLocalizedSetting('submissions'))}
-		{assign var="submenu_attr" value=" aria-haspopup='true' aria-expanded='false'"}
+		{assign var="hasSubmenu" value=true}
 	{/if}
-	<li{$submenu_attr}>
+	<li>
 		<a href="{url router=$smarty.const.ROUTE_PAGE page="about"}">
 			{translate key="navigation.about"}
 		</a>
-		{if $submenu_attr}
+		{if $hasSubmenu}
 		<ul>
 			<li>
 				<a href="{url router=$smarty.const.ROUTE_PAGE page="about"}">
