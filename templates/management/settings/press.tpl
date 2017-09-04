@@ -29,6 +29,7 @@
 		<li><a name="contact" href="{url router=$smarty.const.ROUTE_COMPONENT component="tab.settings.PressSettingsTabHandler" op="showTab" tab="contact"}">{translate key="about.contact"}</a></li>
 		<li><a name="series" href="{url router=$smarty.const.ROUTE_COMPONENT component="tab.settings.PressSettingsTabHandler" op="showTab" tab="series"}">{translate key="series.series"}</a></li>
 		<li><a name="categories" href="{url router=$smarty.const.ROUTE_COMPONENT component="tab.settings.PressSettingsTabHandler" op="showTab" tab="categories"}">{translate key="grid.category.categories"}</a></li>
+		{call_hook name="Templates::Management::Settings::press"}
 	</ul>
 </div>
 
