@@ -128,11 +128,11 @@ class OMPPaymentManager extends PaymentManager {
 	 * Create a completed payment from a queued payment.
 	 * @param $queuedPayment QueuedPayment Payment to complete.
 	 * @param $payMethod string Name of payment plugin used.
-	 * @return OMPCompletedPayment
+	 * @return CompletedPayment
 	 */
-	function &createCompletedPayment($queuedPayment, $payMethod) {
-		import('classes.payment.omp.OMPCompletedPayment');
-		$payment = new OMPCompletedPayment();
+	function createCompletedPayment($queuedPayment, $payMethod) {
+		import('lib.pkp.classes.payment.CompletedPayment');
+		$payment = new CompletedPayment();
 		$payment->setPressId($queuedPayment->getPressId());
 		$payment->setType($queuedPayment->getType());
 		$payment->setAmount($queuedPayment->getAmount());
