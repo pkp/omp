@@ -84,7 +84,15 @@ lib/pkp/lib/vendor/sebastian/diff/tests				\
 lib/pkp/lib/vendor/oyejorge/less.php/test			\
 lib/pkp/js/lib/pnotify/build-tools				\
 lib/pkp/lib/swordappv2/.git					\
-lib/pkp/lib/swordappv2/test"
+lib/pkp/lib/swordappv2/test					\
+.babelrc          \
+.editorconfig     \
+.eslintignore     \
+.eslintrc.js      \
+.postcssrc.js     \
+package.json      \
+webpack.config.js \
+lib/ui-library"
 
 cd $TMPDIR
 
