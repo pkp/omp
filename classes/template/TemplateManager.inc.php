@@ -58,7 +58,6 @@ class TemplateManager extends PKPTemplateManager {
 			$this->assign(array(
 				'brandImage' => 'templates/images/omp_brand.png',
 				'packageKey' => 'common.openMonographPress',
-				'pkpLink'    => 'http://pkp.sfu.ca/omp',
 			));
 
 			// Get a count of unread tasks.
