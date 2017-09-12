@@ -102,8 +102,9 @@ class PressSiteSettingsForm extends ContextSiteSettingsForm {
 				'ldelim' => '{', // Used to add variables to settings without translating now
 				'rdelim' => '}',
 			));
+
+			$press->updateSetting('supportedLocales', $site->getSupportedLocales());
 		}
-		$press->updateSetting('supportedLocales', $site->getSupportedLocales());
 		$press->updateSetting('name', $this->getData('name'), 'string', true);
 		$press->updateSetting('description', $this->getData('description'), 'string', true);
 
