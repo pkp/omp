@@ -27,4 +27,4 @@
 	url = https://github.com/pkp/googleAnalytics
 [submodule "lib/ui-library"]
 	path = lib/ui-library
-	url = git@github.com:pkp/ui-library.git
+	url = https://github.com/pkp/ui-library
