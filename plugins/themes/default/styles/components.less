@@ -41,7 +41,7 @@
 	border-right: none;
 
 	&:after {
-		&:extend(.fa);
+		.fa();
 		content: @icon;
 		position: absolute;
 		top: -1px; // border;
@@ -76,7 +76,7 @@
 	text-decoration: none;
 
 	&:after {
-		&:extend(.fa);
+		.fa();
 		content: @icon;
 		position: absolute;
 		top: 2px;
@@ -309,7 +309,7 @@
 	text-decoration: none;
 
 	&:before {
-		&:extend(.fa);
+		.fa();
 		content: @fa-var-pencil;
 	}
 }

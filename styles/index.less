@@ -30,7 +30,6 @@
  * imported below. Re-usablee components should be declared first, followed by
  * unique or one-off styling required by individual pages.
  */
-@import "controllers/catalogSubmissionsListPanel.less";
 
 // Workflow > Publication > Publication Formats Grid
 [id^=formatsGridContainer] {
@@ -106,7 +105,7 @@
         text-decoration: none;
 
         &:before {
-            &:extend(.fa);
+            .fa();
             margin-right:  0.5em;
         }
 
