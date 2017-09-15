@@ -171,6 +171,10 @@ class EditorDecisionActionsManager {
 				'name' => 'requestRevisions',
 				'title' => 'editor.submission.decision.requestRevisions',
 			),
+			SUBMISSION_EDITOR_DECISION_RESUBMIT => array(
+				'name' => 'resubmit',
+				'title' => 'editor.submission.decision.resubmit',
+			),
 			SUBMISSION_EDITOR_DECISION_EXTERNAL_REVIEW => array(
 				'operation' => 'promoteInReview',
 				'name' => 'externalReview',
