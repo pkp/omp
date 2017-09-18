@@ -5,6 +5,7 @@
 ./lib/pkp/tests/phpunit-env1.xml
 ./lib/pkp/tests/phpunit-env2.xml
 ./lib/pkp/tests/classes/xslt
+./plugins/paymethod/paypal/vendor
 ./lib/pkp/lib
 ./plugins/importexport/users/sample.xml
 ./plugins/importexport/native/sample.xml
