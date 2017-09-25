@@ -44,7 +44,7 @@ class FperiniSubmissionTest extends ContentBaseTestCase {
 				array(
 					'firstName' => 'Robin',
 					'lastName' => 'Mansell',
-					'country' => 'United Kingdom of Great Britain and Nothern Ireland',
+					'country' => 'United Kingdom',
 					// 'affiliation' => '',
 					'email' => 'rmansell@mailinator.com',
 				),
