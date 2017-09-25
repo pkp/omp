@@ -25,7 +25,7 @@ class DbernnardSubmissionTest extends ContentBaseTestCase {
 			'firstName' => 'Deborah',
 			'lastName' => 'Bernnard',
 			'affiliation' => 'SUNY',
-			'country' => 'United States of America',
+			'country' => 'United States',
 		));
 
 		$title = 'The Information Literacy User’s Guide';
@@ -43,21 +43,21 @@ class DbernnardSubmissionTest extends ContentBaseTestCase {
 				array(
 					'firstName' => 'Greg',
 					'lastName' => 'Bobish',
-					'country' => 'United States of America',
+					'country' => 'United States',
 					'affiliation' => 'SUNY',
 					'email' => 'gbobish@mailinator.com',
 				),
 				array(
 					'firstName' => 'Daryl',
 					'lastName' => 'Bullis',
-					'country' => 'United States of America',
+					'country' => 'United States',
 					'affiliation' => 'SUNY',
 					'email' => 'dbullis@mailinator.com',
 				),
 				array(
 					'firstName' => 'Jenna',
 					'lastName' => 'Hecker',
-					'country' => 'United States of America',
+					'country' => 'United States',
 					'affiliation' => 'SUNY',
 					'email' => 'jhecker@mailinator.com',
 				),
