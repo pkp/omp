@@ -47,20 +47,22 @@ class LanguageToggleBlockPlugin extends BlockPlugin {
 	/**
 	 * Get the block context. Overrides parent so that the plugin will be
 	 * displayed during install.
+	 * @param $contextId int|null Context ID
 	 * @return int
 	 */
-	function getBlockContext() {
+	function getBlockContext($contextId = null) {
 		if (!Config::getVar('general', 'installed')) return BLOCK_CONTEXT_SIDEBAR;
-		return parent::getBlockContext();
+		return parent::getBlockContext($contextId);
 	}
 
 	/**
 	 * Determine the plugin sequence. Overrides parent so that
 	 * the plugin will be displayed during install.
+	 * @param $contextId int|null Context ID
 	 */
-	function getSeq() {
+	function getSeq($contextId = null) {
 		if (!Config::getVar('general', 'installed')) return 2;
-		return parent::getSeq();
+		return parent::getSeq($contextId);
 	}
 
 	/**
