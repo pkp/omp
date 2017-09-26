@@ -81,20 +81,6 @@ class OMPQueuedPayment extends QueuedPayment {
 	}
 
 	/**
-	 * Returns the description of the QueuedPayment.
-	 * @return string
-	 */
-	function getDescription() {
-		switch ($this->type) {
-			case PAYMENT_TYPE_PURCHASE_FILE:
-				return __('payment.directSales.monograph.description');
-			default:
-				// Invalid payment ID
-				assert(false);
-		}
-	}
-
-	/**
 	 * Set the request URL.
 	 * @param $url string
 	 * @return string New URL

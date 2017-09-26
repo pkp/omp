@@ -26,11 +26,6 @@
 				<td class="value" width="80%"><strong>{$itemAmount|string_format:"%.2f"}{if $itemCurrencyCode} ({$itemCurrencyCode|escape}){/if}</strong></td>
 			</tr>
 		{/if}
-		{if $itemDescription}
-		<tr>
-			<td colspan="2">{$itemDescription|nl2br}</td>
-		</tr>
-		{/if}
 	</table>
 
 	<p>
