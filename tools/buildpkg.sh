@@ -85,6 +85,7 @@ lib/pkp/lib/vendor/oyejorge/less.php/test			\
 lib/pkp/js/lib/pnotify/build-tools				\
 lib/pkp/lib/swordappv2/.git					\
 lib/pkp/lib/swordappv2/test					\
+node_modules      \
 .babelrc          \
 .editorconfig     \
 .eslintignore     \
@@ -111,7 +112,11 @@ cd lib/pkp
 composer.phar install
 cd ../..
 
-echo -n "Run webpack build process"
+echo -n "Installing node dependencies... "
+npm install
+echo "Done"
+
+echo -n "Running webpack build process... "
 npm run build
 echo "Done"
 
