@@ -89,11 +89,10 @@ class ChapterGridHandler extends CategoryGridHandler {
 	}
 
 	/**
-	 * Configure the grid
-	 * @param $request PKPRequest
+	 * @copydoc GridHandler::initialize()
 	 */
-	function initialize($request) {
-		parent::initialize($request);
+	function initialize($request, $args = null) {
+		parent::initialize($request, $args);
 
 		$this->setTitle('submission.chapters');
 
@@ -243,14 +242,14 @@ class ChapterGridHandler extends CategoryGridHandler {
 	/**
 	 * @see CategoryGridHandler::getDataElementInCategorySequence()
 	 */
-	function getDataElementInCategorySequence($categoryId, $author) {
+	function getDataElementInCategorySequence($categoryId, &$author) {
 		return $author->getSequence();
 	}
 
 	/**
 	 * @see CategoryGridHandler::setDataElementInCategorySequence()
 	 */
-	function setDataElementInCategorySequence($chapterId, $author, $newSequence) {
+	function setDataElementInCategorySequence($chapterId, &$author, $newSequence) {
 		$monograph = $this->getMonograph();
 
 		// Remove the chapter author id.
