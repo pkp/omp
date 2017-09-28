@@ -16,26 +16,9 @@
  *
  */
 
-
 switch ($op) {
 	//
-	// Profiles
-	//
-	case 'profile':
-		import('lib.pkp.pages.user.ProfileHandler');
-		define('HANDLER_CLASS', 'ProfileHandler');
-		break;
-	//
-	// Registration
-	//
-	case 'register':
-	case 'registerUser':
-	case 'activateUser':
-		import('lib.pkp.pages.user.RegistrationHandler');
-		define('HANDLER_CLASS', 'RegistrationHandler');
-		break;
-	//
-	// Default handler
+	// Misc.
 	//
 	case 'index':
 	case 'setLocale':
@@ -45,6 +28,8 @@ switch ($op) {
 		define('HANDLER_CLASS', 'UserHandler');
 		import('pages.user.UserHandler');
 		break;
+	default:
+		require_once('lib/pkp/pages/user/index.php');
 }
 
 ?>
