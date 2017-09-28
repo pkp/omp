@@ -82,7 +82,6 @@
 	<message key="manager.people.allUsers">All Enrolled Users</message>
 	<message key="manager.people.confirmRemove">Remove this user from this press? This action will unenroll the user from all roles within this press.</message>
 	<message key="manager.people.enrollExistingUser">Enroll an Existing User</message>
-	<message key="manager.people.existingUserRequired">An existing user must be entered.</message>
 	<message key="manager.people.enrollSyncPress">With press</message>
 	<message key="manager.people.mergeUsers.from.description">Select a user to merge into another user account (e.g., when someone has two user accounts). The account selected first will be deleted and its submissions, assignments, etc. will be attributed to the second account.</message>
 	<message key="manager.people.mergeUsers.into.description">Select a user to whom to attribute the previous user's authorships, editing assignments, etc.</message>

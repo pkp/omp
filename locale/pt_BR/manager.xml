@@ -74,7 +74,6 @@
 	<message key="manager.users.availableRoles">Papéis disponíveis</message>
 	<message key="manager.users.currentRoles">Papéis atuais</message>
 	<message key="manager.users.selectRole">Escolher papel</message>
-	<message key="manager.people.allEnrolledUsers">Usuários cadadstrados nesta editora</message>
 	<message key="manager.people.allPresses">Todas as editoras</message>
 	<message key="manager.people.allSiteUsers">Cadastrar usuário do site nesta editora</message>
 	<message key="manager.people.allUsers">Todos os usuários cadastrados</message>

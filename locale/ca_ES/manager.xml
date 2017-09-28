@@ -74,7 +74,6 @@
 	<message key="manager.users.availableRoles">Rols disponibles</message>
 	<message key="manager.users.currentRoles">Rols actuals</message>
 	<message key="manager.users.selectRole">Seleccioneu un rol</message>
-	<message key="manager.people.allEnrolledUsers">Usuaris/àries donats d’alta en aquesta publicació</message>
 	<message key="manager.people.allPresses">Totes les publicacions</message>
 	<message key="manager.people.allSiteUsers">Dóna d’alta un usuari/ària d’aquest lloc en aquesta publicació</message>
 	<message key="manager.people.allUsers">Tots els usuaris/àries donats d’alta</message>

@@ -76,7 +76,6 @@
 	<message key="manager.users.availableRoles">Vorhandene Funktionen</message>
 	<message key="manager.users.currentRoles">Aktuelle Funktionen</message>
 	<message key="manager.users.selectRole">Funktion auswählen</message>
-	<message key="manager.people.allEnrolledUsers">Im Verlag registrierte Benutzer/innen</message>
 	<message key="manager.people.allPresses">Alle Verlage</message>
 	<message key="manager.people.allSiteUsers">Eine/n Benutzer/in dieser Website für diesen Verlag eintragen</message>
 	<message key="manager.people.allUsers">Alle registrierten Benutzer/innen</message>

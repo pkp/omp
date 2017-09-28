@@ -67,7 +67,6 @@
 	<message key="manager.users.availableRoles">Διαθέσιμοι Ρόλοι</message>
 	<message key="manager.users.currentRoles">Τρέχον Ρόλοι</message>
 	<message key="manager.users.selectRole">Επιλέξτε Ρόλο</message>
-	<message key="manager.people.allEnrolledUsers">Εγγεγραμμένοι Χρήστες σε αυτή την έκδοση</message>
 	<message key="manager.people.allPresses">Όλες οι εκδόσεις</message>
 	<message key="manager.people.allSiteUsers">Ανάθεση ρόλου σε χρήστη του ιστοτόπου για αυτή την Έκδοση</message>
 	<message key="manager.people.allUsers">Όλοι οι Χρήστες</message>

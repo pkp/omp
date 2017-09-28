@@ -67,7 +67,6 @@
 	<message key="manager.users.availableRoles">Rôles disponibles</message>
 	<message key="manager.users.currentRoles">Rôles actuels</message>
 	<message key="manager.users.selectRole">Choisir un rôle</message>
-	<message key="manager.people.allEnrolledUsers">Utilisateurs inscrits à cette presse</message>
 	<message key="manager.people.allPresses">Toutes les presses</message>
 	<message key="manager.people.allSiteUsers">Inscrire un utilisateur de ce site à cette presse</message>
 	<message key="manager.people.allUsers">Tous les utilisateurs inscrits</message>

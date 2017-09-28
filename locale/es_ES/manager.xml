@@ -123,7 +123,6 @@
 	<message key="manager.people.allUsers">Todos los usuarios inscritos</message>
 	<message key="manager.people.confirmRemove">¿Desea eliminar al usuario/a de la publicación? Esta acción eliminará al usuario/a de todos los roles dentro de la publicación.</message>
 	<message key="manager.people.enrollExistingUser">Inscribir a un usuario existente</message>
-	<message key="manager.people.existingUserRequired">Debe introducirse un usuario existente.</message>
 	<message key="manager.people.enrollSyncPress">Con editorial</message>
 	<message key="manager.people.mergeUsers.from.description">Seleccione un usuario/a para incorporarlo a otra cuenta de usuario/a (p.ej., cuando alguien tiene dos cuentas de usuario/a). La primera cuenta seleccionada se borrará y sus envíos, encargos, etc. serán atribuidos a la segunda cuenta.</message>
 	<message key="manager.people.mergeUsers.into.description">Selecciona a un usuario al que atribuirle la autoría, encargos de edición y demás del usuario anterior.</message>
