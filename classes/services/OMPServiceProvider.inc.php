@@ -35,7 +35,7 @@ class OMPServiceProvider implements \Pimple\ServiceProviderInterface {
 
 		// NavigationMenus service
 		$pimple['navigationMenu'] = function() {
-			return new \PKP\Services\NavigationMenuService();
+			return new NavigationMenuService();
 		};
 
 	}

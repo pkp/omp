@@ -26,8 +26,7 @@
 	</navigationMenu>
 
 	<navigationMenu title="Primary" area="primary">
-		<navigationMenuItem title="navigation.current" type="NMI_TYPE_CURRENT" />
-		<navigationMenuItem title="navigation.archives" type="NMI_TYPE_ARCHIVES" />
+		<navigationMenuItem title="navigation.catalog" type="NMI_TYPE_CATALOG" />
 		<navigationMenuItem title="manager.announcements" type="NMI_TYPE_ANNOUNCEMENTS" />
 		<navigationMenuItem title="navigation.about" type="NMI_TYPE_ABOUT">
 			<navigationMenuItem title="about.aboutContext" type="NMI_TYPE_ABOUT" />
