@@ -38,8 +38,7 @@ class NavigationMenuService extends \PKP\Services\PKPNavigationMenuService {
 		$ompTypes = array(
 			NMI_TYPE_CATALOG => array(
 				'title' => __('navigation.catalog'),
-				'description' => __('manager.navigationMenus.catalog.description'),
-				'conditionalWarning' => __('manager.navigationMenus.catalog.conditionalWarning'),
+				'description' => __('navigation.navigationMenus.catalog.description'),
 			),
 		);
 
