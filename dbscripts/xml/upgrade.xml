@@ -46,6 +46,7 @@
 	<schema file="lib/pkp/xml/schema/rolesAndUserGroups.xml" />
 	<schema file="lib/pkp/xml/schema/views.xml" />
 	<schema file="lib/pkp/xml/schema/metrics.xml" />
+	<schema file="lib/pkp/xml/schema/navigationMenus.xml" />
 
 	<!-- OMP schema -->
 	<schema file="dbscripts/xml/omp_schema.xml" />
@@ -96,6 +97,7 @@
 		<data file="dbscripts/xml/upgrade/3.1.1_update.xml" />
 		<code function="installEmailTemplate" key="EDITOR_DECISION_INITIAL_DECLINE" locales="en_US" />
 		<code function="installEmailTemplate" key="EDITOR_RECOMMENDATION" locales="en_US" />
+		<code function="installDefaultNavigationMenus" />
 		<note file="docs/release-notes/README-3.1.1" />
 	</upgrade>
 

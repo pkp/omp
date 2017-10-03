@@ -26,6 +26,7 @@
 		<li><a name="languages" href="{url router=$smarty.const.ROUTE_COMPONENT component="tab.settings.WebsiteSettingsTabHandler" op="showTab" tab="languages"}">{translate key="common.languages"}</a></li>
 		<li><a name="plugins" href="{url router=$smarty.const.ROUTE_COMPONENT component="tab.settings.WebsiteSettingsTabHandler" op="showTab" tab="plugins"}">{translate key="common.plugins"}</a></li>
 		<li><a name="announcements" href="{url router=$smarty.const.ROUTE_COMPONENT component="tab.settings.WebsiteSettingsTabHandler" op="showTab" tab="announcements"}">{translate key="manager.announcements"}</a>
+		<li><a href="{url router=$smarty.const.ROUTE_COMPONENT component="tab.settings.WebsiteSettingsTabHandler" op="showTab" tab="navigationMenus"}">{translate key="manager.navigationMenus"}</a>
 		{call_hook name="Templates::Management::Settings::website"}
 	</ul>
 </div>

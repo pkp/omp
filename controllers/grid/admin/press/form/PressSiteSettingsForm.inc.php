@@ -104,6 +104,10 @@ class PressSiteSettingsForm extends ContextSiteSettingsForm {
 			));
 
 			$press->updateSetting('supportedLocales', $site->getSupportedLocales());
+
+			// load default navigationMenus.
+			$this->_loadDefaultNavigationMenus($press->getId());
+
 		}
 		$press->updateSetting('name', $this->getData('name'), 'string', true);
 		$press->updateSetting('description', $this->getData('description'), 'string', true);
