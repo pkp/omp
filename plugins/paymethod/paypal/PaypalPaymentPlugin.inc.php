@@ -50,7 +50,7 @@ class PaypalPaymentPlugin extends PaymethodPlugin {
 	}
 
 	/**
-	 * @copydoc PaymentPlugin::getSettingsForm()
+	 * @copydoc PaymethodPlugin::getSettingsForm()
 	 */
 	function getSettingsForm($context) {
 		$this->import('PaypalPaymentSettingsForm');
@@ -58,7 +58,15 @@ class PaypalPaymentPlugin extends PaymethodPlugin {
 	}
 
 	/**
-	 * @see PaymentPlugin::isConfigured
+	 * @copydoc PaymethodPlugin::getPaymentForm()
+	 */
+	function getPaymentForm($context, $queuedPayment) {
+		$this->import('PaypalPaymentForm');
+		return new PaypalPaymentForm($this, $queuedPayment);
+	}
+
+	/**
+	 * @copydoc PaymethodPlugin::isConfigured
 	 */
 	function isConfigured() {
 		$context = $this->getRequest()->getContext();
@@ -69,14 +77,14 @@ class PaypalPaymentPlugin extends PaymethodPlugin {
 	}
 
 	/**
-	 * @see Plugin::getInstallEmailTemplatesFile
+	 * @copydoc Plugin::getInstallEmailTemplatesFile
 	 */
 	function getInstallEmailTemplatesFile() {
 		return ($this->getPluginPath() . DIRECTORY_SEPARATOR . 'emailTemplates.xml');
 	}
 
 	/**
-	 * @see Plugin::getInstallEmailTemplateDataFile
+	 * @copydoc Plugin::getInstallEmailTemplateDataFile
 	 */
 	function getInstallEmailTemplateDataFile() {
 		return ($this->getPluginPath() . '/locale/{$installedLocale}/emailTemplates.xml');
@@ -89,5 +97,3 @@ class PaypalPaymentPlugin extends PaymethodPlugin {
 		return parent::getTemplatePath($inCore) . 'templates/';
 	}
 }
-
-?>
