@@ -340,7 +340,8 @@
 	<message key="navigation.published">Published</message>
 	<message key="navigation.wizard">Wizard</message>
 	<message key="navigation.linksAndMedia">Links and Social Media</message>
-
+	<message key="navigation.navigationMenus.catalog.description">Link to your catalog.</message>
+	
 	<!-- Common Press Terms -->
 	<message key="press.presses">Presses</message>
 	<message key="press.path">Path</message>

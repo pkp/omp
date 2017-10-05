@@ -32,5 +32,11 @@ class OMPServiceProvider implements \Pimple\ServiceProviderInterface {
 		$pimple['submission'] = function() {
 			return new SubmissionService();
 		};
+
+		// NavigationMenus service
+		$pimple['navigationMenu'] = function() {
+			return new NavigationMenuService();
+		};
+
 	}
 }

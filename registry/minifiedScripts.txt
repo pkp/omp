@@ -105,6 +105,8 @@ lib/pkp/js/controllers/tab/settings/announcements/form/AnnouncementSettingsFormH
 lib/pkp/js/controllers/tab/settings/permissions/form/PermissionSettingsFormHandler.js
 lib/pkp/js/controllers/tab/settings/paymentMethod/PaymentMethodHandler.js
 lib/pkp/js/controllers/grid/notifications/NotificationsGridHandler.js
+lib/pkp/js/controllers/grid/navigationMenus/form/NavigationMenuFormHandler.js
+lib/pkp/js/controllers/grid/navigationMenus/form/NavigationMenuItemsFormHandler.js
 lib/pkp/js/controllers/grid/representations/form/RepresentationFormHandler.js
 lib/pkp/js/pages/header/HeaderHandler.js
 lib/pkp/js/pages/header/TasksHandler.js
