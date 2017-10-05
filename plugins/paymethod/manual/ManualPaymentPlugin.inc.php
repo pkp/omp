@@ -68,25 +68,22 @@ class ManualPaymentPlugin extends PaymethodPlugin {
 	}
 
 	/**
-	 * @see PaymentPlugin::displayPaymentForm
+	 * @copydoc PaymethodPlugin::displayPaymentForm
 	 */
-	function displayPaymentForm($queuedPaymentId, $queuedPayment, $request) {
-		if (!$this->isConfigured()) return false;
-		$context = $request->getContext();
+	function getPaymentForm($context, $queuedPayment) {
+		if (!$this->isConfigured()) return null;
+
 		AppLocale::requireComponents(LOCALE_COMPONENT_APP_COMMON);
-		$templateMgr = TemplateManager::getManager($request);
-		$user = $request->getUser();
 
-		$templateMgr->assign('itemName', $queuedPayment->getName());
-		if ($queuedPayment->getAmount() > 0) {
-			$templateMgr->assign('itemAmount', $queuedPayment->getAmount());
-			$templateMgr->assign('itemCurrencyCode', $queuedPayment->getCurrencyCode());
-		}
-		$templateMgr->assign('manualInstructions', $this->getSetting($context->getId(), 'manualInstructions'));
-		$templateMgr->assign('queuedPaymentId', $queuedPaymentId);
-
-		$templateMgr->display($this->getTemplatePath() . 'paymentForm.tpl');
-		return true;
+		$paymentForm = new Form($this->getTemplatePath() . 'paymentForm.tpl');
+		$paymentForm->setData(array(
+			'itemName' => $queuedPayment->getName(),
+			'itemAmount' => $queuedPayment->getAmount()>0?$queuedPayment->getAmount():null,
+			'itemCurrencyCode' => $queuedPayment->getAmount()>0?$queuedPayment->getCurrencyCode():null,
+			'manualInstructions' => $this->getSetting($context->getId(), 'manualInstructions'),
+			'queuedPaymentId' => $queuedPayment->getId(),
+		));
+		return $paymentForm;
 	}
 
 	/**
