@@ -119,7 +119,7 @@ class OMPPaymentManager extends PaymentManager {
 		$ompCompletedPaymentDao->insertCompletedPayment($completedPayment);
 
 		$queuedPaymentDao = DAORegistry::getDAO('QueuedPaymentDAO');
-		$queuedPaymentDao->deleteQueuedPayment($queuedPayment->getId());
+		$queuedPaymentDao->deleteById($queuedPayment->getId());
 
 		return $returner;
 	}
