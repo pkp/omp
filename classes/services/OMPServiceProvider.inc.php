@@ -1,16 +1,16 @@
 <?php
 
 /**
- * @file classes/services/OJSServiceProvider.inc.php
+ * @file classes/services/OMPServiceProvider.inc.php
  *
  * Copyright (c) 2014-2017 Simon Fraser University
  * Copyright (c) 2000-2017 John Willinsky
  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
  *
- * @class OJSServiceProvider
+ * @class OMPServiceProvider
  * @ingroup services
  *
- * @brief Utility class to package all OJS services
+ * @brief Utility class to package all OMP services
  */
 
 namespace OMP\Services;
@@ -19,6 +19,7 @@ require_once(dirname(__FILE__) . '/../../lib/pkp/lib/vendor/pimple/pimple/src/Pi
 require_once(dirname(__FILE__) . '/../../lib/pkp/lib/vendor/pimple/pimple/src/Pimple/ServiceProviderInterface.php');
 
 use \Pimple\Container;
+use \PKP\Services\PKPAuthorService;
 
 class OMPServiceProvider implements \Pimple\ServiceProviderInterface {
 
@@ -36,6 +37,11 @@ class OMPServiceProvider implements \Pimple\ServiceProviderInterface {
 		// NavigationMenus service
 		$pimple['navigationMenu'] = function() {
 			return new NavigationMenuService();
+		};
+
+		// Author service
+		$pimple['author'] = function() {
+			return new PKPAuthorService();
 		};
 
 	}
