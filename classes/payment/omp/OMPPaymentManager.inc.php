@@ -9,13 +9,13 @@
  *
  * @class OMPPaymentManager
  * @ingroup payment
- * @see OMPQueuedPayment
+ * @see QueuedPayment
  *
  * @brief Provides payment management functions.
  *
  */
 
-import('classes.payment.omp.OMPQueuedPayment');
+import('lib.pkp.classes.payment.QueuedPayment');
 import('lib.pkp.classes.payment.PaymentManager');
 
 define('PAYMENT_TYPE_PURCHASE_FILE',	0x000000001);
@@ -51,12 +51,12 @@ class OMPPaymentManager extends PaymentManager {
 	 * @param $currencyCode string optional ISO 4217 currency code
 	 * @return QueuedPayment
 	 */
-	function &createQueuedPayment($pressId, $type, $userId, $assocId, $amount, $currencyCode = null) {
+	function createQueuedPayment($pressId, $type, $userId, $assocId, $amount, $currencyCode = null) {
 		$pressDao = DAORegistry::getDAO('PressDAO');
 		$press = $pressDao->getById($pressId);
 		assert($press);
-		$payment = new OMPQueuedPayment($amount, $press->getSetting('currency'), $userId, $assocId);
-		$payment->setPressId($pressId);
+		$payment = new QueuedPayment($amount, $press->getSetting('currency'), $userId, $assocId);
+		$payment->setContextId($pressId);
 		$payment->setType($type);
 
 	 	switch ($type) {
@@ -64,7 +64,7 @@ class OMPPaymentManager extends PaymentManager {
 				$submissionFileDao = DAORegistry::getDAO('SubmissionFileDAO');
 				list($fileId, $revision) = array_map(create_function('$a', 'return (int) $a;'), explode('-', $assocId));
 				import('lib.pkp.classes.submission.SubmissionFile'); // const
-				$submissionFile =& $submissionFileDao->getRevision($fileId, $revision, SUBMISSION_FILE_PROOF);
+				$submissionFile = $submissionFileDao->getRevision($fileId, $revision, SUBMISSION_FILE_PROOF);
 				assert($submissionFile);
 				$payment->setRequestUrl($this->request->url(null, 'catalog', 'download', array(
 					$submissionFile->getSubmissionId(),
@@ -86,12 +86,12 @@ class OMPPaymentManager extends PaymentManager {
 	 * @param $press Press
 	 * @return PaymentPlugin
 	 */
-	function &getPaymentPlugin() {
+	function getPaymentPlugin() {
 		$paymentMethodPluginName = $this->press->getSetting('paymentPluginName');
 		$paymentMethodPlugin = null;
 		if (!empty($paymentMethodPluginName)) {
-			$plugins =& PluginRegistry::loadCategory('paymethod');
-			if (isset($plugins[$paymentMethodPluginName])) $paymentMethodPlugin =& $plugins[$paymentMethodPluginName];
+			$plugins = PluginRegistry::loadCategory('paymethod');
+			if (isset($plugins[$paymentMethodPluginName])) $paymentMethodPlugin = $plugins[$paymentMethodPluginName];
 		}
 		return $paymentMethodPlugin;
 	}
@@ -103,7 +103,7 @@ class OMPPaymentManager extends PaymentManager {
 	 * @param $payMethodPluginName string Name of payment plugin.
 	 * @return mixed Dependent on payment type.
 	 */
-	function fulfillQueuedPayment($request, &$queuedPayment, $payMethodPluginName = null) {
+	function fulfillQueuedPayment($request, $queuedPayment, $payMethodPluginName = null) {
 		$returner = false;
 		if ($queuedPayment) switch ($queuedPayment->getType()) {
 			case PAYMENT_TYPE_PURCHASE_FILE:
@@ -115,7 +115,7 @@ class OMPPaymentManager extends PaymentManager {
 		}
 
 		$ompCompletedPaymentDao = DAORegistry::getDAO('OMPCompletedPaymentDAO');
-		$completedPayment =& $this->createCompletedPayment($queuedPayment, $payMethodPluginName);
+		$completedPayment = $this->createCompletedPayment($queuedPayment, $payMethodPluginName);
 		$ompCompletedPaymentDao->insertCompletedPayment($completedPayment);
 
 		$queuedPaymentDao = DAORegistry::getDAO('QueuedPaymentDAO');
@@ -144,6 +144,25 @@ class OMPPaymentManager extends PaymentManager {
 		return $payment;
 	}
 
+	/**
+	 * Returns the name of a payment.
+	 * @return string
+	 */
+	function getPaymentName($payment) {
+		switch ($payment->getType()) {
+			case PAYMENT_TYPE_PURCHASE_FILE:
+				list($fileId, $revision) = explode('-', $payment->getAssocId());
+				assert($fileId && $revision);
+				$submissionFileDao = DAORegistry::getDAO('SubmissionFileDAO');
+				$submissionFile = $submissionFileDao->getRevision($fileId, $revision, SUBMISSION_FILE_PROOF);
+				if (!$submissionFile || $submissionFile->getAssocType() !== ASSOC_TYPE_PUBLICATION_FORMAT) return false;
+
+				return $submissionFile->getLocalizedName();
+			default:
+				// Invalid payment type
+				assert(false);
+		}
+	}
 }
 
 ?>
