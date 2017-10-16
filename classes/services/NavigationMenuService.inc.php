@@ -15,6 +15,9 @@
 
 namespace OMP\Services;
 
+/** types for all omp default navigationMenuItems */
+define('NMI_TYPE_CATALOG', 'NMI_TYPE_CATALOG');
+
 class NavigationMenuService extends \PKP\Services\PKPNavigationMenuService {
 
 	/**
