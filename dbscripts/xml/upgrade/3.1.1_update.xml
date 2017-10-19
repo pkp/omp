@@ -16,4 +16,9 @@
 		<query>INSERT INTO plugin_settings (plugin_name, setting_name, setting_value, setting_type, context_id) SELECT 'dublincoremetaplugin', 'enabled', '1', 'bool', p.press_id FROM presses p WHERE NOT EXISTS (SELECT ps.plugin_name FROM plugin_settings ps WHERE ps.plugin_name = 'dublincoremetaplugin' AND ps.context_id = p.press_id)</query>
 		<query>UPDATE versions SET product_type='plugins.generic' WHERE product_type='plugins.viewableFiles'</query>
 	</sql>
+	<sql><!-- pkp/pkp-lib#2896 -->
+		<query>UPDATE press_settings SET setting_name = 'citationsEnabledSubmission' WHERE setting_name = 'referencesEnabledSubmission'</query>
+		<query>UPDATE press_settings SET setting_name = 'citationsEnabledWorkflow' WHERE setting_name = 'referencesEnabledWorkflow'</query>
+		<query>UPDATE press_settings SET setting_name = 'citationsRequired' WHERE setting_name = 'referencesRequired'</query>
+	</sql>
 </data>
