@@ -24,10 +24,19 @@ class SubmissionService extends \PKP\Services\PKPSubmissionService {
     public function __construct() {
 		parent::__construct();
 
-		\HookRegistry::register('Submission::getSubmissionList::queryBuilder', array($this, 'modifySubmissionListQueryBuilder'));
-		\HookRegistry::register('Submission::listQueryBuilder::get', array($this, 'modifySubmissionListQueryObject'));
-		\HookRegistry::register('Submission::toArray::defaultParams', array($this, 'modifyToArrayDefaultParams'));
-		\HookRegistry::register('Submission::toArray::output', array($this, 'modifyToArrayOutput'));
+    \HookRegistry::register('Submission::getSubmissions::queryBuilder', array($this, 'modifySubmissionListQueryBuilder'));
+    \HookRegistry::register('Submission::getSubmissions::queryObject', array($this, 'modifySubmissionListQueryObject'));
+    \HookRegistry::register('Submission::getBackendListProperties::properties', array($this, 'modifyBackendListPropertyValues'));
+    \HookRegistry::register('Submission::getProperties::values', array($this, 'modifyPropertyValues'));
+	}
+
+	/**
+	 * Helper function to return the app-specific submission list query builder
+	 *
+	 * @return \OMP\Services\QueryBuilders\SubmissionListQueryBuilder
+	 */
+	public function getSubmissionListQueryBuilder($contextId) {
+		return new \OMP\Services\QueryBuilders\SubmissionListQueryBuilder($contextId);
 	}
 
 	/**
@@ -147,17 +156,17 @@ class SubmissionService extends \PKP\Services\PKPSubmissionService {
 	public function modifySubmissionListQueryBuilder($hookName, $args) {
 		$submissionListQB =& $args[0];
 		$contextId = $args[1];
-		$args = $args[2];
+		$requestArgs = $args[2];
 
-		if (!empty($args['categoryIds'])) {
-			$submissionListQB->filterByCategories($args['categoryIds']);
+		if (!empty($requestArgs['categoryIds'])) {
+			$submissionListQB->filterByCategories($requestArgs['categoryIds']);
 		}
 
-		if (!empty($args['seriesIds'])) {
-			$submissionListQB->filterBySeries($args['seriesIds']);
+		if (!empty($requestArgs['seriesIds'])) {
+			$submissionListQB->filterBySeries($requestArgs['seriesIds']);
 		}
 
-		if (!empty($args['orderByFeatured'])) {
+		if (!empty($requestArgs['orderByFeatured'])) {
 			$submissionListQB->orderByFeatured();
 		}
 
@@ -184,113 +193,87 @@ class SubmissionService extends \PKP\Services\PKPSubmissionService {
 		return true;
 	}
 
+  /**
+  * Add app-specific properties to submissions
+  *
+  * @param $hookName string Submission::getBackendListProperties::properties
+  * @param $args array [
+  * 		@option $props array Existing properties
+  * 		@option $submission Submission The associated submission
+  * 		@option $args array Request args
+  * ]
+  *
+  * @return array
+  */
+  public function modifyBackendListPropertyValues($hookName, $args) {
+    $props =& $args[0];
+
+    $props[] = 'series';
+    $props[] = 'category';
+    $props[] = 'featured';
+    $props[] = 'newRelease';
+  }
+
 	/**
-	 * Add app-specific default params when converting a submission to an array
+	 * Add app-specific property values to a submission
 	 *
-	 * @param $hookName string
+	 * @param $hookName string Submission::getProperties::values
 	 * @param $args array [
-	 * 		@option $defaultParams array Default param settings
-	 * 		@option $params array Params requested for this conversion
-	 * 		@option $submissions array Submissions to convert to array
+	 *    @option $values array Key/value store of property values
+	 * 		@option $submission Submission The associated submission
+	 * 		@option $props array Requested properties
+	 * 		@option $args array Request args
 	 * ]
 	 *
 	 * @return array
 	 */
-	public function modifyToArrayDefaultParams($hookName, $args) {
-		$defaultParams =& $args[0];
-		$params = $args[1];
-		$submissions = $args[2];
+	public function modifyPropertyValues($hookName, $args) {
+    $values =& $args[0];
+		$submission = $args[1];
+		$props = $args[2];
+		$propertyArgs = $args[3];
+		$request = $args[3]['request'];
+		$context = $request->getContext();
+		$dispatcher = $request->getDispatcher();
 
-		$defaultParams['category'] = true;
-		$defaultParams['series'] = true;
-		$defaultParams['featured'] = true;
-		$defaultParams['newRelease'] = true;
-
-		return true;
-	}
-
-	/**
-	 * Add app-specific output when converting a submission to an array
-	 *
-	 * @param $hookName string
-	 * @param $args array [
-	 * 		@option $output array All submissions converted to array
-	 * 		@option $params array Params requested for this conversion
-	 * 		@option $submissions array Array of Submission objects
-	 * ]
-	 *
-	 * @return array
-	 */
-	public function modifyToArrayOutput($hookName, $args) {
-		$output =& $args[0];
-		$params = $args[1];
-		$submissions = $args[2];
-
-		// Create array of Submission objects with keys matching the $output
-		// array
-		$submissionObjects = array();
-		foreach ($submissions as $submission) {
-
-			if (!is_a($submission, 'Submission')) {
-				error_log('Could not convert item to array because it is not a submission. ' . __LINE__);
-			}
-
-			$id = $submission->getId();
-			foreach ($output as $key => $submissionArray) {
-				if ($submissionArray['id'] === $id) {
-					$submissionObjects[$key] = $submission;
-				}
-			}
+		$publishedMonograph = null;
+		if ($context) {
+			$publishedMonographDao = \DAORegistry::getDAO('PublishedMonographDAO');
+			$publishedMonograph = $publishedMonographDao->getByBestId($context->getId(), $submission->getId());
 		}
 
-		foreach ($submissionObjects as $key => $submission) {
-
-			if (!empty($params['series'])) {
-				$output[$key]['series'] = array(
-					'id' => $submission->getSeriesId(),
-					'title' => $submission->getSeriesTitle(),
-					'position' => $submission->getSeriesPosition(),
-				);
+		foreach ($props as $prop) {
+			switch ($prop) {
+				case 'urlPublished':
+					$values[$prop] = $dispatcher->url(
+						$request,
+						ROUTE_PAGE,
+						$context->getPath(),
+						'catalog',
+						'book',
+						$submission->getBestId()
+					);
+					break;
+        case 'series':
+          $values[$prop] = array(
+  					'id' => $submission->getSeriesId(),
+  					'title' => $submission->getSeriesTitle(),
+  					'position' => $submission->getSeriesPosition(),
+  				);
+          break;
+        case 'category':
+          $categoryDao = \DAORegistry::getDAO('CategoryDAO');
+          $values[$prop] = $categoryDao->getBySubmissionId($submission->getId());
+          break;
+        case 'featured':
+          $featureDao = \DAORegistry::getDAO('FeatureDAO');
+          $values[$prop] = $featureDao->getFeaturedAll($submission->getId());
+          break;
+        case 'newRelease':
+  				$newReleaseDao = \DAORegistry::getDAO('NewReleaseDAO');
+  				$values[$prop] = $newReleaseDao->getNewReleaseAll($submission->getId());
+          break;
 			}
-
-			if (!empty($params['category'])) {
-				$categoryDao = \DAORegistry::getDAO('CategoryDAO');
-				$output[$key]['category'] = $categoryDao->getBySubmissionId($submission->getId());
-			}
-
-			if (!empty($params['featured'])) {
-				$featureDao = \DAORegistry::getDAO('FeatureDAO');
-				$output[$key]['featured'] = $featureDao->getFeaturedAll($submission->getId());
-			}
-
-			if (!empty($params['newRelease'])) {
-				$newReleaseDao = \DAORegistry::getDAO('NewReleaseDAO');
-				$output[$key]['newRelease'] = $newReleaseDao->getNewReleaseAll($submission->getId());
-			}
-
-			if (!empty($params['urlPublished'])) {
-				$request = \Application::getRequest();
-				$dispatcher = $request->getDispatcher();
-				$output[$key]['urlPublished'] = $dispatcher->url(
-					$request,
-					ROUTE_PAGE,
-					null,
-					'catalog',
-					'book',
-					$submission->getId()
-				);
-			}
-		}
-
-		return true;
-	}
-
-	/**
-	 * Helper function to return the app-specific submission list query builder
-	 *
-	 * @return \OMP\Services\QueryBuilders\SubmissionListQueryBuilder
-	 */
-	public function getSubmissionListQueryBuilder($contextId) {
-		return new \OMP\Services\QueryBuilders\SubmissionListQueryBuilder($contextId);
+    }
 	}
 }
