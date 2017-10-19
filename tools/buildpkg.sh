@@ -93,6 +93,7 @@ node_modules      \
 .postcssrc.js     \
 package.json      \
 webpack.config.js \
+composer.phar	  \
 lib/ui-library"
 
 cd $TMPDIR
@@ -108,9 +109,12 @@ git submodule -q update --init --recursive >/dev/null || exit 1
 echo "Done"
 
 echo -n "Installing composer dependencies ... "
+curl -sS https://getcomposer.org/installer | php
+echo -n " - lib/pkp ... "
 cd lib/pkp
-composer.phar install
+php ../../composer.phar install
 cd ../..
+echo "Done"
 
 echo -n "Installing node dependencies... "
 npm install
