@@ -21,16 +21,13 @@ import('lib.pkp.classes.payment.PaymentManager');
 define('PAYMENT_TYPE_PURCHASE_FILE',	0x000000001);
 
 class OMPPaymentManager extends PaymentManager {
-	/** @var $press Press */
-	var $press;
 
 	/**
 	 * Constructor
-	 * @param $request PKPRequest
+	 * @param $context Context
 	 */
-	function __construct($request) {
-		parent::__construct($request);
-		$this->press = $request->getPress();
+	function __construct($context) {
+		parent::__construct($context);
 	}
 
 	/**
@@ -38,12 +35,12 @@ class OMPPaymentManager extends PaymentManager {
 	 * @return boolean true iff configured
 	 */
 	function isConfigured() {
-		return parent::isConfigured() && $this->press && $this->press->getSetting('currency');
+		return parent::isConfigured() && $this->_context && $this->_context->getSetting('currency');
 	}
 
 	/**
 	 * Create a queued payment.
-	 * @param $pressId int ID of press payment applies under
+	 * @param $request PKPRequest
 	 * @param $type int PAYMENT_TYPE_...
 	 * @param $userId int ID of user responsible for payment
 	 * @param $assocId int ID of associated entity
@@ -51,12 +48,9 @@ class OMPPaymentManager extends PaymentManager {
 	 * @param $currencyCode string optional ISO 4217 currency code
 	 * @return QueuedPayment
 	 */
-	function createQueuedPayment($pressId, $type, $userId, $assocId, $amount, $currencyCode = null) {
-		$pressDao = DAORegistry::getDAO('PressDAO');
-		$press = $pressDao->getById($pressId);
-		assert($press);
-		$payment = new QueuedPayment($amount, $press->getSetting('currency'), $userId, $assocId);
-		$payment->setContextId($pressId);
+	function createQueuedPayment($request, $type, $userId, $assocId, $amount, $currencyCode = null) {
+		$payment = new QueuedPayment($amount, $this->_context->getSetting('currency'), $userId, $assocId);
+		$payment->setContextId($this->_context->getId());
 		$payment->setType($type);
 
 	 	switch ($type) {
@@ -66,7 +60,7 @@ class OMPPaymentManager extends PaymentManager {
 				import('lib.pkp.classes.submission.SubmissionFile'); // const
 				$submissionFile = $submissionFileDao->getRevision($fileId, $revision, SUBMISSION_FILE_PROOF);
 				assert($submissionFile);
-				$payment->setRequestUrl($this->request->url(null, 'catalog', 'download', array(
+				$payment->setRequestUrl($request->url(null, 'catalog', 'download', array(
 					$submissionFile->getSubmissionId(),
 					$submissionFile->getAssocId(),
 					$assocId
@@ -83,11 +77,10 @@ class OMPPaymentManager extends PaymentManager {
 
 	/**
 	 * Get the payment plugin.
-	 * @param $press Press
 	 * @return PaymentPlugin
 	 */
 	function getPaymentPlugin() {
-		$paymentMethodPluginName = $this->press->getSetting('paymentPluginName');
+		$paymentMethodPluginName = $this->_context->getSetting('paymentPluginName');
 		$paymentMethodPlugin = null;
 		if (!empty($paymentMethodPluginName)) {
 			$plugins = PluginRegistry::loadCategory('paymethod');

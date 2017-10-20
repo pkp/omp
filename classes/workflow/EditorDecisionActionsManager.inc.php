@@ -40,14 +40,15 @@ class EditorDecisionActionsManager {
 
 	/**
 	 * Get decision actions labels.
-	 * @param $decisions
+	 * @param $request PKPRequest
+	 * @param $decisions array
 	 * @return array
 	 */
-	static function getActionLabels($decisions) {
+	static function getActionLabels($request, $decisions) {
 		$allDecisionsData =
 			self::_submissionStageDecisions() +
 			self::_internalReviewStageDecisions() +
-			self::_externalReviewStageDecisions() +
+			self::_externalReviewStageDecisions($request) +
 			self::_editorialStageDecisions();
 
 		$actionLabels = array();
@@ -88,16 +89,17 @@ class EditorDecisionActionsManager {
 
 	/**
 	 * Get the available decisions by stage ID.
+	 * @param $request PKPRequest
 	 * @param $stageId int WORKFLOW_STAGE_ID_...
 	 */
-	static function getStageDecisions($stageId) {
+	static function getStageDecisions($request, $stageId) {
 		switch ($stageId) {
 			case WORKFLOW_STAGE_ID_SUBMISSION:
 				return self::_submissionStageDecisions();
 			case WORKFLOW_STAGE_ID_INTERNAL_REVIEW:
 				return self::_internalReviewStageDecisions();
 			case WORKFLOW_STAGE_ID_EXTERNAL_REVIEW:
-				return self::_externalReviewStageDecisions();
+				return self::_externalReviewStageDecisions($request);
 			case WORKFLOW_STAGE_ID_EDITING:
 				return self::_editorialStageDecisions();
 			default:
@@ -199,9 +201,10 @@ class EditorDecisionActionsManager {
 
 	/**
 	 * Define and return editor decisions for the review stage.
+	 * @param $request PKPRequest
 	 * @return array
 	 */
-	static function _externalReviewStageDecisions() {
+	static function _externalReviewStageDecisions($request) {
 		$decisions = self::_internalReviewStageDecisions();
 		unset($decisions[SUBMISSION_EDITOR_DECISION_EXTERNAL_REVIEW]);
 		return $decisions;

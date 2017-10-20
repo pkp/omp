@@ -221,13 +221,13 @@ class CatalogBookHandler extends Handler {
 
 		// They're logged in but need to pay to view.
 		import('classes.payment.omp.OMPPaymentManager');
-		$ompPaymentManager = new OMPPaymentManager($request);
+		$ompPaymentManager = new OMPPaymentManager($press);
 		if (!$ompPaymentManager->isConfigured()) {
 			$request->redirect(null, 'catalog');
 		}
 
 		$queuedPayment = $ompPaymentManager->createQueuedPayment(
-			$press->getId(),
+			$request,
 			PAYMENT_TYPE_PURCHASE_FILE,
 			$user->getId(),
 			$fileIdAndRevision,
