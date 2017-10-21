@@ -236,6 +236,16 @@ class Application extends PKPApplication {
 	static function getContextAssocType() {
 		return ASSOC_TYPE_PRESS;
 	}
+
+	/**
+	 * Get the payment manager.
+	 * @param $context Context
+	 * @return OMPPaymentManager
+	 */
+	static function getPaymentManager($context) {
+		import('classes.payment.omp.OMPPaymentManager');
+		return new OMPPaymentManager($context);
+	}
 }
 
 ?>

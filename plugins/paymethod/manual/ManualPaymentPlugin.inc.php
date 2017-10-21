@@ -98,9 +98,8 @@ class ManualPaymentPlugin extends PaymethodPlugin {
 		$op = isset($args[0])?$args[0]:null;
 		$queuedPaymentId = isset($args[1])?((int) $args[1]):0;
 
-		import('classes.payment.omp.OMPPaymentManager');
-		$ompPaymentManager = new OMPPaymentManager($request);
-		$queuedPayment = $ompPaymentManager->getQueuedPayment($queuedPaymentId);
+		$paymentManager = Application::getPaymentManager($context);
+		$queuedPayment = $paymentManager->getQueuedPayment($queuedPaymentId);
 		// if the queued payment doesn't exist, redirect away from payments
 		if (!$queuedPayment) $request->redirect(null, 'index');
 

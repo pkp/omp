@@ -88,10 +88,10 @@ class CatalogBookHandler extends Handler {
 		$templateMgr->assign('pubIdPlugins', $pubIdPlugins);
 
 		// e-Commerce
-		import('classes.payment.omp.OMPPaymentManager');
-		$ompPaymentManager = new OMPPaymentManager($request);
+		$press = $request->getPress();
+		$paymentManager = Application::getPaymentManager($press);
 		$submissionFileDao = DAORegistry::getDAO('SubmissionFileDAO');
-		if ($ompPaymentManager->isConfigured()) {
+		if ($paymentManager->isConfigured()) {
 			$availableFiles = array_filter(
 				$submissionFileDao->getLatestRevisions($publishedMonograph->getId()),
 				create_function('$a', 'return $a->getViewable() && $a->getDirectSalesPrice() !== null && $a->getAssocType() == ASSOC_TYPE_PUBLICATION_FORMAT;')
@@ -114,7 +114,6 @@ class CatalogBookHandler extends Handler {
 
 		// Provide the currency to the template, if configured.
 		$currencyDao = DAORegistry::getDAO('CurrencyDAO');
-		$press = $request->getPress();
 		if ($currency = $press->getSetting('currency')) {
 			$templateMgr->assign('currency', $currencyDao->getCurrencyByAlphaCode($currency));
 		}
@@ -221,12 +220,12 @@ class CatalogBookHandler extends Handler {
 
 		// They're logged in but need to pay to view.
 		import('classes.payment.omp.OMPPaymentManager');
-		$ompPaymentManager = new OMPPaymentManager($press);
-		if (!$ompPaymentManager->isConfigured()) {
+		$paymentManager = new OMPPaymentManager($press);
+		if (!$paymentManager->isConfigured()) {
 			$request->redirect(null, 'catalog');
 		}
 
-		$queuedPayment = $ompPaymentManager->createQueuedPayment(
+		$queuedPayment = $paymentManager->createQueuedPayment(
 			$request,
 			PAYMENT_TYPE_PURCHASE_FILE,
 			$user->getId(),
@@ -235,8 +234,8 @@ class CatalogBookHandler extends Handler {
 			$press->getSetting('currency')
 		);
 
-		$ompPaymentManager->displayPaymentForm(
-			$ompPaymentManager->queuePayment($queuedPayment),
+		$paymentManager->displayPaymentForm(
+			$paymentManager->queuePayment($queuedPayment),
 			$queuedPayment
 		);
 	}
