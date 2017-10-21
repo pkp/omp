@@ -56,6 +56,7 @@ class NavigationMenuService extends \PKP\Services\PKPNavigationMenuService {
 	 */
 	function getDisplayStatusCallback($hookName, $args) {
 		$navigationMenuItem =& $args[0];
+		$navigationMenu =& $args[1];
 
 		$request = \Application::getRequest();
 		$dispatcher = $request->getDispatcher();
