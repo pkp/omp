@@ -95,9 +95,8 @@ class CatalogEntryFormatMetadataForm extends Form {
 		$onixCodelistItemDao = DAORegistry::getDAO('ONIXCodelistItemDAO');
 
 		// Check if e-commerce is available
-		import('classes.payment.omp.OMPPaymentManager');
-		$ompPaymentManager = new OMPPaymentManager($request);
-		if ($ompPaymentManager->isConfigured()) {
+		$paymentManager = Application::getPaymentManager($press);
+		if ($paymentManager->isConfigured()) {
 			$templateMgr->assign('paymentConfigured', true);
 			$templateMgr->assign('currency', $press->getSetting('currency'));
 		}
