@@ -16,7 +16,6 @@
 	<message key="submission.submit.title">Enviar Monografia</message>
 	<message key="submission.upload.selectComponent">Seleciona o componente</message>
 	<message key="submission.title">Título do Livro</message>
-	<message key="submission.title.tip"><![CDATA[O tipo de submissão é geralmente uma 'imagem', 'texto', ou outros tipos de multimídia, incluindo 'software' ou 'interativo'. Por favor, escolha o mais relevante para a sua submissão. Exemplos podem ser encontrados em <a target="_blank" href="http://dublincore.org/documents/2001/04/12/usageguide/generic.shtml#type">http://dublincore.org/documents/2001/04/12/usageguide/generic.shtml#type</a>]]></message>
 	<message key="submission.select">Tipo de submissão</message>
 	<message key="submission.synopsis">Sinopse</message>
 	<message key="submission.workflowType">Tipo de livro</message>

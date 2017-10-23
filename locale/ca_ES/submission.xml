@@ -15,7 +15,6 @@
 	<!-- General submission keys -->
 	<message key="submission.submit.title">Tramet una monografia</message>
 	<message key="submission.title">Títol del llibre</message>
-	<message key="submission.title.tip"><![CDATA[El tipus de tramesa normalment és un tipus d'imatge, text o qualsevol altre tipus d'element multimèdia que pot ser programari o interactiu. Seleccioneu el més rellevant per a la tramesa. Podeu trobar-ne exemples a <a target="_blank" href="http://dublincore.org/documents/2001/04/12/usageguide/generic.shtml#type">http://dublincore.org/documents/2001/04/12/usageguide/generic.shtml#type</a>]]></message>
 	<message key="submission.select">Selecciona la tramesa</message>
 	<message key="submission.synopsis">Resum</message>
 	<message key="submission.workflowType">Tipus de circuit de treball editorial</message>

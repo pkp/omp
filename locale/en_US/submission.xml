@@ -16,7 +16,6 @@
 	<message key="submission.submit.title">Submit a Monograph</message>
 	<message key="submission.upload.selectComponent">Select component</message>
 	<message key="submission.title">Book Title</message>
-	<message key="submission.title.tip"><![CDATA[The submission type is usually one of 'image', 'text', or other multimedia types including 'software' or 'interactive'.  Please choose the one most relevant for your submission.  Examples may be found at <a target="_blank" href="http://dublincore.org/documents/2001/04/12/usageguide/generic.shtml#type">http://dublincore.org/documents/2001/04/12/usageguide/generic.shtml#type</a>]]></message>
 	<message key="submission.select">Select Submission</message>
 	<message key="submission.synopsis">Synopsis</message>
 	<message key="submission.workflowType">Submission Type</message>

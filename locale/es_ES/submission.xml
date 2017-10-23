@@ -15,7 +15,6 @@
 	<!-- General submission keys -->
 	<message key="submission.submit.title">Enviar una monografía</message>
 	<message key="submission.title">Título de libro</message>
-	<message key="submission.title.tip"><![CDATA[El tipo de envío suele ser de "imagen", "texto" u otros archivos multimedia entre los que se incluyen "software" e "interactivo". Elija el que sea más pertinente para su envío. Pueden encontrarse ejemplos en <a target="_blank" href="http://dublincore.org/documents/2001/04/12/usageguide/generic.shtml#type">http://dublincore.org/documents/2001/04/12/usageguide/generic.shtml#type</a>]]></message>
 	<message key="submission.select">Seleccionar propuesta</message>
 	<message key="submission.synopsis">Sinopsis</message>
 	<message key="submission.workflowType">Tipo de libro</message>
