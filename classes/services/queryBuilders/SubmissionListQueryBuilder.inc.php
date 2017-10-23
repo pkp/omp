@@ -102,6 +102,24 @@ class SubmissionListQueryBuilder extends \PKP\Services\QueryBuilders\PKPSubmissi
 	 * @return object Query object
 	 */
 	public function appGet($q) {
+		$primaryLocale = \AppLocale::getPrimaryLocale();
+		$locale = \AppLocale::getLocale();
+
+		$this->columns[] = Capsule::raw('COALESCE(stl.setting_value, stpl.setting_value) AS series_title');
+
+		$q->groupBy(Capsule::raw('COALESCE(stl.setting_value, stpl.setting_value)'));
+
+		$q->leftJoin('series_settings as stpl', function($join) use($primaryLocale) {
+			$join->on('s.series_id', '=', Capsule::raw('stpl.series_id'));
+			$join->on('stpl.setting_name', '=', Capsule::raw("'title'"));
+			$join->on('stpl.locale', '=', Capsule::raw("'{$primaryLocale}'"));
+		});
+
+		$q->leftJoin('series_settings as stl', function($join) use($locale) {
+			$join->on('s.series_id', '=', Capsule::raw('stl.series_id'));
+			$join->on('stl.setting_name', '=', Capsule::raw("'title'"));
+			$join->on('stl.locale', '=', Capsule::raw("'{$locale}'"));
+		});
 
 		if (!empty($this->seriesIds)) {
 			$q->whereIn('s.series_id', $this->seriesIds);
