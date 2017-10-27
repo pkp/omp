@@ -368,7 +368,6 @@
 	<message key="user.role.manager">Verlagsleiter/in</message>
 	<message key="user.role.pressEditor">Leitender Herausgeber/Leitende Herausgeberin</message>
 	<message key="user.role.subEditor">Reihenherausgeber/in</message>
-	<message key="user.role.assistant">Verlagsassistent/in</message>
 	<message key="user.role.copyeditor">Lektor/in</message>
 	<message key="user.role.proofreader">Korrektor/in</message>
 	<message key="user.role.productionEditor">Hersteller/in</message>

@@ -365,7 +365,6 @@
 	<message key="user.role.manager">Press Manager</message>
 	<message key="user.role.pressEditor">Press Editor</message>
 	<message key="user.role.subEditor">Series Editor</message>
-	<message key="user.role.assistant">Press Assistant</message>
 	<message key="user.role.copyeditor">Copyeditor</message>
 	<message key="user.role.proofreader">Proofreader</message>
 	<message key="user.role.productionEditor">Production Editor</message>

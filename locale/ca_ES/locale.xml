@@ -308,7 +308,6 @@
 	<!-- OMP-specific Roles -->
 	<message key="user.role.manager">Cap editorial</message>
 	<message key="user.role.pressEditor">Editor/a</message>
-	<message key="user.role.assistant">Ajudant de producció</message>
 	<message key="user.role.copyeditor">Corrector/a d’originals</message>
 	<message key="user.role.proofreader">Corrector/a de proves</message>
 	<message key="user.role.productionEditor">Cap de producció</message>

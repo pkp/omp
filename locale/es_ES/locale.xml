@@ -330,7 +330,6 @@
 	<message key="user.role.manager">Gestor editorial</message>
 	<message key="user.role.pressEditor">Editor editorial</message>
 	<message key="user.role.seriesEditor">Editor/a de la colección</message>
-	<message key="user.role.assistant">Ayudante de producción</message>
 	<message key="user.role.copyeditor">Corrector de estilo</message>
 	<message key="user.role.proofreader">Corrector de pruebas</message>
 	<message key="user.role.productionEditor">Editor de producción</message>

@@ -317,7 +317,6 @@
 	<!-- Roles -->
 	<message key="user.role.manager">Διαχειριστής Εκδόσεων</message>
 	<message key="user.role.pressEditor">Επιμελητής Εκδόσεων</message>
-	<message key="user.role.assistant">Βοηθός Εκδόσεων</message>
 	<message key="user.role.copyeditor">Επιμελητής Κειμένων</message>
 	<message key="user.role.subEditor">Επιμελητής Σειράς</message>
 	<message key="user.role.subEditors">Επιμελητές Σειράς</message>

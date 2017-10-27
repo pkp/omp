@@ -341,7 +341,6 @@
 	<message key="user.role.manager">Gerente da Editora</message>
 	<message key="user.role.pressEditor">Editor</message>
 	<message key="user.role.subEditor">Editor de Série</message>
-	<message key="user.role.assistant">Assistente de Adição</message>
 	<message key="user.role.copyeditor">Editor de texto</message>
 	<message key="user.role.proofreader">Leitor de prova</message>
 	<message key="user.role.productionEditor">Editor de produção</message>
