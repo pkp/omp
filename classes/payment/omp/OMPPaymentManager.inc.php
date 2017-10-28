@@ -21,15 +21,6 @@ import('lib.pkp.classes.payment.PaymentManager');
 define('PAYMENT_TYPE_PURCHASE_FILE',	0x000000001);
 
 class OMPPaymentManager extends PaymentManager {
-
-	/**
-	 * Constructor
-	 * @param $context Context
-	 */
-	function __construct($context) {
-		parent::__construct($context);
-	}
-
 	/**
 	 * Determine whether the payment system is configured.
 	 * @return boolean true iff configured

@@ -58,10 +58,9 @@ class ManualPaymentPlugin extends PaymethodPlugin {
 	}
 
 	/**
-	 * @see PaymentPlugin::isConfigured
+	 * @copydoc PaymentPlugin::isConfigured
 	 */
-	function isConfigured() {
-		$context = $this->getRequest()->getContext();
+	function isConfigured($context) {
 		if (!$context) return false;
 		if ($this->getSetting($context->getId(), 'manualInstructions') == '') return false;
 		return true;
@@ -71,7 +70,7 @@ class ManualPaymentPlugin extends PaymethodPlugin {
 	 * @copydoc PaymethodPlugin::displayPaymentForm
 	 */
 	function getPaymentForm($context, $queuedPayment) {
-		if (!$this->isConfigured()) return null;
+		if (!$this->isConfigured($context)) return null;
 
 		AppLocale::requireComponents(LOCALE_COMPONENT_APP_COMMON);
 
