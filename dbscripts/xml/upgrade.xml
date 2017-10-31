@@ -51,6 +51,9 @@
 	<!-- OMP schema -->
 	<schema file="dbscripts/xml/omp_schema.xml" />
 
+	<!-- Install default NavigationMenus -->
+	<code function="installDefaultNavigationMenus" />
+	
 	<upgrade minversion="0.9.9.0" maxversion="1.0.9.9">
 		<!-- Upgrade prior versions to 1.1.0.0 -->
 		<data file="dbscripts/xml/upgrade/1.1.0.0_update.xml" />
@@ -97,7 +100,6 @@
 		<data file="dbscripts/xml/upgrade/3.1.1_update.xml" />
 		<code function="installEmailTemplate" key="EDITOR_DECISION_INITIAL_DECLINE" locales="en_US" />
 		<code function="installEmailTemplate" key="EDITOR_RECOMMENDATION" locales="en_US" />
-		<code function="installDefaultNavigationMenus" />
 		<note file="docs/release-notes/README-3.1.1" />
 	</upgrade>
 
