@@ -11,9 +11,6 @@
   * 3.1.0 database updates XML file.
   -->
 <data>
-	<sql><!-- pkp/pkp-lib#2441 rename masthead to editorialTeam in press_settings -->
-		<query>UPDATE `press_settings` SET setting_name = 'editorialTeam' WHERE setting_name = 'masthead'</query>
-	</sql>
 	<sql><!--pkp/pkp-lib#2064: update the already existing <a href="{$url}">{$url}</a> pattern to {$url}-->
 		<!--<a href="{$activateUrl}">{$activateUrl}</a>-->
 		<query>UPDATE email_templates_default_data SET body=REPLACE(body, '&lt;a href=&quot;{$activateUrl}&quot;&gt;{$activateUrl}&lt;/a&gt;', '{$activateUrl}')</query>
