@@ -366,6 +366,18 @@ class SeriesDAO extends PKPSectionDAO {
 	}
 
 	/**
+	 * Unassociate all categories with a series
+	 *
+	 * @param $seriesId int
+	 */
+	public function removeCategories($seriesId) {
+		$this->update(
+			'DELETE FROM series_categories WHERE series_id = ?',
+			array((int) $seriesId)
+		);
+	}
+
+	/**
 	 * Get the categories associated with a given series.
 	 * @param $seriesId int
 	 * @return DAOResultFactory

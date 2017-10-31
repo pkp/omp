@@ -65,6 +65,12 @@ class SeriesForm extends PKPSectionForm {
 			$series = $seriesDao->getById($seriesId, $press->getId());
 		}
 
+		$categories = $seriesDao->getCategories($seriesId, $press->getId());
+		$categoryIds = array();
+		while ($category = $categories->next()) {
+			$categoryIds[] = $category->getId();
+		}
+
 		if (isset($series) ) {
 			$publishedMonographDao = DAORegistry::getDAO('PublishedMonographDAO');
 			$sortOption = $series->getSortOption() ? $series->getSortOption() : $publishedMonographDao->getDefaultSortOption();
@@ -82,6 +88,7 @@ class SeriesForm extends PKPSectionForm {
 				'printIssn' => $series->getPrintISSN(),
 				'sortOption' => $sortOption,
 				'subEditors' => $this->_getAssignedSubEditorIds($seriesId, $press->getId()),
+				'categories' => $categoryIds,
 			);
 		}
 	}
@@ -131,6 +138,33 @@ class SeriesForm extends PKPSectionForm {
 		$templateMgr->assign(array(
 			'hasSubEditors' => !empty($seriesEditorsListData['collection']['items']),
 			'subEditorsListData' => json_encode($this->_getSubEditorsListPanelData($press->getId())),
+		));
+
+		$categoryDao = DAORegistry::getDAO('CategoryDAO');
+		$allCategories = $categoryDao->getByPressId($press->getId());
+
+		$categoriesList = array();
+		while ($category = $allCategories->next()) {
+			$categoriesList[] = array(
+				'id' => $category->getId(),
+				'title' => $category->getLocalizedTitle(),
+			);
+		}
+
+		$categoriesListData = array(
+			'inputName' => 'categories[]',
+			'selected' => $this->getData('categories'),
+			'collection' => array(
+				'items' => $categoriesList,
+			),
+			'i18n' => array(
+				'title' => __('grid.category.categories'),
+			),
+		);
+
+		$templateMgr->assign(array(
+			'hasCategories' => !empty($categoriesList),
+			'categoriesListData' => json_encode($categoriesListData),
 		));
 
 		return parent::fetch($request);
@@ -267,14 +301,14 @@ class SeriesForm extends PKPSectionForm {
 		$this->_saveSubEditors($press->getId());
 
 		// Save the category associations.
-		import('lib.pkp.classes.controllers.listbuilder.ListbuilderHandler');
-		ListbuilderHandler::unpack(
-			$request,
-			$this->getData('categories'),
-			array(&$this, 'deleteCategoryEntry'),
-			array(&$this, 'insertCategoryEntry'),
-			array(&$this, 'updateCategoryEntry')
-		);
+		$seriesDao = DAORegistry::getDAO('SeriesDAO');
+		$seriesDao->removeCategories($this->getSeriesId());
+		$categoryIds = $this->getData('categories');
+		if (!empty($categoryIds)) {
+			foreach ($categoryIds as $categoryId) {
+				$seriesDao->addCategory($this->getSeriesId(), $categoryId);
+			}
+		}
 
 		return true;
 	}
@@ -293,50 +327,6 @@ class SeriesForm extends PKPSectionForm {
 	 */
 	function setSeriesId($seriesId) {
 		$this->setSectionId($seriesId);
-	}
-
-	/**
-	 * Persist a category association
-	 * @see ListbuilderHandler::insertEntry
-	 */
-	function insertCategoryEntry($request, $newRowId) {
-		$categoryId = array_shift($newRowId);
-
-		$seriesDao = DAORegistry::getDAO('SeriesDAO');
-
-		// Make sure the membership doesn't already exist
-		if ($seriesDao->categoryAssociationExists($this->getSeriesId(), $categoryId)) {
-			return false;
-		}
-
-		// Otherwise, insert the row.
-		$seriesDao->addCategory($this->getSeriesId(), $categoryId);
-		return true;
-	}
-
-	/**
-	 * Delete a category association with this series.
-	 * @see ListbuilderHandler::deleteEntry
-	 * @param $request PKPRequest
-	 * @param $rowId int
-	 */
-	function deleteCategoryEntry($request, $rowId) {
-		$seriesDao = DAORegistry::getDAO('SeriesDAO');
-		$seriesDao->removeCategory($this->getSeriesId(), $rowId);
-		return true;
-	}
-
-	/**
-	 * Update a category association with this series.
-	 * @see ListbuilderHandler::updateEntry
-	 * @param $request PKPRequest
-	 * @param $rowId int old category
-	 * @param $newRowId array new category
-	 */
-	function updateCategoryEntry($request, $rowId, $newRowId) {
-		$this->deleteCategoryEntry($request, $rowId);
-		$this->insertCategoryEntry($request, $newRowId);
-		return true;
 	}
 }
 

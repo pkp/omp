@@ -32,6 +32,7 @@
 
 <form class="pkp_form" id="seriesForm" method="post" action="{url router=$smarty.const.ROUTE_COMPONENT component="grid.settings.series.SeriesGridHandler" op="updateSeries" seriesId=$seriesId}">
 	{csrf}
+	<input type="hidden" name="seriesId" value="{$seriesId|escape}"/>
 	{include file="controllers/notification/inPlaceNotification.tpl" notificationId="seriesFormNotification"}
 
 	{fbvFormArea id="file"}
@@ -78,22 +79,23 @@
 			{fbvElement type="select" id="sortOption" from=$sortOptions selected=$sortOption translate=false}
 		{/fbvFormSection}
 
-		<input type="hidden" name="seriesId" value="{$seriesId|escape}"/>
-		{if $categoryCount > 0}
-			{fbvFormSection for="context"}
-				<div id="seriesCategoriesContainer">
-					{url|assign:seriesCategoriesUrl router=$smarty.const.ROUTE_COMPONENT component="listbuilder.settings.CategoriesListbuilderHandler" op="fetch" sectionId=$seriesId escape=false}
-					{load_url_in_div id="seriesCategoriesContainer" url=$seriesCategoriesUrl}
-				</div>
-			{/fbvFormSection}
-		{/if}
-
 		{if $hasSubEditors}
 			{fbvFormSection}
 				{assign var="uuid" value=""|uniqid|escape}
 				<div id="subeditors-{$uuid}">
 					<script type="text/javascript">
 						pkp.registry.init('subeditors-{$uuid}', 'SelectListPanel', {$subEditorsListData});
+					</script>
+				</div>
+			{/fbvFormSection}
+		{/if}
+
+		{if $hasCategories}
+			{fbvFormSection}
+				{assign var="uuid" value=""|uniqid|escape}
+				<div id="categories-{$uuid}">
+					<script type="text/javascript">
+						pkp.registry.init('categories-{$uuid}', 'SelectListPanel', {$categoriesListData});
 					</script>
 				</div>
 			{/fbvFormSection}
