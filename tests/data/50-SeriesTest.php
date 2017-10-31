@@ -38,11 +38,8 @@ class SeriesTest extends WebTestCase {
 		$this->type('css=[id^=path-]', 'lis');
 
 		// Add Series Editor (David Buskins)
-		$this->waitForElementPresent('css=[id^=component-listbuilder-settings-subeditorslistbuilder-addItem-button-]');
-		$this->clickAt('css=[id^=component-listbuilder-settings-subeditorslistbuilder-addItem-button-]', '10,10');
-
-		$this->waitForElementPresent('//select[@name=\'newRowId[name]\']//option[text()=\'David Buskins\']');
-		$this->select('name=newRowId[name]', 'label=David Buskins');
+		$this->waitForElementPresent($selector='css=.pkpListPanelItem__item:contains(\'David Buskins\')');
+		$this->clickAt($selector);
 
 		// Save changes
 		$this->click('//form[@id=\'seriesForm\']//button[text()=\'Save\']');
@@ -57,11 +54,9 @@ class SeriesTest extends WebTestCase {
 		$this->type('css=[id^=title-]', 'Political Economy');
 		$this->type('css=[id^=path-]', 'pe');
 
-		// Add a Series Editor (Minoti Inoue)
-		$this->waitForElementPresent('css=[id^=component-listbuilder-settings-subeditorslistbuilder-addItem-button-]');
-		$this->clickAt('css=[id^=component-listbuilder-settings-subeditorslistbuilder-addItem-button-]', '10,10');
-		$this->waitForElementPresent('//select[@name=\'newRowId[name]\']//option[text()=\'Stephanie Berardo\']');
-		$this->select('name=newRowId[name]', 'label=Stephanie Berardo');
+		// Add a Series Editor (Stephanie Berardo)
+		$this->waitForElementPresent($selector='css=.pkpListPanelItem__item:contains(\'Stephanie Berardo\')');
+		$this->clickAt($selector);
 		$this->click('//form[@id=\'seriesForm\']//button[text()=\'Save\']');
 		$this->waitForElementNotPresent('css=div.pkp_modal_panel');
 

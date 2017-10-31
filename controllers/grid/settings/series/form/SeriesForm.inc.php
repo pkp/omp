@@ -81,6 +81,7 @@ class SeriesForm extends PKPSectionForm {
 				'onlineIssn' => $series->getOnlineISSN(),
 				'printIssn' => $series->getPrintISSN(),
 				'sortOption' => $sortOption,
+				'subEditors' => $this->_getAssignedSubEditorIds($seriesId, $press->getId()),
 			);
 		}
 	}
@@ -116,9 +117,6 @@ class SeriesForm extends PKPSectionForm {
 		$templateMgr->assign('seriesId', $this->getSeriesId());
 
 		$press = $request->getPress();
-		$userGroupDao = DAORegistry::getDAO('UserGroupDAO');
-		$seriesEditorCount = $userGroupDao->getContextUsersCount($press->getId(), null, ROLE_ID_SUB_EDITOR);
-		$templateMgr->assign('seriesEditorCount', $seriesEditorCount);
 
 		$categoryDao = DAORegistry::getDAO('CategoryDAO');
 		$categoryCount = $categoryDao->getCountByPressId($press->getId());
@@ -127,6 +125,13 @@ class SeriesForm extends PKPSectionForm {
 		// Sort options.
 		$publishedMonographDao = DAORegistry::getDAO('PublishedMonographDAO');
 		$templateMgr->assign('sortOptions', $publishedMonographDao->getSortSelectOptions());
+
+		// Series Editors
+		$seriesEditorsListData = $this->_getSubEditorsListPanelData($press->getId());
+		$templateMgr->assign(array(
+			'hasSubEditors' => !empty($seriesEditorsListData['collection']['items']),
+			'subEditorsListData' => json_encode($this->_getSubEditorsListPanelData($press->getId())),
+		));
 
 		return parent::fetch($request);
 	}
@@ -258,17 +263,11 @@ class SeriesForm extends PKPSectionForm {
 		// Update series object to store image information.
 		$seriesDao->updateObject($series);
 
-		import('lib.pkp.classes.controllers.listbuilder.ListbuilderHandler');
 		// Save the series editor associations.
-		ListbuilderHandler::unpack(
-			$request,
-			$this->getData('subEditors'),
-			array(&$this, 'deleteSubEditorEntry'),
-			array(&$this, 'insertSubEditorEntry'),
-			array(&$this, 'updateSubEditorEntry')
-		);
+		$this->_saveSubEditors($press->getId());
 
 		// Save the category associations.
+		import('lib.pkp.classes.controllers.listbuilder.ListbuilderHandler');
 		ListbuilderHandler::unpack(
 			$request,
 			$this->getData('categories'),

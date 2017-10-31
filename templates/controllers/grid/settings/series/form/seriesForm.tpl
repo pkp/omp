@@ -88,14 +88,16 @@
 			{/fbvFormSection}
 		{/if}
 
-		{fbvFormSection for="context"}
-			{if $seriesEditorCount > 0}{* only include the series editor listbuilder if there are series editors available *}
-				<div id="seriesEditorsContainer">
-					{url|assign:seriesEditorsUrl router=$smarty.const.ROUTE_COMPONENT component="listbuilder.settings.SubEditorsListbuilderHandler" op="fetch" sectionId=$seriesId escape=false}
-					{load_url_in_div id="seriesEditorsContainer" url=$seriesEditorsUrl}
+		{if $hasSubEditors}
+			{fbvFormSection}
+				{assign var="uuid" value=""|uniqid|escape}
+				<div id="subeditors-{$uuid}">
+					<script type="text/javascript">
+						pkp.registry.init('subeditors-{$uuid}', 'SelectListPanel', {$subEditorsListData});
+					</script>
 				</div>
-			{/if}
-		{/fbvFormSection}
+			{/fbvFormSection}
+		{/if}
 
 		{capture assign="instruct"}
 			{url|assign:"sampleUrl" router=$smarty.const.ROUTE_PAGE page="catalog" op="series" path="Path"}
