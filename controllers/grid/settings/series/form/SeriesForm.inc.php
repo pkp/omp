@@ -134,10 +134,10 @@ class SeriesForm extends PKPSectionForm {
 		$templateMgr->assign('sortOptions', $publishedMonographDao->getSortSelectOptions());
 
 		// Series Editors
-		$seriesEditorsListData = $this->_getSubEditorsListPanelData($press->getId());
+		$seriesEditorsListData = $this->_getSubEditorsListPanelData($press->getId(), $request);
 		$templateMgr->assign(array(
 			'hasSubEditors' => !empty($seriesEditorsListData['collection']['items']),
-			'subEditorsListData' => json_encode($this->_getSubEditorsListPanelData($press->getId())),
+			'subEditorsListData' => json_encode($seriesEditorsListData),
 		));
 
 		$categoryDao = DAORegistry::getDAO('CategoryDAO');
