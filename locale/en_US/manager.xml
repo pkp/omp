@@ -333,7 +333,8 @@ You may optionally provide the user with a reason for disabling their account.</
 	<message key="manager.setup.currentRoles">Current Roles</message>
 	<message key="manager.setup.internalReviewRoles">Internal Review Roles</message>
 	<message key="manager.setup.masthead">Masthead</message>
-	<message key="manager.setup.masthead.description">List of editors, managing directors, and other individuals associated with the press.</message>
+	<message key="manager.setup.editorialTeam">Editorial Team</message>
+	<message key="manager.setup.editorialTeam.description">List of editors, managing directors, and other individuals associated with the press.</message>
 	<message key="manager.setup.files">Files</message>
 	<message key="manager.setup.productionTemplates">Production Templates</message>
 	<message key="manager.files.note">Note: The Files Browser is an advanced feature that allows the files and directories associated with a press to be viewed and manipulated directly.</message>

@@ -332,7 +332,8 @@ Sie können dem/der Benutzer/in den Grund für die Deaktivierung des Kontos nenn
 	<message key="manager.setup.currentRoles">Aktuelle Funktionen</message>
 	<message key="manager.setup.internalReviewRoles">Funktionen von "Interne/r Gutachter/in"</message>
 	<message key="manager.setup.masthead">Impressum</message>
-	<message key="manager.setup.masthead.description">Das Impressum sollte ein Liste der Herausgeber/innen und Geschäftsführer/innen sowie anderer Personen enthalten, die mit dem Verlag in Verbindung stehen. Hier eingegebene Informationen erscheinen unter 'Über uns'.</message>
+	<message key="manager.setup.editorialTeam">Herausgeber/innen</message>
+	<message key="manager.setup.editorialTeam.description">Das Impressum sollte ein Liste der Herausgeber/innen und Geschäftsführer/innen sowie anderer Personen enthalten, die mit dem Verlag in Verbindung stehen. Hier eingegebene Informationen erscheinen unter 'Über uns'.</message>
 	<message key="manager.setup.files">Dateien</message>
 	<message key="manager.setup.productionTemplates">Vorlagen für die Herstellung</message>
 	<message key="manager.files.note">Hinweis: Der Dateimanager ist ein erweitertes Feature, das es erlaubt, dem Verlag zugeordnete Dateien und Verzeichnisse direkt anzuschauen und zu ändern.</message>

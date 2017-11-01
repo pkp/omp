@@ -21,4 +21,7 @@
 		<query>UPDATE press_settings SET setting_name = 'citationsEnabledWorkflow' WHERE setting_name = 'referencesEnabledWorkflow'</query>
 		<query>UPDATE press_settings SET setting_name = 'citationsRequired' WHERE setting_name = 'referencesRequired'</query>
 	</sql>
+	<sql><!-- pkp/pkp-lib#2441 rename masthead to editorialTeam in press_settings -->
+		<query>UPDATE press_settings SET setting_name = 'editorialTeam' WHERE setting_name = 'masthead'</query>
+	</sql>
 </data>

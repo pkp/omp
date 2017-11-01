@@ -356,7 +356,8 @@ Informe, se desesjar, o motivo do bloqueio.</message>
 	<message key="manager.setup.currentRoles">Papéis atuais</message>
 	<message key="manager.setup.internalReviewRoles">Papéis de avlaiação interna</message>
 	<message key="manager.setup.masthead">Expediente</message>
-	<message key="manager.setup.masthead.description">O expediente deve conter a lista de editores, diretores e outros indivíduos associados à editora. Os dados informados aqui serão publicados na página Sobre a editora.</message>
+	<message key="manager.setup.editorialTeam">Equipe editorial</message>
+	<message key="manager.setup.editorialTeam.description">O expediente deve conter a lista de editores, diretores e outros indivíduos associados à editora. Os dados informados aqui serão publicados na página Sobre a editora.</message>
 	<message key="manager.setup.files">Arquivos</message>
 	<message key="manager.setup.productionTemplates">Modelos de produção</message>
 	<message key="manager.files.note">Nota: O navegador de arquivos é uma funcionalidade avançada que permite o acesso e manipulação direta de pastas e arquivos associados à editora diretamente.</message>
