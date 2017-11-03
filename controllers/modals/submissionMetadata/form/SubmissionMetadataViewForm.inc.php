@@ -43,14 +43,38 @@ class SubmissionMetadataViewForm extends PKPSubmissionMetadataViewForm {
 		$templateMgr->assign('seriesId', $submission->getSeriesId());
 		$templateMgr->assign('seriesPosition', $submission->getSeriesPosition());
 
-		// If categories are configured for the press, present the LB.
-		$categoryDao = DAORegistry::getDAO('CategoryDAO');
-		$templateMgr->assign('categoriesExist', $categoryDao->getCountByPressId($submission->getContextId()) > 0);
-
-		// also include the categories (for read only form views)
+		// Get assigned categories
+		// We need an array of IDs for the SelectListPanel, but we also need an
+		// array of Category objects to use when the metadata form is viewed in
+		// readOnly mode. This mode is invoked on the SubmissionMetadataHandler
+		// is not available here
 		$submissionDao = Application::getSubmissionDAO();
-		$assignedCategories = $submissionDao->getCategories($submission->getId(), $submission->getContextId());
-		$templateMgr->assign('assignedCategories', $assignedCategories->toArray());
+		$result = $submissionDao->getCategories($submission->getId(), $submission->getContextId());
+		$assignedCategories = array();
+		$selectedIds = array();
+		while ($category = $result->next()) {
+			$assignedCategories[] = $category;
+			$selectedIds[] = $category->getId();
+		}
+
+		// Get SelectCategoryListHandler data
+		import('controllers.list.SelectCategoryListHandler');
+		$selectCategoryList = new SelectCategoryListHandler(array(
+			'title' => 'submission.submit.placement.categories',
+			'inputName' => 'categories[]',
+			'selected' => $selectedIds,
+			'getParams' => array(
+				'contextId' => $submission->getContextId(),
+			),
+		));
+
+		$selectCategoryListData = $selectCategoryList->getConfig();
+
+		$templateMgr->assign(array(
+			'hasCategories' => !empty($selectCategoryListData['collection']['items']),
+			'selectCategoryListData' => json_encode($selectCategoryListData),
+			'assignedCategories' => $assignedCategories,
+		));
 
 		return parent::fetch($request);
 	}
@@ -61,9 +85,6 @@ class SubmissionMetadataViewForm extends PKPSubmissionMetadataViewForm {
 	function readInputData() {
 		parent::readInputData();
 		$this->readUserVars(array('categories', 'seriesId', 'seriesPosition'));
-		$application = PKPApplication::getApplication();
-		$request = $application->getRequest();
-		ListbuilderHandler::unpack($request, $this->getData('categories'), array($this, 'deleteEntry'), array($this, 'insertEntry'), array($this, 'updateEntry'));
 	}
 
 	/**
@@ -91,61 +112,14 @@ class SubmissionMetadataViewForm extends PKPSubmissionMetadataViewForm {
 			import('classes.search.MonographSearchIndex');
 			MonographSearchIndex::indexMonographMetadata($submission);
 		}
-	}
 
-	/**
-	 * Associate a category with a submission.
-	 * @see ListbuilderHandler::insertEntry
-	 */
-	function insertEntry($request, $newRowId) {
-
-		$application = PKPApplication::getApplication();
-		$request = $application->getRequest();
-
-		$categoryId = $newRowId['name'];
-		$categoryDao = DAORegistry::getDAO('CategoryDAO');
 		$submissionDao = Application::getSubmissionDAO();
-		$context = $request->getContext();
-		$submission = $this->getSubmission();
-
-		$category = $categoryDao->getById($categoryId, $context->getId());
-		if (!$category) return true;
-
-		// Associate the category with the submission
-		$submissionDao->addCategory(
-			$submission->getId(),
-			$categoryId
-		);
-	}
-
-	/**
-	 * Delete a category association.
-	 * @see ListbuilderHandler::deleteEntry
-	 */
-	function deleteEntry($request, $rowId) {
-		if ($rowId) {
-			$categoryDao = DAORegistry::getDAO('CategoryDAO');
-			$submissionDao = Application::getSubmissionDAO();
-			$category = $categoryDao->getById($rowId);
-			if (!is_a($category, 'Category')) {
-				assert(false);
-				return false;
+		$submissionDao->removeCategories($submission->getId());
+		if ($this->getData('categories')) {
+			foreach ((array) $this->getData('categories') as $categoryId) {
+				$submissionDao->addCategory($submission->getId(), (int) $categoryId);
 			}
-			$submission = $this->getSubmission();
-			$submissionDao->removeCategory($submission->getId(), $rowId);
 		}
-
-		return true;
-	}
-
-	/**
-	 * Update a category association.
-	 * @see ListbuilderHandler::updateEntry
-	 */
-	function updateEntry($request, $rowId, $newRowId) {
-
-		$this->deleteEntry($request, $rowId);
-		$this->insertEntry($request, $newRowId);
 	}
 }
 

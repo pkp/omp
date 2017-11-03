@@ -140,30 +140,18 @@ class SeriesForm extends PKPSectionForm {
 			'subEditorsListData' => json_encode($seriesEditorsListData),
 		));
 
-		$categoryDao = DAORegistry::getDAO('CategoryDAO');
-		$allCategories = $categoryDao->getByPressId($press->getId());
-
-		$categoriesList = array();
-		while ($category = $allCategories->next()) {
-			$categoriesList[] = array(
-				'id' => $category->getId(),
-				'title' => $category->getLocalizedTitle(),
-			);
-		}
-
-		$categoriesListData = array(
+		// Get SelectCategoryListHandler data
+		import('controllers.list.SelectCategoryListHandler');
+		$categoriesList = new SelectCategoryListHandler(array(
+			'title' => 'grid.category.categories',
 			'inputName' => 'categories[]',
 			'selected' => $this->getData('categories'),
-			'collection' => array(
-				'items' => $categoriesList,
-			),
-			'i18n' => array(
-				'title' => __('grid.category.categories'),
-			),
-		);
+		));
+
+		$categoriesListData = $categoriesList->getConfig();
 
 		$templateMgr->assign(array(
-			'hasCategories' => !empty($categoriesList),
+			'hasCategories' => !empty($categoriesListData['collection']['items']),
 			'categoriesListData' => json_encode($categoriesListData),
 		));
 
