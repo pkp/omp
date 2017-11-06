@@ -1,7 +1,7 @@
 <?php
 
 /**
- * @file controllers/submission/CategoriesListbuilderHandler.inc.php
+ * @file controllers/submission/CoverHandler.inc.php
  *
  * Copyright (c) 2014-2017 Simon Fraser University
  * Copyright (c) 2000-2017 John Willinsky
@@ -19,15 +19,8 @@ class CoverHandler extends PKPHandler {
 	/** @var $press Press */
 	var $_press;
 
-	/** @var The group ID for this listbuilder */
+	/** @var The monograph ID for this handler */
 	var $monographId;
-
-	/**
-	 * Constructor
-	 */
-	function __construct() {
-		parent::__construct();
-	}
 
 	/**
 	 * @see PKPHandler::authorize()
