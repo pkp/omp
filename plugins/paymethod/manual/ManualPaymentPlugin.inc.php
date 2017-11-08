@@ -62,7 +62,7 @@ class ManualPaymentPlugin extends PaymethodPlugin {
 	 */
 	function isConfigured($context) {
 		if (!$context) return false;
-		if ($this->getSetting($context->getId(), 'manualInstructions') == '') return false;
+		//if ($this->getSetting($context->getId(), 'manualInstructions') == '') return false;
 		return true;
 	}
 

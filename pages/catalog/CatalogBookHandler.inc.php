@@ -91,6 +91,7 @@ class CatalogBookHandler extends Handler {
 		$press = $request->getPress();
 		$paymentManager = Application::getPaymentManager($press);
 		$submissionFileDao = DAORegistry::getDAO('SubmissionFileDAO');
+
 		if ($paymentManager->isConfigured()) {
 			$availableFiles = array_filter(
 				$submissionFileDao->getLatestRevisions($publishedMonograph->getId()),
@@ -110,6 +111,9 @@ class CatalogBookHandler extends Handler {
 
 			// Expose variables to template
 			$templateMgr->assign('availableFiles', $filteredAvailableFiles);
+		} else {
+			error_log("payment manager not configured");
+			$templateMgr->assign('availableFiles', array());
 		}
 
 		// Provide the currency to the template, if configured.
