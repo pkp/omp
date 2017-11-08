@@ -58,6 +58,27 @@
 		}
 	});
 
+	// Spotlights
+	var spotlightComponent = $('.cmp_spotlights');
+	if (spotlightComponent.length) {
+		var tabs = spotlightComponent.find('> .list a');
+		var spotlights = spotlightComponent.find('.spotlights > li');
+		tabs.click(function(e) {
+			e.preventDefault();
+			e.stopPropagation();
+
+			var target = $(e.target);
+			if (target.hasClass('current')) {
+				return;
+			}
+
+			tabs.parent().removeClass('current');
+			spotlights.removeClass('current');
+			target.parent().addClass('current');
+			spotlights.filter('.spotlight_' + target.data('spotlight')).addClass('current');
+		});
+	}
+
 	/**
 	 * Open or submit search form
 	 *
