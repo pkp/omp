@@ -36,9 +36,12 @@
 	{include file="core:submission/submissionMetadataFormTitleFields.tpl" readOnly=$formParams.readOnly}
 	{include file="submission/form/seriesAndCategories.tpl" readOnly=$formParams.readOnly includeSeriesPosition=true}
 
-	<!--  Contributors -->
+	{fbvFormSection title="submission.workType"}
+		{fbvElement type="select" id="workType" from=$workTypeOptions selected=$workType translate=false disabled=$formParams.readOnly size=$fbvStyles.size.SMALL}
+	{/fbvFormSection}
 
 	{if !$formParams.hideSubmit || !$formParams.anonymous}
+		<!--  Contributors -->
 		{* generate a unique ID for the form *}
 		{assign var="authorsGridContainer" value="authorsGridContainer-"|uniqid|escape}
 		{url|assign:authorGridUrl router=$smarty.const.ROUTE_COMPONENT  component="grid.users.author.AuthorGridHandler" op="fetchGrid" submissionId=$submissionId stageId=$stageId escape=false}

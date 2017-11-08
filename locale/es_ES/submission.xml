@@ -17,10 +17,10 @@
 	<message key="submission.title">Título de libro</message>
 	<message key="submission.select">Seleccionar propuesta</message>
 	<message key="submission.synopsis">Sinopsis</message>
-	<message key="submission.workflowType">Tipo de libro</message>
-	<message key="submission.workflowType.description">Una monografía es una obra escrita totalmente por uno o más autores/as. Una obra colectiva tiene diferentes autores/as para cada capítulo (los detalles de capítulo se introducen posteriormente durante el proceso).</message>
-	<message key="submission.workflowType.editedVolume">Obra colectiva</message>
-	<message key="submission.workflowType.authoredWork">Monografía</message>
+	<message key="submission.workType">Tipo de libro</message>
+	<message key="submission.workType.description">Una monografía es una obra escrita totalmente por uno o más autores/as. Una obra colectiva tiene diferentes autores/as para cada capítulo (los detalles de capítulo se introducen posteriormente durante el proceso).</message>
+	<message key="submission.workType.editedVolume">Obra colectiva</message>
+	<message key="submission.workType.authoredWork">Monografía</message>
 	<message key="submission.monograph">Monografía</message>
 	<message key="submission.published">Producción lista</message>
 	<message key="submission.fairCopy">Copia en limpio</message>

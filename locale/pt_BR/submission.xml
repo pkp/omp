@@ -18,10 +18,10 @@
 	<message key="submission.title">Título do Livro</message>
 	<message key="submission.select">Tipo de submissão</message>
 	<message key="submission.synopsis">Sinopse</message>
-	<message key="submission.workflowType">Tipo de livro</message>
-	<message key="submission.workflowType.description">Uma monografia é um trabalho produzido por um ou mais autores. Um volume editado possui diferentes autores para cada capítulo, sendo que os detalhes de cada capítulo são informados mais tarde durante o processo.</message>
-	<message key="submission.workflowType.editedVolume">Volume editado</message>
-	<message key="submission.workflowType.authoredWork">Monografia</message>
+	<message key="submission.workType">Tipo de livro</message>
+	<message key="submission.workType.description">Uma monografia é um trabalho produzido por um ou mais autores. Um volume editado possui diferentes autores para cada capítulo, sendo que os detalhes de cada capítulo são informados mais tarde durante o processo.</message>
+	<message key="submission.workType.editedVolume">Volume editado</message>
+	<message key="submission.workType.authoredWork">Monografia</message>
 	<message key="submission.monograph">Monografia</message>
 	<message key="submission.published">Pronto para produção</message>
 	<message key="submission.fairCopy">Cópia limpa</message>

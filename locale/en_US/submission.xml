@@ -18,10 +18,10 @@
 	<message key="submission.title">Book Title</message>
 	<message key="submission.select">Select Submission</message>
 	<message key="submission.synopsis">Synopsis</message>
-	<message key="submission.workflowType">Submission Type</message>
-	<message key="submission.workflowType.description">A monograph is a work authored wholly by one or more authors. An edited volume has different authors for each chapter (with the chapter details entered later in this process.)</message>
-	<message key="submission.workflowType.editedVolume">Edited Volume: Authors are associated with their own chapter.</message>
-	<message key="submission.workflowType.authoredWork">Monograph: Authors are associated with the book as a whole.</message>
+	<message key="submission.workType">Submission Type</message>
+	<message key="submission.workType.description">A monograph is a work authored wholly by one or more authors. An edited volume has different authors for each chapter (with the chapter details entered later in this process.)</message>
+	<message key="submission.workType.editedVolume">Edited Volume: Authors are associated with their own chapter.</message>
+	<message key="submission.workType.authoredWork">Monograph: Authors are associated with the book as a whole.</message>
 	<message key="submission.monograph">Monograph</message>
 	<message key="submission.published">Production Ready</message>
 	<message key="submission.fairCopy">Fair Copy</message>
@@ -29,6 +29,7 @@
 	<message key="submission.artwork.permissions">Permissions</message>
 	<message key="submission.chapter">Chapter</message>
 	<message key="submission.chapters">Chapters</message>
+	<message key="submission.editorName">{$editorName} (ed)</message>
 	<message key="submission.chaptersDescription">You may list the chapters here, and assign contributors from the list of contributors, above. These contributors will be able to access the chapter during various stages of the publication process.</message>
 	<message key="submission.chapter.addChapter">Add Chapter</message>
 	<message key="submission.chapter.editChapter">Edit Chapter</message>
@@ -82,6 +83,8 @@
 	<message key="submission.submit.placement.categoriesDescription">Select one of the press’s categories for which this work should be considered.</message>
 	<message key="submission.submit.userGroup">Submit in my role as...</message>
 	<message key="submission.submit.userGroupDescription">If you are submitting an Edited Volume, you should choose the volume editor role.</message>
+	<message key="submission.submit.isVolumeEditor">Display this contributor as a volume editor?</message>
+	<message key="submission.submit.isVolumeEditor.grid">Display as Volume Editor</message>
 
 	<!-- Chapters Grid -->
 	<message key="grid.chapters.title">Chapters</message>
