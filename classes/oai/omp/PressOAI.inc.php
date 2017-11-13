@@ -77,6 +77,7 @@ class PressOAI extends OAI {
 	 */
 	function identifierToPublicationFormatId($identifier) {
 		$prefix = $this->_getIdentifierPrefix();
+		$identifier = urldecode($identifier);
 		if (strstr($identifier, $prefix)) {
 			return (int) str_replace($prefix, '', $identifier);
 		} else {
