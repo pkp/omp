@@ -52,6 +52,15 @@ class SubmissionMetadataViewForm extends PKPSubmissionMetadataViewForm {
 		$assignedCategories = $submissionDao->getCategories($submission->getId(), $submission->getContextId());
 		$templateMgr->assign('assignedCategories', $assignedCategories->toArray());
 
+		// Workflow type
+		$templateMgr->assign(array(
+			'workTypeOptions' => array(
+				WORK_TYPE_EDITED_VOLUME => __('submission.workType.editedVolume'),
+				WORK_TYPE_AUTHORED_WORK => __('submission.workType.authoredWork'),
+			),
+			'workType' => $submission->getWorkType(),
+		));
+
 		return parent::fetch($request);
 	}
 
@@ -60,7 +69,7 @@ class SubmissionMetadataViewForm extends PKPSubmissionMetadataViewForm {
 	 */
 	function readInputData() {
 		parent::readInputData();
-		$this->readUserVars(array('categories', 'seriesId', 'seriesPosition'));
+		$this->readUserVars(array('categories', 'seriesId', 'seriesPosition', 'workType'));
 		$application = PKPApplication::getApplication();
 		$request = $application->getRequest();
 		ListbuilderHandler::unpack($request, $this->getData('categories'), array($this, 'deleteEntry'), array($this, 'insertEntry'), array($this, 'updateEntry'));
@@ -85,6 +94,7 @@ class SubmissionMetadataViewForm extends PKPSubmissionMetadataViewForm {
 
 		$submission->setSeriesId($this->getData('seriesId'));
 		$submission->setSeriesPosition($this->getData('seriesPosition'));
+		$submission->setWorkType($this->getData('workType'));
 		$submissionDao->updateObject($submission);
 
 		if ($submission->getDatePublished()) {

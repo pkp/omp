@@ -31,6 +31,10 @@
 	{include file="core:submission/submissionMetadataFormTitleFields.tpl" readOnly=$formParams.readOnly}
 
 	{if !$formParams.anonymous}
+		{fbvFormSection title="submission.workType"}
+			{fbvElement type="select" id="workType" from=$workTypeOptions selected=$workType translate=false disabled=$readOnly size=$fbvStyles.size.SMALL}
+		{/fbvFormSection}
+
 		<!--  Contributors -->
 		{* generate a unique ID for the form *}
 		{assign var="authorsGridContainer" value="authorsGridContainer-"|uniqid|escape}

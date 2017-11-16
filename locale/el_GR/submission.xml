@@ -15,10 +15,10 @@
 	<!-- General submission keys -->
 	<message key="submission.select">Επιλογή Υποβολής</message>
 	<message key="submission.synopsis">Σύνοψη</message>
-	<message key="submission.workflowType">Τύπος Βιβλίου</message>
-	<message key="submission.workflowType.description">Μια μονογραφία είναι ένα έργο που έχει συγγραφεί εξ' ολοκλήρου από έναν ή πολλούς συγγραφείς. Ένα έργο υπο επιμέλια έχει διαφορετικούς συγγραφείς για κάθε κεφάλαιο (λεπτομέρειες για το κάθε κεφάλαιο εισάγονται αργότερα κατα τη διάρκεια της διαδικασίας.)</message>
-	<message key="submission.workflowType.editedVolume">Έργο υπο Επιμέλεια</message>
-	<message key="submission.workflowType.authoredWork">Μονογραφία</message>
+	<message key="submission.workType">Τύπος Βιβλίου</message>
+	<message key="submission.workType.description">Μια μονογραφία είναι ένα έργο που έχει συγγραφεί εξ' ολοκλήρου από έναν ή πολλούς συγγραφείς. Ένα έργο υπο επιμέλια έχει διαφορετικούς συγγραφείς για κάθε κεφάλαιο (λεπτομέρειες για το κάθε κεφάλαιο εισάγονται αργότερα κατα τη διάρκεια της διαδικασίας.)</message>
+	<message key="submission.workType.editedVolume">Έργο υπο Επιμέλεια</message>
+	<message key="submission.workType.authoredWork">Μονογραφία</message>
 	<message key="submission.monograph">Μονογραφία</message>
 	<message key="submission.published">Η Παραγωγή είναι έτοιμη</message>
 	<message key="submission.fairCopy">Τελικό Αντιγραφο (Fair Copy)</message>

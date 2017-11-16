@@ -282,7 +282,7 @@ class CategoryCategoryGridHandler extends CategoryGridHandler {
 	/**
 	 * Get a CategoryForm instance.
 	 * @param $request Request
-	 * @return UserGroupForm
+	 * @return CategoryForm
 	 */
 	function _getCategoryForm($request) {
 		// Get the category ID.

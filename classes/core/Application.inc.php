@@ -127,6 +127,7 @@ class Application extends PKPApplication {
 			'SubmissionEventLogDAO' => 'classes.log.SubmissionEventLogDAO',
 			'SubmissionFileDAO' => 'classes.monograph.SubmissionFileDAO',
 			'UserDAO' => 'classes.user.UserDAO',
+			'UserGroupDAO' => 'classes.security.UserGroupDAO',
 			'UserSettingsDAO' => 'classes.user.UserSettingsDAO',
 		));
 	}

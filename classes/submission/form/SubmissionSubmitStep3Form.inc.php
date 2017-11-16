@@ -54,6 +54,9 @@ class SubmissionSubmitStep3Form extends PKPSubmissionSubmitStep3Form {
 		$categoryDao = DAORegistry::getDAO('CategoryDAO');
 		$templateMgr->assign('categoriesExist', $categoryDao->getCountByPressId($this->context->getId()) > 0);
 
+		// Specify the OMP-specific author grid handler
+		$templateMgr->assign('authorGridHandler', 'grid.users.author.AuthorGridHandler');
+
 		return parent::fetch($request);
 	}
 

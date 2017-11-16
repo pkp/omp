@@ -1,25 +1,26 @@
 <?php
 
 /**
- * @file classes/monograph/Author.inc.php
+ * @file classes/security/PKPUserGroup.inc.php
  *
  * Copyright (c) 2014-2017 Simon Fraser University
  * Copyright (c) 2003-2017 John Willinsky
  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
  *
- * @class Author
- * @ingroup monograph
- * @see AuthorDAO
+ * @class PKPUserGroup
+ * @ingroup security
+ * @see PKPUserGroupDAO
  *
- * @brief Monograph author metadata class.
+ * @brief Describes user groups
  */
 
+// Bring in role constants.
+import('lib.pkp.classes.security.PKPUserGroup');
 
-import('lib.pkp.classes.submission.PKPAuthor');
+class UserGroup extends PKPUserGroup {
 
-class Author extends PKPAuthor {
 	/**
-	 * Get whether or not the author should be listed as a volume editor
+	 * Get whether or not this user role should be displayed as a volume editor
 	 *
 	 * @return boolean
 	 */
@@ -28,7 +29,7 @@ class Author extends PKPAuthor {
 	}
 
 	/**
-	 * Set whether or not the author should be listed as a volume editor
+	 * Set whether or not this user role should be displayed as a volume editor
 	 *
 	 * @param boolean $isVolumeEditor
 	 */
@@ -36,5 +37,3 @@ class Author extends PKPAuthor {
 		$this->setData('isVolumeEditor', $isVolumeEditor);
 	}
 }
-
-?>
