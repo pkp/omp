@@ -10,4 +10,5 @@
 {capture assign="appUserGroupOptions"}
 	{fbvElement type="checkbox" label="settings.roles.isVolumeEditor" id="isVolumeEditor" checked=$isVolumeEditor}
 {/capture}
+{assign var="userGroupFormComponent" value="grid.settings.roles.UserGroupGridHandler"}
 {include file="core:controllers/grid/settings/roles/form/userGroupForm.tpl"}
