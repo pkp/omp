@@ -96,6 +96,15 @@ class AuthorDAO extends PKPAuthorDAO {
 	function newDataObject() {
 		return new Author();
 	}
+
+	/**
+	 * @copydoc DAO::getAdditionalFieldNames()
+	 */
+	function getAdditionalFieldNames() {
+		return array_merge(parent::getAdditionalFieldNames(), array(
+			'isVolumeEditor',
+		));
+	}
 }
 
 ?>

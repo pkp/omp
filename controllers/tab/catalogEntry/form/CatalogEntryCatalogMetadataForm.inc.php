@@ -85,6 +85,36 @@ class CatalogEntryCatalogMetadataForm extends Form {
 		$templateMgr->assign('audienceRangeQualifiers', $audienceRangeQualifiers);
 		$templateMgr->assign('audienceRanges', $audienceRanges);
 
+		// Workflow type
+		$templateMgr->assign(array(
+			'workTypeOptions' => array(
+				WORK_TYPE_EDITED_VOLUME => __('submission.workflowType.editedVolume'),
+				WORK_TYPE_AUTHORED_WORK => __('submission.workflowType.authoredWork'),
+			),
+			'workType' => $this->getMonograph()->getWorkType(),
+		));
+
+		// SelectListPanel for volume editors
+		$authorDao = DAORegistry::getDAO('AuthorDAO');
+		$authors = $authorDao->getBySubmissionId($this->getMonograph()->getId(), true);
+		$volumeEditorsListItems = array();
+		foreach ($authors as $author) {
+			$volumeEditorsListItems[] = array(
+				'id' => $author->getId(),
+				'title' => $author->getFullName() . ', ' . $author->getLocalizedUserGroupName(),
+			);
+		}
+		$volumeEditorsListData = array(
+			'collection' => array('items' => $volumeEditorsListItems),
+			'inputName' => 'volumeEditors[]',
+			'selected' => $this->getData('volumeEditors') ? $this->getData('volumeEditors') : [],
+			'i18n' => array(
+				'title' => __('submission.workflowType.editedVolume.selectEditors'),
+				'notice' => __('submission.workflowType.editedVolume.selectEditors.description'),
+			),
+		);
+		$templateMgr->assign('volumeEditorsListData', json_encode($volumeEditorsListData));
+
 		$publishedMonograph = $this->getPublishedMonograph();
 		if ($publishedMonograph) {
 
@@ -115,12 +145,22 @@ class CatalogEntryCatalogMetadataForm extends Form {
 		$copyrightYear = $submission->getCopyrightYear();
 		$licenseURL = $submission->getLicenseURL();
 
+		$authorDao = DAORegistry::getDAO('AuthorDAO');
+		$authors = $authorDao->getBySubmissionId($submission->getId(), true);
+		$volumeEditors = [];
+		foreach ($authors as $author) {
+			if ($author->getIsVolumeEditor()) {
+				$volumeEditors[] = $author->getId();
+			}
+		}
+
 		$this->_data = array(
 			'copyrightHolder' => $submission->getDefaultCopyrightHolder(null), // Localized
 			'copyrightYear' => $submission->getDefaultCopyrightYear(),
 			'licenseURL' => $submission->getDefaultLicenseURL(),
 			'arePermissionsAttached' => !empty($copyrightHolder) || !empty($copyrightYear) || !empty($licenseURL),
 			'confirm' => ($this->_publishedMonograph && $this->_publishedMonograph->getDatePublished())?true:false,
+			'volumeEditors' => $volumeEditors,
 		);
 	}
 
@@ -168,6 +208,7 @@ class CatalogEntryCatalogMetadataForm extends Form {
 			'copyrightYear', 'copyrightHolder', 'licenseURL', 'attachPermissions',
 			'temporaryFileId', // Cover image
 			'confirm',
+			'workType', 'volumeEditors',
 		);
 
 		$this->readUserVars($vars);
@@ -211,6 +252,16 @@ class CatalogEntryCatalogMetadataForm extends Form {
 		if (!$publishedMonograph) {
 			$publishedMonograph = $publishedMonographDao->newDataObject();
 			$publishedMonograph->setId($monograph->getId());
+		}
+
+		if ($this->getData('workType') == WORK_TYPE_EDITED_VOLUME) {
+			$volumeEditors = $this->getData('volumeEditors') ? $this->getData('volumeEditors') : [];
+			$authorDao = DAORegistry::getDAO('AuthorDAO');
+			$authors = $authorDao->getBySubmissionId($monograph->getId(), true);
+			foreach ($authors as $author) {
+				$author->setIsVolumeEditor(in_array($author->getId(), $volumeEditors));
+				$authorDao->updateObject($author);
+			}
 		}
 
 		// Populate the published monograph with the cataloging metadata
@@ -289,6 +340,7 @@ class CatalogEntryCatalogMetadataForm extends Form {
 			$monograph->setCopyrightHolder(null, null);
 			$monograph->setLicenseURL(null);
 		}
+		$monograph->setWorkType($this->getData('workType'));
 		$monographDao->updateObject($monograph);
 
 		// Update the modified fields or insert new.

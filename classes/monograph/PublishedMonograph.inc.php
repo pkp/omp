@@ -215,6 +215,36 @@ class PublishedMonograph extends Monograph {
 		$representativeDao = DAORegistry::getDAO('RepresentativeDAO');
 		return $representativeDao->getAgentsByMonographId($this->getId());
 	}
+
+	/**
+	 * Get a string indicating all authors or, if it is an edited volume, editors.
+	 *
+	 * @return string
+	 */
+	public function getAuthorOrEditorString() {
+
+		if ($this->getWorkType() != WORK_TYPE_EDITED_VOLUME) {
+			return $this->getAuthorString();
+		}
+
+		AppLocale::requireComponents(LOCALE_COMPONENT_APP_SUBMISSION);
+
+		$authors = $this->getAuthors(true);
+		$editorNames = array();
+		foreach ($authors as $author) {
+			if ($author->getIsVolumeEditor()) {
+				$editorNames[] = __('submission.editorName', array('editorName' => $author->getFullName()));
+			}
+		}
+
+		if (count($editorNames)) {
+			// Spaces are stripped from the locale strings, so we have to add the
+			// space in here.
+			return join(__('submission.editorSeparator') . ' ', $editorNames);
+		}
+
+		return $this->getAuthorString();
+	}
 }
 
 ?>

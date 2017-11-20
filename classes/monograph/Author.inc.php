@@ -24,6 +24,22 @@ class Author extends PKPAuthor {
 	function __construct() {
 		parent::__construct();
 	}
+
+	/**
+	 * Get whether or not this author should be displayed as a volume editor
+	 * @return boolean
+	 */
+	public function getIsVolumeEditor() {
+		return $this->getData('isVolumeEditor');
+	}
+
+	/**
+	 * Set whether or not this author should be displayed as a volume editor
+	 * @param $isVolumeEditor boolean
+	 */
+	public function setIsVolumeEditor($isVolumeEditor) {
+		$this->setData('isVolumeEditor', $isVolumeEditor);
+	}
 }
 
 ?>

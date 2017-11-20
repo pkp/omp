@@ -25,7 +25,9 @@
 					{rdelim}
 				{rdelim},
 				arePermissionsAttached: {if $arePermissionsAttached}true{else}false{/if},
-				coverImageMessage: "{$coverImageMessage|escape:"javascript"}"
+				coverImageMessage: "{$coverImageMessage|escape:"javascript"}",
+				workTypeEditedVolume: {$smarty.const.WORK_TYPE_EDITED_VOLUME|escape:"javascript"},
+				workTypeAuthoredWork: {$smarty.const.WORK_TYPE_AUTHORED_WORK|escape:"javascript"},
 			{rdelim}
 		);
 	{rdelim});
@@ -46,6 +48,19 @@
 			{fbvElement type="checkbox" id="confirm" checked=$confirm label="submission.catalogEntry.confirm" value="confirm"}
 		{/fbvFormSection}
 	{/if}
+
+	{fbvFormSection label="submission.workflowType"}
+		{fbvElement type="select" id="workType" from=$workTypeOptions selected=$workType translate=false disabled=$formParams.readOnly size=$fbvStyles.size.SMALL}
+	{/fbvFormSection}
+
+	{fbvFormSection id="volumeEditors"}
+		{assign var="uuid" value=""|uniqid|escape}
+		<div id="volume-editors-{$uuid}">
+			<script type="text/javascript">
+				pkp.registry.init('volume-editors-{$uuid}', 'SelectListPanel', {$volumeEditorsListData});
+			</script>
+		</div>
+	{/fbvFormSection}
 
 	{fbvFormArea id="permissions" title="submission.permissions" class="border"}
 		{fbvFormSection list=true}
