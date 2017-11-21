@@ -44,6 +44,8 @@
 	<message key="manager.series.existingUsers">Existing users</message>
 	<message key="manager.series.seriesTitle">Series Title</message>
 	<message key="manager.series.restricted">Don't allow authors to submit directly to this series.</message>
+	<message key="manager.payment.generalOptions">General Options</message>
+	<message key="manager.payment.options.enablePayments">Payments will be enabled for this press. Note that users will be required to log in to make payments.</message>
 
 	<!-- Settings management -->
 	<message key="manager.settings">Settings</message>
