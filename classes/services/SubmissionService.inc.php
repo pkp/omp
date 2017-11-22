@@ -24,10 +24,43 @@ class SubmissionService extends \PKP\Services\PKPSubmissionService {
 	public function __construct() {
 		parent::__construct();
 
+		\HookRegistry::register('Submission::isPublic', array($this, 'modifyIsPublic'));
 		\HookRegistry::register('Submission::getSubmissions::queryBuilder', array($this, 'modifySubmissionListQueryBuilder'));
 		\HookRegistry::register('Submission::getSubmissions::queryObject', array($this, 'modifySubmissionListQueryObject'));
 		\HookRegistry::register('Submission::getBackendListProperties::properties', array($this, 'modifyBackendListPropertyValues'));
 		\HookRegistry::register('Submission::getProperties::values', array($this, 'modifyPropertyValues'));
+	}
+
+	/**
+	 * Modify the isPublic check on a submission, based on whether it has a
+	 * catalog entry.
+	 *
+	 * @param $hookName string
+	 * @param $args array [
+	 *		@option boolean Is it public?
+	 *		@option Submission
+	 * ]
+	 */
+	public function modifyIsPublic($hookName, $args) {
+		$isPublic = &$args[0];
+		$submission = $args[1];
+
+		if (is_a($submission, 'PublishedMonograph')) {
+			$publishedMonograph = $submission;
+		} else {
+			$publishedMonographDao = \DAORegistry::getDAO('PublishedMonographDAO');
+			$publishedMonograph = $publishedMonographDao->getById(
+				$submission->getId(),
+				$submission->getContextId()
+			);
+		}
+
+		if ($publishedMonograph && $publishedMonograph->getDatePublished()) {
+			$isPublic = true;
+			return;
+		}
+
+		$isPublic = false;
 	}
 
 	/**
