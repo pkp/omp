@@ -259,7 +259,7 @@
 								<p>{$parsedCitation->getRawCitation()|escape}</p>
 							{/iterate}
 						{elseif $monograph->getCitations()}
-							{translate key="submission.citations"}
+							{$monograph->getCitations()|nl2br}
 						{/if}
 					</div>
 				</div>
