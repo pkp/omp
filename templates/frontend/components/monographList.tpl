@@ -24,24 +24,17 @@
 		</{$heading}>
 	{/if}
 
-	{* Show featured items first *}
-	{if $featured && count($featured) > 0}
-		{foreach from=$featured key=id item=array_key}
-			{if isset($monographs[$id])}
-				{include file="frontend/objects/monograph_summary.tpl" monograph=$monographs[$id] isFeatured=1}
-			{/if}
-		{/foreach}
-	{/if}
-
 	{assign var=counter value=1}
-	{foreach name="monographListLoop" from=$monographs item=monograph key=key}
-		{if is_array($featured) && array_key_exists($key, $featured)}
-			{php}continue;{/php}
+	{foreach from=$monographs item=monograph}
+		{if $featured && in_array($monograph->getId(), $featured)}
+			{assign var="isFeatured" value=true}
+		{else}
+			{assign var="isFeatured" value=false}
 		{/if}
 		{if $counter is odd by 1}
 			<div class="row">
 		{/if}
-			{include file="frontend/objects/monograph_summary.tpl" monograph=$monograph}
+			{include file="frontend/objects/monograph_summary.tpl" monograph=$monograph isFeatured=$isFeatured}
 		{if $counter is even by 1}
 			</div>
 		{/if}

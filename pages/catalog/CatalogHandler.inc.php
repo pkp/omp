@@ -51,21 +51,91 @@ class CatalogHandler extends Handler {
 	 * @param $request PKPRequest
 	 */
 	function index($args, $request) {
+		$this->page($args, $request, true);
+	}
+
+	/**
+	 * Show one page from the catalog
+	 * @param $args array
+	 * @param $request Request
+	 * @param $isFirstPage boolean
+	 */
+	public function page($args, $request, $isFirstPage) {
+		$page = null;
+		if ($isFirstPage) {
+			$page = 1;
+		} elseif ($args[0]) {
+			$page = (int) $args[0];
+		}
+
+		if (!$isFirstPage && (empty($page) || $page < 2)) {
+			$request->getDispatcher()->handle404();
+		}
+
 		$templateMgr = TemplateManager::getManager($request);
 		$this->setupTemplate($request);
 		$press = $request->getPress();
 
 		// Fetch the monographs to display
+		$itemsPerPage = $press->getData('itemsPerPage');
+		$rangeInfo = new DBResultRange($itemsPerPage, $page);
 		$publishedMonographDao = DAORegistry::getDAO('PublishedMonographDAO');
-		$publishedMonographs = $publishedMonographDao->getByPressId($press->getId());
-		$templateMgr->assign('publishedMonographs', $publishedMonographs->toAssociativeArray());
+		$publishedMonographs = $publishedMonographDao->getByPressId($press->getId(), null, $rangeInfo, null, null, null, null, true);
 
-		// Expose the featured monograph IDs and associated params
-		$featureDao = DAORegistry::getDAO('FeatureDAO');
-		$featuredMonographIds = $featureDao->getSequencesByAssoc(ASSOC_TYPE_PRESS, $press->getId());
-		$templateMgr->assign('featuredMonographIds', $featuredMonographIds);
+		// The DAOResultFactory will return the last available page of results. If
+		// it's less than the requested page, we should not display any results.
+		if ($publishedMonographs->page < $page) {
+			$request->getDispatcher()->handle404();
+		}
 
-		// Display
+		if ($page === 1) {
+			$featureDao = DAORegistry::getDAO('FeatureDAO');
+			$featuredMonographIds = $featureDao->getMonographIdsByAssoc(ASSOC_TYPE_PRESS, $press->getId());
+		}
+
+		$pageCount = $publishedMonographs->getPageCount();
+
+		$nextUrl = '';
+		if ($pageCount > $page) {
+			$nextUrl = $request->getDispatcher()->url(
+				$request,
+				ROUTE_PAGE,
+				null,
+				'catalog',
+				'page',
+				$page + 1
+			);
+		}
+
+		$prevUrl = '';
+		if ($page === 2) {
+			$prevUrl = $request->getDispatcher()->url(
+				$request,
+				ROUTE_PAGE,
+				null,
+				'catalog'
+			);
+		} elseif ($page > 2) {
+			$prevUrl = $request->getDispatcher()->url(
+				$request,
+				ROUTE_PAGE,
+				null,
+				'catalog',
+				'page',
+				$page - 1
+			);
+		}
+
+		$templateMgr->assign(array(
+			'publishedMonographs' => $publishedMonographs->toAssociativeArray(),
+			'featuredMonographIds' => !empty($featuredMonographIds) ? $featuredMonographIds : [],
+			'itemsPerPage' => $itemsPerPage,
+			'page' => $page,
+			'pageCount' => $publishedMonographs->getPageCount(),
+			'nextUrl' => $nextUrl,
+			'prevUrl' => $prevUrl,
+		));
+
 		$templateMgr->display('frontend/pages/catalog.tpl');
 	}
 
@@ -113,7 +183,7 @@ class CatalogHandler extends Handler {
 
 			// Expose the featured monograph IDs and associated params
 			$featureDao = DAORegistry::getDAO('FeatureDAO');
-			$featuredMonographIds = $featureDao->getSequencesByAssoc(ASSOC_TYPE_CATEGORY, $category->getId());
+			$featuredMonographIds = $featureDao->getMonographIdsByAssoc(ASSOC_TYPE_CATEGORY, $category->getId());
 			$templateMgr->assign('featuredMonographIds', $featuredMonographIds);
 
 			// Provide a list of new releases to browse
@@ -157,7 +227,7 @@ class CatalogHandler extends Handler {
 
 			// Expose the featured monograph IDs and associated params
 			$featureDao = DAORegistry::getDAO('FeatureDAO');
-			$featuredMonographIds = $featureDao->getSequencesByAssoc(ASSOC_TYPE_SERIES, $series->getId());
+			$featuredMonographIds = $featureDao->getMonographIdsByAssoc(ASSOC_TYPE_SERIES, $series->getId());
 			$templateMgr->assign('featuredMonographIds', $featuredMonographIds);
 
 			// Provide a list of new releases to browse

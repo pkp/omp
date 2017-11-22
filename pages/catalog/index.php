@@ -15,9 +15,9 @@
  * @brief Handle requests for the public catalog view.
  *
  */
-
 switch ($op) {
 	case 'index':
+	case 'page':
 	case 'category':
 	case 'fullSize':
 	case 'newReleases':

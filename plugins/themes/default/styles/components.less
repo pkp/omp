@@ -656,3 +656,31 @@
 		left: 50%;
 	}
 }
+
+// Pagination of catalog
+.cmp_pagination {
+	text-align: right;
+
+	.prev {
+		float: left;
+		margin-right: 1em;
+		text-decoration: none;
+
+		&:before {
+			.fa();
+			content: @fa-var-chevron-left;
+			margin-right: 0.5em;
+		}
+	}
+
+	.next {
+		margin-left: 1em;
+		text-decoration: none;
+
+		&:after {
+			.fa();
+			content: @fa-var-chevron-right;
+			margin-left: 0.5em;
+		}
+	}
+}

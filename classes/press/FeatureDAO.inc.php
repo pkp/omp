@@ -26,33 +26,23 @@ class FeatureDAO extends DAO {
 	 * Get monograph IDs by association.
 	 * @param $assocType int ASSOC_TYPE_...
 	 * @param $assocId int
-	 * @return array Associative array seq => monograph ID
+	 * @return array Featured monograph IDs
 	 */
 	function getMonographIdsByAssoc($assocType, $assocId) {
 		$returner = array();
 		$result = $this->retrieve(
-			'SELECT submission_id, seq FROM features WHERE assoc_type = ? AND assoc_id = ? ORDER BY seq',
+			'SELECT submission_id FROM features WHERE assoc_type = ? AND assoc_id = ? ORDER BY seq',
 			array((int) $assocType, (int) $assocId)
 		);
 
 		while (!$result->EOF) {
-			list($monographId, $seq) = $result->fields;
-			$returner[$seq] = $monographId;
+			list($monographId) = $result->fields;
+			$returner[]= $monographId;
 			$result->MoveNext();
 		}
 
 		$result->Close();
 		return $returner;
-	}
-
-	/**
-	 * Get feature sequences by association.
-	 * @param $assocType int ASSOC_TYPE_...
-	 * @param $assocId int
-	 * @return array Associative array monograph ID => seq
-	 */
-	function getSequencesByAssoc($assocType, $assocId) {
-		return array_flip($this->getMonographIdsByAssoc($assocType, $assocId));
 	}
 
 	/**

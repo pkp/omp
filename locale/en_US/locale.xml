@@ -273,6 +273,10 @@
 	<message key="catalog.noTitlesSearch">No titles were found which matched your search for "{$searchQuery}".</message>
 	<message key="catalog.noTitlesSection">No titles have been published yet for this section.</message>
 	<message key="catalog.browseTitles">{$numTitles} Titles</message>
+	<message key="catalog.pagination">Page {$first} of {$last}</message>
+	<message key="catalog.pagination.previous">Previous</message>
+	<message key="catalog.pagination.next">Next</message>
+	<message key="catalog.pagination.label">Catalog pages</message>
 	<message key="catalog.feature">Feature</message>
 	<message key="catalog.featured">Featured</message>
 	<message key="catalog.featuredBooks">Featured Books</message>
@@ -341,7 +345,7 @@
 	<message key="navigation.wizard">Wizard</message>
 	<message key="navigation.linksAndMedia">Links and Social Media</message>
 	<message key="navigation.navigationMenus.catalog.description">Link to your catalog.</message>
-	
+
 	<!-- Common Press Terms -->
 	<message key="press.presses">Presses</message>
 	<message key="press.path">Path</message>
