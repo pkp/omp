@@ -85,7 +85,7 @@ class CatalogBookHandler extends Handler {
 
 		// Citations
 		$citationDao = DAORegistry::getDAO('CitationDAO');
-		$parsedCitations = $citationDao->getObjectsByAssocId(ASSOC_TYPE_SUBMISSION, $publishedMonograph->getId());
+		$parsedCitations = $citationDao->getBySubmissionId($publishedMonograph->getId());
 		$templateMgr->assign('parsedCitations', $parsedCitations);
 
 		// Consider public identifiers
