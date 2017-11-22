@@ -91,26 +91,23 @@ class CatalogBookHandler extends Handler {
 		$press = $request->getPress();
 		$paymentManager = Application::getPaymentManager($press);
 		$submissionFileDao = DAORegistry::getDAO('SubmissionFileDAO');
-		if ($paymentManager->isConfigured()) {
-			$availableFiles = array_filter(
-				$submissionFileDao->getLatestRevisions($publishedMonograph->getId()),
-				create_function('$a', 'return $a->getViewable() && $a->getDirectSalesPrice() !== null && $a->getAssocType() == ASSOC_TYPE_PUBLICATION_FORMAT;')
-			);
 
-			// Only pass files in pub formats that are also available
-			$filteredAvailableFiles = array();
-			foreach ($availableFiles as $file) {
-				foreach ($availablePublicationFormats as $format) {
-					if ($file->getAssocId() == $format->getId()) {
-						$filteredAvailableFiles[] = $file;
-						break;
-					}
+		$availableFiles = array_filter(
+			$submissionFileDao->getLatestRevisions($publishedMonograph->getId()),
+			create_function('$a', 'return $a->getViewable() && $a->getDirectSalesPrice() !== null && $a->getAssocType() == ASSOC_TYPE_PUBLICATION_FORMAT;')
+		);
+
+		// Only pass files in pub formats that are also available
+		$filteredAvailableFiles = array();
+		foreach ($availableFiles as $file) {
+			foreach ($availablePublicationFormats as $format) {
+				if ($file->getAssocId() == $format->getId()) {
+					$filteredAvailableFiles[] = $file;
+					break;
 				}
 			}
-
-			// Expose variables to template
-			$templateMgr->assign('availableFiles', $filteredAvailableFiles);
 		}
+		$templateMgr->assign('availableFiles', $filteredAvailableFiles);
 
 		// Provide the currency to the template, if configured.
 		$currencyDao = DAORegistry::getDAO('CurrencyDAO');
