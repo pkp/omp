@@ -16,20 +16,20 @@
   * These are defined in classes/monograph/Genre.inc.php.
   -->
 <genres>
-	<genre key="APPENDIX" sortable="0" category="1" dependent="0" supplementary="1" localeKey="default.genres.appendix" />
-	<genre key="BIBLIOGRAPHY" sortable="0" category="1" dependent="0" supplementary="1" localeKey="default.genres.bibliography" />
-	<genre key="MANUSCRIPT" sortable="0" category="1" dependent="0" supplementary="0" localeKey="default.genres.manuscript" />
-	<genre key="CHAPTER" sortable="1" category="1" dependent="0" supplementary="0" localeKey="default.genres.chapter" />
-	<genre key="GLOSSARY" sortable="0" category="1" dependent="0" supplementary="1" localeKey="default.genres.glossary" />
-	<genre key="INDEX" sortable="0" category="1" dependent="0" supplementary="1" localeKey="default.genres.index" />
-	<genre key="PREFACE" sortable="0" category="1" dependent="0" supplementary="1" localeKey="default.genres.preface" />
-	<genre key="PROSPECTUS" sortable="0" category="3" dependent="0" supplementary="1" localeKey="default.genres.prospectus" />
-	<genre key="TABLE" sortable="1" category="2" dependent="0" supplementary="1" localeKey="default.genres.table" />
-	<genre key="FIGURE" sortable="1" category="2" dependent="0" supplementary="1" localeKey="default.genres.figure" />
-	<genre key="PHOTO" sortable="1" category="2" dependent="0" supplementary="1" localeKey="default.genres.photo" />
-	<genre key="ILLUSTRATION" sortable="1" category="2" dependent="0" supplementary="1" localeKey="default.genres.illustration" />
-	<genre key="OTHER" sortable="1" category="3" dependent="0" supplementary="1" localeKey="default.genres.other" />
-	<genre key="IMAGE" sortable="0" category="2" dependent="1" supplementary="0" localeKey="default.genres.image" />
-	<genre key="STYLE" sortable="0" category="1" dependent="1" supplementary="0" localeKey="default.genres.styleSheet" />
-	<genre key="OTHER" sortable="1" category="3" dependent="0" supplementary="1" localeKey="default.genres.other" />
+	<genre key="APPENDIX" category="1" dependent="0" supplementary="1" localeKey="default.genres.appendix" />
+	<genre key="BIBLIOGRAPHY" category="1" dependent="0" supplementary="1" localeKey="default.genres.bibliography" />
+	<genre key="MANUSCRIPT" category="1" dependent="0" supplementary="0" localeKey="default.genres.manuscript" />
+	<genre key="CHAPTER" category="1" dependent="0" supplementary="0" localeKey="default.genres.chapter" />
+	<genre key="GLOSSARY" category="1" dependent="0" supplementary="1" localeKey="default.genres.glossary" />
+	<genre key="INDEX" category="1" dependent="0" supplementary="1" localeKey="default.genres.index" />
+	<genre key="PREFACE" category="1" dependent="0" supplementary="1" localeKey="default.genres.preface" />
+	<genre key="PROSPECTUS" category="3" dependent="0" supplementary="1" localeKey="default.genres.prospectus" />
+	<genre key="TABLE" category="2" dependent="0" supplementary="1" localeKey="default.genres.table" />
+	<genre key="FIGURE" category="2" dependent="0" supplementary="1" localeKey="default.genres.figure" />
+	<genre key="PHOTO" category="2" dependent="0" supplementary="1" localeKey="default.genres.photo" />
+	<genre key="ILLUSTRATION" category="2" dependent="0" supplementary="1" localeKey="default.genres.illustration" />
+	<genre key="OTHER" category="3" dependent="0" supplementary="1" localeKey="default.genres.other" />
+	<genre key="IMAGE" category="2" dependent="1" supplementary="0" localeKey="default.genres.image" />
+	<genre key="STYLE" category="1" dependent="1" supplementary="0" localeKey="default.genres.styleSheet" />
+	<genre key="OTHER" category="3" dependent="0" supplementary="1" localeKey="default.genres.other" />
 </genres>
