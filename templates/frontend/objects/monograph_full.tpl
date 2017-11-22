@@ -256,7 +256,7 @@
 					<div class="value">
 						{if $parsedCitations->getCount()}
 							{iterate from=parsedCitations item=parsedCitation}
-								<p>{$parsedCitation->getRawCitation()|escape}</p>
+								<p>{$parsedCitation->getCitationWithLinks()|strip_unsafe_html}</p>
 							{/iterate}
 						{elseif $monograph->getCitations()}
 							{$monograph->getCitations()|nl2br}
