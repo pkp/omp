@@ -83,6 +83,11 @@ class CatalogBookHandler extends Handler {
 			'ccLicenseBadge' => Application::getCCLicenseBadge($publishedMonograph->getLicenseURL())
 		));
 
+		// Citations
+		$citationDao = DAORegistry::getDAO('CitationDAO');
+		$parsedCitations = $citationDao->getBySubmissionId($publishedMonograph->getId());
+		$templateMgr->assign('parsedCitations', $parsedCitations);
+
 		// Consider public identifiers
 		$pubIdPlugins = PluginRegistry::loadCategory('pubIds', true);
 		$templateMgr->assign('pubIdPlugins', $pubIdPlugins);

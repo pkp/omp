@@ -35,6 +35,12 @@
 			<a name="catalog" href="{url router=$smarty.const.ROUTE_COMPONENT component="tab.catalogEntry.CatalogEntryTabHandler" tab="identifiers" op="identifiers" submissionId=$submissionId stageId=$stageId tabPos="2"}">{translate key="submission.identifiers"}</a>
 		</li>
 		{counter start=3 assign="counter"}
+		{if $citationsEnabled}
+			<li>
+				<a name="citations" href="{url router=$smarty.const.ROUTE_COMPONENT component="tab.catalogEntry.CatalogEntryTabHandler" tab="citations" op="citations" submissionId=$submissionId stageId=$stageId tabPos=$counter}">{translate key="submission.citations"}</a>
+			</li>
+			{counter}
+		{/if}
 		{call_hook name="Templates::Controllers::Modals::SubmissionMetadata::CatalogEntryTabs::Tabs"}
 		{foreach from=$publicationFormats item=format}
 			<li>

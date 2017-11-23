@@ -248,13 +248,19 @@
 			{/if}
 
 			{* References *}
-			{if $monograph->getCitations()}
+			{if $parsedCitations->getCount() || $monograph->getCitations()}
 				<div class="item references">
 					<h3 class="label">
 						{translate key="submission.citations"}
 					</h3>
 					<div class="value">
-						{$monograph->getCitations()|nl2br}
+						{if $parsedCitations->getCount()}
+							{iterate from=parsedCitations item=parsedCitation}
+								<p>{$parsedCitation->getCitationWithLinks()|strip_unsafe_html}</p>
+							{/iterate}
+						{elseif $monograph->getCitations()}
+							{$monograph->getCitations()|nl2br}
+						{/if}
 					</div>
 				</div>
 			{/if}
