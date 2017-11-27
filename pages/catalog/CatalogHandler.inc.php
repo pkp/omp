@@ -60,7 +60,7 @@ class CatalogHandler extends Handler {
 	 * @param $request Request
 	 * @param $isFirstPage boolean
 	 */
-	public function page($args, $request, $isFirstPage) {
+	public function page($args, $request, $isFirstPage = false) {
 		$page = null;
 		if ($isFirstPage) {
 			$page = 1;
@@ -84,7 +84,7 @@ class CatalogHandler extends Handler {
 
 		// The DAOResultFactory will return the last available page of results. If
 		// it's less than the requested page, we should not display any results.
-		if ($publishedMonographs->page < $page) {
+		if ($publishedMonographs->getPage() < $page) {
 			$request->getDispatcher()->handle404();
 		}
 
