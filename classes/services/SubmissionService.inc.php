@@ -42,7 +42,7 @@ class SubmissionService extends \PKP\Services\PKPSubmissionService {
 	 * ]
 	 */
 	public function modifyIsPublic($hookName, $args) {
-		$isPublic = &$args[0];
+		$isPublic =& $args[0];
 		$submission = $args[1];
 
 		if (is_a($submission, 'PublishedMonograph')) {
@@ -59,8 +59,6 @@ class SubmissionService extends \PKP\Services\PKPSubmissionService {
 			$isPublic = true;
 			return;
 		}
-
-		$isPublic = false;
 	}
 
 	/**
