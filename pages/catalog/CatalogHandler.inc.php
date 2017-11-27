@@ -88,10 +88,8 @@ class CatalogHandler extends Handler {
 			$request->getDispatcher()->handle404();
 		}
 
-		if ($page === 1) {
-			$featureDao = DAORegistry::getDAO('FeatureDAO');
-			$featuredMonographIds = $featureDao->getMonographIdsByAssoc(ASSOC_TYPE_PRESS, $press->getId());
-		}
+		$featureDao = DAORegistry::getDAO('FeatureDAO');
+		$featuredMonographIds = $featureDao->getMonographIdsByAssoc(ASSOC_TYPE_PRESS, $press->getId());
 
 		$pageCount = $publishedMonographs->getPageCount();
 
