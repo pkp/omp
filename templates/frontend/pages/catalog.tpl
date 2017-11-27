@@ -12,8 +12,8 @@
  * @uses $itemsPerPage int Number of items to show per page
  * @uses $page int Current page being displayed
  * @uses $pageCount int Total number of pages available
- * @uses $nextUrl string URL to the next page, if one exists
- * @uses $prevUrl string URL to the previous page, if one exists
+ * @uses $nextPage int The next page, if one exists
+ * @uses $prevPage int The previous page, if one exists
  *}
 {include file="frontend/components/header.tpl" pageTitle="navigation.catalog"}
 
@@ -34,16 +34,24 @@
 	{else}
 		{include file="frontend/components/monographList.tpl" monographs=$publishedMonographs featured=$featuredMonographIds}
 
-		{if $prevUrl || $nextUrl}
+		{if $prevPage || $nextPage}
 			<div class="cmp_pagination" aria-label="{translate|escape key="catalog.pagination.label"}">
-				{if $prevUrl}
-					<a class="prev" href="{$prevUrl|escape}">{translate key="catalog.pagination.previous"}</a>
+				{if $prevPage}
+					{url|assign:"prevUrl" router=$smarty.const.ROUTE_PAGE page="catalog" op="page" path=$prevPage}
+					{if $prevPage === 1}
+						{url|assign:"prevUrl" router=$smarty.const.ROUTE_PAGE page="catalog"}
+					{/if}
+					<a class="prev" href="{$prevUrl}">
+						{translate key="catalog.pagination.previous"}
+					</a>
 				{/if}
 				<span class="current">
 					{translate key="catalog.pagination" first=$page last=$pageCount}
 				</span>
-				{if $nextUrl}
-					<a class="next" href="{$nextUrl|escape}">{translate key="catalog.pagination.next"}</a>
+				{if $nextPage}
+					<a class="next" href="{url router=$smarty.const.ROUTE_PAGE page="catalog" op="page" path=$nextPage}">
+						{translate key="catalog.pagination.next"}
+					</a>
 				{/if}
 			</div>
 		{/if}

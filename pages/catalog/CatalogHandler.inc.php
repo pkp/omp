@@ -92,37 +92,8 @@ class CatalogHandler extends Handler {
 		$featuredMonographIds = $featureDao->getMonographIdsByAssoc(ASSOC_TYPE_PRESS, $press->getId());
 
 		$pageCount = $publishedMonographs->getPageCount();
-
-		$nextUrl = '';
-		if ($pageCount > $page) {
-			$nextUrl = $request->getDispatcher()->url(
-				$request,
-				ROUTE_PAGE,
-				null,
-				'catalog',
-				'page',
-				$page + 1
-			);
-		}
-
-		$prevUrl = '';
-		if ($page === 2) {
-			$prevUrl = $request->getDispatcher()->url(
-				$request,
-				ROUTE_PAGE,
-				null,
-				'catalog'
-			);
-		} elseif ($page > 2) {
-			$prevUrl = $request->getDispatcher()->url(
-				$request,
-				ROUTE_PAGE,
-				null,
-				'catalog',
-				'page',
-				$page - 1
-			);
-		}
+		$nextPage = $pageCount > $page ? $page + 1 : false;
+		$prevPage = $page > 1 ? $prevPage = $page - 1 : false;
 
 		$templateMgr->assign(array(
 			'publishedMonographs' => $publishedMonographs->toAssociativeArray(),
@@ -130,8 +101,8 @@ class CatalogHandler extends Handler {
 			'itemsPerPage' => $itemsPerPage,
 			'page' => $page,
 			'pageCount' => $publishedMonographs->getPageCount(),
-			'nextUrl' => $nextUrl,
-			'prevUrl' => $prevUrl,
+			'nextPage' => $nextPage,
+			'prevPage' => $prevPage,
 		));
 
 		$templateMgr->display('frontend/pages/catalog.tpl');
