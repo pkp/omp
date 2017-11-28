@@ -21,13 +21,44 @@ class SubmissionService extends \PKP\Services\PKPSubmissionService {
 	/**
 	 * Initialize hooks for extending PKPSubmissionService
 	 */
-    public function __construct() {
+	public function __construct() {
 		parent::__construct();
 
-    \HookRegistry::register('Submission::getSubmissions::queryBuilder', array($this, 'modifySubmissionListQueryBuilder'));
-    \HookRegistry::register('Submission::getSubmissions::queryObject', array($this, 'modifySubmissionListQueryObject'));
-    \HookRegistry::register('Submission::getBackendListProperties::properties', array($this, 'modifyBackendListPropertyValues'));
-    \HookRegistry::register('Submission::getProperties::values', array($this, 'modifyPropertyValues'));
+		\HookRegistry::register('Submission::isPublic', array($this, 'modifyIsPublic'));
+		\HookRegistry::register('Submission::getSubmissions::queryBuilder', array($this, 'modifySubmissionListQueryBuilder'));
+		\HookRegistry::register('Submission::getSubmissions::queryObject', array($this, 'modifySubmissionListQueryObject'));
+		\HookRegistry::register('Submission::getBackendListProperties::properties', array($this, 'modifyBackendListPropertyValues'));
+		\HookRegistry::register('Submission::getProperties::values', array($this, 'modifyPropertyValues'));
+	}
+
+	/**
+	 * Modify the isPublic check on a submission, based on whether it has a
+	 * catalog entry.
+	 *
+	 * @param $hookName string
+	 * @param $args array [
+	 *		@option boolean Is it public?
+	 *		@option Submission
+	 * ]
+	 */
+	public function modifyIsPublic($hookName, $args) {
+		$isPublic =& $args[0];
+		$submission = $args[1];
+
+		if (is_a($submission, 'PublishedMonograph')) {
+			$publishedMonograph = $submission;
+		} else {
+			$publishedMonographDao = \DAORegistry::getDAO('PublishedMonographDAO');
+			$publishedMonograph = $publishedMonographDao->getById(
+				$submission->getId(),
+				$submission->getContextId()
+			);
+		}
+
+		if ($publishedMonograph && $publishedMonograph->getDatePublished()) {
+			$isPublic = true;
+			return;
+		}
 	}
 
 	/**
@@ -193,26 +224,26 @@ class SubmissionService extends \PKP\Services\PKPSubmissionService {
 		return true;
 	}
 
-  /**
-  * Add app-specific properties to submissions
-  *
-  * @param $hookName string Submission::getBackendListProperties::properties
-  * @param $args array [
-  * 		@option $props array Existing properties
-  * 		@option $submission Submission The associated submission
-  * 		@option $args array Request args
-  * ]
-  *
-  * @return array
-  */
-  public function modifyBackendListPropertyValues($hookName, $args) {
-    $props =& $args[0];
+	/**
+	* Add app-specific properties to submissions
+	*
+	* @param $hookName string Submission::getBackendListProperties::properties
+	* @param $args array [
+	* 		@option $props array Existing properties
+	* 		@option $submission Submission The associated submission
+	* 		@option $args array Request args
+	* ]
+	*
+	* @return array
+	*/
+	public function modifyBackendListPropertyValues($hookName, $args) {
+		$props =& $args[0];
 
-    $props[] = 'series';
-    $props[] = 'category';
-    $props[] = 'featured';
-    $props[] = 'newRelease';
-  }
+		$props[] = 'series';
+		$props[] = 'category';
+		$props[] = 'featured';
+		$props[] = 'newRelease';
+	}
 
 	/**
 	 * Add app-specific property values to a submission
@@ -228,7 +259,7 @@ class SubmissionService extends \PKP\Services\PKPSubmissionService {
 	 * @return array
 	 */
 	public function modifyPropertyValues($hookName, $args) {
-    $values =& $args[0];
+		$values =& $args[0];
 		$submission = $args[1];
 		$props = $args[2];
 		$propertyArgs = $args[3];
@@ -254,26 +285,26 @@ class SubmissionService extends \PKP\Services\PKPSubmissionService {
 						$submission->getBestId()
 					);
 					break;
-        case 'series':
-          $values[$prop] = array(
-  					'id' => $submission->getSeriesId(),
-  					'title' => $submission->getSeriesTitle(),
-  					'position' => $submission->getSeriesPosition(),
-  				);
-          break;
-        case 'category':
-          $categoryDao = \DAORegistry::getDAO('CategoryDAO');
-          $values[$prop] = $categoryDao->getBySubmissionId($submission->getId());
-          break;
-        case 'featured':
-          $featureDao = \DAORegistry::getDAO('FeatureDAO');
-          $values[$prop] = $featureDao->getFeaturedAll($submission->getId());
-          break;
-        case 'newRelease':
-  				$newReleaseDao = \DAORegistry::getDAO('NewReleaseDAO');
-  				$values[$prop] = $newReleaseDao->getNewReleaseAll($submission->getId());
-          break;
+				case 'series':
+					$values[$prop] = array(
+						'id' => $submission->getSeriesId(),
+						'title' => $submission->getSeriesTitle(),
+						'position' => $submission->getSeriesPosition(),
+					);
+					break;
+				case 'category':
+					$categoryDao = \DAORegistry::getDAO('CategoryDAO');
+					$values[$prop] = $categoryDao->getBySubmissionId($submission->getId());
+					break;
+				case 'featured':
+					$featureDao = \DAORegistry::getDAO('FeatureDAO');
+					$values[$prop] = $featureDao->getFeaturedAll($submission->getId());
+					break;
+				case 'newRelease':
+					$newReleaseDao = \DAORegistry::getDAO('NewReleaseDAO');
+					$values[$prop] = $newReleaseDao->getNewReleaseAll($submission->getId());
+					break;
 			}
-    }
+		}
 	}
 }
