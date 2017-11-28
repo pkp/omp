@@ -135,7 +135,7 @@ class PublicationFormatGridCellProvider extends DataObjectGridCellProvider {
 					return array(
 						new AddFileLinkAction(
 							$request, $data->getSubmissionId(), WORKFLOW_STAGE_ID_PRODUCTION,
-							array(ROLE_ID_MANAGER, ROLE_ID_SUB_EDITOR, ROLE_ID_ASSISTANT), null, SUBMISSION_FILE_PROOF,
+							array(ROLE_ID_MANAGER, ROLE_ID_SUB_EDITOR, ROLE_ID_ASSISTANT), SUBMISSION_FILE_PROOF,
 							ASSOC_TYPE_REPRESENTATION, $data->getId()
 						),
 						new SelectFilesLinkAction(
