@@ -27,7 +27,7 @@
 		stage="submission" id="1" xsi:schemaLocation="http://pkp.sfu.ca native.xsd">
 		<revision number="1" genre="Book Manuscript" filename="Submission.pdf"
 			viewable="true" date_uploaded="2013-11-05" date_modified="2013-11-05"
-			user_group_ref="Author" uploader="author_username"
+			uploader="author_username"
 			filesize="10" filetype="application/pdf">
 			<name locale="en_US">Submission Title</name>
 			<embed encoding="base64">base64 encoded file contents go here</embed>
@@ -37,7 +37,7 @@
 		stage="proof" id="2" xsi:schemaLocation="http://pkp.sfu.ca native.xsd">
 		<revision number="1" genre="Book Manuscript" filename="Submission.pdf"
 			viewable="true" date_uploaded="2013-11-05" date_modified="2013-11-05"
-			direct_sales_price="10" user_group_ref="Author" uploader="author_username"
+			direct_sales_price="10" uploader="author_username"
 			filesize="10" filetype="application/pdf">
 			<name locale="en_US">Submission Title</name>
 			<embed encoding="base64">base64 encoded file contents go here</embed>
