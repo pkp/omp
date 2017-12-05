@@ -131,8 +131,8 @@
 		<name>cataloguingMetadata</name>
 		<value>
 			<array>
-				<element key="name">{translate key="manager.setup.category"}</element>
-				<element key="name">{translate key="manager.series.book"}</element>
+				<element key="name">{translate key="default.pressSettings.manager.setup.category"}</element>
+				<element key="name">{translate key="default.pressSettings.manager.series.book"}</element>
 				<element key="name">{translate key="common.keywords"}</element>
 			</array>
 		</value>

@@ -60,6 +60,8 @@
  <a href="{$indexUrl}/{$pressPath}/about/submissions#authorGuidelines">Lignes directrices à l'intention des auteurs</a>. Les auteurs doivent <a href="{$indexUrl}/{$pressPath}/user/register">s'inscrire</a> auprès de la presse avant d'envoyer une soumission. Si vous êtes déjà inscrit(e), il suffit simplement <a href="{$indexUrl}/index/login">d'ouvrir une session</a> pour débuter la procédure en 5 étapes.]]></message>
 
 <message key="default.pressSettings.forLibrarians"><![CDATA[Nous encourageons les bibliothécaires de recherche à ajouter cette presse à la liste électronique des ressources documentaires de la bibliothèque. De plus, ce système d'édition à libre accès convient à toutes les bibliothèques et permet aux membres des facultés de l'utiliser pour les presses auxquelles ils contribuent à titre de rédacteur en chef. (voir <a href="http://pkp.sfu.ca/omp">Open Monograph Press</a>).]]></message>
+	<message key="default.pressSettings.manager.setup.category">Catégorie</message>
+	<message key="default.pressSettings.manager.series.book">Série de livres</message>
 	<message key="default.groups.name.manager">Gestionnaire de la presse</message>
 	<message key="default.groups.plural.manager">Gestionnaires de la presse</message>
 	<message key="default.groups.abbrev.manager">MP</message>

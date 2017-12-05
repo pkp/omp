@@ -173,17 +173,8 @@ class WebsiteSettingsTabHandler extends ManagerSettingsTabHandler {
 		}
 
 		$press = $request->getPress();
-		$pressSettingsDao = DAORegistry::getDAO('PressSettingsDAO');
-		$pressSettingsDao->reloadLocalizedDefaultSettings(
-			$press->getId(), 'registry/pressSettings.xml',
-			array(
-				'indexUrl' => $request->getIndexUrl(),
-				'pressPath' => $press->getData('path'),
-				'primaryLocale' => $press->getPrimaryLocale(),
-				'pressName' => $press->getName($press->getPrimaryLocale())
-			),
-			$locale
-		);
+		$settingsDao = Application::getContextSettingsDAO();
+		$settingsDao->reloadLocalizedDefaultContextSettings($request, $locale);
 
 		// also reload the user group localizable data
 		$userGroupDao = DAORegistry::getDAO('UserGroupDAO');

@@ -162,6 +162,14 @@ class Application extends PKPApplication {
 	}
 
 	/**
+	 * Get the context settings DAO.
+	 * @return SettingsDAO
+	 */
+	static function getContextSettingsDAO() {
+		return DAORegistry::getDAO('PressSettingsDAO');
+	}
+
+	/**
 	 * Get the submission DAO.
 	 */
 	static function getSubmissionDAO() {
