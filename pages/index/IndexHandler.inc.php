@@ -114,7 +114,7 @@ class IndexHandler extends Handler {
 		// Display Featured Books
 		if ($press->getSetting('displayFeaturedBooks')) {
 			$featureDao = DAORegistry::getDAO('FeatureDAO');
-			$featuredMonographIds = $featureDao->getSequencesByAssoc(ASSOC_TYPE_PRESS, $press->getId());
+			$featuredMonographIds = $featureDao->getMonographIdsByAssoc(ASSOC_TYPE_PRESS, $press->getId());
 			$featuredMonographs = array();
 			if (!empty($featuredMonographIds)) {
 				$publishedMonographDao = DAORegistry::getDAO('PublishedMonographDAO');

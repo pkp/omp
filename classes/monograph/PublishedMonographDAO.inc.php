@@ -394,15 +394,17 @@ class PublishedMonographDAO extends MonographDAO {
 	 * @param $sortDirection int optional Sort monographs by passed direction.
 	 * @param $featuredOnly boolean optional Whether the monographs are featured on passed associated object or not.
 	 * @param $newReleasedOnly boolean optional Whether the monographs are marked as new releases on associated object or not.
+	 * @param $featuredFirst boolean optional Whether to order by featured monographs first, before other sort options.
 	 * @return DAOResultFactory DB Object that fetches monographs objects.
 	 */
-	private function _getByAssoc($pressId, $assocType, $assocId, $searchText = null, $rangeInfo = null, $sortBy = null, $sortDirection = null, $featuredOnly = false, $newReleasedOnly = false) {
+	private function _getByAssoc($pressId, $assocType, $assocId, $searchText = null, $rangeInfo = null, $sortBy = null, $sortDirection = null, $featuredOnly = false, $newReleasedOnly = false, $featuredFirst = false) {
 		// Cast parameters.
 		$pressId = (int) $pressId;
 		$assocType = (int) $assocType;
 		$assocId = (int) $assocId;
 		$featuredOnly = (boolean) $featuredOnly;
 		$newReleasedOnly = (boolean) $newReleasedOnly;
+		$featuredFirst = (boolean) $featuredFirst;
 
 		// If no associated object is passed, return.
 		if (!$assocId || !$assocType) {
@@ -498,7 +500,7 @@ class PublishedMonographDAO extends MonographDAO {
 				' . ($assocType == ASSOC_TYPE_SERIES?' AND se.series_id = ' . $assocId:'') . '
 				' . ($featuredOnly?' AND (f.assoc_type = ? AND f.assoc_id = ?)':'') . '
 				' . ($newReleasedOnly?' AND (nr.assoc_type = ? AND nr.assoc_id = ?)':'') . '
-			ORDER BY order_by, '. $this->getSortMapping($sortBy) . ' ' . $this->getDirectionMapping($sortDirection),
+			ORDER BY ' . ($featuredFirst?'f.seq, ':'') . 'order_by, '. $this->getSortMapping($sortBy) . ' ' . $this->getDirectionMapping($sortDirection),
 			$params,
 			$rangeInfo
 		);
