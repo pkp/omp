@@ -323,7 +323,6 @@ You may optionally provide the user with a reason for disabling their account.</
 	<message key="manager.setup.issnDescription"><![CDATA[The ISSN (International Standard Serial Number) is an eight-digit number which identifying periodical publications including electronic serials. A number can be obtained from the <a href="http://www.issn.org" target="_blank">ISSN International Centre</a>.]]></message>
 	<message key="manager.setup.cataloguingMetadata">Cataloguing Metadata</message>
 	<message key="manager.setup.currentFormats">Current Formats</message>
-	<message key="manager.setup.category">Category</message>
 	<message key="manager.setup.categoriesAndSeries">Categories and Series</message>
 	<message key="manager.setup.categories.description">You may create a list of categories to help organize your publications. Categories are groupings of books according to subject matter, for example Economics; Literature; Poetry; and so on. Categories may be nested within "parent" categories: for example, an Economics parent category may include individual Microeconomics and Macroeconomics categories. Visitors will be able to search and browse the press by category.</message>
 	<message key="manager.setup.series.description">You may create any number of series to help organize your publications. A series represents a special set of books devoted to a theme or topics that someone has proposed, usually a faculty member or two, and then oversees. Visitors will be able to search and browse the press by series.</message>
