@@ -20,8 +20,6 @@ import('classes.handler.Handler');
 import('lib.pkp.classes.linkAction.LinkAction');
 import('lib.pkp.classes.core.JSONMessage');
 
-define('DEFAULT_FRONTEND_PER_PAGE', 30);
-
 class CatalogHandler extends Handler {
 	/**
 	 * Constructor
@@ -86,7 +84,7 @@ class CatalogHandler extends Handler {
 		$orderOption = $context->getSetting('catalogSortOption') ? $context->getSetting('catalogSortOption') : ORDERBY_DATE_PUBLISHED . '-' . SORT_DIRECTION_DESC;
 		list($orderBy, $orderDir) = explode('-', $orderOption);
 
-		$count = $context->getSetting('itemsPerPage') ? $context->getSetting('itemsPerPage') : DEFAULT_FRONTEND_PER_PAGE;
+		$count = $context->getSetting('itemsPerPage') ? $context->getSetting('itemsPerPage') : Config::getVar('interface', 'items_per_page');
 		$offset = $page > 1 ? ($page - 1) * $count : 0;
 
 		$params = array(
@@ -166,7 +164,7 @@ class CatalogHandler extends Handler {
 		$orderOption = $category->getSortOption() ? $category->getSortOption() : ORDERBY_DATE_PUBLISHED . '-' . SORT_DIRECTION_DESC;
 		list($orderBy, $orderDir) = explode('-', $orderOption);
 
-		$count = $context->getSetting('itemsPerPage') ? $context->getSetting('itemsPerPage') : DEFAULT_FRONTEND_PER_PAGE;
+		$count = $context->getSetting('itemsPerPage') ? $context->getSetting('itemsPerPage') : Config::getVar('interface', 'items_per_page');
 		$offset = $page > 1 ? ($page - 1) * $count : 0;
 
 		$params = array(
@@ -243,7 +241,7 @@ class CatalogHandler extends Handler {
 		$orderOption = $series->getSortOption() ? $series->getSortOption() : ORDERBY_DATE_PUBLISHED . '-' . SORT_DIRECTION_DESC;
 		list($orderBy, $orderDir) = explode('-', $orderOption);
 
-		$count = $context->getSetting('itemsPerPage') ? $context->getSetting('itemsPerPage') : DEFAULT_FRONTEND_PER_PAGE;
+		$count = $context->getSetting('itemsPerPage') ? $context->getSetting('itemsPerPage') : Config::getVar('interface', 'items_per_page');
 		$offset = $page > 1 ? ($page - 1) * $count : 0;
 
 		$params = array(
