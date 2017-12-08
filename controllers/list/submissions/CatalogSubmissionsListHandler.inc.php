@@ -119,14 +119,14 @@ class CatalogSubmissionsListHandler extends SubmissionsListHandler {
 					'param' => 'seriesIds',
 					'val' => (int) $seriesObj->getId(),
 					'title' => $seriesObj->getLocalizedTitle(),
+					'sortBy' => $seriesSortBy,
+					'sortDir' => $seriesSortDir,
 				);
 			}
 			if (count($series)) {
 				$config['filters']['seriesIds'] = array(
 					'heading' => __('catalog.manage.series'),
 					'filters' => $series,
-					'sortBy' => $seriesSortBy,
-					'sortDir' => $seriesSortDir,
 				);
 			}
 		}
