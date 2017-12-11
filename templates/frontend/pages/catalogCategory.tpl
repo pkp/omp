@@ -17,6 +17,8 @@
  *       displayed. These IDs are excluded from later sections.
  * @uses $prevPage int The previous page number
  * @uses $nextPage int The next page number
+ * @uses $showingStart int The number of the first item on this page
+ * @uses $showingEnd int The number of the last item on this page
  * @uses $total int Count of all published monographs in this series
  *}
 {include file="frontend/components/header.tpl" pageTitleTranslated=$category->getLocalizedTitle()}
