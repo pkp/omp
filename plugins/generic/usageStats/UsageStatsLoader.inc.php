@@ -65,7 +65,9 @@ class UsageStatsLoader extends PKPUsageStatsLoader {
 
 					if (!isset($args[2])) break;
 					$fileIdAndRevision = $args[2];
-					list($fileId, $revision) = array_map(create_function('$a', 'return (int) $a;'), preg_split('/-/', $fileIdAndRevision));
+					list($fileId, $revision) = array_map(function($a) {
+						return (int) $a;
+					}, preg_split('/-/', $fileIdAndRevision));
 
 					$monographFileDao = DAORegistry::getDAO('SubmissionFileDAO'); /* @var $monographFileDao SubmissionFileDAO */
 					$monographFile = $monographFileDao->getRevision($fileId, $revision);

@@ -32,23 +32,23 @@ class SeriesForm extends PKPSectionForm {
 			$seriesId
 		);
 
-		$this->_pressId = $request->getContext()->getId();
+		$this->_pressId = $pressId = $request->getContext()->getId();
 
 		// Validation checks for this form
+		$form = $this;
 		$this->addCheck(new FormValidatorLocale($this, 'title', 'required', 'manager.setup.form.series.nameRequired'));
 		$this->addCheck(new FormValidatorISSN($this, 'onlineIssn', 'optional', 'catalog.manage.series.issn.validation'));
 		$this->addCheck(new FormValidatorISSN($this, 'printIssn', 'optional', 'catalog.manage.series.issn.validation'));
-		$this->addCheck(new FormValidatorCustom($this, 'printIssn', 'optional', 'catalog.manage.series.issn.equalValidation', create_function('$printIssn,$form', 'return !($form->getData(\'onlineIssn\') != \'\' && $form->getData(\'onlineIssn\') == $printIssn);'), array(&$this)));
+		$this->addCheck(new FormValidatorCustom($this, 'printIssn', 'optional', 'catalog.manage.series.issn.equalValidation', function($printIssn) use ($form) {
+			return !($form->getData('onlineIssn') != '' && $form->getData('onlineIssn') == $printIssn);
+		}));
 		$this->addCheck(new FormValidatorRegExp($this, 'path', 'required', 'grid.series.pathAlphaNumeric', '/^[a-zA-Z0-9\/._-]+$/'));
 		$this->addCheck(new FormValidatorCustom(
 			$this, 'path', 'required', 'grid.series.pathExists',
-			create_function(
-				'$path,$form,$seriesDao,$pressId',
-				'return !$seriesDao->getByPath($path,$pressId) || ($form->getData(\'oldPath\') != null && $form->getData(\'oldPath\') == $path);'
-			),
-			array(&$this, DAORegistry::getDAO('SeriesDAO'), $this->_pressId)
-		));
-
+			function($path) use ($form, $pressId) {
+				$seriesDao = DAORegistry::getDAO('SeriesDAO');
+				return !$seriesDao->getByPath($path,$pressId) || ($form->getData('oldPath') != null && $form->getData('oldPath') == $path);
+		}));
 	}
 
 	/**

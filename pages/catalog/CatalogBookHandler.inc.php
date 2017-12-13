@@ -99,7 +99,9 @@ class CatalogBookHandler extends Handler {
 
 		$availableFiles = array_filter(
 			$submissionFileDao->getLatestRevisions($publishedMonograph->getId()),
-			create_function('$a', 'return $a->getViewable() && $a->getDirectSalesPrice() !== null && $a->getAssocType() == ASSOC_TYPE_PUBLICATION_FORMAT;')
+			function($a) {
+				return $a->getViewable() && $a->getDirectSalesPrice() !== null && $a->getAssocType() == ASSOC_TYPE_PUBLICATION_FORMAT;
+			}
 		);
 
 		// Only pass files in pub formats that are also available
@@ -162,7 +164,9 @@ class CatalogBookHandler extends Handler {
 		if (!$submissionFile) $dispatcher->handle404();
 
 		$fileIdAndRevision = $submissionFile->getFileIdAndRevision();
-		list($fileId, $revision) = array_map(create_function('$a', 'return (int) $a;'), preg_split('/-/', $fileIdAndRevision));
+		list($fileId, $revision) = array_map(function($a) {
+			return (int) $a;
+		}, preg_split('/-/', $fileIdAndRevision));
 		import('lib.pkp.classes.file.SubmissionFileManager');
 		$monographFileManager = new SubmissionFileManager($publishedMonograph->getContextId(), $publishedMonograph->getId());
 

@@ -31,12 +31,15 @@ class RepresentativeForm extends Form {
 		$this->setRepresentative($representative);
 
 		// Validation checks for this form
+		$form = $this;
 		$this->addCheck(new FormValidatorCustom(
-				$this, 'isSupplier', 'required', 'grid.catalogEntry.roleRequired',
-				create_function(
-						'$isSupplier, $form, $onixDao, $agentRole, $supplierRole',
-						'return (!$isSupplier && $onixDao->codeExistsInList($agentRole, \'List69\')) || ($isSupplier && $onixDao->codeExistsInList($supplierRole, \'List93\'));'
-				), array(&$this, DAORegistry::getDAO('ONIXCodelistItemDAO'), Request::getUserVar('agentRole'), Request::getUserVar('supplierRole'))
+			$this, 'isSupplier', 'required', 'grid.catalogEntry.roleRequired',
+			function($isSupplier) use ($form) {
+				$agentRole = Request::getUserVar('agentRole');
+				$supplierRole = Request::getUserVar('supplierRole');
+				$onixDao = DAORegistry::getDAO('ONIXCodelistItemDAO');
+				return (!$isSupplier && $onixDao->codeExistsInList($agentRole, 'List69')) || ($isSupplier && $onixDao->codeExistsInList($supplierRole, 'List93'));
+			}
 		));
 		$this->addCheck(new FormValidatorPost($this));
 		$this->addCheck(new FormValidatorCSRF($this));

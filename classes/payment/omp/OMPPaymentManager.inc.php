@@ -47,7 +47,9 @@ class OMPPaymentManager extends PaymentManager {
 	 	switch ($type) {
 			case PAYMENT_TYPE_PURCHASE_FILE:
 				$submissionFileDao = DAORegistry::getDAO('SubmissionFileDAO');
-				list($fileId, $revision) = array_map(create_function('$a', 'return (int) $a;'), explode('-', $assocId));
+				list($fileId, $revision) = array_map(function($a) {
+					return (int) $a;
+				}, explode('-', $assocId));
 				import('lib.pkp.classes.submission.SubmissionFile'); // const
 				$submissionFile = $submissionFileDao->getRevision($fileId, $revision, SUBMISSION_FILE_PROOF);
 				assert($submissionFile);

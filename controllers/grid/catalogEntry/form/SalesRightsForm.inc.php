@@ -31,15 +31,17 @@ class SalesRightsForm extends Form {
 		$this->setSalesRights($salesRights);
 
 		// Validation checks for this form
+		$form = $this;
 		$this->addCheck(new FormValidator($this, 'type', 'required', 'grid.catalogEntry.typeRequired'));
 		$this->addCheck(new FormValidator($this, 'representationId', 'required', 'grid.catalogEntry.publicationFormatRequired'));
 		$this->addCheck(new FormValidatorCustom(
-				$this, 'ROWSetting', 'optional', 'grid.catalogEntry.oneROWPerFormat',
-				create_function(
-						'$ROWSetting, $form, $salesRightsDao, $salesRights',
-						'$pubFormatId = $form->getData(\'representationId\') ; return $ROWSetting == \'\' || $salesRightsDao->getROWByPublicationFormatId($pubFormatId) == null ||
-						($salesRights != null && $salesRightsDao->getROWByPublicationFormatId($pubFormatId)->getId() == $salesRights->getId());'
-				), array(&$this, DAORegistry::getDAO('SalesRightsDAO'), $salesRights)
+			$this, 'ROWSetting', 'optional', 'grid.catalogEntry.oneROWPerFormat',
+			function($ROWSetting) use ($form, $salesRights) {
+				$salesRightsDao = DAORegistry::getDAO('SalesRightsDAO');
+				$pubFormatId = $form->getData('representationId');
+				return $ROWSetting == '' || $salesRightsDao->getROWByPublicationFormatId($pubFormatId) == null ||
+					($salesRights != null && $salesRightsDao->getROWByPublicationFormatId($pubFormatId)->getId() == $salesRights->getId());
+			}
 		));
 
 		$this->addCheck(new FormValidatorPost($this));

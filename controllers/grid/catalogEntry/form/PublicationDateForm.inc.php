@@ -31,22 +31,23 @@ class PublicationDateForm extends Form {
 		$this->setPublicationDate($publicationDate);
 
 		// Validation checks for this form
+		$form = $this;
 		$this->addCheck(new FormValidator($this, 'role', 'required', 'grid.catalogEntry.roleRequired'));
 		$this->addCheck(new FormValidator($this, 'dateFormat', 'required', 'grid.catalogEntry.dateFormatRequired'));
 
 		$this->addCheck(new FormValidatorCustom(
-				$this, 'date', 'required', 'grid.catalogEntry.dateRequired',
-				create_function(
-						'$date, $form, $onixCodelistItemDao',
-						'$dateFormat = $form->getData(\'dateFormat\');
-						if (!$dateFormat) return false;
-						$dateFormats = $onixCodelistItemDao->getCodes(\'List55\');
-						$format = $dateFormats[$dateFormat];
-						if (stristr($format, \'string\') && $date != \'\') return true;
-						$format = trim(preg_replace(\'/\s*\(.*?\)/i\', \'\', $format));
-						if (count(str_split($date)) == count(str_split($format))) return true;
-						return false;'), array(&$this, DAORegistry::getDAO('ONIXCodelistItemDAO')
-			)
+			$this, 'date', 'required', 'grid.catalogEntry.dateRequired',
+			function($date) use ($form) {
+				$onixCodelistItemDao = DAORegistry::getDAO('ONIXCodelistItemDAO');
+				$dateFormat = $form->getData('dateFormat');
+				if (!$dateFormat) return false;
+				$dateFormats = $onixCodelistItemDao->getCodes('List55');
+				$format = $dateFormats[$dateFormat];
+				if (stristr($format, 'string') && $date != '') return true;
+				$format = trim(preg_replace('/\s*\(.*?\)/i', '', $format));
+				if (count(str_split($date)) == count(str_split($format))) return true;
+				return false;
+			}
 		));
 
 		$this->addCheck(new FormValidator($this, 'representationId', 'required', 'grid.catalogEntry.publicationFormatRequired'));
