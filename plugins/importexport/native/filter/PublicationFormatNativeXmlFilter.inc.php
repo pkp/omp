@@ -93,7 +93,9 @@ class PublicationFormatNativeXmlFilter extends RepresentationNativeXmlFilter {
 		$submissionFileDao = DAORegistry::getDAO('SubmissionFileDAO');
 		return array_filter(
 			$submissionFileDao->getLatestRevisions($submission->getId()),
-			create_function('$a', 'return $a->getAssocType() == ASSOC_TYPE_PUBLICATION_FORMAT && $a->getAssocId() == ' . ((int) $representation->getId()) . ';')
+			function($a) use ($representation) {
+				return $a->getAssocType() == ASSOC_TYPE_PUBLICATION_FORMAT && $a->getAssocId() == $representation->getId();
+			}
 		);
 	}
 }

@@ -141,7 +141,9 @@ class NativeImportExportPlugin extends ImportExportPlugin {
 				libxml_use_internal_errors(true);
 				$submissions = $this->importSubmissions(file_get_contents($temporaryFilePath), $deployment);
 				$templateMgr->assign('submissions', $submissions);
-				$validationErrors = array_filter(libxml_get_errors(), create_function('$a', 'return $a->level == LIBXML_ERR_ERROR ||  $a->level == LIBXML_ERR_FATAL;'));
+				$validationErrors = array_filter(libxml_get_errors(), function($a) {
+					return $a->level == LIBXML_ERR_ERROR ||  $a->level == LIBXML_ERR_FATAL;
+				});
 				$templateMgr->assign('validationErrors', $validationErrors);
 				libxml_clear_errors();
 
@@ -206,7 +208,9 @@ class NativeImportExportPlugin extends ImportExportPlugin {
 		libxml_use_internal_errors(true);
 		$submissionXml = $exportFilter->execute($submissions, true);
 		$xml = $submissionXml->saveXml();
-		$errors = array_filter(libxml_get_errors(), create_function('$a', 'return $a->level == LIBXML_ERR_ERROR || $a->level == LIBXML_ERR_FATAL;'));
+		$errors = array_filter(libxml_get_errors(), function($a) {
+			return $a->level == LIBXML_ERR_ERROR || $a->level == LIBXML_ERR_FATAL;
+		});
 		if (!empty($errors)) {
 			$this->displayXMLValidationErrors($errors, $xml);
 		}
