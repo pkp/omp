@@ -143,16 +143,8 @@ URL υποβολής: {$submissionUrl}<br />
 		<description>This email, when enabled, is automatically sent to the other authors who are not users within OMP specified during the submission process.
 Εφόσον έχει ενεργοποιηθεί η αντίστοιχη επιλογή, το συγκεκριμένο μήνυμα αποστέλλεται αυτόματα στον συγγραφέα που δεν είναι εγγεγραμμένος χρήστης όταν ολοκληρωθεί η διαδικασία υποβολής μιας εργασίας στις εκδόσεις.</description>
 	</email_text>
-	<email_text key="SUBMISSION_UNSUITABLE">
-		<subject>Μη κατάλληλη υποβολή</subject>
-		<body><![CDATA[{$authorName}:<br />
-<br />
-Σύμφωνα με την αρχική αξιολόγηση της εργασίας &quot;{$submissionTitle}&quot; θα θέλαμε να σας ενημερώσουμε ότι η συγκεκριμένη υποβολή δεν ανταποκρίνεται στη θεματολογία και το περιεχόμενο των εκδόσεων {$contextName}.Σας προτείνουμε να συμβουλευτείτε την περιγραφή των εκδόσεων στο πεδίο «Σχετικά», καθώς επίσης και τα τρέχοντα περιεχόμενά τους, προκειμένου να ενημερωθείτε με λεπτομέρειες σχετικά με την φύση των εργασιών που δημοσιεύουμε. Μπορείτε, επίσης, να υποβάλετε τη συγκεκριμένη εργασία σε κάποιες άλλες, πιο κατάλληλες εκδόσεις βιβλίων/τεκμηρίων.<br />
-<br />
-{$editorialContactSignature}]]></body>
-		<description></description>
 	</email_text>
-			<email_text key="EDITOR_ASSIGN">
+		<email_text key="EDITOR_ASSIGN">
 		<subject>Ανάθεση ομάδας εργασίας</subject>
 		<body><![CDATA[{$editorialContactName}:<br />
 <br />

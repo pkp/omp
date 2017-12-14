@@ -154,14 +154,6 @@ Em caso de dúvidas, entre em contato. Agradecemos por considerar nossa editora 
 {$editorialContactSignature}]]></body>
 		<description>Quando habilitada, esta mensagem é enviada automaticamente ao autor ao concluir o processo de submissão. Fornece informações sobre como acompanhar a submissão através do processo editorial, agradecendo o autor pela submissão.</description>
 	</email_text>
-	<email_text key="SUBMISSION_UNSUITABLE">
-		<subject>Submissão rejeitada</subject>
-		<body><![CDATA[{$authorName},<br />
-<br />
-A avaliação do trabalho &quot;{$submissionTitle}&quot; deixou claro que esta submissão não se adequa ao foco e escopo da editora {$contextName}. Recomendamos que consulte as informações na nossa página Sobre, bem como o seu atual conteúdo, para conhecer melhor sobre o tipo de trabalho publicado. Sugerimos também submeter este trabalho a outra editora mais apropriada.<br />
-<br />
-{$editorialContactSignature}]]></body>
-	</email_text>
 	<email_text key="EDITOR_ASSIGN">
 		<subject>Tarefa editorial</subject>
 		<body><![CDATA[{$editorialContactName},<br />

@@ -144,15 +144,6 @@ Si vous avez des questions, n'hésitez pas à me contacter. Merci d'avoir envoy�
 {$editorialContactSignature}]]></body>
 		<description>Lorsqu'il est activé, ce courriel est envoyé automatiquement aux autres auteurs qui ne font pas partie des utilisateurs d'OMP identifiés pendant le processus de soumission.</description>
 	</email_text>
-	<email_text key="SUBMISSION_UNSUITABLE">
-		<subject>Soumission non appropriée</subject>
-		<body><![CDATA[{$authorName}:<br />
-<br />
-Une première évaluation de &quot;{$submissionTitle}&quot; a révélé que cette soumission ne correspond pas au champ et au domaine de la presse {$contextName}. Je vous recommande de consulter la description de cette presse sur la page À propos de, et d'examiner son contenu actuel, afin d'en savoir davantage sur le type d'articles qu'elle publie. Nous vous recommandons de soumettre cet article à une presse dans votre domaine d'intérêt.<br />
-<br />
-<br />
-{$editorialContactSignature}]]></body>
-	</email_text>
 	<email_text key="EDITOR_ASSIGN">
 		<subject>Travail éditorial</subject>
 		<body><![CDATA[{$editorialContactName}:<br />

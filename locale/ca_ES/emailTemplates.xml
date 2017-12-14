@@ -138,14 +138,6 @@ Si teniu cap pregunta, contacteu amb mi. Gràcies per tenir en compte aquesta pu
 {$editorialContactSignature}]]></body>
 		<description>Aquest correu electrònic, quan està habilitat, s'envia automàticament als altres autors/ores que no són usuaris/àries a l'OMP especificats durant el procés de tramesa.</description>
 	</email_text>
-	<email_text key="SUBMISSION_UNSUITABLE">
-		<subject>Tramesa inadequada</subject>
-		<body><![CDATA[{$authorName}:<br />
-<br />
-Una revisió inicial de «{$submissionTitle}» ha deixat clar que aquesta tramesa no encaixa en l'abast i el focus de {$contextName}. Recomano que consulteu la descripció d'aquesta publicació que trobareu sota de «Sobre», així com els continguts actuals, per saber més coses sobre els treballs que publiquem. Potser també voleu trametre aquest manuscrit en una altra publicació més adequada que aquesta.<br />
-<br />
-{$editorialContactSignature}]]></body>
-	</email_text>
 	<email_text key="EDITOR_ASSIGN">
 		<subject>Assignació d'editorials</subject>
 		<body><![CDATA[{$editorialContactName}:<br />

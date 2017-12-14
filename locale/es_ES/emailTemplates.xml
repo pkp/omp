@@ -140,14 +140,6 @@ Si tiene alguna duda, puede ponerse en contacto conmigo. Gracias por elegir esta
 {$editorialContactSignature}]]></body>
 		<description>Este correo electrónico, si está activado, se envía automáticamente a otros autores/as que no son usuarios/as de OMP según lo especificado en el proceso de envío.</description>
 	</email_text>
-	<email_text key="SUBMISSION_UNSUITABLE">
-		<subject>Envío inapropiado</subject>
-		<body><![CDATA[{$authorName}:<br />
-<br />
-Una revisión inicial de &quot;{$submissionTitle}&quot; determinó que este envío no se ajusta al ámbito y al objetivo de {$contextName}. Le recomiendo consultar la descripción de esta editorial en la sección Acerca de, así como sus contenidos actuales, para conocer más sobre las obras que publicamos. Quizá considere apropiado enviar este manuscrito a otra editorial que se ajuste mejor a sus necesidades.<br />
-<br />
-{$editorialContactSignature}]]></body>
-	</email_text>
 	<email_text key="EDITOR_ASSIGN">
 		<subject>Tarea editorial</subject>
 		<body><![CDATA[{$editorialContactName}:<br />
