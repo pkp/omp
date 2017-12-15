@@ -143,8 +143,7 @@ URL υποβολής: {$submissionUrl}<br />
 		<description>This email, when enabled, is automatically sent to the other authors who are not users within OMP specified during the submission process.
 Εφόσον έχει ενεργοποιηθεί η αντίστοιχη επιλογή, το συγκεκριμένο μήνυμα αποστέλλεται αυτόματα στον συγγραφέα που δεν είναι εγγεγραμμένος χρήστης όταν ολοκληρωθεί η διαδικασία υποβολής μιας εργασίας στις εκδόσεις.</description>
 	</email_text>
-	</email_text>
-		<email_text key="EDITOR_ASSIGN">
+	<email_text key="EDITOR_ASSIGN">
 		<subject>Ανάθεση ομάδας εργασίας</subject>
 		<body><![CDATA[{$editorialContactName}:<br />
 <br />
