@@ -72,6 +72,7 @@ class CatalogEntryCatalogMetadataForm extends Form {
 		$templateMgr->assign('submissionId', $this->getMonograph()->getId());
 		$templateMgr->assign('stageId', $this->getStageId());
 		$templateMgr->assign('formParams', $this->getFormParams());
+		$templateMgr->assign('datePublished', $this->getMonograph()->getDatePublished());
 
 		$onixCodelistItemDao = DAORegistry::getDAO('ONIXCodelistItemDAO');
 
@@ -207,7 +208,7 @@ class CatalogEntryCatalogMetadataForm extends Form {
 			'audience', 'audienceRangeQualifier', 'audienceRangeFrom', 'audienceRangeTo', 'audienceRangeExact',
 			'copyrightYear', 'copyrightHolder', 'licenseURL', 'attachPermissions',
 			'temporaryFileId', // Cover image
-			'confirm',
+			'confirm', 'datePublished',
 			'workType', 'volumeEditors',
 		);
 
@@ -253,6 +254,7 @@ class CatalogEntryCatalogMetadataForm extends Form {
 			$publishedMonograph = $publishedMonographDao->newDataObject();
 			$publishedMonograph->setId($monograph->getId());
 		}
+		$monograph->setDatePublished($this->getData('datePublished'));
 
 		if ($this->getData('workType') == WORK_TYPE_EDITED_VOLUME) {
 			$volumeEditors = $this->getData('volumeEditors') ? $this->getData('volumeEditors') : [];

@@ -355,6 +355,22 @@
 				</div>
 			{/if}
 
+			{* Publication Date *}
+			{if $monograph->getDatePublished()}
+				<div class="item date_published">
+					<div class="label">
+						{if $monograph->getDatePublished()|date_format:$dateFormatShort > $smarty.now|date_format:$dateFormatShort}
+							{translate key="catalog.forthcoming"}
+						{else}
+							{translate key="catalog.published"}
+						{/if}
+					</div>
+					<div class="value">
+						{$monograph->getDatePublished()|date_format:$dateFormatLong}
+					</div>
+				</div>
+			{/if}
+
 			{* Series *}
 			{if $series}
 				<div class="item series">

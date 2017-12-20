@@ -283,6 +283,7 @@
 	<message key="catalog.dateAdded">Added</message>
 	<message key="catalog.publicationInfo">Publication Info</message>
 	<message key="catalog.published">Published</message>
+	<message key="catalog.forthcoming">Forthcoming</message>
 	<message key="catalog.categories">Categories</message>
 	<message key="catalog.parentCategory">Parent Category</message>
 	<message key="catalog.subcategories">Subcategories</message>
@@ -341,7 +342,7 @@
 	<message key="navigation.wizard">Wizard</message>
 	<message key="navigation.linksAndMedia">Links and Social Media</message>
 	<message key="navigation.navigationMenus.catalog.description">Link to your catalog.</message>
-	
+
 	<!-- Common Press Terms -->
 	<message key="press.presses">Presses</message>
 	<message key="press.path">Path</message>
