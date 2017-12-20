@@ -23,7 +23,7 @@
 		{$monograph->getLocalizedFullTitle()|escape}
 	</a>
 	<div class="author">
-		{$monograph->getAuthorString()|escape}
+		{$monograph->getAuthorOrEditorString()|escape}
 	</div>
 	<div class="date">
 		{$monograph->getDatePublished()|date_format:$dateFormatLong}

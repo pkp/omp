@@ -51,6 +51,9 @@
  *
  * @uses $currentPress Press The press currently being viewed
  * @uses $monograph Monograph The monograph to be displayed
+ * @uses $authors Array List of authors associated with this monograph
+ * @uses $editors Array List of editors for this monograph if this is an edited
+ *       volume. Otherwise empty.
  * @uses $dateFormatShort string String defining date format that is passed to
  *       smarty template function
  * @uses $series Series The series this monograph is assigned to, if any.
@@ -80,12 +83,22 @@
 
 				{assign var="authors" value=$monograph->getAuthors()}
 
+				{* Only show editors for edited volumes *}
+				{if $monograph->getWorkType() == $smarty.const.WORK_TYPE_EDITED_VOLUME && $editors|@count}
+					{assign var="authors" value=$editors}
+					{assign var="identifyAsEditors" value=true}
+				{/if}
+
 				{* Show short author lists on multiple lines *}
 				{if $authors|@count < 5}
 					{foreach from=$authors item=author}
 						<div class="sub_item">
 							<div class="label">
-								{$author->getFullName()|escape}
+								{if $identifyAsEditors}
+									{translate key="submission.editorName" editorName=$author->getFullName()|escape}
+								{else}
+									{$author->getFullName()|escape}
+								{/if}
 							</div>
 							{if $author->getLocalizedAffiliation()}
 								<div class="value">
@@ -108,7 +121,11 @@
 						{* strip removes excess white-space which creates gaps between separators *}
 						{strip}
 							{if $author->getLocalizedAffiliation()}
-								{capture assign="authorName"}<span class="label">{$author->getFullName()|escape}</span>{/capture}
+								{if $identifyAsEditors}
+									{capture assign="authorName"}<span class="label">{translate key="submission.editorName" editorName=$author->getFullName()|escape}</span>{/capture}
+								{else}
+									{capture assign="authorName"}<span class="label">{$author->getFullName()|escape}</span>{/capture}
+								{/if}
 								{capture assign="authorAffiliation"}<span class="value">{$author->getLocalizedAffiliation()|escape}</span>{/capture}
 								{translate key="submission.authorWithAffiliation" name=$authorName affiliation=$authorAffiliation}
 							{else}
@@ -121,7 +138,7 @@
 					{/foreach}
 				{/if}
 			</div>
-			
+
 			{* DOI (requires plugin) *}
 			{foreach from=$pubIdPlugins item=pubIdPlugin}
 				{if $pubIdPlugin->getPubIdType() != 'doi'}
@@ -142,7 +159,7 @@
 					</div>
 				{/if}
 			{/foreach}
-			
+
 			{* Abstract *}
 			<div class="item abstract">
 				<h3 class="label">

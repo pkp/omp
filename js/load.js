@@ -13,6 +13,7 @@ import PkpLoad from '../lib/pkp/js/load.js';
 // Import controllers used by OMP
 import ListPanel from '@/components/ListPanel/ListPanel.vue';
 import SubmissionsListPanel from '@/components/ListPanel/submissions/SubmissionsListPanel.vue';
+import SelectListPanel from '@/components/SelectListPanel/SelectListPanel.vue';
 import SelectSubmissionsListPanel from '@/components/SelectListPanel/submissions/SelectSubmissionsListPanel.vue';
 import CatalogSubmissionsListPanel from '@/components/ListPanel/submissions/CatalogSubmissionsListPanel.vue';
 
@@ -21,6 +22,7 @@ window.pkp = Object.assign(PkpLoad, {
 	controllers: {
 		ListPanel,
 		SubmissionsListPanel,
+		SelectListPanel,
 		SelectSubmissionsListPanel,
 		CatalogSubmissionsListPanel,
 	},

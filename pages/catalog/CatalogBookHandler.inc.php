@@ -88,6 +88,21 @@ class CatalogBookHandler extends Handler {
 		$parsedCitations = $citationDao->getBySubmissionId($publishedMonograph->getId());
 		$templateMgr->assign('parsedCitations', $parsedCitations);
 
+		// Retrieve editors for an edited volume
+		$authors = $publishedMonograph->getAuthors(true);
+		$editors = array();
+		if ($publishedMonograph->getWorkType() == WORK_TYPE_EDITED_VOLUME) {
+			foreach ($authors as $author) {
+				if ($author->getIsVolumeEditor()) {
+					$editors[] = $author;
+				}
+			}
+		}
+		$templateMgr->assign(array(
+			'authors' => $authors,
+			'editors' => $editors,
+		));
+
 		// Consider public identifiers
 		$pubIdPlugins = PluginRegistry::loadCategory('pubIds', true);
 		$templateMgr->assign('pubIdPlugins', $pubIdPlugins);
