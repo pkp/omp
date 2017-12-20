@@ -99,7 +99,7 @@
 	/**
 	 * Value matching the edited volume worktype
 	 * @private
-	 * @type {integer?}
+	 * @type {?number}
 	 */
 	$.pkp.controllers.catalog.form.CatalogMetadataFormHandler.prototype.
 			workTypeEditedVolume_ = null;
@@ -108,7 +108,7 @@
 	/**
 	 * Value matching the single author worktype
 	 * @private
-	 * @type {integer?}
+	 * @type {?number}
 	 */
 	$.pkp.controllers.catalog.form.CatalogMetadataFormHandler.prototype.
 			workTypeAuthoredWork_ = null;
@@ -187,7 +187,7 @@
 			toggleVolumeEditors = function(sourceElement, event) {
 
 		var $workType = $(sourceElement),
-			$volumeEditors = $('#volumeEditors', this.getHtmlElement());
+				$volumeEditors = $('#volumeEditors', this.getHtmlElement());
 
 		if ($workType.val() == this.workTypeEditedVolume_) {
 			$volumeEditors.fadeIn();
