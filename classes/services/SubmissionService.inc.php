@@ -100,7 +100,8 @@ class SubmissionService extends \PKP\Services\PKPSubmissionService {
 		$submission->setStatus(STATUS_PUBLISHED);
 		\Application::getSubmissionDao()->updateObject($submission);
 
-		$publishedMonograph->setDatePublished(\Core::getCurrentDate());
+		$datePublished = $submission->getDatePublished() ? $submission->getDatePublished() : \Core::getCurrentDate();
+		$publishedMonograph->setDatePublished($datePublished);
 		$publishedMonographDao->updateObject($publishedMonograph);
 
 		$notificationMgr = new \NotificationManager();
