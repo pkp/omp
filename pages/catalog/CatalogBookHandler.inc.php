@@ -69,7 +69,7 @@ class CatalogBookHandler extends Handler {
 			if ($format->getIsAvailable()) {
 				$availablePublicationFormats[] = $format;
 				if ($format->getRemoteURL()) {
-					$availableRemotePublicatinoFormats[] = $format;
+					$availableRemotePublicationFormats[] = $format;
 				}
 			}
 		}
