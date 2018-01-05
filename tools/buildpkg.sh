@@ -41,6 +41,7 @@ tools/genLocaleReport.sh								\
 tools/genTestLocale.php									\
 tools/test										\
 lib/pkp/tools/travis									\
+lib/pkp/lib/vendor/smarty/smarty/demo							\
 plugins/generic/translator								\
 plugins/generic/customBlockManager/.git							\
 plugins/generic/emailLogger								\
