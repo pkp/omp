@@ -35,12 +35,12 @@
 
 		{* Pagination *}
 		{if $prevPage > 1}
-			{url|assign:"prevUrl" router=$smarty.const.ROUTE_PAGE page="catalog" op="page" path=$prevPage}
+			{capture assign=prevUrl}{url router=$smarty.const.ROUTE_PAGE page="catalog" op="page" path=$prevPage}{/capture}
 		{elseif $prevPage === 1}
-			{url|assign:"prevUrl" router=$smarty.const.ROUTE_PAGE page="catalog"}
+			{capture assign=prevUrl}{url router=$smarty.const.ROUTE_PAGE page="catalog"}{/capture}
 		{/if}
 		{if $nextPage}
-			{url|assign:"nextUrl" router=$smarty.const.ROUTE_PAGE page="catalog" op="page" path=$nextPage}
+			{capture assign=nextUrl}{url router=$smarty.const.ROUTE_PAGE page="catalog" op="page" path=$nextPage}{/capture}
 		{/if}
 		{include
 			file="frontend/components/pagination.tpl"

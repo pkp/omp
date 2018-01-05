@@ -35,13 +35,13 @@
 
 	{fbvFormSection}
 		<!--  Chapter Contributors -->
-		{url|assign:chapterAuthorUrl router=$smarty.const.ROUTE_COMPONENT component="listbuilder.users.ChapterAuthorListbuilderHandler" op="fetch" submissionId=$submissionId chapterId=$chapterId escape=false}
+		{capture assign=chapterAuthorUrl}{url router=$smarty.const.ROUTE_COMPONENT component="listbuilder.users.ChapterAuthorListbuilderHandler" op="fetch" submissionId=$submissionId chapterId=$chapterId escape=false}{/capture}
 		{load_url_in_div id="chapterAuthorContainer" url=$chapterAuthorUrl}
 	{/fbvFormSection}
 
 	{fbvFormSection}
 		<!-- Chapter Files -->
-		{url|assign:chapterFilesUrl router=$smarty.const.ROUTE_COMPONENT component="listbuilder.files.ChapterFilesListbuilderHandler" op="fetch" submissionId=$submissionId chapterId=$chapterId escape=false}
+		{capture assign=chapterFilesUrl}{url router=$smarty.const.ROUTE_COMPONENT component="listbuilder.files.ChapterFilesListbuilderHandler" op="fetch" submissionId=$submissionId chapterId=$chapterId escape=false}{/capture}
 		{load_url_in_div id="chapterFilesContainer" url=$chapterFilesUrl}
 	{/fbvFormSection}
 

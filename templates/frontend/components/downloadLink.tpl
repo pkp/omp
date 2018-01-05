@@ -17,7 +17,7 @@
 {assign var=publicationFormatId value=$publicationFormat->getBestId()}
 
 {* Generate the download URL *}
-{url|assign:downloadUrl op="view" path=$monograph->getBestId()|to_array:$publicationFormatId:$downloadFile->getBestId()}
+{capture assign=downloadUrl}{url op="view" path=$monograph->getBestId()|to_array:$publicationFormatId:$downloadFile->getBestId()}{/capture}
 
 {* Display the download link *}
 <a href="{$downloadUrl}" class="cmp_download_link {$downloadFile->getDocumentType()}">

@@ -7,7 +7,7 @@
  *
  * Form to read/create/edit spotlights.
  *}
-{url|assign:addSpotlightItemUrl op="itemAutocomplete" pressId=$pressId escape=false}
+{capture assign=addSpotlightItemUrl}{url op="itemAutocomplete" pressId=$pressId escape=false}{/capture}
 <script type="text/javascript">
 	$(function() {ldelim}
 		// Attach the form handler.

@@ -48,7 +48,7 @@
 
 		{fbvFormSection title="grid.category.path" required=true for="path"}
 			{capture assign="instruct"}
-				{url|assign:"sampleUrl" router=$smarty.const.ROUTE_PAGE page="catalog" op="category" path="path" required=true}
+				{capture assign="sampleUrl"}{url router=$smarty.const.ROUTE_PAGE page="catalog" op="category" path="path" required=true}{/capture}
 				{translate key="grid.category.urlWillBe" sampleUrl=$sampleUrl}
 			{/capture}
 			{fbvElement type="text" id="path" value=$path maxlength="32" label=$instruct subLabelTranslate=false}
@@ -69,7 +69,7 @@
 
 		{if $image}
 			{fbvFormSection}
-				{translate|assign:"altTitle" key="monograph.currentCoverImage"}
+				{capture assign="altTitle"}{translate key="monograph.currentCoverImage"}{/capture}
 				<img class="pkp_helpers_container_center" height="{$image.thumbnailHeight}" width="{$image.thumbnailWidth}" src="{url router=$smarty.const.ROUTE_PAGE page="catalog" op="thumbnail" type="category" id=$categoryId}" alt="{$altTitle|escape}" />
 			{/fbvFormSection}
 		{/if}

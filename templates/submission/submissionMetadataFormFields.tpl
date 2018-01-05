@@ -10,7 +10,7 @@
  *}
 {capture assign="languagesField"}
 	{fbvFormSection description="submission.submit.metadataForm.tip" title="common.languages"}
-		{url|assign:languagesSourceUrl router=$smarty.const.ROUTE_PAGE page="submission" op="fetchChoices" codeList="74"}
+		{capture assign=languagesSourceUrl}{url router=$smarty.const.ROUTE_PAGE page="submission" op="fetchChoices" codeList="74"}{/capture}
 		{fbvElement type="keyword" id="languages" subLabelTranslate=true multilingual=true current=$languages source=$languagesSourceUrl disabled=$readOnly}
 	{/fbvFormSection}
 {/capture}
