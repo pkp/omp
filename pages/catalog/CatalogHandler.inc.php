@@ -87,6 +87,9 @@ class CatalogHandler extends Handler {
 		$count = $context->getSetting('itemsPerPage') ? $context->getSetting('itemsPerPage') : Config::getVar('interface', 'items_per_page');
 		$offset = $page > 1 ? ($page - 1) * $count : 0;
 
+		import('classes.core.ServicesContainer');
+		$submissionService = ServicesContainer::instance()->get('submission');
+
 		$params = array(
 			'orderByFeatured' => true,
 			'orderBy' => $orderBy,
@@ -94,11 +97,8 @@ class CatalogHandler extends Handler {
 			'count' => $count,
 			'offset' => $offset,
 			'status' => STATUS_PUBLISHED,
-			'returnObject' => 'published',
+			'returnObject' => SUBMISSION_RETURN_PUBLISHED,
 		);
-
-		import('classes.core.ServicesContainer');
-		$submissionService = ServicesContainer::instance()->get('submission');
 		$publishedMonographs = $submissionService->getSubmissions($context->getId(), $params);
 		$total = $submissionService->getSubmissionsMaxCount($context->getId(), $params);
 
@@ -167,6 +167,9 @@ class CatalogHandler extends Handler {
 		$count = $context->getSetting('itemsPerPage') ? $context->getSetting('itemsPerPage') : Config::getVar('interface', 'items_per_page');
 		$offset = $page > 1 ? ($page - 1) * $count : 0;
 
+		import('classes.core.ServicesContainer');
+		$submissionService = ServicesContainer::instance()->get('submission');
+
 		$params = array(
 			'categoryIds' => $category->getId(),
 			'orderByFeatured' => true,
@@ -175,11 +178,8 @@ class CatalogHandler extends Handler {
 			'count' => $count,
 			'offset' => $offset,
 			'status' => STATUS_PUBLISHED,
-			'returnObject' => 'published',
+			'returnObject' => SUBMISSION_RETURN_PUBLISHED,
 		);
-
-		import('classes.core.ServicesContainer');
-		$submissionService = ServicesContainer::instance()->get('submission');
 		$publishedMonographs = $submissionService->getSubmissions($context->getId(), $params);
 		$total = $submissionService->getSubmissionsMaxCount($context->getId(), $params);
 
@@ -244,6 +244,9 @@ class CatalogHandler extends Handler {
 		$count = $context->getSetting('itemsPerPage') ? $context->getSetting('itemsPerPage') : Config::getVar('interface', 'items_per_page');
 		$offset = $page > 1 ? ($page - 1) * $count : 0;
 
+		import('classes.core.ServicesContainer');
+		$submissionService = ServicesContainer::instance()->get('submission');
+
 		$params = array(
 			'seriesIds' => $series->getId(),
 			'orderByFeatured' => true,
@@ -252,11 +255,8 @@ class CatalogHandler extends Handler {
 			'count' => $count,
 			'offset' => $offset,
 			'status' => STATUS_PUBLISHED,
-			'returnObject' => 'published',
+			'returnObject' => SUBMISSION_RETURN_PUBLISHED,
 		);
-
-		import('classes.core.ServicesContainer');
-		$submissionService = ServicesContainer::instance()->get('submission');
 		$publishedMonographs = $submissionService->getSubmissions($context->getId(), $params);
 		$total = $submissionService->getSubmissionsMaxCount($context->getId(), $params);
 
