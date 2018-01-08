@@ -79,7 +79,7 @@ class WebFeedPlugin extends GenericPlugin {
 		if (!is_a($request->getRouter(), 'PKPPageRouter')) return false;
 
 		$templateManager =& $args[0];
-		$currentPress = $templateManager->get_template_vars('currentPress');
+		$currentPress = $templateManager->getTemplateVars('currentPress');
 		$displayPage = $this->getSetting($currentPress->getId(), 'displayPage');
 
 		// Define when the <link> elements should appear
