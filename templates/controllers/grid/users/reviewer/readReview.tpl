@@ -9,7 +9,7 @@
  *
  *}
 {capture assign="reviewerRecommendations"}
-	{include file="reviewer/review/reviewerRecommendations.tpl" description="reviewer.article.selectRecommendation.byEditor" required=false}
+	{* Not implemented in OMP *}
 {/capture}
 
 {if $reviewAssignment->getDateCompleted()}
