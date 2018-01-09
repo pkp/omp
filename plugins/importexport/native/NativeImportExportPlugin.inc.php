@@ -32,8 +32,12 @@ class NativeImportExportPlugin extends ImportExportPlugin {
 	 */
 	function register($category, $path) {
 		$success = parent::register($category, $path);
-		$this->addLocaleData();
-		$this->import('NativeImportExportDeployment');
+		if (!Config::getVar('general', 'installed') || defined('RUNNING_UPGRADE')) return $success;
+		if ($success && $this->getEnabled()) {
+			$this->_registerTemplateResource();
+			$this->addLocaleData();
+			$this->import('NativeImportExportDeployment');
+		}
 		return $success;
 	}
 
@@ -41,7 +45,7 @@ class NativeImportExportPlugin extends ImportExportPlugin {
 	 * @see Plugin::getTemplatePath($inCore)
 	 */
 	function getTemplatePath($inCore = false) {
-		return parent::getTemplatePath($inCore) . 'templates/';
+		return $this->getTemplateResourceName() . ':templates/';
 	}
 
 	/**

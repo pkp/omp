@@ -32,8 +32,12 @@ class Onix30ExportPlugin extends ImportExportPlugin {
 	 */
 	function register($category, $path) {
 		$success = parent::register($category, $path);
-		$this->addLocaleData();
-		$this->import('Onix30ExportDeployment');
+		if (!Config::getVar('general', 'installed') || defined('RUNNING_UPGRADE')) return $success;
+		if ($success && $this->getEnabled()) {
+			$this->_registerTemplateResource();
+			$this->addLocaleData();
+			$this->import('Onix30ExportDeployment');
+		}
 		return $success;
 	}
 
@@ -41,7 +45,7 @@ class Onix30ExportPlugin extends ImportExportPlugin {
 	 * @see Plugin::getTemplatePath($inCore)
 	 */
 	function getTemplatePath($inCore = false) {
-		return parent::getTemplatePath($inCore) . 'templates/';
+		return $this->getTemplateResourceName() . ':templates/';
 	}
 
 	/**
