@@ -18,6 +18,17 @@ import('classes.plugins.PubIdPlugin');
 
 class URNPubIdPlugin extends PubIdPlugin {
 
+	/**
+	 * @see Plugin::register
+	 */
+	function register($category, $path) {
+		if (parent::register($category, $path) && $this->getEnabled()) {
+			$this->_registerTemplateResource();
+			return true;
+		}
+		return false;
+	}
+
 	//
 	// Implement template methods from Plugin.
 	//
@@ -39,7 +50,7 @@ class URNPubIdPlugin extends PubIdPlugin {
 	 * @copydoc Plugin::getTemplatePath()
 	 */
 	function getTemplatePath($inCore = false) {
-		return parent::getTemplatePath($inCore) . 'templates/';
+		return $this->getTemplateResourceName() . ':templates/';
 	}
 
 

@@ -24,6 +24,7 @@ class PdfJsViewerPlugin extends GenericPlugin {
 			if ($this->getEnabled()) {
 				HookRegistry::register('CatalogBookHandler::view', array($this, 'viewCallback'), HOOK_SEQUENCE_LATE);
 				HookRegistry::register('CatalogBookHandler::download', array($this, 'downloadCallback'), HOOK_SEQUENCE_LATE);
+				$this->_registerTemplateResource();
 			}
 			return true;
 		}
@@ -42,7 +43,7 @@ class PdfJsViewerPlugin extends GenericPlugin {
 	 * @copydoc PKPPlugin::getTemplatePath
 	 */
 	function getTemplatePath($inCore = false) {
-		return parent::getTemplatePath($inCore) . 'templates/';
+		return $this->getTemplateResourceName() . ':templates/';
 	}
 
 	/**
