@@ -7,20 +7,21 @@
  *
  * Include categories for submissions.
  *}
-{if $categoriesExist}
-	{if !$readOnly}
-		{assign var="monographCategoriesContainer" value="monographCategoriesContainer-"|uniqid|escape}
-		<div id="{$monographCategoriesContainer|escape}">
-			{url|assign:monographCategoriesUrl router=$smarty.const.ROUTE_COMPONENT component="submission.CategoriesListbuilderHandler" op="fetch" submissionId=$submissionId readOnly=$readOnly escape=false}
-			{load_url_in_div id=$monographCategoriesContainer url=$monographCategoriesUrl}
-		</div>
+{if $hasCategories}
+	{if $readOnly}
+		{fbvFormSection title="grid.category.categories" list=true}
+			{foreach from=$assignedCategories item=category}
+				<li>{$category->getLocalizedTitle()}</li>
+			{/foreach}
+		{/fbvFormSection}
 	{else}
-		{if count($assignedCategories) > 0}
-			{fbvFormSection title="grid.category.categories" list=true}
-				{foreach from=$assignedCategories item=category}
-					<li>{$category->getLocalizedTitle()}</li>
-				{/foreach}
-			{/fbvFormSection}
-		{/if}
+		{fbvFormSection}
+			{assign var="uuid" value=""|uniqid|escape}
+			<div id="categories-{$uuid}">
+				<script type="text/javascript">
+					pkp.registry.init('categories-{$uuid}', 'SelectListPanel', {$selectCategoryListData});
+				</script>
+			</div>
+		{/fbvFormSection}
 	{/if}
 {/if}

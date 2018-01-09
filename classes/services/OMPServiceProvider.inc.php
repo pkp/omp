@@ -20,6 +20,8 @@ require_once(dirname(__FILE__) . '/../../lib/pkp/lib/vendor/pimple/pimple/src/Pi
 
 use \Pimple\Container;
 use \PKP\Services\AuthorService;
+use \PKP\Services\UserService;
+
 
 class OMPServiceProvider implements \Pimple\ServiceProviderInterface {
 
@@ -42,6 +44,11 @@ class OMPServiceProvider implements \Pimple\ServiceProviderInterface {
 		// Author service
 		$pimple['author'] = function() {
 			return new AuthorService();
+		};
+
+		// User service
+		$pimple['user'] = function() {
+			return new UserService();
 		};
 
 	}

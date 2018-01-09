@@ -32,6 +32,7 @@
 
 <form class="pkp_form" id="seriesForm" method="post" action="{url router=$smarty.const.ROUTE_COMPONENT component="grid.settings.series.SeriesGridHandler" op="updateSeries" seriesId=$seriesId}">
 	{csrf}
+	<input type="hidden" name="seriesId" value="{$seriesId|escape}"/>
 	{include file="controllers/notification/inPlaceNotification.tpl" notificationId="seriesFormNotification"}
 
 	{fbvFormArea id="file"}
@@ -78,24 +79,27 @@
 			{fbvElement type="select" id="sortOption" from=$sortOptions selected=$sortOption translate=false}
 		{/fbvFormSection}
 
-		<input type="hidden" name="seriesId" value="{$seriesId|escape}"/>
-		{if $categoryCount > 0}
-			{fbvFormSection for="context"}
-				<div id="seriesCategoriesContainer">
-					{url|assign:seriesCategoriesUrl router=$smarty.const.ROUTE_COMPONENT component="listbuilder.settings.CategoriesListbuilderHandler" op="fetch" sectionId=$seriesId escape=false}
-					{load_url_in_div id="seriesCategoriesContainer" url=$seriesCategoriesUrl}
+		{if $hasSubEditors}
+			{fbvFormSection}
+				{assign var="uuid" value=""|uniqid|escape}
+				<div id="subeditors-{$uuid}">
+					<script type="text/javascript">
+						pkp.registry.init('subeditors-{$uuid}', 'SelectListPanel', {$subEditorsListData});
+					</script>
 				</div>
 			{/fbvFormSection}
 		{/if}
 
-		{fbvFormSection for="context"}
-			{if $seriesEditorCount > 0}{* only include the series editor listbuilder if there are series editors available *}
-				<div id="seriesEditorsContainer">
-					{url|assign:seriesEditorsUrl router=$smarty.const.ROUTE_COMPONENT component="listbuilder.settings.SubEditorsListbuilderHandler" op="fetch" sectionId=$seriesId escape=false}
-					{load_url_in_div id="seriesEditorsContainer" url=$seriesEditorsUrl}
+		{if $hasCategories}
+			{fbvFormSection}
+				{assign var="uuid" value=""|uniqid|escape}
+				<div id="categories-{$uuid}">
+					<script type="text/javascript">
+						pkp.registry.init('categories-{$uuid}', 'SelectListPanel', {$categoriesListData});
+					</script>
 				</div>
-			{/if}
-		{/fbvFormSection}
+			{/fbvFormSection}
+		{/if}
 
 		{capture assign="instruct"}
 			{url|assign:"sampleUrl" router=$smarty.const.ROUTE_PAGE page="catalog" op="series" path="Path"}
