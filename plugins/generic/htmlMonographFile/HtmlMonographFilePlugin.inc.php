@@ -55,13 +55,6 @@ class HtmlMonographFilePlugin extends GenericPlugin {
 	}
 
 	/**
-	 * @copydoc Plugin::getTemplatePath()
-	 */
-	function getTemplatePath($inCore = false) {
-		return $this->getTemplateResourceName() . ':';
-	}
-
-	/**
 	 * Callback to view the HTML content rather than downloading.
 	 * @param $hookName string
 	 * @param $args array

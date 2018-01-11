@@ -38,13 +38,6 @@ class NativeImportExportPlugin extends ImportExportPlugin {
 	}
 
 	/**
-	 * @see Plugin::getTemplatePath($inCore)
-	 */
-	function getTemplatePath($inCore = false) {
-		return $this->getTemplateResourceName() . ':templates/';
-	}
-
-	/**
 	 * Get the name of this plugin. The name must be unique within
 	 * its category.
 	 * @return String name of plugin
@@ -100,7 +93,7 @@ class NativeImportExportPlugin extends ImportExportPlugin {
 					'lazyLoad' => true,
 				));
 				$templateMgr->assign('exportSubmissionsListData', json_encode($exportSubmissionsListHandler->getConfig()));
-				$templateMgr->display($this->getTemplateResourceName() . ':index.tpl');
+				$templateMgr->display($this->getTemplateResource('index.tpl'));
 				break;
 			case 'uploadImportXML':
 				$user = $request->getUser();
@@ -164,7 +157,7 @@ class NativeImportExportPlugin extends ImportExportPlugin {
 					$deployment->removeImportedObjects(ASSOC_TYPE_SUBMISSION);
 				}
 				// Display the results
-				$json = new JSONMessage(true, $templateMgr->fetch($this->getTemplateResourceNamePath() . ':results.tpl'));
+				$json = new JSONMessage(true, $templateMgr->fetch($this->getTemplateResource('results.tpl')));
 				return $json->getString();
 			case 'export':
 				$exportXml = $this->exportSubmissions(

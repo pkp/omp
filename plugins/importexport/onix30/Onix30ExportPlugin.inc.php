@@ -38,13 +38,6 @@ class Onix30ExportPlugin extends ImportExportPlugin {
 	}
 
 	/**
-	 * @see Plugin::getTemplatePath($inCore)
-	 */
-	function getTemplatePath($inCore = false) {
-		return $this->getTemplateResourceName() . ':templates/';
-	}
-
-	/**
 	 * Get the name of this plugin. The name must be unique within
 	 * its category.
 	 * @return String name of plugin

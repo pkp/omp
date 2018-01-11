@@ -132,13 +132,6 @@ class PaypalPaymentPlugin extends PaymethodPlugin {
 	function getInstallEmailTemplateDataFile() {
 		return ($this->getPluginPath() . '/locale/{$installedLocale}/emailTemplates.xml');
 	}
-
-	/**
-	 * @copydoc Plugin::getTemplatePath()
-	 */
-	function getTemplatePath($inCore = false) {
-		return parent::getTemplatePath($inCore) . 'templates/';
-	}
 }
 
 ?>

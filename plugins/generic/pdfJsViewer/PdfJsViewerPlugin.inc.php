@@ -40,13 +40,6 @@ class PdfJsViewerPlugin extends GenericPlugin {
 	}
 
 	/**
-	 * @copydoc PKPPlugin::getTemplatePath
-	 */
-	function getTemplatePath($inCore = false) {
-		return $this->getTemplateResourceName() . ':templates/';
-	}
-
-	/**
 	 * Get the display name of this plugin.
 	 * @return String
 	 */

@@ -48,13 +48,6 @@ class URNPubIdPlugin extends PubIdPlugin {
 		return __('plugins.pubIds.urn.description');
 	}
 
-	/**
-	 * @copydoc Plugin::getTemplatePath()
-	 */
-	function getTemplatePath($inCore = false) {
-		return $this->getTemplateResourceName() . ':templates/';
-	}
-
 
 	//
 	// Implement template methods from PubIdPlugin.
