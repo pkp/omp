@@ -53,7 +53,7 @@ class OMPPaymentManager extends PaymentManager {
 				import('lib.pkp.classes.submission.SubmissionFile'); // const
 				$submissionFile = $submissionFileDao->getRevision($fileId, $revision, SUBMISSION_FILE_PROOF);
 				assert($submissionFile);
-				$payment->setRequestUrl($request->url(null, 'catalog', 'download', array(
+				$payment->setRequestUrl($request->url(null, 'catalog', 'view', array(
 					$submissionFile->getSubmissionId(),
 					$submissionFile->getAssocId(),
 					$assocId
