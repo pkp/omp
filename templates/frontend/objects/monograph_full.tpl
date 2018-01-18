@@ -58,6 +58,8 @@
  *       smarty template function
  * @uses $series Series The series this monograph is assigned to, if any.
  * @uses $publicationFormats array List of PublicationFormat objects to display
+ * @uses $remotePublicationFormats array List of PublicationFormat objects which
+ *       have remote URLs associated
  * @uses $availableFiles array List of available MonographFiles
  * @uses $chapters array List of chapters in monograph. Associative array
  * @uses $sharingCode string Code snippet for a social sharing widget
@@ -300,7 +302,7 @@
 
 			{* Any non-chapter files and remote resources *}
 			{pluck_files assign=nonChapterFiles files=$availableFiles by="chapter" value=0}
-			{if $nonChapterFiles|@count}
+			{if $nonChapterFiles|@count || $remotePublicationFormats|@count}
 				<div class="item files">
 					{foreach from=$publicationFormats item=format}
 						{assign var=publicationFormatId value=$format->getId()}

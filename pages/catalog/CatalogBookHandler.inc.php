@@ -64,12 +64,19 @@ class CatalogBookHandler extends Handler {
 		// Provide the publication formats to the template
 		$publicationFormats = $publishedMonograph->getPublicationFormats(true);
 		$availablePublicationFormats = array();
+		$availableRemotePublicationFormats = array();
 		foreach ($publicationFormats as $format) {
 			if ($format->getIsAvailable()) {
 				$availablePublicationFormats[] = $format;
+				if ($format->getRemoteURL()) {
+					$availableRemotePublicationFormats[] = $format;
+				}
 			}
 		}
-		$templateMgr->assign('publicationFormats', $availablePublicationFormats);
+		$templateMgr->assign(array(
+			'publicationFormats' => $availablePublicationFormats,
+			'remotePublicationFormats' => $availableRemotePublicationFormats,
+		));
 
 		// Assign chapters (if they exist)
 		$chapterDao = DAORegistry::getDAO('ChapterDAO');
