@@ -119,7 +119,7 @@ class OMPPaymentManager extends PaymentManager {
 	function createCompletedPayment($queuedPayment, $payMethod) {
 		import('lib.pkp.classes.payment.CompletedPayment');
 		$payment = new CompletedPayment();
-		$payment->setPressId($queuedPayment->getPressId());
+		$payment->setContextId($queuedPayment->getContextId());
 		$payment->setType($queuedPayment->getType());
 		$payment->setAmount($queuedPayment->getAmount());
 		$payment->setCurrencyCode($queuedPayment->getCurrencyCode());

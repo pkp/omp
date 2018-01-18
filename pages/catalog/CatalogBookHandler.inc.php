@@ -254,6 +254,7 @@ class CatalogBookHandler extends Handler {
 			$submissionFile->getDirectSalesPrice(),
 			$press->getSetting('currency')
 		);
+		$paymentManager->queuePayment($queuedPayment);
 
 		$paymentForm = $paymentManager->getPaymentForm($queuedPayment);
 		$paymentForm->display($request);

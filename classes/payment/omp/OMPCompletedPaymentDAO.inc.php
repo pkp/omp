@@ -22,15 +22,15 @@ class OMPCompletedPaymentDAO extends DAO {
 	/**
 	 * Retrieve a ComplatedPayment by its ID.
 	 * @param $completedPaymentId int
-	 * @param $pressId int optional
+	 * @param $contextId int optional
 	 * @return CompletedPayment
 	 */
-	function getCompletedPayment($completedPaymentId, $pressId = null) {
+	function getById($completedPaymentId, $contextId = null) {
 		$params = array((int) $completedPaymentId);
-		if ($pressId) $params[] = (int) $pressId;
+		if ($contextId) $params[] = (int) $contextId;
 
 		$result = $this->retrieve(
-			'SELECT * FROM completed_payments WHERE completed_payment_id = ?' . ($pressId?' AND press_id = ?':''),
+			'SELECT * FROM completed_payments WHERE completed_payment_id = ?' . ($contextId?' AND context_id = ?':''),
 			$params
 		);
 
@@ -50,13 +50,13 @@ class OMPCompletedPaymentDAO extends DAO {
 	function insertCompletedPayment($completedPayment) {
 		$this->update(
 			sprintf('INSERT INTO completed_payments
-				(timestamp, payment_type, press_id, user_id, assoc_id, amount, currency_code_alpha, payment_method_plugin_name)
+				(timestamp, payment_type, context_id, user_id, assoc_id, amount, currency_code_alpha, payment_method_plugin_name)
 				VALUES
 				(%s, ?, ?, ?, ?, ?, ?, ?)',
 				$this->datetimeToDB(Core::getCurrentDate())),
 			array(
 				(int) $completedPayment->getType(),
-				(int) $completedPayment->getPressId(),
+				(int) $completedPayment->getContextId(),
 				(int) $completedPayment->getUserId(),
 				$completedPayment->getAssocId(), /* NOT int */
 				$completedPayment->getAmount(),
@@ -81,7 +81,7 @@ class OMPCompletedPaymentDAO extends DAO {
 			SET
 				timestamp = %s,
 				payment_type = ?,
-				press_id = ?,
+				context_id = ?,
 				user_id = ?,
 				assoc_id = ?,
 				amount = ?,
@@ -91,13 +91,13 @@ class OMPCompletedPaymentDAO extends DAO {
 			$this->datetimeToDB($completedPayment->getTimestamp())),
 			array(
 				(int) $completedPayment->getType(),
-				(int) $completedPayment->getPressId(),
+				(int) $completedPayment->getContextId(),
 				(int) $completedPayment->getUserId(),
 				(int) $completedPayment->getAssocId(),
 				$completedPayment->getAmount(),
 				$completedPayment->getCurrencyCode(),
 				$completedPayment->getPayMethodPluginName(),
-				(int) $completedPayment->getCompletedPaymentId()
+				(int) $completedPayment->getId()
 			)
 		);
 
@@ -137,14 +137,14 @@ class OMPCompletedPaymentDAO extends DAO {
 	}
 
 	/**
-	 * Retrieve an array of payments for a particular press ID.
-	 * @param $pressId int
+	 * Retrieve an array of payments for a particular context ID.
+	 * @param $contextId int
 	 * @return object DAOResultFactory containing matching payments
 	 */
-	function getPaymentsByPressId($pressId, $rangeInfo = null) {
+	function getByContextId($contextId, $rangeInfo = null) {
 		$result = $this->retrieveRange(
-			'SELECT * FROM completed_payments WHERE press_id = ? ORDER BY timestamp DESC',
-			(int) $pressId,
+			'SELECT * FROM completed_payments WHERE context_id = ? ORDER BY timestamp DESC',
+			(int) $contextId,
 			$rangeInfo
 		);
 
@@ -185,7 +185,7 @@ class OMPCompletedPaymentDAO extends DAO {
 		$payment->setTimestamp($this->datetimeFromDB($row['timestamp']));
 		$payment->setId($row['completed_payment_id']);
 		$payment->setType($row['payment_type']);
-		$payment->setPressId($row['press_id']);
+		$payment->setContextId($row['context_id']);
 		$payment->setAmount($row['amount']);
 		$payment->setCurrencyCode($row['currency_code_alpha']);
 		$payment->setUserId($row['user_id']);

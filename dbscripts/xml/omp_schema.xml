@@ -1011,7 +1011,7 @@
 		<field name="payment_type" type="I8">
 			<NOTNULL/>
 		</field>
-		<field name="press_id" type="I8">
+		<field name="context_id" type="I8">
 			<NOTNULL/>
 		</field>
 		<field name="user_id" type="I8" />
