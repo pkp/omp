@@ -255,10 +255,8 @@ class CatalogBookHandler extends Handler {
 			$press->getSetting('currency')
 		);
 
-		$paymentManager->displayPaymentForm(
-			$paymentManager->queuePayment($queuedPayment),
-			$queuedPayment
-		);
+		$paymentForm = $paymentManager->getPaymentForm($queuedPayment);
+		$paymentForm->display($request);
 	}
 
 	/**

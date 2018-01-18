@@ -84,7 +84,7 @@ class PaypalPaymentPlugin extends PaymethodPlugin {
 	function handle($args, $request) {
 		$press = $request->getPress();
 		$queuedPaymentDao = DAORegistry::getDAO('QueuedPaymentDAO');
-		import('classes.payment.ojs.OJSPaymentManager'); // Class definition required for unserializing
+		import('classes.payment.omp.OMPPaymentManager'); // Class definition required for unserializing
 		try {
 			$queuedPayment = $queuedPaymentDao->getById($queuedPaymentId = $request->getUserVar('queuedPaymentId'));
 			if (!$queuedPayment) throw new \Exception("Invalid queued payment ID $queuedPaymentId!");
