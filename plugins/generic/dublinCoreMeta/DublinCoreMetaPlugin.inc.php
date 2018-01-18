@@ -49,11 +49,11 @@ class DublinCoreMetaPlugin extends GenericPlugin {
 	 * @return boolean
 	 */
 	function monographView($hookName, $args) {
-		$templateMgr = TemplateManager::getManager($request);
 		$request = $args[0];
 		$monograph = $args[1];
 		$press = $request->getContext();
 
+		$templateMgr = TemplateManager::getManager($request);
 		$templateMgr->addHeader('dublinCoreSchema', '<link rel="schema.DC" href="http://purl.org/dc/elements/1.1/" />');
 
 		$i=0;
