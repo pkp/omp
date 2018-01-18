@@ -137,7 +137,7 @@ class PaypalPaymentPlugin extends PaymethodPlugin {
 	 * @copydoc Plugin::getTemplatePath()
 	 */
 	function getTemplatePath($inCore = false) {
-		return $this->getTemplateResourceName() . ':templates/';
+		return parent::getTemplatePath($inCore) . 'templates/';
 	}
 }
 

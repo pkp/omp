@@ -18,28 +18,28 @@ import('lib.pkp.classes.plugins.PaymethodPlugin');
 class ManualPaymentPlugin extends PaymethodPlugin {
 
 	/**
-	 * @see Plugin::getName
+	 * @copydoc Plugin::getName
 	 */
 	function getName() {
 		return 'ManualPayment';
 	}
 
 	/**
-	 * @see Plugin::getDisplayName
+	 * @copydoc Plugin::getDisplayName
 	 */
 	function getDisplayName() {
 		return __('plugins.paymethod.manual.displayName');
 	}
 
 	/**
-	 * @see Plugin::getDescription
+	 * @copydoc Plugin::getDescription
 	 */
 	function getDescription() {
 		return __('plugins.paymethod.manual.description');
 	}
 
 	/**
-	 * @see Plugin::register
+	 * @copydoc Plugin::register
 	 */
 	function register($category, $path) {
 		if (parent::register($category, $path)) {
@@ -53,7 +53,7 @@ class ManualPaymentPlugin extends PaymethodPlugin {
 	}
 
 	/**
-	 * @copydoc PaymentPlugin::getSettingsForm()
+	 * @copydoc PaymethodPlugin::getSettingsForm()
 	 */
 	function getSettingsForm($context) {
 		$this->import('ManualPaymentSettingsForm');
@@ -61,7 +61,7 @@ class ManualPaymentPlugin extends PaymethodPlugin {
 	}
 
 	/**
-	 * @copydoc PaymentPlugin::isConfigured
+	 * @copydoc PaymethodPlugin::isConfigured
 	 */
 	function isConfigured($context) {
 		if (!$context) return false;
@@ -70,16 +70,18 @@ class ManualPaymentPlugin extends PaymethodPlugin {
 	}
 
 	/**
-	 * @copydoc PaymethodPlugin::displayPaymentForm
+	 * @copydoc PaymethodPlugin::getPaymentForm
 	 */
 	function getPaymentForm($context, $queuedPayment) {
 		if (!$this->isConfigured($context)) return null;
 
 		AppLocale::requireComponents(LOCALE_COMPONENT_APP_COMMON);
 
+		import('lib.pkp.classes.form.Form');
 		$paymentForm = new Form($this->getTemplatePath() . 'paymentForm.tpl');
+		$paymentManager = Application::getPaymentManager($context);
 		$paymentForm->setData(array(
-			'itemName' => $queuedPayment->getName(),
+			'itemName' => $paymentManager->getPaymentName($queuedPayment),
 			'itemAmount' => $queuedPayment->getAmount()>0?$queuedPayment->getAmount():null,
 			'itemCurrencyCode' => $queuedPayment->getAmount()>0?$queuedPayment->getCurrencyCode():null,
 			'manualInstructions' => $this->getSetting($context->getId(), 'manualInstructions'),
@@ -100,8 +102,9 @@ class ManualPaymentPlugin extends PaymethodPlugin {
 		$op = isset($args[0])?$args[0]:null;
 		$queuedPaymentId = isset($args[1])?((int) $args[1]):0;
 
+		$queuedPaymentDao = DAORegistry::getDAO('QueuedPaymentDAO');
+		$queuedPayment = $queuedPaymentDao->getById($queuedPaymentId);
 		$paymentManager = Application::getPaymentManager($context);
-		$queuedPayment = $paymentManager->getQueuedPayment($queuedPaymentId);
 		// if the queued payment doesn't exist, redirect away from payments
 		if (!$queuedPayment) $request->redirect(null, 'index');
 
@@ -118,7 +121,7 @@ class ManualPaymentPlugin extends PaymethodPlugin {
 					'contextName' => $context->getLocalizedName(),
 					'userFullName' => $user?$user->getFullName():('(' . __('common.none') . ')'),
 					'userName' => $user?$user->getUsername():('(' . __('common.none') . ')'),
-					'itemName' => $queuedPayment->getName(),
+					'itemName' => $paymentManager->getPaymentName($queuedPayment),
 					'itemCost' => $queuedPayment->getAmount(),
 					'itemCurrencyCode' => $queuedPayment->getCurrencyCode()
 				));
@@ -138,14 +141,14 @@ class ManualPaymentPlugin extends PaymethodPlugin {
 	}
 
 	/**
-	 * @see Plugin::getInstallEmailTemplatesFile
+	 * @copydoc Plugin::getInstallEmailTemplatesFile
 	 */
 	function getInstallEmailTemplatesFile() {
 		return ($this->getPluginPath() . DIRECTORY_SEPARATOR . 'emailTemplates.xml');
 	}
 
 	/**
-	 * @see Plugin::getInstallEmailTemplateDataFile
+	 * @copydoc Plugin::getInstallEmailTemplateDataFile
 	 */
 	function getInstallEmailTemplateDataFile() {
 		return ($this->getPluginPath() . '/locale/{$installedLocale}/emailTemplates.xml');
@@ -155,8 +158,6 @@ class ManualPaymentPlugin extends PaymethodPlugin {
 	 * @copydoc Plugin::getTemplatePath()
 	 */
 	function getTemplatePath($inCore = false) {
-		return $this->getTemplateResourceName() . ':templates/';
+		return parent::getTemplatePath($inCore) . 'templates/';
 	}
 }
-
-?>
