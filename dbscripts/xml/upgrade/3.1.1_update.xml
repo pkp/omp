@@ -41,4 +41,9 @@
 	<sql>
 		<query>ALTER TABLE submission_files DROP COLUMN user_group_id</query>
 	</sql>
+	<sql><!-- pkp/pkp-lib#3311 rename subject(EnabledSubmission, EnabledWorkflow, Required) to subjects(EnabledSubmission, EnabledWorkflow, Required) in press_settings -->
+		<query>UPDATE press_settings SET setting_name = 'subjectsEnabledSubmission' WHERE setting_name = 'subjectEnabledSubmission'</query>
+		<query>UPDATE press_settings SET setting_name = 'subjectsEnabledWorkflow' WHERE setting_name = 'subjectEnabledWorkflow'</query>
+		<query>UPDATE press_settings SET setting_name = 'subjectsRequired' WHERE setting_name = 'subjectRequired'</query>
+	</sql>
 </data>
