@@ -106,7 +106,7 @@ class CatalogEntryCatalogMetadataForm extends Form {
 			);
 		}
 		$volumeEditorsListData = array(
-			'collection' => array('items' => $volumeEditorsListItems),
+			'items' => $volumeEditorsListItems,
 			'inputName' => 'volumeEditors[]',
 			'selected' => $this->getData('volumeEditors') ? $this->getData('volumeEditors') : [],
 			'i18n' => array(
