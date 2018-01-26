@@ -11,6 +11,8 @@
   -->
 
 <install version="3.1.0.0">
+	<code function="checkPhpVersion" />
+
 	<!-- there are some column and table name changes that need to occur first. -->
 	<upgrade minversion="0.9.9.0" maxversion="1.0.9.0">
 		<!-- Upgrade prior versions to 1.1.0.0 -->
