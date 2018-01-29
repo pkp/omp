@@ -27,7 +27,6 @@
 	<message key="editor.monograph.internalReview">Iniciar avaliação interna</message>
 	<message key="editor.monograph.internalReviewDescription">Iniciando avaliação interna para esta submissão. Arquivos que fazem parte da submissão são listados a seguir, para que os escolhidos sejam encaminhados para avaliação.</message>
 	<message key="editor.monograph.externalReview">Iniciar avaliação externa</message>
-	<message key="editor.submissions.lastAssigned">Mais recente</message>
 	<message key="editor.monograph.final.selectFinalDraftFiles">Escolher versão final de arquivo</message>
 	<message key="editor.monograph.final.currentFiles">Versões finais atuais de arquivos</message>
 	<message key="editor.monograph.copyediting.currentFiles">Arquivos atuais</message>

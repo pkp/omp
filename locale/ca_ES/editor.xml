@@ -27,7 +27,6 @@
 	<message key="editor.monograph.internalReview">Comença la revisió interna</message>
 	<message key="editor.monograph.internalReviewDescription">Esteu a punt de començar una revisió interna d'aquesta tramesa.  Els fitxers que formen part de la tramesa s'enumeren a sota i els podeu seleccionar per revisar-los.</message>
 	<message key="editor.monograph.externalReview">Comença la revisió externa</message>
-	<message key="editor.submissions.lastAssigned">Darrera tramesa</message>
 	<message key="editor.monograph.final.selectFinalDraftFiles">Seleccioneu els fitxers d'esborrany final</message>
 	<message key="editor.monograph.final.currentFiles">Fitxers d'esborrany final actuals</message>
 	<message key="editor.monograph.copyediting.currentFiles">Fitxers actuals</message>
