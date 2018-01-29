@@ -549,6 +549,34 @@ class Upgrade extends Installer {
 
 		$submissionFileDao->update('DELETE FROM signoffs WHERE signoff_id=?', array($signoffId));
 	}
+
+	/**
+	 * If StaticPages table exists we should port the data as NMIs
+	 * @return boolean
+	 */
+	function migrateStaticPagesToNavigationMenuItems() {
+			if ($this->tableExists('static_pages')) {
+					$contextDao = Application::getContextDAO();
+					$navigationMenuItemDao = DAORegistry::getDAO('NavigationMenuItemDAO');
+
+					import('plugins.generic.staticPages.classes.StaticPagesDAO');
+
+					$staticPagesDao = new StaticPagesDAO();
+
+					$contexts = $contextDao->getAll();
+					while ($context = $contexts->next()) {
+							$contextStaticPages = $staticPagesDao->getByContextId($context->getId())->toAssociativeArray();
+							foreach($contextStaticPages as $staticPage) {
+									$retNMIId = $navigationMenuItemDao->portStaticPage($staticPage);
+									if ($retNMIId) {
+											$staticPagesDao->deleteById($staticPage->getId());
+									}
+							}
+					}
+			}
+
+			return true;
+	}
 }
 
 ?>
