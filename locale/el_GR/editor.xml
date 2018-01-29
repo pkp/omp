@@ -28,14 +28,13 @@
 	<message key="editor.monograph.internalReview">Έναρξη Εσωτερικής Αξιολόγησης</message>
 	<message key="editor.monograph.internalReviewDescription">Είτε έτοιμοι να ξεκινήσετε ένα γύρο εσωτερικής αξιολόγησης για την υποβολή. Τα αρχεία που αποτελούν μέρος της υποβολής παρατίθενται παρακάτω και μπορούν να επιλεγούν για αξιολόγηση.</message>
 	<message key="editor.monograph.externalReview">Έναρξη Εξωτερικής Αξιολόγησης</message>
-	<message key="editor.submissions.lastAssigned">Πιο πρόσφατη</message>
 	<message key="editor.monograph.final.selectFinalDraftFiles">Επιλογή Αρχείων Τελικού Κειμένου</message>
 	<message key="editor.monograph.final.currentFiles">Τρέχοντα Αρχεία Τελικού Κειμένου</message>
 
 	<!-- Stage Participants grid -->
 	<message key="editor.monograph.copyediting.currentFiles">Τρέχοντα Αρχεία</message>
 	<message key="editor.monograph.copyediting.personalMessageToUser">Μήνυμα σε χρήστη</message>
-	
+
 	<!-- Editorial Legend -->
 	<message key="editor.monograph.legend.submissionActions">Ενέργεια Υποβολής</message>
 	<message key="editor.monograph.legend.submissionActionsDescription">Συνολικές ενέργειες και επιλογές υποβολής.</message>
