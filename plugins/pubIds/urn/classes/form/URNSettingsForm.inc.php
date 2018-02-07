@@ -66,6 +66,10 @@ class URNSettingsForm extends Form {
 			if ($form->getData('urnSuffix') == 'pattern' && $form->getData('enableSubmissionURN')) return $urnSubmissionSuffixPattern != '';
 			return true;
 		}));
+		$this->addCheck(new FormValidatorCustom($this, 'urnChapterSuffixPattern', 'required', 'plugins.pubIds.urn.manager.settings.form.urnChapterSuffixPatternRequired', function($urnChapterSuffixPattern) use ($form) {
+			if ($form->getData('urnSuffix') == 'pattern' && $form->getData('enableChapterURN')) return $urnChapterSuffixPattern != '';
+			return true;
+		}));
 		$this->addCheck(new FormValidatorCustom($this, 'urnRepresentationSuffixPattern', 'required', 'plugins.pubIds.urn.manager.settings.form.urnRepresentationSuffixPatternRequired', function($urnRepresentationSuffixPattern) use ($form) {
 			if ($form->getData('urnSuffix') == 'pattern' && $form->getData('enableRepresentationURN')) return $urnRepresentationSuffixPattern != '';
 			return true;
@@ -153,11 +157,13 @@ class URNSettingsForm extends Form {
 	function _getFormFields() {
 		return array(
 			'enableSubmissionURN' => 'bool',
+			'enableChapterURN' => 'bool',
 			'enableRepresentationURN' => 'bool',
 			'enableSubmissionFileURN' => 'bool',
 			'urnPrefix' => 'string',
 			'urnSuffix' => 'string',
 			'urnSubmissionSuffixPattern' => 'string',
+			'urnChapterSuffixPattern' => 'string',
 			'urnRepresentationSuffixPattern' => 'string',
 			'urnSubmissionFileSuffixPattern' => 'string',
 			'urnCheckNo' => 'bool',

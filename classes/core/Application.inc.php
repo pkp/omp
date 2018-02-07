@@ -28,6 +28,8 @@ define('ASSOC_TYPE_PRESS',			0x0000200);
 define('ASSOC_TYPE_CATEGORY',			0x000020D);
 define('ASSOC_TYPE_SERIES',			ASSOC_TYPE_SECTION);
 
+define('ASSOC_TYPE_CHAPTER', 0x0000214);
+
 define('CONTEXT_PRESS', 1);
 
 class Application extends PKPApplication {

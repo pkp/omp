@@ -67,6 +67,10 @@ class DOISettingsForm extends Form {
 			if ($form->getData('doiSuffix') == 'pattern' && $form->getData('enableSubmissionDoi')) return $doiSubmissionSuffixPattern != '';
 			return true;
 		}));
+		$this->addCheck(new FormValidatorCustom($this, 'doiChapterSuffixPattern', 'required', 'plugins.pubIds.doi.manager.settings.doiChapterSuffixPatternRequired', function($doiChapterSuffixPattern) use ($form) {
+			if ($form->getData('doiSuffix') == 'pattern' && $form->getData('enableChapterDoi')) return $doiChapterSuffixPattern != '';
+			return true;
+		}));
 		$this->addCheck(new FormValidatorCustom($this, 'doiRepresentationSuffixPattern', 'required', 'plugins.pubIds.doi.manager.settings.doiRepresentationSuffixPatternRequired', function($doiRepresentationSuffixPattern) use ($form) {
 			if ($form->getData('doiSuffix') == 'pattern' && $form->getData('enableRepresentationDoi')) return $doiRepresentationSuffixPattern != '';
 			return true;
@@ -137,11 +141,13 @@ class DOISettingsForm extends Form {
 	function _getFormFields() {
 		return array(
 			'enableSubmissionDoi' => 'bool',
+			'enableChapterDoi' => 'bool',
 			'enableRepresentationDoi' => 'bool',
 			'enableSubmissionFileDoi' => 'bool',
 			'doiPrefix' => 'string',
 			'doiSuffix' => 'string',
 			'doiSubmissionSuffixPattern' => 'string',
+			'doiChapterSuffixPattern' => 'string',
 			'doiRepresentationSuffixPattern' => 'string',
 			'doiSubmissionFileSuffixPattern' => 'string',
 		);

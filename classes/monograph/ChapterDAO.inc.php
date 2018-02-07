@@ -18,7 +18,7 @@
 import('classes.monograph.Chapter');
 import('classes.monograph.ChapterAuthor');
 
-class ChapterDAO extends DAO {
+class ChapterDAO extends DAO implements PKPPubIdPluginDAO {
 	/**
 	 * Constructor.
 	 */
@@ -69,11 +69,40 @@ class ChapterDAO extends DAO {
 	}
 
 	/**
+	 * Retrieve all chapters of a press.
+	 * @param $pressId int
+	 * @return DAOResultFactory
+	 */
+	function getByContextId($pressId) {
+		$result = $this->retrieve(
+			'SELECT	sc.*
+			FROM submission_chapters sc
+				INNER JOIN submissions s ON (sc.submission_id = s.submission_id)
+			WHERE s.context_id = ?',
+			(int) $pressId
+		);
+
+		return new DAOResultFactory($result, $this, '_returnFromRow');
+	}
+
+	/**
 	 * Get the list of fields for which locale data is stored.
 	 * @return array
 	 */
 	function getLocaleFieldNames() {
 		return array('title', 'subtitle');
+	}
+
+	/**
+	 * Get a list of additional fields that do not have
+	 * dedicated accessors.
+	 * @return array
+	 */
+	function getAdditionalFieldNames() {
+		$additionalFields = parent::getAdditionalFieldNames();
+		// FIXME: Move this to a PID plug-in.
+		$additionalFields[] = 'pub-id::publisher-id';
+		return $additionalFields;
 	}
 
 	/**
@@ -216,6 +245,80 @@ class ChapterDAO extends DAO {
 	 */
 	function getInsertId() {
 		return $this->_getInsertId('submission_chapters', 'chapter_id');
+	}
+
+	/**
+	 * @copydoc PKPPubIdPluginDAO::pubIdExists()
+	 */
+	function pubIdExists($pubIdType, $pubId, $chapterId, $pressId) {
+		$result = $this->retrieve(
+			'SELECT COUNT(*)
+			FROM submission_chapter_settings scs
+			INNER JOIN submission_cahpers sc ON scs.chapter_id = sc.chapter_id
+			INNER JOIN submissions s ON sc.submission_id = s.submission_id
+			WHERE scs.setting_name = ? and scs.setting_value = ? and sc.chapter_id <> ? AND s.context_id = ?',
+			array(
+				'pub-id::'.$pubIdType,
+				$pubId,
+				(int) $chapterId,
+				(int) $pressId
+			)
+		);
+		$returner = $result->fields[0] ? true : false;
+		$result->Close();
+		return $returner;
+	}
+
+	/**
+	 * @copydoc PKPPubIdPluginDAO::changePubId()
+	 */
+	function changePubId($chapterId, $pubIdType, $pubId) {
+		$idFields = array(
+			'chapter_id', 'locale', 'setting_name'
+		);
+		$updateArray = array(
+			'chapter_id' => $chapterId,
+			'locale' => '',
+			'setting_name' => 'pub-id::'.$pubIdType,
+			'setting_type' => 'string',
+			'setting_value' => (string)$pubId
+		);
+		$this->replace('submission_chapter_settings', $updateArray, $idFields);
+	}
+
+	/**
+	 * @copydoc PKPPubIdPluginDAO::deletePubId()
+	 */
+	function deletePubId($chapterId, $pubIdType) {
+		$settingName = 'pub-id::'.$pubIdType;
+		$this->update(
+			'DELETE FROM submission_chapter_settings WHERE setting_name = ? AND chapter_id = ?',
+			array(
+				$settingName,
+				(int)$chapterId
+			)
+		);
+		$this->flushCache();
+	}
+
+	/**
+	 * @copydoc PKPPubIdPluginDAO::deleteAllPubIds()
+	 */
+	function deleteAllPubIds($pressId, $pubIdType) {
+		$pressId = (int) $pressId;
+		$settingName = 'pub-id::'.$pubIdType;
+
+		$chapters = $this->getByContextId($pressId);
+		while ($chapter = $chapters->next()) {
+			$this->update(
+				'DELETE FROM submission_chapter_settings WHERE setting_name = ? AND chapter_id = ?',
+				array(
+					$settingName,
+					(int)$chapter->getId()
+				)
+			);
+		}
+		$this->flushCache();
 	}
 }
 

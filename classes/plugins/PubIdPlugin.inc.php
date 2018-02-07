@@ -29,6 +29,33 @@ abstract class PubIdPlugin extends PKPPubIdPlugin {
 	// Protected template methods from PKPPlubIdPlugin
 	//
 	/**
+	 * @copydoc PKPPubIdPlugin::getPubObjectTypes()
+	 */
+	function getPubObjectTypes() {
+		$pubObjectTypes = parent::getPubObjectTypes();
+		array_push($pubObjectTypes, 'Chapter');
+		return $pubObjectTypes;
+	}
+
+	/**
+	 * @copydoc PKPPubIdPlugin::getPubObjects()
+	 */
+	function getPubObjects($pubObjectType, $contextId) {
+		$objectsToCheck = null;
+		switch($pubObjectType) {
+			case 'Chapter':
+				$chapterDao = DAORegistry::getDAO('ChapterDAO');
+				$chapters = $chapterDao->getByContextId($contextId);
+				$objectsToCheck = $chapters->toArray();
+				break;
+			default:
+				$objectsToCheck = parent::getPubObjects($pubObjectType, $contextId);
+				break;
+		}
+		return $objectsToCheck;
+	}
+
+	/**
 	 * @copydoc PKPPubIdPlugin::getPubId()
 	 */
 	function getPubId($pubObject) {
@@ -46,15 +73,20 @@ abstract class PubIdPlugin extends PKPPubIdPlugin {
 		$submission = ($pubObjectType == 'Submission' ? $pubObject : null);
 		$representation = ($pubObjectType == 'Representation' ? $pubObject : null);
 		$submissionFile = ($pubObjectType == 'SubmissionFile' ? $pubObject : null);
+		$chapter = ($pubObjectType == 'Chapter' ? $pubObject : null);
 
 		// Get the context id.
 		if ($pubObjectType == 'Submission') {
 			$contextId = $pubObject->getContextId();
 		} else {
 			// Retrieve the submission.
-			assert(is_a($pubObject, 'Representation') || is_a($pubObject, 'SubmissionFile'));
 			$submissionDao = Application::getSubmissionDAO();
-			$submission = $submissionDao->getById($pubObject->getSubmissionId(), null, true);
+			if (is_a($pubObject, 'Chapter')) {
+				$submission = $submissionDao->getById($pubObject->getMonographId(), null, true);
+			} else {
+				assert(is_a($pubObject, 'Representation') || is_a($pubObject, 'SubmissionFile'));
+				$submission = $submissionDao->getById($pubObject->getSubmissionId(), null, true);
+			}
 			if (!$submission) return null;
 			// Now we can identify the context.
 			$contextId = $submission->getContextId();
@@ -97,6 +129,11 @@ abstract class PubIdPlugin extends PKPPubIdPlugin {
 					$pubIdSuffix = PKPString::regexp_replace('/%m/', $submission->getId(), $pubIdSuffix);
 				}
 
+				if ($chapter) {
+					// %c - chapter id
+					$pubIdSuffix = PKPString::regexp_replace('/%c/', $chapter->getId(), $pubIdSuffix);
+				}
+
 				if ($representation) {
 					// %f - publication format id
 					$pubIdSuffix = PKPString::regexp_replace('/%f/', $representation->getId(), $pubIdSuffix);
@@ -116,12 +153,16 @@ abstract class PubIdPlugin extends PKPPubIdPlugin {
 					$pubIdSuffix .= '.' . $submission->getId();
 				}
 
+				if ($chapter) {
+					$pubIdSuffix .= '.' . $chapter->getId();
+				}
+
 				if ($representation) {
 					$pubIdSuffix .= '.' . $representation->getId();
 				}
 
 				if ($submissionFile) {
-					$pubIdSuffix .= '.' . $submissionFile->getFileId();
+					$pubIdSuffix .= '.s' . $submissionFile->getFileId();
 				}
 		}
 		if (empty($pubIdSuffix)) return null;
@@ -132,6 +173,12 @@ abstract class PubIdPlugin extends PKPPubIdPlugin {
 		return $pubId;
 	}
 
+	/**
+	 * @copydoc PKPPubIdPlugin::getDAOs()
+	 */
+	function getDAOs() {
+		return array_merge(parent::getDAOs(), array('Chapter' => DAORegistry::getDAO('ChapterDAO')));
+	}
 
 }
 

@@ -180,6 +180,7 @@ class DOIPubIdPlugin extends PubIdPlugin {
 			'Submission' => 'doiSubmissionSuffixPattern',
 			'Representation' => 'doiRepresentationSuffixPattern',
 			'SubmissionFile' => 'doiSubmissionFileSuffixPattern',
+			'Chapter' => 'doiChapterSuffixPattern',
 		);
 	}
 

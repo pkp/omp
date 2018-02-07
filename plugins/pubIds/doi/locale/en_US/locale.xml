@@ -13,7 +13,7 @@
  
 <locale name="en_US" full_name="U.S. English">
 	<message key="plugins.pubIds.doi.displayName">DOI</message>
-	<message key="plugins.pubIds.doi.description">This plugin enables the assignment of the Digital Object Identifiers to monographs, publication formats and files in OMP.</message>
+	<message key="plugins.pubIds.doi.description">This plugin enables the assignment of the Digital Object Identifiers to monographs, chapters, publication formats and files in OMP.</message>
 	<message key="plugins.pubIds.doi.readerDisplayName">DOI:</message>
 
 	<!-- settings form -->
@@ -23,6 +23,7 @@
 	<message key="plugins.pubIds.doi.manager.settings.doiObjectsRequired">Please choose the objects DOIs should be assigned to.</message>
 	<message key="plugins.pubIds.doi.manager.settings.explainDois">Please select the publishing objects that will have Digital Object Identifiers (DOI) assigned:</message>
 	<message key="plugins.pubIds.doi.manager.settings.enableSubmissionDoi">Monographs</message>
+	<message key="plugins.pubIds.doi.manager.settings.enableChapterDoi">Chapters</message>
 	<message key="plugins.pubIds.doi.manager.settings.enableRepresentationDoi">Publication Formats</message>
 	<message key="plugins.pubIds.doi.manager.settings.enableSubmissionFileDoi">Files</message>
 
@@ -32,15 +33,17 @@
 
 	<message key="plugins.pubIds.doi.manager.settings.doiSuffix">DOI Suffix</message>
 	<message key="plugins.pubIds.doi.manager.settings.doiSuffix.description">A DOI suffix can take any form, but must be unique among all publishing objects with the same DOI prefix assigned:</message>
-	<message key="plugins.pubIds.doi.manager.settings.doiSuffixPattern">Use the pattern entered below to generate DOI suffixes. Use %p for press initials, %m for the monograph id, %f for the publication format id, %s for the file id and %x for "Custom Identifier".</message>
+	<message key="plugins.pubIds.doi.manager.settings.doiSuffixPattern">Use the pattern entered below to generate DOI suffixes. Use %p for press initials, %m for the monograph id, %c for chapter id, %f for the publication format id, %s for the file id and %x for "Custom Identifier".</message>
 	<message key="plugins.pubIds.doi.manager.settings.doiSuffixPattern.example">For example, press%ppub%r could create a DOI such as 10.1234/pressESPpub100</message>
 	<message key="plugins.pubIds.doi.manager.settings.doiSuffixPattern.submissions">for monographs</message>
+	<message key="plugins.pubIds.doi.manager.settings.doiSuffixPattern.chapters">for chapters</message>
 	<message key="plugins.pubIds.doi.manager.settings.doiSuffixPattern.representations">for publication formats</message>
 	<message key="plugins.pubIds.doi.manager.settings.doiSuffixPattern.files">for files</message>
 	<message key="plugins.pubIds.doi.manager.settings.doiSuffixDefault">Use default patterns.</message>
-	<message key="plugins.pubIds.doi.manager.settings.doiSuffixDefault.description"><![CDATA[%p.%m for monographs<br />%p.%m.%f for publication formats<br />%p.%m.%f.%s for files.]]></message>
+	<message key="plugins.pubIds.doi.manager.settings.doiSuffixDefault.description"><![CDATA[%p.%m for monographs<br />%p.%m.c%c for chapters<br />%p.%m.%f for publication formats<br />%p.%m.%f.%s for files.]]></message>
 	<message key="plugins.pubIds.doi.manager.settings.doiSuffixCustomIdentifier">Enter an individual DOI suffix for each published item. You'll find an additional DOI input field on each item's meta-data page.</message>
 	<message key="plugins.pubIds.doi.manager.settings.doiSubmissionSuffixPatternRequired">Please enter the DOI suffix pattern for monographs.</message>
+	<message key="plugins.pubIds.doi.manager.settings.doiChapterSuffixPatternRequired">Please enter the DOI suffix pattern for chapters.</message>
 	<message key="plugins.pubIds.doi.manager.settings.doiRepresentationSuffixPatternRequired">Please enter the DOI suffix pattern for publication formats.</message>
 	<message key="plugins.pubIds.doi.manager.settings.doiSubmissionFileSuffixPatternRequired">Please enter the DOI suffix pattern for files.</message>
 	
@@ -51,6 +54,7 @@
 	<!-- metadata form -->
 	<message key="plugins.pubIds.doi.editor.doi">DOI</message>
 	<message key="plugins.pubIds.doi.editor.doiObjectTypeSubmission">monograph</message>
+	<message key="plugins.pubIds.doi.editor.doiObjectTypeChapter">chapter</message>
 	<message key="plugins.pubIds.doi.editor.doiObjectTypeRepresentation">publication format</message>
 	<message key="plugins.pubIds.doi.editor.doiObjectTypeSubmissionFile">file</message>
 	<message key="plugins.pubIds.doi.editor.customSuffixMissing">The DOI cannot be assigned because the custom suffix is missing.</message>

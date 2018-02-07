@@ -201,6 +201,7 @@ class URNPubIdPlugin extends PubIdPlugin {
 			'Submission' => 'urnSubmissionSuffixPattern',
 			'Representation' => 'urnRepresentationSuffixPattern',
 			'SubmissionFile' => 'urnSubmissionFileSuffixPattern',
+			'Chapter' => 'urnChapterSuffixPattern',
 		);
 	}
 

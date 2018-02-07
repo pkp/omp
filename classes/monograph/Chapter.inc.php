@@ -143,6 +143,36 @@ class Chapter extends DataObject {
 		}
 		return join(', ', $authorNames);
 	}
+
+	/**
+	 * Get stored public ID of the chapter.
+	 * @param @literal $pubIdType string One of the NLM pub-id-type values or
+	 * 'other::something' if not part of the official NLM list
+	 * (see <http://dtd.nlm.nih.gov/publishing/tag-library/n-4zh0.html>). @endliteral
+	 * @return int
+	 */
+	function getStoredPubId($pubIdType) {
+		return $this->getData('pub-id::'.$pubIdType);
+	}
+
+	/**
+	 * Set the stored public ID of the chapter.
+	 * @param $pubIdType string One of the NLM pub-id-type values or
+	 * 'other::something' if not part of the official NLM list
+	 * (see <http://dtd.nlm.nih.gov/publishing/tag-library/n-4zh0.html>).
+	 * @param $pubId string
+	 */
+	function setStoredPubId($pubIdType, $pubId) {
+		$this->setData('pub-id::'.$pubIdType, $pubId);
+	}
+
+	/**
+	 * @copydoc DataObject::getDAO()
+	 */
+	function getDAO() {
+		return DAORegistry::getDAO('ChapterDAO');
+	}
+
 }
 
 ?>

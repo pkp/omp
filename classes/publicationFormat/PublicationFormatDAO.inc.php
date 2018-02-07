@@ -398,7 +398,7 @@ class PublicationFormatDAO extends RepresentationDAO implements PKPPubIdPluginDA
 			FROM publication_format_settings pft
 			INNER JOIN publication_formats p ON pft.publication_format_id = p.publication_format_id
 			INNER JOIN submissions s ON p.submission_id = s.submission_id
-			WHERE pft.setting_name = ? and pft.setting_value = ? and p.submission_id <> ? AND s.context_id = ?',
+			WHERE pft.setting_name = ? and pft.setting_value = ? and p.publication_format_id <> ? AND s.context_id = ?',
 			array(
 				'pub-id::'.$pubIdType,
 				$pubId,
