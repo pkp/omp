@@ -177,7 +177,7 @@ class Upgrade extends Installer {
 				}
 			}
 
-			foreach ((array) $author->getBiography(null) as $locale => $biography) {
+			foreach ((array) $author->getBiography() as $locale => $biography) {
 				if (is_array($biography)) foreach($biography as $locale => $s) {
 					$author->setBiography($s, $locale);
 				}
