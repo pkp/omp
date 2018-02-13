@@ -40,7 +40,7 @@ class CompetingInterestsTest extends ContentBaseTestCase {
 		// Send the submission to review
 		$this->findSubmissionAsEditor('dbarnes', null, self::$fullTitle);
 		$this->sendToReview('External');
-		$this->assignReviewer('agallego', 'Adela Gallego');
+		$this->assignReviewer('Adela Gallego');
 		$this->logOut();
 
 		// Submit review with no competing interests
@@ -86,7 +86,7 @@ class CompetingInterestsTest extends ContentBaseTestCase {
 		// Send the submission to review
 		$this->findSubmissionAsEditor('dbarnes', null, self::$fullTitle);
 		$this->sendToReview('External');
-		$this->assignReviewer('alzacharia', 'Al Zacharia');
+		$this->assignReviewer('Al Zacharia');
 		$this->logOut();
 
 		// Submit review with competing interests
