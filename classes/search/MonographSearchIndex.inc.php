@@ -105,7 +105,7 @@ class MonographSearchIndex extends SubmissionSearchIndex {
 			if (is_array($affiliations)) foreach ($affiliations as $affiliation) { // Localized
 				array_push($authorText, strip_tags($affiliation));
 			}
-			$bios = $author->getBiography();
+			$bios = $author->getBiography(null);
 			if (is_array($bios)) foreach ($bios as $bio) { // Localized
 				array_push($authorText, strip_tags($bio));
 			}
