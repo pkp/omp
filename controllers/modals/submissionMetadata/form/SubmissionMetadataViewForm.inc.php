@@ -71,7 +71,7 @@ class SubmissionMetadataViewForm extends PKPSubmissionMetadataViewForm {
 		$selectCategoryListData = $selectCategoryList->getConfig();
 
 		$templateMgr->assign(array(
-			'hasCategories' => !empty($selectCategoryListData['collection']['items']),
+			'hasCategories' => !empty($selectCategoryListData['items']),
 			'selectCategoryListData' => json_encode($selectCategoryListData),
 			'assignedCategories' => $assignedCategories,
 		));

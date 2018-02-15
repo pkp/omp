@@ -50,11 +50,11 @@ class JlockehartSubmissionTest extends ContentBaseTestCase {
 		$this->findSubmissionAsEditor('dbarnes', null, $title);
 		$this->sendToReview('Internal');
 		$this->waitForElementPresent('//a[contains(text(), \'Internal Review\')]/*[contains(text(), \'Initiated\')]');
-		$this->assignReviewer('amccrae', 'Aisla McCrae');
+		$this->assignReviewer('Aisla McCrae');
 		$this->sendToReview('External', 'Internal');
 		$this->waitForElementPresent('//a[contains(text(), \'External Review\')]/*[contains(text(), \'Initiated\')]');
-		$this->assignReviewer('agallego', 'Adela Gallego');
-		$this->assignReviewer('gfavio', 'Gonzalo Favio');
+		$this->assignReviewer('Adela Gallego');
+		$this->assignReviewer('Gonzalo Favio');
 		$this->logOut();
 
 		$this->performReview('agallego', null, $title, null, 'I recommend that the author revise this submission.');

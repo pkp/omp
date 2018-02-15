@@ -29,12 +29,11 @@
 	<message key="editor.monograph.internalReview">Iniciar revisión interna</message>
 	<message key="editor.monograph.internalReviewDescription">Está a punto de iniciar una revisión interna para este envío.  Los archivos que formen parte de este envío se enumeran abajo y se pueden seleccionar para su revisión.</message>
 	<message key="editor.monograph.externalReview">Iniciar revisión externa</message>
-	<message key="editor.submissions.lastAssigned">Última(s)</message>
 	<message key="editor.monograph.final.selectFinalDraftFiles">Seleccionar los archivos del borrador final</message>
 	<message key="editor.monograph.final.currentFiles">Archivos actuales del borrador final</message>
 	<message key="editor.monograph.copyediting.currentFiles">Archivos actuales</message>
 	<message key="editor.monograph.copyediting.personalMessageToUser">Mensaje al usuario</message>
-	
+
 	<!-- Editorial Legend -->
 	<message key="editor.monograph.legend.submissionActions">Acciones de envío</message>
 	<message key="editor.monograph.legend.submissionActionsDescription">Opciones y acciones generales de envío.</message>

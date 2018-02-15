@@ -110,8 +110,8 @@ class AfinkelSubmissionTest extends ContentBaseTestCase {
 
 		$this->findSubmissionAsEditor('dbarnes', null, $title);
 		$this->sendToReview('External');
-		$this->assignReviewer('alzacharia', 'Al Zacharia');
-		$this->assignReviewer('gfavio', 'Gonzalo Favio');
+		$this->assignReviewer('Al Zacharia');
+		$this->assignReviewer('Gonzalo Favio');
 
 		// FIXME: reviewers need to be assigned, decision recorded
 
