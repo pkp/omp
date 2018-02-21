@@ -28,7 +28,6 @@
 	<message key="editor.monograph.internalReview">Procéder à l'évaluation interne</message>
 	<message key="editor.monograph.internalReviewDescription">Vous entamez le processus d'évaluation interne de cette soumission. La liste des fichiers faisant partie de cette soumission est affichée ci-dessous. Ils peuvent être sélectionnés pour être révisés.</message>
 	<message key="editor.monograph.externalReview">Procéder à l'évaluation externe</message>
-	<message key="editor.submissions.lastAssigned">Le plus récent</message>
 	<message key="editor.monograph.final.selectFinalDraftFiles">Choisir les fichiers d'épreuves finales</message>
 	<message key="editor.monograph.final.currentFiles">Fichiers courants d'épreuves finales</message>
 
@@ -67,7 +66,7 @@
 	<message key="editor.monograph.editorial.fairCopy">Copie au net</message>
 	<message key="editor.monograph.editorial.fairCopyDescription">Le réviseur télécharge une copie au net de la soumission qui sera ensuite examinée par le rédacteur en chef, avant de passer à l'étape de publication.</message>
 	<!-- Production/Proof related -->
-	<message key="editor.submission.production.introduction"><![CDATA[À l'étape de publication, le rédacteur en chef choisit le format du livre (ex.: numérique, couverture souple, etc.) dans 
+	<message key="editor.submission.production.introduction"><![CDATA[À l'étape de publication, le rédacteur en chef choisit le format du livre (ex.: numérique, couverture souple, etc.) dans
  <span class="pkp_help_title">Formats de publication</span>. Le rédacteur metteur en page préparera ensuite des fichiers publiables à partir des fichiers destinés à la publication. Les fichiers publiables sont téléchargés pour chaque format dans <span class="pkp_help_title">Épreuves</span>, où ils seront révisés. Le livre est <em>Disponible</em> (c'est-à-dire publié) pour chacun des formats dans <span class="pkp_help_title">Formats de publication</span>, lorsque les <em>Épreuves</em> ont été vérifiées et approuvées, et on indique que l'entrée de catalogue a été ajoutée à l'entrée de catalogue du livre.]]></message>
 
 	<message key="editor.submission.production.productionReadyFilesDescription"><![CDATA[Le rédacteur metteur en page prépare ces fichiers pour chaque format de publication, puis il télécharge les  <span class="pkp_help_title">Épreuves</span> appropriées pour révision.]]></message>

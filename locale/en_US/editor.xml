@@ -27,7 +27,6 @@
 	<message key="editor.monograph.internalReview">Initiate Internal Review</message>
 	<message key="editor.monograph.internalReviewDescription">Select files below to send them to the internal review stage.</message>
 	<message key="editor.monograph.externalReview">Initiate External Review</message>
-	<message key="editor.submissions.lastAssigned">Latest</message>
 	<message key="editor.monograph.final.selectFinalDraftFiles">Select Final Draft Files</message>
 	<message key="editor.monograph.final.currentFiles">Current Final Draft Files</message>
 	<message key="editor.monograph.copyediting.currentFiles">Current Files</message>

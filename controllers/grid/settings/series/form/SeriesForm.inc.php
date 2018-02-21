@@ -136,7 +136,7 @@ class SeriesForm extends PKPSectionForm {
 		// Series Editors
 		$seriesEditorsListData = $this->_getSubEditorsListPanelData($press->getId(), $request);
 		$templateMgr->assign(array(
-			'hasSubEditors' => !empty($seriesEditorsListData['collection']['items']),
+			'hasSubEditors' => !empty($seriesEditorsListData['items']),
 			'subEditorsListData' => json_encode($seriesEditorsListData),
 		));
 
@@ -151,7 +151,7 @@ class SeriesForm extends PKPSectionForm {
 		$categoriesListData = $categoriesList->getConfig();
 
 		$templateMgr->assign(array(
-			'hasCategories' => !empty($categoriesListData['collection']['items']),
+			'hasCategories' => !empty($categoriesListData['items']),
 			'categoriesListData' => json_encode($categoriesListData),
 		));
 

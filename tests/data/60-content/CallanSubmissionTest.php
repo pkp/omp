@@ -72,10 +72,10 @@ class CallanSubmissionTest extends ContentBaseTestCase {
 		$this->findSubmissionAsEditor('dbarnes', null, $title);
 		$this->sendToReview('Internal');
 		$this->waitForElementPresent('//a[contains(text(), \'Internal Review\')]/*[contains(text(), \'Initiated\')]');
-		$this->assignReviewer('phudson', 'Paul Hudson');
+		$this->assignReviewer('Paul Hudson');
 		$this->sendToReview('External', 'Internal');
 		$this->waitForElementPresent('//a[contains(text(), \'External Review\')]/*[contains(text(), \'Initiated\')]');
-		$this->assignReviewer('gfavio', 'Gonzalo Favio');
+		$this->assignReviewer('Gonzalo Favio');
 		$this->recordEditorialDecision('Accept Submission');
 		$this->waitForElementPresent('//a[contains(text(), \'Copyediting\')]/*[contains(text(), \'Initiated\')]');
 		$this->assignParticipant('Copyeditor', 'Sarah Vogt');

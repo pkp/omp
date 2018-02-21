@@ -27,7 +27,6 @@
 	<message key="editor.monograph.internalReview">Interne Begutachtung starten</message>
 	<message key="editor.monograph.internalReviewDescription">Sie starten hiermit das interne Begutachtungsverfahren. Dateien, die Teil des eingereichten Manuskripts sind, finden Sie unten aufgelistet und können von Ihnen zur Begutachtung ausgewählt werden.</message>
 	<message key="editor.monograph.externalReview">Externe Begutachtung starten</message>
-	<message key="editor.submissions.lastAssigned">Letzte</message>
 	<message key="editor.monograph.final.selectFinalDraftFiles">Endfassungen auswählen</message>
 	<message key="editor.monograph.final.currentFiles">Aktuelle Endfassungen</message>
 	<message key="editor.monograph.copyediting.currentFiles">Aktuelle Dateien</message>
