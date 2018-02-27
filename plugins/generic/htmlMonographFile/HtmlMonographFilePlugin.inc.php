@@ -17,11 +17,11 @@ import('lib.pkp.classes.plugins.GenericPlugin');
 
 class HtmlMonographFilePlugin extends GenericPlugin {
 	/**
-	 * @see Plugin::register()
+	 * @copydoc Plugin::register()
 	 */
-	function register($category, $path) {
-		if (parent::register($category, $path)) {
-			if ($this->getEnabled()) {
+	function register($category, $path, $mainContextId = null) {
+		if (parent::register($category, $path, $mainContextId)) {
+			if ($this->getEnabled($mainContextId)) {
 				HookRegistry::register('CatalogBookHandler::view', array($this, 'viewCallback'));
 				HookRegistry::register('CatalogBookHandler::download', array($this, 'downloadCallback'));
 				$this->_registerTemplateResource();

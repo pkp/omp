@@ -26,10 +26,10 @@ abstract class ViewableFilePlugin extends PKPViewableFilePlugin {
 	/**
 	 * @copydoc Plugin::register()
 	 */
-	function register($category, $path) {
-		if (!parent::register($category, $path)) return false;
+	function register($category, $path, $mainContextId = null) {
+		if (!parent::register($category, $path, $mainContextId)) return false;
 
-		if ($this->getEnabled()) {
+		if ($this->getEnabled($mainContextId)) {
 			HookRegistry::register('CatalogBookHandler::view', array($this, 'callback'));
 		}
 		return true;
