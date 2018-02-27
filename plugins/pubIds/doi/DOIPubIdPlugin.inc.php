@@ -19,11 +19,13 @@ import('classes.plugins.PubIdPlugin');
 class DOIPubIdPlugin extends PubIdPlugin {
 
 	/**
-	 * @see Plugin::register
+	 * @copydoc Plugin::register()
 	 */
-	function register($category, $path) {
-		if (parent::register($category, $path) && $this->getEnabled()) {
-			$this->_registerTemplateResource();
+	function register($category, $path, $mainContextId = null) {
+		if (parent::register($category, $path, $mainContextId)) {
+			if ($this->getEnabled($mainContextId)) {
+				$this->_registerTemplateResource();
+			}
 			return true;
 		}
 		return false;
