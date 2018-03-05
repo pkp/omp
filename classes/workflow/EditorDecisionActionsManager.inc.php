@@ -88,20 +88,22 @@ class EditorDecisionActionsManager {
 	}
 
 	/**
-	 * Get the available decisions by stage ID.
+	 * Get the available decisions by stage ID and user making decision permissions,
+	 * if the user can make decisions or if it is recommendOnly user.
 	 * @param $request PKPRequest
 	 * @param $stageId int WORKFLOW_STAGE_ID_...
+	 * @param $makeDecision boolean If the user can make decisions
 	 */
-	static function getStageDecisions($request, $stageId) {
+	static function getStageDecisions($request, $stageId, $makeDecision = true) {
 		switch ($stageId) {
 			case WORKFLOW_STAGE_ID_SUBMISSION:
-				return self::_submissionStageDecisions();
+				return self::_submissionStageDecisions($makeDecision);
 			case WORKFLOW_STAGE_ID_INTERNAL_REVIEW:
-				return self::_internalReviewStageDecisions();
+				return self::_internalReviewStageDecisions($makeDecision);
 			case WORKFLOW_STAGE_ID_EXTERNAL_REVIEW:
-				return self::_externalReviewStageDecisions($request);
+				return self::_externalReviewStageDecisions($request, $makeDecision);
 			case WORKFLOW_STAGE_ID_EDITING:
-				return self::_editorialStageDecisions();
+				return self::_editorialStageDecisions($makeDecision);
 			default:
 				assert(false);
 		}
@@ -132,10 +134,14 @@ class EditorDecisionActionsManager {
 	//
 	/**
 	 * Define and return editor decisions for the submission stage.
+	 * If the user cannot make decisions i.e. if it is a recommendOnly user,
+	 * the user can only send the submission to the review stage, and neither
+	 * acept nor decline the submission.
+	 * @param $makeDecision boolean If the user can make decisions
 	 * @return array
 	 */
-	static function _submissionStageDecisions() {
-		static $decisions = array(
+	static function _submissionStageDecisions($makeDecision = true) {
+		$decisions = array(
 			SUBMISSION_EDITOR_DECISION_INTERNAL_REVIEW => array(
 				'name' => 'internalReview',
 				'operation' => 'internalReview',
@@ -146,66 +152,77 @@ class EditorDecisionActionsManager {
 				'name' => 'externalReview',
 				'title' => 'editor.submission.decision.sendExternalReview',
 			),
-			SUBMISSION_EDITOR_DECISION_ACCEPT => array(
-				'name' => 'accept',
-				'operation' => 'promote',
-				'title' => 'editor.submission.decision.skipReview',
-				'toStage' => 'submission.copyediting',
-			),
-			SUBMISSION_EDITOR_DECISION_INITIAL_DECLINE => array(
-				'name' => 'decline',
-				'operation' => 'sendReviews',
-				'title' => 'editor.submission.decision.decline',
-			),
 		);
-
+		if ($makeDecision) {
+			$decisions = array_merge($decisions, array(
+				SUBMISSION_EDITOR_DECISION_ACCEPT => array(
+					'name' => 'accept',
+					'operation' => 'promote',
+					'title' => 'editor.submission.decision.skipReview',
+					'toStage' => 'submission.copyediting',
+				),
+				SUBMISSION_EDITOR_DECISION_INITIAL_DECLINE => array(
+					'name' => 'decline',
+					'operation' => 'sendReviews',
+					'title' => 'editor.submission.decision.decline',
+				),
+			));
+		}
 		return $decisions;
 	}
 
 	/**
 	 * Define and return editor decisions for the review stage.
+	 * If the user cannot make decisions i.e. if it is a recommendOnly user,
+	 * there will be no decisions options in the review stage.
+	 * @param $makeDecision boolean If the user can make decisions
 	 * @return array
 	 */
-	static function _internalReviewStageDecisions() {
-		static $decisions = array(
-			SUBMISSION_EDITOR_DECISION_PENDING_REVISIONS => array(
-				'operation' => 'sendReviewsInReview',
-				'name' => 'requestRevisions',
-				'title' => 'editor.submission.decision.requestRevisions',
-			),
-			SUBMISSION_EDITOR_DECISION_RESUBMIT => array(
-				'name' => 'resubmit',
-				'title' => 'editor.submission.decision.resubmit',
-			),
-			SUBMISSION_EDITOR_DECISION_EXTERNAL_REVIEW => array(
-				'operation' => 'promoteInReview',
-				'name' => 'externalReview',
-				'title' => 'editor.submission.decision.sendExternalReview',
-				'toStage' => 'workflow.review.externalReview',
-			),
-			SUBMISSION_EDITOR_DECISION_ACCEPT => array(
-				'operation' => 'promoteInReview',
-				'name' => 'accept',
-				'title' => 'editor.submission.decision.accept',
-				'toStage' => 'submission.copyediting',
-			),
-			SUBMISSION_EDITOR_DECISION_DECLINE => array(
-				'operation' => 'sendReviewsInReview',
-				'name' => 'decline',
-				'title' => 'editor.submission.decision.decline',
-			),
-		);
-
+	static function _internalReviewStageDecisions($makeDecision = true) {
+		$decisions = array();
+		if ($makeDecision) {
+			$decisions = array(
+				SUBMISSION_EDITOR_DECISION_PENDING_REVISIONS => array(
+					'operation' => 'sendReviewsInReview',
+					'name' => 'requestRevisions',
+					'title' => 'editor.submission.decision.requestRevisions',
+				),
+				SUBMISSION_EDITOR_DECISION_RESUBMIT => array(
+					'name' => 'resubmit',
+					'title' => 'editor.submission.decision.resubmit',
+				),
+				SUBMISSION_EDITOR_DECISION_EXTERNAL_REVIEW => array(
+					'operation' => 'promoteInReview',
+					'name' => 'externalReview',
+					'title' => 'editor.submission.decision.sendExternalReview',
+					'toStage' => 'workflow.review.externalReview',
+				),
+				SUBMISSION_EDITOR_DECISION_ACCEPT => array(
+					'operation' => 'promoteInReview',
+					'name' => 'accept',
+					'title' => 'editor.submission.decision.accept',
+					'toStage' => 'submission.copyediting',
+				),
+				SUBMISSION_EDITOR_DECISION_DECLINE => array(
+					'operation' => 'sendReviewsInReview',
+					'name' => 'decline',
+					'title' => 'editor.submission.decision.decline',
+				),
+			);
+		}
 		return $decisions;
 	}
 
 	/**
 	 * Define and return editor decisions for the review stage.
+	 * If the user cannot make decisions i.e. if it is a recommendOnly user,
+	 * there will be no decisions options in the review stage.
 	 * @param $request PKPRequest
+	 * @param $makeDecision boolean If the user can make decisions
 	 * @return array
 	 */
-	static function _externalReviewStageDecisions($request) {
-		$decisions = self::_internalReviewStageDecisions();
+	static function _externalReviewStageDecisions($request, $makeDecision = true) {
+		$decisions = self::_internalReviewStageDecisions($makeDecision);
 		unset($decisions[SUBMISSION_EDITOR_DECISION_EXTERNAL_REVIEW]);
 		return $decisions;
 	}
@@ -213,9 +230,12 @@ class EditorDecisionActionsManager {
 
 	/**
 	 * Define and return editor decisions for the editorial stage.
+	 * Currently it does not matter if the user cannot make decisions
+	 * i.e. if it is a recommendOnly user for this stage.
+	 * @param $makeDecision boolean If the user cannot make decisions
 	 * @return array
 	 */
-	static function _editorialStageDecisions() {
+	static function _editorialStageDecisions($makeDecision = true) {
 		static $decisions = array(
 			SUBMISSION_EDITOR_DECISION_SEND_TO_PRODUCTION => array(
 				'operation' => 'promote',
@@ -224,7 +244,6 @@ class EditorDecisionActionsManager {
 				'toStage' => 'submission.production',
 			),
 		);
-
 		return $decisions;
 	}
 
