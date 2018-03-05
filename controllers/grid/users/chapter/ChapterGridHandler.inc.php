@@ -37,9 +37,13 @@ class ChapterGridHandler extends CategoryGridHandler {
 			array(ROLE_ID_AUTHOR, ROLE_ID_SUB_EDITOR, ROLE_ID_MANAGER, ROLE_ID_ASSISTANT),
 			array(
 				'fetchGrid', 'fetchRow', 'fetchCategory', 'saveSequence',
-				'addChapter', 'editChapter', 'updateChapter', 'deleteChapter',
+				'addChapter', 'editChapter', 'editChapterTab', 'updateChapter', 'deleteChapter',
 				'addAuthor', 'editAuthor', 'updateAuthor', 'deleteAuthor'
 			)
+		);
+		$this->addRoleAssignment(
+			array(ROLE_ID_SUB_EDITOR, ROLE_ID_MANAGER, ROLE_ID_ASSISTANT),
+			array('identifiers', 'updateIdentifiers', 'clearPubId',)
 		);
 		$this->addRoleAssignment(ROLE_ID_REVIEWER, array('fetchGrid', 'fetchRow'));
 	}
@@ -96,7 +100,7 @@ class ChapterGridHandler extends CategoryGridHandler {
 
 		$this->setTitle('submission.chapters');
 
-		AppLocale::requireComponents(LOCALE_COMPONENT_APP_DEFAULT, LOCALE_COMPONENT_PKP_DEFAULT, LOCALE_COMPONENT_APP_SUBMISSION);
+		AppLocale::requireComponents(LOCALE_COMPONENT_APP_DEFAULT, LOCALE_COMPONENT_PKP_DEFAULT, LOCALE_COMPONENT_APP_SUBMISSION, LOCALE_COMPONENT_PKP_SUBMISSION);
 
 		if (!$this->getReadOnly()) {
 			// Grid actions
@@ -266,14 +270,87 @@ class ChapterGridHandler extends CategoryGridHandler {
 	// Public Chapter Grid Actions
 	//
 	/**
+	 * Edit chapter pub ids
+	 * @param $args array
+	 * @param $request PKPRequest
+	 * @return JSONMessage JSON object
+	 */
+	function identifiers($args, $request) {
+		$monograph = $this->getMonograph();
+		$chapter = $this->_getChapterFromRequest($request);
+
+		import('controllers.tab.pubIds.form.PublicIdentifiersForm');
+		$form = new PublicIdentifiersForm($chapter);
+		$form->initData($request);
+		return new JSONMessage(true, $form->fetch($request));
+	}
+
+	/**
+	 * Update chapter pub ids
+	 * @param $args array
+	 * @param $request PKPRequest
+	 * @return JSONMessage JSON object
+	 */
+	function updateIdentifiers($args, $request) {
+		$monograph = $this->getMonograph();
+		$chapter = $this->_getChapterFromRequest($request);
+
+		import('controllers.tab.pubIds.form.PublicIdentifiersForm');
+		$form = new PublicIdentifiersForm($chapter);
+		$form->readInputData();
+		if ($form->validate($request)) {
+			$form->execute($request);
+			return DAO::getDataChangedEvent();
+		} else {
+			return new JSONMessage(true, $form->fetch($request));
+		}
+	}
+
+	/**
+	 * Clear chapter pub id
+	 * @param $args array
+	 * @param $request PKPRequest
+	 * @return JSONMessage JSON object
+	 */
+	function clearPubId($args, $request) {
+		if (!$request->checkCSRF()) return new JSONMessage(false);
+
+		$monograph = $this->getMonograph();
+		$chapter = $this->_getChapterFromRequest($request);
+
+		import('controllers.tab.pubIds.form.PublicIdentifiersForm');
+		$form = new PublicIdentifiersForm($chapter);
+		$form->clearPubId($request->getUserVar('pubIdPlugIn'));
+		return new JSONMessage(true);
+	}
+
+	/**
 	 * Add a chapter.
 	 * @param $args array
 	 * @param $request Request
 	 */
 	function addChapter($args, $request) {
-		// Calling editChapter() with an empty row id will add
+		// Calling editChapterTab() with an empty row id will add
 		// a new chapter.
-		return $this->editChapter($args, $request);
+		return $this->editChapterTab($args, $request);
+	}
+
+	/**
+	 * Edit a chapter metadata modal
+	 * @param $args array
+	 * @param $request PKPRequest
+	 * @return JSONMessage JSON object
+	 */
+	function editChapter($args, $request) {
+		$chapter = $this->_getChapterFromRequest($request);
+
+		// Check if this is a remote galley
+		$templateMgr = TemplateManager::getManager($request);
+		$templateMgr->assign(array(
+			'submissionId' => $this->getMonograph()->getId(),
+			'chapterId' => $chapter->getId(),
+		));
+		return new JSONMessage(true, $templateMgr->fetch('controllers/grid/users/chapter/editChapter.tpl'));
 	}
 
 	/**
@@ -282,7 +359,7 @@ class ChapterGridHandler extends CategoryGridHandler {
 	 * @param $request PKPRequest
 	 * @return JSONMessage JSON object
 	 */
-	function editChapter($args, $request) {
+	function editChapterTab($args, $request) {
 		$chapter = $this->_getChapterFromRequest($request);
 
 		// Form handling

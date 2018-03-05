@@ -197,6 +197,17 @@
 									</div>
 								{/if}
 
+								{* DOI (requires plugin) *}
+								{foreach from=$pubIdPlugins item=pubIdPlugin}
+									{if $pubIdPlugin->getPubIdType() != 'doi'}
+										{php}continue;{/php}
+									{/if}
+									{assign var=pubId value=$chapter->getStoredPubId($pubIdPlugin->getPubIdType())}
+									{if $pubId}
+										{assign var="doiUrl" value=$pubIdPlugin->getResolvingURL($currentPress->getId(), $pubId)|escape}
+										<div class="doi">{translate key="plugins.pubIds.doi.readerDisplayName"} <a href="{$doiUrl}">{$doiUrl}</a></div>
+									{/if}
+								{/foreach}
 
 								{* Display any files that are assigned to this chapter *}
 								{pluck_files assign="chapterFiles" files=$availableFiles by="chapter" value=$chapterId}
