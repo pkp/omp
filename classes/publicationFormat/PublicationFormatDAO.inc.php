@@ -392,7 +392,7 @@ class PublicationFormatDAO extends RepresentationDAO implements PKPPubIdPluginDA
 	/**
 	 * @copydoc PKPPubIdPluginDAO::pubIdExists()
 	 */
-	function pubIdExists($pubIdType, $pubId, $formatId, $pressId) {
+	function pubIdExists($pubIdType, $pubId, $excludePubObjectId, $contextId) {
 		$result = $this->retrieve(
 			'SELECT COUNT(*)
 			FROM publication_format_settings pft
@@ -402,8 +402,8 @@ class PublicationFormatDAO extends RepresentationDAO implements PKPPubIdPluginDA
 			array(
 				'pub-id::'.$pubIdType,
 				$pubId,
-				(int) $formatId,
-				(int) $pressId
+				(int) $excludePubObjectId,
+				(int) $contextId
 			)
 		);
 		$returner = $result->fields[0] ? true : false;
@@ -414,12 +414,12 @@ class PublicationFormatDAO extends RepresentationDAO implements PKPPubIdPluginDA
 	/**
 	 * @copydoc PKPPubIdPluginDAO::changePubId()
 	 */
-	function changePubId($formatId, $pubIdType, $pubId) {
+	function changePubId($pubObjectId, $pubIdType, $pubId) {
 		$idFields = array(
 				'publication_format_id', 'locale', 'setting_name'
 		);
 		$updateArray = array(
-				'publication_format_id' => $formatId,
+				'publication_format_id' => (int) $pubObjectId,
 				'locale' => '',
 				'setting_name' => 'pub-id::'.$pubIdType,
 				'setting_type' => 'string',
@@ -431,13 +431,13 @@ class PublicationFormatDAO extends RepresentationDAO implements PKPPubIdPluginDA
 	/**
 	 * @copydoc PKPPubIdPluginDAO::deletePubId()
 	 */
-	function deletePubId($formatId, $pubIdType) {
+	function deletePubId($pubObjectId, $pubIdType) {
 		$settingName = 'pub-id::'.$pubIdType;
 		$this->update(
 			'DELETE FROM publication_format_settings WHERE setting_name = ? AND publication_format_id = ?',
 			array(
 				$settingName,
-				(int)$formatId
+				(int)$pubObjectId
 			)
 		);
 		$this->flushCache();
@@ -446,11 +446,10 @@ class PublicationFormatDAO extends RepresentationDAO implements PKPPubIdPluginDA
 	/**
 	 * @copydoc PKPPubIdPluginDAO::deleteAllPubIds()
 	 */
-	function deleteAllPubIds($pressId, $pubIdType) {
-		$pressId = (int) $pressId;
+	function deleteAllPubIds($contextId, $pubIdType) {
 		$settingName = 'pub-id::'.$pubIdType;
 
-		$formats = $this->getByContextId($pressId);
+		$formats = $this->getByContextId($contextId);
 		while ($format = $formats->next()) {
 			$this->update(
 				'DELETE FROM publication_format_settings WHERE setting_name = ? AND publication_format_id = ?',

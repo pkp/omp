@@ -250,7 +250,7 @@ class ChapterDAO extends DAO implements PKPPubIdPluginDAO {
 	/**
 	 * @copydoc PKPPubIdPluginDAO::pubIdExists()
 	 */
-	function pubIdExists($pubIdType, $pubId, $chapterId, $pressId) {
+	function pubIdExists($pubIdType, $pubId, $excludePubObjectId, $contextId) {
 		$result = $this->retrieve(
 			'SELECT COUNT(*)
 			FROM submission_chapter_settings scs
@@ -260,8 +260,8 @@ class ChapterDAO extends DAO implements PKPPubIdPluginDAO {
 			array(
 				'pub-id::'.$pubIdType,
 				$pubId,
-				(int) $chapterId,
-				(int) $pressId
+				(int) $excludePubObjectId,
+				(int) $contextId
 			)
 		);
 		$returner = $result->fields[0] ? true : false;
@@ -272,12 +272,12 @@ class ChapterDAO extends DAO implements PKPPubIdPluginDAO {
 	/**
 	 * @copydoc PKPPubIdPluginDAO::changePubId()
 	 */
-	function changePubId($chapterId, $pubIdType, $pubId) {
+	function changePubId($pubObjectId, $pubIdType, $pubId) {
 		$idFields = array(
 			'chapter_id', 'locale', 'setting_name'
 		);
 		$updateArray = array(
-			'chapter_id' => $chapterId,
+			'chapter_id' => (int) $pubObjectId,
 			'locale' => '',
 			'setting_name' => 'pub-id::'.$pubIdType,
 			'setting_type' => 'string',
@@ -289,13 +289,13 @@ class ChapterDAO extends DAO implements PKPPubIdPluginDAO {
 	/**
 	 * @copydoc PKPPubIdPluginDAO::deletePubId()
 	 */
-	function deletePubId($chapterId, $pubIdType) {
+	function deletePubId($pubObjectId, $pubIdType) {
 		$settingName = 'pub-id::'.$pubIdType;
 		$this->update(
 			'DELETE FROM submission_chapter_settings WHERE setting_name = ? AND chapter_id = ?',
 			array(
 				$settingName,
-				(int)$chapterId
+				(int)$pubObjectId
 			)
 		);
 		$this->flushCache();
@@ -304,11 +304,10 @@ class ChapterDAO extends DAO implements PKPPubIdPluginDAO {
 	/**
 	 * @copydoc PKPPubIdPluginDAO::deleteAllPubIds()
 	 */
-	function deleteAllPubIds($pressId, $pubIdType) {
-		$pressId = (int) $pressId;
+	function deleteAllPubIds($contextId, $pubIdType) {
 		$settingName = 'pub-id::'.$pubIdType;
 
-		$chapters = $this->getByContextId($pressId);
+		$chapters = $this->getByContextId($contextId);
 		while ($chapter = $chapters->next()) {
 			$this->update(
 				'DELETE FROM submission_chapter_settings WHERE setting_name = ? AND chapter_id = ?',
