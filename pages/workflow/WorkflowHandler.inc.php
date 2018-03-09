@@ -101,7 +101,7 @@ class WorkflowHandler extends PKPWorkflowHandler {
 					);
 
 					foreach ($monographFiles as $file) {
-						if ($file->getViewable() && !is_null($file->getDirectSalesPrice())) {
+						if (!is_null($file->getDirectSalesPrice())) {
 							// at least one file has a price set.
 							return true;
 						}
