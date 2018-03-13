@@ -136,7 +136,7 @@ class MonographSearchIndex extends SubmissionSearchIndex {
 		$files = $submissionFileDao->getLatestRevisions($monograph->getId(), SUBMISSION_FILE_PROOF);
 
 		foreach ($files as $file) {
-			if ($file->getFileId() && $file->getViewable()) {
+			if ($file->getFileId()) {
 				self::updateFileIndex($monograph->getId(), SUBMISSION_SEARCH_GALLEY_FILE, $file->getFileId());
 			}
 		}

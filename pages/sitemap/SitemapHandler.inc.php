@@ -46,7 +46,7 @@ class SitemapHandler extends PKPSitemapHandler {
 					$availableFiles = array_filter(
 						$submissionFileDao->getLatestRevisionsByAssocId(ASSOC_TYPE_PUBLICATION_FORMAT, $format->getId(), $publishedMonograph->getId()),
 						function($a) {
-							return $a->getViewable() && $a->getDirectSalesPrice() !== null;
+							return $a->getDirectSalesPrice() !== null;
 						}
 					);
 					foreach ($availableFiles as $file) {
