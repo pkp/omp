@@ -22,6 +22,8 @@
 	{* Display Dublin Core metadata *}
 	{include file="frontend/objects/monograph_dublinCore.tpl" monograph=$publishedMonograph}
 
+	{call_hook name="Templates::Catalog::Book::Footer::PageFooter"} 
+
 </div><!-- .page -->
 
 {include file="frontend/components/footer.tpl"}
