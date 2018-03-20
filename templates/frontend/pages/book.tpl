@@ -17,6 +17,8 @@
 <div class="page page_book">
 	{* Display book details *}
 	{include file="frontend/objects/monograph_full.tpl" monograph=$publishedMonograph}
+
+	{call_hook name="Templates::Catalog::Book::Footer::PageFooter"}
 </div><!-- .page -->
 
 {include file="frontend/components/footer.tpl"}
