@@ -16,43 +16,43 @@
 	xmlns:prism="http://prismstandard.org/namespaces/1.2/basic/"
 	xmlns:cc="http://web.resource.org/cc/">
 
-	<channel rdf:about="{url press=$press->getPath()}">
+	<channel rdf:about="{url press=$currentPress->getPath()}">
 		{* required elements *}
-		<title>{$press->getLocalizedName()|strip|escape:"html"}</title>
-		<link>{url press=$press->getPath()}</link>
+		<title>{$currentPress->getLocalizedName()|strip|escape:"html"}</title>
+		<link>{url press=$currentPress->getPath()}</link>
 
-		{if $press->getLocalizedDescription()}
-			{assign var="description" value=$press->getLocalizedDescription()}
-		{elseif $press->getLocalizedSetting('searchDescription')}
-			{assign var="description" value=$press->getLocalizedSetting('searchDescription')}
+		{if $currentPress->getLocalizedDescription()}
+			{assign var="description" value=$currentPress->getLocalizedDescription()}
+		{elseif $currentPress->getLocalizedSetting('searchDescription')}
+			{assign var="description" value=$currentPress->getLocalizedSetting('searchDescription')}
 		{/if}
 
 		<description>{$description|strip|escape:"html"}</description>
 
 		{* optional elements *}
-		{assign var="publisherInstitution" value=$press->getSetting('publisherInstitution')}
+		{assign var="publisherInstitution" value=$currentPress->getSetting('publisherInstitution')}
 		{if $publisherInstitution}
 			<dc:publisher>{$publisherInstitution|strip|escape:"html"}</dc:publisher>
 		{/if}
 
-		{if $press->getPrimaryLocale()}
-			<dc:language>{$press->getPrimaryLocale()|replace:'_':'-'|strip|escape:"html"}</dc:language>
+		{if $currentPress->getPrimaryLocale()}
+			<dc:language>{$currentPress->getPrimaryLocale()|replace:'_':'-'|strip|escape:"html"}</dc:language>
 		{/if}
 
-		<prism:publicationName>{$press->getLocalizedName()|strip|escape:"html"}</prism:publicationName>
+		<prism:publicationName>{$currentPress->getLocalizedName()|strip|escape:"html"}</prism:publicationName>
 
-		{if $press->getSetting('printIssn')}
-			{assign var="ISSN" value=$press->getSetting('printIssn')}
-		{elseif $press->getSetting('onlineIssn')}
-			{assign var="ISSN" value=$press->getSetting('onlineIssn')}
+		{if $currentPress->getSetting('printIssn')}
+			{assign var="ISSN" value=$currentPress->getSetting('printIssn')}
+		{elseif $currentPress->getSetting('onlineIssn')}
+			{assign var="ISSN" value=$currentPress->getSetting('onlineIssn')}
 		{/if}
 
 		{if $ISSN}
 			<prism:issn>{$ISSN|escape}</prism:issn>
 		{/if}
 
-		{if $press->getLocalizedSetting('copyrightNotice')}
-			<prism:copyright>{$press->getLocalizedSetting('copyrightNotice')|strip|escape:"html"}</prism:copyright>
+		{if $currentPress->getLocalizedSetting('copyrightNotice')}
+			<prism:copyright>{$currentPress->getLocalizedSetting('copyrightNotice')|strip|escape:"html"}</prism:copyright>
 		{/if}
 
 		<items>

@@ -12,32 +12,32 @@
 <rss version="2.0" xmlns:dc="http://purl.org/dc/elements/1.1/">
 	<channel>
 		{* required elements *}
-		<title>{$press->getLocalizedName()|strip|escape:"html"}</title>
-		<link>{url press=$press->getPath()}</link>
+		<title>{$currentPress->getLocalizedName()|strip|escape:"html"}</title>
+		<link>{url press=$currentPress->getPath()}</link>
 
-		{if $press->getLocalizedDescription()}
-			{assign var="description" value=$press->getLocalizedDescription()}
-		{elseif $press->getLocalizedSetting('searchDescription')}
-			{assign var="description" value=$press->getLocalizedSetting('searchDescription')}
+		{if $currentPress->getLocalizedDescription()}
+			{assign var="description" value=$currentPress->getLocalizedDescription()}
+		{elseif $currentPress->getLocalizedSetting('searchDescription')}
+			{assign var="description" value=$currentPress->getLocalizedSetting('searchDescription')}
 		{/if}
 
 		<description>{$description|strip|escape:"html"}</description>
 
 		{* optional elements *}
-		{if $press->getPrimaryLocale()}
-			<language>{$press->getPrimaryLocale()|replace:'_':'-'|strip|escape:"html"}</language>
+		{if $currentPress->getPrimaryLocale()}
+			<language>{$currentPress->getPrimaryLocale()|replace:'_':'-'|strip|escape:"html"}</language>
 		{/if}
 
-		{if $press->getLocalizedSetting('copyrightNotice')}
-			<copyright>{$press->getLocalizedSetting('copyrightNotice')|strip|escape:"html"}</copyright>
+		{if $currentPress->getLocalizedSetting('copyrightNotice')}
+			<copyright>{$currentPress->getLocalizedSetting('copyrightNotice')|strip|escape:"html"}</copyright>
 		{/if}
 
-		{if $press->getSetting('contactEmail')}
-			<managingEditor>{$press->getSetting('contactEmail')|strip|escape:"html"}{if $press->getSetting('contactName')} ({$press->getSetting('contactName')|strip|escape:"html"}){/if}</managingEditor>
+		{if $currentPress->getSetting('contactEmail')}
+			<managingEditor>{$currentPress->getSetting('contactEmail')|strip|escape:"html"}{if $currentPress->getSetting('contactName')} ({$currentPress->getSetting('contactName')|strip|escape:"html"}){/if}</managingEditor>
 		{/if}
 
-		{if $press->getSetting('supportEmail')}
-			<webMaster>{$press->getSetting('supportEmail')|strip|escape:"html"}{if $press->getSetting('contactName')} ({$press->getSetting('supportName')|strip|escape:"html"}){/if}</webMaster>
+		{if $currentPress->getSetting('supportEmail')}
+			<webMaster>{$currentPress->getSetting('supportEmail')|strip|escape:"html"}{if $currentPress->getSetting('contactName')} ({$currentPress->getSetting('supportName')|strip|escape:"html"}){/if}</webMaster>
 		{/if}
 
 		{* <lastBuildDate/> *}

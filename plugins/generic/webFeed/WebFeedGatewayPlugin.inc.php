@@ -17,18 +17,23 @@
 import('lib.pkp.classes.plugins.GatewayPlugin');
 
 class WebFeedGatewayPlugin extends GatewayPlugin {
-	/** @var string Name of parent plugin */
-	var $parentPluginName;
+	/** @var WebFeedPlugin Parent plugin */
+	var $_parentPlugin;
 
-	function __construct($parentPluginName) {
+	/**
+	 * Constructor
+	 * @param $parentPlugin WebFeedPlugin
+	 */
+	public function __construct($parentPlugin) {
 		parent::__construct();
-		$this->parentPluginName = $parentPluginName;
+		$this->_parentPlugin = $parentPlugin;
 	}
 
 	/**
 	 * Hide this plugin from the management interface (it's subsidiary)
+	 * @return boolean
 	 */
-	function getHideManagement() {
+	public function getHideManagement() {
 		return true;
 	}
 
@@ -37,38 +42,36 @@ class WebFeedGatewayPlugin extends GatewayPlugin {
 	 * its category.
 	 * @return String name of plugin
 	 */
-	function getName() {
+	public function getName() {
 		return 'WebFeedGatewayPlugin';
 	}
 
-	function getDisplayName() {
+	/**
+	 * @copydoc Plugin::getDisplayName()
+	 */
+	public function getDisplayName() {
 		return __('plugins.generic.webfeed.displayName');
 	}
 
-	function getDescription() {
-		return __('plugins.generic.webfeed.description');
-	}
-
 	/**
-	 * Get the web feed plugin
-	 * @return WebFeedPlugin
+	 * @copydoc Plugin::getDescription()
 	 */
-	function getWebFeedPlugin() {
-		return PluginRegistry::getPlugin('generic', $this->parentPluginName);
+	public function getDescription() {
+		return __('plugins.generic.webfeed.description');
 	}
 
 	/**
 	 * Override the builtin to get the correct plugin path.
 	 */
 	function getPluginPath() {
-		return $this->getWebFeedPlugin()->getPluginPath();
+		return $this->_parentPlugin->getPluginPath();
 	}
 
 	/**
 	 * @copydoc PKPPlugin::getTemplatePath()
 	 */
-	function getTemplatePath($inCore = false) {
-		return $this->getWebFeedPlugin($inCore)->getTemplatePath();
+	public function getTemplatePath($inCore = false) {
+		return $this->_parentPlugin->getTemplatePath($inCore);
 	}
 
 	/**
@@ -76,8 +79,8 @@ class WebFeedGatewayPlugin extends GatewayPlugin {
 	 * parent plugin will take care of loading this one when needed)
 	 * @return boolean
 	 */
-	function getEnabled() {
-		return $this->getWebFeedPlugin()->getEnabled();
+	public function getEnabled() {
+		return $this->_parentPlugin->getEnabled();
 	}
 
 	/**
@@ -86,8 +89,7 @@ class WebFeedGatewayPlugin extends GatewayPlugin {
 	 * @param $request PKPRequest Request object.
 	 */
 	function fetch($args, $request) {
-		$webFeedPlugin = $this->getWebFeedPlugin();
-		if (!$webFeedPlugin->getEnabled()) return false;
+		if (!$this->_parentPlugin->getEnabled()) return false;
 
 		// Make sure the feed type is specified and valid
 		$type = array_shift($args);
@@ -105,10 +107,9 @@ class WebFeedGatewayPlugin extends GatewayPlugin {
 
 		$templateMgr = TemplateManager::getManager($request);
 		$press = $request->getContext();
-		$templateMgr->assign('press', $press);
 
 		$publishedMonographDao = DAORegistry::getDAO('PublishedMonographDAO');
-		$recentItems = (int) $webFeedPlugin->getSetting($press->getId(), 'recentItems');
+		$recentItems = (int) $this->_parentPlugin->getSetting($press->getId(), 'recentItems');
 		if ($recentItems > 0) {
 			import('lib.pkp.classes.db.DBResultRange');
 			$rangeInfo = new DBResultRange($recentItems, 1);

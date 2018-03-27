@@ -12,7 +12,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
 	{* required elements *}
 	<id>{url page="issue" op="feed"}</id>
-	<title>{$press->getLocalizedName()|escape:"html"|strip}</title>
+	<title>{$currentPress->getLocalizedName()|escape:"html"|strip}</title>
 
 	{assign var=latestDate value=0}
 	{foreach from=$publishedMonographs item=publishedMonograph}
@@ -23,16 +23,16 @@
 	<updated>{$latestDate|date_format:"%Y-%m-%dT%T%z"|regex_replace:"/00$/":":00"}</updated>
 
 	{* recommended elements *}
-	{if $press->getSetting('contactName')}
+	{if $currentPress->getSetting('contactName')}
 		<author>
-			<name>{$press->getSetting('contactName')|strip|escape:"html"}</name>
-			{if $press->getSetting('contactEmail')}
-			<email>{$press->getSetting('contactEmail')|strip|escape:"html"}</email>
+			<name>{$currentPress->getSetting('contactName')|strip|escape:"html"}</name>
+			{if $currentPress->getSetting('contactEmail')}
+			<email>{$currentPress->getSetting('contactEmail')|strip|escape:"html"}</email>
 			{/if}
 		</author>
 	{/if}
 
-	<link rel="alternate" href="{url press=$press->getPath()}" />
+	<link rel="alternate" href="{url press=$currentPress->getPath()}" />
 	<link rel="self" type="application/atom+xml" href="{url page="feed" op="atom"}" />
 
 	{* optional elements *}
@@ -41,10 +41,10 @@
 	{* <contributor/> *}
 
 	<generator uri="http://pkp.sfu.ca/ojs/" version="{$ojsVersion|escape}">Open Monograph Press</generator>
-	{if $press->getLocalizedDescription()}
-		{assign var="description" value=$press->getLocalizedDescription()}
-	{elseif $press->getLocalizedSetting('searchDescription')}
-		{assign var="description" value=$press->getLocalizedSetting('searchDescription')}
+	{if $currentPress->getLocalizedDescription()}
+		{assign var="description" value=$currentPress->getLocalizedDescription()}
+	{elseif $currentPress->getLocalizedSetting('searchDescription')}
+		{assign var="description" value=$currentPress->getLocalizedSetting('searchDescription')}
 	{/if}
 
 	<subtitle type="html">{$description|strip|escape:"html"}</subtitle>
