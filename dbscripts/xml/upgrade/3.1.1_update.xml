@@ -58,4 +58,10 @@
 		<query driver="mysqli">DELETE n FROM notifications n LEFT JOIN announcements a ON (n.assoc_id = a.announcement_id) WHERE a.announcement_id IS NULL AND n.assoc_type = 522</query><!-- ASSOC_TYPE_ANNOUNCEMENT -->
 		<query driver="postgres7">DELETE FROM notifications USING notifications n LEFT JOIN announcements a ON (n.assoc_id = a.announcement_id) WHERE a.announcement_id IS NULL AND n.assoc_type = 522 AND notifications.notification_id = n.notification_id</query><!-- ASSOC_TYPE_ANNOUNCEMENT -->
 	</sql>
+	<sql><!-- pkp/pkp-lib#1791 -->
+		<!-- fix assoc_type for supp and artwork files -->
+		<!-- update the ASSOC_TYPE_SUBMISSION_FILE = 515 constant to ASSOC_TYPE_SUBMISSION_FILE_COUNTER_OTHER = 531 defined in PKPApplication -->
+		<query>UPDATE metrics SET assoc_type = 531 WHERE assoc_type = 515 AND assoc_id IN (SELECT file_id FROM submission_supplementary_files)</query>
+		<query>UPDATE metrics SET assoc_type = 531 WHERE assoc_type = 515 AND assoc_id IN (SELECT file_id FROM submission_artwork_files)</query>
+	</sql>
 </data>
