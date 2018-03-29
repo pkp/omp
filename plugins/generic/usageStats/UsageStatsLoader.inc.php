@@ -71,11 +71,15 @@ class UsageStatsLoader extends PKPUsageStatsLoader {
 
 					$monographFileDao = DAORegistry::getDAO('SubmissionFileDAO'); /* @var $monographFileDao SubmissionFileDAO */
 					$monographFile = $monographFileDao->getRevision($fileId, $revision);
-					if ($monographFile) {
-						$assocId = $monographFile->getFileId();
-					}
+					if (!$monographFile) break;
+					$assocId = $monographFile->getFileId();
 
-					$assocTypeToReturn = $assocType;
+					// is the GENRE_CATEGORY_DOCUMENT
+					$genreDao = DAORegistry::getDAO('GenreDAO');
+					$genre = $genreDao->getById($monographFile->getGenreId());
+					if ($genre->getCategory() != GENRE_CATEGORY_DOCUMENT || $genre->getSupplementary() || $genre->getDependent()) {
+						$assocType = ASSOC_TYPE_SUBMISSION_FILE_COUNTER_OTHER;
+					}
 					break;
 				case ASSOC_TYPE_SERIES:
 					if (!isset($args[0])) break;
