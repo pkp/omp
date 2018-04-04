@@ -1,239 +1,289 @@
-OMP 3.1.0 Release Notes
-CVS tag: omp-3_1_0-0
-Release date: March 1, 2017
+OMP 3.1.1 Release Notes
+CVS tag: omp-3_1_1-0
+Release date: April 4, 2018
 =================================
 
+- The AddThis plugin has been removed from the distribution, but is available
+  via the Plugin Gallery. If you use this plugin, please install it from there.
 
-Version Numbering
------------------
-The OMP version number is bumped with this release to 3.1.0 (from the previous
-1.2.0). This change is made to align the OMP version numbering with OJS version
-numbering, in order to prepare for the two applications to move to simultaneous
-releases.
 
 New Features
 ------------
-#381: Implement author disambiguation toolset
-#594: Investigate/improve file download icons when dealing with .docx
-#772: Respond to nonexistent monographs with a 404
-#2270: Sort submission lists by ID
-#2261: Style the new plugin gallery
-#2218: 'Phone' field 24-character limit
-#2174: Display author biographical information in OJS
-#1123: Add support for Web-hosted publication formats
-#1279: Assess and improve Google Scholar indexing data
-#1390: Update frontend
-#1399: Add language selection for admin backend
-#1417: Implement usage stats visualization at submission public page
-#1468: Work out theme registration, enabling and parent-child relationships
-#1527: Public identifiers for OMP
-#1631: Add support for HTML presentation
+	#440: Grant implicit Manager access to Adminstrators
+	#520: Improve Submission Library utility
+	#1922: Add support for catalog paging
+	#2684: Add support for declaring metadata fields required
 
 Bug Fixes
 ---------
-#383: Implement/test Crossref support
-#411: Participants add process lists all users
-#446: Delegate truncation to CSS
-#592: Fix behavior when press not publicly enabled
-#607: Issues around LESS files and compilation
-#620: "registry" folder seems hardcoded when calling upgrade.php.
-#673: Languages tag-it input autocomplete needs fixing
-#994: OJS 3.0: searching doesn't search article titles
-#1031: Apply timezone setting to DB connection
-#1131: GET used for changing state of the system
-#1155: half-entered production discussions look weird to other users
-#1178: Issues with reviewer grid and associated modals
-#1268: Reviews ready notification displays in author review round
-#1287: Consider adding Login As option to Participants grid
-#1289: Tools link leads to error
-#1297: "does not have access" error loading additional submissions
-#1332: Application-specific language in pkp-lib
-#1334: Series can be saved without a path
-#1342: [OJS] issue TOC grid fails with fatal error
-#1347: User Import/Export Issues
-#1376: reviewer comments for editor only
-#1381: Calling mkdirtree when open_basedir prevents access to a folder triggers infinite recursion
-#1387: Add "indexed / not indexed" flag to publication formats (+ defaults)
-#1389: Smarty variable not rendered in registration form template
-#1391: Allow protocol-relative URLs in compiled CSS
-#1397: [OJS] Consolidate information entry into fewer fields
-#1400: Registration form PHP-side validation problems result in fatal error
-#1403: Redirect to the current page after Login As
-#1405: Admin View: Move Users & Roles
-#1410: Add a "Schedule for Publication" button
-#1411: Submission file upload can not be performed with keyboard controls
-#1426: $_SERVER[HOSTNAME] should not be used for host identification
-#1428: Handle frontend display of chapter files better
-#1432: Copyediting: People use Notify in Participants grid to communicate, rather than Discussion grid
-#1436: Copyediting Request does not trigger a Task
-#1437: Task rewording required - "query" to "discussion"
-#1443: Fix tabbing from username to password on login
-#1445: Empty div in monograph_summary.tpl if no series position
-#1453: Multi-context site settings needs work
-#1454: Clarify difference between file metadata and article metadata
-#1456: Easy wins from usability testing
-#1457: Public identifiers
-#1461: Remove tasks grid in frontend
-#1467: Reviewer interests selection auto-complete returns unrelated results
-#1469: "Forgot password" doesn't deliver reset password
-#1470: Test/fix cover image view
-#1472: Fix representations/galleys/galley files cardinality problem
-#1474: Cancel buttons in submission wizard do not work
-#1477: Warning when editing announcements
-#1479: Update setup help areas according to pkp/pkp-lib#1397
-#1483: Backend style update
-#1488: Author and Reviewer dashboards/workflows need review
-#1492: Review form element options can't be added
-#1503: Introduce REST API tools
-#1508: Small bug with search button
-#1520: Move frontend footer template file into frontend templates directory
-#1526: Fix autocomplete for reviewers on frontend
-#1528: Improve submission process
-#1529: Improvements to discussions grid
-#1530: Discussion tasks could be more descriptive
-#1531: One-click feature to add reviews to email doesn't hide reviewer name
-#1532: Can't submit review modal without uploading a file
-#1536: Fix cover images for issues and articles
-#1555: first Scheduled Task Log filename is untranslated
-#1565: add visual cue when a field is missing a translation (multi-lingual inputs)
-#1568: enable the display of the xml validation messages
-#1594: acron plugin (pkp-lib) has app-specific language
-#1595: remove app/journal-specific language in pkp-lib
-#1599: Replace minifiedScripts.tpl with some other mechanism
-#1601: Implement CLI for import/export plugins
-#1603: Implement medra DOI export plugin
-#1614: Error with implicit authentication (Shibboleth SSO)
-#1618: Profile: Change Conversation to Discussion
-#1623: differentiate dependent, chaper and other publication formats files for download
-#1628: [OMP] Length of the rights statement
-#1629: consider public identifiers via OAI
-#1636: Loading spinner always appears during settings wizard
-#1641: Editor cannot add Section Editors
-#1647: Notes unstyled in submission > more information
-#1652: typo in PKPAppearanceForm.inc.php
-#1654: in_array error in Session.inc.php
-#1658: Add Copyeditor problems
-#1663: Remove Author Names/Reviewer Names from Filenames
-#1667: Implementing search
-#1673: Add announcement modal does not load
-#1674: Missing locale key
-#1675: Flying notification positioning
-#1678: Editor can not delete submissions in Active submissions list
-#1684: Deleting section editor from participants grid can cause a section editor to be deleted
-#1686: Improvements to information center
-#1694: move chapterId to SubmissionFile
-#1707: add supplementary file support for the native import and export
-#1709: Native Import Issues
-#1710: Banner notifications
-#1713: consider remote galleys and pub ids in native import and export
-#1717: Create a block plugin to display a submissions button
-#1721: Installation screen needs to be wrapped in content container
-#1726: Permit Submission Locale changes
-#1729: Incorrect string value '\xD0\xD0' for column 'initials' at row 1
-#1734: new user registration mentions journals
-#1739: Implement theme options
-#1740: Select window opens twice
-#1747: Action "copy review form" inactive
-#1751: Extra closing </div> on homepage if no announcements exist
-#1757: duplicate keys in usageStats plugin (also: duplicate plugin)
-#1762: Add skip-to links for content in default frontend templates
-#1765: Sidebar Management Wording
-#1772: Consider adding aria-required to required fields
-#1775: recaptcha doesn't display on registration
-#1787: Tab-specific primary nav menu items don't work when already on page
-#1793: Test/fix PostgreSQL upgrades
-#1795: Spectrum colour picker not loaded in journal settings wizard
-#1800: UserGroupDAO insertObject returns wrong value
-#1802: Fix category sequence
-#1803: Fix attempt to connect to "ojs" database before installation
-#1804: Fix function declaration variations for PHP7
-#1808: Display article references metadata on article details page
-#1809: Fix listbuilder conventions for PHP7
-#1810: undefined constant in site settings
-#1821: When creating users, usernames are silently converted to lowercase
-#1825: Resolve HTML publishing issues
-#1846: Ensure XML-imported content is indexed
-#1847: Ensure closed registrations works properly
-#1856: getByControlledVocabId() SQL does not work with PostgreSQL
-#1859: Add Sidebar Management to site settings for multi-journal installs
-#1861: Add tool to clean reviewer interests
-#1862: Ensure unique template files are compiled for each journal
-#1867: Check box on the logging page of OJS 3.0
-#1868: Make datepicker respect date formats
-#1872: UI plugin upgrade
-#1873: Display comments for editor
-#1885: Fix MySQL test race condition
-#1891: Make dependent files application closer-scoped
-#1893: Fix MIME type detection problems for CSS
-#1901: Update Crossref DOI display according to their new guidelines
-#1905: Acron really, really wants to run...
-#1906: enable RTL orientation in OJS 3
-#1925: PKPString::mime_content_type() should fall back on mime_content_type when fileinfo is unavailable
-#1927: Fix keyword input attempted autosuggest
-#1930: Include article prefix on article details page
-#1931: signoffs migration
-#1934: Localize issue and article cover images
-#1937: Resequence the category items
-#1946: {$abstractTermIfEnabled} is not rendering in the emails for review request to a reviewer
-#1955: [OJS] 3.0.0 schemaValidate, proxy settings and allow_url_fopen
-#1958: Use modern constructor syntax
-#1961: Spotlight grid causes fatal error
-#1967: keywords not saved
-#1973: PKPComponentRouter documentation misidentifies the path/to/component mapping
-#1976: Smarty typos in tab/settings/appearance/form/ templates
-#1981: Make filename similarity requirement configurable
-#1989: Some notification emails sent out with empty recipient list
-#1996: Flaws in registration
-#2022: Add section to the submission filter form in the editorial back-end
-#2023: Remove "designation" from components
-#2028: Make review forms import nicely into email
-#2032: Revise wording in Workflow Settings
-#2033: Error in OAI ListRecords with previously published Submission
-#2039: Role selection in other journals on user profile page broken
-#2042: Add theme api methods for manipulating parent scripts, styles and options
-#2045: Review form elements are brought into email draft despite inclusion flag status
-#2046: Fix tool constructor syntax
-#2047: Submission notes visible for authors in OJS 3.0
-#2052: Permit new decisions to restore archived submissions to active queue
-#2053: Editor assign email template not available on Submission stage
-#2057: Featured and New release checkboxes failing
-#2068: DOI Export Plugin assertion "register" is noisy
-#2074: DOMDocument::createElementNS() is being used without consideration for escaping
-#2075: Review first_page / last_page parsing
-#2076: Review page counting code: MEDRA and EndNote
-#2083: Author View Metadata modal javascript error
-#2085: Improve touch controls of frontend about nav dropdown
-#2089: List incomplete submissions in the managers active submissions lists
-#2092: [OJS] Reviewer doesn't have adequate permission to download review file
-#2098: [OJS3] Only tiny area clickable for tick boxes in tasks popup
-#2100: [OJS3] Default Theme. Review interests on registration not visible
-#2109: Section editors can access submission and data only if they are assigned to that submission
-#2111: Guest Editor role is inoperative
-#2117: Display native export validation errors
-#2118: [OJS] Enable journal to appear publicly on the site when path written with capital letters leads to an error
-#2129: Proxy settings are not considered when fetching plugins.xml from PKP
-#2131: OJS3: Errors on installation page are unobtrusive
-#2134: OJS 3.0.1: Statistics plugin needs additional testing
-#2136: [OJS] Empty sidebar breaks javascript in front end
-#2138: Use %Y-%m-%d in strftime function
-#2143: Remove restriction on email length
-#2144: REVIEW_ACCEPT should be REVIEW_CONFIRM in upgrade script
-#2154: fix hard coded current year in the usage stats JS
-#2158: Press/journal assistants cannot delete their own placeholder queries
-#2160: [OJS] Variable names visible in Editorial history
-#2182: CSRF check prevents notes from being deleted
-#2184: User group settings only installed for primary locale upon context creation
-#2185: Make stage/review assignment joins in SubmissionDAO more selective
-#2187: Authors can not download the revisions they have uploaded
-#2201: A reviewer has commented on "title" notifications should not go to other reviewers
-#2211: Remove site wide harvester registration section
-#2212: Editorial actions do not appear when an editor assigns themselves
-#2215: Dropdown controls in review forms present the wrong options
-#2245: Update copyright dates for 2017
-#2265: Review master branch for dead/crufty code
-#2266: Custom uploaded CSS files get loaded too early
-#2296: DevelopedByBlockPlugin error in a clean installation.
-#2309: Autocomplete for reviewer interests is case sensitive
-#2313: Prevent section editor auto-assignments outside section assignments
-#2321: fix submission language export
-#2328: Missing review round ID during file revision
+	#390: Remove artbitrary UI field length limitations
+	#469: Move pnotify to composer dependency
+	#555: [OMP] Port OJS' XML Sitemap functionality to OMP
+	#723: Strip out citation plugins and replace with CSL
+	#1070: Improve confirmation notices when skipping the email is an option
+	#1144: Review file selection is unclear
+	#1258: “Resubmit for Review” button is unclear
+	#1265: Broken reports pages
+	#1270: Empty editor decisions list for copywriter
+	#1447: [UI] Improve recipient selection process for new discussions
+	#1528: Improve submission process
+	#1640: Can't add discussion with no stage participants
+	#1692: Public identifiers for chapters
+	#1784: Unify near-duplicate template templates/management/settings/access.tpl
+	#1786: Ensure ReCaptcha language is correct
+	#1791: Fix COUNTER plugin template references (and test plugin)
+	#1807: Multilingualism
+	#1815: Move metadata (DC/GS) meta tags into HTML head
+	#1816: Implement subscription support
+	#1828: Issues with input and display of keywords
+	#1853: reload issues
+	#1859: Add Sidebar Management to site settings for multi-journal installs
+	#1865: Adding Review Comments Wipes out Email Changes
+	#1866: Banner notification after scheduling
+	#1896: ORCID support in native XML import/export format for issues
+	#1911: enable longer locale names
+	#1932: Investigate upgrade of submission note files
+	#1963: Port implicit authentication to master
+	#2003: Filename problems
+	#2064: Standardize emailed URL handling
+	#2082: Task notification for section editor after being assigned to a submission
+	#2085: Improve touch controls of frontend about nav dropdown
+	#2108: tinymce error (downloadable font: OS/2: bad linegap: -32 ) with Firefox
+	#2114: Localised filenames complicate uploading submission files in multilingual journals
+	#2142: Suggestions for Native XML Import
+	#2163: Routing events between handlers in the JS framework
+	#2173: Upgrading: multiple issues with ongoing reviews
+	#2178: Add nav menu management and static pages features
+	#2189: Tinymce in full screen mode problematic in multilingual journals
+	#2203: Notifications list in front end layout requires back-end JS tools
+	#2235: File revision names
+	#2265: Review master branch for dead/crufty code
+	#2269: Can't search all categories in plugin gallery
+	#2287: Change Password page missing visual padding
+	#2305: pkp/pkp-lib#1389 Fix required attribute in login form
+	#2306: Permit searching by submission ID
+	#2312: Review/fix edit links
+	#2320: ROLE_ID_SUBSCRIPTION_MANAGER
+	#2331: Empty submission checklist results to PHP warnings
+	#2336: Clean up TemplateManager::display / TemplateManager::fetch
+	#2338: Usage Statistics plugin displayStatistics setting not context specific
+	#2342: Add "Assign DOIs to all journal articles" button in the DOI plugin settings
+	#2364: Drop file check on minification use
+	#2367: Recaptcha verification does not honor proxy settings
+	#2371: [pkp-lib] parse errors on grids for systeminfo
+	#2375: Respect context disableUserReg setting
+	#2389: add announcements introduction
+	#2391: File detection in temporary files does not adjust for common problems
+	#2392: Concatenate "about" content during OJS2 to OJS3 migration
+	#2407: Remove mutex use
+	#2413: Add reviewId to oneclick link in automatic review reminders
+	#2417: Review form breaks for users that are visiting OJS for the first time
+	#2420: No check on PHPMailer::send() status
+	#2423: Add notification upon "Add Reviews to Email" click
+	#2426: Limit display of names to editors in edited volumes
+	#2428: CSRF token validity time (one hour) breaks the review form
+	#2433: Provide option to restrict low-level editors to "recommend" only, not make decisions
+	#2434: Add preliminary/summary "Decline" email template
+	#2435: Remove inconsistencies in German locale
+	#2437: Add reviews to email button selects the wrong option for radio buttons in some cases
+	#2441: Make wording of editorial team consistent in backend and frontend
+	#2443: Refactor AuthPlugin
+	#2446: Reviewer affiliation info is not recorded when creating reviewers
+	#2449: PHP code documentation cleanup
+	#2453: Adjust wording of Send to Copyediting button on review stage
+	#2458: AddThis plugin (or a better alternative)
+	#2460: Discussion item will be created even if canceled
+	#2461: Native Import can't clean up after failure for article section
+	#2465: [UI/UX] Give the author access to the copyedited and galley files grids
+	#2473: Tap controls don't work for dropdown menus in the backend
+	#2476: Author guidelines anchor missing
+	#2481: Reviewer has access to manuscript after declining review request
+	#2483: Default email signature is wrapped in nested anchor tags
+	#2492: registrationComplete page allows for UX issues
+	#2495: Speed up test suite
+	#2497: TinyMCE not activated show error
+	#2500: Native import mismanages file operations
+	#2503: Add plugin version installation tool
+	#2506: Fix genre assignment for upgrades
+	#2513: Allow SVG in image uploads?
+	#2516: Native Import: optional submission dates per schema, but functionally required
+	#2518: SUBMISSION_ACK email includes author signature
+	#2519: do not update copyedit and production notifications in a pre-review discussion
+	#2526: Native Import should discriminate between errors and warnings
+	#2543: reload scheduled tasks function for the acron plugin
+	#2551: Spotlights broken in default theme due to missing javascript
+	#2552: fix warning in RecommendByAuthorPlugin
+	#2558: Display Monograph DOI
+	#2559: Consider introducing autoload behavior
+	#2562: Settings wizard refers to Plugins tab that's unavailable
+	#2564: Inconsistent HTML display in article titles
+	#2571: Section word count field is inoperative
+	#2572: Additional hooks
+	#2576: Color of tasks panel is confusing
+	#2577: display supplementary files in block, rather with galley files
+	#2585: Update de_DE locale for OJS 3.1 release
+	#2587: Tell admin which journal they are about to remove
+	#2592: Clearing template cache should clear .css files too
+	#2599: data privacy option in usage stats plugin
+	#2612: Add filtering options to new submissions list
+	#2613: Add contextual information to icons in new submission list
+	#2616: Change "Add" to "Assign" in participants grid
+	#2621: Editor cannot rename files in review files grid
+	#2631: "Download all files" checks for tar availability, but uses zip compression
+	#2637: Replace low res icon in webfeed for high res screens
+	#2642: Placeholder discussions not removed when new discussion creation is cancelled
+	#2648: the revision node grouping for supplementary files in native export
+	#2650: Native import dies if presented with a duplicate submission file revision
+	#2655: [OJS] Alternate mail template for subsequent review request not selected
+	#2658: Filter hook
+	#2660: Permit HTTPS support in ORCIDs
+	#2667: [OMP] Lack of default plugins/gateways directory fail gateways check
+	#2673: {$reviewerName} variable not replaced
+	#2675: Several minor adjustments to submission lists
+	#2678: Fix (probably) wrong wording in new API locale keys
+	#2682: User registration at the site level when email validation is enabled fails.
+	#2691: Report Generator links on the plugins listing page do not work
+	#2699: LazyLoadPlugin get/setEnabled do not consider site plugins
+	#2703: New review round modal re-opens automatically when closed in IE11
+	#2705: New default footer images
+	#2708: Implement approach for delivering constants to the new frontend components
+	#2714: Support browsing by section, subject and keyword
+	#2715: update countries.xml files for locales
+	#2729: Test environment set up won't work as stated in README
+	#2744: Search bar in ListPanel has wrong styling in iOS
+	#2746: Submission list filtering doesn't work in iOS
+	#2751: Fix grid refreshing
+	#2759: Galleys displayed as Array in OMP
+	#2760: Add new template hooks for plugin settings pages
+	#2761: Generator meta tag untranslated
+	#2771: Integrate UI component library into OJS/OMP
+	#2778: Changing journal visibility setting will restore the default language settings
+	#2782: Fix OAI: kludgey use of `$this`; broken OAI format plugins
+	#2783: Add JATS content to OAI interface (when available)
+	#2789: Possible unnecessary variable read in the first submission form
+	#2791: Fix formatting of reviewer comments when imported from review form textbox into author email
+	#2792: Review reminders need From address set
+	#2794: Upload Revision canceled but still in revision list
+	#2814: Correct review form error handling bounce issues
+	#2816: Publication date cannot be set via UI
+	#2821: Copyeditors do not have access to editorial history
+	#2830: Fix CSRF hard expiry
+	#2838: Can't add note on submission
+	#2849: Current Roles listing and user rights are not transparent
+	#2859: remove citationOutput plugins
+	#2872: Allow themes to override templates in plugins
+	#2874: remove citationLookup, citationParser and nlm30 metadata plugin
+	#2877: buildpkg.sh missing vendor dir
+	#2894: Improve the reviewer selection list
+	#2896: references from the submission settings should be called citations
+	#2899: Error generating the path of Custom Page in Navigation Menu
+	#2907: Check/correct date formatting for Latest column in reviewer assignment
+	#2910: Non-administrators can see the Administration link on the front-end toolbar
+	#2922: Uploading a new Galley file and selecting "Change file" corrupts the uploaded file
+	#2924: Updates to installation screen
+	#2930: access denied on the announcements setting page
+	#2933: Introduce menu caching
+	#2944: NavigationMenus - NMI_TYPE_CONTACT not returned by getMenuItemTypes
+	#2945: restore defaults genres/components
+	#2947: NavigationMenus - Issue with NMI with no displayable children
+	#2952: NavigationMenus - NavigationMenu edit - unbind NavigationMenu from area
+	#2955: Reference to chapters when editing component in OJS 3.1
+	#2956: Plugins already installed in database but not filesystem cannot be re-installed
+	#2960: Problems with Add Item action in Sidebar control
+	#2962: Fix membership options
+	#2964: APC usability issues
+	#2965: Adding section editors to a section and returning to add more editors later breaks the section form
+	#2967: Missing link from Site Administration to Journal Administration
+	#2972: Untranslated locale keys in Roles select menu
+	#2980: order by user_group_id in UserGroupDAO::getByRoleId
+	#2987: Navigation Menus - not all default NMIs get translated upon install/upgrade
+	#2988: Installation page depends on navigation menu tables, which may not exist
+	#2994: Reveal more handler can fail to reveal more
+	#2998: Archiving page changes
+	#3003: Not possible delete Keywords in second language with X
+	#3004: force_login_ssl should force register too
+	#3009: always provide multipleContexts variable
+	#3011: Pass FormValidatorURL error message to js url validation
+	#3015: New article components have NULL entry_key
+	#3028: citations parsing by line
+	#3039: editor actions for all managers and sub-editors
+	#3046: getCustomTemplateKeys parameters
+	#3052: consider URL encoding for oai identifiers
+	#3056: Navigation Config vs Static Pages
+	#3066: viewPlugin in the plugin gallery for journal managers
+	#3070: Author names can be exposed to some reviewers
+	#3071: Forms counter doesn't change
+	#3072: Prevent range requests
+	#3080: NavigationMenus - Custom Page Error on Site level
+	#3084: Verify incomplete submissions behavior
+	#3097: Sidebar blocks missing from search results
+	#3101: Clean up locale settings upon language deletion
+	#3106: choose e-mail template when selecting a reviewer
+	#3108: Duplicated literal
+	#3114: Select precedent reviewer for a new round failed
+	#3122: Add copyFile method to SubmissionFileManager
+	#3125: Author name in export plugins
+	#3130: Authored submission cannot be easily accessed via Editor role
+	#3144: NavigationMenus - Warnings removed for custom menuItems
+	#3154: Error checking email format in profile page
+	#3156: Submission Requirements translation are not available
+	#3157: required tagit metadata fields not validated
+	#3161: nl2br causes extra line breaks in copyright notice
+	#3167: New discussion canceled but still in discussion list
+	#3172: enable_beacon and other little things
+	#3177: Replace calls to deprecated "create_function"
+	#3178: Link on context logo/title in frontend incorrect
+	#3185: Correct PHP7.2 incompatibilities
+	#3188: DECLINE decision sends unexpected "Unsuitable" in subject
+	#3195: Fire form execute hooks in reviewer steps
+	#3204: COUNTER bot list is outdated
+	#3206: Subscriptions page should not be accessible if payments are not enabled
+	#3218: Upgrade failed: DB: Can't DROP 'user_group_id'; check that column/key exists
+	#3228: Non-anonymized reviewer files not able to be deleted
+	#3232: Manual payment plugin throws PHP Warning:  Missing argument 2 for Form::setData()
+	#3239: Remote galley links are not displayed unless there is a downloadable galley
+	#3246: Update copyrights for 2018
+	#3267: NavigationMenus Site-wide unable to drop NMIs into empty NM edit areas.
+	#3274: Redirect URI from Login as
+	#3282: Missing navigation menu item for the search page
+	#3283: Display usage statistics for last 12 months instead of for current year
+	#3287: "User" and "Primary" (navigation menus management tools) are confusing
+	#3288: "Custom Page" should not be default when adding a new navigation menu item
+	#3302: File upload gets stuck with certain language selections in multilingual journals (OJS 3.1.0.1)
+	#3311: "Subject" / "subjects" field "required" flag not behaving as expected
+	#3318: Check minimum requirements before allowing to upgrade
+	#3323: fix detachment of dependent entities at file revision upload confirmation
+	#3336: External feed plugin obliterates custom blocks when enabled
+	#3338: If html part of mail too long, new line with exclamation mark is inserted
+	#3348: article DOI in native import
+	#3357: Disciplin element should be discipline
+	#3359: recommendOnly editor and section editor
+	#3374: Dropdown nav menus in default theme don't work for rtl languages
+	#3383: no context in LazyLoadPlugin get/setEnabled when using CLI
+	#3385: Desisting from adding a new discussion leaves behind an empty discussion
+	#3387: Remove gender fields
+	#3390: upgrade email templates
+	#3392: Current release contains potentially dangerous old version of PHPMailer
+	#3398: Section Editor assignment creates duplicate Pre-Review Discussion entries
+	#3407: Doubt about a translation
+	#3412: RSS buttons left-over from OJS 2.x
+	#3415: getTemplateResourceName for plugins in pkp-lib
+	#3420: Date issues for non-default date_format_short in reviewDueDate and responseDueDate
+	#3421: Editing roles for a user in one journal destroys roles in others
+	#3422: Adding a participant with Safari does not close the modal window
+	#3436: "Send to Review" and "Send to Production" for reccomendOnly users
+	#3440: Even if you check "Do not send email" for notification, you receive email.
+	#3443: Duplicate translation keys in en_US
+	#3444: Multilingual custom email template does not apply to email body
+	#3447: Task list shows too long
+	#3448: Submission listings only show title for selected locale
+	#3459: sitemap fix
+	#3467: Not approved files should be displayed on the article page
+	#3474: Restrict SubmissionFileRequestedRevisionRequiredPolicy to revision files only
+	#3481: submission URL in recommendation form emails
+	#3488: Improve error presentation in file upload wizard
+	#3491: Use mbstring-capable regexp functions in searching
+	#3495: Modify API URLs in ui-library when restful_urls enabled
+	#3506: Untranslated locale key for scheduledTaskLogs log file
+	#3510: display last revisions of reviewer files
+	#3517: require locale component for identifier tab, add a hook
