@@ -79,7 +79,6 @@ lib/pkp/lib/vendor/phpmailer/phpmailer/examples						\
 lib/pkp/lib/vendor/phpmailer/phpmailer/test						\
 lib/pkp/lib/vendor/robloach								\
 lib/pkp/lib/vendor/smarty/smarty/demo							\
-lib/pkp/lib/vendor/symfony								\
 lib/pkp/lib/vendor/phpunit								\
 lib/pkp/lib/vendor/phpdocumentor/reflection-docblock					\
 lib/pkp/lib/vendor/doctrine/instantiator/tests						\
