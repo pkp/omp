@@ -62,7 +62,6 @@ lib/pkp/.git										\
 lib/pkp/lib/components/*.js								\
 lib/pkp/lib/components/*.css								\
 lib/pkp/lib/vendor/components								\
-lib/pkp/lib/vendor/composer								\
 lib/pkp/lib/vendor/ezyang/htmlpurifier/art						\
 lib/pkp/lib/vendor/ezyang/htmlpurifier/benchmarks					\
 lib/pkp/lib/vendor/ezyang/htmlpurifier/configdog					\
