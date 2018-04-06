@@ -70,7 +70,6 @@ lib/pkp/lib/vendor/ezyang/htmlpurifier/extras						\
 lib/pkp/lib/vendor/ezyang/htmlpurifier/maintenance					\
 lib/pkp/lib/vendor/ezyang/htmlpurifier/smoketests					\
 lib/pkp/lib/vendor/ezyang/htmlpurifier/tests						\
-lib/pkp/lib/vendor/kriswallsmith							\
 lib/pkp/lib/vendor/leafo/lessphp/tests							\
 lib/pkp/lib/vendor/leafo/lessphp/docs							\
 lib/pkp/lib/vendor/moxiecode/plupload/examples						\
