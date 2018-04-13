@@ -18,20 +18,6 @@ import('classes.plugins.PubIdPlugin');
 
 class DOIPubIdPlugin extends PubIdPlugin {
 
-	/**
-	 * @copydoc Plugin::register()
-	 */
-	function register($category, $path, $mainContextId = null) {
-		if (parent::register($category, $path, $mainContextId)) {
-			if ($this->getEnabled($mainContextId)) {
-				$this->_registerTemplateResource();
-			}
-			return true;
-		}
-		return false;
-	}
-
-
 	//
 	// Implement template methods from Plugin.
 	//

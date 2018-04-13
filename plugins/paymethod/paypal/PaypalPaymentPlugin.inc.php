@@ -45,9 +45,6 @@ class PaypalPaymentPlugin extends PaymethodPlugin {
 	function register($category, $path, $mainContextId = null) {
 		if (parent::register($category, $path, $mainContextId)) {
 			$this->addLocaleData();
-			if ($this->getEnabled($mainContextId)) {
-				$this->_registerTemplateResource();
-			}
 			return true;
 		}
 		return false;

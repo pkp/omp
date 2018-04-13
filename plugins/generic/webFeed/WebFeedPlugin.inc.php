@@ -46,8 +46,6 @@ class WebFeedPlugin extends GenericPlugin {
 				$this->import('WebFeedGatewayPlugin');
 				$gatewayPlugin = new WebFeedGatewayPlugin($this);
 				PluginRegistry::register('gateways', $gatewayPlugin, $this->getPluginPath());
-
-				$this->_registerTemplateResource();
 			}
 			return true;
 		}

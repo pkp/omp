@@ -30,7 +30,6 @@ class NativeImportExportPlugin extends ImportExportPlugin {
 		$success = parent::register($category, $path, $mainContextId);
 		if (!Config::getVar('general', 'installed') || defined('RUNNING_UPGRADE')) return $success;
 		if ($success && $this->getEnabled()) {
-			$this->_registerTemplateResource();
 			$this->addLocaleData();
 			$this->import('NativeImportExportDeployment');
 		}
