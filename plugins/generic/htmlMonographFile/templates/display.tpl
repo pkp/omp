@@ -1,5 +1,5 @@
 {**
- * plugins/generic/htmlMonographFile/display.tpl
+ * plugins/generic/htmlMonographFile/templates/display.tpl
  *
  * Copyright (c) 2014-2018 Simon Fraser University
  * Copyright (c) 2003-2018 John Willinsky
