@@ -130,5 +130,3 @@ class PaypalPaymentPlugin extends PaymethodPlugin {
 		return ($this->getPluginPath() . '/locale/{$installedLocale}/emailTemplates.xml');
 	}
 }
-
-?>
