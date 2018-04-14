@@ -107,7 +107,7 @@ class URNPubIdPlugin extends PubIdPlugin {
 	 * @copydoc PKPPubIdPlugin::getPubIdAssignFile()
 	 */
 	function getPubIdAssignFile() {
-		return $this->getTemplatePath().'urnAssign.tpl';
+		return $this->getTemplateResource('urnAssign.tpl');
 	}
 
 	/**
@@ -240,5 +240,3 @@ class URNPubIdPlugin extends PubIdPlugin {
 
 
 }
-
-?>

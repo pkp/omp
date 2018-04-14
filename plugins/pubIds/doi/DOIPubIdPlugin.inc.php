@@ -85,7 +85,7 @@ class DOIPubIdPlugin extends PubIdPlugin {
 	 * @copydoc PKPPubIdPlugin::getPubIdAssignFile()
 	 */
 	function getPubIdAssignFile() {
-		return $this->getTemplatePath().'doiAssign.tpl';
+		return $this->getTemplateResource('doiAssign.tpl');
 	}
 
 	/**
