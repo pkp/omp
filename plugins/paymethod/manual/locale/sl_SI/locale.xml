@@ -1,0 +1,26 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE locale SYSTEM "../../../../../lib/pkp/dtd/locale.dtd">
+
+<!--
+  * plugins/paymethod/manual/locale/en_US/locale.xml
+  *
+  * Copyright (c) 2014-2017 Simon Fraser University Library
+  * Copyright (c) 2003-2017 John Willinsky
+  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
+  *
+  * Localization strings for the en_US (U.S. English) locale.
+  -->
+
+<locale name="sl_SI" full_name="Slovenščina">
+	<message key="plugins.paymethod.manual.displayName">Ročno plačilo</message>
+	<message key="plugins.paymethod.manual.description">Skrbnik bo ročno zabeležil prejetje plačila uporabnika (zunaj tega programa).</message>
+	<message key="plugins.paymethod.manual">Ročno plačilo</message>
+	<message key="plugins.paymethod.manual.settings">Navodila za ročno plačevanje</message>
+
+	<message key="plugins.paymethod.manual.sendNotificationOfPayment">Pošlji obvestilo o plačilu</message>
+	<message key="plugins.paymethod.manual.paymentNotification">Obvestilo o plačilu</message>
+	<message key="plugins.paymethod.manual.notificationSent">Obvestilo o plačilu poslano</message>
+
+	<message key="plugins.paymethod.manual.purchase.title">Naslov</message>
+	<message key="plugins.paymethod.manual.purchase.fee">Znesek</message>
+</locale>

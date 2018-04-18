@@ -1,0 +1,40 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE locale SYSTEM "../../../../../lib/pkp/dtd/locale.dtd">
+
+<!--
+  * locale.xml
+  *
+  * Copyright (c) 2014-2017 Simon Fraser University Library
+  * Copyright (c) 2003-2017 John Willinsky
+  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
+  *
+  * Localization strings for the en_US (U.S. English) locale.
+  -->
+
+<locale name="sl_SI" full_name="Slovenščina">
+	<message key="plugins.importexport.users.displayName">Vtičnik XML za uporabnike</message>
+	<message key="plugins.importexport.users.description">Uvoz in izvoz uporabnikov</message>
+
+	<message key="plugins.importexport.users.cliUsage"><![CDATA[Uporaba: {$scriptName} {$pluginName} [command] ... Ukazi: uvoz [xmlFileName] [press_path] [optional flags] izvoz [xmlFileName] [press_path] izvoz [xmlFileName] [press_path] [role_path1] [role_path2] ... Izbirne zastavice: continue_on_error: Če je tako določeno, ne prenehajte z uvozom uporabnikov, če pride do napake send_notify: Če je tako določeno, uvoženim uporabnikom pošljite e-poštno obvestilo z uporabniškim imenom in geslom. Primeri: Uvozi uporabnike v myPress iz datoteke myImportFile.xml in nadaljuj kljub napaki: {$scriptName} {$pluginName} uvozi myImportFile.xml myPress continue_on_error Izvozi vse uporabnike iz myPress: {$scriptName} {$pluginName} izvozi myExportFile.xml myPress Izvozi vse uporabnike, ki so vpisani kot recenzenti, skupaj z le njihovo vlogo recenzenta: {$scriptName} {$pluginName} izvozi myExportFile.xml myPress reviewer
+]]></message>
+	<message key="plugins.importexport.users.import.importUsers">Uvoz uporabnikov</message>
+	<message key="plugins.importexport.users.import.instructions"><![CDATA[Izberite podatkovno datoteko XML z informacijami o uporabniku, ki jo želite uvoziti v tiskovni portal. Za podrobnosti o formatu te datoteke si oglejte stran za pomoč.<br /><br />Ne pozabite, da morebitna uporabniška imena ali e-poštni naslovi, ki se nahajajo v datoteki, vendar že obstajajo v sistemu, ne bodo uvoženi in da bodo nove vloge, ki jih ustvarite, dodeljene obstoječim uporabnikom.]]></message>
+	<message key="plugins.importexport.users.import.dataFile">Datoteka s podatki o uporabniku</message>
+	<message key="plugins.importexport.users.import.sendNotify">Vsem uvoženim uporabnikom pošlji e-poštno obvestiloz uporabniškim imenom in geslom.</message>
+	<message key="plugins.importexport.users.import.continueOnError">V primeru napake nadaljuj z uvozom drugih uporabnikov.</message>
+	<message key="plugins.importexport.users.import.usersWereImported">Naslednji uporabniki so bili uspešno uvoženi v sistem</message>
+	<message key="plugins.importexport.users.import.errorsOccurred">Med uvozom je prišlo do napak</message>
+	<message key="plugins.importexport.users.import.confirmUsers">Potrdite, da ste v sistem želeli uvoziti navedene uporabnike</message>
+	<message key="plugins.importexport.users.import.warning">Opozorilo</message>
+	<message key="plugins.importexport.users.import.encryptionMismatch">Ni mogoče uporabiti gesel z {$importHash}; OMP je konfiguriran za uporabo {$ompHash}. Če želite nadaljevati, ponastavite gesla uvoženih uporabnikov.</message>
+	<message key="plugins.importexport.users.unknownPress">Določena je bila neznana pot do publikacije "{$pressPath}".</message>
+
+	<message key="plugins.importexport.users.export.exportUsers">Izvozi uporabnike</message>
+	<message key="plugins.importexport.users.export.exportByRole">Izvozi glede na vlogo</message>
+	<message key="plugins.importexport.users.export.exportAllUsers">Izvozi vse</message>
+	<message key="plugins.importexport.users.export.errorsOccurred">Med izvozom je prišlo do napak</message>
+	<message key="plugins.importexport.users.export.couldNotWriteFile">Ni bilo mogoče pisati v datoteko "{$fileName}".</message>
+	<message key="plugins.importexport.users.importComplete">Uvoz je uspešno zaključen. Uporabniki z uporabniškimi imeni in e-poštnimi naslovi, ki se še ne uporabljajo, so bili uvoženi skupaj s povezanimi uporabniškimi skupinami.</message>
+	<message key="plugins.importexport.users.results">Rezultati</message>
+	<message key="plugins.importexport.users.uploadFile">Za nadaljevanje prenesite datoteko pod "Uvoz".</message>
+</locale>

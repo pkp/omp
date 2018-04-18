@@ -1,0 +1,21 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE email_texts SYSTEM "../../../../../lib/pkp/dtd/emailTemplateData.dtd">
+
+<!--
+  * plugins/paymethod/paypal/locale/en_US/emailTemplates.xml
+  *
+  * Copyright (c) 2014-2017 Simon Fraser University Library
+  * Copyright (c) 2003-2017 John Willinsky
+  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
+  *
+  * Localized email templates XML file.
+  -->
+
+<email_texts locale="sl_SI">
+	<email_text key="PAYPAL_INVESTIGATE_PAYMENT">
+		<subject>Nenavadno delovanje storitve PayPal</subject>
+		<body><![CDATA[Sistem Open Monograph Press je zaznal nenavadno delovanje v zvezi s podporo plačila PayPal za publikacijo {$contextName}. To delovanje lahko zahteva nadaljnjo raziskavo ali ročno posredovanje.<br /> <br /> To e-poštno sporočilo je generirano s pomočjo vtičnika Open Monograph Press PayPal.<br /> <br /> Celotna informacija za zahtevo:<br /> {$postInfo}<br /> <br /> Dodatne inforacije (če so dodane):<br /> {$additionalInfo}<br /> <br /> Strežnik vars:<br /> {$serverVars}<br />
+]]></body>
+		<description>To predlogo e-poštnega sporočila se uporablja za obveščanje primarnega kontakta založbe o sumljivem delovanju ali delovanju, ki zahteva ročno posredovanje in jo je zaznal vtičnik PayPal.</description>
+	</email_text>
+</email_texts>

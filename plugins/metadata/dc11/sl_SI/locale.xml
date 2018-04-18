@@ -1,0 +1,17 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE locale SYSTEM "../../../../lib/pkp/dtd/locale.dtd">
+
+<!--
+  * locale.xml
+  *
+  * Copyright (c) 2014-2017 Simon Fraser University Library
+  * Copyright (c) 2003-2017 John Willinsky
+  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
+  *
+  * Localization strings for the en_US (U.S. English) locale.
+  -->
+
+<locale name="sl_SI" full_name="Slovenščina">
+	<message key="plugins.metadata.dc11.publicationFormatAdapter.displayName">Orodje DC 1.1 za prilagajanje formata publikacije</message>
+	<message key="plugins.metadata.dc11.publicationFormatAdapter.description">Izlušči/vstavi metapodatke iz/v format publikacije.</message>
+</locale>
