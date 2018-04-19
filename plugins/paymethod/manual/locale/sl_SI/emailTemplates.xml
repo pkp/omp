@@ -1,0 +1,20 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE email_texts SYSTEM "../../../../../lib/pkp/dtd/emailTemplateData.dtd">
+
+<!--
+  * plugins/paymethod/manual/locale/en_US/emailTemplates.xml
+  *
+  * Copyright (c) 2014-2017 Simon Fraser University Library
+  * Copyright (c) 2003-2017 John Willinsky
+  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
+  *
+  * Localized email templates XML file.
+  -->
+
+<email_texts locale="sl_SI">
+	<email_text key="MANUAL_PAYMENT_NOTIFICATION">
+		<subject>Obvestilo o ročnem plačilu</subject>
+		<body><![CDATA[Ročno plačilo mora biti obdelano za založbo {$contextName} in uporabnika {$userFullName} (username &quot;{$userName}&quot;).<br /> <br /> Predmet plačila je &quot;{$itemName}&quot;.<br /> Cena je {$itemCost} ({$itemCurrencyCode}).<br /> <br /> Ta e-pošta je bila generirana z vtičnikom Open Monograph Press za ročna plačila.]]></body>
+		<description>Ta predloga e-pošte se uporablja za obveščanje kontakta upravitelja založbe, da je bilo zahtevano ročno plačilo.</description>
+	</email_text>
+</email_texts>

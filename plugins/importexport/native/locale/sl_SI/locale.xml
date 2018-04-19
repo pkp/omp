@@ -1,0 +1,25 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE locale SYSTEM "../../../../../lib/pkp/dtd/locale.dtd">
+
+<!--
+  * locale.xml
+  *
+  * Copyright (c) 2014-2017 Simon Fraser University Library
+  * Copyright (c) 2003-2017 John Willinsky
+  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
+  *
+  * Localization strings for the en_US (U.S. English) locale.
+  -->
+
+<locale name="sl_SI" full_name="Slovenščina">
+	<message key="plugins.importexport.native.displayName">Domači vtičnik XML</message>
+	<message key="plugins.importexport.native.description">Uvozi in izvozi knjige v domačem formatu XML sistema OMP.</message>
+	<message key="plugins.importexport.native.import">Uvozi</message>
+	<message key="plugins.importexport.native.import.instructions">Naložite datoteko XML za uvoz</message>
+	<message key="plugins.importexport.native.export">Izvozi</message>
+	<message key="plugins.importexport.native.results">Rezultati</message>
+	<message key="plugins.inportexport.native.uploadFile"> Naložite datoteko v zavihku "Uvozi" za nadaljevanje.</message>
+	<message key="plugins.importexport.native.importComplete">Uvoz uspešno zaključen. Uvoženi so naslednji elementi:</message>
+	<message key="plugins.importexport.native.onix30.pressMissingFields">Založbi manjka nekaj informacij za metapodatke ONIX, uporabljene pri tem izvozu. Pojdite v Nastavitve &gt; Potek dela &gt; Produkcija in izpolnite manjkajoče podrobnosti.</message>
+	<message key="plugins.importexport.native.error.unknownSeries">Neznana zbirka {$param}</message>
+</locale>
