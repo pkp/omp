@@ -1,0 +1,29 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE locale SYSTEM "../../../../../lib/pkp/dtd/locale.dtd">
+
+<!--
+  * locale/en_US/locale.xml
+  *
+  * Copyright (c) 2014-2017 Simon Fraser University Library
+  * Copyright (c) 2003-2017 John Willinsky
+  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
+  * Localization information: https://pkp.sfu.ca/wiki/index.php?title=Translating_OxS
+  * Localization strings.
+  -->
+
+<locale name="sl_SI" full_name="Slovenščina">
+	<message key="plugins.reports.reviews.displayName">Poročilo o recenziji</message>
+	<message key="plugins.reports.reviews.description">Ta vtičnik ureja poročilo CSV o recenzijah, ki vsebuje seznam recenzij in podatke o njih.</message>
+	<message key="plugins.reports.reviews.round">Krog</message>
+	<message key="plugins.reports.reviews.submissionTitle">Naslov prispevka</message>
+	<message key="plugins.reports.reviews.submissionId">ID prispevka</message>
+	<message key="plugins.reports.reviews.reviewer">Recenzent</message>
+	<message key="plugins.reports.reviews.dateAssigned">Datum dodelitve</message>
+	<message key="plugins.reports.reviews.dateNotified">Datum obveščanja</message>
+	<message key="plugins.reports.reviews.dateConfirmed">Datum potrditve</message>
+	<message key="plugins.reports.reviews.dateCompleted">Datum končanja</message>
+	<message key="plugins.reports.reviews.dateReminded">Datum opominjanja</message>
+	<message key="plugins.reports.reviews.recommendation">Priporočilo</message>
+	<message key="plugins.reports.reviews.comments">Komentarji prispevka</message>
+</locale>
+
