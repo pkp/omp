@@ -1,0 +1,17 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE locale SYSTEM "../../../../../lib/pkp/dtd/locale.dtd">
+
+<!--
+  * plugins/generic/htmlMonographFile/locale/en_US/locale.xml
+  *
+  * Copyright (c) 2014-2018 Simon Fraser University
+  * Copyright (c) 2003-2018 John Willinsky
+  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
+  *
+  * Localization strings.
+  -->
+
+<locale name="si_SI" full_name="Slovenščina">
+	<message key="plugins.generic.htmlMonographFile.displayName">Monografska publikacija v formatu HTML</message>
+	<message key="plugins.generic.htmlMonographFile.description">Vtičnik omogoča podporo monografskim publikacijam v formatu HTML.</message>
+</locale>

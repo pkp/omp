@@ -1,0 +1,35 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE locale SYSTEM "../../../../../lib/pkp/dtd/locale.dtd">
+
+<!--
+  * plugins/paymethod/paypal/locale/en_US/locale.xml
+  *
+  * Copyright (c) 2014-2018 Simon Fraser University
+  * Copyright (c) 2006-2009 Gunther Eysenbach, Juan Pablo Alperin, MJ Suhonos
+  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
+  *
+  * Localization strings for the en_US (U.S. English) locale.
+  -->
+
+<locale name="sl_SI" full_name="Slovenščina">
+	<message key="plugins.paymethod.paypal.displayName">Provizija pri nakupu s PayPalom</message>
+
+	<!-- PayPal Settings Form -->
+	<message key="plugins.paymethod.paypal.settings.paypalenable">Aktiviraj PayPal</message>
+	<message key="plugins.paymethod.paypal.settings.paypalurl">IPN URL</message>
+    <message key="plugins.paymethod.paypal.settings.paypalurl.description"><![CDATA[To je URL za storitev PayPal Instant Payment Notification (IPN -- Obvestilo o nakupu) Za preizkus uporabite <code>https://www.sandbox.paypal.com/cgi-bin/webscr</code>; za proizvodne sisteme uporabite <code>https://www.paypal.com/cgi-bin/webscr</code>.]]></message>
+	<message key="plugins.paymethod.paypal.settings.selleraccount">Račun prodajalca</message>
+	<message key="plugins.paymethod.paypal.settings.selleraccount.description">To je uporabniško ime prodajalčevega računa, ponavadi je to e-pošta. Poskrbite, da boste na vašem računu aktivirali obvestilo o plačilu Instant Payment Notification (IPN).</message>
+	<message key="plugins.paymethod.paypal.settings.curlNotInstalled">Pozor: Podpora CURL za PHP ni nameščena. Nadzor nad plačilom prek PayPala zahteva knjižnico CURL in ne bo deloval, dokler ne boste namestili knjižnice.</message>
+	<message key="plugins.paymethod.paypal.settings">Nastavitve v PayPalu</message>
+
+	<!-- PayPal -->
+	<message key="plugins.paymethod.paypal">Provizija pri nakupu s PayPalom</message>
+	<message key="plugins.paymethod.paypal.description"><![CDATA[PayPal svojim uporabnikom omogoča uporabo vseh večjih kreditnih kartic, ne glede na to, ali so člani PayPala. Upravljalec mora ustvariti poslovni račun <a href="http://www.paypal.com" target="_blank">PayPal Business Account</a>.]]></message>
+	<message key="plugins.paymethod.paypal.warning">Ukaz Nadaljuj vodi do PayPalove spletne strani, na kateri lahko uporabljate kreditno kartico (registracija ni potrebna). Po plačilu uporabljajte PayPalov ukaz Nazaj na ponudnika storitev, s katerim se boste vrnili na spletno stran, kjer vam bo kupljeni naslov na voljo za prenos.</message>
+	<message key="plugins.paymethod.paypal.purchase.title">Naslov</message>
+	<message key="plugins.paymethod.paypal.purchase.fee">Provizija</message>
+	<message key="plugins.paymethod.paypal.purchase.description">Opis</message>
+	<message key="plugins.paymethod.paypal.purchase.cancelled">Vaš nakup je preklican.</message>
+	<message key="plugins.paymethod.paypal.purchase.cancelled.title">Nakup preklican</message>
+</locale>

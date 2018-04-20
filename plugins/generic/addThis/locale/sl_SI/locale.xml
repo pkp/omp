@@ -1,0 +1,34 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE locale SYSTEM "../../../../../lib/pkp/dtd/locale.dtd">
+
+<!--
+  * plugins/generic/addThis/locale/en_US/locale.xml
+  *
+  * Copyright (c) 2014-2018 Simon Fraser University
+  * Copyright (c) 2003-2018 John Willinsky
+  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
+  *
+  * Localization strings for this plugin.
+  *
+  -->
+
+<locale name="sl_SI" full_name="Slovenščina">
+	<message key="plugins.generic.addThis.displayName">AddThis</message>
+	<message key="plugins.generic.addThis.description">Ta vtičnik zagotavlja deljenje prispevkov AddThis na socialnih omrežjih.</message>
+	<message key="plugins.generic.addThis.title">AddThis</message>
+	<message key="plugins.generic.addThis.settings">Nastavitve</message>
+	<message key="plugins.generic.addThis.settings.statistics">Statistike</message>
+
+	<!-- AddThis form locale keys and messages -->
+	<message key="plugins.generic.addThis.form.saved">Nastavitve obrazca AddThis shranjene.</message>
+	<message key="plugins.generic.addThis.form.profileId">Profil ID AddThis </message>
+	<message key="plugins.generic.addThis.form.username">Uporabniško ime AddThis</message>
+	<message key="plugins.generic.addThis.form.password">Geslo AddThis (obvezno za prikazovanje statistike)</message>
+	<message key="plugins.generic.addThis.form.registerLink"><![CDATA[<a href="https://www.addthis.com/register">Registrirajte</a> se za brezplačna poglobljena analitična poročila in boljše razumevanje socialnega prometa vašega spletišča.]]></message>
+	<message key="plugins.generic.addThis.settings.displayStyle">Izberite, kako naj se prikazuje AddThis</message>
+
+	<!-- AddThis grid keys (only a few, since the grid does very little) -->
+	<message key="plugins.generic.addThis.grid.shares">Delitve</message>
+	<message key="plugins.generic.addThis.grid.title">Največkrat deljene povezave</message>
+	<message key="plugins.generic.addThis.statistics.instructions"><![CDATA[Seznam prikazuje najbolj popularne deljene povezave zadnjega tedna. Za pregled vseh možnih statistik AddThis obiščite <a href="http://www.addthis.com/analytics" target="_blank">AddThis Analytics</a> spletišče in se prijavite.]]></message>
+</locale>
