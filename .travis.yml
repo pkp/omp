@@ -17,6 +17,8 @@ python:
 addons:
   postgresql: "9.1"
   firefox: "45.9.0esr"
+  apt:
+    update: true
 git:
   # We have to init submodules ourselves to make it recursive
   submodules: false
