@@ -163,14 +163,14 @@ class CSVImportExportPlugin extends ImportExportPlugin {
 						$authors = preg_split('/,\s*/', $authorString);
 						$firstAuthor = true;
 						foreach ($authors as $authorString) {
-							// Examine the author string. Best case is: First1 Last1 <email@address.com>, First2 Last2 <email@address.com>, etc
+							// Examine the author string. Best case is: Given1 Family1 <email@address.com>, Given2 Family2 <email@address.com>, etc
 							// But default to press email address based on press path if not present.
-							$firstName = $lastName = $emailAddress = null;
+							$givenName = $familyName = $emailAddress = null;
 							$authorString = trim($authorString); // whitespace.
 							if (preg_match('/^(\w+)(\s+\w+)?\s*(<([^>]+)>)?$/', $authorString, $matches)) {
-								$firstName = $matches[1]; // Mandatory
+								$givenName = $matches[1]; // Mandatory
 								if (count($matches) > 2) {
-									$lastName = $matches[2];
+									$familyName = $matches[2];
 								}
 								if (count($matches) == 5) {
 									$emailAddress = $matches[4];
@@ -181,8 +181,8 @@ class CSVImportExportPlugin extends ImportExportPlugin {
 							$author = $authorDao->newDataObject();
 							$author->setSubmissionId($submissionId);
 							$author->setUserGroupId($authorGroup->getId());
-							$author->setFirstName($firstName);
-							$author->setLastName($lastName);
+							$author->setGivenName($givenName, $locale);
+							$author->setFamilyName($familyName, $locale);
 							$author->setEmail($emailAddress);
 							if ($firstAuthor) {
 								$author->setPrimaryContact(1);

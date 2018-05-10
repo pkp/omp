@@ -35,10 +35,7 @@ class ChapterAuthorDAO extends DAO {
 	 * @return DAOResultFactory
 	 */
 	function getAuthors($monographId = null, $chapterId = null) {
-		$params = array(
-			'affiliation', AppLocale::getPrimaryLocale(),
-			'affiliation', AppLocale::getLocale()
-		);
+		$params = array();
 		if (isset($monographId)) $params[] = (int) $monographId;
 		if (isset($chapterId)) $params[] = (int) $chapterId;
 		// get all the monograph_author fields,
@@ -49,25 +46,17 @@ class ChapterAuthorDAO extends DAO {
 				sca.chapter_id,
 				sca.primary_contact,
 				sca.seq,
-				a.first_name,
-				a.middle_name,
-				a.last_name,
-				a.suffix,
 				a.include_in_browse,
 				ug.show_title,
-				asl.setting_value AS affiliation_l,
-				asl.locale,
-				aspl.setting_value AS affiliation_pl,
-				aspl.locale AS primary_locale,
 				a.country,
 				a.email,
 				a.url,
-				a.user_group_id
+				a.user_group_id,
+				s.locale
 			FROM	authors a
+				JOIN submissions s ON (s.submission_id = a.submission_id)
 				JOIN submission_chapter_authors sca ON (a.author_id = sca.author_id)
-				JOIN user_groups ug ON (a.user_group_id = ug.user_group_id)
-				LEFT JOIN author_settings aspl ON (sca.author_id = aspl.author_id AND aspl.setting_name = ? AND aspl.locale = ?)
-				LEFT JOIN author_settings asl ON (sca.author_id = asl.author_id AND asl.setting_name = ? AND asl.locale = ?)' .
+				JOIN user_groups ug ON (a.user_group_id = ug.user_group_id)' .
 			( (count($params)> 0)?' WHERE':'' ) .
 			(  isset($monographId)?' a.submission_id = ?':'' ) .
 			(  (isset($monographId) && isset($chapterId))?' AND':'' ) .
@@ -167,9 +156,8 @@ class ChapterAuthorDAO extends DAO {
 		$chapterAuthor = $this->newDataObject();
 		$chapterAuthor->setId($author->getId());
 		$chapterAuthor->setSubmissionId($author->getSubmissionId());
-		$chapterAuthor->setFirstName($author->getFirstName());
-		$chapterAuthor->setMiddleName($author->getMiddleName());
-		$chapterAuthor->setLastName($author->getLastName());
+		$chapterAuthor->setGivenName($author->getGivenName(null), null);
+		$chapterAuthor->setFamilyName($author->getFamilyName(null), null);
 		$chapterAuthor->setAffiliation($author->getAffiliation(null), null);
 		$chapterAuthor->setCountry($author->getCountry());
 		$chapterAuthor->setEmail($author->getEmail());

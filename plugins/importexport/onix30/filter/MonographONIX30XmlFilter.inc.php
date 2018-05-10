@@ -298,17 +298,13 @@ class MonographONIX30XmlFilter extends NativeExportFilter {
 			$role = array_key_exists($userGroup->getLocalizedAbbrev(), $userGroupOnixMap) ? $userGroupOnixMap[$userGroup->getLocalizedAbbrev()] : 'Z99'; // Z99 - unknown contributor type.
 
 			$contributorNode->appendChild($this->_buildTextNode($doc, 'ContributorRole', $role));
-			$contributorNode->appendChild($this->_buildTextNode($doc, 'PersonName', $author->getFullName()));
-			$contributorNode->appendChild($this->_buildTextNode($doc, 'PersonNameInverted', $author->getFullName(true)));
-			$contributorNode->appendChild($this->_buildTextNode($doc, 'NamesBeforeKey', trim(join(' ', array($author->getFirstName(), $author->getMiddleName())))));
-			if ($author->getLastName() != '') {
-				$contributorNode->appendChild($this->_buildTextNode($doc, 'KeyNames', $author->getLastName()));
+			$contributorNode->appendChild($this->_buildTextNode($doc, 'PersonName', $author->getFullName(false)));
+			$contributorNode->appendChild($this->_buildTextNode($doc, 'PersonNameInverted', $author->getFullName(false, true)));
+			$contributorNode->appendChild($this->_buildTextNode($doc, 'NamesBeforeKey', $author->getLocalizedGivenName()));
+			if ($author->getLocalizedFamilyName() != '') {
+				$contributorNode->appendChild($this->_buildTextNode($doc, 'KeyNames', $author->getLocalizedFamilyName()));
 			} else {
-				$contributorNode->appendChild($this->_buildTextNode($doc, 'KeyNames', $author->getFullName()));
-			}
-
-			if ($author->getSuffix() != '') {
-				$contributorNode->appendChild($this->_buildTextNode($doc, 'SuffixToKey', $author->getSuffix()));
+				$contributorNode->appendChild($this->_buildTextNode($doc, 'KeyNames', $author->getFullName(false)));
 			}
 
 			if ($author->getLocalizedBiography() != '') {

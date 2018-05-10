@@ -133,13 +133,14 @@ class Chapter extends DataObject {
 
 	/**
 	 * Get the author names for this chapter and return them as a string.
+	 * @param $preferred boolean If the preferred public name should be used, if exist
 	 * @return string
 	 */
-	function getAuthorNamesAsString() {
+	function getAuthorNamesAsString($preferred = true) {
 		$authorNames = array();
 		$authors = $this->getAuthors();
 		while ($author = $authors->next()) {
-			$authorNames[] = $author->getFullName();
+			$authorNames[] = $author->getFullName($preferred);
 		}
 		return join(', ', $authorNames);
 	}

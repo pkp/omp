@@ -25,7 +25,6 @@
 	<message key="submission.workflowType.editedVolume.selectEditors">Select Volume Editors</message>
 	<message key="submission.workflowType.editedVolume.selectEditors.description">Select the authors who should be identified as editors for the entire volume.</message>
 	<message key="submission.editorName">{$editorName} (ed)</message>
-	<message key="submission.editorSeparator">,</message>
 	<message key="submission.monograph">Monograph</message>
 	<message key="submission.published">Production Ready</message>
 	<message key="submission.fairCopy">Fair Copy</message>

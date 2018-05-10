@@ -109,6 +109,7 @@ class PublishedMonographDAO extends MonographDAO {
 	 * Retrieve Published Monograph by monograph id
 	 * @param $monographId int
 	 * @param $pressId int
+	 * @param $metadataApprovedOnly boolean
 	 * @return PublishedMonograph object
 	 */
 	function getById($monographId, $pressId = null, $metadataApprovedOnly = true) {
@@ -480,7 +481,9 @@ class PublishedMonographDAO extends MonographDAO {
 				JOIN submissions s ON ps.submission_id = s.submission_id
 				' . $this->getFetchJoins() . '
 				' . ($searchText !== null?'
-					LEFT JOIN authors a ON s.submission_id = a.submission_id
+					LEFT JOIN authors au ON (s.submission_id = au.submission_id)
+					LEFT JOIN author_settings asgs ON (asgs.author_id = au.author_id AND asgs.setting_name = \''.IDENTITY_SETTING_GIVENNAME.'\')
+					LEFT JOIN author_settings asfs ON (asfs.author_id = au.author_id AND asfs.setting_name = \''.IDENTITY_SETTING_FAMILYNAME.'\')
 				':'') . '
 				' . ($searchText !== null || $sortBy == ORDERBY_TITLE?'
 					LEFT JOIN submission_settings st ON (st.submission_id = s.submission_id AND st.setting_name = \'title\')
@@ -493,7 +496,7 @@ class PublishedMonographDAO extends MonographDAO {
 				LEFT JOIN features f ON (f.submission_id = s.submission_id AND f.assoc_type = ? AND f.assoc_id = ?)
 				LEFT JOIN new_releases nr ON (nr.submission_id = s.submission_id AND nr.assoc_type = ? AND nr.assoc_id = ?)
 			WHERE	ps.date_published IS NOT NULL AND s.context_id = ?
-				' . ($searchText !== null?' AND (st.setting_value LIKE ? OR a.first_name LIKE ? OR a.last_name LIKE ?)':'') . '
+				' . ($searchText !== null?' AND (st.setting_value LIKE ? OR asgs.setting_value LIKE ? OR asfs.setting_value LIKE ?)':'') . '
 				' . ($assocType == ASSOC_TYPE_CATEGORY?' AND (c.category_id IS NOT NULL OR sc.category_id IS NOT NULL)':'') . '
 				' . ($assocType == ASSOC_TYPE_SERIES?' AND se.series_id = ' . $assocId:'') . '
 				' . ($featuredOnly?' AND (f.assoc_type = ? AND f.assoc_id = ?)':'') . '

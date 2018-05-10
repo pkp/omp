@@ -48,13 +48,11 @@ class ReviewerSubmissionDAO extends MonographDAO {
 		$result = $this->retrieve(
 			'SELECT	m.*, pm.date_published,
 				r.*,
-				u.first_name, u.last_name,
 				COALESCE(stl.setting_value, stpl.setting_value) AS series_title
 			FROM	submissions m
 				LEFT JOIN published_submissions pm ON (m.submission_id = pm.submission_id)
 				LEFT JOIN review_assignments r ON (m.submission_id = r.submission_id)
 				LEFT JOIN series s ON (s.series_id = m.series_id)
-				LEFT JOIN users u ON (r.reviewer_id = u.user_id)
 				LEFT JOIN series_settings stpl ON (s.series_id = stpl.series_id AND stpl.setting_name = ? AND stpl.locale = ?)
 				LEFT JOIN series_settings stl ON (s.series_id = stl.series_id AND stl.setting_name = ? AND stl.locale = ?)
 			WHERE	r.review_id = ?',
@@ -90,6 +88,7 @@ class ReviewerSubmissionDAO extends MonographDAO {
 	function _fromRow($row) {
 		// Get the ReviewerSubmission object, populated with Monograph data
 		$reviewerSubmission = parent::_fromRow($row);
+		$reviewer = $this->userDao->getById($row['reviewer_id']);
 
 		// Editor Decisions
 		$editDecisionDao = DAORegistry::getDAO('EditDecisionDAO');
@@ -99,7 +98,7 @@ class ReviewerSubmissionDAO extends MonographDAO {
 		// Review Assignment
 		$reviewerSubmission->setReviewId($row['review_id']);
 		$reviewerSubmission->setReviewerId($row['reviewer_id']);
-		$reviewerSubmission->setReviewerFullName($row['first_name'].' '.$row['last_name']);
+		$reviewerSubmission->setReviewerFullName($reviewer->getFullName());
 		$reviewerSubmission->setCompetingInterests($row['competing_interests']);
 		$reviewerSubmission->setRecommendation($row['recommendation']);
 		$reviewerSubmission->setDateAssigned($this->datetimeFromDB($row['date_assigned']));
@@ -166,95 +165,6 @@ class ReviewerSubmissionDAO extends MonographDAO {
 				(int) $reviewerSubmission->getReviewId()
 			)
 		);
-	}
-
-	/**
-	 * Get all submissions for a reviewer of a press.
-	 * @param $reviewerId int
-	 * @param $pressId int
-	 * @param $rangeInfo object
-	 * @return array ReviewerSubmissions
-	 */
-	function getReviewerSubmissionsByReviewerId($reviewerId, $pressId = null, $active = true, $skipDeclined = true, $rangeInfo = null, $sortBy = null, $sortDirection = SORT_DIRECTION_ASC) {
-		$primaryLocale = AppLocale::getPrimaryLocale();
-		$locale = AppLocale::getLocale();
-		$sql = 'SELECT	m.*, pm.date_published,
-				r.*,
-				u.first_name, u.last_name,
-				atl.setting_value AS submission_title,
-				COALESCE(stl.setting_value, stpl.setting_value) AS series_title,
-			FROM	submissions m
-				LEFT JOIN published_submissions pm ON (pm.submission_id = m.submission_id)
-				LEFT JOIN review_assignments r ON (m.submission_id = r.submission_id)
-				LEFT JOIN submission_settings atl ON (atl.submission_id = m.submission_id AND atl.setting_name = ? AND atl.locale = ?)
-				LEFT JOIN series s ON (s.series_id = m.series_id)
-				LEFT JOIN users u ON (r.reviewer_id = u.user_id)
-				LEFT JOIN series_settings stpl ON (s.series_id = stpl.series_id AND stpl.setting_name = ? AND stpl.locale = ?)
-				LEFT JOIN series_settings stl ON (s.series_id = stl.series_id AND stl.setting_name = ? AND stl.locale = ?)
-			WHERE r.reviewer_id = ? ' . ($pressId?	' AND m.context_id = ? ':'') .
-				'AND r.date_notified IS NOT NULL';
-
-		if ($active) {
-			$sql .=  ' AND r.date_completed IS NULL AND r.declined <> 1';
-		} else {
-			$sql .= ' AND (r.date_completed IS NOT NULL OR r.declined = 1)';
-		}
-
-		if ($skipDeclined) {
-			$sql .= ' AND m.status <> ' . STATUS_DECLINED;
-		}
-
-		if ($sortBy) {
-			$sql .=  " ORDER BY $sortBy " . $this->getDirectionMapping($sortDirection);
-		}
-
-		$params = array(
-			'title', $locale, // Monograph title
-			'title', $primaryLocale, // Series title
-			'title', $locale, // Series title
-			(int) $reviewerId
-		);
-		if ($pressId) $params[] = (int) $pressId;
-
-		$result = $this->retrieveRange($sql, $params, $rangeInfo);
-		return new DAOResultFactory($result, $this, '_fromRow');
-	}
-
-	/**
-	 * Get count of active and complete assignments
-	 * @param reviewerId int
-	 * @param pressId int
-	 * @return array(int active, int complete)
-	 */
-	function getSubmissionsCount($reviewerId, $pressId) {
-		$submissionsCount = array();
-		$submissionsCount[0] = 0;
-		$submissionsCount[1] = 0;
-
-		$result = $this->retrieve(
-			'SELECT	r.date_completed, r.declined
-			FROM	submissions m
-				LEFT JOIN review_assignments r ON (m.submission_id = r.submission_id)
-				LEFT JOIN series s ON (s.series_id = m.series_id)
-				LEFT JOIN users u ON (r.reviewer_id = u.user_id)
-				LEFT JOIN review_rounds r2 ON (r.submission_id = r2.submission_id AND r.stage_id = r2.stage_id AND r.round = r2.round)
-			WHERE	m.context_id = ? AND
-				r.reviewer_id = ? AND
-				r.date_notified IS NOT NULL',
-			array((int) $pressId, (int) $reviewerId)
-		);
-
-		while (!$result->EOF) {
-			if ($result->fields['date_completed'] == null && $result->fields['declined'] != 1) {
-				$submissionsCount[0] += 1; // Active
-			} else {
-				$submissionsCount[1] += 1; // Complete
-			}
-			$result->MoveNext();
-		}
-
-		$result->Close();
-		return $submissionsCount;
 	}
 
 	/**

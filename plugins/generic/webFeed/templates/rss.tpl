@@ -77,7 +77,7 @@
 		{/if}
 
 		{foreach from=$publishedMonograph->getAuthors() item=author name=authorList}
-			<dc:creator>{$author->getFullName()|strip|escape:"html"}</dc:creator>
+			<dc:creator>{$author->getFullName(false)|strip|escape:"html"}</dc:creator>
 		{/foreach}
 
 		<dc:rights>

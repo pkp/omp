@@ -18,8 +18,8 @@
 	<authors xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 		xsi:schemaLocation="http://pkp.sfu.ca native.xsd">
 		<author primary_contact="true" user_group_ref="Author">
-			<firstname>John</firstname>
-			<lastname>Public</lastname>
+			<givenname locale="en_US">John</givenname>
+			<familyname locale="en_US">Public</familyname>
 			<email>john_q_public@email.com</email>
 		</author>
 	</authors>
