@@ -46,7 +46,7 @@ class SeriesTest extends WebTestCase {
 		$this->waitForElementNotPresent('css=div.pkp_modal_panel');
 
 		// Verify resulting grid row
-		$this->assertEquals('Buskins', $this->getText('css=#cell-1-editors > span'));
+		$this->assertEquals('David Buskins', $this->getText('css=#cell-1-editors > span'));
 
 		// Create a new "Political Economy" series
 		$this->click('css=[id^=component-grid-settings-series-seriesgrid-addSeries-button-]');

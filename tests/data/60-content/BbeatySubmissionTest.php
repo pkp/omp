@@ -22,8 +22,8 @@ class BbeatySubmissionTest extends ContentBaseTestCase {
 	function testSubmission() {
 		$this->register(array(
 			'username' => 'bbeaty',
-			'firstName' => 'Bart',
-			'lastName' => 'Beaty',
+			'givenName' => 'Bart',
+			'familyName' => 'Beaty',
 			'affiliation' => 'University of British Columbia',
 			'country' => 'Canada',
 		));
@@ -41,24 +41,24 @@ class BbeatySubmissionTest extends ContentBaseTestCase {
 			'submitterRole' => 'Volume editor',
 			'additionalAuthors' => array(
 				array(
-					'firstName' => 'Toby',
-					'lastName' => 'Miller',
+					'givenName' => 'Toby',
+					'familyName' => 'Miller',
 					'country' => 'Canada',
 					'affiliation' => 'University of Alberta',
 					'email' => 'tmiller@mailinator.com',
 					'role' => 'Author',
 				),
 				array(
-					'firstName' => 'Ira',
-					'lastName' => 'Wagman',
+					'givenName' => 'Ira',
+					'familyName' => 'Wagman',
 					'country' => 'Canada',
 					'affiliation' => 'Athabasca University',
 					'email' => 'awagman@mailinator.com',
 					'role' => 'Author',
 				),
 				array(
-					'firstName' => 'Will',
-					'lastName' => 'Straw',
+					'givenName' => 'Will',
+					'familyName' => 'Straw',
 					'country' => 'Canada',
 					'affiliation' => 'University of Calgary',
 					'email' => 'wstraw@mailinator.com',

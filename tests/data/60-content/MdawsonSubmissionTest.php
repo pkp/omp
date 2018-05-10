@@ -22,8 +22,8 @@ class MdawsonSubmissionTest extends ContentBaseTestCase {
 	function testSubmission() {
 		$this->register(array(
 			'username' => 'mdawson',
-			'firstName' => 'Michael',
-			'lastName' => 'Dawson',
+			'givenName' => 'Michael',
+			'familyName' => 'Dawson',
 			'affiliation' => 'University of Alberta',
 			'country' => 'Canada',
 		));
@@ -40,16 +40,16 @@ class MdawsonSubmissionTest extends ContentBaseTestCase {
 			'submitterRole' => 'Volume editor',
 			'additionalAuthors' => array(
 				array(
-					'firstName' => 'Brian',
-					'lastName' => 'Dupuis',
+					'givenName' => 'Brian',
+					'familyName' => 'Dupuis',
 					'country' => 'Canada',
 					'affiliation' => 'Athabasca University',
 					'email' => 'bdupuis@mailinator.com',
 					'role' => 'Author',
 				),
 				array(
-					'firstName' => 'Michael',
-					'lastName' => 'Wilson',
+					'givenName' => 'Michael',
+					'familyName' => 'Wilson',
 					'country' => 'Canada',
 					'affiliation' => 'University of Calgary',
 					'email' => 'mwilson@mailinator.com',

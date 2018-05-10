@@ -22,8 +22,8 @@ class JbrowerSubmissionTest extends ContentBaseTestCase {
 	function testSubmission() {
 		$this->register(array(
 			'username' => 'jbrower',
-			'firstName' => 'Jennifer',
-			'lastName' => 'Brower',
+			'givenName' => 'Jennifer',
+			'familyName' => 'Brower',
 			'affiliation' => 'Buffalo National Park Foundation',
 			'country' => 'Canada',
 		));

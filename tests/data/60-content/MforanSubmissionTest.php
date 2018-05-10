@@ -22,8 +22,8 @@ class MforanSubmissionTest extends ContentBaseTestCase {
 	function testSubmission() {
 		$this->register(array(
 			'username' => 'mforan',
-			'firstName' => 'Max',
-			'lastName' => 'Foran',
+			'givenName' => 'Max',
+			'familyName' => 'Foran',
 			'affiliation' => 'University of Calgary',
 			'country' => 'Canada',
 		));
