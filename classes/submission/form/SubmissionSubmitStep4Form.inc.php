@@ -25,18 +25,17 @@ class SubmissionSubmitStep4Form extends PKPSubmissionSubmitStep4Form {
 
 	/**
 	 * Save changes to submission.
-	 * @param $args array
-	 * @param $request PKPRequest
 	 * @return int the submission ID
 	 */
-	function execute($args, $request) {
-		parent::execute($args, $request);
+	function execute() {
+		parent::execute();
 
 		// Send author notification email
 		import('classes.mail.MonographMailTemplate');
 		$mail = new MonographMailTemplate($this->submission, 'SUBMISSION_ACK', null, null, false);
 		$authorMail = new MonographMailTemplate($this->submission, 'SUBMISSION_ACK_NOT_USER', null, null, false);
 
+		$request = Application::getRequest();
 		$context = $request->getContext();
 		$router = $request->getRouter();
 		if ($mail->isEnabled()) {

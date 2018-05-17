@@ -186,7 +186,7 @@ class CategoryForm extends Form {
 	/**
 	 * @see Form::execute()
 	 */
-	function execute($request) {
+	function execute() {
 		$categoryId = $this->getCategoryId();
 		$categoryDao = DAORegistry::getDAO('CategoryDAO');
 
@@ -244,6 +244,7 @@ class CategoryForm extends Form {
 			}
 			assert($image);
 
+			$request = Application::getRequest();
 			$press = $request->getPress();
 			$coverThumbnailsMaxWidth = $press->getSetting('coverThumbnailsMaxWidth');
 			$coverThumbnailsMaxHeight = $press->getSetting('coverThumbnailsMaxHeight');

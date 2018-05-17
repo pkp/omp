@@ -237,7 +237,7 @@ class ManageSpotlightsGridHandler extends GridHandler {
 
 		$spotlightForm->readInputData();
 		if ($spotlightForm->validate()) {
-			$spotlightId = $spotlightForm->execute($request);
+			$spotlightId = $spotlightForm->execute();
 
 			if(!isset($spotlight)) {
 				// This is a new entry

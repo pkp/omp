@@ -85,7 +85,7 @@ class SpotlightForm extends Form {
 	/**
 	 * @see Form::execute()
 	 */
-	function execute($request) {
+	function execute() {
 
 		$spotlightDao = DAORegistry::getDAO('SpotlightDAO');
 

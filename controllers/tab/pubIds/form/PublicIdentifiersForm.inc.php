@@ -30,8 +30,8 @@ class PublicIdentifiersForm extends PKPPublicIdentifiersForm {
 	/**
 	 * @copydoc Form::execute()
 	 */
-	function execute($request) {
-		parent::execute($request);
+	function execute() {
+		parent::execute();
 		$pubObject = $this->getPubObject();
 		if (is_a($pubObject, 'Chapter')) {
 			$chapterDao = DAORegistry::getDAO('ChapterDAO');

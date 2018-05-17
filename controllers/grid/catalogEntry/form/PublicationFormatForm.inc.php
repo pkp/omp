@@ -127,14 +127,14 @@ class PublicationFormatForm extends Form {
 
 	/**
 	 * Save the assigned format
-	 * @param PKPRequest request
 	 * @return int Publication format ID
 	 * @see Form::execute()
 	 */
-	function execute($request) {
+	function execute() {
 		$publicationFormatDao = DAORegistry::getDAO('PublicationFormatDAO');
 		$monograph = $this->getMonograph();
 		$publicationFormat = $this->getPublicationFormat();
+		$request = Application::getRequest();
 		if (!$publicationFormat) {
 			// this is a new format to this published monograph
 			$publicationFormat = $publicationFormatDao->newDataObject();
