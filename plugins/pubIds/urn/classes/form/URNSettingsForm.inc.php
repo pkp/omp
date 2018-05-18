@@ -108,7 +108,7 @@ class URNSettingsForm extends Form {
 	/**
 	 * @copydoc Form::fetch()
 	 */
-	function fetch($request) {
+	function fetch($request, $template = null, $display = false) {
 		$urnNamespaces = array(
 			'' => '',
 			'urn:nbn:de' => 'urn:nbn:de',
@@ -119,7 +119,7 @@ class URNSettingsForm extends Form {
 		);
 		$templateMgr = TemplateManager::getManager($request);
 		$templateMgr->assign('urnNamespaces', $urnNamespaces);
-		return parent::fetch($request);
+		return parent::fetch($request, $template, $display);
 	}
 
 	/**

@@ -54,7 +54,7 @@ class SpotlightForm extends Form {
 	/**
 	 * @see Form::fetch()
 	 */
-	function fetch($request) {
+	function fetch($request, $template = null, $display = false) {
 		$templateMgr = TemplateManager::getManager($request);
 
 		$spotlightDao = DAORegistry::getDAO('SpotlightDAO');
@@ -69,7 +69,7 @@ class SpotlightForm extends Form {
 			$templateMgr->assign('assocId', $spotlight->getAssocId() . ':' . $spotlight->getAssocType());
 		}
 
-		return parent::fetch($request);
+		return parent::fetch($request, $template, $display);
 	}
 
 	//

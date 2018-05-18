@@ -67,7 +67,7 @@ class CatalogEntryCatalogMetadataForm extends Form {
 	 * @param $request PKPRequest
 	 * return string
 	 */
-	function fetch($request) {
+	function fetch($request, $template = null, $display = false) {
 		$templateMgr = TemplateManager::getManager($request);
 		$templateMgr->assign('submissionId', $this->getMonograph()->getId());
 		$templateMgr->assign('stageId', $this->getStageId());
@@ -128,7 +128,7 @@ class CatalogEntryCatalogMetadataForm extends Form {
 			$templateMgr->assign('coverImage', $publishedMonograph->getCoverImage());
 		}
 
-		return parent::fetch($request);
+		return parent::fetch($request, $template, $display);
 	}
 
 	function initData() {

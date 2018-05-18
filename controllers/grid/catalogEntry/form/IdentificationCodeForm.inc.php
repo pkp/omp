@@ -96,7 +96,7 @@ class IdentificationCodeForm extends Form {
 	 * Fetch the form.
 	 * @see Form::fetch()
 	 */
-	function fetch($request) {
+	function fetch($request, $template = null, $display = false) {
 		$templateMgr = TemplateManager::getManager($request);
 		$monograph = $this->getMonograph();
 		$templateMgr->assign('submissionId', $monograph->getId());
@@ -134,7 +134,7 @@ class IdentificationCodeForm extends Form {
 			fatalError('Format not in authorized monograph');
 		}
 
-		return parent::fetch($request);
+		return parent::fetch($request, $template, $display);
 	}
 
 	/**
