@@ -38,8 +38,9 @@ class AppearanceForm extends PKPAppearanceForm {
 	/**
 	 * @copydoc ContextSettingsForm::initData()
 	 */
-	function initData($request) {
-		parent::initData($request);
+	function initData() {
+		parent::initData();
+		$request = Application::getRequest();
 		$context = $request->getContext();
 		$publishedMonographDao = DAORegistry::getDAO('PublishedMonographDAO');
 		$sortOption = $context->getSetting('catalogSortOption') ? $context->getSetting('catalogSortOption') : $publishedMonographDao->getDefaultSortOption();
