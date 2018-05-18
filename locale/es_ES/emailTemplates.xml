@@ -21,31 +21,6 @@ Enlace: {$url}<br />
 {$principalContactSignature}]]></body>
 		<description>El correo electrónico se envía a los usuarios/as registrados que seleccionaron este tipo de notificación.</description>
 	</email_text>
-	<email_text key="NOTIFICATION_MAILLIST">
-		<subject>Nueva notificación de {$siteTitle}</subject>
-		<body><![CDATA[Tiene una nueva notificación de {$siteTitle}:<br />
---<br />
-{$notificationContents}<br />
-<br />
-Enlace: {$url}<br />
---<br />
-<br />
-Si desea dejar de recibir notificaciones por correo electrónico, diríjase a {$unsubscribeLink}.<br />
-<br />
-{$principalContactSignature}]]></body>
-		<description>Este correo electrónico se envía a los usuarios/as no registrados que están en la lista de distribución.</description>
-	</email_text>
-	<email_text key="NOTIFICATION_MAILLIST_WELCOME">
-		<subject>¡Bienvenido/a a la lista de distribución {$siteTitle}!</subject>
-		<body><![CDATA[Se inscribió para recibir notificaciones de {$siteTitle}.<br />
-<br />
-Haga clic en este enlace para confirmar su solicitud y añadir su dirección de correo electrónico a la lista de distribución: {$confirmLink}<br />
-<br />
-Si desea dejar de recibir notificaciones, diríjase a {$unsubscribeLink} e introduzca su dirección y contraseña de correo electrónico.<br />
-<br />
-{$principalContactSignature}]]></body>
-		<description>Este correo electrónico se envía a un usuario/a no registrado que se inscribió recientemente en la lista de distribución de notificaciones.</description>
-	</email_text>
 	<email_text key="PASSWORD_RESET_CONFIRM">
 		<subject>Confirmación para restablecer la contraseña</subject>
 		<body><![CDATA[Se recibió una solicitud para restablecer su contraseña en la página web {$siteTitle}.<br />

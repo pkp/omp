@@ -358,6 +358,7 @@
 	<message key="user.noRoles.regReviewerClosed">Register as a Reviewer: Reviewer registration is currently disabled.</message>
 	<message key="user.reviewerPrompt">Would you be willing to review submissions to this press?</message>
 	<message key="user.reviewerPrompt.userGroup">Yes, request the {$userGroup} role.</message>
+	<message key="user.reviewerPrompt.optin">Yes, I would like to be contacted with requests to review submissions to this press.</message>
 	<message key="user.register.contextsPrompt">Which presses on this site would you like to register with?</message>
 	<message key="user.register.otherContextRoles">Request the following roles.</message>
 	<message key="user.register.noContextReviewerInterests">If you requested to be a reviewer for any press, please enter your subject interests.</message>
@@ -510,8 +511,6 @@ Your server currently supports mbstring: <strong>{$supportsMBString}</strong>]]>
 	<message key="notification.removedSpotlight">Spotlight removed.</message>
 	<message key="notification.savedCatalogMetadata">Catalog metadata saved.</message>
 	<message key="notification.savedPublicationFormatMetadata">Publication format metadata saved.</message>
-	<message key="notification.mailListDescription">Enter your email address to be notified when new content is added to the press.</message>
-	<message key="notification.notificationsPublicDescription">This page includes updates associated with this press, such as new monographs or series. You may subscribe to these notifications through RSS feeds (by clicking on the images to the right), or <![CDATA[  <a href="{$emailUrl}">through email.</a>]]></message>
 	<message key="notification.proofsApproved">Proofs approved.</message>
 	<message key="notification.removedSubmission">Submission deleted.</message>
 	<!-- Notification Types -->
@@ -521,6 +520,7 @@ Your server currently supports mbstring: <strong>{$supportsMBString}</strong>]]>
 	<message key="notification.type.site">Site Events</message>
 	<message key="notification.type.submissions">Submission Events</message>
 	<message key="notification.type.userComment">A reader has made a comment on "{$title}".</message>
+	<message key="notification.type.public">Public Announcements</message>
 	<message key="notification.type.editorAssignmentTask">A new monograph has been submitted to which an editor needs to be assigned.</message>
 	<message key="notification.type.copyeditorRequest">You have been asked to review copyedits for "{$file}".</message>
 	<message key="notification.type.layouteditorRequest">You have been asked to review layouts for "{$title}".</message>

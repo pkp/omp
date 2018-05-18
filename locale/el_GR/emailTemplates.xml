@@ -21,31 +21,6 @@
 {$principalContactSignature}]]></body>
 		<description>The email is sent to registered users that have selected to have this type of notification emailed to them.</description>
 	</email_text>
-	<email_text key="NOTIFICATION_MAILLIST">
-		<subject>Νέα ειδοποίηση από {$siteTitle}</subject>
-		<body><![CDATA[Έχετε μια νέα ειδοποίηση από {$siteTitle}:<br />
---<br />
-{$notificationContents}<br />
-<br />
-Σύνδεσμος: {$url}<br />
---<br />
-<br />
-Αν δεν επιθυμείτε να λαμβάνετε email με ειδοποιήσεις σας παρακαλούμε πηγαίνετε στο {$unsubscribeLink}και εισάγεται το email σας και τον κωδικό πρόσβασής σας.<br />
-<br />
-{$principalContactSignature}]]></body>
-		<description>This email is sent to unregistered users on the notification mailing list.</description>
-	</email_text>
-	<email_text key="NOTIFICATION_MAILLIST_WELCOME">
-		<subject>Καλώς ορίσατε mailing list του {$siteTitle} !</subject>
-		<body><![CDATA[Έχετε εγγραφεί στην λίστα για να λαμβάνεται ενημερωτικά μηνύματα από το {$siteTitle}.<br />
-<br />
-Σας παρακαλούμε επιλέξτε τον σύνδεσμο αυτό για να επιβεβαιώσετε την εγγραφή σας και να προσθέσετε το email σας στην λίστα: {$confirmLink}<br />
-<br />
-Αν δεν επιθυμείτε να λαμβάνετε σχετικά μηνύματα, σας παρακαλούμε πηγαίνετε στον σύνδεσμο  {$unsubscribeLink} και εισάγετε το email σας και τον κωδικό σας.<br />
-<br />
-{$principalContactSignature}]]></body>
-		<description>This email is sent to an unregistered user who just registered with the notification mailing list.</description>
-	</email_text>
 	<email_text key="PASSWORD_RESET_CONFIRM">
 		<subject>Επιβεβαίωση αλλαγής κωδικού πρόσβασης</subject>
 		<body><![CDATA[Παραλάβαμε ένα αίτημα για επαναφορά (αλλαγή) του κωδικού πρόσβασής σας για τον ιστότοπο {$siteTitle} .<br />
