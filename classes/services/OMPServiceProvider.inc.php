@@ -21,6 +21,9 @@ require_once(dirname(__FILE__) . '/../../lib/pkp/lib/vendor/pimple/pimple/src/Pi
 use \Pimple\Container;
 use \PKP\Services\AuthorService;
 use \PKP\Services\UserService;
+use \OMP\Services\CategoryService;
+use \OMP\Services\SerieService;
+use \OMP\Services\ChapterService;
 
 
 class OMPServiceProvider implements \Pimple\ServiceProviderInterface {
@@ -51,5 +54,19 @@ class OMPServiceProvider implements \Pimple\ServiceProviderInterface {
 			return new UserService();
 		};
 
+		// Category service
+		$pimple['category'] = function() {
+			return new CategoryService();
+		};
+
+		// Serie service
+		$pimple['serie'] = function() {
+			return new SerieService();
+		};
+
+		// Serie service
+		$pimple['chapter'] = function() {
+			return new ChapterService();
+		};
 	}
 }

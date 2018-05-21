@@ -29,6 +29,8 @@ class SubmissionService extends \PKP\Services\PKPSubmissionService {
 		\HookRegistry::register('Submission::getSubmissions::queryObject', array($this, 'modifySubmissionListQueryObject'));
 		\HookRegistry::register('Submission::getBackendListProperties::properties', array($this, 'modifyBackendListPropertyValues'));
 		\HookRegistry::register('Submission::getProperties::values', array($this, 'modifyPropertyValues'));
+		\HookRegistry::register('Submission::getProperties::summaryProperties', array($this, 'modifyProperties'));
+		\HookRegistry::register('Submission::getProperties::fullProperties', array($this, 'modifyProperties'));
 	}
 
 	/**
@@ -271,7 +273,19 @@ class SubmissionService extends \PKP\Services\PKPSubmissionService {
 		$publishedMonograph = null;
 		if ($context) {
 			$publishedMonographDao = \DAORegistry::getDAO('PublishedMonographDAO');
-			$publishedMonograph = $publishedMonographDao->getByBestId($context->getId(), $submission->getId());
+			$publishedMonograph = $publishedMonographDao->getByBestId($submission->getId(), $context->getId());
+		}
+
+		$chapters = null;
+		if ($publishedMonograph) {
+			$chapterDao = \DAORegistry::getDAO('ChapterDAO');
+			$chaptersResult = $chapterDao->getChapters($publishedMonograph->getId());
+			if ($chaptersResult) {
+				$chapters = array();
+				while ($chapter = $chaptersResult->next()) {
+					$chapters[] = $chapter;
+				}
+			}
 		}
 
 		foreach ($props as $prop) {
@@ -305,7 +319,40 @@ class SubmissionService extends \PKP\Services\PKPSubmissionService {
 					$newReleaseDao = \DAORegistry::getDAO('NewReleaseDAO');
 					$values[$prop] = $newReleaseDao->getNewReleaseAll($submission->getId());
 					break;
+				case 'chapters':
+				case 'chaptersSummary':
+					$values['chapters'] = null;
+					if ($publishedMonograph && $chapters) {
+						$values['chapters'] = array();
+						$chapterService = \ServicesContainer::instance()->get('chapter');
+						$chapterArgs = array_merge(array('parent' => $publishedMonograph), $propertyArgs);
+						foreach ($chapters as $chapter) {
+							$values['chapters'][] = ($prop === 'chapters')
+							? $chapterService->getFullProperties($chapter, $chapterArgs)
+							: $chapterService->getSummaryProperties($chapter, $chapterArgs);
+						}
+					}
+					break;
 			}
 		}
+	}
+
+	/**
+	 * Add app-specific properties to submissions
+	 *
+	 * @param $hookName string Submission::getProperties::summaryProperties or
+	 *  Submission::getProperties::fullProperties
+	 * @param $args array [
+	 * 		@option $props array Existing properties
+	 * 		@option $submission Submission The associated submission
+	 * 		@option $args array Request args
+	 * ]
+	 *
+	 * @return array
+	 */
+	public function modifyProperties($hookName, $args) {
+		$props =& $args[0];
+		$props[] = 'chaptersSummary';
+		return $props;
 	}
 }
