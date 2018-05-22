@@ -216,6 +216,7 @@ class AppLocale extends PKPLocale {
 		$componentMap[LOCALE_COMPONENT_APP_COMMON] = $baseDir . 'locale.xml';
 		$componentMap[LOCALE_COMPONENT_APP_MANAGER] = $baseDir . 'manager.xml';
 		$componentMap[LOCALE_COMPONENT_APP_SUBMISSION] = $baseDir . 'submission.xml';
+		$componentMap[LOCALE_COMPONENT_APP_AUTHOR] = $baseDir . 'author.xml';
 		$componentMap[LOCALE_COMPONENT_APP_EDITOR] = $baseDir . 'editor.xml';
 		$componentMap[LOCALE_COMPONENT_APP_ADMIN] = $baseDir . 'admin.xml';
 		$componentMap[LOCALE_COMPONENT_APP_DEFAULT] = $baseDir . 'default.xml';
