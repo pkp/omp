@@ -36,8 +36,8 @@ class SeriesGridHandler extends SetupGridHandler {
 	 * Configure the grid
 	 * @param $request PKPRequest
 	 */
-	function initialize($request) {
-		parent::initialize($request);
+	function initialize($request, $args = null) {
+		parent::initialize($request, $args);
 		$press = $request->getPress();
 
 		// FIXME are these all required?
