@@ -39,9 +39,14 @@ class CategoryService extends PKPBaseEntityPropertyService {
 	 * @return array
 	 */
 	public function getCategories($contextId, $args = array()) {
+		$categories = null;
 		$categoryDAO = DAORegistry::getDAO('CategoryDAO');
-		// TODO getByParentId
-		$categories = $categoryDAO->getByPressId($contextId);
+		if (isset($args['parentId']) && !is_null($args['parentId'])) {
+			$categories = $categoryDAO->getByParentId($args['parentId'], $contextId);
+		}
+		else {
+			$categories = $categoryDAO->getByPressId($contextId);
+		}
 		$data = array();
 		while ($category = $categories->next()) {
 			$data[] = $category;
@@ -61,6 +66,9 @@ class CategoryService extends PKPBaseEntityPropertyService {
 			switch ($prop) {
 				case 'id':
 					$values[$prop] = (int) $category->getId();
+					break;
+				case 'seq':
+					$values[$prop] = (int) $category->getSequence();
 					break;
 				case '_parent':
 					$values[$prop] = null;
@@ -102,7 +110,7 @@ class CategoryService extends PKPBaseEntityPropertyService {
 	 * @copydoc \PKP\Services\EntityProperties\EntityPropertyInterface::getSummaryProperties()
 	 */
 	public function getSummaryProperties($category, $args = null) {
-		$props = array('id', '_parent', 'path', 'title');
+		$props = array('id', '_parent', 'path', 'title','seq');
 		\HookRegistry::call('Category::getProperties::summaryProperties', array(&$props, $category, $args));
 		return $this->getProperties($category, $props, $args);
 	}
@@ -111,7 +119,7 @@ class CategoryService extends PKPBaseEntityPropertyService {
 	 * @copydoc \PKP\Services\EntityProperties\EntityPropertyInterface::getFullProperties()
 	 */
 	public function getFullProperties($category, $args = null) {
-		$props = array('id', '_parent', 'path', 'title', 'description', 'image', 'sort');
+		$props = array('id', '_parent', 'path', 'title', 'description', 'image', 'sort','seq');
 		\HookRegistry::call('Category::getProperties::fullProperties', array(&$props, $category, $args));
 		return $this->getProperties($category, $props, $args);
 	}

@@ -57,6 +57,21 @@ class ChapterService extends PKPBaseEntityPropertyService {
 				case 'id':
 					$values[$prop] = (int) $chapter->getId();
 					break;
+				case '_parent':
+					$values[$prop] = null;
+					$parentId = $chapter->getMonographId();
+					if (!empty($args['slimRequest']) && $parentId) {
+						$route = $args['slimRequest']->getAttribute('route');
+						$arguments = $route->getArguments();
+						$values[$prop] = $this->getAPIHref(
+								$args['request'],
+								$arguments['contextPath'],
+								$arguments['version'],
+								'submissions',
+								$parentId
+							);
+					}
+					break;
 				case 'title':
 					$values[$prop] = $chapter->getLocalizedTitle();
 					break;
@@ -96,6 +111,7 @@ class ChapterService extends PKPBaseEntityPropertyService {
 						$items[] = array(
 							'id' => $file->getFileId(),
 							'fileName' => $file->getOriginalFileName(),
+							// TODO: do we need more fields here?
 						);
 					}
 					$values[$prop] = $items;
@@ -116,7 +132,7 @@ class ChapterService extends PKPBaseEntityPropertyService {
 	 * @return array
 	 */
 	public function getSummaryProperties($chapter, $args = null) {
-		$props = array('id','title','subTitle','seq','authors','files');
+		$props = array('id','_parent','title','subTitle','seq','authors','files');
 		\HookRegistry::call('Chapter::getProperties::summaryProperties', array(&$props, $chapter, $args));
 		return $this->getProperties($chapter, $props, $args);
 	}
@@ -131,7 +147,7 @@ class ChapterService extends PKPBaseEntityPropertyService {
 	 * @return array
 	 */
 	public function getFullProperties($chapter, $args = null) {
-		$props = array('id','title','subTitle','fullTitle','seq','authors');
+		$props = array('id','_parent','title','subTitle','fullTitle','seq','authors','files');
 		\HookRegistry::call('Chapter::getProperties::fullProperties', array(&$props, $chapter, $args));
 		return $this->getProperties($chapter, $props, $args);
 	}

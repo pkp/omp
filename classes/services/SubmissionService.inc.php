@@ -301,15 +301,35 @@ class SubmissionService extends \PKP\Services\PKPSubmissionService {
 					);
 					break;
 				case 'series':
-					$values[$prop] = array(
-						'id' => $submission->getSeriesId(),
-						'title' => $submission->getSeriesTitle(),
-						'position' => $submission->getSeriesPosition(),
-					);
+					$serieService = \ServicesContainer::instance()->get('serie');
+					$seriesId = $submission->getSeriesId();
+					$seriesDao = \DAORegistry::getDAO('SeriesDAO');
+					$seriesObject = $seriesDao->getById($seriesId);
+					$series = null;
+					if ($seriesObject) {
+						$series = ($prop === 'series')
+							? $serieService->getFullProperties($seriesObject, $propertyArgs)
+							: $serieService->getSummaryProperties($seriesObject, $propertyArgs);
+						$series['position'] = $submission->getSeriesPosition();
+					}
+					$values[$prop] = $series;
 					break;
 				case 'category':
+				case 'categorySummary':
+					$items = array();
+					$categories = array();
 					$categoryDao = \DAORegistry::getDAO('CategoryDAO');
-					$values[$prop] = $categoryDao->getBySubmissionId($submission->getId());
+					$categoryService = \ServicesContainer::instance()->get('category');
+					$categoriesResult = $categoryDao->getBySubmissionId($submission->getId());
+					if (!empty($categoriesResult)) {
+						foreach ($categoriesResult as $categoryData) {
+							$category = $categoryDao->getById($categoryData['id'], $categoryData['press_id']);
+							$items[] = ($prop === 'category')
+									? $categoryService->getFullProperties($category, $propertyArgs)
+									: $categoryService->getSummaryProperties($category, $propertyArgs);
+						}
+					}
+					$values[$prop] = $items;
 					break;
 				case 'featured':
 					$featureDao = \DAORegistry::getDAO('FeatureDAO');
@@ -321,15 +341,15 @@ class SubmissionService extends \PKP\Services\PKPSubmissionService {
 					break;
 				case 'chapters':
 				case 'chaptersSummary':
-					$values['chapters'] = null;
+					$values[$prop] = null;
 					if ($publishedMonograph && $chapters) {
-						$values['chapters'] = array();
+						$values[$prop] = array();
 						$chapterService = \ServicesContainer::instance()->get('chapter');
 						$chapterArgs = array_merge(array('parent' => $publishedMonograph), $propertyArgs);
 						foreach ($chapters as $chapter) {
-							$values['chapters'][] = ($prop === 'chapters')
-							? $chapterService->getFullProperties($chapter, $chapterArgs)
-							: $chapterService->getSummaryProperties($chapter, $chapterArgs);
+							$values[$prop][] = ($prop === 'chapters')
+								? $chapterService->getFullProperties($chapter, $chapterArgs)
+								: $chapterService->getSummaryProperties($chapter, $chapterArgs);
 						}
 					}
 					break;
@@ -352,6 +372,8 @@ class SubmissionService extends \PKP\Services\PKPSubmissionService {
 	 */
 	public function modifyProperties($hookName, $args) {
 		$props =& $args[0];
+		$props[] = 'series';
+		$props[] = 'categorySummary';
 		$props[] = 'chaptersSummary';
 		return $props;
 	}

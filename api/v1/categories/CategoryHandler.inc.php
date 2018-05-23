@@ -67,13 +67,16 @@ class CategoryHandler extends APIHandler {
 		$request = $this->getRequest();
 		$context = $request->getContext();
 		$categoryService = ServicesContainer::instance()->get('category');
+		$parentId = $slimRequest->getQueryParam('parentId');
 		
 		if (!$context) {
 			return $response->withStatus(404)->withJsonError('api.submissions.404.resourceNotFound');
 		}
 
 		$items = array();
-		$params = array();
+		$params = array(
+			'parentId' => $parentId,
+		);
 		$categories = $categoryService->getCategories($context->getId(), $params);
 		if (!empty($categories)) {
 			$propertyArgs = array(

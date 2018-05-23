@@ -38,11 +38,6 @@ class SubmissionHandler extends PKPSubmissionHandler {
 					'roles' => $roles
 				),
 				array(
-					'pattern' => $this->getEndpointPattern() . '/{submissionId}/galleys',
-					'handler' => array($this, 'getGalleys'),
-					'roles' => $roles
-				),
-				array(
 					'pattern' => $this->getEndpointPattern() . '/{submissionId}/participants',
 					'handler' => array($this, 'getParticipants'),
 					'roles' => array(ROLE_ID_MANAGER, ROLE_ID_SUB_EDITOR),
@@ -50,6 +45,11 @@ class SubmissionHandler extends PKPSubmissionHandler {
 				array(
 					'pattern' => $this->getEndpointPattern() . '/{submissionId}/participants/{stageId}',
 					'handler' => array($this, 'getParticipants'),
+					'roles' => array(ROLE_ID_MANAGER, ROLE_ID_SUB_EDITOR),
+				),
+				array(
+					'pattern' => $this->getEndpointPattern() . '/{submissionId}/chapters',
+					'handler' => array($this, 'getChapters'),
 					'roles' => array(ROLE_ID_MANAGER, ROLE_ID_SUB_EDITOR),
 				),
 			),
@@ -68,11 +68,62 @@ class SubmissionHandler extends PKPSubmissionHandler {
 			$routeName = $route->getName();
 		}
 
-		if ($routeName === 'getSubmission' || $routeName === 'getGalleys' || $routeName === 'getParticipants') {
+		if ($routeName === 'getSubmission' || $routeName === 'getChapters' || $routeName === 'getParticipants') {
 			import('lib.pkp.classes.security.authorization.SubmissionAccessPolicy');
 			$this->addPolicy(new SubmissionAccessPolicy($request, $args, $roleAssignments));
 		}
 
 		return parent::authorize($request, $args, $roleAssignments);
+	}
+
+	/**
+	 * Get the chapters assigned to a submission
+	 *
+	 * @param $slimRequest Request Slim request object
+	 * @param $response Response object
+	 * @param array $args arguments
+	 *
+	 * @return Response
+	 */
+	public function getChapters($slimRequest, $response, $args) {
+		$request = $this->getRequest();
+		$context = $request->getContext();
+		$submission = $this->getAuthorizedContextObject(ASSOC_TYPE_SUBMISSION);
+
+		if (!$submission) {
+			return $response->withStatus(404)->withJsonError('api.submissions.404.resourceNotFound');
+		}
+
+		$publishedMonograph = null;
+		if ($context) {
+			$publishedMonographDao = \DAORegistry::getDAO('PublishedMonographDAO');
+			$publishedMonograph = $publishedMonographDao->getByBestId($submission->getId(), $context->getId());
+		}
+
+		if (!$publishedMonograph) {
+			return $response->withStatus(404)->withJsonError('api.submissions.404.resourceNotFound');
+		}
+
+		$data = array();
+		$chapters = array();
+		$chapterDao = \DAORegistry::getDAO('ChapterDAO');
+		$chaptersResult = $chapterDao->getChapters($publishedMonograph->getId());
+		while ($chapter = $chaptersResult->next()) {
+			$chapters[] = $chapter;
+		}
+
+		if (!empty($chapters)) {
+			$args = array(
+					'request' => $request,
+					'slimRequest' => $slimRequest,
+			);
+			$chapterService = \ServicesContainer::instance()->get('chapter');
+			$chapterArgs = array_merge(array('parent' => $publishedMonograph), $args);
+			foreach ($chapters as $chapter) {
+				$data[] = $chapterService->getFullProperties($chapter, $chapterArgs);
+			}
+		}
+
+		return $response->withJson($data, 200);
 	}
 }
