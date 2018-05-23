@@ -212,7 +212,7 @@ class ManageSpotlightsGridHandler extends GridHandler {
 		$pressId = $press->getId();
 
 		$spotlightForm = new SpotlightForm($pressId, $spotlightId);
-		$spotlightForm->initData($args, $request);
+		$spotlightForm->initData();
 
 		return new JSONMessage(true, $spotlightForm->fetch($request));
 	}
@@ -237,7 +237,7 @@ class ManageSpotlightsGridHandler extends GridHandler {
 
 		$spotlightForm->readInputData();
 		if ($spotlightForm->validate()) {
-			$spotlightId = $spotlightForm->execute($request);
+			$spotlightId = $spotlightForm->execute();
 
 			if(!isset($spotlight)) {
 				// This is a new entry

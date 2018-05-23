@@ -32,7 +32,7 @@ class SubmissionMetadataViewForm extends PKPSubmissionMetadataViewForm {
 	 * @param $request PKPRequest
 	 * return string
 	 */
-	function fetch($request) {
+	function fetch($request, $template = null, $display = false) {
 		$submission = $this->getSubmission();
 		$templateMgr = TemplateManager::getManager($request);
 
@@ -76,7 +76,7 @@ class SubmissionMetadataViewForm extends PKPSubmissionMetadataViewForm {
 			'assignedCategories' => $assignedCategories,
 		));
 
-		return parent::fetch($request);
+		return parent::fetch($request, $template, $display);
 	}
 
 	/**
@@ -89,10 +89,9 @@ class SubmissionMetadataViewForm extends PKPSubmissionMetadataViewForm {
 
 	/**
 	 * Save changes to submission.
-	 * @param $request PKPRequest
 	 */
-	function execute($request) {
-		parent::execute($request);
+	function execute() {
+		parent::execute();
 		$submission = $this->getSubmission();
 		$submissionDao = Application::getSubmissionDAO();
 

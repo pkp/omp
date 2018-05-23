@@ -41,7 +41,7 @@ class ManageFileApiHandler extends PKPManageFileApiHandler {
 		$stageId = $request->getUserVar('stageId');
 		import('lib.pkp.controllers.tab.pubIds.form.PKPPublicIdentifiersForm');
 		$form = new PKPPublicIdentifiersForm($submissionFile, $stageId);
-		$form->initData($request);
+		$form->initData();
 		return new JSONMessage(true, $form->fetch($request));
 	}
 
@@ -58,7 +58,7 @@ class ManageFileApiHandler extends PKPManageFileApiHandler {
 		$form = new PKPPublicIdentifiersForm($submissionFile, $stageId);
 		$form->readInputData();
 		if ($form->validate($request)) {
-			$form->execute($request);
+			$form->execute();
 			return DAO::getDataChangedEvent($submissionFile->getId());
 		} else {
 			return new JSONMessage(true, $form->fetch($request));

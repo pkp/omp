@@ -42,7 +42,7 @@ class User extends PKPUser {
 	 */
 	function &getSetting($name, $pressId = null) {
 		$userSettingsDao = DAORegistry::getDAO('UserSettingsDAO');
-		$setting =& $userSettingsDao->getSetting($this->getId(), $name, $pressId);
+		$setting =& $userSettingsDao->getSetting($this->getId(), $name, null, $pressId);
 		return $setting;
 	}
 
@@ -54,7 +54,7 @@ class User extends PKPUser {
 	 */
 	function updateSetting($name, $value, $type = null, $pressId = null) {
 		$userSettingsDao = DAORegistry::getDAO('UserSettingsDAO');
-		return $userSettingsDao->updateSetting($this->getId(), $name, $value, $type, $pressId);
+		return $userSettingsDao->updateSetting($this->getId(), $name, $value, $type, null, $pressId);
 	}
 }
 

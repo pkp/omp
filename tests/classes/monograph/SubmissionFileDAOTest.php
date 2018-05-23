@@ -77,8 +77,7 @@ class SubmissionFileDAOTest extends DatabaseTestCase {
 
 		$this->_cleanFiles();
 
-		$application = PKPApplication::getApplication();
-		$request = $application->getRequest();
+		$request = Application::getRequest();
 		if (is_null($request->getRouter())) {
 			$router = new PKPRouter();
 			$request->setRouter($router);
@@ -494,8 +493,7 @@ class SubmissionFileDAOTest extends DatabaseTestCase {
 				self::fail();
 		}
 		$genre = new Genre();
-		$application = PKPApplication::getApplication();
-		$request = $application->getRequest();
+		$request = Application::getRequest();
 		$press = $request->getContext();
 		$genre->setContextId($press->getId());
 		$genre->setId($genreId);

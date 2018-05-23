@@ -67,7 +67,7 @@ class CatalogEntryCatalogMetadataForm extends Form {
 	 * @param $request PKPRequest
 	 * return string
 	 */
-	function fetch($request) {
+	function fetch($request, $template = null, $display = false) {
 		$templateMgr = TemplateManager::getManager($request);
 		$templateMgr->assign('submissionId', $this->getMonograph()->getId());
 		$templateMgr->assign('stageId', $this->getStageId());
@@ -128,7 +128,7 @@ class CatalogEntryCatalogMetadataForm extends Form {
 			$templateMgr->assign('coverImage', $publishedMonograph->getCoverImage());
 		}
 
-		return parent::fetch($request);
+		return parent::fetch($request, $template, $display);
 	}
 
 	function initData() {
@@ -242,7 +242,7 @@ class CatalogEntryCatalogMetadataForm extends Form {
 	 * Save the metadata and store the catalog data for this published
 	 * monograph.
 	 */
-	function execute($request) {
+	function execute() {
 		parent::execute();
 
 		$monograph = $this->getMonograph();
@@ -307,6 +307,7 @@ class CatalogEntryCatalogMetadataForm extends Form {
 			$simpleMonographFileManager->copyFile($temporaryFile->getFilePath(), $basePath . $filename);
 
 			// Generate thumbnail image
+			$request = Application::getRequest();
 			$press = $request->getPress();
 			$coverThumbnailsMaxWidth = $press->getSetting('coverThumbnailsMaxWidth');
 			$coverThumbnailsMaxHeight = $press->getSetting('coverThumbnailsMaxHeight');

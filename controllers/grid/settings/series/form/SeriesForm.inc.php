@@ -53,10 +53,9 @@ class SeriesForm extends PKPSectionForm {
 
 	/**
 	 * Initialize form data from current settings.
-	 * @param $args array
-	 * @param $request PKPRequest
 	 */
-	function initData($args, $request) {
+	function initData() {
+		$request = Application::getRequest();
 		$press = $request->getPress();
 
 		$seriesDao = DAORegistry::getDAO('SeriesDAO');
@@ -96,7 +95,7 @@ class SeriesForm extends PKPSectionForm {
 	/**
 	 * @see Form::validate()
 	 */
-	function validate() {
+	function validate($callHooks = true) {
 		if ($temporaryFileId = $this->getData('temporaryFileId')) {
 			import('lib.pkp.classes.file.TemporaryFileManager');
 			$temporaryFileManager = new TemporaryFileManager();
@@ -111,7 +110,7 @@ class SeriesForm extends PKPSectionForm {
 				return false;
 			}
 		}
-		return parent::validate();
+		return parent::validate($callHooks);
 	}
 
 	/**
@@ -119,7 +118,7 @@ class SeriesForm extends PKPSectionForm {
 	 * @param $request PKPRequest
 	 * @see Form::fetch()
 	 */
-	function fetch($request) {
+	function fetch($request, $template = null, $display = false) {
 		$templateMgr = TemplateManager::getManager($request);
 		$templateMgr->assign('seriesId', $this->getSeriesId());
 
@@ -155,7 +154,7 @@ class SeriesForm extends PKPSectionForm {
 			'categoriesListData' => json_encode($categoriesListData),
 		));
 
-		return parent::fetch($request);
+		return parent::fetch($request, $template, $display);
 	}
 
 	/**
@@ -175,11 +174,10 @@ class SeriesForm extends PKPSectionForm {
 
 	/**
 	 * Save series.
-	 * @param $args array
-	 * @param $request PKPRequest
 	 */
-	function execute($args, $request) {
+	function execute() {
 		$seriesDao = DAORegistry::getDAO('SeriesDAO');
+		$request = Application::getRequest();
 		$press = $request->getPress();
 
 		// Get or create the series object

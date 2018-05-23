@@ -44,27 +44,25 @@ class SubmissionSubmitStep3Form extends PKPSubmissionSubmitStep3Form {
 	}
 
 	/**
-	 * Fetch the form
-	 * @param $request
+	 * @copydoc PKPSubmissionSubmitStep3Form::fetch()
 	 */
-	function fetch($request) {
+	function fetch($request, $template = null, $display = false) {
 		$templateMgr = TemplateManager::getManager($request);
 
 		// If categories are configured, present the LB.
 		$categoryDao = DAORegistry::getDAO('CategoryDAO');
 		$templateMgr->assign('categoriesExist', $categoryDao->getCountByPressId($this->context->getId()) > 0);
 
-		return parent::fetch($request);
+		return parent::fetch($request, $template, $display);
 	}
 
 	/**
 	 * Save changes to submission.
-	 * @param $args array
-	 * @param $request PKPRequest
 	 * @return int the submission ID
 	 */
-	function execute($args, $request) {
-		parent::execute($args, $request);
+	function execute() {
+		parent::execute();
+		$request = Application::getRequest();
 
 		// handle category assignment.
 		ListbuilderHandler::unpack($request, $this->getData('categories'), array($this, 'deleteEntry'), array($this, 'insertEntry'), array($this, 'updateEntry'));
@@ -78,8 +76,7 @@ class SubmissionSubmitStep3Form extends PKPSubmissionSubmitStep3Form {
 	 */
 	function insertEntry($request, $newRowId) {
 
-		$application = PKPApplication::getApplication();
-		$request = $application->getRequest();
+		$request = Application::getRequest();
 
 		$categoryId = $newRowId['name'];
 		$categoryDao = DAORegistry::getDAO('CategoryDAO');

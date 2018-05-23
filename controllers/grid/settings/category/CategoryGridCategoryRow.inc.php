@@ -33,9 +33,9 @@ class CategoryGridCategoryRow extends GridCategoryRow {
 	 * @see GridCategoryRow::initialize()
 	 * @param $request PKPRequest
 	 */
-	function initialize($request) {
+	function initialize($request, $template = null) {
 		// Do the default initialization
-		parent::initialize($request);
+		parent::initialize($request, $template);
 
 		// Is this a new row or an existing row?
 		$categoryId = $this->getId();

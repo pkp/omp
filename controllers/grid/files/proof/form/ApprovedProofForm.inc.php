@@ -51,7 +51,7 @@ class ApprovedProofForm extends Form {
 	//
 	// Extended methods from Form
 	//
-	function fetch($request) {
+	function fetch($request, $template = null, $display = false) {
 		$templateMgr = TemplateManager::getManager($request);
 		$templateMgr->assign('fileId', $this->approvedProof->getFileIdAndRevision());
 		$templateMgr->assign('submissionId', $this->monograph->getId());
@@ -65,7 +65,7 @@ class ApprovedProofForm extends Form {
 
 		$templateMgr->assign('salesTypes', $salesTypes);
 		$templateMgr->assign('salesType', $this->approvedProof->getSalesType());
-		return parent::fetch($request);
+		return parent::fetch($request, $template, $display);
 	}
 
 	/**
@@ -88,7 +88,7 @@ class ApprovedProofForm extends Form {
 	/**
 	 * @see Form::execute()
 	 */
-	function execute($request) {
+	function execute() {
 		$submissionFileDao = DAORegistry::getDAO('SubmissionFileDAO');
 		$salesType = $this->getData('salesType');
 		if ($salesType === 'notAvailable') {

@@ -76,7 +76,7 @@ class CatalogEntryFormatMetadataForm extends Form {
 	 * @param $request PKPRequest
 	 * return string
 	 */
-	function fetch($request) {
+	function fetch($request, $template = null, $display = false) {
 		$monograph = $this->getMonograph();
 		$publicationFormat = $this->getPublicationFormat();
 		$press = $request->getPress();
@@ -130,7 +130,7 @@ class CatalogEntryFormatMetadataForm extends Form {
 			NOTIFICATION_LEVEL_TRIVIAL => array()
 		));
 
-		return parent::fetch($request);
+		return parent::fetch($request, $template, $display);
 	}
 
 	/**
@@ -225,7 +225,7 @@ class CatalogEntryFormatMetadataForm extends Form {
 	/**
 	 * Save the metadata and store the catalog data for this specific publication format.
 	 */
-	function execute($request) {
+	function execute() {
 		parent::execute();
 
 		$monograph = $this->getMonograph();

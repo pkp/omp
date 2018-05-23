@@ -38,8 +38,9 @@ class AppearanceForm extends PKPAppearanceForm {
 	/**
 	 * @copydoc ContextSettingsForm::initData()
 	 */
-	function initData($request) {
-		parent::initData($request);
+	function initData() {
+		parent::initData();
+		$request = Application::getRequest();
 		$context = $request->getContext();
 		$publishedMonographDao = DAORegistry::getDAO('PublishedMonographDAO');
 		$sortOption = $context->getSetting('catalogSortOption') ? $context->getSetting('catalogSortOption') : $publishedMonographDao->getDefaultSortOption();
@@ -47,24 +48,25 @@ class AppearanceForm extends PKPAppearanceForm {
 	}
 
 	/**
-	 * @copydoc ContextSettingsForm::fetch()
+	 * @copydoc PKPAppearanceForm::fetch()
 	 */
-	function fetch($request) {
+	function fetch($request, $template = null, $display = false, $params = null) {
 		// Sort options.
 		$templateMgr = TemplateManager::getManager($request);
 		$publishedMonographDao = DAORegistry::getDAO('PublishedMonographDAO');
 		$templateMgr->assign('sortOptions', $publishedMonographDao->getSortSelectOptions());
-		return parent::fetch($request);
+		return parent::fetch($request, $template, $display, $params);
 	}
 
 	/**
 	 * @copydoc ContextSettingsForm::execute()
 	 */
-	function execute($request) {
-		parent::execute($request);
+	function execute() {
+		parent::execute();
 
 		$coverThumbnailsResize = $this->getData('coverThumbnailsResize');
 		if ($coverThumbnailsResize) {
+			$request = Application::getRequest();
 			$context = $request->getContext();
 			// new thumbnails max width and max height
 			$coverThumbnailsMaxWidth = $this->getData('coverThumbnailsMaxWidth');

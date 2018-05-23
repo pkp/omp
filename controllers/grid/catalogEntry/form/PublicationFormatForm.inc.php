@@ -98,7 +98,7 @@ class PublicationFormatForm extends Form {
 	 * Fetch the form.
 	 * @see Form::fetch()
 	 */
-	function fetch($request) {
+	function fetch($request, $template = null, $display = false) {
 		$templateMgr = TemplateManager::getManager($request);
 		$onixCodelistItemDao = DAORegistry::getDAO('ONIXCodelistItemDAO');
 		$templateMgr->assign('entryKeys', $onixCodelistItemDao->getCodes('List7')); // List7 is for object formats
@@ -109,7 +109,7 @@ class PublicationFormatForm extends Form {
 		if ($publicationFormat != null) {
 			$templateMgr->assign('representationId', $publicationFormat->getId());
 		}
-		return parent::fetch($request);
+		return parent::fetch($request, $template, $display);
 	}
 
 	/**
@@ -127,14 +127,14 @@ class PublicationFormatForm extends Form {
 
 	/**
 	 * Save the assigned format
-	 * @param PKPRequest request
 	 * @return int Publication format ID
 	 * @see Form::execute()
 	 */
-	function execute($request) {
+	function execute() {
 		$publicationFormatDao = DAORegistry::getDAO('PublicationFormatDAO');
 		$monograph = $this->getMonograph();
 		$publicationFormat = $this->getPublicationFormat();
+		$request = Application::getRequest();
 		if (!$publicationFormat) {
 			// this is a new format to this published monograph
 			$publicationFormat = $publicationFormatDao->newDataObject();

@@ -36,8 +36,8 @@ class SeriesGridHandler extends SetupGridHandler {
 	 * Configure the grid
 	 * @param $request PKPRequest
 	 */
-	function initialize($request) {
-		parent::initialize($request);
+	function initialize($request, $args = null) {
+		parent::initialize($request, $args);
 		$press = $request->getPress();
 
 		// FIXME are these all required?
@@ -190,7 +190,7 @@ class SeriesGridHandler extends SetupGridHandler {
 
 		import('controllers.grid.settings.series.form.SeriesForm');
 		$seriesForm = new SeriesForm($request, $seriesId);
-		$seriesForm->initData($args, $request);
+		$seriesForm->initData();
 		return new JSONMessage(true, $seriesForm->fetch($request));
 	}
 
@@ -208,7 +208,7 @@ class SeriesGridHandler extends SetupGridHandler {
 		$seriesForm->readInputData();
 
 		if ($seriesForm->validate()) {
-			$seriesForm->execute($args, $request);
+			$seriesForm->execute();
 			return DAO::getDataChangedEvent($seriesForm->getSeriesId());
 		} else {
 			return new JSONMessage(false);
