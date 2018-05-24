@@ -21,31 +21,6 @@ Link: {$url}<br />
 {$principalContactSignature}]]></body>
 		<description>Esta mensagem é enviada a usuários cadastrados que escolherem receber este tipo de notificação via e-mail.</description>
 	</email_text>
-	<email_text key="NOTIFICATION_MAILLIST">
-		<subject>Nova notificação de {$siteTitle}</subject>
-		<body><![CDATA[Chegou uma nova notificação de {$siteTitle}:<br />
---<br />
-{$notificationContents}<br />
-<br />
-Link: {$url}<br />
---<br />
-<br />
-Caso não queira mais receber estas mensagens, acesse a página {$unsubscribeLink}.<br />
-<br />
-{$principalContactSignature}]]></body>
-		<description>Esta mensagem é enviada a usuários não cadastrados no serviço de notificações.</description>
-	</email_text>
-	<email_text key="NOTIFICATION_MAILLIST_WELCOME">
-		<subject>Boas-vindas ao serviço de notificações do site {$siteTitle}!</subject>
-		<body><![CDATA[Você assinou o serviço de notificações do site {$siteTitle}.<br />
-<br />
-Clique no link para confirmar sua solicitação e incluir seu e-mail à lista: {$confirmLink}<br />
-<br />
-Caso não deseje mais receber as notificações, acesse {$unsubscribeLink} e informe seu e-mail e senha.<br />
-<br />
-{$principalContactSignature}]]></body>
-		<description>Esta mensagem é enviada a usuários não cadastrados que acabaram de assinar o serviço de notificações.</description>
-	</email_text>
 	<email_text key="PASSWORD_RESET_CONFIRM">
 		<subject>Confirmação de redefinição de senha</subject>
 		<body><![CDATA[Recebemos uma solicitação para redefinir sua senha no site {$siteTitle}.<br />
@@ -518,8 +493,8 @@ Em caso de dúvidas, entre em contato.<br />
 	<email_text key="REVIEW_REQUEST_REMIND_AUTO">
 		<subject>Pedido de Avaliação de Manuscrito</subject>
 		<body><![CDATA[Caro(a) {$reviewerName},<br />
-Apenas relembrando gentilmente do nosso pedido para revisão 
-da submissão &quot;{$submissionTitle},&quot; para {$contextName}. 
+Apenas relembrando gentilmente do nosso pedido para revisão
+da submissão &quot;{$submissionTitle},&quot; para {$contextName}.
 Nos esperamos ter sua resposta em {$responseDueDate},
 sendo que esse email foi gerado e enviado automaticamente devido ao tempo.
 <br />
@@ -545,13 +520,13 @@ Attenciosamente,<br />
 	<email_text key="REVIEW_REQUEST_REMIND_AUTO_ONECLICK">
 		<subject>Pedido de Avaliação de Manuscrito</subject>
 		<body><![CDATA[{$reviewerName}:<br />
-Apenas relembrando gentilmente do nosso pedido para revisão 
-da submissão &quot;{$submissionTitle},&quot; para {$contextName}. 
+Apenas relembrando gentilmente do nosso pedido para revisão
+da submissão &quot;{$submissionTitle},&quot; para {$contextName}.
 Nos esperamos ter sua resposta em {$responseDueDate},
 sendo que esse email foi gerado e enviado automaticamente devido ao tempo.
 <br />
-Acreditamos que você é um excelente avaliador para o manuscrito. 
-O resumo da submissão está inserido abaixo e esperamos que considere aceitar essa importante tarefa para nos. 
+Acreditamos que você é um excelente avaliador para o manuscrito.
+O resumo da submissão está inserido abaixo e esperamos que considere aceitar essa importante tarefa para nos.
 
 <br />
 <br />

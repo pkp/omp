@@ -17,14 +17,6 @@
 import('lib.pkp.classes.notification.PKPNotificationManager');
 
 class NotificationManager extends PKPNotificationManager {
-	/**
-	 * Constructor.
-	 */
-	function __construct() {
-		parent::__construct();
-	}
-
-
 	//
 	// Public methods.
 	//

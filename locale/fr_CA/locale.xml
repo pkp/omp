@@ -481,8 +481,6 @@ Votre serveur supporte actuellement mbstring: <strong>{$supportsMBString}</stron
 	<message key="notification.removedSpotlight">Titre supprimé de la rubrique "Sous les projecteurs".</message>
 	<message key="notification.savedCatalogMetadata">Les métadonnées du catalogue ont été sauvegardées.</message>
 	<message key="notification.savedPublicationFormatMetadata">Les métadonnées du format de publication ont été sauvegardées.</message>
-	<message key="notification.mailListDescription">Indiquez votre adresse courriel afin de recevoir un avis lorsqu'on ajoutera de nouveaux titres à la presse.</message>
-	<message key="notification.notificationsPublicDescription">Cette page contient les mises à jour de cette presse, comme les nouvelles monographies ou séries. Vous pouvez vous abonner à ces avis par les fils RSS (en cliquant sur les images à droite), ou <![CDATA[  <a href="{$emailUrl}">par courriel.</a>]]></message>
 	<message key="notification.proofsApproved">Épreuves approuvées.</message>
 	<message key="notification.removedSubmission">La soumission a été supprimée.</message>
 

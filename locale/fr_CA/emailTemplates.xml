@@ -21,31 +21,6 @@ Lien: {$url}<br />
 {$principalContactSignature}]]></body>
 		<description>Ce courriel est envoyé aux utilisateurs qui ont demandé qu'on leur envoie ce type de notification par courriel.</description>
 	</email_text>
-	<email_text key="NOTIFICATION_MAILLIST">
-		<subject>Nouvelle notification de {$siteTitle}</subject>
-		<body><![CDATA[Vous avez reçu une nouvelle notification de {$siteTitle}:<br />
---<br />
-{$notificationContents}<br />
-<br />
-Lien: {$url}<br />
---<br />
-<br />
-Si vous ne voulez plus recevoir de notifications par courriel, veuillez cliquer sur le lien suivant: {$unsubscribeLink}.<br />
-<br />
-{$principalContactSignature}]]></body>
-		<description>Ce courriel est envoyé aux utilisateurs faisant partie de la liste d'envoi.</description>
-	</email_text>
-	<email_text key="NOTIFICATION_MAILLIST_WELCOME">
-		<subject>Bienvenue à la liste d'envoi {$siteTitle} !</subject>
-		<body><![CDATA[Vous avez demandé que l'on vous envoie les notifications de {$siteTitle}.<br />
-<br />
-Veuillez cliquer sur ce lien pour confirmer votre requête et ajouter votre adresse courriel à la liste d'envoi: {$confirmLink}<br />
-<br />
-Si vous ne voulez plus recevoir de notifications par courriel, veuillez cliquer sur le lien suivant {$unsubscribeLink} en indiquant votre adresse courriel et mot de passe.<br />
-<br />
-{$principalContactSignature}]]></body>
-		<description>Ce courriel est envoyé à un utilisateur non inscrit qui a ajouté son nom à la liste d'envoi des notifications.</description>
-	</email_text>
 	<email_text key="PASSWORD_RESET_CONFIRM">
 		<subject>Confirmation de réinitialisation du mot de passe</subject>
 		<body><![CDATA[Nous avons reçu une requête de réinitialisation de votre mot de passe pour le site Web {$siteTitle}.<br />
