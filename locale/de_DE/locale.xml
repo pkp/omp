@@ -514,8 +514,6 @@ Ihr Server untersützt aktuell mbstring: <strong>{$supportsMBString}</strong>]]>
 	<message key="notification.removedSpotlight">Spotlight entfernt.</message>
 	<message key="notification.savedCatalogMetadata">Die Katalogmetadaten wurden gespeichert.</message>
 	<message key="notification.savedPublicationFormatMetadata">Die Metadaten dieses Formats wurden gespeichert.</message>
-	<message key="notification.mailListDescription">Geben Sie Ihre E-Mail-Adresse ein, um über Neuerscheinungen benachrichtigt zu werden.</message>
-	<message key="notification.notificationsPublicDescription"><![CDATA[Diese Seite informiert über Neuigkeiten aus dem Verlag, beispielsweise über neu erschienene Bücher oder Reihen. Sie können sich über unsere aktuellen Verlagsaktivitäten automatisch benachrichtigen lassen. Abonnieren Sie dazu unseren RSS-Feed (indem Sie auf die Bilder auf der rechten Seite klicken) oder lassen Sie sich per <a href="{$emailUrl}">E-Mail</a> informieren.]]></message>
 	<message key="notification.proofsApproved">Korrekurfahnen akzeptiert.</message>
 	<message key="notification.removedSubmission">Das eingereichte Manuskript wurde gelöscht.</message>
 	<!-- Notification Types -->

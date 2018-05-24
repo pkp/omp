@@ -21,31 +21,6 @@ Enllaç: {$url}<br />
 {$principalContactSignature}]]></body>
 		<description>Aquest correu electrònic s'envia als usuaris/àries registrats que han seleccionat rebre aquest tipus de notificacions per correu electrònic.</description>
 	</email_text>
-	<email_text key="NOTIFICATION_MAILLIST">
-		<subject>Notificació nova de {$siteTitle}</subject>
-		<body><![CDATA[Teniu una notificació nova de {$siteTitle}:<br />
---<br />
-{$notificationContents}<br />
-<br />
-Enllaç: {$url}<br />
---<br />
-<br />
-Si desitgeu deixar de rebre notificacions per correu electrònic, aneu a {$unsubscribeLink}.<br />
-<br />
-{$principalContactSignature}]]></body>
-		<description>Aquest correu s'envia als usuaris/àries no registrats que estan subscrits a la llista de notificacions.</description>
-	</email_text>
-	<email_text key="NOTIFICATION_MAILLIST_WELCOME">
-		<subject>Benvingut a la llista de correu {$siteTitle}!</subject>
-		<body><![CDATA[Us heu subscrit per rebre notificacions de {$siteTitle}.<br />
-<br />
-Cliqueu en aquest enllaç per confirmar la sol·licitud i afegir la vostra adreça de correu electrònic a la llista de correu: {$confirmLink}<br />
-<br />
-Si voleu deixar de rebre notificacions per correu electrònic, aneu a {$unsubscribeLink} i introduïu-hi la vostra adreça de correu electrònic i la contrasenya.<br />
-<br />
-{$principalContactSignature}]]></body>
-		<description>Aquest correu s'envia a un usuari/ària no registrat que s'acaba de registrar a la llista de notificacions.</description>
-	</email_text>
 	<email_text key="PASSWORD_RESET_CONFIRM">
 		<subject>Confirmació del restabliment de contrasenya</subject>
 		<body><![CDATA[Hem rebut una sol·licitud per restablir la vostra contrasenya del lloc web {$siteTitle}.<br />

@@ -15,16 +15,6 @@
 		<body><![CDATA[Imate novo obvestilo od {$siteTitle}: <br /> <br /> {$notificationContents}<br /> <br /> Povezava: <a href="{$url}">{$url}</a><br /> <br /> Ne odgovarjajte na to sporočilo, ker gre za samodejno ustvarjeno sporočilo. <br /> {$principalContactSignature}]]></body>
 		<description>E-poštno obvestilo je bilo poslano vsem registriranim uporabnikom, ki so se naročili na prejemanje teh obvestil na elektronski naslov.</description>
 	</email_text>
-	<email_text key="NOTIFICATION_MAILLIST">
-		<subject>Novo obvestilo od {$siteTitle}</subject>
-		<body><![CDATA[Imate novo obvestilo od {$siteTitle}: <br /> --<br /> {$notificationContents}<br /> <br /> Povezava: <a href="{$url}">{$url}</a><br /> --<br /> <br /> Če ne želite več prejemati obvestil, pojdite na {$unsubscribeLink}.<br /> <br /> {$principalContactSignature}]]></body>
-		<description>To e-poštno sporočilo je bilo poslano neregistriranim uporabnikom na poštnem seznamu za obvestila.</description>
-	</email_text>
-	<email_text key="NOTIFICATION_MAILLIST_WELCOME">
-		<subject>Dobrodošli na poštnem seznamu {$siteTitle}!</subject>
-		<body><![CDATA[Prijavili ste se na prejemanje obvestil od {$siteTitle}.<br /> <br /> Prosimo, kliknite na povezavo, da potrdite zahtevo in dodate svoj e-poštni naslov na poštni seznam: {$confirmLink}<br /> <br /> Če obvestil ne želite več prejemati, kliknite na povzavo: {$unsubscribeLink} in vnesite svoj e-poštni naslov in geslo. <br /> <br /> {$principalContactSignature}]]></body>
-		<description>To e-poštno sporočilo je bilo poslano neregistriranemu uporabniku, ki se je pravkar prijavil na poštni seznam za obvestila.</description>
-	</email_text>
 	<email_text key="PASSWORD_RESET_CONFIRM">
 		<subject>Potrditev ponastavitve gesla</subject>
 		<body><![CDATA[Prejeli smo zahtevo za ponastavitev gesla za spletno mesto {$ siteTitle}. <br /> <br /> Če te zahteve niste podali vi, prezrite to e-poštno sporočilo in vaše geslo ne bo spremenjeno. Če želite ponastaviti geslo, kliknite spodnjo povezavo.<br /> <br /> Ponastavi geslo: <a href="{$url}">{$url}</a><br /> <br /> {$principalContactSignature}]]></body>

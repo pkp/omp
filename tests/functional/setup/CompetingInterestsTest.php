@@ -50,6 +50,7 @@ class CompetingInterestsTest extends ContentBaseTestCase {
 
 		$this->waitForElementPresent('id=reviewStep1Form');
 		$this->assertElementNotPresent('//label[@for=\'noCompetingInterests\']');
+		$this->click('//input[@id=\'privacyConsent\']');
 		$this->clickLinkActionNamed('Accept Review, Continue to Step #2');
 		$this->clickLinkActionNamed('Continue to Step #3');
 		$this->waitJQuery();
@@ -99,6 +100,7 @@ class CompetingInterestsTest extends ContentBaseTestCase {
 		$this->assertElementPresent($selector='//input[@id=\'hasCompetingInterests\']');
 		$this->click($selector);
 		$this->typeTinyMCE('competingInterestsText', $competingInterests);
+		$this->click('//input[@id=\'privacyConsent\']');
 		$this->clickLinkActionNamed('Accept Review, Continue to Step #2');
 		$this->clickLinkActionNamed('Continue to Step #3');
 		$this->waitJQuery();
