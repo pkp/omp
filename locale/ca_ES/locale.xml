@@ -452,8 +452,6 @@ El vostre servidor actual és compatible amb mbstring: <strong>{$supportsMBStrin
 	<message key="notification.removedSpotlight">S'ha eliminat el punt destacat.</message>
 	<message key="notification.savedCatalogMetadata">S'han desat les metadades del catàleg.</message>
 	<message key="notification.savedPublicationFormatMetadata">S'han desat les metadades del format de la publicació.</message>
-	<message key="notification.mailListDescription">Introduïu la vostra adreça electrònica per rebre notificacions quan s'afegeixi contingut nou a la publicació.</message>
-	<message key="notification.notificationsPublicDescription">Aquesta pàgina inclou actualitzacions associades amb aquesta publicació, com monografies i col·leccions noves. Podeu realitzar la subscripció a les notificacions a través dels RSS feeds si feu clic a les imatges de la dreta o bé <![CDATA[<a href="{$emailUrl}">a través del correu electrònic.</a>]]></message>
 	<message key="notification.proofsApproved">S'han aprovat les galerades.</message>
 	<message key="notification.removedSubmission">La tramesa ha estat eliminada.</message>
 	<!-- Notification Types -->

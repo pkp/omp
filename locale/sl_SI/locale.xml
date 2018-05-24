@@ -482,8 +482,6 @@
 	<message key="notification.removedSpotlight">Izpostavljeni element odstranjen.</message>
 	<message key="notification.savedCatalogMetadata">Metapodatki kataloga shranjeni.</message>
 	<message key="notification.savedPublicationFormatMetadata">Metapodatki formata publikacije shranjeni.</message>
-	<message key="notification.mailListDescription">Vnesite vaš naslov e-pošte, če želite biti takoj obveščeni o vseh pomembnih novih prispevkih v publikaciji.</message>
-	<message key="notification.notificationsPublicDescription">Ta stran prikazuje pomembne novosti pri tej publikaciji, kot so nove monografske publikacije ali zbirke. Na ta obvestila se lahko naročite s pomočjo virov RSS (tako da kliknete na slike na desni), ali <![CDATA[ <a href="{$emailUrl}">s pomočjo e-pošte.</a>]]></message>
 	<message key="notification.proofsApproved">Vzorci odobreni.</message>
 	<message key="notification.removedSubmission">Prispevek izbrisan.</message>
 	<!-- Notification Types -->

@@ -16,13 +16,6 @@
 
 import('lib.pkp.classes.notification.form.PKPNotificationSettingsForm');
 
-class NotificationSettingsForm extends PKPNotificationSettingsForm {
-	/**
-	 * Constructor.
-	 */
-	function __construct() {
-		parent::__construct();
-	}
-}
+class NotificationSettingsForm extends PKPNotificationSettingsForm { }
 
 ?>

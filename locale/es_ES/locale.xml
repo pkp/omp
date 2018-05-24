@@ -282,7 +282,7 @@
 	<message key="common.searchCatalog">Buscar aquí</message>
 	<message key="common.moreInfo">Más información</message>
 	<message key="common.plusMore">+ Más</message>
-	
+
 
 	<message key="common.listbuilder.completeForm">Rellena el formulario completamente</message>
 	<message key="common.listbuilder.selectValidOption">Selecciona una opción válida de la lista</message>
@@ -478,8 +478,6 @@
 	<message key="notification.removedFooterLink">Vínculo a pie de página eliminado.</message>
 	<message key="notification.savedCatalogMetadata">Catálogo de metadatos guardado.</message>
 	<message key="notification.savedPublicationFormatMetadata">Formato de publicación de los metadatos guardado.</message>
-	<message key="notification.mailListDescription">Introduce tu correo electrónico para recibir notificaciones cuando se añadan nuevos contenidos a la editorial.</message>
-	<message key="notification.notificationsPublicDescription">La página contiene actualizaciones asociadas con la publicación, como nuevas monografías o series. Puede suscribirse a las notificaciones mediante RSS (haciendo clic en las imágenes de la derecha) o <![CDATA[<a href="{$emailUrl}">a través del correo electrónico.</a>]]></message>
 	<message key="notification.proofsApproved">Revisiones aprobadas.</message>
 	<message key="notification.removedSubmission">Propuesta eliminada.</message>
 	<!-- Notification Types -->

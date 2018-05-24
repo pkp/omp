@@ -74,12 +74,12 @@
 	<message key="grid.catalogEntry.nameRequired">Nome obrigatório.</message>
 	<message key="grid.catalogEntry.validPriceRequired">Preço válido obrigatório.</message>
 	<message key="grid.catalogEntry.publicationFormatDetails">Detalhes do formato</message>
-	<message key="grid.catalogEntry.physicalFormat">Format físico</message>	
+	<message key="grid.catalogEntry.physicalFormat">Format físico</message>
 	<message key="grid.catalogEntry.remoteURL">URL de conteúdo hospedado remotamente</message>
 	<message key="grid.catalogEntry.monographRequired">ID de monografia obrigatório.</message>
-	<message key="grid.catalogEntry.publicationFormatRequired">Um formato de publicação deve ser escolhido.</message>	
+	<message key="grid.catalogEntry.publicationFormatRequired">Um formato de publicação deve ser escolhido.</message>
 	<message key="grid.catalogEntry.availability">Disponibilidade</message>
-	<message key="grid.catalogEntry.isAvailable">Disponível</message>	
+	<message key="grid.catalogEntry.isAvailable">Disponível</message>
 	<message key="grid.catalogEntry.isNotAvailable">Não disponível</message>
 	<message key="grid.catalogEntry.proof">Prova</message>
 	<message key="grid.catalogEntry.approvedRepresentation.title">Aprovação do formato</message>
@@ -250,7 +250,7 @@
 	<message key="catalog.manage.homepage">Página inicial</message>
 	<message key="catalog.manage.newReleases">Lançamentos</message>
 	<message key="catalog.manage.category">Categoria</message>
-	<message key="catalog.manage.series">Séries</message>	
+	<message key="catalog.manage.series">Séries</message>
 	<message key="catalog.manage.series.issn">ISSN</message>
 	<message key="catalog.manage.series.issn.validation">Insira um ISSN válido.</message>
 	<message key="catalog.manage.series.issn.equalValidation">O ISSN online e o impresso não podem ser os mesmos.</message>
@@ -486,8 +486,6 @@ Suporte à biblioteca mbstring: <strong>{$supportsMBString}</strong>]]></message
 	<message key="notification.removedSpotlight">Destaque excluído.</message>
 	<message key="notification.savedCatalogMetadata">Metadados do catálogo salvos.</message>
 	<message key="notification.savedPublicationFormatMetadata">Metadados do formato de publicação salvos.</message>
-	<message key="notification.mailListDescription">Informe seu endereço de e-mail para ser notificado quando da publicação de novo conteúdo pela editora.</message>
-	<message key="notification.notificationsPublicDescription">Esta página inclui atualizações associadas a esta editora, como novas monografias ou séries. Caso deseje, assine as notificações via canais RSS (clicando nas imagens à direita), ou <![CDATA[<a href="{$emailUrl}">via e-mail.</a>]]></message>
 	<message key="notification.proofsApproved">Provas homologadas.</message>
 	<message key="notification.removedSubmission">Submissão excluída.</message>
 	<!-- Notification Types -->

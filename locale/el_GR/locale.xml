@@ -277,7 +277,7 @@
 	<message key="common.searchCatalog">Αναζήτηση στον κατάλογο</message>
 	<message key="common.moreInfo">Περισσότερες Πληροφορίες</message>
 	<message key="common.plusMore">+ Περισσότερα</message>
-	
+
 	<message key="common.listbuilder.completeForm">Παρακαλούμε συμπληρώστε όλα τα πεδία της φόρμας.</message>
 	<message key="common.listbuilder.selectValidOption">Παρακαλούμε κάνετε μια έγκυρη επιλογή από τη λίστα.</message>
 	<message key="common.listbuilder.itemExists">Δεν μπορείτε να προσθέσετε το ίδιο στοιχείο δύο φορές.</message>
@@ -466,8 +466,6 @@ Your server currently supports mbstring: <strong>{$supportsMBString}</strong>]]>
 	<message key="notification.removedSpotlight">Η Βιτρίνα έχει αφαιρεθεί.</message>
 	<message key="notification.savedCatalogMetadata">Τα μεταδεδομένα του Καταλόγου έχουν αποθηκευτεί.</message>
 	<message key="notification.savedPublicationFormatMetadata">Τα μεταδεδομένα του μορφότυπου της έκδοσης έχουν αποθηκευτεί.</message>
-	<message key="notification.mailListDescription">Καταχωρήστε τη διεύθυνση του ηλεκτονικού σας ταχυδρομείου για να λάβετε ενημέρωση όταν προστεθεί νέο περιεχόμενο στις εκδόσεις μας.</message>
-	<message key="notification.notificationsPublicDescription"><![CDATA[Αυτή η σελίδα παρουσιάζει σημαντικές πληροφορίες σχετικά με αυτές τις εκδόσεις, όπως τη δημοσίευση νέων μονογραφιών ή σειρών. Μπορείτε να εγγραφείτε ώστε να λαμβάνετε αυτές τις ειδοποιήσεις μέσω ροής RSS (πατώντας τις εικόνες στα δεξιά), ή μέσω <a href="{$emailUrl}">email.</a>]]></message>
 	<message key="notification.proofsApproved">Το Τυπογραφικό δοκίμιο έχει εγκριθεί.</message>
 	<message key="notification.removedSubmission">Η Υποβολή έχει διαγραφεί.</message>
 	<!-- Notification Types -->
