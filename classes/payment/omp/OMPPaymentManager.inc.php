@@ -17,6 +17,7 @@
 
 import('lib.pkp.classes.payment.QueuedPayment');
 import('lib.pkp.classes.payment.PaymentManager');
+import('lib.pkp.classes.submission.SubmissionFile');
 
 define('PAYMENT_TYPE_PURCHASE_FILE',	0x000000001);
 
