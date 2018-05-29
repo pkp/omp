@@ -40,12 +40,12 @@ class CategoryService extends PKPBaseEntityPropertyService {
 	 */
 	public function getCategories($contextId, $args = array()) {
 		$categories = null;
-		$categoryDAO = DAORegistry::getDAO('CategoryDAO');
+		$categoryDao = DAORegistry::getDAO('CategoryDAO');
 		if (isset($args['parentId']) && !is_null($args['parentId'])) {
-			$categories = $categoryDAO->getByParentId($args['parentId'], $contextId);
+			$categories = $categoryDao->getByParentId($args['parentId'], $contextId);
 		}
 		else {
-			$categories = $categoryDAO->getByPressId($contextId);
+			$categories = $categoryDao->getByPressId($contextId);
 		}
 		$data = array();
 		while ($category = $categories->next()) {
