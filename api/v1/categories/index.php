@@ -12,7 +12,7 @@
  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
  *
  * @ingroup api_v1_categories
- * @brief Handle requests for serie API functions.
+ * @brief Handle requests for category API functions.
  *
  */
 

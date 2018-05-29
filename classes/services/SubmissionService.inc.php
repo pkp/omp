@@ -301,15 +301,15 @@ class SubmissionService extends \PKP\Services\PKPSubmissionService {
 					);
 					break;
 				case 'series':
-					$serieService = \ServicesContainer::instance()->get('serie');
+					$seriesService = \ServicesContainer::instance()->get('series');
 					$seriesId = $submission->getSeriesId();
 					$seriesDao = \DAORegistry::getDAO('SeriesDAO');
 					$seriesObject = $seriesDao->getById($seriesId);
 					$series = null;
 					if ($seriesObject) {
 						$series = ($prop === 'series')
-							? $serieService->getFullProperties($seriesObject, $propertyArgs)
-							: $serieService->getSummaryProperties($seriesObject, $propertyArgs);
+							? $seriesService->getFullProperties($seriesObject, $propertyArgs)
+							: $seriesService->getSummaryProperties($seriesObject, $propertyArgs);
 						$series['position'] = $submission->getSeriesPosition();
 					}
 					$values[$prop] = $series;

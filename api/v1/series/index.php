@@ -1,7 +1,7 @@
 <?php
 
 /**
- * @defgroup api_v1_series Serie API requests
+ * @defgroup api_v1_series Series API requests
  */
 
 /**
@@ -12,9 +12,9 @@
  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
  *
  * @ingroup api_v1_series
- * @brief Handle requests for serie API functions.
+ * @brief Handle requests for series API functions.
  *
  */
 
-import('api.v1.series.SerieHandler');
-return new SerieHandler();
+import('api.v1.series.SeriesHandler');
+return new SeriesHandler();

@@ -22,7 +22,7 @@ use \Pimple\Container;
 use \PKP\Services\AuthorService;
 use \PKP\Services\UserService;
 use \OMP\Services\CategoryService;
-use \OMP\Services\SerieService;
+use \OMP\Services\SeriesService;
 use \OMP\Services\ChapterService;
 
 
@@ -60,8 +60,8 @@ class OMPServiceProvider implements \Pimple\ServiceProviderInterface {
 		};
 
 		// Serie service
-		$pimple['serie'] = function() {
-			return new SerieService();
+		$pimple['series'] = function() {
+			return new SeriesService();
 		};
 
 		// Serie service

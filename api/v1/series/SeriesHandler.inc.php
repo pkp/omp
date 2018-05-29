@@ -1,13 +1,13 @@
 <?php
 
 /**
- * @file api/v1/user/SerieHandler.inc.php
+ * @file api/v1/user/SeriesHandler.inc.php
  *
  * Copyright (c) 2014-2018 Simon Fraser University
  * Copyright (c) 2003-2018 John Willinsky
  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
  *
- * @class SerieHandler
+ * @class SeriesHandler
  * @ingroup api_v1_user
  *
  * @brief Handle API requests for user operations.
@@ -17,7 +17,7 @@
 import('lib.pkp.classes.handler.APIHandler');
 import('classes.core.ServicesContainer');
 
-class SerieHandler extends APIHandler {
+class SeriesHandler extends APIHandler {
 	/**
 	 * Constructor
 	 */
@@ -28,12 +28,12 @@ class SerieHandler extends APIHandler {
 			'GET' => array (
 				array(
 					'pattern' => $this->getEndpointPattern(),
-					'handler' => array($this, 'getSerieList'),
+					'handler' => array($this, 'getSeriesList'),
 					'roles' => $roles
 				),
 				array(
-					'pattern' => $this->getEndpointPattern() . '/{serieId}',
-					'handler' => array($this, 'getSerie'),
+					'pattern' => $this->getEndpointPattern() . '/{seriesId}',
+					'handler' => array($this, 'getSeries'),
 					'roles' => $roles
 				),
 			)
@@ -63,10 +63,10 @@ class SerieHandler extends APIHandler {
 	 *
 	 * @return Response
 	 */
-	public function getSerieList($slimRequest, $response, $args) {
+	public function getSeriesList($slimRequest, $response, $args) {
 		$request = $this->getRequest();
 		$context = $request->getContext();
-		$serieService = ServicesContainer::instance()->get('serie');
+		$seriesService = ServicesContainer::instance()->get('series');
 
 		if (!$context) {
 			return $response->withStatus(404)->withJsonError('api.submissions.404.resourceNotFound');
@@ -74,14 +74,14 @@ class SerieHandler extends APIHandler {
 
 		$items = array();
 		$params = array();
-		$series = $serieService->getSeries($context->getId(), $params);
+		$series = $seriesService->getSeries($context->getId(), $params);
 		if (!empty($series)) {
 			$propertyArgs = array(
 				'request' => $request,
 				'slimRequest' => $slimRequest,
 			);
 			foreach ($series as $serie) {
-				$items[] = $serieService->getSummaryProperties($serie, $propertyArgs);
+				$items[] = $seriesService->getSummaryProperties($serie, $propertyArgs);
 			}
 		}
 		
@@ -89,26 +89,26 @@ class SerieHandler extends APIHandler {
 	}
 
 	/**
-	 * Get a single serie
+	 * Get a single series
 	 * @param $slimRequest Request Slim request object
 	 * @param $response Response object
 	 * @param array $args arguments
 	 *
 	 * @return Response
 	 */
-	public function getSerie($slimRequest, $response, $args) {
+	public function getSeries($slimRequest, $response, $args) {
 		$request = $this->getRequest();
 		$context = $request->getContext();
 		$seriesDao = DAORegistry::getDAO('SeriesDAO');
-		$serie = $seriesDao->getById($this->getParameter('serieId'), $context->getId());
+		$series = $seriesDao->getById($this->getParameter('seriesId'), $context->getId());
 		
-		if (!$serie) {
+		if (!$series) {
 			return $response->withStatus(404)->withJsonError('api.submissions.404.resourceNotFound');
 		}
 		
 		$data = ServicesContainer::instance()
-				->get('serie')
-				->getFullProperties($serie, array(
+				->get('series')
+				->getFullProperties($series, array(
 					'request' => $request,
 					'slimRequest' => $slimRequest,
 				)

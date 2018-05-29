@@ -1,16 +1,16 @@
 <?php
 
 /**
- * @file classes/services/SerieService.inc.php
+ * @file classes/services/SeriesService.inc.php
  *
  * Copyright (c) 2014-2018 Simon Fraser University
  * Copyright (c) 2000-2018 John Willinsky
  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
  *
- * @class SerieService
+ * @class SeriesService
  * @ingroup services
  *
- * @brief Helper class that encapsulates serie business logic
+ * @brief Helper class that encapsulates series business logic
  */
 
 namespace OMP\Services;
@@ -20,7 +20,7 @@ use \DBResultRange;
 use \DAORegistry;
 use \DAOResultFactory;
 
-class SerieService extends PKPBaseEntityPropertyService {
+class SeriesService extends PKPBaseEntityPropertyService {
 	/**
 	 * Constructor
 	 */
@@ -50,7 +50,7 @@ class SerieService extends PKPBaseEntityPropertyService {
 	/**
 	 * @copydoc \PKP\Services\EntityProperties\EntityPropertyInterface::getProperties()
 	 */
-	public function getProperties($serie, $props, $args = null) {
+	public function getProperties($series, $props, $args = null) {
 		$request = $args['request'];
 		$context = $request->getContext();
 		$dispatcher = $request->getDispatcher();
@@ -58,32 +58,32 @@ class SerieService extends PKPBaseEntityPropertyService {
 		foreach ($props as $prop) {
 			switch ($prop) {
 				case 'id':
-					$values[$prop] = (int) $serie->getId();
+					$values[$prop] = (int) $series->getId();
 					break;
 				case 'title':
-					$values[$prop] = $serie->getLocalizedTitle();
+					$values[$prop] = $series->getLocalizedTitle();
 					break;
 			}
 		}
-		\HookRegistry::call('Serie::getProperties::values', array(&$values, $serie, $props, $args));
+		\HookRegistry::call('Series::getProperties::values', array(&$values, $series, $props, $args));
 		return $values;
 	}
 
 	/**
 	 * @copydoc \PKP\Services\EntityProperties\EntityPropertyInterface::getSummaryProperties()
 	 */
-	public function getSummaryProperties($serie, $args = null) {
+	public function getSummaryProperties($series, $args = null) {
 		$props = array('id', 'title');
-		\HookRegistry::call('Serie::getProperties::summaryProperties', array(&$props, $serie, $args));
-		return $this->getProperties($serie, $props, $args);
+		\HookRegistry::call('Series::getProperties::summaryProperties', array(&$props, $series, $args));
+		return $this->getProperties($series, $props, $args);
 	}
 	
 	/**
 	 * @copydoc \PKP\Services\EntityProperties\EntityPropertyInterface::getFullProperties()
 	 */
-	public function getFullProperties($serie, $args = null) {
+	public function getFullProperties($series, $args = null) {
 		$props = array('id', 'title');
-		\HookRegistry::call('Serie::getProperties::fullProperties', array(&$props, $serie, $args));
-		return $this->getProperties($serie, $props, $args);
+		\HookRegistry::call('Series::getProperties::fullProperties', array(&$props, $series, $args));
+		return $this->getProperties($series, $props, $args);
 	}
 }
