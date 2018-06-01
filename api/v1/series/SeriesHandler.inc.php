@@ -1,7 +1,7 @@
 <?php
 
 /**
- * @file api/v1/user/SeriesHandler.inc.php
+ * @file api/v1/series/SeriesHandler.inc.php
  *
  * Copyright (c) 2014-2018 Simon Fraser University
  * Copyright (c) 2003-2018 John Willinsky
