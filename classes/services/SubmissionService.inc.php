@@ -29,6 +29,8 @@ class SubmissionService extends \PKP\Services\PKPSubmissionService {
 		\HookRegistry::register('Submission::getSubmissions::queryObject', array($this, 'modifySubmissionListQueryObject'));
 		\HookRegistry::register('Submission::getBackendListProperties::properties', array($this, 'modifyBackendListPropertyValues'));
 		\HookRegistry::register('Submission::getProperties::values', array($this, 'modifyPropertyValues'));
+		\HookRegistry::register('Submission::getProperties::summaryProperties', array($this, 'modifyProperties'));
+		\HookRegistry::register('Submission::getProperties::fullProperties', array($this, 'modifyProperties'));
 	}
 
 	/**
@@ -271,7 +273,19 @@ class SubmissionService extends \PKP\Services\PKPSubmissionService {
 		$publishedMonograph = null;
 		if ($context) {
 			$publishedMonographDao = \DAORegistry::getDAO('PublishedMonographDAO');
-			$publishedMonograph = $publishedMonographDao->getByBestId($context->getId(), $submission->getId());
+			$publishedMonograph = $publishedMonographDao->getByBestId($submission->getId(), $context->getId());
+		}
+
+		$chapters = null;
+		if ($publishedMonograph) {
+			$chapterDao = \DAORegistry::getDAO('ChapterDAO');
+			$chaptersResult = $chapterDao->getChapters($publishedMonograph->getId());
+			if ($chaptersResult) {
+				$chapters = array();
+				while ($chapter = $chaptersResult->next()) {
+					$chapters[] = $chapter;
+				}
+			}
 		}
 
 		foreach ($props as $prop) {
@@ -287,15 +301,35 @@ class SubmissionService extends \PKP\Services\PKPSubmissionService {
 					);
 					break;
 				case 'series':
-					$values[$prop] = array(
-						'id' => $submission->getSeriesId(),
-						'title' => $submission->getSeriesTitle(),
-						'position' => $submission->getSeriesPosition(),
-					);
+					$seriesService = \ServicesContainer::instance()->get('series');
+					$seriesId = $submission->getSeriesId();
+					$seriesDao = \DAORegistry::getDAO('SeriesDAO');
+					$seriesObject = $seriesDao->getById($seriesId);
+					$series = null;
+					if ($seriesObject) {
+						$series = ($prop === 'series')
+							? $seriesService->getFullProperties($seriesObject, $propertyArgs)
+							: $seriesService->getSummaryProperties($seriesObject, $propertyArgs);
+						$series['position'] = $submission->getSeriesPosition();
+					}
+					$values[$prop] = $series;
 					break;
 				case 'category':
+				case 'categorySummary':
+					$items = array();
+					$categories = array();
 					$categoryDao = \DAORegistry::getDAO('CategoryDAO');
-					$values[$prop] = $categoryDao->getBySubmissionId($submission->getId());
+					$categoryService = \ServicesContainer::instance()->get('category');
+					$categoriesResult = $categoryDao->getBySubmissionId($submission->getId());
+					if (!empty($categoriesResult)) {
+						foreach ($categoriesResult as $categoryData) {
+							$category = $categoryDao->getById($categoryData['id'], $categoryData['press_id']);
+							$items[] = ($prop === 'category')
+									? $categoryService->getFullProperties($category, $propertyArgs)
+									: $categoryService->getSummaryProperties($category, $propertyArgs);
+						}
+					}
+					$values[$prop] = $items;
 					break;
 				case 'featured':
 					$featureDao = \DAORegistry::getDAO('FeatureDAO');
@@ -305,7 +339,42 @@ class SubmissionService extends \PKP\Services\PKPSubmissionService {
 					$newReleaseDao = \DAORegistry::getDAO('NewReleaseDAO');
 					$values[$prop] = $newReleaseDao->getNewReleaseAll($submission->getId());
 					break;
+				case 'chapters':
+				case 'chaptersSummary':
+					$values[$prop] = null;
+					if ($publishedMonograph && $chapters) {
+						$values[$prop] = array();
+						$chapterService = \ServicesContainer::instance()->get('chapter');
+						$chapterArgs = array_merge(array('parent' => $publishedMonograph), $propertyArgs);
+						foreach ($chapters as $chapter) {
+							$values[$prop][] = ($prop === 'chapters')
+								? $chapterService->getFullProperties($chapter, $chapterArgs)
+								: $chapterService->getSummaryProperties($chapter, $chapterArgs);
+						}
+					}
+					break;
 			}
 		}
+	}
+
+	/**
+	 * Add app-specific properties to submissions
+	 *
+	 * @param $hookName string Submission::getProperties::summaryProperties or
+	 *  Submission::getProperties::fullProperties
+	 * @param $args array [
+	 * 		@option $props array Existing properties
+	 * 		@option $submission Submission The associated submission
+	 * 		@option $args array Request args
+	 * ]
+	 *
+	 * @return array
+	 */
+	public function modifyProperties($hookName, $args) {
+		$props =& $args[0];
+		$props[] = 'series';
+		$props[] = 'categorySummary';
+		$props[] = 'chaptersSummary';
+		return $props;
 	}
 }
