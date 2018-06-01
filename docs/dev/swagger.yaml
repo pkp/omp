@@ -28,7 +28,7 @@ tags:
   - name: "Users"
     description: Only admins, journal editors, and subeditors can access these endpoints.
   - name: "Backend"
-    description: "Private endpoints for OJS UI."
+    description: "Private endpoints for OMP UI."
     
 definitions:
   Submission:
@@ -586,11 +586,11 @@ paths:
         - Submissions
       summary: Get a list of submissions.
       description: |
-        **OJS 3.1 Target**:
+        **OMP 3.1 Target**:
           * See `/submissions/{submissionId}`.
       parameters:
         - name: status
-          description: Filter results by submission status. Pass more than one status in a comma-separated list (eg - `3,4`). Must match the value of the `STATUS_QUEUED`, `STATUS_PUBLISHED` or `STATUS_DECLINED` constants in OJS 3.
+          description: Filter results by submission status. Pass more than one status in a comma-separated list (eg - `3,4`). Must match the value of the `STATUS_QUEUED`, `STATUS_PUBLISHED` or `STATUS_DECLINED` constants in OMP 3.
           in: query
           required: false
           type: string
@@ -662,7 +662,7 @@ paths:
         - Submissions
       summary: Get a submission by ID.
       description: |
-        **OJS 3.1 Target**:
+        **OMP 3.1 Target**:
           * All keys except `stages`, `reviewRounds` and `reviewAssignments`
         **Additional notes**:
           * Unpublished submissions are only returned for assigned participants, editors and admins.
@@ -697,7 +697,7 @@ paths:
         - Submissions
       summary: Get submission chapters.
       description: |
-        **OJS 3.1 Target**:
+        **OMP 3.1 Target**:
           - Complete
         **Additional Notes**:
           - This endpoint will not be available until the monograph is published.
