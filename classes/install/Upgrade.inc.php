@@ -594,15 +594,31 @@ class Upgrade extends Installer {
 		$userDao->update("INSERT INTO author_settings (author_id, locale, setting_name, setting_value, setting_type) SELECT DISTINCT a.author_id, s.locale, ?, a.first_name, 'string' FROM authors_tmp a, submissions s WHERE s.submission_id = a.submission_id", array(IDENTITY_SETTING_GIVENNAME));
 		$userDao->update("INSERT INTO author_settings (author_id, locale, setting_name, setting_value, setting_type) SELECT DISTINCT a.author_id, s.locale, ?, a.last_name, 'string' FROM authors_tmp a, submissions s WHERE s.submission_id = a.submission_id", array(IDENTITY_SETTING_FAMILYNAME));
 
-		// middle name, salutation and suffix will be migrated to the preferred public name
+		// middle name will be migrated to the given name
+		// note that given names are already migrated to the settings table
+		$driver = $userDao->getDriver();
+		switch ($driver) {
+			case 'mysql':
+			case 'mysqli':
+				// the alias for _settings table cannot be used for some reason -- syntax error
+				$userDao->update("UPDATE user_settings, users_tmp u SET user_settings.setting_value = CONCAT(user_settings.setting_value, ' ', u.middle_name) WHERE user_settings.setting_name = ? AND u.user_id = user_settings.user_id AND u.middle_name IS NOT NULL AND u.middle_name <> ''", array(IDENTITY_SETTING_GIVENNAME));
+				$userDao->update("UPDATE author_settings, authors_tmp a SET author_settings.setting_value = CONCAT(author_settings.setting_value, ' ', a.middle_name) WHERE author_settings.setting_name = ? AND a.author_id = author_settings.author_id AND a.middle_name IS NOT NULL AND a.middle_name <> ''", array(IDENTITY_SETTING_GIVENNAME));
+				break;
+			case 'postgres':
+				$userDao->update("UPDATE user_settings SET setting_value = CONCAT(setting_value, ' ', u.middle_name) FROM users_tmp u WHERE user_settings.setting_name = ? AND u.user_id = user_settings.user_id AND u.middle_name IS NOT NULL AND u.middle_name <> ''", array(IDENTITY_SETTING_GIVENNAME));
+				$userDao->update("UPDATE author_settings SET setting_value = CONCAT(setting_value, ' ', a.middle_name) FROM authors_tmp a WHERE author_settings.setting_name = ? AND a.author_id = author_settings.author_id AND a.middle_name IS NOT NULL AND a.middle_name <> ''", array(IDENTITY_SETTING_GIVENNAME));
+				break;
+			default: fatalError('Unknown database type!');
+		}
+
+		// salutation and suffix will be migrated to the preferred public name
 		// user preferred public names will be inserted for each supported site locales
 		$siteDao = DAORegistry::getDAO('SiteDAO');
 		$site = $siteDao->getSite();
 		$supportedLocales = $site->getSupportedLocales();
 		$userResult = $userDao->retrieve("
 			SELECT user_id, first_name, last_name, middle_name, salutation, suffix FROM users_tmp
-			WHERE (middle_name IS NOT NULL AND middle_name <> '') OR
-				(salutation IS NOT NULL AND salutation <> '') OR
+			WHERE (salutation IS NOT NULL AND salutation <> '') OR
 				(suffix IS NOT NULL AND suffix <> '')
 		");
 		while (!$userResult->EOF) {
@@ -615,7 +631,7 @@ class Upgrade extends Installer {
 			$suffix = $row['suffix'];
 			foreach ($supportedLocales as $siteLocale) {
 				$preferredPublicName = ($salutation != '' ? "$salutation " : '') . "$firstName " . ($middleName != '' ? "$middleName " : '') . $lastName . ($suffix != '' ? ", $suffix" : '');
-				if (AppLocale::isLocaleWithLastFirst($siteLocale)) {
+				if (AppLocale::isLocaleWithFamilyFirst($siteLocale)) {
 					$preferredPublicName = "$lastName, " . ($salutation != '' ? "$salutation " : '') . $firstName . ($middleName != '' ? " $middleName" : '');
 				}
 				$params = array((int) $userId, $siteLocale, $preferredPublicName);
@@ -625,6 +641,7 @@ class Upgrade extends Installer {
 		}
 		$userResult->Close();
 
+		// author suffix will be migrated to the author preferred public name
 		// author preferred public names will be inserted for each press supported locale
 		// get supported locales for the press (there shold actually be only one press)
 		$pressDao = DAORegistry::getDAO('PressDAO');
@@ -633,12 +650,12 @@ class Upgrade extends Installer {
 		while ($press = $presses->next()) {
 			$pressessSupportedLocales[$press->getId()] = $press->getSupportedLocales();
 		}
-		// get all authors with a middle name or a suffix
+		// get all authors with a suffix
 		$authorResult = $userDao->retrieve("
 			SELECT a.author_id, a.first_name, a.last_name, a.middle_name, a.suffix, p.press_id FROM authors_tmp a
 			LEFT JOIN submissions s ON (s.submission_id = a.submission_id)
 			LEFT JOIN presses p ON (p.press_id = s.context_id)
-			WHERE (middle_name IS NOT NULL AND middle_name <> '') OR (suffix IS NOT NULL AND suffix <> '')
+			WHERE suffix IS NOT NULL AND suffix <> ''
 		");
 		while (!$authorResult->EOF) {
 			$row = $authorResult->GetRowAssoc(false);
@@ -651,7 +668,7 @@ class Upgrade extends Installer {
 			$supportedLocales = $pressessSupportedLocales[$pressId];
 			foreach ($supportedLocales as $locale) {
 				$preferredPublicName = "$firstName " . ($middleName != '' ? "$middleName " : '') . $lastName . ($suffix != '' ? ", $suffix" : '');
-				if (AppLocale::isLocaleWithLastFirst($locale)) {
+				if (AppLocale::isLocaleWithFamilyFirst($locale)) {
 					$preferredPublicName = "$lastName, " . $firstName . ($middleName != '' ? " $middleName" : '');
 				}
 				$params = array((int) $authorId, $locale, $preferredPublicName);
