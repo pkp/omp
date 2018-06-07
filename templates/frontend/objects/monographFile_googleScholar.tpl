@@ -58,7 +58,7 @@
 	<meta name="citation_publisher" content="{$publisher|escape}"/>
 {/if}
 
-{url|assign:downloadUrl op="download" path=$publishedMonograph->getId()|to_array:$publicationFormat->getId():$submissionFile->getFileIdAndRevision()}
+{capture assign=downloadUrl}{url op="download" path=$publishedMonograph->getId()|to_array:$publicationFormat->getId():$submissionFile->getFileIdAndRevision()}{/capture}
 <meta name="citation_pdf_url" content="{$downloadUrl}"/>
 
 {foreach from=$submissionKeywords key=keywordLocale item=languageKeywords}

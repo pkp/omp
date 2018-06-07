@@ -80,7 +80,7 @@ class DublinCoreMetaPlugin extends GenericPlugin {
 
 		$templateMgr->addHeader('dublinCoreIdentifier', '<meta name="DC.Identifier" content="' . htmlspecialchars($monograph->getBestId()) . '"/>');
 
-		foreach((array) $templateMgr->get_template_vars('pubIdPlugins') as $pubIdPlugin) {
+		foreach((array) $templateMgr->getTemplateVars('pubIdPlugins') as $pubIdPlugin) {
 			if ($pubId = $monograph->getStoredPubId($pubIdPlugin->getPubIdType())) {
 				$templateMgr->addHeader('dublinCorePubId' . $pubIdPlugin->getPubIdDisplayType(), '<meta name="DC.Identifier.' . htmlspecialchars($pubIdPlugin->getPubIdDisplayType()) . '" content="' . htmlspecialchars($pubId) . '"/>');
 			}
@@ -137,8 +137,8 @@ class DublinCoreMetaPlugin extends GenericPlugin {
 		$press = Request::getContext();
 
 		$templateMgr = TemplateManager::getManager($request);
-		$chapter = $templateMgr->get_template_vars('chapter');
-		$series = $templateMgr->get_template_vars('series');
+		$chapter = $templateMgr->getTemplateVars('chapter');
+		$series = $templateMgr->getTemplateVars('series');
 
 		$templateMgr->addHeader('dublinCoreSchema', '<link rel="schema.DC" href="http://purl.org/dc/elements/1.1/" />');
 
@@ -173,7 +173,7 @@ class DublinCoreMetaPlugin extends GenericPlugin {
 			$templateMgr->addHeader('dublinCorePages', '<meta name="DC.Identifier.pageNumber" content="' . htmlspecialchars($pages) . '"/>');
 		}
 
-		foreach((array) $templateMgr->get_template_vars('pubIdPlugins') as $pubIdPlugin) {
+		foreach((array) $templateMgr->getTemplateVars('pubIdPlugins') as $pubIdPlugin) {
 			if ($pubId = $monograph->getStoredPubId($pubIdPlugin->getPubIdType())) {
 				$templateMgr->addHeader('dublinCorePubId' . $pubIdPlugin->getPubIdDisplayType(), '<meta name="DC.Identifier.' . htmlspecialchars($pubIdPlugin->getPubIdDisplayType()) . '" content="' . htmlspecialchars($pubId) . '"/>');
 			}

@@ -24,7 +24,6 @@ class HtmlMonographFilePlugin extends GenericPlugin {
 			if ($this->getEnabled($mainContextId)) {
 				HookRegistry::register('CatalogBookHandler::view', array($this, 'viewCallback'));
 				HookRegistry::register('CatalogBookHandler::download', array($this, 'downloadCallback'));
-				$this->_registerTemplateResource();
 			}
 			return true;
 		}
@@ -52,13 +51,6 @@ class HtmlMonographFilePlugin extends GenericPlugin {
 	 */
 	function getDescription() {
 		return __('plugins.generic.htmlMonographFile.description');
-	}
-
-	/**
-	 * @copydoc Plugin::getTemplatePath()
-	 */
-	function getTemplatePath($inCore = false) {
-		return $this->getTemplateResourceName() . ':';
 	}
 
 	/**

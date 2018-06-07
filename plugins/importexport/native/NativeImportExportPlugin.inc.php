@@ -30,18 +30,10 @@ class NativeImportExportPlugin extends ImportExportPlugin {
 		$success = parent::register($category, $path, $mainContextId);
 		if (!Config::getVar('general', 'installed') || defined('RUNNING_UPGRADE')) return $success;
 		if ($success && $this->getEnabled()) {
-			$this->_registerTemplateResource();
 			$this->addLocaleData();
 			$this->import('NativeImportExportDeployment');
 		}
 		return $success;
-	}
-
-	/**
-	 * @see Plugin::getTemplatePath($inCore)
-	 */
-	function getTemplatePath($inCore = false) {
-		return $this->getTemplateResourceName() . ':templates/';
 	}
 
 	/**
@@ -100,7 +92,7 @@ class NativeImportExportPlugin extends ImportExportPlugin {
 					'lazyLoad' => true,
 				));
 				$templateMgr->assign('exportSubmissionsListData', json_encode($exportSubmissionsListHandler->getConfig()));
-				$templateMgr->display($this->getTemplatePath() . 'index.tpl');
+				$templateMgr->display($this->getTemplateResource('index.tpl'));
 				break;
 			case 'uploadImportXML':
 				$user = $request->getUser();
@@ -164,7 +156,7 @@ class NativeImportExportPlugin extends ImportExportPlugin {
 					$deployment->removeImportedObjects(ASSOC_TYPE_SUBMISSION);
 				}
 				// Display the results
-				$json = new JSONMessage(true, $templateMgr->fetch($this->getTemplatePath() . 'results.tpl'));
+				$json = new JSONMessage(true, $templateMgr->fetch($this->getTemplateResource('results.tpl')));
 				return $json->getString();
 			case 'export':
 				$exportXml = $this->exportSubmissions(

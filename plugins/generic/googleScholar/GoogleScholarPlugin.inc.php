@@ -53,8 +53,8 @@ class GoogleScholarPlugin extends GenericPlugin {
 			$request = Application::getRequest();
 			$templateMgr = TemplateManager::getManager($request);
 			$press = $request->getContext();
-			$chapter = $templateMgr->get_template_vars('chapter');
-			$series = $templateMgr->get_template_vars('series');
+			$chapter = $templateMgr->getTemplateVars('chapter');
+			$series = $templateMgr->getTemplateVars('series');
 
 			$templateMgr->addHeader('googleScholarRevision', '<meta name="gs_meta_revision" content="1.1"/>');
 			$templateMgr->addHeader('googleScholarPressTitle', '<meta name="citation_journal_title" content="' . htmlspecialchars($press->getName($press->getPrimaryLocale())) . '"/>');
@@ -85,7 +85,7 @@ class GoogleScholarPlugin extends GenericPlugin {
 
 			$templateMgr->addHeader('googleScholarDate', '<meta name="citation_publication_date" content="' . strftime('%Y/%m/%d', strtotime($monograph->getDatePublished())) . '"/>');
 
-			foreach((array) $templateMgr->get_template_vars('pubIdPlugins') as $pubIdPlugin) {
+			foreach((array) $templateMgr->getTemplateVars('pubIdPlugins') as $pubIdPlugin) {
 				if ($pubId = $monograph->getStoredPubId($pubIdPlugin->getPubIdType())) {
 					$templateMgr->addHeader('googleScholarPubId' . $pubIdPlugin->getPubIdDisplayType(), '<meta name="citation_' . htmlspecialchars(strtolower($pubIdPlugin->getPubIdDisplayType())) . '" content="' . htmlspecialchars($pubId) . '"/>');
 				}

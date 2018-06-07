@@ -46,8 +46,6 @@ class WebFeedPlugin extends GenericPlugin {
 				$this->import('WebFeedGatewayPlugin');
 				$gatewayPlugin = new WebFeedGatewayPlugin($this);
 				PluginRegistry::register('gateways', $gatewayPlugin, $this->getPluginPath());
-
-				$this->_registerTemplateResource();
 			}
 			return true;
 		}
@@ -79,7 +77,7 @@ class WebFeedPlugin extends GenericPlugin {
 		if (!is_a($request->getRouter(), 'PKPPageRouter')) return false;
 
 		$templateManager =& $args[0];
-		$currentPress = $templateManager->get_template_vars('currentPress');
+		$currentPress = $templateManager->getTemplateVars('currentPress');
 		$displayPage = $this->getSetting($currentPress->getId(), 'displayPage');
 
 		// Define when the <link> elements should appear

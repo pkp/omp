@@ -59,7 +59,7 @@ class UsageStatsPlugin extends PKPUsageStatsPlugin {
 		$smarty =& $params[1];
 		$output =& $params[2];
 
-		$context = $smarty->get_template_vars('currentContext');
+		$context = $smarty->getTemplateVars('currentContext');
 		$pluginSettingsDao = DAORegistry::getDAO('PluginSettingsDAO');
 		$contextDisplaySettingExists = $pluginSettingsDao->settingExists($context->getId(), $this->getName(), 'displayStatistics');
 		$contextDisplaySetting = $this->getSetting($context->getId(), 'displayStatistics');
@@ -67,7 +67,7 @@ class UsageStatsPlugin extends PKPUsageStatsPlugin {
 		if (($contextDisplaySettingExists && $contextDisplaySetting) ||
 			(!$contextDisplaySettingExists && $siteDisplaySetting)) {
 
-			$pubObject =& $smarty->get_template_vars('publishedMonograph');
+			$pubObject = $smarty->getTemplateVars('publishedMonograph');
 			assert(is_a($pubObject, 'PublishedMonograph'));
 			$pubObjectId = $pubObject->getID();
 			$pubObjectType = 'PublishedMonograph';

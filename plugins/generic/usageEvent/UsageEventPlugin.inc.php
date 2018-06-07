@@ -70,9 +70,9 @@ class UsageEventPlugin extends PKPUsageEventPlugin {
 
 					if (!in_array($page, $wantedPages) || !in_array($op, $wantedOps)) break;
 
-					$press = $templateMgr->get_template_vars('currentContext'); /* @var $press Press */
-					$series = $templateMgr->get_template_vars('series'); /* @var $series Series */
-					$publishedMonograph = $templateMgr->get_template_vars('publishedMonograph');
+					$press = $templateMgr->getTemplateVars('currentContext'); /* @var $press Press */
+					$series = $templateMgr->getTemplateVars('series'); /* @var $series Series */
+					$publishedMonograph = $templateMgr->getTemplateVars('publishedMonograph');
 
 					// No published objects, no usage event.
 					if (!$press && !$series && !$publishedMonograph) break;

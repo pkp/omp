@@ -45,7 +45,7 @@
 		{fbvFormSection}
 			<!-- Product Identification Codes -->
 			{assign var="divId" value="identificationCodeGridContainer"|concat:$representationId|escape}
-			{url|assign:identGridUrl router=$smarty.const.ROUTE_COMPONENT component="grid.catalogEntry.IdentificationCodeGridHandler" op="fetchGrid" submissionId=$submissionId representationId=$representationId escape=false}
+			{capture assign=identGridUrl}{url router=$smarty.const.ROUTE_COMPONENT component="grid.catalogEntry.IdentificationCodeGridHandler" op="fetchGrid" submissionId=$submissionId representationId=$representationId escape=false}{/capture}
 			{load_url_in_div id=$divId url=$identGridUrl}
 		{/fbvFormSection}
 	{/fbvFormArea}
@@ -54,7 +54,7 @@
 		{fbvFormSection}
 			<!-- Sales rights and regions -->
 			{assign var="divId" value="salesRightsGridContainer"|concat:$representationId|escape}
-			{url|assign:salesGridUrl router=$smarty.const.ROUTE_COMPONENT component="grid.catalogEntry.SalesRightsGridHandler" op="fetchGrid" submissionId=$submissionId representationId=$representationId escape=false}
+			{capture assign=salesGridUrl}{url router=$smarty.const.ROUTE_COMPONENT component="grid.catalogEntry.SalesRightsGridHandler" op="fetchGrid" submissionId=$submissionId representationId=$representationId escape=false}{/capture}
 			{load_url_in_div id=$divId url=$salesGridUrl}
 		{/fbvFormSection}
 	{/fbvFormArea}
@@ -63,7 +63,7 @@
 		{fbvFormSection}
 			<!-- Market regions -->
 			{assign var="divId" value="marketsGridContainer"|concat:$representationId|escape}
-			{url|assign:marketsGridUrl router=$smarty.const.ROUTE_COMPONENT component="grid.catalogEntry.MarketsGridHandler" op="fetchGrid" submissionId=$submissionId representationId=$representationId escape=false}
+			{capture assign=marketsGridUrl}{url router=$smarty.const.ROUTE_COMPONENT component="grid.catalogEntry.MarketsGridHandler" op="fetchGrid" submissionId=$submissionId representationId=$representationId escape=false}{/capture}
 			{load_url_in_div id=$divId url=$marketsGridUrl}
 		{/fbvFormSection}
 	{/fbvFormArea}
@@ -72,7 +72,7 @@
 		{fbvFormSection}
 			<!-- Product Publication/Embargo dates -->
 			{assign var="divId" value="publicationDateGridContainer"|concat:$representationId|escape}
-			{url|assign:dateGridUrl router=$smarty.const.ROUTE_COMPONENT component="grid.catalogEntry.PublicationDateGridHandler" op="fetchGrid" submissionId=$submissionId representationId=$representationId escape=false}
+			{capture assign=dateGridUrl}{url router=$smarty.const.ROUTE_COMPONENT component="grid.catalogEntry.PublicationDateGridHandler" op="fetchGrid" submissionId=$submissionId representationId=$representationId escape=false}{/capture}
 			{load_url_in_div id=$divId url=$dateGridUrl}
 		{/fbvFormSection}
 	{/fbvFormArea}

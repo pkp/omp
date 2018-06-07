@@ -44,7 +44,7 @@
 	<input type="hidden" name="temporaryFileId" id="temporaryFileId" value="" />
 
 	{if $image}
-		{translate|assign:"altTitle" key="monograph.currentCoverImage"}
+		{capture assign="altTitle"}{translate key="monograph.currentCoverImage"}{/capture}
 		<img class="pkp_helpers_container_center" height="{$image.thumbnailHeight}" width="{$image.thumbnailWidth}" src="{url router=$smarty.const.ROUTE_PAGE page="catalog" op="thumbnail" type="series" id=$seriesId}" alt="{$altTitle|escape}" />
 	{/if}
 
@@ -102,7 +102,7 @@
 		{/if}
 
 		{capture assign="instruct"}
-			{url|assign:"sampleUrl" router=$smarty.const.ROUTE_PAGE page="catalog" op="series" path="Path"}
+			{capture assign="sampleUrl"}{url router=$smarty.const.ROUTE_PAGE page="catalog" op="series" path="Path"}{/capture}
 			{translate key="grid.series.urlWillBe" sampleUrl=$sampleUrl}
 		{/capture}
 		{fbvFormSection title="series.path" required=true for="path"}

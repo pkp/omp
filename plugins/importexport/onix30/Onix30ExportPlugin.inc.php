@@ -30,18 +30,10 @@ class Onix30ExportPlugin extends ImportExportPlugin {
 		$success = parent::register($category, $path, $mainContextId);
 		if (!Config::getVar('general', 'installed') || defined('RUNNING_UPGRADE')) return $success;
 		if ($success && $this->getEnabled()) {
-			$this->_registerTemplateResource();
 			$this->addLocaleData();
 			$this->import('Onix30ExportDeployment');
 		}
 		return $success;
-	}
-
-	/**
-	 * @see Plugin::getTemplatePath($inCore)
-	 */
-	function getTemplatePath($inCore = false) {
-		return $this->getTemplateResourceName() . ':templates/';
 	}
 
 	/**

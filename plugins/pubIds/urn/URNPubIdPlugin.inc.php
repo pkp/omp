@@ -18,19 +18,6 @@ import('classes.plugins.PubIdPlugin');
 
 class URNPubIdPlugin extends PubIdPlugin {
 
-	/**
-	 * @copydoc Plugin::register()
-	 */
-	function register($category, $path, $mainContextId = null) {
-		if (parent::register($category, $path, $mainContextId)) {
-			if ($this->getEnabled($mainContextId)) {
-				$this->_registerTemplateResource();
-			}
-			return true;
-		}
-		return false;
-	}
-
 	//
 	// Implement template methods from Plugin.
 	//
@@ -46,13 +33,6 @@ class URNPubIdPlugin extends PubIdPlugin {
 	 */
 	function getDescription() {
 		return __('plugins.pubIds.urn.description');
-	}
-
-	/**
-	 * @copydoc Plugin::getTemplatePath()
-	 */
-	function getTemplatePath($inCore = false) {
-		return $this->getTemplateResourceName() . ':templates/';
 	}
 
 
@@ -127,7 +107,7 @@ class URNPubIdPlugin extends PubIdPlugin {
 	 * @copydoc PKPPubIdPlugin::getPubIdAssignFile()
 	 */
 	function getPubIdAssignFile() {
-		return $this->getTemplatePath().'urnAssign.tpl';
+		return $this->getTemplateResource('urnAssign.tpl');
 	}
 
 	/**
@@ -260,5 +240,3 @@ class URNPubIdPlugin extends PubIdPlugin {
 
 
 }
-
-?>

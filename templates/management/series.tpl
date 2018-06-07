@@ -11,5 +11,5 @@
 {* Help Link *}
 {help file="settings.md" section="context" class="pkp_help_tab"}
 
-{url|assign:seriesGridUrl router=$smarty.const.ROUTE_COMPONENT component="grid.settings.series.SeriesGridHandler" op="fetchGrid" escape=false}
+{capture assign=seriesGridUrl}{url router=$smarty.const.ROUTE_COMPONENT component="grid.settings.series.SeriesGridHandler" op="fetchGrid" escape=false}{/capture}
 {load_url_in_div id="seriesGridContainer" url=$seriesGridUrl}
