@@ -22,8 +22,8 @@ class FperiniSubmissionTest extends ContentBaseTestCase {
 	function testSubmission() {
 		$this->register(array(
 			'username' => 'fperini',
-			'firstName' => 'Fernando',
-			'lastName' => 'Perini',
+			'givenName' => 'Fernando',
+			'familyName' => 'Perini',
 			'affiliation' => 'University of Sussex',
 			'country' => 'Canada',
 		));
@@ -42,29 +42,29 @@ class FperiniSubmissionTest extends ContentBaseTestCase {
 			'submitterRole' => 'Volume editor',
 			'additionalAuthors' => array(
 				array(
-					'firstName' => 'Robin',
-					'lastName' => 'Mansell',
+					'givenName' => 'Robin',
+					'familyName' => 'Mansell',
 					'country' => 'United Kingdom',
 					// 'affiliation' => '',
 					'email' => 'rmansell@mailinator.com',
 				),
 				array(
-					'firstName' => 'Hernan',
-					'lastName' => 'Galperin',
+					'givenName' => 'Hernan',
+					'familyName' => 'Galperin',
 					'country' => 'Argentina',
 					// 'affiliation' => '',
 					'email' => 'hgalperin@mailinator.com',
 				),
 				array(
-					'firstName' => 'Pablo',
-					'lastName' => 'Bello',
+					'givenName' => 'Pablo',
+					'familyName' => 'Bello',
 					'country' => 'Chile',
 					// 'affiliation' => '',
 					'email' => 'pbello@mailinator.com',
 				),
 				array(
-					'firstName' => 'Eleonora',
-					'lastName' => 'Rabinovich',
+					'givenName' => 'Eleonora',
+					'familyName' => 'Rabinovich',
 					'country' => 'Argentina',
 					// 'affiliation' => '',
 					'email' => 'erabinovich@mailinator.com',

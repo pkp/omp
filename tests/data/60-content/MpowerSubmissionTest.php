@@ -22,8 +22,8 @@ class MpowerSubmissionTest extends ContentBaseTestCase {
 	function testSubmission() {
 		$this->register(array(
 			'username' => 'mpower',
-			'firstName' => 'Michael',
-			'lastName' => 'Power',
+			'givenName' => 'Michael',
+			'familyName' => 'Power',
 			'affiliation' => 'London School of Economics',
 			'country' => 'Canada',
 		));

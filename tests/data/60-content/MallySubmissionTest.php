@@ -22,8 +22,8 @@ class MallySubmissionTest extends ContentBaseTestCase {
 	function testSubmission() {
 		$this->register(array(
 			'username' => 'mally',
-			'firstName' => 'Mohamed',
-			'lastName' => 'Ally',
+			'givenName' => 'Mohamed',
+			'familyName' => 'Ally',
 			'affiliation' => 'Athabasca University',
 			'country' => 'Canada',
 		));
@@ -39,22 +39,22 @@ class MallySubmissionTest extends ContentBaseTestCase {
 			'submitterRole' => 'Volume editor',
 			'additionalAuthors' => array(
 				array(
-					'firstName' => 'John',
-					'lastName' => 'Traxler',
+					'givenName' => 'John',
+					'familyName' => 'Traxler',
 					'country' => 'United Kingdom',
 					// 'affiliation' => '',
 					'email' => 'jtraxler@mailinator.com',
 				),
 				array(
-					'firstName' => 'Marguerite',
-					'lastName' => 'Koole',
+					'givenName' => 'Marguerite',
+					'familyName' => 'Koole',
 					'country' => 'Canada',
 					// 'affiliation' => '',
 					'email' => 'mkoole@mailinator.com',
 				),
 				array(
-					'firstName' => 'Torstein',
-					'lastName' => 'Rekkedal',
+					'givenName' => 'Torstein',
+					'familyName' => 'Rekkedal',
 					'country' => 'Norway',
 					// 'affiliation' => '',
 					'email' => 'trekkedal@mailinator.com',

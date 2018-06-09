@@ -218,13 +218,13 @@ class PublishedMonograph extends Monograph {
 
 	/**
 	 * Get a string indicating all authors or, if it is an edited volume, editors.
-	 *
+	 * @param $preferred boolean If the preferred public name should be used, if exist
 	 * @return string
 	 */
-	public function getAuthorOrEditorString() {
+	public function getAuthorOrEditorString($preferred = true) {
 
 		if ($this->getWorkType() != WORK_TYPE_EDITED_VOLUME) {
-			return $this->getAuthorString();
+			return $this->getAuthorString($preferred);
 		}
 
 		AppLocale::requireComponents(LOCALE_COMPONENT_APP_SUBMISSION);
@@ -233,17 +233,17 @@ class PublishedMonograph extends Monograph {
 		$editorNames = array();
 		foreach ($authors as $author) {
 			if ($author->getIsVolumeEditor()) {
-				$editorNames[] = __('submission.editorName', array('editorName' => $author->getFullName()));
+				$editorNames[] = __('submission.editorName', array('editorName' => $author->getFullName($preferred)));
 			}
 		}
 
 		if (count($editorNames)) {
 			// Spaces are stripped from the locale strings, so we have to add the
 			// space in here.
-			return join(__('submission.editorSeparator') . ' ', $editorNames);
+			return join(__('common.commaListSeparator') . ' ', $editorNames);
 		}
 
-		return $this->getAuthorString();
+		return $this->getAuthorString($preferred);
 	}
 }
 

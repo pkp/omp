@@ -86,7 +86,7 @@ class Dc11SchemaPublicationFormatAdapter extends MetadataDataObjectAdapter {
 		// Creator
 		$authors = $monograph->getAuthors();
 		foreach($authors as $author) {
-			$authorName = $author->getFullName(true);
+			$authorName = $author->getFullName(false, true);
 			$affiliation = $author->getLocalizedAffiliation();
 			if (!empty($affiliation)) {
 				$authorName .= '; ' . $affiliation;

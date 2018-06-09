@@ -22,8 +22,8 @@ class DkennepohlSubmissionTest extends ContentBaseTestCase {
 	function testSubmission() {
 		$this->register(array(
 			'username' => 'dkennepohl',
-			'firstName' => 'Dietmar',
-			'lastName' => 'Kennepohl',
+			'givenName' => 'Dietmar',
+			'familyName' => 'Kennepohl',
 			'affiliation' => 'Athabasca University',
 			'country' => 'Canada',
 		));
@@ -40,32 +40,32 @@ class DkennepohlSubmissionTest extends ContentBaseTestCase {
 			'submitterRole' => 'Volume editor',
 			'additionalAuthors' => array(
 				array(
-					'firstName' => 'Terry',
-					'lastName' => 'Anderson',
+					'givenName' => 'Terry',
+					'familyName' => 'Anderson',
 					'country' => 'Canada',
 					'affiliation' => 'University of Calgary',
 					'email' => 'tanderson@mailinator.com',
 					'role' => 'Author',
 				),
 				array(
-					'firstName' => 'Paul',
-					'lastName' => 'Gorsky',
+					'givenName' => 'Paul',
+					'familyName' => 'Gorsky',
 					'country' => 'Canada',
 					'affiliation' => 'University of Alberta',
 					'email' => 'pgorsky@mailinator.com',
 					'role' => 'Author',
 				),
 				array(
-					'firstName' => 'Gale',
-					'lastName' => 'Parchoma',
+					'givenName' => 'Gale',
+					'familyName' => 'Parchoma',
 					'country' => 'Canada',
 					'affiliation' => 'Athabasca University',
 					'email' => 'gparchoma@mailinator.com',
 					'role' => 'Author',
 				),
 				array(
-					'firstName' => 'Stuart',
-					'lastName' => 'Palmer',
+					'givenName' => 'Stuart',
+					'familyName' => 'Palmer',
 					'country' => 'Canada',
 					'affiliation' => 'University of Alberta',
 					'email' => 'spalmer@mailinator.com',

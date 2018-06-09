@@ -65,7 +65,7 @@ class DublinCoreMetaPlugin extends GenericPlugin {
 
 		$i=0;
 		foreach ($monograph->getAuthors() as $author) {
-			$templateMgr->addHeader('dublinCoreAuthor' . $i++, '<meta name="DC.Creator.PersonalName" content="' . htmlspecialchars($author->getFullName()) . '"/>');
+			$templateMgr->addHeader('dublinCoreAuthor' . $i++, '<meta name="DC.Creator.PersonalName" content="' . htmlspecialchars($author->getFullName(false)) . '"/>');
 		}
 
 		if (is_a($monograph, 'PublishedMonograph') && ($datePublished = $monograph->getDatePublished())) {
@@ -154,7 +154,7 @@ class DublinCoreMetaPlugin extends GenericPlugin {
 
 		$i=0;
 		foreach ($chapter?$chapter->getAuthors()->toArray():$monograph->getAuthors() as $author) {
-			$templateMgr->addHeader('dublinCoreAuthor' . $i++, '<meta name="DC.Creator.PersonalName" content="' . htmlspecialchars($author->getFullName()) . '"/>');
+			$templateMgr->addHeader('dublinCoreAuthor' . $i++, '<meta name="DC.Creator.PersonalName" content="' . htmlspecialchars($author->getFullName(false)) . '"/>');
 		}
 
 		if (is_a($monograph, 'PublishedMonograph') && ($datePublished = $monograph->getDatePublished())) {

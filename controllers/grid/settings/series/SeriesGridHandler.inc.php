@@ -75,7 +75,7 @@ class SeriesGridHandler extends SetupGridHandler {
 			} else {
 				$editors = array();
 				foreach ($assignedSeriesEditors as $seriesEditor) {
-					$editors[] = $seriesEditor->getLastName();
+					$editors[] = $seriesEditor->getFullName();
 				}
 				$editorsString = implode(', ', $editors);
 			}

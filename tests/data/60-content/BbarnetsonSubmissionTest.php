@@ -22,8 +22,8 @@ class BbarnetsonSubmissionTest extends ContentBaseTestCase {
 	function testSubmission() {
 		$this->register(array(
 			'username' => 'bbarnetson',
-			'firstName' => 'Bob',
-			'lastName' => 'Barnetson',
+			'givenName' => 'Bob',
+			'familyName' => 'Barnetson',
 			'affiliation' => 'Athabasca University',
 			'country' => 'Canada',
 		));

@@ -56,7 +56,7 @@
 				<description>{$publishedMonograph->getLocalizedAbstract()|strip|escape:"html"}</description>
 
 				{* optional elements *}
-				<author>{$publishedMonograph->getAuthorString()|escape:"html"}</author>
+				<author>{$publishedMonograph->getAuthorString(false)|escape:"html"}</author>
 				{* <category/> *}
 				{* <comments/> *}
 				{* <source/> *}
