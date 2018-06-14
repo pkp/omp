@@ -453,7 +453,6 @@ Suporte à biblioteca mbstring: <strong>{$supportsMBString}</strong>]]></message
 	<message key="log.review.reviewDueDateSet">A data de entrega da rodada {$round} de avaliação da submissão {$submissionId} por {$reviewerName} foi definida para {$dueDate}.</message>
 	<message key="log.review.reviewDeclined">{$reviewerName} recusou realizar a rodada {$round} de avaliação da submissão {$submissionId}.</message>
 	<message key="log.review.reviewAccepted">{$reviewerName} aceitou realizar a rodada {$round} de avaliação da submissão {$submissionId}.</message>
-	<message key="log.review.reviewUnconsidered">{$editorName} marcou realizar a rodada {$round} de avaliação da submissão {$submissionId} como não considerada.</message>
 	<message key="log.editor.decision">Decisão editorial ({$decision}) para a monografia {$submissionId} foi registrada por {$editorName}.</message>
 	<message key="log.editor.archived">A submissão {$submissionId} foi arquivada.</message>
 	<message key="log.editor.restored">A sumissão {$submissionId} foi restaurada para a fila.</message>

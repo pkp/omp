@@ -481,7 +481,6 @@ Ihr Server untersützt aktuell mbstring: <strong>{$supportsMBString}</strong>]]>
 	<message key="log.review.reviewDueDateSet">Das Abgabedatum für Begutachtungsrunde {$round} von Manuskript {$submissionId} durch {$reviewerName} wurde auf den {$dueDate} festgesetzt.</message>
 	<message key="log.review.reviewDeclined">{$reviewerName} hat es abgelehnt, an der Begutachtungsrunde {$round} für Manuskript {$submissionId} teilzunehmen.</message>
 	<message key="log.review.reviewAccepted">{$reviewerName} hat der Teilnahme an der Begutachtungsrunde {$round} für Manuskript {$submissionId} zugestimmt.</message>
-	<message key="log.review.reviewUnconsidered">{$editorName} hat die Begutachtungsrunde {$round} für Manuskript {$submissionId} als 'nicht berücksichtigt' markiert.</message>
 	<message key="log.editor.decision">Die Entscheidung des Herausgebers ({$decision}) zu Monografie {$submissionId} wurde von {$editorName} protokolliert.</message>
 	<message key="log.editor.archived">Manuskript {$submissionId} wurde archiviert.</message>
 	<message key="log.editor.restored">Manuskript {$submissionId} wurde in die Warteschlange zurückgestellt.</message>

@@ -419,7 +419,6 @@ El vostre servidor actual és compatible amb mbstring: <strong>{$supportsMBStrin
 	<message key="log.review.reviewDueDateSet">La data de venciment per a la ronda {$round} de revisió de la tramesa {$submissionId} feta per {$reviewerName} s'ha enviat a {$dueDate}.</message>
 	<message key="log.review.reviewDeclined">{$reviewerName} ha rebutjat la ronda {$round} de revisió per a la tramesa {$submissionId}.</message>
 	<message key="log.review.reviewAccepted">{$reviewerName} ha acceptat la ronda {$round} de revisió per a la tramesa {$submissionId}.</message>
-	<message key="log.review.reviewUnconsidered">{$editorName} ha marcat la ronda {$round} de revisió per a la tramesa {$submissionId} com a no considerada.</message>
 	<message key="log.editor.decision">{$editorName} ha registrat una decisió de l'editor/a ({$decision}) per a la monografia {$submissionId}.</message>
 	<message key="log.editor.archived">S'ha arxivat la tramesa {$submissionId}.</message>
 	<message key="log.editor.restored">La tramesa {$submissionId} s'ha restaurat a la cua.</message>

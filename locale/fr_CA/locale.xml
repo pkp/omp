@@ -447,7 +447,6 @@ Votre serveur supporte actuellement mbstring: <strong>{$supportsMBString}</stron
 	<message key="log.review.reviewDueDateSet">La date limite pour la {$round}e série de révisions de la soumission {$monographId} par {$reviewerName} est {$dueDate}.</message>
 	<message key="log.review.reviewDeclined">{$reviewerName} n'a pas accepté la {$round}e série de révisions de la soumission {$monographId}.</message>
 	<message key="log.review.reviewAccepted">{$reviewerName} a accepté la {$round}e série de révisions de la soumission {$monographId}.</message>
-	<message key="log.review.reviewUnconsidered">{$editorName} a indiqué que la {$round}e série de révisions de la soumission {$monographId} n'a pas été considérée.</message>
 	<message key="log.editor.decision">Une décision rédactionnelle ({$decision}) pour la monographie {$submissionId} a été enregistrée par {$editorName}.</message>
 	<message key="log.editor.archived">La soumission {$monographId} a été archivée.</message>
 	<message key="log.editor.restored">La soumission {$monographId} a été remise dans la file d'attente.</message>

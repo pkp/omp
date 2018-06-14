@@ -449,7 +449,6 @@
 	<message key="log.review.reviewDueDateSet">Končni datum za {$round} krog recenzije prispevka {$submissionId} recenzenta {$reviewerName} je bil postavljen na {$dueDate}.</message>
 	<message key="log.review.reviewDeclined">{$reviewerName} je zavrnil {$round} recenzijo za prispevek {$submissionId}.</message>
 	<message key="log.review.reviewAccepted">{$reviewerName} je sprejel {$round}. krog recenzije za prispevek {$submissionId}.</message>
-	<message key="log.review.reviewUnconsidered">{$editorName} je označil recenzijo {$round} kroga za prispevek {$submissionId} kot neupoštevan.</message>
 	<message key="log.editor.decision">Uredniško odločitev ({$decision}) za monografsko publikacijo {$submissionId} je zabeležil {$editorName}.</message>
 	<message key="log.editor.archived">Prispevek {$articleId} je arhiviran.</message>
 	<message key="log.editor.restored">Prispevek {$articleId} je  vrnjen v uredniški postopek.</message>

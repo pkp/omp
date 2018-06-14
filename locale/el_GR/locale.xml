@@ -432,7 +432,6 @@ Your server currently supports mbstring: <strong>{$supportsMBString}</strong>]]>
 	<message key="log.review.reviewDueDateSet">Η ημερομηνία προθεσμίας για τον γύρο αξιολόγησης {$round} της υποβολής {$monographId} από τον/ην {$reviewerName} έχει οριστεί η {$dueDate}.</message>
 	<message key="log.review.reviewDeclined">Ο/Η {$reviewerName} έχει απορρίψει τον γύρο αξιολόγησης {$round} για την υποβολή {$monographId}.</message>
 	<message key="log.review.reviewAccepted">Ο/Η {$reviewerName} έχει αποδεχτεί τον γύρο αξιολόγησης {$round} για την υποβολή {$monographId}.</message>
-	<message key="log.review.reviewUnconsidered">Ο/Η {$editorName} έχει επισημάνει το αίτημα για το γύρο αξιολόγησης {$round} για την υποβολή {$monographId} ως ανεξέταστο.</message>
 	<message key="log.editor.decision">Μια απόφαση επιμελητή ({$decision}) για τη μονογραφία {$submissionId} καταγράφηκε από τον/ην {$editorName}.</message>
 	<message key="log.editor.archived">Η υποβολή {$monographId} αρχειοθετήθηκε.</message>
 	<message key="log.editor.restored">Η υποβολή {$monographId} επανατοποθετήθηκε στη σειρά αναμονής.</message>
