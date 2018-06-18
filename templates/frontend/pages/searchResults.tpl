@@ -27,7 +27,7 @@
 	{* No published titles *}
 	{elseif !$publishedMonographs|@count}
 		<div class="search_results">
-			{translate key="catalog.noTitlesSearch" searchQuery=$searchQuery}
+			{translate key="catalog.noTitlesSearch" searchQuery=$searchQuery|escape}
 			<a href="#search-form">
 				{translate key="search.searchAgain"}
 			</a>
