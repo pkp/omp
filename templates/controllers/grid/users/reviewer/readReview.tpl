@@ -8,10 +8,6 @@
  * Screen to let user read a review.
  *
  *}
-{capture assign="reviewerRecommendations"}
-	{include file="reviewer/review/reviewerRecommendations.tpl" description="reviewer.article.selectRecommendation.byEditor" required=false}
-{/capture}
-
 {if $reviewAssignment->getDateCompleted()}
 	{assign var="reviewCompleted" value=true}
 {else}
