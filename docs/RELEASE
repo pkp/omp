@@ -1,10 +1,16 @@
 OMP 3.1.1 Release Notes
-Git tag: omp-3_1_1-2
-Release date: June 19, 2018
+Git tag: omp-3_1_1-3
+Release date: June 22, 2018
 =================================
 
 - The AddThis plugin has been removed from the distribution, but is available
   via the Plugin Gallery. If you use this plugin, please install it from there.
+
+Bug Fixes (OMP 3.1.1-3)
+-----------------------
+	#3805: Correct missing escaping in searchResults.tpl
+	#3824: Fix SQL error in Catalog Management with PostgreSQL Bug
+	#3811: Merge User generates problems in the submission in discussions
 
 Bug Fixes (OMP 3.1.1-2)
 -----------------------
