@@ -37,9 +37,9 @@
 	{else}
 		<div class="search_results">
 			{if $publishedMonographs|@count > 1}
-				{translate key="catalog.foundTitlesSearch" searchQuery=$searchQuery number=$publishedMonographs|@count}
+				{translate key="catalog.foundTitlesSearch" searchQuery=$searchQuery|escape number=$publishedMonographs|@count}
 			{else}
-				{translate key="catalog.foundTitleSearch" searchQuery=$searchQuery}
+				{translate key="catalog.foundTitleSearch" searchQuery=$searchQuery|escape}
 			{/if}
 			<a href="#search-form">
 				{translate key="search.searchAgain"}
