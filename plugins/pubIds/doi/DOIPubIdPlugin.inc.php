@@ -78,7 +78,7 @@ class DOIPubIdPlugin extends PubIdPlugin {
 	 * @copydoc PKPPubIdPlugin::getPubIdMetadataFile()
 	 */
 	function getPubIdMetadataFile() {
-		return $this->getTemplatePath().'doiSuffixEdit.tpl';
+		return $this->getTemplateResource('doiSuffixEdit.tpl');
 	}
 
 	/**
