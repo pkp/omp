@@ -78,8 +78,7 @@ class SubmissionSubmitStep3Form extends PKPSubmissionSubmitStep3Form {
 	 */
 	function insertEntry($request, $newRowId) {
 
-		$application = PKPApplication::getApplication();
-		$request = $application->getRequest();
+		$request = Application::getRequest();
 
 		$categoryId = $newRowId['name'];
 		$categoryDao = DAORegistry::getDAO('CategoryDAO');

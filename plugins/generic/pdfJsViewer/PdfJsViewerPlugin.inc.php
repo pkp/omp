@@ -65,7 +65,7 @@ class PdfJsViewerPlugin extends GenericPlugin {
 		$submissionFile =& $args[3];
 
 		if ($submissionFile->getFileType() == 'application/pdf') {
-			$request = $this->getRequest();
+			$request = Application::getRequest();
 			$router = $request->getRouter();
 			$dispatcher = $request->getDispatcher();
 			$templateMgr = TemplateManager::getManager($request);
