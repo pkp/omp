@@ -200,7 +200,7 @@ class CatalogBookHandler extends Handler {
 				$genreDao = DAORegistry::getDAO('GenreDAO');
 				$genre = $genreDao->getById($submissionFile->getGenreId());
 				if (!$genre->getDependent()) fatalError('Invalid monograph file specified!');
-				return $monographFileManager->downloadFile($fileId, $revision);
+				return $monographFileManager->downloadFileById($fileId, $revision);
 				break;
 			default: fatalError('Invalid monograph file specified!');
 		}
@@ -238,7 +238,7 @@ class CatalogBookHandler extends Handler {
 				// If the plugin handled the hook, prevent further default activity.
 				exit();
 			}
-			return $monographFileManager->downloadFile($fileId, $revision, $inline);
+			return $monographFileManager->downloadFileById($fileId, $revision, $inline);
 		}
 
 		// Fall-through: user needs to pay for purchase.
