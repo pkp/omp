@@ -228,8 +228,8 @@ class CategoryForm extends Form {
 			// Delete the old file if it exists
 			$oldSetting = $category->getImage();
 			if ($oldSetting) {
-				$pressFileManager->deleteFile($basePath . $oldSetting['thumbnailName']);
-				$pressFileManager->deleteFile($basePath . $oldSetting['name']);
+				$pressFileManager->deleteFileByPath($basePath . $oldSetting['thumbnailName']);
+				$pressFileManager->deleteFileByPath($basePath . $oldSetting['name']);
 			}
 
 			// The following variables were fetched in validation
@@ -284,7 +284,7 @@ class CategoryForm extends Form {
 			// Clean up the temporary file
 			import('lib.pkp.classes.file.TemporaryFileManager');
 			$temporaryFileManager = new TemporaryFileManager();
-			$temporaryFileManager->deleteFile($temporaryFileId, $this->_userId);
+			$temporaryFileManager->deleteFileById($temporaryFileId, $this->_userId);
 		}
 
 		// Update category object to store image information.

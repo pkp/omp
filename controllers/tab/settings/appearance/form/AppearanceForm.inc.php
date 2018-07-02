@@ -112,7 +112,7 @@ class AppearanceForm extends PKPAppearanceForm {
 			}
 			if ($cover) {
 				// delete old cover thumbnail
-				$fileManager->deleteFile($basePath . $cover['thumbnailName']);
+				$fileManager->deleteFileByPath($basePath . $cover['thumbnailName']);
 
 				// get settings necessary for the new thumbnail
 				$coverExtension = $fileManager->getExtension($cover['name']);

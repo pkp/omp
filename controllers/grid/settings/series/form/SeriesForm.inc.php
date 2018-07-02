@@ -223,8 +223,8 @@ class SeriesForm extends PKPSectionForm {
 			// Delete the old file if it exists
 			$oldSetting = $series->getImage();
 			if ($oldSetting) {
-				$pressFileManager->deleteFile($basePath . $oldSetting['thumbnailName']);
-				$pressFileManager->deleteFile($basePath . $oldSetting['name']);
+				$pressFileManager->deleteFileByPath($basePath . $oldSetting['thumbnailName']);
+				$pressFileManager->deleteFileByPath($basePath . $oldSetting['name']);
 			}
 
 			// The following variables were fetched in validation
@@ -279,7 +279,7 @@ class SeriesForm extends PKPSectionForm {
 			// Clean up the temporary file
 			import('lib.pkp.classes.file.TemporaryFileManager');
 			$temporaryFileManager = new TemporaryFileManager();
-			$temporaryFileManager->deleteFile($temporaryFileId, $this->_userId);
+			$temporaryFileManager->deleteFileById($temporaryFileId, $this->_userId);
 		}
 
 		// Update series object to store image information.
