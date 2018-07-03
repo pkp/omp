@@ -50,7 +50,6 @@ plugins/paymethod/paypal/vendor/omnipay/paypal/tests/					\
 plugins/paymethod/paypal/vendor/guzzle/guzzle/docs/					\
 plugins/paymethod/paypal/vendor/guzzle/guzzle/tests/					\
 plugins/paymethod/paypal/vendor/symfony/http-foundation/Tests/				\
-plugins/paymethod/paypal/vendor/symfony/event-dispatcher/				\
 lib/pkp/plugins/*/*/tests								\
 plugins/*/*/tests									\
 tests											\
