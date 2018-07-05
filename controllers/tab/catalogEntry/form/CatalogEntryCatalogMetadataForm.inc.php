@@ -286,8 +286,8 @@ class CatalogEntryCatalogMetadataForm extends Form {
 			// Delete the old file if it exists
 			$oldSetting = $publishedMonograph->getCoverImage();
 			if ($oldSetting) {
-				$simpleMonographFileManager->deleteFileByPath($basePath . $oldSetting['thumbnailName']);
-				$simpleMonographFileManager->deleteFileByPath($basePath . $oldSetting['name']);
+				$simpleMonographFileManager->deleteByPath($basePath . $oldSetting['thumbnailName']);
+				$simpleMonographFileManager->deleteByPath($basePath . $oldSetting['name']);
 			}
 
 			// The following variables were fetched in validation
@@ -330,7 +330,7 @@ class CatalogEntryCatalogMetadataForm extends Form {
 			// Clean up the temporary file
 			import('lib.pkp.classes.file.TemporaryFileManager');
 			$temporaryFileManager = new TemporaryFileManager();
-			$temporaryFileManager->deleteFileById($temporaryFileId, $this->_userId);
+			$temporaryFileManager->deleteById($temporaryFileId, $this->_userId);
 		}
 
 		if ($this->getData('attachPermissions')) {

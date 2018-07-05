@@ -244,7 +244,7 @@ class CSVImportExportPlugin extends ImportExportPlugin {
 
 						$submissionFileDao->insertObject($submissionFile, $temporaryFilename);
 						$fileManager = new FileManager();
-						$fileManager->deleteFileByPath($temporaryFilename);
+						$fileManager->deleteByPath($temporaryFilename);
 
 						echo __('plugins.importexport.csv.import.submission', array('title' => $title)) . "\n";
 					} else {

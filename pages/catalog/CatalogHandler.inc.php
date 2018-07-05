@@ -351,7 +351,7 @@ class CatalogHandler extends Handler {
 		if ($imageInfo) {
 			import('lib.pkp.classes.file.ContextFileManager');
 			$pressFileManager = new ContextFileManager($press->getId());
-			$pressFileManager->downloadFileByPath($pressFileManager->getBasePath() . $path . $imageInfo['name'], null, true);
+			$pressFileManager->downloadByPath($pressFileManager->getBasePath() . $path . $imageInfo['name'], null, true);
 		}
 	}
 
@@ -390,7 +390,7 @@ class CatalogHandler extends Handler {
 		if ($imageInfo) {
 			import('lib.pkp.classes.file.ContextFileManager');
 			$pressFileManager = new ContextFileManager($press->getId());
-			$pressFileManager->downloadFileByPath($pressFileManager->getBasePath() . $path . $imageInfo['thumbnailName'], null, true);
+			$pressFileManager->downloadByPath($pressFileManager->getBasePath() . $path . $imageInfo['thumbnailName'], null, true);
 		}
 	}
 
