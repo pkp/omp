@@ -97,7 +97,7 @@ class ONIXCodelistItemDAO extends DAO {
 				fwrite($fp, $filteredXml);
 				fclose($fp);
 				$data = $xmlDao->parseWithHandler($tmpName, $handler);
-				$fileManager->deleteFileByPath($tmpName);
+				$fileManager->deleteByPath($tmpName);
 			} else {
 				fatalError('misconfigured directory permissions on: ' . $tmpDir);
 			}
