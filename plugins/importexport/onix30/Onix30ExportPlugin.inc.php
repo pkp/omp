@@ -104,8 +104,8 @@ class Onix30ExportPlugin extends ImportExportPlugin {
 				$fileManager = new FileManager();
 				$exportFileName = $this->getExportFileName($this->getExportPath(), 'monographs', $press, '.xml');
 				$fileManager->writeFile($exportFileName, $exportXml);
-				$fileManager->downloadFileByPath($exportFileName);
-				$fileManager->deleteFileByPath($exportFileName);
+				$fileManager->downloadByPath($exportFileName);
+				$fileManager->deleteByPath($exportFileName);
 				break;
 			default:
 				$dispatcher = $request->getDispatcher();

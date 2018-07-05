@@ -85,7 +85,7 @@ class CoverHandler extends PKPHandler {
 
 		import('classes.file.SimpleMonographFileManager');
 		$simpleMonographFileManager = new SimpleMonographFileManager($publishedMonograph->getPressId(), $publishedMonograph->getId());
-		$simpleMonographFileManager->downloadFileByPath($simpleMonographFileManager->getBasePath() . $coverImage['name'], null, true);
+		$simpleMonographFileManager->downloadByPath($simpleMonographFileManager->getBasePath() . $coverImage['name'], null, true);
 	}
 
 	/**
@@ -108,7 +108,7 @@ class CoverHandler extends PKPHandler {
 
 		import('classes.file.SimpleMonographFileManager');
 		$simpleMonographFileManager = new SimpleMonographFileManager($publishedMonograph->getPressId(), $publishedMonograph->getId());
-		$simpleMonographFileManager->downloadFileByPath($simpleMonographFileManager->getBasePath() . $coverImage['thumbnailName'], null, true);
+		$simpleMonographFileManager->downloadByPath($simpleMonographFileManager->getBasePath() . $coverImage['thumbnailName'], null, true);
 	}
 
 }
