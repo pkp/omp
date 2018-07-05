@@ -106,10 +106,9 @@ class RepresentativeForm extends Form {
 	}
 
 	/**
-	 * Fetch the form.
-	 * @see Form::fetch()
+	 * @copydoc Form::fetch()
 	 */
-	function fetch($request) {
+	function fetch($request, $template = null, $display = false) {
 
 		$templateMgr = TemplateManager::getManager($request);
 
@@ -136,7 +135,7 @@ class RepresentativeForm extends Form {
 			$templateMgr->assign('representativeIdType', '06'); // pre-populate new forms with GLN as it is recommended
 		}
 
-		return parent::fetch($request);
+		return parent::fetch($request, $template, $display);
 	}
 
 	/**

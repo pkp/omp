@@ -147,9 +147,9 @@ class CategoryForm extends Form {
 	}
 
 	/**
-	 * @see Form::fetch()
+	 * @copydoc Form::fetch()
 	 */
-	function fetch($request) {
+	function fetch($request, $template = null, $display = false) {
 		$categoryDao = DAORegistry::getDAO('CategoryDAO');
 		$press = $request->getPress();
 		$templateMgr = TemplateManager::getManager($request);
@@ -180,7 +180,7 @@ class CategoryForm extends Form {
 		$publishedMonographDao = DAORegistry::getDAO('PublishedMonographDAO');
 		$templateMgr->assign('sortOptions', $publishedMonographDao->getSortSelectOptions());
 
-		return parent::fetch($request);
+		return parent::fetch($request, $template, $display);
 	}
 
 	/**
