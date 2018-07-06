@@ -40,9 +40,9 @@ class SubmissionSubmitStep1Form extends PKPSubmissionSubmitStep1Form {
 	}
 
 	/**
-	 * Initialize form data from current submission.
+	 * @copydoc PKPSubmissionSubmitStep1Form::initData
 	 */
-	function initData() {
+	function initData($data = array()) {
 		if (isset($this->submission)) {
 			parent::initData(array(
 				'seriesId' => $this->submission->getSeriesId(),
