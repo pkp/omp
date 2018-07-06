@@ -140,7 +140,7 @@ class URNSettingsForm extends Form {
 	}
 
 	/**
-	 * @copydoc Form::validate()
+	 * @copydoc Form::execute()
 	 */
 	function execute() {
 		$contextId = $this->_getContextId();

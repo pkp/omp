@@ -95,7 +95,7 @@ class SeriesForm extends PKPSectionForm {
 	/**
 	 * @see Form::validate()
 	 */
-	function validate() {
+	function validate($callHooks = true) {
 		if ($temporaryFileId = $this->getData('temporaryFileId')) {
 			import('lib.pkp.classes.file.TemporaryFileManager');
 			$temporaryFileManager = new TemporaryFileManager();
@@ -110,7 +110,7 @@ class SeriesForm extends PKPSectionForm {
 				return false;
 			}
 		}
-		return parent::validate();
+		return parent::validate($callHooks);
 	}
 
 	/**

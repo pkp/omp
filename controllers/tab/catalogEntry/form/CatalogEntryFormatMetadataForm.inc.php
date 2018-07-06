@@ -212,12 +212,12 @@ class CatalogEntryFormatMetadataForm extends Form {
 	/**
 	 * @copydoc Form::validate()
 	 */
-	function validate() {
+	function validate($callHooks = true) {
 		$monograph = $this->getMonograph();
 		$publicationFormat = $this->getPublicationFormat();
 		$pubIdPluginHelper = $this->_getPubIdPluginHelper();
 		$pubIdPluginHelper->validate($monograph->getContextId(), $this, $publicationFormat);
-		return parent::validate();
+		return parent::validate($callHooks);
 	}
 
 	/**
