@@ -325,7 +325,7 @@ class PublicationFormatGridHandler extends CategoryGridHandler {
 		$assignPublicIdentifiersForm = new PKPAssignPublicIdentifiersForm($formTemplate, $representation, $request->getUserVar('newApprovedState'), $confirmationText);
 		if (!$request->getUserVar('confirmed')) {
 			// Display assign pub ids modal
-			$assignPublicIdentifiersForm->initData($args, $request);
+			$assignPublicIdentifiersForm->initData();
 			return new JSONMessage(true, $assignPublicIdentifiersForm->fetch($request));
 		}
 		if ($request->getUserVar('newApprovedState')) {
@@ -524,7 +524,7 @@ class PublicationFormatGridHandler extends CategoryGridHandler {
 			$assignPublicIdentifiersForm = new PKPAssignPublicIdentifiersForm($formTemplate, $submissionFile, $request->getUserVar('approval'), $confirmationText);
 			if (!$request->getUserVar('confirmed')) {
 				// Display assign pub ids modal
-				$assignPublicIdentifiersForm->initData($args, $request);
+				$assignPublicIdentifiersForm->initData();
 				return new JSONMessage(true, $assignPublicIdentifiersForm->fetch($request));
 			}
 			if ($request->getUserVar('approval')) {
@@ -563,7 +563,7 @@ class PublicationFormatGridHandler extends CategoryGridHandler {
 
 		import('lib.pkp.controllers.grid.files.proof.form.ManageProofFilesForm');
 		$manageProofFilesForm = new ManageProofFilesForm($submission->getId(), $representation->getId());
-		$manageProofFilesForm->initData($args, $request);
+		$manageProofFilesForm->initData();
 		return new JSONMessage(true, $manageProofFilesForm->fetch($request));
 	}
 
@@ -582,7 +582,7 @@ class PublicationFormatGridHandler extends CategoryGridHandler {
 		);
 		import('lib.pkp.controllers.tab.pubIds.form.PKPPublicIdentifiersForm');
 		$form = new PKPPublicIdentifiersForm($representation);
-		$form->initData($request);
+		$form->initData();
 		return new JSONMessage(true, $form->fetch($request));
 	}
 

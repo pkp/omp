@@ -51,12 +51,12 @@ class MastheadForm extends ContextSettingsForm {
 	// Overridden methods from ContextSettingsForm.
 	//
 	/**
-	 * @see ContextSettingsForm::initData.
-	 * @param $request Request
+	 * @copydoc ContextSettingsForm::initData.
 	 */
-	function initData($request) {
-		parent::initData($request);
+	function initData() {
+		parent::initData();
 
+		$request = Application::getRequest();
 		$press = $request->getPress();
 		$this->setData('enabled', (int)$press->getEnabled());
 		if ($this->getData('acronym') == null) {

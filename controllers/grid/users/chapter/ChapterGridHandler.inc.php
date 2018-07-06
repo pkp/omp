@@ -281,7 +281,7 @@ class ChapterGridHandler extends CategoryGridHandler {
 
 		import('controllers.tab.pubIds.form.PublicIdentifiersForm');
 		$form = new PublicIdentifiersForm($chapter);
-		$form->initData($request);
+		$form->initData();
 		return new JSONMessage(true, $form->fetch($request));
 	}
 
