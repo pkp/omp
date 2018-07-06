@@ -298,7 +298,7 @@ class ChapterGridHandler extends CategoryGridHandler {
 		import('controllers.tab.pubIds.form.PublicIdentifiersForm');
 		$form = new PublicIdentifiersForm($chapter);
 		$form->readInputData();
-		if ($form->validate($request)) {
+		if ($form->validate()) {
 			$form->execute($request);
 			return DAO::getDataChangedEvent();
 		} else {

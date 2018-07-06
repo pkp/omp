@@ -219,7 +219,7 @@ class CatalogEntryCatalogMetadataForm extends Form {
 	 * Validate the form.
 	 * @return boolean
 	 */
-	function validate() {
+	function validate($callHooks = true) {
 		// If a cover image was uploaded, make sure it's valid
 		if ($temporaryFileId = $this->getData('temporaryFileId')) {
 			import('lib.pkp.classes.file.TemporaryFileManager');
@@ -235,7 +235,7 @@ class CatalogEntryCatalogMetadataForm extends Form {
 				return false;
 			}
 		}
-		return parent::validate();
+		return parent::validate($callHooks);
 	}
 
 	/**

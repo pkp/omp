@@ -154,7 +154,7 @@ class CatalogEntryTabHandler extends PublicationEntryTabHandler {
 		$stageId = $this->getStageId();
 		$form = new PKPPublicIdentifiersForm($submission, $stageId, array('displayedInContainer' => true));
 		$form->readInputData();
-		if ($form->validate($request)) {
+		if ($form->validate()) {
 			$form->execute($request);
 			$json = new JSONMessage();
 			if ($request->getUserVar('displayedInContainer')) {

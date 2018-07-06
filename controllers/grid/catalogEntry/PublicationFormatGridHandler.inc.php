@@ -602,7 +602,7 @@ class PublicationFormatGridHandler extends CategoryGridHandler {
 		import('lib.pkp.controllers.tab.pubIds.form.PKPPublicIdentifiersForm');
 		$form = new PKPPublicIdentifiersForm($representation);
 		$form->readInputData();
-		if ($form->validate($request)) {
+		if ($form->validate()) {
 			$form->execute($request);
 			return DAO::getDataChangedEvent();
 		} else {
