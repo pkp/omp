@@ -212,7 +212,7 @@ class ManageSpotlightsGridHandler extends GridHandler {
 		$pressId = $press->getId();
 
 		$spotlightForm = new SpotlightForm($pressId, $spotlightId);
-		$spotlightForm->initData($args, $request);
+		$spotlightForm->initData();
 
 		return new JSONMessage(true, $spotlightForm->fetch($request));
 	}

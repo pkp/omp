@@ -53,10 +53,9 @@ class SeriesForm extends PKPSectionForm {
 
 	/**
 	 * Initialize form data from current settings.
-	 * @param $args array
-	 * @param $request PKPRequest
 	 */
-	function initData($args, $request) {
+	function initData() {
+		$request = Application::getRequest();
 		$press = $request->getPress();
 
 		$seriesDao = DAORegistry::getDAO('SeriesDAO');
