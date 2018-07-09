@@ -224,7 +224,7 @@ class CategoryCategoryGridHandler extends CategoryGridHandler {
 
 		$categoryForm->readInputData();
 		if($categoryForm->validate()) {
-			$categoryForm->execute($request);
+			$categoryForm->execute();
 			return DAO::getDataChangedEvent();
 		} else {
 			return new JSONMessage(true, $categoryForm->fetch($request));

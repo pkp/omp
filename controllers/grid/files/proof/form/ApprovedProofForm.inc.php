@@ -89,9 +89,9 @@ class ApprovedProofForm extends Form {
 	}
 
 	/**
-	 * @see Form::execute()
+	 * @copydoc Form::execute()
 	 */
-	function execute($request) {
+	function execute() {
 		$submissionFileDao = DAORegistry::getDAO('SubmissionFileDAO');
 		$salesType = $this->getData('salesType');
 		if ($salesType === 'notAvailable') {

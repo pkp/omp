@@ -58,15 +58,13 @@ class SubmissionSubmitStep3Form extends PKPSubmissionSubmitStep3Form {
 
 	/**
 	 * Save changes to submission.
-	 * @param $args array
-	 * @param $request PKPRequest
 	 * @return int the submission ID
 	 */
-	function execute($args, $request) {
-		parent::execute($args, $request);
+	function execute() {
+		parent::execute();
 
 		// handle category assignment.
-		ListbuilderHandler::unpack($request, $this->getData('categories'), array($this, 'deleteEntry'), array($this, 'insertEntry'), array($this, 'updateEntry'));
+		ListbuilderHandler::unpack(Application::getRequest(), $this->getData('categories'), array($this, 'deleteEntry'), array($this, 'insertEntry'), array($this, 'updateEntry'));
 
 		return $this->submissionId;
 	}

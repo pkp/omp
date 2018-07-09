@@ -184,9 +184,9 @@ class CategoryForm extends Form {
 	}
 
 	/**
-	 * @see Form::execute()
+	 * @copydoc Form::execute()
 	 */
-	function execute($request) {
+	function execute() {
 		$categoryId = $this->getCategoryId();
 		$categoryDao = DAORegistry::getDAO('CategoryDAO');
 
@@ -244,7 +244,7 @@ class CategoryForm extends Form {
 			}
 			assert($image);
 
-			$press = $request->getPress();
+			$press = Application::getRequest()->getPress();
 			$coverThumbnailsMaxWidth = $press->getSetting('coverThumbnailsMaxWidth');
 			$coverThumbnailsMaxHeight = $press->getSetting('coverThumbnailsMaxHeight');
 			$thumbnailFilename = $category->getId() . '-category-thumbnail' . $this->_imageExtension;

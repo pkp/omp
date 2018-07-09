@@ -299,7 +299,7 @@ class ChapterGridHandler extends CategoryGridHandler {
 		$form = new PublicIdentifiersForm($chapter);
 		$form->readInputData();
 		if ($form->validate()) {
-			$form->execute($request);
+			$form->execute();
 			return DAO::getDataChangedEvent();
 		} else {
 			return new JSONMessage(true, $form->fetch($request));
@@ -387,7 +387,7 @@ class ChapterGridHandler extends CategoryGridHandler {
 
 		// Form validation
 		if ($chapterForm->validate()) {
-			$chapterForm->execute($request);
+			$chapterForm->execute();
 
 			$newChapter = $chapterForm->getChapter();
 

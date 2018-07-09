@@ -208,7 +208,7 @@ class SeriesGridHandler extends SetupGridHandler {
 		$seriesForm->readInputData();
 
 		if ($seriesForm->validate()) {
-			$seriesForm->execute($args, $request);
+			$seriesForm->execute();
 			return DAO::getDataChangedEvent($seriesForm->getSeriesId());
 		} else {
 			return new JSONMessage(false);

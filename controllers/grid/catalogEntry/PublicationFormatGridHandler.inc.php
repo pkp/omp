@@ -258,7 +258,7 @@ class PublicationFormatGridHandler extends CategoryGridHandler {
 		$publicationFormatForm = new PublicationFormatForm($submission, $representation);
 		$publicationFormatForm->readInputData();
 		if ($publicationFormatForm->validate()) {
-			$publicationFormatForm->execute($request);
+			$publicationFormatForm->execute();
 			return DAO::getDataChangedEvent();
 		}
 		return new JSONMessage(true, $publicationFormatForm->fetch($request));
@@ -331,7 +331,7 @@ class PublicationFormatGridHandler extends CategoryGridHandler {
 		if ($request->getUserVar('newApprovedState')) {
 			// Assign pub ids
 			$assignPublicIdentifiersForm->readInputData();
-			$assignPublicIdentifiersForm->execute($request);
+			$assignPublicIdentifiersForm->execute();
 		}
 
 		$newApprovedState = (int) $request->getUserVar('newApprovedState');
@@ -450,7 +450,7 @@ class PublicationFormatGridHandler extends CategoryGridHandler {
 		$approvedProofForm->readInputData();
 
 		if ($approvedProofForm->validate()) {
-			$approvedProofForm->execute($request);
+			$approvedProofForm->execute();
 			return DAO::getDataChangedEvent();
 		}
 		return new JSONMessage(true, $approvedProofForm->fetch($request));
@@ -530,7 +530,7 @@ class PublicationFormatGridHandler extends CategoryGridHandler {
 			if ($request->getUserVar('approval')) {
 				// Asign pub ids
 				$assignPublicIdentifiersForm->readInputData();
-				$assignPublicIdentifiersForm->execute($request);
+				$assignPublicIdentifiersForm->execute();
 			}
 			// Update the approval flag
 			$submissionFile->setViewable($request->getUserVar('approval')?1:0);
@@ -603,7 +603,7 @@ class PublicationFormatGridHandler extends CategoryGridHandler {
 		$form = new PKPPublicIdentifiersForm($representation);
 		$form->readInputData();
 		if ($form->validate()) {
-			$form->execute($request);
+			$form->execute();
 			return DAO::getDataChangedEvent();
 		} else {
 			return new JSONMessage(true, $form->fetch($request));
