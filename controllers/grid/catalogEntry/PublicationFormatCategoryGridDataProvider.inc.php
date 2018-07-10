@@ -83,7 +83,7 @@ class PublicationFormatCategoryGridDataProvider extends SubmissionFilesCategoryG
 	/**
 	 * @copydoc GridDataProvider::loadData()
 	 */
-	function loadCategoryData($request, $categoryDataElement, $filter = null) {
+	function loadCategoryData($request, $categoryDataElement, $filter = null, $reviewRound = null) {
 		assert(is_a($categoryDataElement, 'Representation'));
 
 		// Retrieve all submission files for the given file stage.
