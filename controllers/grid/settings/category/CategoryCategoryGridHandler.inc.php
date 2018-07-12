@@ -136,7 +136,7 @@ class CategoryCategoryGridHandler extends CategoryGridHandler {
 	/**
 	 * @copydoc CategoryGridHandler::setDataElementInCategorySequence()
 	 */
-	function setDataElementInCategorySequence($parentCategoryId, $category, $newSequence) {
+	function setDataElementInCategorySequence($parentCategoryId, &$category, $newSequence) {
 		$category->setSequence($newSequence);
 		$categoryDao = DAORegistry::getDAO('CategoryDAO');
 		$categoryDao->updateObject($category);
