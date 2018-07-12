@@ -49,7 +49,7 @@
 	<!-- Submission wizard -->
 	<message key="submission.submit">Comenzar nueva propuesta</message>
 	<message key="submission.submit.newSubmissionMultiple">Comenzar una nueva propuesta para</message>
-	<message key="submission.submit.newSubmissionSingle">Empezar un nuevo envío de libro en {$contextName}</message>
+	<message key="submission.submit.newSubmissionSingle">Nuevo Envío</message>
 	<message key="submission.submit.upload">Cargar envío</message>
 	<message key="submission.submit.cancelSubmission">Puedes completar esta propuesta más tarde seleccionando Propuestas Activas desde la página de inicio del autor.</message>
 	<message key="submission.submit.selectSeries">Seleccionar serie, colección, ...</message>
@@ -119,4 +119,24 @@
 	<message key="workflow.review.externalReview">Revisión externa</message>
 	<message key="editor.submission.decision.sendExternalReview">Envía para revisión externa</message>
 	<message key="submission.upload.fileContents">Componente de envío</message>
+	<message key="submission.list.orderingFeaturesSection">Arrastre y suelte o pulse los botones de arriba y abajo para cambiar el orden de los elementos en {$title}.</message>
+	<message key="submission.list.saveFeatureOrder">Guardar orden</message>
+	<message key="submission.workflowType.editedVolume.selectEditors">Seleccionar Editores de Volumen</message>
+	<message key="submission.workflowType.editedVolume.selectEditors.description">Seleccione los autores que deberían ser identificados como editores para la totalidad del volumen.</message>
+	<message key="submission.editorName">{$editorName} (ed)</message>
+	<message key="submission.editorSeparator">,</message>
+	<message key="submission.authorListSeparator">;</message>
+	<message key="author.submit.seriesRequired">Series válidas son requeridas.</message>
+	<message key="submission.catalogEntry.add">Añadir Seleccionados al catálogo</message>
+	<message key="submission.catalogEntry.select">Selecciones monografías a añadir al catálogo</message>
+	<message key="submission.catalogEntry.selectionMissing">Debe seleccionar al menos una monografía para añadir al catálogo.</message>
+	<message key="submission.catalogEntry.viewSubmission">Ver envío</message>
+	<message key="submission.dependentFiles">Archivos dependientes</message>
+	<message key="submission.metadataDescription">Estas especificaciones son basadas en el Dublin Core metadata set, un estándar internacional usado para describir el contenido editorial.</message>
+	<message key="section.any">Cualquier serie</message>
+	<message key="submission.list.monographs">Monografías</message>
+	<message key="submission.list.countMonographs">{$count} monografías</message>
+	<message key="submission.list.itemsOfTotalMonographs">{$count} de {$total} monografías</message>
+	<message key="submission.list.orderFeatures">Ordenar los elementos</message>
+	<message key="submission.list.orderingFeatures">Arrastre y suelte o pulse los botones de arriba y abajo para cambiar el orden de los elementos en la página principal.</message>
 </locale>
