@@ -36,11 +36,10 @@ class ChapterFilesListbuilderHandler extends FilesListbuilderHandler {
 
 
 	/**
-	 * Configure the grid
-	 * @param PKPRequest $request
+	 * @copydoc FilesListbuilderHandler::initialize
 	 */
-	function initialize($request) {
-		parent::initialize($request);
+	function initialize($request, $args = null) {
+		parent::initialize($request, $args);
 		AppLocale::requireComponents(LOCALE_COMPONENT_APP_EDITOR);
 		$this->setTitle('submission.files');
 		$this->_chapterId = $request->getUserVar('chapterId');

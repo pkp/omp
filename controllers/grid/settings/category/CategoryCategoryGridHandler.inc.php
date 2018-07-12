@@ -61,11 +61,11 @@ class CategoryCategoryGridHandler extends CategoryGridHandler {
 
 
 	/**
-	 * @copydoc PKPHandler::initialize()
+	 * @copydoc CategoryGridHandler::initialize()
 	 */
-	function initialize($request) {
+	function initialize($request, $args = null) {
 
-		parent::initialize($request);
+		parent::initialize($request, $args);
 
 		$press = $request->getPress();
 		$this->_pressId = $press->getId();
