@@ -183,7 +183,7 @@ class CategoryCategoryGridHandler extends CategoryGridHandler {
 	/**
 	 * @copydoc CategoryGridHandler::loadCategoryData()
 	 */
-	function loadCategoryData($request, &$category, $filter) {
+	function loadCategoryData($request, &$category, $filter = null) {
 		$categoryId = $category->getId();
 		$categoryDao = DAORegistry::getDAO('CategoryDAO');
 		$categoriesIterator = $categoryDao->getByParentId($categoryId, $this->_getPressId());
