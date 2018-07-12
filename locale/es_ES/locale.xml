@@ -443,6 +443,7 @@
 	<message key="log.review.reviewDueDateSet">{$reviewerName} cambió a {$dueDate} la fecha de entrega de la revisión para envío {$submissionId} de la ronda {$round}.</message>
 	<message key="log.review.reviewDeclined">{$reviewerName} rechazó la revisión para envío {$submissionId} de la ronda {$round}.</message>
 	<message key="log.review.reviewAccepted">{$reviewerName} aceptó la revisión para envío {$submissionId} de la ronda {$round}.</message>
+	<message key="log.review.reviewUnconsidered">{$editorName} marcó la revisión para envío {$submissionId} de la ronda {$round}.</message>
 	<message key="log.editor.decision">{$editorName} grabó la decisión del editor/a ({$decision}) en la monografía {$submissionId}.</message>
 	<message key="log.editor.archived">Se completó el envío {$submissionId}</message>
 	<message key="log.editor.restored">Se restauró el envío {$submissionId} a la lista.</message>
