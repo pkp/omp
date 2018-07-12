@@ -42,12 +42,11 @@ class ChapterGridCategoryRow extends GridCategoryRow {
 	// Overridden methods from GridCategoryRow
 	//
 	/**
-	 * @see GridCategoryRow::initialize()
-	 * @param $request PKPRequest
+	 * @copydoc GridCategoryRow::initialize()
 	 */
-	function initialize($request) {
+	function initialize($request, $template = null) {
 		// Do the default initialization
-		parent::initialize($request);
+		parent::initialize($request, $template);
 
 		// Retrieve the monograph id from the request
 		$monograph = $this->getMonograph();
