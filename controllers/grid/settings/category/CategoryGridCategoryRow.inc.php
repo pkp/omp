@@ -30,12 +30,11 @@ class CategoryGridCategoryRow extends GridCategoryRow {
 	// Overridden methods from GridCategoryRow
 	//
 	/**
-	 * @see GridCategoryRow::initialize()
-	 * @param $request PKPRequest
+	 * @copydoc GridCategoryRow::initialize()
 	 */
-	function initialize($request) {
+	function initialize($request, $template = null) {
 		// Do the default initialization
-		parent::initialize($request);
+		parent::initialize($request, $template);
 
 		// Is this a new row or an existing row?
 		$categoryId = $this->getId();
