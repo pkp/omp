@@ -47,9 +47,9 @@ class ChapterFilesListbuilderHandler extends FilesListbuilderHandler {
 
 	/**
 	 * Load the list from an external source into the grid structure
-	 * @param $request PKPRequest
+	 * @see FilesListbuilderHandler::loadData
 	 */
-	function loadData($request) {
+	function loadData($request, $filter = null) {
 		$monograph = $this->getAuthorizedContextObject(ASSOC_TYPE_MONOGRAPH);
 		$chapterDao = DAORegistry::getDAO('ChapterDAO');
 		$chapter = $chapterDao->getChapter($this->_chapterId, $monograph->getId());

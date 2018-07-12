@@ -175,7 +175,7 @@ class ChapterAuthorListbuilderHandler extends ListbuilderHandler {
 	//
 	/*
 	 * Load the data for the list builder
-	 * @param PKPRequest $request
+	 * @see ListbuilderHandler::loadData
 	 */
 	function loadData($request, $filter) {
 		$monograph = $this->getMonograph();
