@@ -129,7 +129,7 @@ class CategoryCategoryGridHandler extends CategoryGridHandler {
 	/**
 	 * @copydoc CategoryGridHandler::getDataElementInCategorySequence()
 	 */
-	function getDataElementInCategorySequence($categoryId, $category) {
+	function getDataElementInCategorySequence($categoryId, &$category) {
 		return $category->getSequence();
 	}
 
