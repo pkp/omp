@@ -25,12 +25,12 @@ Enlace: {$url}<br />
 		<subject>Confirmación para restablecer la contraseña</subject>
 		<body><![CDATA[Se recibió una solicitud para restablecer su contraseña en la página web {$siteTitle}.<br />
 <br />
-Si no realizó esta solicitud, ignore este correo electrónico y su contraseña no se cambiará. Si desea restablecer su contraseña, haga clic en la URL que aparece debajo.<br />
+Si no realizó esta solicitud, ignore este correo electrónico y su contraseña no se cambiará. Si desea restablecer su contraseña, haga clic en la dirección URL que aparece debajo.<br />
 <br />
 Restablecer contraseña: {$url}<br />
 <br />
 {$principalContactSignature}]]></body>
-		<description>Este correo electrónico se envía a un usuario/a registrado cuando indica que olvidó su contraseña o cuando no puede iniciar sesión. Proporciona una URL con la que se puede restablecer la contraseña.</description>
+		<description>Este correo electrónico se envía a un usuario/a registrado cuando indica que olvidó su contraseña o cuando no puede iniciar sesión. Proporciona una dirección URL con la que se puede restablecer la contraseña.</description>
 	</email_text>
 	<email_text key="PASSWORD_RESET">
 		<subject>Restablecer contraseña</subject>
@@ -46,7 +46,7 @@ Nueva contraseña: {$password}<br />
 		<subject>Registro en la publicación</subject>
 		<body><![CDATA[{$userFullName}<br />
 <br />
-Se registró como usuario/a con {$contextName}. En este correo electrónico hemos incluido el nombre de usuario/a y contraseña que necesitará para trabajar con esta publicación a través de su página web. En cualquier momento puede contactar conmigo para pedir que se le elimine de la lista de usuarios/as.<br />
+Se registró como usuario/a con {$contextName}. En este correo electrónico hemos incluido el nombre de usuario/a y contraseña que necesitará para trabajar con esta publicación a través de su página web. En cualquier momento puede contactarse conmigo para pedir que se le elimine de la lista de usuarios/as.<br />
 <br />
 Nombre de usuario/a: {$username}<br />
 Contraseña: {$password}<br />
@@ -138,7 +138,7 @@ Inicie sesión en el sitio web de la publicación antes del {$responseDueDate} p
 <br />
 La revisión debe estar preparada antes del {$reviewDueDate}.<br />
 <br />
-URL de envío: {$submissionReviewUrl}<br />
+Dirección URL de envío: {$submissionReviewUrl}<br />
 <br />
 Nombre de usuario/a: {$reviewerUserName}<br />
 <br />
@@ -160,7 +160,7 @@ Inicie sesión en la página web de la publicación antes del {$weekLaterDate} p
 <br />
 La revisión debe estar preparada antes del {$reviewDueDate}.<br />
 <br />
-URL del envío: {$submissionReviewUrl}<br />
+Dirección URL del envío: {$submissionReviewUrl}<br />
 <br />
 Gracias por considerar esta solicitud.<br />
 <br />
