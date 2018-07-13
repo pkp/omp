@@ -128,7 +128,7 @@
 	<message key="submission.authorListSeparator">;</message>
 	<message key="author.submit.seriesRequired">Series válidas son requeridas.</message>
 	<message key="submission.catalogEntry.add">Añadir Seleccionados al catálogo</message>
-	<message key="submission.catalogEntry.select">Selecciones monografías a añadir al catálogo</message>
+	<message key="submission.catalogEntry.select">Seleccione monografías a añadir al catálogo</message>
 	<message key="submission.catalogEntry.selectionMissing">Debe seleccionar al menos una monografía para añadir al catálogo.</message>
 	<message key="submission.catalogEntry.viewSubmission">Ver envío</message>
 	<message key="submission.dependentFiles">Archivos dependientes</message>
