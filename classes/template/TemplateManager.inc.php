@@ -21,10 +21,9 @@ import('lib.pkp.classes.template.PKPTemplateManager');
 class TemplateManager extends PKPTemplateManager {
 	/**
 	 * Initialize template engine and assign basic template variables.
-	 * @param $request PKPRequest
 	 */
-	public function initialize($request) {
-		parent::initialize($request);
+	public function initialize() {
+		parent::initialize();
 		AppLocale::requireComponents(LOCALE_COMPONENT_APP_COMMON);
 
 		if (!defined('SESSION_DISABLE_INIT')) {
@@ -34,6 +33,7 @@ class TemplateManager extends PKPTemplateManager {
 			 * installer pages).
 			 */
 
+			$request = Application::getRequest();
 			$context = $request->getContext();
 			$site = $request->getSite();
 
