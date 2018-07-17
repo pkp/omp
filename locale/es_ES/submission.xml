@@ -90,7 +90,7 @@
 	<message key="submission.catalogEntry">Catálogo</message>
 	<message key="submission.editCatalogEntry">Registro</message>
 	<message key="submission.catalogEntry.new">Nueva entrada de catálogo</message>
-	<message key="submission.catalogEntry.confirm">Crear un registro de este libro en el catálogo para basado en los metadatos situados a continuación.</message>
+	<message key="submission.catalogEntry.confirm">Crear un registro de este libro en el catálogo basado en los metadatos situados a continuación.</message>
 	<message key="submission.catalogEntry.confirm.required">Confirma que la propuesta está lista para situarse en el catálogo.</message>
 	<message key="submission.catalogEntry.isAvailable">Esta monografía está lista para incluirse en un catalogo público.</message>
 
