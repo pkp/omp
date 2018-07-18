@@ -130,7 +130,9 @@ class ChapterForm extends Form {
 			$chapter->setMonographId($monograph->getId());
 			$chapter->setTitle($this->getData('title'), null); //Localized
 			$chapter->setSubtitle($this->getData('subtitle'), null); //Localized
+			$chapter->setSequence(REALLY_BIG_NUMBER);
 			$chapterDao->insertChapter($chapter);
+			$chapterDao->resequenceChapters($monograph->getId());
 		}
 
 		$this->setChapter($chapter);
