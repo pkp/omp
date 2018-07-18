@@ -219,7 +219,7 @@ class ChapterDAO extends DAO implements PKPPubIdPluginDAO {
 		$result = $this->retrieve(
 			'SELECT chapter_id FROM submission_chapters' .
 			($monographId !== null?' WHERE submission_id = ?':'') .
-			' ORDER BY seq',
+			' ORDER BY chapter_seq',
 			($monographId !== null)?(int) $monographId:null
 		);
 
