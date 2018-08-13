@@ -114,7 +114,7 @@ class CategoryForm extends Form {
 	/**
 	 * @see Form::validate()
 	 */
-	function validate() {
+	function validate($callHooks = true) {
 		if ($temporaryFileId = $this->getData('temporaryFileId')) {
 			import('lib.pkp.classes.file.TemporaryFileManager');
 			$temporaryFileManager = new TemporaryFileManager();
@@ -129,7 +129,7 @@ class CategoryForm extends Form {
 				return false;
 			}
 		}
-		return parent::validate();
+		return parent::validate($callHooks);
 	}
 
 	/**
