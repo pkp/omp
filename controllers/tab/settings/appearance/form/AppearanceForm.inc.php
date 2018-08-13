@@ -48,14 +48,14 @@ class AppearanceForm extends PKPAppearanceForm {
 	}
 
 	/**
-	 * @copydoc ContextSettingsForm::fetch()
+	 * @copydoc PKPAppearanceForm::fetch()
 	 */
-	function fetch($request) {
+	function fetch($request, $template = null, $display = false, $params = null) {
 		// Sort options.
 		$templateMgr = TemplateManager::getManager($request);
 		$publishedMonographDao = DAORegistry::getDAO('PublishedMonographDAO');
 		$templateMgr->assign('sortOptions', $publishedMonographDao->getSortSelectOptions());
-		return parent::fetch($request);
+		return parent::fetch($request, $template, $display, $params);
 	}
 
 	/**

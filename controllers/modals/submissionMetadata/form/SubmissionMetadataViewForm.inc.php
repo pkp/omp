@@ -28,11 +28,9 @@ class SubmissionMetadataViewForm extends PKPSubmissionMetadataViewForm {
 	}
 
 	/**
-	 * Fetch the HTML contents of the form.
-	 * @param $request PKPRequest
-	 * return string
+	 * @copydoc PKPSubmissionMetadataViewForm::fetch
 	 */
-	function fetch($request) {
+	function fetch($request, $template = null, $display = false) {
 		$submission = $this->getSubmission();
 		$templateMgr = TemplateManager::getManager($request);
 
@@ -76,7 +74,7 @@ class SubmissionMetadataViewForm extends PKPSubmissionMetadataViewForm {
 			'assignedCategories' => $assignedCategories,
 		));
 
-		return parent::fetch($request);
+		return parent::fetch($request, $template, $display);
 	}
 
 	/**

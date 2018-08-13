@@ -114,11 +114,9 @@ class SeriesForm extends PKPSectionForm {
 	}
 
 	/**
-	 * Fetch form contents
-	 * @param $request PKPRequest
-	 * @see Form::fetch()
+	 * @copydoc PKPSectionForm::fetch()
 	 */
-	function fetch($request) {
+	function fetch($request, $template = null, $display = false) {
 		$templateMgr = TemplateManager::getManager($request);
 		$templateMgr->assign('seriesId', $this->getSeriesId());
 
@@ -154,7 +152,7 @@ class SeriesForm extends PKPSectionForm {
 			'categoriesListData' => json_encode($categoriesListData),
 		));
 
-		return parent::fetch($request);
+		return parent::fetch($request, $template, $display);
 	}
 
 	/**

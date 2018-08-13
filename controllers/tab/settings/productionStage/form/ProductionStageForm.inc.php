@@ -38,15 +38,15 @@ class ProductionStageForm extends ContextSettingsForm {
 	}
 
 	/**
-	 * @see Form::fetch()
+	 * @copydoc ContextSettingsForm::fetch()
 	 */
-	function fetch($request, $params = null) {
+	function fetch($request, $template = null, $display = false, $params = null) {
 		$templateMgr = TemplateManager::getManager($request);
 		$onixCodelistItemDao = DAORegistry::getDAO('ONIXCodelistItemDAO');
 		$codeTypes = $onixCodelistItemDao->getCodes('List44'); // Name code types for publisher
 		$templateMgr->assign('codeTypes', $codeTypes);
 
-		return parent::fetch($request);
+		return parent::fetch($request, $template, $display, $params);
 	}
 }
 

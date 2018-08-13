@@ -72,11 +72,9 @@ class CatalogEntryFormatMetadataForm extends Form {
 	}
 
 	/**
-	 * Fetch the HTML contents of the form.
-	 * @param $request PKPRequest
-	 * return string
+	 * @copydoc Form::fetch
 	 */
-	function fetch($request) {
+	function fetch($request, $template = null, $display = false) {
 		$monograph = $this->getMonograph();
 		$publicationFormat = $this->getPublicationFormat();
 		$press = $request->getPress();
@@ -130,7 +128,7 @@ class CatalogEntryFormatMetadataForm extends Form {
 			NOTIFICATION_LEVEL_TRIVIAL => array()
 		));
 
-		return parent::fetch($request);
+		return parent::fetch($request, $template, $display);
 	}
 
 	/**

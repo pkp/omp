@@ -63,11 +63,9 @@ class CatalogEntryCatalogMetadataForm extends Form {
 	}
 
 	/**
-	 * Fetch the HTML contents of the form.
-	 * @param $request PKPRequest
-	 * return string
+	 * @copydoc Form::fetch
 	 */
-	function fetch($request) {
+	function fetch($request, $template = null, $display = false) {
 		$templateMgr = TemplateManager::getManager($request);
 		$templateMgr->assign('submissionId', $this->getMonograph()->getId());
 		$templateMgr->assign('stageId', $this->getStageId());
@@ -128,7 +126,7 @@ class CatalogEntryCatalogMetadataForm extends Form {
 			$templateMgr->assign('coverImage', $publishedMonograph->getCoverImage());
 		}
 
-		return parent::fetch($request);
+		return parent::fetch($request, $template, $display);
 	}
 
 	function initData() {

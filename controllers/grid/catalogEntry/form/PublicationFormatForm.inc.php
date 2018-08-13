@@ -95,10 +95,9 @@ class PublicationFormatForm extends Form {
 	}
 
 	/**
-	 * Fetch the form.
-	 * @see Form::fetch()
+	 * @copydoc Form::fetch()
 	 */
-	function fetch($request) {
+	function fetch($request, $template = null, $display = false) {
 		$templateMgr = TemplateManager::getManager($request);
 		$onixCodelistItemDao = DAORegistry::getDAO('ONIXCodelistItemDAO');
 		$templateMgr->assign('entryKeys', $onixCodelistItemDao->getCodes('List7')); // List7 is for object formats
@@ -109,7 +108,7 @@ class PublicationFormatForm extends Form {
 		if ($publicationFormat != null) {
 			$templateMgr->assign('representationId', $publicationFormat->getId());
 		}
-		return parent::fetch($request);
+		return parent::fetch($request, $template, $display);
 	}
 
 	/**
