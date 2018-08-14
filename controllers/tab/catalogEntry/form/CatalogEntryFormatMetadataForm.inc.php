@@ -223,7 +223,7 @@ class CatalogEntryFormatMetadataForm extends Form {
 	/**
 	 * Save the metadata and store the catalog data for this specific publication format.
 	 */
-	function execute($request) {
+	function execute() {
 		parent::execute();
 
 		$monograph = $this->getMonograph();

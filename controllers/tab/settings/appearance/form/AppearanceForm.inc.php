@@ -61,12 +61,12 @@ class AppearanceForm extends PKPAppearanceForm {
 	/**
 	 * @copydoc ContextSettingsForm::execute()
 	 */
-	function execute($request) {
-		parent::execute($request);
+	function execute() {
+		parent::execute();
 
 		$coverThumbnailsResize = $this->getData('coverThumbnailsResize');
 		if ($coverThumbnailsResize) {
-			$context = $request->getContext();
+			$context = Application::getRequest()->getContext();
 			// new thumbnails max width and max height
 			$coverThumbnailsMaxWidth = $this->getData('coverThumbnailsMaxWidth');
 			$coverThumbnailsMaxHeight = $this->getData('coverThumbnailsMaxHeight');

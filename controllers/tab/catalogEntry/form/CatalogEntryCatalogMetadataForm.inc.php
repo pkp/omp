@@ -240,7 +240,7 @@ class CatalogEntryCatalogMetadataForm extends Form {
 	 * Save the metadata and store the catalog data for this published
 	 * monograph.
 	 */
-	function execute($request) {
+	function execute() {
 		parent::execute();
 
 		$monograph = $this->getMonograph();
@@ -305,7 +305,7 @@ class CatalogEntryCatalogMetadataForm extends Form {
 			$simpleMonographFileManager->copyFile($temporaryFile->getFilePath(), $basePath . $filename);
 
 			// Generate thumbnail image
-			$press = $request->getPress();
+			$press = Application::getRequest()->getPress();
 			$coverThumbnailsMaxWidth = $press->getSetting('coverThumbnailsMaxWidth');
 			$coverThumbnailsMaxHeight = $press->getSetting('coverThumbnailsMaxHeight');
 
