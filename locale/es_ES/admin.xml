@@ -39,7 +39,7 @@
 	<message key="admin.presses.noneCreated">No se han creado editoriales.</message>
 	<message key="admin.contexts.confirmDelete">¿Está seguro/a de que desea eliminar de forma permanente esta editorial y todo su contenido?</message>
 	<message key="admin.contexts.create">Crear editorial</message>
-	<message key="admin.presses.createInstructions">Se le asignará automáticamente el rol del gestor/a de esta editorial. Después de crear una nueva editorial, será redirigido/a al asistente de configuración para completar la configuración inicial de la editorial.</message>
+	<message key="admin.presses.createInstructions">Se le asignará automáticamente el rol de gestor/a de esta editorial. Después de crear una nueva editorial, será redirigido/a al asistente de configuración para completar la configuración inicial de la editorial.</message>
 	<message key="admin.presses.urlWillBe">La URL de la editorial será {$sampleUrl}</message>
 	<message key="admin.contexts.form.titleRequired">Es necesario introducir el título.</message>
 	<message key="admin.contexts.form.pathRequired">Inserte una ruta.</message>
