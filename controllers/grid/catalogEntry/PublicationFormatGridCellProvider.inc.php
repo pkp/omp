@@ -94,7 +94,7 @@ class PublicationFormatGridCellProvider extends DataObjectGridCellProvider {
 	/**
 	 * @see GridCellProvider::getCellActions()
 	 */
-	function getCellActions($request, $row, $column) {
+	function getCellActions($request, $row, $column, $position = GRID_ACTION_POSITION_DEFAULT) {
 		$data = $row->getData();
 		$router = $request->getRouter();
 		if (is_a($data, 'Representation')) {
@@ -203,7 +203,7 @@ class PublicationFormatGridCellProvider extends DataObjectGridCellProvider {
 				case 'name':
 					import('lib.pkp.controllers.grid.files.FileNameGridColumn');
 					$fileNameColumn = new FileNameGridColumn(true, WORKFLOW_STAGE_ID_PRODUCTION, true);
-					return $fileNameColumn->getCellActions($request, $row);
+					return $fileNameColumn->getCellActions($request, $row, $position);
 				case 'isComplete':
 					AppLocale::requireComponents(LOCALE_COMPONENT_PKP_EDITOR);
 					import('lib.pkp.classes.linkAction.request.AjaxModal');
@@ -230,7 +230,7 @@ class PublicationFormatGridCellProvider extends DataObjectGridCellProvider {
 					));
 			}
 		}
-		return parent::getCellActions($request, $row, $column);
+		return parent::getCellActions($request, $row, $column, $position);
 	}
 }
 

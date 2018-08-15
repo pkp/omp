@@ -29,7 +29,7 @@ class ChapterGridCategoryRowCellProvider extends GridCellProvider {
 	/**
 	 * @see GridCellProvider::getCellActions()
 	 */
-	function getCellActions($request, $row, $column) {
+	function getCellActions($request, $row, $column, $position = GRID_ACTION_POSITION_DEFAULT) {
 		if ($column->getId() == 'name' && !$row->isReadOnly()) {
 			$chapter = $row->getData();
 			$monograph = $row->getMonograph();
