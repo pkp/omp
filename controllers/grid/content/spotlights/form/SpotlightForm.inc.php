@@ -173,4 +173,4 @@ class SpotlightForm extends Form {
 	}
 }
 
-?>
+

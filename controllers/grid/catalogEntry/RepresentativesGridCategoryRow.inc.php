@@ -40,4 +40,4 @@ class RepresentativesGridCategoryRow extends GridCategoryRow {
 		return __($data['name']);
 	}
 }
-?>
+

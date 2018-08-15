@@ -100,4 +100,4 @@ class MonographSearchDAO extends SubmissionSearchDAO {
 	}
 }
 
-?>
+

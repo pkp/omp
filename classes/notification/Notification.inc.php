@@ -24,4 +24,4 @@ class Notification extends PKPNotification {
 	}
 }
 
-?>
+

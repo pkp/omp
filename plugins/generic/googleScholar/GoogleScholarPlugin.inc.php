@@ -129,4 +129,4 @@ class GoogleScholarPlugin extends GenericPlugin {
 	}
 }
 
-?>
+

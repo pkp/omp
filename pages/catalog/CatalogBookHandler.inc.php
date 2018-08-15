@@ -284,4 +284,4 @@ class CatalogBookHandler extends Handler {
 	}
 }
 
-?>
+

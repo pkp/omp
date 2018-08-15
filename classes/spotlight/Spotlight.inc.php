@@ -165,4 +165,4 @@ class Spotlight extends DataObject {
 	}
 }
 
-?>
+

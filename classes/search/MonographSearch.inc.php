@@ -378,4 +378,4 @@ class MonographSearch extends SubmissionSearch {
 	}
 }
 
-?>
+

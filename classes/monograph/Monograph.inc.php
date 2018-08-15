@@ -243,4 +243,4 @@ class Monograph extends Submission {
 	}
 }
 
-?>
+

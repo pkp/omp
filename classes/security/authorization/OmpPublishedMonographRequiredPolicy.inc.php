@@ -77,4 +77,4 @@ class OmpPublishedMonographRequiredPolicy extends DataObjectRequiredPolicy {
 	}
 }
 
-?>
+

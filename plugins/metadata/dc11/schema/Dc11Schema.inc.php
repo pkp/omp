@@ -26,4 +26,4 @@ class Dc11Schema extends PKPDc11Schema {
 		parent::__construct(ASSOC_TYPE_PUBLICATION_FORMAT);
 	}
 }
-?>
+

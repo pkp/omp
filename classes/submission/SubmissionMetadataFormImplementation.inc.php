@@ -38,4 +38,4 @@ class SubmissionMetadataFormImplementation extends PKPSubmissionMetadataFormImpl
 	}
 }
 
-?>
+

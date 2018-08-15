@@ -340,4 +340,4 @@ class SpotlightDAO extends DAO {
 	}
 }
 
-?>
+

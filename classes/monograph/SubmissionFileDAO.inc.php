@@ -46,4 +46,4 @@ class SubmissionFileDAO extends PKPSubmissionFileDAO {
 	}
 }
 
-?>
+

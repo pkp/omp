@@ -107,4 +107,4 @@ class ChapterGridCategoryRow extends GridCategoryRow {
 		return $this->_readOnly;
 	}
 }
-?>
+

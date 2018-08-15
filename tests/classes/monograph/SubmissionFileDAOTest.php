@@ -557,4 +557,4 @@ class SubmissionFileDAOTest extends DatabaseTestCase {
 		$submissionFileDao->deleteAllRevisionsBySubmissionId($submissionId);
 	}
 }
-?>
+

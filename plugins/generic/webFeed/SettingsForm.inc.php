@@ -83,4 +83,4 @@ class SettingsForm extends Form {
 	}
 }
 
-?>
+

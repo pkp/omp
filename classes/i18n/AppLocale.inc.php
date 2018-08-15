@@ -224,4 +224,4 @@ class AppLocale extends PKPLocale {
 	}
 }
 
-?>
+

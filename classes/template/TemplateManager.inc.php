@@ -128,4 +128,4 @@ class TemplateManager extends PKPTemplateManager {
 	}
 }
 
-?>
+

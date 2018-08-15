@@ -48,4 +48,4 @@ class MarketsGridCellProvider extends DataObjectGridCellProvider {
 	}
 }
 
-?>
+

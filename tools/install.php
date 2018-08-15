@@ -49,4 +49,4 @@ class OMPInstallTool extends InstallTool {
 $tool = new OMPInstallTool(isset($argv) ? $argv : array());
 $tool->execute();
 
-?>
+

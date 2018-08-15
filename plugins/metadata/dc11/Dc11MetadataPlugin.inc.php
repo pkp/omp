@@ -25,4 +25,4 @@ class Dc11MetadataPlugin extends PKPDc11MetadataPlugin {
 	}
 }
 
-?>
+

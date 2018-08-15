@@ -360,4 +360,4 @@ class ReviewerSubmission extends Monograph {
 	}
 }
 
-?>
+

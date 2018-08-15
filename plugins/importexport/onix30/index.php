@@ -20,4 +20,4 @@ require_once('Onix30ExportPlugin.inc.php');
 
 return new Onix30ExportPlugin();
 
-?>
+

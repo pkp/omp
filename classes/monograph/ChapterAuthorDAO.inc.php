@@ -173,4 +173,4 @@ class ChapterAuthorDAO extends DAO {
 	}
 }
 
-?>
+

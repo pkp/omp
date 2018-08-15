@@ -47,4 +47,4 @@ class ChapterAuthor extends Author {
 	}
 }
 
-?>
+

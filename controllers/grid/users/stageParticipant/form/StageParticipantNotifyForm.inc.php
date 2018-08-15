@@ -47,4 +47,4 @@ class StageParticipantNotifyForm extends PKPStageParticipantNotifyForm {
 	}
 }
 
-?>
+

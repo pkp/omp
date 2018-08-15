@@ -111,4 +111,4 @@ class ApprovedProofForm extends Form {
 	}
 }
 
-?>
+

@@ -36,4 +36,4 @@ class UserDAO extends PKPUserDAO {
 	}
 }
 
-?>
+

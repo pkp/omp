@@ -98,4 +98,4 @@ class SpotlightsGridRow extends GridRow {
 		$this->_press = $press;
 	}
 }
-?>
+

@@ -100,4 +100,4 @@ class PublicationFormatNativeXmlFilter extends RepresentationNativeXmlFilter {
 	}
 }
 
-?>
+

@@ -176,4 +176,4 @@ class Chapter extends DataObject {
 
 }
 
-?>
+

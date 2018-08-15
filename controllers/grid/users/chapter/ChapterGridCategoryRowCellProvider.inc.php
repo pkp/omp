@@ -70,4 +70,4 @@ class ChapterGridCategoryRowCellProvider extends GridCellProvider {
 	}
 }
 
-?>
+

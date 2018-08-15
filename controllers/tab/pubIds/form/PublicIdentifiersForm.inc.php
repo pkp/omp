@@ -51,4 +51,4 @@ class PublicIdentifiersForm extends PKPPublicIdentifiersForm {
 
 }
 
-?>
+

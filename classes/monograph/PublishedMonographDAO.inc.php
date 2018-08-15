@@ -510,4 +510,4 @@ class PublishedMonographDAO extends MonographDAO {
 	}
 }
 
-?>
+

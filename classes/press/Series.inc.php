@@ -286,4 +286,4 @@ class Series extends PKPSection {
 	}
 }
 
-?>
+

@@ -41,4 +41,4 @@ class WorkflowTabHandler extends PKPWorkflowTabHandler {
 	}
 }
 
-?>
+

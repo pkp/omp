@@ -210,4 +210,4 @@ class DefaultThemePlugin extends ThemePlugin {
 	}
 }
 
-?>
+

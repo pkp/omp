@@ -26,4 +26,4 @@ class Openurl10MetadataPluginTest extends PKPOpenurl10MetadataPluginTest {
 		parent::testOpenurl10MetadataPlugin();
 	}
 }
-?>
+

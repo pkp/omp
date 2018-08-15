@@ -130,4 +130,4 @@ class ONIXParserDOMHandler extends XMLParserDOMHandler {
 	}
 }
 
-?>
+

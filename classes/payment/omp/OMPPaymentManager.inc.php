@@ -152,4 +152,4 @@ class OMPPaymentManager extends PaymentManager {
 	}
 }
 
-?>
+

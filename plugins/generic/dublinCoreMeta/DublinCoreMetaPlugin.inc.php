@@ -246,4 +246,4 @@ class DublinCoreMetaPlugin extends GenericPlugin {
 	}
 }
 
-?>
+

@@ -131,4 +131,4 @@ class BrowseBlockPlugin extends BlockPlugin {
 	}
 }
 
-?>
+

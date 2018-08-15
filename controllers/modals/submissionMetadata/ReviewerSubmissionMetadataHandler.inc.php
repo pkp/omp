@@ -49,4 +49,4 @@ class ReviewerSubmissionMetadataHandler extends PKPReviewerSubmissionMetadataHan
 	}
 }
 
-?>
+

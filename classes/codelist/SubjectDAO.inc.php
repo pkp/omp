@@ -57,4 +57,4 @@ class SubjectDAO extends CodelistItemDAO {
 	}
 }
 
-?>
+

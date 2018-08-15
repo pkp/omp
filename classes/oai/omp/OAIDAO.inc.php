@@ -247,4 +247,4 @@ class OAIDAO extends PKPOAIDAO {
 	}
 }
 
-?>
+

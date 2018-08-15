@@ -36,4 +36,4 @@ class InitiateInternalReviewForm extends InitiateReviewForm {
 	}
 }
 
-?>
+

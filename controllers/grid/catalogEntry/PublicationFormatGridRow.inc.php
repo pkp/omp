@@ -68,4 +68,4 @@ class PublicationFormatGridRow extends SubmissionFilesGridRow {
 	}
 }
 
-?>
+

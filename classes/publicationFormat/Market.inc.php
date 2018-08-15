@@ -326,4 +326,4 @@ class Market extends DataObject {
 	}
 }
 
-?>
+

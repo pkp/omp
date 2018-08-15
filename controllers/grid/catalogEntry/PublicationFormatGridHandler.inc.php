@@ -657,4 +657,4 @@ class PublicationFormatGridHandler extends CategoryGridHandler {
 	}
 }
 
-?>
+

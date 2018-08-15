@@ -32,4 +32,4 @@ switch ($op) {
 		require_once('lib/pkp/pages/user/index.php');
 }
 
-?>
+

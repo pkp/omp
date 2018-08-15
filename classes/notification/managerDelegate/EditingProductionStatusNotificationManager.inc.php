@@ -19,4 +19,4 @@ class EditingProductionStatusNotificationManager extends PKPEditingProductionSta
 
 }
 
-?>
+

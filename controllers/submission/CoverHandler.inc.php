@@ -113,4 +113,4 @@ class CoverHandler extends PKPHandler {
 
 }
 
-?>
+

@@ -107,4 +107,4 @@ class AuthorDAO extends PKPAuthorDAO {
 	}
 }
 
-?>
+

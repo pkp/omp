@@ -60,4 +60,4 @@ class PressSettingsDAO extends SettingsDAO {
 
 }
 
-?>
+

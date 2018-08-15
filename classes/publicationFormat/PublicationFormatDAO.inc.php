@@ -463,4 +463,4 @@ class PublicationFormatDAO extends RepresentationDAO implements PKPPubIdPluginDA
 	}
 }
 
-?>
+

@@ -251,4 +251,4 @@ class ChapterForm extends Form {
 	}
 }
 
-?>
+

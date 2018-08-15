@@ -156,4 +156,4 @@ class SalesRights extends DataObject {
 	}
 }
 
-?>
+

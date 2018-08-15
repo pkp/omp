@@ -208,4 +208,4 @@ class DOIPubIdPlugin extends PubIdPlugin {
 
 }
 
-?>
+

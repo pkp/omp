@@ -89,4 +89,4 @@ class ChapterFilesListbuilderHandler extends FilesListbuilderHandler {
 
 }
 
-?>
+

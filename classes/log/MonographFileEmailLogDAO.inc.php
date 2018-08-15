@@ -47,4 +47,4 @@ class MonographFileEmailLogDAO extends EmailLogDAO {
 	}
 }
 
-?>
+

@@ -83,4 +83,4 @@ class WebFeedBlockPlugin extends BlockPlugin {
 	}
 }
 
-?>
+

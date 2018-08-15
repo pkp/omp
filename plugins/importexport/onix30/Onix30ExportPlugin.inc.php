@@ -154,4 +154,4 @@ class Onix30ExportPlugin extends ImportExportPlugin {
 	}
 }
 
-?>
+

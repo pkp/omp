@@ -46,4 +46,4 @@ class PressSettingsTabHandler extends ManagerSettingsTabHandler {
 	}
 }
 
-?>
+

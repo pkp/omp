@@ -686,4 +686,4 @@ class Upgrade extends Installer {
 
 }
 
-?>
+

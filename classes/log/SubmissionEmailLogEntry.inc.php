@@ -34,4 +34,4 @@ class SubmissionEmailLogEntry extends PKPSubmissionEmailLogEntry {
 
 }
 
-?>
+

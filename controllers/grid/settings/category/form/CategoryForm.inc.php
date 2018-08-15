@@ -293,4 +293,4 @@ class CategoryForm extends Form {
 	}
 }
 
-?>
+

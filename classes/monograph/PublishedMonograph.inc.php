@@ -247,4 +247,4 @@ class PublishedMonograph extends Monograph {
 	}
 }
 
-?>
+

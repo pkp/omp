@@ -90,4 +90,4 @@ class SalesRightsGridRow extends GridRow {
 		return $this->_monograph;
 	}
 }
-?>
+

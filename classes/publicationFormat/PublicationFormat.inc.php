@@ -536,4 +536,4 @@ class PublicationFormat extends Representation {
 	}
 }
 
-?>
+

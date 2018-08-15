@@ -49,4 +49,4 @@ class ReviewerHandler extends PKPReviewerHandler {
 	}
 }
 
-?>
+

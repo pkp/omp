@@ -234,4 +234,4 @@ class PublicationFormatGridCellProvider extends DataObjectGridCellProvider {
 	}
 }
 
-?>
+

@@ -122,4 +122,4 @@ class SubmissionSubmitStep3Form extends PKPSubmissionSubmitStep3Form {
 	}
 }
 
-?>
+

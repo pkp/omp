@@ -114,4 +114,4 @@ class WorkflowHandler extends PKPWorkflowHandler {
 	}
 }
 
-?>
+

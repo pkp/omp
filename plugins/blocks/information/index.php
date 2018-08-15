@@ -20,4 +20,4 @@ require_once('InformationBlockPlugin.inc.php');
 
 return new InformationBlockPlugin();
 
-?> 
+

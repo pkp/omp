@@ -27,4 +27,4 @@ class Mods34MetadataPluginTest extends PKPMods34MetadataPluginTest {
 				array('monograph=>mods34', 'mods34=>monograph'));
 	}
 }
-?>
+

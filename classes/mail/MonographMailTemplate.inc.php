@@ -70,4 +70,4 @@ class MonographMailTemplate extends SubmissionMailTemplate {
 	}
 }
 
-?>
+

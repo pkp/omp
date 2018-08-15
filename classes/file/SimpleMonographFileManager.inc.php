@@ -36,4 +36,4 @@ class SimpleMonographFileManager extends BaseSubmissionFileManager {
 	}
 }
 
-?>
+

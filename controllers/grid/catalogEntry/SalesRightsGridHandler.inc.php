@@ -329,4 +329,4 @@ class SalesRightsGridHandler extends GridHandler {
 	}
 }
 
-?>
+

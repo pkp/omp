@@ -398,4 +398,4 @@ class MonographDAO extends SubmissionDAO {
 	}
 }
 
-?>
+

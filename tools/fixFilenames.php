@@ -62,4 +62,4 @@ class fixFilenames extends CommandLineTool {
 $tool = new fixFilenames(isset($argv) ? $argv : array());
 $tool->execute();
 
-?>
+

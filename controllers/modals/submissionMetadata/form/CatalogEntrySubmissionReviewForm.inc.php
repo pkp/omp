@@ -42,4 +42,4 @@ class CatalogEntrySubmissionReviewForm extends SubmissionMetadataViewForm {
 	}
 }
 
-?>
+

@@ -43,4 +43,4 @@ class CategoryListbuilderGridCellProvider extends GridCellProvider {
 	}
 }
 
-?>
+

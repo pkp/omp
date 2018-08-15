@@ -57,4 +57,4 @@ class ReviewRoundTabHandler extends PKPReviewRoundTabHandler {
 	}
 }
 
-?>
+

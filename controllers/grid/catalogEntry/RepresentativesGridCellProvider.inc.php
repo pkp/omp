@@ -47,4 +47,4 @@ class RepresentativesGridCellProvider extends DataObjectGridCellProvider {
 	}
 }
 
-?>
+

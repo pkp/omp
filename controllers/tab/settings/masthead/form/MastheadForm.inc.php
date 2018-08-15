@@ -69,4 +69,4 @@ class MastheadForm extends ContextSettingsForm {
 	}
 }
 
-?>
+

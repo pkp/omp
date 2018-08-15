@@ -108,4 +108,4 @@ class PublicationFormatCategoryGridDataProvider extends SubmissionFilesCategoryG
 	}
 }
 
-?>
+

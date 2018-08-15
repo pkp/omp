@@ -187,4 +187,4 @@ class ReviewerSubmissionDAO extends MonographDAO {
 	}
 }
 
-?>
+

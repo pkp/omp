@@ -52,4 +52,4 @@ class SpotlightsGridCellProvider extends DataObjectGridCellProvider {
 	}
 }
 
-?>
+

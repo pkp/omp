@@ -84,4 +84,4 @@ class SeriesGridRow extends GridRow {
 	}
 }
 
-?>
+

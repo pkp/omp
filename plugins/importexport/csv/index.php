@@ -21,4 +21,4 @@ require_once('CSVImportExportPlugin.inc.php');
 
 return new CSVImportExportPlugin();
 
-?>
+

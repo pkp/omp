@@ -249,4 +249,4 @@ class PressOAI extends OAI {
 	}
 }
 
-?>
+

@@ -229,4 +229,4 @@ class FeatureDAO extends DAO {
 	}
 }
 
-?>
+

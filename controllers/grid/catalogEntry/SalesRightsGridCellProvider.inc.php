@@ -46,4 +46,4 @@ class SalesRightsGridCellProvider extends DataObjectGridCellProvider {
 	}
 }
 
-?>
+

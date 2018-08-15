@@ -71,4 +71,4 @@ class CategoryGridRow extends GridRow {
 	}
 }
 
-?>
+

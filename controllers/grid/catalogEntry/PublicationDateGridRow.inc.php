@@ -91,4 +91,4 @@ class PublicationDateGridRow extends GridRow {
 		return $this->_monograph;
 	}
 }
-?>
+

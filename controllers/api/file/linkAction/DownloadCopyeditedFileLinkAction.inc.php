@@ -44,4 +44,4 @@ class DownloadCopyeditedFileLinkAction extends DownloadFileLinkAction {
 	}
 }
 
-?>
+

@@ -110,4 +110,4 @@ class PublicationFormatGridCategoryRow extends GridCategoryRow {
 		return $this->_submission;
 	}
 }
-?>
+

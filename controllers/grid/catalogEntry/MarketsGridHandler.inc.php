@@ -336,4 +336,4 @@ class MarketsGridHandler extends GridHandler {
 	}
 }
 
-?>
+

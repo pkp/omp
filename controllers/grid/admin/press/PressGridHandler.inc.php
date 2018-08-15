@@ -142,4 +142,4 @@ class PressGridHandler extends ContextGridHandler {
 	}
 }
 
-?>
+

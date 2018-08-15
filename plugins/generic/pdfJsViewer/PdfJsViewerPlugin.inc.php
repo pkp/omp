@@ -114,4 +114,4 @@ class PdfJsViewerPlugin extends GenericPlugin {
 	}
 }
 
-?>
+

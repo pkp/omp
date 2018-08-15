@@ -193,4 +193,4 @@ class SalesRightsDAO extends DAO {
 	}
 }
 
-?>
+

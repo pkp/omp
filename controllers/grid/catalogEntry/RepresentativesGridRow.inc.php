@@ -90,4 +90,4 @@ class RepresentativesGridRow extends GridRow {
 		return $this->_monograph;
 	}
 }
-?>
+

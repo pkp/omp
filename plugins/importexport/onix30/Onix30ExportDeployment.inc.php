@@ -54,4 +54,4 @@ class Onix30ExportDeployment extends PKPImportExportDeployment {
 	}
 }
 
-?>
+

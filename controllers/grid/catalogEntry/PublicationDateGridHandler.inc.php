@@ -330,4 +330,4 @@ class PublicationDateGridHandler extends GridHandler {
 	}
 }
 
-?>
+

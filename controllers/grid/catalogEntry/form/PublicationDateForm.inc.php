@@ -207,4 +207,4 @@ class PublicationDateForm extends Form {
 	}
 }
 
-?>
+

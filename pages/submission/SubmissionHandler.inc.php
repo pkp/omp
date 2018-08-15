@@ -73,4 +73,4 @@ class SubmissionHandler extends PKPSubmissionHandler {
 	}
 }
 
-?>
+

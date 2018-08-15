@@ -303,4 +303,4 @@ class CategoryCategoryGridHandler extends CategoryGridHandler {
 	}
 }
 
-?>
+

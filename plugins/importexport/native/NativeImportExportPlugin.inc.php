@@ -239,4 +239,4 @@ class NativeImportExportPlugin extends ImportExportPlugin {
 	}
 }
 
-?>
+

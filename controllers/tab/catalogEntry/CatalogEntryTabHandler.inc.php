@@ -234,4 +234,4 @@ class CatalogEntryTabHandler extends PublicationEntryTabHandler {
 	}
 }
 
-?>
+

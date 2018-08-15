@@ -42,4 +42,4 @@ class Author extends PKPAuthor {
 	}
 }
 
-?>
+

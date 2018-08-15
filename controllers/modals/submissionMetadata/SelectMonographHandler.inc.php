@@ -101,4 +101,4 @@ class SelectMonographHandler extends Handler {
 	}
 }
 
-?>
+

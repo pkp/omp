@@ -36,4 +36,4 @@ class NativeXmlMonographFileFilter extends NativeXmlSubmissionFileFilter {
 	}
 }
 
-?>
+

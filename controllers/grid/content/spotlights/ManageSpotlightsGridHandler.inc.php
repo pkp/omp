@@ -349,4 +349,4 @@ class ManageSpotlightsGridHandler extends GridHandler {
 	}
 }
 
-?>
+

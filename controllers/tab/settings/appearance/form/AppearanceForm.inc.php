@@ -178,4 +178,4 @@ class AppearanceForm extends PKPAppearanceForm {
 
 }
 
-?>
+

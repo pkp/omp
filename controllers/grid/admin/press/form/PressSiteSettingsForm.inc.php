@@ -123,4 +123,4 @@ class PressSiteSettingsForm extends ContextSiteSettingsForm {
 	}
 }
 
-?>
+

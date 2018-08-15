@@ -181,4 +181,4 @@ class Representative extends DataObject {
 		$this->setData('isSupplier', $isSupplier);
 	}
 }
-?>
+

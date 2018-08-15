@@ -432,4 +432,4 @@ class ChapterGridHandler extends CategoryGridHandler {
 	}
 }
 
-?>
+

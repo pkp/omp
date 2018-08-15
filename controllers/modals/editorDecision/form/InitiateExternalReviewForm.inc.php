@@ -38,4 +38,4 @@ class InitiateExternalReviewForm extends InitiateReviewForm {
 	}
 }
 
-?>
+

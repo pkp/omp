@@ -56,4 +56,4 @@ class SubmissionEntryLinkAction extends LinkAction {
 	}
 }
 
-?>
+

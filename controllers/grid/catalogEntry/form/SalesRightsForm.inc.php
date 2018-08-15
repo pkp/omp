@@ -212,4 +212,4 @@ class SalesRightsForm extends Form {
 		return $salesRightsId;
 	}
 }
-?>
+

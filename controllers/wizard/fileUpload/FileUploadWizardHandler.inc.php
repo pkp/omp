@@ -83,4 +83,4 @@ class FileUploadWizardHandler extends PKPFileUploadWizardHandler {
 	}
 }
 
-?>
+

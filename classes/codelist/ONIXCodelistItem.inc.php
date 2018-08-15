@@ -61,4 +61,4 @@ class ONIXCodelistItem extends DataObject {
 		return $this->setData('code', $code);
 	}
 }
-?>
+

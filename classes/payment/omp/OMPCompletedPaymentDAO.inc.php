@@ -196,4 +196,4 @@ class OMPCompletedPaymentDAO extends DAO {
 	}
 }
 
-?>
+

@@ -192,4 +192,4 @@ class ChapterAuthorListbuilderHandler extends ListbuilderHandler {
 	}
 }
 
-?>
+

@@ -432,4 +432,4 @@ class CatalogHandler extends Handler {
 	}
 }
 
-?>
+

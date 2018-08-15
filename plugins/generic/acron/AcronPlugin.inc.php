@@ -21,4 +21,4 @@ class AcronPlugin extends PKPAcronPlugin {
 
 
 }
-?>
+

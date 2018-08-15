@@ -105,4 +105,4 @@ class SubmissionSubmitStep4Form extends PKPSubmissionSubmitStep4Form {
 	}
 }
 
-?>
+

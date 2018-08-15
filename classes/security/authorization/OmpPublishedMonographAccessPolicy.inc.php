@@ -61,4 +61,4 @@ class OmpPublishedMonographAccessPolicy extends ContextPolicy {
 	}
 }
 
-?>
+

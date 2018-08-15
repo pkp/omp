@@ -90,4 +90,4 @@ class MarketsGridRow extends GridRow {
 		return $this->_monograph;
 	}
 }
-?>
+

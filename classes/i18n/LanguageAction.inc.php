@@ -27,4 +27,4 @@ class LanguageAction extends PKPLanguageAction {
 	}
 }
 
-?>
+

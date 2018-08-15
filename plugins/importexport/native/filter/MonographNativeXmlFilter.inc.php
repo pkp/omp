@@ -73,4 +73,4 @@ class MonographNativeXmlFilter extends SubmissionNativeXmlFilter {
 	}
 }
 
-?>
+

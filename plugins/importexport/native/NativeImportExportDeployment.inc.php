@@ -61,4 +61,4 @@ class NativeImportExportDeployment extends PKPNativeImportExportDeployment {
 	}
 }
 
-?>
+

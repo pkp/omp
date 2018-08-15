@@ -120,4 +120,4 @@ class SubmissionMetadataViewForm extends PKPSubmissionMetadataViewForm {
 	}
 }
 
-?>
+

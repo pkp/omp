@@ -26,4 +26,4 @@ class SubmissionEventLogDAO extends PKPSubmissionEventLogDAO {
 
 }
 
-?>
+

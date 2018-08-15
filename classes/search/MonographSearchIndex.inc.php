@@ -198,4 +198,4 @@ class MonographSearchIndex extends SubmissionSearchIndex {
 
 }
 
-?>
+

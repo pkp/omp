@@ -53,4 +53,4 @@ class InformationBlockPlugin extends BlockPlugin {
 	}
 }
 
-?>
+

@@ -53,4 +53,4 @@ class ProductionSubmissionMetadataHandler extends SubmissionMetadataHandler {
 	}
 }
 
-?>
+

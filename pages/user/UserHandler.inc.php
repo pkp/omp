@@ -32,4 +32,4 @@ class UserHandler extends PKPUserHandler {
 	}
 }
 
-?>
+

@@ -226,4 +226,4 @@ class Dc11SchemaPublicationFormatAdapter extends MetadataDataObjectAdapter {
 		}
 	}
 }
-?>
+

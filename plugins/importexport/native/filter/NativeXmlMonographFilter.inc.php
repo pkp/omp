@@ -177,4 +177,4 @@ class NativeXmlMonographFilter extends NativeXmlSubmissionFilter {
 	}
 }
 
-?>
+

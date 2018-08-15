@@ -446,4 +446,4 @@ class SeriesDAO extends PKPSectionDAO {
 	}
 }
 
-?>
+

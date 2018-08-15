@@ -114,4 +114,4 @@ class CatalogEntryHandler extends PublicationEntryHandler {
 	}
 }
 
-?>
+

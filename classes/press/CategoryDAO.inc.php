@@ -424,4 +424,4 @@ class CategoryDAO extends DAO {
 	}
 }
 
-?>
+

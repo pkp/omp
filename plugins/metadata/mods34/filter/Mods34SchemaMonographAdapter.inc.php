@@ -98,4 +98,4 @@ class Mods34SchemaMonographAdapter extends Mods34SchemaSubmissionAdapter {
 		return $mods34Description;
 	}
 }
-?>
+

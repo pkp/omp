@@ -25,4 +25,4 @@ class Openurl10MetadataPlugin extends PKPOpenurl10MetadataPlugin {
 	}
 }
 
-?>
+

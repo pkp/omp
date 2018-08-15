@@ -321,4 +321,4 @@ class ChapterDAO extends DAO implements PKPPubIdPluginDAO {
 	}
 }
 
-?>
+

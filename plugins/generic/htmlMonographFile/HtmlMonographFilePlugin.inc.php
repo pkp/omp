@@ -225,4 +225,4 @@ class HtmlMonographFilePlugin extends GenericPlugin {
 	}
 }
 
-?>
+

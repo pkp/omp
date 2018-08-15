@@ -112,4 +112,4 @@ class fbvVisualResults {
 $tool = new fbvVisualResults();
 $tool->execute();
 
-?>
+

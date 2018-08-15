@@ -401,4 +401,4 @@ class CatalogEntryCatalogMetadataForm extends Form {
 	}
 }
 
-?>
+

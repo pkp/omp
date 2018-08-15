@@ -785,4 +785,4 @@ class MonographONIX30XmlFilter extends NativeExportFilter {
 	}
 }
 
-?>
+

@@ -153,4 +153,4 @@ class DOISettingsForm extends Form {
 	}
 }
 
-?>
+

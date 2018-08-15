@@ -80,4 +80,4 @@ class ManageCatalogHandler extends Handler {
 	}
 }
 
-?>
+

@@ -428,4 +428,4 @@ class NativeXmlPublicationFormatFilter extends NativeXmlRepresentationFilter {
 	}
 }
 
-?>
+

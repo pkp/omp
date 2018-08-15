@@ -252,4 +252,4 @@ class MarketForm extends Form {
 	}
 }
 
-?>
+

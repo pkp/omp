@@ -185,4 +185,4 @@ class NewReleaseDAO extends DAO {
 	}
 }
 
-?>
+

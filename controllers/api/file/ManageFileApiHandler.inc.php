@@ -135,4 +135,4 @@ class ManageFileApiHandler extends PKPManageFileApiHandler {
 	}
 }
 
-?>
+

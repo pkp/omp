@@ -19,4 +19,4 @@ require_once('HtmlMonographFilePlugin.inc.php');
 
 return new HtmlMonographFilePlugin();
 
-?>
+
