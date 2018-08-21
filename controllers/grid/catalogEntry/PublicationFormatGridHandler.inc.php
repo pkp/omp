@@ -87,11 +87,10 @@ class PublicationFormatGridHandler extends CategoryGridHandler {
 	// Overridden methods from PKPHandler
 	//
 	/**
-	 * Configure the grid
-	 * @param $request PKPRequest
+	 * @copydoc CategoryGridHandler::initialize
 	 */
-	function initialize($request) {
-		parent::initialize($request);
+	function initialize($request, $args = null) {
+		parent::initialize($request, $args);
 
 		// Retrieve the authorized submission.
 		$this->setSubmission($this->getAuthorizedContextObject(ASSOC_TYPE_SUBMISSION));

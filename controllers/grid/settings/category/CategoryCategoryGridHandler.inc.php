@@ -61,11 +61,11 @@ class CategoryCategoryGridHandler extends CategoryGridHandler {
 
 
 	/**
-	 * @copydoc PKPHandler::initialize()
+	 * @copydoc CategoryGridHandler::initialize()
 	 */
-	function initialize($request) {
+	function initialize($request, $args = null) {
 
-		parent::initialize($request);
+		parent::initialize($request, $args);
 
 		$press = $request->getPress();
 		$this->_pressId = $press->getId();
@@ -129,14 +129,14 @@ class CategoryCategoryGridHandler extends CategoryGridHandler {
 	/**
 	 * @copydoc CategoryGridHandler::getDataElementInCategorySequence()
 	 */
-	function getDataElementInCategorySequence($categoryId, $category) {
+	function getDataElementInCategorySequence($categoryId, &$category) {
 		return $category->getSequence();
 	}
 
 	/**
 	 * @copydoc CategoryGridHandler::setDataElementInCategorySequence()
 	 */
-	function setDataElementInCategorySequence($parentCategoryId, $category, $newSequence) {
+	function setDataElementInCategorySequence($parentCategoryId, &$category, $newSequence) {
 		$category->setSequence($newSequence);
 		$categoryDao = DAORegistry::getDAO('CategoryDAO');
 		$categoryDao->updateObject($category);
@@ -183,7 +183,7 @@ class CategoryCategoryGridHandler extends CategoryGridHandler {
 	/**
 	 * @copydoc CategoryGridHandler::loadCategoryData()
 	 */
-	function loadCategoryData($request, &$category, $filter) {
+	function loadCategoryData($request, &$category, $filter = null) {
 		$categoryId = $category->getId();
 		$categoryDao = DAORegistry::getDAO('CategoryDAO');
 		$categoriesIterator = $categoryDao->getByParentId($categoryId, $this->_getPressId());

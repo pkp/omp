@@ -81,7 +81,7 @@ class PublicationFormatCategoryGridDataProvider extends SubmissionFilesCategoryG
 	}
 
 	/**
-	 * @copydoc GridDataProvider::loadData()
+	 * @copydoc GridDataProvider::loadCategoryData()
 	 */
 	function loadCategoryData($request, $categoryDataElement, $filter = null, $reviewRound = null) {
 		assert(is_a($categoryDataElement, 'Representation'));
