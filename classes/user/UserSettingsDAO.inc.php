@@ -30,9 +30,10 @@ class UserSettingsDAO extends PKPUserSettingsDAO {
 	 * @param $name
 	 * @param $pressId int
 	 * @return mixed
+	 * @see PKPUserSettingsDAO::getByAssoc
 	 */
 	function &getSetting($userId, $name, $pressId = null) {
-		return parent::getSetting($userId, $name, ASSOC_TYPE_PRESS, $pressId);
+		return parent::getByAssoc($userId, $name, ASSOC_TYPE_PRESS, $pressId);
 	}
 
 	/**
@@ -42,9 +43,10 @@ class UserSettingsDAO extends PKPUserSettingsDAO {
 	 * @param $type string
 	 * @param $pressId int
 	 * @return DAOResultFactory matching Users
+	 * @see PKPUserSettingsDAO::getUsersByAssocSetting
 	 */
 	function &getUsersBySetting($name, $value, $type = null, $pressId = null) {
-		return parent::getUsersBySetting($name, $value, $type, ASSOC_TYPE_PRESS, $pressId);
+		return parent::getUsersByAssocSetting($name, $value, $type, ASSOC_TYPE_PRESS, $pressId);
 	}
 
 	/**
@@ -64,9 +66,10 @@ class UserSettingsDAO extends PKPUserSettingsDAO {
 	 * @param $value mixed
 	 * @param $type string data type of the setting. If omitted, type will be guessed
 	 * @param $pressId int
+	 * @see PKPUserSettingsDAO::updateByAssoc
 	 */
 	function updateSetting($userId, $name, $value, $type = null, $pressId = null) {
-		return parent::updateSetting($userId, $name, $value, $type, ASSOC_TYPE_PRESS, $pressId);
+		return parent::updateByAssoc($userId, $name, $value, $type, ASSOC_TYPE_PRESS, $pressId);
 	}
 
 	/**
@@ -74,9 +77,10 @@ class UserSettingsDAO extends PKPUserSettingsDAO {
 	 * @param $userId int
 	 * @param $name string
 	 * @param $pressId int
+	 * @see PKPUserSettingsDAO::deleteByAssoc
 	 */
 	function deleteSetting($userId, $name, $pressId = null) {
-		return parent::deleteSetting($userId, $name, ASSOC_TYPE_PRESS, $pressId);
+		return parent::deleteByAssoc($userId, $name, ASSOC_TYPE_PRESS, $pressId);
 	}
 }
 
