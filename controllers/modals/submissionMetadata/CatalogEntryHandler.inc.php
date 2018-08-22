@@ -33,11 +33,11 @@ class CatalogEntryHandler extends PublicationEntryHandler {
 	// Overridden methods from Handler
 	//
 	/**
-	 * @see PKPHandler::initialize()
+	 * @copydoc PublicationEntryHandler::initialize()
 	 */
-	function initialize($request, $args = null) {
+	function initialize($request) {
 		$this->_selectedFormatId = (int) $request->getUserVar('selectedFormatId');
-		parent::initialize($request, $args);
+		parent::initialize($request);
 	}
 
 	// Getters and Setters

@@ -93,7 +93,7 @@ class ChapterGridHandler extends CategoryGridHandler {
 	}
 
 	/**
-	 * @copydoc GridHandler::initialize()
+	 * @copydoc CategoryGridHandler::initialize()
 	 */
 	function initialize($request, $args = null) {
 		parent::initialize($request, $args);
