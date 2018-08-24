@@ -19,6 +19,7 @@ namespace OMP\Services;
 define('NMI_TYPE_CATALOG', 'NMI_TYPE_CATALOG');
 define('NMI_TYPE_SERIES', 'NMI_TYPE_SERIES');
 define('NMI_TYPE_CATEGORY', 'NMI_TYPE_CATEGORY');
+define('NMI_TYPE_NEW_RELEASE', 'NMI_TYPE_NEW_RELEASE');
 
 class NavigationMenuService extends \PKP\Services\PKPNavigationMenuService {
 
@@ -57,6 +58,10 @@ class NavigationMenuService extends \PKP\Services\PKPNavigationMenuService {
 			NMI_TYPE_CATEGORY => array(
 				'title' => __('navigation.category.generic'),
 				'description' => __('navigation.navigationMenus.category.description'),
+			),
+			NMI_TYPE_NEW_RELEASE => array(
+				'title' => __('navigation.navigationMenus.newRelease'),
+				'description' => __('navigation.navigationMenus.newRelease.description'),
 			),
 		);
 
@@ -129,6 +134,16 @@ class NavigationMenuService extends \PKP\Services\PKPNavigationMenuService {
 						null,
 						'catalog',
 						null,
+						null
+					));
+					break;
+				case NMI_TYPE_NEW_RELEASE:
+					$navigationMenuItem->setUrl($dispatcher->url(
+						$request,
+						ROUTE_PAGE,
+						null,
+						'catalog',
+						'newReleases',
 						null
 					));
 					break;
