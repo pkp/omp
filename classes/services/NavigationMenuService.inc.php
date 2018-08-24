@@ -30,6 +30,9 @@ class NavigationMenuService extends \PKP\Services\PKPNavigationMenuService {
 		\HookRegistry::register('NavigationMenus::itemTypes', array($this, 'getMenuItemTypesCallback'));
 		\HookRegistry::register('NavigationMenus::displaySettings', array($this, 'getDisplayStatusCallback'));
 		\HookRegistry::register('NavigationMenus::nmiFormTemplateParameters', array($this, 'getFormTemplateParametersCallback'));
+		\HookRegistry::register('NavigationMenus::nmiFormExecute', array($this, 'getFormExecuteCallback'));
+		\HookRegistry::register('NavigationMenus::nmiFormData', array($this, 'getFormDataCallback'));
+		\HookRegistry::register('NavigationMenus::nmiFormInputData', array($this, 'getFormInputDataCallback'));
 	}
 
 	/**
@@ -194,10 +197,36 @@ class NavigationMenuService extends \PKP\Services\PKPNavigationMenuService {
 		$templateParameters = array_merge($templateParameters, $ompTemplateParameters);
 	}
 
-	//public function getNMIForm($contextId, $navigationMenuItemId, $navigationMenuIdParent) {
-	//  import('controllers.grid.navigationMenus.form.OMPNavigationMenuItemsForm');
-	//  $navigationMenuItemForm = new \OMPNavigationMenuItemsForm($contextId, $navigationMenuItemId, $navigationMenuIdParent);
+	function getFormExecuteCallback($hookName, $args) {
+		$form =& $args[0];
+		$navigationMenuItem =& $args[1];
 
-	//  return $navigationMenuItemForm;
-	//}
+		if ($form->getData('menuItemType') == NMI_TYPE_SERIES) {
+			$navigationMenuItem->setPath($form->getData('relatedSeriesId'));
+		} else if ($form->getData('menuItemType') == NMI_TYPE_CATEGORY) {
+			$navigationMenuItem->setPath($form->getData('relatedCategoryId'));
+		}
+	}
+
+	function getFormDataCallback($hookName, $args) {
+		$formDataArray =& $args[0];
+		$navigationMenuItem =& $args[1];
+
+		$ompFormData = array(
+			'selectedRelatedObjectId' => $navigationMenuItem->getPath(),
+		);
+
+		$formDataArray = array_merge($formDataArray, $ompFormData);
+	}
+
+	function getFormInputDataCallback($hookName, $args) {
+		$formInputDataArray =& $args[0];
+
+		$ompFormInputData = array(
+			'relatedSeriesId',
+			'relatedCategoryId',
+		);
+
+		$formInputDataArray = array_merge($formInputDataArray, $ompFormInputData);
+	}
 }
