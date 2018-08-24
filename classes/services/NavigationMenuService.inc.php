@@ -34,6 +34,7 @@ class NavigationMenuService extends \PKP\Services\PKPNavigationMenuService {
 		\HookRegistry::register('NavigationMenus::nmiFormExecute', array($this, 'getFormExecuteCallback'));
 		\HookRegistry::register('NavigationMenus::nmiFormData', array($this, 'getFormDataCallback'));
 		\HookRegistry::register('NavigationMenus::nmiFormInputData', array($this, 'getFormInputDataCallback'));
+		\HookRegistry::register('NavigationMenus::nmiFormValidate', array($this, 'getFormValidateCallback'));
 	}
 
 	/**
@@ -52,11 +53,11 @@ class NavigationMenuService extends \PKP\Services\PKPNavigationMenuService {
 				'description' => __('navigation.navigationMenus.catalog.description'),
 			),
 			NMI_TYPE_SERIES => array(
-				'title' => __('navigation.series.generic'),
+				'title' => __('navigation.navigationMenus.series.generic'),
 				'description' => __('navigation.navigationMenus.series.description'),
 			),
 			NMI_TYPE_CATEGORY => array(
-				'title' => __('navigation.category.generic'),
+				'title' => __('navigation.navigationMenus.category.generic'),
 				'description' => __('navigation.navigationMenus.category.description'),
 			),
 			NMI_TYPE_NEW_RELEASE => array(
@@ -98,32 +99,6 @@ class NavigationMenuService extends \PKP\Services\PKPNavigationMenuService {
 			$menuItemType = $navigationMenuItem->getType();
 
 			$relatedObject = null;
-
-			// Adjust some titles
-			switch ($menuItemType) {
-			  case NMI_TYPE_SERIES:
-			    $seriesId = $navigationMenuItem->getPath();
-
-			    $seriesDao = \DAORegistry::getDAO('SeriesDAO');
-			    $relatedObject = $seriesDao->getById($seriesId, $contextId);
-
-			    if($relatedObject) {
-			      $navigationMenuItem->setTitle(__('navigation.series', array('name' => $relatedObject->getLocalizedTitle())), \AppLocale::getLocale());
-			    }
-
-			    break;
-			  case NMI_TYPE_CATEGORY:
-			    $categoryId = $navigationMenuItem->getPath();
-
-			    $categoryDao = \DAORegistry::getDAO('CategoryDAO');
-			    $relatedObject = $categoryDao->getById($categoryId, $contextId);
-
-			    if($relatedObject) {
-			      $navigationMenuItem->setTitle(__('navigation.category', array('name' => $relatedObject->getLocalizedTitle())), \AppLocale::getLocale());
-			    }
-
-			    break;
-			}
 
 			// Set the URL
 			switch ($menuItemType) {
@@ -243,5 +218,19 @@ class NavigationMenuService extends \PKP\Services\PKPNavigationMenuService {
 		);
 
 		$formInputDataArray = array_merge($formInputDataArray, $ompFormInputData);
+	}
+
+	function getFormValidateCallback($hookName, $args) {
+		$form =& $args[0];
+
+		if ($form->getData('menuItemType') == NMI_TYPE_SERIES) {
+			if ($form->getData('relatedSeriesId') == null || $form->getData('relatedSeriesId') == 0) {
+				$form->addError('menuItemType', __('manager.navigationMenus.form.navigationMenuItem.series.noItems'));
+			}
+		} else if ($form->getData('menuItemType') == NMI_TYPE_CATEGORY) {
+			if ($form->getData('relatedCategoryId') == null || $form->getData('relatedCategoryId') == 0) {
+				$form->addError('menuItemType', __('manager.navigationMenus.form.navigationMenuItem.category.noItems'));
+			}
+		}
 	}
 }
