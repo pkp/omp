@@ -26,8 +26,7 @@ class NavigationMenuService extends \PKP\Services\PKPNavigationMenuService {
 	/**
 	 * Initialize hooks for extending PKPSubmissionService
 	 */
-    public function __construct() {
-
+  public function __construct() {
 		\HookRegistry::register('NavigationMenus::itemTypes', array($this, 'getMenuItemTypesCallback'));
 		\HookRegistry::register('NavigationMenus::displaySettings', array($this, 'getDisplayStatusCallback'));
 		\HookRegistry::register('NavigationMenus::nmiFormTemplateParameters', array($this, 'getFormTemplateParametersCallback'));
@@ -35,6 +34,7 @@ class NavigationMenuService extends \PKP\Services\PKPNavigationMenuService {
 		\HookRegistry::register('NavigationMenus::nmiFormData', array($this, 'getFormDataCallback'));
 		\HookRegistry::register('NavigationMenus::nmiFormInputData', array($this, 'getFormInputDataCallback'));
 		\HookRegistry::register('NavigationMenus::nmiFormValidate', array($this, 'getFormValidateCallback'));
+		\HookRegistry::register('NavigationMenus::itemCustomTemplates', array($this, 'getMenuItemCustomEditTemplatesCallback'));
 	}
 
 	/**
@@ -67,6 +67,28 @@ class NavigationMenuService extends \PKP\Services\PKPNavigationMenuService {
 		);
 
 		$types = array_merge($types, $ompTypes);
+	}
+
+	/**
+	 * Return all navigationMenuItem Types custom edit templates.
+	 * @param $hookName string
+	 * @param $args array of arguments passed
+	 */
+	public function getMenuItemCustomEditTemplatesCallback($hookName, $args) {
+		$templates =& $args[0];
+
+		\AppLocale::requireComponents(LOCALE_COMPONENT_APP_COMMON, LOCALE_COMPONENT_PKP_USER);
+
+		$ompTemplates = array(
+			NMI_TYPE_CATEGORY => array(
+				'template' => 'controllers/grid/navigationMenus/categoriesNMIType.tpl',
+			),
+			NMI_TYPE_SERIES => array(
+				'template' => 'controllers/grid/navigationMenus/seriesNMIType.tpl',
+			),
+		);
+
+		$templates = array_merge($templates, $ompTemplates);
 	}
 
 	/**
