@@ -43,7 +43,7 @@
 			</div>
 		{/if}
 		<div class="description">
-			{$description|nl2br|strip_unsafe_html}
+			{$description|strip_unsafe_html}
 		</div>
 	</div>
 
