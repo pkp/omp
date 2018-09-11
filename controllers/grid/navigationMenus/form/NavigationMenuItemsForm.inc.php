@@ -13,11 +13,17 @@
  * @brief Form for managers to create/edit navigationMenuItems.
  */
 
-
-//import('lib.pkp.classes.form.Form');
 import('lib.pkp.controllers.grid.navigationMenus.form.PKPNavigationMenuItemsForm');
+import('classes.core.ServicesContainer');
 
 class NavigationMenuItemsForm extends PKPNavigationMenuItemsForm {
+
+	function __construct($request, $navigationMenuItemId = null) {
+		ServicesContainer::instance()
+			->get('navigationMenu');
+
+		parent::__construct($request, $navigationMenuItemId);
+	}
 
 	/**
 	 * @copydoc Form::fetch()
@@ -55,7 +61,7 @@ class NavigationMenuItemsForm extends PKPNavigationMenuItemsForm {
 		$templateMgr->assign('navigationMenuItemSeriesTitles', $seriesTitles);
 		$templateMgr->assign('navigationMenuItemCategoryTitles', $categoryTitles);
 
-		return parent::fetch($request);
+		return parent::fetch($request, $template, $display);
 	}
 
 	/**
