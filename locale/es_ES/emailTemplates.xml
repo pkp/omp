@@ -46,7 +46,7 @@ Nueva contraseña: {$password}<br />
 		<subject>Registro en la publicación</subject>
 		<body><![CDATA[{$userFullName}<br />
 <br />
-Se registró como usuario/a con {$contextName}. En este correo electrónico hemos incluido el nombre de usuario/a y contraseña que necesitará para trabajar con esta publicación a través de su página web. En cualquier momento puede contactar conmigo para pedir que se le elimine de la lista de usuarios/as.<br />
+Se registró como usuario/a con {$contextName}. En este correo electrónico hemos incluido el nombre de usuario/a y contraseña que necesitará para trabajar con esta publicación a través de su página web. En cualquier momento, puede contactarse conmigo para solicitar que se le elimine de la lista de usuarios/as.<br />
 <br />
 Nombre de usuario/a: {$username}<br />
 Contraseña: {$password}<br />
@@ -69,7 +69,7 @@ Gracias,<br />
 	</email_text>
 	<email_text key="REVIEWER_REGISTER">
 		<subject>Registro como revisor/a con {$contextName}</subject>
-		<body><![CDATA[Dada su experiencia, nos hemos tomado la libertad de registrar su nombre en la base de datos de revisores/as para {$contextName}. Esto no implica ningún tipo de compromiso por su parte, simplemente permite que nos pongamos en contacto con usted si tenemos un envío que quizás pueda revisar. Si se le invita a realizar una revisión, tendrá la oportunidad de ver el título y el resumen de dicho trabajo y en todo momento podrá aceptar o rechazar la invitación. Asimismo, puede pedir que se elimine su nombre de la lista de revisores/as.<br />
+		<body><![CDATA[Dada su experiencia, nos hemos tomado la libertad de registrar su nombre en la base de datos de revisores/as para {$contextName}. Esto no implica ningún tipo de compromiso de su parte, simplemente permite que nos pongamos en contacto con usted si tenemos un envío que quizás pueda revisar. Si se le invita a realizar una revisión, tendrá la oportunidad de ver el título y el resumen de dicho trabajo y en todo momento podrá aceptar o rechazar la invitación. Asimismo, puede pedir que se elimine su nombre de la lista de revisores/as.<br />
 <br />
 Le proporcionamos un nombre de usuario/a y una contraseña que se utilizan para trabajar con la publicación a través de su página web. Si lo desea puede, por ejemplo, actualizar su perfil y sus preferencias de revisión.<br />
 <br />
@@ -126,7 +126,7 @@ Nombre de usuario/a: {$editorUsername}<br />
 <br />
 Gracias,<br />
 {$editorialContactSignature}]]></body>
-		<description>Este correo electrónico notifica al editor/a de la serie que el editor/a le asignó la tarea de supervisar un envío a lo largo del proceso de edición. Proporciona información sobre el envío y sobre cómo acceder al sitio de la publicación.</description>
+		<description>Este correo electrónico notifica al editor/a de la serie que el editor/a le asignó la tarea de supervisar un envío a lo largo del proceso de edición. Proporciona información sobre el envío y sobre cómo acceder al sitio web de la publicación.</description>
 	</email_text>
 	<email_text key="REVIEW_REQUEST">
 		<subject>Solicitud de revisión de manuscrito</subject>
