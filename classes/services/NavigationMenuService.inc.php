@@ -29,11 +29,6 @@ class NavigationMenuService extends \PKP\Services\PKPNavigationMenuService {
   public function __construct() {
 		\HookRegistry::register('NavigationMenus::itemTypes', array($this, 'getMenuItemTypesCallback'));
 		\HookRegistry::register('NavigationMenus::displaySettings', array($this, 'getDisplayStatusCallback'));
-		\HookRegistry::register('NavigationMenus::nmiFormTemplateParameters', array($this, 'getFormTemplateParametersCallback'));
-		\HookRegistry::register('NavigationMenus::nmiFormExecute', array($this, 'getFormExecuteCallback'));
-		\HookRegistry::register('NavigationMenus::nmiFormData', array($this, 'getFormDataCallback'));
-		\HookRegistry::register('NavigationMenus::nmiFormInputData', array($this, 'getFormInputDataCallback'));
-		\HookRegistry::register('NavigationMenus::nmiFormValidate', array($this, 'getFormValidateCallback'));
 		\HookRegistry::register('NavigationMenus::itemCustomTemplates', array($this, 'getMenuItemCustomEditTemplatesCallback'));
 	}
 
@@ -120,8 +115,6 @@ class NavigationMenuService extends \PKP\Services\PKPNavigationMenuService {
 
 			$menuItemType = $navigationMenuItem->getType();
 
-			$relatedObject = null;
-
 			// Set the URL
 			switch ($menuItemType) {
 				case NMI_TYPE_CATALOG:
@@ -172,86 +165,6 @@ class NavigationMenuService extends \PKP\Services\PKPNavigationMenuService {
 						$navigationMenuItem->setIsDisplayed(false);
 					}
 					break;
-			}
-		}
-	}
-
-	function getFormTemplateParametersCallback($hookName, $args) {
-		$templateParameters =& $args[0];
-
-		$request = \Application::getRequest();
-		$context = $request->getContext();
-		$contextId = $context ? $context->getId() : CONTEXT_ID_NONE;
-
-		$seriesDao = \DAORegistry::getDAO('SeriesDAO');
-		$series = $seriesDao->getByContextId($contextId);
-		$seriesTitlesArray = $series->toAssociativeArray();
-
-		$seriesTitles = array();
-		foreach ($seriesTitlesArray as $series) {
-			$seriesTitles[$series->getId()] = $series->getLocalizedTitle();
-		}
-
-		$categoryDao = \DAORegistry::getDAO('CategoryDAO');
-		$categories = $categoryDao->getByParentId(null, $contextId);
-		$categoryTitlesArray = $categories->toAssociativeArray();
-
-		$categoryTitles = array();
-		foreach ($categoryTitlesArray as $category) {
-			$categoryTitles[$category->getId()] = $category->getLocalizedTitle();
-		}
-
-		$ompTemplateParameters = array(
-			'navigationMenuItemSeriesTitles' => $seriesTitles,
-			'navigationMenuItemCategoryTitles' => $categoryTitles,
-		);
-
-		$templateParameters = array_merge($templateParameters, $ompTemplateParameters);
-	}
-
-	function getFormExecuteCallback($hookName, $args) {
-		$form =& $args[0];
-		$navigationMenuItem =& $args[1];
-
-		if ($form->getData('menuItemType') == NMI_TYPE_SERIES) {
-			$navigationMenuItem->setPath($form->getData('relatedSeriesId'));
-		} else if ($form->getData('menuItemType') == NMI_TYPE_CATEGORY) {
-			$navigationMenuItem->setPath($form->getData('relatedCategoryId'));
-		}
-	}
-
-	function getFormDataCallback($hookName, $args) {
-		$formDataArray =& $args[0];
-		$navigationMenuItem =& $args[1];
-
-		$ompFormData = array(
-			'selectedRelatedObjectId' => $navigationMenuItem->getPath(),
-		);
-
-		$formDataArray = array_merge($formDataArray, $ompFormData);
-	}
-
-	function getFormInputDataCallback($hookName, $args) {
-		$formInputDataArray =& $args[0];
-
-		$ompFormInputData = array(
-			'relatedSeriesId',
-			'relatedCategoryId',
-		);
-
-		$formInputDataArray = array_merge($formInputDataArray, $ompFormInputData);
-	}
-
-	function getFormValidateCallback($hookName, $args) {
-		$form =& $args[0];
-
-		if ($form->getData('menuItemType') == NMI_TYPE_SERIES) {
-			if ($form->getData('relatedSeriesId') == null || $form->getData('relatedSeriesId') == 0) {
-				$form->addError('menuItemType', __('manager.navigationMenus.form.navigationMenuItem.series.noItems'));
-			}
-		} else if ($form->getData('menuItemType') == NMI_TYPE_CATEGORY) {
-			if ($form->getData('relatedCategoryId') == null || $form->getData('relatedCategoryId') == 0) {
-				$form->addError('menuItemType', __('manager.navigationMenus.form.navigationMenuItem.category.noItems'));
 			}
 		}
 	}
