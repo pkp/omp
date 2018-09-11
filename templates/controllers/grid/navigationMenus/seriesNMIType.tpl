@@ -7,7 +7,7 @@
  *
  * Custom series NMI Type edit form part
  *}
-{fbvFormSection id="NMI_TYPE_SERIES" class="NMI_TYPE_CUSTOM_EDIT" title="manager.navigationMenus.form.navigationMenuItem.series" for="seriesSelect"}
+{fbvFormSection id=$smarty.const.NMI_TYPE_SERIES class="NMI_TYPE_CUSTOM_EDIT" title="manager.navigationMenus.form.navigationMenuItem.series" for="seriesSelect"}
 	{if count($navigationMenuItemSeriesTitles) gt 0}
 		{fbvElement type="select" id="relatedSeriesId" required=true from=$navigationMenuItemSeriesTitles selected=$selectedRelatedObjectId label="manager.navigationMenus.form.navigationMenuItemSeriesMessage" translate=false}
 	{else}
