@@ -115,6 +115,25 @@ class NavigationMenuService extends \PKP\Services\PKPNavigationMenuService {
 
 			$menuItemType = $navigationMenuItem->getType();
 
+			$relatedObject = null;
+
+			switch ($menuItemType) {
+				case NMI_TYPE_SERIES:
+					$seriesId = $navigationMenuItem->getPath();
+
+					$seriesDao = \DAORegistry::getDAO('SeriesDAO');
+					$relatedObject = $seriesDao->getById($seriesId, $contextId);
+
+					break;
+				case NMI_TYPE_CATEGORY:
+					$categoryId = $navigationMenuItem->getPath();
+
+					$categoryDao = \DAORegistry::getDAO('CategoryDAO');
+					$relatedObject = $categoryDao->getById($categoryId, $contextId);
+
+					break;
+			}
+
 			// Set the URL
 			switch ($menuItemType) {
 				case NMI_TYPE_CATALOG:
