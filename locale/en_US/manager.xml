@@ -394,7 +394,4 @@ Select a model for handling these aspects of the editorial process. (To designat
 
 	<message key="manager.navigationMenus.form.navigationMenuItem.category">Select Category</message>
 	<message key="manager.navigationMenus.form.navigationMenuItemCategoryMessage">Please select the category to which you would like this menu item to link.</message>
-
-	<message key="manager.navigationMenus.form.navigationMenuItem.series.noItems">You can't add any Navigation Menu Item of Series type because there is no Series defined for this Press</message>
-	<message key="manager.navigationMenus.form.navigationMenuItem.category.noItems">You can't add any Navigation Menu Item of Category type because there is no Categories defined for this Press</message>
 </locale>

@@ -116,24 +116,6 @@ class NavigationMenuItemsForm extends PKPNavigationMenuItemsForm {
 		return $navigationMenuItem->getId();
 	}
 
-	/**
-	 * Perform additional validation checks
-	 * @copydoc Form::validate
-	 */
-	function validate($callHooks = true) {
-		if ($this->getData('menuItemType') == NMI_TYPE_SERIES) {
-			if ($this->getData('relatedSeriesId') == null || $this->getData('relatedSeriesId') == 0) {
-				$this->addError('menuItemType', __('manager.navigationMenus.form.navigationMenuItem.series.noItems'));
-			}
-		} else if ($this->getData('menuItemType') == NMI_TYPE_CATEGORY) {
-			if ($this->getData('relatedCategoryId') == null || $this->getData('relatedCategoryId') == 0) {
-				$this->addError('menuItemType', __('manager.navigationMenus.form.navigationMenuItem.category.noItems'));
-			}
-		}
-
-		return parent::validate($callHooks);
-	}
-
 }
 
 

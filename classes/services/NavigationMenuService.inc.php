@@ -47,19 +47,44 @@ class NavigationMenuService extends \PKP\Services\PKPNavigationMenuService {
 				'title' => __('navigation.catalog'),
 				'description' => __('navigation.navigationMenus.catalog.description'),
 			),
-			NMI_TYPE_SERIES => array(
-				'title' => __('navigation.navigationMenus.series.generic'),
-				'description' => __('navigation.navigationMenus.series.description'),
-			),
-			NMI_TYPE_CATEGORY => array(
-				'title' => __('navigation.navigationMenus.category.generic'),
-				'description' => __('navigation.navigationMenus.category.description'),
-			),
 			NMI_TYPE_NEW_RELEASE => array(
 				'title' => __('navigation.navigationMenus.newRelease'),
 				'description' => __('navigation.navigationMenus.newRelease.description'),
 			),
 		);
+
+		$request = \Application::getRequest();
+		$context = $request->getContext();
+		$contextId = $context ? $context->getId() : CONTEXT_ID_NONE;
+
+		$seriesDao = \DAORegistry::getDAO('SeriesDAO');
+		$series = $seriesDao->getByContextId($contextId);
+
+		if ($series->count) {
+			$newArray = array(
+				NMI_TYPE_SERIES => array(
+					'title' => __('navigation.navigationMenus.series.generic'),
+					'description' => __('navigation.navigationMenus.series.description'),
+				),
+			);
+
+			$ompTypes = array_merge($ompTypes, $newArray);
+
+		}
+
+		$categoryDao = \DAORegistry::getDAO('CategoryDAO');
+		$categories = $categoryDao->getByParentId(null, $contextId);
+
+		if ($categories->count) {
+			$newArray = array(
+				NMI_TYPE_CATEGORY => array(
+					'title' => __('navigation.navigationMenus.category.generic'),
+					'description' => __('navigation.navigationMenus.category.description'),
+				),
+			);
+
+			$ompTypes = array_merge($ompTypes, $newArray);
+		}
 
 		$types = array_merge($types, $ompTypes);
 	}
@@ -108,11 +133,6 @@ class NavigationMenuService extends \PKP\Services\PKPNavigationMenuService {
 		$menuItemType = $navigationMenuItem->getType();
 
 		if ($navigationMenuItem->getIsDisplayed()) {
-
-			$request = \Application::getRequest();
-			$context = $request->getContext();
-			$contextId = $context ? $context->getId() : CONTEXT_ID_NONE;
-
 			$menuItemType = $navigationMenuItem->getType();
 
 			$relatedObject = null;
