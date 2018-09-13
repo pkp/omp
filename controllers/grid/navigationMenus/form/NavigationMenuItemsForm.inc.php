@@ -67,14 +67,17 @@ class NavigationMenuItemsForm extends PKPNavigationMenuItemsForm {
 	/**
 	 * @copydoc PKPNavigationMenuItemsForm::initData
 	 */
-	function initData($data = array()) {
+	function initData() {
 		$navigationMenuItemDao = DAORegistry::getDAO('NavigationMenuItemDAO');
 		$navigationMenuItem = $navigationMenuItemDao->getById($this->navigationMenuItemId);
 
 		if ($navigationMenuItem) {
-			parent::initData(array(
+			parent::initData();
+			$ompInitData = array(
 				'selectedRelatedObjectId' => $navigationMenuItem->getPath(),
-			));
+			);
+
+			$this->_data = array_merge($ompInitData, $this->_data);
 		} else {
 			parent::initData();
 		}
