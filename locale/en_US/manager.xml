@@ -388,4 +388,10 @@ Select a model for handling these aspects of the editorial process. (To designat
 
 	<message key="grid.series.pathAlphaNumeric">The series path must consist of only letters and numbers.</message>
 	<message key="grid.series.pathExists">The series path already exists. Please enter a unique path.</message>
+
+	<message key="manager.navigationMenus.form.navigationMenuItem.series">Select Series</message>
+	<message key="manager.navigationMenus.form.navigationMenuItemSeriesMessage">Please select the series to which you would like this menu item to link.</message>
+
+	<message key="manager.navigationMenus.form.navigationMenuItem.category">Select Category</message>
+	<message key="manager.navigationMenus.form.navigationMenuItemCategoryMessage">Please select the category to which you would like this menu item to link.</message>
 </locale>
