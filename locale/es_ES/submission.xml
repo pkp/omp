@@ -126,8 +126,8 @@
 	<message key="submission.editorName">{$editorName} (ed)</message>
 	<message key="submission.editorSeparator">,</message>
 	<message key="submission.authorListSeparator">;</message>
-	<message key="author.submit.seriesRequired">Series válidas son requeridas.</message>
-	<message key="submission.catalogEntry.add">Añadir Seleccionados al catálogo</message>
+	<message key="author.submit.seriesRequired">Se requieren series válidas.</message>
+	<message key="submission.catalogEntry.add">Añadir los seleccionados al catálogo</message>
 	<message key="submission.catalogEntry.select">Seleccione monografías a añadir al catálogo</message>
 	<message key="submission.catalogEntry.selectionMissing">Debe seleccionar al menos una monografía para añadir al catálogo.</message>
 	<message key="submission.catalogEntry.viewSubmission">Ver envío</message>
