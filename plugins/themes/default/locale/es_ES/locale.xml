@@ -26,5 +26,5 @@
 	<message key="plugins.themes.default.option.typography.lora">Lora: Una fuente de tipo serif ancha, adecuada para la lectura.</message>
 	<message key="plugins.themes.default.option.typography.lora_openSans">Lora/Open Sans: Combinación de serif para encabezados y sans-serif para textos.</message>
 	<message key="plugins.themes.default.option.colour.label">Color</message>
-<message key="plugins.themes.default.option.colour.description">Elija un color par ala cabecera.</message>
+	<message key="plugins.themes.default.option.colour.description">Elija un color para la cabecera.</message>
 </locale>
