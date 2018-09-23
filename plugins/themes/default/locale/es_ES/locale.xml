@@ -14,4 +14,17 @@
 <locale name="es_ES" full_name="Español (España)">
 	<message key="plugins.themes.default.name">Tema predeterminado</message>
 	<message key="plugins.themes.default.description">El tema predeterminado se aplica en esta parte.</message>
+
+	<!-- Theme options -->
+	<message key="plugins.themes.default.option.typography.label">Tipografía</message>
+	<message key="plugins.themes.default.option.typography.description">Elija la combinación de fuentes que más le guste</message>
+	<message key="plugins.themes.default.option.typography.notoSans">Noto Sans: Una nativa digital diseñada por Google con un extenso soporte idiomático.</message>
+	<message key="plugins.themes.default.option.typography.notoSerif">Noto Serif: Una variante de tipo serif.</message>
+	<message key="plugins.themes.default.option.typography.notoSerif_notoSans">Noto Serif/Noto Sans: Combinación de serif para encabezados y sans-serif para textos.</message>
+	<message key="plugins.themes.default.option.typography.notoSans_notoSerif">Noto Sans/Noto Serif: Combinación de sans-serif para encabezados y serif para textos.</message>
+	<message key="plugins.themes.default.option.typography.lato">Lato: Una fuente actual y aclamada de tipo sans-serif.</message>
+	<message key="plugins.themes.default.option.typography.lora">Lora: Una fuente de tipo serif ancha, adecuada para la lectura.</message>
+	<message key="plugins.themes.default.option.typography.lora_openSans">Lora/Open Sans: Combinación de serif para encabezados y sans-serif para textos.</message>
+	<message key="plugins.themes.default.option.colour.label">Color</message>
+	<message key="plugins.themes.default.option.colour.description">Elija un color para la cabecera.</message>
 </locale>

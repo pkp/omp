@@ -255,7 +255,7 @@
 	<message key="catalog.manage.categoryDescription">Haz clic en "destacar"; después haz clic en la estrella para seleccionar un libro destacado para esta categoría; arrastra y y suelta para ordenar.</message>
 	<message key="catalog.manage.seriesDescription">Haga clic en "Destacar" y después en la estrella para seleccionar un libro destacado de la colección; arrastre y suelte para ordenarlo. La colección se identifica con un título de editor/as y de serie, dentro de una categoría o independientemente.</message>
 	<message key="catalog.manage.placeIntoCarousel">Carrusel</message>
-	<message key="catalog.manage.newRelease">Lanzamiento</message>
+	<message key="catalog.manage.newRelease">Publicación</message>
 	<message key="catalog.manage.manageSeries">Gestionar colecciones</message>
 	<message key="catalog.manage.manageCategories">Gestionar categorías</message>
 	<message key="catalog.manage.noMonographs">No existen monografías asignadas.</message>
@@ -342,7 +342,7 @@
 	<message key="user.role.productionEditors">Editores de producción</message>
 
 	<!-- Registration -->
-	<message key="user.register.completeForm">Complete el formulario para registrarse con la publicación.</message>
+	<message key="user.register.completeForm">Complete el formulario para registrarse en la publicación.</message>
 	<message key="user.register.selectContext">Seleccione una publicación con la que registrarse</message>
 	<message key="user.register.noContexts">No hay publicaciones con las que registrarse en el sitio.</message>
 	<message key="user.register.privacyStatement">Declaración de privacidad</message>
@@ -568,7 +568,7 @@
 	<message key="catalog.manage.series.onlineIssn">ISSN en línea</message>
 	<message key="catalog.manage.series.printIssn">ISSN impreso</message>
 	<message key="catalog.noTitles">No se ha publicado aún ningún título.</message>
-	<message key="catalog.noTitlesNew">No está disponible ningún nuevo lanzamiento en este momento.</message>
+	<message key="catalog.noTitlesNew">No está disponible ninguna nueva publicación en este momento.</message>
 	<message key="catalog.noTitlesSearch">No se ha encontrado ningún resultado que coincida con su búsqueda "{$searchQuery}".</message>
 	<message key="catalog.noTitlesSection">No se ha publicado ningún título aún para esta sección.</message>
 	<message key="catalog.featured">Destacado</message>
@@ -601,4 +601,31 @@
 	<message key="user.profile.form.hideOtherContexts">Oculta otras editoriales</message>
 	<message key="user.role.subEditor">Editor de la colección</message>
 	<message key="user.role.subEditors">Editor de la colección</message>
+	<message key="about.aboutContext">Sobre la editorial</message>
+	<message key="about.onlineSubmissions.submissionActions">{$newSubmission} o {$viewSubmissions}.</message>
+	<message key="about.onlineSubmissions.newSubmission">Crear un nuevo envío</message>
+	<message key="about.onlineSubmissions.viewSubmissions">Ver sus envíos pendientes</message>
+	<message key="log.editor.recommendation">{$editorName} registró una recomendación del editorial  ({$decision}) para la monografía {$submissionId} .</message>
+	<message key="notification.type.public">Anuncios públicos</message>
+	<message key="catalog.manage.notNewReleaseSuccess">La monografía no está marcada como nueva publicación.</message>
+	<message key="catalog.manage.feature.newRelease">Nueva publicación</message>
+	<message key="catalog.manage.feature.categoryNewRelease">Nueva publicación en cateogría</message>
+	<message key="catalog.manage.feature.seriesNewRelease">Nueva publicación en serie</message>
+	<message key="catalog.manage.nonOrderable">Esta monografía no se puede solicitar hasta que se publique.</message>
+	<message key="catalog.manage.filter.searchByAuthorOrTitle">Buscar por título o autor</message>
+	<message key="catalog.forthcoming">Próximo</message>
+	<message key="navigation.catalog.allMonographs">Todas las monografías</message>
+	<message key="navigation.navigationMenus.catalog.description">Enlace a su catálogo.</message>
+	<message key="user.reviewerPrompt">¿Estaría dispuesto a revisar los envíos a esta editorial?</message>
+	<message key="user.reviewerPrompt.userGroup">Sí, solicitar el rol {$userGroup}</message>
+	<message key="user.reviewerPrompt.optin">Sí, me gustaría que me contacten para revisar los envíos de esta editorial.</message>
+	<message key="user.register.contextsPrompt">¿En qué Editoriales querría registrarse?</message>
+	<message key="user.register.otherContextRoles">Solicita los siguientes roles.</message>
+	<message key="user.register.noContextReviewerInterests">Si solicitó ser revisor de cualquier editorial, ingrese sus intereses.</message>
+	<message key="catalog.manage.featured">Destacado</message>
+	<message key="catalog.manage.categoryFeatured">Destacado en categoría</message>
+	<message key="catalog.manage.seriesFeatured">Destacado en series.</message>
+	<message key="catalog.manage.featuredSuccess">La monografía está destacada.</message>
+	<message key="catalog.manage.notFeaturedSuccess">Monografía no destacada.</message>
+	<message key="catalog.manage.newReleaseSuccess">Monografía marcada como una nueva publicación</message>
 </locale>

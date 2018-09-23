@@ -60,4 +60,7 @@ ________________________________________________________________________<br/>
 	<message key="default.groups.name.manager">Jefe/a editorial</message>
 	<message key="default.groups.plural.manager">Jefes/as editoriales</message>
 	<message key="default.groups.abbrev.manager">JE</message>
+	<message key="default.groups.name.externalReviewer">Revisor externo</message>
+	<message key="default.groups.plural.externalReviewer">Revisores externos</message>
+	<message key="default.groups.abbrev.externalReviewer">RE</message>
 </locale>
