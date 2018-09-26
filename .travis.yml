@@ -28,8 +28,8 @@ before_install:
   - ./tools/startSubmodulesTRAVIS.sh
 
   # Install composer dependencies
-  - cd lib/pkp && composer -q update && cd ../..
-  - cd plugins/paymethod/paypal && composer -q update && cd ../../..
+  - composer -d=lib/pkp -q install
+  - composer -d=plugins/paymethod/paypal -q install
 
   # Install node depenencies
   - . $HOME/.nvm/nvm.sh
