@@ -8,7 +8,6 @@ env:
   - secure: "PZbLl4MOmgQxp+fDQcitjiFVaBwERHvYbm+6sn71amkwTW87I6mlwXCtWReFGXgdQYQXiu79w28iVPvLbowbJi2Mb5bYt5kadve9Lf86uQfZq2KFYIFrUBAR9ACK2jhPNQWVZRh73+Jd5qaBzR3pgOFdFiBmasReT0+NpI3JLLk="
 language: php
 php:
-  - 5.6
   - 7.1
   - 7.2
 dist: trusty
