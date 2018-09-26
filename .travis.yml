@@ -24,12 +24,8 @@ git:
   submodules: false
 
 before_install:
-  # Start submodules
   - ./tools/startSubmodulesTRAVIS.sh
-
-  # Install composer dependencies
-  - composer -d=lib/pkp -q install
-  - composer -d=plugins/paymethod/paypal -q install
+  - ./lib/pkp/tools/travis/install-composer-dependencies.sh
 
   # Install node depenencies
   - . $HOME/.nvm/nvm.sh
