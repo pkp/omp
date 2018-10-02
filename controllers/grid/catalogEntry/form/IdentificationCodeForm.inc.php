@@ -128,7 +128,7 @@ class IdentificationCodeForm extends Form {
 				}
 			}
 			$codes = $onixCodelistItemDao->getCodes('List5', $assignedCodes); // ONIX list for these
-			$templateMgr->assign_by_ref('identificationCodes', $codes);
+			$templateMgr->assign('identificationCodes', $codes);
 		} else {
 			fatalError('Format not in authorized monograph');
 		}

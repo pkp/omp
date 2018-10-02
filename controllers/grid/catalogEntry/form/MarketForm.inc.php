@@ -109,15 +109,17 @@ class MarketForm extends Form {
 		$templateMgr->assign('submissionId', $monograph->getId());
 		$market = $this->getMarket();
 		$onixCodelistItemDao = DAORegistry::getDAO('ONIXCodelistItemDAO');
-		$templateMgr->assign('countryCodes', $onixCodelistItemDao->getCodes('List91')); // countries (CA, US, GB, etc)
-		$templateMgr->assign('regionCodes', $onixCodelistItemDao->getCodes('List49')); // regions (British Columbia, England, etc)
-		$templateMgr->assign('publicationDateFormats', $onixCodelistItemDao->getCodes('List55')); // YYYYMMDD, YYMMDD, etc
-		$templateMgr->assign('publicationDateRoles', $onixCodelistItemDao->getCodes('List163'));
-		$templateMgr->assign('currencyCodes', $onixCodelistItemDao->getCodes('List96')); // GBP, USD, CAD, etc
-		$templateMgr->assign('priceTypeCodes', $onixCodelistItemDao->getCodes('List58')); // without tax, with tax, etc
-		$templateMgr->assign_by_ref('extentTypeCodes',$onixCodelistItemDao->getCodes('List23')); // word count, FM page count, BM page count, main page count, etc
-		$templateMgr->assign_by_ref('taxRateCodes', $onixCodelistItemDao->getCodes('List62')); // higher rate, standard rate, zero rate
-		$templateMgr->assign_by_ref('taxTypeCodes', $onixCodelistItemDao->getCodes('List171')); // VAT, GST
+		$templateMgr->assign(array(
+			'countryCodes' => $onixCodelistItemDao->getCodes('List91'), // countries (CA, US, GB, etc)
+			'regionCodes' => $onixCodelistItemDao->getCodes('List49'), // regions (British Columbia, England, etc)
+			'publicationDateFormats' => $onixCodelistItemDao->getCodes('List55'), // YYYYMMDD, YYMMDD, etc
+			'publicationDateRoles' => $onixCodelistItemDao->getCodes('List163'),
+			'currencyCodes' => $onixCodelistItemDao->getCodes('List96'), // GBP, USD, CAD, etc
+			'priceTypeCodes' => $onixCodelistItemDao->getCodes('List58'), // without tax, with tax, etc
+			'extentTypeCodes' => $onixCodelistItemDao->getCodes('List23'), // word count, FM page count, BM page count, main page count, etc
+			'taxRateCodes' => $onixCodelistItemDao->getCodes('List62'), // higher rate, standard rate, zero rate
+			'taxTypeCodes' => $onixCodelistItemDao->getCodes('List171'), // VAT, GST
+		));
 
 		$publishedMonographDao = DAORegistry::getDAO('PublishedMonographDAO');
 		$publishedMonograph = $publishedMonographDao->getById($monograph->getId());
@@ -136,29 +138,33 @@ class MarketForm extends Form {
 		$templateMgr->assign('availableSuppliers', $supplierOptions);
 
 		if ($market) {
-			$templateMgr->assign('marketId', $market->getId());
-			$templateMgr->assign('countriesIncluded', $market->getCountriesIncluded());
-			$templateMgr->assign('countriesExcluded', $market->getCountriesExcluded());
-			$templateMgr->assign('regionsIncluded', $market->getRegionsIncluded());
-			$templateMgr->assign('regionsExcluded', $market->getRegionsExcluded());
-			$templateMgr->assign('date', $market->getDate());
-			$templateMgr->assign('dateRole', $market->getDateRole());
-			$templateMgr->assign('dateFormat', $market->getDateFormat());
-			$templateMgr->assign('discount', $market->getDiscount());
-			$templateMgr->assign('price', $market->getPrice());
-			$templateMgr->assign('priceTypeCode', $market->getPriceTypeCode());
-			$templateMgr->assign('currencyCode', $market->getCurrencyCode() != '' ? $market->getCurrencyCode() : 'CAD');
-			$templateMgr->assign('taxRateCode', $market->getTaxRateCode());
-			$templateMgr->assign('taxTypeCode', $market->getTaxTypeCode() != '' ? $market->getTaxTypeCode() : '02');
-			$templateMgr->assign('agentId', $market->getAgentId());
-			$templateMgr->assign('supplierId', $market->getSupplierId());
-
+			$templateMgr->assign(array(
+				'marketId' => $market->getId(),
+				'countriesIncluded' => $market->getCountriesIncluded(),
+				'countriesExcluded' => $market->getCountriesExcluded(),
+				'regionsIncluded' => $market->getRegionsIncluded(),
+				'regionsExcluded' => $market->getRegionsExcluded(),
+				'date' => $market->getDate(),
+				'dateRole' => $market->getDateRole(),
+				'dateFormat' => $market->getDateFormat(),
+				'discount' => $market->getDiscount(),
+				'price' => $market->getPrice(),
+				'priceTypeCode' => $market->getPriceTypeCode(),
+				'currencyCode' => $market->getCurrencyCode() != '' ? $market->getCurrencyCode() : 'CAD',
+				'taxRateCode' => $market->getTaxRateCode(),
+				'taxTypeCode' => $market->getTaxTypeCode() != '' ? $market->getTaxTypeCode() : '02',
+				'agentId' => $market->getAgentId(),
+				'supplierId' => $market->getSupplierId(),
+			));
+		
 			$representationId = $market->getPublicationFormatId();
 		} else { // loading a blank form
 			$representationId = (int) $request->getUserVar('representationId');
-			$templateMgr->assign('dateFormat', '20'); // YYYYMMDD Onix code as a default
-			$templateMgr->assign('dateRole', '01'); // 'Date of Publication' as default
-			$templateMgr->assign('currencyCode', 'CAD');
+			$templateMgr->assign(array(
+				'dateFormat' => '20', // YYYYMMDD Onix code as a default
+				'dateRole' => '01', // 'Date of Publication' as default
+				'currencyCode' => 'CAD',
+			));
 		}
 
 		$publicationFormatDao = DAORegistry::getDAO('PublicationFormatDAO');

@@ -113,7 +113,7 @@ class CatalogEntryFormatMetadataForm extends Form {
 		);
 
 		foreach ($codes as $templateVarName => $list) {
-			$templateMgr->assign_by_ref($templateVarName, $onixCodelistItemDao->getCodes($list));
+			$templateMgr->assign($templateVarName, $onixCodelistItemDao->getCodes($list));
 		}
 
 		// consider public identifiers

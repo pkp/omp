@@ -59,15 +59,17 @@ class SpotlightForm extends Form {
 
 		$spotlightDao = DAORegistry::getDAO('SpotlightDAO');
 		$spotlight = $spotlightDao->getById($this->getSpotlightId());
-		$templateMgr->assign_by_ref('spotlight', $spotlight);
-		$templateMgr->assign('pressId', $this->getPressId());
+		$templateMgr->assign(array(
+			'spotlight' => $spotlight,
+			'pressId' => $this->getPressId()
+		));
 
-		if (isset($spotlight)) {
-			$templateMgr->assign('title', $spotlight->getTitle(null));
-			$templateMgr->assign('description', $spotlight->getDescription(null));
-			$templateMgr->assign('assocTitle', $this->getAssocTitle($spotlight->getAssocId(), $spotlight->getAssocType()));
-			$templateMgr->assign('assocId', $spotlight->getAssocId() . ':' . $spotlight->getAssocType());
-		}
+		if (isset($spotlight)) $templateMgr->assign(array(
+			'title' => $spotlight->getTitle(null),
+			'description' => $spotlight->getDescription(null),
+			'assocTitle' => $this->getAssocTitle($spotlight->getAssocId(), $spotlight->getAssocType()),
+			'assocId' => $spotlight->getAssocId() . ':' . $spotlight->getAssocType(),
+		));
 
 		return parent::fetch($request, $template, $display);
 	}
