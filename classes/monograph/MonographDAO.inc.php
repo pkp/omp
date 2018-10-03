@@ -19,13 +19,6 @@ import('lib.pkp.classes.submission.SubmissionDAO');
 
 class MonographDAO extends SubmissionDAO {
 	/**
-	 * Constructor.
-	 */
-	function __construct() {
-		parent::__construct();
-	}
-
-	/**
 	 * Get a list of fields for which localized data is supported
 	 * @return array
 	 */

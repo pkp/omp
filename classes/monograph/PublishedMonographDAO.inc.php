@@ -22,13 +22,6 @@ define('ORDERBY_TITLE', 'title');
 define('ORDERBY_SERIES_POSITION', 'seriesPosition');
 
 class PublishedMonographDAO extends MonographDAO {
- 	/**
-	 * Constructor.
-	 */
-	function __construct() {
-		parent::__construct();
-	}
-
 	/**
 	 * Retrieve all published monographs in a press.
 	 * @param $pressId int The monograhps press id.
