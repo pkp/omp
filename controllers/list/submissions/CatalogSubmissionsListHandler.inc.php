@@ -26,6 +26,9 @@ class CatalogSubmissionsListHandler extends SubmissionsListHandler {
 		$request = Application::getRequest();
 		$context = $request->getContext();
 
+		// Bring in orderby constants
+		import('classes.monograph.PublishedMonographDAO');
+
 		list($catalogSortBy, $catalogSortDir) = explode('-', $context->getSetting('catalogSortOption'));
 		$catalogSortBy = empty($catalogSortBy) ? ORDERBY_DATE_PUBLISHED : $catalogSortBy;
 		$catalogSortDir = $catalogSortDir == SORT_DIRECTION_ASC ? 'ASC' : 'DESC';
