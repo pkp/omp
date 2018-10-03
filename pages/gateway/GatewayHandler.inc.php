@@ -17,26 +17,26 @@ import('classes.handler.Handler');
 
 class GatewayHandler extends Handler {
 	/**
-	 * Constructor
+	 * Index handler.
+	 * @param $args array
+	 * @param $request PKPRequest
 	 */
-	function __construct() {
-		parent::__construct();
-	}
-
 	function index($args, $request) {
 		$request->redirect(null, 'index');
 	}
 
 	/**
 	 * Handle requests for gateway plugins.
+	 * @param $args array
+	 * @param $request PKPRequest
 	 */
 	function plugin($args, $request) {
-		$this->validate();
+		$this->validate($request);
 		$pluginName = array_shift($args);
 
-		$plugins =& PluginRegistry::loadCategory('gateways');
+		$plugins = PluginRegistry::loadCategory('gateways');
 		if (isset($pluginName) && isset($plugins[$pluginName])) {
-			$plugin =& $plugins[$pluginName];
+			$plugin = $plugins[$pluginName];
 			if (!$plugin->fetch($args, $request)) {
 				$request->redirect(null, 'index');
 			}
