@@ -17,10 +17,18 @@ Checkout submodules and copy default configuration :
 
 Install or update dependencies via Composer:
 
-    cd lib/pkp
+    # if you have Composer installed
+    composer -d=lib/pkp update
+    composer -d=plugins/paymethod/paypal update
+
     # if you don't already have Composer installed:
     curl -sS https://getcomposer.org/installer | php
-    php composer.phar update
+    cd lib/pkp
+    php ../../composer.phar update
+    cd ../..
+    cd plugins/paymethod/paypal
+    php ../../../composer.phar update
+    cd ../../..
 
 Install or update dependencies via [NPM](https://www.npmjs.com/):
 
