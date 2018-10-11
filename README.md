@@ -15,12 +15,10 @@ Checkout submodules and copy default configuration :
     git submodule update --init --recursive
     cp config.TEMPLATE.inc.php config.inc.php
 
-Install or update dependencies via Composer:
+Install or update dependencies via Composer (https://getcomposer.org/):
 
-    cd lib/pkp
-    # if you don't already have Composer installed:
-    curl -sS https://getcomposer.org/installer | php
-    php composer.phar update
+    composer -d=lib/pkp update
+    composer -d=plugins/paymethod/paypal update
 
 Install or update dependencies via [NPM](https://www.npmjs.com/):
 
