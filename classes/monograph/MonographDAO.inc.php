@@ -106,6 +106,7 @@ class MonographDAO extends SubmissionDAO {
 	 * @param Monograph object
 	 */
 	function updateObject($monograph) {
+		$monograph->stampModified();
 		$this->update(
 			sprintf('UPDATE	submissions
 				SET	locale = ?,
