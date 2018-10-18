@@ -126,7 +126,6 @@ class Application extends PKPApplication {
 			'SeriesDAO' => 'classes.press.SeriesDAO',
 			'SpotlightDAO' => 'classes.spotlight.SpotlightDAO',
 			'SubjectDAO' => 'classes.codelist.SubjectDAO',
-			'SubmissionEventLogDAO' => 'classes.log.SubmissionEventLogDAO',
 			'SubmissionFileDAO' => 'classes.monograph.SubmissionFileDAO',
 			'UserDAO' => 'classes.user.UserDAO',
 			'UserSettingsDAO' => 'classes.user.UserSettingsDAO',
