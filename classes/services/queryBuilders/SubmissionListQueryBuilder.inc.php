@@ -152,6 +152,8 @@ class SubmissionListQueryBuilder extends \PKP\Services\QueryBuilders\PKPSubmissi
 			// Featured sorting should be the first sort parameter. We sort by
 			// the seq parameter, with null values last
 			$q->groupBy(Capsule::raw('psf.seq'));
+			$this->columns[] = 'psf.seq';
+			$this->columns[] = Capsule::raw('case when psf.seq is null then 1 else 0 end');
 			array_unshift(
 				$q->orders,
 				array('type' => 'raw', 'sql' => 'case when psf.seq is null then 1 else 0 end'),
