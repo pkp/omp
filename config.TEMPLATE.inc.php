@@ -126,6 +126,10 @@ host = localhost
 username = omp
 password = omp
 name = omp
+; Set the non-standard port and/or socket, if used
+; port = 3306
+; unix_socket = /var/run/mysqld/mysqld.sock
+
 
 ; Enable persistent connections (recommended)
 persistent = Off
