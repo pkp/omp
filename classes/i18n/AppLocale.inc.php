@@ -214,6 +214,7 @@ class AppLocale extends PKPLocale {
 		$componentMap = parent::makeComponentMap($locale);
 		$baseDir = "locale/$locale/";
 		$componentMap[LOCALE_COMPONENT_APP_COMMON] = $baseDir . 'locale.xml';
+		$componentMap[LOCALE_COMPONENT_APP_AUTHOR] = $baseDir . 'author.xml';
 		$componentMap[LOCALE_COMPONENT_APP_MANAGER] = $baseDir . 'manager.xml';
 		$componentMap[LOCALE_COMPONENT_APP_SUBMISSION] = $baseDir . 'submission.xml';
 		$componentMap[LOCALE_COMPONENT_APP_EDITOR] = $baseDir . 'editor.xml';

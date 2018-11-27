@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE locale SYSTEM "../../lib/pkp/dtd/locale.dtd">
+
+<!--
+  * locale/de_DE/author.xml
+  *
+  * Copyright (c) 2014-2018 Simon Fraser University
+  * Copyright (c) 2003-2018 John Willinsky
+  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
+  * locale information: https://pkp.sfu.ca/wiki/index.php?title=OMP:_German_(de_DE)
+  * Localization strings (Site administration).
+  -->
+
+<locale name="de_DE" full_name="Deutsch (Deutschland)">
+	<message key="author.submit.notAccepting">Der Verlag nimmt zur Zeit keine Manuskripte an.</message>
+</locale>
