@@ -11,7 +11,7 @@
 {capture assign="languagesField"}
 	{fbvFormSection description="submission.submit.metadataForm.tip" title="common.languages"}
 		{url|assign:languagesSourceUrl router=$smarty.const.ROUTE_PAGE page="submission" op="fetchChoices" codeList="74"}
-		{fbvElement type="keyword" id="languages" subLabelTranslate=true multilingual=true current=$languages source=$languagesSourceUrl disabled=$readOnly}
+		{fbvElement type="keyword" id="languages" subLabelTranslate=true multilingual=true current=$languages sourceUrl=$languagesSourceUrl disabled=$readOnly}
 	{/fbvFormSection}
 {/capture}
 {include file="core:submission/submissionMetadataFormFields.tpl"}
