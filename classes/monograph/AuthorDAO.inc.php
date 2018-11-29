@@ -23,13 +23,6 @@ import('lib.pkp.classes.submission.PKPAuthorDAO');
 
 class AuthorDAO extends PKPAuthorDAO {
 	/**
-	 * Constructor
-	 */
-	function __construct() {
-		parent::__construct();
-	}
-
-	/**
 	 * Retrieve all published authors for a press in an associative array by
 	 * the first letter of the last name, for example:
 	 * $returnedArray['S'] gives array($misterSmithObject, $misterSmytheObject, ...)

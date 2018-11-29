@@ -19,13 +19,6 @@ import('lib.pkp.classes.submission.PKPAuthor');
 
 class Author extends PKPAuthor {
 	/**
-	 * Constructor.
-	 */
-	function __construct() {
-		parent::__construct();
-	}
-
-	/**
 	 * Get whether or not this author should be displayed as a volume editor
 	 * @return boolean
 	 */
