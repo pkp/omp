@@ -31,7 +31,7 @@ class CatalogMonographsGridHandler extends GridHandler {
 	function __construct() {
 		parent::__construct();
 		$this->addRoleAssignment(
-			array(ROLE_ID_MANAGER, ROLE_ID_SUB_EDITOR),
+			array(ROLE_ID_MANAGER, ROLE_ID_SUB_EDITOR, ROLE_ID_SITE_ADMIN),
 			array('fetchGrid', 'fetchRows', 'fetchRow', 'toggle', 'saveSequence')
 		);
 	}
@@ -46,6 +46,10 @@ class CatalogMonographsGridHandler extends GridHandler {
 	function authorize($request, &$args, $roleAssignments) {
 		$operation = $request->getRouter()->getRequestedOp($request);
 		$siteAccessOps = array('fetchGrid', 'fetchRows', 'saveSequence');
+
+		import('lib.pkp.classes.security.authorization.ContextAccessPolicy');
+		$this->addPolicy(new ContextAccessPolicy($request, $roleAssignments));
+
 		if (in_array($operation, $siteAccessOps)) {
 			import('lib.pkp.classes.security.authorization.PKPSiteAccessPolicy');
 			$this->addPolicy(new PKPSiteAccessPolicy($request, null, $roleAssignments));
