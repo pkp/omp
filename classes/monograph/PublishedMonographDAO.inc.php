@@ -32,7 +32,7 @@ class PublishedMonographDAO extends MonographDAO {
 	 * @param $sortDirection int optional Sort monographs by passed direction.
 	 * @param $featuredOnly boolean optional Whether the monographs are featured on press or not.
 	 * @param $newReleasedOnly boolean optional Whether the monographs are marked as new releases on press or not.
-	 * @return DAOResultFactory DB Object that fetches monographs objects.
+	 * @return ItemIterator Iterator for monograph objects.
 	 */
 	function getByPressId($pressId, $searchText = null, $rangeInfo = null, $sortBy = null, $sortDirection = null, $featuredOnly = false, $newReleasedOnly = false) {
 		return $this->_getByAssoc($pressId, ASSOC_TYPE_PRESS, $pressId, $searchText, $rangeInfo, $sortBy, $sortDirection, $featuredOnly, $newReleasedOnly);
@@ -49,7 +49,7 @@ class PublishedMonographDAO extends MonographDAO {
 	 * @param $sortDirection int optional Sort monographs by passed direction.
 	 * @param $featuredOnly boolean optional Whether the monographs are featured on series or not.
 	 * @param $newReleasedOnly boolean optional Whether the monographs are marked as new releases on series or not.
-	 * @return DAOResultFactory DB Object that fetches monographs objects.
+	 * @return ItemIterator Iterator for monograph objects.
 	 */
 	function getBySeriesId($seriesId, $pressId = null, $searchText = null, $rangeInfo = null, $sortBy = null, $sortDirection = null, $featuredOnly = false, $newReleasedOnly = false) {
 		return $this->_getByAssoc($pressId, ASSOC_TYPE_SERIES, $seriesId, $searchText, $rangeInfo, $sortBy, $sortDirection, $featuredOnly, $newReleasedOnly);
@@ -65,7 +65,7 @@ class PublishedMonographDAO extends MonographDAO {
 	 * @param $sortDirection int optional Sort monographs by passed direction.
 	 * @param $featuredOnly boolean optional Whether the monographs are featured on category or not.
 	 * @param $newReleasedOnly boolean optional Whether the monographs are marked as new releases on category or not.
-	 * @return DAOResultFactory DB Object that fetches monographs objects.
+	 * @return ItemIterator Iterator for monograph objects.
 	 */
 	function getByCategoryId($categoryId, $pressId = null, $searchText = null, $rangeInfo = null, $sortBy = null, $sortDirection = null, $featuredOnly = false, $newReleasedOnly = false) {
 		return $this->_getByAssoc($pressId, ASSOC_TYPE_CATEGORY, $categoryId, $searchText, $rangeInfo, $sortBy, $sortDirection, $featuredOnly, $newReleasedOnly);
@@ -389,7 +389,7 @@ class PublishedMonographDAO extends MonographDAO {
 	 * @param $sortDirection int optional Sort monographs by passed direction.
 	 * @param $featuredOnly boolean optional Whether the monographs are featured on passed associated object or not.
 	 * @param $newReleasedOnly boolean optional Whether the monographs are marked as new releases on associated object or not.
-	 * @return DAOResultFactory DB Object that fetches monographs objects.
+	 * @return ItemIterator Iterator for monograph objects.
 	 */
 	private function _getByAssoc($pressId, $assocType, $assocId, $searchText = null, $rangeInfo = null, $sortBy = null, $sortDirection = null, $featuredOnly = false, $newReleasedOnly = false) {
 		// Cast parameters.
