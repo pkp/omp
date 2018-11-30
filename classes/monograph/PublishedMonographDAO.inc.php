@@ -16,6 +16,7 @@
 
 import('classes.monograph.PublishedMonograph');
 import('classes.monograph.MonographDAO');
+import('lib.pkp.classes.core.ArrayItemIterator');
 
 define('ORDERBY_DATE_PUBLISHED', 'datePublished');
 define('ORDERBY_TITLE', 'title');
@@ -406,7 +407,8 @@ class PublishedMonographDAO extends MonographDAO {
 
 		// If no associated object is passed, return.
 		if (!$assocId || !$assocType) {
-			return new DAOResultFactory();
+			$theArray = array();
+			return new ArrayItemIterator($theArray);
 		} else {
 			// Check if the associated object exists.
 			switch ($assocType) {
@@ -423,8 +425,8 @@ class PublishedMonographDAO extends MonographDAO {
 					$assocObject = null;
 			}
 			if (!$assocObject) {
-				assert(false);
-				return new DAOResultFactory();
+				$theArray = array();
+				return new ArrayItemIterator($theArray);
 			}
 		}
 
