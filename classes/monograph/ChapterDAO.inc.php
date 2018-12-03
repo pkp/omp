@@ -60,7 +60,7 @@ class ChapterDAO extends DAO implements PKPPubIdPluginDAO {
 	 */
 	function getChapters($monographId, $rangeInfo = null) {
 		$result = $this->retrieveRange(
-			'SELECT chapter_id, submission_id, chapter_seq FROM submission_chapters WHERE submission_id = ? ORDER BY chapter_seq',
+			'SELECT chapter_id, submission_id, seq FROM submission_chapters WHERE submission_id = ? ORDER BY seq',
 			(int) $monographId,
 			$rangeInfo
 		);
@@ -122,7 +122,7 @@ class ChapterDAO extends DAO implements PKPPubIdPluginDAO {
 		$chapter = $this->newDataObject();
 		$chapter->setId($row['chapter_id']);
 		$chapter->setMonographId($row['submission_id']);
-		$chapter->setSequence($row['chapter_seq']);
+		$chapter->setSequence($row['seq']);
 		$this->getDataObjectSettings('submission_chapter_settings', 'chapter_id', $row['chapter_id'], $chapter);
 
 		HookRegistry::call('ChapterDAO::_returnFromRow', array(&$chapter, &$row));
@@ -147,7 +147,7 @@ class ChapterDAO extends DAO implements PKPPubIdPluginDAO {
 	function insertChapter($chapter) {
 		$this->update(
 			'INSERT INTO submission_chapters
-				(submission_id, chapter_seq)
+				(submission_id, seq)
 				VALUES
 				(?, ?)',
 			array(
@@ -169,7 +169,7 @@ class ChapterDAO extends DAO implements PKPPubIdPluginDAO {
 		$this->update(
 			'UPDATE submission_chapters
 				SET	submission_id = ?,
-					chapter_seq = ?
+					seq = ?
 				WHERE
 					chapter_id = ?',
 			array(
@@ -219,14 +219,14 @@ class ChapterDAO extends DAO implements PKPPubIdPluginDAO {
 		$result = $this->retrieve(
 			'SELECT chapter_id FROM submission_chapters' .
 			($monographId !== null?' WHERE submission_id = ?':'') .
-			' ORDER BY chapter_seq',
+			' ORDER BY seq',
 			($monographId !== null)?(int) $monographId:null
 		);
 
 		for ($i=1; !$result->EOF; $i++) {
 			list($chapterId) = $result->fields;
 			$this->update(
-				'UPDATE submission_chapters SET chapter_seq = ? WHERE chapter_id = ?',
+				'UPDATE submission_chapters SET seq = ? WHERE chapter_id = ?',
 				array(
 					(int) $i,
 					(int) $chapterId

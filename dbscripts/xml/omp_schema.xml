@@ -653,7 +653,7 @@
 		<field name="submission_id" type="I8">
 			<NOTNULL />
 		</field>
-		<field name="chapter_seq" type="F">
+		<field name="seq" type="F">
 			<NOTNULL />
 			<DEFAULT VALUE="0"/>
 		</field>
