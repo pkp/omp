@@ -34,9 +34,9 @@
 		<data file="dbscripts/xml/upgrade/3.1.1_preupdate_citations.xml" condition="return $installer->columnExists('citations', 'assoc_type');" />
 		<data file="dbscripts/xml/upgrade/3.1.1_preupdate_payments.xml" condition="return $installer->columnExists('completed_payments', 'press_id');" />
 	</upgrade>
-
 	<upgrade minversion="0.9.9.0" maxversion="3.1.9.9">
 		<data file="dbscripts/xml/upgrade/3.2.0_preupdate_user_author_names.xml" condition="return $installer->columnExists('users', 'first_name');" />
+		<data file="dbscripts/xml/upgrade/3.2.0_preupdate_chapters.xml" condition="return $installer->columnExists('submission_chapters', 'chapter_seq');" />
 	</upgrade>
 
 	<!-- PKP schema components -->
