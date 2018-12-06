@@ -263,10 +263,9 @@ class SeriesDAO extends PKPSectionDAO {
 	}
 
 	/**
-	 * Retrieve all series for a press.
-	 * @return DAOResultFactory containing Series ordered by sequence
+	 * @copydoc PKPSectionDAO::getByContextId()
 	 */
-	function getByContextId($pressId, $rangeInfo = null) {
+	function getByContextId($pressId, $rangeInfo = null, $submittableOnly = false) {
 		$params = array(
 			'title', AppLocale::getPrimaryLocale(),
 			'title', AppLocale::getLocale(),
