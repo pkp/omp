@@ -113,6 +113,7 @@ lib/pkp/js/controllers/tab/workflow/WorkflowTabHandler.js
 lib/pkp/js/controllers/dashboard/form/DashboardTaskFormHandler.js
 lib/pkp/js/controllers/informationCenter/NotesHandler.js
 lib/pkp/js/controllers/statistics/ReportGeneratorFormHandler.js
+lib/pkp/js/pages/submission/SubmissionStep1FormHandler.js
 lib/pkp/js/pages/submission/SubmissionStep2FormHandler.js
 lib/pkp/js/pages/submission/SubmissionStep3FormHandler.js
 lib/pkp/js/pages/workflow/WorkflowHandler.js
