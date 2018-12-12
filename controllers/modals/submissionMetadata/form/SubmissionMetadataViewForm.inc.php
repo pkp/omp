@@ -37,41 +37,10 @@ class SubmissionMetadataViewForm extends PKPSubmissionMetadataViewForm {
 		// Get series for this press
 		$seriesDao = DAORegistry::getDAO('SeriesDAO');
 		$seriesOptions = array('' => __('submission.submit.selectSeries')) + $seriesDao->getTitlesByPressId($submission->getContextId());
-		$templateMgr->assign('seriesOptions', $seriesOptions);
-		$templateMgr->assign('seriesId', $submission->getSeriesId());
-		$templateMgr->assign('seriesPosition', $submission->getSeriesPosition());
-
-		// Get assigned categories
-		// We need an array of IDs for the SelectListPanel, but we also need an
-		// array of Category objects to use when the metadata form is viewed in
-		// readOnly mode. This mode is invoked on the SubmissionMetadataHandler
-		// is not available here
-		$submissionDao = Application::getSubmissionDAO();
-		$result = $submissionDao->getCategories($submission->getId(), $submission->getContextId());
-		$assignedCategories = array();
-		$selectedIds = array();
-		while ($category = $result->next()) {
-			$assignedCategories[] = $category;
-			$selectedIds[] = $category->getId();
-		}
-
-		// Get SelectCategoryListPanel data
-		import('classes.components.listPanels.SelectCategoryListPanel');
-		$selectCategoryList = new SelectCategoryListPanel(array(
-			'title' => 'submission.submit.placement.categories',
-			'inputName' => 'categories[]',
-			'selected' => $selectedIds,
-			'getParams' => array(
-				'contextId' => $submission->getContextId(),
-			),
-		));
-
-		$selectCategoryListData = $selectCategoryList->getConfig();
-
 		$templateMgr->assign(array(
-			'hasCategories' => !empty($selectCategoryListData['items']),
-			'selectCategoryListData' => $selectCategoryListData,
-			'assignedCategories' => $assignedCategories,
+			'seriesOptions' => $seriesOptions,
+			'seriesId' => $submission->getSeriesId(),
+			'seriesPosition' => $submission->getSeriesPosition(),
 		));
 
 		return parent::fetch($request, $template, $display);
@@ -82,7 +51,7 @@ class SubmissionMetadataViewForm extends PKPSubmissionMetadataViewForm {
 	 */
 	function readInputData() {
 		parent::readInputData();
-		$this->readUserVars(array('categories', 'seriesId', 'seriesPosition'));
+		$this->readUserVars(array('seriesId', 'seriesPosition'));
 	}
 
 	/**
@@ -108,14 +77,6 @@ class SubmissionMetadataViewForm extends PKPSubmissionMetadataViewForm {
 		if ($submission->getDatePublished()) {
 			import('classes.search.MonographSearchIndex');
 			MonographSearchIndex::indexMonographMetadata($submission);
-		}
-
-		$submissionDao = Application::getSubmissionDAO();
-		$submissionDao->removeCategories($submission->getId());
-		if ($this->getData('categories')) {
-			foreach ((array) $this->getData('categories') as $categoryId) {
-				$submissionDao->addCategory($submission->getId(), (int) $categoryId);
-			}
 		}
 	}
 }

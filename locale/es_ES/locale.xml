@@ -16,7 +16,6 @@
 	<message key="monograph.audience">Tipo de lector</message>
 	<message key="monograph.coverImage">Imagen de portada</message>
 	<message key="monograph.coverImage.uploadInstructions">Asegúrate de que la altura de la imagen no sea más grande que el 150% de su anchura. De lo contrario el carrusel no mostrará toda la portada.</message>
-	<message key="monograph.currentCoverImage">Imagen actual</message>
 	<message key="monograph.audience.rangeQualifier">Calificador de la variedad de lector</message>
 	<message key="monograph.audience.rangeFrom">Variedad de lector (de)</message>
 	<message key="monograph.audience.rangeTo">Variedad de lector (a)</message>
@@ -224,21 +223,6 @@
 	<message key="series.featured">Presentados</message>
 	<message key="series.featured.description">Esta colección aparecerá en la navegación principal</message>
 	<message key="series.path">Ruta</message>
-
-	<message key="grid.category.categories">Categorías</message>
-	<message key="grid.category.add">Añadir categoría</message>
-	<message key="grid.category.edit">Editar categoría</message>
-	<message key="grid.category.name">Nombre</message>
-	<message key="grid.category.path">Ruta</message>
-	<message key="grid.category.urlWillBe">La URL de la categoría es {$sampleUrl}</message>
-	<message key="grid.series.urlWillBe">La URL de la colección es {$sampleUrl}. La ruta es una cadena de caracteres que sirven para identificar una serie.</message>
-	<message key="grid.category.pathAlphaNumeric">La ruta de la categoría estará compuesta únicamente por letras y números.</message>
-	<message key="grid.category.pathExists">La ruta de la categoría ya existe. Introduzca una ruta nueva.</message>
-	<message key="grid.category.description">Descripción</message>
-	<message key="grid.category.parentCategory">Categoría superior</message>
-	<message key="grid.category.removeText">¿Seguro que deseas borrar esta categoría?</message>
-	<message key="grid.category.nameRequired">Introducir el nombre de una categoría.</message>
-	<message key="grid.category.categoryDetails">Detalles de categoría</message>
 
 	<!-- Catalog Management -->
 	<message key="catalog.manage">Gestión del catálogo</message>
@@ -584,10 +568,6 @@
 	<message key="catalog.sortBy.seriesDescription">Elija la forma de ordenar los libros en estas colecciones.</message>
 	<message key="catalog.sortBy.categoryDescription">Elija la forma de ordenar los libros en esta categoría.</message>
 	<message key="catalog.sortBy.catalogDescription">Elija la forma de ordenar los libros en este catálogo.</message>
-	<message key="catalog.sortBy.titleAsc">Título (A-Z)</message>
-	<message key="catalog.sortBy.titleDesc">Título (Z-A)</message>
-	<message key="catalog.sortBy.datePublishedAsc">Fecha de publicación (más antiguos primero)</message>
-	<message key="catalog.sortBy.datePublishedDesc">Fecha de publicación (más nuevos primero)</message>
 	<message key="catalog.sortBy.seriesPositionAsc">Posición de las colecciones (inferiores primero)</message>
 	<message key="catalog.sortBy.seriesPositionDesc">Posición de las colecciones (superiores primero)</message>
 	<message key="catalog.viewableFile.title">{$type} visualización del fichero {$title}</message>
@@ -627,4 +607,5 @@
 	<message key="catalog.manage.featuredSuccess">La monografía está destacada.</message>
 	<message key="catalog.manage.notFeaturedSuccess">Monografía no destacada.</message>
 	<message key="catalog.manage.newReleaseSuccess">Monografía marcada como una nueva publicación</message>
+	<message key="grid.series.urlWillBe">La URL de la colección es {$sampleUrl}. La ruta es una cadena de caracteres que sirven para identificar una serie.</message>
 </locale>

@@ -90,7 +90,7 @@ class CatalogSubmissionsListPanel extends SubmissionsListPanel {
 		if ($context) {
 			$categories = array();
 			$categoryDao = DAORegistry::getDAO('CategoryDAO');
-			$categoriesResult = $categoryDao->getByPressId($context->getId());
+			$categoriesResult = $categoryDao->getByContextId($context->getId());
 			while (!$categoriesResult->eof()) {
 				$category = $categoriesResult->next();
 				list($categorySortBy, $categorySortDir) = explode('-', $category->getSortOption());

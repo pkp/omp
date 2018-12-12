@@ -37,6 +37,7 @@
 	<upgrade minversion="0.9.9.0" maxversion="3.1.9.9">
 		<data file="dbscripts/xml/upgrade/3.1.2_preupdate_user_author_names.xml" condition="return $installer->columnExists('users', 'first_name');" />
 		<data file="dbscripts/xml/upgrade/3.1.2_preupdate_chapters.xml" condition="return $installer->columnExists('submission_chapters', 'chapter_seq');" />
+		<data file="dbscripts/xml/upgrade/3.1.2_preupdate_categories.xml" condition="return $installer->columnExists('categories', 'press_id');" />
 	</upgrade>
 
 	<!-- PKP schema components -->
@@ -58,6 +59,7 @@
 	<schema file="lib/pkp/xml/schema/views.xml" />
 	<schema file="lib/pkp/xml/schema/metrics.xml" />
 	<schema file="lib/pkp/xml/schema/navigationMenus.xml" />
+	<schema file="lib/pkp/xml/schema/categories.xml" />
 
 	<!-- OMP schema -->
 	<schema file="dbscripts/xml/omp_schema.xml" />

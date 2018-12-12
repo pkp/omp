@@ -325,20 +325,7 @@
 	<message key="grid.genres.title">Komponente monografskih publikacij</message>
 	<message key="manager.setup.notifications.copyPrimaryContact">Pošlji kopijo glavnega kontakta publikacije, kot je bil določen v nastavitvah portala.</message>
 
-	<message key="grid.category.add">Dodaj kategorijo</message>
-	<message key="grid.category.edit">Uredi kategorijo</message>
-	<message key="grid.category.name">Ime</message>
-	<message key="grid.category.path">Naslov</message>
-	<message key="grid.category.urlWillBe">URL kategorije bo {$sampleUrl}</message>
 	<message key="grid.series.urlWillBe">URL zbirke bo {$sampleUrl}</message>
-	<message key="grid.category.pathAlphaNumeric">Naslov kategorije mora biti zapisan samo s črkami in številkami.</message>
-	<message key="grid.category.pathExists">Tak naslov kategorije že obstaja. Vnesite edinstven naslov.</message>
-	<message key="grid.category.description">Opis</message>
-	<message key="grid.category.parentCategory">Višja kategorija</message>
-	<message key="grid.category.removeText">Ste prepričani, da želite izbrisati to kategorijo?</message>
-	<message key="grid.category.nameRequired">Vnesite ime kategorije.</message>
-	<message key="grid.category.categoryDetails">Podrobnosti kategorije</message>
-
 	<message key="grid.series.pathAlphaNumeric">Naslov zbirke mora biti zapisan samo s črkami in številkami.</message>
 	<message key="grid.series.pathExists">Ta naslov zbirke že obstaja. Vnesite edinstveno pot.</message>
 </locale>

@@ -15,7 +15,6 @@
 	<!-- General monograph keys -->
 	<message key="monograph.audience">Ciljna skupina</message>
 	<message key="monograph.coverImage">Naslovna slika</message>
-	<message key="monograph.currentCoverImage">Trenutna slika</message>
 	<message key="monograph.currentCoverImageReload">Shranite spremembe, da vidite novo naslovno sliko.</message>
 	<message key="monograph.audience.rangeQualifier">Kvalifikator razpona ciljnega občinstva</message>
 	<message key="monograph.audience.rangeFrom">Razpon ciljnega občinstva (od)</message>
@@ -293,10 +292,6 @@
 	<message key="catalog.sortBy.seriesDescription">Izberite, kako želite razvrstiti knjige v zbirki.</message>
 	<message key="catalog.sortBy.categoryDescription">Izberite, kako želite razvrstiti knjige v kategoriji.</message>
 	<message key="catalog.sortBy.catalogDescription">Izberite, kako želite razvrstiti knjige v katalogu.</message>
-	<message key="catalog.sortBy.titleAsc">Po naslovu (A-Ž)</message>
-	<message key="catalog.sortBy.titleDesc">Po naslovu (Ž-A)</message>
-	<message key="catalog.sortBy.datePublishedAsc">Po datumu izdaje (najprej najstarejše)</message>
-	<message key="catalog.sortBy.datePublishedDesc">Po datumu izdaje (najprej najnovejše)</message>
 	<message key="catalog.sortBy.seriesPositionAsc">Po položaju v zbirku (najprej najnižji)</message>
 	<message key="catalog.sortBy.seriesPositionDesc">Po položaju v zbirki (najprej najvišji)</message>
 	<message key="catalog.viewableFile.title">{$type} poglej datoteko {$title}</message>
@@ -547,5 +542,4 @@
 
 	<message key="user.profile.form.showOtherContexts">Registriraj se pri ostali založbah</message>
 	<message key="user.profile.form.hideOtherContexts">Skrij ostale založbe</message>
-	<message key="grid.category.categories">Kategorije</message>
 </locale>

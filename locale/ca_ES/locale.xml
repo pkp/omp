@@ -15,7 +15,6 @@
 	<!-- General monograph keys -->
 	<message key="monograph.audience">Audiència</message>
 	<message key="monograph.coverImage">Imatge de la portada</message>
-	<message key="monograph.currentCoverImage">Imatge actual</message>
 	<message key="monograph.audience.rangeQualifier">Qualificador de l'interval d'audiència</message>
 	<message key="monograph.audience.rangeFrom">Interval d'audiència (mínim)</message>
 	<message key="monograph.audience.rangeTo">Interval d'audiència (màxim)</message>
@@ -213,20 +212,7 @@
 	<message key="series.featured.description">Aquestes col·leccions apareixeran al menú de navegació principal</message>
 	<message key="series.path">Ruta</message>
 
-	<message key="grid.category.categories">Categories</message>
-	<message key="grid.category.add">Afegeix categoria</message>
-	<message key="grid.category.edit">Edita categoria</message>
-	<message key="grid.category.name">Nom</message>
-	<message key="grid.category.path">Ruta</message>
-	<message key="grid.category.urlWillBe">La categoria de l'URL serà {$sampleUrl}.</message>
 	<message key="grid.series.urlWillBe">Les URL de les col·leccions seran {$sampleUrl}. La «ruta» és una cadena de caràcters que s'utilitza per identificar una col·lecció.</message>
-	<message key="grid.category.pathAlphaNumeric">La ruta de la categoria només pot estar formada per números i lletres.</message>
-	<message key="grid.category.pathExists">Ja existeix una ruta per a la categoria. Introduïu una ruta única.</message>
-	<message key="grid.category.description">Descripció</message>
-	<message key="grid.category.parentCategory">Categoria principal</message>
-	<message key="grid.category.removeText">Esteu segur/a que voleu eliminar aquesta categoria?</message>
-	<message key="grid.category.nameRequired">Introduïu un nom vàlid per a la categoria.</message>
-	<message key="grid.category.categoryDetails">Detalls de la categoria</message>
 
 	<!-- Catalog Management -->
 	<message key="catalog.manage">Administració del catàleg</message>

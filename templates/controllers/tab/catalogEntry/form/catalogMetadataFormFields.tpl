@@ -81,7 +81,7 @@
 
 	{fbvFormSection title="monograph.coverImage"}
 		<div class="currentCoverImage">
-			{capture assign="altTitle"}{translate key="monograph.currentCoverImage"}{/capture}
+			{capture assign="altTitle"}{translate key="submission.currentCoverImage"}{/capture}
 			<img height="{$coverImage.thumbnailHeight}" width="{$coverImage.thumbnailWidth}" src="{url router=$smarty.const.ROUTE_COMPONENT component="submission.CoverHandler" op="thumbnail" submissionId=$submissionId random=$submissionId|uniqid}" alt="{$altTitle|escape}" />
 			<span class="coverImageMessage description"></span>
 		</div>

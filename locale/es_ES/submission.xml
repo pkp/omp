@@ -76,8 +76,6 @@
 	<message key="submission.submit.whatNext.description">El envío se notificó a la editorial y usted recibió un correo electrónico de confirmación por sus registros.  Una vez revisado el envío por el editor/a, este contactará con usted.</message>
 	<message key="submission.submit.checklistErrors">Lea y marque los elementos en la lista de comprobación del envío.  No se marcaron {$itemsRemaining} elementos.</message>
 	<message key="submission.submit.placement">Disposición de la propuesta</message>
-	<message key="submission.submit.placement.categories">Categorías</message>
-	<message key="submission.submit.placement.categoriesDescription">Selecciona una o más categorías de la editorial a las que este trabajo se debería corresponder.</message>
 	<message key="submission.submit.userGroup">Realizar propuesta como...</message>
 	<message key="submission.submit.userGroupDescription">Si estás realizando la obra conjunta, deberás elegir el rol Editor de obra conjunta.</message>
 	<!-- Chapters Grid -->

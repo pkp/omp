@@ -15,7 +15,6 @@
 	<!-- General monograph keys -->
 	<message key="monograph.audience">Audiência</message>
 	<message key="monograph.coverImage">Capa</message>
-	<message key="monograph.currentCoverImage">Imagem atual</message>
 	<message key="monograph.currentCoverImageReload">Salve as modificações para ver a nova imagem de capa.</message>
 	<message key="monograph.audience.rangeQualifier">Qualificador de faixa de audiência</message>
 	<message key="monograph.audience.rangeFrom">Faixa de audiência (de)</message>
@@ -230,20 +229,7 @@
 	<message key="series.featured.description">Esta séria aparecerá no menu principal</message>
 	<message key="series.path">Caminho</message>
 
-	<message key="grid.category.categories">Categorias</message>
-	<message key="grid.category.add">Incluir categoria</message>
-	<message key="grid.category.edit">Editar categoria</message>
-	<message key="grid.category.name">Nome</message>
-	<message key="grid.category.path">Caminho</message>
-	<message key="grid.category.urlWillBe">O caminho da categoria no navegador será {$sampleUrl}</message>
 	<message key="grid.series.urlWillBe">O caminho da séria no navegador será {$sampleUrl}. O 'Caminho' é uma sequência de caracteres usado unicamente para identificar a série</message>
-	<message key="grid.category.pathAlphaNumeric">O caminho da categoria deve consistir apenas de letras e números.</message>
-	<message key="grid.category.pathExists">O caminho da categoria já existe. Informe um caminho único.</message>
-	<message key="grid.category.description">Descrição</message>
-	<message key="grid.category.parentCategory">Categoria pai</message>
-	<message key="grid.category.removeText">Deseja realmente excluir esta categoria?</message>
-	<message key="grid.category.nameRequired">Informe o nome da categoria.</message>
-	<message key="grid.category.categoryDetails">Detalhes da categoria</message>
 
 	<!-- Catalog Management -->
 	<message key="catalog.manage">Administração do catálogo</message>
@@ -559,10 +545,6 @@ Suporte à biblioteca mbstring: <strong>{$supportsMBString}</strong>]]></message
 	<message key="catalog.sortBy.seriesDescription">Escolha como ordenar as publicações desta série.</message>
 	<message key="catalog.sortBy.categoryDescription">Escolha como ordenar as publicações desta categoria.</message>
 	<message key="catalog.sortBy.catalogDescription">Escolha como ordenar as publicações no catálogo.</message>
-	<message key="catalog.sortBy.titleAsc">Título (A-Z)</message>
-	<message key="catalog.sortBy.titleDesc">Título (Z-A)</message>
-	<message key="catalog.sortBy.datePublishedAsc">Data de publicação (antigos primeiro)</message>
-	<message key="catalog.sortBy.datePublishedDesc">Data de publicação (novos primeiro)</message>
 	<message key="catalog.sortBy.seriesPositionAsc">Posição da série (menor primeiro)</message>
 	<message key="catalog.sortBy.seriesPositionDesc">Posição da série (maior primeiro)</message>
 	<message key="catalog.viewableFile.title">Versão {$type} do arquivo {$title}</message>
