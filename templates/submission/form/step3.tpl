@@ -13,8 +13,4 @@
 	{load_url_in_div id="chaptersGridContainer" url=$chaptersGridUrl}
 {/capture}
 
-{capture assign="additionalFormFields"}
-	{include file="submission/form/categories.tpl"}
-{/capture}
-
 {include file="core:submission/form/step3.tpl"}

@@ -79,8 +79,6 @@
 	<message key="submission.submit.whatNext.description">Založba je bila obveščena o vašem prispevku. Poslali smo vam potrditveno e-pošto za vašo evidenco. Ko urednik zaključi recenzijo vašega prispevka, boste prejeli obvestilo.</message>
 	<message key="submission.submit.checklistErrors">Preberite in izberite elemente na seznamu pogojev za oddajo prispevka. Nekateri elementi {$itemsRemaining} niso bili izbrani.</message>
 	<message key="submission.submit.placement">Oddaja prispevka</message>
-	<message key="submission.submit.placement.categories">Kategorije</message>
-	<message key="submission.submit.placement.categoriesDescription">Izberite ustrezno kategorijo publikacije.</message>
 	<message key="submission.submit.userGroup">Izberi vlogo ...</message>
 	<message key="submission.submit.userGroupDescription">Če želite oddati zbornik, izberite vlogo urednika zbornika.</message>
 
