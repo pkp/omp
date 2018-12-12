@@ -393,7 +393,7 @@ class SeriesDAO extends PKPSectionDAO {
 				series s
 			WHERE	c.category_id = sc.category_id AND
 				s.series_id = ? AND
-				' . ($pressId?' c.press_id = s.press_id AND s.press_id = ? AND':'') . '
+				' . ($pressId?' c.context_id = s.press_id AND s.press_id = ? AND':'') . '
 				s.series_id = sc.series_id',
 			$params
 		);
@@ -415,7 +415,7 @@ class SeriesDAO extends PKPSectionDAO {
 		$result = $this->retrieve(
 			'SELECT	c.*
 			FROM	series s
-				JOIN categories c ON (c.press_id = s.press_id)
+				JOIN categories c ON (c.context_id = s.press_id)
 				LEFT JOIN series_categories sc ON (s.series_id = sc.series_id AND sc.category_id = c.category_id)
 			WHERE	s.series_id = ? AND
 				' . ($pressId?' s.press_id = ? AND':'') . '

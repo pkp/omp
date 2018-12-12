@@ -16,7 +16,6 @@
 	<message key="monograph.audience">Public</message>
 	<message key="monograph.coverImage">Illustration de couverture</message>
 	<message key="monograph.coverImage.uploadInstructions">Assurez-vous que la hauteur de l'image ne dépasse pas 150% de sa largeur car sinon, le carrousel ne présentera pas toute la couverture.</message>
-	<message key="monograph.currentCoverImage">Image actuelle</message>
 	<message key="monograph.audience.rangeQualifier">Qualificatif de l'intervalle du public</message>
 	<message key="monograph.audience.rangeFrom">Intervalle du public (de)</message>
 	<message key="monograph.audience.rangeTo">Intervalle du public (à)</message>
@@ -223,21 +222,7 @@
 	<message key="series.featured">En vedette</message>
 	<message key="series.featured.description">Cette série s'affichera dans la navigation principale</message>
 	<message key="series.path">Chemin d'accès</message>
-
-	<message key="grid.category.categories">Catégories</message>
-	<message key="grid.category.add">Ajouter une catégorie</message>
-	<message key="grid.category.edit">Modifier une catégorie</message>
-	<message key="grid.category.name">Nom</message>
-	<message key="grid.category.path">Chemin d'accès</message>
-	<message key="grid.category.urlWillBe">L'adresse URL de la catégorie sera {$sampleUrl}</message>
 	<message key="grid.series.urlWillBe">L'adresse URL de la série sera {$sampleUrl}. Le 'chemin d'accès' consiste en une série de caractères utilisés pour identifier une série.</message>
-	<message key="grid.category.pathAlphaNumeric">Le chemin d'accès de la catégorie ne peut contenir que des lettres et des chiffres.</message>
-	<message key="grid.category.pathExists">Le chemin d'accès choisi pour cette catégorie existe déjà. Veuillez choisir un chemin d'accès unique.</message>
-	<message key="grid.category.description">Description</message>
-	<message key="grid.category.parentCategory">Catégorie principale</message>
-	<message key="grid.category.removeText">Vous êtes certain de vouloir supprimer cette catégorie?</message>
-	<message key="grid.category.nameRequired">Veuillez saisir le nom de la catégorie.</message>
-	<message key="grid.category.categoryDetails">Détails de la catégorie </message>
 
 	<!-- Catalog Management -->
 	<message key="catalog.manage">Gestion du catalogue</message>

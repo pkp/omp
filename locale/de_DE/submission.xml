@@ -78,8 +78,6 @@
 	<message key="submission.submit.whatNext.description">Der Verlag wurde über die Einsendung Ihres Manuskriptes informiert. Für Ihre Unterlagen haben wir Ihnen eine Bestätigung per E-Mail zugesandt. Sobald der/die Herausgeber/in das Manuskript geprüft hat, wird er sich mit Ihnen in Verbindung setzen.</message>
 	<message key="submission.submit.checklistErrors">Bitte lesen und bestätigen Sie die Punkte der Einreichungscheckliste. {$itemsRemaining} Punkte wurden bisher noch nicht bestätigt.</message>
 	<message key="submission.submit.placement">Manuskriptplatzierung</message>
-	<message key="submission.submit.placement.categories">Kategorien</message>
-	<message key="submission.submit.placement.categoriesDescription">Wählen Sie eine Kategorie aus, unter der dieses Werk klassifiziert werden soll.</message>
 	<message key="submission.submit.userGroup">Einreichen in meiner Funktion als ...</message>
 	<message key="submission.submit.userGroupDescription">Wenn Sie einen Sammelband einreichen, sollten Sie die Funktion "Sammelbandherausgeber/in" auswählen.</message>
 

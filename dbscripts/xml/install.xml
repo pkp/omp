@@ -34,6 +34,7 @@
 	<schema file="lib/pkp/xml/schema/libraryFiles.xml" />
 	<schema file="lib/pkp/xml/schema/views.xml" />
 	<schema file="lib/pkp/xml/schema/metrics.xml" />
+	<schema file="lib/pkp/xml/schema/categories.xml" />
 	<schema file="dbscripts/xml/omp_schema.xml" />
 	<schema file="lib/pkp/xml/schema/navigationMenus.xml" />
 

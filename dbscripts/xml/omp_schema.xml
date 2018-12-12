@@ -12,70 +12,6 @@
   -->
 
 <schema version="0.2">
-
-	<!--
-	  *
-	  * TABLE categories
-	  *
-	  -->
-	<table name="categories">
-		<field name="category_id" type="I8">
-			<KEY />
-			<AUTOINCREMENT />
-		</field>
-		<field name="press_id" type="I8">
-			<NOTNULL/>
-		</field>
-		<field name="parent_id" type="I8">
-			<NOTNULL/>
-		</field>
-		<field name="seq" type="I8" />
-		<field name="path" type="C2" size="255">
-			<NOTNULL />
-		</field>
-		<field name="image" type="X"/>
-		<descr>Press categories.</descr>
-		<index name="category_press_id">
-			<col>press_id</col>
-			<col>parent_id</col>
-		</index>
-		<index name="category_path">
-			<col>press_id</col>
-			<col>path</col>
-			<UNIQUE />
-		</index>
-	</table>
-
-	<!--
-	  *
-	  * TABLE category_settings
-	  *
-	  -->
-	<table name="category_settings">
-		<field name="category_id" type="I8">
-			<NOTNULL />
-		</field>
-		<field name="locale" type="C2" size="14">
-			<NOTNULL />
-			<DEFAULT VALUE=""/>
-		</field>
-		<field name="setting_name" type="C2" size="255">
-			<NOTNULL />
-		</field>
-		<field name="setting_value" type="X"/>
-		<field name="setting_type" type="C2" size="6">
-			<NOTNULL/>
-			<descr>(bool|int|float|string|object)</descr>
-		</field>
-		<descr>Category-specific settings</descr>
-		<index name="category_settings_pkey">
-			<col>category_id</col>
-			<col>locale</col>
-			<col>setting_name</col>
-			<UNIQUE />
-		</index>
-	</table>
-
 	<!--
 	  *
 	  * TABLE identification_codes
@@ -369,26 +305,6 @@
 		<descr>Associations for categories within a series.</descr>
 		<index name="series_categories_id">
 			<col>series_id</col>
-			<col>category_id</col>
-			<UNIQUE/>
-		</index>
-	</table>
-
-	<!--
-	  *
-	  * TABLE submission_categories
-	  *
-	  -->
-	<table name="submission_categories">
-		<field name="submission_id" type="I8">
-			<NOTNULL/>
-		</field>
-		<field name="category_id" type="I8">
-			<NOTNULL/>
-		</field>
-		<descr>Associations for categories and monographs.</descr>
-		<index name="submission_categories_id">
-			<col>submission_id</col>
 			<col>category_id</col>
 			<UNIQUE/>
 		</index>

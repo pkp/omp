@@ -51,7 +51,7 @@ class SubmissionSubmitStep3Form extends PKPSubmissionSubmitStep3Form {
 
 		// If categories are configured, present the LB.
 		$categoryDao = DAORegistry::getDAO('CategoryDAO');
-		$templateMgr->assign('categoriesExist', $categoryDao->getCountByPressId($this->context->getId()) > 0);
+		$templateMgr->assign('categoriesExist', $categoryDao->getCountByContextId($this->context->getId()) > 0);
 
 		return parent::fetch($request, $template, $display);
 	}

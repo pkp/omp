@@ -79,6 +79,7 @@ class SettingsHandler extends ManagementHandler {
 	 * @param $request PKPRequest
 	 */
 	function settings($args, $request) {
+		AppLocale::requireComponents(LOCALE_COMPONENT_PKP_SUBMISSION);
 		$path = array_shift($args);
 		switch($path) {
 			case 'access':
@@ -173,7 +174,6 @@ class SettingsHandler extends ManagementHandler {
 	function distribution($args, $request) {
 		$templateMgr = TemplateManager::getManager($request);
 		$this->setupTemplate($request);
-		AppLocale::requireComponents(LOCALE_COMPONENT_PKP_SUBMISSION); // submission.permissions
 		$templateMgr->display('management/settings/distribution.tpl');
 	}
 }

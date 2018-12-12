@@ -22,14 +22,6 @@ define('ARTICLE_ACCESS_ISSUE_DEFAULT', 0);
 define('ARTICLE_ACCESS_OPEN', 1);
 
 class PublishedMonograph extends Monograph {
-
-	/**
-	 * Constructor.
-	 */
-	function __construct() {
-		parent::__construct();
-	}
-
 	/**
 	 * Get views of the published monograph.
 	 * @return int
