@@ -234,7 +234,6 @@
 	<message key="catalog.manage.noMonographs">No hi ha monografies assignades.</message>
 
 	<!-- Catalog -->
-	<message key="catalog.browseTitles">Navega pels títols {$numTitles}</message>
 	<message key="catalog.feature">Funció</message>
 	<message key="catalog.featuredBooks">Llibres destacats</message>
 	<message key="catalog.dateAdded">S'ha afegit a {$dateAdded} </message>

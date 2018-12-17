@@ -8,7 +8,7 @@
  * @brief Display the page to view a category of the catalog.
  *
  * @uses $category Category Current category being viewed
- * @uses $publishedMonographs array List of published monographs in this category
+ * @uses $publishedSubmissions array List of published monographs in this category
  * @uses $featuredMonographIds array List of featured monograph IDs in this category
  * @uses $newReleasesMonographs array List of new monographs in this category
  * @uses $parentCategory Category Parent category if one exists
@@ -65,7 +65,7 @@
 	{/if}
 
 	{* No published titles in this category *}
-	{if empty($publishedMonographs)}
+	{if empty($publishedSubmissions)}
 		<h2>
 			{translate key="catalog.allBooks"}
 		</h2>
@@ -79,7 +79,7 @@
 		{/if}
 
 		{* All monographs *}
-		{include file="frontend/components/monographList.tpl" monographs=$publishedMonographs featured=$featuredMonographIds titleKey="catalog.allBooks"}
+		{include file="frontend/components/monographList.tpl" monographs=$publishedSubmissions featured=$featuredMonographIds titleKey="catalog.allBooks"}
 
 		{* Pagination *}
 		{if $prevPage > 1}
