@@ -414,7 +414,7 @@
 	  *
 	  -->
 	<table name="published_submissions">
-		<field name="pub_id" type="I8">
+		<field name="published_submission_id" type="I8">
 			<KEY />
 			<AUTOINCREMENT/>
 			<!-- Deprecated -->
