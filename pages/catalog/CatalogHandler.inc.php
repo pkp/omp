@@ -14,26 +14,9 @@
  *   catalog.
  */
 
-import('classes.handler.Handler');
+import('lib.pkp.pages.catalog.PKPCatalogHandler');
 
-// import UI base classes
-import('lib.pkp.classes.linkAction.LinkAction');
-import('lib.pkp.classes.core.JSONMessage');
-
-class CatalogHandler extends Handler {
-	//
-	// Overridden methods from Handler
-	//
-	/**
-	 * @see PKPHandler::authorize()
-	 */
-	function authorize($request, &$args, $roleAssignments) {
-		import('lib.pkp.classes.security.authorization.ContextRequiredPolicy');
-		$this->addPolicy(new ContextRequiredPolicy($request));
-		return parent::authorize($request, $args, $roleAssignments);
-	}
-
-
+class CatalogHandler extends PKPCatalogHandler {
 	//
 	// Public handler methods
 	//
@@ -97,7 +80,7 @@ class CatalogHandler extends Handler {
 		$featureDao = DAORegistry::getDAO('FeatureDAO');
 		$featuredMonographIds = $featureDao->getSequencesByAssoc(ASSOC_TYPE_PRESS, $context->getId());
 
-		$this->_setupPaginationTemplate($publishedMonographs, $page, $count, $offset, $total);
+		$this->_setupPaginationTemplate($request, $publishedMonographs, $page, $count, $offset, $total);
 
 		$templateMgr->assign(array(
 			'publishedMonographs' => $publishedMonographs,
@@ -127,53 +110,14 @@ class CatalogHandler extends Handler {
 	}
 
 	/**
-	 * View the content of a category.
-	 * @param $args array [
-	 *		@option string Category path
-	 *		@option int Page number if available
-	 * ]
-	 * @param $request PKPRequest
-	 * @return string
+	 * @copydoc parent::category()
 	 */
 	function category($args, $request) {
-		$categoryPath = $args[0];
-		$page = isset($args[1]) ? (int) $args[1] : 1;
-		$templateMgr = TemplateManager::getManager($request);
-		$context = $request->getContext();
-
 		// Get the category
 		$categoryDao = DAORegistry::getDAO('CategoryDAO');
-		$category = $categoryDao->getByPath($categoryPath, $context->getId());
+		$category = $categoryDao->getByPath($args[0], $request->getContext()->getId());
 
-		if (!$category) {
-			$request->redirect(null, 'catalog');
-		}
-
-		$this->setupTemplate($request);
-		import('lib.pkp.classes.submission.Submission'); // STATUS_ constants
 		import('classes.monograph.PublishedMonographDAO'); // ORDERBY_ constants
-
-		$orderOption = $category->getSortOption() ? $category->getSortOption() : ORDERBY_DATE_PUBLISHED . '-' . SORT_DIRECTION_DESC;
-		list($orderBy, $orderDir) = explode('-', $orderOption);
-
-		$count = $context->getSetting('itemsPerPage') ? $context->getSetting('itemsPerPage') : Config::getVar('interface', 'items_per_page');
-		$offset = $page > 1 ? ($page - 1) * $count : 0;
-
-		import('classes.core.ServicesContainer');
-		$submissionService = ServicesContainer::instance()->get('submission');
-
-		$params = array(
-			'categoryIds' => $category->getId(),
-			'orderByFeatured' => true,
-			'orderBy' => $orderBy,
-			'orderDirection' => $orderDir == SORT_DIRECTION_ASC ? 'ASC' : 'DESC',
-			'count' => $count,
-			'offset' => $offset,
-			'status' => STATUS_PUBLISHED,
-			'returnObject' => SUBMISSION_RETURN_PUBLISHED,
-		);
-		$publishedMonographs = $submissionService->getSubmissions($context->getId(), $params);
-		$total = $submissionService->getSubmissionsMaxCount($context->getId(), $params);
 
 		$featureDao = DAORegistry::getDAO('FeatureDAO');
 		$featuredMonographIds = $featureDao->getSequencesByAssoc(ASSOC_TYPE_CATEGORY, $category->getId());
@@ -185,22 +129,13 @@ class CatalogHandler extends Handler {
 			$newReleases = $newReleaseDao->getMonographsByAssoc(ASSOC_TYPE_CATEGORY, $category->getId());
 		}
 
-		// Provide the parent category and a list of subcategories
-		$parentCategory = $categoryDao->getById($category->getParentId());
-		$subcategories = $categoryDao->getByParentId($category->getId());
-
-		$this->_setupPaginationTemplate($publishedMonographs, $page, $count, $offset, $total);
-
+		$templateMgr = TemplateManager::getManager($request);
 		$templateMgr->assign(array(
-			'category' => $category,
-			'parentCategory' => $parentCategory,
-			'subcategories' => $subcategories,
-			'publishedMonographs' => $publishedMonographs,
 			'featuredMonographIds' => $featuredMonographIds,
 			'newReleasesMonographs' => $newReleases,
 		));
 
-		return $templateMgr->display('frontend/pages/catalogCategory.tpl');
+		return parent::category($args, $request);
 	}
 
 	/**
@@ -262,7 +197,7 @@ class CatalogHandler extends Handler {
 			$newReleases = $newReleaseDao->getMonographsByAssoc(ASSOC_TYPE_SERIES, $series->getId());
 		}
 
-		$this->_setupPaginationTemplate($publishedMonographs, $page, $count, $offset, $total);
+		$this->_setupPaginationTemplate($request, $publishedMonographs, $page, $count, $offset, $total);
 
 		$templateMgr->assign(array(
 			'series' => $series,
@@ -309,80 +244,47 @@ class CatalogHandler extends Handler {
 
 	/**
 	 * Serve the image for a category or series.
+	 * @param $args array
+	 * @param $request PKPRequest
 	 */
 	function fullSize($args, $request) {
-
-		$press = $request->getPress();
-		$type = $request->getUserVar('type');
-		$id = $request->getUserVar('id');
-		$imageInfo = array();
-		$path = null;
-
-		switch ($type) {
-			case 'category':
-				$path = '/categories/';
-				$categoryDao = DAORegistry::getDAO('CategoryDAO');
-				$category = $categoryDao->getById($id, $press->getId());
-				if ($category) {
-					$imageInfo = $category->getImage();
-				}
-				break;
+		$context = $request->getContext();
+		switch ($request->getUserVar('type')) {
 			case 'series':
-				$path = '/series/';
 				$seriesDao = DAORegistry::getDAO('SeriesDAO');
-				$series = $seriesDao->getById($id, $press->getId());
-				if ($series) {
-					$imageInfo = $series->getImage();
-				}
+				$series = $seriesDao->getById($request->getUserVar('id'), $context->getId());
+				if (!$series) $this->getDispatcher()->handle404();
+				$imageInfo = $series->getImage();
+				import('lib.pkp.classes.file.ContextFileManager');
+				$contextFileManager = new ContextFileManager($context->getId());
+				$contextFileManager->downloadByPath($contextFileManager->getBasePath() . '/series/' . $imageInfo['name'], null, true);
 				break;
 			default:
-				fatalError('invalid type specified');
+				parent::fullSize($args, $request);
 				break;
-		}
-
-		if ($imageInfo) {
-			import('lib.pkp.classes.file.ContextFileManager');
-			$pressFileManager = new ContextFileManager($press->getId());
-			$pressFileManager->downloadByPath($pressFileManager->getBasePath() . $path . $imageInfo['name'], null, true);
 		}
 	}
 
 	/**
 	 * Serve the thumbnail for a category or series.
+	 * @param $args array
+	 * @param $request PKPRequest
 	 */
 	function thumbnail($args, $request) {
-		$press = $request->getPress();
-		$type = $request->getUserVar('type');
-		$id = $request->getUserVar('id');
-		$imageInfo = array();
-		$path = null; // Scrutinizer
-
-		switch ($type) {
-			case 'category':
-				$path = '/categories/';
-				$categoryDao = DAORegistry::getDAO('CategoryDAO');
-				$category = $categoryDao->getById($id, $press->getId());
-				if ($category) {
-					$imageInfo = $category->getImage();
-				}
-				break;
+		$context = $request->getContext();
+		switch ($request->getUserVar('type')) {
 			case 'series':
-				$path = '/series/';
 				$seriesDao = DAORegistry::getDAO('SeriesDAO');
-				$series = $seriesDao->getById($id, $press->getId());
-				if ($series) {
-					$imageInfo = $series->getImage();
-				}
+				$series = $seriesDao->getById($request->getUserVar('id'), $context->getId());
+				if (!$series) $this->getDispatcher()->handle404();
+				$imageInfo = $series->getImage();
+				import('lib.pkp.classes.file.ContextFileManager');
+				$contextFileManager = new ContextFileManager($context->getId());
+				$contextFileManager->downloadByPath($contextFileManager->getBasePath() . '/series/' . $imageInfo['thumbnailName'], null, true);
 				break;
 			default:
-				fatalError('invalid type specified');
+				parent::thumbnail($args, $request);
 				break;
-		}
-
-		if ($imageInfo) {
-			import('lib.pkp.classes.file.ContextFileManager');
-			$pressFileManager = new ContextFileManager($press->getId());
-			$pressFileManager->downloadByPath($pressFileManager->getBasePath() . $path . $imageInfo['thumbnailName'], null, true);
 		}
 	}
 
@@ -396,31 +298,6 @@ class CatalogHandler extends Handler {
 			$templateMgr->assign('currency', $press->getSetting('currency'));
 		}
 		parent::setupTemplate($request);
-	}
-
-	/**
-	 * Assign the pagination template variables
-	 *
-	 * @param $publishedMonographs array Monographs being shown
-	 * @param $page int Page number being shown
-	 * @param $count int Max number of monographs being shown
-	 * @param $offset int Starting position of monographs
-	 * @param $total int Total number of monographs available
-	 */
-	public function _setupPaginationTemplate($publishedMonographs, $page, $count, $offset, $total) {
-		$showingStart = $offset + 1;
-		$showingEnd = min($offset + $count, $offset + count($publishedMonographs));
-		$nextPage = $total > $showingEnd ? $page + 1 : null;
-		$prevPage = $showingStart > 1 ? $page - 1 : null;
-
-		$templateMgr = TemplateManager::getManager(Application::getRequest());
-		$templateMgr->assign(array(
-			'showingStart' => $showingStart,
-			'showingEnd' => $showingEnd,
-			'total' => $total,
-			'nextPage' => $nextPage,
-			'prevPage' => $prevPage,
-		));
 	}
 }
 
