@@ -100,7 +100,7 @@ class CatalogHandler extends Handler {
 			'returnObject' => SUBMISSION_RETURN_PUBLISHED,
 		);
 		$publishedMonographs = $submissionService->getSubmissions($context->getId(), $params);
-		$total = $submissionService->getSubmissionsMaxCount($context->getId(), $params);
+		$total = count($publishedMonographs);
 
 		$featureDao = DAORegistry::getDAO('FeatureDAO');
 		$featuredMonographIds = $featureDao->getSequencesByAssoc(ASSOC_TYPE_PRESS, $context->getId());
@@ -181,7 +181,7 @@ class CatalogHandler extends Handler {
 			'returnObject' => SUBMISSION_RETURN_PUBLISHED,
 		);
 		$publishedMonographs = $submissionService->getSubmissions($context->getId(), $params);
-		$total = $submissionService->getSubmissionsMaxCount($context->getId(), $params);
+		$total = count($publishedMonographs);
 
 		$featureDao = DAORegistry::getDAO('FeatureDAO');
 		$featuredMonographIds = $featureDao->getSequencesByAssoc(ASSOC_TYPE_CATEGORY, $category->getId());
@@ -258,7 +258,7 @@ class CatalogHandler extends Handler {
 			'returnObject' => SUBMISSION_RETURN_PUBLISHED,
 		);
 		$publishedMonographs = $submissionService->getSubmissions($context->getId(), $params);
-		$total = $submissionService->getSubmissionsMaxCount($context->getId(), $params);
+		$total = count($publishedMonographs);
 
 		$featureDao = DAORegistry::getDAO('FeatureDAO');
 		$featuredMonographIds = $featureDao->getSequencesByAssoc(ASSOC_TYPE_SERIES, $series->getId());
@@ -431,5 +431,3 @@ class CatalogHandler extends Handler {
 		));
 	}
 }
-
-
