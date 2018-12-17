@@ -270,8 +270,6 @@
 	<message key="catalog.noTitles">Zaenkrat še ni objavljenih naslovov.</message>
 	<message key="catalog.noTitlesNew">Trenutno ni na voljo nobene nove izdaje.</message>
 	<message key="catalog.noTitlesSearch">Za vašo iskalno zahtevo "{$searchQuery}"ni bilo najdenih naslovov.</message>
-	<message key="catalog.noTitlesSection">Zaenkrat še ni objavljenih naslovov v tem razdelku.</message>
-	<message key="catalog.browseTitles">{$numTitles} Naslovi</message>
 	<message key="catalog.feature">Lastnosti</message>
 	<message key="catalog.featured">Izbrano</message>
 	<message key="catalog.featuredBooks">Izbrane knjige</message>

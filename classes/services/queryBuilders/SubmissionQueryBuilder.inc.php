@@ -19,29 +19,11 @@ use Illuminate\Database\Capsule\Manager as Capsule;
 
 class SubmissionQueryBuilder extends \PKP\Services\QueryBuilders\PKPSubmissionQueryBuilder {
 
-	/** @var int|array Category ID(s) */
-	protected $categoryIds = null;
-
 	/** @var int|array Series ID(s) */
 	protected $seriesIds = null;
 
 	/** @var bool Order featured items first */
 	protected $orderByFeaturedSeq = null;
-
-	/**
-	 * Set category filter
-	 *
-	 * @param int|array $categoryIds
-	 *
-	 * @return \APP\Services\QueryBuilders\SubmissionQueryBuilder
-	 */
-	public function filterByCategories($categoryIds) {
-		if (!is_null($categoryIds) && !is_array($categoryIds)) {
-			$categoryIds = array($categoryIds);
-		}
-		$this->categoryIds = $categoryIds;
-		return $this;
-	}
 
 	/**
 	 * Set series filter
@@ -123,11 +105,6 @@ class SubmissionQueryBuilder extends \PKP\Services\QueryBuilders\PKPSubmissionQu
 
 		if (!empty($this->seriesIds)) {
 			$q->whereIn('s.series_id', $this->seriesIds);
-		}
-
-		if (!empty($this->categoryIds)) {
-			$q->leftJoin('submission_categories as sc', 's.submission_id', '=', 'sc.submission_id')
-				->whereIn('sc.category_id', $this->categoryIds);
 		}
 
 		if (!empty($this->orderByFeaturedSeq)) {

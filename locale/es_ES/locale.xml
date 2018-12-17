@@ -245,7 +245,6 @@
 	<message key="catalog.manage.noMonographs">No existen monografías asignadas.</message>
 
 	<!-- Catalog -->
-	<message key="catalog.browseTitles">Explorar {$numTitles} títulos</message>
 	<message key="catalog.feature">Destacar</message>
 	<message key="catalog.featuredBooks">Libros destacados</message>
 	<message key="catalog.dateAdded">Añadido {$dateAdded}</message>
@@ -553,7 +552,6 @@
 	<message key="catalog.noTitles">No se ha publicado aún ningún título.</message>
 	<message key="catalog.noTitlesNew">No está disponible ninguna nueva publicación en este momento.</message>
 	<message key="catalog.noTitlesSearch">No se ha encontrado ningún resultado que coincida con su búsqueda "{$searchQuery}".</message>
-	<message key="catalog.noTitlesSection">No se ha publicado ningún título aún para esta sección.</message>
 	<message key="catalog.featured">Destacado</message>
 	<message key="catalog.foundTitleSearch">Se ha encontrado un resultado que coincide con su búsqueda "{$searchQuery}".</message>
 	<message key="catalog.foundTitlesSearch">Se han encontrado {$number} resultados que coinciden con su búsqueda "{$searchQuery}".</message>

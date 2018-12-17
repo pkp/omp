@@ -256,7 +256,6 @@
 	<message key="catalog.manage.noMonographs">Nenhuma monografia designada.</message>
 
 	<!-- Catalog -->
-	<message key="catalog.browseTitles">{$numTitles} títulos</message>
 	<message key="catalog.feature">Destacar</message>
 	<message key="catalog.featured">Destacado</message>
 	<message key="catalog.featuredBooks">Livros em destaque</message>
@@ -538,7 +537,6 @@ Suporte à biblioteca mbstring: <strong>{$supportsMBString}</strong>]]></message
 	<message key="catalog.noTitles">Sem publicações disponíveis.</message>
 	<message key="catalog.noTitlesNew">Sem novos títulos disponíveis neste momento.</message>
 	<message key="catalog.noTitlesSearch">Nenhuma publicação  que atenda a busca por "{$searchQuery}" foi encontrada.</message>
-	<message key="catalog.noTitlesSection">Sem publicações para esta seção no momento.</message>
 	<message key="catalog.foundTitleSearch">Uma publicação que atende a busca por "{$searchQuery}" foi encontrada.</message>
 	<message key="catalog.foundTitlesSearch">{$number} publicações foram encontradas que atendem a busca por "{$searchQuery}".</message>
 	<message key="catalog.sortBy">Ordem das publicações</message>

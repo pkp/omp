@@ -245,7 +245,6 @@
 	<message key="catalog.manage.noMonographs">Aucune monographie n'a été assignée.</message>
 
 	<!-- Catalog -->
-	<message key="catalog.browseTitles">Explorer {$numTitles} les titres</message>
 	<message key="catalog.feature">En vedette</message>
 	<message key="catalog.featuredBooks">Livres en vedette</message>
 	<message key="catalog.dateAdded">Ajouté le</message>

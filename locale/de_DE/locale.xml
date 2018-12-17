@@ -265,8 +265,6 @@
 	<message key="catalog.noTitles">Bisher wurden keine Titel veröffentlicht.</message>
 	<message key="catalog.noTitlesNew">Zur Zeit sind keine neuen Veröffentlichungen verfügbar.</message>
 	<message key="catalog.noTitlesSearch">Zu Ihrer Suche nach "{$searchQuery}" wurden keine passenden Titel gefunden.</message>
-	<message key="catalog.noTitlesSection">In dieser Rubrik wurden bisher keine Titel veröffentlicht.</message>
-	<message key="catalog.browseTitles">{$numTitles} Titel</message>
 	<message key="catalog.feature">Empfehlen</message>
 	<message key="catalog.featured">Empfohlen</message>
 	<message key="catalog.featuredBooks">Empfohlene Bücher</message>

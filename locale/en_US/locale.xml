@@ -270,8 +270,6 @@
 	<message key="catalog.noTitles">No titles have been published yet.</message>
 	<message key="catalog.noTitlesNew">No new releases are available at this time.</message>
 	<message key="catalog.noTitlesSearch">No titles were found which matched your search for "{$searchQuery}".</message>
-	<message key="catalog.noTitlesSection">No titles have been published yet for this section.</message>
-	<message key="catalog.browseTitles">{$numTitles} Titles</message>
 	<message key="catalog.feature">Feature</message>
 	<message key="catalog.featured">Featured</message>
 	<message key="catalog.featuredBooks">Featured Books</message>
