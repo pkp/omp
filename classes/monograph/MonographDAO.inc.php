@@ -225,14 +225,14 @@ class MonographDAO extends SubmissionDAO {
 	 * @param $submissionId int
 	 * @param $categoryId int
 	 */
-	function removeCategory($submissionId, $categoryId) {
+	public function removeCategory($submissionId, $categoryId) {
 		// If any new release or feature object is associated
 		// with this category delete them.
 		$newReleaseDao = DAORegistry::getDAO('NewReleaseDAO'); /* @var $newReleaseDao NewReleaseDAO */
 		$newReleaseDao->deleteNewRelease($submissionId, ASSOC_TYPE_CATEGORY, $categoryId);
 
 		$featureDao = DAORegistry::getDAO('FeatureDAO'); /* @var $featureDao FeatureDAO */
-		$featureDao->deleteFeature($monographId, ASSOC_TYPE_CATEGORY, $categoryId);
+		$featureDao->deleteFeature($submissionId, ASSOC_TYPE_CATEGORY, $categoryId);
 
 		return parent::removeCategory($submissionId, $categoryId);
 	}
@@ -291,7 +291,7 @@ class MonographDAO extends SubmissionDAO {
 	 * @param $sortBy string
 	 * @return string
 	 */
-	function getSortMapping($sortBy) {
+	public function getSortMapping($sortBy) {
 		switch ($sortBy) {
 			case ORDERBY_SERIES_POSITION:
 				return 's.series_position';
@@ -303,7 +303,7 @@ class MonographDAO extends SubmissionDAO {
 	 * Get possible sort options.
 	 * @return array
 	 */
-	function getSortSelectOptions() {
+	public function getSortSelectOptions() {
 		return array_merge(parent::getSortSelectOptions(), array(
 			$this->getSortOption(ORDERBY_SERIES_POSITION, SORT_DIRECTION_ASC) => __('catalog.sortBy.seriesPositionAsc'),
 			$this->getSortOption(ORDERBY_SERIES_POSITION, SORT_DIRECTION_DESC) => __('catalog.sortBy.seriesPositionDesc'),

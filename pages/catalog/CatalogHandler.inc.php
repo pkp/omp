@@ -124,6 +124,8 @@ class CatalogHandler extends PKPCatalogHandler {
 
 		// Provide a list of new releases to browse
 		$newReleases = array();
+
+		$page = isset($args[1]) ? (int) $args[1] : 1;
 		if ($page === 1) {
 			$newReleaseDao = DAORegistry::getDAO('NewReleaseDAO');
 			$newReleases = $newReleaseDao->getMonographsByAssoc(ASSOC_TYPE_CATEGORY, $category->getId());
