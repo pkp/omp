@@ -20,13 +20,6 @@ import('lib.pkp.classes.search.SubmissionSearch');
 
 class MonographSearch extends SubmissionSearch {
 	/**
-	 * Constructor
-	 */
-	function __construct() {
-		parent::__construct();
-	}
-
-	/**
 	 * See SubmissionSearch::getSparseArray()
 	 */
 	function getSparseArray($unorderedResults, $orderBy, $orderDir, $exclude) {

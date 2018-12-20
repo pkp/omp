@@ -19,13 +19,6 @@ import('lib.pkp.classes.search.SubmissionSearchDAO');
 
 class MonographSearchDAO extends SubmissionSearchDAO {
 	/**
-	 * Constructor
-	 */
-	function __construct() {
-		parent::__construct();
-	}
-
-	/**
 	 * Retrieve the top results for a phrases with the given
 	 * limit (default 500 results).
 	 * @param $keywordId int
