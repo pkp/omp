@@ -87,8 +87,6 @@ lib/pkp/lib/vendor/sebastian/diff/tests							\
 lib/pkp/lib/vendor/oyejorge/less.php/test						\
 lib/pkp/js/lib/pnotify/build-tools							\
 lib/pkp/lib/vendor/alex198710/pnotify/.git						\
-lib/pkp/lib/swordappv2/.git								\
-lib/pkp/lib/swordappv2/test								\
 node_modules										\
 .babelrc										\
 .editorconfig										\
