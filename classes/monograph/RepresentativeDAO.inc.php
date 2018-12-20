@@ -18,13 +18,6 @@ import('classes.monograph.Representative');
 
 class RepresentativeDAO extends DAO {
 	/**
-	 * Constructor
-	 */
-	function __construct() {
-		parent::__construct();
-	}
-
-	/**
 	 * Retrieve a representative entry by id.
 	 * @param $representativeId int
 	 * @param $monographId optional int

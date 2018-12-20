@@ -16,13 +16,6 @@
 
 class Representative extends DataObject {
 	/**
-	 * Constructor
-	 */
-	function __construct() {
-		parent::__construct();
-	}
-
-	/**
 	 * get monograph id.
 	 * @return int
 	 */

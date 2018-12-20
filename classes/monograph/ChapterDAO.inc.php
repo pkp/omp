@@ -20,13 +20,6 @@ import('classes.monograph.ChapterAuthor');
 
 class ChapterDAO extends DAO implements PKPPubIdPluginDAO {
 	/**
-	 * Constructor.
-	 */
-	function __construct() {
-		parent::__construct();
-	}
-
-	/**
 	 * Retrieve a chapter by ID.
 	 * @param $chapterId int
 	 * @param $assocType int optional

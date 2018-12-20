@@ -18,14 +18,6 @@
 import('classes.monograph.Author');
 
 class ChapterAuthor extends Author {
-
-	/**
-	 * Constructor.
-	 */
-	function __construct() {
-		parent::__construct();
-	}
-
 	//
 	// Get/set methods
 	//

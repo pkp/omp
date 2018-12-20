@@ -26,13 +26,6 @@ import('classes.monograph.Author');
 
 class Monograph extends Submission {
 	/**
-	 * Constructor.
-	 */
-	function __construct() {
-		parent::__construct();
-	}
-
-	/**
 	 * get press id
 	 * @return int
 	 */

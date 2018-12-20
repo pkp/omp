@@ -22,13 +22,6 @@ import('classes.monograph.ChapterAuthor');
 
 class ChapterAuthorDAO extends DAO {
 	/**
-	 * Constructor
-	 */
-	function __construct() {
-		parent::__construct();
-	}
-
-	/**
 	 * Get all authors for a given chapter.
 	 * @param $chapterId int
 	 * @param $monographId int

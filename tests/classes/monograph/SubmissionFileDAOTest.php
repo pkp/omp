@@ -15,7 +15,7 @@
  */
 
 import('lib.pkp.tests.DatabaseTestCase');
-import('classes.monograph.SubmissionFileDAO');
+import('lib.pkp.classes.submission.SubmissionFileDAO');
 import('lib.pkp.classes.submission.SubmissionArtworkFileDAODelegate');
 import('lib.pkp.classes.submission.SubmissionFile');
 import('lib.pkp.classes.submission.SubmissionArtworkFile');
@@ -91,7 +91,7 @@ class SubmissionFileDAOTest extends DatabaseTestCase {
 
 	/**
 	 * @covers SubmissionFileDAO
-	 * @covers PKPSubmissionFileDAO
+	 * @covers SubmissionFileDAO
 	 * @covers SubmissionFileDAODelegate
 	 * @covers SubmissionArtworkFileDAODelegate
 	 * @covers SubmissionFileDAODelegate
