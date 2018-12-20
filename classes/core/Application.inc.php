@@ -127,8 +127,6 @@ class Application extends PKPApplication {
 			'SpotlightDAO' => 'classes.spotlight.SpotlightDAO',
 			'SubjectDAO' => 'classes.codelist.SubjectDAO',
 			'SubmissionFileDAO' => 'classes.monograph.SubmissionFileDAO',
-			'UserDAO' => 'classes.user.UserDAO',
-			'UserSettingsDAO' => 'classes.user.UserSettingsDAO',
 		));
 	}
 

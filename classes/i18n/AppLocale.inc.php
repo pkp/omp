@@ -211,16 +211,16 @@ class AppLocale extends PKPLocale {
 	 * @return array
 	 */
 	static function makeComponentMap($locale) {
-		$componentMap = parent::makeComponentMap($locale);
 		$baseDir = "locale/$locale/";
-		$componentMap[LOCALE_COMPONENT_APP_COMMON] = $baseDir . 'locale.xml';
-		$componentMap[LOCALE_COMPONENT_APP_MANAGER] = $baseDir . 'manager.xml';
-		$componentMap[LOCALE_COMPONENT_APP_SUBMISSION] = $baseDir . 'submission.xml';
-		$componentMap[LOCALE_COMPONENT_APP_EDITOR] = $baseDir . 'editor.xml';
-		$componentMap[LOCALE_COMPONENT_APP_ADMIN] = $baseDir . 'admin.xml';
-		$componentMap[LOCALE_COMPONENT_APP_DEFAULT] = $baseDir . 'default.xml';
-		$componentMap[LOCALE_COMPONENT_APP_API] = $baseDir . 'api.xml';
-		return $componentMap;
+		return parent::makeComponentMap($locale) + array(
+			LOCALE_COMPONENT_APP_COMMON => $baseDir . 'locale.xml',
+			LOCALE_COMPONENT_APP_MANAGER => $baseDir . 'manager.xml',
+			LOCALE_COMPONENT_APP_SUBMISSION => $baseDir . 'submission.xml',
+			LOCALE_COMPONENT_APP_EDITOR => $baseDir . 'editor.xml',
+			LOCALE_COMPONENT_APP_ADMIN => $baseDir . 'admin.xml',
+			LOCALE_COMPONENT_APP_DEFAULT => $baseDir . 'default.xml',
+			LOCALE_COMPONENT_APP_API => $baseDir . 'api.xml',
+		);
 	}
 }
 

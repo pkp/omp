@@ -20,18 +20,9 @@ import('classes.log.SubmissionEmailLogEntry'); // Bring in log constants
 
 class MonographMailTemplate extends SubmissionMailTemplate {
 	/**
-	 * Constructor.
-	 * @param $submission Submission
-	 * @param $emailKey string optional
-	 * @param $locale string optional
-	 * @param $context object optional
-	 * @param $includeSignature boolean optional
-	 * @see MailTemplate::MailTemplate()
+	 * Assign parameters to the mail template.
+	 * @param $paramArray array
 	 */
-	function __construct($submission, $emailKey = null, $locale = null, $context = null, $includeSignature = true) {
-		parent::__construct($submission, $emailKey, $locale, $context, $includeSignature);
-	}
-
 	function assignParams($paramArray = array()) {
 		$submission = $this->submission;
 		$paramArray['seriesName'] = strip_tags($submission->getSeriesTitle());

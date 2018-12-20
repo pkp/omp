@@ -10,7 +10,7 @@
   * Upgrade descriptor file.
   -->
 
-<install version="3.1.1.0">
+<install version="3.2.0.0">
 	<code function="checkPhpVersion" />
 
 	<!-- there are some column and table name changes that need to occur first. -->
@@ -118,6 +118,11 @@
 		<code function="installEmailTemplate" key="EDITOR_RECOMMENDATION" locales="en_US" />
 		<code function="clearDataCache" />
 		<note file="docs/release-notes/README-3.1.1" />
+	</upgrade>
+
+	<upgrade minversion="0.9.9.0" maxversion="3.1.1.9">
+		<data file="dbscripts/xml/upgrade/3.2.0_update.xml" />
+		<note file="docs/release-notes/README-3.2.0" />
 	</upgrade>
 
 	<!-- Update plugin configuration - should be done as the final upgrade task -->

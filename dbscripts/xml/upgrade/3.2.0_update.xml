@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE data SYSTEM "../../../lib/pkp/dtd/xmlData.dtd">
+
+<!--
+  * 3.2.0_update.xml
+  *
+  * Copyright (c) 2014-2018 Simon Fraser University
+  * Copyright (c) 2003-2018 John Willinsky
+  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
+  *
+  * 3.2.0.0 general updates.
+  -->
+<data>
+	<sql><!-- Move User from app-specific to shared lib -->
+		<query>UPDATE filter_groups SET input_type='class::lib.pkp.classes.user.User[]' WHERE input_type='class::classes.user.User[]'</query>
+		<query>UPDATE filter_groups SET output_type='class::lib.pkp.classes.user.User[]' WHERE output_type='class::classes.user.User[]'</query>
+	</sql>
+</data>
+
