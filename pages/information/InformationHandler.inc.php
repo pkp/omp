@@ -58,7 +58,7 @@ class InformationHandler extends Handler {
 				$pageTitle = $pageCrumbTitle = 'navigation.competingInterestPolicy';
 				break;
 			case 'sampleCopyrightWording':
-				$content = __('manager.setup.authorCopyrightNotice.sample');
+				$content = __('manager.setup.copyrightNotice.sample');
 				$pageTitle = $pageCrumbTitle = 'manager.setup.copyrightNotice';
 				break;
 			default:

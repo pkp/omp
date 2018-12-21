@@ -47,7 +47,7 @@ Optional flags:
   <message key="plugins.importexport.users.import.confirmUsers" >تایید کنید که این کاربران را میخواهید منتقل کنید.</message>
   <message key="plugins.importexport.users.import.warning" >هشدار</message>
   <message key="plugins.importexport.users.import.encryptionMismatch" >رمزهای عبور کد گذاری شده به {$importHash} را نمیتواند منتقل کند. تنظیم این نصب او جی اس به نحوی بوده است که فقط از {$ompHash} استفاده میکند.</message>
-  <message key="plugins.importexport.users.unknownPress" >مسیر مجله داده شده &quot;{$pressPath}&quot; نامعلوم است.</message>
+  <message key="plugins.importexport.users.unknownPress" >مسیر مجله داده شده &quot;{$contextPath}&quot; نامعلوم است.</message>
   <message key="plugins.importexport.users.export.exportUsers" >استخراج کاربران</message>
   <message key="plugins.importexport.users.export.exportByRole" >استخراج بر حسب رل</message>
   <message key="plugins.importexport.users.export.exportAllUsers" >استخراج همه</message>

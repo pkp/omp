@@ -17,7 +17,7 @@
 	<message key="plugins.importexport.onix30.description">Exportar metadatos de monografías en formato ONIX 3.0</message>
 	<message key="plugins.importexport.onix30.cliUsage">Uso: {$scriptName} {$pluginName} [xmlFileName] [pressPath] [monographId]</message>
 	<message key="plugins.importexport.onix30.cliError">ERROR:</message>
-	<message key="plugins.importexport.onix30.error.unknownPress">La ruta editorial, "{$pressPath}," no existe.</message>
+	<message key="plugins.importexport.onix30.error.unknownPress">La ruta editorial, "{$contextPath}," no existe.</message>
 	<message key="plugins.importexport.onix30.export.error.couldNotWrite">No se pudo escribir en el fichero "{$fileName}".</message>
 	<message key="plugins.importexport.onix30.export.error.monographNotFound">Ninguna monografía coincide con el ID de monografías indicado "{$monographId}".</message>
 	<message key="plugins.importexport.onix30.noFormats">No se muestran las monografías sin formato de publicación.</message>

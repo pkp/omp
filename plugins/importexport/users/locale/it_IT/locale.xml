@@ -49,7 +49,7 @@ Examples:
 	<message key="plugins.importexport.users.import.usersWereImported">I seguenti utenti sono stati importati nel sistema con successo.</message>
 	<message key="plugins.importexport.users.import.errorsOccurred">Si sono presentati errori durante l'importazione</message>
 	<message key="plugins.importexport.users.import.confirmUsers">Conferma che questi sono gli utenti che vuoi importare nel sistema</message>
-	<message key="plugins.importexport.users.unknownPress">&#x00C8; stata specificata una path del press sconosciuta "{$pressPath}".</message>
+	<message key="plugins.importexport.users.unknownPress">&#x00C8; stata specificata una path del press sconosciuta "{$contextPath}".</message>
 
 	<message key="plugins.importexport.users.export.exportUsers">Esporta Utenti</message>
 	<message key="plugins.importexport.users.export.exportByRole">Esporta per ruolo</message>

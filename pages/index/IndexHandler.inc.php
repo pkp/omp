@@ -97,18 +97,13 @@ class IndexHandler extends Handler {
 		$templateMgr->assign('displayCreativeCommons', $press->getSetting('includeCreativeCommons'));
 
 		// Display announcements if enabled.
-		$enableAnnouncements = $press->getSetting('enableAnnouncements');
-		if ($enableAnnouncements) {
-			$enableAnnouncementsHomepage = $press->getSetting('enableAnnouncementsHomepage');
-			if ($enableAnnouncementsHomepage) {
-				$numAnnouncementsHomepage = $press->getSetting('numAnnouncementsHomepage');
-				$announcementDao = DAORegistry::getDAO('AnnouncementDAO');
-				$announcements =& $announcementDao->getAnnouncementsNotExpiredByAssocId(ASSOC_TYPE_PRESS, $press->getId());
-				$templateMgr->assign('announcements', $announcements->toArray());
-				if (isset($numAnnouncementsHomepage)) {
-					$templateMgr->assign('numAnnouncementsHomepage', $numAnnouncementsHomepage);
-				}
-			}
+		$enableAnnouncements = $press->getData('enableAnnouncements');
+		$numAnnouncementsHomepage = $press->getData('numAnnouncementsHomepage');
+		if ($enableAnnouncements && $numAnnouncementsHomepage) {
+			$announcementDao = DAORegistry::getDAO('AnnouncementDAO');
+			$announcements =& $announcementDao->getNumAnnouncementsNotExpiredByAssocId(ASSOC_TYPE_JOURNAL, $press->getId(), $numAnnouncementsHomepage);
+			$templateMgr->assign('announcements', $announcements->toArray());
+			$templateMgr->assign('numAnnouncementsHomepage', $numAnnouncementsHomepage);
 		}
 
 		// Display Featured Books
@@ -141,5 +136,3 @@ class IndexHandler extends Handler {
 		$templateMgr->display('frontend/pages/index.tpl');
 	}
 }
-
-

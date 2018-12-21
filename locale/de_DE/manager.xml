@@ -7,7 +7,7 @@
   * Copyright (c) 2014-2018 Simon Fraser University
   * Copyright (c) 2003-2018 John Willinsky
   * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
-  * locale information: https://pkp.sfu.ca/wiki/index.php?title=OMP:_German_(de_DE) 
+  * locale information: https://pkp.sfu.ca/wiki/index.php?title=OMP:_German_(de_DE)
   * Localization strings.
   -->
 
@@ -16,7 +16,7 @@
 	<!-- Languages -->
 	<message key="manager.language.confirmDefaultSettingsOverwrite">Damit ersetzen Sie alle bisher vorgenommenen Anpassungen für diese Regionaleinstellungen.</message>
 	<message key="manager.languages.noneAvailable">Leider sind keine weiteren Sprachen verfügbar. Kontaktieren Sie Ihre/n Website-Administrator/in, wenn Sie weitere Sprachen verwenden möchten.</message>
-	<message key="manager.languages.primaryLocaleInstructions">Diese Sprache wird die voreingestellte Sprache für die Verlagswebsite sein.</message>	
+	<message key="manager.languages.primaryLocaleInstructions">Diese Sprache wird die voreingestellte Sprache für die Verlagswebsite sein.</message>
 
 	<!-- Series management -->
 	<message key="manager.series.form.mustAllowPermission">Bitte stellen Sie sicher, dass für die Zuweisung der Reihe zu einem/einer Reihenherausgeber/in zumindest eine Checkbox aktiviert wurde.</message>
@@ -49,12 +49,11 @@
 	<message key="manager.settings">Einstellungen</message>
 	<message key="manager.settings.pressSettings">Verlagseinstellungen</message>
 	<message key="manager.settings.press">Verlag</message>
-	<message key="manager.settings.publisherInformation">Diese Felder werden zwar nicht grundsätzlich für die Verwendung von OMP, aber zur Erzeugung gültiger ONIX-Metadaten benötigt. Bitte fügen Sie sie ein, wenn Sie die ONIX-Funktionalität verwenden möchten.</message>
+	<message key="manager.settings.publisher.identity.description">Diese Felder werden zwar nicht grundsätzlich für die Verwendung von OMP, aber zur Erzeugung gültiger ONIX-Metadaten benötigt. Bitte fügen Sie sie ein, wenn Sie die ONIX-Funktionalität verwenden möchten.</message>
 	<message key="manager.settings.publisher">Verlagsname</message>
 	<message key="manager.settings.location">Standort</message>
 	<message key="manager.settings.publisherCodeType">Verlagscode-Typ</message>
 	<message key="manager.settings.publisherCode">Verlagscode</message>
-	<message key="manager.settings.publisherCodeType.tip">Falls Sie einen Verlagscode besitzen, so geben Sie ihn bitte unten ein. Der Code wird in die erzeugten Metadaten übernommen. Das Feld wird benötigt, wenn Sie ONIX-Metadaten für Ihre Publikation erzeugen möchten.</message>
 	<message key="manager.settings.distributionDescription">Einstellungen, die den Vertrieb betreffen (Benachrichtigung, Indizierung, Archivierung, Bezahlung, Lesewerkzeuge).</message>
 
 	<!-- Statistics management -->
@@ -69,7 +68,7 @@
 	<!-- Tools management -->
 	<message key="manager.tools">Werkzeuge</message>
 	<message key="manager.tools.importExport">Für den Datenimport/-export (Verlage, Monografien, Benutzer/innen) spezifische Werkzeuge</message>
-	<message key="manager.tools.statistics">Werkzeuge um Berichte zu erzeugen, die sich auf Nutzungsstatistiken beziehen (Anzeigen des Katalogs, Anzeigen von Buchabstracts, Buchdownloads)</message> 
+	<message key="manager.tools.statistics">Werkzeuge um Berichte zu erzeugen, die sich auf Nutzungsstatistiken beziehen (Anzeigen des Katalogs, Anzeigen von Buchabstracts, Buchdownloads)</message>
 
 	<!-- User management -->
 	<message key="manager.users">Benutzer/innenverwaltung</message>
@@ -119,7 +118,7 @@ Sie können dem/der Benutzer/in den Grund für die Deaktivierung des Kontos nenn
 	<message key="manager.setup.announcements">Bekanntmachungen</message>
 	<message key="manager.setup.announcementsDescription">Mithilfe von Bekanntmachungen können Sie Leser/innen über Neuigkeiten informieren und auf Veranstaltungen des Verlages hinweisen. Die Bekanntmachungen erscheinen auf der Seite 'Bekanntmachungen'.</message>
 	<message key="manager.setup.announcementsIntroduction">Zusätzliche Informationen</message>
-	<message key="manager.setup.announcementsIntroductionDescription">Fügen Sie weitere Informationen hinzu, die den Leser/innen auf der Seite 'Bekanntmachungen' angezeigt werden sollen.</message>
+	<message key="manager.setup.announcementsIntroduction.description">Fügen Sie weitere Informationen hinzu, die den Leser/innen auf der Seite 'Bekanntmachungen' angezeigt werden sollen.</message>
 	<message key="manager.setup.appearInAboutPress">(Erscheint in 'Über uns')</message>
 	<message key="manager.setup.copyediting">Lektor/innen</message>
 	<message key="manager.setup.copyeditInstructions">Lektoratsrichtlinien</message>
@@ -145,14 +144,11 @@ Sie können dem/der Benutzer/in den Grund für die Deaktivierung des Kontos nenn
 	<message key="manager.setup.doiPrefixDescription"><![CDATA[Das DOI (Digital Object Identifier)-Präfix wird von <a href="http://www.crossref.org" target="_blank">CrossRef</a> vergeben und hat das Format 10.xxxx (z.B. 10.1234).]]></message>
 	<message key="manager.setup.editorDecision">Entscheidung des Herausgebers/der Herausgeberin</message>
 	<message key="manager.setup.emailBounceAddress">E-Mail-Adresse für Unzustellbarkeitsnachrichten (Bounce Messages)</message>
-	<message key="manager.setup.emailBounceAddressDescription">Jede unzustellbare E-Mail führt zum Versand einer Fehlernachricht an diese E-Mail-Adresse.</message>
-	<message key="manager.setup.emailBounceAddressDisabled"><![CDATA[<strong>Hinweis:</strong> Um diese Option zu aktivieren, muss der Site-Administrator die <tt>allow_envelope_sender</tt> -Option in der OMP-Konfigurationsdatei aktivieren. Es kann sein, dass zur Unterstützung dieser Funktionalität (die nicht auf allen Servern möglich ist) eine zusätzliche Serverkonfiguration nötig ist. Weitere Informationen dazu finden Sie in der OMP-Dokumentation.]]></message>
+	<message key="manager.setup.emailBounceAddress.description">Jede unzustellbare E-Mail führt zum Versand einer Fehlernachricht an diese E-Mail-Adresse.</message>
 	<message key="manager.setup.emails">E-Mail-Identifizierung</message>
 	<message key="manager.setup.emailSignature">Signatur</message>
 	<message key="manager.setup.emailSignatureDescription">Die folgende Signatur wird am Ende der vorbereiteten E-Mails stehen, die vom System im Namen des Verlages versendet werden. Den Inhaltsteil (Textteil) dieser E-Mails können Sie unten bearbeiten.</message>
-	<message key="manager.setup.enableAnnouncements">Bekanntmachungen freischalten.</message>
-	<message key="manager.setup.enableAnnouncementsHomepage1">Anzeige</message>
-	<message key="manager.setup.enableAnnouncementsHomepage2">der neuesten Bekanntmachungen auf der Website</message>
+	<message key="manager.setup.enableAnnouncements.enable">Bekanntmachungen freischalten.</message>
 	<message key="manager.setup.enablePressInstructions">Diesen Verlag für das öffentliche Erscheinen auf der Website freischalten</message>
 	<message key="manager.setup.enablePublicMonographId">Benutzerdefinierte Kennungen werden verwendet, um veröffentlichte Titel zu identifizieren.</message>
 	<message key="manager.setup.enablePublicGalleyId">Benutzerdefinierte Kennungen werden verwendet, um Fahnen (z.B. HTML- oder PDF-Dateien) für veröffentlichte Bände zu identifizieren.</message>
@@ -165,11 +161,9 @@ Sie können dem/der Benutzer/in den Grund für die Deaktivierung des Kontos nenn
 	<message key="manager.setup.forAuthorsToIndexTheirWorkDescription"><![CDATA[OMP setzt das <a href="http://www.openarchives.org/" target="_blank">Open Archives Initiative</a> Protocol for Metadata Harvesting ein, welches ein zukünftiger Standard für die weltweite Abfrage und Übertragung von Metadaten ist. Die Autoren werden ein entsprechendes Template verwenden, um die Metadaten für ihr Manuskript zu liefern. Der/die Verlagsleiter/in sollte die Kategorien für die Indizierung auswählen und den Autoren Beispiele zeigen, um ihnen beim Indizieren ihrer Werke zu helfen; die Kategoriebegriffen werden dabei jeweils mit einem Semikolon voneinander getrennt (zum Beispiel: Begriff 1; Begriff 2). Die Einträge sollten als Beispiele kenntlich gemacht werden, in dem "z.B." oder "zum Beispiel" vorangestellt wird.]]></message>
 	<message key="manager.setup.form.contactEmailRequired">Die E-Mail-Adresse des Hauptansprechpartners wird benötigt.</message>
 	<message key="manager.setup.form.contactNameRequired">Der Name des zentralen Ansprechpartners wird benötigt.</message>
-	<message key="manager.setup.form.pressNameRequired">Der Verlagsname wird benötigt.</message>
 	<message key="manager.setup.form.numReviewersPerSubmission">Bitte geben Sie die Zahl der Gutachter pro Manuskript an.</message>
 	<message key="manager.setup.form.supportEmailRequired">Die E-Mail des Supports wird benötigt.</message>
 	<message key="manager.setup.form.supportNameRequired">Der Supportname wird benötigt.</message>
-	<message key="manager.setup.form.pressInitialsRequired">Die Angabe der Verlagsinitialen ist erforderlich.</message>
 	<message key="manager.setup.generalInformation">Allgemeine Informationen</message>
 	<message key="manager.setup.gettingDownTheDetails">Schritt 1: Sich mit dem System vetraut machen</message>
 	<message key="manager.setup.guidelines">Leitfaden</message>
@@ -188,7 +182,6 @@ Sie können dem/der Benutzer/in den Grund für die Deaktivierung des Kontos nenn
 	<message key="manager.setup.layoutTemplates.file">Template-Datei</message>
 	<message key="manager.setup.layoutTemplates.title">Titel</message>
 	<message key="manager.setup.lists">Listen</message>
-	<message key="manager.setup.listsDescription">Geben Sie an, wie viele Einträge einer Liste (zum Beispiel Manuskripte, Benutzer, Funktionen etc.) maximal auf einer Seite erscheinen und wie viele Seitenlinks pro Seite angezeigt werden sollen.</message>
 	<message key="manager.setup.look"><![CDATA[Aussehen]]></message>
 	<message key="manager.setup.look.description">Homepage-Header, Inhalt, Verlags-Header, Footer, Navigationsleiste und Stylesheet.</message>
 	<message key="manager.setup.settings">Einstellungen</message>
@@ -216,7 +209,7 @@ Sie können dem/der Benutzer/in den Grund für die Deaktivierung des Kontos nenn
 	<message key="manager.setup.homepageContentDescription">Die Verlagshomepage besteht standardmäßig aus Links zur Navigation. Zusätzlicher Inhalt kann zur Homepage hinzugefügt werden, indem eine oder mehrere der folgenden Optionen verwendet werden. Sie erscheinen auf der Homepage in der Reihenfolge, wie sie auf dieser Seite aufgeführt sind.</message>
 	<message key="manager.setup.pressHomepageContent">Inhalt</message>
 	<message key="manager.setup.pressHomepageContentDescription">Die Verlagshomepage besteht standardmäßig aus Links zur Navigation. Zusätzlicher Inhalt kann zur Homepage hinzugefügt werden, indem eine oder mehrere der folgenden Optionen verwendet werden. Sie erscheinen auf der Homepage in der Reihenfolge, wie sie auf dieser Seite aufgeführt sind.</message>
-	<message key="manager.setup.pressInitials">Verlagsinitialen</message>
+	<message key="manager.setup.contextInitials">Verlagsinitialen</message>
 	<message key="manager.setup.layout">Verlagslayout</message>
 	<message key="manager.setup.pageHeader">Header der Website</message>
 	<message key="manager.setup.pageHeaderDescription"></message>
@@ -225,7 +218,7 @@ Sie können dem/der Benutzer/in den Grund für die Deaktivierung des Kontos nenn
 	<message key="manager.setup.pressSetupUpdated">Das Setup wurde aktualisiert.</message>
 	<message key="manager.setup.styleSheetInvalid">Ungültiges Stylesheetformat. Akzeptiert wird das Format css.</message>
 	<message key="manager.setup.pressTheme">Verlags-Theme</message>
-	<message key="manager.setup.contextName">Verlagsname</message>
+	<message key="manager.setup.contextTitle">Verlagsname</message>
 	<message key="manager.setup.printIssn">ISSN der Printausgabe</message>
 	<message key="manager.setup.proofingInstructions">Korrekturrichtlinien</message>
 	<message key="manager.setup.proofingInstructionsDescription">Die Korrekturrichtlinien werden Korrektor/innen, Autor/innen, Layouter/innen und Bereichsherausgeber/innen im Stadium 'Redaktionelle Bearbeitung' zugänglich gemacht. Unten finden Sie Standardrichtlinien in HTML, die von dem/der Verlagsleiter/in bearbeitet oder ersetzt werden können (in HTML oder im Klartext).</message>
@@ -247,10 +240,8 @@ Sie können dem/der Benutzer/in den Grund für die Deaktivierung des Kontos nenn
 	<message key="manager.setup.reviewOptions.automatedRemindersDisabled"><![CDATA[<strong>Bitte beachten Sie:</strong> Um diese Optionen zu aktivieren, muss der Administrator/die Administratorin die <tt>scheduled_tasks</tt>-Option in der OMP-Konfigurationdatei freigeben. Eventuell ist eine weitere Konfiguration des Servers nötig, um diese Funktionalität zu unterstützen (dies ist unter Umständen nicht auf allen Servern möglich). Nähere Informationen dazu finden Sie in der OMP-Dokumentation.]]></message>
 	<message key="manager.setup.reviewOptions.blindReview">Blind Review</message>
 	<message key="manager.setup.reviewOptions.onQuality">Nach Abschluss der Begutachtung bewerten die Herausgeber/innen die Gutachter/innen auf einer Fünf-Punkte-Qualitätsskala bewerten.</message>
-	<message key="manager.setup.reviewOptions.restrictReviewerFileAccess">Die Gutachter/innen haben erst dann Zugang zu den Manuskriptdateien, wenn sie der Begutachtung zugestimmt haben.</message>
+	<message key="manager.setup.reviewOptions.restrictReviewerFileAccess.description">Die Gutachter/innen haben erst dann Zugang zu den Manuskriptdateien, wenn sie der Begutachtung zugestimmt haben.</message>
 	<message key="manager.setup.reviewOptions.reviewerAccess">Zugang für Gutachter/innen</message>
-	<message key="manager.setup.reviewOptions.reviewerAccessKeysEnabled">Aktiviere den Ein-Klick-Gutachterzugang.</message>
-	<message key="manager.setup.reviewOptions.reviewerAccessKeysEnabled.description"><![CDATA[<strong>Bitte beachten Sie:</strong> Die E-Mail-Einladung enthält eine spezielle URL, welche die Gutachter/innen zur Gutachtenseite für das eingereichte Manuskript führt (Zugang zu anderen Seiten nur mit Login). Aus Sicherheitsgründen können Herausgeber/innen vor dem Versenden der Einladungen zur Begutachtung weder E-Mail-Adressen ändern noch CCs oder BCCs hinzufügen.]]></message>
 	<message key="manager.setup.reviewOptions.reviewerRatings">Gutachterbewertungen</message>
 	<message key="manager.setup.reviewOptions.reviewerReminders">Gutachtererinnerungen</message>
 	<message key="manager.setup.reviewOptions.showEnsuringLink">Provide links about ensuring a blind review on pages where authors and reviewers upload files.</message>
@@ -261,7 +252,7 @@ Sie können dem/der Benutzer/in den Grund für die Deaktivierung des Kontos nenn
 	<message key="manager.setup.reviewProcessStandard">Standard-Begutachtungsprozess</message>
 	<message key="manager.setup.reviewProcessStandardDescription">Die Herausgeber/innen schicken den ausgewählten Gutachter/innen Titel und Abstract des eingereichten Manuskripts und bitten sie darum, sich auf der Verlagswebsite einzuloggen, um ein Gutachten abzugeben. Die Gutachter/innen gehen auf die Website, um der Teilnahme am Begutachtungsverfahren zuzustimmen, Manuskripte herunterzuladen, ihre Anmerkungen einzureichen und um eine Empfehlung auszuwählen.</message>
 	<message key="manager.setup.searchEngineIndexing">Suchmaschinen-Indizierung</message>
-	<message key="manager.setup.searchEngineIndexingDescription">Um den Benutzer/innen von Suchmaschinen das Auffinden Ihres Verlages zu erleichtern, beschreiben Sie bitte bitte kurz den Verlag und geben Sie, durch Semikolon getrennt, wichtige Schlüsselwörter (Keywords) an.</message>
+	<message key="manager.setup.searchEngineIndexing.description">Um den Benutzer/innen von Suchmaschinen das Auffinden Ihres Verlages zu erleichtern, beschreiben Sie bitte bitte kurz den Verlag und geben Sie, durch Semikolon getrennt, wichtige Schlüsselwörter (Keywords) an.</message>
 	<message key="manager.setup.sectionsAndSectionEditors">Sektionen und Sektionsherausgeber/innen</message>
 	<message key="manager.setup.sectionsDefaultSectionDescription">(Wurden keine Sektionen hinzugefügt, werden die Titel standardmäßig der Sektion Monografien zugeordnet.)</message>
 	<message key="manager.setup.sectionsDescription"><![CDATA[Um Sektionen anzulegen oder zu verändern (z.B. Monografien, Buchrezensionen), gehen Sie bitte zu 'Sektionsmanagement'. <br /><br />Autor/innen, die eine Publikation beim Verlag einreichen, werden es der entsprechenden Sektion zuordnen.]]></message>
@@ -270,7 +261,6 @@ Sie können dem/der Benutzer/in den Grund für die Deaktivierung des Kontos nenn
 	<message key="manager.setup.selectEditorDescription">Leitende/r Herausgeber/in zur Betreuung des gesamten Publikationsprozesses.</message>
 	<message key="manager.setup.selectSectionDescription">Verlagssektion, für die der Titel vorgesehen ist.</message>
 	<message key="manager.setup.showGalleyLinksDescription">Zeige immer Links zu den Druckfahnen und weise auf Zugangsbeschränkungen hin.</message>
-	<message key="manager.setup.siteAccess">Zusätzliche Beschränken zur Website und deren Inhalten</message>
 	<message key="manager.setup.stepsToPressSite">Fünf Schritte zur Verlagswebsite</message>
 	<message key="manager.setup.subjectExamples">(z.B. Photosynthese; Schwarze Löcher; Vier-Farben-Satz; Bayes'scher Wahrscheinlichkeitsbegriff)</message>
 	<message key="manager.setup.subjectKeywordTopic">Schlüsselwörter</message>
@@ -280,13 +270,6 @@ Sie können dem/der Benutzer/in den Grund für die Deaktivierung des Kontos nenn
 	<message key="maganer.setup.submissionChecklistItemRequired">Dieser Punkt der Checkliste muss bestätigt sein.</message>
 	<message key="manager.setup.workflow">Workflow</message>
 	<message key="manager.setup.submissions.description">Leitfaden für Autoren, Copyright und Indizierung (einschließlich Registrierung).</message>
-	<message key="manager.setup.coverThumbnails">Titelbild-Miniaturansichten</message>
-	<message key="manager.setup.coverThumbnailsDescription">Definieren Sie die maximale Breite und Höhe der Titelbild-Miniaturansichten. Die Bilder werden verkleinert, wenn sie größer als diese Werte sind, aber nicht vergrößert, wenn sie kleiner sind. Diese Bilder werden nie gedehnt, um das angegebene Seitenverhältnis zu erreichen.</message>
-	<message key="manager.setup.coverThumbnailsMaxHeight">Maximale Höhe</message>
-	<message key="manager.setup.coverThumbnailsMaxHeightRequired">Die Angabe einer maximalen Höhe für die Titelbild-Miniaturansichten ist erforderlich.</message>
-	<message key="manager.setup.coverThumbnailsMaxWidth">Maximale Breite</message>
-	<message key="manager.setup.coverThumbnailsMaxWidthRequired">Die Angabe einer maximalen Breite für die Titelbild-Miniaturansichten ist erforderlich.</message>
-	<message key="manager.setup.coverThumbnailsResize">Alle existierenden Titelbild-Minitaturansichten skalieren.</message>
 	<message key="manager.setup.typeExamples">(z.B. historische Untersuchung; quasi-experimentelle Studie; literarische Analyse; Umfrage/Interview)</message>
 	<message key="manager.setup.typeMethodApproach">Typ (Methode/Ansatz)</message>
 	<message key="manager.setup.typeProvideExamples">Nennen Sie Beispiele für relevante Forschungsarten, -methoden und -ansätze auf diesem Feld</message>
@@ -318,7 +301,6 @@ Sie können dem/der Benutzer/in den Grund für die Deaktivierung des Kontos nenn
 	<message key="manager.setup.submitToCategories">Einreichung in einer Kategorie zulassen</message>
 	<message key="manager.setup.submitToSeries">Einreichung in einer Reihe zulassen</message>
 	<message key="manager.setup.issnDescription"><![CDATA[Die ISSN (International Standard Serial Number) ist eine aus acht Ziffern bestehende Nummer, die periodisch erscheinende Veröffentlichungen - dazu zählen auch elektronische Zeitschriften (E-Journals) - als solche identifiziert. Sie wird von einem weltweit arbeitenden Netzwerk von Nationalzentren verwaltet. Die Koordinierung erfolgt über das ISSN International Centre mit Sitz in Paris, unterstützt von der Unesco und der französischen Regierung. ISSN können jederzeit über <a href="http://www.issn.org" target="_blank">ISSN web site</a> bezogen werden.]]></message>
-	<message key="manager.setup.cataloguingMetadata">Katalogmetadaten</message>
 	<message key="manager.setup.currentFormats">Aktuelle Formate</message>
 	<message key="manager.setup.categoriesAndSeries">Kategorien und Reihen</message>
 	<message key="manager.setup.categories.description">Sie können eine Liste von Kategorien anlegen, um Ihre Publikationen besser organisieren zu können. Kategorien sind Gruppierungen von Büchern zu bestimmten Sachbegriffen, zum Beispiel zu Wirtschaft; Literatur; Poesie und so weiter. Kategorien können 'Eltern'-Kategorien untergeordnet werden: Zum Beispiel kann die Elternkategorie 'Wirtschaft" die beiden Individuen 'Mikroökonomie' und 'Makroökonomie' mit einschließen. Besucher der Website können nach Kategorien suchen und in den Kategorien browsen.</message>
@@ -336,7 +318,7 @@ Sie können dem/der Benutzer/in den Grund für die Deaktivierung des Kontos nenn
 	<message key="manager.setup.files">Dateien</message>
 	<message key="manager.setup.productionTemplates">Vorlagen für die Herstellung</message>
 	<message key="manager.files.note">Hinweis: Der Dateimanager ist ein erweitertes Feature, das es erlaubt, dem Verlag zugeordnete Dateien und Verzeichnisse direkt anzuschauen und zu ändern.</message>
-	<message key="manager.setup.authorCopyrightNotice.sample"><![CDATA[<h3>Vorgeschlagener Text für den Creative Commons Copyright-Vermerk </h3>
+	<message key="manager.setup.copyrightNotice.sample"><![CDATA[<h3>Vorgeschlagener Text für den Creative Commons Copyright-Vermerk </h3>
 <h4>Vorgeschlagene Leitlinie für Verlage, die Open Access anbieten</h4>
 Autor/innen, die in diesem Verlag veröffentlichen, stimmen den folgenden Bedingungen zu:
 <ol type="a">

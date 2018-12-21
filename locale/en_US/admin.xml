@@ -38,14 +38,13 @@
 	<message key="admin.presses.pressSettings">Press Settings</message>
 	<message key="admin.presses.noneCreated">No presses have been created.</message>
 	<message key="admin.contexts.create">Create Press</message>
-	<message key="admin.presses.createInstructions">You will automatically be enrolled as the manager of this press. After creating a new press, you will be redirected to its settings wizard, to complete the initial press setup.</message>
-	<message key="admin.presses.urlWillBe">The press URL will be {$sampleUrl}</message>
 	<message key="admin.contexts.form.titleRequired">A title is required.</message>
 	<message key="admin.contexts.form.pathRequired">A path is required.</message>
-	<message key="admin.contexts.form.pathAlphaNumeric">The path can contain only alphanumeric characters, underscores, and hyphens, and must begin and end with an alphanumeric character.</message>
+	<message key="admin.contexts.form.pathAlphaNumeric">The path can only include letters, numbers and the characters _ and -. It must begin and end with a letter or number.</message>
 	<message key="admin.contexts.form.pathExists">The selected path is already in use by another press.</message>
-	<message key="admin.presses.enablePressInstructions">Enable this press to appear publicly on the site</message>
-	<message key="admin.presses.pressDescription">Press description</message>
+	<message key="admin.contexts.form.create.success">{$name} was created successfully.</message>
+	<message key="admin.contexts.form.edit.success">{$name} was edited successfully.</message>
+	<message key="admin.contexts.contextDescription">Press description</message>
 	<message key="admin.presses.addPress">Add Press</message>
 
 

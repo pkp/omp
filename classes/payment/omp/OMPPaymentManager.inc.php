@@ -27,7 +27,7 @@ class OMPPaymentManager extends PaymentManager {
 	 * @return boolean true iff configured
 	 */
 	function isConfigured() {
-		return parent::isConfigured() && $this->_context && $this->_context->getSetting('currency');
+		return parent::isConfigured() && $this->_context && $this->_context->getData('currency');
 	}
 
 	/**
@@ -41,7 +41,7 @@ class OMPPaymentManager extends PaymentManager {
 	 * @return QueuedPayment
 	 */
 	function createQueuedPayment($request, $type, $userId, $assocId, $amount, $currencyCode = null) {
-		$payment = new QueuedPayment($amount, $this->_context->getSetting('currency'), $userId, $assocId);
+		$payment = new QueuedPayment($amount, $this->_context->getData('currency'), $userId, $assocId);
 		$payment->setContextId($this->_context->getId());
 		$payment->setType($type);
 
@@ -74,7 +74,7 @@ class OMPPaymentManager extends PaymentManager {
 	 * @return PaymentPlugin
 	 */
 	function getPaymentPlugin() {
-		$paymentMethodPluginName = $this->_context->getSetting('paymentPluginName');
+		$paymentMethodPluginName = $this->_context->getData('paymentPluginName');
 		$paymentMethodPlugin = null;
 		if (!empty($paymentMethodPluginName)) {
 			$plugins = PluginRegistry::loadCategory('paymethod');

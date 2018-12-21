@@ -112,7 +112,7 @@ class CatalogEntryCatalogMetadataForm extends Form {
 				'notice' => __('submission.workflowType.editedVolume.selectEditors.description'),
 			),
 		);
-		$templateMgr->assign('volumeEditorsListData', json_encode($volumeEditorsListData));
+		$templateMgr->assign('volumeEditorsListData', $volumeEditorsListData);
 
 		$publishedMonograph = $this->getPublishedMonograph();
 		if ($publishedMonograph) {
@@ -350,8 +350,8 @@ class CatalogEntryCatalogMetadataForm extends Form {
 			$publishedMonographDao->insertObject($publishedMonograph);
 		}
 
-		import('classes.core.ServicesContainer');
-		$submissionService = ServicesContainer::instance()->get('submission');
+		import('classes.core.Services');
+		$submissionService = Services::get('submission');
 		if ($this->getData('confirm')) {
 			$submissionService->addToCatalog($monograph);
 		} elseif ($isExistingEntry) {
@@ -400,5 +400,3 @@ class CatalogEntryCatalogMetadataForm extends Form {
 		return array('filename' => $surrogateFilename, 'width' => $surrogateWidth, 'height' => $surrogateHeight);
 	}
 }
-
-

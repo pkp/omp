@@ -54,8 +54,8 @@ class SelectMonographHandler extends Handler {
 	 */
 	function fetch($args, $request) {
 		$templateMgr = TemplateManager::getManager($request);
-		import('lib.pkp.controllers.list.submissions.SelectSubmissionsListHandler');
-		$selectNewEntryHandler = new SelectSubmissionsListHandler(array(
+		import('lib.pkp.classes.components.listPanels.submissions.SelectSubmissionsListPanel');
+		$selectNewEntryListPanel = new SelectSubmissionsListPanel(array(
 			'title' => 'submission.catalogEntry.select',
 			'count' => 20,
 			'inputName' => 'selectedSubmissions[]',
@@ -63,7 +63,7 @@ class SelectMonographHandler extends Handler {
 				'status' => STATUS_QUEUED,
 			),
 		));
-		$templateMgr->assign('selectNewEntryData', json_encode($selectNewEntryHandler->getConfig()));
+		$templateMgr->assign('selectNewEntryData', $selectNewEntryListPanel->getConfig());
 		return new JSONMessage(true, $templateMgr->fetch('controllers/modals/submissionMetadata/selectMonograph.tpl'));
 	}
 
@@ -86,8 +86,8 @@ class SelectMonographHandler extends Handler {
 			return new JSONMessage(false, __('submission.catalogEntry.selectionMissing'));
 		}
 
-		import('classes.core.ServicesContainer');
-		$submissionService = ServicesContainer::instance()->get('submission');
+		import('classes.core.Services');
+		$submissionService = Services::get('submission');
 		$submissionDao = Application::getSubmissionDAO();
 		foreach ($selectedSubmissions as $submissionId) {
 			$submissionService->addToCatalog($submissionDao->getById($submissionId));
@@ -100,5 +100,3 @@ class SelectMonographHandler extends Handler {
 		return $json;
 	}
 }
-
-

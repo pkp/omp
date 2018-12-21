@@ -55,9 +55,9 @@ class SubmissionMetadataViewForm extends PKPSubmissionMetadataViewForm {
 			$selectedIds[] = $category->getId();
 		}
 
-		// Get SelectCategoryListHandler data
-		import('controllers.list.SelectCategoryListHandler');
-		$selectCategoryList = new SelectCategoryListHandler(array(
+		// Get SelectCategoryListPanel data
+		import('classes.components.listPanels.SelectCategoryListPanel');
+		$selectCategoryList = new SelectCategoryListPanel(array(
 			'title' => 'submission.submit.placement.categories',
 			'inputName' => 'categories[]',
 			'selected' => $selectedIds,
@@ -70,7 +70,7 @@ class SubmissionMetadataViewForm extends PKPSubmissionMetadataViewForm {
 
 		$templateMgr->assign(array(
 			'hasCategories' => !empty($selectCategoryListData['items']),
-			'selectCategoryListData' => json_encode($selectCategoryListData),
+			'selectCategoryListData' => $selectCategoryListData,
 			'assignedCategories' => $assignedCategories,
 		));
 
@@ -119,5 +119,3 @@ class SubmissionMetadataViewForm extends PKPSubmissionMetadataViewForm {
 		}
 	}
 }
-
-

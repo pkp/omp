@@ -27,7 +27,7 @@
 	<message key="plugins.importexport.users.import.confirmUsers">Potrdite, da ste v sistem želeli uvoziti navedene uporabnike</message>
 	<message key="plugins.importexport.users.import.warning">Opozorilo</message>
 	<message key="plugins.importexport.users.import.encryptionMismatch">Ni mogoče uporabiti gesel z {$importHash}; OMP je konfiguriran za uporabo {$ompHash}. Če želite nadaljevati, ponastavite gesla uvoženih uporabnikov.</message>
-	<message key="plugins.importexport.users.unknownPress">Določena je bila neznana pot do publikacije "{$pressPath}".</message>
+	<message key="plugins.importexport.users.unknownPress">Določena je bila neznana pot do publikacije "{$contextPath}".</message>
 
 	<message key="plugins.importexport.users.export.exportUsers">Izvozi uporabnike</message>
 	<message key="plugins.importexport.users.export.exportByRole">Izvozi glede na vlogo</message>

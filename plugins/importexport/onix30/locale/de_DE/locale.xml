@@ -17,7 +17,7 @@
 	<message key="plugins.importexport.onix30.description">Exportiere die Monografie-Metadaten in das ONIX 3.0-Format.</message>
 	<message key="plugins.importexport.onix30.cliUsage"><![CDATA[Nutzung: {$scriptName} {$pluginName} [xmlFileName] [pressPath] [monographId] ]]></message>
 	<message key="plugins.importexport.onix30.cliError">FEHLER:</message>
-	<message key="plugins.importexport.onix30.error.unknownPress">Der angegebene Verlags-Pfadname, "{$pressPath}" existiert nicht.</message>
+	<message key="plugins.importexport.onix30.error.unknownPress">Der angegebene Verlags-Pfadname, "{$contextPath}" existiert nicht.</message>
 	<message key="plugins.importexport.onix30.export.error.couldNotWrite">Die Datei "{$fileName}" konnte nicht geschrieben werden.</message>
 	<message key="plugins.importexport.onix30.export.error.monographNotFound">Es gibt keine Monografie mit der Monografie-ID "{$monographId}".</message>
 	<message key="plugins.importexport.onix30.noFormats">Monografien, für die keine Publikationsformate angelegt wurden, können nicht angezeigt werden.</message>

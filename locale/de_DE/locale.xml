@@ -352,7 +352,6 @@
 
 	<!-- Common Press Terms -->
 	<message key="press.presses">Verlage</message>
-	<message key="press.path">Pfad</message>
 	<message key="context.context">Verlag</message>
 	<message key="context.current">Aktueller Verlag:</message>
 	<message key="context.select">Wählen Sie einen Verlag ...</message>

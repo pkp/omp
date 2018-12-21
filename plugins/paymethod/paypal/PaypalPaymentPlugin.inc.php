@@ -45,17 +45,83 @@ class PaypalPaymentPlugin extends PaymethodPlugin {
 	function register($category, $path, $mainContextId = null) {
 		if (parent::register($category, $path, $mainContextId)) {
 			$this->addLocaleData();
+			\HookRegistry::register('Form::config::before', array($this, 'addSettings'));
 			return true;
 		}
 		return false;
 	}
 
 	/**
-	 * @copydoc PaymethodPlugin::getSettingsForm()
+	 * Add settings to the payments form
+	 *
+	 * @param $hookName string
+	 * @param $form FormComponent
 	 */
-	function getSettingsForm($context) {
-		$this->import('PaypalPaymentSettingsForm');
-		return new PaypalPaymentSettingsForm($this, $context->getId());
+	public function addSettings($hookName, $form) {
+		if ($form->id !== FORM_PAYMENT_SETTINGS) {
+			return;
+		}
+
+		$context = Application::getRequest()->getContext();
+		if (!$context) {
+			return;
+		}
+
+		$form->addGroup([
+				'id' => 'paypalpayment',
+				'label' => __('plugins.paymethod.paypal.displayName'),
+				'showWhen' => 'paymentsEnabled',
+			])
+			->addField(new \PKP\components\forms\FieldOptions('testMode', [
+				'label' => __('plugins.paymethod.paypal.settings.testMode'),
+				'options' => [
+					['value' => true, 'label' => __('common.enable')]
+				],
+				'value' => (bool) $this->getSetting($context->getId(), 'testMode'),
+				'groupId' => 'paypalpayment',
+			]))
+			->addField(new \PKP\components\forms\FieldText('accountName', [
+				'label' => __('plugins.paymethod.paypal.settings.accountName'),
+				'value' => $this->getSetting($context->getId(), 'accountName'),
+				'groupId' => 'paypalpayment',
+			]))
+			->addField(new \PKP\components\forms\FieldText('clientId', [
+				'label' => __('plugins.paymethod.paypal.settings.clientId'),
+				'value' => $this->getSetting($context->getId(), 'clientId'),
+				'groupId' => 'paypalpayment',
+			]))
+			->addField(new \PKP\components\forms\FieldText('secret', [
+				'label' => __('plugins.paymethod.paypal.settings.secret'),
+				'value' => $this->getSetting($context->getId(), 'secret'),
+				'groupId' => 'paypalpayment',
+			]));
+
+		return;
+	}
+
+	/**
+	 * @copydoc PaymethodPlugin::saveSettings()
+	 */
+	public function saveSettings($params, $slimRequest, $request) {
+		$allParams = $slimRequest->getParsedBody();
+		$saveParams = [];
+		foreach ($allParams as $param => $val) {
+			switch ($param) {
+				case 'accountName':
+				case 'clientId':
+				case 'secret':
+					$saveParams[$param] = (string) $val;
+					break;
+				case 'testMode':
+					$saveParams[$param] = $val === 'true';
+					break;
+			}
+		}
+		$contextId = $request->getContext()->getId();
+		foreach ($saveParams as $param => $val) {
+			$this->updateSetting($contextId, $param, $val);
+		}
+		return [];
 	}
 
 	/**
@@ -79,18 +145,18 @@ class PaypalPaymentPlugin extends PaymethodPlugin {
 	 * Handle a handshake with the PayPal service
 	 */
 	function handle($args, $request) {
-		$press = $request->getPress();
+		$context = $request->getContext();
 		$queuedPaymentDao = DAORegistry::getDAO('QueuedPaymentDAO');
-		import('classes.payment.omp.OMPPaymentManager'); // Class definition required for unserializing
+		import('classes.payment.ojs.OJSPaymentManager'); // Class definition required for unserializing
 		try {
 			$queuedPayment = $queuedPaymentDao->getById($queuedPaymentId = $request->getUserVar('queuedPaymentId'));
 			if (!$queuedPayment) throw new \Exception("Invalid queued payment ID $queuedPaymentId!");
 
 			$gateway = Omnipay\Omnipay::create('PayPal_Rest');
 			$gateway->initialize(array(
-				'clientId' => $this->getSetting($press->getId(), 'clientId'),
-				'secret' => $this->getSetting($press->getId(), 'secret'),
-				'testMode' => $this->getSetting($press->getId(), 'testMode'),
+				'clientId' => $this->getSetting($context->getId(), 'clientId'),
+				'secret' => $this->getSetting($context->getId(), 'secret'),
+				'testMode' => $this->getSetting($context->getId(), 'testMode'),
 				));
 			$transaction = $gateway->completePurchase(array(
 				'payer_id' => $request->getUserVar('PayerID'),
@@ -105,7 +171,7 @@ class PaypalPaymentPlugin extends PaymethodPlugin {
 			$transaction = $data['transactions'][0];
 			if ((float) $transaction['amount']['total'] != (float) $queuedPayment->getAmount() || $transaction['amount']['currency'] != $queuedPayment->getCurrencyCode()) throw new \Exception('Amounts (' . $transaction['amount']['total'] . ' ' . $transaction['amount']['currency'] . ' vs ' . $queuedPayment->getAmount() . ' ' . $queuedPayment->getCurrencyCode() . ') don\'t match!');
 
-			$paymentManager = Application::getPaymentManager($press);
+			$paymentManager = Application::getPaymentManager($context);
 			$paymentManager->fulfillQueuedPayment($request, $queuedPayment, $this->getName());
 			$request->redirectUrl($queuedPayment->getRequestUrl());
 		} catch (\Exception $e) {
@@ -128,5 +194,12 @@ class PaypalPaymentPlugin extends PaymethodPlugin {
 	 */
 	function getInstallEmailTemplateDataFile() {
 		return ($this->getPluginPath() . '/locale/{$installedLocale}/emailTemplates.xml');
+	}
+
+	/**
+	 * @copydoc Plugin::getTemplatePath()
+	 */
+	function getTemplatePath($inCore = false) {
+		return parent::getTemplatePath($inCore) . 'templates/';
 	}
 }

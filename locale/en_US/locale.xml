@@ -352,7 +352,6 @@
 
 	<!-- Common Press Terms -->
 	<message key="press.presses">Presses</message>
-	<message key="press.path">Path</message>
 	<message key="context.context">Press</message>
 	<message key="context.current">Current Press:</message>
 	<message key="context.select">Switch to another press:</message>

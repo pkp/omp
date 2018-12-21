@@ -46,7 +46,7 @@ Ejemplos:
 	<message key="plugins.importexport.users.import.usersWereImported">Los siguientes usuarios se han importado correctamente en el sistema</message>
 	<message key="plugins.importexport.users.import.errorsOccurred">Se han producido errores durante la importación</message>
 	<message key="plugins.importexport.users.import.confirmUsers">Confirme que estos son los usuarios que desea importar en el sistema</message>
-	<message key="plugins.importexport.users.unknownPress">Se ha especificado una ruta desconocida "{$pressPath}".</message>
+	<message key="plugins.importexport.users.unknownPress">Se ha especificado una ruta desconocida "{$contextPath}".</message>
 
 	<message key="plugins.importexport.users.export.exportUsers">Exportar usuarios</message>
 	<message key="plugins.importexport.users.export.exportByRole">Exportar por función</message>

@@ -48,7 +48,7 @@ Examples:
 	<message key="plugins.importexport.users.import.usersWereImported">Aşağıdaki kullanıcılar sisteme başarı ile eklendi</message>
 	<message key="plugins.importexport.users.import.errorsOccurred">Veri alınırken hata oldu</message>
 	<message key="plugins.importexport.users.import.confirmUsers">Bu kullanıcıların sisteme eklenmesini istediğiniz kullanıcılar olduğunu onaylayınız.</message>
-	<message key="plugins.importexport.users.unknownPress">Belirtilen "{$pressPath}" sistemde bulunmayan bir dizin.</message>
+	<message key="plugins.importexport.users.unknownPress">Belirtilen "{$contextPath}" sistemde bulunmayan bir dizin.</message>
 
 	<message key="plugins.importexport.users.export.exportUsers">Kullanıcı verilerini dışarı ver</message>
 	<message key="plugins.importexport.users.export.exportByRole">Kullanıcıları rollerine göre ver</message>

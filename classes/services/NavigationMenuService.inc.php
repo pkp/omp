@@ -13,7 +13,7 @@
  * @brief Helper class that encapsulates NavigationMenu business logic
  */
 
-namespace OMP\Services;
+namespace APP\Services;
 
 /** types for all omp default navigationMenuItems */
 define('NMI_TYPE_CATALOG', 'NMI_TYPE_CATALOG');

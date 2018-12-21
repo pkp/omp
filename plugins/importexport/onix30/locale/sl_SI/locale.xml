@@ -17,7 +17,7 @@
 	<message key="plugins.importexport.onix30.description">Izvozi metapodatke monografske publikacije v formatu ONIX 3.0</message>
 	<message key="plugins.importexport.onix30.cliUsage"><![CDATA[Uporaba: {$scriptName} {$pluginName} [xmlFileName] [pressPath] [monographId] ]]></message>
 	<message key="plugins.importexport.onix30.cliError">NAPAKA:</message>
-	<message key="plugins.importexport.onix30.error.unknownPress">Določena pot tiska "{$pressPath}" ne obstaja.</message>
+	<message key="plugins.importexport.onix30.error.unknownPress">Določena pot tiska "{$contextPath}" ne obstaja.</message>
 	<message key="plugins.importexport.onix30.export.error.couldNotWrite">V datoteko "{$fileName}" ni bilo mogoče pisati.</message>
 	<message key="plugins.importexport.onix30.export.error.monographNotFound">Monografske publikacije, ki bi se ujemala z določenim ID monografske publikacije"{$monographId}" ni bilo mogoče najti.</message>
 	<message key="plugins.importexport.onix30.noFormats">Monografske publikacije brez formatov publikacij niso prikazane.</message>

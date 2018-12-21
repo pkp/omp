@@ -42,17 +42,6 @@ class TemplateManager extends PKPTemplateManager {
 			$this->assign('sitePublicFilesDir', $siteFilesDir);
 			$this->assign('publicFilesDir', $siteFilesDir); // May be overridden by press
 
-			$siteStyleFilename = $publicFileManager->getSiteFilesPath() . '/' . $site->getSiteStyleFilename();
-			if (file_exists($siteStyleFilename)) {
-				$this->addStyleSheet(
-					'siteStylesheet',
-					$request->getBaseUrl() . '/' . $siteStyleFilename,
-					array(
-						'priority' => STYLE_SEQUENCE_LAST
-					)
-				);
-			}
-
 			// Pass app-specific details to template
 			$this->assign(array(
 				'brandImage' => 'templates/images/omp_brand.png',
@@ -79,13 +68,13 @@ class TemplateManager extends PKPTemplateManager {
 				// Assign page header
 				$this->assign('displayPageHeaderTitle', $context->getPageHeaderTitle());
 				$this->assign('displayPageHeaderLogo', $context->getPageHeaderLogo());
-				$this->assign('numPageLinks', $context->getSetting('numPageLinks'));
-				$this->assign('itemsPerPage', $context->getSetting('itemsPerPage'));
-				$this->assign('enableAnnouncements', $context->getSetting('enableAnnouncements'));
-				$this->assign('disableUserReg', $context->getSetting('disableUserReg'));
+				$this->assign('numPageLinks', $context->getData('numPageLinks'));
+				$this->assign('itemsPerPage', $context->getData('itemsPerPage'));
+				$this->assign('enableAnnouncements', $context->getData('enableAnnouncements'));
+				$this->assign('disableUserReg', $context->getData('disableUserReg'));
 
 				// Assign stylesheets and footer
-				$contextStyleSheet = $context->getSetting('styleSheet');
+				$contextStyleSheet = $context->getData('styleSheet');
 				if ($contextStyleSheet) {
 					$this->addStyleSheet(
 						'contextStylesheet',
@@ -103,29 +92,8 @@ class TemplateManager extends PKPTemplateManager {
 				$dispatcher = $request->getDispatcher();
 				$this->assign( 'contextSettingsUrl', $dispatcher->url($request, ROUTE_PAGE, null, 'management', 'settings', 'context') );
 
-				$this->assign('pageFooter', $context->getLocalizedSetting('pageFooter'));
-			} else {
-				// Add the site-wide logo, if set for this locale or the primary locale
-				$this->assign('displayPageHeaderTitle', $site->getLocalizedPageHeaderTitle());
-				$this->assign('displayPageHeaderLogo', $site->getLocalizedSetting('pageHeaderTitleImage'));
-				$this->assign('siteTitle', $site->getLocalizedTitle());
-				$this->assign('primaryLocale', $site->getPrimaryLocale());
-				$this->assign('supportedLocales', $site->getSupportedLocaleNames());
-
-				// Check if registration is open for any contexts
-				$contextDao = Application::getContextDAO();
-				$contexts = $contextDao->getAll(true)->toArray();
-				$contextsForRegistration = array();
-				foreach($contexts as $context) {
-					if (!$context->getSetting('disableUserReg')) {
-						$contextsForRegistration[] = $context;
-					}
-				}
-				$this->assign('contexts', $contextsForRegistration);
-				$this->assign('disableUserReg', empty($contextsForRegistration));
+				$this->assign('pageFooter', $context->getLocalizedData('pageFooter'));
 			}
 		}
 	}
 }
-
-

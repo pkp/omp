@@ -17,7 +17,7 @@
 	<message key="plugins.importexport.onix30.description">Export monograph metadata in the ONIX 3.0 format</message>
 	<message key="plugins.importexport.onix30.cliUsage"><![CDATA[Usage: {$scriptName} {$pluginName} [xmlFileName] [pressPath] [monographId] ]]></message>
 	<message key="plugins.importexport.onix30.cliError">ERROR:</message>
-	<message key="plugins.importexport.onix30.error.unknownPress">The specified press path, "{$pressPath}," does not exist.</message>
+	<message key="plugins.importexport.onix30.error.unknownPress">The specified press path, "{$contextPath}," does not exist.</message>
 	<message key="plugins.importexport.onix30.export.error.couldNotWrite">Could not write to the file "{$fileName}".</message>
 	<message key="plugins.importexport.onix30.export.error.monographNotFound">No monograph matched the specified monograph ID "{$monographId}".</message>
 	<message key="plugins.importexport.onix30.noFormats">Monographs with no publication formats are not shown.</message>

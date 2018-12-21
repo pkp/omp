@@ -47,7 +47,7 @@
 	<message key="plugins.importexport.users.import.usersWereImported">下列的使用者已經成功地匯入本系統。</message>
 	<message key="plugins.importexport.users.import.errorsOccurred">在匯入的時候發生錯誤</message>
 	<message key="plugins.importexport.users.import.confirmUsers">請確認您想要匯入這些使用者到系統中</message>
-	<message key="plugins.importexport.users.unknownPress">指定了一個未知的期刊路徑"{$pressPath}" 。</message>
+	<message key="plugins.importexport.users.unknownPress">指定了一個未知的期刊路徑"{$contextPath}" 。</message>
 
 	<message key="plugins.importexport.users.export.exportUsers">匯出使用者</message>
 	<message key="plugins.importexport.users.export.exportByRole">根據角色匯出</message>

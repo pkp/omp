@@ -504,5 +504,3 @@ class PublishedMonographDAO extends MonographDAO {
 		return new DAOResultFactory($result, $this, '_fromRow');
 	}
 }
-
-

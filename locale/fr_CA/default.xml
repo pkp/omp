@@ -41,27 +41,25 @@
 	<message key="default.groups.plural.volumeEditor">Rédacteurs en chef du volume</message>
 	<message key="default.groups.abbrev.volumeEditor">RV</message>
 	<!-- Default press settings -->
-	<message key="default.pressSettings.checklist.notPreviouslyPublished">Cette soumission n'a jamais été publiée et n'a pas été soumise à une autre presse (ou une explication a été ajoutée à la section Commentaires du rédacteur en chef).</message>
-	<message key="default.pressSettings.checklist.fileFormat">Le fichier soumis est de format Microsoft Word, RTF ou OpenDocument.</message>
-	<message key="default.pressSettings.checklist.addressesLinked">Les adresses URL des références ont été fournies si elles étaient disponibles.</message>
-	<message key="default.pressSettings.checklist.submissionAppearance">Le texte est publié à simple interligne; utilisez une police de caractères en 12 points; utilisez des caractères italiques au lieu de souligner (sauf pour les adresses URL); et toutes les illustrations, figures et tableaux sont insérés dans le texte aux endroits appropriés plutôt qu'à la fin.</message>
-	<message key="default.pressSettings.checklist.bibliographicRequirements"><![CDATA[Le texte respecte les exigences stylistiques et bibliographiques conformément aux <a href="{$indexUrl}/{$pressPath}/about/submissions#authorGuidelines" target="_blank">lignes directrices à l'intention des auteurs</a>, disponibles dans la rubrique À propos de cette presse.]]></message>
-	<message key="default.pressSettings.privacyStatement">Les noms et adresses courriel saisis sur ce site de presse seront utilisés exclusivement pour les fins convenues de cette presse. Ils ne seront pas utilisés pour d'autres fins ou transmis à une tierce partie.</message>
-	<message key="default.pressSettings.openAccessPolicy">Cette presse offre un accès libre immédiat à son contenu en partant du principe que la recherche doit être accessible au grand public, car cela favorise un meilleur échange des connaissances à l'échelle mondiale.</message>
-	<message key="default.pressSettings.emailSignature"><![CDATA[________________________________________________________________________
-{$pressName}
-{$indexUrl}/{$pressPath}
+	<message key="default.contextSettings.checklist.notPreviouslyPublished">Cette soumission n'a jamais été publiée et n'a pas été soumise à une autre presse (ou une explication a été ajoutée à la section Commentaires du rédacteur en chef).</message>
+	<message key="default.contextSettings.checklist.fileFormat">Le fichier soumis est de format Microsoft Word, RTF ou OpenDocument.</message>
+	<message key="default.contextSettings.checklist.addressesLinked">Les adresses URL des références ont été fournies si elles étaient disponibles.</message>
+	<message key="default.contextSettings.checklist.submissionAppearance">Le texte est publié à simple interligne; utilisez une police de caractères en 12 points; utilisez des caractères italiques au lieu de souligner (sauf pour les adresses URL); et toutes les illustrations, figures et tableaux sont insérés dans le texte aux endroits appropriés plutôt qu'à la fin.</message>
+	<message key="default.contextSettings.checklist.bibliographicRequirements"><![CDATA[Le texte respecte les exigences stylistiques et bibliographiques conformément aux <a href="{$indexUrl}/{$contextPath}/about/submissions#authorGuidelines" target="_blank">lignes directrices à l'intention des auteurs</a>, disponibles dans la rubrique À propos de cette presse.]]></message>
+	<message key="default.contextSettings.privacyStatement">Les noms et adresses courriel saisis sur ce site de presse seront utilisés exclusivement pour les fins convenues de cette presse. Ils ne seront pas utilisés pour d'autres fins ou transmis à une tierce partie.</message>
+	<message key="default.contextSettings.openAccessPolicy">Cette presse offre un accès libre immédiat à son contenu en partant du principe que la recherche doit être accessible au grand public, car cela favorise un meilleur échange des connaissances à l'échelle mondiale.</message>
+	<message key="default.contextSettings.emailSignature"><![CDATA[________________________________________________________________________
+{$contextName}
+{$indexUrl}/{$contextPath}
 ]]></message>
 
-<message key="default.pressSettings.forReaders"><![CDATA[Nous encourageons les lecteurs à s'abonner au service d'avis de publication de cette presse. Utilisez le lien <a href="{$indexUrl}/{$pressPath}/user/register">d'inscription</a> situé en haut de la page d'accueil de la presse. Cette inscription permettra au lecteur de recevoir la table des matières de chaque nouvelle monographie de cette presse par courriel. Cette liste permet également à la presse d'affirmer qu'elle compte un certain nombre de lecteurs. Consultez <a href="{$indexUrl}/{$pressPath}/about/submissions#privacyStatement">l'énoncé de confidentialité </a> de la presse, lequel stipule que les noms et adresses courriel de ses lecteurs ne seront pas utilisés à d'autres fins.]]></message>
+<message key="default.contextSettings.forReaders"><![CDATA[Nous encourageons les lecteurs à s'abonner au service d'avis de publication de cette presse. Utilisez le lien <a href="{$indexUrl}/{$contextPath}/user/register">d'inscription</a> situé en haut de la page d'accueil de la presse. Cette inscription permettra au lecteur de recevoir la table des matières de chaque nouvelle monographie de cette presse par courriel. Cette liste permet également à la presse d'affirmer qu'elle compte un certain nombre de lecteurs. Consultez <a href="{$indexUrl}/{$contextPath}/about/submissions#privacyStatement">l'énoncé de confidentialité </a> de la presse, lequel stipule que les noms et adresses courriel de ses lecteurs ne seront pas utilisés à d'autres fins.]]></message>
 
-<message key="default.pressSettings.forAuthors"><![CDATA[Vous souhaitez soumettre une contribution à cette presse? Nous vous recommandons de lire la page
- <a href="{$indexUrl}/{$pressPath}/about">À propos de cette presse</a> pour connaitre ses règlements et la page
- <a href="{$indexUrl}/{$pressPath}/about/submissions#authorGuidelines">Lignes directrices à l'intention des auteurs</a>. Les auteurs doivent <a href="{$indexUrl}/{$pressPath}/user/register">s'inscrire</a> auprès de la presse avant d'envoyer une soumission. Si vous êtes déjà inscrit(e), il suffit simplement <a href="{$indexUrl}/index/login">d'ouvrir une session</a> pour débuter la procédure en 5 étapes.]]></message>
+<message key="default.contextSettings.forAuthors"><![CDATA[Vous souhaitez soumettre une contribution à cette presse? Nous vous recommandons de lire la page
+ <a href="{$indexUrl}/{$contextPath}/about">À propos de cette presse</a> pour connaitre ses règlements et la page
+ <a href="{$indexUrl}/{$contextPath}/about/submissions#authorGuidelines">Lignes directrices à l'intention des auteurs</a>. Les auteurs doivent <a href="{$indexUrl}/{$contextPath}/user/register">s'inscrire</a> auprès de la presse avant d'envoyer une soumission. Si vous êtes déjà inscrit(e), il suffit simplement <a href="{$indexUrl}/index/login">d'ouvrir une session</a> pour débuter la procédure en 5 étapes.]]></message>
 
-<message key="default.pressSettings.forLibrarians"><![CDATA[Nous encourageons les bibliothécaires de recherche à ajouter cette presse à la liste électronique des ressources documentaires de la bibliothèque. De plus, ce système d'édition à libre accès convient à toutes les bibliothèques et permet aux membres des facultés de l'utiliser pour les presses auxquelles ils contribuent à titre de rédacteur en chef. (voir <a href="http://pkp.sfu.ca/omp">Open Monograph Press</a>).]]></message>
-	<message key="default.pressSettings.manager.setup.category">Catégorie</message>
-	<message key="default.pressSettings.manager.series.book">Série de livres</message>
+<message key="default.contextSettings.forLibrarians"><![CDATA[Nous encourageons les bibliothécaires de recherche à ajouter cette presse à la liste électronique des ressources documentaires de la bibliothèque. De plus, ce système d'édition à libre accès convient à toutes les bibliothèques et permet aux membres des facultés de l'utiliser pour les presses auxquelles ils contribuent à titre de rédacteur en chef. (voir <a href="http://pkp.sfu.ca/omp">Open Monograph Press</a>).]]></message>
 	<message key="default.groups.name.manager">Gestionnaire de la presse</message>
 	<message key="default.groups.plural.manager">Gestionnaires de la presse</message>
 	<message key="default.groups.abbrev.manager">MP</message>

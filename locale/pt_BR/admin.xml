@@ -40,10 +40,7 @@
 	<message key="admin.systemConfiguration">Configurações do OMP</message>
 	<message key="admin.presses.pressSettings">Configurações de Editora</message>
 	<message key="admin.presses.noneCreated">Não foram criadas editoras.</message>
-	<message key="admin.presses.createInstructions">Você será automaticamente designado como gerente desta editora e direcionado ao assistente de configuração para realizar as configurações iniciais.</message>
-	<message key="admin.presses.urlWillBe">A URL da editora será {$sampleUrl}</message>
-	<message key="admin.presses.enablePressInstructions">Mostrar editora no site</message>
-	<message key="admin.presses.pressDescription">Descrição da editora</message>
+	<message key="admin.contexts.contextDescription">Descrição da editora</message>
 	<message key="admin.presses.addPress">Adicionar Editora</message>
 	<message key="admin.overwriteConfigFileInstructions"><![CDATA[<h4>ATENÇÃO!</div>
 <p>O sistema não pode substituir automaticamente o arquivo de configuração. Para aplicar as alterações de configuração que você deve abrir <tt> config.inc.php </ tt> em um editor de texto, substituindo o seu conteúdo com o conteúdo do campo de texto abaixo.</p>]]></message>

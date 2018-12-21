@@ -17,7 +17,7 @@
 	<message key="manager.language.confirmDefaultSettingsOverwrite">Αυτό θα αντικαταστήσει όλες τις παραμέτρους τοπικής ρύθμισης που είχατε ορίσει για την έκδοση σας</message>
 	<message key="manager.languages.languageInstructions"><![CDATA[Το OMP είναι διαθέσιμο στους χρήστες σε όλες τις υποστηριζόμενες γλώσσες. Επίσης το OMP μπορεί να λειτουργήσει ως ένα εν μέρει πολυγλωσσικό σύστημα, που παρέχει στους χρήστες τη δυνατότητα να αλλάζουν γλώσσες σε κάθε σελίδα και, επίσης, επιτρέπει τη δυνατότητα καταχώρισης ορισμένων δεδομένων σε δύο πρόσθετες γλώσσες.<br /><br/>Εάν μια γλώσσα που υποστηρίζεται από το OMP δεν εμφανίζεται παρακάτω, απευθυνθείτε στον διαχειριστή του ιστοτόπου για να εγκαταστήσει τη γλώσσα από τη διεπαφή διαχείρισης του ιστοτόπου. Για οδηγίες σχετικά με την προσθήκη υποστήριξης για νέες γλώσσες, ανατρέξτε τα έγγραφα τεκμηρίωσης του OMP.]]></message>
 	<message key="manager.languages.noneAvailable">Συγνώμη, καμία πρόσθετη γλώσσα δεν είναι διαθέσιμη. Επικοινωνήστε με τον διαχειριστή του ιστοτόπου, σε περίπτωση που επιθυμείτε να χρησιμοποιήσετε πρόσθετες γλώσσες για την έκδοση αυτή.</message>
-	<message key="manager.languages.primaryLocaleInstructions">Αυτή είναι η προεπιλεγμένη γλώσσα για τον ιστότοπο της έκδοσης.</message>	
+	<message key="manager.languages.primaryLocaleInstructions">Αυτή είναι η προεπιλεγμένη γλώσσα για τον ιστότοπο της έκδοσης.</message>
 
 	<!-- Series management -->
 	<message key="manager.series.form.mustAllowPermission">Παρακαλούμε σιγουρευτείτε ότι τουλάχιστον ένα checkbox έχει τσεκαριστεί για κάθε ανάθεση Επιμελητή Σειράς.</message>
@@ -51,11 +51,10 @@
 	<message key="manager.settings">Ρυθμίσεις</message>
 	<message key="manager.settings.pressSettings">Ρυθμίσεις Έκδοσης</message>
 	<message key="manager.settings.press">Εκδόσεις</message>
-	<message key="manager.settings.publisherInformation">Αυτά τα πεδία δεν είναι απαραίτητα για τη γενική χρήση του OMP, αλλά απαιτούνται για τη δημιουργία έγκυρων ONIX μεταδεδομένων. Παρακαλούμε να τα συμπεριλάβετε αν επιθυμείτε να επιτύχετε τη λειτουργικότητα των ΟΝΙΧ.</message>
+	<message key="manager.settings.publisher.identity.description">Αυτά τα πεδία δεν είναι απαραίτητα για τη γενική χρήση του OMP, αλλά απαιτούνται για τη δημιουργία έγκυρων ONIX μεταδεδομένων. Παρακαλούμε να τα συμπεριλάβετε αν επιθυμείτε να επιτύχετε τη λειτουργικότητα των ΟΝΙΧ.</message>
 	<message key="manager.settings.publisher">Όνομα Εκδότη(Press Publisher Name)</message>
 	<message key="manager.settings.location">Γεωγραφική Τοποθεσία</message>
 	<message key="manager.settings.publisherCode">Κώδικας Εκδότη</message>
-	<message key="manager.settings.publisherCodeType.tip">Εάν έχετε ένα κωδικό ονόματος εκδότη, παρακαλούμε συμπληρώστε το παρακάτω. Θα συμπεριληφθούν στα παραγώμενα μεταδεδομένα. Το πεδίο απαιτείται για την παραγωγή ONIX μεταδεδομένων των εκδόσεων που δημοσιεύονται.</message>
 	<message key="manager.settings.distributionDescription">Όλες οι ρυθμίσεις σχετικά με τις διαδικασίες διανομής των εκδόσεων (κοινοποίηση, ευρετηρίαση, αρχειοθέτηση, πληρωμές, εργαλεία ανάγνωσης).</message>
 
 	<!--  Tools management -->
@@ -119,7 +118,7 @@
 	<message key="manager.setup.announcements">Ανακοινώσεις</message>
 	<message key="manager.setup.announcementsDescription">Οι ανακοινώσεις μπορούν να δημοσιεύονται για πληροφόρηση των αναγνωστών σχετικά με ειδήσεις και εκδηλώσεις των εκδόσεων. Οι δημοσιευμένες ανακοινώσεις εμφανίζονται στη σελίδα «Ανακοινώσεις».</message>
 	<message key="manager.setup.announcementsIntroduction">Πρόσθετες πληροφορίες</message>
-	<message key="manager.setup.announcementsIntroductionDescription">Εισάγετε όλες τις πρόσθετες πληροφορίες που θέλετε να εμφανίζονται στους αναγνώστες στη σελίδα «Ανακοινώσεις».</message>
+	<message key="manager.setup.announcementsIntroduction.description">Εισάγετε όλες τις πρόσθετες πληροφορίες που θέλετε να εμφανίζονται στους αναγνώστες στη σελίδα «Ανακοινώσεις».</message>
 	<message key="manager.setup.appearInAboutPress">(Για να εμφανίζεται στο μενού «Σχετικά με τις εκδόσεις»)</message>
 	<message key="manager.setup.authorCopyrightNotice">Δήλωση για τα πνευματικά δικαιώματα</message>
 	<message key="manager.setup.authorCopyrightNoticeAgree">Απαιτείται η συμφωνία των συγγραφέων με τη Δήλωση για τα πνευματικά δικαιώματα, ως μέρος της διαδικασίας υποβολής.</message>
@@ -148,14 +147,11 @@
 	<message key="manager.setup.doiPrefixDescription"><![CDATA[Το πρόθημα DOI (Αναγνωριστικό Ψηφιακού Αντικειμένου) ανατίθεται από <a href="http://www.crossref.org" target="_blank">CrossRef</a> και βρίσκεται σε μορφή 10.xxxx (π.χ. 10.1234).]]></message>
 	<message key="manager.setup.editorDecision">Απόφαση επιμελητή</message>
 	<message key="manager.setup.emailBounceAddress">Διεύθυνση επιστροφής σε αποστολέα</message>
-	<message key="manager.setup.emailBounceAddressDescription">Όλα τα μηνύματα ηλεκτρονικού ταχυδρομείου που δεν παραδόθηκαν επιτυχώς θα έχουν ως αποτέλεσμα μήνυμα σφάλματος στη συγκεκριμένη διεύθυνση.</message>
-	<message key="manager.setup.emailBounceAddressDisabled"><![CDATA[<strong>Σημείωση:</strong> Για να ενεργοποιήσετε την συγκεκριμένη επιλογή, ο διαχειριστής του ιστοτόπου πρέπει να ενεργοποιήσεις την επιλογή <tt>allow_envelope_sender</tt> στο αρχείο ρυθμίσεων του OMP. Ενδέχεται να απαιτούνται πρόσθετες ρυθμίσεις διακομιστή για υποστήριξη της συγκεκριμένης λειτουργίας (που ενδέχεται να μην είναι διαθέσιμες σε όλους τους διακομιστές), όπως διευκρινίζεται στα τεκμηριωτικά έγγραφα του OMP.]]></message>
+	<message key="manager.setup.emailBounceAddress.description">Όλα τα μηνύματα ηλεκτρονικού ταχυδρομείου που δεν παραδόθηκαν επιτυχώς θα έχουν ως αποτέλεσμα μήνυμα σφάλματος στη συγκεκριμένη διεύθυνση.</message>
 	<message key="manager.setup.emails">Αναγνώριση διεύθυνσης ηλεκτρονικού ταχυδρομείου</message>
 	<message key="manager.setup.emailSignature">Υπογραφή</message>
 	<message key="manager.setup.emailSignatureDescription">Τα έτοιμα μηνύματα ηλεκτρονικού ταχυδρομείου που αποστέλλονται μέσω του συστήματος για λογαριασμό των εκδόσεων θα φέρουν την ακόλουθη υπογραφή στο τέλος τους. Το κύριο σώμα των μηνυμάτων είναι διαθέσιμο για επεξεργασία παρακάτω.</message>
-	<message key="manager.setup.enableAnnouncements">Ενεργοποίηση δυνατότητας προσθήκης ανακοινώσεων από τους  Διαχειριστές των εκδόσεων.</message>
-	<message key="manager.setup.enableAnnouncementsHomepage1">Προβολή</message>
-	<message key="manager.setup.enableAnnouncementsHomepage2">των πιο πρόσφατων ανακοινώσεων στην αρχική σελίδα των εκδόσεων.</message>
+	<message key="manager.setup.enableAnnouncements.enable">Ενεργοποίηση δυνατότητας προσθήκης ανακοινώσεων από τους  Διαχειριστές των εκδόσεων.</message>
 	<message key="manager.setup.enablePressInstructions">Ενεργοποίηση της εμφάνισης των Εκδόσεων στον ιστότοπο</message>
 	<message key="manager.setup.enablePublicMonographId">Θα  χρησιμοποιηθούν προσαρμοσμένα αναγνωριστικά για την αναγνώριση των δημοσιευμένων τεκμηρίων.</message>
 	<message key="manager.setup.enablePublicGalleyId">Θα  χρησιμοποιηθούν προσαρμοσμένα αναγνωριστικά για τις σελιδοποιημένες μορφές (πχ. αρχεία HTML η PDF) των δημοσιευμένων τεκμηρίων.</message>
@@ -167,11 +163,9 @@
 	<message key="manager.setup.forAuthorsToIndexTheirWorkDescription"><![CDATA[Το OMP υλοποιεί το πρωτόκολλο <a href="http://www.openarchives.org/" target="_blank">Open Archives Initiative</a> Protocol for Metadata Harvesting, που αποτελεί διεθνώς αποδεκτό πρότυπο για παροχή πρόσβασης μέσω ορθής ευρετηρίασης σε διεθνείς ηλεκτρονικές πηγές αναζήτησης.  Οι συγγραφείς θα χρησιμοποιήσουν παρόμοιο πρότυπο για παροχή μεταδεδομένων για το έργο τους κατά την διάρκεια της υποβολή του.  Ο Διαχειριστής των Εκδόσεων πρέπει να επιλέξει τις κατηγορίες για ευρετηρίαση και να παρουσιάσει στους συγγραφείς σχετικά παραδείγματα για να τους βοηθήσει στην ευρετηρίαση του έργου τους, διαχωρίζοντας τους όρους με ελληνικό ερωτηματικό (πχ., όρος1; όρος2;). Οι καταχωρίσεις πρέπει να εισάγονται ως παραδείγματα χρησιμοποιώντας "πχ.," ή "Για παράδειγμα,".]]></message>
 	<message key="manager.setup.form.contactEmailRequired">Απαιτείται η διεύθυνση ηλεκτρονικού ταχυδρομείου του κύριου υπεύθυνου επικοινωνίας.</message>
 	<message key="manager.setup.form.contactNameRequired">Απαιτείται το όνομα του κύριου υπεύθυνου επικοινωνίας.</message>
-	<message key="manager.setup.form.pressNameRequired">Απαιτείται το όνομα του κύριου υπεύθυνου των εκδόσεων.</message>
 	<message key="manager.setup.form.numReviewersPerSubmission">Απαιτείται ο αριθμός των αξιολογητών ανά υποβολή.</message>
 	<message key="manager.setup.form.supportEmailRequired">Απαιτείται η  διεύθυνση ηλεκτρονικού ταχυδρομείου του υπεύθυνου τεχνικής υποστήριξης.</message>
 	<message key="manager.setup.form.supportNameRequired">Απαιτείται το κύριο όνομα του υπεύθυνου τεχνικής υποστήριξης.</message>
-	<message key="manager.setup.form.pressInitialsRequired">Απαιτούνται τα αρχικά των Εκδόσεων.</message>
 	<message key="manager.setup.generalInformation">Γενικές Πληροφορίες</message>
 	<message key="manager.setup.gettingDownTheDetails">Βήμα 1. Λεπτομέρειες</message>
 	<message key="manager.setup.guidelines">Κατευθυντήριες γραμμές</message>
@@ -192,7 +186,6 @@
 	<message key="manager.setup.layoutTemplates.file">Αρχείο προτύπου</message>
 	<message key="manager.setup.layoutTemplates.title">Τίτλος</message>
 	<message key="manager.setup.lists">Λίστες</message>
-	<message key="manager.setup.listsDescription">Εισαγάγετε τον μέγιστο αριθμό τεκμηρίων (για παράδειγμα, υποβολές, χρήστες, ή επιμέλεια αναθέσεων) που εμφανίζονται σε κάθε σελίδα της λίστας, και τον αριθμό των συνδέσμων σελίδων που θα εμφανίζονται σε κάθε σελίδα.</message>
 	<message key="manager.setup.look"><![CDATA[Όψη Εκδόσεων]]></message>
 	<message key="manager.setup.look.description">Κεφαλίδα αρχικής σελίδας, περιεχόμενο, κεφαλίδα εκδόσεων, υποσέλιδο, μπάρα πλοήγησης και style sheet.</message>
 	<message key="manager.setup.mailingAddress.description">Φυσική τοποθεσία και ταχυδρομική διεύθυνση των εκδόσεων.</message>
@@ -226,7 +219,7 @@
 	<message key="manager.setup.pressArchiving">Αρχειοθέτηση Εκδόσεων</message>
 	<message key="manager.setup.pressHomepageContent">Περιεχόμενα Αρχικής Σελίδας Εκδόσεων</message>
 	<message key="manager.setup.pressHomepageContentDescription">Εξ’ορισμού, η αρχική σελίδα των εκδόσεων αποτελείται από δεσμούς πλοήγησης. Η προσθήκη πρόσθετου περιεχομένου αρχικής σελίδας μπορεί να γίνει χρησιμοποιώντας κάποιες ή όλες τις ακόλουθες επιλογές, που θα εμφανιστούν με την σειρά αυτή.</message>
-	<message key="manager.setup.pressInitials">Αρχικά Εκδόσεων</message>
+	<message key="manager.setup.contextInitials">Αρχικά Εκδόσεων</message>
 	<message key="manager.setup.pressPolicies">Βήμα 2. Πολιτικές</message>
 	<message key="manager.setup.pressSetup">Οργάνωση Εκδόσεων</message>
 	<message key="manager.setup.pressSetupUpdated">Οι ρυθμίσεις του περιοδικού ενημερώθηκαν.</message>
@@ -255,10 +248,8 @@
 	<message key="manager.setup.reviewOptions.blindReview">Τυφλή Αξιολόγηση</message>
 	<message key="manager.setup.reviewOptions.noteOnModification">Μπορεί να τροποποιηθεί για κάθε υποβολή κατά την εκδοτική διαδικασία.</message>
 	<message key="manager.setup.reviewOptions.onQuality">Οι επιμελητές των εκδόσεων θα βαθμολογούν κατατάξουν τους αξιολογητές σε κλίμακα ποιότητας 0-5 μετά από κάθε αξιολόγηση.</message>
-	<message key="manager.setup.reviewOptions.restrictReviewerFileAccess">Οι αξιολογητές θα έχουν πρόσβαση στο αρχείο υποβολής μόνο μετά από αποδοχή αξιολόγησής αυτού.</message>
+	<message key="manager.setup.reviewOptions.restrictReviewerFileAccess.description">Οι αξιολογητές θα έχουν πρόσβαση στο αρχείο υποβολής μόνο μετά από αποδοχή αξιολόγησής αυτού.</message>
 	<message key="manager.setup.reviewOptions.reviewerAccess">Πρόσβαση αξιολογητή</message>
-	<message key="manager.setup.reviewOptions.reviewerAccessKeysEnabled">Ενεργοποίηση πρόσβασης αξιολογητή με ένα μόνο κλικ.</message>
-	<message key="manager.setup.reviewOptions.reviewerAccessKeysEnabled.description"><![CDATA[<strong>Σημείωση:</strong>Η πρόσκληση μέσω μηνύματος ηλεκτρονικού ταχυδρομείου στους αξιολογητές θα περιλαμβάνει ειδικό URL που έχει ως αποτέλεσμα  την άμεση μετάβαση των αξιολογητών που έχουν δεχτεί πρόσκληση στη σελίδα Αξιολόγησης για υποβολή (με πρόσβαση και σε όλες τις άλλες σελίδες που απαιτούν σύνδεση αυτών). Για λόγους ασφαλείας μαζί με τη συγκεκριμένη επιλογή, οι επιμελητές δεν μπορούν να τροποποιήσουν τις διευθύνσεις ηλεκτρονικού ταχυδρομείου ή να προσθέσουν CC ή BCC πριν από την αποστολή προσκλήσεων στους αξιολογητές.]]></message>
 	<message key="manager.setup.reviewOptions.reviewerRatings">Βαθμολόγηση αξιολογητή</message>
 	<message key="manager.setup.reviewOptions.reviewerReminders">Υπενθυμίσεις προς τους αξιολογητές</message>
 	<message key="manager.setup.reviewOptions.reviewTime">Χρόνος αξιολόγησης</message>
@@ -270,7 +261,7 @@
 	<message key="manager.setup.reviewProcessStandard">Πρότυπη Διαδικασία Αξιολόγησης (online)</message>
 	<message key="manager.setup.reviewProcessStandardDescription">Οι επιμελητές αποστέλλουν με μήνυμα ηλεκτρονικού ταχυδρομείου σε επιλεγμένους αξιολογητές τον τίτλο και το απόσπασμα της υποβολής, καθώς και πρόσκληση για σύνδεση στον ιστότοπο των εκδόσεων για ολοκλήρωση της αξιολόγησης. Οι αξιολογητές συνδέονται στον ιστότοπο των εκδόσεων για να αποδεχτούν την εκτέλεση της αξιολόγησης, για να κατεβάσουν τις υποβολές, και για να επιλέξουν συστάσεις.</message>
 	<message key="manager.setup.searchEngineIndexing">Ευρετηρίαση μηχανών αναζήτησης</message>
-	<message key="manager.setup.searchEngineIndexingDescription">Για παροχή βοήθειας στους χρήστες μηχανών αναζήτησης στον εντοπισμό του περιοδικού, παρέχετε σύντομη περιγραφή του περιοδικού και σχετικές λέξεις-κλειδιά (που διαχωρίζονται από ελληνικό ερωτηματικό).</message>
+	<message key="manager.setup.searchEngineIndexing.description">Για παροχή βοήθειας στους χρήστες μηχανών αναζήτησης στον εντοπισμό του περιοδικού, παρέχετε σύντομη περιγραφή του περιοδικού και σχετικές λέξεις-κλειδιά (που διαχωρίζονται από ελληνικό ερωτηματικό).</message>
 	<message key="manager.setup.sectionsAndSectionEditors">Ενότητες και Επιμελητές ενοτήτων</message>
 	<message key="manager.setup.sectionsDefaultSectionDescription">(Εάν δεν επιλεγεί η χρήση ενοτήτων, τα τεκμήρια που υποβάλλονται καταχωρούνται εξ’ορισμού στην ενότητα Μονογραφίες.)</message>
 	<message key="manager.setup.sectionsDescription"><![CDATA[Για να δημιουργήσετε ή να τροποποιήσετε τις ενότητες των εκδόσεων (πχ., Μονογραφίες, Αξιολογήσεις Βιβλίων, κτλ.), μεταβείτε στη Διαχείριση Ενοτήτων.<br /><br />Οι συγγραφείς με την υποβολή των τεκμηρίων στις εκδόσεις καθορίζουν...]]></message>
@@ -279,7 +270,6 @@
 	<message key="manager.setup.selectEditorDescription">Τον επιμελητή των εκδόσεων που θα επιβλέπει κατά τη εκδοτική διαδικασία</message>
 	<message key="manager.setup.selectSectionDescription">Την ενότητα των εκδόσεων για την οποία θα ληφθεί υπόψη το τεκμήριο.</message>
 	<message key="manager.setup.showGalleyLinksDescription">Προβάλετε πάντα τους συνδέσμους των Σελιδοποιημένων Δοκιμίων και με την υπόδειξη περιορισμένης πρόσβασης.</message>
-	<message key="manager.setup.siteAccess">Επιπρόσθετοι περιορισμοί πρόσβασης στην ιστοσελίδα και στο περιεχόμενο</message>
 	<message key="manager.setup.sponsors.description">Τα ονόματα των χορηγών (π.χ., επιστημονικές ενώσεις, πανεπιστημιακά τμήματα, συνεργασίες, κτλ.) που αποτελούν τους χορηγούς των εκδόσεων εμφανίζονται στο πεδίο Σχετικά με τις Εκδόσεις και ενδέχεται να συνοδεύονται και από ευχαριστήριο σημείωμα.</message>
 	<message key="manager.setup.stepsToPressSite">Πέντε βήματα για την οργάνωση της ιστοσελίδας των Εκδόσεων</message>
 	<message key="manager.setup.subjectExamples">(Πχ., Φωτοσύνθεση; Μαύρες τρύπες; Οικονομική θεωρία; Θεωρία Bayes, Ανεργία)</message>
@@ -325,7 +315,6 @@
 	<message key="manager.setup.submitToCategories">Ένταξη της υποβολής σε Κατηγορία</message>
 	<message key="manager.setup.submitToSeries">Ένταξη της υποβολής σε Σειρά</message>
 	<message key="manager.setup.issnDescription"><![CDATA[Ο ISSN (διεθνής πρότυπος αριθμός περιοδικής έκδοσης) αποτελεί αριθμό με οκτώ ψηφία που προσδιορίζει περιοδικές εκδόσεις όπως η συγκεκριμένη, συμπεριλαμβανομένων των αριθμών περιοδικής έκδοσης σε ηλεκτρονική μορφή. Διαχειρίζεται από παγκόσμιο δίκτυο Εθνικών Κέντρων που συντονίζονται από Διεθνές Κέντρο με βάση το Παρίσι, υποστηριζόμενο από την Unesco και τη Γαλλική κυβέρνηση. Η λήψη του αριθμού αυτού μπορεί να γίνει από τον ιστότοπο του ISSN <a  href="http://www.issn.org" target="_blank"> </a>. Αυτό μπορεί να πραγματοποιηθεί σε οποιοδήποτε σημείο χειρισμού των εκδόσεων.]]></message>
-	<message key="manager.setup.cataloguingMetadata">Καταλογογράφηση Μεταδεδομένων</message>
 	<message key="manager.setup.currentFormats">Τρέχοντα Μορφότυπα</message>
 	<message key="manager.setup.categoriesAndSeries">Κατηγορίες και Σειρές</message>
 	<message key="manager.setup.categories.description">Μπορείτε να δημιουργήσετε μία λίστα με κατηγορίες που θα σα βοηθήσει να οργανώσετε τις δημοσιεύσεις σας. Οι κατηγορίες ομαδοποιούν τα βιβλία ανάλογα με το αντικείμενο, για παράδειγμα Οικονομικά, Λογοτεχνικά, Ποίηση, κλπ. Ορισμένες κατηγορίες μπορούν να ταξιθετηθούν σε "γονικές" κατηγορίες: για παράδειγμα, η γονική κατηγορία Οικονομικά μπορεί να περιλαμβάνει την Μικροοικονομία και Μακροοικονομία. Οι επισκέπτες μπορούν να ανζητήσουν και να περιηγηθούν στις εκδόσεις ανά κατηγορία</message>
@@ -343,7 +332,7 @@
 	<message key="manager.setup.files">Αρχεία</message>
 	<message key="manager.setup.productionTemplates">Πρότυπα Παραγωγής</message>
 	<message key="manager.files.note">Σημείωση: To ευρετήριο αρχείων αποτελεί προηγμένη λειτουργία που παρέχει τη δυνατότητα σε αρχεία και καταλόγους που αφορούν τις εκδόσεις να προβάλλονται και να χειρίζονται άμεσα.</message>
-	<message key="manager.setup.authorCopyrightNotice.sample"><![CDATA[<h3>Προτεινόμενες Δηλώσεις Προστασίας Πνευματικών Δικαιωμάτων Creative Commons</h3>
+	<message key="manager.setup.copyrightNotice.sample"><![CDATA[<h3>Προτεινόμενες Δηλώσεις Προστασίας Πνευματικών Δικαιωμάτων Creative Commons</h3>
 <h4>Προτεινόμενη πολιτική για Εκδόσεις που παρέχουν Ανοικτή Πρόσβαση (Offer Open Access)</h4>
 Οι Συγγραφείς που δημοσιεύουν το έργο τους με αυτές τις εκδόσεις συμφωνούν με τους ακόλουθους όρους:
 <ol type="a">

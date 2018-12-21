@@ -105,8 +105,8 @@ class MonographONIX30XmlFilter extends NativeExportFilter {
 
 		// Assemble SenderIdentifier element.
 		$senderIdentifierNode = $doc->createElementNS($deployment->getNamespace(), 'SenderIdentifier');
-		$senderIdentifierNode->appendChild($this->_buildTextNode($doc, 'SenderIDType', $context->getSetting('codeType')));
-		$senderIdentifierNode->appendChild($this->_buildTextNode($doc, 'IDValue', $context->getSetting('codeValue')));
+		$senderIdentifierNode->appendChild($this->_buildTextNode($doc, 'SenderIDType', $context->getData('codeType')));
+		$senderIdentifierNode->appendChild($this->_buildTextNode($doc, 'IDValue', $context->getData('codeValue')));
 
 		$senderNode->appendChild($senderIdentifierNode);
 
@@ -468,9 +468,9 @@ class MonographONIX30XmlFilter extends NativeExportFilter {
 		$publishingDetailNode->appendChild($publisherNode);
 
 		$publisherNode->appendChild($this->_buildTextNode($doc, 'PublishingRole', '01')); // Publisher
-		$publisherNode->appendChild($this->_buildTextNode($doc, 'PublisherName', $context->getSetting('publisher')));
-		if ($context->getSetting('location') != '') {
-			$publishingDetailNode->appendChild($this->_buildTextNode($doc, 'CityOfPublication', $context->getSetting('location')));
+		$publisherNode->appendChild($this->_buildTextNode($doc, 'PublisherName', $context->getData('publisher')));
+		if ($context->getData('location') != '') {
+			$publishingDetailNode->appendChild($this->_buildTextNode($doc, 'CityOfPublication', $context->getData('location')));
 		}
 
 		$websiteNode = $doc->createElementNS($deployment->getNamespace(), 'Website');
@@ -644,10 +644,10 @@ class MonographONIX30XmlFilter extends NativeExportFilter {
 				$supplyDetailNode->appendChild($supplierNode);
 
 				$supplierNode->appendChild($this->_buildTextNode($doc, 'SupplierRole', '09')); // Publisher supplying to end customers
-				$supplierNode->appendChild($this->_buildTextNode($doc, 'SupplierName', $context->getSetting('publisher')));
+				$supplierNode->appendChild($this->_buildTextNode($doc, 'SupplierName', $context->getData('publisher')));
 
-				if ($context->getSetting('contactEmail') != '') {
-					$supplierNode->appendChild($this->_buildTextNode($doc, 'EmailAddress', $context->getSetting('contactEmail')));
+				if ($context->getData('contactEmail') != '') {
+					$supplierNode->appendChild($this->_buildTextNode($doc, 'EmailAddress', $context->getData('contactEmail')));
 				}
 
 				$supplierWebsiteNode = $doc->createElementNS($deployment->getNamespace(), 'Website');

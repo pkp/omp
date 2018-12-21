@@ -81,16 +81,17 @@ class CatalogHandler extends Handler {
 		import('lib.pkp.classes.submission.Submission'); // STATUS_ constants
 		import('classes.monograph.PublishedMonographDAO'); // ORDERBY_ constants
 
-		$orderOption = $context->getSetting('catalogSortOption') ? $context->getSetting('catalogSortOption') : ORDERBY_DATE_PUBLISHED . '-' . SORT_DIRECTION_DESC;
+		$orderOption = $context->getData('catalogSortOption') ? $context->getData('catalogSortOption') : ORDERBY_DATE_PUBLISHED . '-' . SORT_DIRECTION_DESC;
 		list($orderBy, $orderDir) = explode('-', $orderOption);
 
-		$count = $context->getSetting('itemsPerPage') ? $context->getSetting('itemsPerPage') : Config::getVar('interface', 'items_per_page');
+		$count = $context->getData('itemsPerPage') ? $context->getData('itemsPerPage') : Config::getVar('interface', 'items_per_page');
 		$offset = $page > 1 ? ($page - 1) * $count : 0;
 
-		import('classes.core.ServicesContainer');
-		$submissionService = ServicesContainer::instance()->get('submission');
+		import('classes.core.Services');
+		$submissionService = Services::get('submission');
 
 		$params = array(
+			'contextId' => $context->getId(),
 			'orderByFeatured' => true,
 			'orderBy' => $orderBy,
 			'orderDirection' => $orderDir == SORT_DIRECTION_ASC ? 'ASC' : 'DESC',
@@ -99,8 +100,8 @@ class CatalogHandler extends Handler {
 			'status' => STATUS_PUBLISHED,
 			'returnObject' => SUBMISSION_RETURN_PUBLISHED,
 		);
-		$publishedMonographs = $submissionService->getSubmissions($context->getId(), $params);
-		$total = $submissionService->getSubmissionsMaxCount($context->getId(), $params);
+		$publishedMonographs = $submissionService->getMany($params);
+		$total = $submissionService->getMax($context->getId(), $params);
 
 		$featureDao = DAORegistry::getDAO('FeatureDAO');
 		$featuredMonographIds = $featureDao->getSequencesByAssoc(ASSOC_TYPE_PRESS, $context->getId());
@@ -164,13 +165,14 @@ class CatalogHandler extends Handler {
 		$orderOption = $category->getSortOption() ? $category->getSortOption() : ORDERBY_DATE_PUBLISHED . '-' . SORT_DIRECTION_DESC;
 		list($orderBy, $orderDir) = explode('-', $orderOption);
 
-		$count = $context->getSetting('itemsPerPage') ? $context->getSetting('itemsPerPage') : Config::getVar('interface', 'items_per_page');
+		$count = $context->getData('itemsPerPage') ? $context->getData('itemsPerPage') : Config::getVar('interface', 'items_per_page');
 		$offset = $page > 1 ? ($page - 1) * $count : 0;
 
-		import('classes.core.ServicesContainer');
-		$submissionService = ServicesContainer::instance()->get('submission');
+		import('classes.core.Services');
+		$submissionService = Services::get('submission');
 
 		$params = array(
+			'contextId' => $context->getId(),
 			'categoryIds' => $category->getId(),
 			'orderByFeatured' => true,
 			'orderBy' => $orderBy,
@@ -180,8 +182,8 @@ class CatalogHandler extends Handler {
 			'status' => STATUS_PUBLISHED,
 			'returnObject' => SUBMISSION_RETURN_PUBLISHED,
 		);
-		$publishedMonographs = $submissionService->getSubmissions($context->getId(), $params);
-		$total = $submissionService->getSubmissionsMaxCount($context->getId(), $params);
+		$publishedMonographs = $submissionService->getMany($params);
+		$total = $submissionService->getMax($context->getId(), $params);
 
 		$featureDao = DAORegistry::getDAO('FeatureDAO');
 		$featuredMonographIds = $featureDao->getSequencesByAssoc(ASSOC_TYPE_CATEGORY, $category->getId());
@@ -241,13 +243,14 @@ class CatalogHandler extends Handler {
 		$orderOption = $series->getSortOption() ? $series->getSortOption() : ORDERBY_DATE_PUBLISHED . '-' . SORT_DIRECTION_DESC;
 		list($orderBy, $orderDir) = explode('-', $orderOption);
 
-		$count = $context->getSetting('itemsPerPage') ? $context->getSetting('itemsPerPage') : Config::getVar('interface', 'items_per_page');
+		$count = $context->getData('itemsPerPage') ? $context->getData('itemsPerPage') : Config::getVar('interface', 'items_per_page');
 		$offset = $page > 1 ? ($page - 1) * $count : 0;
 
-		import('classes.core.ServicesContainer');
-		$submissionService = ServicesContainer::instance()->get('submission');
+		import('classes.core.Services');
+		$submissionService = Services::get('submission');
 
 		$params = array(
+			'contextId' => $context->getId(),
 			'seriesIds' => $series->getId(),
 			'orderByFeatured' => true,
 			'orderBy' => $orderBy,
@@ -257,8 +260,8 @@ class CatalogHandler extends Handler {
 			'status' => STATUS_PUBLISHED,
 			'returnObject' => SUBMISSION_RETURN_PUBLISHED,
 		);
-		$publishedMonographs = $submissionService->getSubmissions($context->getId(), $params);
-		$total = $submissionService->getSubmissionsMaxCount($context->getId(), $params);
+		$publishedMonographs = $submissionService->getMany($params);
+		$total = $submissionService->getMax($context->getId(), $params);
 
 		$featureDao = DAORegistry::getDAO('FeatureDAO');
 		$featuredMonographIds = $featureDao->getSequencesByAssoc(ASSOC_TYPE_SERIES, $series->getId());
@@ -431,5 +434,3 @@ class CatalogHandler extends Handler {
 		));
 	}
 }
-
-

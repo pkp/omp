@@ -53,7 +53,7 @@ class PublicationFormatNativeXmlFilter extends RepresentationNativeXmlFilter {
 
 		// If all nexessary press settings exist, export ONIX metadata
 		$context = $this->getDeployment()->getContext();
-		if ($context->getSetting('publisher') && $context->getSetting('location') && $context->getSetting('codeType') && $context->getSetting('codeValue')) {
+		if ($context->getData('publisher') && $context->getData('location') && $context->getData('codeType') && $context->getData('codeValue')) {
 			$submission = $this->getDeployment()->getSubmission();
 
 			$filterDao = DAORegistry::getDAO('FilterDAO');

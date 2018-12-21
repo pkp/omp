@@ -308,7 +308,6 @@
 
 	<!-- Common Press Terms -->
 	<message key="press.presses">Εκδόσεις</message>
-	<message key="press.path">Διαδρομή</message>
 	<!-- User -->
 	<message key="user.noRoles.submitMonograph">Υποβολή μιας πρότασης</message>
 	<message key="user.noRoles.submitMonographRegClosed">Υποβολή μιας Μονογραφίας: η εγγραφή Συγγραφέα είναο προς το παρόν απενεργοποιημένη.</message>

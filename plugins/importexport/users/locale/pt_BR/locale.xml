@@ -47,7 +47,7 @@ Examples:
 	<message key="plugins.importexport.users.import.usersWereImported">Os seguintes cadastros foram importados com sucesso para o sistema</message>
 	<message key="plugins.importexport.users.import.errorsOccurred">Erros ocorridos durante a importação</message>
 	<message key="plugins.importexport.users.import.confirmUsers">Deseja importar os usuários listados para o sistema</message>
-	<message key="plugins.importexport.users.unknownPress">Caminho de revista inválido: "{$pressPath}"</message>
+	<message key="plugins.importexport.users.unknownPress">Caminho de revista inválido: "{$contextPath}"</message>
 
 	<message key="plugins.importexport.users.export.exportUsers">Exportar Cadastros</message>
 	<message key="plugins.importexport.users.export.exportByRole">Exportar Por Função</message>

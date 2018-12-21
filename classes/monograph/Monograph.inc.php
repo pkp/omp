@@ -170,19 +170,19 @@ class Monograph extends Submission {
 		$fieldValue = null; // Scrutinizer
 		switch ($field) {
 			case PERMISSIONS_FIELD_LICENSE_URL:
-				$fieldValue = $context->getSetting('licenseURL');
+				$fieldValue = $context->getData('licenseURL');
 				break;
 			case PERMISSIONS_FIELD_COPYRIGHT_HOLDER:
-				switch($context->getSetting('copyrightHolderType')) {
+				switch($context->getData('copyrightHolderType')) {
 					case 'author':
 						$fieldValue = array($context->getPrimaryLocale() => $this->getAuthorString(false));
 						break;
-					case 'other':
-						$fieldValue = $context->getSetting('copyrightHolderOther');
-						break;
 					case 'context':
-					default:
+					case null:
 						$fieldValue = $context->getName(null);
+						break;
+					default:
+						$fieldValue = $context->getData('copyrightHolderOther');
 						break;
 				}
 				break;
@@ -235,5 +235,3 @@ class Monograph extends Submission {
 		$this->setData('coverImageAltText', $coverImageAltText);
 	}
 }
-
-

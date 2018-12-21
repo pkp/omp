@@ -315,7 +315,6 @@
 
 	<!-- Common Press Terms -->
 	<message key="press.presses">Editoriales</message>
-	<message key="press.path">Ruta</message>
 	<message key="context.context">Editorial</message>
 	<message key="context.select">Seleccionar una publicación</message>
 

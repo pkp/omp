@@ -84,7 +84,7 @@
 				{assign var="uuid" value=""|uniqid|escape}
 				<div id="subeditors-{$uuid}">
 					<script type="text/javascript">
-						pkp.registry.init('subeditors-{$uuid}', 'SelectListPanel', {$subEditorsListData});
+						pkp.registry.init('subeditors-{$uuid}', 'SelectListPanel', {$subEditorsListData|json_encode});
 					</script>
 				</div>
 			{/fbvFormSection}
@@ -95,7 +95,7 @@
 				{assign var="uuid" value=""|uniqid|escape}
 				<div id="categories-{$uuid}">
 					<script type="text/javascript">
-						pkp.registry.init('categories-{$uuid}', 'SelectListPanel', {$categoriesListData});
+						pkp.registry.init('categories-{$uuid}', 'SelectListPanel', {$categoriesListData|json_encode});
 					</script>
 				</div>
 			{/fbvFormSection}

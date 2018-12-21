@@ -34,14 +34,11 @@
 	<message key="admin.presses.noneCreated">Nobena založba ni bila ustvarjena.</message>
 	<message key="admin.contexts.confirmDelete">Ali ste prepričani, da želite dokončno zbrisati to založbo in vso njeno vsebino?</message>
 	<message key="admin.contexts.create">Ustvari založbo</message>
-	<message key="admin.presses.createInstructions">Avtomatsko boste registrirani kot upravljalec te založbe. Da boste lahko zaključili začetno nastavitev, boste po ustvarjenju nove založbe preusmerjeni na njene nastavitve.</message>
-	<message key="admin.presses.urlWillBe">URL založbe bo {$sampleUrl}</message>
 	<message key="admin.contexts.form.titleRequired">Naslov je obvezen.</message>
 	<message key="admin.contexts.form.pathRequired">Pot je obvezna.</message>
 	<message key="admin.contexts.form.pathAlphaNumeric">Pot lahko vsebuje le alfanumerične znake, podčrtaje in pomišljaje ter se mora začeti in končati z alfanumeričnim znakom.</message>
 	<message key="admin.contexts.form.pathExists">Izbrano pot uporablja že druga založba.</message>
-	<message key="admin.presses.enablePressInstructions">Omogoči, da se založba javno pojavi na spletišču</message>
-	<message key="admin.presses.pressDescription">Opis založbe</message>
+	<message key="admin.contexts.contextDescription">Opis založbe</message>
 	<message key="admin.presses.addPress">Dodaj založbo</message>
 
 

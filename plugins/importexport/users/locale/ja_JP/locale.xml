@@ -47,7 +47,7 @@
 	<message key="plugins.importexport.users.import.usersWereImported">以下のユーザがシステムにインポートされました。</message>
 	<message key="plugins.importexport.users.import.errorsOccurred">インポート処理中にエラーが発生しました</message>
 	<message key="plugins.importexport.users.import.confirmUsers">これらのユーザがシステムにインポートするユーザであるか確認してください。</message>
-	<message key="plugins.importexport.users.unknownPress">不明な雑誌用パス名 "{$pressPath}" が指定されました。</message>
+	<message key="plugins.importexport.users.unknownPress">不明な雑誌用パス名 "{$contextPath}" が指定されました。</message>
 
 	<message key="plugins.importexport.users.export.exportUsers">ユーザのエクスポート</message>
 	<message key="plugins.importexport.users.export.exportByRole">役割によるエクスポート</message>
