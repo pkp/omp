@@ -1,0 +1,62 @@
+{
+	"title": "Site",
+	"description": "The overall site hosting presses.",
+	"properties": {
+		"contactEmail": {
+			"type": "string",
+			"multilingual": true,
+			"validation": [
+				"nullable",
+				"email_or_localhost"
+			]
+		},
+		"contactName": {
+			"type": "string",
+			"multilingual": true,
+			"defaultLocaleKey": "common.openJournalSystems",
+			"validation": [
+				"nullable"
+			]
+		},
+		"installedLocales": {
+			"type": "array",
+			"items": {
+				"type": "string",
+				"validation": [
+					"regex:/^[a-z]{2}_[A-Z]{2}(@[a-z]{0,})?$/"
+				]
+			}
+		},
+		"minPasswordLength": {
+			"type": "integer",
+			"validation": [
+				"min:4"
+			]
+		},
+		"primaryLocale": {
+			"type": "string",
+			"validation": [
+				"regex:/^[a-z]{2}_[A-Z]{2}(@[a-z]{0,})?$/"
+			]
+		},
+		"redirect": {
+			"type": "integer",
+			"validation": [
+				"nullable"
+			]
+		},
+		"supportedLocales": {
+			"type": "array",
+			"items": {
+				"type": "string",
+				"validation": [
+					"regex:/^[a-z]{2}_[A-Z]{2}(@[a-z]{0,})?$/"
+				]
+			}
+		},
+		"themePluginPath": {
+			"type": "string",
+			"default": "default"
+		}
+	}
+}

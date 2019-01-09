@@ -326,7 +326,6 @@
 
 	<!-- Common Press Terms -->
 	<message key="press.presses">Editoras</message>
-	<message key="press.path">Caminho</message>
 	<message key="context.context">Editora</message>
 	<message key="context.select">Selecione uma Editora...</message>
 

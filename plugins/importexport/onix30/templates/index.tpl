@@ -13,7 +13,7 @@
 {/strip}
 
 <div class="pkp_page_content">
-	{if !$currentContext->getSetting('publisher') || !$currentContext->getSetting('location') || !$currentContext->getSetting('codeType') || !$currentContext->getSetting('codeValue')}
+	{if !$currentcontext->getData('publisher') || !$currentcontext->getData('location') || !$currentcontext->getData('codeType') || !$currentcontext->getData('codeValue')}
 		{translate key="plugins.importexport.onix30.pressMissingFields"}
 	{else}
 		<script type="text/javascript">
@@ -29,7 +29,7 @@
 					{assign var="uuid" value=""|uniqid|escape}
 					<div id="export-submissions-list-handler-{$uuid}">
 						<script type="text/javascript">
-							pkp.registry.init('export-submissions-list-handler-{$uuid}', 'SelectSubmissionsListPanel', {$exportSubmissionsListData});
+							pkp.registry.init('export-submissions-list-handler-{$uuid}', 'SelectSubmissionsListPanel', {$exportSubmissionsListData|json_encode});
 						</script>
 					</div>
 				{/fbvFormSection}

@@ -25,7 +25,7 @@
 	<message key="plugins.importexport.users.import.confirmUsers">Confirmeu que aquests són els usuaris/àries que voleu importar al sistema.</message>
 	<message key="plugins.importexport.users.import.warning">Advertiment</message>
 	<message key="plugins.importexport.users.import.encryptionMismatch">No es poden utilitzar contrasenyes resumides amb hash {$importHash}; OMP està configurat per utilitzar {$ompHash}. Si continues, necessitaràs reinciar les ccontrasenyes dels usuaris/àries importats/des.</message>
-	<message key="plugins.importexport.users.unknownPress">Has especificat un camí de publicació desconegut "{$pressPath}".</message>
+	<message key="plugins.importexport.users.unknownPress">Has especificat un camí de publicació desconegut "{$contextPath}".</message>
 
 	<message key="plugins.importexport.users.export.exportUsers">Exporta els usuaris/àries</message>
 	<message key="plugins.importexport.users.export.exportByRole">Exporta per rol</message>

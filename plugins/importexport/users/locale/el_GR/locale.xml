@@ -56,7 +56,7 @@ Commands:
 	<message key="plugins.importexport.users.import.confirmUsers">Επιβεβαιώστε ότι αυτοί είναι οι χρήστες που θέλετε να εισάγετε στο σύστημα</message>
 	<message key="plugins.importexport.users.import.warning">Προειδοποίηση</message>
 	<message key="plugins.importexport.users.import.encryptionMismatch">Δεν μπορείτε να χρησιμοποιήσετε κωδικούς πρόσβασης κρυπτογραφημένους με το  {$importHash}. Το OMP έχει ρυθμιστεί ώστε να χρησιμοποιεί το {$ompHash}. Αν συνεχίσετε θα πρέπει να επναφέρετε τους κωδικούς πρόσβασης των εισηγμένων χρηστών.</message>
-	<message key="plugins.importexport.users.unknownPress">Ορίστηκε μια άγνωστη διαδρομή περιοδικού "{$pressPath}".</message>
+	<message key="plugins.importexport.users.unknownPress">Ορίστηκε μια άγνωστη διαδρομή περιοδικού "{$contextPath}".</message>
 
 	<message key="plugins.importexport.users.export.exportUsers">Εξαγωγή χρηστών </message>
 	<message key="plugins.importexport.users.export.exportByRole">Εξαγωγή κατά ρόλο</message>

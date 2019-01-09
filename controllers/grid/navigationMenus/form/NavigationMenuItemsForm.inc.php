@@ -14,25 +14,15 @@
  */
 
 import('lib.pkp.controllers.grid.navigationMenus.form.PKPNavigationMenuItemsForm');
-import('classes.core.ServicesContainer');
+import('classes.core.Services');
 
 class NavigationMenuItemsForm extends PKPNavigationMenuItemsForm {
-
-	function __construct($request, $navigationMenuItemId = null) {
-		ServicesContainer::instance()
-			->get('navigationMenu');
-
-		parent::__construct($request, $navigationMenuItemId);
-	}
 
 	/**
 	 * @copydoc Form::fetch()
 	 */
 	function fetch($request, $template = null, $display = false) {
-		import('classes.core.ServicesContainer');
-		$customTemplates = ServicesContainer::instance()
-			->get('navigationMenu')
-			->getMenuItemCustomEditTemplates();
+		$customTemplates = \Services::get('navigationMenu')->getMenuItemCustomEditTemplates();
 
 		$request = \Application::getRequest();
 		$context = $request->getContext();
@@ -120,5 +110,3 @@ class NavigationMenuItemsForm extends PKPNavigationMenuItemsForm {
 	}
 
 }
-
-

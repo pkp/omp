@@ -247,7 +247,7 @@ class Upgrade extends Installer {
 				$settingsDao->updateSetting(
 					$context->getId(),
 					$settingName,
-					$context->getSetting('emailHeader'),
+					$context->getData('emailHeader'),
 					'string'
 				);
 			}

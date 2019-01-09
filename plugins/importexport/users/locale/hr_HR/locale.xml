@@ -46,7 +46,7 @@ Primjeri:
 	<message key="plugins.importexport.users.import.usersWereImported">Sljedeći korisnici su uspješno uneseni u sustav</message>
 	<message key="plugins.importexport.users.import.errorsOccurred">Pogreške koje su se pojavile prilikom unošenja</message>
 	<message key="plugins.importexport.users.import.confirmUsers">Molim potvrdite da su ovo korisnici koje želite unijeti u sustav</message>
-	<message key="plugins.importexport.users.unknownPress">Navedena je nepoznata putanja "{$pressPath}".</message>
+	<message key="plugins.importexport.users.unknownPress">Navedena je nepoznata putanja "{$contextPath}".</message>
 
 	<message key="plugins.importexport.users.export.exportUsers">Iznesi korisnike</message>
 	<message key="plugins.importexport.users.export.exportByRole">Iznesi po ulozi</message>

@@ -1,0 +1,807 @@
+{
+	"swagger": "2.0",
+	"info": {
+		"version": "3.2.x",
+		"title": "Open Monograph Press - API Reference",
+		"description": "This guide documents the REST API endpoints which can be accessed with this version of [Open Monograph Press](https://pkp.sfu.ca/omp/). It is a technical reference for software developers who wish to build custom interactions with the platform.\n\nPlease consult the [REST API Usage Guide](/dev/api) for an introduction to using the API or the [Developer Documentation Hub](/dev) for documentation on the platform's internals.",
+		"contact": {
+			"name": "Public Knowledge Project",
+			"url": "https://pkp.sfu.ca"
+		}
+	},
+	"produces": [
+		"application/json"
+	],
+	"tags": [
+		{
+			"name": "Users",
+			"description": "Only admins, editors, and subeditors can access these endpoints."
+		},
+		{
+			"name": "Contexts",
+			"description": "Only admins and press managers can access these endpoints."
+		},
+		{
+			"name": "Temporary Files",
+			"description": "A special endpoint to be used for handling file uploads. See the [API Usage Guide](/dev/api) for more information."
+		},
+		{
+			"name": "Backend",
+			"description": "Private endpoints for OJS's UI. These endpoints will be less stable between versions. We discourage their use in third-party plugins or applications."
+		}
+	],
+	"definitions": {
+		"Author": "author",
+		"Context": "context",
+		"ErrorResponse": {
+			"type": "object",
+			"description": "A response object that will be returned when the request could not be fulfilled.",
+			"properties": {
+				"error": {
+					"type": "string"
+				},
+				"errorMessage": {
+					"type": "string"
+				}
+			}
+		},
+		"Galley": "galley",
+		"InvalidParametersResponse": {
+			"type": "object",
+			"description": "A response object that will be returned when there are validation errors for the request parameters. Typically used with forms.",
+			"example": {
+				"name": [
+					"You must provide a name to create a new user."
+				],
+				"roles": [
+					"You must assign the user to one or more roles."
+				]
+			}
+		},
+		"LocaleObject": {
+			"type": "object",
+			"description": "Key/value pairs containing data stored by locale key.",
+			"example": {
+				"en_US": "Filename",
+				"fr_CA": "Nom de fichier"
+			}
+		},
+		"ReviewRound": "reviewRound",
+		"ReviewerSummary": {
+			"type": "object",
+			"description": "A special representation of a User assigned to a reviewer group. This model presents specific details about review activity.",
+			"properties": {
+				"_href": {
+					"type": "string"
+				},
+				"affiliation": {
+					"$ref": "#/definitions/LocaleObject"
+				},
+				"averageReviewCompletionDays": {
+					"type": "integer"
+				},
+				"dateLastReviewAssignment": {
+					"type": "string"
+				},
+				"disabled": {
+					"type": "boolean"
+				},
+				"fullName": {
+					"type": "string"
+				},
+				"gossip": {
+					"$ref": "#/definitions/LocaleObject"
+				},
+				"groups": {
+					"type": "array",
+					"items": {
+						"$ref": "#/definitions/UserGroup"
+					}
+				},
+				"id": {
+					"type": "integer"
+				},
+				"interests": {
+					"type": "array",
+					"items": {
+						"$ref": "#/definitions/UserInterest"
+					}
+				},
+				"reviewsActive": {
+					"type": "integer"
+				},
+				"reviewsCompleted": {
+					"type": "integer"
+				},
+				"reviewsDeclined": {
+					"type": "integer"
+				},
+				"userName": {
+					"type": "string"
+				}
+			}
+		},
+		"Submission": "submission",
+		"SubmissionFile": "submissionFile",
+		"ThemeOptions": {
+			"type": "object",
+			"description": "A theme with values for any of its theme options. The theme is provided in the `themePluginPath` key. Other keys may or may not exist depending on what options have been defined by that theme.",
+			"properties": {
+				"themePluginPath": {
+					"type": "string"
+				},
+				"...": {
+					"type": "string"
+				}
+			}
+		},
+		"User": "user",
+		"UserGroup": "userGroup",
+		"UserInterest": {
+			"type": "object",
+			"description": "A user's review interests.",
+			"properties": {
+				"id": {
+					"type": "integer"
+				},
+				"interest": {
+					"type": "string"
+				}
+			}
+		}
+	},
+	"paths": {
+		"/users": {
+			"get": {
+				"tags": [
+					"Users"
+				],
+				"summary": "Get a list of users.",
+				"parameters": [
+					{
+						"name": "roleIds",
+						"description": "Filter the results by those who have one of these user role IDs.",
+						"in": "query",
+						"required": false,
+						"type": "string"
+					},
+					{
+						"name": "status",
+						"description": "Filter results by active/disabled users. Must be one of `active`, `disabled`, `all`. Default is `active`.",
+						"in": "query",
+						"required": false,
+						"type": "string"
+					},
+					{
+						"name": "assignedToSubmission",
+						"description": "Filter results by those assigned to this submission ID.",
+						"in": "query",
+						"required": false,
+						"type": "integer"
+					},
+					{
+						"name": "assignedToSubmissionStage",
+						"description": "Filter results by those assigned to this submission stage. Will be ignored if no `assignedToSubmission` parameter exists.",
+						"in": "query",
+						"required": false,
+						"type": "integer"
+					},
+					{
+						"name": "count",
+						"description": "How many results to return in a single request. Default is `20`. Max is `100`.",
+						"in": "query",
+						"required": false,
+						"type": "integer"
+					},
+					{
+						"name": "offset",
+						"description": "Offset the results returned. Use this to receive subsequent pages of requests. A `count` of `10` and `offset` of `15` will return results `15` to `25`.",
+						"in": "query",
+						"required": false,
+						"type": "integer"
+					},
+					{
+						"name": "orderBy",
+						"description": "Order the results returned. Must be one of `id`, `familyName` or `givenName`. Default is `id`.",
+						"in": "query",
+						"required": false,
+						"type": "string"
+					},
+					{
+						"name": "orderDirection",
+						"description": "Return the results in ascending or descending order. Must be `ASC` or `DESC`. Default is `DESC`.",
+						"in": "query",
+						"required": false,
+						"type": "string"
+					},
+					{
+						"name": "searchPhrase",
+						"description": "Filter the results by a search phrase matched against the `userName`, `givenName`, `familyName`, `email`, `affiliation`, `biography` and `orcid`.",
+						"in": "query",
+						"required": false,
+						"type": "string"
+					}
+				],
+				"responses": {
+					"200": {
+						"description": "A list of users.",
+						"schema": {
+							"type": "object",
+							"properties": {
+								"itemsMax": {
+									"type": "integer"
+								},
+								"items": {
+									"type": "array",
+									"items": {
+										"$ref": "#/definitions/UserSummary"
+									}
+								}
+							}
+						}
+					},
+					"403": {
+						"description": "Only administrators, press managers and editors are allowed to access users on this site.",
+						"schema": {
+							"$ref": "#/definitions/ErrorResponse"
+						}
+					}
+				}
+			}
+		},
+		"/users/{userId}": {
+			"get": {
+				"tags": [
+					"Users"
+				],
+				"summary": "Get a user by ID.",
+				"parameters": [
+					{
+						"name": "userId",
+						"description": "User ID",
+						"in": "path",
+						"required": true,
+						"type": "integer"
+					}
+				],
+				"responses": {
+					"200": {
+						"description": "User details.",
+						"schema": {
+							"$ref": "#/definitions/User"
+						}
+					}
+				}
+			}
+		},
+		"/users/reviewers": {
+			"get": {
+				"tags": [
+					"Users"
+				],
+				"parameters": [
+					{
+						"name": "status",
+						"description": "Filter results by active/disabled users. Must be one of `active`, `disabled`, `all`. Default is `active`.",
+						"in": "query",
+						"required": false,
+						"type": "string"
+					},
+					{
+						"name": "reviewerRating",
+						"description": "Filter results by those who have an average review assignment rating of at least `X` (valid ratings are between `1` and `5`).",
+						"in": "query",
+						"required": false,
+						"type": "integer"
+					},
+					{
+						"name": "reviewsCompleted",
+						"description": "Filter results by those who have completed at least `X` reviews. You can also pass a range as a string formatted as `X-X`.",
+						"in": "query",
+						"required": false,
+						"type": "string"
+					},
+					{
+						"name": "reviewsActive",
+						"description": "Filter results by those who have `X` review assignments currently in progress. You can also pass a range as a string formatted as `X-X`.",
+						"in": "query",
+						"required": false,
+						"type": "string"
+					},
+					{
+						"name": "daysSinceLastAssignment",
+						"description": "Filter results by those who's last review was assigned at least `X` days ago. You can also pass a range as a string formatted as `X-X`.",
+						"in": "query",
+						"required": false,
+						"type": "string"
+					},
+					{
+						"name": "averageCompletion",
+						"description": "Filter results by those who complete a review assignment within `X` days on average.",
+						"in": "query",
+						"required": false,
+						"type": "integer"
+					},
+					{
+						"name": "assignedToSubmission",
+						"description": "Filter results by those assigned to this submission ID.",
+						"in": "query",
+						"required": false,
+						"type": "integer"
+					},
+					{
+						"name": "assignedToSubmissionStage",
+						"description": "Filter results by those assigned to this submission stage. Will be ignored if no `assignedToSubmission` parameter exists.",
+						"in": "query",
+						"required": false,
+						"type": "integer"
+					},
+					{
+						"name": "count",
+						"description": "How many results to return in a single request. Default is `20`. Max is `100`.",
+						"in": "query",
+						"required": false,
+						"type": "integer"
+					},
+					{
+						"name": "offset",
+						"description": "Offset the results returned. Use this to receive subsequent pages of requests. A `count` of `10` and `offset` of `15` will return results `15` to `25`.",
+						"in": "query",
+						"required": false,
+						"type": "integer"
+					},
+					{
+						"name": "orderBy",
+						"description": "Order the results returned. Must be one of `id`, `familyName` or `givenName`. Default is `id`.",
+						"in": "query",
+						"required": false,
+						"type": "string"
+					},
+					{
+						"name": "orderDirection",
+						"description": "Return the results in ascending or descending order. Must be `ASC` or `DESC`. Default is `DESC`.",
+						"in": "query",
+						"required": false,
+						"type": "string"
+					},
+					{
+						"name": "searchPhrase",
+						"description": "Filter the results by a search phrase matched against the `userName`, `givenName`, `familyName`, `email`, `affiliation`, `biography`, `orcid`, `interests`, and `gossip`.",
+						"in": "query",
+						"required": false,
+						"type": "string"
+					}
+				],
+				"responses": {
+					"200": {
+						"description": "List of reviewers.",
+						"schema": {
+							"type": "object",
+							"properties": {
+								"itemsMax": {
+									"type": "integer"
+								},
+								"items": {
+									"type": "array",
+									"items": {
+										"$ref": "#/definitions/ReviewerSummary"
+									}
+								}
+							}
+						}
+					},
+					"403": {
+						"description": "Only administrators, press managers and editors are allowed to access users on this site.",
+						"schema": {
+							"$ref": "#/definitions/ErrorResponse"
+						}
+					}
+				}
+			}
+		},
+		"/contexts": {
+			"get": {
+				"tags": [
+					"Contexts"
+				],
+				"summary": "Get a list of presses.",
+				"parameters": [
+					{
+						"name": "isEnabled",
+						"description": "Filter results by enabled/disabled contexts. Any truthy or falsey value will get enabled/disabled contexts. Leave this parameter out to get all contexts.",
+						"in": "query",
+						"required": false,
+						"type": "string"
+					},
+					{
+						"name": "count",
+						"description": "How many results to return in a single request. Default is `20`. Max is `100`.",
+						"in": "query",
+						"required": false,
+						"type": "type"
+					},
+					{
+						"name": "offset",
+						"description": "Offset the results returned. Use this to receive subsequent pages of requests.",
+						"in": "query",
+						"required": false,
+						"type": "integer"
+					},
+					{
+						"name": "searchPhrase",
+						"description": "Filter results by a search phrase matched against the `name`, `description`, `acronym`, or `abbreviation`.",
+						"in": "query",
+						"required": false,
+						"type": "string"
+					}
+				],
+				"responses":  {
+					"200": {
+						"description": "List of contexts.",
+						"schema": {
+							"type": "object",
+							"properties": {
+								"itemsMax": {
+									"type": "integer"
+								},
+								"items": {
+									"type": "array",
+									"items": {
+										"$ref": "#/definitions/ContextSummary"
+									}
+								}
+							}
+						}
+					},
+					"403": {
+						"description": "You do not have permission to view disabled contexts.",
+						"schema": {
+							"$ref": "#/definitions/ErrorResponse"
+						}
+					}
+				}
+			},
+			"post":  {
+				"tags": [
+					"Contexts"
+				],
+				"summary": "Create a new context (journal/press).",
+				"parameters": [
+					{
+						"description": "Details about the context that should be created. The `path` field is required. The `name` is required in the site's primary locale.",
+						"in": "body",
+						"schema": {
+							"$ref": "#/definitions/ContextEditable"
+						}
+					}
+				],
+				"responses": {
+					"200": {
+						"description": "Details of the context that was just added.",
+						"schema": {
+							"$ref": "#/definitions/Context"
+						}
+					},
+					"400": {
+						"description": "The information you submitted did not pass validation. The response will contain information about which parameters failed validation.",
+						"schema": {
+							"$ref": "#/definitions/InvalidParametersResponse"
+						}
+					}
+				}
+			}
+		},
+		"/contexts/{contextId}": {
+			"get": {
+				"tags": [
+					"Contexts"
+				],
+				"summary": "Get a context by ID.",
+				"parameters": [
+					{
+						"name": "contextId",
+						"description": "Context ID",
+						"in": "path",
+						"required": true,
+						"type": "integer"
+					}
+				],
+				"responses": {
+					"200": {
+						"description": "Context details. Some details may be withheld if you are not a site admin or manager of that context.",
+						"schema": {
+							"$ref": "#/definitions/Context"
+						}
+					},
+					"403": {
+						"description": "You do not have permission to view this context.",
+						"schema": {
+							"$ref": "#/definitions/ErrorResponse"
+						}
+					},
+					"404": {
+						"description": "The requested context could not be found.",
+						"schema": {
+							"$ref": "#/definitions/ErrorResponse"
+						}
+					}
+				}
+			},
+			"put": {
+				"tags": [
+					"Contexts"
+				],
+				"summary": "Edit a context (journal/press).",
+				"parameters": [
+					{
+						"name": "contextId",
+						"description": "Context ID",
+						"in": "path",
+						"required": true,
+						"type": "integer"
+					},
+					{
+						"description": "The details about a context that you want to edit. All params are optional. When a param is omitted, the existing value of that param will not be modified.",
+						"in": "body",
+						"schema": {
+							"$ref": "#/definitions/ContextEditable"
+						}
+					}
+				],
+				"responses": {
+					"200": {
+						"description": "The context that was just edited with the current values after the edit has occurred.",
+						"schema": {
+							"$ref": "#/definitions/Context"
+						}
+					},
+					"400": {
+						"description": "The information you submitted did not pass validation. The response will contain information about which parameters failed validation.",
+						"schema": {
+							"$ref": "#/definitions/InvalidParametersResponse"
+						}
+					},
+					"403": {
+						"description": "There are two possible conditions that will result in a `403` response. 1. You do not have permission to edit this context. 2. You submitted changes for one context from the API endpoint of another context. To edit a context, you must make a request to that context's API endpoint or the site-wide API endpoint.",
+						"schema": {
+							"$ref": "#/definitions/ErrorResponse"
+						}
+					},
+					"404": {
+						"description": "The requested context could not be found.",
+						"schema": {
+							"$ref": "#/definitions/ErrorResponse"
+						}
+					}
+				}
+			},
+			"delete": {
+				"tags": [
+					"Contexts"
+				],
+				"summary": "Delete a context (journal/press).",
+				"parameters": [
+					{
+						"name": "contextId",
+						"description": "Context ID",
+						"in": "path",
+						"required": true,
+						"type": "integer"
+					}
+				],
+				"responses": {
+					"200": {
+						"description": "Details of the context that was just deleted.",
+						"schema": {
+							"$ref": "#/definitions/Context"
+						}
+					},
+					"403": {
+						"description": "You do not have permission to delete this context.",
+						"schema": {
+							"$ref": "#/definitions/ErrorResponse"
+						}
+					},
+					"404": {
+						"description": "The requested context could not be found.",
+						"schema": {
+							"$ref": "#/definitions/ErrorResponse"
+						}
+					}
+				}
+			}
+		},
+		"/contexts/{contextId}/theme": {
+			"get": {
+				"tags": [
+					"Contexts"
+				],
+				"summary": "Get a context's active theme and any theme options defined by it.",
+				"parameters": [
+					{
+						"name": "contextId",
+						"description": "Context ID",
+						"in": "path",
+						"required": true,
+						"type": "integer"
+					}
+				],
+				"responses": {
+					"200": {
+						"description": "The response will include the theme plugin directory in `themePluginPath`. Any theme options will be provided in additional keys based on the option name.",
+						"schema": {
+							"$ref": "#/definitions/ThemeOptions"
+						}
+					},
+					"403": {
+						"description": "You do not have permission to view this context.",
+						"schema": {
+							"$ref": "#/definitions/ErrorResponse"
+						}
+					},
+					"404": {
+						"description": "The requested context could not be found. A 404 may also be returned when a context has no active theme, or the active theme plugin has not been installed or enabled.",
+						"schema": {
+							"$ref": "#/definitions/ErrorResponse"
+						}
+					}
+				}
+			},
+			"put": {
+				"tags": [
+					"Contexts"
+				],
+				"summary": "Edit a context's (journal/press) active theme and options defined by that theme.",
+				"parameters": [
+					{
+						"name": "contextId",
+						"description": "Context ID",
+						"in": "path",
+						"required": true,
+						"type": "integer"
+					},
+					{
+						"description": "The details you want to edit. The `themePluginPath` is required to specify the active theme, even if the theme is not being changed. Any additional keys/values must match the options defined by that theme.",
+						"in": "body",
+						"schema": {
+							"$ref": "#/definitions/ThemeOptions"
+						}
+					}
+				],
+				"responses": {
+					"200": {
+						"description": "The new theme and values for any of its theme options.",
+						"schema": {
+							"$ref": "#/definitions/ThemeOptions"
+						}
+					},
+					"400": {
+						"description": "The information you submitted did not pass validation. The response will contain information about which parameters failed validation.",
+						"schema": {
+							"$ref": "#/definitions/InvalidParametersResponse"
+						}
+					},
+					"403": {
+						"description": "There are two possible conditions that will result in a `403` response. 1. You do not have permission to edit this context. 2. You submitted changes for one context from the API endpoint of another context. To edit a context, you must make a request to that context's API endpoint or the site-wide API endpoint.",
+						"schema": {
+							"$ref": "#/definitions/ErrorResponse"
+						}
+					},
+					"404": {
+						"description": "The requested context could not be found.",
+						"schema": {
+							"$ref": "#/definitions/ErrorResponse"
+						}
+					}
+				}
+			}
+		},
+		"/temporaryFiles": {
+			"options": {
+				"tags": [
+					"Temporary Files"
+				],
+				"summary": "Responds with the appopriate headers to indicate file uploads maybe be sent, required by some file upload utilities which send a preflight request.",
+				"responses": {
+					"200": {
+						"description": "An empty response body."
+					}
+				}
+			},
+			"post": {
+				"tags": [
+					"Temporary Files"
+				],
+				"summary": "Upload a file to the temporary file storage area and receive a temporary file ID.",
+				"parameters": [
+					{
+						"name": "...",
+						"description": "Use any parameter key to upload your file. The API endpoint will retrieve the first uploaded file.",
+						"in": "body"
+					}
+				],
+				"responses": {
+					"200": {
+						"description": "The temporary file ID to use in other API requests.",
+						"schema": {
+							"type": "object",
+							"properties": {
+								"id": {
+									"type": "integer"
+								}
+							}
+						}
+					},
+					"400": {
+						"description": "No uploaded file could be found.",
+						"schema": {
+							"$ref": "#/definitions/ErrorResponse"
+						}
+					}
+				}
+			}
+		},
+		"/_payments": {
+			"put": {
+				"tags": [
+					"Backend"
+				],
+				"summary": "Used to save payment settings.",
+				"description": "This endpoint is used on the settings page to save payment plugin settings alongside the general press settings for enabling payments and setting the currency.",
+				"parameters": [
+					{
+						"description": "None of these properties are required. In addition to `paymentsEnabled` and `currency`, you may pass any property that corresponds with a setting for an enabled `paymethod` plugin.",
+						"in": "body",
+						"schema": {
+							"type": "object",
+							"properties": {
+								"paymentsEnabled": {
+									"type": "boolean"
+								},
+								"paymentPluginName": {
+									"type": "string"
+								},
+								"currency": {
+									"type": "string"
+								},
+								"...": {
+									"type": "string"
+								}
+							}
+						}
+					}
+				],
+				"responses": {
+					"200": {
+						"description": "The parameters you submitted"
+					},
+					"400": {
+						"description": "The information you submitted did not pass validation. The response will contain information about which parameters failed validation.",
+						"schema": {
+							"$ref": "#/definitions/InvalidParametersResponse"
+						}
+					}
+				}
+			}
+		},
+		"/_submissions": {
+			"get": {
+				"tags": [
+					"Backend"
+				],
+				"summary": "Used in submission lists.",
+				"description": "This endpoint delivers a little bit of extra information about each submission that is used in the submissions list. This private endpoint saves a few extra HTTP requests, but it is more database-intensive for each query.",
+				"parameters": [
+					{
+						"description": "Accepts most parameters supported by the public `/submissions` endpoint."
+					}
+				],
+				"responses": {
+					"200": {
+						"description": "List of submissions."
+					}
+				}
+			}
+		}
+	}
+}

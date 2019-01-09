@@ -294,7 +294,6 @@
 
 	<!-- Common Press Terms -->
 	<message key="press.presses">Publicacions</message>
-	<message key="press.path">Ruta</message>
 	<message key="context.context">Publicació</message>
 	<message key="context.select">Seleccioneu una publicació...</message>
 

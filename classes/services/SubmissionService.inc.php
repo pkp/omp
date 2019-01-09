@@ -14,7 +14,7 @@
  *  requirements.
  */
 
-namespace OMP\Services;
+namespace APP\Services;
 
 class SubmissionService extends \PKP\Services\PKPSubmissionService {
 
@@ -22,11 +22,9 @@ class SubmissionService extends \PKP\Services\PKPSubmissionService {
 	 * Initialize hooks for extending PKPSubmissionService
 	 */
 	public function __construct() {
-		parent::__construct();
-
 		\HookRegistry::register('Submission::isPublic', array($this, 'modifyIsPublic'));
-		\HookRegistry::register('Submission::getSubmissions::queryBuilder', array($this, 'modifySubmissionListQueryBuilder'));
-		\HookRegistry::register('Submission::getSubmissions::queryObject', array($this, 'modifySubmissionListQueryObject'));
+		\HookRegistry::register('Submission::getMany::queryBuilder', array($this, 'modifySubmissionQueryBuilder'));
+		\HookRegistry::register('Submission::getMany::queryObject', array($this, 'modifySubmissionListQueryObject'));
 		\HookRegistry::register('Submission::getBackendListProperties::properties', array($this, 'modifyBackendListPropertyValues'));
 		\HookRegistry::register('Submission::getProperties::values', array($this, 'modifyPropertyValues'));
 	}
@@ -59,15 +57,6 @@ class SubmissionService extends \PKP\Services\PKPSubmissionService {
 			$isPublic = true;
 			return;
 		}
-	}
-
-	/**
-	 * Helper function to return the app-specific submission list query builder
-	 *
-	 * @return \OMP\Services\QueryBuilders\SubmissionListQueryBuilder
-	 */
-	public function getSubmissionListQueryBuilder($contextId) {
-		return new \OMP\Services\QueryBuilders\SubmissionListQueryBuilder($contextId);
 	}
 
 	/**
@@ -178,17 +167,16 @@ class SubmissionService extends \PKP\Services\PKPSubmissionService {
 	 *
 	 * @param $hookName string
 	 * @param $args array [
-	 *		@option QueryBuilders\SubmissionListQueryBuilder $submissionListQB
+	 *		@option QueryBuilders\SubmissionQueryBuilder $submissionListQB
 	 *		@option int $contextId
 	 *		@option array $args
 	 * ]
 	 *
-	 * @return QueryBuilders\SubmissionListQueryBuilder
+	 * @return QueryBuilders\SubmissionQueryBuilder
 	 */
-	public function modifySubmissionListQueryBuilder($hookName, $args) {
+	public function modifySubmissionQueryBuilder($hookName, $args) {
 		$submissionListQB =& $args[0];
-		$contextId = $args[1];
-		$requestArgs = $args[2];
+		$requestArgs = $args[1];
 
 		if (!empty($requestArgs['categoryIds'])) {
 			$submissionListQB->filterByCategories($requestArgs['categoryIds']);
@@ -211,7 +199,7 @@ class SubmissionService extends \PKP\Services\PKPSubmissionService {
 	 * @param $hookName string
 	 * @param $args array [
 	 *		@option object $queryObject
-	 *		@option QueryBuilders\SubmissionListQueryBuilder $queryBuilder
+	 *		@option QueryBuilders\SubmissionQueryBuilder $queryBuilder
 	 * ]
 	 *
 	 * @return object

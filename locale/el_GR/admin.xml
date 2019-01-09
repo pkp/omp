@@ -36,10 +36,7 @@
 	<message key="admin.systemConfigurationDescription"><![CDATA[Διαμόρφωση Ρυθμίσεων (Configuration) OMP από <tt>config.inc.php<tt>]]></message>
 	<message key="admin.presses.pressSettings">Ρυθμίσεις Έκδοσης</message>
 	<message key="admin.presses.noneCreated">Καμία Έκδοση δεν έχει δημιουργηθεί.</message>
-	<message key="admin.presses.createInstructions">Αυτόματα θα σας  αποδοθεί ο  ρόλος του Διαχειριστή  για αυτή την έκδοση. Μόλις δημιουργήσετε  μία νέα έκδοση, θα είστε σε θέση να ανακατευθύνετε τις ρυθμίσεις με τον οδηγό που σας δίνεται και  επομένως να ολοκληρώσετε τις αρχικές ρυθμίσεις σχετικά με την έκδοση.</message>
-	<message key="admin.presses.urlWillBe">Το URL της έκδοσης θα  είναι {$sampleUrl}</message>
-	<message key="admin.presses.enablePressInstructions">Ενεργοποιήστε  την επιλογή αυτή η έκδοση να εμφανίζεται  δημόσια στην συλλογή.</message>
-	<message key="admin.presses.pressDescription">Περιγραφή Έκδοσης</message>
+	<message key="admin.contexts.contextDescription">Περιγραφή Έκδοσης</message>
 	<message key="admin.presses.addPress">Προσθήκη Έκδοσης</message>
 
 	<!-- System Information -->

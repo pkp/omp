@@ -25,13 +25,6 @@
 			</a>
 		</li>
 		{call_hook name="Templates::Admin::Index::SiteManagement"}
-		{if $multipleContexts}
-			<li>
-				<a href="{url op="settings"}">
-					{translate key="admin.settings"}
-				</a>
-			</li>
-		{/if}
 	</ul>
 
 	<h3>

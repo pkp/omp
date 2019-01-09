@@ -311,7 +311,6 @@
 
 	<!-- Common Press Terms -->
 	<message key="press.presses">Presses</message>
-	<message key="press.path">Chemin d'accès</message>
 	<message key="context.context">Presse</message>
 	<!-- User -->
 	<message key="user.noRoles.submitMonograph">Soumettre une soumission</message>

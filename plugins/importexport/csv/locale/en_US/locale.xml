@@ -30,7 +30,7 @@
 	<message key="plugins.importexport.csv.fileDoesNotExist">The file "{$filename}" does not exist.  Exiting.</message>
 	<message key="plugins.importexport.csv.unknownUser">Unknown User: "{$username}".  Exiting.</message>
 	<message key="plugins.importexport.csv.unknownLocale">Unknown Locale: "{$locale}".  Skipping.</message>
-	<message key="plugins.importexport.csv.unknownPress">Unknown Press: "{$pressPath}".  Skipping.</message>
+	<message key="plugins.importexport.csv.unknownPress">Unknown Press: "{$contextPath}".  Skipping.</message>
 	<message key="plugins.importexport.csv.noGenre">There is no manuscript genre.  Exiting.</message>
 	<message key="plugins.importexport.csv.noAuthorGroup">There is no default author group in the press {$press}.  Skipping this submission.</message>
 	<message key="plugins.importexport.csv.noSeries">The series path {$seriesPath} does not exist.  Unable to add it to this submission.</message>

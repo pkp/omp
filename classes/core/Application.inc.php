@@ -33,19 +33,6 @@ define('ASSOC_TYPE_CHAPTER', 0x0000214);
 define('CONTEXT_PRESS', 1);
 
 class Application extends PKPApplication {
-	/**
-	 * Constructor
-	 */
-	function __construct() {
-		parent::__construct();
-
-		// Register custom autoloader function for OMP namespace
-		spl_autoload_register(function($class) {
-			$prefix = 'OMP\\';
-			$rootPath = BASE_SYS_DIR . "/classes";
-			customAutoload($rootPath, $prefix, $class);
-		});
-	}
 
 	/**
 	 * Get the "context depth" of this application, i.e. the number of
@@ -259,6 +246,11 @@ class Application extends PKPApplication {
 		import('classes.payment.omp.OMPPaymentManager');
 		return new OMPPaymentManager($context);
 	}
+
+	/**
+	 * @copydoc PKPApplication::getAllowMultipleContexts()
+	 */
+	static function getAllowMultipleContexts() {
+		return false;
+	}
 }
-
-

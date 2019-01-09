@@ -342,7 +342,6 @@
 
 	<!-- Common Press Terms -->
 	<message key="press.presses">Založbe</message>
-	<message key="press.path">Pot publikacije</message>
 	<message key="context.context">Založba</message>
 	<message key="context.current">Trenutna založba:</message>
 	<message key="context.select">Preklopite na drugo založbo:</message>

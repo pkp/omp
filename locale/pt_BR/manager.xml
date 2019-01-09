@@ -16,7 +16,7 @@
 	<!-- Languages -->
 	<message key="manager.language.confirmDefaultSettingsOverwrite">Isto substituirá qualquer configuração de idioma específica desta editora para este idioma.</message>
 	<message key="manager.languages.noneAvailable">Nenhum idioma adicional disponível. Enter em contato com o administrador do site caso deseje usar idiomas adicionais nesta editora.</message>
-	<message key="manager.languages.primaryLocaleInstructions">Este será o idioma padrão para o site da editora.</message>	
+	<message key="manager.languages.primaryLocaleInstructions">Este será o idioma padrão para o site da editora.</message>
 
 	<!-- Series management -->
 	<message key="manager.series.form.mustAllowPermission">Certifique-se de marcar pelo menos um checkbox para cada tarefa do editor de série.</message>
@@ -49,11 +49,10 @@
 	<message key="manager.settings">Configurações</message>
 	<message key="manager.settings.pressSettings">Configurações da editora</message>
 	<message key="manager.settings.press">Editora</message>
-	<message key="manager.settings.publisherInformation">Estes campos não são obrigatórios para uso do OMP, porém são obrigatórios para criar mentados ONIX válidos. Inclua-os caso deseje usar a funcionalidade ONIX.</message>
+	<message key="manager.settings.publisher.identity.description">Estes campos não são obrigatórios para uso do OMP, porém são obrigatórios para criar mentados ONIX válidos. Inclua-os caso deseje usar a funcionalidade ONIX.</message>
 	<message key="manager.settings.publisher">Nome da editora</message>
 	<message key="manager.settings.location">Localização geográfica</message>
 	<message key="manager.settings.publisherCode">Código da editora</message>
-	<message key="manager.settings.publisherCodeType.tip">Caso tenha um código de nome de publicadora, informe-o a seguir. Ele será incluído nos metadados gerais. O campo é obrigatório caso deseje usar metadados ONIX para suas publicações.</message>
 	<message key="manager.settings.distributionDescription">Todas as configurações específicas ao processo de distribuição (notificação, indexação, arquivamento, pagamento, ferramentas de leitura).</message>
 
 	<!--  Statistics management -->
@@ -84,7 +83,7 @@
 	<message key="manager.people.mergeUsers.from.description">Escolha o cadastro a ser mesclado em outro (ex.: quando alguém possui dois cadastros distintos). O cadastro escolhido primeiro será excluído e suas submissões, tarefas, etc, serão atribuídos ao cadastro escolhido depois.</message>
 	<message key="manager.people.mergeUsers.into.description">Escolha o cadastro no qual atribuir as submissões, tarefas, etc, do cadastro anterior.</message>
 	<message key="manager.people.syncUserDescription">Sincronização de cadastros atribuirá todos os usuários no papel específico em uma dada editora no mesmo papel nesta editora. A função permite compartilhar conjuntos de usuários (ex.: avaliadores), sincronizando seus cadastros entre editoras.</message>
-	<message key="manager.people.confirmDisable">Bloquear usuário? A ação impedirá o acesso ao sistema por parte do usuário. 
+	<message key="manager.people.confirmDisable">Bloquear usuário? A ação impedirá o acesso ao sistema por parte do usuário.
 
 Informe, se desesjar, o motivo do bloqueio.</message>
 	<message key="manager.people.noAdministrativeRights"><![CDATA[Sem direitos administrativos sobre este cadastro. Isto pode ser causado pelos seguinte motivos:
@@ -120,7 +119,7 @@ Informe, se desesjar, o motivo do bloqueio.</message>
 	<message key="manager.setup.announcements">Notícias</message>
 	<message key="manager.setup.announcementsDescription">Notícias podem ser publicadas para informa sobre eventos e novidades da editora aos leitores. Elas aparecerão na página de Notícias.</message>
 	<message key="manager.setup.announcementsIntroduction">Informação adicional</message>
-	<message key="manager.setup.announcementsIntroductionDescription">Digite qualquer texto adicional que deva ser exibido aos leitores na página de notícias.</message>
+	<message key="manager.setup.announcementsIntroduction.description">Digite qualquer texto adicional que deva ser exibido aos leitores na página de notícias.</message>
 	<message key="manager.setup.appearInAboutPress">(Apresentar em Sobre a editora) </message>
 	<message key="manager.setup.authorCopyrightNotice">Aviso de direito autoral</message>
 	<message key="manager.setup.authorCopyrightNoticeAgree">Exigir que autores concordem e aceitem o aviso de direito autoral como parte do processo de submissão.</message>
@@ -145,19 +144,16 @@ Informe, se desesjar, o motivo do bloqueio.</message>
 	<message key="manager.setup.disciplineExamples">(Ex.: História; Educação; Sociologia; Psicologia; Estudos Culturais; Direito)</message>
 	<message key="manager.setup.disciplineProvideExamples">Ofereça exemplos de termos de áreas do conhecimento relevantes a esta editora.</message>
 	<message key="manager.setup.displayCurrentMonograph">Incluir o sumário da monografia atual, caso esteja disponível.</message>
-	<message key="manager.setup.displayOnHomepage">Cnteúdo da página inicial</message>	
+	<message key="manager.setup.displayOnHomepage">Cnteúdo da página inicial</message>
 	<message key="manager.setup.doiPrefix">Prefixo DOI</message>
 	<message key="manager.setup.doiPrefixDescription"><![CDATA[O prefixo DOI (Digital Object Identifier) é designado pelo <a href="http://www.crossref.org" target="_blank">CrossRef</a>, no formato 10.xxxx (ex.: 10.1234).]]></message>
 	<message key="manager.setup.editorDecision">Decisão editorial</message>
 	<message key="manager.setup.emailBounceAddress">Endereço de retorno</message>
-	<message key="manager.setup.emailBounceAddressDescription">Qualquer mensagem não entregue resultará em uma mensagem de erro que será enderçada a este destinatário.</message>
-	<message key="manager.setup.emailBounceAddressDisabled"><![CDATA[<strong>Nota:</strong> Para ativar esta opção, o administrador do sistema deverá habilitar a opção <tt>allow_envelope_sender</tt> no arquivo de configuração do OMP. Além disso, configurações adicionais no servidor podem ser necessárias para dar suporte a funcionalidade (que pode não estar disponível em todos os servidores), como indicado na documentação do OMP.]]></message>
+	<message key="manager.setup.emailBounceAddress.description">Qualquer mensagem não entregue resultará em uma mensagem de erro que será enderçada a este destinatário.</message>
 	<message key="manager.setup.emails">Identificação das mensagens</message>
 	<message key="manager.setup.emailSignature">Assinatura</message>
 	<message key="manager.setup.emailSignatureDescription">Os modelos de mensagens são enviados pelo sistema em nome da editora, apresentando a seguinte assinatura no final. O corpo das mensagens está disponível para personalização mais adiante.</message>
-	<message key="manager.setup.enableAnnouncements">Permitir a Gerentes da editora incluir notícias.</message>
-	<message key="manager.setup.enableAnnouncementsHomepage1">Exibir</message>
-	<message key="manager.setup.enableAnnouncementsHomepage2">das notíticas mais recentes na página inicial da editora.</message>
+	<message key="manager.setup.enableAnnouncements.enable">Permitir a Gerentes da editora incluir notícias.</message>
 	<message key="manager.setup.enablePressInstructions">Apresentar esta editora publicamente no site</message>
 	<message key="manager.setup.enablePublicMonographId">Identificadores personalizados adotados para identificação dos itens publicados.</message>
 	<message key="manager.setup.enablePublicGalleyId">Identificadores personalizados serão adotados para identificação de composições finais (ex.: HTML arquivos PDF) de itens publicados.</message>
@@ -169,11 +165,9 @@ Informe, se desesjar, o motivo do bloqueio.</message>
 	<message key="manager.setup.forAuthorsToIndexTheirWorkDescription"><![CDATA[O OMP adota o protocolo de coleta de metadados do <a href="http://www.openarchives.org/" target="_blank">Open Archives Initiative</a>, que se tornou um padrão emergente para proporcionar acesso a recursos eletrônicos de pesquisa bem indexados, em uma escala global. Os autores usarão um modelo semelhante para informar metadados sobre suas submissões. O gerente da editora deve escolher as categorias de indexação e apresentar aos autores exemplos relevantes para auxiliá-los na indexação do trabalho, separando os termos com ponto-e-vírgula (ex.: termo1; termo2). Os campos apresentarão os exemplos usando "Ex.:" ou "Oor examplo,".]]></message>
 	<message key="manager.setup.form.contactEmailRequired">É necessário informar o e-mail do contato principal email.</message>
 	<message key="manager.setup.form.contactNameRequired">É necessário informar nome do contato principal.</message>
-	<message key="manager.setup.form.pressNameRequired">É necessário informar o nome da editora.</message>
 	<message key="manager.setup.form.numReviewersPerSubmission">É necessário informar o número de avaliadores por submissão.</message>
 	<message key="manager.setup.form.supportEmailRequired">É necessário informar o e-mail do suporte técnico.</message>
 	<message key="manager.setup.form.supportNameRequired">É necessáiro informar o nome do suporte técnico.</message>
-	<message key="manager.setup.form.pressInitialsRequired">É necessário informar a sigla da editora.</message>
 	<message key="manager.setup.generalInformation">Informações gerais</message>
 	<message key="manager.setup.gettingDownTheDetails">Passo 1. Detalhes</message>
 	<message key="manager.setup.guidelines">Diretrizes</message>
@@ -194,7 +188,6 @@ Informe, se desesjar, o motivo do bloqueio.</message>
 	<message key="manager.setup.layoutTemplates.file">Modelo</message>
 	<message key="manager.setup.layoutTemplates.title">Título</message>
 	<message key="manager.setup.lists">Listas</message>
-	<message key="manager.setup.listsDescription">Informe o máximo número de itens (por examplo, submissões, usuários ou tarefas de edição) que serão listadas, bem como o número de links de paginação, a serem exibidos em cada página.</message>
 	<message key="manager.setup.look"><![CDATA[Visual & Experiência]]></message>
 	<message key="manager.setup.look.description">Cabeçalho da página inicial, conteúdo cabeçalho da editora, rodapé, barra de navegação e folha de estilos.</message>
 	<message key="manager.setup.mailingAddress.description">O endereço físico e postal da editora.</message>
@@ -231,7 +224,7 @@ Informe, se desesjar, o motivo do bloqueio.</message>
 	<message key="manager.setup.homepageContentDescription">A homepage da editora consiste, por padrão, em links de navegação. Conteúdos adicionais à página inicial podem ser anexados usando uma ou todas das seguintes opções, que serão exibidos na ordem mostrada.</message>
 	<message key="manager.setup.pressHomepageContent">Conteúdo da página inicial da editora</message>
 	<message key="manager.setup.pressHomepageContentDescription">A página inicial da editora consiste, por padrão, de links de navegação. Conteúdo adicional pode ser incluído usando uma ou mais das opções a seguir, que aparecerão na ordem exibida.</message>
-	<message key="manager.setup.pressInitials">Sigla</message>
+	<message key="manager.setup.contextInitials">Sigla</message>
 	<message key="manager.setup.layout">Leiaute da Editora</message>
 	<message key="manager.setup.pageFooter">Rodapé</message>
 	<message key="manager.setup.pageFooterDescription">Este é o rodapé da editora. Para alterar ou atualizar o rodapé, cole código HTML no campo a seguir. Exemplos podem incluir outra barra de navegação, um contador, etc. O rodapé aparecerá em todas as páginas.</message>
@@ -242,7 +235,7 @@ Informe, se desesjar, o motivo do bloqueio.</message>
 	<message key="manager.setup.pressSetupUpdated">As configurações foram atualizadas.</message>
 	<message key="manager.setup.styleSheetInvalid">Formato de folha de estilo inválido. O formato é .css.</message>
 	<message key="manager.setup.pressTheme">Tema</message>
-	<message key="manager.setup.contextName">Nome da Editora</message>
+	<message key="manager.setup.contextTitle">Nome da Editora</message>
 	<message key="manager.setup.principalContact">Contato principal</message>
 	<message key="manager.setup.principalContactDescription">Esta posição, que pode ser considerada como o editor científico, editor-chefe, ou algum outro cargo administrativo, será apresentado na página inicial na seção Contato, junto com o contato de suporte técnico.</message>
 	<message key="manager.setup.printIssn">ISSN impresso</message>
@@ -270,10 +263,8 @@ Informe, se desesjar, o motivo do bloqueio.</message>
 	<message key="manager.setup.reviewOptions.blindReview">Avaliação cega</message>
 	<message key="manager.setup.reviewOptions.noteOnModification">Os valores padrão podem ser alterados para qualquer submissão durante o processo editorial.</message>
 	<message key="manager.setup.reviewOptions.onQuality">Editores classificarão os avaliadores em escal de cinco pontos após cada avaliação.</message>
-	<message key="manager.setup.reviewOptions.restrictReviewerFileAccess">Avaliadores terão acesso ao arquivo de submissão somente após concordar em avaliá-la.</message>
+	<message key="manager.setup.reviewOptions.restrictReviewerFileAccess.description">Avaliadores terão acesso ao arquivo de submissão somente após concordar em avaliá-la.</message>
 	<message key="manager.setup.reviewOptions.reviewerAccess">Acesso do avaliador</message>
-	<message key="manager.setup.reviewOptions.reviewerAccessKeysEnabled">Habilitar acesso com um clique.</message>
-	<message key="manager.setup.reviewOptions.reviewerAccessKeysEnabled.description"><![CDATA[<strong>Nota:</strong> O convite aos avaliadores conterá um endereço especial que os leverá diretamente à página de avaliação da submissão (com o acesso a outras páginas exigindo o login). Por motivos de segurança, os editores não podem modificar os destinatários ou incluir CCs ou BCCs antes de enviar os convites aos avaliadores.]]></message>
 	<message key="manager.setup.reviewOptions.reviewerRatings">Classificação do avaliador</message>
 	<message key="manager.setup.reviewOptions.reviewerReminders">Lembretes ao avaliador</message>
 	<message key="manager.setup.reviewOptions.reviewTime">Tempo de avaliação</message>
@@ -285,7 +276,7 @@ Informe, se desesjar, o motivo do bloqueio.</message>
 	<message key="manager.setup.reviewProcessStandard">Processo padrão</message>
 	<message key="manager.setup.reviewProcessStandardDescription">Editores enviam aos avaliadores uma mensagem contento 0 título e o resumo da submissão, bem como um convite para acessar o sistema da editora para concluir a avaliação. Avaliadores acessam o sistema para aceitar a responsabilidade de avaliação, baixar as submissões, enviar comentários e escolher sua recomendação.</message>
 	<message key="manager.setup.searchEngineIndexing">Indexação de mecanismos de busca</message>
-	<message key="manager.setup.searchEngineIndexingDescription">Para auxiliar quem usa mecanismos de busca a descobrir esta editora, ofereça uma breve apresentação da editora e palavras-have relevantes (separadas por ponto-e-vírgula).</message>
+	<message key="manager.setup.searchEngineIndexing.description">Para auxiliar quem usa mecanismos de busca a descobrir esta editora, ofereça uma breve apresentação da editora e palavras-have relevantes (separadas por ponto-e-vírgula).</message>
 	<message key="manager.setup.sectionsAndSectionEditors">Secções e editores de seção</message>
 	<message key="manager.setup.sectionsDefaultSectionDescription">(Caso não tenha incluído seções, os itens serão submetidos, por padrão, à seção Monografias.)</message>
 	<message key="manager.setup.sectionsDescription"><![CDATA[Para criar ou alterar seções da editora (ex.: Monografias, Revisões de livros, etc.) acesse a administração de seções.<br /><br />Ao submter itens, os autores designarão...]]></message>
@@ -294,7 +285,6 @@ Informe, se desesjar, o motivo do bloqueio.</message>
 	<message key="manager.setup.selectEditorDescription">O editor geral será o responsável por acompanhar o processo editorial.</message>
 	<message key="manager.setup.selectSectionDescription">A seção para a qual o item deverá ser considerado.</message>
 	<message key="manager.setup.showGalleyLinksDescription">Sempre exibir os links para as composições e identificar se são de acesso restrito.</message>
-	<message key="manager.setup.siteAccess">Restrições de acesso adicionais ao site e ao conteúdo</message>
 	<message key="manager.setup.sponsors.description">O nome das organizaçõess (ex.: associações de pesquisa, departamentos de universidades, cooperativas, etc.) que patrocinam a editora aparecerá na página Sobre a editora e pode ser acompanhado de uma nota de agradecimento.</message>
 	<message key="manager.setup.stepsToPressSite">Cinco passos para montar o site da editora</message>
 	<message key="manager.setup.subjectExamples">(Ex.: Fotossíntese; Buracos Negros; Problema do mapa de quatro cores; Teoria Bayesiana)</message>
@@ -342,7 +332,6 @@ Informe, se desesjar, o motivo do bloqueio.</message>
 	<message key="manager.setup.submitToCategories">Permitir submissão de categoria</message>
 	<message key="manager.setup.submitToSeries">Permitir submissão de séries</message>
 	<message key="manager.setup.issnDescription"><![CDATA[O ISSN (International Standard Serial Number) é um código de oito dígitos que identifica que uma publicações é seriada, incluíndo publicações eletrônicas. É administrado por uma rede mundial de Centros Nacionais coordenados pelo Centro Internacional em Paris, com apoio da Unesco e do governo francês. O número pode ser obtido do <a href="http://www.issn.org" target="_blank">site do ISSN</a>. Esta ação pode ser realizada a qualquer momento.]]></message>
-	<message key="manager.setup.cataloguingMetadata">Metadados de catalogação</message>
 	<message key="manager.setup.currentFormats">Formatos atuais</message>
 	<message key="manager.setup.categoriesAndSeries">Categorias e Séries</message>
 	<message key="manager.setup.categories.description">Crie uma lista de categorias para ajudar a organizar suas publicações. Categorias são grupos de livros de acordo com o assunto, por exemplo, Economia; Literatura; Poesia; e assim por diante. Categorias pode ser agrupadas dentro de categorias "pai": por exemplo, um pa Economia pode incluir as categorias Micro e Macroeconomia. Visitantes poderão então buscar e navegar no conteúdo da editora por meio das categorias.</message>
@@ -360,7 +349,7 @@ Informe, se desesjar, o motivo do bloqueio.</message>
 	<message key="manager.setup.files">Arquivos</message>
 	<message key="manager.setup.productionTemplates">Modelos de produção</message>
 	<message key="manager.files.note">Nota: O navegador de arquivos é uma funcionalidade avançada que permite o acesso e manipulação direta de pastas e arquivos associados à editora diretamente.</message>
-	<message key="manager.setup.authorCopyrightNotice.sample"><![CDATA[<h3>Proposta de aviso de direito autoral Creative Commons</h3>
+	<message key="manager.setup.copyrightNotice.sample"><![CDATA[<h3>Proposta de aviso de direito autoral Creative Commons</h3>
 <h4>Proposta de política de acesso aberto</h4>
 Autores que publicam nesta editora concordam com os seguintes termos:
 <ol type="a">
@@ -392,13 +381,6 @@ Escolha um modelo para lidar com os aspectos do processo editorial (Para designa
 	<message key="manager.setup.displayInSpotlight">Mostrar publicações em destaque na página inicial.</message>
 	<message key="manager.setup.displayNewReleases">Mostrar novos lançamentos na página inicial.</message>
 	<message key="manager.setup.enableUserRegistration">Visitantes podem criar contas de usuário na editora.</message>
-	<message key="manager.setup.coverThumbnails">Miniaturas da capa</message>
-	<message key="manager.setup.coverThumbnailsDescription">Definir a largura e altura máximas das miniaturas da capa. Elas serão redimensionadas quando maiores do que estas definições, mas não serão ampliada se menores. As imagens nunca serão esticadas para caber nessas dimensões.</message>
-	<message key="manager.setup.coverThumbnailsMaxHeight">Altura max.</message>
-	<message key="manager.setup.coverThumbnailsMaxHeightRequired">A altura máxima das miniaturas da capa é requerida.</message>
-	<message key="manager.setup.coverThumbnailsMaxWidth">Largura max.</message>
-	<message key="manager.setup.coverThumbnailsMaxWidthRequired">A largura máxima das miniaturas da capa é requerida.</message>
-	<message key="manager.setup.coverThumbnailsResize">Redimensionar todas as miniaturas existentes.</message>
 	<message key="manager.setup.resetPermissions">Redefinir as Permissões das Submissões</message>
 	<message key="manager.setup.resetPermissions.confirm">Tem certeza que deseja redefinir as permissões definidas nas submissões?</message>
 	<message key="manager.setup.resetPermissions.description">As declarações de direitos autorais e informações sobre a licença serão permanentemente ligados aos conteúdos publicados, assegurando que esses dados não mudarão no caso de uma editora mudar as políticas relativas aos novas submissões. Para redefinir as permissões já associadas aos conteúdos publicados, use o botão abaixo.</message>

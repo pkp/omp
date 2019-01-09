@@ -16,7 +16,7 @@
 	<!-- Languages -->
 	<message key="manager.language.confirmDefaultSettingsOverwrite">Aquesta acció reemplaça els paràmetres de la publicació determinats per a aquesta configuració regional</message>
 	<message key="manager.languages.noneAvailable">No hi ha cap llengua addicional disponible. Si voleu utilitzar llengües addicionals per a aquesta publicació, poseu-vos en contacte amb l'administrador/a del lloc web.</message>
-	<message key="manager.languages.primaryLocaleInstructions">Aquesta és la llengua predeterminada per al lloc web de la publicació.</message>	
+	<message key="manager.languages.primaryLocaleInstructions">Aquesta és la llengua predeterminada per al lloc web de la publicació.</message>
 
 	<!-- Series management -->
 	<message key="manager.series.form.mustAllowPermission">Comproveu que s'hagi activat com a mínim una casella de selecció per a cada assignació a l’editor/a de sèrie.</message>
@@ -49,11 +49,10 @@
 	<message key="manager.settings">Configuració</message>
 	<message key="manager.settings.pressSettings">Configuració de la publicació</message>
 	<message key="manager.settings.press">Publicació</message>
-	<message key="manager.settings.publisherInformation">Aquests camps no són necessaris per a l'ús general de l'OMP, però sí que ho són per crear metadades ONIX vàlides.  Incloeu-los-hi si voleu utilitzar la funcionalitat d'ONIX.</message>
+	<message key="manager.settings.publisher.identity.description">Aquests camps no són necessaris per a l'ús general de l'OMP, però sí que ho són per crear metadades ONIX vàlides.  Incloeu-los-hi si voleu utilitzar la funcionalitat d'ONIX.</message>
 	<message key="manager.settings.publisher">Nom de la institució publicadora</message>
 	<message key="manager.settings.location">Ubicació geogràfica</message>
 	<message key="manager.settings.publisherCode">Codi d'institució publicadora</message>
-	<message key="manager.settings.publisherCodeType.tip">Si teniu un codi d'institució publicadora, introduïu-lo a sota.  S'inclourà a les metadades generades.  Aquest camp és necessari si genereu metadades d'ONIX a les vostres publicacions.</message>
 	<message key="manager.settings.distributionDescription">Tota la configuració concreta del procés de distribució (notificacions, indexació, pagament, eines de lectura).</message>
 
 	<!--  Statistics management -->
@@ -113,7 +112,7 @@ Podeu proporcionar una raó a l'usuari/ària per la qual heu desactivat el seu c
 	<message key="manager.setup.announcements">Avisos</message>
 	<message key="manager.setup.announcementsDescription">És possible publicar avisos per informar els lectors/ores sobre notícies i esdeveniments relacionats amb la publicació. Els avisos publicats apareixen a la pàgina Avisos.</message>
 	<message key="manager.setup.announcementsIntroduction">Informació addicional</message>
-	<message key="manager.setup.announcementsIntroductionDescription">Introduïu la informació addicional que vulgueu que vegin els lectors/ores a la pàgina «Avisos».</message>
+	<message key="manager.setup.announcementsIntroduction.description">Introduïu la informació addicional que vulgueu que vegin els lectors/ores a la pàgina «Avisos».</message>
 	<message key="manager.setup.appearInAboutPress">(Apareixerà a Sobre la publicació) </message>
 	<message key="manager.setup.copyediting">Correctors/ores d’originals</message>
 	<message key="manager.setup.copyeditInstructions">Instruccions per a la correcció d'originals</message>
@@ -138,14 +137,11 @@ Podeu proporcionar una raó a l'usuari/ària per la qual heu desactivat el seu c
 	<message key="manager.setup.doiPrefixDescription"><![CDATA[<a href="http://www.crossref.org" target="_blank">CrossRef</a> assigna el Prefix DOI (Identificador d'objectes digitals), que ve en el format 10.xxxx (p. ex. 10.1234).]]></message>
 	<message key="manager.setup.editorDecision">Decisió de l’editor/a</message>
 	<message key="manager.setup.emailBounceAddress">Adreça de retorn</message>
-	<message key="manager.setup.emailBounceAddressDescription">S’enviarà un missatge d’error a aquesta adreça cada vegada que no s’hagi pogut entregar un missatge de correu electrònic.</message>
-	<message key="manager.setup.emailBounceAddressDisabled"><![CDATA[<strong>Nota:</strong> Per activar aquesta opció, l'administrador/a del lloc web ha d'activar l'opció <tt>allow_envelope_sender</tt> del fitxer de configuració de l'OMP. Pot ser necessària una configuració del servidor addicional perquè aquesta funcionalitat estigui disponible (la qual cosa pot no ser possible en tots els servidors), tal com s'indica en la documentació de l'OMP.]]></message>
+	<message key="manager.setup.emailBounceAddress.description">S’enviarà un missatge d’error a aquesta adreça cada vegada que no s’hagi pogut entregar un missatge de correu electrònic.</message>
 	<message key="manager.setup.emails">Identificació per correu electrònic</message>
 	<message key="manager.setup.emailSignature">Signatura</message>
 	<message key="manager.setup.emailSignatureDescription">Les plantilles dels missatges de correu electrònic enviats pel sistema en nom de la publicació tindran la següent signatura al final. Podeu editar el cos de les plantilles de correus electrònics a continuació.</message>
-	<message key="manager.setup.enableAnnouncements">Habilita els avisos.</message>
-	<message key="manager.setup.enableAnnouncementsHomepage1">Mostra</message>
-	<message key="manager.setup.enableAnnouncementsHomepage2">dels avisos més recents a la pàgina inicial de la publicació.</message>
+	<message key="manager.setup.enableAnnouncements.enable">Habilita els avisos.</message>
 	<message key="manager.setup.enablePressInstructions">Permet que aquesta publicació aparegui públicament al lloc web</message>
 	<message key="manager.setup.enablePublicMonographId">S’utilitzen identificadors personalitzats per identificar elements publicats.</message>
 	<message key="manager.setup.enablePublicGalleyId">S’utilitzen identificadors personalitzats per identificar galerades (com ara fitxers HTML o PDF) per a elements publicats.</message>
@@ -159,11 +155,9 @@ Podeu proporcionar una raó a l'usuari/ària per la qual heu desactivat el seu c
 	<message key="manager.setup.forAuthorsToIndexTheirWorkDescription"><![CDATA[L'OMP s'adhereix al protocol de recopilació de metadades de l'<a href="http://www.openarchives.org/" target="_blank">Open Archives Initiative</a> Protocol for Metadata Harvesting, que és l'estàndard emergent de proporció d'accés ben indexat a recursos electrònics a escala global. Els autors/ores utilitzaran una plantilla similar per proporcionar les metadades amb la seva tramesa. És recomanable que el cap editorial seleccioni les categories per a la indexació i proporcioni exemples rellevants als autors/ores per ajudar-los a indexar els seus treballs, amb l'ús del punt i coma per separar els terminis (p. ex. termini1; termini2). És recomanable que les entrades s'insereixin amb exemples i s'utilitzi «p. ex.» o «per exemple».]]></message>
 	<message key="manager.setup.form.contactEmailRequired">Heu d’introduir l'adreça electrònica del contacte principal.</message>
 	<message key="manager.setup.form.contactNameRequired">Heu d’introduir el nom del contacte principal.</message>
-	<message key="manager.setup.form.pressNameRequired">Introduïu-hi el nom de la publicació.</message>
 	<message key="manager.setup.form.numReviewersPerSubmission">Heu d’introduir el nombre de revisors/ores per a cada tramesa.</message>
 	<message key="manager.setup.form.supportEmailRequired">Heu d’introduir l’adreça electrònica de suport.</message>
 	<message key="manager.setup.form.supportNameRequired">Heu d’introduir el nom de suport.</message>
-	<message key="manager.setup.form.pressInitialsRequired">Introduïu-hi les inicials de la publicació.</message>
 	<message key="manager.setup.generalInformation">Informació general</message>
 	<message key="manager.setup.gettingDownTheDetails">Pas 1. Concreció dels detalls</message>
 	<message key="manager.setup.guidelines">Directrius</message>
@@ -182,7 +176,6 @@ Podeu proporcionar una raó a l'usuari/ària per la qual heu desactivat el seu c
 	<message key="manager.setup.layoutTemplates.file">Fitxer de la plantilla</message>
 	<message key="manager.setup.layoutTemplates.title">Títol</message>
 	<message key="manager.setup.lists">Llistes</message>
-	<message key="manager.setup.listsDescription">Introduïu el nombre màxim d’elements (per exemple, trameses, usuaris/àries o assignacions d’edició) que apareixen a cada pàgina d’una llista, i també el nombre d’enllaços que es mostren en cada pàgina.</message>
 	<message key="manager.setup.look"><![CDATA[Visualització]]></message>
 	<message key="manager.setup.look.description">Capçalera de la pàgina inicial, contingut, capçalera de publicació, peu de pàgina, barra de navegació i full d’estil.</message>
 	<message key="manager.setup.settings">Configuració</message>
@@ -210,7 +203,7 @@ Podeu proporcionar una raó a l'usuari/ària per la qual heu desactivat el seu c
 	<message key="manager.setup.homepageContentDescription">La pàgina d'inici de la publicació està constituïda per defecte per enllaços de navegació. No obstant això, hi podeu afegir continguts addicionals si seleccioneu una o més de les opcions que hi ha a continuació.</message>
 	<message key="manager.setup.pressHomepageContent">Contingut de la pàgina d'inici de la publicació</message>
 	<message key="manager.setup.pressHomepageContentDescription">La pàgina d'inici de la publicació està constituïda per defecte per enllaços de navegació. No obstant això, hi podeu afegir continguts addicionals si seleccioneu una o més de les opcions que hi ha a continuació.</message>
-	<message key="manager.setup.pressInitials">Inicials de la publicació</message>
+	<message key="manager.setup.contextInitials">Inicials de la publicació</message>
 	<message key="manager.setup.layout">Maquetació de la publicació</message>
 	<message key="manager.setup.pageHeader">Capçalera de la pàgina de la publicació</message>
 	<message key="manager.setup.pageHeaderDescription">Podeu carregar una versió gràfica del títol i del logotip de la publicació (en format .gif, .jpg o .png), si pot ser d'una mida més petita que la que heu fet servir per a la pàgina inicial, per tal que aparegui a la capçalera de pàgina de la publicació. Aquesta imatge reemplaça el text que es mostra per defecte.</message>
@@ -219,7 +212,7 @@ Podeu proporcionar una raó a l'usuari/ària per la qual heu desactivat el seu c
 	<message key="manager.setup.pressSetupUpdated">S'ha actualitzat la vostra configuració de la publicació.</message>
 	<message key="manager.setup.styleSheetInvalid">El format del full d'estil no és vàlid. El format admès és .css.</message>
 	<message key="manager.setup.pressTheme">Tema de la publicació</message>
-	<message key="manager.setup.contextName">Nom de la publicació</message>
+	<message key="manager.setup.contextTitle">Nom de la publicació</message>
 	<message key="manager.setup.printIssn">ISSN en paper</message>
 	<message key="manager.setup.proofingInstructions">Instruccions per a la correcció de proves</message>
 	<message key="manager.setup.proofingInstructionsDescription">Les instruccions per a la correcció de proves es faran arribar als correctors/ores de proves, autors/ores i editors/ores de secció durant l’etapa d'edició de trameses. A continuació s’ofereix un exemple d’instruccions en format HTML, que el cap editorial pot editar o reemplaçar en qualsevol moment (en HTML o en text net).</message>
@@ -241,10 +234,8 @@ Podeu proporcionar una raó a l'usuari/ària per la qual heu desactivat el seu c
 	<message key="manager.setup.reviewOptions.automatedRemindersDisabled"><![CDATA[<strong>Nota:</strong> Per activar aquestes opcions, l'administrador/a del lloc web ha d'activar l'opció <tt>scheduled_tasks</tt> del fitxer de configuració de l'OMP. Pot ser necessària una configuració del servidor addicional perquè aquesta funcionalitat estigui disponible (la qual cosa pot no ser possible en tots els servidors), tal com s'indica en la documentació de l'OMP.]]></message>
 	<message key="manager.setup.reviewOptions.blindReview">Avaluació anònima</message>
 	<message key="manager.setup.reviewOptions.onQuality">Després de cada revisió, els editors/ores han de puntuar els revisors/ores segons una escala de qualitat de cinc punts.</message>
-	<message key="manager.setup.reviewOptions.restrictReviewerFileAccess">Els revisors/ores només tenen accés al fitxer de la tramesa si han acceptat revisar-la.</message>
+	<message key="manager.setup.reviewOptions.restrictReviewerFileAccess.description">Els revisors/ores només tenen accés al fitxer de la tramesa si han acceptat revisar-la.</message>
 	<message key="manager.setup.reviewOptions.reviewerAccess">Accés per als revisors/ores</message>
-	<message key="manager.setup.reviewOptions.reviewerAccessKeysEnabled">Habilita l’accés per a revisors/ores en un clic.</message>
-	<message key="manager.setup.reviewOptions.reviewerAccessKeysEnabled.description"><![CDATA[<strong>Nota:</strong> La invitació per correu electrònic als revisors/ores conté una URL especial que dirigeix directament els revisors/ores convidats a la pàgina de revisió de la tramesa (amb accés a qualsevol altra pàgina que requereixi identificació). Per motius de seguretat, els editors/ores no poden modificar les adreces de correu electrònic ni afegir-ne als camps a/c o c/o abans d’enviar les invitacions als revisors/ores.]]></message>
 	<message key="manager.setup.reviewOptions.reviewerRatings">Valoració dels revisors/ores</message>
 	<message key="manager.setup.reviewOptions.reviewerReminders">Recordatoris per a la revisió</message>
 	<message key="manager.setup.reviewOptions.showEnsuringLink">Afegiu enllaços a informació sobre com fer una avaluació anònima en pàgines on els autors/ores i revisors/ores carreguen fitxers.</message>
@@ -255,7 +246,7 @@ Podeu proporcionar una raó a l'usuari/ària per la qual heu desactivat el seu c
 	<message key="manager.setup.reviewProcessStandard">Procés de revisió estàndard</message>
 	<message key="manager.setup.reviewProcessStandardDescription">Els editors/ores envien per correu electrònic als revisors/ores seleccionats el títol i el resum de la tramesa, juntament amb una invitació per entrar al lloc web de la publicació amb l’objectiu de completar la revisió. Els revisors/ores han d'entrar al lloc web de la publicació per acceptar la tasca de revisió, descarregar trameses, enviar els seus comentaris i seleccionar una recomanació.</message>
 	<message key="manager.setup.searchEngineIndexing">Indexació per als motors de cerca</message>
-	<message key="manager.setup.searchEngineIndexingDescription">Per ajudar els usuaris/àries dels motors de cerca a trobar aquesta publicació, indiqueu-ne una breu descripció i les paraules clau més importants (separades per punt i coma).</message>
+	<message key="manager.setup.searchEngineIndexing.description">Per ajudar els usuaris/àries dels motors de cerca a trobar aquesta publicació, indiqueu-ne una breu descripció i les paraules clau més importants (separades per punt i coma).</message>
 	<message key="manager.setup.sectionsAndSectionEditors">Seccions i editors/ores de secció</message>
 	<message key="manager.setup.sectionsDefaultSectionDescription">(Si no s’afegeix cap secció, les trameses s’assignen per defecte a la secció Monografies).</message>
 	<message key="manager.setup.sectionsDescription"><![CDATA[Per crear o modificar seccions de la publicació (p. ex. articles, ressenyes literàries, etc.), entreu a l’Administració de seccions.<br /><br />Els autors/ores que facin trameses a la publicació han de designar...]]></message>
@@ -264,7 +255,6 @@ Podeu proporcionar una raó a l'usuari/ària per la qual heu desactivat el seu c
 	<message key="manager.setup.selectEditorDescription">L’editor/a que segueix tot el procés editorial.</message>
 	<message key="manager.setup.selectSectionDescription">La secció de la publicació adequada per a la tramesa.</message>
 	<message key="manager.setup.showGalleyLinksDescription">Mostra sempre els enllaços a les galerades i indica l’accés restringit.</message>
-	<message key="manager.setup.siteAccess">Restriccions addicionals per a l’accés al lloc web i al contingut</message>
 	<message key="manager.setup.stepsToPressSite">Cinc passos per crear el lloc web d’una publicació</message>
 	<message key="manager.setup.subjectExamples">(P. ex. fotosíntesi, forats negres, teorema dels quatre colors, fórmula de Bayes)</message>
 	<message key="manager.setup.subjectKeywordTopic">Paraules clau</message>
@@ -305,7 +295,6 @@ Podeu proporcionar una raó a l'usuari/ària per la qual heu desactivat el seu c
 	<message key="manager.setup.submitToCategories">Permet les trameses per categoria</message>
 	<message key="manager.setup.submitToSeries">Permet les trameses per sèries</message>
 	<message key="manager.setup.issnDescription"><![CDATA[L’ISSN (número internacional normalitzat per a publicacions en sèrie) és un número de vuit dígits que identifica publicacions periòdiques, incloses les revistes electròniques. Aquests números són gestionats per una xarxa mundial de centres nacionals coordinats per un centre internacional amb seu a París que rep el suport de la UNESCO i del govern francès. Per obtenir un d’aquests números cal adreçar-se al <a href="http://www.issn.org" target="_blank">lloc web de l'ISSN</a>. Podeu fer-ho durant qualsevol de les fases d’elaboració de la publicació.]]></message>
-	<message key="manager.setup.cataloguingMetadata">Catalogació de les metadades</message>
 	<message key="manager.setup.currentFormats">Formats actuals</message>
 	<message key="manager.setup.categoriesAndSeries">Categories i sèries</message>
 	<message key="manager.setup.categories.description">És possible crear una llista de categories que us ajudi a organitzar les vostres publicacions. Les categories són agrupacions de llibres segons la temàtica, com pot ser economia, literatura o poesia, per exemple. Aquestes categories es poden relacionar amb categories «familiars». Per exemple, la categoria familiar d'economia pot incloure categories individuals com la microeconomia o la macroeconomia. Els visitants podran cercar i navegar entre la publicació per categoria.</message>
@@ -323,7 +312,7 @@ Podeu proporcionar una raó a l'usuari/ària per la qual heu desactivat el seu c
 	<message key="manager.setup.files">Fitxers</message>
 	<message key="manager.setup.productionTemplates">Plantilles de producció</message>
 	<message key="manager.files.note">Nota: El Navegador de fitxers és una funció avançada que us permet visualitzar i manipular directament els fitxers i els directoris associats amb una publicació.</message>
-	<message key="manager.setup.authorCopyrightNotice.sample"><![CDATA[<h3>Suggeriments d'avisos de drets d'autor/a de Creative Commons</h3>
+	<message key="manager.setup.copyrightNotice.sample"><![CDATA[<h3>Suggeriments d'avisos de drets d'autor/a de Creative Commons</h3>
 <h4>Suggeriments de polítiques per a publicacions que ofereixen accés lliure</h4>Els autors/ores que publiquen en aquesta publicació estan d'acord amb les següents condicions:<ol type="a">
 	<li>Els autors/ores tenen els drets d'autor/a i proporcionen a la publicació el dret de fer la primera publicació amb una llicència <a target="_blank" href="http://creativecommons.org/licenses/by/3.0/">Creative Commons Attribution License</a> per al treball que permet que altres comparteixin el treball amb reconeixement de l'autoria i la publicació inicial d'aquesta publicació.</li>
 	<li>Els autors/ores podran formar part d'altres sèries contractual addicionals per a la distribució no exclusiva de la versió del treball publicat per la publicació (p. ex. publicació en un repositori institucional o com a part d'un llibre) amb el reconeixement de la publicació inicial d'aquesta publicació.</li>

@@ -37,13 +37,13 @@ class PaypalPaymentForm extends Form {
 	 */
 	function display($request = null, $template = null) {
 		try {
-			$press = $request->getPress();
-			$paymentManager = Application::getPaymentManager($press);
+			$context = $request->getContext();
+			$paymentManager = Application::getPaymentManager($context);
 			$gateway = Omnipay\Omnipay::create('PayPal_Rest');
 			$gateway->initialize(array(
-				'clientId' => $this->_paypalPaymentPlugin->getSetting($press->getId(), 'clientId'),
-				'secret' => $this->_paypalPaymentPlugin->getSetting($press->getId(), 'secret'),
-				'testMode' => $this->_paypalPaymentPlugin->getSetting($press->getId(), 'testMode'),
+				'clientId' => $this->_paypalPaymentPlugin->getSetting($context->getId(), 'clientId'),
+				'secret' => $this->_paypalPaymentPlugin->getSetting($context->getId(), 'secret'),
+				'testMode' => $this->_paypalPaymentPlugin->getSetting($context->getId(), 'testMode'),
 			));
 			$transaction = $gateway->purchase(array(
 				'amount' => number_format($this->_queuedPayment->getAmount(), 2),

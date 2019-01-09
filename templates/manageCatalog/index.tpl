@@ -34,14 +34,14 @@
 			{assign var="uuid" value=""|uniqid|escape}
 			<div id="catalog-submissions-list-handler-{$uuid}">
 			    <script type="text/javascript">
-			        pkp.registry.init('catalog-submissions-list-handler-{$uuid}', 'CatalogSubmissionsListPanel', {$catalogListData});
+			        pkp.registry.init('catalog-submissions-list-handler-{$uuid}', 'CatalogSubmissionsListPanel', {$catalogListData|json_encode});
 			    </script>
 			</div>
 		</div>
 	</div>
 	{if $isManager}
 		<div id="spotlights">
-			{help file="catalog.md#spotlights" class="pkp_help_tab"}
+			{help file="catalog.md" section="spotlights" class="pkp_help_tab"}
 			<div class="pkp_content_panel">
 				{capture assign=spotlightsGridUrl}{url router=$smarty.const.ROUTE_COMPONENT component="grid.content.spotlights.ManageSpotlightsGridHandler" op="fetchGrid" escape=false}{/capture}
 				{load_url_in_div id="spotlightsGridContainer" url=$spotlightsGridUrl}

@@ -1,0 +1,113 @@
+{
+	"title": "Press",
+	"description": "A press.",
+	"properties": {
+		"catalogSortOption": {
+			"type": "string",
+			"validation": [
+				"nullable",
+				"in:title-1,title-2,datePublished-1,datePublished-2,seriesPosition-1,seriesPosition-2"
+			]
+		},
+		"codeType": {
+			"type": "string",
+			"description": "The publisher code type to generate ONIX metadata for your publications.",
+			"validation": [
+				"nullable"
+			]
+		},
+		"codeValue": {
+			"type": "string",
+			"description": "The publisher code value to generate ONIX metadata for your publications.",
+			"validation": [
+				"nullable"
+			]
+		},
+		"copySubmissionAckAddress": {
+			"type": "string",
+			"validation": [
+				"nullable",
+				"email_or_localhost"
+			]
+		},
+		"copySubmissionAckPrimaryContact": {
+			"type": "boolean",
+			"validation": [
+				"nullable"
+			]
+		},
+		"coverThumbnailsMaxWidth": {
+			"type": "integer",
+			"default": 106,
+			"validation": [
+				"min:1"
+			]
+		},
+		"coverThumbnailsMaxHeight": {
+			"type": "integer",
+			"default": 100,
+			"validation": [
+				"min:1"
+			]
+		},
+		"displayFeaturedBooks": {
+			"type": "boolean",
+			"validation": [
+				"nullable"
+			]
+		},
+		"displayInSpotlight": {
+			"type": "boolean",
+			"validation": [
+				"nullable"
+			]
+		},
+		"displayNewReleases": {
+			"type": "boolean",
+			"validation": [
+				"nullable"
+			]
+		},
+		"internalReviewGuidelines": {
+			"type": "string",
+			"multilingual": true,
+			"validation": [
+				"nullable"
+			]
+		},
+		"location": {
+			"type": "string",
+			"validation": [
+				"nullable"
+			]
+		},
+		"paymentPluginName": {
+			"type": "string",
+			"default": "ManualPayment",
+			"validation": [
+				"nullable"
+			]
+		},
+		"publisher": {
+			"type": "string",
+			"validation": [
+				"nullable"
+			]
+		},
+		"restrictMonographAccess": {
+			"type": "boolean",
+			"validation": [
+				"nullable"
+			]
+		},
+		"type": {
+			"type": "string",
+			"default": "enable",
+			"description": "Enable types metadata. `0` is disabled. `enable` will make it available in the workflow. `request` will allow an author to enter a value during submission. `require` will require that the author enter a value during submission.",
+			"validation": [
+				"nullable",
+				"in:0,enable,request,require"
+			]
+		}
+	}
+}

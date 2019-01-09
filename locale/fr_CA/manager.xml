@@ -51,11 +51,10 @@
 	<message key="manager.settings">Paramètres</message>
 	<message key="manager.settings.pressSettings">Paramètres de la presse</message>
 	<message key="manager.settings.press">Presse</message>
-	<message key="manager.settings.publisherInformation">Ces champs ne sont pas nécessaires pour l'usage général d'OMP, mais sont nécessaires pour créer des métadonnées ONIX valides. Veuillez les ajouter si vous souhaitez utiliser la fonctionnalité ONIX.</message>
+	<message key="manager.settings.publisher.identity.description">Ces champs ne sont pas nécessaires pour l'usage général d'OMP, mais sont nécessaires pour créer des métadonnées ONIX valides. Veuillez les ajouter si vous souhaitez utiliser la fonctionnalité ONIX.</message>
 	<message key="manager.settings.publisher">Nom de l'éditeur de la presse</message>
 	<message key="manager.settings.location">Lieu géographique</message>
 	<message key="manager.settings.publisherCode">Code de l'éditeur</message>
-	<message key="manager.settings.publisherCodeType.tip">Si vous avez le code de l'éditeur, veuillez l'indiquez ci-dessous. Il sera ajouté aux métadonnées produites. Ce champ est nécessaire si vous produisez des métadonnées ONIX pour vos publications.</message>
 	<message key="manager.settings.distributionDescription">Tous les paramètres associés au processus de distribution (avis, indexage, archivage, paiement, outils de lecture).</message>
 
 	<!--  Tools management -->
@@ -120,7 +119,7 @@ Soumission, Évaluation interne, Évaluation externe, Rédaction et Production.<
 	<message key="manager.setup.announcements">Annonces</message>
 	<message key="manager.setup.announcementsDescription">Vous pouvez publier des annonces pour informer les lecteurs des récentes nouvelles et activités de la presse. Les annonces s'afficheront sur la page Annonces.</message>
 	<message key="manager.setup.announcementsIntroduction">Renseignements supplémentaires</message>
-	<message key="manager.setup.announcementsIntroductionDescription">Saisissez les renseignements supplémentaires s'adressant aux lecteurs qui devraient s'afficher sur la page Annonces.</message>
+	<message key="manager.setup.announcementsIntroduction.description">Saisissez les renseignements supplémentaires s'adressant aux lecteurs qui devraient s'afficher sur la page Annonces.</message>
 	<message key="manager.setup.appearInAboutPress">(S'affichera dans À propos de cette presse) </message>
 	<message key="manager.setup.authorCopyrightNotice">Avis de droit d'auteur</message>
 	<message key="manager.setup.authorCopyrightNoticeAgree">Le processus de soumission exige que les auteurs souscrivent à l'avis de droit d'auteur.</message>
@@ -150,14 +149,11 @@ Soumission, Évaluation interne, Évaluation externe, Rédaction et Production.<
 	<message key="manager.setup.doiPrefixDescription"><![CDATA[Le préfixe DOI (Digital Object Identifier) est assigné par <a href="http://www.crossref.org" target="_blank">CrossRef</a> sous le format 10.xxxx (ex.: 10.1234).]]></message>
 	<message key="manager.setup.editorDecision">Décision du rédacteur en chef</message>
 	<message key="manager.setup.emailBounceAddress">Adresse de retour</message>
-	<message key="manager.setup.emailBounceAddressDescription">Un message d'erreur s'affichera à cette adresse lorsqu'un courriel est non délivrable.</message>
-	<message key="manager.setup.emailBounceAddressDisabled"><![CDATA[<strong>Note:</strong> Pour activer cette option, l'administrateur du site doit activer l'option <tt>allow_envelope_sender</tt> dans le fichier de configuration d'OMP. D'autres configurations du serveur pourraient s'avérer nécessaires pour soutenir cette fonctionnalité (ce qui n'est peut-être pas possible sur tous les serveurs), tel qu'indiqué dans les documents d'OMP.]]></message>
+	<message key="manager.setup.emailBounceAddress.description">Un message d'erreur s'affichera à cette adresse lorsqu'un courriel est non délivrable.</message>
 	<message key="manager.setup.emails">Identification de courriel</message>
 	<message key="manager.setup.emailSignature">Signature</message>
 	<message key="manager.setup.emailSignatureDescription">Les courriels distribués par le système au nom de la presse contiendront le bloc-signature suivant à la fin du message. Le contenu des courriels peut être modifié dans la section ci-dessous.</message>
-	<message key="manager.setup.enableAnnouncements">Permettre au directeur de la presse d'ajouter des annonces de la presse.</message>
-	<message key="manager.setup.enableAnnouncementsHomepage1">Affichage</message>
-	<message key="manager.setup.enableAnnouncementsHomepage2">des annonces les plus récentes sur la page d'accueil de la presse.</message>
+	<message key="manager.setup.enableAnnouncements.enable">Permettre au directeur de la presse d'ajouter des annonces de la presse.</message>
 	<message key="manager.setup.enablePressInstructions">Afficher cette presse publiquement sur le site</message>
 	<message key="manager.setup.enablePublicMonographId">Des identificateurs personnalisés seront utilisés pour identifier les articles publiés.</message>
 	<message key="manager.setup.enablePublicGalleyId">Des identificateurs personnalisés seront utilisés pour identifier les épreuves en placard (ex.: fichiers HTML ou PDF) des articles publiés.</message>
@@ -170,11 +166,9 @@ Soumission, Évaluation interne, Évaluation externe, Rédaction et Production.<
 	<message key="manager.setup.forAuthorsToIndexTheirWorkDescription"><![CDATA[OMP a adopté le protocole <a href="http://www.openarchives.org/" target="_blank">Open Archives Initiative</a> pour la collecte de métadonnées, la norme émergente qui permet de fournir un accès mondial à des ressources de recherche électroniques indexées adéquatement. Les auteurs utiliseront un modèle semblable pour les métadonnées de leur soumission. Le directeur de la presse devrait choisir les catégories d'indexage et donner des exemples pertinents aux auteurs pour les aider à indexer leur article, en séparant les termes par un point-virgule (ex.: terme1; terme2). Les entrées devraient être précédées d'exemples en utilisant "ex.:" ou "Par exemple,".]]></message>
 	<message key="manager.setup.form.contactEmailRequired">Vous devez ajouter l'adresse courriel de la personne-ressource principale.</message>
 	<message key="manager.setup.form.contactNameRequired">Vous devez ajouter le nom de la personne-ressource principale.</message>
-	<message key="manager.setup.form.pressNameRequired">Vous devez indiquer le nom de la presse.</message>
 	<message key="manager.setup.form.numReviewersPerSubmission">Vous devez indiquer le nombre d'évaluateurs par soumission.</message>
 	<message key="manager.setup.form.supportEmailRequired">Vous devez indiquer l'adresse courriel du service de soutien.</message>
 	<message key="manager.setup.form.supportNameRequired">Vous devez indiquer le nom du responsable du soutien.</message>
-	<message key="manager.setup.form.pressInitialsRequired">Vous devez indiquer le sigle de la presse.</message>
 	<message key="manager.setup.generalInformation">Renseignements généraux</message>
 	<message key="manager.setup.gettingDownTheDetails">Étape 1. Les détails</message>
 	<message key="manager.setup.guidelines">Lignes directrices</message>
@@ -195,7 +189,6 @@ Soumission, Évaluation interne, Évaluation externe, Rédaction et Production.<
 	<message key="manager.setup.layoutTemplates.file">Fichier modèle</message>
 	<message key="manager.setup.layoutTemplates.title">Titre</message>
 	<message key="manager.setup.lists">Listes</message>
-	<message key="manager.setup.listsDescription">Indiquer le nombre maximum d'éléments (par exemple, soumissions, utilisateurs ou tâches de révision) qui s'afficheront sur chaque page d'une liste, et le nombre de pages (liens) qui s'afficheront sur chaque page.</message>
 
 
 	<message key="manager.setup.look"><![CDATA[Aspect et convivialité]]></message>
@@ -231,7 +224,7 @@ Soumission, Évaluation interne, Évaluation externe, Rédaction et Production.<
 	<message key="manager.setup.pressArchiving">Archivage de la presse</message>
 	<message key="manager.setup.pressHomepageContent">Contenu de la page d'accueil de la presse</message>
 	<message key="manager.setup.pressHomepageContentDescription">La page d'accueil de la presse contient les liens de navigation par défaut. Vous pouvez ajouter du texte sur la page d'accueil à l'aide d'une ou de toutes les options suivantes, qui s'afficheront dans l'ordre indiqué.</message>
-	<message key="manager.setup.pressInitials">Sigles de la presse</message>
+	<message key="manager.setup.contextInitials">Sigles de la presse</message>
 	<message key="manager.setup.pageFooter">Bas de page de la presse</message>
 	<message key="manager.setup.pageFooterDescription">Voici le bas de page de votre presse. Pour modifier ou mettre à jour le bas de page, copiez-collez le code HTML dans la zone d'entrée de texte ci-dessous. Vous pourriez par exemple ajouter une autre barre de navigation ou un compteur. Ce bas de page apparaitra sur chaque page.</message>
 	<message key="manager.setup.pageHeader">Page d'en-tête de la presse</message>
@@ -266,10 +259,8 @@ Soumission, Évaluation interne, Évaluation externe, Rédaction et Production.<
 	<message key="manager.setup.reviewOptions.blindReview">Évaluation aveugle</message>
 	<message key="manager.setup.reviewOptions.noteOnModification">Ces valeurs par défaut peuvent être modifiées pour toute les soumissions tout au long du processus éditorial.</message>
 	<message key="manager.setup.reviewOptions.onQuality">Les rédacteurs en chef accorderont une note à l'aide d'une échelle de qualité de 1 à 5 pour chaque évaluation.</message>
-	<message key="manager.setup.reviewOptions.restrictReviewerFileAccess">Les évaluateurs auront accès au fichier de soumission uniquement s'ils acceptent de l'évaluer.</message>
+	<message key="manager.setup.reviewOptions.restrictReviewerFileAccess.description">Les évaluateurs auront accès au fichier de soumission uniquement s'ils acceptent de l'évaluer.</message>
 	<message key="manager.setup.reviewOptions.reviewerAccess">Accès des évaluateurs</message>
-	<message key="manager.setup.reviewOptions.reviewerAccessKeysEnabled">Activer l'accès en un seul clic pour les évaluateurs</message>
-	<message key="manager.setup.reviewOptions.reviewerAccessKeysEnabled.description"><![CDATA[<strong>Note:</strong> Le courriel d'invitation envoyé aux évaluateurs contiendra une adresse URL spéciale qui les transférera directement à la page d'évaluation de la soumission (ils devront ouvrir une session pour avoir accès aux autres pages du site). Pour des raisons de sécurité en ce qui concerne cette option, les rédacteurs en chef ne peuvent pas modifier les adresses courriel ou choisir les options CC et BC avant d'envoyer les invitations aux évaluateurs.]]></message>
 	<message key="manager.setup.reviewOptions.reviewerRatings">Cotes des évaluateurs</message>
 	<message key="manager.setup.reviewOptions.reviewerReminders">Rappels aux évaluateurs</message>
 	<message key="manager.setup.reviewOptions.reviewTime">Délai d'évaluation</message>
@@ -281,7 +272,7 @@ Soumission, Évaluation interne, Évaluation externe, Rédaction et Production.<
 	<message key="manager.setup.reviewProcessStandard">Processus d'évaluation standard</message>
 	<message key="manager.setup.reviewProcessStandardDescription">Les rédacteurs en chef enverront le titre et le résumé de la soumission par courriel aux évaluateurs choisis, ainsi qu'une invitation à ouvrir une session sur le site web pour évaluer la soumission. Les évaluateurs se rendent sur le site Web pour accepter l'invitation, télécharger les soumissions, envoyer leur commentaires et sélectionner une recommandation.</message>
 	<message key="manager.setup.searchEngineIndexing">Indexage du moteur de recherche</message>
-	<message key="manager.setup.searchEngineIndexingDescription">Pour aider les utilisateurs de moteur de recherche à trouver cette presse, veuillez rédiger une brève description de la presse avec des mots-clés (séparés par un point-virgule).</message>
+	<message key="manager.setup.searchEngineIndexing.description">Pour aider les utilisateurs de moteur de recherche à trouver cette presse, veuillez rédiger une brève description de la presse avec des mots-clés (séparés par un point-virgule).</message>
 	<message key="manager.setup.sectionsAndSectionEditors">Sections et rédacteurs de sections</message>
 	<message key="manager.setup.sectionsDefaultSectionDescription">(Si aucune section n'est ajoutée, les articles seront ajoutés à la section Monographies par défaut.)</message>
 	<message key="manager.setup.sectionsDescription"><![CDATA[Pour créer ou modifier les sections de la presse (ex.: monographies, critiques de livre, etc.), choisissez Gestion de section.<br /><br />Les auteurs des articles soumis à la presse désigneront...]]></message>
@@ -290,7 +281,6 @@ Soumission, Évaluation interne, Évaluation externe, Rédaction et Production.<
 	<message key="manager.setup.selectEditorDescription">Le rédacteur en chef de la presse qui suivra l'article tout au long du processus éditorial.</message>
 	<message key="manager.setup.selectSectionDescription">La section de la presse à laquelle on pourrait ajouter l'article en question.</message>
 	<message key="manager.setup.showGalleyLinksDescription">Toujours afficher les liens des épreuves en placard et indiquer les réserves de consultation.</message>
-	<message key="manager.setup.siteAccess">Autres réserves de consultation du site et de son contenu.</message>
 	<message key="manager.setup.sponsors.description">Les noms des organismes (ex.: associations universitaires, départements universitaires, coopératives, etc.) qui parrainent la presse apparaitront dans la section À propos de cette presse et peuvent être accompagnés d'une note de remerciement.</message>
 	<message key="manager.setup.stepsToPressSite">Cinq étapes pour établir le site Web d'une presse</message>
 	<message key="manager.setup.subjectExamples">(ex.: la photosynthèse; les trous noirs; le théorème des quatre couleurs; le théorème de Bayes)</message>
@@ -338,7 +328,6 @@ Soumission, Évaluation interne, Évaluation externe, Rédaction et Production.<
 	<message key="manager.setup.submitToCategories">Accepter les soumissions par catégorie</message>
 	<message key="manager.setup.submitToSeries">Accepter les soumissions de série</message>
 	<message key="manager.setup.issnDescription"><![CDATA[L'indice ISSN (International Standard Serial Number) est un nombre de huit chiffres qui identifie les publications périodiques en tant que telles, y compris les journaux électroniques. Il est géré par un réseau international de centres nationaux coordonnés par un centre international basé à Paris, et appuyé par l'Unesco et le gouvernement de la France. Pour obtenir un indice ISSN, vous devez consulter ce  <a href="http://www.issn.org" target="_blank">site Web</a>.  Ceci peut être fait à tout moment.]]></message>
-	<message key="manager.setup.cataloguingMetadata">Métadonnées de catalogage</message>
 	<message key="manager.setup.currentFormats">Formats actuels</message>
 	<message key="manager.setup.categoriesAndSeries">Catégories et séries</message>
 	<message key="manager.setup.categories.description">Vous pouvez créer une liste de catégories pour vous aider à organiser vos publications. Les catégories sont des groupements de livres par sujet, comme l'économie, la littérature, la poésie, etc. Les catégories peuvent être encastrées dans des "catégories mères". Par exemple, une catégorie mère Économie peut contenir les catégories microéconomie et macroéconomie. Les visiteurs pourront effectuer une recherche et naviguer le site de la presse par catégorie.</message>
@@ -356,7 +345,7 @@ Soumission, Évaluation interne, Évaluation externe, Rédaction et Production.<
 	<message key="manager.setup.files">Fichier</message>
 	<message key="manager.setup.productionTemplates">Modèles de production</message>
 	<message key="manager.files.note">Note: Le navigateur Fichiers est une fonctionnalité avancée qui permet de visionner et de manipuler directement les fichiers et les répertoires associés à la presse.</message>
-	<message key="manager.setup.authorCopyrightNotice.sample"><![CDATA[<h3>Avis de droit d'auteur proposés par Creative Commons</h3>
+	<message key="manager.setup.copyrightNotice.sample"><![CDATA[<h3>Avis de droit d'auteur proposés par Creative Commons</h3>
 <h4>Politique proposée pour les presses offrant l'accès libre</h4>
 Les auteurs dont les articles seront publiés par cette presse acceptent les conditions suivantes:
 <ol type="a">
@@ -382,7 +371,7 @@ Choisissez un modèle pour gérer ces aspects du processus éditorial. (Pour nom
 </ol>]]></message>
 	<message key="manager.setup.logo">Logo de la presse</message>
 	<message key="manager.setup.logo.altText">Logo de la presse</message>
-	<message key="manager.setup.contextName">Nom de la presse</message>
+	<message key="manager.setup.contextTitle">Nom de la presse</message>
 	<message key="manager.series.restricted">Restreint</message>
 	<message key="manager.statistics.reports.defaultReport.monographDownloads">Téléchargement des fichiers des monographies</message>
 	<message key="manager.setup.homepageContent">Contenu de la page d'accueil de la presse</message>

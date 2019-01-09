@@ -49,12 +49,11 @@
 	<message key="manager.settings">Nastavitve</message>
 	<message key="manager.settings.pressSettings">Nastavitve založbe</message>
 	<message key="manager.settings.press">Založba</message>
-	<message key="manager.settings.publisherInformation"><![CDATA[Ta polja so obvezna, če želite ustvariti veljavne <a href="https://en.wikipedia.org/wiki/ONIX_for_Books">metapodatke ONIX</a>. Vključite jih, če želite objaviti metapodatke ONIX.]]></message>
+	<message key="manager.settings.publisher.identity.description"><![CDATA[Ta polja so obvezna, če želite ustvariti veljavne <a href="https://en.wikipedia.org/wiki/ONIX_for_Books">metapodatke ONIX</a>. Vključite jih, če želite objaviti metapodatke ONIX.]]></message>
 	<message key="manager.settings.publisher">Ime založnika</message>
 	<message key="manager.settings.location">Lokacija</message>
 	<message key="manager.settings.publisherCode">Koda založnika</message>
 	<message key="manager.settings.publisherCodeType">Vrsta kode založnika</message>
-	<message key="manager.settings.publisherCodeType.tip">Če imate kodo z imenom založnika, jo vpišite spodaj. Vključena bo v generirane metapodatke. To polje mora biti izpolnjeno, če za svoje publikacije generirate metapodatke standarda ONIX.</message>
 	<message key="manager.settings.distributionDescription">Vse nastavitve, specifične za distribucijski proces (obveščanje, indeksiranje, arhiviranje, plačilo, orodja za branje).</message>
 
 	<!-- Statistics management -->
@@ -112,7 +111,7 @@
 	<message key="manager.setup.announcements">Obvestila</message>
 	<message key="manager.setup.announcementsDescription">Obvestila lahko uporabljate za obveščanje bralcev o novostih in dogodkih glede publikacije. Obvestila bodo vidna na strani Obvestila.</message>
 	<message key="manager.setup.announcementsIntroduction">Dodatne informacije</message>
-	<message key="manager.setup.announcementsIntroductionDescription">Vpišite dodatne informacije, ki jih želite bralcem prikazati na strani z obvestili.</message>
+	<message key="manager.setup.announcementsIntroduction.description">Vpišite dodatne informacije, ki jih želite bralcem prikazati na strani z obvestili.</message>
 	<message key="manager.setup.appearInAboutPress">(Pojavlja se na strani O portalu) </message>
 	<message key="manager.setup.copyediting">Lektorji</message>
 	<message key="manager.setup.copyeditInstructions">Navodila za lektoriranje</message>
@@ -138,14 +137,11 @@
 	<message key="manager.setup.doiPrefixDescription"><![CDATA[Predpono DOI (digitalni identifikator objekta) dodeli <a href="http://www.crossref.org" target="_blank">CrossRef</a> in je v formatu 10.xxxx (npr. 10.1234).]]></message>
 	<message key="manager.setup.editorDecision">Uredniška odločitev</message>
 	<message key="manager.setup.emailBounceAddress">Naslov za obvestilo o neuspeli dostavi</message>
-	<message key="manager.setup.emailBounceAddressDescription">Za vsako nedostavljeno e-pošto bo na ta e-poštni naslov poslano sporočilo z napako.</message>
-	<message key="manager.setup.emailBounceAddressDisabled"><![CDATA[<strong>Obvestilo:</strong> Za aktivacijo te možnosti mora administrator spletišča omogočiti funkcijo <tt>allow_envelope_sender</tt> v nastavitveni datoteki OMP. Za podporo te možnosti so morda potrebne dodatne nastavitve strežnika (ki morda niso na voljo na vseh strežnikih), kot je navedeno v dokumentaciji OMP.]]></message>
+	<message key="manager.setup.emailBounceAddress.description">Za vsako nedostavljeno e-pošto bo na ta e-poštni naslov poslano sporočilo z napako.</message>
 	<message key="manager.setup.emails">Identifikacija e-poštnega naslova</message>
 	<message key="manager.setup.emailSignature">Podpis</message>
 	<message key="manager.setup.emailSignatureDescription">Predpripravljena e-pošta, ki jo tiskovni portal pošlje avtomatsko, bo imela na dnu naslednji podpis.</message>
-	<message key="manager.setup.enableAnnouncements">Omogoči obvestila</message>
-	<message key="manager.setup.enableAnnouncementsHomepage1">Prikaži</message>
-	<message key="manager.setup.enableAnnouncementsHomepage2">zadnja obvestila na domači strani tiskovnega portala.</message>
+	<message key="manager.setup.enableAnnouncements.enable">Omogoči obvestila</message>
 	<message key="manager.setup.enablePressInstructions">Omogoči, da se publikacija pojavlja javno na spletišču</message>
 	<message key="manager.setup.enablePublicMonographId">Publikacija uporablja posebne identifikatorje za identifikacijo objavljenih prispevkov.</message>
 	<message key="manager.setup.enablePublicGalleyId">Posebni identifikatorji bodo uporabljeni za idetifikacijo prelomov (npr. za datoteke HTML ali PDF) objavljenih prispevkov.</message>
@@ -158,11 +154,9 @@
 	<message key="manager.setup.forAuthorsToIndexTheirWorkDescription"><![CDATA[OMP uporablja protokol <a href="http://www.openarchives.org/" target="_blank">Open Archives Initiative</a> za zbiranje metapodatkov, ki je standard v nastajanju za dobro indeksiran dostop do elektronskih raziskovalnih virov na globalni ravni. Avtorji bodo uporabljali podobne predloge za določanje metapodatkov svojih prispevkov. Urednik portala mora izbrati kategorije za indeksiranje in avtorjem predstaviti relevantne primere, ki jim bodo pomagali pri indeksiranju njihovih prispevkov, kjer bodo posamezni pojmi ločeni s podpičjem (npr. področje1; področje2). Primeri naj se začnejo z "npr." ali "na primer".]]></message>
 	<message key="manager.setup.form.contactEmailRequired">Vpišite e-pošto glavnega kontakta.</message>
 	<message key="manager.setup.form.contactNameRequired">Vpišite ime glavnega kontakta.</message>
-	<message key="manager.setup.form.pressNameRequired">Vpišite ime publikacije.</message>
 	<message key="manager.setup.form.numReviewersPerSubmission">Vpišite število recenzentov na oddan prispevek.</message>
 	<message key="manager.setup.form.supportEmailRequired">Vpišite naslov e-pošte pomožnega kontakta.</message>
 	<message key="manager.setup.form.supportNameRequired">Vpišite ime pomožnega kontakta.</message>
-	<message key="manager.setup.form.pressInitialsRequired">Začetnice publikacije so obvezne</message>
 	<message key="manager.setup.generalInformation">Splošne informacije</message>
 	<message key="manager.setup.gettingDownTheDetails">1. korak Podrobnosti</message>
 	<message key="manager.setup.guidelines">Navodila</message>
@@ -181,7 +175,6 @@
 	<message key="manager.setup.layoutTemplates.file">Datoteka s predlogo</message>
 	<message key="manager.setup.layoutTemplates.title">Naslov</message>
 	<message key="manager.setup.lists">Seznami</message>
-	<message key="manager.setup.listsDescription">Omeji število predmetov (npr. prispevkov, uporabnikov ali zadložitev za urejanje), ki naj bodo prikazanina seznamu, preden se izpišejo predmeti na naslednji strani.  Omeji število povezav, ki bodo prikazane na naslednjih straneh seznama.</message>
 	<message key="manager.setup.look"><![CDATA[Izgled]]></message>
 	<message key="manager.setup.look.description">Glava domače strani, vsebina, glava publikacije, noga, navigacijski trak in stilska tablica</message>
 	<message key="manager.setup.settings">Nastavitve</message>
@@ -211,7 +204,7 @@
 	<message key="manager.setup.homepageContentDescription">Domačo stran privzeto sestavljajo navigacijske povezave Poleg tega lahko na domačo stran dodate vsebine, tako da uporabite eno ali vse naštete možnosti, ki se bodo pojavile v naslednjem vrstnem redu.</message>
 	<message key="manager.setup.pressHomepageContent">Vsebina domače strani spletišča</message>
 	<message key="manager.setup.pressHomepageContentDescription">Domačo stran privzeto sestavljajo navigacijske povezave Poleg tega lahko na domačo stran dodate vsebine, tako da uporabite eno ali vse naštete možnosti, ki se bodo pojavile v naslednjem vrstnem redu.</message>
-	<message key="manager.setup.pressInitials">Začetnice založbe</message>
+	<message key="manager.setup.contextInitials">Začetnice založbe</message>
 	<message key="manager.setup.layout">Postavitev spletišča</message>
 	<message key="manager.setup.pageHeader">Glava strani spletišča</message>
 	<message key="manager.setup.pageHeaderDescription"></message>
@@ -220,7 +213,7 @@
 	<message key="manager.setup.pressSetupUpdated">Namestitev vašega spletišča je bila posodobljena.</message>
 	<message key="manager.setup.styleSheetInvalid">Napačen format slogovne datoteke. Dovoljeni format je .css.</message>
 	<message key="manager.setup.pressTheme">Tema publikacije</message>
-	<message key="manager.setup.contextName">Ime publikacije</message>
+	<message key="manager.setup.contextTitle">Ime publikacije</message>
 	<message key="manager.setup.printIssn">ISSN tiskane izdaje</message>
 	<message key="manager.setup.proofingInstructions">Navodila za korekturo</message>
 	<message key="manager.setup.proofingInstructionsDescription">Navodila za korekturo bodo videli korektorji, avtorji, grafični uredniki in uredniki rubrik v procesu urejanja prispevka. Spodaj so privzeta navodila v HTML formatu, ki jih lahko glavni urednik publikacije kadar koli spremeni (HTML ali navadno besedilo).</message>
@@ -242,10 +235,8 @@
 	<message key="manager.setup.reviewOptions.automatedRemindersDisabled"><![CDATA[Za aktivacijo teh možnosti mora administrator spletišča omogočiti nastavitev <tt>scheduled_tasks</tt> v nastavitveni datoteki OMP. Za podporo te možnosti so morda potrebne dodatne nastavitve strežnika (ki morda niso na voljo na vseh strežnikih), kot je navedeno v dokumentaciji OMP.]]></message>
 	<message key="manager.setup.reviewOptions.blindReview">Slepa recenzija</message>
 	<message key="manager.setup.reviewOptions.onQuality">Po opravljeni posamezni recenziji bodo uredniki ocenjevali delo recenzenta z oceno od 1 do 5.</message>
-	<message key="manager.setup.reviewOptions.restrictReviewerFileAccess">Recenzenti bodo imeli dostop do oddanega prispevka šele po tem, ko bodo sprejeli recenzijo tega prispevka.</message>
+	<message key="manager.setup.reviewOptions.restrictReviewerFileAccess.description">Recenzenti bodo imeli dostop do oddanega prispevka šele po tem, ko bodo sprejeli recenzijo tega prispevka.</message>
 	<message key="manager.setup.reviewOptions.reviewerAccess">Dostop za recenzente</message>
-	<message key="manager.setup.reviewOptions.reviewerAccessKeysEnabled">Omogoči recenzentom dostop z enim klikom.</message>
-	<message key="manager.setup.reviewOptions.reviewerAccessKeysEnabled.description"><![CDATA[<strong>Opozorilo:</strong> E-poštna povabila recenzentom vsebujejo posebne URL-povezave, ki vodijo recenzente direktno na stran za opravljanje recenzije prispevka (za dostop do drugih strani se morajo najprej prijaviti). Iz varnostnih razlogov uredniki ne morejo spreminjati e-poštnega naslova ali dodati kopije ali skrite kopije e-poštnega naslova pred pošiljanjem povabila recenzentom.]]></message>
 	<message key="manager.setup.reviewOptions.reviewerRatings">Ocene recenzentov</message>
 	<message key="manager.setup.reviewOptions.reviewerReminders">Opomniki recenzentom</message>
 	<message key="manager.setup.reviewOptions.showEnsuringLink">Na strani, kamor avtorji in recenzenti nalagajo datoteke, navedite povezave o zagotavljanju slepe recenzije.</message>
@@ -256,7 +247,7 @@
 	<message key="manager.setup.reviewProcessStandard">Standardni recenzijski postopek</message>
 	<message key="manager.setup.reviewProcessStandardDescription">Uredniki bodo preko e-pošte izbranim recenzentom poslali naslov in povzetek prispevka skupaj s povabilom, da se prijavijo na spletišče in končajo recenzijo. Recenzenti se prijavijo na spletišče, da potrdijo opravljanje recenzije, prenesejo prispevek, oddajo svoje komentarje in izberejo priporočilo.</message>
 	<message key="manager.setup.searchEngineIndexing">Indeksiranje publikacije za iskalnike</message>
-	<message key="manager.setup.searchEngineIndexingDescription">Napišite kratek opis publikacije, ki ga bodo iskalniki prikazali, ko bodo to publikacijo pokazali med rezultati iskanja.</message>
+	<message key="manager.setup.searchEngineIndexing.description">Napišite kratek opis publikacije, ki ga bodo iskalniki prikazali, ko bodo to publikacijo pokazali med rezultati iskanja.</message>
 	<message key="manager.setup.sectionsAndSectionEditors">Rubrike in uredniki rubrik</message>
 	<message key="manager.setup.sectionsDefaultSectionDescription">(Če rubrike niso definirane, bodo vsi prispevki dodeljeni splošni rubriki "monografske publikacije".)</message>
 	<message key="manager.setup.sectionsDescription"><![CDATA[Za ustvarjanje ali spreminjanje rubrik publikacije (npr. monografske publikacije, knjižne recenzije, itd.) pojdite na Upravljanje rubrik.<br /><br /> Avtorji bodo ob oddaji prispevkov za objavo določili ...]]></message>
@@ -265,7 +256,6 @@
 	<message key="manager.setup.selectEditorDescription">Urednik publikacije, ki bo poskrbel za opravljen uredniški postopek.</message>
 	<message key="manager.setup.selectSectionDescription">Rubrika publikacije, za katero bo prispevek obravnavan.</message>
 	<message key="manager.setup.showGalleyLinksDescription">Vedno pokaži povezavo do celotnega prispevka in opozori na omejen dostop.</message>
-	<message key="manager.setup.siteAccess">Dodatne omejitve dostopa do spletišča in vsebine.</message>
 	<message key="manager.setup.stepsToPressSite">Pet korakov za postavitev spletne strani publikacije</message>
 	<message key="manager.setup.subjectExamples">(npr. fotosinteza; črne luknje; izrek štirih barv; Bayesova teorija)</message>
 	<message key="manager.setup.subjectKeywordTopic">Ključne besede</message>
@@ -275,13 +265,6 @@
 	<message key="maganer.setup.submissionChecklistItemRequired">Vpišite element seznama.</message>
 	<message key="manager.setup.workflow">Potek dela</message>
 	<message key="manager.setup.submissions.description">Navodila avtorjem, avtorske pravice in indeksiranje (vključno z registracijo).</message>
-	<message key="manager.setup.coverThumbnails">Naslovna sličica</message>
-	<message key="manager.setup.coverThumbnailsDescription">Nastavi največjo dovoljeno širino in višino naslovne sličice. Spremenjena bo velikost sličice, če je večja od nastavljenih vrednosti, če pa je manjša, velikost ne bo spremenjena. Slike ne bodo nikoli raztegnjene, da bi ustrezale nastavljenim vrednostim.</message>
-	<message key="manager.setup.coverThumbnailsMaxHeight">Največja dovoljena višina</message>
-	<message key="manager.setup.coverThumbnailsMaxHeightRequired">Določite največjo dovoljeno višino naslovne sličice.</message>
-	<message key="manager.setup.coverThumbnailsMaxWidth">Največja dovoljena širina</message>
-	<message key="manager.setup.coverThumbnailsMaxWidthRequired">Določite največjo dovoljeno širino naslovne sličice.</message>
-	<message key="manager.setup.coverThumbnailsResize">Spremeni velikost vseh sličic</message>
 	<message key="manager.setup.typeExamples">(npr. zgodovinsko raziskovanje; naravni eksperiment; književna analiza; ankete/intervju)</message>
 	<message key="manager.setup.typeMethodApproach">Tip (metoda/pristop)</message>
 	<message key="manager.setup.typeProvideExamples">Podajte primere ustreznih raziskovalnih tipov, metod in pristopov za to področje</message>
@@ -313,7 +296,6 @@
 	<message key="manager.setup.submitToCategories">Dovoli prispevke v to kategorijo</message>
 	<message key="manager.setup.submitToSeries">Dovoli prispevke v to zbirko</message>
 	<message key="manager.setup.issnDescription"><![CDATA[ISSN je mednarodna standardna 8-mestna serijska številka publikacije, ki  omogoča identifikacijo periodičnih publikacij, tudi elektronskih. Številko ISSN je mogoče pridobiti na <a href="http://www.issn.org" target="_blank">uradna stran ISSN</a>. ]]></message>
-	<message key="manager.setup.cataloguingMetadata">Katalogiranje metapodatkov</message>
 	<message key="manager.setup.currentFormats">Trenutni formati</message>
 	<message key="manager.setup.category">Kategorija</message>
 	<message key="manager.setup.categoriesAndSeries">Kategorije in zbirke</message>
@@ -331,7 +313,7 @@
 	<message key="manager.setup.files">Datoteke</message>
 	<message key="manager.setup.productionTemplates">Predloge produkcije</message>
 	<message key="manager.files.note">Opozorilo: Brskalnik datotek je napredna funkcija, ki omogoča, da se lahko datoteke in mape, povezane s publikacijo, neposredno pregledujejo in urejajo.</message>
-	<message key="manager.setup.authorCopyrightNotice.sample"><![CDATA[<h3>predlagani podatki o avtorskih pravicah organizacije Creative Commons</h3> <h4>predlagana politika za spletišča, ki ponujajo odprt dostop</h4> Avtorji, ki bodo izdajali pri tej založbi, se strinjajo z naslednjimi pogoji: <ol type="a"> <li>Avtorji obržijo avtorske pravice in založbi dajo pravico za prvo objavo, delo pa ima hkrati tudi licenco <a target="_blank" href="http://creativecommons.org/licenses/by/3.0/"> Creative Commons (priznanje avtorstva)</a>, ki drugim omogoča, da delo s citiranjem avtorja in prvotne objave pri tej založbi delijo naprej. </li> <li>Avtorji lahko vstopajo v dodatna ločena pogodbena razmerja za neekskluzivno distribucijo dela, ki je bilo prvotno objavljeno pri tej založbi (npr. za hrambo v repozitoriju institucije ali objavo v knjigi), kar mora biti ob objavi izrecno zapisano. </li> <li> Avtorjem se dovoli in se jih pri tem podpira, da svoje delo pred objavo in v procesu oddajanja objavijo na spletu (npr. v institucionalnih repozitorijih ali na svoji spletni strani), saj to pripelje do koristnih izmenjav in pa predčasnega in bolj pogostega citiranja dela (Glej <a target="_blank" href="http://opcit.eprints.org/oacitation-biblio.html">Učinek odprtega dostopa</a>).</li> </ol> <h4>Predlagana politika za založbe, ki ponujajo zakasnjeni odprti dostop</h4> Authors who publish with this press agree to the following terms: <ol type="a"> <li>  Avtorji, ki bodo izdajali pri tej založbi, se strinjajo z naslednjimi pogoji: <ol type="a"> <li>Avtorji obržijo avtorske pravice in založbi dajo pravico za prvo objavo za dobo [določite časovno obdobje], potem ko delo dobi tudi licenco <a target="_blank" href="http://creativecommons.org/licenses/by/3.0/"> Creative Commons (priznanje avtorstva)</a>, ki drugim omogoča, da delo s citiranjem avtorja in prvotne objave pri tej založbi delijo naprej. </li> <li>Avtorji lahko vstopajo v dodatna ločena pogodbena razmerja za neekskluzivno distribucijo dela, ki je bilo prvotno objavljeno pri tej založbi (npr. za hrambo v repozitoriju institucije ali objavo v knjigi), kar mora biti ob objavi izrecno zapisano. </li> <li> Avtorjem se dovoli in se jih pri tem podpira, da svoje delo pred objavo in v procesu oddajanja objavijo na spletu (npr. v institucionalnih repozitorijih ali na svoji spletni strani), saj to pripelje do koristnih izmenjav in pa predčasnega in bolj pogostega citiranja dela (Glej <a target="_blank" href="http://opcit.eprints.org/oacitation-biblio.html">Učinek odprtega dostopa</a>).</li> </ol>]]></message>
+	<message key="manager.setup.copyrightNotice.sample"><![CDATA[<h3>predlagani podatki o avtorskih pravicah organizacije Creative Commons</h3> <h4>predlagana politika za spletišča, ki ponujajo odprt dostop</h4> Avtorji, ki bodo izdajali pri tej založbi, se strinjajo z naslednjimi pogoji: <ol type="a"> <li>Avtorji obržijo avtorske pravice in založbi dajo pravico za prvo objavo, delo pa ima hkrati tudi licenco <a target="_blank" href="http://creativecommons.org/licenses/by/3.0/"> Creative Commons (priznanje avtorstva)</a>, ki drugim omogoča, da delo s citiranjem avtorja in prvotne objave pri tej založbi delijo naprej. </li> <li>Avtorji lahko vstopajo v dodatna ločena pogodbena razmerja za neekskluzivno distribucijo dela, ki je bilo prvotno objavljeno pri tej založbi (npr. za hrambo v repozitoriju institucije ali objavo v knjigi), kar mora biti ob objavi izrecno zapisano. </li> <li> Avtorjem se dovoli in se jih pri tem podpira, da svoje delo pred objavo in v procesu oddajanja objavijo na spletu (npr. v institucionalnih repozitorijih ali na svoji spletni strani), saj to pripelje do koristnih izmenjav in pa predčasnega in bolj pogostega citiranja dela (Glej <a target="_blank" href="http://opcit.eprints.org/oacitation-biblio.html">Učinek odprtega dostopa</a>).</li> </ol> <h4>Predlagana politika za založbe, ki ponujajo zakasnjeni odprti dostop</h4> Authors who publish with this press agree to the following terms: <ol type="a"> <li>  Avtorji, ki bodo izdajali pri tej založbi, se strinjajo z naslednjimi pogoji: <ol type="a"> <li>Avtorji obržijo avtorske pravice in založbi dajo pravico za prvo objavo za dobo [določite časovno obdobje], potem ko delo dobi tudi licenco <a target="_blank" href="http://creativecommons.org/licenses/by/3.0/"> Creative Commons (priznanje avtorstva)</a>, ki drugim omogoča, da delo s citiranjem avtorja in prvotne objave pri tej založbi delijo naprej. </li> <li>Avtorji lahko vstopajo v dodatna ločena pogodbena razmerja za neekskluzivno distribucijo dela, ki je bilo prvotno objavljeno pri tej založbi (npr. za hrambo v repozitoriju institucije ali objavo v knjigi), kar mora biti ob objavi izrecno zapisano. </li> <li> Avtorjem se dovoli in se jih pri tem podpira, da svoje delo pred objavo in v procesu oddajanja objavijo na spletu (npr. v institucionalnih repozitorijih ali na svoji spletni strani), saj to pripelje do koristnih izmenjav in pa predčasnega in bolj pogostega citiranja dela (Glej <a target="_blank" href="http://opcit.eprints.org/oacitation-biblio.html">Učinek odprtega dostopa</a>).</li> </ol>]]></message>
 	<message key="manager.setup.basicEditorialStepsDescription"><![CDATA[Koraki: Oddaja prispevka &gt; Recenzija prispevka &gt; Urejanje prispevka &gt; Kazalo.<br /><br /> Izberi model za obravnavanje uredniškega procesa. (Za imenovanje odgovornega urednika in urednikov zbirke pojdite na Uredniki v Upravljanju publikacije.)]]></message>
 	<message key="manager.setup.referenceLinkingDescription"><![CDATA[<p>Če želite omogočiti bralcem, da najdejo dostop do spletnih različic virov, ki jih je avtor uporabil, imate naslednje možnosti.</p> <ol> <li><strong>Dodaj orodje za branje</strong><p>Urednik publikacije lahko doda "Poišči referenco" med orodja za branje, ki so na voljo poleg publikacije. S tem omogoči bralcu, da skopira naslov citirane literature in nato išče po predizbranih bazah za citirano delo.</p></li> <li><strong>Spletne povezave citirane literature</strong><p>Grafični urednik lahko doda povezavo do literature, ki je na voljo na spletu , s pomčjo naslednjih navodil (ki jih je možno urediti).</p></li> </ol>]]></message>
 	<message key="manager.publication.library">Arhiv založbe</message>

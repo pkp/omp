@@ -61,7 +61,7 @@
 		{assign var="uuid" value=""|uniqid|escape}
 		<div id="volume-editors-{$uuid}">
 			<script type="text/javascript">
-				pkp.registry.init('volume-editors-{$uuid}', 'SelectListPanel', {$volumeEditorsListData});
+				pkp.registry.init('volume-editors-{$uuid}', 'SelectListPanel', {$volumeEditorsListData|json_encode});
 			</script>
 		</div>
 	{/fbvFormSection}

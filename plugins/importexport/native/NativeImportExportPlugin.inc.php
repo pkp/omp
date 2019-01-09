@@ -84,14 +84,14 @@ class NativeImportExportPlugin extends ImportExportPlugin {
 		switch (array_shift($args)) {
 			case 'index':
 			case '':
-				import('lib.pkp.controllers.list.submissions.SelectSubmissionsListHandler');
-				$exportSubmissionsListHandler = new SelectSubmissionsListHandler(array(
+				import('lib.pkp.classes.components.listPanels.submissions.SelectSubmissionsListPanel');
+				$exportSubmissionsListPanel = new SelectSubmissionsListPanel(array(
 					'title' => 'plugins.importexport.native.exportSubmissionsSelect',
 					'count' => 100,
 					'inputName' => 'selectedSubmissions[]',
 					'lazyLoad' => true,
 				));
-				$templateMgr->assign('exportSubmissionsListData', json_encode($exportSubmissionsListHandler->getConfig()));
+				$templateMgr->assign('exportSubmissionsListData', $exportSubmissionsListPanel->getConfig());
 				$templateMgr->display($this->getTemplateResource('index.tpl'));
 				break;
 			case 'uploadImportXML':
@@ -152,7 +152,7 @@ class NativeImportExportPlugin extends ImportExportPlugin {
 				// If there are any submissions or validataion errors
 				// delete imported submissions.
 				if (!empty($submissionsErrors) || !empty($validationErrors)) {
-					// remove all imported sumissions
+					// remove all imported submissions
 					$deployment->removeImportedObjects(ASSOC_TYPE_SUBMISSION);
 				}
 				// Display the results
@@ -238,5 +238,3 @@ class NativeImportExportPlugin extends ImportExportPlugin {
 		fatalError('Not implemented.');
 	}
 }
-
-

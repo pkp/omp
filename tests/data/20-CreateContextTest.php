@@ -13,9 +13,30 @@
  * @brief Data build suite: Create and configure a test press
  */
 
-import('lib.pkp.tests.WebTestCase');
+import('lib.pkp.tests.data.PKPCreateContextTest');
 
-class CreateContextTest extends WebTestCase {
+class CreateContextTest extends PKPCreateContextTest {
+	/** @var array */
+	public $contextName = [
+		'en_US' => 'Public Knowledge Press',
+		'fr_CA' => 'Press de la connaissance du public',
+	];
+
+	/** @var string journal or press*/
+	public $contextType = 'press';
+
+	/** @var array */
+	public $contextDescription = [
+		'en_US' => 'Public Knowledge Press is a publisher dedicated to the subject of public access to science.',
+		'fr_CA' => 'Le Press de Public Knowledge est une presse sur le thème de l\'accès du public à la science.',
+	];
+
+	/** @var array */
+	public $contextAcronym = [
+		'en_US' => 'PKP',
+		'fr_CA' => 'PCP',
+	];
+
 	/**
 	 * Prepare for tests.
 	 */
@@ -26,25 +47,15 @@ class CreateContextTest extends WebTestCase {
 	/**
 	 * Create and set up test data press.
 	 */
-	function testCreateContext() {
-		$this->open(self::$baseUrl);
-		$this->waitForElementPresent($selector='link=Administration');
-		$this->click($selector);
-		$this->waitForElementPresent($selector='link=Hosted Presses');
-		$this->click($selector);
-		$this->waitForElementPresent($selector='css=[id^=component-grid-admin-press-pressgrid-createContext-button-]');
-		$this->click($selector);
+	function testCreatePress() {
+		$this->createContext();
+	}
 
-		// Enter press data
-		$this->waitForElementPresent('css=[id^=name-en_US-]');
-		$this->type('css=[id^=name-en_US-]', 'Public Knowledge Press');
-		$this->type('css=[id^=name-fr_CA-]', 'Press de la connaissance du public');
-		$this->typeTinyMCE('description-en_US', 'Public Knowledge Press is a publisher dedicated to the subject of public access to science.');
-		$this->typeTinyMCE('description-fr_CA', 'Le Press de Public Knowledge est une presse sur le thème de l\'accès du public à la science.');
-		$this->type('css=[id^=path-]', 'publicknowledge');
-		$this->clickAndWait('css=[id^=submitFormButton-]');
-		$this->waitForElementPresent('css=div.header:contains(\'Settings Wizard\')');
-		$this->waitJQuery();
+	/**
+	 * Test the settings wizard
+	 */
+	function testSettingsWizard() {
+		$this->settingsWizard();
 	}
 
 	/**
@@ -53,25 +64,16 @@ class CreateContextTest extends WebTestCase {
 	function testSetupContext() {
 		$this->open(self::$baseUrl);
 
-		// Management > Settings > Press
+		// Settings > Press > Masthead
 		$this->waitForElementPresent($selector='css=li.profile a:contains(\'Dashboard\')');
 		$this->clickAndWait($selector);
 		$this->waitForElementPresent($selector='css=ul#navigationPrimary a:contains(\'Press\')');
 		$this->clickAndWait($selector);
-		$this->waitForElementPresent($selector='//form[@id=\'mastheadForm\']//button[text()=\'Save\']');
-		$this->click($selector);
-		$this->waitForTextPresent('Your changes have been saved.');
 
-		// Management > Settings > Contact
-		$this->click('link=Contact');
-		$this->waitForElementPresent('css=[id^=contactEmail-]');
-		$this->type('css=[id^=contactEmail-]', 'rvaca@mailinator.com');
-		$this->type('css=[id^=contactName-]', 'Ramiro Vaca');
-		$this->type('css=[id^=supportEmail-]', 'rvaca@mailinator.com');
-		$this->type('css=[id^=supportName-]', 'Ramiro Vaca');
-		$this->type('css=[id^=mailingAddress-]', "123 456th Street\nBurnaby, British Columbia\nCanada");
-		$this->click('//form[@id=\'contactForm\']//button[text()=\'Save\']');
-		$this->waitForTextPresent('Your changes have been saved.');
+		$this->click('css=#masthead button:contains(\'Save\')');
+		$this->waitForTextPresent('The masthead details for this press have been updated.');
+
+		$this->contactSettings(['contextType' => 'press']);
 	}
 
 	/**
@@ -98,5 +100,16 @@ class CreateContextTest extends WebTestCase {
 		$this->waitForElementPresent($selector='//form[@id=\'userGroupForm\']//button[text()=\'OK\']');
 		$this->click($selector);
 		$this->waitJQuery();
+	}
+
+	/**
+	 * Helper function to go to the hosted presses page
+	 */
+	function goToHostedContexts() {
+		$this->open(self::$baseUrl);
+		$this->waitForElementPresent('link=Administration');
+		$this->click('link=Administration');
+		$this->waitForElementPresent('link=Hosted Presses');
+		$this->click('link=Hosted Presses');
 	}
 }

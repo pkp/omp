@@ -201,7 +201,7 @@
 			<col>publication_format_id</col>
 		</index>
 	</table>
-	
+
 	<!--
 	  *
 	  * TABLE representatives
@@ -846,10 +846,6 @@
 			<NOTNULL/>
 		</field>
 		<field name="setting_value" type="X"/>
-		<field name="setting_type" type="C2" size="6">
-			<NOTNULL/>
-			<descr>(bool|int|float|string|object)</descr>
-		</field>
 		<descr>Press settings.</descr>
 		<index name="press_settings_press_id">
 			<col>press_id</col>
@@ -940,7 +936,7 @@
 			<col>assoc_id</col>
 		</index>
 	</table>
-	
+
 	<!--
 	  *
 	  * TABLE spotlight_settings

@@ -34,7 +34,7 @@ class Press extends Context {
 	 * @return string
 	 */
 	function getPageHeaderTitle() {
-		$titleArray = $this->getSetting('name');
+		$titleArray = $this->getData('name');
 		foreach (array(AppLocale::getLocale(), AppLocale::getPrimaryLocale()) as $locale) {
 			if (isset($titleArray[$locale])) return $titleArray[$locale];
 		}
@@ -46,7 +46,7 @@ class Press extends Context {
 	 * @return string
 	 */
 	function getPageHeaderLogo() {
-		$logoArray = $this->getSetting('pageHeaderLogoImage');
+		$logoArray = $this->getData('pageHeaderLogoImage');
 		foreach (array(AppLocale::getLocale(), AppLocale::getPrimaryLocale()) as $locale) {
 			if (isset($logoArray[$locale])) return $logoArray[$locale];
 		}
@@ -59,7 +59,7 @@ class Press extends Context {
 	 * @return boolean
 	 */
 	function hasRequiredOnixHeaderFields() {
-		if ($this->getSetting('codeType') != '' && $this->getSetting('codeValue') != '') {
+		if ($this->getData('codeType') != '' && $this->getData('codeValue') != '') {
 			return true;
 		} else {
 			return false;
@@ -75,14 +75,6 @@ class Press extends Context {
 	}
 
 	/**
-	 * Get the settings DAO for this context object.
-	 * @return DAO
-	 */
-	static function getSettingsDAO() {
-		return DAORegistry::getDAO('PressSettingsDAO');
-	}
-
-	/**
 	 * Get the DAO for this context object.
 	 * @return DAO
 	 */
@@ -90,5 +82,3 @@ class Press extends Context {
 		return DAORegistry::getDAO('PressDAO');
 	}
 }
-
-

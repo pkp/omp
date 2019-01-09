@@ -24,7 +24,7 @@
 	<message key="plugins.importexport.csv.fileDoesNotExist">Datoteka "{$filename}" ne obstaja. Izhod.</message>
 	<message key="plugins.importexport.csv.unknownUser">Neznan uporabnik:"{$username}". Izhod.</message>
 	<message key="plugins.importexport.csv.unknownLocale">Neznani območni jezik:"{$locale}". Preskoči.</message>
-	<message key="plugins.importexport.csv.unknownPress">Neznana založba: "{$pressPath}". Preskoči.</message>
+	<message key="plugins.importexport.csv.unknownPress">Neznana založba: "{$contextPath}". Preskoči.</message>
 	<message key="plugins.importexport.csv.noGenre">Zvrst rokopisa ni na voljo. Izhod.</message>
 	<message key="plugins.importexport.csv.noAuthorGroup">V založbi ni privzete skupine avtorjev {$press}. Izhod iz prispevka.</message>
 	<message key="plugins.importexport.csv.noSeries">Pot zbirke {$seriesPath} ne obstaja. Temu prispevku ni mogoče dodati.</message>

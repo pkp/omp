@@ -47,7 +47,7 @@ Examples:
 	<message key="plugins.importexport.users.import.confirmUsers">Confirm that these are the users you would like to import into the system</message>
 	<message key="plugins.importexport.users.import.warning">Warning</message>
 	<message key="plugins.importexport.users.import.encryptionMismatch">Cannot use passwords hashed with {$importHash}; OMP is configured to use {$ompHash}. If you continue, you will need to reset the imported users' passwords.</message>
-	<message key="plugins.importexport.users.unknownPress">An unknown press path "{$pressPath}" was specified.</message>
+	<message key="plugins.importexport.users.unknownPress">An unknown press path "{$contextPath}" was specified.</message>
 
 	<message key="plugins.importexport.users.export.exportUsers">Export Users</message>
 	<message key="plugins.importexport.users.export.exportByRole">Export By Role</message>

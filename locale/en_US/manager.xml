@@ -46,17 +46,19 @@
 	<message key="manager.series.restricted">Don't allow authors to submit directly to this series.</message>
 	<message key="manager.payment.generalOptions">General Options</message>
 	<message key="manager.payment.options.enablePayments">Payments will be enabled for this press. Note that users will be required to log in to make payments.</message>
+	<message key="manager.payment.success">The payment settings have been updated.</message>
 
 	<!-- Settings management -->
 	<message key="manager.settings">Settings</message>
 	<message key="manager.settings.pressSettings">Press Settings</message>
 	<message key="manager.settings.press">Press</message>
-	<message key="manager.settings.publisherInformation"><![CDATA[These fields are required to create valid <a href="https://en.wikipedia.org/wiki/ONIX_for_Books">ONIX metadata</a>. Please include them if you wish to publish ONIX metadata.]]></message>
+	<message key="manager.settings.publisher.identity">Publisher Identity</message>
+	<message key="manager.settings.publisher.identity.description"><![CDATA[These fields are required to publish valid <a href="https://en.wikipedia.org/wiki/ONIX_for_Books">ONIX metadata</a>.]]></message>
 	<message key="manager.settings.publisher">Press Publisher Name</message>
 	<message key="manager.settings.location">Geographical Location</message>
 	<message key="manager.settings.publisherCode">Publisher Code</message>
 	<message key="manager.settings.publisherCodeType">Publisher Code Type</message>
-	<message key="manager.settings.publisherCodeType.tip">If you have a publisher name code, please fill it in below.  It will be included in generated metadata.  The field is required if you generate ONIX metadata for your publications.</message>
+	<message key="manager.settings.publisherCodeType.invalid">This is not a valid Publisher Code Type.</message>
 	<message key="manager.settings.distributionDescription">All settings specific to the distribution process (notification, indexing, archiving, payment, reading tools).</message>
 
 	<!-- Statistics management -->
@@ -118,15 +120,22 @@ You may optionally provide the user with a reason for disabling their account.</
 	<message key="manager.setup.addNavItem">Add Item</message>
 	<message key="manager.setup.addSponsor">Add Sponsoring Organization</message>
 	<message key="manager.setup.announcements">Announcements</message>
+	<message key="manager.setup.announcements.success">The announcements settings have been updated.</message>
 	<message key="manager.setup.announcementsDescription">Announcements may be published to inform readers of press news and events. Published announcements will appear on the Announcements page.</message>
 	<message key="manager.setup.announcementsIntroduction">Additional Information</message>
-	<message key="manager.setup.announcementsIntroductionDescription">Enter any additional information that should be displayed to readers on the Announcements page.</message>
+	<message key="manager.setup.announcementsIntroduction.description">Enter any additional information that should be displayed to readers on the Announcements page.</message>
 	<message key="manager.setup.appearInAboutPress">(To appear in About the Press) </message>
+	<message key="manager.setup.contextAbout">About the Press</message>
+	<message key="manager.setup.contextAbout.description">Include any information about your press which may be of interest to readers, authors or reviewers. This could include your open access policy, the focus and scope of the press, sponsorship disclosure, and the history of the journal.</message>
+	<message key="manager.setup.contextSummary">Press Summary</message>
 	<message key="manager.setup.copyediting">Copyeditors</message>
 	<message key="manager.setup.copyeditInstructions">Copyedit Instructions</message>
 	<message key="manager.setup.copyeditInstructionsDescription">The Copyedit Instructions will be made available to Copyeditors, Authors, and Section Editors in the Submission Editing stage. Below is a default set of instructions in HTML, which can be modified or replaced by the Press Manager at any point (in HTML or plain text).</message>
 	<message key="manager.setup.copyrightNotice">Copyright notice</message>
 	<message key="manager.setup.coverage">Coverage</message>
+	<message key="manager.setup.coverThumbnailsMaxHeight">Cover Image Max Height</message>
+	<message key="manager.setup.coverThumbnailsMaxWidth">Cover Image Max Width</message>
+	<message key="manager.setup.coverThumbnailsMaxWidthHeight.description">Images will be reduced when larger than this size but will never be blown up or stretched to fit these dimensions.</message>
 	<message key="manager.setup.customizingTheLook"><![CDATA[Step 5. Customizing the Look & Feel]]></message>
 	<message key="manager.setup.customTags">Custom tags</message>
 	<message key="manager.setup.customTagsDescription">Custom HTML header tags to be inserted in the header of every page (e.g., META tags).</message>
@@ -139,21 +148,25 @@ You may optionally provide the user with a reason for disabling their account.</
 	<message key="manager.setup.disciplineProvideExamples">Provide examples of relevant academic disciplines for this press</message>
 	<message key="manager.setup.displayCurrentMonograph">Add the table of contents for the current monograph (if available).</message>
 	<message key="manager.setup.displayOnHomepage">Homepage Content</message>
-	<message key="manager.setup.displayFeaturedBooks">Display featured books on the home page.</message>
-	<message key="manager.setup.displayInSpotlight">Display books in the spotlight on the home page.</message>
-	<message key="manager.setup.displayNewReleases">Display new releases on the home page.</message>
+	<message key="manager.setup.displayFeaturedBooks">Display featured books on the home page</message>
+	<message key="manager.setup.displayFeaturedBooks.label">Featured Books</message>
+	<message key="manager.setup.displayInSpotlight">Display books in the spotlight on the home page</message>
+	<message key="manager.setup.displayInSpotlight.label">Spotlight</message>
+	<message key="manager.setup.displayNewReleases">Display new releases on the home page</message>
+	<message key="manager.setup.displayNewReleases.label">New Releases</message>
 	<message key="manager.setup.doiPrefix">DOI Prefix</message>
 	<message key="manager.setup.doiPrefixDescription"><![CDATA[The DOI (Digital Object Identifier) Prefix is assigned by <a href="http://www.crossref.org" target="_blank">CrossRef</a> and is in the format 10.xxxx (e.g. 10.1234).]]></message>
 	<message key="manager.setup.editorDecision">Editor Decision</message>
 	<message key="manager.setup.emailBounceAddress">Bounce Address</message>
-	<message key="manager.setup.emailBounceAddressDescription">Any undeliverable emails will result in an error message to this address.</message>
-	<message key="manager.setup.emailBounceAddressDisabled"><![CDATA[<strong>Note:</strong> To activate this option, the site administrator must enable the <tt>allow_envelope_sender</tt> option in the OMP configuration file. Additional server configuration may be required to support this functionality (which may not be possible on all servers), as indicated in the OMP documentation.]]></message>
+	<message key="manager.setup.emailBounceAddress.description">Any undeliverable emails will result in an error message to this address.</message>
+	<message key="manager.setup.emailBounceAddress.disabled"><![CDATA[In order to send undeliverable emails to a bounce address, the site administrator must enable the <code>allow_envelope_sender</code> option in the site configuration file. Server configuration may be required, as indicated in the OMP documentation.]]></message>
 	<message key="manager.setup.emails">Email Identification</message>
 	<message key="manager.setup.emailSignature">Signature</message>
-	<message key="manager.setup.emailSignatureDescription">The prepared emails that are sent by the system on behalf of the press will have the following signature added to the end.</message>
-	<message key="manager.setup.enableAnnouncements">Enable announcements.</message>
-	<message key="manager.setup.enableAnnouncementsHomepage1">Display</message>
-	<message key="manager.setup.enableAnnouncementsHomepage2">of the most recent announcements on the press homepage.</message>
+	<message key="manager.setup.emailSignature.description">The prepared emails that are sent by the system on behalf of the press will have the following signature added to the end.</message>
+	<message key="manager.setup.enableAnnouncements.enable">Enable announcements</message>
+	<message key="manager.setup.enableAnnouncements.description">Announcements may be published to inform readers of news and events. Published announcements will appear on the Announcements page.</message>
+	<message key="manager.setup.numAnnouncementsHomepage">Display on Homepage</message>
+	<message key="manager.setup.numAnnouncementsHomepage.description">How many announcements to display on the homepage. Leave this empty to display none.</message>
 	<message key="manager.setup.enablePressInstructions">Enable this press to appear publicly on the site</message>
 	<message key="manager.setup.enablePublicMonographId">Custom identifiers will be used to identify published items.</message>
 	<message key="manager.setup.enablePublicGalleyId">Custom identifiers will be used to identify galleys (e.g. HTML or PDF files) for published items.</message>
@@ -166,20 +179,24 @@ You may optionally provide the user with a reason for disabling their account.</
 	<message key="manager.setup.forAuthorsToIndexTheirWorkDescription"><![CDATA[OMP adheres to the <a href="http://www.openarchives.org/" target="_blank">Open Archives Initiative</a> Protocol for Metadata Harvesting, which is the emerging standard for providing well-indexed access to electronic research resources on a global scale. The authors will use a similar template to provide metadata for their submission. The Press Manager should select the categories for indexing and present authors with relevant examples to assist them in indexing their work, separating terms with a semi-colon (e.g., term1; term2). The entries should be introduced as examples by using "E.g.," or "For example,".]]></message>
 	<message key="manager.setup.form.contactEmailRequired">The primary contact email is required.</message>
 	<message key="manager.setup.form.contactNameRequired">The primary contact name is required.</message>
-	<message key="manager.setup.form.pressNameRequired">The press name is required.</message>
 	<message key="manager.setup.form.numReviewersPerSubmission">The number of reviewers per submission is required.</message>
 	<message key="manager.setup.form.supportEmailRequired">The support email is required.</message>
 	<message key="manager.setup.form.supportNameRequired">The support name is required.</message>
-	<message key="manager.setup.form.pressInitialsRequired">Press initials are required.</message>
 	<message key="manager.setup.generalInformation">General Information</message>
 	<message key="manager.setup.gettingDownTheDetails">Step 1. Getting Down the Details</message>
 	<message key="manager.setup.guidelines">Guidelines</message>
 	<message key="manager.setup.preparingWorkflow">Step 3. Preparing the workflow</message>
+	<message key="manager.setup.identity">Press Identity</message>
 	<message key="manager.setup.information.description">Brief descriptions of the press for librarians and prospective authors and readers. These are made available in the site's sidebar when the Information block has been added.</message>
 	<message key="manager.setup.information.forAuthors">For Authors</message>
 	<message key="manager.setup.information.forLibrarians">For Librarians</message>
 	<message key="manager.setup.information.forReaders">For Readers</message>
+	<message key="manager.setup.information.success">The information for this press was updated.</message>
 	<message key="manager.setup.institution">Institution</message>
+	<message key="manager.setup.itemsPerPage">Items per page</message>
+	<message key="manager.setup.itemsPerPage.description">Limit the number of items (for example, submissions, users, or editing assignments) to show in a list before showing subsequent items in another page.</message>
+	<message key="manager.setup.keyInfo">Key Information</message>
+	<message key="manager.setup.keyInfo.description">Provide a short description of your press and identify editors, managing directors and other members of your editorial team.</message>
 	<message key="manager.setup.labelName">Label Name</message>
 	<message key="manager.setup.layoutAndGalleys">Layout Editors</message>
 	<message key="manager.setup.layoutInstructions">Layout Instructions</message>
@@ -189,7 +206,7 @@ You may optionally provide the user with a reason for disabling their account.</
 	<message key="manager.setup.layoutTemplates.file">Template File</message>
 	<message key="manager.setup.layoutTemplates.title">Title</message>
 	<message key="manager.setup.lists">Lists</message>
-	<message key="manager.setup.listsDescription">Limit the number of items (for example, submissions, users, or editing assignments) to show in a list before showing subsequent items in another page. Also, limit the number of links to display to subsequent pages of the list.</message>
+	<message key="manager.setup.lists.success">The list settings for this journal have been updated.</message>
 	<message key="manager.setup.look"><![CDATA[Look & Feel]]></message>
 	<message key="manager.setup.look.description">Homepage header, content, press header, footer, navigation bar, and style sheet.</message>
 	<message key="manager.setup.settings">Settings</message>
@@ -197,6 +214,7 @@ You may optionally provide the user with a reason for disabling their account.</
 	<message key="manager.setup.managementOfBasicEditorialSteps">Management of Basic Editorial Steps</message>
 	<message key="manager.setup.managingPublishingSetup">Management and Publishing Setup</message>
 	<message key="manager.setup.managingThePress">Step 4. Managing the Settings</message>
+	<message key="manager.setup.masthead.success">The masthead details for this press have been updated.</message>
 	<message key="manager.setup.noImageFileUploaded">No image file uploaded.</message>
 	<message key="manager.setup.noStyleSheetUploaded">No style sheet uploaded.</message>
 	<message key="manager.setup.note">Note</message>
@@ -205,10 +223,12 @@ You may optionally provide the user with a reason for disabling their account.</
 	<message key="manager.setup.noUseLayoutEditors">An Editor or Section Editor assigned to the submission will prepare the HTML, PDF, etc., files.</message>
 	<message key="manager.setup.noUseProofreaders">An Editor or Section Editor assigned to the submission will check the galleys.</message>
 	<message key="manager.setup.numPageLinks">Page links</message>
+	<message key="manager.setup.numPageLinks.description">Limit the number of links to display to subsequent pages in a list.</message>
 	<message key="manager.setup.onlineAccessManagement">Access to Press Content</message>
 	<message key="manager.setup.onlineIssn">Online ISSN</message>
 	<message key="manager.setup.policies">Policies</message>
 	<message key="manager.setup.policies.description">Focus, peer review, sections, privacy, security, and additional about items.</message>
+	<message key="manager.setup.privacyStatement.success">The privacy statement has been updated.</message>
 	<message key="manager.setup.appearanceDescription">Various components of the press appearance can be configured from this page, including header and footer elements, the press style and theme, and how lists of information are presented to users.</message>
 	<message key="manager.setup.pressDescription">Press Summary</message>
 	<message key="manager.setup.pressDescription.description">A brief description of your press.</message>
@@ -219,7 +239,7 @@ You may optionally provide the user with a reason for disabling their account.</
 	<message key="manager.setup.homepageContentDescription">The press homepage consists of navigation links by default. Additional homepage content can be appended by using one or all of the following options, which will appear in the order shown.</message>
 	<message key="manager.setup.pressHomepageContent">Press Homepage Content</message>
 	<message key="manager.setup.pressHomepageContentDescription">The press homepage consists of navigation links by default. Additional homepage content can be appended by using one or all of the following options, which will appear in the order shown.</message>
-	<message key="manager.setup.pressInitials">Press Initials</message>
+	<message key="manager.setup.contextInitials">Press Initials</message>
 	<message key="manager.setup.layout">Press Layout</message>
 	<message key="manager.setup.pageHeader">Press Page Header</message>
 	<message key="manager.setup.pageHeaderDescription"></message>
@@ -228,7 +248,7 @@ You may optionally provide the user with a reason for disabling their account.</
 	<message key="manager.setup.pressSetupUpdated">Your press setup has been updated.</message>
 	<message key="manager.setup.styleSheetInvalid">Invalid style sheet format. Accepted format is .css.</message>
 	<message key="manager.setup.pressTheme">Press Theme</message>
-	<message key="manager.setup.contextName">Press Name</message>
+	<message key="manager.setup.contextTitle">Press Name</message>
 	<message key="manager.setup.printIssn">Print ISSN</message>
 	<message key="manager.setup.proofingInstructions">Proofing Instructions</message>
 	<message key="manager.setup.proofingInstructionsDescription">The Proofreading Instructions will be made available to Proofreaders, Authors, Layout Editors, and Section Editors in the Submission Editing stage. Below is a default set of instructions in HTML, which can be edited or replaced by the Press Manager at any point (in HTML or plain text).</message>
@@ -244,16 +264,17 @@ You may optionally provide the user with a reason for disabling their account.</
 	<message key="manager.setup.reviewGuidelines">External Review Guidelines</message>
 	<message key="manager.setup.reviewGuidelinesDescription">Provide external reviewers with criteria for judging a submission's suitability for publication in the press, which may include instructions for preparing an effective and helpful review. Reviewers will have an opportunity to provide comments intended for the author and editor, as well as separate comments only for the editor.</message>
 	<message key="manager.setup.internalReviewGuidelines">Internal Review Guidelines</message>
-	<message key="manager.setup.internalReviewGuidelinesDescription"><![CDATA[Like the External Review Guidelines, these instructions will provide reviewers with information on assessing the submission. These instructions are for Internal Reviewers, who generally perform a review process using reviewers internal to the press.]]></message>
 	<message key="manager.setup.reviewOptions">Review Options</message>
 	<message key="manager.setup.reviewOptions.automatedReminders">Automated Email Reminders</message>
 	<message key="manager.setup.reviewOptions.automatedRemindersDisabled"><![CDATA[To activate these options, the site administrator must enable the <tt>scheduled_tasks</tt> option in the OMP configuration file. Additional server configuration may be required to support this functionality (which may not be possible on all servers), as indicated in the OMP documentation.]]></message>
 	<message key="manager.setup.reviewOptions.blindReview">Blind Review</message>
 	<message key="manager.setup.reviewOptions.onQuality">Editors will rate reviewers on a five-point quality scale after each review.</message>
-	<message key="manager.setup.reviewOptions.restrictReviewerFileAccess">Reviewers will have access to the submission file only after agreeing to review it.</message>
+	<message key="manager.setup.reviewOptions.restrictReviewerFileAccess">Restrict File Access</message>
+	<message key="manager.setup.reviewOptions.restrictReviewerFileAccess.description">Reviewers will have access to the submission file only after agreeing to review it.</message>
 	<message key="manager.setup.reviewOptions.reviewerAccess">Reviewer Access</message>
-	<message key="manager.setup.reviewOptions.reviewerAccessKeysEnabled">Enable one-click reviewer access.</message>
-	<message key="manager.setup.reviewOptions.reviewerAccessKeysEnabled.description"><![CDATA[<strong>Note:</strong> The email invitation to reviewers will contain a special URL that takes invited reviewers directly to the Review page for the submission (with access to any other pages requiring them to log in). For security reasons with this option, editors are not able to modify email addresses or add CCs or BCCs prior to sending invitations to reviewers.]]></message>
+	<message key="manager.setup.reviewOptions.reviewerAccessKeysEnabled">One-click Reviewer Access</message>
+	<message key="manager.setup.reviewOptions.reviewerAccessKeysEnabled.description">Reviewers can be sent a secure link in the email invitation, which will allow them to access the review without logging in. Access to other pages requires them to log in.</message>
+	<message key="manager.setup.reviewOptions.reviewerAccessKeysEnabled.label">Include a secure link in the email invitation to reviewers.</message>
 	<message key="manager.setup.reviewOptions.reviewerRatings">Reviewer Ratings</message>
 	<message key="manager.setup.reviewOptions.reviewerReminders">Reviewer Reminders</message>
 	<message key="manager.setup.reviewOptions.showEnsuringLink">Provide links about ensuring a blind review on pages where authors and reviewers upload files.</message>
@@ -263,8 +284,10 @@ You may optionally provide the user with a reason for disabling their account.</
 	<message key="manager.setup.reviewProcessEmail">Email-Attachment Review Process</message>
 	<message key="manager.setup.reviewProcessStandard">Standard Review Process</message>
 	<message key="manager.setup.reviewProcessStandardDescription">Editors will email selected Reviewers the title and abstract of the submission, as well as an invitation to log into the press web site to complete the review. Reviewers enter the press web site to agree to do the review, to download submissions, submit their comments, and select a recommendation.</message>
-	<message key="manager.setup.searchEngineIndexing">Search Engine Indexing</message>
-	<message key="manager.setup.searchEngineIndexingDescription">Provide a brief description of the press which search engines can display when listing the press in search results.</message>
+	<message key="manager.setup.searchDescription.description">Provide a brief description (50-300 characters) of the press which search engines can display when listing the press in search results.</message>
+	<message key="manager.setup.searchEngineIndexing">Search Indexing</message>
+	<message key="manager.setup.searchEngineIndexing.description"><![CDATA[Help search engines like Google discover and display your site. You are encouraged to submit your <a href="{$sitemapUrl}" target="_blank">sitemap</a>.]]></message>
+	<message key="manager.setup.searchEngineIndexing.success">The search engine index settings have been updated.</message>
 	<message key="manager.setup.sectionsAndSectionEditors">Sections and Section Editors</message>
 	<message key="manager.setup.sectionsDefaultSectionDescription">(If sections are not added, then items are submitted to the Monographs section by default.)</message>
 	<message key="manager.setup.sectionsDescription"><![CDATA[To create or modify sections for the press (e.g., Monographs, Book Reviews, etc.), go to Section Management.<br /><br />Authors on submitting items to the press will designate...]]></message>
@@ -273,7 +296,8 @@ You may optionally provide the user with a reason for disabling their account.</
 	<message key="manager.setup.selectEditorDescription">The press editor who will see it through the editorial process.</message>
 	<message key="manager.setup.selectSectionDescription">The press section for which the item will be considered.</message>
 	<message key="manager.setup.showGalleyLinksDescription">Always show galley links and indicate restricted access.</message>
-	<message key="manager.setup.siteAccess">Additional Site and Content Access Restrictions</message>
+	<message key="manager.setup.siteAccess.view">Site Access</message>
+	<message key="manager.setup.siteAccess.viewContent">View Monograph Content</message>
 	<message key="manager.setup.stepsToPressSite">Five Steps to a Press Web Site</message>
 	<message key="manager.setup.subjectExamples">(E.g., Photosynthesis; Black Holes; Four-Color Map Problem; Bayesian Theory)</message>
 	<message key="manager.setup.subjectKeywordTopic">Keywords</message>
@@ -283,13 +307,6 @@ You may optionally provide the user with a reason for disabling their account.</
 	<message key="maganer.setup.submissionChecklistItemRequired">Checklist item is required.</message>
 	<message key="manager.setup.workflow">Workflow</message>
 	<message key="manager.setup.submissions.description">Author guidelines, copyright, and indexing (including registration).</message>
-	<message key="manager.setup.coverThumbnails">Cover Thumbnails</message>
-	<message key="manager.setup.coverThumbnailsDescription">Set the max width and height of the cover thumbnails. They will be resized when they are larger than these settings but will not be enlarged if they are smaller. The images will never be stretched to fit these dimensions.</message>
-	<message key="manager.setup.coverThumbnailsMaxHeight">Max. height</message>
-	<message key="manager.setup.coverThumbnailsMaxHeightRequired">Cover thumbnails max height is required.</message>
-	<message key="manager.setup.coverThumbnailsMaxWidth">Max. width</message>
-	<message key="manager.setup.coverThumbnailsMaxWidthRequired">Cover thumbnails max width is required.</message>
-	<message key="manager.setup.coverThumbnailsResize">Resize all existing cover thumbnails.</message>
 	<message key="manager.setup.typeExamples">(E.g., Historical Inquiry; Quasi-Experimental; Literary Analysis; Survey/Interview)</message>
 	<message key="manager.setup.typeMethodApproach">Type (Method/Approach)</message>
 	<message key="manager.setup.typeProvideExamples">Provide examples of relevant research types, methods, and approaches for this field</message>
@@ -321,7 +338,6 @@ You may optionally provide the user with a reason for disabling their account.</
 	<message key="manager.setup.submitToCategories">Allow category submissions</message>
 	<message key="manager.setup.submitToSeries">Allow series submissions</message>
 	<message key="manager.setup.issnDescription"><![CDATA[The ISSN (International Standard Serial Number) is an eight-digit number which identifying periodical publications including electronic serials. A number can be obtained from the <a href="http://www.issn.org" target="_blank">ISSN International Centre</a>.]]></message>
-	<message key="manager.setup.cataloguingMetadata">Cataloguing Metadata</message>
 	<message key="manager.setup.currentFormats">Current Formats</message>
 	<message key="manager.setup.categoriesAndSeries">Categories and Series</message>
 	<message key="manager.setup.categories.description">You may create a list of categories to help organize your publications. Categories are groupings of books according to subject matter, for example Economics; Literature; Poetry; and so on. Categories may be nested within "parent" categories: for example, an Economics parent category may include individual Microeconomics and Macroeconomics categories. Visitors will be able to search and browse the press by category.</message>
@@ -339,7 +355,7 @@ You may optionally provide the user with a reason for disabling their account.</
 	<message key="manager.setup.files">Files</message>
 	<message key="manager.setup.productionTemplates">Production Templates</message>
 	<message key="manager.files.note">Note: The Files Browser is an advanced feature that allows the files and directories associated with a press to be viewed and manipulated directly.</message>
-	<message key="manager.setup.authorCopyrightNotice.sample"><![CDATA[<h3>Proposed Creative Commons Copyright Notices</h3>
+	<message key="manager.setup.copyrightNotice.sample"><![CDATA[<h3>Proposed Creative Commons Copyright Notices</h3>
 <h4>Proposed Policy for Presses That Offer Open Access</h4>
 Authors who publish with this press agree to the following terms:
 <ol type="a">
@@ -367,6 +383,7 @@ Select a model for handling these aspects of the editorial process. (To designat
 	<message key="manager.setup.resetPermissions">Reset Monograph Permissions</message>
 	<message key="manager.setup.resetPermissions.confirm">Are you sure you wish to reset permissions data already attached to monographs?</message>
 	<message key="manager.setup.resetPermissions.description">Copyright statement and license information will be permanently attached to published content, ensuring that this data will not change in the case of a press changing policies for new submissions. To reset stored permissions information already attached to published content, use the button below.</message>
+	<message key="manager.setup.resetPermissions.success">Monograph permissions were successfully reset.</message>
 
 	<message key="grid.genres.title.short">Components</message>
 	<message key="grid.genres.title">Monograph Components</message>

@@ -39,14 +39,11 @@
 	<message key="admin.presses.noneCreated">Es wurden noch keine Verlage angelegt.</message>
 	<message key="admin.contexts.confirmDelete">Sind Sie sicher, dass Sie diesen Verlag und alle Verlagsinhalte endgültig löschen möchten?</message>
 	<message key="admin.contexts.create">Verlag anlegen</message>
-	<message key="admin.presses.createInstructions">Sie werden automatisch als Verlagsleiter/in eingetragen. Sobald ein neuer Verlag im System erstellt wurde, werden Sie zum Einstellungsassistenten weitergeleitet, um das Setup zu beenden.</message>
-	<message key="admin.presses.urlWillBe">Die URL des Verlages wird lauten {$sampleUrl}</message>
 	<message key="admin.contexts.form.titleRequired">Die Angabe des Titels ist erforderlich.</message>
 	<message key="admin.contexts.form.pathRequired">Die Angabe des Pfades ist erforderlich.</message>
 	<message key="admin.contexts.form.pathAlphaNumeric">Der Pfad darf nur Buchstaben und Zahlen, Unterstriche und Bindestriche enthalten und muss mit einem Buchstaben oder einer Zahl beginnen und enden.</message>
 	<message key="admin.contexts.form.pathExists">Der ausgewählte Pfad wird bereits von einem anderen Verlag verwendet.</message>
-	<message key="admin.presses.enablePressInstructions">Die Anzeige dieses Verlages auf der Website freischalten.</message>
-	<message key="admin.presses.pressDescription">Verlagsbeschreibung</message>
+	<message key="admin.contexts.contextDescription">Verlagsbeschreibung</message>
 	<message key="admin.presses.addPress">Verlag hinzufügen</message>
 
 

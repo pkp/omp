@@ -13,14 +13,15 @@
  * @brief Utility class to package all OMP services
  */
 
-namespace OMP\Services;
+namespace APP\Services;
 
 require_once(dirname(__FILE__) . '/../../lib/pkp/lib/vendor/pimple/pimple/src/Pimple/Container.php');
 require_once(dirname(__FILE__) . '/../../lib/pkp/lib/vendor/pimple/pimple/src/Pimple/ServiceProviderInterface.php');
 
 use \Pimple\Container;
-use \PKP\Services\AuthorService;
-use \PKP\Services\UserService;
+use \PKP\Services\PKPAuthorService;
+use \PKP\Services\PKPSchemaService;
+use \PKP\Services\PKPUserService;
 
 
 class OMPServiceProvider implements \Pimple\ServiceProviderInterface {
@@ -43,13 +44,22 @@ class OMPServiceProvider implements \Pimple\ServiceProviderInterface {
 
 		// Author service
 		$pimple['author'] = function() {
-			return new AuthorService();
+			return new PKPAuthorService();
 		};
 
 		// User service
 		$pimple['user'] = function() {
-			return new UserService();
+			return new PKPUserService();
 		};
 
+		// Context service
+		$pimple['context'] = function() {
+			return new ContextService();
+		};
+
+		// Schema service
+		$pimple['schema'] = function() {
+			return new PKPSchemaService();
+		};
 	}
 }

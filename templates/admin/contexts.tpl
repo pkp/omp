@@ -7,31 +7,11 @@
  *
  * Display list of contexts in administration.
  *}
-{strip}
-{assign var="pageTitle" value="press.presses"}
-{include file="common/header.tpl"}
-{/strip}
+{include file="common/header.tpl" pageTitle="press.presses"}
 
 <div class="pkp_page_content pkp_page_admin">
-
-	<script type="text/javascript">
-		// Initialise JS handler.
-		$(function() {ldelim}
-			$('#contexts').pkpHandler(
-					'$.pkp.pages.admin.ContextsHandler');
-		{rdelim});
-	</script>
-
-	<div id="contexts">
-		{if $openWizardLinkAction}
-			<div id="{$openWizardLinkAction->getId()}" class="pkp_linkActions inline">
-				{include file="linkAction/linkAction.tpl" action=$openWizardLinkAction contextId="contexts" selfActivate=true}
-			</div>
-		{/if}
-
-		{capture assign=contextsUrl}{url router=$smarty.const.ROUTE_COMPONENT component="grid.admin.press.PressGridHandler" op="fetchGrid" escape=false}{/capture}
-		{load_url_in_div id="contextGridContainer" url=$contextsUrl}
-	</div>
+	{capture assign=contextsUrl}{url router=$smarty.const.ROUTE_COMPONENT component="grid.admin.context.ContextGridHandler" op="fetchGrid" escape=false}{/capture}
+	{load_url_in_div id="contextGridContainer" url=$contextsUrl}
 </div>
 
 {include file="common/footer.tpl"}

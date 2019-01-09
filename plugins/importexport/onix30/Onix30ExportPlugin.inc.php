@@ -84,14 +84,14 @@ class Onix30ExportPlugin extends ImportExportPlugin {
 		switch (array_shift($args)) {
 			case 'index':
 			case '':
-				import('lib.pkp.controllers.list.submissions.SelectSubmissionsListHandler');
-				$exportSubmissionsListHandler = new SelectSubmissionsListHandler(array(
+				import('lib.pkp.classes.components.listPanels.submissions.SelectSubmissionsListPanel');
+				$exportSubmissionsListPanel = new SelectSubmissionsListPanel(array(
 					'title' => 'plugins.importexport.onix30.exportSubmissionsSelect',
 					'count' => 100,
 					'inputName' => 'selectedSubmissions[]',
 					'lazyLoad' => true,
 				));
-				$templateMgr->assign('exportSubmissionsListData', json_encode($exportSubmissionsListHandler->getConfig()));
+				$templateMgr->assign('exportSubmissionsListData', $exportSubmissionsListPanel->getConfig());
 				$templateMgr->display($this->getTemplatePath() . 'index.tpl');
 				break;
 			case 'export':
@@ -153,5 +153,3 @@ class Onix30ExportPlugin extends ImportExportPlugin {
 		fatalError('Not implemented.');
 	}
 }
-
-

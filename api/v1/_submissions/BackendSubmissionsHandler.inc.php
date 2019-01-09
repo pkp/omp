@@ -50,7 +50,7 @@ class BackendSubmissionsHandler extends PKPBackendSubmissionsHandler {
 	}
 
 	/**
-	 * Add omp-specific parameters to the getSubmissions request
+	 * Add omp-specific parameters to the getMany request
 	 *
 	 * @param $hookName string
 	 * @param $args array [

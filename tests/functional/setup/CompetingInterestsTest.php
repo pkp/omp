@@ -32,11 +32,6 @@ class CompetingInterestsTest extends ContentBaseTestCase {
 	function testCIDisabled() {
 		$this->open(self::$baseUrl);
 
-		// Unset the CI requirement setting
-		$this->logIn('dbarnes');
-		$this->_setReviewerCIRequirement(false);
-		$this->logOut();
-
 		// Send the submission to review
 		$this->findSubmissionAsEditor('dbarnes', null, self::$fullTitle);
 		$this->sendToReview('External');
@@ -99,7 +94,7 @@ class CompetingInterestsTest extends ContentBaseTestCase {
 		$this->waitForElementPresent('id=reviewStep1Form');
 		$this->assertElementPresent($selector='//input[@id=\'hasCompetingInterests\']');
 		$this->click($selector);
-		$this->typeTinyMCE('competingInterestsText', $competingInterests);
+		$this->typeTinyMCE('reviewerCompetingInterests', $competingInterests);
 		$this->click('//input[@id=\'privacyConsent\']');
 		$this->clickLinkActionNamed('Accept Review, Continue to Step #2');
 		$this->clickLinkActionNamed('Continue to Step #3');
@@ -144,15 +139,14 @@ class CompetingInterestsTest extends ContentBaseTestCase {
 		$this->clickAndWait('link=Workflow');
 		$this->waitForElementPresent('link=Review');
 		$this->click('link=Review');
-		$selector = 'id=reviewerCompetingInterestsRequired';
-		$this->waitForElementPresent($selector);
+		$this->waitForElementPresent('link=Reviewer Guidance');
+		$this->click('link=Reviewer Guidance');
 		if ($state) {
-			$this->check($selector);
+			$this->typeTinyMCE('reviewerGuidance-competingInterests-control-en_US', 'Reviewer competing interests disclosure.', true);
 		} else {
-			$this->uncheck($selector);
+			$this->typeTinyMCE('reviewerGuidance-competingInterests-control-en_US', '', true);
 		}
-		$this->click('//form[@id=\'reviewStageForm\']//button[text()=\'Save\']');
-		$this->waitForElementPresent('//*[contains(.,\'Your changes have been saved.\')]');
-
+		$this->click('css=#reviewer-guidance button:contains(\'Save\')');
+		$this->waitForTextPresent('Reviewer guidance has been updated.');
 	}
 }

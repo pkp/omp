@@ -122,6 +122,11 @@
 
 	<upgrade minversion="0.9.9.0" maxversion="3.1.1.9">
 		<data file="dbscripts/xml/upgrade/3.2.0_update.xml" />
+		<data file="dbscripts/xml/upgrade/3.2.0_setting_type.xml" />
+		<data file="dbscripts/xml/upgrade/3.2.0_stylesheet.xml" />
+		<code function="migrateSiteLocales" />
+		<code function="migrateSidebarBlocks" />
+		<code function="migrateMetadataSettings" />
 		<note file="docs/release-notes/README-3.2.0" />
 	</upgrade>
 

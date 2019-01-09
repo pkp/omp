@@ -30,6 +30,8 @@ switch ($op) {
 	case 'tools':
 	case 'importexport':
 	case 'statistics':
+	case 'permissions':
+	case 'resetPermissions':
 		import('lib.pkp.pages.management.PKPToolsHandler');
 		define('HANDLER_CLASS', 'PKPToolsHandler');
 		break;
@@ -38,5 +40,3 @@ switch ($op) {
 		define('HANDLER_CLASS', 'NavigationHandler');
 		break;
 }
-
-

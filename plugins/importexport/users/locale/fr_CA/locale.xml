@@ -45,7 +45,7 @@ Exemples :
 	<message key="plugins.importexport.users.import.usersWereImported">Les utilisateurs suivants ont été importés avec succès dans le système</message>
 	<message key="plugins.importexport.users.import.errorsOccurred">Des erreurs sont se produites lors de l'importation</message>
 	<message key="plugins.importexport.users.import.confirmUsers">Confirmez que ces utilisateurs sont bien ceux que vous souhaitez importer dans le système</message>
-	<message key="plugins.importexport.users.unknownPress">Un chemin d'accès de revue inconnu "{$pressPath}" a été spécifié.</message>
+	<message key="plugins.importexport.users.unknownPress">Un chemin d'accès de revue inconnu "{$contextPath}" a été spécifié.</message>
 
 	<message key="plugins.importexport.users.export.exportUsers">Exporter les utilisateurs</message>
 	<message key="plugins.importexport.users.export.exportByRole">Exporter par rôle</message>

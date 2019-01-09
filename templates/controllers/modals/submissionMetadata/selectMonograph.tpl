@@ -11,7 +11,7 @@
  *}
 
 {* Help Link *}
-{help file="catalog.md#new-catalog-entry" class="pkp_help_modal"}
+{help file="catalog.md" section="new-catalog-entry" class="pkp_help_modal"}
 
 <script type="text/javascript">
 	$(function() {ldelim}
@@ -27,7 +27,7 @@
 			{assign var="uuid" value=""|uniqid|escape}
 			<div id="select-new-entry-list-handler-{$uuid}">
 				<script type="text/javascript">
-					pkp.registry.init('select-new-entry-list-handler-{$uuid}', 'SelectSubmissionsListPanel', {$selectNewEntryData});
+					pkp.registry.init('select-new-entry-list-handler-{$uuid}', 'SelectSubmissionsListPanel', {$selectNewEntryData|json_encode});
 				</script>
 			</div>
 		{/fbvFormSection}

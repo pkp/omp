@@ -134,12 +134,12 @@ class SeriesForm extends PKPSectionForm {
 		$seriesEditorsListData = $this->_getSubEditorsListPanelData($press->getId(), $request);
 		$templateMgr->assign(array(
 			'hasSubEditors' => !empty($seriesEditorsListData['items']),
-			'subEditorsListData' => json_encode($seriesEditorsListData),
+			'subEditorsListData' => $seriesEditorsListData,
 		));
 
-		// Get SelectCategoryListHandler data
-		import('controllers.list.SelectCategoryListHandler');
-		$categoriesList = new SelectCategoryListHandler(array(
+		// Get SelectCategoryListPanel data
+		import('classes.components.listPanels.SelectCategoryListPanel');
+		$categoriesList = new SelectCategoryListPanel(array(
 			'title' => 'grid.category.categories',
 			'inputName' => 'categories[]',
 			'selected' => $this->getData('categories'),
@@ -149,7 +149,7 @@ class SeriesForm extends PKPSectionForm {
 
 		$templateMgr->assign(array(
 			'hasCategories' => !empty($categoriesListData['items']),
-			'categoriesListData' => json_encode($categoriesListData),
+			'categoriesListData' => $categoriesListData,
 		));
 
 		return parent::fetch($request, $template, $display);
@@ -313,5 +313,3 @@ class SeriesForm extends PKPSectionForm {
 		$this->setSectionId($seriesId);
 	}
 }
-
-

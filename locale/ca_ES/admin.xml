@@ -39,14 +39,11 @@
 	<message key="admin.presses.noneCreated">No s’ha creat cap publicació.</message>
 	<message key="admin.contexts.confirmDelete">Esteu segurs que voleu eliminar aquesta publicació i els seus continguts de manera permanent?</message>
 	<message key="admin.contexts.create">Crea una publicació</message>
-	<message key="admin.presses.createInstructions">Rebreu automàticament el rol d'administrador/a d'aquesta publicació. Després de crear una publicació nova, sereu redirigits a l'assistent de configuració per completar la instal·lació inicial de la publicació.</message>
-	<message key="admin.presses.urlWillBe">L'URL serà {$sampleUrl}</message>
 	<message key="admin.contexts.form.titleRequired">Cal que introduïu un títol.</message>
 	<message key="admin.contexts.form.pathRequired">Cal que introduïu una ruta.</message>
 	<message key="admin.contexts.form.pathAlphaNumeric">La ruta només pot contenir caràcters alfanumèrics, guions baixos i guionets i ha de començar i acabar amb un caràcter alfanumèric.</message>
 	<message key="admin.contexts.form.pathExists">Ja hi ha una altra publicació que utilitza la ruta seleccionada.</message>
-	<message key="admin.presses.enablePressInstructions">Permet que aquesta publicació aparegui públicament al lloc web</message>
-	<message key="admin.presses.pressDescription">Descripció de la publicació</message>
+	<message key="admin.contexts.contextDescription">Descripció de la publicació</message>
 	<message key="admin.presses.addPress">Afegeix una publicació</message>
 
 
