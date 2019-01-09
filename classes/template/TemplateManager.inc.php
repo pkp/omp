@@ -57,21 +57,19 @@ class TemplateManager extends PKPTemplateManager {
 			}
 
 			if (isset($context)) {
-				$this->assign('currentPress', $context);
-
-				$this->assign('siteTitle', $context->getLocalizedName());
-				$this->assign('publicFilesDir', $request->getBaseUrl() . '/' . $publicFileManager->getContextFilesPath($context->getAssocType(), $context->getId()));
-
-				$this->assign('primaryLocale', $context->getPrimaryLocale());
-				$this->assign('supportedLocales', $context->getSupportedLocaleNames());
-
-				// Assign page header
-				$this->assign('displayPageHeaderTitle', $context->getPageHeaderTitle());
-				$this->assign('displayPageHeaderLogo', $context->getPageHeaderLogo());
-				$this->assign('numPageLinks', $context->getData('numPageLinks'));
-				$this->assign('itemsPerPage', $context->getData('itemsPerPage'));
-				$this->assign('enableAnnouncements', $context->getData('enableAnnouncements'));
-				$this->assign('disableUserReg', $context->getData('disableUserReg'));
+				$this->assign([
+					'currentPress' => $context,
+					'siteTitle' => $context->getLocalizedName(),
+					'publicFilesDir' => $request->getBaseUrl() . '/' . $publicFileManager->getContextFilesPath($context->getAssocType(), $context->getId()),
+					'primaryLocale' => $context->getPrimaryLocale(),
+					'supportedLocales' => $context->getSupportedLocaleNames(),
+					'displayPageHeaderTitle' => $context->getPageHeaderTitle(),
+					'displayPageHeaderLogo' => $context->getPageHeaderLogo(),
+					'numPageLinks' => $context->getData('numPageLinks'),
+					'itemsPerPage' => $context->getData('itemsPerPage'),
+					'enableAnnouncements' => $context->getData('enableAnnouncements'),
+					'disableUserReg' => $context->getData('disableUserReg'),
+				]);
 
 				// Assign stylesheets and footer
 				$contextStyleSheet = $context->getData('styleSheet');

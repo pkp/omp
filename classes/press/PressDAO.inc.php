@@ -80,12 +80,12 @@ class PressDAO extends ContextDAO {
 	 * @return boolean
 	 */
 	function anyPubIdExists($pressId, $pubIdType, $pubId,
-			$assocType = ASSOC_TYPE_ANY, $assocId = 0, $forSameType = false) {
+		$assocType = ASSOC_TYPE_ANY, $assocId = 0, $forSameType = false) {
 		$pubObjectDaos = array(
-				ASSOC_TYPE_SUBMISSION => Application::getSubmissionDAO(),
-				ASSOC_TYPE_CHAPTER => DAORegistry::getDAO('ChapterDAO'),
-				ASSOC_TYPE_REPRESENTATION => Application::getRepresentationDAO(),
-				ASSOC_TYPE_SUBMISSION_FILE => DAORegistry::getDAO('SubmissionFileDAO')
+			ASSOC_TYPE_SUBMISSION => Application::getSubmissionDAO(),
+			ASSOC_TYPE_CHAPTER => DAORegistry::getDAO('ChapterDAO'),
+			ASSOC_TYPE_REPRESENTATION => Application::getRepresentationDAO(),
+			ASSOC_TYPE_SUBMISSION_FILE => DAORegistry::getDAO('SubmissionFileDAO')
 		);
 		if ($forSameType) {
 			$dao = $pubObjectDaos[$assocType];
