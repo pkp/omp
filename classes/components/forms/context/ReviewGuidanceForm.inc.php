@@ -29,6 +29,6 @@ class ReviewGuidanceForm extends PKPReviewGuidanceForm {
 				'helpSection' => 'workflow-review-guidelines',
 				'value' => $context->getData('internalReviewGuidelines'),
 				'isMultilingual' => true,
-			]), ['before', 'reviewGuidelines']);
+			]), [FIELD_POSITION_BEFORE, 'reviewGuidelines']);
 	}
 }

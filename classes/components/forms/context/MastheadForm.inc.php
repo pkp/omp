@@ -33,7 +33,7 @@ class MastheadForm extends PKPMastheadForm {
 				'id' => 'onix',
 				'label' => __('manager.settings.publisher.identity'),
 				'description' => __('manager.settings.publisher.identity.description'),
-			], ['after', 'identity'])
+			], [FIELD_POSITION_AFTER, 'identity'])
 			->addField(new FieldText('publisher', [
 				'label' => __('manager.settings.publisher'),
 				'value' => $context->getData('publisher'),

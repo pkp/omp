@@ -29,6 +29,6 @@ class UserAccessForm extends PKPUserAccessForm {
 				'options' => [
 					['value' => true, 'label' => __('manager.setup.restrictMonographAccess')],
 				],
-			]), ['after', 'restrictSiteAccess']);
+			]), [FIELD_POSITION_AFTER, 'restrictSiteAccess']);
 	}
 }
