@@ -290,7 +290,7 @@ class PublishedMonographDAO extends MonographDAO {
 	static function getSortMapping($sortBy) {
 		switch ($sortBy) {
 			case ORDERBY_TITLE:
-				return 'st.setting_value';
+				return 'COALESCE(mtl.setting_value, mtpl.setting_value)';
 			case ORDERBY_DATE_PUBLISHED:
 				return 'ps.date_published';
 			case ORDERBY_SERIES_POSITION:
@@ -452,6 +452,11 @@ class PublishedMonographDAO extends MonographDAO {
 			)
 		);
 
+		if ($searchText !== null || $sortBy == ORDERBY_TITLE) {
+			$params[] = AppLocale::getPrimaryLocale();
+			$params[] = AppLocale::getLocale();
+		}
+
 		if ($searchText !== null) {
 			$params[] = $params[] = $params[] = "%$searchText%";
 		}
@@ -481,7 +486,8 @@ class PublishedMonographDAO extends MonographDAO {
 					LEFT JOIN author_settings asfs ON (asfs.author_id = au.author_id AND asfs.setting_name = \''.IDENTITY_SETTING_FAMILYNAME.'\')
 				':'') . '
 				' . ($searchText !== null || $sortBy == ORDERBY_TITLE?'
-					LEFT JOIN submission_settings st ON (st.submission_id = s.submission_id AND st.setting_name = \'title\')
+					LEFT JOIN submission_settings mtpl ON (mtpl.submission_id = s.submission_id AND mtpl.setting_name = \'title\' AND mtpl.locale = ?)
+					LEFT JOIN submission_settings mtl ON (mtl.submission_id = s.submission_id AND mtl.setting_name = \'title\' AND mtl.locale = ?)
 				':'') . '
 				' . ($assocType == ASSOC_TYPE_CATEGORY?'
 					LEFT JOIN submission_categories sc ON (sc.submission_id = s.submission_id AND sc.category_id = ' . $assocId . ')
@@ -491,7 +497,7 @@ class PublishedMonographDAO extends MonographDAO {
 				LEFT JOIN features f ON (f.submission_id = s.submission_id AND f.assoc_type = ? AND f.assoc_id = ?)
 				LEFT JOIN new_releases nr ON (nr.submission_id = s.submission_id AND nr.assoc_type = ? AND nr.assoc_id = ?)
 			WHERE	ps.date_published IS NOT NULL AND s.context_id = ?
-				' . ($searchText !== null?' AND (st.setting_value LIKE ? OR asgs.setting_value LIKE ? OR asfs.setting_value LIKE ?)':'') . '
+				' . ($searchText !== null?' AND (COALESCE(mtl.setting_value, mtpl.setting_value) LIKE ? OR asgs.setting_value LIKE ? OR asfs.setting_value LIKE ?)':'') . '
 				' . ($assocType == ASSOC_TYPE_CATEGORY?' AND (c.category_id IS NOT NULL OR sc.category_id IS NOT NULL)':'') . '
 				' . ($assocType == ASSOC_TYPE_SERIES?' AND se.series_id = ' . $assocId:'') . '
 				' . ($featuredOnly?' AND (f.assoc_type = ? AND f.assoc_id = ?)':'') . '
