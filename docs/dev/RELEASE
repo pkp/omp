@@ -13,6 +13,7 @@ OMP release:
     dbscripts/xml/version.xml
     dbscripts/xml/install.xml
     dbscripts/xml/upgrade.xml
+    package.json
     docs/dev/omp.doxygen (for version number)
 
     Commands that may be helpful in determining what bugs have been closed
