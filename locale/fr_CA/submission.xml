@@ -78,8 +78,6 @@
 	<message key="submission.submit.placement">Place de la soumission</message>
 	<message key="submission.submit.placement.seriesDescription">Si le livre pourrait aussi faire partie d'une série...</message>
 	<message key="submission.submit.placement.seriesPositionDescription">Les livres d'une série sont généralement conservés dans l'ordre inverse de celui dans lequel ils sont publiés. Ainsi, on montre que la série progresse et les articles les plus récents apparaissent au début.</message>
-	<message key="submission.submit.placement.categories">Catégories</message>
-	<message key="submission.submit.placement.categoriesDescription">Choisir l'une des catégories de la presse pour votre article.</message>
 	<message key="submission.submit.userGroup">Soumettre selon mon rôle à titre de...</message>
 	<message key="submission.submit.userGroupDescription">S'il s'agit d'un volume édité, vous devriez choisir le rôle de rédacteur en chef du volume.</message>
 	<message key="submission.submit.titleAndSummary">Titre et sommaire</message>

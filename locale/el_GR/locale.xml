@@ -16,7 +16,6 @@
 	<message key="monograph.audience">Κοινό</message>
 	<message key="monograph.coverImage">Εικόνα Εξωφύλλου</message>
 	<message key="monograph.coverImage.uploadInstructions">Βεβαιωθείτε ότι το ύψος της εικόνας δεν είναι μεγαλύτερο από το 150% του πλάτους της, διαφορετικά η εικόνα του εξωφύλλου σας δεν θα εμφανίζεται στο carousel των εκδόσεων της συλλογής.</message>
-	<message key="monograph.currentCoverImage">Τρέχουσα Εικόνα</message>
 	<message key="monograph.audience.rangeQualifier">Προσδιορισμός Εύρος Κοινού</message>
 	<message key="monograph.audience.rangeFrom">Εύρος Κοινού (από)</message>
 	<message key="monograph.audience.rangeTo">Εύρος Κοινού (σε)</message>
@@ -222,21 +221,7 @@
 	<message key="series.featured">Featured</message>
 	<message key="series.featured.description">Αυτή η σειρά θα εμφανιστεί στο κύριο μενού πλοήγησής</message>
 	<message key="series.path">Διαδρομή</message>
-
-	<message key="grid.category.categories">Κατηγορίες</message>
-	<message key="grid.category.add">Προσθήκη Κατηγορίας</message>
-	<message key="grid.category.edit">Επεξεργασία Κατηγορίας</message>
-	<message key="grid.category.name">Όνομα</message>
-	<message key="grid.category.path">Διαδρομή (path)</message>
-	<message key="grid.category.urlWillBe">Το URL της κατηγορία θς είναι {$sampleUrl}</message>
 	<message key="grid.series.urlWillBe">Το URL της σειράς θα είναι {$sampleUrl}. Η 'διαδρομή' είναι μια σειρά χαρακτήρων μέσω της οποίας αναγνωρίζεται μοναδικά η σειρά.</message>
-	<message key="grid.category.pathAlphaNumeric">Η διαδρομή μιας κατηγορίας πρέπει να αποτελείται μόνο από γράμματα και αριθμούς</message>
-	<message key="grid.category.pathExists">Η διαδρομή της κατηγορίας υπάρχει ήδη. Παρακαλούμε καταχωρήστε μια μοναδική διαδρομή.</message>
-	<message key="grid.category.description">Περιγραφή</message>
-	<message key="grid.category.parentCategory">Γονική κατηγορία</message>
-	<message key="grid.category.removeText">Είστε σίγουροι ότι επιθυμείτε να αφαιρέσετε αυτή την κατηγορία;</message>
-	<message key="grid.category.nameRequired">Παρακαλούμε καταχωρήστε ένα όνομα κατηγορίας.</message>
-	<message key="grid.category.categoryDetails">Λεπτομέρειες Κατηγορίας</message>
 
 	<!-- Catalog Management -->
 	<message key="catalog.manage">Διαχείριση Καταλόγου</message>
@@ -259,7 +244,6 @@
 	<message key="catalog.manage.noMonographs">Δεν υπάρχουν ανατιθέμενες μονογραφίες.</message>
 
 	<!-- Catalog -->
-	<message key="catalog.browseTitles">Περιήγηση σε {$numTitles} Τίτλους</message>
 	<message key="catalog.feature">Εμφάνιση</message>
 	<message key="catalog.featuredBooks">Προτεινόμενα βιβλία</message>
 	<message key="catalog.dateAdded">Προστέθηκε</message>

@@ -78,8 +78,6 @@
 	<message key="submission.submit.placement">Τοποθέτηση υποβολής</message>
 	<message key="submission.submit.placement.seriesDescription">Εάν το βιβλίο επίσης πρέπει να ενταχθεί σε μια σειρά...</message>
 	<message key="submission.submit.placement.seriesPositionDescription">Τα βιβλία που ανήκουν σε μια σειρά διατηρούνται αντίστροφα από το χρόνο δημοσίευσης, ώστε να είναι ορατή η ανάπτυξή της σειράς και να εμφανίζεται η πιο πρόσφατη έκδοση.</message>
-	<message key="submission.submit.placement.categories">Κατηγορίες</message>
-	<message key="submission.submit.placement.categoriesDescription">Επιλέξτε μια από τις κατηγορίες των εκδόσεων στην οποία το έργο θα πρέπει να ενταχθεί.</message>
 	<message key="submission.submit.userGroup">Υποβολή με το ρόλο μου ως...</message>
 	<message key="submission.submit.userGroupDescription">Εάν υποβάλλετε ένα 'Εργο υπο Επιμέλεια, τότε θα πρέπει να επιλέξετε το ρόλο του επιμελητή τόμου.</message>
 	<message key="submission.submit.titleAndSummary">Τίτλος και Περίληψη</message>

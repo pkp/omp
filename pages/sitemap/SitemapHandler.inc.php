@@ -66,7 +66,7 @@ class SitemapHandler extends PKPSitemapHandler {
 		}
 		// Browse by categories
 		$categoryDao = DAORegistry::getDAO('CategoryDAO');
-		$categoriesResult = $categoryDao->getByPressId($pressId);
+		$categoriesResult = $categoryDao->getByContextId($pressId);
 		while ($category = $categoriesResult->next()) {
 			$root->appendChild($this->_createUrlTree($doc, $request->url($press->getPath(), 'catalog', 'category', $category->getPath())));
 		}
