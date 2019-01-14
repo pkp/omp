@@ -123,7 +123,7 @@ class SeriesForm extends PKPSectionForm {
 		$press = $request->getPress();
 
 		$categoryDao = DAORegistry::getDAO('CategoryDAO');
-		$categoryCount = $categoryDao->getCountByPressId($press->getId());
+		$categoryCount = $categoryDao->getCountByContextId($press->getId());
 		$templateMgr->assign('categoryCount', $categoryCount);
 
 		// Sort options.
@@ -138,7 +138,7 @@ class SeriesForm extends PKPSectionForm {
 		));
 
 		// Get SelectCategoryListPanel data
-		import('classes.components.listPanels.SelectCategoryListPanel');
+		import('lib.pkp.classes.components.listPanels.SelectCategoryListPanel');
 		$categoriesList = new SelectCategoryListPanel(array(
 			'title' => 'grid.category.categories',
 			'inputName' => 'categories[]',

@@ -15,7 +15,6 @@
 	<!-- General monograph keys -->
 	<message key="monograph.audience">Audience</message>
 	<message key="monograph.coverImage">Cover Image</message>
-	<message key="monograph.currentCoverImage">Current Image</message>
 	<message key="monograph.currentCoverImageReload">Save your changes to view the new cover image.</message>
 	<message key="monograph.audience.rangeQualifier">Audience Range Qualifier</message>
 	<message key="monograph.audience.rangeFrom">Audience Range (from)</message>
@@ -271,8 +270,6 @@
 	<message key="catalog.noTitles">No titles have been published yet.</message>
 	<message key="catalog.noTitlesNew">No new releases are available at this time.</message>
 	<message key="catalog.noTitlesSearch">No titles were found which matched your search for "{$searchQuery}".</message>
-	<message key="catalog.noTitlesSection">No titles have been published yet for this section.</message>
-	<message key="catalog.browseTitles">{$numTitles} Titles</message>
 	<message key="catalog.feature">Feature</message>
 	<message key="catalog.featured">Featured</message>
 	<message key="catalog.featuredBooks">Featured Books</message>
@@ -294,10 +291,6 @@
 	<message key="catalog.sortBy.seriesDescription">Choose how to order books in this series.</message>
 	<message key="catalog.sortBy.categoryDescription">Choose how to order books in this category.</message>
 	<message key="catalog.sortBy.catalogDescription">Choose how to order books in the catalog.</message>
-	<message key="catalog.sortBy.titleAsc">Title (A-Z)</message>
-	<message key="catalog.sortBy.titleDesc">Title (Z-A)</message>
-	<message key="catalog.sortBy.datePublishedAsc">Publication date (oldest first)</message>
-	<message key="catalog.sortBy.datePublishedDesc">Publication date (newest first)</message>
 	<message key="catalog.sortBy.seriesPositionAsc">Series position (lowest first)</message>
 	<message key="catalog.sortBy.seriesPositionDesc">Series position (highest first)</message>
 	<message key="catalog.viewableFile.title">{$type} view of the file {$title}</message>
@@ -581,5 +574,4 @@ Your server currently supports mbstring: <strong>{$supportsMBString}</strong>]]>
 
 	<message key="user.profile.form.showOtherContexts">Register with other presses</message>
 	<message key="user.profile.form.hideOtherContexts">Hide other presses</message>
-	<message key="grid.category.categories">Categories</message>
 </locale>

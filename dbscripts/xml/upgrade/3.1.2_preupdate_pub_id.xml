@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE data SYSTEM "../../../lib/pkp/dtd/xmlData.dtd">
+
+<!--
+  * dbscripts/xml/upgrade/3.1.2_preupdate_pub_id.xml
+  *
+  * Copyright (c) 2013-2018 Simon Fraser University
+  * Copyright (c) 2003-2018 John Willinsky
+  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
+  *
+  * Pre-update operation regarding published_submissions.
+  *
+  -->
+
+<data>
+	<sql>
+		<!--  rename the pub_id column to OJS-standard published_submission_id -->
+		<rename table="published_submissions" column="pub_id" to="published_submission_id" />
+	</sql>
+</data>

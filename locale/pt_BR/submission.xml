@@ -80,8 +80,6 @@
 	<message key="submission.submit.whatNext.description">A editora foi notificada de sua submissão, bem como uma mensagem de confirmação enviada ao seu endereço de e-mail para seus registros. O editor entrará em contato assim que concluir sua avaliação da submissão.</message>
 	<message key="submission.submit.checklistErrors">Leia atentamente e marque os itens da lista de verificação. Ainda há {$itemsRemaining} itens não marcados.</message>
 	<message key="submission.submit.placement">Colocação da submissão</message>
-	<message key="submission.submit.placement.categories">Categorias</message>
-	<message key="submission.submit.placement.categoriesDescription">Escolha uma categoria da editora na qual este trabalho deve ser considerado.</message>
 	<message key="submission.submit.userGroup">Enviar no meu papel como...</message>
 	<message key="submission.submit.userGroupDescription">Caso esteja submetendo um volume editado, escolha o papel do editor do volume.</message>
 

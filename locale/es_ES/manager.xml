@@ -456,19 +456,7 @@ Podrá ofrecer una razón al usuario/a para deshabilitar su cuenta.</message>
 	<message key="manager.tools.statistics">Herramientas para generar informes relacionados con estadísticas de uso (visualización de páginas de índice de catálogo, páginas de resumen de monografías, descargas de archivos de monografías)</message>
 	<message key="manager.setup.aboutPress">Sobre la editorial</message>
 	<message key="manager.setup.aboutPress.description">Incluya cualquier información sobre su editorial, la cual pueda ser de interés para lectores, autores y revisores. Esto podría incluir su política de acceso abierto, el enfoque y el alcance de la editorial, el aviso de copyright, la divulgación de patrocinio, el historial de la editorial y una declaración de privacidad.</message>
-	<message key="grid.category.add">Añadir categoría</message>
-	<message key="grid.category.edit">Editar categoría</message>
-	<message key="grid.category.name">Nombre</message>
-	<message key="grid.category.path">Ruta</message>
-	<message key="grid.category.urlWillBe">La URL de la categoría, será: {$sampleUrl}</message>
-	<message key="grid.series.urlWillBe">La URL de las series, será: {$sampleUrl}</message>
-	<message key="grid.category.pathAlphaNumeric">La ruta de la categoría debe consistir sólo en letras y números.</message>
-	<message key="grid.category.pathExists">La ruta de la categoría ya existe. Por favor introduzca una ruta única.</message>
-	<message key="grid.category.description">Descripción</message>
-	<message key="grid.category.parentCategory">Categoría padre</message>
-	<message key="grid.category.removeText">¿Está seguro que desea eliminar esta categoría?</message>
-	<message key="grid.category.nameRequired">Por favor, introduzca un nombre de categoría.</message>
-	<message key="grid.category.categoryDetails">Detalles de la categoría</message>
 	<message key="grid.series.pathAlphaNumeric">La ruta de las series solo admite letras y números.</message>
 	<message key="grid.series.pathExists">La ruta de la serie ya existe. Por favor ingrese una ruta única.</message>
+	<message key="grid.series.urlWillBe">La URL de las series, será: {$sampleUrl}</message>
 </locale>

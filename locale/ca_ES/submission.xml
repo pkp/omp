@@ -76,8 +76,6 @@
 	<message key="submission.submit.whatNext.description">Hem informat de la publicació de la vostra tramesa i rebreu un correu electrònic per confirmar els vostres registres.  Un cop l'editor/a hagi revisat la tramesa, es posarà en contacte amb vós.</message>
 	<message key="submission.submit.checklistErrors">Llegiu i marqueu els elements de la llista de verificació de la tramesa.  Hi ha {$itemsRemaining} elements sense marcar.</message>
 	<message key="submission.submit.placement">Ubicació de la tramesa</message>
-	<message key="submission.submit.placement.categories">Categories</message>
-	<message key="submission.submit.placement.categoriesDescription">Seleccioneu una de les categories de la publicació en la qual s'ha de valorar aquest treball.</message>
 	<message key="submission.submit.userGroup">Envia amb el rol de...</message>
 	<message key="submission.submit.userGroupDescription">Si envieu un volum editat, és recomanable que seleccioneu el rol d'editor/a de volum.</message>
 	<!-- Chapters Grid -->

@@ -17,6 +17,8 @@
 import('classes.monograph.Monograph');
 import('lib.pkp.classes.submission.SubmissionDAO');
 
+define('ORDERBY_SERIES_POSITION', 'seriesPosition');
+
 class MonographDAO extends SubmissionDAO {
 	/**
 	 * Get a list of fields for which localized data is supported
@@ -219,127 +221,20 @@ class MonographDAO extends SubmissionDAO {
 	}
 
 	/**
-	 * Associate a category with a monograph.
-	 * @param $monographId int
+	 * Unassociate a category with a submission.
+	 * @param $submissionId int
 	 * @param $categoryId int
 	 */
-	function addCategory($monographId, $categoryId) {
-		$this->update(
-			'INSERT INTO submission_categories
-				(submission_id, category_id)
-			VALUES
-				(?, ?)',
-			array(
-				(int) $monographId,
-				(int) $categoryId
-			)
-		);
-	}
-
-	/**
-	 * Unassociate a category with a monograph.
-	 * @param $monographId int
-	 * @param $categoryId int
-	 */
-	function removeCategory($monographId, $categoryId) {
-		$this->update(
-			'DELETE FROM submission_categories WHERE submission_id = ? AND category_id = ?',
-			array(
-				(int) $monographId,
-				(int) $categoryId
-			)
-		);
-
+	public function removeCategory($submissionId, $categoryId) {
 		// If any new release or feature object is associated
 		// with this category delete them.
 		$newReleaseDao = DAORegistry::getDAO('NewReleaseDAO'); /* @var $newReleaseDao NewReleaseDAO */
-		$newReleaseDao->deleteNewRelease($monographId, ASSOC_TYPE_CATEGORY, $categoryId);
+		$newReleaseDao->deleteNewRelease($submissionId, ASSOC_TYPE_CATEGORY, $categoryId);
 
 		$featureDao = DAORegistry::getDAO('FeatureDAO'); /* @var $featureDao FeatureDAO */
-		$featureDao->deleteFeature($monographId, ASSOC_TYPE_CATEGORY, $categoryId);
-	}
+		$featureDao->deleteFeature($submissionId, ASSOC_TYPE_CATEGORY, $categoryId);
 
-	/**
-	 * Unassociate all categories.
-	 * @param $monographId int
-	 */
-	function removeCategories($monographId) {
-		$this->update(
-			'DELETE FROM submission_categories WHERE submission_id = ?',
-			(int) $monographId
-		);
-	}
-
-	/**
-	 * Get the categories associated with a given monograph.
-	 * @param $monographId int The monograph id.
-	 * @param $pressId int (optional) The monograph press id.
-	 * @return DAOResultFactory
-	 */
-	function getCategories($monographId, $pressId = null) {
-		$params = array((int) $monographId);
-		if ($pressId) $params[] = (int) $pressId;
-
-		$categoryDao = DAORegistry::getDAO('CategoryDAO');
-		$result = $this->retrieve(
-			'SELECT	c.*
-			FROM	categories c,
-				submission_categories sc,
-				submissions s
-			WHERE	c.category_id = sc.category_id AND
-				s.submission_id = ? AND
-			' . ($pressId?' c.press_id = s.context_id AND s.context_id = ? AND':'') . '
-				s.submission_id = sc.submission_id',
-			$params
-		);
-
-		// Delegate category creation to the category DAO.
-		return new DAOResultFactory($result, $categoryDao, '_fromRow');
-	}
-
-	/**
-	 * Get the categories not associated with a given monograph.
-	 * @param $monographId int
-	 * @return DAOResultFactory
-	 */
-	function getUnassignedCategories($monographId, $pressId = null) {
-		$params = array((int) $monographId);
-		if ($pressId) $params[] = (int) $pressId;
-
-		$categoryDao = DAORegistry::getDAO('CategoryDAO');
-		// The strange ORDER BY clause is to return subcategories
-		// immediately after their parent category's entry.
-		$result = $this->retrieve(
-			'SELECT	c.*
-			FROM	submissions s
-				JOIN categories c ON (c.press_id = s.context_id)
-				LEFT JOIN submission_categories sc ON (s.submission_id = sc.submission_id AND sc.category_id = c.category_id)
-			WHERE	s.submission_id = ? AND
-				' . ($pressId?' s.context_id = ? AND':'') . '
-				sc.submission_id IS NULL
-			ORDER BY CASE WHEN c.parent_id = 0 THEN c.category_id * 2 ELSE (c.parent_id * 2) + 1 END ASC',
-			$params
-		);
-
-		// Delegate category creation to the category DAO.
-		return new DAOResultFactory($result, $categoryDao, '_fromRow');
-	}
-
-	/**
-	 * Check if an monograph exists with the specified ID.
-	 * @param $monographId int
-	 * @param $pressId int
-	 * @return boolean
-	 */
-	function categoryAssociationExists($monographId, $categoryId) {
-		$result = $this->retrieve(
-			'SELECT COUNT(*) FROM submission_categories WHERE submission_id = ? AND category_id = ?',
-			array((int) $monographId, (int) $categoryId)
-		);
-		$returner = isset($result->fields[0]) && $result->fields[0] == 1 ? true : false;
-
-		$result->Close();
-		return $returner;
+		return parent::removeCategory($submissionId, $categoryId);
 	}
 
 	/**
@@ -390,6 +285,29 @@ class MonographDAO extends SubmissionDAO {
 	protected function getCompletionConditions($completed) {
 		return ' ps.date_published IS ' . ($completed?'NOT ':'') . 'NULL ';
 	}
-}
 
+	/**
+	 * Map a column heading value to a database value for sorting
+	 * @param $sortBy string
+	 * @return string
+	 */
+	public function getSortMapping($sortBy) {
+		switch ($sortBy) {
+			case ORDERBY_SERIES_POSITION:
+				return 's.series_position';
+		}
+		return parent::getSortMapping($sortBy);
+	}
+
+	/**
+	 * Get possible sort options.
+	 * @return array
+	 */
+	public function getSortSelectOptions() {
+		return array_merge(parent::getSortSelectOptions(), array(
+			$this->getSortOption(ORDERBY_SERIES_POSITION, SORT_DIRECTION_ASC) => __('catalog.sortBy.seriesPositionAsc'),
+			$this->getSortOption(ORDERBY_SERIES_POSITION, SORT_DIRECTION_DESC) => __('catalog.sortBy.seriesPositionDesc'),
+		));
+	}
+}
 

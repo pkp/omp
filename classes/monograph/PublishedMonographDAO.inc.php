@@ -18,10 +18,6 @@ import('classes.monograph.PublishedMonograph');
 import('classes.monograph.MonographDAO');
 import('lib.pkp.classes.core.ArrayItemIterator');
 
-define('ORDERBY_DATE_PUBLISHED', 'datePublished');
-define('ORDERBY_TITLE', 'title');
-define('ORDERBY_SERIES_POSITION', 'seriesPosition');
-
 class PublishedMonographDAO extends MonographDAO {
 	/**
 	 * Retrieve all published monographs in a press.
@@ -280,76 +276,6 @@ class PublishedMonographDAO extends MonographDAO {
 				(int) $publishedMonograph->getId()
 			)
 		);
-	}
-
-	/**
-	 * Map a column heading value to a database value for sorting
-	 * @param $sortBy string
-	 * @return string
-	 */
-	static function getSortMapping($sortBy) {
-		switch ($sortBy) {
-			case ORDERBY_TITLE:
-				return 'st.setting_value';
-			case ORDERBY_DATE_PUBLISHED:
-				return 'ps.date_published';
-			case ORDERBY_SERIES_POSITION:
-				return 's.series_position';
-			default: return null;
-		}
-	}
-
-	/**
-	 * Get possible sort options.
-	 * @return array
-	 */
-	function getSortSelectOptions() {
-		return array(
-			$this->getSortOption(ORDERBY_TITLE, SORT_DIRECTION_ASC) => __('catalog.sortBy.titleAsc'),
-			$this->getSortOption(ORDERBY_TITLE, SORT_DIRECTION_DESC) => __('catalog.sortBy.titleDesc'),
-			$this->getSortOption(ORDERBY_DATE_PUBLISHED, SORT_DIRECTION_ASC) => __('catalog.sortBy.datePublishedAsc'),
-			$this->getSortOption(ORDERBY_DATE_PUBLISHED, SORT_DIRECTION_DESC) => __('catalog.sortBy.datePublishedDesc'),
-			$this->getSortOption(ORDERBY_SERIES_POSITION, SORT_DIRECTION_ASC) => __('catalog.sortBy.seriesPositionAsc'),
-			$this->getSortOption(ORDERBY_SERIES_POSITION, SORT_DIRECTION_DESC) => __('catalog.sortBy.seriesPositionDesc'),
-		);
-	}
-
-	/**
-	 * Get sort option.
-	 * @param $sortBy string
-	 * @param $sortDir int
-	 * @return string
-	 */
-	function getSortOption($sortBy, $sortDir) {
-		return $sortBy .'-' . $sortDir;
-	}
-
-	/**
-	 * Get default sort option.
-	 * @return string
-	 */
-	function getDefaultSortOption() {
-		return $this->getSortOption(ORDERBY_DATE_PUBLISHED, SORT_DIRECTION_DESC);
-	}
-
-	/**
-	 * Get sort way for a sort option.
-	 * @param $sortOption string concat(sortBy, '-', sortDir)
-	 * @return string
-	 */
-	function getSortBy($sortOption) {
-		list($sortBy, $sortDir) = explode("-", $sortOption);
-		return $sortBy;
-	}
-
-	/**
-	 * Get sort direction for a sort option.
-	 * @param $sortOption string concat(sortBy, '-', sortDir)
-	 * @return int
-	 */
-	function getSortDirection($sortOption) {
-		list($sortBy, $sortDir) = explode("-", $sortOption);
-		return $sortDir;
 	}
 
 	/**

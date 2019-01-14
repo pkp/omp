@@ -389,19 +389,6 @@ Select a model for handling these aspects of the editorial process. (To designat
 	<message key="grid.genres.title">Monograph Components</message>
 	<message key="manager.setup.notifications.copyPrimaryContact">Send a copy to the primary contact, identified in the Press Settings.</message>
 
-	<message key="grid.category.add">Add Category</message>
-	<message key="grid.category.edit">Edit Category</message>
-	<message key="grid.category.name">Name</message>
-	<message key="grid.category.path">Path</message>
-	<message key="grid.category.urlWillBe">The category's URL will be: {$sampleUrl}</message>
-	<message key="grid.series.urlWillBe">The series's URL will be: {$sampleUrl}</message>
-	<message key="grid.category.pathAlphaNumeric">The category path must consist of only letters and numbers.</message>
-	<message key="grid.category.pathExists">The category path already exists. Please enter a unique path.</message>
-	<message key="grid.category.description">Description</message>
-	<message key="grid.category.parentCategory">Parent Category</message>
-	<message key="grid.category.removeText">Are you sure you wish to remove this category?</message>
-	<message key="grid.category.nameRequired">Please enter a category name.</message>
-	<message key="grid.category.categoryDetails">Category Details</message>
 
 	<message key="grid.series.pathAlphaNumeric">The series path must consist of only letters and numbers.</message>
 	<message key="grid.series.pathExists">The series path already exists. Please enter a unique path.</message>
@@ -411,4 +398,5 @@ Select a model for handling these aspects of the editorial process. (To designat
 
 	<message key="manager.navigationMenus.form.navigationMenuItem.category">Select Category</message>
 	<message key="manager.navigationMenus.form.navigationMenuItemCategoryMessage">Please select the category to which you would like this menu item to link.</message>
+	<message key="grid.series.urlWillBe">The series's URL will be: {$sampleUrl}</message>
 </locale>

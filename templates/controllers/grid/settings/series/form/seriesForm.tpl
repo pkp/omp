@@ -44,7 +44,7 @@
 	<input type="hidden" name="temporaryFileId" id="temporaryFileId" value="" />
 
 	{if $image}
-		{capture assign="altTitle"}{translate key="monograph.currentCoverImage"}{/capture}
+		{capture assign="altTitle"}{translate key="submission.currentCoverImage"}{/capture}
 		<img class="pkp_helpers_container_center" height="{$image.thumbnailHeight}" width="{$image.thumbnailWidth}" src="{url router=$smarty.const.ROUTE_PAGE page="catalog" op="thumbnail" type="series" id=$seriesId}" alt="{$altTitle|escape}" />
 	{/if}
 
