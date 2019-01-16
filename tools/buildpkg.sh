@@ -88,13 +88,11 @@ lib/pkp/lib/vendor/oyejorge/less.php/test						\
 lib/pkp/js/lib/pnotify/build-tools							\
 lib/pkp/lib/vendor/alex198710/pnotify/.git						\
 node_modules										\
-.babelrc										\
 .editorconfig										\
-.eslintignore										\
-.eslintrc.js										\
-.postcssrc.js										\
+babel.config.js										\
+package-lock.json										\
 package.json										\
-webpack.config.js									\
+vue.config.js									\
 lib/ui-library"
 
 cd $TMPDIR
