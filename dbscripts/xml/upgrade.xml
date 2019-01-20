@@ -56,6 +56,7 @@
 	<schema file="lib/pkp/xml/schema/submissionFiles.xml" />
 	<schema file="lib/pkp/xml/schema/tombstone.xml" />
 	<schema file="lib/pkp/xml/schema/genres.xml" />
+	<schema file="lib/pkp/xml/schema/libraryFiles.xml" />
 	<schema file="lib/pkp/xml/schema/rolesAndUserGroups.xml" />
 	<schema file="lib/pkp/xml/schema/views.xml" />
 	<schema file="lib/pkp/xml/schema/metrics.xml" />
