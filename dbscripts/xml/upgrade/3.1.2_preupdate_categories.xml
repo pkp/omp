@@ -8,13 +8,13 @@
   * Copyright (c) 2003-2018 John Willinsky
   * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
   *
-  * Pre-update operation regarding submission_chapters.
+  * Pre-update operation regarding categories.
   *
   -->
 
 <data>
 	<sql>
 		<!--  rename the column press_id into context_id, pkp/pkp-lib#4158 -->
-		<rename table="submission_chapters" column="press_id" to="context_id" />
+		<rename table="categories" column="press_id" to="context_id" />
 	</sql>
 </data>
