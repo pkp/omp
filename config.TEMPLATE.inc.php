@@ -431,6 +431,8 @@ recaptcha = off
 ; Whether or not to use Captcha on user registration
 captcha_on_register = on
 
+; Validate the hostname in the ReCaptcha response
+recaptcha_enforce_hostname = Off
 
 ;;;;;;;;;;;;;;;;;;;;;
 ; External Commands ;
