@@ -13,6 +13,7 @@
 
 <locale name="fr_CA" full_name="Français (Canada)">
 	<!-- General monograph keys -->
+	<message key="common.publishedSubmission">Monographie</message>
 	<message key="monograph.audience">Public</message>
 	<message key="monograph.coverImage">Illustration de couverture</message>
 	<message key="monograph.coverImage.uploadInstructions">Assurez-vous que la hauteur de l'image ne dépasse pas 150% de sa largeur car sinon, le carrousel ne présentera pas toute la couverture.</message>

@@ -21,7 +21,6 @@
 	<message key="submission.workflowType.description">Una monografia és un treball escrit completament per un o diversos autors/ores. Un volum editat té un autor/a diferent per a cada capítol (els detalls del capítol s'hi afegeixen en etapes posteriors del procés).</message>
 	<message key="submission.workflowType.editedVolume">Volum editat: els autors/ores tenen el seu capítol associat.</message>
 	<message key="submission.workflowType.authoredWork">Monografia: els autors/ores s'associen a tot el llibre.</message>
-	<message key="submission.monograph">Monografia</message>
 	<message key="submission.published">Producció preparada</message>
 	<message key="submission.fairCopy">Còpia original</message>
 	<message key="submission.artwork.permissions">Permisos</message>

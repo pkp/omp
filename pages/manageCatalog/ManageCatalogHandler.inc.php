@@ -71,7 +71,7 @@ class ManageCatalogHandler extends Handler {
 		// Catalog list
 		import('controllers.list.submissions.CatalogSubmissionsListHandler');
 		$catalogListHandler = new CatalogSubmissionsListHandler(array(
-			'title' => 'submission.list.monographs',
+			'title' => 'common.publishedSubmissions',
 		));
 		$templateMgr->assign('catalogListData', json_encode($catalogListHandler->getConfig()));
 

@@ -13,6 +13,8 @@
 
 <locale name="en_US" full_name="U.S. English">
 	<!-- General monograph keys -->
+	<message key="common.publishedSubmission">Monograph</message>
+	<message key="common.publishedSubmissions">Monographs</message>
 	<message key="monograph.audience">Audience</message>
 	<message key="monograph.coverImage">Cover Image</message>
 	<message key="monograph.currentCoverImageReload">Save your changes to view the new cover image.</message>

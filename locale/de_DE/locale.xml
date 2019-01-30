@@ -13,6 +13,7 @@
 
 <locale name="de_DE" full_name="Deutsch (Deutschland)">
 	<!-- General monograph keys -->
+	<message key="common.publishedSubmission">Monografie</message>
 	<message key="monograph.audience">Zielgruppe</message>
 	<message key="monograph.coverImage">Titelbild</message>
 	<message key="monograph.currentCoverImageReload">Speichern Sie Ihre Änderungen, um das neue Titelbild angezeigt zu bekommen.</message>
