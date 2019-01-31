@@ -70,7 +70,7 @@ class IndexHandler extends PKPIndexHandler {
 	 * @param $press Press
 	 * @param $templateMgr TemplateManager
 	 */
-	function _displayPressIndexPage($press, &$templateMgr) {
+	function _displayPressIndexPage($press, $templateMgr) {
 
 		// Display New Releases
 		if ($press->getSetting('displayNewReleases')) {
@@ -87,7 +87,7 @@ class IndexHandler extends PKPIndexHandler {
 		// Display creative commons logo/licence if enabled.
 		$templateMgr->assign('displayCreativeCommons', $press->getSetting('includeCreativeCommons'));
 
-		$this->_setupAnnouncements($journal, $templateMgr);
+		$this->_setupAnnouncements($press, $templateMgr);
 
 		// Display Featured Books
 		if ($press->getSetting('displayFeaturedBooks')) {
