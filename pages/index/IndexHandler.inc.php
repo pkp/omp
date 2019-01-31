@@ -13,18 +13,9 @@
  * @brief Handle site index requests.
  */
 
+import('lib.pkp.pages.index.PKPIndexHandler');
 
-import('classes.handler.Handler');
-
-class IndexHandler extends Handler {
-	/**
-	 * Constructor
-	 */
-	function __construct() {
-		parent::__construct();
-	}
-
-
+class IndexHandler extends PKPIndexHandler {
 	//
 	// Public handler operations
 	//
@@ -96,15 +87,7 @@ class IndexHandler extends Handler {
 		// Display creative commons logo/licence if enabled.
 		$templateMgr->assign('displayCreativeCommons', $press->getSetting('includeCreativeCommons'));
 
-		// Display announcements if enabled.
-		$enableAnnouncements = $press->getData('enableAnnouncements');
-		$numAnnouncementsHomepage = $press->getData('numAnnouncementsHomepage');
-		if ($enableAnnouncements && $numAnnouncementsHomepage) {
-			$announcementDao = DAORegistry::getDAO('AnnouncementDAO');
-			$announcements =& $announcementDao->getNumAnnouncementsNotExpiredByAssocId(ASSOC_TYPE_JOURNAL, $press->getId(), $numAnnouncementsHomepage);
-			$templateMgr->assign('announcements', $announcements->toArray());
-			$templateMgr->assign('numAnnouncementsHomepage', $numAnnouncementsHomepage);
-		}
+		$this->_setupAnnouncements($journal, $templateMgr);
 
 		// Display Featured Books
 		if ($press->getSetting('displayFeaturedBooks')) {
@@ -136,3 +119,4 @@ class IndexHandler extends Handler {
 		$templateMgr->display('frontend/pages/index.tpl');
 	}
 }
+
