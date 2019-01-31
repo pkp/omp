@@ -32,6 +32,9 @@ define('ASSOC_TYPE_CHAPTER', 0x0000214);
 
 define('CONTEXT_PRESS', 1);
 
+define('LANGUAGE_PACK_DESCRIPTOR_URL', 'http://pkp.sfu.ca/omp/xml/%s/locales.xml');
+define('LANGUAGE_PACK_TAR_URL', 'http://pkp.sfu.ca/omp/xml/%s/%s.tar.gz');
+
 class Application extends PKPApplication {
 
 	/**
