@@ -60,7 +60,7 @@ class TemplateManager extends PKPTemplateManager {
 				$this->assign([
 					'currentPress' => $context,
 					'siteTitle' => $context->getLocalizedName(),
-					'publicFilesDir' => $request->getBaseUrl() . '/' . $publicFileManager->getContextFilesPath($context->getAssocType(), $context->getId()),
+					'publicFilesDir' => $request->getBaseUrl() . '/' . $publicFileManager->getContextFilesPath($context->getId()),
 					'primaryLocale' => $context->getPrimaryLocale(),
 					'supportedLocales' => $context->getSupportedLocaleNames(),
 					'displayPageHeaderTitle' => $context->getPageHeaderTitle(),
@@ -76,7 +76,7 @@ class TemplateManager extends PKPTemplateManager {
 				if ($contextStyleSheet) {
 					$this->addStyleSheet(
 						'contextStylesheet',
-						$request->getBaseUrl() . '/' . $publicFileManager->getContextFilesPath(ASSOC_TYPE_PRESS, $context->getId()) . '/' . $contextStyleSheet['uploadName'],
+						$request->getBaseUrl() . '/' . $publicFileManager->getContextFilesPath($context->getId()) . '/' . $contextStyleSheet['uploadName'],
 						array(
 							'priority' => STYLE_SEQUENCE_LAST
 						)
