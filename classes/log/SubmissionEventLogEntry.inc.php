@@ -30,12 +30,5 @@ define('SUBMISSION_LOG_PUBLICATION_FORMAT_AVAILABLE',	0x10000014);
 define('SUBMISSION_LOG_PUBLICATION_FORMAT_UNAVAILABLE',	0x10000015);
 
 class SubmissionEventLogEntry extends PKPSubmissionEventLogEntry {
-	/**
-	 * Constructor.
-	 */
-	function __construct() {
-		parent::__construct();
-	}
 }
-
 
