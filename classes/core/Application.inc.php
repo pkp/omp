@@ -17,7 +17,6 @@
 
 import('lib.pkp.classes.core.PKPApplication');
 
-define('PHP_REQUIRED_VERSION', '5.5.0');
 define('REQUIRES_XSL', true);
 
 define('ASSOC_TYPE_MONOGRAPH',			ASSOC_TYPE_SUBMISSION);
