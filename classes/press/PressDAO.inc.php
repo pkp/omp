@@ -32,7 +32,7 @@ class PressDAO extends ContextDAO {
 	/** @var array Maps schema properties for the primary table to their column names */
 	var $primaryTableColumns = [
 		'id' => 'press_id',
-		'path' => 'path',
+		'urlPath' => 'path',
 		'enabled' => 'enabled',
 		'seq' => 'seq',
 		'primaryLocale' => 'primary_locale',
