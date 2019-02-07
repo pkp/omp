@@ -247,7 +247,7 @@ class ChapterDAO extends DAO implements PKPPubIdPluginDAO {
 		$result = $this->retrieve(
 			'SELECT COUNT(*)
 			FROM submission_chapter_settings scs
-			INNER JOIN submission_cahpers sc ON scs.chapter_id = sc.chapter_id
+			INNER JOIN submission_chapters sc ON scs.chapter_id = sc.chapter_id
 			INNER JOIN submissions s ON sc.submission_id = s.submission_id
 			WHERE scs.setting_name = ? and scs.setting_value = ? and sc.chapter_id <> ? AND s.context_id = ?',
 			array(
@@ -313,5 +313,3 @@ class ChapterDAO extends DAO implements PKPPubIdPluginDAO {
 		$this->flushCache();
 	}
 }
-
-
