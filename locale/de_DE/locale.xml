@@ -270,14 +270,14 @@
 	<message key="catalog.featuredBooks">Empfohlene Bücher</message>
 	<message key="catalog.foundTitleSearch">Zu Ihrer Suche nach "{$searchQuery}" wurde ein Titel gefunden.</message>
 	<message key="catalog.foundTitlesSearch">Zu Ihrer Suche nach "{$searchQuery}" wurden {$number} Titel gefunden.</message>
-	<message key="catalog.allBooks">Alle Bücher</message>
+	<message key="catalog.category.heading">Alle Bücher</message>
 	<message key="catalog.newReleases">Neuerscheinungen</message>
 	<message key="catalog.dateAdded">Hinzugefügt {$dateAdded}</message>
 	<message key="catalog.publicationInfo">Informationen zum Buch</message>
 	<message key="catalog.published">Veröffentlicht</message>
 	<message key="catalog.categories">Kategorien</message>
 	<message key="catalog.parentCategory">Oberkategorie</message>
-	<message key="catalog.subcategories">Unterkategorie</message>
+	<message key="catalog.category.subcategories">Unterkategorie</message>
 	<message key="catalog.aboutTheAuthor">Über den/die {$roleName}</message>
 	<message key="catalog.coverImageTitle">Titelbild für {$monographTitle}</message>
 	<message key="catalog.loginRequiredForPayment">Bitte beachten Sie: Um einen Band zu kaufen, müssen Sie angemeldet sein. Sobald Sie einen Band ausgewählt haben, den Sie erwerben möchten, gelangen Sie automatisch zur Anmeldeseite. Alle Titel, die mit einem Open-Access-Symbol (geöffnetes Schloss) gekennzeichnet sind, können kostenlos heruntergeladen werden. Eine Anmeldung ist dazu nicht erforderlich.</message>
