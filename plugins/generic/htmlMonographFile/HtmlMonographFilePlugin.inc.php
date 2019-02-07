@@ -83,7 +83,7 @@ class HtmlMonographFilePlugin extends GenericPlugin {
 				'publicationFormat' => $publicationFormat,
 				'downloadFile' => $submissionFile,
 			));
-			$templateMgr->display($this->getTemplatePath() . '/display.tpl');
+			$templateMgr->display($this->getTemplateResource('display.tpl'));
 			return true;
 		}
 
@@ -166,6 +166,9 @@ class HtmlMonographFilePlugin extends GenericPlugin {
 				$contents
 		);
 
+		$templateMgr = TemplateManager::getManager($request);
+		$contents = $templateMgr->loadHtmlGalleyStyles($contents, $embeddableFiles);
+
 		// Perform variable replacement for press, publication format, site info
 		$press = $request->getPress();
 		$site = $request->getSite();
@@ -224,5 +227,3 @@ class HtmlMonographFilePlugin extends GenericPlugin {
 		return $matchArray[1] . $url . $matchArray[3];
 	}
 }
-
-
