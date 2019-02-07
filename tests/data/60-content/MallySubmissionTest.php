@@ -64,6 +64,7 @@ class MallySubmissionTest extends ContentBaseTestCase {
 				array(
 					'title' => 'Current State of Mobile Learning',
 					'contributors' => array('John Traxler'),
+					'pubId' => 'mobile-learning',
 				),
 			),
 			'chapters' => array(

@@ -108,6 +108,17 @@ class ContentBaseTestCase extends PKPContentBaseTestCase {
 
 			$this->click('//form[@id=\'editChapterForm\']//button[text()=\'Save\']');
 			$this->waitForElementNotPresent('css=div.pkp_modal_panel'); // pkp/pkp-lib#655
+
+			// Test the public identifiers form
+			if (isset($chapter['pubId'])) {
+				$this->click('css=[id*=-editChapter-button-]:contains(\'' . $chapter['title'] . '\')');
+				$this->waitForElementPresent('css=.ui-tabs-anchor:contains(\'Identifiers\;)');
+				$this->clickAt('css=.ui-tabs-anchor:contains(\'Identifiers\;)');
+				$this->waitForElementPresent('css=[id^=publisherId-]');
+				$this->type('css=[id^=publisherId-]', $chapter['pubId']);
+				$this->click('//form[@id=\'publicIdentifiersForm\']//button[text()=\'Save\']');
+				$this->waitForElementNotPresent('css=div.pkp_modal_panel'); // pkp/pkp-lib#655
+			}
 		}
 	}
 
