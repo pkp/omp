@@ -126,6 +126,8 @@ class WebFeedGatewayPlugin extends GatewayPlugin {
 		$version = $versionDao->getCurrentVersion();
 		$templateMgr->assign('ompVersion', $version->getVersionString());
 
+		AppLocale::requireComponents(LOCALE_COMPONENT_PKP_SUBMISSION); // submission.copyrightStatement
+
 		$templateMgr->display($this->getTemplatePath() . $typeMap[$type], $mimeTypeMap[$type]);
 
 		return true;
