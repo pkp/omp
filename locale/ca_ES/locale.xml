@@ -13,6 +13,7 @@
 
 <locale name="ca_ES" full_name="Català">
 	<!-- General monograph keys -->
+	<message key="common.publishedSubmission">Monografia</message>
 	<message key="monograph.audience">Audiència</message>
 	<message key="monograph.coverImage">Imatge de la portada</message>
 	<message key="monograph.audience.rangeQualifier">Qualificador de l'interval d'audiència</message>

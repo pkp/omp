@@ -23,7 +23,6 @@
 	<message key="submission.workflowType.description">Monografska publikacija je delo, ki ga je v celoti napisal en ali več avtorjev. Pri zborniku ima vsako poglavje drugega avtorja (v enem od naslednjih korakov je treba navesti podrobnosti o posameznih poglavjih).</message>
 	<message key="submission.workflowType.editedVolume">Zbornik: Vsako poglavje ima svojega avtorja.</message>
 	<message key="submission.workflowType.authoredWork">Monografska publikacija: Knjiga ima enega avtorja.</message>
-	<message key="submission.monograph">Monografska publikacija</message>
 	<message key="submission.published">Pripravljeno na tisk</message>
 	<message key="submission.fairCopy">Čistopis</message>
 	<message key="submission.authorListSeparator">; </message>

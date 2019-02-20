@@ -19,7 +19,6 @@
 	<message key="submission.workflowType.description">Μια μονογραφία είναι ένα έργο που έχει συγγραφεί εξ' ολοκλήρου από έναν ή πολλούς συγγραφείς. Ένα έργο υπο επιμέλια έχει διαφορετικούς συγγραφείς για κάθε κεφάλαιο (λεπτομέρειες για το κάθε κεφάλαιο εισάγονται αργότερα κατα τη διάρκεια της διαδικασίας.)</message>
 	<message key="submission.workflowType.editedVolume">Έργο υπο Επιμέλεια</message>
 	<message key="submission.workflowType.authoredWork">Μονογραφία</message>
-	<message key="submission.monograph">Μονογραφία</message>
 	<message key="submission.published">Η Παραγωγή είναι έτοιμη</message>
 	<message key="submission.fairCopy">Τελικό Αντιγραφο (Fair Copy)</message>
 	<message key="submission.artwork.permissions">Άδειες (Permissions)</message>

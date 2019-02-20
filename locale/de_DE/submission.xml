@@ -22,7 +22,6 @@
 	<message key="submission.workflowType.description">Eine Monografie ist ein Werk, das von einer Autorin/einem Autor oder mehreren Autor/innen gemeinsam verfasst worden ist. Ein Sammelband besteht aus mehreren Kapiteln jeweils unterschiedlicher Autor/innen (detaillierte Kapitelangaben sind erst zu einem späteren Zeitpunkt im Veröffentlichungsprozess zu machen).</message>
 	<message key="submission.workflowType.editedVolume">Sammelband</message>
 	<message key="submission.workflowType.authoredWork">Monografie</message>
-	<message key="submission.monograph">Monografie</message>
 	<message key="submission.published">Druckreif</message>
 	<message key="submission.fairCopy">Reinschrift</message>
 	<message key="submission.artwork.permissions">Rechte</message>

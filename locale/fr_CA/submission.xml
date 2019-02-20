@@ -19,7 +19,6 @@
 	<message key="submission.workflowType.description">Une monographie est un ouvrage écrit par un ou plusieurs auteurs. Un volume édité est un livre dont les chapitres ont été écrits par différents auteurs (les renseignements sur les chapitres sont ajoutés plus tard).</message>
 	<message key="submission.workflowType.editedVolume">Volume édité</message>
 	<message key="submission.workflowType.authoredWork">Monographie</message>
-	<message key="submission.monograph">Monographie</message>
 	<message key="submission.published">Prêt pour la production</message>
 	<message key="submission.fairCopy">Copie au net</message>
 	<message key="submission.artwork.permissions">Permissions</message>

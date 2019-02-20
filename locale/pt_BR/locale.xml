@@ -13,6 +13,7 @@
 
 <locale name="pt_BR" full_name="Português (Brasil)">
 	<!-- General monograph keys -->
+	<message key="common.publishedSubmission">Monografia</message>
 	<message key="monograph.audience">Audiência</message>
 	<message key="monograph.coverImage">Capa</message>
 	<message key="monograph.currentCoverImageReload">Salve as modificações para ver a nova imagem de capa.</message>

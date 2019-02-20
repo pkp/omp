@@ -322,7 +322,7 @@ class ManageSpotlightsGridHandler extends GridHandler {
 		}
 
 		if (!empty($matches)) {
-			$itemList[] = array('label' => PKPString::strtoupper(__('submission.monograph')), 'value' => '');
+			$itemList[] = array('label' => PKPString::strtoupper(__('common.publishedSubmission')), 'value' => '');
 			$itemList = array_merge($itemList, $matches);
 		}
 

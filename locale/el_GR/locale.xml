@@ -13,6 +13,7 @@
 
 <locale name="el_GR" full_name="ελληνικά">
 	<!-- General monograph keys -->
+	<message key="common.publishedSubmission">Μονογραφία</message>
 	<message key="monograph.audience">Κοινό</message>
 	<message key="monograph.coverImage">Εικόνα Εξωφύλλου</message>
 	<message key="monograph.coverImage.uploadInstructions">Βεβαιωθείτε ότι το ύψος της εικόνας δεν είναι μεγαλύτερο από το 150% του πλάτους της, διαφορετικά η εικόνα του εξωφύλλου σας δεν θα εμφανίζεται στο carousel των εκδόσεων της συλλογής.</message>

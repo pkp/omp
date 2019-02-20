@@ -31,7 +31,7 @@ class StatisticsHelper extends PKPStatisticsHelper {
 	protected function getAppColumnTitle($column) {
 		switch ($column) {
 			case STATISTICS_DIMENSION_SUBMISSION_ID:
-				return __('submission.monograph');
+				return __('common.publishedSubmission');
 			case STATISTICS_DIMENSION_SERIES_ID:
 				return __('series.series');
 			case STATISTICS_DIMENSION_CONTEXT_ID:
@@ -49,7 +49,7 @@ class StatisticsHelper extends PKPStatisticsHelper {
 		$objectTypes = $objectTypes + array(
 				ASSOC_TYPE_PRESS => __('context.context'),
 				ASSOC_TYPE_SERIES => __('series.series'),
-				ASSOC_TYPE_MONOGRAPH => __('submission.monograph'),
+				ASSOC_TYPE_MONOGRAPH => __('common.publishedSubmission'),
 				ASSOC_TYPE_PUBLICATION_FORMAT => __('grid.catalogEntry.publicationFormatType')
 		);
 

@@ -13,6 +13,8 @@
 
 <locale name="es_ES" full_name="Español (España)">
 	<!-- General monograph keys -->
+	<message key="common.publishedSubmission">Monografía</message>
+	<message key="common.publishedSubmissions">Monografías</message>
 	<message key="monograph.audience">Tipo de lector</message>
 	<message key="monograph.coverImage">Imagen de portada</message>
 	<message key="monograph.coverImage.uploadInstructions">Asegúrate de que la altura de la imagen no sea más grande que el 150% de su anchura. De lo contrario el carrusel no mostrará toda la portada.</message>

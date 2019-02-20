@@ -13,6 +13,7 @@
 
 <locale name="sl_SI" full_name="Slovenščina">
 	<!-- General monograph keys -->
+	<message key="common.publishedSubmission">Monografska publikacija</message>
 	<message key="monograph.audience">Ciljna skupina</message>
 	<message key="monograph.coverImage">Naslovna slika</message>
 	<message key="monograph.currentCoverImageReload">Shranite spremembe, da vidite novo naslovno sliko.</message>
