@@ -183,7 +183,7 @@
 							{assign var=chapterId value=$chapter->getId()}
 							<li>
 								<div class="title">
-									{$chapter->getLocalizedTitle()}
+									{$chapter->getLocalizedTitle()|escape}
 									{if $chapter->getLocalizedSubtitle() != ''}
 										<div class="subtitle">
 											{$chapter->getLocalizedSubtitle()|escape}
