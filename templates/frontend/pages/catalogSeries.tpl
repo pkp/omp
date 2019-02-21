@@ -17,12 +17,12 @@
  * @uses $showingEnd int The number of the last item on this page
  * @uses $total int Count of all published monographs in this series
  *}
-{include file="frontend/components/header.tpl" pageTitleTranslated=$series->getLocalizedTitle()}
+{include file="frontend/components/header.tpl" pageTitleTranslated=$series->getLocalizedTitle()|escape}
 
 <div class="page page_catalog_series">
 
 	{* Breadcrumb *}
-	{include file="frontend/components/breadcrumbs_catalog.tpl" type="series" currentTitle=$series->getLocalizedTitle()}
+	{include file="frontend/components/breadcrumbs_catalog.tpl" type="series" currentTitle=$series->getLocalizedTitle()|escape}
 
 	{* Count of monographs in this series *}
 	<div class="monograph_count">

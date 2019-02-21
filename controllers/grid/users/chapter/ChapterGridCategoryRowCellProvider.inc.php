@@ -47,7 +47,7 @@ class ChapterGridCategoryRowCellProvider extends GridCellProvider {
 						__('submission.chapter.editChapter'),
 						'modal_edit'
 					),
-					$chapter->getLocalizedTitle()
+					htmlspecialchars($chapter->getLocalizedTitle())
 				)
 			);
 		}
