@@ -275,14 +275,14 @@
 	<message key="catalog.featuredBooks">Izbrane knjige</message>
 	<message key="catalog.foundTitleSearch">Za vašo iskalno zahtevo "{$searchQuery}" je bil najden en naslov.</message>
 	<message key="catalog.foundTitlesSearch">{$number} število najdenih naslovov se je ujemalo z vašo iskalno zahtevo "{$searchQuery}".</message>
-	<message key="catalog.allBooks">Vse knjige</message>
+	<message key="catalog.category.heading">Vse knjige</message>
 	<message key="catalog.newReleases">Nove izdaje</message>
 	<message key="catalog.dateAdded">Dodano</message>
 	<message key="catalog.publicationInfo">Podrobnosti o publikaciji</message>
 	<message key="catalog.published">Izdano</message>
 	<message key="catalog.categories">Kategorije</message>
 	<message key="catalog.parentCategory">Nadrejena kategorija</message>
-	<message key="catalog.subcategories">Podkategorije</message>
+	<message key="catalog.category.subcategories">Podkategorije</message>
 	<message key="catalog.aboutTheAuthor">O {$roleName}</message>
 	<message key="catalog.coverImageTitle">Naslovnica za {$monographTitle}</message>
 	<message key="catalog.loginRequiredForPayment">Pomembno: Za nakup se boste morali najprej prijaviti. Izbor predmeta za nakup vas bo preusmeril na stran za prijavo. Katero koli knjigo, označena z ikono Prost dostop, lahko prenesete brez plačila in brez prijave. </message>

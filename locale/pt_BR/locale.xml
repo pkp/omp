@@ -259,14 +259,14 @@
 	<message key="catalog.feature">Destacar</message>
 	<message key="catalog.featured">Destacado</message>
 	<message key="catalog.featuredBooks">Livros em destaque</message>
-	<message key="catalog.allBooks">Todos os livros</message>
+	<message key="catalog.category.heading">Todos os livros</message>
 	<message key="catalog.newReleases">Lançamentos</message>
 	<message key="catalog.dateAdded">Incluído em {$dateAdded}</message>
 	<message key="catalog.publicationInfo">Dados da publicação</message>
 	<message key="catalog.published">Publicado</message>
 	<message key="catalog.categories">Categorias</message>
 	<message key="catalog.parentCategory">Categoria pai</message>
-	<message key="catalog.subcategories">Subcategorias</message>
+	<message key="catalog.category.subcategories">Subcategorias</message>
 	<message key="catalog.aboutTheAuthor">Sobre o {$roleName}</message>
 	<message key="catalog.coverImageTitle">Capa para {$monographTitle}</message>
 	<message key="catalog.loginRequiredForPayment">Nota: Para adquirir itens, é necessário acessar o sistema primeiro. Escolher um item para compra o levará a página de login. Itens com o ícone de acesso alberto podem ser baixados sem custos e sem login.</message>

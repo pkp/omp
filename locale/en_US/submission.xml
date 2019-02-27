@@ -137,4 +137,7 @@
 	<message key="submission.list.orderingFeatures">Drag-and-drop or tap the up and down buttons to change the order of features on the homepage.</message>
 	<message key="submission.list.orderingFeaturesSection">Drag-and-drop or tap the up and down buttons to change the order of features in {$title}.</message>
 	<message key="submission.list.saveFeatureOrder">Save Order</message>
+
+	<!-- categories -->
+	<message key="catalog.browseTitles">{$numTitles} Titles</message>
 </locale>

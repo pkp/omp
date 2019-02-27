@@ -275,7 +275,7 @@
 	<message key="catalog.featuredBooks">Featured Books</message>
 	<message key="catalog.foundTitleSearch">One title was found which matched your search for "{$searchQuery}".</message>
 	<message key="catalog.foundTitlesSearch">{$number} titles were found which matched your search for "{$searchQuery}".</message>
-	<message key="catalog.allBooks">All Books</message>
+	<message key="catalog.category.heading">All Books</message>
 	<message key="catalog.newReleases">New Releases</message>
 	<message key="catalog.dateAdded">Added</message>
 	<message key="catalog.publicationInfo">Publication Info</message>
@@ -283,7 +283,7 @@
 	<message key="catalog.forthcoming">Forthcoming</message>
 	<message key="catalog.categories">Categories</message>
 	<message key="catalog.parentCategory">Parent Category</message>
-	<message key="catalog.subcategories">Subcategories</message>
+	<message key="catalog.category.subcategories">Subcategories</message>
 	<message key="catalog.aboutTheAuthor">About the {$roleName}</message>
 	<message key="catalog.coverImageTitle">Cover for {$monographTitle}</message>
 	<message key="catalog.loginRequiredForPayment">Please note: In order to purchase items, you will need to log in first. Selecting an item to purchase will direct you to the login page. Any item marked with an Open Access icon may be downloaded free of charge, without logging in.</message>

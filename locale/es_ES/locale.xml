@@ -555,12 +555,12 @@
 	<message key="catalog.featured">Destacado</message>
 	<message key="catalog.foundTitleSearch">Se ha encontrado un resultado que coincide con su búsqueda "{$searchQuery}".</message>
 	<message key="catalog.foundTitlesSearch">Se han encontrado {$number} resultados que coinciden con su búsqueda "{$searchQuery}".</message>
-	<message key="catalog.allBooks">Todos los libros</message>
+	<message key="catalog.category.heading">Todos los libros</message>
 	<message key="catalog.newReleases">Novedades</message>
 	<message key="catalog.published">Publicado</message>
 	<message key="catalog.categories">Categorías</message>
 	<message key="catalog.parentCategory">Categoría matriz</message>
-	<message key="catalog.subcategories">Subcategorías</message>
+	<message key="catalog.category.subcategories">Subcategorías</message>
 	<message key="catalog.coverImageTitle">Cubierta para {$monographTitle}</message>
 	<message key="catalog.sortBy">Orden de las monografías</message>
 	<message key="catalog.sortBy.seriesDescription">Elija la forma de ordenar los libros en estas colecciones.</message>

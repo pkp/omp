@@ -25,7 +25,7 @@
 	{* No published titles *}
 	{if !$publishedMonographs|@count}
 		<h2>
-			{translate key="catalog.allBooks"}
+			{translate key="catalog.category.heading"}
 		</h2>
 		<p>{translate key="catalog.noTitles"}</p>
 
