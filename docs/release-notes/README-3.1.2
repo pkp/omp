@@ -1,0 +1,188 @@
+OMP 3.1.2 Release Notes
+CVS tag: 3_1_2-0
+Release date: February 28, 2019
+===============================
+
+New Features
+------------
+	#1692: Public identifiers for chapters
+	#2422: [OJS 3.x] Notify user when email sending fails?
+	#2438: [OJS] Editors should be able to add attachments to the Editorial Decision message
+	#2805: Add opt-out settings for issue publish and announcements notifications
+	#2820: Improve internal submission data reporting
+	#2887: Add quick actions from submissions list
+	#3462: Refine password element for user import (and possibly export)
+	#3575: Add a consent statement configuration option
+	#3600: Make reader and author registration optional / opt-in
+	#3673: Port article usage stats to master
+	#3691: Add default styling for HTML galleys
+	#3770: Reduce the number of new submission notification emails for editors, and simplify their management
+	#3812: possibility for plugins to add user and author metadata
+	#3860: Allow to connect on custom ports / socket
+	#3878: import/export of HTML galley images
+	#3941: Permit dependent files in other areas of the workflow
+	#4006: Enable assistans like copyeditors and layout editors to edit article metadata
+	#4014: Option to use a global sender address for emails (to fight spamfilters?)
+	#4164: Support generating DMARC compliant mails
+	#4168: Add filter by last modified more than X days ago to submissions lists
+	#4200: Permit deletions from the Copyedited grid
+	#4428: Permit API key to be used for content exposure (OAI/article view)
+
+Bug Fixes
+---------
+	#1116: setLocale ignores source parameter if HTTP_REFERER exists
+	#1619: Block adding discussion to oneself only
+	#1783: Review Form Preview
+	#1904: Closing ?> tags - you know you can give up on them
+	#2297: [OJS] The current role does not have access to this operation -message needs more details on how to acquire the needed role
+	#2359: Improve "Required" field labels on review forms
+	#2481: Reviewer has access to manuscript after declining review request
+	#2638: Section policies are not displayed anywhere
+	#2976: Open Review enhancements in OJS/OMP
+	#3171: [OMP] Navigation menu items for new releases, categories and series
+	#3206: Subscriptions page should not be accessible if payments are not enabled
+	#3242: Upgrade Smarty to v3
+	#3282: Missing navigation menu item for the search page
+	#3318: Check minimum requirements before allowing to upgrade
+	#3403: Error 404 when addNavigationMenuItem
+	#3404: Review dependency management
+	#3543: both editor actions "Accept and Skip Review" and "Accept Submission" are logged as "(Accept and Skip Review)"
+	#3556: getTemplatePath basePath
+	#3570: Localization key typo
+	#3573: Change database tables schema for Clustering
+	#3578: Clean code for PHP 7
+	#3580: UsageStatsOptoutBlockPlugin is not displayed
+	#3608: edit review assignment to add review form
+	#3609: Keywords and Agencies metadata: when one of the two is mandatory
+	#3611: [OMP-3.1.1.0] Payment send notification of payment Fatal error
+	#3612: [OMP-3.1.1.0] Payment send notification: name of the file is null
+	#3617: Investigate SQL Server support for OJS
+	#3619: [OJS] Uploading supplementary file revisions fails in some circumstances
+	#3622: OJS 3.1.1 Submission Library upload link error
+	#3637: User notification form crashes in site-wide context
+	#3638: Suggested username removes accented character
+	#3640: remove viewInformationCenter link on the submisison step2
+	#3653: [OJS 3] Author cannot upload revised article as a new version
+	#3655: Locale strings for API errors don't seem to be getting translated
+	#3662: Obfuscated access restriction for site administrator
+	#3666: Section Editor assigned as an Author (only) can access discussions that they are not participants in
+	#3672: [OJS] reviewer history is not ordered by date
+	#3681: reviewReport sl_SI locale copied to the wrong folder
+	#3710: remove translations for unused plugins folders
+	#3715: Navigation Menus - Add site-wide primary navigation menu
+	#3723: "Subeditors" are not introduced to users
+	#3739: [OMP] 3.1.1 upgrade scripts hard-code PostgreSQL-incompatible SQL statements
+	#3741: [OJS 3.1.1] when a submission enter to review stage the files are duplicated
+	#3750: enable manager roles to add references during a submission
+	#3754: Passing invalid sort parameter executes malformed SQL
+	#3765: README file: update localization information
+	#3772: [OMP] Keep insertion order for chapters
+	#3779: possibility to set ssl version in WebService
+	#3784: consider site primary locale and the submission locale change
+	#3792: Update list separator locale key
+	#3796: Correct missing locale key in OJS "log.review.reviewUnconsidered"
+	#3802: Multiple duplicate names in "Enroll existing user" as reviewer search field
+	#3805: Correct missing escaping in searchResults.tpl
+	#3807: Submission searching is case-sensitive in postgresql
+	#3810: Can not edit review assignment
+	#3811: Merge the user generates problems in the submission if he is a participant in the discussions
+	#3824: Fix SQL error in Catalog Management with PostgreSQL
+	#3826: Resolve missing GROUP BY in submission list fetch
+	#3834: Login page for disabled contexts not available
+	#3836: Privacy consent statements error in registration form multi-journal install
+	#3837: do not display references input field in the metadata modal submission tab
+	#3846: NavigationMenu Feature - Locales for default NMIs retrieved from key and not database
+	#3851: Ask two times a revision in a review round failed
+	#3864: book double listed in a series, when ordered by title
+	#3867: Remove exclusion of necessary library
+	#3868: lib/pkp/tools/installPluginVersion.php fails with SetCharSet() error
+	#3870: Reviewers can't complete step 1 of the review process due to privacy consent error
+	#3871: submission.title untranslated in review reminder form
+	#3873: Allow extended locale names in import/export XML
+	#3874: Clean up overspecific/wrong subtitle language
+	#3881: Disabled users receive notifications
+	#3889: Remove PHPUTF8 library
+	#3892: Check downloadability of submission files from the submission history
+	#3893: [OJS] Running crossref scheduled task with Acron gives headers already sent error
+	#3894: Ensure overdue status of review assignments is calculated the same in all places
+	#3926: [OJS] Review form elements grid, Order feature does not work
+	#3936: Cannot edit review assignment due date
+	#3944: JSON responses do not consistently set content-type to application/json
+	#3946: [OMP] Usage Stats plugin missed refactoring
+	#3949: Consider extending Smarty class rather than SmartyBC
+	#3950: HTML 5 compliance
+	#3959: Duplicate role assignments can prevent submission from being displayed in lists
+	#3967: Latest compatible plugin release is not recognized in plugin gallery
+	#3984: Search index helpers don't work with spaces in filenames
+	#4009: Usagestats not being processed if contextPath collides with "article"
+	#4011: [OJS] Custom blocks not displayed in settings page after upgrading from OJS2.4.8 to 3.1.1.2
+	#4024: Ensure RoleBasedHandlerOperationPolicy is used where addRoleAssignment is used
+	#4025: remove "STATISTICS_MAX_ROWS limit for stats downloads
+	#4026: [OJS] Reviewer step 1, privacy consent error message is displayed as ##...##
+	#4036: Reviewers receive a 0 rating when a review assignment is accepted
+	#4043: [OJS] lib/pkp/tools/buildjs.sh is not working in Windows Subsystem for Linux / Debian
+	#4046: [OJS] Review form elements, proposal for a description field
+	#4061: Remove reference in Plugin::register() method argument
+	#4070: Uploading revisions creates an incomplete email_log entry
+	#4072: Submission metadata form: pressing save button triggers browser errors
+	#4074: Access denied when trying to access some editorial/JM functions
+	#4116: [OJS] GatewayHandler setupTemplate() missing parameter
+	#4120: CSRF token missing for enable plugin action
+	#4126: [OJS 3] Clarify reviewer state in ReviewerGrid
+	#4133: Fix review assignment updated notification recipient
+	#4146: Bad composer syntax
+	#4147: Prevent review form radio button preselection
+	#4157: Empty query lingers after closing new query modal
+	#4158: Allow JEs to assemble published articles into thematic collections
+	#4163: pkp/pkp-lib#4157 Handle cancel action on reload/click-away
+	#4174: [OMP] PostgreSQL problems with catalog listings
+	#4179: [OJS] delete a note with a file in a query cause error 500 for editorial history
+	#4182: Modals can disappear in RTL languages
+	#4185: [OJS] Update Italian translation
+	#4208: Replace tag-it library with something else
+	#4212: PKPTemplateManager::initialize() redundant variable
+	#4214: [OJS 3.1.1.4] Translation keys might be confused for some locales (navigation.submissions & about.submissions)
+	#4216: Expiry date announcements editing not work
+	#4243: Errors unclear when Plugin upload fails
+	#4248: References set to null
+	#4264: Autosuggest for keywords metadata entry returns languages
+	#4266: Reviewers do not have access to files uploaded in review discussions
+	#4268: [OJS] Required asterisk missing
+	#4277: Resolve "too few arguments" exception in OMP Series grid
+	#4282: OJS 3.1. Files uploaded to to discussion show up in Copyediting under Upload/Select files
+	#4293: Distinguish the user's URL field from the ORCID field
+	#4295: JournalManager/Author metadata edit error: "Please enter the references."
+	#4307: Make consent statements less "Canadian" / more declarative
+	#4308: Privacy checkbox appears during submission even if no privacy statement exists
+	#4311: [OJS] Licence badge not showing when referring https://creativecommons.org
+	#4315: Description for radio buttons in appearance form is missing
+	#4323: Add Smarty shim functions for theme compatibility
+	#4328: Hook for adding columns to grids via plugin
+	#4330: NotificationHandler, wrong handling of fadeOut callback causes unbindPartial exception
+	#4337: installer.miscSettings locale key undefined
+	#4338: OJS 3 MetaData form freezes when required keywords missing
+	#4340: Users in multicontext install are offered links to unprivileged contexts
+	#4345: Declined submissions not moved to archive
+	#4352: "Cancel" on "Are you sure you wish to leave the page" behaving badly
+	#4376: Unable to upload review revision
+	#4381: Update copyright dates for 2019
+	#4386: Library files schema not included in upgrade script
+	#4388: Relax administrator check for mailing users
+	#4390: counter bot list not properly cached and used with PHP 7.2
+	#4398: User Import tries to assign user groups without a user id
+	#4403: consider case-insensitive bot match
+	#4411: OMP category pages show duplicated published items
+	#4413: Custom Page can't be saved if disable_path_info is set to on
+	#4432: consider username and email import mismatch
+	#4446: Support categories in default theme
+	#4455: use COUNTER bot list instead of botAgents.txt
+	#4462: Context navigation menu entries can be blank
+	#4482: Web feed plugin includes untranslated copyrightStatement locale key
+	#4491: Navigation Menus - Custom Templates not available
+	#4495: Navigation menu - title missing when editing item
+	#4497: Distribution Settings do not save
+	#4503: [OJS] Update nl_NL locale
+	#4514: [OJS] Recoginze https URL to Creative Commons licenses
+	#4522: Correct missing escaping of template variable
+	#4542: Public URL Identifier breaks with a slash character
+	#4547: "Create Reviewer" reviewer selection option breaks email template
