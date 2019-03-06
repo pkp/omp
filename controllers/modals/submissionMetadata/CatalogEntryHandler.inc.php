@@ -77,7 +77,7 @@ class CatalogEntryHandler extends PublicationEntryHandler {
 
 		$templateMgr->assign('publicationFormats', $publicationFormats);
 
-		$request = Application::getRequest();
+		$request = Application::get()->getRequest();
 		$router = $request->getRouter();
 		$dispatcher = $router->getDispatcher();
 

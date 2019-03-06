@@ -64,7 +64,7 @@ class SubmissionSubmitStep3Form extends PKPSubmissionSubmitStep3Form {
 		parent::execute();
 
 		// handle category assignment.
-		ListbuilderHandler::unpack(Application::getRequest(), $this->getData('categories'), array($this, 'deleteEntry'), array($this, 'insertEntry'), array($this, 'updateEntry'));
+		ListbuilderHandler::unpack(Application::get()->getRequest(), $this->getData('categories'), array($this, 'deleteEntry'), array($this, 'insertEntry'), array($this, 'updateEntry'));
 
 		return $this->submissionId;
 	}
@@ -75,7 +75,7 @@ class SubmissionSubmitStep3Form extends PKPSubmissionSubmitStep3Form {
 	 */
 	function insertEntry($request, $newRowId) {
 
-		$request = Application::getRequest();
+		$request = Application::get()->getRequest();
 
 		$categoryId = $newRowId['name'];
 		$categoryDao = DAORegistry::getDAO('CategoryDAO');

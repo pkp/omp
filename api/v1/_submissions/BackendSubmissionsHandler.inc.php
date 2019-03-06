@@ -111,7 +111,7 @@ class BackendSubmissionsHandler extends PKPBackendSubmissionsHandler {
 	public function saveDisplayFlags($slimRequest, $response, $args) {
 		$params = $slimRequest->getParsedBody();
 
-		if (!\Application::getRequest()->checkCSRF()) {
+		if (!\Application::get()->getRequest()->checkCSRF()) {
 			return $response->withStatus(403)->withJsonError('api.submissions.403.csrfTokenFailure');
 		}
 
@@ -166,7 +166,7 @@ class BackendSubmissionsHandler extends PKPBackendSubmissionsHandler {
 	public function saveFeaturedOrder($slimRequest, $response, $args) {
 		$params = $slimRequest->getParsedBody();
 
-		if (!\Application::getRequest()->checkCSRF()) {
+		if (!\Application::get()->getRequest()->checkCSRF()) {
 			return $response->withStatus(403)->withJsonError('api.submissions.403.csrfTokenFailure');
 		}
 

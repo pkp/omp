@@ -83,7 +83,7 @@ class SubmissionService extends \PKP\Services\PKPSubmissionService {
 		$publicationFormats = \DAORegistry::getDAO('PublicationFormatDAO')
 			->getBySubmissionId($submission->getId())
 			->toAssociativeArray();
-		$request = \Application::getRequest();
+		$request = \Application::get()->getRequest();
 
 		// Update the monograph status.
 		$submission->setStatus(STATUS_PUBLISHED);
@@ -134,7 +134,7 @@ class SubmissionService extends \PKP\Services\PKPSubmissionService {
 		$publicationFormats = \DAORegistry::getDAO('PublicationFormatDAO')
 			->getBySubmissionId($submission->getId())
 			->toAssociativeArray();
-		$request = \Application::getRequest();
+		$request = \Application::get()->getRequest();
 
 		// Update the monograph status.
 		$submission->setStatus(STATUS_QUEUED);

@@ -23,7 +23,7 @@ class CatalogSubmissionsListPanel extends SubmissionsListPanel {
 	public function getConfig() {
 		AppLocale::requireComponents(LOCALE_COMPONENT_APP_SUBMISSION);
 
-		$request = Application::getRequest();
+		$request = Application::get()->getRequest();
 		$context = $request->getContext();
 
 		// Bring in orderby constants

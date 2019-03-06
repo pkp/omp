@@ -24,7 +24,7 @@ class NavigationMenuItemsForm extends PKPNavigationMenuItemsForm {
 	function fetch($request, $template = null, $display = false) {
 		$customTemplates = \Services::get('navigationMenu')->getMenuItemCustomEditTemplates();
 
-		$request = \Application::getRequest();
+		$request = \Application::get()->getRequest();
 		$context = $request->getContext();
 		$contextId = $context ? $context->getId() : CONTEXT_ID_NONE;
 
