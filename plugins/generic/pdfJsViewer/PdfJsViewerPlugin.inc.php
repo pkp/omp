@@ -70,11 +70,10 @@ class PdfJsViewerPlugin extends GenericPlugin {
 			$dispatcher = $request->getDispatcher();
 			$templateMgr = TemplateManager::getManager($request);
 			$templateMgr->assign(array(
-				'pluginTemplatePath' => $this->getTemplatePath(),
 				'pluginUrl' => $request->getBaseUrl() . DIRECTORY_SEPARATOR . $this->getPluginPath(),
 			));
 
-			$templateMgr->display($this->getTemplatePath() . '/display.tpl');
+			$templateMgr->display($this->getTemplateResource('display.tpl'));
 			return true;
 		}
 

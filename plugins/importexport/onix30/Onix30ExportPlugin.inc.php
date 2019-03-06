@@ -92,7 +92,7 @@ class Onix30ExportPlugin extends ImportExportPlugin {
 					'lazyLoad' => true,
 				));
 				$templateMgr->assign('exportSubmissionsListData', $exportSubmissionsListPanel->getConfig());
-				$templateMgr->display($this->getTemplatePath() . 'index.tpl');
+				$templateMgr->display($this->getTemplateResource('index.tpl'));
 				break;
 			case 'export':
 				$exportXml = $this->exportSubmissions(
