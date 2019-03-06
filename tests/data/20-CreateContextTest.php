@@ -15,6 +15,10 @@
 
 import('lib.pkp.tests.data.PKPCreateContextTest');
 
+use Facebook\WebDriver\Interactions\WebDriverActions;
+use Facebook\WebDriver\WebDriverExpectedCondition;
+use Facebook\WebDriver\WebDriverBy;
+
 class CreateContextTest extends PKPCreateContextTest {
 	/** @var array */
 	public $contextName = [
@@ -65,12 +69,16 @@ class CreateContextTest extends PKPCreateContextTest {
 		$this->open(self::$baseUrl);
 
 		// Settings > Press > Masthead
-		$this->waitForElementPresent($selector='css=li.profile a:contains(\'Dashboard\')');
-		$this->clickAndWait($selector);
-		$this->waitForElementPresent($selector='css=ul#navigationPrimary a:contains(\'Press\')');
-		$this->clickAndWait($selector);
+		$actions = new WebDriverActions(self::$driver);
+		$actions->click($this->waitForElementPresent('css=ul#navigationUser>li.profile>a'))
+			->click($this->waitForElementPresent('//ul[@id="navigationUser"]//a[contains(text(),"Dashboard")]'))
+			->perform();
+		$actions = new WebDriverActions(self::$driver);
+		$actions->click($this->waitForElementPresent('//ul[@id="navigationPrimary"]//a[text()="Settings"]'))
+			->click($this->waitForElementPresent('//ul[@id="navigationPrimary"]//a[text()="Press"]'))
+			->perform();
 
-		$this->click('css=#masthead button:contains(\'Save\')');
+		$this->click('//*[@id="masthead"]//button[contains(text(),"Save")]');
 		$this->waitForTextPresent('The masthead details for this press have been updated.');
 
 		$this->contactSettings(['contextType' => 'press']);
@@ -83,33 +91,28 @@ class CreateContextTest extends PKPCreateContextTest {
 		$this->open(self::$baseUrl);
 
 		// Users & Roles
-		$this->waitForElementPresent($selector='css=li.profile a:contains(\'Dashboard\')');
-		$this->clickAndWait($selector);
-		$this->waitForElementPresent($selector='link=Users & Roles');
-		$this->mouseOver($selector);
-		$this->waitForElementPresent($selector='link=Roles');
-		$this->click($selector);
+		$actions = new WebDriverActions(self::$driver);
+		$actions->click($this->waitForElementPresent('css=ul#navigationUser>li.profile>a'))
+			->click($this->waitForElementPresent('//ul[@id="navigationUser"]//a[contains(text(),"Dashboard")]'))
+			->perform();
+		$actions = new WebDriverActions(self::$driver);
+		$actions->click($this->waitForElementPresent('//ul[@id="navigationPrimary"]//a[text()="Users & Roles"]'))
+			->click($this->waitForElementPresent('//ul[@id="navigationPrimary"]//a[text()="Roles"]'))
+			->perform();
 
 		// "Edit" link below "Volume editor" role
-		$this->waitForElementPresent('//table[starts-with(@id, \'component-grid-settings-roles-usergroupgrid-\')]//span[contains(text(), \'Volume editor\')]/../../../following-sibling::tr//a[contains(text(),\'Edit\')]');
-		$this->click('//table[starts-with(@id, \'component-grid-settings-roles-usergroupgrid-\')]//span[contains(text(), \'Volume editor\')]/../../../following-sibling::tr//a[contains(text(),\'Edit\')]');
+		$element = $this->waitForElementPresent($selector='//table[starts-with(@id, \'component-grid-settings-roles-usergroupgrid-\')]//span[contains(text(), "Volume editor")]/../../../following-sibling::tr//a[contains(text(),"Edit")]');
+		self::$driver->executeScript('document.getElementById(\'' . $element->getAttribute('id') . '\').scrollIntoView();');
+		self::$driver->executeScript('window.scroll(0,50);'); // FIXME: Give it an extra margin of pixels
+		$this->click('//table[starts-with(@id, \'component-grid-settings-roles-usergroupgrid-\')]//span[contains(text(), "Volume editor")]/../../a[@class="show_extras"]');
+		$actions = new WebDriverActions(self::$driver);
+                $actions->click($element)->perform();
 
 		// Click the "permit self registration" checkbox
 		$this->waitForElementPresent('//input[@id=\'permitSelfRegistration\']');
 		$this->click('//input[@id=\'permitSelfRegistration\']');
 		$this->waitForElementPresent($selector='//form[@id=\'userGroupForm\']//button[text()=\'OK\']');
 		$this->click($selector);
-		$this->waitJQuery();
-	}
-
-	/**
-	 * Helper function to go to the hosted presses page
-	 */
-	function goToHostedContexts() {
-		$this->open(self::$baseUrl);
-		$this->waitForElementPresent('link=Administration');
-		$this->click('link=Administration');
-		$this->waitForElementPresent('link=Hosted Presses');
-		$this->click('link=Hosted Presses');
+		self::$driver->wait()->until(WebDriverExpectedCondition::invisibilityOfElementLocated(WebDriverBy::cssSelector('div.pkp_modal_panel')));
 	}
 }

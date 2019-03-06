@@ -15,6 +15,11 @@
 
 import('lib.pkp.tests.PKPContentBaseTestCase');
 
+use Facebook\WebDriver\WebDriverBy;
+use Facebook\WebDriver\Interactions\WebDriverActions;
+use Facebook\WebDriver\WebDriverExpectedCondition;
+use Facebook\WebDriver\WebDriverSelect;
+
 class ContentBaseTestCase extends PKPContentBaseTestCase {
 	/**
 	 * Create a submission with the supplied data.
@@ -107,7 +112,7 @@ class ContentBaseTestCase extends PKPContentBaseTestCase {
 			}
 
 			$this->click('//form[@id=\'editChapterForm\']//button[text()=\'Save\']');
-			$this->waitForElementNotPresent('css=div.pkp_modal_panel'); // pkp/pkp-lib#655
+			self::$driver->wait()->until(WebDriverExpectedCondition::invisibilityOfElementLocated(WebDriverBy::cssSelector('div.pkp_modal_panel')));
 
 			// Test the public identifiers form
 			if (isset($chapter['pubId'])) {
@@ -117,17 +122,9 @@ class ContentBaseTestCase extends PKPContentBaseTestCase {
 				$this->waitForElementPresent('css=[id^=publisherId-]');
 				$this->type('css=[id^=publisherId-]', $chapter['pubId']);
 				$this->click('//form[@id=\'publicIdentifiersForm\']//button[text()=\'Save\']');
-				$this->waitForElementNotPresent('css=div.pkp_modal_panel'); // pkp/pkp-lib#655
+				self::$driver->wait()->until(WebDriverExpectedCondition::invisibilityOfElementLocated(WebDriverBy::cssSelector('div.pkp_modal_panel')));
 			}
 		}
-	}
-
-	/**
-	 * Get the number of items in the default submission checklist
-	 * @return int
-	 */
-	protected function _getChecklistLength() {
-		return 5;
 	}
 
 	/**
@@ -156,6 +153,6 @@ class ContentBaseTestCase extends PKPContentBaseTestCase {
 			$this->waitForElementPresent($selector='//form[@id=\'promote\']//button[contains(., \'Record Editorial Decision\')]');
 			$this->click($selector);
 		}
-		$this->waitForElementNotPresent('css=div.pkp_modal_panel'); // pkp/pkp-lib#655
+		self::$driver->wait()->until(WebDriverExpectedCondition::invisibilityOfElementLocated(WebDriverBy::cssSelector('div.pkp_modal_panel')));
 	}
 }
