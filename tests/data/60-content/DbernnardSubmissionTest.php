@@ -102,7 +102,7 @@ class DbernnardSubmissionTest extends ContentBaseTestCase {
 		$this->logOut();
 		// Log in as editor and see the existing recommendation
 		$this->findSubmissionAsEditor('dbarnes', null, $title);
-		$this->waitForText('css=div.pkp_workflow_recommendations', 'Recommendations: Send to External Review');
+		$this->waitForElementPresent('//div[contains(@class,"pkp_workflow_recommendations") and contains(text(), "Recommendations: Send to External Review")]');
 		$this->logOut();
 	}
 }

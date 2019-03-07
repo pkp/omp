@@ -85,40 +85,45 @@ class ContentBaseTestCase extends PKPContentBaseTestCase {
 	 */
 	protected function _handleStep3($data) {
 		parent::_handleStep3($data);
-
+		sleep(1);
 		if (isset($data['chapters'])) foreach ($data['chapters'] as $chapter) {
 			$this->click('css=[id^=component-grid-users-chapter-chaptergrid-addChapter-button-]');
+			sleep(1);
 			$this->waitForElementPresent('//form[@id=\'editChapterForm\']//input[starts-with(@id,\'title-\')]');
+
+			// Contributors
+			foreach ($chapter['contributors'] as $i => $contributor) {
+				sleep(1);
+				$this->click('css=[id^=component-listbuilder-users-chapterauthorlistbuilder-addItem-button-]');
+				sleep(1);
+				$this->waitForElementPresent('(//div[@id="chapterAuthorContainer"]//select[@name="newRowId[name]"])[' . ($i+1) . ']//option[text()=' . $this->quoteXpath($contributor) . ']');
+				$this->select('(//div[@id="chapterAuthorContainer"]//select[@name="newRowId[name]"])[' . ($i+1) . ']', 'label=' . $contributor);
+			}
+
+			// Files
+			foreach ($chapter['files'] as $i => $file) {
+				sleep(1);
+				$this->click('css=[id^=component-listbuilder-files-chapterfileslistbuilder-addItem-button-]');
+				sleep(1);
+				$element = $this->waitForElementPresent($selector='(//div[@id="chapterFilesContainer"]//select[@name="newRowId[name]"])[' . ($i+1) . ']//option[contains(text(),' . $this->quoteXpath($file) . ')]');
+				$optionFullText = $element->getText();
+				$this->select('(//div[@id="chapterFilesContainer"]//select[@name="newRowId[name]"])[' . ($i+1) . ']', 'label=' . $optionFullText);
+			}
+
+			// FIXME: Title is entered here to combat listbuilder wackiness. It needs input before form save.
 			$this->type('//form[@id=\'editChapterForm\']//input[starts-with(@id,\'title-\')]', $chapter['title']);
 			if (isset($chapter['subtitle'])) {
 				$this->type('//form[@id=\'editChapterForm\']//input[starts-with(@id,\'subtitle-\')]', $chapter['subtitle']);
 			}
 
-			// Contributors
-			foreach ($chapter['contributors'] as $i => $contributor) {
-				$this->waitForElementPresent('css=[id^=component-listbuilder-users-chapterauthorlistbuilder-addItem-button-]');
-				$this->clickAt('css=[id^=component-listbuilder-users-chapterauthorlistbuilder-addItem-button-]', '10,10');
-				$this->waitForElementPresent('xpath=(//div[@id="chapterAuthorContainer"]//select[@name="newRowId[name]"])[' . ($i+1) . ']//option[text()=' . $this->quoteXpath($contributor) . ']');
-				$this->select('xpath=(//div[@id="chapterAuthorContainer"]//select[@name="newRowId[name]"])[' . ($i+1) . ']', 'label=' . $contributor);
-			}
-
-			// Files
-			foreach ($chapter['files'] as $i => $file) {
-				$this->waitForElementPresent('css=[id^=component-listbuilder-files-chapterfileslistbuilder-addItem-button-]');
-				$this->clickAt('css=[id^=component-listbuilder-files-chapterfileslistbuilder-addItem-button-]', '10,10');
-				$this->waitForElementPresent($selector='xpath=(//div[@id="chapterFilesContainer"]//select[@name="newRowId[name]"])[' . ($i+1) . ']//option[contains(text(),' . $this->quoteXpath($file) . ')]');
-				$optionFullText = $this->getText($selector);
-				$this->select('xpath=(//div[@id="chapterFilesContainer"]//select[@name="newRowId[name]"])[' . ($i+1) . ']', 'label=' . $optionFullText);
-			}
-
-			$this->click('//form[@id=\'editChapterForm\']//button[text()=\'Save\']');
+			$this->click('//form[@id="editChapterForm"]//button[text()="Save"]');
 			self::$driver->wait()->until(WebDriverExpectedCondition::invisibilityOfElementLocated(WebDriverBy::cssSelector('div.pkp_modal_panel')));
 
 			// Test the public identifiers form
 			if (isset($chapter['pubId'])) {
 				$this->click('css=[id*=-editChapter-button-]:contains(\'' . $chapter['title'] . '\')');
 				$this->waitForElementPresent('css=.ui-tabs-anchor:contains(\'Identifiers\;)');
-				$this->clickAt('css=.ui-tabs-anchor:contains(\'Identifiers\;)');
+				$this->click('//a[contains(text(),\'Identifiers\')]');
 				$this->waitForElementPresent('css=[id^=publisherId-]');
 				$this->type('css=[id^=publisherId-]', $chapter['pubId']);
 				$this->click('//form[@id=\'publicIdentifiersForm\']//button[text()=\'Save\']');
@@ -150,6 +155,7 @@ class ContentBaseTestCase extends PKPContentBaseTestCase {
 		} else { // External review from Internal review
 			$this->waitForElementPresent('css=[id^=component-grid-files-attachment-editorselectablereviewattachmentsgrid-]');
 			$this->waitForElementPresent('css=[id^=component-grid-files-review-selectablereviewrevisionsgrid-]');
+			$this->click('//button[contains(.,"Next:")]');
 			$this->waitForElementPresent($selector='//form[@id=\'promote\']//button[contains(., \'Record Editorial Decision\')]');
 			$this->click($selector);
 		}

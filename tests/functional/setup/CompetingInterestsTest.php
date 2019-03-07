@@ -48,7 +48,7 @@ class CompetingInterestsTest extends ContentBaseTestCase {
 		$this->click('//input[@id=\'privacyConsent\']');
 		$this->clickLinkActionNamed('Accept Review, Continue to Step #2');
 		$this->clickLinkActionNamed('Continue to Step #3');
-		$this->waitJQuery();
+		$this->waitForElementPresent('//*[@id="comments"]');
 		$this->typeTinyMCE('comments', 'This paper is suitable for publication.');
 		$this->clickLinkActionNamed('Submit Review');
 		$this->waitForElementPresent($selector='link=OK');
@@ -98,7 +98,7 @@ class CompetingInterestsTest extends ContentBaseTestCase {
 		$this->click('//input[@id=\'privacyConsent\']');
 		$this->clickLinkActionNamed('Accept Review, Continue to Step #2');
 		$this->clickLinkActionNamed('Continue to Step #3');
-		$this->waitJQuery();
+		$this->waitForElementPresent('//*[@id="comments"]');
 		$this->typeTinyMCE('comments', 'This paper is suitable for publication.');
 		$this->clickLinkActionNamed('Submit Review');
 		$this->waitForElementPresent($selector='link=OK');

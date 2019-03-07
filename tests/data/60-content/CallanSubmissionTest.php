@@ -15,6 +15,9 @@
 
 import('tests.ContentBaseTestCase');
 
+use Facebook\WebDriver\WebDriverBy;
+use Facebook\WebDriver\WebDriverExpectedCondition;
+
 class CallanSubmissionTest extends ContentBaseTestCase {
 	/**
 	 * Create a submission.
@@ -90,7 +93,7 @@ class CallanSubmissionTest extends ContentBaseTestCase {
 		$this->waitForElementPresent($selector='css=[id^=name-]');
 		$this->type($selector, 'PDF');
 		$this->click('//button[text()=\'OK\']');
-		$this->waitForElementNotPresent('css=div.pkp_modal_panel');
+		self::$driver->wait()->until(WebDriverExpectedCondition::invisibilityOfElementLocated(WebDriverBy::cssSelector('div.pkp_modal_panel')));
 
 		// Select proof file
 		$this->waitForElementPresent($selector='//table[contains(@id,\'component-grid-catalogentry-publicationformatgrid-\')]//span[contains(.,\'PDF\')]/../a[contains(@id,\'-name-selectFiles-button-\')]');
@@ -100,30 +103,31 @@ class CallanSubmissionTest extends ContentBaseTestCase {
 		$this->waitForElementPresent($selector='//tbody[starts-with(@id,\'component-grid-files-proof-manageprooffilesgrid-category-\')][1]//a[text()=\'' . $title . '\']/../../..//input[@type=\'checkbox\']');
 		$this->click($selector);
 		$this->click('//form[@id=\'manageProofFilesForm\']//button[starts-with(@id,\'submitFormButton-\')]');
-		$this->waitForElementNotPresent('css=div.pkp_modal_panel');
+		self::$driver->wait()->until(WebDriverExpectedCondition::invisibilityOfElementLocated(WebDriverBy::cssSelector('div.pkp_modal_panel')));
 
 		// Approvals for PDF publication format
 		$this->click('//table[starts-with(@id,\'component-grid-catalogentry-publicationformatgrid-\')]//span[contains(text(),\'PDF\')]/../../..//a[contains(@id,\'-isComplete-approveRepresentation-button-\')]');
 		$this->waitForElementPresent($selector='//form[@id=\'assignPublicIdentifierForm\']//button[starts-with(@id,\'submitFormButton-\')]');
 		$this->click($selector);
-		$this->waitForElementNotPresent('css=div.pkp_modal_panel');
+		self::$driver->wait()->until(WebDriverExpectedCondition::invisibilityOfElementLocated(WebDriverBy::cssSelector('div.pkp_modal_panel')));
 		$this->click('//table[starts-with(@id,\'component-grid-catalogentry-publicationformatgrid-\')]//span[contains(text(),\'PDF\')]/../../..//a[contains(@id,\'-isAvailable-availableRepresentation-button-\')]');
 		$this->click('css=.pkpModalConfirmButton');
-		$this->waitForElementNotPresent('css=div.pkp_modal_panel');
+		self::$driver->wait()->until(WebDriverExpectedCondition::invisibilityOfElementLocated(WebDriverBy::cssSelector('div.pkp_modal_panel')));
 
 		// File completion
 		$this->click('//table[starts-with(@id,\'component-grid-catalogentry-publicationformatgrid-\')]//a[contains(text(),\'' . $title . '\')]/../../..//a[contains(@id,\'-isComplete-not_approved-button-\')]');
 		$this->waitForElementPresent($selector='//form[@id=\'assignPublicIdentifierForm\']//button[starts-with(@id,\'submitFormButton-\')]');
 		$this->click($selector);
-		$this->waitForElementNotPresent('css=div.pkp_modal_panel');
+		self::$driver->wait()->until(WebDriverExpectedCondition::invisibilityOfElementLocated(WebDriverBy::cssSelector('div.pkp_modal_panel')));
 		// File availability
 		$this->click('//table[starts-with(@id,\'component-grid-catalogentry-publicationformatgrid-\')]//a[contains(text(),\'' . $title . '\')]/../../..//a[contains(@id,\'-isAvailable-editApprovedProof-button-\')]');
 		$this->waitForElementPresent($selector='//input[@id=\'openAccess\']');
 		$this->click($selector);
 		$this->click('css=#approvedProofForm .submitFormButton');
-		$this->waitForElementNotPresent('css=div.pkp_modal_panel');
+		self::$driver->wait()->until(WebDriverExpectedCondition::invisibilityOfElementLocated(WebDriverBy::cssSelector('div.pkp_modal_panel')));
 
 		// Add to catalog
+		self::$driver->executeScript('window.scrollTo(0,0);'); // Scroll to top of page
 		$this->click('css=[id^=catalogEntry-button-]');
 		$this->waitForElementPresent($selector = '//a[@class="ui-tabs-anchor" and text()="Catalog"]');
 		$this->click($selector);
