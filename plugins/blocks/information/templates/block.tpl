@@ -37,11 +37,6 @@
 					</a>
 				</li>
 			{/if}
-			<li>
-				<a href="{url router=$smarty.const.ROUTE_PAGE page="notification"}">
-					{translate key="notification.notifications"}
-				</a>
-			</li>
 		</ul>
 	</div>
 </div><!-- .block_info -->
