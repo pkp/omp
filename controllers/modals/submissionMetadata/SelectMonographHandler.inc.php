@@ -53,17 +53,43 @@ class SelectMonographHandler extends Handler {
 	 * @return JSONMessage JSON object
 	 */
 	function fetch($args, $request) {
+		AppLocale::requireComponents(LOCALE_COMPONENT_APP_SUBMISSION);
 		$templateMgr = TemplateManager::getManager($request);
-		import('lib.pkp.classes.components.listPanels.submissions.SelectSubmissionsListPanel');
-		$selectNewEntryListPanel = new SelectSubmissionsListPanel(array(
-			'title' => 'submission.catalogEntry.select',
-			'count' => 20,
-			'inputName' => 'selectedSubmissions[]',
-			'getParams' => array(
-				'status' => STATUS_QUEUED,
-			),
-		));
-		$templateMgr->assign('selectNewEntryData', $selectNewEntryListPanel->getConfig());
+
+		// import STATUS_* constants
+		import('lib.pkp.classes.submission.Submission');
+		$selectNewEntryListPanel = new \PKP\components\listPanels\PKPSelectSubmissionsListPanel(
+			'selectNewEntryListPanel',
+			__('submission.catalogEntry.select'),
+			[
+				'apiUrl' => $request->getDispatcher()->url(
+					$request,
+					ROUTE_API,
+					$request->getContext()->getPath(),
+					'_submissions'
+				),
+				'canSelect' => true,
+				'getParams' => array(
+					'status' => STATUS_QUEUED,
+				),
+				'selectorName' => 'selectedSubmissions[]',
+			]
+		);
+		$params = array_merge($selectNewEntryListPanel->getParams, ['contextId' => $request->getContext()->getId()]);
+		$submissions = \Services::get('submission')->getMany($params);
+		$items = [];
+		foreach ($submissions as $submission) {
+			$items[] = \Services::get('submission')->getBackendListProperties($submission, ['request' => $request]);
+		}
+		$selectNewEntryListPanel->set([
+			'items' => $items,
+			'itemsMax' => \Services::get('submission')->getMax($params),
+		]);
+		$templateMgr->assign('selectNewEntryData', [
+			'components' => [
+				'selectNewEntryListPanel' => $selectNewEntryListPanel->getConfig()
+			]
+		]);
 		return new JSONMessage(true, $templateMgr->fetch('controllers/modals/submissionMetadata/selectMonograph.tpl'));
 	}
 

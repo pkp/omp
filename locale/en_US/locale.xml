@@ -265,6 +265,10 @@
 	<message key="catalog.manage.feature.seriesNewRelease">New release in series</message>
 	<message key="catalog.manage.nonOrderable">This monograph is not orderable until it's featured.</message>
 	<message key="catalog.manage.filter.searchByAuthorOrTitle">Search by title or author</message>
+	<message key="catalog.manage.isFeatured">This monograph is featured. Make this monograph not featured.</message>
+	<message key="catalog.manage.isNotFeatured">This monograph is not featured. Make this monograph featured.</message>
+	<message key="catalog.manage.isNewRelease">This monograph is a new release. Make this monograph not a new release.</message>
+	<message key="catalog.manage.isNotNewRelease">This monograph is not a new release. Make this monograph a new release.</message>
 
 	<!-- Catalog -->
 	<message key="catalog.noTitles">No titles have been published yet.</message>

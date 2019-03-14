@@ -25,11 +25,15 @@
 	{fbvFormArea}
 		{fbvFormSection}
 			{assign var="uuid" value=""|uniqid|escape}
-			<div id="select-new-entry-list-handler-{$uuid}">
-				<script type="text/javascript">
-					pkp.registry.init('select-new-entry-list-handler-{$uuid}', 'SelectSubmissionsListPanel', {$selectNewEntryData|json_encode});
-				</script>
+			<div id="select-new-entry-{$uuid}">
+				<select-submissions-list-panel
+					v-bind="components.selectNewEntryListPanel"
+					@set="set"
+				/>
 			</div>
+			<script type="text/javascript">
+				pkp.registry.init('select-new-entry-{$uuid}', 'Container', {$selectNewEntryData|json_encode});
+			</script>
 		{/fbvFormSection}
 		{fbvFormButtons submitText="submission.catalogEntry.add" hideCancel="true"}
 	{/fbvFormArea}

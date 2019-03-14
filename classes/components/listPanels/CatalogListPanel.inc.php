@@ -1,33 +1,31 @@
 <?php
 /**
- * @file components/listPanels/submissions/CatalogSubmissionsListPanel.inc.php
+ * @file components/listPanels/CatalogListPanel.inc.php
  *
  * Copyright (c) 2014-2018 Simon Fraser University
  * Copyright (c) 2000-2018 John Willinsky
  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
  *
- * @class CatalogSubmissionsListPanel
- * @ingroup classes_controllers_list
+ * @class CatalogListPanel
+ * @ingroup classes_components_listPanels
  *
- * @brief Instantiates and manages a UI component to list submissions.
+ * @brief Instantiates and manages a UI component to list catalog entries.
  */
-import('classes.components.listPanels.submissions.SubmissionsListPanel');
-import('lib.pkp.classes.db.DBResultRange');
+namespace APP\components\listPanels;
+
+// Bring in orderby constants
 import('classes.monograph.PublishedMonograph');
 
-class CatalogSubmissionsListPanel extends SubmissionsListPanel {
+class CatalogListPanel extends \PKP\components\listPanels\ListPanel {
 
 	/**
-	 * @see PKPSubmissionsListPanel
+	 * @copydoc ListPanel::getConfig()
 	 */
 	public function getConfig() {
-		AppLocale::requireComponents(LOCALE_COMPONENT_APP_SUBMISSION);
+		\AppLocale::requireComponents(LOCALE_COMPONENT_APP_SUBMISSION);
 
 		$request = Application::get()->getRequest();
 		$context = $request->getContext();
-
-		// Bring in orderby constants
-		import('classes.monograph.PublishedMonographDAO');
 
 		list($catalogSortBy, $catalogSortDir) = explode('-', $context->getData('catalogSortOption'));
 		$catalogSortBy = empty($catalogSortBy) ? ORDERBY_DATE_PUBLISHED : $catalogSortBy;
@@ -35,15 +33,15 @@ class CatalogSubmissionsListPanel extends SubmissionsListPanel {
 		$config['catalogSortBy'] = $catalogSortBy;
 		$config['catalogSortDir'] = $catalogSortDir;
 
-		$this->_getParams = array_merge(
-			$this->_getParams,
-			array(
+		$this->getParams = array_merge(
+			$this->getParams,
+			[
 				'status' => STATUS_PUBLISHED,
 				'orderByFeatured' => true,
 				'orderBy' => $catalogSortBy,
 				'orderDirection' => $catalogSortDir,
 				'isCurrentSubmissionVersion' => 1,
-			)
+			]
 		);
 
 		$config = parent::getConfig();
@@ -66,6 +64,15 @@ class CatalogSubmissionsListPanel extends SubmissionsListPanel {
 		$config['i18n']['orderingFeaturesSection'] = __('submission.list.orderingFeaturesSection');
 		$config['i18n']['saveFeatureOrder'] = __('submission.list.saveFeatureOrder');
 		$config['i18n']['cancel'] = __('common.cancel');
+		$config['i18n']['isFeatured'] = __('catalog.manage.isFeatured');
+		$config['i18n']['isNotFeatured'] = __('catalog.manage.isNotFeatured');
+		$config['i18n']['isNewRelease'] = __('catalog.manage.isNewRelease');
+		$config['i18n']['isNotNewRelease'] = __('catalog.manage.isNotNewRelease');
+		$config['i18n']['paginationLabel'] = __('common.pagination.label');
+		$config['i18n']['goToLabel'] = __('common.pagination.goToPage');
+		$config['i18n']['pageLabel'] = __('common.pageNumber');
+		$config['i18n']['nextPageLabel'] = __('common.pagination.next');
+		$config['i18n']['previousPageLabel'] = __('common.pagination.previous');
 
 		$config['addUrl'] = $request->getDispatcher()->url(
 			$request,
@@ -83,62 +90,64 @@ class CatalogSubmissionsListPanel extends SubmissionsListPanel {
 			'modals.submissionMetadata.CatalogEntryHandler',
 			'fetch',
 			null,
-			array('stageId' => WORKFLOW_STAGE_ID_PRODUCTION, 'submissionId' => '__id__')
+			['stageId' => WORKFLOW_STAGE_ID_PRODUCTION, 'submissionId' => '__id__']
 		);
 
-		$config['filters'] = array();
+		$config['filters'] = [];
 
 		if ($context) {
-			$categories = array();
-			$categoryDao = DAORegistry::getDAO('CategoryDAO');
+			$categories = [];
+			$categoryDao = \DAORegistry::getDAO('CategoryDAO');
 			$categoriesResult = $categoryDao->getByContextId($context->getId());
 			while (!$categoriesResult->eof()) {
 				$category = $categoriesResult->next();
 				list($categorySortBy, $categorySortDir) = explode('-', $category->getSortOption());
 				$categorySortDir = empty($categorySortDir) ? $catalogSortDir : $categorySortDir == SORT_DIRECTION_ASC ? 'ASC' : 'DESC';
-				$categories[] = array(
+				$categories[] = [
 					'param' => 'categoryIds',
-					'val' => (int) $category->getId(),
+					'value' => (int) $category->getId(),
 					'title' => $category->getLocalizedTitle(),
 					'sortBy' => $categorySortBy,
 					'sortDir' => $categorySortDir,
-				);
+				];
 			}
 			if (count($categories)) {
-				$config['filters']['categoryIds'] = array(
+				$config['filters'][] = [
 					'heading' => __('catalog.categories'),
 					'filters' => $categories,
-				);
+				];
 			}
 
-			$series = array();
-			$seriesDao = DAORegistry::getDAO('SeriesDAO');
+			$series = [];
+			$seriesDao = \DAORegistry::getDAO('SeriesDAO');
 			$seriesResult = $seriesDao->getByPressId($context->getId());
 			while (!$seriesResult->eof()) {
 				$seriesObj = $seriesResult->next();
 				list($seriesSortBy, $seriesSortDir) = explode('-', $seriesObj->getSortOption());
 				$seriesSortDir = empty($seriesSortDir) ? $catalogSortDir : $seriesSortDir == SORT_DIRECTION_ASC ? 'ASC' : 'DESC';
-				$series[] = array(
+				$series[] = [
 					'param' => 'seriesIds',
-					'val' => (int) $seriesObj->getId(),
+					'value' => (int) $seriesObj->getId(),
 					'title' => $seriesObj->getLocalizedTitle(),
 					'sortBy' => $seriesSortBy,
 					'sortDir' => $seriesSortDir,
-				);
+				];
 			}
 			if (count($series)) {
-				$config['filters']['seriesIds'] = array(
+				$config['filters'][] = [
 					'heading' => __('catalog.manage.series'),
 					'filters' => $series,
-				);
+				];
 			}
 		}
 
-		$config['_constants'] = array(
-			'ASSOC_TYPE_PRESS' => ASSOC_TYPE_PRESS,
-			'ASSOC_TYPE_CATEGORY' => ASSOC_TYPE_CATEGORY,
-			'ASSOC_TYPE_SERIES' => ASSOC_TYPE_SERIES,
-		);
+		// Attach a CSRF token for post requests
+		$config['csrfToken'] = $request->getSession()->getCSRFToken();
+
+		$templateMgr = \TemplateManager::getManager($request);
+		$templateMgr->setConstant('ASSOC_TYPE_PRESS');
+		$templateMgr->setConstant('ASSOC_TYPE_CATEGORY');
+		$templateMgr->setConstant('ASSOC_TYPE_SERIES');
 
 		return $config;
 	}

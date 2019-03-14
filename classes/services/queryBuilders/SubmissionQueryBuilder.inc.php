@@ -107,6 +107,18 @@ class SubmissionQueryBuilder extends \PKP\Services\QueryBuilders\PKPSubmissionQu
 			$q->whereIn('s.series_id', $this->seriesIds);
 		}
 
+		// If we're ordering by date published we need to join on the
+		// published_submissions table. If the return object is
+		// SUBMISSION_RETURN_PUBLISHED or the status is published, the
+		// table is already joined.
+		if ($this->orderColumn === 'ps.date_published'
+				&& $this->returnObject !== SUBMISSION_RETURN_PUBLISHED
+				&& !in_array(STATUS_PUBLISHED, $this->statuses)) {
+			$this->columns[] = 'ps.date_published';
+			$q->leftJoin('published_submissions as ps','ps.submission_id','=','s.submission_id')
+				->groupBy('ps.date_published');
+		}
+
 		if (!empty($this->orderByFeaturedSeq)) {
 			if (!empty($this->seriesIds)) {
 				$assocType = ASSOC_TYPE_SERIES;
