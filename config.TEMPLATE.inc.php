@@ -121,7 +121,7 @@ enable_beacon = On
 
 [database]
 
-driver = mysql
+driver = mysqli
 host = localhost
 username = omp
 password = omp
