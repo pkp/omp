@@ -70,11 +70,11 @@ class CreateContextTest extends PKPCreateContextTest {
 
 		// Settings > Press > Masthead
 		$actions = new WebDriverActions(self::$driver);
-		$actions->click($this->waitForElementPresent('css=ul#navigationUser>li.profile>a'))
+		$actions->moveToElement($this->waitForElementPresent('css=ul#navigationUser>li.profile>a'))
 			->click($this->waitForElementPresent('//ul[@id="navigationUser"]//a[contains(text(),"Dashboard")]'))
 			->perform();
 		$actions = new WebDriverActions(self::$driver);
-		$actions->click($this->waitForElementPresent('//ul[@id="navigationPrimary"]//a[text()="Settings"]'))
+		$actions->moveToElement($this->waitForElementPresent('//ul[@id="navigationPrimary"]//a[text()="Settings"]'))
 			->click($this->waitForElementPresent('//ul[@id="navigationPrimary"]//a[text()="Press"]'))
 			->perform();
 
@@ -92,11 +92,11 @@ class CreateContextTest extends PKPCreateContextTest {
 
 		// Users & Roles
 		$actions = new WebDriverActions(self::$driver);
-		$actions->click($this->waitForElementPresent('css=ul#navigationUser>li.profile>a'))
+		$actions->moveToElement($this->waitForElementPresent('css=ul#navigationUser>li.profile>a'))
 			->click($this->waitForElementPresent('//ul[@id="navigationUser"]//a[contains(text(),"Dashboard")]'))
 			->perform();
 		$actions = new WebDriverActions(self::$driver);
-		$actions->click($this->waitForElementPresent('//ul[@id="navigationPrimary"]//a[text()="Users & Roles"]'))
+		$actions->moveToElement($this->waitForElementPresent('//ul[@id="navigationPrimary"]//a[text()="Users & Roles"]'))
 			->click($this->waitForElementPresent('//ul[@id="navigationPrimary"]//a[text()="Roles"]'))
 			->perform();
 
