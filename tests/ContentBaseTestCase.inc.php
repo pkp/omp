@@ -85,10 +85,12 @@ class ContentBaseTestCase extends PKPContentBaseTestCase {
 	 */
 	protected function _handleStep3($data) {
 		parent::_handleStep3($data);
-		sleep(1);
 		if (isset($data['chapters'])) foreach ($data['chapters'] as $chapter) {
-			$this->click('css=[id^=component-grid-users-chapter-chaptergrid-addChapter-button-]');
 			sleep(1);
+			$element = $this->waitForElementPresent($selector='css=[id^=component-grid-users-chapter-chaptergrid-addChapter-button-]');
+			self::$driver->executeScript('document.getElementById(\'' . $element->getAttribute('id') . '\').scrollIntoView();');
+			self::$driver->executeScript('window.scroll(0,50);'); // FIXME: Give it an extra margin of pixels
+			$this->click($selector);
 			$this->waitForElementPresent('//form[@id=\'editChapterForm\']//input[starts-with(@id,\'title-\')]');
 
 			// Contributors
