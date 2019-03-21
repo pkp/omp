@@ -86,7 +86,7 @@ class ContentBaseTestCase extends PKPContentBaseTestCase {
 	protected function _handleStep3($data) {
 		parent::_handleStep3($data);
 		if (isset($data['chapters'])) foreach ($data['chapters'] as $chapter) {
-			sleep(5);
+			sleep(2);
 			$element = $this->waitForElementPresent($selector='css=[id^=component-grid-users-chapter-chaptergrid-addChapter-button-]');
 			self::$driver->executeScript('document.getElementById(\'' . $element->getAttribute('id') . '\').scrollIntoView();');
 			self::$driver->executeScript('window.scroll(0,50);'); // FIXME: Give it an extra margin of pixels
@@ -95,18 +95,18 @@ class ContentBaseTestCase extends PKPContentBaseTestCase {
 
 			// Contributors
 			foreach ($chapter['contributors'] as $i => $contributor) {
-				sleep(5);
+				sleep(2);
 				$this->click('css=[id^=component-listbuilder-users-chapterauthorlistbuilder-addItem-button-]');
-				sleep(5);
+				sleep(2);
 				$this->waitForElementPresent('(//div[@id="chapterAuthorContainer"]//select[@name="newRowId[name]"])[' . ($i+1) . ']');
 				$this->select('(//div[@id="chapterAuthorContainer"]//select[@name="newRowId[name]"])[' . ($i+1) . ']', 'label=' . $contributor);
 			}
 
 			// Files
 			foreach ($chapter['files'] as $i => $file) {
-				sleep(5);
+				sleep(2);
 				$this->click('css=[id^=component-listbuilder-files-chapterfileslistbuilder-addItem-button-]');
-				sleep(5);
+				sleep(2);
 				$element = $this->waitForElementPresent($selector='(//div[@id="chapterFilesContainer"]//select[@name="newRowId[name]"])[' . ($i+1) . ']//option[contains(text(),' . $this->quoteXpath($file) . ')]');
 				$optionFullText = $element->getText();
 				$this->select('(//div[@id="chapterFilesContainer"]//select[@name="newRowId[name]"])[' . ($i+1) . ']', 'label=' . $optionFullText);
