@@ -156,7 +156,7 @@ class PublicationFormatForm extends Form {
 			// log the creation of the format.
 			import('lib.pkp.classes.log.SubmissionLog');
 			import('classes.log.SubmissionEventLogEntry');
-			SubmissionLog::logEvent(Application::getRequest(), $monograph, SUBMISSION_LOG_PUBLICATION_FORMAT_CREATE, 'submission.event.publicationFormatCreated', array('formatName' => $publicationFormat->getLocalizedName()));
+			SubmissionLog::logEvent(Application::get()->getRequest(), $monograph, SUBMISSION_LOG_PUBLICATION_FORMAT_CREATE, 'submission.event.publicationFormatCreated', array('formatName' => $publicationFormat->getLocalizedName()));
 		}
 
 		return $representationId;

@@ -130,7 +130,7 @@ class DublinCoreMetaPlugin extends GenericPlugin {
 	 * @return boolean
 	 */
 	function monographFileView($hookName, $args) {
-		$request = Application::getRequest();
+		$request = Application::get()->getRequest();
 		$monograph = $args[1];
 		$publicationFormat = $args[2];
 		$submissionFile = $args[3];

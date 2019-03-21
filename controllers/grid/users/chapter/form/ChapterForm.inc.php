@@ -117,7 +117,7 @@ class ChapterForm extends Form {
 	function execute() {
 		$chapterDao = DAORegistry::getDAO('ChapterDAO');
 		$chapter = $this->getChapter();
-		$request = Application::getRequest();
+		$request = Application::get()->getRequest();
 
 		if ($chapter) {
 			$chapter->setTitle($this->getData('title'), null); //Localized

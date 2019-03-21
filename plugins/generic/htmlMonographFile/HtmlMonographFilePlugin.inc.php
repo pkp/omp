@@ -64,7 +64,7 @@ class HtmlMonographFilePlugin extends GenericPlugin {
 		$publicationFormat =& $params[2];
 		$submissionFile =& $params[3];
 		$inline =& $params[4];
-		$request = Application::getRequest();
+		$request = Application::get()->getRequest();
 
 		if ($submissionFile && $submissionFile->getFileType() == 'text/html') {
 			$templateMgr = TemplateManager::getManager($request);
@@ -99,7 +99,7 @@ class HtmlMonographFilePlugin extends GenericPlugin {
 		$publicationFormat =& $params[2];
 		$submissionFile =& $params[3];
 		$inline =& $params[4];
-		$request = Application::getRequest();
+		$request = Application::get()->getRequest();
 
 		if ($submissionFile && $submissionFile->getFileType() == 'text/html') {
 			if (!HookRegistry::call('HtmlMonographFilePlugin::monographDownload', array(&$this, &$publishedMonograph, &$publicationFormat, &$submissionFile, &$inline))) {
@@ -186,7 +186,7 @@ class HtmlMonographFilePlugin extends GenericPlugin {
 	}
 
 	function _handleOmpUrl($matchArray) {
-		$request = Application::getRequest();
+		$request = Application::get()->getRequest();
 		$url = $matchArray[2];
 		$anchor = null;
 		if (($i = strpos($url, '#')) !== false) {

@@ -84,7 +84,7 @@ class DOISettingsForm extends Form {
 
 		// for DOI reset requests
 		import('lib.pkp.classes.linkAction.request.RemoteActionConfirmationModal');
-		$request = Application::getRequest();
+		$request = Application::get()->getRequest();
 		$this->setData('clearPubIdsLinkAction', new LinkAction(
 			'reassignDOIs',
 			new RemoteActionConfirmationModal(

@@ -20,9 +20,7 @@
 
 	<ul>
 		<li>
-			<a href="{url op="contexts"}">
-				{translate key="admin.hostedPresses"}
-			</a>
+			<a href="{url op="contexts"}">{translate key="admin.hostedPresses"}</a>
 		</li>
 		{call_hook name="Templates::Admin::Index::SiteManagement"}
 	</ul>

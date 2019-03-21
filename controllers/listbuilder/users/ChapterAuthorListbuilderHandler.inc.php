@@ -150,9 +150,9 @@ class ChapterAuthorListbuilderHandler extends ListbuilderHandler {
 	}
 
 	/**
-	 * @see ListbuilderHandler::getOptions
+	 * @copydoc ListbuilderHandler::getOptions
 	 */
-	function getOptions() {
+	function getOptions($request) {
 		// Initialize the object to return
 		$items = array(
 			array()

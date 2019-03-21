@@ -51,14 +51,18 @@ class SubmissionFileDAOTest extends DatabaseTestCase {
 		$press->setId(SUBMISSION_FILE_DAO_TEST_PRESS_ID);
 
 		// Mock a request
-		$mockRequest = $this->getMock('PKPRequest', array('getContext'));
+		$mockRequest = $this->getMockBuilder(PKPRequest::class)
+			->setMethods(array('getContext'))
+			->getMock();
 		$mockRequest->expects($this->any())
 			->method('getContext')
 			->will($this->returnValue($press));
 		Registry::get('request', true, $mockRequest);
 
 		// Register a mock monograph DAO.
-		$monographDao = $this->getMock('MonographDAO', array('getById'));
+		$monographDao = $this->getMockBuilder(MonographDAO::class)
+			->setMethods(array('getById'))
+			->getMock();
 		$monograph = new Monograph();
 		$monograph->setId(SUBMISSION_FILE_DAO_TEST_SUBMISSION_ID);
 		$monograph->setPressId(SUBMISSION_FILE_DAO_TEST_PRESS_ID);
@@ -69,7 +73,9 @@ class SubmissionFileDAOTest extends DatabaseTestCase {
 		DAORegistry::registerDAO('MonographDAO', $monographDao);
 
 		// Register a mock genre DAO.
-		$genreDao = $this->getMock('GenreDAO', array('getById'));
+		$genreDao = $this->getMockBuilder(GenreDAO::class)
+			->setMethods(array('getById'))
+			->getMock();
 		DAORegistry::registerDAO('GenreDAO', $genreDao);
 		$genreDao->expects($this->any())
 			->method('getById')
@@ -107,7 +113,9 @@ class SubmissionFileDAOTest extends DatabaseTestCase {
 		$submission->setLocale('en_US');
 		$submissionId = $submissionDao->insertObject($submission);
 
-		$monographDao = $this->getMock('MonographDAO', array('getById'));
+		$monographDao = $this->getMockBuilder(MonographDAO::class)
+			->setMethods(array('getById'))
+			->getMock();
 		$monograph = new Monograph();
 		$monograph->setId($submissionId);
 		$monograph->setPressId(SUBMISSION_FILE_DAO_TEST_PRESS_ID);

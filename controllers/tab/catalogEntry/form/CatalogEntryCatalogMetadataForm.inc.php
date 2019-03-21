@@ -305,7 +305,7 @@ class CatalogEntryCatalogMetadataForm extends Form {
 			$simpleMonographFileManager->copyFile($temporaryFile->getFilePath(), $basePath . $filename);
 
 			// Generate thumbnail image
-			$press = Application::getRequest()->getPress();
+			$press = Application::get()->getRequest()->getPress();
 			$coverThumbnailsMaxWidth = $press->getSetting('coverThumbnailsMaxWidth');
 			$coverThumbnailsMaxHeight = $press->getSetting('coverThumbnailsMaxHeight');
 

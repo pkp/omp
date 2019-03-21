@@ -43,7 +43,7 @@ class PressOAI extends OAI {
 	function __construct($config) {
 		parent::__construct($config);
 
-		$request = Application::getRequest();
+		$request = Application::get()->getRequest();
 
 		$this->site = $request->getSite();
 		$this->press = $request->getPress();

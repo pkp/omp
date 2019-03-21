@@ -15,6 +15,11 @@
 
 import('lib.pkp.tests.PKPContentBaseTestCase');
 
+use Facebook\WebDriver\WebDriverBy;
+use Facebook\WebDriver\Interactions\WebDriverActions;
+use Facebook\WebDriver\WebDriverExpectedCondition;
+use Facebook\WebDriver\WebDriverSelect;
+
 class ContentBaseTestCase extends PKPContentBaseTestCase {
 	/**
 	 * Create a submission with the supplied data.
@@ -80,54 +85,53 @@ class ContentBaseTestCase extends PKPContentBaseTestCase {
 	 */
 	protected function _handleStep3($data) {
 		parent::_handleStep3($data);
-
 		if (isset($data['chapters'])) foreach ($data['chapters'] as $chapter) {
-			$this->click('css=[id^=component-grid-users-chapter-chaptergrid-addChapter-button-]');
+			sleep(2);
+			$element = $this->waitForElementPresent($selector='css=[id^=component-grid-users-chapter-chaptergrid-addChapter-button-]');
+			self::$driver->executeScript('document.getElementById(\'' . $element->getAttribute('id') . '\').scrollIntoView();');
+			self::$driver->executeScript('window.scroll(0,50);'); // FIXME: Give it an extra margin of pixels
+			$this->click($selector);
 			$this->waitForElementPresent('//form[@id=\'editChapterForm\']//input[starts-with(@id,\'title-\')]');
+
+			// Contributors
+			foreach ($chapter['contributors'] as $i => $contributor) {
+				sleep(2);
+				$this->click('css=[id^=component-listbuilder-users-chapterauthorlistbuilder-addItem-button-]');
+				sleep(2);
+				$this->waitForElementPresent('(//div[@id="chapterAuthorContainer"]//select[@name="newRowId[name]"])[' . ($i+1) . ']');
+				$this->select('(//div[@id="chapterAuthorContainer"]//select[@name="newRowId[name]"])[' . ($i+1) . ']', 'label=' . $contributor);
+			}
+
+			// Files
+			foreach ($chapter['files'] as $i => $file) {
+				sleep(2);
+				$this->click('css=[id^=component-listbuilder-files-chapterfileslistbuilder-addItem-button-]');
+				sleep(2);
+				$element = $this->waitForElementPresent($selector='(//div[@id="chapterFilesContainer"]//select[@name="newRowId[name]"])[' . ($i+1) . ']//option[contains(text(),' . $this->quoteXpath($file) . ')]');
+				$optionFullText = $element->getText();
+				$this->select('(//div[@id="chapterFilesContainer"]//select[@name="newRowId[name]"])[' . ($i+1) . ']', 'label=' . $optionFullText);
+			}
+
+			// FIXME: Title is entered here to combat listbuilder wackiness. It needs input before form save.
 			$this->type('//form[@id=\'editChapterForm\']//input[starts-with(@id,\'title-\')]', $chapter['title']);
 			if (isset($chapter['subtitle'])) {
 				$this->type('//form[@id=\'editChapterForm\']//input[starts-with(@id,\'subtitle-\')]', $chapter['subtitle']);
 			}
 
-			// Contributors
-			foreach ($chapter['contributors'] as $i => $contributor) {
-				$this->waitForElementPresent('css=[id^=component-listbuilder-users-chapterauthorlistbuilder-addItem-button-]');
-				$this->clickAt('css=[id^=component-listbuilder-users-chapterauthorlistbuilder-addItem-button-]', '10,10');
-				$this->waitForElementPresent('xpath=(//div[@id="chapterAuthorContainer"]//select[@name="newRowId[name]"])[' . ($i+1) . ']//option[text()=' . $this->quoteXpath($contributor) . ']');
-				$this->select('xpath=(//div[@id="chapterAuthorContainer"]//select[@name="newRowId[name]"])[' . ($i+1) . ']', 'label=' . $contributor);
-			}
-
-			// Files
-			foreach ($chapter['files'] as $i => $file) {
-				$this->waitForElementPresent('css=[id^=component-listbuilder-files-chapterfileslistbuilder-addItem-button-]');
-				$this->clickAt('css=[id^=component-listbuilder-files-chapterfileslistbuilder-addItem-button-]', '10,10');
-				$this->waitForElementPresent($selector='xpath=(//div[@id="chapterFilesContainer"]//select[@name="newRowId[name]"])[' . ($i+1) . ']//option[contains(text(),' . $this->quoteXpath($file) . ')]');
-				$optionFullText = $this->getText($selector);
-				$this->select('xpath=(//div[@id="chapterFilesContainer"]//select[@name="newRowId[name]"])[' . ($i+1) . ']', 'label=' . $optionFullText);
-			}
-
-			$this->click('//form[@id=\'editChapterForm\']//button[text()=\'Save\']');
-			$this->waitForElementNotPresent('css=div.pkp_modal_panel'); // pkp/pkp-lib#655
+			$this->click('//form[@id="editChapterForm"]//button[text()="Save"]');
+			self::$driver->wait()->until(WebDriverExpectedCondition::invisibilityOfElementLocated(WebDriverBy::cssSelector('div.pkp_modal_panel')));
 
 			// Test the public identifiers form
 			if (isset($chapter['pubId'])) {
 				$this->click('css=[id*=-editChapter-button-]:contains(\'' . $chapter['title'] . '\')');
 				$this->waitForElementPresent('css=.ui-tabs-anchor:contains(\'Identifiers\;)');
-				$this->clickAt('css=.ui-tabs-anchor:contains(\'Identifiers\;)');
+				$this->click('//a[contains(text(),\'Identifiers\')]');
 				$this->waitForElementPresent('css=[id^=publisherId-]');
 				$this->type('css=[id^=publisherId-]', $chapter['pubId']);
 				$this->click('//form[@id=\'publicIdentifiersForm\']//button[text()=\'Save\']');
-				$this->waitForElementNotPresent('css=div.pkp_modal_panel'); // pkp/pkp-lib#655
+				self::$driver->wait()->until(WebDriverExpectedCondition::invisibilityOfElementLocated(WebDriverBy::cssSelector('div.pkp_modal_panel')));
 			}
 		}
-	}
-
-	/**
-	 * Get the number of items in the default submission checklist
-	 * @return int
-	 */
-	protected function _getChecklistLength() {
-		return 5;
 	}
 
 	/**
@@ -144,18 +148,16 @@ class ContentBaseTestCase extends PKPContentBaseTestCase {
 	 * @param $from string "Internal" or "Submission" (for external reviews)
 	 */
 	protected function sendToReview($type = 'External', $from = 'Submission') {
-		$this->waitForElementPresent($selector = 'css=[id^=' . ($type=='External'?'external':'internal') . 'Review-button-]');
-		$this->click($selector);
+		$this->click('css=[id^=' . ($type=='External'?'external':'internal') . 'Review-button-]');
 		if ($type == 'Internal' || $from != 'Internal') {
 			$this->waitForElementPresent('//form[@id=\'initiateReview\']//input[@type=\'checkbox\']');
-			$this->waitForElementPresent($selector='//form[@id=\'initiateReview\']//button[contains(., \'Send to ' . $this->escapeJS($type) . ' Review\')]');
-			$this->click($selector);
+			$this->click('//form[@id=\'initiateReview\']//button[contains(., \'Send to ' . $this->escapeJS($type) . ' Review\')]');
 		} else { // External review from Internal review
 			$this->waitForElementPresent('css=[id^=component-grid-files-attachment-editorselectablereviewattachmentsgrid-]');
 			$this->waitForElementPresent('css=[id^=component-grid-files-review-selectablereviewrevisionsgrid-]');
-			$this->waitForElementPresent($selector='//form[@id=\'promote\']//button[contains(., \'Record Editorial Decision\')]');
-			$this->click($selector);
+			$this->click('//button[contains(.,"Next:")]');
+			$this->click('//form[@id=\'promote\']//button[contains(., \'Record Editorial Decision\')]');
 		}
-		$this->waitForElementNotPresent('css=div.pkp_modal_panel'); // pkp/pkp-lib#655
+		self::$driver->wait()->until(WebDriverExpectedCondition::invisibilityOfElementLocated(WebDriverBy::cssSelector('div.pkp_modal_panel')));
 	}
 }

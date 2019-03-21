@@ -50,7 +50,7 @@ class GoogleScholarPlugin extends GenericPlugin {
 		$submissionFile =& $args[3];
 
 		if ($submissionFile->getFileType() == 'application/pdf') {
-			$request = Application::getRequest();
+			$request = Application::get()->getRequest();
 			$templateMgr = TemplateManager::getManager($request);
 			$press = $request->getContext();
 			$chapter = $templateMgr->getTemplateVars('chapter');
