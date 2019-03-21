@@ -148,18 +148,15 @@ class ContentBaseTestCase extends PKPContentBaseTestCase {
 	 * @param $from string "Internal" or "Submission" (for external reviews)
 	 */
 	protected function sendToReview($type = 'External', $from = 'Submission') {
-		$this->waitForElementPresent($selector = 'css=[id^=' . ($type=='External'?'external':'internal') . 'Review-button-]');
-		$this->click($selector);
+		$this->click('css=[id^=' . ($type=='External'?'external':'internal') . 'Review-button-]');
 		if ($type == 'Internal' || $from != 'Internal') {
 			$this->waitForElementPresent('//form[@id=\'initiateReview\']//input[@type=\'checkbox\']');
-			$this->waitForElementPresent($selector='//form[@id=\'initiateReview\']//button[contains(., \'Send to ' . $this->escapeJS($type) . ' Review\')]');
-			$this->click($selector);
+			$this->click('//form[@id=\'initiateReview\']//button[contains(., \'Send to ' . $this->escapeJS($type) . ' Review\')]');
 		} else { // External review from Internal review
 			$this->waitForElementPresent('css=[id^=component-grid-files-attachment-editorselectablereviewattachmentsgrid-]');
 			$this->waitForElementPresent('css=[id^=component-grid-files-review-selectablereviewrevisionsgrid-]');
 			$this->click('//button[contains(.,"Next:")]');
-			$this->waitForElementPresent($selector='//form[@id=\'promote\']//button[contains(., \'Record Editorial Decision\')]');
-			$this->click($selector);
+			$this->click('//form[@id=\'promote\']//button[contains(., \'Record Editorial Decision\')]');
 		}
 		self::$driver->wait()->until(WebDriverExpectedCondition::invisibilityOfElementLocated(WebDriverBy::cssSelector('div.pkp_modal_panel')));
 	}
