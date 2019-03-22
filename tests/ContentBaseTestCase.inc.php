@@ -95,18 +95,18 @@ class ContentBaseTestCase extends PKPContentBaseTestCase {
 
 			// Contributors
 			foreach ($chapter['contributors'] as $i => $contributor) {
-				sleep(3);
+				sleep(5);
 				$this->click('css=[id^=component-listbuilder-users-chapterauthorlistbuilder-addItem-button-]');
-				sleep(3);
+				sleep(1);
 				$this->waitForElementPresent('(//div[@id="chapterAuthorContainer"]//select[@name="newRowId[name]"])[' . ($i+1) . ']');
 				$this->select('(//div[@id="chapterAuthorContainer"]//select[@name="newRowId[name]"])[' . ($i+1) . ']', 'label=' . $contributor);
 			}
 
 			// Files
 			foreach ($chapter['files'] as $i => $file) {
-				sleep(3);
+				sleep(5);
 				$this->click('css=[id^=component-listbuilder-files-chapterfileslistbuilder-addItem-button-]');
-				sleep(3);
+				sleep(1);
 				$element = $this->waitForElementPresent($selector='(//div[@id="chapterFilesContainer"]//select[@name="newRowId[name]"])[' . ($i+1) . ']//option[contains(text(),' . $this->quoteXpath($file) . ')]');
 				$optionFullText = $element->getText();
 				$this->select('(//div[@id="chapterFilesContainer"]//select[@name="newRowId[name]"])[' . ($i+1) . ']', 'label=' . $optionFullText);
