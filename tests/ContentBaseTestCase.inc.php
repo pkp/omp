@@ -148,6 +148,7 @@ class ContentBaseTestCase extends PKPContentBaseTestCase {
 	 * @param $from string "Internal" or "Submission" (for external reviews)
 	 */
 	protected function sendToReview($type = 'External', $from = 'Submission') {
+		$this->waitJQuery();
 		$this->click('css=[id^=' . ($type=='External'?'external':'internal') . 'Review-button-]');
 		$this->waitJQuery();
 		sleep(3);
