@@ -35,8 +35,9 @@ class RepresentativeForm extends Form {
 		$this->addCheck(new FormValidatorCustom(
 			$this, 'isSupplier', 'required', 'grid.catalogEntry.roleRequired',
 			function($isSupplier) use ($form) {
-				$agentRole = Request::getUserVar('agentRole');
-				$supplierRole = Request::getUserVar('supplierRole');
+				$request = Application::get()->getRequest();
+				$agentRole = $request->getUserVar('agentRole');
+				$supplierRole = $request->getUserVar('supplierRole');
 				$onixDao = DAORegistry::getDAO('ONIXCodelistItemDAO');
 				return (!$isSupplier && $onixDao->codeExistsInList($agentRole, 'List69')) || ($isSupplier && $onixDao->codeExistsInList($supplierRole, 'List93'));
 			}
@@ -109,31 +110,31 @@ class RepresentativeForm extends Form {
 	 * @copydoc Form::fetch()
 	 */
 	function fetch($request, $template = null, $display = false) {
-
 		$templateMgr = TemplateManager::getManager($request);
 
 		$monograph = $this->getMonograph();
 		$templateMgr->assign('submissionId', $monograph->getId());
 		$representative = $this->getRepresentative();
 		$onixCodelistItemDao = DAORegistry::getDAO('ONIXCodelistItemDAO');
-		$templateMgr->assign('idTypeCodes', $onixCodelistItemDao->getCodes('List92')); // GLN, etc
-		$templateMgr->assign('agentRoleCodes', $onixCodelistItemDao->getCodes('List69')); // Sales Agent, etc
-		$templateMgr->assign('supplierRoleCodes', $onixCodelistItemDao->getCodes('List93')); // wholesaler, publisher to retailer, etc
-		$templateMgr->assign('isSupplier', true); // default to 'supplier' on the form.
+		$templateMgr->assign(array(
+			'idTypeCodes' => $onixCodelistItemDao->getCodes('List92'), // GLN, etc
+			'agentRoleCodes' => $onixCodelistItemDao->getCodes('List69'), // Sales Agent, etc
+			'supplierRoleCodes' => $onixCodelistItemDao->getCodes('List93'), // wholesaler, publisher to retailer, etc
+			'isSupplier' => true,
+		)); // default to 'supplier' on the form.
 
-		if ($representative) {
-			$templateMgr->assign('representativeId', $representative->getId());
-			$templateMgr->assign('role', $representative->getRole());
-			$templateMgr->assign('representativeIdType', $representative->getRepresentativeIdType());
-			$templateMgr->assign('representativeIdValue', $representative->getRepresentativeIdValue());
-			$templateMgr->assign('name', $representative->getName());
-			$templateMgr->assign('phone', $representative->getPhone());
-			$templateMgr->assign('email', $representative->getEmail());
-			$templateMgr->assign('url', $representative->getUrl());
-			$templateMgr->assign('isSupplier', $representative->getIsSupplier() ? true : false);
-		} else { // loading a blank form
-			$templateMgr->assign('representativeIdType', '06'); // pre-populate new forms with GLN as it is recommended
-		}
+		if ($representative) $templateMgr->assign(array(
+			'representativeId' => $representative->getId(),
+			'role' => $representative->getRole(),
+			'representativeIdType' => $representative->getRepresentativeIdType(),
+			'representativeIdValue' => $representative->getRepresentativeIdValue(),
+			'name' => $representative->getName(),
+			'phone' => $representative->getPhone(),
+			'email' => $representative->getEmail(),
+			'url' => $representative->getUrl(),
+			'isSupplier' => $representative->getIsSupplier() ? true : false,
+		));
+		else $templateMgr->assign('representativeIdType', '06'); // pre-populate new forms with GLN as it is recommended
 
 		return parent::fetch($request, $template, $display);
 	}

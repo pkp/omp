@@ -138,7 +138,8 @@ class MonographONIX30XmlFilter extends NativeExportFilter {
 
 		$productNode = $doc->createElementNS($deployment->getNamespace(), 'Product');
 
-		$productNode->appendChild($this->_buildTextNode($doc, 'RecordReference', Request::url($context->getPath(), 'monograph', 'view', array($submission->getId()))));
+		$request = Application::get()->getRequest();
+		$productNode->appendChild($this->_buildTextNode($doc, 'RecordReference', $request->url($context->getPath(), 'monograph', 'view', array($submission->getId()))));
 		$productNode->appendChild($this->_buildTextNode($doc, 'NotificationType', '03'));
 		$productNode->appendChild($this->_buildTextNode($doc, 'RecordSourceType', '04')); // Bibliographic agency
 
@@ -477,7 +478,7 @@ class MonographONIX30XmlFilter extends NativeExportFilter {
 		$publisherNode->appendChild($websiteNode);
 
 		$websiteNode->appendChild($this->_buildTextNode($doc, 'WebsiteRole', '18')); // 18 -> Publisher's B2C website
-		$websiteNode->appendChild($this->_buildTextNode($doc, 'WebsiteLink', Request::url($context->getPath())));
+		$websiteNode->appendChild($this->_buildTextNode($doc, 'WebsiteLink', $request->url($context->getPath())));
 
 		/* --- Publishing Dates --- */
 
@@ -654,7 +655,7 @@ class MonographONIX30XmlFilter extends NativeExportFilter {
 				$supplierNode->appendChild($supplierWebsiteNode);
 
 				$supplierWebsiteNode->appendChild($this->_buildTextNode($doc, 'WebsiteRole', '18')); // 18 -> Public website
-				$supplierWebsiteNode->appendChild($this->_buildTextNode($doc, 'WebsiteLink', Request::url($context->getPath())));
+				$supplierWebsiteNode->appendChild($this->_buildTextNode($doc, 'WebsiteLink', $request->url($context->getPath())));
 
 				unset($supplierNode);
 				unset($supplierWebsiteNode);

@@ -115,7 +115,8 @@ class NativeXmlPublicationFormatFilter extends NativeXmlRepresentationFilter {
 	 */
 	function _processProductNode($node, $deployment, &$representation) {
 
-		$onixDeployment = new Onix30ExportDeployment(Request::getContext(), Request::getUser());
+		$request = Application::get()->getRequest();
+		$onixDeployment = new Onix30ExportDeployment($request->getContext(), $request->getUser());
 
 		$representation->setProductCompositionCode($this->_extractTextFromNode($node, $onixDeployment, 'ProductComposition'));
 		$representation->setEntryKey($this->_extractTextFromNode($node, $onixDeployment, 'ProductForm'));
