@@ -150,6 +150,7 @@ class ContentBaseTestCase extends PKPContentBaseTestCase {
 	protected function sendToReview($type = 'External', $from = 'Submission') {
 		$this->click('css=[id^=' . ($type=='External'?'external':'internal') . 'Review-button-]');
 		$this->waitJQuery();
+		sleep(3);
 		if ($type == 'Internal' || $from != 'Internal') {
 			$this->waitForElementPresent('//form[@id=\'initiateReview\']//input[@type=\'checkbox\']');
 			$this->click('//form[@id=\'initiateReview\']//button[contains(., \'Send to ' . $this->escapeJS($type) . ' Review\')]');
