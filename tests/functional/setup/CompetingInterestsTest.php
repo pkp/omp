@@ -15,6 +15,10 @@
 
 import('tests.ContentBaseTestCase');
 
+use Facebook\WebDriver\WebDriverBy;
+use Facebook\WebDriver\Interactions\WebDriverActions;
+use Facebook\WebDriver\WebDriverExpectedCondition;
+
 class CompetingInterestsTest extends ContentBaseTestCase {
 	/** @var $fullTitle Full title of test submission */
 	static $fullTitle = 'Lost Tracks: Buffalo National Park, 1909-1939';
@@ -40,15 +44,13 @@ class CompetingInterestsTest extends ContentBaseTestCase {
 
 		// Submit review with no competing interests
 		$this->logIn('agallego');
-		$this->waitForElementPresent($selector='//a[contains(string(), ' . $this->quoteXpath(self::$fullTitle) . ')]');
-		$this->clickAndWait($selector);
+		$this->click('//a[contains(string(), ' . $this->quoteXpath(self::$fullTitle) . ')]');
 
 		$this->waitForElementPresent('id=reviewStep1Form');
-		$this->assertElementNotPresent('//label[@for=\'noCompetingInterests\']');
+		self::$driver->wait()->until(WebDriverExpectedCondition::invisibilityOfElementLocated(WebDriverBy::xpath('//label[@for="noCompetingInterests"]')));
 		$this->click('//input[@id=\'privacyConsent\']');
 		$this->clickLinkActionNamed('Accept Review, Continue to Step #2');
 		$this->clickLinkActionNamed('Continue to Step #3');
-		$this->waitForElementPresent('//*[@id="comments"]');
 		$this->typeTinyMCE('comments', 'This paper is suitable for publication.');
 		$this->clickLinkActionNamed('Submit Review');
 		$this->waitForElementPresent($selector='link=OK');
@@ -64,7 +66,7 @@ class CompetingInterestsTest extends ContentBaseTestCase {
 
 		// There should not be a visible CI statement.
 		$this->waitForElementPresent('//h3[text()=\'Reviewer Comments\']');
-		$this->assertElementNotPresent('//h3[text()=\'Competing Interests\']');
+		self::$driver->wait()->until(WebDriverExpectedCondition::invisibilityOfElementLocated(WebDriverBy::xpath('//h3[text()="Competing Interests"]')));
 		$this->logOut();
 	}
 
@@ -88,17 +90,14 @@ class CompetingInterestsTest extends ContentBaseTestCase {
 		// Submit review with competing interests
 		$competingInterests = 'I work for a competing company';
 		$this->logIn('alzacharia');
-		$this->waitForElementPresent($selector='//a[contains(string(), ' . $this->quoteXpath(self::$fullTitle) . ')]');
-		$this->clickAndWait($selector);
+		$this->click('//a[contains(string(), ' . $this->quoteXpath(self::$fullTitle) . ')]');
 
 		$this->waitForElementPresent('id=reviewStep1Form');
-		$this->assertElementPresent($selector='//input[@id=\'hasCompetingInterests\']');
-		$this->click($selector);
+		$this->click('//input[@id=\'hasCompetingInterests\']');
 		$this->typeTinyMCE('reviewerCompetingInterests', $competingInterests);
 		$this->click('//input[@id=\'privacyConsent\']');
 		$this->clickLinkActionNamed('Accept Review, Continue to Step #2');
 		$this->clickLinkActionNamed('Continue to Step #3');
-		$this->waitForElementPresent('//*[@id="comments"]');
 		$this->typeTinyMCE('comments', 'This paper is suitable for publication.');
 		$this->clickLinkActionNamed('Submit Review');
 		$this->waitForElementPresent($selector='link=OK');
@@ -114,7 +113,8 @@ class CompetingInterestsTest extends ContentBaseTestCase {
 
 		// There should be a visible CI statement.
 		$this->waitForElementPresent('//h3[text()=\'Reviewer Comments\']');
-		$this->assertElementPresent('//*[contains(.,\'' . $competingInterests . '\')]');
+		$this->waitForElementPresent('//p[contains(.,\'' . $competingInterests . '\')]');
+		$this->click('//form[@id="readReviewForm"]//a[@class="cancelButton"]');
 
 		// Disable the CI requirement again
 		$this->_setReviewerCIRequirement(true);
@@ -125,7 +125,7 @@ class CompetingInterestsTest extends ContentBaseTestCase {
 		$this->waitForElementPresent($selector='//span[contains(text(), \'Al Zacharia\')]/../../..//a[@title=\'Read this review\']');
 		$this->click($selector);
 		$this->waitForElementPresent('//h3[text()=\'Reviewer Comments\']');
-		$this->assertElementPresent('//*[contains(.,\'' . $competingInterests . '\')]');
+		$this->waitForElementPresent('//p[contains(.,\'' . $competingInterests . '\')]');
 
 		// Finished.
 		$this->logOut();
@@ -136,7 +136,10 @@ class CompetingInterestsTest extends ContentBaseTestCase {
 	 * @param $state boolean True to require a CI statement.
 	 */
 	private function _setReviewerCIRequirement($state) {
-		$this->clickAndWait('link=Workflow');
+		$actions = new WebDriverActions(self::$driver);
+		$actions->moveToElement($this->waitForElementPresent('//ul[@id="navigationPrimary"]//a[text()="Settings"]'))
+			->click($this->waitForElementPresent('//ul[@id="navigationPrimary"]//a[text()="Workflow"]'))
+			->perform();
 		$this->waitForElementPresent('link=Review');
 		$this->click('link=Review');
 		$this->waitForElementPresent('link=Reviewer Guidance');
@@ -146,7 +149,7 @@ class CompetingInterestsTest extends ContentBaseTestCase {
 		} else {
 			$this->typeTinyMCE('reviewerGuidance-competingInterests-control-en_US', '', true);
 		}
-		$this->click('css=#reviewer-guidance button:contains(\'Save\')');
-		$this->waitForTextPresent('Reviewer guidance has been updated.');
+		$this->click('//*[@id="reviewer-guidance"]//button[contains(text(),"Save")]');
+		$this->waitForElementPresent('//*[contains(text(),"Reviewer guidance has been updated.")]');
 	}
 }
