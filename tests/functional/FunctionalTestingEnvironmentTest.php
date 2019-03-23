@@ -19,16 +19,12 @@ import('lib.pkp.tests.WebTestCase');
 
 class FunctionalTestingEnvironmentTest extends WebTestCase {
 	/**
-	 * @see WebTestCase::getAffectedTables()
-	 */
-	protected function getAffectedTables() {
-		return array('sessions');
-	}
-
-	/**
 	 * Just login as admin user to test the testing environment.
 	 */
 	function testTestingEnvironment() {
 		$this->logIn('admin', 'admin');
+		sleep(1);
+		$this->logOut();
+		sleep(1);
 	}
 }
