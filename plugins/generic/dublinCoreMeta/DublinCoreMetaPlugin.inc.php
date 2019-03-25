@@ -134,7 +134,7 @@ class DublinCoreMetaPlugin extends GenericPlugin {
 		$monograph = $args[1];
 		$publicationFormat = $args[2];
 		$submissionFile = $args[3];
-		$press = Request::getContext();
+		$press = $request->getContext();
 
 		$templateMgr = TemplateManager::getManager($request);
 		$chapter = $templateMgr->getTemplateVars('chapter');

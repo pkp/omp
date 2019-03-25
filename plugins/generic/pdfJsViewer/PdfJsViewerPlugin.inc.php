@@ -92,7 +92,8 @@ class PdfJsViewerPlugin extends GenericPlugin {
 		$submissionFile =& $params[3];
 		$inline =& $params[4];
 
-		if ($submissionFile->getFileType() == 'application/pdf' && Request::getUserVar('inline')) {
+		$request = Application::get()->getRequest();
+		if ($submissionFile->getFileType() == 'application/pdf' && $request->getUserVar('inline')) {
 			// Turn on the inline flag to ensure that the content
 			// disposition header doesn't foil the PDF embedding
 			// plugin.

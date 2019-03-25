@@ -149,7 +149,8 @@ class NativeXmlMonographFilter extends NativeXmlSubmissionFilter {
 		assert($importFilter); // There should be a filter
 
 		$existingDeployment = $this->getDeployment();
-		$onixDeployment = new Onix30ExportDeployment(Request::getContext(), Request::getUser());
+		$request = Application::get()->getRequest();
+		$onixDeployment = new Onix30ExportDeployment($request->getContext(), $request->getUser());
 		$onixDeployment->setSubmission($existingDeployment->getSubmission());
 		$onixDeployment->setFileDBIds($existingDeployment->getFileDBIds());
 		$importFilter->setDeployment($onixDeployment);

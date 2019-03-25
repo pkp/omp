@@ -150,7 +150,8 @@ class Dc11SchemaPublicationFormatAdapter extends MetadataDataObjectAdapter {
 
 		// Identifier: URL
 		if (is_a($monograph, 'PublishedMonograph')) {
-			$dc11Description->addStatement('dc:identifier', Request::url($press->getPath(), 'catalog', 'book', array($monograph->getId())));
+			$request = Application::get()->getRequest();
+			$dc11Description->addStatement('dc:identifier', $request->url($press->getPath(), 'catalog', 'book', array($monograph->getId())));
 		}
 
 		// Public idntifiers (e.g. DOI, URN)

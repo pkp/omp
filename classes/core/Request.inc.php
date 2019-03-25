@@ -23,15 +23,9 @@ class Request extends PKPRequest {
 	 * Deprecated
 	 * @see PKPPageRouter::getRequestedContextPath()
 	 */
-	function getRequestedPressPath() {
-		static $press;
-		$_this =& PKPRequest::_checkThis();
-
-		if (!isset($press)) {
-			$press = $_this->_delegateToRouter('getRequestedContextPath', 1);
-			HookRegistry::call('Request::getRequestedPressPath', array(&$press));
-		}
-
+	public function getRequestedPressPath() {
+		$press = $this->_delegateToRouter('getRequestedContextPath', 1);
+		HookRegistry::call('Request::getRequestedPressPath', array(&$press));
 		return $press;
 	}
 
@@ -39,9 +33,8 @@ class Request extends PKPRequest {
 	 * Deprecated
 	 * @see PKPPageRouter::getContext()
 	 */
-	function &getPress() {
-		$_this =& PKPRequest::_checkThis();
-		$returner = $_this->_delegateToRouter('getContext', 1);
+	public function &getPress() {
+		$returner = $this->_delegateToRouter('getContext', 1);
 		return $returner;
 	}
 
@@ -49,15 +42,13 @@ class Request extends PKPRequest {
 	 * Deprecated
 	 * @see PKPPageRouter::getRequestedContextPath()
 	 */
-	function getRequestedContextPath($contextLevel = null) {
-		$_this =& PKPRequest::_checkThis();
-
+	public function getRequestedContextPath($contextLevel = null) {
 		// Emulate the old behavior of getRequestedContextPath for
 		// backwards compatibility.
 		if (is_null($contextLevel)) {
-			return $_this->_delegateToRouter('getRequestedContextPaths');
+			return $this->_delegateToRouter('getRequestedContextPaths');
 		} else {
-			return array($_this->_delegateToRouter('getRequestedContextPath', $contextLevel));
+			return array($this->_delegateToRouter('getRequestedContextPath', $contextLevel));
 		}
 	}
 
@@ -65,9 +56,8 @@ class Request extends PKPRequest {
 	 * Deprecated
 	 * @see PKPPageRouter::getContext()
 	 */
-	function &getContext($level = 1) {
-		$_this =& PKPRequest::_checkThis();
-		$returner = $_this->_delegateToRouter('getContext', $level);
+	public function &getContext($level = 1) {
+		$returner = $this->_delegateToRouter('getContext', $level);
 		return $returner;
 	}
 
@@ -75,9 +65,8 @@ class Request extends PKPRequest {
 	 * Deprecated
 	 * @see PKPPageRouter::getContextByName()
 	 */
-	function &getContextByName($contextName) {
-		$_this =& PKPRequest::_checkThis();
-		$returner = $_this->_delegateToRouter('getContextByName', $contextName);
+	public function &getContextByName($contextName) {
+		$returner = $this->_delegateToRouter('getContextByName', $contextName);
 		return $returner;
 	}
 
@@ -85,10 +74,9 @@ class Request extends PKPRequest {
 	 * Deprecated
 	 * @see PKPPageRouter::url()
 	 */
-	function url($pressPath = null, $page = null, $op = null, $path = null,
+	public function url($pressPath = null, $page = null, $op = null, $path = null,
 			$params = null, $anchor = null, $escape = false) {
-		$_this =& PKPRequest::_checkThis();
-		return $_this->_delegateToRouter('url', $pressPath, $page, $op, $path,
+		return $this->_delegateToRouter('url', $pressPath, $page, $op, $path,
 			$params, $anchor, $escape);
 	}
 
@@ -96,15 +84,14 @@ class Request extends PKPRequest {
 	 * Deprecated
 	 * @see PageRouter::redirectHome()
 	 */
-	function redirectHome() {
-		$_this =& PKPRequest::_checkThis();
-		return $_this->_delegateToRouter('redirectHome');
+	public function redirectHome() {
+		return $this->_delegateToRouter('redirectHome');
 	}
 
 	/**
 	 * @see PKPRequest::getUserAgent()
 	 */
-	function getUserAgent() {
+	public function getUserAgent() {
 		static $userAgent;
 		$userAgent = parent::getUserAgent();
 

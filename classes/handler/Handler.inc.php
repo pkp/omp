@@ -17,13 +17,6 @@ import('lib.pkp.classes.handler.PKPHandler');
 
 class Handler extends PKPHandler {
 	/**
-	 * Constructor
-	 */
-	function __construct() {
-		parent::__construct();
-	}
-
-	/**
 	 * Returns a "best-guess" press, based in the request data, if
 	 * a request needs to have one in its context but may be in a site-level
 	 * context as specified in the URL.
