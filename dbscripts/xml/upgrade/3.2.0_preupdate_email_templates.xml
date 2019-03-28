@@ -8,8 +8,9 @@
   * Copyright (c) 2003-2018 John Willinsky
   * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
   *
-  * Update the email templates tables to remove unused columns and add a new
-	* email_id column and primary key.
+  * Update the email templates tables to remove unused columns, add a new
+	* email_id column and primary key, and update outdated role ids for the
+	* default templates.
   *
   -->
 
@@ -21,12 +22,21 @@
 		</query>
 		<query>
 			UPDATE email_templates_data as etd
-			SET email_id = (
-				SELECT email_id
+			SET etd.email_id = (
+				SELECT et.email_id
 				FROM email_templates as et
 				WHERE etd.email_key = et.email_key
 					AND etd.assoc_type = et.assoc_type
 					AND etd.assoc_id = et.assoc_id
+			)
+		</query>
+		<query>
+			CREATE TABLE email_templates_settings (
+				email_id INT,
+				locale VARCHAR(14) NOT NULL DEFAULT "",
+				setting_name VARCHAR(255) NOT NULL,
+				setting_value text NULL,
+				PRIMARY KEY (email_id,locale,setting_name)
 			)
 		</query>
 		<query>
@@ -59,6 +69,26 @@
 			ALTER TABLE email_templates
 			DROP COLUMN assoc_type,
 			DROP COLUMN assoc_id
+		</query>
+		<query>
+			UPDATE email_templates_default
+			SET from_role_id=16
+			WHERE from_role_id=17 OR from_role_id=256 OR from_role_id=512
+		</query>
+		<query>
+			UPDATE email_templates_default
+			SET to_role_id=16
+			WHERE to_role_id=17 OR to_role_id=256 OR to_role_id=512
+		</query>
+		<query>
+			UPDATE email_templates_default
+			SET from_role_id=4097
+			WHERE from_role_id=768 OR from_role_id=8192
+		</query>
+		<query>
+			UPDATE email_templates_default
+			SET to_role_id=4097
+			WHERE to_role_id=768 OR to_role_id=8192
 		</query>
 	</sql>
 </data>

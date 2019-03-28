@@ -41,6 +41,10 @@
 		<data file="dbscripts/xml/upgrade/3.1.2_preupdate_pub_id.xml" condition="return $installer->columnExists('published_submissions', 'pub_id');" />
 	</upgrade>
 
+	<upgrade minversion="0.9.9.0" maxversion="3.1.2.9">
+		<data file="dbscripts/xml/upgrade/3.2.0_preupdate_email_templates.xml" />
+	</upgrade>
+
 	<!-- PKP schema components -->
 	<schema file="lib/pkp/xml/schema/common.xml" />
 	<schema file="lib/pkp/xml/schema/scheduledTasks.xml" />
@@ -136,7 +140,6 @@
 		<code function="migrateSiteLocales" />
 		<code function="migrateSidebarBlocks" />
 		<code function="migrateMetadataSettings" />
-		<data file="dbscripts/xml/upgrade/3.2.0_email_templates.xml" />
 		<note file="docs/release-notes/README-3.2.0" />
 	</upgrade>
 
