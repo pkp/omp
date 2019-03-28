@@ -24,7 +24,7 @@ class CatalogListPanel extends \PKP\components\listPanels\ListPanel {
 	public function getConfig() {
 		\AppLocale::requireComponents(LOCALE_COMPONENT_APP_SUBMISSION);
 
-		$request = Application::get()->getRequest();
+		$request = \Application::get()->getRequest();
 		$context = $request->getContext();
 
 		list($catalogSortBy, $catalogSortDir) = explode('-', $context->getData('catalogSortOption'));
