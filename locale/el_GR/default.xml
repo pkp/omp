@@ -39,9 +39,9 @@
 	<message key="default.groups.name.productionEditor">Επιμελητής Παραγωγής</message>
 	<message key="default.groups.plural.productionEditor">Επιμελητές Παραγωγής</message>
 	<message key="default.groups.abbrev.productionEditor">ProdE</message>
-	<message key="default.groups.name.seriesEditor">Επιμελητής Σειράς</message>
-	<message key="default.groups.plural.seriesEditor">Επιμελητές Σειράς</message>
-	<message key="default.groups.abbrev.seriesEditor">AcqE</message>
+	<message key="default.groups.name.sectionEditor">Επιμελητής Σειράς</message>
+	<message key="default.groups.plural.sectionEditor">Επιμελητές Σειράς</message>
+	<message key="default.groups.abbrev.sectionEditor">AcqE</message>
 	<message key="default.groups.name.copyeditor">Επιμελητής Κειμένων</message>
 	<message key="default.groups.plural.copyeditor">Επιμελητές Κειμένων</message>
 	<message key="default.groups.abbrev.copyeditor">CE</message>
