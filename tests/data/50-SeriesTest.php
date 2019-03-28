@@ -59,13 +59,8 @@ class SeriesTest extends WebTestCase {
 		$this->type('css=[id^=path-]', 'pe');
 
 		// Add a Series Editor (Stephanie Berardo)
-<<<<<<< HEAD
 		$this->waitForElementPresent($selector='//*[contains(@class,"pkpListPanelItem") and contains(text(),"Stephanie Berardo")]');
 		$this->click($selector);
-=======
-		$this->waitForElementPresent($selector='css=.pkpListPanelItem:contains(\'Stephanie Berardo\')');
-		$this->clickAt($selector);
->>>>>>> c0fb6462d... pkp/pkp-lib#2906 Complete integration of EmailTemplatesListPanel
 		$this->click('//form[@id=\'seriesForm\']//button[text()=\'Save\']');
 		self::$driver->wait()->until(WebDriverExpectedCondition::invisibilityOfElementLocated(WebDriverBy::cssSelector('div.pkp_modal_panel')));
 
