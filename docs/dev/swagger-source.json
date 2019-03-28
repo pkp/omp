@@ -710,14 +710,14 @@
 				"parameters": [
 					{
 						"name": "isEnabled",
-						"description": "Filter results by enabled/disabled email templates. Any truthy or falsey value will get enabled/disabled email templates. Leave this parameter out to get all email templates.",
+						"description": "Filter results by enabled/disabled email templates. Any truthy or falsey value will get enabled/disabled email templates.",
 						"in": "query",
 						"required": false,
 						"type": "string"
 					},
 					{
 						"name": "isCustom",
-						"description": "Filter results by those with or without a default template. A truthy value will return only templates with a key that does not match one of the default templates. A falsey value will return only templates with a key that matches on of the default templates. Note that a default template may be customized, but this does not qualify for `isCustom`. Only completely custom templates, without no system default, will be returned when `isCustom` is `true`. Leave this parameter out to get all email templates.",
+						"description": "Filter results by those with or without a default template. A truthy value will return only templates with a key that does not match one of the default templates. A falsey value will return only templates with a key that matches on of the default templates. Note that a default template may be customized, but this does not qualify for `isCustom`. Only completely custom templates, not a modified default template, will be returned when `isCustom` is `true`.",
 						"in": "query",
 						"required": false,
 						"type": "string"
@@ -837,7 +837,7 @@
 						}
 					},
 					"403": {
-						"description": "You do not have permission to view this email template.",
+						"description": "You do not have permission to view email templates.",
 						"schema": {
 							"$ref": "#/definitions/ErrorResponse"
 						}
@@ -929,6 +929,25 @@
 						"description": "The requested email template could not be found.",
 						"schema": {
 							"$ref": "#/definitions/ErrorResponse"
+						}
+					}
+				}
+			},
+			"/emailTemplates/restoreDefaults": {
+				"delete": {
+					"tags": [
+						"Email Templates"
+					],
+					"summary": "Delete custom templates and reset all templates to their default settings.",
+					"responses": {
+						"200": {
+							"description": "A list of template keys which were deleted or reset.",
+							"schema": {
+								"type": "array",
+								"items": {
+									"type": "string"
+								}
+							}
 						}
 					}
 				}
