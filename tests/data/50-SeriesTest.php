@@ -49,7 +49,7 @@ class SeriesTest extends WebTestCase {
 		$this->click($selector);
 
 		// Verify resulting grid row
-		$this->waitForElementPresent('//*[@id="cell-1-editors"]//span[contains(text(),"David Buskins")]');
+		$this->waitForElementPresent('//*[contains(@class,"pkpListPanelItem") and contains(text(),"David Buskins")]');
 		self::$driver->wait()->until(WebDriverExpectedCondition::invisibilityOfElementLocated(WebDriverBy::cssSelector('div.pkp_modal_panel')));
 
 		// Create a new "Political Economy" series
