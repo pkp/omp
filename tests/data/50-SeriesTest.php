@@ -46,10 +46,9 @@ class SeriesTest extends WebTestCase {
 		$this->type('css=[id^=path-]', 'lis');
 
 		// Add Series Editor (David Buskins)
+		$this->waitForElementPresent($selector='//*[contains(@class,"pkpListPanelItem") and contains(text(),"David Buskins")]');
 		$this->click($selector);
-
-		// Verify resulting grid row
-		$this->waitForElementPresent('//*[contains(@class,"pkpListPanelItem") and contains(text(),"David Buskins")]');
+		$this->click('//form[@id=\'seriesForm\']//button[text()=\'Save\']');
 		self::$driver->wait()->until(WebDriverExpectedCondition::invisibilityOfElementLocated(WebDriverBy::cssSelector('div.pkp_modal_panel')));
 
 		// Create a new "Political Economy" series
