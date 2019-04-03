@@ -156,9 +156,10 @@ class ContentBaseTestCase extends PKPContentBaseTestCase {
 			$this->waitForElementPresent('//form[@id=\'initiateReview\']//input[@type=\'checkbox\']');
 			$this->click('//form[@id=\'initiateReview\']//button[contains(., \'Send to ' . $this->escapeJS($type) . ' Review\')]');
 		} else { // External review from Internal review
+			sleep(2);
 			$this->waitForElementPresent('css=[id^=component-grid-files-attachment-editorselectablereviewattachmentsgrid-]');
-			$this->waitForElementPresent('css=[id^=component-grid-files-review-selectablereviewrevisionsgrid-]');
 			$this->click('//button[contains(.,"Next:")]');
+			$this->waitForElementPresent('css=[id^=component-grid-files-review-selectablereviewrevisionsgrid-]');
 			$this->click('//form[@id=\'promote\']//button[contains(., \'Record Editorial Decision\')]');
 		}
 		self::$driver->wait()->until(WebDriverExpectedCondition::invisibilityOfElementLocated(WebDriverBy::cssSelector('div.pkp_modal_panel')));
