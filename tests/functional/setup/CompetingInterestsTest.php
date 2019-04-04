@@ -115,6 +115,7 @@ class CompetingInterestsTest extends ContentBaseTestCase {
 		$this->waitForElementPresent('//h3[text()=\'Reviewer Comments\']');
 		$this->waitForElementPresent('//p[contains(.,\'' . $competingInterests . '\')]');
 		$this->click('//form[@id="readReviewForm"]//a[@class="cancelButton"]');
+		self::$driver->wait()->until(WebDriverExpectedCondition::invisibilityOfElementLocated(WebDriverBy::cssSelector('div.pkp_modal_panel')));
 
 		// Disable the CI requirement again
 		$this->_setReviewerCIRequirement(true);
