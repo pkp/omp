@@ -97,7 +97,7 @@ class ContentBaseTestCase extends PKPContentBaseTestCase {
 			foreach ($chapter['contributors'] as $i => $contributor) {
 				sleep(5);
 				$this->click('css=[id^=component-listbuilder-users-chapterauthorlistbuilder-addItem-button-]');
-				sleep(1);
+				sleep(2);
 				$this->waitForElementPresent('(//div[@id="chapterAuthorContainer"]//select[@name="newRowId[name]"])[' . ($i+1) . ']');
 				$this->select('(//div[@id="chapterAuthorContainer"]//select[@name="newRowId[name]"])[' . ($i+1) . ']', 'label=' . $contributor);
 			}
