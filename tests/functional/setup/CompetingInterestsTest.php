@@ -53,16 +53,14 @@ class CompetingInterestsTest extends ContentBaseTestCase {
 		$this->clickLinkActionNamed('Continue to Step #3');
 		$this->typeTinyMCE('comments', 'This paper is suitable for publication.');
 		$this->clickLinkActionNamed('Submit Review');
-		$this->waitForElementPresent($selector='link=OK');
-		$this->click($selector);
+		$this->click('link=OK');
 		$this->waitForElementPresent('//h2[contains(text(), \'Review Submitted\')]');
 
 		$this->logOut();
 
 		// Find and view the review
 		$this->findSubmissionAsEditor('dbarnes', null, self::$fullTitle);
-		$this->waitForElementPresent($selector='//span[contains(text(), \'Adela Gallego\')]/../../..//a[@title=\'Read this review\']');
-		$this->click($selector);
+		$this->click('//span[contains(text(), \'Adela Gallego\')]/../../..//a[@title=\'Read this review\']');
 
 		// There should not be a visible CI statement.
 		$this->waitForElementPresent('//h3[text()=\'Reviewer Comments\']');
@@ -100,16 +98,14 @@ class CompetingInterestsTest extends ContentBaseTestCase {
 		$this->clickLinkActionNamed('Continue to Step #3');
 		$this->typeTinyMCE('comments', 'This paper is suitable for publication.');
 		$this->clickLinkActionNamed('Submit Review');
-		$this->waitForElementPresent($selector='link=OK');
-		$this->click($selector);
+		$this->click('link=OK');
 		$this->waitForElementPresent('//h2[contains(text(), \'Review Submitted\')]');
 
 		$this->logOut();
 
 		// Find and view the review
 		$this->findSubmissionAsEditor('dbarnes', null, self::$fullTitle);
-		$this->waitForElementPresent($selector='//span[contains(text(), \'Al Zacharia\')]/../../..//a[@title=\'Read this review\']');
-		$this->click($selector);
+		$this->click('//span[contains(text(), \'Al Zacharia\')]/../../..//a[@title=\'Read this review\']');
 
 		// There should be a visible CI statement.
 		$this->waitForElementPresent('//h3[text()=\'Reviewer Comments\']');
@@ -123,8 +119,7 @@ class CompetingInterestsTest extends ContentBaseTestCase {
 
 		// The CI statement entered previously should still be visible.
 		$this->findSubmissionAsEditor('dbarnes', null, self::$fullTitle);
-		$this->waitForElementPresent($selector='//span[contains(text(), \'Al Zacharia\')]/../../..//a[@title=\'Read this review\']');
-		$this->click($selector);
+		$this->click('//span[contains(text(), \'Al Zacharia\')]/../../..//a[@title=\'Read this review\']');
 		$this->waitForElementPresent('//h3[text()=\'Reviewer Comments\']');
 		$this->waitForElementPresent('//p[contains(.,\'' . $competingInterests . '\')]');
 
@@ -143,7 +138,6 @@ class CompetingInterestsTest extends ContentBaseTestCase {
 			->perform();
 		$this->waitForElementPresent('link=Review');
 		$this->click('link=Review');
-		$this->waitForElementPresent('link=Reviewer Guidance');
 		$this->click('link=Reviewer Guidance');
 		if ($state) {
 			$this->typeTinyMCE('reviewerGuidance-competingInterests-control-en_US', 'Reviewer competing interests disclosure.', true);
