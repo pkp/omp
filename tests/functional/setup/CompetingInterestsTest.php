@@ -95,9 +95,12 @@ class CompetingInterestsTest extends ContentBaseTestCase {
 		$this->typeTinyMCE('reviewerCompetingInterests', $competingInterests);
 		$this->click('//input[@id=\'privacyConsent\']');
 		$this->clickLinkActionNamed('Accept Review, Continue to Step #2');
+		sleep(5);
 		$this->clickLinkActionNamed('Continue to Step #3');
+		sleep(5);
 		$this->typeTinyMCE('comments', 'This paper is suitable for publication.');
 		$this->clickLinkActionNamed('Submit Review');
+		sleep(2);
 		$this->click('link=OK');
 		$this->waitForElementPresent('//h2[contains(text(), \'Review Submitted\')]');
 
