@@ -55,7 +55,7 @@ class CompetingInterestsTest extends ContentBaseTestCase {
 		$this->clickLinkActionNamed('Continue to Step #3');
 		$this->typeTinyMCE('comments', 'This paper is suitable for publication.');
 		$this->clickLinkActionNamed('Submit Review');
-		$this->click('link=OK');
+		$this->click('//button[contains(text(),"OK")]');
 		$this->waitForElementPresent('//h2[contains(text(), \'Review Submitted\')]');
 
 		$this->logOut();
@@ -103,7 +103,7 @@ class CompetingInterestsTest extends ContentBaseTestCase {
 		$this->typeTinyMCE('comments', 'This paper is suitable for publication.');
 		$this->clickLinkActionNamed('Submit Review');
 		sleep(2);
-		$this->click('link=OK');
+		$this->click('//button[contains(text(),"OK")]');
 		$this->waitForElementPresent('//h2[contains(text(), \'Review Submitted\')]');
 
 		$this->logOut();
