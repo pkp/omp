@@ -124,8 +124,7 @@ El envío &quot;{$submissionTitle}&quot; a {$contextName} se le asignó para lle
 URL de envío: {$submissionUrl}<br />
 Nombre de usuario/a: {$editorUsername}<br />
 <br />
-Gracias,<br />
-{$editorialContactSignature}]]></body>
+Gracias,]]></body>
 		<description>Este correo electrónico notifica al editor/a de la serie que el editor/a le asignó la tarea de supervisar un envío a lo largo del proceso de edición. Proporciona información sobre el envío y sobre cómo acceder al sitio de la publicación.</description>
 	</email_text>
 	<email_text key="REVIEW_REQUEST">
@@ -199,9 +198,7 @@ Directrices para la revisión<br />
 <br />
 Hemos decidido cancelar nuestra solicitud de que usted revise el envío &quot;{$submissionTitle}&quot; para {$contextName}. Pedimos disculpas por cualquier inconveniente que esta decisión pueda causar y esperamos poder contar con usted para participar en este proceso de revisión en el futuro.<br />
 <br />
-Si tiene alguna duda, puede ponerse en contacto conmigo.<br />
-<br />
-{$editorialContactSignature}]]></body>
+Si tiene alguna duda, puede ponerse en contacto conmigo.]]></body>
 		<description>El editor/a de la serie envía este correo al revisor/a que inició el proceso de revisión de un envío para notificarle que el mismo se canceló.</description>
 	</email_text>
 	<email_text key="REVIEW_CONFIRM">
@@ -235,9 +232,7 @@ He completado la revisión de &quot;{$submissionTitle}&quot; para {$contextName}
 		<subject>Acuse de recibo de la revisión del manuscrito</subject>
 		<body><![CDATA[{$reviewerName}:<br />
 <br />
-Gracias por completar la revisión del envío &quot;{$submissionTitle}&quot; para {$contextName}. Agradecemos su aportación a la calidad de los trabajos que publicamos.<br />
-<br />
-{$editorialContactSignature}]]></body>
+Gracias por completar la revisión del envío &quot;{$submissionTitle}&quot; para {$contextName}. Agradecemos su aportación a la calidad de los trabajos que publicamos.]]></body>
 		<description>El editor/a de la serie envía este correo electrónico para confirmar la recepción de una revisión completada y dar las gracias al revisor/a por su contribución.</description>
 	</email_text>
 	<email_text key="REVIEW_REMIND">
@@ -307,10 +302,7 @@ Hemos tomado una decisión con respecto al envío que realizó a {$contextName},
 Nuestra decisión es:<br />
 <br />
 URL del manuscrito: {$submissionUrl}<br />
-Nombre de usuario/a: {$authorUsername}<br />
-<br />
-{$editorialContactSignature}<br />
-]]></body>
+Nombre de usuario/a: {$authorUsername}]]></body>
 		<description>El editor/a o el editor/a de la serie envía este correo electrónico a un autor/a para notificar la decisión final con respecto a su envío.</description>
 	</email_text>
 	<email_text key="EDITOR_DECISION_SEND_TO_EXTERNAL">
@@ -322,10 +314,7 @@ Hemos tomado una decisión con respecto al envío que realizó a {$contextName},
 Nuestra decisión es:<br />
 <br />
 URL del manuscrito: {$submissionUrl}<br />
-Nombre de usuario/a: {$authorUsername}<br />
-<br />
-{$editorialContactSignature}<br />
-]]></body>
+Nombre de usuario/a: {$authorUsername}]]></body>
 		<description>El editor/a o el editor/a de la serie envía este correo electrónico a un autor/a para notificar la remisión de su envío a una revisión externa.</description>
 	</email_text>
 	<email_text key="EDITOR_DECISION_SEND_TO_PRODUCTION">
@@ -335,10 +324,7 @@ Nombre de usuario/a: {$authorUsername}<br />
 La edición de su manuscrito, &quot;{$submissionTitle}&quot;, se completó.  Se procede al envío para producción.<br />
 <br />
 URL del manuscrito: {$submissionUrl}<br />
-Nombre de usuario/a: {$authorUsername}<br />
-<br />
-{$editorialContactSignature}<br />
-]]></body>
+Nombre de usuario/a: {$authorUsername}]]></body>
 		<description>El editor/a o el editor/a de la serie envía este correo electrónico a un autor/a para notificar la remisión de su envío para producción.</description>
 	</email_text>
 	<email_text key="EDITOR_DECISION_REVISIONS">
@@ -350,10 +336,7 @@ Hemos tomado una decisión con respecto al envío que realizó a {$contextName},
 Nuestra decisión es:<br />
 <br />
 URL del manuscrito: {$submissionUrl}<br />
-Nombre de usuario/a: {$authorUsername}<br />
-<br />
-{$editorialContactSignature}<br />
-]]></body>
+Nombre de usuario/a: {$authorUsername}]]></body>
 		<description>El editor/a o el editor/a de la serie envía este correo electrónico a un autor/a para notificar la decisión final con respecto a su envío.</description>
 	</email_text>
 	<email_text key="EDITOR_DECISION_RESUBMIT">
@@ -365,10 +348,7 @@ Hemos tomado una decisión con respecto al envío que realizó a {$contextName},
 Nuestra decisión es:<br />
 <br />
 URL del manuscrito: {$submissionUrl}<br />
-Nombre de usuario/a: {$authorUsername}<br />
-<br />
-{$editorialContactSignature}<br />
-]]></body>
+Nombre de usuario/a: {$authorUsername}]]></body>
 		<description>El editor/a o el editor/a de la serie envía este correo electrónico a un autor/a para notificar la decisión final con respecto a su envío.</description>
 	</email_text>
 	<email_text key="EDITOR_DECISION_DECLINE">
@@ -380,10 +360,7 @@ Hemos tomado una decisión con respecto al envío que realizó a {$contextName},
 Nuestra decisión es:<br />
 <br />
 URL del manuscrito: {$submissionUrl}<br />
-Nombre de usuario/a: {$authorUsername}<br />
-<br />
-{$editorialContactSignature}<br />
-]]></body>
+Nombre de usuario/a: {$authorUsername}]]></body>
 		<description>El editor/a o el editor/a de la serie envía este correo electrónico a un autor/a para notificar la decisión final con respecto a su envío.</description>
 	</email_text>
 	<email_text key="COPYEDIT_REQUEST">
@@ -400,9 +377,7 @@ Solicito que realice la corrección del original &quot;{$submissionTitle}&quot; 
 <br />
 {$contextName} URL: {$contextUrl}<br />
 URL del envío: {$submissionCopyeditingUrl}<br />
-Nombre de usuario/a: {$copyeditorUsername}<br />
-<br />
-{$editorialContactSignature}]]></body>
+Nombre de usuario/a: {$copyeditorUsername}]]></body>
 		<description>El editor/a de la serie envía este correo electrónico al corrector/a del envío para solicitar que se inicie el proceso de corrección. Proporciona información sobre el envío y cómo acceder al mismo.</description>
 	</email_text>
 	<email_text key="LAYOUT_REQUEST">
@@ -418,9 +393,7 @@ Es necesario extraer galeradas del envío &quot;{$submissionTitle}&quot; a {$con
 URL del envío: {$submissionUrl}<br />
 Nombre de usuario/a: {$layoutEditorUsername}<br />
 <br />
-Si no puede realizar esta tarea en este momento o tiene alguna duda, póngase en contacto conmigo. Gracias por su contribución a la publicación.<br />
-<br />
-{$editorialContactSignature}]]></body>
+Si no puede realizar esta tarea en este momento o tiene alguna duda, póngase en contacto conmigo. Gracias por su contribución a la publicación.]]></body>
 		<description>El editor/a de la serie envía este correo electrónico al maquetador/a para notificar que se les asignó la tarea de llevar a cabo la maquetación de un envío. Proporciona información sobre el envío y cómo acceder al mismo.</description>
 	</email_text>
 	<email_text key="LAYOUT_COMPLETE">

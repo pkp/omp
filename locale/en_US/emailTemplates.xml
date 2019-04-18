@@ -125,8 +125,7 @@ The submission, &quot;{$submissionTitle},&quot; to {$contextName} has been assig
 Submission URL: {$submissionUrl}<br />
 Username: {$editorUsername}<br />
 <br />
-Thank you,<br />
-{$editorialContactSignature}]]></body>
+Thank you,]]></body>
 		<description>This email notifies a Series Editor that the Editor has assigned them the task of overseeing a submission through the editing process. It provides information about the submission and how to access the press site.</description>
 	</email_text>
 	<email_text key="REVIEW_REQUEST">
@@ -248,9 +247,7 @@ Review Guidelines<br />
 <br />
 We have decided at this point to cancel our request for you to review the submission, &quot;{$submissionTitle},&quot; for {$contextName}. We apologize for any inconvenience this may cause you and hope that we will be able to call on you to assist with this review process in the future.<br />
 <br />
-If you have any questions, please contact me.<br />
-<br />
-{$editorialContactSignature}]]></body>
+If you have any questions, please contact me.]]></body>
 		<description>This email is sent by the Series Editor to a Reviewer who has a submission review in progress to notify them that the review has been cancelled.</description>
 	</email_text>
 	<email_text key="REVIEW_CONFIRM">
@@ -275,9 +272,7 @@ I am afraid that at this time I am unable to review the submission, &quot;{$subm
 		<subject>Manuscript Review Acknowledgement</subject>
 		<body><![CDATA[{$reviewerName}:<br />
 <br />
-Thank you for completing the review of the submission, &quot;{$submissionTitle},&quot; for {$contextName}. We appreciate your contribution to the quality of the work that we publish.<br />
-<br />
-{$editorialContactSignature}]]></body>
+Thank you for completing the review of the submission, &quot;{$submissionTitle},&quot; for {$contextName}. We appreciate your contribution to the quality of the work that we publish.]]></body>
 		<description>This email is sent by a Series Editor to confirm receipt of a completed review and thank the reviewer for their contributions.</description>
 	</email_text>
 	<email_text key="REVIEW_REMIND">
@@ -348,10 +343,7 @@ We have reached a decision regarding your submission to {$contextName}, &quot;{$
 <br />
 Our decision is to:<br />
 <br />
-Manuscript URL: {$submissionUrl}<br />
-<br />
-{$editorialContactSignature}<br />
-]]></body>
+Manuscript URL: {$submissionUrl}]]></body>
 		<description>This email from the Editor or Series Editor to an Author notifies them of a final decision regarding their submission.</description>
 	</email_text>
 	<email_text key="EDITOR_DECISION_SEND_TO_EXTERNAL">
@@ -362,10 +354,7 @@ We have reached a decision regarding your submission to {$contextName}, &quot;{$
 <br />
 Our decision is to:<br />
 <br />
-Manuscript URL: {$submissionUrl}<br />
-<br />
-{$editorialContactSignature}<br />
-]]></body>
+Manuscript URL: {$submissionUrl}]]></body>
 		<description>This email from the Editor or Series Editor to an Author notifies them that their submission is being sent to an external review.</description>
 	</email_text>
 	<email_text key="EDITOR_DECISION_SEND_TO_PRODUCTION">
@@ -374,10 +363,7 @@ Manuscript URL: {$submissionUrl}<br />
 <br />
 The editing of your manuscript, &quot;{$submissionTitle},&quot; is complete.  We are now sending it to production.<br />
 <br />
-Manuscript URL: {$submissionUrl}<br />
-<br />
-{$editorialContactSignature}<br />
-]]></body>
+Manuscript URL: {$submissionUrl}]]></body>
 		<description>This email from the Editor or Series Editor to an Author notifies them that their submission is being sent to production.</description>
 	</email_text>
 	<email_text key="EDITOR_DECISION_REVISIONS">
@@ -388,10 +374,7 @@ We have reached a decision regarding your submission to {$contextName}, &quot;{$
 <br />
 Our decision is to:<br />
 <br />
-Manuscript URL: {$submissionUrl}<br />
-<br />
-{$editorialContactSignature}<br />
-]]></body>
+Manuscript URL: {$submissionUrl}]]></body>
 		<description>This email from the Editor or Series Editor to an Author notifies them of a final decision regarding their submission.</description>
 	</email_text>
 	<email_text key="EDITOR_DECISION_RESUBMIT">
@@ -402,10 +385,7 @@ We have reached a decision regarding your submission to {$contextName}, &quot;{$
 <br />
 Our decision is to:<br />
 <br />
-Manuscript URL: {$submissionUrl}<br />
-<br />
-{$editorialContactSignature}<br />
-]]></body>
+Manuscript URL: {$submissionUrl}]]></body>
 		<description>This email from the Editor or Series Editor to an Author notifies them of a final decision regarding their submission.</description>
 	</email_text>
 	<email_text key="EDITOR_DECISION_DECLINE">
@@ -416,20 +396,14 @@ We have reached a decision regarding your submission to {$contextName}, &quot;{$
 <br />
 Our decision is to:<br />
 <br />
-Manuscript URL: {$submissionUrl}<br />
-<br />
-{$editorialContactSignature}<br />
-]]></body>
+Manuscript URL: {$submissionUrl}]]></body>
 		<description>This email from the Editor or Series Editor to an Author notifies them of a final decision regarding their submission.</description>
 	</email_text>
 	<email_text key="EDITOR_RECOMMENDATION">
 		<subject>Editor Recommendation</subject>
 		<body><![CDATA[{$editors}:<br />
 <br />
-The recommendation regarding the submission to {$contextName}, &quot;{$submissionTitle}&quot; is: {$recommendation}<br />
-<br />
-{$editorialContactSignature}<br />
-]]></body>
+The recommendation regarding the submission to {$contextName}, &quot;{$submissionTitle}&quot; is: {$recommendation}]]></body>
 		<description>This email from the recommending Editor or Section Editor to the decision making Editors or Section Editors notifies them of a final recommendation regarding the submission.</description>
 	</email_text>
 	<email_text key="COPYEDIT_REQUEST">
@@ -446,9 +420,7 @@ I would ask that you undertake the copyediting of &quot;{$submissionTitle}&quot;
 <br />
 {$contextName} URL: {$contextUrl}<br />
 Submission URL: {$submissionUrl}<br />
-Username: {$participantUsername}<br />
-<br />
-{$editorialContactSignature}]]></body>
+Username: {$participantUsername}]]></body>
 		<description>This email is sent by a Series Editor to a submission's Copyeditor to request that they begin the copyediting process. It provides information about the submission and how to access it.</description>
 	</email_text>
 	<email_text key="LAYOUT_REQUEST">
@@ -464,9 +436,7 @@ The submission &quot;{$submissionTitle}&quot; to {$contextName} now needs galley
 Submission URL: {$submissionUrl}<br />
 Username: {$participantUsername}<br />
 <br />
-If you are unable to undertake this work at this time or have any questions, please contact me. Thank you for your contribution to this press.<br />
-<br />
-{$editorialContactSignature}]]></body>
+If you are unable to undertake this work at this time or have any questions, please contact me. Thank you for your contribution to this press.]]></body>
 		<description>This email from the Series Editor to the Layout Editor notifies them that they have been assigned the task of performing layout editing on a submission. It provides information about the submission and how to access it.</description>
 	</email_text>
 	<email_text key="LAYOUT_COMPLETE">
@@ -546,10 +516,7 @@ We have reached a decision regarding your submission to {$contextName}, &quot;{$
 <br />
 Our decision is to: Decline Submission<br />
 <br />
-Manuscript URL: {$submissionUrl}<br />
-<br />
-{$editorialContactSignature}<br />
-]]>
+Manuscript URL: {$submissionUrl}]]>
 		</body>
 		<description>This email is send to the author if the editor declines his submission initially, before the review stage</description>
 	</email_text>

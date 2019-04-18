@@ -127,8 +127,7 @@ URL υποβολής: {$submissionUrl}<br />
 URL Υποβολής: {$submissionUrl}<br />
 Όνομα χρήστη: {$editorUsername}<br />
 <br />
-Thank you,<br />
-{$editorialContactSignature}]]></body>
+Thank you,]]></body>
 		<description>Το συγκεκριμένο μήνυμα ενημερώνει τον Επιμελητή Σειράς ότι ο Επιμελητής των εκδόσεων του έχει αναθέσει την επίβλεψη της υποβολής στην διαδικασία επιμέλειας. Παρέχει πληροφορίες σχετικά με την υποβολή και τον τρόπο πρόσβασης στον ιστότοπο της έκδοσης.</description>
 	</email_text>
 	<email_text key="REVIEW_REQUEST">
@@ -200,9 +199,7 @@ URL υποβολής: {$submissionReviewUrl}<br />
 <br />
 Θα θέλαμε να σας ενημερώσουμε ότι η συντακτική ομάδα   αποφάσισε την ακύρωση του αιτήματός μας προς εσάς για την αξιολόγηση της εργασίας, &quot;{$submissionTitle},&quot; για τις εκδόσεις {$contextName}. Σας ζητούμε συγνώμη για την ενδεχόμενη αναστάτωση και ελπίζουμε να είναι δυνατή η μελλοντική βοήθειά σας για τη διαδικασία αξιολόγησης μιας εργασίας.<br />
 <br />
-Για οποιαδήποτε διευκρίνιση, παρακαλώ επικοινωνήστε μαζί μας<br />
-<br />
-{$editorialContactSignature}]]></body>
+Για οποιαδήποτε διευκρίνιση, παρακαλώ επικοινωνήστε μαζί μας]]></body>
 		<description>Το συγκεκριμένο μήνυμα ηλεκτρονικού ταχυδρομείου αποστέλλεται από τον Επιμελητή Σειράς σε Αξιολογητή ο οποίος έχει αναλάβει την αξιολόγηση μιας υποβολής και του γνωστοποιείται η ακύρωση της εν λόγω αξιολόγησης</description>
 	</email_text>
 	<email_text key="REVIEW_CONFIRM">
@@ -227,9 +224,7 @@ URL υποβολής: {$submissionReviewUrl}<br />
 		<subject>Επιβεβαίωση λήψης αξιολόγησης εργασίας</subject>
 		<body><![CDATA[{$reviewerName}:<br />
 <br />
-Σας ευχαριστούμε που ολοκληρώσατε την αξιολόγηση της εργασίας, &quot;{$submissionTitle},&quot; για τις εκδόσεις {$contextName},  καθώς και για τη συμβολή σας στην ποιότητα του περιεχομένου της συγκεκριμένης έκδοσης.<br />
-<br />
-{$editorialContactSignature}]]></body>
+Σας ευχαριστούμε που ολοκληρώσατε την αξιολόγηση της εργασίας, &quot;{$submissionTitle},&quot; για τις εκδόσεις {$contextName},  καθώς και για τη συμβολή σας στην ποιότητα του περιεχομένου της συγκεκριμένης έκδοσης.]]></body>
 		<description>Το συγκεκριμένο μήνυμα αποστέλλεται από τον Επιμελητή Σειράς στον Αξιολογητή για να επιβεβαιώσει τη λήψη της ολοκληρωμένης αξιολόγησης και να εκφράσει την ευχαριστία του στον αξιολογητή για τη συμβολή του στην συγκεκριμένη έκδοση.</description>
 	</email_text>
 	<email_text key="REVIEW_REMIND">
@@ -299,9 +294,7 @@ URL Υποβολής: {$submissionReviewUrl}<br />
 <br />
 <br />
 URL Εργασίας: {$submissionUrl}<br />
-Username: {$authorUsername}<br />
-<br />
-{$editorialContactSignature}]]></body>
+Username: {$authorUsername}]]></body>
 		<description>Αυτό το email αποστέλλεται από τον Επιμελητή/Εκδότη ή Από τον Επιμελητή Σειράς σε έναν Συγγραφέα για να τον ενημερώσει για την τελική απόφαση σχετικά με την υποβολή του.</description>
 	</email_text>
 	<email_text key="EDITOR_DECISION_SEND_TO_EXTERNAL">
@@ -312,9 +305,7 @@ Username: {$authorUsername}<br />
 <br />
 <br />
 <br />
-URL εργασίας: {$submissionUrl}<br />
-<br />
-{$editorialContactSignature}]]></body>
+URL εργασίας: {$submissionUrl}]]></body>
 		<description>This email from the Editor or Series Editor to an Author notifies them that their submission is being sent to an external review.</description>
 	</email_text>
 	<email_text key="EDITOR_DECISION_SEND_TO_PRODUCTION">
@@ -323,9 +314,7 @@ URL εργασίας: {$submissionUrl}<br />
 <br />
 Η επιμέλεια της εργασίας σας με τίτλο, &quot;{$submissionTitle},&quot; έχει ολοκληρωθεί.  Η εργασία σας έχει αποσταλεί ώστε να ξεκινήσει η διαδικασία παραγωγής, επεξεργασίας και δημοσίευσης του έργου σας.<br />
 <br />
-URL εργασίας: {$submissionUrl}<br />
-<br />
-{$editorialContactSignature}]]></body>
+URL εργασίας: {$submissionUrl}]]></body>
 		<description>This email from the Editor or Series Editor to an Author notifies them that their submission is being sent to production.</description>
 	</email_text>
 	<email_text key="EDITOR_DECISION_REVISIONS">
@@ -336,9 +325,7 @@ URL εργασίας: {$submissionUrl}<br />
 <br />
 <br />
 <br />
-URL εργασίας: {$submissionUrl}<br />
-<br />
-{$editorialContactSignature}]]></body>
+URL εργασίας: {$submissionUrl}]]></body>
 		<description>This email from the Editor or Series Editor to an Author notifies them of a final decision regarding their submission.</description>
 	</email_text>
 	<email_text key="EDITOR_DECISION_RESUBMIT">
@@ -349,9 +336,7 @@ URL εργασίας: {$submissionUrl}<br />
 <br />
 <br />
 <br />
-URL εργασίας: {$submissionUrl}<br />
-<br />
-{$editorialContactSignature}]]></body>
+URL εργασίας: {$submissionUrl}]]></body>
 		<description>This email from the Editor or Series Editor to an Author notifies them of a final decision regarding their submission.</description>
 	</email_text>
 	<email_text key="EDITOR_DECISION_DECLINE">
@@ -362,9 +347,7 @@ URL εργασίας: {$submissionUrl}<br />
 <br />
 <br />
 <br />
-URL εργασίας: {$submissionUrl}<br />
-<br />
-{$editorialContactSignature}]]></body>
+URL εργασίας: {$submissionUrl}]]></body>
 		<description>This email from the Editor or Series Editor to an Author notifies them of a final decision regarding their submission.</description>
 	</email_text>
 		<email_text key="COPYEDIT_REQUEST">
@@ -381,12 +364,10 @@ URL εργασίας: {$submissionUrl}<br />
 <br />
 {$contextName} URL: {$contextUrl}<br />
 URL Υποβολής: {$submissionUrl}<br />
-Όνομα Χρήστη: {$participantUsername}<br />
-<br />
-{$editorialContactSignature}]]></body>
+Όνομα Χρήστη: {$participantUsername}]]></body>
 		<description>Το συγκεκριμένο μήνυμα ηλεκτρονικού ταχυδρομείου αποστέλλεται από τον Επιμελητή μιας Σειράς  σε κάποιον από τους υπεύθυνους επιμέλειας κειμένων της υποβολής για να ζητήσει την έναρξη της διαδικασίας επιμέλειας κειμένων (copyediting). Παρέχει πληροφορίες σχετικά με την επιμέλεια της  υποβολής και τον τρόπο πρόσβασης σε αυτή.</description>
 	</email_text>
-									<email_text key="LAYOUT_REQUEST">
+	<email_text key="LAYOUT_REQUEST">
 		<subject>Αίτημα σελιδοποίησης</subject>
 		<body><![CDATA[{$participantName}:<br />
 <br />
@@ -400,9 +381,7 @@ URL Υποβολής: {$submissionUrl}<br />
 Submission URL: {$submissionUrl}<br />
 Username: {$participantUsername}<br />
 <br />
-Εάν δεν μπορείτε να αναλάβετε τη συγκεκριμένη εργασία αυτή τη στιγμή ή έχετε απορίες, επικοινωνήστε μαζί μας. Ευχαριστούμε για την συμβολή σας σε αυτή την έκδοση.<br />
-<br />
-{$editorialContactSignature}]]></body>
+Εάν δεν μπορείτε να αναλάβετε τη συγκεκριμένη εργασία αυτή τη στιγμή ή έχετε απορίες, επικοινωνήστε μαζί μας. Ευχαριστούμε για την συμβολή σας σε αυτή την έκδοση.]]></body>
 		<description>Το συγκεκριμένο μήνυμα στέλνεται από τον Επιμελητή Σειράς στον Επιμελητή Σελιδοποίησης και τον ενημερώνει ότι του ανατίθεται η επιμέλεια της σελιδοποίησης μιας υποβολής. Παρέχει πληροφορίες σχετικά με την υποβολή και τον τρόπο πρόσβασης σε αυτή.</description>
 	</email_text>
 	<email_text key="LAYOUT_COMPLETE">

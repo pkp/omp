@@ -138,8 +138,7 @@ A submissão &quot;{$submissionTitle}&quot; a editora {$contextName} está sob s
 Página da submissão: {$submissionUrl}<br />
 Login: {$editorUsername}<br />
 <br />
-Atenciosamente,<br />
-{$editorialContactSignature}]]></body>
+Atenciosamente,]]></body>
 		<description>Esta mensagem notifica o editor de série que um editor o incumbiu da tarefa de acompanhar o processo editoria de uma submissão. Fornece informações sobre a submissão e de acesso ao site da editora.</description>
 	</email_text>
 	<email_text key="REVIEW_REQUEST">
@@ -213,9 +212,7 @@ Diretrizes para avaliação<br />
 <br />
 Decidimos neste momento cancelar nossa solicitação de avaliação da submissão &quot;{$submissionTitle}&quot; à editora {$contextName}. Lamentamos qualquer inconveniente que isto possa causar e esperamos que possamos solicitar novamente sua ajuda no futuro.<br />
 <br />
-Em caso de dúvidas, entre em contato.<br />
-<br />
-{$editorialContactSignature}]]></body>
+Em caso de dúvidas, entre em contato.]]></body>
 		<description>Esta mensagem é envidad pelo editor de série ao avaliador que possui uma avaliação em progresso, notificando-o de que a avaliação foi cancelada.</description>
 	</email_text>
 	<email_text key="REVIEW_CONFIRM">
@@ -240,9 +237,7 @@ Lamento informar que não estou disponível neste momento para avaliar a submiss
 		<subject>Agradecimento pela avaliação</subject>
 		<body><![CDATA[{$reviewerName},<br />
 <br />
-Agradecmos por concluir a avaliação da submissão &quot;{$submissionTitle}&quot; à editora {$contextName}. Sua contribuição é essencial para a qualidade do trabalho publicado por esta editora.<br />
-<br />
-{$editorialContactSignature}]]></body>
+Agradecmos por concluir a avaliação da submissão &quot;{$submissionTitle}&quot; à editora {$contextName}. Sua contribuição é essencial para a qualidade do trabalho publicado por esta editora.]]></body>
 		<description>Esta mensagem é enviada pelo editor de série confirmando o recebimento da avaliação e agradecendo o avaliador por sua contribuição.</description>
 	</email_text>
 	<email_text key="REVIEW_REMIND">
@@ -311,10 +306,7 @@ A decisão editorial sobre a submissão à editora {$contextName}, &quot;{$submi
 <br />
 A decisão é:<br />
 <br />
-Página do manuscrito: {$submissionUrl}<br />
-<br />
-{$editorialContactSignature}<br />
-]]></body>
+Página do manuscrito: {$submissionUrl}]]></body>
 		<description>Esta mensagem é enviada pelo editor ou editor de série ao autor, notificando-o da decisão final sobre a submissão.</description>
 	</email_text>
 	<email_text key="EDITOR_DECISION_SEND_TO_EXTERNAL">
@@ -325,10 +317,7 @@ A decisão editorial sobre a submissão à editora {$contextName}, &quot;{$submi
 <br />
 A decisão é:<br />
 <br />
-Página do manuscrito: {$submissionUrl}<br />
-<br />
-{$editorialContactSignature}<br />
-]]></body>
+Página do manuscrito: {$submissionUrl}]]></body>
 		<description>Esta mensagem é enviada pelo editor ou editor de série ao autor, notificando-o da decisão de enviar o trabalho para avaliação externa.</description>
 	</email_text>
 	<email_text key="EDITOR_DECISION_SEND_TO_PRODUCTION">
@@ -337,10 +326,7 @@ Página do manuscrito: {$submissionUrl}<br />
 <br />
 A edição do manuscrito &quot;{$submissionTitle}&quot; foi concluída. O trabalho será enviado à produção.<br />
 <br />
-Página do manuscrito: {$submissionUrl}<br />
-<br />
-{$editorialContactSignature}<br />
-]]></body>
+Página do manuscrito: {$submissionUrl}]]></body>
 		<description>Esta mensagem é enviada pelo editor ou editor de série ao autor, notificando-o do envio da submissão para produção.</description>
 	</email_text>
 	<email_text key="EDITOR_DECISION_REVISIONS">
@@ -351,10 +337,7 @@ A decisão editorial sobre a submissão à editora {$contextName}, &quot;{$submi
 <br />
 A decisão é:<br />
 <br />
-Página do manuscrito: {$submissionUrl}<br />
-<br />
-{$editorialContactSignature}<br />
-]]></body>
+Página do manuscrito: {$submissionUrl}]]></body>
 		<description>Esta mensagem é enviada pelo editor ou editor de série ao autor, notificando-o da decisão final sobre a submissão.</description>
 	</email_text>
 	<email_text key="EDITOR_DECISION_RESUBMIT">
@@ -365,10 +348,7 @@ A decisão editorial sobre a submissão à editora {$contextName}, &quot;{$submi
 <br />
 A decisão é:<br />
 <br />
-Página do manuscrito: {$submissionUrl}<br />
-<br />
-{$editorialContactSignature}<br />
-]]></body>
+Página do manuscrito: {$submissionUrl}]]></body>
 		<description>Esta mensagem é enviada pelo editor ou editor de série ao autor, notificando-o da decisão final sobre a submissão.</description>
 	</email_text>
 	<email_text key="EDITOR_DECISION_DECLINE">
@@ -379,10 +359,7 @@ A decisão editorial sobre a submissão à editora {$contextName}, &quot;{$submi
 <br />
 A decisão é:<br />
 <br />
-Página do manuscrito: {$submissionUrl}<br />
-<br />
-{$editorialContactSignature}<br />
-]]></body>
+Página do manuscrito: {$submissionUrl}]]></body>
 		<description>Esta mensagem é enviada pelo editor ou editor de série ao autor, notificando-o da decisão final sobre a submissão.</description>
 	</email_text>
 	<email_text key="COPYEDIT_REQUEST">
@@ -399,9 +376,7 @@ Solicito realizar a edição de texto da submissão &quot;{$submissionTitle}&quo
 <br />
 Página da editora {$contextName}: {$contextUrl}<br />
 Página da submissão: {$submissionUrl}<br />
-Login: {$participantUsername}<br />
-<br />
-{$editorialContactSignature}]]></body>
+Login: {$participantUsername}]]></body>
 		<description>Esta mensagem é enviada pelo editor de série ao editor de texto da submissão, solicitando o início da edição de texto. Fornece informações sobre a submissão e como acessá-la.</description>
 	</email_text>
 	<email_text key="LAYOUT_REQUEST">
@@ -417,9 +392,7 @@ Página da editora {$contextName}: {$contextUrl}<br />
 Página da submissão: {$submissionUrl}<br />
 Login: {$participantUsername}<br />
 <br />
-Caso não tenha disponibilidade para assumir esta tarefa no momento, ou em caso de dúvidas, entre em contato. Agradecemos sua contribuição aos trabalhos da editora.<br />
-<br />
-{$editorialContactSignature}]]></body>
+Caso não tenha disponibilidade para assumir esta tarefa no momento, ou em caso de dúvidas, entre em contato. Agradecemos sua contribuição aos trabalhos da editora.]]></body>
 		<description>Esta mensagem é enviada pelo editor de série ao editor de layout, solicitando a produção de uma composição da submissão. Fornece instruções sobre a submissão e como acessá-la.</description>
 	</email_text>
 	<email_text key="LAYOUT_COMPLETE">
