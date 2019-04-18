@@ -128,8 +128,7 @@ La soumission &quot;{$submissionTitle}&quot; à la presse {$contextName} vous a 
 URL de la soumission: {$submissionUrl}<br />
 Nom d'utilisateur: {$editorUsername}<br />
 <br />
-Merci,<br />
-{$editorialContactSignature}]]></body>
+Merci,]]></body>
 		<description>Ce courriel indique au rédacteur en chef d'une série qu'on lui a assigné la tâche de superviser une soumission tout au long de son processus éditorial. Il contient des renseignements sur la soumission et indique comment accéder au site de la presse.</description>
 	</email_text>
 	<email_text key="REVIEW_REQUEST">
@@ -205,9 +204,7 @@ Lignes directrices concernant l'évaluation<br />
 <br />
 Nous avons décidé d'annuler notre requête d'évaluation pour la soumission &quot;{$submissionTitle}&quot; de la presse {$contextName}. Nous vous prions de nous excuser pour tout inconvénient que cette décision pourrait occasionner et nous espérons que vous serez en mesure d'évaluer une soumission dans un avenir prochain.<br />
 <br />
-Si vous avez des questions, n'hésitez pas à me contacter.<br />
-<br />
-{$editorialContactSignature}]]></body>
+Si vous avez des questions, n'hésitez pas à me contacter.]]></body>
 		<description>Ce courriel est envoyé à un évaluateur qui a entamé le processus d'évaluation d'une soumission par le rédacteur en chef d'une série afin d'informer l'évaluateur que la procédure d'évaluation a été annulée.</description>
 	</email_text>
 	<email_text key="REVIEW_CONFIRM">
@@ -233,9 +230,7 @@ Malheureusement, je ne pourrai pas évaluer &quot;{$submissionTitle}&quot; pour 
 		<body><![CDATA[{$reviewerName}:<br />
 <br />
 <br />
-Merci d'avoir terminé l'évaluation de l'article &quot;{$submissionTitle}&quot; pour la presse {$contextName}. Grâce à vous, nous sommes en mesure de publier des articles de qualité.<br />
-<br />
-{$editorialContactSignature}]]></body>
+Merci d'avoir terminé l'évaluation de l'article &quot;{$submissionTitle}&quot; pour la presse {$contextName}. Grâce à vous, nous sommes en mesure de publier des articles de qualité.]]></body>
 		<description>Ce courriel est envoyé par le rédacteur en chef d'une série pour confirmer qu'il a reçu l'évaluation finale de l'article et pour le remercier de sa contribution.</description>
 	</email_text>
 	<email_text key="REVIEW_REMIND">
@@ -304,10 +299,7 @@ Nous avons pris une décision concernant votre soumission à la presse {$context
 <br />
 Nous avons décidé de:<br />
 <br />
-URL du manuscrit: {$submissionUrl}<br />
-<br />
-{$editorialContactSignature}<br />
-]]></body>
+URL du manuscrit: {$submissionUrl}]]></body>
 		<description>Ce courriel est envoyé par un rédacteur en chef à un auteur pour signaler que l'on a pris une décision finale concernant sa soumission.</description>
 	</email_text>
 	<email_text key="EDITOR_DECISION_SEND_TO_EXTERNAL">
@@ -318,10 +310,7 @@ Nous avons pris une décision concernant votre soumission à la presse {$context
 <br />
 Nous avons décidé de:<br />
 <br />
-URL du manuscrit: {$submissionUrl}<br />
-<br />
-{$editorialContactSignature}<br />
-]]></body>
+URL du manuscrit: {$submissionUrl}]]></body>
 		<description>Ce courriel est envoyé par un rédacteur en chef à un auteur pour l'informer que sa soumission sera envoyée à un évaluateur externe.</description>
 	</email_text>
 	<email_text key="EDITOR_DECISION_SEND_TO_PRODUCTION">
@@ -330,10 +319,7 @@ URL du manuscrit: {$submissionUrl}<br />
 <br />
 La révision de votre manuscrit &quot;{$submissionTitle}&quot; est terminée. Nous l'envoyons maintenant en production.<br />
 <br />
-URL du manuscrit: {$submissionUrl}<br />
-<br />
-{$editorialContactSignature}<br />
-]]></body>
+URL du manuscrit: {$submissionUrl}]]></body>
 		<description>Ce courriel est envoyé par un rédacteur en chef à un auteur pour l'informer que sa soumission passera à l'étape de production.</description>
 	</email_text>
 	<email_text key="EDITOR_DECISION_REVISIONS">
@@ -344,10 +330,7 @@ Nous avons pris une décision concernant votre soumission à la presse {$context
 <br />
 Nous avons décidé de:<br />
 <br />
-URL du manuscrit: {$submissionUrl}<br />
-<br />
-{$editorialContactSignature}<br />
-]]></body>
+URL du manuscrit: {$submissionUrl}]]></body>
 		<description>Ce courriel est envoyé par un rédacteur en chef à un auteur pour signaler que l'on a pris une décision finale concernant sa soumission.</description>
 	</email_text>
 	<email_text key="EDITOR_DECISION_RESUBMIT">
@@ -358,10 +341,7 @@ Nous avons pris une décision concernant votre soumission à la presse {$context
 <br />
 Nous avons décidé de:<br />
 <br />
-URL du manuscrit: {$submissionUrl}<br />
-<br />
-{$editorialContactSignature}<br />
-]]></body>
+URL du manuscrit: {$submissionUrl}]]></body>
 		<description>Ce courriel est envoyé par un rédacteur en chef à un auteur pour signaler que l'on a pris une décision finale concernant sa soumission.</description>
 	</email_text>
 	<email_text key="EDITOR_DECISION_DECLINE">
@@ -372,10 +352,7 @@ Nous avons pris une décision concernant votre soumission à la presse {$context
 <br />
 Nous avons décidé de:<br />
 <br />
-URL du manuscrit: {$submissionUrl}<br />
-<br />
-{$editorialContactSignature}<br />
-]]></body>
+URL du manuscrit: {$submissionUrl}]]></body>
 		<description>Ce courriel est envoyé par un rédacteur en chef à un auteur pour signaler que l'on a pris une décision finale concernant sa soumission.</description>
 	</email_text>
 	<email_text key="COPYEDIT_REQUEST">
@@ -393,9 +370,7 @@ J'aimerais que vous entamiez le processus de révision de l'article &quot;{$subm
 <br />
 {$contextName} URL: {$contextUrl}<br />
 URL de la soumission: {$submissionUrl}<br />
-Nom d'utilisateur: {$participantUsername}<br />
-<br />
-{$editorialContactSignature}]]></body>
+Nom d'utilisateur: {$participantUsername}]]></body>
 		<description>Ce courriel est envoyé par le rédacteur en chef d'une série au réviseur de la soumission afin qu'il entame de processus de révision, lorsque l'évaluation par les pairs est terminée. Il explique comment accéder à la soumission.</description>
 	</email_text>
 	<email_text key="LAYOUT_REQUEST">
@@ -412,9 +387,7 @@ Il faut maintenant préparer les épreuves en placard de la soumission &quot;{$s
 URL de la soumission: {$submissionUrl}<br />
 Nom d'utilisateur: {$participantUsername}<br />
 <br />
-Si vous ne pouvez pas faire ce travail en ce moment ou si vous avez des questions, n'hésitez pas à me contacter. Merci d'avoir contribué à cette presse.<br />
-<br />
-{$editorialContactSignature}]]></body>
+Si vous ne pouvez pas faire ce travail en ce moment ou si vous avez des questions, n'hésitez pas à me contacter. Merci d'avoir contribué à cette presse.]]></body>
 		<description>Ce courriel est envoyé au rédacteur metteur en page par le rédacteur en chef de la série pour lui indiquer qu'on lui a demandé de faire la mise en page de la soumission. Il contient des renseignements sur la soumission et explique comment y accéder.</description>
 	</email_text>
 	<email_text key="LAYOUT_COMPLETE">

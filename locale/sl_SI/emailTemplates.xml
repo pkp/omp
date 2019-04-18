@@ -61,7 +61,7 @@
 	</email_text>
 	<email_text key="EDITOR_ASSIGN">
 		<subject>Uredniške zadolžitve</subject>
-		<body><![CDATA[{$editorialContactName}: <br /> <br /> Prispevek &quot;{$submissionTitle},&quot;, oddan na {$contextName} vam je bil kot uredniku dodeljen v proces urejanja. <br /> <br /> URL do prispevka: <a href="{$submissionUrl}">{$submissionUrl}</a><br /> Uporabniško ime: {$editorUsername}<br /> <br /> Hvala, <br /> {$editorialContactSignature}]]></body>
+		<body><![CDATA[{$editorialContactName}: <br /> <br /> Prispevek &quot;{$submissionTitle},&quot;, oddan na {$contextName} vam je bil kot uredniku dodeljen v proces urejanja. <br /> <br /> URL do prispevka: <a href="{$submissionUrl}">{$submissionUrl}</a><br /> Uporabniško ime: {$editorUsername}<br /> <br /> Hvala,]]></body>
 		<description>To e-poštno sporočilo obvesti urednika zbirke o tem, da jih je urednik določil za nadzor prispevka v postopku urejanja. Vsebuje informacije o oddaji prispevka in o tem, kako je možno dostopati do strani založbe.</description>
 	</email_text>
 	<email_text key="REVIEW_REQUEST">
@@ -94,7 +94,7 @@
 	</email_text>
 	<email_text key="REVIEW_CANCEL">
 		<subject>Prošnja za recenzijo preklicana</subject>
-		<body><![CDATA[{$reviewerName}:<br /> <br />Odločili smo se, da prekličemo našo prošnjo za vašo recenzijo prispevka &quot;{$submissionTitle},&quot; za {$contextName}. Opravičujemo se vam za vse nevšečnosti, ki vam jih to lahko povzroči, in upamo, da se lahko obrnemo na vas pri uredniškem procesu tudi v prihodnje. <br /> <br />Če imaste kakršna koli vprašanja, se obrnite name.<br /> <br /> {$editorialContactSignature}]]></body>
+		<body><![CDATA[{$reviewerName}:<br /> <br />Odločili smo se, da prekličemo našo prošnjo za vašo recenzijo prispevka &quot;{$submissionTitle},&quot; za {$contextName}. Opravičujemo se vam za vse nevšečnosti, ki vam jih to lahko povzroči, in upamo, da se lahko obrnemo na vas pri uredniškem procesu tudi v prihodnje. <br /> <br />Če imaste kakršna koli vprašanja, se obrnite name.]]></body>
 		<description>To e-poštno sporočilo od urednika zbirke obvešča recenzenta, ki piše recenzijo, da je bila prošnja za recenzijo preklicana.</description>
 	</email_text>
 	<email_text key="REVIEW_CONFIRM">
@@ -109,7 +109,7 @@
 	</email_text>
 	<email_text key="REVIEW_ACK">
 		<subject>Zahvala za recenzijo rokopisa</subject>
-		<body><![CDATA[{$reviewerName}:<br /> <br /> Hvala za dokončanje recenzije prispevka &quot;{$submissionTitle},&quot; za  {$contextName}. Zahvaljujemo se za vaš prispevek k kvaliteti del, ki jih objavljamo.<br /> <br /> {$editorialContactSignature}]]></body>
+		<body><![CDATA[{$reviewerName}:<br /> <br /> Hvala za dokončanje recenzije prispevka &quot;{$submissionTitle},&quot; za  {$contextName}. Zahvaljujemo se za vaš prispevek k kvaliteti del, ki jih objavljamo.]]></body>
 		<description>To e-poštno sporočilo je poslal urednik zbirke, ki potrjuje prejem dokončane recenzije in se zahvali recenzentu za njegov prispevek.</description>
 	</email_text>
 	<email_text key="REVIEW_REMIND">
@@ -134,48 +134,42 @@
 	</email_text>
 	<email_text key="EDITOR_DECISION_ACCEPT">
 		<subject>Uredniška odločitev</subject>
-		<body><![CDATA[{$authorName}:<br /> <br /> Sprejeli smo odločitev glede vašega prispevka &quot;{$submissionTitle}&quot; v {$contextName}. Odločili smo se:<br /> <br /> URL do rokopisa: <a href="{$submissionUrl}">{$submissionUrl}</a><br /> <br /> {$editorialContactSignature}<br />
-]]></body>
+		<body><![CDATA[{$authorName}:<br /> <br /> Sprejeli smo odločitev glede vašega prispevka &quot;{$submissionTitle}&quot; v {$contextName}. Odločili smo se:<br /> <br /> URL do rokopisa: <a href="{$submissionUrl}">{$submissionUrl}</a>]]></body>
 		<description>To e-poštno sporočilo od urednika ali urednika zbirke obvesti avtorja o končni odločitvi glede prispevka.</description>
 	</email_text>
 	<email_text key="EDITOR_DECISION_SEND_TO_EXTERNAL">
 		<subject>Uredniška odločitev</subject>
-		<body><![CDATA[{$authorName}:<br /> <br /> Sprejeli smo odločitev glede vašega prispevka &quot;{$submissionTitle}&quot; v {$contextName}. Odločili smo se:<br /> <br /> URL do rokopisa: <a href="{$submissionUrl}">{$submissionUrl}</a><br /> <br /> {$editorialContactSignature}<br />
-]]></body>
+		<body><![CDATA[{$authorName}:<br /> <br /> Sprejeli smo odločitev glede vašega prispevka &quot;{$submissionTitle}&quot; v {$contextName}. Odločili smo se:<br /> <br /> URL do rokopisa: <a href="{$submissionUrl}">{$submissionUrl}</a>]]></body>
 		<description>To e-poštno sporočilo od urednika ali urednika zbirke obvesti avtorja, da je bil prispevek poslan v zunanjo recenzijo.</description>
 	</email_text>
 	<email_text key="EDITOR_DECISION_SEND_TO_PRODUCTION">
 		<subject>Uredniška odločitev</subject>
-		<body><![CDATA[{$authorName}:<br /> <br /> Urejanje vašega rokopisa &quot;{$submissionTitle},&quot; je končano. Publikacijo bomo poslali v produkcijo. <br /> <br /> Povezava URL do rokopisa <a href="{$submissionUrl}">{$submissionUrl}</a><br /> <br /> {$editorialContactSignature}<br />
-]]></body>
+		<body><![CDATA[{$authorName}:<br /> <br /> Urejanje vašega rokopisa &quot;{$submissionTitle},&quot; je končano. Publikacijo bomo poslali v produkcijo. <br /> <br /> Povezava URL do rokopisa <a href="{$submissionUrl}">{$submissionUrl}</a>]]></body>
 		<description>To e-poštno sporočilo od urednika ali urednika zbirke obvesti avtorja, da je bil prispevek poslan v produkcijo.</description>
 	</email_text>
 	<email_text key="EDITOR_DECISION_REVISIONS">
 		<subject>Uredniška odločitev</subject>
-		<body><![CDATA[{$authorName}:<br /> <br /> Sprejeli smo odločitev glede vašega prispevka &quot;{$submissionTitle}&quot; v {$contextName}. Odločili smo se:<br /> <br /> URL do rokopisa: <a href="{$submissionUrl}">{$submissionUrl}</a><br /> <br /> {$editorialContactSignature}<br />
-]]></body>
+		<body><![CDATA[{$authorName}:<br /> <br /> Sprejeli smo odločitev glede vašega prispevka &quot;{$submissionTitle}&quot; v {$contextName}. Odločili smo se:<br /> <br /> URL do rokopisa: <a href="{$submissionUrl}">{$submissionUrl}</a>]]></body>
 		<description>To e-poštno sporočilo od urednika ali urednika zbirke obvesti avtorja o končni odločitvi glede prispevka.</description>
 	</email_text>
 	<email_text key="EDITOR_DECISION_RESUBMIT">
 		<subject>Uredniška odločitev</subject>
-		<body><![CDATA[{$authorName}:<br /> <br /> Sprejeli smo odločitev glede vašega prispevka &quot;{$submissionTitle}&quot; v {$contextName}. Odločili smo se:<br /> <br /> URL do rokopisa: <a href="{$submissionUrl}">{$submissionUrl}</a><br /> <br /> {$editorialContactSignature}<br />
-]]></body>
+		<body><![CDATA[{$authorName}:<br /> <br /> Sprejeli smo odločitev glede vašega prispevka &quot;{$submissionTitle}&quot; v {$contextName}. Odločili smo se:<br /> <br /> URL do rokopisa: <a href="{$submissionUrl}">{$submissionUrl}</a>]]></body>
 		<description>To e-poštno sporočilo od urednika ali urednika zbirke obvesti avtorja o končni odločitvi glede prispevka.</description>
 	</email_text>
 	<email_text key="EDITOR_DECISION_DECLINE">
 		<subject>Uredniška odločitev</subject>
-		<body><![CDATA[{$authorName}:<br /> <br /> Sprejeli smo odločitev glede vašega prispevka &quot;{$submissionTitle}&quot; v {$contextName}. Odločili smo se:<br /> <br /> URL do rokopisa: <a href="{$submissionUrl}">{$submissionUrl}</a><br /> <br /> {$editorialContactSignature}<br />
-]]></body>
+		<body><![CDATA[{$authorName}:<br /> <br /> Sprejeli smo odločitev glede vašega prispevka &quot;{$submissionTitle}&quot; v {$contextName}. Odločili smo se:<br /> <br /> URL do rokopisa: <a href="{$submissionUrl}">{$submissionUrl}</a>]]></body>
 		<description>To e-poštno sporočilo od urednika ali urednika zbirke obvesti avtorja o končni odločitvi glede prispevka.</description>
 	</email_text>
 	<email_text key="COPYEDIT_REQUEST">
 		<subject>Prošnja za lektoriranje</subject>
-		<body><![CDATA[{$participantName}:<br /> <br />Prosimo vas za lektoriranje prispevka &quot;{$submissionTitle}&quot; za {$contextName} po naslednjih korakih:<br /> 1. Kliknite na URL povezavo do prispevka spodaj.<br /> 2. Prijavite se v založbo in kliknite na datoteko, ki se pokaže po 1. koraku<br /> 3. Preverite navodila za lektoriranje, ki so na spletni strani.<br /> 4. Prenesite datoteko, jo odprite in lektorirajte, hkrati pa po potrebi dodajajte vprašanja za avtorja.<br /> 5. Shranite lektorirano datoteko in jo naložite kot 1. korak lektoriranja.<br /> 6. Uredniku pošljite e-poštno sporočilo Zaključeno.<br /> <br /> {$contextName} Povezava URL: <a href="{$contextUrl}">{$contextUrl}</a><br /> Povezava URL do prispevka: <a href="{$submissionUrl}">{$submissionUrl}</a><br /> Uporabniško ime: {$participantUsername}<br /> <br /> {$editorialContactSignature}]]></body>
+		<body><![CDATA[{$participantName}:<br /> <br />Prosimo vas za lektoriranje prispevka &quot;{$submissionTitle}&quot; za {$contextName} po naslednjih korakih:<br /> 1. Kliknite na URL povezavo do prispevka spodaj.<br /> 2. Prijavite se v založbo in kliknite na datoteko, ki se pokaže po 1. koraku<br /> 3. Preverite navodila za lektoriranje, ki so na spletni strani.<br /> 4. Prenesite datoteko, jo odprite in lektorirajte, hkrati pa po potrebi dodajajte vprašanja za avtorja.<br /> 5. Shranite lektorirano datoteko in jo naložite kot 1. korak lektoriranja.<br /> 6. Uredniku pošljite e-poštno sporočilo Zaključeno.<br /> <br /> {$contextName} Povezava URL: <a href="{$contextUrl}">{$contextUrl}</a><br /> Povezava URL do prispevka: <a href="{$submissionUrl}">{$submissionUrl}</a><br /> Uporabniško ime: {$participantUsername}]]></body>
 		<description>Urednik zbirke pošlje to e-poštno sporočilo lektorju prispevka in prosi za začetek lektoriranja. Vsebuje informacije o prispevku in o tem, kako je možno dostopati do prispevka.</description>
 	</email_text>
 	<email_text key="LAYOUT_REQUEST">
 		<subject>Zahteva za prelom</subject>
-		<body><![CDATA[{$participantName}:<br /> <br /> Prispevek &quot;{$submissionTitle}&quot; za {$contextName} potrebuje prelom, ki se naredi po naslednjih korakih.<br /> 1. Kliknite na URL povezavo do prispevka spodaj.<br /> 2. Prijavite se v založbo in uporabite datoteko za pripravo preloma, da pripravite prelom skladno s standardi založbe.<br /> 3. Uredniku pošljite e-poštno sporočilo Zaključeno.<br /> <br /> {$contextName} URL: <a href="{$contextUrl}">{$contextUrl}</a><br /> Povezava URL do prispevka: <a href="{$submissionUrl}">{$submissionUrl}</a><br /> Uporabniško ime: {$participantUsername}<br /> <br /> Če v tem trenutku dela ne morete opraviti ali imate kakšno vprašanje, se prosim obrnite name. Hvala za vaš prispevek založbi.<br /> <br /> {$editorialContactSignature}]]></body>
+		<body><![CDATA[{$participantName}:<br /> <br /> Prispevek &quot;{$submissionTitle}&quot; za {$contextName} potrebuje prelom, ki se naredi po naslednjih korakih.<br /> 1. Kliknite na URL povezavo do prispevka spodaj.<br /> 2. Prijavite se v založbo in uporabite datoteko za pripravo preloma, da pripravite prelom skladno s standardi založbe.<br /> 3. Uredniku pošljite e-poštno sporočilo Zaključeno.<br /> <br /> {$contextName} URL: <a href="{$contextUrl}">{$contextUrl}</a><br /> Povezava URL do prispevka: <a href="{$submissionUrl}">{$submissionUrl}</a><br /> Uporabniško ime: {$participantUsername}<br /> <br /> Če v tem trenutku dela ne morete opraviti ali imate kakšno vprašanje, se prosim obrnite name. Hvala za vaš prispevek založbi.]]></body>
 		<description>To e-poštno sporočilo od urednika zbirke obvešča grafičnega urednika, da mu je bil dodeljen prispevek za grafično urejanje. Vsebuje informacije o prispevku in o tem, kako je možno dostopati do prispevka. </description>
 	</email_text>
 	<email_text key="LAYOUT_COMPLETE">

@@ -122,8 +122,7 @@ Se us ha assignat la tramesa de «{$submissionTitle},» a {$contextName} perquè
 URL de la tramesa: {$submissionUrl}<br />
 Nom d'usuari/ària: {$editorUsername}<br />
 <br />
-Gràcies,<br />
-{$editorialContactSignature}]]></body>
+Gràcies,]]></body>
 		<description>Aquest correu notifica a un editor/a de sèrie que l'editor/a els ha assignat la tasca de supervisar una tramesa en el procés d'edició. Proporciona informació sobre la tramesa i sobre com accedir al lloc web de la publicació.</description>
 	</email_text>
 	<email_text key="REVIEW_REQUEST">
@@ -197,9 +196,7 @@ Directrius de revisió<br />
 <br />
 Hem decidit cancel·lar la sol·licitud perquè reviseu la tramesa «{$submissionTitle},» per al {$contextName}. Ens disculpem per qualsevol inconvenient que això us hagi causat i esperem poder-vos contactar per a futurs processos de revisió.<br />
 <br />
-Si teniu cap pregunta, contacteu amb mi.<br />
-<br />
-{$editorialContactSignature}]]></body>
+Si teniu cap pregunta, contacteu amb mi.]]></body>
 		<description>Aquest correu l'envia l'editor/a de sèrie al revisor/a que té una revisió de la tramesa en procés per tal de notificar-li que la revisió s'ha cancel·lat.</description>
 	</email_text>
 	<email_text key="REVIEW_CONFIRM">
@@ -233,9 +230,7 @@ Ja he finalitzat la revisió de «{$submissionTitle}» per {$contextName}, i he 
 		<subject>Justificant de recepció de la revisió del manuscrit</subject>
 		<body><![CDATA[{$reviewerName}:<br />
 <br />
-Gràcies per completar la revisió de la tramesa «{$submissionTitle},» per {$contextName}. Apreciem la vostra contribució a la qualitat dels treballs que publiquem.<br />
-<br />
-{$editorialContactSignature}]]></body>
+Gràcies per completar la revisió de la tramesa «{$submissionTitle},» per {$contextName}. Apreciem la vostra contribució a la qualitat dels treballs que publiquem.]]></body>
 		<description>Aquest correu l'envia l'editor/a de sèrie per confirmar que ha rebut una revisió finalitzada i agrair al revisor/a la seva contribució.</description>
 	</email_text>
 	<email_text key="REVIEW_REMIND">
@@ -304,10 +299,7 @@ Hem pres una decisió respecte a la vostra tramesa de {$contextName}, «{$submis
 La nostra decisió és:<br />
 <br />
 URL del manuscrit: {$submissionUrl}<br />
-Nom d'usuari/ària: {$authorUsername}<br />
-<br />
-{$editorialContactSignature}<br />
-]]></body>
+Nom d'usuari/ària: {$authorUsername}]]></body>
 		<description>Aquest correu electrònic de l'editor/a o de l'editor/a de sèrie notifica la decisió final respecte a la tramesa.</description>
 	</email_text>
 	<email_text key="EDITOR_DECISION_SEND_TO_EXTERNAL">
@@ -319,10 +311,7 @@ Hem pres una decisió respecte a la vostra tramesa de {$contextName}, «{$submis
 La nostra decisió és:<br />
 <br />
 URL del manuscrit: {$submissionUrl}<br />
-Nom d'usuari/ària: {$authorUsername}<br />
-<br />
-{$editorialContactSignature}<br />
-]]></body>
+Nom d'usuari/ària: {$authorUsername}]]></body>
 		<description>Aquest correu l'envia l'editor/a o l'editor/a de sèrie a un autor/a per notificar-li que la seva tramesa s'enviarà a revisió externa.</description>
 	</email_text>
 	<email_text key="EDITOR_DECISION_SEND_TO_PRODUCTION">
@@ -332,10 +321,7 @@ Nom d'usuari/ària: {$authorUsername}<br />
 L'edició del vostre manuscrit «{$submissionTitle},» està completada.  Procedim a enviar-la a producció.<br />
 <br />
 URL del manuscrit: {$submissionUrl}<br />
-Nom d'usuari/ària: {$authorUsername}<br />
-<br />
-{$editorialContactSignature}<br />
-]]></body>
+Nom d'usuari/ària: {$authorUsername}]]></body>
 		<description>Aquest correu electrònic de l'editor/a o l'editor/a de sèrie a l'autor/a li notifica que la seva tramesa s'ha enviat a producció.</description>
 	</email_text>
 	<email_text key="EDITOR_DECISION_REVISIONS">
@@ -347,10 +333,7 @@ Hem pres una decisió respecte a la vostra tramesa de {$contextName}, «{$submis
 La nostra decisió és:<br />
 <br />
 URL del manuscrit: {$submissionUrl}<br />
-Nom d'usuari/ària: {$authorUsername}<br />
-<br />
-{$editorialContactSignature}<br />
-]]></body>
+Nom d'usuari/ària: {$authorUsername}]]></body>
 		<description>Aquest correu electrònic de l'editor/a o de l'editor/a de sèrie notifica la decisió final respecte a la tramesa.</description>
 	</email_text>
 	<email_text key="EDITOR_DECISION_RESUBMIT">
@@ -362,10 +345,7 @@ Hem pres una decisió respecte a la vostra tramesa de {$contextName}, «{$submis
 La nostra decisió és:<br />
 <br />
 URL del manuscrit: {$submissionUrl}<br />
-Nom d'usuari/ària: {$authorUsername}<br />
-<br />
-{$editorialContactSignature}<br />
-]]></body>
+Nom d'usuari/ària: {$authorUsername}]]></body>
 		<description>Aquest correu electrònic de l'editor/a o de l'editor/a de sèrie notifica la decisió final respecte a la tramesa.</description>
 	</email_text>
 	<email_text key="EDITOR_DECISION_DECLINE">
@@ -377,10 +357,7 @@ Hem pres una decisió respecte a la vostra tramesa de {$contextName}, «{$submis
 La nostra decisió és:<br />
 <br />
 URL del manuscrit: {$submissionUrl}<br />
-Nom d'usuari/ària: {$authorUsername}<br />
-<br />
-{$editorialContactSignature}<br />
-]]></body>
+Nom d'usuari/ària: {$authorUsername}]]></body>
 		<description>Aquest correu electrònic de l'editor/a o de l'editor/a de sèrie notifica la decisió final respecte a la tramesa.</description>
 	</email_text>
 	<email_text key="COPYEDIT_REQUEST">
@@ -397,9 +374,7 @@ Us vull demanar que realitzeu la correcció de «{$submissionTitle}» per {$cont
 <br />
 {$contextName} URL: {$contextUrl}<br />
 URL de tramesa: {$submissionCopyeditingUrl}<br />
-Nom d'usuari/ària: {$copyeditorUsername}<br />
-<br />
-{$editorialContactSignature}]]></body>
+Nom d'usuari/ària: {$copyeditorUsername}]]></body>
 		<description>Aquest correu l'envia l'editor/a de sèrie a un corrector/a de la tramesa per sol·licitar-li que comenci el procés de correcció. Proporciona informació de la tramesa i de com accedir-hi.</description>
 	</email_text>
 	<email_text key="LAYOUT_REQUEST">
@@ -415,9 +390,7 @@ La tramesa «{$submissionTitle}» a {$contextName} necessita galerades per poder
 URL de la tramesa: {$submissionUrl}<br />
 Nom d'usuari/ària: {$layoutEditorUsername}<br />
 <br />
-Si no podeu realitzar aquesta tasca en aquests moments o teniu cap pregunta, poseu-vos en contacte amb mi. Gràcies per la vostra contribució a la publicació.<br />
-<br />
-{$editorialContactSignature}]]></body>
+Si no podeu realitzar aquesta tasca en aquests moments o teniu cap pregunta, poseu-vos en contacte amb mi. Gràcies per la vostra contribució a la publicació.]]></body>
 		<description>Aquest correu electrònic de l'editor/a de sèrie al maquetista li notifica que se li ha assignat las tasca del procés de maquetació d'una tramesa. Proporciona informació de la tramesa i de com accedir-hi.</description>
 	</email_text>
 	<email_text key="LAYOUT_COMPLETE">
