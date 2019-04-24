@@ -15,7 +15,7 @@
 </script>
 <div id="editPublicationFormatMetadataTabs">
 	<ul>
-		<li><a href="{url router=$smarty.const.ROUTE_COMPONENT op="editFormatTab" submissionId=$submissionId representationId=$representationId}">{translate key="grid.action.editMetadata"}</a></li>
+		<li><a href="{url router=$smarty.const.ROUTE_COMPONENT op="editFormatTab" submissionId=$submissionId representationId=$representationId submissionVersion=$submissionVersion}">{translate key="grid.action.editMetadata"}</a></li>
 		{if !$remoteRepresentation}
 			<li><a href="{url router=$smarty.const.ROUTE_COMPONENT op="identifiers" submissionId=$submissionId representationId=$representationId}">{translate key="submission.identifiers"}</a></li>
 		{/if}

@@ -171,7 +171,7 @@ class ONIXCodelistItemDAO extends DAO {
 		$cache =& $this->_getCache($locale);
 		$returner = array();
 		foreach ($cache->getContents() as $code => $entry) {
-			$returner[] =& $this->_returnFromRow($code, $entry);
+			$returner[] =& $this->_fromRow($code, $entry);
 		}
 		return $returner;
 	}
@@ -227,12 +227,12 @@ class ONIXCodelistItemDAO extends DAO {
 	 * @param $row array
 	 * @return CodelistItem
 	 */
-	function &_returnFromRow($code, &$entry) {
+	function &_fromRow($code, &$entry) {
 		$codelistItem = $this->newDataObject();
 		$codelistItem->setCode($code);
 		$codelistItem->setText($entry[0]);
 
-		HookRegistry::call('ONIXCodelistItemDAO::_returnFromRow', array(&$codelistItem, &$code, &$entry));
+		HookRegistry::call('ONIXCodelistItemDAO::_fromRow', array(&$codelistItem, &$code, &$entry));
 
 		return $codelistItem;
 	}

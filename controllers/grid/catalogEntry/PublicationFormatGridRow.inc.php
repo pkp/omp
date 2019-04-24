@@ -26,6 +26,7 @@ class PublicationFormatGridRow extends SubmissionFilesGridRow {
 	 */
 	function __construct($canManage) {
 		$this->_canManage = $canManage;
+
 		parent::__construct(
 			new FilesGridCapabilities(
 				$canManage?FILE_GRID_ADD|FILE_GRID_DELETE|FILE_GRID_MANAGE|FILE_GRID_EDIT|FILE_GRID_VIEW_NOTES:0

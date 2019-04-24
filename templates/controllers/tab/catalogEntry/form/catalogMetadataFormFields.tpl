@@ -38,6 +38,7 @@
 	{include file="controllers/notification/inPlaceNotification.tpl" notificationId="catalogMetadataFormFieldsNotification"}
 
 	<input type="hidden" name="submissionId" value="{$submissionId|escape}" />
+	<input type="hidden" name="submissionVersion" value="{$submissionVersion|escape}" />
 	<input type="hidden" name="stageId" value="{$stageId|escape}" />
 	<input type="hidden" name="tabPos" value="1" />
 	<input type="hidden" name="displayedInContainer" value="{$formParams.displayedInContainer|escape}" />
@@ -119,5 +120,7 @@
 		{/fbvFormSection}
 	{/fbvFormArea}
 
-	{fbvFormButtons id="catalogMetadataFormSubmit" submitText="common.save"}
+	{if !$formParams.hideSubmit}
+		{fbvFormButtons id="catalogMetadataFormSubmit" submitText="common.save"}
+	{/if}
 </form>

@@ -59,7 +59,7 @@ class CatalogBookHandler extends Handler {
 		$this->setupTemplate($request, $publishedMonograph);
 		AppLocale::requireComponents(LOCALE_COMPONENT_APP_SUBMISSION, LOCALE_COMPONENT_PKP_SUBMISSION); // submission.synopsis; submission.copyrightStatement
 
-		$templateMgr->assign('publishedMonograph', $publishedMonograph);
+		$templateMgr->assign('publishedMonograph', $publishedMonograph); /** @var $publishedMonograph PublishedMonograph */
 
 		// Provide the publication formats to the template
 		$publicationFormats = $publishedMonograph->getPublicationFormats(true);
@@ -79,8 +79,7 @@ class CatalogBookHandler extends Handler {
 		));
 
 		// Assign chapters (if they exist)
-		$chapterDao = DAORegistry::getDAO('ChapterDAO');
-		$chapters = $chapterDao->getChapters($publishedMonograph->getId());
+		$chapters = $publishedMonograph->getChapters();
 		$templateMgr->assign('chapters', $chapters->toAssociativeArray());
 
 		$pubIdPlugins = PluginRegistry::loadCategory('pubIds', true);
@@ -117,14 +116,8 @@ class CatalogBookHandler extends Handler {
 		// e-Commerce
 		$press = $request->getPress();
 		$paymentManager = Application::getPaymentManager($press);
-		$submissionFileDao = DAORegistry::getDAO('SubmissionFileDAO');
 
-		$availableFiles = array_filter(
-			$submissionFileDao->getLatestRevisions($publishedMonograph->getId()),
-			function($a) {
-				return $a->getDirectSalesPrice() !== null && $a->getAssocType() == ASSOC_TYPE_PUBLICATION_FORMAT;
-			}
-		);
+		$availableFiles = $publishedMonograph->getAvailableFiles();
 
 		// Only pass files in pub formats that are also available
 		$filteredAvailableFiles = array();
@@ -169,20 +162,20 @@ class CatalogBookHandler extends Handler {
 	function download($args, $request, $view = false) {
 		$dispatcher = $request->getDispatcher();
 		$publishedMonograph = $this->getAuthorizedContextObject(ASSOC_TYPE_PUBLISHED_MONOGRAPH);
-		$this->setupTemplate($request, $publishedMonograph);
+		$this->setupTemplate($request, $publishedMonograph); /** @var $publishedMonograph PublishedMonograph */
 		$press = $request->getPress();
 
 		$monographId = array_shift($args); // Validated thru auth
 		$representationId = array_shift($args);
 		$bestFileId = array_shift($args);
 
-		$publicationFormatDao = DAORegistry::getDAO('PublicationFormatDAO');
-		$publicationFormat = $publicationFormatDao->getByBestId($representationId, $publishedMonograph->getId());
+		$publicationFormatDao = DAORegistry::getDAO('PublicationFormatDAO'); /** @var $publicationFormatDao PublicationFormatDAO */
+		$publicationFormat = $publicationFormatDao->getByBestId($representationId, $publishedMonograph->getId(), $publishedMonograph->getSubmissionVersion());
 		if (!$publicationFormat || !$publicationFormat->getIsAvailable() || $remoteURL = $publicationFormat->getRemoteURL()) fatalError('Invalid publication format specified.');
 
-		$submissionFileDao = DAORegistry::getDAO('SubmissionFileDAO');
+		$submissionFileDao = DAORegistry::getDAO('SubmissionFileDAO'); /** @var $submissionFileDao SubmissionFileDAO */
 		import('lib.pkp.classes.submission.SubmissionFile'); // File constants
-		$submissionFile = $submissionFileDao->getByBestId($bestFileId, $publishedMonograph->getId());
+		$submissionFile = $submissionFileDao->getByBestId($bestFileId, $publishedMonograph->getId(), $publishedMonograph->getSubmissionVersion());
 		if (!$submissionFile) $dispatcher->handle404();
 
 		$fileIdAndRevision = $submissionFile->getFileIdAndRevision();

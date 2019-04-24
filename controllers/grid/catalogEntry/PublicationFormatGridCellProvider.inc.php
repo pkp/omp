@@ -62,18 +62,22 @@ class PublicationFormatGridCellProvider extends DataObjectGridCellProvider {
 	 */
 	function getTemplateVarsFromRowColumn($row, $column) {
 		$data = $row->getData();
-		if (is_a($data, 'Representation')) switch ($column->getId()) {
-			case 'indent': return array();
-			case 'name':
-				$remoteURL = $data->getRemoteURL();
-				if ($remoteURL) {
-					return array('label' => '<a href="'.htmlspecialchars($remoteURL).'" target="_blank">'.htmlspecialchars($data->getLocalizedName()).'</a>' . '<span class="onix_code">' . $data->getNameForONIXCode() . '</span>');
-				}
-				return array('label' => htmlspecialchars($data->getLocalizedName()) . '<span class="onix_code">' . $data->getNameForONIXCode() . '</span>');
-			case 'isAvailable':
-				return array('status' => $data->getIsAvailable()?'completed':'new');
-			case 'isComplete':
-				return array('status' => $data->getIsApproved()?'completed':'new');
+
+		if (is_a($data, 'Representation')) {
+			/** @var $data Representation */
+			switch ($column->getId()) {
+				case 'indent': return array();
+				case 'name':
+					$remoteURL = $data->getRemoteURL();
+					if ($remoteURL) {
+						return array('label' => '<a href="'.htmlspecialchars($remoteURL).'" target="_blank">'.htmlspecialchars($data->getLocalizedName()).'</a>' . '<span class="onix_code">' . $data->getNameForONIXCode() . '</span>');
+					}
+					return array('label' => htmlspecialchars($data->getLocalizedName()) . '<span class="onix_code">' . $data->getNameForONIXCode() . '</span>');
+				case 'isAvailable':
+					return array('status' => $data->getIsAvailable()?'completed':'new');
+				case 'isComplete':
+					return array('status' => $data->getIsApproved()?'completed':'new');
+			}
 		} else {
 			assert(is_array($data) && isset($data['submissionFile']));
 			$proofFile = $data['submissionFile'];
@@ -88,7 +92,20 @@ class PublicationFormatGridCellProvider extends DataObjectGridCellProvider {
 					return array('status' => $proofFile->getViewable()?'completed':'new');
 			}
 		}
+
 		return parent::getTemplateVarsFromRowColumn($row, $column);
+	}
+
+	/**
+	 * Get request arguments.
+	 * @param $row GridRow
+	 * @return array
+	 */
+	function getRequestArgs($row) {
+		return array(
+			'submissionId' => $this->_submission->getId(),
+			'submissionVersion' => $this->_submission->getSubmissionVersion(),
+		);
 	}
 
 	/**
@@ -112,6 +129,7 @@ class PublicationFormatGridCellProvider extends DataObjectGridCellProvider {
 									'representationId' => $data->getId(),
 									'newAvailableState' => $data->getIsAvailable()?0:1,
 									'submissionId' => $data->getSubmissionId(),
+									'submissionVersion' => $data->getSubmissionVersion(),
 								)
 							),
 							'modal_approve'
@@ -147,6 +165,7 @@ class PublicationFormatGridCellProvider extends DataObjectGridCellProvider {
 								'representationId' => $data->getId(),
 								'stageId' => WORKFLOW_STAGE_ID_PRODUCTION,
 								'fileStage' => SUBMISSION_FILE_PROOF,
+								'submissionVersion' => $data->getSubmissionVersion(),
 							),
 							__('editor.submission.selectFiles')
 						)
@@ -162,6 +181,7 @@ class PublicationFormatGridCellProvider extends DataObjectGridCellProvider {
 									'representationId' => $data->getId(),
 									'newApprovedState' => $data->getIsApproved()?0:1,
 									'submissionId' => $data->getSubmissionId(),
+									'submissionVersion' => $data->getSubmissionVersion(),
 								)
 							),
 							__('grid.catalogEntry.approvedRepresentation.title'),
@@ -193,6 +213,7 @@ class PublicationFormatGridCellProvider extends DataObjectGridCellProvider {
 								'fileId' => $submissionFile->getFileId() . '-' . $submissionFile->getRevision(),
 								'submissionId' => $submissionFile->getSubmissionId(),
 								'representationId' => $submissionFile->getAssocId(),
+								'submissionVersion' => $submissionFile->getSubmissionVersion(),
 							)),
 							__('editor.monograph.approvedProofs.edit'),
 							'edit'
@@ -219,6 +240,7 @@ class PublicationFormatGridCellProvider extends DataObjectGridCellProvider {
 									'fileId' => $submissionFile->getFileId(),
 									'revision' => $submissionFile->getRevision(),
 									'approval' => !$submissionFile->getViewable(),
+									'submissionVersion' => $submissionFile->getSubmissionVersion(),
 								)
 							),
 							$title,

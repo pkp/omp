@@ -18,10 +18,10 @@
 	{rdelim});
 </script>
 {if $pubObject instanceof Representation}
-	<form class="pkp_form" id="assignPublicIdentifierForm" method="post" action="{url component="grid.catalogEntry.PublicationFormatGridHandler" op="setApproved" submissionId=$pubObject->getSubmissionId() representationId=$pubObject->getId() newApprovedState=$approval confirmed=true escape=false}">
+	<form class="pkp_form" id="assignPublicIdentifierForm" method="post" action="{url component="grid.catalogEntry.PublicationFormatGridHandler" op="setApproved" submissionId=$pubObject->getSubmissionId() representationId=$pubObject->getId() newApprovedState=$approval submissionVersion=$pubObject->getSubmissionVersion() confirmed=true escape=false}">
 		{assign var=remoteObject value=$pubObject->getRemoteURL()}
 {elseif $pubObject instanceof SubmissionFile}
-	<form class="pkp_form" id="assignPublicIdentifierForm" method="post" action="{url component="grid.catalogEntry.PublicationFormatGridHandler" op="setProofFileCompletion" fileId=$pubObject->getFileId() revision=$pubObject->getRevision() submissionId=$pubObject->getSubmissionId() approval=$approval confirmed=true escape=false}">
+	<form class="pkp_form" id="assignPublicIdentifierForm" method="post" action="{url component="grid.catalogEntry.PublicationFormatGridHandler" op="setProofFileCompletion" fileId=$pubObject->getFileId() revision=$pubObject->getRevision() submissionId=$pubObject->getSubmissionId() submissionVersion=$pubObject->getSubmissionVersion() approval=$approval confirmed=true escape=false}">
 {/if}
 {csrf}
 {fbvFormArea id="confirmationText"}

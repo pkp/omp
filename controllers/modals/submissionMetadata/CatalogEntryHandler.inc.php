@@ -69,7 +69,7 @@ class CatalogEntryHandler extends PublicationEntryHandler {
 
 		// load in any publication formats assigned to this published monograph
 		$publicationFormatDao = DAORegistry::getDAO('PublicationFormatDAO');
-		$formats = $publicationFormatDao->getBySubmissionId($submission->getId());
+		$formats = $publicationFormatDao->getBySubmission($submission);
 		$publicationFormats = array();
 		while ($publicationFormat = $formats->next()) {
 			$publicationFormats[] = $publicationFormat;
@@ -82,10 +82,10 @@ class CatalogEntryHandler extends PublicationEntryHandler {
 		$dispatcher = $router->getDispatcher();
 
 		// These two URLs are catalog/monograph specific.
-		$tabsUrl = $dispatcher->url($request, ROUTE_COMPONENT, null, 'modals.submissionMetadata.CatalogEntryHandler', 'fetchFormatInfo', null, array('submissionId' => $submission->getId(), 'stageId' => $this->getStageId()));
+		$tabsUrl = $dispatcher->url($request, ROUTE_COMPONENT, null, 'modals.submissionMetadata.CatalogEntryHandler', 'fetchFormatInfo', null, array('submissionId' => $submission->getId(), 'stageId' => $this->getStageId(), 'submissionVersion' => $submission->getSubmissionVersion()));
 		$templateMgr->assign('tabsUrl', $tabsUrl);
 
-		$tabContentUrl = $dispatcher->url($request, ROUTE_COMPONENT, null, 'tab.catalogEntry.CatalogEntryTabHandler', 'publicationMetadata', null, array('submissionId' => $submission->getId(), 'stageId' => $this->getStageId()));
+		$tabContentUrl = $dispatcher->url($request, ROUTE_COMPONENT, null, 'tab.catalogEntry.CatalogEntryTabHandler', 'publicationMetadata', null, array('submissionId' => $submission->getId(), 'stageId' => $this->getStageId(), 'submissionVersion' => $submission->getSubmissionVersion()));
 		$templateMgr->assign('tabContentUrl', $tabContentUrl);
 
 		return $templateMgr->fetchJson('controllers/modals/submissionMetadata/catalogEntryTabs.tpl');

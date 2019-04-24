@@ -212,7 +212,7 @@ class ChapterForm extends Form {
 		$chapter = $this->getChapter();
 		$fileId = (int) $newRowId['name'];
 
-		$submissionFileDao = DAORegistry::getDAO('SubmissionFileDAO'); /* @var $submissionFileDao SubmissionFileDAO */
+		$submissionFileDao = DAORegistry::getDAO('SubmissionFileDAO'); /** @var $submissionFileDao SubmissionFileDAO */
 		$submissionFiles = $submissionFileDao->getAllRevisions($fileId, null, $monograph->getId());
 		foreach ($submissionFiles as $submissionFile) {
 			$submissionFile->setData('chapterId', $chapter->getId());

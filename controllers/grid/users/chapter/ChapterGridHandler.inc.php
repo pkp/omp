@@ -102,6 +102,11 @@ class ChapterGridHandler extends CategoryGridHandler {
 
 		AppLocale::requireComponents(LOCALE_COMPONENT_APP_DEFAULT, LOCALE_COMPONENT_PKP_DEFAULT, LOCALE_COMPONENT_APP_SUBMISSION, LOCALE_COMPONENT_PKP_SUBMISSION);
 
+		$monograph = $this->getMonograph();
+		if ($monograph->getSubmissionVersion() != $monograph->getCurrentSubmissionVersion()) {
+			$this->setReadOnly(true);
+		}
+
 		if (!$this->getReadOnly()) {
 			// Grid actions
 			$router = $request->getRouter();
@@ -161,7 +166,7 @@ class ChapterGridHandler extends CategoryGridHandler {
 		$monograph = $this->getMonograph();
 		$userRoles = $this->getAuthorizedContextObject(ASSOC_TYPE_USER_ROLES);
 
-		if ($monograph->getDateSubmitted() == null || array_intersect(array(ROLE_ID_MANAGER, ROLE_ID_SUB_EDITOR), $userRoles)) {
+		if (($monograph->getSubmissionVersion() == $monograph->getCurrentSubmissionVersion()) && ($monograph->getDateSubmitted() == null || array_intersect(array(ROLE_ID_MANAGER, ROLE_ID_SUB_EDITOR), $userRoles))) {
 			$this->setReadOnly(false);
 			import('lib.pkp.classes.controllers.grid.feature.OrderCategoryGridItemsFeature');
 			return array(new OrderCategoryGridItemsFeature(ORDER_CATEGORY_GRID_CATEGORIES_AND_ROWS));
@@ -196,7 +201,7 @@ class ChapterGridHandler extends CategoryGridHandler {
 	function loadData($request, $filter) {
 		$monograph = $this->getMonograph();
 		$chapterDao = DAORegistry::getDAO('ChapterDAO');
-		$chapters = $chapterDao->getChapters($monograph->getId());
+		$chapters = $chapterDao->getBySubmissionId($monograph->getId());
 		return $chapters->toAssociativeArray();
 	}
 

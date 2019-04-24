@@ -244,7 +244,7 @@ class MonographSearch extends SubmissionSearch {
 			// Get the monograph, storing in cache if necessary.
 			if (!isset($monographCache[$monographId])) {
 				$monographCache[$monographId] = $monographDao->getById($monographId);
-				$publishedMonographCache[$monographId] = $publishedMonographDao->getById($monographId);
+				$publishedMonographCache[$monographId] = $publishedMonographDao->getBySubmissionId($monographId);
 			}
 			unset($monograph, $publishedMonograph);
 			$monograph = $monographCache[$monographId];
@@ -290,7 +290,7 @@ class MonographSearch extends SubmissionSearch {
 		if ($result === false) {
 			// Retrieve the submission.
 			$publishedMonographDao = DAORegistry::getDAO('PublishedMonographDAO'); /* @var $publishedMonographDao PublishedMonographDAO */
-			$monograph = $publishedMonographDao->getById($submissionId);
+			$monograph = $publishedMonographDao->getBySubmissionId($submissionId);
 			if (is_a($monograph, 'PublishedMonograph')) {
 				// Retrieve keywords (if any).
 				$searchTerms = $monograph->getLocalizedSubject();

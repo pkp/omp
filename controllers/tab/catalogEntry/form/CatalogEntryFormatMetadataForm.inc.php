@@ -51,7 +51,13 @@ class CatalogEntryFormatMetadataForm extends Form {
 	function __construct($monographId, $representationId, $isPhysicalFormat = true, $remoteURL = null, $stageId = null, $formParams = null) {
 		parent::__construct('controllers/tab/catalogEntry/form/publicationMetadataFormFields.tpl');
 		$monographDao = DAORegistry::getDAO('MonographDAO');
-		$this->_monograph = $monographDao->getById($monographId);
+
+		$submissionVersion = null;
+		if (isset($formParams) && array_key_exists("submissionVersion", $formParams)) {
+			$submissionVersion = $formParams["submissionVersion"];
+		}
+
+		$this->_monograph = $monographDao->getById($monographId, null, false, $submissionVersion);
 
 		$publicationFormatDao = DAORegistry::getDAO('PublicationFormatDAO');
 		$this->_publicationFormat = $publicationFormatDao->getById($representationId, $monographId);
@@ -78,6 +84,15 @@ class CatalogEntryFormatMetadataForm extends Form {
 		$monograph = $this->getMonograph();
 		$publicationFormat = $this->getPublicationFormat();
 		$press = $request->getPress();
+
+		if ($monograph->getCurrentSubmissionVersion() != $monograph->getSubmissionVersion()) {
+			if (!isset($this->_formParams)) {
+				$this->_formParams = array();
+			}
+
+			$this->_formParams["readOnly"] = true;
+			$this->_formParams["hideSubmit"] = true;
+		}
 
 		$templateMgr = TemplateManager::getManager($request);
 		$templateMgr->assign('submissionId', $monograph->getId());

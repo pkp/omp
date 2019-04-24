@@ -51,7 +51,7 @@ class CatalogEntryTabHandler extends PublicationEntryTabHandler {
 		$stageId = $this->getStageId();
 		$user = $request->getUser();
 
-		$catalogEntryCatalogMetadataForm = new CatalogEntryCatalogMetadataForm($submission->getId(), $user->getId(), $stageId, array('displayedInContainer' => true));
+		$catalogEntryCatalogMetadataForm = new CatalogEntryCatalogMetadataForm($submission->getId(), $user->getId(), $stageId, array('displayedInContainer' => true, 'submissionVersion' => $submission->getSubmissionVersion()));
 
 		$catalogEntryCatalogMetadataForm->initData();
 		return new JSONMessage(true, $catalogEntryCatalogMetadataForm->fetch($request));
@@ -183,7 +183,7 @@ class CatalogEntryTabHandler extends PublicationEntryTabHandler {
 				case 'catalog':
 					import('controllers.tab.catalogEntry.form.CatalogEntryCatalogMetadataForm');
 					$user = $request->getUser();
-					$form = new CatalogEntryCatalogMetadataForm($submission->getId(), $user->getId(), $this->getStageId(), array('displayedInContainer' => true, 'tabPos' => $this->getTabPosition()));
+					$form = new CatalogEntryCatalogMetadataForm($submission->getId(), $user->getId(), $this->getStageId(), array('displayedInContainer' => true, 'tabPos' => $this->getTabPosition(), 'submissionVersion' => $submission->getSubmissionVersion()));
 					$notificationKey = 'notification.savedCatalogMetadata';
 					SubmissionLog::logEvent($request, $submission, SUBMISSION_LOG_CATALOG_METADATA_UPDATE, 'submission.event.catalogMetadataUpdated');
 					break;
@@ -203,7 +203,7 @@ class CatalogEntryTabHandler extends PublicationEntryTabHandler {
 					$form = null;
 					while ($format = $formats->next()) {
 						if ($format->getId() == $representationId) {
-							$form = new CatalogEntryFormatMetadataForm($submission->getId(), $representationId, $format->getPhysicalFormat(), $format->getRemoteURL(), $this->getStageId(), array('displayedInContainer' => true, 'tabPos' => $this->getTabPosition()));
+							$form = new CatalogEntryFormatMetadataForm($submission->getId(), $representationId, $format->getPhysicalFormat(), $format->getRemoteURL(), $this->getStageId(), array('displayedInContainer' => true, 'tabPos' => $this->getTabPosition(), 'submissionVersion' => $submission->getSubmissionVersion()));
 							$notificationKey = 'notification.savedPublicationFormatMetadata';
 							SubmissionLog::logEvent($request, $submission, SUBMISSION_LOG_PUBLICATION_FORMAT_METADATA_UPDATE, 'submission.event.publicationMetadataUpdated', array('formatName' => $format->getLocalizedName()));
 							break;
@@ -222,7 +222,7 @@ class CatalogEntryTabHandler extends PublicationEntryTabHandler {
 	function _getPublicationEntrySubmissionReviewForm() {
 		$submission = $this->getSubmission();
 		import('controllers.modals.submissionMetadata.form.CatalogEntrySubmissionReviewForm');
-		return new CatalogEntrySubmissionReviewForm($submission->getId(), $this->getStageId(), array('displayedInContainer' => true));
+		return new CatalogEntrySubmissionReviewForm($submission->getId(), $this->getStageId(), array('displayedInContainer' => true, 'submissionVersion' => $submission->getSubmissionVersion()));
 	}
 
 	/**

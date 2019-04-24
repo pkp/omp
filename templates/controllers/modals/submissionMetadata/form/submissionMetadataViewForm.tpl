@@ -34,12 +34,12 @@
 		<!--  Contributors -->
 		{* generate a unique ID for the form *}
 		{assign var="authorsGridContainer" value="authorsGridContainer-"|uniqid|escape}
-		{capture assign=authorGridUrl}{url router=$smarty.const.ROUTE_COMPONENT component="grid.users.author.AuthorGridHandler" op="fetchGrid" submissionId=$submissionId stageId=$stageId escape=false}{/capture}
+		{capture assign=authorGridUrl}{url router=$smarty.const.ROUTE_COMPONENT component="grid.users.author.AuthorGridHandler" op="fetchGrid" submissionId=$submissionId submissionVersion=$submissionVersion stageId=$stageId escape=false}{/capture}
 		{load_url_in_div id=$authorsGridContainer url=$authorGridUrl}
 
 		<!--  Chapters -->
 		{assign var="chaptersGridContainer" value="chaptersGridContainer-"|uniqid|escape}
-		{capture assign=chaptersGridUrl}{url router=$smarty.const.ROUTE_COMPONENT  component="grid.users.chapter.ChapterGridHandler" op="fetchGrid" submissionId=$submissionId escape=false}{/capture}
+		{capture assign=chaptersGridUrl}{url router=$smarty.const.ROUTE_COMPONENT  component="grid.users.chapter.ChapterGridHandler" op="fetchGrid" submissionId=$submissionId submissionVersion=$submissionVersion escape=false}{/capture}
 		{load_url_in_div id=$chaptersGridContainer url=$chaptersGridUrl}
 	{/if}
 

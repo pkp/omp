@@ -129,7 +129,7 @@ class NativeXmlPublicationFormatFilter extends NativeXmlRepresentationFilter {
 
 		// if this is a published monograph, extract the Audience elements and store them.
 		$publishedMonographDao = DAORegistry::getDAO('PublishedMonographDAO');
-		$publishedMonograph = $publishedMonographDao->getById($representation->getSubmissionId());
+		$publishedMonograph = $publishedMonographDao->getBySubmissionId($representation->getSubmissionId());
 		if ($publishedMonograph) {
 			$publishedMonograph->setAudience($this->_extractTextFromNode($node, $onixDeployment, 'AudienceCodeType'));
 			$publishedMonograph->setAudienceRangeQualifier($this->_extractTextFromNode($node, $onixDeployment, 'AudienceRangeQualifier'));

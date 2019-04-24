@@ -26,18 +26,18 @@
 <div id="newCatalogEntryTabs" class="pkp_controllers_tab">
 	<ul>
 		<li>
-			<a title="submission" href="{url router=$smarty.const.ROUTE_COMPONENT component="tab.catalogEntry.CatalogEntryTabHandler" tab="submission" op="submissionMetadata" submissionId=$submissionId stageId=$stageId tabPos="0"}">{translate key="submission.catalogEntry.monographMetadata"}</a>
+			<a title="submission" href="{url router=$smarty.const.ROUTE_COMPONENT component="tab.catalogEntry.CatalogEntryTabHandler" tab="submission" op="submissionMetadata" submissionId=$submissionId stageId=$stageId submissionVersion=$submissionVersion tabPos="0"}">{translate key="submission.catalogEntry.monographMetadata"}</a>
 		</li>
 		<li>
-			<a title="catalog" href="{url router=$smarty.const.ROUTE_COMPONENT component="tab.catalogEntry.CatalogEntryTabHandler" tab="catalog" op="catalogMetadata" submissionId=$submissionId stageId=$stageId tabPos="1"}">{translate key="submission.catalogEntry.catalogMetadata"}</a>
+			<a title="catalog" href="{url router=$smarty.const.ROUTE_COMPONENT component="tab.catalogEntry.CatalogEntryTabHandler" tab="catalog" op="catalogMetadata" submissionId=$submissionId submissionVersion=$submissionVersion stageId=$stageId tabPos="1"}">{translate key="submission.catalogEntry.catalogMetadata"}</a>
 		</li>
 		<li>
-			<a name="catalog" href="{url router=$smarty.const.ROUTE_COMPONENT component="tab.catalogEntry.CatalogEntryTabHandler" tab="identifiers" op="identifiers" submissionId=$submissionId stageId=$stageId tabPos="2"}">{translate key="submission.identifiers"}</a>
+			<a name="catalog" href="{url router=$smarty.const.ROUTE_COMPONENT component="tab.catalogEntry.CatalogEntryTabHandler" tab="identifiers" op="identifiers" submissionId=$submissionId submissionVersion=$submissionVersion stageId=$stageId tabPos="2"}">{translate key="submission.identifiers"}</a>
 		</li>
 		{counter start=3 assign="counter"}
 		{if $citationsEnabled}
 			<li>
-				<a name="citations" href="{url router=$smarty.const.ROUTE_COMPONENT component="tab.catalogEntry.CatalogEntryTabHandler" tab="citations" op="citations" submissionId=$submissionId stageId=$stageId tabPos=$counter}">{translate key="submission.citations"}</a>
+				<a name="citations" href="{url router=$smarty.const.ROUTE_COMPONENT component="tab.catalogEntry.CatalogEntryTabHandler" tab="citations" op="citations" submissionId=$submissionId submissionVersion=$submissionVersion stageId=$stageId tabPos=$counter}">{translate key="submission.citations"}</a>
 			</li>
 			{counter}
 		{/if}
@@ -51,6 +51,7 @@
 					representationId=$format->getId()
 					submissionId=$submissionId
 					stageId=$stageId
+					submissionVersion=$submissionVersion
 					tabPos=$counter}">{$format->getLocalizedName()|escape}</a>
 			</li>
 			{counter} {* increment our counter, assign to $counter variable *}

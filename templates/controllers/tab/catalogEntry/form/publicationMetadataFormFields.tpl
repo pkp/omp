@@ -102,6 +102,8 @@
 		{include file="controllers/tab/catalogEntry/form/digitalPublicationFormat.tpl"}
 	{/if}
 
-	{fbvFormButtons id="publicationMetadataFormSubmit" submitText="common.save"}
+	{if !$formParams.hideSubmit}
+		{fbvFormButtons id="publicationMetadataFormSubmit" submitText="common.save"}
+	{/if}
 </form>
 <p><span class="formRequired">{translate key="common.requiredField"}</span></p>
