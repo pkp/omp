@@ -52,8 +52,14 @@ class CatalogEntryCatalogMetadataForm extends Form {
 	 */
 	function __construct($monographId, $userId, $stageId = null, $formParams = null) {
 		parent::__construct('controllers/tab/catalogEntry/form/catalogMetadataFormFields.tpl');
+
+		$submissionVersion = null;
+		if (key_exists('submissionVersion', $formParams)) {
+			$submissionVersion = $formParams['submissionVersion'];
+		}
+
 		$monographDao = DAORegistry::getDAO('MonographDAO');
-		$this->_monograph = $monographDao->getById($monographId);
+		$this->_monograph = $monographDao->getById($monographId, null, false, $submissionVersion);
 
 		$this->_stageId = $stageId;
 		$this->_formParams = $formParams;
@@ -68,8 +74,8 @@ class CatalogEntryCatalogMetadataForm extends Form {
 	function fetch($request, $template = null, $display = false) {
 		$templateMgr = TemplateManager::getManager($request);
 		$templateMgr->assign('submissionId', $this->getMonograph()->getId());
+		$templateMgr->assign('submissionVersion', $this->getMonograph()->getSubmissionVersion());
 		$templateMgr->assign('stageId', $this->getStageId());
-		$templateMgr->assign('formParams', $this->getFormParams());
 		$templateMgr->assign('datePublished', $this->getMonograph()->getDatePublished());
 
 		$onixCodelistItemDao = DAORegistry::getDAO('ONIXCodelistItemDAO');
@@ -95,7 +101,7 @@ class CatalogEntryCatalogMetadataForm extends Form {
 
 		// SelectListPanel for volume editors
 		$authorDao = DAORegistry::getDAO('AuthorDAO');
-		$authors = $authorDao->getBySubmissionId($this->getMonograph()->getId(), true);
+		$authors = $authorDao->getBySubmissionId($this->getMonograph()->getId(), true, false, $this->getMonograph()->getSubmissionVersion());
 		$volumeEditorsListItems = array();
 		foreach ($authors as $author) {
 			$volumeEditorsListItems[] = array(
@@ -114,8 +120,17 @@ class CatalogEntryCatalogMetadataForm extends Form {
 		);
 		$templateMgr->assign('volumeEditorsListData', $volumeEditorsListData);
 
+		$submission = $this->getMonograph();
 		$publishedMonograph = $this->getPublishedMonograph();
 		if ($publishedMonograph) {
+			if ($submission->getCurrentSubmissionVersion() != $submission->getSubmissionVersion()) {
+				if (!isset($this->_formParams)) {
+					$this->_formParams = array();
+				}
+
+				$this->_formParams["readOnly"] = true;
+				$this->_formParams["hideSubmit"] = true;
+			}
 
 			// pre-select the existing values on the form.
 			$templateMgr->assign('audience', $publishedMonograph->getAudience());
@@ -125,6 +140,8 @@ class CatalogEntryCatalogMetadataForm extends Form {
 			$templateMgr->assign('audienceRangeExact', $publishedMonograph->getAudienceRangeExact());
 			$templateMgr->assign('coverImage', $publishedMonograph->getCoverImage());
 		}
+
+		$templateMgr->assign('formParams', $this->getFormParams());
 
 		return parent::fetch($request, $template, $display);
 	}
@@ -138,14 +155,14 @@ class CatalogEntryCatalogMetadataForm extends Form {
 
 		$submission = $this->getMonograph();
 		$publishedMonographDao = DAORegistry::getDAO('PublishedMonographDAO');
-		$this->_publishedMonograph = $publishedMonographDao->getById($submission->getId(), null, false);
+		$this->_publishedMonograph = $publishedMonographDao->getBySubmissionId($submission->getId(), null, false, $submission->getSubmissionVersion());
 
 		$copyrightHolder = $submission->getCopyrightHolder(null);
 		$copyrightYear = $submission->getCopyrightYear();
 		$licenseURL = $submission->getLicenseURL();
 
 		$authorDao = DAORegistry::getDAO('AuthorDAO');
-		$authors = $authorDao->getBySubmissionId($submission->getId(), true);
+		$authors = $authorDao->getBySubmissionId($submission->getId(), true, false, $submission->getSubmissionVersion());
 		$volumeEditors = [];
 		foreach ($authors as $author) {
 			if ($author->getIsVolumeEditor()) {
@@ -245,13 +262,17 @@ class CatalogEntryCatalogMetadataForm extends Form {
 
 		$monograph = $this->getMonograph();
 		$monographDao = DAORegistry::getDAO('MonographDAO');
-		$publishedMonographDao = DAORegistry::getDAO('PublishedMonographDAO');
-		$publishedMonograph = $publishedMonographDao->getById($monograph->getId(), null, false); /* @var $publishedMonograph PublishedMonograph */
+		$publishedMonographDao = DAORegistry::getDAO('PublishedMonographDAO'); /** @var $publishedMonographDao PublishedMonographDAO */
+		$publishedMonograph = $publishedMonographDao->getBySubmissionId($monograph->getId(), null, false, $monograph->getSubmissionVersion()); /** @var $publishedMonograph PublishedMonograph */
+		$previousPublishedMonograph = $publishedMonographDao->getBySubmissionId($monograph->getId(), null, false, $monograph->getSubmissionVersion() - 1);
 		$isExistingEntry = $publishedMonograph?true:false;
 		if (!$publishedMonograph) {
 			$publishedMonograph = $publishedMonographDao->newDataObject();
 			$publishedMonograph->setId($monograph->getId());
+			$publishedMonograph->setSubmissionVersion($monograph->getSubmissionVersion());
+			$publishedMonograph->setIsCurrentSubmissionVersion(true);
 		}
+
 		$monograph->setDatePublished($this->getData('datePublished'));
 
 		if ($this->getData('workType') == WORK_TYPE_EDITED_VOLUME) {
@@ -341,12 +362,19 @@ class CatalogEntryCatalogMetadataForm extends Form {
 			$monograph->setLicenseURL(null);
 		}
 		$monograph->setWorkType($this->getData('workType'));
+
 		$monographDao->updateObject($monograph);
 
 		// Update the modified fields or insert new.
 		if ($isExistingEntry) {
 			$publishedMonographDao->updateObject($publishedMonograph);
 		} else {
+			if ($previousPublishedMonograph) {
+				$previousPublishedMonograph->setIsCurrentSubmissionVersion(false);
+
+				$publishedMonographDao->updateObject($previousPublishedMonograph);
+			}
+
 			$publishedMonographDao->insertObject($publishedMonograph);
 		}
 

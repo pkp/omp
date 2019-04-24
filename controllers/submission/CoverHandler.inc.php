@@ -74,7 +74,7 @@ class CoverHandler extends PKPHandler {
 		$monograph = $this->getAuthorizedContextObject(ASSOC_TYPE_MONOGRAPH);
 
 		$publishedMonographDao = DAORegistry::getDAO('PublishedMonographDAO');
-		$publishedMonograph = $publishedMonographDao->getById($monograph->getId(), null, false);
+		$publishedMonograph = $publishedMonographDao->getBySubmissionId($monograph->getId(), null, false);
 
 		if (!$coverImage = $publishedMonograph->getCoverImage()) {
 			// Can't use Request::redirectUrl; FireFox doesn't
@@ -97,7 +97,7 @@ class CoverHandler extends PKPHandler {
 		$monograph = $this->getAuthorizedContextObject(ASSOC_TYPE_MONOGRAPH);
 
 		$publishedMonographDao = DAORegistry::getDAO('PublishedMonographDAO');
-		$publishedMonograph = $publishedMonographDao->getById($monograph->getId(), null, false);
+		$publishedMonograph = $publishedMonographDao->getBySubmissionId($monograph->getId(), null, false);
 
 		if (!$publishedMonograph || !$coverImage = $publishedMonograph->getCoverImage()) {
 			// Can't use Request::redirectUrl; FireFox doesn't

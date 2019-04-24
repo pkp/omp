@@ -399,6 +399,10 @@
 			<NOTNULL/>
 			<DEFAULT VALUE="1"/>
 		</field>
+		<field name="submission_version" type="I8">
+			<NOTNULL/>
+			<DEFAULT VALUE="1" />
+		</field>
 		<descr>Submissions</descr>
 		<index name="submissions_context_id">
 			<col>context_id</col>
@@ -429,10 +433,18 @@
 		<field name="audience_range_to" type="C2" size="255"/>
 		<field name="audience_range_exact" type="C2" size="255"/>
 		<field name="cover_image" type="X"/>
+		<field name="published_submission_version" type="I8">
+			<NOTNULL/>
+			<DEFAULT VALUE="1" />
+		</field>
+		<field name="prev_ver_id" type="I8" />
+		<field name="is_current_submission_version" type="I1">
+			<NOTNULL />
+			<DEFAULT VALUE="1" />
+		</field>
 		<descr>Published submissions</descr>
 		<index name="published_submissions_submission_id">
 			<col>submission_id</col>
-			<UNIQUE/>
 		</index>
 	</table>
 
@@ -484,6 +496,15 @@
 			<NOTNULL />
 			<DEFAULT VALUE="0" />
 		</field>
+		<field name="submission_version" type="I8">
+			<NOTNULL/>
+			<DEFAULT VALUE="1" />
+		</field>
+		<field name="prev_ver_id" type="I8" />
+		<field name="is_current_submission_version" type="I1">
+			<NOTNULL />
+			<DEFAULT VALUE="1" />
+		</field>
 		<descr>Publication formats assigned to published monographs</descr>
 		<index name="publication_format_submission_id">
 			<col>submission_id</col>
@@ -506,6 +527,7 @@
 		<field name="setting_name" type="C2" size="255">
 			<NOTNULL />
 		</field>
+		<field name="submission_version" type="I8" />
 		<field name="setting_value" type="X"/>
 		<field name="setting_type" type="C2" size="6">
 			<NOTNULL/>
@@ -519,6 +541,7 @@
 			<col>publication_format_id</col>
 			<col>locale</col>
 			<col>setting_name</col>
+			<col>submission_version</col>
 			<UNIQUE/>
 		</index>
 	</table>
@@ -544,6 +567,10 @@
 			<NOTNULL/>
 			<descr>(bool|int|float|string|object)</descr>
 		</field>
+		<field name="submission_version" type="I8">
+			<NOTNULL />
+			<DEFAULT VALUE="1"/>
+		</field>
 		<descr>Submission metadata</descr>
 		<index name="submission_settings_submission_id">
 			<col>submission_id</col>
@@ -552,6 +579,7 @@
 			<col>submission_id</col>
 			<col>locale</col>
 			<col>setting_name</col>
+			<col>submission_version</col>
 			<UNIQUE/>
 		</index>
 	</table>
@@ -572,6 +600,15 @@
 		<field name="seq" type="F">
 			<NOTNULL />
 			<DEFAULT VALUE="0"/>
+		</field>
+		<field name="submission_version" type="I8">
+			<NOTNULL/>
+			<DEFAULT VALUE="1" />
+		</field>
+		<field name="prev_ver_id" type="I8" />
+		<field name="is_current_submission_version" type="I1">
+			<NOTNULL />
+			<DEFAULT VALUE="1" />
 		</field>
 		<index name="chapters_chapter_id">
 			<col>chapter_id</col>
@@ -643,7 +680,7 @@
 			<UNIQUE />
 		</index>
 	</table>
-
+	
 	<!--
 	 *
 	 * TABLE submission_search_keyword_list

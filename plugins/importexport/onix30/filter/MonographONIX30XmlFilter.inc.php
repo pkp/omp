@@ -57,7 +57,7 @@ class MonographONIX30XmlFilter extends NativeExportFilter {
 		// with safe defaults.
 
 		$publishedMonographDao = DAORegistry::getDAO('PublishedMonographDAO');
-		$publishedMonograph = $publishedMonographDao->getById($monograph->getId());
+		$publishedMonograph = $publishedMonographDao->getBySubmissionId($monograph->getId());
 		if ($publishedMonograph) {
 			$monograph = $publishedMonograph;
 		}

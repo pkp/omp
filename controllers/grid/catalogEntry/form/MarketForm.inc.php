@@ -122,7 +122,7 @@ class MarketForm extends Form {
 		));
 
 		$publishedMonographDao = DAORegistry::getDAO('PublishedMonographDAO');
-		$publishedMonograph = $publishedMonographDao->getById($monograph->getId());
+		$publishedMonograph = $publishedMonographDao->getBySubmissionId($monograph->getId());
 		$availableAgents = $publishedMonograph->getAgents();
 		$agentOptions = array();
 		while ($agent = $availableAgents->next()) {
@@ -156,7 +156,7 @@ class MarketForm extends Form {
 				'agentId' => $market->getAgentId(),
 				'supplierId' => $market->getSupplierId(),
 			));
-		
+
 			$representationId = $market->getPublicationFormatId();
 		} else { // loading a blank form
 			$representationId = (int) $request->getUserVar('representationId');

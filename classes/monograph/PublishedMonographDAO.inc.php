@@ -83,10 +83,11 @@ class PublishedMonographDAO extends MonographDAO {
 				s.*,
 				' . $this->getFetchColumns() . '
 			FROM	published_submissions ps
-				JOIN submissions s ON ps.submission_id = s.submission_id
+				JOIN submissions s ON ps.submission_id = s.submission_id AND ps.published_submission_version = s.submission_version
 				' . $this->getFetchJoins() . '
 				JOIN features f ON (f.submission_id = s.submission_id AND f.assoc_type = ? AND f.assoc_id = s.context_id)
 			WHERE	ps.date_published IS NOT NULL AND s.context_id = ?
+			AND ps.is_current_submission_version = 1
 			ORDER BY f.seq, ps.date_published',
 			$params,
 			$rangeInfo
@@ -102,9 +103,13 @@ class PublishedMonographDAO extends MonographDAO {
 	 * @param $metadataApprovedOnly boolean
 	 * @return PublishedMonograph object
 	 */
-	function getById($monographId, $pressId = null, $metadataApprovedOnly = true) {
+	function getBySubmissionId($monographId, $pressId = null, $metadataApprovedOnly = true, $submissionVersion = null) {
 		$params = $this->getFetchParameters();
 		$params[] = (int) $monographId;
+		if ($submissionVersion) {
+			$params[] = (int) $submissionVersion;
+    }
+
 		if ($pressId) $params[] = (int) $pressId;
 
 		$result = $this->retrieve(
@@ -112,17 +117,18 @@ class PublishedMonographDAO extends MonographDAO {
 				ps.*,
 				' . $this->getFetchColumns() . '
 			FROM	submissions s
-				JOIN published_submissions ps ON (ps.submission_id = s.submission_id)
-				' . $this->getFetchJoins() . '
-			WHERE	s.submission_id = ?
-				' . ($pressId?' AND s.context_id = ?':'')
-				. ($metadataApprovedOnly?' AND ps.date_published IS NOT NULL':''),
+				JOIN published_submissions ps ON (ps.submission_id = s.submission_id)'
+				. $this->getFetchJoins() . '
+			WHERE	s.submission_id = ?'
+			. ($submissionVersion ? ' AND ps.published_submission_version = ? ' : ' AND ps.is_current_submission_version = 1')
+			. ($pressId?' AND s.context_id = ?':'')
+			. ($metadataApprovedOnly?' AND ps.date_published IS NOT NULL':''),
 			$params
 		);
 
 		$returner = null;
 		if ($result->RecordCount() != 0) {
-			$returner = $this->_fromRow($result->GetRowAssoc(false));
+			$returner = $this->_fromRow($result->GetRowAssoc(false), $submissionVersion);
 		}
 
 		$result->Close();
@@ -136,7 +142,7 @@ class PublishedMonographDAO extends MonographDAO {
 	 * @param $pressId int optional
 	 * @return array The monographs identified by setting.
 	 */
-	function getBySetting($settingName, $settingValue, $pressId = null) {
+	function getBySetting($settingName, $settingValue, $pressId = null, $submissionVersion = null) {
 		$params = $this->getFetchParameters();
 		$params[] = $settingName;
 
@@ -144,16 +150,24 @@ class PublishedMonographDAO extends MonographDAO {
 				s.*,
 				' . $this->getFetchColumns() . '
 			FROM	published_submissions ps
-				JOIN submissions s ON (ps.submission_id = s.submission_id)
-				' . $this->getFetchJoins();
+				JOIN submissions s ON (ps.submission_id = s.submission_id)'
+				. $this->getFetchJoins();
 
 		if (is_null($settingValue)) {
+			if ($submissionVersion) {
+        $params[] = (int) $submissionVersion;
+			}
 			$sql .= 'LEFT JOIN submission_settings sst ON s.submission_id = sst.submission_id AND sst.setting_name = ?
-				WHERE	(sst.setting_value IS NULL OR sst.setting_value = \'\')';
+				WHERE	(sst.setting_value IS NULL OR sst.setting_value = \'\') '
+				. ($submissionVersion ? ' AND ps.published_submission_version = ? ' : ' AND is_current_submission_version = 1');
 		} else {
 			$params[] = (string) $settingValue;
+			if ($submissionVersion) {
+        $params[] = (int) $submissionVersion;
+			}
 			$sql .= 'INNER JOIN submission_settings sst ON s.submission_id = sst.submission_id
-				WHERE	sst.setting_name = ? AND sst.setting_value = ?';
+				WHERE	sst.setting_name = ? AND sst.setting_value = ? '
+				. ($submissionVersion ? ' AND ps.published_submission_version = ? ' : ' AND is_current_submission_version = 1');
 		}
 		if ($pressId) {
 			$params[] = (int) $pressId;
@@ -200,10 +214,10 @@ class PublishedMonographDAO extends MonographDAO {
 	 * @param $pressId int
 	 * @return PublishedMonograph|null
 	 */
-	function getByBestId($monographId, $pressId) {
+	function getByBestId($monographId, $pressId, $submissionVersion = null) {
 		$publishedMonograph = null;
 		if ($monographId != '') $publishedMonograph = $this->getByPubId('publisher-id', $monographId, $pressId);
-		if (!isset($publishedMonograph) && ctype_digit("$monographId")) $publishedMonograph = $this->getById((int) $monographId, $pressId);
+		if (!isset($publishedMonograph) && ctype_digit("$monographId")) $publishedMonograph = $this->getBySubmissionId((int) $monographId, $pressId, true, $submissionVersion);
 		return $publishedMonograph;
 	}
 
@@ -223,9 +237,9 @@ class PublishedMonographDAO extends MonographDAO {
 
 		$this->update(
 			sprintf('INSERT INTO published_submissions
-				(submission_id, date_published, audience, audience_range_qualifier, audience_range_from, audience_range_to, audience_range_exact, cover_image)
+				(submission_id, date_published, audience, audience_range_qualifier, audience_range_from, audience_range_to, audience_range_exact, cover_image, published_submission_version, is_current_submission_version)
 				VALUES
-				(?, %s, ?, ?, ?, ?, ?, ?)',
+				(?, %s, ?, ?, ?, ?, ?, ?, ?, ?)',
 				$this->datetimeToDB($publishedMonograph->getDatePublished())),
 			array(
 				(int) $publishedMonograph->getId(),
@@ -235,6 +249,8 @@ class PublishedMonographDAO extends MonographDAO {
 				$publishedMonograph->getAudienceRangeTo(),
 				$publishedMonograph->getAudienceRangeExact(),
 				serialize($publishedMonograph->getCoverImage() ? $publishedMonograph->getCoverImage() : array()),
+				$publishedMonograph->getSubmissionVersion(),
+				$publishedMonograph->getIsCurrentSubmissionVersion(),
 			)
 		);
 	}
@@ -263,8 +279,9 @@ class PublishedMonographDAO extends MonographDAO {
 					audience_range_from = ?,
 					audience_range_to = ?,
 					audience_range_exact = ?,
-					cover_image = ?
-				WHERE	submission_id = ?',
+					cover_image = ?,
+					is_current_submission_version = ?
+				WHERE	submission_id = ? AND published_submission_version = ?',
 				$this->datetimeToDB($publishedMonograph->getDatePublished())),
 			array(
 				$publishedMonograph->getAudience(),
@@ -273,7 +290,9 @@ class PublishedMonographDAO extends MonographDAO {
 				$publishedMonograph->getAudienceRangeTo(),
 				$publishedMonograph->getAudienceRangeExact(),
 				serialize($publishedMonograph->getCoverImage() ? $publishedMonograph->getCoverImage() : array()),
-				(int) $publishedMonograph->getId()
+				(int) $publishedMonograph->getIsCurrentSubmissionVersion(),
+				(int) $publishedMonograph->getId(),
+				(int) $publishedMonograph->getSubmissionVersion(),
 			)
 		);
 	}
@@ -283,9 +302,9 @@ class PublishedMonographDAO extends MonographDAO {
 	 * @param $row array
 	 * @return PublishedMonograph object
 	 */
-	function _fromRow($row) {
+	function _fromRow($row, $submissionVersion = null) {
 		// Get the PublishedMonograph object, populated with Monograph data
-		$publishedMonograph = parent::_fromRow($row);
+		$publishedMonograph = parent::_fromRow($row, $submissionVersion);
 
 		// Add the additional PublishedMonograph data
 		$publishedMonograph->setDatePublished($this->datetimeFromDB($row['date_published']));
@@ -295,8 +314,13 @@ class PublishedMonographDAO extends MonographDAO {
 		$publishedMonograph->setAudienceRangeTo($row['audience_range_to']);
 		$publishedMonograph->setAudienceRangeExact($row['audience_range_exact']);
 		$publishedMonograph->setCoverImage(unserialize($row['cover_image']));
+		$publishedMonograph->setSubmissionVersion($row['published_submission_version']);
+		$publishedMonograph->setCurrentSubmissionVersion($row['published_submission_version']);
+		$publishedMonograph->setIsCurrentSubmissionVersion($row['is_current_submission_version']);
 
 		HookRegistry::call('PublishedMonographDAO::_fromRow', array(&$publishedMonograph, &$row));
+		$this->getDataObjectSettings('submission_settings', 'submission_id', $publishedMonograph->getId(), $publishedMonograph, $publishedMonograph->getSubmissionVersion());
+
 		return $publishedMonograph;
 	}
 
@@ -399,7 +423,7 @@ class PublishedMonographDAO extends MonographDAO {
 				COALESCE(f.seq, ?) AS order_by,
 				' . $this->getFetchColumns() . '
 			FROM	published_submissions ps
-				JOIN submissions s ON ps.submission_id = s.submission_id
+				JOIN submissions s ON ps.submission_id = s.submission_id AND ps.published_submission_version = s.submission_version
 				' . $this->getFetchJoins() . '
 				' . ($searchText !== null?'
 					LEFT JOIN authors au ON (s.submission_id = au.submission_id)
@@ -416,7 +440,7 @@ class PublishedMonographDAO extends MonographDAO {
 				':'') . '
 				LEFT JOIN features f ON (f.submission_id = s.submission_id AND f.assoc_type = ? AND f.assoc_id = ?)
 				LEFT JOIN new_releases nr ON (nr.submission_id = s.submission_id AND nr.assoc_type = ? AND nr.assoc_id = ?)
-			WHERE	ps.date_published IS NOT NULL AND s.context_id = ?
+			WHERE	ps.date_published IS NOT NULL AND s.context_id = ? AND ps.is_current_submission_version = 1 
 				' . ($searchText !== null?' AND (st.setting_value LIKE ? OR asgs.setting_value LIKE ? OR asfs.setting_value LIKE ?)':'') . '
 				' . ($assocType == ASSOC_TYPE_CATEGORY?' AND (c.category_id IS NOT NULL OR sc.category_id IS NOT NULL)':'') . '
 				' . ($assocType == ASSOC_TYPE_SERIES?' AND se.series_id = ' . $assocId:'') . '
@@ -428,5 +452,9 @@ class PublishedMonographDAO extends MonographDAO {
 		);
 
 		return new DAOResultFactory($result, $this, '_fromRow');
+	}
+
+	function getMasterTableName() {
+		return 'published_submissions';
 	}
 }

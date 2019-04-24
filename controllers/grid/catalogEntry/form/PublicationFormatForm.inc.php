@@ -22,13 +22,17 @@ class PublicationFormatForm extends Form {
 	/** PublicationFormat the format being edited **/
 	var $_publicationFormat;
 
+	/** @var $_submissionVersion int the submission version */
+	var $_submissionVersion = null;
+
 	/**
 	 * Constructor.
 	 */
-	function __construct($monograph, $publicationFormat) {
+	function __construct($monograph, $publicationFormat, $submissionVersion = null) {
 		parent::__construct('controllers/grid/catalogEntry/form/formatForm.tpl');
 		$this->setMonograph($monograph);
 		$this->setPublicationFormat($publicationFormat);
+		$this->_submissionVersion = $submissionVersion;
 
 		// Validation checks for this form
 		$this->addCheck(new FormValidator($this, 'name', 'required', 'grid.catalogEntry.nameRequired'));
@@ -108,6 +112,7 @@ class PublicationFormatForm extends Form {
 		if ($publicationFormat != null) {
 			$templateMgr->assign('representationId', $publicationFormat->getId());
 		}
+		$templateMgr->assign('submissionVersion', $this->_submissionVersion);
 		return parent::fetch($request, $template, $display);
 	}
 
@@ -147,6 +152,7 @@ class PublicationFormatForm extends Form {
 		$publicationFormat->setEntryKey($this->getData('entryKey'));
 		$publicationFormat->setPhysicalFormat($this->getData('isPhysicalFormat')?true:false);
 		$publicationFormat->setRemoteURL($this->getData('remoteURL'));
+		$publicationFormat->setSubmissionVersion($this->_submissionVersion);
 
 		if ($existingFormat) {
 			$publicationFormatDao->updateObject($publicationFormat);

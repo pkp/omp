@@ -166,7 +166,7 @@ class OAIDAO extends PKPOAIDAO {
 
 		if ($isRecord) {
 			$publicationFormat = $this->_publicationFormatDao->getById($publicationFormatId);
-			$monograph = $this->_publishedMonographDao->getById($publicationFormat->getMonographId());
+			$monograph = $this->_publishedMonographDao->getBySubmissionId($publicationFormat->getMonographId());
 			$record->setData('publicationFormat', $publicationFormat);
 			$record->setData('monograph', $monograph);
 			$record->setData('press', $press);

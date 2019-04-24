@@ -71,7 +71,7 @@ class Dc11SchemaPublicationFormatAdapter extends MetadataDataObjectAdapter {
 		// adapter is called from an OAI context.
 		$oaiDao = DAORegistry::getDAO('OAIDAO'); /* @var $oaiDao OAIDAO */
 		$publishedMonographDao = DAORegistry::getDAO('PublishedMonographDAO');
-		$monograph = $publishedMonographDao->getById($publicationFormat->getMonographId());
+		$monograph = $publishedMonographDao->getBySubmissionId($publicationFormat->getMonographId());
 		$press = $oaiDao->getPress($monograph->getPressId());
 		$series = $oaiDao->getSeries($monograph->getSeriesId()); /* @var $series Series */
 		$dc11Description = $this->instantiateMetadataDescription();

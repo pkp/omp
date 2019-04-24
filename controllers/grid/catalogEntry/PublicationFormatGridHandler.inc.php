@@ -82,7 +82,6 @@ class PublicationFormatGridHandler extends CategoryGridHandler {
 		$this->_submission = $submission;
 	}
 
-
 	//
 	// Overridden methods from PKPHandler
 	//
@@ -111,28 +110,30 @@ class PublicationFormatGridHandler extends CategoryGridHandler {
 			LOCALE_COMPONENT_APP_EDITOR
 		);
 
-		// Grid actions
-		$router = $request->getRouter();
-		$actionArgs = $this->getRequestArgs();
-		$userRoles = $this->getAuthorizedContextObject(ASSOC_TYPE_USER_ROLES);
-		$this->_canManage = 0 != count(array_intersect($userRoles, array(ROLE_ID_MANAGER, ROLE_ID_SUB_EDITOR, ROLE_ID_ASSISTANT)));
-		if ($this->_canManage) $this->addAction(
-			new LinkAction(
-				'addFormat',
-				new AjaxModal(
-					$router->url($request, null, null, 'addFormat', null, $actionArgs),
+		if($this->getSubmission()->getSubmissionVersion() == $this->getSubmission()->getCurrentSubmissionVersion()) {
+			// Grid actions
+			$router = $request->getRouter();
+			$actionArgs = $this->getRequestArgs();
+			$userRoles = $this->getAuthorizedContextObject(ASSOC_TYPE_USER_ROLES);
+			$this->_canManage = 0 != count(array_intersect($userRoles, array(ROLE_ID_MANAGER, ROLE_ID_SUB_EDITOR, ROLE_ID_ASSISTANT)));
+			if ($this->_canManage) $this->addAction(
+				new LinkAction(
+					'addFormat',
+					new AjaxModal(
+						$router->url($request, null, null, 'addFormat', null, $actionArgs),
+						__('grid.action.addFormat'),
+						'modal_add_item'
+					),
 					__('grid.action.addFormat'),
-					'modal_add_item'
-				),
-				__('grid.action.addFormat'),
-				'add_item'
-			)
-		);
+					'add_item'
+				)
+			);
+		}
 
 		// Columns
 		$submission = $this->getSubmission();
 		import('controllers.grid.catalogEntry.PublicationFormatGridCellProvider');
-		$this->_cellProvider = new PublicationFormatGridCellProvider($submission->getId(), $this->_canManage);
+		$this->_cellProvider = new PublicationFormatGridCellProvider($submission->getId(), $this->_canManage, $submission->getSubmissionVersion());
 		$this->addColumn(
 			new GridColumn(
 				'name',
@@ -176,6 +177,15 @@ class PublicationFormatGridHandler extends CategoryGridHandler {
 	function authorize($request, &$args, $roleAssignments) {
 		import('lib.pkp.classes.security.authorization.SubmissionAccessPolicy');
 		$this->addPolicy(new SubmissionAccessPolicy($request, $args, $roleAssignments));
+
+		import('lib.pkp.classes.security.authorization.internal.VersioningRequiredPolicy');
+		$this->addPolicy(new VersioningRequiredPolicy($request, $args));
+
+		if ($request->getUserVar('representationId')) {
+			import('lib.pkp.classes.security.authorization.internal.RepresentationRequiredPolicy');
+			$this->addPolicy(new RepresentationRequiredPolicy($request, $args));
+		}
+
 		return parent::authorize($request, $args, $roleAssignments);
 	}
 
@@ -307,11 +317,8 @@ class PublicationFormatGridHandler extends CategoryGridHandler {
 	 */
 	function setApproved($args, $request) {
 		$submission = $this->getSubmission();
+		$representation = $this->getAuthorizedContextObject(ASSOC_TYPE_REPRESENTATION);
 		$representationDao = Application::getRepresentationDAO();
-		$representation = $representationDao->getById(
-			$request->getUserVar('representationId'),
-			$submission->getId()
-		);
 
 		if (!$representation) return new JSONMessage(false, __('manager.setup.errorDeletingItem'));
 
@@ -371,11 +378,7 @@ class PublicationFormatGridHandler extends CategoryGridHandler {
 	function setAvailable($args, $request) {
 		$context = $request->getContext();
 		$publicationFormatDao = DAORegistry::getDAO('PublicationFormatDAO');
-		$publicationFormat = $publicationFormatDao->getById(
-			$request->getUserVar('representationId'),
-			null, // $submissionId
-			$context->getId() // Make sure to validate the context.
-		);
+		$publicationFormat = $this->getAuthorizedContextObject(ASSOC_TYPE_REPRESENTATION);
 
 		if (!$publicationFormat) return new JSONMessage(false, __('manager.setup.errorDeletingItem'));
 
@@ -418,10 +421,7 @@ class PublicationFormatGridHandler extends CategoryGridHandler {
 		$this->initialize($request);
 		$submission = $this->getSubmission();
 		$representationDao = Application::getRepresentationDAO();
-		$representation = $representationDao->getById(
-			$request->getUserVar('representationId'),
-			$submission->getId()
-		);
+		$representation = $this->getAuthorizedContextObject(ASSOC_TYPE_REPRESENTATION);
 
 		import('controllers.grid.files.proof.form.ApprovedProofForm');
 		$approvedProofForm = new ApprovedProofForm($submission, $representation, $request->getUserVar('fileId'));
@@ -439,10 +439,7 @@ class PublicationFormatGridHandler extends CategoryGridHandler {
 	function saveApprovedProof($args, $request) {
 		$submission = $this->getSubmission();
 		$representationDao = Application::getRepresentationDAO();
-		$representation = $representationDao->getById(
-			$request->getUserVar('representationId'),
-			$submission->getId()
-		);
+		$representation = $this->getAuthorizedContextObject(ASSOC_TYPE_REPRESENTATION);
 
 		import('controllers.grid.files.proof.form.ApprovedProofForm');
 		$approvedProofForm = new ApprovedProofForm($submission, $representation, $request->getUserVar('fileId'));
@@ -470,7 +467,7 @@ class PublicationFormatGridHandler extends CategoryGridHandler {
 	 * @copydoc GridHandler::getRowInstance()
 	 */
 	function getRowInstance() {
-		return new PublicationFormatGridRow($this->_canManage);
+		return new PublicationFormatGridRow($this->_canManage, $this->getSubmission()->getSubmissionVersion());
 	}
 
 	/**
@@ -481,6 +478,7 @@ class PublicationFormatGridHandler extends CategoryGridHandler {
 	function getRequestArgs() {
 		return array(
 			'submissionId' => $this->getSubmission()->getId(),
+			'submissionVersion' => $this->getSubmission()->getSubmissionVersion(),
 		);
 	}
 
@@ -511,7 +509,8 @@ class PublicationFormatGridHandler extends CategoryGridHandler {
 			$request->getUserVar('fileId'),
 			$request->getUserVar('revision'),
 			SUBMISSION_FILE_PROOF,
-			$submission->getId()
+			$submission->getId(),
+			$submission->getSubmissionVersion()
 		);
 		$confirmationText = __('editor.submission.proofreading.confirmRemoveCompletion');
 		if ($request->getUserVar('approval')) {
@@ -555,10 +554,7 @@ class PublicationFormatGridHandler extends CategoryGridHandler {
 	function selectFiles($args, $request) {
 		$submission = $this->getSubmission();
 		$representationDao = Application::getRepresentationDAO();
-		$representation = $representationDao->getById(
-			$request->getUserVar('representationId'),
-			$submission->getId()
-		);
+		$representation = $this->getAuthorizedContextObject(ASSOC_TYPE_REPRESENTATION);
 
 		import('lib.pkp.controllers.grid.files.proof.form.ManageProofFilesForm');
 		$manageProofFilesForm = new ManageProofFilesForm($submission->getId(), $representation->getId());
@@ -575,10 +571,8 @@ class PublicationFormatGridHandler extends CategoryGridHandler {
 	function identifiers($args, $request) {
 		$submission = $this->getSubmission();
 		$representationDao = Application::getRepresentationDAO();
-		$representation = $representationDao->getById(
-			$request->getUserVar('representationId'),
-			$submission->getId()
-		);
+		$representation = $this->getAuthorizedContextObject(ASSOC_TYPE_REPRESENTATION);
+
 		import('lib.pkp.controllers.tab.pubIds.form.PKPPublicIdentifiersForm');
 		$form = new PKPPublicIdentifiersForm($representation);
 		$form->initData();
@@ -594,10 +588,8 @@ class PublicationFormatGridHandler extends CategoryGridHandler {
 	function updateIdentifiers($args, $request) {
 		$submission = $this->getSubmission();
 		$representationDao = Application::getRepresentationDAO();
-		$representation = $representationDao->getById(
-			$request->getUserVar('representationId'),
-			$submission->getId()
-		);
+		$representation = $this->getAuthorizedContextObject(ASSOC_TYPE_REPRESENTATION);
+
 		import('lib.pkp.controllers.tab.pubIds.form.PKPPublicIdentifiersForm');
 		$form = new PKPPublicIdentifiersForm($representation);
 		$form->readInputData();
@@ -620,10 +612,8 @@ class PublicationFormatGridHandler extends CategoryGridHandler {
 
 		$submission = $this->getSubmission();
 		$representationDao = Application::getRepresentationDAO();
-		$representation = $representationDao->getById(
-			$request->getUserVar('representationId'),
-			$submission->getId()
-		);
+		$representation = $this->getAuthorizedContextObject(ASSOC_TYPE_REPRESENTATION);
+
 		import('lib.pkp.controllers.tab.pubIds.form.PKPPublicIdentifiersForm');
 		$form = new PKPPublicIdentifiersForm($representation);
 		$form->clearPubId($request->getUserVar('pubIdPlugIn'));
@@ -643,7 +633,8 @@ class PublicationFormatGridHandler extends CategoryGridHandler {
 			$request->getUserVar('fileId'),
 			$request->getUserVar('revision'),
 			SUBMISSION_FILE_PROOF,
-			$submission->getId()
+			$submission->getId(),
+			$submission->getSubmissionVersion()
 		);
 
 		// Check if this is a remote galley

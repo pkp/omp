@@ -34,17 +34,11 @@ class ChapterAuthorDAO extends DAO {
 		// get all the monograph_author fields,
 		// but replace the primary_contact and seq with submission_chapter_authors.primary_contact
 
-		$sql = 'SELECT	a.author_id,
-				a.submission_id,
+		$sql = 'SELECT	a.*,
 				sca.chapter_id,
 				sca.primary_contact,
 				sca.seq,
-				a.include_in_browse,
 				ug.show_title,
-				a.country,
-				a.email,
-				a.url,
-				a.user_group_id,
 				s.locale
 			FROM	authors a
 				JOIN submissions s ON (s.submission_id = a.submission_id)
@@ -57,7 +51,7 @@ class ChapterAuthorDAO extends DAO {
 			' ORDER BY sca.chapter_id, sca.seq';
 
 		$result = $this->retrieve($sql, $params);
-		return new DAOResultFactory($result, $this, '_returnFromRow', array('id'));
+		return new DAOResultFactory($result, $this, '_fromRow', array('id'));
 	}
 
 	/**
@@ -141,7 +135,7 @@ class ChapterAuthorDAO extends DAO {
 	 * @param $row array
 	 * @return Author
 	 */
-	function _returnFromRow($row) {
+	function _fromRow($row) {
 		// Start with an Author object and copy the common elements
 		$authorDao = DAORegistry::getDAO('AuthorDAO');
 		$author = $authorDao->_fromRow($row);

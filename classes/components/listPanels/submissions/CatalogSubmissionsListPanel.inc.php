@@ -42,6 +42,7 @@ class CatalogSubmissionsListPanel extends SubmissionsListPanel {
 				'orderByFeatured' => true,
 				'orderBy' => $catalogSortBy,
 				'orderDirection' => $catalogSortDir,
+				'isCurrentSubmissionVersion' => 1,
 			)
 		);
 
