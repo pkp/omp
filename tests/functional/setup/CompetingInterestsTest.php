@@ -48,6 +48,8 @@ class CompetingInterestsTest extends ContentBaseTestCase {
 
 		$this->waitForElementPresent('id=reviewStep1Form');
 		self::$driver->wait()->until(WebDriverExpectedCondition::invisibilityOfElementLocated(WebDriverBy::xpath('//label[@for="noCompetingInterests"]')));
+		self::$driver->executeScript('document.getElementById(\'privacyConsent\').scrollIntoView();');
+		self::$driver->executeScript('window.scroll(0,50);'); // FIXME: Give it an extra margin of pixels
 		$this->click('//input[@id=\'privacyConsent\']');
 		$this->clickLinkActionNamed('Accept Review, Continue to Step #2');
 		$this->clickLinkActionNamed('Continue to Step #3');
@@ -81,7 +83,6 @@ class CompetingInterestsTest extends ContentBaseTestCase {
 
 		// Send the submission to review
 		$this->findSubmissionAsEditor('dbarnes', null, self::$fullTitle);
-		sleep(5);
 		$this->sendToReview('External');
 		$this->assignReviewer('Al Zacharia');
 		$this->logOut();
