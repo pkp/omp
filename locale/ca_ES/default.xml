@@ -34,9 +34,9 @@
 	<message key="default.groups.name.editor">Editor/a (E)</message>
 	<message key="default.groups.plural.editor">Editors/ores</message>
 	<message key="default.groups.abbrev.editor">E</message>
-	<message key="default.groups.name.seriesEditor">Editor/a de sèrie (ES)</message>
-	<message key="default.groups.plural.seriesEditor">Editors/ores de les col·leccions</message>
-	<message key="default.groups.abbrev.seriesEditor">ES</message>
+	<message key="default.groups.name.sectionEditor">Editor/a de sèrie (ES)</message>
+	<message key="default.groups.plural.sectionEditor">Editors/ores de les col·leccions</message>
+	<message key="default.groups.abbrev.sectionEditor">ES</message>
 	<message key="default.groups.name.chapterAuthor">Autor/a del capítol (AC)</message>
 	<message key="default.groups.plural.chapterAuthor">Autors/ores dels capítols</message>
 	<message key="default.groups.abbrev.chapterAuthor">AC</message>

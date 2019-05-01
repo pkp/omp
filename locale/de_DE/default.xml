@@ -34,9 +34,9 @@
 	<message key="default.groups.name.editor">Herausgeber/in</message>
 	<message key="default.groups.plural.editor">Herausgeber/innen</message>
 	<message key="default.groups.abbrev.editor">Hrsg</message>
-	<message key="default.groups.name.seriesEditor">Reihenherausgeber/in</message>
-	<message key="default.groups.plural.seriesEditor">Reihenherausgeber/innen</message>
-	<message key="default.groups.abbrev.seriesEditor">RHrsg</message>
+	<message key="default.groups.name.sectionEditor">Reihenherausgeber/in</message>
+	<message key="default.groups.plural.sectionEditor">Reihenherausgeber/innen</message>
+	<message key="default.groups.abbrev.sectionEditor">RHrsg</message>
 	<message key="default.groups.name.chapterAuthor">Kapitelautor/in</message>
 	<message key="default.groups.plural.chapterAuthor">Kapitelautor/innen</message>
 	<message key="default.groups.abbrev.chapterAuthor">KapAu</message>

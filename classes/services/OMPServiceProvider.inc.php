@@ -20,6 +20,7 @@ require_once(dirname(__FILE__) . '/../../lib/pkp/lib/vendor/pimple/pimple/src/Pi
 
 use \Pimple\Container;
 use \PKP\Services\PKPAuthorService;
+use \PKP\Services\PKPEmailTemplateService;
 use \PKP\Services\PKPSchemaService;
 use \PKP\Services\PKPUserService;
 
@@ -55,6 +56,11 @@ class OMPServiceProvider implements \Pimple\ServiceProviderInterface {
 		// Context service
 		$pimple['context'] = function() {
 			return new ContextService();
+		};
+
+		// Email Template service
+		$pimple['emailTemplate'] = function() {
+			return new PKPEmailTemplateService();
 		};
 
 		// Schema service

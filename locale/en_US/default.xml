@@ -34,9 +34,9 @@
 	<message key="default.groups.name.editor">Press editor</message>
 	<message key="default.groups.plural.editor">Press editors</message>
 	<message key="default.groups.abbrev.editor">PE</message>
-	<message key="default.groups.name.seriesEditor">Series editor</message>
-	<message key="default.groups.plural.seriesEditor">Series editors</message>
-	<message key="default.groups.abbrev.seriesEditor">AcqE</message>
+	<message key="default.groups.name.sectionEditor">Series editor</message>
+	<message key="default.groups.plural.sectionEditor">Series editors</message>
+	<message key="default.groups.abbrev.sectionEditor">AcqE</message>
 	<message key="default.groups.name.chapterAuthor">Chapter Author</message>
 	<message key="default.groups.plural.chapterAuthor">Chapter Authors</message>
 	<message key="default.groups.abbrev.chapterAuthor">CA</message>

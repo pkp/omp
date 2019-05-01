@@ -65,17 +65,56 @@ class ManageCatalogHandler extends Handler {
 	 * @return JSONMessage JSON object
 	 */
 	function index($args, $request) {
-		// Render the view.
-		$templateMgr = TemplateManager::getManager($request);
+		AppLocale::requireComponents(LOCALE_COMPONENT_APP_SUBMISSION);
+		$context = $request->getContext();
 
 		// Catalog list
-		import('classes.components.listPanels.submissions.CatalogSubmissionsListPanel');
-		$catalogListHandler = new CatalogSubmissionsListPanel(array(
-			'title' => 'submission.list.monographs',
-		));
-		$templateMgr->assign('catalogListData', $catalogListHandler->getConfig());
+		list($catalogSortBy, $catalogSortDir) = explode('-', $context->getData('catalogSortOption'));
+		$catalogSortBy = empty($catalogSortBy) ? ORDERBY_DATE_PUBLISHED : $catalogSortBy;
+		$catalogSortDir = $catalogSortDir == SORT_DIRECTION_ASC ? 'ASC' : 'DESC';
+		$catalogList = new \APP\components\listPanels\CatalogListPanel(
+			'catalog',
+			__('submission.list.monographs'),
+			[
+				'apiUrl' => $request->getDispatcher()->url(
+					$request,
+					ROUTE_API,
+					$context->getPath(),
+					'_submissions'
+				),
+				'catalogSortBy' => $catalogSortBy,
+				'catalogSortDir' => $catalogSortDir,
+				'getParams' => [
+					'status' => STATUS_PUBLISHED,
+					'orderByFeatured' => true,
+					'orderBy' => $catalogSortBy,
+					'orderDirection' => $catalogSortDir,
+				],
+			]
+		);
 
+		$submissionService = \Services::get('submission');
+		$params = array_merge($catalogList->getParams, [
+			'count' => $catalogList->count,
+			'contextId' => $context->getId(),
+			'returnObject' => SUBMISSION_RETURN_PUBLISHED,
+		]);
+		$submissions = $submissionService->getMany($params);
+		$items = [];
+		foreach ($submissions as $submission) {
+			$items[] = $submissionService->getBackendListProperties($submission, ['request' => $request]);
+		}
+		$catalogList->set([
+			'items' => $items,
+			'itemsMax' => $submissionService->getMax($params),
+		]);
 
+		$templateMgr = TemplateManager::getManager($request);
+		$templateMgr->assign('catalogListData', [
+			'components' => [
+				'catalog' => $catalogList->getConfig()
+			]
+		]);
 		return $templateMgr->display('manageCatalog/index.tpl');
 	}
 }

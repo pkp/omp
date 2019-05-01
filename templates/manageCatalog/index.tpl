@@ -32,11 +32,15 @@
 		{help file="catalog.md" class="pkp_help_tab"}
 		<div class="pkp_content_panel">
 			{assign var="uuid" value=""|uniqid|escape}
-			<div id="catalog-submissions-list-handler-{$uuid}">
-			    <script type="text/javascript">
-			        pkp.registry.init('catalog-submissions-list-handler-{$uuid}', 'CatalogSubmissionsListPanel', {$catalogListData|json_encode});
-			    </script>
+			<div id="catalog-{$uuid}">
+				<catalog-list-panel
+					v-bind="components.catalog"
+					@set="set"
+				/>
 			</div>
+			<script type="text/javascript">
+				pkp.registry.init('catalog-{$uuid}', 'CatalogContainer', {$catalogListData|json_encode});
+			</script>
 		</div>
 	</div>
 	{if $isManager}

@@ -84,14 +84,28 @@ class Onix30ExportPlugin extends ImportExportPlugin {
 		switch (array_shift($args)) {
 			case 'index':
 			case '':
-				import('lib.pkp.classes.components.listPanels.submissions.SelectSubmissionsListPanel');
-				$exportSubmissionsListPanel = new SelectSubmissionsListPanel(array(
-					'title' => 'plugins.importexport.onix30.exportSubmissionsSelect',
-					'count' => 100,
-					'inputName' => 'selectedSubmissions[]',
-					'lazyLoad' => true,
-				));
-				$templateMgr->assign('exportSubmissionsListData', $exportSubmissionsListPanel->getConfig());
+				$exportSubmissionsListPanel = new \PKP\components\listPanels\PKPSelectSubmissionsListPanel(
+					'exportSubmissionsListPanel',
+					__('plugins.importexport.onix30.exportSubmissionsSelect'),
+					[
+						'apiUrl' => $request->getDispatcher()->url(
+							$request,
+							ROUTE_API,
+							$context->getPath(),
+							'_submissions'
+						),
+						'canSelect' => true,
+						'canSelectAll' => true,
+						'count' => 100,
+						'lazyLoad' => true,
+						'selectorName' => 'selectedSubmissions[]',
+					]
+				);
+				$templateMgr->assign('exportSubmissionsListData', [
+					'components' => [
+						'exportSubmissionsListPanel' => $exportSubmissionsListPanel->getConfig()
+					]
+				]);
 				$templateMgr->display($this->getTemplateResource('index.tpl'));
 				break;
 			case 'export':

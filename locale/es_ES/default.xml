@@ -31,9 +31,9 @@
 	<message key="default.groups.name.editor">Coordinador editorial</message>
 	<message key="default.groups.plural.editor">Coordinadores editoriales</message>
 	<message key="default.groups.abbrev.editor">CE</message>
-	<message key="default.groups.name.seriesEditor">Coordinador de obra</message>
-	<message key="default.groups.plural.seriesEditor">Coordinadores de obra</message>
-	<message key="default.groups.abbrev.seriesEditor">CO</message>
+	<message key="default.groups.name.sectionEditor">Coordinador de obra</message>
+	<message key="default.groups.plural.sectionEditor">Coordinadores de obra</message>
+	<message key="default.groups.abbrev.sectionEditor">CO</message>
 	<message key="default.groups.name.chapterAuthor">Autor de capítulo</message>
 	<message key="default.groups.plural.chapterAuthor">Autores de capítulo</message>
 	<message key="default.groups.abbrev.chapterAuthor">AC</message>

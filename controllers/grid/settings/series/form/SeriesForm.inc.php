@@ -120,10 +120,10 @@ class SeriesForm extends PKPSectionForm {
 		$templateMgr = TemplateManager::getManager($request);
 		$templateMgr->assign('seriesId', $this->getSeriesId());
 
-		$press = $request->getPress();
+		$context = $request->getContext();
 
 		$categoryDao = DAORegistry::getDAO('CategoryDAO');
-		$categoryCount = $categoryDao->getCountByContextId($press->getId());
+		$categoryCount = $categoryDao->getCountByContextId($context->getId());
 		$templateMgr->assign('categoryCount', $categoryCount);
 
 		// Sort options.
@@ -131,25 +131,48 @@ class SeriesForm extends PKPSectionForm {
 		$templateMgr->assign('sortOptions', $publishedMonographDao->getSortSelectOptions());
 
 		// Series Editors
-		$seriesEditorsListData = $this->_getSubEditorsListPanelData($press->getId(), $request);
+		$subEditorsListPanel = $this->_getSubEditorsListPanel($context->getId(), $request);
 		$templateMgr->assign(array(
-			'hasSubEditors' => !empty($seriesEditorsListData['items']),
-			'subEditorsListData' => $seriesEditorsListData,
+			'hasSubEditors' => !empty($subEditorsListPanel->items),
+			'subEditorsListData' => [
+				'components' => [
+					'subeditors' => $subEditorsListPanel->getConfig(),
+				]
+			]
 		));
 
-		// Get SelectCategoryListPanel data
-		import('lib.pkp.classes.components.listPanels.SelectCategoryListPanel');
-		$categoriesList = new SelectCategoryListPanel(array(
-			'title' => 'grid.category.categories',
-			'inputName' => 'categories[]',
-			'selected' => $this->getData('categories'),
-		));
+		// Categories list
+		$items = [];
+		$categoryDao = DAORegistry::getDAO('CategoryDAO');
+		$categories = $categoryDao->getByContextId($context->getId());
+		if (!$categories->wasEmpty) {
+			while ($category = $categories->next()) {
+				$items[] = array(
+					'id' => $category->getId(),
+					'title' => $category->getLocalizedTitle(),
+				);
+			}
+		}
 
-		$categoriesListData = $categoriesList->getConfig();
+		$categoriesList = new \PKP\components\listPanels\ListPanel(
+			'categories',
+			__('grid.category.categories'),
+			[
+				'canSelect' => true,
+				'items' => $items,
+				'itemsMax' => count($items),
+				'selected' => $this->getData('categories'),
+				'selectorName' => 'categories[]',
+			]
+		);
 
 		$templateMgr->assign(array(
-			'hasCategories' => !empty($categoriesListData['items']),
-			'categoriesListData' => $categoriesListData,
+			'hasCategories' => !empty($categoriesList->items),
+			'categoriesListData' => [
+				'components' => [
+					'categories' => $categoriesList->getConfig(),
+				]
+			]
 		));
 
 		return parent::fetch($request, $template, $display);

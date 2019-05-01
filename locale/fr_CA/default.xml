@@ -31,9 +31,9 @@
 	<message key="default.groups.name.editor">Rédacteur/Rédactrice en chef de la presse</message>
 	<message key="default.groups.plural.editor">Rédacteurs en chef de la presse</message>
 	<message key="default.groups.abbrev.editor">RP</message>
-	<message key="default.groups.name.seriesEditor">Rédacteur/Rédactrice en chef de la série</message>
-	<message key="default.groups.plural.seriesEditor">Rédacteurs en chef de la série</message>
-	<message key="default.groups.abbrev.seriesEditor">RS</message>
+	<message key="default.groups.name.sectionEditor">Rédacteur/Rédactrice en chef de la série</message>
+	<message key="default.groups.plural.sectionEditor">Rédacteurs en chef de la série</message>
+	<message key="default.groups.abbrev.sectionEditor">RS</message>
 	<message key="default.groups.name.chapterAuthor">Auteur du chapitre</message>
 	<message key="default.groups.plural.chapterAuthor">Auteurs du chapitre</message>
 	<message key="default.groups.abbrev.chapterAuthor">AC</message>

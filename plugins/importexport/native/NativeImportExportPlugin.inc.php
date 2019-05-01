@@ -75,7 +75,7 @@ class NativeImportExportPlugin extends ImportExportPlugin {
 	 */
 	function display($args, $request) {
 		$templateMgr = TemplateManager::getManager($request);
-		$press = $request->getPress();
+		$context = $request->getContext();
 
 		parent::display($args, $request);
 
@@ -84,14 +84,28 @@ class NativeImportExportPlugin extends ImportExportPlugin {
 		switch (array_shift($args)) {
 			case 'index':
 			case '':
-				import('lib.pkp.classes.components.listPanels.submissions.SelectSubmissionsListPanel');
-				$exportSubmissionsListPanel = new SelectSubmissionsListPanel(array(
-					'title' => 'plugins.importexport.native.exportSubmissionsSelect',
-					'count' => 100,
-					'inputName' => 'selectedSubmissions[]',
-					'lazyLoad' => true,
-				));
-				$templateMgr->assign('exportSubmissionsListData', $exportSubmissionsListPanel->getConfig());
+				$exportSubmissionsListPanel = new \PKP\components\listPanels\PKPSelectSubmissionsListPanel(
+					'exportSubmissionsListPanel',
+					__('plugins.importexport.native.exportSubmissionsSelect'),
+					[
+						'apiUrl' => $request->getDispatcher()->url(
+							$request,
+							ROUTE_API,
+							$context->getPath(),
+							'_submissions'
+						),
+						'canSelect' => true,
+						'canSelectAll' => true,
+						'count' => 100,
+						'lazyLoad' => true,
+						'selectorName' => 'selectedSubmissions[]',
+					]
+				);
+				$templateMgr->assign('exportSubmissionsListData', [
+					'components' => [
+						'exportSubmissionsListPanel' => $exportSubmissionsListPanel->getConfig()
+					]
+				]);
 				$templateMgr->display($this->getTemplateResource('index.tpl'));
 				break;
 			case 'uploadImportXML':
@@ -128,7 +142,7 @@ class NativeImportExportPlugin extends ImportExportPlugin {
 				}
 				$temporaryFilePath = $temporaryFile->getFilePath();
 
-				$deployment = new NativeImportExportDeployment($press, $user);
+				$deployment = new NativeImportExportDeployment($context, $user);
 
 				libxml_use_internal_errors(true);
 				$submissions = $this->importSubmissions(file_get_contents($temporaryFilePath), $deployment);
@@ -166,7 +180,7 @@ class NativeImportExportPlugin extends ImportExportPlugin {
 				);
 				import('lib.pkp.classes.file.FileManager');
 				$fileManager = new FileManager();
-				$exportFileName = $this->getExportFileName($this->getExportPath(), 'monographs', $press, '.xml');
+				$exportFileName = $this->getExportFileName($this->getExportPath(), 'monographs', $context, '.xml');
 				$fileManager->writeFile($exportFileName, $exportXml);
 				$fileManager->downloadByPath($exportFileName);
 				$fileManager->deleteByPath($exportFileName);

@@ -34,9 +34,9 @@
 	<message key="default.groups.name.editor">Urednik publikacije</message>
 	<message key="default.groups.plural.editor">Uredniki publikacije</message>
 	<message key="default.groups.abbrev.editor">Urednik publikacije</message>
-	<message key="default.groups.name.seriesEditor">Urednik zbirke</message>
-	<message key="default.groups.plural.seriesEditor">Uredniki zbirke</message>
-	<message key="default.groups.abbrev.seriesEditor">Urednik zbirke</message>
+	<message key="default.groups.name.sectionEditor">Urednik zbirke</message>
+	<message key="default.groups.plural.sectionEditor">Uredniki zbirke</message>
+	<message key="default.groups.abbrev.sectionEditor">Urednik zbirke</message>
 	<message key="default.groups.name.chapterAuthor">Avtor poglavja</message>
 	<message key="default.groups.plural.chapterAuthor">Avtorji poglavja</message>
 	<message key="default.groups.abbrev.chapterAuthor">Avtor poglavja</message>

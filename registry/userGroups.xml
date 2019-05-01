@@ -19,7 +19,7 @@
 	<group roleId="0x00000010" stages="4,5" name="default.groups.name.productionEditor" plural="default.groups.plural.productionEditor" abbrev="default.groups.abbrev.productionEditor" />
 
 	<!-- Series editor role -->
-	<group roleId="0x00000011" stages="1,2,3,4,5" name="default.groups.name.seriesEditor" plural="default.groups.plural.seriesEditor" abbrev="default.groups.abbrev.seriesEditor" />
+	<group roleId="0x00000011" stages="1,2,3,4,5" name="default.groups.name.sectionEditor" plural="default.groups.plural.sectionEditor" abbrev="default.groups.abbrev.sectionEditor" />
 
 	<!-- Press Role -->
 	<group roleId="0x00001001" stages="4" name="default.groups.name.copyeditor" plural="default.groups.plural.copyeditor" abbrev="default.groups.abbrev.copyeditor" />

@@ -46,15 +46,9 @@ class SeriesTest extends WebTestCase {
 		$this->type('css=[id^=path-]', 'lis');
 
 		// Add Series Editor (David Buskins)
-		$this->waitForElementPresent($selector='//*[contains(@class,"pkpListPanelItem__item") and contains(text(),"David Buskins")]');
+		$this->waitForElementPresent($selector='//*[contains(@class,"pkpListPanelItem") and contains(text(),"David Buskins")]');
 		$this->click($selector);
-
-		// Save changes
 		$this->click('//form[@id=\'seriesForm\']//button[text()=\'Save\']');
-		self::$driver->wait()->until(WebDriverExpectedCondition::invisibilityOfElementLocated(WebDriverBy::cssSelector('div.pkp_modal_panel')));
-
-		// Verify resulting grid row
-		$this->waitForElementPresent('//*[@id="cell-1-editors"]//span[contains(text(),"David Buskins")]');
 		self::$driver->wait()->until(WebDriverExpectedCondition::invisibilityOfElementLocated(WebDriverBy::cssSelector('div.pkp_modal_panel')));
 
 		// Create a new "Political Economy" series
@@ -64,7 +58,7 @@ class SeriesTest extends WebTestCase {
 		$this->type('css=[id^=path-]', 'pe');
 
 		// Add a Series Editor (Stephanie Berardo)
-		$this->waitForElementPresent($selector='//*[contains(@class,"pkpListPanelItem__item") and contains(text(),"Stephanie Berardo")]');
+		$this->waitForElementPresent($selector='//*[contains(@class,"pkpListPanelItem") and contains(text(),"Stephanie Berardo")]');
 		$this->click($selector);
 		$this->click('//form[@id=\'seriesForm\']//button[text()=\'Save\']');
 		self::$driver->wait()->until(WebDriverExpectedCondition::invisibilityOfElementLocated(WebDriverBy::cssSelector('div.pkp_modal_panel')));

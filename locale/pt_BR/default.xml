@@ -39,9 +39,9 @@
 	<message key="default.groups.name.productionEditor">Editor de produção</message>
 	<message key="default.groups.plural.productionEditor">Editores de produção</message>
 	<message key="default.groups.abbrev.productionEditor">EdProd</message>
-	<message key="default.groups.name.seriesEditor">Editor de série</message>
-	<message key="default.groups.plural.seriesEditor">Editores de série</message>
-	<message key="default.groups.abbrev.seriesEditor">EdSer</message>
+	<message key="default.groups.name.sectionEditor">Editor de série</message>
+	<message key="default.groups.plural.sectionEditor">Editores de série</message>
+	<message key="default.groups.abbrev.sectionEditor">EdSer</message>
 	<message key="default.groups.name.copyeditor">Editor de texto</message>
 	<message key="default.groups.plural.copyeditor">Editores de texto</message>
 	<message key="default.groups.abbrev.copyeditor">EdText</message>

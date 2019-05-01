@@ -111,10 +111,6 @@ class BackendSubmissionsHandler extends PKPBackendSubmissionsHandler {
 	public function saveDisplayFlags($slimRequest, $response, $args) {
 		$params = $slimRequest->getParsedBody();
 
-		if (!\Application::get()->getRequest()->checkCSRF()) {
-			return $response->withStatus(403)->withJsonError('api.submissions.403.csrfTokenFailure');
-		}
-
 		$submissionId = isset($params['submissionId']) ?  (int) $params['submissionId'] : null;
 
 		if (empty($submissionId)) {
@@ -165,10 +161,6 @@ class BackendSubmissionsHandler extends PKPBackendSubmissionsHandler {
 	 */
 	public function saveFeaturedOrder($slimRequest, $response, $args) {
 		$params = $slimRequest->getParsedBody();
-
-		if (!\Application::get()->getRequest()->checkCSRF()) {
-			return $response->withStatus(403)->withJsonError('api.submissions.403.csrfTokenFailure');
-		}
 
 		$assocType = isset($params['assocType']) && in_array($params['assocType'], array(ASSOC_TYPE_PRESS, ASSOC_TYPE_CATEGORY, ASSOC_TYPE_SERIES)) ?  (int) $params['assocType'] : null;
 		$assocId = isset($params['assocId']) ?  (int) $params['assocId'] : null;
