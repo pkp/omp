@@ -186,6 +186,14 @@ class Application extends PKPApplication {
 	}
 
 	/**
+	 * Get a SubmissionSearchIndex instance.
+	 */
+	static function getSubmissionSearchIndex() {
+		import('classes.search.MonographSearchIndex');
+		return new MonographSearchIndex();
+	}
+
+	/**
 	 * returns the name of the context column in plugin_settings
 	 */
 	static function getPluginSettingsContextColumnName() {

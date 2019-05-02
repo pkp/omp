@@ -75,8 +75,9 @@ class SubmissionMetadataViewForm extends PKPSubmissionMetadataViewForm {
 		$submissionDao->updateObject($submission);
 
 		if ($submission->getDatePublished()) {
-			import('classes.search.MonographSearchIndex');
-			MonographSearchIndex::indexMonographMetadata($submission);
+			$monographSearchIndex = Application::getSubmissionSearchIndex();
+			$monographSearchIndex->submissionMetadataChanged($submission);
+			$monographSearchIndex->submissionChangesFinished();
 		}
 	}
 }

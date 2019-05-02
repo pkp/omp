@@ -107,8 +107,9 @@ class SubmissionService extends \PKP\Services\PKPSubmissionService {
 		$publicationFormatTombstoneMgr->deleteTombstonesByPublicationFormats($publicationFormats);
 
 		// Update the search index for this published monograph.
-		import('classes.search.MonographSearchIndex');
-		\MonographSearchIndex::indexMonographMetadata($submission);
+		$monographSearchIndex = \Application::getSubmissionSearchIndex();
+		$monographSearchIndex->submissionMetadataChanged($submission);
+		$monographSearchIndex->submissionChangesFinished();
 
 		// Log the publication event.
 		import('lib.pkp.classes.log.SubmissionLog');

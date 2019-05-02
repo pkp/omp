@@ -52,12 +52,13 @@ class NativeXmlMonographFilter extends NativeXmlSubmissionFilter {
 		$importedObjects =& parent::process($document);
 
 		// Index imported content
-		import('classes.search.MonographSearchIndex');
+		$monographSearchIndex = Application::getSubmissionSearchIndex();
 		foreach ($importedObjects as $submission) {
 			assert(is_a($submission, 'Submission'));
-			MonographSearchIndex::indexMonographMetadata($submission);
-			MonographSearchIndex::indexMonographFiles($submission);
+			$monographSearchIndex->submissionMetadataChanged($submission);
+			$monographSearchIndex->submissionFilesChanged($submission);
 		}
+		$monographSearchIndex->submissionChangesFinished();
 
 		return $importedObjects;
 	}

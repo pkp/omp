@@ -15,8 +15,6 @@
 
 require(dirname(__FILE__) . '/bootstrap.inc.php');
 
-import('classes.search.MonographSearchIndex');
-
 class rebuildSearchIndex extends CommandLineTool {
 
 	/**
@@ -31,7 +29,8 @@ class rebuildSearchIndex extends CommandLineTool {
 	 * Rebuild the search index for all monographs in all presses.
 	 */
 	function execute() {
-		MonographSearchIndex::rebuildIndex(true);
+		$monographSearchIndex = Application::getSubmissionSearchIndex();
+		$monographSearchIndex->rebuildIndex(true);
 	}
 
 }
