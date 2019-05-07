@@ -15,7 +15,6 @@
  *
  */
 
-import('classes.search.MonographSearchIndex');
 import('lib.pkp.classes.search.SubmissionSearch');
 
 class MonographSearch extends SubmissionSearch {
@@ -34,18 +33,17 @@ class MonographSearch extends SubmissionSearch {
 		// If we got a primary sort order then apply it and use score as secondary
 		// order only.
 		// NB: We apply order after merging and before paging/formatting. Applying
-		// order before merging (i.e. in MonographSearchDAO) would require us to
-		// retrieve dependent objects for results being purged later. Doing
-		// everything in a closed SQL is not possible (e.g. for authors). Applying
-		// sort order after paging and formatting is not possible as we have to
-		// order the whole list before slicing it. So this seems to be the most
-		// appropriate place, although we may have to retrieve some objects again
-		// when formatting results.
+		// order before merging would require us to retrieve dependent objects for
+		// results being purged later. Doing everything in a closed SQL is not
+		// possible (e.g. for authors). Applying sort order after paging and
+		// formatting is not possible as we have to order the whole list before
+		// slicing it. So this seems to be the most appropriate place, although we
+		// may have to retrieve some objects again when formatting results.
 		$orderedResults = array();
 		$authorDao = DAORegistry::getDAO('AuthorDAO'); /* @var $authorDao AuthorDAO */
-		$monographDao = DAORegistry::getDAO('MonographDAO'); /* @var $monographDao MonographDAO */
-		$pressDao = DAORegistry::getDAO('PressDAO'); /* @var $pressDao PressDAO */
-		$pressTitles = array();
+		$submissionDao = Application::getSubmissionDAO();
+		$contextDao = Application::getContextDAO();
+		$contextTitles = array();
 		if ($orderBy == 'popularityAll' || $orderBy == 'popularityMonth') {
 			$application = Application::getApplication();
 			$metricType = $application->getDefaultMetricType();
@@ -53,7 +51,7 @@ class MonographSearch extends SubmissionSearch {
 				// If no default metric has been found then sort by score...
 				$orderBy = 'score';
 			} else {
-				// Retrieve a metrics report for all monographs.
+				// Retrieve a metrics report for all submissions.
 				$column = STATISTICS_DIMENSION_SUBMISSION_ID;
 				$filter = array(
 					STATISTICS_DIMENSION_ASSOC_TYPE => array(ASSOC_TYPE_GALLEY, ASSOC_TYPE_SUBMISSION),
@@ -88,16 +86,16 @@ class MonographSearch extends SubmissionSearch {
 					break;
 
 				case 'title':
-					$submission = $monographDao->getById($submissionId);
+					$submission = $submissionDao->getById($submissionId);
 					$orderKey = $submission->getLocalizedTitle(null, false);
 					break;
 
 				case 'pressTitle':
-					if (!isset($pressTitles[$data['press_id']])) {
-						$press = $pressDao->getById($data['press_id']);
-						$pressTitles[$data['press_id']] = $press->getLocalizedName();
+					if (!isset($contextTitles[$data['press_id']])) {
+						$press = $contextDao->getById($data['press_id']);
+						$contextTitles[$data['press_id']] = $press->getLocalizedName();
 					}
-					$orderKey = $pressTitles[$data['press_id']];
+					$orderKey = $contextTitles[$data['press_id']];
 					break;
 
 				case 'publicationDate':
@@ -181,24 +179,24 @@ class MonographSearch extends SubmissionSearch {
 		$toDate = $request->getUserDateVar('dateTo', 32, 12, null, 23, 59, 59);
 		$searchFilters['toDate'] = (is_null($toDate) ? null : date('Y-m-d H:i:s', $toDate));
 
-		// Instantiate the press.
-		$press = $request->getPress();
-		$siteSearch = !((boolean)$press);
+		// Instantiate the context.
+		$context = $request->getContext();
+		$siteSearch = !((boolean)$context);
 		if ($siteSearch) {
-			$pressDao = DAORegistry::getDAO('PressDAO'); /* @var $pressDao PressDAO */
+			$contextDao = Application::getContextDAO();
 			if (!empty($searchFilters['searchPress'])) {
-				$press = $pressDao->getById($searchFilters['searchPress']);
+				$context = $contextDao->getById($searchFilters['searchPress']);
 			} elseif (array_key_exists('pressTitle', $request->getUserVars())) {
-				$presses = $pressDao->getTitles(false);
-				while ($press = $presses->next()) {
+				$contexts = $contextDao->getAll(true);
+				while ($context = $contexts->next()) {
 					if (in_array(
 						$request->getUserVar('pressTitle'),
-						(array) $press->getTitle(null)
+						(array) $context->getTitle(null)
 					)) break;
 				}
 			}
 		}
-		$searchFilters['searchPress'] = $press;
+		$searchFilters['searchPress'] = $context;
 		$searchFilters['siteSearch'] = $siteSearch;
 
 		return $searchFilters;
@@ -229,21 +227,21 @@ class MonographSearch extends SubmissionSearch {
 	 * @copydoc SubmissionSearch::formatResults()
 	 */
 	function formatResults($results, $user = null) {
-		$pressDao = DAORegistry::getDAO('PressDAO');
-		$monographDao = DAORegistry::getDAO('MonographDAO');
+		$contextDao = Application::getContextDAO();
+		$submissionDao = Application::getSubmissionDAO();
 		$seriesDao = DAORegistry::getDAO('SeriesDAO');
 		$publishedMonographDao = DAORegistry::getDAO('PublishedMonographDAO');
 
 		$publishedMonographCache = array();
 		$monographCache = array();
-		$pressCache = array();
+		$contextCache = array();
 		$seriesCache = array();
 
 		$returner = array();
 		foreach ($results as $monographId) {
 			// Get the monograph, storing in cache if necessary.
 			if (!isset($monographCache[$monographId])) {
-				$monographCache[$monographId] = $monographDao->getById($monographId);
+				$monographCache[$monographId] = $submissionDao->getById($monographId);
 				$publishedMonographCache[$monographId] = $publishedMonographDao->getBySubmissionId($monographId);
 			}
 			unset($monograph, $publishedMonograph);
@@ -256,15 +254,15 @@ class MonographSearch extends SubmissionSearch {
 					$seriesCache[$seriesId] = $seriesDao->getById($seriesId);
 				}
 
-				// Get the press, storing in cache if necessary.
-				$pressId = $monograph->getPressId();
-				if (!isset($pressCache[$pressId])) {
-					$pressCache[$pressId] = $pressDao->getById($pressId);
+				// Get the context, storing in cache if necessary.
+				$contextId = $monograph->getPressId();
+				if (!isset($contextCache[$contextId])) {
+					$contextCache[$contextId] = $contextDao->getById($contextId);
 				}
 
 				// Store the retrieved objects in the result array.
 				$returner[] = array(
-					'press' => $pressCache[$pressId],
+					'press' => $contextCache[$contextId],
 					'monograph' => $monograph,
 					'publishedMonograph' => $publishedMonograph,
 					'seriesArrangment' => $seriesCache[$seriesId]

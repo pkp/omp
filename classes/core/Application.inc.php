@@ -44,7 +44,7 @@ class Application extends PKPApplication {
 	 * Scheduled Conference [2], or Press [1]).
 	 * @return int
 	 */
-	function getContextDepth() {
+	public function getContextDepth() {
 		return 1;
 	}
 
@@ -52,7 +52,7 @@ class Application extends PKPApplication {
 	 * Get a list of contexts for this application.
 	 * @return array
 	 */
-	function getContextList() {
+	public function getContextList() {
 		return array('press');
 	}
 
@@ -60,7 +60,7 @@ class Application extends PKPApplication {
 	 * Get the symbolic name of this application
 	 * @return string
 	 */
-	static function getName() {
+	public static function getName() {
 		return 'omp';
 	}
 
@@ -68,7 +68,7 @@ class Application extends PKPApplication {
 	 * Get the locale key for the name of this application.
 	 * @return string
 	 */
-	function getNameKey() {
+	public function getNameKey() {
 		return('common.openMonographPress');
 	}
 
@@ -77,7 +77,7 @@ class Application extends PKPApplication {
 	 * application.
 	 * @return string
 	 */
-	function getVersionDescriptorUrl() {
+	public function getVersionDescriptorUrl() {
 		return('http://pkp.sfu.ca/omp/xml/omp-version.xml');
 	}
 
@@ -85,7 +85,7 @@ class Application extends PKPApplication {
 	 * Get the map of DAOName => full.class.Path for this application.
 	 * @return array
 	 */
-	function getDAOMap() {
+	public function getDAOMap() {
 		return array_merge(parent::getDAOMap(), array(
 			'AuthorDAO' => 'classes.monograph.AuthorDAO',
 			'ChapterAuthorDAO' => 'classes.monograph.ChapterAuthorDAO',
@@ -122,7 +122,7 @@ class Application extends PKPApplication {
 	 * Get the list of plugin categories for this application.
 	 * @return array
 	 */
-	function getPluginCategories() {
+	public function getPluginCategories() {
 		return array(
 			// NB: Meta-data plug-ins are first in the list as this
 			// will make them being loaded (and installed) first.
@@ -144,7 +144,7 @@ class Application extends PKPApplication {
 	/**
 	 * Get the top-level context DAO.
 	 */
-	static function getContextDAO() {
+	public static function getContextDAO() {
 		return DAORegistry::getDAO('PressDAO');
 	}
 
@@ -152,21 +152,21 @@ class Application extends PKPApplication {
 	 * Get the context settings DAO.
 	 * @return SettingsDAO
 	 */
-	static function getContextSettingsDAO() {
+	public static function getContextSettingsDAO() {
 		return DAORegistry::getDAO('PressSettingsDAO');
 	}
 
 	/**
 	 * Get the submission DAO.
 	 */
-	static function getSubmissionDAO() {
+	public static function getSubmissionDAO() {
 		return DAORegistry::getDAO('MonographDAO');
 	}
 
 	/**
 	 * Get the published submission DAO.
 	 */
-	static function getPublishedSubmissionDAO() {
+	public static function getPublishedSubmissionDAO() {
 		return DAORegistry::getDAO('PublishedMonographDAO');
 	}
 
@@ -174,21 +174,29 @@ class Application extends PKPApplication {
 	 * Get the section DAO.
 	 * @return SeriesDAO
 	 */
-	static function getSectionDAO() {
+	public static function getSectionDAO() {
 		return DAORegistry::getDAO('SeriesDAO');
 	}
 
 	/**
 	 * Get the representation DAO.
 	 */
-	static function getRepresentationDAO() {
+	public static function getRepresentationDAO() {
 		return DAORegistry::getDAO('PublicationFormatDAO');
+	}
+
+	/**
+	 * Get a SubmissionSearchIndex instance.
+	 */
+	public static function getSubmissionSearchIndex() {
+		import('classes.search.MonographSearchIndex');
+		return new MonographSearchIndex();
 	}
 
 	/**
 	 * returns the name of the context column in plugin_settings
 	 */
-	static function getPluginSettingsContextColumnName() {
+	public static function getPluginSettingsContextColumnName() {
 		if (defined('SESSION_DISABLE_INIT')) {
 			$pluginSettingsDao = DAORegistry::getDAO('PluginSettingsDAO');
 			$driver = $pluginSettingsDao->getDriver();
@@ -218,7 +226,7 @@ class Application extends PKPApplication {
 	/**
 	 * Get the stages used by the application.
 	 */
-	static function getApplicationStages() {
+	public static function getApplicationStages() {
 		// We leave out WORKFLOW_STAGE_ID_PUBLISHED since it technically is not a 'stage'.
 		return array(
 			WORKFLOW_STAGE_ID_SUBMISSION,
@@ -232,14 +240,14 @@ class Application extends PKPApplication {
 	/**
 	 * Get the file directory array map used by the application.
 	 */
-	static function getFileDirectories() {
+	public static function getFileDirectories() {
 		return array('context' => '/presses/', 'submission' => '/monographs/');
 	}
 
 	/**
 	 * Returns the context type for this application.
 	 */
-	static function getContextAssocType() {
+	public static function getContextAssocType() {
 		return ASSOC_TYPE_PRESS;
 	}
 
@@ -248,7 +256,7 @@ class Application extends PKPApplication {
 	 * @param $context Context
 	 * @return OMPPaymentManager
 	 */
-	static function getPaymentManager($context) {
+	public static function getPaymentManager($context) {
 		import('classes.payment.omp.OMPPaymentManager');
 		return new OMPPaymentManager($context);
 	}
@@ -256,7 +264,7 @@ class Application extends PKPApplication {
 	/**
 	 * @copydoc PKPApplication::getAllowMultipleContexts()
 	 */
-	static function getAllowMultipleContexts() {
+	public static function getAllowMultipleContexts() {
 		return false;
 	}
 }

@@ -173,8 +173,9 @@ class MonographDAO extends SubmissionDAO {
 		$newReleaseDao = DAORegistry::getDAO('NewReleaseDAO');
 		$newReleaseDao->deleteByMonographId($submissionId);
 
-		import('classes.search.MonographSearchIndex');
-		MonographSearchIndex::deleteTextIndex($submissionId);
+		$monographSearchIndex = Application::getSubmissionSearchIndex();
+		$monographSearchIndex->deleteTextIndex($submissionId);
+		$monographSearchIndex->submissionChangesFinished();
 	}
 
 	/**
