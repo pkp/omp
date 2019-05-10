@@ -405,7 +405,7 @@ Select a model for handling these aspects of the editorial process. (To designat
 	<message key="stats.publications.none">No monographs were found with usage statistics matching these parameters.</message>
 	<message key="stats.publications.totalAbstractViews.timelineInterval">Total catalog views by date</message>
 	<message key="stats.publications.totalGalleyViews.timelineInterval">Total publication format views by date</message>
-	<message key="stats.publications.countOfTotal">{$count} of {$total} articles</message>
+	<message key="stats.publications.countOfTotal">{$count} of {$total} monographs</message>
 	<message key="stats.publications.abstracts">Catalog Entries</message>
 	<message key="stats.publications.galleys">Publication Formats</message>
 </locale>
