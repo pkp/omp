@@ -169,13 +169,7 @@ class MdawsonSubmissionTest extends ContentBaseTestCase {
 		}
 
 		// Add to catalog
-		self::$driver->executeScript('window.scrollTo(0,0);'); // Scroll to top of page
-		$this->click('css=[id^=catalogEntry-button-]');
-		$this->waitForElementPresent($selector = '//a[@class="ui-tabs-anchor" and text()="Catalog"]');
-		$this->click($selector);
-		$this->waitForElementPresent($selector='css=[id=confirm]');
-		$this->click($selector);
-		$this->click('//form[@id=\'catalogMetadataEntryForm\']//button[text()=\'Save\']');
+		$this->addToCatalog();
 
 		$this->logOut();
 	}
