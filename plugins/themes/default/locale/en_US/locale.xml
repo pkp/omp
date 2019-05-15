@@ -27,4 +27,7 @@
 	<message key="plugins.themes.default.option.typography.lora_openSans">Lora/Open Sans: A complimentary pairing with serif headings and sans-serif body text.</message>
 	<message key="plugins.themes.default.option.colour.label">Colour</message>
 	<message key="plugins.themes.default.option.colour.description">Choose a colour for the header.</message>
+	<message key="plugins.themes.default.option.useHomepageImageAsHeader.label">Header Background Image</message>
+	<message key="plugins.themes.default.option.useHomepageImageAsHeader.description">When a homepage image has been uploaded, display it in the background of the header instead of it's usual position on the homepage.</message>
+	<message key="plugins.themes.default.option.useHomepageImageAsHeader.option">Show the homepage image as the header background.</message>
 </locale>

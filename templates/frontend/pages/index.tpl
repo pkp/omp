@@ -22,10 +22,8 @@
 <div class="page page_homepage">
 
 	{* Homepage Image *}
-	{if $homepageImage}
-		<div class="homepage_image">
-			<img src="{$publicFilesDir}/{$homepageImage.uploadName|escape:"url"}" alt="{$homepageImage.altText|escape|default:'null'}">
-		</div>
+	{if !$activeTheme->getOption('useHomepageImageAsHeader') && $homepageImage}
+		<img src="{$publicFilesDir}/{$homepageImage.uploadName|escape:"url"}" alt="{$homepageImageAltText|escape}">
 	{/if}
 
 	{* Spotlights *}
