@@ -50,7 +50,7 @@
 	<message key="default.contextSettings.checklist.addressesLinked">Where available, URLs for the references have been provided.</message>
 	<message key="default.contextSettings.checklist.submissionAppearance">The text is single-spaced; uses a 12-point font; employs italics, rather than underlining (except with URL addresses); and all illustrations, figures, and tables are placed within the text at the appropriate points, rather than at the end.</message>
 	<message key="default.contextSettings.checklist.bibliographicRequirements"><![CDATA[The text adheres to the stylistic and bibliographic requirements outlined in the <a href="{$indexUrl}/{$contextPath}/about/submissions#authorGuidelines" target="_blank">Author Guidelines</a>, which is found in About the Press.]]></message>
-	<message key="default.contextSettings.privacyStatement">The names and email addresses entered in this press site will be used exclusively for the stated purposes of this press and will not be made available for any other purpose or to any other party.</message>
+	<message key="default.contextSettings.privacyStatement"><![CDATA[<p>The names and email addresses entered in this press site will be used exclusively for the stated purposes of this press and will not be made available for any other purpose or to any other party.</p>]]></message>
 	<message key="default.contextSettings.openAccessPolicy">This press provides immediate open access to its content on the principle that making research freely available to the public supports a greater global exchange of knowledge.</message>
 	<message key="default.contextSettings.emailSignature"><![CDATA[<br/>
 ________________________________________________________________________<br/>
