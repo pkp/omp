@@ -141,6 +141,7 @@
 		<code function="migrateSiteLocales" />
 		<code function="migrateSidebarBlocks" />
 		<code function="migrateMetadataSettings" />
+		<code function="installEmailTemplate" key="REVIEW_REINSTATE" locales="en_US" />
 		<note file="docs/release-notes/README-3.2.0" />
 	</upgrade>
 

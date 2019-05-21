@@ -118,6 +118,9 @@
 				"reviewsCompleted": {
 					"type": "integer"
 				},
+				"reviewsCancelled": {
+					"type": "integer"
+				},
 				"reviewsDeclined": {
 					"type": "integer"
 				},

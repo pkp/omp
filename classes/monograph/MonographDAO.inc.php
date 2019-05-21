@@ -45,6 +45,7 @@ class MonographDAO extends SubmissionDAO {
 	/**
 	 * Internal function to return an Monograph object from a row.
 	 * @param $row array
+	 * @param $submissionVersion
 	 * @return Monograph
 	 */
 	function _fromRow($row, $submissionVersion = null) {

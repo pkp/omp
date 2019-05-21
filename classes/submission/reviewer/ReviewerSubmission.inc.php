@@ -28,13 +28,6 @@ class ReviewerSubmission extends Monograph {
 	var $editorDecisions;
 
 	/**
-	 * Constructor.
-	 */
-	function __construct() {
-		parent::__construct();
-	}
-
-	/**
 	 * Get/Set Methods.
 	 */
 
@@ -42,7 +35,7 @@ class ReviewerSubmission extends Monograph {
 	 * Get the competing interests for this submission.
 	 * @return string
 	 */
-	function getCompetingInterests() {
+	public function getCompetingInterests() {
 		return $this->getData('competingInterests');
 	}
 
@@ -50,15 +43,15 @@ class ReviewerSubmission extends Monograph {
 	 * Set the competing interests statement.
 	 * @param $competingInterests string
 	 */
-	function setCompetingInterests($competingInterests) {
-		return $this->setData('competingInterests', $competingInterests);
+	public function setCompetingInterests($competingInterests) {
+		$this->setData('competingInterests', $competingInterests);
 	}
 
 	/**
 	 * Get ID of review assignment.
 	 * @return int
 	 */
-	function getReviewId() {
+	public function getReviewId() {
 		return $this->getData('reviewId');
 	}
 
@@ -66,15 +59,15 @@ class ReviewerSubmission extends Monograph {
 	 * Set ID of review assignment
 	 * @param $reviewId int
 	 */
-	function setReviewId($reviewId) {
-		return $this->setData('reviewId', $reviewId);
+	public function setReviewId($reviewId) {
+		$this->setData('reviewId', $reviewId);
 	}
 
 	/**
 	 * Get ID of reviewer.
 	 * @return int
 	 */
-	function getReviewerId() {
+	public function getReviewerId() {
 		return $this->getData('reviewerId');
 	}
 
@@ -82,15 +75,15 @@ class ReviewerSubmission extends Monograph {
 	 * Set ID of reviewer.
 	 * @param $reviewerId int
 	 */
-	function setReviewerId($reviewerId) {
-		return $this->setData('reviewerId', $reviewerId);
+	public function setReviewerId($reviewerId) {
+		$this->setData('reviewerId', $reviewerId);
 	}
 
 	/**
 	 * Get full name of reviewer.
 	 * @return string
 	 */
-	function getReviewerFullName() {
+	public function getReviewerFullName() {
 		return $this->getData('reviewerFullName');
 	}
 
@@ -98,15 +91,15 @@ class ReviewerSubmission extends Monograph {
 	 * Set full name of reviewer.
 	 * @param $reviewerFullName string
 	 */
-	function setReviewerFullName($reviewerFullName) {
-		return $this->setData('reviewerFullName', $reviewerFullName);
+	public function setReviewerFullName($reviewerFullName) {
+		$this->setData('reviewerFullName', $reviewerFullName);
 	}
 
 	/**
 	 * Get editor decisions.
 	 * @return array
 	 */
-	function getDecisions() {
+	public function getDecisions() {
 		return $this->editorDecisions;
 	}
 
@@ -115,7 +108,7 @@ class ReviewerSubmission extends Monograph {
 	 * @param $editorDecisions array
 	 * @param $round int
 	 */
-	function setDecisions($editorDecisions) {
+	public function setDecisions($editorDecisions) {
 		return $this->editorDecisions = $editorDecisions;
 	}
 
@@ -123,7 +116,7 @@ class ReviewerSubmission extends Monograph {
 	 * Get reviewer recommendation.
 	 * @return string
 	 */
-	function getRecommendation() {
+	public function getRecommendation() {
 		return $this->getData('recommendation');
 	}
 
@@ -131,15 +124,15 @@ class ReviewerSubmission extends Monograph {
 	 * Set reviewer recommendation.
 	 * @param $recommendation string
 	 */
-	function setRecommendation($recommendation) {
-		return $this->setData('recommendation', $recommendation);
+	public function setRecommendation($recommendation) {
+		$this->setData('recommendation', $recommendation);
 	}
 
 	/**
 	 * Get the reviewer's assigned date.
 	 * @return string
 	 */
-	function getDateAssigned() {
+	public function getDateAssigned() {
 		return $this->getData('dateAssigned');
 	}
 
@@ -147,15 +140,15 @@ class ReviewerSubmission extends Monograph {
 	 * Set the reviewer's assigned date.
 	 * @param $dateAssigned string
 	 */
-	function setDateAssigned($dateAssigned) {
-		return $this->setData('dateAssigned', $dateAssigned);
+	public function setDateAssigned($dateAssigned) {
+		$this->setData('dateAssigned', $dateAssigned);
 	}
 
 	/**
 	 * Get the reviewer's notified date.
 	 * @return string
 	 */
-	function getDateNotified() {
+	public function getDateNotified() {
 		return $this->getData('dateNotified');
 	}
 
@@ -163,15 +156,15 @@ class ReviewerSubmission extends Monograph {
 	 * Set the reviewer's notified date.
 	 * @param $dateNotified string
 	 */
-	function setDateNotified($dateNotified) {
-		return $this->setData('dateNotified', $dateNotified);
+	public function setDateNotified($dateNotified) {
+		$this->setData('dateNotified', $dateNotified);
 	}
 
 	/**
 	 * Get the reviewer's confirmed date.
 	 * @return string
 	 */
-	function getDateConfirmed() {
+	public function getDateConfirmed() {
 		return $this->getData('dateConfirmed');
 	}
 
@@ -179,15 +172,15 @@ class ReviewerSubmission extends Monograph {
 	 * Set the reviewer's confirmed date.
 	 * @param $dateConfirmed string
 	 */
-	function setDateConfirmed($dateConfirmed) {
-		return $this->setData('dateConfirmed', $dateConfirmed);
+	public function setDateConfirmed($dateConfirmed) {
+		$this->setData('dateConfirmed', $dateConfirmed);
 	}
 
 	/**
 	 * Get the reviewer's completed date.
 	 * @return string
 	 */
-	function getDateCompleted() {
+	public function getDateCompleted() {
 		return $this->getData('dateCompleted');
 	}
 
@@ -195,15 +188,15 @@ class ReviewerSubmission extends Monograph {
 	 * Set the reviewer's completed date.
 	 * @param $dateCompleted string
 	 */
-	function setDateCompleted($dateCompleted) {
-		return $this->setData('dateCompleted', $dateCompleted);
+	public function setDateCompleted($dateCompleted) {
+		$this->setData('dateCompleted', $dateCompleted);
 	}
 
 	/**
 	 * Get the reviewer's acknowledged date.
 	 * @return string
 	 */
-	function getDateAcknowledged() {
+	public function getDateAcknowledged() {
 		return $this->getData('dateAcknowledged');
 	}
 
@@ -211,15 +204,15 @@ class ReviewerSubmission extends Monograph {
 	 * Set the reviewer's acknowledged date.
 	 * @param $dateAcknowledged string
 	 */
-	function setDateAcknowledged($dateAcknowledged) {
-		return $this->setData('dateAcknowledged', $dateAcknowledged);
+	public function setDateAcknowledged($dateAcknowledged) {
+		$this->setData('dateAcknowledged', $dateAcknowledged);
 	}
 
 	/**
 	 * Get the reviewer's due date.
 	 * @return string
 	 */
-	function getDateDue() {
+	public function getDateDue() {
 		return $this->getData('dateDue');
 	}
 
@@ -227,15 +220,15 @@ class ReviewerSubmission extends Monograph {
 	 * Set the reviewer's due date.
 	 * @param $dateDue string
 	 */
-	function setDateDue($dateDue) {
-		return $this->setData('dateDue', $dateDue);
+	public function setDateDue($dateDue) {
+		$this->setData('dateDue', $dateDue);
 	}
 
 	/**
 	 * Get the reviewer's response due date.
 	 * @return string
 	 */
-	function getDateResponseDue() {
+	public function getDateResponseDue() {
 		return $this->getData('dateResponseDue');
 	}
 
@@ -243,15 +236,15 @@ class ReviewerSubmission extends Monograph {
 	 * Set the reviewer's response due date.
 	 * @param $dateResponseDue string
 	 */
-	function setDateResponseDue($dateResponseDue) {
-		return $this->setData('dateResponseDue', $dateResponseDue);
+	public function setDateResponseDue($dateResponseDue) {
+		$this->setData('dateResponseDue', $dateResponseDue);
 	}
 
 	/**
 	 * Get the declined value.
 	 * @return boolean
 	 */
-	function getDeclined() {
+	public function getDeclined() {
 		return $this->getData('declined');
 	}
 
@@ -259,15 +252,31 @@ class ReviewerSubmission extends Monograph {
 	 * Set the reviewer's declined value.
 	 * @param $declined boolean
 	 */
-	function setDeclined($declined) {
-		return $this->setData('declined', $declined);
+	public function setDeclined($declined) {
+		$this->setData('declined', $declined);
+	}
+
+	/**
+	 * Get the cancelled value.
+	 * @return boolean
+	 */
+	public function getCancelled() {
+		return $this->getData('cancelled');
+	}
+
+	/**
+	 * Set the reviewer's cancelled value.
+	 * @param $cancelled boolean
+	 */
+	public function setCancelled($cancelled) {
+		$this->setData('cancelled', $cancelled);
 	}
 
 	/**
 	 * Get reviewer file id.
 	 * @return int
 	 */
-	function getReviewerFileId() {
+	public function getReviewerFileId() {
 		return $this->getData('reviewerFileId');
 	}
 
@@ -275,15 +284,15 @@ class ReviewerSubmission extends Monograph {
 	 * Set reviewer file id.
 	 * @param $reviewerFileId int
 	 */
-	function setReviewerFileId($reviewerFileId) {
-		return $this->setData('reviewerFileId', $reviewerFileId);
+	public function setReviewerFileId($reviewerFileId) {
+		$this->setData('reviewerFileId', $reviewerFileId);
 	}
 
 	/**
 	 * Get quality.
 	 * @return int
 	 */
-	function getQuality() {
+	public function getQuality() {
 		return $this->getData('quality');
 	}
 
@@ -291,15 +300,15 @@ class ReviewerSubmission extends Monograph {
 	 * Set quality.
 	 * @param $quality int
 	 */
-	function setQuality($quality) {
-		return $this->setData('quality', $quality);
+	public function setQuality($quality) {
+		$this->setData('quality', $quality);
 	}
 
 	/**
 	 * Get stageId.
 	 * @return int
 	 */
-	function getStageId() {
+	public function getStageId() {
 		return $this->getData('stageId');
 	}
 
@@ -307,15 +316,15 @@ class ReviewerSubmission extends Monograph {
 	 * Set stageId.
 	 * @param $stageId int
 	 */
-	function setStageId($stageId) {
-		return $this->setData('stageId', $stageId);
+	public function setStageId($stageId) {
+		$this->setData('stageId', $stageId);
 	}
 
 	/**
 	 * Get the method of the review (open, blind, or double-blind).
 	 * @return int
 	 */
-	function getReviewMethod() {
+	public function getReviewMethod() {
 		return $this->getData('reviewMethod');
 	}
 
@@ -323,15 +332,15 @@ class ReviewerSubmission extends Monograph {
 	 * Set the type of review.
 	 * @param $method int
 	 */
-	function setReviewMethod($method) {
-		return $this->setData('reviewMethod', $method);
+	public function setReviewMethod($method) {
+		$this->setData('reviewMethod', $method);
 	}
 
 	/**
 	 * Get round.
 	 * @return int
 	 */
-	function getRound() {
+	public function getRound() {
 		return $this->getData('round');
 	}
 
@@ -339,15 +348,15 @@ class ReviewerSubmission extends Monograph {
 	 * Set round.
 	 * @param $round int
 	 */
-	function setRound($round) {
-		return $this->setData('round', $round);
+	public function setRound($round) {
+		$this->setData('round', $round);
 	}
 
 	/**
 	 * Get step.
 	 * @return int
 	 */
-	function getStep() {
+	public function getStep() {
 		return $this->getData('step');
 	}
 
@@ -355,8 +364,8 @@ class ReviewerSubmission extends Monograph {
 	 * Set status.
 	 * @param $status int
 	 */
-	function setStep($step) {
-		return $this->setData('step', $step);
+	public function setStep($step) {
+		$this->setData('step', $step);
 	}
 }
 

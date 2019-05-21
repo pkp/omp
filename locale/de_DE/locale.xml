@@ -454,7 +454,6 @@ Ihr Server untersützt aktuell mbstring: <strong>{$supportsMBString}</strong>]]>
 <p>Vergessen Sie nicht, die "installiert"-Einstellung in Ihrer config.inc.php Konfigurationsdatei auf <em>Ein</em> zurückzusetzen.</p>
 <p>Wenn Sie bisher noch nicht registriert sind und Neuigkeiten und Updates empfangen möchten, <strong>registireren Sie sich bitte unter <a href="http://pkp.sfu.ca/omp/register" target="_blank">http://pkp.sfu.ca/omp/register</a>.</strong> Falls Sie Fragen oder Anmerkungen haben, besuchen Sie bitte das <a href="http://pkp.sfu.ca/support/forum" target="_blank">Supportforum</a>.</p>]]></message>
 	<!-- Monograph Logs -->
-	<message key="log.review.reviewCleared">Die Gutachtenrunde {$round} von Gutachter/in {$reviewerName} für Manuskript {$submissionId} wurde abgeschlossen.</message>
 	<message key="log.review.reviewDueDateSet">Das Abgabedatum für Begutachtungsrunde {$round} von Manuskript {$submissionId} durch {$reviewerName} wurde auf den {$dueDate} festgesetzt.</message>
 	<message key="log.review.reviewDeclined">{$reviewerName} hat es abgelehnt, an der Begutachtungsrunde {$round} für Manuskript {$submissionId} teilzunehmen.</message>
 	<message key="log.review.reviewAccepted">{$reviewerName} hat der Teilnahme an der Begutachtungsrunde {$round} für Manuskript {$submissionId} zugestimmt.</message>

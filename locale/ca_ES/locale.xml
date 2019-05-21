@@ -399,7 +399,6 @@ El vostre servidor actual és compatible amb mbstring: <strong>{$supportsMBStrin
 <p>Recordeu que heu de tornar a activar la configuració d'instal·lació al vostre fitxer config.inc.php amb l'opció <em>Activa</em>.</p>
 <p>Si encara no us heu registrat i voleu rebre notícies i actualitzacions, <strong>registreu-vos a <a href="http://pkp.sfu.ca/omp/register" target="_blank">http://pkp.sfu.ca/omp/register</a>.</strong> Si teniu cap pregunta o comentari, consulteu <a href="http://pkp.sfu.ca/support/forum" target="_blank">el fòrum d'ajuda</a>.</p>]]></message>
 	<!-- Monograph Logs -->
-	<message key="log.review.reviewCleared">La ronda {$round} de revisió feta per {$reviewerName} per a la tramesa {$submissionId} s'ha esborrat.</message>
 	<message key="log.review.reviewDueDateSet">La data de venciment per a la ronda {$round} de revisió de la tramesa {$submissionId} feta per {$reviewerName} s'ha enviat a {$dueDate}.</message>
 	<message key="log.review.reviewDeclined">{$reviewerName} ha rebutjat la ronda {$round} de revisió per a la tramesa {$submissionId}.</message>
 	<message key="log.review.reviewAccepted">{$reviewerName} ha acceptat la ronda {$round} de revisió per a la tramesa {$submissionId}.</message>

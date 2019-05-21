@@ -426,7 +426,6 @@ Votre serveur supporte actuellement mbstring: <strong>{$supportsMBString}</stron
 <p>Si vous n'êtes pas déjà inscrit et souhaitez recevoir des nouvelles et des mises à jour, <strong>veuillez vous inscrire au <a href="http://pkp.sfu.ca/omp/register" target="_blank">http://pkp.sfu.ca/omp/register</a></strong>. Si vous avez des questions ou commentaires, veuillez consultez le <a href="http://forum.pkp.sfu.ca" target="_blank">forum</a>.</p>]]></message>
 
 	<!-- Monograph Logs -->
-	<message key="log.review.reviewCleared">La {$round}e série de révisions par {$reviewerName} de la soumission {$monographId} a été acceptée.</message>
 	<message key="log.review.reviewDueDateSet">La date limite pour la {$round}e série de révisions de la soumission {$monographId} par {$reviewerName} est {$dueDate}.</message>
 	<message key="log.review.reviewDeclined">{$reviewerName} n'a pas accepté la {$round}e série de révisions de la soumission {$monographId}.</message>
 	<message key="log.review.reviewAccepted">{$reviewerName} a accepté la {$round}e série de révisions de la soumission {$monographId}.</message>

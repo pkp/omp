@@ -433,7 +433,6 @@ Suporte à biblioteca mbstring: <strong>{$supportsMBString}</strong>]]></message
 <p>Não se esqueça de alterar a variável "installed" em seu arquivo de configuração config.inc.php de volta para <em>On</em>.</p>
 <p>Caso não tenha se cadastrado ainda e deseje receber avisos e atualizações, <strong>>cadastre-se na página <a href="http://pkp.sfu.ca/omp/register" target="_blank">http://pkp.sfu.ca/omp/register</a>.</strong>  Caso tenha perguntas ou comentários, visite o <a href="http://forum.pkp.sfu.ca" target="_blank">fórum de suporte</a>.</p>]]></message>
 	<!-- Monograph Logs -->
-	<message key="log.review.reviewCleared">A rodada de avaliação {$round} de {$reviewerName} para a submissão {$submissionId} foi liberada.</message>
 	<message key="log.review.reviewDueDateSet">A data de entrega da rodada {$round} de avaliação da submissão {$submissionId} por {$reviewerName} foi definida para {$dueDate}.</message>
 	<message key="log.review.reviewDeclined">{$reviewerName} recusou realizar a rodada {$round} de avaliação da submissão {$submissionId}.</message>
 	<message key="log.review.reviewAccepted">{$reviewerName} aceitou realizar a rodada {$round} de avaliação da submissão {$submissionId}.</message>

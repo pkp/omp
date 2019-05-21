@@ -83,11 +83,12 @@ class ReviewerSubmissionDAO extends MonographDAO {
 	/**
 	 * Internal function to return a ReviewerSubmission object from a row.
 	 * @param $row array
+	 * @param $submissionVersion
 	 * @return ReviewerSubmission
 	 */
-	function _fromRow($row) {
+	function _fromRow($row, $submissionVersion = null) {
 		// Get the ReviewerSubmission object, populated with Monograph data
-		$reviewerSubmission = parent::_fromRow($row);
+		$reviewerSubmission = parent::_fromRow($row, $submissionVersion);
 		$reviewer = $this->userDao->getById($row['reviewer_id']);
 
 		// Editor Decisions
@@ -109,6 +110,7 @@ class ReviewerSubmissionDAO extends MonographDAO {
 		$reviewerSubmission->setDateDue($this->datetimeFromDB($row['date_due']));
 		$reviewerSubmission->setDateResponseDue($this->datetimeFromDB($row['date_response_due']));
 		$reviewerSubmission->setDeclined($row['declined']);
+		$reviewerSubmission->setCancelled($row['cancelled']);
 		$reviewerSubmission->setQuality($row['quality']);
 		$reviewerSubmission->setRound($row['round']);
 		$reviewerSubmission->setStep($row['step']);
@@ -135,6 +137,7 @@ class ReviewerSubmissionDAO extends MonographDAO {
 					competing_interests = ?,
 					recommendation = ?,
 					declined = ?,
+					cancelled = ?,
 					date_assigned = %s,
 					date_notified = %s,
 					date_confirmed = %s,
@@ -161,6 +164,7 @@ class ReviewerSubmissionDAO extends MonographDAO {
 				$reviewerSubmission->getCompetingInterests(),
 				(int) $reviewerSubmission->getRecommendation(),
 				(int) $reviewerSubmission->getDeclined(),
+				(int) $reviewerSubmission->getCancelled(),
 				(int) $reviewerSubmission->getQuality(),
 				(int) $reviewerSubmission->getReviewId()
 			)

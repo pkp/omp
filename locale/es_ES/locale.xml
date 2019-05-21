@@ -421,7 +421,6 @@
 <p>No olvide volver a cambiar a <em>Activada</em>la configuración "instalada" en el archivo de configuración config.inc.php</p>
 <p>Si todavía no se registró y desea recibir noticias y actualizaciones <strong>regístrese en <a href="http://pkp.sfu.ca/omp/register" target="_blank">http://pkp.sfu.ca/omp/register</a>.</strong> Si tiene dudas o comentarios visite el <a href="http://pkp.sfu.ca/support/forum" target="_blank">foro de ayuda</a>.</p>]]></message>
 	<!-- Monograph Logs -->
-	<message key="log.review.reviewCleared">{$reviewerName} eliminó la revisión para envío {$submissionId} de la ronda {$round}</message>
 	<message key="log.review.reviewDueDateSet">{$reviewerName} cambió a {$dueDate} la fecha de entrega de la revisión para envío {$submissionId} de la ronda {$round}.</message>
 	<message key="log.review.reviewDeclined">{$reviewerName} rechazó la revisión para envío {$submissionId} de la ronda {$round}.</message>
 	<message key="log.review.reviewAccepted">{$reviewerName} aceptó la revisión para envío {$submissionId} de la ronda {$round}.</message>
