@@ -28,7 +28,7 @@
 
 	{* Spotlights *}
 	{if !empty($spotlights)}
-		<h2 class="pkp_screen_reader">
+		<h2 id="homepageSpotlights" class="pkp_screen_reader">
 			{translate key="spotlight.spotlights"}
 		</h2>
 		{include file="frontend/components/spotlights.tpl"}
@@ -47,7 +47,7 @@
 
 	{* Announcements *}
 	{if $numAnnouncementsHomepage && $announcements|@count}
-		<div class="cmp_announcements highlight_first">
+		<div id="homepageAnnouncements" class="cmp_announcements highlight_first">
 			<h2>
 				{translate key="announcement.announcements"}
 			</h2>

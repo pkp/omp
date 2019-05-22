@@ -339,6 +339,8 @@
 	<message key="navigation.wizard">Wizard</message>
 	<message key="navigation.linksAndMedia">Links and Social Media</message>
 	<message key="navigation.navigationMenus.catalog.description">Link to your catalog.</message>
+	<message key="navigation.skip.spotlights">Skip to spotlights</message>
+
 
 	<message key="navigation.navigationMenus.series.generic">Series</message>
 	<message key="navigation.navigationMenus.series.description">Link to a series.</message>
