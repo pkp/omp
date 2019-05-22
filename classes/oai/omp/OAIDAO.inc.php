@@ -96,10 +96,11 @@ class OAIDAO extends PKPOAIDAO {
 		foreach ($presses as $press) {
 			$title = $press->getLocalizedName();
 			$abbrev = $press->getPath();
-			array_push($sets, new OAISet(urlencode($abbrev), $title, ''));
 
 			$dataObjectTombstoneDao = DAORegistry::getDAO('DataObjectTombstoneDAO');
 			$publicationFormatSets = $dataObjectTombstoneDao->getSets(ASSOC_TYPE_PRESS, $press->getId());
+
+			if (!array_key_exists(urlencode($abbrev), $publicationFormatSets)) array_push($sets, new OAISet(urlencode($abbrev), $title, ''));
 
 			$seriesFactory = $this->_seriesDao->getByPressId($press->getId());
 			foreach ($seriesFactory->toArray() as $series) {
