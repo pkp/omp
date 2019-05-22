@@ -399,4 +399,12 @@ Select a model for handling these aspects of the editorial process. (To designat
 	<message key="manager.navigationMenus.form.navigationMenuItem.category">Select Category</message>
 	<message key="manager.navigationMenus.form.navigationMenuItemCategoryMessage">Please select the category to which you would like this menu item to link.</message>
 	<message key="grid.series.urlWillBe">The series's URL will be: {$sampleUrl}</message>
+
+	<!-- Statistics -->
+	<message key="stats.publications.details">Monograph Details</message>
+	<message key="stats.publications.none">No monographs were found with usage statistics matching these parameters.</message>
+	<message key="stats.publications.totalAbstractViews.timelineInterval">Total catalog views by date</message>
+	<message key="stats.publications.totalGalleyViews.timelineInterval">Total file views by date</message>
+	<message key="stats.publications.countOfTotal">{$count} of {$total} monographs</message>
+	<message key="stats.publications.abstracts">Catalog Entries</message>
 </locale>

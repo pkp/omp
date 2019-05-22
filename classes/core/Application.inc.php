@@ -35,6 +35,8 @@ define('CONTEXT_PRESS', 1);
 define('LANGUAGE_PACK_DESCRIPTOR_URL', 'http://pkp.sfu.ca/omp/xml/%s/locales.xml');
 define('LANGUAGE_PACK_TAR_URL', 'http://pkp.sfu.ca/omp/xml/%s/%s.tar.gz');
 
+define('METRIC_TYPE_COUNTER', 'omp::counter');
+
 class Application extends PKPApplication {
 
 	/**

@@ -305,6 +305,8 @@
 	 * COMMON - This section contains the most frequently-used words
 	 *
 	-->
+	<message key="common.publication">Monograph</message>
+	<message key="common.publications">Monographs</message>
 	<message key="common.prefix">Prefix</message>
 	<message key="common.preview">Preview</message>
 	<message key="common.feature">Feature</message>

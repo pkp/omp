@@ -11,16 +11,18 @@
   },
   "dependencies": {
     "@tinymce/tinymce-vue": "^1.1.0",
+    "chart.js": "^2.8.0",
     "debounce": "^1.2.0",
-    "tinymce": "^4.8.5",
-    "v-tooltip": "^2.0.0-rc.33",
-    "vue": "^2.5.21",
+    "tinymce": "^4.9.4",
+    "v-tooltip": "^2.0.2",
+    "vue": "^2.6.10",
+    "vue-chartjs": "^3.4.2",
     "vue-color": "^2.7.0",
-    "vue-scrollto": "^2.13.0",
-    "vue-slider-component": "^2.8.0",
+    "vue-scrollto": "^2.15.0",
+    "vue-slider-component": "^2.8.16",
     "vue-tabs-component": "^1.5.0",
-    "vue2-dropzone": "^3.5.2",
-    "vuedraggable": "^2.16.0"
+    "vue2-dropzone": "^3.5.9",
+    "vuedraggable": "^2.20.0"
   },
   "devDependencies": {
     "@vue/cli-plugin-babel": "^3.7.0",
@@ -54,7 +56,8 @@
         {
           "bracketSpacing": false,
           "singleQuote": true,
-          "useTabs": true
+          "useTabs": true,
+          "htmlWhitespaceSensitivity": "ignore"
         }
       ],
       "no-unused-vars": [

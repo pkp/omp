@@ -14,12 +14,14 @@ import PkpLoad from '../lib/pkp/js/load.js';
 import Container from '@/components/Container/Container.vue';
 import CatalogContainer from '@/components/Container/CatalogContainer.vue';
 import SettingsContainer from '@/components/Container/SettingsContainer.vue';
+import StatsContainer from '@/components/Container/StatsContainer.vue';
 
 // Expose Vue, the registry and controllers in a global var
 window.pkp = Object.assign(PkpLoad, {
 	controllers: {
 		Container,
 		CatalogContainer,
-		SettingsContainer
+		SettingsContainer,
+		StatsContainer
 	}
 });
