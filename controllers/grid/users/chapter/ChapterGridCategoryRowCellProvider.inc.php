@@ -20,13 +20,6 @@ class ChapterGridCategoryRowCellProvider extends GridCellProvider {
 	var $_readOnly;
 
 	/**
-	 * Constructor
-	 */
-	function __construct() {
-		parent::__construct();
-	}
-
-	/**
 	 * @see GridCellProvider::getCellActions()
 	 */
 	function getCellActions($request, $row, $column, $position = GRID_ACTION_POSITION_DEFAULT) {
@@ -51,6 +44,7 @@ class ChapterGridCategoryRowCellProvider extends GridCellProvider {
 				)
 			);
 		}
+		return parent::getCellActions($request, $row, $column, $position);
 	}
 
 	/**
