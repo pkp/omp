@@ -66,14 +66,16 @@ class ChapterFilesListbuilderHandler extends FilesListbuilderHandler {
 	// Implement methods from FilesListbuilderHandler
 	//
 	/**
-	 * @see FilesListbuilderHandler::getOptions()
+	 * @copydoc FilesListbuilderHandler::getOptions()
 	 */
-	function getOptions($request) {
-		$monograph = $this->getAuthorizedContextObject(ASSOC_TYPE_MONOGRAPH);
-		$submissionFileDao = DAORegistry::getDAO('SubmissionFileDAO'); /* @var $submissionFileDao SubmissionFileDAO */
-		$monographFiles = $submissionFileDao->getLatestRevisions($monograph->getId());
+	function getOptions($request, $submissionFiles = null) {
+		assert($submissionFiles === null);
 
-		return parent::getOptions($request, $monographFiles);
+		$submission = $this->getAuthorizedContextObject(ASSOC_TYPE_SUBMISSION);
+		$submissionFileDao = DAORegistry::getDAO('SubmissionFileDAO'); /* @var $submissionFileDao SubmissionFileDAO */
+		$submissionFiles = $submissionFileDao->getLatestRevisions($submission->getId());
+
+		return parent::getOptions($request, $submissionFiles);
 	}
 
 	/**
