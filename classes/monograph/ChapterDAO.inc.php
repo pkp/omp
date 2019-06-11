@@ -95,7 +95,7 @@ class ChapterDAO extends SubmissionVersionedDAO implements PKPPubIdPluginDAO, IS
 	 * @return array
 	 */
 	function getLocaleFieldNames() {
-		return array('title', 'subtitle');
+		return array('title', 'subtitle','abstract');
 	}
 
 	/**

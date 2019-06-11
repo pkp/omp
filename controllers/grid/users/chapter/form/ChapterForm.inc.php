@@ -96,9 +96,11 @@ class ChapterForm extends Form {
 			$this->setData('chapterId', $chapter->getId());
 			$this->setData('title', $chapter->getTitle());
 			$this->setData('subtitle', $chapter->getSubtitle());
+			$this->setData('abstract', $chapter->getAbstract());
 		} else {
 			$this->setData('title', null);
 			$this->setData('subtitle', null);
+			$this->setData('abstract', null);
 		}
 	}
 
@@ -107,7 +109,7 @@ class ChapterForm extends Form {
 	 * @see Form::readInputData()
 	 */
 	function readInputData() {
-		$this->readUserVars(array('title', 'subtitle', 'authors', 'files'));
+		$this->readUserVars(array('title', 'subtitle', 'authors', 'files','abstract'));
 	}
 
 	/**
@@ -122,6 +124,7 @@ class ChapterForm extends Form {
 		if ($chapter) {
 			$chapter->setTitle($this->getData('title'), null); //Localized
 			$chapter->setSubtitle($this->getData('subtitle'), null); //Localized
+			$chapter->setAbstract($this->getData('abstract'), null); //Localized
 			$chapterDao->updateObject($chapter);
 		} else {
 			$monograph = $this->getMonograph();
@@ -130,6 +133,7 @@ class ChapterForm extends Form {
 			$chapter->setMonographId($monograph->getId());
 			$chapter->setTitle($this->getData('title'), null); //Localized
 			$chapter->setSubtitle($this->getData('subtitle'), null); //Localized
+			$chapter->setAbstract($this->getData('abstract'), null); //Localized
 			$chapter->setSequence(REALLY_BIG_NUMBER);
 			$chapterDao->insertChapter($chapter);
 			$chapterDao->resequenceChapters($monograph->getId());

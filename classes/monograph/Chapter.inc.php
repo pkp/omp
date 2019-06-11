@@ -176,6 +176,30 @@ class Chapter extends SubmissionVersionedDataObject {
 		return DAORegistry::getDAO('ChapterDAO');
 	}
 
+	/**
+	 * Get abstract of chapter (primary locale)
+	 * @param $locale string
+	 * @return string
+	 */
+	function getAbstract($locale = null) {
+		return $this->getData('abstract', $locale);
+	}
+
+	/**
+	 * Set abstract of chapter
+	 * @param $abstract string
+	 * @param $locale string
+	 */
+	function setAbstract($abstract, $locale = null) {
+		return $this->setData('abstract', $abstract, $locale);
+	}
+	/**
+	 * Get localized abstract of a chapter.
+	 */
+	function getLocalizedAbstract() {
+		return $this->getLocalizedData('abstract');
+	}
+
 }
 
 
