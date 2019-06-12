@@ -21,8 +21,8 @@ class OAIDAO extends PKPOAIDAO {
 	/** @var PublicationFormatDAO */
 	var $_publicationFormatDao;
 
-	/** @var PublishedMonographDAO */
-	var $_publishedMonographDao;
+	/** @var PublishedSubmissionDAO */
+	var $_publishedSubmissionDao;
 
 	/** @var SeriesDAO */
 	var $_seriesDao;
@@ -43,7 +43,7 @@ class OAIDAO extends PKPOAIDAO {
 		parent::__construct();
 
 		$this->_publicationFormatDao = DAORegistry::getDAO('PublicationFormatDAO');
-		$this->_publishedMonographDao = DAORegistry::getDAO('PublishedMonographDAO');
+		$this->_publishedSubmissionDao = DAORegistry::getDAO('PublishedSubmissionDAO');
 		$this->_seriesDao = DAORegistry::getDAO('SeriesDAO');
 		$this->_pressDao = DAORegistry::getDAO('PressDAO');
 	}
@@ -167,7 +167,7 @@ class OAIDAO extends PKPOAIDAO {
 
 		if ($isRecord) {
 			$publicationFormat = $this->_publicationFormatDao->getById($publicationFormatId);
-			$monograph = $this->_publishedMonographDao->getBySubmissionId($publicationFormat->getMonographId());
+			$monograph = $this->_publishedSubmissionDao->getBySubmissionId($publicationFormat->getMonographId());
 			$record->setData('publicationFormat', $publicationFormat);
 			$record->setData('monograph', $monograph);
 			$record->setData('press', $press);

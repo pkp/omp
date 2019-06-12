@@ -230,9 +230,9 @@ class MonographSearch extends SubmissionSearch {
 		$contextDao = Application::getContextDAO();
 		$submissionDao = Application::getSubmissionDAO();
 		$seriesDao = DAORegistry::getDAO('SeriesDAO');
-		$publishedMonographDao = DAORegistry::getDAO('PublishedMonographDAO');
+		$publishedSubmissionDao = DAORegistry::getDAO('PublishedSubmissionDAO');
 
-		$publishedMonographCache = array();
+		$publishedSubmissionCache = array();
 		$monographCache = array();
 		$contextCache = array();
 		$seriesCache = array();
@@ -242,11 +242,11 @@ class MonographSearch extends SubmissionSearch {
 			// Get the monograph, storing in cache if necessary.
 			if (!isset($monographCache[$monographId])) {
 				$monographCache[$monographId] = $submissionDao->getById($monographId);
-				$publishedMonographCache[$monographId] = $publishedMonographDao->getBySubmissionId($monographId);
+				$publishedSubmissionCache[$monographId] = $publishedSubmissionDao->getBySubmissionId($monographId);
 			}
-			unset($monograph, $publishedMonograph);
+			unset($monograph, $publishedSubmission);
 			$monograph = $monographCache[$monographId];
-			$publishedMonograph = $publishedMonographCache[$monographId];
+			$publishedSubmission = $publishedSubmissionCache[$monographId];
 
 			if ($monograph) {
 				$seriesId = $monograph->getSeriesId();
@@ -264,7 +264,7 @@ class MonographSearch extends SubmissionSearch {
 				$returner[] = array(
 					'press' => $contextCache[$contextId],
 					'monograph' => $monograph,
-					'publishedMonograph' => $publishedMonograph,
+					'publishedSubmission' => $publishedSubmission,
 					'seriesArrangment' => $seriesCache[$seriesId]
 				);
 			}
@@ -287,9 +287,9 @@ class MonographSearch extends SubmissionSearch {
 		// of the submission for a similarity search.
 		if ($result === false) {
 			// Retrieve the submission.
-			$publishedMonographDao = DAORegistry::getDAO('PublishedMonographDAO'); /* @var $publishedMonographDao PublishedMonographDAO */
-			$monograph = $publishedMonographDao->getBySubmissionId($submissionId);
-			if (is_a($monograph, 'PublishedMonograph')) {
+			$publishedSubmissionDao = DAORegistry::getDAO('PublishedSubmissionDAO'); /* @var $publishedSubmissionDao PublishedSubmissionDAO */
+			$monograph = $publishedSubmissionDao->getBySubmissionId($submissionId);
+			if (is_a($monograph, 'PublishedSubmission')) {
 				// Retrieve keywords (if any).
 				$searchTerms = $monograph->getLocalizedSubject();
 				// Tokenize keywords.

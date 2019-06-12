@@ -505,7 +505,7 @@
 			<NOTNULL />
 			<DEFAULT VALUE="1" />
 		</field>
-		<descr>Publication formats assigned to published monographs</descr>
+		<descr>Publication formats assigned to published submissions</descr>
 		<index name="publication_format_submission_id">
 			<col>submission_id</col>
 		</index>

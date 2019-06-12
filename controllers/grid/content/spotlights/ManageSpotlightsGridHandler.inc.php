@@ -313,9 +313,9 @@ class ManageSpotlightsGridHandler extends GridHandler {
 		// get the items that match.
 		$matches = array();
 
-		$publishedMonographDao = DAORegistry::getDAO('PublishedMonographDAO');
-		$publishedMonographs = $publishedMonographDao->getByPressId($press->getId());
-		while ($monograph = $publishedMonographs->next()) {
+		$publishedSubmissionDao = DAORegistry::getDAO('PublishedSubmissionDAO');
+		$publishedSubmissions = $publishedSubmissionDao->getByPressId($press->getId());
+		while ($monograph = $publishedSubmissions->next()) {
 			if ($name == '' || preg_match('/'. preg_quote($name, '/') . '/i', $monograph->getLocalizedTitle())) {
 				$matches[] = array('label' => $monograph->getLocalizedTitle(), 'value' => $monograph->getId() . ':' . SPOTLIGHT_TYPE_BOOK);
 			}

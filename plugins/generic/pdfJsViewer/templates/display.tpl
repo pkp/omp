@@ -23,9 +23,9 @@
 	{* Header wrapper *}
 	<header class="header_viewable_file">
 
-		<a href="{url op="book" path=$publishedMonograph->getBestId()}" class="return">
+		<a href="{url op="book" path=$publishedSubmission->getBestId()}" class="return">
 			<span class="pkp_screen_reader">
-				{translate key="catalog.viewableFile.return" monographTitle=$publishedMonograph->getLocalizedTitle()|escape}
+				{translate key="catalog.viewableFile.return" monographTitle=$publishedSubmission->getLocalizedTitle()|escape}
 			</span>
 		</a>
 

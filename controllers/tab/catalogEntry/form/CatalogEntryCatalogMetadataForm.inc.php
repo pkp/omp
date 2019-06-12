@@ -23,8 +23,8 @@ class CatalogEntryCatalogMetadataForm extends Form {
 	/** @var $_monograph Monograph The monograph used to show metadata information */
 	var $_monograph;
 
-	/** @var $_publishedMonograph PublishedMonograph The published monograph associated with this monograph */
-	var $_publishedMonograph;
+	/** @var $_publishedSubmission PublishedSubmission The published submission associated with this monograph */
+	var $_publishedSubmission;
 
 	/** @var $_stageId int The current stage id */
 	var $_stageId;
@@ -121,8 +121,8 @@ class CatalogEntryCatalogMetadataForm extends Form {
 		$templateMgr->assign('volumeEditorsListData', $volumeEditorsListData);
 
 		$submission = $this->getMonograph();
-		$publishedMonograph = $this->getPublishedMonograph();
-		if ($publishedMonograph) {
+		$publishedSubmission = $this->getPublishedSubmission();
+		if ($publishedSubmission) {
 			if ($submission->getCurrentSubmissionVersion() != $submission->getSubmissionVersion()) {
 				if (!isset($this->_formParams)) {
 					$this->_formParams = array();
@@ -133,12 +133,12 @@ class CatalogEntryCatalogMetadataForm extends Form {
 			}
 
 			// pre-select the existing values on the form.
-			$templateMgr->assign('audience', $publishedMonograph->getAudience());
-			$templateMgr->assign('audienceRangeQualifier', $publishedMonograph->getAudienceRangeQualifier());
-			$templateMgr->assign('audienceRangeFrom', $publishedMonograph->getAudienceRangeFrom());
-			$templateMgr->assign('audienceRangeTo', $publishedMonograph->getAudienceRangeTo());
-			$templateMgr->assign('audienceRangeExact', $publishedMonograph->getAudienceRangeExact());
-			$templateMgr->assign('coverImage', $publishedMonograph->getCoverImage());
+			$templateMgr->assign('audience', $publishedSubmission->getAudience());
+			$templateMgr->assign('audienceRangeQualifier', $publishedSubmission->getAudienceRangeQualifier());
+			$templateMgr->assign('audienceRangeFrom', $publishedSubmission->getAudienceRangeFrom());
+			$templateMgr->assign('audienceRangeTo', $publishedSubmission->getAudienceRangeTo());
+			$templateMgr->assign('audienceRangeExact', $publishedSubmission->getAudienceRangeExact());
+			$templateMgr->assign('coverImage', $publishedSubmission->getCoverImage());
 		}
 
 		$templateMgr->assign('formParams', $this->getFormParams());
@@ -154,8 +154,8 @@ class CatalogEntryCatalogMetadataForm extends Form {
 		);
 
 		$submission = $this->getMonograph();
-		$publishedMonographDao = DAORegistry::getDAO('PublishedMonographDAO');
-		$this->_publishedMonograph = $publishedMonographDao->getBySubmissionId($submission->getId(), null, false, $submission->getSubmissionVersion());
+		$publishedSubmissionDao = DAORegistry::getDAO('PublishedSubmissionDAO');
+		$this->_publishedSubmission = $publishedSubmissionDao->getBySubmissionId($submission->getId(), null, false, $submission->getSubmissionVersion());
 
 		$copyrightHolder = $submission->getCopyrightHolder(null);
 		$copyrightYear = $submission->getCopyrightYear();
@@ -175,7 +175,7 @@ class CatalogEntryCatalogMetadataForm extends Form {
 			'copyrightYear' => $submission->getDefaultCopyrightYear(),
 			'licenseURL' => $submission->getDefaultLicenseURL(),
 			'arePermissionsAttached' => !empty($copyrightHolder) || !empty($copyrightYear) || !empty($licenseURL),
-			'confirm' => ($this->_publishedMonograph && $this->_publishedMonograph->getDatePublished())?true:false,
+			'confirm' => ($this->_publishedSubmission && $this->_publishedSubmission->getDatePublished())?true:false,
 			'volumeEditors' => $volumeEditors,
 		);
 	}
@@ -193,11 +193,11 @@ class CatalogEntryCatalogMetadataForm extends Form {
 	}
 
 	/**
-	 * Get the PublishedMonograph
-	 * @return PublishedMonograph
+	 * Get the PublishedSubmission
+	 * @return PublishedSubmission
 	 */
-	function getPublishedMonograph() {
-		return $this->_publishedMonograph;
+	function getPublishedSubmission() {
+		return $this->_publishedSubmission;
 	}
 
 	/**
@@ -262,15 +262,15 @@ class CatalogEntryCatalogMetadataForm extends Form {
 
 		$monograph = $this->getMonograph();
 		$monographDao = DAORegistry::getDAO('MonographDAO');
-		$publishedMonographDao = DAORegistry::getDAO('PublishedMonographDAO'); /** @var $publishedMonographDao PublishedMonographDAO */
-		$publishedMonograph = $publishedMonographDao->getBySubmissionId($monograph->getId(), null, false, $monograph->getSubmissionVersion()); /** @var $publishedMonograph PublishedMonograph */
-		$previousPublishedMonograph = $publishedMonographDao->getBySubmissionId($monograph->getId(), null, false, $monograph->getSubmissionVersion() - 1);
-		$isExistingEntry = $publishedMonograph?true:false;
-		if (!$publishedMonograph) {
-			$publishedMonograph = $publishedMonographDao->newDataObject();
-			$publishedMonograph->setId($monograph->getId());
-			$publishedMonograph->setSubmissionVersion($monograph->getSubmissionVersion());
-			$publishedMonograph->setIsCurrentSubmissionVersion(true);
+		$publishedSubmissionDao = DAORegistry::getDAO('PublishedSubmissionDAO'); /** @var $publishedSubmissionDao PublishedSubmissionDAO */
+		$publishedSubmission = $publishedSubmissionDao->getBySubmissionId($monograph->getId(), null, false, $monograph->getSubmissionVersion()); /** @var $publishedSubmission PublishedSubmission */
+		$previousPublishedSubmission = $publishedSubmissionDao->getBySubmissionId($monograph->getId(), null, false, $monograph->getSubmissionVersion() - 1);
+		$isExistingEntry = $publishedSubmission?true:false;
+		if (!$publishedSubmission) {
+			$publishedSubmission = $publishedSubmissionDao->newDataObject();
+			$publishedSubmission->setId($monograph->getId());
+			$publishedSubmission->setSubmissionVersion($monograph->getSubmissionVersion());
+			$publishedSubmission->setIsCurrentSubmissionVersion(true);
 		}
 
 		$monograph->setDatePublished($this->getData('datePublished'));
@@ -285,12 +285,12 @@ class CatalogEntryCatalogMetadataForm extends Form {
 			}
 		}
 
-		// Populate the published monograph with the cataloging metadata
-		$publishedMonograph->setAudience($this->getData('audience'));
-		$publishedMonograph->setAudienceRangeQualifier($this->getData('audienceRangeQualifier'));
-		$publishedMonograph->setAudienceRangeFrom($this->getData('audienceRangeFrom'));
-		$publishedMonograph->setAudienceRangeTo($this->getData('audienceRangeTo'));
-		$publishedMonograph->setAudienceRangeExact($this->getData('audienceRangeExact'));
+		// Populate the published submission with the cataloging metadata
+		$publishedSubmission->setAudience($this->getData('audience'));
+		$publishedSubmission->setAudienceRangeQualifier($this->getData('audienceRangeQualifier'));
+		$publishedSubmission->setAudienceRangeFrom($this->getData('audienceRangeFrom'));
+		$publishedSubmission->setAudienceRangeTo($this->getData('audienceRangeTo'));
+		$publishedSubmission->setAudienceRangeExact($this->getData('audienceRangeExact'));
 
 		// If a cover image was uploaded, deal with it.
 		if ($temporaryFileId = $this->getData('temporaryFileId')) {
@@ -299,11 +299,11 @@ class CatalogEntryCatalogMetadataForm extends Form {
 			$temporaryFile = $temporaryFileDao->getTemporaryFile($temporaryFileId, $this->_userId);
 			$temporaryFilePath = $temporaryFile->getFilePath();
 			import('classes.file.SimpleMonographFileManager');
-			$simpleMonographFileManager = new SimpleMonographFileManager($monograph->getPressId(), $publishedMonograph->getId());
+			$simpleMonographFileManager = new SimpleMonographFileManager($monograph->getPressId(), $publishedSubmission->getId());
 			$basePath = $simpleMonographFileManager->getBasePath();
 
 			// Delete the old file if it exists
-			$oldSetting = $publishedMonograph->getCoverImage();
+			$oldSetting = $publishedSubmission->getCoverImage();
 			if ($oldSetting) {
 				$simpleMonographFileManager->deleteByPath($basePath . $oldSetting['thumbnailName']);
 				$simpleMonographFileManager->deleteByPath($basePath . $oldSetting['name']);
@@ -335,7 +335,7 @@ class CatalogEntryCatalogMetadataForm extends Form {
 			// Clean up
 			imagedestroy($cover);
 
-			$publishedMonograph->setCoverImage(array(
+			$publishedSubmission->setCoverImage(array(
 				'name' => $filename,
 				'width' => $this->_sizeArray[0],
 				'height' => $this->_sizeArray[1],
@@ -367,15 +367,15 @@ class CatalogEntryCatalogMetadataForm extends Form {
 
 		// Update the modified fields or insert new.
 		if ($isExistingEntry) {
-			$publishedMonographDao->updateObject($publishedMonograph);
+			$publishedSubmissionDao->updateObject($publishedSubmission);
 		} else {
-			if ($previousPublishedMonograph) {
-				$previousPublishedMonograph->setIsCurrentSubmissionVersion(false);
+			if ($previousPublishedSubmission) {
+				$previousPublishedSubmission->setIsCurrentSubmissionVersion(false);
 
-				$publishedMonographDao->updateObject($previousPublishedMonograph);
+				$publishedSubmissionDao->updateObject($previousPublishedSubmission);
 			}
 
-			$publishedMonographDao->insertObject($publishedMonograph);
+			$publishedSubmissionDao->insertObject($publishedSubmission);
 		}
 
 		import('classes.core.Services');

@@ -179,7 +179,7 @@ class PublicationDateForm extends Form {
 		$publicationFormat = $publicationFormatDao->getById($this->getData('representationId'), $monograph->getId());
 
 		if (!$publicationDate) {
-			// this is a new publication date for this published monograph
+			// this is a new publication date for this published submission
 			$publicationDate = $publicationDateDao->newDataObject();
 			$existingFormat = false;
 			if ($publicationFormat != null) { // ensure this assigned format is in this monograph

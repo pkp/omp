@@ -14,7 +14,7 @@
 namespace APP\components\listPanels;
 
 // Bring in orderby constants
-import('classes.monograph.PublishedMonograph');
+import('classes.monograph.PublishedSubmission');
 
 class CatalogListPanel extends \PKP\components\listPanels\ListPanel {
 

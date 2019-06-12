@@ -75,13 +75,13 @@ class PublicationFormatTombstoneManager {
 
 	/**
 	 * Insert tombstone for every publication format of the
-	 * published monographs inside the passed press.
+	 * published submissions inside the passed press.
 	 * @param $press
 	 */
 	function insertTombstonesByPress($press) {
-		$publishedMonographFactory = $this->_getPublishedMonographFactoryByPressId($press->getId());
-		while ($publishedMonograph = $publishedMonographFactory->next()) { /* @var $publishedMonograph PublishedMonograph */
-			$publicationFormats = $publishedMonograph->getPublicationFormats();
+		$publishedSubmissionFactory = $this->_getPublishedSubmissionFactoryByPressId($press->getId());
+		while ($publishedSubmission = $publishedSubmissionFactory->next()) { /* @var $publishedSubmission PublishedSubmission */
+			$publicationFormats = $publishedSubmission->getPublicationFormats();
 			$this->insertTombstonesByPublicationFormats($publicationFormats, $press);
 		}
 	}
@@ -102,9 +102,9 @@ class PublicationFormatTombstoneManager {
 	 * @param $pressId int
 	 */
 	function deleteTombstonesByPressId($pressId) {
-		$publishedMonographFactory = $this->_getPublishedMonographFactoryByPressId($pressId);
-		while ($publishedMonograph = $publishedMonographFactory->next()) {
-			$publicationFormats = $publishedMonograph->getPublicationFormats();
+		$publishedSubmissionFactory = $this->_getPublishedSubmissionFactoryByPressId($pressId);
+		while ($publishedSubmission = $publishedSubmissionFactory->next()) {
+			$publicationFormats = $publishedSubmission->getPublicationFormats();
 			$this->deleteTombstonesByPublicationFormats($publicationFormats);
 		}
 	}
@@ -114,13 +114,13 @@ class PublicationFormatTombstoneManager {
 	// Private helper methods.
 	//
 	/**
-	 * Get the published monograph factory for the passed press id.
+	 * Get the published submission factory for the passed press id.
 	 * @param $pressId int
 	 * @return DAOResultFactory
 	 */
-	function _getPublishedMonographFactoryByPressId($pressId) {
-		$publishedMonographDao = DAORegistry::getDAO('PublishedMonographDAO');
-		return $publishedMonographDao->getByPressId($pressId);
+	function _getPublishedSubmissionFactoryByPressId($pressId) {
+		$publishedSubmissionDao = DAORegistry::getDAO('PublishedSubmissionDAO');
+		return $publishedSubmissionDao->getByPressId($pressId);
 	}
 }
 

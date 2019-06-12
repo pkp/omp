@@ -51,15 +51,15 @@ class MonographONIX30XmlFilter extends NativeExportFilter {
 	 */
 	function &process(&$monograph) {
 
-		// Note:  There are ONIX fields that can only be assembled from a PublishedMonograph class.
+		// Note:  There are ONIX fields that can only be assembled from a PublishedSubmission class.
 		// e.g. the Audience components. Since this filter can also be used for native import/import
-		// export, check to see if we have have a published monograph and use it, otherwise fall back
+		// export, check to see if we have have a published submission and use it, otherwise fall back
 		// with safe defaults.
 
-		$publishedMonographDao = DAORegistry::getDAO('PublishedMonographDAO');
-		$publishedMonograph = $publishedMonographDao->getBySubmissionId($monograph->getId());
-		if ($publishedMonograph) {
-			$monograph = $publishedMonograph;
+		$publishedSubmissionDao = DAORegistry::getDAO('PublishedSubmissionDAO');
+		$publishedSubmission = $publishedSubmissionDao->getBySubmissionId($monograph->getId());
+		if ($publishedSubmission) {
+			$monograph = $publishedSubmission;
 		}
 
 		// Create the XML document
@@ -400,7 +400,7 @@ class MonographONIX30XmlFilter extends NativeExportFilter {
 
 		/* --- Add Audience elements --- */
 
-		if (is_a($submission, 'PublishedMonograph')) { // PublishedMonograph-specific fields.
+		if (is_a($submission, 'PublishedSubmission')) { // PublishedSubmission-specific fields.
 			if ($submission->getAudience()) {
 				$audienceNode = $doc->createElementNS($deployment->getNamespace(), 'Audience');
 				$descDetailNode->appendChild($audienceNode);

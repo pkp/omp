@@ -72,10 +72,10 @@ class UsageEventPlugin extends PKPUsageEventPlugin {
 
 					$press = $templateMgr->getTemplateVars('currentContext'); /* @var $press Press */
 					$series = $templateMgr->getTemplateVars('series'); /* @var $series Series */
-					$publishedMonograph = $templateMgr->getTemplateVars('publishedMonograph');
+					$publishedSubmission = $templateMgr->getTemplateVars('publishedSubmission');
 
 					// No published objects, no usage event.
-					if (!$press && !$series && !$publishedMonograph) break;
+					if (!$press && !$series && !$publishedSubmission) break;
 
 					if ($press) {
 						$pubObject = $press;
@@ -90,8 +90,8 @@ class UsageEventPlugin extends PKPUsageEventPlugin {
 						$idParams = array('s' . $series->getId());
 					}
 
-					if ($publishedMonograph) {
-						$pubObject = $publishedMonograph;
+					if ($publishedSubmission) {
+						$pubObject = $publishedSubmission;
 						$assocType = ASSOC_TYPE_MONOGRAPH;
 						$canonicalUrlParams = array($pubObject->getId());
 						$idParams = array('m' . $pubObject->getId());
@@ -108,12 +108,12 @@ class UsageEventPlugin extends PKPUsageEventPlugin {
 					$pubObject = $hookArgs[3];
 					$assocType = ASSOC_TYPE_SUBMISSION_FILE;
 					$canonicalUrlOp = 'download';
-					$publishedMonograph = $hookArgs[1];
+					$publishedSubmission = $hookArgs[1];
 					$publicationFormat = $hookArgs[2];
 					// if file is not a publication format file (e.g. CSS or images), there is no usage event.
 					if ($pubObject->getAssocId() != $publicationFormat->getId()) return false;
-					$canonicalUrlParams = array($publishedMonograph->getId(), $pubObject->getAssocId(), $pubObject->getFileId() . '-' . $pubObject->getRevision());
-					$idParams = array('m' . $publishedMonograph->getId(), 'f' . $pubObject->getId());
+					$canonicalUrlParams = array($publishedSubmission->getId(), $pubObject->getAssocId(), $pubObject->getFileId() . '-' . $pubObject->getRevision());
+					$idParams = array('m' . $publishedSubmission->getId(), 'f' . $pubObject->getId());
 					$downloadSuccess = false;
 					break;
 				default:
@@ -149,7 +149,7 @@ class UsageEventPlugin extends PKPUsageEventPlugin {
 	 * @see PKPUsageEventPlugin::isPubIdObjectType()
 	 */
 	protected function isPubIdObjectType($pubObject) {
-		return is_a($pubObject, 'PublishedMonograph');
+		return is_a($pubObject, 'PublishedSubmission');
 	}
 }
 

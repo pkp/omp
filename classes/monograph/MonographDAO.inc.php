@@ -156,8 +156,8 @@ class MonographDAO extends SubmissionDAO {
 	function deleteById($submissionId) {
 		parent::deleteById($submissionId);
 
-		$publishedMonographDao = DAORegistry::getDAO('PublishedMonographDAO');
-		$publishedMonographDao->deleteById($submissionId);
+		$publishedSubmissionDao = DAORegistry::getDAO('PublishedSubmissionDAO');
+		$publishedSubmissionDao->deleteById($submissionId);
 
 		// Delete chapters and assigned chapter authors.
 		$chapterDao = DAORegistry::getDAO('ChapterDAO');
@@ -189,11 +189,11 @@ class MonographDAO extends SubmissionDAO {
 	}
 
 	/**
-	 * Get unpublished monographs for a press.
+	 * Get unpublished submissions for a press.
 	 * @param $pressId int
 	 * @return DAOResultFactory containing matching Monographs
 	 */
-	function getUnpublishedMonographsByPressId($pressId) {
+	function getUnpublishedSubmissionsByPressId($pressId) {
 		$params = $this->getFetchParameters();
 		$params[] = (int) $pressId;
 

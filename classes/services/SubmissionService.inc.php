@@ -43,17 +43,17 @@ class SubmissionService extends \PKP\Services\PKPSubmissionService {
 		$isPublic =& $args[0];
 		$submission = $args[1];
 
-		if (is_a($submission, 'PublishedMonograph')) {
-			$publishedMonograph = $submission;
+		if (is_a($submission, 'PublishedSubmission')) {
+			$publishedSubmission = $submission;
 		} else {
-			$publishedMonographDao = \DAORegistry::getDAO('PublishedMonographDAO');
-			$publishedMonograph = $publishedMonographDao->getBySubmissionId(
+			$publishedSubmissionDao = \DAORegistry::getDAO('PublishedSubmissionDAO');
+			$publishedSubmission = $publishedSubmissionDao->getBySubmissionId(
 				$submission->getId(),
 				$submission->getContextId()
 			);
 		}
 
-		if ($publishedMonograph && $publishedMonograph->getDatePublished()) {
+		if ($publishedSubmission && $publishedSubmission->getDatePublished()) {
 			$isPublic = true;
 			return;
 		}
@@ -73,12 +73,12 @@ class SubmissionService extends \PKP\Services\PKPSubmissionService {
 		}
 
 		import('classes.publicationFormat.PublicationFormatTombstoneManager');
-		$publishedMonographDao = \DAORegistry::getDAO('PublishedMonographDAO');
-		$publishedMonograph = $publishedMonographDao->getBySubmissionId($submission->getId(), null, false);
-		if (!$publishedMonograph) {
-			$publishedMonograph = $publishedMonographDao->newDataObject();
-			$publishedMonograph->setId($submission->getId());
-			$publishedMonographDao->insertObject($publishedMonograph);
+		$publishedSubmissionDao = \DAORegistry::getDAO('PublishedSubmissionDAO');
+		$publishedSubmission = $publishedSubmissionDao->getBySubmissionId($submission->getId(), null, false);
+		if (!$publishedSubmission) {
+			$publishedSubmission = $publishedSubmissionDao->newDataObject();
+			$publishedSubmission->setId($submission->getId());
+			$publishedSubmissionDao->insertObject($publishedSubmission);
 		}
 		$publicationFormats = \DAORegistry::getDAO('PublicationFormatDAO')
 			->getBySubmissionId($submission->getId())
@@ -90,8 +90,8 @@ class SubmissionService extends \PKP\Services\PKPSubmissionService {
 		\Application::getSubmissionDao()->updateObject($submission);
 
 		$datePublished = $submission->getDatePublished() ? $submission->getDatePublished() : \Core::getCurrentDate();
-		$publishedMonograph->setDatePublished($datePublished);
-		$publishedMonographDao->updateObject($publishedMonograph);
+		$publishedSubmission->setDatePublished($datePublished);
+		$publishedSubmissionDao->updateObject($publishedSubmission);
 
 		$notificationMgr = new \NotificationManager();
 		$notificationMgr->updateNotification(
@@ -99,14 +99,14 @@ class SubmissionService extends \PKP\Services\PKPSubmissionService {
 			array(NOTIFICATION_TYPE_APPROVE_SUBMISSION),
 			null,
 			ASSOC_TYPE_MONOGRAPH,
-			$publishedMonograph->getId()
+			$publishedSubmission->getId()
 		);
 
 		// Remove publication format tombstones.
 		$publicationFormatTombstoneMgr = new \PublicationFormatTombstoneManager();
 		$publicationFormatTombstoneMgr->deleteTombstonesByPublicationFormats($publicationFormats);
 
-		// Update the search index for this published monograph.
+		// Update the search index for this published submission.
 		$monographSearchIndex = \Application::getSubmissionSearchIndex();
 		$monographSearchIndex->submissionMetadataChanged($submission);
 		$monographSearchIndex->submissionChangesFinished();
@@ -130,8 +130,8 @@ class SubmissionService extends \PKP\Services\PKPSubmissionService {
 		}
 
 		import('classes.publicationFormat.PublicationFormatTombstoneManager');
-		$publishedMonographDao = \DAORegistry::getDAO('PublishedMonographDAO');
-		$publishedMonograph = $publishedMonographDao->getBySubmissionId($submission->getId(), null, false);
+		$publishedSubmissionDao = \DAORegistry::getDAO('PublishedSubmissionDAO');
+		$publishedSubmission = $publishedSubmissionDao->getBySubmissionId($submission->getId(), null, false);
 		$publicationFormats = \DAORegistry::getDAO('PublicationFormatDAO')
 			->getBySubmissionId($submission->getId())
 			->toAssociativeArray();
@@ -142,8 +142,8 @@ class SubmissionService extends \PKP\Services\PKPSubmissionService {
 		\Application::getSubmissionDao()->updateObject($submission);
 
 		// Unpublish monograph.
-		$publishedMonograph->setDatePublished(null);
-		$publishedMonographDao->updateObject($publishedMonograph);
+		$publishedSubmission->setDatePublished(null);
+		$publishedSubmissionDao->updateObject($publishedSubmission);
 
 		$notificationMgr = new \NotificationManager();
 		$notificationMgr->updateNotification(
@@ -151,7 +151,7 @@ class SubmissionService extends \PKP\Services\PKPSubmissionService {
 			array(NOTIFICATION_TYPE_APPROVE_SUBMISSION),
 			null,
 			ASSOC_TYPE_MONOGRAPH,
-			$publishedMonograph->getId()
+			$publishedSubmission->getId()
 		);
 
 		// Create tombstones for each publication format.
@@ -257,10 +257,10 @@ class SubmissionService extends \PKP\Services\PKPSubmissionService {
 		$context = $request->getContext();
 		$dispatcher = $request->getDispatcher();
 
-		$publishedMonograph = null;
+		$publishedSubmission = null;
 		if ($context) {
-			$publishedMonographDao = \DAORegistry::getDAO('PublishedMonographDAO');
-			$publishedMonograph = $publishedMonographDao->getByBestId($context->getId(), $submission->getId());
+			$publishedSubmissionDao = \DAORegistry::getDAO('PublishedSubmissionDAO');
+			$publishedSubmission = $publishedSubmissionDao->getByBestId($context->getId(), $submission->getId());
 		}
 
 		foreach ($props as $prop) {

@@ -15,9 +15,9 @@
 	<title>{$currentPress->getLocalizedName()|escape:"html"|strip}</title>
 
 	{assign var=latestDate value=0}
-	{foreach from=$publishedMonographs item=publishedMonograph}
-		{if $latestDate < $publishedMonograph->getLastModified()}
-			{assign var=latestDate value=$publishedMonograph->getLastModified()}
+	{foreach from=$publishedSubmissions item=publishedSubmission}
+		{if $latestDate < $publishedSubmission->getLastModified()}
+			{assign var=latestDate value=$publishedSubmission->getLastModified()}
 		{/if}
 	{/foreach}
 	<updated>{$latestDate|date_format:"%Y-%m-%dT%T%z"|regex_replace:"/00$/":":00"}</updated>
@@ -49,16 +49,16 @@
 
 	<subtitle type="html">{$description|strip|escape:"html"}</subtitle>
 
-	{foreach from=$publishedMonographs item=publishedMonograph key=sectionId}
+	{foreach from=$publishedSubmissions item=publishedSubmission key=sectionId}
 		<entry>
 			{* required elements *}
-			<id>{url page="catalog" op="book" path=$publishedMonograph->getId()}</id>
-			<title>{$publishedMonograph->getLocalizedTitle()|strip|escape:"html"}</title>
-			<updated>{$publishedMonograph->getLastModified()|date_format:"%Y-%m-%dT%T%z"|regex_replace:"/00$/":":00"}</updated>
+			<id>{url page="catalog" op="book" path=$publishedSubmission->getId()}</id>
+			<title>{$publishedSubmission->getLocalizedTitle()|strip|escape:"html"}</title>
+			<updated>{$publishedSubmission->getLastModified()|date_format:"%Y-%m-%dT%T%z"|regex_replace:"/00$/":":00"}</updated>
 
 			{* recommended elements *}
 
-			{foreach from=$publishedMonograph->getAuthors() item=author name=authorList}
+			{foreach from=$publishedSubmission->getAuthors() item=author name=authorList}
 				<author>
 					<name>{$author->getFullName(false)|strip|escape:"html"}</name>
 					{if $author->getEmail()}
@@ -67,22 +67,22 @@
 				</author>
 			{/foreach}{* authors *}
 
-			<link rel="alternate" href="{url page="catalog" op="book" path=$publishedMonograph->getId()}" />
+			<link rel="alternate" href="{url page="catalog" op="book" path=$publishedSubmission->getId()}" />
 
-			{if $publishedMonograph->getLocalizedAbstract()}
-				<summary type="html" xml:base="{url page="catalog" op="book" path=$publishedMonograph->getId()}">{$publishedMonograph->getLocalizedAbstract()|strip|escape:"html"}</summary>
+			{if $publishedSubmission->getLocalizedAbstract()}
+				<summary type="html" xml:base="{url page="catalog" op="book" path=$publishedSubmission->getId()}">{$publishedSubmission->getLocalizedAbstract()|strip|escape:"html"}</summary>
 			{/if}
 
 			{* optional elements *}
 			{* <category/> *}
 			{* <contributor/> *}
 
-			{if $publishedMonograph->getDatePublished()}
-				<published>{$publishedMonograph->getDatePublished()|date_format:"%Y-%m-%dT%T%z"|regex_replace:"/00$/":":00"}</published>
+			{if $publishedSubmission->getDatePublished()}
+				<published>{$publishedSubmission->getDatePublished()|date_format:"%Y-%m-%dT%T%z"|regex_replace:"/00$/":":00"}</published>
 			{/if}
 
 			{* <source/> *}
-			<rights>{translate|escape key="submission.copyrightStatement" copyrightYear=$publishedMonograph->getCopyrightYear() copyrightHolder=$publishedMonograph->getLocalizedCopyrightHolder()}</rights>
+			<rights>{translate|escape key="submission.copyrightStatement" copyrightYear=$publishedSubmission->getCopyrightYear() copyrightHolder=$publishedSubmission->getLocalizedCopyrightHolder()}</rights>
 		</entry>
-	{/foreach}{* publishedMonographs *}
+	{/foreach}{* publishedSubmissions *}
 </feed>

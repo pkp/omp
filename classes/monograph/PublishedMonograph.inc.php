@@ -1,17 +1,17 @@
 <?php
 
 /**
- * @file classes/monograph/PublishedMonograph.inc.php
+ * @file classes/monograph/PublishedSubmission.inc.php
  *
  * Copyright (c) 2014-2019 Simon Fraser University
  * Copyright (c) 2003-2019 John Willinsky
  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
  *
- * @class PublishedMonograph
+ * @class PublishedSubmission
  * @ingroup monograph
- * @see PublishedMonographDAO
+ * @see PublishedSubmissionDAO
  *
- * @brief Published monograph class.
+ * @brief Published submission class.
  */
 
 
@@ -21,9 +21,9 @@ import('classes.monograph.Monograph');
 define('ARTICLE_ACCESS_ISSUE_DEFAULT', 0);
 define('ARTICLE_ACCESS_OPEN', 1);
 
-class PublishedMonograph extends Monograph {
+class PublishedSubmission extends Monograph {
 	/**
-	 * Get views of the published monograph.
+	 * Get views of the published submission.
 	 * @return int
 	 */
 	function getViews() {
@@ -32,7 +32,7 @@ class PublishedMonograph extends Monograph {
 	}
 
 	/**
-	 * Set views of the published monograph.
+	 * Set views of the published submission.
 	 * @param $views int
 	 */
 	function setViews($views) {
@@ -40,7 +40,7 @@ class PublishedMonograph extends Monograph {
 	}
 
 	/**
-	 * Get the audience of the published monograph.
+	 * Get the audience of the published submission.
 	 * @return int
 	 */
 	function getAudience() {
@@ -48,7 +48,7 @@ class PublishedMonograph extends Monograph {
 	}
 
 	/**
-	 * Set the audience for the published monograph.
+	 * Set the audience for the published submission.
 	 * @param $audience int (onix code)
 	 */
 	function setAudience($audience) {
@@ -56,7 +56,7 @@ class PublishedMonograph extends Monograph {
 	}
 
 	/**
-	 * Get the audienceRangeQualifier of the published monograph.
+	 * Get the audienceRangeQualifier of the published submission.
 	 * @return int
 	 */
 	function getAudienceRangeQualifier() {
@@ -64,7 +64,7 @@ class PublishedMonograph extends Monograph {
 	}
 
 	/**
-	 * Set the audienceRangeQualifier for the published monograph.
+	 * Set the audienceRangeQualifier for the published submission.
 	 * @param $audienceRangeQualifier int (onix code)
 	 */
 	function setAudienceRangeQualifier($audienceRangeQualifier) {
@@ -72,7 +72,7 @@ class PublishedMonograph extends Monograph {
 	}
 
 	/**
-	 * Get the audienceRangeFrom field for the published monograph.
+	 * Get the audienceRangeFrom field for the published submission.
 	 * @return int
 	 */
 	function getAudienceRangeFrom() {
@@ -80,7 +80,7 @@ class PublishedMonograph extends Monograph {
 	}
 
 	/**
-	 * Set the audienceRangeFrom field for the published monograph.
+	 * Set the audienceRangeFrom field for the published submission.
 	 * @param $audienceRangeFrom int (onix code)
 	 */
 	function setAudienceRangeFrom($audienceRangeFrom) {
@@ -88,7 +88,7 @@ class PublishedMonograph extends Monograph {
 	}
 
 	/**
-	 * Get the audienceRangeTo field for the published monograph.
+	 * Get the audienceRangeTo field for the published submission.
 	 * @return int
 	 */
 	function getAudienceRangeTo() {
@@ -96,7 +96,7 @@ class PublishedMonograph extends Monograph {
 	}
 
 	/**
-	 * Set the audienceRangeTo field for the published monograph.
+	 * Set the audienceRangeTo field for the published submission.
 	 * @param $audienceRangeTo int (onix code)
 	 */
 	function setAudienceRangeTo($audienceRangeTo) {
@@ -104,7 +104,7 @@ class PublishedMonograph extends Monograph {
 	}
 
 	/**
-	 * Get the audienceRangeExact field of the published monograph.
+	 * Get the audienceRangeExact field of the published submission.
 	 * @return int
 	 */
 	function getAudienceRangeExact() {
@@ -112,7 +112,7 @@ class PublishedMonograph extends Monograph {
 	}
 
 	/**
-	 * Set the audienceRangeExact field for the published monograph.
+	 * Set the audienceRangeExact field for the published submission.
 	 * @param $audienceRangeExact int (onix code)
 	 */
 	function setAudienceRangeExact($audienceRangeExact) {
@@ -154,7 +154,7 @@ class PublishedMonograph extends Monograph {
 	}
 
 	/**
-	 * Returns whether or not this published monograph has formats assigned to it
+	 * Returns whether or not this published submission has formats assigned to it
 	 * @return boolean
 	 */
 	function hasPublicationFormats() {
@@ -163,13 +163,13 @@ class PublishedMonograph extends Monograph {
 	}
 
 	/**
-	 * Get the categories for this published monograph.
-	 * @see PublishedMonographDAO::getCategories
+	 * Get the categories for this published submission.
+	 * @see PublishedSubmissionDAO::getCategories
 	 * @return Iterator
 	 */
 	function getCategories() {
-		$publishedMonographDao = DAORegistry::getDAO('PublishedMonographDAO'); /** @var $publishedMonographDao PublishedMonographDAO */
-		return $publishedMonographDao->getCategories(
+		$publishedSubmissionDao = DAORegistry::getDAO('PublishedSubmissionDAO'); /** @var $publishedSubmissionDao PublishedSubmissionDAO */
+		return $publishedSubmissionDao->getCategories(
 			$this->getId(),
 			$this->getPressId()
 		);
@@ -191,7 +191,7 @@ class PublishedMonograph extends Monograph {
 	}
 
 	/**
-	 * Get the Representative objects assigned as suppliers for this published monograph.
+	 * Get the Representative objects assigned as suppliers for this published submission.
 	 * @return Array Representative
 	 */
 	function getSuppliers() {
@@ -200,7 +200,7 @@ class PublishedMonograph extends Monograph {
 	}
 
 	/**
-	 * Get the Representative objects assigned as agents for this published monograph.
+	 * Get the Representative objects assigned as agents for this published submission.
 	 * @return Array Representative
 	 */
 	function getAgents() {

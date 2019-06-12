@@ -162,7 +162,7 @@ class IdentificationCodeForm extends Form {
 		$publicationFormat = $publicationFormatDao->getById($this->getData('representationId', $monograph->getId()));
 
 		if (!$identificationCode) {
-			// this is a new code to this published monograph
+			// this is a new code to this published submission
 			$identificationCode = $identificationCodeDao->newDataObject();
 			$existingFormat = false;
 			if ($publicationFormat != null) { // ensure this format is in this monograph

@@ -101,19 +101,19 @@ class WebFeedGatewayPlugin extends GatewayPlugin {
 		$templateMgr = TemplateManager::getManager($request);
 		$press = $request->getContext();
 
-		$publishedMonographDao = DAORegistry::getDAO('PublishedMonographDAO');
+		$publishedSubmissionDao = DAORegistry::getDAO('PublishedSubmissionDAO');
 		$recentItems = (int) $this->_parentPlugin->getSetting($press->getId(), 'recentItems');
 		if ($recentItems > 0) {
 			import('lib.pkp.classes.db.DBResultRange');
 			$rangeInfo = new DBResultRange($recentItems, 1);
-			$publishedMonographObjects = $publishedMonographDao->getByPressId(
+			$publishedSubmissionObjects = $publishedSubmissionDao->getByPressId(
 				$press->getId(),
 				null,
 				$rangeInfo
 			);
-			$publishedMonographs = $publishedMonographObjects->toArray();
-		} else $publishedMonographs = array();
-		$templateMgr->assign('publishedMonographs', $publishedMonographs);
+			$publishedSubmissions = $publishedSubmissionObjects->toArray();
+		} else $publishedSubmissions = array();
+		$templateMgr->assign('publishedSubmissions', $publishedSubmissions);
 
 		$versionDao = DAORegistry::getDAO('VersionDAO');
 		$version = $versionDao->getCurrentVersion();

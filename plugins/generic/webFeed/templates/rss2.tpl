@@ -48,27 +48,27 @@
 		<docs>http://blogs.law.harvard.edu/tech/rss</docs>
 		<ttl>60</ttl>
 
-		{foreach name=publishedMonographs from=$publishedMonographs item=publishedMonograph}
+		{foreach name=publishedSubmissions from=$publishedSubmissions item=publishedSubmission}
 			<item>
 				{* required elements *}
-				<title>{$publishedMonograph->getLocalizedTitle()|strip|escape:"html"}</title>
-				<link>{url page="catalog" op="book" path=$publishedMonograph->getId()}</link>
-				<description>{$publishedMonograph->getLocalizedAbstract()|strip|escape:"html"}</description>
+				<title>{$publishedSubmission->getLocalizedTitle()|strip|escape:"html"}</title>
+				<link>{url page="catalog" op="book" path=$publishedSubmission->getId()}</link>
+				<description>{$publishedSubmission->getLocalizedAbstract()|strip|escape:"html"}</description>
 
 				{* optional elements *}
-				<author>{$publishedMonograph->getAuthorString(false)|escape:"html"}</author>
+				<author>{$publishedSubmission->getAuthorString(false)|escape:"html"}</author>
 				{* <category/> *}
 				{* <comments/> *}
 				{* <source/> *}
 
 				<dc:rights>
-					{translate|escape key="submission.copyrightStatement" copyrightYear=$publishedMonograph->getCopyrightYear() copyrightHolder=$publishedMonograph->getLocalizedCopyrightHolder()}
-					{$publishedMonograph->getLicenseURL()|escape}
+					{translate|escape key="submission.copyrightStatement" copyrightYear=$publishedSubmission->getCopyrightYear() copyrightHolder=$publishedSubmission->getLocalizedCopyrightHolder()}
+					{$publishedSubmission->getLicenseURL()|escape}
 				</dc:rights>
 
-				<guid isPermaLink="true">{url page="catalog" op="book" path=$publishedMonograph->getId()}</guid>
-				<pubDate>{$publishedMonograph->getDatePublished()|date_format:"%a, %d %b %Y %T %z"}</pubDate>
+				<guid isPermaLink="true">{url page="catalog" op="book" path=$publishedSubmission->getId()}</guid>
+				<pubDate>{$publishedSubmission->getDatePublished()|date_format:"%a, %d %b %Y %T %z"}</pubDate>
 			</item>
-		{/foreach}{* publishedMonographs *}
+		{/foreach}{* publishedSubmissions *}
 	</channel>
 </rss>

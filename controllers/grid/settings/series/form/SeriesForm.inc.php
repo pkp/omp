@@ -71,8 +71,8 @@ class SeriesForm extends PKPSectionForm {
 		}
 
 		if (isset($series) ) {
-			$publishedMonographDao = DAORegistry::getDAO('PublishedMonographDAO');
-			$sortOption = $series->getSortOption() ? $series->getSortOption() : $publishedMonographDao->getDefaultSortOption();
+			$publishedSubmissionDao = DAORegistry::getDAO('PublishedSubmissionDAO');
+			$sortOption = $series->getSortOption() ? $series->getSortOption() : $publishedSubmissionDao->getDefaultSortOption();
 			$this->_data = array(
 				'seriesId' => $seriesId,
 				'title' => $series->getTitle(null, false),
@@ -127,8 +127,8 @@ class SeriesForm extends PKPSectionForm {
 		$templateMgr->assign('categoryCount', $categoryCount);
 
 		// Sort options.
-		$publishedMonographDao = DAORegistry::getDAO('PublishedMonographDAO');
-		$templateMgr->assign('sortOptions', $publishedMonographDao->getSortSelectOptions());
+		$publishedSubmissionDao = DAORegistry::getDAO('PublishedSubmissionDAO');
+		$templateMgr->assign('sortOptions', $publishedSubmissionDao->getSortSelectOptions());
 
 		// Series Editors
 		$subEditorsListPanel = $this->_getSubEditorsListPanel($context->getId(), $request);
