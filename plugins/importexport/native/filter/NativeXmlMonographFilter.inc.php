@@ -40,7 +40,7 @@ class NativeXmlMonographFilter extends NativeXmlSubmissionFilter {
 	 * @return DAO
 	 */
 	function getPublishedSubmissionDAO() {
-		return DAORegistry::getDAO('PublishedMonographDAO');
+		return DAORegistry::getDAO('PublishedSubmissionDAO');
 	}
 
 	/**
@@ -168,9 +168,9 @@ class NativeXmlMonographFilter extends NativeXmlSubmissionFilter {
 
 	/**
 	 * Class-specific methods for published submissions.
-	 * @param PublishedMonograph $submission
+	 * @param PublishedSubmission $submission
 	 * @param DOMElement $node
-	 * @return PublishedMonograph
+	 * @return PublishedSubmission
 	 */
 	function populatePublishedSubmission($submission, $node) {
 		return $submission;

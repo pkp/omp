@@ -19,7 +19,7 @@
 	<message key="plugins.importexport.onix30.cliError">ERROR:</message>
 	<message key="plugins.importexport.onix30.error.unknownPress">The specified press path, "{$pressPath}," does not exist.</message>
 	<message key="plugins.importexport.onix30.export.error.couldNotWrite">Could not write to the file "{$fileName}".</message>
-	<message key="plugins.importexport.onix30.export.error.monographNotFound">No monograph matched the specified monograph ID "{$monographId}".</message>
+	<message key="plugins.importexport.onix30.export.error.monographNotFound">No monograph matched the specified monograph ID "{$submissionId}".</message>
 	<message key="plugins.importexport.onix30.noFormats">Monographs with no publication formats are not shown.</message>
 	<message key="plugins.importexport.onix30.selectMonograph">Select a monograph to export:</message>
 	<message key="plugins.importexport.onix30.exportButton">Export</message>

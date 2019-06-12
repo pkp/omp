@@ -59,7 +59,7 @@ class PressDAO extends ContextDAO {
 		$emailTemplateDao = DAORegistry::getDAO('EmailTemplateDAO');
 		$emailTemplateDao->deleteEmailTemplatesByContext($pressId);
 
-		$monographDao = DAORegistry::getDAO('MonographDAO');
+		$monographDao = DAORegistry::getDAO('SubmissionDAO');
 		$monographDao->deleteByContextId($pressId);
 
 		$pluginSettingsDao = DAORegistry::getDAO('PluginSettingsDAO');
@@ -85,7 +85,7 @@ class PressDAO extends ContextDAO {
 	 * (see <http://dtd.nlm.nih.gov/publishing/tag-library/n-4zh0.html>).
 	 */
 	function deleteAllPubIds($pressId, $pubIdType) {
-		$pubObjectDaos = array('MonographDAO', 'PublicationFormatDAO');
+		$pubObjectDaos = array('SubmissionDAO', 'PublicationFormatDAO');
 		foreach($pubObjectDaos as $daoName) {
 			$dao = DAORegistry::getDAO($daoName);
 			$dao->deleteAllPubIds($pressId, $pubIdType);

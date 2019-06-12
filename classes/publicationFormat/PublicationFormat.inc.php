@@ -79,10 +79,10 @@ class PublicationFormat extends Representation {
 
 	/**
 	 * Set monograph id.
-	 * @param $monographId int
+	 * @param $submissionId int
 	 */
-	function setMonographId($monographId) {
-		return parent::setSubmissionId($monographId);
+	function setMonographId($submissionId) {
+		return parent::setSubmissionId($submissionId);
 	}
 
 	/**

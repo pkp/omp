@@ -36,8 +36,8 @@ class NewReleaseDAO extends DAO {
 		);
 
 		while (!$result->EOF) {
-			list($monographId) = $result->fields;
-			$returner[$monographId] = true;
+			list($submissionId) = $result->fields;
+			$returner[$submissionId] = true;
 			$result->MoveNext();
 		}
 
@@ -64,10 +64,10 @@ class NewReleaseDAO extends DAO {
 		);
 
 		$returner = array();
-		$publishedMonographDao = DAORegistry::getDAO('PublishedMonographDAO');
+		$publishedSubmissionDao = DAORegistry::getDAO('PublishedSubmissionDAO');
 		while (!$result->EOF) {
-			list($monographId) = $result->fields;
-			$returner[] = $publishedMonographDao->getById($monographId);
+			list($submissionId) = $result->fields;
+			$returner[] = $publishedSubmissionDao->getById($submissionId);
 			$result->MoveNext();
 		}
 		$result->Close();
@@ -76,18 +76,18 @@ class NewReleaseDAO extends DAO {
 
 	/**
 	 * Insert a new NewRelease.
-	 * @param $monographId int
+	 * @param $submissionId int
 	 * @param $assocType int ASSOC_TYPE_...
 	 * @param $assocId int
 	 */
-	function insertNewRelease($monographId, $assocType, $assocId) {
+	function insertNewRelease($submissionId, $assocType, $assocId) {
 		$this->update(
 			'INSERT INTO new_releases
 				(submission_id, assoc_type, assoc_id)
 				VALUES
 				(?, ?, ?)',
 			array(
-				(int) $monographId,
+				(int) $submissionId,
 				(int) $assocType,
 				(int) $assocId
 			)
@@ -96,13 +96,13 @@ class NewReleaseDAO extends DAO {
 
 	/**
 	 * Delete a new release by ID.
-	 * @param $monographId int
+	 * @param $submissionId int
 	 * @param $pressId int optional
 	 */
-	function deleteByMonographId($monographId) {
+	function deleteByMonographId($submissionId) {
 		$this->update(
 			'DELETE FROM new_releases WHERE submission_id = ?',
-			(int) $monographId
+			(int) $submissionId
 		);
 	}
 
@@ -120,18 +120,18 @@ class NewReleaseDAO extends DAO {
 
 	/**
 	 * Delete a new release.
-	 * @param $monographId int
+	 * @param $submissionId int
 	 * @param $assocType int ASSOC_TYPE_...
 	 * @param $assocId int
 	 */
-	function deleteNewRelease($monographId, $assocType, $assocId) {
+	function deleteNewRelease($submissionId, $assocType, $assocId) {
 		$this->update(
 			'DELETE FROM new_releases
 			WHERE	submission_id = ? AND
 				assoc_type = ? AND
 				assoc_id = ?',
 			array(
-				(int) $monographId,
+				(int) $submissionId,
 				(int) $assocType,
 				(int) $assocId
 			)
@@ -141,17 +141,17 @@ class NewReleaseDAO extends DAO {
 	/**
 	 * Check if the passed monograph id is marked as new release
 	 * on the passed associated object.
-	 * @param $monographId int The monograph id to check the new release state.
+	 * @param $submissionId int The monograph id to check the new release state.
 	 * @param $assocType int The associated object type that the monograph
 	 * is checked for a new release mark.
 	 * @param $assocId int The associated object id that the monograph is
 	 * checked for a new release mark.
 	 * @return boolean Whether or not the monograph is marked as a new release.
 	 */
-	function isNewRelease($monographId, $assocType, $assocId) {
+	function isNewRelease($submissionId, $assocType, $assocId) {
 		$result = $this->retrieve(
 			'SELECT submission_id FROM new_releases WHERE submission_id = ? AND assoc_type = ? AND assoc_id = ?',
-			array((int) $monographId, (int) $assocType, (int) $assocId)
+			array((int) $submissionId, (int) $assocType, (int) $assocId)
 		);
 		if ($result->RecordCount() > 0) {
 			return true;

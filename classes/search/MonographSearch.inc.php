@@ -50,7 +50,7 @@ class MonographSearch extends SubmissionSearch {
 		// when formatting results.
 		$orderedResults = array();
 		$authorDao = DAORegistry::getDAO('AuthorDAO'); /* @var $authorDao AuthorDAO */
-		$monographDao = DAORegistry::getDAO('MonographDAO'); /* @var $monographDao MonographDAO */
+		$monographDao = DAORegistry::getDAO('SubmissionDAO'); /* @var $monographDao SubmissionDAO */
 		$pressDao = DAORegistry::getDAO('PressDAO'); /* @var $pressDao PressDAO */
 		$pressTitles = array();
 		if ($orderBy == 'popularityAll' || $orderBy == 'popularityMonth') {
@@ -239,25 +239,25 @@ class MonographSearch extends SubmissionSearch {
 	 */
 	static function formatResults($results) {
 		$pressDao = DAORegistry::getDAO('PressDAO');
-		$monographDao = DAORegistry::getDAO('MonographDAO');
+		$monographDao = DAORegistry::getDAO('SubmissionDAO');
 		$seriesDao = DAORegistry::getDAO('SeriesDAO');
-		$publishedMonographDao = DAORegistry::getDAO('PublishedMonographDAO');
+		$publishedSubmissionDao = DAORegistry::getDAO('PublishedSubmissionDAO');
 
-		$publishedMonographCache = array();
+		$publishedSubmissionCache = array();
 		$monographCache = array();
 		$pressCache = array();
 		$seriesCache = array();
 
 		$returner = array();
-		foreach ($results as $monographId) {
+		foreach ($results as $submissionId) {
 			// Get the monograph, storing in cache if necessary.
-			if (!isset($monographCache[$monographId])) {
-				$monographCache[$monographId] = $monographDao->getById($monographId);
-				$publishedMonographCache[$monographId] = $publishedMonographDao->getById($monographId);
+			if (!isset($monographCache[$submissionId])) {
+				$monographCache[$submissionId] = $monographDao->getById($submissionId);
+				$publishedSubmissionCache[$submissionId] = $publishedSubmissionDao->getById($submissionId);
 			}
-			unset($monograph, $publishedMonograph);
-			$monograph = $monographCache[$monographId];
-			$publishedMonograph = $publishedMonographCache[$monographId];
+			unset($monograph, $publishedSubmission);
+			$monograph = $monographCache[$submissionId];
+			$publishedSubmission = $publishedSubmissionCache[$submissionId];
 
 			if ($monograph) {
 				$seriesId = $monograph->getSeriesId();
@@ -275,7 +275,7 @@ class MonographSearch extends SubmissionSearch {
 				$returner[] = array(
 					'press' => $pressCache[$pressId],
 					'monograph' => $monograph,
-					'publishedMonograph' => $publishedMonograph,
+					'publishedSubmission' => $publishedSubmission,
 					'seriesArrangment' => $seriesCache[$seriesId]
 				);
 			}
@@ -298,9 +298,9 @@ class MonographSearch extends SubmissionSearch {
 		// of the submission for a similarity search.
 		if ($result === false) {
 			// Retrieve the submission.
-			$publishedMonographDao = DAORegistry::getDAO('PublishedMonographDAO'); /* @var $publishedMonographDao PublishedMonographDAO */
-			$monograph = $publishedMonographDao->getById($submissionId);
-			if (is_a($monograph, 'PublishedMonograph')) {
+			$publishedSubmissionDao = DAORegistry::getDAO('PublishedSubmissionDAO'); /* @var $publishedSubmissionDao PublishedSubmissionDAO */
+			$monograph = $publishedSubmissionDao->getById($submissionId);
+			if (is_a($monograph, 'PublishedSubmission')) {
 				// Retrieve keywords (if any).
 				$searchTerms = $monograph->getLocalizedSubject();
 				// Tokenize keywords.

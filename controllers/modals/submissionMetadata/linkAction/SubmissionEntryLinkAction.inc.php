@@ -19,16 +19,16 @@ class SubmissionEntryLinkAction extends LinkAction {
 	/**
 	 * Constructor
 	 * @param $request Request
-	 * @param $monographId integer The submission to show meta-data for.
+	 * @param $submissionId integer The submission to show meta-data for.
 	 * @param $stageId integer The stage ID of the viewer's context
 	 * @param $selectedFormatId integer The publication format ID that
 	 * will be used to open the correspondent publication format tab. If
 	 * none is passed, the first catalog entry tab will be opened.
 	 * @param $image string
 	 */
-	function __construct($request, $monographId, $stageId, $selectedFormatId = null, $image = 'information') {
+	function __construct($request, $submissionId, $stageId, $selectedFormatId = null, $image = 'information') {
 		$actionArgs = array(
-			'submissionId' => $monographId,
+			'submissionId' => $submissionId,
 			'stageId' => $stageId,
 		);
 		if ($selectedFormatId) {

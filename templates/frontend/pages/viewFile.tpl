@@ -7,7 +7,7 @@
  *
  * @brief Lightweight page for viewing files (usually loading PDF inline)
  *
- * @uses $publishedMonograph Monograph Monograph this file is attached to
+ * @uses $publishedSubmission Monograph Monograph this file is attached to
  * @uses $publicationFormat
  * @uses $submissionFile SubmissionFile
  * @uses $viewableFileContent string Template output for the rendered view
@@ -15,7 +15,7 @@
  *}
 
 {* Get URL to the related book *}
-{url|assign:"parentUrl" page="catalog" op="book" path=$publishedMonograph->getBestId()}
+{url|assign:"parentUrl" page="catalog" op="book" path=$publishedSubmission->getBestId()}
 
 <!DOCTYPE html>
 <html lang="{$currentLocale|replace:"_":"-"}" xml:lang="{$currentLocale|replace:"_":"-"}">
@@ -34,7 +34,7 @@
 
 		<a href="{$parentUrl}" class="return">
 			<span class="pkp_screen_reader">
-				{translate key="catalog.viewableFile.return" monographTitle=$publishedMonograph->getLocalizedTitle()|escape}
+				{translate key="catalog.viewableFile.return" monographTitle=$publishedSubmission->getLocalizedTitle()|escape}
 			</span>
 		</a>
 

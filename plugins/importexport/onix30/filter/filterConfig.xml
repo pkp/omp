@@ -16,7 +16,7 @@
 			symbolic="monograph=>onix30-xml"
 			displayName="plugins.importexport.onix30.displayName"
 			description="plugins.importexport.onix30.description"
-			inputType="class::classes.monograph.Monograph"
+			inputType="class::classes.monograph.Submission"
 			outputType="xml::schema(plugins/importexport/onix30/ONIX_BookProduct_3.0_reference.xsd)" />
 	</filterGroups>
 	<filters>

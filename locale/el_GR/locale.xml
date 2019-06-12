@@ -429,19 +429,19 @@ Your server currently supports mbstring: <strong>{$supportsMBString}</strong>]]>
 <p>Don't forget to set the "installed" setting in your config.inc.php configuration file back to <em>On</em>.</p>
 <p>If you haven't already registered and wish to receive news and updates, <strong>please register at <a href="http://pkp.sfu.ca/omp/register" target="_blank">http://pkp.sfu.ca/omp/register</a>.</strong> If you have questions or comments, please visit the <a href="http://forum.pkp.sfu.ca" target="_blank">support forum</a>.</p>]]></message>
 	<!-- Monograph Logs -->
-	<message key="log.review.reviewCleared">Εκκαθαρίστηκε ο γύρος αξιολόγησης {$round} από τον/ην {$reviewerName} για την υποβολή {$monographId}.</message>
-	<message key="log.review.reviewDueDateSet">Η ημερομηνία προθεσμίας για τον γύρο αξιολόγησης {$round} της υποβολής {$monographId} από τον/ην {$reviewerName} έχει οριστεί η {$dueDate}.</message>
-	<message key="log.review.reviewDeclined">Ο/Η {$reviewerName} έχει απορρίψει τον γύρο αξιολόγησης {$round} για την υποβολή {$monographId}.</message>
-	<message key="log.review.reviewAccepted">Ο/Η {$reviewerName} έχει αποδεχτεί τον γύρο αξιολόγησης {$round} για την υποβολή {$monographId}.</message>
-	<message key="log.review.reviewUnconsidered">Ο/Η {$editorName} έχει επισημάνει το αίτημα για το γύρο αξιολόγησης {$round} για την υποβολή {$monographId} ως ανεξέταστο.</message>
+	<message key="log.review.reviewCleared">Εκκαθαρίστηκε ο γύρος αξιολόγησης {$round} από τον/ην {$reviewerName} για την υποβολή {$submissionId}.</message>
+	<message key="log.review.reviewDueDateSet">Η ημερομηνία προθεσμίας για τον γύρο αξιολόγησης {$round} της υποβολής {$submissionId} από τον/ην {$reviewerName} έχει οριστεί η {$dueDate}.</message>
+	<message key="log.review.reviewDeclined">Ο/Η {$reviewerName} έχει απορρίψει τον γύρο αξιολόγησης {$round} για την υποβολή {$submissionId}.</message>
+	<message key="log.review.reviewAccepted">Ο/Η {$reviewerName} έχει αποδεχτεί τον γύρο αξιολόγησης {$round} για την υποβολή {$submissionId}.</message>
+	<message key="log.review.reviewUnconsidered">Ο/Η {$editorName} έχει επισημάνει το αίτημα για το γύρο αξιολόγησης {$round} για την υποβολή {$submissionId} ως ανεξέταστο.</message>
 	<message key="log.editor.decision">Μια απόφαση επιμελητή ({$decision}) για τη μονογραφία {$submissionId} καταγράφηκε από τον/ην {$editorName}.</message>
-	<message key="log.editor.archived">Η υποβολή {$monographId} αρχειοθετήθηκε.</message>
-	<message key="log.editor.restored">Η υποβολή {$monographId} επανατοποθετήθηκε στη σειρά αναμονής.</message>
-	<message key="log.editor.editorAssigned">Ο/Η {$editorName} έχει αναλάβει ως επιμελητής της υποβολής {$monographId}.</message>
-	<message key="log.editor.submissionExpedited">Ο/Η {$editorName} έχει επιταχύνει τη διαδικασία αξιολόγησης για τη μονογραφία {$monographId}.</message>
-	<message key="log.proofread.assign">Ο/Η{$assignerName} ανέθεσε στον/ην {$proofreaderName} την επιμέλεια του τυπογραφικού δοκιμίου της υποβολής {$monographId}.</message>
-	<message key="log.proofread.complete">Ο/Η {$proofreaderName} υπέβαλλε το {$monographId} για προγραμματισμό.</message>
-	<message key="log.imported">Ο/Η {$userName} έχει εισάγει τη μονογραφία {$monographId}.</message>
+	<message key="log.editor.archived">Η υποβολή {$submissionId} αρχειοθετήθηκε.</message>
+	<message key="log.editor.restored">Η υποβολή {$submissionId} επανατοποθετήθηκε στη σειρά αναμονής.</message>
+	<message key="log.editor.editorAssigned">Ο/Η {$editorName} έχει αναλάβει ως επιμελητής της υποβολής {$submissionId}.</message>
+	<message key="log.editor.submissionExpedited">Ο/Η {$editorName} έχει επιταχύνει τη διαδικασία αξιολόγησης για τη μονογραφία {$submissionId}.</message>
+	<message key="log.proofread.assign">Ο/Η{$assignerName} ανέθεσε στον/ην {$proofreaderName} την επιμέλεια του τυπογραφικού δοκιμίου της υποβολής {$submissionId}.</message>
+	<message key="log.proofread.complete">Ο/Η {$proofreaderName} υπέβαλλε το {$submissionId} για προγραμματισμό.</message>
+	<message key="log.imported">Ο/Η {$userName} έχει εισάγει τη μονογραφία {$submissionId}.</message>
 
 	<!-- Notifications -->
 	<message key="notification.addedIdentificationCode">Ο κωδικός ταυτοποίησης (Identification Code) έχει προστεθεί.</message>

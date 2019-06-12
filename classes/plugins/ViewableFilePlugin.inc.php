@@ -38,10 +38,10 @@ abstract class ViewableFilePlugin extends PKPViewableFilePlugin {
 	/**
 	 * Display this galley in some manner.
 	 *
-	 * @param $publishedMonograph PublishedMonograph
+	 * @param $publishedSubmission PublishedSubmission
 	 * @param $submissionFile SubmissionFile
 	 */
-	function displaySubmissionFile($publishedMonograph, $publicationFormat, $submissionFile) {
+	function displaySubmissionFile($publishedSubmission, $publicationFormat, $submissionFile) {
 		$templateMgr = TemplateManager::getManager($this->getRequest());
 		$templateFilename = $this->getTemplateFilename();
 		if ($templateFilename === null) return '';
@@ -64,8 +64,8 @@ abstract class ViewableFilePlugin extends PKPViewableFilePlugin {
 		}
 
 		$templateMgr->assign(array(
-			'submissionKeywords' => $submissionKeywordDao->getKeywords($publishedMonograph->getId(), array_merge(array(AppLocale::getLocale()), array_keys(AppLocale::getSupportedLocales()))),
-			'publishedMonograph' => $publishedMonograph,
+			'submissionKeywords' => $submissionKeywordDao->getKeywords($publishedSubmission->getId(), array_merge(array(AppLocale::getLocale()), array_keys(AppLocale::getSupportedLocales()))),
+			'publishedSubmission' => $publishedSubmission,
 			'publicationFormat' => $publicationFormat,
 			'submissionFile' => $submissionFile,
 			'chapter' => $chapterDao->getChapter($submissionFile->getData('chapterId')),
@@ -82,12 +82,12 @@ abstract class ViewableFilePlugin extends PKPViewableFilePlugin {
 
 	/**
 	 * Determine whether this plugin can handle the specified content.
-	 * @param $publishedMonograph PublishedMonograph
+	 * @param $publishedSubmission PublishedSubmission
 	 * @param $publicationFormat PublicationFormat
 	 * @param $submissionFile SubmissionFile
 	 * @return boolean True iff the plugin can handle the content
 	 */
-	function canHandle($publishedMonograph, $publicationFormat, $submissionFile) {
+	function canHandle($publishedSubmission, $publicationFormat, $submissionFile) {
 		return false;
 	}
 
@@ -98,12 +98,12 @@ abstract class ViewableFilePlugin extends PKPViewableFilePlugin {
 	 * @return boolean
 	 */
 	function callback($hookName, $args) {
-		$publishedMonograph =& $args[1];
+		$publishedSubmission =& $args[1];
 		$publicationFormat =& $args[2];
 		$submissionFile =& $args[3];
 
-		if ($this->canHandle($publishedMonograph, $publicationFormat, $submissionFile)) {
-			$this->displaySubmissionFile($publishedMonograph, $publicationFormat, $submissionFile);
+		if ($this->canHandle($publishedSubmission, $publicationFormat, $submissionFile)) {
+			$this->displaySubmissionFile($publishedSubmission, $publicationFormat, $submissionFile);
 			return true;
 		}
 

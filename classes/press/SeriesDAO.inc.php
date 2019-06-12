@@ -203,7 +203,7 @@ class SeriesDAO extends PKPSectionDAO {
 		$subEditorsDao->deleteBySectionId($seriesId, $contextId);
 
 		// Remove monographs from this series
-		$monographDao = DAORegistry::getDAO('MonographDAO');
+		$monographDao = DAORegistry::getDAO('SubmissionDAO');
 		$monographDao->removeMonographsFromSeries($seriesId);
 
 		// Delete the series and settings.

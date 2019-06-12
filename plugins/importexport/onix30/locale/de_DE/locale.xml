@@ -19,7 +19,7 @@
 	<message key="plugins.importexport.onix30.cliError">FEHLER:</message>
 	<message key="plugins.importexport.onix30.error.unknownPress">Der angegebene Verlags-Pfadname, "{$pressPath}" existiert nicht.</message>
 	<message key="plugins.importexport.onix30.export.error.couldNotWrite">Die Datei "{$fileName}" konnte nicht geschrieben werden.</message>
-	<message key="plugins.importexport.onix30.export.error.monographNotFound">Es gibt keine Monografie mit der Monografie-ID "{$monographId}".</message>
+	<message key="plugins.importexport.onix30.export.error.monographNotFound">Es gibt keine Monografie mit der Monografie-ID "{$submissionId}".</message>
 	<message key="plugins.importexport.onix30.noFormats">Monografien, für die keine Publikationsformate angelegt wurden, können nicht angezeigt werden.</message>
 	<message key="plugins.importexport.onix30.selectMonograph">Wählen Sie eine Monografie aus, die exportiert werden soll.</message>
 	<message key="plugins.importexport.onix30.exportButton">Exportieren</message>

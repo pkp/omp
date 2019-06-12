@@ -27,13 +27,13 @@ class PublicationDateDAO extends DAO {
 	/**
 	 * Retrieve a publication date by type id.
 	 * @param $publicationDateId int
-	 * @param $monographId optional int
+	 * @param $submissionId optional int
 	 * @return PublicationDate
 	 */
-	function getById($publicationDateId, $monographId = null){
+	function getById($publicationDateId, $submissionId = null){
 		$sqlParams = array((int) $publicationDateId);
-		if ($monographId) {
-			$sqlParams[] = (int) $monographId;
+		if ($submissionId) {
+			$sqlParams[] = (int) $submissionId;
 		}
 
 		$result = $this->retrieve(
@@ -41,7 +41,7 @@ class PublicationDateDAO extends DAO {
 			FROM	publication_dates p
 				JOIN publication_formats pf ON (p.publication_format_id = pf.publication_format_id)
 			WHERE p.publication_date_id = ?
-				' . ($monographId?' AND pf.submission_id = ?':''),
+				' . ($submissionId?' AND pf.submission_id = ?':''),
 			$sqlParams
 		);
 

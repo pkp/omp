@@ -27,13 +27,13 @@ class SalesRightsDAO extends DAO {
 	/**
 	 * Retrieve a sales rights entry by type id.
 	 * @param $salesRightsId int
-	 * @param $monographId optional int
+	 * @param $submissionId optional int
 	 * @return SalesRights
 	 */
-	function getById($salesRightsId, $monographId = null){
+	function getById($salesRightsId, $submissionId = null){
 		$sqlParams = array((int) $salesRightsId);
-		if ($monographId) {
-			$sqlParams[] = (int) $monographId;
+		if ($submissionId) {
+			$sqlParams[] = (int) $submissionId;
 		}
 
 		$result = $this->retrieve(
@@ -41,7 +41,7 @@ class SalesRightsDAO extends DAO {
 			FROM	sales_rights s
 				JOIN publication_formats pf ON (s.publication_format_id = pf.publication_format_id)
 			WHERE s.sales_rights_id = ?
-				' . ($monographId?' AND pf.submission_id = ?':''),
+				' . ($submissionId?' AND pf.submission_id = ?':''),
 			$sqlParams
 		);
 

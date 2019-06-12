@@ -35,7 +35,7 @@
 	{* Include metadata for all authors of the submission *}
 	{assign var=authors value=$monograph->getAuthors()}
 {/if}
-{foreach name="authors" from=$publishedMonograph->getAuthors() item=author}
+{foreach name="authors" from=$publishedSubmission->getAuthors() item=author}
 	<meta name="citation_author" content="{$author->getFirstName()|escape}{if $author->getMiddleName() != ""} {$author->getMiddleName()|escape}{/if} {$author->getLastName()|escape}"/>
 	{assign var=affiliation value=$author->getAffiliation($currentPress->getPrimaryLocale())}
 	{if $affiliation}
@@ -46,7 +46,7 @@
 {if $chapter}
 	<meta name="citation_title" content="{$chapter->getTitle($currentPress->getPrimaryLocale())|escape}"/>
 {else}
-	<meta name="citation_title" content="{$publishedMonograph->getTitle($currentPress->getPrimaryLocale())|escape}"/>
+	<meta name="citation_title" content="{$publishedSubmission->getTitle($currentPress->getPrimaryLocale())|escape}"/>
 {/if}
 
 {if $bestPublicationDate}
@@ -58,7 +58,7 @@
 	<meta name="citation_publisher" content="{$publisher|escape}"/>
 {/if}
 
-{url|assign:downloadUrl op="download" path=$publishedMonograph->getId()|to_array:$publicationFormat->getId():$submissionFile->getFileIdAndRevision()}
+{url|assign:downloadUrl op="download" path=$publishedSubmission->getId()|to_array:$publicationFormat->getId():$submissionFile->getFileIdAndRevision()}
 <meta name="citation_pdf_url" content="{$downloadUrl}"/>
 
 {foreach from=$submissionKeywords key=keywordLocale item=languageKeywords}

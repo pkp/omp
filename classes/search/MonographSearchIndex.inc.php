@@ -35,25 +35,25 @@ class MonographSearchIndex extends SubmissionSearchIndex {
 
 	/**
 	 * Add a block of text to the search index.
-	 * @param $monographId int
+	 * @param $submissionId int
 	 * @param $type int
 	 * @param $text string
 	 * @param $assocId int optional
 	 */
-	static function updateTextIndex($monographId, $type, $text, $assocId = null) {
+	static function updateTextIndex($submissionId, $type, $text, $assocId = null) {
 		$searchDao = DAORegistry::getDAO('MonographSearchDAO');
-		$objectId = $searchDao->insertObject($monographId, $type, $assocId);
+		$objectId = $searchDao->insertObject($submissionId, $type, $assocId);
 		$position = 0;
 		self::indexObjectKeywords($objectId, $text, $position);
 	}
 
 	/**
 	 * Add a file to the search index.
-	 * @param $monographId int
+	 * @param $submissionId int
 	 * @param $type int
 	 * @param $fileId int
 	 */
-	static function updateFileIndex($monographId, $type, $fileId) {
+	static function updateFileIndex($submissionId, $type, $fileId) {
 		$submissionFileDao = DAORegistry::getDAO('SubmissionFileDAO'); /* @var $submissionFileDao SubmissionFileDAO */
 		$file = $submissionFileDao->getLatestRevision($fileId);
 
@@ -64,7 +64,7 @@ class MonographSearchIndex extends SubmissionSearchIndex {
 		if (isset($parser)) {
 			if ($parser->open()) {
 				$searchDao = DAORegistry::getDAO('MonographSearchDAO');
-				$objectId = $searchDao->insertObject($monographId, $type, $fileId);
+				$objectId = $searchDao->insertObject($submissionId, $type, $fileId);
 
 				$position = 0;
 				while(($text = $parser->read()) !== false) {
@@ -79,13 +79,13 @@ class MonographSearchIndex extends SubmissionSearchIndex {
 
 	/**
 	 * Delete keywords from the search index.
-	 * @param $monographId int
+	 * @param $submissionId int
 	 * @param $type int optional
 	 * @param $assocId int optional
 	 */
-	static function deleteTextIndex($monographId, $type = null, $assocId = null) {
+	static function deleteTextIndex($submissionId, $type = null, $assocId = null) {
 		$searchDao = DAORegistry::getDAO('MonographSearchDAO');
-		return $searchDao->deleteSubmissionKeywords($monographId, $type, $assocId);
+		return $searchDao->deleteSubmissionKeywords($submissionId, $type, $assocId);
 	}
 
 	/**
@@ -113,15 +113,15 @@ class MonographSearchIndex extends SubmissionSearchIndex {
 
 		// Update search index
 		import('classes.search.MonographSearch');
-		$monographId = $monograph->getId();
-		self::updateTextIndex($monographId, SUBMISSION_SEARCH_AUTHOR, $authorText);
-		self::updateTextIndex($monographId, SUBMISSION_SEARCH_TITLE, $monograph->getTitle(null, false));
-		self::updateTextIndex($monographId, SUBMISSION_SEARCH_ABSTRACT, $monograph->getAbstract(null));
+		$submissionId = $monograph->getId();
+		self::updateTextIndex($submissionId, SUBMISSION_SEARCH_AUTHOR, $authorText);
+		self::updateTextIndex($submissionId, SUBMISSION_SEARCH_TITLE, $monograph->getTitle(null, false));
+		self::updateTextIndex($submissionId, SUBMISSION_SEARCH_ABSTRACT, $monograph->getAbstract(null));
 
-		self::updateTextIndex($monographId, SUBMISSION_SEARCH_DISCIPLINE, (array) $monograph->getDiscipline(null));
-		self::updateTextIndex($monographId, SUBMISSION_SEARCH_SUBJECT, (array) $monograph->getSubject(null));
-		self::updateTextIndex($monographId, SUBMISSION_SEARCH_TYPE, $monograph->getType(null));
-		self::updateTextIndex($monographId, SUBMISSION_SEARCH_COVERAGE, (array) $monograph->getCoverage(null));
+		self::updateTextIndex($submissionId, SUBMISSION_SEARCH_DISCIPLINE, (array) $monograph->getDiscipline(null));
+		self::updateTextIndex($submissionId, SUBMISSION_SEARCH_SUBJECT, (array) $monograph->getSubject(null));
+		self::updateTextIndex($submissionId, SUBMISSION_SEARCH_TYPE, $monograph->getType(null));
+		self::updateTextIndex($submissionId, SUBMISSION_SEARCH_COVERAGE, (array) $monograph->getCoverage(null));
 		// FIXME Index sponsors too?
 	}
 
@@ -170,7 +170,7 @@ class MonographSearchIndex extends SubmissionSearchIndex {
 
 		// Build index
 		$pressDao = DAORegistry::getDAO('PressDAO');
-		$monographDao = DAORegistry::getDAO('MonographDAO');
+		$monographDao = DAORegistry::getDAO('SubmissionDAO');
 
 		$presses = $pressDao->getAll();
 		while ($press = $presses->next()) {

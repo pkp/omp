@@ -1,23 +1,23 @@
 <?php
 
 /**
- * @file classes/monograph/MonographDAO.inc.php
+ * @file classes/monograph/SubmissionDAO.inc.php
  *
  * Copyright (c) 2014-2017 Simon Fraser University Library
  * Copyright (c) 2003-2017 John Willinsky
  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
  *
- * @class MonographDAO
+ * @class SubmissionDAO
  * @ingroup monograph
- * @see Monograph
+ * @see Submission
  *
  * @brief Operations for retrieving and modifying Monograph objects.
  */
 
-import('classes.monograph.Monograph');
-import('lib.pkp.classes.submission.SubmissionDAO');
+import('classes.monograph.Submission');
+import('lib.pkp.classes.submission.PKPSubmissionDAO');
 
-class MonographDAO extends SubmissionDAO {
+class SubmissionDAO extends PKPSubmissionDAO {
 	/**
 	 * Constructor.
 	 */
@@ -61,7 +61,7 @@ class MonographDAO extends SubmissionDAO {
 		$monograph->setSeriesTitle($row['series_title']);
 		$monograph->setWorkType($row['edited_volume']);
 
-		HookRegistry::call('MonographDAO::_fromRow', array(&$monograph, &$row));
+		HookRegistry::call('SubmissionDAO::_fromRow', array(&$monograph, &$row));
 
 		return $monograph;
 	}
@@ -152,13 +152,13 @@ class MonographDAO extends SubmissionDAO {
 	}
 
 	/**
-	 * @copydoc SubmissionDAO::deleteById
+	 * @copydoc PKPSubmissionDAO::deleteById
 	 */
 	function deleteById($submissionId) {
 		parent::deleteById($submissionId);
 
-		$publishedMonographDao = DAORegistry::getDAO('PublishedMonographDAO');
-		$publishedMonographDao->deleteById($submissionId);
+		$publishedSubmissionDao = DAORegistry::getDAO('PublishedSubmissionDAO');
+		$publishedSubmissionDao->deleteById($submissionId);
 
 		// Delete chapters and assigned chapter authors.
 		$chapterDao = DAORegistry::getDAO('ChapterDAO');
@@ -193,7 +193,7 @@ class MonographDAO extends SubmissionDAO {
 	 * @param $pressId int
 	 * @return DAOResultFactory containing matching Monographs
 	 */
-	function getUnpublishedMonographsByPressId($pressId) {
+	function getUnpublishedSubmissionsByPressId($pressId) {
 		$params = $this->getFetchParameters();
 		$params[] = (int) $pressId;
 
@@ -227,17 +227,17 @@ class MonographDAO extends SubmissionDAO {
 
 	/**
 	 * Associate a category with a monograph.
-	 * @param $monographId int
+	 * @param $submissionId int
 	 * @param $categoryId int
 	 */
-	function addCategory($monographId, $categoryId) {
+	function addCategory($submissionId, $categoryId) {
 		$this->update(
 			'INSERT INTO submission_categories
 				(submission_id, category_id)
 			VALUES
 				(?, ?)',
 			array(
-				(int) $monographId,
+				(int) $submissionId,
 				(int) $categoryId
 			)
 		);
@@ -245,14 +245,14 @@ class MonographDAO extends SubmissionDAO {
 
 	/**
 	 * Unassociate a category with a monograph.
-	 * @param $monographId int
+	 * @param $submissionId int
 	 * @param $categoryId int
 	 */
-	function removeCategory($monographId, $categoryId) {
+	function removeCategory($submissionId, $categoryId) {
 		$this->update(
 			'DELETE FROM submission_categories WHERE submission_id = ? AND category_id = ?',
 			array(
-				(int) $monographId,
+				(int) $submissionId,
 				(int) $categoryId
 			)
 		);
@@ -260,31 +260,31 @@ class MonographDAO extends SubmissionDAO {
 		// If any new release or feature object is associated
 		// with this category delete them.
 		$newReleaseDao = DAORegistry::getDAO('NewReleaseDAO'); /* @var $newReleaseDao NewReleaseDAO */
-		$newReleaseDao->deleteNewRelease($monographId, ASSOC_TYPE_CATEGORY, $categoryId);
+		$newReleaseDao->deleteNewRelease($submissionId, ASSOC_TYPE_CATEGORY, $categoryId);
 
 		$featureDao = DAORegistry::getDAO('FeatureDAO'); /* @var $featureDao FeatureDAO */
-		$featureDao->deleteFeature($monographId, ASSOC_TYPE_CATEGORY, $categoryId);
+		$featureDao->deleteFeature($submissionId, ASSOC_TYPE_CATEGORY, $categoryId);
 	}
 
 	/**
 	 * Unassociate all categories.
-	 * @param $monographId int
+	 * @param $submissionId int
 	 */
-	function removeCategories($monographId) {
+	function removeCategories($submissionId) {
 		$this->update(
 			'DELETE FROM submission_categories WHERE submission_id = ?',
-			(int) $monographId
+			(int) $submissionId
 		);
 	}
 
 	/**
 	 * Get the categories associated with a given monograph.
-	 * @param $monographId int The monograph id.
+	 * @param $submissionId int The monograph id.
 	 * @param $pressId int (optional) The monograph press id.
 	 * @return DAOResultFactory
 	 */
-	function getCategories($monographId, $pressId = null) {
-		$params = array((int) $monographId);
+	function getCategories($submissionId, $pressId = null) {
+		$params = array((int) $submissionId);
 		if ($pressId) $params[] = (int) $pressId;
 
 		$categoryDao = DAORegistry::getDAO('CategoryDAO');
@@ -306,11 +306,11 @@ class MonographDAO extends SubmissionDAO {
 
 	/**
 	 * Get the categories not associated with a given monograph.
-	 * @param $monographId int
+	 * @param $submissionId int
 	 * @return DAOResultFactory
 	 */
-	function getUnassignedCategories($monographId, $pressId = null) {
-		$params = array((int) $monographId);
+	function getUnassignedCategories($submissionId, $pressId = null) {
+		$params = array((int) $submissionId);
 		if ($pressId) $params[] = (int) $pressId;
 
 		$categoryDao = DAORegistry::getDAO('CategoryDAO');
@@ -334,14 +334,14 @@ class MonographDAO extends SubmissionDAO {
 
 	/**
 	 * Check if an monograph exists with the specified ID.
-	 * @param $monographId int
+	 * @param $submissionId int
 	 * @param $pressId int
 	 * @return boolean
 	 */
-	function categoryAssociationExists($monographId, $categoryId) {
+	function categoryAssociationExists($submissionId, $categoryId) {
 		$result = $this->retrieve(
 			'SELECT COUNT(*) FROM submission_categories WHERE submission_id = ? AND category_id = ?',
-			array((int) $monographId, (int) $categoryId)
+			array((int) $submissionId, (int) $categoryId)
 		);
 		$returner = isset($result->fields[0]) && $result->fields[0] == 1 ? true : false;
 
@@ -350,7 +350,7 @@ class MonographDAO extends SubmissionDAO {
 	}
 
 	/**
-	 * @copydoc SubmissionDAO::getFetchParameters()
+	 * @copydoc PKPSubmissionDAO::getFetchParameters()
 	 */
 	protected function getFetchParameters() {
 		$primaryLocale = AppLocale::getPrimaryLocale();
@@ -364,7 +364,7 @@ class MonographDAO extends SubmissionDAO {
 	}
 
 	/**
-	 * @copydoc SubmissionDAO::getFetchColumns()
+	 * @copydoc PKPSubmissionDAO::getFetchColumns()
 	 */
 	protected function getFetchColumns() {
 		return 'COALESCE(stl.setting_value, stpl.setting_value) AS series_title,
@@ -372,7 +372,7 @@ class MonographDAO extends SubmissionDAO {
 	}
 
 	/**
-	 * @copydoc SubmissionDAO::getFetchJoins()
+	 * @copydoc PKPSubmissionDAO::getFetchJoins()
 	 */
 	protected function getFetchJoins() {
 		return 'LEFT JOIN series se ON se.series_id = s.series_id
@@ -383,21 +383,21 @@ class MonographDAO extends SubmissionDAO {
 	}
 
 	/**
-	 * @copydoc SubmissionDAO::getSubEditorJoin()
+	 * @copydoc PKPSubmissionDAO::getSubEditorJoin()
  	 */
 	protected function getSubEditorJoin() {
 		return 'JOIN series_editors se ON (se.press_id = s.context_id AND se.user_id = ? AND se.series_id = s.series_id)';
 	}
 
 	/**
-	 * @copydoc SubmissionDAO::getGroupByColumns()
+	 * @copydoc PKPSubmissionDAO::getGroupByColumns()
 	 */
 	protected function getGroupByColumns() {
 		return 's.submission_id, ps.date_published, stl.setting_value, stpl.setting_value, sal.setting_value, sapl.setting_value';
 	}
 
 	/**
-	 * @copydoc SubmissionDAO::getCompletionConditions()
+	 * @copydoc PKPSubmissionDAO::getCompletionConditions()
 	 */
 	protected function getCompletionConditions($completed) {
 		return ' ps.date_published IS ' . ($completed?'NOT ':'') . 'NULL ';

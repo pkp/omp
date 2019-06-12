@@ -35,10 +35,10 @@ class Chapter extends DataObject {
 
 	/**
 	 * Set the monographId this chapter belongs to
-	 * @param int $monographId
+	 * @param int $submissionId
 	 */
-	function setMonographId($monographId) {
-		return $this->setData('monographId', $monographId);
+	function setMonographId($submissionId) {
+		return $this->setData('monographId', $submissionId);
 	}
 
 	/**

@@ -99,7 +99,7 @@ class Application extends PKPApplication {
 			'MarketDAO' => 'classes.publicationFormat.MarketDAO',
 			'SubmissionCommentDAO' => 'lib.pkp.classes.submission.SubmissionCommentDAO',
 			'MetricsDAO' => 'lib.pkp.classes.statistics.PKPMetricsDAO',
-			'MonographDAO' => 'classes.monograph.MonographDAO',
+			'SubmissionDAO' => 'classes.monograph.SubmissionDAO',
 			'MonographFileEmailLogDAO' => 'classes.log.MonographFileEmailLogDAO',
 			'MonographSearchDAO' => 'classes.search.MonographSearchDAO',
 			'NewReleaseDAO' => 'classes.press.NewReleaseDAO',
@@ -111,7 +111,7 @@ class Application extends PKPApplication {
 			'ProductionAssignmentDAO' => 'classes.submission.productionAssignment.ProductionAssignmentDAO',
 			'PublicationDateDAO' => 'classes.publicationFormat.PublicationDateDAO',
 			'PublicationFormatDAO' => 'classes.publicationFormat.PublicationFormatDAO',
-			'PublishedMonographDAO' => 'classes.monograph.PublishedMonographDAO',
+			'PublishedSubmissionDAO' => 'classes.monograph.PublishedSubmissionDAO',
 			'QualifierDAO' => 'classes.codelist.QualifierDAO',
 			'QueuedPaymentDAO' => 'lib.pkp.classes.payment.QueuedPaymentDAO',
 			'RepresentativeDAO' => 'classes.monograph.RepresentativeDAO',
@@ -169,7 +169,7 @@ class Application extends PKPApplication {
 	 * Get the submission DAO.
 	 */
 	static function getSubmissionDAO() {
-		return DAORegistry::getDAO('MonographDAO');
+		return DAORegistry::getDAO('SubmissionDAO');
 	}
 
 	/**

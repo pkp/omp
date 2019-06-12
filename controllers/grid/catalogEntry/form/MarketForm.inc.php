@@ -120,16 +120,16 @@ class MarketForm extends Form {
 		$templateMgr->assign_by_ref('taxRateCodes', $onixCodelistItemDao->getCodes('List62')); // higher rate, standard rate, zero rate
 		$templateMgr->assign_by_ref('taxTypeCodes', $onixCodelistItemDao->getCodes('List171')); // VAT, GST
 
-		$publishedMonographDao = DAORegistry::getDAO('PublishedMonographDAO');
-		$publishedMonograph = $publishedMonographDao->getById($monograph->getId());
-		$availableAgents = $publishedMonograph->getAgents();
+		$publishedSubmissionDao = DAORegistry::getDAO('PublishedSubmissionDAO');
+		$publishedSubmission = $publishedSubmissionDao->getById($monograph->getId());
+		$availableAgents = $publishedSubmission->getAgents();
 		$agentOptions = array();
 		while ($agent = $availableAgents->next()) {
 			$agentOptions[$agent->getId()] = $agent->getName();
 		}
 		$templateMgr->assign('availableAgents', $agentOptions);
 
-		$availableSuppliers = $publishedMonograph->getSuppliers();
+		$availableSuppliers = $publishedSubmission->getSuppliers();
 		$supplierOptions = array();
 		while ($supplier = $availableSuppliers->next()) {
 			$supplierOptions[$supplier->getId()] = $supplier->getName();

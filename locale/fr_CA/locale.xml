@@ -444,19 +444,19 @@ Votre serveur supporte actuellement mbstring: <strong>{$supportsMBString}</stron
 <p>Si vous n'êtes pas déjà inscrit et souhaitez recevoir des nouvelles et des mises à jour, <strong>veuillez vous inscrire au <a href="http://pkp.sfu.ca/omp/register" target="_blank">http://pkp.sfu.ca/omp/register</a></strong>. Si vous avez des questions ou commentaires, veuillez consultez le <a href="http://forum.pkp.sfu.ca" target="_blank">forum</a>.</p>]]></message>
 
 	<!-- Monograph Logs -->
-	<message key="log.review.reviewCleared">La {$round}e série de révisions par {$reviewerName} de la soumission {$monographId} a été acceptée.</message>
-	<message key="log.review.reviewDueDateSet">La date limite pour la {$round}e série de révisions de la soumission {$monographId} par {$reviewerName} est {$dueDate}.</message>
-	<message key="log.review.reviewDeclined">{$reviewerName} n'a pas accepté la {$round}e série de révisions de la soumission {$monographId}.</message>
-	<message key="log.review.reviewAccepted">{$reviewerName} a accepté la {$round}e série de révisions de la soumission {$monographId}.</message>
-	<message key="log.review.reviewUnconsidered">{$editorName} a indiqué que la {$round}e série de révisions de la soumission {$monographId} n'a pas été considérée.</message>
+	<message key="log.review.reviewCleared">La {$round}e série de révisions par {$reviewerName} de la soumission {$submissionId} a été acceptée.</message>
+	<message key="log.review.reviewDueDateSet">La date limite pour la {$round}e série de révisions de la soumission {$submissionId} par {$reviewerName} est {$dueDate}.</message>
+	<message key="log.review.reviewDeclined">{$reviewerName} n'a pas accepté la {$round}e série de révisions de la soumission {$submissionId}.</message>
+	<message key="log.review.reviewAccepted">{$reviewerName} a accepté la {$round}e série de révisions de la soumission {$submissionId}.</message>
+	<message key="log.review.reviewUnconsidered">{$editorName} a indiqué que la {$round}e série de révisions de la soumission {$submissionId} n'a pas été considérée.</message>
 	<message key="log.editor.decision">Une décision rédactionnelle ({$decision}) pour la monographie {$submissionId} a été enregistrée par {$editorName}.</message>
-	<message key="log.editor.archived">La soumission {$monographId} a été archivée.</message>
-	<message key="log.editor.restored">La soumission {$monographId} a été remise dans la file d'attente.</message>
-	<message key="log.editor.editorAssigned">{$editorName} a été nommé rédacteur en chef de la soumission {$monographId}.</message>
-	<message key="log.editor.submissionExpedited">{$editorName} a accéléré le processus rédactionnelle de la soumission {$monographId}.</message>
-	<message key="log.proofread.assign">{$assignerName} a nommé {$proofreaderName} pour corriger les épreuves de la soumission {$monographId}.</message>
-	<message key="log.proofread.complete">{$proofreaderName} a soumis {$monographId} pour l'établissement d'un calendrier.</message>
-	<message key="log.imported">{$userName} a importé la monographie {$monographId}.</message>
+	<message key="log.editor.archived">La soumission {$submissionId} a été archivée.</message>
+	<message key="log.editor.restored">La soumission {$submissionId} a été remise dans la file d'attente.</message>
+	<message key="log.editor.editorAssigned">{$editorName} a été nommé rédacteur en chef de la soumission {$submissionId}.</message>
+	<message key="log.editor.submissionExpedited">{$editorName} a accéléré le processus rédactionnelle de la soumission {$submissionId}.</message>
+	<message key="log.proofread.assign">{$assignerName} a nommé {$proofreaderName} pour corriger les épreuves de la soumission {$submissionId}.</message>
+	<message key="log.proofread.complete">{$proofreaderName} a soumis {$submissionId} pour l'établissement d'un calendrier.</message>
+	<message key="log.imported">{$userName} a importé la monographie {$submissionId}.</message>
 
 	<!-- Notifications -->
 	<message key="notification.addedIdentificationCode">Un code d'identification a été ajouté.</message>

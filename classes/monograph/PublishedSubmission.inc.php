@@ -1,27 +1,27 @@
 <?php
 
 /**
- * @file classes/monograph/PublishedMonograph.inc.php
+ * @file classes/monograph/PublishedSubmission.inc.php
  *
  * Copyright (c) 2014-2017 Simon Fraser University Library
  * Copyright (c) 2003-2017 John Willinsky
  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
  *
- * @class PublishedMonograph
+ * @class PublishedSubmission
  * @ingroup monograph
- * @see PublishedMonographDAO
+ * @see PublishedSubmissionDAO
  *
- * @brief Published monograph class.
+ * @brief Published submission class.
  */
 
 
-import('classes.monograph.Monograph');
+import('classes.monograph.Submission');
 
 // Access status
 define('ARTICLE_ACCESS_ISSUE_DEFAULT', 0);
 define('ARTICLE_ACCESS_OPEN', 1);
 
-class PublishedMonograph extends Monograph {
+class PublishedSubmission extends Submission {
 
 	/**
 	 * Constructor.
@@ -172,12 +172,12 @@ class PublishedMonograph extends Monograph {
 
 	/**
 	 * Get the categories for this published monograph.
-	 * @see PublishedMonographDAO::getCategories
+	 * @see PublishedSubmissionDAO::getCategories
 	 * @return Iterator
 	 */
 	function getCategories() {
-		$publishedMonographDao = DAORegistry::getDAO('PublishedMonographDAO');
-		return $publishedMonographDao->getCategories(
+		$publishedSubmissionDao = DAORegistry::getDAO('PublishedSubmissionDAO');
+		return $publishedSubmissionDao->getCategories(
 			$this->getId(),
 			$this->getPressId()
 		);

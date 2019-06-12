@@ -39,8 +39,8 @@ class CatalogBookHandler extends Handler {
 	 * @param $roleAssignments array
 	 */
 	function authorize($request, &$args, $roleAssignments) {
-		import('classes.security.authorization.OmpPublishedMonographAccessPolicy');
-		$this->addPolicy(new OmpPublishedMonographAccessPolicy($request, $args, $roleAssignments));
+		import('classes.security.authorization.OmpPublishedSubmissionAccessPolicy');
+		$this->addPolicy(new OmpPublishedSubmissionAccessPolicy($request, $args, $roleAssignments));
 		return parent::authorize($request, $args, $roleAssignments);
 	}
 
@@ -55,14 +55,14 @@ class CatalogBookHandler extends Handler {
 	 */
 	function book($args, $request) {
 		$templateMgr = TemplateManager::getManager($request);
-		$publishedMonograph = $this->getAuthorizedContextObject(ASSOC_TYPE_PUBLISHED_MONOGRAPH);
-		$this->setupTemplate($request, $publishedMonograph);
+		$publishedSubmission = $this->getAuthorizedContextObject(ASSOC_TYPE_PUBLISHED_MONOGRAPH);
+		$this->setupTemplate($request, $publishedSubmission);
 		AppLocale::requireComponents(LOCALE_COMPONENT_APP_SUBMISSION, LOCALE_COMPONENT_PKP_SUBMISSION); // submission.synopsis; submission.copyrightStatement
 
-		$templateMgr->assign('publishedMonograph', $publishedMonograph);
+		$templateMgr->assign('publishedSubmission', $publishedSubmission);
 
 		// Provide the publication formats to the template
-		$publicationFormats = $publishedMonograph->getPublicationFormats(true);
+		$publicationFormats = $publishedSubmission->getPublicationFormats(true);
 		$availablePublicationFormats = array();
 		foreach ($publicationFormats as $format) {
 			if ($format->getIsAvailable()) {
@@ -73,7 +73,7 @@ class CatalogBookHandler extends Handler {
 
 		// Assign chapters (if they exist)
 		$chapterDao = DAORegistry::getDAO('ChapterDAO');
-		$chapters = $chapterDao->getChapters($publishedMonograph->getId());
+		$chapters = $chapterDao->getChapters($publishedSubmission->getId());
 		$templateMgr->assign('chapters', $chapters->toAssociativeArray());
 
 		// Determine which pubId plugins are enabled.
@@ -96,8 +96,8 @@ class CatalogBookHandler extends Handler {
 		$templateMgr->assign(array(
 			'enabledPubIdTypes' => $enabledPubIdTypes,
 			'metaCustomHeaders' => $metaCustomHeaders,
-			'licenseUrl' => $publishedMonograph->getLicenseURL(),
-			'ccLicenseBadge' => Application::getCCLicenseBadge($publishedMonograph->getLicenseURL())
+			'licenseUrl' => $publishedSubmission->getLicenseURL(),
+			'ccLicenseBadge' => Application::getCCLicenseBadge($publishedSubmission->getLicenseURL())
 		));
 
 		// e-Commerce
@@ -106,7 +106,7 @@ class CatalogBookHandler extends Handler {
 		$submissionFileDao = DAORegistry::getDAO('SubmissionFileDAO');
 		if ($ompPaymentManager->isConfigured()) {
 			$availableFiles = array_filter(
-				$submissionFileDao->getLatestRevisions($publishedMonograph->getId()),
+				$submissionFileDao->getLatestRevisions($publishedSubmission->getId()),
 				create_function('$a', 'return $a->getViewable() && $a->getDirectSalesPrice() !== null && $a->getAssocType() == ASSOC_TYPE_PUBLICATION_FORMAT;')
 			);
 
@@ -154,27 +154,27 @@ class CatalogBookHandler extends Handler {
 	 */
 	function download($args, $request, $view = false) {
 		$dispatcher = $request->getDispatcher();
-		$publishedMonograph = $this->getAuthorizedContextObject(ASSOC_TYPE_PUBLISHED_MONOGRAPH);
-		$this->setupTemplate($request, $publishedMonograph);
+		$publishedSubmission = $this->getAuthorizedContextObject(ASSOC_TYPE_PUBLISHED_MONOGRAPH);
+		$this->setupTemplate($request, $publishedSubmission);
 		$press = $request->getPress();
 
-		$monographId = array_shift($args); // Validated thru auth
+		$submissionId = array_shift($args); // Validated thru auth
 		$representationId = array_shift($args);
 		$bestFileId = array_shift($args);
 
 		$publicationFormatDao = DAORegistry::getDAO('PublicationFormatDAO');
-		$publicationFormat = $publicationFormatDao->getByBestId($representationId, $publishedMonograph->getId());
+		$publicationFormat = $publicationFormatDao->getByBestId($representationId, $publishedSubmission->getId());
 		if (!$publicationFormat || !$publicationFormat->getIsApproved() || !$publicationFormat->getIsAvailable() || $remoteURL = $publicationFormat->getRemoteURL()) fatalError('Invalid publication format specified.');
 
 		$submissionFileDao = DAORegistry::getDAO('SubmissionFileDAO');
 		import('lib.pkp.classes.submission.SubmissionFile'); // File constants
-		$submissionFile = $submissionFileDao->getByBestId($bestFileId, $publishedMonograph->getId());
+		$submissionFile = $submissionFileDao->getByBestId($bestFileId, $publishedSubmission->getId());
 		if (!$submissionFile) $dispatcher->handle404();
 
 		$fileIdAndRevision = $submissionFile->getFileIdAndRevision();
 		list($fileId, $revision) = array_map(create_function('$a', 'return (int) $a;'), preg_split('/-/', $fileIdAndRevision));
 		import('lib.pkp.classes.file.SubmissionFileManager');
-		$monographFileManager = new SubmissionFileManager($publishedMonograph->getContextId(), $publishedMonograph->getId());
+		$monographFileManager = new SubmissionFileManager($publishedSubmission->getContextId(), $publishedSubmission->getId());
 
 		switch ($submissionFile->getAssocType()) {
 			case ASSOC_TYPE_PUBLICATION_FORMAT: // Publication format file
@@ -202,7 +202,7 @@ class CatalogBookHandler extends Handler {
 			// handle the document.
 			PluginRegistry::loadCategory('viewableFiles', true);
 			if ($view) {
-				if (HookRegistry::call('CatalogBookHandler::view', array(&$this, &$publishedMonograph, &$publicationFormat, &$submissionFile))) {
+				if (HookRegistry::call('CatalogBookHandler::view', array(&$this, &$publishedSubmission, &$publicationFormat, &$submissionFile))) {
 					// If the plugin handled the hook, prevent further default activity.
 					exit();
 				}
@@ -211,7 +211,7 @@ class CatalogBookHandler extends Handler {
 			// Inline viewer not available, or viewing not wanted.
 			// Download or show the file.
 			$inline = $request->getUserVar('inline')?true:false;
-			if (HookRegistry::call('CatalogBookHandler::download', array(&$this, &$publishedMonograph, &$publicationFormat, &$submissionFile, &$inline))) {
+			if (HookRegistry::call('CatalogBookHandler::download', array(&$this, &$publishedSubmission, &$publicationFormat, &$submissionFile, &$inline))) {
 				// If the plugin handled the hook, prevent further default activity.
 				exit();
 			}
@@ -221,7 +221,7 @@ class CatalogBookHandler extends Handler {
 		// Fall-through: user needs to pay for purchase.
 
 		// Users that are not logged in need to register/login first.
-		if (!$user) return $request->redirect(null, 'login', null, null, array('source' => $request->url(null, null, null, array($monographId, $representationId, $bestFileId))));
+		if (!$user) return $request->redirect(null, 'login', null, null, array('source' => $request->url(null, null, null, array($submissionId, $representationId, $bestFileId))));
 
 		// They're logged in but need to pay to view.
 		import('classes.payment.omp.OMPPaymentManager');
@@ -248,13 +248,13 @@ class CatalogBookHandler extends Handler {
 	/**
 	 * Set up common template variables.
 	 * @param $request PKPRequest
-	 * @param $publishedMonograph PublishedMonograph
+	 * @param $publishedSubmission PublishedSubmission
 	 */
-	function setupTemplate($request, $publishedMonograph) {
+	function setupTemplate($request, $publishedSubmission) {
 		$templateMgr = TemplateManager::getmanager($request);
-		if ($seriesId = $publishedMonograph->getSeriesId()) {
+		if ($seriesId = $publishedSubmission->getSeriesId()) {
 			$seriesDao = DAORegistry::getDAO('SeriesDAO');
-			$series = $seriesDao->getById($seriesId, $publishedMonograph->getContextId());
+			$series = $seriesDao->getById($seriesId, $publishedSubmission->getContextId());
 			$templateMgr->assign('series', $series);
 		}
 

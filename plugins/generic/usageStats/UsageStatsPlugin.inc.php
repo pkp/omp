@@ -59,10 +59,10 @@ class UsageStatsPlugin extends PKPUsageStatsPlugin {
 		$smarty =& $params[1];
 		$output =& $params[2];
 
-		$pubObject =& $smarty->get_template_vars('publishedMonograph');
-		assert(is_a($pubObject, 'PublishedMonograph'));
+		$pubObject =& $smarty->get_template_vars('publishedSubmission');
+		assert(is_a($pubObject, 'PublishedSubmission'));
 		$pubObjectId = $pubObject->getID();
-		$pubObjectType = 'PublishedMonograph';
+		$pubObjectType = 'PublishedSubmission';
 
 		$output .= $this->getTemplate(
 			array(

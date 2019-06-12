@@ -50,8 +50,8 @@ class CatalogMonographsGridHandler extends GridHandler {
 			import('lib.pkp.classes.security.authorization.PKPSiteAccessPolicy');
 			$this->addPolicy(new PKPSiteAccessPolicy($request, null, $roleAssignments));
 		} else {
-			import('classes.security.authorization.OmpPublishedMonographAccessPolicy');
-			$this->addPolicy(new OmpPublishedMonographAccessPolicy($request, $args, $roleAssignments, 'rowId'));
+			import('classes.security.authorization.OmpPublishedSubmissionAccessPolicy');
+			$this->addPolicy(new OmpPublishedSubmissionAccessPolicy($request, $args, $roleAssignments, 'rowId'));
 		}
 
 		return parent::authorize($request, $args, $roleAssignments);
@@ -191,7 +191,7 @@ class CatalogMonographsGridHandler extends GridHandler {
 		$press = $request->getPress();
 
 		// Identification of item to set new state state on
-		$monographId = $this->getAuthorizedContextObject(ASSOC_TYPE_PUBLISHED_MONOGRAPH)->getId();
+		$submissionId = $this->getAuthorizedContextObject(ASSOC_TYPE_PUBLISHED_MONOGRAPH)->getId();
 		$assocType = (int) $request->getUserVar('assocType');
 		$assocId = (int) $request->getUserVar('assocId');
 
@@ -231,11 +231,11 @@ class CatalogMonographsGridHandler extends GridHandler {
 		switch ($toggleType) {
 			case 'setFeatured':
 				$featureDao = DAORegistry::getDAO('FeatureDAO');
-				$featureDao->deleteFeature($monographId, $assocType, $assocId);
+				$featureDao->deleteFeature($submissionId, $assocType, $assocId);
 
 				// If necessary, insert the new featured state and resequence.
 				if ($newState) {
-					$featureDao->insertFeature($monographId, $assocType, $assocId, $newSeq);
+					$featureDao->insertFeature($submissionId, $assocType, $assocId, $newSeq);
 					$featureDao->resequenceByAssoc($assocType, $assocId);
 					$notificationMgr->createTrivialNotification($user->getId(), NOTIFICATION_TYPE_SUCCESS, array('contents' => __('catalog.manage.featuredSuccess')));
 				} else {
@@ -245,9 +245,9 @@ class CatalogMonographsGridHandler extends GridHandler {
 				break;
 			case 'setNewRelease':
 				$newReleaseDao = DAORegistry::getDAO('NewReleaseDAO');
-				$newReleaseDao->deleteNewRelease($monographId, $assocType, $assocId);
+				$newReleaseDao->deleteNewRelease($submissionId, $assocType, $assocId);
 				if ($newState) {
-					$newReleaseDao->insertNewRelease($monographId, $assocType, $assocId);
+					$newReleaseDao->insertNewRelease($submissionId, $assocType, $assocId);
 					$notificationMgr->createTrivialNotification($user->getId(), NOTIFICATION_TYPE_SUCCESS, array('contents' => __('catalog.manage.newReleaseSuccess')));
 				} else {
 					$notificationMgr->createTrivialNotification($user->getId(), NOTIFICATION_TYPE_SUCCESS, array('contents' => __('catalog.manage.notNewReleaseSuccess')));
@@ -257,7 +257,7 @@ class CatalogMonographsGridHandler extends GridHandler {
 				fatalError('Invalid toggle type specified.');
 		}
 
-		return DAO::getDataChangedEvent($monographId);
+		return DAO::getDataChangedEvent($submissionId);
 	}
 
 

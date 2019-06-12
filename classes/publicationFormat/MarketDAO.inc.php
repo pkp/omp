@@ -27,13 +27,13 @@ class MarketDAO extends DAO {
 	/**
 	 * Retrieve a market entry by type id.
 	 * @param $marketId int
-	 * @param $monographId optional int
+	 * @param $submissionId optional int
 	 * @return Market
 	 */
-	function getById($marketId, $monographId = null){
+	function getById($marketId, $submissionId = null){
 		$sqlParams = array((int) $marketId);
-		if ($monographId) {
-			$sqlParams[] = (int) $monographId;
+		if ($submissionId) {
+			$sqlParams[] = (int) $submissionId;
 		}
 
 		$result = $this->retrieve(
@@ -41,7 +41,7 @@ class MarketDAO extends DAO {
 			FROM	markets m
 				JOIN publication_formats pf ON (m.publication_format_id = pf.publication_format_id)
 			WHERE	m.market_id = ?
-				' . ($monographId?' AND pf.submission_id = ?':''),
+				' . ($submissionId?' AND pf.submission_id = ?':''),
 			$sqlParams
 		);
 

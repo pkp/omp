@@ -30,17 +30,17 @@ class ChapterDAO extends DAO {
 	 * Retrieve a chapter by ID.
 	 * @param $chapterId int
 	 * @param $assocType int optional
-	 * @param $monographId int optional
+	 * @param $submissionId int optional
 	 * @return Chapter
 	 */
-	function getChapter($chapterId, $monographId = null) {
+	function getChapter($chapterId, $submissionId = null) {
 		$params = array((int) $chapterId);
-		if ($monographId !== null) {
-			$params[] = (int) $monographId;
+		if ($submissionId !== null) {
+			$params[] = (int) $submissionId;
 		}
 
 		$result = $this->retrieve(
-			'SELECT * FROM submission_chapters WHERE chapter_id = ?' . ($monographId !== null?' AND submission_id = ? ':''),
+			'SELECT * FROM submission_chapters WHERE chapter_id = ?' . ($submissionId !== null?' AND submission_id = ? ':''),
 			$params
 		);
 
@@ -54,14 +54,14 @@ class ChapterDAO extends DAO {
 
 	/**
 	 * Get all chapters for a given monograph.
-	 * @param $monographId int
+	 * @param $submissionId int
 	 * @param $rangeInfo object RangeInfo object (optional)
 	 * @return DAOResultFactory
 	 */
-	function getChapters($monographId, $rangeInfo = null) {
+	function getChapters($submissionId, $rangeInfo = null) {
 		$result = $this->retrieveRange(
 			'SELECT chapter_id, submission_id, chapter_seq FROM submission_chapters WHERE submission_id = ? ORDER BY chapter_seq',
-			(int) $monographId,
+			(int) $submissionId,
 			$rangeInfo
 		);
 
@@ -173,10 +173,10 @@ class ChapterDAO extends DAO {
 	/**
 	 * Delete board chapters by assoc ID, including membership info
 	 * @param $assocType int
-	 * @param $monographId int
+	 * @param $submissionId int
 	 */
-	function deleteByMonographId($monographId) {
-		$chapters = $this->getChapters($monographId);
+	function deleteByMonographId($submissionId) {
+		$chapters = $this->getChapters($submissionId);
 		while ($chapter = $chapters->next()) {
 			$this->deleteObject($chapter);
 		}
@@ -184,14 +184,14 @@ class ChapterDAO extends DAO {
 
 	/**
 	 * Sequentially renumber  chapters in their sequence order, optionally by monographId
-	 * @param $monographId int
+	 * @param $submissionId int
 	 */
-	function resequenceChapters($monographId = null) {
+	function resequenceChapters($submissionId = null) {
 		$result = $this->retrieve(
 			'SELECT chapter_id FROM submission_chapters' .
-			($monographId !== null?' WHERE submission_id = ?':'') .
+			($submissionId !== null?' WHERE submission_id = ?':'') .
 			' ORDER BY seq',
-			($monographId !== null)?(int) $monographId:null
+			($submissionId !== null)?(int) $submissionId:null
 		);
 
 		for ($i=1; !$result->EOF; $i++) {

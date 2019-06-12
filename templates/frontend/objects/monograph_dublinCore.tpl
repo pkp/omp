@@ -20,7 +20,7 @@
 {foreach from=$monograph->getAuthorString()|explode:", " item=dc_author}
 	<meta name="DC.Creator.PersonalName" content="{$dc_author|escape}"/>
 {/foreach}
-{if is_a($monograph, 'PublishedMonograph') && $monograph->getDatePublished()}
+{if is_a($monograph, 'PublishedSubmission') && $monograph->getDatePublished()}
 	<meta name="DC.Date.created" scheme="ISO8601" content="{$monograph->getDatePublished()|date_format:"%Y-%m-%d"}"/>
 {/if}
 	<meta name="DC.Date.dateSubmitted" scheme="ISO8601" content="{$monograph->getDateSubmitted()|date_format:"%Y-%m-%d"}"/>

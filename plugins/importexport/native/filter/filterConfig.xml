@@ -17,7 +17,7 @@
 			symbolic="monograph=>native-xml"
 			displayName="plugins.importexport.native.displayName"
 			description="plugins.importexport.native.description"
-			inputType="class::classes.monograph.Monograph[]"
+			inputType="class::classes.monograph.Submission[]"
 			outputType="xml::schema(plugins/importexport/native/native.xsd)" />
 		<!-- Native XML monograph input -->
 		<filterGroup
@@ -25,7 +25,7 @@
 			displayName="plugins.importexport.native.displayName"
 			description="plugins.importexport.native.description"
 			inputType="xml::schema(plugins/importexport/native/native.xsd)"
-			outputType="class::classes.monograph.Monograph[]" />
+			outputType="class::classes.monograph.Submission[]" />
 		<!-- Native XML author output -->
 		<filterGroup
 			symbolic="author=>native-xml"
@@ -100,7 +100,7 @@
 			symbolic="monograph=>onix30-xml"
 			displayName="plugins.importexport.onix30.displayName"
 			description="plugins.importexport.onix30.description"
-			inputType="class::classes.monograph.Monograph"
+			inputType="class::classes.monograph.Submission"
 			outputType="xml::schema(plugins/importexport/native/ONIX_BookProduct_3.0_reference_notstrict.xsd)" />
 	</filterGroups>
 	<filters>

@@ -41,8 +41,8 @@ class AppearanceForm extends PKPAppearanceForm {
 	function initData($request) {
 		parent::initData($request);
 		$context = $request->getContext();
-		$publishedMonographDao = DAORegistry::getDAO('PublishedMonographDAO');
-		$sortOption = $context->getSetting('catalogSortOption') ? $context->getSetting('catalogSortOption') : $publishedMonographDao->getDefaultSortOption();
+		$publishedSubmissionDao = DAORegistry::getDAO('PublishedSubmissionDAO');
+		$sortOption = $context->getSetting('catalogSortOption') ? $context->getSetting('catalogSortOption') : $publishedSubmissionDao->getDefaultSortOption();
 		$this->setData('catalogSortOption', $sortOption);
 	}
 
@@ -52,8 +52,8 @@ class AppearanceForm extends PKPAppearanceForm {
 	function fetch($request) {
 		// Sort options.
 		$templateMgr = TemplateManager::getManager($request);
-		$publishedMonographDao = DAORegistry::getDAO('PublishedMonographDAO');
-		$templateMgr->assign('sortOptions', $publishedMonographDao->getSortSelectOptions());
+		$publishedSubmissionDao = DAORegistry::getDAO('PublishedSubmissionDAO');
+		$templateMgr->assign('sortOptions', $publishedSubmissionDao->getSortSelectOptions());
 		return parent::fetch($request);
 	}
 
@@ -83,15 +83,15 @@ class AppearanceForm extends PKPAppearanceForm {
 			$this->_resizeCoverThumbnails($context, $seriesDao, $coverThumbnailsMaxWidth, $coverThumbnailsMaxHeight, $seriesBasePath);
 
 			// resize cover thumbnails for all press published monographs
-			$publishedMonographDao = DAORegistry::getDAO('PublishedMonographDAO');
-			$this->_resizeCoverThumbnails($context, $publishedMonographDao, $coverThumbnailsMaxWidth, $coverThumbnailsMaxHeight, '');
+			$publishedSubmissionDao = DAORegistry::getDAO('PublishedSubmissionDAO');
+			$this->_resizeCoverThumbnails($context, $publishedSubmissionDao, $coverThumbnailsMaxWidth, $coverThumbnailsMaxHeight, '');
 		}
 	}
 
 	/**
 	 * Resize cover thumnails for all given press objects (categories, series and published monographs).
 	 * @param $context Context
-	 * @param $objectDao CategoriesDAO, SeriesDAO or PublishedMonographsDAO
+	 * @param $objectDao CategoriesDAO, SeriesDAO or PublishedSubmissionsDAO
 	 * @param $coverThumbnailsMaxWidth int
 	 * @param $coverThumbnailsMaxHeight int
 	 * @param $basePath string Base path for the given object
@@ -103,7 +103,7 @@ class AppearanceForm extends PKPAppearanceForm {
 
 		$objects = $objectDao->getByPressId($context->getId());
 		while ($object = $objects->next()) {
-			if (is_a($object, 'PublishedMonograph')) {
+			if (is_a($object, 'PublishedSubmission')) {
 				$cover = $object->getCoverImage();
 				$simpleMonographFileManager = new SimpleMonographFileManager($context->getId(), $object->getId());
 				$basePath = $simpleMonographFileManager->getBasePath();
@@ -145,7 +145,7 @@ class AppearanceForm extends PKPAppearanceForm {
 				}
 
 				imagedestroy($thumbnail);
-				if (is_a($object, 'PublishedMonograph')) {
+				if (is_a($object, 'PublishedSubmission')) {
 					$object->setCoverImage(array(
 						'name' => $cover['name'],
 						'width' => $cover['width'],

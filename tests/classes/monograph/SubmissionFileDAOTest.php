@@ -19,7 +19,7 @@ import('classes.monograph.SubmissionFileDAO');
 import('lib.pkp.classes.submission.SubmissionArtworkFileDAODelegate');
 import('lib.pkp.classes.submission.SubmissionFile');
 import('lib.pkp.classes.submission.SubmissionArtworkFile');
-import('classes.monograph.MonographDAO');
+import('classes.monograph.SubmissionDAO');
 import('lib.pkp.classes.submission.Genre');
 import('lib.pkp.classes.submission.reviewRound.ReviewRound');
 import('lib.pkp.classes.db.DBResultRange');
@@ -58,14 +58,14 @@ class SubmissionFileDAOTest extends DatabaseTestCase {
 		Registry::get('request', true, $mockRequest);
 
 		// Register a mock monograph DAO.
-		$monographDao = $this->getMock('MonographDAO', array('getById'));
+		$monographDao = $this->getMock('SubmissionDAO', array('getById'));
 		$monograph = new Monograph();
 		$monograph->setId(SUBMISSION_FILE_DAO_TEST_SUBMISSION_ID);
 		$monograph->setPressId(SUBMISSION_FILE_DAO_TEST_PRESS_ID);
 		$monographDao->expects($this->any())
 		             ->method('getById')
 		             ->will($this->returnValue($monograph));
-		DAORegistry::registerDAO('MonographDAO', $monographDao);
+		DAORegistry::registerDAO('SubmissionDAO', $monographDao);
 
 		// Register a mock genre DAO.
 		$genreDao = $this->getMock('GenreDAO', array('getById'));

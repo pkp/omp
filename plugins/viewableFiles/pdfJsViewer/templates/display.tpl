@@ -7,13 +7,13 @@
  *
  * @brief Embedded viewing of a PDF galley.
  *
- * @uses $publishedMonograph Monograph Monograph this file is attached to
+ * @uses $publishedSubmission Monograph Monograph this file is attached to
  * @uses $downloadUrl string (optional) A URL to download this file
  * @uses $pluginUrl string URL to this plugin's files
  *}
 {* Display metadata *}
-{include file="frontend/objects/monographFile_dublinCore.tpl" monograph=$publishedMonograph}
-{include file="frontend/objects/monographFile_googleScholar.tpl" monograph=$publishedMonograph}
+{include file="frontend/objects/monographFile_dublinCore.tpl" monograph=$publishedSubmission}
+{include file="frontend/objects/monographFile_googleScholar.tpl" monograph=$publishedSubmission}
 
 <div class="viewable_file_frame">
     <iframe class="viewable_file_frame" src="{$pluginUrl}/pdf.js/web/viewer.html?file={$downloadUrl|escape:"url"}" allowfullscreen webkitallowfullscreen></iframe>

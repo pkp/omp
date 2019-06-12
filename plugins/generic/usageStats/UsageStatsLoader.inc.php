@@ -59,7 +59,7 @@ class UsageStatsLoader extends PKPUsageStatsLoader {
 				case ASSOC_TYPE_SUBMISSION_FILE:
 					if (!isset($args[0])) break;
 					$submissionId = $args[0];
-					$submissionDao = DAORegistry::getDAO('MonographDAO');
+					$submissionDao = DAORegistry::getDAO('SubmissionDAO');
 					$monograph = $submissionDao->getById($submissionId);
 					if (!$monograph) break;
 

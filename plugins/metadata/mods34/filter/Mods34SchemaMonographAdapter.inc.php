@@ -49,7 +49,7 @@ class Mods34SchemaMonographAdapter extends Mods34SchemaSubmissionAdapter {
 	 * @param $monograph Monograph
 	 */
 	function &injectMetadataIntoDataObject(&$mods34Description, &$monograph) {
-		assert(is_a($monograph, 'Monograph'));
+		assert(is_a($monograph, 'Submission'));
 		$monograph =& parent::injectMetadataIntoDataObject($mods34Description, $monograph, 'classes.monograph.Author');
 
 		// Publication date
@@ -71,7 +71,7 @@ class Mods34SchemaMonographAdapter extends Mods34SchemaSubmissionAdapter {
 	 * @param $monograph Monograph
 	 */
 	function extractMetadataFromDataObject($monograph) {
-		assert(is_a($monograph, 'Monograph'));
+		assert(is_a($monograph, 'Submission'));
 
 		// Define the role of the author(s) of the monograph object
 		// depending on the work type.

@@ -27,13 +27,13 @@ class RepresentativeDAO extends DAO {
 	/**
 	 * Retrieve a representative entry by id.
 	 * @param $representativeId int
-	 * @param $monographId optional int
+	 * @param $submissionId optional int
 	 * @return Representative
 	 */
-	function getById($representativeId, $monographId = null){
+	function getById($representativeId, $submissionId = null){
 		$sqlParams = array((int) $representativeId);
-		if ($monographId) {
-			$sqlParams[] = (int) $monographId;
+		if ($submissionId) {
+			$sqlParams[] = (int) $submissionId;
 		}
 
 		$result = $this->retrieve(
@@ -41,7 +41,7 @@ class RepresentativeDAO extends DAO {
 				FROM representatives r
 			JOIN published_submissions ps ON (r.submission_id = ps.submission_id)
 			WHERE r.representative_id = ?
-				' . ($monographId?' AND ps.submission_id = ?':''),
+				' . ($submissionId?' AND ps.submission_id = ?':''),
 			$sqlParams
 		);
 
@@ -55,24 +55,24 @@ class RepresentativeDAO extends DAO {
 
 	/**
 	 * Retrieve all supplier representatives for a monograph.
-	 * @param $monographId int
+	 * @param $submissionId int
 	 * @return DAOResultFactory containing matching representatives.
 	 */
-	function getSuppliersByMonographId($monographId) {
+	function getSuppliersByMonographId($submissionId) {
 		$result = $this->retrieveRange(
-			'SELECT * FROM representatives WHERE submission_id = ? AND is_supplier = ?', array((int) $monographId, 1));
+			'SELECT * FROM representatives WHERE submission_id = ? AND is_supplier = ?', array((int) $submissionId, 1));
 
 		return new DAOResultFactory($result, $this, '_fromRow');
 	}
 
 	/**
 	 * Retrieve all agent representatives for a monograph.
-	 * @param $monographId int
+	 * @param $submissionId int
 	 * @return DAOResultFactory containing matching representatives.
 	 */
-	function getAgentsByMonographId($monographId) {
+	function getAgentsByMonographId($submissionId) {
 		$result = $this->retrieveRange(
-				'SELECT * FROM representatives WHERE submission_id = ? AND is_supplier = ?', array((int) $monographId, 0));
+				'SELECT * FROM representatives WHERE submission_id = ? AND is_supplier = ?', array((int) $submissionId, 0));
 
 		return new DAOResultFactory($result, $this, '_fromRow');
 	}

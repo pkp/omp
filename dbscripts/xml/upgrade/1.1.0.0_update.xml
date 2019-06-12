@@ -61,8 +61,8 @@
 		<query>UPDATE email_templates_default_data SET body=REPLACE(body, '{$monographTitle}', '{$submissionTitle}'), subject=REPLACE(subject, '{$monographTitle}', '{$submissionTitle}')</query>
 		<query>UPDATE email_templates_data SET body=REPLACE(body, '{$monographTitle}', '{$submissionTitle}'), subject=REPLACE(subject, '{$monographTitle}', '{$submissionTitle}')</query>
 		<!-- monographId becomes submissionId -->
-		<query>UPDATE email_templates_default_data SET body=REPLACE(body, '{$monographId}', '{$submissionId}'), subject=REPLACE(subject, '{$monographId}', '{$submissionId}')</query>
-		<query>UPDATE email_templates_data SET body=REPLACE(body, '{$monographId}', '{$submissionId}'), subject=REPLACE(subject, '{$monographId}', '{$submissionId}')</query>
+		<query>UPDATE email_templates_default_data SET body=REPLACE(body, '{$submissionId}', '{$submissionId}'), subject=REPLACE(subject, '{$submissionId}', '{$submissionId}')</query>
+		<query>UPDATE email_templates_data SET body=REPLACE(body, '{$submissionId}', '{$submissionId}'), subject=REPLACE(subject, '{$submissionId}', '{$submissionId}')</query>
 		<!-- monographAbstract becomes submissionAbstract -->
 		<query>UPDATE email_templates_default_data SET body=REPLACE(body, '{$monographAbstract}', '{$submissionAbstract}'), subject=REPLACE(subject, '{$monographAbstract}', '{$submissionAbstract}')</query>
 		<query>UPDATE email_templates_data SET body=REPLACE(body, '{$monographAbstract}', '{$submissionAbstract}'), subject=REPLACE(subject, '{$monographAbstract}', '{$submissionAbstract}')</query>

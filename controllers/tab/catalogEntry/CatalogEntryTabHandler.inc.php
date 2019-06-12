@@ -197,7 +197,7 @@ class CatalogEntryTabHandler extends PublicationEntryTabHandler {
 					$representationId = $request->getUserVar('representationId');
 
 					// perform some validation to make sure this format is enabled and assigned to this monograph
-					$publishedMonographDao = DAORegistry::getDAO('PublishedMonographDAO');
+					$publishedSubmissionDao = DAORegistry::getDAO('PublishedSubmissionDAO');
 					$publicationFormatDao = DAORegistry::getDAO('PublicationFormatDAO');
 					$formats = $publicationFormatDao->getBySubmissionId($submission->getId());
 					$form = null;

@@ -100,8 +100,8 @@ class SeriesMonographsGridHandler extends CatalogMonographsGridHandler {
 	 */
 	function loadData($request, $filter) {
 		$pressId = $request->getRouter()->getContext($request)->getId();
-		$publishedMonographDao = DAORegistry::getDAO('PublishedMonographDAO');
-		$monographFactory = $publishedMonographDao->getBySeriesId($filter['seriesId'], $pressId, $filter['searchText'], null, null, null, $filter['featured'], $filter['newReleased']);
+		$publishedSubmissionDao = DAORegistry::getDAO('PublishedSubmissionDAO');
+		$monographFactory = $publishedSubmissionDao->getBySeriesId($filter['seriesId'], $pressId, $filter['searchText'], null, null, null, $filter['featured'], $filter['newReleased']);
 		return $monographFactory->toAssociativeArray();
 	}
 

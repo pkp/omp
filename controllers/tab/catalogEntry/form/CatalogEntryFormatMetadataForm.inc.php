@@ -48,13 +48,13 @@ class CatalogEntryFormatMetadataForm extends Form {
 	 * @param $stageId integer
 	 * @param $formParams array
 	 */
-	function __construct($monographId, $representationId, $isPhysicalFormat = true, $remoteURL = null, $stageId = null, $formParams = null) {
+	function __construct($submissionId, $representationId, $isPhysicalFormat = true, $remoteURL = null, $stageId = null, $formParams = null) {
 		parent::__construct('controllers/tab/catalogEntry/form/publicationMetadataFormFields.tpl');
-		$monographDao = DAORegistry::getDAO('MonographDAO');
-		$this->_monograph = $monographDao->getById($monographId);
+		$monographDao = DAORegistry::getDAO('SubmissionDAO');
+		$this->_monograph = $monographDao->getById($submissionId);
 
 		$publicationFormatDao = DAORegistry::getDAO('PublicationFormatDAO');
-		$this->_publicationFormat = $publicationFormatDao->getById($representationId, $monographId);
+		$this->_publicationFormat = $publicationFormatDao->getById($representationId, $submissionId);
 		assert($this->_publicationFormat);
 
 		$this->_pubIdPluginHelper = new PKPPubIdPluginHelper();

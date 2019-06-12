@@ -105,8 +105,8 @@ class CategoryForm extends Form {
 			$this->setData('path', $category->getPath());
 			$this->setData('image', $category->getImage());
 
-			$publishedMonographDao = DAORegistry::getDAO('PublishedMonographDAO');
-			$sortOption = $category->getSortOption() ? $category->getSortOption() : $publishedMonographDao->getDefaultSortOption();
+			$publishedSubmissionDao = DAORegistry::getDAO('PublishedSubmissionDAO');
+			$sortOption = $category->getSortOption() ? $category->getSortOption() : $publishedSubmissionDao->getDefaultSortOption();
 			$this->setData('sortOption', $sortOption);
 		}
 	}
@@ -177,8 +177,8 @@ class CategoryForm extends Form {
 			}
 		}
 		// Sort options.
-		$publishedMonographDao = DAORegistry::getDAO('PublishedMonographDAO');
-		$templateMgr->assign('sortOptions', $publishedMonographDao->getSortSelectOptions());
+		$publishedSubmissionDao = DAORegistry::getDAO('PublishedSubmissionDAO');
+		$templateMgr->assign('sortOptions', $publishedSubmissionDao->getSortSelectOptions());
 
 		return parent::fetch($request);
 	}

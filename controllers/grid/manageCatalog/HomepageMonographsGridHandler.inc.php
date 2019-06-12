@@ -36,8 +36,8 @@ class HomepageMonographsGridHandler extends CatalogMonographsGridHandler {
 	function loadData($request, $filter) {
 		$press = $request->getRouter()->getContext($request);
 		$rangeInfo = $this->getGridRangeInfo($request, $this->getId());
-		$publishedMonographDao = DAORegistry::getDAO('PublishedMonographDAO');
-		$monographFactory = $publishedMonographDao->getByPressId($press->getId(), $filter['searchText'], $rangeInfo, null, null, $filter['featured'], $filter['newReleased']);
+		$publishedSubmissionDao = DAORegistry::getDAO('PublishedSubmissionDAO');
+		$monographFactory = $publishedSubmissionDao->getByPressId($press->getId(), $filter['searchText'], $rangeInfo, null, null, $filter['featured'], $filter['newReleased']);
 		return $monographFactory;
 	}
 }

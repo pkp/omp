@@ -32,10 +32,10 @@ class Representative extends DataObject {
 
 	/**
 	 * set monograph id.
-	 * @param $monographId int
+	 * @param $submissionId int
 	 */
-	function setMonographId($monographId) {
-		return $this->setData('monographId', $monographId);
+	function setMonographId($submissionId) {
+		return $this->setData('monographId', $submissionId);
 	}
 
 	/**

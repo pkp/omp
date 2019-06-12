@@ -22,12 +22,12 @@ class CatalogEntrySubmissionReviewForm extends SubmissionMetadataViewForm {
 
 	/**
 	 * Constructor.
-	 * @param $monographId integer
+	 * @param $submissionId integer
 	 * @param $stageId integer
 	 * @param $formParams array
 	 */
-	function __construct($monographId, $stageId = null, $formParams = null) {
-		parent::__construct($monographId, $stageId, $formParams, 'controllers/modals/submissionMetadata/form/catalogEntrySubmissionReviewForm.tpl');
+	function __construct($submissionId, $stageId = null, $formParams = null) {
+		parent::__construct($submissionId, $stageId, $formParams, 'controllers/modals/submissionMetadata/form/catalogEntrySubmissionReviewForm.tpl');
 		AppLocale::requireComponents(LOCALE_COMPONENT_APP_COMMON, LOCALE_COMPONENT_APP_SUBMISSION);
 	}
 

@@ -18,7 +18,7 @@
 
 
 import('classes.monograph.Author');
-import('classes.monograph.Monograph');
+import('classes.monograph.Submission');
 import('lib.pkp.classes.submission.PKPAuthorDAO');
 
 class AuthorDAO extends PKPAuthorDAO {

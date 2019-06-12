@@ -24,8 +24,8 @@ class SubmissionEmailLogEntry extends PKPSubmissionEmailLogEntry {
 		parent::__construct();
 	}
 
-	function setMonographId($monographId) {
-		return $this->setAssocId($monographId);
+	function setMonographId($submissionId) {
+		return $this->setAssocId($submissionId);
 	}
 
 	function getMonographId() {

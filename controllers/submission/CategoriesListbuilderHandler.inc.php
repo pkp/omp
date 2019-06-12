@@ -86,7 +86,7 @@ class CategoriesListbuilderHandler extends ListbuilderHandler {
 		$submissionId = $this->getSubmissionId();
 
 		if ($submissionId) {
-			$submissionDao = DAORegistry::getDAO('MonographDAO');
+			$submissionDao = DAORegistry::getDAO('SubmissionDAO');
 			$assignedCategories = $submissionDao->getCategories($submissionId, $press->getId());
 			return $assignedCategories;
 		}
@@ -103,7 +103,7 @@ class CategoriesListbuilderHandler extends ListbuilderHandler {
 
 		if ($submissionId) {
 			// Preexisting submission
-			$submissionDao = DAORegistry::getDAO('MonographDAO');
+			$submissionDao = DAORegistry::getDAO('SubmissionDAO');
 			$availableCategories = $submissionDao->getUnassignedCategories($submissionId, $press->getId());
 		} else {
 			// New submission

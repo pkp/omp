@@ -8,7 +8,7 @@
  * @brief Display the page to view books in a series in the catalog.
  *
  * @uses $series Series Current series being viewed
- * @uses $publishedMonographs array List of published monographs in this series
+ * @uses $publishedSubmissions array List of published monographs in this series
  * @uses $featuredMonographIds array List of featured monograph IDs in this series
  * @uses $newReleasesMonographs array List of new monographs in this series
  *}
@@ -21,7 +21,7 @@
 
 	{* Count of monographs in this series *}
 	<div class="monograph_count">
-		{translate key="catalog.browseTitles" numTitles=$publishedMonographs|@count}
+		{translate key="catalog.browseTitles" numTitles=$publishedSubmissions|@count}
 	</div>
 
 	{* Image and description *}
@@ -49,7 +49,7 @@
 	</div>
 
 	{* No published titles in this category *}
-	{if empty($publishedMonographs)}
+	{if empty($publishedSubmissions)}
 		<h2>
 			{translate key="catalog.allBooks"}
 		</h2>
@@ -63,7 +63,7 @@
 		{/if}
 
 		{* All monographs *}
-		{include file="frontend/components/monographList.tpl" monographs=$publishedMonographs featured=$featuredMonographIds titleKey="catalog.allBooks"}
+		{include file="frontend/components/monographList.tpl" monographs=$publishedSubmissions featured=$featuredMonographIds titleKey="catalog.allBooks"}
 
 	{/if}
 

@@ -62,14 +62,14 @@ class PdfJsViewerPlugin extends ViewableFilePlugin {
 	/**
 	 * @copydoc ViewableFilePlugin::canHandle
 	 */
-	function canHandle($publishedMonograph, $publicationFormat, $submissionFile) {
+	function canHandle($publishedSubmission, $publicationFormat, $submissionFile) {
 		return ($submissionFile->getFileType() == 'application/pdf');
 	}
 
 	/**
 	 * @copydoc ViewableFilePlugin::displaySubmissionFile
 	 */
-	function displaySubmissionFile($publishedMonograph, $publicationFormat, $submissionFile) {
+	function displaySubmissionFile($publishedSubmission, $publicationFormat, $submissionFile) {
 		$request = $this->getRequest();
 		$router = $request->getRouter();
 		$dispatcher = $request->getDispatcher();
@@ -77,11 +77,11 @@ class PdfJsViewerPlugin extends ViewableFilePlugin {
 		$templateMgr->assign(array(
 			'pluginTemplatePath' => $this->getTemplatePath(),
 			'pluginUrl' => $request->getBaseUrl() . DIRECTORY_SEPARATOR . $this->getPluginPath(),
-			'downloadUrl' => $dispatcher->url($request, ROUTE_PAGE, null, null, 'download', array($publishedMonograph->getBestId(), $publicationFormat->getBestId(), $submissionFile->getBestId()), array('inline' => true)),
+			'downloadUrl' => $dispatcher->url($request, ROUTE_PAGE, null, null, 'download', array($publishedSubmission->getBestId(), $publicationFormat->getBestId(), $submissionFile->getBestId()), array('inline' => true)),
 		));
 
 
-		return parent::displaySubmissionFile($publishedMonograph, $publicationFormat, $submissionFile);
+		return parent::displaySubmissionFile($publishedSubmission, $publicationFormat, $submissionFile);
 	}
 
 	/**
@@ -91,12 +91,12 @@ class PdfJsViewerPlugin extends ViewableFilePlugin {
 	 * @return boolean
 	 */
 	function downloadCallback($hookName, $params) {
-		$publishedMonograph =& $params[1];
+		$publishedSubmission =& $params[1];
 		$publicationFormat =& $params[2];
 		$submissionFile =& $params[3];
 		$inline =& $params[4];
 
-		if ($this->canHandle($publishedMonograph, $publicationFormat, $submissionFile) && Request::getUserVar('inline')) {
+		if ($this->canHandle($publishedSubmission, $publicationFormat, $submissionFile) && Request::getUserVar('inline')) {
 			// Turn on the inline flag to ensure that the content
 			// disposition header doesn't foil the PDF embedding
 			// plugin.

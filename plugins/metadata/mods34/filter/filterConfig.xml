@@ -17,14 +17,14 @@
 			symbolic="monograph=>mods34"
 			displayName="plugins.metadata.mods34.monographAdapter.displayName"
 			description="plugins.metadata.mods34.monographAdapter.description"
-			inputType="class::classes.monograph.Monograph"
+			inputType="class::classes.monograph.Submission"
 			outputType="metadata::plugins.metadata.mods34.schema.Mods34Schema(MONOGRAPH)" />
 		<filterGroup
 			symbolic="mods34=>monograph"
 			displayName="plugins.metadata.mods34.monographAdapter.displayName"
 			description="plugins.metadata.mods34.monographAdapter.description"
 			inputType="metadata::plugins.metadata.mods34.schema.Mods34Schema(MONOGRAPH)"
-			outputType="class::classes.monograph.Monograph" />
+			outputType="class::classes.monograph.Submission" />
 	</filterGroups>
 	<filters>
 		<!-- MODS 3.4 monograph adapters -->

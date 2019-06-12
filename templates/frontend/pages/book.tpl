@@ -9,18 +9,18 @@
  *
  * @uses $representationId int Publication format ID
  * @uses $availableFiles array List of available MonographFiles
- * @uses $publishedMonograph PublishedMonograph The published monograph object.
+ * @uses $publishedSubmission PublishedSubmission The published monograph object.
  * @uses $series Series The series this monograph is assigned to, if any.
  *}
-{include file="frontend/components/header.tpl" pageTitleTranslated=$publishedMonograph->getLocalizedFullTitle()}
+{include file="frontend/components/header.tpl" pageTitleTranslated=$publishedSubmission->getLocalizedFullTitle()}
 
 <div class="page page_book">
 
 	{* Display book details *}
-	{include file="frontend/objects/monograph_full.tpl" monograph=$publishedMonograph}
+	{include file="frontend/objects/monograph_full.tpl" monograph=$publishedSubmission}
 
 	{* Display Dublin Core metadata *}
-	{include file="frontend/objects/monograph_dublinCore.tpl" monograph=$publishedMonograph}
+	{include file="frontend/objects/monograph_dublinCore.tpl" monograph=$publishedSubmission}
 
 </div><!-- .page -->
 

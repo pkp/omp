@@ -20,7 +20,7 @@ class CoverHandler extends PKPHandler {
 	var $_press;
 
 	/** @var The group ID for this listbuilder */
-	var $monographId;
+	var $submissionId;
 
 	/**
 	 * Constructor
@@ -36,17 +36,17 @@ class CoverHandler extends PKPHandler {
 	 * @param $roleAssignments array
 	 */
 	function authorize($request, &$args, $roleAssignments) {
-		import('classes.security.authorization.OmpPublishedMonographAccessPolicy');
-		$this->addPolicy(new OmpPublishedMonographAccessPolicy($request, $args, $roleAssignments, 'submissionId', false));
+		import('classes.security.authorization.OmpPublishedSubmissionAccessPolicy');
+		$this->addPolicy(new OmpPublishedSubmissionAccessPolicy($request, $args, $roleAssignments, 'submissionId', false));
 		return parent::authorize($request, $args, $roleAssignments);
 	}
 
 	/**
 	 * Set the monograph ID
-	 * @param $monographId int
+	 * @param $submissionId int
 	 */
-	function setMonographId($monographId) {
-		$this->monographId = $monographId;
+	function setMonographId($submissionId) {
+		$this->monographId = $submissionId;
 	}
 
 	/**
@@ -80,10 +80,10 @@ class CoverHandler extends PKPHandler {
 		// this function is only used on the book page i.e. for published monographes
 		$monograph = $this->getAuthorizedContextObject(ASSOC_TYPE_MONOGRAPH);
 
-		$publishedMonographDao = DAORegistry::getDAO('PublishedMonographDAO');
-		$publishedMonograph = $publishedMonographDao->getById($monograph->getId(), null, false);
+		$publishedSubmissionDao = DAORegistry::getDAO('PublishedSubmissionDAO');
+		$publishedSubmission = $publishedSubmissionDao->getById($monograph->getId(), null, false);
 
-		if (!$coverImage = $publishedMonograph->getCoverImage()) {
+		if (!$coverImage = $publishedSubmission->getCoverImage()) {
 			// Can't use Request::redirectUrl; FireFox doesn't
 			// seem to like it for images.
 			header('Location: ' . $request->getBaseUrl() . '/templates/images/book-default.png');
@@ -91,7 +91,7 @@ class CoverHandler extends PKPHandler {
 		}
 
 		import('classes.file.SimpleMonographFileManager');
-		$simpleMonographFileManager = new SimpleMonographFileManager($publishedMonograph->getPressId(), $publishedMonograph->getId());
+		$simpleMonographFileManager = new SimpleMonographFileManager($publishedSubmission->getPressId(), $publishedSubmission->getId());
 		$simpleMonographFileManager->downloadFile($simpleMonographFileManager->getBasePath() . $coverImage['name'], null, true);
 	}
 
@@ -103,10 +103,10 @@ class CoverHandler extends PKPHandler {
 		// i.e. also if the monograph has not been published yet
 		$monograph = $this->getAuthorizedContextObject(ASSOC_TYPE_MONOGRAPH);
 
-		$publishedMonographDao = DAORegistry::getDAO('PublishedMonographDAO');
-		$publishedMonograph = $publishedMonographDao->getById($monograph->getId(), null, false);
+		$publishedSubmissionDao = DAORegistry::getDAO('PublishedSubmissionDAO');
+		$publishedSubmission = $publishedSubmissionDao->getById($monograph->getId(), null, false);
 
-		if (!$publishedMonograph || !$coverImage = $publishedMonograph->getCoverImage()) {
+		if (!$publishedSubmission || !$coverImage = $publishedSubmission->getCoverImage()) {
 			// Can't use Request::redirectUrl; FireFox doesn't
 			// seem to like it for images.
 			header('Location: ' . $request->getBaseUrl() . '/templates/images/book-default-small.png');
@@ -114,7 +114,7 @@ class CoverHandler extends PKPHandler {
 		}
 
 		import('classes.file.SimpleMonographFileManager');
-		$simpleMonographFileManager = new SimpleMonographFileManager($publishedMonograph->getPressId(), $publishedMonograph->getId());
+		$simpleMonographFileManager = new SimpleMonographFileManager($publishedSubmission->getPressId(), $publishedSubmission->getId());
 		$simpleMonographFileManager->downloadFile($simpleMonographFileManager->getBasePath() . $coverImage['thumbnailName'], null, true);
 	}
 
