@@ -33,6 +33,10 @@
 		{fbvElement type="text" name="subtitle" id="subtitle" value=$subtitle maxlength="255" multilingual=true}
 	{/fbvFormSection}
 
+	{fbvFormSection title="metadata.property.displayName.abstract" for="abstract"}
+	{fbvElement type="textarea" name="abstract" id="abstract" value=$abstract  rich="extended" multilingual=true}
+	{/fbvFormSection}
+
 	{fbvFormSection}
 		<!--  Chapter Contributors -->
 		{capture assign=chapterAuthorUrl}{url router=$smarty.const.ROUTE_COMPONENT component="listbuilder.users.ChapterAuthorListbuilderHandler" op="fetch" submissionId=$submissionId chapterId=$chapterId escape=false}{/capture}
