@@ -83,7 +83,7 @@ class ChapterDAO extends DAO implements PKPPubIdPluginDAO {
 	 * @return array
 	 */
 	function getLocaleFieldNames() {
-		return array('title', 'subtitle');
+		return array('title', 'subtitle','abstract');
 	}
 
 	/**
