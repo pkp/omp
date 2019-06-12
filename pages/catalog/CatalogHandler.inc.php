@@ -54,7 +54,7 @@ class CatalogHandler extends PKPCatalogHandler {
 		$context = $request->getContext();
 
 		import('lib.pkp.classes.submission.Submission'); // STATUS_ constants
-		import('classes.monograph.PublishedMonographDAO'); // ORDERBY_ constants
+		import('classes.monograph.PublishedSubmissionDAO'); // ORDERBY_ constants
 
 		$orderOption = $context->getData('catalogSortOption') ? $context->getData('catalogSortOption') : ORDERBY_DATE_PUBLISHED . '-' . SORT_DIRECTION_DESC;
 		list($orderBy, $orderDir) = explode('-', $orderOption);
@@ -75,16 +75,16 @@ class CatalogHandler extends PKPCatalogHandler {
 			'status' => STATUS_PUBLISHED,
 			'returnObject' => SUBMISSION_RETURN_PUBLISHED,
 		);
-		$publishedMonographs = $submissionService->getMany($params);
+		$publishedSubmissions = $submissionService->getMany($params);
 		$total = $submissionService->getMax($context->getId(), $params);
 
 		$featureDao = DAORegistry::getDAO('FeatureDAO');
 		$featuredMonographIds = $featureDao->getSequencesByAssoc(ASSOC_TYPE_PRESS, $context->getId());
 
-		$this->_setupPaginationTemplate($request, $publishedMonographs, $page, $count, $offset, $total);
+		$this->_setupPaginationTemplate($request, $publishedSubmissions, $page, $count, $offset, $total);
 
 		$templateMgr->assign(array(
-			'publishedMonographs' => $publishedMonographs,
+			'publishedSubmissions' => $publishedSubmissions,
 			'featuredMonographIds' => $featuredMonographIds,
 		));
 
@@ -104,7 +104,7 @@ class CatalogHandler extends PKPCatalogHandler {
 		// Provide a list of new releases to browse
 		$newReleaseDao = DAORegistry::getDAO('NewReleaseDAO');
 		$newReleases = $newReleaseDao->getMonographsByAssoc(ASSOC_TYPE_PRESS, $press->getId());
-		$templateMgr->assign('publishedMonographs', $newReleases);
+		$templateMgr->assign('publishedSubmissions', $newReleases);
 
 		// Display
 		$templateMgr->display('frontend/pages/catalogNewReleases.tpl');
@@ -135,7 +135,7 @@ class CatalogHandler extends PKPCatalogHandler {
 
 		$this->setupTemplate($request);
 		import('lib.pkp.classes.submission.Submission'); // STATUS_ constants
-		import('classes.monograph.PublishedMonographDAO'); // ORDERBY_ constants
+		import('classes.monograph.PublishedSubmissionDAO'); // ORDERBY_ constants
 
 		$orderOption = $series->getSortOption() ? $series->getSortOption() : ORDERBY_DATE_PUBLISHED . '-' . SORT_DIRECTION_DESC;
 		list($orderBy, $orderDir) = explode('-', $orderOption);
@@ -157,7 +157,7 @@ class CatalogHandler extends PKPCatalogHandler {
 			'status' => STATUS_PUBLISHED,
 			'returnObject' => SUBMISSION_RETURN_PUBLISHED,
 		);
-		$publishedMonographs = $submissionService->getMany($params);
+		$publishedSubmissions = $submissionService->getMany($params);
 		$total = $submissionService->getMax($context->getId(), $params);
 
 		$featureDao = DAORegistry::getDAO('FeatureDAO');
@@ -170,11 +170,11 @@ class CatalogHandler extends PKPCatalogHandler {
 			$newReleases = $newReleaseDao->getMonographsByAssoc(ASSOC_TYPE_SERIES, $series->getId());
 		}
 
-		$this->_setupPaginationTemplate($request, $publishedMonographs, $page, $count, $offset, $total);
+		$this->_setupPaginationTemplate($request, $publishedSubmissions, $page, $count, $offset, $total);
 
 		$templateMgr->assign(array(
 			'series' => $series,
-			'publishedMonographs' => $publishedMonographs,
+			'publishedSubmissions' => $publishedSubmissions,
 			'featuredMonographIds' => $featuredMonographIds,
 			'newReleasesMonographs' => $newReleases,
 		));
@@ -202,14 +202,14 @@ class CatalogHandler extends PKPCatalogHandler {
 		$error = null;
 		$resultsIterator = $monographSearch->retrieveResults($request, $press, array(null => $query), $error);
 
-		$publishedMonographs = array();
+		$publishedSubmissions = array();
 		while ($result = $resultsIterator->next()) {
-			$publishedMonograph = $result['publishedMonograph'];
-			if ($publishedMonograph) {
-				$publishedMonographs[$publishedMonograph->getId()] = $publishedMonograph;
+			$publishedSubmission = $result['publishedSubmission'];
+			if ($publishedSubmission) {
+				$publishedSubmissions[$publishedSubmission->getId()] = $publishedSubmission;
 			}
 		}
-		$templateMgr->assign('publishedMonographs', $publishedMonographs);
+		$templateMgr->assign('publishedSubmissions', $publishedSubmissions);
 
 		// Display
 		$templateMgr->display('frontend/pages/searchResults.tpl');
@@ -309,15 +309,15 @@ class CatalogHandler extends PKPCatalogHandler {
 	/**
 	 * Assign the pagination template variables
 	 * @param $request PKPRequest
-	 * @param $publishedMonographs array Monographs being shown
+	 * @param $publishedSubmissions array Monographs being shown
 	 * @param $page int Page number being shown
 	 * @param $count int Max number of monographs being shown
 	 * @param $offset int Starting position of monographs
 	 * @param $total int Total number of monographs available
 	 */
-	public function _setupPaginationTemplate($request, $publishedMonographs, $page, $count, $offset, $total) {
+	public function _setupPaginationTemplate($request, $publishedSubmissions, $page, $count, $offset, $total) {
 		$showingStart = $offset + 1;
-		$showingEnd = min($offset + $count, $offset + count($publishedMonographs));
+		$showingEnd = min($offset + $count, $offset + count($publishedSubmissions));
 		$nextPage = $total > $showingEnd ? $page + 1 : null;
 		$prevPage = $showingStart > 1 ? $page - 1 : null;
 

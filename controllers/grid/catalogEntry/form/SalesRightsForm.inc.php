@@ -182,7 +182,7 @@ class SalesRightsForm extends Form {
 		$publicationFormat = $publicationFormatDao->getById($this->getData('representationId'), $monograph->getId());
 
 		if (!$salesRights) {
-			// this is a new assigned format to this published monograph
+			// this is a new assigned format to this published submission
 			$salesRights = $salesRightsDao->newDataObject();
 			$existingFormat = false;
 			if ($publicationFormat != null) { // ensure this assigned format is in this monograph

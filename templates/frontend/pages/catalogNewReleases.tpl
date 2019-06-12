@@ -7,7 +7,7 @@
  *
  * @brief Display the page to view new release in the catalog.
  *
- * @uses $publishedMonographs array List of published monographs in this category
+ * @uses $publishedSubmissions array List of published submissions in this category
  *}
 {include file="frontend/components/header.tpl" pageTitle="catalog.newReleases"}
 
@@ -18,15 +18,15 @@
 
 	{* Count of new releases being dispalyed *}
 	<div class="monograph_count">
-		{translate key="catalog.browseTitles" numTitles=$publishedMonographs|@count}
+		{translate key="catalog.browseTitles" numTitles=$publishedSubmissions|@count}
 	</div>
 
 	{* No published titles in this category *}
-	{if empty($publishedMonographs)}
+	{if empty($publishedSubmissions)}
 		<p>{translate key="catalog.noTitlesNew"}</p>
 
 	{else}
-		{include file="frontend/components/monographList.tpl" monographs=$publishedMonographs}
+		{include file="frontend/components/monographList.tpl" monographs=$publishedSubmissions}
 
 	{/if}
 

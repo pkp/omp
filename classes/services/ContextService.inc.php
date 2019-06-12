@@ -52,7 +52,7 @@ class ContextService extends \PKP\Services\PKPContextService {
 		$request = $args[3];
 
 		// If the context is enabled or disabled, create or delete publication
-		// format tombstones for all published monographs
+		// format tombstones for all published submissions
 		if ($newContext->getData('enabled') !== $currentContext->getData('enabled')) {
 			import('classes.publicationFormat.PublicationFormatTombstoneManager');
 			$publicationFormatTombstoneMgr = new \PublicationFormatTombstoneManager();
@@ -86,7 +86,7 @@ class ContextService extends \PKP\Services\PKPContextService {
 	public function beforeDeleteContext($hookName, $args) {
 		$context = $args[0];
 
-		// Create publication format tombstones for all published monographs
+		// Create publication format tombstones for all published submissions
 		import('classes.publicationFormat.PublicationFormatTombstoneManager');
 		$publicationFormatTombstoneMgr = new \PublicationFormatTombstoneManager();
 		$publicationFormatTombstoneMgr->insertTombstonesByPress($context);
@@ -161,12 +161,12 @@ class ContextService extends \PKP\Services\PKPContextService {
 		$objectDaos = [
 			\DAORegistry::getDAO('CategoryDAO'),
 			\DAORegistry::getDAO('SeriesDAO'),
-			\DAORegistry::getDAO('PublishedMonographDAO'),
+			\DAORegistry::getDAO('PublishedSubmissionDAO'),
 		];
 		foreach ($objectDaos as $objectDao) {
 			$objects = $objectDao->getByPressId($context->getID());
 			while ($object = $objects->next()) {
-				if (is_a($object, 'PublishedMonograph')) {
+				if (is_a($object, 'PublishedSubmission')) {
 					$cover = $object->getCoverImage();
 					$simpleMonographFileManager = new \SimpleMonographFileManager($context->getId(), $object->getId());
 					$basePath = $simpleMonographFileManager->getBasePath();
@@ -213,7 +213,7 @@ class ContextService extends \PKP\Services\PKPContextService {
 					}
 
 					imagedestroy($thumbnail);
-					if (is_a($object, 'PublishedMonograph')) {
+					if (is_a($object, 'PublishedSubmission')) {
 						$object->setCoverImage(array(
 							'name' => $cover['name'],
 							'width' => $cover['width'],

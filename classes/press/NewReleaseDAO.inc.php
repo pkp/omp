@@ -64,10 +64,10 @@ class NewReleaseDAO extends DAO {
 		);
 
 		$returner = array();
-		$publishedMonographDao = DAORegistry::getDAO('PublishedMonographDAO');
+		$publishedSubmissionDao = DAORegistry::getDAO('PublishedSubmissionDAO');
 		while (!$result->EOF) {
 			list($monographId) = $result->fields;
-			$returner[] = $publishedMonographDao->getBySubmissionId($monographId);
+			$returner[] = $publishedSubmissionDao->getBySubmissionId($monographId);
 			$result->MoveNext();
 		}
 		$result->Close();

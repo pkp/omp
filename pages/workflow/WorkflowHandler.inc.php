@@ -82,11 +82,11 @@ class WorkflowHandler extends PKPWorkflowHandler {
 	* @see PKPWorkflowHandler::isSubmissionReady()
 	*/
 	protected function isSubmissionReady($monograph) {
-		$publishedMonographDao = DAORegistry::getDAO('PublishedMonographDAO');
-		$publishedMonograph = $publishedMonographDao->getBySubmissionId($monograph->getId());
-		if ($publishedMonograph) {
-			// first check, there's a published monograph
-			$publicationFormats = $publishedMonograph->getPublicationFormats(true);
+		$publishedSubmissionDao = DAORegistry::getDAO('PublishedSubmissionDAO');
+		$publishedSubmission = $publishedSubmissionDao->getBySubmissionId($monograph->getId());
+		if ($publishedSubmission) {
+			// first check, there's a published submission
+			$publicationFormats = $publishedSubmission->getPublicationFormats(true);
 			$submissionFileDao = DAORegistry::getDAO('SubmissionFileDAO');
 			import('lib.pkp.classes.submission.SubmissionFile'); // constants
 
@@ -97,7 +97,7 @@ class WorkflowHandler extends PKPWorkflowHandler {
 
 					$monographFiles = $submissionFileDao->getLatestRevisionsByAssocId(
 					ASSOC_TYPE_PUBLICATION_FORMAT, $format->getId(),
-					$publishedMonograph->getId()
+					$publishedSubmission->getId()
 					);
 
 					foreach ($monographFiles as $file) {

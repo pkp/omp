@@ -8,14 +8,14 @@
  * @brief Display the page to view books in a series in the catalog.
  *
  * @uses $series Series Current series being viewed
- * @uses $publishedMonographs array List of published monographs in this series
+ * @uses $publishedSubmissions array List of published submissions in this series
  * @uses $featuredMonographIds array List of featured monograph IDs in this series
  * @uses $newReleasesMonographs array List of new monographs in this series
  * @uses $prevPage int The previous page number
  * @uses $nextPage int The next page number
  * @uses $showingStart int The number of the first item on this page
  * @uses $showingEnd int The number of the last item on this page
- * @uses $total int Count of all published monographs in this series
+ * @uses $total int Count of all published submissions in this series
  *}
 {include file="frontend/components/header.tpl" pageTitleTranslated=$series->getLocalizedTitle()|escape}
 
@@ -54,7 +54,7 @@
 	</div>
 
 	{* No published titles in this category *}
-	{if empty($publishedMonographs)}
+	{if empty($publishedSubmissions)}
 		<h2>
 			{translate key="catalog.category.heading"}
 		</h2>
@@ -68,7 +68,7 @@
 		{/if}
 
 		{* All monographs *}
-		{include file="frontend/components/monographList.tpl" monographs=$publishedMonographs featured=$featuredMonographIds titleKey="catalog.category.heading"}
+		{include file="frontend/components/monographList.tpl" monographs=$publishedSubmissions featured=$featuredMonographIds titleKey="catalog.category.heading"}
 
 		{* Pagination *}
 		{if $prevPage > 1}

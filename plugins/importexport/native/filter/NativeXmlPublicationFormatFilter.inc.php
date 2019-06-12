@@ -127,14 +127,14 @@ class NativeXmlPublicationFormatFilter extends NativeXmlRepresentationFilter {
 		$this->_extractMeasureContent($node, $onixDeployment, $representation);
 		$this->_extractExtentContent($node, $onixDeployment, $representation);
 
-		// if this is a published monograph, extract the Audience elements and store them.
-		$publishedMonographDao = DAORegistry::getDAO('PublishedMonographDAO');
-		$publishedMonograph = $publishedMonographDao->getBySubmissionId($representation->getSubmissionId());
-		if ($publishedMonograph) {
-			$publishedMonograph->setAudience($this->_extractTextFromNode($node, $onixDeployment, 'AudienceCodeType'));
-			$publishedMonograph->setAudienceRangeQualifier($this->_extractTextFromNode($node, $onixDeployment, 'AudienceRangeQualifier'));
+		// if this is a published submission, extract the Audience elements and store them.
+		$publishedSubmissionDao = DAORegistry::getDAO('PublishedSubmissionDAO');
+		$publishedSubmission = $publishedSubmissionDao->getBySubmissionId($representation->getSubmissionId());
+		if ($publishedSubmission) {
+			$publishedSubmission->setAudience($this->_extractTextFromNode($node, $onixDeployment, 'AudienceCodeType'));
+			$publishedSubmission->setAudienceRangeQualifier($this->_extractTextFromNode($node, $onixDeployment, 'AudienceRangeQualifier'));
 			$this->_extractAudienceRangeContent($node, $onixDeployment, $representation);
-			$publishedMonographDao->updateObject($publishedMonograph);
+			$publishedSubmissionDao->updateObject($publishedSubmission);
 		}
 
 		// Things below here require a publication format id since they are dependent on the PublicationFormat.

@@ -121,16 +121,16 @@ class MarketForm extends Form {
 			'taxTypeCodes' => $onixCodelistItemDao->getCodes('List171'), // VAT, GST
 		));
 
-		$publishedMonographDao = DAORegistry::getDAO('PublishedMonographDAO');
-		$publishedMonograph = $publishedMonographDao->getBySubmissionId($monograph->getId());
-		$availableAgents = $publishedMonograph->getAgents();
+		$publishedSubmissionDao = DAORegistry::getDAO('PublishedSubmissionDAO');
+		$publishedSubmission = $publishedSubmissionDao->getBySubmissionId($monograph->getId());
+		$availableAgents = $publishedSubmission->getAgents();
 		$agentOptions = array();
 		while ($agent = $availableAgents->next()) {
 			$agentOptions[$agent->getId()] = $agent->getName();
 		}
 		$templateMgr->assign('availableAgents', $agentOptions);
 
-		$availableSuppliers = $publishedMonograph->getSuppliers();
+		$availableSuppliers = $publishedSubmission->getSuppliers();
 		$supplierOptions = array();
 		while ($supplier = $availableSuppliers->next()) {
 			$supplierOptions[$supplier->getId()] = $supplier->getName();
@@ -218,7 +218,7 @@ class MarketForm extends Form {
 		$publicationFormat = $publicationFormatDao->getById($this->getData('representationId'), $monograph->getId());
 
 		if (!$market) {
-			// this is a new assigned format to this published monograph
+			// this is a new assigned format to this published submission
 			$market = $marketDao->newDataObject();
 			$existingFormat = false;
 			if ($publicationFormat != null) { // ensure this assigned format is in this monograph

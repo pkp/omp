@@ -1,20 +1,20 @@
 <?php
 /**
- * @file classes/security/authorization/OmpPublishedMonographRequiredPolicy.inc.php
+ * @file classes/security/authorization/OmpPublishedSubmissionRequiredPolicy.inc.php
  *
  * Copyright (c) 2014-2019 Simon Fraser University
  * Copyright (c) 2000-2019 John Willinsky
  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
  *
- * @class OmpPublishedMonographRequiredPolicy
+ * @class OmpPublishedSubmissionRequiredPolicy
  * @ingroup security_authorization_internal
  *
- * @brief Policy that ensures that the request contains a valid published monograph.
+ * @brief Policy that ensures that the request contains a valid published submission.
  */
 
 import('lib.pkp.classes.security.authorization.DataObjectRequiredPolicy');
 
-class OmpPublishedMonographRequiredPolicy extends DataObjectRequiredPolicy {
+class OmpPublishedSubmissionRequiredPolicy extends DataObjectRequiredPolicy {
 	/** @var Context */
 	var $context;
 
@@ -27,7 +27,7 @@ class OmpPublishedMonographRequiredPolicy extends DataObjectRequiredPolicy {
 	 * @param $operations array
 	 */
 	function __construct($request, &$args, $submissionParameterName = 'submissionId', $operations = null) {
-		parent::__construct($request, $args, $submissionParameterName, 'user.authorization.invalidPublishedMonograph', $operations);
+		parent::__construct($request, $args, $submissionParameterName, 'user.authorization.invalidPublishedSubmission', $operations);
 		$this->context = $request->getContext();
 	}
 
@@ -38,16 +38,16 @@ class OmpPublishedMonographRequiredPolicy extends DataObjectRequiredPolicy {
 	 * @see DataObjectRequiredPolicy::dataObjectEffect()
 	 */
 	function dataObjectEffect() {
-		$publishedMonographId = $this->getDataObjectId();
-		if (!$publishedMonographId) return AUTHORIZATION_DENY;
+		$publishedSubmissionId = $this->getDataObjectId();
+		if (!$publishedSubmissionId) return AUTHORIZATION_DENY;
 
-		// Make sure the published monographs belongs to the press.
-		$publishedMonographDao = DAORegistry::getDAO('PublishedMonographDAO');
-		$publishedMonograph = $publishedMonographDao->getByBestId($publishedMonographId,  $this->context->getId());
-		if (!is_a($publishedMonograph, 'PublishedMonograph')) return AUTHORIZATION_DENY;
+		// Make sure the published submissions belongs to the press.
+		$publishedSubmissionDao = DAORegistry::getDAO('PublishedSubmissionDAO');
+		$publishedSubmission = $publishedSubmissionDao->getByBestId($publishedSubmissionId,  $this->context->getId());
+		if (!is_a($publishedSubmission, 'PublishedSubmission')) return AUTHORIZATION_DENY;
 
-		// Save the published monograph to the authorization context.
-		$this->addAuthorizedContextObject(ASSOC_TYPE_PUBLISHED_MONOGRAPH, $publishedMonograph);
+		// Save the published submission to the authorization context.
+		$this->addAuthorizedContextObject(ASSOC_TYPE_PUBLISHED_MONOGRAPH, $publishedSubmission);
 		return AUTHORIZATION_PERMIT;
 	}
 

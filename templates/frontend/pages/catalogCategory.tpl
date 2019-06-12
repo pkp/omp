@@ -8,7 +8,7 @@
  * @brief Display the page to view a category of the catalog.
  *
  * @uses $category Category Current category being viewed
- * @uses $publishedSubmissions array List of published monographs in this category
+ * @uses $publishedSubmissions array List of published submissions in this category
  * @uses $featuredMonographIds array List of featured monograph IDs in this category
  * @uses $newReleasesMonographs array List of new monographs in this category
  * @uses $parentCategory Category Parent category if one exists
@@ -19,7 +19,7 @@
  * @uses $nextPage int The next page number
  * @uses $showingStart int The number of the first item on this page
  * @uses $showingEnd int The number of the last item on this page
- * @uses $total int Count of all published monographs in this category
+ * @uses $total int Count of all published submissions in this category
  *}
 {include file="frontend/components/header.tpl" pageTitleTranslated=$category->getLocalizedTitle()|escape}
 

@@ -60,7 +60,7 @@ class HtmlMonographFilePlugin extends GenericPlugin {
 	 * @return boolean
 	 */
 	function viewCallback($hookName, $params) {
-		$publishedMonograph =& $params[1];
+		$publishedSubmission =& $params[1];
 		$publicationFormat =& $params[2];
 		$submissionFile =& $params[3];
 		$inline =& $params[4];
@@ -78,7 +78,7 @@ class HtmlMonographFilePlugin extends GenericPlugin {
 			);
 			$templateMgr->assign(array(
 				'pluginUrl' => $request->getBaseUrl() . '/' . $this->getPluginPath(),
-				'monograph' => $publishedMonograph,
+				'monograph' => $publishedSubmission,
 				'publicationFormat' => $publicationFormat,
 				'downloadFile' => $submissionFile,
 			));
@@ -95,15 +95,15 @@ class HtmlMonographFilePlugin extends GenericPlugin {
 	 * @param array $args
 	 */
 	function downloadCallback($hookName, $params) {
-		$publishedMonograph =& $params[1];
+		$publishedSubmission =& $params[1];
 		$publicationFormat =& $params[2];
 		$submissionFile =& $params[3];
 		$inline =& $params[4];
 		$request = Application::get()->getRequest();
 
 		if ($submissionFile && $submissionFile->getFileType() == 'text/html') {
-			if (!HookRegistry::call('HtmlMonographFilePlugin::monographDownload', array(&$this, &$publishedMonograph, &$publicationFormat, &$submissionFile, &$inline))) {
-				echo $this->_getHTMLContents($request, $publishedMonograph, $publicationFormat, $submissionFile);
+			if (!HookRegistry::call('HtmlMonographFilePlugin::monographDownload', array(&$this, &$publishedSubmission, &$publicationFormat, &$submissionFile, &$inline))) {
+				echo $this->_getHTMLContents($request, $publishedSubmission, $publicationFormat, $submissionFile);
 				$returner = true;
 				HookRegistry::call('HtmlMonographFilePlugin::monographDownloadFinished', array(&$returner));
 				return true;

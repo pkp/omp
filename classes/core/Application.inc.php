@@ -109,7 +109,7 @@ class Application extends PKPApplication {
 			'ProductionAssignmentDAO' => 'classes.submission.productionAssignment.ProductionAssignmentDAO',
 			'PublicationDateDAO' => 'classes.publicationFormat.PublicationDateDAO',
 			'PublicationFormatDAO' => 'classes.publicationFormat.PublicationFormatDAO',
-			'PublishedMonographDAO' => 'classes.monograph.PublishedMonographDAO',
+			'PublishedSubmissionDAO' => 'classes.monograph.PublishedSubmissionDAO',
 			'QualifierDAO' => 'classes.codelist.QualifierDAO',
 			'RepresentativeDAO' => 'classes.monograph.RepresentativeDAO',
 			'ReviewerSubmissionDAO' => 'classes.submission.reviewer.ReviewerSubmissionDAO',
@@ -169,7 +169,7 @@ class Application extends PKPApplication {
 	 * Get the published submission DAO.
 	 */
 	public static function getPublishedSubmissionDAO() {
-		return DAORegistry::getDAO('PublishedMonographDAO');
+		return DAORegistry::getDAO('PublishedSubmissionDAO');
 	}
 
 	/**

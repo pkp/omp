@@ -1,5 +1,5 @@
 config.inc.php
-.DS_Store/
+.DS_Store
 build
 temp
 /files

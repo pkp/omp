@@ -139,7 +139,7 @@ class PublicationFormatForm extends Form {
 		$monograph = $this->getMonograph();
 		$publicationFormat = $this->getPublicationFormat();
 		if (!$publicationFormat) {
-			// this is a new format to this published monograph
+			// this is a new format to this published submission
 			$publicationFormat = $publicationFormatDao->newDataObject();
 			$publicationFormat->setMonographId($monograph->getId());
 			$existingFormat = false;

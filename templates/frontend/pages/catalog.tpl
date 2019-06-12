@@ -7,12 +7,12 @@
  *
  * @brief Display the page to view the catalog.
  *
- * @uses $publishedMonographs array List of published monographs
+ * @uses $publishedSubmissions array List of published submissions
  * @uses $prevPage int The previous page number
  * @uses $nextPage int The next page number
  * @uses $showingStart int The number of the first item on this page
  * @uses $showingEnd int The number of the last item on this page
- * @uses $total int Count of all published monographs
+ * @uses $total int Count of all published submissions
  *}
 {include file="frontend/components/header.tpl" pageTitle="navigation.catalog"}
 
@@ -23,7 +23,7 @@
 	</div>
 
 	{* No published titles *}
-	{if !$publishedMonographs|@count}
+	{if !$publishedSubmissions|@count}
 		<h2>
 			{translate key="catalog.category.heading"}
 		</h2>
@@ -31,7 +31,7 @@
 
 	{* Monograph List *}
 	{else}
-		{include file="frontend/components/monographList.tpl" monographs=$publishedMonographs featured=$featuredMonographIds}
+		{include file="frontend/components/monographList.tpl" monographs=$publishedSubmissions featured=$featuredMonographIds}
 
 		{* Pagination *}
 		{if $prevPage > 1}

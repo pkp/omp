@@ -1,26 +1,26 @@
 <?php
 
 /**
- * @file classes/monograph/PublishedMonographDAO.inc.php
+ * @file classes/monograph/PublishedSubmissionDAO.inc.php
  *
  * Copyright (c) 2014-2019 Simon Fraser University
  * Copyright (c) 2003-2019 John Willinsky
  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
  *
- * @class PublishedMonographDAO
+ * @class PublishedSubmissionDAO
  * @ingroup monograph
- * @see PublishedMonograph
+ * @see PublishedSubmission
  *
- * @brief Operations for retrieving and modifying PublishedMonograph objects.
+ * @brief Operations for retrieving and modifying PublishedSubmission objects.
  */
 
-import('classes.monograph.PublishedMonograph');
+import('classes.monograph.PublishedSubmission');
 import('classes.monograph.MonographDAO');
 import('lib.pkp.classes.core.ArrayItemIterator');
 
-class PublishedMonographDAO extends MonographDAO {
+class PublishedSubmissionDAO extends MonographDAO {
 	/**
-	 * Retrieve all published monographs in a press.
+	 * Retrieve all published submissions in a press.
 	 * @param $pressId int The monograhps press id.
 	 * @param $searchText string optional Search text for title and authors.
 	 * @param $rangeInfo DBResultRange optional Object with result range information.
@@ -36,7 +36,7 @@ class PublishedMonographDAO extends MonographDAO {
 
 
 	/**
-	 * Retrieve all published monographs associated with the passed series id.
+	 * Retrieve all published submissions associated with the passed series id.
 	 * @param $seriesId int The series id monographs are associated with.
 	 * @param $pressId int The monograhps press id.
 	 * @param $searchText string optional Search text for title and authors.
@@ -52,7 +52,7 @@ class PublishedMonographDAO extends MonographDAO {
 	}
 
 	/**
-	 * Retrieve all published monographs associated with the passed category id.
+	 * Retrieve all published submissions associated with the passed category id.
 	 * @param $seriesId int The category id monographs are associated with.
 	 * @param $pressId int The monograhps press id.
 	 * @param $searchText string optional Search text for title and authors.
@@ -97,11 +97,11 @@ class PublishedMonographDAO extends MonographDAO {
 	}
 
 	/**
-	 * Retrieve Published Monograph by monograph id
+	 * Retrieve Published Submission by monograph id
 	 * @param $monographId int
 	 * @param $pressId int
 	 * @param $metadataApprovedOnly boolean
-	 * @return PublishedMonograph object
+	 * @return PublishedSubmission object
 	 */
 	function getBySubmissionId($monographId, $pressId = null, $metadataApprovedOnly = true, $submissionVersion = null) {
 		$params = $this->getFetchParameters();
@@ -136,7 +136,7 @@ class PublishedMonographDAO extends MonographDAO {
 	}
 
 	/**
-	 * Find published monographs by querying monograph settings.
+	 * Find published submissions by querying monograph settings.
 	 * @param $settingName string
 	 * @param $settingValue mixed
 	 * @param $pressId int optional
@@ -176,87 +176,87 @@ class PublishedMonographDAO extends MonographDAO {
 		$sql .= ' ORDER BY s.submission_id';
 		$result = $this->retrieve($sql, $params);
 
-		$publishedMonographs = array();
+		$publishedSubmissions = array();
 		while (!$result->EOF) {
-			$publishedMonographs[] = $this->_fromRow($result->GetRowAssoc(false));
+			$publishedSubmissions[] = $this->_fromRow($result->GetRowAssoc(false));
 			$result->MoveNext();
 		}
 		$result->Close();
 
-		return $publishedMonographs;
+		return $publishedSubmissions;
 	}
 
 	/**
-	 * Retrieve published monograph by public monograph ID
+	 * Retrieve published submission by public monograph ID
 	 * @param $pubIdType string One of the NLM pub-id-type values or
 	 * 'other::something' if not part of the official NLM list
 	 * (see <http://dtd.nlm.nih.gov/publishing/tag-library/n-4zh0.html>).
 	 * @param $pubId string
 	 * @param $pressId int
-	 * @return PublishedMonograph|null
+	 * @return PublishedSubmission|null
 	 */
 	function getByPubId($pubIdType, $pubId, $pressId = null) {
-		$publishedMonograph = null;
+		$publishedSubmission = null;
 		if (!empty($pubId)) {
-			$publishedMonographs = $this->getBySetting('pub-id::'.$pubIdType, $pubId, $pressId);
-			if (!empty($publishedMonographs)) {
-				assert(count($publishedMonographs) == 1);
-				$publishedMonograph = $publishedMonographs[0];
+			$publishedSubmissions = $this->getBySetting('pub-id::'.$pubIdType, $pubId, $pressId);
+			if (!empty($publishedSubmissions)) {
+				assert(count($publishedSubmissions) == 1);
+				$publishedSubmission = $publishedSubmissions[0];
 			}
 		}
-		return $publishedMonograph;
+		return $publishedSubmission;
 	}
 
 	/**
-	 * Retrieve published monograph by public monograph ID or, failing that,
+	 * Retrieve published submission by public monograph ID or, failing that,
 	 * internal monograph ID; public monograph ID takes precedence.
 	 * @param $monographId string
 	 * @param $pressId int
-	 * @return PublishedMonograph|null
+	 * @return PublishedSubmission|null
 	 */
 	function getByBestId($monographId, $pressId, $submissionVersion = null) {
-		$publishedMonograph = null;
-		if ($monographId != '') $publishedMonograph = $this->getByPubId('publisher-id', $monographId, $pressId);
-		if (!isset($publishedMonograph) && ctype_digit("$monographId")) $publishedMonograph = $this->getBySubmissionId((int) $monographId, $pressId, true, $submissionVersion);
-		return $publishedMonograph;
+		$publishedSubmission = null;
+		if ($monographId != '') $publishedSubmission = $this->getByPubId('publisher-id', $monographId, $pressId);
+		if (!isset($publishedSubmission) && ctype_digit("$monographId")) $publishedSubmission = $this->getBySubmissionId((int) $monographId, $pressId, true, $submissionVersion);
+		return $publishedSubmission;
 	}
 
 	/**
 	 * Generate and return a new data object.
-	 * @return PublishedMonograph
+	 * @return PublishedSubmission
 	 */
 	function newDataObject() {
-		return new PublishedMonograph();
+		return new PublishedSubmission();
 	}
 
 	/**
-	 * Inserts a new published monograph into published_submissions table
-	 * @param PublishedMonograph object
+	 * Inserts a new published submission into published_submissions table
+	 * @param PublishedSubmission object
 	 */
-	function insertObject($publishedMonograph) {
+	function insertObject($publishedSubmission) {
 
 		$this->update(
 			sprintf('INSERT INTO published_submissions
 				(submission_id, date_published, audience, audience_range_qualifier, audience_range_from, audience_range_to, audience_range_exact, cover_image, published_submission_version, is_current_submission_version)
 				VALUES
 				(?, %s, ?, ?, ?, ?, ?, ?, ?, ?)',
-				$this->datetimeToDB($publishedMonograph->getDatePublished())),
+				$this->datetimeToDB($publishedSubmission->getDatePublished())),
 			array(
-				(int) $publishedMonograph->getId(),
-				$publishedMonograph->getAudience(),
-				$publishedMonograph->getAudienceRangeQualifier(),
-				$publishedMonograph->getAudienceRangeFrom(),
-				$publishedMonograph->getAudienceRangeTo(),
-				$publishedMonograph->getAudienceRangeExact(),
-				serialize($publishedMonograph->getCoverImage() ? $publishedMonograph->getCoverImage() : array()),
-				$publishedMonograph->getSubmissionVersion(),
-				$publishedMonograph->getIsCurrentSubmissionVersion(),
+				(int) $publishedSubmission->getId(),
+				$publishedSubmission->getAudience(),
+				$publishedSubmission->getAudienceRangeQualifier(),
+				$publishedSubmission->getAudienceRangeFrom(),
+				$publishedSubmission->getAudienceRangeTo(),
+				$publishedSubmission->getAudienceRangeExact(),
+				serialize($publishedSubmission->getCoverImage() ? $publishedSubmission->getCoverImage() : array()),
+				$publishedSubmission->getSubmissionVersion(),
+				$publishedSubmission->getIsCurrentSubmissionVersion(),
 			)
 		);
 	}
 
 	/**
-	 * Removes an published monograph by monograph id
+	 * Removes an published submission by monograph id
 	 * @param monographId int
 	 */
 	function deleteById($monographId) {
@@ -267,10 +267,10 @@ class PublishedMonographDAO extends MonographDAO {
 	}
 
 	/**
-	 * Update a published monograph
-	 * @param PublishedMonograph object
+	 * Update a published submission
+	 * @param PublishedSubmission object
 	 */
-	function updateObject($publishedMonograph) {
+	function updateObject($publishedSubmission) {
 		$this->update(
 			sprintf('UPDATE	published_submissions
 				SET	date_published = %s,
@@ -282,46 +282,46 @@ class PublishedMonographDAO extends MonographDAO {
 					cover_image = ?,
 					is_current_submission_version = ?
 				WHERE	submission_id = ? AND published_submission_version = ?',
-				$this->datetimeToDB($publishedMonograph->getDatePublished())),
+				$this->datetimeToDB($publishedSubmission->getDatePublished())),
 			array(
-				$publishedMonograph->getAudience(),
-				$publishedMonograph->getAudienceRangeQualifier(),
-				$publishedMonograph->getAudienceRangeFrom(),
-				$publishedMonograph->getAudienceRangeTo(),
-				$publishedMonograph->getAudienceRangeExact(),
-				serialize($publishedMonograph->getCoverImage() ? $publishedMonograph->getCoverImage() : array()),
-				(int) $publishedMonograph->getIsCurrentSubmissionVersion(),
-				(int) $publishedMonograph->getId(),
-				(int) $publishedMonograph->getSubmissionVersion(),
+				$publishedSubmission->getAudience(),
+				$publishedSubmission->getAudienceRangeQualifier(),
+				$publishedSubmission->getAudienceRangeFrom(),
+				$publishedSubmission->getAudienceRangeTo(),
+				$publishedSubmission->getAudienceRangeExact(),
+				serialize($publishedSubmission->getCoverImage() ? $publishedSubmission->getCoverImage() : array()),
+				(int) $publishedSubmission->getIsCurrentSubmissionVersion(),
+				(int) $publishedSubmission->getId(),
+				(int) $publishedSubmission->getSubmissionVersion(),
 			)
 		);
 	}
 
 	/**
-	 * Creates and returns a published monograph object from a row
+	 * Creates and returns a published submission object from a row
 	 * @param $row array
-	 * @return PublishedMonograph object
+	 * @return PublishedSubmission object
 	 */
 	function _fromRow($row, $submissionVersion = null) {
-		// Get the PublishedMonograph object, populated with Monograph data
-		$publishedMonograph = parent::_fromRow($row, $submissionVersion);
+		// Get the PublishedSubmission object, populated with Monograph data
+		$publishedSubmission = parent::_fromRow($row, $submissionVersion);
 
-		// Add the additional PublishedMonograph data
-		$publishedMonograph->setDatePublished($this->datetimeFromDB($row['date_published']));
-		$publishedMonograph->setAudience($row['audience']);
-		$publishedMonograph->setAudienceRangeQualifier($row['audience_range_qualifier']);
-		$publishedMonograph->setAudienceRangeFrom($row['audience_range_from']);
-		$publishedMonograph->setAudienceRangeTo($row['audience_range_to']);
-		$publishedMonograph->setAudienceRangeExact($row['audience_range_exact']);
-		$publishedMonograph->setCoverImage(unserialize($row['cover_image']));
-		$publishedMonograph->setSubmissionVersion($row['published_submission_version']);
-		$publishedMonograph->setCurrentSubmissionVersion($row['published_submission_version']);
-		$publishedMonograph->setIsCurrentSubmissionVersion($row['is_current_submission_version']);
+		// Add the additional PublishedSubmission data
+		$publishedSubmission->setDatePublished($this->datetimeFromDB($row['date_published']));
+		$publishedSubmission->setAudience($row['audience']);
+		$publishedSubmission->setAudienceRangeQualifier($row['audience_range_qualifier']);
+		$publishedSubmission->setAudienceRangeFrom($row['audience_range_from']);
+		$publishedSubmission->setAudienceRangeTo($row['audience_range_to']);
+		$publishedSubmission->setAudienceRangeExact($row['audience_range_exact']);
+		$publishedSubmission->setCoverImage(unserialize($row['cover_image']));
+		$publishedSubmission->setSubmissionVersion($row['published_submission_version']);
+		$publishedSubmission->setCurrentSubmissionVersion($row['published_submission_version']);
+		$publishedSubmission->setIsCurrentSubmissionVersion($row['is_current_submission_version']);
 
-		HookRegistry::call('PublishedMonographDAO::_fromRow', array(&$publishedMonograph, &$row));
-		$this->getDataObjectSettings('submission_settings', 'submission_id', $publishedMonograph->getId(), $publishedMonograph, $publishedMonograph->getSubmissionVersion());
+		HookRegistry::call('PublishedSubmissionDAO::_fromRow', array(&$publishedSubmission, &$row));
+		$this->getDataObjectSettings('submission_settings', 'submission_id', $publishedSubmission->getId(), $publishedSubmission, $publishedSubmission->getSubmissionVersion());
 
-		return $publishedMonograph;
+		return $publishedSubmission;
 	}
 
 
@@ -329,7 +329,7 @@ class PublishedMonographDAO extends MonographDAO {
 	// Private helper methods.
 	//
 	/**
-	 * Retrieve all published monographs by associated object.
+	 * Retrieve all published submissions by associated object.
 	 * @param $pressId int The monograhps press id.
 	 * @param $assocType int The associated object type.
 	 * @param $assocId int The associated object id.

@@ -52,7 +52,7 @@ class SubmissionQueryBuilder extends \PKP\Services\QueryBuilders\PKPSubmissionQu
 	 */
 	public function orderBy($column, $direction = 'DESC') {
 		// Bring in orderby constants
-		import('classes.monograph.PublishedMonographDAO');
+		import('classes.monograph.PublishedSubmissionDAO');
 		switch ($column) {
 			case ORDERBY_DATE_PUBLISHED:
 				$this->orderColumn = 'ps.date_published';

@@ -67,7 +67,7 @@ class CatalogEntryHandler extends PublicationEntryHandler {
 
 		$submission = $this->getSubmission();
 
-		// load in any publication formats assigned to this published monograph
+		// load in any publication formats assigned to this published submission
 		$publicationFormatDao = DAORegistry::getDAO('PublicationFormatDAO');
 		$formats = $publicationFormatDao->getBySubmission($submission);
 		$publicationFormats = array();

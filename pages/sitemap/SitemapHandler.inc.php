@@ -30,27 +30,27 @@ class SitemapHandler extends PKPSitemapHandler {
 		// Catalog
 		$root->appendChild($this->_createUrlTree($doc, $request->url($press->getPath(), 'catalog')));
 
-		$publishedMonographDao = DAORegistry::getDAO('PublishedMonographDAO');
+		$publishedSubmissionDao = DAORegistry::getDAO('PublishedSubmissionDAO');
 		$submissionFileDao = DAORegistry::getDAO('SubmissionFileDAO');
-		$publishedMonographsResult = $publishedMonographDao->getByPressId($pressId);
-		while ($publishedMonograph = $publishedMonographsResult->next()) {
+		$publishedSubmissionsResult = $publishedSubmissionDao->getByPressId($pressId);
+		while ($publishedSubmission = $publishedSubmissionsResult->next()) {
 			// Book
-			$root->appendChild($this->_createUrlTree($doc, $request->url($press->getPath(), 'catalog', 'view', array($publishedMonograph->getBestId()))));
+			$root->appendChild($this->_createUrlTree($doc, $request->url($press->getPath(), 'catalog', 'view', array($publishedSubmission->getBestId()))));
 			// Files
 			// Get publication formats
-			$publicationFormats = $publishedMonograph->getPublicationFormats(true);
+			$publicationFormats = $publishedSubmission->getPublicationFormats(true);
 			foreach ($publicationFormats as $format) {
 				// Consider only available publication formats
 				if ($format->getIsAvailable()) {
 					// Consider only available publication format files
 					$availableFiles = array_filter(
-						$submissionFileDao->getLatestRevisionsByAssocId(ASSOC_TYPE_PUBLICATION_FORMAT, $format->getId(), $publishedMonograph->getId()),
+						$submissionFileDao->getLatestRevisionsByAssocId(ASSOC_TYPE_PUBLICATION_FORMAT, $format->getId(), $publishedSubmission->getId()),
 						function($a) {
 							return $a->getDirectSalesPrice() !== null;
 						}
 					);
 					foreach ($availableFiles as $file) {
-						$root->appendChild($this->_createUrlTree($doc, $request->url($press->getPath(), 'catalog', 'view', array($publishedMonograph->getBestId(), $format->getBestId(), $file->getBestId()))));
+						$root->appendChild($this->_createUrlTree($doc, $request->url($press->getPath(), 'catalog', 'view', array($publishedSubmission->getBestId(), $format->getBestId(), $file->getBestId()))));
 					}
 				}
 			}

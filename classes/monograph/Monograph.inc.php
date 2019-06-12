@@ -188,10 +188,10 @@ class Monograph extends Submission {
 				break;
 			case PERMISSIONS_FIELD_COPYRIGHT_YEAR:
 				$fieldValue = date('Y');
-				$publishedMonographDao = DAORegistry::getDAO('PublishedMonographDAO');
-				$publishedMonograph = $publishedMonographDao->getBySubmissionId($this->getId());
-				if ($publishedMonograph) {
-					$fieldValue = date('Y', strtotime($publishedMonograph->getDatePublished()));
+				$publishedSubmissionDao = DAORegistry::getDAO('PublishedSubmissionDAO');
+				$publishedSubmission = $publishedSubmissionDao->getBySubmissionId($this->getId());
+				if ($publishedSubmission) {
+					$fieldValue = date('Y', strtotime($publishedSubmission->getDatePublished()));
 				}
 				break;
 			default: assert(false);

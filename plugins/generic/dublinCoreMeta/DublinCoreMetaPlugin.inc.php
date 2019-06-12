@@ -68,7 +68,7 @@ class DublinCoreMetaPlugin extends GenericPlugin {
 			$templateMgr->addHeader('dublinCoreAuthor' . $i++, '<meta name="DC.Creator.PersonalName" content="' . htmlspecialchars($author->getFullName(false)) . '"/>');
 		}
 
-		if (is_a($monograph, 'PublishedMonograph') && ($datePublished = $monograph->getDatePublished())) {
+		if (is_a($monograph, 'PublishedSubmission') && ($datePublished = $monograph->getDatePublished())) {
 			$templateMgr->addHeader('dublinCoreDateCreated', '<meta name="DC.Date.created" scheme="ISO8601" content="' . strftime('%Y-%m-%d', strtotime($datePublished)) . '"/>');
 		}
 		$templateMgr->addHeader('dublinCoreDateSubmitted', '<meta name="DC.Date.dateSubmitted" scheme="ISO8601" content="' . strftime('%Y-%m-%d', strtotime($monograph->getDateSubmitted())) . '"/>');
@@ -157,7 +157,7 @@ class DublinCoreMetaPlugin extends GenericPlugin {
 			$templateMgr->addHeader('dublinCoreAuthor' . $i++, '<meta name="DC.Creator.PersonalName" content="' . htmlspecialchars($author->getFullName(false)) . '"/>');
 		}
 
-		if (is_a($monograph, 'PublishedMonograph') && ($datePublished = $monograph->getDatePublished())) {
+		if (is_a($monograph, 'PublishedSubmission') && ($datePublished = $monograph->getDatePublished())) {
 			$templateMgr->addHeader('dublinCoreDateCreated', '<meta name="DC.Date.created" scheme="ISO8601" content="' . strftime('%Y-%m-%d', strtotime($datePublished)) . '"/>');
 		}
 		$templateMgr->addHeader('dublinCoreDateSubmitted', '<meta name="DC.Date.dateSubmitted" scheme="ISO8601" content="' . strftime('%Y-%m-%d', strtotime($monograph->getDateSubmitted())) . '"/>');

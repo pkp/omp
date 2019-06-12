@@ -244,7 +244,7 @@ class CatalogEntryFormatMetadataForm extends Form {
 		$monograph = $this->getMonograph();
 		$publicationFormat = $this->getPublicationFormat();
 
-		// populate the published monograph with the cataloging metadata
+		// populate the published submission with the cataloging metadata
 		$publicationFormat->setFileSize($this->getData('override') ? $this->getData('fileSize'):null);
 		$publicationFormat->setFrontMatter($this->getData('frontMatter'));
 		$publicationFormat->setBackMatter($this->getData('backMatter'));
