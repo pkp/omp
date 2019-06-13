@@ -54,7 +54,7 @@ class PressDAO extends ContextDAO {
 	 * (see <http://dtd.nlm.nih.gov/publishing/tag-library/n-4zh0.html>).
 	 */
 	function deleteAllPubIds($pressId, $pubIdType) {
-		$pubObjectDaos = array('MonographDAO', 'ChapterDAO', 'PublicationFormatDAO');
+		$pubObjectDaos = array('SubmissionDAO', 'ChapterDAO', 'PublicationFormatDAO');
 		foreach($pubObjectDaos as $daoName) {
 			$dao = DAORegistry::getDAO($daoName);
 			$dao->deleteAllPubIds($pressId, $pubIdType);

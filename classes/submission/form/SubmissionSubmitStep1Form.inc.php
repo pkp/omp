@@ -14,7 +14,7 @@
  */
 
 import('lib.pkp.classes.submission.form.PKPSubmissionSubmitStep1Form');
-import('classes.monograph.Monograph'); // WORK_TYPE_... constants for form
+import('classes.monograph.Submission'); // WORK_TYPE_... constants for form
 
 class SubmissionSubmitStep1Form extends PKPSubmissionSubmitStep1Form {
 	/**

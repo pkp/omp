@@ -15,13 +15,13 @@
  */
 
 
-import('classes.monograph.Monograph');
+import('classes.monograph.Submission');
 
 // Access status
 define('ARTICLE_ACCESS_ISSUE_DEFAULT', 0);
 define('ARTICLE_ACCESS_OPEN', 1);
 
-class PublishedSubmission extends Monograph {
+class PublishedSubmission extends Submission {
 	/**
 	 * Get views of the published submission.
 	 * @return int

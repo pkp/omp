@@ -5,17 +5,17 @@
  */
 
 /**
- * @file classes/monograph/Monograph.inc.php
+ * @file classes/monograph/Submission.inc.php
  *
  * Copyright (c) 2014-2019 Simon Fraser University
  * Copyright (c) 2003-2019 John Willinsky
  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
  *
- * @class Monograph
+ * @class Submission
  * @ingroup monograph
- * @see MonographDAO
+ * @see SubmissionDAO
  *
- * @brief Class for a Monograph.
+ * @brief Class for a Submission.
  */
 
 define('WORK_TYPE_EDITED_VOLUME', 1);
@@ -24,7 +24,7 @@ define('WORK_TYPE_AUTHORED_WORK', 2);
 import('lib.pkp.classes.submission.PKPSubmission');
 import('classes.monograph.Author');
 
-class Monograph extends PKPSubmission {
+class Submission extends PKPSubmission {
 	/**
 	 * get press id
 	 * @return int

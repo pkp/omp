@@ -15,10 +15,10 @@
  */
 
 import('classes.monograph.PublishedSubmission');
-import('classes.monograph.MonographDAO');
+import('classes.monograph.SubmissionDAO');
 import('lib.pkp.classes.core.ArrayItemIterator');
 
-class PublishedSubmissionDAO extends MonographDAO {
+class PublishedSubmissionDAO extends SubmissionDAO {
 	/**
 	 * Retrieve all published submissions in a press.
 	 * @param $pressId int The monograhps press id.

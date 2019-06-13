@@ -19,7 +19,7 @@ import('lib.pkp.classes.submission.SubmissionFileDAO');
 import('lib.pkp.classes.submission.SubmissionArtworkFileDAODelegate');
 import('lib.pkp.classes.submission.SubmissionFile');
 import('lib.pkp.classes.submission.SubmissionArtworkFile');
-import('classes.monograph.MonographDAO');
+import('classes.monograph.SubmissionDAO');
 import('lib.pkp.classes.submission.Genre');
 import('lib.pkp.classes.submission.reviewRound.ReviewRound');
 import('lib.pkp.classes.db.DBResultRange');
@@ -60,17 +60,17 @@ class SubmissionFileDAOTest extends DatabaseTestCase {
 		Registry::get('request', true, $mockRequest);
 
 		// Register a mock monograph DAO.
-		$monographDao = $this->getMockBuilder(MonographDAO::class)
+		$submissionDao = $this->getMockBuilder(SubmissionDAO::class)
 			->setMethods(array('getById'))
 			->getMock();
 		$monograph = new Monograph();
 		$monograph->setId(SUBMISSION_FILE_DAO_TEST_SUBMISSION_ID);
 		$monograph->setPressId(SUBMISSION_FILE_DAO_TEST_PRESS_ID);
 		$monograph->setLocale('en_US');
-		$monographDao->expects($this->any())
+		$submissionDao->expects($this->any())
 			->method('getById')
 			->will($this->returnValue($monograph));
-		DAORegistry::registerDAO('MonographDAO', $monographDao);
+		DAORegistry::registerDAO('SubmissionDAO', $submissionDao);
 
 		// Register a mock genre DAO.
 		$genreDao = $this->getMockBuilder(GenreDAO::class)
@@ -113,17 +113,17 @@ class SubmissionFileDAOTest extends DatabaseTestCase {
 		$submission->setLocale('en_US');
 		$submissionId = $submissionDao->insertObject($submission);
 
-		$monographDao = $this->getMockBuilder(MonographDAO::class)
+		$submissionDao = $this->getMockBuilder(SubmissionDAO::class)
 			->setMethods(array('getById'))
 			->getMock();
 		$monograph = new Monograph();
 		$monograph->setId($submissionId);
 		$monograph->setPressId(SUBMISSION_FILE_DAO_TEST_PRESS_ID);
 		$monograph->setLocale('en_US');
-		$monographDao->expects($this->any())
+		$submissionDao->expects($this->any())
 			->method('getById')
 			->will($this->returnValue($monograph));
-		DAORegistry::registerDAO('MonographDAO', $monographDao);
+		DAORegistry::registerDAO('SubmissionDAO', $submissionDao);
 
 		// Create two test files, one monograph file one artwork file.
 		$file1Rev1 = new SubmissionArtworkFile();

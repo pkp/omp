@@ -49,7 +49,7 @@ class Upgrade extends Installer {
 	 */
 	function fixFilenames($upgrade, $params, $dryrun = false) {
 		$pressDao = DAORegistry::getDAO('PressDAO');
-		$submissionDao = DAORegistry::getDAO('MonographDAO');
+		$submissionDao = DAORegistry::getDAO('SubmissionDAO');
 		$submissionFileDao = DAORegistry::getDAO('SubmissionFileDAO');
 		DAORegistry::getDAO('GenreDAO'); // Load constants
 		$siteDao = DAORegistry::getDAO('SiteDAO'); /* @var $siteDao SiteDAO */

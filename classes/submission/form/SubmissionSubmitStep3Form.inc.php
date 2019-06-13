@@ -79,7 +79,7 @@ class SubmissionSubmitStep3Form extends PKPSubmissionSubmitStep3Form {
 
 		$categoryId = $newRowId['name'];
 		$categoryDao = DAORegistry::getDAO('CategoryDAO');
-		$submissionDao = DAORegistry::getDAO('MonographDAO');
+		$submissionDao = DAORegistry::getDAO('SubmissionDAO');
 		$context = $request->getContext();
 		$submission = $this->submission;
 
@@ -98,7 +98,7 @@ class SubmissionSubmitStep3Form extends PKPSubmissionSubmitStep3Form {
 	function deleteEntry($request, $rowId) {
 		if ($rowId) {
 			$categoryDao = DAORegistry::getDAO('CategoryDAO');
-			$submissionDao = DAORegistry::getDAO('MonographDAO');
+			$submissionDao = DAORegistry::getDAO('SubmissionDAO');
 			$category = $categoryDao->getById($rowId);
 			if (!is_a($category, 'Category')) {
 				assert(false);

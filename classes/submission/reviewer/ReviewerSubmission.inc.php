@@ -14,9 +14,9 @@
  * @brief ReviewerSubmission class.
  */
 
-import('classes.monograph.Monograph');
+import('classes.monograph.Submission');
 
-class ReviewerSubmission extends Monograph {
+class ReviewerSubmission extends Submission {
 
 	/** @var array SubmissionFile reviewer file revisions of this submission */
 	var $reviewerFileRevisions;
