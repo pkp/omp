@@ -63,7 +63,7 @@ class SubmissionFileDAOTest extends DatabaseTestCase {
 		$submissionDao = $this->getMockBuilder(SubmissionDAO::class)
 			->setMethods(array('getById'))
 			->getMock();
-		$monograph = new Monograph();
+		$monograph = new Submission();
 		$monograph->setId(SUBMISSION_FILE_DAO_TEST_SUBMISSION_ID);
 		$monograph->setPressId(SUBMISSION_FILE_DAO_TEST_PRESS_ID);
 		$monograph->setLocale('en_US');
@@ -116,7 +116,7 @@ class SubmissionFileDAOTest extends DatabaseTestCase {
 		$submissionDao = $this->getMockBuilder(SubmissionDAO::class)
 			->setMethods(array('getById'))
 			->getMock();
-		$monograph = new Monograph();
+		$monograph = new Submission();
 		$monograph->setId($submissionId);
 		$monograph->setPressId(SUBMISSION_FILE_DAO_TEST_PRESS_ID);
 		$monograph->setLocale('en_US');
