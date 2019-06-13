@@ -57,7 +57,7 @@ class SelectMonographHandler extends Handler {
 		$templateMgr = TemplateManager::getManager($request);
 
 		// import STATUS_* constants
-		import('lib.pkp.classes.submission.Submission');
+		import('lib.pkp.classes.submission.PKPSubmission');
 		$selectNewEntryListPanel = new \PKP\components\listPanels\PKPSelectSubmissionsListPanel(
 			'selectNewEntryListPanel',
 			__('submission.catalogEntry.select'),

@@ -21,10 +21,10 @@
 define('WORK_TYPE_EDITED_VOLUME', 1);
 define('WORK_TYPE_AUTHORED_WORK', 2);
 
-import('lib.pkp.classes.submission.Submission');
+import('lib.pkp.classes.submission.PKPSubmission');
 import('classes.monograph.Author');
 
-class Monograph extends Submission {
+class Monograph extends PKPSubmission {
 	/**
 	 * get press id
 	 * @return int

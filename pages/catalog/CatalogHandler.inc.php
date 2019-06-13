@@ -53,7 +53,7 @@ class CatalogHandler extends PKPCatalogHandler {
 		$this->setupTemplate($request);
 		$context = $request->getContext();
 
-		import('lib.pkp.classes.submission.Submission'); // STATUS_ constants
+		import('lib.pkp.classes.submission.PKPSubmission'); // STATUS_ constants
 		import('classes.monograph.PublishedSubmissionDAO'); // ORDERBY_ constants
 
 		$orderOption = $context->getData('catalogSortOption') ? $context->getData('catalogSortOption') : ORDERBY_DATE_PUBLISHED . '-' . SORT_DIRECTION_DESC;
@@ -134,7 +134,7 @@ class CatalogHandler extends PKPCatalogHandler {
 		}
 
 		$this->setupTemplate($request);
-		import('lib.pkp.classes.submission.Submission'); // STATUS_ constants
+		import('lib.pkp.classes.submission.PKPSubmission'); // STATUS_ constants
 		import('classes.monograph.PublishedSubmissionDAO'); // ORDERBY_ constants
 
 		$orderOption = $series->getSortOption() ? $series->getSortOption() : ORDERBY_DATE_PUBLISHED . '-' . SORT_DIRECTION_DESC;
