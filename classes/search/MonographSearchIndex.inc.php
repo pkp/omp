@@ -197,7 +197,7 @@ class MonographSearchIndex extends SubmissionSearchIndex {
 
 		// Build index
 		$pressDao = DAORegistry::getDAO('PressDAO');
-		$monographDao = DAORegistry::getDAO('MonographDAO');
+		$submissionDao = DAORegistry::getDAO('SubmissionDAO');
 
 		$presses = $pressDao->getAll();
 		while ($press = $presses->next()) {
@@ -205,7 +205,7 @@ class MonographSearchIndex extends SubmissionSearchIndex {
 
 			if ($log) echo "Indexing \"", $press->getLocalizedName(), "\" ... ";
 
-			$monographs = $monographDao->getByPressId($press->getId());
+			$monographs = $submissionDao->getByPressId($press->getId());
 			while (!$monographs->eof()) {
 				$monograph = $monographs->next();
 				if ($monograph->getDatePublished()) {

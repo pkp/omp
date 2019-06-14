@@ -58,8 +58,8 @@ class CatalogEntryCatalogMetadataForm extends Form {
 			$submissionVersion = $formParams['submissionVersion'];
 		}
 
-		$monographDao = DAORegistry::getDAO('MonographDAO');
-		$this->_monograph = $monographDao->getById($monographId, null, false, $submissionVersion);
+		$submissionDao = DAORegistry::getDAO('SubmissionDAO');
+		$this->_monograph = $submissionDao->getById($monographId, null, false, $submissionVersion);
 
 		$this->_stageId = $stageId;
 		$this->_formParams = $formParams;
@@ -261,7 +261,7 @@ class CatalogEntryCatalogMetadataForm extends Form {
 		parent::execute();
 
 		$monograph = $this->getMonograph();
-		$monographDao = DAORegistry::getDAO('MonographDAO');
+		$submissionDao = DAORegistry::getDAO('SubmissionDAO');
 		$publishedSubmissionDao = DAORegistry::getDAO('PublishedSubmissionDAO'); /** @var $publishedSubmissionDao PublishedSubmissionDAO */
 		$publishedSubmission = $publishedSubmissionDao->getBySubmissionId($monograph->getId(), null, false, $monograph->getSubmissionVersion()); /** @var $publishedSubmission PublishedSubmission */
 		$previousPublishedSubmission = $publishedSubmissionDao->getBySubmissionId($monograph->getId(), null, false, $monograph->getSubmissionVersion() - 1);
@@ -363,7 +363,7 @@ class CatalogEntryCatalogMetadataForm extends Form {
 		}
 		$monograph->setWorkType($this->getData('workType'));
 
-		$monographDao->updateObject($monograph);
+		$submissionDao->updateObject($monograph);
 
 		// Update the modified fields or insert new.
 		if ($isExistingEntry) {

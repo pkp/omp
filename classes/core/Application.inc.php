@@ -97,7 +97,7 @@ class Application extends PKPApplication {
 			'LayoutAssignmentDAO' => 'submission.layoutAssignment.LayoutAssignmentDAO',
 			'MarketDAO' => 'classes.publicationFormat.MarketDAO',
 			'MetricsDAO' => 'lib.pkp.classes.statistics.PKPMetricsDAO',
-			'MonographDAO' => 'classes.monograph.MonographDAO',
+			'SubmissionDAO' => 'classes.monograph.SubmissionDAO',
 			'MonographFileEmailLogDAO' => 'classes.log.MonographFileEmailLogDAO',
 			'MonographSearchDAO' => 'classes.search.MonographSearchDAO',
 			'NewReleaseDAO' => 'classes.press.NewReleaseDAO',
@@ -162,7 +162,7 @@ class Application extends PKPApplication {
 	 * Get the submission DAO.
 	 */
 	public static function getSubmissionDAO() {
-		return DAORegistry::getDAO('MonographDAO');
+		return DAORegistry::getDAO('SubmissionDAO');
 	}
 
 	/**

@@ -1,25 +1,25 @@
 <?php
 
 /**
- * @file classes/monograph/MonographDAO.inc.php
+ * @file classes/monograph/SubmissionDAO.inc.php
  *
  * Copyright (c) 2014-2019 Simon Fraser University
  * Copyright (c) 2003-2019 John Willinsky
  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
  *
- * @class MonographDAO
+ * @class SubmissionDAO
  * @ingroup monograph
  * @see Monograph
  *
  * @brief Operations for retrieving and modifying Monograph objects.
  */
 
-import('classes.monograph.Monograph');
-import('lib.pkp.classes.submission.SubmissionDAO');
+import('classes.monograph.Submission');
+import('lib.pkp.classes.submission.PKPSubmissionDAO');
 
 define('ORDERBY_SERIES_POSITION', 'seriesPosition');
 
-class MonographDAO extends SubmissionDAO {
+class SubmissionDAO extends PKPSubmissionDAO {
 	/**
 	 * Get a list of fields for which localized data is supported
 	 * @return array
@@ -56,7 +56,7 @@ class MonographDAO extends SubmissionDAO {
 		$monograph->setSeriesTitle($row['series_title']);
 		$monograph->setWorkType($row['edited_volume']);
 
-		HookRegistry::call('MonographDAO::_fromRow', array(&$monograph, &$row));
+		HookRegistry::call('SubmissionDAO::_fromRow', array(&$monograph, &$row));
 
 		return $monograph;
 	}
@@ -66,7 +66,7 @@ class MonographDAO extends SubmissionDAO {
 	 * @return Monograph
 	 */
 	function newDataObject() {
-		return new Monograph();
+		return new Submission();
 	}
 
 	/**
@@ -151,7 +151,7 @@ class MonographDAO extends SubmissionDAO {
 	}
 
 	/**
-	 * @copydoc SubmissionDAO::deleteById
+	 * @copydoc PKPSubmissionDAO::deleteById
 	 */
 	function deleteById($submissionId) {
 		parent::deleteById($submissionId);
@@ -243,7 +243,7 @@ class MonographDAO extends SubmissionDAO {
 	}
 
 	/**
-	 * @copydoc SubmissionDAO::getFetchParameters()
+	 * @copydoc PKPSubmissionDAO::getFetchParameters()
 	 */
 	protected function getFetchParameters() {
 		$primaryLocale = AppLocale::getPrimaryLocale();
@@ -255,14 +255,14 @@ class MonographDAO extends SubmissionDAO {
 	}
 
 	/**
-	 * @copydoc SubmissionDAO::getFetchColumns()
+	 * @copydoc PKPSubmissionDAO::getFetchColumns()
 	 */
 	protected function getFetchColumns() {
 		return 'COALESCE(stl.setting_value, stpl.setting_value) AS series_title';
 	}
 
 	/**
-	 * @copydoc SubmissionDAO::getFetchJoins()
+	 * @copydoc PKPSubmissionDAO::getFetchJoins()
 	 */
 	protected function getFetchJoins() {
 		return 'LEFT JOIN series se ON se.series_id = s.series_id
@@ -271,21 +271,21 @@ class MonographDAO extends SubmissionDAO {
 	}
 
 	/**
-	 * @copydoc SubmissionDAO::getSubEditorJoin()
+	 * @copydoc PKPSubmissionDAO::getSubEditorJoin()
  	 */
 	protected function getSubEditorJoin() {
 		return 'JOIN series_editors se ON (se.press_id = s.context_id AND se.user_id = ? AND se.series_id = s.series_id)';
 	}
 
 	/**
-	 * @copydoc SubmissionDAO::getGroupByColumns()
+	 * @copydoc PKPSubmissionDAO::getGroupByColumns()
 	 */
 	protected function getGroupByColumns() {
 		return 's.submission_id, ps.date_published, stl.setting_value, stpl.setting_value';
 	}
 
 	/**
-	 * @copydoc SubmissionDAO::getCompletionConditions()
+	 * @copydoc PKPSubmissionDAO::getCompletionConditions()
 	 */
 	protected function getCompletionConditions($completed) {
 		return ' ps.date_published IS ' . ($completed?'NOT ':'') . 'NULL ';

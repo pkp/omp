@@ -107,8 +107,8 @@ class ContextService extends \PKP\Services\PKPContextService {
 		$seriesDao = \DAORegistry::getDAO('SeriesDAO');
 		$seriesDao->deleteByPressId($context->getId());
 
-		$monographDao = \DAORegistry::getDAO('MonographDAO');
-		$monographDao->deleteByContextId($context->getId());
+		$submissionDao = \DAORegistry::getDAO('SubmissionDAO');
+		$submissionDao->deleteByContextId($context->getId());
 
 		$featureDao = \DAORegistry::getDAO('FeatureDAO');
 		$featureDao->deleteByAssoc(ASSOC_TYPE_PRESS, $context->getId());

@@ -50,14 +50,14 @@ class CatalogEntryFormatMetadataForm extends Form {
 	 */
 	function __construct($monographId, $representationId, $isPhysicalFormat = true, $remoteURL = null, $stageId = null, $formParams = null) {
 		parent::__construct('controllers/tab/catalogEntry/form/publicationMetadataFormFields.tpl');
-		$monographDao = DAORegistry::getDAO('MonographDAO');
+		$submissionDao = DAORegistry::getDAO('SubmissionDAO');
 
 		$submissionVersion = null;
 		if (isset($formParams) && array_key_exists("submissionVersion", $formParams)) {
 			$submissionVersion = $formParams["submissionVersion"];
 		}
 
-		$this->_monograph = $monographDao->getById($monographId, null, false, $submissionVersion);
+		$this->_monograph = $submissionDao->getById($monographId, null, false, $submissionVersion);
 
 		$publicationFormatDao = DAORegistry::getDAO('PublicationFormatDAO');
 		$this->_publicationFormat = $publicationFormatDao->getById($representationId, $monographId);
