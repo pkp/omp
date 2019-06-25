@@ -234,6 +234,23 @@ class Monograph extends Submission {
 	function setCoverImageAltText($coverImageAltText) {
 		$this->setData('coverImageAltText', $coverImageAltText);
 	}
+
+	/**
+	 * Return onlineFirst status
+	 * @return int
+	 */
+	function getOnlineFirst() {
+		return $this->getData('onlineFirst');
+	}
+
+	/**
+	 * Set  onlineFirst status
+	 * @param $onlineFirst int
+	 */
+	function setOnlineFirst($onlineFirst) {
+		$this->setData('onlineFirst', $onlineFirst);
+	}
+
 }
 
 

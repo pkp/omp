@@ -67,10 +67,12 @@ class CatalogEntryCatalogMetadataForm extends Form {
 	 */
 	function fetch($request, $template = null, $display = false) {
 		$templateMgr = TemplateManager::getManager($request);
+		$isOnlineFirst = (int) $this->getMonograph()->getOnlineFirst() == 1;
 		$templateMgr->assign('submissionId', $this->getMonograph()->getId());
 		$templateMgr->assign('stageId', $this->getStageId());
 		$templateMgr->assign('formParams', $this->getFormParams());
 		$templateMgr->assign('datePublished', $this->getMonograph()->getDatePublished());
+		$templateMgr->assign('onlineFirst',$isOnlineFirst) ;
 
 		$onixCodelistItemDao = DAORegistry::getDAO('ONIXCodelistItemDAO');
 
@@ -206,7 +208,7 @@ class CatalogEntryCatalogMetadataForm extends Form {
 			'audience', 'audienceRangeQualifier', 'audienceRangeFrom', 'audienceRangeTo', 'audienceRangeExact',
 			'copyrightYear', 'copyrightHolder', 'licenseURL', 'attachPermissions',
 			'temporaryFileId', // Cover image
-			'confirm', 'datePublished',
+			'confirm', 'datePublished','onlineFirst',
 			'workType', 'volumeEditors',
 		);
 
@@ -253,6 +255,7 @@ class CatalogEntryCatalogMetadataForm extends Form {
 			$publishedMonograph->setId($monograph->getId());
 		}
 		$monograph->setDatePublished($this->getData('datePublished'));
+		$monograph->setOnlineFirst($this->getData('onlineFirst'));
 
 		if ($this->getData('workType') == WORK_TYPE_EDITED_VOLUME) {
 			$volumeEditors = $this->getData('volumeEditors') ? $this->getData('volumeEditors') : [];

@@ -53,6 +53,10 @@
 		{fbvElement type="text" id="datePublished" value=$datePublished|date_format:$dateFormatShort class="datepicker"}
 	{/fbvFormSection}
 
+	{fbvFormSection title="submission.onlineFirst" list="true"}
+		{fbvElement type="checkbox" id="onlineFirst" checked=$onlineFirst label="submission.onlineFirstDescription" value=""}
+	{/fbvFormSection}
+
 	{fbvFormSection label="submission.workflowType"}
 		{fbvElement type="select" id="workType" from=$workTypeOptions selected=$workType translate=false disabled=$formParams.readOnly size=$fbvStyles.size.SMALL}
 	{/fbvFormSection}
