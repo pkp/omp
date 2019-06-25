@@ -94,6 +94,8 @@
 	<message key="submission.complete">Approved</message>
 	<message key="submission.incomplete">Awaiting Approval</message>
 	<message key="submission.editCatalogEntry">Entry</message>
+	<message key="submission.onlineFirst">Online First</message>
+	<message key="submission.onlineFirstDescription">This book is an Online First publication</message>
 	<message key="submission.catalogEntry.new">Add Entry</message>
 	<message key="submission.catalogEntry.add">Add Selected to Catalog</message>
 	<message key="submission.catalogEntry.select">Select monographs to add to the catalog</message>
