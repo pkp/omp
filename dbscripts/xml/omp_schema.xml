@@ -137,7 +137,7 @@
 			<col>publication_format_id</col>
 		</index>
 	</table>
-	
+
 	<!--
 	  *
 	  * TABLE representatives
@@ -399,6 +399,10 @@
 			<NOTNULL/>
 			<DEFAULT VALUE="1"/>
 		</field>
+		<field name="online_first" type="I1">
+			<NOTNULL/>
+			<DEFAULT VALUE="0"/>
+		</field>
 		<descr>Submissions</descr>
 		<index name="submissions_context_id">
 			<col>context_id</col>
@@ -406,6 +410,7 @@
 		<index name="submissions_series_id">
 			<col>series_id</col>
 		</index>
+
 	</table>
 
 	<!--
@@ -856,7 +861,7 @@
 			<col>assoc_id</col>
 		</index>
 	</table>
-	
+
 	<!--
 	  *
 	  * TABLE spotlight_settings
