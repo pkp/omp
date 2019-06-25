@@ -37,6 +37,16 @@
 	{fbvElement type="textarea" name="abstract" id="abstract" value=$abstract  rich="extended" multilingual=true}
 	{/fbvFormSection}
 
+	{fbvFormSection title="metadata.property.displayName.pages" for="customExtras"}
+	{fbvElement type="text" id="pages" value=$pages inline=true size=$fbvStyles.size.LARGE}
+	{/fbvFormSection}
+
+	{if $IsOnlineFirstSubmission}
+		{fbvFormSection title="metadata.property.displayName.datePublished" for="customExtras"}
+		{fbvElement type="text" id="datePublished" value=$datePublished inline=true size=$fbvStyles.size.LARGE  class="datepicker"}
+		{/fbvFormSection}
+	{/if}
+
 	{fbvFormSection}
 		<!--  Chapter Contributors -->
 		{capture assign=chapterAuthorUrl}{url router=$smarty.const.ROUTE_COMPONENT component="listbuilder.users.ChapterAuthorListbuilderHandler" op="fetch" submissionId=$submissionId chapterId=$chapterId escape=false}{/capture}
