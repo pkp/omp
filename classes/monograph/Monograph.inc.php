@@ -244,7 +244,7 @@ class Monograph extends Submission {
 	}
 
 	/**
-	 * get  enableChapterPublicationDates status
+	 * set  enableChapterPublicationDates status
 	 * @param $enableChapterPublicationDates int
 	 */
 	function setEnableChapterPublicationDates($enableChapterPublicationDates) {
