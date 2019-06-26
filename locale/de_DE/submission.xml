@@ -22,6 +22,8 @@
 	<message key="submission.workflowType.description">Eine Monografie ist ein Werk, das von einer Autorin/einem Autor oder mehreren Autor/innen gemeinsam verfasst worden ist. Ein Sammelband besteht aus mehreren Kapiteln jeweils unterschiedlicher Autor/innen (detaillierte Kapitelangaben sind erst zu einem späteren Zeitpunkt im Veröffentlichungsprozess zu machen).</message>
 	<message key="submission.workflowType.editedVolume">Sammelband</message>
 	<message key="submission.workflowType.authoredWork">Monografie</message>
+	<message key="submission.workflowType.editedVolume.selectEditors">Select Volume Editors</message>
+	<message key="submission.workflowType.editedVolume.selectEditors.description">Select the authors who should be identified as editors for the entire volume.</message>
 	<message key="submission.published">Druckreif</message>
 	<message key="submission.fairCopy">Reinschrift</message>
 	<message key="submission.artwork.permissions">Rechte</message>
@@ -30,6 +32,9 @@
 	<message key="submission.chaptersDescription">Hier können Sie die Kapitel auflisten und ihnen Personen zuordnen, die in der oben stehenden Liste der Beiträger/innen (z.B. Kapitelautor/innen, Übersetzer/innen) verzeichnet sind. Beiträger/innen, die Sie an dieser Stelle dem Kapitel zuordnen, werden während des Veröffentlichungsprozesses Zugang zu dem Kapitel haben.</message>
 	<message key="submission.chapter.addChapter">Kapitel hinzufügen</message>
 	<message key="submission.chapter.editChapter">Kapitel bearbeiten</message>
+	<message key="submission.chapter.abstract">Abstrakt</message>
+	<message key="submission.chapter.pages">Seiten</message>
+	<message key="submission.chapter.datePublished">Veröffentlicht</message>
 	<message key="submission.copyedit">Lektorat</message>
 	<message key="submission.publicationFormats">Formate</message>
 	<message key="submission.proofs">Proofs</message>
@@ -97,6 +102,10 @@
 	<message key="submission.catalogEntry.confirm">Erstelle anhand der angegebenen Metadaten einen neuen Katalogeintrag.</message>
 	<message key="submission.catalogEntry.confirm.required">Bitte bestätigen Sie, dass der Publikationsprozess abgeschlossen ist und das Buch in den Katalog aufgenommen werden soll.</message>
 	<message key="submission.catalogEntry.isAvailable">Diese Monografie ist fertig und soll in den öffentlichen Katalog aufgenommen werden.</message>
+	<message key="submission.catalogEntry.viewSubmission">View Submission</message>
+	<message key="submission.catalogEntry.chapterPublicationDates">Publication Dates</message>
+	<message key="submission.catalogEntry.disableChapterPublicationDates">All chapters will use the publication date of the monograph.</message>
+	<message key="submission.catalogEntry.enableChapterPublicationDates">Each chapter may have its own publication date.</message>
 
 	<!-- Catalog Entry Tabs -->
 	<message key="submission.catalogEntry.monographMetadata">Monografie</message>
