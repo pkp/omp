@@ -236,20 +236,21 @@ class Monograph extends Submission {
 	}
 
 	/**
-	 * Return onlineFirst status
+	 * get enableChapterPublicationDates status
 	 * @return int
 	 */
-	function getOnlineFirst() {
-		return $this->getData('onlineFirst');
+	function getEnableChapterPublicationDates() {
+		return $this->getData('enableChapterPublicationDates');
 	}
 
 	/**
-	 * Set  onlineFirst status
-	 * @param $onlineFirst int
+	 * get  enableChapterPublicationDates status
+	 * @param $enableChapterPublicationDates int
 	 */
-	function setOnlineFirst($onlineFirst) {
-		$this->setData('onlineFirst', $onlineFirst);
+	function setEnableChapterPublicationDates($enableChapterPublicationDates) {
+		$this->setData('enableChapterPublicationDates', $enableChapterPublicationDates);
 	}
+
 
 }
 

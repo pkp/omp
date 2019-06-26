@@ -33,16 +33,16 @@
 		{fbvElement type="text" name="subtitle" id="subtitle" value=$subtitle maxlength="255" multilingual=true}
 	{/fbvFormSection}
 
-	{fbvFormSection title="metadata.property.displayName.abstract" for="abstract"}
-	{fbvElement type="textarea" name="abstract" id="abstract" value=$abstract  rich="extended" multilingual=true}
+	{fbvFormSection title="submission.chapter.abstract" for="abstract"}
+		{fbvElement type="textarea" name="abstract" id="abstract" value=$abstract  rich="extended" multilingual=true}
 	{/fbvFormSection}
 
-	{fbvFormSection title="metadata.property.displayName.pages" for="customExtras"}
-	{fbvElement type="text" id="pages" value=$pages inline=true size=$fbvStyles.size.LARGE}
+	{fbvFormSection title="submission.chapter.pages" for="customExtras"}
+		{fbvElement type="text" id="pages" value=$pages inline=true size=$fbvStyles.size.LARGE}
 	{/fbvFormSection}
 
-	{if $IsOnlineFirstSubmission}
-		{fbvFormSection title="metadata.property.displayName.datePublished" for="customExtras"}
+	{if $chapterPublicationDatesEnabledSubmission}
+		{fbvFormSection title="submission.chapter.datePublished" for="customExtras"}
 		{fbvElement type="text" id="datePublished" value=$datePublished inline=true size=$fbvStyles.size.LARGE  class="datepicker"}
 		{/fbvFormSection}
 	{/if}

@@ -53,9 +53,12 @@
 		{fbvElement type="text" id="datePublished" value=$datePublished|date_format:$dateFormatShort class="datepicker"}
 	{/fbvFormSection}
 
-	{fbvFormSection title="submission.onlineFirst" list="true"}
-		{fbvElement type="checkbox" id="onlineFirst" checked=$onlineFirst label="submission.onlineFirstDescription" value=""}
-	{/fbvFormSection}
+	{fbvFormArea id="chapterPublicationDates" class="border" title="submission.catalogEntry.chapterPublicationDates"}
+		{fbvFormSection list=true}
+			{fbvElement type="radio" id="enableChapterPublicationDates-0" name="enableChapterPublicationDates" value="0" checked=!$enableChapterPublicationDates label="submission.catalogEntry.disableChapterPublicationDates"}
+			{fbvElement type="radio" id="enableChapterPublicationDates-1" name="enableChapterPublicationDates" value="1" checked=$enableChapterPublicationDates label="submission.catalogEntry.enableChapterPublicationDates"}
+		{/fbvFormSection}
+	{/fbvFormArea}
 
 	{fbvFormSection label="submission.workflowType"}
 		{fbvElement type="select" id="workType" from=$workTypeOptions selected=$workType translate=false disabled=$formParams.readOnly size=$fbvStyles.size.SMALL}
