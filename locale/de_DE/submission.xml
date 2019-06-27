@@ -22,8 +22,6 @@
 	<message key="submission.workflowType.description">Eine Monografie ist ein Werk, das von einer Autorin/einem Autor oder mehreren Autor/innen gemeinsam verfasst worden ist. Ein Sammelband besteht aus mehreren Kapiteln jeweils unterschiedlicher Autor/innen (detaillierte Kapitelangaben sind erst zu einem späteren Zeitpunkt im Veröffentlichungsprozess zu machen).</message>
 	<message key="submission.workflowType.editedVolume">Sammelband</message>
 	<message key="submission.workflowType.authoredWork">Monografie</message>
-	<message key="submission.workflowType.editedVolume.selectEditors">Select Volume Editors</message>
-	<message key="submission.workflowType.editedVolume.selectEditors.description">Select the authors who should be identified as editors for the entire volume.</message>
 	<message key="submission.published">Druckreif</message>
 	<message key="submission.fairCopy">Reinschrift</message>
 	<message key="submission.artwork.permissions">Rechte</message>
@@ -100,10 +98,6 @@
 	<message key="submission.catalogEntry.confirm">Erstelle anhand der angegebenen Metadaten einen neuen Katalogeintrag.</message>
 	<message key="submission.catalogEntry.confirm.required">Bitte bestätigen Sie, dass der Publikationsprozess abgeschlossen ist und das Buch in den Katalog aufgenommen werden soll.</message>
 	<message key="submission.catalogEntry.isAvailable">Diese Monografie ist fertig und soll in den öffentlichen Katalog aufgenommen werden.</message>
-	<message key="submission.catalogEntry.viewSubmission">View Submission</message>
-	<message key="submission.catalogEntry.chapterPublicationDates">Publication Dates</message>
-	<message key="submission.catalogEntry.disableChapterPublicationDates">All chapters will use the publication date of the monograph.</message>
-	<message key="submission.catalogEntry.enableChapterPublicationDates">Each chapter may have its own publication date.</message>
 
 	<!-- Catalog Entry Tabs -->
 	<message key="submission.catalogEntry.monographMetadata">Monografie</message>
