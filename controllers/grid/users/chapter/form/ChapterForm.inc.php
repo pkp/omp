@@ -90,8 +90,8 @@ class ChapterForm extends Form {
 
 		$monograph = $this->getMonograph();
 		$this->setData('submissionId', $monograph->getId());
-		$chapterPublicationDatesEnabledSubmission = (int)$monograph->getEnableChapterPublicationDates() === 1;
-		$this->setData('chapterPublicationDatesEnabledSubmission', $chapterPublicationDatesEnabledSubmission);
+		$enableChapterPublicationDates = (int)$monograph->getEnableChapterPublicationDates() === 1;
+		$this->setData('enableChapterPublicationDates', $enableChapterPublicationDates);
 
 		$chapter = $this->getChapter();
 		if ($chapter) {

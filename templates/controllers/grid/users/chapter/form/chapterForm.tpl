@@ -41,7 +41,7 @@
 		{fbvElement type="text" id="pages" value=$pages inline=true size=$fbvStyles.size.LARGE}
 	{/fbvFormSection}
 
-	{if $chapterPublicationDatesEnabledSubmission}
+	{if $enableChapterPublicationDates}
 		{fbvFormSection title="submission.chapter.datePublished" for="customExtras"}
 		{fbvElement type="text" id="datePublished" value=$datePublished inline=true size=$fbvStyles.size.LARGE  class="datepicker"}
 		{/fbvFormSection}
