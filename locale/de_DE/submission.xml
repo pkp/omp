@@ -96,8 +96,6 @@
 	<message key="submission.complete">Freigegeben</message>
 	<message key="submission.incomplete">Warte auf Freigabe</message>
 	<message key="submission.editCatalogEntry">Eintrag</message>
-	<message key="submission.onlineFirst">Online-First</message>
-	<message key="submission.onlineFirstDescription">Dieses Buch erscheint als Online-First-Publikation</message>
 	<message key="submission.catalogEntry.new">Neuer Katalogeintrag</message>
 	<message key="submission.catalogEntry.confirm">Erstelle anhand der angegebenen Metadaten einen neuen Katalogeintrag.</message>
 	<message key="submission.catalogEntry.confirm.required">Bitte bestätigen Sie, dass der Publikationsprozess abgeschlossen ist und das Buch in den Katalog aufgenommen werden soll.</message>
