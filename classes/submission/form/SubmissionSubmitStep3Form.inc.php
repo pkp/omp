@@ -44,19 +44,6 @@ class SubmissionSubmitStep3Form extends PKPSubmissionSubmitStep3Form {
 	}
 
 	/**
-	 * @copydoc PKPSubmissionSubmitStep3Form::fetch
-	 */
-	function fetch($request, $template = null, $display = false) {
-		$templateMgr = TemplateManager::getManager($request);
-
-		// If categories are configured, present the LB.
-		$categoryDao = DAORegistry::getDAO('CategoryDAO');
-		$templateMgr->assign('categoriesExist', $categoryDao->getCountByContextId($this->context->getId()) > 0);
-
-		return parent::fetch($request, $template, $display);
-	}
-
-	/**
 	 * Save changes to submission.
 	 * @return int the submission ID
 	 */
