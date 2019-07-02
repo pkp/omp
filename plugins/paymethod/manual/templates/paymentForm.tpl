@@ -29,7 +29,7 @@
 	</table>
 
 	<p>
-		<a href="{url page="payment" op="plugin" path="ManualPayment"|to_array:"notify":$queuedPaymentId|escape}" class="action">{translate key="plugins.paymethod.manual.sendNotificationOfPayment"}</a>
+		<a href="{url page="payment" op="plugin" path="ManualPayment"|to_array:"notify":$queuedPaymentId}" class="action">{translate key="plugins.paymethod.manual.sendNotificationOfPayment"}</a>
 	</p>
 
 </div><!-- .page -->
