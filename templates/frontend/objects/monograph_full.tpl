@@ -162,6 +162,23 @@
 				{/if}
 			{/foreach}
 
+			{* Keywords *}
+			{if !empty($keywords[$currentLocale])}
+			<div class="item keywords">
+				<span class="label">
+					{capture assign=translatedKeywords}{translate key="common.keywords"}{/capture}
+					{translate key="semicolon" label=$translatedKeywords}
+				</span>
+				<span class="value">
+				{foreach from=$keywords item=keyword}
+					{foreach name=keywords from=$keyword item=keywordItem}
+						{$keywordItem|escape}{if !$smarty.foreach.keywords.last}, {/if}
+					{/foreach}
+				{/foreach}
+				</span>
+			</div>
+			{/if}
+
 			{* Abstract *}
 			<div class="item abstract">
 				<h3 class="label">
