@@ -88,7 +88,11 @@ class CatalogBookHandler extends Handler {
 			'licenseUrl' => $publishedSubmission->getLicenseURL(),
 			'ccLicenseBadge' => Application::getCCLicenseBadge($publishedSubmission->getLicenseURL())
 		));
-
+		
+		// Keywords
+		$submissionKeywordDao = DAORegistry::getDAO('SubmissionKeywordDAO');
+		$templateMgr->assign('keywords', $submissionKeywordDao->getKeywords($publishedMonograph->getId(), array(AppLocale::getLocale())));
+		
 		// Citations
 		$citationDao = DAORegistry::getDAO('CitationDAO');
 		$parsedCitations = $citationDao->getBySubmissionId($publishedSubmission->getId());
