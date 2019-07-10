@@ -91,7 +91,7 @@ class CatalogBookHandler extends Handler {
 		
 		// Keywords
 		$submissionKeywordDao = DAORegistry::getDAO('SubmissionKeywordDAO');
-		$templateMgr->assign('keywords', $submissionKeywordDao->getKeywords($publishedMonograph->getId(), array(AppLocale::getLocale())));
+		$templateMgr->assign('keywords', $submissionKeywordDao->getKeywords($publishedSubmission->getId(), array(AppLocale::getLocale())));
 		
 		// Citations
 		$citationDao = DAORegistry::getDAO('CitationDAO');
