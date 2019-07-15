@@ -58,7 +58,7 @@
 		<h2>
 			{translate key="catalog.category.heading"}
 		</h2>
-		<p>{translate key="catalog.noTitlesSection"}</p>
+		<p>{translate key="catalog.category.noItems"}</p>
 
 	{else}
 
