@@ -38,7 +38,7 @@ class MonographDAO extends SubmissionDAO {
 	function getAdditionalFieldNames() {
 		return array_merge(
 			parent::getAdditionalFieldNames(), array(
-				'coverImage', 'coverImageAltText',
+				'coverImage', 'coverImageAltText', 'enableChapterPublicationDates',
 		));
 	}
 

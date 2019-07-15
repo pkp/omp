@@ -34,6 +34,9 @@
 	<message key="submission.chaptersDescription">You may list the chapters here, and assign contributors from the list of contributors, above. These contributors will be able to access the chapter during various stages of the publication process.</message>
 	<message key="submission.chapter.addChapter">Add Chapter</message>
 	<message key="submission.chapter.editChapter">Edit Chapter</message>
+	<message key="submission.chapter.abstract">Abstract</message>
+	<message key="submission.chapter.pages">Pages</message>
+	<message key="submission.chapter.datePublished">Published</message>
 	<message key="submission.copyedit">Copyedit</message>
 	<message key="submission.publicationFormats">Publication Formats</message>
 	<message key="submission.proofs">Proofs</message>
@@ -102,6 +105,10 @@
 	<message key="submission.catalogEntry.confirm.required">Please confirm that the submission is ready to be placed in the catalog.</message>
 	<message key="submission.catalogEntry.isAvailable">This monograph is ready to be included in the public catalog.</message>
 	<message key="submission.catalogEntry.viewSubmission">View Submission</message>
+	<message key="submission.catalogEntry.chapterPublicationDates">Publication Dates</message>
+	<message key="submission.catalogEntry.disableChapterPublicationDates">All chapters will use the publication date of the monograph.</message>
+	<message key="submission.catalogEntry.enableChapterPublicationDates">Each chapter may have its own publication date.</message>
+
 
 	<!-- Catalog Entry Tabs -->
 	<message key="submission.catalogEntry.monographMetadata">Monograph</message>

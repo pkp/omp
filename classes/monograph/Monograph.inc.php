@@ -234,6 +234,24 @@ class Monograph extends Submission {
 	function setCoverImageAltText($coverImageAltText) {
 		$this->setData('coverImageAltText', $coverImageAltText);
 	}
+
+	/**
+	 * get enableChapterPublicationDates status
+	 * @return int
+	 */
+	function getEnableChapterPublicationDates() {
+		return $this->getData('enableChapterPublicationDates');
+	}
+
+	/**
+	 * set  enableChapterPublicationDates status
+	 * @param $enableChapterPublicationDates int
+	 */
+	function setEnableChapterPublicationDates($enableChapterPublicationDates) {
+		$this->setData('enableChapterPublicationDates', $enableChapterPublicationDates);
+	}
+
+
 }
 
 
