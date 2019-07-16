@@ -30,10 +30,16 @@ class PublishedSubmissionDAO extends SubmissionDAO {
 	 * @param $newReleasedOnly boolean optional Whether the monographs are marked as new releases on press or not.
 	 * @return ItemIterator Iterator for monograph objects.
 	 */
-	function getByPressId($pressId, $searchText = null, $rangeInfo = null, $sortBy = null, $sortDirection = null, $featuredOnly = false, $newReleasedOnly = false) {
-		return $this->_getByAssoc($pressId, ASSOC_TYPE_PRESS, $pressId, $searchText, $rangeInfo, $sortBy, $sortDirection, $featuredOnly, $newReleasedOnly);
+	function getByContextId($contextId, $searchText = null, $rangeInfo = null, $sortBy = null, $sortDirection = null, $featuredOnly = false, $newReleasedOnly = false) {
+		return $this->_getByAssoc($contextId, ASSOC_TYPE_PRESS, $contextId, $searchText, $rangeInfo, $sortBy, $sortDirection, $featuredOnly, $newReleasedOnly);
 	}
 
+	/**
+	 * @copydoc PublishedMonographDAO::getByContextId
+	 */
+	function getByPressId($pressId, $searchText = null, $rangeInfo = null, $sortBy = null, $sortDirection = null, $featuredOnly = false, $newReleasedOnly = false) {
+		return $this->getByContextId($contextId, $searchText, $rangeInfo, $sortBy, $sortDirection, $featuredOnly, $newReleasedOnly);
+	}
 
 	/**
 	 * Retrieve all published submissions associated with the passed series id.
