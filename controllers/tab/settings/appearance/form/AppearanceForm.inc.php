@@ -102,7 +102,7 @@ class AppearanceForm extends PKPAppearanceForm {
 		import('lib.pkp.classes.file.FileManager');
 		$fileManager = new FileManager();
 
-		$objects = $objectDao->getByPressId($context->getId());
+		$objects = $objectDao->getByContextId($context->getId());
 		while ($object = $objects->next()) {
 			if (is_a($object, 'PublishedMonograph')) {
 				$cover = $object->getCoverImage();
