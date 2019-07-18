@@ -164,7 +164,7 @@ class ContextService extends \PKP\Services\PKPContextService {
 			\DAORegistry::getDAO('PublishedSubmissionDAO'),
 		];
 		foreach ($objectDaos as $objectDao) {
-			$objects = $objectDao->getByPressId($context->getID());
+			$objects = $objectDao->getByContextId($context->getId());
 			while ($object = $objects->next()) {
 				if (is_a($object, 'PublishedSubmission')) {
 					$cover = $object->getCoverImage();
