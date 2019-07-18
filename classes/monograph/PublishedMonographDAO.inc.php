@@ -38,7 +38,7 @@ class PublishedMonographDAO extends MonographDAO {
 	 * @copydoc PublishedMonographDAO::getByContextId
 	 */
 	function getByPressId($pressId, $searchText = null, $rangeInfo = null, $sortBy = null, $sortDirection = null, $featuredOnly = false, $newReleasedOnly = false) {
-		return $this->getByContextId($contextId, $searchText, $rangeInfo, $sortBy, $sortDirection, $featuredOnly, $newReleasedOnly);
+		return $this->getByContextId($pressId, $searchText, $rangeInfo, $sortBy, $sortDirection, $featuredOnly, $newReleasedOnly);
 	}
 
 	/**
