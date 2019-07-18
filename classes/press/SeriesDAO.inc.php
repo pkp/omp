@@ -19,13 +19,6 @@ import ('lib.pkp.classes.context.PKPSectionDAO');
 
 class SeriesDAO extends PKPSectionDAO {
 	/**
-	 * Constructor
-	 */
-	function __construct() {
-		parent::__construct();
-	}
-
-	/**
 	 * Retrieve an series by ID.
 	 * @param $seriesId int
 	 * @param $pressId int optional
