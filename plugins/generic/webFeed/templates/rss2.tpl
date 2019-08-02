@@ -67,7 +67,8 @@
 				</dc:rights>
 
 				<guid isPermaLink="true">{url page="catalog" op="book" path=$publishedMonograph->getId()}</guid>
-				<pubDate>{$publishedMonograph->getDatePublished()|date_format:"%a, %d %b %Y %T %z"}</pubDate>
+				{capture assign="datePublished"}{$publishedMonograph->getDatePublished()|strtotime}{/capture}
+				<pubDate>{$smarty.const.DATE_RSS|date:$datePublished}</pubDate>
 			</item>
 		{/foreach}{* publishedMonographs *}
 	</channel>
