@@ -300,6 +300,9 @@
 	<message key="catalog.viewableFile.title">{$type} view of the file {$title}</message>
 	<message key="catalog.viewableFile.return">Return to view details about {$monographTitle}</message>
 
+	<!-- Search Engine -->
+	<message key="submission.search">Book Search</message>
+
 	<!--
 	 *
 	 * COMMON - This section contains the most frequently-used words
