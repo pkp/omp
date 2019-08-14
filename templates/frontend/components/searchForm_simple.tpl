@@ -9,7 +9,7 @@
  *
  * @uses $searchQuery string Previously input search query
  *}
-<form class="cmp_form cmp_search" action="{url router=$smarty.const.ROUTE_PAGE page="catalog" op="results"}" method="post" role="{translate|escape key="submission.search"}">
+<form class="cmp_form cmp_search" action="{url router=$smarty.const.ROUTE_PAGE page="catalog" op="results"}" method="post" role="search" aria-label="{translate|escape key="submission.search"}>
 	<input name="query" value="{$searchQuery|escape}" type="text" aria-label="{translate|escape key="common.searchQuery"}">
 	<button type="submit">
 		{translate key="common.search"}
