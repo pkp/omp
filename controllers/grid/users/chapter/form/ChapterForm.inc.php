@@ -17,8 +17,11 @@
 import('lib.pkp.classes.form.Form');
 
 class ChapterForm extends Form {
-	/** The monograph associated with the submission chapter being edited **/
-	var $_monographId;
+	/** The monograph associated with the chapter being edited **/
+	var $_monograph;
+
+	/** The publication associated with the chapter being edited **/
+	var $_publication;
 
 	/** Chapter the chapter being edited **/
 	var $_chapter;
@@ -26,11 +29,13 @@ class ChapterForm extends Form {
 	/**
 	 * Constructor.
 	 * @param $monograph Monograph
+	 * @param $publication Publication
 	 * @param $chapter Chapter
 	 */
-	function __construct($monograph, $chapter) {
+	function __construct($monograph, $publication, $chapter) {
 		parent::__construct('controllers/grid/users/chapter/form/chapterForm.tpl');
 		$this->setMonograph($monograph);
+		$this->setPublication($publication);
 
 		if ($chapter) {
 			$this->setChapter($chapter);
@@ -63,6 +68,22 @@ class ChapterForm extends Form {
 	}
 
 	/**
+	 * Get the publication associated with this chapter grid.
+	 * @return Publication
+	 */
+	function getPublication() {
+		return $this->_publication;
+	}
+
+	/**
+	 * Set the publication associated with this chapter grid.
+	 * @param $publication Publication
+	 */
+	function setPublication($publication) {
+		$this->_publication = $publication;
+	}
+
+	/**
 	 * Get the Chapter associated with this form
 	 * @return Chapter
 	 */
@@ -88,8 +109,8 @@ class ChapterForm extends Form {
 	function initData() {
 		AppLocale::requireComponents(LOCALE_COMPONENT_APP_DEFAULT, LOCALE_COMPONENT_PKP_SUBMISSION);
 
-		$monograph = $this->getMonograph();
-		$this->setData('submissionId', $monograph->getId());
+		$this->setData('submissionId', $this->getMonograph()->getId());
+		$this->setData('publicationId', $this->getPublication()->getId());
 
 		$chapter = $this->getChapter();
 		if ($chapter) {
@@ -127,16 +148,14 @@ class ChapterForm extends Form {
 			$chapter->setAbstract($this->getData('abstract'), null); //Localized
 			$chapterDao->updateObject($chapter);
 		} else {
-			$monograph = $this->getMonograph();
-
 			$chapter = $chapterDao->newDataObject();
-			$chapter->setMonographId($monograph->getId());
+			$chapter->setData('publicationId', $this->getPublication()->getId());
 			$chapter->setTitle($this->getData('title'), null); //Localized
 			$chapter->setSubtitle($this->getData('subtitle'), null); //Localized
 			$chapter->setAbstract($this->getData('abstract'), null); //Localized
 			$chapter->setSequence(REALLY_BIG_NUMBER);
 			$chapterDao->insertChapter($chapter);
-			$chapterDao->resequenceChapters($monograph->getId());
+			$chapterDao->resequenceChapters($this->getPublication()->getId());
 		}
 
 		$this->setChapter($chapter);
@@ -175,7 +194,7 @@ class ChapterForm extends Form {
 		// Create a new chapter author.
 		$chapterAuthorDao = DAORegistry::getDAO('ChapterAuthorDAO');
 		// FIXME: primary authors not set for chapter authors.
-		$chapterAuthorDao->insertChapterAuthor($authorId, $chapter->getId(), $monograph->getId(), false, $sequence);
+		$chapterAuthorDao->insertChapterAuthor($authorId, $chapter->getId(), false, $sequence);
 		return true;
 	}
 

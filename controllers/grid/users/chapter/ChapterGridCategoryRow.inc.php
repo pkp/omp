@@ -23,6 +23,9 @@ class ChapterGridCategoryRow extends GridCategoryRow {
 	/** @var Monograph **/
 	var $_monograph;
 
+	/** @var Publication **/
+	var $_publication;
+
 	/** @var Chapter **/
 	var $_chapter;
 
@@ -32,8 +35,9 @@ class ChapterGridCategoryRow extends GridCategoryRow {
 	/**
 	 * Constructor
 	 */
-	function __construct($monograph, $readOnly = false) {
+	function __construct($monograph, $publication, $readOnly = false) {
 		$this->_monograph = $monograph;
+		$this->_publication = $publication;
 		$this->_readOnly = $readOnly;
 		parent::__construct();
 	}
@@ -62,6 +66,7 @@ class ChapterGridCategoryRow extends GridCategoryRow {
 				$router = $request->getRouter();
 				$actionArgs = array(
 					'submissionId' => $monograph->getId(),
+					'publicationId' => $this->getPublication()->getId(),
 					'chapterId' => $chapterId
 				);
 
@@ -89,6 +94,14 @@ class ChapterGridCategoryRow extends GridCategoryRow {
 	 */
 	function getMonograph() {
 		return $this->_monograph;
+	}
+
+	/**
+	 * Get the publication for this row (already authorized)
+	 * @return Publication
+	 */
+	function getPublication() {
+		return $this->_publication;
 	}
 
 	/**

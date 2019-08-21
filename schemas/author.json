@@ -1,0 +1,10 @@
+{
+	"title": "Author",
+	"properties": {
+		"isVolumeEditor": {
+			"type": "boolean",
+			"description": "Whether or not this author should be identified as the volume editor.",
+			"apiSummary": true
+		}
+	}
+}

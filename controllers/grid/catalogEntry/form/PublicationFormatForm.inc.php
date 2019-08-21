@@ -22,17 +22,17 @@ class PublicationFormatForm extends Form {
 	/** PublicationFormat the format being edited **/
 	var $_publicationFormat;
 
-	/** @var $_submissionVersion int the submission version */
-	var $_submissionVersion = null;
+	/** @var $_publication Publication */
+	var $_publication = null;
 
 	/**
 	 * Constructor.
 	 */
-	function __construct($monograph, $publicationFormat, $submissionVersion = null) {
+	function __construct($monograph, $publicationFormat, $publication) {
 		parent::__construct('controllers/grid/catalogEntry/form/formatForm.tpl');
 		$this->setMonograph($monograph);
 		$this->setPublicationFormat($publicationFormat);
-		$this->_submissionVersion = $submissionVersion;
+		$this->setPublication($publication);
 
 		// Validation checks for this form
 		$this->addCheck(new FormValidator($this, 'name', 'required', 'grid.catalogEntry.nameRequired'));
@@ -77,6 +77,23 @@ class PublicationFormatForm extends Form {
 	}
 
 
+	/**
+	 * Get the Publication
+	 * @return Publication
+	 */
+	function getPublication() {
+		return $this->_publication;
+	}
+
+	/**
+	 * Set the PublicationId
+	 * @param Publication
+	 */
+	function setPublication($publication) {
+		$this->_publication = $publication;
+	}
+
+
 	//
 	// Overridden template methods
 	//
@@ -112,7 +129,7 @@ class PublicationFormatForm extends Form {
 		if ($publicationFormat != null) {
 			$templateMgr->assign('representationId', $publicationFormat->getId());
 		}
-		$templateMgr->assign('submissionVersion', $this->_submissionVersion);
+		$templateMgr->assign('publicationId', $this->getPublication()->getId());
 		return parent::fetch($request, $template, $display);
 	}
 
@@ -136,23 +153,23 @@ class PublicationFormatForm extends Form {
 	 */
 	function execute() {
 		$publicationFormatDao = DAORegistry::getDAO('PublicationFormatDAO');
-		$monograph = $this->getMonograph();
 		$publicationFormat = $this->getPublicationFormat();
 		if (!$publicationFormat) {
 			// this is a new format to this published submission
 			$publicationFormat = $publicationFormatDao->newDataObject();
-			$publicationFormat->setMonographId($monograph->getId());
+			$publicationFormat->setData('publicationId', $this->getPublication()->getId());
 			$existingFormat = false;
 		} else {
 			$existingFormat = true;
-			if ($monograph->getId() !== $publicationFormat->getMonographId()) fatalError('Invalid format!');
+			if ($this->getPublication()->getId() != $publicationFormat->getData('publicationId')) {
+				throw new Exception('Invalid publication format');
+			}
 		}
 
 		$publicationFormat->setName($this->getData('name'));
 		$publicationFormat->setEntryKey($this->getData('entryKey'));
 		$publicationFormat->setPhysicalFormat($this->getData('isPhysicalFormat')?true:false);
 		$publicationFormat->setRemoteURL($this->getData('remoteURL'));
-		$publicationFormat->setSubmissionVersion($this->_submissionVersion);
 
 		if ($existingFormat) {
 			$publicationFormatDao->updateObject($publicationFormat);
@@ -162,7 +179,7 @@ class PublicationFormatForm extends Form {
 			// log the creation of the format.
 			import('lib.pkp.classes.log.SubmissionLog');
 			import('classes.log.SubmissionEventLogEntry');
-			SubmissionLog::logEvent(Application::get()->getRequest(), $monograph, SUBMISSION_LOG_PUBLICATION_FORMAT_CREATE, 'submission.event.publicationFormatCreated', array('formatName' => $publicationFormat->getLocalizedName()));
+			SubmissionLog::logEvent(Application::get()->getRequest(), $this->getMonograph(), SUBMISSION_LOG_PUBLICATION_FORMAT_CREATE, 'submission.event.publicationFormatCreated', array('formatName' => $publicationFormat->getLocalizedName()));
 		}
 
 		return $representationId;

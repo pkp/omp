@@ -55,19 +55,20 @@ class NewReleaseDAO extends DAO {
 		$result = $this->retrieve(
 			'SELECT	n.submission_id
 			FROM	new_releases n,
-				published_submissions ps
-			WHERE	n.submission_id = ps.submission_id
+				submissions s,
+				publications p
+			WHERE	n.submission_id = s.submission_id
+				AND p.publication_id = s.current_publication_id
 				AND n.assoc_type = ? AND n.assoc_id = ?
-				AND ps.date_published IS NOT NULL
-			ORDER BY ps.date_published DESC',
-			array((int) $assocType, (int) $assocId)
+				AND s.status = ?
+			ORDER BY p.date_published DESC',
+			array((int) $assocType, (int) $assocId, STATUS_PUBLISHED)
 		);
 
 		$returner = array();
-		$publishedSubmissionDao = DAORegistry::getDAO('PublishedSubmissionDAO');
 		while (!$result->EOF) {
 			list($monographId) = $result->fields;
-			$returner[] = $publishedSubmissionDao->getBySubmissionId($monographId);
+			$returner[] = Services::get('submission')->get($monographId);
 			$result->MoveNext();
 		}
 		$result->Close();

@@ -20,7 +20,6 @@ import('lib.pkp.classes.core.PKPApplication');
 define('REQUIRES_XSL', true);
 
 define('ASSOC_TYPE_MONOGRAPH',			ASSOC_TYPE_SUBMISSION);
-define('ASSOC_TYPE_PUBLISHED_MONOGRAPH',	ASSOC_TYPE_PUBLISHED_SUBMISSION);
 define('ASSOC_TYPE_PUBLICATION_FORMAT',		ASSOC_TYPE_REPRESENTATION);
 
 define('ASSOC_TYPE_PRESS',			0x0000200);
@@ -96,7 +95,7 @@ class Application extends PKPApplication {
 			'LayoutAssignmentDAO' => 'submission.layoutAssignment.LayoutAssignmentDAO',
 			'MarketDAO' => 'classes.publicationFormat.MarketDAO',
 			'MetricsDAO' => 'lib.pkp.classes.statistics.PKPMetricsDAO',
-			'SubmissionDAO' => 'classes.monograph.SubmissionDAO',
+			'SubmissionDAO' => 'classes.submission.SubmissionDAO',
 			'MonographFileEmailLogDAO' => 'classes.log.MonographFileEmailLogDAO',
 			'MonographSearchDAO' => 'classes.search.MonographSearchDAO',
 			'NewReleaseDAO' => 'classes.press.NewReleaseDAO',
@@ -108,7 +107,6 @@ class Application extends PKPApplication {
 			'ProductionAssignmentDAO' => 'classes.submission.productionAssignment.ProductionAssignmentDAO',
 			'PublicationDateDAO' => 'classes.publicationFormat.PublicationDateDAO',
 			'PublicationFormatDAO' => 'classes.publicationFormat.PublicationFormatDAO',
-			'PublishedSubmissionDAO' => 'classes.monograph.PublishedSubmissionDAO',
 			'QualifierDAO' => 'classes.codelist.QualifierDAO',
 			'RepresentativeDAO' => 'classes.monograph.RepresentativeDAO',
 			'ReviewerSubmissionDAO' => 'classes.submission.reviewer.ReviewerSubmissionDAO',
@@ -162,13 +160,6 @@ class Application extends PKPApplication {
 	 */
 	public static function getSubmissionDAO() {
 		return DAORegistry::getDAO('SubmissionDAO');
-	}
-
-	/**
-	 * Get the published submission DAO.
-	 */
-	public static function getPublishedSubmissionDAO() {
-		return DAORegistry::getDAO('PublishedSubmissionDAO');
 	}
 
 	/**

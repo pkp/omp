@@ -78,22 +78,6 @@ class PublicationFormat extends Representation {
 	}
 
 	/**
-	 * Set monograph id.
-	 * @param $monographId int
-	 */
-	function setMonographId($monographId) {
-		return parent::setSubmissionId($monographId);
-	}
-
-	/**
-	 * Get monograph id
-	 * @return int
-	 */
-	function getMonographId() {
-		return parent::getSubmissionId();
-	}
-
-	/**
 	 * Get the country of manufacture code that this format was manufactured in.
 	 * @return string
 	 */
@@ -268,11 +252,12 @@ class PublicationFormat extends Representation {
 	 */
 	function getCalculatedFileSize() {
 		$fileSize = 0;
+		$publication = Services::get('publication')->get($this->getData('publicationId'));
 		$submissionFileDao = DAORegistry::getDAO('SubmissionFileDAO');
 		import('lib.pkp.classes.submission.SubmissionFile'); // File constants
 		$stageMonographFiles = $submissionFileDao->getLatestRevisionsByAssocId(
 			ASSOC_TYPE_PUBLICATION_FORMAT, $this->getId(),
-			$this->getMonographId(), SUBMISSION_FILE_PROOF
+			$publication->getData('submissionId'), SUBMISSION_FILE_PROOF
 		);
 
 		foreach ($stageMonographFiles as $monographFile) {

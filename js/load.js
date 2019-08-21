@@ -15,6 +15,7 @@ import Container from '@/components/Container/Container.vue';
 import CatalogContainer from '@/components/Container/CatalogContainer.vue';
 import SettingsContainer from '@/components/Container/SettingsContainer.vue';
 import StatsContainer from '@/components/Container/StatsContainer.vue';
+import WorkflowContainer from '@/components/Container/WorkflowContainerOMP.vue';
 
 // Expose Vue, the registry and controllers in a global var
 window.pkp = Object.assign(PkpLoad, {
@@ -22,6 +23,7 @@ window.pkp = Object.assign(PkpLoad, {
 		Container,
 		CatalogContainer,
 		SettingsContainer,
-		StatsContainer
+		StatsContainer,
+		WorkflowContainer
 	}
 });

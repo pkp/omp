@@ -295,7 +295,7 @@
 			{/if}
 
 			{* References *}
-			{if $parsedCitations->getCount() || $monograph->getCitations()}
+			{* {if $parsedCitations->getCount() || $monograph->getCitations()}
 				<div class="item references">
 					<h3 class="label">
 						{translate key="submission.citations"}
@@ -310,7 +310,7 @@
 						{/if}
 					</div>
 				</div>
-			{/if}
+			{/if} *}
 
 		</div><!-- .main_entry -->
 

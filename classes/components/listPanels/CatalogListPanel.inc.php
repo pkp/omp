@@ -14,7 +14,7 @@
 namespace APP\components\listPanels;
 
 // Bring in orderby constants
-import('classes.monograph.PublishedSubmission');
+import('lib.pkp.classes.submission.PKPSubmissionDAO');
 
 class CatalogListPanel extends \PKP\components\listPanels\ListPanel {
 
@@ -40,7 +40,6 @@ class CatalogListPanel extends \PKP\components\listPanels\ListPanel {
 				'orderByFeatured' => true,
 				'orderBy' => $catalogSortBy,
 				'orderDirection' => $catalogSortDir,
-				'isCurrentSubmissionVersion' => 1,
 			]
 		);
 
@@ -55,7 +54,6 @@ class CatalogListPanel extends \PKP\components\listPanels\ListPanel {
 		$config['i18n']['newReleaseCategory'] = __('catalog.manage.feature.categoryNewRelease');
 		$config['i18n']['featuredSeries'] = __('catalog.manage.seriesFeatured');
 		$config['i18n']['newReleaseSeries'] = __('catalog.manage.feature.seriesNewRelease');
-		$config['i18n']['catalogEntry'] = __('submission.catalogEntry');
 		$config['i18n']['editCatalogEntry'] = __('submission.editCatalogEntry');
 		$config['i18n']['viewSubmission'] = __('submission.catalogEntry.viewSubmission');
 		$config['i18n']['saving'] = __('common.saving');
@@ -81,16 +79,6 @@ class CatalogListPanel extends \PKP\components\listPanels\ListPanel {
 			'modals.submissionMetadata.SelectMonographHandler',
 			'fetch',
 			null
-		);
-
-		$config['catalogEntryUrl'] = $request->getDispatcher()->url(
-			$request,
-			ROUTE_COMPONENT,
-			null,
-			'modals.submissionMetadata.CatalogEntryHandler',
-			'fetch',
-			null,
-			['stageId' => WORKFLOW_STAGE_ID_PRODUCTION, 'submissionId' => '__id__']
 		);
 
 		$config['filters'] = [];
@@ -145,9 +133,11 @@ class CatalogListPanel extends \PKP\components\listPanels\ListPanel {
 		$config['csrfToken'] = $request->getSession()->getCSRFToken();
 
 		$templateMgr = \TemplateManager::getManager($request);
-		$templateMgr->setConstant('ASSOC_TYPE_PRESS');
-		$templateMgr->setConstant('ASSOC_TYPE_CATEGORY');
-		$templateMgr->setConstant('ASSOC_TYPE_SERIES');
+		$templateMgr->setConstants([
+			'ASSOC_TYPE_PRESS',
+			'ASSOC_TYPE_CATEGORY',
+			'ASSOC_TYPE_SERIES',
+		]);
 
 		return $config;
 	}

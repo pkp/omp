@@ -85,7 +85,7 @@
 	<message key="grid.copyediting.deleteCopyeditorResponse">Suprimeix la càrrega del corrector/a</message>
 
 	<!-- Submission-specific catalog info -->
-	<message key="submission.catalogEntry">Catàleg</message>
+	<message key="publication.catalogEntry">Catàleg</message>
 	<message key="submission.editCatalogEntry">Entrada</message>
 	<message key="submission.catalogEntry.new">Nova entrada de catàleg</message>
 	<message key="submission.catalogEntry.confirm">Crea una entrada de catàleg per a aquest llibre basada en les metadades de sota.</message>

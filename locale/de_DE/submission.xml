@@ -88,7 +88,7 @@
 	<message key="grid.copyediting.deleteCopyeditorResponse">Vom Lektor hochgeladenes Dokument löschen</message>
 
 	<!-- Submission-specific catalog info -->
-	<message key="submission.catalogEntry">Katalog</message>
+	<message key="publication.catalogEntry">Katalog</message>
 	<message key="submission.complete">Freigegeben</message>
 	<message key="submission.incomplete">Warte auf Freigabe</message>
 	<message key="submission.editCatalogEntry">Eintrag</message>

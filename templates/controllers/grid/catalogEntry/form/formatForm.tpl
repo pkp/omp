@@ -27,6 +27,7 @@
 	{csrf}
 	<input type="hidden" name="submissionId" value="{$submissionId|escape}" />
 	<input type="hidden" name="representationId" value="{$representationId|escape}" />
+	<input type="hidden" name="publicationId" value="{$publicationId|escape}" />
 	{fbvFormArea id="addFormat" class="border" title="grid.catalogEntry.publicationFormatDetails"}
 		{fbvFormSection for="title"}
 			{fbvElement type="text" required="true" id="name" label="common.name" value=$name multilingual="true" size=$fbvStyles.size.MEDIUM inline=true}
@@ -42,6 +43,6 @@
 			</div>
 		{/fbvFormSection}
 	{/fbvFormArea}
+	<p><span class="formRequired">{translate key="common.requiredField"}</span></p>
 	{fbvFormButtons}
 </form>
-<p><span class="formRequired">{translate key="common.requiredField"}</span></p>

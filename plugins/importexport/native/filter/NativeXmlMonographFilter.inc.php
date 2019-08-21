@@ -36,14 +36,6 @@ class NativeXmlMonographFilter extends NativeXmlSubmissionFilter {
 	}
 
 	/**
-	 * Get the published submission DAO for this application.
-	 * @return DAO
-	 */
-	function getPublishedSubmissionDAO() {
-		return DAORegistry::getDAO('PublishedSubmissionDAO');
-	}
-
-	/**
 	 * @see Filter::process()
 	 * @param $document DOMDocument|string
 	 * @return array Array of imported documents
@@ -166,16 +158,6 @@ class NativeXmlMonographFilter extends NativeXmlSubmissionFilter {
 	 */
 	function getRepresentationExportFilterGroupName() {
 		return 'publication-format=>native-xml';
-	}
-
-	/**
-	 * Class-specific methods for published submissions.
-	 * @param PublishedSubmission $submission
-	 * @param DOMElement $node
-	 * @return PublishedSubmission
-	 */
-	function populatePublishedSubmission($submission, $node) {
-		return $submission;
 	}
 }
 

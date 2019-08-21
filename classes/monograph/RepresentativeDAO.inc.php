@@ -32,9 +32,9 @@ class RepresentativeDAO extends DAO {
 		$result = $this->retrieve(
 			'SELECT r.*
 				FROM representatives r
-			JOIN published_submissions ps ON (r.submission_id = ps.submission_id)
+			JOIN submissions s ON (r.submission_id = s.submission_id)
 			WHERE r.representative_id = ?
-				' . ($monographId?' AND ps.submission_id = ?':''),
+				' . ($monographId?' AND s.submission_id = ?':''),
 			$sqlParams
 		);
 

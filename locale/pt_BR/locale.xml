@@ -15,7 +15,6 @@
 	<!-- General monograph keys -->
 	<message key="monograph.audience">Audiência</message>
 	<message key="monograph.coverImage">Capa</message>
-	<message key="monograph.currentCoverImageReload">Salve as modificações para ver a nova imagem de capa.</message>
 	<message key="monograph.audience.rangeQualifier">Qualificador de faixa de audiência</message>
 	<message key="monograph.audience.rangeFrom">Faixa de audiência (de)</message>
 	<message key="monograph.audience.rangeTo">Faixa de audiência (para)</message>
@@ -60,7 +59,6 @@
 	<message key="monograph.publicationFormat.taxRate">Taxa de tributação</message>
 	<message key="monograph.publicationFormat.taxType">Tipo de taxa</message>
 
-	<message key="monograph.publicationFormat.formatMetadata">Metadados do formato</message>
 	<message key="monograph.publicationFormat.isApproved">Incluir metadados do formato de publicação na entrada de catálogo deste livro.</message>
 	<message key="monograph.publicationFormat.noMarketsAssigned">Preço e mercados faltando.</message>
 	<message key="monograph.publicationFormat.noCodesAssigned">Código de identificação faltando.</message>
@@ -82,7 +80,6 @@
 	<message key="grid.catalogEntry.isNotAvailable">Não disponível</message>
 	<message key="grid.catalogEntry.proof">Prova</message>
 	<message key="grid.catalogEntry.approvedRepresentation.title">Aprovação do formato</message>
-	<message key="grid.catalogEntry.approvedRepresentation.message"><![CDATA[<p>Adicione este formato ao catálogo.</p>]]></message>
 	<message key="grid.catalogEntry.approvedRepresentation.removeMessage"><![CDATA[<p>Remova este formato do catálogo.</p>]]></message>
 	<message key="grid.catalogEntry.availableRepresentation.title">Aprovação de formato</message>
 	<message key="grid.catalogEntry.availableRepresentation.message"><![CDATA[<p>Este formato estará agora <em>disponível</em> para os leitores, por meio de aruqivos para baixar que aparecerão no catálogo de entradas do livro e/ou por meio de ações adicionais definidas pela editora para distribuição.</p>]]></message>
@@ -488,7 +485,6 @@ Suporte à biblioteca mbstring: <strong>{$supportsMBString}</strong>]]></message
 	<message key="notification.type.formatNeedsApprovedSubmission">A monografia não aparecerá no catálogo enquanto a "Entrada no catálogo" não for criada. Para adicionar este livro ao catálogo, clique em "Entrada no catálogo" acima e encontre a guia "catálogo".</message>
 	<message key="notification.type.configurePaymentMethod.title">Nenhuma forma de pagamento configurada.</message>
 	<message key="notification.type.configurePaymentMethod">Uma forma de pagamento configurada é necessária para definir configurações de comércio eletrônico.</message>
-	<message key="notification.type.visitCatalog">A monografia foi aprovada. Visite o catálogo para administrar os detalhes, usando o link acima.</message>
 	<message key="notification.type.visitCatalogTitle">Administração do catálogo</message>
 
 	<!-- Authorization -->

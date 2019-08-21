@@ -35,15 +35,15 @@ class PublicationDate extends DataObject {
 	 * @return int
 	 */
 	function getPublicationFormatId() {
-		return $this->getData('representationId');
+		return $this->getData('publicationFormatId');
 	}
 
 	/**
 	 * set publication format id
-	 * @param $representationId int
+	 * @param $publicationFormatId int
 	 */
-	function setPublicationFormatId($representationId) {
-		return $this->setData('representationId', $representationId);
+	function setPublicationFormatId($publicationFormatId) {
+		return $this->setData('publicationFormatId', $publicationFormatId);
 	}
 
 	/**

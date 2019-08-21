@@ -89,7 +89,7 @@
 	<message key="grid.copyediting.deleteCopyeditorResponse">Odstrani naloženo lektorsko datoteko</message>
 
 	<!-- Submission-specific catalog info -->
-	<message key="submission.catalogEntry">Vnos v katalog</message>
+	<message key="publication.catalogEntry">Vnos v katalog</message>
 	<message key="submission.complete">Odobreno</message>
 	<message key="submission.incomplete">Čakanje na odobritev</message>
 	<message key="submission.editCatalogEntry">Vnos</message>

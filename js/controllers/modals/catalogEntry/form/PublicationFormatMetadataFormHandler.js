@@ -58,7 +58,7 @@
 				$fileSize = $form.find('[id^="fileSize"]');
 
 		if ($(sourceElement).is(':checked')) {
-			$fileSize.attr('disabled', '');
+			$fileSize.removeAttr('disabled');
 		} else {
 			$fileSize.attr('disabled', 'disabled');
 		}

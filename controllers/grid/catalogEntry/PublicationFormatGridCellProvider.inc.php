@@ -30,10 +30,12 @@ class PublicationFormatGridCellProvider extends DataObjectGridCellProvider {
 	 * Constructor
 	 * @param $submissionId int Submission ID
 	 * @param $canManage boolean
+	 * @param $publicationId int Publication ID
 	 */
-	function __construct($submissionId, $canManage) {
+	function __construct($submissionId, $canManage, $publicationId) {
 		parent::__construct();
 		$this->_submissionId = $submissionId;
+		$this->_publicationId = $publicationId;
 		$this->_canManage = $canManage;
 	}
 
@@ -47,6 +49,14 @@ class PublicationFormatGridCellProvider extends DataObjectGridCellProvider {
 	 */
 	function getSubmissionId() {
 		return $this->_submissionId;
+	}
+
+	/**
+	 * Get publication ID.
+	 * @return int
+	 */
+	function getPublicationId() {
+		return $this->_publicationId;
 	}
 
 
@@ -103,8 +113,8 @@ class PublicationFormatGridCellProvider extends DataObjectGridCellProvider {
 	 */
 	function getRequestArgs($row) {
 		return array(
-			'submissionId' => $this->_submission->getId(),
-			'submissionVersion' => $this->_submission->getSubmissionVersion(),
+			'submissionId' => $this->getSubmissionId(),
+			'publicationId' => $this->getPublicationId(),
 		);
 	}
 
@@ -128,8 +138,8 @@ class PublicationFormatGridCellProvider extends DataObjectGridCellProvider {
 								array(
 									'representationId' => $data->getId(),
 									'newAvailableState' => $data->getIsAvailable()?0:1,
-									'submissionId' => $data->getSubmissionId(),
-									'submissionVersion' => $data->getSubmissionVersion(),
+									'submissionId' => $this->getSubmissionId(),
+									'publicationId' => $data->getData('publicationId'),
 								)
 							),
 							'modal_approve'
@@ -152,20 +162,20 @@ class PublicationFormatGridCellProvider extends DataObjectGridCellProvider {
 					AppLocale::requireComponents(LOCALE_COMPONENT_PKP_EDITOR);
 					return array(
 						new AddFileLinkAction(
-							$request, $data->getSubmissionId(), WORKFLOW_STAGE_ID_PRODUCTION,
+							$request, $this->getSubmissionId(), WORKFLOW_STAGE_ID_PRODUCTION,
 							array(ROLE_ID_MANAGER, ROLE_ID_SUB_EDITOR, ROLE_ID_ASSISTANT), SUBMISSION_FILE_PROOF,
 							ASSOC_TYPE_REPRESENTATION, $data->getId()
 						),
 						new SelectFilesLinkAction(
 							$request,
 							array(
-								'submissionId' => $data->getSubmissionId(),
+								'submissionId' => $this->getSubmissionId(),
 								'assocType' => ASSOC_TYPE_REPRESENTATION,
 								'assocId' => $data->getId(),
 								'representationId' => $data->getId(),
+								'publicationId' => $this->getPublicationId(),
 								'stageId' => WORKFLOW_STAGE_ID_PRODUCTION,
 								'fileStage' => SUBMISSION_FILE_PROOF,
-								'submissionVersion' => $data->getSubmissionVersion(),
 							),
 							__('editor.submission.selectFiles')
 						)
@@ -180,8 +190,8 @@ class PublicationFormatGridCellProvider extends DataObjectGridCellProvider {
 								array(
 									'representationId' => $data->getId(),
 									'newApprovedState' => $data->getIsApproved()?0:1,
-									'submissionId' => $data->getSubmissionId(),
-									'submissionVersion' => $data->getSubmissionVersion(),
+									'submissionId' => $this->getSubmissionId(),
+									'publicationId' => $data->getData('publicationId'),
 								)
 							),
 							__('grid.catalogEntry.approvedRepresentation.title'),
@@ -212,8 +222,8 @@ class PublicationFormatGridCellProvider extends DataObjectGridCellProvider {
 							$router->url($request, null, null, 'editApprovedProof', null, array(
 								'fileId' => $submissionFile->getFileId() . '-' . $submissionFile->getRevision(),
 								'submissionId' => $submissionFile->getSubmissionId(),
+								'publicationId' => $this->getPublicationId(),
 								'representationId' => $submissionFile->getAssocId(),
-								'submissionVersion' => $submissionFile->getSubmissionVersion(),
 							)),
 							__('editor.monograph.approvedProofs.edit'),
 							'edit'
@@ -237,10 +247,10 @@ class PublicationFormatGridCellProvider extends DataObjectGridCellProvider {
 								null,
 								array(
 									'submissionId' => $submissionFile->getSubmissionId(),
+									'publicationId' => $this->getPublicationId(),
 									'fileId' => $submissionFile->getFileId(),
 									'revision' => $submissionFile->getRevision(),
 									'approval' => !$submissionFile->getViewable(),
-									'submissionVersion' => $submissionFile->getSubmissionVersion(),
 								)
 							),
 							$title,

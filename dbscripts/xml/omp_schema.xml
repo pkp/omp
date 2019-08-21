@@ -361,23 +361,17 @@
 			<KEY />
 			<AUTOINCREMENT />
 		</field>
-		<field name="locale" type="C2" size="14" />
 		<field name="context_id" type="I8">
 			<NOTNULL />
 		</field>
-		<field name="series_id" type="I8" />
-		<field name="series_position" type="C2" size="255" />
-		<field name="edited_volume" type="I1">
-			<NOTNULL/>
-			<DEFAULT VALUE="0"/>
-		</field>
-		<field name="language" type="C2" size="10">
-			<DEFAULT VALUE="en"/>
-		</field>
-		<field name="citations" type="X"/>
+		<field name="current_publication_id" type="I8" />
+		<field name="date_status_modified" type="T"/>
 		<field name="date_submitted" type="T"/>
 		<field name="last_modified" type="T"/>
-		<field name="date_status_modified" type="T"/>
+		<field name="stage_id" type="I8">
+			<NOTNULL/>
+			<DEFAULT VALUE="1"/>
+		</field>
 		<field name="status" type="I1">
 			<NOTNULL/>
 			<DEFAULT VALUE="1"/>
@@ -386,65 +380,80 @@
 			<NOTNULL/>
 			<DEFAULT VALUE="1"/>
 		</field>
-		<field name="pages" type="C2" size="255"/>
-		<field name="fast_tracked" type="I1">
+		<field name="work_type" type="I1">
 			<NOTNULL/>
 			<DEFAULT VALUE="0"/>
-		</field>
-		<field name="hide_author" type="I1">
-			<NOTNULL/>
-			<DEFAULT VALUE="0"/>
-		</field>
-		<field name="stage_id" type="I8">
-			<NOTNULL/>
-			<DEFAULT VALUE="1"/>
-		</field>
-		<field name="submission_version" type="I8">
-			<NOTNULL/>
-			<DEFAULT VALUE="1" />
 		</field>
 		<descr>Submissions</descr>
 		<index name="submissions_context_id">
 			<col>context_id</col>
 		</index>
-		<index name="submissions_series_id">
+	</table>
+
+	<!--
+	  *
+	  * TABLE publications
+	  *
+	  -->
+	<table name="publications">
+		<field name="publication_id" type="I8">
+			<KEY />
+			<AUTOINCREMENT />
+		</field>
+		<field name="date_published" type="T"/>
+		<field name="last_modified" type="T"/>
+		<field name="locale" type="C2" size="14"/>
+		<field name="primary_contact_id" type="I8" />
+		<field name="publication_date_type" type="C2" size="32">
+			<DEFAULT VALUE="pub"/>
+		</field>
+		<field name="publication_type" type="C2" size="32">
+			<DEFAULT VALUE="publication"/><!-- PUBLICATION_TYPE_PUBLICATION -->
+		</field>
+		<field name="series_id" type="I8" />
+		<field name="series_position" type="C2" size="255" />
+		<field name="submission_id" type="I8">
+			<NOTNULL />
+		</field>
+		<field name="status" type="I1">
+			<NOTNULL/>
+			<DEFAULT VALUE="1"/><!-- STATUS_QUEUED -->
+		</field>
+		<descr>Publications</descr>
+		<index name="publications_submission_id">
+			<col>submission_id</col>
+		</index>
+		<index name="publications_section_id">
 			<col>series_id</col>
 		</index>
 	</table>
 
 	<!--
 	  *
-	  * TABLE published_submissions
+	  * TABLE publication_settings
 	  *
 	  -->
-	<table name="published_submissions">
-		<field name="published_submission_id" type="I8">
-			<KEY />
-			<AUTOINCREMENT/>
-			<!-- Deprecated -->
-		</field>
-		<field name="submission_id" type="I8">
-			<NOTNULL/>
-		</field>
-		<field name="date_published" type="T"/>
-		<field name="audience" type="C2" size="255"/>
-		<field name="audience_range_qualifier" type="C2" size="255"/>
-		<field name="audience_range_from" type="C2" size="255"/>
-		<field name="audience_range_to" type="C2" size="255"/>
-		<field name="audience_range_exact" type="C2" size="255"/>
-		<field name="cover_image" type="X"/>
-		<field name="published_submission_version" type="I8">
-			<NOTNULL/>
-			<DEFAULT VALUE="1" />
-		</field>
-		<field name="prev_ver_id" type="I8" />
-		<field name="is_current_submission_version" type="I1">
+	<table name="publication_settings">
+		<field name="publication_id" type="I8">
 			<NOTNULL />
-			<DEFAULT VALUE="1" />
 		</field>
-		<descr>Published submissions</descr>
-		<index name="published_submissions_submission_id">
-			<col>submission_id</col>
+		<field name="locale" type="C2" size="14">
+			<NOTNULL />
+			<DEFAULT VALUE=""/>
+		</field>
+		<field name="setting_name" type="C2" size="255">
+			<NOTNULL />
+		</field>
+		<field name="setting_value" type="X"/>
+		<descr>publication metadata</descr>
+		<index name="publication_settings_publication_id">
+			<col>publication_id</col>
+		</index>
+		<index name="publication_settings_pkey">
+			<col>publication_id</col>
+			<col>locale</col>
+			<col>setting_name</col>
+			<UNIQUE/>
 		</index>
 	</table>
 
@@ -458,7 +467,7 @@
 			<KEY />
 			<AUTOINCREMENT/>
 		</field>
-		<field name="submission_id" type="I8">
+		<field name="publication_id" type="I8">
 			<NOTNULL/>
 		</field>
 		<field name="physical_format" type="I1">
@@ -496,15 +505,6 @@
 			<NOTNULL />
 			<DEFAULT VALUE="0" />
 		</field>
-		<field name="submission_version" type="I8">
-			<NOTNULL/>
-			<DEFAULT VALUE="1" />
-		</field>
-		<field name="prev_ver_id" type="I8" />
-		<field name="is_current_submission_version" type="I1">
-			<NOTNULL />
-			<DEFAULT VALUE="1" />
-		</field>
 		<descr>Publication formats assigned to published submissions</descr>
 		<index name="publication_format_submission_id">
 			<col>submission_id</col>
@@ -527,7 +527,6 @@
 		<field name="setting_name" type="C2" size="255">
 			<NOTNULL />
 		</field>
-		<field name="submission_version" type="I8" />
 		<field name="setting_value" type="X"/>
 		<field name="setting_type" type="C2" size="6">
 			<NOTNULL/>
@@ -541,7 +540,6 @@
 			<col>publication_format_id</col>
 			<col>locale</col>
 			<col>setting_name</col>
-			<col>submission_version</col>
 			<UNIQUE/>
 		</index>
 	</table>
@@ -563,14 +561,6 @@
 			<NOTNULL />
 		</field>
 		<field name="setting_value" type="X"/>
-		<field name="setting_type" type="C2" size="6">
-			<NOTNULL/>
-			<descr>(bool|int|float|string|object)</descr>
-		</field>
-		<field name="submission_version" type="I8">
-			<NOTNULL />
-			<DEFAULT VALUE="1"/>
-		</field>
 		<descr>Submission metadata</descr>
 		<index name="submission_settings_submission_id">
 			<col>submission_id</col>
@@ -579,7 +569,6 @@
 			<col>submission_id</col>
 			<col>locale</col>
 			<col>setting_name</col>
-			<col>submission_version</col>
 			<UNIQUE/>
 		</index>
 	</table>
@@ -594,27 +583,19 @@
 			<KEY />
 			<AUTOINCREMENT />
 		</field>
-		<field name="submission_id" type="I8">
+		<field name="primary_contact_id" type="I8" />
+		<field name="publication_id" type="I8">
 			<NOTNULL />
 		</field>
 		<field name="seq" type="F">
 			<NOTNULL />
 			<DEFAULT VALUE="0"/>
 		</field>
-		<field name="submission_version" type="I8">
-			<NOTNULL/>
-			<DEFAULT VALUE="1" />
-		</field>
-		<field name="prev_ver_id" type="I8" />
-		<field name="is_current_submission_version" type="I1">
-			<NOTNULL />
-			<DEFAULT VALUE="1" />
-		</field>
 		<index name="chapters_chapter_id">
 			<col>chapter_id</col>
 		</index>
-		<index name="chapters_submission_id">
-			<col>submission_id</col>
+		<index name="chapters_publication_id">
+			<col>publication_id</col>
 		</index>
 	</table>
 
@@ -663,9 +644,6 @@
 		<field name="chapter_id" type="I8">
 			<NOTNULL />
 		</field>
-		<field name="submission_id" type="I8">
-			<NOTNULL />
-		</field>
 		<field name="primary_contact" type="I1">
 			<NOTNULL/>
 			<DEFAULT VALUE="0"/>
@@ -680,7 +658,7 @@
 			<UNIQUE />
 		</index>
 	</table>
-	
+
 	<!--
 	 *
 	 * TABLE submission_search_keyword_list
@@ -805,59 +783,6 @@
 		</index>
 		<index name="press_settings_pkey">
 			<col>press_id</col>
-			<col>locale</col>
-			<col>setting_name</col>
-			<UNIQUE />
-		</index>
-	</table>
-
-	<!--
-	  *
-	  * TABLE cataloguing_metadata_fields
-	  *
-	  -->
-	<table name="cataloguing_metadata_fields">
-		<field name="field_id" type="I8">
-			<KEY/>
-			<AUTOINCREMENT/>
-		</field>
-		<field name="press_id" type="I8">
-			<NOTNULL />
-		</field>
-		<field name="enabled" type="I1">
-			<NOTNULL/>
-			<DEFAULT VALUE="1"/>
-		</field>
-		<descr>A press' cataloguing metadata fields.</descr>
-	</table>
-
-	<!--
-	  *
-	  * TABLE cataloguing_metadata_field_settings
-	  *
-	  -->
-	<table name="cataloguing_metadata_field_settings">
-		<field name="field_id" type="I8">
-			<NOTNULL />
-		</field>
-		<field name="locale" type="C2" size="14">
-			<NOTNULL />
-			<DEFAULT VALUE=""/>
-		</field>
-		<field name="setting_name" type="C2" size="255">
-			<NOTNULL />
-		</field>
-		<field name="setting_value" type="X"/>
-		<field name="setting_type" type="C2" size="6">
-			<NOTNULL/>
-			<descr>(bool|int|float|string|object)</descr>
-		</field>
-		<descr>Cataloguing metadata field settings</descr>
-		<index name="cataloguing_metadata_field_settings_field_id">
-			<col>field_id</col>
-		</index>
-		<index name="cataloguing_metadata_field_settings_pkey">
-			<col>field_id</col>
 			<col>locale</col>
 			<col>setting_name</col>
 			<UNIQUE />

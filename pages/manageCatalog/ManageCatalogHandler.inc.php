@@ -97,7 +97,6 @@ class ManageCatalogHandler extends Handler {
 		$params = array_merge($catalogList->getParams, [
 			'count' => $catalogList->count,
 			'contextId' => $context->getId(),
-			'returnObject' => SUBMISSION_RETURN_PUBLISHED,
 		]);
 		$submissions = $submissionService->getMany($params);
 		$items = [];

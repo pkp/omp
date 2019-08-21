@@ -21,9 +21,6 @@ class OAIDAO extends PKPOAIDAO {
 	/** @var PublicationFormatDAO */
 	var $_publicationFormatDao;
 
-	/** @var PublishedSubmissionDAO */
-	var $_publishedSubmissionDao;
-
 	/** @var SeriesDAO */
 	var $_seriesDao;
 
@@ -43,7 +40,6 @@ class OAIDAO extends PKPOAIDAO {
 		parent::__construct();
 
 		$this->_publicationFormatDao = DAORegistry::getDAO('PublicationFormatDAO');
-		$this->_publishedSubmissionDao = DAORegistry::getDAO('PublishedSubmissionDAO');
 		$this->_seriesDao = DAORegistry::getDAO('SeriesDAO');
 		$this->_pressDao = DAORegistry::getDAO('PressDAO');
 	}
@@ -167,9 +163,10 @@ class OAIDAO extends PKPOAIDAO {
 
 		if ($isRecord) {
 			$publicationFormat = $this->_publicationFormatDao->getById($publicationFormatId);
-			$monograph = $this->_publishedSubmissionDao->getBySubmissionId($publicationFormat->getMonographId());
+			$publication = Services::get('publication')->get($publicationFormat->getData('publicationId'));
+			$submission = Services::get('submission')->get($publication->getData('submissionId'));
 			$record->setData('publicationFormat', $publicationFormat);
-			$record->setData('monograph', $monograph);
+			$record->setData('monograph', $submission);
 			$record->setData('press', $press);
 			$record->setData('series', $series);
 		}
@@ -205,21 +202,21 @@ class OAIDAO extends PKPOAIDAO {
 			'SELECT	ms.last_modified AS last_modified,
 				pf.publication_format_id AS data_object_id,
 				p.press_id AS press_id,
-				s.series_id AS series_id,
+				pub.series_id AS series_id,
 				NULL AS tombstone_id,
 				NULL AS set_spec,
 				NULL AS oai_identifier
 			FROM	publication_formats pf
-				JOIN published_submissions ps ON (ps.submission_id = pf.submission_id)
-				JOIN submissions ms ON (ms.submission_id = ps.submission_id)
-				LEFT JOIN series s ON (s.series_id = ms.series_id)
+				JOIN publications pub ON (pub.publication_id = pf.publication_id)
+				JOIN submissions ms ON (ms.current_publication_id = pub.publication_id)
+				LEFT JOIN series s ON (s.series_id = pub.series_id)
 				JOIN presses p ON (p.press_id = ms.context_id)
 			WHERE	p.enabled = 1
 				' . ($pressId?' AND p.press_id = ?':'') . '
-				' . ($seriesId?' AND s.series_id = ?':'') . '
+				' . ($seriesId?' AND pub.series_id = ?':'') . '
 				AND ms.status <> ' . STATUS_DECLINED . '
 				AND pf.is_available = 1
-				AND ps.date_published IS NOT NULL
+				AND pub.date_published IS NOT NULL
 				' . ($from?' AND ms.last_modified >= ' . $this->datetimeToDB($from):'') . '
 				' . ($until?' AND ms.last_modified <= ' . $this->datetimeToDB($until):'') . '
 				' . ($submissionId?' AND pf.publication_format_id=?':'') . '

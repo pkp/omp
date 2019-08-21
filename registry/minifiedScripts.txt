@@ -121,8 +121,6 @@ js/controllers/modals/editorDecision/ApproveProofsHandler.js
 js/controllers/modals/catalogEntry/form/RepresentativeFormHandler.js
 js/controllers/modals/catalogEntry/form/PublicationFormatMetadataFormHandler.js
 js/controllers/grid/files/proof/form/ApprovedProofFormHandler.js
-js/controllers/tab/catalogEntry/CatalogEntryTabHandler.js
-js/controllers/catalog/form/CatalogMetadataFormHandler.js
 js/controllers/monographList/MonographListHandler.js
 
 # Our own plug-in (depends on classes)

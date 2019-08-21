@@ -61,6 +61,14 @@ class ChapterGridHandler extends CategoryGridHandler {
 	}
 
 	/**
+	 * Get the publication associated with this chapter grid.
+	 * @return Publication
+	 */
+	function getPublication() {
+		return $this->getAuthorizedContextObject(ASSOC_TYPE_PUBLICATION);
+	}
+
+	/**
 	 * Get whether or not this grid should be 'read only'
 	 * @return boolean
 	 */
@@ -87,8 +95,8 @@ class ChapterGridHandler extends CategoryGridHandler {
 	 * @param $roleAssignments array
 	 */
 	function authorize($request, &$args, $roleAssignments) {
-		import('lib.pkp.classes.security.authorization.SubmissionAccessPolicy');
-		$this->addPolicy(new SubmissionAccessPolicy($request, $args, $roleAssignments));
+		import('lib.pkp.classes.security.authorization.PublicationAccessPolicy');
+		$this->addPolicy(new PublicationAccessPolicy($request, $args, $roleAssignments));
 		return parent::authorize($request, $args, $roleAssignments);
 	}
 
@@ -102,8 +110,7 @@ class ChapterGridHandler extends CategoryGridHandler {
 
 		AppLocale::requireComponents(LOCALE_COMPONENT_APP_DEFAULT, LOCALE_COMPONENT_PKP_DEFAULT, LOCALE_COMPONENT_APP_SUBMISSION, LOCALE_COMPONENT_PKP_SUBMISSION);
 
-		$monograph = $this->getMonograph();
-		if ($monograph->getSubmissionVersion() != $monograph->getCurrentSubmissionVersion()) {
+		if ($this->getPublication()->getData('status') === STATUS_PUBLISHED) {
 			$this->setReadOnly(true);
 		}
 
@@ -163,10 +170,11 @@ class ChapterGridHandler extends CategoryGridHandler {
 	 * @see GridHandler::initFeatures()
 	 */
 	function initFeatures($request, $args) {
-		$monograph = $this->getMonograph();
+		$submission = $this->getMonograph();
+		$publication = $this->getPublication();
 		$userRoles = $this->getAuthorizedContextObject(ASSOC_TYPE_USER_ROLES);
 
-		if (($monograph->getSubmissionVersion() == $monograph->getCurrentSubmissionVersion()) && ($monograph->getDateSubmitted() == null || array_intersect(array(ROLE_ID_MANAGER, ROLE_ID_SUB_EDITOR), $userRoles))) {
+		if ($publication->getData('status') !== STATUS_PUBLISHED && ($submission->getData('submissionProgress') || array_intersect(array(ROLE_ID_MANAGER, ROLE_ID_SUB_EDITOR), $userRoles))) {
 			$this->setReadOnly(false);
 			import('lib.pkp.classes.controllers.grid.feature.OrderCategoryGridItemsFeature');
 			return array(new OrderCategoryGridItemsFeature(ORDER_CATEGORY_GRID_CATEGORIES_AND_ROWS));
@@ -180,10 +188,12 @@ class ChapterGridHandler extends CategoryGridHandler {
 	 * @see GridDataProvider::getRequestArgs()
 	 */
 	function getRequestArgs() {
-		$monograph = $this->getMonograph();
 		return array_merge(
 			parent::getRequestArgs(),
-			array('submissionId' => $monograph->getId())
+			array(
+				'submissionId' => $this->getMonograph()->getId(),
+				'publicationId' => $this->getPublication()->getId(),
+			)
 		);
 	}
 
@@ -199,10 +209,9 @@ class ChapterGridHandler extends CategoryGridHandler {
 	 * @see GridHandler::loadData
 	 */
 	function loadData($request, $filter) {
-		$monograph = $this->getMonograph();
-		$chapterDao = DAORegistry::getDAO('ChapterDAO');
-		$chapters = $chapterDao->getBySubmissionId($monograph->getId());
-		return $chapters->toAssociativeArray();
+		return DAORegistry::getDAO('ChapterDAO')
+			->getByPublicationId($this->getPublication()->getId())
+			->toAssociativeArray();
 	}
 
 
@@ -234,7 +243,7 @@ class ChapterGridHandler extends CategoryGridHandler {
 	 */
 	function getCategoryRowInstance() {
 		$monograph = $this->getMonograph();
-		$row = new ChapterGridCategoryRow($monograph, $this->getReadOnly());
+		$row = new ChapterGridCategoryRow($monograph, $this->getPublication(), $this->getReadOnly());
 		import('controllers.grid.users.chapter.ChapterGridCategoryRowCellProvider');
 		$row->setCellProvider(new ChapterGridCategoryRowCellProvider());
 		return $row;
@@ -267,7 +276,7 @@ class ChapterGridHandler extends CategoryGridHandler {
 
 		// Add it again with the correct sequence value.
 		// FIXME: primary authors not set for chapter authors.
-		$chapterAuthorDao->insertChapterAuthor($author->getId(), $chapterId, $monograph->getId(), false, $newSequence);
+		$chapterAuthorDao->insertChapterAuthor($author->getId(), $chapterId, false, $newSequence);
 	}
 
 
@@ -281,7 +290,6 @@ class ChapterGridHandler extends CategoryGridHandler {
 	 * @return JSONMessage JSON object
 	 */
 	function identifiers($args, $request) {
-		$monograph = $this->getMonograph();
 		$chapter = $this->_getChapterFromRequest($request);
 
 		import('controllers.tab.pubIds.form.PublicIdentifiersForm');
@@ -297,7 +305,6 @@ class ChapterGridHandler extends CategoryGridHandler {
 	 * @return JSONMessage JSON object
 	 */
 	function updateIdentifiers($args, $request) {
-		$monograph = $this->getMonograph();
 		$chapter = $this->_getChapterFromRequest($request);
 
 		import('controllers.tab.pubIds.form.PublicIdentifiersForm');
@@ -320,7 +327,6 @@ class ChapterGridHandler extends CategoryGridHandler {
 	function clearPubId($args, $request) {
 		if (!$request->checkCSRF()) return new JSONMessage(false);
 
-		$monograph = $this->getMonograph();
 		$chapter = $this->_getChapterFromRequest($request);
 
 		import('controllers.tab.pubIds.form.PublicIdentifiersForm');
@@ -353,6 +359,7 @@ class ChapterGridHandler extends CategoryGridHandler {
 		$templateMgr = TemplateManager::getManager($request);
 		$templateMgr->assign(array(
 			'submissionId' => $this->getMonograph()->getId(),
+			'publicationId' => $this->getPublication()->getId(),
 			'chapterId' => $chapter->getId(),
 		));
 		return new JSONMessage(true, $templateMgr->fetch('controllers/grid/users/chapter/editChapter.tpl'));
@@ -369,7 +376,7 @@ class ChapterGridHandler extends CategoryGridHandler {
 
 		// Form handling
 		import('controllers.grid.users.chapter.form.ChapterForm');
-		$chapterForm = new ChapterForm($this->getMonograph(), $chapter);
+		$chapterForm = new ChapterForm($this->getMonograph(), $this->getPublication(), $chapter);
 		$chapterForm->initData();
 
 		return new JSONMessage(true, $chapterForm->fetch($request));
@@ -387,7 +394,7 @@ class ChapterGridHandler extends CategoryGridHandler {
 
 		// Form initialization
 		import('controllers.grid.users.chapter.form.ChapterForm');
-		$chapterForm = new ChapterForm($this->getMonograph(), $chapter);
+		$chapterForm = new ChapterForm($this->getMonograph(), $this->getPublication(), $chapter);
 		$chapterForm->readInputData();
 
 		// Form validation
@@ -431,9 +438,10 @@ class ChapterGridHandler extends CategoryGridHandler {
 	 * Fetch and validate the chapter from the request arguments
 	 */
 	function _getChapterFromRequest($request) {
-		$monograph = $this->getMonograph();
-		$chapterDao = DAORegistry::getDAO('ChapterDAO');
-		return $chapterDao->getChapter((int) $request->getUserVar('chapterId'), $monograph->getId());
+		return DAORegistry::getDAO('ChapterDAO')->getChapter(
+				(int) $request->getUserVar('chapterId'),
+				$this->getPublication()->getId()
+			);
 	}
 }
 

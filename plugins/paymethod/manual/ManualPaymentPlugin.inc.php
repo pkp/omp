@@ -44,17 +44,50 @@ class ManualPaymentPlugin extends PaymethodPlugin {
 	function register($category, $path, $mainContextId = null) {
 		if (parent::register($category, $path, $mainContextId)) {
 			$this->addLocaleData();
+			\HookRegistry::register('Form::config::before', array($this, 'addSettings'));
 			return true;
 		}
 		return false;
 	}
 
 	/**
-	 * @copydoc PaymethodPlugin::getSettingsForm()
+	 * Add settings to the payments form
+	 *
+	 * @param $hookName string
+	 * @param $form FormComponent
 	 */
-	function getSettingsForm($context) {
-		$this->import('ManualPaymentSettingsForm');
-		return new ManualPaymentSettingsForm($this, $context->getId());
+	public function addSettings($hookName, $form) {
+		if ($form->id !== FORM_PAYMENT_SETTINGS) {
+			return;
+		}
+
+		$context = Application::get()->getRequest()->getContext();
+		if (!$context) {
+			return;
+		}
+
+		$form->addGroup([
+				'id' => 'manualPayment',
+				'label' => __('plugins.paymethod.manual.displayName'),
+				'showWhen' => 'paymentsEnabled',
+			])
+			->addField(new \PKP\components\forms\FieldTextArea('manualInstructions', [
+				'label' => __('plugins.paymethod.manual.settings'),
+				'value' => $this->getSetting($context->getId(), 'manualInstructions'),
+				'groupId' => 'manualPayment',
+			]));
+
+		return;
+	}
+
+	/**
+	 * @copydoc PaymethodPlugin::saveSettings()
+	 */
+	public function saveSettings($params, $slimRequest, $request) {
+		$allParams = $slimRequest->getParsedBody();
+		$manualInstructions = isset($allParams['manualInstructions']) ? (string) $allParams['manualInstructions'] : '';
+		$this->updateSetting($request->getContext()->getId(), 'manualInstructions', $manualInstructions);
+		return [];
 	}
 
 	/**

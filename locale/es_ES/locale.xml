@@ -60,7 +60,6 @@
 	<message key="monograph.publicationFormat.taxRate">Tipo impositivo</message>
 	<message key="monograph.publicationFormat.taxType">Tipo de impuesto</message>
 
-	<message key="monograph.publicationFormat.formatMetadata">Metadatos del formato</message>
 	<message key="monograph.publicationFormat.isApproved">Incluir los metadatos de este formato de publicación en la entrada de catálogo de este libro.</message>
 	<message key="monograph.publicationFormat.noMarketsAssigned">Ausencia de mercados y precios.</message>
 	<message key="monograph.publicationFormat.noCodesAssigned">Ausencia de código de identificación.</message>
@@ -480,7 +479,6 @@
 	<message key="notification.type.formatNeedsApprovedSubmission">Los metadatos de la entrada de catálogo deben aprobarse antes de que el formato de publicación se incluya en el catálogo. Para aprobar los metadatos del catálogo, haga clic en la pestaña Monografía de la parte superior.</message>
 	<message key="notification.type.configurePaymentMethod.title">No se ha configurado ningún método de pago.</message>
 	<message key="notification.type.configurePaymentMethod">Se requiere un método de pago configurado antes de poder definir ajustes de e-commerce.</message>
-	<message key="notification.type.visitCatalog">Se aprobó la monografía. Visite el Catálogo para gestionar los detalles a través del enlace al catálogo de la parte superior.</message>
 	<message key="notification.type.visitCatalogTitle">Gestión del catálogo</message>
 
 	<!-- Authorization -->
@@ -521,7 +519,6 @@
 	<message key="rt.metadata.pkp.dctype">Libro</message>
 
 	<message key="submission.pdf.download">Descargar el archivo PDF</message>
-	<message key="monograph.currentCoverImageReload">Guarde los cambios para ver la nueva imagen de portada.</message>
 	<message key="monograph.publicationFormat">Formato</message>
 	<message key="monograph.publicationFormatDetails">Detalles sobre los formatos de publicación disponibles: {$format}</message>
 	<message key="monograph.miscellaneousDetails">Detalles sobre este monográfico</message>
@@ -531,7 +528,6 @@
 	<message key="grid.catalogEntry.availability">Disponibilidad</message>
 	<message key="grid.catalogEntry.isNotAvailable">No disponible</message>
 	<message key="grid.catalogEntry.approvedRepresentation.title">Aceptación de formato</message>
-	<message key="grid.catalogEntry.approvedRepresentation.message"><![CDATA[<p>Acepta los metadatos para este formato. Los metadatos pueden comprobarse en el panel de registro de entrada.<p>]]></message>
 	<message key="grid.catalogEntry.approvedRepresentation.removeMessage"><![CDATA[<p>Indica que los metadatos para este formato no han sido aceptados.<p>]]></message>
 	<message key="grid.catalogEntry.availableRepresentation.title">Disponibilidad de formato</message>
 	<message key="grid.catalogEntry.availableRepresentation.message"><![CDATA[<p>Haz que este formato <em>esté disponible para los lectores/as</em>. Los ficheros descargables y cualquier otra distribución aparecerán en el registro de entrada de libros.</p>]]></message>

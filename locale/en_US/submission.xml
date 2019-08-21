@@ -20,10 +20,10 @@
 	<message key="submission.synopsis">Synopsis</message>
 	<message key="submission.workflowType">Submission Type</message>
 	<message key="submission.workflowType.description">A monograph is a work authored wholly by one or more authors. An edited volume has different authors for each chapter (with the chapter details entered later in this process.)</message>
+	<message key="submission.workflowType.editedVolume.label">Edited Volume</message>
 	<message key="submission.workflowType.editedVolume">Edited Volume: Authors are associated with their own chapter.</message>
 	<message key="submission.workflowType.authoredWork">Monograph: Authors are associated with the book as a whole.</message>
-	<message key="submission.workflowType.editedVolume.selectEditors">Select Volume Editors</message>
-	<message key="submission.workflowType.editedVolume.selectEditors.description">Select the authors who should be identified as editors for the entire volume.</message>
+	<message key="submission.workflowType.change">Change</message>
 	<message key="submission.editorName">{$editorName} (ed)</message>
 	<message key="submission.monograph">Monograph</message>
 	<message key="submission.published">Production Ready</message>
@@ -58,6 +58,7 @@
 	<message key="submission.submit.upload">Upload Submission</message>
 	<message key="submission.submit.cancelSubmission">You can complete this submission at a later date by selecting Active Submissions from the Author home.</message>
 	<message key="submission.submit.selectSeries">Select series (optional)</message>
+	<message key="author.isVolumeEditor">Identify this contributor as the editor of this volume.</message>
 	<message key="author.submit.seriesRequired">A valid series is required.</message>
 	<message key="submission.submit.seriesPosition">Series Position</message>
 	<message key="submission.submit.seriesPosition.description">Examples: Book 2, Volume 2</message>
@@ -83,6 +84,7 @@
 	<message key="submission.submit.placement">Submission Placement</message>
 	<message key="submission.submit.userGroup">Submit in my role as...</message>
 	<message key="submission.submit.userGroupDescription">If you are submitting an Edited Volume, you should choose the volume editor role.</message>
+	<message key="submission.submit.noContext">This submission's press could not be found.</message>
 
 	<!-- Chapters Grid -->
 	<message key="grid.chapters.title">Chapters</message>
@@ -91,7 +93,6 @@
 	<message key="grid.copyediting.deleteCopyeditorResponse">Delete Copyeditor Upload</message>
 
 	<!-- Submission-specific catalog info -->
-	<message key="submission.catalogEntry">Catalog Entry</message>
 	<message key="submission.complete">Approved</message>
 	<message key="submission.incomplete">Awaiting Approval</message>
 	<message key="submission.editCatalogEntry">Entry</message>
@@ -121,8 +122,8 @@
 	<message key="submission.event.publicationFormatCreated">The publication format "{$formatName}" was created.</message>
 	<message key="submission.event.publicationFormatRemoved">The publication format "{$formatName}" was removed.</message>
 	<message key="submission.submit.titleAndSummary">Title and Summary</message>
-	<message key="workflow.review.externalReview">External Review</message>
 	<message key="editor.submission.decision.sendExternalReview">Send to External Review</message>
+	<message key="workflow.review.externalReview">External Review</message>
 
 	<message key="submission.upload.fileContents">Submission Component</message>
 	<message key="submission.dependentFiles">Dependent Files</message>
@@ -140,4 +141,12 @@
 
 	<!-- categories -->
 	<message key="catalog.browseTitles">{$numTitles} Titles</message>
+
+	<!-- Publication -->
+	<message key="publication.catalogEntry">Catalog Entry</message>
+	<message key="publication.catalogEntry.success">The catalog entry details have been updated.</message>
+	<message key="publication.required.issue">The publication must be assigned to an issue before it can be published.</message>
+	<message key="publication.publishedIn"><![CDATA[Published in <a href="{$issueUrl}">{$issueName}</a>.]]></message>
+	<message key="publication.scheduledIn"><![CDATA[Scheduled for publication in <a href="{$issueUrl}">{$issueName}</a>.]]></message>
+	<message key="publication.invalidSeries">The series for this publication could not be found.</message>
 </locale>

@@ -60,7 +60,6 @@
 	<message key="monograph.publicationFormat.taxRate">Taux de taxation</message>
 	<message key="monograph.publicationFormat.taxType">Type de taxation</message>
 
-	<message key="monograph.publicationFormat.formatMetadata">Formater les métadonnées</message>
 	<message key="monograph.publicationFormat.isApproved">Inclure les métadonnées de ce format de publication dans l'entrée de catalogue de ce livre.</message>
 	<message key="monograph.publicationFormat.noMarketsAssigned">Marchés et prix manquants.</message>
 	<message key="monograph.publicationFormat.noCodesAssigned">Code d'identification manquant.</message>
@@ -485,7 +484,6 @@ Votre serveur supporte actuellement mbstring: <strong>{$supportsMBString}</stron
 	<message key="notification.type.formatNeedsApprovedSubmission">Les métadonnées pour l'entrée de catalogue doivent être approuvées avant d'ajouter le format de publication dans le catalogue. Pour approuver les métadonnées du catalogue, cliquez sur l'onglet Monographie ci-haut.</message>
 	<message key="notification.type.configurePaymentMethod.title">Aucun mode de paiement n'a été configuré.</message>
 	<message key="notification.type.configurePaymentMethod">Il faut configurer un mode de paiement avant de définir les paramètre de commerce électronique.</message>
-	<message key="notification.type.visitCatalog">La monographie a été approuvée. Veuillez consulter le Catalogue pour gérer les détails de ce dernier en utilisant le lien de catalogue qui se trouve juste au-dessus.</message>
 	<message key="notification.type.visitCatalogTitle">Gestion du catalogue</message>
 
 	<!-- Authorization -->

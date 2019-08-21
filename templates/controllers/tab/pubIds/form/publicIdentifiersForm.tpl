@@ -29,13 +29,15 @@
 {elseif $pubObject instanceof Chapter}
 	<form class="pkp_form" id="publicIdentifiersForm" method="post" action="{url router=$smarty.const.ROUTE_COMPONENT component="grid.users.chapter.ChapterGridHandler" op="updateIdentifiers"}">
 		{include file="controllers/notification/inPlaceNotification.tpl" notificationId="representationIdentifiersFormFieldsNotification"}
-		<input type="hidden" name="submissionId" value="{$pubObject->getMonographId()|escape}" />
+		<input type="hidden" name="submissionId" value="{$submissionId|escape}" />
+		<input type="hidden" name="publicationId" value="{$pubObject->getData('publicationId')|escape}" />
 		<input type="hidden" name="chapterId" value="{$pubObject->getId()|escape}" />
 
 {elseif $pubObject instanceof Representation}
 	<form class="pkp_form" id="publicIdentifiersForm" method="post" action="{url router=$smarty.const.ROUTE_COMPONENT component="grid.catalogEntry.PublicationFormatGridHandler" op="updateIdentifiers"}">
 		{include file="controllers/notification/inPlaceNotification.tpl" notificationId="representationIdentifiersFormFieldsNotification"}
-		<input type="hidden" name="submissionId" value="{$pubObject->getSubmissionId()|escape}" />
+		<input type="hidden" name="submissionId" value="{$submissionId|escape}" />
+		<input type="hidden" name="publicationId" value="{$pubObject->getData('publicationId')|escape}" />
 		<input type="hidden" name="representationId" value="{$pubObject->getId()|escape}" />
 
 {elseif $pubObject instanceof SubmissionFile}

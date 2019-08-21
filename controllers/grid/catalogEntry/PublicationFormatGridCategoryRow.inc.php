@@ -23,15 +23,20 @@ class PublicationFormatGridCategoryRow extends GridCategoryRow {
 	/** @var boolean */
 	protected $_canManage;
 
+	/** @var Publication **/
+	var $_publication;
+
 	/**
 	 * Constructor
 	 * @param $submission Submission
 	 * @param $cellProvider GridCellProvider
 	 * @param $canManage boolean
+	 * @param $publication Publication
 	 */
-	function __construct($submission, $cellProvider, $canManage) {
+	function __construct($submission, $cellProvider, $canManage, $publication) {
 		$this->_submission = $submission;
 		$this->_canManage = $canManage;
+		$this->_publication = $publication;
 		parent::__construct();
 		$this->setCellProvider($cellProvider);
 	}
@@ -66,7 +71,8 @@ class PublicationFormatGridCategoryRow extends GridCategoryRow {
 			$router = $request->getRouter();
 			$actionArgs = array(
 				'submissionId' => $submission->getId(),
-				'representationId' => $representation->getId()
+				'representationId' => $representation->getId(),
+				'publicationId' => $this->getPublication()->getId(),
 			);
 
 			// Add row-level actions
@@ -108,6 +114,14 @@ class PublicationFormatGridCategoryRow extends GridCategoryRow {
 	 */
 	function getSubmission() {
 		return $this->_submission;
+	}
+
+	/**
+	 * Get the publication for this row (already authorized)
+	 * @return Publication
+	 */
+	function getPublication() {
+		return $this->_publication;
 	}
 }
 

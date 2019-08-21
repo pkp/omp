@@ -25,8 +25,11 @@ import('controllers.grid.catalogEntry.PublicationDateGridRow');
 import('lib.pkp.classes.linkAction.request.AjaxModal');
 
 class PublicationDateGridHandler extends GridHandler {
-	/** @var Monograph */
-	var $_monograph;
+	/** @var Submission */
+	var $_submission;
+
+	/** @var Publication */
+	var $_publication;
 
 	/** @var PublicationFormat */
 	var $_publicationFormat;
@@ -47,19 +50,35 @@ class PublicationDateGridHandler extends GridHandler {
 	// Getters/Setters
 	//
 	/**
-	 * Get the monograph associated with this grid.
-	 * @return Monograph
+	 * Get the submission associated with this grid.
+	 * @return Submission
 	 */
-	function getMonograph() {
-		return $this->_monograph;
+	function getSubmission() {
+		return $this->_submission;
 	}
 
 	/**
-	 * Set the Monograph
-	 * @param Monograph
+	 * Set the Submission
+	 * @param Submission
 	 */
-	function setMonograph($monograph) {
-		$this->_monograph = $monograph;
+	function setSubmission($submission) {
+		$this->_submission = $submission;
+	}
+
+	/**
+	 * Get the publication associated with this grid.
+	 * @return Publication
+	 */
+	function getPublication() {
+		return $this->_publication;
+	}
+
+	/**
+	 * Set the Publication
+	 * @param Publication
+	 */
+	function setPublication($publication) {
+		$this->_publication = $publication;
 	}
 
 	/**
@@ -88,8 +107,8 @@ class PublicationDateGridHandler extends GridHandler {
 	 * @param $roleAssignments array
 	 */
 	function authorize($request, &$args, $roleAssignments) {
-		import('lib.pkp.classes.security.authorization.SubmissionAccessPolicy');
-		$this->addPolicy(new SubmissionAccessPolicy($request, $args, $roleAssignments));
+		import('lib.pkp.classes.security.authorization.PublicationAccessPolicy');
+		$this->addPolicy(new PublicationAccessPolicy($request, $args, $roleAssignments));
 		return parent::authorize($request, $args, $roleAssignments);
 	}
 
@@ -99,8 +118,9 @@ class PublicationDateGridHandler extends GridHandler {
 	function initialize($request, $args = null) {
 		parent::initialize($request, $args);
 
-		// Retrieve the authorized monograph.
-		$this->setMonograph($this->getAuthorizedContextObject(ASSOC_TYPE_MONOGRAPH));
+		// Retrieve the authorized submission.
+		$this->setSubmission($this->getAuthorizedContextObject(ASSOC_TYPE_SUBMISSION));
+		$this->setPublication($this->getAuthorizedContextObject(ASSOC_TYPE_PUBLICATION));
 		$publicationFormatDao = DAORegistry::getDAO('PublicationFormatDAO');
 		$representationId = null;
 
@@ -109,7 +129,7 @@ class PublicationDateGridHandler extends GridHandler {
 
 		if ($publicationDateId != '') {
 			$publicationDateDao = DAORegistry::getDAO('PublicationDateDAO');
-			$publicationDate = $publicationDateDao->getById($publicationDateId, $this->getMonograph()->getId());
+			$publicationDate = $publicationDateDao->getById($publicationDateId, $this->getPublication()->getId());
 			if ($publicationDate) {
 				$representationId = $publicationDate->getPublicationFormatId();
 			}
@@ -117,13 +137,13 @@ class PublicationDateGridHandler extends GridHandler {
 			$representationId = (int) $request->getUserVar('representationId');
 		}
 
-		$monograph = $this->getMonograph();
-		$publicationFormat = $publicationFormatDao->getById($representationId, $monograph->getId());
+		$submission = $this->getSubmission();
+		$publicationFormat = $publicationFormatDao->getById($representationId, $this->getPublication()->getId());
 
 		if ($publicationFormat) {
 			$this->setPublicationFormat($publicationFormat);
 		} else {
-			fatalError('The publication format is not assigned to authorized monograph!');
+			fatalError('The publication format is not assigned to authorized submission!');
 		}
 
 		// Load submission-specific translations
@@ -186,22 +206,20 @@ class PublicationDateGridHandler extends GridHandler {
 	 * @return PublicationDateGridRow
 	 */
 	function getRowInstance() {
-		return new PublicationDateGridRow($this->getMonograph());
+		return new PublicationDateGridRow($this->getSubmission());
 	}
 
 	/**
 	 * Get the arguments that will identify the data in the grid
-	 * In this case, the monograph.
+	 * In this case, the submission.
 	 * @return array
 	 */
 	function getRequestArgs() {
-		$monograph = $this->getMonograph();
-		$publicationFormat = $this->getPublicationFormat();
-
-		return array(
-			'submissionId' => $monograph->getId(),
-			'representationId' => $publicationFormat->getId()
-		);
+		return [
+			'submissionId' => $this->getSubmission()->getId(),
+			'publicationId' => $this->getPublication()->getId(),
+			'representationId' => $this->getPublicationFormat()->getId()
+		];
 	}
 
 	/**
@@ -237,14 +255,14 @@ class PublicationDateGridHandler extends GridHandler {
 	function editDate($args, $request) {
 		// Identify the date to be updated
 		$publicationDateId = (int) $request->getUserVar('publicationDateId');
-		$monograph = $this->getMonograph();
+		$submission = $this->getSubmission();
 
 		$publicationDateDao = DAORegistry::getDAO('PublicationDateDAO');
-		$publicationDate = $publicationDateDao->getById($publicationDateId, $monograph->getId());
+		$publicationDate = $publicationDateDao->getById($publicationDateId, $this->getPublication()->getId());
 
 		// Form handling
 		import('controllers.grid.catalogEntry.form.PublicationDateForm');
-		$publicationDateForm = new PublicationDateForm($monograph, $publicationDate);
+		$publicationDateForm = new PublicationDateForm($submission, $this->getPublication(), $publicationDate);
 		$publicationDateForm->initData();
 
 		return new JSONMessage(true, $publicationDateForm->fetch($request));
@@ -259,21 +277,21 @@ class PublicationDateGridHandler extends GridHandler {
 	function updateDate($args, $request) {
 		// Identify the code to be updated
 		$publicationDateId = $request->getUserVar('publicationDateId');
-		$monograph = $this->getMonograph();
+		$submission = $this->getSubmission();
 
 		$publicationDateDao = DAORegistry::getDAO('PublicationDateDAO');
-		$publicationDate = $publicationDateDao->getById($publicationDateId, $monograph->getId());
+		$publicationDate = $publicationDateDao->getById($publicationDateId, $this->getPublication()->getId());
 
 		// Form handling
 		import('controllers.grid.catalogEntry.form.PublicationDateForm');
-		$publicationDateForm = new PublicationDateForm($monograph, $publicationDate);
+		$publicationDateForm = new PublicationDateForm($submission, $this->getPublication(), $publicationDate);
 		$publicationDateForm->readInputData();
 		if ($publicationDateForm->validate()) {
 			$publicationDateId = $publicationDateForm->execute();
 
 			if(!isset($publicationDate)) {
 				// This is a new code
-				$publicationDate = $publicationDateDao->getById($publicationDateId, $monograph->getId());
+				$publicationDate = $publicationDateDao->getById($publicationDateId, $this->getPublication()->getId());
 				// New added code action notification content.
 				$notificationContent = __('notification.addedPublicationDate');
 			} else {
@@ -313,7 +331,7 @@ class PublicationDateGridHandler extends GridHandler {
 		$publicationDateId = $request->getUserVar('publicationDateId');
 
 		$publicationDateDao = DAORegistry::getDAO('PublicationDateDAO');
-		$publicationDate = $publicationDateDao->getById($publicationDateId, $this->getMonograph()->getId());
+		$publicationDate = $publicationDateDao->getById($publicationDateId, $this->getPublication()->getId());
 		if ($publicationDate != null) { // authorized
 
 			$result = $publicationDateDao->deleteObject($publicationDate);

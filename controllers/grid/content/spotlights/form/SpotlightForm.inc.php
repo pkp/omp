@@ -149,9 +149,8 @@ class SpotlightForm extends Form {
 		$returner = null;
 		switch ($assocType) {
 			case SPOTLIGHT_TYPE_BOOK:
-				$publishedSubmissionDao = DAORegistry::getDAO('PublishedSubmissionDAO');
-				$publishedSubmission = $publishedSubmissionDao->getBySubmissionId($assocId, $this->getPressId());
-				$returner = isset($publishedSubmission) ? $publishedSubmission->getLocalizedTitle() : '';
+				$submission = Services::get('submission')->get($assocId);
+				$returner = isset($submission) ? $submission->getLocalizedTitle() : '';
 				break;
 			case SPOTLIGHT_TYPE_SERIES:
 				$seriesDao = DAORegistry::getDAO('SeriesDAO');

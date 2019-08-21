@@ -25,10 +25,10 @@ class MonographMailTemplate extends SubmissionMailTemplate {
 	 */
 	function assignParams($paramArray = array()) {
 		$submission = $this->submission;
-		$paramArray['seriesName'] = strip_tags($submission->getSeriesTitle());
 		$seriesDao = DAORegistry::getDAO('SeriesDAO');
 		$series = $seriesDao->getById($submission->getSeriesId());
-		$paramArray['seriesPath'] = $series ? $series->getPath() : '';		
+		$paramArray['seriesPath'] = $series ? $series->getPath() : '';
+		$paramArray['seriesName'] = $series ? $series->getLocalizedTitle() : '';
 		parent::assignParams($paramArray);
 	}
 

@@ -15,7 +15,6 @@
 	<!-- General monograph keys -->
 	<message key="monograph.audience">Zielgruppe</message>
 	<message key="monograph.coverImage">Titelbild</message>
-	<message key="monograph.currentCoverImageReload">Speichern Sie Ihre Änderungen, um das neue Titelbild angezeigt zu bekommen.</message>
 	<message key="monograph.audience.rangeQualifier">Grundlage der Eingrenzung der Zielgruppe</message>
 	<message key="monograph.audience.rangeFrom">Bildungsstand (von)</message>
 	<message key="monograph.audience.rangeTo">Bildungsstand (bis)</message>
@@ -64,7 +63,6 @@
 	<message key="monograph.publicationFormat.taxRate">Steuersatz</message>
 	<message key="monograph.publicationFormat.taxType">Steuerart</message>
 
-	<message key="monograph.publicationFormat.formatMetadata">Metadaten</message>
 	<message key="monograph.publicationFormat.isApproved">Metadaten für dieses Publikationsformat in den Katalog aufnehmen.</message>
 	<message key="monograph.publicationFormat.noMarketsAssigned">Markt- und Preisangabe fehlen.</message>
 	<message key="monograph.publicationFormat.noCodesAssigned">Identifikationscode fehlt.</message>
@@ -87,7 +85,6 @@
 	<message key="grid.catalogEntry.isNotAvailable">Nicht verfügbar</message>
 	<message key="grid.catalogEntry.proof">Korrekturfahne</message>
 	<message key="grid.catalogEntry.approvedRepresentation.title">Format-Freigabe</message>
-	<message key="grid.catalogEntry.approvedRepresentation.message"><![CDATA[<p>Die Metadaten für dieses Format freigeben. Die Metadaten können im Katalogeintrag-Panel kontrolliert werden.</p>]]></message>
 	<message key="grid.catalogEntry.approvedRepresentation.removeMessage"><![CDATA[<p>Anzeigen, dass die Metadaten für dieses Format noch nicht genehmigt wurden.</p>]]></message>
 	<message key="grid.catalogEntry.availableRepresentation.title">Format-Verfügbarkeit</message>
 	<message key="grid.catalogEntry.availableRepresentation.message"><![CDATA[<p>Dieses Format <em>für Leser/innen zugänglich</em> machen. Herunterladbare Dateien und alle anderen Vertriebswege werden im Katalogeintrag des Buchs angezeigt.</p>]]></message>
@@ -509,7 +506,6 @@ Ihr Server untersützt aktuell mbstring: <strong>{$supportsMBString}</strong>]]>
 	<message key="notification.type.formatNeedsApprovedSubmission">Damit das Format in den Katalog aufgenommen werden kann, müssen Sie die Metadaten für den Katalogeintrag akzeptieren. Aktivieren Sie dazu auf diesem Reiter die Checkbox "Übernehme die Metadaten für dieses Format in den Katalog". Wechseln Sie anschließend auf den Reiter 'Monografie' und aktvieren dort die Checkbox 'Erstelle anhand der angegebenen Metadaten einen neuen Katalogeintrag'.</message>
 	<message key="notification.type.configurePaymentMethod.title">Es wurde noch keine Zahlungsweise konfiguriert.</message>
 	<message key="notification.type.configurePaymentMethod">Bevor Sie die E-Commerce-Einstellungen definieren können, müssen Sie zunächst eine Zahlungsweise konfigurieren.</message>
-	<message key="notification.type.visitCatalog">Die eingereichte Monografie wurde akzeptiert. Bitte gehen Sie zum Katalog, um dort genauere Angaben zum Buch zu machen. Den Link zum Katalog befindet sich oberhalb dieses Dialogfeldes.</message>
 	<message key="notification.type.visitCatalogTitle">Katalogverwaltung</message>
 
 	<!-- Authorization -->

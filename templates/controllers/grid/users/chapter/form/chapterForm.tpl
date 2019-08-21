@@ -21,6 +21,7 @@
 <form class="pkp_form" id="editChapterForm" method="post" action="{url router=$smarty.const.ROUTE_COMPONENT component="grid.users.chapter.ChapterGridHandler" op="updateChapter"}">
 	{csrf}
 	<input type="hidden" name="submissionId" value="{$submissionId|escape}" />
+	<input type="hidden" name="publicationId" value="{$publicationId|escape}" />
 	<input type="hidden" name="chapterId" value="{$chapterId|escape}" />
 
 	{include file="controllers/notification/inPlaceNotification.tpl" notificationId="chapterFormNotification"}
@@ -39,16 +40,18 @@
 
 	{fbvFormSection}
 		<!--  Chapter Contributors -->
-		{capture assign=chapterAuthorUrl}{url router=$smarty.const.ROUTE_COMPONENT component="listbuilder.users.ChapterAuthorListbuilderHandler" op="fetch" submissionId=$submissionId chapterId=$chapterId escape=false}{/capture}
+		{capture assign=chapterAuthorUrl}{url router=$smarty.const.ROUTE_COMPONENT component="listbuilder.users.ChapterAuthorListbuilderHandler" op="fetch" submissionId=$submissionId publicationId=$publicationId chapterId=$chapterId escape=false}{/capture}
 		{load_url_in_div id="chapterAuthorContainer" url=$chapterAuthorUrl}
 	{/fbvFormSection}
 
-	{fbvFormSection}
-		<!-- Chapter Files -->
-		{capture assign=chapterFilesUrl}{url router=$smarty.const.ROUTE_COMPONENT component="listbuilder.files.ChapterFilesListbuilderHandler" op="fetch" submissionId=$submissionId chapterId=$chapterId escape=false}{/capture}
-		{load_url_in_div id="chapterFilesContainer" url=$chapterFilesUrl}
-	{/fbvFormSection}
+	{if $chapterId}
+		{fbvFormSection}
+			<!-- Chapter Files -->
+			{capture assign=chapterFilesUrl}{url router=$smarty.const.ROUTE_COMPONENT component="listbuilder.files.ChapterFilesListbuilderHandler" op="fetch" submissionId=$submissionId publicationId=$publicationId chapterId=$chapterId escape=false}{/capture}
+			{load_url_in_div id="chapterFilesContainer" url=$chapterFilesUrl}
+		{/fbvFormSection}
+	{/if}
 
+	<p><span class="formRequired">{translate key="common.requiredField"}</span></p>
 	{fbvFormButtons submitText="common.save"}
 </form>
-<p><span class="formRequired">{translate key="common.requiredField"}</span></p>

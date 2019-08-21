@@ -22,145 +22,10 @@ class SubmissionService extends \PKP\Services\PKPSubmissionService {
 	 * Initialize hooks for extending PKPSubmissionService
 	 */
 	public function __construct() {
-		\HookRegistry::register('Submission::isPublic', array($this, 'modifyIsPublic'));
 		\HookRegistry::register('Submission::getMany::queryBuilder', array($this, 'modifySubmissionQueryBuilder'));
-		\HookRegistry::register('Submission::getMany::queryObject', array($this, 'modifySubmissionListQueryObject'));
+		\HookRegistry::register('Submission::getMany::queryObject', array($this, 'modifySubmissionQueryObject'));
 		\HookRegistry::register('Submission::getBackendListProperties::properties', array($this, 'modifyBackendListPropertyValues'));
 		\HookRegistry::register('Submission::getProperties::values', array($this, 'modifyPropertyValues'));
-	}
-
-	/**
-	 * Modify the isPublic check on a submission, based on whether it has a
-	 * catalog entry.
-	 *
-	 * @param $hookName string
-	 * @param $args array [
-	 *		@option boolean Is it public?
-	 *		@option Submission
-	 * ]
-	 */
-	public function modifyIsPublic($hookName, $args) {
-		$isPublic =& $args[0];
-		$submission = $args[1];
-
-		if (is_a($submission, 'PublishedSubmission')) {
-			$publishedSubmission = $submission;
-		} else {
-			$publishedSubmissionDao = \DAORegistry::getDAO('PublishedSubmissionDAO');
-			$publishedSubmission = $publishedSubmissionDao->getBySubmissionId(
-				$submission->getId(),
-				$submission->getContextId()
-			);
-		}
-
-		if ($publishedSubmission && $publishedSubmission->getDatePublished()) {
-			$isPublic = true;
-			return;
-		}
-	}
-
-	/**
-	 * Add a monograph to the catalog
-	 *
-	 * @param Submission $submission
-	 * @return bool
-	 */
-	public function addToCatalog($submission) {
-
-		if (!is_a($submission, 'Submission')) {
-			error_log('Attempt to add catalog entry failed because no submission could be found.');
-			return false;
-		}
-
-		import('classes.publicationFormat.PublicationFormatTombstoneManager');
-		$publishedSubmissionDao = \DAORegistry::getDAO('PublishedSubmissionDAO');
-		$publishedSubmission = $publishedSubmissionDao->getBySubmissionId($submission->getId(), null, false);
-		if (!$publishedSubmission) {
-			$publishedSubmission = $publishedSubmissionDao->newDataObject();
-			$publishedSubmission->setId($submission->getId());
-			$publishedSubmissionDao->insertObject($publishedSubmission);
-		}
-		$publicationFormats = \DAORegistry::getDAO('PublicationFormatDAO')
-			->getBySubmissionId($submission->getId())
-			->toAssociativeArray();
-		$request = \Application::get()->getRequest();
-
-		// Update the monograph status.
-		$submission->setStatus(STATUS_PUBLISHED);
-		\Application::getSubmissionDao()->updateObject($submission);
-
-		$datePublished = $submission->getDatePublished() ? $submission->getDatePublished() : \Core::getCurrentDate();
-		$publishedSubmission->setDatePublished($datePublished);
-		$publishedSubmissionDao->updateObject($publishedSubmission);
-
-		$notificationMgr = new \NotificationManager();
-		$notificationMgr->updateNotification(
-			$request,
-			array(NOTIFICATION_TYPE_APPROVE_SUBMISSION),
-			null,
-			ASSOC_TYPE_MONOGRAPH,
-			$publishedSubmission->getId()
-		);
-
-		// Remove publication format tombstones.
-		$publicationFormatTombstoneMgr = new \PublicationFormatTombstoneManager();
-		$publicationFormatTombstoneMgr->deleteTombstonesByPublicationFormats($publicationFormats);
-
-		// Update the search index for this published submission.
-		$monographSearchIndex = \Application::getSubmissionSearchIndex();
-		$monographSearchIndex->submissionMetadataChanged($submission);
-		$monographSearchIndex->submissionChangesFinished();
-
-		// Log the publication event.
-		import('lib.pkp.classes.log.SubmissionLog');
-		\SubmissionLog::logEvent($request, $submission, SUBMISSION_LOG_METADATA_PUBLISH, 'submission.event.metadataPublished');
-	}
-
-	/**
-	 * Rmove a monograph from the catalog
-	 *
-	 * @param Submission $submission
-	 * @return bool
-	 */
-	public function removeFromCatalog($submission) {
-
-		if (!is_a($submission, 'Submission')) {
-			error_log('Attempt to remove catalog entry failed because no submission could be found.');
-			return false;
-		}
-
-		import('classes.publicationFormat.PublicationFormatTombstoneManager');
-		$publishedSubmissionDao = \DAORegistry::getDAO('PublishedSubmissionDAO');
-		$publishedSubmission = $publishedSubmissionDao->getBySubmissionId($submission->getId(), null, false);
-		$publicationFormats = \DAORegistry::getDAO('PublicationFormatDAO')
-			->getBySubmissionId($submission->getId())
-			->toAssociativeArray();
-		$request = \Application::get()->getRequest();
-
-		// Update the monograph status.
-		$submission->setStatus(STATUS_QUEUED);
-		\Application::getSubmissionDao()->updateObject($submission);
-
-		// Unpublish monograph.
-		$publishedSubmission->setDatePublished(null);
-		$publishedSubmissionDao->updateObject($publishedSubmission);
-
-		$notificationMgr = new \NotificationManager();
-		$notificationMgr->updateNotification(
-			$request,
-			array(NOTIFICATION_TYPE_APPROVE_SUBMISSION),
-			null,
-			ASSOC_TYPE_MONOGRAPH,
-			$publishedSubmission->getId()
-		);
-
-		// Create tombstones for each publication format.
-		$publicationFormatTombstoneMgr = new \PublicationFormatTombstoneManager();
-		$publicationFormatTombstoneMgr->insertTombstonesByPublicationFormats($publicationFormats, $request->getContext());
-
-		// Log the unpublication event.
-		import('lib.pkp.classes.log.SubmissionLog');
-		\SubmissionLog::logEvent($request, $submission, SUBMISSION_LOG_METADATA_UNPUBLISH, 'submission.event.metadataUnpublished');
 	}
 
 	/**
@@ -168,7 +33,7 @@ class SubmissionService extends \PKP\Services\PKPSubmissionService {
 	 *
 	 * @param $hookName string
 	 * @param $args array [
-	 *		@option QueryBuilders\SubmissionQueryBuilder $submissionListQB
+	 *		@option QueryBuilders\SubmissionQueryBuilder $submissionQB
 	 *		@option int $contextId
 	 *		@option array $args
 	 * ]
@@ -176,22 +41,22 @@ class SubmissionService extends \PKP\Services\PKPSubmissionService {
 	 * @return QueryBuilders\SubmissionQueryBuilder
 	 */
 	public function modifySubmissionQueryBuilder($hookName, $args) {
-		$submissionListQB =& $args[0];
+		$submissionQB =& $args[0];
 		$requestArgs = $args[1];
 
 		if (!empty($requestArgs['categoryIds'])) {
-			$submissionListQB->filterByCategories($requestArgs['categoryIds']);
+			$submissionQB->filterByCategories($requestArgs['categoryIds']);
 		}
 
 		if (!empty($requestArgs['seriesIds'])) {
-			$submissionListQB->filterBySeries($requestArgs['seriesIds']);
+			$submissionQB->filterBySeries($requestArgs['seriesIds']);
 		}
 
 		if (!empty($requestArgs['orderByFeatured'])) {
-			$submissionListQB->orderByFeatured();
+			$submissionQB->orderByFeatured();
 		}
 
-		return $submissionListQB;
+		return $submissionQB;
 	}
 
 	/**
@@ -205,7 +70,7 @@ class SubmissionService extends \PKP\Services\PKPSubmissionService {
 	 *
 	 * @return object
 	 */
-	public function modifySubmissionListQueryObject($hookName, $args) {
+	public function modifySubmissionQueryObject($hookName, $args) {
 		$queryObject =& $args[0];
 		$queryBuilder = $args[1];
 
@@ -257,12 +122,6 @@ class SubmissionService extends \PKP\Services\PKPSubmissionService {
 		$context = $request->getContext();
 		$dispatcher = $request->getDispatcher();
 
-		$publishedSubmission = null;
-		if ($context) {
-			$publishedSubmissionDao = \DAORegistry::getDAO('PublishedSubmissionDAO');
-			$publishedSubmission = $publishedSubmissionDao->getByBestId($context->getId(), $submission->getId());
-		}
-
 		foreach ($props as $prop) {
 			switch ($prop) {
 				case 'urlPublished':
@@ -274,17 +133,6 @@ class SubmissionService extends \PKP\Services\PKPSubmissionService {
 						'book',
 						$submission->getBestId()
 					);
-					break;
-				case 'series':
-					$values[$prop] = array(
-						'id' => $submission->getSeriesId(),
-						'title' => $submission->getSeriesTitle(),
-						'position' => $submission->getSeriesPosition(),
-					);
-					break;
-				case 'category':
-					$categoryDao = \DAORegistry::getDAO('CategoryDAO');
-					$values[$prop] = $categoryDao->getBySubmissionId($submission->getId());
 					break;
 				case 'featured':
 					$featureDao = \DAORegistry::getDAO('FeatureDAO');

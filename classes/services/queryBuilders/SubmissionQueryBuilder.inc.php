@@ -52,11 +52,8 @@ class SubmissionQueryBuilder extends \PKP\Services\QueryBuilders\PKPSubmissionQu
 	 */
 	public function orderBy($column, $direction = 'DESC') {
 		// Bring in orderby constants
-		import('classes.monograph.PublishedSubmissionDAO');
+		import('classes.submission.SubmissionDAO');
 		switch ($column) {
-			case ORDERBY_DATE_PUBLISHED:
-				$this->orderColumn = 'ps.date_published';
-				break;
 			case ORDERBY_SERIES_POSITION:
 				$this->orderColumn = 's.series_position';
 				break;
@@ -81,42 +78,14 @@ class SubmissionQueryBuilder extends \PKP\Services\QueryBuilders\PKPSubmissionQu
 	 * Execute additional actions for app-specific query objects
 	 *
 	 * @param object Query object
+	 * @param SubmissionQueryBuilder Query object
 	 * @return object Query object
 	 */
 	public function appGet($q) {
-		$primaryLocale = \AppLocale::getPrimaryLocale();
-		$locale = \AppLocale::getLocale();
-
-		$this->columns[] = Capsule::raw('COALESCE(stl.setting_value, stpl.setting_value) AS series_title');
-
-		$q->groupBy(Capsule::raw('COALESCE(stl.setting_value, stpl.setting_value)'));
-
-		$q->leftJoin('series_settings as stpl', function($join) use($primaryLocale) {
-			$join->on('s.series_id', '=', Capsule::raw('stpl.series_id'));
-			$join->on('stpl.setting_name', '=', Capsule::raw("'title'"));
-			$join->on('stpl.locale', '=', Capsule::raw("'{$primaryLocale}'"));
-		});
-
-		$q->leftJoin('series_settings as stl', function($join) use($locale) {
-			$join->on('s.series_id', '=', Capsule::raw('stl.series_id'));
-			$join->on('stl.setting_name', '=', Capsule::raw("'title'"));
-			$join->on('stl.locale', '=', Capsule::raw("'{$locale}'"));
-		});
 
 		if (!empty($this->seriesIds)) {
-			$q->whereIn('s.series_id', $this->seriesIds);
-		}
-
-		// If we're ordering by date published we need to join on the
-		// published_submissions table. If the return object is
-		// SUBMISSION_RETURN_PUBLISHED or the status is published, the
-		// table is already joined.
-		if ($this->orderColumn === 'ps.date_published'
-				&& $this->returnObject !== SUBMISSION_RETURN_PUBLISHED
-				&& !in_array(STATUS_PUBLISHED, $this->statuses)) {
-			$this->columns[] = 'ps.date_published';
-			$q->leftJoin('published_submissions as ps','ps.submission_id','=','s.submission_id')
-				->groupBy('ps.date_published');
+			$q->leftJoin('publications as publication_s', 's.current_publication_id', '=', 'publication_s.publication_id');
+			$q->whereIn('publication_s.series_id', $this->seriesIds);
 		}
 
 		if (!empty($this->orderByFeaturedSeq)) {
@@ -130,23 +99,23 @@ class SubmissionQueryBuilder extends \PKP\Services\QueryBuilders\PKPSubmissionQu
 				$assocType = ASSOC_TYPE_PRESS;
 				$assocIds = array(1); // OMP only supports a single press
 			}
-			$q->leftJoin('features as psf', function($join) use ($assocType, $assocIds) {
-				$join->on('s.submission_id', '=', 'psf.submission_id')
-					->on('psf.assoc_type', '=', Capsule::raw($assocType));
+			$q->leftJoin('features as sf', function($join) use ($assocType, $assocIds) {
+				$join->on('s.submission_id', '=', 'sf.submission_id')
+					->on('sf.assoc_type', '=', Capsule::raw($assocType));
 				foreach ($assocIds as $assocId) {
-					$join->on('psf.assoc_id', '=', Capsule::raw(intval($assocId)));
+					$join->on('sf.assoc_id', '=', Capsule::raw(intval($assocId)));
 				}
 			});
 
 			// Featured sorting should be the first sort parameter. We sort by
 			// the seq parameter, with null values last
-			$q->groupBy(Capsule::raw('psf.seq'));
-			$this->columns[] = 'psf.seq';
-			$this->columns[] = Capsule::raw('case when psf.seq is null then 1 else 0 end');
+			$q->groupBy(Capsule::raw('sf.seq'));
+			$this->columns[] = 'sf.seq';
+			$this->columns[] = Capsule::raw('case when sf.seq is null then 1 else 0 end');
 			array_unshift(
 				$q->orders,
-				array('type' => 'raw', 'sql' => 'case when psf.seq is null then 1 else 0 end'),
-				array('column' => 'psf.seq', 'direction' => 'ASC')
+				array('type' => 'raw', 'sql' => 'case when sf.seq is null then 1 else 0 end'),
+				array('column' => 'sf.seq', 'direction' => 'ASC')
 			);
 		}
 

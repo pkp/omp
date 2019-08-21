@@ -112,11 +112,13 @@ class SelectMonographHandler extends Handler {
 			return new JSONMessage(false, __('submission.catalogEntry.selectionMissing'));
 		}
 
-		import('classes.core.Services');
-		$submissionService = Services::get('submission');
-		$submissionDao = Application::getSubmissionDAO();
 		foreach ($selectedSubmissions as $submissionId) {
-			$submissionService->addToCatalog($submissionDao->getById($submissionId));
+			$submission = Services::get('submission')->get($submissionId);
+			$publication = $submission->getCurrentPublication();
+			if ($publication->getData('status') === STATUS_PUBLISHED) {
+				continue;
+			}
+			Services::get('publication')->publish($publication);
 		}
 
 		$json = new JSONMessage(true);

@@ -19,6 +19,9 @@ require_once(dirname(__FILE__) . '/../../lib/pkp/lib/vendor/pimple/pimple/src/Pi
 require_once(dirname(__FILE__) . '/../../lib/pkp/lib/vendor/pimple/pimple/src/Pimple/ServiceProviderInterface.php');
 
 use \Pimple\Container;
+use \APP\Services\PublicationFormatService;
+use \APP\Services\PublicationService;
+use \APP\Services\StatsService;
 use \PKP\Services\PKPAuthorService;
 use \PKP\Services\PKPEmailTemplateService;
 use \PKP\Services\PKPSchemaService;
@@ -36,6 +39,16 @@ class OMPServiceProvider implements \Pimple\ServiceProviderInterface {
 		// Submission service
 		$pimple['submission'] = function() {
 			return new SubmissionService();
+		};
+
+		// Publication service
+		$pimple['publication'] = function() {
+			return new PublicationService();
+		};
+
+		// PublicationFormat service
+		$pimple['publicationFormat'] = function() {
+			return new PublicationFormatService();
 		};
 
 		// NavigationMenus service

@@ -14,9 +14,7 @@
  * @brief Describes a monograph chapter (or section)
  */
 
-import('lib.pkp.classes.submission.SubmissionVersionedDataObject');
-
-class Chapter extends SubmissionVersionedDataObject {
+class Chapter extends DataObject {
 	/**
 	 * Constructor
 	 */
@@ -130,7 +128,7 @@ class Chapter extends SubmissionVersionedDataObject {
 	 */
 	function getAuthors() {
 		$chapterAuthorDao = DAORegistry::getDAO('ChapterAuthorDAO'); /* @var $chapterAuthorDao ChapterAuthorDAO */
-		return $chapterAuthorDao->getAuthors($this->getMonographId(), $this->getId());
+		return $chapterAuthorDao->getAuthors($this->getData('publicationId'), $this->getId());
 	}
 
 	/**

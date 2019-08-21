@@ -205,7 +205,7 @@ class MonographSearchIndex extends SubmissionSearchIndex {
 
 			if ($log) echo "Indexing \"", $press->getLocalizedName(), "\" ... ";
 
-			$monographs = $submissionDao->getByPressId($press->getId());
+			$monographs = $submissionDao->getByContextId($press->getId());
 			while (!$monographs->eof()) {
 				$monograph = $monographs->next();
 				if ($monograph->getDatePublished()) {

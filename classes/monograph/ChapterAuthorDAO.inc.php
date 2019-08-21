@@ -23,13 +23,13 @@ import('classes.monograph.ChapterAuthor');
 class ChapterAuthorDAO extends DAO {
 	/**
 	 * Get all authors for a given chapter.
+	 * @param $publicationId int
 	 * @param $chapterId int
-	 * @param $monographId int
 	 * @return DAOResultFactory
 	 */
-	function getAuthors($monographId = null, $chapterId = null) {
+	function getAuthors($publicationId = null, $chapterId = null) {
 		$params = array();
-		if (isset($monographId)) $params[] = (int) $monographId;
+		if (isset($publicationId)) $params[] = (int) $publicationId;
 		if (isset($chapterId)) $params[] = (int) $chapterId;
 		// get all the monograph_author fields,
 		// but replace the primary_contact and seq with submission_chapter_authors.primary_contact
@@ -39,14 +39,14 @@ class ChapterAuthorDAO extends DAO {
 				sca.primary_contact,
 				sca.seq,
 				ug.show_title,
-				s.locale
+				p.locale
 			FROM	authors a
-				JOIN submissions s ON (s.submission_id = a.submission_id)
+				JOIN publications p ON (p.publication_id = a.publication_id)
 				JOIN submission_chapter_authors sca ON (a.author_id = sca.author_id)
 				JOIN user_groups ug ON (a.user_group_id = ug.user_group_id)' .
 			( (count($params)> 0)?' WHERE':'' ) .
-			(  isset($monographId)?' a.submission_id = ?':'' ) .
-			(  (isset($monographId) && isset($chapterId))?' AND':'' ) .
+			(  isset($publicationId)?' a.publication_id = ?':'' ) .
+			(  (isset($publicationId) && isset($chapterId))?' AND':'' ) .
 			(  isset($chapterId)?' sca.chapter_id = ?':'' ) .
 			' ORDER BY sca.chapter_id, sca.seq';
 
@@ -57,19 +57,15 @@ class ChapterAuthorDAO extends DAO {
 	/**
 	 * Get all authors IDs for a given chapter.
 	 * @param $chapterId int
-	 * @param $monographId int
 	 * @return array
 	 */
-	function getAuthorIdsByChapterId($chapterId, $monographId = null) {
-		$params = array((int) $chapterId);
-		if ($monographId) $params[] = (int) $monographId;
+	function getAuthorIdsByChapterId($chapterId) {
 
 		$result = $this->retrieve(
 			'SELECT author_id
 			FROM submission_chapter_authors
-			WHERE chapter_id = ?
-			' . ($monographId?' AND submission_id = ?':''),
-			$params
+			WHERE chapter_id = ?',
+			[(int) $chapterId]
 		);
 
 		$authorIds = array();
@@ -90,17 +86,16 @@ class ChapterAuthorDAO extends DAO {
 	 * @param $monographId int
 	 * @return array
 	 */
-	function insertChapterAuthor($authorId, $chapterId, $monographId, $isPrimary = false, $sequence = 0) {
+	function insertChapterAuthor($authorId, $chapterId, $isPrimary = false, $sequence = 0) {
 		//FIXME: How to handle sequence?
 		$this->update(
 			'INSERT INTO submission_chapter_authors
-				(author_id, chapter_id, submission_id, primary_contact, seq)
+				(author_id, chapter_id, primary_contact, seq)
 				VALUES
-				(?, ?, ?, ?, ?)',
+				(?, ?, ?, ?)',
 			array(
 				(int) $authorId,
 				(int) $chapterId,
-				(int) $monographId,
 				(int) $isPrimary,
 				(int) $sequence
 			)
@@ -141,8 +136,7 @@ class ChapterAuthorDAO extends DAO {
 		$author = $authorDao->_fromRow($row);
 
 		$chapterAuthor = $this->newDataObject();
-		$chapterAuthor->setId($author->getId());
-		$chapterAuthor->setSubmissionId($author->getSubmissionId());
+		$chapterAuthor->setId((int) $author->getId());
 		$chapterAuthor->setGivenName($author->getGivenName(null), null);
 		$chapterAuthor->setFamilyName($author->getFamilyName(null), null);
 		$chapterAuthor->setAffiliation($author->getAffiliation(null), null);
@@ -153,8 +147,8 @@ class ChapterAuthorDAO extends DAO {
 
 		// Add additional data that is chapter author specific
 		$chapterAuthor->setPrimaryContact($row['primary_contact']);
-		$chapterAuthor->setSequence($row['seq']);		;
-		$chapterAuthor->setChapterId($row['chapter_id']);
+		$chapterAuthor->setSequence((int) $row['seq']);		;
+		$chapterAuthor->setChapterId((int) $row['chapter_id']);
 
 		return $chapterAuthor;
 	}

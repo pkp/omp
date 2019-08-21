@@ -94,7 +94,7 @@
 	<message key="grid.copyediting.deleteCopyeditorResponse">Διαγραφή αρχείου Επιμελητή Κειμένου</message>
 	<!-- Proofreading Grid -->
 	<!-- Submission-specific catalog info -->
-	<message key="submission.catalogEntry">Κατάλογος</message>
+	<message key="publication.catalogEntry">Κατάλογος</message>
 	<message key="submission.editCatalogEntry">Καταχώριση</message>
 	<message key="submission.catalogEntry.new">Νέα Καταχώριση στον καταλογο</message>
 	<message key="submission.catalogEntry.confirm">Δημιουργείστε μια καταχώριση στον κατάλογο γι'αυτό το βιβλίο, βασιζόμενοι στα παρακάτω μεταδεδομένα.</message>

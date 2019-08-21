@@ -9,7 +9,7 @@
  *}
 {capture assign="additionalContributorsFields"}
 	<!--  Chapters -->
-	{capture assign=chaptersGridUrl}{url router=$smarty.const.ROUTE_COMPONENT  component="grid.users.chapter.ChapterGridHandler" op="fetchGrid" submissionId=$submissionId escape=false}{/capture}
+	{capture assign=chaptersGridUrl}{url router=$smarty.const.ROUTE_COMPONENT  component="grid.users.chapter.ChapterGridHandler" op="fetchGrid" submissionId=$submissionId publicationId=$publicationId escape=false}{/capture}
 	{load_url_in_div id="chaptersGridContainer" url=$chaptersGridUrl}
 {/capture}
 

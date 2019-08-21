@@ -33,6 +33,17 @@ class ChapterFilesListbuilderHandler extends FilesListbuilderHandler {
 			array('fetch', 'fetchRow', 'fetchOptions', 'save')
 		);
 	}
+	/**
+	 * @copydoc PKPHandler::authorize()
+	 */
+	function authorize($request, &$args, $roleAssignments, $stageId = null) {
+		import('lib.pkp.classes.security.authorization.WorkflowStageAccessPolicy'); // context-specific.
+		import('lib.pkp.classes.security.authorization.PublicationAccessPolicy'); // context-specific.
+		if ($stageId !== null) $this->addPolicy(new WorkflowStageAccessPolicy($request, $args, $roleAssignments, 'submissionId', $stageId), true);
+		else $this->addPolicy(new PublicationAccessPolicy($request, $args, $roleAssignments));
+
+		return parent::authorize($request, $args, $roleAssignments);
+	}
 
 
 	/**
@@ -50,14 +61,15 @@ class ChapterFilesListbuilderHandler extends FilesListbuilderHandler {
 	 * @see FilesListbuilderHandler::loadData
 	 */
 	function loadData($request, $filter = null) {
-		$monograph = $this->getAuthorizedContextObject(ASSOC_TYPE_MONOGRAPH);
+		$submission = $this->getAuthorizedContextObject(ASSOC_TYPE_SUBMISSION);
+		$publication = $this->getAuthorizedContextObject(ASSOC_TYPE_PUBLICATION);
 		$chapterDao = DAORegistry::getDAO('ChapterDAO');
-		$chapter = $chapterDao->getChapter($this->_chapterId, $monograph->getId());
+		$chapter = $chapterDao->getChapter($this->_chapterId, $publication->getId());
 		$submissionFileDao = DAORegistry::getDAO('SubmissionFileDAO'); /* @var $submissionFileDao SubmissionFileDAO */
-		$monographFiles = $submissionFileDao->getLatestRevisions($monograph->getId());
+		$submissionFiles = $submissionFileDao->getLatestRevisions($submission->getId());
 		$filteredFiles = array();
-		if ($chapter) foreach ($monographFiles as $monographFile) {
-			if ($monographFile->getData('chapterId') == $chapter->getId()) $filteredFiles[$monographFile->getFileId()] = $monographFile;
+		if ($chapter) foreach ($submissionFiles as $submissionFile) {
+			if ($submissionFile->getData('chapterId') == $chapter->getId()) $filteredFiles[$submissionFile->getFileId()] = $submissionFile;
 		}
 		return $filteredFiles;
 	}
@@ -82,9 +94,10 @@ class ChapterFilesListbuilderHandler extends FilesListbuilderHandler {
 	 * @copydoc GridHandler::getRequestArgs()
 	 */
 	function getRequestArgs() {
+		$publication = $this->getAuthorizedContextObject(ASSOC_TYPE_PUBLICATION);
 		return array_merge(
 			parent::getRequestArgs(),
-			array('chapterId' => $this->_chapterId)
+			array('publicationId' => $publication->getId(), 'chapterId' => $this->_chapterId)
 		);
 	}
 

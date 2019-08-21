@@ -76,18 +76,16 @@ class MonographSearch extends SubmissionSearch {
 
 			switch ($orderBy) {
 				case 'authors':
-					$authors = $authorDao->getBySubmissionId($submissionId);
-					$authorNames = array();
-					foreach ($authors as $author) { /* @var $author Author */
-						$authorNames[] = $author->getFullName(false, true);
-					}
-					$orderKey = implode('; ', $authorNames);
-					unset($authors, $authorNames);
+					$submission = $submissionDao->getById($submissionId);
+					$orderKey = $submission->getAuthorString();
 					break;
 
 				case 'title':
 					$submission = $submissionDao->getById($submissionId);
-					$orderKey = $submission->getLocalizedTitle(null, false);
+					$orderKey = '';
+					if (!empty($submission->getCurrentPublication())) {
+						$orderKey = $submission->getCurrentPublication()->getLocalizedData('title');
+					}
 					break;
 
 				case 'pressTitle':
@@ -228,9 +226,7 @@ class MonographSearch extends SubmissionSearch {
 	 */
 	function formatResults($results, $user = null) {
 		$contextDao = Application::getContextDAO();
-		$submissionDao = Application::getSubmissionDAO();
 		$seriesDao = DAORegistry::getDAO('SeriesDAO');
-		$publishedSubmissionDao = DAORegistry::getDAO('PublishedSubmissionDAO');
 
 		$publishedSubmissionCache = array();
 		$monographCache = array();
@@ -241,8 +237,9 @@ class MonographSearch extends SubmissionSearch {
 		foreach ($results as $monographId) {
 			// Get the monograph, storing in cache if necessary.
 			if (!isset($monographCache[$monographId])) {
-				$monographCache[$monographId] = $submissionDao->getById($monographId);
-				$publishedSubmissionCache[$monographId] = $publishedSubmissionDao->getBySubmissionId($monographId);
+				$submission = Services::get('submission')->get($monographId);
+				$monographCache[$monographId] = $submission;
+				$publishedSubmissionCache[$monographId] = $submission;
 			}
 			unset($monograph, $publishedSubmission);
 			$monograph = $monographCache[$monographId];
@@ -255,7 +252,7 @@ class MonographSearch extends SubmissionSearch {
 				}
 
 				// Get the context, storing in cache if necessary.
-				$contextId = $monograph->getPressId();
+				$contextId = $monograph->getData('contextId');
 				if (!isset($contextCache[$contextId])) {
 					$contextCache[$contextId] = $contextDao->getById($contextId);
 				}
@@ -270,35 +267,6 @@ class MonographSearch extends SubmissionSearch {
 			}
 		}
 		return $returner;
-	}
-
-	/**
-	 * Identify similarity terms for a given submission.
-	 * @param $submissionId integer
-	 * @return null|array An array of string keywords or null
-	 * if some kind of error occurred.
-	 */
-	function getSimilarityTerms($submissionId) {
-		// Check whether a search plugin provides terms for a similarity search.
-		$searchTerms = array();
-		$result = HookRegistry::call('MonographSearch::getSimilarityTerms', array($submissionId, &$searchTerms));
-
-		// If no plugin implements the hook then use the subject keywords
-		// of the submission for a similarity search.
-		if ($result === false) {
-			// Retrieve the submission.
-			$publishedSubmissionDao = DAORegistry::getDAO('PublishedSubmissionDAO'); /* @var $publishedSubmissionDao PublishedSubmissionDAO */
-			$monograph = $publishedSubmissionDao->getBySubmissionId($submissionId);
-			if (is_a($monograph, 'PublishedSubmission')) {
-				// Retrieve keywords (if any).
-				$searchTerms = $monograph->getLocalizedSubject();
-				// Tokenize keywords.
-				$searchTerms = trim(preg_replace('/\s+/', ' ', strtr($searchTerms, ',;', ' ')));
-				if (!empty($searchTerms)) $searchTerms = explode(' ', $searchTerms);
-			}
-		}
-
-		return $searchTerms;
 	}
 
 	function getIndexFieldMap() {

@@ -27,13 +27,13 @@ class IdentificationCodeDAO extends DAO {
 	/**
 	 * Retrieve an identification code by type id.
 	 * @param $identificationCodeId int
-	 * @param $monographId optional int
+	 * @param $publicationId optional int
 	 * @return IdentificationCode
 	 */
-	function getById($identificationCodeId, $monographId = null){
+	function getById($identificationCodeId, $publicationId = null){
 		$sqlParams = array((int) $identificationCodeId);
-		if ($monographId) {
-			$sqlParams[] = (int) $monographId;
+		if ($publicationId) {
+			$sqlParams[] = (int) $publicationId;
 		}
 
 		$result = $this->retrieve(
@@ -41,7 +41,7 @@ class IdentificationCodeDAO extends DAO {
 			FROM	identification_codes i
 				JOIN publication_formats pf ON (i.publication_format_id = pf.publication_format_id)
 			WHERE i.identification_code_id = ?
-				' . ($monographId?' AND pf.submission_id = ?':''),
+				' . ($publicationId?' AND pf.publication_id = ?':''),
 			$sqlParams
 		);
 

@@ -18,7 +18,7 @@
 
 
 import('classes.monograph.Author');
-import('classes.monograph.Submission');
+import('classes.submission.Submission');
 import('lib.pkp.classes.submission.PKPAuthorDAO');
 
 class AuthorDAO extends PKPAuthorDAO {
@@ -65,15 +65,12 @@ class AuthorDAO extends PKPAuthorDAO {
 				a.user_group_id AS user_group_id,
 				a.include_in_browse AS include_in_browse,
 				0 AS show_title,
-				a.country,
-				a.submission_version,
-				a.prev_ver_id,
-				a.is_current_submission_version = ?
+				a.country
 			FROM	authors a
 				LEFT JOIN author_settings aspl ON (a.author_id = aspl.author_id AND aspl.setting_name = ? AND aspl.locale = ?)
 				LEFT JOIN author_settings asl ON (a.author_id = asl.author_id AND asl.setting_name = ? AND asl.locale = ?)
 				JOIN submissions s ON (a.submission_id = s.submission_id)
-			WHERE a.is_current_submission_version = 1 AND	s.status = ' . STATUS_PUBLISHED . ' ' .
+			WHERE AND	s.status = ' . STATUS_PUBLISHED . ' ' .
 				(isset($pressId)?'AND s.context_id = ? ':'') . '
 				AND (a.last_name IS NOT NULL AND a.last_name <> \'\')' .
 				$initialSql . '
@@ -83,23 +80,6 @@ class AuthorDAO extends PKPAuthorDAO {
 		);
 
 		return new DAOResultFactory($result, $this, '_fromRow');
-	}
-
-	/**
-	 * Get a new data object
-	 * @return DataObject
-	 */
-	function newDataObject() {
-		return new Author();
-	}
-
-	/**
-	 * @copydoc DAO::getAdditionalFieldNames()
-	 */
-	function getAdditionalFieldNames() {
-		return array_merge(parent::getAdditionalFieldNames(), array(
-			'isVolumeEditor',
-		));
 	}
 }
 

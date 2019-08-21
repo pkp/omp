@@ -42,6 +42,14 @@ class ChapterAuthorListbuilderHandler extends ListbuilderHandler {
 	}
 
 	/**
+	 * Get the authorized publication.
+	 * @return Publication
+	 */
+	function getPublication() {
+		return $this->getAuthorizedContextObject(ASSOC_TYPE_PUBLICATION);
+	}
+
+	/**
 	 * Set the user group id
 	 * @param $chapterId int
 	 */
@@ -67,8 +75,8 @@ class ChapterAuthorListbuilderHandler extends ListbuilderHandler {
 	 * @param $roleAssignments array
 	 */
 	function authorize($request, &$args, $roleAssignments) {
-		import('lib.pkp.classes.security.authorization.SubmissionAccessPolicy');
-		$this->addPolicy(new SubmissionAccessPolicy($request, $args, $roleAssignments));
+		import('lib.pkp.classes.security.authorization.PublicationAccessPolicy');
+		$this->addPolicy(new PublicationAccessPolicy($request, $args, $roleAssignments));
 		return parent::authorize($request, $args, $roleAssignments);
 	}
 
@@ -122,9 +130,9 @@ class ChapterAuthorListbuilderHandler extends ListbuilderHandler {
 	 * @see GridDataProvider::getRequestArgs()
 	 */
 	function getRequestArgs() {
-		$monograph = $this->getMonograph();
 		return array(
-			'submissionId' => $monograph->getId(),
+			'submissionId' => $this->getMonograph()->getId(),
+			'publicationId' => $this->getPublication()->getId(),
 			'chapterId' => $this->getChapterId()
 		);
 	}
@@ -158,8 +166,7 @@ class ChapterAuthorListbuilderHandler extends ListbuilderHandler {
 			array()
 		);
 
-		$monograph = $this->getMonograph();
-		$authors = $monograph->getAuthors();
+		$authors = Services::get('author')->getMany(['publicationIds' => $this->getPublication()->getId(), 'count' => 1000]);
 
 		foreach ($authors as $author) {
 			$items[0][$author->getId()] = $author->getFullName();

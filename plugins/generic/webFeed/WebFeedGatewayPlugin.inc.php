@@ -99,21 +99,22 @@ class WebFeedGatewayPlugin extends GatewayPlugin {
 		if (!isset($typeMap[$type])) return false;
 
 		$templateMgr = TemplateManager::getManager($request);
-		$press = $request->getContext();
+		$context = $request->getContext();
 
-		$publishedSubmissionDao = DAORegistry::getDAO('PublishedSubmissionDAO');
-		$recentItems = (int) $this->_parentPlugin->getSetting($press->getId(), 'recentItems');
+		// Bring in orderby constants
+		import('classes.submission.SubmissionDAO');
+
+		$args = [
+			'status' => STATUS_PUBLISHED,
+			'contextId' => $context->getId(),
+			'count' => 1000,
+			'orderBy' => ORDERBY_DATE_PUBLISHED,
+		];
+		$recentItems = (int) $this->_parentPlugin->getSetting($context->getId(), 'recentItems');
 		if ($recentItems > 0) {
-			import('lib.pkp.classes.db.DBResultRange');
-			$rangeInfo = new DBResultRange($recentItems, 1);
-			$publishedSubmissionObjects = $publishedSubmissionDao->getByPressId(
-				$press->getId(),
-				null,
-				$rangeInfo
-			);
-			$publishedSubmissions = $publishedSubmissionObjects->toArray();
-		} else $publishedSubmissions = array();
-		$templateMgr->assign('publishedSubmissions', $publishedSubmissions);
+			$args['count'] = $recentItems;
+		}
+		$templateMgr->assign('submissions', Services::get('submission')->getMany($args));
 
 		$versionDao = DAORegistry::getDAO('VersionDAO');
 		$version = $versionDao->getCurrentVersion();

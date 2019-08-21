@@ -51,6 +51,14 @@ class PublicationFormatCategoryGridDataProvider extends SubmissionFilesCategoryG
 		return $this->getAuthorizedContextObject(ASSOC_TYPE_SUBMISSION);
 	}
 
+	/**
+	 * Get the publication associated with this grid
+	 * @return Publication
+	 */
+	function getPublication() {
+		return $this->getAuthorizedContextObject(ASSOC_TYPE_PUBLICATION);
+	}
+
 	//
 	// Overridden public methods from FilesGridDataProvider
 	//
@@ -63,6 +71,7 @@ class PublicationFormatCategoryGridDataProvider extends SubmissionFilesCategoryG
 			parent::getRequestArgs(),
 			array(
 				'representationId' => $representation->getId(),
+				'publicationId' => $this->getPublication()->getId(),
 				'assocType' => ASSOC_TYPE_REPRESENTATION,
 				'assocId' => $representation->getId(),
 			)
@@ -73,10 +82,9 @@ class PublicationFormatCategoryGridDataProvider extends SubmissionFilesCategoryG
 	 * @see GridHandler::loadData
 	 */
 	function loadData($request, $filter = null) {
-		$submission = $this->getSubmission();
-		$representationDao = Application::getRepresentationDAO();
-		$representations = $representationDao->getBySubmissionId($submission->getId(), null, $submission->getSubmissionVersion());
-		return $representations->toAssociativeArray();
+		return Application::getRepresentationDAO()
+			->getByPublicationId($this->getPublication()->getId())
+			->toAssociativeArray();
 	}
 
 	/**

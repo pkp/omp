@@ -58,19 +58,21 @@ class MonographSearchDAO extends SubmissionSearchDAO {
 			$params[] = $press->getId();
 		}
 
+		$params[] = STATUS_PUBLISHED;
+
 		$result = $this->retrieveCached(
 			$sql = 'SELECT
 				o.submission_id,
 				s.context_id as press_id,
-				ps.date_published as s_pub,
+				s.date_published as s_pub,
 				COUNT(*) AS count
 			FROM
 				submissions s,
-				published_submissions ps,
 				submission_search_objects o NATURAL JOIN ' . $sqlFrom . '
-			WHERE
-				s.submission_id = ps.submission_id AND o.submission_id = s.submission_id AND ' . $sqlWhere . '
-			GROUP BY o.submission_id, s.context_id, ps.date_published
+			WHERE o.submission_id = s.submission_id
+			AND ' . $sqlWhere . '
+			AND s.status = ?
+			GROUP BY o.submission_id, s.context_id, s.date_published
 			ORDER BY count DESC
 			LIMIT ' . $limit,
 			$params,
