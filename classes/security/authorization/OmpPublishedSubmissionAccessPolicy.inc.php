@@ -21,43 +21,13 @@ class OmpPublishedSubmissionAccessPolicy extends ContextPolicy {
 	 * @param $args array request parameters
 	 * @param $roleAssignments array
 	 * @param $submissionParameterName string the request parameter we
-	 * @param $publishedSubmissionsOnly boolean whether the OmpPublishedSubmissionRequiredPolicy has to be considered/added
-	 *  expect the submission id in.
 	 */
-	function __construct($request, $args, $roleAssignments, $submissionParameterName = 'submissionId', $publishedSubmissionsOnly = true) {
+	function __construct($request, $args, $roleAssignments, $submissionParameterName = 'submissionId') {
 		parent::__construct($request);
 
-		// Access may be made either as a member of the public, or
-		// via pre-publication access to editorial users.
-		$monographAccessPolicy = new PolicySet(COMBINING_PERMIT_OVERRIDES);
-		// Published submission access for the public
-		$publishedSubmissionAccessPolicy = new PolicySet(COMBINING_DENY_OVERRIDES);
-		if ($publishedSubmissionsOnly) {
-			import('classes.security.authorization.OmpPublishedSubmissionRequiredPolicy');
-			$publishedSubmissionAccessPolicy->addPolicy(new OmpPublishedSubmissionRequiredPolicy($request, $args, $submissionParameterName));
-		} else {
-			import('lib.pkp.classes.security.authorization.internal.SubmissionRequiredPolicy');
-			$publishedSubmissionAccessPolicy->addPolicy(new SubmissionRequiredPolicy($request, $args, $submissionParameterName));
-		}
-		$monographAccessPolicy->addPolicy($publishedSubmissionAccessPolicy);
-
-		// Pre-publication access for editorial roles
-		import('lib.pkp.classes.security.authorization.SubmissionAccessPolicy');
-		$monographAccessPolicy->addPolicy(
-			new SubmissionAccessPolicy(
-				$request, $args,
-				array_intersect_key(
-					$roleAssignments,
-					array( // Only permit these roles
-						ROLE_ID_MANAGER,
-						ROLE_ID_SUB_EDITOR,
-					)
-				),
-				$submissionParameterName
-			)
-		);
-
-		$this->addPolicy($monographAccessPolicy);
+		// Require published submissions
+		import('classes.security.authorization.OmpPublishedSubmissionRequiredPolicy');
+		$this->addPolicy(new OmpPublishedSubmissionRequiredPolicy($request, $args, $submissionParameterName));
 	}
 }
 

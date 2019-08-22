@@ -38,10 +38,7 @@ class SubmissionDAO extends PKPSubmissionDAO {
 	 */
 	function getByBestId($submissionId, $contextId) {
 		$submission = $this->getByPubId('publisher-id', $submissionId, $contextId);
-		if (!$submission || $submission->getData('status') !== STATUS_PUBLISHED) {
-			$submission = $this->getById($submissionId);
-		}
-		return $submission && $submission->getData('status') === STATUS_PUBLISHED ? $submission : null;
+		return $submission ?? $this->getById($submissionId);
 	}
 
 	/**

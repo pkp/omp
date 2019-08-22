@@ -30,7 +30,7 @@ class CoverHandler extends PKPHandler {
 	 */
 	function authorize($request, &$args, $roleAssignments) {
 		import('classes.security.authorization.OmpPublishedSubmissionAccessPolicy');
-		$this->addPolicy(new OmpPublishedSubmissionAccessPolicy($request, $args, $roleAssignments, 'submissionId', false));
+		$this->addPolicy(new OmpPublishedSubmissionAccessPolicy($request, $args, $roleAssignments));
 		return parent::authorize($request, $args, $roleAssignments);
 	}
 
