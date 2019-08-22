@@ -44,8 +44,9 @@
 			</h1>
 			<template slot="actions">
 				<pkp-button
+					v-if="submission.status === getConstant('STATUS_PUBLISHED')"
 					element="a"
-					:label="submission.status === getConstant('STATUS_PUBLISHED') ? i18n.view : i18n.preview"
+					:label="i18n.view"
 					:href="submission.urlPublished"
 				></pkp-button>
 				<dropdown
@@ -198,9 +199,11 @@
 								<spinner></spinner>
 							</div>
 						</tab>
-						<tab id="metadata" label="{translate key="submission.informationCenter.metadata"}">
-							<pkp-form v-bind="components.{$smarty.const.FORM_METADATA}" @set="set" />
-						</tab>
+						{if $metadataEnabled}
+							<tab id="metadata" label="{translate key="submission.informationCenter.metadata"}">
+								<pkp-form v-bind="components.{$smarty.const.FORM_METADATA}" @set="set" />
+							</tab>
+						{/if}
 						<tab v-if="supportsReferences" id="citations" label="{translate key="submission.citations"}">
 							<pkp-form v-bind="components.{$smarty.const.FORM_CITATIONS}" @set="set" />
 						</tab>
