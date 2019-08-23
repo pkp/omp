@@ -76,9 +76,9 @@ class WorkflowHandler extends PKPWorkflowHandler {
 
 		$latestPublication = $submission->getLatestPublication();
 
-		$submissionApiUrl = $request->getDispatcher()->url($request, ROUTE_API, $submissionContext, 'submissions/' . $submission->getId());
-		$latestPublicationApiUrl = $request->getDispatcher()->url($request, ROUTE_API, $submissionContext, 'submissions/' . $submission->getId() . '/publications/' . $latestPublication->getId());
-		$temporaryFileApiUrl = $request->getDispatcher()->url($request, ROUTE_API, $submissionContext->getPath(), 'temporaryFiles');
+		$submissionApiUrl = $request->getDispatcher()->url($request, ROUTE_API, $submissionContext->getData('urlPath'), 'submissions/' . $submission->getId());
+		$latestPublicationApiUrl = $request->getDispatcher()->url($request, ROUTE_API, $submissionContext->getData('urlPath'), 'submissions/' . $submission->getId() . '/publications/' . $latestPublication->getId());
+		$temporaryFileApiUrl = $request->getDispatcher()->url($request, ROUTE_API, $submissionContext->getData('urlPath'), 'temporaryFiles');
 
 		$chaptersGridUrl = $request->getDispatcher()->url(
 			$request,
@@ -86,7 +86,7 @@ class WorkflowHandler extends PKPWorkflowHandler {
 			null,
 			'grid.users.chapter.ChapterGridHandler',
 			'fetchGrid',
-			$submission->getId(),
+			null,
 			[
 				'submissionId' => $submission->getId(),
 				'publicationId' => '__publicationId__',
@@ -152,7 +152,7 @@ class WorkflowHandler extends PKPWorkflowHandler {
 			null,
 			'grid.catalogEntry.PublicationFormatGridHandler',
 			'fetchGrid',
-			$submission->getId(),
+			null,
 			[
 				'submissionId' => $submission->getId(),
 				'publicationId' => '__publicationId__',
