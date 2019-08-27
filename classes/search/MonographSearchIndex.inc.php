@@ -124,7 +124,7 @@ class MonographSearchIndex extends SubmissionSearchIndex {
 		self::updateTextIndex($monographId, SUBMISSION_SEARCH_ABSTRACT, $monograph->getAbstract(null));
 
 		$submissionDisciplineDao = DAORegistry::getDAO('SubmissionDisciplineDAO');
-		self::_updateTextIndex($monographId, SUBMISSION_SEARCH_DISCIPLINE, array_filter($submissionDisciplineDao->getDisciplines($monographId, array_keys(\PKPLocale::getAllLocales()))));
+		self::updateTextIndex($monographId, SUBMISSION_SEARCH_DISCIPLINE, array_filter($submissionDisciplineDao->getDisciplines($monographId, array_keys(\PKPLocale::getAllLocales()))));
 
 		self::updateTextIndex($monographId, SUBMISSION_SEARCH_TYPE, $monograph->getType(null));
 		self::updateTextIndex($monographId, SUBMISSION_SEARCH_COVERAGE, (array) $monograph->getCoverage(null));
