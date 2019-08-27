@@ -75,7 +75,7 @@ class Onix30ExportPlugin extends ImportExportPlugin {
 	 */
 	function display($args, $request) {
 		$templateMgr = TemplateManager::getManager($request);
-		$press = $request->getPress();
+		$context = $request->getContext();
 
 		parent::display($args, $request);
 
@@ -116,7 +116,7 @@ class Onix30ExportPlugin extends ImportExportPlugin {
 				);
 				import('lib.pkp.classes.file.FileManager');
 				$fileManager = new FileManager();
-				$exportFileName = $this->getExportFileName($this->getExportPath(), 'monographs', $press, '.xml');
+				$exportFileName = $this->getExportFileName($this->getExportPath(), 'monographs', $context, '.xml');
 				$fileManager->writeFile($exportFileName, $exportXml);
 				$fileManager->downloadByPath($exportFileName);
 				$fileManager->deleteByPath($exportFileName);
