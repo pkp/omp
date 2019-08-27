@@ -295,22 +295,22 @@
 			{/if}
 
 			{* References *}
-			{* {if $parsedCitations->getCount() || $monograph->getCitations()}
+			{if $citations || $monograph->getCurrentPublication()->getData('citationsRaw')}
 				<div class="item references">
 					<h3 class="label">
 						{translate key="submission.citations"}
 					</h3>
 					<div class="value">
-						{if $parsedCitations->getCount()}
-							{iterate from=parsedCitations item=parsedCitation}
-								<p>{$parsedCitation->getCitationWithLinks()|strip_unsafe_html}</p>
+						{if $citations}
+							{foreach from=$citations item=$citation}
+								<p>{$citation->getCitationWithLinks()|strip_unsafe_html}</p>
 							{/iterate}
-						{elseif $monograph->getCitations()}
-							{$monograph->getCitations()|nl2br}
+						{else}
+							{$monograph->getCurrentPublication()->getData('citationsRaw')|nl2br}
 						{/if}
 					</div>
 				</div>
-			{/if} *}
+			{/if}
 
 		</div><!-- .main_entry -->
 

@@ -50,7 +50,7 @@
 			)
 		</query>
 
-    <!-- migrate the edited_volume column to work_type -->
+		<!-- migrate the edited_volume column to work_type -->
 		<query>
 			UPDATE submissions as s
 			SET work_type = (
@@ -60,26 +60,26 @@
 			)
 		</query>
 
-    <!-- set the publication_id in chapters -->
+		<!-- set the publication_id in chapters -->
 		<query>
 			UPDATE submission_chapters as sc
 			SET publication_id = (
 				SELECT s.current_publication_id
-        FROM temp_submission_chapters as tsc
+				FROM temp_submission_chapters as tsc
 				LEFT JOIN submissions as s
-          ON (tsc.submission_id = s.submission_id)
+					ON (tsc.submission_id = s.submission_id)
 				WHERE sc.chapter_id = tsc.chapter_id
 			)
 		</query>
 
-    <!-- set the publication_id in publication formats -->
+		<!-- set the publication_id in publication formats -->
 		<query>
 			UPDATE publication_formats as pf
 			SET publication_id = (
 				SELECT s.current_publication_id
-        FROM temp_publication_formats as tpf
+				FROM temp_publication_formats as tpf
 				LEFT JOIN submissions as s
-          ON (tpf.submission_id = s.submission_id)
+					ON (tpf.submission_id = s.submission_id)
 				WHERE pf.publication_format_id = tpf.publication_format_id
 			)
 		</query>
@@ -115,7 +115,7 @@
 		</query>
 		<query>
 			INSERT INTO publication_settings(publication_id, setting_name, setting_value)
-				SELECT s.current_publication_id, 'citations', ts.citations
+				SELECT s.current_publication_id, 'citationsRaw', ts.citations
 				FROM submissions as s
 				LEFT JOIN temp_submissions as ts
 					ON s.submission_id = ts.submission_id
@@ -170,7 +170,7 @@
 				WHERE ps.audience_range_exact IS NOT NULL
 		</query>
 
-    <!-- migrate cover image from published_submissions to publication_settings -->
+		<!-- migrate cover image from published_submissions to publication_settings -->
 		<query>
 			INSERT INTO publication_settings(publication_id, setting_name, setting_value)
 				SELECT s.current_publication_id, 'cover_image', ps.cover_image
@@ -178,7 +178,7 @@
 				LEFT JOIN submissions as s
 					ON ps.submission_id = s.submission_id
 				WHERE s.current_publication_id IS NOT NULL
-          AND ps.cover_image IS NOT NULL
+					AND ps.cover_image IS NOT NULL
 		</query>
 
 		<!-- move some author data to settings table -->
@@ -186,7 +186,7 @@
 			INSERT INTO author_settings(author_id, setting_name, setting_value)
 			SELECT ta.author_id, 'country', ta.country
 			FROM temp_authors as ta
-      WHERE ta.country IS NOT NULL
+			WHERE ta.country IS NOT NULL
 		</query>
 		<query>
 			INSERT INTO author_settings(author_id, setting_name, setting_value)
@@ -219,9 +219,21 @@
 		<!-- connect controlled vocab metadata to publications, 1048585 = ASSOC_TYPE_SUBMISSION, 1048588 = ASSOC_TYPE_PUBLICATION -->
 		<query>
 			UPDATE controlled_vocabs AS cv,
-			          submissions AS s
+								submissions AS s
 			SET cv.assoc_type = 1048588, cv.assoc_id = s.current_publication_id
 			WHERE cv.assoc_type = 1048585 AND s.submission_id = cv.assoc_id
+		</query>
+
+		<!-- connect citations to publications -->
+		<query>
+			UPDATE citations as c
+			SET c.publication_id = (
+				SELECT s.current_publication_id
+				FROM submissions as s
+				LEFT JOIN temp_citations as tc
+					ON s.submission_id = tc.submission_id
+				WHERE c.citation_id = tc.citation_id
+			)
 		</query>
 
 		<!-- remove deprecated and temporary tables. should be last commands -->

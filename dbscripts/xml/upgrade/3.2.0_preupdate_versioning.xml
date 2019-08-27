@@ -21,5 +21,6 @@
 		<query>CREATE TABLE temp_publication_formats AS SELECT * FROM publication_formats</query>
 		<query>CREATE TABLE temp_submission_chapters AS SELECT * FROM submission_chapters</query>
 		<query>CREATE TABLE temp_published_submissions AS SELECT * FROM published_submissions</query>
+		<query>CREATE TABLE temp_citations AS SELECT * FROM citations</query>
 	</sql>
 </data>

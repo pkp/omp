@@ -93,9 +93,13 @@ class CatalogBookHandler extends Handler {
 		$templateMgr->assign('keywords', $submissionKeywordDao->getKeywords($submission->getId(), array(AppLocale::getLocale())));
 
 		// Citations
-		$citationDao = DAORegistry::getDAO('CitationDAO');
-		$parsedCitations = $citationDao->getBySubmissionId($submission->getId());
-		$templateMgr->assign('parsedCitations', $parsedCitations);
+		if ($submission->getCurrentPublication()->getData('citationsRaw')) {
+			$parsedCitations = DAORegistry::getDAO('CitationDAO')->getByPublicationId($submission->getCurrentPublication()->getId());
+			$templateMgr->assign([
+				'citations' => $parsedCitations->toArray(),
+				'parsedCitations' => $parsedCitations, // compatible with older themes
+			]);
+		}
 
 		// Retrieve editors for an edited volume
 		$authors = $submission->getAuthors(true);
