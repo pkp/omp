@@ -31,6 +31,9 @@
 	<message key="submission.chaptersDescription">Hier können Sie die Kapitel auflisten und ihnen Personen zuordnen, die in der oben stehenden Liste der Beiträger/innen (z.B. Kapitelautor/innen, Übersetzer/innen) verzeichnet sind. Beiträger/innen, die Sie an dieser Stelle dem Kapitel zuordnen, werden während des Veröffentlichungsprozesses Zugang zu dem Kapitel haben.</message>
 	<message key="submission.chapter.addChapter">Kapitel hinzufügen</message>
 	<message key="submission.chapter.editChapter">Kapitel bearbeiten</message>
+	<message key="submission.chapter.abstract">Zusammenfassung</message>
+	<message key="submission.chapter.pages">Seiten</message>
+	<message key="submission.chapter.datePublished">Veröffentlicht</message>
 	<message key="submission.copyedit">Lektorat</message>
 	<message key="submission.publicationFormats">Formate</message>
 	<message key="submission.proofs">Proofs</message>

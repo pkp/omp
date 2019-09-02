@@ -38,7 +38,7 @@ class SubmissionDAO extends PKPSubmissionDAO {
 	function getAdditionalFieldNames() {
 		return array_merge(
 			parent::getAdditionalFieldNames(), array(
-				'coverImage', 'coverImageAltText',
+				'coverImage', 'coverImageAltText', 'enableChapterPublicationDates',
 		));
 	}
 

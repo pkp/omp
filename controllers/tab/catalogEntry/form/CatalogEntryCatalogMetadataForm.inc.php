@@ -73,10 +73,14 @@ class CatalogEntryCatalogMetadataForm extends Form {
 	 */
 	function fetch($request, $template = null, $display = false) {
 		$templateMgr = TemplateManager::getManager($request);
+		$submission = $this->getMonograph();
+		$templateMgr->assign('submissionId', $submission->getId());
 		$templateMgr->assign('submissionId', $this->getMonograph()->getId());
 		$templateMgr->assign('submissionVersion', $this->getMonograph()->getSubmissionVersion());
 		$templateMgr->assign('stageId', $this->getStageId());
-		$templateMgr->assign('datePublished', $this->getMonograph()->getDatePublished());
+		$templateMgr->assign('datePublished', $submission->getDatePublished());
+		$chapterPublicationDatesEnabled = (int)$submission->getEnableChapterPublicationDates() == 1;
+		$templateMgr->assign('enableChapterPublicationDates', $chapterPublicationDatesEnabled);
 
 		$onixCodelistItemDao = DAORegistry::getDAO('ONIXCodelistItemDAO');
 
@@ -96,12 +100,12 @@ class CatalogEntryCatalogMetadataForm extends Form {
 				WORK_TYPE_EDITED_VOLUME => __('submission.workflowType.editedVolume'),
 				WORK_TYPE_AUTHORED_WORK => __('submission.workflowType.authoredWork'),
 			),
-			'workType' => $this->getMonograph()->getWorkType(),
+			'workType' => $submission->getWorkType(),
 		));
 
 		// SelectListPanel for volume editors
 		$authorDao = DAORegistry::getDAO('AuthorDAO');
-		$authors = $authorDao->getBySubmissionId($this->getMonograph()->getId(), true, false, $this->getMonograph()->getSubmissionVersion());
+		$authors = $authorDao->getBySubmissionId($submission->getId(), true, false, $this->getMonograph()->getSubmissionVersion());
 		$volumeEditorsListItems = array();
 		foreach ($authors as $author) {
 			$volumeEditorsListItems[] = array(
@@ -223,7 +227,7 @@ class CatalogEntryCatalogMetadataForm extends Form {
 			'audience', 'audienceRangeQualifier', 'audienceRangeFrom', 'audienceRangeTo', 'audienceRangeExact',
 			'copyrightYear', 'copyrightHolder', 'licenseURL', 'attachPermissions',
 			'temporaryFileId', // Cover image
-			'confirm', 'datePublished',
+			'confirm', 'datePublished', 'enableChapterPublicationDates',
 			'workType', 'volumeEditors',
 		);
 
@@ -274,6 +278,8 @@ class CatalogEntryCatalogMetadataForm extends Form {
 		}
 
 		$monograph->setDatePublished($this->getData('datePublished'));
+		$enableChapterPublicationDates = $this->getData('enableChapterPublicationDates') ? 1 : 0;
+		$monograph->setEnableChapterPublicationDates($enableChapterPublicationDates);
 
 		if ($this->getData('workType') == WORK_TYPE_EDITED_VOLUME) {
 			$volumeEditors = $this->getData('volumeEditors') ? $this->getData('volumeEditors') : [];
