@@ -107,6 +107,8 @@ class ChapterDAO extends SubmissionVersionedDAO implements PKPPubIdPluginDAO, IS
 		$additionalFields = parent::getAdditionalFieldNames();
 		// FIXME: Move this to a PID plug-in.
 		$additionalFields[] = 'pub-id::publisher-id';
+		$additionalFields[] = 'datePublished';
+		$additionalFields[] = 'pages';
 		return $additionalFields;
 	}
 
