@@ -18,6 +18,7 @@
 <form class="pkp_form" id="addIdentificationCodeForm" method="post" action="{url router=$smarty.const.ROUTE_COMPONENT component="grid.catalogEntry.IdentificationCodeGridHandler" op="updateCode"}">
 	{csrf}
 	<input type="hidden" name="submissionId" value="{$submissionId|escape}" />
+	<input type="hidden" name="publicationId" value="{$publicationId|escape}" />
 	<input type="hidden" name="representationId" value="{$representationId|escape}" />
 	<input type="hidden" name="identificationCodeId" value="{$identificationCodeId|escape}" />
 	{fbvFormArea id="addCode"}

@@ -196,8 +196,12 @@ class SeriesDAO extends PKPSectionDAO {
 		$subEditorsDao->deleteBySectionId($seriesId, $contextId);
 
 		// Remove monographs from this series
-		$submissionDao = DAORegistry::getDAO('SubmissionDAO');
-		$submissionDao->removeMonographsFromSeries($seriesId);
+		$submissions = Services::get('submission')->getMany(['seriesIds' => $seriesId, 'count' => 1000]);
+		foreach ($submissions as $submission) {
+			foreach ((array) $submission->getData('publications') as $publication) {
+				Services::get('publication')->edit($publication, ['seriesId' => 0]);
+			}
+		}
 
 		// Delete the series and settings.
 		$this->update('DELETE FROM series WHERE series_id = ?', (int) $seriesId);
@@ -335,21 +339,6 @@ class SeriesDAO extends PKPSectionDAO {
 				(series_id, category_id)
 			VALUES
 				(?, ?)',
-			array(
-				(int) $seriesId,
-				(int) $categoryId
-			)
-		);
-	}
-
-	/**
-	 * Unassociate a category with a series.
-	 * @param $seriesId int
-	 * @param $categoryId int
-	 */
-	function removeCategory($seriesId, $categoryId) {
-		$this->update(
-			'DELETE FROM series_categories WHERE series_id = ? AND category_id = ?',
 			array(
 				(int) $seriesId,
 				(int) $categoryId

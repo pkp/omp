@@ -25,8 +25,8 @@ import('controllers.grid.catalogEntry.SalesRightsGridRow');
 import('lib.pkp.classes.linkAction.request.AjaxModal');
 
 class SalesRightsGridHandler extends GridHandler {
-	/** @var Monograph */
-	var $_monograph;
+	/** @var Submission */
+	var $_submission;
 
 	/** @var PublicationFormat */
 	var $_publicationFormat;
@@ -47,19 +47,35 @@ class SalesRightsGridHandler extends GridHandler {
 	// Getters/Setters
 	//
 	/**
-	 * Get the monograph associated with this grid.
-	 * @return Monograph
+	 * Get the submission associated with this grid.
+	 * @return Submission
 	 */
-	function getMonograph() {
-		return $this->_monograph;
+	function getSubmission() {
+		return $this->_submission;
 	}
 
 	/**
-	 * Set the Monograph
-	 * @param Monograph
+	 * Set the Submission
+	 * @param Submission
 	 */
-	function setMonograph($monograph) {
-		$this->_monograph = $monograph;
+	function setSubmission($submission) {
+		$this->_submission = $submission;
+	}
+
+	/**
+	 * Get the publication associated with this grid.
+	 * @return Publicaton
+	 */
+	function getPublication() {
+		return $this->_publication;
+	}
+
+	/**
+	 * Set the Publicaton
+	 * @param Publicaton
+	 */
+	function setPublication($publication) {
+		$this->_publication = $publication;
 	}
 
 	/**
@@ -88,8 +104,8 @@ class SalesRightsGridHandler extends GridHandler {
 	 * @param $roleAssignments array
 	 */
 	function authorize($request, &$args, $roleAssignments) {
-		import('lib.pkp.classes.security.authorization.SubmissionAccessPolicy');
-		$this->addPolicy(new SubmissionAccessPolicy($request, $args, $roleAssignments));
+		import('lib.pkp.classes.security.authorization.PublicationAccessPolicy');
+		$this->addPolicy(new PublicationAccessPolicy($request, $args, $roleAssignments));
 		return parent::authorize($request, $args, $roleAssignments);
 	}
 
@@ -99,8 +115,9 @@ class SalesRightsGridHandler extends GridHandler {
 	function initialize($request, $args = null) {
 		parent::initialize($request, $args);
 
-		// Retrieve the authorized monograph.
-		$this->setMonograph($this->getAuthorizedContextObject(ASSOC_TYPE_MONOGRAPH));
+		// Retrieve the authorized submission.
+		$this->setSubmission($this->getAuthorizedContextObject(ASSOC_TYPE_SUBMISSION));
+		$this->setPublication($this->getAuthorizedContextObject(ASSOC_TYPE_PUBLICATION));
 		$publicationFormatDao = DAORegistry::getDAO('PublicationFormatDAO');
 		$representationId = null;
 
@@ -109,7 +126,7 @@ class SalesRightsGridHandler extends GridHandler {
 
 		if ($salesRightsId != '') {
 			$salesRightsDao = DAORegistry::getDAO('SalesRightsDAO');
-			$salesRights = $salesRightsDao->getById($salesRightsId, $this->getMonograph()->getId());
+			$salesRights = $salesRightsDao->getById($salesRightsId, $this->getPublication()->getId());
 			if ($salesRights) {
 				$representationId = $salesRights->getPublicationFormatId();
 			}
@@ -117,13 +134,13 @@ class SalesRightsGridHandler extends GridHandler {
 			$representationId = (int) $request->getUserVar('representationId');
 		}
 
-		$monograph = $this->getMonograph();
-		$publicationFormat = $publicationFormatDao->getById($representationId, $monograph->getId());
+		$submission = $this->getSubmission();
+		$publicationFormat = $publicationFormatDao->getById($representationId, $this->getPublication()->getId());
 
 		if ($publicationFormat) {
 			$this->setPublicationFormat($publicationFormat);
 		} else {
-			fatalError('The publication format is not assigned to authorized monograph!');
+			fatalError('The publication format is not assigned to authorized submission!');
 		}
 
 		// Load submission-specific translations
@@ -185,22 +202,20 @@ class SalesRightsGridHandler extends GridHandler {
 	 * @return SalesRightsGridRow
 	 */
 	function getRowInstance() {
-		return new SalesRightsGridRow($this->getMonograph());
+		return new SalesRightsGridRow($this->getSubmission());
 	}
 
 	/**
 	 * Get the arguments that will identify the data in the grid
-	 * In this case, the monograph.
+	 * In this case, the submission.
 	 * @return array
 	 */
 	function getRequestArgs() {
-		$monograph = $this->getMonograph();
-		$publicationFormat = $this->getPublicationFormat();
-
-		return array(
-			'submissionId' => $monograph->getId(),
-			'representationId' => $publicationFormat->getId()
-		);
+		return [
+			'submissionId' => $this->getSubmission()->getId(),
+			'publicationId' => $this->getPublication()->getId(),
+			'representationId' => $this->getPublicationFormat()->getId()
+		];
 	}
 
 	/**
@@ -236,14 +251,14 @@ class SalesRightsGridHandler extends GridHandler {
 	function editRights($args, $request) {
 		// Identify the sales rights entry to be updated
 		$salesRightsId = (int) $request->getUserVar('salesRightsId');
-		$monograph = $this->getMonograph();
+		$submission = $this->getSubmission();
 
 		$salesRightsDao = DAORegistry::getDAO('SalesRightsDAO');
-		$salesRights = $salesRightsDao->getById($salesRightsId, $monograph->getId());
+		$salesRights = $salesRightsDao->getById($salesRightsId, $this->getPublication()->getId());
 
 		// Form handling
 		import('controllers.grid.catalogEntry.form.SalesRightsForm');
-		$salesRightsForm = new SalesRightsForm($monograph, $salesRights);
+		$salesRightsForm = new SalesRightsForm($submission, $this->getPublication(), $salesRights);
 		$salesRightsForm->initData();
 
 		return new JSONMessage(true, $salesRightsForm->fetch($request));
@@ -258,21 +273,21 @@ class SalesRightsGridHandler extends GridHandler {
 	function updateRights($args, $request) {
 		// Identify the sales rights entry to be updated
 		$salesRightsId = $request->getUserVar('salesRightsId');
-		$monograph = $this->getMonograph();
+		$submission = $this->getSubmission();
 
 		$salesRightsDao = DAORegistry::getDAO('SalesRightsDAO');
-		$salesRights = $salesRightsDao->getById($salesRightsId, $monograph->getId());
+		$salesRights = $salesRightsDao->getById($salesRightsId, $this->getPublication()->getId());
 
 		// Form handling
 		import('controllers.grid.catalogEntry.form.SalesRightsForm');
-		$salesRightsForm = new SalesRightsForm($monograph, $salesRights);
+		$salesRightsForm = new SalesRightsForm($submission, $this->getPublication(), $salesRights);
 		$salesRightsForm->readInputData();
 		if ($salesRightsForm->validate()) {
 			$salesRightsId = $salesRightsForm->execute();
 
 			if(!isset($salesRights)) {
 				// This is a new entry
-				$salesRights = $salesRightsDao->getById($salesRightsId, $monograph->getId());
+				$salesRights = $salesRightsDao->getById($salesRightsId, $this->getPublication()->getId());
 				// New added entry action notification content.
 				$notificationContent = __('notification.addedSalesRights');
 			} else {
@@ -312,7 +327,7 @@ class SalesRightsGridHandler extends GridHandler {
 		$salesRightsId = $request->getUserVar('salesRightsId');
 
 		$salesRightsDao = DAORegistry::getDAO('SalesRightsDAO');
-		$salesRights = $salesRightsDao->getById($salesRightsId, $this->getMonograph()->getId());
+		$salesRights = $salesRightsDao->getById($salesRightsId, $this->getPublication()->getId());
 		if ($salesRights != null) { // authorized
 
 			$result = $salesRightsDao->deleteObject($salesRights);

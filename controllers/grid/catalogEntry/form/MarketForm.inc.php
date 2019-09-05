@@ -16,8 +16,8 @@
 import('lib.pkp.classes.form.Form');
 
 class MarketForm extends Form {
-	/** The monograph associated with the format being edited **/
-	var $_monograph;
+	/** The submission associated with the format being edited **/
+	var $_submission;
 
 	/** Market the entry being edited **/
 	var $_market;
@@ -25,9 +25,10 @@ class MarketForm extends Form {
 	/**
 	 * Constructor.
 	 */
-	function __construct($monograph, $market) {
+	function __construct($submission, $publication, $market) {
 		parent::__construct('controllers/grid/catalogEntry/form/marketForm.tpl');
-		$this->setMonograph($monograph);
+		$this->setSubmission($submission);
+		$this->setPublication($publication);
 		$this->setMarket($market);
 
 		// Validation checks for this form
@@ -58,19 +59,35 @@ class MarketForm extends Form {
 	}
 
 	/**
-	 * Get the Monograph
-	 * @return Monograph
+	 * Get the Submission
+	 * @return Submission
 	 */
-	function getMonograph() {
-		return $this->_monograph;
+	function getSubmission() {
+		return $this->_submission;
 	}
 
 	/**
-	 * Set the Monograph
-	 * @param Monograph
+	 * Set the Submission
+	 * @param Submission
 	 */
-	function setMonograph($monograph) {
-		$this->_monograph = $monograph;
+	function setSubmission($submission) {
+		$this->_submission = $submission;
+	}
+
+	/**
+	 * Get the Publication
+	 * @return Publication
+	 */
+	function getPublication() {
+		return $this->_publication;
+	}
+
+	/**
+	 * Set the Publication
+	 * @param Publication
+	 */
+	function setPublication($publication) {
+		$this->_publication = $publication;
 	}
 
 
@@ -105,8 +122,9 @@ class MarketForm extends Form {
 	 */
 	function fetch($request, $template = null, $display = false) {
 		$templateMgr = TemplateManager::getManager($request);
-		$monograph = $this->getMonograph();
-		$templateMgr->assign('submissionId', $monograph->getId());
+		$submission = $this->getSubmission();
+		$templateMgr->assign('submissionId', $submission->getId());
+		$templateMgr->assign('publicationId', $this->getPublication()->getId());
 		$market = $this->getMarket();
 		$onixCodelistItemDao = DAORegistry::getDAO('ONIXCodelistItemDAO');
 		$templateMgr->assign(array(
@@ -121,16 +139,14 @@ class MarketForm extends Form {
 			'taxTypeCodes' => $onixCodelistItemDao->getCodes('List171'), // VAT, GST
 		));
 
-		$publishedSubmissionDao = DAORegistry::getDAO('PublishedSubmissionDAO');
-		$publishedSubmission = $publishedSubmissionDao->getBySubmissionId($monograph->getId());
-		$availableAgents = $publishedSubmission->getAgents();
+		$availableAgents = DAORegistry::getDAO('RepresentativeDAO')->getAgentsByMonographId($submission->getId());
 		$agentOptions = array();
 		while ($agent = $availableAgents->next()) {
 			$agentOptions[$agent->getId()] = $agent->getName();
 		}
 		$templateMgr->assign('availableAgents', $agentOptions);
 
-		$availableSuppliers = $publishedSubmission->getSuppliers();
+		$availableSuppliers = DAORegistry::getDAO('RepresentativeDAO')->getSuppliersByMonographId($submission->getId());
 		$supplierOptions = array();
 		while ($supplier = $availableSuppliers->next()) {
 			$supplierOptions[$supplier->getId()] = $supplier->getName();
@@ -168,12 +184,12 @@ class MarketForm extends Form {
 		}
 
 		$publicationFormatDao = DAORegistry::getDAO('PublicationFormatDAO');
-		$publicationFormat = $publicationFormatDao->getById($representationId, $monograph->getId());
+		$publicationFormat = $publicationFormatDao->getById($representationId, $this->getPublication()->getId());
 
-		if ($publicationFormat) { // the format exists for this monograph
+		if ($publicationFormat) { // the format exists for this submission
 			$templateMgr->assign('representationId', $representationId);
 		} else {
-			fatalError('Format not in authorized monograph');
+			fatalError('Format not in authorized submission');
 		}
 
 		return parent::fetch($request, $template, $display);
@@ -213,18 +229,18 @@ class MarketForm extends Form {
 		$marketDao = DAORegistry::getDAO('MarketDAO');
 		$publicationFormatDao = DAORegistry::getDAO('PublicationFormatDAO');
 
-		$monograph = $this->getMonograph();
+		$submission = $this->getSubmission();
 		$market = $this->getMarket();
-		$publicationFormat = $publicationFormatDao->getById($this->getData('representationId'), $monograph->getId());
+		$publicationFormat = $publicationFormatDao->getById($this->getData('representationId'), $this->getPublication()->getId());
 
 		if (!$market) {
 			// this is a new assigned format to this published submission
 			$market = $marketDao->newDataObject();
 			$existingFormat = false;
-			if ($publicationFormat != null) { // ensure this assigned format is in this monograph
+			if ($publicationFormat != null) { // ensure this assigned format is in this submission
 				$market->setPublicationFormatId($publicationFormat->getId());
 			} else {
-				fatalError('This assigned format not in authorized monograph context!');
+				fatalError('This assigned format not in authorized submission context!');
 			}
 		} else {
 			$existingFormat = true;

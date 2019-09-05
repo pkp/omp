@@ -313,12 +313,19 @@ class ManageSpotlightsGridHandler extends GridHandler {
 		// get the items that match.
 		$matches = array();
 
-		$publishedSubmissionDao = DAORegistry::getDAO('PublishedSubmissionDAO');
-		$publishedSubmissions = $publishedSubmissionDao->getByPressId($press->getId());
-		while ($monograph = $publishedSubmissions->next()) {
-			if ($name == '' || preg_match('/'. preg_quote($name, '/') . '/i', $monograph->getLocalizedTitle())) {
-				$matches[] = array('label' => $monograph->getLocalizedTitle(), 'value' => $monograph->getId() . ':' . SPOTLIGHT_TYPE_BOOK);
-			}
+		$args = [
+			'status' => STATUS_PUBLISHED,
+			'contextId' => $press->getId(),
+			'count' => 100
+		];
+
+		if ($name) {
+			$args['searchPhrase'] = $name;
+		}
+
+		$submissions = Services::get('submission')->getMany($args);
+		foreach ($submissions as $submission) {
+			$matches[] = array('label' => $submission->getLocalizedTitle(), 'value' => $submission->getId() . ':' . SPOTLIGHT_TYPE_BOOK);
 		}
 
 		if (!empty($matches)) {

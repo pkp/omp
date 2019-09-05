@@ -31,6 +31,9 @@ class PublicationFormatGridHandler extends CategoryGridHandler {
 	/** @var Submission */
 	var $_submission;
 
+	/** @var Publication */
+	var $_publication;
+
 	/** @var boolean */
 	protected $_canManage;
 
@@ -51,7 +54,7 @@ class PublicationFormatGridHandler extends CategoryGridHandler {
 				'addFormat', 'editFormat', 'editFormatTab', 'updateFormat', 'deleteFormat',
 				'setApproved', 'setProofFileCompletion', 'selectFiles',
 				'identifiers', 'updateIdentifiers', 'clearPubId',
-				'dependentFiles',
+				'dependentFiles', 'editFormatMetadata', 'updateFormatMetadata'
 			)
 		);
 		$this->addRoleAssignment(
@@ -82,6 +85,22 @@ class PublicationFormatGridHandler extends CategoryGridHandler {
 		$this->_submission = $submission;
 	}
 
+	/**
+	 * Get the publication associated with this publication format grid.
+	 * @return Publication
+	 */
+	function getPublication() {
+		return $this->_publication;
+	}
+
+	/**
+	 * Set the publication
+	 * @param $publication Publication
+	 */
+	function setPublication($publication) {
+		$this->_publication = $publication;
+	}
+
 	//
 	// Overridden methods from PKPHandler
 	//
@@ -93,6 +112,7 @@ class PublicationFormatGridHandler extends CategoryGridHandler {
 
 		// Retrieve the authorized submission.
 		$this->setSubmission($this->getAuthorizedContextObject(ASSOC_TYPE_SUBMISSION));
+		$this->setPublication($this->getAuthorizedContextObject(ASSOC_TYPE_PUBLICATION));
 
 		// Load submission-specific translations
 		AppLocale::requireComponents(
@@ -110,7 +130,7 @@ class PublicationFormatGridHandler extends CategoryGridHandler {
 			LOCALE_COMPONENT_APP_EDITOR
 		);
 
-		if($this->getSubmission()->getSubmissionVersion() == $this->getSubmission()->getCurrentSubmissionVersion()) {
+		if($this->getPublication()->getData('status') !== STATUS_PUBLISHED) {
 			// Grid actions
 			$router = $request->getRouter();
 			$actionArgs = $this->getRequestArgs();
@@ -131,9 +151,8 @@ class PublicationFormatGridHandler extends CategoryGridHandler {
 		}
 
 		// Columns
-		$submission = $this->getSubmission();
 		import('controllers.grid.catalogEntry.PublicationFormatGridCellProvider');
-		$this->_cellProvider = new PublicationFormatGridCellProvider($submission->getId(), $this->_canManage, $submission->getSubmissionVersion());
+		$this->_cellProvider = new PublicationFormatGridCellProvider($this->getSubmission()->getId(), $this->_canManage, $this->getPublication()->getId());
 		$this->addColumn(
 			new GridColumn(
 				'name',
@@ -175,11 +194,8 @@ class PublicationFormatGridHandler extends CategoryGridHandler {
 	 * @param $roleAssignments array
 	 */
 	function authorize($request, &$args, $roleAssignments) {
-		import('lib.pkp.classes.security.authorization.SubmissionAccessPolicy');
-		$this->addPolicy(new SubmissionAccessPolicy($request, $args, $roleAssignments));
-
-		import('lib.pkp.classes.security.authorization.internal.VersioningRequiredPolicy');
-		$this->addPolicy(new VersioningRequiredPolicy($request, $args));
+		import('lib.pkp.classes.security.authorization.PublicationAccessPolicy');
+		$this->addPolicy(new PublicationAccessPolicy($request, $args, $roleAssignments));
 
 		if ($request->getUserVar('representationId')) {
 			import('lib.pkp.classes.security.authorization.internal.RepresentationRequiredPolicy');
@@ -198,7 +214,7 @@ class PublicationFormatGridHandler extends CategoryGridHandler {
 	 * @return PublicationFormatGridCategoryRow
 	 */
 	function getCategoryRowInstance() {
-		return new PublicationFormatGridCategoryRow($this->getSubmission(), $this->_cellProvider, $this->_canManage);
+		return new PublicationFormatGridCategoryRow($this->getSubmission(), $this->_cellProvider, $this->_canManage, $this->getPublication());
 	}
 
 
@@ -212,17 +228,17 @@ class PublicationFormatGridHandler extends CategoryGridHandler {
 	 * @return JSONMessage JSON object
 	 */
 	function editFormat($args, $request) {
-		$submission = $this->getSubmission();
 		$representationDao = Application::getRepresentationDAO();
 		$representationId = $request->getUserVar('representationId');
 		$representation = $representationDao->getById(
 			$representationId,
-			$submission->getId()
+			$this->getPublication()->getId()
 		);
 		// Check if this is a remote galley
 		$remoteURL = isset($representation) ? $representation->getRemoteURL() : null;
 		$templateMgr = TemplateManager::getManager($request);
-		$templateMgr->assign('submissionId', $submission->getId());
+		$templateMgr->assign('submissionId', $this->getSubmission()->getId());
+		$templateMgr->assign('publicationId', $this->getPublication()->getId());
 		$templateMgr->assign('representationId', $representationId);
 		$templateMgr->assign('remoteRepresentation', $remoteURL);
 		return new JSONMessage(true, $templateMgr->fetch('controllers/grid/catalogEntry/editFormat.tpl'));
@@ -235,15 +251,14 @@ class PublicationFormatGridHandler extends CategoryGridHandler {
 	 * @return JSONMessage JSON object
 	 */
 	function editFormatTab($args, $request) {
-		$submission = $this->getSubmission();
 		$representationDao = Application::getRepresentationDAO();
 		$representation = $representationDao->getById(
 			$request->getUserVar('representationId'),
-			$submission->getId()
+			$this->getPublication()->getId()
 		);
 
 		import('controllers.grid.catalogEntry.form.PublicationFormatForm');
-		$publicationFormatForm = new PublicationFormatForm($submission, $representation);
+		$publicationFormatForm = new PublicationFormatForm($this->getSubmission(), $representation, $this->getPublication());
 		$publicationFormatForm->initData();
 
 		return new JSONMessage(true, $publicationFormatForm->fetch($request));
@@ -256,15 +271,14 @@ class PublicationFormatGridHandler extends CategoryGridHandler {
 	 * @return JSONMessage JSON object
 	 */
 	function updateFormat($args, $request) {
-		$submission = $this->getSubmission();
 		$representationDao = Application::getRepresentationDAO();
 		$representation = $representationDao->getById(
 			$request->getUserVar('representationId'),
-			$submission->getId()
+			$this->getPublication()->getId()
 		);
 
 		import('controllers.grid.catalogEntry.form.PublicationFormatForm');
-		$publicationFormatForm = new PublicationFormatForm($submission, $representation);
+		$publicationFormatForm = new PublicationFormatForm($this->getSubmission(), $representation, $this->getPublication());
 		$publicationFormatForm->readInputData();
 		if ($publicationFormatForm->validate()) {
 			$publicationFormatForm->execute();
@@ -285,26 +299,18 @@ class PublicationFormatGridHandler extends CategoryGridHandler {
 		$representationDao = Application::getRepresentationDAO();
 		$representation = $representationDao->getById(
 			$request->getUserVar('representationId'),
-			$submission->getId()
+			$this->getPublication()->getId()
 		);
 
-		if (!$request->checkCSRF() || !$representation || !$representationDao->deleteById($representation->getId())) {
+		if (!$request->checkCSRF() || !$representation) {
 			return new JSONMessage(false, __('manager.setup.errorDeletingItem'));
 		}
 
-		// Create a tombstone for this publication format.
-		import('classes.publicationFormat.PublicationFormatTombstoneManager');
-		$publicationFormatTombstoneMgr = new PublicationFormatTombstoneManager();
-		$publicationFormatTombstoneMgr->insertTombstoneByPublicationFormat($representation, $context);
+		Services::get('publicationFormat')->deleteFormat($representation, $submission, $context);
 
 		$currentUser = $request->getUser();
 		$notificationMgr = new NotificationManager();
 		$notificationMgr->createTrivialNotification($currentUser->getId(), NOTIFICATION_TYPE_SUCCESS, array('contents' => __('notification.removedPublicationFormat')));
-
-		// Log the deletion of the format.
-		import('lib.pkp.classes.log.SubmissionLog');
-		import('classes.log.SubmissionEventLogEntry');
-		SubmissionLog::logEvent($request, $this->getSubmission(), SUBMISSION_LOG_PUBLICATION_FORMAT_REMOVE, 'submission.event.publicationFormatRemoved', array('formatName' => $representation->getLocalizedName()));
 
 		return DAO::getDataChangedEvent();
 	}
@@ -316,7 +322,6 @@ class PublicationFormatGridHandler extends CategoryGridHandler {
 	 * @return JSONMessage JSON object
 	 */
 	function setApproved($args, $request) {
-		$submission = $this->getSubmission();
 		$representation = $this->getAuthorizedContextObject(ASSOC_TYPE_REPRESENTATION);
 		$representationDao = Application::getRepresentationDAO();
 
@@ -420,7 +425,6 @@ class PublicationFormatGridHandler extends CategoryGridHandler {
 	function editApprovedProof($args, $request) {
 		$this->initialize($request);
 		$submission = $this->getSubmission();
-		$representationDao = Application::getRepresentationDAO();
 		$representation = $this->getAuthorizedContextObject(ASSOC_TYPE_REPRESENTATION);
 
 		import('controllers.grid.files.proof.form.ApprovedProofForm');
@@ -438,7 +442,6 @@ class PublicationFormatGridHandler extends CategoryGridHandler {
 	 */
 	function saveApprovedProof($args, $request) {
 		$submission = $this->getSubmission();
-		$representationDao = Application::getRepresentationDAO();
 		$representation = $this->getAuthorizedContextObject(ASSOC_TYPE_REPRESENTATION);
 
 		import('controllers.grid.files.proof.form.ApprovedProofForm');
@@ -467,7 +470,7 @@ class PublicationFormatGridHandler extends CategoryGridHandler {
 	 * @copydoc GridHandler::getRowInstance()
 	 */
 	function getRowInstance() {
-		return new PublicationFormatGridRow($this->_canManage, $this->getSubmission()->getSubmissionVersion());
+		return new PublicationFormatGridRow($this->_canManage);
 	}
 
 	/**
@@ -478,7 +481,7 @@ class PublicationFormatGridHandler extends CategoryGridHandler {
 	function getRequestArgs() {
 		return array(
 			'submissionId' => $this->getSubmission()->getId(),
-			'submissionVersion' => $this->getSubmission()->getSubmissionVersion(),
+			'publicationId' => $this->getPublication()->getId(),
 		);
 	}
 
@@ -509,8 +512,7 @@ class PublicationFormatGridHandler extends CategoryGridHandler {
 			$request->getUserVar('fileId'),
 			$request->getUserVar('revision'),
 			SUBMISSION_FILE_PROOF,
-			$submission->getId(),
-			$submission->getSubmissionVersion()
+			$submission->getId()
 		);
 		$confirmationText = __('editor.submission.proofreading.confirmRemoveCompletion');
 		if ($request->getUserVar('approval')) {
@@ -552,14 +554,48 @@ class PublicationFormatGridHandler extends CategoryGridHandler {
 	 * @return JSONMessage JSON object
 	 */
 	function selectFiles($args, $request) {
-		$submission = $this->getSubmission();
-		$representationDao = Application::getRepresentationDAO();
 		$representation = $this->getAuthorizedContextObject(ASSOC_TYPE_REPRESENTATION);
 
 		import('lib.pkp.controllers.grid.files.proof.form.ManageProofFilesForm');
-		$manageProofFilesForm = new ManageProofFilesForm($submission->getId(), $representation->getId());
+		$manageProofFilesForm = new ManageProofFilesForm($this->getSubmission()->getId(), $this->getPublication()->getId(), $representation->getId());
 		$manageProofFilesForm->initData();
 		return new JSONMessage(true, $manageProofFilesForm->fetch($request));
+	}
+
+	/**
+	 * Load a form to edit a format's metadata
+	 * @param $args array
+	 * @param $request PKPRequest
+	 * @return JSONMessage JSON object
+	 */
+	function editFormatMetadata($args, $request) {
+		$representation = $this->getAuthorizedContextObject(ASSOC_TYPE_REPRESENTATION);
+
+		import('controllers.grid.catalogEntry.form.PublicationFormatMetadataForm');
+		$publicationFormatForm = new PublicationFormatMetadataForm($this->getSubmission(), $this->getPublication(), $representation);
+		$publicationFormatForm->initData();
+
+		return new JSONMessage(true, $publicationFormatForm->fetch($request));
+	}
+
+	/**
+	 * Save a form to edit format's metadata
+	 * @param $args array
+	 * @param $request PKPRequest
+	 * @return JSONMessage JSON object
+	 */
+	function updateFormatMetadata($args, $request) {
+		$representation = $this->getAuthorizedContextObject(ASSOC_TYPE_REPRESENTATION);
+
+		import('controllers.grid.catalogEntry.form.PublicationFormatMetadataForm');
+		$publicationFormatForm = new PublicationFormatMetadataForm($this->getSubmission(), $this->getPublication(), $representation);
+		$publicationFormatForm->readInputData();
+		if ($publicationFormatForm->validate()) {
+			$publicationFormatForm->execute();
+			return DAO::getDataChangedEvent();
+		}
+
+		return new JSONMessage(true, $publicationFormatForm->fetch($request));
 	}
 
 	/**
@@ -569,8 +605,6 @@ class PublicationFormatGridHandler extends CategoryGridHandler {
 	 * @return JSONMessage JSON object
 	 */
 	function identifiers($args, $request) {
-		$submission = $this->getSubmission();
-		$representationDao = Application::getRepresentationDAO();
 		$representation = $this->getAuthorizedContextObject(ASSOC_TYPE_REPRESENTATION);
 
 		import('lib.pkp.controllers.tab.pubIds.form.PKPPublicIdentifiersForm');
@@ -586,8 +620,6 @@ class PublicationFormatGridHandler extends CategoryGridHandler {
 	 * @return JSONMessage JSON object
 	 */
 	function updateIdentifiers($args, $request) {
-		$submission = $this->getSubmission();
-		$representationDao = Application::getRepresentationDAO();
 		$representation = $this->getAuthorizedContextObject(ASSOC_TYPE_REPRESENTATION);
 
 		import('lib.pkp.controllers.tab.pubIds.form.PKPPublicIdentifiersForm');
@@ -610,8 +642,6 @@ class PublicationFormatGridHandler extends CategoryGridHandler {
 	function clearPubId($args, $request) {
 		if (!$request->checkCSRF()) return new JSONMessage(false);
 
-		$submission = $this->getSubmission();
-		$representationDao = Application::getRepresentationDAO();
 		$representation = $this->getAuthorizedContextObject(ASSOC_TYPE_REPRESENTATION);
 
 		import('lib.pkp.controllers.tab.pubIds.form.PKPPublicIdentifiersForm');
@@ -633,8 +663,7 @@ class PublicationFormatGridHandler extends CategoryGridHandler {
 			$request->getUserVar('fileId'),
 			$request->getUserVar('revision'),
 			SUBMISSION_FILE_PROOF,
-			$submission->getId(),
-			$submission->getSubmissionVersion()
+			$submission->getId()
 		);
 
 		// Check if this is a remote galley
@@ -646,5 +675,3 @@ class PublicationFormatGridHandler extends CategoryGridHandler {
 		return new JSONMessage(true, $templateMgr->fetch('controllers/grid/catalogEntry/dependentFiles.tpl'));
 	}
 }
-
-

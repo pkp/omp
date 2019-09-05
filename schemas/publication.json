@@ -1,0 +1,37 @@
+{
+	"title": "Publication",
+	"description": "A published version of a monograph.",
+	"type": "object",
+	"properties": {
+		"chapters": {
+			"type": "array",
+			"description": "A list of chapters that have been created for this publication.",
+			"apiSummary": true,
+			"readOnly": true,
+			"items": {
+				"$ref": "#/definitions/Chapter"
+			}
+		},
+		"publicationFormats": {
+			"type": "array",
+			"apiSummary": true,
+			"readOnly": true
+		},
+		"seriesId": {
+			"type": "integer",
+			"description": "The id of the series this publication appears in.",
+			"apiSummary": true,
+			"validation": [
+				"nullable"
+			]
+		},
+		"seriesPosition": {
+			"type": "string",
+			"description": "The position of this publication in the series, such as Volume 2 or Book 2.",
+			"apiSummary": true,
+			"validation": [
+				"nullable"
+			]
+		}
+	}
+}

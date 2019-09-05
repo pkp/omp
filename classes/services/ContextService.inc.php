@@ -161,12 +161,12 @@ class ContextService extends \PKP\Services\PKPContextService {
 		$objectDaos = [
 			\DAORegistry::getDAO('CategoryDAO'),
 			\DAORegistry::getDAO('SeriesDAO'),
-			\DAORegistry::getDAO('PublishedSubmissionDAO'),
+			\DAORegistry::getDAO('SubmissionDAO'),
 		];
 		foreach ($objectDaos as $objectDao) {
 			$objects = $objectDao->getByContextId($context->getId());
 			while ($object = $objects->next()) {
-				if (is_a($object, 'PublishedSubmission')) {
+				if (is_a($object, 'Submission')) {
 					$cover = $object->getCoverImage();
 					$simpleMonographFileManager = new \SimpleMonographFileManager($context->getId(), $object->getId());
 					$basePath = $simpleMonographFileManager->getBasePath();
@@ -213,7 +213,7 @@ class ContextService extends \PKP\Services\PKPContextService {
 					}
 
 					imagedestroy($thumbnail);
-					if (is_a($object, 'PublishedSubmission')) {
+					if (is_a($object, 'Submission')) {
 						$object->setCoverImage(array(
 							'name' => $cover['name'],
 							'width' => $cover['width'],

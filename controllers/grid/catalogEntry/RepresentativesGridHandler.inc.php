@@ -35,7 +35,7 @@ class RepresentativesGridHandler extends CategoryGridHandler {
 	function __construct() {
 		parent::__construct();
 		$this->addRoleAssignment(
-				array(ROLE_ID_MANAGER),
+				array(ROLE_ID_MANAGER, ROLE_ID_SUB_EDITOR, ROLE_ID_ASSISTANT),
 				array('fetchGrid', 'fetchCategory', 'fetchRow', 'addRepresentative', 'editRepresentative',
 				'updateRepresentative', 'deleteRepresentative'));
 	}
@@ -298,24 +298,41 @@ class RepresentativesGridHandler extends CategoryGridHandler {
 	 * @return JSONMessage JSON object
 	 */
 	function deleteRepresentative($args, $request) {
+		\AppLocale::requireComponents(LOCALE_COMPONENT_PKP_MANAGER, LOCALE_COMPONENT_APP_MANAGER);
 
 		// Identify the representative entry to be deleted
 		$representativeId = $request->getUserVar('representativeId');
 
 		$representativeDao = DAORegistry::getDAO('RepresentativeDAO');
 		$representative = $representativeDao->getById($representativeId, $this->getMonograph()->getId());
-		if ($representative != null) { // authorized
 
-			$result = $representativeDao->deleteObject($representative);
+		if (!$representative) {
+			return new JSONMessage(false, __('api.404.resourceNotFound'));
+		}
 
-			if ($result) {
-				$currentUser = $request->getUser();
-				$notificationMgr = new NotificationManager();
-				$notificationMgr->createTrivialNotification($currentUser->getId(), NOTIFICATION_TYPE_SUCCESS, array('contents' => __('notification.removedRepresentative')));
-				return DAO::getDataChangedEvent($representative->getId(), (int) $representative->getIsSupplier());
-			} else {
-				return new JSONMessage(false, __('manager.setup.errorDeletingItem'));
+		// Don't allow a representative to be deleted if they are associated
+		// with a publication format's market metadata
+		$submission = $this->getAuthorizedContextObject(ASSOC_TYPE_SUBMISSION);
+		foreach ($submission->getData('publications') as $publication) {
+			foreach ($publication->getData('publicationFormats') as $publicationFormat) {
+				$markets = DAORegistry::getDAO('MarketDAO')->getByPublicationFormatId($publicationFormat->getId())->toArray();
+				foreach ($markets as $market) {
+					if (in_array($representative->getId(), [$market->getAgentId(), $market->getSupplierId()])) {
+						return new JSONMessage(false, __('manager.representative.inUse'));
+					}
+				}
 			}
+		}
+
+		$result = $representativeDao->deleteObject($representative);
+
+		if ($result) {
+			$currentUser = $request->getUser();
+			$notificationMgr = new NotificationManager();
+			$notificationMgr->createTrivialNotification($currentUser->getId(), NOTIFICATION_TYPE_SUCCESS, array('contents' => __('notification.removedRepresentative')));
+			return DAO::getDataChangedEvent($representative->getId(), (int) $representative->getIsSupplier());
+		} else {
+			return new JSONMessage(false, __('manager.setup.errorDeletingItem'));
 		}
 	}
 }

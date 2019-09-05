@@ -88,6 +88,10 @@ class CallanSubmissionTest extends ContentBaseTestCase {
 		$this->assignParticipant('Proofreader', 'Catherine Turner');
 
 		// Add a publication format
+		$this->waitForElementPresent($selector = '//button[@id="publication-button"]');
+		$this->click($selector);
+		$this->waitForElementPresent($selector = '//button[@id="publicationFormats-button"]');
+		$this->click($selector);
 		$this->waitForElementPresent($selector='css=[id^=component-grid-catalogentry-publicationformatgrid-addFormat-button-]');
 		$this->click($selector);
 		$this->waitForElementPresent($selector='css=[id^=name-]');

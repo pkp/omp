@@ -14,8 +14,8 @@
 <locale name="en_US" full_name="U.S. English">
 	<!-- General monograph keys -->
 	<message key="monograph.audience">Audience</message>
+	<message key="monograph.audience.success">The audience details have been updated.</message>
 	<message key="monograph.coverImage">Cover Image</message>
-	<message key="monograph.currentCoverImageReload">Save your changes to view the new cover image.</message>
 	<message key="monograph.audience.rangeQualifier">Audience Range Qualifier</message>
 	<message key="monograph.audience.rangeFrom">Audience Range (from)</message>
 	<message key="monograph.audience.rangeTo">Audience Range (to)</message>
@@ -64,7 +64,6 @@
 	<message key="monograph.publicationFormat.taxRate">Taxation Rate</message>
 	<message key="monograph.publicationFormat.taxType">Taxation Type</message>
 
-	<message key="monograph.publicationFormat.formatMetadata">Format Metadata</message>
 	<message key="monograph.publicationFormat.isApproved">Include the metadata for this publication format in the catalog entry for this book.</message>
 	<message key="monograph.publicationFormat.noMarketsAssigned">Missing markets and prices.</message>
 	<message key="monograph.publicationFormat.noCodesAssigned">Missing an identification code.</message>
@@ -87,7 +86,7 @@
 	<message key="grid.catalogEntry.isNotAvailable">Not Available</message>
 	<message key="grid.catalogEntry.proof">Proof</message>
 	<message key="grid.catalogEntry.approvedRepresentation.title">Format Approval</message>
-	<message key="grid.catalogEntry.approvedRepresentation.message"><![CDATA[<p>Approve the metadata for this format. Metadata can be checked from the Catalog Entry panel.</p>]]></message>
+	<message key="grid.catalogEntry.approvedRepresentation.message"><![CDATA[<p>Approve the metadata for this format. Metadata can be checked from the Edit panel for each format.</p>]]></message>
 	<message key="grid.catalogEntry.approvedRepresentation.removeMessage"><![CDATA[<p>Indicate that the metadata for this format has not been approved.</p>]]></message>
 	<message key="grid.catalogEntry.availableRepresentation.title">Format Availability</message>
 	<message key="grid.catalogEntry.availableRepresentation.message"><![CDATA[<p>Make this format <em>available to readers</em>. Downloadable files and any other distributions will appear in the book's catalog entry.</p>]]></message>
@@ -540,7 +539,6 @@ Your server currently supports mbstring: <strong>{$supportsMBString}</strong>]]>
 	<message key="notification.type.formatNeedsApprovedSubmission">The monograph will not be listed in the catalog until a catalog entry has been created. To add this book to the catalog, click on the Catalog Entry above and find the Catalog tab.</message>
 	<message key="notification.type.configurePaymentMethod.title">No payment method configured.</message>
 	<message key="notification.type.configurePaymentMethod">A configured payment method is required before you can define e-commerce settings.</message>
-	<message key="notification.type.visitCatalog">The monograph has been approved. Please visit Catalog to manage its catalog details, using the catalog link just above.</message>
 	<message key="notification.type.visitCatalogTitle">Catalog Management</message>
 
 	<!-- Authorization -->

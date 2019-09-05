@@ -95,14 +95,8 @@ class IndexHandler extends PKPIndexHandler {
 			$featuredMonographIds = $featureDao->getSequencesByAssoc(ASSOC_TYPE_PRESS, $press->getId());
 			$featuredMonographs = array();
 			if (!empty($featuredMonographIds)) {
-				$publishedSubmissionDao = DAORegistry::getDAO('PublishedSubmissionDAO');
-				$publishedSubmissions = $publishedSubmissionDao->getByPressId($press->getId());
-				while ($publishedSubmission = $publishedSubmissions->next()) {
-					foreach($featuredMonographIds as $key => $val) {
-						if ($publishedSubmission->getId() == $key) {
-							$featuredMonographs[] = $publishedSubmission;
-						}
-					}
+				foreach($featuredMonographIds as $submissionId => $value) {
+					$featuredMonographs[] = Services::get('submission')->get($submissionId);
 				}
 			}
 			$templateMgr->assign('featuredMonographs', $featuredMonographs);

@@ -95,21 +95,7 @@ class ContentBaseTestCase extends PKPContentBaseTestCase {
 
 			// Contributors
 			foreach ($chapter['contributors'] as $i => $contributor) {
-				sleep(5);
-				$this->click('css=[id^=component-listbuilder-users-chapterauthorlistbuilder-addItem-button-]');
-				sleep(2);
-				$this->waitForElementPresent('(//div[@id="chapterAuthorContainer"]//select[@name="newRowId[name]"])[' . ($i+1) . ']');
-				$this->select('(//div[@id="chapterAuthorContainer"]//select[@name="newRowId[name]"])[' . ($i+1) . ']', 'label=' . $contributor);
-			}
-
-			// Files
-			foreach ($chapter['files'] as $i => $file) {
-				sleep(5);
-				$this->click('css=[id^=component-listbuilder-files-chapterfileslistbuilder-addItem-button-]');
-				sleep(1);
-				$element = $this->waitForElementPresent($selector='(//div[@id="chapterFilesContainer"]//select[@name="newRowId[name]"])[' . ($i+1) . ']//option[contains(text(),' . $this->quoteXpath($file) . ')]');
-				$optionFullText = $element->getText();
-				$this->select('(//div[@id="chapterFilesContainer"]//select[@name="newRowId[name]"])[' . ($i+1) . ']', 'label=' . $optionFullText);
+				$this->click('//form[@id="editChapterForm"]//label[contains(text(), ' . $this->quoteXpath($contributor) . ')]');
 			}
 
 			// FIXME: Title is entered here to combat listbuilder wackiness. It needs input before form save.
@@ -121,9 +107,21 @@ class ContentBaseTestCase extends PKPContentBaseTestCase {
 			$this->click('//form[@id="editChapterForm"]//button[text()="Save"]');
 			self::$driver->wait()->until(WebDriverExpectedCondition::invisibilityOfElementLocated(WebDriverBy::cssSelector('div.pkp_modal_panel')));
 
+			// Files
+			if (!empty($chapter['files'])) {
+				$this->click('//div[@id="chaptersGridContainer"]//a[contains(text(), ' . $this->quoteXPath($chapter['title']) . ')]');
+				$this->waitForTextPresent('Edit Metadata');
+				$this->waitForElementPresent('//legend[contains(text(),"Files")]');
+				foreach ($chapter['files'] as $file) {
+					$this->click('//form[@id="editChapterForm"]//label[contains(text(), ' . $this->quoteXpath($chapter['title']) . ')]');
+				}
+				$this->click('//form[@id="editChapterForm"]//button[text()="Save"]');
+				self::$driver->wait()->until(WebDriverExpectedCondition::invisibilityOfElementLocated(WebDriverBy::cssSelector('div.pkp_modal_panel')));
+			}
+
 			// Test the public identifiers form
 			if (isset($chapter['pubId'])) {
-				$this->click('css=[id*=-editChapter-button-]:contains(\'' . $chapter['title'] . '\')');
+				$this->click('//div[@id="chaptersGridContainer"]//a[contains(text(), ' . $this->quoteXPath($chapter['title']) . ')]');
 				$this->waitForElementPresent('css=.ui-tabs-anchor:contains(\'Identifiers\;)');
 				$this->click('//a[contains(text(),\'Identifiers\')]');
 				$this->waitForElementPresent('css=[id^=publisherId-]');
@@ -149,7 +147,10 @@ class ContentBaseTestCase extends PKPContentBaseTestCase {
 	 */
 	protected function sendToReview($type = 'External', $from = 'Submission') {
 		$this->waitJQuery();
-		$this->click('css=[id^=' . ($type=='External'?'external':'internal') . 'Review-button-]');
+		// Force the popup notification to be hidden
+		self::$driver->executeScript("$('.ui-pnotify').css('display', 'none');");
+		$this->waitForElementPresent($selector = 'css=[id^=' . ($type=='External'?'external':'internal') . 'Review-button-]');
+		$this->click($selector);
 		$this->waitJQuery();
 		sleep(3);
 		if ($type == 'Internal' || $from != 'Internal') {
@@ -170,11 +171,8 @@ class ContentBaseTestCase extends PKPContentBaseTestCase {
 	 */
 	protected function addToCatalog() {
 		self::$driver->executeScript('window.scrollTo(0,0);'); // Scroll to top of page
-		$this->click('css=[id^=catalogEntry-button-]');
-		$this->waitForElementPresent($selector = '//a[@class="ui-tabs-anchor" and text()="Catalog"]');
-		$this->click($selector);
-		$this->waitForElementPresent($selector='css=[id=confirm]');
-		$this->click($selector);
-		$this->click('//form[@id=\'catalogMetadataEntryForm\']//button[text()=\'Save\']');
+		$this->click('//button[contains(text(), "Publish")]');
+		$this->waitForTextPresent('All publication requirements have been met. Are you sure you want to publish this?');
+		$this->click('//div[@class="pkpWorkflow__publishModal"]//button[contains(text(),"Publish")]');
 	}
 }

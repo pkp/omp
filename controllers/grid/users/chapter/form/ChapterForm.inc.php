@@ -17,8 +17,11 @@
 import('lib.pkp.classes.form.Form');
 
 class ChapterForm extends Form {
-	/** The monograph associated with the submission chapter being edited **/
-	var $_monographId;
+	/** The monograph associated with the chapter being edited **/
+	var $_monograph;
+
+	/** The publication associated with the chapter being edited **/
+	var $_publication;
 
 	/** Chapter the chapter being edited **/
 	var $_chapter;
@@ -26,11 +29,13 @@ class ChapterForm extends Form {
 	/**
 	 * Constructor.
 	 * @param $monograph Monograph
+	 * @param $publication Publication
 	 * @param $chapter Chapter
 	 */
-	function __construct($monograph, $chapter) {
+	function __construct($monograph, $publication, $chapter) {
 		parent::__construct('controllers/grid/users/chapter/form/chapterForm.tpl');
 		$this->setMonograph($monograph);
+		$this->setPublication($publication);
 
 		if ($chapter) {
 			$this->setChapter($chapter);
@@ -63,6 +68,22 @@ class ChapterForm extends Form {
 	}
 
 	/**
+	 * Get the publication associated with this chapter grid.
+	 * @return Publication
+	 */
+	function getPublication() {
+		return $this->_publication;
+	}
+
+	/**
+	 * Set the publication associated with this chapter grid.
+	 * @param $publication Publication
+	 */
+	function setPublication($publication) {
+		$this->_publication = $publication;
+	}
+
+	/**
 	 * Get the Chapter associated with this form
 	 * @return Chapter
 	 */
@@ -88,8 +109,8 @@ class ChapterForm extends Form {
 	function initData() {
 		AppLocale::requireComponents(LOCALE_COMPONENT_APP_DEFAULT, LOCALE_COMPONENT_PKP_SUBMISSION);
 
-		$monograph = $this->getMonograph();
-		$this->setData('submissionId', $monograph->getId());
+		$this->setData('submissionId', $this->getMonograph()->getId());
+		$this->setData('publicationId', $this->getPublication()->getId());
 
 		$chapter = $this->getChapter();
 		if ($chapter) {
@@ -102,6 +123,96 @@ class ChapterForm extends Form {
 			$this->setData('subtitle', null);
 			$this->setData('abstract', null);
 		}
+	}
+
+	/**
+	 * @copydoc Form::fetch()
+	 */
+	function fetch($request, $template = null, $display = false) {
+
+		$chapterAuthorOptions = [];
+		$selectedChapterAuthors = [];
+		if ($this->getChapter()) {
+			$selectedChapterAuthors = DAORegistry::getDAO('ChapterAuthorDAO')->getAuthors($this->getPublication()->getId(), $this->getChapter()->getId())->toArray();
+			foreach ($selectedChapterAuthors as $selectedChapterAuthor) {
+				$chapterAuthorOptions[] = [
+					'id' => $selectedChapterAuthor->getId(),
+					'title' => $selectedChapterAuthor->getFullName(),
+				];
+			}
+		}
+		$allAuthors = Services::get('author')->getMany(['publicationIds' => $this->getPublication()->getId(), 'count' => 1000]);
+		foreach ($allAuthors as $author) {
+			$isIncluded = false;
+			foreach ($chapterAuthorOptions as $chapterAuthorOption) {
+				if ($chapterAuthorOption['id'] === $author->getId()) {
+					$isIncluded = true;
+				}
+			}
+			if (!$isIncluded) {
+				$chapterAuthorOptions[] = [
+					'id' => $author->getId(),
+					'title' => $author->getFullName(),
+				];
+			}
+		}
+
+		$chapterAuthorsListPanel = new \PKP\components\listPanels\ListPanel(
+			'authors',
+			__('submission.submit.addAuthor'),
+			[
+				'canOrder' => true,
+				'canSelect' => true,
+				'items' => $chapterAuthorOptions,
+				'itemsMax' => count($chapterAuthorOptions),
+				'selected' => array_map(function($author) { return $author->getId(); }, $selectedChapterAuthors),
+				'selectorName' => 'authors[]',
+			]
+		);
+		$templateMgr = TemplateManager::getManager($request);
+		$templateMgr->assign('chapterAuthorsListData', [
+			'components' => [
+				'authors' => $chapterAuthorsListPanel->getConfig()
+			]
+		]);
+
+		if ($this->getChapter()) {
+			$submissionFiles = DAORegistry::getDAO('SubmissionFileDAO')->getLatestRevisions($this->getMonograph()->getId());
+			$chapterFileOptions = [];
+			foreach ($submissionFiles as $submissionFile) {
+				if (!$submissionFile->getData('chapterId') || $submissionFile->getData('chapterId') == $this->getChapter()->getId()) {
+					$chapterFileOptions[] = [
+						'id' => $submissionFile->getFileId(),
+						'title' => $submissionFile->getLocalizedName(),
+					];
+				}
+			}
+			$selectedChapterFiles = [];
+			foreach ($submissionFiles as $submissionFile) {
+				if ($submissionFile->getData('chapterId') == $this->getChapter()->getId()) {
+					$selectedChapterFiles[] = $submissionFile->getFileId();
+				}
+			}
+			$chapterFilesListPanel = new \PKP\components\listPanels\ListPanel(
+				'files',
+				__('submission.files'),
+				[
+					'canSelect' => true,
+					'items' => $chapterFileOptions,
+					'itemsMax' => count($chapterFileOptions),
+					'selected' => $selectedChapterFiles,
+					'selectorName' => 'files[]',
+				]
+			);
+			$templateMgr = TemplateManager::getManager($request);
+			$templateMgr->assign('chapterFilesListData', [
+				'components' => [
+					'chapterFilesListPanel' => $chapterFilesListPanel->getConfig()
+				]
+			]);
+		}
+
+		return parent::fetch($request, $template, $display);
 	}
 
 	/**
@@ -120,6 +231,7 @@ class ChapterForm extends Form {
 		$chapterDao = DAORegistry::getDAO('ChapterDAO');
 		$chapter = $this->getChapter();
 		$request = Application::get()->getRequest();
+		$isEdit = !!$chapter;
 
 		if ($chapter) {
 			$chapter->setTitle($this->getData('title'), null); //Localized
@@ -127,133 +239,42 @@ class ChapterForm extends Form {
 			$chapter->setAbstract($this->getData('abstract'), null); //Localized
 			$chapterDao->updateObject($chapter);
 		} else {
-			$monograph = $this->getMonograph();
-
 			$chapter = $chapterDao->newDataObject();
-			$chapter->setMonographId($monograph->getId());
+			$chapter->setData('publicationId', $this->getPublication()->getId());
 			$chapter->setTitle($this->getData('title'), null); //Localized
 			$chapter->setSubtitle($this->getData('subtitle'), null); //Localized
 			$chapter->setAbstract($this->getData('abstract'), null); //Localized
 			$chapter->setSequence(REALLY_BIG_NUMBER);
 			$chapterDao->insertChapter($chapter);
-			$chapterDao->resequenceChapters($monograph->getId());
+			$chapterDao->resequenceChapters($this->getPublication()->getId());
 		}
 
 		$this->setChapter($chapter);
 
-		// Save the author associations. (See insert/deleteEntry.)
-		import('lib.pkp.classes.controllers.listbuilder.ListbuilderHandler');
-		ListbuilderHandler::unpack(
-			$request, $this->getData('authors'),
-			array($this, 'deleteAuthorsEntry'),
-			array($this, 'insertAuthorsEntry'),
-			array($this, 'updateAuthorsEntry')
-		);
-
-		ListbuilderHandler::unpack(
-			$request, $this->getData('files'),
-			array($this, 'deleteFilesEntry'),
-			array($this, 'insertFilesEntry'),
-			array($this, 'updateFilesEntry')
-		);
-
-		return true;
-	}
-
-	/**
-	 * Persist a new author entry insert.
-	 * @param $request Request
-	 * @param $newRowId mixed New entry with data to persist
-	 * @return boolean
-	 */
-	function insertAuthorsEntry($request, $newRowId) {
-		$monograph = $this->getMonograph();
-		$chapter = $this->getChapter();
-		$authorId = (int) $newRowId['name'];
-		$sequence = (int) $newRowId['sequence'];
-
-		// Create a new chapter author.
-		$chapterAuthorDao = DAORegistry::getDAO('ChapterAuthorDAO');
-		// FIXME: primary authors not set for chapter authors.
-		$chapterAuthorDao->insertChapterAuthor($authorId, $chapter->getId(), $monograph->getId(), false, $sequence);
-		return true;
-	}
-
-	/**
-	 * @copydoc ListbuilderHandler::updateEntry()
-	 */
-	function updateAuthorsEntry($request, $rowId, $newRowId) {
-		if (!$this->deleteAuthorsEntry($request, $rowId)) return false;
-		return $this->insertAuthorsEntry($request, $newRowId);
-	}
-
-	/**
-	 * Delete an author entry.
-	 * @param $request Request
-	 * @param $rowId mixed ID of row to modify
-	 * @return boolean
-	 */
-	function deleteAuthorsEntry($request, $rowId) {
-		$chapter = $this->getChapter();
-		$authorId = (int) $rowId; // this is the authorId to remove and is already an integer
-		if ($authorId) {
-			// remove the chapter author.
-			$chapterAuthorDao = DAORegistry::getDAO('ChapterAuthorDAO');
-			$chapterAuthorDao->deleteChapterAuthorById($authorId, $chapter->getId());
-			return true;
+		// Save the chapter author aassociations
+		DAORegistry::getDAO('ChapterAuthorDAO')->deleteChapterAuthorsByChapterId($this->getChapter()->getId());
+		foreach ((array) $this->getData('authors') as $seq => $authorId) {
+			DAORegistry::getDAO('ChapterAuthorDAO')->insertChapterAuthor($authorId, $this->getChapter()->getId(), false, $seq);
 		}
-		return false;
-	}
 
-	/**
-	 * Persist a new files entry insert.
-	 * @param $request Request
-	 * @param $newRowId mixed New entry with data to persist
-	 * @return boolean
-	 */
-	function insertFilesEntry($request, $newRowId) {
-		$monograph = $this->getMonograph();
-		$chapter = $this->getChapter();
-		$fileId = (int) $newRowId['name'];
-
-		$submissionFileDao = DAORegistry::getDAO('SubmissionFileDAO'); /** @var $submissionFileDao SubmissionFileDAO */
-		$submissionFiles = $submissionFileDao->getAllRevisions($fileId, null, $monograph->getId());
-		foreach ($submissionFiles as $submissionFile) {
-			$submissionFile->setData('chapterId', $chapter->getId());
-			$submissionFileDao->updateObject($submissionFile);
-		}
-		return true;
-	}
-
-	/**
-	 * @copydoc ListbuilderHandler::updateEntry()
-	 */
-	function updateFilesEntry($request, $rowId, $newRowId) {
-		if (!$this->deleteFilesEntry($request, $rowId)) return false;
-		return $this->insertFilesEntry($request, $newRowId);
-	}
-
-	/**
-	 * Delete a file association with a chapter.
-	 * @param $request Request
-	 * @param $rowId mixed ID of row to modify
-	 * @return boolean
-	 */
-	function deleteFilesEntry($request, $rowId) {
-		$chapter = $this->getChapter();
-		$fileId = (int) $rowId; // this is the fileId to remove and is already an integer
-		if ($fileId) {
-			// Remove the chapter/file association.
-			$submissionFileDao = DAORegistry::getDAO('SubmissionFileDAO'); /* @var $submissionFileDao SubmissionFileDAO */
-			$monograph = $this->getMonograph();
-			$submissionFiles = $submissionFileDao->getAllRevisions($fileId, null, $monograph->getId());
-			foreach ($submissionFiles as $submissionFile) {
-				$submissionFile->setData('chapterId', null);
-				$submissionFileDao->updateObject($submissionFile);
+		// Save the chapter file associations
+		if ($isEdit) {
+			$selectedFiles = (array) $this->getData('files');
+			$allFiles = DAORegistry::getDAO('SubmissionFileDAO')->getLatestRevisions($this->getMonograph()->getId());
+			foreach ($allFiles as $file) {
+				$revisions = DAORegistry::getDAO('SubmissionFileDAO')->getAllRevisions($file->getId(), null, $this->getMonograph()->getId());
+				foreach ($revisions as $revision) {
+					if (in_array($revision->getFileId(), $selectedFiles)) {
+						$revision->setData('chapterId', $this->getChapter()->getId());
+					} else {
+						$revision->setData('chapterId', null);
+					}
+					DAORegistry::getDAO('SubmissionFileDAO')->updateObject($revision);
+				}
 			}
-			return true;
 		}
-		return false;
+
+		return true;
 	}
 }
 

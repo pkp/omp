@@ -30,27 +30,25 @@ class SitemapHandler extends PKPSitemapHandler {
 		// Catalog
 		$root->appendChild($this->_createUrlTree($doc, $request->url($press->getPath(), 'catalog')));
 
-		$publishedSubmissionDao = DAORegistry::getDAO('PublishedSubmissionDAO');
-		$submissionFileDao = DAORegistry::getDAO('SubmissionFileDAO');
-		$publishedSubmissionsResult = $publishedSubmissionDao->getByPressId($pressId);
-		while ($publishedSubmission = $publishedSubmissionsResult->next()) {
+		$submissions = Services::get('submission')->getMany(['status' => STATUS_PUBLISHED, 'contextId' => $pressId, 'count' => 1000]);
+		foreach ($submissions as $submission) {
 			// Book
-			$root->appendChild($this->_createUrlTree($doc, $request->url($press->getPath(), 'catalog', 'view', array($publishedSubmission->getBestId()))));
+			$root->appendChild($this->_createUrlTree($doc, $request->url($press->getPath(), 'catalog', 'view', array(submission->getBestId()))));
 			// Files
 			// Get publication formats
-			$publicationFormats = $publishedSubmission->getPublicationFormats(true);
+			$publicationFormats = submission->getPublicationFormats(true);
 			foreach ($publicationFormats as $format) {
 				// Consider only available publication formats
 				if ($format->getIsAvailable()) {
 					// Consider only available publication format files
 					$availableFiles = array_filter(
-						$submissionFileDao->getLatestRevisionsByAssocId(ASSOC_TYPE_PUBLICATION_FORMAT, $format->getId(), $publishedSubmission->getId()),
+						$submissionFileDao->getLatestRevisionsByAssocId(ASSOC_TYPE_PUBLICATION_FORMAT, $format->getId(), submission->getId()),
 						function($a) {
 							return $a->getDirectSalesPrice() !== null;
 						}
 					);
 					foreach ($availableFiles as $file) {
-						$root->appendChild($this->_createUrlTree($doc, $request->url($press->getPath(), 'catalog', 'view', array($publishedSubmission->getBestId(), $format->getBestId(), $file->getBestId()))));
+						$root->appendChild($this->_createUrlTree($doc, $request->url($press->getPath(), 'catalog', 'view', array(submission->getBestId(), $format->getBestId(), $file->getBestId()))));
 					}
 				}
 			}

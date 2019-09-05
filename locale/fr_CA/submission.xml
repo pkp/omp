@@ -89,7 +89,7 @@
 	<!-- Copyediting Grid -->
 	<message key="grid.copyediting.deleteCopyeditorResponse">Supprimer le téléchargement du réviseur</message>
 	<!-- Submission-specific catalog info -->
-	<message key="submission.catalogEntry">Catalogue</message>
+	<message key="publication.catalogEntry">Catalogue</message>
 	<message key="submission.editCatalogEntry">Entrée</message>
 	<message key="submission.catalogEntry.new">Nouvelle entrée de catalogue</message>
 	<message key="submission.catalogEntry.confirm">Créer une entrée de catalogue pour ce livre en fonction des métadonnées ci-dessous.</message>

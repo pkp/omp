@@ -32,7 +32,7 @@
  */
 
 // Workflow > Publication > Publication Formats Grid
-[id^=formatsGridContainer] {
+#representations-grid {
 
     .category {
         font-size: @font-base;
@@ -191,4 +191,11 @@
 
 .pkp_controllers_grid .pkp_linkaction_deleteChapter {
     color: @no;
+}
+
+[id^="publicationMetadataEntryForm-"] {
+
+    .pkp_controllers_grid {
+        margin-bottom: 0;
+    }
 }

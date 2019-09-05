@@ -24,7 +24,8 @@
 	{fbvFormArea id="approvedProofInfo"}
 		<input type="hidden" name="fileId" value="{$fileId|escape}" />
 		<input type="hidden" name="submissionId" value="{$submissionId|escape}" />
-		<input type="hidden" name="submissionVersion" value="{$submissionVersion|escape}" />
+		<input type="hidden" name="representationId" value="{$representationId|escape}" />
+		<input type="hidden" name="publicationId" value="{$publicationId|escape}" />
 
 		{include file="controllers/grid/files/proof/form/approvedProofFormFields.tpl"}
 	{/fbvFormArea}

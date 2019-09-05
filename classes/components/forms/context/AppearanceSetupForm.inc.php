@@ -24,7 +24,7 @@ class AppearanceSetupForm extends PKPAppearanceSetupForm {
 	public function __construct($action, $locales, $context, $baseUrl, $temporaryFileApiUrl) {
 		parent::__construct($action, $locales, $context, $baseUrl, $temporaryFileApiUrl);
 
-		$catalogSortOptions = \DAORegistry::getDAO('PublishedSubmissionDAO')->getSortSelectOptions();
+		$catalogSortOptions = \DAORegistry::getDAO('SubmissionDAO')->getSortSelectOptions();
 		$catalogSortOptions = array_map(function($key, $label) {
 			return ['value' => $key, 'label' => $label];
 		}, array_keys($catalogSortOptions), $catalogSortOptions);

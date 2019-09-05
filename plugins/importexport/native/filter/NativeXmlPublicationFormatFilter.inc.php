@@ -127,14 +127,12 @@ class NativeXmlPublicationFormatFilter extends NativeXmlRepresentationFilter {
 		$this->_extractMeasureContent($node, $onixDeployment, $representation);
 		$this->_extractExtentContent($node, $onixDeployment, $representation);
 
-		// if this is a published submission, extract the Audience elements and store them.
-		$publishedSubmissionDao = DAORegistry::getDAO('PublishedSubmissionDAO');
-		$publishedSubmission = $publishedSubmissionDao->getBySubmissionId($representation->getSubmissionId());
-		if ($publishedSubmission) {
-			$publishedSubmission->setAudience($this->_extractTextFromNode($node, $onixDeployment, 'AudienceCodeType'));
-			$publishedSubmission->setAudienceRangeQualifier($this->_extractTextFromNode($node, $onixDeployment, 'AudienceRangeQualifier'));
+		$submission = Services::get('submission')->get($representation->getSubmissionId());
+		if ($submission) {
+			$submission->setAudience($this->_extractTextFromNode($node, $onixDeployment, 'AudienceCodeType'));
+			$submission->setAudienceRangeQualifier($this->_extractTextFromNode($node, $onixDeployment, 'AudienceRangeQualifier'));
 			$this->_extractAudienceRangeContent($node, $onixDeployment, $representation);
-			$publishedSubmissionDao->updateObject($publishedSubmission);
+			DAORegistry::getDAO('SubmissionDAO')->updateObject($submission);
 		}
 
 		// Things below here require a publication format id since they are dependent on the PublicationFormat.

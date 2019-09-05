@@ -49,7 +49,7 @@
 
 	<!-- Submission wizard -->
 	<message key="submission.submit">Iniciar nova envio de livro</message>
-	<message key="submission.submit.newSubmissionMultiple">Iniciar novo envio em</message>	
+	<message key="submission.submit.newSubmissionMultiple">Iniciar novo envio em</message>
 	<message key="submission.submit.newSubmissionSingle">Novo envio</message>
 	<message key="submission.submit.upload">Enviar</message>
 	<message key="submission.submit.cancelSubmission">O envio pode ser concluído posteriormente, escolhendo da lista de Submissões ativas, na página inicial do papel de autor.</message>
@@ -72,7 +72,7 @@
 	<message key="submission.submit.catalog">Catálogo</message>
 	<message key="submission.submit.metadata">Metadados</message>
 	<message key="submission.submit.finishingUp">Concluíndo</message>
-	<message key="submission.submit.upload">Enviar</message>	
+	<message key="submission.submit.upload">Enviar</message>
 	<message key="submission.submit.confirmation">Confirmação</message>
 	<message key="submission.submit.nextSteps">Próximos passos</message>
 	<message key="submission.submit.coverNote">Nota de capa ao editor</message>
@@ -91,7 +91,7 @@
 	<message key="grid.copyediting.deleteCopyeditorResponse">Excluir arquivo do editor de texto</message>
 
 	<!-- Submission-specific catalog info -->
-	<message key="submission.catalogEntry">Catálogo</message>	
+	<message key="publication.catalogEntry">Catálogo</message>
 	<message key="submission.editCatalogEntry">Entrada</message>
 	<message key="submission.catalogEntry.new">Nova entrada no catálogo</message>
 	<message key="submission.catalogEntry.confirm">Criar nova entrada de catálogo para este livro, baseada nos metadados a seguir.</message>

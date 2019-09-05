@@ -27,8 +27,9 @@ class PublicationFormatTombstoneManager {
 	 * @param $press Press
 	 */
 	function insertTombstoneByPublicationFormat($publicationFormat, $press) {
+		$publication = Services::get('publication')->get($publicationFormat->getData('publicationId'));
 		$submissionDao = DAORegistry::getDAO('SubmissionDAO');
-		$monograph = $submissionDao->getById($publicationFormat->getMonographId());
+		$monograph = $submissionDao->getById($publication->getData('submissionId'));
 		$seriesDao = DAORegistry::getDAO('SeriesDAO');
 		$series = $seriesDao->getById($monograph->getSeriesId());
 
@@ -79,9 +80,9 @@ class PublicationFormatTombstoneManager {
 	 * @param $press
 	 */
 	function insertTombstonesByPress($press) {
-		$publishedSubmissionFactory = $this->_getPublishedSubmissionFactoryByPressId($press->getId());
-		while ($publishedSubmission = $publishedSubmissionFactory->next()) { /* @var $publishedSubmission PublishedSubmission */
-			$publicationFormats = $publishedSubmission->getPublicationFormats();
+		$submissions = Services::get('submission')->getMany(['contextId' => $press->getId(), 'status' => STATUS_PUBLISHED, 'count' => 2000]);
+		foreach ($submissions as $submission) {
+			$publicationFormats = $submission->getPublicationFormats();
 			$this->insertTombstonesByPublicationFormats($publicationFormats, $press);
 		}
 	}
@@ -102,25 +103,11 @@ class PublicationFormatTombstoneManager {
 	 * @param $pressId int
 	 */
 	function deleteTombstonesByPressId($pressId) {
-		$publishedSubmissionFactory = $this->_getPublishedSubmissionFactoryByPressId($pressId);
-		while ($publishedSubmission = $publishedSubmissionFactory->next()) {
-			$publicationFormats = $publishedSubmission->getPublicationFormats();
+		$submissions = Services::get('submission')->getMany(['contextId' => $pressId, 'status' => STATUS_PUBLISHED, 'count' => 2000]);
+		foreach ($submissions as $submission) {
+			$publicationFormats = $submission->getPublicationFormats();
 			$this->deleteTombstonesByPublicationFormats($publicationFormats);
 		}
-	}
-
-
-	//
-	// Private helper methods.
-	//
-	/**
-	 * Get the published submission factory for the passed press id.
-	 * @param $pressId int
-	 * @return DAOResultFactory
-	 */
-	function _getPublishedSubmissionFactoryByPressId($pressId) {
-		$publishedSubmissionDao = DAORegistry::getDAO('PublishedSubmissionDAO');
-		return $publishedSubmissionDao->getByPressId($pressId);
 	}
 }
 

@@ -12,5 +12,9 @@
   -->
 
 <locale name="en_US" full_name="U.S. English">
-  <message key="api.emailTemplates.403.notAllowedChangeContext">You do not have permission to move this email template to another journal.</message>
+  <message key="api.emailTemplates.403.notAllowedChangeContext">You do not have permission to move this email template to another press.</message>
+  <message key="api.publications.403.contextsDidNotMatch">The publication that you requested is not part of this press.</message>
+  <message key="api.publications.403.submissionsDidNotMatch">The publication that you requested is not part of this submission.</message>
+  <message key="api.submissions.403.cantChangeContext">You can not change the press of a submission.</message>
+  <message key="api.submissions.403.contextRequired">To make or edit a submission you must make a request to the press's API endpoint.</message>
 </locale>

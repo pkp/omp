@@ -35,7 +35,7 @@ class SeriesTest extends WebTestCase {
 		$actions->moveToElement($this->waitForElementPresent('//ul[@id="navigationPrimary"]//a[text()="Settings"]'))
 			->click($this->waitForElementPresent('//ul[@id="navigationPrimary"]//a[text()="Press"]'))
 			->perform();
-		$this->waitForElementPresent($selector='link=Series');
+		$this->waitForElementPresent($selector='//button[@id="series-button"]');
 		$this->click($selector);
 
 		// Create a new "Library & Information Studies" series

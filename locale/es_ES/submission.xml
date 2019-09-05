@@ -85,7 +85,7 @@
 	<message key="grid.copyediting.deleteCopyeditorResponse">Borrar archivo subido del corrector</message>
 
 	<!-- Submission-specific catalog info -->
-	<message key="submission.catalogEntry">Catálogo</message>
+	<message key="publication.catalogEntry">Catálogo</message>
 	<message key="submission.editCatalogEntry">Registro</message>
 	<message key="submission.catalogEntry.new">Nueva entrada de catálogo</message>
 	<message key="submission.catalogEntry.confirm">Crear un registro de este libro en el catálogo basado en los metadatos situados a continuación.</message>
@@ -119,8 +119,6 @@
 	<message key="submission.upload.fileContents">Componente de envío</message>
 	<message key="submission.list.orderingFeaturesSection">Arrastre y suelte o pulse los botones de arriba y abajo para cambiar el orden de los elementos en {$title}.</message>
 	<message key="submission.list.saveFeatureOrder">Guardar orden</message>
-	<message key="submission.workflowType.editedVolume.selectEditors">Seleccionar Editores de Volumen</message>
-	<message key="submission.workflowType.editedVolume.selectEditors.description">Seleccione los autores que deberían ser identificados como editores para la totalidad del volumen.</message>
 	<message key="submission.editorName">{$editorName} (ed)</message>
 	<message key="submission.editorSeparator">,</message>
 	<message key="submission.authorListSeparator">;</message>

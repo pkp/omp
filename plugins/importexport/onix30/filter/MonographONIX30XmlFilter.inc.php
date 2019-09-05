@@ -51,17 +51,6 @@ class MonographONIX30XmlFilter extends NativeExportFilter {
 	 */
 	function &process(&$monograph) {
 
-		// Note:  There are ONIX fields that can only be assembled from a PublishedSubmission class.
-		// e.g. the Audience components. Since this filter can also be used for native import/import
-		// export, check to see if we have have a published submission and use it, otherwise fall back
-		// with safe defaults.
-
-		$publishedSubmissionDao = DAORegistry::getDAO('PublishedSubmissionDAO');
-		$publishedSubmission = $publishedSubmissionDao->getBySubmissionId($monograph->getId());
-		if ($publishedSubmission) {
-			$monograph = $publishedSubmission;
-		}
-
 		// Create the XML document
 		$doc = new DOMDocument('1.0');
 		$this->_doc = $doc;
@@ -73,7 +62,7 @@ class MonographONIX30XmlFilter extends NativeExportFilter {
 		$rootNode->appendChild($this->createHeaderNode($doc, $monograph));
 
 		$publicationFormatDao = DAORegistry::getDAO('PublicationFormatDAO');
-		$publicationFormats = $publicationFormatDao->getBySubmissionId($monograph->getId());
+		$publicationFormats = $publicationFormatDao->getByPublicationId($monograph->getCurrentPublication()->getId());
 
 		// Append all publication formats as Product nodes.
 		while ($publicationFormat = $publicationFormats->next()) {
@@ -400,31 +389,29 @@ class MonographONIX30XmlFilter extends NativeExportFilter {
 
 		/* --- Add Audience elements --- */
 
-		if (is_a($submission, 'PublishedSubmission')) { // PublishedSubmission-specific fields.
-			if ($submission->getAudience()) {
-				$audienceNode = $doc->createElementNS($deployment->getNamespace(), 'Audience');
-				$descDetailNode->appendChild($audienceNode);
-				$audienceNode->appendChild($this->_buildTextNode($doc, 'AudienceCodeType', $submission->getAudience()));
-				$audienceNode->appendChild($this->_buildTextNode($doc, 'AudienceCodeValue', '01'));
-			}
+		if ($submission->getAudience()) {
+			$audienceNode = $doc->createElementNS($deployment->getNamespace(), 'Audience');
+			$descDetailNode->appendChild($audienceNode);
+			$audienceNode->appendChild($this->_buildTextNode($doc, 'AudienceCodeType', $submission->getAudience()));
+			$audienceNode->appendChild($this->_buildTextNode($doc, 'AudienceCodeValue', '01'));
+		}
 
-			if ($submission->getAudienceRangeQualifier() != '') {
-				$audienceRangeNode = $doc->createElementNS($deployment->getNamespace(), 'AudienceRange');
-				$descDetailNode->appendChild($audienceRangeNode);
-				$audienceRangeNode->appendChild($this->_buildTextNode($doc, 'AudienceRangeQualifier', $submission->getAudienceRangeQualifier()));
+		if ($submission->getAudienceRangeQualifier() != '') {
+			$audienceRangeNode = $doc->createElementNS($deployment->getNamespace(), 'AudienceRange');
+			$descDetailNode->appendChild($audienceRangeNode);
+			$audienceRangeNode->appendChild($this->_buildTextNode($doc, 'AudienceRangeQualifier', $submission->getAudienceRangeQualifier()));
 
-				if ($submission->getAudienceRangeExact() != '') {
-					$audienceRangeNode->appendChild($this->_buildTextNode($doc, 'AudienceRangePrecision', '01')); // Exact, list31
-					$audienceRangeNode->appendChild($this->_buildTextNode($doc, 'AudienceRangeValue', $submission->getAudienceRangeExact()));
-				} else { // if not exact, then include the From -> To possibilities
-					if ($submission->getAudienceRangeFrom() != '') {
-						$audienceRangeNode->appendChild($this->_buildTextNode($doc, 'AudienceRangePrecision', '03')); // from
-						$audienceRangeNode->appendChild($this->_buildTextNode($doc, 'AudienceRangeValue', $submission->getAudienceRangeFrom()));
-					}
-					if ($submission->getAudienceRangeTo() != '') {
-						$audienceRangeNode->appendChild($this->_buildTextNode($doc, 'AudienceRangePrecision', '04')); // to
-						$audienceRangeNode->appendChild($this->_buildTextNode($doc, 'AudienceRangeValue', $submission->getAudienceRangeTo()));
-					}
+			if ($submission->getAudienceRangeExact() != '') {
+				$audienceRangeNode->appendChild($this->_buildTextNode($doc, 'AudienceRangePrecision', '01')); // Exact, list31
+				$audienceRangeNode->appendChild($this->_buildTextNode($doc, 'AudienceRangeValue', $submission->getAudienceRangeExact()));
+			} else { // if not exact, then include the From -> To possibilities
+				if ($submission->getAudienceRangeFrom() != '') {
+					$audienceRangeNode->appendChild($this->_buildTextNode($doc, 'AudienceRangePrecision', '03')); // from
+					$audienceRangeNode->appendChild($this->_buildTextNode($doc, 'AudienceRangeValue', $submission->getAudienceRangeFrom()));
+				}
+				if ($submission->getAudienceRangeTo() != '') {
+					$audienceRangeNode->appendChild($this->_buildTextNode($doc, 'AudienceRangePrecision', '04')); // to
+					$audienceRangeNode->appendChild($this->_buildTextNode($doc, 'AudienceRangeValue', $submission->getAudienceRangeTo()));
 				}
 			}
 		}

@@ -23,13 +23,15 @@ class ChapterGridCategoryRowCellProvider extends GridCellProvider {
 	 * @see GridCellProvider::getCellActions()
 	 */
 	function getCellActions($request, $row, $column, $position = GRID_ACTION_POSITION_DEFAULT) {
-		if ($column->getId() == 'name' && !$row->isReadOnly()) {
+		if ($column->getId() =='name' && !$row->isReadOnly()) {
 			$chapter = $row->getData();
 			$monograph = $row->getMonograph();
+			$publication = $row->getPublication();
 
 			$router = $request->getRouter();
 			$actionArgs = array(
 				'submissionId' => $monograph->getId(),
+				'publicationId' => $publication->getId(),
 				'chapterId' => $chapter->getId()
 			);
 

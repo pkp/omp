@@ -60,7 +60,6 @@
 	<message key="monograph.publicationFormat.taxRate">Φορολογικός Συντελεστής</message>
 	<message key="monograph.publicationFormat.taxType">Τύπος Φορολογίας</message>
 
-	<message key="monograph.publicationFormat.formatMetadata">Μορφότυπο Μεταδεδομένων</message>
 	<message key="monograph.publicationFormat.isApproved">Συμπεριλάβετε τα μεταδεδομένα του μορφότυπου της έκδοσης στην καταχώρηση του βιβλίου στον κατάλογο.</message>
 	<message key="monograph.publicationFormat.noMarketsAssigned">Λείπουν αγορές και τιμές</message>
 	<message key="monograph.publicationFormat.noCodesAssigned">Λείπει ο κωδικός ταυτοπίοιησης (identification code).</message>
@@ -469,7 +468,6 @@ Your server currently supports mbstring: <strong>{$supportsMBString}</strong>]]>
 	<message key="notification.type.formatNeedsApprovedSubmission">Τα μεταδεδομένα για την καταχώρηση στο κατάλογο θα πρέπει να εγκριθούν πριν το μορφότυπο δημοσίεσυης συμπεριληφθεί στον κατάλογο. Για την έγκριση των μεταδεδομένων για τον κατάλογο, επιλέξετε στην παραπάνω καρτέλα Μονογραφία.</message>
 	<message key="notification.type.configurePaymentMethod.title">Καμία μέθοδος πληρωμής εισφορών δεν έχει ρυθμιστεί.</message>
 	<message key="notification.type.configurePaymentMethod">Μία διαμορφωμένη μέθοδος πληρωμής εισφορών απαιτείται πριν είστε σε θέση να καθορίσετε τις ρυθμίσεις για ηλεκτρονικό εμπόριο (e-commerce).</message>
-	<message key="notification.type.visitCatalog">Η μονογραφία έχει εγκριθεί. Παρακαλούμε επισκεφθείτε τον Κατάλογο για να διαχειριστείτε τις λεπτομέρειες της καταχώρισης της μονογραφίας, επιλέγοντας τον σύνδεσμο του καταλόγου που βρίσκεται ακριβώς επάνω.</message>
 	<message key="notification.type.visitCatalogTitle">Διαχείριση Καταλόγου</message>
 
 	<!-- Authorization -->

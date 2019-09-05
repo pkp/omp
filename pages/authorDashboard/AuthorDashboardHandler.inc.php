@@ -43,6 +43,34 @@ class AuthorDashboardHandler extends PKPAuthorDashboardHandler {
 		return parent::submission($args, $request);
 	}
 
+	/**
+	 * @copydoc PKPAuthorDashboardHandler::setupTemplate()
+	 */
+	function setupTemplate($request) {
+		parent::setupTemplate($request);
+
+		$submission = $this->getAuthorizedContextObject(ASSOC_TYPE_SUBMISSION);
+
+		$chaptersGridUrl = $request->getDispatcher()->url(
+			$request,
+			ROUTE_COMPONENT,
+			null,
+			'grid.users.chapter.ChapterGridHandler',
+			'fetchGrid',
+			$submission->getId(),
+			[
+				'submissionId' => $submission->getId(),
+				'publicationId' => '__publicationId__',
+			]
+		);
+
+		$templateMgr = TemplateManager::getManager($request);
+		$workflowData = $templateMgr->getTemplateVars('workflowData');
+		$workflowData['chaptersGridUrl'] = $chaptersGridUrl;
+
+		$templateMgr->assign('workflowData', $workflowData);
+	}
+
 
 	//
 	// Protected helper methods
@@ -73,6 +101,24 @@ class AuthorDashboardHandler extends PKPAuthorDashboardHandler {
 		$notificationRequestOptions[NOTIFICATION_LEVEL_TASK][NOTIFICATION_TYPE_PENDING_INTERNAL_REVISIONS] = $submissionAssocTypeAndIdArray;
 		$notificationRequestOptions[NOTIFICATION_LEVEL_NORMAL][NOTIFICATION_TYPE_EDITOR_DECISION_INTERNAL_REVIEW] = $submissionAssocTypeAndIdArray;
 		return $notificationRequestOptions;
+	}
+
+	/**
+	 * @copydoc PKPWorkflowHandler::_getRepresentationsGridUrl()
+	 */
+	protected function _getRepresentationsGridUrl($request, $submission) {
+		return $request->getDispatcher()->url(
+			$request,
+			ROUTE_COMPONENT,
+			null,
+			'grid.catalogEntry.PublicationFormatGridHandler',
+			'fetchGrid',
+			$submission->getId(),
+			[
+				'submissionId' => $submission->getId(),
+				'publicationId' => '__publicationId__',
+			]
+		);
 	}
 }
 

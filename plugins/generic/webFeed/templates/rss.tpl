@@ -57,38 +57,38 @@
 
 		<items>
 			<rdf:Seq>
-				{foreach from=$publishedSubmissions item=publishedSubmission}
-					<rdf:li rdf:resource="{url page="catalog" op="book" path=$publishedSubmission->getId()}"/>
-				{/foreach}{* publishedSubmissions *}
+				{foreach from=$submissions item=submission}
+					<rdf:li rdf:resource="{url page="catalog" op="book" path=$submission->getId()}"/>
+				{/foreach}{* submissions *}
 			</rdf:Seq>
 		</items>
 	</channel>
 
-{foreach name=publishedSubmissions from=$publishedSubmissions item=publishedSubmission}
-	<item rdf:about="{url page="catalog" op="book" path=$publishedSubmission->getId()}">
+{foreach name=submissions from=$submissions item=submission}
+	<item rdf:about="{url page="catalog" op="book" path=$submission->getId()}">
 
 		{* required elements *}
-		<title>{$publishedSubmission->getLocalizedTitle()|strip|escape:"html"}</title>
-		<link>{url page="catalog" op="book" path=$publishedSubmission->getId()}</link>
+		<title>{$submission->getLocalizedTitle()|strip|escape:"html"}</title>
+		<link>{url page="catalog" op="book" path=$submission->getId()}</link>
 
 		{* optional elements *}
-		{if $publishedSubmission->getLocalizedAbstract()}
-			<description>{$publishedSubmission->getLocalizedAbstract()|strip|escape:"html"}</description>
+		{if $submission->getLocalizedAbstract()}
+			<description>{$submission->getLocalizedAbstract()|strip|escape:"html"}</description>
 		{/if}
 
-		{foreach from=$publishedSubmission->getAuthors() item=author name=authorList}
+		{foreach from=$submission->getAuthors() item=author name=authorList}
 			<dc:creator>{$author->getFullName(false)|strip|escape:"html"}</dc:creator>
 		{/foreach}
 
 		<dc:rights>
-			{translate|escape key="submission.copyrightStatement" copyrightYear=$publishedSubmission->getCopyrightYear() copyrightHolder=$publishedSubmission->getLocalizedCopyrightHolder()}
-			{$publishedSubmission->getLicenseURL()|escape}
+			{translate|escape key="submission.copyrightStatement" copyrightYear=$submission->getCopyrightYear() copyrightHolder=$submission->getLocalizedCopyrightHolder()}
+			{$submission->getLicenseURL()|escape}
 		</dc:rights>
 
-		<dc:date>{$publishedSubmission->getDatePublished()|date_format:"%Y-%m-%d"}</dc:date>
-		<prism:publicationDate>{$publishedSubmission->getDatePublished()|date_format:"%Y-%m-%d"}</prism:publicationDate>
+		<dc:date>{$submission->getDatePublished()|date_format:"%Y-%m-%d"}</dc:date>
+		<prism:publicationDate>{$submission->getDatePublished()|date_format:"%Y-%m-%d"}</prism:publicationDate>
 	</item>
-{/foreach}{* publishedSubmissions *}
+{/foreach}{* submissions *}
 
 </rdf:RDF>
 

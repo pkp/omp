@@ -16,8 +16,11 @@
 import('lib.pkp.classes.form.Form');
 
 class IdentificationCodeForm extends Form {
-	/** The monograph associated with the format being edited **/
-	var $_monograph;
+	/** The submission associated with the format being edited **/
+	var $_submission;
+
+	/** The publication associated with the format being edited **/
+	var $_publication;
 
 	/** Identification Code the code being edited **/
 	var $_identificationCode;
@@ -25,9 +28,10 @@ class IdentificationCodeForm extends Form {
 	/**
 	 * Constructor.
 	 */
-	function __construct($monograph, $identificationCode) {
+	function __construct($submission, $publication, $identificationCode) {
 		parent::__construct('controllers/grid/catalogEntry/form/codeForm.tpl');
-		$this->setMonograph($monograph);
+		$this->setSubmission($submission);
+		$this->setPublication($publication);
 		$this->setIdentificationCode($identificationCode);
 
 		// Validation checks for this form
@@ -58,19 +62,35 @@ class IdentificationCodeForm extends Form {
 	}
 
 	/**
-	 * Get the Monograph
-	 * @return Monograph
+	 * Get the Submission
+	 * @return Submission
 	 */
-	function getMonograph() {
-		return $this->_monograph;
+	function getSubmission() {
+		return $this->_submission;
 	}
 
 	/**
-	 * Set the Monograph
-	 * @param Monograph
+	 * Set the Submission
+	 * @param Submission
 	 */
-	function setMonograph($monograph) {
-		$this->_monograph = $monograph;
+	function setSubmission($submission) {
+		$this->_submission = $submission;
+	}
+
+	/**
+	 * Get the Publication
+	 * @return Publication
+	 */
+	function getPublication() {
+		return $this->_publication;
+	}
+
+	/**
+	 * Set the Publication
+	 * @param Publication
+	 */
+	function setPublication($publication) {
+		$this->_publication = $publication;
 	}
 
 
@@ -97,8 +117,9 @@ class IdentificationCodeForm extends Form {
 	 */
 	function fetch($request, $template = null, $display = false) {
 		$templateMgr = TemplateManager::getManager($request);
-		$monograph = $this->getMonograph();
-		$templateMgr->assign('submissionId', $monograph->getId());
+		$submission = $this->getSubmission();
+		$templateMgr->assign('submissionId', $submission->getId());
+		$templateMgr->assign('publicationId', $this->getPublication()->getId());
 		$identificationCode = $this->getIdentificationCode();
 
 		if ($identificationCode) {
@@ -111,9 +132,9 @@ class IdentificationCodeForm extends Form {
 		}
 
 		$publicationFormatDao = DAORegistry::getDAO('PublicationFormatDAO');
-		$publicationFormat = $publicationFormatDao->getById($representationId, $monograph->getId());
+		$publicationFormat = $publicationFormatDao->getById($representationId, $this->getPublication()->getId());
 
-		if ($publicationFormat) { // the format exists for this monograph
+		if ($publicationFormat) { // the format exists for this submission
 			$templateMgr->assign('representationId', $representationId);
 			$identificationCodes = $publicationFormat->getIdentificationCodes();
 			$assignedCodes = array_keys($identificationCodes->toAssociativeArray('code')); // currently assigned codes
@@ -130,7 +151,7 @@ class IdentificationCodeForm extends Form {
 			$codes = $onixCodelistItemDao->getCodes('List5', $assignedCodes); // ONIX list for these
 			$templateMgr->assign('identificationCodes', $codes);
 		} else {
-			fatalError('Format not in authorized monograph');
+			fatalError('Format not in authorized submission');
 		}
 
 		return parent::fetch($request, $template, $display);
@@ -157,18 +178,18 @@ class IdentificationCodeForm extends Form {
 		$identificationCodeDao = DAORegistry::getDAO('IdentificationCodeDAO');
 		$publicationFormatDao = DAORegistry::getDAO('PublicationFormatDAO');
 
-		$monograph = $this->getMonograph();
+		$submission = $this->getSubmission();
 		$identificationCode = $this->getIdentificationCode();
-		$publicationFormat = $publicationFormatDao->getById($this->getData('representationId', $monograph->getId()));
+		$publicationFormat = $publicationFormatDao->getById($this->getData('representationId', $this->getPublication()->getId()));
 
 		if (!$identificationCode) {
 			// this is a new code to this published submission
 			$identificationCode = $identificationCodeDao->newDataObject();
 			$existingFormat = false;
-			if ($publicationFormat != null) { // ensure this format is in this monograph
+			if ($publicationFormat != null) { // ensure this format is in this submission
 				$identificationCode->setPublicationFormatId($publicationFormat->getId());
 			} else {
-				fatalError('This format not in authorized monograph context!');
+				fatalError('This format not in authorized submission context!');
 			}
 		} else {
 			$existingFormat = true;

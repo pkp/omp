@@ -30,7 +30,7 @@ class CoverHandler extends PKPHandler {
 	 */
 	function authorize($request, &$args, $roleAssignments) {
 		import('classes.security.authorization.OmpPublishedSubmissionAccessPolicy');
-		$this->addPolicy(new OmpPublishedSubmissionAccessPolicy($request, $args, $roleAssignments, 'submissionId', false));
+		$this->addPolicy(new OmpPublishedSubmissionAccessPolicy($request, $args, $roleAssignments));
 		return parent::authorize($request, $args, $roleAssignments);
 	}
 
@@ -71,12 +71,9 @@ class CoverHandler extends PKPHandler {
 	 */
 	function cover($args, $request) {
 		// this function is only used on the book page i.e. for published submissiones
-		$monograph = $this->getAuthorizedContextObject(ASSOC_TYPE_MONOGRAPH);
+		$submission = $this->getAuthorizedContextObject(ASSOC_TYPE_MONOGRAPH);
 
-		$publishedSubmissionDao = DAORegistry::getDAO('PublishedSubmissionDAO');
-		$publishedSubmission = $publishedSubmissionDao->getBySubmissionId($monograph->getId(), null, false);
-
-		if (!$coverImage = $publishedSubmission->getCoverImage()) {
+		if (!$coverImage = $submission->getCoverImage()) {
 			// Can't use Request::redirectUrl; FireFox doesn't
 			// seem to like it for images.
 			header('Location: ' . $request->getBaseUrl() . '/templates/images/book-default.png');
@@ -84,7 +81,7 @@ class CoverHandler extends PKPHandler {
 		}
 
 		import('classes.file.SimpleMonographFileManager');
-		$simpleMonographFileManager = new SimpleMonographFileManager($publishedSubmission->getPressId(), $publishedSubmission->getId());
+		$simpleMonographFileManager = new SimpleMonographFileManager($submission->getData('contextId'), $submission->getId());
 		$simpleMonographFileManager->downloadByPath($simpleMonographFileManager->getBasePath() . $coverImage['name'], null, true);
 	}
 
@@ -94,12 +91,9 @@ class CoverHandler extends PKPHandler {
 	function thumbnail($args, $request) {
 		// use ASSOC_TYPE_MONOGRAPH to set the cover at any workflow stage
 		// i.e. also if the monograph has not been published yet
-		$monograph = $this->getAuthorizedContextObject(ASSOC_TYPE_MONOGRAPH);
+		$submission = $this->getAuthorizedContextObject(ASSOC_TYPE_MONOGRAPH);
 
-		$publishedSubmissionDao = DAORegistry::getDAO('PublishedSubmissionDAO');
-		$publishedSubmission = $publishedSubmissionDao->getBySubmissionId($monograph->getId(), null, false);
-
-		if (!$publishedSubmission || !$coverImage = $publishedSubmission->getCoverImage()) {
+		if (!$submission || !$coverImage = $submission->getCoverImage()) {
 			// Can't use Request::redirectUrl; FireFox doesn't
 			// seem to like it for images.
 			header('Location: ' . $request->getBaseUrl() . '/templates/images/book-default-small.png');
@@ -107,7 +101,7 @@ class CoverHandler extends PKPHandler {
 		}
 
 		import('classes.file.SimpleMonographFileManager');
-		$simpleMonographFileManager = new SimpleMonographFileManager($publishedSubmission->getPressId(), $publishedSubmission->getId());
+		$simpleMonographFileManager = new SimpleMonographFileManager($submission->getData('contextId'), $submission->getId());
 		$simpleMonographFileManager->downloadByPath($simpleMonographFileManager->getBasePath() . $coverImage['thumbnailName'], null, true);
 	}
 

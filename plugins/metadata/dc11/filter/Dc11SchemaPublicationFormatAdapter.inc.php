@@ -70,8 +70,8 @@ class Dc11SchemaPublicationFormatAdapter extends MetadataDataObjectAdapter {
 		// contains cached entities and avoids extra database access if this
 		// adapter is called from an OAI context.
 		$oaiDao = DAORegistry::getDAO('OAIDAO'); /* @var $oaiDao OAIDAO */
-		$publishedSubmissionDao = DAORegistry::getDAO('PublishedSubmissionDAO');
-		$monograph = $publishedSubmissionDao->getBySubmissionId($publicationFormat->getMonographId());
+		$publication = Services::get('publication')->get($publicationFormat->getData('publicationId'));
+		$monograph = Services::get('submission')->get($publication->getData('submissionId'));
 		$press = $oaiDao->getPress($monograph->getPressId());
 		$series = $oaiDao->getSeries($monograph->getSeriesId()); /* @var $series Series */
 		$dc11Description = $this->instantiateMetadataDescription();
@@ -129,7 +129,7 @@ class Dc11SchemaPublicationFormatAdapter extends MetadataDataObjectAdapter {
 		// Date
 		// FIXME: should we use the publication dates of the publication format? If yes,
 		// in which role preference order?
-		if (is_a($monograph, 'PublishedSubmission')) {
+		if (is_a($monograph, 'Submission')) {
 			if ($monograph->getDatePublished()) $dc11Description->addStatement('dc:date', date('Y-m-d', strtotime($monograph->getDatePublished())));
 		}
 
@@ -149,7 +149,7 @@ class Dc11SchemaPublicationFormatAdapter extends MetadataDataObjectAdapter {
 		}
 
 		// Identifier: URL
-		if (is_a($monograph, 'PublishedSubmission')) {
+		if (is_a($monograph, 'Submission')) {
 			$request = Application::get()->getRequest();
 			$dc11Description->addStatement('dc:identifier', $request->url($press->getPath(), 'catalog', 'book', array($monograph->getId())));
 		}

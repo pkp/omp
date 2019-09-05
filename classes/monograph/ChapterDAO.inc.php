@@ -17,26 +17,23 @@
 
 import('classes.monograph.Chapter');
 import('classes.monograph.ChapterAuthor');
-import('lib.pkp.classes.submission.ISubmissionVersionedDAO');
-import('lib.pkp.classes.submission.SubmissionVersionedDAO');
 
-class ChapterDAO extends SubmissionVersionedDAO implements PKPPubIdPluginDAO, ISubmissionVersionedDAO {
+class ChapterDAO extends DAO implements PKPPubIdPluginDAO {
 	/**
 	 * Retrieve a chapter by ID.
 	 * @param $chapterId int
-	 * @param $assocType int optional
-	 * @param $monographId int optional
+	 * @param $publicationId int optional
 	 * @return Chapter
 	 */
-	function getChapter($chapterId, $monographId = null) {
+	function getChapter($chapterId, $publicationId = null) {
 		$params = array((int) $chapterId);
-		if ($monographId !== null) {
-			$params[] = (int) $monographId;
+		if ($publicationId !== null) {
+			$params[] = (int) $publicationId;
 		}
 
 		$result = $this->retrieve(
 			'SELECT * FROM submission_chapters WHERE chapter_id = ?'
-			. ($monographId !== null?' AND submission_id = ? ':''),
+			. ($publicationId !== null?' AND publication_id = ? ':''),
 			$params
 		);
 
@@ -49,27 +46,20 @@ class ChapterDAO extends SubmissionVersionedDAO implements PKPPubIdPluginDAO, IS
 	}
 
 	/**
-	 * Get all chapters for a given monograph.
-	 * @param $monographId int
-	 * @param $rangeInfo object RangeInfo object (optional)
+	 * Retrieve all chapters of a publication.
+	 * @param $publicationId int
 	 * @return DAOResultFactory
 	 */
-	function getChapters($monographId, $rangeInfo = null, $submissionVersion = null) {
-		$params = array((int) $monographId);
-		if ($submissionVersion !== null) {
-			$params[] = (int) $submissionVersion;
-    }
-
-		$result = $this->retrieveRange(
-			'SELECT * FROM submission_chapters
-			WHERE submission_id = ?'
-			. ($submissionVersion !== null ?' AND submission_version = ? ':' AND is_current_submission_version = 1')
-			. ' ORDER BY seq',
-			$params,
-			$rangeInfo
+	function getByPublicationId($publicationId) {
+		$result = $this->retrieve(
+			'SELECT	spc.*
+			FROM submission_chapters spc
+			INNER JOIN publications p ON (spc.publication_id = p.publication_id)
+			WHERE p.publication_id = ?',
+			(int) $publicationId
 		);
 
-		return new DAOResultFactory($result, $this, '_fromRow', array('id'));
+		return new DAOResultFactory($result, $this, '_fromRow');
 	}
 
 	/**
@@ -79,11 +69,11 @@ class ChapterDAO extends SubmissionVersionedDAO implements PKPPubIdPluginDAO, IS
 	 */
 	function getByContextId($pressId) {
 		$result = $this->retrieve(
-			'SELECT	sc.*
-			FROM submission_chapters sc
-			INNER JOIN submissions s ON (sc.submission_id = s.submission_id)
-			WHERE s.context_id = ?
-			AND sc.is_current_submission_version = 1',
+			'SELECT	spc.*
+			FROM submission_chapters spc
+			INNER JOIN publications p ON (spc.publication_id = p.publication_id)
+			INNER JOIN submissions s ON (p.submission_id = s.submission_id)
+			WHERE s.context_id = ?',
 			(int) $pressId
 		);
 
@@ -125,12 +115,9 @@ class ChapterDAO extends SubmissionVersionedDAO implements PKPPubIdPluginDAO, IS
 	 */
 	function _fromRow($row) {
 		$chapter = $this->newDataObject();
-		$chapter->setId($row['chapter_id']);
-		$chapter->setMonographId($row['submission_id']);
-		$chapter->setSequence($row['seq']);
-		$chapter->setSubmissionVersion($row['submission_version']);
-		$chapter->setPrevVerAssocId($row['prev_ver_id']);
-		$chapter->setIsCurrentSubmissionVersion($row['is_current_submission_version']);
+		$chapter->setId((int) $row['chapter_id']);
+		$chapter->setData('publicationId', (int) $row['publication_id']);
+		$chapter->setSequence((int) $row['seq']);
 
 		$this->getDataObjectSettings('submission_chapter_settings', 'chapter_id', $row['chapter_id'], $chapter);
 
@@ -156,15 +143,12 @@ class ChapterDAO extends SubmissionVersionedDAO implements PKPPubIdPluginDAO, IS
 	function insertChapter($chapter) {
 		$this->update(
 			'INSERT INTO submission_chapters
-				(submission_id, seq, submission_version, prev_ver_id, is_current_submission_version)
+				(publication_id, seq)
 				VALUES
-				(?, ?, ?, ?, ?)',
+				(?, ?)',
 			array(
-				(int) $chapter->getSubmissionId(),
+				(int) $chapter->getData('publicationId'),
 				(int) $chapter->getSequence(),
-				(int) $chapter->getSubmissionVersion(),
-				(int) $chapter->getPrevVerAssocId(),
-				(int) $chapter->getIsCurrentSubmissionVersion(),
 			)
 		);
 
@@ -180,19 +164,13 @@ class ChapterDAO extends SubmissionVersionedDAO implements PKPPubIdPluginDAO, IS
 	function updateObject($chapter) {
 		$this->update(
 			'UPDATE submission_chapters
-				SET	submission_id = ?,
-					seq = ?,
-					submission_version = ?,
-					prev_ver_id = ?,
-					is_current_submission_version = ?
+				SET	publication_id = ?,
+					seq = ?
 				WHERE
 					chapter_id = ?',
 			array(
-				(int) $chapter->getSubmissionId(),
+				(int) $chapter->getData('publicationId'),
 				(int) $chapter->getSequence(),
-				(int) $chapter->getSubmissionVersion(),
-				(int) $chapter->getPrevVerAssocId(),
-				(int) $chapter->getIsCurrentSubmissionVersion(),
 				(int) $chapter->getId()
 			)
 		);
@@ -215,39 +193,23 @@ class ChapterDAO extends SubmissionVersionedDAO implements PKPPubIdPluginDAO, IS
 		$this->update('DELETE FROM submission_chapter_authors WHERE chapter_id = ?', (int) $chapterId);
 		$this->update('DELETE FROM submission_chapter_settings WHERE chapter_id = ?', (int) $chapterId);
 		$this->update('DELETE FROM submission_chapters WHERE chapter_id = ?', (int) $chapterId);
-	}
-
-	/**
-	 * Delete board chapters by assoc ID, including membership info
-	 * @param $assocType int
-	 * @param $monographId int
-	 */
-	function deleteByMonographId($monographId) {
-		$chapters = $this->getBySubmissionId($monographId);
-		while ($chapter = $chapters->next()) {
-			$this->deleteObject($chapter);
-		}
+		$this->update('DELETE FROM submission_file_settings WHERE setting_name = ? AND setting_value = ?', ['chapterId', (int) $chapterId]);
 	}
 
 	/**
 	 * Sequentially renumber  chapters in their sequence order, optionally by monographId
-	 * @param $monographId int
+	 * @param $publicationId int
 	 */
-	function resequenceChapters($monographId = null, $submissionVersion = null) {
+	function resequenceChapters($publicationId) {
 		$params = array();
-		if ($monographId !== null) {
-			$params[] = (int) $monographId;
+		if ($publicationId !== null) {
+			$params[] = (int) $publicationId;
 		}
-
-		if ($submissionVersion !== null) {
-			$params[] = (int) $submissionVersion;
-    }
 
 		$result = $this->retrieve(
 			'SELECT chapter_id FROM submission_chapters
 			WHERE 1=1'
-			. ($monographId !== null ? ' AND submission_id = ?':'')
-			. ($submissionVersion !== null ? ' AND submission_version = ? ':' AND is_current_submission_version = 1')
+			. ($publicationId !== null ? ' AND publication_id = ?':'')
 			. ' ORDER BY seq',
 			$params
 		);
@@ -284,12 +246,12 @@ class ChapterDAO extends SubmissionVersionedDAO implements PKPPubIdPluginDAO, IS
 			'SELECT COUNT(*)
 			FROM submission_chapter_settings scs
 			INNER JOIN submission_chapters sc ON scs.chapter_id = sc.chapter_id
-			INNER JOIN submissions s ON sc.submission_id = s.submission_id
+			INNER JOIN publications p ON sc.publication_id = p.publication_id
+			INNER JOIN submissions s ON p.submission_id = s.submission_id
 			WHERE scs.setting_name = ?
 			AND scs.setting_value = ?
 			AND sc.chapter_id <> ?
-			AND s.context_id = ?
-			AND sc.is_current_submission_version = 1',
+			AND s.context_id = ?',
 			array(
 				'pub-id::'.$pubIdType,
 				$pubId,
@@ -352,68 +314,4 @@ class ChapterDAO extends SubmissionVersionedDAO implements PKPPubIdPluginDAO, IS
 		}
 		$this->flushCache();
 	}
-
-	/**
-	 *
-	 * @param  $submissionId
-	 */
-	function newVersion($submissionId) {
-		list($oldVersion, $newVersion) = $this->provideSubmissionVersionsForNewVersion($submissionId);
-
-		$previousVersionEntitiesRes = $this->getBySubmissionId($submissionId, $oldVersion);
-		$previousVersionEntities = $previousVersionEntitiesRes->toAssociativeArray();
-
-		/** @var $previousVersionEntity Chapter */
-		foreach ($previousVersionEntities as $previousVersionEntity) {
-			$previousEntityId = $previousVersionEntity->getId();
-
-			$previousVersionEntity->setIsCurrentSubmissionVersion(false);
-			$this->updateObject($previousVersionEntity);
-
-			$previousVersionEntity->setSubmissionVersion($newVersion);
-			$previousVersionEntity->setPrevVerAssocId($previousEntityId);
-			$previousVersionEntity->setIsCurrentSubmissionVersion(true);
-
-			$newChapterId = $this->insertChapter($previousVersionEntity);
-			/** @var $newChapter Chapter */
-			$newChapter = $this->getChapter($newChapterId);
-
-			/** @var $chapterAuthorDao ChapterAuthorDAO*/
-			$chapterAuthorDao = DAORegistry::getDAO('ChapterAuthorDAO');
-			$chapterAuthorsRes = $chapterAuthorDao->getAuthors($submissionId, $previousEntityId);
-			$chapterAuthors = $chapterAuthorsRes->toAssociativeArray();
-
-			/** @var $authorDao AuthorDAO*/
-			$authorDao = DAORegistry::getDAO('AuthorDAO');
-			$newAuthors = $authorDao->getBySubmissionId($submissionId, false, false, $newVersion);
-
-			/** @var $chapterAuthor ChapterAuthor*/
-			foreach($chapterAuthors as $chapterAuthor) {
-				/** @var $newAuthor Author*/
-				foreach($newAuthors as $newAuthor) {
-					if ($newAuthor->getPrevVerAssocId() == $chapterAuthor->getId()) {
-						$chapterAuthorDao->insertChapterAuthor($newAuthor->getId(), $newChapter->getId(), $submissionId, $chapterAuthor->getPrimaryContact(), $chapterAuthor->getSequence());
-					}
-				}
-			}
-
-			/** @var $submissionFileDao SubmissionFileDAO */
-			$submissionFileDao = DAORegistry::getDAO('SubmissionFileDAO');
-			$fileIds = $submissionFileDao->getFileIdsBySetting('chapterId', $previousEntityId, $submissionId, null, $newVersion);
-
-			foreach($fileIds as $fileId) {
-				$submissionFileDao = DAORegistry::getDAO('SubmissionFileDAO'); /** @var $submissionFileDao SubmissionFileDAO */
-				$submissionFiles = $submissionFileDao->getAllRevisions($fileId, null, $submissionId, null, $newVersion);
-				foreach ($submissionFiles as $submissionFile) {
-					$submissionFile->setData('chapterId', $newChapter->getId());
-					$submissionFileDao->updateObject($submissionFile);
-				}
-			}
-		}
-	}
-
-	function getMasterTableName() {
-		return 'submission_chapters';
-	}
-
 }

@@ -15,9 +15,9 @@
 	<title>{$currentPress->getLocalizedName()|escape:"html"|strip}</title>
 
 	{assign var=latestDate value=0}
-	{foreach from=$publishedSubmissions item=publishedSubmission}
-		{if $latestDate < $publishedSubmission->getLastModified()}
-			{assign var=latestDate value=$publishedSubmission->getLastModified()}
+	{foreach from=$submissions item=submission}
+		{if $latestDate < $submission->getLastModified()}
+			{assign var=latestDate value=$submission->getLastModified()}
 		{/if}
 	{/foreach}
 	<updated>{$latestDate|date_format:"%Y-%m-%dT%T%z"|regex_replace:"/00$/":":00"}</updated>
@@ -49,16 +49,16 @@
 
 	<subtitle type="html">{$description|strip|escape:"html"}</subtitle>
 
-	{foreach from=$publishedSubmissions item=publishedSubmission key=sectionId}
+	{foreach from=$submissions item=submission key=sectionId}
 		<entry>
 			{* required elements *}
-			<id>{url page="catalog" op="book" path=$publishedSubmission->getId()}</id>
-			<title>{$publishedSubmission->getLocalizedTitle()|strip|escape:"html"}</title>
-			<updated>{$publishedSubmission->getLastModified()|date_format:"%Y-%m-%dT%T%z"|regex_replace:"/00$/":":00"}</updated>
+			<id>{url page="catalog" op="book" path=$submission->getId()}</id>
+			<title>{$submission->getLocalizedTitle()|strip|escape:"html"}</title>
+			<updated>{$submission->getLastModified()|date_format:"%Y-%m-%dT%T%z"|regex_replace:"/00$/":":00"}</updated>
 
 			{* recommended elements *}
 
-			{foreach from=$publishedSubmission->getAuthors() item=author name=authorList}
+			{foreach from=$submission->getAuthors() item=author name=authorList}
 				<author>
 					<name>{$author->getFullName(false)|strip|escape:"html"}</name>
 					{if $author->getEmail()}
@@ -67,22 +67,22 @@
 				</author>
 			{/foreach}{* authors *}
 
-			<link rel="alternate" href="{url page="catalog" op="book" path=$publishedSubmission->getId()}" />
+			<link rel="alternate" href="{url page="catalog" op="book" path=$submission->getId()}" />
 
-			{if $publishedSubmission->getLocalizedAbstract()}
-				<summary type="html" xml:base="{url page="catalog" op="book" path=$publishedSubmission->getId()}">{$publishedSubmission->getLocalizedAbstract()|strip|escape:"html"}</summary>
+			{if $submission->getLocalizedAbstract()}
+				<summary type="html" xml:base="{url page="catalog" op="book" path=$submission->getId()}">{$submission->getLocalizedAbstract()|strip|escape:"html"}</summary>
 			{/if}
 
 			{* optional elements *}
 			{* <category/> *}
 			{* <contributor/> *}
 
-			{if $publishedSubmission->getDatePublished()}
-				<published>{$publishedSubmission->getDatePublished()|date_format:"%Y-%m-%dT%T%z"|regex_replace:"/00$/":":00"}</published>
+			{if $submission->getDatePublished()}
+				<published>{$submission->getDatePublished()|date_format:"%Y-%m-%dT%T%z"|regex_replace:"/00$/":":00"}</published>
 			{/if}
 
 			{* <source/> *}
-			<rights>{translate|escape key="submission.copyrightStatement" copyrightYear=$publishedSubmission->getCopyrightYear() copyrightHolder=$publishedSubmission->getLocalizedCopyrightHolder()}</rights>
+			<rights>{translate|escape key="submission.copyrightStatement" copyrightYear=$submission->getCopyrightYear() copyrightHolder=$submission->getLocalizedCopyrightHolder()}</rights>
 		</entry>
-	{/foreach}{* publishedSubmissions *}
+	{/foreach}{* submissions *}
 </feed>

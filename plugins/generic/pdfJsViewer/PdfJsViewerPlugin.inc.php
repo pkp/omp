@@ -60,7 +60,7 @@ class PdfJsViewerPlugin extends GenericPlugin {
 	 * @return boolean
 	 */
 	function viewCallback($hookName, $args) {
-		$publishedSubmission =& $args[1];
+		$submission =& $args[1];
 		$publicationFormat =& $args[2];
 		$submissionFile =& $args[3];
 
@@ -87,7 +87,7 @@ class PdfJsViewerPlugin extends GenericPlugin {
 	 * @return boolean
 	 */
 	function downloadCallback($hookName, $params) {
-		$publishedSubmission =& $params[1];
+		$submission =& $params[1];
 		$publicationFormat =& $params[2];
 		$submissionFile =& $params[3];
 		$inline =& $params[4];

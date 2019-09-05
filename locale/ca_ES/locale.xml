@@ -60,7 +60,6 @@
 	<message key="monograph.publicationFormat.taxRate">Taxa impositiva</message>
 	<message key="monograph.publicationFormat.taxType">Tipus de taxa</message>
 
-	<message key="monograph.publicationFormat.formatMetadata">Metadades de format</message>
 	<message key="monograph.publicationFormat.isApproved">Inclou les metadades d'aquest format de publicació a l'entrada de catàleg per a aquest llibre.</message>
 	<message key="monograph.publicationFormat.noMarketsAssigned">Falten preus i mercats.</message>
 	<message key="monograph.publicationFormat.noCodesAssigned">Falta un codi d'identificació.</message>
@@ -454,7 +453,6 @@ El vostre servidor actual és compatible amb mbstring: <strong>{$supportsMBStrin
 	<message key="notification.type.formatNeedsApprovedSubmission">S'ha d'aprovar l'entrada al catàleg de les metadades abans d'incloure el format de publicació al catàleg. Per aprovar les metadades d'un catàleg, feu clic a la pestanya superior «Monografia».</message>
 	<message key="notification.type.configurePaymentMethod.title">No s'ha configurat cap mètode de pagament.</message>
 	<message key="notification.type.configurePaymentMethod">Cal que configureu un mètode de pagament abans de definir les opcions de configuració de comerç electrònic.</message>
-	<message key="notification.type.visitCatalog">S'ha aprovat la monografia. Consulteu el catàleg per administrar els detalls amb l'enllaç anterior.</message>
 	<message key="notification.type.visitCatalogTitle">Administració del catàleg</message>
 
 	<!-- Authorization -->

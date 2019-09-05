@@ -83,7 +83,6 @@ class CompetingInterestsTest extends ContentBaseTestCase {
 
 		// Send the submission to review
 		$this->findSubmissionAsEditor('dbarnes', null, self::$fullTitle);
-		$this->sendToReview('External');
 		$this->assignReviewer('Al Zacharia');
 		$this->logOut();
 
@@ -119,7 +118,7 @@ class CompetingInterestsTest extends ContentBaseTestCase {
 		self::$driver->wait()->until(WebDriverExpectedCondition::invisibilityOfElementLocated(WebDriverBy::cssSelector('div.pkp_modal_panel')));
 
 		// Disable the CI requirement again
-		$this->_setReviewerCIRequirement(true);
+		$this->_setReviewerCIRequirement(false);
 		$this->logOut();
 
 		// The CI statement entered previously should still be visible.
@@ -141,15 +140,15 @@ class CompetingInterestsTest extends ContentBaseTestCase {
 		$actions->moveToElement($this->waitForElementPresent('//ul[@id="navigationPrimary"]//a[text()="Settings"]'))
 			->click($this->waitForElementPresent('//ul[@id="navigationPrimary"]//a[text()="Workflow"]'))
 			->perform();
-		$this->waitForElementPresent('link=Review');
-		$this->click('link=Review');
-		$this->click('link=Reviewer Guidance');
+		$this->waitForElementPresent('//button[@id="review-button"]');
+		$this->click('//button[@id="review-button"]');
+		$this->click('//button[@id="reviewerGuidance-button"]');
 		if ($state) {
 			$this->typeTinyMCE('reviewerGuidance-competingInterests-control-en_US', 'Reviewer competing interests disclosure.', true);
 		} else {
 			$this->typeTinyMCE('reviewerGuidance-competingInterests-control-en_US', '', true);
 		}
-		$this->click('//*[@id="reviewer-guidance"]//button[contains(text(),"Save")]');
+		$this->click('//div[@id="reviewerGuidance"]//button[contains(text(),"Save")]');
 		$this->waitForElementPresent('//*[contains(text(),"Reviewer guidance has been updated.")]');
 	}
 }

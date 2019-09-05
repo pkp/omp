@@ -19,26 +19,26 @@
 {assign var="uuid" value=""|uniqid|escape}
 <div id="settings-context-{$uuid}">
 	<tabs>
-		<tab id="masthead" name="{translate key="manager.setup.masthead"}">
+		<tab id="masthead" label="{translate key="manager.setup.masthead"}">
 			{help file="settings" section="context" class="pkp_help_tab"}
 			<pkp-form
 				v-bind="components.{$smarty.const.FORM_MASTHEAD}"
 				@set="set"
 			/>
 		</tab>
-		<tab id="contact" name="{translate key="about.contact"}">
+		<tab id="contact" label="{translate key="about.contact"}">
 			{help file="settings" section="context" class="pkp_help_tab"}
 			<pkp-form
 				v-bind="components.{$smarty.const.FORM_CONTACT}"
 				@set="set"
 			/>
 		</tab>
-		<tab id="series" name="{translate key="series.series"}">
+		<tab id="series" label="{translate key="series.series"}">
 			{help file="settings" section="context" class="pkp_help_tab"}
 			{capture assign=seriesGridUrl}{url router=$smarty.const.ROUTE_COMPONENT component="grid.settings.series.SeriesGridHandler" op="fetchGrid" escape=false}{/capture}
 			{load_url_in_div id="seriesGridContainer" url=$seriesGridUrl}
 		</tab>
-		<tab id="categories" name="{translate key="grid.category.categories"}">
+		<tab id="categories" label="{translate key="grid.category.categories"}">
 			{help file="settings" section="context" class="pkp_help_tab"}
 			{capture assign=categoriesUrl}{url router=$smarty.const.ROUTE_COMPONENT component="grid.settings.category.CategoryCategoryGridHandler" op="fetchGrid" escape=false}{/capture}
 			{load_url_in_div id="categoriesContainer" url=$categoriesUrl}

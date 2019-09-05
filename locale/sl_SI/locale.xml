@@ -15,7 +15,6 @@
 	<!-- General monograph keys -->
 	<message key="monograph.audience">Ciljna skupina</message>
 	<message key="monograph.coverImage">Naslovna slika</message>
-	<message key="monograph.currentCoverImageReload">Shranite spremembe, da vidite novo naslovno sliko.</message>
 	<message key="monograph.audience.rangeQualifier">Kvalifikator razpona ciljnega občinstva</message>
 	<message key="monograph.audience.rangeFrom">Razpon ciljnega občinstva (od)</message>
 	<message key="monograph.audience.rangeTo">Razpon ciljnega občinstva (do)</message>
@@ -64,7 +63,6 @@
 	<message key="monograph.publicationFormat.taxRate">Stopnja obdavčitve</message>
 	<message key="monograph.publicationFormat.taxType">Tip obdavčitve</message>
 
-	<message key="monograph.publicationFormat.formatMetadata">Format metapodatkov</message>
 	<message key="monograph.publicationFormat.isApproved">Vključi metapodatke tega formata publikacije v vnos te knjige v katalog.</message>
 	<message key="monograph.publicationFormat.noMarketsAssigned">Manjkajoča trg in cena.</message>
 	<message key="monograph.publicationFormat.noCodesAssigned">Manjkajoča identifikacijska številka.</message>
@@ -87,7 +85,6 @@
 	<message key="grid.catalogEntry.isNotAvailable">Ni na voljo</message>
 	<message key="grid.catalogEntry.proof">Korektura</message>
 	<message key="grid.catalogEntry.approvedRepresentation.title">Odobritev formata</message>
-	<message key="grid.catalogEntry.approvedRepresentation.message"><![CDATA[<p>Odobrite metapodatke tega formata. Metapodatke lahko pregledate v plošči vnosov v katalog.</p>]]></message>
 	<message key="grid.catalogEntry.approvedRepresentation.removeMessage"><![CDATA[<p>Označite, da metapodatki za ta format niso bili odobreni.</p>]]></message>
 	<message key="grid.catalogEntry.availableRepresentation.title">Razpoložljivost formata</message>
 	<message key="grid.catalogEntry.availableRepresentation.message"><![CDATA[<p>Ta format <em>omogoči za bralce</em>. Prenosljive datoteke in vse ostale oblike se bodo pojavile v vnosu knjige v katalog.</p>]]></message>
@@ -492,7 +489,6 @@
 	<message key="notification.type.formatNeedsApprovedSubmission">Ta monografska publikacija se v katalogu ne bo pojavila, dokler ne bo ustvarjen kataložni vnos. Za dodajanje te knjige v katalog kliknite na vnos v katalog zgoraj in poiščite zavihek Katalog.</message>
 	<message key="notification.type.configurePaymentMethod.title">Ni konfiguriranih načinov plačila.</message>
 	<message key="notification.type.configurePaymentMethod">Konfiguriran način plačila je obvezen, preden lahko opredelite nastavitve e-poslovanja.</message>
-	<message key="notification.type.visitCatalog">Monografska publikacija je odobrena. Obiščite Katalog za upravljanje njenih podrobnosti tako, da uporabite povezavo do kataloga zgoraj.</message>
 	<message key="notification.type.visitCatalogTitle">Upravljanje kataloga</message>
 
 	<!-- Authorization -->
