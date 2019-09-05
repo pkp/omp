@@ -23,10 +23,10 @@ class AuthorForm extends PKPAuthorForm {
 	 * @copydoc Form::initData()
 	 */
 	function initData() {
-    parent::initData();
-    if ($this->getAuthor()) {
-      $this->_data['isVolumeEditor'] = $this->getAuthor()->getIsVolumeEditor();
-    }
+		parent::initData();
+		if ($this->getAuthor()) {
+			$this->_data['isVolumeEditor'] = $this->getAuthor()->getIsVolumeEditor();
+		}
 	}
 
 	/**
@@ -42,21 +42,21 @@ class AuthorForm extends PKPAuthorForm {
 	 * @copydoc Form::readInputData()
 	 */
 	function readInputData() {
-    parent::readInputData();
-    $this->readUserVars(['isVolumeEditor']);
+		parent::readInputData();
+		$this->readUserVars(['isVolumeEditor']);
 	}
 
 	/**
 	 * @copydoc Form::execute()
 	 */
 	function execute() {
-    $authorId = parent::execute();
-    $author = Services::get('author')->get($authorId);
-    if ($author) {
-      $author->setIsVolumeEditor($this->getData('isVolumeEditor'));
-      DAORegistry::getDAO('AuthorDAO')->updateObject($author);
-    }
-    return $author->getId();
+		$authorId = parent::execute();
+		$author = Services::get('author')->get($authorId);
+		if ($author) {
+			$author->setIsVolumeEditor($this->getData('isVolumeEditor'));
+			DAORegistry::getDAO('AuthorDAO')->updateObject($author);
+		}
+		return $author->getId();
 	}
 }
 

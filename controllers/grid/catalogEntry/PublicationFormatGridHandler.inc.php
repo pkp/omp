@@ -512,7 +512,7 @@ class PublicationFormatGridHandler extends CategoryGridHandler {
 			$request->getUserVar('fileId'),
 			$request->getUserVar('revision'),
 			SUBMISSION_FILE_PROOF,
-			$submission->getId(),
+			$submission->getId()
 		);
 		$confirmationText = __('editor.submission.proofreading.confirmRemoveCompletion');
 		if ($request->getUserVar('approval')) {
@@ -557,7 +557,7 @@ class PublicationFormatGridHandler extends CategoryGridHandler {
 		$representation = $this->getAuthorizedContextObject(ASSOC_TYPE_REPRESENTATION);
 
 		import('lib.pkp.controllers.grid.files.proof.form.ManageProofFilesForm');
-		$manageProofFilesForm = new ManageProofFilesForm($this->getSubmission()->getId(), $representation->getId());
+		$manageProofFilesForm = new ManageProofFilesForm($this->getSubmission()->getId(), $this->getPublication()->getId(), $representation->getId());
 		$manageProofFilesForm->initData();
 		return new JSONMessage(true, $manageProofFilesForm->fetch($request));
 	}

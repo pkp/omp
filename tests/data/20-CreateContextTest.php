@@ -97,8 +97,10 @@ class CreateContextTest extends PKPCreateContextTest {
 			->perform();
 		$actions = new WebDriverActions(self::$driver);
 		$actions->moveToElement($this->waitForElementPresent('//ul[@id="navigationPrimary"]//a[text()="Users & Roles"]'))
-			->click($this->waitForElementPresent('//ul[@id="navigationPrimary"]//a[text()="Roles"]'))
+			->click($this->waitForElementPresent('//ul[@id="navigationPrimary"]//a[text()="Users"]'))
 			->perform();
+		$this->waitForElementPresent($selector = '//button[@id="roles-button"]');
+		$this->click($selector);
 
 		// "Edit" link below "Volume editor" role
 		$element = $this->waitForElementPresent($selector='//table[starts-with(@id, \'component-grid-settings-roles-usergroupgrid-\')]//span[contains(text(), "Volume editor")]/../../../following-sibling::tr//a[contains(text(),"Edit")]');

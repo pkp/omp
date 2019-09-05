@@ -122,6 +122,10 @@ class MdawsonSubmissionTest extends ContentBaseTestCase {
 		$this->assignParticipant('Proofreader', 'Sabine Kumar');
 
 		// Add a publication format
+		$this->waitForElementPresent($selector = '//button[@id="publication-button"]');
+		$this->click($selector);
+		$this->waitForElementPresent($selector = '//button[@id="publicationFormats-button"]');
+		$this->click($selector);
 		$this->waitForElementPresent($selector='css=[id^=component-grid-catalogentry-publicationformatgrid-addFormat-button-]');
 		$this->click($selector);
 		$this->waitForElementPresent($selector='css=[id^=name-]');
@@ -149,6 +153,7 @@ class MdawsonSubmissionTest extends ContentBaseTestCase {
 		$this->waitForElementPresent($selector='//form[@id=\'assignPublicIdentifierForm\']//button[starts-with(@id,\'submitFormButton-\')]');
 		$this->click($selector);
 		self::$driver->wait()->until(WebDriverExpectedCondition::invisibilityOfElementLocated(WebDriverBy::cssSelector('div.pkp_modal_panel')));
+		sleep(3); // wait for pub format grid reload
 		$this->click('//table[starts-with(@id,\'component-grid-catalogentry-publicationformatgrid-\')]//span[contains(text(),\'PDF\')]/../../..//a[contains(@id,\'-isAvailable-availableRepresentation-button-\')]');
 		$this->click('css=.pkpModalConfirmButton');
 		self::$driver->wait()->until(WebDriverExpectedCondition::invisibilityOfElementLocated(WebDriverBy::cssSelector('div.pkp_modal_panel')));

@@ -44,15 +44,15 @@ class CatalogEntryForm extends FormComponent {
 		$this->successMessage = __('publication.catalogEntry.success');
 		$this->locales = $locales;
 
-    // Series options
-    $seriesOptions = [['value' => '', 'label' => '']];
-    $result = DAORegistry::getDAO('SeriesDAO')->getByContextId($submission->getData('contextId'));
-    while (!$result->eof()) {
-      $series = $result->next();
-      $seriesOptions[] = [
-        'value' => (int) $series->getId(),
-        'label' => $series->getLocalizedTitle(),
-      ];
+		// Series options
+		$seriesOptions = [['value' => '', 'label' => '']];
+		$result = DAORegistry::getDAO('SeriesDAO')->getByContextId($submission->getData('contextId'));
+		while (!$result->eof()) {
+			$series = $result->next();
+			$seriesOptions[] = [
+				'value' => (int) $series->getId(),
+				'label' => $series->getLocalizedTitle(),
+			];
 		}
 
 		// Category options
@@ -73,26 +73,26 @@ class CatalogEntryForm extends FormComponent {
 			->addField(new FieldSelect('seriesId', [
 				'label' => __('series.series'),
 				'value' => $publication->getData('seriesId'),
-        'options' => $seriesOptions,
+				'options' => $seriesOptions,
 			]))
 			->addField(new FieldText('seriesPosition', [
-        'label' => __('submission.submit.seriesPosition'),
-        'description' => __('submission.submit.seriesPosition.description'),
+				'label' => __('submission.submit.seriesPosition'),
+				'description' => __('submission.submit.seriesPosition.description'),
 				'value' => $publication->getData('seriesPosition'),
 			]))
 			->addField(new FieldOptions('categoryIds', [
 				'label' => __('submission.submit.placement.categories'),
 				'value' => (array) $publication->getData('categoryIds'),
-        'options' => $categoryOptions,
+				'options' => $categoryOptions,
 			]))
-      ->addField(new FieldUploadImage('coverImage', [
-        'label' => __('monograph.coverImage'),
-        'value' => $publication->getData('coverImage'),
-        'isMultilingual' => true,
+			->addField(new FieldUploadImage('coverImage', [
+				'label' => __('monograph.coverImage'),
+				'value' => $publication->getData('coverImage'),
+				'isMultilingual' => true,
 				'baseUrl' => $baseUrl,
 				'options' => [
 					'url' => $temporaryFileApiUrl,
 				],
 			]));
-  }
+	}
 }

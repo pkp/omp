@@ -46,7 +46,7 @@ class ReviewerSubmissionDAO extends SubmissionDAO {
 		$primaryLocale = AppLocale::getPrimaryLocale();
 		$locale = AppLocale::getLocale();
 		$result = $this->retrieve(
-			'SELECT	m.*, pm.date_published,
+			'SELECT	m.*, p.date_published,
 				r.*,
 				COALESCE(stl.setting_value, stpl.setting_value) AS series_title
 			FROM	submissions m

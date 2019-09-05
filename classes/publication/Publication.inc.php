@@ -31,9 +31,9 @@ class Publication extends PKPPublication {
 			}
 		}
 
-    // Spaces are stripped from the locale strings, so we have to add the
-    // space in here.
-    return join(__('common.commaListSeparator') . ' ', $editorNames);
+		// Spaces are stripped from the locale strings, so we have to add the
+		// space in here.
+		return join(__('common.commaListSeparator') . ' ', $editorNames);
 	}
 
 }

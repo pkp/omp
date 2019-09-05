@@ -39,16 +39,30 @@
 	{/fbvFormSection}
 
 	{fbvFormSection}
-		<!--  Chapter Contributors -->
-		{capture assign=chapterAuthorUrl}{url router=$smarty.const.ROUTE_COMPONENT component="listbuilder.users.ChapterAuthorListbuilderHandler" op="fetch" submissionId=$submissionId publicationId=$publicationId chapterId=$chapterId escape=false}{/capture}
-		{load_url_in_div id="chapterAuthorContainer" url=$chapterAuthorUrl}
+		{assign var="uuid" value=""|uniqid|escape}
+		<div id="chapter-authors-{$uuid}">
+			<list-panel
+				v-bind="components.authors"
+				@set="set"
+			/>
+		</div>
+		<script type="text/javascript">
+			pkp.registry.init('chapter-authors-{$uuid}', 'Container', {$chapterAuthorsListData|json_encode});
+		</script>
 	{/fbvFormSection}
 
 	{if $chapterId}
 		{fbvFormSection}
-			<!-- Chapter Files -->
-			{capture assign=chapterFilesUrl}{url router=$smarty.const.ROUTE_COMPONENT component="listbuilder.files.ChapterFilesListbuilderHandler" op="fetch" submissionId=$submissionId publicationId=$publicationId chapterId=$chapterId escape=false}{/capture}
-			{load_url_in_div id="chapterFilesContainer" url=$chapterFilesUrl}
+			{assign var="uuid" value=""|uniqid|escape}
+			<div id="chapter-files-{$uuid}">
+				<list-panel
+					v-bind="components.chapterFilesListPanel"
+					@set="set"
+				/>
+			</div>
+			<script type="text/javascript">
+				pkp.registry.init('chapter-files-{$uuid}', 'Container', {$chapterFilesListData|json_encode});
+			</script>
 		{/fbvFormSection}
 	{/if}
 

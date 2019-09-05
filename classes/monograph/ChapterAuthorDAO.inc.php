@@ -118,6 +118,17 @@ class ChapterAuthorDAO extends DAO {
 	}
 
 	/**
+	 * Remove all authors from a chapter
+	 * @param $chapterId int
+	 */
+	function deleteChapterAuthorsByChapterId($chapterId) {
+		$this->update(
+			'DELETE FROM submission_chapter_authors WHERE chapter_id = ?',
+			[(int) $chapterId]
+		);
+	}
+
+	/**
 	 * Construct and return a new data object.
 	 * @return ChapterAuthor
 	 */

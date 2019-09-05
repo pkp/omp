@@ -135,7 +135,7 @@ class ChapterGridHandler extends CategoryGridHandler {
 
 		// Columns
 		// reuse the cell providers for the AuthorGrid
-		$cellProvider = new PKPAuthorGridCellProvider();
+		$cellProvider = new PKPAuthorGridCellProvider($this->getPublication());
 		$this->addColumn(
 			new GridColumn(
 				'name',

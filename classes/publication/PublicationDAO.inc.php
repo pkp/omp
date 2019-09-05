@@ -19,7 +19,7 @@ class PublicationDAO extends PKPPublicationDAO {
 	 * @copydoc SchemaDAO::_fromRow()
 	 */
 	public function _fromRow($primaryRow) {
-    $publication = parent::_fromRow($primaryRow);
+		$publication = parent::_fromRow($primaryRow);
 
 		$publication->setData('publicationFormats', Application::getRepresentationDao()->getByPublicationId($publication->getId())->toArray());
 		$publication->setData('chapters', DAORegistry::getDAO('ChapterDAO')->getByPublicationId($publication->getId())->toArray());

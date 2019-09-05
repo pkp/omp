@@ -2,29 +2,29 @@
 	"title": "Submission",
 	"description": "A submission to the press.",
 	"properties": {
-    "audience": {
-      "type": "string"
-    },
-    "audienceRangeExact": {
-      "type": "string"
-    },
-    "audienceRangeFrom": {
-      "type": "string"
-    },
-    "audienceRangeQualifier": {
-      "type": "string"
-    },
-    "audienceRangeTo": {
-      "type": "string"
-    },
+		"audience": {
+			"type": "string"
+		},
+		"audienceRangeExact": {
+			"type": "string"
+		},
+		"audienceRangeFrom": {
+			"type": "string"
+		},
+		"audienceRangeQualifier": {
+			"type": "string"
+		},
+		"audienceRangeTo": {
+			"type": "string"
+		},
 		"workType": {
-      "type": "integer",
-      "description": "Whether this submission is a monograph or an edited volume. One of `WORK_TYPE_EDITED_VOLUME` or `WORK_TYPE_AUTHORED_WORK`. Default: `WORK_TYPE_AUTHORED_WORK`.",
+			"type": "integer",
+			"description": "Whether this submission is a monograph or an edited volume. One of `WORK_TYPE_EDITED_VOLUME` or `WORK_TYPE_AUTHORED_WORK`. Default: `WORK_TYPE_AUTHORED_WORK`.",
 			"apiSummary": true,
-      "default": 2,
-      "validation": [
-        "in:1,2"
-      ]
+			"default": 2,
+			"validation": [
+				"in:1,2"
+			]
 		}
 	}
 }

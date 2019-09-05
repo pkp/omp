@@ -53,14 +53,14 @@ class PublicationFormatMetadataForm extends Form {
 	 * @param $formParams array
 	 */
 	function __construct($submission, $publication, $representation, $isPhysicalFormat = true, $remoteURL = null, $stageId = null, $formParams = null) {
-    parent::__construct('controllers/tab/catalogEntry/form/publicationMetadataFormFields.tpl');
-    $this->_submission = $submission;
-    $this->_publication = $publication;
-    $this->_publicationFormat = $representation;
+		parent::__construct('controllers/tab/catalogEntry/form/publicationMetadataFormFields.tpl');
+		$this->_submission = $submission;
+		$this->_publication = $publication;
+		$this->_publicationFormat = $representation;
 
-    if (!$this->_submission || !$this->_publication || !$this->_publicationFormat) {
-      throw new Exception('PublicationFormatMetadataForm was instantiated without required dependencies.');
-    }
+		if (!$this->_submission || !$this->_publication || !$this->_publicationFormat) {
+			throw new Exception('PublicationFormatMetadataForm was instantiated without required dependencies.');
+		}
 
 		$this->_pubIdPluginHelper = new PKPPubIdPluginHelper();
 
@@ -271,7 +271,7 @@ class PublicationFormatMetadataForm extends Form {
 	 */
 	function getSubmission() {
 		return $this->_submission;
-  }
+	}
 
 	/**
 	 * Get the Publication

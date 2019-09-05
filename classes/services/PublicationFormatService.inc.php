@@ -9,8 +9,7 @@
  * @class PublicationFormatService
  * @ingroup services
  *
- * @brief Extends the base publication format service class with app-specific
- *  requirements.
+ * @brief A service class with methods to handle publication formats
  */
 namespace APP\Services;
 
@@ -29,17 +28,17 @@ class PublicationFormatService {
 	 */
 	public function deleteFormat($publicationFormat, $submission, $context) {
 
-    Application::getRepresentationDAO()->deleteById($publicationFormat->getId());
+		Application::getRepresentationDAO()->deleteById($publicationFormat->getId());
 
-    // Delete publication format metadata
-    $metadataDaos = ['IdentificationCodeDAO', 'MarketDAO', 'PublicationDateDAO', 'SalesRightsDAO'];
-    foreach ($metadataDaos as $metadataDao) {
-      $result = DAORegistry::getDAO($metadataDao)->getByPublicationFormatId($publicationFormat->getId());
-      while (!$result->eof()) {
+		// Delete publication format metadata
+		$metadataDaos = ['IdentificationCodeDAO', 'MarketDAO', 'PublicationDateDAO', 'SalesRightsDAO'];
+		foreach ($metadataDaos as $metadataDao) {
+			$result = DAORegistry::getDAO($metadataDao)->getByPublicationFormatId($publicationFormat->getId());
+			while (!$result->eof()) {
 				$object = $result->next();
-        DAORegistry::getDAO($metadataDao)->deleteObject($object);
-      }
-    }
+				DAORegistry::getDAO($metadataDao)->deleteObject($object);
+			}
+		}
 
 		// Create a tombstone for this publication format.
 		import('classes.publicationFormat.PublicationFormatTombstoneManager');
