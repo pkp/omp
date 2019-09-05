@@ -304,7 +304,7 @@
 						{if $citations}
 							{foreach from=$citations item=$citation}
 								<p>{$citation->getCitationWithLinks()|strip_unsafe_html}</p>
-							{/iterate}
+							{/foreach}
 						{else}
 							{$monograph->getCurrentPublication()->getData('citationsRaw')|nl2br}
 						{/if}
@@ -430,21 +430,20 @@
 			{/if}
 
 			{* Categories *}
-			{assign var=categories value=$monograph->getCategories()}
-			{if !$categories->wasEmpty()}
+			{if $categories}
 				<div class="item categories">
 					<div class="label">
 						{translate key="catalog.categories"}
 					</div>
 					<div class="value">
 						<ul>
-							{iterate from=categories item=category}
+							{foreach from=$categories item="category"}
 								<li>
 									<a href="{url op="category" path=$category->getPath()}">
 										{$category->getLocalizedTitle()|strip_unsafe_html}
 									</a>
 								</li>
-							{/iterate}
+							{/foreach}
 						</ul>
 					</div>
 				</div>
