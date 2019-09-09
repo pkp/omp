@@ -171,6 +171,7 @@ class MdawsonSubmissionTest extends ContentBaseTestCase {
 			$this->click($selector);
 			$this->click('css=#approvedProofForm .submitFormButton');
 			self::$driver->wait()->until(WebDriverExpectedCondition::invisibilityOfElementLocated(WebDriverBy::cssSelector('div.pkp_modal_panel')));
+			sleep(1);
 		}
 
 		// Add to catalog
