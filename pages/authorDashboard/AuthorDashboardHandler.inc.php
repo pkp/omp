@@ -57,7 +57,7 @@ class AuthorDashboardHandler extends PKPAuthorDashboardHandler {
 			null,
 			'grid.users.chapter.ChapterGridHandler',
 			'fetchGrid',
-			$submission->getId(),
+			null,
 			[
 				'submissionId' => $submission->getId(),
 				'publicationId' => '__publicationId__',
@@ -113,7 +113,7 @@ class AuthorDashboardHandler extends PKPAuthorDashboardHandler {
 			null,
 			'grid.catalogEntry.PublicationFormatGridHandler',
 			'fetchGrid',
-			$submission->getId(),
+			null,
 			[
 				'submissionId' => $submission->getId(),
 				'publicationId' => '__publicationId__',
