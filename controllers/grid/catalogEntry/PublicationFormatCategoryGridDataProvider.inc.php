@@ -79,9 +79,9 @@ class PublicationFormatCategoryGridDataProvider extends SubmissionFilesCategoryG
 	}
 
 	/**
-	 * @see GridHandler::loadData
+	 * @copydoc GridHandler::loadData
 	 */
-	function loadData($request, $filter = null) {
+	function loadData($filter = array()) {
 		return Application::getRepresentationDAO()
 			->getByPublicationId($this->getPublication()->getId())
 			->toAssociativeArray();
