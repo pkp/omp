@@ -30,8 +30,9 @@ class CatalogSearchTest extends ContentBaseTestCase {
 		// Search for "bomb"
 		$this->open(self::$baseUrl);
 		$this->waitForElementPresent($selector = '//form[contains(@class, \'cmp_search\')]//input[@name=\'query\']');
+		$this->click('//div[@class="search_controls"]');
 		$this->type($selector, 'bomb');
-		$this->click('//form[contains(@class, \'cmp_search\')]//button[contains(.,\'Search\')]');
+		$this->click('//form[contains(@class, \'cmp_search\')]//a[contains(.,\'Search\')]');
 
 		// @TODO Search is not currently working.
 		// See: https://github.com/pkp/pkp-lib/issues/4859
@@ -48,8 +49,9 @@ class CatalogSearchTest extends ContentBaseTestCase {
 		// Search for "bomb"
 		$this->open(self::$baseUrl);
 		$this->waitForElementPresent($selector = '//form[contains(@class, \'cmp_search\')]//input[@name=\'query\']');
+		$this->click('//div[@class="search_controls"]');
 		$this->type($selector, 'zorg');
-		$this->click('//form[contains(@class, \'cmp_search\')]//button[contains(.,\'Search\')]');
+		$this->click('//form[contains(@class, \'cmp_search\')]//a[contains(.,\'Search\')]');
 
 		// Should be 0 results
 		$this->waitForElementPresent('//div[contains(.,\'0 Titles\')]');
