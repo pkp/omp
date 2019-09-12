@@ -16,10 +16,10 @@
     "tinymce": "^4.9.6",
     "v-tooltip": "^2.0.2",
     "vue": "^2.6.10",
-    "vue-autosuggest": "^2.0.1",
+    "vue-autosuggest": "^2.0.4",
     "vue-chartjs": "^3.4.2",
     "vue-color": "^2.7.0",
-    "vue-scrollto": "^2.15.0",
+    "vue-scrollto": "^2.16.3",
     "vue-slider-component": "^2.8.16",
     "vue2-dropzone": "^3.6.0",
     "vuedraggable": "^2.23.0"
