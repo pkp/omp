@@ -161,6 +161,7 @@ class MdawsonSubmissionTest extends ContentBaseTestCase {
 		// Approvals for files
 		foreach ($proofFiles as $proofFile) {
 			// Completion
+			sleep(1);
 			$this->click('//table[starts-with(@id,\'component-grid-catalogentry-publicationformatgrid-\')]//a[contains(text(),\'' . $proofFile . '\')]/../../..//a[contains(@id,\'-isComplete-not_approved-button-\')]');
 			$this->waitForElementPresent($selector='//form[@id=\'assignPublicIdentifierForm\']//button[starts-with(@id,\'submitFormButton-\')]');
 			$this->click($selector);
