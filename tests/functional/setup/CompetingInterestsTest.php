@@ -83,6 +83,7 @@ class CompetingInterestsTest extends ContentBaseTestCase {
 
 		// Send the submission to review
 		$this->findSubmissionAsEditor('dbarnes', null, self::$fullTitle);
+		$this->sendToReview('External');
 		$this->assignReviewer('Al Zacharia');
 		$this->logOut();
 
