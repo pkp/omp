@@ -103,20 +103,6 @@ class SubmissionFileDAOTest extends DatabaseTestCase {
 	 * @covers SubmissionFileDAODelegate
 	 */
 	public function testSubmissionFileCrud() {
-		/**
-		 * @todo Fix these tests
-		 *
-		 * This whole test is currently commented out because of
-		 * inconsistencies in the way that the DAOs are mocked.
-		 * When pulling a file out of the database, it does not
-		 * properly retrieve the submissionLocale or name
-		 * properties of the submission file. For this reason, the
-		 * comparison asserts do not work.
-		 *
-		 * See: https://github.com/pkp/pkp-lib/issues/5040
-		 *
-		 */ self::assertEquals('a', 'a'); /*
-
 		//
 		// Create test data.
 		//
@@ -126,6 +112,15 @@ class SubmissionFileDAOTest extends DatabaseTestCase {
 		$submission->setPressId(SUBMISSION_FILE_DAO_TEST_PRESS_ID);
 		$submission->setLocale('en_US');
 		$submissionId = $submissionDao->insertObject($submission);
+
+		$publicationDao = DAORegistry::getDAO('PublicationDAO');
+		$publication = $publicationDao->newDataObject();
+		$publication->setData('submissionId', $submissionId);
+		$publication->setData('locale', 'en_US');
+		$publicationDao->insertObject($publication);
+
+		$submission->setData('currentPublicationId', $publication->getId());
+		$submissionDao->updateObject($submission);
 
 		$submissionDao = $this->getMockBuilder(SubmissionDAO::class)
 			->setMethods(array('getById'))
@@ -475,24 +470,9 @@ class SubmissionFileDAOTest extends DatabaseTestCase {
 		// Delete the test submission
 		$submissionDao = Application::getSubmissionDao();
 		$submissionDao->deleteById($submissionId);
-		*/
 	}
 
 	function testNewDataObjectByGenreId() {
-		/**
-		 * @todo Fix these tests
-		 *
-		 * This whole test is currently commented out because of
-		 * inconsistencies in the way that the DAOs are mocked.
-		 * When pulling a file out of the database, it does not
-		 * properly retrieve the submissionLocale or name
-		 * properties of the submission file. For this reason, the
-		 * comparison asserts do not work.
-		 *
-		 * See: https://github.com/pkp/pkp-lib/issues/5040
-		 *
-		 */ self::assertEquals('a', 'a'); /*
-
 		// Instantiate the SUT.
 		$submissionFileDao = DAORegistry::getDAO('SubmissionFileDAO');
 
@@ -503,7 +483,6 @@ class SubmissionFileDAOTest extends DatabaseTestCase {
 		// Now set an artwork genre and try again.
 		$fileObject = $submissionFileDao->newDataObjectByGenreId(SUBMISSION_FILE_DAO_TEST_ART_GENRE_ID);
 		self::assertTrue(is_a($fileObject, 'SubmissionArtworkFile'));
-		*/
 	}
 
 	//
