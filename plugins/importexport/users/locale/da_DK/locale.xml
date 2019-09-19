@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE locale SYSTEM "../../../../lib/pkp/dtd/locale.dtd">
+
+<!--
+  * locale/da_DK/locale.xml
+  *
+  * Copyright (c) 2014-2019 Simon Fraser University
+  * Copyright (c) 2003-2019 John Willinsky
+  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
+  *
+  * Localization strings.
+  -->
+
+<locale name="da_DK" full_name="Dansk">
+	<message key="plugins.importexport.users.displayName">Users XML Plugin</message>
+	<message key="plugins.importexport.users.description">Importer og eksporter brugere</message>
+	<message key="plugins.importexport.users.cliUsage">Usage: {$scriptName} {$pluginName} [command] ...
+Commands:
+	import [xmlFileName] [press_path] [optional flags]
+	export [xmlFileName] [press_path]
+	export [xmlFileName] [press_path] [role_path1] [role_path2] ...
+
+Optional flags:
+	continue_on_error: If specified, do not stop importing users if an error occurs
+
+	send_notify: If specified, send notification emails containing usernames
+		and passwords to imported users
+
+Examples:
+	Import users into myPress from myImportFile.xml, continuing on error:
+	{$scriptName} {$pluginName} import myImportFile.xml myPress continue_on_error
+
+	Export all users from myPress:
+	{$scriptName} {$pluginName} export myExportFile.xml myPress
+
+	Export all users registered as reviewers, along with their reviewer roles only:
+	{$scriptName} {$pluginName} export myExportFile.xml myPress reviewer
+</message>
+	<message key="plugins.importexport.users.import.importUsers">Importer brugere</message>
+	<message key="plugins.importexport.users.import.instructions"><![CDATA[Vælg en XML-datafil, der indeholder brugeroplysninger, der skal importeres til dette forlag. Se 'Help' for detaljer om formatet til denne fil.<br /><br /> Bemærk, at hvis den importerede fil indeholder brugernavne eller e-mail-adresser, der allerede findes i systemet, vil brugerdataene for disse brugere ikke blive importeret og eventuelle nye roller, der oprettes, tildeles de eksisterende brugere.]]></message>
+	<message key="plugins.importexport.users.import.dataFile">Brugerdatafil</message>
+	<message key="plugins.importexport.users.import.sendNotify">Send en e-mail til hver enkelt importeret bruger med brugerens brugernavn og adgangskode.</message>
+	<message key="plugins.importexport.users.import.continueOnError">Fortsæt med at importere andre brugere, hvis der opstår en fejl.</message>
+	<message key="plugins.importexport.users.import.usersWereImported">Følgende brugere blev importeret til systemet</message>
+	<message key="plugins.importexport.users.import.errorsOccurred">Der opstod fejl under importen</message>
+	<message key="plugins.importexport.users.import.confirmUsers">Bekræft, at dette er de brugere, du gerne vil importere til systemet</message>
+	<message key="plugins.importexport.users.import.warning">Advarsel</message>
+	<message key="plugins.importexport.users.import.encryptionMismatch">Kan ikke bruge adgangskoder hashed med {$importHash}; OMP er konfigureret til at bruge {$ompHash}. Hvis du fortsætter, skal du nulstille de importerede brugeres adgangskoder.</message>
+	<message key="plugins.importexport.users.unknownPress">En ukendt sti "{$pressPath}" blev specificeret.</message>
+	<message key="plugins.importexport.users.export.exportUsers">Eksporter brugere</message>
+	<message key="plugins.importexport.users.export.exportByRole">Eksport efter rolle</message>
+	<message key="plugins.importexport.users.export.exportAllUsers">Eksporter alle</message>
+	<message key="plugins.importexport.users.export.errorsOccurred">Der opstod fejl under eksporten</message>
+	<message key="plugins.importexport.users.export.couldNotWriteFile">Kunne ikke skrive til filen "{$fileName}".</message>
+	<message key="plugins.importexport.users.importComplete">Importen blev afsluttet. Brugere med brugernavne og e-mail-adresser, der ikke allerede er i brug, er blevet importeret sammen med de medfølgende brugergrupper.</message>
+	<message key="plugins.importexport.users.results">Resultater</message>
+	<message key="plugins.importexport.users.uploadFile">Upload en fil under "Import" for at fortsætte.</message>
+</locale>

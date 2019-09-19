@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE locale SYSTEM "../../../../lib/pkp/dtd/locale.dtd">
+
+<!--
+  * locale/da_DK/locale.xml
+  *
+  * Copyright (c) 2014-2019 Simon Fraser University
+  * Copyright (c) 2003-2019 John Willinsky
+  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
+  *
+  * Localization strings.
+  -->
+
+<locale name="da_DK" full_name="Dansk">
+	<message key="editor.submissionArchive">Indsendelsesarkiv</message>
+	<message key="editor.monograph.cancelReview">Annuller anmodning</message>
+	<message key="editor.monograph.clearReview">Fjern bedømmer</message>
+	<message key="editor.monograph.enterRecommendation">Indtast anbefaling</message>
+	<message key="editor.monograph.enterReviewerRecommendation">Angiv anmelderens anbefaling</message>
+	<message key="editor.monograph.recommendation">Anbefaling</message>
+	<message key="editor.monograph.selectReviewerInstructions">Vælg en bedømmer ovenfor, og tryk dernæst på knappen 'Vælg bedømmer' for at fortsætte.</message>
+	<message key="editor.monograph.replaceReviewer">Udskift bedømmer</message>
+	<message key="editor.monograph.editorToEnter">Redaktør indsætter anbefaling/kommentarer til bedømmer</message>
+	<message key="editor.monograph.uploadReviewForReviewer">Upload bedømmelse</message>
+	<message key="editor.monograph.peerReviewOptions">Valgmuligheder for peer review</message>
+	<message key="editor.monograph.selectProofreadingFiles">Korrekturlæsningsfiler</message>
+	<message key="editor.monograph.internalReview">Påbegynd intern revision</message>
+	<message key="editor.monograph.internalReviewDescription">Vælg filer nedenfor for at sende dem til det interne bedømmelsestrin.</message>
+	<message key="editor.monograph.externalReview">Påbegynd ekstern bedømmelse</message>
+	<message key="editor.monograph.final.selectFinalDraftFiles">Vælg endelige kladdefiler</message>
+	<message key="editor.monograph.final.currentFiles">Nyeste kladdefil</message>
+	<message key="editor.monograph.copyediting.currentFiles">Nyeste filer</message>
+	<message key="editor.monograph.copyediting.personalMessageToUser">Besked til bruger</message>
+	<message key="editor.monograph.legend.submissionActions">Indsendelseshandlinger</message>
+	<message key="editor.monograph.legend.submissionActionsDescription">Overordnede indsendelseshandlinger og muligheder.</message>
+	<message key="editor.monograph.legend.sectionActions">Sektionshandlinger</message>
+	<message key="editor.monograph.legend.sectionActionsDescription">Valgmuligheder, der er specifikke for et given sektion, for eksempel upload af filer eller tilføjelse af brugere.</message>
+	<message key="editor.monograph.legend.itemActions">Enhedshandlinger</message>
+	<message key="editor.monograph.legend.itemActionsDescription">Handlinger og indstillinger, der er specifikke for en enkelt fil.</message>
+	<message key="editor.monograph.legend.catalogEntry">Se og administrer indsendelsens katalogindgang, herunder metadata og publiceringsformater</message>
+	<message key="editor.monograph.legend.bookInfo">Se og administrer indsendelsesmetadata, noter, notifikationer og historik</message>
+	<message key="editor.monograph.legend.participants">Se og administrer deltagerne hørende til denne indsendelse: forfattere, redaktører, designere m.fl.</message>
+	<message key="editor.monograph.legend.add">Upload en fil til sektionen</message>
+	<message key="editor.monograph.legend.add_user">Føj en bruger til sektionen</message>
+	<message key="editor.monograph.legend.settings">Se og få adgang til enhedsindstillinger, f.eks. information og sletningsmuligheder</message>
+	<message key="editor.monograph.legend.more_info">Flere oplysninger: filnotater, notifikationsindstillinger og historik</message>
+	<message key="editor.monograph.legend.notes_none">Filoplysninger: noter, notifikationsindstillinger og historik (Der er ikke tilføjet nogen noter endnu)</message>
+	<message key="editor.monograph.legend.notes">Filoplysninger: noter, notifikationsindstillinger og historik (Noter er tilgængelige)</message>
+	<message key="editor.monograph.legend.notes_new">Filoplysninger: noter, notifikationsindstillinger og historik (Nye noter tilføjet siden sidste besøg)</message>
+	<message key="editor.monograph.legend.edit">Rediger enhed</message>
+	<message key="editor.monograph.legend.delete">Slet enhed</message>
+	<message key="editor.monograph.legend.in_progress">Handlingen er i gang eller endnu ikke afsluttet</message>
+	<message key="editor.monograph.legend.complete">Handlingen afsluttet</message>
+	<message key="editor.monograph.legend.uploaded">File uploaded by the role in the grid column title</message>
+	<message key="editor.submission.introduction">Under Indsendelse vælger redaktøren, efter gennemsyn af de indsendte filer, den passende handling (som inkluderer besked til forfatteren): Send til intern bedømmelse (indebærer valg af filer til intern bedømmelse); Send til ekstern gennemgang (indebærer valg af filer til ekstern gennemgang); Accepter indsendelse (indebærer valg af filer til det redaktionelle trin); eller Afvis indsendelse (arkivlagring).</message>
+	<message key="editor.monograph.editorial.fairCopy">Renskrift</message>
+	<message key="editor.monograph.proofs">Korrektur</message>
+	<message key="editor.monograph.production.approvalAndPublishing">Godkendelse og udgivelse</message>
+	<message key="editor.monograph.production.approvalAndPublishingDescription">Forskellige publikationsformater, såsom hardcover, paperback og digital, kan uploades i sektionen med publikationsformater nedenfor. Du kan bruge opsætningen til publikationsformater nedenfor som en tjekliste for, hvad der stadig skal gøres for at offentliggøre et publikationsformat.</message>
+	<message key="editor.monograph.production.publicationFormatDescription"><![CDATA[Tilføj publikationsformater (f.eks. digital, paperback), så layoutredaktøren kan opsætte sider til korrekturlæsning. <em>Korrekturer</em> skal kontrolleres som værende godkendt, og <em>Katalog</em>-indtastningen for formatet skal kontrolleres som anført i bogens katalogpost, før et format kan gøres <em>Tilgængelig</em> (dvs. publiceret).]]></message>
+	<message key="editor.monograph.approvedProofs.edit">Angiv betingelser i forbindelse med download</message>
+	<message key="editor.monograph.approvedProofs.edit.linkTitle">Angiv betingelser</message>
+	<message key="editor.monograph.proof.addNote">Tilføj svar</message>
+	<message key="editor.submission.proof.manageProofFilesDescription">Alle de filer, der er uploadet til et af indsendelsestrinnene, kan føjes til listen over korrekturfiler ved at blive markeret i afkrydsningsfeltet nedenfor og ved at klikke på Søg: alle tilgængelige filer vises på listen og kan vælges til inkludering.</message>
+	<message key="editor.publicIdentificationExistsForTheSameType">Den offentlige identifikator (the public identifier) '{$publicIdentifier}' findes allerede i forbindelse med et andet objekt af samme type. Vælg unikke identifikatorer for objekter af samme type under dette forlag.</message>
+</locale>
