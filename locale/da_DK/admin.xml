@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE locale SYSTEM "../../../../lib/pkp/dtd/locale.dtd">
+
+<!--
+  * locale/da_DK/locale.xml
+  *
+  * Copyright (c) 2014-2019 Simon Fraser University
+  * Copyright (c) 2003-2019 John Willinsky
+  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
+  *
+  * Localization strings.
+  -->
+
+<locale name="da_DK" full_name="Dansk">
+	<message key="admin.hostedPresses">Tilknyttede forlag</message>
+	<message key="admin.settings.pressRedirect">Forlagsomdirigering</message>
+	<message key="admin.settings.pressRedirectInstructions">Forespørgsler til hovedsiden vil blive omdirigeret til dette forlag. Dette kan være nyttigt, hvis webstedet kun er vært for et enkelt forlag.</message>
+	<message key="admin.settings.noPressRedirect">Omdiriger ikke</message>
+	<message key="admin.languages.primaryLocaleInstructions">Dette vil være standardsproget for webstedet og ethvert tilknyttet forlag.</message>
+	<message key="admin.languages.supportedLocalesInstructions">Vælg alle sprog, der skal understøttes på webstedet. De valgte sprog vil være tilgængelige til brug for alle forlag, der er vært på webstedet, ligesom de vises i en sprogvalgs-menu, der vil fremtræde på hver webside (som kan fravælges på forlags-specifikke sider). Hvis der ikke er valgt flere lokaliteter, vises sprogvalgs-menuen ikke, og udvidede sprogindstillinger er ikke tilgængelige for forlagene.</message>
+	<message key="admin.locale.maybeIncomplete">* Markerede sprog kan være ufuldstændige.</message>
+	<message key="admin.languages.confirmUninstall">Er du sikker på, at du vil afinstallere dette sprog? Dette kan påvirke alle de tilknyttede forlag, der i øjeblikket bruger sproget.</message>
+	<message key="admin.languages.installNewLocalesInstructions">Vælg yderligere de sprog, der skal installeres support til i dette system. Sprog skal installeres, før de kan bruges af tilknyttede forlag. Se OMP-dokumentationen for information om tilføjelse af support til nye sprog.</message>
+	<message key="admin.languages.noLocalesToDownload">Ingen sprog er tilgængelige til download.</message>
+	<message key="admin.languages.downloadFailed">Download af sprog mislykkedes. Fejlmeddelelsen nedenfor beskriver fejlen.</message>
+	<message key="admin.languages.downloadUnavailable"><![CDATA[<p>Overførsel af sprogpakker fra webserveren til Public Knowledge Project er ikke tilgængelig i øjeblikket fordi: </p>
+<ul>
+<li>Din server har, eller tillader ikke eksekvering af, GNU "tar"-værktøjet</li>
+<li>OMP er ikke i stand til at ændre sprog- registerfilen, typisk "registry/locales.xml".</li>
+</ul>
+<p>Sprogpakker kan downloades manuelt fra <a href="http://pkp.sfu.ca" target="_blank">PKP web site</a>. </p>
+]]></message>
+	<message key="admin.languages.confirmDisable">Er du sikker på, at du vil deaktivere dette sprog? Dette kan påvirke alle de tilknyttede forlag, der i øjeblikket bruger sproget.</message>
+	<message key="admin.systemVersion">OMP-version</message>
+	<message key="admin.systemConfiguration">OMP-konfiguration</message>
+	<message key="admin.presses.pressSettings">Forlagsindstillinger</message>
+	<message key="admin.presses.noneCreated">Der er ikke oprettet nogen forlag.</message>
+	<message key="admin.contexts.create">Opret forlag</message>
+	<message key="admin.presses.createInstructions">Du registreres automatisk som manager af dette forlag. Når du har oprettet et nyt forlag, vil du blive omdirigeret til dets indstillingsguide for at afslutte den første opsætningen af forlaget.</message>
+	<message key="admin.presses.urlWillBe">Forlaget URL vil være {$sampleUrl}</message>
+	<message key="admin.contexts.form.titleRequired">Der kræves en titel.</message>
+	<message key="admin.contexts.form.pathRequired">Der kræves en sti.</message>
+	<message key="admin.contexts.form.pathAlphaNumeric">Stien må kun indeholde alfanumeriske tegn, understregninger og bindestreger og skal begynde og slutte med et alfanumerisk tegn.</message>
+	<message key="admin.contexts.form.pathExists">Den valgte sti bruges allerede af et andet forlag.</message>
+	<message key="admin.presses.enablePressInstructions">Offentliggør dette forlag på webstedet </message>
+	<message key="admin.presses.pressDescription">Beskrivelse af forlag</message>
+	<message key="admin.presses.addPress">Tilføj forlag</message>
+	<message key="admin.overwriteConfigFileInstructions"><![CDATA[<h4>Bemærk!</div>
+<p>Systemet kunne ikke automatisk overskrive konfigurationsfilen. For at anvende dine konfigurationsændringer skal du åbne <tt>config.inc.php</tt> i en egnet teksteditor og erstatte dens indhold med indholdet i tekstfeltet nedenfor.</p>
+]]></message>
+</locale>
