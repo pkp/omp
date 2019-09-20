@@ -1,0 +1,365 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE locale SYSTEM "../../../../lib/pkp/dtd/locale.dtd">
+
+<!--
+  * locale/da_DK/locale.xml
+  *
+  * Copyright (c) 2014-2019 Simon Fraser University
+  * Copyright (c) 2003-2019 John Willinsky
+  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
+  *
+  * Localization strings.
+  -->
+
+<locale name="da_DK" full_name="Dansk">
+	<message key="manager.language.confirmDefaultSettingsOverwrite">Dette erstatter alle lokalitetsspecifikke forlagsindstillinger, du havde i tilknytning til dette sprog (lokalitet)</message>
+	<message key="manager.languages.noneAvailable">Beklager, ingen yderligere sprog er tilgængelige. Kontakt din websteds-administrator, hvis du ønsker at bruge flere sprog i forbindelse med dette forlag.</message>
+	<message key="manager.languages.primaryLocaleInstructions">Dette vil være standardsproget for forlags-sitet.</message>
+	<message key="manager.series.form.mustAllowPermission">Sørg for, at der mindst er markeret et afkrydsningsfelt for hver serieredaktør-tildeling.</message>
+	<message key="manager.series.form.reviewFormId">Sørg for, at du har valgt en gyldig bedømmelsesformular.</message>
+	<message key="manager.series.submissionIndexing">Vil ikke være med i forlagenes indeksering</message>
+	<message key="manager.series.editorRestriction">Elementer kan kun indsendes af redaktører og serieredaktører.</message>
+	<message key="manager.series.confirmDelete">Er du sikker på, at du vil slette denne serie permanent?</message>
+	<message key="manager.series.indexed">Indekseret</message>
+	<message key="manager.series.open">Åben indsendelse</message>
+	<message key="manager.series.readingTools">Læseværktøjer</message>
+	<message key="manager.series.submissionReview">Vil ikke blive fagfællebedømt</message>
+	<message key="manager.series.submissionsToThisSection">Indsendelser foretaget til denne serie</message>
+	<message key="manager.series.abstractsNotRequired">Kræver ikke resume</message>
+	<message key="manager.series.disableComments">Deaktiver læserkommentarer i forbindelse denne serie</message>
+	<message key="manager.series.book">Bogserie</message>
+	<message key="manager.series.create">Opret serie</message>
+	<message key="manager.series.policy">Seriebeskrivelse</message>
+	<message key="manager.series.assigned">Redaktører til denne serie</message>
+	<message key="manager.series.seriesEditorInstructions"><![CDATA[Føj en serieredaktør til denne serie fra de tilgængelige serieredaktører. Når redaktøren er tilføjet, skal du angive, om serieredaktøren vil føre tilsyn med BEDØMMELSEN (peer review) og/eller REDIGERING (manuskriptredigering, layout og korrekturlæsning) af indsendelser i forbindelse med denne serie. Serieredaktører oprettes ved at klikke på <a href="{$seriesEditorsUrl}">Serieredaktører /a> under Roller i forlagsadministration.]]></message>
+	<message key="manager.series.hideAbout">Undlad denne serie i Om forlaget.</message>
+	<message key="manager.series.unassigned">Tilgængelige serieredaktører</message>
+	<message key="manager.series.form.abbrevRequired">En forkortet titel til serien er påkrævet.</message>
+	<message key="manager.series.form.titleRequired">En titel til serien er påkrævet.</message>
+	<message key="manager.series.noneCreated">Der er ikke oprettet nogen serier.</message>
+	<message key="manager.series.existingUsers">Eksisterende brugere</message>
+	<message key="manager.series.seriesTitle">Serietitel</message>
+	<message key="manager.series.restricted">Tillad ikke forfattere at sende direkte til denne serie.</message>
+	<message key="manager.payment.generalOptions">Generelle indstillinger</message>
+	<message key="manager.payment.options.enablePayments">Betalinger vil blive aktiveret i forbindelse med dette forlag. Bemærk, at brugerne skal logge på for at foretage betalinger.</message>
+	<message key="manager.settings">Indstillinger</message>
+	<message key="manager.settings.pressSettings">Forlagsindstillinger</message>
+	<message key="manager.settings.press">Forlag</message>
+	<message key="manager.settings.publisherInformation"><![CDATA[Disse felter er påkrævet for at oprette gyldige <a href="https://en.wikipedia.org/wiki/ONIX_for_Books">ONIX metadata</a>. Medtag dem, hvis du ønsker at offentliggøre ONIX-metadata.]]></message>
+	<message key="manager.settings.publisher">Forlagets udgivernavn</message>
+	<message key="manager.settings.location">Geografisk placering</message>
+	<message key="manager.settings.publisherCode">Udgiverkode</message>
+	<message key="manager.settings.publisherCodeType">Type for udgiverkode</message>
+	<message key="manager.settings.publisherCodeType.tip">Hvis du har en kode til dit udgivernavn, skal du udfylde den nedenfor. Det vil blive inkluderet i genererede metadata. Feltet er påkrævet, hvis du genererer ONIX-metadata til dine publikationer.</message>
+	<message key="manager.settings.distributionDescription">Alle indstillinger, der er specifikke for distributionsprocessen (notifikation, indeksering, arkivering, betaling, læseværktøjer).</message>
+	<message key="manager.statistics.reports.defaultReport.monographDownloads">Download af monografi-fil</message>
+	<message key="manager.statistics.reports.defaultReport.monographAbstract">Visninger af monografisk resumeside</message>
+	<message key="manager.statistics.reports.defaultReport.monographAbstractAndDownloads">Monografisk resume og downloads</message>
+	<message key="manager.statistics.reports.defaultReport.seriesIndexPageViews">Visninger af en series hovedside</message>
+	<message key="manager.statistics.reports.defaultReport.pressIndexPageViews">Visninger af et forlags hovedside</message>
+	<message key="manager.statistics.reports.filters.byContext.description">Begræns resultater efter kontekst (serie og/eller monografi).</message>
+	<message key="manager.statistics.reports.filters.byObject.description">Begræns resultater efter objekttype (forlag, serie, monografi, filtyper) og/eller efter et eller flere objekt-id(er).</message>
+	<message key="manager.tools">Værktøjer</message>
+	<message key="manager.tools.importExport">Alle værktøjer, der er specifikke i forbindelse med import og eksport af data (forlag, monografier, brugere)</message>
+	<message key="manager.tools.statistics">Værktøjer til at generere rapporter relateret til brugsstatistikker (visning af katalogindeks-side, visning af resume-sider, download af monografi-filer)</message>
+	<message key="manager.users">Brugeradministration</message>
+	<message key="manager.users.availableRoles">Tilgængelige roller</message>
+	<message key="manager.users.currentRoles">Aktuelle roller</message>
+	<message key="manager.users.selectRole">Vælg rolle</message>
+	<message key="manager.people.allEnrolledUsers">Brugere tilmeldt dette forlag</message>
+	<message key="manager.people.allPresses">Alle forlag</message>
+	<message key="manager.people.allSiteUsers">Tilmeld en bruger fra dette site til dette forlag</message>
+	<message key="manager.people.allUsers">Alle tilmeldte brugere</message>
+	<message key="manager.people.confirmRemove">Vil du fjerne denne bruger fra dette forlag? Denne handling vil fjerne brugeren fra alle roller tilknyttet dette forlag.</message>
+	<message key="manager.people.enrollExistingUser">Tilmeld en eksisterende bruger</message>
+	<message key="manager.people.enrollSyncPress">Med forlag</message>
+	<message key="manager.people.mergeUsers.from.description">Vælg en bruger, der skal sammenflettes med en anden brugerkonto (f.eks. når en bruger har to brugerkonti). Den førstvalgte konto bliver slettet, og dens indsendelser, opgaver osv. lægges under den anden konto.</message>
+	<message key="manager.people.mergeUsers.into.description">Vælg en bruger, som den forrige brugers forfatterskaber, redigeringsopgaver osv. skal lægges ind under.</message>
+	<message key="manager.people.syncUserDescription">Tilmeldingssynkronisering tilmelder alle brugere, der er tilmeldt den nævnte rolle hos det specificerede forlag, til en og samme rolle hos dette forlag. Denne funktion gør det muligt at synkronisere et fælles sæt brugere (f.eks. bedømmere) mellem de enkelte forlag.</message>
+	<message key="manager.people.confirmDisable">Deaktiver denne bruger? Dette forhindrer brugeren i at logge ind i systemet.
+
+Du kan eventuelt give brugeren en grund til at vedkommendes konto deaktiveres.</message>
+	<message key="manager.people.noAdministrativeRights"><![CDATA[Beklager, du har ikke administratorrettigheder over denne bruger. Dette kan skyldes:
+<ul>
+<li>Brugeren er en webstedsadministrator</li>
+<li>Brugeren er aktiv hos de forlag, du ikke administrerer</li>
+</ul>
+Denne opgave skal udføres af en webstedsadministrator.]]></message>
+	<message key="manager.system">Systemindstillinger</message>
+	<message key="manager.system.archiving">Arkivering</message>
+	<message key="manager.system.reviewForms">Bedømmelsesformularer</message>
+	<message key="manager.system.readingTools">Læseværktøjer</message>
+	<message key="manager.system.payments">Betalinger</message>
+	<message key="user.authorization.pluginLevel">Du har ikke tilstrækkelige brugerrettigheder til at administrere dette plugin.</message>
+	<message key="manager.pressManagement">Forlagsadministration</message>
+	<message key="manager.setup">Opsætning</message>
+	<message key="manager.setup.aboutItemContent">Indhold</message>
+	<message key="manager.setup.addAboutItem">Tilføj 'Om'-element</message>
+	<message key="manager.setup.addChecklistItem">Tilføj tjeklisteelementer</message>
+	<message key="manager.setup.addItem">Tilføj elementer</message>
+	<message key="manager.setup.addItemtoAboutPress">Tilføj element, der skal vises i "Om forlaget"</message>
+	<message key="manager.setup.addNavItem">Tilføj element</message>
+	<message key="manager.setup.addSponsor">Tilføj sponsororganisation</message>
+	<message key="manager.setup.announcements">Meddelelser</message>
+	<message key="manager.setup.announcementsDescription">Meddelelser kan offentliggøres for at informere læserne om nyheder og begivenheder. Publicerede meddelelser vises på siden Meddelelser.</message>
+	<message key="manager.setup.announcementsIntroduction">Yderligere Information</message>
+	<message key="manager.setup.announcementsIntroductionDescription">Indtast yderligere oplysninger, der skal vises for læserne på siden 'Meddelelser'.</message>
+	<message key="manager.setup.appearInAboutPress">(Vises i 'Om forlaget')</message>
+	<message key="manager.setup.copyediting">Manuskriptredaktører</message>
+	<message key="manager.setup.copyeditInstructions">Anvisninger til manuskriptredaktører</message>
+	<message key="manager.setup.copyeditInstructionsDescription">Anvisningerne til manuskriptredaktørerne stilles til rådighed for manuskriptredaktører, forfattere og sektionredaktører under redigeringsfasen. Nedenfor er et standardsæt med instruktioner i HTML, som til enhver tid kan ændres eller erstattes af forlagschefen (i HTML eller almindelig tekst).</message>
+	<message key="manager.setup.copyrightNotice">Oplysninger om ophavsret</message>
+	<message key="manager.setup.coverage"> Dækningsområde</message>
+	<message key="manager.setup.customizingTheLook"><![CDATA[Trin 5. Tilpasning af fremtoning (Look & Feel)]]></message>
+	<message key="manager.setup.customTags">Brugerdefinerede tags</message>
+	<message key="manager.setup.customTagsDescription">Brugerdefinerede HTML-header-tags, der skal indsættes i headeren på hver side (f.eks. META-tags).</message>
+	<message key="manager.setup.details">Detaljer</message>
+	<message key="manager.setup.details.description">Forlaget navn, kontakter, sponsorer og søgemaskiner.</message>
+	<message key="manager.setup.disableUserRegistration">Forlagschefen registrerer alle brugerkonti. Redaktører eller sektionsredaktører kan registrere brugerkonti for bedømmere.</message>
+	<message key="manager.setup.discipline">Akademisk fagområde og underdiscipliner</message>
+	<message key="manager.setup.disciplineDescription">Nyttig, når forlaget krydser faggrænser og/eller forfattere indsender tværfagligt indhold.</message>
+	<message key="manager.setup.disciplineExamples">(F.eks. Historie; Uddannelse; Sociologi; Psykologi; Kulturstudier; Jura)</message>
+	<message key="manager.setup.disciplineProvideExamples">Giv eksempler på relevante akademiske fagområder i forbindelse med dette forlag</message>
+	<message key="manager.setup.displayCurrentMonograph">Tilføj indholdsfortegnelsen til den aktuelle monografi (hvis tilgængelig).</message>
+	<message key="manager.setup.displayOnHomepage">Hjemmesideindhold</message>
+	<message key="manager.setup.displayFeaturedBooks">Vis fremhævede bøger på startsiden.</message>
+	<message key="manager.setup.displayInSpotlight">Vis spotlight-bøger på hjemmesiden.</message>
+	<message key="manager.setup.displayNewReleases">Vis nye udgivelser på hjemmesiden</message>
+	<message key="manager.setup.doiPrefix">DOI-præfiks</message>
+	<message key="manager.setup.doiPrefixDescription"><![CDATA[DOI (Digital Object Identifier) præfikset tildeles af <a href="http://www.crossref.org" target="_blank">CrossRef</a> og er i formatet 10.xxxx (f.eks. 10.1234).]]></message>
+	<message key="manager.setup.editorDecision">Redaktørbeslutning</message>
+	<message key="manager.setup.emailBounceAddress">Bounce-adresse</message>
+	<message key="manager.setup.emailBounceAddressDescription">Eventuelle e-mails, der ikke kan leveres, resulterer i en fejlmeddelelse til denne adresse.</message>
+	<message key="manager.setup.emailBounceAddressDisabled"><![CDATA[<strong>Bemærk:</strong> For at aktivere denne indstilling skal webstedsadministratoren aktivere indstillingen <tt>allow_envelope_sender</tt> i OMP-konfigurationsfilen. Yderligere serverkonfiguration kræves muligvis for at understøtte denne funktionalitet (som muligvis ikke er mulig på alle servere), som angivet i OMP-dokumentationen.]]></message>
+	<message key="manager.setup.emails">E-mail-identifikation</message>
+	<message key="manager.setup.emailSignature">Signatur</message>
+	<message key="manager.setup.emailSignatureDescription">De forud formulerede e-mails, der sendes af systemet på vegne af forlaget, tilføjes følgende signatur til slut.</message>
+	<message key="manager.setup.enableAnnouncements">Aktiver meddelelser</message>
+	<message key="manager.setup.enableAnnouncementsHomepage1">Vis</message>
+	<message key="manager.setup.enableAnnouncementsHomepage2">af de seneste meddelelser på forlagets hjemmeside.</message>
+	<message key="manager.setup.enablePressInstructions">Offentliggør dette forlag på webstedet </message>
+	<message key="manager.setup.enablePublicMonographId">Brugerdefinerede identifikatorer vil blive brugt til at identificere offentliggjort indhold.</message>
+	<message key="manager.setup.enablePublicGalleyId">Brugerdefinerede identifikatorer vil blive brugt til at identificere publiceringsversioner (f.eks. HTML- eller PDF-filer) i det publicerede indhold.</message>
+	<message key="manager.setup.enableUserRegistration">Besøgende kan registrere en brugerkonto hos forlaget.</message>
+	<message key="manager.setup.focusAndScope">Forlagets fokusområde</message>
+	<message key="manager.setup.focusAndScope.description">Beskriv for forfattere, læsere og bibliotekarer udvalget af monografier og andet indhold, som forlaget vil offentliggøre.</message>
+	<message key="manager.setup.focusScope">Fokusområde</message>
+	<message key="manager.setup.focusScopeDescription"><![CDATA[<strong>EXAMPLE HTML DATA</strong>]]></message>
+	<message key="manager.setup.forAuthorsToIndexTheirWork">Til brug for forfattere i forbindelse med indeksering af deres arbejde</message>
+	<message key="manager.setup.forAuthorsToIndexTheirWorkDescription"><![CDATA[OMP overholder <a href="http://www.openarchives.org/" target="_blank">Open Archives Initiative</a>-protokollen i forbindelse med Metadata Harvesting, som er den nye standard til levering af en velindekseret adgang til elektroniske forskningsressourcer på verdensplan. Forfatterne vil bruge en lignende skabelon til at levere metadata til deres indsendelse. Forlagschefen skal vælge kategorierne til indeksering og præsentere relevante eksempler for forfattere for at hjælpe dem med at indeksere deres arbejde. Termer adskilles med en semikolon (f.eks. term 1; term2). Indgangene skal introduceres som eksempler ved at bruge "F.eks" eller "For eksempel".]]></message>
+	<message key="manager.setup.form.contactEmailRequired">Den primære kontaktpersons e-mail er påkrævet.</message>
+	<message key="manager.setup.form.contactNameRequired">Den primære kontaktpersons navn er påkrævet.</message>
+	<message key="manager.setup.form.pressNameRequired">Forlagets navn er påkrævet.</message>
+	<message key="manager.setup.form.numReviewersPerSubmission">Antallet af bedømmere pr. Indsendelse er påkrævet.</message>
+	<message key="manager.setup.form.supportEmailRequired">Support-e-mail er påkrævet</message>
+	<message key="manager.setup.form.supportNameRequired">Supportnavn er påkrævet</message>
+	<message key="manager.setup.form.pressInitialsRequired">Forlagets initialer er påkrævet.</message>
+	<message key="manager.setup.generalInformation">Generel information</message>
+	<message key="manager.setup.gettingDownTheDetails">Trin 1. Indskriv detaljerne</message>
+	<message key="manager.setup.guidelines">Retningslinjer</message>
+	<message key="manager.setup.preparingWorkflow">Trin 3. Forberedelse af workflowet</message>
+	<message key="manager.setup.information.description">Korte beskrivelser af forlaget til bibliotekarer og potentielle forfattere og læsere. Beskirivelserne bliver gjort tilgængelige i webstedets sidemenu, når Informationsfunktionen er tilføjet.</message>
+	<message key="manager.setup.information.forAuthors">Til Forfattere</message>
+	<message key="manager.setup.information.forLibrarians">Til bibliotekarer</message>
+	<message key="manager.setup.information.forReaders">Til læsere</message>
+	<message key="manager.setup.institution">Institution</message>
+	<message key="manager.setup.labelName">Mærkenavn</message>
+	<message key="manager.setup.layoutAndGalleys">Layoutredaktører</message>
+	<message key="manager.setup.layoutInstructions">Layout-vejledninger</message>
+	<message key="manager.setup.layoutInstructionsDescription">Layout-vejledninger kan forberedes og indsættes  i forbindelse med formatering af indhold, der senere skal publiceres. Vejledningerne lægges ind nedenfor i HTML eller almindelig tekst. De vil blive gjort tilgængelige for layoutredaktør og sektionsredaktør på redigeringssiden til hver indsendelse. (Da hvert forlag kan anvende sine egne filformater, bibliografiske standarder, typografiark osv., leveres der her ikke et sæt standardinstruktioner).</message>
+	<message key="manager.setup.layoutTemplates">Layoutskabeloner</message>
+	<message key="manager.setup.layoutTemplatesDescription">Skabeloner kan uploades så de vises i Layout for hvert af de standardformater, som forlaget har offentliggjort (f.eks. monografi, bogbedømmelse osv.) og ethvert filformat (f.eks. pdf, doc osv.) med tilføjede kommentarer, der angiver skrifttype, størrelse , marginer osv. så det fungerer som en guide til layoutredaktører og korrekturlæsere.</message>
+	<message key="manager.setup.layoutTemplates.file">Skabelonfil</message>
+	<message key="manager.setup.layoutTemplates.title">Titel</message>
+	<message key="manager.setup.lists">Lister</message>
+	<message key="manager.setup.listsDescription">Begræns antallet af poster (f.eks. indsendelser, brugere eller redigeringsopgaver), der skal vises på en liste, før de efterfølgende poster vises på en anden side. Begræns også antallet af links, der skal vises på de efterfølgende siders lister.</message>
+	<message key="manager.setup.look"><![CDATA[Fremtoning (Look & Feel)]]></message>
+	<message key="manager.setup.look.description">Homepage-sidens sidehoved, indhold, forlagets sidehoved, sidefod, navigationmenu og style sheet.</message>
+	<message key="manager.setup.settings">Indstillinger</message>
+	<message key="manager.setup.management.description">Adgang og sikkerhed, planlægning, meddelelser, manuskriptredigering, layout og korrekturlæsning.</message>
+	<message key="manager.setup.managementOfBasicEditorialSteps">Administration af grundlæggende redaktionelle trin</message>
+	<message key="manager.setup.managingPublishingSetup">Administrations- og publiceringsopsætning</message>
+	<message key="manager.setup.managingThePress">Trin 4. Håndtering af indstillinger</message>
+	<message key="manager.setup.noImageFileUploaded">Ingen billedfil uploadet.</message>
+	<message key="manager.setup.noStyleSheetUploaded">Intet style sheet uploadet.</message>
+	<message key="manager.setup.note">Note</message>
+	<message key="manager.setup.notifyAllAuthorsOnDecision">Når du bruger 'Underret forfatter-e-mailen', skal du, på de indsendelser, der har flere forfattere, inkludere e-mail-adresserne på alle medforfattere og ikke kun e-mail-adressen på den, der indsender manuskriptet.</message>
+	<message key="manager.setup.noUseCopyeditors">Manuskriptredigering vil blive foretaget af en redaktør eller sektioneditor, der har fået tildelt indsendelsen.</message>
+	<message key="manager.setup.noUseLayoutEditors">En redaktør eller sektionsredaktør, der har fået tildelt indsendelsen klargør publiceringsfilerne (HTML-, PDF- osv.).</message>
+	<message key="manager.setup.noUseProofreaders">En redaktør eller sektionsredaktør, der er blevet tildelt indsendelsen, kontrollerer publiceringsfilerne.</message>
+	<message key="manager.setup.numPageLinks">Sidelinks</message>
+	<message key="manager.setup.onlineAccessManagement">Adgang til forlagsindhold</message>
+	<message key="manager.setup.onlineIssn">Online ISSN</message>
+	<message key="manager.setup.policies">Politikker</message>
+	<message key="manager.setup.policies.description">Fokus, peer review, sektioner, erklæring om beskyttelse af personlige oplysninger, sikkerhed og ekstra indhold under 'Om'.</message>
+	<message key="manager.setup.appearanceDescription">Forskellige komponenter, der indgår i opbygningen af udseendet af forlagssiderne kan konfigureres fra denne side, inklusiv sidehoved- og sidefodselementer, forlagets stil og layout-tema, og måden hvorpå lister med information præsenteres for brugerne.</message>
+	<message key="manager.setup.pressDescription">Forlagsresume</message>
+	<message key="manager.setup.pressDescription.description">En kort beskrivelse af dit forlag.</message>
+	<message key="manager.setup.aboutPress">Om forlaget</message>
+	<message key="manager.setup.aboutPress.description">Medtag alle oplysninger om dit forlag, som kan være af interesse for læsere, forfattere eller bedømmere. Dette kan omfatte din open access-politik, fokusområde, ophavsret, sponsoreringer, forlagets historie og en erklæring om beskyttelse af personlige oplysninger.</message>
+	<message key="manager.setup.pressArchiving">Forlagsarkivering</message>
+	<message key="manager.setup.homepageContent">Forlagets homepage-indhold</message>
+	<message key="manager.setup.homepageContentDescription">Forlagets hjemmeside består i standardopsætningen af navigationslink. Yderligere hjemmesideindhold kan tilføjes ved hjælp af en eller flere af følgende indstillinger, som optræder i den viste rækkefølge.</message>
+	<message key="manager.setup.pressHomepageContent">Forlagets homepage-indhold</message>
+	<message key="manager.setup.pressHomepageContentDescription">Forlagets hjemmeside består i standardopsætningen af navigationslink. Yderligere hjemmesideindhold kan tilføjes ved hjælp af en eller flere af følgende indstillinger, som optræder i den viste rækkefølge.</message>
+	<message key="manager.setup.pressInitials">Forlagsinitialer</message>
+	<message key="manager.setup.layout">Forlags-layout</message>
+	<message key="manager.setup.pageHeader">Forlagets sidehoved</message>
+	<message key="manager.setup.pressPolicies">Trin 2. Forlags-politikker</message>
+	<message key="manager.setup.pressSetup">Forlagsopsætning</message>
+	<message key="manager.setup.pressSetupUpdated">Din forlagsopsætning er blevet opdateret.</message>
+	<message key="manager.setup.styleSheetInvalid">Ugyldigt style sheet. Accepteret format er .css.</message>
+	<message key="manager.setup.pressTheme">Forlagets layout-tema</message>
+	<message key="manager.setup.contextName">Forlagsnavn</message>
+	<message key="manager.setup.printIssn">Print ISSN</message>
+	<message key="manager.setup.proofingInstructions">Korrekturvejledning</message>
+	<message key="manager.setup.proofingInstructionsDescription">Korrekturlæsnings-vejledningen stilles til rådighed for korrekturlæsere, forfattere, layout-redaktører og sektionsredaktører i redigeringsfasen. Nedenfor findes et standardsæt med vejledninger i HTML, som, til enhver tid,  kan redigeres eller erstattes af forlagschefen (i HTML eller almindelig tekst).</message>
+	<message key="manager.setup.proofreading">Korrekturlæsere</message>
+	<message key="manager.setup.provideRefLinkInstructions">Lever vejledning til layout-redaktører.</message>
+	<message key="manager.setup.publicationScheduleDescription">Forlagsindhold kan offentliggøres samlet som en del af en monografi med egen indholdsfortegnelse. Alternativt kan enkelte dele af indhold offentliggøres, så snart de er klar, ved at tilføje dem til det "aktuelle" binds indholdsfortegnelse. Giv læserne i 'Om forlaget' en redegørelse for det system, dette forlag vil bruge, og dets forventede udgivelsesfrekvens.</message>
+	<message key="manager.setup.publisher">Udgiver</message>
+	<message key="manager.setup.publisherDescription">Navnet på den organisation, der står bag forlaget, vises i Om forlaget.</message>
+	<message key="manager.setup.referenceLinking">Reference-linking</message>
+	<message key="manager.setup.refLinkInstructions.description">Layout-vejledning i forbindelse med reference-linking</message>
+	<message key="manager.setup.restrictMonographAccess">Brugere skal være registreret og logget på for at se indhold med åben adgang.</message>
+	<message key="manager.setup.restrictSiteAccess">Brugere skal være registreret og logget på for at se forlagets hjemmesider.</message>
+	<message key="manager.setup.reviewGuidelines">Retningslinjer for eksterne bedømmere</message>
+	<message key="manager.setup.reviewGuidelinesDescription">Sørg får at eksterne bedømmere får en vejledning i, hvordan de bedømmer om en indsendelse er egnet til publicering hos forlaget. I vejledningen kan der indgå en instruktion i hvordan en effektiv og nyttig bedømmelse forberedes. Bedømmere vil have mulighed for at videregive kommentarer til forfatteren og redaktøren samt separate kommentarer til redaktøren.</message>
+	<message key="manager.setup.internalReviewGuidelines">Retningslinjer for interne bedømmere</message>
+	<message key="manager.setup.internalReviewGuidelinesDescription">Ligesom i retningslinjerne for ekstern bedømmelse, vil disse instruktioner give bedømmere oplysninger om hvordan en indsendelsen skal vurderes. Denne vejledning er til bedømmere, der generelt agerer som interne bedømmere for forlaget.</message>
+	<message key="manager.setup.reviewOptions">Bedømmelsesmuligheder</message>
+	<message key="manager.setup.reviewOptions.automatedReminders">Automatiske e-mail-påmindelser</message>
+	<message key="manager.setup.reviewOptions.automatedRemindersDisabled"><![CDATA[For at aktivere disse indstillinger skal webstedsadministratoren aktivere muligheden <tt>scheduled_tasks</tt> i OMP-konfigurationsfilen. Yderligere serverkonfiguration kræves muligvis for at understøtte denne funktionalitet (som måske ikke er mulig på alle servere), som angivet i OMP-dokumentationen.]]></message>
+	<message key="manager.setup.reviewOptions.blindReview">Blind Review</message>
+	<message key="manager.setup.reviewOptions.onQuality">Redaktører vurderer bedømmere på en fem-trins kvalitetskala efter hver gennemgang.</message>
+	<message key="manager.setup.reviewOptions.restrictReviewerFileAccess">Bedømmere har kun adgang til indsendelsesfilen, når de har accepteret at gennemføre bedømmelsen.</message>
+	<message key="manager.setup.reviewOptions.reviewerAccess">Bedømmeradgang</message>
+	<message key="manager.setup.reviewOptions.reviewerAccessKeysEnabled">Aktiver adgang for bedømmere ved hjælp af ét klik. </message>
+	<message key="manager.setup.reviewOptions.reviewerAccessKeysEnabled.description"><![CDATA[<strong>Bemærk:</strong> E-mail-invitationen til bedømmere vil indeholde en speciel URL, der bringer inviterede bedømmere direkte til indsendelsens redaktionelle bedømmelsesside (med adgang til andre sider, der kræver login). Af sikkerhedsmæssige årsager kan redaktører, i denne sammenhæng, ikke ændre e-mail-adresser eller tilføje CC'er eller BCC'er, før de sender invitationer til bedømmere.]]></message>
+	<message key="manager.setup.reviewOptions.reviewerRatings">Bedømmervurderinger</message>
+	<message key="manager.setup.reviewOptions.reviewerReminders">Bedømmer-påmindelser</message>
+	<message key="manager.setup.reviewOptions.showEnsuringLink">Indsæt link til "Sikring af blind review" på sider, hvor forfattere og bedømmere uploader filer.</message>
+	<message key="manager.setup.reviewPolicy">Bedømmelsespolitikker</message>
+	<message key="manager.setup.reviewProcess">Bedømmelsesproces</message>
+	<message key="manager.setup.reviewProcessDescription"><![CDATA[OMP understøtter to modeller til styring af bedømmelsesprocessen. The Standard Review Process anbefales, fordi den fører bedømmeren gennem processen, sikrer en komplet bedømmelseshistorik for hver indsendelse og benytter den automatiske påmindelsesbesked samt standardbedømmelser i forbindelse med indsendelser (Accepter manuskript; Rettelser er påkrævet; Fremsend igen til bedømmelse; Fremsend til andet sted/anden bedømmer; Afvis manuskript; Se kommentarer).<br /><br /> Vælg en af følgende:]]></message>
+	<message key="manager.setup.reviewProcessEmail">Email-Attachment Review Process</message>
+	<message key="manager.setup.reviewProcessStandard">Standard Review Process</message>
+	<message key="manager.setup.reviewProcessStandardDescription">Redaktører sender en e-mail til udvalgte bedømmere med titel og abstrakt samt en invitation til at logge ind på forlagets website for at gennemføre anmeldelsen. Bedømmere går ind på forlagets website for at tilkendegive om de vil give en bedømmelse, downloade indsendelser, indsende deres kommentarer og vælge en anbefaling.</message>
+	<message key="manager.setup.searchEngineIndexing">Søgemaskineindeksering</message>
+	<message key="manager.setup.searchEngineIndexingDescription">Giv en kort beskrivelse af forlaget, som søgemaskiner kan vise, når forlaget vises i søgeresultaterne.</message>
+	<message key="manager.setup.sectionsAndSectionEditors">Sektioner og sektionsredaktører</message>
+	<message key="manager.setup.sectionsDefaultSectionDescription">(Hvis sektioner ikke er tilføjet, sendes poster som standard til sektionen 'Monografier').</message>
+	<message key="manager.setup.sectionsDescription"><![CDATA[Hvis du vil oprette eller ændre sektioner (f.eks. monografier, boganmeldelser osv.), skal du gå til Sektionsstyring.<br /> <br /> Forfattere vil, ved indsendelse af poster til forlaget, udpege...]]></message>
+	<message key="manager.setup.securitySettings">Adgangs- og sikkerhedsindstillinger</message>
+	<message key="manager.setup.securitySettings.note"><![CDATA[Andre sikkerheds- og adgangsrelaterede indstillinger kan konfigureres fra siden <a href="{$accessAndSecurityUrl}" target="_blank" class="action">Adgang og sikkerhed</a> page.]]></message>
+	<message key="manager.setup.selectEditorDescription">Forlagsredaktøren, der vil følge det gennem den redaktionelle proces.</message>
+	<message key="manager.setup.selectSectionDescription">Sektionen, som indlægget vil blive set i forhold til.</message>
+	<message key="manager.setup.showGalleyLinksDescription">Vis altid links til publiceringsfiler og angiv begrænset adgang.</message>
+	<message key="manager.setup.siteAccess">Yderligere adgangsbegrænsninger til website og indhold</message>
+	<message key="manager.setup.stepsToPressSite">Fem trin til et forlags-websted</message>
+	<message key="manager.setup.subjectExamples">(F.eks. Fotosyntese; sorte huller; bayesisk teori)</message>
+	<message key="manager.setup.subjectKeywordTopic">Nøgleord</message>
+	<message key="manager.setup.subjectProvideExamples">Giv eksempler på nøgleord eller emner som vejledning for forfattere</message>
+	<message key="manager.setup.submissionGuidelines">Indsendelsesvejledning</message>
+	<message key="manager.setup.submissionPreparationChecklist">Tjekliste til forberedelse af manuskript</message>
+	<message key="maganer.setup.submissionChecklistItemRequired">Tjeklisteindhold er påkrævet.</message>
+	<message key="manager.setup.workflow">Workflow</message>
+	<message key="manager.setup.submissions.description">Retningslinjer for forfattere, ophavsret og indeksering (inklusiv registrering).</message>
+	<message key="manager.setup.coverThumbnails">Miniaturebillede af bogomslag</message>
+	<message key="manager.setup.coverThumbnailsDescription">Indstil maksimal bredde og højde på miniaturebillederne af bogomslagene. Hvis de er større ændres de til disse indstillinger, men hvis de er mindre forstørres de ikke. Billederne strækkes aldrig for at passe til disse dimensioner.</message>
+	<message key="manager.setup.coverThumbnailsMaxHeight">Maks. højde</message>
+	<message key="manager.setup.coverThumbnailsMaxHeightRequired">Der kræves en maksimal højde på miniaturebilledet af bogomslag.</message>
+	<message key="manager.setup.coverThumbnailsMaxWidth">Maks. bredde</message>
+	<message key="manager.setup.coverThumbnailsMaxWidthRequired">Der kræves en maksimal bredde på miniaturebilledet til bogomslag.</message>
+	<message key="manager.setup.coverThumbnailsResize">Ændre størrelse på alle eksisterendeminiaturebilleder til bogomslag.</message>
+	<message key="manager.setup.typeExamples">(F.eks. historisk undersøgelse; kvasi-eksperimentel; litterær analyse; undersøgelse/interview)</message>
+	<message key="manager.setup.typeMethodApproach">Type (metode/fremgangsmåde)</message>
+	<message key="manager.setup.typeProvideExamples">Giv eksempler på relevante forskningstyper, metoder og tilgange til dette felt</message>
+	<message key="manager.setup.useCopyeditors">En manuskriptredaktør vil blive knyttet til redigeringen af hver indsendelse.</message>
+	<message key="manager.setup.useEditorialReviewBoard">Et rådgivende udvalg dækkende det redaktionelle og bedømmelsesmæssige område vil blive tilknyttet forlaget.</message>
+	<message key="manager.setup.useImageTitle">Titelbillede</message>
+	<message key="manager.setup.useStyleSheet">Forlags style sheet</message>
+	<message key="manager.setup.useLayoutEditors">Der vil blive tilknyttet en layoutredaktør der vil klargøre HTML, PDF og andre filtyper til elektronisk publicering.</message>
+	<message key="manager.setup.useProofreaders">Der vil blive tilknyttet en korrekturlæser der sammen med forfatterne vil tjekke publiceringsfilerne inden udgivelsen.</message>
+	<message key="manager.setup.userRegistration">Brugerregistrering</message>
+	<message key="manager.setup.useTextTitle">Titeltekst</message>
+	<message key="manager.setup.volumePerYear">Bind per år</message>
+	<message key="manager.setup.publicationFormat.code">Format</message>
+	<message key="manager.setup.publicationFormat.codeRequired">Der skal vælges et format.</message>
+	<message key="manager.setup.publicationFormat.nameRequired">Du skal tildele et navn til dette format.</message>
+	<message key="manager.setup.publicationFormat.physicalFormat">Er dette et fysisk (ikke-digitalt) format?</message>
+	<message key="manager.setup.publicationFormat.inUse">Da dette publikationsformat i øjeblikket bruges af en af forlagets monografier, kan det ikke slettes.</message>
+	<message key="manager.setup.newPublicationFormat">Nyt publiceringsformat</message>
+	<message key="manager.setup.newPublicationFormatDescription">For at oprette et nyt publikationsformat skal du udfylde nedenstående formular og klikke på knappen "Opret".</message>
+	<message key="manager.setup.genresDescription">Disse genrer bruges til filnavngivning og præsenteres i en rullemenu i forbindelse med upload af filer. Genrene, der er betegnet ##, giver brugeren mulighed for at knytte filen til enten hele bogen 99Z eller et bestemt kapitel efter nummer (f.eks. 02).</message>
+	<message key="manager.setup.reviewProcessEmailDescription">Redaktører sender bedømmere anmodningen om at foretage en bedømmelse med indsendelsen vedhæftet e-mailen. Bedømmere sender e-mail til redaktører med deres godkendelse (eller indvendinger) sammen med gennemgangen og anbefalingen. Redaktører indsætter bedømmernes godkendelse (eller indvendinger) såvel som gennemgang og anbefalinger i forbindelse med indsendelsen på den redaktionelle bedømmelsesside for at registrere bedømmelsesprocessen.</message>
+	<message key="manager.setup.genres">Genre</message>
+	<message key="manager.setup.newGenre">Nye monografigenre</message>
+	<message key="manager.setup.newGenreDescription">For at oprette en ny genre skal du udfylde nedenstående formular og klikke på knappen "Opret".</message>
+	<message key="manager.setup.deleteSelected">Slet valgte</message>
+	<message key="manager.setup.restoreDefaults">Gendan standardindstillinger</message>
+	<message key="manager.setup.prospectus">Prospektvejledning</message>
+	<message key="manager.setup.prospectusDescription">Prospektvejledningen er et dokument udarbejdet af forlaget, der hjælper forfatteren med at beskrive de indsendte materialer på en måde, der giver et forlag mulighed for at bestemme værdien af indsendelsen. Et prospekt kan omfatte mange elementer - fra markedsføringspotentiale til teoretisk værdi. Under alle omstændigheder bør et forlag oprette en prospektvejledning, der supplerer deres udgivelsesprogram.</message>
+	<message key="manager.setup.submitToCategories">Tillad kategori-indsendelser</message>
+	<message key="manager.setup.submitToSeries">Tillad serie-indsendelser</message>
+	<message key="manager.setup.issnDescription"><![CDATA[ISSN (International Standard Serial Number) er et ottecifret nummer, der identificerer periodiske publikationer medregnet elektroniske serier. Et nummer kan fås fra <a href="http://www.issn.org" target="_blank">ISSN International Center</a>.]]></message>
+	<message key="manager.setup.cataloguingMetadata">Katalogisering af metadata</message>
+	<message key="manager.setup.currentFormats">Aktuelle formater</message>
+	<message key="manager.setup.categoriesAndSeries">Kategorier og serier</message>
+	<message key="manager.setup.categories.description">Du kan oprette en liste over kategorier, der hjælper med at organisere dine publikationer. Kategorier er grupperinger af bøger efter emne, for eksempel økonomi; litteratur; poesi osv. Kategorier kan være indlejret inden for "overordnede" kategorier, for eksempel kan en hovedkategori for økonomi omfatte individuelle mikroøkonomiske og makroøkonomiske kategorier. Besøgende vil være i stand til at søge og gennemse pressen efter kategori.</message>
+	<message key="manager.setup.series.description">Du kan oprette et vilkårligt antal serier, der hjælper med at organisere dine publikationer. En serie repræsenterer et specielt sæt bøger, der knytter sig til et tema eller emner, som nogen måtte have foreslået, normalt et fakultetsmedlem eller to, der derefter fører tilsyn med indholdet. Besøgende vil være i stand til at søge og gennemse forlaget efter serie ..</message>
+	<message key="manager.setup.reviewForms">Bedømmelsesformularer</message>
+	<message key="manager.setup.roleType">Rolletyper</message>
+	<message key="manager.setup.authorRoles">Forfatterroller</message>
+	<message key="manager.setup.managerialRoles">Administrerende roller</message>
+	<message key="manager.setup.availableRoles">Tilgængelige roller</message>
+	<message key="manager.setup.currentRoles">Aktuelle roller</message>
+	<message key="manager.setup.internalReviewRoles">Interne bedømmelsesroller</message>
+	<message key="manager.setup.masthead">Kolofon</message>
+	<message key="manager.setup.editorialTeam">Redaktionel gruppe</message>
+	<message key="manager.setup.editorialTeam.description">Liste over redaktører, administrerende ledere og andre personer, der er tilknyttet forlaget</message>
+	<message key="manager.setup.files">Filer</message>
+	<message key="manager.setup.productionTemplates">Produktionsskabeloner</message>
+	<message key="manager.files.note">Bemærk: Filbrowseren er en avanceret funktion, der gør det muligt at se filer og mapper, der er knyttet til et forlag, med det formål at se og håndtere dem direkte.</message>
+	<message key="manager.setup.authorCopyrightNotice.sample"><![CDATA[<h3>Proposed Creative Commons Copyright Notices</h3>
+<h4>Proposed Policy for Presses That Offer Open Access</h4>
+Authors who publish with this press agree to the following terms:
+<ol type="a">
+	<li>Authors retain copyright and grant the press right of first publication with the work simultaneously licensed under a <a target="_blank" href="http://creativecommons.org/licenses/by/3.0/">Creative Commons Attribution License</a> that allows others to share the work with an acknowledgement of the work's authorship and initial publication in this press.</li>
+	<li>Authors are able to enter into separate, additional contractual series for the non-exclusive distribution of the version of the work published by the press (e.g., post it to an institutional repository or publish it in a book), with an acknowledgement of its initial publication in this press.</li>
+	<li>Authors are permitted and encouraged to post their work online (e.g., in institutional repositories or on their website) prior to and during the submission process, as it can lead to productive exchanges, as well as earlier and greater citation of published work (See <a target="_blank" href="http://opcit.eprints.org/oacitation-biblio.html">The Effect of Open Access</a>).</li>
+</ol>
+
+<h4>Proposed Policy for Presses That Offer Delayed Open Access</h4>
+Authors who publish with this press agree to the following terms:
+<ol type="a">
+	<li>Authors retain copyright and grant the press right of first publication, with the work [SPECIFY PERIOD OF TIME] after publication simultaneously licensed under a <a target="_blank" href="http://creativecommons.org/licenses/by/3.0/">Creative Commons Attribution License</a> that allows others to share the work with an acknowledgement of the work's authorship and initial publication in this press.</li>
+	 <li>Authors are able to enter into separate, additional contractual series for the non-exclusive distribution of the version of the work published by the press (e.g., post it to an institutional repository or publish it in a book), with an acknowledgement of its initial publication in this press.</li>
+	 <li>Authors are permitted and encouraged to post their work online (e.g., in institutional repositories or on their website) prior to and during the submission process, as it can lead to productive exchanges, as well as earlier and greater citation of published work (See <a target="_blank" href="http://opcit.eprints.org/oacitation-biblio.html"> The Effect of Open Access</a>).</li>
+</ol>]]></message>
+	<message key="manager.setup.basicEditorialStepsDescription"><![CDATA[Trin: Indsendelseskø &gt; Indsendelsesbedømmelse &gt; Indsendelsesredigering & t; Indholdsfortegnelse. <br /><br />
+Vælg en model til håndtering af disse dele af den redaktionelle proces. (Hvis du vil udpege en administrerende redaktør og serieredaktører, skal du gå til Redaktører under forlagsadministration.)]]></message>
+	<message key="manager.setup.referenceLinkingDescription"><![CDATA[<p>For at gøre det muligt for læsere at finde online-versioner af det af en forfatter citerede værk er følgende indstillinger tilgængelige.</p>
+
+<ol>
+<li><strong>Tilføj et læseværktøj</strong><p>Forlagschefen kan tilføje "Find referencer" til læseværktøjerne, der følger med publiceret indhold, og som gør det muligt for læsere at indsætte en references titel og derefter søge i forudvalgt videnskabeligt baserede databaser efter det citerede arbejde. </p> </li>
+<li><strong>Integrer links i referencerne</strong><p>Layoutredaktøren kan tilføje et link til referencer, der kan findes online ved hjælp af følgende instruktioner (som kan redigeres).</p></li>
+</ol>]]></message>
+	<message key="manager.publication.library">Forlagsbibliotek</message>
+	<message key="manager.setup.resetPermissions">Nulstil monografi-tilladelser</message>
+	<message key="manager.setup.resetPermissions.confirm">Er du sikker på, at du vil nulstille data-tilladelses, der allerede er knyttet til monografier?</message>
+	<message key="manager.setup.resetPermissions.description">Ophavsretlig erklæring og licensoplysninger vil blive vedhæftet permanent til publiceret indhold, hvilket sikrer, at disse data ikke ændres i tilfælde af forlagspolitiske ændringer for nye indsendelser. For at nulstille gemte tilladelsesoplysninger, der allerede er knyttet til publiceret indhold, skal du bruge knappen nedenfor.</message>
+	<message key="grid.genres.title.short">Komponenter</message>
+	<message key="grid.genres.title">Monografikomponenter</message>
+	<message key="manager.setup.notifications.copyPrimaryContact">Send en kopi til den primære kontaktperson, der er registreret i forlagets web-indstillinger.</message>
+	<message key="grid.series.pathAlphaNumeric">Seriestien skal kun bestå af bogstaver og tal.</message>
+	<message key="grid.series.pathExists">Seriestien findes allerede. Indtast en unik sti.</message>
+	<message key="manager.navigationMenus.form.navigationMenuItem.series">Vælg serie</message>
+	<message key="manager.navigationMenus.form.navigationMenuItemSeriesMessage">Vælg den serie, som du ønsker, at dette menupunkt skal linke til.</message>
+	<message key="manager.navigationMenus.form.navigationMenuItem.category">Vælg kategori</message>
+	<message key="manager.navigationMenus.form.navigationMenuItemCategoryMessage">Vælg den kategori, som du ønsker, at dette menupunkt skal linke til.</message>
+	<message key="grid.series.urlWillBe">Seriens URL vil være: {$sampleUrl}</message>
+	<message key="stats.publishedSubmissions.details">Monografidetaljer</message>
+	<message key="stats.publishedSubmissions.none">Ingen monografier blev fundet</message>
+	<message key="stats.publishedSubmissions.totalAbstractViews.timeSegment">Samlede resume-visninger for hver monografi efter dato</message>
+</locale>
