@@ -16,13 +16,6 @@
 	{include file="controllers/notification/inPlaceNotification.tpl" notificationId="productionNotification" requestOptions=$productionNotificationRequestOptions}
 
 	<div class="pkp_context_sidebar">
-		<div class="pkp_tab_actions">
-			<ul class="pkp_workflow_decisions">
-				<li>
-					<a href="#publication" class="pkp_linkaction_toPublication">{translate key="editor.article.schedulePublication"}</a>
-				</li>
-			</ul>
-		</div>
 		{capture assign=stageParticipantGridUrl}{url router=$smarty.const.ROUTE_COMPONENT component="grid.users.stageParticipant.StageParticipantGridHandler" op="fetchGrid" submissionId=$submission->getId() stageId=$stageId escape=false}{/capture}
 		{load_url_in_div id="stageParticipantGridContainer" url=$stageParticipantGridUrl class="pkp_participants_grid"}
 	</div>
