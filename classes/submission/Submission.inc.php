@@ -258,20 +258,4 @@ class Submission extends PKPSubmission {
 
 		return $this->getCurrentPublication()->getEditorString();
 	}
-
-	/**
-	 * Retrieves the assigned publication formats for this submission's current publiication
-	 * @param $onlyApproved boolean whether to fetch only those that are approved for publication.
-	 * @return array PublicationFormat
-	 * @deprecated 3.2.0.0
-	 */
-	function getPublicationFormats($onlyApproved = false) {
-		$publicationFormatDao = DAORegistry::getDAO('PublicationFormatDAO'); /** @var $publicationFormatDao PublicationFormatDAO */
-		if ($onlyApproved) {
-			$formats = $publicationFormatDao->getApprovedByPublicationId($this->getCurrentPublication()->getId());
-		} else {
-			$formats = $publicationFormatDao->getByPublicationId($this->getCurrentPublication()->getId(), null);
-		}
-		return $formats->toArray();
-	}
 }

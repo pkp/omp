@@ -21,6 +21,12 @@ import('lib.pkp.classes.linkAction.LinkAction');
 import('lib.pkp.classes.core.JSONMessage');
 
 class CatalogBookHandler extends Handler {
+	/** @var Publication The requested publication */
+	public $publication;
+
+	/** @var boolean Is this a request for a specific version */
+	public $isVersionRequest = false;
+
 	/**
 	 * Constructor
 	 */
@@ -59,13 +65,37 @@ class CatalogBookHandler extends Handler {
 		$this->setupTemplate($request, $submission);
 		AppLocale::requireComponents(LOCALE_COMPONENT_APP_SUBMISSION, LOCALE_COMPONENT_PKP_SUBMISSION); // submission.synopsis; submission.copyrightStatement
 
-		$templateMgr->assign('publishedSubmission', $submission);
+		// Get the requested publication or default to the current publication
+		$submissionId = array_shift($args);
+		$subPath = empty($args) ? 0 : array_shift($args);
+		if ($subPath === 'version') {
+			$this->isVersionRequest = true;
+			$publicationId = (int) array_shift($args);
+			foreach ($submission->getData('publications') as $publication) {
+				if ($publication->getId() === $publicationId) {
+					$this->publication = $publication;
+				}
+			}
+		} else {
+			$this->publication = $submission->getCurrentPublication();
+		}
+
+		if (!$this->publication) {
+			$request->getDispatcher()->handle404();
+		}
+
+		$templateMgr->assign([
+			'publishedSubmission' => $submission,
+			'publication' => $this->publication,
+			'firstPublication' => reset($submission->getData('publications')),
+			'currentPublication' => $submission->getCurrentPublication(),
+			'authorString' => $this->publication->getAuthorString(DAORegistry::getDAO('UserGroupDAO')->getByContextId($submission->getData('contextId'))->toArray()),
+		]);
 
 		// Provide the publication formats to the template
-		$publicationFormats = $submission->getPublicationFormats(true);
-		$availablePublicationFormats = array();
-		$availableRemotePublicationFormats = array();
-		foreach ($publicationFormats as $format) {
+		$availablePublicationFormats = [];
+		$availableRemotePublicationFormats = [];
+		foreach ($this->publication->getData('publicationFormats') as $format) {
 			if ($format->getIsAvailable()) {
 				$availablePublicationFormats[] = $format;
 				if ($format->getRemoteURL()) {
@@ -79,27 +109,22 @@ class CatalogBookHandler extends Handler {
 		));
 
 		// Assign chapters (if they exist)
-		$templateMgr->assign('chapters', DAORegistry::getDAO('ChapterDAO')->getByPublicationId($submission->getCurrentPublication()->getId())->toAssociativeArray());
+		$templateMgr->assign('chapters', DAORegistry::getDAO('ChapterDAO')->getByPublicationId($this->publication->getId())->toAssociativeArray());
 
 		$pubIdPlugins = PluginRegistry::loadCategory('pubIds', true);
 		$templateMgr->assign(array(
 			'pubIdPlugins' => PluginRegistry::loadCategory('pubIds', true),
-			'licenseUrl' => $submission->getLicenseURL(),
-			'ccLicenseBadge' => Application::getCCLicenseBadge($submission->getLicenseURL())
+			'ccLicenseBadge' => Application::getCCLicenseBadge($this->publication->getData('licenseUrl')),
 		));
 
 		// Categories
 		$templateMgr->assign([
-			'categories' => DAORegistry::getDAO('CategoryDAO')->getByPublicationId($submission->getCurrentPublication()->getId())->toArray(),
+			'categories' => DAORegistry::getDAO('CategoryDAO')->getByPublicationId($this->publication->getId())->toArray(),
 		]);
 
-		// Keywords
-		$submissionKeywordDao = DAORegistry::getDAO('SubmissionKeywordDAO');
-		$templateMgr->assign('keywords', $submissionKeywordDao->getKeywords($submission->getId(), array(AppLocale::getLocale())));
-
 		// Citations
-		if ($submission->getCurrentPublication()->getData('citationsRaw')) {
-			$parsedCitations = DAORegistry::getDAO('CitationDAO')->getByPublicationId($submission->getCurrentPublication()->getId());
+		if ($this->publication->getData('citationsRaw')) {
+			$parsedCitations = DAORegistry::getDAO('CitationDAO')->getByPublicationId($this->publication->getId());
 			$templateMgr->assign([
 				'citations' => $parsedCitations->toArray(),
 				'parsedCitations' => $parsedCitations, // compatible with older themes
@@ -107,27 +132,21 @@ class CatalogBookHandler extends Handler {
 		}
 
 		// Retrieve editors for an edited volume
-		$authors = $submission->getAuthors(true);
-		$editors = array();
+		$editors = [];
 		if ($submission->getWorkType() == WORK_TYPE_EDITED_VOLUME) {
-			foreach ($authors as $author) {
+			foreach ($this->publication->getData('authors') as $author) {
 				if ($author->getIsVolumeEditor()) {
 					$editors[] = $author;
 				}
 			}
 		}
-		$templateMgr->assign(array(
-			'authors' => $authors,
+		$templateMgr->assign([
 			'editors' => $editors,
-		));
+		]);
 
 		// Consider public identifiers
 		$pubIdPlugins = PluginRegistry::loadCategory('pubIds', true);
 		$templateMgr->assign('pubIdPlugins', $pubIdPlugins);
-
-		// e-Commerce
-		$press = $request->getPress();
-		$paymentManager = Application::getPaymentManager($press);
 
 		$availableFiles = array_filter(
 			DAORegistry::getDAO('SubmissionFileDAO')->getLatestRevisions($submission->getId(), null, null),
@@ -150,8 +169,21 @@ class CatalogBookHandler extends Handler {
 
 		// Provide the currency to the template, if configured.
 		$currencyDao = DAORegistry::getDAO('CurrencyDAO');
-		if ($currency = $press->getSetting('currency')) {
+		if ($currency = $request->getContext()->getSetting('currency')) {
 			$templateMgr->assign('currency', $currencyDao->getCurrencyByAlphaCode($currency));
+		}
+
+		// Add data for backwards compatibility
+		$templateMgr->assign([
+			'keywords' => $this->publication->getLocalizedData('keywords'),
+			'licenseUrl' => $this->publication->getData('licenseUrl'),
+		]);
+
+		// Ask robots not to index outdated versions and point to the canonical url for the latest version
+		if ($this->publication->getId() !== $submission->getCurrentPublication()->getId()) {
+			$templateMgr->addHeader('noindex', '<meta name="robots" content="noindex">');
+			$url = $request->getDispatcher()->url($request, ROUTE_PAGE, null, 'catalog', 'book', $submission->getBestId());
+			$templateMgr->addHeader('canonical', '<link rel="canonical" href="' . $url . '">');
 		}
 
 		// Display
