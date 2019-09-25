@@ -55,17 +55,6 @@ class CatalogEntryForm extends FormComponent {
 			];
 		}
 
-		// Category options
-		$categoryOptions = [];
-		$result = DAORegistry::getDAO('CategoryDAO')->getByContextId($submission->getData('contextId'));
-		while (!$result->eof()) {
-			$category = $result->next();
-			$categoryOptions[] = [
-				'value' => (int) $category->getId(),
-				'label' => $category->getLocalizedTitle(),
-			];
-		}
-
 		$this->addField(new FieldText('datePublished', [
 				'label' => __('publication.datePublished'),
 				'value' => $publication->getData('datePublished'),
@@ -79,13 +68,27 @@ class CatalogEntryForm extends FormComponent {
 				'label' => __('submission.submit.seriesPosition'),
 				'description' => __('submission.submit.seriesPosition.description'),
 				'value' => $publication->getData('seriesPosition'),
-			]))
-			->addField(new FieldOptions('categoryIds', [
+			]));
+
+		// Categories
+		$categoryOptions = [];
+		$result = DAORegistry::getDAO('CategoryDAO')->getByContextId($submission->getData('contextId'));
+		while (!$result->eof()) {
+			$category = $result->next();
+			$categoryOptions[] = [
+				'value' => (int) $category->getId(),
+				'label' => $category->getLocalizedTitle(),
+			];
+		}
+		if (!empty($categoryOptions)) {
+			$this->addField(new FieldOptions('categoryIds', [
 				'label' => __('submission.submit.placement.categories'),
 				'value' => (array) $publication->getData('categoryIds'),
 				'options' => $categoryOptions,
-			]))
-			->addField(new FieldUploadImage('coverImage', [
+			]));
+		}
+
+		$this->addField(new FieldUploadImage('coverImage', [
 				'label' => __('monograph.coverImage'),
 				'value' => $publication->getData('coverImage'),
 				'isMultilingual' => true,
