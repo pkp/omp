@@ -36,13 +36,13 @@ class SitemapHandler extends PKPSitemapHandler {
 			$root->appendChild($this->_createUrlTree($doc, $request->url($press->getPath(), 'catalog', 'view', array(submission->getBestId()))));
 			// Files
 			// Get publication formats
-			$publicationFormats = submission->getPublicationFormats(true);
+			$publicationFormats = DAORegistry::getDAO('PublicationFormatDAO')->getApprovedByPublicationId($submission->getCurrentPublication()->getId())->toArray();
 			foreach ($publicationFormats as $format) {
 				// Consider only available publication formats
 				if ($format->getIsAvailable()) {
 					// Consider only available publication format files
 					$availableFiles = array_filter(
-						$submissionFileDao->getLatestRevisionsByAssocId(ASSOC_TYPE_PUBLICATION_FORMAT, $format->getId(), submission->getId()),
+						Application::getSubmissionDAO()->getLatestRevisionsByAssocId(ASSOC_TYPE_PUBLICATION_FORMAT, $format->getId(), submission->getId()),
 						function($a) {
 							return $a->getDirectSalesPrice() !== null;
 						}

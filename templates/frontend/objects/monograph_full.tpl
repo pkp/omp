@@ -51,6 +51,9 @@
  *
  * @uses $currentPress Press The press currently being viewed
  * @uses $monograph Monograph The monograph to be displayed
+ * @uses $publication Publication The publication (version) that is being displayed
+ * @uses $firstPublication Publication The original publication (version) of this monograph
+ * @uses $currentPublication Publication The latest published version of this monograph
  * @uses $authors Array List of authors associated with this monograph
  * @uses $editors Array List of editors for this monograph if this is an edited
  *       volume. Otherwise empty.
@@ -70,8 +73,20 @@
  *       text. Only appears when license URL matches a known CC license.
  *}
 <div class="obj_monograph_full">
+
+	{* Notification that this is an old version *}
+	{if $currentPublication->getID() !== $publication->getId()}
+		<div class="cmp_notification notice">
+			{capture assign="latestVersionUrl"}{url page="catalog" op="book" path=$monograph->getBestId()}{/capture}
+			{translate key="submission.outdatedVersion"
+				datePublished=$publication->getData('datePublished')|date_format:$dateFormatShort
+				urlRecentVersion=$latestVersionUrl|escape
+			}
+		</div>
+	{/if}
+
 	<h1 class="title">
-		{$monograph->getLocalizedFullTitle()|escape}
+		{$publication->getLocalizedFullTitle()|escape}
 	</h1>
 
 	<div class="row">
@@ -83,7 +98,7 @@
 					{translate key="submission.authors"}
 				</h2>
 
-				{assign var="authors" value=$monograph->getAuthors()}
+				{assign var="authors" value=$publication->getData('authors')}
 
 				{* Only show editors for edited volumes *}
 				{if $monograph->getWorkType() == $smarty.const.WORK_TYPE_EDITED_VOLUME && $editors|@count}
@@ -163,18 +178,16 @@
 			{/foreach}
 
 			{* Keywords *}
-			{if !empty($keywords[$currentLocale])}
+			{if !empty($publication->getLocalizedData('keywords'))}
 			<div class="item keywords">
 				<span class="label">
 					{capture assign=translatedKeywords}{translate key="common.keywords"}{/capture}
 					{translate key="semicolon" label=$translatedKeywords}
 				</span>
 				<span class="value">
-				{foreach from=$keywords item=keyword}
-					{foreach name=keywords from=$keyword item=keywordItem}
-						{$keywordItem|escape}{if !$smarty.foreach.keywords.last}, {/if}
+					{foreach name="keywords" from=$publication->getLocalizedData('keywords') item=keyword}
+						{$keyword|escape}{if !$smarty.foreach.keywords.last}, {/if}
 					{/foreach}
-				{/foreach}
 				</span>
 			</div>
 			{/if}
@@ -185,7 +198,7 @@
 					{translate key="submission.synopsis"}
 				</h3>
 				<div class="value">
-					{$monograph->getLocalizedAbstract()|strip_unsafe_html}
+					{$publication->getLocalizedData('abstract')|strip_unsafe_html}
 				</div>
 			</div>
 
@@ -208,7 +221,7 @@
 									{/if}
 								</div>
 								{assign var=chapterAuthors value=$chapter->getAuthorNamesAsString()}
-								{if $monograph->getAuthorString() != $chapterAuthors}
+								{if $authorString != $chapterAuthors}
 									<div class="authors">
 										{$chapterAuthors|escape}
 									</div>
@@ -259,7 +272,7 @@
 
 			{* Determine if any authors have biographies to display *}
 			{assign var="hasBiographies" value=0}
-			{foreach from=$monograph->getAuthors() item=author}
+			{foreach from=$publication->getData('authors') item=author}
 				{if $author->getLocalizedBiography()}
 					{assign var="hasBiographies" value=$hasBiographies+1}
 				{/if}
@@ -273,7 +286,7 @@
 							{translate key="submission.authorBiography"}
 						{/if}
 					</h3>
-					{foreach from=$monograph->getAuthors() item=author}
+					{foreach from=$publication->getData('authors') item=author}
 						{if $author->getLocalizedBiography()}
 							<div class="sub_item">
 								<div class="label">
@@ -295,7 +308,7 @@
 			{/if}
 
 			{* References *}
-			{if $citations || $monograph->getCurrentPublication()->getData('citationsRaw')}
+			{if $citations || $publication->getData('citationsRaw')}
 				<div class="item references">
 					<h3 class="label">
 						{translate key="submission.citations"}
@@ -306,7 +319,7 @@
 								<p>{$citation->getCitationWithLinks()|strip_unsafe_html}</p>
 							{/foreach}
 						{else}
-							{$monograph->getCurrentPublication()->getData('citationsRaw')|nl2br}
+							{$publication->getData('citationsRaw')|nl2br}
 						{/if}
 					</div>
 				</div>
@@ -320,13 +333,6 @@
 			<div class="item cover">
 				<img alt="{translate key="catalog.coverImageTitle" monographTitle=$monograph->getLocalizedFullTitle()|strip_tags|escape}" src="{url router=$smarty.const.ROUTE_COMPONENT component="submission.CoverHandler" op="thumbnail" submissionId=$monograph->getId() random=$monograph->getId()|uniqid}" />
 			</div>
-
-			{* Sharing code *}
-			{if !is_null($sharingCode)}
-				<div class="item sharing">
-					{$sharingCode}
-				</div>
-			{/if}
 
 			{* Any non-chapter files and remote resources *}
 			{pluck_files assign=nonChapterFiles files=$availableFiles by="chapter" value=0}
@@ -386,18 +392,47 @@
 			{/if}
 
 			{* Publication Date *}
-			{if $monograph->getDatePublished()}
+			{if $publication->getData('datePublished')}
 				<div class="item date_published">
-					<div class="label">
-						{if $monograph->getDatePublished()|date_format:$dateFormatShort > $smarty.now|date_format:$dateFormatShort}
-							{translate key="catalog.forthcoming"}
-						{else}
-							{translate key="catalog.published"}
-						{/if}
+					<div class="sub_item">
+						<div class="label">
+							{if $publication->getData('datePublished')|date_format:$dateFormatShort > $smarty.now|date_format:$dateFormatShort}
+								{translate key="catalog.forthcoming"}
+							{else}
+								{translate key="catalog.published"}
+							{/if}
+						</div>
+						<div class="value">
+							{* If this is the original version *}
+							{if $firstPublication->getID() === $publication->getId()}
+								<span>{$firstPublication->getData('datePublished')|date_format:$dateFormatLong}</span>
+							{* If this is an updated version *}
+							{else}
+								<span>{translate key="submission.updatedOn" datePublished=$firstPublication->getData('datePublished')|date_format:$dateFormatLong dateUpdated=$publication->getData('datePublished')|date_format:$dateFormatLong}</span>
+							{/if}
+						</div>
 					</div>
-					<div class="value">
-						{$monograph->getDatePublished()|date_format:$dateFormatLong}
-					</div>
+					{if count($monograph->getPublishedPublications()) > 1}
+						<div class="sub_item versions">
+							<div class="label">
+								{translate key="submission.versions"}
+							</div>
+							<ul class="value">
+								{foreach from=array_reverse($monograph->getPublishedPublications()) item=iPublication}
+									{capture assign="name"}{translate key="submission.versionIdentity" datePublished=$iPublication->getData('datePublished')|date_format:$dateFormatShort versionId=$iPublication->getId()}{/capture}
+									<li>
+										{if $iPublication->getId() === $publication->getId()}
+											{$name}
+										{elseif $iPublication->getId() === $currentPublication->getId()}
+											<a href="{url page="catalog" op="book" path=$monograph->getBestId()}">{$name}</a>
+										{else}
+											<a href="{url page="catalog" op="book" path=$monograph->getBestId()|to_array:"version":$iPublication->getId()}">{$name}</a>
+										{/if}
+									</li>
+								{/foreach}
+							</ul>
+						</div>
+					{/if}
 				</div>
 			{/if}
 
@@ -450,19 +485,19 @@
 			{/if}
 
 			{* Copyright statement *}
-			{if $monograph->getCopyrightYear() && $monograph->getLocalizedCopyrightHolder()}
+			{if $publication->getData('copyrightYear') && $publication->getLocalizedData('copyrightHolder')}
 				<div class="item copyright">
-					{translate|escape key="submission.copyrightStatement" copyrightYear=$monograph->getCopyrightYear() copyrightHolder=$monograph->getLocalizedCopyrightHolder()}
+					{translate|escape key="submission.copyrightStatement" copyrightYear=$publication->getData('copyrightYear') copyrightHolder=$publication->getLocalizedData('copyrightHolder')}
 				</div>
 			{/if}
 
 			{* License *}
-			{if $licenseUrl}
+			{if $this->publication->getData('licenseUrl')}
 				<div class="item license">
 					{if $ccLicenseBadge}
 						{$ccLicenseBadge}
 					{else}
-						<a href="{$licenseUrl|escape}">
+						<a href="{$this->publication->getData('licenseUrl')|escape}">
 							{translate key="submission.license"}
 						</a>
 					{/if}

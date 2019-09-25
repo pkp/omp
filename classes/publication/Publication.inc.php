@@ -35,5 +35,4 @@ class Publication extends PKPPublication {
 		// space in here.
 		return join(__('common.commaListSeparator') . ' ', $editorNames);
 	}
-
 }
