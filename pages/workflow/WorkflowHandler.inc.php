@@ -111,6 +111,8 @@ class WorkflowHandler extends PKPWorkflowHandler {
 		$workflowData['chaptersGridUrl'] = $chaptersGridUrl;
 		$workflowData['components'][FORM_AUDIENCE] = $audienceForm->getConfig();
 		$workflowData['components'][FORM_CATALOG_ENTRY] = $catalogEntryForm->getConfig();
+		$workflowData['publicationFormIds'][] = FORM_AUDIENCE;
+		$workflowData['publicationFormIds'][] = FORM_CATALOG_ENTRY;
 		$workflowData['i18n']['editedVolume'] = __('submission.workflowType.editedVolume.label');
 		$workflowData['i18n']['monograph'] = __('common.publication');
 
