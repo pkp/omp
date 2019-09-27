@@ -97,14 +97,14 @@
 				LEFT JOIN submission_settings as ss
 					ON (ss.submission_id = s.submission_id)
 				WHERE (
-					setting_name IN ('abstract', 'cleanTitle', 'copyrightHolder', 'copyrightYear', 'coverage', 'licenseUrl', 'locale', 'prefix', 'rights', 'source', 'subtitle', 'title', 'type')
+					setting_name IN ('abstract', 'cleanTitle', 'copyrightHolder', 'copyrightYear', 'coverage', 'coverImage', 'licenseUrl', 'locale', 'prefix', 'rights', 'source', 'subtitle', 'title', 'type')
 					OR setting_name LIKE '%pub-id%'
 				)
 		</query>
 		<query>
 			DELETE FROM submission_settings
 			WHERE (
-				setting_name IN ('abstract', 'cleanTitle', 'copyrightHolder', 'copyrightYear', 'coverage', 'licenseUrl', 'locale', 'prefix', 'rights', 'source', 'subtitle', 'title', 'type')
+				setting_name IN ('abstract', 'cleanTitle', 'copyrightHolder', 'copyrightYear', 'coverage', 'coverImage', 'licenseUrl', 'locale', 'prefix', 'rights', 'source', 'subtitle', 'title', 'type')
 				OR setting_name LIKE '%pub-id%'
 			)
 		</query>
@@ -173,17 +173,6 @@
 				SELECT ps.submission_id, 'audience_range_exact', ps.audience_range_exact
 				FROM temp_published_submissions as ps
 				WHERE ps.audience_range_exact IS NOT NULL
-		</query>
-
-		<!-- migrate cover image from published_submissions to publication_settings -->
-		<query>
-			INSERT INTO publication_settings(publication_id, setting_name, setting_value)
-				SELECT s.current_publication_id, 'cover_image', ps.cover_image
-				FROM temp_published_submissions as ps
-				LEFT JOIN submissions as s
-					ON ps.submission_id = s.submission_id
-				WHERE s.current_publication_id IS NOT NULL
-					AND ps.cover_image IS NOT NULL
 		</query>
 
 		<!-- move some author data to settings table -->

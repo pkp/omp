@@ -331,7 +331,11 @@
 
 			{* Cover image *}
 			<div class="item cover">
-				<img alt="{translate key="catalog.coverImageTitle" monographTitle=$monograph->getLocalizedFullTitle()|strip_tags|escape}" src="{url router=$smarty.const.ROUTE_COMPONENT component="submission.CoverHandler" op="thumbnail" submissionId=$monograph->getId() random=$monograph->getId()|uniqid}" />
+				{assign var="coverImage" value=$publication->getLocalizedData('coverImage')}
+				<img
+					src="{$publication->getLocalizedCoverImageThumbnailUrl($monograph->getData('contextId'))}"
+					alt="{$coverImage.altText|escape|default:'null'}"
+				>
 			</div>
 
 			{* Any non-chapter files and remote resources *}
@@ -492,12 +496,12 @@
 			{/if}
 
 			{* License *}
-			{if $this->publication->getData('licenseUrl')}
+			{if $publication->getData('licenseUrl')}
 				<div class="item license">
 					{if $ccLicenseBadge}
 						{$ccLicenseBadge}
 					{else}
-						<a href="{$this->publication->getData('licenseUrl')|escape}">
+						<a href="{$publication->getData('licenseUrl')|escape}">
 							{translate key="submission.license"}
 						</a>
 					{/if}

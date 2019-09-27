@@ -281,7 +281,6 @@
 	<message key="catalog.parentCategory">Nadrejena kategorija</message>
 	<message key="catalog.category.subcategories">Podkategorije</message>
 	<message key="catalog.aboutTheAuthor">O {$roleName}</message>
-	<message key="catalog.coverImageTitle">Naslovnica za {$monographTitle}</message>
 	<message key="catalog.loginRequiredForPayment">Pomembno: Za nakup se boste morali najprej prijaviti. Izbor predmeta za nakup vas bo preusmeril na stran za prijavo. Katero koli knjigo, označena z ikono Prost dostop, lahko prenesete brez plačila in brez prijave. </message>
 	<message key="catalog.sortBy">Razvrščanje monografskih publikacij</message>
 	<message key="catalog.sortBy.seriesDescription">Izberite, kako želite razvrstiti knjige v zbirki.</message>

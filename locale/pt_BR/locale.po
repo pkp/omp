@@ -632,9 +632,6 @@ msgstr "Subcategorias"
 msgid "catalog.aboutTheAuthor"
 msgstr "Sobre o {$roleName}"
 
-msgid "catalog.coverImageTitle"
-msgstr "Capa para {$monographTitle}"
-
 msgid "catalog.loginRequiredForPayment"
 msgstr "Nota: Para adquirir itens, é necessário acessar o sistema primeiro. Escolher um item para compra o levará a página de login. Itens com o ícone de acesso alberto podem ser baixados sem custos e sem login."
 

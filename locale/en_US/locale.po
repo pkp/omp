@@ -710,9 +710,6 @@ msgstr "Subcategories"
 msgid "catalog.aboutTheAuthor"
 msgstr "About the {$roleName}"
 
-msgid "catalog.coverImageTitle"
-msgstr "Cover for {$monographTitle}"
-
 msgid "catalog.loginRequiredForPayment"
 msgstr "Please note: In order to purchase items, you will need to log in first. Selecting an item to purchase will direct you to the login page. Any item marked with an Open Access icon may be downloaded free of charge, without logging in."
 

@@ -208,16 +208,11 @@ class Submission extends PKPSubmission {
 	 * @deprecated 3.2.0.0
 	 */
 	function getCoverImage() {
-		return $this->getData('coverImage');
-	}
-
-	/**
-	 * set cover page server-side file name
-	 * @param $coverImage string
-	 * @deprecated 3.2.0.0
-	 */
-	function setCoverImage($coverImage) {
-		$this->setData('coverImage', $coverImage);
+		$publication = $this->getCurrentPublication();
+		if (!$publication) {
+			return '';
+		}
+		return $publication->getData('coverImage');
 	}
 
 	/**
@@ -226,16 +221,12 @@ class Submission extends PKPSubmission {
 	 * @deprecated 3.2.0.0
 	 */
 	function getCoverImageAltText() {
-		return $this->getData('coverImageAltText');
-	}
-
-	/**
-	 * set cover page alternate text
-	 * @param $coverImageAltText string
-	 * @deprecated 3.2.0.0
-	 */
-	function setCoverImageAltText($coverImageAltText) {
-		$this->setData('coverImageAltText', $coverImageAltText);
+		$publication = $this->getCurrentPublication();
+		if (!$publication) {
+			return '';
+		}
+		$coverImage = $publication->getData('coverImage');
+		return empty($coverImage['altText']) ? '' : $coverImage['altText'];
 	}
 
 	/**

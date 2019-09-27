@@ -256,7 +256,6 @@
 	<message key="catalog.parentCategory">Hovedkategori</message>
 	<message key="catalog.category.subcategories">Underkategorier</message>
 	<message key="catalog.aboutTheAuthor">Om  {$roleName}en</message>
-	<message key="catalog.coverImageTitle">Forsidebillede til {$monographTitle}</message>
 	<message key="catalog.loginRequiredForPayment">Bemærk: For at købe varer skal du først logge ind. Valg af en vare, der skal købes, leder dig til login-siden. Enhver vare, der er markeret med et Open Access-ikon, kan downloades gratis uden at logge ind.</message>
 	<message key="catalog.sortBy">Sortering af monografier</message>
 	<message key="catalog.sortBy.seriesDescription">Vælg hvordan du sorterer bøger i denne serie.</message>
@@ -374,7 +373,7 @@
 	<message key="installer.installApplication">Installer Open Monograph Press</message>
 	<message key="installer.installationInstructions"><![CDATA[<p>Tak fordi du downloadede the Public Knowledge Project's <strong>Open Monograph Press {$version}</strong>. Før du fortsætter, skal du læse filen <a href="{$baseUrl}/docs/README">README</a>, der følger med denne software. For at få mere information om Public Knowledge Project og dets softwareprojekter, kan du besøge <a href="http://pkp.sfu.ca/" target="_blank">PKP web site</a>. Hvis du har fejlrapporter eller teknisk supporthenvendelser om Open Monograph Press, kan du se <a href="http://forum.pkp.sfu.ca" target="_blank">supportforum</a> eller besøge PKP's online <a href="http://pkp.sfu.ca/bugzilla/" target="_blank">bug reporting system</a>. Selvom supportforummet er den foretrukne kontaktform, kan du også e-maile teamet via <a href="mailto:pkp.contact@gmail.com">pkp.contact@gmail.com</a>.</p>
 
-<h4>Upgradre</ h4> 
+<h4>Upgradre</ h4>
 
 <p>Hvis du opgraderer en eksisterende installation af OMP 0.x, <a href="{$upgradeUrl}">klik her</a> for at fortsætte. </p>]]></message>
 	<message key="installer.preInstallationInstructionsTitle">Før-installations-foranstaltninger</message>
