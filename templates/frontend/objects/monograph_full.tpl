@@ -360,7 +360,7 @@
 							{if $pubFormatFiles|@count == 1}
 								<div class="pub_format_{$publicationFormatId|escape} pub_format_single">
 									{foreach from=$pubFormatFiles item=file}
-										{include file="frontend/components/downloadLink.tpl" downloadFile=$file monograph=$monograph publicationFormat=$format currency=$currency}
+										{include file="frontend/components/downloadLink.tpl" downloadFile=$file monograph=$monograph publication=$publication publicationFormat=$format currency=$currency}
 									{/foreach}
 								</div>
 
@@ -378,7 +378,7 @@
 														{$file->getLocalizedName()|escape}
 													</span>
 													<span class="link">
-														{include file="frontend/components/downloadLink.tpl" downloadFile=$file monograph=$monograph publicationFormat=$format currency=$currency useFilename=true}
+														{include file="frontend/components/downloadLink.tpl" downloadFile=$file monograph=$monograph publication=$publication publicationFormat=$format currency=$currency useFilename=true}
 													</span>
 												</li>
 											{/foreach}
