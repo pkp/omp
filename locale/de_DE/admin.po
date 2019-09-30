@@ -1,0 +1,98 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: \n"
+"Report-Msgid-Bugs-To: \n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"POT-Creation-Date: 2019-09-30T06:23:43-07:00\n"
+"PO-Revision-Date: 2019-09-30T06:23:43-07:00\n"
+"Language: \n"
+
+msgid "admin.hostedPresses"
+msgstr "Gehostete Verlage"
+
+msgid "admin.settings.pressRedirect"
+msgstr "Weiterleitung an den Verlag"
+
+msgid "admin.settings.pressRedirectInstructions"
+msgstr "Auf der Startseite eingehende Fragen werden an diesen Verlag weitergeleitet. Dies kann beispielsweise eine praktische Lösung sein, wenn die Website nur einen einzigen Verlag hostet."
+
+msgid "admin.settings.noPressRedirect"
+msgstr "Nicht umleiten"
+
+msgid "admin.languages.primaryLocaleInstructions"
+msgstr "Dies wird die voreingestellte Sprache für diese Website und alle gehosteten Verlage sein."
+
+msgid "admin.languages.supportedLocalesInstructions"
+msgstr "Wählen Sie alle Regionaleinstellungen aus, die auf dieser Seite unterstützt werden sollen. Die ausgewählten Regionaleinstellungen werden allen Verlagen, die von dieser Website gehostet werden, verfügbar gemacht und erscheinen ebenfalls in einem Sprachauswahlmenü, das auf jeder Seite der Website erscheinen wird (das Menü kann auf verlagsspezifischen Seiten überschrieben werden). Wurde nur eine Regionaleinstellung ausgewählt, erscheint weder ein Sprachwechselblock noch stehen erweiterte Spracheinstellungen zur Verfügung."
+
+msgid "admin.locale.maybeIncomplete"
+msgstr "* Die markierten Regionaleinstellungen können unvollständig sein."
+
+msgid "admin.languages.confirmUninstall"
+msgstr "Sind Sie sicher, dass Sie diese Regionaleinstellung deinstallieren möchten? Dies kann Auswirkungen auf alle Verlage haben, die zurzeit diese Regionaleinstellung verwenden."
+
+msgid "admin.languages.installNewLocalesInstructions"
+msgstr "Wählen Sie zusätzliche Regionaleinstellungen (Locales) aus, um deren Unterstützung in diesem System zu installieren. Locales müssen installiert sein, bevor sie von den gehosteten Verlagen genutzt werden können. In der OMP-Dokumentation erhalten Sie weitere Informationen darüber, wie Sie zusätzliche Unterstützung für neue Sprachen erhalten können."
+
+msgid "admin.languages.noLocalesToDownload"
+msgstr "Keine Regionaleinstellungen (Locales) für den Download verfügbar."
+
+msgid "admin.languages.downloadFailed"
+msgstr "Der Regionaleinstellungsdownload (Locale-Download) ist fehlgeschlagen. Die nachfolgende(n) Fehlermeldung(en] beschreiben den Fehler."
+
+msgid "admin.languages.downloadUnavailable"
+msgstr ""
+"<p>Momentan ist es nicht möglich, Sprachpakete vom Public Knowledge Project Web Server herunterzuladen, weil:</p>\n"
+"\t<ul>\n"
+"\t\t<li>Ihr Server das Dienstprogramm GNU \"tar\" nicht besitzt oder dessen Ausführung nicht zulässt.</li>\n"
+"\t\t<li>OMP nicht in der Lage ist, die Locale-Registrierungsdatei, typischerweise \"registry/locales.xml\", zu verändern.</li>\n"
+"\t</ul>\n"
+"<p>Sprachenpakete können von der <a href=\"http://pkp.sfu.ca\" target=\"_blank\">PKP-Website</a> händisch heruntergeladen werden.</p>"
+
+msgid "admin.languages.confirmDisable"
+msgstr "Sind Sie sicher, dass Sie diese Regionaleinstellung löschen wollen? Dies wird alle Verlage auf Ihrer Plattform betreffen, die diese Regionaleinstellung benutzen."
+
+msgid "admin.systemVersion"
+msgstr "OMP-Version"
+
+msgid "admin.systemConfiguration"
+msgstr "OMP-Konfiguration"
+
+msgid "admin.presses.pressSettings"
+msgstr "Verlagseinstellungen"
+
+msgid "admin.presses.noneCreated"
+msgstr "Es wurden noch keine Verlage angelegt."
+
+msgid "admin.contexts.confirmDelete"
+msgstr "Sind Sie sicher, dass Sie diesen Verlag und alle Verlagsinhalte endgültig löschen möchten?"
+
+msgid "admin.contexts.create"
+msgstr "Verlag anlegen"
+
+msgid "admin.contexts.form.titleRequired"
+msgstr "Die Angabe des Titels ist erforderlich."
+
+msgid "admin.contexts.form.pathRequired"
+msgstr "Die Angabe des Pfades ist erforderlich."
+
+msgid "admin.contexts.form.pathAlphaNumeric"
+msgstr "Der Pfad darf nur Buchstaben und Zahlen, Unterstriche und Bindestriche enthalten und muss mit einem Buchstaben oder einer Zahl beginnen und enden."
+
+msgid "admin.contexts.form.pathExists"
+msgstr "Der ausgewählte Pfad wird bereits von einem anderen Verlag verwendet."
+
+msgid "admin.contexts.contextDescription"
+msgstr "Verlagsbeschreibung"
+
+msgid "admin.presses.addPress"
+msgstr "Verlag hinzufügen"
+
+msgid "admin.overwriteConfigFileInstructions"
+msgstr ""
+"<h4>Beachten Sie:</h4>\n"
+"<p>Das System konnte die Konfigurationsdatei nicht automatisch überschreiben. Um Ihre Änderungen der Konfiguration anzuwenden, öffnen Sie <tt>config.inc.php</tt> mit einem geeigneten Texteditor und ersetzen Sie den Inhalt durch den Text im nachstehenden Textfeld.</p>"

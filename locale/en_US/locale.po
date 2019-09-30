@@ -1,0 +1,1410 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: \n"
+"Report-Msgid-Bugs-To: \n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"POT-Creation-Date: 2019-09-30T06:23:43-07:00\n"
+"PO-Revision-Date: 2019-09-30T06:23:43-07:00\n"
+"Language: \n"
+
+msgid "monograph.audience"
+msgstr "Audience"
+
+msgid "monograph.audience.success"
+msgstr "The audience details have been updated."
+
+msgid "monograph.coverImage"
+msgstr "Cover Image"
+
+msgid "monograph.audience.rangeQualifier"
+msgstr "Audience Range Qualifier"
+
+msgid "monograph.audience.rangeFrom"
+msgstr "Audience Range (from)"
+
+msgid "monograph.audience.rangeTo"
+msgstr "Audience Range (to)"
+
+msgid "monograph.audience.rangeExact"
+msgstr "Audience Range (exact)"
+
+msgid "monograph.languages"
+msgstr "Languages (English, French, Spanish)"
+
+msgid "monograph.publicationFormats"
+msgstr "Publication Formats"
+
+msgid "monograph.publicationFormat"
+msgstr "Format"
+
+msgid "monograph.publicationFormatDetails"
+msgstr "Details about the available publication format: {$format}"
+
+msgid "monograph.miscellaneousDetails"
+msgstr "Details about this monograph"
+
+msgid "monograph.carousel.publicationFormats"
+msgstr "Formats:"
+
+msgid "monograph.type"
+msgstr "Type of Submission"
+
+msgid "submission.pageProofs"
+msgstr "Page Proofs"
+
+msgid "monograph.proofReadingDescription"
+msgstr "The layout editor uploads the production-ready files that have been prepared for publication here. Use <em>+Assign</em> to designate authors and others to proofread the page proofs, with corrected files uploaded for approval prior to publication."
+
+msgid "monograph.task.addNote"
+msgstr "Add to task"
+
+msgid "monograph.accessLogoOpen.altText"
+msgstr "Open Access"
+
+msgid "monograph.publicationFormat.imprint"
+msgstr "Imprint (Brand Name)"
+
+msgid "monograph.publicationFormat.pageCounts"
+msgstr "Page Counts"
+
+msgid "monograph.publicationFormat.frontMatterCount"
+msgstr "Front Matter"
+
+msgid "monograph.publicationFormat.backMatterCount"
+msgstr "Back Matter"
+
+msgid "monograph.publicationFormat.productComposition"
+msgstr "Product Composition"
+
+msgid "monograph.publicationFormat.productFormDetailCode"
+msgstr "Product Detail (not required)"
+
+msgid "monograph.publicationFormat.productIdentifierType"
+msgstr "Product Identification"
+
+msgid "monograph.publicationFormat.price"
+msgstr "Price"
+
+msgid "monograph.publicationFormat.priceRequired"
+msgstr "A price is required."
+
+msgid "monograph.publicationFormat.priceType"
+msgstr "Price Type"
+
+msgid "monograph.publicationFormat.discountAmount"
+msgstr "Discount percentage, if applicable"
+
+msgid "monograph.publicationFormat.productAvailability"
+msgstr "Product Availability"
+
+msgid "monograph.publicationFormat.returnInformation"
+msgstr "Returnable Indicator"
+
+msgid "monograph.publicationFormat.digitalInformation"
+msgstr "Digital Information"
+
+msgid "monograph.publicationFormat.productDimensions"
+msgstr "Physical Dimensions"
+
+msgid "monograph.publicationFormat.productDimensionsSeparator"
+msgstr " x "
+
+msgid "monograph.publicationFormat.productFileSize"
+msgstr "File Size in Mbytes"
+
+msgid "monograph.publicationFormat.productFileSize.override"
+msgstr "Enter your own file size value?"
+
+msgid "monograph.publicationFormat.productHeight"
+msgstr "Height"
+
+msgid "monograph.publicationFormat.productThickness"
+msgstr "Thickness"
+
+msgid "monograph.publicationFormat.productWeight"
+msgstr "Weight"
+
+msgid "monograph.publicationFormat.productWidth"
+msgstr "Width"
+
+msgid "monograph.publicationFormat.countryOfManufacture"
+msgstr "Country of Manufacture"
+
+msgid "monograph.publicationFormat.technicalProtection"
+msgstr "Digital Technical Protection"
+
+msgid "monograph.publicationFormat.productRegion"
+msgstr "Product Distribution Region"
+
+msgid "monograph.publicationFormat.taxRate"
+msgstr "Taxation Rate"
+
+msgid "monograph.publicationFormat.taxType"
+msgstr "Taxation Type"
+
+msgid "monograph.publicationFormat.isApproved"
+msgstr "Include the metadata for this publication format in the catalog entry for this book."
+
+msgid "monograph.publicationFormat.noMarketsAssigned"
+msgstr "Missing markets and prices."
+
+msgid "monograph.publicationFormat.noCodesAssigned"
+msgstr "Missing an identification code."
+
+msgid "monograph.publicationFormat.missingONIXFields"
+msgstr "Missing some metadata fields."
+
+msgid "monograph.publicationFormat.formatDoesNotExist"
+msgstr "<p>The publication format you have chosen no longer exists for this monograph.</p>"
+
+msgid "monograph.publicationFormat.openTab"
+msgstr "Open publication format tab."
+
+msgid "grid.catalogEntry.publicationFormatType"
+msgstr "Publication Format"
+
+msgid "grid.catalogEntry.nameRequired"
+msgstr "A name is required."
+
+msgid "grid.catalogEntry.validPriceRequired"
+msgstr "A valid price is required."
+
+msgid "grid.catalogEntry.publicationFormatDetails"
+msgstr "Format Details"
+
+msgid "grid.catalogEntry.physicalFormat"
+msgstr "Physical format"
+
+msgid "grid.catalogEntry.remotelyHostedContent"
+msgstr "This format will be available at a separate website"
+
+msgid "grid.catalogEntry.remoteURL"
+msgstr "URL of remotely-hosted content"
+
+msgid "grid.catalogEntry.monographRequired"
+msgstr "A monograph id is required."
+
+msgid "grid.catalogEntry.publicationFormatRequired"
+msgstr "A publication format must be chosen."
+
+msgid "grid.catalogEntry.availability"
+msgstr "Availability"
+
+msgid "grid.catalogEntry.isAvailable"
+msgstr "Available"
+
+msgid "grid.catalogEntry.isNotAvailable"
+msgstr "Not Available"
+
+msgid "grid.catalogEntry.proof"
+msgstr "Proof"
+
+msgid "grid.catalogEntry.approvedRepresentation.title"
+msgstr "Format Approval"
+
+msgid "grid.catalogEntry.approvedRepresentation.message"
+msgstr "<p>Approve the metadata for this format. Metadata can be checked from the Edit panel for each format.</p>"
+
+msgid "grid.catalogEntry.approvedRepresentation.removeMessage"
+msgstr "<p>Indicate that the metadata for this format has not been approved.</p>"
+
+msgid "grid.catalogEntry.availableRepresentation.title"
+msgstr "Format Availability"
+
+msgid "grid.catalogEntry.availableRepresentation.message"
+msgstr "<p>Make this format <em>available to readers</em>. Downloadable files and any other distributions will appear in the book's catalog entry.</p>"
+
+msgid "grid.catalogEntry.availableRepresentation.removeMessage"
+msgstr "<p>This format will <em>unavailable to readers</em>. Any downloadable files or other distributions will no longer appear in the book's catalog entry.</p>"
+
+msgid "grid.catalogEntry.availableRepresentation.catalogNotApprovedWarning"
+msgstr "Catalog entry not approved."
+
+msgid "grid.catalogEntry.availableRepresentation.notApprovedWarning"
+msgstr "Format not in catalog entry."
+
+msgid "grid.catalogEntry.availableRepresentation.proofNotApproved"
+msgstr "Proof not approved."
+
+msgid "grid.catalogEntry.availableRepresentation.approved"
+msgstr "Approved"
+
+msgid "grid.catalogEntry.availableRepresentation.notApproved"
+msgstr "Awaiting Approval"
+
+msgid "grid.catalogEntry.fileSizeRequired"
+msgstr "A file size for digital formats required."
+
+msgid "grid.catalogEntry.productAvailabilityRequired"
+msgstr "A product availability code is required."
+
+msgid "grid.catalogEntry.productCompositionRequired"
+msgstr "A product composition code must be chosen."
+
+msgid "grid.catalogEntry.identificationCodeValue"
+msgstr "Code Value"
+
+msgid "grid.catalogEntry.identificationCodeType"
+msgstr "ONIX Code Type"
+
+msgid "grid.catalogEntry.codeRequired"
+msgstr "An identification code is required."
+
+msgid "grid.catalogEntry.valueRequired"
+msgstr "A value is required."
+
+msgid "grid.catalogEntry.salesRights"
+msgstr "Sales Rights"
+
+msgid "grid.catalogEntry.salesRightsValue"
+msgstr "Code Value"
+
+msgid "grid.catalogEntry.salesRightsType"
+msgstr "Sales Rights Type"
+
+msgid "grid.catalogEntry.salesRightsROW"
+msgstr "Rest of World?"
+
+msgid "grid.catalogEntry.salesRightsROW.tip"
+msgstr "Check this box to use this Sales Rights entry as a catch-all for your format.  Countries and regions need not be chosen in this case."
+
+msgid "grid.catalogEntry.oneROWPerFormat"
+msgstr "There is already a ROW sales type defined for this publication format."
+
+msgid "grid.catalogEntry.countries"
+msgstr "Countries"
+
+msgid "grid.catalogEntry.regions"
+msgstr "Regions"
+
+msgid "grid.catalogEntry.included"
+msgstr "Included"
+
+msgid "grid.catalogEntry.excluded"
+msgstr "Excluded"
+
+msgid "grid.catalogEntry.markets"
+msgstr "Market Territories"
+
+msgid "grid.catalogEntry.marketTerritory"
+msgstr "Territory"
+
+msgid "grid.catalogEntry.publicationDates"
+msgstr "Publication Dates"
+
+msgid "grid.catalogEntry.roleRequired"
+msgstr "A representative role is required."
+
+msgid "grid.catalogEntry.dateFormatRequired"
+msgstr "A date format is required."
+
+msgid "grid.catalogEntry.dateValue"
+msgstr "Date"
+
+msgid "grid.catalogEntry.dateRole"
+msgstr "Role"
+
+msgid "grid.catalogEntry.dateFormat"
+msgstr "Date Format"
+
+msgid "grid.catalogEntry.dateRequired"
+msgstr "A date is required and the date value must match the chosen date format."
+
+msgid "grid.catalogEntry.representatives"
+msgstr "Representatives"
+
+msgid "grid.catalogEntry.representativeType"
+msgstr "Representative Type"
+
+msgid "grid.catalogEntry.agentsCategory"
+msgstr "Agents"
+
+msgid "grid.catalogEntry.suppliersCategory"
+msgstr "Suppliers"
+
+msgid "grid.catalogEntry.agent"
+msgstr "Agent"
+
+msgid "grid.catalogEntry.agentTip"
+msgstr "You may assign an agent to represent you in this defined territory.  It is not required."
+
+msgid "grid.catalogEntry.supplier"
+msgstr "Supplier"
+
+msgid "grid.catalogEntry.representativeRoleChoice"
+msgstr "Choose a role:"
+
+msgid "grid.catalogEntry.representativeRole"
+msgstr "Role"
+
+msgid "grid.catalogEntry.representativeName"
+msgstr "Name"
+
+msgid "grid.catalogEntry.representativePhone"
+msgstr "Phone"
+
+msgid "grid.catalogEntry.representativeEmail"
+msgstr "Email Address"
+
+msgid "grid.catalogEntry.representativeWebsite"
+msgstr "Website"
+
+msgid "grid.catalogEntry.representativeIdValue"
+msgstr "Representative ID"
+
+msgid "grid.catalogEntry.representativeIdType"
+msgstr "Representative ID Type (GLN is recommended)"
+
+msgid "grid.catalogEntry.representativesDescription"
+msgstr "You may leave the following section empty if you provide your own services to your customers."
+
+msgid "grid.action.addRepresentative"
+msgstr "Add Representative"
+
+msgid "grid.action.editRepresentative"
+msgstr "Edit this Representative"
+
+msgid "grid.action.deleteRepresentative"
+msgstr "Delete this Representative"
+
+msgid "spotlight"
+msgstr "Spotlight"
+
+msgid "spotlight.spotlights"
+msgstr "Spotlights"
+
+msgid "spotlight.noneExist"
+msgstr "There are no current spotlights."
+
+msgid "spotlight.title.homePage"
+msgstr "In the Spotlight"
+
+msgid "spotlight.author"
+msgstr "Author, "
+
+msgid "grid.content.spotlights.spotlightItemTitle"
+msgstr "Spotlight Item"
+
+msgid "grid.content.spotlights.category.homepage"
+msgstr "Homepage"
+
+msgid "grid.content.spotlights.form.location"
+msgstr "Spotlight Location"
+
+msgid "grid.content.spotlights.form.item"
+msgstr "Enter spotlighted title (autocomplete)"
+
+msgid "grid.content.spotlights.form.title"
+msgstr "Spotlight title"
+
+msgid "grid.content.spotlights.form.type.book"
+msgstr "Book"
+
+msgid "grid.content.spotlights.itemRequired"
+msgstr "An item is required."
+
+msgid "grid.content.spotlights.titleRequired"
+msgstr "A spotlight title is required."
+
+msgid "grid.content.spotlights.locationRequired"
+msgstr "Please choose a location for this spotlight."
+
+msgid "grid.action.editSpotlight"
+msgstr "Edit this spotlight"
+
+msgid "grid.action.deleteSpotlight"
+msgstr "Delete this spotlight"
+
+msgid "grid.action.addSpotlight"
+msgstr "Add Spotlight"
+
+msgid "manager.series.open"
+msgstr "Open Submissions"
+
+msgid "manager.series.indexed"
+msgstr "Indexed"
+
+msgid "grid.libraryFiles.column.files"
+msgstr "Files"
+
+msgid "grid.action.catalogEntry"
+msgstr "View the catalog entry form"
+
+msgid "grid.action.formatInCatalogEntry"
+msgstr "Format appears in catalog entry"
+
+msgid "grid.action.editFormat"
+msgstr "Edit this format"
+
+msgid "grid.action.deleteFormat"
+msgstr "Delete this format"
+
+msgid "grid.action.addFormat"
+msgstr "Add publication format"
+
+msgid "grid.action.approveProof"
+msgstr "Approve the proof for indexing and inclusion in the catalog"
+
+msgid "grid.action.pageProofApproved"
+msgstr "Page proofs file is ready for publication"
+
+msgid "grid.action.addAnnouncement"
+msgstr "Add an Announcement"
+
+msgid "grid.action.newCatalogEntry"
+msgstr "New Catalog Entry"
+
+msgid "grid.action.publicCatalog"
+msgstr "View this item in the catalog"
+
+msgid "grid.action.feature"
+msgstr "Toggle the feature display"
+
+msgid "grid.action.featureMonograph"
+msgstr "Feature this in the catalog carousel"
+
+msgid "grid.action.releaseMonograph"
+msgstr "Mark this submission as a 'new release'"
+
+msgid "grid.action.manageCategories"
+msgstr "Configure categories for this press"
+
+msgid "grid.action.manageSeries"
+msgstr "Configure series for this press"
+
+msgid "grid.action.addCode"
+msgstr "Add Code"
+
+msgid "grid.action.editCode"
+msgstr "Edit this Code"
+
+msgid "grid.action.deleteCode"
+msgstr "Delete this Code"
+
+msgid "grid.action.addRights"
+msgstr "Add Sales Rights"
+
+msgid "grid.action.editRights"
+msgstr "Edit these rights"
+
+msgid "grid.action.deleteRights"
+msgstr "Delete these rights"
+
+msgid "grid.action.addMarket"
+msgstr "Add Market"
+
+msgid "grid.action.editMarket"
+msgstr "Edit this Market"
+
+msgid "grid.action.deleteMarket"
+msgstr "Delete this Market"
+
+msgid "grid.action.addDate"
+msgstr "Add publication date"
+
+msgid "grid.action.editDate"
+msgstr "Edit this Date"
+
+msgid "grid.action.deleteDate"
+msgstr "Delete this Date"
+
+msgid "grid.action.createContext"
+msgstr "Create a new Press"
+
+msgid "grid.action.publicationFormatTab"
+msgstr "Show the publication format tab"
+
+msgid "grid.action.moreAnnouncements"
+msgstr "Go to press announcements page"
+
+msgid "grid.action.submissionEmail"
+msgstr "Click to read this email"
+
+msgid "grid.action.approveProofs"
+msgstr "View the proofs grid"
+
+msgid "grid.action.proofApproved"
+msgstr "Format has been proofed"
+
+msgid "grid.action.availableRepresentation"
+msgstr "Approve/disapprove this format"
+
+msgid "grid.action.formatAvailable"
+msgstr "Toggle the availability of this format on and off"
+
+msgid "grid.reviewAttachments.add"
+msgstr "Add Attachment to Review"
+
+msgid "grid.reviewAttachments.availableFiles"
+msgstr "Available Files"
+
+msgid "series.series"
+msgstr "Series"
+
+msgid "series.featured.description"
+msgstr "This series will appear on the main navigation"
+
+msgid "series.path"
+msgstr "Path"
+
+msgid "catalog.manage"
+msgstr "Catalog Management"
+
+msgid "catalog.manage.newReleases"
+msgstr "New Releases"
+
+msgid "catalog.manage.category"
+msgstr "Category"
+
+msgid "catalog.manage.series"
+msgstr "Series"
+
+msgid "catalog.manage.series.issn"
+msgstr "ISSN"
+
+msgid "catalog.manage.series.issn.validation"
+msgstr "Please enter a valid ISSN."
+
+msgid "catalog.manage.series.issn.equalValidation"
+msgstr "Online and print ISSN must not be the same."
+
+msgid "catalog.manage.series.onlineIssn"
+msgstr "Online ISSN"
+
+msgid "catalog.manage.series.printIssn"
+msgstr "Print ISSN"
+
+msgid "catalog.selectSeries"
+msgstr "Select Series"
+
+msgid "catalog.selectCategory"
+msgstr "Select Category"
+
+msgid "catalog.manage.homepageDescription"
+msgstr "The cover image of selected books appears toward the top of the homepage as a scrollable set. Click 'Feature', then the star to add a book to the carousel; click the exclamation point to feature as a new release; drag and drop to order."
+
+msgid "catalog.manage.categoryDescription"
+msgstr "Click 'Feature', then the star to select a featured book for this category; drag and drop to order."
+
+msgid "catalog.manage.seriesDescription"
+msgstr "Click 'Feature', then the star to select a featured book for this series; drag and drop to order. Series are identified with an editor(s) and a series title, within a category or independently."
+
+msgid "catalog.manage.placeIntoCarousel"
+msgstr "Carousel"
+
+msgid "catalog.manage.newRelease"
+msgstr "Release"
+
+msgid "catalog.manage.manageSeries"
+msgstr "Manage Series"
+
+msgid "catalog.manage.manageCategories"
+msgstr "Manage Categories"
+
+msgid "catalog.manage.noMonographs"
+msgstr "There are no assigned monographs."
+
+msgid "catalog.manage.featured"
+msgstr "Featured"
+
+msgid "catalog.manage.categoryFeatured"
+msgstr "Featured in category"
+
+msgid "catalog.manage.seriesFeatured"
+msgstr "Featured in series"
+
+msgid "catalog.manage.featuredSuccess"
+msgstr "Monograph is featured."
+
+msgid "catalog.manage.notFeaturedSuccess"
+msgstr "Monograph is not featured."
+
+msgid "catalog.manage.newReleaseSuccess"
+msgstr "Monograph is marked as a new release."
+
+msgid "catalog.manage.notNewReleaseSuccess"
+msgstr "Monograph is unmarked as a new release."
+
+msgid "catalog.manage.feature.newRelease"
+msgstr "New release"
+
+msgid "catalog.manage.feature.categoryNewRelease"
+msgstr "New release in category"
+
+msgid "catalog.manage.feature.seriesNewRelease"
+msgstr "New release in series"
+
+msgid "catalog.manage.nonOrderable"
+msgstr "This monograph is not orderable until it's featured."
+
+msgid "catalog.manage.filter.searchByAuthorOrTitle"
+msgstr "Search by title or author"
+
+msgid "catalog.manage.isFeatured"
+msgstr "This monograph is featured. Make this monograph not featured."
+
+msgid "catalog.manage.isNotFeatured"
+msgstr "This monograph is not featured. Make this monograph featured."
+
+msgid "catalog.manage.isNewRelease"
+msgstr "This monograph is a new release. Make this monograph not a new release."
+
+msgid "catalog.manage.isNotNewRelease"
+msgstr "This monograph is not a new release. Make this monograph a new release."
+
+msgid "catalog.noTitles"
+msgstr "No titles have been published yet."
+
+msgid "catalog.noTitlesNew"
+msgstr "No new releases are available at this time."
+
+msgid "catalog.noTitlesSearch"
+msgstr "No titles were found which matched your search for \"{$searchQuery}\"."
+
+msgid "catalog.feature"
+msgstr "Feature"
+
+msgid "catalog.featured"
+msgstr "Featured"
+
+msgid "catalog.featuredBooks"
+msgstr "Featured Books"
+
+msgid "catalog.foundTitleSearch"
+msgstr "One title was found which matched your search for \"{$searchQuery}\"."
+
+msgid "catalog.foundTitlesSearch"
+msgstr "{$number} titles were found which matched your search for \"{$searchQuery}\"."
+
+msgid "catalog.category.heading"
+msgstr "All Books"
+
+msgid "catalog.newReleases"
+msgstr "New Releases"
+
+msgid "catalog.dateAdded"
+msgstr "Added"
+
+msgid "catalog.publicationInfo"
+msgstr "Publication Info"
+
+msgid "catalog.published"
+msgstr "Published"
+
+msgid "catalog.forthcoming"
+msgstr "Forthcoming"
+
+msgid "catalog.categories"
+msgstr "Categories"
+
+msgid "catalog.parentCategory"
+msgstr "Parent Category"
+
+msgid "catalog.category.subcategories"
+msgstr "Subcategories"
+
+msgid "catalog.aboutTheAuthor"
+msgstr "About the {$roleName}"
+
+msgid "catalog.coverImageTitle"
+msgstr "Cover for {$monographTitle}"
+
+msgid "catalog.loginRequiredForPayment"
+msgstr "Please note: In order to purchase items, you will need to log in first. Selecting an item to purchase will direct you to the login page. Any item marked with an Open Access icon may be downloaded free of charge, without logging in."
+
+msgid "catalog.sortBy"
+msgstr "Order of monographs"
+
+msgid "catalog.sortBy.seriesDescription"
+msgstr "Choose how to order books in this series."
+
+msgid "catalog.sortBy.categoryDescription"
+msgstr "Choose how to order books in this category."
+
+msgid "catalog.sortBy.catalogDescription"
+msgstr "Choose how to order books in the catalog."
+
+msgid "catalog.sortBy.seriesPositionAsc"
+msgstr "Series position (lowest first)"
+
+msgid "catalog.sortBy.seriesPositionDesc"
+msgstr "Series position (highest first)"
+
+msgid "catalog.viewableFile.title"
+msgstr "{$type} view of the file {$title}"
+
+msgid "catalog.viewableFile.return"
+msgstr "Return to view details about {$monographTitle}"
+
+msgid "submission.search"
+msgstr "Book Search"
+
+msgid "common.publication"
+msgstr "Monograph"
+
+msgid "common.publications"
+msgstr "Monographs"
+
+msgid "common.prefix"
+msgstr "Prefix"
+
+msgid "common.preview"
+msgstr "Preview"
+
+msgid "common.feature"
+msgstr "Feature"
+
+msgid "common.searchCatalog"
+msgstr "Search Catalog"
+
+msgid "common.moreInfo"
+msgstr "More Information"
+
+msgid "common.listbuilder.completeForm"
+msgstr "Please fill out the form completely."
+
+msgid "common.listbuilder.selectValidOption"
+msgstr "Please select a valid option from the list."
+
+msgid "common.listbuilder.itemExists"
+msgstr "You cannot add the same item twice."
+
+msgid "common.openMonographPress"
+msgstr "Open Monograph Press"
+
+msgid "common.omp"
+msgstr "OMP"
+
+msgid "common.homePageHeader.altText"
+msgstr "Homepage Header"
+
+msgid "navigation.catalog"
+msgstr "Catalog"
+
+msgid "navigation.competingInterestPolicy"
+msgstr "Competing Interest Policy"
+
+msgid "navigation.catalog.allMonographs"
+msgstr "All Monographs"
+
+msgid "navigation.catalog.manage"
+msgstr "Manage"
+
+msgid "navigation.catalog.administration.short"
+msgstr "Administration"
+
+msgid "navigation.catalog.administration"
+msgstr "Catalog Administration"
+
+msgid "navigation.catalog.administration.categories"
+msgstr "Categories"
+
+msgid "navigation.catalog.administration.series"
+msgstr "Series"
+
+msgid "navigation.infoForAuthors"
+msgstr "For Authors"
+
+msgid "navigation.infoForLibrarians"
+msgstr "For Librarians"
+
+msgid "navigation.infoForAuthors.long"
+msgstr "Information For Authors"
+
+msgid "navigation.infoForLibrarians.long"
+msgstr "Information For Librarians"
+
+msgid "navigation.newReleases"
+msgstr "New Releases"
+
+msgid "navigation.published"
+msgstr "Published"
+
+msgid "navigation.wizard"
+msgstr "Wizard"
+
+msgid "navigation.linksAndMedia"
+msgstr "Links and Social Media"
+
+msgid "navigation.navigationMenus.catalog.description"
+msgstr "Link to your catalog."
+
+msgid "navigation.skip.spotlights"
+msgstr "Skip to spotlights"
+
+msgid "navigation.navigationMenus.series.generic"
+msgstr "Series"
+
+msgid "navigation.navigationMenus.series.description"
+msgstr "Link to a series."
+
+msgid "navigation.navigationMenus.category.generic"
+msgstr "Category"
+
+msgid "navigation.navigationMenus.category.description"
+msgstr "Link to a category."
+
+msgid "navigation.navigationMenus.newRelease"
+msgstr "New Releases"
+
+msgid "navigation.navigationMenus.newRelease.description"
+msgstr "Link to your New Releases."
+
+msgid "press.presses"
+msgstr "Presses"
+
+msgid "context.context"
+msgstr "Press"
+
+msgid "context.current"
+msgstr "Current Press:"
+
+msgid "context.select"
+msgstr "Switch to another press:"
+
+msgid "user.noRoles.selectUsersWithoutRoles"
+msgstr "Include users with no roles in this press."
+
+msgid "user.noRoles.submitMonograph"
+msgstr "Submit a Proposal"
+
+msgid "user.noRoles.submitMonographRegClosed"
+msgstr "Submit an Monograph: Author registration is currently disabled."
+
+msgid "user.noRoles.regReviewer"
+msgstr "Register as a Reviewer"
+
+msgid "user.noRoles.regReviewerClosed"
+msgstr "Register as a Reviewer: Reviewer registration is currently disabled."
+
+msgid "user.reviewerPrompt"
+msgstr "Would you be willing to review submissions to this press?"
+
+msgid "user.reviewerPrompt.userGroup"
+msgstr "Yes, request the {$userGroup} role."
+
+msgid "user.reviewerPrompt.optin"
+msgstr "Yes, I would like to be contacted with requests to review submissions to this press."
+
+msgid "user.register.contextsPrompt"
+msgstr "Which presses on this site would you like to register with?"
+
+msgid "user.register.otherContextRoles"
+msgstr "Request the following roles."
+
+msgid "user.register.noContextReviewerInterests"
+msgstr "If you requested to be a reviewer for any press, please enter your subject interests."
+
+msgid "user.role.manager"
+msgstr "Press Manager"
+
+msgid "user.role.pressEditor"
+msgstr "Press Editor"
+
+msgid "user.role.subEditor"
+msgstr "Series Editor"
+
+msgid "user.role.copyeditor"
+msgstr "Copyeditor"
+
+msgid "user.role.proofreader"
+msgstr "Proofreader"
+
+msgid "user.role.productionEditor"
+msgstr "Production Editor"
+
+msgid "user.role.managers"
+msgstr "Press Managers"
+
+msgid "user.role.subEditors"
+msgstr "Series Editors"
+
+msgid "user.role.editors"
+msgstr "Editors"
+
+msgid "user.role.copyeditors"
+msgstr "Copyeditors"
+
+msgid "user.role.proofreaders"
+msgstr "Proofreaders"
+
+msgid "user.role.productionEditors"
+msgstr "Production Editors"
+
+msgid "user.register.selectContext"
+msgstr "Select a press to register with:"
+
+msgid "user.register.noContexts"
+msgstr "There are no presses you may register with on this site."
+
+msgid "user.register.privacyStatement"
+msgstr "Privacy Statement"
+
+msgid "user.register.registrationDisabled"
+msgstr "This press is currently not accepting user registrations."
+
+msgid "user.register.form.passwordLengthTooShort"
+msgstr "The password you entered is not long enough."
+
+msgid "user.register.readerDescription"
+msgstr "Notified by email on publication of a monograph."
+
+msgid "user.register.authorDescription"
+msgstr "Able to submit items to the press."
+
+msgid "user.register.reviewerDescriptionNoInterests"
+msgstr "Willing to conduct peer review of submissions to the press."
+
+msgid "user.register.reviewerDescription"
+msgstr "Willing to conduct peer review of submissions to the site."
+
+msgid "user.register.reviewerInterests"
+msgstr "Identify reviewing interests (substantive areas and research methods):"
+
+msgid "user.register.form.userGroupRequired"
+msgstr "You must select at least one role"
+
+msgid "site.pressView"
+msgstr "View Press Website"
+
+msgid "about.pressContact"
+msgstr "Press Contact"
+
+msgid "about.aboutContext"
+msgstr "About the Press"
+
+msgid "about.editorialTeam"
+msgstr "Editorial Team"
+
+msgid "about.editorialPolicies"
+msgstr "Editorial Policies"
+
+msgid "about.focusAndScope"
+msgstr "Focus and Scope"
+
+msgid "about.seriesPolicies"
+msgstr "Series and Category Policies"
+
+msgid "about.submissions"
+msgstr "Submissions"
+
+msgid "about.onlineSubmissions"
+msgstr "Online Submissions"
+
+msgid "about.onlineSubmissions.login"
+msgstr "Login"
+
+msgid "about.onlineSubmissions.register"
+msgstr "Register"
+
+msgid "about.onlineSubmissions.registrationRequired"
+msgstr "{$login} or {$register} to make a submission."
+
+msgid "about.onlineSubmissions.submissionActions"
+msgstr "{$newSubmission} or {$viewSubmissions}."
+
+msgid "about.onlineSubmissions.newSubmission"
+msgstr "Make a new submission"
+
+msgid "about.onlineSubmissions.viewSubmissions"
+msgstr "view your pending submissions"
+
+msgid "about.authorGuidelines"
+msgstr "Author Guidelines"
+
+msgid "about.submissionPreparationChecklist"
+msgstr "Submission Preparation Checklist"
+
+msgid "about.submissionPreparationChecklist.description"
+msgstr "As part of the submission process, authors are required to check off their submission's compliance with all of the following items, and submissions may be returned to authors that do not adhere to these guidelines."
+
+msgid "about.copyrightNotice"
+msgstr "Copyright Notice"
+
+msgid "about.privacyStatement"
+msgstr "Privacy Statement"
+
+msgid "about.reviewPolicy"
+msgstr "Peer Review Process"
+
+msgid "about.publicationFrequency"
+msgstr "Publication Frequency"
+
+msgid "about.openAccessPolicy"
+msgstr "Open Access Policy"
+
+msgid "about.pressSponsorship"
+msgstr "Press Sponsorship"
+
+msgid "about.aboutThisPublishingSystem"
+msgstr "About this Publishing System"
+
+msgid "about.aboutThisPublishingSystem.altText"
+msgstr "OMP Editorial and Publishing Process"
+
+msgid "about.aboutOMPPress"
+msgstr "This press uses Open Monograph Press {$ompVersion}, which is open source press management and publishing software developed, supported, and freely distributed by the <a href=\"http://pkp.sfu.ca/\">Public Knowledge Project</a> under the GNU General Public License."
+
+msgid "about.aboutOMPSite"
+msgstr "This site uses Open Monograph Press {$ompVersion}, which is open source press management and publishing software developed, supported, and freely distributed by the <a href=\"http://pkp.sfu.ca/\">Public Knowledge Project</a> under the GNU General Public License."
+
+msgid "help.searchReturnResults"
+msgstr "Return to Search Results"
+
+msgid "help.goToEditPage"
+msgstr "Open a new page to edit this information"
+
+msgid "installer.appInstallation"
+msgstr "OMP Installation"
+
+msgid "installer.ompUpgrade"
+msgstr "OMP Upgrade"
+
+msgid "installer.installApplication"
+msgstr "Install Open Monograph Press"
+
+msgid "installer.installationInstructions"
+msgstr ""
+"\n"
+"<p>Thank you for downloading the Public Knowledge Project's <strong>Open Monograph Press {$version}</strong>. Before proceeding, please read the <a href=\"{$baseUrl}/docs/README\">README</a> file included with this software. For more information about the Public Knowledge Project and its software projects, please visit the <a href=\"http://pkp.sfu.ca/\" target=\"_blank\">PKP web site</a>. If you have bug reports or technical support inquiries about Open Monograph Press, see the <a href=\"http://forum.pkp.sfu.ca\" target=\"_blank\">support forum</a> or visit PKP's online <a href=\"http://pkp.sfu.ca/bugzilla/\" target=\"_blank\">bug reporting system</a>. Although the support forum is the preferred method of contact, you can also email the team at <a href=\"mailto:pkp.contact@gmail.com\">pkp.contact@gmail.com</a>.</p>\n"
+"\n"
+"<h4>Upgrade</h4>\n"
+"\n"
+"<p>If you are upgrading an existing installation of OMP 0.x, <a href=\"{$upgradeUrl}\">click here</a> to proceed.</p>"
+
+msgid "installer.preInstallationInstructionsTitle"
+msgstr "Pre-Installation Steps"
+
+msgid "installer.preInstallationInstructions"
+msgstr ""
+"<p>1. The following files and directories (and their contents) must be made writable:</p>\n"
+"<ul>\n"
+"\t<li><tt>config.inc.php</tt> is writable (optional): {$writable_config}</li>\n"
+"\t<li><tt>public/</tt> is writable: {$writable_public}</li>\n"
+"\t<li><tt>cache/</tt> is writable: {$writable_cache}</li>\n"
+"\t<li><tt>cache/t_cache/</tt> is writable: {$writable_templates_cache}</li>\n"
+"\t<li><tt>cache/t_compile/</tt> is writable: {$writable_templates_compile}</li>\n"
+"\t<li><tt>cache/_db</tt> is writable: {$writable_db_cache}</li>\n"
+"</ul>\n"
+"\n"
+"<p>2. A directory to store uploaded files must be created and made writable (see \"File Settings\" below).</p>"
+
+msgid "installer.upgradeInstructions"
+msgstr ""
+"<h4>OMP Version {$version}</h4>\n"
+"\n"
+"<p>Thank you for downloading the Public Knowledge Project's <strong>Open Monograph Press</strong>. Before proceeding, please read the <a href=\"{$baseUrl}/docs/README\">README</a> and <a href=\"{$baseUrl}/docs/UPGRADE\">UPGRADE</a> files included with this software. For more information about the Public Knowledge Project and its software projects, please visit the <a href=\"http://pkp.sfu.ca/\" target=\"_blank\">PKP web site</a>. If you have bug reports or technical support inquiries about Open Monograph Press, see the <a href=\"http://forum.pkp.sfu.ca\" target=\"_blank\">support forum</a> or visit PKP's online <a href=\"http://pkp.sfu.ca/bugzilla/\" target=\"_blank\">bug reporting system</a>. Although the support forum is the preferred method of contact, you can also email the team at <a href=\"mailto:pkp.contact@gmail.com\">pkp.contact@gmail.com</a>.</p>\n"
+"<p>It is <strong>strongly recommended</strong> that you back up your database, files directory, and OMP installation directory before proceeding.</p>\n"
+"<p>If you are running in <a href=\"http://www.php.net/features.safe-mode\" target=\"_blank\">PHP Safe Mode</a>, please ensure that the max_execution_time directive in your php.ini configuration file is set to a high limit. If this or any other time limit (e.g. Apache's \"Timeout\" directive) is reached and the upgrade process is interrupted, manual intervention will be required.</p>"
+
+msgid "installer.localeSettingsInstructions"
+msgstr ""
+"For complete Unicode (UTF-8) support, select UTF-8 for all character set settings. Note that this support currently requires a MySQL >= 4.1.1 or PostgreSQL >= 9.1.5 database server. Please also note that full Unicode support requires the <a href=\"http://www.php.net/mbstring\" target=\"_blank\">mbstring</a> library (enabled by default in most recent PHP installations). You may experience problems using extended character sets if your server does not meet these requirements.\n"
+"<br /><br />\n"
+"Your server currently supports mbstring: <strong>{$supportsMBString}</strong>"
+
+msgid "installer.allowFileUploads"
+msgstr "Your server currently allows file uploads: <strong>{$allowFileUploads}</strong>"
+
+msgid "installer.maxFileUploadSize"
+msgstr "Your server currently allows a maximum file upload size of: <strong>{$maxFileUploadSize}</strong>"
+
+msgid "installer.localeInstructions"
+msgstr "The primary language to use for this system. Please consult the OMP documentation if you are interested in support for languages not listed here."
+
+msgid "installer.additionalLocalesInstructions"
+msgstr "Select any additional languages to support in this system. These languages will be available for use by presses hosted on the site. Additional languages can also be installed at any time from the site administration interface. Locales marked * may be incomplete."
+
+msgid "installer.filesDirInstructions"
+msgstr "Enter full pathname to an existing directory where uploaded files are to be kept. This directory should not be directly web-accessible. <strong>Please ensure that this directory exists and is writable prior to installation.</strong> Windows path names should use forward slashes, e.g. \"C:/mypress/files\"."
+
+msgid "installer.databaseSettingsInstructions"
+msgstr "OMP requires access to a SQL database to store its data. See the system requirements above for a list of supported databases. In the fields below, provide the settings to be used to connect to the database."
+
+msgid "installer.upgradeApplication"
+msgstr "Upgrade Open Monograph Press"
+
+msgid "installer.overwriteConfigFileInstructions"
+msgstr ""
+"<h4>IMPORTANT!</h4>\n"
+"<p>The installer could not automatically overwrite the configuration file. Before attempting to use the system, please open <tt>config.inc.php</tt> in a suitable text editor and replace its contents with the contents of the text field below.</p>"
+
+msgid "installer.installationComplete"
+msgstr ""
+"<p>Installation of OMP has completed successfully.</p>\n"
+"<p>To begin using the system, <a href=\"{$loginUrl}\">login</a> with the username and password entered on the previous page.</p>\n"
+"<p>If you wish to receive news and updates, <strong>please register at <a href=\"http://pkp.sfu.ca/omp/register\" target=\"_blank\">http://pkp.sfu.ca/omp/register</a>.</strong> If you have questions or comments, please visit the <a href=\"http://forum.pkp.sfu.ca\" target=\"_blank\">support forum</a>.</p>"
+
+msgid "installer.upgradeComplete"
+msgstr ""
+"<p>Upgrade of OMP to version {$version} has completed successfully.</p>\n"
+"<p>Don't forget to set the \"installed\" setting in your config.inc.php configuration file back to <em>On</em>.</p>\n"
+"<p>If you haven't already registered and wish to receive news and updates, <strong>please register at <a href=\"http://pkp.sfu.ca/omp/register\" target=\"_blank\">http://pkp.sfu.ca/omp/register</a>.</strong> If you have questions or comments, please visit the <a href=\"http://forum.pkp.sfu.ca\" target=\"_blank\">support forum</a>.</p>"
+
+msgid "log.review.reviewDueDateSet"
+msgstr "The due date for the round {$round} review of submission {$submissionId} by {$reviewerName} has been set to {$dueDate}."
+
+msgid "log.review.reviewDeclined"
+msgstr "{$reviewerName} has declined the round {$round} review for submission {$submissionId}."
+
+msgid "log.review.reviewAccepted"
+msgstr "{$reviewerName} has accepted the round {$round} review for submission {$submissionId}."
+
+msgid "log.review.reviewUnconsidered"
+msgstr "{$editorName} has marked the round {$round} review for submission {$submissionId} as unconsidered."
+
+msgid "log.editor.decision"
+msgstr "An editor decision ({$decision}) for monograph {$submissionId} was recorded by {$editorName}."
+
+msgid "log.editor.recommendation"
+msgstr "An editor recommndation ({$decision}) for monograph {$submissionId} was recorded by {$editorName}."
+
+msgid "log.editor.archived"
+msgstr "The submission {$submissionId} has been archived."
+
+msgid "log.editor.restored"
+msgstr "The submission {$submissionId} has been restored to the queue."
+
+msgid "log.editor.editorAssigned"
+msgstr "{$editorName} has been assigned as editor to submission {$submissionId}."
+
+msgid "log.proofread.assign"
+msgstr "{$assignerName} has assigned {$proofreaderName} to proofread submission {$submissionId}."
+
+msgid "log.proofread.complete"
+msgstr "{$proofreaderName} has submitted {$submissionId} for scheduling."
+
+msgid "log.imported"
+msgstr "{$userName} has imported monograph {$submissionId}."
+
+msgid "notification.addedIdentificationCode"
+msgstr "Identification Code added."
+
+msgid "notification.editedIdentificationCode"
+msgstr "Identification Code edited."
+
+msgid "notification.removedIdentificationCode"
+msgstr "Identification Code removed."
+
+msgid "notification.addedPublicationDate"
+msgstr "Publication Date added."
+
+msgid "notification.editedPublicationDate"
+msgstr "Publication Date edited."
+
+msgid "notification.removedPublicationDate"
+msgstr "Publication Date removed."
+
+msgid "notification.addedPublicationFormat"
+msgstr "Publication Format added."
+
+msgid "notification.editedPublicationFormat"
+msgstr "Publication Format edited."
+
+msgid "notification.removedPublicationFormat"
+msgstr "Publication Format removed."
+
+msgid "notification.addedSalesRights"
+msgstr "Sales Rights added."
+
+msgid "notification.editedSalesRights"
+msgstr "Sales Rights edited."
+
+msgid "notification.removedSalesRights"
+msgstr "Sales Rights removed."
+
+msgid "notification.addedRepresentative"
+msgstr "Representative added."
+
+msgid "notification.editedRepresentative"
+msgstr "Representative edited."
+
+msgid "notification.removedRepresentative"
+msgstr "Representative removed."
+
+msgid "notification.addedMarket"
+msgstr "Market added."
+
+msgid "notification.editedMarket"
+msgstr "Market edited."
+
+msgid "notification.removedMarket"
+msgstr "Market removed."
+
+msgid "notification.addedSpotlight"
+msgstr "Spotlight added."
+
+msgid "notification.editedSpotlight"
+msgstr "Spotlight edited."
+
+msgid "notification.removedSpotlight"
+msgstr "Spotlight removed."
+
+msgid "notification.savedCatalogMetadata"
+msgstr "Catalog metadata saved."
+
+msgid "notification.savedPublicationFormatMetadata"
+msgstr "Publication format metadata saved."
+
+msgid "notification.proofsApproved"
+msgstr "Proofs approved."
+
+msgid "notification.removedSubmission"
+msgstr "Submission deleted."
+
+msgid "notification.type.submissionSubmitted"
+msgstr "A new monograph, \"{$title},\" has been submitted."
+
+msgid "notification.type.editing"
+msgstr "Editing Events"
+
+msgid "notification.type.reviewing"
+msgstr "Reviewing Events"
+
+msgid "notification.type.site"
+msgstr "Site Events"
+
+msgid "notification.type.submissions"
+msgstr "Submission Events"
+
+msgid "notification.type.userComment"
+msgstr "A reader has made a comment on \"{$title}\"."
+
+msgid "notification.type.public"
+msgstr "Public Announcements"
+
+msgid "notification.type.editorAssignmentTask"
+msgstr "A new monograph has been submitted to which an editor needs to be assigned."
+
+msgid "notification.type.copyeditorRequest"
+msgstr "You have been asked to review copyedits for \"{$file}\"."
+
+msgid "notification.type.layouteditorRequest"
+msgstr "You have been asked to review layouts for \"{$title}\"."
+
+msgid "notification.type.indexRequest"
+msgstr "You have been asked to create an index for \"{$title}\"."
+
+msgid "notification.type.editorDecisionInternalReview"
+msgstr "Internal review process started."
+
+msgid "notification.type.approveSubmission"
+msgstr "This submission is currently awaiting approval in the Catalog Entry tool before it will appear in the public catalog."
+
+msgid "notification.type.approveSubmissionTitle"
+msgstr "Awaiting approval."
+
+msgid "notification.type.formatNeedsApprovedSubmission"
+msgstr "The monograph will not be listed in the catalog until a catalog entry has been created. To add this book to the catalog, click on the Catalog Entry above and find the Catalog tab."
+
+msgid "notification.type.configurePaymentMethod.title"
+msgstr "No payment method configured."
+
+msgid "notification.type.configurePaymentMethod"
+msgstr "A configured payment method is required before you can define e-commerce settings."
+
+msgid "notification.type.visitCatalogTitle"
+msgstr "Catalog Management"
+
+msgid "user.authorization.invalidReviewAssignment"
+msgstr "You have been denied access because you do not seem to be a valid reviewer for this monograph."
+
+msgid "user.authorization.monographAuthor"
+msgstr "You have been denied access because you do not seem to be the author of this monograph."
+
+msgid "user.authorization.monographReviewer"
+msgstr "You have been denied access because you do not seem to be an assigned reviewer of this monograph."
+
+msgid "user.authorization.monographFile"
+msgstr "You have been denied access to the specified monograph file."
+
+msgid "user.authorization.invalidMonograph"
+msgstr "Invalid monograph or no monograph requested!"
+
+msgid "user.authorization.noContext"
+msgstr "No press in context!"
+
+msgid "user.authorization.seriesAssignment"
+msgstr "You are trying to access a monograph that is not part of your series."
+
+msgid "user.authorization.workflowStageAssignmentMissing"
+msgstr "Access denied! You have not been assigned to this workflow stage."
+
+msgid "user.authorization.workflowStageSettingMissing"
+msgstr "Access denied! The user group you are currently acting under has not been assigned to this workflow stage. Please check your press settings."
+
+msgid "payment.directSales"
+msgstr "Download From Press Website"
+
+msgid "payment.directSales.price"
+msgstr "Price"
+
+msgid "payment.directSales.availability"
+msgstr "Availability"
+
+msgid "payment.directSales.catalog"
+msgstr "Catalog"
+
+msgid "payment.directSales.approved"
+msgstr "Approved"
+
+msgid "payment.directSales.priceCurrency"
+msgstr "Price ({$currency})"
+
+msgid "payment.directSales.numericOnly"
+msgstr "Prices should be numeric only. Do not include currency symbols."
+
+msgid "payment.directSales.directSales"
+msgstr "Direct Sales"
+
+msgid "payment.directSales.amount"
+msgstr "{$amount} ({$currency})"
+
+msgid "payment.directSales.notAvailable"
+msgstr "Not Available"
+
+msgid "payment.directSales.notSet"
+msgstr "Not Set"
+
+msgid "payment.directSales.openAccess"
+msgstr "Open Access"
+
+msgid "payment.directSales.price.description"
+msgstr "File formats can be made available for downloading from the press website through open access at no cost to readers or direct sales (using an online payment processor, as configured in Distribution). For this file indicate the basis of access."
+
+msgid "payment.directSales.validPriceRequired"
+msgstr "A valid numeric price is required."
+
+msgid "payment.directSales.purchase"
+msgstr "Purchase {$format} ({$amount} {$currency})"
+
+msgid "payment.directSales.download"
+msgstr "Download {$format}"
+
+msgid "payment.directSales.monograph.name"
+msgstr "Purchase Monograph or Chapter Download"
+
+msgid "payment.directSales.monograph.description"
+msgstr "This transaction is for the purchase of a direct download of a single monograph or monograph chapter."
+
+msgid "debug.notes.currencyListLoad"
+msgstr "Loaded currency list \"{$filename}\" from XML"
+
+msgid "debug.notes.helpMappingLoad"
+msgstr "Reloaded XML help mapping file {$filename} in search of {$id}."
+
+msgid "rt.metadata.pkp.dctype"
+msgstr "Book"
+
+msgid "submission.pdf.download"
+msgstr "Download this PDF file"
+
+msgid "user.profile.form.showOtherContexts"
+msgstr "Register with other presses"
+
+msgid "user.profile.form.hideOtherContexts"
+msgstr "Hide other presses"

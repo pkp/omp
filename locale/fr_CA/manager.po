@@ -1,0 +1,1025 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: \n"
+"Report-Msgid-Bugs-To: \n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"POT-Creation-Date: 2019-09-30T06:23:44-07:00\n"
+"PO-Revision-Date: 2019-09-30T06:23:44-07:00\n"
+"Language: \n"
+
+msgid "manager.language.confirmDefaultSettingsOverwrite"
+msgstr "Ceci remplacera tous les paramètres spécifiques aux données de la presse que vous aviez spécifiés pour ce paramètre."
+
+msgid "manager.languages.languageInstructions"
+msgstr "Les utilisateurs peuvent utiliser différentes langues dans OMP. De plus, OMP peut être multilingue: les utilisateurs peuvent basculer d'une langue à l'autre sur chaque page et ils peuvent saisir les données dans différentes langues.<br /><br/>Si une langue prise en charge par OMP n'apparait dans la liste, demandez à l'administrateur du site d'installer la langue à partir de l'interface d'administration du site. La documentation d'OMP contient des instructions sur la prise en charge de nouvelles langues."
+
+msgid "manager.languages.noneAvailable"
+msgstr "Désolé, aucune autre langue n'est disponible. Contactez l'administrateur du site si vous souhaitez ajouter d'autres langues à cette presse."
+
+msgid "manager.languages.primaryLocaleInstructions"
+msgstr "Cette langue sera la langue par défaut du site de la presse."
+
+msgid "manager.series.form.mustAllowPermission"
+msgstr "Assurez-vous qu'au moins une case ait été cochée pour chaque tâche assignée au rédacteur en chef de la série."
+
+msgid "manager.series.form.reviewFormId"
+msgstr "Assurez-vous d'avoir choisi un formulaire d'évaluation valide."
+
+msgid "manager.series.submissionIndexing"
+msgstr "Ne fera pas partie de l'indexage de la presse."
+
+msgid "manager.series.editorRestriction"
+msgstr "Les articles ne peuvent être soumis que par les rédacteurs en chef et les rédacteurs en chef de la série."
+
+msgid "manager.series.confirmDelete"
+msgstr "Vous voulez supprimer cette série de façon permanente?"
+
+msgid "manager.series.indexed"
+msgstr "Indexé"
+
+msgid "manager.series.open"
+msgstr "Soumissions libres"
+
+msgid "manager.series.readingTools"
+msgstr "Outils de lecture"
+
+msgid "manager.series.submissionReview"
+msgstr "Ne sera pas évalué par les pairs"
+
+msgid "manager.series.submissionsToThisSection"
+msgstr "Soumissions envoyées pour cette série"
+
+msgid "manager.series.abstractsNotRequired"
+msgstr "N'exige pas de résumé"
+
+msgid "manager.series.disableComments"
+msgstr "Désactiver les commentaires des lecteurs pour cette série."
+
+msgid "manager.series.book"
+msgstr "Série de livres"
+
+msgid "manager.series.create"
+msgstr "Créer une série"
+
+msgid "manager.series.policy"
+msgstr "Description de la série"
+
+msgid "manager.series.assigned"
+msgstr "Rédacteurs en chef de la série"
+
+msgid "manager.series.seriesEditorInstructions"
+msgstr "Ajouter un rédacteur en chef pour cette série à partir de la liste de rédacteurs en chef de série. Lorsqu'un rédacteur a été ajouté, indiquez s'il sera en charge de l'ÉVALUATION (évaluation par les pairs) et/ou du TRAVAIL ÉDITORIAL (révision, mise en page et correction d'épreuves) des soumissions de cette série. Pour ajouter un rédacteur en chef à la série, il faut cliquer <a href=\"{$seriesEditorsUrl}\">Rédacteurs/Rédactrices en chef de série</a> dans la section Rôles des administrateurs de la presse."
+
+msgid "manager.series.hideAbout"
+msgstr "Omettre cette série de la section À propos de cette presse."
+
+msgid "manager.series.unassigned"
+msgstr "Rédacteurs/Rédactrices en chef de série disponibles"
+
+msgid "manager.series.form.abbrevRequired"
+msgstr "Un titre abrégé est requis pour cette série."
+
+msgid "manager.series.form.titleRequired"
+msgstr "Il faut donner un titre à cette série."
+
+msgid "manager.series.noneCreated"
+msgstr "Aucune série n'a été créée."
+
+msgid "manager.series.existingUsers"
+msgstr "Utilisateurs actuels"
+
+msgid "manager.series.seriesTitle"
+msgstr "Titre de la série"
+
+msgid "manager.series.noSeriesEditors"
+msgstr "Aucun rédacteur en chef n'a été choisi pour cette série. Assignez ce rôle à au moins un utilisateur en choisissant Gestion > Paramètres > Utilisateurs &amp; Rôles."
+
+msgid "manager.series.noCategories"
+msgstr "Il n'y a pas encore de catégories. Si vous souhaitez assigner des catégories à cette série, fermez ce modal et cliquez sur l'onglet \"Catégories\", puis créez une catégorie."
+
+msgid "manager.settings"
+msgstr "Paramètres"
+
+msgid "manager.settings.pressSettings"
+msgstr "Paramètres de la presse"
+
+msgid "manager.settings.press"
+msgstr "Presse"
+
+msgid "manager.settings.publisher.identity.description"
+msgstr "Ces champs ne sont pas nécessaires pour l'usage général d'OMP, mais sont nécessaires pour créer des métadonnées ONIX valides. Veuillez les ajouter si vous souhaitez utiliser la fonctionnalité ONIX."
+
+msgid "manager.settings.publisher"
+msgstr "Nom de l'éditeur de la presse"
+
+msgid "manager.settings.location"
+msgstr "Lieu géographique"
+
+msgid "manager.settings.publisherCode"
+msgstr "Code de l'éditeur"
+
+msgid "manager.settings.distributionDescription"
+msgstr "Tous les paramètres associés au processus de distribution (avis, indexage, archivage, paiement, outils de lecture)."
+
+msgid "manager.tools"
+msgstr "Outils"
+
+msgid "manager.tools.importExport"
+msgstr "Tous les outils associés spécifiquement à l'importation et à l'exportation des données (presses, monographies, utilisateurs)"
+
+msgid "manager.users"
+msgstr "Gestion des utilisateurs"
+
+msgid "manager.users.availableRoles"
+msgstr "Rôles disponibles"
+
+msgid "manager.users.currentRoles"
+msgstr "Rôles actuels"
+
+msgid "manager.users.selectRole"
+msgstr "Choisir un rôle"
+
+msgid "manager.people.allPresses"
+msgstr "Toutes les presses"
+
+msgid "manager.people.allSiteUsers"
+msgstr "Inscrire un utilisateur de ce site à cette presse"
+
+msgid "manager.people.allUsers"
+msgstr "Tous les utilisateurs inscrits"
+
+msgid "manager.people.confirmRemove"
+msgstr "Vous voulez supprimer cet utilisateur de la presse? Cet utilisateur ne sera plus inscrit à aucun rôle dans cette presse."
+
+msgid "manager.people.enrollExistingUser"
+msgstr "Inscrire un utilisateur actuel"
+
+msgid "manager.people.existingUserRequired"
+msgstr "Vous devez choisir un utilisateur actuel."
+
+msgid "manager.people.enrollSyncPress"
+msgstr "Avec la presse"
+
+msgid "manager.people.mergeUsers.from.description"
+msgstr "Sélectionnez un utilisateur qui sera fusionné à un autre compte d'utilisateur (ex.: lorsqu'une personne a deux comptes). Le premier compte sélectionné sera supprimé et ses soumissions, tâches, etc. seront assignées au deuxième compte."
+
+msgid "manager.people.mergeUsers.into.description"
+msgstr "Sélectionnez l'utilisateur à qui vous souhaitez attribuer les paternités d'oeuvre, les tâches d'édition, etc. de l'ancien utilisateur."
+
+msgid "manager.people.syncUserDescription"
+msgstr "La synchronisation de l'inscription inscrira tous les utilisateurs de la presse spécifiée dans cette presse, et le rôle qui leur avait été assigné dans la presse spécifiée leur sera attribué dans cette presse. Cette fonction permet de synchroniser un groupe d'utilisateurs communs (ex.: évaluateurs) parmi les différentes presses."
+
+msgid "manager.people.confirmDisable"
+msgstr "Vous souhaitez désactiver cet utilisateur? Il ne pourra plus ouvrir une session dans le système. Vous pourriez expliquer à l'utilisateur pourquoi vous avez désactivé son compte, mais cela est optionnel."
+
+msgid "manager.people.noAdministrativeRights"
+msgstr ""
+"Désolé, vous ne possédez pas les droits administratifs vous permettant de modifier cet utilisateur parce que:\n"
+"\t\t<ul>\n"
+"\t\t\t<li>L'utilisateur est un administrateur du site</li>\n"
+"\t\t\t<li>L'utilisateur est actif dans les presses que vous ne gérez pas</li>\n"
+"\t\t</ul>\n"
+"\tCette tâche doit être effectuée par un administrateur du site."
+
+msgid "settings.roles.gridDescription"
+msgstr ""
+"Les rôles représentent des groupes d'utilisateurs de la presse à qui l'on a donné accès à différents niveaux d'autorisation et de flux de travaux au sein de la presse. Il existe cinq niveaux d'autorisation: les directeurs de la presse ont accès à tout le contenu de la presse (contenu et paramètres); les rédacteurs en chef de la presse ont accès à tout le contenu de leur série; les adjoints de presse ont accès à toutes les monographies leur ayant été explicitement assignées par un rédacteur en chef; les évaluateurs peuvent visionner et effectuer les évaluations leur ayant été assignées; et les auteurs peuvent visionner et interagir avec un nombre restreint de renseignements concernant leurs soumissions. De plus, les tâches sont divisées en cinq étapes auxquelles les rôles peuvent avoir accès:\n"
+"Soumission, Évaluation interne, Évaluation externe, Rédaction et Production."
+
+msgid "manager.system"
+msgstr "Paramètres du système"
+
+msgid "manager.system.archiving"
+msgstr "Archivage"
+
+msgid "manager.system.reviewForms"
+msgstr "Formulaires d'évaluation"
+
+msgid "manager.system.readingTools"
+msgstr "Outils de lecture"
+
+msgid "manager.system.payments"
+msgstr "Paiement"
+
+msgid "manager.pressManagement"
+msgstr "Administration de la presse"
+
+msgid "manager.setup"
+msgstr "Configuration"
+
+msgid "manager.setup.aboutItemContent"
+msgstr "Contenu"
+
+msgid "manager.setup.addAboutItem"
+msgstr "Ajouter un élément dans À propos de"
+
+msgid "manager.setup.addChecklistItem"
+msgstr "Ajouter un point à la liste de vérification"
+
+msgid "manager.setup.addContributor"
+msgstr "Ajouter un contributeur"
+
+msgid "manager.setup.addItem"
+msgstr "Ajouter un élément"
+
+msgid "manager.setup.addItemtoAboutPress"
+msgstr "Ajouter un élément qui s'affichera dans la section \"À propos de cette presse\""
+
+msgid "manager.setup.additionalContent"
+msgstr "Contenu supplémentaire"
+
+msgid "manager.setup.additionalContentDescription"
+msgstr "Ajouter le contenu suivant en utilisant le format texte/HTML. Il s'affichera sous l'image de la page d'accueil, si une telle page a été téléchargée."
+
+msgid "manager.setup.addNavItem"
+msgstr "Ajouter un élément"
+
+msgid "manager.setup.addSponsor"
+msgstr "Ajouter un organisme parrain"
+
+msgid "manager.setup.alternateHeader"
+msgstr "En-tête secondaire"
+
+msgid "manager.setup.alternateHeaderDescription"
+msgstr "Au lieu d'un titre ou d'un logo, la version HTML de l'en-tête peut être insérée dans la zone de texte ci-dessous. Laissez cette zone vide si vous n'en avez pas besoin."
+
+msgid "manager.setup.announcements"
+msgstr "Annonces"
+
+msgid "manager.setup.announcementsDescription"
+msgstr "Vous pouvez publier des annonces pour informer les lecteurs des récentes nouvelles et activités de la presse. Les annonces s'afficheront sur la page Annonces."
+
+msgid "manager.setup.announcementsIntroduction"
+msgstr "Renseignements supplémentaires"
+
+msgid "manager.setup.announcementsIntroduction.description"
+msgstr "Saisissez les renseignements supplémentaires s'adressant aux lecteurs qui devraient s'afficher sur la page Annonces."
+
+msgid "manager.setup.appearInAboutPress"
+msgstr "(S'affichera dans À propos de cette presse) "
+
+msgid "manager.setup.authorCopyrightNotice"
+msgstr "Avis de droit d'auteur"
+
+msgid "manager.setup.authorCopyrightNoticeAgree"
+msgstr "Le processus de soumission exige que les auteurs souscrivent à l'avis de droit d'auteur."
+
+msgid "manager.setup.authorCopyrightNotice.description"
+msgstr "L'avis de droit d'auteur saisi ci-dessous s'affichera dans À propos de cette presse et dans les métadonnées de chaque article publié. Bien qu'il en revienne à la presse d'établir la nature de son avis de droit d'auteur, le Public Knowledge Project recommande d'utiliser la licence <a href=\"http://creativecommons.org\" target=\"_blank\" class=\"action\">Creative Commons</a>. À cette fin, on fournit un <a href=\"{$sampleCopyrightWordingUrl}\" target=\"_blank\" class=\"action\">modèle suggérant la formulation de l'avis de droit d'auteur</a> qui peut être copié-collé dans l'espace ci-dessous par les presses qui (a) offrent l'accès libre, (b), offrent l'accès libre différé, ou (c) n'offrent pas l'accès libre."
+
+msgid "manager.setup.authorGuidelines.description"
+msgstr "Énoncer les normes bibliographiques et d'édition que les auteurs doivent utiliser lorsqu'ils soumettent un article à la presse (ex: <em>manuel d'édition de l'American Psychological Association</em>, 5e édition, 2001). Il est souvent utile de fournir des exemples des styles de citation couramment utilisés par les presses et les livres et qui doivent être utilisés dans les soumissions."
+
+msgid "manager.setup.contributor"
+msgstr "Contributeur"
+
+msgid "manager.setup.contributors"
+msgstr "Sources de financement"
+
+msgid "manager.setup.contributors.description"
+msgstr "Les noms des agences ou organismes qui fournissent une aide financière ou en nature à la presse apparaitront dans la section À propos de cette presse et pourraient être accompagnés d'un mot de remerciement."
+
+msgid "manager.setup.copyediting"
+msgstr "Réviseurs de textes"
+
+msgid "manager.setup.copyeditInstructions"
+msgstr "Instructions pour la révision"
+
+msgid "manager.setup.copyeditInstructionsDescription"
+msgstr "Les réviseurs de textes, les auteurs et les rédacteurs en chef de la section auront accès aux Instructions pour la révision à l'étape de révision de la soumission. Voici l'ensemble des instructions par défaut en HTML, qui peuvent être modifiées ou remplacées par le directeur de la presse en tout temps (en HTML ou texte clair)."
+
+msgid "manager.setup.copyrightNotice"
+msgstr "Avis de droit d'auteur"
+
+msgid "manager.setup.coverage"
+msgstr "Champ couvert"
+
+msgid "manager.setup.customizingTheLook"
+msgstr "Étape 5. Personnaliser l'apparence"
+
+msgid "manager.setup.customTags"
+msgstr "Marqueurs personnalisés"
+
+msgid "manager.setup.customTagsDescription"
+msgstr "Vous pouvez ajouter des marqueurs HTML personnalisés dans l'en-tête de chaque page. (ex.: marqueurs Méta)."
+
+msgid "manager.setup.details"
+msgstr "Détails"
+
+msgid "manager.setup.details.description"
+msgstr "Nom de la presse, coordonnées, parrains et moteurs de recherche."
+
+msgid "manager.setup.disableUserRegistration"
+msgstr "Les directeurs de presse inscrivent tous les utilisateurs. Les rédacteurs en chef et rédacteurs en chef de section ne peuvent inscrire que les évaluateurs."
+
+msgid "manager.setup.discipline"
+msgstr "Discipline et sous-disciplines universitaires"
+
+msgid "manager.setup.disciplineDescription"
+msgstr "Utile lorsque les presses traversent les frontières des disciplines et/ou les auteurs soumettent des articles multidisciplinaires."
+
+msgid "manager.setup.disciplineExamples"
+msgstr "(ex.: histoire; éducation; sociologie; psychologie; études culturelles; loi)"
+
+msgid "manager.setup.disciplineProvideExamples"
+msgstr "Fournir des exemples des disciplines universitaires normalement associées à cette presse."
+
+msgid "manager.setup.displayCurrentMonograph"
+msgstr "Ajouter la table des matières de la monographie en question (si disponible)."
+
+msgid "manager.setup.doiPrefix"
+msgstr "Préfixe DOI"
+
+msgid "manager.setup.doiPrefixDescription"
+msgstr "Le préfixe DOI (Digital Object Identifier) est assigné par <a href=\"http://www.crossref.org\" target=\"_blank\">CrossRef</a> sous le format 10.xxxx (ex.: 10.1234)."
+
+msgid "manager.setup.editorDecision"
+msgstr "Décision du rédacteur en chef"
+
+msgid "manager.setup.emailBounceAddress"
+msgstr "Adresse de retour"
+
+msgid "manager.setup.emailBounceAddress.description"
+msgstr "Un message d'erreur s'affichera à cette adresse lorsqu'un courriel est non délivrable."
+
+msgid "manager.setup.emails"
+msgstr "Identification de courriel"
+
+msgid "manager.setup.emailSignature"
+msgstr "Signature"
+
+msgid "manager.setup.emailSignatureDescription"
+msgstr "Les courriels distribués par le système au nom de la presse contiendront le bloc-signature suivant à la fin du message. Le contenu des courriels peut être modifié dans la section ci-dessous."
+
+msgid "manager.setup.enableAnnouncements.enable"
+msgstr "Permettre au directeur de la presse d'ajouter des annonces de la presse."
+
+msgid "manager.setup.enablePressInstructions"
+msgstr "Afficher cette presse publiquement sur le site"
+
+msgid "manager.setup.enablePublicMonographId"
+msgstr "Des identificateurs personnalisés seront utilisés pour identifier les articles publiés."
+
+msgid "manager.setup.enablePublicGalleyId"
+msgstr "Des identificateurs personnalisés seront utilisés pour identifier les épreuves en placard (ex.: fichiers HTML ou PDF) des articles publiés."
+
+msgid "manager.setup.focusAndScope"
+msgstr "Objectif et portée de la presse"
+
+msgid "manager.setup.focusAndScope.description"
+msgstr "Saisir un énoncé qui s'affichera dans la section À propos de cette presse et indiquera aux auteurs, aux lecteurs et aux bibliothécaires l'éventail des monographies et autres articles qui seront publiés par la presse."
+
+msgid "manager.setup.focusScope"
+msgstr "Objectif et portée"
+
+msgid "manager.setup.focusScopeDescription"
+msgstr "<strong>EXEMPLE DE DONNÉES HTML</strong>"
+
+msgid "manager.setup.forAuthorsToIndexTheirWork"
+msgstr "Permet aux auteurs d'indexer leur travail"
+
+msgid "manager.setup.forAuthorsToIndexTheirWorkDescription"
+msgstr "OMP a adopté le protocole <a href=\"http://www.openarchives.org/\" target=\"_blank\">Open Archives Initiative</a> pour la collecte de métadonnées, la norme émergente qui permet de fournir un accès mondial à des ressources de recherche électroniques indexées adéquatement. Les auteurs utiliseront un modèle semblable pour les métadonnées de leur soumission. Le directeur de la presse devrait choisir les catégories d'indexage et donner des exemples pertinents aux auteurs pour les aider à indexer leur article, en séparant les termes par un point-virgule (ex.: terme1; terme2). Les entrées devraient être précédées d'exemples en utilisant \"ex.:\" ou \"Par exemple,\"."
+
+msgid "manager.setup.form.contactEmailRequired"
+msgstr "Vous devez ajouter l'adresse courriel de la personne-ressource principale."
+
+msgid "manager.setup.form.contactNameRequired"
+msgstr "Vous devez ajouter le nom de la personne-ressource principale."
+
+msgid "manager.setup.form.numReviewersPerSubmission"
+msgstr "Vous devez indiquer le nombre d'évaluateurs par soumission."
+
+msgid "manager.setup.form.supportEmailRequired"
+msgstr "Vous devez indiquer l'adresse courriel du service de soutien."
+
+msgid "manager.setup.form.supportNameRequired"
+msgstr "Vous devez indiquer le nom du responsable du soutien."
+
+msgid "manager.setup.generalInformation"
+msgstr "Renseignements généraux"
+
+msgid "manager.setup.gettingDownTheDetails"
+msgstr "Étape 1. Les détails"
+
+msgid "manager.setup.guidelines"
+msgstr "Lignes directrices"
+
+msgid "manager.setup.preparingWorkflow"
+msgstr "Étape 3. Préparer le flux des travaux"
+
+msgid "manager.setup.homepageImage"
+msgstr "Image de la page d'accueil"
+
+msgid "manager.setup.homepageImageDescription"
+msgstr "Ajouter un fichier image ou graphique au milieu de la page. Si vous utilisez le modèle et CSS par défaut, l'image peut être d'une largeur maximale de 750 px pour une configuration avec une barre des menus verticale, ou de 540 px pour une configuration avec deux barres des menus verticales. Si vous utilisez un modèle ou CSS personnalisé, ces valeurs pourraient varier."
+
+msgid "manager.setup.information.description"
+msgstr "De brèves descriptions de la presse pour les bibliothécaires ainsi que pour les lecteurs et les auteurs potentiels sont affichées dans la section \"Renseignements\" de la barre des menus verticale."
+
+msgid "manager.setup.information.forAuthors"
+msgstr "Pour les auteurs"
+
+msgid "manager.setup.information.forLibrarians"
+msgstr "Pour les bibliothécaires"
+
+msgid "manager.setup.information.forReaders"
+msgstr "Pour les lecteurs"
+
+msgid "manager.setup.institution"
+msgstr "Institution"
+
+msgid "manager.setup.labelName"
+msgstr "Nom d'étiquette"
+
+msgid "manager.setup.layoutAndGalleys"
+msgstr "Rédacteurs metteurs en page"
+
+msgid "manager.setup.layoutInstructions"
+msgstr "Instructions de mise en page"
+
+msgid "manager.setup.layoutInstructionsDescription"
+msgstr "Des instructions concernant la mise en page des articles publiés par cette presse peuvent être ajoutées ci-dessous en format HTML ou texte clair. Elles pourront être consultées par le responsable de la mise en page et le rédacteur en chef de section sur la page de révision de chaque soumission. (Étant donné que chaque presse utilise ses propres formats de fichiers, normes bibliographiques, feuilles de style, etc., on ne fournit pas d'instructions par défaut.)"
+
+msgid "manager.setup.layoutTemplates"
+msgstr "Modèles de mise en page"
+
+msgid "manager.setup.layoutTemplatesDescription"
+msgstr "Des modèles de chaque format standard publié par la presse (ex.: monographie, critique de livre, etc.) peuvent être téléchargés dans la section Mise en page, dans tous les formats (ex.: pdf, doc, etc.). Ils contiennent des annotations sur la police de caractères, la taille, les marges, etc. qui guideront les rédacteurs metteurs en page et les correcteurs d'épreuves."
+
+msgid "manager.setup.layoutTemplates.file"
+msgstr "Fichier modèle"
+
+msgid "manager.setup.layoutTemplates.title"
+msgstr "Titre"
+
+msgid "manager.setup.lists"
+msgstr "Listes"
+
+msgid "manager.setup.look"
+msgstr "Aspect et convivialité"
+
+msgid "manager.setup.look.description"
+msgstr "En-tête de la page d'accueil, contenu, en-tête de la presse, bas de page, barre de navigation et feuille de style."
+
+msgid "manager.setup.mailingAddress.description"
+msgstr "L'emplacement physique et l'adresse postale de la presse."
+
+msgid "manager.setup.settings"
+msgstr "Paramètres"
+
+msgid "manager.setup.management.description"
+msgstr "Accès et sécurité, planification, annonces, révision, mise en page et correction d'épreuves."
+
+msgid "manager.setup.managementOfBasicEditorialSteps"
+msgstr "Gestion des étapes de révision de base"
+
+msgid "manager.setup.managingPublishingSetup"
+msgstr "Configuration de la gestion et de la publication"
+
+msgid "manager.setup.managingThePress"
+msgstr "Étape 4. Gestion des paramètres"
+
+msgid "manager.setup.noImageFileUploaded"
+msgstr "Aucun fichier image n'a été téléchargé."
+
+msgid "manager.setup.noStyleSheetUploaded"
+msgstr "Aucune feuille de style n'a été téléchargée."
+
+msgid "manager.setup.note"
+msgstr "Note"
+
+msgid "manager.setup.notifications"
+msgstr "Avis de soumission d'un auteur"
+
+msgid "manager.setup.notifications.copyPrimaryContact"
+msgstr "Envoyer une copie à la principale personne-ressource telle qu'identifiée à l'étape 1, lors de la configuration."
+
+msgid "manager.setup.notifications.copySpecifiedAddress"
+msgstr "Envoyer une copie à cette adresse courriel:"
+
+msgid "manager.setup.notifications.description"
+msgstr "Lorsque le processus de soumission est terminé, les auteurs reçoivent automatiquement un accusé de réception par courriel (qui peut être visionné et modifié dans la section Courriels préparés). De plus, une copie de l'accusé de réception peut être envoyée ainsi:"
+
+msgid "manager.setup.notifyAllAuthorsOnDecision"
+msgstr "Si vous avez choisi l'option Envoyer un avis par courriel à l'auteur, ajoutez les adresses courriel de tous les co-auteurs s'il s'agit de soumissions par de multiples auteurs, et non seulement l'adresse courriel de l'utilisateur qui envoie la soumission."
+
+msgid "manager.setup.noUseCopyeditors"
+msgstr "La révision sera entreprise par le rédacteur en chef ou le rédacteur de section à qui l'on a assigné la soumission."
+
+msgid "manager.setup.noUseLayoutEditors"
+msgstr "Le rédacteur en chef ou le rédacteur de section à qui l'on a assigné la soumission préparera les fichiers HTML, PDF, etc."
+
+msgid "manager.setup.noUseProofreaders"
+msgstr "Le rédacteur en chef ou le rédacteur de section à qui l'on a assigné la soumission vérifiera les épreuves en placard."
+
+msgid "manager.setup.numPageLinks"
+msgstr "Liens vers des pages Web"
+
+msgid "manager.setup.onlineAccessManagement"
+msgstr "Accès au contenu de la presse"
+
+msgid "manager.setup.onlineIssn"
+msgstr "ISSN en ligne"
+
+msgid "manager.setup.openAccess"
+msgstr "La presse fournit l'accès libre à son contenu."
+
+msgid "manager.setup.openAccessPolicy"
+msgstr "Politique de libre accès"
+
+msgid "manager.setup.openAccessPolicy.description"
+msgstr "Si la presse permet aux lecteurs d'accéder immédiatement et librement à tout le contenu qu'elle a publié, veuillez ajouter la Politique de libre accès qui s'affichera dans la section À propos de cette presse, sous la rubrique Politiques."
+
+msgid "manager.setup.peerReview.description"
+msgstr "Présentez les grandes lignes de la politique et du processus d'évaluation par les pairs pour les lecteurs et les auteurs, y compris le nombre d'évaluateurs auquel on fait normalement appel pour évaluer une soumission, les critères utilisés par les évaluateurs pour évaluer les soumissions, les délais habituels pour mener les évaluations et les principes de recrutement des évaluateurs. Ces renseignements s'afficheront dans la section À propos de cette presse."
+
+msgid "manager.setup.policies"
+msgstr "Politiques"
+
+msgid "manager.setup.policies.description"
+msgstr "Centre d'intérêt, évaluation par les pairs, sections, confidentialité, sécurité et autres renseignements."
+
+msgid "manager.setup.pressDescription"
+msgstr "Description de la presse"
+
+msgid "manager.setup.pressDescription.description"
+msgstr "Une description générale de la presse devrait être ajoutée ici. Cette description sera disponible sur la page d'accueil de la presse."
+
+msgid "manager.setup.pressArchiving"
+msgstr "Archivage de la presse"
+
+msgid "manager.setup.pressHomepageContent"
+msgstr "Contenu de la page d'accueil de la presse"
+
+msgid "manager.setup.pressHomepageContentDescription"
+msgstr "La page d'accueil de la presse contient les liens de navigation par défaut. Vous pouvez ajouter du texte sur la page d'accueil à l'aide d'une ou de toutes les options suivantes, qui s'afficheront dans l'ordre indiqué."
+
+msgid "manager.setup.contextInitials"
+msgstr "Sigles de la presse"
+
+msgid "manager.setup.pageFooter"
+msgstr "Bas de page de la presse"
+
+msgid "manager.setup.pageFooterDescription"
+msgstr "Voici le bas de page de votre presse. Pour modifier ou mettre à jour le bas de page, copiez-collez le code HTML dans la zone d'entrée de texte ci-dessous. Vous pourriez par exemple ajouter une autre barre de navigation ou un compteur. Ce bas de page apparaitra sur chaque page."
+
+msgid "manager.setup.pageHeader"
+msgstr "Page d'en-tête de la presse"
+
+msgid "manager.setup.pageHeaderDescription"
+msgstr "Une version graphique du titre de la presse (fichier .gif, .jpg, ou .png), qui peut être plus petite que celle utilisée sur la page d'accueil, peut être téléchargée afin que le titre apparaisse dans l'en-tête de chaque page de la presse et remplace la version textuelle qui apparait normalement."
+
+msgid "manager.setup.pressPolicies"
+msgstr "Étape 2. Politiques de la presse"
+
+msgid "manager.setup.pressSetup"
+msgstr "Configuration de la presse"
+
+msgid "manager.setup.pressSetupUpdated"
+msgstr "La configuration de votre presse a été mise à jour."
+
+msgid "manager.setup.styleSheetInvalid"
+msgstr "Feuille de style non valide. Le format accepté est .css."
+
+msgid "manager.setup.pressTheme"
+msgstr "Thème de la presse"
+
+msgid "manager.setup.principalContact"
+msgstr "Principale personne-ressource"
+
+msgid "manager.setup.principalContactDescription"
+msgstr "Cet individu peut être rédacteur principal, rédacteur en chef, directeur de la publication ou employé administratif, et son nom apparaitra sur la page d'accueil de la presse dans la section Pour nous contacter, avec le nom du responsable du soutien technique."
+
+msgid "manager.setup.printIssn"
+msgstr "ISSN version imprimée"
+
+msgid "manager.setup.privacyStatement"
+msgstr "Énoncé de confidentialité"
+
+msgid "manager.setup.privacyStatement2"
+msgstr "Énoncé de confidentialité"
+
+msgid "manager.setup.privacyStatement.description"
+msgstr "Cet énoncé s'affichera sur la page À propos de cette presse, ainsi que sur les pages d'inscription pour soumettre un article ou recevoir des notifications. Voici un énoncé de confidentialité proposé, qui peut être modifié en tout temps."
+
+msgid "manager.setup.proofingInstructions"
+msgstr "Instructions pour le tirage d'épreuves"
+
+msgid "manager.setup.proofingInstructionsDescription"
+msgstr "Les lecteurs d'épreuves, les auteurs, les rédacteurs metteurs en page et les rédacteurs de section pourront consulter les instructions pour le tirage d'épreuves lors de l'étape de révision des soumissions. Voici des instructions par défaut en HTML, qui peuvent être modifiées ou remplacées par le directeur de la presse en tout temps (HTML ou texte clair)."
+
+msgid "manager.setup.proofreading"
+msgstr "Lecteurs d'épreuves"
+
+msgid "manager.setup.provideRefLinkInstructions"
+msgstr "Fournir les instructions aux rédacteurs metteurs en page."
+
+msgid "manager.setup.publicationScheduleDescription"
+msgstr "Les articles peuvent être publiés collectivement, en tant qu'élément d'une monographie avec sa propre table des matières, ou bien les articles peuvent être publiés dès qu'ils sont prêts en les ajoutant à la table des matières du volume \"actuel\". Dans la section À propos de cette presse, veuillez indiquer aux lecteurs quelle méthode de publication a été choisie et la fréquence de publication prévue."
+
+msgid "manager.setup.publisher"
+msgstr "Éditeur"
+
+msgid "manager.setup.publisherDescription"
+msgstr "Le nom de l'organisation qui publie la presse apparaitra dans la page À propos de cette presse."
+
+msgid "manager.setup.referenceLinking"
+msgstr "Liens de référence"
+
+msgid "manager.setup.refLinkInstructions.description"
+msgstr "Instructions de mise en page pour les liens de référence"
+
+msgid "manager.setup.restrictMonographAccess"
+msgstr "Les utilisateurs doivent s'inscrire et ouvrir une session pour visionner le contenu à libre accès."
+
+msgid "manager.setup.restrictSiteAccess"
+msgstr "Les utilisateurs doivent être inscrits et ouvrir une session pour visionner le site de la presse."
+
+msgid "manager.setup.reviewGuidelines"
+msgstr "Lignes directrices pour l'évaluation"
+
+msgid "manager.setup.reviewGuidelinesDescription"
+msgstr "Les lignes directrices pour l'évaluation fourniront aux évaluateurs les critères nécessaires pour déterminer si une soumission peut être publiée par la presse. Elles peuvent aussi contenir des instructions spéciales qui aideront l'évaluateur à rédiger une évaluation efficace et utile. Lors de l'évaluation, les évaluateurs auront accès à deux zones d'entrée de texte, la première \"pour l'auteur et le rédacteur en chef\" et la seconde \"pour le rédacteur en chef\". Ou bien, le directeur de la presse peut créer un formulaire d'évaluation dans la section Formulaires d'évaluation. Dans tous les cas, les rédacteurs pourront, s'ils le désirent, joindre les évaluations à leur correspondance avec l'auteur."
+
+msgid "manager.setup.reviewOptions.automatedReminders"
+msgstr "Des rappels peuvent être envoyés automatiquement par courriel aux évaluateurs (disponible dans les courriels par défaut d'OMP) à deux moments, mais le rédacteur en chef peut envoyer un courriel directement à l'évaluateur en tout temps."
+
+msgid "manager.setup.reviewOptions.automatedRemindersDisabled"
+msgstr "<strong>Note:</strong> Pour activer ces options, l'administrateur du site doit activer l'option <tt>scheduled_tasks</tt> dans le fichier de configuration OMP. Il pourrait s'avérer nécessaire d'intégrer d'autres configurations au serveur pour supporter cette fonctionnalité (qui n'est peut-être pas possible sur tous les serveurs), tel qu'indiqué dans les documents d'OMP."
+
+msgid "manager.setup.reviewOptions.blindReview"
+msgstr "Évaluation aveugle"
+
+msgid "manager.setup.reviewOptions.noteOnModification"
+msgstr "Ces valeurs par défaut peuvent être modifiées pour toute les soumissions tout au long du processus éditorial."
+
+msgid "manager.setup.reviewOptions.onQuality"
+msgstr "Les rédacteurs en chef accorderont une note à l'aide d'une échelle de qualité de 1 à 5 pour chaque évaluation."
+
+msgid "manager.setup.reviewOptions.restrictReviewerFileAccess.description"
+msgstr "Les évaluateurs auront accès au fichier de soumission uniquement s'ils acceptent de l'évaluer."
+
+msgid "manager.setup.reviewOptions.reviewerAccess"
+msgstr "Accès des évaluateurs"
+
+msgid "manager.setup.reviewOptions.reviewerRatings"
+msgstr "Cotes des évaluateurs"
+
+msgid "manager.setup.reviewOptions.reviewerReminders"
+msgstr "Rappels aux évaluateurs"
+
+msgid "manager.setup.reviewOptions.reviewTime"
+msgstr "Délai d'évaluation"
+
+msgid "manager.setup.reviewOptions.showEnsuringLink"
+msgstr "Fournir les liens concernant l'évaluation aveugle sur les pages où les auteurs et les évaluateurs téléchargent les fichiers."
+
+msgid "manager.setup.reviewPolicy"
+msgstr "Politique concernant l'évaluation"
+
+msgid "manager.setup.reviewProcess"
+msgstr "Processus d'évaluation"
+
+msgid "manager.setup.reviewProcessDescription"
+msgstr "OMP offre un support pour deux modèles de gestion du processus d'évaluation. Le processus standard d'évaluation est recommandé parce qu'il permet aux évaluateurs de suivre un processus par étapes, ce qui permet de créer un historique d'évaluation complet pour chaque soumission. Il permet aussi de profiter des rappels envoyés automatiquement et des recommandations standards pour les soumissions (accepter; accepter avec révisions; soumettre pour évaluation; soumettre ailleurs; refuser; voir commentaires).<br /><br />Choisir l'une des options suivantes:"
+
+msgid "manager.setup.reviewProcessEmail"
+msgstr "Processus pour l'envoi de pièces jointes par courriel aux évaluateurs"
+
+msgid "manager.setup.reviewProcessStandard"
+msgstr "Processus d'évaluation standard"
+
+msgid "manager.setup.reviewProcessStandardDescription"
+msgstr "Les rédacteurs en chef enverront le titre et le résumé de la soumission par courriel aux évaluateurs choisis, ainsi qu'une invitation à ouvrir une session sur le site web pour évaluer la soumission. Les évaluateurs se rendent sur le site Web pour accepter l'invitation, télécharger les soumissions, envoyer leur commentaires et sélectionner une recommandation."
+
+msgid "manager.setup.searchEngineIndexing"
+msgstr "Indexage du moteur de recherche"
+
+msgid "manager.setup.searchEngineIndexing.description"
+msgstr "Pour aider les utilisateurs de moteur de recherche à trouver cette presse, veuillez rédiger une brève description de la presse avec des mots-clés (séparés par un point-virgule)."
+
+msgid "manager.setup.sectionsAndSectionEditors"
+msgstr "Sections et rédacteurs de sections"
+
+msgid "manager.setup.sectionsDefaultSectionDescription"
+msgstr "(Si aucune section n'est ajoutée, les articles seront ajoutés à la section Monographies par défaut.)"
+
+msgid "manager.setup.sectionsDescription"
+msgstr "Pour créer ou modifier les sections de la presse (ex.: monographies, critiques de livre, etc.), choisissez Gestion de section.<br /><br />Les auteurs des articles soumis à la presse désigneront..."
+
+msgid "manager.setup.securitySettings"
+msgstr "Paramètres d'accès et de sécurité"
+
+msgid "manager.setup.securitySettings.note"
+msgstr "D'autres options liées à l'accès et à la sécurité peuvent être configurées à partir de la page <a href=\"{$accessAndSecurityUrl}\" target=\"_blank\" class=\"action\">Accès et sécurité</a>"
+
+msgid "manager.setup.selectEditorDescription"
+msgstr "Le rédacteur en chef de la presse qui suivra l'article tout au long du processus éditorial."
+
+msgid "manager.setup.selectSectionDescription"
+msgstr "La section de la presse à laquelle on pourrait ajouter l'article en question."
+
+msgid "manager.setup.showGalleyLinksDescription"
+msgstr "Toujours afficher les liens des épreuves en placard et indiquer les réserves de consultation."
+
+msgid "manager.setup.sponsors.description"
+msgstr "Les noms des organismes (ex.: associations universitaires, départements universitaires, coopératives, etc.) qui parrainent la presse apparaitront dans la section À propos de cette presse et peuvent être accompagnés d'une note de remerciement."
+
+msgid "manager.setup.stepsToPressSite"
+msgstr "Cinq étapes pour établir le site Web d'une presse"
+
+msgid "manager.setup.subjectExamples"
+msgstr "(ex.: la photosynthèse; les trous noirs; le théorème des quatre couleurs; le théorème de Bayes)"
+
+msgid "manager.setup.subjectKeywordTopic"
+msgstr "Mots clés"
+
+msgid "manager.setup.subjectProvideExamples"
+msgstr "Fournir des exemples de mots clés ou sujets pour guider les auteurs."
+
+msgid "manager.setup.submissionGuidelines"
+msgstr "Lignes directrices concernant les soumissions"
+
+msgid "manager.setup.submissionPreparationChecklist"
+msgstr "Liste de vérification pour la préparation de la soumission"
+
+msgid "manager.setup.submissionPreparationChecklistDescription"
+msgstr "Après avoir envoyé leur soumission à la presse, on demande aux auteurs de cocher tous les éléments de la liste de vérification avant d'envoyer leur soumission. La liste de vérification est aussi disponible dans la section Lignes directrices à l'intention des auteurs, dans la rubrique À propos de cette presse. La liste peut être modifiée ci-dessous, mais tous les éléments apparaissant sur la liste doivent être cochés avant que les auteurs puissent envoyer leur soumission."
+
+msgid "maganer.setup.submissionChecklistItemRequired"
+msgstr "Vous devez cocher cet élément sur la liste."
+
+msgid "manager.setup.workflow"
+msgstr "Flux des travaux"
+
+msgid "manager.setup.submissions.description"
+msgstr "Lignes directrices à l'intention des auteurs, droit d'auteur et indexage (y compris l'inscription)."
+
+msgid "manager.setup.technicalSupportContact"
+msgstr "Support technique"
+
+msgid "manager.setup.technicalSupportContactDescription"
+msgstr "Le nom de cette personne sera ajouté à la page Contactez-nous pour les rédacteurs, auteurs et évaluateurs. Cette personne devrait bien connaitre le système et être en mesure de travailler sous les angles respectifs de tous les utilisateurs. Ce système exige peu de soutien technique, alors il s'agit d'un poste à temps partiel. Par exemple, il est possible qu'à l'occasion, les auteurs et les évaluateurs éprouvent des difficultés avec les instructions ou les formats de fichiers, ou qu'il soit nécessaire de s'assurer que la presse est sauvegardée régulièrement sur le serveur."
+
+msgid "manager.setup.typeExamples"
+msgstr "(ex.: recherche historique; quasi-expérimental; analyse littéraire; sondage/entrevue)"
+
+msgid "manager.setup.typeMethodApproach"
+msgstr "Type (Méthode/Approche)"
+
+msgid "manager.setup.typeProvideExamples"
+msgstr "Fournir des exemples qui représentent bien les différents types, méthodes et approches de recherche dans ce domaine"
+
+msgid "manager.setup.useCopyeditors"
+msgstr "Un réviseur de texte sera assigné à chaque soumission."
+
+msgid "manager.setup.useEditorialReviewBoard"
+msgstr "La presse fera appel à un comité de rédaction/d'évaluation."
+
+msgid "manager.setup.useImageLogo"
+msgstr "Logo de la presse"
+
+msgid "manager.setup.useImageLogoDescription"
+msgstr "Il est possible de télécharger le logo de la presse et de l'utiliser avec la version graphique ou textuelle du titre configuré ci-dessus."
+
+msgid "manager.setup.useImageTitle"
+msgstr "Image de titre"
+
+msgid "manager.setup.useLayoutEditors"
+msgstr "Un rédacteur metteur en page sera nommé pour préparer les fichiers HTML, PDF, etc. pour la publication électronique."
+
+msgid "manager.setup.useProofreaders"
+msgstr "Un lecteur d'épreuves sera nommé pour vérifier (avec les auteurs) les épreuves en placard avant la publication."
+
+msgid "manager.setup.userRegistration"
+msgstr "Inscription des utilisateurs"
+
+msgid "manager.setup.useTextTitle"
+msgstr "Texte du titre"
+
+msgid "manager.setup.volumePerYear"
+msgstr "Volumes par année"
+
+msgid "manager.setup.registerPressForIndexing"
+msgstr "Enregistrer une presse pour l'indexage (collecte de métadonnées)"
+
+msgid "manager.setup.publicationFormat.code"
+msgstr "Format"
+
+msgid "manager.setup.publicationFormat.codeRequired"
+msgstr "Vous devez choisir un format."
+
+msgid "manager.setup.publicationFormat.nameRequired"
+msgstr "Vous devez nommer ce format."
+
+msgid "manager.setup.publicationFormat.physicalFormat"
+msgstr "S'agit-il d'un format physique (non numérique)?"
+
+msgid "manager.setup.publicationFormat.inUse"
+msgstr "Le format de cette publication est actuellement utilisé par une monographie de votre presse et ne peut donc pas être supprimé."
+
+msgid "manager.setup.newPublicationFormat"
+msgstr "Nouveau format de publication"
+
+msgid "manager.setup.newPublicationFormatDescription"
+msgstr "Pour créer un nouveau format de publication, veuillez remplir le formulaire ci-dessous et cliquer sur le bouton \"Créer\"."
+
+msgid "manager.setup.genresDescription"
+msgstr "Ces genres sont utilisés pour nommer les fichiers et présentés dans un menu déroulant lorsque les fichiers sont téléchargés. Les genres ## permettent à l'utilisateur d'associer le fichier au livre entier 99Z ou à un chapitre particulier par un chiffre (ex.: 02)."
+
+msgid "manager.setup.reviewProcessEmailDescription"
+msgstr "Les rédacteurs en chef envoient les demandes d'évaluation aux évaluateurs par courriel ainsi que la soumission en pièce jointe. Les évaluateurs répondent aux rédacteurs en chef par courriel pour indiquer s'ils acceptent ou s'ils refusent l'invitation. Ils envoient également leur évaluation et leur recommandation par courriel. Les rédacteurs en chef saisiront les réponses des évaluateurs ainsi que l'évaluation et la recommandation sur la page d'évaluation de la soumission pour conserver un registre du processus d'évaluation."
+
+msgid "manager.setup.genres"
+msgstr "Genres"
+
+msgid "manager.setup.newGenre"
+msgstr "Nouveau genre de monographie"
+
+msgid "manager.setup.newGenreDescription"
+msgstr "Pour créer un nouveau genre, veuillez remplir le formulaire ci-dessous et cliquer le bouton \"Créer\"."
+
+msgid "manager.setup.deleteSelected"
+msgstr "Supprimer la sélection"
+
+msgid "manager.setup.restoreDefaults"
+msgstr "Rétablir les paramètres par défaut"
+
+msgid "manager.setup.prospectus"
+msgstr "Prospectus"
+
+msgid "manager.setup.prospectusDescription"
+msgstr "Le prospectus est un document rédigé par la presse qui aide les auteurs à décrire les documents soumis de façon à ce que la presse puisse déterminer la valeur de la soumission. Un prospectus peut contenir plusieurs éléments, comme les débouchés commerciaux ou la valeur théorique. Dans tous les cas, la presse devrait rédiger un prospectus qui s'ajoutera à son agenda de publication."
+
+msgid "manager.setup.submitToCategories"
+msgstr "Accepter les soumissions par catégorie"
+
+msgid "manager.setup.submitToSeries"
+msgstr "Accepter les soumissions de série"
+
+msgid "manager.setup.issnDescription"
+msgstr "L'indice ISSN (International Standard Serial Number) est un nombre de huit chiffres qui identifie les publications périodiques en tant que telles, y compris les journaux électroniques. Il est géré par un réseau international de centres nationaux coordonnés par un centre international basé à Paris, et appuyé par l'Unesco et le gouvernement de la France. Pour obtenir un indice ISSN, vous devez consulter ce  <a href=\"http://www.issn.org\" target=\"_blank\">site Web</a>.  Ceci peut être fait à tout moment."
+
+msgid "manager.setup.currentFormats"
+msgstr "Formats actuels"
+
+msgid "manager.setup.categoriesAndSeries"
+msgstr "Catégories et séries"
+
+msgid "manager.setup.categories.description"
+msgstr "Vous pouvez créer une liste de catégories pour vous aider à organiser vos publications. Les catégories sont des groupements de livres par sujet, comme l'économie, la littérature, la poésie, etc. Les catégories peuvent être encastrées dans des \"catégories mères\". Par exemple, une catégorie mère Économie peut contenir les catégories microéconomie et macroéconomie. Les visiteurs pourront effectuer une recherche et naviguer le site de la presse par catégorie."
+
+msgid "manager.setup.series.description"
+msgstr "Vous pouvez créer différentes séries pour vous aider à organiser vos publications. Une série est un ensemble de livres traitant du même thème ou sujet proposé par des individus, habituellement un ou deux membres du corps enseignant, qui superviseront la série. Les visiteurs peuvent effectuer une recherche ou naviguer le site par série."
+
+msgid "manager.setup.reviewForms"
+msgstr "Formulaires d'évaluation"
+
+msgid "manager.setup.roleType"
+msgstr "Type de rôle"
+
+msgid "manager.setup.authorRoles"
+msgstr "Rôles de l'auteur"
+
+msgid "manager.setup.managerialRoles"
+msgstr " Rôles de la direction"
+
+msgid "manager.setup.availableRoles"
+msgstr "Rôles disponibles"
+
+msgid "manager.setup.currentRoles"
+msgstr "Rôles actuels"
+
+msgid "manager.setup.internalReviewRoles"
+msgstr "Rôles des évaluateurs internes"
+
+msgid "manager.setup.masthead"
+msgstr "Bloc générique"
+
+msgid "manager.setup.editorialTeam"
+msgstr "Équipe de rédaction"
+
+msgid "manager.setup.editorialTeam.description"
+msgstr "Le bloc générique devrait contenir la liste des rédacteurs en chef, directeurs généraux et autres individus associés à la presse. Les renseignements saisis ici s'afficheront dans la section À propos de cette presse."
+
+msgid "manager.setup.files"
+msgstr "Fichier"
+
+msgid "manager.setup.productionTemplates"
+msgstr "Modèles de production"
+
+msgid "manager.files.note"
+msgstr "Note: Le navigateur Fichiers est une fonctionnalité avancée qui permet de visionner et de manipuler directement les fichiers et les répertoires associés à la presse."
+
+msgid "manager.setup.copyrightNotice.sample"
+msgstr ""
+"<h3>Avis de droit d'auteur proposés par Creative Commons</h3>\n"
+"<h4>Politique proposée pour les presses offrant l'accès libre</h4>\n"
+"Les auteurs dont les articles seront publiés par cette presse acceptent les conditions suivantes:\n"
+"<ol type=\"a\">\n"
+"\t<li>Les auteurs conservent leur droit d'auteur et accordent le droit de première impression à la presse. Les articles seront simultanément sous une licence <a target=\"_blank\" href=\"http://creativecommons.org/licenses/by/3.0/\">Creative Commons Attribution </a> qui permet à des tierces parties de partager l'oeuvre d'un auteur en autant qu'elles mentionnent son nom, et sous une licence pour la première impression dans la presse en question.</li>\n"
+"\t<li>Les auteurs peuvent signer une entente contractuelle complémentaire distincte pour la distribution non exclusive de la version de leur oeuvre publiée par la presse (ex.: déposer l'oeuvre auprès d'un service d'archivage d'établissement ou la publier dans un livre), avec une attestation de sa première impression dans cette presse.</li>\n"
+"\t<li>On permet et on encourage les auteurs à publier leur article en ligne (ex.: dans un service d'archivage d'établissement ou sur leur site Web) avant et pendant le processus de soumission, car il pourrait en résulter des échanges productifs avec leurs pairs, et l'article pourrait être cité plus tôt et plus fréquemment lorsqu'il sera publié (voir <a target=\"_blank\" href=\"http://opcit.eprints.org/oacitation-biblio.html\">Les effets positifs d'un libre accès</a>).</li>\n"
+"</ol>\n"
+"\n"
+"<h4>Politique proposée pour les presses dont le libre accès est différé</h4>\n"
+"Les auteurs dont les articles seront publiés par cette presse acceptent les conditions suivantes:\n"
+"<ol type=\"a\">\n"
+"\t<li>Les auteurs conservent leur droit d'auteur et accordent le droit de première impression à la presse. [SPÉCIFIER LA DURÉE] après la publication, les articles seront simultanément sous une licence <a target=\"_blank\" href=\"http://creativecommons.org/licenses/by/3.0/\">Creative Commons Attribution </a> qui permet à des tierces parties de partager l'oeuvre d'un auteur en autant qu'elles mentionnent son nom, et sous une licence pour la première impression dans la presse en question.</li>\n"
+"\t <li>Les auteurs peuvent signer une entente contractuelle complémentaire distincte pour la distribution non exclusive de la version de leur oeuvre publiée par la presse (ex.: déposer l'oeuvre auprès d'un service d'archivage d'établissement ou la publier dans un livre), avec une attestation de sa première impression dans cette presse.\n"
+"\t <li>On permet et on encourage les auteurs à publier leur article en ligne (ex.: dans un service d'archivage d'établissement ou sur leur site Web) avant et pendant le processus de soumission, car il pourrait en résulter des échanges productifs avec leurs pairs, et l'article pourrait être cité plus tôt et plus fréquemment lorsqu'il sera publié (voir <a target=\"_blank\" href=\"http://opcit.eprints.org/oacitation-biblio.html\"> Les effets positifs d'un libre accès</a>).</li>\n"
+"</ol>"
+
+msgid "manager.setup.basicEditorialStepsDescription"
+msgstr ""
+"Étapes: Soumission en attente &gt; évaluation de la soumission &gt; révision de la soumission &gt; table des matières.<br /><br />\n"
+"Choisissez un modèle pour gérer ces aspects du processus éditorial. (Pour nommer un éditeur en chef et les rédacteurs de série, allez dans la rubrique Rédacteurs de Gestion de la presse.)"
+
+msgid "manager.setup.referenceLinkingDescription"
+msgstr ""
+"<p>Pour permettre aux lecteurs de trouver les articles cités par l'auteur sur Internet, vous pouvez utiliser les options suivantes.</p>\n"
+"\n"
+"<ol>\n"
+"\t<li><strong>Ajouter un outil de lecture</strong><p>Le directeur de la presse peut ajouter \"Trouver les références\" aux outils de lecture qui accompagnent les articles publiés, ce qui permet aux lecteurs de faire un copier-coller du titre d'un article cité par l'auteur et d'effectuer une recherche dans les bases de données de recherche présélectionnées.</p></li>\n"
+"\t<li><strong>Intégrer des liens dans les références</strong><p>Le rédacteur metteur en page peut ajouter un lien vers les références disponibles en ligne à l'aide des instructions suivantes (qui peuvent être modifiées).</p></li>\n"
+"</ol>"
+
+msgid "manager.setup.logo"
+msgstr "Logo de la presse"
+
+msgid "manager.setup.logo.altText"
+msgstr "Logo de la presse"
+
+msgid "manager.setup.contextTitle"
+msgstr "Nom de la presse"
+
+msgid "manager.series.restricted"
+msgstr "Restreint"
+
+msgid "manager.statistics.reports.defaultReport.monographDownloads"
+msgstr "Téléchargement des fichiers des monographies"
+
+msgid "manager.setup.homepageContent"
+msgstr "Contenu de la page d'accueil de la presse"
+
+msgid "manager.statistics.reports.defaultReport.monographAbstract"
+msgstr "Vues du résumé de la monographie"
+
+msgid "manager.statistics.reports.defaultReport.monographAbstractAndDownloads"
+msgstr "Résumé et téléchargements de la monographie"
+
+msgid "manager.statistics.reports.defaultReport.seriesIndexPageViews"
+msgstr "Vues de la page d'accueil de la série"
+
+msgid "manager.statistics.reports.defaultReport.pressIndexPageViews"
+msgstr "Vues de la page d'accueil de la presse"
+
+msgid "manager.statistics.reports.filters.byContext.description"
+msgstr "Limiter les résultats par contexte (série et/ou monographie)."
+
+msgid "manager.statistics.reports.filters.byObject.description"
+msgstr "Limiter les résultats selon le type d'objet (presse, série, monographie, type de fichier) et/ou selon une ou plusieurs identification d'objet."
+
+msgid "manager.setup.editorialProcess3"
+msgstr "L'éditeur en chef est en charge des soumissions en attente, de la révision des soumissions et de la table des matières, tandis que les éditeurs de section sont en charge de l'examen des soumissions."
+
+msgid "manager.setup.appearanceDescription"
+msgstr "Différentes composantes de l'apparence de la presse peuvent être configurées à partir de cette page, y compris des éléments de l'en-tête et du pied de page, le style et le thème de la presse, et la manière dont les listes de renseignements sont présentées aux utilisateurs."
+
+msgid "manager.setup.homepageContentDescription"
+msgstr "La page d'accueil de la presse est constituée de liens de navigation par défaut. Vous pouvez ajouter du contenu à la page d'accueil à l'aide d'une ou plusieurs des options suivantes, qui apparaitront dans l'ordre montré à l'écran."
+
+msgid "manager.setup.layout"
+msgstr "Mise en page de la presse"
+
+msgid "manager.setup.internalReviewGuidelines"
+msgstr "Lignes directrices concernant l'examen interne"
+
+msgid "manager.setup.internalReviewGuidelinesDescription"
+msgstr "Tout comme dans le cas des lignes directrices concernant l'examen externe, ces instructions contiennent des renseignements qui permettront aux utilisateurs d'évaluer la soumission. Ces instructions s'adressent aux examinateurs internes, qui mènent généralement un processus d'examen en faisant appel aux examinateurs internes de cette presse."
+
+msgid "manager.setup.reviewOptions"
+msgstr "Options d'examen"
+
+msgid "manager.setup.useStyleSheet"
+msgstr "Feuille de style de la presse"
+
+msgid "manager.setup.registerForIndexing"
+msgstr "Inscription de la presse pour l'indexage (collecte de métadonnées)"
+
+msgid "manager.publication.library"
+msgstr "Bibliothèque de la presse"
+
+msgid "manager.setup.registerForIndexingDescription"
+msgstr ""
+"Pour que le contenu de cette presse soit indexé dans un système de base de données de recherche distribué à l'échelle mondiale, <a href=\"http://pkp.sfu.ca/harvester/add.php\" target=\"_blank\">inscrivez</a> l'adresse URL de votre presse avec les métadonnées du <a href=\"http://pkp.sfu.ca/harvester/\" target=\"_blank\">récolteur</a> du Public Knowledge Project (PKP). Cet outil recueille les métadonnées de chaque item indexé dans cette presse, permettant ainsi une recherche précise et collective parmi les sites de recherche inscrits au <a href=\"http://www.openarchives.org/OAI/openarchivesprotocol.htm#Introduction\" target=\"_blank\"> protocole Open Archives Initiative pour la cueillette des métadonnées</a>.\n"
+"<br /><br />\n"
+"\n"
+"Veuillez noter que si l'administrateur de votre site a déjà inscrit ce site auprès du récolteur PKP, votre presse sera indexée automatiquement et vous n'avez pas à inscrire votre presse.\n"
+"<br /><br />\n"
+"<a href=\"http://pkp.sfu.ca/harvester/add.php\" target=\"_blank\">Cliquez ici</a> et entrez <span class=\"highlight\">{$siteUrl}</span> sous <strong>l'URL du site</strong>, et <span class=\"highlight\">{$oaiUrl}</span> sous <strong>la base URL pour les archives OAI </strong>."

@@ -1,0 +1,98 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: \n"
+"Report-Msgid-Bugs-To: \n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"POT-Creation-Date: 2019-09-30T06:23:44-07:00\n"
+"PO-Revision-Date: 2019-09-30T06:23:44-07:00\n"
+"Language: \n"
+
+msgid "admin.hostedPresses"
+msgstr "Editoriales alojadas"
+
+msgid "admin.settings.pressRedirect"
+msgstr "Redirección de editoriales"
+
+msgid "admin.settings.pressRedirectInstructions"
+msgstr "Las solicitudes de la página principal se redirigirán a esta editorial. Esto puede ser útil si el sitio solo aloja una editorial, por ejemplo."
+
+msgid "admin.settings.noPressRedirect"
+msgstr "No redirigir"
+
+msgid "admin.languages.primaryLocaleInstructions"
+msgstr "Este será el idioma por defecto de la página y de cualquier editorial alojada."
+
+msgid "admin.languages.supportedLocalesInstructions"
+msgstr "Seleccione todas las configuraciones regionales para que sean compatibles con el sitio. Las configuraciones locales seleccionadas estarán disponibles para su uso por todas las editoriales alojadas en el sitio, y también aparecerán en el menú de selección de idioma que figura en cada página del sitio (que puede invalidarse en páginas de editoriales específicas). Si no se seleccionan varias configuraciones locales, el menú de cambio de idioma no aparecerá y la configuración de idioma ampliada no estará disponible para las editoriales."
+
+msgid "admin.locale.maybeIncomplete"
+msgstr "* Los locales marcados están incompletos."
+
+msgid "admin.languages.confirmUninstall"
+msgstr "¿Está seguro/a de que desea desinstalar esta configuración regional? Esto puede afectar a cualquier editorial alojada que esté utilizando actualmente la configuración regional."
+
+msgid "admin.languages.installNewLocalesInstructions"
+msgstr "Seleccione cualquier configuración regional adicional para instalar soporte en este sistema. Las configuraciones regionales deben instalarse antes de que las editoriales alojadas puedan usarlas. Véase la documentación de OMP para obtener información acerca de cómo añadir soporte para nuevos idiomas."
+
+msgid "admin.languages.noLocalesToDownload"
+msgstr "No hay locales disponibles para su descarga."
+
+msgid "admin.languages.downloadFailed"
+msgstr "No se pudo realizar la descarga de la configuración regional. El(los) siguiente(s) mensaje(s) de error describe(n) el error en la descarga. "
+
+msgid "admin.languages.downloadUnavailable"
+msgstr ""
+"<p>La descarga de paquetes de idiomas del servidor web de Public Knowledge Project actualmente no está disponible porque:</p>\n"
+"\t<ul>\n"
+"\t\t<li>Su servidor no dispone o no permite la ejecución de la aplicación \"tar\" de GNU.</li>\n"
+"\t\t<li>OMP no puede modificar el archivo del registro de la configuración regional, por lo general llamado \"registry/locales.xml\".</li>\n"
+"\t</ul>\n"
+"<p>Los paquetes de idioma pueden descargarse manualmente del <a href=\"http://pkp.sfu.ca\" target=\"_blank\">sitio web de PKP</a>.</p>"
+
+msgid "admin.languages.confirmDisable"
+msgstr "¿Está seguro/a de que desea desactivar esta configuración regional? Esto puede afectar a cualquier editorial alojada que esté utilizando actualmente la configuración regional."
+
+msgid "admin.systemVersion"
+msgstr "Versión OMP"
+
+msgid "admin.systemConfiguration"
+msgstr "Configuración OMP"
+
+msgid "admin.presses.pressSettings"
+msgstr "Ajustes editorial"
+
+msgid "admin.presses.noneCreated"
+msgstr "No se han creado editoriales."
+
+msgid "admin.contexts.confirmDelete"
+msgstr "¿Está seguro/a de que desea eliminar de forma permanente esta editorial y todo su contenido?"
+
+msgid "admin.contexts.create"
+msgstr "Crear editorial"
+
+msgid "admin.contexts.form.titleRequired"
+msgstr "Es necesario introducir el título."
+
+msgid "admin.contexts.form.pathRequired"
+msgstr "Inserte una ruta."
+
+msgid "admin.contexts.form.pathAlphaNumeric"
+msgstr "La ruta sólo puede contener caracteres alfanuméricos, guiones y guiones bajos, y debe empezar y terminar con un carácter alfanumérico."
+
+msgid "admin.contexts.form.pathExists"
+msgstr "La ruta seleccionada ya está siendo utilizada por otra editorial."
+
+msgid "admin.contexts.contextDescription"
+msgstr "Detalles de la editorial"
+
+msgid "admin.presses.addPress"
+msgstr "Añadir editorial"
+
+msgid "admin.overwriteConfigFileInstructions"
+msgstr ""
+"<h4>Aviso</h4>\n"
+"<p>El sistema no puede sobrescribir automáticamente el archivo de configuración. Para aplicar los cambios de la configuración es necesario abrir <tt>config.inc.php</tt> en un editor de texto adecuado y reemplazar su contenido por los del campo de texto que figuran a continuación.</p>"

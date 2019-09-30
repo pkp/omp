@@ -1,0 +1,162 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: \n"
+"Report-Msgid-Bugs-To: \n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"POT-Creation-Date: 2019-09-30T06:23:43-07:00\n"
+"PO-Revision-Date: 2019-09-30T06:23:43-07:00\n"
+"Language: \n"
+
+msgid "editor.submissionArchive"
+msgstr "Manuskriptarchiv"
+
+msgid "editor.monograph.cancelReview"
+msgstr "Anfrage abbrechen"
+
+msgid "editor.monograph.clearReview"
+msgstr "Gutachter/innen löschen"
+
+msgid "editor.monograph.enterRecommendation"
+msgstr "Empfehlung abgeben"
+
+msgid "editor.monograph.enterReviewerRecommendation"
+msgstr "Empfehlung der Gutachterin/des Gutachters eintragen"
+
+msgid "editor.monograph.recommendation"
+msgstr "Empfehlung"
+
+msgid "editor.monograph.selectReviewerInstructions"
+msgstr "Wählen Sie oben einen Gutachter/eine Gutachterin aus und klicken Sie auf 'Gutachter/in auswählen'."
+
+msgid "editor.monograph.replaceReviewer"
+msgstr "Gutachter/innen ersetzen"
+
+msgid "editor.monograph.editorToEnter"
+msgstr "Herausgeber/innen pflegen die Empfehlungen/Kommentare für Gutachter/in ein"
+
+msgid "editor.monograph.uploadReviewForReviewer"
+msgstr "Gutachten hochladen"
+
+msgid "editor.monograph.peerReviewOptions"
+msgstr "Gutachten-Optionen"
+
+msgid "editor.monograph.selectProofreadingFiles"
+msgstr "Korrekturfahnen-Dateien"
+
+msgid "editor.monograph.internalReview"
+msgstr "Interne Begutachtung starten"
+
+msgid "editor.monograph.internalReviewDescription"
+msgstr "Sie starten hiermit das interne Begutachtungsverfahren. Dateien, die Teil des eingereichten Manuskripts sind, finden Sie unten aufgelistet und können von Ihnen zur Begutachtung ausgewählt werden."
+
+msgid "editor.monograph.externalReview"
+msgstr "Externe Begutachtung starten"
+
+msgid "editor.monograph.final.selectFinalDraftFiles"
+msgstr "Endfassungen auswählen"
+
+msgid "editor.monograph.final.currentFiles"
+msgstr "Aktuelle Endfassungen"
+
+msgid "editor.monograph.copyediting.currentFiles"
+msgstr "Aktuelle Dateien"
+
+msgid "editor.monograph.copyediting.personalMessageToUser"
+msgstr "Nachricht an den Benutzer/die Benutzerin"
+
+msgid "editor.monograph.legend.submissionActions"
+msgstr "Einreichungsaktionen"
+
+msgid "editor.monograph.legend.submissionActionsDescription"
+msgstr "Während der Einreichung mögliche Aktionen und Optionen"
+
+msgid "editor.monograph.legend.sectionActions"
+msgstr "Sektionsaktionen"
+
+msgid "editor.monograph.legend.sectionActionsDescription"
+msgstr "Für eine bestimmte Sektion spezifische Optionen, z.B. Dateien hochladen oder Benutzer/innen hinzufügen."
+
+msgid "editor.monograph.legend.itemActions"
+msgstr "Auf den Titel bezogene Aktionen"
+
+msgid "editor.monograph.legend.itemActionsDescription"
+msgstr "Für eine individuelle Datei spezifische Aktionen und Optionen."
+
+msgid "editor.monograph.legend.catalogEntry"
+msgstr "Katalogeintrag anschauen und verwalten (einschließlich Metadaten und Formate)"
+
+msgid "editor.monograph.legend.bookInfo"
+msgstr "Metadaten, Anmerkungen, Benachrichtigungen sowie das Verlaufsprotokoll zu einem Manuskript anschauen und verwalten"
+
+msgid "editor.monograph.legend.participants"
+msgstr "Die an der Manuskriptbearbeitung Beteiligten wie z.B. Autor/innen, Redakteur/innen, Layouter/innen ansehen und verwalten"
+
+msgid "editor.monograph.legend.add"
+msgstr "Eine Datei in dieser Sektion hochladen"
+
+msgid "editor.monograph.legend.add_user"
+msgstr "Zu dieser Sektion einen Benutzer hinzufügen"
+
+msgid "editor.monograph.legend.settings"
+msgstr "Ansicht und Zugang zu den Einstellungen wie zum Beispiel für die Informations- und Löscheinstellungen."
+
+msgid "editor.monograph.legend.more_info"
+msgstr "Weitere Informationen: Anmerkungen zu den Dateien, Benachrichtigungsoptionen und Verlaufsprotokoll"
+
+msgid "editor.monograph.legend.notes_none"
+msgstr "Datei-Informationen: Anmerkungen, Benachrichtigungsoptionen und Verlaufsprotokoll (bisher wurden noch keine Anmerkungen hinzufügt)"
+
+msgid "editor.monograph.legend.notes"
+msgstr "Datei-Informationen: Anmerkungen, Benachrichtigungsoptionen und Verlauf (es liegen Anmerkungen vor)"
+
+msgid "editor.monograph.legend.notes_new"
+msgstr "Datei-Informationen: Anmerkungen, Benachrichtigungsoptionen und Verlauf (seit dem letzten Besuch wurden Anmerkungen hinzugefügt)"
+
+msgid "editor.monograph.legend.edit"
+msgstr "Titel bearbeiten"
+
+msgid "editor.monograph.legend.delete"
+msgstr "Titel entfernen"
+
+msgid "editor.monograph.legend.in_progress"
+msgstr "Aktion wird noch ausgeführt oder ist noch nicht vollständig"
+
+msgid "editor.monograph.legend.complete"
+msgstr "Aktion vollständig"
+
+msgid "editor.monograph.legend.uploaded"
+msgstr "Datei wurde hochgeladen durch die im Spaltentitel angegebene Rolle"
+
+msgid "editor.submission.introduction"
+msgstr "In der Einreichungsphase bestimmt der zuständige Herausgeber/die zuständige Herausgeberin nach Prüfung der eingereichten Manuskripte die passende Aktion aus (über die der Autor/die Autorin grundsätzlich informiert wird): Zur internen Begutachtung senden (anschließend müssen die für die interne Begutachtung vorgesehenen Dateien ausgewählt werden); Zur externen Begutachtung senden (anschließend müssen die für die externe Begutachtung vorgesehenen Dateien ausgewählt werden); Manuskript annnehmen (anschließend sind die Dateien für die redaktionelle Bearbeitung auszuwählen) oder Manuskript ablehnen (das Manuskript wird im Archiv abgelegt)."
+
+msgid "editor.monograph.editorial.fairCopy"
+msgstr "Freigegebene satzfertige Manuskriptfassung"
+
+msgid "editor.monograph.proofs"
+msgstr "Korrekturfahnen"
+
+msgid "editor.monograph.production.approvalAndPublishing"
+msgstr "Freigabe und Veröffentlichung"
+
+msgid "editor.monograph.production.approvalAndPublishingDescription"
+msgstr "Verschiedene Formate wie zum Beispiel Hardcover, Softcover und digitale Formate können unten unter 'Formate' hochgeladen werden. Sie können die Formate-Tabelle als Checkliste verwenden, um zu prüfen, was noch für die Veröffentlichung im ausgewählten Format getan werden muss."
+
+msgid "editor.monograph.production.publicationFormatDescription"
+msgstr "Fügen Sie Formate (z.B. digital, Paperback) hinzu, für die der Layouter Korrekturfahnen zum Korrekturlesen erstellen soll. Die <em>Korrekturdateien</em> müssen als \"akzeptiert\" gekennzeichnet und die Metadaten im <em>Katalog</em> aufgenommen und zur Veröffentlichung freigegeben worden sein, damit das Buch als <em>verfügbar</em> angezeigt (das heißt 'veröffentlicht') werden kann."
+
+msgid "editor.monograph.approvedProofs.edit"
+msgstr "Bedingungen für den Download festlegen"
+
+msgid "editor.monograph.approvedProofs.edit.linkTitle"
+msgstr "Bestimmungen festlegen"
+
+msgid "editor.monograph.proof.addNote"
+msgstr "Antwort hinzufügen"
+
+msgid "editor.submission.proof.manageProofFilesDescription"
+msgstr "Alle Dateien, die schon zu irgendeiner Einreichungsphase hochgeladen worden sind, können zur Liste der Korrekturfahnen hinzugefügt werden, indem Sie die Einschließen-Checkbox unten aktivieren und danach auf Suche klicken: Alle verfügbaren Dateien werden angezeigt und können ausgewählt werden, um sie in die Liste aufzunehmen."

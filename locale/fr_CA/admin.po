@@ -1,0 +1,101 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: \n"
+"Report-Msgid-Bugs-To: \n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"POT-Creation-Date: 2019-09-30T06:23:44-07:00\n"
+"PO-Revision-Date: 2019-09-30T06:23:44-07:00\n"
+"Language: \n"
+
+msgid "admin.hostedPresses"
+msgstr "Presses hébergées"
+
+msgid "admin.settings.pressRedirect"
+msgstr "Réacheminement de la presse"
+
+msgid "admin.settings.pressRedirectInstructions"
+msgstr "Les requêtes envoyées au site central seront redirigées vers cette presse. Cela pourrait être utile si le site héberge une seule presse, par exemple."
+
+msgid "admin.settings.noPressRedirect"
+msgstr "Ne pas rediriger"
+
+msgid "admin.languages.primaryLocaleInstructions"
+msgstr "Ceci sera la langue par défaut pour le site et les presses hébergées."
+
+msgid "admin.languages.supportedLocalesInstructions"
+msgstr "Choisissez les paramètres qui seront supportés sur le site. Toutes les presses hébergées sur le site pourront utiliser les paramètres sélectionnés. Ces derniers feront partie du menu de sélection de la langue apparaissant sur toutes les pages du site (lesquels peuvent être remplacés sur les pages d'une presse particulière). Si plusieurs paramètres ne sont pas sélectionnés, le bouton à bascule de la langue n'apparaitra pas et les presses n'auront pas accès aux paramètres de langue étendus."
+
+msgid "admin.locale.maybeIncomplete"
+msgstr "*Les paramètres marqués pourraient être incomplets."
+
+msgid "admin.languages.confirmUninstall"
+msgstr "Vous souhaitez désinstaller ce paramètre? Cela pourrait affecter les presses hébergées qui l'utilisent actuellement."
+
+msgid "admin.languages.installNewLocalesInstructions"
+msgstr "Choisissez les autres paramètres de support que vous souhaitez installer dans ce système. Les paramètres doivent être installés avant de pouvoir être utilisés par les presses hébergées. Consultez la documentation de l'OMP pour de plus amples renseignements sur l'ajout de support pour les nouvelles langues."
+
+msgid "admin.languages.noLocalesToDownload"
+msgstr "Aucun paramètre ne peut être téléchargé."
+
+msgid "admin.languages.downloadFailed"
+msgstr "Le téléchargement du paramètre a échoué. Les messages d'erreur ci-dessous décrivent le problème."
+
+msgid "admin.languages.downloadUnavailable"
+msgstr ""
+"<p>Le téléchargement des modules de langues à partir du serveur Web du Public Knowledge Project n'est pas disponible pour le moment parce que:</p>\n"
+"\t<ul>\n"
+"\t\t<li>Votre serveur n'a pas ou ne permet pas l'exécution de l'utilitaire GNU \"tar\"</li>\n"
+"\t\t<li>OMP ne peut pas modifier le fichier de registre du paramètre. Il s'agit normalement de \"registry/locales.xml\".</li>\n"
+"\t</ul>\n"
+"<p>Les modules de langues peuvent être téléchargés manuellement à partir du site Web PKP <a href=\"http://pkp.sfu.ca\" target=\"_blank\"> </a>.</p>"
+
+msgid "admin.languages.confirmDisable"
+msgstr "Vous souhaitez désactiver ce paramètre? Cela pourrait affecter les presses hébergées qui l'utilisent actuellement."
+
+msgid "admin.systemVersion"
+msgstr "Version OMP"
+
+msgid "admin.systemConfiguration"
+msgstr "Configuration OMP"
+
+msgid "admin.systemConfigurationDescription"
+msgstr "Paramètres de configuration OMP pour <tt>config.inc.php</tt>."
+
+msgid "admin.presses.pressSettings"
+msgstr "Configuration de la presse"
+
+msgid "admin.presses.noneCreated"
+msgstr "Aucune presse n'a été créée."
+
+msgid "admin.contexts.confirmDelete"
+msgstr "Vous voulez supprimer cette presse et tout son contenu de façon permanente?"
+
+msgid "admin.contexts.create"
+msgstr "Créer une presse"
+
+msgid "admin.contexts.form.titleRequired"
+msgstr "Vous devez choisir un titre."
+
+msgid "admin.contexts.form.pathRequired"
+msgstr "Vous devez choisir un chemin."
+
+msgid "admin.contexts.form.pathAlphaNumeric"
+msgstr "Le chemin ne peut contenir que des caractères alphanumériques, des traits de soulignement et des traits d'union, et doit commencer et se terminer par un caractère alphanumérique."
+
+msgid "admin.contexts.form.pathExists"
+msgstr "Le chemin choisi est déjà utilisé par une autre presse."
+
+msgid "admin.contexts.contextDescription"
+msgstr "Description de la presse"
+
+msgid "admin.presses.addPress"
+msgstr "Ajouter la presse"
+
+msgid "admin.overwriteConfigFileInstructions"
+msgstr ""
+"<h4>NOTE!</div>\n"
+"<p>Le système ne peut pas réécrire automatiquement le fichier de configuration. Pour appliquer les modifications de configuration, vous devez ouvrir <tt>config.inc.php</tt> dans un éditeur de texte approprié et remplacer le contenu par le contenu de la zone de texte ci-dessous.</p>"

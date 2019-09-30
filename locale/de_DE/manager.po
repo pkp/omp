@@ -1,0 +1,919 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: \n"
+"Report-Msgid-Bugs-To: \n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"POT-Creation-Date: 2019-09-30T06:23:43-07:00\n"
+"PO-Revision-Date: 2019-09-30T06:23:43-07:00\n"
+"Language: \n"
+
+msgid "manager.language.confirmDefaultSettingsOverwrite"
+msgstr "Damit ersetzen Sie alle bisher vorgenommenen Anpassungen für diese Regionaleinstellungen."
+
+msgid "manager.languages.noneAvailable"
+msgstr "Leider sind keine weiteren Sprachen verfügbar. Kontaktieren Sie Ihre/n Website-Administrator/in, wenn Sie weitere Sprachen verwenden möchten."
+
+msgid "manager.languages.primaryLocaleInstructions"
+msgstr "Diese Sprache wird die voreingestellte Sprache für die Verlagswebsite sein."
+
+msgid "manager.series.form.mustAllowPermission"
+msgstr "Bitte stellen Sie sicher, dass für die Zuweisung der Reihe zu einem/einer Reihenherausgeber/in zumindest eine Checkbox aktiviert wurde."
+
+msgid "manager.series.form.reviewFormId"
+msgstr "Stellen Sie sicher, dass Sie ein gültiges Gutachtenformular gewählt haben."
+
+msgid "manager.series.submissionIndexing"
+msgstr "Wird nicht in die Indizierung eingeschlossen"
+
+msgid "manager.series.editorRestriction"
+msgstr "Titel können nur von Herausgeber/innen und Reihenherausgeber/innen eingereicht werden."
+
+msgid "manager.series.confirmDelete"
+msgstr "Sind Sie sicher, dass Sie die Reihe endgültig löschen wollen?"
+
+msgid "manager.series.indexed"
+msgstr "Indiziert"
+
+msgid "manager.series.open"
+msgstr "Offene Einreichungen"
+
+msgid "manager.series.readingTools"
+msgstr "Lesewerkzeuge"
+
+msgid "manager.series.submissionReview"
+msgstr "Kein Peer Review"
+
+msgid "manager.series.submissionsToThisSection"
+msgstr "In dieser Reihe eingereichte Manuskripte"
+
+msgid "manager.series.abstractsNotRequired"
+msgstr "Keine Abstracts verlangen"
+
+msgid "manager.series.disableComments"
+msgstr "Leser/innenkommentarfunktion für diese Serie deaktivieren."
+
+msgid "manager.series.book"
+msgstr "Buchreihe"
+
+msgid "manager.series.create"
+msgstr "Reihe anlegen"
+
+msgid "manager.series.policy"
+msgstr "Beschreibung der Reihe"
+
+msgid "manager.series.assigned"
+msgstr "Herausgeber/innen dieser Reihe"
+
+msgid "manager.series.seriesEditorInstructions"
+msgstr "Fügen Sie eine/n Reihenherausgeber/in aus der Liste der verfügbaren Reihenherausgeber/innen hinzu. Legen Sie anschließend fest, ob der/die Reihenherausgeber/in den Begutachtungsprozess koordinieren UND die Redaktion (Lektorat, Layout und Korrekturlesen) der Manuskripte dieser Reihe übernehmen oder nur eine der beiden Aufgabenfelder wahrnehmen soll. Möchten Sie eine/n Reihenherausgeber/in neu anlegen, gehen Sie über \"Verwaltung\" > \"Einstellungen und Funktionen\" auf \"Funktionen\" und klicken Sie dort auf <a href=\"{$seriesEditorsUrl}\">Reihenherausgeber/innen</a> ."
+
+msgid "manager.series.hideAbout"
+msgstr "Diese Reihe nicht unter \"Über uns\" anzeigen."
+
+msgid "manager.series.unassigned"
+msgstr "Verfügbare Reihenherausgeber/innen"
+
+msgid "manager.series.form.abbrevRequired"
+msgstr "Für Reihen wird ein Kurztitel benötigt."
+
+msgid "manager.series.form.titleRequired"
+msgstr "Es wird ein Titel für die Reihe benötigt."
+
+msgid "manager.series.noneCreated"
+msgstr "Es wurde keine Reihe angelegt."
+
+msgid "manager.series.existingUsers"
+msgstr "Bestehende Benutzer/innen"
+
+msgid "manager.series.seriesTitle"
+msgstr "Reihentitel"
+
+msgid "manager.series.restricted"
+msgstr "Gesperrt"
+
+msgid "manager.settings"
+msgstr "Einstellungen"
+
+msgid "manager.settings.pressSettings"
+msgstr "Verlagseinstellungen"
+
+msgid "manager.settings.press"
+msgstr "Verlag"
+
+msgid "manager.settings.publisher.identity.description"
+msgstr "Diese Felder werden zwar nicht grundsätzlich für die Verwendung von OMP, aber zur Erzeugung gültiger ONIX-Metadaten benötigt. Bitte fügen Sie sie ein, wenn Sie die ONIX-Funktionalität verwenden möchten."
+
+msgid "manager.settings.publisher"
+msgstr "Verlagsname"
+
+msgid "manager.settings.location"
+msgstr "Standort"
+
+msgid "manager.settings.publisherCodeType"
+msgstr "Verlagscode-Typ"
+
+msgid "manager.settings.publisherCode"
+msgstr "Verlagscode"
+
+msgid "manager.settings.distributionDescription"
+msgstr "Einstellungen, die den Vertrieb betreffen (Benachrichtigung, Indizierung, Archivierung, Bezahlung, Lesewerkzeuge)."
+
+msgid "manager.statistics.reports.defaultReport.monographDownloads"
+msgstr "Monografie herunterladen"
+
+msgid "manager.statistics.reports.defaultReport.monographAbstract"
+msgstr "Seitenaufrufe Abstract"
+
+msgid "manager.statistics.reports.defaultReport.monographAbstractAndDownloads"
+msgstr "Abstract der Monografie und Downloads"
+
+msgid "manager.statistics.reports.defaultReport.seriesIndexPageViews"
+msgstr "Seitenaufrufe Hauptseite der Reihe"
+
+msgid "manager.statistics.reports.defaultReport.pressIndexPageViews"
+msgstr "Seitenaufrufe Hauptseite des Verlags"
+
+msgid "manager.statistics.reports.filters.byContext.description"
+msgstr "Ergebnisse über den Kontext eingrenzen (Reihe und/oder Monografie)."
+
+msgid "manager.statistics.reports.filters.byObject.description"
+msgstr "Ergebnisse nach Objekt-Typ (Verlag, Reihe, Monografie, Dateityp) und/oder durch eine oder mehrere Objekt-IDs eingrenzen."
+
+msgid "manager.tools"
+msgstr "Werkzeuge"
+
+msgid "manager.tools.importExport"
+msgstr "Für den Datenimport/-export (Verlage, Monografien, Benutzer/innen) spezifische Werkzeuge"
+
+msgid "manager.tools.statistics"
+msgstr "Werkzeuge um Berichte zu erzeugen, die sich auf Nutzungsstatistiken beziehen (Anzeigen des Katalogs, Anzeigen von Buchabstracts, Buchdownloads)"
+
+msgid "manager.users"
+msgstr "Benutzer/innenverwaltung"
+
+msgid "manager.users.availableRoles"
+msgstr "Vorhandene Funktionen"
+
+msgid "manager.users.currentRoles"
+msgstr "Aktuelle Funktionen"
+
+msgid "manager.users.selectRole"
+msgstr "Funktion auswählen"
+
+msgid "manager.people.allPresses"
+msgstr "Alle Verlage"
+
+msgid "manager.people.allSiteUsers"
+msgstr "Eine/n Benutzer/in dieser Website für diesen Verlag eintragen"
+
+msgid "manager.people.allUsers"
+msgstr "Alle registrierten Benutzer/innen"
+
+msgid "manager.people.confirmRemove"
+msgstr "Möchten Sie diese/n Benutzer/in wirklich aus dem Verlag entfernen? Mit dieser Aktion wird die Person aus allen Funktionen entfernt, denen sie zugeordnet war."
+
+msgid "manager.people.enrollExistingUser"
+msgstr "Eine/n bereits existierende/n Benutzer/in eintragen."
+
+msgid "manager.people.existingUserRequired"
+msgstr "Sie müssen eine/n existierende/n Benutzer/in angeben."
+
+msgid "manager.people.enrollSyncPress"
+msgstr "Beim Verlag"
+
+msgid "manager.people.mergeUsers.from.description"
+msgstr "Wählen Sie eine/n Benutzer/in aus, deren/dessen Daten in einem anderen Konto zusammengeführt werden sollen (wenn jemand z.B. zwei Konten hat). Das zuerst ausgewählte Konto wird gelöscht, seine Beiträge, Aufgaben usw. werden dem zweiten Konto zugeschrieben."
+
+msgid "manager.people.mergeUsers.into.description"
+msgstr "Wählen Sie ein Benutzer/innenkonto aus, auf das die bestehenden Autor/innenschaften, Aufgaben etc. übertragen werden sollen."
+
+msgid "manager.people.syncUserDescription"
+msgstr "Bei dieser Synchronisation werden alle Benutzer/innen, die in einer bestimmten Funktion bei einem bestimmten Verlag eingetragen sind, in der gleichen Funktion auch in diesem Verlag eingetragen. Damit ist möglich, eine gemeinsame Benutzer/innengruppe (zum Beispiel Gutacher/innen) zwischen den Verlagen zu synchronisieren."
+
+msgid "manager.people.confirmDisable"
+msgstr ""
+"Möchten Sie diese/n Benutzer/in deaktivieren? Der/die Benutzer/in wird sich dann nicht mehr einloggen können.\n"
+"\n"
+"Sie können dem/der Benutzer/in den Grund für die Deaktivierung des Kontos nennen (optional)."
+
+msgid "manager.people.noAdministrativeRights"
+msgstr ""
+"Sie besitzen nicht die administrativen Rechte an diesem Benutzer/innenkonto. Grund dafür kann sein, dass:\n"
+"\t\t<ul>\n"
+"\t\t\t<li>der/die Benutzer/in Website-Administrator/in ist</li>\n"
+"\t\t\t<li>der/die Benutzer/in in einem Verlag aktiv ist, den Sie nicht verwalten</li>\n"
+"\t\t</ul>\n"
+"\tDieser Task muss von einem Website-Administrator ausgeführt werden.\n"
+"\t"
+
+msgid "manager.system"
+msgstr "Systemeinstellungen"
+
+msgid "manager.system.archiving"
+msgstr "Archivieren"
+
+msgid "manager.system.reviewForms"
+msgstr "Gutachtenformulare"
+
+msgid "manager.system.readingTools"
+msgstr "Lesewerkzeuge"
+
+msgid "manager.system.payments"
+msgstr "Bezahlverfahren"
+
+msgid "user.authorization.pluginLevel"
+msgstr "Sie haben keine ausreichende Berechtigung, um dieses Plugin zu verwalten."
+
+msgid "manager.pressManagement"
+msgstr "Verlagsverwaltung"
+
+msgid "manager.setup"
+msgstr "Setup"
+
+msgid "manager.setup.aboutItemContent"
+msgstr "Inhalt"
+
+msgid "manager.setup.addAboutItem"
+msgstr "Navigationspunkt zu 'Über uns' hinzufügen"
+
+msgid "manager.setup.addChecklistItem"
+msgstr "Punkt zur Checkliste hinzufügen"
+
+msgid "manager.setup.addContributor"
+msgstr "Beiträger/in hinzufügen"
+
+msgid "manager.setup.addItem"
+msgstr "Punkt hinzufügen"
+
+msgid "manager.setup.addItemtoAboutPress"
+msgstr "Punkt hinzufügen, der unter \"Über uns\" erscheint"
+
+msgid "manager.setup.addNavItem"
+msgstr "Navigationspunkt hinzufügen"
+
+msgid "manager.setup.addSponsor"
+msgstr "Sponsororganisation hinzufügen"
+
+msgid "manager.setup.announcements"
+msgstr "Bekanntmachungen"
+
+msgid "manager.setup.announcementsDescription"
+msgstr "Mithilfe von Bekanntmachungen können Sie Leser/innen über Neuigkeiten informieren und auf Veranstaltungen des Verlages hinweisen. Die Bekanntmachungen erscheinen auf der Seite 'Bekanntmachungen'."
+
+msgid "manager.setup.announcementsIntroduction"
+msgstr "Zusätzliche Informationen"
+
+msgid "manager.setup.announcementsIntroduction.description"
+msgstr "Fügen Sie weitere Informationen hinzu, die den Leser/innen auf der Seite 'Bekanntmachungen' angezeigt werden sollen."
+
+msgid "manager.setup.appearInAboutPress"
+msgstr "(Erscheint in 'Über uns')"
+
+msgid "manager.setup.copyediting"
+msgstr "Lektor/innen"
+
+msgid "manager.setup.copyeditInstructions"
+msgstr "Lektoratsrichtlinien"
+
+msgid "manager.setup.copyeditInstructionsDescription"
+msgstr "Die Lektoratsrichtlinien sind den Lektor/innen, Autor/innen und Sektionsherausgeber/innen im Stadium 'Redaktionelle Bearbeitung' zugänglich. Unten auf der Seite befindet sich eine Reihe an Standardvorgaben in HTML. Sie können von der/dem Verlagsleiter/in an jeder Stelle verändert oder ersetzt werden (in HTML oder im Klartext)."
+
+msgid "manager.setup.copyrightNotice"
+msgstr "Copyright-Vermerk"
+
+msgid "manager.setup.coverage"
+msgstr "Inhaltlicher Umfang"
+
+msgid "manager.setup.customizingTheLook"
+msgstr "Schritt 5. Look & Feel anpassen"
+
+msgid "manager.setup.customTags"
+msgstr "Benutzerdefinierte Tags"
+
+msgid "manager.setup.customTagsDescription"
+msgstr "Benutzerdefinierte HTML-Header-Tags, die auf jeder Seite in den Header eingefügt werden (zum Beispiel META-Tags)."
+
+msgid "manager.setup.details"
+msgstr "Angaben"
+
+msgid "manager.setup.details.description"
+msgstr "Verlagsname, Ansprechpartner/in, Sponsoren und Suchmaschinen."
+
+msgid "manager.setup.disableUserRegistration"
+msgstr "Verlagsleiter/innen registrieren alle Benutzer/innen. Sie sind zusammen mit den Herausgeber/innen und Sektionsherausgeber/innen die einzigen, die Gutachter/innen registrieren können."
+
+msgid "manager.setup.discipline"
+msgstr "Wissenschafltliche Disziplinen und Teildisziplinen"
+
+msgid "manager.setup.disciplineDescription"
+msgstr "Dies ist nützlich, wenn der Verlag Disziplingrenzen überschreitet und/oder Autor/innen interdisziplinäre Veröffentlichungen einreichen."
+
+msgid "manager.setup.disciplineExamples"
+msgstr "(z.B. Geschichte; Erziehungswissenschaften; Soziologie; Psychologie; Kulturwissenschaften; Rechtswissenschaften)"
+
+msgid "manager.setup.disciplineProvideExamples"
+msgstr "Nennen Sie Beispiele für relevante akademische Disziplinen Ihres Verlages"
+
+msgid "manager.setup.displayCurrentMonograph"
+msgstr "Fügen Sie ein Inhaltsverzeichnis für die aktuelle Monografie bei (falls verfügbar)."
+
+msgid "manager.setup.displayOnHomepage"
+msgstr "Homepage-Inhalt"
+
+msgid "manager.setup.displayFeaturedBooks"
+msgstr "Ausgewählte Bücher auf der Startseite anzeigen."
+
+msgid "manager.setup.displayInSpotlight"
+msgstr "Bücher im Schaufenster auf der Startseite anzeigen."
+
+msgid "manager.setup.displayNewReleases"
+msgstr "Neuerscheinungen auf der Startseite anzeigen."
+
+msgid "manager.setup.doiPrefix"
+msgstr "DOI-Präfix"
+
+msgid "manager.setup.doiPrefixDescription"
+msgstr "Das DOI (Digital Object Identifier)-Präfix wird von <a href=\"http://www.crossref.org\" target=\"_blank\">CrossRef</a> vergeben und hat das Format 10.xxxx (z.B. 10.1234)."
+
+msgid "manager.setup.editorDecision"
+msgstr "Entscheidung des Herausgebers/der Herausgeberin"
+
+msgid "manager.setup.emailBounceAddress"
+msgstr "E-Mail-Adresse für Unzustellbarkeitsnachrichten (Bounce Messages)"
+
+msgid "manager.setup.emailBounceAddress.description"
+msgstr "Jede unzustellbare E-Mail führt zum Versand einer Fehlernachricht an diese E-Mail-Adresse."
+
+msgid "manager.setup.emails"
+msgstr "E-Mail-Identifizierung"
+
+msgid "manager.setup.emailSignature"
+msgstr "Signatur"
+
+msgid "manager.setup.emailSignatureDescription"
+msgstr "Die folgende Signatur wird am Ende der vorbereiteten E-Mails stehen, die vom System im Namen des Verlages versendet werden. Den Inhaltsteil (Textteil) dieser E-Mails können Sie unten bearbeiten."
+
+msgid "manager.setup.enableAnnouncements.enable"
+msgstr "Bekanntmachungen freischalten."
+
+msgid "manager.setup.enablePressInstructions"
+msgstr "Diesen Verlag für das öffentliche Erscheinen auf der Website freischalten"
+
+msgid "manager.setup.enablePublicMonographId"
+msgstr "Benutzerdefinierte Kennungen werden verwendet, um veröffentlichte Titel zu identifizieren."
+
+msgid "manager.setup.enablePublicGalleyId"
+msgstr "Benutzerdefinierte Kennungen werden verwendet, um Fahnen (z.B. HTML- oder PDF-Dateien) für veröffentlichte Bände zu identifizieren."
+
+msgid "manager.setup.enableUserRegistration"
+msgstr "Benutzer/innen können sich in einer oder mehrerer der genannten Funktionen beim Verlag registrieren:"
+
+msgid "manager.setup.focusAndScope"
+msgstr "Verlagsprofil"
+
+msgid "manager.setup.focusAndScope.description"
+msgstr "Fügen Sie eine kurze Selbstdarstellung des Verlages (auf der Website unter 'Über uns' aufrufbar) ein, in der Sie Autor/innen, Leser/innen und Bibliothekar/innen einen Eindruck von dem Spektrum an Monografien und anderen Verlagsprodukten vermitteln, das der Verlag veröffentlichen wird."
+
+msgid "manager.setup.focusScope"
+msgstr "Verlagsprofil"
+
+msgid "manager.setup.focusScopeDescription"
+msgstr "<strong>BEISPIEL HTML-DATEN</strong>"
+
+msgid "manager.setup.forAuthorsToIndexTheirWork"
+msgstr "Für Autor/innen zur Indizierung ihres Werkes"
+
+msgid "manager.setup.forAuthorsToIndexTheirWorkDescription"
+msgstr "OMP setzt das <a href=\"http://www.openarchives.org/\" target=\"_blank\">Open Archives Initiative</a> Protocol for Metadata Harvesting ein, welches ein zukünftiger Standard für die weltweite Abfrage und Übertragung von Metadaten ist. Die Autoren werden ein entsprechendes Template verwenden, um die Metadaten für ihr Manuskript zu liefern. Der/die Verlagsleiter/in sollte die Kategorien für die Indizierung auswählen und den Autoren Beispiele zeigen, um ihnen beim Indizieren ihrer Werke zu helfen; die Kategoriebegriffen werden dabei jeweils mit einem Semikolon voneinander getrennt (zum Beispiel: Begriff 1; Begriff 2). Die Einträge sollten als Beispiele kenntlich gemacht werden, in dem \"z.B.\" oder \"zum Beispiel\" vorangestellt wird."
+
+msgid "manager.setup.form.contactEmailRequired"
+msgstr "Die E-Mail-Adresse des Hauptansprechpartners wird benötigt."
+
+msgid "manager.setup.form.contactNameRequired"
+msgstr "Der Name des zentralen Ansprechpartners wird benötigt."
+
+msgid "manager.setup.form.numReviewersPerSubmission"
+msgstr "Bitte geben Sie die Zahl der Gutachter pro Manuskript an."
+
+msgid "manager.setup.form.supportEmailRequired"
+msgstr "Die E-Mail des Supports wird benötigt."
+
+msgid "manager.setup.form.supportNameRequired"
+msgstr "Der Supportname wird benötigt."
+
+msgid "manager.setup.generalInformation"
+msgstr "Allgemeine Informationen"
+
+msgid "manager.setup.gettingDownTheDetails"
+msgstr "Schritt 1: Sich mit dem System vetraut machen"
+
+msgid "manager.setup.guidelines"
+msgstr "Leitfaden"
+
+msgid "manager.setup.preparingWorkflow"
+msgstr "Schritt 3: Den Workflow vorbereiten"
+
+msgid "manager.setup.information.description"
+msgstr "Diese kurzen Beschreibungen des Verlages, gerichtet an Bibliothekar/innen, interessierte Autor/innen und Leser/innen, erscheinen in der Sidebar unter dem Punkt 'Informationen'."
+
+msgid "manager.setup.information.forAuthors"
+msgstr "Für Autor/innen"
+
+msgid "manager.setup.information.forLibrarians"
+msgstr "Für Bibliothekar/innen"
+
+msgid "manager.setup.information.forReaders"
+msgstr "Für Leser/innen"
+
+msgid "manager.setup.institution"
+msgstr "Institution"
+
+msgid "manager.setup.labelName"
+msgstr "Labelname"
+
+msgid "manager.setup.layoutAndGalleys"
+msgstr "Layouter/in"
+
+msgid "manager.setup.layoutInstructions"
+msgstr "Layoutrichtlinien"
+
+msgid "manager.setup.layoutInstructionsDescription"
+msgstr "Für die Formatierung von Veröffentlichungen können Layoutrichtlinien erstellt und unten entweder in HTML oder in Klartext eingefügt werden. Sie stehen dem Layouter und dem Sektionsherausgeber auf der Editierseite jedes Manuskripts zur Verfügung. (Da jeder Verlag seine eigenen Dateiformate, bibliographischen Standards, Stylesheets etc. verwenden kann, sind keine Standardlayoutrichtlinien vorgesehen.)"
+
+msgid "manager.setup.layoutTemplates"
+msgstr "Layoutvorlagen"
+
+msgid "manager.setup.layoutTemplatesDescription"
+msgstr "Als Richtlinie für Layouter/innen und Korrektor/innen können Sie unter 'Layout' Templates für jedes der Standardformate des Verlags (Monografien, Buchbesprechungen etc.) in einem Dateiformat Ihrer Wahl (pdf, doc etc. ) hochladen und sie mit Anmerkungen bezüglich der zu verwendenden Schriften, Größen, Randbreiten etc. versehen."
+
+msgid "manager.setup.layoutTemplates.file"
+msgstr "Template-Datei"
+
+msgid "manager.setup.layoutTemplates.title"
+msgstr "Titel"
+
+msgid "manager.setup.lists"
+msgstr "Listen"
+
+msgid "manager.setup.look"
+msgstr "Aussehen"
+
+msgid "manager.setup.look.description"
+msgstr "Homepage-Header, Inhalt, Verlags-Header, Footer, Navigationsleiste und Stylesheet."
+
+msgid "manager.setup.settings"
+msgstr "Einstellungen"
+
+msgid "manager.setup.management.description"
+msgstr "Zugriff und Sicherheit, Terminplanung, Bekanntmachungen, Lektorat, Layout und Korrektorat."
+
+msgid "manager.setup.managementOfBasicEditorialSteps"
+msgstr "Management der grundlegenden redaktionellen Schritte"
+
+msgid "manager.setup.managingPublishingSetup"
+msgstr "Setup des Verwaltungs- und Veröffentlichungsprozesses"
+
+msgid "manager.setup.managingThePress"
+msgstr "Schritt 4: Einstellungen verwalten"
+
+msgid "manager.setup.noImageFileUploaded"
+msgstr "Es wurde kein Bild hochgeladen."
+
+msgid "manager.setup.noStyleSheetUploaded"
+msgstr "Es wurde kein Stylesheet hochgeladen."
+
+msgid "manager.setup.note"
+msgstr "Hinweis"
+
+msgid "manager.setup.notifyAllAuthorsOnDecision"
+msgstr "Wurde das Manuskript von mehreren Autor/innen gemeinschaftlich verfasst, fügen Sie bitte in der Benachrichtungsmail an den Autor die E-Mail-Adressen aller Autor/innen mit ein, nicht nur diejenige der Person, die das Manuskript eingereicht hat."
+
+msgid "manager.setup.noUseCopyeditors"
+msgstr "Das Lektorat liegt in der Zuständigkeit von Herausgeber/in oder Sektionsherausgeber/in."
+
+msgid "manager.setup.noUseLayoutEditors"
+msgstr "Ein Herausgeber oder Sektionsherausgeber, dem das Manuskript zugewiesen wurden, bearbeitet die HTML-, PDF (etc.)-Dateien."
+
+msgid "manager.setup.noUseProofreaders"
+msgstr "Ein Herausgeber oder Sektionsherausgeber, dem das Manuskript zugewiesen wurde, prüft die Fahnen."
+
+msgid "manager.setup.numPageLinks"
+msgstr "Links"
+
+msgid "manager.setup.onlineAccessManagement"
+msgstr "Zugriff auf die Verlagsinhalte"
+
+msgid "manager.setup.onlineIssn"
+msgstr "ISSN für digitale Medien"
+
+msgid "manager.setup.policies"
+msgstr "Leitlinien"
+
+msgid "manager.setup.policies.description"
+msgstr "Fokus, Peer Review, Sektionen, Datenschutz, Sicherheit und zusätzliche 'Über ...'-Punkte.."
+
+msgid "manager.setup.appearanceDescription"
+msgstr "Verschiedene Komponenten des Verlagsauftrittes können von dieser Seite aus konfiguriert werden, z.B. Header- und Footerelemente, Style und Theme des Verlags sowie die Gestaltung der Listen."
+
+msgid "manager.setup.pressDescription"
+msgstr "Beschreibung des Verlags"
+
+msgid "manager.setup.pressDescription.description"
+msgstr "Fügen Sie hier bitte eine allgemeine Beschreibung des Verlages ein. Sie erscheint auf der Verlagshomepage."
+
+msgid "manager.setup.pressArchiving"
+msgstr "Archivierung"
+
+msgid "manager.setup.homepageContent"
+msgstr "Inhalt"
+
+msgid "manager.setup.homepageContentDescription"
+msgstr "Die Verlagshomepage besteht standardmäßig aus Links zur Navigation. Zusätzlicher Inhalt kann zur Homepage hinzugefügt werden, indem eine oder mehrere der folgenden Optionen verwendet werden. Sie erscheinen auf der Homepage in der Reihenfolge, wie sie auf dieser Seite aufgeführt sind."
+
+msgid "manager.setup.pressHomepageContent"
+msgstr "Inhalt"
+
+msgid "manager.setup.pressHomepageContentDescription"
+msgstr "Die Verlagshomepage besteht standardmäßig aus Links zur Navigation. Zusätzlicher Inhalt kann zur Homepage hinzugefügt werden, indem eine oder mehrere der folgenden Optionen verwendet werden. Sie erscheinen auf der Homepage in der Reihenfolge, wie sie auf dieser Seite aufgeführt sind."
+
+msgid "manager.setup.contextInitials"
+msgstr "Verlagsinitialen"
+
+msgid "manager.setup.layout"
+msgstr "Verlagslayout"
+
+msgid "manager.setup.pageHeader"
+msgstr "Header der Website"
+
+msgid "manager.setup.pageHeaderDescription"
+msgstr ""
+
+msgid "manager.setup.pressPolicies"
+msgstr "Schritt 2: Leitlinien des Verlags"
+
+msgid "manager.setup.pressSetup"
+msgstr "Setup"
+
+msgid "manager.setup.pressSetupUpdated"
+msgstr "Das Setup wurde aktualisiert."
+
+msgid "manager.setup.styleSheetInvalid"
+msgstr "Ungültiges Stylesheetformat. Akzeptiert wird das Format css."
+
+msgid "manager.setup.pressTheme"
+msgstr "Verlags-Theme"
+
+msgid "manager.setup.contextTitle"
+msgstr "Verlagsname"
+
+msgid "manager.setup.printIssn"
+msgstr "ISSN der Printausgabe"
+
+msgid "manager.setup.proofingInstructions"
+msgstr "Korrekturrichtlinien"
+
+msgid "manager.setup.proofingInstructionsDescription"
+msgstr "Die Korrekturrichtlinien werden Korrektor/innen, Autor/innen, Layouter/innen und Bereichsherausgeber/innen im Stadium 'Redaktionelle Bearbeitung' zugänglich gemacht. Unten finden Sie Standardrichtlinien in HTML, die von dem/der Verlagsleiter/in bearbeitet oder ersetzt werden können (in HTML oder im Klartext)."
+
+msgid "manager.setup.proofreading"
+msgstr "Korrektoren"
+
+msgid "manager.setup.provideRefLinkInstructions"
+msgstr "Stelle den Layoutern Anleitungen zur Verfügung.."
+
+msgid "manager.setup.publicationScheduleDescription"
+msgstr "Beiträge können zusammen veröffentlicht werden, als Teile einer Monografie mit einem eigenen Inhaltsverzeichnis. Es ist aber auch möglich, sie einzeln zu publizieren, indem man die Beiträge dem Inhaltsverzeichnis eines \"laufenden\" Bandes hinzufügt. Informieren Sie Ihre Leser/innen unter 'Über uns' darüber, welches Verfahren der Verlag verwenden wird und wie häufig neue Publikationen erscheinen werden."
+
+msgid "manager.setup.publisher"
+msgstr "Verlag"
+
+msgid "manager.setup.publisherDescription"
+msgstr "Der Name der Organisation, die den Verlag führt, erscheint unter 'Über uns'."
+
+msgid "manager.setup.referenceLinking"
+msgstr "Reference Linking (Verknüpfung von Literaturzitaten mit elektronischen Volltexten)"
+
+msgid "manager.setup.refLinkInstructions.description"
+msgstr "Layoutrichtlinien für Reference Linking"
+
+msgid "manager.setup.restrictMonographAccess"
+msgstr "Benutzer/innen müssen registriert und eingeloggt sein, um Open-Access-Inhalte sehen zu können"
+
+msgid "manager.setup.restrictSiteAccess"
+msgstr "Benutzer/innen müssen registriert und eingeloggt sein, um sich die Verlagswebsite anschauen zu können."
+
+msgid "manager.setup.reviewGuidelines"
+msgstr "Leitfäden für externe Begutachtungen"
+
+msgid "manager.setup.reviewGuidelinesDescription"
+msgstr "Die Leitfäden für die externe Begutachtachtung geben den externen Gutachter/innen Kriterien an die Hand, mit denen sie die Eignung des eingereichten Manuskripts beurteilen können. Die Leitfäden können auch genaue Anweisungen zur Erstellung eines gelungenen und aussagekräftigen Gutachens enthalten. Den Gutachter/innen werden bei der Erstellung der Gutachten zwei offene Textboxen angezeigt, die erste ist für Gutachten, die \"an Autor/in und Herausgeber/in\" adressiert werden sollen, die zweite für Gutachten, die nur \"an den/die Herausgeber/in\" gehen sollen. Alternativ dazu kann der Verlagsleiter auch selbst Begutachtungsformulare unter 'Gutachen-Formulare' anlegen. In allen Fällen haben die Herausgeber/innen aber immer die Möglichkeit, die Gutachten in ihre Korrespondenz mit dem Autor/der Autorin einzufügen."
+
+msgid "manager.setup.internalReviewGuidelines"
+msgstr "Leitfäden für interne Begutachtungen"
+
+msgid "manager.setup.internalReviewGuidelinesDescription"
+msgstr "Wie die Leitfäden für die externe Begutachtung liefern diese Anleitungen den Gutachter/innen Informationen zu Bewertung des eingereichten Manuskripts. Diese Anleitungen sind für interne Gutachter/innen, die generell den Begutachtungsprozess verlagsintern durchführen."
+
+msgid "manager.setup.reviewOptions"
+msgstr "Begutachtungsoptionen"
+
+msgid "manager.setup.reviewOptions.automatedReminders"
+msgstr "Automatisierte E-Mail-Erinnerungen (verfügbar in den Standard-E-Mails von OMP) können den Gutachtern an zwei Stellen übersandt werden. Der Herausgeber/die Herausgeberin kann jedoch jederzeit den Gutachter/innen auch direkt mailen."
+
+msgid "manager.setup.reviewOptions.automatedRemindersDisabled"
+msgstr "<strong>Bitte beachten Sie:</strong> Um diese Optionen zu aktivieren, muss der Administrator/die Administratorin die <tt>scheduled_tasks</tt>-Option in der OMP-Konfigurationdatei freigeben. Eventuell ist eine weitere Konfiguration des Servers nötig, um diese Funktionalität zu unterstützen (dies ist unter Umständen nicht auf allen Servern möglich). Nähere Informationen dazu finden Sie in der OMP-Dokumentation."
+
+msgid "manager.setup.reviewOptions.blindReview"
+msgstr "Blind Review"
+
+msgid "manager.setup.reviewOptions.onQuality"
+msgstr "Nach Abschluss der Begutachtung bewerten die Herausgeber/innen die Gutachter/innen auf einer Fünf-Punkte-Qualitätsskala bewerten."
+
+msgid "manager.setup.reviewOptions.restrictReviewerFileAccess.description"
+msgstr "Die Gutachter/innen haben erst dann Zugang zu den Manuskriptdateien, wenn sie der Begutachtung zugestimmt haben."
+
+msgid "manager.setup.reviewOptions.reviewerAccess"
+msgstr "Zugang für Gutachter/innen"
+
+msgid "manager.setup.reviewOptions.reviewerRatings"
+msgstr "Gutachterbewertungen"
+
+msgid "manager.setup.reviewOptions.reviewerReminders"
+msgstr "Gutachtererinnerungen"
+
+msgid "manager.setup.reviewOptions.showEnsuringLink"
+msgstr "Provide links about ensuring a blind review on pages where authors and reviewers upload files."
+
+msgid "manager.setup.reviewPolicy"
+msgstr "Begutachtungsleitlinien"
+
+msgid "manager.setup.reviewProcess"
+msgstr "Begutachtungsprozess"
+
+msgid "manager.setup.reviewProcessDescription"
+msgstr "OMP unterstützt zwei Modelle der Begutachtungsprozess-Koordinierung: Empfohlen wird der Standard-Begutachtungsprozess, weil hier die Gutachter/innen durch den Prozess geführt werden. Damit ist sichergestellt, das es für jedes eingereichte Manuskript ein vollständiges Begutachtungsverlaufsprotokoll gibt. Weitere Vorteile dieses Verfahrens sind das automatische Mahnverfahren für ausstehende Gutachten und sie standardisierten Empfehlungen zur Manuskriptannahme (die vorgegebenen Optionen sind: Annehmen - Nach Überarbeitung annehmen - Erneut zur Begutachtung einreichen - An anderer Stelle einreichen - Ablehnen und Siehe Kommentar).<br /><br />Wählen Sie eines der beiden Modelle aus:"
+
+msgid "manager.setup.reviewProcessEmail"
+msgstr "E-Mail-Anhang Begutachtungsprozess"
+
+msgid "manager.setup.reviewProcessStandard"
+msgstr "Standard-Begutachtungsprozess"
+
+msgid "manager.setup.reviewProcessStandardDescription"
+msgstr "Die Herausgeber/innen schicken den ausgewählten Gutachter/innen Titel und Abstract des eingereichten Manuskripts und bitten sie darum, sich auf der Verlagswebsite einzuloggen, um ein Gutachten abzugeben. Die Gutachter/innen gehen auf die Website, um der Teilnahme am Begutachtungsverfahren zuzustimmen, Manuskripte herunterzuladen, ihre Anmerkungen einzureichen und um eine Empfehlung auszuwählen."
+
+msgid "manager.setup.searchEngineIndexing"
+msgstr "Suchmaschinen-Indizierung"
+
+msgid "manager.setup.searchEngineIndexing.description"
+msgstr "Um den Benutzer/innen von Suchmaschinen das Auffinden Ihres Verlages zu erleichtern, beschreiben Sie bitte bitte kurz den Verlag und geben Sie, durch Semikolon getrennt, wichtige Schlüsselwörter (Keywords) an."
+
+msgid "manager.setup.sectionsAndSectionEditors"
+msgstr "Sektionen und Sektionsherausgeber/innen"
+
+msgid "manager.setup.sectionsDefaultSectionDescription"
+msgstr "(Wurden keine Sektionen hinzugefügt, werden die Titel standardmäßig der Sektion Monografien zugeordnet.)"
+
+msgid "manager.setup.sectionsDescription"
+msgstr "Um Sektionen anzulegen oder zu verändern (z.B. Monografien, Buchrezensionen), gehen Sie bitte zu 'Sektionsmanagement'. <br /><br />Autor/innen, die eine Publikation beim Verlag einreichen, werden es der entsprechenden Sektion zuordnen."
+
+msgid "manager.setup.securitySettings"
+msgstr "Zugangs- und Sicherheitseinstellungen"
+
+msgid "manager.setup.securitySettings.note"
+msgstr "Andere auf die Sicherheit der Website und auf deren Zugang bezogene Optionen können von der Seite <a href=\"{$accessAndSecurityUrl}\" target=\"_blank\" class=\"action\">Zugang und Sicherheit</a> aus konfiguriert werden."
+
+msgid "manager.setup.selectEditorDescription"
+msgstr "Leitende/r Herausgeber/in zur Betreuung des gesamten Publikationsprozesses."
+
+msgid "manager.setup.selectSectionDescription"
+msgstr "Verlagssektion, für die der Titel vorgesehen ist."
+
+msgid "manager.setup.showGalleyLinksDescription"
+msgstr "Zeige immer Links zu den Druckfahnen und weise auf Zugangsbeschränkungen hin."
+
+msgid "manager.setup.stepsToPressSite"
+msgstr "Fünf Schritte zur Verlagswebsite"
+
+msgid "manager.setup.subjectExamples"
+msgstr "(z.B. Photosynthese; Schwarze Löcher; Vier-Farben-Satz; Bayes'scher Wahrscheinlichkeitsbegriff)"
+
+msgid "manager.setup.subjectKeywordTopic"
+msgstr "Schlüsselwörter"
+
+msgid "manager.setup.subjectProvideExamples"
+msgstr "Geben Sie Beispiele für Schlüsselwörter oder Themengebiete als Orientierung für die Autoren"
+
+msgid "manager.setup.submissionGuidelines"
+msgstr "Richtlinien für die Einreichung"
+
+msgid "manager.setup.submissionPreparationChecklist"
+msgstr "Einreichungs-Checkliste"
+
+msgid "maganer.setup.submissionChecklistItemRequired"
+msgstr "Dieser Punkt der Checkliste muss bestätigt sein."
+
+msgid "manager.setup.workflow"
+msgstr "Workflow"
+
+msgid "manager.setup.submissions.description"
+msgstr "Leitfaden für Autoren, Copyright und Indizierung (einschließlich Registrierung)."
+
+msgid "manager.setup.typeExamples"
+msgstr "(z.B. historische Untersuchung; quasi-experimentelle Studie; literarische Analyse; Umfrage/Interview)"
+
+msgid "manager.setup.typeMethodApproach"
+msgstr "Typ (Methode/Ansatz)"
+
+msgid "manager.setup.typeProvideExamples"
+msgstr "Nennen Sie Beispiele für relevante Forschungsarten, -methoden und -ansätze auf diesem Feld"
+
+msgid "manager.setup.useCopyeditors"
+msgstr "Jedem Manuskript wird ein/e Lektor/in zugewiesen."
+
+msgid "manager.setup.useEditorialReviewBoard"
+msgstr "Ein Redaktioneller Beirat/Gutachterbeirat wird vom Verlag eingesetzt."
+
+msgid "manager.setup.useImageTitle"
+msgstr "Titelbild"
+
+msgid "manager.setup.useStyleSheet"
+msgstr "Formatvorlage des Verlags"
+
+msgid "manager.setup.useLayoutEditors"
+msgstr "Aufgabe des Layouters ist es, HTML-, PDF- und andere Dateien für die elektronische Veröffentlichtung vorzubereiten."
+
+msgid "manager.setup.useProofreaders"
+msgstr "Ein/e Korrektor/in wird bestimmt, um (zusammen mit den Autoren/innen) die Fahnen im letzten Schritt vor der Veröffentlichung gegenzulesen."
+
+msgid "manager.setup.userRegistration"
+msgstr "Benutzerregistrierung"
+
+msgid "manager.setup.useTextTitle"
+msgstr "Seitentitel der Website"
+
+msgid "manager.setup.volumePerYear"
+msgstr "Bände pro Jahr"
+
+msgid "manager.setup.publicationFormat.code"
+msgstr "Format"
+
+msgid "manager.setup.publicationFormat.codeRequired"
+msgstr "Bitte wählen Sie ein Format aus."
+
+msgid "manager.setup.publicationFormat.nameRequired"
+msgstr "Sie müssen diesem Format einen Namen zuweisen."
+
+msgid "manager.setup.publicationFormat.physicalFormat"
+msgstr "Ist es ein physisches (nicht-digitales) Format?"
+
+msgid "manager.setup.publicationFormat.inUse"
+msgstr "Dieses Format kann nicht gelöscht werden, da zurzeit ein Buch Ihres Verlages in diesem Format erscheint."
+
+msgid "manager.setup.newPublicationFormat"
+msgstr "Neues Format"
+
+msgid "manager.setup.newPublicationFormatDescription"
+msgstr "Um ein neues Format anzulegen, füllen Sie bitte das unten stehende Formular aus und klicken dann auf den Button 'Erstellen'."
+
+msgid "manager.setup.genresDescription"
+msgstr "Diese Genres bilden einen Bestandteil des Dateinamen.  Beim Hochladeprozess werden die Manuskriptdateien in einem Pull-down-Menü angezeigt. Genres, die mit ## gekennzeichnet sind, können sowohl mit dem ganzen Buch 99Z oder mit einem bestimmten Kapitel über Angabe einer Nummer (z.B. 02) verbunden werden."
+
+msgid "manager.setup.reviewProcessEmailDescription"
+msgstr "Die Herausgeber/innen senden den Gutachter/innen Begutachtungsanfragen per E-Mail und fügen das betreffende Manuskript als Anhang bei. Die Gutachter/innen erklären sich in einer E-Mail an die Herausgeber mit der Begutachtung einverstanden (oder lehnen sie ab) und schicken ebenfalls per E-Mail das fertige Gutachten und ihre Empfehlung hinsichtlich des Manuskripts. Die Herausgeber/innen hinterlegen die Einverständniserklärung (oder Ablehnung) der Gutachter/innen, das Gutachten selbst und die Empfehlung in Bezug auf das eingereichte Manuskript auf der Begutachtungsseite, um den Verlauf des Begutachtungsprozess zu dokumentieren."
+
+msgid "manager.setup.genres"
+msgstr "Genres"
+
+msgid "manager.setup.newGenre"
+msgstr "Neues Genre"
+
+msgid "manager.setup.newGenreDescription"
+msgstr "Um ein neues Genre anzulegen, füllen Sie die unten stehenden Felder aus und klicken Sie auf 'Erstellen'."
+
+msgid "manager.setup.deleteSelected"
+msgstr "Ausgewählte Elemente löschen"
+
+msgid "manager.setup.restoreDefaults"
+msgstr "Grundeinstellungen wiederherstellen"
+
+msgid "manager.setup.prospectus"
+msgstr "Leitfaden für das Exposé"
+
+msgid "manager.setup.prospectusDescription"
+msgstr "Der Leitfaden für Exposés soll dem Autor/der Autorin dabei helfen soll, die eingereichten Materialien so zu beschreiben, dass der Verlag daraus den Wert der Einreichung erkennen kann. Der Verlag stellt dazu ein vorbereitetes Exposé als Orientierungshilfe zur Verfügung. Das Exposé kann eine Vielzahl verschiedener Punkte enthalten - vom Marktpotenzial bis zum theoretischen Wert; in jedem Fall sollte der Verlag einen Exposéleitfaden erstellen, der die eigene Verlagsagenda ergänzt."
+
+msgid "manager.setup.submitToCategories"
+msgstr "Einreichung in einer Kategorie zulassen"
+
+msgid "manager.setup.submitToSeries"
+msgstr "Einreichung in einer Reihe zulassen"
+
+msgid "manager.setup.issnDescription"
+msgstr "Die ISSN (International Standard Serial Number) ist eine aus acht Ziffern bestehende Nummer, die periodisch erscheinende Veröffentlichungen - dazu zählen auch elektronische Zeitschriften (E-Journals) - als solche identifiziert. Sie wird von einem weltweit arbeitenden Netzwerk von Nationalzentren verwaltet. Die Koordinierung erfolgt über das ISSN International Centre mit Sitz in Paris, unterstützt von der Unesco und der französischen Regierung. ISSN können jederzeit über <a href=\"http://www.issn.org\" target=\"_blank\">ISSN web site</a> bezogen werden."
+
+msgid "manager.setup.currentFormats"
+msgstr "Aktuelle Formate"
+
+msgid "manager.setup.categoriesAndSeries"
+msgstr "Kategorien und Reihen"
+
+msgid "manager.setup.categories.description"
+msgstr "Sie können eine Liste von Kategorien anlegen, um Ihre Publikationen besser organisieren zu können. Kategorien sind Gruppierungen von Büchern zu bestimmten Sachbegriffen, zum Beispiel zu Wirtschaft; Literatur; Poesie und so weiter. Kategorien können 'Eltern'-Kategorien untergeordnet werden: Zum Beispiel kann die Elternkategorie 'Wirtschaft\" die beiden Individuen 'Mikroökonomie' und 'Makroökonomie' mit einschließen. Besucher der Website können nach Kategorien suchen und in den Kategorien browsen."
+
+msgid "manager.setup.series.description"
+msgstr "Sie können eine unbegrenzte Anzahl von Reihen anlegen. Eine Reihe stellt eine Zusammenstellung von Büchern zu einem bestimmten Thema dar. Normalerweise wird das Thema oder der Gegenstand der Reihe von ein oder zwei Mitgliedern einer Fakultät vorgeschlagen. Sie betreuen auch die Reihe und überwachen deren Qualität. Besucher der Website können nach Reihen suchen und browsen."
+
+msgid "manager.setup.reviewForms"
+msgstr "Gutachtenformulare"
+
+msgid "manager.setup.roleType"
+msgstr "Funktionstyp"
+
+msgid "manager.setup.authorRoles"
+msgstr "Funktionen von \"Autor/in\""
+
+msgid "manager.setup.managerialRoles"
+msgstr "Funktionen von \"Manager/in\""
+
+msgid "manager.setup.availableRoles"
+msgstr "Verfügbare Funktionen"
+
+msgid "manager.setup.currentRoles"
+msgstr "Aktuelle Funktionen"
+
+msgid "manager.setup.internalReviewRoles"
+msgstr "Funktionen von \"Interne/r Gutachter/in\""
+
+msgid "manager.setup.masthead"
+msgstr "Impressum"
+
+msgid "manager.setup.editorialTeam"
+msgstr "Herausgeber/innen"
+
+msgid "manager.setup.editorialTeam.description"
+msgstr "Das Impressum sollte ein Liste der Herausgeber/innen und Geschäftsführer/innen sowie anderer Personen enthalten, die mit dem Verlag in Verbindung stehen. Hier eingegebene Informationen erscheinen unter 'Über uns'."
+
+msgid "manager.setup.files"
+msgstr "Dateien"
+
+msgid "manager.setup.productionTemplates"
+msgstr "Vorlagen für die Herstellung"
+
+msgid "manager.files.note"
+msgstr "Hinweis: Der Dateimanager ist ein erweitertes Feature, das es erlaubt, dem Verlag zugeordnete Dateien und Verzeichnisse direkt anzuschauen und zu ändern."
+
+msgid "manager.setup.copyrightNotice.sample"
+msgstr ""
+"<h3>Vorgeschlagener Text für den Creative Commons Copyright-Vermerk </h3>\n"
+"<h4>Vorgeschlagene Leitlinie für Verlage, die Open Access anbieten</h4>\n"
+"Autor/innen, die in diesem Verlag veröffentlichen, stimmen den folgenden Bedingungen zu:\n"
+"<ol type=\"a\">\n"
+"\t<li>Autor/innen behalten das Urheberrecht an dem Werk und gewähren dem Verlag das Recht zu dessen Erstveröffentlichung. Parallel dazu wird das Werk unter eine <a target=\"_blank\" href=\"http://creativecommons.org/licenses/by/3.0/\">Creative Commons Attribution License</a> gestellt. Diese erlaubt es anderen, das Werk weiterzuverbreiten, unter der Bedingung, dass der Autor/die Autorin benannt und auf die Erstveröffentlichung in diesem Verlag hingewiesen wird.</li>\n"
+"\t<li>Autor/innen können weitere, gesonderte Verträge für eine nicht-exklusive Verbreitung einer vom Verlag veröffentlichten Version des Buches abschließen (sie können es z. B auf einem institutionellen Repositorium einstellen oder in einem Buch veröffentlichen), jedoch unter Hinweis auf die Erstveröffentlichung in diesem Verlag.</li>\n"
+"\t<li>Autor/innen ist es erlaubt und werden dazu ermutigt, ihr Werk bereits online zu stellen, bevor es beim Verlag eingereicht oder veröffentlicht wurde (z.B. auf institutionellen Repositorien oder auf ihrer Website), da dies zu einem produktiven Austausch einerseits als auch zu einer früheren Zitierung und einer höheren Zitierhäufigkeit andererseits führen kann. (Siehe <a target=\"_blank\" href=\"http://opcit.eprints.org/oacitation-biblio.html\">Der Effekt von Open Access</a>).</li>\n"
+"</ol>\n"
+"\n"
+"<h4>Vorgeschlagene Leitlinie für Verlage, die eine freie Zugänglichkeit nach einem festgesetzten Verwertungszeitraum anbieten (Delayed Open Access)</h4>\n"
+"Autor/innen, die bei diesem Verlag publizieren, stimmen folgenden Bedingungen zu:\n"
+"<ol type=\"a\">\n"
+"\t<li>Autor/innen behalten das Urheberrecht an dem Werk und gewähren dem Verlag das Recht zu dessen Erstveröffentlichung. Das Werk wird [Zeitraum angeben] nach der Veröffentlichung parallel unter einer <a target=\"_blank\" href=\"http://creativecommons.org/licenses/by/3.0/\">Creative Commons Attribution License</a> lizenziert, die es anderen erlaubt, das Werk weiterzuverbreiten, unter der Bedingung, dass der Autor/die Autorin benannt und auf die Erstveröffentlichung in diesem Verlag hingewiesen wird.</li>\n"
+"\t <li>Autor/innen können weitere, gesonderte Verträge für eine nicht-exklusive Verbreitung einer vom Verlag veröffentlichten Version des Buches abschließen (sie können es z.B auf einem institutionellen Repositorium einstellen oder in einem Buch veröffentlichen), jedoch muss auf die Erstveröffentlichung in diesem Verlag hingewiesen werden.</li>\n"
+"\t <li>Autor/innen dürfen gerne ihr Werk bereits online stellen, bevor es beim Verlag eingereicht oder veröffentlicht wurde (z.B. auf institutionellen Repositorien oder auf ihren Websites). Dies dient nicht nur dem produktiven Austausch untereinander, sondern kann auch zu einer früheren Zitierung und einer höheren Zitierhäufigkeit des veröffentlichten Werks beitragen. (Siehe <a target=\"_blank\" href=\"http://opcit.eprints.org/oacitation-biblio.html\">Der Effekt von Open Access</a>)./li>\n"
+"</ol>"
+
+msgid "manager.setup.basicEditorialStepsDescription"
+msgstr ""
+"Schritte: Warteschlange &gt; Begutachtung &gt; Redaktionelle Bearbeitung &gt; Inhaltsverzeichnis.<br /><br />\n"
+"Wählen Sie ein Modell, um diese Aspekte des Publikationsprozesses zu steuern. (Um leitende Herausgeber/innen oder Serienherausgeber/innen zu bestimmen, gehen Sie in der Verlagsverwaltung zu 'Herausgeber/innen'.)"
+
+msgid "manager.setup.referenceLinkingDescription"
+msgstr ""
+"<p>Um Leser/innen das Auffinden der Onlineversion eines zitierten Werkes zu erleichtern, können Sie:</p>\n"
+"\n"
+"<ol>\n"
+"\t<li><strong>Ein Lesewerkzeug hinzufügen: </strong><p>Der Verlagsleiter kann den Link \"Finde Literaturnachweise\" zu den Lesewerkzeugen (sie stehen in der Sidebar neben dem veröffentlichten Werk) hinzufügen. Durch Anklicken des Links öffnet sich ein Fenster, in dem Leser/innen einen zitierten Titel einfügen und anschließend in vorausgewählten wissenschaftlichen Datenbanken danach suchen können.</p></li>\n"
+"\t<li><strong>Links in die Literaturnachweise einbinden: </strong><p>Der/die Layouter/in kann einen Link zu online aufrufbaren Zitationen hinzufügen. Die folgenden Instruktionen sind dabei unter Umständen hilfreich (Bearbeitung erlaubt).</p></li>\n"
+"</ol>"
+
+msgid "manager.publication.library"
+msgstr "Verlagsdokumentenarchiv"
+
+msgid "manager.setup.resetPermissions"
+msgstr "Rechte für Monografien zurücksetzen"
+
+msgid "manager.setup.resetPermissions.confirm"
+msgstr "Sind Sie sicher, dass Sie die bereits vergebenen Rechte für Monografien zurücksetzen wollen?"
+
+msgid "manager.setup.resetPermissions.description"
+msgstr "Copyright-Angaben und Lizenzinformationen werden dauerhaft mit dem veröffentlichten Inhalt verknüpft, damit diese Daten sich nicht ändern, wenn ein Verlag die Regeln für neue Einreichungen ändert. Um vergebene Rechte für bereits veröffentlichte Inhalte zurückzusetzen, nutzen Sie den Knopf unten."
+
+msgid "grid.genres.title.short"
+msgstr "Komponenten"
+
+msgid "grid.genres.title"
+msgstr "Monografie-Komponenten"

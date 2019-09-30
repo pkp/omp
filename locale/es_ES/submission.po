@@ -1,0 +1,342 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: \n"
+"Report-Msgid-Bugs-To: \n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"POT-Creation-Date: 2019-09-30T06:23:44-07:00\n"
+"PO-Revision-Date: 2019-09-30T06:23:44-07:00\n"
+"Language: \n"
+
+msgid "submission.submit.title"
+msgstr "Enviar una monografía"
+
+msgid "submission.title"
+msgstr "Título de libro"
+
+msgid "submission.select"
+msgstr "Seleccionar propuesta"
+
+msgid "submission.synopsis"
+msgstr "Sinopsis"
+
+msgid "submission.workflowType"
+msgstr "Tipo de libro"
+
+msgid "submission.workflowType.description"
+msgstr "Una monografía es una obra escrita totalmente por uno o más autores/as. Una obra colectiva tiene diferentes autores/as para cada capítulo (los detalles de capítulo se introducen posteriormente durante el proceso)."
+
+msgid "submission.workflowType.editedVolume"
+msgstr "Obra colectiva"
+
+msgid "submission.workflowType.authoredWork"
+msgstr "Monografía"
+
+msgid "submission.monograph"
+msgstr "Monografía"
+
+msgid "submission.published"
+msgstr "Producción lista"
+
+msgid "submission.fairCopy"
+msgstr "Copia en limpio"
+
+msgid "submission.artwork.permissions"
+msgstr "Permisos"
+
+msgid "submission.chapter"
+msgstr "Capítulo"
+
+msgid "submission.chapters"
+msgstr "Capítulos"
+
+msgid "submission.chaptersDescription"
+msgstr "Puede hacer una lista de los capítulos aquí y asignarlos a los colaboradores que figuran en la lista de colaboradores más arriba. Los colaboradores/as podrán acceder al capítulo durante varias fases del proceso de publicación."
+
+msgid "submission.chapter.addChapter"
+msgstr "Añadir capítulo"
+
+msgid "submission.chapter.editChapter"
+msgstr "Editar capítulo"
+
+msgid "submission.copyedit"
+msgstr "Corregir el estilo"
+
+msgid "submission.publicationFormats"
+msgstr "Formatos de publicación"
+
+msgid "submission.proofs"
+msgstr "Pruebas"
+
+msgid "submission.download"
+msgstr "Descargar"
+
+msgid "submission.sharing"
+msgstr "Compartir"
+
+msgid "manuscript.submission"
+msgstr "Propuesta de manuscrito"
+
+msgid "submission.round"
+msgstr "Ronda {$round}"
+
+msgid "submissions.queuedReview"
+msgstr "En revisión"
+
+msgid "manuscript.submissions"
+msgstr "Propuestas de manuscritos"
+
+msgid "submission.confirmSubmit"
+msgstr "¿Seguro que deseas proponer este manuscrito a la editorial?"
+
+msgid "submission.metadata"
+msgstr "Metadatos"
+
+msgid "submission.supportingAgencies"
+msgstr "Agencias de apoyo"
+
+msgid "grid.action.addChapter"
+msgstr "Crear un nuevo capítulo"
+
+msgid "grid.action.editChapter"
+msgstr "Editar este capítulo"
+
+msgid "grid.action.deleteChapter"
+msgstr "Eliminar este capítulo"
+
+msgid "submission.submit"
+msgstr "Comenzar nueva propuesta"
+
+msgid "submission.submit.newSubmissionMultiple"
+msgstr "Comenzar una nueva propuesta para"
+
+msgid "submission.submit.newSubmissionSingle"
+msgstr "Nuevo Envío"
+
+msgid "submission.submit.upload"
+msgstr "Subir"
+
+msgid "submission.submit.cancelSubmission"
+msgstr "Puedes completar esta propuesta más tarde seleccionando Propuestas Activas desde la página de inicio del autor."
+
+msgid "submission.submit.selectSeries"
+msgstr "Seleccionar serie, colección, ..."
+
+msgid "submission.submit.seriesPosition"
+msgstr "Lugar que ocupa dentro de esta serie, colección, ... (por ejemplo, Libro 2, o Volumen 2)"
+
+msgid "submission.submit.form.localeRequired"
+msgstr "Selecciona una lengua para la propuesta."
+
+msgid "submission.submit.submissionChecklist"
+msgstr "Lista de comprobación de la presentación"
+
+msgid "submission.submit.submissionChecklistDescription"
+msgstr "Tienen que completarse y marcarse las siguientes exigencias para la propuesta a esta editorial antes de continuar (se pueden añadir a continuación comentarios al editor) ."
+
+msgid "submission.submit.privacyStatement"
+msgstr "Declaración de privacidad"
+
+msgid "submission.submit.contributorRole"
+msgstr "Rol del colaborador"
+
+msgid "submission.submit.form.authorRequired"
+msgstr "Se necesita al menos un autor."
+
+msgid "submission.submit.form.authorRequiredFields"
+msgstr "Tienen que añadirse el nombre, apellido(s) y dirección de correo electrónico de cada autor."
+
+msgid "submission.submit.form.titleRequired"
+msgstr "Introduce el texto de tu monografía."
+
+msgid "submission.submit.form.abstractRequired"
+msgstr "Introduce un breve resumen de tu monografía."
+
+msgid "submission.submit.form.contributorRoleRequired"
+msgstr "Selecciona el rol del colaborador."
+
+msgid "submission.submit.submissionFile"
+msgstr "Fichero de la propuesta"
+
+msgid "submission.submit.prepare"
+msgstr "Preparar"
+
+msgid "submission.submit.catalog"
+msgstr "Catálogo"
+
+msgid "submission.submit.metadata"
+msgstr "Metadatos"
+
+msgid "submission.submit.finishingUp"
+msgstr "Finalizar"
+
+msgid "submission.submit.nextSteps"
+msgstr "Pasos siguientes"
+
+msgid "submission.submit.coverNote"
+msgstr "Nota para el Editor"
+
+msgid "submission.submit.generalInformation"
+msgstr "Información general"
+
+msgid "submission.submit.whatNext.description"
+msgstr "El envío se notificó a la editorial y usted recibió un correo electrónico de confirmación por sus registros.  Una vez revisado el envío por el editor/a, este contactará con usted."
+
+msgid "submission.submit.checklistErrors"
+msgstr "Lea y marque los elementos en la lista de comprobación del envío.  No se marcaron {$itemsRemaining} elementos."
+
+msgid "submission.submit.placement"
+msgstr "Disposición de la propuesta"
+
+msgid "submission.submit.userGroup"
+msgstr "Realizar propuesta como..."
+
+msgid "submission.submit.userGroupDescription"
+msgstr "Si estás realizando la obra conjunta, deberás elegir el rol Editor de obra conjunta."
+
+msgid "grid.chapters.title"
+msgstr "Capítulos"
+
+msgid "grid.copyediting.deleteCopyeditorResponse"
+msgstr "Borrar archivo subido del corrector"
+
+msgid "publication.catalogEntry"
+msgstr "Catálogo"
+
+msgid "submission.editCatalogEntry"
+msgstr "Registro"
+
+msgid "submission.catalogEntry.new"
+msgstr "Nueva entrada de catálogo"
+
+msgid "submission.catalogEntry.confirm"
+msgstr "Crear un registro de este libro en el catálogo basado en los metadatos situados a continuación."
+
+msgid "submission.catalogEntry.confirm.required"
+msgstr "Confirma que la propuesta está lista para situarse en el catálogo."
+
+msgid "submission.catalogEntry.isAvailable"
+msgstr "Esta monografía está lista para incluirse en un catalogo público."
+
+msgid "submission.catalogEntry.monographMetadata"
+msgstr "Monografía"
+
+msgid "submission.catalogEntry.catalogMetadata"
+msgstr "Catálogo"
+
+msgid "submission.catalogEntry.publicationMetadata"
+msgstr "Formato de publicación"
+
+msgid "submission.event.metadataPublished"
+msgstr "Los metadatos de la monografía  se han aprobado para su publicación."
+
+msgid "submission.event.metadataUnpublished"
+msgstr "Los metadatos de la monografía no están ya publicados."
+
+msgid "submission.event.publicationFormatMadeAvailable"
+msgstr "El formato de publicación \"{$publicationFormatName}\" está disponible."
+
+msgid "submission.event.publicationFormatMadeUnavailable"
+msgstr "El formato de publicación \"{$publicationFormatName}\" ya no está disponible."
+
+msgid "submission.event.publicationFormatPublished"
+msgstr "El formato de publicación \"{$publicationFormatName}\" está aprobado para su publicación."
+
+msgid "submission.event.publicationFormatUnpublished"
+msgstr "El formato de publicación \"{$publicationFormatName}\" ya no se publica."
+
+msgid "submission.event.catalogMetadataUpdated"
+msgstr "Se han subido los metadatos del catálogo."
+
+msgid "submission.event.publicationMetadataUpdated"
+msgstr "Se actualizaron los metadatos del formato de publicación \"{$formatName}\"."
+
+msgid "submission.event.publicationFormatCreated"
+msgstr "Se creó el formato de publicación \"{$formatName}\"."
+
+msgid "submission.event.publicationFormatRemoved"
+msgstr "Se eliminó el formato de publicación \"{$formatName}\"."
+
+msgid "submission.submit.titleAndSummary"
+msgstr "Título y Resumen"
+
+msgid "submission.upload.selectComponent"
+msgstr "Selecciona el componente"
+
+msgid "submission.submit.seriesPosition.description"
+msgstr "Ejemplos: libro 2, volumen 2"
+
+msgid "submission.submit.confirmation"
+msgstr "Confirmación"
+
+msgid "submission.complete"
+msgstr "Aceptado"
+
+msgid "submission.incomplete"
+msgstr "Esperando aceptación"
+
+msgid "workflow.review.externalReview"
+msgstr "Revisión externa"
+
+msgid "editor.submission.decision.sendExternalReview"
+msgstr "Envía para revisión externa"
+
+msgid "submission.upload.fileContents"
+msgstr "Componente de envío"
+
+msgid "submission.list.orderingFeaturesSection"
+msgstr "Arrastre y suelte o pulse los botones de arriba y abajo para cambiar el orden de los elementos en {$title}."
+
+msgid "submission.list.saveFeatureOrder"
+msgstr "Guardar orden"
+
+msgid "submission.editorName"
+msgstr "{$editorName} (ed)"
+
+msgid "submission.editorSeparator"
+msgstr ","
+
+msgid "submission.authorListSeparator"
+msgstr ";"
+
+msgid "author.submit.seriesRequired"
+msgstr "Se requieren series válidas."
+
+msgid "submission.catalogEntry.add"
+msgstr "Añadir los seleccionados al catálogo"
+
+msgid "submission.catalogEntry.select"
+msgstr "Seleccione monografías a añadir al catálogo"
+
+msgid "submission.catalogEntry.selectionMissing"
+msgstr "Debe seleccionar al menos una monografía para añadir al catálogo."
+
+msgid "submission.catalogEntry.viewSubmission"
+msgstr "Ver envío"
+
+msgid "submission.dependentFiles"
+msgstr "Archivos dependientes"
+
+msgid "submission.metadataDescription"
+msgstr "Estas especificaciones son basadas en el Dublin Core metadata set, un estándar internacional usado para describir el contenido editorial."
+
+msgid "section.any"
+msgstr "Cualquier serie"
+
+msgid "submission.list.monographs"
+msgstr "Monografías"
+
+msgid "submission.list.countMonographs"
+msgstr "{$count} monografías"
+
+msgid "submission.list.itemsOfTotalMonographs"
+msgstr "{$count} de {$total} monografías"
+
+msgid "submission.list.orderFeatures"
+msgstr "Ordenar los elementos"
+
+msgid "submission.list.orderingFeatures"
+msgstr "Arrastre y suelte o pulse los botones de arriba y abajo para cambiar el orden de los elementos en la página principal."

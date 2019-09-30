@@ -1,0 +1,101 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: \n"
+"Report-Msgid-Bugs-To: \n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"POT-Creation-Date: 2019-09-30T06:23:43-07:00\n"
+"PO-Revision-Date: 2019-09-30T06:23:43-07:00\n"
+"Language: \n"
+
+msgid "admin.hostedPresses"
+msgstr "Hosted Presses"
+
+msgid "admin.settings.pressRedirect"
+msgstr "Press redirect"
+
+msgid "admin.settings.pressRedirectInstructions"
+msgstr "Requests to the main site will be redirected to this press. This may be useful if the site is hosting only a single press, for example."
+
+msgid "admin.settings.noPressRedirect"
+msgstr "Do not redirect"
+
+msgid "admin.languages.primaryLocaleInstructions"
+msgstr "This will be the default language for the site and any hosted presses."
+
+msgid "admin.languages.supportedLocalesInstructions"
+msgstr "Select all locales to support on the site. The selected locales will be available for use by all presses hosted on the site, and also appear in a language select menu to appear on each site page (which can be overridden on press-specific pages). If multiple locales are not selected, the language toggle menu will not appear and extended language settings will not be available to presses."
+
+msgid "admin.locale.maybeIncomplete"
+msgstr "* Marked locales may be incomplete."
+
+msgid "admin.languages.confirmUninstall"
+msgstr "Are you sure you want to uninstall this locale? This may affect any hosted presses currently using the locale."
+
+msgid "admin.languages.installNewLocalesInstructions"
+msgstr "Select any additional locales to install support for in this system. Locales must be installed before they can be used by hosted presses. See the OMP documentation for information on adding support for new languages."
+
+msgid "admin.languages.noLocalesToDownload"
+msgstr "No locales are available for download."
+
+msgid "admin.languages.downloadFailed"
+msgstr "The locale download failed. The error message(s) below describe the failure."
+
+msgid "admin.languages.downloadUnavailable"
+msgstr ""
+"<p>Downloading language packs from the Public Knowledge Project web server is not currently available because:</p>\n"
+"\t<ul>\n"
+"\t\t<li>Your server does not have or allow execution of the GNU \"tar\" utility</li>\n"
+"\t\t<li>OMP is unable to modify the locale registry file, typically \"registry/locales.xml\".</li>\n"
+"\t</ul>\n"
+"<p>Language packs can be manually downloaded from the <a href=\"http://pkp.sfu.ca\" target=\"_blank\">PKP web site</a>.</p>"
+
+msgid "admin.languages.confirmDisable"
+msgstr "Are you sure you want to disable this locale? This may affect any hosted presses currently using the locale."
+
+msgid "admin.systemVersion"
+msgstr "OMP Version"
+
+msgid "admin.systemConfiguration"
+msgstr "OMP Configuration"
+
+msgid "admin.presses.pressSettings"
+msgstr "Press Settings"
+
+msgid "admin.presses.noneCreated"
+msgstr "No presses have been created."
+
+msgid "admin.contexts.create"
+msgstr "Create Press"
+
+msgid "admin.contexts.form.titleRequired"
+msgstr "A title is required."
+
+msgid "admin.contexts.form.pathRequired"
+msgstr "A path is required."
+
+msgid "admin.contexts.form.pathAlphaNumeric"
+msgstr "The path can only include letters, numbers and the characters _ and -. It must begin and end with a letter or number."
+
+msgid "admin.contexts.form.pathExists"
+msgstr "The selected path is already in use by another press."
+
+msgid "admin.contexts.form.create.success"
+msgstr "{$name} was created successfully."
+
+msgid "admin.contexts.form.edit.success"
+msgstr "{$name} was edited successfully."
+
+msgid "admin.contexts.contextDescription"
+msgstr "Press description"
+
+msgid "admin.presses.addPress"
+msgstr "Add Press"
+
+msgid "admin.overwriteConfigFileInstructions"
+msgstr ""
+"<h4>NOTE!</div>\n"
+"<p>The system could not automatically overwrite the configuration file. To apply your configuration changes you must open <tt>config.inc.php</tt> in a suitable text editor and replace its contents with the contents of the text field below.</p>"

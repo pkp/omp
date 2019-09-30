@@ -1,0 +1,132 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: \n"
+"Report-Msgid-Bugs-To: \n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"POT-Creation-Date: 2019-09-30T06:23:43-07:00\n"
+"PO-Revision-Date: 2019-09-30T06:23:43-07:00\n"
+"Language: \n"
+
+msgid "default.genres.appendix"
+msgstr "Anhang"
+
+msgid "default.genres.bibliography"
+msgstr "Bibliographie"
+
+msgid "default.genres.manuscript"
+msgstr "Buchmanuskript"
+
+msgid "default.genres.chapter"
+msgstr "Kapitelmanuskript"
+
+msgid "default.genres.glossary"
+msgstr "Glossar"
+
+msgid "default.genres.index"
+msgstr "Register"
+
+msgid "default.genres.preface"
+msgstr "Vorwort"
+
+msgid "default.genres.prospectus"
+msgstr "Exposé"
+
+msgid "default.genres.table"
+msgstr "Tabelle"
+
+msgid "default.genres.figure"
+msgstr "Abbildung"
+
+msgid "default.genres.photo"
+msgstr "Foto"
+
+msgid "default.genres.illustration"
+msgstr "Illustration"
+
+msgid "default.genres.other"
+msgstr "Anderes"
+
+msgid "default.groups.name.manager"
+msgstr "Verlagsleiter/in"
+
+msgid "default.groups.plural.manager"
+msgstr "Verlagsleiter/innen"
+
+msgid "default.groups.abbrev.manager"
+msgstr "VL"
+
+msgid "default.groups.name.editor"
+msgstr "Herausgeber/in"
+
+msgid "default.groups.plural.editor"
+msgstr "Herausgeber/innen"
+
+msgid "default.groups.abbrev.editor"
+msgstr "Hrsg"
+
+msgid "default.groups.name.sectionEditor"
+msgstr "Reihenherausgeber/in"
+
+msgid "default.groups.plural.sectionEditor"
+msgstr "Reihenherausgeber/innen"
+
+msgid "default.groups.abbrev.sectionEditor"
+msgstr "RHrsg"
+
+msgid "default.groups.name.chapterAuthor"
+msgstr "Kapitelautor/in"
+
+msgid "default.groups.plural.chapterAuthor"
+msgstr "Kapitelautor/innen"
+
+msgid "default.groups.abbrev.chapterAuthor"
+msgstr "KapAu"
+
+msgid "default.groups.name.volumeEditor"
+msgstr "Sammelbandherausgeber/in"
+
+msgid "default.groups.plural.volumeEditor"
+msgstr "Sammelbandherausgeber/innen"
+
+msgid "default.groups.abbrev.volumeEditor"
+msgstr "RHrsg"
+
+msgid "default.contextSettings.checklist.notPreviouslyPublished"
+msgstr "Das eingereichte Manuskript wurde nicht bereits vorher veröffentlicht und liegt zurzeit auch nicht einem anderen Verlag zur Begutachtung vor (oder es wurde im Feld 'Vermerk für den/die Herausgeber/in\" eine entsprechende Erklärung dazu abgegeben)."
+
+msgid "default.contextSettings.checklist.fileFormat"
+msgstr "Die eingereichten Dateien liegen im Format Microsoft Word, RTF, OpenDocument oder WordPerfect vor."
+
+msgid "default.contextSettings.checklist.addressesLinked"
+msgstr "Soweit möglich, wurden den Literaturangaben URLs beigefügt."
+
+msgid "default.contextSettings.checklist.submissionAppearance"
+msgstr "Der Text ist mit einzeiligen Zeilenabstand in einer 12-Punkt-Schrift geschrieben; Hervorhebungen sind kursiv gesetzt, auf Unterstreichungen, wird - mit Ausnahme der URL-Adressen - verzichtet; alle Illustrationen, Abbildungen und Tabellen stehen an der Stelle im Text, an der sie auch in der endgültigen Fassung stehen sollen (nicht am Textende)."
+
+msgid "default.contextSettings.checklist.bibliographicRequirements"
+msgstr "Der Text entspricht den im <a href=\"{$indexUrl}/{$contextPath}/about/submissions#authorGuidelines\" target=\"_blank\">Leitfaden für Autor/innen</a> beschriebenen stilistischen und bibliographischen Anforderungen (s. den Reiter 'Über uns')."
+
+msgid "default.contextSettings.privacyStatement"
+msgstr "<p>Namen und E-Mail-Adressen, die auf dieser Website eingetragen sind, werden ausschließlich zu den angegebenen Zwecken verwendet und nicht an Dritte weitergegeben.</p>"
+
+msgid "default.contextSettings.openAccessPolicy"
+msgstr "Dieser Verlag bietet freien Zugang (Open Access) zu seinen Inhalten, entsprechend der Grundannahme, dass die freie öffentliche Verfügbarkeit von Forschung einem weltweiten Wissensaustausch zugute kommt."
+
+msgid "default.contextSettings.emailSignature"
+msgstr ""
+"<br/>\n"
+"________________________________________________________________________<br/>\n"
+"<a href=\"{$ldelim}$contextUrl{$rdelim}\">{$ldelim}$contextName{$rdelim}</a>"
+
+msgid "default.contextSettings.forReaders"
+msgstr "Sie möchten gerne über die Neuerscheinungen unseres Verlages auf dem Laufenden gehalten werden? Als registrierte/r Leser/in erhalten Sie von jeder neu erscheinenden Monografie das Inhaltsverzeichnis per E-Mail zugeschickt. Folgen Sie dem <a href=\"{$indexUrl}/{$contextPath}/user/register\">Registrieren</a>-Link rechts oben auf der Homepage, um sich für diesen Service anzumelden. Selbstverständlich sichern wir Ihnen zu, dass Ihr Name und Ihre E-Mail-Adresse nicht zu anderen Zwecken verwendet werden (siehe <a href=\"{$indexUrl}/{$contextPath}/about/submissions#privacyStatement\">Datenschutzerklärung</a>."
+
+msgid "default.contextSettings.forAuthors"
+msgstr "Haben Sie Interesse, ein Manuskript bei uns einzureichen? Dann möchten wir Sie auf die Seite <a href=\"{$indexUrl}/{$contextPath}/about\">Über uns</a> verweisen. Dort finden Sie die Richtlinien des Verlags. Bitte beachten Sie auch die <a href=\"{$indexUrl}/{$contextPath}/about/submissions#authorGuidelines\">Richtlinien für Autor/innen</a>. Autor/innen müssen sich registrieren, bevor sie ein Buch oder einen Beitrag zu einem Sammelband einreichen können. Wenn Sie bereits registriert sind, können Sie sich <a href=\"{$indexUrl}/index/login\">einloggen </a> und die fünf \"Schritte zur Einreichung\" abarbeiten."
+
+msgid "default.contextSettings.forLibrarians"
+msgstr "Wir ermutigen wissenschaftliche Bibliothekar/innen, diesen Verlag in den digitalen Bestand ihrer Bibliothek aufzunehmen. Bibliotheken können dieses Open-Source-Publikationssystem außerdem zum Hosting für Verlage einsetzen, an deren Arbeit ihre Wissenschaftler/innen beteiligt sind (siehe <a href=\"http://pkp.sfu.ca/omp\">Open Monograph Press</a>)."

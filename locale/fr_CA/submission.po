@@ -1,0 +1,282 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: \n"
+"Report-Msgid-Bugs-To: \n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"POT-Creation-Date: 2019-09-30T06:23:44-07:00\n"
+"PO-Revision-Date: 2019-09-30T06:23:44-07:00\n"
+"Language: \n"
+
+msgid "submission.select"
+msgstr "Choisir une soumission"
+
+msgid "submission.synopsis"
+msgstr "Synopsis"
+
+msgid "submission.workflowType"
+msgstr "Type de livre"
+
+msgid "submission.workflowType.description"
+msgstr "Une monographie est un ouvrage écrit par un ou plusieurs auteurs. Un volume édité est un livre dont les chapitres ont été écrits par différents auteurs (les renseignements sur les chapitres sont ajoutés plus tard)."
+
+msgid "submission.workflowType.editedVolume"
+msgstr "Volume édité"
+
+msgid "submission.workflowType.authoredWork"
+msgstr "Monographie"
+
+msgid "submission.monograph"
+msgstr "Monographie"
+
+msgid "submission.published"
+msgstr "Prêt pour la production"
+
+msgid "submission.fairCopy"
+msgstr "Copie au net"
+
+msgid "submission.artwork.permissions"
+msgstr "Permissions"
+
+msgid "submission.chapter"
+msgstr "Chapitre"
+
+msgid "submission.chapters"
+msgstr "Chapitres"
+
+msgid "submission.chaptersDescription"
+msgstr "Vous pouvez ajouter la liste des chapitres ici et assigner des contributeurs à la liste des contributeurs ci-dessus. Ces contributeurs auront accès au chapitre pendant différentes étapes du processus de publication."
+
+msgid "submission.chapter.addChapter"
+msgstr "Ajouter un chapitre"
+
+msgid "submission.chapter.editChapter"
+msgstr "Modifier un chapitre"
+
+msgid "submission.copyedit"
+msgstr "Réviser"
+
+msgid "submission.publicationFormats"
+msgstr "Formats de publication"
+
+msgid "submission.proofs"
+msgstr "Épreuves"
+
+msgid "submission.download"
+msgstr "Télécharger"
+
+msgid "submission.sharing"
+msgstr "Partager ceci"
+
+msgid "manuscript.submission"
+msgstr "Manuscrit soumis"
+
+msgid "submission.round"
+msgstr "Round&nbsp;{$round}"
+
+msgid "submissions.queuedReview"
+msgstr "En cours d'évaluation"
+
+msgid "manuscript.submissions"
+msgstr "Manuscrits soumis"
+
+msgid "submission.confirmSubmit"
+msgstr "Vous souhaitez soumettre ce manuscrit à la presse?"
+
+msgid "submission.metadata"
+msgstr "Métadonnées"
+
+msgid "submission.supportingAgencies"
+msgstr "Agences de financement"
+
+msgid "grid.action.addChapter"
+msgstr "Créer un nouveau chapitre"
+
+msgid "grid.action.editChapter"
+msgstr "Modifier ce chapitre"
+
+msgid "grid.action.deleteChapter"
+msgstr "Supprimer ce chapitre"
+
+msgid "submission.submit"
+msgstr "Entreprendre une nouvelle soumission de livre"
+
+msgid "submission.submit.newSubmissionMultiple"
+msgstr "Commencer une nouvelle soumission dans"
+
+msgid "submission.submit.newSubmissionSingle"
+msgstr "Commencer une nouvelle soumission"
+
+msgid "submission.submit.upload"
+msgstr "Télécharger"
+
+msgid "submission.submit.upload.description"
+msgstr "Les fichiers téléchargés associés à cette soumision, y compris le manuscrit, le prospectus, la lettre de présentation, les illustrations, etc. Pour les volumes édités, ainsi que pour les monographies, téléchargez le manuscrit en un seul fichier, si possible."
+
+msgid "submission.submit.cancelSubmission"
+msgstr "Vous pouvez compléter cette soumission plus tard. Il suffit de sélectionner Soumissions actives à partir de la page Auteur."
+
+msgid "submission.submit.copyrightNoticeAgree"
+msgstr "J'accepte de respecter les conditions stipulées dans l'énonce concernant le droit d'auteur."
+
+msgid "submission.submit.selectSeries"
+msgstr "Choisir une série..."
+
+msgid "submission.submit.seriesPosition"
+msgstr "Position dans cette série (ex: livre 2 ou Volume 2)"
+
+msgid "submission.submit.form.localeRequired"
+msgstr "Veuillez choisir une langue pour la soumission."
+
+msgid "submission.submit.submissionChecklist"
+msgstr "Liste de vérification pour la soumission"
+
+msgid "submission.submit.submissionChecklistDescription"
+msgstr "Les exigences suivantes en ce qui concerne les soumissions à cette presse doivent être cochées avant de poursuivre la procédure (les commentaires à l'intention du rédacteur en chef seront ajoutés ci-dessous)."
+
+msgid "submission.submit.privacyStatement"
+msgstr "Énoncé de confidentialité"
+
+msgid "submission.submit.contributorRole"
+msgstr "Rôle du contributeur"
+
+msgid "submission.submit.form.authorRequired"
+msgstr "Il faut ajouter au moins un auteur."
+
+msgid "submission.submit.form.authorRequiredFields"
+msgstr "Vous devez indiquer le prénom, le nom de famille et l'adresse courriel de chaque auteur."
+
+msgid "submission.submit.form.titleRequired"
+msgstr "Veuillez saisir le titre de votre monographie."
+
+msgid "submission.submit.form.abstractRequired"
+msgstr "Veuillez saisir un bref résumé de votre monographie."
+
+msgid "submission.submit.form.contributorRoleRequired"
+msgstr "Veuillez sélectionner le rôle du contributeur."
+
+msgid "submission.submit.submissionFile"
+msgstr "Fichier de soumission"
+
+msgid "submission.submit.prepare"
+msgstr "Préparer"
+
+msgid "submission.submit.catalog"
+msgstr "Catalogue"
+
+msgid "submission.submit.metadata"
+msgstr "Métadonnées"
+
+msgid "submission.submit.finishingUp"
+msgstr "Terminer"
+
+msgid "submission.submit.nextSteps"
+msgstr "Prochaines étapes"
+
+msgid "submission.submit.coverNote"
+msgstr "Note de couverture pour le rédacteur en chef"
+
+msgid "submission.submit.generalInformation"
+msgstr "Renseignements généraux"
+
+msgid "submission.submit.whatNext.description"
+msgstr "La presse a été informée de votre soumission et un accusé de réception vous a été envoyé par courriel. Lorsque le rédacteur en chef aura évalué votre soumission, il entrera en contact avec vous."
+
+msgid "submission.submit.checklistErrors"
+msgstr "Veuillez lire et cocher les éléments sur votre liste de vérification.  {$itemsRemaining} éléments n'ont pas été cochés."
+
+msgid "submission.submit.placement"
+msgstr "Place de la soumission"
+
+msgid "submission.submit.placement.seriesDescription"
+msgstr "Si le livre pourrait aussi faire partie d'une série..."
+
+msgid "submission.submit.placement.seriesPositionDescription"
+msgstr "Les livres d'une série sont généralement conservés dans l'ordre inverse de celui dans lequel ils sont publiés. Ainsi, on montre que la série progresse et les articles les plus récents apparaissent au début."
+
+msgid "submission.submit.userGroup"
+msgstr "Soumettre selon mon rôle à titre de..."
+
+msgid "submission.submit.userGroupDescription"
+msgstr "S'il s'agit d'un volume édité, vous devriez choisir le rôle de rédacteur en chef du volume."
+
+msgid "submission.submit.titleAndSummary"
+msgstr "Titre et sommaire"
+
+msgid "submission.upload.selectBookElement"
+msgstr "Choisir un élément du livre"
+
+msgid "grid.chapters.title"
+msgstr "Chapitres"
+
+msgid "grid.copyediting.deleteCopyeditorResponse"
+msgstr "Supprimer le téléchargement du réviseur"
+
+msgid "publication.catalogEntry"
+msgstr "Catalogue"
+
+msgid "submission.editCatalogEntry"
+msgstr "Entrée"
+
+msgid "submission.catalogEntry.new"
+msgstr "Nouvelle entrée de catalogue"
+
+msgid "submission.catalogEntry.confirm"
+msgstr "Créer une entrée de catalogue pour ce livre en fonction des métadonnées ci-dessous."
+
+msgid "submission.catalogEntry.confirm.required"
+msgstr "Veuillez confirmer que la soumission est prête à être ajoutée au catalogue."
+
+msgid "submission.catalogEntry.isAvailable"
+msgstr "Cette monographie est prête à être ajoutée au catalogue public."
+
+msgid "submission.catalogEntry.monographMetadata"
+msgstr "Monographie"
+
+msgid "submission.catalogEntry.catalogMetadata"
+msgstr "Catalogue"
+
+msgid "submission.catalogEntry.publicationMetadata"
+msgstr "Format de publication"
+
+msgid "submission.event.metadataPublished"
+msgstr "Les métadonnées de la monographie ont été approuvées pour la publication."
+
+msgid "submission.event.metadataUnpublished"
+msgstr "Les métadonnées de la monographie ne sont plus publiées."
+
+msgid "submission.event.publicationFormatMadeAvailable"
+msgstr "Le format de publication \"{$publicationFormatName}\" est disponible."
+
+msgid "submission.event.publicationFormatMadeUnavailable"
+msgstr "Le format de publication \"{$publicationFormatName}\" n'est plus disponible."
+
+msgid "submission.event.publicationFormatPublished"
+msgstr "Le format de publication \"{$publicationFormatName}\" a été approuvé pour publication."
+
+msgid "submission.event.publicationFormatUnpublished"
+msgstr "Le format de publication \"{$publicationFormatName}\" n'est plus publié."
+
+msgid "submission.event.catalogMetadataUpdated"
+msgstr "Les métadonnées du catalogue ont été mises à jour."
+
+msgid "submission.event.publicationMetadataUpdated"
+msgstr "Les métadonnées du format de publication pour  \"{$formatName}\" ont été mises à jour."
+
+msgid "submission.event.publicationFormatCreated"
+msgstr "Le format de publication \"{$formatName}\" a été créé."
+
+msgid "submission.event.publicationFormatRemoved"
+msgstr "Le format de publication \"{$formatName}\" a été supprimé."
+
+msgid "submission.submit.title"
+msgstr "Soumettre une monographie"
+
+msgid "submission.title"
+msgstr "Titre du livre"
+
+msgid "submission.submit.confirmExpedite"
+msgstr "Confirmer les métadonnées pour une soumission accélérée"

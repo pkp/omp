@@ -1,0 +1,1075 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: \n"
+"Report-Msgid-Bugs-To: \n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"POT-Creation-Date: 2019-09-30T06:23:43-07:00\n"
+"PO-Revision-Date: 2019-09-30T06:23:43-07:00\n"
+"Language: \n"
+
+msgid "manager.language.confirmDefaultSettingsOverwrite"
+msgstr "This will replace any locale-specific press settings you had for this locale"
+
+msgid "manager.languages.noneAvailable"
+msgstr "Sorry, no additional languages are available. Contact your site administrator if you wish to use additional languages with this press."
+
+msgid "manager.languages.primaryLocaleInstructions"
+msgstr "This will be the default language for the press site."
+
+msgid "manager.series.form.mustAllowPermission"
+msgstr "Please ensure that at least one checkbox is checked for each Series Editor assignment."
+
+msgid "manager.series.form.reviewFormId"
+msgstr "Please ensure that you have chosen a valid review form."
+
+msgid "manager.series.submissionIndexing"
+msgstr "Will not be included in the indexing of the press"
+
+msgid "manager.series.editorRestriction"
+msgstr "Items can only be submitted by Editors and Series Editors."
+
+msgid "manager.series.confirmDelete"
+msgstr "Are you sure you want to permanently delete this series?"
+
+msgid "manager.series.indexed"
+msgstr "Indexed"
+
+msgid "manager.series.open"
+msgstr "Open Submissions"
+
+msgid "manager.series.readingTools"
+msgstr "Reading Tools"
+
+msgid "manager.series.submissionReview"
+msgstr "Will not be peer-reviewed"
+
+msgid "manager.series.submissionsToThisSection"
+msgstr "Submissions made to this series"
+
+msgid "manager.series.abstractsNotRequired"
+msgstr "Do not require abstracts"
+
+msgid "manager.series.disableComments"
+msgstr "Disable reader comments for this series."
+
+msgid "manager.series.book"
+msgstr "Book Series"
+
+msgid "manager.series.create"
+msgstr "Create Series"
+
+msgid "manager.series.policy"
+msgstr "Series description"
+
+msgid "manager.series.assigned"
+msgstr "Editors for this Series"
+
+msgid "manager.series.seriesEditorInstructions"
+msgstr "Add a Series Editor to this series from the available Series Editors. Once added, designate whether the Series Editor will oversee the REVIEW (peer review) and/or the EDITING (copyediting, layout and proofreading) of submissions to this series. Series Editors are created by clicking <a href=\"{$seriesEditorsUrl}\">Series Editors</a> under Roles in Press Management."
+
+msgid "manager.series.hideAbout"
+msgstr "Omit this series from About the Press."
+
+msgid "manager.series.unassigned"
+msgstr "Available Series Editors"
+
+msgid "manager.series.form.abbrevRequired"
+msgstr "An abbreviated title is required for the series."
+
+msgid "manager.series.form.titleRequired"
+msgstr "A title is required for the series."
+
+msgid "manager.series.noneCreated"
+msgstr "No series have been created."
+
+msgid "manager.series.existingUsers"
+msgstr "Existing users"
+
+msgid "manager.series.seriesTitle"
+msgstr "Series Title"
+
+msgid "manager.series.restricted"
+msgstr "Don't allow authors to submit directly to this series."
+
+msgid "manager.payment.generalOptions"
+msgstr "General Options"
+
+msgid "manager.payment.options.enablePayments"
+msgstr "Payments will be enabled for this press. Note that users will be required to log in to make payments."
+
+msgid "manager.payment.success"
+msgstr "The payment settings have been updated."
+
+msgid "manager.settings"
+msgstr "Settings"
+
+msgid "manager.settings.pressSettings"
+msgstr "Press Settings"
+
+msgid "manager.settings.press"
+msgstr "Press"
+
+msgid "manager.settings.publisher.identity"
+msgstr "Publisher Identity"
+
+msgid "manager.settings.publisher.identity.description"
+msgstr "These fields are required to publish valid <a href=\"https://en.wikipedia.org/wiki/ONIX_for_Books\">ONIX metadata</a>."
+
+msgid "manager.settings.publisher"
+msgstr "Press Publisher Name"
+
+msgid "manager.settings.location"
+msgstr "Geographical Location"
+
+msgid "manager.settings.publisherCode"
+msgstr "Publisher Code"
+
+msgid "manager.settings.publisherCodeType"
+msgstr "Publisher Code Type"
+
+msgid "manager.settings.publisherCodeType.invalid"
+msgstr "This is not a valid Publisher Code Type."
+
+msgid "manager.settings.distributionDescription"
+msgstr "All settings specific to the distribution process (notification, indexing, archiving, payment, reading tools)."
+
+msgid "manager.statistics.reports.defaultReport.monographDownloads"
+msgstr "Monograph file downloads"
+
+msgid "manager.statistics.reports.defaultReport.monographAbstract"
+msgstr "Monograph abstract page views"
+
+msgid "manager.statistics.reports.defaultReport.monographAbstractAndDownloads"
+msgstr "Monograph abstract and downloads"
+
+msgid "manager.statistics.reports.defaultReport.seriesIndexPageViews"
+msgstr "Series main page views"
+
+msgid "manager.statistics.reports.defaultReport.pressIndexPageViews"
+msgstr "Press main page views"
+
+msgid "manager.statistics.reports.filters.byContext.description"
+msgstr "Narrow results by context (series and/or monograph)."
+
+msgid "manager.statistics.reports.filters.byObject.description"
+msgstr "Narrow results by object type (press, series, monograph, file types) and/or by one or more object id(s)."
+
+msgid "manager.tools"
+msgstr "Tools"
+
+msgid "manager.tools.importExport"
+msgstr "All tools specific to importing and exporting data (presses, monographs, users)"
+
+msgid "manager.tools.statistics"
+msgstr "Tools to generate reports related to usage statistics (catalog index page view, monograph abstract page views, monograph file downloads)"
+
+msgid "manager.users"
+msgstr "User Management"
+
+msgid "manager.users.availableRoles"
+msgstr "Available Roles"
+
+msgid "manager.users.currentRoles"
+msgstr "Current Roles"
+
+msgid "manager.users.selectRole"
+msgstr "Select Role"
+
+msgid "manager.people.allEnrolledUsers"
+msgstr "Users Enrolled in this Press"
+
+msgid "manager.people.allPresses"
+msgstr "All Presses"
+
+msgid "manager.people.allSiteUsers"
+msgstr "Enroll a User from this Site in this Press"
+
+msgid "manager.people.allUsers"
+msgstr "All Enrolled Users"
+
+msgid "manager.people.confirmRemove"
+msgstr "Remove this user from this press? This action will unenroll the user from all roles within this press."
+
+msgid "manager.people.enrollExistingUser"
+msgstr "Enroll an Existing User"
+
+msgid "manager.people.enrollSyncPress"
+msgstr "With press"
+
+msgid "manager.people.mergeUsers.from.description"
+msgstr "Select a user to merge into another user account (e.g., when someone has two user accounts). The account selected first will be deleted and its submissions, assignments, etc. will be attributed to the second account."
+
+msgid "manager.people.mergeUsers.into.description"
+msgstr "Select a user to whom to attribute the previous user's authorships, editing assignments, etc."
+
+msgid "manager.people.syncUserDescription"
+msgstr "Enrollment synchronization will enroll all users enrolled in the specified role in the specified press into the same role in this press. This function allows a common set of users (e.g., Reviewers) to be synchronized between presses."
+
+msgid "manager.people.confirmDisable"
+msgstr ""
+"Disable this user? This will prevent the user from logging into the system.\n"
+"\n"
+"You may optionally provide the user with a reason for disabling their account."
+
+msgid "manager.people.noAdministrativeRights"
+msgstr ""
+"Sorry, you do not have administrative rights over this user. This may be because:\n"
+"\t\t<ul>\n"
+"\t\t\t<li>The user is a site administrator</li>\n"
+"\t\t\t<li>The user is active in presses you do not manage</li>\n"
+"\t\t</ul>\n"
+"\tThis task must be performed by a site administrator.\n"
+"\t"
+
+msgid "manager.system"
+msgstr "System Settings"
+
+msgid "manager.system.archiving"
+msgstr "Archiving"
+
+msgid "manager.system.reviewForms"
+msgstr "Review Forms"
+
+msgid "manager.system.readingTools"
+msgstr "Reading Tools"
+
+msgid "manager.system.payments"
+msgstr "Payments"
+
+msgid "user.authorization.pluginLevel"
+msgstr "You do not have sufficient privileges to manage this plugin."
+
+msgid "manager.pressManagement"
+msgstr "Press Management"
+
+msgid "manager.setup"
+msgstr "Setup"
+
+msgid "manager.setup.aboutItemContent"
+msgstr "Content"
+
+msgid "manager.setup.addAboutItem"
+msgstr "Add About Item"
+
+msgid "manager.setup.addChecklistItem"
+msgstr "Add Checklist Item"
+
+msgid "manager.setup.addItem"
+msgstr "Add Item"
+
+msgid "manager.setup.addItemtoAboutPress"
+msgstr "Add Item to Appear in \"About the Press\""
+
+msgid "manager.setup.addNavItem"
+msgstr "Add Item"
+
+msgid "manager.setup.addSponsor"
+msgstr "Add Sponsoring Organization"
+
+msgid "manager.setup.announcements"
+msgstr "Announcements"
+
+msgid "manager.setup.announcements.success"
+msgstr "The announcements settings have been updated."
+
+msgid "manager.setup.announcementsDescription"
+msgstr "Announcements may be published to inform readers of press news and events. Published announcements will appear on the Announcements page."
+
+msgid "manager.setup.announcementsIntroduction"
+msgstr "Additional Information"
+
+msgid "manager.setup.announcementsIntroduction.description"
+msgstr "Enter any additional information that should be displayed to readers on the Announcements page."
+
+msgid "manager.setup.appearInAboutPress"
+msgstr "(To appear in About the Press) "
+
+msgid "manager.setup.contextAbout"
+msgstr "About the Press"
+
+msgid "manager.setup.contextAbout.description"
+msgstr "Include any information about your press which may be of interest to readers, authors or reviewers. This could include your open access policy, the focus and scope of the press, sponsorship disclosure, and the history of the journal."
+
+msgid "manager.setup.contextSummary"
+msgstr "Press Summary"
+
+msgid "manager.setup.copyediting"
+msgstr "Copyeditors"
+
+msgid "manager.setup.copyeditInstructions"
+msgstr "Copyedit Instructions"
+
+msgid "manager.setup.copyeditInstructionsDescription"
+msgstr "The Copyedit Instructions will be made available to Copyeditors, Authors, and Section Editors in the Submission Editing stage. Below is a default set of instructions in HTML, which can be modified or replaced by the Press Manager at any point (in HTML or plain text)."
+
+msgid "manager.setup.copyrightNotice"
+msgstr "Copyright notice"
+
+msgid "manager.setup.coverage"
+msgstr "Coverage"
+
+msgid "manager.setup.coverThumbnailsMaxHeight"
+msgstr "Cover Image Max Height"
+
+msgid "manager.setup.coverThumbnailsMaxWidth"
+msgstr "Cover Image Max Width"
+
+msgid "manager.setup.coverThumbnailsMaxWidthHeight.description"
+msgstr "Images will be reduced when larger than this size but will never be blown up or stretched to fit these dimensions."
+
+msgid "manager.setup.customizingTheLook"
+msgstr "Step 5. Customizing the Look & Feel"
+
+msgid "manager.setup.customTags"
+msgstr "Custom tags"
+
+msgid "manager.setup.customTagsDescription"
+msgstr "Custom HTML header tags to be inserted in the header of every page (e.g., META tags)."
+
+msgid "manager.setup.details"
+msgstr "Details"
+
+msgid "manager.setup.details.description"
+msgstr "Name of press, contacts, sponsors, and search engines."
+
+msgid "manager.setup.disableUserRegistration"
+msgstr "The Press Manager will register all user accounts. Editors or Section Editors may register user accounts for reviewers."
+
+msgid "manager.setup.discipline"
+msgstr "Academic Discipline and Sub-Disciplines"
+
+msgid "manager.setup.disciplineDescription"
+msgstr "Useful when press crosses disciplinary boundaries and/or authors submit multidisciplinary items."
+
+msgid "manager.setup.disciplineExamples"
+msgstr "(E.g., History; Education; Sociology; Psychology; Cultural Studies; Law)"
+
+msgid "manager.setup.disciplineProvideExamples"
+msgstr "Provide examples of relevant academic disciplines for this press"
+
+msgid "manager.setup.displayCurrentMonograph"
+msgstr "Add the table of contents for the current monograph (if available)."
+
+msgid "manager.setup.displayOnHomepage"
+msgstr "Homepage Content"
+
+msgid "manager.setup.displayFeaturedBooks"
+msgstr "Display featured books on the home page"
+
+msgid "manager.setup.displayFeaturedBooks.label"
+msgstr "Featured Books"
+
+msgid "manager.setup.displayInSpotlight"
+msgstr "Display books in the spotlight on the home page"
+
+msgid "manager.setup.displayInSpotlight.label"
+msgstr "Spotlight"
+
+msgid "manager.setup.displayNewReleases"
+msgstr "Display new releases on the home page"
+
+msgid "manager.setup.displayNewReleases.label"
+msgstr "New Releases"
+
+msgid "manager.setup.doiPrefix"
+msgstr "DOI Prefix"
+
+msgid "manager.setup.doiPrefixDescription"
+msgstr "The DOI (Digital Object Identifier) Prefix is assigned by <a href=\"http://www.crossref.org\" target=\"_blank\">CrossRef</a> and is in the format 10.xxxx (e.g. 10.1234)."
+
+msgid "manager.setup.editorDecision"
+msgstr "Editor Decision"
+
+msgid "manager.setup.emailBounceAddress"
+msgstr "Bounce Address"
+
+msgid "manager.setup.emailBounceAddress.description"
+msgstr "Any undeliverable emails will result in an error message to this address."
+
+msgid "manager.setup.emailBounceAddress.disabled"
+msgstr "In order to send undeliverable emails to a bounce address, the site administrator must enable the <code>allow_envelope_sender</code> option in the site configuration file. Server configuration may be required, as indicated in the OMP documentation."
+
+msgid "manager.setup.emails"
+msgstr "Email Identification"
+
+msgid "manager.setup.emailSignature"
+msgstr "Signature"
+
+msgid "manager.setup.emailSignature.description"
+msgstr "The prepared emails that are sent by the system on behalf of the press will have the following signature added to the end."
+
+msgid "manager.setup.enableAnnouncements.enable"
+msgstr "Enable announcements"
+
+msgid "manager.setup.enableAnnouncements.description"
+msgstr "Announcements may be published to inform readers of news and events. Published announcements will appear on the Announcements page."
+
+msgid "manager.setup.numAnnouncementsHomepage"
+msgstr "Display on Homepage"
+
+msgid "manager.setup.numAnnouncementsHomepage.description"
+msgstr "How many announcements to display on the homepage. Leave this empty to display none."
+
+msgid "manager.setup.enablePressInstructions"
+msgstr "Enable this press to appear publicly on the site"
+
+msgid "manager.setup.enablePublicMonographId"
+msgstr "Custom identifiers will be used to identify published items."
+
+msgid "manager.setup.enablePublicGalleyId"
+msgstr "Custom identifiers will be used to identify galleys (e.g. HTML or PDF files) for published items."
+
+msgid "manager.setup.enableUserRegistration"
+msgstr "Visitors can register a user account with the press."
+
+msgid "manager.setup.focusAndScope"
+msgstr "Focus and Scope of Press"
+
+msgid "manager.setup.focusAndScope.description"
+msgstr "Describe to authors, readers, and librarians the range of monographs and other items the press will publish."
+
+msgid "manager.setup.focusScope"
+msgstr "Focus and Scope"
+
+msgid "manager.setup.focusScopeDescription"
+msgstr "<strong>EXAMPLE HTML DATA</strong>"
+
+msgid "manager.setup.forAuthorsToIndexTheirWork"
+msgstr "For Authors to Index Their Work"
+
+msgid "manager.setup.forAuthorsToIndexTheirWorkDescription"
+msgstr "OMP adheres to the <a href=\"http://www.openarchives.org/\" target=\"_blank\">Open Archives Initiative</a> Protocol for Metadata Harvesting, which is the emerging standard for providing well-indexed access to electronic research resources on a global scale. The authors will use a similar template to provide metadata for their submission. The Press Manager should select the categories for indexing and present authors with relevant examples to assist them in indexing their work, separating terms with a semi-colon (e.g., term1; term2). The entries should be introduced as examples by using \"E.g.,\" or \"For example,\"."
+
+msgid "manager.setup.form.contactEmailRequired"
+msgstr "The primary contact email is required."
+
+msgid "manager.setup.form.contactNameRequired"
+msgstr "The primary contact name is required."
+
+msgid "manager.setup.form.numReviewersPerSubmission"
+msgstr "The number of reviewers per submission is required."
+
+msgid "manager.setup.form.supportEmailRequired"
+msgstr "The support email is required."
+
+msgid "manager.setup.form.supportNameRequired"
+msgstr "The support name is required."
+
+msgid "manager.setup.generalInformation"
+msgstr "General Information"
+
+msgid "manager.setup.gettingDownTheDetails"
+msgstr "Step 1. Getting Down the Details"
+
+msgid "manager.setup.guidelines"
+msgstr "Guidelines"
+
+msgid "manager.setup.preparingWorkflow"
+msgstr "Step 3. Preparing the workflow"
+
+msgid "manager.setup.identity"
+msgstr "Press Identity"
+
+msgid "manager.setup.information.description"
+msgstr "Brief descriptions of the press for librarians and prospective authors and readers. These are made available in the site's sidebar when the Information block has been added."
+
+msgid "manager.setup.information.forAuthors"
+msgstr "For Authors"
+
+msgid "manager.setup.information.forLibrarians"
+msgstr "For Librarians"
+
+msgid "manager.setup.information.forReaders"
+msgstr "For Readers"
+
+msgid "manager.setup.information.success"
+msgstr "The information for this press was updated."
+
+msgid "manager.setup.institution"
+msgstr "Institution"
+
+msgid "manager.setup.itemsPerPage"
+msgstr "Items per page"
+
+msgid "manager.setup.itemsPerPage.description"
+msgstr "Limit the number of items (for example, submissions, users, or editing assignments) to show in a list before showing subsequent items in another page."
+
+msgid "manager.setup.keyInfo"
+msgstr "Key Information"
+
+msgid "manager.setup.keyInfo.description"
+msgstr "Provide a short description of your press and identify editors, managing directors and other members of your editorial team."
+
+msgid "manager.setup.labelName"
+msgstr "Label Name"
+
+msgid "manager.setup.layoutAndGalleys"
+msgstr "Layout Editors"
+
+msgid "manager.setup.layoutInstructions"
+msgstr "Layout Instructions"
+
+msgid "manager.setup.layoutInstructionsDescription"
+msgstr "Layout Instructions can be prepared for the formatting of publishing items in the press and be entered below in HTML or plain text. They will be made available to  the Layout Editor and Section Editor on the Editing page of each submission. (As each press may employ its own file formats, bibliographic standards, style sheets, etc., a default set of instructions is not provided.)"
+
+msgid "manager.setup.layoutTemplates"
+msgstr "Layout Templates"
+
+msgid "manager.setup.layoutTemplatesDescription"
+msgstr "Templates can be uploaded to appear in Layout for each of the standard formats published in the press (e.g., monograph, book review, etc.) using any file format (e.g., pdf, doc, etc.) with annotations added specifying font, size, margins, etc. to serve as a guide for Layout Editors and Proofreaders."
+
+msgid "manager.setup.layoutTemplates.file"
+msgstr "Template File"
+
+msgid "manager.setup.layoutTemplates.title"
+msgstr "Title"
+
+msgid "manager.setup.lists"
+msgstr "Lists"
+
+msgid "manager.setup.lists.success"
+msgstr "The list settings for this journal have been updated."
+
+msgid "manager.setup.look"
+msgstr "Look & Feel"
+
+msgid "manager.setup.look.description"
+msgstr "Homepage header, content, press header, footer, navigation bar, and style sheet."
+
+msgid "manager.setup.settings"
+msgstr "Settings"
+
+msgid "manager.setup.management.description"
+msgstr "Access and security, scheduling, announcements, copyediting, layout, and proofreading."
+
+msgid "manager.setup.managementOfBasicEditorialSteps"
+msgstr "Management of Basic Editorial Steps"
+
+msgid "manager.setup.managingPublishingSetup"
+msgstr "Management and Publishing Setup"
+
+msgid "manager.setup.managingThePress"
+msgstr "Step 4. Managing the Settings"
+
+msgid "manager.setup.masthead.success"
+msgstr "The masthead details for this press have been updated."
+
+msgid "manager.setup.noImageFileUploaded"
+msgstr "No image file uploaded."
+
+msgid "manager.setup.noStyleSheetUploaded"
+msgstr "No style sheet uploaded."
+
+msgid "manager.setup.note"
+msgstr "Note"
+
+msgid "manager.setup.notifyAllAuthorsOnDecision"
+msgstr "When using the Notify Author email, include the email addresses of all co-authors for multiple-author submissions, and not just the submitting user."
+
+msgid "manager.setup.noUseCopyeditors"
+msgstr "Copyediting will be undertaken by an Editor or Section Editor assigned to the submission."
+
+msgid "manager.setup.noUseLayoutEditors"
+msgstr "An Editor or Section Editor assigned to the submission will prepare the HTML, PDF, etc., files."
+
+msgid "manager.setup.noUseProofreaders"
+msgstr "An Editor or Section Editor assigned to the submission will check the galleys."
+
+msgid "manager.setup.numPageLinks"
+msgstr "Page links"
+
+msgid "manager.setup.numPageLinks.description"
+msgstr "Limit the number of links to display to subsequent pages in a list."
+
+msgid "manager.setup.onlineAccessManagement"
+msgstr "Access to Press Content"
+
+msgid "manager.setup.onlineIssn"
+msgstr "Online ISSN"
+
+msgid "manager.setup.policies"
+msgstr "Policies"
+
+msgid "manager.setup.policies.description"
+msgstr "Focus, peer review, sections, privacy, security, and additional about items."
+
+msgid "manager.setup.privacyStatement.success"
+msgstr "The privacy statement has been updated."
+
+msgid "manager.setup.appearanceDescription"
+msgstr "Various components of the press appearance can be configured from this page, including header and footer elements, the press style and theme, and how lists of information are presented to users."
+
+msgid "manager.setup.pressDescription"
+msgstr "Press Summary"
+
+msgid "manager.setup.pressDescription.description"
+msgstr "A brief description of your press."
+
+msgid "manager.setup.aboutPress"
+msgstr "About the Press"
+
+msgid "manager.setup.aboutPress.description"
+msgstr "Include any information about your press which may be of interest to readers, authors or reviewers. This could include your open access policy, the focus and scope of the press, copyright notice, sponsorship disclosure, history of the press, and a privacy statement."
+
+msgid "manager.setup.pressArchiving"
+msgstr "Press Archiving"
+
+msgid "manager.setup.homepageContent"
+msgstr "Press Homepage Content"
+
+msgid "manager.setup.homepageContentDescription"
+msgstr "The press homepage consists of navigation links by default. Additional homepage content can be appended by using one or all of the following options, which will appear in the order shown."
+
+msgid "manager.setup.pressHomepageContent"
+msgstr "Press Homepage Content"
+
+msgid "manager.setup.pressHomepageContentDescription"
+msgstr "The press homepage consists of navigation links by default. Additional homepage content can be appended by using one or all of the following options, which will appear in the order shown."
+
+msgid "manager.setup.contextInitials"
+msgstr "Press Initials"
+
+msgid "manager.setup.layout"
+msgstr "Press Layout"
+
+msgid "manager.setup.pageHeader"
+msgstr "Press Page Header"
+
+msgid "manager.setup.pageHeaderDescription"
+msgstr ""
+
+msgid "manager.setup.pressPolicies"
+msgstr "Step 2. Press Policies"
+
+msgid "manager.setup.pressSetup"
+msgstr "Press Setup"
+
+msgid "manager.setup.pressSetupUpdated"
+msgstr "Your press setup has been updated."
+
+msgid "manager.setup.styleSheetInvalid"
+msgstr "Invalid style sheet format. Accepted format is .css."
+
+msgid "manager.setup.pressTheme"
+msgstr "Press Theme"
+
+msgid "manager.setup.contextTitle"
+msgstr "Press Name"
+
+msgid "manager.setup.printIssn"
+msgstr "Print ISSN"
+
+msgid "manager.setup.proofingInstructions"
+msgstr "Proofing Instructions"
+
+msgid "manager.setup.proofingInstructionsDescription"
+msgstr "The Proofreading Instructions will be made available to Proofreaders, Authors, Layout Editors, and Section Editors in the Submission Editing stage. Below is a default set of instructions in HTML, which can be edited or replaced by the Press Manager at any point (in HTML or plain text)."
+
+msgid "manager.setup.proofreading"
+msgstr "Proofreaders"
+
+msgid "manager.setup.provideRefLinkInstructions"
+msgstr "Provide Layout Editors with instructions."
+
+msgid "manager.setup.publicationScheduleDescription"
+msgstr "Press items can be published collectively, as part of a monograph with its own Table of Contents. Alternatively, individual items can be published as soon as they are ready, by adding them to the \"current\" volume's Table of Contents. Provide readers, in About the Press, with a statement about the system this press will use and its expected frequency of publication."
+
+msgid "manager.setup.publisher"
+msgstr "Publisher"
+
+msgid "manager.setup.publisherDescription"
+msgstr "The name of the organization publishing the press will appear in About the Press."
+
+msgid "manager.setup.referenceLinking"
+msgstr "Reference Linking"
+
+msgid "manager.setup.refLinkInstructions.description"
+msgstr "Layout Instructions for Reference Linking"
+
+msgid "manager.setup.restrictMonographAccess"
+msgstr "Users must be registered and log in to view open access content."
+
+msgid "manager.setup.restrictSiteAccess"
+msgstr "Users must be registered and log in to view the press site."
+
+msgid "manager.setup.reviewGuidelines"
+msgstr "External Review Guidelines"
+
+msgid "manager.setup.reviewGuidelinesDescription"
+msgstr "Provide external reviewers with criteria for judging a submission's suitability for publication in the press, which may include instructions for preparing an effective and helpful review. Reviewers will have an opportunity to provide comments intended for the author and editor, as well as separate comments only for the editor."
+
+msgid "manager.setup.internalReviewGuidelines"
+msgstr "Internal Review Guidelines"
+
+msgid "manager.setup.reviewOptions"
+msgstr "Review Options"
+
+msgid "manager.setup.reviewOptions.automatedReminders"
+msgstr "Automated Email Reminders"
+
+msgid "manager.setup.reviewOptions.automatedRemindersDisabled"
+msgstr "To activate these options, the site administrator must enable the <tt>scheduled_tasks</tt> option in the OMP configuration file. Additional server configuration may be required to support this functionality (which may not be possible on all servers), as indicated in the OMP documentation."
+
+msgid "manager.setup.reviewOptions.blindReview"
+msgstr "Blind Review"
+
+msgid "manager.setup.reviewOptions.onQuality"
+msgstr "Editors will rate reviewers on a five-point quality scale after each review."
+
+msgid "manager.setup.reviewOptions.restrictReviewerFileAccess"
+msgstr "Restrict File Access"
+
+msgid "manager.setup.reviewOptions.restrictReviewerFileAccess.description"
+msgstr "Reviewers will have access to the submission file only after agreeing to review it."
+
+msgid "manager.setup.reviewOptions.reviewerAccess"
+msgstr "Reviewer Access"
+
+msgid "manager.setup.reviewOptions.reviewerAccessKeysEnabled"
+msgstr "One-click Reviewer Access"
+
+msgid "manager.setup.reviewOptions.reviewerAccessKeysEnabled.description"
+msgstr "Reviewers can be sent a secure link in the email invitation, which will allow them to access the review without logging in. Access to other pages requires them to log in."
+
+msgid "manager.setup.reviewOptions.reviewerAccessKeysEnabled.label"
+msgstr "Include a secure link in the email invitation to reviewers."
+
+msgid "manager.setup.reviewOptions.reviewerRatings"
+msgstr "Reviewer Ratings"
+
+msgid "manager.setup.reviewOptions.reviewerReminders"
+msgstr "Reviewer Reminders"
+
+msgid "manager.setup.reviewOptions.showEnsuringLink"
+msgstr "Provide links about ensuring a blind review on pages where authors and reviewers upload files."
+
+msgid "manager.setup.reviewPolicy"
+msgstr "Review Policy"
+
+msgid "manager.setup.reviewProcess"
+msgstr "Review Process"
+
+msgid "manager.setup.reviewProcessDescription"
+msgstr "OMP supports two models for managing the review process. The Standard Review Process is recommended because it steps reviewers through the process, ensures a complete review history for each submission, and takes advantage of automatic reminder notification, and standard recommendations for submissions (Accept; Accept with revisions; Submit for review; Submit elsewhere; Decline; See comments).<br /><br />Select one of the following:"
+
+msgid "manager.setup.reviewProcessEmail"
+msgstr "Email-Attachment Review Process"
+
+msgid "manager.setup.reviewProcessStandard"
+msgstr "Standard Review Process"
+
+msgid "manager.setup.reviewProcessStandardDescription"
+msgstr "Editors will email selected Reviewers the title and abstract of the submission, as well as an invitation to log into the press web site to complete the review. Reviewers enter the press web site to agree to do the review, to download submissions, submit their comments, and select a recommendation."
+
+msgid "manager.setup.searchDescription.description"
+msgstr "Provide a brief description (50-300 characters) of the press which search engines can display when listing the press in search results."
+
+msgid "manager.setup.searchEngineIndexing"
+msgstr "Search Indexing"
+
+msgid "manager.setup.searchEngineIndexing.description"
+msgstr "Help search engines like Google discover and display your site. You are encouraged to submit your <a href=\"{$sitemapUrl}\" target=\"_blank\">sitemap</a>."
+
+msgid "manager.setup.searchEngineIndexing.success"
+msgstr "The search engine index settings have been updated."
+
+msgid "manager.setup.sectionsAndSectionEditors"
+msgstr "Sections and Section Editors"
+
+msgid "manager.setup.sectionsDefaultSectionDescription"
+msgstr "(If sections are not added, then items are submitted to the Monographs section by default.)"
+
+msgid "manager.setup.sectionsDescription"
+msgstr "To create or modify sections for the press (e.g., Monographs, Book Reviews, etc.), go to Section Management.<br /><br />Authors on submitting items to the press will designate..."
+
+msgid "manager.setup.securitySettings"
+msgstr "Access and Security Settings"
+
+msgid "manager.setup.securitySettings.note"
+msgstr "Other security- and access-related options can be configured from the <a href=\"{$accessAndSecurityUrl}\" target=\"_blank\" class=\"action\">Access and Security</a> page."
+
+msgid "manager.setup.selectEditorDescription"
+msgstr "The press editor who will see it through the editorial process."
+
+msgid "manager.setup.selectSectionDescription"
+msgstr "The press section for which the item will be considered."
+
+msgid "manager.setup.showGalleyLinksDescription"
+msgstr "Always show galley links and indicate restricted access."
+
+msgid "manager.setup.siteAccess.view"
+msgstr "Site Access"
+
+msgid "manager.setup.siteAccess.viewContent"
+msgstr "View Monograph Content"
+
+msgid "manager.setup.stepsToPressSite"
+msgstr "Five Steps to a Press Web Site"
+
+msgid "manager.setup.subjectExamples"
+msgstr "(E.g., Photosynthesis; Black Holes; Four-Color Map Problem; Bayesian Theory)"
+
+msgid "manager.setup.subjectKeywordTopic"
+msgstr "Keywords"
+
+msgid "manager.setup.subjectProvideExamples"
+msgstr "Provide examples of keywords or topics as a guide for authors"
+
+msgid "manager.setup.submissionGuidelines"
+msgstr "Submission guidelines"
+
+msgid "manager.setup.submissionPreparationChecklist"
+msgstr "Submission Preparation Checklist"
+
+msgid "maganer.setup.submissionChecklistItemRequired"
+msgstr "Checklist item is required."
+
+msgid "manager.setup.workflow"
+msgstr "Workflow"
+
+msgid "manager.setup.submissions.description"
+msgstr "Author guidelines, copyright, and indexing (including registration)."
+
+msgid "manager.setup.typeExamples"
+msgstr "(E.g., Historical Inquiry; Quasi-Experimental; Literary Analysis; Survey/Interview)"
+
+msgid "manager.setup.typeMethodApproach"
+msgstr "Type (Method/Approach)"
+
+msgid "manager.setup.typeProvideExamples"
+msgstr "Provide examples of relevant research types, methods, and approaches for this field"
+
+msgid "manager.setup.useCopyeditors"
+msgstr "A Copyeditor will be assigned to work with each submission."
+
+msgid "manager.setup.useEditorialReviewBoard"
+msgstr "An editorial/review board will be used by the press."
+
+msgid "manager.setup.useImageTitle"
+msgstr "Title Image"
+
+msgid "manager.setup.useStyleSheet"
+msgstr "Press style sheet"
+
+msgid "manager.setup.useLayoutEditors"
+msgstr "A Layout Editor will be assigned to prepare the HTML, PDF, etc., files for electronic publication."
+
+msgid "manager.setup.useProofreaders"
+msgstr "A Proofreader will be assigned to check (along with the authors) the galleys prior to publication."
+
+msgid "manager.setup.userRegistration"
+msgstr "User Registration"
+
+msgid "manager.setup.useTextTitle"
+msgstr "Title text"
+
+msgid "manager.setup.volumePerYear"
+msgstr "Volumes per year"
+
+msgid "manager.setup.publicationFormat.code"
+msgstr "Format"
+
+msgid "manager.setup.publicationFormat.codeRequired"
+msgstr "A format must be chosen."
+
+msgid "manager.setup.publicationFormat.nameRequired"
+msgstr "You must assign a name to this format."
+
+msgid "manager.setup.publicationFormat.physicalFormat"
+msgstr "Is this a physical (non-digital) format?"
+
+msgid "manager.setup.publicationFormat.inUse"
+msgstr "Because this publication format is currently in use by a monograph in your press, it cannot be deleted."
+
+msgid "manager.setup.newPublicationFormat"
+msgstr "New Publication Format"
+
+msgid "manager.setup.newPublicationFormatDescription"
+msgstr "To create a new publication format, fill out the form below and click the 'Create' button."
+
+msgid "manager.setup.genresDescription"
+msgstr "These genres are used for file-naming purposes and are presented in a pull-down menu on uploading files. The genres designated ## allow the user to associate the file with either the whole book 99Z or a particular chapter by number (e.g., 02)."
+
+msgid "manager.setup.reviewProcessEmailDescription"
+msgstr "Editors send\tReviewers the request to review with the submission attached to the email. Reviewers email editors their assent (or regrets), as well as the review and recommendation. Editors enter Reviewers' assent (or regrets), as well as the review and recommendation on the submission's Review page, to record the review process."
+
+msgid "manager.setup.genres"
+msgstr "Genres"
+
+msgid "manager.setup.newGenre"
+msgstr "New Monograph Genre"
+
+msgid "manager.setup.newGenreDescription"
+msgstr "To create a new genre, fill out the form below and click the 'Create' button."
+
+msgid "manager.setup.deleteSelected"
+msgstr "Delete Selected"
+
+msgid "manager.setup.restoreDefaults"
+msgstr "Restore Default Settings"
+
+msgid "manager.setup.prospectus"
+msgstr "Prospectus Guide"
+
+msgid "manager.setup.prospectusDescription"
+msgstr "The prospectus guide is a press prepared document that helps the author describe the submitted materials in a way that allows a press to determine the value of the submission. A prospectus can include a lot of items- from marketing potential to theoretical value; in any case, a press should create a prospectus guide that complements their publishing agenda."
+
+msgid "manager.setup.submitToCategories"
+msgstr "Allow category submissions"
+
+msgid "manager.setup.submitToSeries"
+msgstr "Allow series submissions"
+
+msgid "manager.setup.issnDescription"
+msgstr "The ISSN (International Standard Serial Number) is an eight-digit number which identifying periodical publications including electronic serials. A number can be obtained from the <a href=\"http://www.issn.org\" target=\"_blank\">ISSN International Centre</a>."
+
+msgid "manager.setup.currentFormats"
+msgstr "Current Formats"
+
+msgid "manager.setup.categoriesAndSeries"
+msgstr "Categories and Series"
+
+msgid "manager.setup.categories.description"
+msgstr "You may create a list of categories to help organize your publications. Categories are groupings of books according to subject matter, for example Economics; Literature; Poetry; and so on. Categories may be nested within \"parent\" categories: for example, an Economics parent category may include individual Microeconomics and Macroeconomics categories. Visitors will be able to search and browse the press by category."
+
+msgid "manager.setup.series.description"
+msgstr "You may create any number of series to help organize your publications. A series represents a special set of books devoted to a theme or topics that someone has proposed, usually a faculty member or two, and then oversees. Visitors will be able to search and browse the press by series."
+
+msgid "manager.setup.reviewForms"
+msgstr "Review Forms"
+
+msgid "manager.setup.roleType"
+msgstr "Role Type"
+
+msgid "manager.setup.authorRoles"
+msgstr "Author Roles"
+
+msgid "manager.setup.managerialRoles"
+msgstr "Managerial Roles"
+
+msgid "manager.setup.availableRoles"
+msgstr "Available Roles"
+
+msgid "manager.setup.currentRoles"
+msgstr "Current Roles"
+
+msgid "manager.setup.internalReviewRoles"
+msgstr "Internal Review Roles"
+
+msgid "manager.setup.masthead"
+msgstr "Masthead"
+
+msgid "manager.setup.editorialTeam"
+msgstr "Editorial Team"
+
+msgid "manager.setup.editorialTeam.description"
+msgstr "List of editors, managing directors, and other individuals associated with the press."
+
+msgid "manager.setup.files"
+msgstr "Files"
+
+msgid "manager.setup.productionTemplates"
+msgstr "Production Templates"
+
+msgid "manager.files.note"
+msgstr "Note: The Files Browser is an advanced feature that allows the files and directories associated with a press to be viewed and manipulated directly."
+
+msgid "manager.setup.copyrightNotice.sample"
+msgstr ""
+"<h3>Proposed Creative Commons Copyright Notices</h3>\n"
+"<h4>Proposed Policy for Presses That Offer Open Access</h4>\n"
+"Authors who publish with this press agree to the following terms:\n"
+"<ol type=\"a\">\n"
+"\t<li>Authors retain copyright and grant the press right of first publication with the work simultaneously licensed under a <a target=\"_blank\" href=\"http://creativecommons.org/licenses/by/3.0/\">Creative Commons Attribution License</a> that allows others to share the work with an acknowledgement of the work's authorship and initial publication in this press.</li>\n"
+"\t<li>Authors are able to enter into separate, additional contractual series for the non-exclusive distribution of the version of the work published by the press (e.g., post it to an institutional repository or publish it in a book), with an acknowledgement of its initial publication in this press.</li>\n"
+"\t<li>Authors are permitted and encouraged to post their work online (e.g., in institutional repositories or on their website) prior to and during the submission process, as it can lead to productive exchanges, as well as earlier and greater citation of published work (See <a target=\"_blank\" href=\"http://opcit.eprints.org/oacitation-biblio.html\">The Effect of Open Access</a>).</li>\n"
+"</ol>\n"
+"\n"
+"<h4>Proposed Policy for Presses That Offer Delayed Open Access</h4>\n"
+"Authors who publish with this press agree to the following terms:\n"
+"<ol type=\"a\">\n"
+"\t<li>Authors retain copyright and grant the press right of first publication, with the work [SPECIFY PERIOD OF TIME] after publication simultaneously licensed under a <a target=\"_blank\" href=\"http://creativecommons.org/licenses/by/3.0/\">Creative Commons Attribution License</a> that allows others to share the work with an acknowledgement of the work's authorship and initial publication in this press.</li>\n"
+"\t <li>Authors are able to enter into separate, additional contractual series for the non-exclusive distribution of the version of the work published by the press (e.g., post it to an institutional repository or publish it in a book), with an acknowledgement of its initial publication in this press.</li>\n"
+"\t <li>Authors are permitted and encouraged to post their work online (e.g., in institutional repositories or on their website) prior to and during the submission process, as it can lead to productive exchanges, as well as earlier and greater citation of published work (See <a target=\"_blank\" href=\"http://opcit.eprints.org/oacitation-biblio.html\"> The Effect of Open Access</a>).</li>\n"
+"</ol>"
+
+msgid "manager.setup.basicEditorialStepsDescription"
+msgstr ""
+"Steps: Submission Queue &gt; Submission Review &gt; Submission Editing &gt; Table of Contents.<br /><br />\n"
+"Select a model for handling these aspects of the editorial process. (To designate a Managing Editor and Series Editors, go to Editors in Press Management.)"
+
+msgid "manager.setup.referenceLinkingDescription"
+msgstr ""
+"<p>To enable readers to locate online versions of the work cited by an author, the following options are available.</p>\n"
+"\n"
+"<ol>\n"
+"\t<li><strong>Add a Reading Tool</strong><p>The Press Manager can add \"Find References\" to the Reading Tools that accompany published items, which enables readers to paste a reference's title and then search pre-selected scholarly databases for the cited work.</p></li>\n"
+"\t<li><strong>Embed Links in the References</strong><p>The Layout Editor can add a link to references that can be found online by using the following instructions (which can be edited).</p></li>\n"
+"</ol>"
+
+msgid "manager.publication.library"
+msgstr "Press Library"
+
+msgid "manager.setup.resetPermissions"
+msgstr "Reset Monograph Permissions"
+
+msgid "manager.setup.resetPermissions.confirm"
+msgstr "Are you sure you wish to reset permissions data already attached to monographs?"
+
+msgid "manager.setup.resetPermissions.description"
+msgstr "Copyright statement and license information will be permanently attached to published content, ensuring that this data will not change in the case of a press changing policies for new submissions. To reset stored permissions information already attached to published content, use the button below."
+
+msgid "manager.setup.resetPermissions.success"
+msgstr "Monograph permissions were successfully reset."
+
+msgid "grid.genres.title.short"
+msgstr "Components"
+
+msgid "grid.genres.title"
+msgstr "Monograph Components"
+
+msgid "manager.setup.notifications.copyPrimaryContact"
+msgstr "Send a copy to the primary contact, identified in the Press Settings."
+
+msgid "grid.series.pathAlphaNumeric"
+msgstr "The series path must consist of only letters and numbers."
+
+msgid "grid.series.pathExists"
+msgstr "The series path already exists. Please enter a unique path."
+
+msgid "manager.navigationMenus.form.navigationMenuItem.series"
+msgstr "Select Series"
+
+msgid "manager.navigationMenus.form.navigationMenuItemSeriesMessage"
+msgstr "Please select the series to which you would like this menu item to link."
+
+msgid "manager.navigationMenus.form.navigationMenuItem.category"
+msgstr "Select Category"
+
+msgid "manager.navigationMenus.form.navigationMenuItemCategoryMessage"
+msgstr "Please select the category to which you would like this menu item to link."
+
+msgid "grid.series.urlWillBe"
+msgstr "The series's URL will be: {$sampleUrl}"
+
+msgid "stats.publications.details"
+msgstr "Monograph Details"
+
+msgid "stats.publications.none"
+msgstr "No monographs were found with usage statistics matching these parameters."
+
+msgid "stats.publications.totalAbstractViews.timelineInterval"
+msgstr "Total catalog views by date"
+
+msgid "stats.publications.totalGalleyViews.timelineInterval"
+msgstr "Total file views by date"
+
+msgid "stats.publications.countOfTotal"
+msgstr "{$count} of {$total} monographs"
+
+msgid "stats.publications.abstracts"
+msgstr "Catalog Entries"
