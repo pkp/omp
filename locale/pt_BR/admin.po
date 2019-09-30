@@ -1,0 +1,98 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: \n"
+"Report-Msgid-Bugs-To: \n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"POT-Creation-Date: 2019-09-30T12:00:53-07:00\n"
+"PO-Revision-Date: 2019-09-30T12:00:53-07:00\n"
+"Language: \n"
+
+msgid "admin.hostedPresses"
+msgstr "Editoras hospedadas"
+
+msgid "admin.settings.pressRedirect"
+msgstr "Redirecionar para editora"
+
+msgid "admin.settings.pressRedirectInstructions"
+msgstr "Solicitações para o site principal serão redirecionados para esta editora. Isso pode ser útil se o site está hospedando apenas uma editora, por exemplo."
+
+msgid "admin.settings.noPressRedirect"
+msgstr "Não redirecionar"
+
+msgid "admin.contexts.confirmDelete"
+msgstr "Tem certeza que deseja apagar definitivamente esta editora e todo seu conteúdo?"
+
+msgid "admin.contexts.create"
+msgstr "Criar Editora"
+
+msgid "admin.contexts.form.titleRequired"
+msgstr "Um título é necessário."
+
+msgid "admin.contexts.form.pathRequired"
+msgstr "Um caminho é requerido."
+
+msgid "admin.contexts.form.pathAlphaNumeric"
+msgstr "O caminho pode conter somente caracteres alfanuméricos, sublinhado, e hífens, e deve começar e terminar com um caractere alfanumérico."
+
+msgid "admin.contexts.form.pathExists"
+msgstr "O caminho selecionado já é utilizado por outra editora."
+
+msgid "admin.languages.primaryLocaleInstructions"
+msgstr "Este será o idioma padrão para o site e quaisquer editoras hospedadas."
+
+msgid "admin.languages.supportedLocalesInstructions"
+msgstr "Selecione todas os idiomas que estarão disponíveis no site. Os idiomas selecionados estarão disponíveis para utilização por todas as editoras hospedados, e também aparecem em uma lista de idiomas em cada página do site (que pode ser substituída nas páginas específicas de cada editora). Se vários idiomas não forem selecionados, a lista de idiomas não aparecerá e as configurações de idioma não estarão disponíveis para as editoras."
+
+msgid "admin.locale.maybeIncomplete"
+msgstr "* Idiomas marcados podem estar incompletos."
+
+msgid "admin.languages.confirmUninstall"
+msgstr "Tem certeza que deseja desinstalar este idioma? Pode afetar editora que o estão usando atualmente."
+
+msgid "admin.languages.installNewLocalesInstructions"
+msgstr "Selecione idiomas adicionais para instalar no  sistema. Idiomas devem ser instalados antes de poderem ser usados por editoras hospedados. Consulte a documentação do OMP para obter informações sobre a adição de novos idiomas."
+
+msgid "admin.languages.noLocalesToDownload"
+msgstr "Sem idiomas disponíveis para download."
+
+msgid "admin.languages.downloadFailed"
+msgstr "Falha do download do idioma. A mensagem de erro abaixo descreve a falha."
+
+msgid "admin.languages.confirmDisable"
+msgstr "Tem certeza que deseja desabilitar este idioma? Pode afetar editora que o estão usando atualmente."
+
+msgid "admin.systemVersion"
+msgstr "Versão do OMP"
+
+msgid "admin.systemConfiguration"
+msgstr "Configurações do OMP"
+
+msgid "admin.presses.pressSettings"
+msgstr "Configurações de Editora"
+
+msgid "admin.presses.noneCreated"
+msgstr "Não foram criadas editoras."
+
+msgid "admin.contexts.contextDescription"
+msgstr "Descrição da editora"
+
+msgid "admin.presses.addPress"
+msgstr "Adicionar Editora"
+
+msgid "admin.overwriteConfigFileInstructions"
+msgstr ""
+"<h4>ATENÇÃO!</div>\n"
+"<p>O sistema não pode substituir automaticamente o arquivo de configuração. Para aplicar as alterações de configuração que você deve abrir <tt> config.inc.php </ tt> em um editor de texto, substituindo o seu conteúdo com o conteúdo do campo de texto abaixo.</p>"
+
+msgid "admin.languages.downloadUnavailable"
+msgstr ""
+"<p>O download de pacotes de idiomas do servidor do PKP Public Knowledge Project não está disponível porque:</p>\n"
+"\t<ul>\n"
+"\t\t<li>Seu servidor não possui/permite a execução da ferramenta 'tar'</li>\n"
+"\t\t<li>OMP não consegue modificar o arquivo de registro do idioma, tipicamente o \"registry/locales.xml\".</li>\n"
+"\t</ul>\n"
+"<p>Pacotes de idiomas podem ser baixados manualmente do  <a href=\"http://pkp.sfu.ca\" target=\"_blank\">site do PKP </a>.</p>"

@@ -1,0 +1,294 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: \n"
+"Report-Msgid-Bugs-To: \n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"POT-Creation-Date: 2019-09-30T12:00:54-07:00\n"
+"PO-Revision-Date: 2019-09-30T12:00:54-07:00\n"
+"Language: \n"
+
+msgid "submission.submit.title"
+msgstr "Enviar Monografia"
+
+msgid "submission.upload.selectComponent"
+msgstr "Seleciona o componente"
+
+msgid "submission.title"
+msgstr "Título do Livro"
+
+msgid "submission.select"
+msgstr "Tipo de submissão"
+
+msgid "submission.synopsis"
+msgstr "Sinopse"
+
+msgid "submission.workflowType"
+msgstr "Tipo de livro"
+
+msgid "submission.workflowType.description"
+msgstr "Uma monografia é um trabalho produzido por um ou mais autores. Um volume editado possui diferentes autores para cada capítulo, sendo que os detalhes de cada capítulo são informados mais tarde durante o processo."
+
+msgid "submission.workflowType.editedVolume"
+msgstr "Volume editado"
+
+msgid "submission.workflowType.authoredWork"
+msgstr "Monografia"
+
+msgid "submission.monograph"
+msgstr "Monografia"
+
+msgid "submission.published"
+msgstr "Pronto para produção"
+
+msgid "submission.fairCopy"
+msgstr "Cópia limpa"
+
+msgid "submission.artwork.permissions"
+msgstr "Permissões"
+
+msgid "submission.chapter"
+msgstr "Capítulo"
+
+msgid "submission.chapters"
+msgstr "Capítulos"
+
+msgid "submission.chaptersDescription"
+msgstr "Liste os capítulos aqui, aos quais também pode designar contribuidores a partir da lista acima. Os contribuidores poderão acessar o capítulo durante os vários estágios do processo de publicação."
+
+msgid "submission.chapter.addChapter"
+msgstr "Incluir capítulo"
+
+msgid "submission.chapter.editChapter"
+msgstr "Editar capítulo"
+
+msgid "submission.copyedit"
+msgstr "Editar texto"
+
+msgid "submission.publicationFormats"
+msgstr "Formatos de publicação"
+
+msgid "submission.proofs"
+msgstr "Provas"
+
+msgid "submission.download"
+msgstr "Baixar"
+
+msgid "submission.sharing"
+msgstr "Compartilhe"
+
+msgid "manuscript.submission"
+msgstr "Submissão de manuscrito"
+
+msgid "submission.round"
+msgstr "Rodada&nbsp;{$round}"
+
+msgid "submissions.queuedReview"
+msgstr "Em avaliação"
+
+msgid "manuscript.submissions"
+msgstr "Submissões de manuscritos"
+
+msgid "submission.confirmSubmit"
+msgstr "Deseja realmente enviar este manuscrito para o prelo?"
+
+msgid "submission.metadata"
+msgstr "Metadados"
+
+msgid "submission.supportingAgencies"
+msgstr "Agências de Fomento"
+
+msgid "grid.action.addChapter"
+msgstr "Incluir novo capítulo"
+
+msgid "grid.action.editChapter"
+msgstr "Editar este capítulo"
+
+msgid "grid.action.deleteChapter"
+msgstr "Excluir este capítulo"
+
+msgid "submission.submit"
+msgstr "Iniciar nova envio de livro"
+
+msgid "submission.submit.newSubmissionMultiple"
+msgstr "Iniciar novo envio em"
+
+msgid "submission.submit.newSubmissionSingle"
+msgstr "Novo envio"
+
+msgid "submission.submit.upload"
+msgstr "Enviar"
+
+msgid "submission.submit.cancelSubmission"
+msgstr "O envio pode ser concluído posteriormente, escolhendo da lista de Submissões ativas, na página inicial do papel de autor."
+
+msgid "submission.submit.selectSeries"
+msgstr "Escolher séries..."
+
+msgid "submission.submit.seriesPosition"
+msgstr "Posição na série (ex.: Livro 2, ou Volume 2)"
+
+msgid "submission.submit.placement.seriesDescription"
+msgstr "Caso o livro também deva ser considerado para uma série..."
+
+msgid "submission.submit.placement.seriesPositionDescription"
+msgstr "Livros em séries são normalmente mantidos na ordem inversa em que são publicados, para proporcionar uma visão do desenvolvimento da série, bem como manter as mais recentes à frente."
+
+msgid "submission.submit.form.localeRequired"
+msgstr "Escolha o idioma da submissão."
+
+msgid "submission.submit.submissionChecklist"
+msgstr "Itens de verificação para submissão"
+
+msgid "submission.submit.submissionChecklistDescription"
+msgstr "É necessário concluir os seguintes requisitos para submissão a esta editora, assim como marcá-los antes de prosseguir (comentários ao editor podem ser inluídos a seguir)."
+
+msgid "submission.submit.privacyStatement"
+msgstr "Declaração de Privacidade"
+
+msgid "submission.submit.contributorRole"
+msgstr "Papel do contribuidor"
+
+msgid "submission.submit.form.authorRequired"
+msgstr "Pelo menos um autor é obrigatório."
+
+msgid "submission.submit.form.authorRequiredFields"
+msgstr "São informações obrigatórias para cada autor o prénome, o sobrenome e o endereço de e-mail."
+
+msgid "submission.submit.form.titleRequired"
+msgstr "O título da monografia é obrigatório."
+
+msgid "submission.submit.form.abstractRequired"
+msgstr "Informe um breve resumo da monografia."
+
+msgid "submission.submit.form.contributorRoleRequired"
+msgstr "Escolha o papel do contribuidor."
+
+msgid "submission.submit.submissionFile"
+msgstr "Arquivo de submissão"
+
+msgid "submission.submit.prepare"
+msgstr "Preparar"
+
+msgid "submission.submit.catalog"
+msgstr "Catálogo"
+
+msgid "submission.submit.metadata"
+msgstr "Metadados"
+
+msgid "submission.submit.finishingUp"
+msgstr "Concluíndo"
+
+msgid "submission.submit.confirmation"
+msgstr "Confirmação"
+
+msgid "submission.submit.nextSteps"
+msgstr "Próximos passos"
+
+msgid "submission.submit.coverNote"
+msgstr "Nota de capa ao editor"
+
+msgid "submission.submit.generalInformation"
+msgstr "Informações gerais"
+
+msgid "submission.submit.whatNext.description"
+msgstr "A editora foi notificada de sua submissão, bem como uma mensagem de confirmação enviada ao seu endereço de e-mail para seus registros. O editor entrará em contato assim que concluir sua avaliação da submissão."
+
+msgid "submission.submit.checklistErrors"
+msgstr "Leia atentamente e marque os itens da lista de verificação. Ainda há {$itemsRemaining} itens não marcados."
+
+msgid "submission.submit.placement"
+msgstr "Colocação da submissão"
+
+msgid "submission.submit.userGroup"
+msgstr "Enviar no meu papel como..."
+
+msgid "submission.submit.userGroupDescription"
+msgstr "Caso esteja submetendo um volume editado, escolha o papel do editor do volume."
+
+msgid "grid.chapters.title"
+msgstr "Capítulos"
+
+msgid "grid.copyediting.deleteCopyeditorResponse"
+msgstr "Excluir arquivo do editor de texto"
+
+msgid "publication.catalogEntry"
+msgstr "Catálogo"
+
+msgid "submission.editCatalogEntry"
+msgstr "Entrada"
+
+msgid "submission.catalogEntry.new"
+msgstr "Nova entrada no catálogo"
+
+msgid "submission.catalogEntry.confirm"
+msgstr "Criar nova entrada de catálogo para este livro, baseada nos metadados a seguir."
+
+msgid "submission.catalogEntry.confirm.required"
+msgstr "Confirme que a submissão está pronta para entrar no catálogo."
+
+msgid "submission.catalogEntry.isAvailable"
+msgstr "Esta monografia está pronta para entrar no catálogo."
+
+msgid "submission.catalogEntry.monographMetadata"
+msgstr "Monografia"
+
+msgid "submission.catalogEntry.catalogMetadata"
+msgstr "Catálogo"
+
+msgid "submission.catalogEntry.publicationMetadata"
+msgstr "Formato de publicação"
+
+msgid "submission.event.metadataPublished"
+msgstr "Os metadados da monografia foram aprovados para publicação."
+
+msgid "submission.event.metadataUnpublished"
+msgstr "Os metadados da monografia não estão mais publicados."
+
+msgid "submission.event.publicationFormatMadeAvailable"
+msgstr "O formato de publicação \"{$publicationFormatName}\" está disponível."
+
+msgid "submission.event.publicationFormatMadeUnavailable"
+msgstr "O formato de publicação \"{$publicationFormatName}\" não está mais disponível."
+
+msgid "submission.event.publicationFormatPublished"
+msgstr "O formato de publicação \"{$publicationFormatName}\" foi aprovado para publicação."
+
+msgid "submission.event.publicationFormatUnpublished"
+msgstr "O formato de publicação \"{$publicationFormatName}\" não está mais publicado."
+
+msgid "submission.event.catalogMetadataUpdated"
+msgstr "Os metadados do catálogo foram atualizados."
+
+msgid "submission.event.publicationMetadataUpdated"
+msgstr "Os metadados do formato de publicação \"{$formatName}\" foram atualizados."
+
+msgid "submission.event.publicationFormatCreated"
+msgstr "O formato de publicação \"{$formatName}\" foi criado."
+
+msgid "submission.event.publicationFormatRemoved"
+msgstr "O formato de publicação \"{$formatName}\" foi excluído."
+
+msgid "submission.submit.titleAndSummary"
+msgstr "Título e Resumo"
+
+msgid "submission.submit.seriesPosition.description"
+msgstr "Exemplos: Livro 2, Volume 2"
+
+msgid "submission.complete"
+msgstr "Aprovado"
+
+msgid "submission.incomplete"
+msgstr "Esperando Aprovação"
+
+msgid "workflow.review.externalReview"
+msgstr "Avaliador Externo"
+
+msgid "editor.submission.decision.sendExternalReview"
+msgstr "Enviar ao Avaliador Externo"
+
+msgid "submission.upload.fileContents"
+msgstr "Componente da Submissão"
