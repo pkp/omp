@@ -1,0 +1,100 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: \n"
+"Report-Msgid-Bugs-To: \n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"POT-Creation-Date: 2019-09-30T07:09:53-07:00\n"
+"PO-Revision-Date: 2019-09-30T07:09:53-07:00\n"
+"Language: \n"
+
+msgid "plugins.importexport.users.displayName"
+msgstr "Users XML Plugin"
+
+msgid "plugins.importexport.users.description"
+msgstr "Import and export users"
+
+msgid "plugins.importexport.users.cliUsage"
+msgstr ""
+"Usage: {$scriptName} {$pluginName} [command] ...\n"
+"Commands:\n"
+"\timport [xmlFileName] [press_path] [optional flags]\n"
+"\texport [xmlFileName] [press_path]\n"
+"\texport [xmlFileName] [press_path] [role_path1] [role_path2] ...\n"
+"\n"
+"Optional flags:\n"
+"\tcontinue_on_error: If specified, do not stop importing users if an error occurs\n"
+"\n"
+"\tsend_notify: If specified, send notification emails containing usernames\n"
+"\t\tand passwords to imported users\n"
+"\n"
+"Examples:\n"
+"\tImport users into myPress from myImportFile.xml, continuing on error:\n"
+"\t{$scriptName} {$pluginName} import myImportFile.xml myPress continue_on_error\n"
+"\n"
+"\tExport all users from myPress:\n"
+"\t{$scriptName} {$pluginName} export myExportFile.xml myPress\n"
+"\n"
+"\tExport all users registered as reviewers, along with their reviewer roles only:\n"
+"\t{$scriptName} {$pluginName} export myExportFile.xml myPress reviewer\n"
+""
+
+msgid "plugins.importexport.users.import.importUsers"
+msgstr "Import Users"
+
+msgid "plugins.importexport.users.import.instructions"
+msgstr "Select an XML data file containing user information to import into this press. See the press help for details on the format of this file.<br /><br />Note that if the imported file contains any usernames or email addresses that already exist in the system, the user data for those users will not be imported and any new roles to be created will be assigned to the existing users."
+
+msgid "plugins.importexport.users.import.dataFile"
+msgstr "User data file"
+
+msgid "plugins.importexport.users.import.sendNotify"
+msgstr "Send a notification email to each imported user containing the user's username and password."
+
+msgid "plugins.importexport.users.import.continueOnError"
+msgstr "Continue to import other users if a failure occurs."
+
+msgid "plugins.importexport.users.import.usersWereImported"
+msgstr "The following users were successfully imported into the system"
+
+msgid "plugins.importexport.users.import.errorsOccurred"
+msgstr "Errors occurred during the import"
+
+msgid "plugins.importexport.users.import.confirmUsers"
+msgstr "Confirm that these are the users you would like to import into the system"
+
+msgid "plugins.importexport.users.import.warning"
+msgstr "Warning"
+
+msgid "plugins.importexport.users.import.encryptionMismatch"
+msgstr "Cannot use passwords hashed with {$importHash}; OMP is configured to use {$ompHash}. If you continue, you will need to reset the imported users' passwords."
+
+msgid "plugins.importexport.users.unknownPress"
+msgstr "An unknown press path \"{$contextPath}\" was specified."
+
+msgid "plugins.importexport.users.export.exportUsers"
+msgstr "Export Users"
+
+msgid "plugins.importexport.users.export.exportByRole"
+msgstr "Export By Role"
+
+msgid "plugins.importexport.users.export.exportAllUsers"
+msgstr "Export All"
+
+msgid "plugins.importexport.users.export.errorsOccurred"
+msgstr "Errors occurred during the export"
+
+msgid "plugins.importexport.users.export.couldNotWriteFile"
+msgstr "Could not write to the file \"{$fileName}\"."
+
+msgid "plugins.importexport.users.importComplete"
+msgstr "The import completed successfully.  Users with usernames and email addresses that are not already in use have been imported, along with accompanying user groups."
+
+msgid "plugins.importexport.users.results"
+msgstr "Results"
+
+msgid "plugins.importexport.users.uploadFile"
+msgstr "Please upload a file under \"Import\" in order to continue."

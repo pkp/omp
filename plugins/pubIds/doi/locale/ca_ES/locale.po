@@ -1,0 +1,30 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: \n"
+"Report-Msgid-Bugs-To: \n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"POT-Creation-Date: 2019-09-30T07:09:54-07:00\n"
+"PO-Revision-Date: 2019-09-30T07:09:54-07:00\n"
+"Language: \n"
+
+msgid "plugins.pubIds.doi.displayName"
+msgstr "Mòdul DOI"
+
+msgid "plugins.pubIds.doi.readerDisplayName"
+msgstr "DOI:"
+
+msgid "plugins.pubIds.doi.manager.settings.doiPrefix"
+msgstr "Prefix DOI"
+
+msgid "plugins.pubIds.doi.manager.settings.doiSuffix"
+msgstr "Sufix DOI"
+
+msgid "plugins.pubIds.doi.manager.settings.doiReassign"
+msgstr "Reassignar DOIs"
+
+msgid "plugins.pubIds.doi.editor.doi"
+msgstr "Mòdul DOI"

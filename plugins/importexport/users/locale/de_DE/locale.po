@@ -1,0 +1,97 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: \n"
+"Report-Msgid-Bugs-To: \n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"POT-Creation-Date: 2019-09-30T07:09:53-07:00\n"
+"PO-Revision-Date: 2019-09-30T07:09:53-07:00\n"
+"Language: \n"
+
+msgid "plugins.importexport.users.displayName"
+msgstr "Benutzer/innen-XML-Plugin"
+
+msgid "plugins.importexport.users.description"
+msgstr "Benutzer/innen importieren und exportieren"
+
+msgid "plugins.importexport.users.cliUsage"
+msgstr ""
+"Gebrauch: {$scriptName} {$pluginName} [command] ...\n"
+"Befehle:\n"
+"\timport [xmlFileName] [press_path] [optional flags]\n"
+"\texport [xmlFileName] [press_path]\n"
+"\texport [xmlFileName] [press_path] [role_path1] [role_path2] ...\n"
+"\n"
+"Optionale Parameter:\n"
+"\tcontinue_on_error: bei Auftreten eines Fehlers nicht anhalten\n"
+"\n"
+"\tsend_notify: Benachrichtigung über Benutzernamen und Passwörter \n"
+"                     an importierte Benutzer senden\n"
+"\n"
+"Beispiele:\n"
+"\tBenutzer/innen in myPress mittels der Datei myImportFile.xml importieren, bei Fehler nicht anhalten:\n"
+"\t{$scriptName} {$pluginName} import myImportFile.xml myPress continue_on_error\n"
+"\n"
+"\tAlle Benutzer/innen von myPress exportieren:\n"
+"\t{$scriptName} {$pluginName} export myExportFile myPress\n"
+"\n"
+"\tAlle Benutzer/innen, die als Gutachter/innen registiert sind, nur in ihrer Rolle als Gutachter/innen exportieren:\n"
+"\t{$scriptName} {$pluginName} export myExportFile.xml myPress reviewer\n"
+""
+
+msgid "plugins.importexport.users.import.importUsers"
+msgstr "Benutzer/innen importieren"
+
+msgid "plugins.importexport.users.import.instructions"
+msgstr "Wählen Sie eine XML-Datei, die zu importierende Informationen über Benutzer/innen enthält, aus. Details zum Format dieser Datei finden Sie in der Hilfe.<br /><br />Beachten Sie bitte, dass in der Datei enthaltene Benutzernamen und E-Mail-Adressen, die im System bereits existieren, kein Import stattfindet und die Rollen der zu importierenden Benutzer/innen den existierenden Benutzer/innen zugewiesen werden."
+
+msgid "plugins.importexport.users.import.dataFile"
+msgstr "Datei mit Informationen zu Benutzer/innen"
+
+msgid "plugins.importexport.users.import.sendNotify"
+msgstr "Eine Benachrichtigung mit Benutzernamen und Passwort an jede/n importierte/n Benutzer/in schicken."
+
+msgid "plugins.importexport.users.import.continueOnError"
+msgstr "Mit dem Import anderer Benutzer/innen fortfahren, wenn ein Fehler auftritt."
+
+msgid "plugins.importexport.users.import.usersWereImported"
+msgstr "Die folgenden Benutzer/innen wurden erfolgreich in das System importiert"
+
+msgid "plugins.importexport.users.import.errorsOccurred"
+msgstr "Während des Imports sind Fehler aufgetreten"
+
+msgid "plugins.importexport.users.import.confirmUsers"
+msgstr "Bestätigen Sie, dass Sie diese Benutzer/innen in das System importieren möchten"
+
+msgid "plugins.importexport.users.import.warning"
+msgstr "Warnung"
+
+msgid "plugins.importexport.users.import.encryptionMismatch"
+msgstr "Kann keine Passwörter, die mit {$importHash} gehasht sind, benutzen; OMP ist für die Verwendung von  {$ompHash} konfiguriert. Wenn Sie fortfahren, werden Sie die Passwörter der importierten Benutzer/innen zurücksetzen müssen."
+
+msgid "plugins.importexport.users.unknownPress"
+msgstr "Unbekannter Zeitschriftpfad \"{$contextPath}\"."
+
+msgid "plugins.importexport.users.export.exportUsers"
+msgstr "Benutzer/innen exportieren"
+
+msgid "plugins.importexport.users.export.exportByRole"
+msgstr "Nach Rolle exportieren"
+
+msgid "plugins.importexport.users.export.exportAllUsers"
+msgstr "Alle exportieren"
+
+msgid "plugins.importexport.users.export.errorsOccurred"
+msgstr "Während des Exports sind Fehler aufgetreten"
+
+msgid "plugins.importexport.users.export.couldNotWriteFile"
+msgstr "Konnte in Datei \"{$fileName}\" nicht schreiben."
+
+msgid "plugins.importexport.users.importComplete"
+msgstr "Der Import wurde erfolgreich beendet. Noch nicht im System existierende Benutzer/innen wurden mit Benutzernamen und E-Mail-Adresse und mitsamt ihren Rollen importiert."
+
+msgid "plugins.importexport.users.results"
+msgstr "Ergebnisse"

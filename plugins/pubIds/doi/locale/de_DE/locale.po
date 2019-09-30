@@ -1,0 +1,54 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: \n"
+"Report-Msgid-Bugs-To: \n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"POT-Creation-Date: 2019-09-30T07:09:54-07:00\n"
+"PO-Revision-Date: 2019-09-30T07:09:54-07:00\n"
+"Language: \n"
+
+msgid "plugins.pubIds.doi.displayName"
+msgstr "DOI"
+
+msgid "plugins.pubIds.doi.description"
+msgstr "Dieses Plugin ermöglicht die Zuweisung eines Digital Object Identifiers (DOI) zu einem Publikationsformat in OMP."
+
+msgid "plugins.pubIds.doi.readerDisplayName"
+msgstr "DOI:"
+
+msgid "plugins.pubIds.doi.manager.settings.description"
+msgstr "Bitte konfigurieren Sie das DOI-Plugin, damit Sie in OMP DOIs verwalten und benutzen können."
+
+msgid "plugins.pubIds.doi.manager.settings.doiObjects"
+msgstr "Inhalt des Publikationsformat"
+
+msgid "plugins.pubIds.doi.manager.settings.doiObjectsRequired"
+msgstr "Bitte wählen Sie die Objekte aus, denen DOIs zugewiesen werden sollen."
+
+msgid "plugins.pubIds.doi.manager.settings.doiPrefix"
+msgstr "DOI-Präfix"
+
+msgid "plugins.pubIds.doi.manager.settings.doiPrefix.description"
+msgstr "Das DOI-Präfix wird von den Regristrierungsagenturen vergeben (z. B. <a href=\"http://www.crossref.org\" target=\"_new\">CrossRef</a>) und hat die Form 10.xxxx (e.g. 10.1234):"
+
+msgid "plugins.pubIds.doi.manager.settings.doiPrefixPattern"
+msgstr "Das DOI-Präfix ist obligatorisch und muss die Form 10.xxxx haben"
+
+msgid "plugins.pubIds.doi.manager.settings.doiSuffix"
+msgstr "DOI-Suffix"
+
+msgid "plugins.pubIds.doi.manager.settings.doiSuffix.description"
+msgstr "Ein DOI-Suffix kann jegliche Form haben, darf aber nur ein einziges Mal in Verbindung mit dem DOi-Präfix vergeben werden, um einen eindeutige Gesamt-DOI zu erzeugen."
+
+msgid "plugins.pubIds.doi.manager.settings.doiSuffixPattern.representations"
+msgstr "für Publikationsformate"
+
+msgid "plugins.pubIds.doi.editor.doi"
+msgstr "DOI"
+
+msgid "plugins.pubIds.doi.editor.doiSuffixCustomIdentifierNotUnique"
+msgstr "Der angegebene DOI-Suffix wird bereits für ein anderes veröffentlichtes Element benutzt. Bitte vergeben Sie einen eindeutigen DOI-Suffix für jedes Element."

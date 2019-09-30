@@ -1,0 +1,72 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: \n"
+"Report-Msgid-Bugs-To: \n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"POT-Creation-Date: 2019-09-30T07:09:53-07:00\n"
+"PO-Revision-Date: 2019-09-30T07:09:53-07:00\n"
+"Language: \n"
+
+msgid "plugins.importexport.users.displayName"
+msgstr "Mòdul XML d'usuaris/àries"
+
+msgid "plugins.importexport.users.description"
+msgstr "Importa i exporta usuaris/àries."
+
+msgid "plugins.importexport.users.cliUsage"
+msgstr "Ús: {$scriptName} {$pluginName} [command] ... Comanda: import [xmlFileName] [press_path] [optional flags] export [xmlFileName] [press_path] export [xmlFileName] [press_path] [role_path1] [role_path2] ... Modificadors addicionals: continue_on_error: Si especifica, en cas d'errro no deixarà d'importar usuaris send_notify: Si s'especifica, enviarà notificacions de correu amb els noms d'usuari i les contrasenyes al usuaris importats Exemples: Importa usuaris a myPress des del fitxer myImportFile.xml, continuant en cas d'error: {$scriptName} {$pluginName} import myImportFile.xml myPress continue_on_error Exporta tots els usuaris de myPress: {$scriptName} {$pluginName} export myExportFile.xml myPress Exporta tots els usuaris registrats com revisors: {$scriptName} {$pluginName} export myExportFile.xml myPress reviewer"
+
+msgid "plugins.importexport.users.import.importUsers"
+msgstr "Importa els usuaris/àries"
+
+msgid "plugins.importexport.users.import.dataFile"
+msgstr "Fitxer de dades de l'usuari/ària"
+
+msgid "plugins.importexport.users.import.sendNotify"
+msgstr "Envia una notificació per correu electrònic amb el nom d'usuari/ària i la contrasenya a cada usuari/ària importat."
+
+msgid "plugins.importexport.users.import.continueOnError"
+msgstr "Continua important la resta d'usuaris/àries si es produeix un error."
+
+msgid "plugins.importexport.users.import.usersWereImported"
+msgstr "Els usuaris/àries següents s'han importat correctament al sistema:"
+
+msgid "plugins.importexport.users.import.errorsOccurred"
+msgstr "S'han produït errors durant la importació."
+
+msgid "plugins.importexport.users.import.confirmUsers"
+msgstr "Confirmeu que aquests són els usuaris/àries que voleu importar al sistema."
+
+msgid "plugins.importexport.users.import.warning"
+msgstr "Advertiment"
+
+msgid "plugins.importexport.users.import.encryptionMismatch"
+msgstr "No es poden utilitzar contrasenyes resumides amb hash {$importHash}; OMP està configurat per utilitzar {$ompHash}. Si continues, necessitaràs reinciar les ccontrasenyes dels usuaris/àries importats/des."
+
+msgid "plugins.importexport.users.unknownPress"
+msgstr "Has especificat un camí de publicació desconegut \"{$contextPath}\"."
+
+msgid "plugins.importexport.users.export.exportUsers"
+msgstr "Exporta els usuaris/àries"
+
+msgid "plugins.importexport.users.export.exportByRole"
+msgstr "Exporta per rol"
+
+msgid "plugins.importexport.users.export.exportAllUsers"
+msgstr "Exporta'ls tots"
+
+msgid "plugins.importexport.users.export.errorsOccurred"
+msgstr "S'han produït errors durant l'exportació."
+
+msgid "plugins.importexport.users.export.couldNotWriteFile"
+msgstr "No es pot escriure al fitxer \"{$fileName}\"."
+
+msgid "plugins.importexport.users.importComplete"
+msgstr "La importació s'ha completat amb èxit. Els usuaris i els correus que no existien a la base de dades s'han afegit, als corresponents grups."
+
+msgid "plugins.importexport.users.results"
+msgstr "Resultats"
