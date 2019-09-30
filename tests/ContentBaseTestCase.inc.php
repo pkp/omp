@@ -172,7 +172,7 @@ class ContentBaseTestCase extends PKPContentBaseTestCase {
 	protected function addToCatalog() {
 		self::$driver->executeScript('window.scrollTo(0,0);'); // Scroll to top of page
 		$this->click('//button[contains(text(), "Publish")]');
-		$this->waitForTextPresent('All publication requirements have been met. Are you sure you want to publish this?');
+		$this->waitForTextPresent('All publication requirements have been met. Are you sure you want to make this catalog entry public?');
 		$this->click('//div[@class="pkpWorkflow__publishModal"]//button[contains(text(),"Publish")]');
 	}
 }
