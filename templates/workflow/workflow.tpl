@@ -174,6 +174,12 @@
 										@click="openUnpublish"
 									></pkp-button>
 									<pkp-button
+										v-else-if="workingPublication.status === getConstant('STATUS_PUBLISHED')"
+										label="{translate key="publication.unpublish"}"
+										:is-warnable="true"
+										@click="openUnpublish"
+									></pkp-button>
+									<pkp-button
 										v-else-if="canCreateNewVersion"
 										ref="createVersion"
 										label="{translate key="publication.createVersion"}"
