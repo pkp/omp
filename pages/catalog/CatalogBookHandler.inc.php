@@ -215,10 +215,18 @@ class CatalogBookHandler extends Handler {
 		$press = $request->getPress();
 
 		$monographId = array_shift($args); // Validated thru auth
-		$representationId = array_shift($args);
-		$bestFileId = array_shift($args);
+		$subPath = array_shift($args);
+		if ($subPath === 'version') {
+			$publicationId = array_shift($args);
+			$representationId = array_shift($args);
+			$bestFileId = array_shift($args);
+		} else {
+			$publicationId = $submission->getCurrentPublication()->getId();
+			$representationId = $subPath;
+			$bestFileId = array_shift($args);
+		}
 
-		$publicationFormat = DAORegistry::getDAO('PublicationFormatDAO')->getByBestId($representationId, $submission->getCurrentPublication()->getId());
+		$publicationFormat = DAORegistry::getDAO('PublicationFormatDAO')->getByBestId($representationId, $publicationId);
 		if (!$publicationFormat || !$publicationFormat->getIsAvailable() || $remoteURL = $publicationFormat->getRemoteURL()) fatalError('Invalid publication format specified.');
 
 		import('lib.pkp.classes.submission.SubmissionFile'); // File constants
@@ -245,6 +253,14 @@ class CatalogBookHandler extends Handler {
 			default: fatalError('Invalid monograph file specified!');
 		}
 
+		$urlPath = [$submission->getBestId()];
+		if ($publicationId !== $submission->getCurrentPublication()->getId()) {
+			$urlPath[] = 'version';
+			$urlPath[] = $publicationId;
+		}
+		$urlPath[] = $publicationFormat->getBestId();
+		$urlPath[] = $submissionFile->getBestId();
+
 		$chapterDao = DAORegistry::getDAO('ChapterDAO');
 		$templateMgr = TemplateManager::getManager($request);
 		$templateMgr->assign(array(
@@ -252,7 +268,7 @@ class CatalogBookHandler extends Handler {
 			'publicationFormat' => $publicationFormat,
 			'submissionFile' => $submissionFile,
 			'chapter' => $chapterDao->getChapter($submissionFile->getData('chapterId')),
-			'downloadUrl' => $dispatcher->url($request, ROUTE_PAGE, null, null, 'download', array($submission->getBestId(), $publicationFormat->getBestId(), $submissionFile->getBestId()), array('inline' => true)),
+			'downloadUrl' => $dispatcher->url($request, ROUTE_PAGE, null, null, 'download', $urlPath, array('inline' => true)),
 		));
 
 		$ompCompletedPaymentDao = DAORegistry::getDAO('OMPCompletedPaymentDAO');

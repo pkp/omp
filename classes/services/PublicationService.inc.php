@@ -151,6 +151,17 @@ class PublicationService extends PKPPublicationService {
 				$newFile->setFileId(null);
 				$newFile->setData('assocId', $newPublicationFormat->getId());
 				$newFiles[] = DAORegistry::getDAO('SubmissionFileDAO')->insertObject($newFile, $file->getFilePath());
+
+				$dependentFiles = DAORegistry::getDAO('SubmissionFileDAO')->getLatestRevisionsByAssocId(
+					ASSOC_TYPE_SUBMISSION_FILE,
+					$file->getFileId(),
+					$file->getData('publicationId')
+				);
+				foreach ($dependentFiles as $dependentFile) {
+					$newDependentFile = clone $dependentFile;
+					$newDependentFile->setFileId(null);
+					DAORegistry::getDAO('SubmissionFileDAO')->insertObject($newDependentFile, $dependentFile->getFilePath());
+				}
 			}
 		}
 

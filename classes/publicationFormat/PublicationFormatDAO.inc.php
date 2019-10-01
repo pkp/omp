@@ -91,7 +91,8 @@ class PublicationFormatDAO extends RepresentationDAO implements PKPPubIdPluginDA
 			$sql .= ' AND s.context_id = ?';
 		}
 
-		$sql .= ' ORDER BY s.context_id, pf.seq, pf.publication_format_id';
+		$orderByContextId = $pressId ? 's.context_id, ' : '';
+		$sql .= ' ORDER BY ' . $orderByContextId . 'pf.seq, pf.publication_format_id';
 		$result = $this->retrieve($sql, $params);
 
 		$publicationFormats = array();
