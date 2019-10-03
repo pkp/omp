@@ -86,7 +86,7 @@ class DbernnardSubmissionTest extends ContentBaseTestCase {
 
 		$this->findSubmissionAsEditor('dbarnes', null, $title);
 		$this->sendToReview('Internal');
-		$this->waitForElementPresent('//a[contains(text(), \'Internal Review\')]/*[contains(text(), \'Initiated\')]');
+		$this->waitForElementPresent('//a[contains(text(), \'Internal Review\')]');
 		// Assign a recommendOnly section editor
 		$this->assignParticipant('Series editor', 'Minoti Inoue', true);
 		$this->logOut();
