@@ -177,7 +177,7 @@ class ChapterGridHandler extends CategoryGridHandler {
 		if ($publication->getData('status') !== STATUS_PUBLISHED && ($submission->getData('submissionProgress') || array_intersect(array(ROLE_ID_MANAGER, ROLE_ID_SUB_EDITOR), $userRoles))) {
 			$this->setReadOnly(false);
 			import('lib.pkp.classes.controllers.grid.feature.OrderCategoryGridItemsFeature');
-			return array(new OrderCategoryGridItemsFeature(ORDER_CATEGORY_GRID_CATEGORIES_AND_ROWS));
+			return array(new OrderCategoryGridItemsFeature(ORDER_CATEGORY_GRID_CATEGORIES_AND_ROWS, true, $this));
 		} else {
 			$this->setReadOnly(true);
 			return array();
