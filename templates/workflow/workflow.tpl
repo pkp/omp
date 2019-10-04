@@ -180,7 +180,7 @@
 										@click="openUnpublish"
 									></pkp-button>
 									<pkp-button
-										v-else-if="canCreateNewVersion"
+										v-if="canCreateNewVersion"
 										ref="createVersion"
 										label="{translate key="publication.createVersion"}"
 										@click="createVersion"
