@@ -48,14 +48,16 @@ class ChapterDAO extends DAO implements PKPPubIdPluginDAO {
 	/**
 	 * Retrieve all chapters of a publication.
 	 * @param $publicationId int
+	 * @param $orderBySequence boolean
 	 * @return DAOResultFactory
 	 */
-	function getByPublicationId($publicationId) {
+	function getByPublicationId($publicationId, $orderBySequence = true) {
 		$result = $this->retrieve(
 			'SELECT	spc.*
 			FROM submission_chapters spc
 			INNER JOIN publications p ON (spc.publication_id = p.publication_id)
-			WHERE p.publication_id = ?',
+			WHERE p.publication_id = ?'
+			. ($orderBySequence ? ' ORDER BY spc.seq ASC' : ''),
 			(int) $publicationId
 		);
 
