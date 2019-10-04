@@ -86,12 +86,12 @@ class MallySubmissionTest extends ContentBaseTestCase {
 
 		// Internal review
 		$this->sendToReview('Internal');
-		$this->waitForElementPresent('//a[contains(text(), \'Internal Review\')]/*[contains(text(), \'Initiated\')]');
+		$this->waitForElementPresent('//a[contains(text(), \'Internal Review\')]');
 		$this->assignReviewer('Paul Hudson');
 
 		// External review
 		$this->sendToReview('External', 'Internal');
-		$this->waitForElementPresent('//a[contains(text(), \'External Review\')]/*[contains(text(), \'Initiated\')]');
+		$this->waitForElementPresent('//a[contains(text(), \'External Review\')]');
 		$this->assignReviewer('Adela Gallego');
 		$this->assignReviewer('Al Zacharia');
 		$this->assignReviewer('Gonzalo Favio');
@@ -105,7 +105,7 @@ class MallySubmissionTest extends ContentBaseTestCase {
 		// Accept submission
 		$this->findSubmissionAsEditor('dbarnes', null, $title);
 		$this->recordEditorialDecision('Accept Submission');
-		$this->waitForElementPresent('//a[contains(text(), \'Copyediting\')]/*[contains(text(), \'Initiated\')]');
+		$this->waitForElementPresent('//a[contains(text(), \'Copyediting\')]');
 		$this->logOut();
 	}
 }

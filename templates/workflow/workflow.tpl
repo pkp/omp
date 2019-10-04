@@ -104,12 +104,9 @@
 				</script>
 
 				<div id="submissionWorkflow" class="pkp_submission_workflow">
-
 					{include file="controllers/notification/inPlaceNotification.tpl" notificationId="workflowNotification" requestOptions=$workflowNotificationRequestOptions}
-
-					{capture assign=submissionProgressBarUrl}{url op="submissionProgressBar" submissionId=$submission->getId() stageId=$stageId contextId="submission" escape=false}{/capture}
+					{capture assign=submissionProgressBarUrl}{url op="submissionProgressBar" submissionId=$submission->getId() stageId=$requestedStageId contextId="submission" escape=false}{/capture}
 					{load_url_in_div id="submissionProgressBarDiv" url=$submissionProgressBarUrl}
-
 				</div>
 			</tab>
 			<tab id="marketing" label="{translate key="settings.libraryFiles.category.marketing"}">
@@ -130,11 +127,11 @@
 							<span class="pkpPublication__status">
 								<strong>{{ i18n.status }}</strong>
 								<span v-if="workingPublication.status === getConstant('STATUS_QUEUED') && workingPublication.id === currentPublication.id" class="pkpPublication__statusUnpublished">{translate key="publication.status.unscheduled"}</span>
-								<span v-else-if="workingPublication.status === getConstant('STATUS_SCHEDULED')">{translate key="submissions.scheduled"}</span>
+								<span v-else-if="workingPublication.status === getConstant('STATUS_SCHEDULED')">{translate key="publication.status.scheduled"}</span>
 								<span v-else-if="workingPublication.status === getConstant('STATUS_PUBLISHED')" class="pkpPublication__statusPublished">{translate key="publication.status.published"}</span>
 								<span v-else class="pkpPublication__statusUnpublished">{translate key="publication.status.unpublished"}</span>
 							</span>
-							<span v-if="submission.publications.length > 1" class="pkpPublication__version">
+							<span v-if="publicationList.length > 1" class="pkpPublication__version">
 								<strong tabindex="0">{{ i18n.version }}</strong> {{ workingPublication.id }}
 								<dropdown
 									class="pkpPublication__versions"
@@ -143,15 +140,15 @@
 									submenu-label="{translate key="common.submenu"}"
 								>
 									<ul>
-										<li v-for="publication in submission.publications" :key="publication.id">
+										<li v-for="publication in publicationList" :key="publication.id">
 											<button
 												class="pkpDropdown__action"
-												:disabled="publication.id === workingPublicationId"
-												@click="setWorkingPublicationId(publication)"
+												:disabled="publication.id === workingPublication.id"
+												@click="setWorkingPublicationById(publication.id)"
 											>
 												{{ publication.id }} /
 												<template v-if="publication.status === getConstant('STATUS_QUEUED') && publication.id === currentPublication.id">{translate key="publication.status.unscheduled"}</template>
-												<template v-else-if="publication.status === getConstant('STATUS_SCHEDULED')">{translate key="submissions.scheduled"}</template>
+												<template v-else-if="publication.status === getConstant('STATUS_SCHEDULED')">{translate key="publication.status.scheduled"}</template>
 												<template v-else-if="publication.status === getConstant('STATUS_PUBLISHED')">{translate key="publication.status.published"}</template>
 												<template v-else>{translate key="publication.status.unpublished"}</template>
 											</button>

@@ -120,7 +120,7 @@ class MsmithSubmissionTest extends ContentBaseTestCase {
 
 		$this->findSubmissionAsEditor('dbarnes', null, $title);
 		$this->sendToReview('Internal');
-		$this->waitForElementPresent('//a[contains(text(), \'Internal Review\')]/*[contains(text(), \'Initiated\')]');
+		$this->waitForElementPresent('//a[contains(text(), \'Internal Review\')]');
 		$this->assignReviewer('Julie Janssen');
 		$this->assignReviewer('Paul Hudson');
 		$this->logOut();
