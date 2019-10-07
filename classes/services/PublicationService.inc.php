@@ -27,6 +27,8 @@ class PublicationService extends PKPPublicationService {
 	public function __construct() {
 		\HookRegistry::register('Publication::getProperties', [$this, 'getPublicationProperties']);
 		\HookRegistry::register('Publication::validate', [$this, 'validatePublication']);
+		\HookRegistry::register('Publication::add', [$this, 'addPublication']);
+		\HookRegistry::register('Publication::edit', [$this, 'editPublication']);
 		\HookRegistry::register('Publication::version', [$this, 'versionPublication']);
 		\HookRegistry::register('Publication::publish', [$this, 'publishPublication']);
 		\HookRegistry::register('Publication::unpublish', [$this, 'unpublishPublication']);
@@ -104,7 +106,110 @@ class PublicationService extends PKPPublicationService {
 	}
 
 	/**
-	 * Copy OJS-specific objects when a new publication version is created
+	 * Perform OMP-specific steps when adding a publication
+	 *
+	 * @param string $hookName
+	 * @param array $args [
+	 *  @option Publication
+	 *  @option Request
+	 * ]
+	 */
+	public function addPublication($hookName, $args) {
+		$publication = $args[0];
+		$request = $args[1];
+
+		// Create a thumbnail for the cover image
+		if ($publication->getData('coverImage')) {
+
+			$submission = Services::get('submission')->get($publication->getData('submissionId'));
+			$submissionContext = $request->getContext();
+			if ($submissionContext->getId() !== $submission->getData('contextId')) {
+				$submissionContext = Services::get('context')->get($submission->getData('contextId'));
+			}
+
+			$supportedLocales = $submissionContext->getSupportedLocales();
+			foreach ($supportedLocales as $localeKey) {
+				if (!array_key_exists($localeKey, $publication->getData('coverImage'))) {
+					continue;
+				}
+
+				import('classes.file.PublicFileManager');
+				$publicFileManager = new \PublicFileManager();
+				$coverImage = $publication->getData('coverImage', $localeKey);
+				$coverImageFilePath = $publicFileManager->getContextFilesPath($submissionContext->getId()) . '/' . $coverImage['uploadName'];
+				$this->makeThumbnail(
+					$coverImageFilePath,
+					$this->getThumbnailFileName($coverImage['uploadName']),
+					$submissionContext->getData('coverThumbnailsMaxWidth'),
+					$submissionContext->getData('coverThumbnailsMaxHeight')
+				);
+			}
+		}
+	}
+
+	/**
+	 * Perform OMP-specific steps when editing a publication
+	 *
+	 * @param string $hookName
+	 * @param array $args [
+	 * 	@option Publication The new publication details
+	 * 	@option Publication The old publication details
+	 *  @option array The params with the edited values
+	 *  @option Request
+	 * ]
+	 */
+	public function editPublication($hookName, $args) {
+		$newPublication = $args[0];
+		$oldPublication = $args[1];
+		$params = $args[2];
+
+		// Create or delete the thumbnail of a cover image
+		if (array_key_exists('coverImage', $params)) {
+			import('classes.file.PublicFileManager');
+			$publicFileManager = new \PublicFileManager();
+			$submission = Services::get('submission')->get($newPublication->getData('submissionId'));
+
+			// Get the submission context
+			$submissionContext = \Application::get()->getRequest()->getContext();
+			if ($submissionContext->getId() !== $submission->getData('contextId')) {
+				$submissionContext = Services::get('context')->get($submission->getData('contextId'));
+			}
+
+			foreach ($params['coverImage'] as $localeKey => $value) {
+
+				// Delete the thumbnail if the cover image has been deleted
+				if (is_null($value)) {
+					$oldCoverImage = $oldPublication->getData('coverImage', $localeKey);
+					if (!$oldCoverImage) {
+						continue;
+					}
+
+					$coverImageFilePath = $publicFileManager->getContextFilesPath($submission->getData('contextId')) . '/' . $oldCoverImage['uploadName'];
+					if (!file_exists($coverImageFilePath)) {
+						$publicFileManager->removeContextFile($submission->getData('contextId'), $this->getThumbnailFileName($oldCoverImage['uploadName']));
+					}
+
+				// Otherwise generate a new thumbnail if a cover image exists
+				} else {
+					$newCoverImage = $newPublication->getData('coverImage', $localeKey);
+					if (!$newCoverImage) {
+						continue;
+					}
+
+					$coverImageFilePath = $publicFileManager->getContextFilesPath($submission->getData('contextId')) . '/' . $newCoverImage['uploadName'];
+					$this->makeThumbnail(
+						$coverImageFilePath,
+						$this->getThumbnailFileName($newCoverImage['uploadName']),
+						$submissionContext->getData('coverThumbnailsMaxWidth'),
+						$submissionContext->getData('coverThumbnailsMaxHeight')
+					);
+				}
+			}
+		}
+	}
+
+	/**
+	 * Copy OMP-specific objects when a new publication version is created
 	 *
 	 * @param $hookName string
 	 * @param $args array [
@@ -311,5 +416,60 @@ class PublicationService extends PKPPublicationService {
 			// also removes Chapter Author and file associations
 			DAORegistry::getDAO('ChapterDAO')->deleteObject($chapter);
 		}
+	}
+
+	/**
+	 * Derive a thumbnail filename from the cover image filename
+	 *
+	 * book_1_1_cover.png --> book_1_1_cover_t.png
+	 *
+	 * @param string $fileName
+	 * @return string The thumbnail filename
+	 */
+	public function getThumbnailFileName($fileName) {
+		$pathInfo = pathinfo($fileName);
+		return $pathInfo['filename'] . '_t.' . $pathInfo['extension'];
+	}
+
+	/**
+	 * Generate a thumbnail of an image
+	 *
+	 * @param string $filePath The full path and name of the file
+	 * @param int $maxWidth The maximum allowed width of the thumbnail
+	 * @param int $maxHeight The maximum allowed height of the thumbnail
+	 */
+	public function makeThumbnail($filePath, $thumbFileName, $maxWidth, $maxHeight) {
+		$pathParts = pathinfo($filePath);
+
+		$cover = null;
+		switch ($pathParts['extension']) {
+			case 'jpg': $cover = imagecreatefromjpeg($filePath); break;
+			case 'png': $cover = imagecreatefrompng($filePath); break;
+			case 'gif': $cover = imagecreatefromgif($filePath); break;
+		}
+		if (!isset($cover)) {
+			throw new \Exception('Can not build thumbnail because the file was not found or the file extension was not recognized.');
+		}
+
+		// Calculate the scaling ratio for each dimension.
+		$originalSizeArray = getimagesize($filePath);
+		$xRatio = min(1, $maxWidth / $originalSizeArray[0]);
+		$yRatio = min(1, $maxHeight / $originalSizeArray[1]);
+
+		// Choose the smallest ratio and create the target.
+		$ratio = min($xRatio, $yRatio);
+
+		$thumbWidth = round($ratio * $originalSizeArray[0]);
+		$thumbHeight = round($ratio * $originalSizeArray[1]);
+		$thumb = imagecreatetruecolor($thumbWidth, $thumbHeight);
+		imagecopyresampled($thumb, $cover, 0, 0, 0, 0, $thumbWidth, $thumbHeight, $originalSizeArray[0], $originalSizeArray[1]);
+
+		switch ($pathParts['extension']) {
+			case 'jpg': imagejpeg($thumb, $pathParts['dirname'] . '/' . $thumbFileName); break;
+			case 'png': imagepng($thumb, $pathParts['dirname'] . '/' . $thumbFileName); break;
+			case 'gif': imagegif($thumb, $pathParts['dirname'] . '/' . $thumbFileName); break;
+		}
+
+		imagedestroy($thumb);
 	}
 }

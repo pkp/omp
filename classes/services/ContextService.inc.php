@@ -14,6 +14,8 @@
  */
 namespace APP\Services;
 
+use \Services;
+
 class ContextService extends \PKP\Services\PKPContextService {
 	/** @copydoc \PKP\Services\PKPContextService::$contextsFileDirName */
 	var $contextsFileDirName = 'presses';
@@ -152,10 +154,11 @@ class ContextService extends \PKP\Services\PKPContextService {
 	 * @param $maxHeight int The maximum width allowed for a cover image
 	 */
 	public function resizeCoverThumbnails($context, $maxWidth, $maxHeight) {
-		import('classes.file.SimpleMonographFileManager');
-		import('lib.pkp.classes.file.ContextFileManager');
 		import('lib.pkp.classes.file.FileManager');
+		import('classes.file.PublicFileManager');
+		import('lib.pkp.classes.file.ContextFileManager');
 		$fileManager = new \FileManager();
+		$publicFileManager = new \PublicFileManager();
 		$contextFileManager = new \ContextFileManager($context->getId());
 
 		$objectDaos = [
@@ -167,9 +170,17 @@ class ContextService extends \PKP\Services\PKPContextService {
 			$objects = $objectDao->getByContextId($context->getId());
 			while ($object = $objects->next()) {
 				if (is_a($object, 'Submission')) {
-					$cover = $object->getCoverImage();
-					$simpleMonographFileManager = new \SimpleMonographFileManager($context->getId(), $object->getId());
-					$basePath = $simpleMonographFileManager->getBasePath();
+					foreach ($object->getData('publications') as $publication) {
+						foreach ((array) $publication->getData('coverImage') as $coverImage) {
+							$coverImageFilePath = $publicFileManager->getContextFilesPath($context->getId()) . '/' . $coverImage['uploadName'];
+							Services::get('publication')->makeThumbnail(
+								$coverImageFilePath,
+								Services::get('publication')->getThumbnailFileName($coverImage['uploadName']),
+								$maxWidth,
+								$maxHeight
+							);
+						}
+					}
 				} else {
 					$cover = $object->getImage();
 					if (is_a($object, 'Series')) {

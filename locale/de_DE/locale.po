@@ -674,9 +674,6 @@ msgstr "Unterkategorie"
 msgid "catalog.aboutTheAuthor"
 msgstr "Über den/die {$roleName}"
 
-msgid "catalog.coverImageTitle"
-msgstr "Titelbild für {$monographTitle}"
-
 msgid "catalog.loginRequiredForPayment"
 msgstr "Bitte beachten Sie: Um einen Band zu kaufen, müssen Sie angemeldet sein. Sobald Sie einen Band ausgewählt haben, den Sie erwerben möchten, gelangen Sie automatisch zur Anmeldeseite. Alle Titel, die mit einem Open-Access-Symbol (geöffnetes Schloss) gekennzeichnet sind, können kostenlos heruntergeladen werden. Eine Anmeldung ist dazu nicht erforderlich."
 

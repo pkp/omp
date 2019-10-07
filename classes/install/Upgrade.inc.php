@@ -715,6 +715,118 @@ class Upgrade extends Installer {
 
 		return true;
 	}
+
+	/**
+	 * Update how submission cover images are stored
+	 *
+	 * 1. Move the cover images into /public and rename them.
+	 *
+	 * 2. Change the coverImage setting to a multilingual setting
+	 *    stored under the submission_settings table, which will
+	 *    be migrated to the publication_settings table once it
+	 *    is created.
+	 */
+	function migrateSubmissionCoverImages() {
+		import('lib.pkp.classes.file.BaseSubmissionFileManager');
+		import('lib.pkp.classes.file.FileManager');
+		import('classes.file.PublicFileManager');
+
+		$fileManager = new \FileManager();
+		$publicFileManager = new \PublicFileManager();
+		$contexts = [];
+
+		$result = Application::getSubmissionDAO()->retrieve(
+			'SELECT
+				ps.submission_id as submission_id,
+				ps.cover_image as cover_image,
+				s.context_id as context_id
+			FROM published_submissions ps
+			LEFT JOIN submissions s ON (s.submission_id = ps.submission_id)
+			GROUP BY submission_id'
+		);
+		while (!$result->EOF) {
+			$row = $result->getRowAssoc(false);
+			if (empty($row['cover_image'])) {
+				$result->MoveNext();
+				continue;
+			}
+			$coverImage = unserialize($row['cover_image']);
+			if (empty($coverImage)) {
+				$result->MoveNext();
+				continue;
+			}
+			if (empty($contexts[$row['context_id']])) {
+				$contexts[$row['context_id']] = Services::get('context')->get($row['context_id']);
+			}
+
+			// Get existing image paths
+			$baseSubmissionFileManager = new BaseSubmissionFileManager($row['context_id'], $row['submission_id']);
+			$coverPath = $baseSubmissionFileManager->getBasePath() . 'simple/' . $coverImage['name'];
+			$coverPathInfo = pathinfo($coverPath);
+			$thumbPath = $baseSubmissionFileManager->getBasePath() . 'simple/' . $coverImage['thumbnailName'];
+			$thumbPathInfo = pathinfo($thumbPath);
+
+			// Copy the files to the public directory
+			$newCoverPath = join('_', [
+				'submission',
+				$row['submission_id'],
+				$row['submission_id'],
+				'coverImage',
+			]) . '.' . $coverPathInfo['extension'];
+			$publicFileManager->copyContextFile(
+				$row['context_id'],
+				$coverPath,
+				$newCoverPath
+			);
+			$newThumbPath = join('_', [
+				'submission',
+				$row['submission_id'],
+				$row['submission_id'],
+				'coverImage',
+				'_t'
+			]) . '.' . $thumbPathInfo['extension'];
+			$publicFileManager->copyContextFile(
+				$row['context_id'],
+				$thumbPath,
+				$newThumbPath
+			);
+
+			// Create a submission_settings entry for each locale
+			foreach ($contexts[$row['context_id']]->getSupportedFormLocales() as $localeKey) {
+				$newCoverPathInfo = pathinfo($newCoverPath);
+				Application::getSubmissionDAO()->update(
+					'INSERT INTO submission_settings
+						SET
+							submission_id = ?,
+							setting_name = ?,
+							setting_value = ?,
+							locale = ?,
+							setting_type= ?',
+					[
+						$row['submission_id'],
+						'coverImage',
+						serialize([
+							'uploadName' => $newCoverPathInfo['basename'],
+							'dateUploaded' => $coverImage['dateUploaded'],
+							'altText' => '',
+						]),
+						$localeKey,
+						'string',
+					]
+				);
+			}
+
+			// Delete the old images
+			$fileManager->deleteByPath($coverPath);
+			$fileManager->deleteByPath($thumbPath);
+
+			$result->MoveNext();
+		}
+		$result->Close();
+
+
+		return true;
+	}
 }
 
 

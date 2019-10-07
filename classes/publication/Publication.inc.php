@@ -35,4 +35,48 @@ class Publication extends PKPPublication {
 		// space in here.
 		return join(__('common.commaListSeparator') . ' ', $editorNames);
 	}
+
+	/**
+	 * Get the URL to a localized cover image
+	 *
+	 * @param int $contextId
+	 * @return string
+	 */
+	public function getLocalizedCoverImageUrl($contextId) {
+		$coverImage = $this->getLocalizedData('coverImage');
+
+		if (!$coverImage) {
+			return Application::get()->getRequest()->getBaseUrl() . '/templates/images/book-default.png';
+		}
+
+		import('classes.file.PublicFileManager');
+		$publicFileManager = new PublicFileManager();
+
+		return join('/', [
+			Application::get()->getRequest()->getBaseUrl(),
+			$publicFileManager->getContextFilesPath($contextId),
+			$coverImage['uploadName'],
+		]);
+	}
+
+	/**
+	 * Get the URL to the thumbnail of a localized cover image
+	 *
+	 * @param int $contextId
+	 * @return string
+	 */
+	public function getLocalizedCoverImageThumbnailUrl($contextId) {
+		$url = $this->getLocalizedCoverImageUrl($contextId);
+
+		if (!$url) {
+			return Application::get()->getRequest()->getBaseUrl() . '/templates/images/book-default-small.png';
+		}
+
+		$pathParts = pathinfo($url);
+
+		return join('/', [
+			$pathParts['dirname'],
+			Services::get('publication')->getThumbnailFilename($pathParts['basename']),
+		]);
+	}
 }

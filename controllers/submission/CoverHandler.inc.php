@@ -73,16 +73,15 @@ class CoverHandler extends PKPHandler {
 		// this function is only used on the book page i.e. for published submissiones
 		$submission = $this->getAuthorizedContextObject(ASSOC_TYPE_MONOGRAPH);
 
-		if (!$coverImage = $submission->getCoverImage()) {
-			// Can't use Request::redirectUrl; FireFox doesn't
-			// seem to like it for images.
-			header('Location: ' . $request->getBaseUrl() . '/templates/images/book-default.png');
-			exit;
+		$coverImageUrl = $submission->getCurrentPublication()->getLocalizedCoverImageUrl($submission->getData('contextId'));
+		if (!$coverImageUrl) {
+			$coverImageUrl = $request->getBaseUrl() . '/templates/images/book-default.png';
 		}
 
-		import('classes.file.SimpleMonographFileManager');
-		$simpleMonographFileManager = new SimpleMonographFileManager($submission->getData('contextId'), $submission->getId());
-		$simpleMonographFileManager->downloadByPath($simpleMonographFileManager->getBasePath() . $coverImage['name'], null, true);
+		// Can't use Request::redirectUrl; FireFox doesn't
+		// seem to like it for images.
+		header('Location: ' . $coverImageUrl);
+		exit;
 	}
 
 	/**
@@ -93,18 +92,16 @@ class CoverHandler extends PKPHandler {
 		// i.e. also if the monograph has not been published yet
 		$submission = $this->getAuthorizedContextObject(ASSOC_TYPE_MONOGRAPH);
 
-		if (!$submission || !$coverImage = $submission->getCoverImage()) {
-			// Can't use Request::redirectUrl; FireFox doesn't
-			// seem to like it for images.
-			header('Location: ' . $request->getBaseUrl() . '/templates/images/book-default-small.png');
-			exit;
+		$coverImageThumbnailUrl = $submission->getCurrentPublication()->getLocalizedCoverImageThumbnailUrl($submission->getData('contextId'));
+		if (!$coverImageThumbnailUrl) {
+			$coverImageThumbnailUrl = $request->getBaseUrl() . '/templates/images/book-default-small.png';
 		}
 
-		import('classes.file.SimpleMonographFileManager');
-		$simpleMonographFileManager = new SimpleMonographFileManager($submission->getData('contextId'), $submission->getId());
-		$simpleMonographFileManager->downloadByPath($simpleMonographFileManager->getBasePath() . $coverImage['thumbnailName'], null, true);
+		// Can't use Request::redirectUrl; FireFox doesn't
+		// seem to like it for images.
+		header('Location: ' . $coverImageThumbnailUrl);
+		exit;
 	}
-
 }
 
 

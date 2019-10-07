@@ -1343,9 +1343,6 @@ msgstr "Categoría matriz"
 msgid "catalog.category.subcategories"
 msgstr "Subcategorías"
 
-msgid "catalog.coverImageTitle"
-msgstr "Cubierta para {$monographTitle}"
-
 msgid "catalog.sortBy"
 msgstr "Orden de las monografías"
 
