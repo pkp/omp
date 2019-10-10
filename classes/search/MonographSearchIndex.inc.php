@@ -95,7 +95,6 @@ class MonographSearchIndex extends SubmissionSearchIndex {
 	public function submissionMetadataChanged($monograph) {
 		// Build author keywords
 		$authorText = array();
-		$authorDao = DAORegistry::getDAO('AuthorDAO');
 		foreach ($monograph->getData('authors') as $author) {
 			foreach ((array) $author->getGivenName(null) as $givenName) { // Localized
 				array_push($authorText, $givenName);
