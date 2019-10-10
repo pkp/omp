@@ -96,22 +96,17 @@ class MonographSearchIndex extends SubmissionSearchIndex {
 		// Build author keywords
 		$authorText = array();
 		$authorDao = DAORegistry::getDAO('AuthorDAO');
-		$authors = $authorDao->getBySubmissionId($monograph->getId());
-		foreach ($authors as $author) {
-			$givenNames = $author->getGivenName(null);
-			if (is_array($givenNames)) foreach ($givenNames as $givenName) { // Localized
+		foreach ($monograph->getData('authors') as $author) {
+			foreach ((array) $author->getGivenName(null) as $givenName) { // Localized
 				array_push($authorText, $givenName);
 			}
-			$familyNames = $author->getFamilyName(null);
-			if (is_array($familyNames)) foreach ($familyNames as $familyName) { // Localized
+			foreach ((array) $author->getFamilyName(null) as $familyName) { // Localized
 				array_push($authorText, $familyName);
 			}
-			$affiliations = $author->getAffiliation(null);
-			if (is_array($affiliations)) foreach ($affiliations as $affiliation) { // Localized
+			foreach ((array) $author->getAffiliation(null) as $affiliation) { // Localized
 				array_push($authorText, strip_tags($affiliation));
 			}
-			$bios = $author->getBiography(null);
-			if (is_array($bios)) foreach ($bios as $bio) { // Localized
+			foreach ((array) $author->getBiography(null) as $bio) { // Localized
 				array_push($authorText, strip_tags($bio));
 			}
 		}
