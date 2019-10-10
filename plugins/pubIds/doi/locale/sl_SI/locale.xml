@@ -10,7 +10,7 @@
   *
   * DOI plugin localization strings
   -->
- 
+
 <locale name="sl_SI" full_name="Slovenščina">
 	<message key="plugins.pubIds.doi.displayName">DOI</message>
 	<message key="plugins.pubIds.doi.description">Vtičnik omogoča dodeljevanje indentifikatorjev digitalnih objektov monografijam, formatom publikacij in datotekam v OMP.</message>
@@ -21,7 +21,7 @@
 	<message key="plugins.pubIds.doi.manager.settings.doiObjects">Vsebina publikacije</message>
 	<message key="plugins.pubIds.doi.manager.settings.doiObjectsRequired">Izberite objekte, ki jim boste dodelili DOI.</message>
 	<message key="plugins.pubIds.doi.manager.settings.explainDois">Označite objavljene predmete, ki jim boste dodelili identifikatorje digitalnih objektov (DOI):</message>
-	<message key="plugins.pubIds.doi.manager.settings.enableSubmissionDoi">Monografije</message>
+	<message key="plugins.pubIds.doi.manager.settings.enablePublicationDoi">Monografije</message>
 	<message key="plugins.pubIds.doi.manager.settings.enableRepresentationDoi">Formati publikacij</message>
 	<message key="plugins.pubIds.doi.manager.settings.enableSubmissionFileDoi">Datoteke</message>
 
@@ -39,10 +39,10 @@
 	<message key="plugins.pubIds.doi.manager.settings.doiSuffixDefault">Uporabi privzete vzorce.</message>
 	<message key="plugins.pubIds.doi.manager.settings.doiSuffixDefault.description"><![CDATA[%p.%m za monografije <br />%p.%m.%f za formate publikacij<br />%p.%m.%f.%s za datoteke.]]></message>
 	<message key="plugins.pubIds.doi.manager.settings.doiSuffixCustomIdentifier">Vnesi individualno pripono DOI za vsak objavljen element. Na vsaki metapodatkovni strani posameznega elementa boste našli dodatno polje za vnos DOI.</message>
-	<message key="plugins.pubIds.doi.manager.settings.doiSubmissionSuffixPatternRequired">Vnesite vzorec za pripono DOI za monografije.</message>
+	<message key="plugins.pubIds.doi.manager.settings.doiPublicationSuffixPatternRequired">Vnesite vzorec za pripono DOI za monografije.</message>
 	<message key="plugins.pubIds.doi.manager.settings.doiRepresentationSuffixPatternRequired">Vnesite vzorec za pripono DOI za formate publikacij.</message>
 	<message key="plugins.pubIds.doi.manager.settings.doiSubmissionFileSuffixPatternRequired">Vnesite vzorec za pripono DOI za datoteke.</message>
-	
+
 	<message key="plugins.pubIds.doi.manager.settings.doiReassign">Prerazporedi DOI</message>
 	<message key="plugins.pubIds.doi.manager.settings.doiReassign.description">Če boste zamenjali vaše nastavitve DOI, to ne bo vplivalo na obstoječe DOI. Ko boste shranili nastavitve DOI, uporabite ta ukaz, da izbrišete vse obstoječe DOI, da bodo lahko nove nastavitve delovale za obstoječe objekte.</message>
 	<message key="plugins.pubIds.doi.manager.settings.doiReassign.confirm">Ali ste prepričani, da želite izbrisati vse obstoječe DOI?</message>

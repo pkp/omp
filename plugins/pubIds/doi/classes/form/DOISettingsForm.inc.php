@@ -59,12 +59,12 @@ class DOISettingsForm extends Form {
 		parent::__construct($plugin->getTemplateResource('settingsForm.tpl'));
 
 		$form = $this;
-		$this->addCheck(new FormValidatorCustom($this, 'doiObjects', 'required', 'plugins.pubIds.doi.manager.settings.doiObjectsRequired', function($enableSubmissionDoi) use ($form) {
-			return $form->getData('enableSubmissionDoi') || $form->getData('enableRepresentationDoi') || $form->getData('enableSubmissionFileDoi');
+		$this->addCheck(new FormValidatorCustom($this, 'doiObjects', 'required', 'plugins.pubIds.doi.manager.settings.doiObjectsRequired', function($enablePublicationDoi) use ($form) {
+			return $form->getData('enablePublicationDoi') || $form->getData('enableRepresentationDoi') || $form->getData('enableSubmissionFileDoi');
 		}));
 		$this->addCheck(new FormValidatorRegExp($this, 'doiPrefix', 'required', 'plugins.pubIds.doi.manager.settings.doiPrefixPattern', '/^10\.[0-9]{4,7}$/'));
-		$this->addCheck(new FormValidatorCustom($this, 'doiSubmissionSuffixPattern', 'required', 'plugins.pubIds.doi.manager.settings.doiSubmissionSuffixPatternRequired', function($doiSubmissionSuffixPattern) use ($form) {
-			if ($form->getData('doiSuffix') == 'pattern' && $form->getData('enableSubmissionDoi')) return $doiSubmissionSuffixPattern != '';
+		$this->addCheck(new FormValidatorCustom($this, 'doiPublicationSuffixPattern', 'required', 'plugins.pubIds.doi.manager.settings.doiPublicationSuffixPatternRequired', function($doiPublicationSuffixPattern) use ($form) {
+			if ($form->getData('doiSuffix') == 'pattern' && $form->getData('enablePublicationDoi')) return $doiPublicationSuffixPattern != '';
 			return true;
 		}));
 		$this->addCheck(new FormValidatorCustom($this, 'doiChapterSuffixPattern', 'required', 'plugins.pubIds.doi.manager.settings.doiChapterSuffixPatternRequired', function($doiChapterSuffixPattern) use ($form) {
@@ -139,13 +139,13 @@ class DOISettingsForm extends Form {
 	//
 	function _getFormFields() {
 		return array(
-			'enableSubmissionDoi' => 'bool',
+			'enablePublicationDoi' => 'bool',
 			'enableChapterDoi' => 'bool',
 			'enableRepresentationDoi' => 'bool',
 			'enableSubmissionFileDoi' => 'bool',
 			'doiPrefix' => 'string',
 			'doiSuffix' => 'string',
-			'doiSubmissionSuffixPattern' => 'string',
+			'doiPublicationSuffixPattern' => 'string',
 			'doiChapterSuffixPattern' => 'string',
 			'doiRepresentationSuffixPattern' => 'string',
 			'doiSubmissionFileSuffixPattern' => 'string',

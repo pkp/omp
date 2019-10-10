@@ -19,7 +19,7 @@
 	<message key="plugins.pubIds.doi.manager.settings.doiObjects">Forlagsindhold</message>
 	<message key="plugins.pubIds.doi.manager.settings.doiObjectsRequired">Vælg de enheder, der skal have tildelt DOI'er.</message>
 	<message key="plugins.pubIds.doi.manager.settings.explainDois">Vælg de publiceringsenheder, der skal have tildelt Digital Object Identifiers (DOI):</message>
-	<message key="plugins.pubIds.doi.manager.settings.enableSubmissionDoi">Monografier</message>
+	<message key="plugins.pubIds.doi.manager.settings.enablePublicationDoi">Monografier</message>
 	<message key="plugins.pubIds.doi.manager.settings.enableChapterDoi">Kapitler</message>
 	<message key="plugins.pubIds.doi.manager.settings.enableRepresentationDoi">Publikationsformater</message>
 	<message key="plugins.pubIds.doi.manager.settings.enableSubmissionFileDoi">Filer</message>
@@ -37,7 +37,7 @@
 	<message key="plugins.pubIds.doi.manager.settings.doiSuffixDefault">Anvend standardformaterne.</message>
 	<message key="plugins.pubIds.doi.manager.settings.doiSuffixDefault.description"><![CDATA[%p.%m til monografier<br />%p.%m.c%c til kapitler<br />%p.%m.%f til publikationsformater<br />%p.%m.%f.%s til filer.]]></message>
 	<message key="plugins.pubIds.doi.manager.settings.doiSuffixCustomIdentifier"> Indskriv et særskilt DOI-suffiks for hvert publiceret element. Der findes et ekstra DOI-felt på hvert elements metadataside.</message>
-	<message key="plugins.pubIds.doi.manager.settings.doiSubmissionSuffixPatternRequired">Indtast DOI-suffiks-formatet til monografier.</message>
+	<message key="plugins.pubIds.doi.manager.settings.doiPublicationSuffixPatternRequired">Indtast DOI-suffiks-formatet til monografier.</message>
 	<message key="plugins.pubIds.doi.manager.settings.doiChapterSuffixPatternRequired">Indtast DOI-suffiks-formatet til kapitler.</message>
 	<message key="plugins.pubIds.doi.manager.settings.doiRepresentationSuffixPatternRequired">Indtast DOI-suffiks-formatet til publikationsformater</message>
 	<message key="plugins.pubIds.doi.manager.settings.doiSubmissionFileSuffixPatternRequired">Indtast DOI-suffiks-formatet til filer.</message>

@@ -24,7 +24,7 @@
 	{fbvFormArea id="doiObjectsFormArea" title="plugins.pubIds.doi.manager.settings.doiObjects"}
 		{fbvFormSection list="true"}
 			<p class="pkp_help">{translate key="plugins.pubIds.doi.manager.settings.explainDois"}</p>
-			{fbvElement type="checkbox" id="enableSubmissionDoi" label="plugins.pubIds.doi.manager.settings.enableSubmissionDoi" maxlength="40" checked=$enableSubmissionDoi|compare:true}
+			{fbvElement type="checkbox" id="enablePublicationDoi" label="plugins.pubIds.doi.manager.settings.enablePublicationDoi" maxlength="40" checked=$enablePublicationDoi|compare:true}
 			{fbvElement type="checkbox" id="enableChapterDoi" label="plugins.pubIds.doi.manager.settings.enableChapterDoi" maxlength="40" checked=$enableChapterDoi|compare:true}
 			{fbvElement type="checkbox" id="enableRepresentationDoi" label="plugins.pubIds.doi.manager.settings.enableRepresentationDoi" maxlength="40" checked=$enableRepresentationDoi|compare:true}
 			{fbvElement type="checkbox" id="enableSubmissionFileDoi" label="plugins.pubIds.doi.manager.settings.enableSubmissionFileDoi" maxlength="40" checked=$enableSubmissionFileDoi|compare:true}
@@ -53,7 +53,7 @@
 		{fbvFormSection list="true"}
 			{fbvElement type="radio" id="doiSuffixPattern" name="doiSuffix" value="pattern" label="plugins.pubIds.doi.manager.settings.doiSuffixPattern" checked=$doiSuffix|compare:"pattern"}
 			<p class="pkp_help">{translate key="plugins.pubIds.doi.manager.settings.doiSuffixPattern.example"}</p>
-			{fbvElement type="text" id="doiSubmissionSuffixPattern" value=$doiSubmissionSuffixPattern label="plugins.pubIds.doi.manager.settings.doiSuffixPattern.submissions" maxlength="40" inline=true size=$fbvStyles.size.MEDIUM}
+			{fbvElement type="text" id="doiPublicationSuffixPattern" value=$doiPublicationSuffixPattern label="plugins.pubIds.doi.manager.settings.doiSuffixPattern.submissions" maxlength="40" inline=true size=$fbvStyles.size.MEDIUM}
 			{fbvElement type="text" id="doiChapterSuffixPattern" value=$doiChapterSuffixPattern label="plugins.pubIds.doi.manager.settings.doiSuffixPattern.chapters" maxlength="40" inline=true size=$fbvStyles.size.MEDIUM}
 			{fbvElement type="text" id="doiRepresentationSuffixPattern" value=$doiRepresentationSuffixPattern label="plugins.pubIds.doi.manager.settings.doiSuffixPattern.representations" maxlength="40" inline=true size=$fbvStyles.size.MEDIUM}
 			{fbvElement type="text" id="doiSubmissionFileSuffixPattern" value=$doiSubmissionFileSuffixPattern label="plugins.pubIds.doi.manager.settings.doiSuffixPattern.files" maxlength="40" inline=true size=$fbvStyles.size.MEDIUM}

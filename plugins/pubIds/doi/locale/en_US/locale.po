@@ -32,7 +32,7 @@ msgstr "Please choose the objects DOIs should be assigned to."
 msgid "plugins.pubIds.doi.manager.settings.explainDois"
 msgstr "Please select the publishing objects that will have Digital Object Identifiers (DOI) assigned:"
 
-msgid "plugins.pubIds.doi.manager.settings.enableSubmissionDoi"
+msgid "plugins.pubIds.doi.manager.settings.enablePublicationDoi"
 msgstr "Monographs"
 
 msgid "plugins.pubIds.doi.manager.settings.enableChapterDoi"
@@ -86,7 +86,7 @@ msgstr "%p.%m for monographs<br />%p.%m.c%c for chapters<br />%p.%m.%f for publi
 msgid "plugins.pubIds.doi.manager.settings.doiSuffixCustomIdentifier"
 msgstr "Enter an individual DOI suffix for each published item. You'll find an additional DOI input field on each item's meta-data page."
 
-msgid "plugins.pubIds.doi.manager.settings.doiSubmissionSuffixPatternRequired"
+msgid "plugins.pubIds.doi.manager.settings.doiPublicationSuffixPatternRequired"
 msgstr "Please enter the DOI suffix pattern for monographs."
 
 msgid "plugins.pubIds.doi.manager.settings.doiChapterSuffixPatternRequired"
@@ -166,3 +166,21 @@ msgstr "The DOI {$pubId} has been assigned."
 
 msgid "plugins.pubIds.doi.editor.missingPrefix"
 msgstr "The DOI must begin with {$doiPrefix}."
+
+msgid "plugins.pubIds.doi.editor.preview.publication"
+msgstr "The DOI for this publication will be {$doi}."
+
+msgid "plugins.pubIds.doi.editor.preview.publication.none"
+msgstr "A DOI has not been assigned to this publication."
+
+msgid "plugins.pubIds.doi.editor.preview.chapters"
+msgstr "Chapter: {$title}"
+
+msgid "plugins.pubIds.doi.editor.preview.publicationFormats"
+msgstr "Publication Format: {$title}"
+
+msgid "plugins.pubIds.doi.editor.preview.files"
+msgstr "File: {$title}"
+
+msgid "plugins.pubIds.doi.editor.preview.objects"
+msgstr "Item"

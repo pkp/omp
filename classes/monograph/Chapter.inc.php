@@ -26,22 +26,6 @@ class Chapter extends DataObject {
 	// Get/set methods
 	//
 	/**
-	 * Get the monographId this chapter belongs to
-	 * @return int
-	 */
-	function getMonographId() {
-		return parent::getSubmissionId();
-	}
-
-	/**
-	 * Set the monographId this chapter belongs to
-	 * @param int $monographId
-	 */
-	function setMonographId($monographId) {
-		return parent::setSubmissionId($monographId);
-	}
-
-	/**
 	 * Get the chapter full title (with title and subtitle).
 	 * @return string
 	 */
