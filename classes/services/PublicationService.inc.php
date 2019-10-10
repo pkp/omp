@@ -354,6 +354,11 @@ class PublicationService extends PKPPublicationService {
 			ASSOC_TYPE_MONOGRAPH,
 			$newPublication->getData('submissionId')
 		);
+
+		// Update the metadata in the search index.
+		$submission = Services::get('submission')->get($newPublication->getData('submissionId'));
+		$submissionSearchIndex = Application::getSubmissionSearchIndex();
+		$submissionSearchIndex->submissionMetadataChanged($submission);
 	}
 
 	/**
