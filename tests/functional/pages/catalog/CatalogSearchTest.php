@@ -34,12 +34,9 @@ class CatalogSearchTest extends ContentBaseTestCase {
 		$this->type($selector, 'bomb');
 		$this->click('//form[contains(@class, \'cmp_search\')]//a[contains(.,\'Search\')]');
 
-		// @TODO Search is not currently working.
-		// See: https://github.com/pkp/pkp-lib/issues/4859
-		//
 		// Should be 1 result
-		// $this->waitForElementPresent('//div[contains(.,\'1 Titles\')]');
-		// $this->waitForElementPresent('//a[contains(.,\'Bomb Canada and Other Unkind Remarks in the American Media\')]');
+		$this->waitForElementPresent('//div[contains(.,\'1 Titles\')]');
+		$this->waitForElementPresent('//a[contains(.,\'Bomb Canada and Other Unkind Remarks in the American Media\')]');
 	}
 
 	/**
