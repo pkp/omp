@@ -75,7 +75,7 @@ class CatalogHandler extends PKPCatalogHandler {
 			'status' => STATUS_PUBLISHED,
 		);
 		$submissions = $submissionService->getMany($params);
-		$total = $submissionService->getMax($context->getId(), $params);
+		$total = $submissionService->getMax($params);
 
 		$featureDao = DAORegistry::getDAO('FeatureDAO');
 		$featuredMonographIds = $featureDao->getSequencesByAssoc(ASSOC_TYPE_PRESS, $context->getId());
