@@ -143,7 +143,7 @@ class CSVImportExportPlugin extends ImportExportPlugin {
 						$submission = $submissionDao->newDataObject();
 						$submission->setContextId($press->getId());
 						$submission->setUserId($user->getId());
-						$submission->stampStatusModified();
+						$submission->stampLastActivity();
 						$submission->setStatus(STATUS_PUBLISHED);
 						$submission->setWorkType($isEditedVolume == 1?WORK_TYPE_EDITED_VOLUME:WORK_TYPE_AUTHORED_WORK);
 						$submission->setCopyrightNotice($press->getLocalizedSetting('copyrightNotice'), $locale);
