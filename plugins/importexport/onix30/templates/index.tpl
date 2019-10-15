@@ -13,7 +13,7 @@
 {/strip}
 
 <div class="pkp_page_content">
-	{if !$currentcontext->getData('publisher') || !$currentcontext->getData('location') || !$currentcontext->getData('codeType') || !$currentcontext->getData('codeValue')}
+	{if !$currentContext->getData('publisher') || !$currentContext->getData('location') || !$currentContext->getData('codeType') || !$currentContext->getData('codeValue')}
 		{translate key="plugins.importexport.onix30.pressMissingFields"}
 	{else}
 		<script type="text/javascript">

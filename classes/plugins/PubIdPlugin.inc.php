@@ -38,24 +38,6 @@ abstract class PubIdPlugin extends PKPPubIdPlugin {
 	}
 
 	/**
-	 * @copydoc PKPPubIdPlugin::getPubObjects()
-	 */
-	function getPubObjects($pubObjectType, $contextId) {
-		$objectsToCheck = null;
-		switch($pubObjectType) {
-			case 'Chapter':
-				$chapterDao = DAORegistry::getDAO('ChapterDAO');
-				$chapters = $chapterDao->getByContextId($contextId);
-				$objectsToCheck = $chapters->toArray();
-				break;
-			default:
-				$objectsToCheck = parent::getPubObjects($pubObjectType, $contextId);
-				break;
-		}
-		return $objectsToCheck;
-	}
-
-	/**
 	 * @copydoc PKPPubIdPlugin::getPubId()
 	 */
 	function getPubId($pubObject) {
@@ -180,6 +162,21 @@ abstract class PubIdPlugin extends PKPPubIdPlugin {
 		return array_merge(parent::getDAOs(), array('Chapter' => DAORegistry::getDAO('ChapterDAO')));
 	}
 
+	/**
+	 * @copydoc PKPPubIdPlugin::checkDuplicate()
+	 */
+	function checkDuplicate($pubId, $pubObjectType, $excludeId, $contextId) {
+		foreach ($this->getPubObjectTypes() as $type) {
+			if ($type === 'Chapter') {
+				$excludeTypeId = $type === $pubObjectType ? $excludeId : null;
+				if (DAORegistry::getDAO('ChapterDAO')->pubIdExists($this->getPubIdType(), $pubId, $excludeTypeId, $contextId)) {
+					return false;
+				}
+			}
+		}
+
+		return true;
+	}
 }
 
 

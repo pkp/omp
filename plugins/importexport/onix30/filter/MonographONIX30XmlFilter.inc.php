@@ -61,11 +61,10 @@ class MonographONIX30XmlFilter extends NativeExportFilter {
 		$rootNode = $doc->createElementNS($deployment->getNamespace(), 'ONIXMessage');
 		$rootNode->appendChild($this->createHeaderNode($doc, $monograph));
 
-		$publicationFormatDao = DAORegistry::getDAO('PublicationFormatDAO');
-		$publicationFormats = $publicationFormatDao->getByPublicationId($monograph->getCurrentPublication()->getId());
+		$publicationFormats = $monograph->getCurrentPublication()->getData('publicationFormats');
 
 		// Append all publication formats as Product nodes.
-		while ($publicationFormat = $publicationFormats->next()) {
+		foreach ($publicationFormats as $publicationFormat) {
 			$rootNode->appendChild($this->createProductNode($doc, $monograph, $publicationFormat));
 		}
 		$doc->appendChild($rootNode);
@@ -226,11 +225,11 @@ class MonographONIX30XmlFilter extends NativeExportFilter {
 		/* --- Series information, if this monograph is part of one. --- */
 
 		$seriesDao = DAORegistry::getDAO('SeriesDAO');
-		$series = $seriesDao->getById($submission->getSeriesId());
+		$series = $seriesDao->getById($submission->getCurrentPublication()->getData('seriesId'));
 		if ($series != null) {
 
-			if ($submission->getSeriesPosition() != '') {
-				$titleElementNode->appendChild($this->_buildTextNode($doc, 'PartNumber', $submission->getSeriesPosition()));
+			if ($submission->getCurrentPublication()->getData('seriesPosition')) {
+				$titleElementNode->appendChild($this->_buildTextNode($doc, 'PartNumber', $submission->getCurrentPublication()->getData('seriesPosition')));
 			}
 
 			if ($series->getLocalizedPrefix() == '' || $series->getLocalizedTitle(false) == '') {
@@ -259,22 +258,23 @@ class MonographONIX30XmlFilter extends NativeExportFilter {
 
 		$productTitleDetailNode->appendChild($titleElementNode);
 
-		if ($submission->getLocalizedPrefix() == '' || $submission->getLocalizedTitle(false) == '') {
-			$titleElementNode->appendChild($this->_buildTextNode($doc, 'TitleText', trim(join(' ', array($submission->getLocalizedPrefix(), $submission->getLocalizedTitle(false))))));
+		$publication = $submission->getCurrentPublication();
+		if (!$publication->getLocalizedData('prefix') || !$publication->getLocalizedData('title')) {
+			$titleElementNode->appendChild($this->_buildTextNode($doc, 'TitleText', trim($publication->getLocalizedData('prefix') ?? $publication->getLocalizedTitle())));
 		} else {
-			if ($submission->getLocalizedPrefix() != '') {
-				$titleElementNode->appendChild($this->_buildTextNode($doc, 'TitlePrefix', $submission->getLocalizedPrefix()));
+			if ($publication->getLocalizedData('prefix')) {
+				$titleElementNode->appendChild($this->_buildTextNode($doc, 'TitlePrefix', $publication->getLocalizedData('prefix')));
 			}
-			$titleElementNode->appendChild($this->_buildTextNode($doc, 'TitleWithoutPrefix', $submission->getLocalizedTitle(false)));
+			$titleElementNode->appendChild($this->_buildTextNode($doc, 'TitleWithoutPrefix', $publication->getLocalizedTitle()));
 		}
 
-		if ($submission->getLocalizedSubtitle() != '') {
-			$titleElementNode->appendChild($this->_buildTextNode($doc, 'Subtitle', $submission->getLocalizedSubtitle()));
+		if ($publication->getData('subtitle')) {
+			$titleElementNode->appendChild($this->_buildTextNode($doc, 'Subtitle', $publication->getData('subtitle')));
 		}
 
 		/* --- Contributor information --- */
 
-		$authors = $submission->getAuthors(); // sorts by sequence.
+		$authors = $publication->getData('authors'); // sorts by sequence.
 		$sequence = 1;
 		foreach ($authors as $author) {
 			$contributorNode = $doc->createElementNS($deployment->getNamespace(), 'Contributor');
@@ -325,7 +325,7 @@ class MonographONIX30XmlFilter extends NativeExportFilter {
 		/* --- Add Language elements --- */
 
 		$submissionLanguageDao = DAORegistry::getDAO('SubmissionLanguageDAO');
-		$allLanguages = $submissionLanguageDao->getLanguages($submission->getId(), array_keys(AppLocale::getSupportedFormLocales()));
+		$allLanguages = $submissionLanguageDao->getLanguages($publication->getId(), array_keys(AppLocale::getSupportedFormLocales()));
 		$uniqueLanguages = array();
 		foreach ($allLanguages as $locale => $languages) {
 			$uniqueLanguages = array_merge($uniqueLanguages, $languages);
@@ -375,7 +375,7 @@ class MonographONIX30XmlFilter extends NativeExportFilter {
 		$subjectNode->appendChild($this->_buildTextNode($doc, 'SubjectSchemeVersion', '2')); // Version 2 of ^^
 
 		$submissionSubjectDao =& DAORegistry::getDAO('SubmissionSubjectDAO');
-		$allSubjects =& $submissionSubjectDao->getSubjects($submission->getId(),  array_keys(AppLocale::getSupportedFormLocales()));
+		$allSubjects =& $submissionSubjectDao->getSubjects($publication->getId(),  array_keys(AppLocale::getSupportedFormLocales()));
 		$uniqueSubjects = array();
 		foreach ($allSubjects as $locale => $subjects) {
 			$uniqueSubjects = array_merge($uniqueSubjects, $subjects);
@@ -389,29 +389,29 @@ class MonographONIX30XmlFilter extends NativeExportFilter {
 
 		/* --- Add Audience elements --- */
 
-		if ($submission->getAudience()) {
+		if ($submission->getData('audience')) {
 			$audienceNode = $doc->createElementNS($deployment->getNamespace(), 'Audience');
 			$descDetailNode->appendChild($audienceNode);
-			$audienceNode->appendChild($this->_buildTextNode($doc, 'AudienceCodeType', $submission->getAudience()));
+			$audienceNode->appendChild($this->_buildTextNode($doc, 'AudienceCodeType', $submission->getData('audience')));
 			$audienceNode->appendChild($this->_buildTextNode($doc, 'AudienceCodeValue', '01'));
 		}
 
-		if ($submission->getAudienceRangeQualifier() != '') {
+		if ($submission->getData('audienceRangeQualifier') != '') {
 			$audienceRangeNode = $doc->createElementNS($deployment->getNamespace(), 'AudienceRange');
 			$descDetailNode->appendChild($audienceRangeNode);
-			$audienceRangeNode->appendChild($this->_buildTextNode($doc, 'AudienceRangeQualifier', $submission->getAudienceRangeQualifier()));
+			$audienceRangeNode->appendChild($this->_buildTextNode($doc, 'AudienceRangeQualifier', $submission->getData('audienceRangeQualifier')));
 
-			if ($submission->getAudienceRangeExact() != '') {
+			if ($submission->getData('audienceRangeExact') != '') {
 				$audienceRangeNode->appendChild($this->_buildTextNode($doc, 'AudienceRangePrecision', '01')); // Exact, list31
-				$audienceRangeNode->appendChild($this->_buildTextNode($doc, 'AudienceRangeValue', $submission->getAudienceRangeExact()));
+				$audienceRangeNode->appendChild($this->_buildTextNode($doc, 'AudienceRangeValue', $submission->getData('audienceRangeExact')));
 			} else { // if not exact, then include the From -> To possibilities
-				if ($submission->getAudienceRangeFrom() != '') {
+				if ($submission->getData('audienceRangeFrom') != '') {
 					$audienceRangeNode->appendChild($this->_buildTextNode($doc, 'AudienceRangePrecision', '03')); // from
-					$audienceRangeNode->appendChild($this->_buildTextNode($doc, 'AudienceRangeValue', $submission->getAudienceRangeFrom()));
+					$audienceRangeNode->appendChild($this->_buildTextNode($doc, 'AudienceRangeValue', $submission->getData('audienceRangeFrom')));
 				}
-				if ($submission->getAudienceRangeTo() != '') {
+				if ($submission->getData('audienceRangeTo') != '') {
 					$audienceRangeNode->appendChild($this->_buildTextNode($doc, 'AudienceRangePrecision', '04')); // to
-					$audienceRangeNode->appendChild($this->_buildTextNode($doc, 'AudienceRangeValue', $submission->getAudienceRangeTo()));
+					$audienceRangeNode->appendChild($this->_buildTextNode($doc, 'AudienceRangeValue', $submission->getData('audienceRangeTo')));
 				}
 			}
 		}
@@ -425,7 +425,7 @@ class MonographONIX30XmlFilter extends NativeExportFilter {
 		$collateralDetailNode = $doc->createElementNS($deployment->getNamespace(), 'CollateralDetail');
 		$productNode->appendChild($collateralDetailNode);
 
-		$abstract = strip_tags($submission->getLocalizedAbstract());
+		$abstract = strip_tags($publication->getLocalizedData('abstract'));
 
 		$textContentNode = $doc->createElementNS($deployment->getNamespace(), 'TextContent');
 		$collateralDetailNode->appendChild($textContentNode);
