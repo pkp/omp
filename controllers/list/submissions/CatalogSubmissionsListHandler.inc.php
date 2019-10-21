@@ -88,6 +88,7 @@ class CatalogSubmissionsListHandler extends SubmissionsListHandler {
 		$config['filters'] = array();
 
 		if ($context) {
+			$config['contextId'] = $context->getId();
 
 			$categories = array();
 			$categoryDao = DAORegistry::getDAO('CategoryDAO');
