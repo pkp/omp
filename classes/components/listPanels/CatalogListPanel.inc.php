@@ -84,6 +84,8 @@ class CatalogListPanel extends \PKP\components\listPanels\ListPanel {
 		$config['filters'] = [];
 
 		if ($context) {
+			$config['contextId'] = $context->getId();
+
 			$categories = [];
 			$categoryDao = \DAORegistry::getDAO('CategoryDAO');
 			$categoriesResult = $categoryDao->getByContextId($context->getId());
