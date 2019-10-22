@@ -76,9 +76,9 @@ class SelectMonographHandler extends Handler {
 			]
 		);
 		$params = array_merge($selectNewEntryListPanel->getParams, ['contextId' => $request->getContext()->getId()]);
-		$submissions = \Services::get('submission')->getMany($params);
+		$result = \Services::get('submission')->getMany($params);
 		$items = [];
-		foreach ($submissions as $submission) {
+		foreach ($result as $submission) {
 			$items[] = \Services::get('submission')->getBackendListProperties($submission, ['request' => $request]);
 		}
 		$selectNewEntryListPanel->set([

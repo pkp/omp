@@ -98,9 +98,9 @@ class ManageCatalogHandler extends Handler {
 			'count' => $catalogList->count,
 			'contextId' => $context->getId(),
 		]);
-		$submissions = $submissionService->getMany($params);
+		$result = $submissionService->getMany($params);
 		$items = [];
-		foreach ($submissions as $submission) {
+		foreach ($result as $submission) {
 			$items[] = $submissionService->getBackendListProperties($submission, ['request' => $request]);
 		}
 		$catalogList->set([
