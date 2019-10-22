@@ -230,6 +230,20 @@
 			)
 		</query>
 
+		<!-- update the DOI setting names -->
+		<query>
+			UPDATE plugin_settings
+			SET setting_name="doiPublicationSuffixPattern"
+			WHERE setting_name="doiSubmissionSuffixPattern"
+				AND plugin_name="doipubidplugin"
+		</query>
+		<query>
+			UPDATE plugin_settings
+			SET setting_name="enablePublicationDoi"
+			WHERE setting_name="enableSubmissionDoi"
+				AND plugin_name="doipubidplugin"
+		</query>
+
 		<!-- remove deprecated and temporary tables. should be last commands -->
 		<query>DROP TABLE submission_categories</query>
 		<query>DROP TABLE published_submissions</query>
