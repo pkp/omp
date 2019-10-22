@@ -30,10 +30,10 @@ class SitemapHandler extends PKPSitemapHandler {
 		// Catalog
 		$root->appendChild($this->_createUrlTree($doc, $request->url($press->getPath(), 'catalog')));
 
-		$submissions = Services::get('submission')->getMany(['status' => STATUS_PUBLISHED, 'contextId' => $pressId, 'count' => 1000]);
-		foreach ($submissions as $submission) {
+		$result = Services::get('submission')->getMany(['status' => STATUS_PUBLISHED, 'contextId' => $pressId, 'count' => 1000]);
+		foreach ($result as $submission) {
 			// Book
-			$root->appendChild($this->_createUrlTree($doc, $request->url($press->getPath(), 'catalog', 'view', array(submission->getBestId()))));
+			$root->appendChild($this->_createUrlTree($doc, $request->url($press->getPath(), 'catalog', 'view', array($submission->getBestId()))));
 			// Files
 			// Get publication formats
 			$publicationFormats = DAORegistry::getDAO('PublicationFormatDAO')->getApprovedByPublicationId($submission->getCurrentPublication()->getId())->toArray();
@@ -42,13 +42,13 @@ class SitemapHandler extends PKPSitemapHandler {
 				if ($format->getIsAvailable()) {
 					// Consider only available publication format files
 					$availableFiles = array_filter(
-						Application::getSubmissionDAO()->getLatestRevisionsByAssocId(ASSOC_TYPE_PUBLICATION_FORMAT, $format->getId(), submission->getId()),
+						Application::getSubmissionDAO()->getLatestRevisionsByAssocId(ASSOC_TYPE_PUBLICATION_FORMAT, $format->getId(), $submission->getId()),
 						function($a) {
 							return $a->getDirectSalesPrice() !== null;
 						}
 					);
 					foreach ($availableFiles as $file) {
-						$root->appendChild($this->_createUrlTree($doc, $request->url($press->getPath(), 'catalog', 'view', array(submission->getBestId(), $format->getBestId(), $file->getBestId()))));
+						$root->appendChild($this->_createUrlTree($doc, $request->url($press->getPath(), 'catalog', 'view', array($submission->getBestId(), $format->getBestId(), $file->getBestId()))));
 					}
 				}
 			}

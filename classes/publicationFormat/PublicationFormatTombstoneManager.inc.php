@@ -80,8 +80,8 @@ class PublicationFormatTombstoneManager {
 	 * @param $press
 	 */
 	function insertTombstonesByPress($press) {
-		$submissions = Services::get('submission')->getMany(['contextId' => $press->getId(), 'status' => STATUS_PUBLISHED, 'count' => 2000]);
-		foreach ($submissions as $submission) {
+		$result = Services::get('submission')->getMany(['contextId' => $press->getId(), 'status' => STATUS_PUBLISHED, 'count' => 2000]);
+		foreach ($result as $submission) {
 			foreach ($submission->getData('publications') as $publication) {
 				$this->insertTombstonesByPublicationFormats($publication->getData('publicationFormats'), $press);
 			}
@@ -104,8 +104,8 @@ class PublicationFormatTombstoneManager {
 	 * @param $pressId int
 	 */
 	function deleteTombstonesByPressId($pressId) {
-		$submissions = Services::get('submission')->getMany(['contextId' => $pressId, 'status' => STATUS_PUBLISHED, 'count' => 2000]);
-		foreach ($submissions as $submission) {
+		$result = Services::get('submission')->getMany(['contextId' => $pressId, 'status' => STATUS_PUBLISHED, 'count' => 2000]);
+		foreach ($result as $submission) {
 			foreach ($submission->getData('publications') as $publication) {
 				$this->deleteTombstonesByPublicationFormats($publication->getData('publicationFormats'));
 			}

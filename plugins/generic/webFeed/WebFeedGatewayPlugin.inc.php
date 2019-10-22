@@ -114,7 +114,7 @@ class WebFeedGatewayPlugin extends GatewayPlugin {
 		if ($recentItems > 0) {
 			$args['count'] = $recentItems;
 		}
-		$templateMgr->assign('submissions', Services::get('submission')->getMany($args));
+		$templateMgr->assign('submissions', iterator_to_array(Services::get('submission')->getMany($args)));
 
 		$versionDao = DAORegistry::getDAO('VersionDAO');
 		$version = $versionDao->getCurrentVersion();

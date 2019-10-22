@@ -74,16 +74,16 @@ class CatalogHandler extends PKPCatalogHandler {
 			'offset' => $offset,
 			'status' => STATUS_PUBLISHED,
 		);
-		$submissions = $submissionService->getMany($params);
+		$submissionsResult = $submissionService->getMany($params);
 		$total = $submissionService->getMax($params);
 
 		$featureDao = DAORegistry::getDAO('FeatureDAO');
 		$featuredMonographIds = $featureDao->getSequencesByAssoc(ASSOC_TYPE_PRESS, $context->getId());
 
-		$this->_setupPaginationTemplate($request, $submissions, $page, $count, $offset, $total);
+		$this->_setupPaginationTemplate($request, count($submissionsResult), $page, $count, $offset, $total);
 
 		$templateMgr->assign(array(
-			'publishedSubmissions' => $submissions,
+			'publishedSubmissions' => iterator_to_array($submissionsResult),
 			'featuredMonographIds' => $featuredMonographIds,
 		));
 
@@ -155,7 +155,7 @@ class CatalogHandler extends PKPCatalogHandler {
 			'offset' => $offset,
 			'status' => STATUS_PUBLISHED,
 		);
-		$submissions = $submissionService->getMany($params);
+		$submissionsResult = $submissionService->getMany($params);
 		$total = $submissionService->getMax($context->getId(), $params);
 
 		$featureDao = DAORegistry::getDAO('FeatureDAO');
@@ -168,11 +168,11 @@ class CatalogHandler extends PKPCatalogHandler {
 			$newReleases = $newReleaseDao->getMonographsByAssoc(ASSOC_TYPE_SERIES, $series->getId());
 		}
 
-		$this->_setupPaginationTemplate($request, $submissions, $page, $count, $offset, $total);
+		$this->_setupPaginationTemplate($request, count($submissionsResult), $page, $count, $offset, $total);
 
 		$templateMgr->assign(array(
 			'series' => $series,
-			'publishedSubmissions' => $submissions,
+			'publishedSubmissions' => iterator_to_array($submissionsResult),
 			'featuredMonographIds' => $featuredMonographIds,
 			'newReleasesMonographs' => $newReleases,
 		));

@@ -141,8 +141,8 @@ class ChapterForm extends Form {
 				];
 			}
 		}
-		$allAuthors = Services::get('author')->getMany(['publicationIds' => $this->getPublication()->getId(), 'count' => 1000]);
-		foreach ($allAuthors as $author) {
+		$result = Services::get('author')->getMany(['publicationIds' => $this->getPublication()->getId(), 'count' => 1000]);
+		foreach ($result as $author) {
 			$isIncluded = false;
 			foreach ($chapterAuthorOptions as $chapterAuthorOption) {
 				if ($chapterAuthorOption['id'] === $author->getId()) {

@@ -323,8 +323,8 @@ class ManageSpotlightsGridHandler extends GridHandler {
 			$args['searchPhrase'] = $name;
 		}
 
-		$submissions = Services::get('submission')->getMany($args);
-		foreach ($submissions as $submission) {
+		$result = Services::get('submission')->getMany($args);
+		foreach ($result as $submission) {
 			$matches[] = array('label' => $submission->getLocalizedTitle(), 'value' => $submission->getId() . ':' . SPOTLIGHT_TYPE_BOOK);
 		}
 
