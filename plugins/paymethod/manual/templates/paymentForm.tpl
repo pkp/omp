@@ -12,6 +12,7 @@
 
 <div class="page page_payment">
 	{include file="frontend/components/breadcrumbs.tpl" currentTitleKey="plugins.paymethod.manual"}
+	<h1>{translate key="plugins.paymethod.manual"}</h1>
 
 	<p>{$manualInstructions|nl2br}</p>
 
