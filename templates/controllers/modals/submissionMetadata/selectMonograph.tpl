@@ -11,7 +11,7 @@
  *}
 
 {* Help Link *}
-{help file="catalog.md" section="new-catalog-entry" class="pkp_help_modal"}
+{help file="catalog" section="new-catalog-entry" class="pkp_help_modal"}
 
 <script type="text/javascript">
 	$(function() {ldelim}
