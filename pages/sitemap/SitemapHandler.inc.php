@@ -30,8 +30,8 @@ class SitemapHandler extends PKPSitemapHandler {
 		// Catalog
 		$root->appendChild($this->_createUrlTree($doc, $request->url($press->getPath(), 'catalog')));
 
-		$result = Services::get('submission')->getMany(['status' => STATUS_PUBLISHED, 'contextId' => $pressId, 'count' => 1000]);
-		foreach ($result as $submission) {
+		$submissionsIterator = Services::get('submission')->getMany(['status' => STATUS_PUBLISHED, 'contextId' => $pressId, 'count' => 1000]);
+		foreach ($submissionsIterator as $submission) {
 			// Book
 			$root->appendChild($this->_createUrlTree($doc, $request->url($press->getPath(), 'catalog', 'view', array($submission->getBestId()))));
 			// Files

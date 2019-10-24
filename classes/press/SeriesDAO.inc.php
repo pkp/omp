@@ -196,8 +196,8 @@ class SeriesDAO extends PKPSectionDAO {
 		$subEditorsDao->deleteBySectionId($seriesId, $contextId);
 
 		// Remove monographs from this series
-		$result = Services::get('submission')->getMany(['seriesIds' => $seriesId, 'count' => 1000]);
-		foreach ($result as $submission) {
+		$submissionsIterator = Services::get('submission')->getMany(['seriesIds' => $seriesId, 'count' => 1000]);
+		foreach ($submissionsIterator as $submission) {
 			foreach ((array) $submission->getData('publications') as $publication) {
 				Services::get('publication')->edit($publication, ['seriesId' => 0]);
 			}
