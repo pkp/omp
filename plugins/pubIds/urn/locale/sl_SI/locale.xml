@@ -21,7 +21,7 @@
 	<message key="plugins.pubIds.urn.manager.settings.urnObjects">Vsebina publikacije</message>
 	<message key="plugins.pubIds.urn.manager.settings.urnObjectsRequired">Prosimo, izberite predmete, katerim naj bodo dodeljeni URN-ji.</message>
 	<message key="plugins.pubIds.urn.manager.settings.explainURNs">Prosimo, izberite objekte za objavo, katerim bo dodeljeno enotno ime vira URN:</message>
-	<message key="plugins.pubIds.urn.manager.settings.enableSubmissionURN">Monografska publikacija</message>
+	<message key="plugins.pubIds.urn.manager.settings.enablePublicationURN">Monografska publikacija</message>
 	<message key="plugins.pubIds.urn.manager.settings.enableRepresentationURN">Format publikacije</message>
 	<message key="plugins.pubIds.urn.manager.settings.enableSubmissionFileURN">Datoteke</message>
 
@@ -39,7 +39,7 @@
 	<message key="plugins.pubIds.urn.manager.settings.urnSuffixDefault">Uporabi privzete vzorce.</message>
 	<message key="plugins.pubIds.urn.manager.settings.urnSuffixDefault.description"><![CDATA[%p.%m za monografske publikacije <br />%p.%m.%f za formate publikacije <br />%p.%m.%f.%s za datoteke.]]></message>
 	<message key="plugins.pubIds.urn.manager.settings.urnSuffixCustomIdentifier">Vnesite posamezno URN pripono za vsako objavljen predmet.  Na metapodatkovni strani vsake postavke boste našli dodatno polje za vnos URN. </message>
-	<message key="plugins.pubIds.urn.manager.settings.urnSubmissionSuffixPatternRequired">Vnesite vzorec URN pripone za monografske publikacije.</message>
+	<message key="plugins.pubIds.urn.manager.settings.urnPublicationSuffixPatternRequired">Vnesite vzorec URN pripone za monografske publikacije.</message>
 	<message key="plugins.pubIds.urn.manager.settings.urnRepresentationSuffixPatternRequired">Vnesite vzorec URN pripone za formate publikacije.</message>
 	<message key="plugins.pubIds.urn.manager.settings.urnSubmissionFileSuffixPatternRequired">Vnesite vzorec URN pripone za datoteke.</message>
 	<message key="plugins.pubIds.urn.manager.settings.checkNo">Kontrolna številka</message>
