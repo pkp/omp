@@ -18,7 +18,7 @@
 	<message key="plugins.pubIds.urn.manager.settings.urnObjects">Forlagsindhold</message>
 	<message key="plugins.pubIds.urn.manager.settings.urnObjectsRequired">Vælg de elementer, der skal have tildelt Uniform Resource Names (URN):</message>
 	<message key="plugins.pubIds.urn.manager.settings.explainURNs">Vælg de publiceringsobjekter, der skal have tildelt Uniform Resource Names (URN):</message>
-	<message key="plugins.pubIds.urn.manager.settings.enableSubmissionURN">Monografier</message>
+	<message key="plugins.pubIds.urn.manager.settings.enablePublicationURN">Monografier</message>
 	<message key="plugins.pubIds.urn.manager.settings.enableChapterURN">Kapitler</message>
 	<message key="plugins.pubIds.urn.manager.settings.enableRepresentationURN">Publikationsformater</message>
 	<message key="plugins.pubIds.urn.manager.settings.enableSubmissionFileURN">Filer</message>
@@ -36,7 +36,7 @@
 	<message key="plugins.pubIds.urn.manager.settings.urnSuffixDefault">Anvend standardformater.</message>
 	<message key="plugins.pubIds.urn.manager.settings.urnSuffixDefault.description"><![CDATA[%p.%m til monografier<br />%p.%m.c%c til kapitler<br />%p.%m.%f til publikationsformater<br />%p.%m.%f.%s til filer.]]></message>
 	<message key="plugins.pubIds.urn.manager.settings.urnSuffixCustomIdentifier">Indsæt et individuelt URN-suffiks for hvert publiceret element. Du finder et ekstra URN-indtastningsfelt på hvert elements metadata-side.</message>
-	<message key="plugins.pubIds.urn.manager.settings.urnSubmissionSuffixPatternRequired">Indtast URN-suffiks-standarden til monografier.</message>
+	<message key="plugins.pubIds.urn.manager.settings.urnPublicationSuffixPatternRequired">Indtast URN-suffiks-standarden til monografier.</message>
 	<message key="plugins.pubIds.urn.manager.settings.urnChapterSuffixPatternRequired">Indtast URN-suffiks-standarden til kapitler.</message>
 	<message key="plugins.pubIds.urn.manager.settings.urnRepresentationSuffixPatternRequired">Indtast URN-suffiks-standarden til publikationsformater.</message>
 	<message key="plugins.pubIds.urn.manager.settings.urnSubmissionFileSuffixPatternRequired">Indtast URN-suffiks-standarden til filer</message>

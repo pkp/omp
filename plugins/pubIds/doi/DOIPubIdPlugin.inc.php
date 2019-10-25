@@ -273,7 +273,7 @@ class DOIPubIdPlugin extends PubIdPlugin {
 			$doiErrors[] = $this->getNotUniqueErrorMsg();
 		}
 		if (!empty($doiErrors)) {
-			$errors['doi'] = $doiErrors;
+			$errors['pub-id::doi'] = $doiErrors;
 		}
 	}
 
@@ -332,6 +332,10 @@ class DOIPubIdPlugin extends PubIdPlugin {
 			return;
 		}
 
+		if (!$this->getSetting($form->submissionContext->getId(), 'enablePublicationDoi')) {
+			return;
+		}
+
 		$prefix = $this->getSetting($form->submissionContext->getId(), 'doiPrefix');
 
 		$suffixType = $this->getSetting($form->submissionContext->getId(), 'doiSuffix');
@@ -357,10 +361,11 @@ class DOIPubIdPlugin extends PubIdPlugin {
 				'pattern' => $pattern,
 				'contextInitials' => $form->submissionContext->getData('acronym', $form->submissionContext->getData('primaryLocale')) ?? '',
 				'isPForPress' => true,
+				'separator' => '/',
 				'submissionId' => $form->publication->getData('submissionId'),
 				'i18n' => [
-					'assignDoi' => __('plugins.pubIds.doi.editor.doi.assignDoi'),
-					'clearDoi' => __('plugins.pubIds.doi.editor.clearObjectsDoi'),
+					'assignId' => __('plugins.pubIds.doi.editor.doi.assignDoi'),
+					'clearId' => __('plugins.pubIds.doi.editor.clearObjectsDoi'),
 					'missingParts' => __('plugins.pubIds.doi.editor.missingParts'),
 				]
 			];
@@ -378,7 +383,7 @@ class DOIPubIdPlugin extends PubIdPlugin {
 					$fieldData['year'] = $issue->getYear() ?? '';
 				}
 			}
-			$form->addField(new \PKP\components\forms\FieldDoi('pub-id::doi', $fieldData));
+			$form->addField(new \PKP\components\forms\FieldPubId('pub-id::doi', $fieldData));
 		}
 	}
 
