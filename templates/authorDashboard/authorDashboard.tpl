@@ -8,17 +8,7 @@
  * Display the author dashboard.
  *}
 {strip}
-	{assign var=primaryAuthor value=$submission->getPrimaryAuthor()}
-	{if !$primaryAuthor}
-		{assign var=authors value=$submission->getAuthors()}
-		{assign var=primaryAuthor value=$authors[0]}
-	{/if}
-	{assign var=submissionTitleSafe value=$submission->getLocalizedTitle()|strip_unsafe_html}
-	{if $primaryAuthor}
-		{assign var="pageTitleTranslated" value=$primaryAuthor->getFullName()|concat:", ":$submissionTitleSafe}
-	{else}
-		{assign var="pageTitleTranslated" value=$submissionTitleSafe}
-	{/if}
+	{assign var=pageTitleTranslated value=$submission->getShortAuthorString()|strip_unsafe_html|concat:"; ":$submission->getLocalizedTitle()|strip_unsafe_html}
 	{include file="common/header.tpl" suppressPageTitle=true}
 {/strip}
 
@@ -142,6 +132,11 @@
 								<spinner></spinner>
 							</div>
 						</tab>
+						<tab id="chapters" label="{translate key="submission.chapters"}">
+							<div id="chapters-grid" ref="chapters">
+								<spinner></spinner>
+							</div>
+						</tab>						
 						{if $metadataEnabled}
 							<tab id="metadata" label="{translate key="submission.informationCenter.metadata"}">
 								<pkp-form v-bind="components.{$smarty.const.FORM_METADATA}" @set="set" />
@@ -149,6 +144,11 @@
 						{/if}
 						<tab v-if="supportsReferences" id="citations" label="{translate key="submission.citations"}">
 							<pkp-form v-bind="components.{$smarty.const.FORM_CITATIONS}" @set="set" />
+						</tab>
+						<tab id="publicationFormats" label="{translate key="submission.publicationFormats"}">
+							<div id="representations-grid" ref="representations">
+								<spinner></spinner>
+							</div>
 						</tab>
 						{call_hook name="Template::Workflow::Publication"}
 					</tabs>
