@@ -29,7 +29,7 @@
 		{if $isManager}<li><a name="spotlights" href="#spotlights">{translate key="spotlight.spotlights"}</a></li>{/if}
 	</ul>
 	<div id="monographs">
-		{help file="catalog.md" class="pkp_help_tab"}
+		{help file="catalog" class="pkp_help_tab"}
 		<div class="pkp_content_panel">
 			{assign var="uuid" value=""|uniqid|escape}
 			<div id="catalog-{$uuid}">
@@ -45,7 +45,7 @@
 	</div>
 	{if $isManager}
 		<div id="spotlights">
-			{help file="catalog.md" section="spotlights" class="pkp_help_tab"}
+			{help file="catalog" section="spotlights" class="pkp_help_tab"}
 			<div class="pkp_content_panel">
 				{capture assign=spotlightsGridUrl}{url router=$smarty.const.ROUTE_COMPONENT component="grid.content.spotlights.ManageSpotlightsGridHandler" op="fetchGrid" escape=false}{/capture}
 				{load_url_in_div id="spotlightsGridContainer" url=$spotlightsGridUrl}
