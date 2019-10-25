@@ -271,8 +271,8 @@ class PublicationService extends PKPPublicationService {
 		}
 
 		// Chapters (and all associated objects)
-		$oldAuthorsIterator = Services::get('author')->getMany(['publicationIds' => $oldPublication->getId(), 'count' => 1000]);
-		$newAuthorsIterator = Services::get('author')->getMany(['publicationIds' => $newPublication->getId(), 'count' => 1000]);
+		$oldAuthorsIterator = Services::get('author')->getMany(['publicationIds' => $oldPublication->getId()]);
+		$newAuthorsIterator = Services::get('author')->getMany(['publicationIds' => $newPublication->getId()]);
 		$result = DAORegistry::getDAO('ChapterDAO')->getByPublicationId($oldPublication->getId());
 		while (!$result->eof()) {
 			$oldChapter = $result->next();
@@ -296,8 +296,9 @@ class PublicationService extends PKPPublicationService {
 			// old one. We then map the old chapter author associations to the new
 			// authors.
 			$oldChapterAuthors = DAORegistry::getDAO('ChapterAuthorDAO')->getAuthors($oldPublication->getId(), $oldChapter->getId())->toArray();
+			$oldAuthors = iterator_to_array($oldAuthorsIterator);
 			foreach ($newAuthorsIterator as $newAuthor) {
-				foreach ($oldAuthorsIterator as $oldAuthor) {
+				foreach ($oldAuthors as $oldAuthor) {
 					if ($newAuthor->getData('seq') === $oldAuthor->getData('seq')) {
 						foreach ($oldChapterAuthors as $oldChapterAuthor) {
 							if ($oldChapterAuthor->getId() === $oldAuthor->getId()) {
