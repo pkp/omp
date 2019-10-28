@@ -29,10 +29,10 @@ class CatalogSearchTest extends ContentBaseTestCase {
 	function testBombSearch() {
 		// Search for "bomb"
 		$this->open(self::$baseUrl);
-		$this->waitForElementPresent($selector = '//form[contains(@class, \'cmp_search\')]//input[@name=\'query\']');
+		$this->waitForElementPresent($selector = '//form[contains(@class, \'pkp_search\')]//input[@name=\'query\']');
 		$this->click('//div[@class="search_controls"]');
 		$this->type($selector, 'bomb');
-		$this->click('//form[contains(@class, \'cmp_search\')]//a[contains(.,\'Search\')]');
+		$this->click('//form[contains(@class, \'pkp_search\')]//a[contains(.,\'Search\')]');
 
 		// Should be 1 result
 		$this->waitForElementPresent('//div[contains(.,\'1 Titles\')]');
@@ -45,10 +45,10 @@ class CatalogSearchTest extends ContentBaseTestCase {
 	function testZorgSearch() {
 		// Search for "bomb"
 		$this->open(self::$baseUrl);
-		$this->waitForElementPresent($selector = '//form[contains(@class, \'cmp_search\')]//input[@name=\'query\']');
+		$this->waitForElementPresent($selector = '//form[contains(@class, \'pkp_search\')]//input[@name=\'query\']');
 		$this->click('//div[@class="search_controls"]');
 		$this->type($selector, 'zorg');
-		$this->click('//form[contains(@class, \'cmp_search\')]//a[contains(.,\'Search\')]');
+		$this->click('//form[contains(@class, \'pkp_search\')]//a[contains(.,\'Search\')]');
 
 		// Should be 0 results
 		$this->waitForElementPresent('//div[contains(.,\'0 Titles\')]');
