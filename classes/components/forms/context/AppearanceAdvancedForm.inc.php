@@ -21,8 +21,8 @@ class AppearanceAdvancedForm extends PKPAppearanceAdvancedForm {
 	/**
 	 * @copydoc PKPAppearanceAdvancedForm::__construct()
 	 */
-	public function __construct($action, $locales, $context, $baseUrl, $temporaryFileApiUrl) {
-		parent::__construct($action, $locales, $context, $baseUrl, $temporaryFileApiUrl);
+	public function __construct($action, $locales, $context, $baseUrl, $temporaryFileApiUrl, $imageUploadUrl) {
+		parent::__construct($action, $locales, $context, $baseUrl, $temporaryFileApiUrl, $imageUploadUrl);
 
 		$this->addField(new FieldText('coverThumbnailsMaxWidth', [
 				'label' => __('manager.setup.coverThumbnailsMaxWidth'),

@@ -21,8 +21,8 @@ class MastheadForm extends PKPMastheadForm {
 	/**
 	 * @copydoc PKPMastheadForm::__construct()
 	 */
-	public function __construct($action, $locales, $context) {
-		parent::__construct($action, $locales, $context);
+	public function __construct($action, $locales, $context, $imageUploadUrl) {
+		parent::__construct($action, $locales, $context, $imageUploadUrl);
 
 		$codeTypes = \DAORegistry::getDAO('ONIXCodelistItemDAO')->getCodes('List44');
 		$codeTypeOptions = array_map(function($code, $name) {
