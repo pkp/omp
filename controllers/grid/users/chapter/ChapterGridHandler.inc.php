@@ -255,6 +255,8 @@ class ChapterGridHandler extends CategoryGridHandler {
 	 * @see GridHandler::setDataElementSequence()
 	 */
 	function setDataElementSequence($request, $chapterId, $chapter, $newSequence) {
+		if (!$this->canAdminister($request->getUser())) return;
+
 		$chapterDao = DAORegistry::getDAO('ChapterDAO');
 		$chapter->setSequence($newSequence);
 		$chapterDao->updateObject($chapter);
@@ -294,6 +296,8 @@ class ChapterGridHandler extends CategoryGridHandler {
 	 * @see CategoryGridHandler::setDataElementInCategorySequence()
 	 */
 	function setDataElementInCategorySequence($chapterId, &$author, $newSequence) {
+		if (!$this->canAdminister(Application::get()->getRequest()->getUser())) return;
+
 		$monograph = $this->getMonograph();
 
 		// Remove the chapter author id.
@@ -331,6 +335,8 @@ class ChapterGridHandler extends CategoryGridHandler {
 	 * @return JSONMessage JSON object
 	 */
 	function updateIdentifiers($args, $request) {
+		if (!$this->canAdminister($request->getUser())) return new JSONMessage(false);
+
 		$chapter = $this->_getChapterFromRequest($request);
 
 		import('controllers.tab.pubIds.form.PublicIdentifiersForm');
@@ -352,6 +358,7 @@ class ChapterGridHandler extends CategoryGridHandler {
 	 */
 	function clearPubId($args, $request) {
 		if (!$request->checkCSRF()) return new JSONMessage(false);
+		if (!$this->canAdminister($request->getUser())) return new JSONMessage(false);
 
 		$chapter = $this->_getChapterFromRequest($request);
 
@@ -367,6 +374,7 @@ class ChapterGridHandler extends CategoryGridHandler {
 	 * @param $request Request
 	 */
 	function addChapter($args, $request) {
+		if (!$this->canAdminister($request->getUser())) return new JSONMessage(false);
 		// Calling editChapterTab() with an empty row id will add
 		// a new chapter.
 		return $this->editChapterTab($args, $request);
@@ -379,6 +387,7 @@ class ChapterGridHandler extends CategoryGridHandler {
 	 * @return JSONMessage JSON object
 	 */
 	function editChapter($args, $request) {
+		if (!$this->canAdminister($request->getUser())) return new JSONMessage(false);
 		$chapter = $this->_getChapterFromRequest($request);
 
 		// Check if this is a remote galley
@@ -403,6 +412,7 @@ class ChapterGridHandler extends CategoryGridHandler {
 	 * @return JSONMessage JSON object
 	 */
 	function editChapterTab($args, $request) {
+		if (!$this->canAdminister($request->getUser())) return new JSONMessage(false);
 		$chapter = $this->_getChapterFromRequest($request);
 
 		// Form handling
@@ -420,6 +430,7 @@ class ChapterGridHandler extends CategoryGridHandler {
 	 * @return JSONMessage JSON object
 	 */
 	function updateChapter($args, $request) {
+		if (!$this->canAdminister($request->getUser())) return new JSONMessage(false);
 		// Identify the chapter to be updated
 		$chapter = $this->_getChapterFromRequest($request);
 
@@ -448,6 +459,7 @@ class ChapterGridHandler extends CategoryGridHandler {
 	 * @return JSONMessage JSON object
 	 */
 	function deleteChapter($args, $request) {
+		if (!$this->canAdminister($request->getUser())) return new JSONMessage(false);
 		// Identify the chapter to be deleted
 		$chapter = $this->_getChapterFromRequest($request);
 		$chapterId = $chapter->getId();
