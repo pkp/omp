@@ -659,7 +659,7 @@ msgstr "Escolha uma opção válida da lista."
 msgid "common.listbuilder.itemExists"
 msgstr "Não é permitido incluir o mesmo item mais de uma vez."
 
-msgid "common.openMonographPress"
+msgid "common.software"
 msgstr "Open Monograph Press"
 
 msgid "common.omp"
@@ -713,7 +713,7 @@ msgstr "Guia"
 msgid "navigation.linksAndMedia"
 msgstr "Links e Redes Sociais"
 
-msgid "press.presses"
+msgid "context.contexts"
 msgstr "Editoras"
 
 msgid "context.context"

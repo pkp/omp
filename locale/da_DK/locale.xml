@@ -273,7 +273,7 @@
 	<message key="common.listbuilder.completeForm">Udfyld venligst hele formularen.</message>
 	<message key="common.listbuilder.selectValidOption">Vælg en gyldig mulighed fra listen.</message>
 	<message key="common.listbuilder.itemExists">Du kan ikke tilføje den samme element to gange.</message>
-	<message key="common.openMonographPress">Open Monograph Press</message>
+	<message key="common.software">Open Monograph Press</message>
 	<message key="common.omp">OMP</message>
 	<message key="common.homePageHeader.altText">Homepage Header</message>
 	<message key="navigation.catalog">Katalog</message>
@@ -299,7 +299,7 @@
 	<message key="navigation.navigationMenus.category.description">Link til en kategori.</message>
 	<message key="navigation.navigationMenus.newRelease">Nye udgivelser</message>
 	<message key="navigation.navigationMenus.newRelease.description">Link til dine nye udgivelser</message>
-	<message key="press.presses">Forlag</message>
+	<message key="context.contexts">Forlag</message>
 	<message key="press.path">Sti</message>
 	<message key="context.context">Forlag</message>
 	<message key="context.current">Nyeste forlag:</message>

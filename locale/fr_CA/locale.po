@@ -623,7 +623,7 @@ msgstr "Il n'est pas nécessaire de remplir les renseignements sur le catalogue 
 msgid "common.prefixAndTitle.tip"
 msgstr "Si le titre du livre commence par un “Un/Une” ou “Le/la” (ou quelque chose de semblable qui affecte l'ordre alphabétique), ajoutez un mot dans Préfixe."
 
-msgid "common.openMonographPress"
+msgid "common.software"
 msgstr "Open Monograph Press"
 
 msgid "common.omp"
@@ -677,7 +677,7 @@ msgstr "Guide intelligent"
 msgid "navigation.linksAndMedia"
 msgstr "Liens et médias sociaux"
 
-msgid "press.presses"
+msgid "context.contexts"
 msgstr "Presses"
 
 msgid "context.context"

@@ -8,6 +8,6 @@
  * Common site footer.
  *}
 {assign var=brandImage value="templates/images/omp_brand.png"}
-{assign var=packageKey value="common.openMonographPress"}
+{assign var=packageKey value="common.software"}
 {assign var=pkpLink value="http://pkp.sfu.ca/omp"}
 {include file="core:common/footer.tpl"}

@@ -725,7 +725,7 @@ msgstr "Bitte wählen Sie eine gültige Option aus dieser Liste aus."
 msgid "common.listbuilder.itemExists"
 msgstr "Sie können nicht den gleichen Eintrag ein zweites Mal hinzufügen."
 
-msgid "common.openMonographPress"
+msgid "common.software"
 msgstr "Open Monograph Press"
 
 msgid "common.omp"
@@ -779,7 +779,7 @@ msgstr "Assistent"
 msgid "navigation.linksAndMedia"
 msgstr "Links und Soziale Netzwerke"
 
-msgid "press.presses"
+msgid "context.contexts"
 msgstr "Verlage"
 
 msgid "context.context"

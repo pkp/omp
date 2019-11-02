@@ -632,7 +632,7 @@ msgstr "La información de catálogo no necesita completarse en una propuesta in
 msgid "common.prefixAndTitle.tip"
 msgstr "Si el título del libro comienza con \"Un/a\" o \"El/La/Los/Las\" (o algo similar que no deba incluirse por orden alfabético) añade la palabra como prefijo."
 
-msgid "common.openMonographPress"
+msgid "common.software"
 msgstr "Abrir Publicación de la Monografía"
 
 msgid "common.omp"
@@ -686,7 +686,7 @@ msgstr "Asistente"
 msgid "navigation.linksAndMedia"
 msgstr "Enlaces y  redes sociales"
 
-msgid "press.presses"
+msgid "context.contexts"
 msgstr "Editoriales"
 
 msgid "context.context"

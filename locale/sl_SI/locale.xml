@@ -308,7 +308,7 @@
 	<message key="common.listbuilder.itemExists">Istega elementa ne morete dvakrat dodati.</message>
 
 	<!-- Common Messages -->
-	<message key="common.openMonographPress">Open Monograph Press</message>
+	<message key="common.software">Open Monograph Press</message>
 	<message key="common.omp">OMP</message>
 	<message key="common.homePageHeader.altText">Glava domače strani</message>
 
@@ -330,7 +330,7 @@
 	<message key="navigation.linksAndMedia">Povezave in družabna omrežja</message>
 
 	<!-- Common Press Terms -->
-	<message key="press.presses">Založbe</message>
+	<message key="context.contexts">Založbe</message>
 	<message key="context.context">Založba</message>
 	<message key="context.current">Trenutna založba:</message>
 	<message key="context.select">Preklopite na drugo založbo:</message>

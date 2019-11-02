@@ -12,9 +12,9 @@
   -->
 
 <locale name="ca_ES" full_name="Català">
-	<message key="admin.hostedPresses">Publicacions allotjades</message>
-	<message key="admin.settings.pressRedirect">Redirecció a la publicació</message>
-	<message key="admin.settings.pressRedirectInstructions">Les peticions al lloc web principal són redireccionades a aquesta publicació. Això pot ser útil si el lloc web únicament allotja una sola publicació, per exemple.</message>
+	<message key="admin.hostedContexts">Publicacions allotjades</message>
+	<message key="admin.settings.redirect">Redirecció a la publicació</message>
+	<message key="admin.settings.redirectInstructions">Les peticions al lloc web principal són redireccionades a aquesta publicació. Això pot ser útil si el lloc web únicament allotja una sola publicació, per exemple.</message>
 	<message key="admin.settings.noPressRedirect">No redireccionis</message>
 
 	<message key="admin.languages.primaryLocaleInstructions">Aquesta és la llengua predeterminada per al lloc web i per a qualsevol publicació allotjada.</message>

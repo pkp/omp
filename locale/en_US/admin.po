@@ -11,13 +11,22 @@ msgstr ""
 "PO-Revision-Date: 2019-09-30T06:23:43-07:00\n"
 "Language: \n"
 
-msgid "admin.hostedPresses"
+msgid "admin.hostedContexts"
 msgstr "Hosted Presses"
 
-msgid "admin.settings.pressRedirect"
+msgid "admin.settings.appearance.success"
+msgstr "The site appearance settings have been successfully updated."
+
+msgid "admin.settings.config.success"
+msgstr "The site configuration settings have been successfully updated."
+
+msgid "admin.settings.info.success"
+msgstr "The site information has been successfully updated."
+
+msgid "admin.settings.redirect"
 msgstr "Press redirect"
 
-msgid "admin.settings.pressRedirectInstructions"
+msgid "admin.settings.redirectInstructions"
 msgstr "Requests to the main site will be redirected to this press. This may be useful if the site is hosting only a single press, for example."
 
 msgid "admin.settings.noPressRedirect"

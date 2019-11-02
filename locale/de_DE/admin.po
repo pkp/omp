@@ -11,13 +11,13 @@ msgstr ""
 "PO-Revision-Date: 2019-09-30T06:23:43-07:00\n"
 "Language: \n"
 
-msgid "admin.hostedPresses"
+msgid "admin.hostedContexts"
 msgstr "Gehostete Verlage"
 
-msgid "admin.settings.pressRedirect"
+msgid "admin.settings.redirect"
 msgstr "Weiterleitung an den Verlag"
 
-msgid "admin.settings.pressRedirectInstructions"
+msgid "admin.settings.redirectInstructions"
 msgstr "Auf der Startseite eingehende Fragen werden an diesen Verlag weitergeleitet. Dies kann beispielsweise eine praktische Lösung sein, wenn die Website nur einen einzigen Verlag hostet."
 
 msgid "admin.settings.noPressRedirect"

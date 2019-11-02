@@ -45,7 +45,7 @@ class TemplateManager extends PKPTemplateManager {
 			// Pass app-specific details to template
 			$this->assign(array(
 				'brandImage' => 'templates/images/omp_brand.png',
-				'packageKey' => 'common.openMonographPress',
+				'packageKey' => 'common.software',
 			));
 
 			// Get a count of unread tasks.

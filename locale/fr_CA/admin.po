@@ -11,13 +11,13 @@ msgstr ""
 "PO-Revision-Date: 2019-09-30T06:23:44-07:00\n"
 "Language: \n"
 
-msgid "admin.hostedPresses"
+msgid "admin.hostedContexts"
 msgstr "Presses hébergées"
 
-msgid "admin.settings.pressRedirect"
+msgid "admin.settings.redirect"
 msgstr "Réacheminement de la presse"
 
-msgid "admin.settings.pressRedirectInstructions"
+msgid "admin.settings.redirectInstructions"
 msgstr "Les requêtes envoyées au site central seront redirigées vers cette presse. Cela pourrait être utile si le site héberge une seule presse, par exemple."
 
 msgid "admin.settings.noPressRedirect"

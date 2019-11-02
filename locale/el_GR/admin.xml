@@ -12,9 +12,9 @@
   -->
 
 <locale name="el_GR" full_name = "Greek">
-	<message key="admin.hostedPresses">Φιλοξενούμενες Εκδόσεις</message>
-	<message key="admin.settings.pressRedirect">Προώθηση σε URL της Έκδοσης</message>
-	<message key="admin.settings.pressRedirectInstructions">Αιτήματα πρόσβασης στον κυρίως ιστότοπο της συλλογής θα προωθούνται στην ιστοσελίδα της έκδοσης. Αυτό μπορεί να φανεί χρήσιμο αν η συλλογή φιλοξενεί για παράδειγμα μόνο μία έκδοση.</message>
+	<message key="admin.hostedContexts">Φιλοξενούμενες Εκδόσεις</message>
+	<message key="admin.settings.redirect">Προώθηση σε URL της Έκδοσης</message>
+	<message key="admin.settings.redirectInstructions">Αιτήματα πρόσβασης στον κυρίως ιστότοπο της συλλογής θα προωθούνται στην ιστοσελίδα της έκδοσης. Αυτό μπορεί να φανεί χρήσιμο αν η συλλογή φιλοξενεί για παράδειγμα μόνο μία έκδοση.</message>
 	<message key="admin.settings.noPressRedirect">Καμία προώθηση</message>
 	<message key="admin.languages.primaryLocaleInstructions">Αυτή θα είναι η εξ'ορισμού γλώσσα της συλλογής και των φιλοξενούμενων εκδόσεων.</message>
 	<message key="admin.languages.supportedLocalesInstructions">Επιλέξτε όλες τις τοπικές ρυθμίσεις που θέλετε να υποστηρίζονται στη συλλογή. Οι επιλεγμένες τοπικές ρυθμίσεις θα είναι διαθέσιμες για χρήση από όλες τις εκδόσεις της συλλογής, και θα εμφανίζονται σε ένα Μενού Επιλογής Γλώσσας στην ιστοσελίδα κάθε έκδοσης. Εάν δεν επιλεχθούν πολλαπλές τοπικές ρυθμίσεις, το παραπάνω Μενού Επιλογής Γλώσσας δεν θα εμφανίζεται και συνεπώς δεν θα είναι δυνατή η ρύθμιση της γλώσσας στις ιστοσελίδες των εκδόσεων.</message>
