@@ -770,7 +770,7 @@ msgstr "Please select a valid option from the list."
 msgid "common.listbuilder.itemExists"
 msgstr "You cannot add the same item twice."
 
-msgid "common.openMonographPress"
+msgid "common.software"
 msgstr "Open Monograph Press"
 
 msgid "common.omp"
@@ -851,7 +851,7 @@ msgstr "New Releases"
 msgid "navigation.navigationMenus.newRelease.description"
 msgstr "Link to your New Releases."
 
-msgid "press.presses"
+msgid "context.contexts"
 msgstr "Presses"
 
 msgid "context.context"

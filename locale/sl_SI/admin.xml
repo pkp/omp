@@ -12,9 +12,9 @@
   -->
 
 <locale name="sl_SI" full_name="Slovenščina">
-	<message key="admin.hostedPresses">Gostujoče založbe</message>
-	<message key="admin.settings.pressRedirect">Preusmeritev založbe</message>
-	<message key="admin.settings.pressRedirectInstructions">Vse prošnje na glavnem mestu bodo preusmerjene na to založbo. To je uporabno, če na spletišču gostuje le ena založba.</message>
+	<message key="admin.hostedContexts">Gostujoče založbe</message>
+	<message key="admin.settings.redirect">Preusmeritev založbe</message>
+	<message key="admin.settings.redirectInstructions">Vse prošnje na glavnem mestu bodo preusmerjene na to založbo. To je uporabno, če na spletišču gostuje le ena založba.</message>
 	<message key="admin.settings.noPressRedirect">Ne preusmeri</message>
 
 	<message key="admin.languages.primaryLocaleInstructions">Ta bo privzeti jezik za spletišče in vse gostujoče založbe.</message>

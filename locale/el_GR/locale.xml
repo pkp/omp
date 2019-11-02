@@ -269,7 +269,7 @@
 	<message key="common.prefixAndTitle.tip">Αν ο τίτλος του βιβλίου ξεκινά από "Ο", "Η", ή "Το" (ή κάτι παρόμοιο σε αλφαβητική σειρα) εντάξετε τη λέξη στο Πρόθημα (Prefix).</message>
 
 	<!-- Common Messages -->
-	<message key="common.openMonographPress">Open Monograph Press</message>
+	<message key="common.software">Open Monograph Press</message>
 	<message key="common.omp">OMP</message>
 	<message key="common.homePageHeader.altText">Κεφαλίδα Ιστοσελίδας</message>
 	<!-- Navigation -->
@@ -290,7 +290,7 @@
 	<message key="navigation.linksAndMedia">Σύνδεσμοι και Κοινωνικά Μέσα</message>
 
 	<!-- Common Press Terms -->
-	<message key="press.presses">Εκδόσεις</message>
+	<message key="context.contexts">Εκδόσεις</message>
 	<!-- User -->
 	<message key="user.noRoles.submitMonograph">Υποβολή μιας πρότασης</message>
 	<message key="user.noRoles.submitMonographRegClosed">Υποβολή μιας Μονογραφίας: η εγγραφή Συγγραφέα είναο προς το παρόν απενεργοποιημένη.</message>

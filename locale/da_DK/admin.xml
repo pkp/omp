@@ -12,9 +12,9 @@
   -->
 
 <locale name="da_DK" full_name="Dansk">
-	<message key="admin.hostedPresses">Tilknyttede forlag</message>
-	<message key="admin.settings.pressRedirect">Forlagsomdirigering</message>
-	<message key="admin.settings.pressRedirectInstructions">Forespørgsler til hovedsiden vil blive omdirigeret til dette forlag. Dette kan være nyttigt, hvis webstedet kun er vært for et enkelt forlag.</message>
+	<message key="admin.hostedContexts">Tilknyttede forlag</message>
+	<message key="admin.settings.redirect">Forlagsomdirigering</message>
+	<message key="admin.settings.redirectInstructions">Forespørgsler til hovedsiden vil blive omdirigeret til dette forlag. Dette kan være nyttigt, hvis webstedet kun er vært for et enkelt forlag.</message>
 	<message key="admin.settings.noPressRedirect">Omdiriger ikke</message>
 	<message key="admin.languages.primaryLocaleInstructions">Dette vil være standardsproget for webstedet og ethvert tilknyttet forlag.</message>
 	<message key="admin.languages.supportedLocalesInstructions">Vælg alle sprog, der skal understøttes på webstedet. De valgte sprog vil være tilgængelige til brug for alle forlag, der er vært på webstedet, ligesom de vises i en sprogvalgs-menu, der vil fremtræde på hver webside (som kan fravælges på forlags-specifikke sider). Hvis der ikke er valgt flere lokaliteter, vises sprogvalgs-menuen ikke, og udvidede sprogindstillinger er ikke tilgængelige for forlagene.</message>

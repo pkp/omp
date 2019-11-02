@@ -11,13 +11,13 @@ msgstr ""
 "PO-Revision-Date: 2019-09-30T06:23:44-07:00\n"
 "Language: \n"
 
-msgid "admin.hostedPresses"
+msgid "admin.hostedContexts"
 msgstr "Editoriales alojadas"
 
-msgid "admin.settings.pressRedirect"
+msgid "admin.settings.redirect"
 msgstr "Redirección de editoriales"
 
-msgid "admin.settings.pressRedirectInstructions"
+msgid "admin.settings.redirectInstructions"
 msgstr "Las solicitudes de la página principal se redirigirán a esta editorial. Esto puede ser útil si el sitio solo aloja una editorial, por ejemplo."
 
 msgid "admin.settings.noPressRedirect"

@@ -69,7 +69,7 @@ class Application extends PKPApplication {
 	 * @return string
 	 */
 	public function getNameKey() {
-		return('common.openMonographPress');
+		return('common.software');
 	}
 
 	/**
@@ -251,12 +251,5 @@ class Application extends PKPApplication {
 	public static function getPaymentManager($context) {
 		import('classes.payment.omp.OMPPaymentManager');
 		return new OMPPaymentManager($context);
-	}
-
-	/**
-	 * @copydoc PKPApplication::getAllowMultipleContexts()
-	 */
-	public static function getAllowMultipleContexts() {
-		return false;
 	}
 }

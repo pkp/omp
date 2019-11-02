@@ -42,8 +42,8 @@
 		{/fbvFormSection}
 	{/fbvFormArea}
 	{fbvFormArea id="siteRedirection"}
-		{fbvFormSection title="admin.settings.pressRedirect"}
-			{fbvElement type="select" id="redirect" from=$redirectOptions selected=$redirect translate=false defaultValue="" label="admin.settings.pressRedirectInstructions" size=$fbvStyles.size.MEDIUM}
+		{fbvFormSection title="admin.settings.redirect"}
+			{fbvElement type="select" id="redirect" from=$redirectOptions selected=$redirect translate=false defaultValue="" label="admin.settings.redirectInstructions" size=$fbvStyles.size.MEDIUM}
 		{/fbvFormSection}
 	{/fbvFormArea}
 

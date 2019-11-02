@@ -255,7 +255,7 @@
 	<message key="common.listbuilder.itemExists">No podeu afegir el mateix element dues vegades.</message>
 
 	<!-- Common Messages -->
-	<message key="common.openMonographPress">Open Monograph Press</message>
+	<message key="common.software">Open Monograph Press</message>
 	<message key="common.omp">OMP</message>
 	<message key="common.homePageHeader.altText">Capçalera de la pàgina inicial</message>
 
@@ -277,7 +277,7 @@
 	<message key="navigation.linksAndMedia">Enllaços i xarxes socials</message>
 
 	<!-- Common Press Terms -->
-	<message key="press.presses">Publicacions</message>
+	<message key="context.contexts">Publicacions</message>
 	<message key="context.context">Publicació</message>
 	<message key="context.select">Seleccioneu una publicació...</message>
 

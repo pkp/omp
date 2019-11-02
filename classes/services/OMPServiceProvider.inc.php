@@ -25,6 +25,7 @@ use \APP\Services\StatsService;
 use \PKP\Services\PKPAuthorService;
 use \PKP\Services\PKPEmailTemplateService;
 use \PKP\Services\PKPSchemaService;
+use \PKP\Services\PKPSiteService;
 use \PKP\Services\PKPUserService;
 
 
@@ -79,6 +80,11 @@ class OMPServiceProvider implements \Pimple\ServiceProviderInterface {
 		// Schema service
 		$pimple['schema'] = function() {
 			return new PKPSchemaService();
+		};
+
+		// Site service
+		$pimple['site'] = function() {
+			return new PKPSiteService();
 		};
 
 		// Publication statistics service

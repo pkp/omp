@@ -474,6 +474,9 @@ msgstr "Step 3. Preparing the workflow"
 msgid "manager.setup.identity"
 msgstr "Press Identity"
 
+msgid "manager.setup.information"
+msgstr "Information"
+
 msgid "manager.setup.information.description"
 msgstr "Brief descriptions of the press for librarians and prospective authors and readers. These are made available in the site's sidebar when the Information block has been added."
 

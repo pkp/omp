@@ -10,7 +10,7 @@
 <div class="pkp_block block_developed_by">
 	<div class="content">
 		<a href="http://pkp.sfu.ca/omp/">
-			{translate key="common.openMonographPress"}
+			{translate key="common.software"}
 		</a>
 	</div>
 </div>
