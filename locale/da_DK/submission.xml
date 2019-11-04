@@ -33,9 +33,7 @@
 	<message key="submission.chaptersDescription">Du kan opstille en liste over kapitlerne her og tilknytte forfattere fra listen over bidragydere ovenfor. Disse forfattere kan få adgang til kapitlet i forskellige faser af den redaktionelle proces.</message>
 	<message key="submission.chapter.addChapter">Tilføj kapitel</message>
 	<message key="submission.chapter.editChapter">Rediger kapitel</message>
-	<message key="submission.chapter.abstract">Resume</message>
 	<message key="submission.chapter.pages">Sider</message>
-	<message key="submission.chapter.datePublished">Publiceret</message>
 	<message key="submission.copyedit">Manuskriptredigering</message>
 	<message key="submission.publicationFormats">Publikationsformater</message>
 	<message key="submission.proofs">Korrekturer</message>

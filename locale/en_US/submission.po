@@ -77,6 +77,9 @@ msgstr "Add Chapter"
 msgid "submission.chapter.editChapter"
 msgstr "Edit Chapter"
 
+msgid "submission.chapter.pages"
+msgstr "Pages"
+
 msgid "submission.copyedit"
 msgstr "Copyedit"
 
@@ -259,6 +262,15 @@ msgstr "This monograph is ready to be included in the public catalog."
 
 msgid "submission.catalogEntry.viewSubmission"
 msgstr "View Submission"
+
+msgid "submission.catalogEntry.chapterPublicationDates"
+msgstr "Publication Dates"
+
+msgid "submission.catalogEntry.disableChapterPublicationDates"
+msgstr "All chapters will use the publication date of the monograph."
+
+msgid "submission.catalogEntry.enableChapterPublicationDates"
+msgstr "Each chapter may have its own publication date."
 
 msgid "submission.catalogEntry.monographMetadata"
 msgstr "Monograph"

@@ -34,9 +34,19 @@
 		{fbvElement type="text" name="subtitle" id="subtitle" value=$subtitle maxlength="255" multilingual=true}
 	{/fbvFormSection}
 
-	{fbvFormSection title="metadata.property.displayName.abstract" for="abstract"}
-	{fbvElement type="textarea" name="abstract" id="abstract" value=$abstract  rich="extended" multilingual=true}
+	{fbvFormSection title="common.abstract" for="abstract"}
+	    {fbvElement type="textarea" name="abstract" id="abstract" value=$abstract  rich="extended" multilingual=true}
 	{/fbvFormSection}
+
+	{fbvFormSection title="submission.chapter.pages" for="customExtras"}
+	    {fbvElement type="text" id="pages" value=$pages inline=true size=$fbvStyles.size.LARGE}
+	{/fbvFormSection}
+
+	{if $enableChapterPublicationDates}
+		{fbvFormSection title="publication.datePublished" for="customExtras"}
+		{fbvElement type="text" id="datePublished" value=$datePublished inline=true size=$fbvStyles.size.LARGE  class="datepicker"}
+		{/fbvFormSection}
+	{/if}
 
 	{fbvFormSection}
 		{assign var="uuid" value=""|uniqid|escape}
