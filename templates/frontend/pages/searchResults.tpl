@@ -16,6 +16,7 @@
 
 	{* Breadcrumb *}
 	{include file="frontend/components/breadcrumbs.tpl" type="category" currentTitleKey="common.search"}
+	<h1>{translate key="common.search"}</h1>
 	<div class="monograph_count">
 		{translate key="catalog.browseTitles" numTitles=$publishedSubmissions|@count}
 	</div>

@@ -18,6 +18,8 @@
 
 <div class="page page_catalog">
 	{include file="frontend/components/breadcrumbs.tpl" currentTitleKey="navigation.catalog"}
+	<h1>{translate key="navigation.catalog"}</h1>
+
 	<div class="monograph_count">
 		{translate key="catalog.browseTitles" numTitles=$total}
 	</div>
