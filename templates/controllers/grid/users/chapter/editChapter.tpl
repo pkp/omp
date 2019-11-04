@@ -16,6 +16,8 @@
 <div id="editChapterMetadataTabs">
 	<ul>
 		<li><a href="{url router=$smarty.const.ROUTE_COMPONENT op="editChapterTab" submissionId=$submissionId publicationId=$publicationId chapterId=$chapterId}">{translate key="grid.action.editMetadata"}</a></li>
+		{if $showIdentifierTab}
 		<li><a href="{url router=$smarty.const.ROUTE_COMPONENT op="identifiers" submissionId=$submissionId publicationId=$publicationId chapterId=$chapterId}">{translate key="submission.identifiers"}</a></li>
+		{/if}
 	</ul>
 </div>

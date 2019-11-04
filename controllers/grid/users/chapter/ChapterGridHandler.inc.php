@@ -170,11 +170,7 @@ class ChapterGridHandler extends CategoryGridHandler {
 	 * @see GridHandler::initFeatures()
 	 */
 	function initFeatures($request, $args) {
-		$submission = $this->getMonograph();
-		$publication = $this->getPublication();
-		$userRoles = $this->getAuthorizedContextObject(ASSOC_TYPE_USER_ROLES);
-
-		if ($publication->getData('status') !== STATUS_PUBLISHED && ($submission->getData('submissionProgress') || array_intersect(array(ROLE_ID_MANAGER, ROLE_ID_SUB_EDITOR), $userRoles))) {
+		if ($this->canAdminister($request->getUser())) {
 			$this->setReadOnly(false);
 			import('lib.pkp.classes.controllers.grid.feature.OrderCategoryGridItemsFeature');
 			return array(new OrderCategoryGridItemsFeature(ORDER_CATEGORY_GRID_CATEGORIES_AND_ROWS, true, $this));
@@ -195,6 +191,36 @@ class ChapterGridHandler extends CategoryGridHandler {
 				'publicationId' => $this->getPublication()->getId(),
 			)
 		);
+	}
+
+	/**
+	 * Determines if there should be add/edit actions on this grid.
+	 * @param $user User
+	 * @return boolean
+	 */
+	function canAdminister($user) {
+		$submission = $this->getMonograph();
+		$publication = $this->getPublication();
+		$userRoles = $this->getAuthorizedContextObject(ASSOC_TYPE_USER_ROLES);
+
+		if ($publication->getData('status') === STATUS_PUBLISHED) {
+			return false;
+		}
+
+		if (in_array(ROLE_ID_SITE_ADMIN, $userRoles)) {
+			return true;
+		}
+
+		// Incomplete submissions can be edited. (Presumably author.)
+		if ($submission->getDateSubmitted() == null) return true;
+
+		// The user may not be allowed to edit the metadata
+		if (Services::get('submission')->canEditPublication($submission->getId(), $user->getId())) {
+			return true;
+		}
+
+		// Default: Read-only.
+		return false;
 	}
 
 	/**
@@ -229,6 +255,8 @@ class ChapterGridHandler extends CategoryGridHandler {
 	 * @see GridHandler::setDataElementSequence()
 	 */
 	function setDataElementSequence($request, $chapterId, $chapter, $newSequence) {
+		if (!$this->canAdminister($request->getUser())) return;
+
 		$chapterDao = DAORegistry::getDAO('ChapterDAO');
 		$chapter->setSequence($newSequence);
 		$chapterDao->updateObject($chapter);
@@ -268,6 +296,8 @@ class ChapterGridHandler extends CategoryGridHandler {
 	 * @see CategoryGridHandler::setDataElementInCategorySequence()
 	 */
 	function setDataElementInCategorySequence($chapterId, &$author, $newSequence) {
+		if (!$this->canAdminister(Application::get()->getRequest()->getUser())) return;
+
 		$monograph = $this->getMonograph();
 
 		// Remove the chapter author id.
@@ -305,6 +335,8 @@ class ChapterGridHandler extends CategoryGridHandler {
 	 * @return JSONMessage JSON object
 	 */
 	function updateIdentifiers($args, $request) {
+		if (!$this->canAdminister($request->getUser())) return new JSONMessage(false);
+
 		$chapter = $this->_getChapterFromRequest($request);
 
 		import('controllers.tab.pubIds.form.PublicIdentifiersForm');
@@ -326,6 +358,7 @@ class ChapterGridHandler extends CategoryGridHandler {
 	 */
 	function clearPubId($args, $request) {
 		if (!$request->checkCSRF()) return new JSONMessage(false);
+		if (!$this->canAdminister($request->getUser())) return new JSONMessage(false);
 
 		$chapter = $this->_getChapterFromRequest($request);
 
@@ -341,6 +374,7 @@ class ChapterGridHandler extends CategoryGridHandler {
 	 * @param $request Request
 	 */
 	function addChapter($args, $request) {
+		if (!$this->canAdminister($request->getUser())) return new JSONMessage(false);
 		// Calling editChapterTab() with an empty row id will add
 		// a new chapter.
 		return $this->editChapterTab($args, $request);
@@ -353,6 +387,7 @@ class ChapterGridHandler extends CategoryGridHandler {
 	 * @return JSONMessage JSON object
 	 */
 	function editChapter($args, $request) {
+		if (!$this->canAdminister($request->getUser())) return new JSONMessage(false);
 		$chapter = $this->_getChapterFromRequest($request);
 
 		// Check if this is a remote galley
@@ -362,6 +397,11 @@ class ChapterGridHandler extends CategoryGridHandler {
 			'publicationId' => $this->getPublication()->getId(),
 			'chapterId' => $chapter->getId(),
 		));
+
+		if (array_intersect(array(ROLE_ID_MANAGER, ROLE_ID_SUB_EDITOR, ROLE_ID_ASSISTANT), $this->getAuthorizedContextObject(ASSOC_TYPE_USER_ROLES))){
+			$templateMgr->assign('showIdentifierTab', true);
+		}
+
 		return new JSONMessage(true, $templateMgr->fetch('controllers/grid/users/chapter/editChapter.tpl'));
 	}
 
@@ -372,6 +412,7 @@ class ChapterGridHandler extends CategoryGridHandler {
 	 * @return JSONMessage JSON object
 	 */
 	function editChapterTab($args, $request) {
+		if (!$this->canAdminister($request->getUser())) return new JSONMessage(false);
 		$chapter = $this->_getChapterFromRequest($request);
 
 		// Form handling
@@ -389,6 +430,7 @@ class ChapterGridHandler extends CategoryGridHandler {
 	 * @return JSONMessage JSON object
 	 */
 	function updateChapter($args, $request) {
+		if (!$this->canAdminister($request->getUser())) return new JSONMessage(false);
 		// Identify the chapter to be updated
 		$chapter = $this->_getChapterFromRequest($request);
 
@@ -417,6 +459,7 @@ class ChapterGridHandler extends CategoryGridHandler {
 	 * @return JSONMessage JSON object
 	 */
 	function deleteChapter($args, $request) {
+		if (!$this->canAdminister($request->getUser())) return new JSONMessage(false);
 		// Identify the chapter to be deleted
 		$chapter = $this->_getChapterFromRequest($request);
 		$chapterId = $chapter->getId();

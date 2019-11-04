@@ -120,7 +120,7 @@
 					</tab>
 				</tab>
 			</tab>
-			{if $canAccessPublication}
+			{if $canEditPublication}
 				<tab id="publication" label="{translate key="submission.publication"}">
 					<div class="pkpPublication" ref="publication" aria-live="polite">
 						<pkp-header class="pkpPublication__header">
