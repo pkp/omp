@@ -17,6 +17,9 @@
 		"audienceRangeTo": {
 			"type": "string"
 		},
+		"enableChapterPublicationDates": {
+			"type": "boolean"
+		},
 		"workType": {
 			"type": "integer",
 			"description": "Whether this submission is a monograph or an edited volume. One of `WORK_TYPE_EDITED_VOLUME` or `WORK_TYPE_AUTHORED_WORK`. Default: `WORK_TYPE_AUTHORED_WORK`.",

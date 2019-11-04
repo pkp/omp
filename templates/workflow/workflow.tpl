@@ -118,6 +118,9 @@
 						{capture assign=representativesGridUrl}{url router=$smarty.const.ROUTE_COMPONENT component="grid.catalogEntry.RepresentativesGridHandler" op="fetchGrid" submissionId=$submission->getId() escape=false}{/capture}
 						{load_url_in_div id="representativesGridContainer" url=$representativesGridUrl}
 					</tab>
+					<tab id="publicationDates" label="{translate key="grid.catalogEntry.publicationDates"}">
+						<pkp-form v-bind="components.{$smarty.const.FORM_PUBLICATION_DATES}" @set="set" />
+					</tab>
 				</tab>
 			</tab>
 			{if $canEditPublication}

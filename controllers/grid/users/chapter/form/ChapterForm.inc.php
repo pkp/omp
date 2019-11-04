@@ -111,6 +111,7 @@ class ChapterForm extends Form {
 
 		$this->setData('submissionId', $this->getMonograph()->getId());
 		$this->setData('publicationId', $this->getPublication()->getId());
+		$this->setData('enableChapterPublicationDates', (bool) $this->getMonograph()->getEnableChapterPublicationDates());
 
 		$chapter = $this->getChapter();
 		if ($chapter) {
@@ -118,10 +119,14 @@ class ChapterForm extends Form {
 			$this->setData('title', $chapter->getTitle());
 			$this->setData('subtitle', $chapter->getSubtitle());
 			$this->setData('abstract', $chapter->getAbstract());
+			$this->setData('datePublished', $chapter->getDatePublished());
+			$this->setData('pages', $chapter->getPages());
 		} else {
 			$this->setData('title', null);
 			$this->setData('subtitle', null);
 			$this->setData('abstract', null);
+			$this->setData('datePublished', null);
+			$this->setData('pages', null);
 		}
 	}
 
@@ -220,7 +225,7 @@ class ChapterForm extends Form {
 	 * @see Form::readInputData()
 	 */
 	function readInputData() {
-		$this->readUserVars(array('title', 'subtitle', 'authors', 'files','abstract'));
+		$this->readUserVars(array('title', 'subtitle', 'authors', 'files','abstract','datePublished','pages'));
 	}
 
 	/**
@@ -237,6 +242,8 @@ class ChapterForm extends Form {
 			$chapter->setTitle($this->getData('title'), null); //Localized
 			$chapter->setSubtitle($this->getData('subtitle'), null); //Localized
 			$chapter->setAbstract($this->getData('abstract'), null); //Localized
+			$chapter->setDatePublished($this->getData('datePublished'));
+			$chapter->setPages($this->getData('pages'));
 			$chapterDao->updateObject($chapter);
 		} else {
 			$chapter = $chapterDao->newDataObject();
@@ -244,6 +251,8 @@ class ChapterForm extends Form {
 			$chapter->setTitle($this->getData('title'), null); //Localized
 			$chapter->setSubtitle($this->getData('subtitle'), null); //Localized
 			$chapter->setAbstract($this->getData('abstract'), null); //Localized
+			$chapter->setDatePublished($this->getData('datePublished'));
+			$chapter->setPages($this->getData('pages'));
 			$chapter->setSequence(REALLY_BIG_NUMBER);
 			$chapterDao->insertChapter($chapter);
 			$chapterDao->resequenceChapters($this->getPublication()->getId());

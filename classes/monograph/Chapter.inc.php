@@ -182,6 +182,37 @@ class Chapter extends DataObject {
 		return $this->getLocalizedData('abstract');
 	}
 
+	/**
+	 * get date published
+	 * @return date
+	 */
+	function getDatePublished() {
+		return $this->getData('datePublished');
+	}
+
+	/**
+	 * set date published
+	 * @param $datePublished date
+	 */
+	function setDatePublished($datePublished) {
+		return $this->setData('datePublished', $datePublished);
+	}
+
+	/**
+	 * get pages
+	 * @return string
+	 */
+	function getPages() {
+		return $this->getData('pages');
+	}
+
+	/**
+	 * set pages
+	 * @param $pages string
+	 */
+	function setPages($pages) {
+		$this->setData('pages', $pages);
+	}
 }
 
 

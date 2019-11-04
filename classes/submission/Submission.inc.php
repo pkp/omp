@@ -249,4 +249,21 @@ class Submission extends PKPSubmission {
 
 		return $this->getCurrentPublication()->getEditorString();
 	}
+
+	/**
+	 * get enableChapterPublicationDates status
+	 * @return int
+	 */
+	function getEnableChapterPublicationDates() {
+		return $this->getData('enableChapterPublicationDates');
+	}
+
+	/**
+	 * set  enableChapterPublicationDates status
+	 * @param $enableChapterPublicationDates int
+	 */
+	function setEnableChapterPublicationDates($enableChapterPublicationDates) {
+		$this->setData('enableChapterPublicationDates', $enableChapterPublicationDates);
+	}
+
 }
