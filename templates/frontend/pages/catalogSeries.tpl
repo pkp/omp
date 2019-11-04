@@ -23,6 +23,7 @@
 
 	{* Breadcrumb *}
 	{include file="frontend/components/breadcrumbs_catalog.tpl" type="series" currentTitle=$series->getLocalizedTitle()|escape}
+	<h1>{$series->getLocalizedTitle()|escape}</h1>
 
 	{* Count of monographs in this series *}
 	<div class="monograph_count">

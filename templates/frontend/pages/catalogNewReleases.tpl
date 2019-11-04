@@ -15,6 +15,7 @@
 
 	{* Breadcrumb *}
 	{include file="frontend/components/breadcrumbs_catalog.tpl" currentTitleKey="catalog.newReleases"}
+	<h1>{translate key="catalog.newReleases"}</h1>
 
 	{* Count of new releases being dispalyed *}
 	<div class="monograph_count">

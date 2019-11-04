@@ -27,6 +27,7 @@
 
 	{* Breadcrumb *}
 	{include file="frontend/components/breadcrumbs_catalog.tpl" type="category" parent=$parentCategory currentTitle=$category->getLocalizedTitle()|escape}
+	<h1>{$category->getLocalizedTitle()|escape}</h1>
 
 	{* Count of monographs in this category *}
 	<div class="monograph_count">
