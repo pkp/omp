@@ -461,7 +461,6 @@ Din server understøtter i øjeblikket mbstring: <strong>{$supportsMBString}</st
 	<message key="notification.type.editorDecisionInternalReview">Intern bedømmelsesproces påbegyndt.</message>
 	<message key="notification.type.approveSubmission">Denne indsendelse afventer i øjeblikket godkendelse i katalogposterne, før den vises i det offentlige katalog.</message>
 	<message key="notification.type.approveSubmissionTitle">Afventer godkendelse.</message>
-	<message key="notification.type.formatNeedsApprovedSubmission">Monografien vises først i kataloget, når der er oprettet en katalogpost. For at tilføje denne bog til kataloget skal du klikke på katalogposter ovenfor og finde fanebladet 'Katalog'.</message>
 	<message key="notification.type.configurePaymentMethod.title">Der er ikke konfigureret nogen betalingsmetode.</message>
 	<message key="notification.type.configurePaymentMethod">En konfigureret betalingsmetode er påkrævet, før du kan definere indstillinger for e-handel.</message>
 	<message key="notification.type.visitCatalog">Monografien er godkendt. Gå til 'Katalog' for at indskrive dets katalogoplysninger ved hjælp af katalog-linket ovenfor.</message>

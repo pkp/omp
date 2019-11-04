@@ -1296,7 +1296,7 @@ msgid "notification.type.approveSubmissionTitle"
 msgstr "Awaiting approval."
 
 msgid "notification.type.formatNeedsApprovedSubmission"
-msgstr "The monograph will not be listed in the catalog until a catalog entry has been created. To add this book to the catalog, click on the Catalog Entry above and find the Catalog tab."
+msgstr "The monograph will not be listed in the catalog until it has been published. To add this book to the catalog, click on the Publication tab."
 
 msgid "notification.type.configurePaymentMethod.title"
 msgstr "No payment method configured."

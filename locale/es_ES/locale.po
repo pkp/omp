@@ -1127,9 +1127,6 @@ msgstr "Esta propuesta está actualmente pendiente de aprobación en la herramie
 msgid "notification.type.approveSubmissionTitle"
 msgstr "Pendiente de aprobación."
 
-msgid "notification.type.formatNeedsApprovedSubmission"
-msgstr "Los metadatos de la entrada de catálogo deben aprobarse antes de que el formato de publicación se incluya en el catálogo. Para aprobar los metadatos del catálogo, haga clic en la pestaña Monografía de la parte superior."
-
 msgid "notification.type.configurePaymentMethod.title"
 msgstr "No se ha configurado ningún método de pago."
 

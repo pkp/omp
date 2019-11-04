@@ -1114,9 +1114,6 @@ msgstr "Cette soumission est en attente d'approbation dans l'outil d'entrée de 
 msgid "notification.type.approveSubmissionTitle"
 msgstr "En attente d'approbation."
 
-msgid "notification.type.formatNeedsApprovedSubmission"
-msgstr "Les métadonnées pour l'entrée de catalogue doivent être approuvées avant d'ajouter le format de publication dans le catalogue. Pour approuver les métadonnées du catalogue, cliquez sur l'onglet Monographie ci-haut."
-
 msgid "notification.type.configurePaymentMethod.title"
 msgstr "Aucun mode de paiement n'a été configuré."
 

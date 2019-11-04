@@ -1136,9 +1136,6 @@ msgstr "Submissão atualmente aguardando aprovação na ferramenta de entrada de
 msgid "notification.type.approveSubmissionTitle"
 msgstr "Aguardando aprovação."
 
-msgid "notification.type.formatNeedsApprovedSubmission"
-msgstr "A monografia não aparecerá no catálogo enquanto a \"Entrada no catálogo\" não for criada. Para adicionar este livro ao catálogo, clique em \"Entrada no catálogo\" acima e encontre a guia \"catálogo\"."
-
 msgid "notification.type.configurePaymentMethod.title"
 msgstr "Nenhuma forma de pagamento configurada."
 

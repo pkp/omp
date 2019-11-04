@@ -1208,9 +1208,6 @@ msgstr "Das eingereichte Manuskript muss noch im Katalogtool als akzeptiert geke
 msgid "notification.type.approveSubmissionTitle"
 msgstr "Warten auf Freigabe."
 
-msgid "notification.type.formatNeedsApprovedSubmission"
-msgstr "Damit das Format in den Katalog aufgenommen werden kann, müssen Sie die Metadaten für den Katalogeintrag akzeptieren. Aktivieren Sie dazu auf diesem Reiter die Checkbox \"Übernehme die Metadaten für dieses Format in den Katalog\". Wechseln Sie anschließend auf den Reiter 'Monografie' und aktvieren dort die Checkbox 'Erstelle anhand der angegebenen Metadaten einen neuen Katalogeintrag'."
-
 msgid "notification.type.configurePaymentMethod.title"
 msgstr "Es wurde noch keine Zahlungsweise konfiguriert."
 

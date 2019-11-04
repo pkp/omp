@@ -485,7 +485,6 @@
 	<message key="notification.type.editorDecisionInternalReview">Postopek notranjega pregleda začet.</message>
 	<message key="notification.type.approveSubmission">Ta prispevek trenutno čaka na odobritev v orodju Vnos v katalog, preden se bo pojavil v javnem katalogu.</message>
 	<message key="notification.type.approveSubmissionTitle">Čaka na odobritev.</message>
-	<message key="notification.type.formatNeedsApprovedSubmission">Ta monografska publikacija se v katalogu ne bo pojavila, dokler ne bo ustvarjen kataložni vnos. Za dodajanje te knjige v katalog kliknite na vnos v katalog zgoraj in poiščite zavihek Katalog.</message>
 	<message key="notification.type.configurePaymentMethod.title">Ni konfiguriranih načinov plačila.</message>
 	<message key="notification.type.configurePaymentMethod">Konfiguriran način plačila je obvezen, preden lahko opredelite nastavitve e-poslovanja.</message>
 	<message key="notification.type.visitCatalogTitle">Upravljanje kataloga</message>

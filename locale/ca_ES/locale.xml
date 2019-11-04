@@ -450,7 +450,6 @@ El vostre servidor actual és compatible amb mbstring: <strong>{$supportsMBStrin
 	<message key="notification.type.editorDecisionInternalReview">El procés de revisió interna ha començat.</message>
 	<message key="notification.type.approveSubmission">Aquesta tramesa espera aprovació a l'eina d'entrades del catàleg abans d'aparèixer al catàleg públic.</message>
 	<message key="notification.type.approveSubmissionTitle">Esperant l'aprovació.</message>
-	<message key="notification.type.formatNeedsApprovedSubmission">S'ha d'aprovar l'entrada al catàleg de les metadades abans d'incloure el format de publicació al catàleg. Per aprovar les metadades d'un catàleg, feu clic a la pestanya superior «Monografia».</message>
 	<message key="notification.type.configurePaymentMethod.title">No s'ha configurat cap mètode de pagament.</message>
 	<message key="notification.type.configurePaymentMethod">Cal que configureu un mètode de pagament abans de definir les opcions de configuració de comerç electrònic.</message>
 	<message key="notification.type.visitCatalogTitle">Administració del catàleg</message>

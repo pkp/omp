@@ -465,7 +465,6 @@ Your server currently supports mbstring: <strong>{$supportsMBString}</strong>]]>
 	<message key="notification.type.editorDecisionInternalReview">Η διαδικασία εσωτερικής αξιολόγησης έχει ξεκινήσει.</message>
 	<message key="notification.type.approveSubmission">Αυτή η υποβολή αναμένει πρόσφατα για Καταχώριση στον Κατάλογο πριν αυτή εμφανιστεί δημόσια στον κατάλογο.</message>
 	<message key="notification.type.approveSubmissionTitle">Εν αναμονή έγκρισης.</message>
-	<message key="notification.type.formatNeedsApprovedSubmission">Τα μεταδεδομένα για την καταχώρηση στο κατάλογο θα πρέπει να εγκριθούν πριν το μορφότυπο δημοσίεσυης συμπεριληφθεί στον κατάλογο. Για την έγκριση των μεταδεδομένων για τον κατάλογο, επιλέξετε στην παραπάνω καρτέλα Μονογραφία.</message>
 	<message key="notification.type.configurePaymentMethod.title">Καμία μέθοδος πληρωμής εισφορών δεν έχει ρυθμιστεί.</message>
 	<message key="notification.type.configurePaymentMethod">Μία διαμορφωμένη μέθοδος πληρωμής εισφορών απαιτείται πριν είστε σε θέση να καθορίσετε τις ρυθμίσεις για ηλεκτρονικό εμπόριο (e-commerce).</message>
 	<message key="notification.type.visitCatalogTitle">Διαχείριση Καταλόγου</message>
