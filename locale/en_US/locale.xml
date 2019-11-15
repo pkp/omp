@@ -523,6 +523,7 @@ Your server currently supports mbstring: <strong>{$supportsMBString}</strong>]]>
 	<message key="notification.type.submissions">Submission Events</message>
 	<message key="notification.type.userComment">A reader has made a comment on "{$title}".</message>
 	<message key="notification.type.public">Public Announcements</message>
+	<message key="notification.type.editorialReport">Statistics report summary.</message>
 	<message key="notification.type.editorAssignmentTask">A new monograph has been submitted to which an editor needs to be assigned.</message>
 	<message key="notification.type.copyeditorRequest">You have been asked to review copyedits for "{$file}".</message>
 	<message key="notification.type.layouteditorRequest">You have been asked to review layouts for "{$title}".</message>
@@ -535,6 +536,7 @@ Your server currently supports mbstring: <strong>{$supportsMBString}</strong>]]>
 	<message key="notification.type.configurePaymentMethod">A configured payment method is required before you can define e-commerce settings.</message>
 	<message key="notification.type.visitCatalog">The monograph has been approved. Please visit Catalog to manage its catalog details, using the catalog link just above.</message>
 	<message key="notification.type.visitCatalogTitle">Catalog Management</message>
+	<message key="notification.type.editorialReport.contents">This is a kind reminder for you to check your press's health through the editorial report.</message>
 
 	<!-- Authorization -->
 	<message key="user.authorization.invalidReviewAssignment">You have been denied access because you do not seem to be a valid reviewer for this monograph.</message>

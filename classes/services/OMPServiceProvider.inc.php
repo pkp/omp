@@ -55,5 +55,10 @@ class OMPServiceProvider implements \Pimple\ServiceProviderInterface {
 		$pimple['stats'] = function() {
 			return new \PKP\Services\PKPStatsService();
 		};
+
+		// Editorial statistics service
+		$pimple['editorialStatistics'] = function() {
+			return new \PKP\Services\EditorialStatisticsService();
+		};
 	}
 }
