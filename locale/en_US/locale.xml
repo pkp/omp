@@ -579,4 +579,5 @@ Your server currently supports mbstring: <strong>{$supportsMBString}</strong>]]>
 
 	<message key="user.profile.form.showOtherContexts">Register with other presses</message>
 	<message key="user.profile.form.hideOtherContexts">Hide other presses</message>
+	<message key="submission.round">Round&amp;nbsp;{$round}</message>
 </locale>

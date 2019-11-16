@@ -557,4 +557,5 @@ Suporte à biblioteca mbstring: <strong>{$supportsMBString}</strong>]]></message
 	<message key="user.profile.form.showOtherContexts">Registrar em outras editoras</message>
 	<message key="user.profile.form.hideOtherContexts">Ocultar outras editoras</message>
 	<message key="spotlight">Em destaque</message>
+	<message key="submission.round">Rodada&amp;nbsp;{$round}</message>
 </locale>

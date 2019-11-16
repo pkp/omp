@@ -557,4 +557,5 @@ Ihr Server untersützt aktuell mbstring: <strong>{$supportsMBString}</strong>]]>
 	<message key="user.profile.form.showOtherContexts">Andere Verlage anzeigen</message>
 	<message key="user.profile.form.hideOtherContexts">Andere Verlage verbergen</message>
 	<message key="grid.series.urlWillBe">Die URL der Reihe soll lauten {$sampleUrl}. 'Path' (deutsch "Pfad") ist eine Zeichenkette, durch die die Reihe eindeutig identifizierbar wird.</message>
+	<message key="submission.round">Durchgang {$round}</message>
 </locale>

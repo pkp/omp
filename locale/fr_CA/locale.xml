@@ -527,4 +527,5 @@ Votre serveur supporte actuellement mbstring: <strong>{$supportsMBString}</stron
 	<message key="user.role.editors">Éditeurs</message>
 	<message key="submission.pdf.download">Télécharger ce fichier PDF</message>
 	<message key="user.noRoles.selectUsersWithoutRoles">Ajouter des utilisateurs sans rôle à cette presse.</message>
+	<message key="submission.round">Cycle {$round}</message>
 </locale>

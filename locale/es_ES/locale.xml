@@ -609,4 +609,5 @@
 	<message key="catalog.manage.notFeaturedSuccess">Monografía no destacada.</message>
 	<message key="catalog.manage.newReleaseSuccess">Monografía marcada como una nueva publicación</message>
 	<message key="grid.series.urlWillBe">La URL de la colección es {$sampleUrl}. La ruta es una cadena de caracteres que sirven para identificar una serie.</message>
+	<message key="submission.round">Ronda&amp;nbsp;{$round}</message>
 </locale>
