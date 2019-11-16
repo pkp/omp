@@ -1471,3 +1471,7 @@ msgstr "Monografía marcada como una nueva publicación"
 
 msgid "grid.series.urlWillBe"
 msgstr "La URL de la colección es {$sampleUrl}. La ruta es una cadena de caracteres que sirven para identificar una serie."
+
+msgid "submission.round"
+msgstr "Ronda&nbsp;{$round}"
+

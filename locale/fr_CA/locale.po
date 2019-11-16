@@ -1221,3 +1221,7 @@ msgstr "Télécharger ce fichier PDF"
 
 msgid "user.noRoles.selectUsersWithoutRoles"
 msgstr "Ajouter des utilisateurs sans rôle à cette presse."
+
+msgid "submission.round"
+msgstr "Cycle {$round}"
+

@@ -1309,3 +1309,7 @@ msgstr "Ocultar outras editoras"
 
 msgid "spotlight"
 msgstr "Em destaque"
+
+msgid "submission.round"
+msgstr "Rodada&nbsp;{$round}"
+

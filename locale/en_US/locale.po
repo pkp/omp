@@ -1405,3 +1405,7 @@ msgstr "Register with other presses"
 
 msgid "user.profile.form.hideOtherContexts"
 msgstr "Hide other presses"
+
+msgid "submission.round"
+msgstr "Round&nbsp;{$round}"
+

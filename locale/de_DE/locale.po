@@ -1318,3 +1318,7 @@ msgstr "Andere Verlage verbergen"
 
 msgid "grid.series.urlWillBe"
 msgstr "Die URL der Reihe soll lauten {$sampleUrl}. 'Path' (deutsch \"Pfad\") ist eine Zeichenkette, durch die die Reihe eindeutig identifizierbar wird."
+
+msgid "submission.round"
+msgstr "Durchgang {$round}"
+

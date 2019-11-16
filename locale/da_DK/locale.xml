@@ -498,4 +498,5 @@ Din server understøtter i øjeblikket mbstring: <strong>{$supportsMBString}</st
 	<message key="submission.pdf.download">Download denne PDF-fil</message>
 	<message key="user.profile.form.showOtherContexts">Registrer dig hos andre forlag</message>
 	<message key="user.profile.form.hideOtherContexts">Skjul andre forlag</message>
+	<message key="submission.round"><![CDATA[Runde&nbsp;{$round}]]></message>
 </locale>

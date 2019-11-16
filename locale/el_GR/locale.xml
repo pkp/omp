@@ -499,4 +499,5 @@ Your server currently supports mbstring: <strong>{$supportsMBString}</strong>]]>
 	<!-- Debug messages -->
 	<message key="debug.notes.currencyListLoad">Η λίστα νομισματικών μονάδων "{$filename}" φορτώθηκε από XML</message>
 	<message key="debug.notes.helpMappingLoad">Η επαναφόρτωση XML βοηθάει τη χαρτογράφηση του αρχείου {$filename} για την αναζήτηση {$id}.</message>
+	<message key="submission.round">Γύρος&amp;nbsp;{$round}</message>
 </locale>

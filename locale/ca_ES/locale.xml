@@ -491,4 +491,5 @@ El vostre servidor actual és compatible amb mbstring: <strong>{$supportsMBStrin
 	<message key="rt.metadata.pkp.dctype">Llibre</message>
 
 	<message key="submission.pdf.download">Descarrega aquest fitxer PDF</message>
+	<message key="submission.round">Ronda&amp;nbsp;{$round}</message>
 </locale>

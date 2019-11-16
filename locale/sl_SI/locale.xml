@@ -533,4 +533,6 @@
 
 	<message key="user.profile.form.showOtherContexts">Registriraj se pri ostali založbah</message>
 	<message key="user.profile.form.hideOtherContexts">Skrij ostale založbe</message>
+
+	<message key="submission.round">Krog &amp;nbsp;{$round}</message>
 </locale>
