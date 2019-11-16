@@ -64,11 +64,12 @@ class EditorDecisionActionsManager extends PKPEditorDecisionActionsManager {
 
 	/**
 	 * Check for editor decisions in the review round.
+	 * @param $context Context
 	 * @param $reviewRound ReviewRound
 	 * @param $decisions array
 	 * @return boolean
 	 */
-	public function getEditorTakenActionInReviewRound($reviewRound, $decisions = array()) {
+	public function getEditorTakenActionInReviewRound($context, $reviewRound, $decisions = array()) {
 		$editDecisionDao = DAORegistry::getDAO('EditDecisionDAO');
 		$editorDecisions = $editDecisionDao->getEditorDecisions($reviewRound->getSubmissionId(), $reviewRound->getStageId(), $reviewRound->getRound());
 
