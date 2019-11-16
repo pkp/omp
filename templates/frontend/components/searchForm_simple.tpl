@@ -13,7 +13,6 @@
 	{capture name="searchFormUrl"}{url page="catalog" op="results" escape=false}{/capture}
 	{$smarty.capture.searchFormUrl|parse_url:$smarty.const.PHP_URL_QUERY|parse_str:$formUrlParameters}
 	<form class="pkp_search {$className|escape}" action="{$smarty.capture.searchFormUrl|strtok:"?"|escape}" method="get" role="search" aria-label="{translate|escape key="submission.search"}">
-		{csrf}
 		{foreach from=$formUrlParameters key=paramKey item=paramValue}
 			<input type="hidden" name="{$paramKey|escape}" value="{$paramValue|escape}"/>
 		{/foreach}
