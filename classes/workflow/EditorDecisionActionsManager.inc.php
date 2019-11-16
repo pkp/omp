@@ -66,11 +66,12 @@ class EditorDecisionActionsManager {
 
 	/**
 	 * Check for editor decisions in the review round.
+	 * @param $context Context
 	 * @param $reviewRound ReviewRound
 	 * @param $decisions array
 	 * @return boolean
 	 */
-	static function getEditorTakenActionInReviewRound($reviewRound, $decisions = array()) {
+	static function getEditorTakenActionInReviewRound($context, $reviewRound, $decisions = array()) {
 		$editDecisionDao = DAORegistry::getDAO('EditDecisionDAO');
 		$editorDecisions = $editDecisionDao->getEditorDecisions($reviewRound->getSubmissionId(), $reviewRound->getStageId(), $reviewRound->getRound());
 
