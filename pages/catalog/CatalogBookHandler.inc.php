@@ -34,7 +34,6 @@ class CatalogBookHandler extends Handler {
 		parent::__construct();
 	}
 
-
 	//
 	// Overridden functions from PKPHandler
 	//
@@ -55,7 +54,7 @@ class CatalogBookHandler extends Handler {
 	// Public handler methods
 	//
 	/**
-	 * Display a published submission in the public catalog.
+	 * Display a landing page for a book or a chapter in the public catalog.
 	 * @param $args array
 	 * @param $request PKPRequest
 	 */
@@ -78,6 +77,11 @@ class CatalogBookHandler extends Handler {
 			}
 		} else {
 			$this->publication = $submission->getCurrentPublication();
+		}
+
+		if ($subPath === 'chapter') {
+			$chapterId = (int) array_shift($args);
+			$this->chapter = DAORegistry::getDAO('ChapterDAO')->getChapter($chapterId);
 		}
 
 		if (!$this->publication) {
@@ -109,7 +113,12 @@ class CatalogBookHandler extends Handler {
 		));
 
 		// Assign chapters (if they exist)
-		$templateMgr->assign('chapters', DAORegistry::getDAO('ChapterDAO')->getByPublicationId($this->publication->getId())->toAssociativeArray());
+		if ($this->chapter){
+			$templateMgr->assign('chapter', $this->chapter);
+		}
+		else {
+			$templateMgr->assign('chapters', DAORegistry::getDAO('ChapterDAO')->getByPublicationId($this->publication->getId())->toAssociativeArray());
+		}
 
 		$pubIdPlugins = PluginRegistry::loadCategory('pubIds', true);
 		$templateMgr->assign(array(
@@ -117,32 +126,35 @@ class CatalogBookHandler extends Handler {
 			'ccLicenseBadge' => Application::getCCLicenseBadge($this->publication->getData('licenseUrl')),
 		));
 
-		// Categories
-		$templateMgr->assign([
-			'categories' => DAORegistry::getDAO('CategoryDAO')->getByPublicationId($this->publication->getId())->toArray(),
-		]);
-
-		// Citations
-		if ($this->publication->getData('citationsRaw')) {
-			$parsedCitations = DAORegistry::getDAO('CitationDAO')->getByPublicationId($this->publication->getId());
+		if (!$this->chapter){
+			// Categories
 			$templateMgr->assign([
-				'citations' => $parsedCitations->toArray(),
-				'parsedCitations' => $parsedCitations, // compatible with older themes
+				'categories' => DAORegistry::getDAO('CategoryDAO')->getByPublicationId($this->publication->getId())->toArray(),
+			]);
+
+			// Citations
+			if ($this->publication->getData('citationsRaw')) {
+				$parsedCitations = DAORegistry::getDAO('CitationDAO')->getByPublicationId($this->publication->getId());
+				$templateMgr->assign([
+					'citations' => $parsedCitations->toArray(),
+					'parsedCitations' => $parsedCitations, // compatible with older themes
+				]);
+			}
+
+			// Retrieve editors for an edited volume
+			$editors = [];
+			if ($submission->getWorkType() == WORK_TYPE_EDITED_VOLUME) {
+				foreach ($this->publication->getData('authors') as $author) {
+					if ($author->getIsVolumeEditor()) {
+						$editors[] = $author;
+					}
+				}
+			}
+			$templateMgr->assign([
+				'editors' => $editors,
 			]);
 		}
 
-		// Retrieve editors for an edited volume
-		$editors = [];
-		if ($submission->getWorkType() == WORK_TYPE_EDITED_VOLUME) {
-			foreach ($this->publication->getData('authors') as $author) {
-				if ($author->getIsVolumeEditor()) {
-					$editors[] = $author;
-				}
-			}
-		}
-		$templateMgr->assign([
-			'editors' => $editors,
-		]);
 
 		// Consider public identifiers
 		$pubIdPlugins = PluginRegistry::loadCategory('pubIds', true);
@@ -165,6 +177,7 @@ class CatalogBookHandler extends Handler {
 				}
 			}
 		}
+
 		$templateMgr->assign('availableFiles', $filteredAvailableFiles);
 
 		// Provide the currency to the template, if configured.
@@ -186,11 +199,20 @@ class CatalogBookHandler extends Handler {
 			$templateMgr->addHeader('canonical', '<link rel="canonical" href="' . $url . '">');
 		}
 
-		// Display
-		if (!HookRegistry::call('CatalogBookHandler::book', array(&$request, &$submission))) {
-			return $templateMgr->display('frontend/pages/book.tpl');
+		if ($this->chapter){
+			// Display a chapter
+			if (!HookRegistry::call('CatalogBookHandler::chapter', array(&$request, &$submission))) {
+				return $templateMgr->display('frontend/pages/chapter.tpl');
+			}
+		} else {
+			// Display a book
+			if (!HookRegistry::call('CatalogBookHandler::book', array(&$request, &$submission))) {
+				return $templateMgr->display('frontend/pages/book.tpl');
+			}
 		}
 	}
+
+
 
 	/**
 	 * Use an inline viewer to view a published submission publication

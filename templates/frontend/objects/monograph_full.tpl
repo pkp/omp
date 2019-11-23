@@ -212,14 +212,16 @@
 						{foreach from=$chapters item=chapter}
 							{assign var=chapterId value=$chapter->getId()}
 							<li>
-								<div class="title">
-									{$chapter->getLocalizedTitle()|escape}
-									{if $chapter->getLocalizedSubtitle() != ''}
-										<div class="subtitle">
-											{$chapter->getLocalizedSubtitle()|escape}
-										</div>
-									{/if}
-								</div>
+								<a href="{url router=$smarty.const.ROUTE_PAGE page="catalog" op="book" path=$monograph->getBestId()|to_array:"chapter":$chapterId}" class="title">
+									<div class="title">
+										{$chapter->getLocalizedTitle()|escape}
+										{if $chapter->getLocalizedSubtitle() != ''}
+											<div class="subtitle">
+												{$chapter->getLocalizedSubtitle()|escape}
+											</div>
+										{/if}
+									</div>
+								</a>
 								{assign var=chapterAuthors value=$chapter->getAuthorNamesAsString()}
 								{if $authorString != $chapterAuthors}
 									<div class="authors">
