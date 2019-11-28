@@ -136,7 +136,7 @@ abstract class PubIdPlugin extends PKPPubIdPlugin {
 				}
 
 				if ($chapter) {
-					$pubIdSuffix .= '.' . $chapter->getId();
+					$pubIdSuffix .= '.c' . $chapter->getId();
 				}
 
 				if ($representation) {
@@ -144,7 +144,7 @@ abstract class PubIdPlugin extends PKPPubIdPlugin {
 				}
 
 				if ($submissionFile) {
-					$pubIdSuffix .= '.s' . $submissionFile->getFileId();
+					$pubIdSuffix .= '.' . $submissionFile->getFileId();
 				}
 		}
 		if (empty($pubIdSuffix)) return null;
