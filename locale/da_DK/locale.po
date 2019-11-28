@@ -1,0 +1,1400 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: \n"
+"Report-Msgid-Bugs-To: \n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"POT-Creation-Date: 2019-11-28T15:10:04-08:00\n"
+"PO-Revision-Date: 2019-11-28T15:10:04-08:00\n"
+"Language: \n"
+
+msgid "common.publishedSubmission"
+msgstr "Monografi"
+
+msgid "common.publishedSubmissions"
+msgstr "Monografier"
+
+msgid "monograph.audience"
+msgstr "Audience"
+
+msgid "monograph.coverImage"
+msgstr "Forsidebillede"
+
+msgid "monograph.currentCoverImageReload"
+msgstr "Gem dine ændringer for at se det nye forsidebillede."
+
+msgid "monograph.audience.rangeQualifier"
+msgstr "Audience Range Qualifier"
+
+msgid "monograph.audience.rangeFrom"
+msgstr "Audience Range (from)"
+
+msgid "monograph.audience.rangeTo"
+msgstr "Audience Range (to)"
+
+msgid "monograph.audience.rangeExact"
+msgstr "Audience Range (exact)"
+
+msgid "monograph.languages"
+msgstr "Sprog (engelsk, fransk, spansk)"
+
+msgid "monograph.publicationFormats"
+msgstr "Publikationsformat"
+
+msgid "monograph.publicationFormat"
+msgstr "Format"
+
+msgid "monograph.publicationFormatDetails"
+msgstr "Detaljer om det tilgængelige publikationsformat: {$format}"
+
+msgid "monograph.miscellaneousDetails"
+msgstr "Detaljer om denne monografi"
+
+msgid "monograph.carousel.publicationFormats"
+msgstr "Formater:"
+
+msgid "monograph.type"
+msgstr "Indsendelsestype"
+
+msgid "submission.pageProofs"
+msgstr "Korrekturside"
+
+msgid "monograph.proofReadingDescription"
+msgstr "Layoutredaktøren uploader de produktionsklare filer, der er klar til offentliggørelse her. Brug <em>+ Tildel</em> til at udpege forfattere og andre til korrekturlæsning af tilrettede korrektursider, der er uploadet til godkendelse, inden de offentliggøres."
+
+msgid "monograph.task.addNote"
+msgstr "Føj til opgave"
+
+msgid "monograph.accessLogoOpen.altText"
+msgstr "Open Access"
+
+msgid "monograph.publicationFormat.imprint"
+msgstr "Mærke (Brand Name)"
+
+msgid "monograph.publicationFormat.pageCounts"
+msgstr "Sidetæller"
+
+msgid "monograph.publicationFormat.frontMatterCount"
+msgstr "Præliminærsider (fortekst)"
+
+msgid "monograph.publicationFormat.backMatterCount"
+msgstr "Subsidiærsider (sider efter bogens hovedtekst)"
+
+msgid "monograph.publicationFormat.productComposition"
+msgstr "Produktsammensætning"
+
+msgid "monograph.publicationFormat.productFormDetailCode"
+msgstr "Produktsammensætning (ikke påkrævet)"
+
+msgid "monograph.publicationFormat.productIdentifierType"
+msgstr "Produktidentifikation"
+
+msgid "monograph.publicationFormat.price"
+msgstr "Pris"
+
+msgid "monograph.publicationFormat.priceRequired"
+msgstr "En pris er påkrævet."
+
+msgid "monograph.publicationFormat.priceType"
+msgstr "Pristype"
+
+msgid "monograph.publicationFormat.discountAmount"
+msgstr "Rabatprocent, hvis det er relevant"
+
+msgid "monograph.publicationFormat.productAvailability"
+msgstr "Produkttilgængelighed"
+
+msgid "monograph.publicationFormat.returnInformation"
+msgstr "Returindikator"
+
+msgid "monograph.publicationFormat.digitalInformation"
+msgstr "Digitalinformation"
+
+msgid "monograph.publicationFormat.productDimensions"
+msgstr "Fysiske dimensioner"
+
+msgid "monograph.publicationFormat.productDimensionsSeparator"
+msgstr " x"
+
+msgid "monograph.publicationFormat.productFileSize"
+msgstr "Filstørrelse i Mbytes"
+
+msgid "monograph.publicationFormat.productFileSize.override"
+msgstr "Indtast din egen filstørrelsesværdi?"
+
+msgid "monograph.publicationFormat.productHeight"
+msgstr "Højde"
+
+msgid "monograph.publicationFormat.productThickness"
+msgstr "Tykkelse"
+
+msgid "monograph.publicationFormat.productWeight"
+msgstr "Vægt"
+
+msgid "monograph.publicationFormat.productWidth"
+msgstr "Bredde"
+
+msgid "monograph.publicationFormat.countryOfManufacture"
+msgstr "Fremstillingsland"
+
+msgid "monograph.publicationFormat.technicalProtection"
+msgstr "Digital teknisk beskyttelse"
+
+msgid "monograph.publicationFormat.productRegion"
+msgstr "Produktdistributionsregion"
+
+msgid "monograph.publicationFormat.taxRate"
+msgstr "Beskatningsprocent"
+
+msgid "monograph.publicationFormat.taxType"
+msgstr "Beskatningstype"
+
+msgid "monograph.publicationFormat.formatMetadata"
+msgstr "Formater metadata"
+
+msgid "monograph.publicationFormat.isApproved"
+msgstr "Medtag metadataene for dette publikationsformat i katalogposten for denne bog."
+
+msgid "monograph.publicationFormat.noMarketsAssigned"
+msgstr "Manglende markeder og priser."
+
+msgid "monograph.publicationFormat.noCodesAssigned"
+msgstr "Mangler en identifikationskode."
+
+msgid "monograph.publicationFormat.missingONIXFields"
+msgstr "Mangler nogle metadatafelter."
+
+msgid "monograph.publicationFormat.formatDoesNotExist"
+msgstr "<p>Det valgte publikationsformat eksisterer ikke længere for denne monografi.</p>"
+
+msgid "monograph.publicationFormat.openTab"
+msgstr "Åbn fanebladet for publikationsformat."
+
+msgid "grid.catalogEntry.publicationFormatType"
+msgstr "Publikationsformat"
+
+msgid "grid.catalogEntry.nameRequired"
+msgstr "Et navn kræves."
+
+msgid "grid.catalogEntry.validPriceRequired"
+msgstr "En gyldig pris er påkrævet."
+
+msgid "grid.catalogEntry.publicationFormatDetails"
+msgstr "Formatdetaljer"
+
+msgid "grid.catalogEntry.physicalFormat"
+msgstr "Fysisk format"
+
+msgid "grid.catalogEntry.remotelyHostedContent"
+msgstr "Dette format vil være tilgængeligt på et separat websted"
+
+msgid "grid.catalogEntry.remoteURL"
+msgstr "URL til indhold hos ekstern vært"
+
+msgid "grid.catalogEntry.monographRequired"
+msgstr "Der kræves en monografisk id."
+
+msgid "grid.catalogEntry.publicationFormatRequired"
+msgstr "Der skal vælges et publikationsformat."
+
+msgid "grid.catalogEntry.availability"
+msgstr "Tilgængelighed."
+
+msgid "grid.catalogEntry.isAvailable"
+msgstr "Tilgængelig"
+
+msgid "grid.catalogEntry.isNotAvailable"
+msgstr "Ikke tilgængelig"
+
+msgid "grid.catalogEntry.proof"
+msgstr "Korrektur"
+
+msgid "grid.catalogEntry.approvedRepresentation.title"
+msgstr "Godkendelse af format"
+
+msgid "grid.catalogEntry.approvedRepresentation.message"
+msgstr "<p>Godkend metadataene for dette format. Metadata kan kontrolleres fra katalogposten</p>"
+
+msgid "grid.catalogEntry.approvedRepresentation.removeMessage"
+msgstr "<p>Angiv, at metadataene for dette format ikke er blevet godkendt.</p>"
+
+msgid "grid.catalogEntry.availableRepresentation.title"
+msgstr "Format-tilgængelighed"
+
+msgid "grid.catalogEntry.availableRepresentation.message"
+msgstr "<p>Gør dette format <em>tilgængeligt for læsere</em>. Downloadbare filer og andre distributioner vises i bogens katalogpost.</p>"
+
+msgid "grid.catalogEntry.availableRepresentation.removeMessage"
+msgstr "<p>Dette format vil <em> ikke være tilgængeligt for læsere</em>. Eventuelle downloadbare filer eller andre distributioner vises ikke længere i bogens katalogpost. </p>"
+
+msgid "grid.catalogEntry.availableRepresentation.catalogNotApprovedWarning"
+msgstr "Katalogpost ikke godkendt."
+
+msgid "grid.catalogEntry.availableRepresentation.notApprovedWarning"
+msgstr "Format ikke i katalogpost."
+
+msgid "grid.catalogEntry.availableRepresentation.proofNotApproved"
+msgstr "Korrektur ikke godkendt."
+
+msgid "grid.catalogEntry.availableRepresentation.approved"
+msgstr "Godkendt"
+
+msgid "grid.catalogEntry.availableRepresentation.notApproved"
+msgstr "Afventer godkendelse"
+
+msgid "grid.catalogEntry.fileSizeRequired"
+msgstr "En filstørrelse til digitale formater er påkrævet."
+
+msgid "grid.catalogEntry.productAvailabilityRequired"
+msgstr "En produkttilgængelighedskode er påkrævet."
+
+msgid "grid.catalogEntry.productCompositionRequired"
+msgstr "Der skal vælges en produktsammensætningskode."
+
+msgid "grid.catalogEntry.identificationCodeValue"
+msgstr "Kodeværdi"
+
+msgid "grid.catalogEntry.identificationCodeType"
+msgstr "ONIX kodetype"
+
+msgid "grid.catalogEntry.codeRequired"
+msgstr "Der kræves en identifikationskode."
+
+msgid "grid.catalogEntry.valueRequired"
+msgstr "Der kræves en værdi"
+
+msgid "grid.catalogEntry.salesRights"
+msgstr "Salgsrettigheder"
+
+msgid "grid.catalogEntry.salesRightsValue"
+msgstr "Kodeværdi"
+
+msgid "grid.catalogEntry.salesRightsType"
+msgstr "Salgsrettighedstype"
+
+msgid "grid.catalogEntry.salesRightsROW"
+msgstr "Resten af verden?"
+
+msgid "grid.catalogEntry.salesRightsROW.tip"
+msgstr "Marker dette felt for at bruge denne salgsrettighedsindgang som en fællesbetegnelse til dit format. Lande og regioner behøver ikke vælges i dette tilfælde."
+
+msgid "grid.catalogEntry.oneROWPerFormat"
+msgstr "Der er allerede defineret en ROW-salgstype (resten af verden) til dette publikationsformat."
+
+msgid ""
+msgstr ""
+
+msgid "grid.catalogEntry.countries"
+msgstr "Lande"
+
+msgid "grid.catalogEntry.regions"
+msgstr "Regioner"
+
+msgid "grid.catalogEntry.included"
+msgstr "Inkluderet"
+
+msgid "grid.catalogEntry.excluded"
+msgstr "Ekskluderet"
+
+msgid "grid.catalogEntry.markets"
+msgstr "Markedsområder"
+
+msgid "grid.catalogEntry.marketTerritory"
+msgstr "Område"
+
+msgid "grid.catalogEntry.publicationDates"
+msgstr "Publikationsdatoer"
+
+msgid "grid.catalogEntry.roleRequired"
+msgstr "Der kræves en repræsentativ rolle."
+
+msgid "grid.catalogEntry.dateFormatRequired"
+msgstr "Et datoformat er påkrævet."
+
+msgid "grid.catalogEntry.dateValue"
+msgstr "Dato"
+
+msgid "grid.catalogEntry.dateRole"
+msgstr "Rolle"
+
+msgid "grid.catalogEntry.dateFormat"
+msgstr "Datoformat"
+
+msgid "grid.catalogEntry.dateRequired"
+msgstr "En dato er påkrævet, og datoen skal svare til det valgte datoformat."
+
+msgid "grid.catalogEntry.representatives"
+msgstr "Repræsentanter"
+
+msgid "grid.catalogEntry.representativeType"
+msgstr "Repræsentativ type"
+
+msgid "grid.catalogEntry.agentsCategory"
+msgstr "Agenter"
+
+msgid "grid.catalogEntry.suppliersCategory"
+msgstr "Leverandører"
+
+msgid "grid.catalogEntry.agent"
+msgstr "Agent"
+
+msgid "grid.catalogEntry.agentTip"
+msgstr "Du kan vælge en agent til at repræsentere dig i dette prædefinerede område. Det kræves ikke."
+
+msgid "grid.catalogEntry.supplier"
+msgstr "Leverandør"
+
+msgid "grid.catalogEntry.representativeRoleChoice"
+msgstr "Vælg en rolle:"
+
+msgid "grid.catalogEntry.representativeRole"
+msgstr "Rolle"
+
+msgid "grid.catalogEntry.representativeName"
+msgstr "Navn"
+
+msgid "grid.catalogEntry.representativePhone"
+msgstr "Telefon"
+
+msgid "grid.catalogEntry.representativeEmail"
+msgstr "E-mail-adresse"
+
+msgid "grid.catalogEntry.representativeWebsite"
+msgstr "Website"
+
+msgid "grid.catalogEntry.representativeIdValue"
+msgstr "Repræsentant-ID"
+
+msgid "grid.catalogEntry.representativeIdType"
+msgstr "Repræsenttant-ID-type (GNL anbefales)"
+
+msgid "grid.catalogEntry.representativesDescription"
+msgstr "Du kan efterlade følgende afsnit tomt, hvis du leverer dine egne tjenester til dine kunder."
+
+msgid "grid.action.addRepresentative"
+msgstr "Tilføj repræsentant"
+
+msgid "grid.action.editRepresentative"
+msgstr "Rediger denne repræsentant"
+
+msgid "grid.action.deleteRepresentative"
+msgstr "Slet denne repræsentant"
+
+msgid "spotlight"
+msgstr "Spotlight"
+
+msgid "spotlight.spotlights"
+msgstr "Spotlights"
+
+msgid "spotlight.noneExist"
+msgstr "Der er ingen aktuelle spotlights."
+
+msgid "spotlight.title.homePage"
+msgstr "In the Spotlight"
+
+msgid "spotlight.author"
+msgstr "Forfatter,"
+
+msgid "grid.content.spotlights.spotlightItemTitle"
+msgstr "Spotlight-element"
+
+msgid "grid.content.spotlights.category.homepage"
+msgstr "Homepage"
+
+msgid "grid.content.spotlights.form.location"
+msgstr "Spotlights-område"
+
+msgid "grid.content.spotlights.form.item"
+msgstr "Indtast spotlighted titel (autofuldførelse)"
+
+msgid "grid.content.spotlights.form.title"
+msgstr "Spotlight-titel"
+
+msgid "grid.content.spotlights.form.type.book"
+msgstr "Bog"
+
+msgid "grid.content.spotlights.itemRequired"
+msgstr "Et element er påkrævet"
+
+msgid "grid.content.spotlights.titleRequired"
+msgstr "En spotlight-titel er påkrævet"
+
+msgid "grid.content.spotlights.locationRequired"
+msgstr "Vælg en placering til dette spotlight."
+
+msgid "grid.action.editSpotlight"
+msgstr "Rediger dette spotlight"
+
+msgid "grid.action.deleteSpotlight"
+msgstr "Slet dette spotlight"
+
+msgid "grid.action.addSpotlight"
+msgstr "Tilføj spotlight"
+
+msgid "manager.series.open"
+msgstr "Åbn indsendelser"
+
+msgid "manager.series.indexed"
+msgstr "Indekseret"
+
+msgid "grid.libraryFiles.column.files"
+msgstr "Filer"
+
+msgid "grid.action.catalogEntry"
+msgstr "Se katalogpostens formular"
+
+msgid "grid.action.formatInCatalogEntry"
+msgstr "Format vises i katalogposten"
+
+msgid "grid.action.editFormat"
+msgstr "Rediger dette format"
+
+msgid "grid.action.deleteFormat"
+msgstr "Slet dette format"
+
+msgid "grid.action.addFormat"
+msgstr "Tilføj publikationsformat"
+
+msgid "grid.action.approveProof"
+msgstr "Godkend korrektur til indeksering og inkludering i kataloget"
+
+msgid "grid.action.pageProofApproved"
+msgstr "Korrekturfilen er klat til publicering"
+
+msgid "grid.action.addAnnouncement"
+msgstr "Tilføj en meddelelse"
+
+msgid "grid.action.newCatalogEntry"
+msgstr "Ny katalogpost"
+
+msgid "grid.action.publicCatalog"
+msgstr "Se dette element i katalog"
+
+msgid "grid.action.feature"
+msgstr "Skift funktionsdisplayet"
+
+msgid "grid.action.featureMonograph"
+msgstr "Vis dette i katalogkarusellen"
+
+msgid "grid.action.releaseMonograph"
+msgstr "Marker denne indsendelse som en 'ny udgivelse'"
+
+msgid "grid.action.manageCategories"
+msgstr "Konfigurer kategorier til dette forlag"
+
+msgid "grid.action.manageSeries"
+msgstr "Konfigurer serier til dette forlag"
+
+msgid "grid.action.addCode"
+msgstr "Tilføj kode"
+
+msgid "grid.action.editCode"
+msgstr "Rediger kodn"
+
+msgid "grid.action.deleteCode"
+msgstr "Slet koden"
+
+msgid "grid.action.addRights"
+msgstr "Tilføj salgsrettigheder"
+
+msgid "grid.action.editRights"
+msgstr "Rediger disse rettigheder"
+
+msgid "grid.action.deleteRights"
+msgstr "Slet disse rettigheder"
+
+msgid "grid.action.addMarket"
+msgstr "Tilføj marked"
+
+msgid "grid.action.editMarket"
+msgstr "Rediger dette marked"
+
+msgid "grid.action.deleteMarket"
+msgstr "Slet dette marked"
+
+msgid "grid.action.addDate"
+msgstr "Tilføj publiceringsdato"
+
+msgid "grid.action.editDate"
+msgstr "Rediger denne dato"
+
+msgid "grid.action.deleteDate"
+msgstr "Slet denne dato"
+
+msgid "grid.action.createContext"
+msgstr "Opret et nyt forlag"
+
+msgid "grid.action.publicationFormatTab"
+msgstr "Vis fanen med publikationsformat"
+
+msgid "grid.action.moreAnnouncements"
+msgstr "Gå til siden med forlagsmeddelelser"
+
+msgid "grid.action.submissionEmail"
+msgstr "Klik for at læse denne e-mail"
+
+msgid "grid.action.approveProofs"
+msgstr "Se korrekturnet"
+
+msgid "grid.action.proofApproved"
+msgstr "Der er læst korrektur på formatet"
+
+msgid "grid.action.availableRepresentation"
+msgstr "Godkend/afvis dette format"
+
+msgid "grid.action.formatAvailable"
+msgstr "Slå tilgængeligheden af dette format til og fra"
+
+msgid "grid.reviewAttachments.add"
+msgstr "Tilføj vedhæftet fil til bedømmelse"
+
+msgid "grid.reviewAttachments.availableFiles"
+msgstr "Tilgængelige filer"
+
+msgid "series.series"
+msgstr "Serier"
+
+msgid "series.featured.description"
+msgstr "Denne serie vises på hovednavigationsmenuen"
+
+msgid "series.path"
+msgstr "Sti"
+
+msgid "catalog.manage"
+msgstr "Katalogstyring"
+
+msgid "catalog.manage.newReleases"
+msgstr "Nye udgivelser"
+
+msgid "catalog.manage.category"
+msgstr "Kategori"
+
+msgid "catalog.manage.series"
+msgstr "Serier"
+
+msgid "catalog.manage.series.issn"
+msgstr "ISSN"
+
+msgid "catalog.manage.series.issn.validation"
+msgstr "Indtast et gyldigt ISSN."
+
+msgid "catalog.manage.series.issn.equalValidation"
+msgstr "Online og print ISSN må ikke være det samme."
+
+msgid "catalog.manage.series.onlineIssn"
+msgstr "Online ISSN"
+
+msgid "catalog.manage.series.printIssn"
+msgstr "Print ISSN"
+
+msgid "catalog.selectSeries"
+msgstr "Vælg serier"
+
+msgid "catalog.selectCategory"
+msgstr "Vælg kategori"
+
+msgid "catalog.manage.homepageDescription"
+msgstr "Forsidebilledet af udvalgte bøger vises øverst på hjemmesiden som en scrolbar opsætning. Klik på 'Udvælg' og derefter på stjernen for at tilføje en bog til karrusellen; klik på udråbstegn for at markere, at det er en ny udgivelse; træk og slip for at bestille."
+
+msgid "catalog.manage.categoryDescription"
+msgstr "Klik på 'Udvælg' og derefter på stjernen for at vælge en fremhævet bog til denne kategori; træk og slip for at bestille."
+
+msgid "catalog.manage.seriesDescription"
+msgstr "Klik på \"Udvælg\" og derefter på stjernen for at vælge en fremhævet bog til denne serie; træk og slip for at bestille. Serier identificeres med en redaktør og en serietitel inden for en kategori eller uafhængigt."
+
+msgid "catalog.manage.placeIntoCarousel"
+msgstr "Karrusel"
+
+msgid "catalog.manage.newRelease"
+msgstr "Udgivelse"
+
+msgid "catalog.manage.manageSeries"
+msgstr "Administrer serien"
+
+msgid "catalog.manage.manageCategories"
+msgstr "Administrer kategorier"
+
+msgid "catalog.manage.noMonographs"
+msgstr "Der er ingen tildelte monografier."
+
+msgid "catalog.manage.featured"
+msgstr "Udvalgt"
+
+msgid "catalog.manage.categoryFeatured"
+msgstr "Udvalgt i kategori"
+
+msgid "catalog.manage.seriesFeatured"
+msgstr "Udvalgt i serier"
+
+msgid "catalog.manage.featuredSuccess"
+msgstr "Monografi er udvalgt"
+
+msgid "catalog.manage.notFeaturedSuccess"
+msgstr "Monografi er ikke udvalgt"
+
+msgid "catalog.manage.newReleaseSuccess"
+msgstr "Monografi er markeret som en ny udgivelse."
+
+msgid "catalog.manage.notNewReleaseSuccess"
+msgstr "Monografi er ikke markeret som ny udgivelse."
+
+msgid "catalog.manage.feature.newRelease"
+msgstr "Ny udgivelse"
+
+msgid "catalog.manage.feature.categoryNewRelease"
+msgstr "Ny udgivelse i kategori"
+
+msgid "catalog.manage.feature.seriesNewRelease"
+msgstr "Ny udgivelse i serie"
+
+msgid "catalog.manage.nonOrderable"
+msgstr "Denne monografi kan ikke bestilles, før den er blevet udvalgt."
+
+msgid "catalog.manage.filter.searchByAuthorOrTitle"
+msgstr "Søg efter titel eller forfatter"
+
+msgid "catalog.noTitles"
+msgstr "Der er endnu ikke offentliggjort nogen titler."
+
+msgid "catalog.noTitlesNew"
+msgstr "Der er ingen nye udgivelser i øjeblikket."
+
+msgid "catalog.noTitlesSearch"
+msgstr "Der blev ikke fundet nogen titler, der matcher din søgning efter \"{$searchQuery}\"."
+
+msgid "catalog.feature"
+msgstr "Udvælg"
+
+msgid "catalog.featured"
+msgstr "Udvalgt"
+
+msgid "catalog.featuredBooks"
+msgstr "Udvalgte bøger"
+
+msgid "catalog.foundTitleSearch"
+msgstr "Der blev fundet en titel, der matchede din søgning efter \"{$searchQuery}\"."
+
+msgid "catalog.foundTitlesSearch"
+msgstr "{$number} titler blev fundet, der matchede din søgning efter \"{$searchQuery}\"."
+
+msgid "catalog.category.heading"
+msgstr "Alle bøger"
+
+msgid "catalog.newReleases"
+msgstr "Nye udgivelser"
+
+msgid "catalog.dateAdded"
+msgstr "Tilføjet"
+
+msgid "catalog.publicationInfo"
+msgstr "Publikationsinfo"
+
+msgid "catalog.published"
+msgstr "Publiceret"
+
+msgid "catalog.forthcoming"
+msgstr "Kommende"
+
+msgid "catalog.categories"
+msgstr "Kategorier"
+
+msgid "catalog.parentCategory"
+msgstr "Hovedkategori"
+
+msgid "catalog.category.subcategories"
+msgstr "Underkategorier"
+
+msgid "catalog.aboutTheAuthor"
+msgstr "Om  {$roleName}en"
+
+msgid "catalog.loginRequiredForPayment"
+msgstr "Bemærk: For at købe varer skal du først logge ind. Valg af en vare, der skal købes, leder dig til login-siden. Enhver vare, der er markeret med et Open Access-ikon, kan downloades gratis uden at logge ind."
+
+msgid "catalog.sortBy"
+msgstr "Sortering af monografier"
+
+msgid "catalog.sortBy.seriesDescription"
+msgstr "Vælg hvordan du sorterer bøger i denne serie."
+
+msgid "catalog.sortBy.categoryDescription"
+msgstr "Vælg hvordan du sorterer bøger i denne kategori."
+
+msgid "catalog.sortBy.catalogDescription"
+msgstr "Vælg hvordan du sorterer bøger i dette katalog."
+
+msgid "catalog.sortBy.seriesPositionAsc"
+msgstr "Serieposition (lavest først)"
+
+msgid "catalog.sortBy.seriesPositionDesc"
+msgstr "Serieposition (højest først)"
+
+msgid "catalog.viewableFile.title"
+msgstr "{$type} visning af filen {$title}"
+
+msgid "catalog.viewableFile.return"
+msgstr "Vend tilbage for at se detaljer om {$monographTitle}"
+
+msgid "common.prefix"
+msgstr "Præfiks"
+
+msgid "common.preview"
+msgstr "Vis"
+
+msgid "common.feature"
+msgstr "Udvælg"
+
+msgid "common.searchCatalog"
+msgstr "Søg i katalog"
+
+msgid "common.moreInfo"
+msgstr "Mere information"
+
+msgid "common.listbuilder.completeForm"
+msgstr "Udfyld venligst hele formularen."
+
+msgid "common.listbuilder.selectValidOption"
+msgstr "Vælg en gyldig mulighed fra listen."
+
+msgid "common.listbuilder.itemExists"
+msgstr "Du kan ikke tilføje den samme element to gange."
+
+msgid "common.software"
+msgstr "Open Monograph Press"
+
+msgid "common.omp"
+msgstr "OMP"
+
+msgid "common.homePageHeader.altText"
+msgstr "Homepage Header"
+
+msgid "navigation.catalog"
+msgstr "Katalog"
+
+msgid "navigation.competingInterestPolicy"
+msgstr "Konkurrerende interessepolitik"
+
+msgid "navigation.catalog.allMonographs"
+msgstr "Alle monografier"
+
+msgid "navigation.catalog.manage"
+msgstr "Administrer"
+
+msgid "navigation.catalog.administration.short"
+msgstr "Administration"
+
+msgid "navigation.catalog.administration"
+msgstr "Katalogadministration"
+
+msgid "navigation.catalog.administration.categories"
+msgstr "Kategorier"
+
+msgid "navigation.catalog.administration.series"
+msgstr "Serier"
+
+msgid "navigation.infoForAuthors"
+msgstr "Til forfattere"
+
+msgid "navigation.infoForLibrarians"
+msgstr "Til bibliotekarer"
+
+msgid "navigation.infoForAuthors.long"
+msgstr "Information til forfattere"
+
+msgid "navigation.infoForLibrarians.long"
+msgstr "Information til bibliotekarer"
+
+msgid "navigation.newReleases"
+msgstr "Nye udgivelser"
+
+msgid "navigation.published"
+msgstr "Publiceret"
+
+msgid "navigation.wizard"
+msgstr "Guide"
+
+msgid "navigation.linksAndMedia"
+msgstr "Links til sociale medier"
+
+msgid "navigation.navigationMenus.catalog.description"
+msgstr "Link til dit katalog."
+
+msgid "navigation.navigationMenus.series.generic"
+msgstr "Serier"
+
+msgid "navigation.navigationMenus.series.description"
+msgstr "Link til en serie."
+
+msgid "navigation.navigationMenus.category.generic"
+msgstr "Kategori"
+
+msgid "navigation.navigationMenus.category.description"
+msgstr "Link til en kategori."
+
+msgid "navigation.navigationMenus.newRelease"
+msgstr "Nye udgivelser"
+
+msgid "navigation.navigationMenus.newRelease.description"
+msgstr "Link til dine nye udgivelser"
+
+msgid "context.contexts"
+msgstr "Forlag"
+
+msgid "press.path"
+msgstr "Sti"
+
+msgid "context.context"
+msgstr "Forlag"
+
+msgid "context.current"
+msgstr "Nyeste forlag:"
+
+msgid "context.select"
+msgstr "Skift til et andet forlag:"
+
+msgid "user.noRoles.selectUsersWithoutRoles"
+msgstr "Inkluder brugere uden roller hos dette forlag"
+
+msgid "user.noRoles.submitMonograph"
+msgstr "Indsend et forslag"
+
+msgid "user.noRoles.submitMonographRegClosed"
+msgstr "Indsend en monografi: Forfatterregistrering er i øjeblikket deaktiveret."
+
+msgid "user.noRoles.regReviewer"
+msgstr "Registrer dig som bedømmer"
+
+msgid "user.noRoles.regReviewerClosed"
+msgstr "Registrer dig som bedømmer: bedømmerregistrering er i øjeblikket deaktiveret."
+
+msgid "user.reviewerPrompt"
+msgstr "Vil du være villig til at bedømme indsendelser fra dette forlag?"
+
+msgid "user.reviewerPrompt.userGroup"
+msgstr "Ja, anmod om rollen {$userGroup}."
+
+msgid "user.reviewerPrompt.optin"
+msgstr "Ja, jeg vil gerne kontaktes med anmodninger om at bedømme indsendelser fra denne presse."
+
+msgid "user.register.contextsPrompt"
+msgstr "Hvilke forlag på dette websted vil du gerne registreres hos?"
+
+msgid "user.register.otherContextRoles"
+msgstr "Anmod om følgende roller."
+
+msgid "user.register.noContextReviewerInterests"
+msgstr "Hvis du anmodede om at være bedømmer hos et forlag, skal du indtaste dine emneinteresser."
+
+msgid "user.role.manager"
+msgstr "Forlagschef"
+
+msgid "user.role.pressEditor"
+msgstr "Forlagsredaktør"
+
+msgid "user.role.subEditor"
+msgstr "Serieredaktør"
+
+msgid "user.role.copyeditor"
+msgstr "Manuskriptredaktør"
+
+msgid "user.role.proofreader"
+msgstr "Korrekturlæser"
+
+msgid "user.role.productionEditor"
+msgstr "Produktionsredaktør"
+
+msgid "user.role.managers"
+msgstr "Forlagschefer"
+
+msgid "user.role.subEditors"
+msgstr "Serieredaktører"
+
+msgid "user.role.editors"
+msgstr "Redaktører"
+
+msgid "user.role.copyeditors"
+msgstr "Manuskriptredaktører"
+
+msgid "user.role.proofreaders"
+msgstr "Korrekturlæsere"
+
+msgid "user.role.productionEditors"
+msgstr "Produktionsredaktører"
+
+msgid "user.register.selectContext"
+msgstr "Vælg det forlag, du vil registreres hos:"
+
+msgid "user.register.noContexts"
+msgstr "Der er ingen forlag, du kan registreres hos på dette websted."
+
+msgid "user.register.privacyStatement"
+msgstr "Erklæring om beskyttelse af personlige oplysninger"
+
+msgid "user.register.registrationDisabled"
+msgstr "Dette forlag accepterer i øjeblikket ikke brugerregistreringer."
+
+msgid "user.register.form.passwordLengthTooShort"
+msgstr "Det password, du indtastede, er ikke langt nok."
+
+msgid "user.register.readerDescription"
+msgstr "Informeres via e-mail ved publicering af en monografi"
+
+msgid "user.register.authorDescription"
+msgstr "I stand til at indsende poster til forlaget."
+
+msgid "user.register.reviewerDescriptionNoInterests"
+msgstr "Villig til at foretage bedømmelser af indsendelser til forlaget."
+
+msgid "user.register.reviewerDescription"
+msgstr "Villig til at foretage bedømmelser af indsendelser til dette websted."
+
+msgid "user.register.reviewerInterests"
+msgstr "Indkreds bedømmerinteresser (væsentlige emneområder og forskningsmetoder):"
+
+msgid "user.register.form.userGroupRequired"
+msgstr "Du skal vælge mindst én rolle"
+
+msgid "site.pressView"
+msgstr "Se forlagets websted"
+
+msgid "about.pressContact"
+msgstr "Forlagskontakt"
+
+msgid "about.aboutContext"
+msgstr "Om forlaget"
+
+msgid "about.editorialTeam"
+msgstr "Redaktionsmedlemmer"
+
+msgid "about.editorialPolicies"
+msgstr "Redaktionel politik "
+
+msgid "about.focusAndScope"
+msgstr "Fokusområde"
+
+msgid "about.seriesPolicies"
+msgstr "Serie- og kategoripolitikker"
+
+msgid "about.submissions"
+msgstr "Indsendelser"
+
+msgid "about.onlineSubmissions"
+msgstr "Online-indsendelser"
+
+msgid "about.onlineSubmissions.login"
+msgstr "Login"
+
+msgid "about.onlineSubmissions.register"
+msgstr "Registrer"
+
+msgid "about.onlineSubmissions.registrationRequired"
+msgstr "{$login} eller {$register} for at foretage en indsendelse."
+
+msgid "about.onlineSubmissions.submissionActions"
+msgstr "{$newSubmission} eller {$viewSubmissions}."
+
+msgid "about.onlineSubmissions.newSubmission"
+msgstr "Foretag en ny indsendelse"
+
+msgid "about.onlineSubmissions.viewSubmissions"
+msgstr "se dine endnu igangværende indsendelser"
+
+msgid "about.authorGuidelines"
+msgstr "Forfattervejledninger"
+
+msgid "about.submissionPreparationChecklist"
+msgstr "Tjekliste til forberedelse af manuskript "
+
+msgid "about.submissionPreparationChecklist.description"
+msgstr "Som en del af indsendelsesprocessen er forfattere forpligtet til at kontrollere, at deres indsendelse er i overensstemmelse med følgende punkter. Indsendelser kan returneres til forfattere, der ikke overholder disse retningslinjer."
+
+msgid "about.copyrightNotice"
+msgstr "Oplysninger om ophavsret"
+
+msgid "about.privacyStatement"
+msgstr "Erklæring om beskyttelse af personlige oplysninger"
+
+msgid "about.reviewPolicy"
+msgstr "Peer review proces"
+
+msgid "about.publicationFrequency"
+msgstr "Publikationsfrekvens"
+
+msgid "about.openAccessPolicy"
+msgstr "Open Access-politik"
+
+msgid "about.pressSponsorship"
+msgstr "Forlagssponsorering"
+
+msgid "about.aboutThisPublishingSystem"
+msgstr "Om dette publiceringssystem"
+
+msgid "about.aboutThisPublishingSystem.altText"
+msgstr "OMP redaktions- og publiceringsproces"
+
+msgid "about.aboutOMPPress"
+msgstr "Dette forlag bruger Open Monograph Press {$ompVersion}, som er open source-redigerings- og publiceringssoftware udviklet, understøttet og frit distribueret af <a href=\"http://pkp.sfu.ca/\">Public Knowledge Project< / a> under GNU General Public License."
+
+msgid "about.aboutOMPSite"
+msgstr "Dette websted bruger Open Monograph Press {$ompVersion}, som er open source-redigerings- og publiceringssoftware udviklet, understøttet og frit distribueret af <a href=\"http://pkp.sfu.ca/\">Public Knowledge Project< / a> under GNU General Public License."
+
+msgid "help.searchReturnResults"
+msgstr "Vend tilbage til søgeresultater"
+
+msgid "help.goToEditPage"
+msgstr "Åbn en ny side for at redigere disse oplysninger"
+
+msgid "installer.appInstallation"
+msgstr "OMP-installation"
+
+msgid "installer.ompUpgrade"
+msgstr "OMP-opgradering"
+
+msgid "installer.installApplication"
+msgstr "Installer Open Monograph Press"
+
+msgid "installer.installationInstructions"
+msgstr ""
+"<p>Tak fordi du downloadede the Public Knowledge Project's <strong>Open Monograph Press {$version}</strong>. Før du fortsætter, skal du læse filen <a href=\"{$baseUrl}/docs/README\">README</a>, der følger med denne software. For at få mere information om Public Knowledge Project og dets softwareprojekter, kan du besøge <a href=\"http://pkp.sfu.ca/\" target=\"_blank\">PKP web site</a>. Hvis du har fejlrapporter eller teknisk supporthenvendelser om Open Monograph Press, kan du se <a href=\"http://forum.pkp.sfu.ca\" target=\"_blank\">supportforum</a> eller besøge PKP's online <a href=\"http://pkp.sfu.ca/bugzilla/\" target=\"_blank\">bug reporting system</a>. Selvom supportforummet er den foretrukne kontaktform, kan du også e-maile teamet via <a href=\"mailto:pkp.contact@gmail.com\">pkp.contact@gmail.com</a>.</p>\n"
+"\n"
+"<h4>Upgradre</ h4>\n"
+"\n"
+"<p>Hvis du opgraderer en eksisterende installation af OMP 0.x, <a href=\"{$upgradeUrl}\">klik her</a> for at fortsætte. </p>"
+
+msgid "installer.preInstallationInstructionsTitle"
+msgstr "Før-installations-foranstaltninger"
+
+msgid "installer.preInstallationInstructions"
+msgstr ""
+"<p>1. Følgende filer og mapper (og deres indhold) skal gøres skrivbare:</p>\n"
+"<ul>\n"
+"<li><tt>config.inc.php</tt> er skrivbar (valgfrit): {$writable_config}</li>\n"
+"<li><tt>public/</tt> er skrivbar: {$writable_public}</li>\n"
+"<li><tt>cache/</tt> er skrivbar: {$writable_cache}</li>\n"
+"<li><tt>cache/t_cache/</tt> er skrivbar: {$writable_templates_cache}</li>\n"
+"<li><tt>cache/t_compile/</tt> er skrivbar: {$writable_templates_compile}</li>\n"
+"<li><tt>cache/_db</tt> er skrivbar: {$writable_db_cache}</li>\n"
+"</ul>\n"
+"\n"
+"<p>2. Et bibliotek til lagring af uploadede filer skal oprettes og gøres skrivbart (se \"Filindstillinger\" nedenfor). </p>\n"
+""
+
+msgid "installer.upgradeInstructions"
+msgstr "<p>Tak fordi du downloadede the Public Knowledge Project's <strong>Open Monograph Press {$version}</strong>. Før du fortsætter, skal du læse filen <a href=\"{$baseUrl}/docs/README\">README</a>, der følger med denne software. For at få mere information om Public Knowledge Project og dets softwareprojekter, kan du besøge <a href=\"http://pkp.sfu.ca/\" target=\"_blank\">PKP web site</a>. Hvis du har fejlrapporter eller teknisk supporthenvendelser om Open Monograph Press, kan du se <a href=\"http://forum.pkp.sfu.ca\" target=\"_blank\">supportforum</a> eller besøge PKP's online <a href=\"http://pkp.sfu.ca/bugzilla/\" target=\"_blank\">bug reporting system</a>. Selvom supportforummet er den foretrukne kontaktform, kan du også e-maile teamet via <a href=\"mailto:pkp.contact@gmail.com\">pkp.contact@gmail.com</a>.</p>"
+
+msgid "installer.localeSettingsInstructions"
+msgstr ""
+"For at få en komplet understøttelse af Unicode (UTF-8) skal du vælge UTF-8 for alle tegnsætsindstillinger. Bemærk, at denne support i øjeblikket kræver en MySQL >= 4.1.1 or PostgreSQL >= 9.1.5 databaseserver. Bemærk også, at en komplet Unicode-support kræver <a href=\"http://www.php.net/mbstring\" target=\"_blank\">mbstring</a>-biblioteket (aktiveret som standard i de nyeste PHP-installationer). Du kan opleve problemer med at bruge udvidede tegnsæt, hvis din server ikke opfylder disse krav.\n"
+"<br /><br />\n"
+"Din server understøtter i øjeblikket mbstring: <strong>{$supportsMBString}</strong>\n"
+""
+
+msgid "installer.allowFileUploads"
+msgstr "Din server tillader i øjeblikket filoverførsler: <strong>{$allowFileUploads}</strong>"
+
+msgid "installer.maxFileUploadSize"
+msgstr "Din server tillader i øjeblikket en maksimal filoverførselsstørrelse på: <strong>{$maxFileUploadSize}</strong>"
+
+msgid "installer.localeInstructions"
+msgstr "Det primære sprog, der skal bruges til dette system. Se OMP-dokumentationen, hvis du er interesseret i support til sprog, der ikke er nævnt her."
+
+msgid "installer.additionalLocalesInstructions"
+msgstr "Vælg supplerende sprog, der skal understøttes i dette system. Disse sprog vil være tilgængelige til brug af forlag, der er tilknyttet dette websted. Supplerende sprog kan også installeres når som helst fra websteds-administrationens interface. Sprog (locales) markeret * kan være ufuldstændige."
+
+msgid "installer.filesDirInstructions"
+msgstr "Indtast det fulde stinavn til et eksisterende bibliotek, hvor uploadede filer skal opbevares. Dette bibliotek bør ikke være direkte tilgængeligt på internettet. <strong>Sørg for, at dette bibliotek er oprettet og skrivbart før installation.</strong> Windows-stinavne skal bruge retvendt skråstreg, f.eks. \"C:/mypress/filer\"."
+
+msgid "installer.databaseSettingsInstructions"
+msgstr "OMP kræver adgang til en SQL-database for at gemme des data. Se systemkravene ovenfor der indeholder en liste over understøttede databaser. Angiv de indstillinger, der skal bruges for at oprette forbindelse til databasen i felterne herunder."
+
+msgid "installer.upgradeApplication"
+msgstr "Opgrader Open Monograph Press"
+
+msgid "installer.overwriteConfigFileInstructions"
+msgstr ""
+"<h4>VIGTIGT!</h4>\n"
+"<p>Installationsprogrammet kunne ikke automatisk overskrive konfigurationsfilen. Før du forsøger at bruge systemet, skal du åbne <tt>config.inc.php</tt> i en egnet teksteditor og erstatte dets indhold med indholdet i tekstfeltet nedenfor.</p>"
+
+msgid "installer.installationComplete"
+msgstr ""
+"<p>Installation af OMP er afsluttet.</p>\n"
+"<p>For at begynde at bruge systemet skal du <a href=\"{$loginUrl}\">logge ind</a> med det brugernavn og adgangskode, der er indtastet på den forrige side.</p>\n"
+"<p>Hvis du ønsker at modtage nyheder og opdateringer, skal du registrere dig på <a href=\"http://pkp.sfu.ca/omp/register\" target=\"_blank\">http://pkp.sfu.ca/omp/register</a>. </strong> Hvis du har spørgsmål eller kommentarer, kan du besøge <a href=\"http://forum.pkp.sfu.ca\" target=\"_blank\">supportforum</a>.</ p>"
+
+msgid "installer.upgradeComplete"
+msgstr ""
+"<p>Opgradering af OMP til version {$version} er afsluttet.</p>\n"
+"<p>Glem ikke at indstille \"installeret\"-indstillingen i din config.inc.php konfigurationsfil tilbage til <em>On</em>.</p>\n"
+"<p>Hvis du ikke allerede har registreret dig og ønsker at modtage nyheder og opdateringer, skal du registrere dig på <a href=\"http://pkp.sfu.ca/omp/register\" target=\"_blank\">http://pkp.sfu.ca/omp/register</a>. </strong> Hvis du har spørgsmål eller kommentarer, kan du besøge <a href = \"http://forum.pkp.sfu.ca\" target = \"_blank\"> supportforum</a>.</p>"
+
+msgid "log.review.reviewCleared"
+msgstr "Runde {$round}-bedømmelsen af {$reviewerName} i forbindelse med indsendelse {$submissionId} er blevet ryddet."
+
+msgid "log.review.reviewDueDateSet"
+msgstr "Forfaldsdato for runde {$round}-bedømmelsen af indsendelse {$submissionId} af {$reviewerName} er sat til {$dueDate}."
+
+msgid "log.review.reviewDeclined"
+msgstr "{$reviewerName} har afvist runde {$round}-bedømmelsen i forbindelse med indsendelse {$submissionId}."
+
+msgid "log.review.reviewAccepted"
+msgstr "{$reviewerName} har accepteret runde {$round}-bedømmelsen i forbindelse med indsendelse {$submissionId}."
+
+msgid "log.review.reviewUnconsidered"
+msgstr "{$editorName} har markeret runde {$round}-bedømmelsen i forbindelse med indsendelse {$submissionId} som uovervejet."
+
+msgid "log.editor.decision"
+msgstr "En redaktørbeslutning ({$decision}) i forbindelse med monografi {$submissionId} blev registreret af {$editorName}."
+
+msgid "log.editor.recommendation"
+msgstr "En redaktøranbefaling ({$decision}) i forbindelse med monografi {$submissionId} blev regostreret af {$editorName}."
+
+msgid "log.editor.archived"
+msgstr "Indsendelsen {$submissionId} er blevet arkiveret."
+
+msgid "log.editor.restored"
+msgstr "Indsendelsen {$submissionId} er gendannet og indsat i køen."
+
+msgid "log.editor.editorAssigned"
+msgstr "{$editorName} er blevet valgt som redaktør i forbindelse med indsendelse {$submissionId}."
+
+msgid "log.proofread.assign"
+msgstr "{$assignerName} har valgt {$proofreaderName} til at læse korrektur på {$submissionId}."
+
+msgid "log.proofread.complete"
+msgstr "{$proofreaderName} har sendt {$submissionId} til planlægning."
+
+msgid "log.imported"
+msgstr "{$userName} har importeret monografi {$submissionId}."
+
+msgid "notification.addedIdentificationCode"
+msgstr "Identifikationskode tilføjet."
+
+msgid "notification.editedIdentificationCode"
+msgstr "Identifikationskode redigeret."
+
+msgid "notification.removedIdentificationCode"
+msgstr "Identifikationskode fjernet."
+
+msgid "notification.addedPublicationDate"
+msgstr "Publiceringsdato tilføjet."
+
+msgid "notification.editedPublicationDate"
+msgstr "Publiceringsdato redigeret."
+
+msgid "notification.removedPublicationDate"
+msgstr "Publiceringsdato fjernet."
+
+msgid "notification.addedPublicationFormat"
+msgstr "Publiceringsformat tilføjet."
+
+msgid "notification.editedPublicationFormat"
+msgstr "Publiceringsformat redigeret."
+
+msgid "notification.removedPublicationFormat"
+msgstr "Publiceringsformat fjernet."
+
+msgid "notification.addedSalesRights"
+msgstr "Salgsrettigheder tilføjet."
+
+msgid "notification.editedSalesRights"
+msgstr "Salgsrettigheder redigeret."
+
+msgid "notification.removedSalesRights"
+msgstr "Salgsrettigheder fjernet."
+
+msgid "notification.addedRepresentative"
+msgstr "Repræsentant tilføjet."
+
+msgid "notification.editedRepresentative"
+msgstr "Repræsentant redigeret."
+
+msgid "notification.removedRepresentative"
+msgstr "Repræsentant fjernet."
+
+msgid "notification.addedMarket"
+msgstr "Marked tilføjet."
+
+msgid "notification.editedMarket"
+msgstr "Marked redigeret."
+
+msgid "notification.removedMarket"
+msgstr "Marked fjernet."
+
+msgid "notification.addedSpotlight"
+msgstr "Spotlight tilføjet"
+
+msgid "notification.editedSpotlight"
+msgstr "Spotlight redigeret."
+
+msgid "notification.removedSpotlight"
+msgstr "Spotlight fjernet."
+
+msgid "notification.savedCatalogMetadata"
+msgstr "Katalog-metadata gemt."
+
+msgid "notification.savedPublicationFormatMetadata"
+msgstr "Metadata for publikationsformat gemt."
+
+msgid "notification.proofsApproved"
+msgstr "Korrektur godkendt."
+
+msgid "notification.removedSubmission"
+msgstr "Indsendelse slettet."
+
+msgid "notification.type.submissionSubmitted"
+msgstr "En ny monografi, \"{$title},\" er blevet indsendt."
+
+msgid "notification.type.editing"
+msgstr "Redigeringsforløb"
+
+msgid "notification.type.reviewing"
+msgstr "Bedømmelsesforløb"
+
+msgid "notification.type.site"
+msgstr "Websitehændelser"
+
+msgid "notification.type.submissions"
+msgstr "Indsendelseforløb"
+
+msgid "notification.type.userComment"
+msgstr "En læser har kommenteret \"{$title}\"."
+
+msgid "notification.type.public"
+msgstr "Offentlige meddelelser"
+
+msgid "notification.type.editorAssignmentTask"
+msgstr "Der er indsendt en ny monografi, som en redaktør skal tilknyttes."
+
+msgid "notification.type.copyeditorRequest"
+msgstr "Du er blevet bedt om at gennemgå det tilrettede i forbindelse med \"{$file}\"."
+
+msgid "notification.type.layouteditorRequest"
+msgstr "Du er blevet bedt om at gennemgå layout i forbindelse med \"{$title}\"."
+
+msgid "notification.type.indexRequest"
+msgstr "Du er blevet bedt om at oprette et indeks i forbindelse med \"{$title}\"."
+
+msgid "notification.type.editorDecisionInternalReview"
+msgstr "Intern bedømmelsesproces påbegyndt."
+
+msgid "notification.type.approveSubmission"
+msgstr "Denne indsendelse afventer i øjeblikket godkendelse i katalogposterne, før den vises i det offentlige katalog."
+
+msgid "notification.type.approveSubmissionTitle"
+msgstr "Afventer godkendelse."
+
+msgid "notification.type.configurePaymentMethod.title"
+msgstr "Der er ikke konfigureret nogen betalingsmetode."
+
+msgid "notification.type.configurePaymentMethod"
+msgstr "En konfigureret betalingsmetode er påkrævet, før du kan definere indstillinger for e-handel."
+
+msgid "notification.type.visitCatalog"
+msgstr "Monografien er godkendt. Gå til 'Katalog' for at indskrive dets katalogoplysninger ved hjælp af katalog-linket ovenfor."
+
+msgid "notification.type.visitCatalogTitle"
+msgstr "Katalogstyring"
+
+msgid "user.authorization.invalidReviewAssignment"
+msgstr "Du er blevet nægtet adgang fordi du ikke ser ud til at være en valid korrekturlæser i forbindelse med denne monografi."
+
+msgid "user.authorization.monographAuthor"
+msgstr "Du er blevet nægtet adgang fordi du ikke ser ud til af være forfatter til denne monografi."
+
+msgid "user.authorization.monographReviewer"
+msgstr "Du er blevet nægtet adgang fordi du ikke synes at være blevet tildelt korrekturlæserrollen til denne monografi."
+
+msgid "user.authorization.monographFile"
+msgstr "Du er blevet nægtet adgang til den angivne monografi-fil."
+
+msgid "user.authorization.invalidMonograph"
+msgstr "Ugyldig monografi eller ingen monografi efterspurgt!"
+
+msgid "user.authorization.noContext"
+msgstr "Intet forlag i denne sammenhæng!"
+
+msgid "user.authorization.seriesAssignment"
+msgstr "Du forsøger at få adgang til en monografi, der ikke er en del af din serie."
+
+msgid "user.authorization.workflowStageAssignmentMissing"
+msgstr "Adgang nægtet! Du er ikke blevet tilknyttet dette redaktionelle trin."
+
+msgid "user.authorization.workflowStageSettingMissing"
+msgstr "Adgang nægtet! Den brugergruppe, du i øjeblikket er en del af, er ikke tilknyttet dette redaktionelle trin. Kontroller dine forlagsindstillinger."
+
+msgid "payment.directSales"
+msgstr "Download fra forlagets webside"
+
+msgid "payment.directSales.price"
+msgstr "Pris"
+
+msgid "payment.directSales.availability"
+msgstr "Tilgængelighed"
+
+msgid "payment.directSales.catalog"
+msgstr "Katalog"
+
+msgid "payment.directSales.approved"
+msgstr "Godkendt"
+
+msgid "payment.directSales.priceCurrency"
+msgstr "Pris ({$currency})"
+
+msgid "payment.directSales.numericOnly"
+msgstr "Priserne må kun være numeriske. Medtag ikke valutasymboler."
+
+msgid "payment.directSales.directSales"
+msgstr "Direkte salg"
+
+msgid "payment.directSales.amount"
+msgstr "{$amount} ({$currency})"
+
+msgid "payment.directSales.notAvailable"
+msgstr "Ikke tilgængelig"
+
+msgid "payment.directSales.notSet"
+msgstr "Ikke indstillet"
+
+msgid "payment.directSales.openAccess"
+msgstr "Open Access"
+
+msgid "payment.directSales.price.description"
+msgstr "Filformater kan stilles til rådighed via download fra forlagets websted gennem enten Open Access uden omkostninger for læsere eller direkte salg (ved hjælp af en online betalings-processor, som konfigureres under Distribuering). Angiv hvilken adgang, der gælder for denne fil."
+
+msgid "payment.directSales.validPriceRequired"
+msgstr "En gyldig numerisk pris er påkrævet."
+
+msgid "payment.directSales.purchase"
+msgstr "Køb {$format} ({$amount} {$currency})"
+
+msgid "payment.directSales.download"
+msgstr "Download {$format}"
+
+msgid "payment.directSales.monograph.name"
+msgstr "Køb download af monografi eller kapitel"
+
+msgid "payment.directSales.monograph.description"
+msgstr "Denne transaktion er til køb af et direkte download af en enkelt monografi eller et monografi-kapitel."
+
+msgid "debug.notes.currencyListLoad"
+msgstr "Indlæst valutaliste \"{$filename}\" fra XML"
+
+msgid "debug.notes.helpMappingLoad"
+msgstr "Genindlæst XML-hjælp til at kortlægge fil {$filename} på søgning efter {$id}."
+
+msgid "rt.metadata.pkp.dctype"
+msgstr "Bog"
+
+msgid "submission.pdf.download"
+msgstr "Download denne PDF-fil"
+
+msgid "user.profile.form.showOtherContexts"
+msgstr "Registrer dig hos andre forlag"
+
+msgid "user.profile.form.hideOtherContexts"
+msgstr "Skjul andre forlag"
+
+msgid "submission.round"
+msgstr "Runde&nbsp;{$round}"

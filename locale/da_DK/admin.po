@@ -1,0 +1,106 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: \n"
+"Report-Msgid-Bugs-To: \n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"POT-Creation-Date: 2019-11-28T15:10:04-08:00\n"
+"PO-Revision-Date: 2019-11-28T15:10:04-08:00\n"
+"Language: \n"
+
+msgid "admin.hostedContexts"
+msgstr "Tilknyttede forlag"
+
+msgid "admin.settings.redirect"
+msgstr "Forlagsomdirigering"
+
+msgid "admin.settings.redirectInstructions"
+msgstr "Forespørgsler til hovedsiden vil blive omdirigeret til dette forlag. Dette kan være nyttigt, hvis webstedet kun er vært for et enkelt forlag."
+
+msgid "admin.settings.noPressRedirect"
+msgstr "Omdiriger ikke"
+
+msgid "admin.languages.primaryLocaleInstructions"
+msgstr "Dette vil være standardsproget for webstedet og ethvert tilknyttet forlag."
+
+msgid "admin.languages.supportedLocalesInstructions"
+msgstr "Vælg alle sprog, der skal understøttes på webstedet. De valgte sprog vil være tilgængelige til brug for alle forlag, der er vært på webstedet, ligesom de vises i en sprogvalgs-menu, der vil fremtræde på hver webside (som kan fravælges på forlags-specifikke sider). Hvis der ikke er valgt flere lokaliteter, vises sprogvalgs-menuen ikke, og udvidede sprogindstillinger er ikke tilgængelige for forlagene."
+
+msgid "admin.locale.maybeIncomplete"
+msgstr "* Markerede sprog kan være ufuldstændige."
+
+msgid "admin.languages.confirmUninstall"
+msgstr "Er du sikker på, at du vil afinstallere dette sprog? Dette kan påvirke alle de tilknyttede forlag, der i øjeblikket bruger sproget."
+
+msgid "admin.languages.installNewLocalesInstructions"
+msgstr "Vælg yderligere de sprog, der skal installeres support til i dette system. Sprog skal installeres, før de kan bruges af tilknyttede forlag. Se OMP-dokumentationen for information om tilføjelse af support til nye sprog."
+
+msgid "admin.languages.noLocalesToDownload"
+msgstr "Ingen sprog er tilgængelige til download."
+
+msgid "admin.languages.downloadFailed"
+msgstr "Download af sprog mislykkedes. Fejlmeddelelsen nedenfor beskriver fejlen."
+
+msgid "admin.languages.downloadUnavailable"
+msgstr ""
+"<p>Overførsel af sprogpakker fra webserveren til Public Knowledge Project er ikke tilgængelig i øjeblikket fordi: </p>\n"
+"<ul>\n"
+"<li>Din server har, eller tillader ikke eksekvering af, GNU \"tar\"-værktøjet</li>\n"
+"<li>OMP er ikke i stand til at ændre sprog- registerfilen, typisk \"registry/locales.xml\".</li>\n"
+"</ul>\n"
+"<p>Sprogpakker kan downloades manuelt fra <a href=\"http://pkp.sfu.ca\" target=\"_blank\">PKP web site</a>. </p>\n"
+""
+
+msgid "admin.languages.confirmDisable"
+msgstr "Er du sikker på, at du vil deaktivere dette sprog? Dette kan påvirke alle de tilknyttede forlag, der i øjeblikket bruger sproget."
+
+msgid "admin.systemVersion"
+msgstr "OMP-version"
+
+msgid "admin.systemConfiguration"
+msgstr "OMP-konfiguration"
+
+msgid "admin.presses.pressSettings"
+msgstr "Forlagsindstillinger"
+
+msgid "admin.presses.noneCreated"
+msgstr "Der er ikke oprettet nogen forlag."
+
+msgid "admin.contexts.create"
+msgstr "Opret forlag"
+
+msgid "admin.presses.createInstructions"
+msgstr "Du registreres automatisk som manager af dette forlag. Når du har oprettet et nyt forlag, vil du blive omdirigeret til dets indstillingsguide for at afslutte den første opsætningen af forlaget."
+
+msgid "admin.presses.urlWillBe"
+msgstr "Forlaget URL vil være {$sampleUrl}"
+
+msgid "admin.contexts.form.titleRequired"
+msgstr "Der kræves en titel."
+
+msgid "admin.contexts.form.pathRequired"
+msgstr "Der kræves en sti."
+
+msgid "admin.contexts.form.pathAlphaNumeric"
+msgstr "Stien må kun indeholde alfanumeriske tegn, understregninger og bindestreger og skal begynde og slutte med et alfanumerisk tegn."
+
+msgid "admin.contexts.form.pathExists"
+msgstr "Den valgte sti bruges allerede af et andet forlag."
+
+msgid "admin.presses.enablePressInstructions"
+msgstr "Offentliggør dette forlag på webstedet "
+
+msgid "admin.presses.pressDescription"
+msgstr "Beskrivelse af forlag"
+
+msgid "admin.presses.addPress"
+msgstr "Tilføj forlag"
+
+msgid "admin.overwriteConfigFileInstructions"
+msgstr ""
+"<h4>Bemærk!</div>\n"
+"<p>Systemet kunne ikke automatisk overskrive konfigurationsfilen. For at anvende dine konfigurationsændringer skal du åbne <tt>config.inc.php</tt> i en egnet teksteditor og erstatte dens indhold med indholdet i tekstfeltet nedenfor.</p>\n"
+""

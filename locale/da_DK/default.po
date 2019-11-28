@@ -1,0 +1,147 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: \n"
+"Report-Msgid-Bugs-To: \n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"POT-Creation-Date: 2019-11-28T15:10:04-08:00\n"
+"PO-Revision-Date: 2019-11-28T15:10:04-08:00\n"
+"Language: \n"
+
+msgid "default.genres.appendix"
+msgstr "Appendiks"
+
+msgid "default.genres.bibliography"
+msgstr "Bibliografi"
+
+msgid "default.genres.manuscript"
+msgstr "Bogmanuskript"
+
+msgid "default.genres.chapter"
+msgstr "Kapitelmanuskript"
+
+msgid "default.genres.glossary"
+msgstr "Ordliste"
+
+msgid "default.genres.index"
+msgstr "Indeks"
+
+msgid "default.genres.preface"
+msgstr "Forord"
+
+msgid "default.genres.prospectus"
+msgstr "Prospekt"
+
+msgid "default.genres.table"
+msgstr "Skema"
+
+msgid "default.genres.figure"
+msgstr "Figur"
+
+msgid "default.genres.photo"
+msgstr "Foto"
+
+msgid "default.genres.illustration"
+msgstr "Illustration"
+
+msgid "default.genres.other"
+msgstr "Andet"
+
+msgid "default.groups.name.manager"
+msgstr "Forlagschef"
+
+msgid "default.groups.plural.manager"
+msgstr "Forlagschefer"
+
+msgid "default.groups.abbrev.manager"
+msgstr "FC"
+
+msgid "default.groups.name.editor"
+msgstr "Forlagsredaktør"
+
+msgid "default.groups.plural.editor"
+msgstr "Forlagsredaktører"
+
+msgid "default.groups.abbrev.editor"
+msgstr "FR"
+
+msgid "default.groups.name.seriesEditor"
+msgstr "Serieredaktør"
+
+msgid "default.groups.plural.seriesEditor"
+msgstr "Serieredaktører"
+
+msgid "default.groups.abbrev.seriesEditor"
+msgstr "ÅR"
+
+msgid "default.groups.name.chapterAuthor"
+msgstr "Kapitelforfatter"
+
+msgid "default.groups.plural.chapterAuthor"
+msgstr "Kapitelforfattere"
+
+msgid "default.groups.abbrev.chapterAuthor"
+msgstr "KP"
+
+msgid "default.groups.name.volumeEditor"
+msgstr "Bindredaktør"
+
+msgid "default.groups.plural.volumeEditor"
+msgstr "Bindredaktører"
+
+msgid "default.groups.abbrev.volumeEditor"
+msgstr "ÅRed"
+
+msgid "default.pressSettings.checklist.notPreviouslyPublished"
+msgstr "Indsendelsen er ikke tidligere blevet offentliggjort, og det er heller ikke sendt til bedømmelse hos et andet forlag (eller der er givet en forklaring i kommentarfeltet til redaktøren)."
+
+msgid "default.pressSettings.checklist.fileFormat"
+msgstr "Indsendelsesfilen er i et Microsoft Word-, RTF- eller OpenDocument-filformat. "
+
+msgid "default.pressSettings.checklist.addressesLinked"
+msgstr "Der er angivet URL-adresser til referencerne, hvor de er tilgængelige. "
+
+msgid "default.pressSettings.checklist.submissionAppearance"
+msgstr "Teksten er skrevet med enkelt linjeafstand, benytter en 12-punktsskrifttype og anvender kursiv i stedet for understregning (med undtagelse af URL-adresser), og alle illustrationer, figurer og tabeller er placeret i teksten på passende steder i stedet for til sidst."
+
+msgid "default.pressSettings.checklist.bibliographicRequirements"
+msgstr "Teksten opfylder de stilistiske og bibliografiske krav, der er beskrevet under <a href=\"{$indexUrl}/{$pressPath}/about/submissions#authorGuidelines\" target=\"_blank\">Retningslinjer for forfattere</a>, som findes under Om forlaget."
+
+msgid "default.pressSettings.privacyStatement"
+msgstr "<p>Navne og e-mail-adresser, der er indtastet på dette websted, vil udelukkende blive brugt i overensstemmelse med de angivne formål og vil ikke blive gjort tilgængelige for andre formål eller for nogen anden part.</p>"
+
+msgid "default.pressSettings.openAccessPolicy"
+msgstr "Dette forlag giver øjeblikkelig åben adgang til dets indhold ud fra princippet om, at frigivelse af forskning til rådighed for offentligheden understøtter en større global videnudveksling."
+
+msgid "default.pressSettings.emailSignature"
+msgstr ""
+"<br/>\n"
+"________________________________________________________________________<br/>\n"
+"<a href=\"{$ldelim}$contextUrl{$rdelim}\">{$ldelim}$contextName{$rdelim}</a>"
+
+msgid "default.pressSettings.forReaders"
+msgstr "Vi opfordrer læsere til at tilmelde sig nyhedstjenesten vedrørende publiceringer for dette forlag. Brug linket <a href=\"{$indexUrl}/{$pressPath}/user/register\">Registrer</a> øverst på forlagets hjemmeside. Denne registrering medfører, at læseren via e-mail modtager indholdsfortegnelsen for alle nye bøger fra forlaget. Denne liste giver også forlaget mulighed for at hævde at have et vist supportniveau eller et vist antal læsere. Se forlagets <a href=\"{$indexUrl}/{$pressPath}/about/submissions#privacyStatement\">Erklæring om beskyttelse af personlige oplysninger</a>, der garanterer læserne, at deres navne og e-mail-adresser ikke benyttes til andre formål."
+
+msgid "default.pressSettings.forAuthors"
+msgstr "Er du interesseret i at fremsende et manuskript til dette forlag? Vi anbefaler, at du gennemgår siden <a href=\"{$indexUrl}/{$pressPath}/about\">Om forlaget</a>, hvor du kan finde forlagets sektionspolitikker, samt <a href=\"{$indexUrl}/{$pressPath}/about/submissions#authorGuidelines\">Retningslinjer for forfattere</a>. Forfattere skal tilmelde sig forlaget via linket <a href=\"{$indexUrl}/{$pressPath}/user/register\">Registrer></a>, inden de kan fremsende et manuskript. Hvis de allerede er tilmeldt, kan de blot <a href=\"{$indexUrl}/index/login\">logge på</a> og påbegynde processen, der består af 5 trin."
+
+msgid "default.pressSettings.forLibrarians"
+msgstr "Vi opfordrer forskningsbibliotekarer til at anføre dette forlag på listen over deres biblioteks beholdning af elektroniske forlag. Det skal desuden bemærkes, at dette forlags open source-publiceringssystem er velegnet til biblioteker, som ønsker være værter for deres fakultetsmedlemmer, som kan bruge det til de forlag, hvor de er involveret i redigeringsarbejde (se <a href=\"http://pkp.sfu.ca/omp\">Open Monograph Press</a>)."
+
+msgid "default.pressSettings.manager.setup.category"
+msgstr "Kategori"
+
+msgid "default.pressSettings.manager.series.book"
+msgstr "Bogserie"
+
+msgid "default.groups.name.externalReviewer"
+msgstr "Ekstern bedømmer"
+
+msgid "default.groups.plural.externalReviewer"
+msgstr "Eksterne bedømmere"
+
+msgid "default.groups.abbrev.externalReviewer"
+msgstr "EB"

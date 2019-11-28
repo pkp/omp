@@ -1,0 +1,132 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: \n"
+"Report-Msgid-Bugs-To: \n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"POT-Creation-Date: 2019-11-28T15:10:03-08:00\n"
+"PO-Revision-Date: 2019-11-28T15:10:03-08:00\n"
+"Language: \n"
+
+msgid "default.genres.appendix"
+msgstr "Apèndix"
+
+msgid "default.genres.bibliography"
+msgstr "Bibliografia"
+
+msgid "default.genres.manuscript"
+msgstr "Manuscrit del llibre"
+
+msgid "default.genres.chapter"
+msgstr "Manuscrit d'un capítol"
+
+msgid "default.genres.glossary"
+msgstr "Glossari"
+
+msgid "default.genres.index"
+msgstr "Índex"
+
+msgid "default.genres.preface"
+msgstr "Pròleg"
+
+msgid "default.genres.prospectus"
+msgstr "Prospecte"
+
+msgid "default.genres.table"
+msgstr "Taula"
+
+msgid "default.genres.figure"
+msgstr "Figura"
+
+msgid "default.genres.photo"
+msgstr "Fotografia"
+
+msgid "default.genres.illustration"
+msgstr "Il·lustració"
+
+msgid "default.genres.other"
+msgstr "Altres"
+
+msgid "default.groups.name.manager"
+msgstr "Cap editorial (CE)"
+
+msgid "default.groups.plural.manager"
+msgstr "Caps editorials"
+
+msgid "default.groups.abbrev.manager"
+msgstr "CE"
+
+msgid "default.groups.name.editor"
+msgstr "Editor/a (E)"
+
+msgid "default.groups.plural.editor"
+msgstr "Editors/ores"
+
+msgid "default.groups.abbrev.editor"
+msgstr "E"
+
+msgid "default.groups.name.sectionEditor"
+msgstr "Editor/a de sèrie (ES)"
+
+msgid "default.groups.plural.sectionEditor"
+msgstr "Editors/ores de les col·leccions"
+
+msgid "default.groups.abbrev.sectionEditor"
+msgstr "ES"
+
+msgid "default.groups.name.chapterAuthor"
+msgstr "Autor/a del capítol (AC)"
+
+msgid "default.groups.plural.chapterAuthor"
+msgstr "Autors/ores dels capítols"
+
+msgid "default.groups.abbrev.chapterAuthor"
+msgstr "AC"
+
+msgid "default.groups.name.volumeEditor"
+msgstr "Editor/a de volum (EV)"
+
+msgid "default.groups.plural.volumeEditor"
+msgstr "Editors/ores de volum"
+
+msgid "default.groups.abbrev.volumeEditor"
+msgstr "EV"
+
+msgid "default.contextSettings.checklist.notPreviouslyPublished"
+msgstr "La tramesa no s'ha publicat anteriorment ni s'ha presentat abans a cap altra publicació (o s'ha enviat una explicació a «Comentaris per a l'editor/a»)."
+
+msgid "default.contextSettings.checklist.fileFormat"
+msgstr "El fitxer de la tramesa està en format Microsoft Word, RTF, OpenDocument, o WordPerfect."
+
+msgid "default.contextSettings.checklist.addressesLinked"
+msgstr "Sempre que ha estat possible s'han proporcionat els URL per a les referències."
+
+msgid "default.contextSettings.checklist.submissionAppearance"
+msgstr "El text utilitza un espaiat senzill, lletra de mida 12 i en cursiva, més que no pas subratllat, excepte a les adreces URL. Pel que fa a totes les il·lustracions, figures i taules, es col·loquen al lloc corresponent del text i no al final."
+
+msgid "default.contextSettings.checklist.bibliographicRequirements"
+msgstr "El text compleix els requisits estilístics i bibliogràfics descrits a les <a href=\"{$indexUrl}/{$contextPath}/about/submissions#authorGuidelines\" target=\"_blank\">indicacions per als autors/ores</a>, que es troben a Sobre la publicació."
+
+msgid "default.contextSettings.privacyStatement"
+msgstr "<p>Els noms i les adreces de correu electrònic que hi ha en aquest lloc de publicació només s'utilitzaran per als usos indicats en aquesta publicació i no estaran disponibles per a cap altre ús ni per a terceres parts.</p>"
+
+msgid "default.contextSettings.openAccessPolicy"
+msgstr "La publicació proporciona accés lliure immediat al contingut basant-se en el principi que fer que la cerca estigui disponible al públic facilita un intercanvi de coneixement més ampli i global."
+
+msgid "default.contextSettings.emailSignature"
+msgstr ""
+"<br/>\n"
+"________________________________________________________________________<br/>\n"
+"<a href=\"{$ldelim}$contextUrl{$rdelim}\">{$ldelim}$contextName{$rdelim}</a>"
+
+msgid "default.contextSettings.forReaders"
+msgstr "Animem els lectors/ores a inscriure's al servei de notificacions de publicació per aquesta publicació. Feu servir l'enllaç <a href=\"{$indexUrl}/{$contextPath}/user/register\">Registra't</a> a la part superior de la pàgina principal de la publicació. El fet de registrar-se implica que els lectors/ores rebran per correu electrònic la taula de continguts de cada monografia nova de la publicació. Aquesta llista també permet a la publicació demanar cert nivell de suport o nombre de lectors/ores. Vegeu la <a href=\"{$indexUrl}/{$contextPath}/about/submissions#privacyStatement\">declaració de privacitat</a> de la publicació que assegura als lectors/ores que el seu nom i correu electrònic no s'utilitzaran per altres fins."
+
+msgid "default.contextSettings.forAuthors"
+msgstr "Us interessa enviar res a aquesta publicació? Recomanem que reviseu la pàgina <a href=\"{$indexUrl}/{$contextPath}/about\">Sobre la publicació</a>, on hi trobareu la Política de seccions i les <a href=\"{$indexUrl}/{$contextPath}/about/submissions#authorGuidelines\">Directrius per als autors/ores</a>. L'autor/a s'ha de <a href=\"{$indexUrl}/{$contextPath}/user/register\">registrar</a> a la publicació abans de poder fer una tramesa i, en cas que ja estigui registrat, pot simplement <a href=\"{$indexUrl}/index/login\">iniciar sessió</a> i començar el procés de 5 passos."
+
+msgid "default.contextSettings.forLibrarians"
+msgstr "Animem els bibliotecaris/àries a afegir aquesta publicació al fons de publicacions electròniques de la seva biblioteca. Aquest sistema de publicacions de codi obert també és adequat per als membres habilitats de les biblioteques que treballin en l'edició de publicacions. (Vegeu <a href=\"http://pkp.sfu.ca/omp\">Open Monograph Press</a>)."

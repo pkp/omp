@@ -1,0 +1,168 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: \n"
+"Report-Msgid-Bugs-To: \n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"POT-Creation-Date: 2019-11-28T15:10:09-08:00\n"
+"PO-Revision-Date: 2019-11-28T15:10:09-08:00\n"
+"Language: \n"
+
+msgid "editor.submissionArchive"
+msgstr "Arhiv oddanih prispevkov"
+
+msgid "editor.monograph.cancelReview"
+msgstr "Izbriši prošnjo"
+
+msgid "editor.monograph.clearReview"
+msgstr "Izbriši recenzenta"
+
+msgid "editor.monograph.enterRecommendation"
+msgstr "Vnesi priporočilo"
+
+msgid "editor.monograph.enterReviewerRecommendation"
+msgstr "Vnesi priporočilo recenzenta"
+
+msgid "editor.monograph.recommendation"
+msgstr "Priporočilo"
+
+msgid "editor.monograph.selectReviewerInstructions"
+msgstr "Za nadaljevanje zgoraj izberite recenzenta in pritisnite 'Izberi recenzenta‘."
+
+msgid "editor.monograph.replaceReviewer"
+msgstr "Zamenjaj recenzenta"
+
+msgid "editor.monograph.editorToEnter"
+msgstr "Urejevalnik za vnos priporočila/komentarjev za recenzenta"
+
+msgid "editor.monograph.uploadReviewForReviewer"
+msgstr "Naloži recenzijo"
+
+msgid "editor.monograph.peerReviewOptions"
+msgstr "Nastavitve recenzije"
+
+msgid "editor.monograph.selectProofreadingFiles"
+msgstr "Korekturna datoteka"
+
+msgid "editor.monograph.internalReview"
+msgstr "Prični notranjo recenzijo"
+
+msgid "editor.monograph.internalReviewDescription"
+msgstr "Izberite datoteke spodaj in jih pošljite na fazo notranje recenzije."
+
+msgid "editor.monograph.externalReview"
+msgstr "Prični zunanjo recenzijo"
+
+msgid "editor.submissions.lastAssigned"
+msgstr "Zadnji"
+
+msgid "editor.monograph.final.selectFinalDraftFiles"
+msgstr "Izberi datoteke s končno verzijo"
+
+msgid "editor.monograph.final.currentFiles"
+msgstr "Trenutne datoteke s končno verzijo"
+
+msgid "editor.monograph.copyediting.currentFiles"
+msgstr "Trenutne datoteke"
+
+msgid "editor.monograph.copyediting.personalMessageToUser"
+msgstr "Sporočilo za uporabnika"
+
+msgid "editor.monograph.legend.submissionActions"
+msgstr "Ukrepi za prispevke"
+
+msgid "editor.monograph.legend.submissionActionsDescription"
+msgstr "Splošni ukrepi in možnosti za prispevke. "
+
+msgid "editor.monograph.legend.sectionActions"
+msgstr "Ukrepi za rubrike"
+
+msgid "editor.monograph.legend.sectionActionsDescription"
+msgstr "Možnosti za določene rubrike, kot sta nalaganje datotek ali dodajanje uporabnikov."
+
+msgid "editor.monograph.legend.itemActions"
+msgstr "Ukrepi za elemente"
+
+msgid "editor.monograph.legend.itemActionsDescription"
+msgstr "Ukrepi in možnosti za individualno datoteko."
+
+msgid "editor.monograph.legend.catalogEntry"
+msgstr "Poglej in upravljaj vnos iz kataloga prispevkov vključno z metapodatki in formate publikacij"
+
+msgid "editor.monograph.legend.bookInfo"
+msgstr "Poglej in upravljaj metapodatke prispevkov, pripomb, obvestil in zgodovine"
+
+msgid "editor.monograph.legend.participants"
+msgstr "Poglej in upravljaj sodelujoče pri pripravi tega prispevka: avtorje, urednike, oblikovalce in druge"
+
+msgid "editor.monograph.legend.add"
+msgstr "Naloži datoteko v rubriko"
+
+msgid "editor.monograph.legend.add_user"
+msgstr "Dodaj uporabnika"
+
+msgid "editor.monograph.legend.settings"
+msgstr "Poglej in dostopaj do nastavitev elementov, kot so možnosti za informacije in brisanje"
+
+msgid "editor.monograph.legend.more_info"
+msgstr "Več informacij: datotečne pripombe, nastavitve obvestil in zgodovina"
+
+msgid "editor.monograph.legend.notes_none"
+msgstr "Datotečne informacije: opombe, nastavitve obvestil in zgodovina (Trenutno ni opomb)"
+
+msgid "editor.monograph.legend.notes"
+msgstr "Datotečne informacije: opombe, nastavitve obvestil in zgodovina (Opombe so na voljo)"
+
+msgid "editor.monograph.legend.notes_new"
+msgstr "Datotečne informacije: opombe, nastavitve obvestil in zgodovina (Nove opombe od zadnjega obiska)"
+
+msgid "editor.monograph.legend.edit"
+msgstr "Uredi element"
+
+msgid "editor.monograph.legend.delete"
+msgstr "Izbriši element"
+
+msgid "editor.monograph.legend.in_progress"
+msgstr "Ukaz v teku ali nezaključen"
+
+msgid "editor.monograph.legend.complete"
+msgstr "Ukaz končan"
+
+msgid "editor.monograph.legend.uploaded"
+msgstr "Datoteka, naložena glede na vlogo v mreži naslovnega stolpca."
+
+msgid "editor.submission.introduction"
+msgstr "Po preverjanju oddanih datotek mora urednik v prispevku izbrati primeren ukrep (to vključuje obveščanje avtorja) Pošlji notranjemu recenzentu (vključuje izbor datotek za notranjo recenzijo); pošlji zunanjemu recenzentu (vključuje izbor datotek za zunanjo recenzijo); potrdi prispevek (vključuje izbor datotek za uredniško fazo); ali zavrni prispevek (arhiviraj prispevek)."
+
+msgid "editor.monograph.editorial.fairCopy"
+msgstr "Končna verzija"
+
+msgid "editor.monograph.proofs"
+msgstr "Vzorci"
+
+msgid "editor.monograph.production.approvalAndPublishing"
+msgstr "Odobritev in objava"
+
+msgid "editor.monograph.production.approvalAndPublishingDescription"
+msgstr "Različne formate publikacij, kot so trda vezava, broširan in digitalni formati lahko naložite v spodnji rubriki Formati za objavo. Mrežo formatov publikacij lahko vidite spodaj v obliki seznama za vse tisto, kar je treba še opraviti pred objavo formatov publikacij."
+
+msgid "editor.monograph.production.publicationFormatDescription"
+msgstr "Dodajte formate publikacij (prim. digitalni, trda vezava), za katere bo grafični urednik pripravil vzorce za korekturo. Preden je format pripravljen <em>Available</em> (npr. za objavo), mora biti <em>Proofs</em>  označen kot odobren, medtem ko mora biti vnos za format <em>Catalog</em>  označen kot objavljen v knjižnem vnosu kataloga."
+
+msgid "editor.monograph.approvedProofs.edit"
+msgstr "Določi pogoje za prenos"
+
+msgid "editor.monograph.approvedProofs.edit.linkTitle"
+msgstr "Določi pogoje"
+
+msgid "editor.monograph.proof.addNote"
+msgstr "Dodaj odgovor"
+
+msgid "editor.submission.proof.manageProofFilesDescription"
+msgstr "Obstoječe datoteke, ki ste jih že naložili na katerikoli stopnji oddaje prispevka, lahko dodate na seznam vzorcev tako, da obkljukate Dodaj in kliknete na Išči: navedene bodo vse razpoložljive datoteke, ki jih lahko izberete in vključite."
+
+msgid "editor.publicIdentificationExistsForTheSameType"
+msgstr "Javni identifikator '{$publicIdentifier}' že obstaja za drug predmet istega tipa. Izberite enolične identifikatorje za predmete istega tipa v vaši založbi."

@@ -1,0 +1,300 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: \n"
+"Report-Msgid-Bugs-To: \n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"POT-Creation-Date: 2019-11-28T15:10:10-08:00\n"
+"PO-Revision-Date: 2019-11-28T15:10:10-08:00\n"
+"Language: \n"
+
+msgid "submission.submit.title"
+msgstr "Oddaj monografsko publikacijo"
+
+msgid "submission.upload.selectComponent"
+msgstr "Izberi komponento"
+
+msgid "submission.title"
+msgstr "Naslov knjige"
+
+msgid "submission.title.tip"
+msgstr "Vrsta oddaje je običajno \"slika\", \"besedilo\" ali druga vrsta večpredstavnostne datoteke, vključno s \"programsko opremo\" ali \"interaktivno vsebino\". Izberite vrsto, ki je najbližja naravi vašega prispevka. Primere lahko najdete na <a target=\"_blank\" href=\"http://dublincore.org/documents/2001/04/12/usageguide/generic.shtml#type\">http://dublincore.org/documents/2001/04/12/usageguide/generic.shtml#type</a>"
+
+msgid "submission.select"
+msgstr "Izberi prispevek"
+
+msgid "submission.synopsis"
+msgstr "Kratka vsebina"
+
+msgid "submission.workflowType"
+msgstr "Vrsta prispevka"
+
+msgid "submission.workflowType.description"
+msgstr "Monografska publikacija je delo, ki ga je v celoti napisal en ali več avtorjev. Pri zborniku ima vsako poglavje drugega avtorja (v enem od naslednjih korakov je treba navesti podrobnosti o posameznih poglavjih)."
+
+msgid "submission.workflowType.editedVolume"
+msgstr "Zbornik: Vsako poglavje ima svojega avtorja."
+
+msgid "submission.workflowType.authoredWork"
+msgstr "Monografska publikacija: Knjiga ima enega avtorja."
+
+msgid "submission.monograph"
+msgstr "Monografska publikacija"
+
+msgid "submission.published"
+msgstr "Pripravljeno na tisk"
+
+msgid "submission.fairCopy"
+msgstr "Čistopis"
+
+msgid "submission.authorListSeparator"
+msgstr "; "
+
+msgid "submission.artwork.permissions"
+msgstr "Dovoljenja"
+
+msgid "submission.chapter"
+msgstr "Poglavje"
+
+msgid "submission.chapters"
+msgstr "Poglavja"
+
+msgid "submission.chaptersDescription"
+msgstr "Tu lahko navedete poglavja, zgoraj pa iz seznama sodelavcev izberete sodelavce. Sodelavci bodo do poglavja lahko dostopali med različnimi fazami procesa objave."
+
+msgid "submission.chapter.addChapter"
+msgstr "Dodaj poglavje"
+
+msgid "submission.chapter.editChapter"
+msgstr "Uredi poglavje"
+
+msgid "submission.copyedit"
+msgstr "Lektoriranje"
+
+msgid "submission.publicationFormats"
+msgstr "Formati publikacije"
+
+msgid "submission.proofs"
+msgstr "Korekture"
+
+msgid "submission.download"
+msgstr "Prenesi"
+
+msgid "submission.sharing"
+msgstr "Deli"
+
+msgid "manuscript.submission"
+msgstr "Oddaja rokopisa"
+
+msgid "submission.round"
+msgstr "Krog &nbsp;{$round}"
+
+msgid "submissions.queuedReview"
+msgstr "V recenziji"
+
+msgid "manuscript.submissions"
+msgstr "Oddaje rokopisa"
+
+msgid "submission.confirmSubmit"
+msgstr "Ste prepričani, da želite založbi oddati rokopis?"
+
+msgid "submission.metadata"
+msgstr "Metapodatki"
+
+msgid "submission.supportingAgencies"
+msgstr "Podporne ustanove"
+
+msgid "grid.action.addChapter"
+msgstr "Ustvari novo poglavje"
+
+msgid "grid.action.editChapter"
+msgstr "Uredi poglavje"
+
+msgid "grid.action.deleteChapter"
+msgstr "Odstrani poglavje"
+
+msgid "submission.submit"
+msgstr "Nov prispevek"
+
+msgid "submission.submit.newSubmissionMultiple"
+msgstr "Nov prispevek v"
+
+msgid "submission.submit.newSubmissionSingle"
+msgstr "Nov prispevek"
+
+msgid "submission.submit.upload"
+msgstr "Naloži prispevek"
+
+msgid "submission.submit.cancelSubmission"
+msgstr "Oddajo prispevka lahko dokončate tudi pozneje, in sicer s klikom na Aktivne oddaje na meniju avtorjeve domače strani."
+
+msgid "submission.submit.selectSeries"
+msgstr "Izberi zbirko (izbirno)"
+
+msgid "author.submit.seriesRequired"
+msgstr "Vnesite veljavno zbirko."
+
+msgid "submission.submit.seriesPosition"
+msgstr "Mesto nove zbirke"
+
+msgid "submission.submit.seriesPosition.description"
+msgstr "Primeri: Knjiga 2, letnik 2"
+
+msgid "submission.submit.form.localeRequired"
+msgstr "Izberite jezik prispevka."
+
+msgid "submission.submit.privacyStatement"
+msgstr "Izjava o zasebnosti"
+
+msgid "submission.submit.contributorRole"
+msgstr "Vloga sodelavca"
+
+msgid "submission.submit.form.authorRequired"
+msgstr "Potreben je vsaj en avtor."
+
+msgid "submission.submit.form.authorRequiredFields"
+msgstr "Ime, priimek in e-poštni naslov je obvezen za vsakega avtorja."
+
+msgid "submission.submit.form.titleRequired"
+msgstr "Vnesite naslov svoje monografske publikacije."
+
+msgid "submission.submit.form.abstractRequired"
+msgstr "Vnesite kratko vsebino svoje monografske publikacije."
+
+msgid "submission.submit.form.contributorRoleRequired"
+msgstr "Izberite vlogo sodelavca."
+
+msgid "submission.submit.submissionFile"
+msgstr "Datoteka s prispevkom"
+
+msgid "submission.submit.prepare"
+msgstr "Pripravi"
+
+msgid "submission.submit.catalog"
+msgstr "Katalog"
+
+msgid "submission.submit.metadata"
+msgstr "Metapodatki"
+
+msgid "submission.submit.finishingUp"
+msgstr "Končaj"
+
+msgid "submission.submit.confirmation"
+msgstr "Potrdi"
+
+msgid "submission.submit.nextSteps"
+msgstr "Naslednji koraki"
+
+msgid "submission.submit.coverNote"
+msgstr "Spremni dopis za urednika"
+
+msgid "submission.submit.generalInformation"
+msgstr "Splošne informacije"
+
+msgid "submission.submit.whatNext.description"
+msgstr "Založba je bila obveščena o vašem prispevku. Poslali smo vam potrditveno e-pošto za vašo evidenco. Ko urednik zaključi recenzijo vašega prispevka, boste prejeli obvestilo."
+
+msgid "submission.submit.checklistErrors"
+msgstr "Preberite in izberite elemente na seznamu pogojev za oddajo prispevka. Nekateri elementi {$itemsRemaining} niso bili izbrani."
+
+msgid "submission.submit.placement"
+msgstr "Oddaja prispevka"
+
+msgid "submission.submit.userGroup"
+msgstr "Izberi vlogo ..."
+
+msgid "submission.submit.userGroupDescription"
+msgstr "Če želite oddati zbornik, izberite vlogo urednika zbornika."
+
+msgid "grid.chapters.title"
+msgstr "Poglavja"
+
+msgid "grid.copyediting.deleteCopyeditorResponse"
+msgstr "Odstrani naloženo lektorsko datoteko"
+
+msgid "publication.catalogEntry"
+msgstr "Vnos v katalog"
+
+msgid "submission.complete"
+msgstr "Odobreno"
+
+msgid "submission.incomplete"
+msgstr "Čakanje na odobritev"
+
+msgid "submission.editCatalogEntry"
+msgstr "Vnos"
+
+msgid "submission.catalogEntry.new"
+msgstr "Nov vnos v katalog"
+
+msgid "submission.catalogEntry.confirm"
+msgstr "Dodajte knjigo v javni katalog"
+
+msgid "submission.catalogEntry.confirm.required"
+msgstr "Potrdite, da je prispevek pripravljen za vnos v katalog."
+
+msgid "submission.catalogEntry.isAvailable"
+msgstr "Monografska publikacija je pripravljena za vnos v javni katalog."
+
+msgid "submission.catalogEntry.monographMetadata"
+msgstr "Monografska publikacija"
+
+msgid "submission.catalogEntry.catalogMetadata"
+msgstr "Katalog"
+
+msgid "submission.catalogEntry.publicationMetadata"
+msgstr "Format publikacije"
+
+msgid "submission.event.metadataPublished"
+msgstr "Metapodatki monografske publikacije so odobreni za objavo."
+
+msgid "submission.event.metadataUnpublished"
+msgstr "Metapodatki monografske publikacije niso več obljavljeni."
+
+msgid "submission.event.publicationFormatMadeAvailable"
+msgstr "Format publikacije \"{$publicationFormatName}\" je omogočen."
+
+msgid "submission.event.publicationFormatMadeUnavailable"
+msgstr "Format publikacije \"{$publicationFormatName}\" je onemogočen."
+
+msgid "submission.event.publicationFormatPublished"
+msgstr "Format publikacije \"{$publicationFormatName}\" je odobren za objavo."
+
+msgid "submission.event.publicationFormatUnpublished"
+msgstr "Format publikacije \"{$publicationFormatName}\" ni več objavljen."
+
+msgid "submission.event.catalogMetadataUpdated"
+msgstr "Metapodatki kataloga so posodobljeni."
+
+msgid "submission.event.publicationMetadataUpdated"
+msgstr "Metapodatki formata publikacije \"{$formatName}\" so posodobljeni."
+
+msgid "submission.event.publicationFormatCreated"
+msgstr "Format publikacije \"{$formatName}\" je ustvarjen."
+
+msgid "submission.event.publicationFormatRemoved"
+msgstr "Format publikacije \"{$formatName}\" je odstranjen."
+
+msgid "submission.submit.titleAndSummary"
+msgstr "Naslov in povzetek"
+
+msgid "workflow.review.externalReview"
+msgstr "Zunanja recenzija"
+
+msgid "editor.submission.decision.sendExternalReview"
+msgstr "Pošlji na zunanjo recenzijo"
+
+msgid "submission.upload.fileContents"
+msgstr "Komponenta prispevka"
+
+msgid "submission.dependentFiles"
+msgstr "Povezane datoteke"
+
+msgid "submission.metadataDescription"
+msgstr "Te specifikacije temeljijo na metapodatkih po mednarodnem standardu Dublin Core, ki se uporablja za opis vsebine publikacij."
+
+msgid "section.any"
+msgstr "Zbirke"

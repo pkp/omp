@@ -1,0 +1,138 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: \n"
+"Report-Msgid-Bugs-To: \n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"POT-Creation-Date: 2019-11-28T15:10:09-08:00\n"
+"PO-Revision-Date: 2019-11-28T15:10:09-08:00\n"
+"Language: \n"
+
+msgid "default.genres.appendix"
+msgstr "Dodatek"
+
+msgid "default.genres.bibliography"
+msgstr "Bibliografija"
+
+msgid "default.genres.manuscript"
+msgstr "Rokopis knjige"
+
+msgid "default.genres.chapter"
+msgstr "Rokopis poglavja"
+
+msgid "default.genres.glossary"
+msgstr "Glosar"
+
+msgid "default.genres.index"
+msgstr "Kazalo"
+
+msgid "default.genres.preface"
+msgstr "Predgovor"
+
+msgid "default.genres.prospectus"
+msgstr "Prospekt"
+
+msgid "default.genres.table"
+msgstr "Tabela"
+
+msgid "default.genres.figure"
+msgstr "Slika"
+
+msgid "default.genres.photo"
+msgstr "Fotografija"
+
+msgid "default.genres.illustration"
+msgstr "Ilustracija"
+
+msgid "default.genres.other"
+msgstr "Drugo"
+
+msgid "default.groups.name.manager"
+msgstr "Upravljalec publikacije"
+
+msgid "default.groups.plural.manager"
+msgstr "Upravljalci publikacije"
+
+msgid "default.groups.abbrev.manager"
+msgstr "Upravljalec publikacije"
+
+msgid "default.groups.name.editor"
+msgstr "Urednik publikacije"
+
+msgid "default.groups.plural.editor"
+msgstr "Uredniki publikacije"
+
+msgid "default.groups.abbrev.editor"
+msgstr "Urednik publikacije"
+
+msgid "default.groups.name.sectionEditor"
+msgstr "Urednik zbirke"
+
+msgid "default.groups.plural.sectionEditor"
+msgstr "Uredniki zbirke"
+
+msgid "default.groups.abbrev.sectionEditor"
+msgstr "Urednik zbirke"
+
+msgid "default.groups.name.chapterAuthor"
+msgstr "Avtor poglavja"
+
+msgid "default.groups.plural.chapterAuthor"
+msgstr "Avtorji poglavja"
+
+msgid "default.groups.abbrev.chapterAuthor"
+msgstr "Avtor poglavja"
+
+msgid "default.groups.name.volumeEditor"
+msgstr "Urednik zbornika"
+
+msgid "default.groups.plural.volumeEditor"
+msgstr "Uredniki zbornika"
+
+msgid "default.groups.abbrev.volumeEditor"
+msgstr "Urednik zbornika"
+
+msgid "default.contextSettings.checklist.notPreviouslyPublished"
+msgstr "Prispevek še ni bil objavljen, niti ni v procesu objavljanja v kakšni drugi publikaciji (oziroma je razlaga podana v polju Komentarji uredniku)."
+
+msgid "default.contextSettings.checklist.fileFormat"
+msgstr "Datoteka s prispevkom je v formatu Microsoft Word, RTF ali OpenDocument."
+
+msgid "default.contextSettings.checklist.addressesLinked"
+msgstr "Kjer je to na voljo, so objavljene povezave URL do uporabljene literature."
+
+msgid "default.contextSettings.checklist.submissionAppearance"
+msgstr "Besedilo ima enojni razmak; uporabljena pisava je velikosti 12 točk; za poudarjene besede je uporabljen stil poševno, podčrtano le za URL povezave; in vse ilustracije, slike in tabele so na primernih mestih v besedilu, namesto na koncu besedila."
+
+msgid "default.contextSettings.checklist.bibliographicRequirements"
+msgstr "Besedilo ustreza stilskim in bibliografskim zahtevam, navedenim v <a href=\"{$indexUrl}/{$contextPath}/about/submissions#authorGuidelines\" target=\"_blank\">Navodila za avtorje</a>, ki se nahajajo v rubriki \"O publikaciji\"."
+
+msgid "default.contextSettings.privacyStatement"
+msgstr "<p>Imena in e-poštni naslovi, vpisani v tem spletišču, se bodo uporabljali striktno le za navedene namene te publikacije in ne bodo predane tretjim osebam za kateri koli namen.</p>"
+
+msgid "default.contextSettings.openAccessPolicy"
+msgstr "Publikacija je takoj prosto dostopna vsem v prepričanju, da prosta dostopnost do rezultatov raziskav spodbuja večjo izmenjavo znanja."
+
+msgid "default.contextSettings.emailSignature"
+msgstr "<br/> ________________________________________________________________________<br/> <a href=\"{$ldelim}$contextUrl{$rdelim}\">{$ldelim}$contextName{$rdelim}</a>"
+
+msgid "default.contextSettings.forReaders"
+msgstr "Bralce spodbujamo, da se prijavijo na obvestila o izdajah publikacije založbe. Sledite povezavi <a href=\"{$indexUrl}/{$contextPath}/user/register\">Vpis</a> na vrhu domače strani spletišča. Po registraciji boste po e-pošti prejeli kazalo vsebine vsake nove monografske publikacije na spletišču. Spisek registriranih bralcev pomeni za publikacijo tudi določeno podporo s strani bralcev. Oglejte si <a href=\"{$indexUrl}/{$contextPath}/about/submissions#privacyStatement\">Izjavo o zasebnosti podatkov</a> publikacije, ki bralcem zagotavlja, da imena in e-poštni naslovi bralcev ne bodo zlorabljeni."
+
+msgid "default.contextSettings.forAuthors"
+msgstr "Vas zanima objavljanje na tem spletišču? Predlagamo, da si ogledate stran <a href=\"{$indexUrl}/{$contextPath}/about\">O publikaciji</a> za ogled uredniške politike publikacije in strani<a href=\"{$indexUrl}/{$contextPath}/about/submissions#authorGuidelines\">Navodila avtorjem</a>. Avtorji se morajo pred objavo <a href=\"{$indexUrl}/{$contextPath}/user/register\">vpisati</a> pri založbi, če pa so že registrirani, se lahko vanjo enostavno <a href=\"{$indexUrl}/index/login\">prijavijo</a> in začnejo s procesom oddaje prispevka, ki vsebuje 5 korakov."
+
+msgid "default.contextSettings.forLibrarians"
+msgstr "Spodbujamo znanstvene knjižnice, da to publikacijo uvrstijo v svojo evidenco elektronskih publikacij. Ta prosto dostopni sistem za objavljanje je prav tako primeren za knjižnice, katerih uslužbenci jo lahko uporabljajo za urejanje publikacij (glej <a href=\"http://pkp.sfu.ca/omp\">Open Monograph Press</a>)."
+
+msgid "default.groups.name.externalReviewer"
+msgstr "Zunanji recenzent"
+
+msgid "default.groups.plural.externalReviewer"
+msgstr "Zunanji recenzenti"
+
+msgid "default.groups.abbrev.externalReviewer"
+msgstr "Zunanji recenzent"

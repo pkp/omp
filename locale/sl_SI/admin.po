@@ -1,0 +1,90 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: \n"
+"Report-Msgid-Bugs-To: \n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"POT-Creation-Date: 2019-11-28T15:10:09-08:00\n"
+"PO-Revision-Date: 2019-11-28T15:10:09-08:00\n"
+"Language: \n"
+
+msgid "admin.hostedContexts"
+msgstr "Gostujoče založbe"
+
+msgid "admin.settings.redirect"
+msgstr "Preusmeritev založbe"
+
+msgid "admin.settings.redirectInstructions"
+msgstr "Vse prošnje na glavnem mestu bodo preusmerjene na to založbo. To je uporabno, če na spletišču gostuje le ena založba."
+
+msgid "admin.settings.noPressRedirect"
+msgstr "Ne preusmeri"
+
+msgid "admin.languages.primaryLocaleInstructions"
+msgstr "Ta bo privzeti jezik za spletišče in vse gostujoče založbe."
+
+msgid "admin.languages.supportedLocalesInstructions"
+msgstr "Izberi vse območne jezike, ki bodo podprte na tem spletišču. Izbrani območni jeziki bodo na voljo za vse gostujoče založbe in se bodo pojavljali na meniju možnih jezikov na vsaki spletni strani (to lahko spremenite na straneh založbe).  Če ne bo izbranih več območnih jezikov, se na spletnih straneh ne bo pojavil meni za spreminjanje jezika in razširjene jezikovne nastavitve ne bodo na voljo za založbe."
+
+msgid "admin.locale.maybeIncomplete"
+msgstr "*Označeni območni jeziki so lahko nepopolni."
+
+msgid "admin.languages.confirmUninstall"
+msgstr "Ali ste prepričani, da želite odstraniti ta območni jezik? To bo lahko vplivalo na vse gostujoče založbe, ki trenutno uporabljajo območni jezik."
+
+msgid "admin.languages.installNewLocalesInstructions"
+msgstr "Izberite dodatne območne jezike, ki jih želite imeti na voljo na tem spletišču. Območni jeziki morajo biti nameščeni, preden jih gostujoča založba lahko uporablja. V dokumentaciji OMP lahko najdete več informacij o podpori novim jezikov."
+
+msgid "admin.languages.noLocalesToDownload"
+msgstr "Nobenih območnih jezikov ni na voljo za namestitev."
+
+msgid "admin.languages.downloadFailed"
+msgstr "Prenos območnih jezikov ni uspel. Spodaj je opis napak(e)."
+
+msgid "admin.languages.downloadUnavailable"
+msgstr "<p>Prenos jezikovnega paketa iz spletne strani Public Knowledge Project trenutno ni mogoč zaradi:</p> <ul> <li>Vaš strežnik nima ali ne more poganjati orodja GNU tar</li> <li>OJS ne more spreminjati registrske datoteke za območni jezik, ponavadi \"registry/locales.xml\".</li> </ul> <p>Jezikovne pakete lahko ročno prenesete iz <a href=\"http://pkp.sfu.ca\">spletnih strani PKP</a>.</p>"
+
+msgid "admin.languages.confirmDisable"
+msgstr "Ali ste prepričani, da želite odstraniti ta območni jezik? To bo lahko vplivalo na vse gostujoče založbe, ki trenutno uporabljajo območni jezik."
+
+msgid "admin.systemVersion"
+msgstr "Različica OMP"
+
+msgid "admin.systemConfiguration"
+msgstr "Nastavitve OMP"
+
+msgid "admin.presses.pressSettings"
+msgstr "Nastavitve založbe"
+
+msgid "admin.presses.noneCreated"
+msgstr "Nobena založba ni bila ustvarjena."
+
+msgid "admin.contexts.confirmDelete"
+msgstr "Ali ste prepričani, da želite dokončno zbrisati to založbo in vso njeno vsebino?"
+
+msgid "admin.contexts.create"
+msgstr "Ustvari založbo"
+
+msgid "admin.contexts.form.titleRequired"
+msgstr "Naslov je obvezen."
+
+msgid "admin.contexts.form.pathRequired"
+msgstr "Pot je obvezna."
+
+msgid "admin.contexts.form.pathAlphaNumeric"
+msgstr "Pot lahko vsebuje le alfanumerične znake, podčrtaje in pomišljaje ter se mora začeti in končati z alfanumeričnim znakom."
+
+msgid "admin.contexts.form.pathExists"
+msgstr "Izbrano pot uporablja že druga založba."
+
+msgid "admin.contexts.contextDescription"
+msgstr "Opis založbe"
+
+msgid "admin.presses.addPress"
+msgstr "Dodaj založbo"
+
+msgid "admin.overwriteConfigFileInstructions"
+msgstr "<h4>OPOZORILO!</div> <p>Sistem ne more samodejno prepisati nastavitvene datoteke. Za ročni vpis sprememb v nastavitveno datoteko <tt>config.inc.php</tt> jo odprite v primernem urejevalniku besedil in zamenjajte vsebino datoteke z besedilom spodaj.</p>"

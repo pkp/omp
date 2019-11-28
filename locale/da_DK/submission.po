@@ -1,0 +1,348 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: \n"
+"Report-Msgid-Bugs-To: \n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"POT-Creation-Date: 2019-11-28T15:10:05-08:00\n"
+"PO-Revision-Date: 2019-11-28T15:10:05-08:00\n"
+"Language: \n"
+
+msgid "submission.submit.title"
+msgstr "Indsend en monografi"
+
+msgid "submission.upload.selectComponent"
+msgstr "Vælg komponent"
+
+msgid "submission.title"
+msgstr "Bogtitel"
+
+msgid "submission.select"
+msgstr "Vælg indsendelse"
+
+msgid "submission.synopsis"
+msgstr "Synopsis"
+
+msgid "submission.workflowType"
+msgstr "Indsendelsestype"
+
+msgid "submission.workflowType.description"
+msgstr "En monografi er et værk, der helt igennem er skrevet af en eller flere forfattere. Et redigeret værk har forskellige forfattere til hvert enkelt kapitel (med kapiteloplysninger indtastet senere i denne proces.)"
+
+msgid "submission.workflowType.editedVolume"
+msgstr "Redigeret værk: Forfattere er knyttet til deres eget kapitel."
+
+msgid "submission.workflowType.authoredWork"
+msgstr "Monografi: Forfattere er forbundet med bogen som helhed."
+
+msgid "submission.workflowType.editedVolume.selectEditors"
+msgstr "Vælg redaktører"
+
+msgid "submission.workflowType.editedVolume.selectEditors.description"
+msgstr "Vælg de forfattere, der skal identificeres som redaktører for hele værket."
+
+msgid "submission.editorName"
+msgstr "{$editorName} (ed)"
+
+msgid "submission.published"
+msgstr "Klar til produktion"
+
+msgid "submission.fairCopy"
+msgstr "Renskrift"
+
+msgid "submission.authorListSeparator"
+msgstr "; "
+
+msgid "submission.artwork.permissions"
+msgstr "Tilladelser"
+
+msgid "submission.chapter"
+msgstr "Kapitel"
+
+msgid "submission.chapters"
+msgstr "Kapitler"
+
+msgid "submission.chaptersDescription"
+msgstr "Du kan opstille en liste over kapitlerne her og tilknytte forfattere fra listen over bidragydere ovenfor. Disse forfattere kan få adgang til kapitlet i forskellige faser af den redaktionelle proces."
+
+msgid "submission.chapter.addChapter"
+msgstr "Tilføj kapitel"
+
+msgid "submission.chapter.editChapter"
+msgstr "Rediger kapitel"
+
+msgid "submission.chapter.pages"
+msgstr "Sider"
+
+msgid "submission.copyedit"
+msgstr "Manuskriptredigering"
+
+msgid "submission.publicationFormats"
+msgstr "Publikationsformater"
+
+msgid "submission.proofs"
+msgstr "Korrekturer"
+
+msgid "submission.download"
+msgstr "Download"
+
+msgid "submission.sharing"
+msgstr "Del dette"
+
+msgid "manuscript.submission"
+msgstr "Manuskriptindsendelse"
+
+msgid "submission.round"
+msgstr "Runde&nbsp;{$round}"
+
+msgid "submissions.queuedReview"
+msgstr "Til bedømmelse"
+
+msgid "manuscript.submissions"
+msgstr "Manuskriptindsendelser"
+
+msgid "submission.confirmSubmit"
+msgstr "Er du sikker på, at du ønsker at indsende dette manuskript til forlaget?"
+
+msgid "submission.metadata"
+msgstr "Metadata"
+
+msgid "submission.supportingAgencies"
+msgstr "Støtteinstanser"
+
+msgid "grid.action.addChapter"
+msgstr "Opret et nyt kapitel"
+
+msgid "grid.action.editChapter"
+msgstr "Rediger dette kapitel"
+
+msgid "grid.action.deleteChapter"
+msgstr "Slet dette kapitel"
+
+msgid "submission.submit"
+msgstr "Påbegynd ny indsendelse af bog"
+
+msgid "submission.submit.newSubmissionMultiple"
+msgstr "Påbegynd en ny indsendelse i"
+
+msgid "submission.submit.newSubmissionSingle"
+msgstr "Ny indsendelse"
+
+msgid "submission.submit.upload"
+msgstr "Upload indsendelse"
+
+msgid "submission.submit.cancelSubmission"
+msgstr "Du kan afslutte denne indsendelse på et senere tidspunkt ved at vælge aktive indsendelser fra forfatterens webside."
+
+msgid "submission.submit.selectSeries"
+msgstr "Vælg serie (valgfrit)"
+
+msgid "author.submit.seriesRequired"
+msgstr "En gyldig serie er påkrævet."
+
+msgid "submission.submit.seriesPosition"
+msgstr "Seriens position"
+
+msgid "submission.submit.seriesPosition.description"
+msgstr "Eksempler: Bog 2, bind 2"
+
+msgid "submission.submit.form.localeRequired"
+msgstr "Vælg et indsendelsessprog."
+
+msgid "submission.submit.privacyStatement"
+msgstr "Erklæring om beskyttelse af personlige oplysninger"
+
+msgid "submission.submit.contributorRole"
+msgstr "Bidragyderens rolle"
+
+msgid "submission.submit.form.authorRequired"
+msgstr "Der kræves mindst en forfatter."
+
+msgid "submission.submit.form.authorRequiredFields"
+msgstr "Forfatterens fornavn, efternavn og e-mail-adresse er påkrævet."
+
+msgid "submission.submit.form.titleRequired"
+msgstr "Indtast titlen på din monografi."
+
+msgid "submission.submit.form.abstractRequired"
+msgstr "Indsæt et kort resume over din monografi."
+
+msgid "submission.submit.form.contributorRoleRequired"
+msgstr "Vælg bidragyderens rolle."
+
+msgid "submission.submit.submissionFile"
+msgstr "Indsendelsesfil"
+
+msgid "submission.submit.prepare"
+msgstr "Forbered"
+
+msgid "submission.submit.catalog"
+msgstr "Katalog"
+
+msgid "submission.submit.metadata"
+msgstr "Metadata"
+
+msgid "submission.submit.finishingUp"
+msgstr "Færdiggør"
+
+msgid "submission.submit.confirmation"
+msgstr "Bekræftelse"
+
+msgid "submission.submit.nextSteps"
+msgstr "Næste trin"
+
+msgid "submission.submit.coverNote"
+msgstr "Følgeskrivelse til redaktør"
+
+msgid "submission.submit.generalInformation"
+msgstr "Generel information"
+
+msgid "submission.submit.whatNext.description"
+msgstr "Forlaget har fået besked om din indsendelse, og du har modtaget en e-mail med en bekræftelse for modtagelse af din indsendelse. Når redaktøren har gennemgået indsendelsen, vil du blive kontaktet."
+
+msgid "submission.submit.checklistErrors"
+msgstr "Læs og tjek det indsendte i indsendelseslisten. Der er {$itemsRemaining} elementer, der ikke er markeret."
+
+msgid "submission.submit.placement"
+msgstr "Indsendelsesplacering"
+
+msgid "submission.submit.userGroup"
+msgstr "Indsend i min rolle som ..."
+
+msgid "submission.submit.userGroupDescription"
+msgstr "Hvis du sender et redigeret værk, bør du vælge redaktørrollen."
+
+msgid "grid.chapters.title"
+msgstr "Kapitler"
+
+msgid "grid.copyediting.deleteCopyeditorResponse"
+msgstr "Slet upload fra manuskriptredaktør"
+
+msgid "submission.catalogEntry"
+msgstr "Katalogindgang"
+
+msgid "submission.complete"
+msgstr "Godkendt"
+
+msgid "submission.incomplete"
+msgstr "Afventer godkendelse"
+
+msgid "submission.editCatalogEntry"
+msgstr "Indgang"
+
+msgid "submission.catalogEntry.new"
+msgstr "Tilføj indgang"
+
+msgid "submission.catalogEntry.add"
+msgstr "Føj valgte til katalog"
+
+msgid "submission.catalogEntry.select"
+msgstr "Vælg de monografier der skal tilføjes til kataloget"
+
+msgid "submission.catalogEntry.selectionMissing"
+msgstr "Du skal vælge mindst en monografi for at foretage en tilføjelse til kataloget."
+
+msgid "submission.catalogEntry.confirm"
+msgstr "Føj denne bog til det offentlige katalog"
+
+msgid "submission.catalogEntry.confirm.required"
+msgstr "Bekræft, at indsendelsen er klar til at blive placeret i kataloget."
+
+msgid "submission.catalogEntry.isAvailable"
+msgstr "Denne monografi er klar til at blive inkluderet i det offentlige katalog."
+
+msgid "submission.catalogEntry.viewSubmission"
+msgstr "Se indsendelse"
+
+msgid "submission.catalogEntry.chapterPublicationDates"
+msgstr "Publikationsdato"
+
+msgid "submission.catalogEntry.disableChapterPublicationDates"
+msgstr "Alle kapitler bruger monografiens publiceringsdato."
+
+msgid "submission.catalogEntry.enableChapterPublicationDates"
+msgstr "Hvert kapitel kan have sin egen publikationsdato."
+
+msgid "submission.catalogEntry.monographMetadata"
+msgstr "Monografi"
+
+msgid "submission.catalogEntry.catalogMetadata"
+msgstr "Katalog"
+
+msgid "submission.catalogEntry.publicationMetadata"
+msgstr "Publikationsformat"
+
+msgid "submission.event.metadataPublished"
+msgstr "Monografiens metadata er godkendt til publicering."
+
+msgid "submission.event.metadataUnpublished"
+msgstr "Monografiens metadata er ikke længere publiceret."
+
+msgid "submission.event.publicationFormatMadeAvailable"
+msgstr "Publikationsformatet \"{$publicationFormatName}\" stilles til rådighed."
+
+msgid "submission.event.publicationFormatMadeUnavailable"
+msgstr "Publikationsformatet \"{$publicationFormatName}\" er ikke længere tilgængeligt."
+
+msgid "submission.event.publicationFormatPublished"
+msgstr "Publikationsformatet \"{$publicationFormatName}\" er godkendt til publicering."
+
+msgid "submission.event.publicationFormatUnpublished"
+msgstr "Publikationsformatet \"{$publicationFormatName}\" is ikke længere tilgængeligt."
+
+msgid "submission.event.catalogMetadataUpdated"
+msgstr "Katalog-metadata blev opdateret."
+
+msgid "submission.event.publicationMetadataUpdated"
+msgstr "Publikationsformatets metadata til \"{$formatName}\" blev opdateret."
+
+msgid "submission.event.publicationFormatCreated"
+msgstr "Publikationsformatet \"{$formatName}\" blev oprettet."
+
+msgid "submission.event.publicationFormatRemoved"
+msgstr "Publikationsformatet \"{$formatName}\" blev fjernet."
+
+msgid "submission.submit.titleAndSummary"
+msgstr "Titel og resume"
+
+msgid "workflow.review.externalReview"
+msgstr "Ekstern bedømmelse"
+
+msgid "editor.submission.decision.sendExternalReview"
+msgstr "Send til ekstern bedømmelse"
+
+msgid "submission.upload.fileContents"
+msgstr "Indsendelseskomponent"
+
+msgid "submission.dependentFiles"
+msgstr "Afhængige filer"
+
+msgid "submission.metadataDescription"
+msgstr "Disse specifikationer er baseret på Dublin Core-metadatasættet, en international standard, der bruges til at beskrive forlagsindhold."
+
+msgid "section.any"
+msgstr "Enhver serie"
+
+msgid "submission.list.countMonographs"
+msgstr "{$count} monografier"
+
+msgid "submission.list.itemsOfTotalMonographs"
+msgstr "{$count} af {$total} monografier"
+
+msgid "submission.list.orderFeatures"
+msgstr "Bestil funktioner"
+
+msgid "submission.list.orderingFeatures"
+msgstr "Træk og slip eller tryk på op- og ned-knapperne for at ændre rækkefølgen af funktionerne på startsiden."
+
+msgid "submission.list.orderingFeaturesSection"
+msgstr "Træk og slip eller tryk på op- og ned-knapperne for at ændre rækkefølgen af funktionerne i {$title}."
+
+msgid "submission.list.saveFeatureOrder"
+msgstr "Gem rækkefølge"
+
+msgid "catalog.browseTitles"
+msgstr "{$numTitles} titler"

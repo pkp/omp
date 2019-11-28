@@ -1,0 +1,930 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: \n"
+"Report-Msgid-Bugs-To: \n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"POT-Creation-Date: 2019-11-28T15:10:06-08:00\n"
+"PO-Revision-Date: 2019-11-28T15:10:06-08:00\n"
+"Language: \n"
+
+msgid "manager.language.confirmDefaultSettingsOverwrite"
+msgstr "Αυτό θα αντικαταστήσει όλες τις παραμέτρους τοπικής ρύθμισης που είχατε ορίσει για την έκδοση σας"
+
+msgid "manager.languages.languageInstructions"
+msgstr "Το OMP είναι διαθέσιμο στους χρήστες σε όλες τις υποστηριζόμενες γλώσσες. Επίσης το OMP μπορεί να λειτουργήσει ως ένα εν μέρει πολυγλωσσικό σύστημα, που παρέχει στους χρήστες τη δυνατότητα να αλλάζουν γλώσσες σε κάθε σελίδα και, επίσης, επιτρέπει τη δυνατότητα καταχώρισης ορισμένων δεδομένων σε δύο πρόσθετες γλώσσες.<br /><br/>Εάν μια γλώσσα που υποστηρίζεται από το OMP δεν εμφανίζεται παρακάτω, απευθυνθείτε στον διαχειριστή του ιστοτόπου για να εγκαταστήσει τη γλώσσα από τη διεπαφή διαχείρισης του ιστοτόπου. Για οδηγίες σχετικά με την προσθήκη υποστήριξης για νέες γλώσσες, ανατρέξτε τα έγγραφα τεκμηρίωσης του OMP."
+
+msgid "manager.languages.noneAvailable"
+msgstr "Συγνώμη, καμία πρόσθετη γλώσσα δεν είναι διαθέσιμη. Επικοινωνήστε με τον διαχειριστή του ιστοτόπου, σε περίπτωση που επιθυμείτε να χρησιμοποιήσετε πρόσθετες γλώσσες για την έκδοση αυτή."
+
+msgid "manager.languages.primaryLocaleInstructions"
+msgstr "Αυτή είναι η προεπιλεγμένη γλώσσα για τον ιστότοπο της έκδοσης."
+
+msgid "manager.series.form.mustAllowPermission"
+msgstr "Παρακαλούμε σιγουρευτείτε ότι τουλάχιστον ένα checkbox έχει τσεκαριστεί για κάθε ανάθεση Επιμελητή Σειράς."
+
+msgid "manager.series.form.reviewFormId"
+msgstr "Παρακαλούμε σιγουρευτείτε ότι έχετε επιλέξει μια έγκυρη φόρμα αξιολόγησης."
+
+msgid "manager.series.submissionIndexing"
+msgstr "Δεν θα συμπεριληφθούν στην ευρετηρίαση του βιβλίου"
+
+msgid "manager.series.editorRestriction"
+msgstr "Αντικείμενα (Items) μπορούν να υποβληθούν μόνο από τους Επιμελητές Έκδοσης (Editors) και τους Επιμελητές Σειράς."
+
+msgid "manager.series.confirmDelete"
+msgstr "Είστε βέβαιοι ότι επιθυμείτε να διαγράψετε αυτή τη σειρά?"
+
+msgid "manager.series.indexed"
+msgstr "Έχει ευρετηριατεί"
+
+msgid "manager.series.open"
+msgstr "Ανοικτές υποβολές"
+
+msgid "manager.series.readingTools"
+msgstr "Εργαλεία Ανάγνωσης"
+
+msgid "manager.series.submissionReview"
+msgstr "Δεν πραγματοποιείται αξιολόγηση από ομότιμους αξιολογητές"
+
+msgid "manager.series.submissionsToThisSection"
+msgstr "Υποβολές στη συγκεκριμένη σειρά"
+
+msgid "manager.series.abstractsNotRequired"
+msgstr "Δεν απαιτείτε περιλείψεις"
+
+msgid "manager.series.disableComments"
+msgstr "Απενεργοποιήστε τα σχόλεια αναγνωστών για αυτή τη σειρά."
+
+msgid "manager.series.book"
+msgstr "Σειρά Βιβλίων"
+
+msgid "manager.series.create"
+msgstr "Δημιουργία Σειράς"
+
+msgid "manager.series.policy"
+msgstr "Περιγραφή Σειράς"
+
+msgid "manager.series.assigned"
+msgstr "Επιμελητές γι' αυτή τη σειρά"
+
+msgid "manager.series.seriesEditorInstructions"
+msgstr "Προσθέστε έναν Επιμελητή Σειράς για αυτή τη σειρά από τους διαθέσιμους Επιμελητές Σειράς. Μόλις προστεθεί, ορίσετε αν ο Επιμελεητής Σειράς θα επιβλέπει τη διαδικασία  ΑΞΙΟΛΟΓΗΣΗΣ (peer review) και/ η τη διαδικασία ΣΥΝΤΑΞΗΣ (επιμέλεια κειμένων, σελιδοποίηση και τυπογραφικά δοκίμια) των υποβολών  της συγκεκριμένης Σειράς. Οι Επιμελητές Σειρών δημιουργούνται επιλέγοντας <a href=\"{$seriesEditorsUrl}\">Επιμελητές Σειράς</a> κάτω από το Ρόλοι στην σελίδα του Διαχειριστή της Έκδοσης."
+
+msgid "manager.series.hideAbout"
+msgstr "Απόκτυψη αυτής της σειράς από το μενού Σχετικά με την Έκδοση."
+
+msgid "manager.series.unassigned"
+msgstr "Διαθέσιμοι Επιμελητές Σειράς"
+
+msgid "manager.series.form.abbrevRequired"
+msgstr "Απαιτείται συντομογραφία τίτλου για τη Σειρά."
+
+msgid "manager.series.form.titleRequired"
+msgstr "Ένας τίτλος απαιτείται για τη σειρά."
+
+msgid "manager.series.noneCreated"
+msgstr "Καμία σειρά δεν έχει δημιουργηθεί."
+
+msgid "manager.series.existingUsers"
+msgstr "Υπάρχοντες χρήστες"
+
+msgid "manager.series.seriesTitle"
+msgstr "Τίλτος Σειράς"
+
+msgid "manager.series.noSeriesEditors"
+msgstr "Δεν υπάρχουν επιμελητές σειράς ακόμη. Προσθέστε σε αυτό τον ρόλο τουλάχιστον ένα χρήστη από το  Διαχείριση > Ρυθμίσεις > Χρήστες &amp; Ρόλοι."
+
+msgid "manager.series.noCategories"
+msgstr "Δεν έχουν οριστεί κατηγορίες ακόμη.  Εάν επιθυμείτε να εντάξετε αυτή τη σειρά σε κατηγορίες, κλείστε αυτή τη λειτουργία και επιλέξτε την καρτέλα 'Κατηγορίες' και δημιουργείστε μία πρώτα."
+
+msgid "manager.settings"
+msgstr "Ρυθμίσεις"
+
+msgid "manager.settings.pressSettings"
+msgstr "Ρυθμίσεις Έκδοσης"
+
+msgid "manager.settings.press"
+msgstr "Εκδόσεις"
+
+msgid "manager.settings.publisher.identity.description"
+msgstr "Αυτά τα πεδία δεν είναι απαραίτητα για τη γενική χρήση του OMP, αλλά απαιτούνται για τη δημιουργία έγκυρων ONIX μεταδεδομένων. Παρακαλούμε να τα συμπεριλάβετε αν επιθυμείτε να επιτύχετε τη λειτουργικότητα των ΟΝΙΧ."
+
+msgid "manager.settings.publisher"
+msgstr "Όνομα Εκδότη(Press Publisher Name)"
+
+msgid "manager.settings.location"
+msgstr "Γεωγραφική Τοποθεσία"
+
+msgid "manager.settings.publisherCode"
+msgstr "Κώδικας Εκδότη"
+
+msgid "manager.settings.distributionDescription"
+msgstr "Όλες οι ρυθμίσεις σχετικά με τις διαδικασίες διανομής των εκδόσεων (κοινοποίηση, ευρετηρίαση, αρχειοθέτηση, πληρωμές, εργαλεία ανάγνωσης)."
+
+msgid "manager.tools"
+msgstr "Εργαλεία"
+
+msgid "manager.tools.importExport"
+msgstr "Όλα τα εργαλεία σχετικά με την εισαγωγή και εξαγωγή δεδομένων (εκδόσεις, μονογραφίες, χρήστες)"
+
+msgid "manager.users"
+msgstr "Διαχείριση Χρήστη"
+
+msgid "manager.users.availableRoles"
+msgstr "Διαθέσιμοι Ρόλοι"
+
+msgid "manager.users.currentRoles"
+msgstr "Τρέχον Ρόλοι"
+
+msgid "manager.users.selectRole"
+msgstr "Επιλέξτε Ρόλο"
+
+msgid "manager.people.allPresses"
+msgstr "Όλες οι εκδόσεις"
+
+msgid "manager.people.allSiteUsers"
+msgstr "Ανάθεση ρόλου σε χρήστη του ιστοτόπου για αυτή την Έκδοση"
+
+msgid "manager.people.allUsers"
+msgstr "Όλοι οι Χρήστες"
+
+msgid "manager.people.confirmRemove"
+msgstr "Κατάργηση του χρήστη από την έκδοση αυτή; Η συγκεκριμένη ενέργεια θα καταργήσει όλες τις αναθέσεις ρόλων στον χρήστη στο πλαίσιο αυτής της Έκδοσης."
+
+msgid "manager.people.enrollExistingUser"
+msgstr "Ανάθεση ρόλου σε υπάρχον χρήστη"
+
+msgid "manager.people.existingUserRequired"
+msgstr "Ένας υπάρχον χρήστης πρέπει να εισαχθεί."
+
+msgid "manager.people.enrollSyncPress"
+msgstr "Με τις Εκδόσεις"
+
+msgid "manager.people.mergeUsers.from.description"
+msgstr "Επιλέξτε τον χρήστη για συγχώνευση σε λογαριασμό άλλου χρήστη (π.χ., σε περίπτωση όπου ένας χρήστης έχει δύο λογαριασμούς). Ο λογαριασμός που επιλέγεται πρώτος θα διαγραφεί καθώς και οι υποβολές, οι αναθέσεις, κτλ. που έχουν γίνει σε αυτόν και θα αποδοθούν στον δεύτερο λογαριασμό."
+
+msgid "manager.people.mergeUsers.into.description"
+msgstr "Επιλέξτε χρήστη στον οποίο θα αποδοθούν οι προηγούμενες εργασίες συγγραφής, αναθέσεις επιμέλειας, κτλ. του χρήστη."
+
+msgid "manager.people.syncUserDescription"
+msgstr "Ο συγχρονισμός ανάθεσης ρόλων πραγματοποιεί εγγραφή όλων των χρηστών με καθορισμένο ρόλο σε κάποια άλλη έκδοση με τον ίδιο ρόλο στην εν λόγω έκδοση.Η λειτουργία αυτή επιτρέπει σε κοινό σύνολο χρηστών (π.χ., Αξιολογητές) να είναι συγχρονισμένοι σε διάφορες εκδόσεις που φιλοξενούνται."
+
+msgid "manager.people.confirmDisable"
+msgstr "Απενεργοποίηση αυτού του χρήστη? Αυτή η ενέργεια θα εμποδίσει τον χρήστη να εισαχθεί στο σύστημα. Μπορείτε προεραιτικά να παρέχετε στον χρήστη ένα λόγο για την απενεργοποίηση των λογαριασμών του."
+
+msgid "manager.people.noAdministrativeRights"
+msgstr ""
+"Συγνώμη, δεν έχετε δικαιώματα διαχείρισης σε αυτόν τον χρήστη. Αυτό μπορεί να συμβαίνει επειδή:\n"
+"\t\t<ul>\n"
+"\t\t\t<li>Ο χρήστης είναι ο διαχειριστής του ιστοτόπου</li>\n"
+"\t\t\t<li>Ο χρήστης είναι ενεργός σε εκδόσεις που δεν διευθύνετε</li>\n"
+"\t\t</ul>\n"
+"\tΑυτή η εργασία εκτελείτε από έναν διαχειριστή του ιστοτόπου/υπηρεσίας."
+
+msgid "settings.roles.gridDescription"
+msgstr "Οι Ρόλοι αποτελούν τις ομάδες χρηστών μιας έκδοσης που έχουν πρόσβαση σε διαφορετικά επίπεδα αδειών και σχετικών εργασιών κατά την εκδοτική διαδικασία. Υπάρχουν πέντε διαφορετικά επίπεδα αδειών: οι Διαχειριστές των Εκδόσεων έχουν πρόσβαση σε όλες τις λειτουργίες και εργασίες των εκδόσεων (περιεχόμενο και ρυθμίσεις), οι Επιμελητές Έκδοσης (Press Editors) έχουν πρόσβαση σε όλο το περιεχόμενο της σειράς που επιμελούνται, οι Βοηθοί Έκδοσης έχουν πρόσβαση σε όλες τις μονογραφίες που τους έχουν ανατεθεί από έναν επιμελητή,  οι Αξιολογητές μπορούν να δούν και να πραγματοποιήσουν τις αξιολογήσεις που του έχουν ανατεθεί  και οι Συγγραφείς μπορούν να δούν και να αλληλεπιδρούν με περιορισμένο αριθμό πληροφοριών σχετικά με την πορεία της υποβολή τους. Επιπρόσθετα, υπάρχουν πέντε διαφορετικά στάδια αναθέσεων στα οποία οι ρόλοι χρηστών μπορεί να έχουν πρόσβαση: Υποβολή, Εσωτερική Αξιολόγηση, Εξωτερική Αξιολόγηση, Σύνταξη και Παραγωγή."
+
+msgid "manager.system"
+msgstr "Ρυθμίσεις Συστήματος"
+
+msgid "manager.system.archiving"
+msgstr "Αρχειοθέτηση"
+
+msgid "manager.system.reviewForms"
+msgstr "Φόρμες Αξιολόγησης"
+
+msgid "manager.system.readingTools"
+msgstr "Εργαλεία Ανάγνωσης"
+
+msgid "manager.system.payments"
+msgstr "Πληρωμές"
+
+msgid "manager.pressManagement"
+msgstr "Διαχείριση Εκδόσεων"
+
+msgid "manager.setup"
+msgstr "Οργάνωση"
+
+msgid "manager.setup.aboutItemContent"
+msgstr "Περιεχόμενο"
+
+msgid "manager.setup.addAboutItem"
+msgstr "Προσθήκη Κατηγορίας στο Σχετικά"
+
+msgid "manager.setup.addChecklistItem"
+msgstr "Προσθήκη πεδίου στην Λίστα Ελέγχου"
+
+msgid "manager.setup.addContributor"
+msgstr "Προσθήκη Συντελεστή"
+
+msgid "manager.setup.addItem"
+msgstr "Προσθήκη πεδίου"
+
+msgid "manager.setup.addItemtoAboutPress"
+msgstr "Προσθήκη κατηγορίας στο πεδίο \"Σχετικά με τις εκδόσεις\""
+
+msgid "manager.setup.additionalContent"
+msgstr "Πρόσθετο περιεχόμενο"
+
+msgid "manager.setup.additionalContentDescription"
+msgstr "Εισάγετε στο παρακάτω πεδίο το κείμενο που επιθυμείτε με τη μορφή απλού κειμένου ή HTML κώδικα και το οποίο θα εμφανίζεται κάτω από την εικόνα της αρχικής σελίδας, σε περίπτωση που έχει ήδη φορτωθεί κάποια."
+
+msgid "manager.setup.addNavItem"
+msgstr "Προσθήκη πεδίου"
+
+msgid "manager.setup.addSponsor"
+msgstr "Προσθήκη οργανισμού χορηγίας"
+
+msgid "manager.setup.alternateHeader"
+msgstr "Εναλλακτική κεφαλίδα"
+
+msgid "manager.setup.alternateHeaderDescription"
+msgstr "Εναλλακτικά, αντί του τίτλου και του λογοτύπου, μια HTML έκδοση της κεφαλίδας μπορεί να τοποθετηθεί στο παρακάτω πλαίσιο κειμένου. Εάν δεν είναι απαραίτητο, αφήστε κενό το πλαίσιο κειμένου."
+
+msgid "manager.setup.announcements"
+msgstr "Ανακοινώσεις"
+
+msgid "manager.setup.announcementsDescription"
+msgstr "Οι ανακοινώσεις μπορούν να δημοσιεύονται για πληροφόρηση των αναγνωστών σχετικά με ειδήσεις και εκδηλώσεις των εκδόσεων. Οι δημοσιευμένες ανακοινώσεις εμφανίζονται στη σελίδα «Ανακοινώσεις»."
+
+msgid "manager.setup.announcementsIntroduction"
+msgstr "Πρόσθετες πληροφορίες"
+
+msgid "manager.setup.announcementsIntroduction.description"
+msgstr "Εισάγετε όλες τις πρόσθετες πληροφορίες που θέλετε να εμφανίζονται στους αναγνώστες στη σελίδα «Ανακοινώσεις»."
+
+msgid "manager.setup.appearInAboutPress"
+msgstr "(Για να εμφανίζεται στο μενού «Σχετικά με τις εκδόσεις»)"
+
+msgid "manager.setup.authorCopyrightNotice"
+msgstr "Δήλωση για τα πνευματικά δικαιώματα"
+
+msgid "manager.setup.authorCopyrightNoticeAgree"
+msgstr "Απαιτείται η συμφωνία των συγγραφέων με τη Δήλωση για τα πνευματικά δικαιώματα, ως μέρος της διαδικασίας υποβολής."
+
+msgid "manager.setup.authorCopyrightNotice.description"
+msgstr "Η συγκεκριμένη δήλωση για τα πνευματικά δικαιώματα εμφανίζεται στο μενού «Σχετικά με τις εκδόσεις» και σε κάθε δημοσιευμένο μεταδεδομένο του τεκμηρίου. Αν και εναπόκειται στις Εκδόσεις να καθορίσουν τη φύση της συμφωνίας περί πνευματικών δικαιωμάτων με τους συγγραφείς, το Public Knowledge Project συνιστά τη χρήση των <a href=\"http://creativecommons.gr\" target=\"_blank\" class=\"action\">Creative Commons</a> αδειών. Για το σκοπό αυτό, παρέχει ένα<a href=\"{$sampleCopyrightWordingUrl}\" target=\"_blank\" class=\"action\">δείγμα σημιώματος Πνευματικών Δικαιωμάτων</a> το οποίο μπορείτε να κάνετε αποκοπή και επικόλληση στο παρακάτω χώρο για τις εκδόσεις που α) παρέχουν ανοικτή πρόσβαση, β)  παρέχουν καθυστερημένη πρόσβαση (delayed open access), ή γ) δεν παρέχουν ανοικτή πρόσβαση."
+
+msgid "manager.setup.authorGuidelines.description"
+msgstr "Διατύπωση προτύπων βιλιογραφίας και μορφοποίησης για συγγραφείς, που χρησιμοποιούνται για τεκμήρια που υποβάλλονται στις εκδόσεις (π.χ., <em>Εγχειρίδιο έκδοσης της Αμερικανικής Ένωσης Ψυχολόγων (American Psychological Association)</em>,  5η έκδοση, 2001). Ιδιαίτερα βοηθητική είναι η παροχή παραδειγμάτων κοινών μορφών αναφορών και μορφοποίησης για εκδόσεις και βιβλία που πρέπει να χρησιμοποιούνται στις υποβολές."
+
+msgid "manager.setup.contributor"
+msgstr "Συντελεστής"
+
+msgid "manager.setup.contributors"
+msgstr "Πηγές Υποστήριξης"
+
+msgid "manager.setup.contributors.description"
+msgstr "Πρόσθετοι παράγοντες ή οργανισμοί που παρέχουν οικονομική ή παρεμφερή υποστήριξη για τις εκδόσεις εμφανίζονται στο πεδίο Σχετικά με τις Εκδόσεις και ενδέχεται να συνοδεύονται και από ευχαριστήριο σημείωμα."
+
+msgid "manager.setup.copyediting"
+msgstr "Επιμελητές κειμένων"
+
+msgid "manager.setup.copyeditInstructions"
+msgstr "Οδηγίες επιμέλειας κειμένων"
+
+msgid "manager.setup.copyeditInstructionsDescription"
+msgstr "Οι Οδηγίες επιμέλειας των κειμένων είναι διαθέσιμες για τους Επιμελητές κειμένων, τους Συγγραφείς και τους Επιμελητές ενοτήτων στο στάδιο της επιμέλειας της υποβολής. Παρακάτω θα βρείτε σε μορφή HTML σετ οδηγιών πο μπορούν να τροποποιηθούν ή να αντικατασταθούν από τον Διαχειριστή των Εκδόσεων ανά πάσα στιγμή (σε μορφή HTML ή απλού κειμένου)."
+
+msgid "manager.setup.copyrightNotice"
+msgstr "Δήλωση Πνευματικών Δικαιωμάτων"
+
+msgid "manager.setup.coverage"
+msgstr "Κάλυψη"
+
+msgid "manager.setup.customizingTheLook"
+msgstr "Βήμα 5. Διαμόρφωση της όψης των εκδόσεων"
+
+msgid "manager.setup.customTags"
+msgstr "Ειδικά προσαρμοσμένες ετικέτες"
+
+msgid "manager.setup.customTagsDescription"
+msgstr "Ειδικά προσαρμοσμένες ετικέτες κεφαλίδας HTML που προορίζονται για προσθήκη στην κεφαλίδα κάθε σελίδας (π.χ., ετικέτες META)."
+
+msgid "manager.setup.details"
+msgstr "Λεπτομέρειες"
+
+msgid "manager.setup.details.description"
+msgstr "Όνομα εκδόσεων, υπεύθυνοι επικοινωνίας,  χορηγοί, και μηχανές αναζήτησης."
+
+msgid "manager.setup.disableUserRegistration"
+msgstr "Ο Διαχειριστής των Εκδόσεων εγγράφει όλους τους χρήστες, με τους Επιμελητές ή τους Επιμελητές Σειρών να εγγράφουν μόνο τους αξιολογητές."
+
+msgid "manager.setup.discipline"
+msgstr "Επιστημονικά θεματικά πεδία και υπο-πεδία"
+
+msgid "manager.setup.disciplineDescription"
+msgstr "Χρήσιμα όταν οι εκδόσεις δημοσιεύουν ή/και οι συγγραφείς υποβάλλουν τεκμήρια που καλύπτουν περισσότερα του ενός επιστομηνικά πεδία"
+
+msgid "manager.setup.disciplineExamples"
+msgstr "(Π.χ., Ιστορία; Εκπαίδευση; Κοινωνιολογία; Ψυχολογία; Πολιτισμικές Σπουδές; Δίκαιο κτλ.)"
+
+msgid "manager.setup.disciplineProvideExamples"
+msgstr "Παραθέστε μερικά παραδείγματα σχετικών επιστημονικών κλάδων για τη συγκεκριμένη έκδοση."
+
+msgid "manager.setup.displayCurrentMonograph"
+msgstr "Προσθέστε πίνακα των περιεχομένων για την τρέχουσα μονογραφία (αν είναι διαθέσιμος)."
+
+msgid "manager.setup.doiPrefix"
+msgstr "Πρόθημα DOI (DOI Prefix)"
+
+msgid "manager.setup.doiPrefixDescription"
+msgstr "Το πρόθημα DOI (Αναγνωριστικό Ψηφιακού Αντικειμένου) ανατίθεται από <a href=\"http://www.crossref.org\" target=\"_blank\">CrossRef</a> και βρίσκεται σε μορφή 10.xxxx (π.χ. 10.1234)."
+
+msgid "manager.setup.editorDecision"
+msgstr "Απόφαση επιμελητή"
+
+msgid "manager.setup.emailBounceAddress"
+msgstr "Διεύθυνση επιστροφής σε αποστολέα"
+
+msgid "manager.setup.emailBounceAddress.description"
+msgstr "Όλα τα μηνύματα ηλεκτρονικού ταχυδρομείου που δεν παραδόθηκαν επιτυχώς θα έχουν ως αποτέλεσμα μήνυμα σφάλματος στη συγκεκριμένη διεύθυνση."
+
+msgid "manager.setup.emails"
+msgstr "Αναγνώριση διεύθυνσης ηλεκτρονικού ταχυδρομείου"
+
+msgid "manager.setup.emailSignature"
+msgstr "Υπογραφή"
+
+msgid "manager.setup.emailSignatureDescription"
+msgstr "Τα έτοιμα μηνύματα ηλεκτρονικού ταχυδρομείου που αποστέλλονται μέσω του συστήματος για λογαριασμό των εκδόσεων θα φέρουν την ακόλουθη υπογραφή στο τέλος τους. Το κύριο σώμα των μηνυμάτων είναι διαθέσιμο για επεξεργασία παρακάτω."
+
+msgid "manager.setup.enableAnnouncements.enable"
+msgstr "Ενεργοποίηση δυνατότητας προσθήκης ανακοινώσεων από τους  Διαχειριστές των εκδόσεων."
+
+msgid "manager.setup.enablePressInstructions"
+msgstr "Ενεργοποίηση της εμφάνισης των Εκδόσεων στον ιστότοπο"
+
+msgid "manager.setup.enablePublicMonographId"
+msgstr "Θα  χρησιμοποιηθούν προσαρμοσμένα αναγνωριστικά για την αναγνώριση των δημοσιευμένων τεκμηρίων."
+
+msgid "manager.setup.enablePublicGalleyId"
+msgstr "Θα  χρησιμοποιηθούν προσαρμοσμένα αναγνωριστικά για τις σελιδοποιημένες μορφές (πχ. αρχεία HTML η PDF) των δημοσιευμένων τεκμηρίων."
+
+msgid "manager.setup.focusAndScope"
+msgstr "Πεδίο και περιεχόμενο"
+
+msgid "manager.setup.focusAndScope.description"
+msgstr "Εισαγάγετε δήλωση παρακάτω, η οποία εμφανίζεται στο πεδίο Σχετικά με τις Εκδόσεις και αναφέρεται σε συγγραφείς, αναγνώστες και βιβλιοθηκονόμους σχετικά με το εύρος των μονογραφιών και των λοιπών τεκμηρίων που πρόκειται να δημοσιεύσουν οι εκδόσεις."
+
+msgid "manager.setup.focusScope"
+msgstr "Πεδίο και περιεχόμενο"
+
+msgid "manager.setup.focusScopeDescription"
+msgstr "<strong>ΠΑΡΑΔΕΙΓΜΑ ΔΕΔΟΜΕΝΩΝ ΣΕ ΜΟΡΦΗ HTML</strong>"
+
+msgid "manager.setup.forAuthorsToIndexTheirWork"
+msgstr "Οδηγίες προς τους συγγραφείς για την ευρετηρίαση του έργου τους"
+
+msgid "manager.setup.forAuthorsToIndexTheirWorkDescription"
+msgstr "Το OMP υλοποιεί το πρωτόκολλο <a href=\"http://www.openarchives.org/\" target=\"_blank\">Open Archives Initiative</a> Protocol for Metadata Harvesting, που αποτελεί διεθνώς αποδεκτό πρότυπο για παροχή πρόσβασης μέσω ορθής ευρετηρίασης σε διεθνείς ηλεκτρονικές πηγές αναζήτησης.  Οι συγγραφείς θα χρησιμοποιήσουν παρόμοιο πρότυπο για παροχή μεταδεδομένων για το έργο τους κατά την διάρκεια της υποβολή του.  Ο Διαχειριστής των Εκδόσεων πρέπει να επιλέξει τις κατηγορίες για ευρετηρίαση και να παρουσιάσει στους συγγραφείς σχετικά παραδείγματα για να τους βοηθήσει στην ευρετηρίαση του έργου τους, διαχωρίζοντας τους όρους με ελληνικό ερωτηματικό (πχ., όρος1; όρος2;). Οι καταχωρίσεις πρέπει να εισάγονται ως παραδείγματα χρησιμοποιώντας \"πχ.,\" ή \"Για παράδειγμα,\"."
+
+msgid "manager.setup.form.contactEmailRequired"
+msgstr "Απαιτείται η διεύθυνση ηλεκτρονικού ταχυδρομείου του κύριου υπεύθυνου επικοινωνίας."
+
+msgid "manager.setup.form.contactNameRequired"
+msgstr "Απαιτείται το όνομα του κύριου υπεύθυνου επικοινωνίας."
+
+msgid "manager.setup.form.numReviewersPerSubmission"
+msgstr "Απαιτείται ο αριθμός των αξιολογητών ανά υποβολή."
+
+msgid "manager.setup.form.supportEmailRequired"
+msgstr "Απαιτείται η  διεύθυνση ηλεκτρονικού ταχυδρομείου του υπεύθυνου τεχνικής υποστήριξης."
+
+msgid "manager.setup.form.supportNameRequired"
+msgstr "Απαιτείται το κύριο όνομα του υπεύθυνου τεχνικής υποστήριξης."
+
+msgid "manager.setup.generalInformation"
+msgstr "Γενικές Πληροφορίες"
+
+msgid "manager.setup.gettingDownTheDetails"
+msgstr "Βήμα 1. Λεπτομέρειες"
+
+msgid "manager.setup.guidelines"
+msgstr "Κατευθυντήριες γραμμές"
+
+msgid "manager.setup.preparingWorkflow"
+msgstr "Βήμα 3. Προετοιμασία της ροής των εργασιών"
+
+msgid "manager.setup.homepageImage"
+msgstr "Εικόνα αρχικής σελίδας"
+
+msgid "manager.setup.homepageImageDescription"
+msgstr "Προσθήκη εικόνας ή αρχείου γραφικών στο μέσο της σελίδας. Εάν χρησιμοποιείτε το προεπιλεγμένο πρότυπο και css, το μέγιστο πλάτος της εικόνας θα είναι 750px για το πρώτο πλαίσιο και 540px για το δεύτερο. Εάν χρησιμοποιείτε ένα προσαρμοσμένο πρότυπο ή css, οι τιμές αυτές μπορεί να αλλάξουν."
+
+msgid "manager.setup.information.description"
+msgstr "Σύντομες περιγραφές των εκδόσεων για τους βιβλιοθηκονόμους, τους πιθανούς συγγραφείς και τους αναγνώστες είναι διαθέσιμες στην ενότητα “Πληροφορίες” στην δεξιά πλαϊνή μπάρα της ιστοσελίδας."
+
+msgid "manager.setup.information.forAuthors"
+msgstr "Για Συγγραφείς"
+
+msgid "manager.setup.information.forLibrarians"
+msgstr "Για Βιβλιοθηκονόμους"
+
+msgid "manager.setup.information.forReaders"
+msgstr "Για Αναγνώστες"
+
+msgid "manager.setup.institution"
+msgstr "Ίδρυμα"
+
+msgid "manager.setup.labelName"
+msgstr "Όνομα Πεδίου"
+
+msgid "manager.setup.layoutAndGalleys"
+msgstr "Επιμελητές Σελιδοποίησης"
+
+msgid "manager.setup.layoutInstructions"
+msgstr "Οδηγίες Σελιδοποίησης"
+
+msgid "manager.setup.layoutInstructionsDescription"
+msgstr "Οι οδηγίες σελιδοποίησης μπορούν να καθοριστούν για την κατάλληλη μορφοποίηση των τεκμηρίων των εκδόσεων και μπορούν να καταχωρηθούν παρακάτω σε μορφή HTML ή σε απλή μορφή κειμένου. Θα είναι διαθέσιμες στον Επιμελητή σελιδοποίησης και τον Επιμελητή ενότητας στη σελίδα «Επιμέλειας» κάθε υποβολής. (Εφόσον κάθε έκδοση μπορεί να έχει τις δικές της μορφές αρχείου, βιβλιογραφικά πρότυπα, φύλλα στυλ, κτλ., δεν παρέχεται προεπιλεγμένο σετ οδηγιών.)"
+
+msgid "manager.setup.layoutTemplates"
+msgstr "Πρότυπα Σελιδοποίησης"
+
+msgid "manager.setup.layoutTemplatesDescription"
+msgstr "Πρότυπα σελιδοποίησης μπορούν να φορτωθούν για να εμφανίζονται στη \"Σελιδοποίηση\" για καθεμία από τις πρότυπες μορφές που δημοσιεύονται στις εκδόσεις  (π.χ., μονογραφία, αναθεώρηση βιβλίου, κλπ.) χρησιμοποιώντας οποιαδήποτε μορφή αρχείου (π.χ., pdf, doc, κτλ.) με πρόσθετους σχολιασμούς που καθορίζουν τη γραμματοσειρά, το μέγεθος, το περιθώριο, κτλ. για να χρησιμοποιηθούν ως οδηγός για τους Επιμελητές Σελιδοποίησης και τους Επιμελητές των Τυπογραφικών Δοκιμίων."
+
+msgid "manager.setup.layoutTemplates.file"
+msgstr "Αρχείο προτύπου"
+
+msgid "manager.setup.layoutTemplates.title"
+msgstr "Τίτλος"
+
+msgid "manager.setup.lists"
+msgstr "Λίστες"
+
+msgid "manager.setup.look"
+msgstr "Όψη Εκδόσεων"
+
+msgid "manager.setup.look.description"
+msgstr "Κεφαλίδα αρχικής σελίδας, περιεχόμενο, κεφαλίδα εκδόσεων, υποσέλιδο, μπάρα πλοήγησης και style sheet."
+
+msgid "manager.setup.mailingAddress.description"
+msgstr "Φυσική τοποθεσία και ταχυδρομική διεύθυνση των εκδόσεων."
+
+msgid "manager.setup.settings"
+msgstr "Ρυθμίσεις"
+
+msgid "manager.setup.management.description"
+msgstr "Πρόσβαση και ασφάλεια, προγραμματισμός, ανακοινώσεις, και χρήση υπεύθυνων επιμελητών κειμένων, επιμελητών σελιδοποίησης και διορθωτών τυπογραφικών δοκιμίων."
+
+msgid "manager.setup.managementOfBasicEditorialSteps"
+msgstr "Διαχείριση βασικών βημάτων επιμέλειας της έκδοσης"
+
+msgid "manager.setup.managingPublishingSetup"
+msgstr "Ρυθμίσεις Διαχείρισης και Δημοσίευσης"
+
+msgid "manager.setup.managingThePress"
+msgstr "Βήμα 4. Διαχείριση των Εκδόσεων"
+
+msgid "manager.setup.noImageFileUploaded"
+msgstr "Δεν έχει φορτωθεί κάποιο αρχείο εικόνας."
+
+msgid "manager.setup.noStyleSheetUploaded"
+msgstr "Δεν έχει φορτωθεί style sheet."
+
+msgid "manager.setup.note"
+msgstr "Σημείωση"
+
+msgid "manager.setup.notifications"
+msgstr "Γνωστοποίηση συγγραφέων για την ολοκλήρωση της υποβολής"
+
+msgid "manager.setup.notifications.copyPrimaryContact"
+msgstr "Αποστολή αντιγράφου στον κύριο υπεύθυνο επικοινωνίας των εκδόσεων, που έχει ορισθεί στο βήμα 1 των ρυθμίσεων."
+
+msgid "manager.setup.notifications.copySpecifiedAddress"
+msgstr "Αποστολή αντιγράφου σε αυτή τη διεύθυνση ηλεκτρονικού ταχυδρομείου:"
+
+msgid "manager.setup.notifications.description"
+msgstr "Με την ολοκλήρωση της διαδικασίας υποβολής, οι συγγραφείς λαμβάνουν αυτόματα ένα ευχαριστήριο μήνυμα ηλεκτρονικού ταχυδρομείου (που μπορεί να προβληθεί και να πεξεργαστεί στα Έτοιμα Email). Επιπλέον, αντίγραφο του μηνύματος αυτού μπορεί να αποσταλεί ως εξής:"
+
+msgid "manager.setup.notifyAllAuthorsOnDecision"
+msgstr "Όταν χρησιμοποιείται το email Ενημέρωσης Συγγραφέα, συμπεριλάβετε τις διευθύνσεις ηλεκτρονικού ταχυδρομείου όλων των συγγραφέων του τεκμηρίου και όχι μόνο του συγγραφέα-χρήστη που υπέβαλε το τεκμήριο."
+
+msgid "manager.setup.noUseCopyeditors"
+msgstr "Η επιμέλεια των κειμένων θα γίνει από τον Επιμελητή των εκδόσεων ή τους επιμελητές ενοτήτων της υποβολής."
+
+msgid "manager.setup.noUseLayoutEditors"
+msgstr "Ο Επιμελητής των εκδόσεων ή κάποιος από τους Επιμελητές Ενοτήτων θα προετοιμάσει τα κατάλληλα σελιδοποιημένα μορφότυπα (αρχεία HTML, PDF, κτλ.)."
+
+msgid "manager.setup.noUseProofreaders"
+msgstr "Ο Επιμελητής των εκδόσεων ή ο Επιμελητής Ενότητας ελέγχουν τα τυπογραφικά δοκίμια."
+
+msgid "manager.setup.numPageLinks"
+msgstr "Σύνδεσμοι σελίδας"
+
+msgid "manager.setup.onlineAccessManagement"
+msgstr "Διαχείριση πρόσβασης"
+
+msgid "manager.setup.onlineIssn"
+msgstr "Online ISΒΝ"
+
+msgid "manager.setup.openAccess"
+msgstr "Οι εκδόσεις παρέχουν ανοικτή πρόσβαση στο περιεχόμενο τους."
+
+msgid "manager.setup.openAccessPolicy"
+msgstr "Πολιτική ανοικτής πρόσβασης"
+
+msgid "manager.setup.openAccessPolicy.description"
+msgstr "Εάν οι εκδόσεις παρέχουν άμεσα ελεύθερη πρόσβαση στο σύνολο του περιεχομένου τους, εισαγάγετε δήλωση σχετικά με την πολιτική ανοικτής πρόσβασης που θα εμφανίζεται στο μενού «Σχετικά με τις εκδόσεις»."
+
+msgid "manager.setup.peerReview.description"
+msgstr "Περιγράψτε τις πολιτικές και τις διαδικασίες των εκδόσεων σχετικά με την αξιολόγηση από ομότιμους αξιολογητές, για αναγνώστες και συγγραφείς, συμπεριλαμβανομένου του αριθμού των αξιολογητών που συνήθως χρησιμοποιούνται στην αναθεώρηση υποβολής, των κριτηρίων βάσει των οποίων οι αξιολογητές καλούνται να κρίνουν υποβολές, του τυπικού χρόνου που απαιτείται για τη διεξαγωγή αξιολογήσεων και των πολιτικών συνεργασίας με τους αξιολογητές. Αυτό εμφανίζεται στο πεδίο Σχετικά με τις εκδόσεις."
+
+msgid "manager.setup.policies"
+msgstr "Πολιτικές"
+
+msgid "manager.setup.policies.description"
+msgstr "Εστίαση (Focus), αξιολόγηση από ομότιμους αξιολογητές (peer review), τομείς,  απόρρητα, ασφάλεια, και πρόσθετα στοιχεία σχετικά με τα τεκμήρια."
+
+msgid "manager.setup.pressDescription"
+msgstr "Περιγραφή Εκδόσεων"
+
+msgid "manager.setup.pressDescription.description"
+msgstr "Μια γενική περιγραφή των Εκδόσεων θα πρέπει να περιλαμβάνεται εδώ. Αυτή η περιγραφή θα είναι διαθέσιμη στην αρχική σελίδα των εκδόσεων."
+
+msgid "manager.setup.pressArchiving"
+msgstr "Αρχειοθέτηση Εκδόσεων"
+
+msgid "manager.setup.pressHomepageContent"
+msgstr "Περιεχόμενα Αρχικής Σελίδας Εκδόσεων"
+
+msgid "manager.setup.pressHomepageContentDescription"
+msgstr "Εξ’ορισμού, η αρχική σελίδα των εκδόσεων αποτελείται από δεσμούς πλοήγησης. Η προσθήκη πρόσθετου περιεχομένου αρχικής σελίδας μπορεί να γίνει χρησιμοποιώντας κάποιες ή όλες τις ακόλουθες επιλογές, που θα εμφανιστούν με την σειρά αυτή."
+
+msgid "manager.setup.contextInitials"
+msgstr "Αρχικά Εκδόσεων"
+
+msgid "manager.setup.pressPolicies"
+msgstr "Βήμα 2. Πολιτικές"
+
+msgid "manager.setup.pressSetup"
+msgstr "Οργάνωση Εκδόσεων"
+
+msgid "manager.setup.pressSetupUpdated"
+msgstr "Οι ρυθμίσεις του περιοδικού ενημερώθηκαν."
+
+msgid "manager.setup.pressTheme"
+msgstr "Θέμα Εκδόσεων"
+
+msgid "manager.setup.principalContact"
+msgstr "Κύριος Υπεύθυνος Επικοινωνίας"
+
+msgid "manager.setup.principalContactDescription"
+msgstr "Η εν λόγω θέση που μπορεί να θεωρηθεί θέση κύριας επιμέλειας, διαχείρισης επιμέλειας ή διοικητικού προσωπικού θα καταχωρηθεί στην αρχική σελίδα των εκδόσεων στο πεδίο Υπεύθυνος επικοινωνίας, μαζί με τον Υπεύθυνο για Τεχνική Υποστήριξη."
+
+msgid "manager.setup.printIssn"
+msgstr "Print ISBN"
+
+msgid "manager.setup.privacyStatement"
+msgstr "Δήλωση απορρήτου"
+
+msgid "manager.setup.privacyStatement2"
+msgstr "Δήλωση απορρήτου"
+
+msgid "manager.setup.privacyStatement.description"
+msgstr "Η συγκεκριμένη δήλωση εμφανίζεται στο πεδίο Σχετικά με τις Εκδόσεις καθώς και στις σελίδες εγγραφής συγγραφέα για Υποβολή και Ειδοποίησης. Παρακάτω υπάρχει συνιστώμενη πολιτική απορρήτου, η οποία μπορεί να αναθεωρηθεί ανά πάσα στιγμή."
+
+msgid "manager.setup.proofingInstructions"
+msgstr "Οδηγίες επιμέλειας τυπογραφικών δοκιμίων"
+
+msgid "manager.setup.proofingInstructionsDescription"
+msgstr "Οι Οδηγίες επιμέλειας των τυπογραφικών δοκιμίων θα είναι διαθέσιμες στους  Επιμελητές τυπογραφικών δοκιμίων, τους Συγγραφείς, τους Επιμελητές Σελιδοποίησης και τους Επιμελητές ενοτήτων στο στάδιο της επιμέλειας/σύνταξης της υποβολής. Παρακάτω υπάρχει προεπιλεγμένο σετ οδηγιών σε μορφή HTML, το οποίο μπορεί να επεξεργαστεί ή να αντικατασταθεί από τον Διαχειριστή των Εκδόσεων ανά πάσα στιγμή (σε μορφή HTML ή απλού κειμένου)."
+
+msgid "manager.setup.proofreading"
+msgstr "Επιμελητές Τυπογραφικών Δοκιμίων"
+
+msgid "manager.setup.provideRefLinkInstructions"
+msgstr "Παροχή οδηγιών στους Επιμελητές Σελιδοποίησης."
+
+msgid "manager.setup.publicationScheduleDescription"
+msgstr "Τα τεκμήρια μιας έκδοσης μπορούν να δημοσιευτούν συλλογικά, ως μέρος μιας μονογραφίας στο πλαίσιο του δικού της Πίνακα Περιεχομένου. Εναλλακτικά, μεμονωμένα τεκμήρια μπορούν να δημοσιευτούν μόλις είναι έτοιμα, προσθέτοντας στον \"τρέχοντα\" όγκο του Πίνακα Περιεχομένου. Στο μενού «Σχετικά με τις εκδόσεις, μπορείτε να παραθέσετε πληροφορίες σχετικά με το σύστημα που οι εκδόσεις θα χρησιμοποιήσουν και την αναμενόμενη συχνότητα δημοσίευσης."
+
+msgid "manager.setup.publisher"
+msgstr "Εκδότης"
+
+msgid "manager.setup.publisherDescription"
+msgstr "Το όνομα του οργανισμού/εκδότη εμφανίζεται στο πεδίο Σχετικά με τις εκδόσεις."
+
+msgid "manager.setup.referenceLinking"
+msgstr "Σύνδεση Αναφορών"
+
+msgid "manager.setup.refLinkInstructions.description"
+msgstr "Οδηγίες Σελιδοποίησης για Σύνδεση Αναφορών"
+
+msgid "manager.setup.restrictMonographAccess"
+msgstr "Οι χρήστες πρέπει να συνδεθούν για να δουν το περιεχόμενο ανοικτής πρόσβασης."
+
+msgid "manager.setup.restrictSiteAccess"
+msgstr "Οι χρήστες πρέπει να συνδεθούν για να δουν τον ιστότοπο της έκδοσης."
+
+msgid "manager.setup.reviewGuidelines"
+msgstr "Κατευθυντήριες γραμμές αξιολόγησης"
+
+msgid "manager.setup.reviewGuidelinesDescription"
+msgstr "Οι κατευθυντήριες γραμμές αξιολόγησης παρέχουν κριτήρια στους αξιολογητές για καθορισμό της καταλληλότητας δημοσίευσης των υποβληθέντων τεκμηρίων στις εκδόσεις, καθώς και ειδικές οδηγίες για την σύνταξη αποτελεσματικής και κατατοπιστικής αξιολόγησης. Κατά τη διεξαγωγή της αξιολόγησης, οι αξιολογητές παρουσιάζουν την αξιολόγηση τους σε δύο ανοικτά πλαίσια κειμένου, το πρώτο \"για συγγραφείς και εκδότες\" και το δεύτερο μόνο \"για εκδότες\". Εναλλακτικά, ο Διαχειριστής Εκδόσεων μπορεί να δημιουργήσει μια φόρμα αξιολόγησης από ομοτίμους κάτω από το Φόρμες Αξιολόγησης."
+
+msgid "manager.setup.reviewOptions.automatedReminders"
+msgstr "Αυτοματοποιημένες υπενθυμίσεις μέσω ηλεκτρονικού ταχυδρομείου (διαθέσιμα στις προεπιλεγμένες διευθύνσεις ηλεκτρονικού ταχυδρομείου του OMP) μπορούν να αποσταλλούν σε αξιολογητές σε δύο σημεία (ενώ ο επιμελητής μπορεί ανά πάσα στιγμή να αποστείλει μήνυμα ηλεκτρονικού ταχυδρομείου στον αξιολογητή)."
+
+msgid "manager.setup.reviewOptions.automatedRemindersDisabled"
+msgstr "<strong>Σημείωση:</strong> Για να ενεργοποίησετε τις συγκεκριμένες επιλογές, ο διαχειριστής του ιστοτόπου πρέπει να ενεργοποιήσει την επιλογή <tt>scheduled_tasks</tt> στο αρχείο ρυθμίσεων του OMP. Ενδέχεται να απαιτούνται πρόσθετες ρυθμίσεις διακομιστή για υποστήριξη της συγκεκριμένης λειτουργίας (που ενδέχεται να μην είναι διαθέσιμες σε όλους τους διακομιστές), όπως διευκρινίζεται στα τεκμηριωτικά έγγραφα του OMP."
+
+msgid "manager.setup.reviewOptions.blindReview"
+msgstr "Τυφλή Αξιολόγηση"
+
+msgid "manager.setup.reviewOptions.noteOnModification"
+msgstr "Μπορεί να τροποποιηθεί για κάθε υποβολή κατά την εκδοτική διαδικασία."
+
+msgid "manager.setup.reviewOptions.onQuality"
+msgstr "Οι επιμελητές των εκδόσεων θα βαθμολογούν κατατάξουν τους αξιολογητές σε κλίμακα ποιότητας 0-5 μετά από κάθε αξιολόγηση."
+
+msgid "manager.setup.reviewOptions.restrictReviewerFileAccess.description"
+msgstr "Οι αξιολογητές θα έχουν πρόσβαση στο αρχείο υποβολής μόνο μετά από αποδοχή αξιολόγησής αυτού."
+
+msgid "manager.setup.reviewOptions.reviewerAccess"
+msgstr "Πρόσβαση αξιολογητή"
+
+msgid "manager.setup.reviewOptions.reviewerRatings"
+msgstr "Βαθμολόγηση αξιολογητή"
+
+msgid "manager.setup.reviewOptions.reviewerReminders"
+msgstr "Υπενθυμίσεις προς τους αξιολογητές"
+
+msgid "manager.setup.reviewOptions.reviewTime"
+msgstr "Χρόνος αξιολόγησης"
+
+msgid "manager.setup.reviewOptions.showEnsuringLink"
+msgstr "Παρέχει συνδέσμους για την εξασφάλιση \"τυφλής\" αξιολόγησης σε σελίδες όπου συγραφείς και αξιολογητές ανεβάζουν αρχεία."
+
+msgid "manager.setup.reviewPolicy"
+msgstr "Πολιτική Αξιολόγησης"
+
+msgid "manager.setup.reviewProcess"
+msgstr "Διαδικασία Αξιολόγησης"
+
+msgid "manager.setup.reviewProcessDescription"
+msgstr "Το OMP υποστηρίζει δύο μοντέλα διαχείρισης της διαδικασίας αξιολόγησης. Συνιστάται η Πρότυπη Διαδικασία Αξιολόγησης γιατί καθοδηγεί με βήματα τους αξιολογητές στη διαδικασία, διασφαλίζει δημιουργία ολοκληρωμένου ιστορικού αξιολόγησης για κάθε υποβολή, και εκμεταλλεύεται την ειδοποίηση με αυτόματο μέσο υπενθύμισης και τις πρότυπες συστάσεις για υποβολές (Αποδοχή, Αποδοχή με αναθεώρηση, Υποβολή για αξιολόγηση, Υποβολή σε άλλο σημείο, Απόρριψη, Ανατρέξτε σε σχόλια).<br /><br />Επιλέξτε ένα από τα ακόλουθα:"
+
+msgid "manager.setup.reviewProcessEmail"
+msgstr "Διαδικασία αξιολόγησης μέσω email"
+
+msgid "manager.setup.reviewProcessStandard"
+msgstr "Πρότυπη Διαδικασία Αξιολόγησης (online)"
+
+msgid "manager.setup.reviewProcessStandardDescription"
+msgstr "Οι επιμελητές αποστέλλουν με μήνυμα ηλεκτρονικού ταχυδρομείου σε επιλεγμένους αξιολογητές τον τίτλο και το απόσπασμα της υποβολής, καθώς και πρόσκληση για σύνδεση στον ιστότοπο των εκδόσεων για ολοκλήρωση της αξιολόγησης. Οι αξιολογητές συνδέονται στον ιστότοπο των εκδόσεων για να αποδεχτούν την εκτέλεση της αξιολόγησης, για να κατεβάσουν τις υποβολές, και για να επιλέξουν συστάσεις."
+
+msgid "manager.setup.searchEngineIndexing"
+msgstr "Ευρετηρίαση μηχανών αναζήτησης"
+
+msgid "manager.setup.searchEngineIndexing.description"
+msgstr "Για παροχή βοήθειας στους χρήστες μηχανών αναζήτησης στον εντοπισμό του περιοδικού, παρέχετε σύντομη περιγραφή του περιοδικού και σχετικές λέξεις-κλειδιά (που διαχωρίζονται από ελληνικό ερωτηματικό)."
+
+msgid "manager.setup.sectionsAndSectionEditors"
+msgstr "Ενότητες και Επιμελητές ενοτήτων"
+
+msgid "manager.setup.sectionsDefaultSectionDescription"
+msgstr "(Εάν δεν επιλεγεί η χρήση ενοτήτων, τα τεκμήρια που υποβάλλονται καταχωρούνται εξ’ορισμού στην ενότητα Μονογραφίες.)"
+
+msgid "manager.setup.sectionsDescription"
+msgstr "Για να δημιουργήσετε ή να τροποποιήσετε τις ενότητες των εκδόσεων (πχ., Μονογραφίες, Αξιολογήσεις Βιβλίων, κτλ.), μεταβείτε στη Διαχείριση Ενοτήτων.<br /><br />Οι συγγραφείς με την υποβολή των τεκμηρίων στις εκδόσεις καθορίζουν..."
+
+msgid "manager.setup.securitySettings"
+msgstr "Ρυθμίσεις Ασφαλείας/Πρόσβασης"
+
+msgid "manager.setup.securitySettings.note"
+msgstr "Διάφορες επιλογές σε σχέση με την ασφάλεια και την πρόσβαση μπορούν να ρυθμιστούν από τη σελίδα <a href=\"{$accessAndSecurityUrl}\" target=\"_blank\" class=\"action\">Πρόσβαση και Ασφάλεια</a>."
+
+msgid "manager.setup.selectEditorDescription"
+msgstr "Τον επιμελητή των εκδόσεων που θα επιβλέπει κατά τη εκδοτική διαδικασία"
+
+msgid "manager.setup.selectSectionDescription"
+msgstr "Την ενότητα των εκδόσεων για την οποία θα ληφθεί υπόψη το τεκμήριο."
+
+msgid "manager.setup.showGalleyLinksDescription"
+msgstr "Προβάλετε πάντα τους συνδέσμους των Σελιδοποιημένων Δοκιμίων και με την υπόδειξη περιορισμένης πρόσβασης."
+
+msgid "manager.setup.sponsors.description"
+msgstr "Τα ονόματα των χορηγών (π.χ., επιστημονικές ενώσεις, πανεπιστημιακά τμήματα, συνεργασίες, κτλ.) που αποτελούν τους χορηγούς των εκδόσεων εμφανίζονται στο πεδίο Σχετικά με τις Εκδόσεις και ενδέχεται να συνοδεύονται και από ευχαριστήριο σημείωμα."
+
+msgid "manager.setup.stepsToPressSite"
+msgstr "Πέντε βήματα για την οργάνωση της ιστοσελίδας των Εκδόσεων"
+
+msgid "manager.setup.subjectExamples"
+msgstr "(Πχ., Φωτοσύνθεση; Μαύρες τρύπες; Οικονομική θεωρία; Θεωρία Bayes, Ανεργία)"
+
+msgid "manager.setup.subjectKeywordTopic"
+msgstr "Λέξεις-κλειδιά"
+
+msgid "manager.setup.subjectProvideExamples"
+msgstr "Παραθέστε μερικά παραδείγματα λέξεων-κλειδιών ή θεμάτων για την καθοδήγηση των συγγραφέων"
+
+msgid "manager.setup.submissionGuidelines"
+msgstr "Οδηγίες Υποβολής"
+
+msgid "manager.setup.submissionPreparationChecklist"
+msgstr "Λίστα ελέγχου προετοιμασίας υποβολής"
+
+msgid "manager.setup.submissionPreparationChecklistDescription"
+msgstr "Κατά τη διάρκεια της διαδικασίας μιας υποβολής στις εκδόσεις, αρχικά ζητείται από τους συγγραφείς να ελέγξουν κάθε πεδίο στη Λίστα Ελέγχου προετοιμασίας της υποβολής, πριν να προχωρήσουν σε επόμενο στάδιο. Η λίστα ελέγχου εμφανίζεται στις «Οδηγίες για τους Συγγραφείς» στο μενού «Σχετικά με τις εκδόσεις». Ο κατάλογος μπορεί να επεξεργασθεί παρακάτω, αλλά πρέπει να υπάρχει σήμανση ελέγχου για όλα τα στοιχεία που βρίσκονται στη λίστα πριν οι συγγραφείς να προχωρήσουν στην υποβολή."
+
+msgid "maganer.setup.submissionChecklistItemRequired"
+msgstr "Απαιτείται λίστα ελέγχου των τεκμηρίων"
+
+msgid "manager.setup.workflow"
+msgstr "Ροή των εργασιών"
+
+msgid "manager.setup.submissions.description"
+msgstr "Κατευθυντήριες γραμμές προς συγγραφέα, πνευματικά δικαιώματα,  και καταχώριση σε ευρετήρια (συμπεριλαμβανομένης της εγγραφής)."
+
+msgid "manager.setup.technicalSupportContact"
+msgstr "Υπεύθυνος Επικοινωνίας για Τεχνική Υποστήριξη"
+
+msgid "manager.setup.technicalSupportContactDescription"
+msgstr "Το εν λόγω άτομο θα καταχωρηθεί στη σελίδα του Υπεύθυνου επικοινωνίας των εκδόσεων για χρήση από επιμελητές, συγγραφείς και αξιολογητές και πρέπει να διαθέτει την ανάλογη εργασιακή εμπειρία μέσω του συστήματος για όλες τις δυνατότητες του. Το συγκεκριμένο σύστημα περιοδικών απαιτεί τεχνική υποστήριξη σε μικρό βαθμό, θα πρέπει, συνεπώς, να θεώρηθεί ανάθεση μερικής απασχόλησης. Μπορεί να προκύψουν περιπτώσεις, για παράδειγμα, όταν οι συγγραφείς και οι αξιολογητές αντιμετωπίζουν δυσκολίες σχετικά με τις οδηγίες ή τις μορφές των αρχείων, ή προκύπτει η ανάγκη επιβεβαίωσης της συνεχούς εφεδρικής αποθήκευσης των εκδόσεων στον server."
+
+msgid "manager.setup.typeExamples"
+msgstr "(Πχ., Ιστορική έρευνα; Εν μέρει πειραματικό; Λογοτεχνική ανάλυση; Έρευνα/συνέντευξη)"
+
+msgid "manager.setup.typeMethodApproach"
+msgstr "Τύπος (Μέθοδος/Προσέγγιση)"
+
+msgid "manager.setup.typeProvideExamples"
+msgstr "Παραθέστε μερικά παραδείγματα σχετικών τύπων έρευνας, μεθόδων, και προσεγγίσεων για το συγκεκριμένο πεδίο"
+
+msgid "manager.setup.useCopyeditors"
+msgstr "Οι εκδόσεις θα καθορίσουν τους Επιμελητές κειμένων που θα εργαστούν για κάθε υποβολή."
+
+msgid "manager.setup.useEditorialReviewBoard"
+msgstr "Οι εκδόσεις θα χρησιμοποιούν Επιτροπή Σύνταξης / Αξιολόγησης."
+
+msgid "manager.setup.useImageLogo"
+msgstr "Εικόνα Λογοτύπου"
+
+msgid "manager.setup.useImageLogoDescription"
+msgstr "Ένα προαιρετικό λογότυπο θα μπορούσε να ανεβεί και ν αχρησιμοποιηθεί σε συνδυασμό με την εικόνα ή τον τίτλο που έχει ορισθεί παραπάνω."
+
+msgid "manager.setup.useImageTitle"
+msgstr "Εικόνα Τίτλου"
+
+msgid "manager.setup.useLayoutEditors"
+msgstr "Οι εκδόσεις ορίζουν τον Επιμελητή Σελιδοποίησης που θα προετοιμάσει τα σελιδοποιημένα αρχεία  HTML, PDF, PS, κτλ., για την ηλεκτρονική έκδοση."
+
+msgid "manager.setup.useProofreaders"
+msgstr "Οι εκδόσεις ορίζουν τους Επιμελητές Τυπογραφικών Δοκιμίων οι οποίοι (μαζί με τους συγγραφείς) ελέγχουν τα τυπογραφικά δοκίμια."
+
+msgid "manager.setup.userRegistration"
+msgstr "Εγγραφή Χρήστη"
+
+msgid "manager.setup.useTextTitle"
+msgstr "Κείμενο τίτλου"
+
+msgid "manager.setup.volumePerYear"
+msgstr "Τόμοι ανά έτος"
+
+msgid "manager.setup.publicationFormat.code"
+msgstr "Μορφότυπο (format)"
+
+msgid "manager.setup.publicationFormat.codeRequired"
+msgstr "Απαιτείτε επιλογή Μορφότυπου (format)"
+
+msgid "manager.setup.publicationFormat.nameRequired"
+msgstr "Απαιτείται ένα όνομα για αυτή το Μορφότυπο(format)."
+
+msgid "manager.setup.publicationFormat.physicalFormat"
+msgstr "Είναι αυτό ένα μη-ψηφιακό μορφότυπο?"
+
+msgid "manager.setup.publicationFormat.inUse"
+msgstr "Λόγο ότι αυτό το μορφότυπο δημοσίευσης είναι προς το παρόν σε χρήση από μια μονογραφία των εκδόσεων σας, δεν είναι δυνατό να διαγραφεί."
+
+msgid "manager.setup.newPublicationFormat"
+msgstr "Νέο Μορφότυπο Δημοσίευσης"
+
+msgid "manager.setup.newPublicationFormatDescription"
+msgstr "Για να δημιουργήσετε ένα νέο μορφότυπο δημοσίευσης, συμπληρώστε την παρακάτω φόρμα και κάντε κλικ στο κουμπί \"Δημιουργία\"."
+
+msgid "manager.setup.genresDescription"
+msgstr "Τα Μέρη(Genre) του βιβλίου  που χρησιμοποιούνται για την κατάταξη-ονομασία των αρχείων μιας έκδοσης, παρουσιάζονται σε ένα κυλιόμενο μενού για τη μεταφόρτωση αρχείων. Τα μέρη του βιβλίου που ορίζονται με το σύμβολο ## επιτρέπουν τον χρήστη να συνδέσει το αρχείο είτε με όλο το βιβλίο (99Ζ) ή με ένα συγκεκριμένο αριθμό κεφαλαίου του βιβλίου (πχ. 02)."
+
+msgid "manager.setup.reviewProcessEmailDescription"
+msgstr "Οι Eπιμελητές αποστέλλουν με μήνυμα ηλεκτρονικού ταχυδρομείου σε επιλεγμένους Aξιολογητές,  πρόσκληση για αξιολόγηση του αρχείου της υποβολής που επισυνάπτεται στο μήνυμα.  Οι Αξιολογητές αποστέλλουν email στους Επιμελητές για την αποδοχή (η απόρριψη) της αξιολόγησης, καθώς και για την ολοκλήρωση της αξιολόγησης και για την επιλογή συστάσεων.  Ο Επιμελητής καταχωρεί την αποδοχή (η απόρριψη), καθώς και την αξιολόγηση και τις συστάσεις στην σελίδα Αξιολόγηση, για την καταγραφή όλης της διαδικασίας αξιολόγησης που ακολουθείθηκε."
+
+msgid "manager.setup.genres"
+msgstr "Τύποι Βιβλίου (Genres)"
+
+msgid "manager.setup.newGenre"
+msgstr "Δημιουργία Νέου τύπου Βιβλίου της Μονογραφίας"
+
+msgid "manager.setup.newGenreDescription"
+msgstr "Για να δημιουργείσετε ένα νέο τύπο βιβλίου (genre), συμπληρώστε την παρακάτω φόρμα και επιλέξτε το κουμπί \"Δημιουργία\"."
+
+msgid "manager.setup.deleteSelected"
+msgstr "Διαγραφή επιλεγμένων"
+
+msgid "manager.setup.restoreDefaults"
+msgstr "Επαναφορά προεπιλεγμένων ρυθμίσεων"
+
+msgid "manager.setup.prospectus"
+msgstr "Οδηγός Πρότασης Έκδοσης/Prospectus Guide"
+
+msgid "manager.setup.prospectusDescription"
+msgstr "Ο οδηγός πρότασης μιας έκδοσης(prospectus guide) αποτελεί ένα κείμενο οδηγιών των εκδόσεων που βοηθά τους συγγραφείς να περιγράψουν το υποβαλλόμενο υλικό με τρόπο που βοηθά τη συντακτική επιτροπή να προσδιορίσει την αξία της υποβολής. Μία πρόταση μπορεί να περιλαμβάνει πολλά στοιχεία - από την δυναμική του έργου στην αγορά των επιστημονικών εκδόσεων ως την επιστημονική και θεωρητική του αξία.  Σε κάθε περίπτωση, οι εκδόσεις πρέπει να δημιουργήσουν έναν οδηγό πρότασης που θα συμπληρώνει την αντζέντα των οδηγιών και των πολιτικών που ακολουθεί."
+
+msgid "manager.setup.submitToCategories"
+msgstr "Ένταξη της υποβολής σε Κατηγορία"
+
+msgid "manager.setup.submitToSeries"
+msgstr "Ένταξη της υποβολής σε Σειρά"
+
+msgid "manager.setup.issnDescription"
+msgstr "Ο ISSN (διεθνής πρότυπος αριθμός περιοδικής έκδοσης) αποτελεί αριθμό με οκτώ ψηφία που προσδιορίζει περιοδικές εκδόσεις όπως η συγκεκριμένη, συμπεριλαμβανομένων των αριθμών περιοδικής έκδοσης σε ηλεκτρονική μορφή. Διαχειρίζεται από παγκόσμιο δίκτυο Εθνικών Κέντρων που συντονίζονται από Διεθνές Κέντρο με βάση το Παρίσι, υποστηριζόμενο από την Unesco και τη Γαλλική κυβέρνηση. Η λήψη του αριθμού αυτού μπορεί να γίνει από τον ιστότοπο του ISSN <a  href=\"http://www.issn.org\" target=\"_blank\"> </a>. Αυτό μπορεί να πραγματοποιηθεί σε οποιοδήποτε σημείο χειρισμού των εκδόσεων."
+
+msgid "manager.setup.currentFormats"
+msgstr "Τρέχοντα Μορφότυπα"
+
+msgid "manager.setup.categoriesAndSeries"
+msgstr "Κατηγορίες και Σειρές"
+
+msgid "manager.setup.categories.description"
+msgstr "Μπορείτε να δημιουργήσετε μία λίστα με κατηγορίες που θα σα βοηθήσει να οργανώσετε τις δημοσιεύσεις σας. Οι κατηγορίες ομαδοποιούν τα βιβλία ανάλογα με το αντικείμενο, για παράδειγμα Οικονομικά, Λογοτεχνικά, Ποίηση, κλπ. Ορισμένες κατηγορίες μπορούν να ταξιθετηθούν σε \"γονικές\" κατηγορίες: για παράδειγμα, η γονική κατηγορία Οικονομικά μπορεί να περιλαμβάνει την Μικροοικονομία και Μακροοικονομία. Οι επισκέπτες μπορούν να ανζητήσουν και να περιηγηθούν στις εκδόσεις ανά κατηγορία"
+
+msgid "manager.setup.series.description"
+msgstr "Μπορείτε να δημιουργήσετε οποιοδήποτε αριθμό σειρών για να οργανώσετε τις δημοσιεύσεις σας. Μία Σειρά αντιπροσωπεύει μια σειρά ιδιαίτερων εκδόσεων σχετικά με ένα θέμα ή επιστημονικό πεδίο. Μία Σειρά μπορεί να δημιουργηθεί μετά από πρόταση ενός ή δύο συντελεστών, συνήθως επιστημονικό προσωπικό ή ΔΕΠ, οι οποίοι μπορεί να αναλάβουν και την επιβλεψη ή επιμέλεια της. Οι επισκέπτες μπορούν να ανζητήσουν και να περιηγηθούν στις εκδόσεις ανά σειρά."
+
+msgid "manager.setup.reviewForms"
+msgstr "Φόρμες Αξιολόγησης"
+
+msgid "manager.setup.roleType"
+msgstr "Τύπος Ρόλου"
+
+msgid "manager.setup.authorRoles"
+msgstr "Ρόλοι Συγγραφέων"
+
+msgid "manager.setup.managerialRoles"
+msgstr "Ρόλοι Διαχείρισης"
+
+msgid "manager.setup.availableRoles"
+msgstr "Διαθέσιμοι Ρόλοι"
+
+msgid "manager.setup.currentRoles"
+msgstr "Τρέχον Ρόλοι"
+
+msgid "manager.setup.internalReviewRoles"
+msgstr "Ρόλοι Εσωτερικής Αξιολόγησης"
+
+msgid "manager.setup.masthead"
+msgstr "Ταυτότητα"
+
+msgid "manager.setup.editorialTeam"
+msgstr "Συντακτική ομάδα"
+
+msgid "manager.setup.editorialTeam.description"
+msgstr "Η Ταυτότητα πρέπει να περιέχει μια λίστα από επιμελητές, υπεύθυνους διαχείρισης, και άλλα πρόσωπα που συνδέονται με τις Εκδόσεις. Πληροφορίες που  καταχωρούνται εδώ θα εμφανιστούν στη σελίδα \"Σχετικά\" των εκδόσεων"
+
+msgid "manager.setup.files"
+msgstr "Αρχεία"
+
+msgid "manager.setup.productionTemplates"
+msgstr "Πρότυπα Παραγωγής"
+
+msgid "manager.files.note"
+msgstr "Σημείωση: To ευρετήριο αρχείων αποτελεί προηγμένη λειτουργία που παρέχει τη δυνατότητα σε αρχεία και καταλόγους που αφορούν τις εκδόσεις να προβάλλονται και να χειρίζονται άμεσα."
+
+msgid "manager.setup.copyrightNotice.sample"
+msgstr ""
+"<h3>Προτεινόμενες Δηλώσεις Προστασίας Πνευματικών Δικαιωμάτων Creative Commons</h3>\n"
+"<h4>Προτεινόμενη πολιτική για Εκδόσεις που παρέχουν Ανοικτή Πρόσβαση (Offer Open Access)</h4>\n"
+"Οι Συγγραφείς που δημοσιεύουν το έργο τους με αυτές τις εκδόσεις συμφωνούν με τους ακόλουθους όρους:\n"
+"<ol type=\"a\">\n"
+"\t<li>Οι συγγραφείς διατηρούν τα πνευματικά διακιώματα και εκχωρούν το δικαίωμα της πρώτης δημοσίευσης στις εκδόσεις ενώ ταυτόχρονα τα πνευματικά δικαιώματα του έργου προστατεύονται σύμφωνα με την <a target=\"_blank\" href=\"http://creativecommons.org/licenses/by/3.0/\">Creative Commons Attribution License</a> που επιτρέπει σε τρίτους - αποδέκτες της άδειας να χρησιμοποιούν το έργο όπως θέλουν με την προϋπόθεση της διατήρησης των διατυπώσεων που προβλέπονται στην άδεια σχετικά με την αναφορά στον αρχικό δημιουργό και την αρχική δημοσίευση σε αυτές τις εκδόσεις.</li>\n"
+"\t<li>Οι συγγραφείς μπορούν να συνάπτουν ξεχωριστές, και πρόσθετες συμβάσεις και συμφωνίες για την μη αποκλειστική διανομή του έργου όπως δημοσιεύτηκε στις εκδόσεις συτές  (πχ. κατάθεση σε ένα ακαδημαϊκό καταθετήριο ή δημοσίευση σε ένα βιβλίο), με την προϋπόθεση της αναγνώρισης και της αναφοράς της πρώτης δημοσίευσης σε αυτές τις εκδόσεις.</li>\n"
+"\t<li>Οι εκδόσεις επιτρέπουν και ενθαρρύνουν τους συγγραφείς να καταθέτουν τις εργασίες τους online (π.χ. σε ένα ακαδημαϊκό καταθετήριο ή στις προσωπικές τους ιστοσελίδες) πριν και μετά από τις διαδικασίες της δημοσίευσης, καθώς αυτό μπορεί να οδηγήσει σε παραγωγικές ανταλλαγές ιδεών και σκέψεων καθώς επίσης και σε γρηγορότερη και μεγαλύτερη χρήση και ευρετηρίαση της δημοσιευμένης εργασίας (Βλέπε <a target=\"_blank\" href=\"http://opcit.eprints.org/oacitation-biblio.html\">The Effect of Open Access</a>).</li>\n"
+"</ol>\n"
+"\n"
+"<h4>Προτεινόμενη πολιτική για Εκδόσεις που παρέχουν Καθυστερημένη Ανοικτή Πρόσβαση (Delayed Open Access)</h4>\n"
+"Οι Συγγραφείς που δημοσιεύουν το έργο τους με αυτές τις εκδόσεις συμφωνούν με τους ακόλουθους όρους:\n"
+"<ol type=\"a\">\n"
+"\t<li>Οι συγγραφείς διατηρούν τα πενευματικά δικαιώματα και εκχωρούν το δικαίωμα της πρώτης δημοσίευσης στις εκδόσεις, ενώ παράλληλα και [ΠΡΟΣΔΙΟΡΙΣΤΕ ΧΡΟΝΙΚΗ ΠΕΡΙΟΔΟ] μετά την δημοσίευση λαμβάνει άδεια προστασίας των πνευματικών  δικαιωμάτων σύμφωνα με την <a target=\"_blank\" href=\"http://creativecommons.org/licenses/by/3.0/\">Creative Commons Attribution License</a> που επιτρέπει σε τρίτους - αποδέκτες της άδειας να χρησιμοποιούν την εργασία όπως θέλουν με την προϋπόθεση της διατήρησης των διατυπώσεων που προβλέπονται στην άδεια σχετικά με την αναφορά στον αρχικό δημιουργό και την αρχική δημοσίευση σε αυτές τις εκδόσεις.</li>\n"
+"\t <li>Οι συγγραφείς μπορούν να συνάπτουν ξεχωριστές, και πρόσθετες συμβάσεις και συμφωνίες για την μη αποκλειστική διανομή της εργασίας όπως δημοσιεύτηκε στο περιοδικό αυτό (π.χ. κατάθεση σε ένα ακαδημαϊκό καταθετήριο ή δημοσίευση σε ένα βιβλίο), με την προϋπόθεση της αναγνώρισης και την αναφοράς της πρώτης δημοσίευσης σε αυτές τις εκδόσεις.</li>\n"
+"\t <li>Οι εκδόσεις επιτρέπουν και ενθαρρύνουν τους συγγραφείς να καταθέτουν τις εργασίες τους online (π.χ. σε ένα ακαδημαϊκό καταθετήριο ή στις προσωπικές τους ιστοσελίδες) πριν και μετά από τις διαδικασίες της δημοσίευσης, καθώς αυτό μπορεί να οδηγήσει σε παραγωγικές ανταλλαγές ιδεών και σκέψεων καθώς επίσης και σε γρηγορότερη και μεγαλύτερη χρήση και ευρετηρίαση της δημοσιευμένης εργασίας (Βλέπε <a target=\"_blank\" href=\"http://opcit.eprints.org/oacitation-biblio.html\"> The Effect of Open Access</a>).</li>\n"
+"</ol>"
+
+msgid "manager.setup.basicEditorialStepsDescription"
+msgstr ""
+"Βήματα: Σειρά αναμονής Υποβολής &gt; Αξιολόγηση Υποβολής &gt; Διαμόρφωση Υποβολής &gt; Πίνακας Περιεχομένων.<br /><br />\n"
+"Επιλέξτε ένα μοντέλο για χειρισμό των διαφόρων φάσεων της διαδικασίας επιμέλειας. (Για να καθορίζετε επιμελητή διαχείρισης και επιμελητές σειρών, μεταβείτε στους «Επιμελητές» στη «Διαχείριση Εκδόσεων».)"
+
+msgid "manager.setup.referenceLinkingDescription"
+msgstr ""
+"<p>Για να δίνεται η δυνατότητα στους αναγνώστες να εντοπίζουν online εκδόσεις των εργασιών που αναφέρονται από έναν συγγραφέα, οι παρακάτω επιλογές είναι διαθέσιμες.</p>\n"
+"\n"
+"<ol>\n"
+"\t<li><strong>Προσθήκη ενός Εργαλείου Ανάγνωσης</strong><p>Ο Διαχειριστής των Εκδόσεων μπορεί να προσθέσει την επιλογή \"Εύρεση Αναφορών\" στα Εργαλεία Ανάγνωσης που συνοδεύουν τα δημοσιευμένα τεκμήρια, που δίνουν την δυνατότητα στους αναγνώστες να επικολήσουν τον τίτλο της αναφοράς και να αναζητήσουν την αντίστοιχη εργασία σε προεπιλεγμένες επσιτημονικές βάσεις δεδομένων.</p></li>\n"
+"\t<li><strong>Ενσωμμάτωση Συνδέσμων στις Αναφορές</strong><p>Ο Επιμελητής Σελιδοποίησης μπορεί να προσθέσει έναν σύνδεσμο σε αναφορές που μπορούν να βρεθούν online σύμφωνα με τις παρακάτω οδηγίες (και οι οποίες μπορούν να διαμορφωθούν κατά περίπτωση ).</p></li>\n"
+"</ol>"

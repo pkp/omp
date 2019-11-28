@@ -1,0 +1,98 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: \n"
+"Report-Msgid-Bugs-To: \n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"POT-Creation-Date: 2019-11-28T15:10:03-08:00\n"
+"PO-Revision-Date: 2019-11-28T15:10:03-08:00\n"
+"Language: \n"
+
+msgid "admin.hostedContexts"
+msgstr "Publicacions allotjades"
+
+msgid "admin.settings.redirect"
+msgstr "Redirecció a la publicació"
+
+msgid "admin.settings.redirectInstructions"
+msgstr "Les peticions al lloc web principal són redireccionades a aquesta publicació. Això pot ser útil si el lloc web únicament allotja una sola publicació, per exemple."
+
+msgid "admin.settings.noPressRedirect"
+msgstr "No redireccionis"
+
+msgid "admin.languages.primaryLocaleInstructions"
+msgstr "Aquesta és la llengua predeterminada per al lloc web i per a qualsevol publicació allotjada."
+
+msgid "admin.languages.supportedLocalesInstructions"
+msgstr "Seleccioneu totes les configuracions regionals que oferirà el lloc web. Les configuracions regionals seleccionades estan disponibles per al seu ús a totes les publicacions allotjades al lloc web, i també apareixen en un menú de selecció d'idioma disponible a cada pàgina del lloc web (que es pot desactivar en pàgines concretes de les publicacions). Si no se seleccionen diferents configuracions regionals, el menú de selecció de llengua no apareix i la configuració avançada de llengua no està disponible a les publicacions."
+
+msgid "admin.locale.maybeIncomplete"
+msgstr "* Les configuracions regionals marcades poden estar incompletes."
+
+msgid "admin.languages.confirmUninstall"
+msgstr "Esteu segur que voleu desinstal·lar aquesta configuració regional? Podria afectar qualsevol de les publicacions allotjades que la utilitzin."
+
+msgid "admin.languages.installNewLocalesInstructions"
+msgstr "Seleccioneu qualsevol configuració regional addicional per instal·lar-hi ajuda en aquest sistema. Cal que instal·leu les configuracions regionals abans que les publicacions allotjades les puguin fer servir. Consulteu la documentació de l'OMP per obtenir més informació sobre com instal·lar llengües addicionals."
+
+msgid "admin.languages.noLocalesToDownload"
+msgstr "No hi ha configuracions regionals disponibles per descarregar."
+
+msgid "admin.languages.downloadFailed"
+msgstr "No s'ha pogut descarregar la configuració regional. El missatge/s d'error següent descriu el problema."
+
+msgid "admin.languages.downloadUnavailable"
+msgstr ""
+"<p>La descàrrega dels paquets de llengües des del lloc web del Public Knowledge Project no està disponible actualment perquè:</p>\n"
+"\t<ul>\n"
+"\t\t<li>El vostre servidor no té o no permet l'execució de la utilitat «tar» de GNU</li>\n"
+"\t\t<li>L'OMP no ha pogut modificar el fitxer de la configuració regional, normalment a «registry/locales.xml».</li>\n"
+"\t</ul>\n"
+"<p>Els paquets de llengües es poden descarregar manualment des del <a href=\"http://pkp.sfu.ca\" target=\"_blank\">lloc web de PKP</a>.</p>"
+
+msgid "admin.languages.confirmDisable"
+msgstr "Esteu segur que voleu desactivar aquesta configuració regional? Podria afectar qualsevol de les publicacions allotjades que la utilitzin."
+
+msgid "admin.systemVersion"
+msgstr "Versió de l'OMP"
+
+msgid "admin.systemConfiguration"
+msgstr "Configuració de l'OMP"
+
+msgid "admin.presses.pressSettings"
+msgstr "Configuració de la publicació"
+
+msgid "admin.presses.noneCreated"
+msgstr "No s’ha creat cap publicació."
+
+msgid "admin.contexts.confirmDelete"
+msgstr "Esteu segurs que voleu eliminar aquesta publicació i els seus continguts de manera permanent?"
+
+msgid "admin.contexts.create"
+msgstr "Crea una publicació"
+
+msgid "admin.contexts.form.titleRequired"
+msgstr "Cal que introduïu un títol."
+
+msgid "admin.contexts.form.pathRequired"
+msgstr "Cal que introduïu una ruta."
+
+msgid "admin.contexts.form.pathAlphaNumeric"
+msgstr "La ruta només pot contenir caràcters alfanumèrics, guions baixos i guionets i ha de començar i acabar amb un caràcter alfanumèric."
+
+msgid "admin.contexts.form.pathExists"
+msgstr "Ja hi ha una altra publicació que utilitza la ruta seleccionada."
+
+msgid "admin.contexts.contextDescription"
+msgstr "Descripció de la publicació"
+
+msgid "admin.presses.addPress"
+msgstr "Afegeix una publicació"
+
+msgid "admin.overwriteConfigFileInstructions"
+msgstr ""
+"<h4>Atenció!</h4>\n"
+"<p>El sistema no ha pogut sobreescriure la configuració del fitxer de manera automàtica. Per poder aplicar els canvis que heu fet de la configuració obriu <tt>config.inc.php</tt> amb un editor/a de textos apropiat i substituïu el contingut que hi hagi amb el contingut del camp de text de sota.</p>"

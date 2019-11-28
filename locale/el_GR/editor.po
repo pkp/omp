@@ -1,0 +1,171 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: \n"
+"Report-Msgid-Bugs-To: \n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"POT-Creation-Date: 2019-11-28T15:10:06-08:00\n"
+"PO-Revision-Date: 2019-11-28T15:10:06-08:00\n"
+"Language: \n"
+
+msgid "editor.pressSignoff"
+msgstr "Υπογραφή Εκδόσεων"
+
+msgid "editor.submissionArchive"
+msgstr "Αρχείο Υποβολών"
+
+msgid "editor.monograph.cancelReview"
+msgstr "Ακύρωση Αιτήματος"
+
+msgid "editor.monograph.clearReview"
+msgstr "Καθαρισμός Αξιολογητή"
+
+msgid "editor.monograph.enterRecommendation"
+msgstr "Εισαγωγή Εισήγησης"
+
+msgid "editor.monograph.enterReviewerRecommendation"
+msgstr "Εισαγωγή εισήγησης αξιολογητή"
+
+msgid "editor.monograph.recommendation"
+msgstr "Εισαγωγή Εισήγησης"
+
+msgid "editor.monograph.selectReviewerInstructions"
+msgstr "Επιλέξτε έναν από τους παραπάνω αξιολογητές και πατήστε \"Επιλογή Αξιολογητή\" για να συνεχίσετε."
+
+msgid "editor.monograph.replaceReviewer"
+msgstr "Αντικατάσταση Αξιολογητή"
+
+msgid "editor.monograph.editorToEnter"
+msgstr "Ο επιμελητής εισάγει συστάσεις/σχόλια για τον αξιολογητή"
+
+msgid "editor.monograph.uploadReviewForReviewer"
+msgstr "Ανέβασμα Αξιολόγησης"
+
+msgid "editor.monograph.peerReviewOptions"
+msgstr "Επιλογές αξιολόγησης απο ομότιμους αξιολογητές (Peer Review)"
+
+msgid "editor.monograph.selectProofreadingFiles"
+msgstr "Αρχεία επιμέλειας τυπογραφικών δοκιμίων"
+
+msgid "editor.monograph.internalReview"
+msgstr "Έναρξη Εσωτερικής Αξιολόγησης"
+
+msgid "editor.monograph.internalReviewDescription"
+msgstr "Είτε έτοιμοι να ξεκινήσετε ένα γύρο εσωτερικής αξιολόγησης για την υποβολή. Τα αρχεία που αποτελούν μέρος της υποβολής παρατίθενται παρακάτω και μπορούν να επιλεγούν για αξιολόγηση."
+
+msgid "editor.monograph.externalReview"
+msgstr "Έναρξη Εξωτερικής Αξιολόγησης"
+
+msgid "editor.monograph.final.selectFinalDraftFiles"
+msgstr "Επιλογή Αρχείων Τελικού Κειμένου"
+
+msgid "editor.monograph.final.currentFiles"
+msgstr "Τρέχοντα Αρχεία Τελικού Κειμένου"
+
+msgid "editor.monograph.copyediting.currentFiles"
+msgstr "Τρέχοντα Αρχεία"
+
+msgid "editor.monograph.copyediting.personalMessageToUser"
+msgstr "Μήνυμα σε χρήστη"
+
+msgid "editor.monograph.legend.submissionActions"
+msgstr "Ενέργεια Υποβολής"
+
+msgid "editor.monograph.legend.submissionActionsDescription"
+msgstr "Συνολικές ενέργειες και επιλογές υποβολής."
+
+msgid "editor.monograph.legend.sectionActions"
+msgstr "Ενέργειες Ενότητας (Section Actions)"
+
+msgid "editor.monograph.legend.sectionActionsDescription"
+msgstr "Επιλογές μιας συγκεκριμένης ενότητας, για παράδειγμα μεταφόρτωση αρχείων ή εγγραφή χρηστών."
+
+msgid "editor.monograph.legend.itemActions"
+msgstr "Ενέργειες Στοιχείου"
+
+msgid "editor.monograph.legend.itemActionsDescription"
+msgstr "Ενέργειες και επιλογές που αφορούν ένα συγκεκριμένο αρχείο."
+
+msgid "editor.monograph.legend.catalogEntry"
+msgstr "Προβολή και διαχείριση της καταχώρησης μιας υποβολής στον κατάλογο, συμπεριλαμβανομένων των μεταδεδομένων και των μορφότυπων δημοσίευσης."
+
+msgid "editor.monograph.legend.bookInfo"
+msgstr "Προβολή και διαχείριση των μεταδεδομένων, των σημειώσεων, κοινοποιήσεων και του ιστορικού μιας υποβολής"
+
+msgid "editor.monograph.legend.participants"
+msgstr "Προβολή και Διαχείριση των συμμετεχόντων της υποβολής: συγγραφείς, επιμελητές, σχεδιαστές, και άλλων"
+
+msgid "editor.monograph.legend.add"
+msgstr "Ανεβάστε ένα αρχείο στην ενότητα"
+
+msgid "editor.monograph.legend.add_user"
+msgstr "Προσθήκη χρήστη στην ενότητα"
+
+msgid "editor.monograph.legend.settings"
+msgstr "Προβολή και πρόσβαση στις ρυθμίσεις στοιχείου, όπως πληροφορίες και επιλογές αφαίρεσης"
+
+msgid "editor.monograph.legend.more_info"
+msgstr "Επιπλέον πληροφορίες: σημειώσεις αρχείου, επιλογές κοινοποίησης και ιστορικό"
+
+msgid "editor.monograph.legend.notes_none"
+msgstr "Πληροφορίες αρχείου: σημειώσεις, επιλογές κοινοποίησης και ιστορικό (Δεν έχουν προστεθεί σημειώσεις ακόμα)"
+
+msgid "editor.monograph.legend.notes"
+msgstr "Πληροφορίες αρχείου: σημειώσεις, επιλογές κοινοποίησης και ιστορικό (Οι σημειώσεις είναι διαθέσιμες)"
+
+msgid "editor.monograph.legend.notes_new"
+msgstr "Πληροφορίες αρχείου: σημειώσεις, επιλογές κοινοποίησης και ιστορικό (Νέες σημειώσεις προστέθηκαν κατά την τελευταία επίσκεψη)"
+
+msgid "editor.monograph.legend.edit"
+msgstr "Επεξεργασία στοιχείου"
+
+msgid "editor.monograph.legend.delete"
+msgstr "Διαγραφή στοιχείου"
+
+msgid "editor.monograph.legend.in_progress"
+msgstr "Ενέργεια σε εξέλιξη ή δεν έχει ολοκληρωθεί"
+
+msgid "editor.monograph.legend.complete"
+msgstr "Ολοκληρώθηκε"
+
+msgid "editor.monograph.legend.uploaded"
+msgstr "File uploaded by the role in the grid column title"
+
+msgid "editor.submission.introduction"
+msgstr "Σε μια υποβολή, ο επιμελητής έκδοσης (editor), μετά από διαβούλευση των αρχείων που έχουν υποβληθεί, προβαίνει στις ακόλουθες ενέργειες συμπεριλαμβανομένου και την ενημέρωση του συγγραφέα: αποστολή για εσωτερική αξιολόγηση (επιλέγοντας και τα αρχεία για  εσωτερική αξιολόγηση), αποστολή για εξωτερική αξιολόγηση (επιλέγοντας και τα αρχεία για εξωτερική αξιολόγηση), αποδοχή υποβολής (συνεπάγεται και η επιλογή αρχείων για το στάδιο σύνταξης/δημοσίευσης) ή απόρριψη υποβολής (υποβολή στο αρχείο)."
+
+msgid "editor.monograph.editorial.fairCopy"
+msgstr "Τελικό Αντίγραφο"
+
+msgid "editor.monograph.editorial.fairCopyDescription"
+msgstr "Ο επιμελητής κειμένων μεταφορτώνει ένα διορθωμένο ή τελικό αντίγραφο της υποβολής για έγκριση από τον επιμελητή έκδοσης, ώστε αυτό να σταλεί για την παραγωγή του."
+
+msgid "editor.monograph.proofs"
+msgstr "Τυπογραφικά Δοκίμια"
+
+msgid "editor.monograph.production.approvalAndPublishing"
+msgstr "Αποδοχή και Δημοσίευση"
+
+msgid "editor.monograph.production.approvalAndPublishingDescription"
+msgstr "Διαφορετικές μορφές εκδόσεων, όπως σκληρόδετο (hardcover), χαρτόδετο (softcover) και ψηφιακό, μπορούν να μεταφορτωθούν παρακάτω στην ενότητα Μορφότυπα Έκδοσης. Μπορείτε να χρησιμοποιήσετε το παρακάτω πλέγμα (grid) ως μια λίστα επιλογών για το τι απομένει να γίνει για να εκδοθεί μια μορφή έκδοσης του βιβλίου. (Different publication formats, such as hardcover, softcover and digital, can be uploaded in the Publication Formats section below. You can use the publication formats grid below as a checklist for what still needs to be done to publish a publication format)."
+
+msgid "editor.monograph.production.publicationFormatDescription"
+msgstr "Προσθέστε τα μορφότυπα έκδοσης (πχ. ψηφιακό, χαρτόδετο) τα οποία ο επιμελητής σελιδοποίησης ετοίμασε για τη διόρθωση τυπογραφικών δοκιμίων. Τα <em>Τυπογραφικά Δοκίμια</em> θα πρεπει να ελεγχθούν σύμφωνα με τα πρότυπα των εκδόσεων και η καταχώριση στον <em>Κατάλογο</em> πρέπει να είναι σύμφωνη με την εγκεκριμένη καταχώριση του βιβλίου, πριν να μπορεί ένα μορφότυπο να γίνει <em>διαθέσιμο</em> πχ. Δημοσιευμένο."
+
+msgid "editor.monograph.approvedProofs.edit"
+msgstr "Καθορισμός Όρων για Λήψη Αρχείων"
+
+msgid "editor.monograph.approvedProofs.edit.linkTitle"
+msgstr "Καθορισμός Όρων"
+
+msgid "editor.monograph.proof.addNote"
+msgstr "Προσθήκη Απάντησης"
+
+msgid "editor.internalReview.introduction"
+msgstr "Στην Εσωτερική Αξιολόγηση, ο επιμελητή έκδοσης αναθέτει τα αρχεία της υποβολής στους εσωτερικούς αξιολογητές και βασίζεται στα αποτελέσματα της αξιολόγησης τους, πριν επιλέξει τις κατάλληλες ενέργειες (στις οποίες συμπεριλαμβάνεται η ενημέρωση του συγγραφέα): αίτηματα για αναθεωρήσεις (οι αναθεωρήσεις ελέγχονται μόνο από τον επιμελητή έκδοσης), εκ νέου υποβολή για αξιολόγηση (οι αναθεωρήσεις ξεκινούν ένα νέο γύρο αξιολογήσεων), αποστολή αιτήματος για εξωτερική αξιολόγηση (συνεπάγεται επιλογή αρχείων για εξωτερική αξιολόγηση), αποδοχή υποβολής (συνεπάγεται επιλογή αρχείων για το στάδιο Σύνταξης) ή απόρριψη υποβολής (υποβολή στο αρχείο)."
+
+msgid "editor.externalReview.introduction"
+msgstr "Στην Εξωτερική Αξιολόγηση, ο επιμελητής έκδοσης αναθέτει τα αρχεία της υποβολής στους εξωτερικούς αξιολογητές των εκδόσεων και βασίζεται στα αποτελέσματα της αξιολόγησης τους, πριν επιλέξει τις κατάλληλες ενέργειες (στις οποίες συμπεριλαμβάνεται η ενημέρωση του συγγραφέα): αίτηματα για αναθεωρήσεις  (οι αναθεωρήσεις ελέγχονται μόνο από τον επιμελητή έκδοσης), εκ νέου υποβολή για αξιολόγηση (οι αναθεωρήσεις ξεκινούν ένα νέο κύκλο αξιολογήσεων), αποδοχή υποβολής (συνεπάγεται επιλογή αρχείων για το στάδιο Σύνταξης) ή απόρριψη υποβολής (υποβολή στο αρχείο)."

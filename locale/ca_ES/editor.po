@@ -1,0 +1,162 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: \n"
+"Report-Msgid-Bugs-To: \n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"POT-Creation-Date: 2019-11-28T15:10:03-08:00\n"
+"PO-Revision-Date: 2019-11-28T15:10:03-08:00\n"
+"Language: \n"
+
+msgid "editor.submissionArchive"
+msgstr "Arxivament de trameses"
+
+msgid "editor.monograph.cancelReview"
+msgstr "Cancel·la la sol·licitud"
+
+msgid "editor.monograph.clearReview"
+msgstr "Esborra el revisor/a"
+
+msgid "editor.monograph.enterRecommendation"
+msgstr "Introdueix una recomanació"
+
+msgid "editor.monograph.enterReviewerRecommendation"
+msgstr "Introdueix una recomanació de revisor/a"
+
+msgid "editor.monograph.recommendation"
+msgstr "Recomanació"
+
+msgid "editor.monograph.selectReviewerInstructions"
+msgstr "Seleccioneu un revisor/a dels de dalt i premeu la tecla «seleccionar revisor/a» per continuar."
+
+msgid "editor.monograph.replaceReviewer"
+msgstr "Reemplaça el revisor/a"
+
+msgid "editor.monograph.editorToEnter"
+msgstr "L’editor/a ha d'introduir recomanacions o comentaris per al revisor/a"
+
+msgid "editor.monograph.uploadReviewForReviewer"
+msgstr "Carrega la revisió"
+
+msgid "editor.monograph.peerReviewOptions"
+msgstr "Opcions per a la revisió de persones expertes"
+
+msgid "editor.monograph.selectProofreadingFiles"
+msgstr "Fitxers de correcció de proves"
+
+msgid "editor.monograph.internalReview"
+msgstr "Comença la revisió interna"
+
+msgid "editor.monograph.internalReviewDescription"
+msgstr "Esteu a punt de començar una revisió interna d'aquesta tramesa.  Els fitxers que formen part de la tramesa s'enumeren a sota i els podeu seleccionar per revisar-los."
+
+msgid "editor.monograph.externalReview"
+msgstr "Comença la revisió externa"
+
+msgid "editor.monograph.final.selectFinalDraftFiles"
+msgstr "Seleccioneu els fitxers d'esborrany final"
+
+msgid "editor.monograph.final.currentFiles"
+msgstr "Fitxers d'esborrany final actuals"
+
+msgid "editor.monograph.copyediting.currentFiles"
+msgstr "Fitxers actuals"
+
+msgid "editor.monograph.copyediting.personalMessageToUser"
+msgstr "Missatge per a l'usuari/ària"
+
+msgid "editor.monograph.legend.submissionActions"
+msgstr "Accions de tramesa"
+
+msgid "editor.monograph.legend.submissionActionsDescription"
+msgstr "Accions i opcions generals de tramesa."
+
+msgid "editor.monograph.legend.sectionActions"
+msgstr "Accions de secció"
+
+msgid "editor.monograph.legend.sectionActionsDescription"
+msgstr "Opcions especials d'una determinada secció. Per exemple, carregar fitxers o afegir-hi usuaris/àries."
+
+msgid "editor.monograph.legend.itemActions"
+msgstr "Accions d'element"
+
+msgid "editor.monograph.legend.itemActionsDescription"
+msgstr "Accions i opcions específiques d'un fitxer determinat."
+
+msgid "editor.monograph.legend.catalogEntry"
+msgstr "Visió i gestió de l'entrada del catàleg de la tramesa, que inclou les metadades i els formats de publicació"
+
+msgid "editor.monograph.legend.bookInfo"
+msgstr "Visió i gestió de les metadades, anotacions,notificacions i l'historial"
+
+msgid "editor.monograph.legend.participants"
+msgstr "Visió i gestió dels participants de la tramesa: autors/ores, editors/ores, dissenyadors/ores i d'altres"
+
+msgid "editor.monograph.legend.add"
+msgstr "Carrega un fitxer a la secció"
+
+msgid "editor.monograph.legend.add_user"
+msgstr "Afegeix un usuari/ària a la secció"
+
+msgid "editor.monograph.legend.settings"
+msgstr "Visió i accés a la configuració d'elements com les opcions d'informació i d'eliminació"
+
+msgid "editor.monograph.legend.more_info"
+msgstr "Més informació: anotacions de l'fitxer, opcions de notificacions i historial"
+
+msgid "editor.monograph.legend.notes_none"
+msgstr "Informació de l'fitxer: anotacions, opcions de notificacions i historial (sense anotacions afegides encara)"
+
+msgid "editor.monograph.legend.notes"
+msgstr "Informació de l'fitxer: anotacions, opcions de notificacions i historial (amb anotacions disponibles)"
+
+msgid "editor.monograph.legend.notes_new"
+msgstr "Informació de l'fitxer: anotacions, opcions de notificacions i historial (noves anotacions afegides des de l'última visita)"
+
+msgid "editor.monograph.legend.edit"
+msgstr "Edita l'element"
+
+msgid "editor.monograph.legend.delete"
+msgstr "Elimina aquest element"
+
+msgid "editor.monograph.legend.in_progress"
+msgstr "L'acció s'està desenvolupant o encara no s'ha completat"
+
+msgid "editor.monograph.legend.complete"
+msgstr "Acció finalitzada"
+
+msgid "editor.monograph.legend.uploaded"
+msgstr "Fitxer carregat pel rol del títol de la columna de la taula"
+
+msgid "editor.submission.introduction"
+msgstr "Durant la tramesa, l'editor/a, després de consultar els fitxers enviats, selecciona l'acció apropiada (inclou també la notificació a l'autor/a): envia a revisió interna (comporta la selecció d'fitxers per a revisió interna), envia a revisió externa (comporta la selecció d'fitxers per a revisió externa), accepta la tramesa (comporta la selecció d'fitxers per a la fase editorial) o rebutja la tramesa (l'arxiva)."
+
+msgid "editor.monograph.editorial.fairCopy"
+msgstr "Còpia original"
+
+msgid "editor.monograph.proofs"
+msgstr "Galerades"
+
+msgid "editor.monograph.production.approvalAndPublishing"
+msgstr "Aprovació i publicació"
+
+msgid "editor.monograph.production.approvalAndPublishingDescription"
+msgstr "Podeu carregar diversos formats de publicació, com tapa dura, llibre en rústica i digital, en la secció Formats de publicació de sota. Podeu utilitzar la graella de formats de publicació de sota com a llista de verificació per veure què queda pendent per fer abans de publicar el format de publicació."
+
+msgid "editor.monograph.production.publicationFormatDescription"
+msgstr "Afegeix formats de publicació (p. ex. digital, en paper) per als quals el maquetador/a ha preparat galerades per fer la correcció de proves. Haureu d'aprovar les <em>Galerades</em> i publicar l'entrada de <em>Catàleg</em> a l'entrada de catàleg del llibre per poder posar com a <em>Disponible</em> (p. ex. publicat) un format."
+
+msgid "editor.monograph.approvedProofs.edit"
+msgstr "Estableix terminis per a la descàrrega"
+
+msgid "editor.monograph.approvedProofs.edit.linkTitle"
+msgstr "Estableix terminis"
+
+msgid "editor.monograph.proof.addNote"
+msgstr "Afegeix-hi una resposta"
+
+msgid "editor.submission.proof.manageProofFilesDescription"
+msgstr "Qualsevol fitxer que ja s'hagi carregat en qualsevol fase d'enviament pot afegir-se a la llista de \"Fitxers de prova\" marcant la casella \"Incloure\" següent i fent clic a \"Cercar\": es llistaran tots els fitxers disponibles, que podran triar-se per incloure'ls."

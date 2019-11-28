@@ -1,0 +1,165 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: \n"
+"Report-Msgid-Bugs-To: \n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"POT-Creation-Date: 2019-11-28T15:10:04-08:00\n"
+"PO-Revision-Date: 2019-11-28T15:10:04-08:00\n"
+"Language: \n"
+
+msgid "editor.submissionArchive"
+msgstr "Indsendelsesarkiv"
+
+msgid "editor.monograph.cancelReview"
+msgstr "Annuller anmodning"
+
+msgid "editor.monograph.clearReview"
+msgstr "Fjern bedømmer"
+
+msgid "editor.monograph.enterRecommendation"
+msgstr "Indtast anbefaling"
+
+msgid "editor.monograph.enterReviewerRecommendation"
+msgstr "Angiv anmelderens anbefaling"
+
+msgid "editor.monograph.recommendation"
+msgstr "Anbefaling"
+
+msgid "editor.monograph.selectReviewerInstructions"
+msgstr "Vælg en bedømmer ovenfor, og tryk dernæst på knappen 'Vælg bedømmer' for at fortsætte."
+
+msgid "editor.monograph.replaceReviewer"
+msgstr "Udskift bedømmer"
+
+msgid "editor.monograph.editorToEnter"
+msgstr "Redaktør indsætter anbefaling/kommentarer til bedømmer"
+
+msgid "editor.monograph.uploadReviewForReviewer"
+msgstr "Upload bedømmelse"
+
+msgid "editor.monograph.peerReviewOptions"
+msgstr "Valgmuligheder for peer review"
+
+msgid "editor.monograph.selectProofreadingFiles"
+msgstr "Korrekturlæsningsfiler"
+
+msgid "editor.monograph.internalReview"
+msgstr "Påbegynd intern revision"
+
+msgid "editor.monograph.internalReviewDescription"
+msgstr "Vælg filer nedenfor for at sende dem til det interne bedømmelsestrin."
+
+msgid "editor.monograph.externalReview"
+msgstr "Påbegynd ekstern bedømmelse"
+
+msgid "editor.monograph.final.selectFinalDraftFiles"
+msgstr "Vælg endelige kladdefiler"
+
+msgid "editor.monograph.final.currentFiles"
+msgstr "Nyeste kladdefil"
+
+msgid "editor.monograph.copyediting.currentFiles"
+msgstr "Nyeste filer"
+
+msgid "editor.monograph.copyediting.personalMessageToUser"
+msgstr "Besked til bruger"
+
+msgid "editor.monograph.legend.submissionActions"
+msgstr "Indsendelseshandlinger"
+
+msgid "editor.monograph.legend.submissionActionsDescription"
+msgstr "Overordnede indsendelseshandlinger og muligheder."
+
+msgid "editor.monograph.legend.sectionActions"
+msgstr "Sektionshandlinger"
+
+msgid "editor.monograph.legend.sectionActionsDescription"
+msgstr "Valgmuligheder, der er specifikke for et given sektion, for eksempel upload af filer eller tilføjelse af brugere."
+
+msgid "editor.monograph.legend.itemActions"
+msgstr "Enhedshandlinger"
+
+msgid "editor.monograph.legend.itemActionsDescription"
+msgstr "Handlinger og indstillinger, der er specifikke for en enkelt fil."
+
+msgid "editor.monograph.legend.catalogEntry"
+msgstr "Se og administrer indsendelsens katalogindgang, herunder metadata og publiceringsformater"
+
+msgid "editor.monograph.legend.bookInfo"
+msgstr "Se og administrer indsendelsesmetadata, noter, notifikationer og historik"
+
+msgid "editor.monograph.legend.participants"
+msgstr "Se og administrer deltagerne hørende til denne indsendelse: forfattere, redaktører, designere m.fl."
+
+msgid "editor.monograph.legend.add"
+msgstr "Upload en fil til sektionen"
+
+msgid "editor.monograph.legend.add_user"
+msgstr "Føj en bruger til sektionen"
+
+msgid "editor.monograph.legend.settings"
+msgstr "Se og få adgang til enhedsindstillinger, f.eks. information og sletningsmuligheder"
+
+msgid "editor.monograph.legend.more_info"
+msgstr "Flere oplysninger: filnotater, notifikationsindstillinger og historik"
+
+msgid "editor.monograph.legend.notes_none"
+msgstr "Filoplysninger: noter, notifikationsindstillinger og historik (Der er ikke tilføjet nogen noter endnu)"
+
+msgid "editor.monograph.legend.notes"
+msgstr "Filoplysninger: noter, notifikationsindstillinger og historik (Noter er tilgængelige)"
+
+msgid "editor.monograph.legend.notes_new"
+msgstr "Filoplysninger: noter, notifikationsindstillinger og historik (Nye noter tilføjet siden sidste besøg)"
+
+msgid "editor.monograph.legend.edit"
+msgstr "Rediger enhed"
+
+msgid "editor.monograph.legend.delete"
+msgstr "Slet enhed"
+
+msgid "editor.monograph.legend.in_progress"
+msgstr "Handlingen er i gang eller endnu ikke afsluttet"
+
+msgid "editor.monograph.legend.complete"
+msgstr "Handlingen afsluttet"
+
+msgid "editor.monograph.legend.uploaded"
+msgstr "File uploaded by the role in the grid column title"
+
+msgid "editor.submission.introduction"
+msgstr "Under Indsendelse vælger redaktøren, efter gennemsyn af de indsendte filer, den passende handling (som inkluderer besked til forfatteren): Send til intern bedømmelse (indebærer valg af filer til intern bedømmelse); Send til ekstern gennemgang (indebærer valg af filer til ekstern gennemgang); Accepter indsendelse (indebærer valg af filer til det redaktionelle trin); eller Afvis indsendelse (arkivlagring)."
+
+msgid "editor.monograph.editorial.fairCopy"
+msgstr "Renskrift"
+
+msgid "editor.monograph.proofs"
+msgstr "Korrektur"
+
+msgid "editor.monograph.production.approvalAndPublishing"
+msgstr "Godkendelse og udgivelse"
+
+msgid "editor.monograph.production.approvalAndPublishingDescription"
+msgstr "Forskellige publikationsformater, såsom hardcover, paperback og digital, kan uploades i sektionen med publikationsformater nedenfor. Du kan bruge opsætningen til publikationsformater nedenfor som en tjekliste for, hvad der stadig skal gøres for at offentliggøre et publikationsformat."
+
+msgid "editor.monograph.production.publicationFormatDescription"
+msgstr "Tilføj publikationsformater (f.eks. digital, paperback), så layoutredaktøren kan opsætte sider til korrekturlæsning. <em>Korrekturer</em> skal kontrolleres som værende godkendt, og <em>Katalog</em>-indtastningen for formatet skal kontrolleres som anført i bogens katalogpost, før et format kan gøres <em>Tilgængelig</em> (dvs. publiceret)."
+
+msgid "editor.monograph.approvedProofs.edit"
+msgstr "Angiv betingelser i forbindelse med download"
+
+msgid "editor.monograph.approvedProofs.edit.linkTitle"
+msgstr "Angiv betingelser"
+
+msgid "editor.monograph.proof.addNote"
+msgstr "Tilføj svar"
+
+msgid "editor.submission.proof.manageProofFilesDescription"
+msgstr "Alle de filer, der er uploadet til et af indsendelsestrinnene, kan føjes til listen over korrekturfiler ved at blive markeret i afkrydsningsfeltet nedenfor og ved at klikke på Søg: alle tilgængelige filer vises på listen og kan vælges til inkludering."
+
+msgid "editor.publicIdentificationExistsForTheSameType"
+msgstr "Den offentlige identifikator (the public identifier) '{$publicIdentifier}' findes allerede i forbindelse med et andet objekt af samme type. Vælg unikke identifikatorer for objekter af samme type under dette forlag."
