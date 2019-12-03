@@ -11,202 +11,198 @@
   -->
 <email_texts locale="sl_SI">
 	<email_text key="NOTIFICATION">
-		<subject>Novo obvestilo od {$siteTitle}</subject>
-		<body><![CDATA[Imate novo obvestilo od {$siteTitle}: <br /> <br /> {$notificationContents}<br /> <br /> Povezava: <a href="{$url}">{$url}</a><br /> <br /> Ne odgovarjajte na to sporočilo, ker gre za samodejno ustvarjeno sporočilo. <br /> {$principalContactSignature}]]></body>
-		<description>E-poštno obvestilo je bilo poslano vsem registriranim uporabnikom, ki so se naročili na prejemanje teh obvestil na elektronski naslov.</description>
+		<subject>{translate key="emails.notification.subject"}</subject>
+		<body>{translate key="emails.notification.body"}</body>
+		<description>{translate key="emails.notification.description"}</description>
 	</email_text>
 	<email_text key="PASSWORD_RESET_CONFIRM">
-		<subject>Potrditev ponastavitve gesla</subject>
-		<body><![CDATA[Prejeli smo zahtevo za ponastavitev gesla za spletno mesto {$ siteTitle}. <br /> <br /> Če te zahteve niste podali vi, prezrite to e-poštno sporočilo in vaše geslo ne bo spremenjeno. Če želite ponastaviti geslo, kliknite spodnjo povezavo.<br /> <br /> Ponastavi geslo: <a href="{$url}">{$url}</a><br /> <br /> {$principalContactSignature}]]></body>
-		<description>To e-poštno sporočilo je poslano registriranemu uporabniku, če označijo, da so pozabili svoje geslo ali se ne morejo prijaviti. Sporočilo vsebuje URL, do katerega lahko dostopajo, če želijo ponastaviti geslo.</description>
+		<subject>{translate key="emails.passwordResetConfirm.subject"}</subject>
+		<body>{translate key="emails.passwordResetConfirm.body"}</body>
+		<description>{translate key="emails.passwordResetConfirm.description"}</description>
 	</email_text>
 	<email_text key="PASSWORD_RESET">
-		<subject>Ponastavitev gesla</subject>
-		<body><![CDATA[Vaše geslo za dostop do spletišča {$siteTitle} je bilo ponastavljeno.<br /> <br /> Uporabniško ime: {$username}<br /> Vaše novo geslo: {$password}<br /> <br /> {$principalContactSignature}]]></body>
-		<description>To e-poštno sporočilo je poslano registriranemu uporabniku, ko je uspešno ponastavil svoje geslo po postopku, opisanem v e-poštnem sporočilu PASSWORD_RESET_CONFIRM.</description>
+		<subject>{translate key="emails.passwordReset.subject"}</subject>
+		<body>{translate key="emails.passwordReset.body"}</body>
+		<description>{translate key="emails.passwordReset.description"}</description>
 	</email_text>
 	<email_text key="USER_REGISTER">
-		<subject>Registracija založbe</subject>
-		<body><![CDATA[{$userFullName} <br /> <br /> Zdaj ste registrirani kot uporabnik {$contextName}. Spodaj sta napisana vaše uporabniško ime in geslo, ki ju potrebujete za dostop do založbe preko spleta. Kadar koli bi se želeli odstraniti s seznama uporabnikov, se lahko obrnete name.<br /> <br /> Uporabniško ime: {$username}<br /> Geslo: {$password}<br /> <br /> Hvala, <br /> {$principalContactSignature}]]></body>
-		<description>To e-poštno sporočilo je poslano novim uporabnikom ob registraciji, da jih pozdravimo v sistemu in jim posredujemo informacijo o uporabniškem imenu in geslu.</description>
+		<subject>{translate key="emails.userRegister.subject"}</subject>
+		<body>{translate key="emails.userRegister.body"}</body>
+		<description>{translate key="emails.userRegister.description"}</description>
 	</email_text>
 	<email_text key="USER_VALIDATE">
-		<subject>Potrditev vašega računa</subject>
-		<body><![CDATA[{$userFullName}}<br /> <br /> Ustvarili ste uporabniški račun {$contextName}. Preden ga lahko začnete uporabljati, morate potrditi svojo e-pošto. Za potrditev enostavno sledite spodnji povezavi: <br /> <br /> <a href="{$activateUrl}">{$activateUrl}</a><br /> <br /> Hvala,<br /> {$principalContactSignature}]]></body>
-		<description>To e-poštno sporočilo je poslano novim uporabnikom ob registraciji, da jih pozdravimo v sistemu in jim posredujemo informacijo o uporabniškem imenu in geslu.</description>
+		<subject>{translate key="emails.userValidate.subject"}</subject>
+		<body>{translate key="emails.userValidate.body"}</body>
+		<description>{translate key="emails.userValidate.description"}</description>
 	</email_text>
 	<email_text key="REVIEWER_REGISTER">
-		<subject>Registracija za recenzenta pri {$contextName}</subject>
-		<body><![CDATA[Glede na vaše področje delovanja, smo si dovolili registrirati vaše ime v bazo recenzentov za publikacijo {$contextName}. To ne pomeni nobene obveze z vaše strani in nam le omogoča, da vas lahko povabimo k recenziji prispevkov. Ko boste povabljeni k recenziji, boste lahko videli naslov in povzetek prispevka in se boste lahko odločili, ali boste pri recenziji sodelovali ali ne. Kadar koli lahko zahtevate, da vas odstranimo iz seznama recenzentov.<br /> <br /> Pošiljamo vam uporabniško ime in geslo, ki ju potrebujete za vso interakcijo z založbo preko spleta. Če želite lahko posodobite vaš račun, vključno z recenzentskimi interesi.<br /> <br />Uporabniško ime: {$username}<br /> Geslo: {$password}<br /> <br />Hvala,<br /> {$principalContactSignature}]]></body>
-		<description>To e-poštno sporočilo je poslano recenzentom ob registraciji, da se jih pozdravi v sistemu in jim posreduje informacijo o uporabniškem imenu in geslu.</description>
+		<subject>{translate key="emails.reviewerRegister.subject"}</subject>
+		<body>{translate key="emails.reviewerRegister.body"}</body>
+		<description>{translate key="emails.reviewerRegister.description"}</description>
 	</email_text>
 	<email_text key="PUBLISH_NOTIFY">
-		<subject>Izid nove knjige</subject>
-		<body><![CDATA[Bralci: <br /> <br /> {$contextName} je pravkar objavil_a svojo zadnjo knjigo na <a href="{$contextUrl}">{$contextUrl}</a>. Vabimo vas, da si ogledate kazalo vsebine in obiščete spletno stran, da preberete monografske publikacije in ostale stvari, ki vas zanimajo.<br /> <br />Hvala za zanimanje (za naše delo), <br /> {$editorialContactSignature}]]></body>
-		<description>To e-poštno sporočilo je poslano registriranim bralcem prek povezave "Obvesti uporabnike" v uredniškem domu uporabnika. Sporočilo obvesti bralce o izidu nove knjige in jih povabi k ogledu založbe na priloženem URL-ju.</description>
+		<subject>{translate key="emails.publishNotify.subject"}</subject>
+		<body>{translate key="emails.publishNotify.body"}</body>
+		<description>{translate key="emails.publishNotify.description"}</description>
 	</email_text>
 	<email_text key="SUBMISSION_ACK">
-		<subject>Potrditev oddaje prispevka</subject>
-		<body><![CDATA[{$authorName}: <br /> <br /> Hvala za oddajo rokopisa &quot;{$submissionTitle}&quot; v {$contextName}. S sistemom za spletno upravljanje založbe, ki ga uporabljamo, lahko spremljate njegov napredek v procesu urejanja, če se prijavite na spletno stran založbe: <br /> <br /> Povezava URL do rokopisa: <a href="{$submissionUrl}">{$submissionUrl}</a><br /> Uporabniško ime: {$authorUsername}<br /> <br />Če imate kakšno vprašanje, se, prosim, obrnite name.  Hvala, da ste se odločili za našo založbo.<br /> <br /> {$editorialContactSignature}]]></body>
-		<description>Če je omogočena funkcija, bo to e-poštno sporočilo samodejno poslano avtorju, ko dokonča postopek predložitve rokopisa založbi. V sporočilu so informacije o spremljanju prispevka in zahvala avtorju za predložitev.</description>
+		<subject>{translate key="emails.submissionAck.subject"}</subject>
+		<body>{translate key="emails.submissionAck.body"}</body>
+		<description>{translate key="emails.submissionAck.description"}</description>
 	</email_text>
 	<email_text key="SUBMISSION_ACK_NOT_USER">
-		<subject>Potrditev oddaje prispevka</subject>
-		<body><![CDATA[Pozdravljeni, <br /> <br /> {$submitterName} je predložil_a rokopis &quot;{$submissionTitle}&quot; za {$contextName}. Če imate kakršno koli vprašanje, se, prosim, obrnite name. {$editorialContactSignature} Hvala, da ste se odločili za našo založbo.<br /> <br /> {$editorialContactSignature}]]></body>
-		<description>Če je omogočeno, se to e-poštno sporočilo samodejno pošlje drugim avtorjem, ki niso uporabniki znotraj OMP in ki so bili navedeni med postopkom oddaje prispevka.</description>
+		<subject>{translate key="emails.submissionAckNotUser.subject"}</subject>
+		<body>{translate key="emails.submissionAckNotUser.body"}</body>
+		<description>{translate key="emails.submissionAckNotUser.description"}</description>
 	</email_text>
 	<email_text key="SUBMISSION_UNSUITABLE">
-		<subject>Neprimeren prispevek</subject>
-		<body><![CDATA[{$authorName}: <br /> <br /> V začetni recenziji prispevka &quot;{$submissionTitle}&quot; je bilo ugotovljeno, da prispevek vsebinsko ne ustreza merilom založbe {$contextName}. Priporočamo vam, da se preberete več o naši založbi pod zavihkom O nas, kjer boste izvedeli več o vsebinah, ki jih objavljamo. Priporočamo vam, da razmislite o predložitvi tega rokopisa drugim založbam, ki objavljajo tovrstne vsebine. <br /> <br /> {$editorialContactSignature}]]></body>
+		<subject>{translate key="emails.submissionUnsuitable.subject"}</subject>
+		<body>{translate key="emails.submissionUnsuitable.body"}</body>
+		<description>{translate key="emails.submissionUnsuitable.description"}</description>
 	</email_text>
 	<email_text key="EDITOR_ASSIGN">
-		<subject>Uredniške zadolžitve</subject>
-		<body><![CDATA[{$editorialContactName}: <br /> <br /> Prispevek &quot;{$submissionTitle},&quot;, oddan na {$contextName} vam je bil kot uredniku dodeljen v proces urejanja. <br /> <br /> URL do prispevka: <a href="{$submissionUrl}">{$submissionUrl}</a><br /> Uporabniško ime: {$editorUsername}<br /> <br /> Hvala,]]></body>
-		<description>To e-poštno sporočilo obvesti urednika zbirke o tem, da jih je urednik določil za nadzor prispevka v postopku urejanja. Vsebuje informacije o oddaji prispevka in o tem, kako je možno dostopati do strani založbe.</description>
+		<subject>{translate key="emails.editorAssign.subject"}</subject>
+		<body>{translate key="emails.editorAssign.body"}</body>
+		<description>{translate key="emails.editorAssign.description"}</description>
 	</email_text>
 	<email_text key="REVIEW_REQUEST">
-		<subject>Prošnja za recenzijo rokopisa</subject>
-		<body><![CDATA[Spoštovani {$reviewerName},<br /> <br /> {$messageToReviewer}<br /> <br /> Prosimo, da se do {$responseDueDate} prijavite na spletni strani založbe in navedete, ali boste opravljali recenzijo ali ne, ter ali boste dostopali do prispevka in ali naj se vaša recenzija in priporočila zapišejo. Recenzija je predvidena do {$reviewDueDate}.<br /> <br /> URL do prispevka: <a href="{$submissionReviewUrl}">{$submissionReviewUrl}</a><br /> <br /> Uporabniško ime: {$reviewerUserName}<br /> <br /> Zahvaljujemo se vam za zanimanje. <br /> <br /> <br /> Lep pozdrav, <br /> {$editorialContactSignature}<br />
-]]></body>
-		<description>To e-poštno sporočilo urednika zbirke od recenzenta zahteva, da recenzent sprejme ali zavrne recenzijo prispevka. Vsebuje informacije o prispevku kot na primer naslov in povzetek, rok za oddajo recenzije ter navodila za dostop do prispevka. To sporočilo se uporabi, ko je izbran standardni recenzijski postopek v Upravljanje &gt; Nastavitve &gt; Potek dela &gt; Recenzija. (V nasprotnem primeru glej REVIEW_REQUEST_ATTACHED.)</description>
+		<subject>{translate key="emails.reviewRequest.subject"}</subject>
+		<body>{translate key="emails.reviewRequest.body"}</body>
+		<description>{translate key="emails.reviewRequest.description"}</description>
 	</email_text>
 	<email_text key="REVIEW_REQUEST_ONECLICK">
-		<subject>Prošnja za recenzijo rokopisa</subject>
-		<body><![CDATA[{$reviewerName}: <br /> <br /> Verjamemo, da bi lahko bili odličen recenzent rokopisa &quot;{$submissionTitle},&quot;, ki je bil oddan v {$contextName}. Povzetek prispevka je priložen spodaj. Upam, da boste prevzeli to pomembno opravilo.<br /> <br /> Prosimo, da se do {$weekLaterDate} prijavite na spletni strani založbe in navedete, ali boste opravljali recenzijo ali ne, ter ali boste dostopali do prispevka in ali naj se vaša recenzija in priporočila zapišejo. Datum za oddajo recenzije je {$reviewDueDate}.<br /> <br /> Povezava do prispevka: <a href="{$submissionReviewUrl}">{$submissionReviewUrl}</a><br /> <br /> Uporabniško ime: {$reviewerUserName}<br /> <br /> Zahvaljujemo se vam za zanimanje. <br /> <br /> {$editorialContactSignature}<br /> <br /> <br /> <br /> &quot;{$submissionTitle}&quot; <br /> <br /> {$abstractTermIfEnabled}<br /> {$submissionAbstract}]]></body>
-		<description>To e-poštno sporočilo urednika zbirke od recenzenta zahteva, da recenzent sprejme ali zavrne recenzijo prispevka. Vsebuje informacije o prispevku kot na primer naslov in povzetek, rok za oddajo recenzije ter navodila za dostop do prispevka. To sporočilo se uporabi, ko je izbran standardni recenzijski postopek v Upravljanje &gt; Nastavitve &gt; Potek dela &gt; Recenzija, in omogočen je dostop recenzenta z enim klikom.</description>
+		<subject>{translate key="emails.reviewRequestOneclick.subject"}</subject>
+		<body>{translate key="emails.reviewRequestOneclick.body"}</body>
+		<description>{translate key="emails.reviewRequestOneclick.description"}</description>
 	</email_text>
 	<email_text key="REVIEW_REQUEST_REMIND_AUTO">
-		<subject>Prošnja za recenzijo rokopisa</subject>
-		<body><![CDATA[Spoštovani, {$reviewerName}, samo prijazen opomnik o naši prošnji za recenzijo prispevka &quot;{$submissionTitle},&quot;  za {$contextName}.  Upali smo, da bomo do {$responseDueDate} prejeli vaš odgovor. Ta e-pošta vam je bila samodejno poslana po poteku tega datuma. <br /> {$messageToReviewer}<br /> <br /> Prosimo, da se prijavite na spletni strani založbe in navedete, ali boste opravljali recenzijo ali ne, ter ali boste dostopali do prispevka in ali naj se vaša recenzija in priporočila zapišejo. <br /> <br /> Rok za oddajo recenzije je {$reviewDueDate}.<br /> <br />  URL do prispevka: <a href="{$submissionReviewUrl}">{$submissionReviewUrl}</a><br /> <br /> Uporabniško ime: {$reviewerUserName}<br /> <br /> Zahvaljujemo se vam za zanimanje. <br /> <br /> <br /> Lep pozdrav,<br /> {$editorialContactSignature}<br />
-]]></body>
-		<description>To e-poštno sporočilo bo samodejno poslano po preteku roka za potrditev opravljanja recenzije in ko je onemogočen dostop recenzenta z enim klikom. (Glejte Nastavitve recenzije, ki jih najdete pod Nastavitve &gt; Potek dela &gt; Recenzija) Načrtovane naloge morajo biti omogočene in konfigurirane (glejte konfiguracijsko datoteko).</description>
+		<subject>{translate key="emails.reviewRequestRemindAuto.subject"}</subject>
+		<body>{translate key="emails.reviewRequestRemindAuto.body"}</body>
+		<description>{translate key="emails.reviewRequestRemindAuto.description"}</description>
 	</email_text>
 	<email_text key="REVIEW_REQUEST_REMIND_AUTO_ONECLICK">
-		<subject>Prošnja za recenzijo rokopisa</subject>
-		<body><![CDATA[{$reviewerName}:<br />, samo prijazen opomnik o naši prošnji za recenzijo prispevka, &quot;{$submissionTitle},&quot; za {$contextName}.  Upali smo, da bomo dobili vaš odziv do predvidenega datuma {$responseDueDate}. To e-pošto sporočilo je bilo samodejno generirano in poslano po poteku datuma. <br />Verjamem, da bi se odlično odrezali v vlogi recenzenta rokopisa. Povzetek prispevka je priložen spodaj. Upam, da boste razmislili in prevzeli to pomembno opravilo.<br /> <br /> Prosimo, da se do {$weekLaterDate} prijavite na spletni strani založbe in navedite, ali boste opravljali recenzijo ali ne, ter ali boste dostopali do prispevka in ali naj se vaša recenzija in priporočila zapišejo. Datum za oddajo recenzije je {$reviewDueDate}.<br /> <br /> Povezava do prispevka: <a href="{$submissionReviewUrl}">{$submissionReviewUrl}</a><br /> <br /> Uporabniško ime: {$reviewerUserName}<br /> <br /> Zahvaljujemo se vam za zanimanje. <br /> <br /> {$editorialContactSignature}<br /> <br /> <br /> <br /> &quot;{$submissionTitle}&quot; <br /> <br /> {$abstractTermIfEnabled}<br /> {$submissionAbstract}]]></body>
-		<description>To e-poštno sporočilo bo samodejno poslano po preteku roka za potrditev opravljanja recenzije in ko je omogočen dostop recenzenta z enim klikom. (Glejte Nastavitve recenzije, ki jih najdete pod Nastavitve &gt; Potek dela &gt; Recenzija) Načrtovane naloge morajo biti omogočene in konfigurirane (glejte konfiguracijsko datoteko).</description>
+		<subject>{translate key="emails.reviewRequestRemindAutoOneclick.subject"}</subject>
+		<body>{translate key="emails.reviewRequestRemindAutoOneclick.body"}</body>
+		<description>{translate key="emails.reviewRequestRemindAutoOneclick.description"}</description>
 	</email_text>
 	<email_text key="REVIEW_REQUEST_ATTACHED">
-		<subject>Prošnja za recenzijo rokopisa</subject>
-		<body><![CDATA[{$reviewerName}: <br /> <br /> Verjamem, da bi se odlično odrezali v vlogi recenzenta rokopisa &quot;{$submissionTitle},&quot; zato vas prosim, da razmislite, ali bi prevzeli to pomembno nalogo. Spodaj so priložena navodila za recenzijo za našo založbo, v priponki pa je prispevek. Prosim, da mi po e-pošti do {$reviewDueDate} pošljete recenzijo prispevka skupaj z vašimi priporočili.<br /> <br />V odgovoru na e-pošto, prosim, navedite, ali ste pripravljeni napisati recenzijo ali ne.<br /> <br /> Hvala lepa za zanimanje. <br /> <br /> {$editorialContactSignature}<br /> <br /> <br /> Navodila za recenzijo <br /> <br /> {$reviewGuidelines}<br />
-]]></body>
-		<description>To e-poštno sporočilo urednika zbirke od recenzenta zahteva, da recenzent sprejme ali zavrne recenzijo prispevka. Vsebuje tudi prispevek, ki se je v priponki. To sporočilo se uporabi, ko je izbrana recenzija preko e-pošte v Upravljanje &gt; Nastavitve &gt; Potek dela &gt; Recenzija. (V nasprotnem primeru glej REVIEW_REQUEST.)</description>
+		<subject>{translate key="emails.reviewRequestAttached.subject"}</subject>
+		<body>{translate key="emails.reviewRequestAttached.body"}</body>
+		<description>{translate key="emails.reviewRequestAttached.description"}</description>
 	</email_text>
 	<email_text key="REVIEW_CANCEL">
-		<subject>Prošnja za recenzijo preklicana</subject>
-		<body><![CDATA[{$reviewerName}:<br /> <br />Odločili smo se, da prekličemo našo prošnjo za vašo recenzijo prispevka &quot;{$submissionTitle},&quot; za {$contextName}. Opravičujemo se vam za vse nevšečnosti, ki vam jih to lahko povzroči, in upamo, da se lahko obrnemo na vas pri uredniškem procesu tudi v prihodnje. <br /> <br />Če imaste kakršna koli vprašanja, se obrnite name.]]></body>
-		<description>To e-poštno sporočilo od urednika zbirke obvešča recenzenta, ki piše recenzijo, da je bila prošnja za recenzijo preklicana.</description>
+		<subject>{translate key="emails.reviewCancel.subject"}</subject>
+		<body>{translate key="emails.reviewCancel.body"}</body>
+		<description>{translate key="emails.reviewCancel.description"}</description>
 	</email_text>
 	<email_text key="REVIEW_CONFIRM">
-		<subject>Potrditev recenzije</subject>
-		<body><![CDATA[Urednik(i):<br /> <br />Pripravljen_a sem opraviti recenzijo prispevka &quot;{$submissionTitle},&quot; za {$contextName}. Hvala za povabilo. Sporočam vam, da nameravam recenzijo dokončati do predvidenega datuma {$reviewDueDate}, če ne prej.<br /> <br /> {$reviewerName}]]></body>
-		<description>To e-poštno sporočilo je uredniku zbirke poslal recenzent kot odgovor na prošnjo za recenzijo, v katerem urednika obvešča, da je sprejel prošnjo za recenzijo in da jo bo dokončal do določenega datuma. </description>
+		<subject>{translate key="emails.reviewConfirm.subject"}</subject>
+		<body>{translate key="emails.reviewConfirm.body"}</body>
+		<description>{translate key="emails.reviewConfirm.description"}</description>
 	</email_text>
 	<email_text key="REVIEW_DECLINE">
-		<subject>Ne morem opraviti recenzije</subject>
-		<body><![CDATA[Urednik(i):<br /> <br /> Žal mi je, vendar v tem trenutku ne morem napisati recenzije prispevka &quot;{$submissionTitle},&quot; za {$contextName}. Hvala za povabilo in upam, da me boste še povabili k sodelovanju.<br /> <br /> {$reviewerName}]]></body>
-		<description>To e-poštno sporočilo je uredniku zbirke poslal recenzent kot odgovor na prošnjo za recenzijo, v katerem obvešča urednika, da je zavrnil prošnjo za recenzijo.</description>
+		<subject>{translate key="emails.reviewDecline.subject"}</subject>
+		<body>{translate key="emails.reviewDecline.body"}</body>
+		<description>{translate key="emails.reviewDecline.description"}</description>
 	</email_text>
 	<email_text key="REVIEW_ACK">
-		<subject>Zahvala za recenzijo rokopisa</subject>
-		<body><![CDATA[{$reviewerName}:<br /> <br /> Hvala za dokončanje recenzije prispevka &quot;{$submissionTitle},&quot; za  {$contextName}. Zahvaljujemo se za vaš prispevek k kvaliteti del, ki jih objavljamo.]]></body>
-		<description>To e-poštno sporočilo je poslal urednik zbirke, ki potrjuje prejem dokončane recenzije in se zahvali recenzentu za njegov prispevek.</description>
+		<subject>{translate key="emails.reviewAck.subject"}</subject>
+		<body>{translate key="emails.reviewAck.body"}</body>
+		<description>{translate key="emails.reviewAck.description"}</description>
 	</email_text>
 	<email_text key="REVIEW_REMIND">
-		<subject>Opomnik za recenzijo prispevka</subject>
-		<body><![CDATA[{$reviewerName}:<br /> <br />, samo prijazen opomnik za našo prošnjo za recenzijo prispevka , &quot;{$submissionTitle},&quot; za {$contextName}. Upali smo, da bo recenzija končana do {$reviewDueDate}, veseli bomo, če jo bomo prejeli takoj, ko bo mogoče.<br /> <br /> Če nimate uporabniškega imena in gesla za dostop do spletne strani publikacije, lahko uporabite naslednjo povezavo za ponastavitev gesla (ki vam bo posredovano po e-pošti skupaj z vašim uporabniškim imenom): <a href="{$passwordResetUrl}">{$passwordResetUrl}</a><br /> <br /> URL povezava do prispevka: <a href="{$submissionReviewUrl}">{$submissionReviewUrl}</a><br /> <br /> Uporabniško ime: {$reviewerUserName}<br /> Prosim, da potrdite vašo pripravljenost za dokončanje vašega pomembnega prispevka za delo založbe. Že vnaprej se vam zahvaljujemo za odgovor. <br /> <br /> {$editorialContactSignature}]]></body>
-		<description>To e-poštno sporočilo je poslal urednik zbirke, ki opozarja recenzenta, da je recenzijo treba oddati.</description>
+		<subject>{translate key="emails.reviewRemind.subject"}</subject>
+		<body>{translate key="emails.reviewRemind.body"}</body>
+		<description>{translate key="emails.reviewRemind.description"}</description>
 	</email_text>
 	<email_text key="REVIEW_REMIND_ONECLICK">
-		<subject>Opomnik za recenzijo prispevka</subject>
-		<body><![CDATA[{{$reviewerName}:<br /> <br />, samo prijazen opomnik za našo prošnjo za recenzijo prispevka, &quot;{$submissionTitle},&quot; za {$contextName}. Upali smo, da bo recenzija končana do {$reviewDueDate}, veseli pa bomo, če jo bomo prejeli takoj, ko bo mogoče.<br /> <br /> URL povezava do prispevka: <a href="{$submissionReviewUrl}">{$submissionReviewUrl}</a><br /> <br /> Prosim, potrdite vašo pripravljenost za dokončanje pomembnega prispevka za delo založbe. Že vnaprej se vam zahvaljujemo za odgovor. <br /> <br /> {$editorialContactSignature}]]></body>
-		<description>To e-poštno sporočilo je poslal urednik zbirke, ki opozarja recenzenta, da je recenzijo treba oddati.</description>
+		<subject>{translate key="emails.reviewRemindOneclick.subject"}</subject>
+		<body>{translate key="emails.reviewRemindOneclick.body"}</body>
+		<description>{translate key="emails.reviewRemindOneclick.description"}</description>
 	</email_text>
 	<email_text key="REVIEW_REMIND_AUTO">
-		<subject>Avtomatski opomnik za recenzijo prispevka</subject>
-		<body><![CDATA[{$reviewerName}:<br /> <br />, samo prijazen opomnik za našo prošnjo za recenzijo prispevka, &quot;{$submissionTitle},&quot; za {$contextName}. Upali smo, da boste recenzijo napisali do predvidenega datuma {$reviewDueDate}. E-pošta je bila samodejno generirana in poslana po preteku datuma. Veseli bomo, če jo bomo lahko prejeli takoj, ko bo mogoče.<br /> <br /> Če nimate uporabniškega imena in gesla za dostop do spletne strani, lahko uporabite naslednjo povezavo za ponastavitev gesla (ki vam bo posredovano po e-pošti skupaj z vašim uporabniškim imenom): <a href="{$passwordResetUrl}">{$passwordResetUrl}</a><br /> <br /> URL do prispevka:  <a href="{$submissionReviewUrl}">{$submissionReviewUrl}</a><br /> <br /> Uporabniško ime: {$reviewerUserName}<br /> <br /> Prosim, da potrdite vašo pripravljenost za dokončanje pomembnega prispevka za delo založbe. Že vnaprej se vam zahvaljujemo za odgovor. <br /> <br /> {$editorialContactSignature}]]></body>
-		<description>To e-poštno sporočilo bo samodejno poslano po preteku roka za recenzijo in ko je onemogočen dostop recenzenta z enim klikom. (Glejte Nastavitve recenzije, ki jih najdete pod Nastavitve &gt; Potek dela &gt; Recenzija) Načrtovane naloge morajo biti omogočene in konfigurirane (glejte konfiguracijsko datoteko).</description>
+		<subject>{translate key="emails.reviewRemindAuto.subject"}</subject>
+		<body>{translate key="emails.reviewRemindAuto.body"}</body>
+		<description>{translate key="emails.reviewRemindAuto.description"}</description>
 	</email_text>
 	<email_text key="REVIEW_REMIND_AUTO_ONECLICK">
-		<subject>Avtomatski opomnik za recenzijo prispevka</subject>
-		<body><![CDATA[{$reviewerName}:<br /> <br />, samo prijazen opomnik za našo prošnjo za recenzijo prispevka, &quot;{$submissionTitle},&quot; za {$contextName}.  Upali smo, da boste recenzijo napisali do predvidenega datuma {$reviewDueDate}. E-pošta je bila samodejno generirana in poslana po preteku datuma. Veseli bomo, če jo bomo lahko prejeli takoj, ko bo mogoče.<br /> <br /> URL povezava do prispevka: <a href="{$submissionReviewUrl}">{$submissionReviewUrl}</a><br /> <br /> Prosim, potrdite vašo pripravljenost za dokončanje pomembnega prispevka za delo založbe. Že vnaprej se vam zahvaljujemo za odgovor. <br /> <br /> {$editorialContactSignature}]]></body>
-		<description>To e-poštno sporočilo bo samodejno poslano po preteku roka za recenzijo in ko je omogočen dostop recenzenta z enim klikom. (glejte Nastavitve recenzije, ki jih najdete pod Nastavitve &gt; Potek dela &gt; Recenzija) Načrtovane naloge morajo biti omogočene in konfigurirane (glejte konfiguracijsko datoteko).</description>
+		<subject>{translate key="emails.reviewRemindAutoOneclick.subject"}</subject>
+		<body>{translate key="emails.reviewRemindAutoOneclick.body"}</body>
+		<description>{translate key="emails.reviewRemindAutoOneclick.description"}</description>
 	</email_text>
 	<email_text key="EDITOR_DECISION_ACCEPT">
-		<subject>Uredniška odločitev</subject>
-		<body><![CDATA[{$authorName}:<br /> <br /> Sprejeli smo odločitev glede vašega prispevka &quot;{$submissionTitle}&quot; v {$contextName}. Odločili smo se:<br /> <br /> URL do rokopisa: <a href="{$submissionUrl}">{$submissionUrl}</a>]]></body>
-		<description>To e-poštno sporočilo od urednika ali urednika zbirke obvesti avtorja o končni odločitvi glede prispevka.</description>
+		<subject>{translate key="emails.editorDecisionAccept.subject"}</subject>
+		<body>{translate key="emails.editorDecisionAccept.body"}</body>
+		<description>{translate key="emails.editorDecisionAccept.description"}</description>
 	</email_text>
 	<email_text key="EDITOR_DECISION_SEND_TO_EXTERNAL">
-		<subject>Uredniška odločitev</subject>
-		<body><![CDATA[{$authorName}:<br /> <br /> Sprejeli smo odločitev glede vašega prispevka &quot;{$submissionTitle}&quot; v {$contextName}. Odločili smo se:<br /> <br /> URL do rokopisa: <a href="{$submissionUrl}">{$submissionUrl}</a>]]></body>
-		<description>To e-poštno sporočilo od urednika ali urednika zbirke obvesti avtorja, da je bil prispevek poslan v zunanjo recenzijo.</description>
+		<subject>{translate key="emails.editorDecisionSendToExternal.subject"}</subject>
+		<body>{translate key="emails.editorDecisionSendToExternal.body"}</body>
+		<description>{translate key="emails.editorDecisionSendToExternal.description"}</description>
 	</email_text>
 	<email_text key="EDITOR_DECISION_SEND_TO_PRODUCTION">
-		<subject>Uredniška odločitev</subject>
-		<body><![CDATA[{$authorName}:<br /> <br /> Urejanje vašega rokopisa &quot;{$submissionTitle},&quot; je končano. Publikacijo bomo poslali v produkcijo. <br /> <br /> Povezava URL do rokopisa <a href="{$submissionUrl}">{$submissionUrl}</a>]]></body>
-		<description>To e-poštno sporočilo od urednika ali urednika zbirke obvesti avtorja, da je bil prispevek poslan v produkcijo.</description>
+		<subject>{translate key="emails.editorDecisionSendToProduction.subject"}</subject>
+		<body>{translate key="emails.editorDecisionSendToProduction.body"}</body>
+		<description>{translate key="emails.editorDecisionSendToProduction.description"}</description>
 	</email_text>
 	<email_text key="EDITOR_DECISION_REVISIONS">
-		<subject>Uredniška odločitev</subject>
-		<body><![CDATA[{$authorName}:<br /> <br /> Sprejeli smo odločitev glede vašega prispevka &quot;{$submissionTitle}&quot; v {$contextName}. Odločili smo se:<br /> <br /> URL do rokopisa: <a href="{$submissionUrl}">{$submissionUrl}</a>]]></body>
-		<description>To e-poštno sporočilo od urednika ali urednika zbirke obvesti avtorja o končni odločitvi glede prispevka.</description>
+		<subject>{translate key="emails.editorDecisionRevisions.subject"}</subject>
+		<body>{translate key="emails.editorDecisionRevisions.body"}</body>
+		<description>{translate key="emails.editorDecisionRevisions.description"}</description>
 	</email_text>
 	<email_text key="EDITOR_DECISION_RESUBMIT">
-		<subject>Uredniška odločitev</subject>
-		<body><![CDATA[{$authorName}:<br /> <br /> Sprejeli smo odločitev glede vašega prispevka &quot;{$submissionTitle}&quot; v {$contextName}. Odločili smo se:<br /> <br /> URL do rokopisa: <a href="{$submissionUrl}">{$submissionUrl}</a>]]></body>
-		<description>To e-poštno sporočilo od urednika ali urednika zbirke obvesti avtorja o končni odločitvi glede prispevka.</description>
+		<subject>{translate key="emails.editorDecisionResubmit.subject"}</subject>
+		<body>{translate key="emails.editorDecisionResubmit.body"}</body>
+		<description>{translate key="emails.editorDecisionResubmit.description"}</description>
 	</email_text>
 	<email_text key="EDITOR_DECISION_DECLINE">
-		<subject>Uredniška odločitev</subject>
-		<body><![CDATA[{$authorName}:<br /> <br /> Sprejeli smo odločitev glede vašega prispevka &quot;{$submissionTitle}&quot; v {$contextName}. Odločili smo se:<br /> <br /> URL do rokopisa: <a href="{$submissionUrl}">{$submissionUrl}</a>]]></body>
-		<description>To e-poštno sporočilo od urednika ali urednika zbirke obvesti avtorja o končni odločitvi glede prispevka.</description>
+		<subject>{translate key="emails.editorDecisionDecline.subject"}</subject>
+		<body>{translate key="emails.editorDecisionDecline.body"}</body>
+		<description>{translate key="emails.editorDecisionDecline.description"}</description>
 	</email_text>
 	<email_text key="COPYEDIT_REQUEST">
-		<subject>Prošnja za lektoriranje</subject>
-		<body><![CDATA[{$participantName}:<br /> <br />Prosimo vas za lektoriranje prispevka &quot;{$submissionTitle}&quot; za {$contextName} po naslednjih korakih:<br /> 1. Kliknite na URL povezavo do prispevka spodaj.<br /> 2. Prijavite se v založbo in kliknite na datoteko, ki se pokaže po 1. koraku<br /> 3. Preverite navodila za lektoriranje, ki so na spletni strani.<br /> 4. Prenesite datoteko, jo odprite in lektorirajte, hkrati pa po potrebi dodajajte vprašanja za avtorja.<br /> 5. Shranite lektorirano datoteko in jo naložite kot 1. korak lektoriranja.<br /> 6. Uredniku pošljite e-poštno sporočilo Zaključeno.<br /> <br /> {$contextName} Povezava URL: <a href="{$contextUrl}">{$contextUrl}</a><br /> Povezava URL do prispevka: <a href="{$submissionUrl}">{$submissionUrl}</a><br /> Uporabniško ime: {$participantUsername}]]></body>
-		<description>Urednik zbirke pošlje to e-poštno sporočilo lektorju prispevka in prosi za začetek lektoriranja. Vsebuje informacije o prispevku in o tem, kako je možno dostopati do prispevka.</description>
+		<subject>{translate key="emails.copyeditRequest.subject"}</subject>
+		<body>{translate key="emails.copyeditRequest.body"}</body>
+		<description>{translate key="emails.copyeditRequest.description"}</description>
 	</email_text>
 	<email_text key="LAYOUT_REQUEST">
-		<subject>Zahteva za prelom</subject>
-		<body><![CDATA[{$participantName}:<br /> <br /> Prispevek &quot;{$submissionTitle}&quot; za {$contextName} potrebuje prelom, ki se naredi po naslednjih korakih.<br /> 1. Kliknite na URL povezavo do prispevka spodaj.<br /> 2. Prijavite se v založbo in uporabite datoteko za pripravo preloma, da pripravite prelom skladno s standardi založbe.<br /> 3. Uredniku pošljite e-poštno sporočilo Zaključeno.<br /> <br /> {$contextName} URL: <a href="{$contextUrl}">{$contextUrl}</a><br /> Povezava URL do prispevka: <a href="{$submissionUrl}">{$submissionUrl}</a><br /> Uporabniško ime: {$participantUsername}<br /> <br /> Če v tem trenutku dela ne morete opraviti ali imate kakšno vprašanje, se prosim obrnite name. Hvala za vaš prispevek založbi.]]></body>
-		<description>To e-poštno sporočilo od urednika zbirke obvešča grafičnega urednika, da mu je bil dodeljen prispevek za grafično urejanje. Vsebuje informacije o prispevku in o tem, kako je možno dostopati do prispevka. </description>
+		<subject>{translate key="emails.layoutRequest.subject"}</subject>
+		<body>{translate key="emails.layoutRequest.body"}</body>
+		<description>{translate key="emails.layoutRequest.description"}</description>
 	</email_text>
 	<email_text key="LAYOUT_COMPLETE">
-		<subject>Prelom končan</subject>
-		<body><![CDATA[{$editorialContactName}:<br /> <br />Prelomi za rokopis, &quot;{$submissionTitle},&quot, za {$contextName} so pripravljeni in so na voljo za korekturo. <br /> <br />Če imate kakršno koli vprašanje, se prosim obrnite name.<br /> <br /> {$signatureFullName}]]></body>
-		<description>To e-poštno sporočilo od grafičnega urednika obvešča urednika zbirke, da je zaključil proces grafičnega oblikovanja. </description>
+		<subject>{translate key="emails.layoutComplete.subject"}</subject>
+		<body>{translate key="emails.layoutComplete.body"}</body>
+		<description>{translate key="emails.layoutComplete.description"}</description>
 	</email_text>
 	<email_text key="INDEX_REQUEST">
-		<subject>Zahteva za kazalo</subject>
-		<body><![CDATA[{$participantName}:<br /> <br /> Prispevek &quot;{$submissionTitle}&quot; za {$contextName} potrebuje kazalo, ki se ga ustvari po naslednjih korakih.<br /> 1. Kliknite na URL povezavo do prispevka spodaj.<br /> 2. Prijavite se v založbo in uporabite datoteko Page Proofs, da pripravite prelom skladno s standardi založbe.<br /> 3. Uredniku pošljite e-poštno sporočilo Zaključeno.<br /> <br /> {$contextName} URL: <a href="{$contextUrl}">{$contextUrl}</a><br /> Povezava URL do prispevka: <a href="{$submissionUrl}">{$submissionUrl}</a><br /> Uporabniško ime: {$participantUsername}<br /> <br /> Če v tem trenutku dela ne morete opraviti ali imate kakšno vprašanje, se prosim obrnite name. Hvala za vaš prispevek založbi.<br /> <br /> {$editorialContactSignature}]]></body>
-		<description>To e-poštno sporočilo od urednika zbirke obvešča klasifikatorja, da mu je bil dodeljen prispevek, ki potrebuje kazala. Vsebuje informacije o prispevku in o tem, kako je možno dostopati do prispevka. </description>
+		<subject>{translate key="emails.indexRequest.subject"}</subject>
+		<body>{translate key="emails.indexRequest.body"}</body>
+		<description>{translate key="emails.indexRequest.description"}</description>
 	</email_text>
 	<email_text key="INDEX_COMPLETE">
-		<subject>Prelomi kazala končani</subject>
-		<body><![CDATA[{$editorialContactName}:<br /> <br />Kazala za rokopis, &quot;{$submissionTitle},&quot, za {$contextName} so pripravljena in so na voljo za korekturo. <br /> <br />Če imate kakršno koli vprašanje, se prosim obrnite name.<br /> <br /> {$signatureFullName}]]></body>
-		<description>To e-poštno sporočilo od klasifikatorja obvešča urednika zbirke, da je zaključil proces ustvarjanja kazal.</description>
+		<subject>{translate key="emails.indexComplete.subject"}</subject>
+		<body>{translate key="emails.indexComplete.body"}</body>
+		<description>{translate key="emails.indexComplete.description"}</description>
 	</email_text>
 	<email_text key="EMAIL_LINK">
-		<subject>Rokopis, ki bi vas morda zanimal</subject>
-		<body><![CDATA[Zdelo se nam je, da vas bo morda zanimal prispevek &quot;{$submissionTitle}&quot; avtorja {$authorName}, objavljen v zvezku {$volume}, številka {$number} ({$year}) v {$contextName} na voljo na &quot;<a href="{$monographUrl}">{$monographUrl}</a>&quot;.]]></body>
-		<description>Ta e-poštna predloga omogoča registriranemu bralcu možnost pošiljanja informacij o prispevku nekomu, ki bi ga morda zanimal. Na voljo je prek Orodij za branje, omogočiti pa jo mora upravitelj založbe na strani Upravitelj orodij za branje.</description>
+		<subject>{translate key="emails.emailLink.subject"}</subject>
+		<body>{translate key="emails.emailLink.body"}</body>
+		<description>{translate key="emails.emailLink.description"}</description>
 	</email_text>
 		<email_text key="NOTIFY_SUBMISSION">
-		<subject>Obvestilo o prispevku</subject>
-		<body><![CDATA[Prejeli ste sporočilo od {$sender} o prispevku &quot;{$submissionTitle}&quot; (<a href="{$monographDetailsUrl}">{$monographDetailsUrl}</a>):<br /> <br /> {$message}<br /> <br />
-		]]></body>
-		<description>Obvestilo uporabnika, poslano iz modula informacijskega centra za prispevke. </description>
+		<subject>{translate key="emails.notifySubmission.subject"}</subject>
+		<body>{translate key="emails.notifySubmission.body"}</body>
+		<description>{translate key="emails.notifySubmission.description"}</description>
 	</email_text>
 		<email_text key="NOTIFY_FILE">
-		<subject>Obvestilo o datoteki prispevka</subject>
-		<body><![CDATA[Prejeli ste sporočilo od {$sender} o datoteki &quot;{$fileName}&quot; in &quot;{$submissionTitle}&quot; (<a href="{$monographDetailsUrl}">{$monographDetailsUrl}</a>):<br /> <br /> {$message}<br /> <br />
-		]]></body>
-		<description>Obvestilo uporabnika, poslano iz modula informacijskega centra za datoteke.</description>
+		<subject>{translate key="emails.notifyFile.subject"}</subject>
+		<body>{translate key="emails.notifyFile.body"}</body>
+		<description>{translate key="emails.notifyFile.description"}</description>
 	</email_text>
 	<email_text key="NOTIFICATION_CENTER_DEFAULT">
-		<subject>Sporočilo o {$contextName}</subject>
-		<body><![CDATA[Prosimo, vnesite vaše sporočilo.]]></body>
-		<description>Privzeto (prazno) sporočilo, uporabljeno v seznamu sporočilnega centra za obvestila.</description>
+		<subject>{translate key="emails.notificationCenterDefault.subject"}</subject>
+		<body>{translate key="emails.notificationCenterDefault.body"}</body>
+		<description>{translate key="emails.notificationCenterDefault.description"}</description>
 	</email_text>
 </email_texts>

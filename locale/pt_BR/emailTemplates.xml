@@ -11,109 +11,49 @@
   -->
 <email_texts locale="pt_BR">
 	<email_text key="NOTIFICATION">
-		<subject>Nova notificação de {$siteTitle}</subject>
-		<body><![CDATA[Chegou uma nova notificação de {$siteTitle}:<br />
-<br />
-{$notificationContents}<br />
-<br />
-Link: {$url}<br />
-<br />
-{$principalContactSignature}]]></body>
-		<description>Esta mensagem é enviada a usuários cadastrados que escolherem receber este tipo de notificação via e-mail.</description>
+		<subject>{translate key="emails.notification.subject"}</subject>
+		<body>{translate key="emails.notification.body"}</body>
+		<description>{translate key="emails.notification.description"}</description>
 	</email_text>
 	<email_text key="PASSWORD_RESET_CONFIRM">
-		<subject>Confirmação de redefinição de senha</subject>
-		<body><![CDATA[Recebemos uma solicitação para redefinir sua senha no site {$siteTitle}.<br />
-<br />
-Caso não tenha feito a solicitação, ignore esta mensagem e sua senha não será alterada. Caso deseje redefinir sua senha, clique no endereço a seguir.<br />
-<br />
-Redefinir senha: {$url}<br />
-<br />
-{$principalContactSignature}]]></body>
-		<description>Esta mensagem é enviada a usuário cadastrados que indicam ter esquecido a senha ou não conseguem acessar o sistema. A mensagem oferece um endereço para redefinir sua senha.</description>
+		<subject>{translate key="emails.passwordResetConfirm.subject"}</subject>
+		<body>{translate key="emails.passwordResetConfirm.body"}</body>
+		<description>{translate key="emails.passwordResetConfirm.description"}</description>
 	</email_text>
 	<email_text key="PASSWORD_RESET">
-		<subject>Senha redefinida</subject>
-		<body><![CDATA[Sua senha foi redefinida com sucesso e já pode ser usada para acesso ao site {$siteTitle}. Guarde seu login e sua senha, pois são essenciais para execução das atividades na editora.<br />
-<br />
-Login: {$username}<br />
-Nova senha: {$password}<br />
-<br />
-{$principalContactSignature}]]></body>
-		<description>Esta mensagem é enviada a usuário cadastrado quando a senha é redefinida com sucesso, seguindo o processo descrito em PASSWORD_RESET_CONFIRM.</description>
+		<subject>{translate key="emails.passwordReset.subject"}</subject>
+		<body>{translate key="emails.passwordReset.body"}</body>
+		<description>{translate key="emails.passwordReset.description"}</description>
 	</email_text>
 	<email_text key="USER_REGISTER">
-		<subject>Cadastro na editora</subject>
-		<body><![CDATA[{$userFullName},<br />
-<br />
-Seu cadastro foi realizado com sucesso na editora {$contextName}. Nesta mensagem estão incluídos seu login e senha, necessário para acesso ao sistema e executar as atividades editoriais relacionadas. Exclua seu cadastro desta lista a qualquer momento, repondendo a esta mensagem ou enviando solicitação ao endereço de resposta.<br />
-<br />
-Login: {$username}<br />
-Senha: {$password}<br />
-<br />
-Atenciosamente,<br />
-{$principalContactSignature}]]></body>
-		<description>Esta mensagem é enviada a novos usuários cadastrados, como boas-vindas e oferecendo o registro de seus dados de acesso.</description>
+		<subject>{translate key="emails.userRegister.subject"}</subject>
+		<body>{translate key="emails.userRegister.body"}</body>
+		<description>{translate key="emails.userRegister.description"}</description>
 	</email_text>
 	<email_text key="USER_VALIDATE">
-		<subject>Validar seu cadastro</subject>
-		<body><![CDATA[{$userFullName},<br />
-<br />
-Seu cadastro foi realizado com sucesso na editora {$contextName}, mas é necessário validar seu e-mail antes de poder acessar o sistema. Para isto, basta seguir o link:<br />
-<br />
-{$activateUrl}<br />
-<br />
-Atenciosamente,<br />
-{$principalContactSignature}]]></body>
-		<description>Esta mensagem é enviada a  novos usuários cadastrados, como boas-vindas e permitir a validação do cadastro.</description>
+		<subject>{translate key="emails.userValidate.subject"}</subject>
+		<body>{translate key="emails.userValidate.body"}</body>
+		<description>{translate key="emails.userValidate.description"}</description>
 	</email_text>
 	<email_text key="REVIEWER_REGISTER">
-		<subject>Cadastro como avaliador da editora {$contextName}</subject>
-		<body><![CDATA[Por sua vasta experiência e conhecimento, tomamos a liberdade de cadastrá-lo como avaliador na base de dados da editora {$contextName}. Isto não implica, de forma alguma, em qualquer compromisso de sua parte, apenas nos permite contactá-lo para encaminhar possíveis avaliações. Ao ser convidado para realizar uma avaliação, terá a oportunidade de ler o título e resumo do trabalho, bem como indicar se aceita ou não o convite. Solicite a qualquer tempo a remoção do seu nome de nossa base de avaliadores.<br />
-<br />
-A seguir, informamos seu login e sua senha, usados em todas as atividades editoriais na editora. Use-os para atualizar seu perfil, por exemplo, incluindo a área de interesse para avaliação.<br />
-<br />
-Login: {$username}<br />
-Senha: {$password}<br />
-<br />
-Atenciosamente,<br />
-{$principalContactSignature}]]></body>
-		<description>Esta mensagem é enviada a novos usuários cadastrados, como boas-vindas e oferecendo o registro de seus dados de acesso.</description>
+		<subject>{translate key="emails.reviewerRegister.subject"}</subject>
+		<body>{translate key="emails.reviewerRegister.body"}</body>
+		<description>{translate key="emails.reviewerRegister.description"}</description>
 	</email_text>
 	<email_text key="PUBLISH_NOTIFY">
-		<subject>Novo livro publicado</subject>
-		<body><![CDATA[Caros leitores,<br />
-<br />
-{$contextName} acabou de publicar seu último livro, disponível na página {$contextUrl}. Convidamos todos a avaliar o sumário nesta mensagem e em seguida visitar o site para ver as monografias e encontrar os itens de seu interesse.<br />
-<br />
-Agradecendo pelo seu apoio contínuo ao nosso trabalho,<br />
-{$editorialContactSignature}]]></body>
-		<description>Esta mensagem é enviada a leitores cadsatrados por meio do link "Notificar usuários" na página do editor. Notifica leitores de uma nova publicação, com um convite para acessar o site por meio do endereço informado.</description>
+		<subject>{translate key="emails.publishNotify.subject"}</subject>
+		<body>{translate key="emails.publishNotify.body"}</body>
+		<description>{translate key="emails.publishNotify.description"}</description>
 	</email_text>
 	<email_text key="SUBMISSION_ACK">
-		<subject>Agradecimento pela submissão</subject>
-		<body><![CDATA[{$authorName},<br />
-<br />
-Agradecmos a submissão do seu manuscrito, &quot;{$submissionTitle}&quot; à editora {$contextName}. Por meio de nosso sistema online de adminstração, poderá acompanhar o progresso através das estapas do processo editorial, acessando o sistema com as informações a seguir:<br />
-<br />
-Página do manuscrito: {$submissionUrl}<br />
-Login: {$authorUsername}<br />
-<br />
-Em caso de dúvidas, entre em contato. Agradecemos por considerar nossa editora como um veículo para seus trabalhos.<br />
-<br />
-{$editorialContactSignature}]]></body>
-		<description>Quando habilitada, esta mensagem é enviada automaticamente ao autor ao concluir o processo de submissão. Fornece informações sobre como acompanhar a submissão através do processo editorial, agradecendo o autor pela submissão.</description>
+		<subject>{translate key="emails.submissionAck.subject"}</subject>
+		<body>{translate key="emails.submissionAck.body"}</body>
+		<description>{translate key="emails.submissionAck.description"}</description>
 	</email_text>
 	<email_text key="SUBMISSION_ACK_NOT_USER">
-		<subject>Agradecimento pela submissão</subject>
-		<body><![CDATA[Olá,<br />
-<br />
-{$submitterName} submeteu o manuscrito &quot;{$submissionTitle}&quot; à editora {$contextName}. <br />
-<br />
-Em caso de dúvidas, entre em contato. Agradecemos por considerar nossa editora como um veículo para seus trabalhos.<br />
-<br />
-{$editorialContactSignature}]]></body>
-		<description>Quando habilitada, esta mensagem é enviada automaticamente aos coautores informados durante o processo de submissão, que não estão cadastrados no OMP.</description>
+		<subject>{translate key="emails.submissionAckNotUser.subject"}</subject>
+		<body>{translate key="emails.submissionAckNotUser.body"}</body>
+		<description>{translate key="emails.submissionAckNotUser.description"}</description>
 	</email_text>
 	<email_text key="SUBMISSION_ACK">
 		<subject>Agradecimento pela submissão</subject>
@@ -130,397 +70,148 @@ Em caso de dúvidas, entre em contato. Agradecemos por considerar nossa editora 
 		<description>Quando habilitada, esta mensagem é enviada automaticamente ao autor ao concluir o processo de submissão. Fornece informações sobre como acompanhar a submissão através do processo editorial, agradecendo o autor pela submissão.</description>
 	</email_text>
 	<email_text key="EDITOR_ASSIGN">
-		<subject>Tarefa editorial</subject>
-		<body><![CDATA[{$editorialContactName},<br />
-<br />
-A submissão &quot;{$submissionTitle}&quot; a editora {$contextName} está sob sua responsabilidade para acompanhamento durante o processo editorial, como editor.<br />
-<br />
-Página da submissão: {$submissionUrl}<br />
-Login: {$editorUsername}<br />
-<br />
-Atenciosamente,]]></body>
-		<description>Esta mensagem notifica o editor de série que um editor o incumbiu da tarefa de acompanhar o processo editoria de uma submissão. Fornece informações sobre a submissão e de acesso ao site da editora.</description>
+		<subject>{translate key="emails.editorAssign.subject"}</subject>
+		<body>{translate key="emails.editorAssign.body"}</body>
+		<description>{translate key="emails.editorAssign.description"}</description>
 	</email_text>
 	<email_text key="REVIEW_REQUEST">
-		<subject>Solicitação de avaliação</subject>
-		<body><![CDATA[{$reviewerName},<br />
-<br />
-{$messageToReviewer}<br />
-<br />
-Acesse o site da editora até {$responseDueDate} para indicar se está disponível ou não para assumir esta avaliação, bem como acessar a submissão e registrar sua avaliação e recomendação.<br />
-<br />
-O prazo de entrega da avaliação é {$reviewDueDate}.<br />
-<br />
-Página da submissão: {$submissionReviewUrl}<br />
-<br />
-Login: {$reviewerUserName}<br />
-<br />
-Agradecemos por considerar nossa solicitação.<br />
-<br />
-<br />
-Atenciosamente,<br />
-{$editorialContactSignature}<br />
-]]></body>
-<description>Esta mensagem do editor de série solicita ao avaliador que aceite ou não avaliar a submissão. Fornece informações sobre a submissão, como título e resumo, a data de entrega da avaliação e como acessar a submissão. A mensagem é usada quando o processo de avaliação padrão é o definido no passo 2 da configuração da editora (Caso contrário, veja REVIEW_REQUEST_ATTACHED).</description>
+		<subject>{translate key="emails.reviewRequest.subject"}</subject>
+		<body>{translate key="emails.reviewRequest.body"}</body>
+		<description>{translate key="emails.reviewRequest.description"}</description>
 	</email_text>
 	<email_text key="REVIEW_REQUEST_ONECLICK">
-		<subject>Solicitação de avaliação</subject>
-		<body><![CDATA[{$reviewerName},<br />
-<br />
-Acreditamos que será um excelente avaliador para o manuscrito &quot;{$submissionTitle}&quot;, enviado à editora {$contextName}. O resumo da submissão está incluído na mensagem e esperamos que considere assumir esta importante tarefa para nós.<br />
-<br />
-Acesse o sistema até {$weekLaterDate} para indicar se aceitará ou não realizar a avaliação, bem como acessar a submissão e registrar sua avaliação e recomendação.<br />
-<br />
-O prazo de entrega da avaliação é {$reviewDueDate}.<br />
-<br />
-Página da submissão: {$submissionReviewUrl}<br />
-<br />
-Agradecemos por considerar nossa solicitação.<br />
-<br />
-{$editorialContactSignature}<br />
-<br />
-<br />
-<br />
-&quot;{$submissionTitle}&quot;<br />
-<br />
-{$abstractTermIfEnabled}<br />
-{$submissionAbstract}]]></body>
-		<description>Esta mensagem do editor de série solicita ao avaliador que aceite ou não avaliar a submissão. Fornece informações sobre a submissão, como título e resumo, a data de entrega da avaliação e como acessar a submissão. A mensagem é usada quando o processo de avaliação padrão é o definido no passo 2 da configuração da editora e o acesso rápido foi habilitado.</description>
+		<subject>{translate key="emails.reviewRequestOneclick.subject"}</subject>
+		<body>{translate key="emails.reviewRequestOneclick.body"}</body>
+		<description>{translate key="emails.reviewRequestOneclick.description"}</description>
 	</email_text>
 	<email_text key="REVIEW_REQUEST_ATTACHED">
-		<subject>Solicitação de avaliação</subject>
-		<body><![CDATA[{$reviewerName},<br />
-<br />
-Acreditamos que será um excelente avaliador para o manuscrito &quot;{$submissionTitle}&quot; e esperamos que considere assumir esta importante tarefa para nós. As diretrizes de avaliação da editora estão em apenso e a submissão está em anexo à mensagemo. Sua avlaiação e sua recomendação devem ser encaminhados a este endereço até {$reviewDueDate}.<br />
-<br />
-Por favor responda a esta mensagem até {$weekLaterDate} se está disponível ou não para realizar a avaliação.<br />
-<br />
-Agradecemos por considerar nossa solicitação.<br />
-<br />
-{$editorialContactSignature}<br />
-<br />
-<br />
-Diretrizes para avaliação<br />
-<br />
-{$reviewGuidelines}<br />
-]]></body>
-		<description>Esta mensagem do editor de série solicita ao avaliador que aceite ou não avaliar a submissão. Inclui a submissão como anexo. Esta mensagem é usada quando o processo de avaliação via e-mail com anexo é o escolhido no passo 2 da configuração da editora (Caso contrário, veja REVIEW_REQUEST.)</description>
+		<subject>{translate key="emails.reviewRequestAttached.subject"}</subject>
+		<body>{translate key="emails.reviewRequestAttached.body"}</body>
+		<description>{translate key="emails.reviewRequestAttached.description"}</description>
 	</email_text>
 	<email_text key="REVIEW_CANCEL">
-		<subject>Solicitação de avaliação cancelada</subject>
-		<body><![CDATA[{$reviewerName},<br />
-<br />
-Decidimos neste momento cancelar nossa solicitação de avaliação da submissão &quot;{$submissionTitle}&quot; à editora {$contextName}. Lamentamos qualquer inconveniente que isto possa causar e esperamos que possamos solicitar novamente sua ajuda no futuro.<br />
-<br />
-Em caso de dúvidas, entre em contato.]]></body>
-		<description>Esta mensagem é envidad pelo editor de série ao avaliador que possui uma avaliação em progresso, notificando-o de que a avaliação foi cancelada.</description>
+		<subject>{translate key="emails.reviewCancel.subject"}</subject>
+		<body>{translate key="emails.reviewCancel.body"}</body>
+		<description>{translate key="emails.reviewCancel.description"}</description>
 	</email_text>
 	<email_text key="REVIEW_CONFIRM">
-		<subject>Disponível para avaliação</subject>
-		<body><![CDATA[Editores,<br />
-<br />
-Estou disponível e aceito realizar a avaliação da submissão &quot;{$submissionTitle}&quot;, enviado à editora {$contextName}. Agradeço por considerar meu perfil para avaliação, e planejo concluir a avaliação até {$reviewDueDate}, se não antes.<br />
-<br />
-{$reviewerName}]]></body>
-		<description>Esta mensagem é enviada pelo avaliador em resposta à solicitação do editor de série pela solicitação de avaliação, notificando de sua disponibilidade e aceitação de realizar a avaliação até a data de entrega.</description>
+		<subject>{translate key="emails.reviewConfirm.subject"}</subject>
+		<body>{translate key="emails.reviewConfirm.body"}</body>
+		<description>{translate key="emails.reviewConfirm.description"}</description>
 	</email_text>
 	<email_text key="REVIEW_DECLINE">
-		<subject>Indisponível para avaliação</subject>
-		<body><![CDATA[Editores,<br />
-<br />
-Lamento informar que não estou disponível neste momento para avaliar a submissão &quot;{$submissionTitle}&quot;, enviada à editora {$contextName}. Agradeço por considerar meu perfil, e sinta-se à vontade para entrar em contato novamente em oportunidade futura.<br />
-<br />
-{$reviewerName}]]></body>
-		<description>Esta mensagem é enviada pelo avaliador em resposta à solicitação do editor de série pela solicitação de avaliação, notificando de sua disponibilidade e recusando realizar a avaliação.</description>
+		<subject>{translate key="emails.reviewDecline.subject"}</subject>
+		<body>{translate key="emails.reviewDecline.body"}</body>
+		<description>{translate key="emails.reviewDecline.description"}</description>
 	</email_text>
 	<email_text key="REVIEW_ACK">
-		<subject>Agradecimento pela avaliação</subject>
-		<body><![CDATA[{$reviewerName},<br />
-<br />
-Agradecmos por concluir a avaliação da submissão &quot;{$submissionTitle}&quot; à editora {$contextName}. Sua contribuição é essencial para a qualidade do trabalho publicado por esta editora.]]></body>
-		<description>Esta mensagem é enviada pelo editor de série confirmando o recebimento da avaliação e agradecendo o avaliador por sua contribuição.</description>
+		<subject>{translate key="emails.reviewAck.subject"}</subject>
+		<body>{translate key="emails.reviewAck.body"}</body>
+		<description>{translate key="emails.reviewAck.description"}</description>
 	</email_text>
 	<email_text key="REVIEW_REMIND">
-		<subject>Avaliação pendente</subject>
-		<body><![CDATA[{$reviewerName},<br />
-<br />
-Este é apenas um lembrete sobre nossa solicitação de avaliar a submissão &quot;{$submissionTitle}&quot;, enviada à editora {$contextName}. Esperamos que possa concluí-la até {$reviewDueDate}, e agradeceríamos muito recebê-la assim que estiver concluída.<br />
-<br />
-Caso não tenha seu login ou senha de acesso ao sistema, use o endereço a seguir para redefinir sua senha (que será encaminhada junto com seu login). {$passwordResetUrl}<br />
-<br />
-Página da submissão: {$submissionReviewUrl}<br />
-<br />
-Login: {$reviewerUserName}<br />
-<br />
-Confirme sua disponibilidade em concluir esta contribuição vital aos trabalhos da editora. Aguardamos seu contato.<br />
-<br />
-{$editorialContactSignature}]]></body>
-		<description>Esta mensagem é enviada pelo editor de série lembrando o avaliador de avaliação pendente.</description>
+		<subject>{translate key="emails.reviewRemind.subject"}</subject>
+		<body>{translate key="emails.reviewRemind.body"}</body>
+		<description>{translate key="emails.reviewRemind.description"}</description>
 	</email_text>
 	<email_text key="REVIEW_REMIND_ONECLICK">
-		<subject>Lembrete de avaliação pendente</subject>
-		<body><![CDATA[{$reviewerName},<br />
-<br />
-Este é apenas um lembrete sobre nossa solicitação de avaliar a submissão &quot;{$submissionTitle}&quot;, enviada à editora {$contextName}. Esperamos que possa concluí-la até {$reviewDueDate}, e agradeceríamos muito recebê-la assim que estiver concluída.<br />
-<br />
-Página da submissão: {$submissionReviewUrl}<br />
-<br />
-Confirme sua disponibilidade em concluir esta contribuição vital aos trabalhos da editora. Aguardamos seu contato.<br />
-<br />
-{$editorialContactSignature}]]></body>
-		<description>Esta mensagem é enviada pelo editor de série lembrando o avaliador de avaliação pendente.</description>
+		<subject>{translate key="emails.reviewRemindOneclick.subject"}</subject>
+		<body>{translate key="emails.reviewRemindOneclick.body"}</body>
+		<description>{translate key="emails.reviewRemindOneclick.description"}</description>
 	</email_text>
 	<email_text key="REVIEW_REMIND_AUTO">
-		<subject>Avaliação pendente - Lembrete automático</subject>
-		<body><![CDATA[{$reviewerName},<br />
-<br />
-Este é apenas um lembrete de nossa solicitação de avaliar a submissão &quot;{$submissionTitle}&quot;, enviada à editora {$contextName}. Esperamos que possa concluí-la até {$reviewDueDate}. Esta mensagem é gerada e enviada automaticamente passado o prazo de entrega. Ainda assim, agradeceríamos recebê-la assim que estiver concluída<br />
-<br />
-Caso não tenha seu login ou senha de acesso ao sistema, use o endereço a seguir para redefinir sua senha (que será encaminhada junto com seu login). {$passwordResetUrl}<br />
-<br />
-Página da submissão: {$submissionReviewUrl}<br />
-<br />
-Confirme sua disponibilidade em concluir esta contribuição vital aos trabalhos da editora. Aguardamos seu contato.<br />
-<br />
-{$editorialContactSignature}]]></body>
-		<description>Esta mensagem é enviada automaticamente ao avaliador quando a data de entrega da avaliação passou (veja Opções de avaliação, no passo 2 de configuração da editora) e o acesso rápido está desabilitado. Tarefas agendadas devem estar habilitadas e configuradas (veja o arquivo de configuração do site).</description>
+		<subject>{translate key="emails.reviewRemindAuto.subject"}</subject>
+		<body>{translate key="emails.reviewRemindAuto.body"}</body>
+		<description>{translate key="emails.reviewRemindAuto.description"}</description>
 	</email_text>
 	<email_text key="REVIEW_REMIND_AUTO_ONECLICK">
-		<subject>Avaliação pendente - Lembrete automático</subject>
-		<body><![CDATA[{$reviewerName},<br />
-<br />
-Este é apenas um lembrete de nossa solicitação de avaliar a submissão &quot;{$submissionTitle}&quot;, enviada à editora {$contextName}. Esperamos que possa concluí-la até {$reviewDueDate}. Esta mensagem é gerada e enviada automaticamente passado o prazo de entrega. Ainda assim, agradeceríamos recebê-la assim que estiver concluída.<br />
-<br />
-Página da submissão: {$submissionReviewUrl}<br />
-<br />
-Confirme sua disponibilidade em concluir esta contribuição vital aos trabalhos da editora. Aguardamos seu contato.<br />
-<br />
-{$editorialContactSignature}]]></body>
-		<description>Esta mensagem é enviada automaticamente ao avaliador quando a data de entrega da avaliação passou (veja Opções de avaliação, no passo 2 de configuração da editora) e o acesso rápido está habilitado. Tarefas agendadas devem estar habilitadas e configuradas (veja o arquivo de configuração do site).</description>
+		<subject>{translate key="emails.reviewRemindAutoOneclick.subject"}</subject>
+		<body>{translate key="emails.reviewRemindAutoOneclick.body"}</body>
+		<description>{translate key="emails.reviewRemindAutoOneclick.description"}</description>
 	</email_text>
 	<email_text key="EDITOR_DECISION_ACCEPT">
-		<subject>Decisão editorial</subject>
-		<body><![CDATA[{$authorName},<br />
-<br />
-A decisão editorial sobre a submissão à editora {$contextName}, &quot;{$submissionTitle}&quot;, foi tomada.<br />
-<br />
-A decisão é:<br />
-<br />
-Página do manuscrito: {$submissionUrl}]]></body>
-		<description>Esta mensagem é enviada pelo editor ou editor de série ao autor, notificando-o da decisão final sobre a submissão.</description>
+		<subject>{translate key="emails.editorDecisionAccept.subject"}</subject>
+		<body>{translate key="emails.editorDecisionAccept.body"}</body>
+		<description>{translate key="emails.editorDecisionAccept.description"}</description>
 	</email_text>
 	<email_text key="EDITOR_DECISION_SEND_TO_EXTERNAL">
-		<subject>Decisão editorial</subject>
-		<body><![CDATA[{$authorName},<br />
-<br />
-A decisão editorial sobre a submissão à editora {$contextName}, &quot;{$submissionTitle}&quot;, foi tomada.<br />
-<br />
-A decisão é:<br />
-<br />
-Página do manuscrito: {$submissionUrl}]]></body>
-		<description>Esta mensagem é enviada pelo editor ou editor de série ao autor, notificando-o da decisão de enviar o trabalho para avaliação externa.</description>
+		<subject>{translate key="emails.editorDecisionSendToExternal.subject"}</subject>
+		<body>{translate key="emails.editorDecisionSendToExternal.body"}</body>
+		<description>{translate key="emails.editorDecisionSendToExternal.description"}</description>
 	</email_text>
 	<email_text key="EDITOR_DECISION_SEND_TO_PRODUCTION">
-		<subject>Decisão editorial</subject>
-		<body><![CDATA[{$authorName},<br />
-<br />
-A edição do manuscrito &quot;{$submissionTitle}&quot; foi concluída. O trabalho será enviado à produção.<br />
-<br />
-Página do manuscrito: {$submissionUrl}]]></body>
-		<description>Esta mensagem é enviada pelo editor ou editor de série ao autor, notificando-o do envio da submissão para produção.</description>
+		<subject>{translate key="emails.editorDecisionSendToProduction.subject"}</subject>
+		<body>{translate key="emails.editorDecisionSendToProduction.body"}</body>
+		<description>{translate key="emails.editorDecisionSendToProduction.description"}</description>
 	</email_text>
 	<email_text key="EDITOR_DECISION_REVISIONS">
-		<subject>Decisão editorial</subject>
-		<body><![CDATA[{$authorName},<br />
-<br />
-A decisão editorial sobre a submissão à editora {$contextName}, &quot;{$submissionTitle}&quot;, foi tomada.<br />
-<br />
-A decisão é:<br />
-<br />
-Página do manuscrito: {$submissionUrl}]]></body>
-		<description>Esta mensagem é enviada pelo editor ou editor de série ao autor, notificando-o da decisão final sobre a submissão.</description>
+		<subject>{translate key="emails.editorDecisionRevisions.subject"}</subject>
+		<body>{translate key="emails.editorDecisionRevisions.body"}</body>
+		<description>{translate key="emails.editorDecisionRevisions.description"}</description>
 	</email_text>
 	<email_text key="EDITOR_DECISION_RESUBMIT">
-		<subject>Decisão editorial</subject>
-		<body><![CDATA[{$authorName},<br />
-<br />
-A decisão editorial sobre a submissão à editora {$contextName}, &quot;{$submissionTitle}&quot;, foi tomada.<br />
-<br />
-A decisão é:<br />
-<br />
-Página do manuscrito: {$submissionUrl}]]></body>
-		<description>Esta mensagem é enviada pelo editor ou editor de série ao autor, notificando-o da decisão final sobre a submissão.</description>
+		<subject>{translate key="emails.editorDecisionResubmit.subject"}</subject>
+		<body>{translate key="emails.editorDecisionResubmit.body"}</body>
+		<description>{translate key="emails.editorDecisionResubmit.description"}</description>
 	</email_text>
 	<email_text key="EDITOR_DECISION_DECLINE">
-		<subject>Decisão editorial</subject>
-		<body><![CDATA[{$authorName},<br />
-<br />
-A decisão editorial sobre a submissão à editora {$contextName}, &quot;{$submissionTitle}&quot;, foi tomada.<br />
-<br />
-A decisão é:<br />
-<br />
-Página do manuscrito: {$submissionUrl}]]></body>
-		<description>Esta mensagem é enviada pelo editor ou editor de série ao autor, notificando-o da decisão final sobre a submissão.</description>
+		<subject>{translate key="emails.editorDecisionDecline.subject"}</subject>
+		<body>{translate key="emails.editorDecisionDecline.body"}</body>
+		<description>{translate key="emails.editorDecisionDecline.description"}</description>
 	</email_text>
 	<email_text key="COPYEDIT_REQUEST">
-		<subject>Solicitação de edição de texto</subject>
-		<body><![CDATA[{$participantName},<br />
-<br />
-Solicito realizar a edição de texto da submissão &quot;{$submissionTitle}&quot; à editora {$contextName}, conforme os seguintes passos:<br />
-1. Acesse a página da submissão abaixo.<br />
-2. Acesse o sistema e baixe o arquivo disponível no passo 1.<br />
-3. Consulte as instruções para edição de texto disponíveis na página.<br />
-4. Abra o arquivo baixado e faça as edições, enquanto inclui perguntas ao autor conforme a necessidade.<br />
-5. Salve o arquivo editado e envie-o ao passo 1 da edição de texto.<br />
-6. Envie a mensagem CONCLUÍDA ao editor.<br />
-<br />
-Página da editora {$contextName}: {$contextUrl}<br />
-Página da submissão: {$submissionUrl}<br />
-Login: {$participantUsername}]]></body>
-		<description>Esta mensagem é enviada pelo editor de série ao editor de texto da submissão, solicitando o início da edição de texto. Fornece informações sobre a submissão e como acessá-la.</description>
+		<subject>{translate key="emails.copyeditRequest.subject"}</subject>
+		<body>{translate key="emails.copyeditRequest.body"}</body>
+		<description>{translate key="emails.copyeditRequest.description"}</description>
 	</email_text>
 	<email_text key="LAYOUT_REQUEST">
-		<subject>Solicitação de composição</subject>
-		<body><![CDATA[{$participantName},<br />
-<br />
-A submissão &quot;{$submissionTitle}&quot;, enviada à editora {$contextName}, precisa agora ser transformada em composição final conforme os seguintes passos:<br />
-1. Acesse a página da submissão abaixo.<br />
-2. Acesse o sistema e use o arquivo de versão de layout disponível para produzir a composição de acordo com esse padrão.<br />
-3. Envie a mensagem CONCLUÍDA ao editor.<br />
-<br />
-Página da editora {$contextName}: {$contextUrl}<br />
-Página da submissão: {$submissionUrl}<br />
-Login: {$participantUsername}<br />
-<br />
-Caso não tenha disponibilidade para assumir esta tarefa no momento, ou em caso de dúvidas, entre em contato. Agradecemos sua contribuição aos trabalhos da editora.]]></body>
-		<description>Esta mensagem é enviada pelo editor de série ao editor de layout, solicitando a produção de uma composição da submissão. Fornece instruções sobre a submissão e como acessá-la.</description>
+		<subject>{translate key="emails.layoutRequest.subject"}</subject>
+		<body>{translate key="emails.layoutRequest.body"}</body>
+		<description>{translate key="emails.layoutRequest.description"}</description>
 	</email_text>
 	<email_text key="LAYOUT_COMPLETE">
-		<subject>Composição de layout concluída</subject>
-		<body><![CDATA[{$editorialContactName},<br />
-<br />
-As composições solicitadas para o manuscrito &quot;{$submissionTitle}&quot;, enviado à editora {$contextName}, estão prontas para leitura de provas.<br />
-<br />
-Em caso de dúvidas, entre em contato.<br />
-<br />
-{$signatureFullName}]]></body>
-		<description>Esta mensagem é enviada pelo editor de layout ao editor de série, notificando-o da conclusão da criação das composições.</description>
+		<subject>{translate key="emails.layoutComplete.subject"}</subject>
+		<body>{translate key="emails.layoutComplete.body"}</body>
+		<description>{translate key="emails.layoutComplete.description"}</description>
 	</email_text>
 	<email_text key="INDEX_REQUEST">
-		<subject>Solicitação de índice</subject>
-		<body><![CDATA[{$participantName},<br />
-<br />
-A submissão &quot;{$submissionTitle}&quot;, enviada à editora {$contextName}, precisa da produção de índices conforme os seguintes passos:<br />
-1. Acesse a página da submissão abaixo.<br />
-2. Acesse o sistema e use o arquivo de provas de página para criar composições conforme o padrão.<br />
-3. Envie a mensagem CONCLUÍDA ao editor.<br />
-<br />
-Página da editora {$contextName}: {$contextUrl}<br />
-Página da submissão: {$submissionUrl}<br />
-Login: {$participantUsername}<br />
-<br />
-Caso não tenha disponibilidade para assumir esta tarefa no momento, ou em caso de dúvidas, entre em contato. Agradecemos sua contribuição aos trabalhos da editora.<br />
-<br />
-{$editorialContactSignature}]]></body>
-		<description>Esta mensagem é enviada pelo editor de série ao indexador, notificando-o de que é necessário produzir os índices de uma submissão. Fornece instruções sobre a submissão e como acessá-la.</description>
+		<subject>{translate key="emails.indexRequest.subject"}</subject>
+		<body>{translate key="emails.indexRequest.body"}</body>
+		<description>{translate key="emails.indexRequest.description"}</description>
 	</email_text>
 	<email_text key="INDEX_COMPLETE">
-		<subject>Composição de índices concluída</subject>
-		<body><![CDATA[{$editorialContactName},<br />
-<br />
-A composição dos índices solicitados para o manuscrito &quot;{$submissionTitle}&quot;, enviado à editora {$contextName}, está concluída e pronta para leitura de provas.<br />
-<br />
-Em caso de dúvidas, entre em contato.<br />
-<br />
-{$signatureFullName}]]></body>
-		<description>Esta mensagem é enviada pelo indexador ao editor de série, notificando da criação dos índices para a submissão.</description>
+		<subject>{translate key="emails.indexComplete.subject"}</subject>
+		<body>{translate key="emails.indexComplete.body"}</body>
+		<description>{translate key="emails.indexComplete.description"}</description>
 	</email_text>
 	<email_text key="EMAIL_LINK">
-		<subject>Manuscrito de seu interesse</subject>
-		<body><![CDATA[Pensei que poderia se interessar em ler o &quot;{$submissionTitle}&quot;, escrito por {$authorName} e publicado no v.{$volume} n.{$number} {$year} da editora {$contextName}, disponível no endereço &quot;{$monographUrl}&quot;.]]></body>
-		<description>Este modelo de mensagem fornece aos leitores cadastrados a oportunidade e enviar a sua rede informações sobre a monografia que podem ser de interesse. Está disponível por meio das ferramentas de leitura, habilitadas pelo Gerenete da editora na página de administração das ferramentas de leitura.</description>
+		<subject>{translate key="emails.emailLink.subject"}</subject>
+		<body>{translate key="emails.emailLink.body"}</body>
+		<description>{translate key="emails.emailLink.description"}</description>
 	</email_text>
 		<email_text key="NOTIFY_SUBMISSION">
-		<subject>Notificação de submissão</subject>
-		<body><![CDATA[Você recebeu uma nova mensagem de {$sender} com relação à monografia &quot;{$submissionTitle}&quot; ({$monographDetailsUrl}):<br />
-<br />
-		{$message}<br />
-<br />
-		]]></body>
-		<description>Notificação de usuário enviada pela janela modal do centro de informações da submissão.</description>
+		<subject>{translate key="emails.notifySubmission.subject"}</subject>
+		<body>{translate key="emails.notifySubmission.body"}</body>
+		<description>{translate key="emails.notifySubmission.description"}</description>
 	</email_text>
 		<email_text key="NOTIFY_FILE">
-		<subject>Notificação de arquivo de submissão</subject>
-		<body><![CDATA[Você recebeu uma nova mensagem de {$sender} com relação ao arquivo &quot;{$fileName}&quot; da monografia &quot;{$submissionTitle}&quot; ({$monographDetailsUrl}):<br />
-<br />
-		{$message}<br />
-<br />
-		]]></body>
-		<description>Notificação de usuário enviada pela janela modal do centro de informações de arquivos submissão.</description>
+		<subject>{translate key="emails.notifyFile.subject"}</subject>
+		<body>{translate key="emails.notifyFile.body"}</body>
+		<description>{translate key="emails.notifyFile.description"}</description>
 	</email_text>
 	<email_text key="NOTIFICATION_CENTER_DEFAULT">
-		<subject>Uma mensagem sobre a editora {$contextName}</subject>
-		<body><![CDATA[Informe sua mensagem aqui.]]></body>
-		<description>Uma mensagem padrão em branco, a ser usada no centro de mensagens.</description>
+		<subject>{translate key="emails.notificationCenterDefault.subject"}</subject>
+		<body>{translate key="emails.notificationCenterDefault.body"}</body>
+		<description>{translate key="emails.notificationCenterDefault.description"}</description>
 	</email_text>
 	<email_text key="REVIEW_REQUEST_REMIND_AUTO">
-		<subject>Pedido de Avaliação de Manuscrito</subject>
-		<body><![CDATA[Caro(a) {$reviewerName},<br />
-Apenas relembrando gentilmente do nosso pedido para revisão
-da submissão &quot;{$submissionTitle},&quot; para {$contextName}.
-Nos esperamos ter sua resposta em {$responseDueDate},
-sendo que esse email foi gerado e enviado automaticamente devido ao tempo.
-<br />
-{$messageToReviewer}<br />
-<br />
-Por favor, entre no site da editora para indicar se aceita a revisão,
-bem como a submissão e os registros de revisão e recomendação.<br />
-<br />
-A revisão até: {$reviewDueDate}.<br />
-<br />
-Endereço da Submissão: <a
-href="{$submissionReviewUrl}">{$submissionReviewUrl}</a><br />
-<br />
-Usuário: {$reviewerUserName}<br />
-<br />
-Obrigado por considerar o pedido.<br />
-<br />
-<br />
-Attenciosamente,<br />
-{$editorialContactSignature}<br />]]></body>
-		<description><![CDATA[Este Email é automaticamente enviado quando o revisor é confirmado devido ao tempo (veja a opção de revisores sobre as configurações > Fluxo de submissão  > Revisão) e o botão de acesso ao revisor fica desativado. tarefas programadas devem ser ativadas e configuradas (veja o site de configuração)]]></description>
+		<subject>{translate key="emails.reviewRequestRemindAuto.subject"}</subject>
+		<body>{translate key="emails.reviewRequestRemindAuto.body"}</body>
+		<description>{translate key="emails.reviewRequestRemindAuto.description"}</description>
 	</email_text>
 	<email_text key="REVIEW_REQUEST_REMIND_AUTO_ONECLICK">
-		<subject>Pedido de Avaliação de Manuscrito</subject>
-		<body><![CDATA[{$reviewerName}:<br />
-Apenas relembrando gentilmente do nosso pedido para revisão
-da submissão &quot;{$submissionTitle},&quot; para {$contextName}.
-Nos esperamos ter sua resposta em {$responseDueDate},
-sendo que esse email foi gerado e enviado automaticamente devido ao tempo.
-<br />
-Acreditamos que você é um excelente avaliador para o manuscrito.
-O resumo da submissão está inserido abaixo e esperamos que considere aceitar essa importante tarefa para nos.
-
-<br />
-<br />
-Por favor, entre no site da editora para indicar se aceita a revisão,
-bem como a submissão e os registros de revisão e recomendação.<br />
-<br />
-A revisão até: {$reviewDueDate}.<br />
-<br />
-Endereço da Submissão: <a
-href="{$submissionReviewUrl}">{$submissionReviewUrl}</a><br />
-<br />
-Obrigado por considerar o pedido. <br />
-<br />
-{$editorialContactSignature}<br />
-<br />
-<br />
-<br />
-&quot;{$submissionTitle}&quot;<br />
-<br />
-{$abstractTermIfEnabled}<br />
-{$submissionAbstract}]]></body>
-		<description><![CDATA[Este Email é automaticamente enviado quando o revisor é confirmado devido ao tempo (veja a opção de revisores sobre as configurações > Fluxo de submissão  > Revisão) e o botão de acesso ao revisor fica desativado. tarefas programadas devem ser ativadas e configuradas (veja o site de configuração)]]></description>
+		<subject>{translate key="emails.reviewRequestRemindAutoOneclick.subject"}</subject>
+		<body>{translate key="emails.reviewRequestRemindAutoOneclick.body"}</body>
+		<description>{translate key="emails.reviewRequestRemindAutoOneclick.description"}</description>
 	</email_text>
 </email_texts>

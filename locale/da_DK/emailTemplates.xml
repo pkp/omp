@@ -11,511 +11,193 @@
   -->
 <email_texts locale="da_DK">
 	<email_text key="USER_REGISTER">
-		<subject>Registrering hos forlag</subject>
-		<body><![CDATA[{$userFullName}<br />
-<br />
-Du er nu blevet registreret som bruger med {$contextName}. Vi har inkluderet dit brugernavn og din adgangskode i denne e-mail. Dette skal bruges i forbindelse med arbejdet omkring forlagets hjemmeside. På ethvert tidspunkt kan du bede om at blive fjernet fra listen over brugere ved at kontakte mig.<br />
-<br />
-Brugernavn: {$username}<br />
-Password: {$password}<br />
-<br />
-Mange tak,<br />
-{$principalContactSignature}]]></body>
-		<description>Denne e-mail sendes til ny-registrerede brugere for at byde dem velkommen til systemet og give dem deres brugernavn og adgangskode.</description>
+		<subject>{translate key="emails.userRegister.subject"}</subject>
+		<body>{translate key="emails.userRegister.body"}</body>
+		<description>{translate key="emails.userRegister.description"}</description>
 	</email_text>
 	<email_text key="USER_VALIDATE">
-		<subject>Valider din konto</subject>
-		<body><![CDATA[{$userFullName}<br />
-<br />
-Du har oprettet en konto med {$contextName}, men inden du kan begynde at bruge den, skal du validere din e-mail-konto. For at gøre dette skal du blot følge nedenstående link:<br />
-<br />
-{$activateUrl}<br />
-<br />
-Mange tak,<br />
-{$principalContactSignature}]]></body>
-		<description>Denne e-mail sendes til ny-registrerede brugere for at byde dem velkommen til systemet og give dem deres brugernavn og adgangskode.</description>
+		<subject>{translate key="emails.userValidate.subject"}</subject>
+		<body>{translate key="emails.userValidate.body"}</body>
+		<description>{translate key="emails.userValidate.description"}</description>
 	</email_text>
 	<email_text key="COPYEDIT_REQUEST">
-		<subject>Forespørgsel om manuskriptredigering</subject>
-		<body><![CDATA[{$participantName}:<br />
-<br />
-Jeg vil bede dig om at foretage manuskriptredigering af &quot;{$submissionTitle}&quot; til {$contextName} ved at følge disse trin.<br />
-1. Klik på manuskriptets URL-adresse nedenfor.<br />
-2. Log ind på forlaget, og klik på filen, der vises i trin 1.<br />
-3. Gennemse manuskriptredigerings-vejledningen, der findes på hjemmesiden<br />
-4. Åbn den downloadede fil og foretag en manuskriptredigering, tilføj eventuelle forespørgsler til forfatteren.<br />
-5. Gem den manuskriptredigerede fil, og upload til Trin 1 under Manuskriptredigering<br />
-6. Send den FÆRDIGE e-mail til redaktøren.<br />
-<br />
-{$contextName} URL: {$contextUrl}<br />
-Submission URL: {$submissionUrl}<br />
-Username: {$participantUsername}<br />
-<br />
-{$editorialContactSignature}]]></body>
-		<description>Denne e-mail sendes af en serieredaktør til manuskriptredaktøren for at bede vedkommende om at påbegynde manuskriptredigeringsprocessen. Den indeholder oplysninger om manuskriptet og om, hvordan der oprettes adgang til det.</description>
+		<subject>{translate key="emails.copyeditRequest.subject"}</subject>
+		<body>{translate key="emails.copyeditRequest.body"}</body>
+		<description>{translate key="emails.copyeditRequest.description"}</description>
 	</email_text>
 	<email_text key="EDITOR_ASSIGN">
-		<subject>Redaktionel tildeling</subject>
-		<body><![CDATA[{$editorialContactName}:<br />
-<br />
-Som sektionsredaktør har du fået tildelt manuskriptet &quot;{$submissionTitle},&quot; der er sendt til {$contextName} og som du skal følge igennem den redaktionelle proces..<br />
-<br />
-Submission URL: {$submissionUrl}<br />
-Username: {$editorUsername}<br />
-<br />
-Mange tak<br />
-{$editorialContactSignature}]]></body>
-		<description>Denne e-mail underretter en serieredaktør om, at redaktøren har tildelt vedkommende opgaven med at følge et manuskript igennem redigeringsprocessen. Den indeholder oplysninger om manuskriptet og om, hvordan der oprettes adgang til tidsskriftets websted.</description>
+		<subject>{translate key="emails.editorAssign.subject"}</subject>
+		<body>{translate key="emails.editorAssign.body"}</body>
+		<description>{translate key="emails.editorAssign.description"}</description>
 	</email_text>
 	<email_text key="EDITOR_DECISION_ACCEPT">
-		<subject>Redaktørbeslutning</subject>
-		<body><![CDATA[{$authorName}:<br />
-<br />
-Vi er nået frem til en afgørelse vedrørende dit bidrag til {$contextName}, &quot;{$submissionTitle}&quot;.<br />
-<br />
-Vi har besluttet at:<br />
-<br />
-Manuscript URL: {$submissionUrl}<br />
-<br />
-{$editorialContactSignature}<br />]]></body>
-		<description>Denne e-mail fra redaktøren eller serieredaktøren til en forfatter er en meddelelse om den endelige afgørelse vedrørende deres bidrag.</description>
+		<subject>{translate key="emails.editorDecisionAccept.subject"}</subject>
+		<body>{translate key="emails.editorDecisionAccept.body"}</body>
+		<description>{translate key="emails.editorDecisionAccept.description"}</description>
 	</email_text>
 	<email_text key="EDITOR_DECISION_DECLINE">
-		<subject>Redaktørbeslutning</subject>
-		<body><![CDATA[{$authorName}:<br />
-<br />
-Vi er nået frem til en afgørelse vedrørende dit bidrag til {$contextName}, &quot;{$submissionTitle}&quot;.<br />
-<br />
-Vi har besluttet at:<br />
-<br />
-Manuscript URL: {$submissionUrl}<br />
-<br />
-{$editorialContactSignature}<br />]]></body>
-		<description>Denne e-mail fra redaktøren eller serieredaktøren til en forfatter er en meddelelse om den endelige afgørelse vedrørende deres bidrag.</description>
+		<subject>{translate key="emails.editorDecisionDecline.subject"}</subject>
+		<body>{translate key="emails.editorDecisionDecline.body"}</body>
+		<description>{translate key="emails.editorDecisionDecline.description"}</description>
 	</email_text>
 	<email_text key="EDITOR_DECISION_INITIAL_DECLINE">
-		<subject>Redaktørbeslutning</subject>
-		<body><![CDATA[{$authorName}:<br />
-<br />
-Vi er nået frem til en afgørelse vedrørende dit bidrag til {$contextName}, &quot;{$submissionTitle}&quot;.<br />
-<br />
-Vi har besluttet at: Afvise manuskript<br />
-<br />
-Manuscript URL: {$submissionUrl}<br />
-<br />
-{$editorialContactSignature}<br />]]></body>
-		<description>Denne e-mail sendes til forfatteren, hvis redaktøren afviser indsendelsen, før gennemgangsfasen</description>
+		<subject>{translate key="emails.editorDecisionInitialDecline.subject"}</subject>
+		<body>{translate key="emails.editorDecisionInitialDecline.body"}</body>
+		<description>{translate key="emails.editorDecisionInitialDecline.description"}</description>
 	</email_text>
 	<email_text key="EDITOR_DECISION_RESUBMIT">
-		<subject>Redaktørbeslutning</subject>
-		<body><![CDATA[{$authorName}:<br />
-<br />
-Vi er nået frem til en afgørelse vedrørende dit bidrag til {$contextName}, &quot;{$submissionTitle}&quot;.<br />
-<br />
-Vi har besluttet følgende:<br />
-<br />
-Manuscript URL: {$submissionUrl}<br />
-<br />
-{$editorialContactSignature}<br />]]></body>
-		<description>Denne e-mail fra redaktøren eller serieredaktøren til en forfatter er en meddelelse om den endelige afgørelse vedrørende deres bidrag.</description>
+		<subject>{translate key="emails.editorDecisionResubmit.subject"}</subject>
+		<body>{translate key="emails.editorDecisionResubmit.body"}</body>
+		<description>{translate key="emails.editorDecisionResubmit.description"}</description>
 	</email_text>
 	<email_text key="EDITOR_DECISION_REVISIONS">
-		<subject>Redaktørbeslutning</subject>
-		<body><![CDATA[{$authorName}:<br />
-<br />
-Vi er nået frem til en afgørelse vedrørende dit bidrag til {$contextName}, &quot;{$submissionTitle}&quot;.<br />
-<br />
-Vi har besluttet følgende:<br />
-<br />
-Manuscript URL: {$submissionUrl}<br />
-<br />
-{$editorialContactSignature}<br />]]></body>
-		<description>Denne e-mail fra redaktøren eller serieredaktøren til en forfatter er en meddelelse om den endelige afgørelse vedrørende deres bidrag.</description>
+		<subject>{translate key="emails.editorDecisionRevisions.subject"}</subject>
+		<body>{translate key="emails.editorDecisionRevisions.body"}</body>
+		<description>{translate key="emails.editorDecisionRevisions.description"}</description>
 	</email_text>
 	<email_text key="EDITOR_DECISION_SEND_TO_EXTERNAL">
-		<subject>Redaktørbeslutning</subject>
-		<body><![CDATA[{$authorName}:<br />
-<br />
-Vi er nået frem til en afgørelse vedrørende dit bidrag til {$contextName}, &quot;{$submissionTitle}&quot;.<br />
-<br />
-Vi har besluttet følgende:<br />
-<br />
-Manuscript URL: {$submissionUrl}<br />
-<br />
-{$editorialContactSignature}<br />]]></body>
-		<description>Denne e-mail fra redaktøren eller serieredaktøren til forfatteren meddeler at indsendelsen videresendes til ekstern bedømmelse.</description>
+		<subject>{translate key="emails.editorDecisionSendToExternal.subject"}</subject>
+		<body>{translate key="emails.editorDecisionSendToExternal.body"}</body>
+		<description>{translate key="emails.editorDecisionSendToExternal.description"}</description>
 	</email_text>
 	<email_text key="EDITOR_DECISION_SEND_TO_PRODUCTION">
-		<subject>Redaktørbeslutning</subject>
-		<body><![CDATA[{$authorName}:<br />
-<br />
-Vi har færdiggjort redigeringen af din indsendelse, &quot;{$submissionTitle},&quot; is complete.  Den vil nu blive sendt til publicering.<br />
-<br />
-Manuscript URL: {$submissionUrl}<br />
-<br />
-{$editorialContactSignature}<br />]]></body>
-		<description>Denne e-mail fra redaktøren eller sektionsredaktøren til forfatteren meddeler at indsendelsen nu sendes til publicering</description>
+		<subject>{translate key="emails.editorDecisionSendToProduction.subject"}</subject>
+		<body>{translate key="emails.editorDecisionSendToProduction.body"}</body>
+		<description>{translate key="emails.editorDecisionSendToProduction.description"}</description>
 	</email_text>
 	<email_text key="EDITOR_RECOMMENDATION">
-		<subject>Redaktøranbefaling</subject>
-		<body><![CDATA[{$editors}:<br />
-<br />
-Anbefalingen med hensyn til {$contextName}, &quot;{$submissionTitle}&quot; er: {$recommendation}<br />
-<br />
-{$editorialContactSignature}<br />]]></body>
-		<description>Denne e-mail fra den anbefalende redaktør eller sektionsredaktør til de beslutningstagende redaktører eller sekttionredaktører indeholder den endelige anbefaling vedrørende indsendelsen.</description>
+		<subject>{translate key="emails.editorRecommendation.subject"}</subject>
+		<body>{translate key="emails.editorRecommendation.body"}</body>
+		<description>{translate key="emails.editorRecommendation.description"}</description>
 	</email_text>
 	<email_text key="EMAIL_LINK">
-		<subject>Artikel, der muligvis har din interesse</subject>
-		<body><![CDATA[Jeg tænkte, at du måske ville være interesseret i at læse &quot;{$submissionTitle}&quot; af {$authorName} der er publiceret i Årg. {$volume}, Nummer {$number} ({$year}) i {$contextName} at &quot;{$monographUrl}&quot;.]]></body>
-		<description>Denne e-mail-skabelon giver en registreret læser mulighed for at sende oplysninger om en artikel til en person, der muligvis er interesseret. Den er tilgængelig via læseværktøjerne og skal aktiveres af tidsskriftschefen på siden Administration af læseværktøjer.</description>
+		<subject>{translate key="emails.emailLink.subject"}</subject>
+		<body>{translate key="emails.emailLink.body"}</body>
+		<description>{translate key="emails.emailLink.description"}</description>
 	</email_text>
 	<email_text key="INDEX_COMPLETE">
-		<subject>Register færdiggjort</subject>
-		<body><![CDATA[{$editorialContactName}:<br />
-<br />
-Der er nu udarbejdet indeks til manuskriptet &quot;{$submissionTitle},&quot; til {$contextName} og den er klar til korrekturlæsning.<br />
-<br />
-Hvis du har spørgsmål, er du velkommen til at kontakte mig.<br />
-<br />
-{$signatureFullName}]]></body>
-		<description>Denne e-mail fra kartotekføreren til serieredaktøren underretter serieredaktøren om, at udfærdigelsen af registeret er fuldført.</description>
+		<subject>{translate key="emails.indexComplete.subject"}</subject>
+		<body>{translate key="emails.indexComplete.body"}</body>
+		<description>{translate key="emails.indexComplete.description"}</description>
 	</email_text>
 	<email_text key="INDEX_REQUEST">
-		<subject>Forespørgsel om indeksering</subject>
-		<body><![CDATA[{$participantName}:<br />
-<br />
-Indsendelsen &quot;{$submissionTitle}&quot; til {$contextName} skal nu indekseres ved at følge disse trin.<br />
-1. Klik på manuskriptets URL-adresse nedenfor.<br />
-2. Hent filerne placeret under ‘Produktionsklare filer’ og formater dem til publikationsformater i overensstemmelse med tidsskriftets krav..<br />
-3. Send den FÆRDIGE e-mail til redaktøren<br />
-<br />
-{$contextName} URL: {$contextUrl}<br />
-Submission URL: {$submissionUrl}<br />
-Username: {$participantUsername}<br />
-<br />
-Hvis du ikke er i stand til at påtage dig dette arbejde på nuværende tidspunkt eller har spørgsmål, bedes du kontakte mig. Tak for dit bidrag til dette tidsskrift.<br />
-<br />
-{$editorialContactSignature}]]></body>
-		<description>Denne e-mail fra Serieredaktøren til Indexer'en giver besked om, at vedkommende har fået til opgave at oprette indekser til en indsendelse. Den giver information om indsendelsen og hvordan man får adgang til den.</description>
+		<subject>{translate key="emails.indexRequest.subject"}</subject>
+		<body>{translate key="emails.indexRequest.body"}</body>
+		<description>{translate key="emails.indexRequest.description"}</description>
 	</email_text>
 	<email_text key="LAYOUT_COMPLETE">
-		<subject>Publiceringsversion færdiggjort</subject>
-		<body><![CDATA[{$editorialContactName}:<br />
-<br />
-Der er nu indsat en publiceringsklar fil til manuskriptet &quot;{$submissionTitle},&quot; til {$contextName} og den er klar til korrekturlæsning.<br />
-<br />
-Hvis du har spørgsmål, er du velkommen til at kontakte mig.<br />
-<br />
-{$signatureFullName}]]></body>
-		<description>Denne e-mail fra layoutredaktøren til serieredaktøren underretter dem om, at layoutprocessen er fuldført.</description>
+		<subject>{translate key="emails.layoutComplete.subject"}</subject>
+		<body>{translate key="emails.layoutComplete.body"}</body>
+		<description>{translate key="emails.layoutComplete.description"}</description>
 	</email_text>
 	<email_text key="LAYOUT_REQUEST">
-		<subject>Forespørgsel om publiceringsversion</subject>
-		<body><![CDATA[{$participantName}:<br />
-<br />
-Indsendelsen &quot;{$submissionTitle}&quot; til {$contextName} skal nu gøres publiceringsklar ved at følge disse trin.<br />
-1. Klik på manuskriptets URL-adresse nedenfor.<br />
-2. Hent filerne placeret under ‘Produktionsklare filer’ og formater dem til publiceringsklare filer i overensstemmelse med tidsskriftets krav.<br />
-3. Send den FÆRDIGE e-mail til redaktøren.<br />
-<br />
-{$contextName} URL: {$contextUrl}<br />
-Submission URL: {$submissionUrl}<br />
-Username: {$participantUsername}<br />
-<br />
-Hvis du ikke er i stand til at påtage dig dette arbejde på nuværende tidspunkt eller har spørgsmål, bedes du kontakte mig.<br />
-Tak for dit bidrag til dette tidsskrift.<br />
-<br />
-{$editorialContactSignature}]]></body>
-		<description>enne e-mail fra serieredaktøren til layoutredaktøren underretter dem om, at han/hun har fået til opgave at foretage layoutredigering af et manuskript. Den indeholder oplysninger om manuskriptet og om, hvordan der oprettes adgang til det.</description>
+		<subject>{translate key="emails.layoutRequest.subject"}</subject>
+		<body>{translate key="emails.layoutRequest.body"}</body>
+		<description>{translate key="emails.layoutRequest.description"}</description>
 	</email_text>
 	<email_text key="NOTIFICATION">
-		<subject>Ny meddelelse fra {$siteTitle}</subject>
-		<body><![CDATA[Du har modtaget en ny meddelelse fra {$siteTitle}:<br />
-<br />
-{$notificationContents}<br />
-<br />
-Link: {$url}<br />
-<br />
-This is an automatically generated email; please do not reply to this message.<br />
-{$principalContactSignature}]]></body>
-		<description>Denne e-mail er blevet sendt til registrerede brugere, som har valgt at få tilsendt denne type meddelelser.</description>
+		<subject>{translate key="emails.notification.subject"}</subject>
+		<body>{translate key="emails.notification.body"}</body>
+		<description>{translate key="emails.notification.description"}</description>
 	</email_text>
 	<email_text key="NOTIFICATION_CENTER_DEFAULT">
-		<subject>Besked omhandlende {$contextName}</subject>
-		<body>Skriv venligst din besked.</body>
-		<description>Standardmeddelelsen (tom), der bliver brugt i Notification Center Message Listbuilder.</description>
+		<subject>{translate key="emails.notificationCenterDefault.subject"}</subject>
+		<body>{translate key="emails.notificationCenterDefault.body"}</body>
+		<description>{translate key="emails.notificationCenterDefault.description"}</description>
 	</email_text>
 	<email_text key="PASSWORD_RESET">
-		<subject>Nulstil adgangskode</subject>
-		<body><![CDATA[Din adgangskode er blevet nulstillet og kan benyttes på webstedet {$siteTitle}.<br />
-<br />
-Dit brugernavn: {$username}<br />
-Dit nye password: {$password}<br />
-<br />
-{$principalContactSignature}]]></body>
-		<description>Denne e-mail sendes til registrerede brugere, når de har nulstillet deres adgangskode, efter at de har fulgt den proces, der er beskrevet i e-mailen PASSWORD_RESET_CONFIRM.</description>
+		<subject>{translate key="emails.passwordReset.subject"}</subject>
+		<body>{translate key="emails.passwordReset.body"}</body>
+		<description>{translate key="emails.passwordReset.description"}</description>
 	</email_text>
 	<email_text key="PASSWORD_RESET_CONFIRM">
-		<subject>Bekræftelse af nulstilling af adgangskode</subject>
-		<body><![CDATA[Vi har modtaget en forespørgsel om at nulstille din adgangskode til webstedet {$siteTitle}.<br />
-<br />
-Hvis du ikke selv har sendt denne forespørgsel, skal du ignorere denne e-mail, og din adgangskode vil ikke blive ændret. Klik på nedenstående URL-adresse, hvis adgangskoden skal ændres.<br />
-<br />
-Nulstil min password: {$url}<br />
-<br />
-{$principalContactSignature}]]></body>
-		<description>Denne e-mail sendes til registrerede brugere, når de angiver, at de har glemt deres adgangskode eller ikke kan logge på. Den indeholder en URL-adresse, de kan følge for at nulstille deres adgangskode.</description>
+		<subject>{translate key="emails.passwordResetConfirm.subject"}</subject>
+		<body>{translate key="emails.passwordResetConfirm.body"}</body>
+		<description>{translate key="emails.passwordResetConfirm.description"}</description>
 	</email_text>
 	<email_text key="PUBLISH_NOTIFY">
-		<subject>Ny bog er blevet publiceret</subject>
-		<body><![CDATA[Læsere:<br />
-<br />
-{$contextName} har lige publiceret den seneste bog på {$contextUrl}. Vi inviterer dig til at gennemse indholdsfortegnelsen her og derefter besøge vores websted, hvor du kan gennemse monografer og andet, der har din interesse.<br />
-<br />
-Tak for din fortsatte interesse i vores arbejde. {$editorialContactSignature}]]></body>
-		<description>Denne e-mail sendes til registrerede læsere via linket "Underret brugere" på redaktørens brugerstartside. Den underretter læsere om en ny bog og inviterer dem til at besøge tidsskriftet på en angiven URL-adresse.</description>
+		<subject>{translate key="emails.publishNotify.subject"}</subject>
+		<body>{translate key="emails.publishNotify.body"}</body>
+		<description>{translate key="emails.publishNotify.description"}</description>
 	</email_text>
 	<email_text key="REVIEWER_REGISTER">
-		<subject>Registrering som bedømmer hos {$contextName}</subject>
-		<body><![CDATA[På baggrund af din ekspertise har vi taget den frihed at registrere dit navn i bedømmerdatabasen for {$contextName}. Dette stiller ikke krav om nogen form for engagement fra din side, men gør det blot muligt for os at kontakte dig med hensyn til en eventuelt bedømmelse af et manuskript. Hvis du inviteres til at foretage en bedømmelse, vil du have mulighed for at se titlen på og et resumé af det pågældende manuskript, og du vil altid kunne acceptere eller afvise invitationen. Du kan til enhver tid også bede om at få dit navn fjernet fra listen over bedømmere.<br />
-<br />
-Vi giver dig et brugernavn og en adgangskode, der skal bruges i forbindelse med alle interaktioner med tidsskriftet via tidsskriftets webside. Du kan f.eks. bede om at få opdateret din profil, herunder dine bedømmelsesinteresser.<br />
-<br />
-Brugernavn: {$username}<br />
-Password: {$password}<br />
-<br />
-Mange tak. <br />
-{$principalContactSignature}]]></body>
-		<description>Denne e-mail sendes til netop registrerede bedømmere for at byde dem velkommen til systemet og for at oplyse dem om deres brugernavn og adgangskode.</description>
+		<subject>{translate key="emails.reviewerRegister.subject"}</subject>
+		<body>{translate key="emails.reviewerRegister.body"}</body>
+		<description>{translate key="emails.reviewerRegister.description"}</description>
 	</email_text>
 	<email_text key="REVIEW_ACK">
-		<subject>Bekræftelse af bedømmelse af artikel</subject>
-		<body><![CDATA[{$reviewerName}:<br />
-<br />
-Tak, fordi du har fuldført bedømmelsen af manuskriptet &quot;{$submissionTitle}&quot; til {$contextName}. Vi påskønner dit bidrag til kvaliteten af de artikler, vi publicerer.<br />
-<br />
-{$editorialContactSignature}]]></body>
-		<description>Denne e-mail sendes af sektionsredaktøren for at bekræfte modtagelsen af en fuldført bedømmelse og takker bedømmeren for sit bidrag.</description>
+		<subject>{translate key="emails.reviewAck.subject"}</subject>
+		<body>{translate key="emails.reviewAck.body"}</body>
+		<description>{translate key="emails.reviewAck.description"}</description>
 	</email_text>
 	<email_text key="REVIEW_CANCEL">
-		<subject>Annullering af forespørgsel om bedømmelse</subject>
-		<body><![CDATA[{$reviewerName}:<br />
-<br />
-På nuværende tidspunkt har vi valgt at annullere vores forespørgsel til dig om at bedømme manuskriptet &quot;{$submissionTitle}&quot; til {$contextName}. Vi beklager den ulejlighed, dette eventuelt måtte forårsage, og vi håber, at vi må henvende os til dig i fremtiden og bede om din assistance i forbindelse med dette tidsskrifts bedømmelsesproces.<br />
-<br />
-Hvis du har spørgsmål, er du velkommen til at kontakte mig.<br />
-<br />
-{$editorialContactSignature}]]></body>
-		<description>Denne e-mail sendes af sektionsredaktøren til en bedømmer, som er ved at bedømme et manuskript, og underretter vedkommende om, at bedømmelsen er blevet annulleret.</description>
+		<subject>{translate key="emails.reviewCancel.subject"}</subject>
+		<body>{translate key="emails.reviewCancel.body"}</body>
+		<description>{translate key="emails.reviewCancel.description"}</description>
 	</email_text>
 	<email_text key="REVIEW_CONFIRM">
-		<subject>Kan foretage bedømmelse</subject>
-		<body><![CDATA[Redaktører:<br />
-<br />
-Jeg kan og er villig til at bedømme manuskriptet &quot;{$submissionTitle}&quot; til {$contextName}. Tak, fordi du tænkte på mig, og jeg planlægger at være færdig med bedømmelsen senest på forfaldsdatoen, {$reviewDueDate}, hvis ikke før.<br />
-<br />
-{$reviewerName}]]></body>
-		<description>Denne e-mail sendes af en bedømmer til sektionsredaktøren som svar på en bedømmelsesforespørgsel og underretter sektionsredaktøren om, at bedømmelsesforespørgslen er blevet accepteret, og at bedømmelsen vil være fuldført til den angivne dato.</description>
+		<subject>{translate key="emails.reviewConfirm.subject"}</subject>
+		<body>{translate key="emails.reviewConfirm.body"}</body>
+		<description>{translate key="emails.reviewConfirm.description"}</description>
 	</email_text>
 	<email_text key="REVIEW_DECLINE">
-		<subject>Kan ikke foretage bedømmelse</subject>
-		<body><![CDATA[Redaktører:<br />
-<br />
-Jeg beklager, at jeg på nuværende tidspunkt ikke kan bedømme manuskriptet &quot;{$submissionTitle}&quot; til {$contextName}. Tak, fordi du tænkte på mig, og du er altid velkommen til at kontakte mig en anden gang.<br />
-<br />
-{$reviewerName}]]></body>
-		<description>Denne e-mail sendes af en bedømmer til sektionsredaktøren som svar på en bedømmelsesforespørgsel og underretter sektionsredaktøren om, at bedømmelsesforespørgslen er blevet afvist.</description>
+		<subject>{translate key="emails.reviewDecline.subject"}</subject>
+		<body>{translate key="emails.reviewDecline.body"}</body>
+		<description>{translate key="emails.reviewDecline.description"}</description>
 	</email_text>
 	<email_text key="REVIEW_REMIND">
-		<subject>Påmindelse om bedømmelse af manuskript</subject>
-		<body><![CDATA[{$reviewerName}:<br />
-<br />
-Dette er blot for at minde dig om vores forespørgsel om din bedømmelse af manuskriptet &quot;{$submissionTitle}&quot; til {$contextName}. Vi havde håbet på at modtage bedømmelsen senest den {$reviewDueDate} og ser frem til at modtage den, så snart du er færdig med den.<br />
-<br />
-Hvis du ikke har dit brugernavn og dit password til tidsskriftets websted, kan du bruge dette link til at nulstille adgangskoden (som så vil blive sendt til dig via e-mail sammen med dit brugernavn). {$passwordResetUrl}<br />
-<br />
-Manuskriptets URL-adresse: {$submissionReviewUrl}<br />
-<br />
-Vi beder dig bekræfte, at du er i stand til at fuldføre dette vigtige bidrag til tidsskriftets arbejde. Jeg ser frem til at høre fra dig.<br />
-<br />
-{$editorialContactSignature}]]></body>
-		<description>Denne e-mail sendes af sektionsredaktøren til en bedømmer for at minde vedkommende om, at bedømmelsen skulle have været afleveret.</description>
+		<subject>{translate key="emails.reviewRemind.subject"}</subject>
+		<body>{translate key="emails.reviewRemind.body"}</body>
+		<description>{translate key="emails.reviewRemind.description"}</description>
 	</email_text>
 	<email_text key="REVIEW_REMIND_AUTO">
-		<subject>Automatisk påmindelse om bedømmelse af manuskript</subject>
-		<body><![CDATA[{$reviewerName}:<br />
-<br />
-Dette er blot for at minde dig om vores forespørgsel om din bedømmelse af manuskriptet &quot;{$submissionTitle}&quot; til {$contextName}. Vi havde håbet på at modtage bedømmelsen senest den {$reviewDueDate}, og denne e-mail er blevet automatisk genereret og sendt til dig, da den pågældende dato er overskredet. Vi ser stadig frem til at modtage den, så snart du er færdig med den.<br />
-<br />
-Hvis du ikke har dit brugernavn og password til tidsskriftets websted, kan du bruge dette link til at nulstille adgangskoden (som så vil blive sendt til dig via e-mail sammen med dit brugernavn). {$passwordResetUrl}<br />
-<br />
-Manuskriptets URL-adresse: {$submissionReviewUrl}<br />
-<br />
-Vi beder dig bekræfte, at du er i stand til at fuldføre dette vigtige bidrag til tidsskriftets arbejde. Jeg ser frem til at høre fra dig.<br />
-<br />
-{$editorialContactSignature}]]></body>
-		<description>Denne e-mail sendes automatisk, når en bedømmers forfaldsdato overskrides (se Bedømmelsesindstillinger under Konfiguration af tidsskrift, trin 2), og når adgang for bedømmere ved hjælp af ét klik er deaktiveret. Planlagte opgaver skal aktiveres og konfigureres (se webstedets konfigurationsfil).</description>
+		<subject>{translate key="emails.reviewRemindAuto.subject"}</subject>
+		<body>{translate key="emails.reviewRemindAuto.body"}</body>
+		<description>{translate key="emails.reviewRemindAuto.description"}</description>
 	</email_text>
 	<email_text key="REVIEW_REMIND_AUTO_ONECLICK">
-		<subject>Automatisk påmindelse om bedømmelse af manuskript</subject>
-		<body><![CDATA[{$reviewerName}:<br />
-<br />
-Dette er blot for at minde dig om vores forespørgsel om din bedømmelse af manuskriptet &quot;{$submissionTitle}&quot; til {$contextName}. Vi havde håbet på at modtage bedømmelsen senest den {$reviewDueDate}, og denne e-mail er blevet automatisk genereret og sendt til dig, da den pågældende dato er overskredet. Vi ser stadig frem til at modtage den, så snart du er færdig med den.<br />
-<br />
-Manuskriptets URL-adresse: {$submissionReviewUrl}<br />
-<br />
-Vi beder dig bekræfte, at du er i stand til at fuldføre dette vigtige bidrag til tidsskriftets arbejde. Jeg ser frem til at høre fra dig.<br />
-<br />
-{$editorialContactSignature}]]></body>
-		<description><![CDATA[Denne e-mail sendes automatisk, når en bedømmers forfaldsdato overskrides (se Bedømmelsesindstillinger under Indstillinger > Workflow > Bedømmelse), og når adgang for bedømmere ved hjælp af ét klik er aktiveret. Planlagte opgaver skal aktiveres og konfigureres (se webstedets konfigurationsfil).]]></description>
+		<subject>{translate key="emails.reviewRemindAutoOneclick.subject"}</subject>
+		<body>{translate key="emails.reviewRemindAutoOneclick.body"}</body>
+		<description>{translate key="emails.reviewRemindAutoOneclick.description"}</description>
 	</email_text>
 	<email_text key="REVIEW_REMIND_ONECLICK">
-		<subject>Påmindelse om bedømmelse af manuskript</subject>
-		<body><![CDATA[{$reviewerName}:<br />
-<br />
-Dette er blot for at minde dig om vores forespørgsel om din bedømmelse af manuskriptet &quot;{$submissionTitle}&quot; til {$contextName}. Vi havde håbet på at modtage bedømmelsen senest den {$reviewDueDate} og ser frem til at modtage den, så snart du er færdig med den.<br />
-<br />
-Manuskriptets URL-adresse: {$submissionReviewUrl}<br />
-<br />
-Vi beder dig bekræfte, at du er i stand til at fuldføre dette vigtige bidrag til tidsskriftets arbejde. Jeg ser frem til at høre fra dig.<br />
-<br />
-{$editorialContactSignature}]]></body>
-		<description>Denne e-mail sendes af serieredaktøren til en bedømmer for at minde vedkommende om, at bedømmelsen skulle have været afleveret.</description>
+		<subject>{translate key="emails.reviewRemindOneclick.subject"}</subject>
+		<body>{translate key="emails.reviewRemindOneclick.body"}</body>
+		<description>{translate key="emails.reviewRemindOneclick.description"}</description>
 	</email_text>
 	<email_text key="REVIEW_REQUEST">
-		<subject>Forespørgsel om bedømmelse af manuskript</subject>
-		<body><![CDATA[Kære {$reviewerName},<br />
-<br />
-{$messageToReviewer}<br />
-<br />
-Log venligst ind på forlagets websted ved {$ responseDueDate} for at tilkendegive, om du vil foretage bedømmelsen eller ikke, samt for at få adgang til indsendelsen og registrere din bedømmelse og anbefaling.<br />
-<br />
-Selve bedømmelsen skal afleveres senest den {$reviewDueDate}.<br />
-<br />
-Submission URL: {$submissionReviewUrl}<br />
-<br />
-Brugernavn: {$reviewerUserName}<br />
-<br />
-Tak for din overvejelse af denne forespørgsel.<br />
-<br />
-<br />
-Mange hilsner<br />
-{$editorialContactSignature}<br />]]></body>
-		<description>Denne e-mail fra serieredaktøren til en bedømmer anmoder bedømmeren om at acceptere eller afvise at bedømme et manuskript. Den indeholder oplysninger om manuskriptet, f.eks. titel og resumé, forfaldsdato for bedømmelse, samt hvordan der kan oprettes adgang til selve manuskriptet.</description>
+		<subject>{translate key="emails.reviewRequest.subject"}</subject>
+		<body>{translate key="emails.reviewRequest.body"}</body>
+		<description>{translate key="emails.reviewRequest.description"}</description>
 	</email_text>
 	<email_text key="REVIEW_REQUEST_ATTACHED">
-		<subject>Forespørgsel om bedømmelse af manuskript</subject>
-		<body><![CDATA[{$reviewerName}:<br />
-<br />
-Jeg tror, at du vil kunne være en fremragende bedømmer af manuskriptet &quot;{$submissionTitle}&quot;, og jeg beder dig om at overveje at påtage dig denne vigtige opgave for os. Dette forlags Retningslinjer for bedømmelser er tilføjet nedenfor, og manuskriptet er vedhæftet denne e-mail. Din bedømmelse af manuskriptet samt din anbefaling skal sendes til mig pr. e-mail senest den {$reviewDueDate}.<br />
-<br />
-Meld venligst tilbage via e-mail inden den {$weekLaterDate} , om du kan og er villig til at foretage bedømmelsen.<br />
-<br />
-Tak for din overvejelse af denne forespørgsel.<br />
-<br />
-{$editorialContactSignature}<br />
-<br />
-<br />
-Retningslinjer for bedømmelser<br />
-<br />
-{$reviewGuidelines}<br />]]></body>
-		<description>Denne e-mail sendes af serieredaktøren til en bedømmer og beder vedkommende om at acceptere eller afvise at bedømme et manuskript. Manuskriptet er vedhæftet denne e-mail. Denne meddelelse benyttes, hvis indstillingen for bedømmelsesproces, hvor manuskript er vedhæftet e-mail, er valgt</description>
+		<subject>{translate key="emails.reviewRequestAttached.subject"}</subject>
+		<body>{translate key="emails.reviewRequestAttached.body"}</body>
+		<description>{translate key="emails.reviewRequestAttached.description"}</description>
 	</email_text>
 	<email_text key="REVIEW_REQUEST_ONECLICK">
-		<subject>Forespørgsel om bedømmelse af manuskript</subject>
-		<body><![CDATA[{$reviewerName}:<br />
-<br />
-Jeg tror, at du vil være en fremragende bedømmer af manuskriptet &quot;{$submissionTitle}&quot;, der er blevet sendt til {$contextName}. Nedenfor finder du et resumé af manuskriptet, og jeg håber, at du vil overveje at påtage dig denne vigtige opgave for os.<br />
-<br />
-Log på tidsskriftets websted inden den {$weekLaterDate} for at angive, om du vil påtage dig bedømmelsen eller ej, samt for at få adgang til manuskriptet og registrere din bedømmelse og anbefaling.<br />
-<br />
-Selve bedømmelsen skal afleveres senest den {$reviewDueDate}.<br />
-<br />
-Manuskriptets URL-adresse: {$submissionReviewUrl}<br />
-<br />
-Tak for din overvejelse af denne forespørgsel.<br />
-<br />
-{$editorialContactSignature}<br />
-<br />
-<br />
-<br />
-&quot;{$submissionTitle}&quot;<br />
-<br />
-{$abstractTermIfEnabled}<br />
-{$submissionAbstract}]]></body>
-		<description><![CDATA[Denne e-mail fra serieredaktøren til en bedømmer anmoder bedømmeren om at acceptere eller afvise at bedømme et manuskript. Den indeholder oplysninger om manuskriptet, f.eks. titel og resumé, forfaldsdato for bedømmelse, samt hvordan der kan oprettes adgang til selve manuskriptet. Denne meddelelse benyttes, hvis indstillingen standardbedømmelsesproces er valgt under Indstillinger > Workflow > Bedømmelse og adgang for bedømmere ved hjælp af ét klik er aktiveret.]]></description>
+		<subject>{translate key="emails.reviewRequestOneclick.subject"}</subject>
+		<body>{translate key="emails.reviewRequestOneclick.body"}</body>
+		<description>{translate key="emails.reviewRequestOneclick.description"}</description>
 	</email_text>
 	<email_text key="REVIEW_REQUEST_REMIND_AUTO">
-		<subject>Forespørgsel om bedømmelse af manuskript</subject>
-		<body><![CDATA[Kære {$reviewerName}:<br />
-Dette er blot for at minde dig om vores forespørgsel om din bedømmelse af manuskriptet &quot;{$submissionTitle},&quot; for {$contextName}. Vi havde håbet på at modtage dit svar senest den {$responseDueDate}, og denne e-mail er blevet automatisk genereret og sendt til dig, da den pågældende dato er overskredet.
-<br />
-{$messageToReviewer}<br />
-<br />
-Log på tidsskriftets websted for at angive, om du vil påtage dig bedømmelsen eller ej, samt for at få adgang til manuskriptet og registrere din bedømmelse og anbefaling. 
-<br />
-Selve bedømmelsen skal afleveres senest den {$reviewDueDate}.<br />
-<br />
-Submission URL: {$submissionReviewUrl}<br />
-<br />
-Brugernavn: {$reviewerUserName}<br />
-<br />
-Tak for din overvejelse af denne forespørgsel.<br />
-<br />
-<br />
-MAnge hilsner<br />
-{$editorialContactSignature}<br />]]></body>
-		<description><![CDATA[Denne e-mail sendes automatisk når en bedømmers bekræftelsesdato er overskredet (se bedømmelsesindstillinger under Indstillinger > Workflow > Bedømmelse) og ’Aktiver adgang for bedømmere ved hjælp af ét klik’ er fravalgt. Tidsfrister og påmindelser skal være defineret.]]></description>
+		<subject>{translate key="emails.reviewRequestRemindAuto.subject"}</subject>
+		<body>{translate key="emails.reviewRequestRemindAuto.body"}</body>
+		<description>{translate key="emails.reviewRequestRemindAuto.description"}</description>
 	</email_text>
 	<email_text key="REVIEW_REQUEST_REMIND_AUTO_ONECLICK">
-		<subject>Forespørgsel om bedømmelse af manuskript</subject>
-		<body><![CDATA[{$reviewerName}:<br />
-Dette er blot for at minde dig om vores forespørgsel om din bedømmelse af manuskriptet &quot;{$submissionTitle},&quot; for {$contextName}. Vi havde håbet på at modtage dit svar senest den {$responseDueDate}, og denne e-mail er blevet automatisk genereret og sendt til dig, da den pågældende dato er overskredet.
-<br />
-Jeg tror, at du vil være en fremragende bedømmer af manuskriptet. Nedenfor finder du et resumé af manuskriptet, og jeg håber, at du vil overveje at påtage dig denne vigtige opgave for os.<br />
-<br />
-Log på tidsskriftets websted for at angive, om du vil påtage dig bedømmelsen eller ej, samt for at få adgang til manuskriptet og registrere din bedømmelse og anbefaling.<br />
-</br>
-Selve bedømmelsen skal afleveres senest den {$reviewDueDate}.<br />
-<br />
-Manuskriptets URL-adresse: {$submissionReviewUrl}<br />
-<br />
-Tak for din overvejelse af denne forespørgsel.<br />
-<br />
-{$editorialContactSignature}<br />
-<br />
-&quot;{$submissionTitle}&quot;<br />
-<br />
-<br />
-<br />
-{$abstractTermIfEnabled}<br />
-{$submissionAbstract}]]></body>
-		<description><![CDATA[Denne e-mail sendes automatisk når en bedømmers bekræftelsesdato er overskredet (se bedømmelsesindstillinger under Indstillinger > Workflow > Bedømmelse) og ’Aktiver adgang for bedømmere ved hjælp af ét klik’ er aktiveret. Tidsfrister og påmindelser skal være defineret.]]></description>
+		<subject>{translate key="emails.reviewRequestRemindAutoOneclick.subject"}</subject>
+		<body>{translate key="emails.reviewRequestRemindAutoOneclick.body"}</body>
+		<description>{translate key="emails.reviewRequestRemindAutoOneclick.description"}</description>
 	</email_text>
 	<email_text key="SUBMISSION_ACK">
-		<subject>Bekræftelse af manuskript</subject>
-		<body><![CDATA[{$authorName}:<br />
-<br />
-Tak, fordi du har fremsendt manuskriptet &quot;{$submissionTitle}&quot; til {$contextName}. Ved hjælp af det online-styringssystem, vi bruger, kan du følge manuskriptet igennem den redaktionelle proces ved at logge på tidsskriftets websted:<br />
-<br />
-Manuskriptets URL-adresse: {$submissionUrl}<br />
-Brugernavn: {$authorUsername}<br />
-<br />
-Hvis du har spørgsmål, er du velkommen til at kontakte mig. Tak, fordi du har valgt at publicere din artikel i dette tidsskrift.<br />
-</br>
-{$editorialContactSignature}]]></body>
-		<description>Når denne e-mail er aktiveret, sendes den automatisk til en forfatter, når vedkommende har fremsendt et manuskript til tidsskriftet. Den indeholder oplysninger om, hvordan forfatteren kan følge manuskriptet igennem processen, og den takker forfatteren for manuskriptet.</description>
+		<subject>{translate key="emails.submissionAck.subject"}</subject>
+		<body>{translate key="emails.submissionAck.body"}</body>
+		<description>{translate key="emails.submissionAck.description"}</description>
 	</email_text>
 	<email_text key="SUBMISSION_ACK_NOT_USER">
-		<subject>Indsendelsesbekræftelse</subject>
-		<body><![CDATA[Hej<br />
-<br />
-{$submitterName} har indsendt manuskriptet &quot;{$submissionTitle}&quot; til {$contextName}. <br />
-<br />
-Hvis du har spørgsmål, er du velkommen til at kontakte mig. Tak fordi du har valgt at publicere din artikel i dette tidsskrift.<br />
-<br />
-{$editorialContactSignature}]]></body>
-		<description>Når denne e-mail er aktiveret, sendes automatisk besked til de andre forfattere, der ikke er brugere inden for OMP, der er angivet under indsendelsesprocessen.</description>
+		<subject>{translate key="emails.submissionAckNotUser.subject"}</subject>
+		<body>{translate key="emails.submissionAckNotUser.body"}</body>
+		<description>{translate key="emails.submissionAckNotUser.description"}</description>
 	</email_text>
 </email_texts>

@@ -11,441 +11,183 @@
   -->
 <email_texts locale="el_GR">
 	<email_text key="NOTIFICATION">
-		<subject>Νέα ειδοποίηση από {$siteTitle}</subject>
-		<body><![CDATA[Έχετε μια νέα ειδοποίηση από {$siteTitle}:<br />
-<br />
-{$notificationContents}<br />
-<br />
-Σύνδεσμος: {$url}<br />
-<br />
-{$principalContactSignature}]]></body>
-		<description>The email is sent to registered users that have selected to have this type of notification emailed to them.</description>
+		<subject>{translate key="emails.notification.subject"}</subject>
+		<body>{translate key="emails.notification.body"}</body>
+		<description>{translate key="emails.notification.description"}</description>
 	</email_text>
 	<email_text key="PASSWORD_RESET_CONFIRM">
-		<subject>Επιβεβαίωση αλλαγής κωδικού πρόσβασης</subject>
-		<body><![CDATA[Παραλάβαμε ένα αίτημα για επαναφορά (αλλαγή) του κωδικού πρόσβασής σας για τον ιστότοπο {$siteTitle} .<br />
-<br />
-Εάν δεν προωθήσατε εσείς το αίτημα αυτό, σας παρακαλούμε αγνοήστε το μήνυμα αυτό και ο κωδικός πρόσβασής δεν θα αλλάξει. Εάν επιθυμείτε να αλλάξετε τον κωδικό πρόσβασής σας, ακολουθήστε το παρακάτω URL.<br />
-<br />
-Αλλαγή του κωδικού πρόσβασής μου: {$url}<br />
-<br />
-{$principalContactSignature}]]></body>
-		<description>This email is sent to a registered user when they indicate that they have forgotten their password or are unable to login. It provides a URL they can follow to reset their password.</description>
+		<subject>{translate key="emails.passwordResetConfirm.subject"}</subject>
+		<body>{translate key="emails.passwordResetConfirm.body"}</body>
+		<description>{translate key="emails.passwordResetConfirm.description"}</description>
 	</email_text>
 	<email_text key="PASSWORD_RESET">
-		<subject>Επαναφορά κωδικού πρόσβασης</subject>
-		<body><![CDATA[Η επαναφορά (αλλαγή) του κωδικού πρόσβασής σας πραγματοποιήθηκε επιτυχώς για χρήση στον ιστότοπο {$siteTitle} . Παρακαλούμε διατηρήστε το συγκεκριμένο όνομα χρήστη και τον κωδικό πρόσβασης, καθώς είναι απαραίτητα για όλες τις εργασίες σας στην έκδοση.<br />
-<br />
-Όνομα χρήστη: {$username}<br />
-Νέος κωδικός πρόσβασης: {$password}<br />
-<br />
-{$principalContactSignature}]]></body>
-		<description>Το συγκεκριμένο μήνυμα ηλεκτρονικού ταχυδρομείου αποστέλλεται σε εγγεγραμμένους χρήστες αφού ολοκληρώσουν επιτυχώς την επαναφορά του κωδικού πρόσβασής τους ακολουθώντας τη διαδικασία που περιγράφεται στο email PASSWORD_RESET_CONFIRM.</description>
+		<subject>{translate key="emails.passwordReset.subject"}</subject>
+		<body>{translate key="emails.passwordReset.body"}</body>
+		<description>{translate key="emails.passwordReset.description"}</description>
 	</email_text>
 	<email_text key="USER_REGISTER">
-		<subject>Εγγραφή χρήστη</subject>
-		<body><![CDATA[{$userFullName}<br />
-<br />
-Είστε πλέον εγγεγραμμένος χρήστης των εκδόσεων {$contextName}. Το όνομα χρήστη και ο κωδικός πρόσβασής σας, που είναι απαραίτητα για όλες τις εργασίες σας με τη συγκεκριμένη έκδοση μέσω του ιστότοπου της, έχουν συμπεριληφθεί στο συγκεκριμένο μήνυμα. Ανά πάσα στιγμή, μπορείτε να καταργήσετε το όνομά σας από τη λίστα των χρηστών, επικοινωνώντας με το αρμόδιο προσωπικό.<br />
-<br />
-Όνομα χρήστη: {$username}<br />
-Όνομα χρήστη: {$password}<br />
-<br />
-Σας ευχαριστούμε,<br />
-{$principalContactSignature}]]></body>
-		<description>This email is sent to a newly registered user to welcome them to the system and provide them with a record of their username and password.</description>
+		<subject>{translate key="emails.userRegister.subject"}</subject>
+		<body>{translate key="emails.userRegister.body"}</body>
+		<description>{translate key="emails.userRegister.description"}</description>
 	</email_text>
 	<email_text key="USER_VALIDATE">
-		<subject>Επικύρωση λογαριασμού</subject>
-		<body><![CDATA[{$userFullName}<br />
-<br />
-<br />
-Έχετε δημιουργήσει λογαριασμό στις εκδόσεις {$contextName}, αλλά πριν αρχίσετε να το χρησιμοποιείται, πρέπει να επικυρώσετε τον λογαριασμό του ηλεκτρονικού σας ταχυδρομείου. Για να την επικύρωση, ακολουθήστε τον παρακάτω σύνδεσμο:<br />
-<br />
-{$activateUrl}<br />
-<br />
-Σας ευχαριστούμε,<br />
-{$principalContactSignature}]]></body>
-		<description>Το συγκεκριμένο μήνυμα ηλεκτρονικού ταχυδρομείου αποστέλλεται σε νέους χρήστες για να τους καλωσορίσει στο σύστημα και να τους στείλει το όνομα χρήστη και τον κωδικό πρόσβασής τους.</description>
+		<subject>{translate key="emails.userValidate.subject"}</subject>
+		<body>{translate key="emails.userValidate.body"}</body>
+		<description>{translate key="emails.userValidate.description"}</description>
 	</email_text>
 	<email_text key="REVIEWER_REGISTER">
-		<subject>Εγγραφή ως Αξιολογητής στις εκδόσεις {$contextName}</subject>
-		<body><![CDATA[Λαμβάνοντας υπόψη την αρτιότητα των γνώσεών σας, το όνομα σας καταχωρήθηκε αυτόματα στη βάση δεδομένων αξιολογητών για τις εκδόσεις {$contextName}. Το γεγονός αυτό δεν συνεπάγεται οποιαδήποτε μορφή δέσμευσης από μέρους σας, απλά προσφέρει τη δυνατότητα επικοινωνίας μαζί σας για πιθανή αξιολόγηση κάποιας υποβολής στο περιοδικό μας. Μόλις δεχτείτε πρόσκληση για αξιολόγηση, θα έχετε τη δυνατότητα να δείτε τον τίτλο και το απόσπασμα της υπό αξιολόγηση εργασίας, και θα βρίσκεστε πάντα σε θέση να αποδεχτείτε ή όχι την πρόσκληση. Ανά πάσα στιγμή, επίσης, μπορείτε να καταργήσετε το όνομά σας από τη λίστα των αξιολογητών.<br />
-<br />
-Το όνομα χρήστη και ο κωδικός πρόσβασης που σας παρέχεται, χρησιμοποιείται σε όλες τις αλληλεπιδράσεις με τις εκδόσεις μέσω του συγκεκριμένου ιστότοπου. Για παράδειγμα, μπορείτε να ενημερώσετε το προφίλ σας καθώς και τα ενδιαφέροντά σας σε σχέση με την αξιολόγηση.<br />
-<br />
-Όνομα Χρήστη: {$username}<br />
-Κωδικός Πρόσβασης: {$password}<br />
-<br />
-Σας ευχαριστούμε,<br />
-{$principalContactSignature}]]></body>
-		<description>Το συγκεκριμένο μήνυμα ηλεκτρονικού ταχυδρομείου αποστέλλεται σε νέους χρήστες για να τους καλωσορίσει στο σύστημα και να τους δώσει το όνομα χρήστη και τον κωδικό πρόσβασής τους.</description>
+		<subject>{translate key="emails.reviewerRegister.subject"}</subject>
+		<body>{translate key="emails.reviewerRegister.body"}</body>
+		<description>{translate key="emails.reviewerRegister.description"}</description>
 	</email_text>
 	<email_text key="PUBLISH_NOTIFY">
-		<subject>Έκδοση νέου βιβλίου</subject>
-		<body><![CDATA[Αγαπητοί Αναγνώστες:<br />
-<br />
-Οι εκδόσεις{$contextName} μόλις δημοσίευσε τη νέα της έκδοση {$contextUrl}. <br />
-Μπορείτε να συμβουλευτείτε τον Πίνακα περιεχομένων και, στη συνέχεια, να επισκεφτείτε τον ιστότοπο των εκδόσεων για να δείτε το πλήρες κείμενο των μονογραφιών ή/και τεκμηρίων που σας ενδιαφέρουν.<br />
-<br />
-Σας ευχαριστούμε για το συνεχές ενδιαφέρον σας για την εργασία μας,<br />
-{$editorialContactSignature}]]></body>
-		<description>Το συγκεκριμένο μήνυμα ηλεκτρονικού ταχυδρομείου αποστέλλεται σε εγγεγραμμένους αναγνώστες μέσω του συνδέσμου "Ενημέρωση Χρηστών" στην αρχική σελίδα Επιμελητή των εκδόσεων. Ενημερώνει τους αναγνώστες για νέα βιβλία και τους προσκαλεί να επισκεφτούν τον δικτυακό τόπο των εκδόσεων..</description>
+		<subject>{translate key="emails.publishNotify.subject"}</subject>
+		<body>{translate key="emails.publishNotify.body"}</body>
+		<description>{translate key="emails.publishNotify.description"}</description>
 	</email_text>
 	<email_text key="SUBMISSION_ACK">
-		<subject>Επιβεβαίωση υποβολής</subject>
-		<body><![CDATA[{$authorName}:<br />
-<br />
-Ευχαριστούμε για την υποβολή της εργασίας σας, &quot;{$submissionTitle}&quot; στις εκδόσεις {$contextName}. Με το online σύστημα διαχείρισης που χρησιμοποιούν οι εκδόσεις, θα μπορείτε, συνδεόμενοι στον ιστότοπο των εκδόσεων, να παρακολουθείτε την πορεία της υποβολής σας στην διαδικασία της επιμέλειας:<br />
-<br />
-URL υποβολής: {$submissionUrl}<br />
-Όνομα χρήστη: {$authorUsername}<br />
-<br />
-Για περισσότερες πληροφορίες παρακαλούμε επικοινωνήστε μαζί μας. Ευχαριστούμε που θεωρείτε τις εκδόσεις  αυτές ως τον κατάλληλο χώρο για να δημοσιεύετε την εργασία σας. <br />
-<br />
-{$editorialContactSignature}]]></body>
-		<description>Εφόσον έχει ενεργοποιηθεί η αντίστοιχη επιλογή, το συγκεκριμένο μήνυμα αποστέλλεται αυτόματα στον συγγραφέα όταν ολοκληρωθεί η διαδικασία υποβολής μιας εργασίας στις εκδόσεις. Παρέχει πληροφορίες σχετικά με την παρακολούθηση της πορείας της υποβολής στις διάφορες διαδικασίες και ευχαριστεί τον συγγραφέα για την υποβολή.</description>
+		<subject>{translate key="emails.submissionAck.subject"}</subject>
+		<body>{translate key="emails.submissionAck.body"}</body>
+		<description>{translate key="emails.submissionAck.description"}</description>
 	</email_text>
 	<email_text key="SUBMISSION_ACK_NOT_USER">
-		<subject>Επιβεβαίωση υποβολής</subject>
-		<body><![CDATA[Αγαπητέ κύριε/α,<br />
-<br />
-{$submitterName} έχετε υποβάλει την εργασία, &quot;{$submissionTitle}&quot; στις εκδόσεις {$contextName}. <br />
-<br />
-Για περισσότερες πληροφορίες παρακαλούμε επικοινωνήστε μαζί μας. Ευχαριστούμε που θεωρείτε τις εκδόσεις μας ως τον κατάλληλο χώρο για να δημοσιεύετε την εργασία σας. <br />
-<br />
-{$editorialContactSignature}]]></body>
-		<description>This email, when enabled, is automatically sent to the other authors who are not users within OMP specified during the submission process.
-Εφόσον έχει ενεργοποιηθεί η αντίστοιχη επιλογή, το συγκεκριμένο μήνυμα αποστέλλεται αυτόματα στον συγγραφέα που δεν είναι εγγεγραμμένος χρήστης όταν ολοκληρωθεί η διαδικασία υποβολής μιας εργασίας στις εκδόσεις.</description>
+		<subject>{translate key="emails.submissionAckNotUser.subject"}</subject>
+		<body>{translate key="emails.submissionAckNotUser.body"}</body>
+		<description>{translate key="emails.submissionAckNotUser.description"}</description>
 	</email_text>
 	<email_text key="EDITOR_ASSIGN">
-		<subject>Ανάθεση ομάδας εργασίας</subject>
-		<body><![CDATA[{$editorialContactName}:<br />
-<br />
-Στο πλαίσιο του ρόλου σας ως Επιμελητή, σας έχει ανατεθεί η παρακολούθηση της υποβολή, &quot;{$submissionTitle},&quot; στις εκδόσεις {$contextName} σε όλη τη διάρκεια της διαδικασίας επιμέλειας.  <br />
-<br />
-URL Υποβολής: {$submissionUrl}<br />
-Όνομα χρήστη: {$editorUsername}<br />
-<br />
-Thank you,]]></body>
-		<description>Το συγκεκριμένο μήνυμα ενημερώνει τον Επιμελητή Σειράς ότι ο Επιμελητής των εκδόσεων του έχει αναθέσει την επίβλεψη της υποβολής στην διαδικασία επιμέλειας. Παρέχει πληροφορίες σχετικά με την υποβολή και τον τρόπο πρόσβασης στον ιστότοπο της έκδοσης.</description>
+		<subject>{translate key="emails.editorAssign.subject"}</subject>
+		<body>{translate key="emails.editorAssign.body"}</body>
+		<description>{translate key="emails.editorAssign.description"}</description>
 	</email_text>
 	<email_text key="REVIEW_REQUEST">
-		<subject>Αίτημα αξιολόγησης εργασίας</subject>
-		<body><![CDATA[Κύριε/α {$reviewerName},<br />
-<br />
-{$messageToReviewer}<br />
-<br />
-Θα σας παρακαλούσαμε να συνδεθείτε στον ιστότοπο των εκδόσεων Τιμαία μέχρι την {$responseDueDate} για να δηλώσετε αν θα αναλάβετε την αξιολόγηση ή όχι, καθώς και για να αποκτήσετε πρόσβαση στην υποβολή και για να καταχωρίσετε την αξιολόγησή σας και τις συστάσεις σας. Ο δικτυακός τόπος των εκδόσεων είναι<br />
-<br />
-Η προθεσμία ολοκλήρωσης της αξιολόγηση λήγει στις {$reviewDueDate}.<br />
-<br />
-URL υποβολής: {$submissionReviewUrl}<br />
-<br />
-Username: {$reviewerUserName}<br />
-<br />
-Σας ευχαριστούμε εκ των προτέρων για την εξέταση του αιτήματός μας.<br />
-<br />
-<br />
-Με εκτίμηση,<br />
-{$editorialContactSignature}]]></body>
-		<description>Το συγκεκριμένο μήνυμα στέλνεται από τον Επιμελητή Σειράς προς τον Αξιολογητή  και του αιτείται να δεχτεί ή να απορρίψει την αξιολόγηση μιας υποβολής. Παρέχει πληροφορίες σχετικά με την υποβολή όπως ο τίτλος και το απόσπασμα, την ημερομηνία προθεσμίας της υποβολής και τον τρόπο πρόσβασης στην υποβολή. Το συγκεκριμένο μήνυμα χρησιμοποιείται όταν η Πρότυπη διαδικασία αξιολόγησης (online) έχει επιλεχθεί στο μενού Οργάνωση των εκδόσεων, Βήμα 2. (Σε διαφορετική περίπτωση ανατρέξτε στο REVIEW_REQUEST_ATTACHED.)</description>
+		<subject>{translate key="emails.reviewRequest.subject"}</subject>
+		<body>{translate key="emails.reviewRequest.body"}</body>
+		<description>{translate key="emails.reviewRequest.description"}</description>
 	</email_text>
 	<email_text key="REVIEW_REQUEST_ONECLICK">
-		<subject>Αίτημα αξιολόγησης εργασίας</subject>
-		<body><![CDATA[{$reviewerName}:<br />
-<br />
-Πιστεύουμε ότι θα μπορούσατε να συνεισφέρετε στην έκδοση του e-book μας ως ένας εξαίρετος αξιολογητής για την εργασία, &quot;{$submissionTitle},&quot; που έχει υποβληθεί στις εκδόσεις {$contextName}. Η περίληψη της υποβολής παρατίθεται παρακάτω, και ελπίζουμε ότι θα δεχθείτε να αναλάβετε αυτή την σημαντική εργασία για εμάς.<br />
-<br />
-Σε κάθε περίπτωση θα σας παρακαλούσαμε να συνδεθείτε στον δικτυακό τόπο των εκδόσεων μέχρι την {$weekLaterDate} για να μας γνωστοποιήσετε εάν θα αναλάβετε την συγκεκριμένη αξιολόγηση ή όχι, και σε περίπτωση θετικής απάντησης να αποκτήσετε πρόσβαση στο πλήρες κείμενο της υποβολής και να καταχωρίσετε την αξιολόγησή σας και τις συστάσεις σας.<br />
-<br />
-Η αξιολόγηση λήγει στις {$reviewDueDate}.<br />
-<br />
-URL υποβολής: {$submissionReviewUrl}<br />
-<br />
-Σας ευχαριστούμε εκ των προτέρων για την εξέταση του αιτήματός μας.<br />
-<br />
-{$editorialContactSignature}<br />
-<br />
-<br />
-<br />
-&quot;{$submissionTitle}&quot;<br />
-<br />
-{$abstractTermIfEnabled}<br />
-{$monographAbstract}]]></body>
-		<description>Το συγκεκριμένο μήνυμα στέλνεται από τον Επιμελητή Σειράς προς τον αξιολογητή και του αιτείται να δεχτεί ή να απορρίψει την αξιολόγηση μιας υποβολής. Παρέχει πληροφορίες σχετικά με την υποβολή όπως ο τίτλος και το απόσπασμα, την ημερομηνία προθεσμίας της υποβολής και τον τρόπο πρόσβασης στην υποβολή. Το συγκεκριμένο μήνυμα χρησιμοποιείται όταν η Πρότυπη διαδικασία αξιολόγησης (online) έχει επιλεχθεί στο μενού Οργάνωση των εκδόσεων, Βήμα 2, και έτσι ενεργοποιείται η πρόσβαση του αξιολογητή με ένα μόνο κλικ.</description>
+		<subject>{translate key="emails.reviewRequestOneclick.subject"}</subject>
+		<body>{translate key="emails.reviewRequestOneclick.body"}</body>
+		<description>{translate key="emails.reviewRequestOneclick.description"}</description>
 	</email_text>
 	<email_text key="REVIEW_REQUEST_ATTACHED">
-		<subject>Αίτημα αξιολόγησης εργασίας</subject>
-		<body><![CDATA[{$reviewerName}:<br />
-<br />
-Πιστεύουμε ότι θα μπορούσατε να συνεισφέρετε στην έκδοση του e-book μας ως ένας εξαίρετος αξιολογητής για την εργασία, &quot;{$submissionTitle},&quot; Η περίληψη της υποβολής παρατίθεται παρακάτω, και ελπίζουμε ότι θα δεχθείτε να αναλάβετε αυτή την σημαντική εργασία για εμάς.  Οι Κατευθυντήριες γραμμές αξιολόγησης για τη συγκεκριμένη έκδοση αναφέρονται παρακάτω ενώ η υποβολή έχει επισυναφθεί στο παρόν μήνυμα. Η αξιολόγησή σας καθώς και οι συστάσεις-εισηγήσεις σας για την υποβολή θα πρέπει να αποσταλούν με email σε εμάς μέχρι την {$reviewDueDate}.<br />
-<br />
-Θα σας παρακαλούσαμε να μας ενημερώσετε με email μέχρι την {$weekLaterDate} εάν είστε διαθέσιμοι και πρόθυμοι να αναλάβετε την συγκεκριμένη αξιολόγηση.<br />
-<br />
-Σας ευχαριστούμε εκ των προτέρων για την εξέταση του αιτήματός μας.<br />
-<br />
-{$editorialContactSignature}<br />
-<br />
-<br />
-Κατευθυντήριες γραμμές αξιολόγησης<br />
-<br />
-{$reviewGuidelines}]]></body>
-		<description>Το συγκεκριμένο μήνυμα στέλνεται από τον Επιμελητή Σειράς προς τον αξιολογητή και του ζητείται να δεχτεί ή να απορρίψει την αξιολόγηση της υποβολής. Περιλαμβάνει την υποβολή ως επισυναπτόμενο αρχείο. Το συγκεκριμένο μήνυμα χρησιμοποιείται όταν έχει επιλεγεί η Διαδικασία αξιολόγησης μέσω email, από το μενού Οργάνωση των εκδόσεων, Βήμα 2. (Σε διαφορετική περίπτωση ανατρέξτε στο REVIEW_REQUEST.)</description>
+		<subject>{translate key="emails.reviewRequestAttached.subject"}</subject>
+		<body>{translate key="emails.reviewRequestAttached.body"}</body>
+		<description>{translate key="emails.reviewRequestAttached.description"}</description>
 	</email_text>
 	<email_text key="REVIEW_CANCEL">
-		<subject>Αίτημα για ακύρωση αξιολόγησης</subject>
-		<body><![CDATA[{$reviewerName}:<br />
-<br />
-Θα θέλαμε να σας ενημερώσουμε ότι η συντακτική ομάδα   αποφάσισε την ακύρωση του αιτήματός μας προς εσάς για την αξιολόγηση της εργασίας, &quot;{$submissionTitle},&quot; για τις εκδόσεις {$contextName}. Σας ζητούμε συγνώμη για την ενδεχόμενη αναστάτωση και ελπίζουμε να είναι δυνατή η μελλοντική βοήθειά σας για τη διαδικασία αξιολόγησης μιας εργασίας.<br />
-<br />
-Για οποιαδήποτε διευκρίνιση, παρακαλώ επικοινωνήστε μαζί μας]]></body>
-		<description>Το συγκεκριμένο μήνυμα ηλεκτρονικού ταχυδρομείου αποστέλλεται από τον Επιμελητή Σειράς σε Αξιολογητή ο οποίος έχει αναλάβει την αξιολόγηση μιας υποβολής και του γνωστοποιείται η ακύρωση της εν λόγω αξιολόγησης</description>
+		<subject>{translate key="emails.reviewCancel.subject"}</subject>
+		<body>{translate key="emails.reviewCancel.body"}</body>
+		<description>{translate key="emails.reviewCancel.description"}</description>
 	</email_text>
 	<email_text key="REVIEW_CONFIRM">
-		<subject>Δυνατότητα πραγματοποίησης αξιολόγησης</subject>
-		<body><![CDATA[Επιμελητές:<br />
-<br />
-Θα ήθελα να σας ενημερώσω ότι είμαι διαθέσιμος και πρόθυμος να αναλάβω την αξιολόγηση της εργασίας, &quot;{$submissionTitle},&quot; για τις εκδόσεις {$contextName}. Ευχαριστώ για την εμπιστοσύνη σας και σκοπεύω να έχω την υποβολή έτοιμη μέχρι την προθεσμία, {$reviewDueDate}, αν όχι νωρίτερα.<br />
-<br />
-{$reviewerName}]]></body>
-		<description>Το συγκεκριμένο μήνυμα αποστέλλεται από τον Αξιολογητή στον Επιμελητή Σειράς ως απάντηση στο αίτημα αξιολόγησης, για να τον ειδοποιήσει ότι δέχεται να αναλάβει την αξιολόγηση της υποβολής και ότι η αξιολόγηση θα ολοκληρωθεί στην καθορισμένη ημερομηνία.</description>
+		<subject>{translate key="emails.reviewConfirm.subject"}</subject>
+		<body>{translate key="emails.reviewConfirm.body"}</body>
+		<description>{translate key="emails.reviewConfirm.description"}</description>
 	</email_text>
 	<email_text key="REVIEW_DECLINE">
-		<subject>Μη δυνατότητα πραγματοποίησης αξιολόγησης</subject>
-		<body><![CDATA[Επιμελητές:<br />
-<br />
-Θα ήθελα να σας ενημερώσω ότι την τρέχουσα περίοδο, δυστυχώς δεν δύναμαι να αναλάβω την αξιολόγηση της εργασίας, &quot;{$submissionTitle},&quot; για τις εκδόσεις {$contextName}. Θα ήθελα να σας ευχαριστήσω για την εμπιστοσύνη σας και μη διστάσετε να επικοινωνήσετε μαζί μου ξανά στο μέλλον για μια πιθανή συνεργασία.<br />
-<br />
-{$reviewerName}]]></body>
-		<description>Το συγκεκριμένο μήνυμα αποστέλλεται από τον Αξιολογητή στον Επιμελητή Σειράς ως απάντηση στο αίτημα αξιολόγησης για να τον ενημερώσει ότι δεν μπορεί να αναλάβει την συγκεκριμένη αξιολόγηση.</description>
+		<subject>{translate key="emails.reviewDecline.subject"}</subject>
+		<body>{translate key="emails.reviewDecline.body"}</body>
+		<description>{translate key="emails.reviewDecline.description"}</description>
 	</email_text>
 	<email_text key="REVIEW_ACK">
-		<subject>Επιβεβαίωση λήψης αξιολόγησης εργασίας</subject>
-		<body><![CDATA[{$reviewerName}:<br />
-<br />
-Σας ευχαριστούμε που ολοκληρώσατε την αξιολόγηση της εργασίας, &quot;{$submissionTitle},&quot; για τις εκδόσεις {$contextName},  καθώς και για τη συμβολή σας στην ποιότητα του περιεχομένου της συγκεκριμένης έκδοσης.]]></body>
-		<description>Το συγκεκριμένο μήνυμα αποστέλλεται από τον Επιμελητή Σειράς στον Αξιολογητή για να επιβεβαιώσει τη λήψη της ολοκληρωμένης αξιολόγησης και να εκφράσει την ευχαριστία του στον αξιολογητή για τη συμβολή του στην συγκεκριμένη έκδοση.</description>
+		<subject>{translate key="emails.reviewAck.subject"}</subject>
+		<body>{translate key="emails.reviewAck.body"}</body>
+		<description>{translate key="emails.reviewAck.description"}</description>
 	</email_text>
 	<email_text key="REVIEW_REMIND">
-		<subject>Υπενθύμιση αξιολόγησης υποβολής</subject>
-		<body><![CDATA[{$reviewerName}:<br />
-<br />
-JΤο μήνυμα αυτό αποτελεί μια απλή υπενθύμιση σχετικά με την αξιολόγηση της υποβολής, &quot;{$submissionTitle},&quot; για τις εκδόσεις {$contextName} που έχετε αναλάβει. Ελπίζουμε ότι η αξιολόγηση να είναι έτοιμη μέχρι την σχετική προθεσμία  {$reviewDueDate}, και θα είμαστε ευγνώμονες να τη λάβουμε το συντομότερο δυνατό.<br />
-<br />
-Εάν για οποιοδήποτε λόγο δεν διαθέτετε το όνομα χρήστη και κωδικό πρόσβασης σας για τον ιστότοπο των εκδόσων e-books, μπορείτε να χρησιμοποιήσετε τον παρακάτω σύνδεσμο για να επαναφέρετε τον κωδικό πρόσβασης σας (το οποίο θα σας αποσταλεί με email μαζί με το όνομα χρήστη). {$passwordResetUrl}<br />
-<br />
-URL Υποβολής: {$submissionReviewUrl}<br />
-<br />
-Username: {$reviewerUserName}<br />
-<br />
-Θα σας παρακαλούσαμε να μας επιβεβαιώσετε ότι είστε σε θέση να ολοκληρώσετε επιτυχώς την, τόσο σημαντική για τις εκδόσεις, εργασία της αξιολόγησης . Ελπίζουμε να λάβουμε σύντομα την απάντησή σας.<br />
-<br />
-{$editorialContactSignature}]]></body>
-		<description>Το συγκεκριμένο μήνυμα ηλεκτρονικού ταχυδρομείου αποστέλλεται από τον Επιμελητή Σειράς ως υπενθύμιση στον Αξιολογητή για την ολοκλήρωση της αξιολόγησης.</description>
+		<subject>{translate key="emails.reviewRemind.subject"}</subject>
+		<body>{translate key="emails.reviewRemind.body"}</body>
+		<description>{translate key="emails.reviewRemind.description"}</description>
 	</email_text>
 	<email_text key="REVIEW_REMIND_ONECLICK">
-		<subject>Υπενθύμιση αξιολόγησης υποβολής</subject>
-		<body><![CDATA[{$reviewerName}:<br />
-<br />
-Το μήνυμα αυτό αποτελεί μια απλή υπενθύμιση σχετικά με την αξιολόγηση της υποβολής, &quot;{$submissionTitle},&quot; για τις εκδόσεις {$contextName} που έχετε αναλάβει. Ελπίζουμε ότι η αξιολόγηση να είναι έτοιμη μέχρι την σχετική προθεσμία {$reviewDueDate}, και θα είμαστε ευγνώμονες να τη λάβουμε το συντομότερο δυνατό.<br />
-<br />
-URL υποβολής: {$submissionReviewUrl}<br />
-<br />
-Θα σας παρακαλούσαμε να μας επιβεβαιώσετε ότι είστε σε θέση να ολοκληρώσετε επιτυχώς την, τόσο σημαντική για την έκδοση μας, εργασία της αξιολόγησης . Ελπίζουμε να λάβουμε σύντομα την απάντησή σας.<br />
-<br />
-{$editorialContactSignature}]]></body>
-		<description>Το συγκεκριμένο μήνυμα ηλεκτρονικού ταχυδρομείου αποστέλλεται από τον Επιμελητή Σειράς ως υπενθύμιση στον Αξιολογητή για την πραγματοποίηση της αξιολόγησης.</description>
+		<subject>{translate key="emails.reviewRemindOneclick.subject"}</subject>
+		<body>{translate key="emails.reviewRemindOneclick.body"}</body>
+		<description>{translate key="emails.reviewRemindOneclick.description"}</description>
 	</email_text>
 	<email_text key="REVIEW_REMIND_AUTO">
-		<subject>Αυτοματοποιημένη υπενθύμιση αξιολόγησης υποβολής</subject>
-		<body><![CDATA[{$reviewerName}:<br />
-<br />
-Το μήνυμα αυτό αποτελεί μια απλή υπενθύμιση σχετικά με την αξιολόγηση της υποβολής, &quot;{$submissionTitle},&quot; για τις εκδόσεις {$contextName} που έχετε αναλάβει. Ελπίζουμε ότι η αξιολόγηση να είναι έτοιμη μέχρι την σχετική προθεσμία {$reviewDueDate}. Λάβετε υπόψη σας ότι το μήνυμα αυτό δημιουργήθηκε αυτόματα και αποστέλλεται μετά την πάροδο της ημερομηνίας αυτής. Παρόλα αυτά θα είμαστε ευγνώμονες να λάβουμε την αξιολόγησή σας το συντομότερο δυνατό.<br />
-<br />
-IΕάν για οποιοδήποτε λόγο δεν διαθέτετε το όνομα χρήστη και κωδικό πρόσβασης σας για τον ιστότοπο της Τιμαίας, μπορείτε να χρησιμοποιήσετε τον παρακάτω σύνδεσμο για να επαναφέρετε τον κωδικό πρόσβασης σας (το οποίο θα σας αποσταλλεί με email μαζί με το όνομα χρήστη). {$passwordResetUrl}<br />
-<br />
-URL Υποβολής: {$submissionReviewUrl}<br />
-<br />
-Θα σας παρακαλούσαμε να μας επιβεβαιώσετε ότι είστε σε θέση να ολοκληρώσετε επιτυχώς την, τόσο σημαντική για το περιοδικό, εργασία της αξιολόγησης . Ελπίζουμε να λάβουμε σύντομα την απάντησή σας.<br />
-<br />
-{$editorialContactSignature}]]></body>
-		<description>Το συγκεκριμένο μήνυμα αποστέλλεται αυτόματα όταν παρέλθει η ημερομηνία ολοκλήρωσης της αξιολόγησης (ανατρέξτε στις Επιλογές αξιολόγησης στο μενού Οργάνωση της έκδοσης, Βήμα 2) και, επίσης, απενεργοποιείται η δυνατότητα πρόσβασης του αξιολογητή με ένα μόνο κλικ. Οι προγραμματισμένες εργασίες πρέπει να ενεργοποιηθούν και να ρυθμιστούν (ανατρέξτε στο αρχείο ρυθμίσεων του ιστότοπου).</description>
+		<subject>{translate key="emails.reviewRemindAuto.subject"}</subject>
+		<body>{translate key="emails.reviewRemindAuto.body"}</body>
+		<description>{translate key="emails.reviewRemindAuto.description"}</description>
 	</email_text>
 	<email_text key="REVIEW_REMIND_AUTO_ONECLICK">
-		<subject>Αυτοματοποιημένη υπενθύμιση αξιολόγησης υποβολής</subject>
-		<body><![CDATA[{$reviewerName}:<br />
-<br />
-Το μήνυμα αυτό αποτελεί μια απλή υπενθύμιση σχετικά με την αξιολόγηση της υποβολής, &quot;{$submissionTitle},&quot; για τις εκδόσεις {$contextName} που έχετε αναλάβει.Ελπίζουμε ότι η αξιολόγηση να είναι έτοιμη μέχρι την σχετική προθεσμία {$reviewDueDate}.  Λάβετε υπόψη σας ότι το μήνυμα αυτό δημιουργήθηκε αυτόματα και αποστέλλεται μετά την πάροδο της ημερομηνίας αυτής. Παρόλα αυτά θα είμαστε ευγνώμονες να λάβουμε την αξιολόγησή σας το συντομότερο δυνατό.<br />
-<br />
-URL Υποβολής: {$submissionReviewUrl}<br />
-<br />
-Θα σας παρακαλούσαμε να μας επιβεβαιώσετε ότι είστε σε θέση να ολοκληρώσετε επιτυχώς την, τόσο σημαντική για το περιοδικό, εργασία της αξιολόγησης . Ελπίζουμε να λάβουμε σύντομα την απάντησή σας.<br />
-<br />
-{$editorialContactSignature}]]></body>
-		<description>Το συγκεκριμένο μήνυμα ηλεκτρονικού ταχυδρομείου αποστέλλεται αυτόματα όταν παρέλθει η ημερομηνία ολοκλήρωσης της αξιολόγησης (ανατρέξτε στις Επιλογές αξιολόγησης στο μενού Οργάνωση της έκδοσης, Βήμα 2) και, επίσης, απενεργοποιείται η δυνατότητα πρόσβασης του αξιολογητή με ένα μόνο κλικ. Οι προγραμματισμένες εργασίες πρέπει να ενεργοποιηθούν και να ρυθμιστούν(ανατρέξτε στο αρχείο ρυθμίσεων του ιστότοπου).</description>
+		<subject>{translate key="emails.reviewRemindAutoOneclick.subject"}</subject>
+		<body>{translate key="emails.reviewRemindAutoOneclick.body"}</body>
+		<description>{translate key="emails.reviewRemindAutoOneclick.description"}</description>
 	</email_text>
 	<email_text key="EDITOR_DECISION_ACCEPT">
-		<subject>Απόφαση Επιμελητή</subject>
-		<body><![CDATA[{$authorName}:<br />
-<br />
-Σχετικά με την υποβολή σας στις εκδόσεις {$contextName}, με τίτλο &quot;{$submissionTitle}&quot; θα θέλαμε να σας ενημερώσουμε :<br />
-<br />
-<br />
-<br />
-URL Εργασίας: {$submissionUrl}<br />
-Username: {$authorUsername}]]></body>
-		<description>Αυτό το email αποστέλλεται από τον Επιμελητή/Εκδότη ή Από τον Επιμελητή Σειράς σε έναν Συγγραφέα για να τον ενημερώσει για την τελική απόφαση σχετικά με την υποβολή του.</description>
+		<subject>{translate key="emails.editorDecisionAccept.subject"}</subject>
+		<body>{translate key="emails.editorDecisionAccept.body"}</body>
+		<description>{translate key="emails.editorDecisionAccept.description"}</description>
 	</email_text>
 	<email_text key="EDITOR_DECISION_SEND_TO_EXTERNAL">
-		<subject>Απόφαση Επιμελητή</subject>
-		<body><![CDATA[{$authorName}:<br />
-<br />
-Σχετικά με την υποβολή σας στις εκδόσεις {$contextName},με τίτλο  &quot;{$submissionTitle}&quot; θα θέλαμε να σας ενημερώσουμε :<br />
-<br />
-<br />
-<br />
-URL εργασίας: {$submissionUrl}]]></body>
-		<description>This email from the Editor or Series Editor to an Author notifies them that their submission is being sent to an external review.</description>
+		<subject>{translate key="emails.editorDecisionSendToExternal.subject"}</subject>
+		<body>{translate key="emails.editorDecisionSendToExternal.body"}</body>
+		<description>{translate key="emails.editorDecisionSendToExternal.description"}</description>
 	</email_text>
 	<email_text key="EDITOR_DECISION_SEND_TO_PRODUCTION">
-		<subject>Απόφαση Επιμελητή</subject>
-		<body><![CDATA[{$authorName}:<br />
-<br />
-Η επιμέλεια της εργασίας σας με τίτλο, &quot;{$submissionTitle},&quot; έχει ολοκληρωθεί.  Η εργασία σας έχει αποσταλεί ώστε να ξεκινήσει η διαδικασία παραγωγής, επεξεργασίας και δημοσίευσης του έργου σας.<br />
-<br />
-URL εργασίας: {$submissionUrl}]]></body>
-		<description>This email from the Editor or Series Editor to an Author notifies them that their submission is being sent to production.</description>
+		<subject>{translate key="emails.editorDecisionSendToProduction.subject"}</subject>
+		<body>{translate key="emails.editorDecisionSendToProduction.body"}</body>
+		<description>{translate key="emails.editorDecisionSendToProduction.description"}</description>
 	</email_text>
 	<email_text key="EDITOR_DECISION_REVISIONS">
-		<subject>Απόφαση Επιμελητή</subject>
-		<body><![CDATA[{$authorName}:<br />
-<br />
-Σχετικά με την υποβολή σας στις εκδόσεις {$contextName}, με τίτλο &quot;{$submissionTitle}&quot;, θα θέλαμε να σας ενημερώσουμε:<br />
-<br />
-<br />
-<br />
-URL εργασίας: {$submissionUrl}]]></body>
-		<description>This email from the Editor or Series Editor to an Author notifies them of a final decision regarding their submission.</description>
+		<subject>{translate key="emails.editorDecisionRevisions.subject"}</subject>
+		<body>{translate key="emails.editorDecisionRevisions.body"}</body>
+		<description>{translate key="emails.editorDecisionRevisions.description"}</description>
 	</email_text>
 	<email_text key="EDITOR_DECISION_RESUBMIT">
-		<subject>Απόφαση Επιμελητή</subject>
-		<body><![CDATA[{$authorName}:<br />
-<br />
-Σχετικά με την υποβολή σας στις εκδόσεις {$contextName}, με τίτλο &quot;{$submissionTitle}&quot;, θα θέλαμε να σας ενημερώσουμε:<br />
-<br />
-<br />
-<br />
-URL εργασίας: {$submissionUrl}]]></body>
-		<description>This email from the Editor or Series Editor to an Author notifies them of a final decision regarding their submission.</description>
+		<subject>{translate key="emails.editorDecisionResubmit.subject"}</subject>
+		<body>{translate key="emails.editorDecisionResubmit.body"}</body>
+		<description>{translate key="emails.editorDecisionResubmit.description"}</description>
 	</email_text>
 	<email_text key="EDITOR_DECISION_DECLINE">
-		<subject>Απόφαση Επιμελητή</subject>
-		<body><![CDATA[{$authorName}:<br />
-<br />
-Σχετικά με την υποβολή σας στις εκδόσεις {$contextName}, με τίτλο &quot;{$submissionTitle}&quot;, θα θέλαμε να σας ενημερώσουμε:<br />
-<br />
-<br />
-<br />
-URL εργασίας: {$submissionUrl}]]></body>
-		<description>This email from the Editor or Series Editor to an Author notifies them of a final decision regarding their submission.</description>
+		<subject>{translate key="emails.editorDecisionDecline.subject"}</subject>
+		<body>{translate key="emails.editorDecisionDecline.body"}</body>
+		<description>{translate key="emails.editorDecisionDecline.description"}</description>
 	</email_text>
 		<email_text key="COPYEDIT_REQUEST">
-		<subject>Αίτημα Επιμέλειας Κειμένων</subject>
-		<body><![CDATA[{$participantName}:<br />
-<br />
-Θα ήθελα να σας ζητήσω να αναλάβετε την επιμέλεια του κειμένου της εργασίας &quot;{$submissionTitle}&quot; που υποβλήθηκε στις εκδόσεις {$contextName} ακολουθώντας τα παρακάτω βήματα:<br />
-1. Κάντε κλικ στο URL υποβολής που βρίσκεται παρακάτω.<br />
-2. Συνδεθείτε στις εκδόσεις και κάντε κλικ στην επιλογή Αρχείο που εμφανίζεται στο Βήμα 1.<br />
-3. Ανατρέξτε στις Οδηγίες διαμόρφωσης κειμένων που βρίσκονται στην ιστοσελίδα.<br />
-4. Ανοίξτε το αρχείο που κατέβηκε και πραγματοποιήστε διαμόρφωση κειμένου, ενώ προσθέτετε ερωτήματα προς τον συγγραφέα όπου χρειάζεται.<br />
-5. Αποθηκεύστε το αρχείο με το διαμορφωμένο κείμενο και μεταφορτώστε το  στο Βήμα 1 της Επιμέλειας Κειμένων.<br />
-6. Αποστείλετε το σχετικό email ΟΛΟΚΛΗΡΩΣΗΣ στον επιμελητή.<br />
-<br />
-{$contextName} URL: {$contextUrl}<br />
-URL Υποβολής: {$submissionUrl}<br />
-Όνομα Χρήστη: {$participantUsername}]]></body>
-		<description>Το συγκεκριμένο μήνυμα ηλεκτρονικού ταχυδρομείου αποστέλλεται από τον Επιμελητή μιας Σειράς  σε κάποιον από τους υπεύθυνους επιμέλειας κειμένων της υποβολής για να ζητήσει την έναρξη της διαδικασίας επιμέλειας κειμένων (copyediting). Παρέχει πληροφορίες σχετικά με την επιμέλεια της  υποβολής και τον τρόπο πρόσβασης σε αυτή.</description>
+		<subject>{translate key="emails.copyeditRequest.subject"}</subject>
+		<body>{translate key="emails.copyeditRequest.body"}</body>
+		<description>{translate key="emails.copyeditRequest.description"}</description>
 	</email_text>
 	<email_text key="LAYOUT_REQUEST">
-		<subject>Αίτημα σελιδοποίησης</subject>
-		<body><![CDATA[{$participantName}:<br />
-<br />
-Στο στάδιο αυτό θα πρέπει να δημιουργηθούν τα κατάλληλα τυπογραφικά δοκίμια για την υποβολή με τίτλο &quot;{$submissionTitle}&quot; των εκδόσεων {$contextName} ακολουθώντας τα παρακάτω βήματα:<br />
-<br />
-1. Κάντε κλικ στο URL της υποβολής που βρίσκεται παρακάτω.<br />
-2. Συνδεθείτε στις εκδόσεις και χρησιμοποιήστε το αρχείο της Έκδοσης Σελιδοποίησης για τη δημιουργία των εντύπων σύμφωνα με τα πρότυπα του περιοδικού.<br />
-3. Αποστείλατε το μήνυμα ΟΛΟΚΛΗΡΩΜΕΝΟ στον επιμελητή.<br />
-<br />
-{$contextName} URL: {$contextUrl}<br />
-Submission URL: {$submissionUrl}<br />
-Username: {$participantUsername}<br />
-<br />
-Εάν δεν μπορείτε να αναλάβετε τη συγκεκριμένη εργασία αυτή τη στιγμή ή έχετε απορίες, επικοινωνήστε μαζί μας. Ευχαριστούμε για την συμβολή σας σε αυτή την έκδοση.]]></body>
-		<description>Το συγκεκριμένο μήνυμα στέλνεται από τον Επιμελητή Σειράς στον Επιμελητή Σελιδοποίησης και τον ενημερώνει ότι του ανατίθεται η επιμέλεια της σελιδοποίησης μιας υποβολής. Παρέχει πληροφορίες σχετικά με την υποβολή και τον τρόπο πρόσβασης σε αυτή.</description>
+		<subject>{translate key="emails.layoutRequest.subject"}</subject>
+		<body>{translate key="emails.layoutRequest.body"}</body>
+		<description>{translate key="emails.layoutRequest.description"}</description>
 	</email_text>
 	<email_text key="LAYOUT_COMPLETE">
-		<subject>Ολοκλήρωση δημιουργίας σελιδοποιημένων δοκιμίων</subject>
-		<body><![CDATA[{$editorialContactName}:<br />
-<br />
-Τα σελιδοποιημένα δοκίμια για την εργασία με τίτλο, &quot;{$submissionTitle},&quot; για τις εκδόσεις {$contextName} είναι έτοιμα για την προετοιμασία των τυπογραφικών δοκιμίων.<br />
-<br />
-Εάν έχετε απορίες, επικοινωνήστε μαζί μου.<br />
-<br />
-{$signatureFullName}]]></body>
-		<description>Το συγκεκριμένο μήνυμα στέλνεται από τον Επιμελητή Σελιδοποίησης προς τον Επιμελητή Σειράς και τον ενημερώνει για την ολοκλήρωση της διαδικασίας σελιδοποίησης.</description>
+		<subject>{translate key="emails.layoutComplete.subject"}</subject>
+		<body>{translate key="emails.layoutComplete.body"}</body>
+		<description>{translate key="emails.layoutComplete.description"}</description>
 	</email_text>
 		<email_text key="INDEX_REQUEST">
-		<subject>Αίτημα Ευρετηρίασης</subject>
-		<body><![CDATA[{$participantName}:<br />
-<br />
-Στο στάδιο αυτό της υποβολής με τίτλο &quot;{$submissionTitle}&quot; για τις εκδόσεις {$contextName} θα πρέπει να γίνει η Ευρετηρίαση της ακολουθώντας τα παρακάτω βήματα:<br />
-1. Κάντε κλικ στο URL υποβολής που βρίσκεται παρακάτω.<br />
-2. 2. Συνδεθείτε στις εκδόσεις και χρησιμοποιήστε το αρχείο του Τυπογραφικού Δοκιμίου για τη δημιουργία εκτυπωμένων κειμένων σύμφωνα με τα πρότυπα των εκδόσεων.<br />
-3. Αποστείλατε το μήνυμα ΟΛΟΚΛΗΡΩΜΕΝΟ στον επιμελητή.<br />
-<br />
-{$contextName} URL: {$contextUrl}<br />
-URL Υποβολής: {$submissionUrl}<br />
-όνομα Χρήστη: {$participantUsername}<br />
-<br />
-Εάν δεν μπορείτε να αναλάβετε την συγκεκριμένη εργασία αυτή τη στιγμή ή έχετε απορίες, επικοινωνήστε μαζί μας. Ευχαριστούμε για την συμβολή σας στη συγκεκριμένη έκδοση.<br />
-<br />
-{$editorialContactSignature}]]></body>
-		<description>Το συγκεκριμένο μήνυμα στέλνεται από τον Επιμελητή Σειράς στον Ευρετηριαστή και τον ενημερώνει ότι του ανατίθεται η ευρετηρίαση μιας  υποβολής. Παρέχει πληροφορίες σχετικά με την υποβολή και τον τρόπο πρόσβασης σε αυτή.</description>
+		<subject>{translate key="emails.indexRequest.subject"}</subject>
+		<body>{translate key="emails.indexRequest.body"}</body>
+		<description>{translate key="emails.indexRequest.description"}</description>
 	</email_text>
 	<email_text key="INDEX_COMPLETE">
-		<subject>Ολοκλήρωση Ευρετηρίασης</subject>
-		<body><![CDATA[{$editorialContactName}:<br />
-<br />
-Η ευρετηρίαση της εργασίας με τίτλο , &quot;{$submissionTitle},&quot; για τις εκδόσεις {$contextName} έχει ολοκληρωθεί και είναι έτοιμη για την προετοιμασία των τυπογραφικών δοκιμίων.<br />
-<br />
-Εάν έχετε απορίες, επικοινωνήστε μαζί μου.<br />
-<br />
-{$signatureFullName}]]></body>
-		<description>Το συγκεκριμένο μήνυμα στέλνεται από τον Υπεύθυνο Ευρετηρίασης προς τον Επιμελητή Σειράς και τον ενημερώνει για την ολοκλήρωση της διαδικασίας ευρετηρίασης της εργασίας.</description>
+		<subject>{translate key="emails.indexComplete.subject"}</subject>
+		<body>{translate key="emails.indexComplete.body"}</body>
+		<description>{translate key="emails.indexComplete.description"}</description>
 	</email_text>
 										<email_text key="EMAIL_LINK">
-		<subject>E-book πιθανού ενδιαφέροντος</subject>
-		<body><![CDATA[Ίσως να σας ενδιαφέρει το κείμενο με τίτλο &quot;{$submissionTitle}&quot; του/των {$authorName} που δημοσιεύτηκε στον Τομ. {$volume}, No {$number} ({$year}) των εκδόσεων {$contextName} στον σύνδεσμο &quot;{$monographUrl}&quot;.]]></body>
-		<description>Το συγκεκριμένο πρότυπο μηνύματος email παρέχει σε εγγεγραμμένο αναγνώστη τη δυνατότητα αποστολής πληροφοριών σχετικά με μία έκδοση σε οποιονδήποτε μπορεί να έχει εκδηλώσει ενδιαφέρον. Είναι διαθέσιμο μέσω των Εργαλείων ανάγνωσης και πρέπει να ενεργοποιηθεί από Υπεύθυνο διαχείρισης των εκδόσεων στη σελίδα Διαχείρισης εργαλείων ανάγνωσης.</description>
+		<subject>{translate key="emails.emailLink.subject"}</subject>
+		<body>{translate key="emails.emailLink.body"}</body>
+		<description>{translate key="emails.emailLink.description"}</description>
 	</email_text>
 		<email_text key="NOTIFY_SUBMISSION">
-		<subject>Ειδοποίηση Υποβολής</subject>
-		<body><![CDATA[Έχετε μια νέα ειδοποίηση από {$sender} σχετικά με την έκδοση &quot;{$submissionTitle}&quot; ({$monographDetailsUrl}):<br />
-<br />
-		{$message}]]></body>
-		<description>A notification from a user sent from a submission information center modal.</description>
+		<subject>{translate key="emails.notifySubmission.subject"}</subject>
+		<body>{translate key="emails.notifySubmission.body"}</body>
+		<description>{translate key="emails.notifySubmission.description"}</description>
 	</email_text>
 		<email_text key="NOTIFY_FILE">
-		<subject>Ειδοποίηση Αρχείου Υποβολής</subject>
-		<body><![CDATA[Έχετε ένα νέο μήνυμα {$sender} σχετικά με το αρχείο &quot;{$fileName}&quot; της έκδοσης &quot;{$submissionTitle}&quot; ({$monographDetailsUrl}):<br />
-<br />
-		{$message}]]></body>
-		<description>A notification from a user sent from a file information center modal</description>
+		<subject>{translate key="emails.notifyFile.subject"}</subject>
+		<body>{translate key="emails.notifyFile.body"}</body>
+		<description>{translate key="emails.notifyFile.description"}</description>
 	</email_text>
 		<email_text key="NOTIFICATION_CENTER_DEFAULT">
-		<subject>Ένα μήνυμα σχετικά με τις Εκδόσεις {$contextName}</subject>
-		<body><![CDATA[Παρακαλώ πληκτρολογείστε το μήνυμα σας]]></body>
-		<description>The default (blank) message used in the Notification Center Message Listbuilder.</description>
+		<subject>{translate key="emails.notificationCenterDefault.subject"}</subject>
+		<body>{translate key="emails.notificationCenterDefault.body"}</body>
+		<description>{translate key="emails.notificationCenterDefault.description"}</description>
 	</email_text>
 </email_texts>
