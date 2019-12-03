@@ -232,7 +232,9 @@ class ChapterForm extends Form {
 	 * Save chapter
 	 * @see Form::execute()
 	 */
-	function execute() {
+	function execute(...$functionParams) {
+		parent::execute(...$functionParams);
+
 		$chapterDao = DAORegistry::getDAO('ChapterDAO');
 		$chapter = $this->getChapter();
 		$request = Application::get()->getRequest();

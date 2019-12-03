@@ -151,7 +151,9 @@ class PublicationFormatForm extends Form {
 	 * @return int Publication format ID
 	 * @see Form::execute()
 	 */
-	function execute() {
+	function execute(...$functionParams) {
+		parent::execute(...$functionParams);
+
 		$publicationFormatDao = DAORegistry::getDAO('PublicationFormatDAO');
 		$publicationFormat = $this->getPublicationFormat();
 		if (!$publicationFormat) {

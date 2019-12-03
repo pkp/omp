@@ -49,8 +49,8 @@ class AuthorForm extends PKPAuthorForm {
 	/**
 	 * @copydoc Form::execute()
 	 */
-	function execute() {
-		$authorId = parent::execute();
+	function execute(...$functionParams) {
+		$authorId = parent::execute(...$functionParams);
 		$author = Services::get('author')->get($authorId);
 		if ($author) {
 			$author->setIsVolumeEditor($this->getData('isVolumeEditor'));
