@@ -139,7 +139,9 @@ class CompetingInterestsTest extends ContentBaseTestCase {
 	private function _setReviewerCIRequirement($state) {
 		$actions = new WebDriverActions(self::$driver);
 		$actions->moveToElement($this->waitForElementPresent('//ul[@id="navigationPrimary"]//a[text()="Settings"]'))
-			->click($this->waitForElementPresent('//ul[@id="navigationPrimary"]//a[text()="Workflow"]'))
+			->perform();
+		$actions = new WebDriverActions(self::$driver);
+		$actions->click($this->waitForElementPresent('//ul[@id="navigationPrimary"]//a[text()="Workflow"]'))
 			->perform();
 		$this->waitForElementPresent('//button[@id="review-button"]');
 		$this->click('//button[@id="review-button"]');
@@ -150,6 +152,6 @@ class CompetingInterestsTest extends ContentBaseTestCase {
 			$this->typeTinyMCE('reviewerGuidance-competingInterests-control-en_US', '', true);
 		}
 		$this->click('//div[@id="reviewerGuidance"]//button[contains(text(),"Save")]');
-		$this->waitForElementPresent('//*[contains(text(),"Reviewer guidance has been updated.")]');
+		$this->waitForElementPresent('//div[contains(text(),"Reviewer guidance has been updated.")]');
 	}
 }

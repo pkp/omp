@@ -39,7 +39,7 @@ define('TMP_FILES', '/tmp');
 class SubmissionFileDAOTest extends DatabaseTestCase {
 	private $testFile;
 
-	protected function setUp() {
+	protected function setUp() : void {
 		// Create a test file on the file system.
 		$this->testFile = tempnam(TMP_FILES, 'SubmissionFile');
 
@@ -90,7 +90,7 @@ class SubmissionFileDAOTest extends DatabaseTestCase {
 		}
 	}
 
-	protected function tearDown() {
+	protected function tearDown() : void {
 		if (file_exists($this->testFile)) unlink($this->testFile);
 		$this->_cleanFiles();
 	}

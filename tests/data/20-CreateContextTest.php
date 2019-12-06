@@ -71,15 +71,19 @@ class CreateContextTest extends PKPCreateContextTest {
 		// Settings > Press > Masthead
 		$actions = new WebDriverActions(self::$driver);
 		$actions->moveToElement($this->waitForElementPresent('css=ul#navigationUser>li.profile>a'))
-			->click($this->waitForElementPresent('//ul[@id="navigationUser"]//a[contains(text(),"Dashboard")]'))
+			->perform();
+		$actions = new WebDriverActions(self::$driver);
+		$actions->click($this->waitForElementPresent('//ul[@id="navigationUser"]//a[contains(text(),"Dashboard")]'))
 			->perform();
 		$actions = new WebDriverActions(self::$driver);
 		$actions->moveToElement($this->waitForElementPresent('//ul[@id="navigationPrimary"]//a[text()="Settings"]'))
-			->click($this->waitForElementPresent('//ul[@id="navigationPrimary"]//a[text()="Press"]'))
+			->perform();
+		$actions = new WebDriverActions(self::$driver);
+		$actions->click($this->waitForElementPresent('//ul[@id="navigationPrimary"]//a[text()="Press"]'))
 			->perform();
 
 		$this->click('//*[@id="masthead"]//button[contains(text(),"Save")]');
-		$this->waitForTextPresent('The masthead details for this press have been updated.');
+		$this->waitForElementPresent('//div[contains(text(),"The masthead details for this press have been updated.")]');
 
 		$this->contactSettings(['contextType' => 'press']);
 	}
@@ -93,22 +97,24 @@ class CreateContextTest extends PKPCreateContextTest {
 		// Users & Roles
 		$actions = new WebDriverActions(self::$driver);
 		$actions->moveToElement($this->waitForElementPresent('css=ul#navigationUser>li.profile>a'))
-			->click($this->waitForElementPresent('//ul[@id="navigationUser"]//a[contains(text(),"Dashboard")]'))
+			->perform();
+		$actions = new WebDriverActions(self::$driver);
+		$actions->click($this->waitForElementPresent('//ul[@id="navigationUser"]//a[contains(text(),"Dashboard")]'))
 			->perform();
 		$actions = new WebDriverActions(self::$driver);
 		$actions->moveToElement($this->waitForElementPresent('//ul[@id="navigationPrimary"]//a[text()="Users & Roles"]'))
-			->click($this->waitForElementPresent('//ul[@id="navigationPrimary"]//a[text()="Users"]'))
+			->perform();
+		$actions = new WebDriverActions(self::$driver);
+		$actions->click($this->waitForElementPresent('//ul[@id="navigationPrimary"]//a[text()="Users"]'))
 			->perform();
 		$this->waitForElementPresent($selector = '//button[@id="roles-button"]');
 		$this->click($selector);
 
 		// "Edit" link below "Volume editor" role
-		$element = $this->waitForElementPresent($selector='//table[starts-with(@id, \'component-grid-settings-roles-usergroupgrid-\')]//span[contains(text(), "Volume editor")]/../../../following-sibling::tr//a[contains(text(),"Edit")]');
-		self::$driver->executeScript('document.getElementById(\'' . $element->getAttribute('id') . '\').scrollIntoView();');
-		self::$driver->executeScript('window.scroll(0,50);'); // FIXME: Give it an extra margin of pixels
+		$element = $this->waitForElementPresent('//table[starts-with(@id, \'component-grid-settings-roles-usergroupgrid-\')]//span[contains(text(), "Volume editor")]/..');
+		self::$driver->executeScript('window.scroll(0, document.getElementById(\'' . $element->getAttribute('id') . '\').getBoundingClientRect().top-50);');
 		$this->click('//table[starts-with(@id, \'component-grid-settings-roles-usergroupgrid-\')]//span[contains(text(), "Volume editor")]/../../a[@class="show_extras"]');
-		$actions = new WebDriverActions(self::$driver);
-                $actions->click($element)->perform();
+		$this->click('//table[starts-with(@id, \'component-grid-settings-roles-usergroupgrid-\')]//span[contains(text(), "Volume editor")]/../../../following-sibling::tr[1]//a[text()="Edit"]');
 
 		// Click the "permit self registration" checkbox
 		$this->waitForElementPresent('//input[@id=\'permitSelfRegistration\']');

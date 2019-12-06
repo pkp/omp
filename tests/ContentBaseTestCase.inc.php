@@ -110,7 +110,7 @@ class ContentBaseTestCase extends PKPContentBaseTestCase {
 			// Files
 			if (!empty($chapter['files'])) {
 				$this->click('//div[@id="chaptersGridContainer"]//a[contains(text(), ' . $this->quoteXPath($chapter['title']) . ')]');
-				$this->waitForTextPresent('Edit Metadata');
+				$this->waitForElementPresent('//a[contains(text(),"Edit Metadata")]');
 				$this->waitForElementPresent('//legend[contains(text(),"Files")]');
 				foreach ($chapter['files'] as $file) {
 					$this->click('//form[@id="editChapterForm"]//label[contains(text(), ' . $this->quoteXpath($chapter['title']) . ')]');
@@ -172,7 +172,7 @@ class ContentBaseTestCase extends PKPContentBaseTestCase {
 	protected function addToCatalog() {
 		self::$driver->executeScript('window.scrollTo(0,0);'); // Scroll to top of page
 		$this->click('//button[contains(text(), "Publish")]');
-		$this->waitForTextPresent('All publication requirements have been met. Are you sure you want to make this catalog entry public?');
+		$this->waitForElementPresent('//div[contains(text(),"All publication requirements have been met. Are you sure you want to make this catalog entry public?")]');
 		$this->click('//div[@class="pkpWorkflow__publishModal"]//button[contains(text(),"Publish")]');
 	}
 }

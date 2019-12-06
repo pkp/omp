@@ -29,11 +29,15 @@ class SeriesTest extends WebTestCase {
 		// Management > Settings > Press
 		$actions = new WebDriverActions(self::$driver);
 		$actions->moveToElement($this->waitForElementPresent('css=ul#navigationUser>li.profile>a'))
-			->click($this->waitForElementPresent('//ul[@id="navigationUser"]//a[contains(text(),"Dashboard")]'))
+			->perform();
+		$actions = new WebDriverActions(self::$driver);
+		$actions->click($this->waitForElementPresent('//ul[@id="navigationUser"]//a[contains(text(),"Dashboard")]'))
 			->perform();
 		$actions = new WebDriverActions(self::$driver);
 		$actions->moveToElement($this->waitForElementPresent('//ul[@id="navigationPrimary"]//a[text()="Settings"]'))
-			->click($this->waitForElementPresent('//ul[@id="navigationPrimary"]//a[text()="Press"]'))
+			->perform();
+		$actions = new WebDriverActions(self::$driver);
+		$actions->click($this->waitForElementPresent('//ul[@id="navigationPrimary"]//a[text()="Press"]'))
 			->perform();
 		$this->waitForElementPresent($selector='//button[@id="series-button"]');
 		$this->click($selector);
