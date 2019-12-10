@@ -194,7 +194,9 @@ class SeriesForm extends PKPSectionForm {
 	/**
 	 * Save series.
 	 */
-	function execute() {
+	function execute(...$functionParams) {
+		parent::execute(...$functionParams);
+
 		$seriesDao = DAORegistry::getDAO('SeriesDAO');
 		$request = Application::get()->getRequest();
 		$press = $request->getPress();
