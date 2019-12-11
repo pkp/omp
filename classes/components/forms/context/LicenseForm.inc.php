@@ -14,6 +14,4 @@
 namespace APP\components\forms\context;
 use \PKP\components\forms\context\PKPLicenseForm;
 
-define('FORM_LICENSE', 'license');
-
 class LicenseForm extends PKPLicenseForm {}

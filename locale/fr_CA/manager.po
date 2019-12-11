@@ -131,9 +131,6 @@ msgstr "Outils"
 msgid "manager.tools.importExport"
 msgstr "Tous les outils associés spécifiquement à l'importation et à l'exportation des données (presses, monographies, utilisateurs)"
 
-msgid "manager.users"
-msgstr "Gestion des utilisateurs"
-
 msgid "manager.users.availableRoles"
 msgstr "Rôles disponibles"
 

@@ -152,9 +152,6 @@ msgstr "Für den Datenimport/-export (Verlage, Monografien, Benutzer/innen) spez
 msgid "manager.tools.statistics"
 msgstr "Werkzeuge um Berichte zu erzeugen, die sich auf Nutzungsstatistiken beziehen (Anzeigen des Katalogs, Anzeigen von Buchabstracts, Buchdownloads)"
 
-msgid "manager.users"
-msgstr "Benutzer/innenverwaltung"
-
 msgid "manager.users.availableRoles"
 msgstr "Vorhandene Funktionen"
 

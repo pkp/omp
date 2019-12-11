@@ -131,9 +131,6 @@ msgstr "Εργαλεία"
 msgid "manager.tools.importExport"
 msgstr "Όλα τα εργαλεία σχετικά με την εισαγωγή και εξαγωγή δεδομένων (εκδόσεις, μονογραφίες, χρήστες)"
 
-msgid "manager.users"
-msgstr "Διαχείριση Χρήστη"
-
 msgid "manager.users.availableRoles"
 msgstr "Διαθέσιμοι Ρόλοι"
 
