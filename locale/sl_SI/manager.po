@@ -152,9 +152,6 @@ msgstr "Orodja za uvoz in izvoz podatkov (založbe, monografske publikacije, upo
 msgid "manager.tools.statistics"
 msgstr "Orodja za ustvarjanje poročil, povezanih s statistikami uporabe (ogledi domače strani kataloga, ogledi strani z izvlečki monografskih publikacije, prenos monografskih publikacij)"
 
-msgid "manager.users"
-msgstr "Upravljanje uporabnikov"
-
 msgid "manager.users.availableRoles"
 msgstr "Razpoložljive vloge"
 

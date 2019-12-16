@@ -161,9 +161,6 @@ msgstr "Alle værktøjer, der er specifikke i forbindelse med import og eksport 
 msgid "manager.tools.statistics"
 msgstr "Værktøjer til at generere rapporter relateret til brugsstatistikker (visning af katalogindeks-side, visning af resume-sider, download af monografi-filer)"
 
-msgid "manager.users"
-msgstr "Brugeradministration"
-
 msgid "manager.users.availableRoles"
 msgstr "Tilgængelige roller"
 
@@ -211,11 +208,16 @@ msgstr ""
 
 msgid "manager.people.noAdministrativeRights"
 msgstr ""
-"Beklager, du har ikke administratorrettigheder over denne bruger. Dette kan skyldes:\n"
-"<ul>\n"
-"<li>Brugeren er en webstedsadministrator</li>\n"
-"<li>Brugeren er aktiv hos de forlag, du ikke administrerer</li>\n"
-"</ul>\n"
+"Beklager, du har ikke administratorrettigheder over denne bruger. Dette kan skyldes:
+\n"
+"<ul>
+\n"
+"<li>Brugeren er en webstedsadministrator</li>
+\n"
+"<li>Brugeren er aktiv hos de forlag, du ikke administrerer</li>
+\n"
+"</ul>
+\n"
 "Denne opgave skal udføres af en webstedsadministrator."
 
 msgid "manager.system"
@@ -928,35 +930,56 @@ msgstr "Bemærk: Filbrowseren er en avanceret funktion, der gør det muligt at s
 
 msgid "manager.setup.authorCopyrightNotice.sample"
 msgstr ""
-"<h3>Proposed Creative Commons Copyright Notices</h3>\n"
-"<h4>Proposed Policy for Presses That Offer Open Access</h4>\n"
-"Authors who publish with this press agree to the following terms:\n"
-"<ol type=\"a\">\n"
-"\t<li>Authors retain copyright and grant the press right of first publication with the work simultaneously licensed under a <a target=\"_blank\" href=\"http://creativecommons.org/licenses/by/3.0/\">Creative Commons Attribution License</a> that allows others to share the work with an acknowledgement of the work's authorship and initial publication in this press.</li>\n"
-"\t<li>Authors are able to enter into separate, additional contractual series for the non-exclusive distribution of the version of the work published by the press (e.g., post it to an institutional repository or publish it in a book), with an acknowledgement of its initial publication in this press.</li>\n"
-"\t<li>Authors are permitted and encouraged to post their work online (e.g., in institutional repositories or on their website) prior to and during the submission process, as it can lead to productive exchanges, as well as earlier and greater citation of published work (See <a target=\"_blank\" href=\"http://opcit.eprints.org/oacitation-biblio.html\">The Effect of Open Access</a>).</li>\n"
-"</ol>\n"
-"\n"
-"<h4>Proposed Policy for Presses That Offer Delayed Open Access</h4>\n"
-"Authors who publish with this press agree to the following terms:\n"
-"<ol type=\"a\">\n"
-"\t<li>Authors retain copyright and grant the press right of first publication, with the work [SPECIFY PERIOD OF TIME] after publication simultaneously licensed under a <a target=\"_blank\" href=\"http://creativecommons.org/licenses/by/3.0/\">Creative Commons Attribution License</a> that allows others to share the work with an acknowledgement of the work's authorship and initial publication in this press.</li>\n"
-"\t <li>Authors are able to enter into separate, additional contractual series for the non-exclusive distribution of the version of the work published by the press (e.g., post it to an institutional repository or publish it in a book), with an acknowledgement of its initial publication in this press.</li>\n"
-"\t <li>Authors are permitted and encouraged to post their work online (e.g., in institutional repositories or on their website) prior to and during the submission process, as it can lead to productive exchanges, as well as earlier and greater citation of published work (See <a target=\"_blank\" href=\"http://opcit.eprints.org/oacitation-biblio.html\"> The Effect of Open Access</a>).</li>\n"
+"<h3>Proposed Creative Commons Copyright Notices</h3>
+\n"
+"<h4>Proposed Policy for Presses That Offer Open Access</h4>
+\n"
+"Authors who publish with this press agree to the following terms:
+\n"
+"<ol type=\"a\">
+\n"
+"\t<li>Authors retain copyright and grant the press right of first publication with the work simultaneously licensed under a <a target=\"_blank\" href=\"http://creativecommons.org/licenses/by/3.0/\">Creative Commons Attribution License</a> that allows others to share the work with an acknowledgement of the work's authorship and initial publication in this press.</li>
+\n"
+"\t<li>Authors are able to enter into separate, additional contractual series for the non-exclusive distribution of the version of the work published by the press (e.g., post it to an institutional repository or publish it in a book), with an acknowledgement of its initial publication in this press.</li>
+\n"
+"\t<li>Authors are permitted and encouraged to post their work online (e.g., in institutional repositories or on their website) prior to and during the submission process, as it can lead to productive exchanges, as well as earlier and greater citation of published work (See <a target=\"_blank\" href=\"http://opcit.eprints.org/oacitation-biblio.html\">The Effect of Open Access</a>).</li>
+\n"
+"</ol>
+\n"
+"
+\n"
+"<h4>Proposed Policy for Presses That Offer Delayed Open Access</h4>
+\n"
+"Authors who publish with this press agree to the following terms:
+\n"
+"<ol type=\"a\">
+\n"
+"\t<li>Authors retain copyright and grant the press right of first publication, with the work [SPECIFY PERIOD OF TIME] after publication simultaneously licensed under a <a target=\"_blank\" href=\"http://creativecommons.org/licenses/by/3.0/\">Creative Commons Attribution License</a> that allows others to share the work with an acknowledgement of the work's authorship and initial publication in this press.</li>
+\n"
+"\t <li>Authors are able to enter into separate, additional contractual series for the non-exclusive distribution of the version of the work published by the press (e.g., post it to an institutional repository or publish it in a book), with an acknowledgement of its initial publication in this press.</li>
+\n"
+"\t <li>Authors are permitted and encouraged to post their work online (e.g., in institutional repositories or on their website) prior to and during the submission process, as it can lead to productive exchanges, as well as earlier and greater citation of published work (See <a target=\"_blank\" href=\"http://opcit.eprints.org/oacitation-biblio.html\"> The Effect of Open Access</a>).</li>
+\n"
 "</ol>"
 
 msgid "manager.setup.basicEditorialStepsDescription"
 msgstr ""
-"Trin: Indsendelseskø &gt; Indsendelsesbedømmelse &gt; Indsendelsesredigering & t; Indholdsfortegnelse. <br /><br />\n"
+"Trin: Indsendelseskø &gt; Indsendelsesbedømmelse &gt; Indsendelsesredigering & t; Indholdsfortegnelse. <br /><br />
+\n"
 "Vælg en model til håndtering af disse dele af den redaktionelle proces. (Hvis du vil udpege en administrerende redaktør og serieredaktører, skal du gå til Redaktører under forlagsadministration.)"
 
 msgid "manager.setup.referenceLinkingDescription"
 msgstr ""
-"<p>For at gøre det muligt for læsere at finde online-versioner af det af en forfatter citerede værk er følgende indstillinger tilgængelige.</p>\n"
-"\n"
-"<ol>\n"
-"<li><strong>Tilføj et læseværktøj</strong><p>Forlagschefen kan tilføje \"Find referencer\" til læseværktøjerne, der følger med publiceret indhold, og som gør det muligt for læsere at indsætte en references titel og derefter søge i forudvalgt videnskabeligt baserede databaser efter det citerede arbejde. </p> </li>\n"
-"<li><strong>Integrer links i referencerne</strong><p>Layoutredaktøren kan tilføje et link til referencer, der kan findes online ved hjælp af følgende instruktioner (som kan redigeres).</p></li>\n"
+"<p>For at gøre det muligt for læsere at finde online-versioner af det af en forfatter citerede værk er følgende indstillinger tilgængelige.</p>
+\n"
+"
+\n"
+"<ol>
+\n"
+"<li><strong>Tilføj et læseværktøj</strong><p>Forlagschefen kan tilføje \"Find referencer\" til læseværktøjerne, der følger med publiceret indhold, og som gør det muligt for læsere at indsætte en references titel og derefter søge i forudvalgt videnskabeligt baserede databaser efter det citerede arbejde. </p> </li>
+\n"
+"<li><strong>Integrer links i referencerne</strong><p>Layoutredaktøren kan tilføje et link til referencer, der kan findes online ved hjælp af følgende instruktioner (som kan redigeres).</p></li>
+\n"
 "</ol>"
 
 msgid "manager.publication.library"

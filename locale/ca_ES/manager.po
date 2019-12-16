@@ -146,9 +146,6 @@ msgstr "Eines"
 msgid "manager.tools.importExport"
 msgstr "Totes les eines específiques per importar i exportar dades (publicacions, monografies, usuaris/àries)"
 
-msgid "manager.users"
-msgstr "Administració d'usuaris/àries"
-
 msgid "manager.users.availableRoles"
 msgstr "Rols disponibles"
 

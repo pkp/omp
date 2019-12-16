@@ -146,9 +146,6 @@ msgstr "Ferramentas"
 msgid "manager.tools.importExport"
 msgstr "Todas as ferramentas específicas para importar e exportar dados (editoras, mongrafias, usuários)"
 
-msgid "manager.users"
-msgstr "Administração de usuários"
-
 msgid "manager.users.availableRoles"
 msgstr "Papéis disponíveis"
 

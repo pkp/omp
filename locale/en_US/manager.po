@@ -167,9 +167,6 @@ msgstr "All tools specific to importing and exporting data (presses, monographs,
 msgid "manager.tools.statistics"
 msgstr "Tools to generate reports related to usage statistics (catalog index page view, monograph abstract page views, monograph file downloads)"
 
-msgid "manager.users"
-msgstr "User Management"
-
 msgid "manager.users.availableRoles"
 msgstr "Available Roles"
 
@@ -1058,6 +1055,9 @@ msgstr "Please select the category to which you would like this menu item to lin
 
 msgid "grid.series.urlWillBe"
 msgstr "The series's URL will be: {$sampleUrl}"
+
+msgid "stats.publicationStats"
+msgstr "Monograph Stats"
 
 msgid "stats.publications.details"
 msgstr "Monograph Details"

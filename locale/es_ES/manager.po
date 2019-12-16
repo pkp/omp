@@ -269,9 +269,6 @@ msgstr "Herramientas"
 msgid "manager.tools.importExport"
 msgstr "Todas las herramientas específicas para importar y exportar datos (publicaciones, monografías, usuarios/as)"
 
-msgid "manager.users"
-msgstr "Gestión del usuario/a"
-
 msgid "manager.users.availableRoles"
 msgstr "Funciones disponibles"
 

@@ -21,6 +21,7 @@ require_once(dirname(__FILE__) . '/../../lib/pkp/lib/vendor/pimple/pimple/src/Pi
 use \Pimple\Container;
 use \APP\Services\PublicationFormatService;
 use \APP\Services\PublicationService;
+use \APP\Services\StatsEditorialService;
 use \APP\Services\StatsService;
 use \PKP\Services\PKPAuthorService;
 use \PKP\Services\PKPEmailTemplateService;
@@ -90,6 +91,11 @@ class OMPServiceProvider implements \Pimple\ServiceProviderInterface {
 		// Publication statistics service
 		$pimple['stats'] = function() {
 			return new StatsService();
+		};
+
+		// Publication statistics service
+		$pimple['editorialStats'] = function() {
+			return new StatsEditorialService();
 		};
 	}
 }

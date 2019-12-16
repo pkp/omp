@@ -15,6 +15,19 @@
 
 import('lib.pkp.classes.publication.PKPPublicationDAO');
 class PublicationDAO extends PKPPublicationDAO {
+
+	/** @copydoc SchemaDao::$primaryTableColumns */
+	public $primaryTableColumns = [
+		'id' => 'publication_id',
+		'accessStatus' => 'access_status',
+		'datePublished' => 'date_published',
+		'lastModified' => 'last_modified',
+		'locale' => 'locale',
+		'primaryContactId' => 'primary_contact_id',
+		'submissionId' => 'submission_id',
+		'status' => 'status',
+	];
+
 	/**
 	 * @copydoc SchemaDAO::_fromRow()
 	 */
