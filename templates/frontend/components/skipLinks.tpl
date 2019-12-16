@@ -9,7 +9,7 @@
  *}
 <div class="cmp_skip_to_content">
 	<a href="#pkp_content_main">{translate key="navigation.skip.main"}</a>
-	<a href="#navigationPrimary">{translate key="navigation.skip.nav"}</a>
+	<a href="#siteNav">{translate key="navigation.skip.nav"}</a>
 	{if !$requestedPage || $requestedPage === 'index'}
 		{if !empty($spotlights)}
 			<a href="#homepageSpotlights">{translate key="navigation.skip.spotlights"}</a>
