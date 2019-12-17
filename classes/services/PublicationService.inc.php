@@ -225,6 +225,7 @@ class PublicationService extends PKPPublicationService {
 
 		// Publication Formats (and all associated objects)
 		$oldPublicationFormats = $oldPublication->getData('publicationFormats');
+		$newFiles = [];
 		foreach ($oldPublicationFormats as $oldPublicationFormat) {
 			$newPublicationFormat = clone $oldPublicationFormat;
 			$newPublicationFormat->setData('id', null);
@@ -250,7 +251,6 @@ class PublicationService extends PKPPublicationService {
 				$oldPublicationFormat->getId(),
 				$oldPublication->getData('submissionId')
 			);
-			$newFiles = [];
 			foreach ($files as $file) {
 				$newFile = clone $file;
 				$newFile->setFileId(null);
@@ -272,7 +272,9 @@ class PublicationService extends PKPPublicationService {
 
 		// Chapters (and all associated objects)
 		$oldAuthorsIterator = Services::get('author')->getMany(['publicationIds' => $oldPublication->getId()]);
+		$oldAuthors = iterator_to_array($oldAuthorsIterator);
 		$newAuthorsIterator = Services::get('author')->getMany(['publicationIds' => $newPublication->getId()]);
+		$newAuthors = iterator_to_array($newAuthorsIterator);
 		$result = DAORegistry::getDAO('ChapterDAO')->getByPublicationId($oldPublication->getId());
 		while (!$result->eof()) {
 			$oldChapter = $result->next();
@@ -296,8 +298,7 @@ class PublicationService extends PKPPublicationService {
 			// old one. We then map the old chapter author associations to the new
 			// authors.
 			$oldChapterAuthors = DAORegistry::getDAO('ChapterAuthorDAO')->getAuthors($oldPublication->getId(), $oldChapter->getId())->toArray();
-			$oldAuthors = iterator_to_array($oldAuthorsIterator);
-			foreach ($newAuthorsIterator as $newAuthor) {
+			foreach ($newAuthors as $newAuthor) {
 				foreach ($oldAuthors as $oldAuthor) {
 					if ($newAuthor->getData('seq') === $oldAuthor->getData('seq')) {
 						foreach ($oldChapterAuthors as $oldChapterAuthor) {
@@ -306,7 +307,7 @@ class PublicationService extends PKPPublicationService {
 									$newAuthor->getId(),
 									$newChapter->getId(),
 									$newAuthor->getId() === $newPublication->getData('primaryContactId'),
-									$oldChapterAuthor->getData('sequence')
+									$oldChapterAuthor->getData('seq')
 								);
 							}
 						}
