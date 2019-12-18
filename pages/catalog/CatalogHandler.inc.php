@@ -156,7 +156,7 @@ class CatalogHandler extends PKPCatalogHandler {
 			'status' => STATUS_PUBLISHED,
 		);
 		$submissionsIterator = $submissionService->getMany($params);
-		$total = $submissionService->getMax($context->getId(), $params);
+		$total = $submissionService->getMax($params);
 
 		$featureDao = DAORegistry::getDAO('FeatureDAO');
 		$featuredMonographIds = $featureDao->getSequencesByAssoc(ASSOC_TYPE_SERIES, $series->getId());
@@ -307,15 +307,15 @@ class CatalogHandler extends PKPCatalogHandler {
 	/**
 	 * Assign the pagination template variables
 	 * @param $request PKPRequest
-	 * @param $submissions array Monographs being shown
+	 * @param $submissionsCount int Number of submissions being shown
 	 * @param $page int Page number being shown
 	 * @param $count int Max number of monographs being shown
 	 * @param $offset int Starting position of monographs
 	 * @param $total int Total number of monographs available
 	 */
-	public function _setupPaginationTemplate($request, $submissions, $page, $count, $offset, $total) {
+	public function _setupPaginationTemplate($request, $submissionsCount, $page, $count, $offset, $total) {
 		$showingStart = $offset + 1;
-		$showingEnd = min($offset + $count, $offset + count($submissions));
+		$showingEnd = min($offset + $count, $offset + $submissionsCount);
 		$nextPage = $total > $showingEnd ? $page + 1 : null;
 		$prevPage = $showingStart > 1 ? $page - 1 : null;
 
