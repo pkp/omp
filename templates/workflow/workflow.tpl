@@ -80,11 +80,13 @@
 						</template>
 					</ul>
 				</dropdown>
-				<pkp-button
-					label="{translate key="editor.activityLog"}"
-					ref="activityButton"
-					@click="openActivity"
-				></pkp-button>
+				{if $canAccessEditorialHistory}
+					<pkp-button
+						label="{translate key="editor.activityLog"}"
+						ref="activityButton"
+						@click="openActivity"
+					></pkp-button>
+				{/if}
 				<pkp-button
 					label="{translate key="editor.submissionLibrary"}"
 					ref="library"
@@ -123,7 +125,7 @@
 					</tab>
 				</tab>
 			</tab>
-			{if $canEditPublication}
+			{if $canAccessPublication}
 				<tab id="publication" label="{translate key="submission.publication"}">
 					<div class="pkpPublication" ref="publication" aria-live="polite">
 						<pkp-header class="pkpPublication__header">
