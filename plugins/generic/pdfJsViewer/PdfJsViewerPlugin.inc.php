@@ -65,12 +65,20 @@ class PdfJsViewerPlugin extends GenericPlugin {
 		$submissionFile =& $args[3];
 
 		if ($submissionFile->getFileType() == 'application/pdf') {
+			foreach ($submission->getData('publications') as $publication) {
+				if ($publication->getId() === $publicationFormat->getData('publicationId')) {
+					$filePublication = $publication;
+					break;
+				}
+			}
 			$request = Application::get()->getRequest();
 			$router = $request->getRouter();
 			$dispatcher = $request->getDispatcher();
 			$templateMgr = TemplateManager::getManager($request);
 			$templateMgr->assign(array(
 				'pluginUrl' => $request->getBaseUrl() . DIRECTORY_SEPARATOR . $this->getPluginPath(),
+				'isLatestPublication' => $submission->getData('currentPublicationId') === $publicationFormat->getData('publicationId'),
+				'filePublication' => $filePublication,
 			));
 
 			$templateMgr->display($this->getTemplateResource('display.tpl'));

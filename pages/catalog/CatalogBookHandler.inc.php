@@ -213,6 +213,7 @@ class CatalogBookHandler extends Handler {
 		$submission = $this->getAuthorizedContextObject(ASSOC_TYPE_SUBMISSION);
 		$this->setupTemplate($request, $submission);
 		$press = $request->getPress();
+		AppLocale::requireComponents(LOCALE_COMPONENT_APP_SUBMISSION, LOCALE_COMPONENT_PKP_SUBMISSION);
 
 		$monographId = array_shift($args); // Validated thru auth
 		$subPath = array_shift($args);
