@@ -22,7 +22,7 @@
 
 	{if $coverImage}
 		<a class="cover_image" href="{$targetUrl}">
-			<img alt="{$item->getLocalizedFullTitle()|strip_tags|escape|default:'null'}" src="{$coverImageUrl}">
+			<img alt="{$item->getLocalizedFullTitle()|strip_tags|escape|default:''}" src="{$coverImageUrl}">
 		</a>
 	{/if}
 
