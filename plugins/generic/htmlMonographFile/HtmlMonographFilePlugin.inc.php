@@ -67,20 +67,20 @@ class HtmlMonographFilePlugin extends GenericPlugin {
 		$request = Application::get()->getRequest();
 
 		if ($submissionFile && $submissionFile->getFileType() == 'text/html') {
+			foreach ($submission->getData('publications') as $publication) {
+				if ($publication->getId() === $publicationFormat->getData('publicationId')) {
+					$filePublication = $publication;
+					break;
+				}
+			}
 			$templateMgr = TemplateManager::getManager($request);
-			$templateMgr->addStyleSheet(
-				'htmlArticleGalleyStyles',
-				$request->getBaseUrl() . '/plugins/generic/htmlMonographFile/display.css',
-				array(
-					'priority' => STYLE_SEQUENCE_CORE,
-					'contexts' => 'frontend',
-				)
-			);
 			$templateMgr->assign(array(
 				'pluginUrl' => $request->getBaseUrl() . '/' . $this->getPluginPath(),
 				'monograph' => $submission,
 				'publicationFormat' => $publicationFormat,
 				'downloadFile' => $submissionFile,
+				'isLatestPublication' => $submission->getData('currentPublicationId') === $publicationFormat->getData('publicationId'),
+				'filePublication' => $filePublication,
 			));
 			$templateMgr->display($this->getTemplateResource('display.tpl'));
 			return true;
