@@ -26,6 +26,7 @@ class PublicationDAO extends PKPPublicationDAO {
 		'primaryContactId' => 'primary_contact_id',
 		'submissionId' => 'submission_id',
 		'status' => 'status',
+		'version' => 'version',
 	];
 
 	/**
