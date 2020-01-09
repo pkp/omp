@@ -23,7 +23,7 @@ matrix:
   #   php: 7.2
 env:
   global:
-  - secure: "PZbLl4MOmgQxp+fDQcitjiFVaBwERHvYbm+6sn71amkwTW87I6mlwXCtWReFGXgdQYQXiu79w28iVPvLbowbJi2Mb5bYt5kadve9Lf86uQfZq2KFYIFrUBAR9ACK2jhPNQWVZRh73+Jd5qaBzR3pgOFdFiBmasReT0+NpI3JLLk="
+  - secure: "t67w5Ro9IGzEh1QS1janIWvYsvTzRLuvvkLIXAksU7oYtUrwUgCTtwmrSx4vk6k1iUnWwD1c7zFFZl/glppVbuSJYbXu3FBaSC9w9yxxt6yQrluAG+p/YaLgEu/UT9loYR/KhVkdvpP+OCqg1AWjxYxcWEvCcjUkyNFW/6glxXA="
 language: php
 python:
   - 3.3 # Required by Javascript linter/builder
@@ -34,9 +34,13 @@ cache:
   npm: true
   directories:
     - $HOME/.composer/cache
+    - $HOME/.cache
 addons:
+  chrome: beta
   apt:
     update: true
+    packages:
+      - libgconf-2-4
 before_install:
   # Check out submodules (this script checks out developer forks if necessary)
   - ./tools/startSubmodulesTRAVIS.sh
@@ -50,8 +54,6 @@ before_install:
 
       # Prepare the server environment
       ./lib/pkp/tools/travis/prepare-webserver.sh
-      source ./lib/pkp/tools/travis/start-xvfb.sh
-      ./lib/pkp/tools/travis/start-selenium.sh
 
       # Prepare the local codebase
       ./lib/pkp/tools/travis/install-composer-dependencies.sh
@@ -83,6 +85,5 @@ after_script:
   - cat error.log
 
 after_failure:
-  - sudo apt-get install sharutils imagemagick
-  - import -window root screenshot.png
-  - tar cz screenshot.png | uuencode /dev/stdout
+  - sudo apt-get install sharutils
+  - tar cz cypress/screenshots | uuencode /dev/stdout
