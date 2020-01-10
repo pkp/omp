@@ -42,9 +42,7 @@ tools/genTestLocale.php									\
 tools/test										\
 lib/pkp/tools/travis									\
 lib/pkp/lib/vendor/smarty/smarty/demo							\
-plugins/generic/translator								\
 plugins/generic/customBlockManager/.git							\
-plugins/generic/emailLogger								\
 plugins/generic/staticPages/.git							\
 plugins/paymethod/paypal/vendor/omnipay/common/tests/					\
 plugins/paymethod/paypal/vendor/omnipay/paypal/tests/					\
