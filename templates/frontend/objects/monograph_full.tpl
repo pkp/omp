@@ -334,7 +334,7 @@
 				{assign var="coverImage" value=$publication->getLocalizedData('coverImage')}
 				<img
 					src="{$publication->getLocalizedCoverImageThumbnailUrl($monograph->getData('contextId'))}"
-					alt="{$coverImage.altText|escape|default:'null'}"
+					alt="{$coverImage.altText|escape|default:''}"
 				>
 			</div>
 

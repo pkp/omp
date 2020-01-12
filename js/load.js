@@ -14,7 +14,8 @@ import PkpLoad from '../lib/pkp/js/load.js';
 import Container from '@/components/Container/Container.vue';
 import CatalogContainer from '@/components/Container/CatalogContainer.vue';
 import SettingsContainer from '@/components/Container/SettingsContainer.vue';
-import StatsContainer from '@/components/Container/StatsContainer.vue';
+import StatsEditorialContainer from '@/components/Container/StatsEditorialContainer.vue';
+import StatsPublicationsContainer from '@/components/Container/StatsPublicationsContainer.vue';
 import WorkflowContainer from '@/components/Container/WorkflowContainerOMP.vue';
 
 // Required by the URN plugin
@@ -26,7 +27,8 @@ window.pkp = Object.assign(PkpLoad, {
 		Container,
 		CatalogContainer,
 		SettingsContainer,
-		StatsContainer,
+		StatsEditorialContainer,
+		StatsPublicationsContainer,
 		WorkflowContainer
 	}
 });

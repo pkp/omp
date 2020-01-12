@@ -34,4 +34,8 @@
 		<descr>Publish submissions that have been scheduled for publication.</descr>
 		<frequency day="0"/>
 	</task>
+	<task class="lib.pkp.classes.task.StatisticsReport">
+		<descr>Send automated statistics reports to press managers and editors.</descr>
+		<frequency day="1"/>
+	</task>
 </scheduled_tasks>
