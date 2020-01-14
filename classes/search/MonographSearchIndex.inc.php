@@ -93,14 +93,6 @@ class MonographSearchIndex extends SubmissionSearchIndex {
 	 * @param Submission $submission
 	 */
 	public function submissionMetadataChanged($submission) {
-
-		// If the submission is not published, remove any existing records
-		// from the index
-		if ($submission->getData('status') !== STATUS_PUBLISHED) {
-			$this->deleteTextIndex($submission->getId());
-			return;
-		}
-
 		$publication = $submission->getCurrentPublication();
 
 		// Build author keywords
