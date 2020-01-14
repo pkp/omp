@@ -30,6 +30,7 @@ class PublicationService extends PKPPublicationService {
 		\HookRegistry::register('Publication::add', [$this, 'addPublication']);
 		\HookRegistry::register('Publication::edit', [$this, 'editPublication']);
 		\HookRegistry::register('Publication::version', [$this, 'versionPublication']);
+		\HookRegistry::register('Publication::publish::before', [$this, 'publishPublicationBefore']);
 		\HookRegistry::register('Publication::publish', [$this, 'publishPublication']);
 		\HookRegistry::register('Publication::unpublish', [$this, 'unpublishPublication']);
 		\HookRegistry::register('Publication::delete::before', [$this, 'deletePublicationBefore']);
@@ -319,7 +320,7 @@ class PublicationService extends PKPPublicationService {
 	}
 
 	/**
-	 * Modify a publication when it is published
+	 * Modify a publication before it is published
 	 *
 	 * @param $hookName string
 	 * @param $args array [
@@ -327,7 +328,7 @@ class PublicationService extends PKPPublicationService {
 	 *		@option Publication The old version of the publication
 	 * ]
 	 */
-	public function publishPublication($hookName, $args) {
+	public function publishPublicationBefore($hookName, $args) {
 		$newPublication = $args[0];
 		$oldPublication = $args[1];
 
@@ -336,6 +337,21 @@ class PublicationService extends PKPPublicationService {
 		if ($datePublished && strtotime($datePublished) > strtotime(\Core::getCurrentDate())) {
 			$newPublication->setData('status', STATUS_SCHEDULED);
 		}
+	}
+
+	/**
+	 * Fire events after a publication has been published
+	 *
+	 * @param $hookName string
+	 * @param $args array [
+	 *		@option Publication The new version of the publication
+	 *		@option Publication The old version of the publication
+	 *		@option Submission The publication's submission
+	 * ]
+	 */
+	public function publishPublication($hookName, $args) {
+		$newPublication = $args[0];
+		$submission = $args[2];
 
 		// Remove publication format tombstones.
 		$publicationFormats = \DAORegistry::getDAO('PublicationFormatDAO')
@@ -355,20 +371,16 @@ class PublicationService extends PKPPublicationService {
 			ASSOC_TYPE_MONOGRAPH,
 			$newPublication->getData('submissionId')
 		);
-
-		// Update the metadata in the search index.
-		$submission = Services::get('submission')->get($newPublication->getData('submissionId'));
-		$submissionSearchIndex = Application::getSubmissionSearchIndex();
-		$submissionSearchIndex->submissionMetadataChanged($submission);
 	}
 
 	/**
-	 * Modify a publication when it is unpublished
+	 * Fire events after a publication has been unpublished
 	 *
 	 * @param $hookName string
 	 * @param $args array [
 	 *		@option Publication The new version of the publication
 	 *		@option Publication The old version of the publication
+	 *		@option Submission The publication's submission
 	 * ]
 	 */
 	public function unpublishPublication($hookName, $args) {
