@@ -139,12 +139,11 @@ class MonographSearchIndex extends SubmissionSearchIndex {
 	}
 
 	/**
-	 * Remove indexed file contents for a monograph
-	 * @param $monograph Monograph
+	 * @copydoc SubmissionSearchIndex::clearSubmissionFiles()
 	 */
-	public function clearMonographFiles($monograph) {
+	public function clearSubmissionFiles($submission) {
 		$searchDao = DAORegistry::getDAO('MonographSearchDAO');
-		$searchDao->deleteSubmissionKeywords($monograph->getId(), SUBMISSION_SEARCH_GALLEY_FILE);
+		$searchDao->deleteSubmissionKeywords($submission->getId(), SUBMISSION_SEARCH_GALLEY_FILE);
 	}
 
 	/**
