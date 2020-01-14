@@ -198,6 +198,7 @@ class OAIDAO extends PKPOAIDAO {
 		if (isset($set)) $params[] = $set;
 		if ($submissionId) $params[] = (int) $submissionId;
 
+		import('lib.pkp.classes.submission.PKPSubmission'); // STATUS_DECLINED
 		$result = $this->retrieve(
 			'SELECT	ms.last_modified AS last_modified,
 				pf.publication_format_id AS data_object_id,
