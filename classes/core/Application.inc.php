@@ -186,6 +186,13 @@ class Application extends PKPApplication {
 	}
 
 	/**
+	 * Get a SubmissionSearchDAO instance.
+	 */
+	public static function getSubmissionSearchDAO() {
+		return DAORegistry::getDAO('MonographSearchDAO');
+	}
+
+	/**
 	 * returns the name of the context column in plugin_settings
 	 */
 	public static function getPluginSettingsContextColumnName() {
