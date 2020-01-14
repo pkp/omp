@@ -24,7 +24,7 @@
 			{translate key="common.search"}
 		</button>
 		<div class="search_controls" aria-hidden="true">
-			<a href="{url page="search" op="search"}" class="headerSearchPrompt search_prompt" aria-hidden="true">
+			<a href="{url page="catalog" op="results"}" class="headerSearchPrompt search_prompt" aria-hidden="true">
 				{translate key="common.search"}
 			</a>
 			<a href="#" class="search_cancel headerSearchCancel" aria-hidden="true"></a>
