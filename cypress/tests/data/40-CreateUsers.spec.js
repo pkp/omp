@@ -22,6 +22,7 @@ describe('Data suite tests', function() {
 				'familyName': 'Vaca',
 				'country': 'Mexico',
 				'affiliation': 'Universidad Nacional Autónoma de México',
+				'mustChangePassword': true,
 				'roles': ['Press manager']
 			},
 			{
