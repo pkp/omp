@@ -1,0 +1,23 @@
+{
+  "env": {
+    "contextTitles": {
+      "en_US": "Public Knowledge Press",
+      "fr_CA": "Press de la connaissance du public"
+    },
+    "contextDescriptions": {
+      "en_US": "Public Knowledge Press is a publisher dedicated to the subject of public access to science.",
+      "fr_CA": "Le Press de Public Knowledge est une presse sur le thème de l'accès du public à la science."
+    },
+    "contextAcronyms": {
+      "en_US": "PKP"
+    },
+    "defaultGenre": "Book Manuscript"
+  },
+  "integrationFolder": "cypress/tests",
+  "pluginsFile": "lib/pkp/cypress/plugins/index.js",
+  "watchForFileChanges": false,
+  "defaultCommandTimeout": 10000,
+  "video": false,
+  "numTestsKeptInMemory": 0,
+  "projectId": "k9oh3x"
+}

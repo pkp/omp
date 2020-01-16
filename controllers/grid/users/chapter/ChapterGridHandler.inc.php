@@ -441,11 +441,10 @@ class ChapterGridHandler extends CategoryGridHandler {
 
 		// Form validation
 		if ($chapterForm->validate()) {
+			$notificationMgr = new NotificationManager();
+			$notificationMgr->createTrivialNotification($request->getUser()->getId());
 			$chapterForm->execute();
-
-			$newChapter = $chapterForm->getChapter();
-
-			return DAO::getDataChangedEvent($newChapter->getId());
+			return DAO::getDataChangedEvent($chapterForm->getChapter()->getId());
 		} else {
 			// Return an error
 			return new JSONMessage(false);
