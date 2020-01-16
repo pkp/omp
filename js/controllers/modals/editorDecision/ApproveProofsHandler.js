@@ -38,5 +38,4 @@
 			$.pkp.classes.Handler);
 
 
-/** @param {jQuery} $ jQuery closure. */
 }(jQuery));
