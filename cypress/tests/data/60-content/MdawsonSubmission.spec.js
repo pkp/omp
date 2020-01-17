@@ -140,6 +140,7 @@ describe('Data suite tests', function() {
 		// Approvals for PDF publication format
 		cy.get('table[id^="component-grid-catalogentry-publicationformatgrid-"] tr:contains("PDF") a[id*="-isComplete-approveRepresentation-button-"]').click();
 		cy.get('form[id="assignPublicIdentifierForm"] button[id^="submitFormButton-"]').click();
+		cy.waitJQuery();
 		cy.get('table[id^="component-grid-catalogentry-publicationformatgrid-"] tr:contains("PDF") a[id*="-isAvailable-availableRepresentation-button-"]').click();
 		cy.get('.pkpModalConfirmButton').click();
 
