@@ -23,7 +23,9 @@
 	{* Header wrapper *}
 	<header class="header_viewable_file">
 
-		<a href="{url op="book" path=$publishedSubmission->getBestId()}" class="return">
+		{capture assign="submissionUrl"}{url op="book" path=$publishedSubmission->getBestId()}{/capture}
+
+		<a href="{$submissionUrl}" class="return">
 			<span class="pkp_screen_reader">
 				{translate key="catalog.viewableFile.return" monographTitle=$publishedSubmission->getLocalizedTitle()|escape}
 			</span>
@@ -70,7 +72,14 @@
 	</script>
 	<script type="text/javascript" src="{$pluginUrl}/pdf.js/web/viewer.js"></script>
 
-	<div class="viewable_file_frame">
+	<div class="viewable_file_frame{if !$isLatestPublication} viewable_file_frame_with_notice{/if}">
+		{if !$isLatestPublication}
+			<div class="viewable_file_frame_notice">
+				<div class="viewable_file_frame_notice_message" role="alert">
+					{translate key="submission.outdatedVersion" datePublished=$filePublication->getData('datePublished') urlRecentVersion=$submissionUrl}
+				</div>
+			</div>
+		{/if}
 		<iframe src="{$pluginUrl}/pdf.js/web/viewer.html?file={$downloadUrl|escape:"url"}" width="100%" height="100%" style="min-height: 500px;" allowfullscreen webkitallowfullscreen></iframe>
 	</div>
 	{call_hook name="Templates::Common::Footer::PageFooter"}

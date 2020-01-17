@@ -90,36 +90,33 @@ class MonographSearchIndex extends SubmissionSearchIndex {
 
 	/**
 	 * Index monograph metadata.
-	 * @param $monograph Monograph
+	 * @param Submission $submission
 	 */
-	public function submissionMetadataChanged($monograph) {
+	public function submissionMetadataChanged($submission) {
+		$publication = $submission->getCurrentPublication();
+
 		// Build author keywords
-		$authorText = array();
-		foreach ($monograph->getData('authors') as $author) {
-			foreach ((array) $author->getGivenName(null) as $givenName) { // Localized
-				array_push($authorText, $givenName);
-			}
-			foreach ((array) $author->getFamilyName(null) as $familyName) { // Localized
-				array_push($authorText, $familyName);
-			}
-			foreach ((array) $author->getAffiliation(null) as $affiliation) { // Localized
-				array_push($authorText, strip_tags($affiliation));
-			}
-			foreach ((array) $author->getBiography(null) as $bio) { // Localized
-				array_push($authorText, strip_tags($bio));
-			}
+		$authorText = [];
+		foreach ($publication->getData('authors') as $author) {
+			$authorText = array_merge(
+				$authorText,
+				array_values((array) $author->getData('givenName')),
+				array_values((array) $author->getData('familyName')),
+				array_values(array_map('strip_tags', (array) $author->getData('affiliation'))),
+				array_values(array_map('strip_tags', (array) $author->getData('biography')))
+			);
 		}
 
 		// Update search index
 		import('classes.search.MonographSearch');
-		$monographId = $monograph->getId();
-		$this->updateTextIndex($monographId, SUBMISSION_SEARCH_AUTHOR, $authorText);
-		$this->updateTextIndex($monographId, SUBMISSION_SEARCH_TITLE, $monograph->getTitle(null, false));
-		$this->updateTextIndex($monographId, SUBMISSION_SEARCH_ABSTRACT, $monograph->getAbstract(null));
+		$submissionId = $submission->getId();
+		$this->updateTextIndex($submissionId, SUBMISSION_SEARCH_AUTHOR, $authorText);
+		$this->updateTextIndex($submissionId, SUBMISSION_SEARCH_TITLE, $publication->getData('title'));
+		$this->updateTextIndex($submissionId, SUBMISSION_SEARCH_ABSTRACT, $publication->getData('abstract'));
 
-		$this->updateTextIndex($monographId, SUBMISSION_SEARCH_DISCIPLINE, (array) $monograph->getDiscipline(null));
-		$this->updateTextIndex($monographId, SUBMISSION_SEARCH_TYPE, $monograph->getType(null));
-		$this->updateTextIndex($monographId, SUBMISSION_SEARCH_COVERAGE, (array) $monograph->getCoverage(null));
+		$this->updateTextIndex($submissionId, SUBMISSION_SEARCH_DISCIPLINE, (array) $publication->getData('disciplines'));
+		$this->updateTextIndex($submissionId, SUBMISSION_SEARCH_TYPE, (array) $publication->getData('type'));
+		$this->updateTextIndex($submissionId, SUBMISSION_SEARCH_COVERAGE, (array) $publication->getData('coverage'));
 		// FIXME Index sponsors too?
 	}
 
@@ -142,12 +139,11 @@ class MonographSearchIndex extends SubmissionSearchIndex {
 	}
 
 	/**
-	 * Remove indexed file contents for a monograph
-	 * @param $monograph Monograph
+	 * @copydoc SubmissionSearchIndex::clearSubmissionFiles()
 	 */
-	public function clearMonographFiles($monograph) {
+	public function clearSubmissionFiles($submission) {
 		$searchDao = DAORegistry::getDAO('MonographSearchDAO');
-		$searchDao->deleteSubmissionKeywords($monograph->getId(), SUBMISSION_SEARCH_GALLEY_FILE);
+		$searchDao->deleteSubmissionKeywords($submission->getId(), SUBMISSION_SEARCH_GALLEY_FILE);
 	}
 
 	/**

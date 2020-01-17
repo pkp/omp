@@ -30,6 +30,7 @@ class PublicationService extends PKPPublicationService {
 		\HookRegistry::register('Publication::add', [$this, 'addPublication']);
 		\HookRegistry::register('Publication::edit', [$this, 'editPublication']);
 		\HookRegistry::register('Publication::version', [$this, 'versionPublication']);
+		\HookRegistry::register('Publication::publish::before', [$this, 'publishPublicationBefore']);
 		\HookRegistry::register('Publication::publish', [$this, 'publishPublication']);
 		\HookRegistry::register('Publication::unpublish', [$this, 'unpublishPublication']);
 		\HookRegistry::register('Publication::delete::before', [$this, 'deletePublicationBefore']);
@@ -225,6 +226,7 @@ class PublicationService extends PKPPublicationService {
 
 		// Publication Formats (and all associated objects)
 		$oldPublicationFormats = $oldPublication->getData('publicationFormats');
+		$newFiles = [];
 		foreach ($oldPublicationFormats as $oldPublicationFormat) {
 			$newPublicationFormat = clone $oldPublicationFormat;
 			$newPublicationFormat->setData('id', null);
@@ -250,7 +252,6 @@ class PublicationService extends PKPPublicationService {
 				$oldPublicationFormat->getId(),
 				$oldPublication->getData('submissionId')
 			);
-			$newFiles = [];
 			foreach ($files as $file) {
 				$newFile = clone $file;
 				$newFile->setFileId(null);
@@ -272,7 +273,9 @@ class PublicationService extends PKPPublicationService {
 
 		// Chapters (and all associated objects)
 		$oldAuthorsIterator = Services::get('author')->getMany(['publicationIds' => $oldPublication->getId()]);
+		$oldAuthors = iterator_to_array($oldAuthorsIterator);
 		$newAuthorsIterator = Services::get('author')->getMany(['publicationIds' => $newPublication->getId()]);
+		$newAuthors = iterator_to_array($newAuthorsIterator);
 		$result = DAORegistry::getDAO('ChapterDAO')->getByPublicationId($oldPublication->getId());
 		while (!$result->eof()) {
 			$oldChapter = $result->next();
@@ -296,8 +299,7 @@ class PublicationService extends PKPPublicationService {
 			// old one. We then map the old chapter author associations to the new
 			// authors.
 			$oldChapterAuthors = DAORegistry::getDAO('ChapterAuthorDAO')->getAuthors($oldPublication->getId(), $oldChapter->getId())->toArray();
-			$oldAuthors = iterator_to_array($oldAuthorsIterator);
-			foreach ($newAuthorsIterator as $newAuthor) {
+			foreach ($newAuthors as $newAuthor) {
 				foreach ($oldAuthors as $oldAuthor) {
 					if ($newAuthor->getData('seq') === $oldAuthor->getData('seq')) {
 						foreach ($oldChapterAuthors as $oldChapterAuthor) {
@@ -306,7 +308,7 @@ class PublicationService extends PKPPublicationService {
 									$newAuthor->getId(),
 									$newChapter->getId(),
 									$newAuthor->getId() === $newPublication->getData('primaryContactId'),
-									$oldChapterAuthor->getData('sequence')
+									$oldChapterAuthor->getData('seq')
 								);
 							}
 						}
@@ -319,7 +321,7 @@ class PublicationService extends PKPPublicationService {
 	}
 
 	/**
-	 * Modify a publication when it is published
+	 * Modify a publication before it is published
 	 *
 	 * @param $hookName string
 	 * @param $args array [
@@ -327,7 +329,7 @@ class PublicationService extends PKPPublicationService {
 	 *		@option Publication The old version of the publication
 	 * ]
 	 */
-	public function publishPublication($hookName, $args) {
+	public function publishPublicationBefore($hookName, $args) {
 		$newPublication = $args[0];
 		$oldPublication = $args[1];
 
@@ -336,6 +338,21 @@ class PublicationService extends PKPPublicationService {
 		if ($datePublished && strtotime($datePublished) > strtotime(\Core::getCurrentDate())) {
 			$newPublication->setData('status', STATUS_SCHEDULED);
 		}
+	}
+
+	/**
+	 * Fire events after a publication has been published
+	 *
+	 * @param $hookName string
+	 * @param $args array [
+	 *		@option Publication The new version of the publication
+	 *		@option Publication The old version of the publication
+	 *		@option Submission The publication's submission
+	 * ]
+	 */
+	public function publishPublication($hookName, $args) {
+		$newPublication = $args[0];
+		$submission = $args[2];
 
 		// Remove publication format tombstones.
 		$publicationFormats = \DAORegistry::getDAO('PublicationFormatDAO')
@@ -355,20 +372,16 @@ class PublicationService extends PKPPublicationService {
 			ASSOC_TYPE_MONOGRAPH,
 			$newPublication->getData('submissionId')
 		);
-
-		// Update the metadata in the search index.
-		$submission = Services::get('submission')->get($newPublication->getData('submissionId'));
-		$submissionSearchIndex = Application::getSubmissionSearchIndex();
-		$submissionSearchIndex->submissionMetadataChanged($submission);
 	}
 
 	/**
-	 * Modify a publication when it is unpublished
+	 * Fire events after a publication has been unpublished
 	 *
 	 * @param $hookName string
 	 * @param $args array [
 	 *		@option Publication The new version of the publication
 	 *		@option Publication The old version of the publication
+	 *		@option Submission The publication's submission
 	 * ]
 	 */
 	public function unpublishPublication($hookName, $args) {

@@ -23,7 +23,9 @@
 	{* Header wrapper *}
 	<header class="header_viewable_file">
 
-		<a href="{url page="catalog" op="book" path=$monograph->getBestId()}" class="return">
+		{capture assign="submissionUrl"}{url op="book" path=$publishedSubmission->getBestId()}{/capture}
+
+		<a href="{$submissionUrl}" class="return">
 			<span class="pkp_screen_reader">
 				{translate key="monograph.return"}
 			</span>
@@ -34,7 +36,14 @@
 		</a>
 	</header>
 
-	<div id="htmlContainer" style="overflow:visible;-webkit-overflow-scrolling:touch">
+	<div id="htmlContainer" class="viewable_file_frame{if !$isLatestPublication} viewable_file_frame_with_notice{/if}" style="overflow:visible;-webkit-overflow-scrolling:touch">
+		{if !$isLatestPublication}
+			<div class="viewable_file_frame_notice">
+				<div class="viewable_file_frame_notice_message" role="alert">
+					{translate key="submission.outdatedVersion" datePublished=$filePublication->getData('datePublished') urlRecentVersion=$submissionUrl}
+				</div>
+			</div>
+		{/if}
 		<iframe name="htmlFrame" src="{$downloadUrl}" allowfullscreen webkitallowfullscreen></iframe>
 	</div>
 	{call_hook name="Templates::Common::Footer::PageFooter"}
