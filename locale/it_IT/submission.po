@@ -1,0 +1,305 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: \n"
+"Report-Msgid-Bugs-To: \n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"POT-Creation-Date: 2020-01-22T21:00:19+00:00\n"
+"PO-Revision-Date: 2020-01-22T21:00:19+00:00\n"
+"Language: \n"
+
+msgid "submission.authorListSeparator"
+msgstr "; "
+
+msgid "submission.submit.title"
+msgstr "Seleziona un documento da proporre"
+
+msgid "submission.upload.selectBookElement"
+msgstr "Seleziona un elemento del libro"
+
+msgid "submission.title"
+msgstr "Titolo"
+
+msgid "submission.title.tip"
+msgstr "Puoi scegliere di caricare questi tipi: 'immagine', 'testo' oppure un altro tipo di elemento multimediale scelto tra 'software' o 'interattivo'. Per favore, scegli solo quello che meglio identifica il prodotto da te caricato. Puoi trovare alcuni esempi qui <a target=\"_blank\" href=\"http://dublincore.org/documents/2001/04/12/usageguide/generic.shtml#type\">http://dublincore.org/documents/2001/04/12/usageguide/generic.shtml#type</a>"
+
+msgid "submission.select"
+msgstr "Seleziona il caricamento"
+
+msgid "submission.synopsis"
+msgstr "Scheda"
+
+msgid "submission.workflowType"
+msgstr "Tipo di Libro"
+
+msgid "submission.workflowType.description"
+msgstr "Una Monografia ? un volume scritto interamente da uno o pi? autori. Un volume A cura di ? costituito da capitoli scritti ciascuno da un diverso autore (i dettagli di ogni capitolo verranno inseriti pi? avanti)"
+
+msgid "submission.workflowType.editedVolume"
+msgstr "Volume A cura di: gli Autori vengono associati solo ai contenuti dei propri Capitoli."
+
+msgid "submission.workflowType.authoredWork"
+msgstr "Monografia: gli Autori vengono associati a tutti i contenuti del libro."
+
+msgid "submission.monograph"
+msgstr "Monografia"
+
+msgid "submission.published"
+msgstr "Pronto per andare in produzione"
+
+msgid "submission.fairCopy"
+msgstr "Bella copia"
+
+msgid "submission.artwork.permissions"
+msgstr "Permessi"
+
+msgid "submission.chapter"
+msgstr "Capitolo"
+
+msgid "submission.chapters"
+msgstr "Capitoli"
+
+msgid "submission.chaptersDescription"
+msgstr "? possibile elencare qui i capitoli e assegnare ad essi i rispettivi autori prendendoli dall'elenco dei collaboratori, qui in alto. Questi collaboratori potranno accedere al proprio capitolo durante le varie fasi del processo di pubblicazione."
+
+msgid "submission.chapter.addChapter"
+msgstr "Aggiungi un nuovo capitolo"
+
+msgid "submission.chapter.editChapter"
+msgstr "Edita i Capitoli"
+
+msgid "submission.copyedit"
+msgstr "Fai il copyediting"
+
+msgid "submission.publicationFormats"
+msgstr "Formati di pubblicazione"
+
+msgid "submission.proofs"
+msgstr "Prove"
+
+msgid "submission.download"
+msgstr "Download"
+
+msgid "submission.sharing"
+msgstr "Pubblicizza"
+
+msgid "manuscript.submission"
+msgstr "Proposta di documento"
+
+msgid "submission.round"
+msgstr "Round&nbsp;{$round}"
+
+msgid "submissions.queuedReview"
+msgstr "In corso di valutazione"
+
+msgid "manuscript.submissions"
+msgstr "Proposte di documenti"
+
+msgid "submission.confirmSubmit"
+msgstr "Vuoi pubblicare questo manoscritto?"
+
+msgid "submission.metadata"
+msgstr "Metadati"
+
+msgid "submission.supportingAgencies"
+msgstr "Agenzie di supporto"
+
+msgid "grid.action.addChapter"
+msgstr "Crea un nuovo capitolo"
+
+msgid "grid.action.editChapter"
+msgstr "Modifica questo capitolo"
+
+msgid "grid.action.deleteChapter"
+msgstr "Cancella questo capitolo"
+
+msgid "submission.submit"
+msgstr "Dai inizio ad nuova immissione di Libri"
+
+msgid "submission.submit.newSubmissionMultiple"
+msgstr "Dai inizio ad nuova immissione in"
+
+msgid "submission.submit.newSubmissionSingle"
+msgstr "Dai inizio ad nuova immissione in {$contextName}"
+
+msgid "submission.submit.upload"
+msgstr "Carica"
+
+msgid "submission.submit.upload.description"
+msgstr "Carica i file associati a questa immissione, compresi: manoscritto, prospetto, lettera di presentazione, ecc. Per i volumi A cura di, come pure per le Monografie, carica il manoscritto in un unico file, se possibile."
+
+msgid "submission.submit.cancelSubmission"
+msgstr ""
+"\n"
+"? possibile completare questo caricamento in un secondo momento selezionando Attiva immissioni a partire dalla homepage dell'Autore."
+
+msgid "submission.submit.copyrightNoticeAgree"
+msgstr "Accetto i termini stabiliti dalla legge sul copyright."
+
+msgid "submission.submit.selectSeries"
+msgstr "Scegli una collana... "
+
+msgid "submission.submit.seriesPosition"
+msgstr "Posizione occupata nella collana (cio?, Libro 2, o Volume 2)"
+
+msgid "submission.submit.form.localeRequired"
+msgstr "Per favore, scegli la lingua del caricamento."
+
+msgid "submission.submit.submissionChecklist"
+msgstr "Checklist per il caricamento"
+
+msgid "submission.submit.submissionChecklistDescription"
+msgstr "Prima di procedere, occorre completare e verificare i seguenti requisiti per l'immissione (i commenti all'editor possono essere aggiunti subito dopo)."
+
+msgid "submission.submit.privacyStatement"
+msgstr "Informativa sulla privacy"
+
+msgid "submission.submit.contributorRole"
+msgstr "Ruolo del collaboratore"
+
+msgid "submission.submit.form.authorRequired"
+msgstr "? obbligatorio inserire almeno un autore."
+
+msgid "submission.submit.form.authorRequiredFields"
+msgstr "? obbligatorio inserire il nome, il cognome e l'indirizzo email di ciascun autore."
+
+msgid "submission.submit.form.titleRequired"
+msgstr "Per favore, inserisci il titolo della tua Monografia."
+
+msgid "submission.submit.form.abstractRequired"
+msgstr "Per favore, inserisci un breve riassunto della tua Monografia."
+
+msgid "submission.submit.form.contributorRoleRequired"
+msgstr "Per favore, scegli il ruolo del collaboratore."
+
+msgid "submission.submit.submissionFile"
+msgstr "File da sottomettere"
+
+msgid "submission.submit.prepare"
+msgstr "Prepara"
+
+msgid "submission.submit.catalog"
+msgstr "Catalogo"
+
+msgid "submission.submit.metadata"
+msgstr "Metadati"
+
+msgid "submission.submit.finishingUp"
+msgstr "Concludi"
+
+msgid "submission.submit.nextSteps"
+msgstr "Prossimi passi"
+
+msgid "submission.submit.coverNote"
+msgstr "Nota di copertina dell'Editor"
+
+msgid "submission.submit.generalInformation"
+msgstr "Informazioni generali"
+
+msgid "submission.submit.whatNext.description"
+msgstr "La Press ? stata informata del tuo caricamento e ti ? stata inviata una email di conferma. Appena l'editor avr? visionato il tuo lavoro, si metter? in contatto con te."
+
+msgid "submission.submit.checklistErrors"
+msgstr "Per favore, leggi e spunta le voci della checklist per il caricamento. Ci sono {$itemsRemaining} voci ancora non controllate."
+
+msgid "submission.submit.placement"
+msgstr "Posizione del caricamento"
+
+msgid "submission.submit.placement.seriesDescription"
+msgstr "Nel caso in cui il libro debbe far parte di una collana..."
+
+msgid "submission.submit.placement.seriesPositionDescription"
+msgstr "I titoli presenti in una collana vengono di norma riportati in un ordine inverso rispetto a quello di pubblicazione; ci? serve a dare il senso dello sviluppo della collana e per mantenere in testa i titoli pi? recenti."
+
+msgid "submission.submit.placement.categories"
+msgstr "Categorie"
+
+msgid "submission.submit.placement.categoriesDescription"
+msgstr "Seleziona una delle categorie della Press che vuoi attribuire a questo documento."
+
+msgid "submission.submit.userGroup"
+msgstr "Carico nel mio ruolo di..."
+
+msgid "submission.submit.userGroupDescription"
+msgstr "Se stai caricando un \"Volume edito\" devi scegliere il ruolo \"Curatore del volume\"."
+
+msgid "submission.submit.confirmExpedite"
+msgstr "Conferma i metadati per velocizzare il caricamento"
+
+msgid "grid.chapters.title"
+msgstr "Capitoli"
+
+msgid "grid.copyediting.deleteCopyeditorResponse"
+msgstr "Cancella il caricamento del Copyeditor"
+
+msgid "submission.catalogEntry"
+msgstr "Catalogo"
+
+msgid "submission.editCatalogEntry"
+msgstr "Accesso"
+
+msgid "submission.catalogEntry.new"
+msgstr "Nuovo accesso al Catalogo"
+
+msgid "submission.catalogEntry.confirm"
+msgstr "Crea un punto di accesso nel Catalogo per questo libro a partire dai metadati che seguono."
+
+msgid "submission.catalogEntry.confirm.required"
+msgstr "Per favore, conferma che l'immissione ? pronta per entrare nel Catalogo."
+
+msgid "submission.catalogEntry.isAvailable"
+msgstr "Questa Monografia ? pronta per essere aggiunta al Catalogo pubblico."
+
+msgid "submission.catalogEntry.monographMetadata"
+msgstr "Monografia"
+
+msgid "submission.catalogEntry.catalogMetadata"
+msgstr "Catalogo"
+
+msgid "submission.catalogEntry.publicationMetadata"
+msgstr "Formato di Pubblicazione"
+
+msgid "submission.event.participantAdded"
+msgstr "\"{$name}\" ({$username}) ? stato aggiunto a {$userGroupName}."
+
+msgid "submission.event.participantRemoved"
+msgstr "\"{$name}\" ({$username}) ? stato cancellato da {$userGroupName}."
+
+msgid "submission.event.metadataPublished"
+msgstr "I metadati della Monografia sono stati approvati per la pubblicazione."
+
+msgid "submission.event.metadataUnpublished"
+msgstr "I metadati della Monografia non sono pi? pubblici."
+
+msgid "submission.event.publicationFormatMadeAvailable"
+msgstr "Il formato \"{$publicationFormatName}\" ? ora disponibile."
+
+msgid "submission.event.publicationFormatMadeUnavailable"
+msgstr "Il formato \"{$publicationFormatName}\" non ? pi? disponibile."
+
+msgid "submission.event.publicationFormatPublished"
+msgstr "Il formato \"{$publicationFormatName}\" ? stato approvato per la pubblicazione."
+
+msgid "submission.event.publicationFormatUnpublished"
+msgstr "Il formato \"{$publicationFormatName}\" non ? pi? pubblicato."
+
+msgid "submission.event.catalogMetadataUpdated"
+msgstr "I metadati del catalogo sono stati aggiornati."
+
+msgid "submission.event.publicationMetadataUpdated"
+msgstr "I metadati \"{$formatName}\" ? stato aggiornato."
+
+msgid "submission.event.publicationFormatCreated"
+msgstr "Il formato \"{$formatName}\" ? stato creato."
+
+msgid "submission.event.publicationFormatRemoved"
+msgstr "Il formato \"{$formatName}\" ? stato rimosso."
+
+msgid "submission.submit.titleAndSummary"
+msgstr "Titolo e Sommario"
+
+msgid "metadata.property.displayName.date"
+msgstr "Data di pubblicazione"
