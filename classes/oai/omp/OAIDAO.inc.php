@@ -237,7 +237,7 @@ class OAIDAO extends PKPOAIDAO {
 				' . ($from?' AND dot.date_deleted >= ' . $this->datetimeToDB($from):'') . '
 				' . ($until?' AND dot.date_deleted <= ' . $this->datetimeToDB($until):'') . '
 				' . (isset($set)?' AND dot.set_spec = ?':'') . '
-				' . ($submissionId?' dot.data_object_id = ?':'') . '
+				' . ($submissionId?' AND dot.data_object_id = ?':'') . '
 			ORDER BY ' . $orderBy,
 			$params
 		);
