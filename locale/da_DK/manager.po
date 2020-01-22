@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2019-11-28T15:10:04-08:00\n"
-"PO-Revision-Date: 2020-01-21 17:35+0000\n"
+"PO-Revision-Date: 2020-01-22 21:11+0000\n"
 "Last-Translator: Niels Erik Frederiksen <nef@kb.dk>\n"
 "Language-Team: Danish <http://translate.pkp.sfu.ca/projects/omp/manager/da/>"
 "\n"
@@ -42,7 +42,7 @@ msgid "manager.series.indexed"
 msgstr "Indekseret"
 
 msgid "manager.series.open"
-msgstr "Åben indsendelse"
+msgstr "Åbn indsendelser"
 
 msgid "manager.series.readingTools"
 msgstr "Læseværktøjer"
@@ -931,3 +931,310 @@ msgstr ""
 "standardanbefalinger i forbindelse med manuskriptet (Acceptér; Rettelser er "
 "påkrævet; Fremsend igen til bedømmelse; Fremsend igen til andet sted/anden "
 "bedømmer; Afvis; Se kommentarer). <br /><br /> Vælg en af følgende:"
+
+msgid "manager.setup.copyrightNotice.sample"
+msgstr ""
+"<h3>Forslag til Creative Commons copyright-meddelelser</h3>\n"
+"<h4>Forslag til politik for forlag, der tilbyder Open Access</h4>\n"
+"Forfattere, der udgiver på dette forlag, accepterer følgende vilkår:\n"
+"<ol type = \"a\">\n"
+"<li>Forfattere beholder ophavsret og giver forlaget ret til første "
+"offentliggørelse af værket samtidig med, at det licenseres under en <a "
+"target=\"_blank\" href=\"http://creativecommons.org/licenses/by/3.0/\"> "
+"Creative Commons Attribution Licens </a>, der giver andre mulighed for at "
+"dele værket med en anerkendelse af værkets forfatterskab og indledende "
+"publicering hos dette forlag. </li>\n"
+"<li>Forfattere har tilladelse til at indgå separate, nye kontraktlige "
+"udgivelser til ikke-eksklusiv udbredelse af versionen af det arbejde, som "
+"forlaget har udgivet (f.eks. sende det til et institutionelt repository "
+"eller offentliggøre det i en bog), med en anerkendelse af dens første "
+"offentliggørelse hos dette forlag.</li>\n"
+"<li>Forfattere har tilladelse og opfordres til at sende deres arbejde online "
+"(f.eks. i institutionelle repositorier eller på deres hjemmeside) før og "
+"under indsendelsesprocessen, da det kan føre til produktiv udveksling, samt "
+"tidligere og flere citationer i offentliggjorte arbejder (Se <a target=\""
+"_blank\" href=\"http://opcit.eprints.org/oacitation-biblio.html\">Effekten "
+"af Open Access</a>). </li>\n"
+"</ol>\n"
+"\n"
+"<h4>Forslag til politik for forlag, der tilbyder forsinket Open Access</h4>\n"
+"Forfattere, der udgiver på dette forlag, accepterer følgende vilkår:\n"
+"<ol type = \"a\">\n"
+"<li> Forfattere beholder ophavsret og giver forlaget retten til første "
+"offentliggørelse af værket [FASTSÆT TIDSPERODE] samtidig med at det "
+"licenseres under en <a target = \"_ blank\" href = \"http://creativecommons."
+"org/licenses/by/3.0/ \">Creative Commons Attribution License</a>, der giver "
+"andre mulighed for at dele værket med en anerkendelse af værkets "
+"forfatterskab og indledende publicering hos dette forlag.</li>\n"
+"<li>Forfattere har tilladelse til at indgå separate, nye kontraktlige "
+"udgivelser til ikke-eksklusiv udbredelse af versionen af det arbejde, som "
+"forlaget har udgivet (f.eks. sende det til et institutionelt repository "
+"eller offentliggøre det i en bog), med en anerkendelse af dens første "
+"offentliggørelse hos dette forlag. </li>\n"
+"<li>Forfattere har tilladelse og opfordres til at sende deres arbejde online "
+"(f.eks. i institutionelle repositorier eller på deres hjemmeside) før og "
+"under indsendelsesprocessen, da det kan føre til produktiv udveksling, samt "
+"tidligere og flere citationer i offentliggjorte arbejder (Se <a target=\""
+"_blank\" href=\"http://opcit.eprints.org/oacitation-biblio.html\">Effekten "
+"af Open Access </a>). </li>\n"
+"</ol>"
+
+msgid "manager.files.note"
+msgstr ""
+"Bemærk: Filbrowseren er en avanceret funktion, der gør det muligt direkte at "
+"se og manipulere filer og mapper knyttet til et forlag."
+
+msgid "manager.setup.productionTemplates"
+msgstr "Produktionsskabeloner"
+
+msgid "manager.setup.files"
+msgstr "Filer"
+
+msgid "manager.setup.editorialTeam.description"
+msgstr ""
+"Liste over redaktører, ledelse og andre personer, der er tilknyttet forlaget."
+
+msgid "manager.setup.editorialTeam"
+msgstr "Redaktionelt hold"
+
+msgid "manager.setup.masthead"
+msgstr "Kolofon"
+
+msgid "manager.setup.internalReviewRoles"
+msgstr "Interne bedømmerroller"
+
+msgid "manager.setup.currentRoles"
+msgstr "Aktuelle roller"
+
+msgid "manager.setup.availableRoles"
+msgstr "Tilgængelige roller"
+
+msgid "manager.setup.managerialRoles"
+msgstr "Administrative roller"
+
+msgid "manager.setup.authorRoles"
+msgstr "Forfatterroller"
+
+msgid "manager.setup.roleType"
+msgstr "Rolletype"
+
+msgid "manager.setup.reviewForms"
+msgstr "Bedømmelsesformularer"
+
+msgid "manager.setup.series.description"
+msgstr ""
+"Du kan oprette et vilkårligt antal serier, der hjælper med at organisere "
+"dine publikationer. En serie repræsenterer et specielt sæt bøger, der er "
+"tilknyttet et tema eller emner, som nogen har foreslået, ofte et "
+"fakultetsmedlem, og som vedkommende derefter fører tilsyn med. Besøgende vil "
+"være i stand til at søge i og gennemse forlaget via serie."
+
+msgid "manager.setup.categories.description"
+msgstr ""
+"Du kan oprette en liste over kategorier, der hjælper med at organisere dine "
+"publikationer. Kategorier kan være grupperinger af bøger efter emne, for "
+"eksempel økonomi; litteratur; poesi; osv. Kategorier kan være indlejret "
+"under \"overordnede\" kategorier: For eksempel kan en hovedkategori for "
+"økonomi omfatte individuelle mikro-økonomiske og makro-økonomiske "
+"kategorier. Besøgende vil være i stand til at søge i og gennemse forlaget "
+"via kategorier."
+
+msgid "manager.setup.categoriesAndSeries"
+msgstr "Kategorier og serier"
+
+msgid "manager.setup.currentFormats"
+msgstr "Aktuelle formater"
+
+msgid "manager.setup.issnDescription"
+msgstr ""
+"ISSN (International Standard Serial Number) er et ottecifret nummer, der "
+"identificerer periodiske publikationer inklusive elektroniske serier. Et "
+"nummer kan fås fra <a href=\"http://www.issn.org\" target=\"_blank\">ISSN "
+"International Center</a>."
+
+msgid "manager.setup.submitToSeries"
+msgstr "Tillad serieindsendelser"
+
+msgid "manager.setup.submitToCategories"
+msgstr "Tillad kategoriindsendelser"
+
+msgid "manager.setup.prospectusDescription"
+msgstr ""
+"Prospektvejledningen er et dokument udarbejdet af forlaget, der skal hjælpe "
+"forfatteren med at beskrive de indsendte materialer på en måde, der giver et "
+"forlag mulighed for at bestemme værdien af indsendelsen. Et prospekt kan "
+"omfatte en mængde aspekter - fra marketingspotentiale til teoretisk værdi. "
+"Under alle omstændigheder bør et forlag oprette en prospektvejledning, der "
+"supplerer deres publiceringsagende."
+
+msgid "manager.setup.prospectus"
+msgstr "Prospektvejledning"
+
+msgid "manager.setup.restoreDefaults"
+msgstr "Gendan standardindstillinger"
+
+msgid "manager.setup.deleteSelected"
+msgstr "Slet det valgte"
+
+msgid "manager.setup.newGenreDescription"
+msgstr ""
+"For at oprette en ny genre skal du udfylde nedenstående formular og klikke "
+"på knappen \"Opret\"."
+
+msgid "manager.setup.newGenre"
+msgstr "Ny monografigenre"
+
+msgid "manager.setup.genres"
+msgstr "Genre"
+
+msgid "manager.setup.reviewProcessEmailDescription"
+msgstr ""
+"Redaktører sender bedømmere anmodningen om at stå for bedømmelsen med "
+"indsendelsen vedhæftet e-mailen. Bedømmere e-mailer redaktører deres "
+"samtykke (eller beklagelse) såvel som bedømmelsen og anbefalingen. "
+"Redaktører går ind og ser bedømmernes samtykke (eller beklagelse) samt "
+"bedømmelsen og anbefaling på indsendelsens bedømmelsesside for at registrere "
+"bedømmelsesprocessen."
+
+msgid "manager.setup.genresDescription"
+msgstr ""
+"Disse genrer bruges til filnavngivning og præsenteres i en rullemenu i "
+"forbindelse med upload af filer. Genrerne benævnt ## giver brugeren mulighed "
+"for at knytte filen til enten hele bogen 99Z eller et bestemt kapitel efter "
+"nummer (f.eks. 02)."
+
+msgid "manager.setup.newPublicationFormatDescription"
+msgstr ""
+"For at oprette et nyt publiceringsformat skal du udfylde nedenstående "
+"formular og klikke på knappen 'Opret'."
+
+msgid "manager.setup.publicationFormat.inUse"
+msgstr ""
+"Da dette publiceringsformat i øjeblikket er knyttet til en af forlagets "
+"monografier, kan det ikke slettes."
+
+msgid "manager.setup.newPublicationFormat"
+msgstr "Nyt publiceringsformat"
+
+msgid "manager.setup.publicationFormat.physicalFormat"
+msgstr "Er dette et fysisk (ikke-digitalt) format?"
+
+msgid "manager.setup.publicationFormat.nameRequired"
+msgstr "Du skal tildele et navn til dette format."
+
+msgid "manager.setup.publicationFormat.codeRequired"
+msgstr "Et format skal vælges."
+
+msgid "manager.setup.publicationFormat.code"
+msgstr "Format"
+
+msgid "manager.setup.volumePerYear"
+msgstr "Bind per år"
+
+msgid "manager.setup.useTextTitle"
+msgstr "Titeltekst"
+
+msgid "manager.setup.userRegistration"
+msgstr "Brugerregistrering"
+
+msgid "manager.setup.useProofreaders"
+msgstr ""
+"En korrekturlæser vil (sammen med forfatterne) skulle kontrollere "
+"publiceringsversionerne inden publicering."
+
+msgid "manager.setup.useLayoutEditors"
+msgstr ""
+"En layoutredaktør vil blive knyttet til klargøring af HTML, PDF og andre "
+"filer til elektronisk publicering."
+
+msgid "manager.setup.useStyleSheet"
+msgstr "Forlags-style sheet"
+
+msgid "manager.setup.useImageTitle"
+msgstr "Titelbillede"
+
+msgid "manager.setup.useEditorialReviewBoard"
+msgstr "Et redaktionelt-/bedømmelses-udvalg vil være knyttet til forlaget."
+
+msgid "manager.setup.useCopyeditors"
+msgstr "En manuskriptredaktør vil blive knyttet til hver indsendelse."
+
+msgid "manager.setup.typeProvideExamples"
+msgstr ""
+"Giv eksempler på relevante forskningstyper, metoder og tilgange på dette felt"
+
+msgid "manager.setup.typeMethodApproach"
+msgstr "Type (metode/fremgangsmåde)"
+
+msgid "manager.setup.typeExamples"
+msgstr ""
+"(F.eks. historisk undersøgelse; kvasi-eksperimentel; litterær analyse; "
+"meningsmåling/interview)"
+
+msgid "manager.setup.submissions.description"
+msgstr ""
+"Forfattervejledninger, copyright og indeksering (inklusiv registrering)."
+
+msgid "manager.setup.workflow"
+msgstr "Workflow"
+
+msgid "maganer.setup.submissionChecklistItemRequired"
+msgstr "Tjeklisteindhold er påkrævet."
+
+msgid "manager.setup.submissionPreparationChecklist"
+msgstr "Tjekliste til forberedelse af indsendelse"
+
+msgid "manager.setup.submissionGuidelines"
+msgstr "Retningslinjer for indsendelse"
+
+msgid "manager.setup.subjectProvideExamples"
+msgstr "Giv eksempler på nøgleord eller emner som vejledning til forfattere"
+
+msgid "manager.setup.subjectKeywordTopic"
+msgstr "Nøgleord"
+
+msgid "manager.setup.subjectExamples"
+msgstr "(F.eks., Fotosyntese; sorte huller; firfarveproblemet; Bayes' teorem)"
+
+msgid "manager.setup.stepsToPressSite"
+msgstr "Fem trin til et forlagswebsted"
+
+msgid "manager.setup.siteAccess.viewContent"
+msgstr "Se monografiindhold"
+
+msgid "manager.setup.siteAccess.view"
+msgstr "Webstedsadgang"
+
+msgid "manager.setup.showGalleyLinksDescription"
+msgstr "Vis altid links til publiceringsversion og angiv begrænset adgang."
+
+msgid "manager.setup.selectSectionDescription"
+msgstr ""
+"Forlagssektionen som vil blive taget i betragtning i forbindelse dette "
+"indlæg."
+
+msgid "manager.setup.selectEditorDescription"
+msgstr "Forlagsredaktøren, der vil følge det gennem den redaktionelle proces."
+
+msgid "manager.setup.securitySettings.note"
+msgstr ""
+"Andre sikkerheds- og adgangsrelaterede indstillinger kan konfigureres fra "
+"siden <a href=\"{$accessAndSecurityUrl}\" target=\"_blank\" class=\"action\">"
+"Adgang og sikkerhed</a>."
+
+msgid "manager.setup.securitySettings"
+msgstr "Adgangs- og sikkerhedsindstillinger"
+
+msgid "manager.setup.sectionsDescription"
+msgstr ""
+"Hvis du vil oprette eller ændre sektioner til forlaget (f.eks. monografier, "
+"boganmeldelser osv.), Skal du gå til Sektionsstyring. <br /><br />"
+"Forfattere, der sender indlæg til forlaget, vil udpege ..."
+
+msgid "manager.setup.sectionsDefaultSectionDescription"
+msgstr ""
+"(Hvis sektioner ikke er tilføjet, sendes poster som standard til afsnittet "
+"Monografier.)"
+
+msgid "manager.setup.sectionsAndSectionEditors"
+msgstr "Sektioner og sektionsredaktører"
