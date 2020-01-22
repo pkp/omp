@@ -105,8 +105,8 @@ describe('Data suite tests', function() {
 		cy.waitJQuery();
 
 		// Disable the CI requirement again
-		cy.get('ul#navigationPrimary a:contains("Settings")').click();
-		cy.get('ul#navigationPrimary a:contains("Workflow")').click();
+		cy.get('ul#navigationPrimary a:contains("Settings")', {force: true}).click();
+		cy.get('ul#navigationPrimary a:contains("Workflow")', {force: true}).click();
 		cy.get('button[id="review-button"]').click();
 		cy.get('button[id="reviewerGuidance-button"]').click();
 		cy.wait(2000); // Give TinyMCE control time to load
