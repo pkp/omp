@@ -103,9 +103,10 @@ describe('Data suite tests', function() {
 		cy.get('p').contains(competingInterests);
 		cy.get('form[id="readReviewForm"] a.cancelButton').click();
 		cy.waitJQuery();
+		cy.logout();
 
 		// Disable the CI requirement again
-		cy.scrollTo('topLeft'); // Make sure menus aren't obscured
+		cy.login('dbarnes', null, 'publicknowledge');
 		cy.get('ul#navigationPrimary a:contains("Settings")').click();
 		cy.get('ul#navigationPrimary a:contains("Workflow")').click();
 		cy.get('button[id="review-button"]').click();
