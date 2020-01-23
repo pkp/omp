@@ -18,6 +18,5 @@
   "watchForFileChanges": false,
   "defaultCommandTimeout": 10000,
   "video": false,
-  "numTestsKeptInMemory": 0,
-  "projectId": "k9oh3x"
+  "numTestsKeptInMemory": 0
 }
