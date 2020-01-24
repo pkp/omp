@@ -1,2 +1,55 @@
 msgid ""
-msgstr "X-Generator: Weblate\nMIME-Version: 1.0\nContent-Type: text/plain; charset=UTF-8\nContent-Transfer-Encoding: 8bit"
+msgstr ""
+"PO-Revision-Date: 2020-01-24 16:02+0000\n"
+"Last-Translator: Magnus Annemark <magnus.annemark@ub.lu.se>\n"
+"Language-Team: Swedish <http://translate.pkp.sfu.ca/projects/omp/default/sv/>"
+"\n"
+"Language: sv\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: Weblate 3.9.1\n"
+
+msgid "default.groups.abbrev.sectionEditor"
+msgstr "AcqE"
+
+#, fuzzy
+msgid "default.groups.plural.sectionEditor"
+msgstr "Redaktörer för serie"
+
+msgid "default.groups.name.sectionEditor"
+msgstr "Redaktör för serie"
+
+msgid "default.groups.abbrev.manager"
+msgstr "PM"
+
+msgid "default.genres.other"
+msgstr "Övrigt"
+
+msgid "default.genres.illustration"
+msgstr "Illustration"
+
+msgid "default.genres.photo"
+msgstr "Fotografi"
+
+msgid "default.genres.chapter"
+msgstr "Kapitelmanuskript"
+
+msgid "default.genres.manuscript"
+msgstr "Bokmanuskript"
+
+msgid "default.genres.prospectus"
+msgstr "Prospekt"
+
+msgid "default.genres.preface"
+msgstr "Förord"
+
+msgid "default.genres.index"
+msgstr "Index"
+
+msgid "default.genres.glossary"
+msgstr "Ordlista"
+
+msgid "default.genres.appendix"
+msgstr "Bilaga"
