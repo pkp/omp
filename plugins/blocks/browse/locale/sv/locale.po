@@ -1,2 +1,36 @@
 msgid ""
-msgstr "X-Generator: Weblate\nMIME-Version: 1.0\nContent-Type: text/plain; charset=UTF-8\nContent-Transfer-Encoding: 8bit"
+msgstr ""
+"PO-Revision-Date: 2020-01-24 16:02+0000\n"
+"Last-Translator: Magnus Annemark <magnus.annemark@ub.lu.se>\n"
+"Language-Team: Swedish <http://translate.pkp.sfu.ca/projects/omp/"
+"blocks-browse/sv/>\n"
+"Language: sv\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: Weblate 3.9.1\n"
+
+msgid "plugins.block.browse.description"
+msgstr "Det här pluginet aktiverar bläddringsmenyn."
+
+msgid "plugins.block.browse.newReleases"
+msgstr "Nytt material"
+
+msgid "plugins.block.browse.series"
+msgstr "Serier"
+
+msgid "plugins.block.browse.category"
+msgstr "Kategorier"
+
+msgid "plugins.block.browse.settings.title"
+msgstr "Bläddringsmöjligheter"
+
+msgid "plugins.block.browse.settings"
+msgstr "Inställningar"
+
+msgid "plugins.block.browse.displayName"
+msgstr "Bläddra-block"
+
+msgid "plugins.block.browse"
+msgstr "Bläddra"
