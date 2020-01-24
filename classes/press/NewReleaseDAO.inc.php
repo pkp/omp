@@ -52,6 +52,8 @@ class NewReleaseDAO extends DAO {
 	 * @return array Monograph
 	 */
 	function getMonographsByAssoc($assocType, $assocId) {
+		// import STATUS_PUBLISHED constant
+		import('classes.submission.Submission');
 		$result = $this->retrieve(
 			'SELECT	n.submission_id
 			FROM	new_releases n,
