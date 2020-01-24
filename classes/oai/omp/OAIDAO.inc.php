@@ -93,7 +93,7 @@ class OAIDAO extends PKPOAIDAO {
 			$title = $press->getLocalizedName();
 			$abbrev = $press->getPath();
 
-			$dataObjectTombstoneDao = DAORegistry::getDAO('DataObjectTombstoneDAO');
+			$dataObjectTombstoneDao = DAORegistry::getDAO('DataObjectTombstoneDAO'); /* @var $dataObjectTombstoneDao DataObjectTombstoneDAO */
 			$publicationFormatSets = $dataObjectTombstoneDao->getSets(ASSOC_TYPE_PRESS, $press->getId());
 
 			if (!array_key_exists(urlencode($abbrev), $publicationFormatSets)) array_push($sets, new OAISet(urlencode($abbrev), $title, ''));

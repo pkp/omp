@@ -25,7 +25,7 @@ class MonographMailTemplate extends SubmissionMailTemplate {
 	 */
 	function assignParams($paramArray = array()) {
 		$submission = $this->submission;
-		$seriesDao = DAORegistry::getDAO('SeriesDAO');
+		$seriesDao = DAORegistry::getDAO('SeriesDAO'); /* @var $seriesDao SeriesDAO */
 		$series = $seriesDao->getById($submission->getSeriesId());
 		$paramArray['seriesPath'] = $series ? $series->getPath() : '';
 		$paramArray['seriesName'] = $series ? $series->getLocalizedTitle() : '';

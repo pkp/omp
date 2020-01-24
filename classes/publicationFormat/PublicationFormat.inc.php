@@ -72,7 +72,7 @@ class PublicationFormat extends Representation {
 	 * @return string
 	 */
 	function getNameForONIXCode() {
-		$onixCodelistItemDao = DAORegistry::getDAO('ONIXCodelistItemDAO');
+		$onixCodelistItemDao = DAORegistry::getDAO('ONIXCodelistItemDAO'); /* @var $onixCodelistItemDao ONIXCodelistItemDAO */
 		$codes = $onixCodelistItemDao->getCodes('List7'); // List7 is for object formats
 		return $codes[$this->getEntryKey()];
 	}
@@ -253,7 +253,7 @@ class PublicationFormat extends Representation {
 	function getCalculatedFileSize() {
 		$fileSize = 0;
 		$publication = Services::get('publication')->get($this->getData('publicationId'));
-		$submissionFileDao = DAORegistry::getDAO('SubmissionFileDAO');
+		$submissionFileDao = DAORegistry::getDAO('SubmissionFileDAO'); /* @var $submissionFileDao SubmissionFileDAO */
 		import('lib.pkp.classes.submission.SubmissionFile'); // File constants
 		$stageMonographFiles = $submissionFileDao->getLatestRevisionsByAssocId(
 			ASSOC_TYPE_PUBLICATION_FORMAT, $this->getId(),
@@ -282,7 +282,7 @@ class PublicationFormat extends Representation {
 	 * @return DAOResultFactory SalesRights
 	 */
 	function getSalesRights() {
-		$salesRightsDao = DAORegistry::getDAO('SalesRightsDAO');
+		$salesRightsDao = DAORegistry::getDAO('SalesRightsDAO'); /* @var $salesRightsDao SalesRightsDAO */
 		return $salesRightsDao->getByPublicationFormatId($this->getId());
 	}
 
@@ -291,7 +291,7 @@ class PublicationFormat extends Representation {
 	 * @return DAOResultFactory IdentificationCode
 	 */
 	function getIdentificationCodes() {
-		$identificationCodeDao = DAORegistry::getDAO('IdentificationCodeDAO');
+		$identificationCodeDao = DAORegistry::getDAO('IdentificationCodeDAO'); /* @var $identificationCodeDao IdentificationCodeDAO */
 		return $identificationCodeDao->getByPublicationFormatId($this->getId());
 	}
 
@@ -300,7 +300,7 @@ class PublicationFormat extends Representation {
 	 * @return Array PublicationDate
 	 */
 	function getPublicationDates() {
-		$publicationDateDao = DAORegistry::getDAO('PublicationDateDAO');
+		$publicationDateDao = DAORegistry::getDAO('PublicationDateDAO'); /* @var $publicationDateDao PublicationDateDAO */
 		return $publicationDateDao->getByPublicationFormatId($this->getId());
 	}
 
@@ -309,7 +309,7 @@ class PublicationFormat extends Representation {
 	 * @return DAOResultFactory Market
 	 */
 	function getMarkets() {
-		$marketDao = DAORegistry::getDAO('MarketDAO');
+		$marketDao = DAORegistry::getDAO('MarketDAO'); /* @var $marketDao MarketDAO */
 		return $marketDao->getByPublicationFormatId($this->getId());
 	}
 

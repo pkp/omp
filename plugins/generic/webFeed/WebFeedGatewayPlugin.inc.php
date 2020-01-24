@@ -116,7 +116,7 @@ class WebFeedGatewayPlugin extends GatewayPlugin {
 		}
 		$templateMgr->assign('submissions', iterator_to_array(Services::get('submission')->getMany($args)));
 
-		$versionDao = DAORegistry::getDAO('VersionDAO');
+		$versionDao = DAORegistry::getDAO('VersionDAO'); /* @var $versionDao VersionDAO */
 		$version = $versionDao->getCurrentVersion();
 		$templateMgr->assign('ompVersion', $version->getVersionString());
 

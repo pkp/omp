@@ -168,7 +168,7 @@ class CatalogBookHandler extends Handler {
 		$templateMgr->assign('availableFiles', $filteredAvailableFiles);
 
 		// Provide the currency to the template, if configured.
-		$currencyDao = DAORegistry::getDAO('CurrencyDAO');
+		$currencyDao = DAORegistry::getDAO('CurrencyDAO'); /* @var $currencyDao CurrencyDAO */
 		if ($currency = $request->getContext()->getSetting('currency')) {
 			$templateMgr->assign('currency', $currencyDao->getCurrencyByAlphaCode($currency));
 		}
@@ -246,7 +246,7 @@ class CatalogBookHandler extends Handler {
 				if ($submissionFile->getAssocId() != $publicationFormat->getId() || $submissionFile->getDirectSalesPrice() === null) fatalError('Invalid monograph file specified!');
 				break;
 			case ASSOC_TYPE_SUBMISSION_FILE: // Dependent file
-				$genreDao = DAORegistry::getDAO('GenreDAO');
+				$genreDao = DAORegistry::getDAO('GenreDAO'); /* @var $genreDao GenreDAO */
 				$genre = $genreDao->getById($submissionFile->getGenreId());
 				if (!$genre->getDependent()) fatalError('Invalid monograph file specified!');
 				return $monographFileManager->downloadById($fileId, $revision);
@@ -262,7 +262,7 @@ class CatalogBookHandler extends Handler {
 		$urlPath[] = $publicationFormat->getBestId();
 		$urlPath[] = $submissionFile->getBestId();
 
-		$chapterDao = DAORegistry::getDAO('ChapterDAO');
+		$chapterDao = DAORegistry::getDAO('ChapterDAO'); /* @var $chapterDao ChapterDAO */
 		$templateMgr = TemplateManager::getManager($request);
 		$templateMgr->assign(array(
 			'publishedSubmission' => $submission,
@@ -272,7 +272,7 @@ class CatalogBookHandler extends Handler {
 			'downloadUrl' => $dispatcher->url($request, ROUTE_PAGE, null, null, 'download', $urlPath, array('inline' => true)),
 		));
 
-		$ompCompletedPaymentDao = DAORegistry::getDAO('OMPCompletedPaymentDAO');
+		$ompCompletedPaymentDao = DAORegistry::getDAO('OMPCompletedPaymentDAO'); /* @var $ompCompletedPaymentDao OMPCompletedPaymentDAO */
 		$user = $request->getUser();
 		if ($submissionFile->getDirectSalesPrice() === '0' || ($user && $ompCompletedPaymentDao->hasPaidPurchaseFile($user->getId(), $fileIdAndRevision))) {
 			// Paid purchase or open access.
@@ -332,7 +332,7 @@ class CatalogBookHandler extends Handler {
 	function setupTemplate($request, $submission) {
 		$templateMgr = TemplateManager::getmanager($request);
 		if ($seriesId = $submission->getSeriesId()) {
-			$seriesDao = DAORegistry::getDAO('SeriesDAO');
+			$seriesDao = DAORegistry::getDAO('SeriesDAO'); /* @var $seriesDao SeriesDAO */
 			$series = $seriesDao->getById($seriesId, $submission->getData('contextId'));
 			$templateMgr->assign('series', $series);
 		}

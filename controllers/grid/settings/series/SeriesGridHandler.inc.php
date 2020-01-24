@@ -51,9 +51,9 @@ class SeriesGridHandler extends SetupGridHandler {
 		$this->setTitle('catalog.manage.series');
 
 		// Elements to be displayed in the grid
-		$seriesDao = DAORegistry::getDAO('SeriesDAO');
+		$seriesDao = DAORegistry::getDAO('SeriesDAO'); /* @var $seriesDao SeriesDAO */
 		DAORegistry::getDAO('CategoryDAO'); // Load constants?
-		$subEditorsDao = DAORegistry::getDAO('SubEditorsDAO');
+		$subEditorsDao = DAORegistry::getDAO('SubEditorsDAO'); /* @var $subEditorsDao SubEditorsDAO */
 		$seriesIterator = $seriesDao->getByPressId($press->getId());
 
 		$gridData = array();
@@ -156,7 +156,7 @@ class SeriesGridHandler extends SetupGridHandler {
 	 * @copydoc GridHandler::setDataElementSequence()
 	 */
 	function setDataElementSequence($request, $rowId, $gridDataElement, $newSequence) {
-		$seriesDao = DAORegistry::getDAO('SeriesDAO');
+		$seriesDao = DAORegistry::getDAO('SeriesDAO'); /* @var $seriesDao SeriesDAO */
 		$press = $request->getPress();
 		$series = $seriesDao->getById($rowId, $press->getId());
 		$series->setSequence($newSequence);
@@ -223,7 +223,7 @@ class SeriesGridHandler extends SetupGridHandler {
 	function deleteSeries($args, $request) {
 		$press = $request->getPress();
 
-		$seriesDao = DAORegistry::getDAO('SeriesDAO');
+		$seriesDao = DAORegistry::getDAO('SeriesDAO'); /* @var $seriesDao SeriesDAO */
 		$series = $seriesDao->getById(
 			$request->getUserVar('seriesId'),
 			$press->getId()

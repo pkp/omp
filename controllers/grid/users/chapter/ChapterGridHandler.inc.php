@@ -257,7 +257,7 @@ class ChapterGridHandler extends CategoryGridHandler {
 	function setDataElementSequence($request, $chapterId, $chapter, $newSequence) {
 		if (!$this->canAdminister($request->getUser())) return;
 
-		$chapterDao = DAORegistry::getDAO('ChapterDAO');
+		$chapterDao = DAORegistry::getDAO('ChapterDAO'); /* @var $chapterDao ChapterDAO */
 		$chapter->setSequence($newSequence);
 		$chapterDao->updateObject($chapter);
 	}
@@ -301,7 +301,7 @@ class ChapterGridHandler extends CategoryGridHandler {
 		$monograph = $this->getMonograph();
 
 		// Remove the chapter author id.
-		$chapterAuthorDao = DAORegistry::getDAO('ChapterAuthorDAO');
+		$chapterAuthorDao = DAORegistry::getDAO('ChapterAuthorDAO'); /* @var $chapterAuthorDao ChapterAuthorDAO */
 		$chapterAuthorDao->deleteChapterAuthorById($author->getId(), $chapterId);
 
 		// Add it again with the correct sequence value.
@@ -464,14 +464,14 @@ class ChapterGridHandler extends CategoryGridHandler {
 		$chapterId = $chapter->getId();
 
 		// remove Authors assigned to this chapter first
-		$chapterAuthorDao = DAORegistry::getDAO('ChapterAuthorDAO');
+		$chapterAuthorDao = DAORegistry::getDAO('ChapterAuthorDAO'); /* @var $chapterAuthorDao ChapterAuthorDAO */
 		$assignedAuthorIds = $chapterAuthorDao->getAuthorIdsByChapterId($chapterId);
 
 		foreach ($assignedAuthorIds as $authorId) {
 			$chapterAuthorDao->deleteChapterAuthorById($authorId, $chapterId);
 		}
 
-		$chapterDao = DAORegistry::getDAO('ChapterDAO');
+		$chapterDao = DAORegistry::getDAO('ChapterDAO'); /* @var $chapterDao ChapterDAO */
 		$chapterDao->deleteById($chapterId);
 		return DAO::getDataChangedEvent();
 	}

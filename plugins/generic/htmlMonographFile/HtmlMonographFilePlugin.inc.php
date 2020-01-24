@@ -125,7 +125,7 @@ class HtmlMonographFilePlugin extends GenericPlugin {
 		$contents = file_get_contents($submissionFile->getFilePath());
 
 		// Replace media file references
-		$submissionFileDao = DAORegistry::getDAO('SubmissionFileDAO');
+		$submissionFileDao = DAORegistry::getDAO('SubmissionFileDAO'); /* @var $submissionFileDao SubmissionFileDAO */
 		import('lib.pkp.classes.submission.SubmissionFile'); // Constants
 		$embeddableFiles = array_merge(
 			$submissionFileDao->getLatestRevisions($submissionFile->getSubmissionId(), SUBMISSION_FILE_PROOF),

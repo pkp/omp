@@ -133,7 +133,7 @@ class NativeImportExportPlugin extends ImportExportPlugin {
 			case 'import':
 				AppLocale::requireComponents(LOCALE_COMPONENT_PKP_SUBMISSION);
 				$temporaryFileId = $request->getUserVar('temporaryFileId');
-				$temporaryFileDao = DAORegistry::getDAO('TemporaryFileDAO');
+				$temporaryFileDao = DAORegistry::getDAO('TemporaryFileDAO'); /* @var $temporaryFileDao TemporaryFileDAO */
 				$user = $request->getUser();
 				$temporaryFile = $temporaryFileDao->getTemporaryFile($temporaryFileId, $user->getId());
 				if (!$temporaryFile) {
@@ -201,7 +201,7 @@ class NativeImportExportPlugin extends ImportExportPlugin {
 	function exportSubmissions($submissionIds, $context, $user) {
 		$submissionDao = Application::getSubmissionDAO();
 		$xml = '';
-		$filterDao = DAORegistry::getDAO('FilterDAO');
+		$filterDao = DAORegistry::getDAO('FilterDAO'); /* @var $filterDao FilterDAO */
 		$nativeExportFilters = $filterDao->getObjectsByGroup('monograph=>native-xml');
 		assert(count($nativeExportFilters) == 1); // Assert only a single serialization filter
 		$exportFilter = array_shift($nativeExportFilters);
@@ -230,7 +230,7 @@ class NativeImportExportPlugin extends ImportExportPlugin {
 	 * @return array Set of imported submissions
 	 */
 	function importSubmissions($importXml, $deployment) {
-		$filterDao = DAORegistry::getDAO('FilterDAO');
+		$filterDao = DAORegistry::getDAO('FilterDAO'); /* @var $filterDao FilterDAO */
 		$nativeImportFilters = $filterDao->getObjectsByGroup('native-xml=>monograph');
 		assert(count($nativeImportFilters) == 1); // Assert only a single unserialization filter
 		$importFilter = array_shift($nativeImportFilters);

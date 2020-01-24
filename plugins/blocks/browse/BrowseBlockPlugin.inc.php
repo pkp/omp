@@ -99,7 +99,7 @@ class BrowseBlockPlugin extends BlockPlugin {
 		$seriesDisplay = $this->getSetting($press->getId(), 'browseSeries');
 		if ($seriesDisplay) {
 			// Provide a list of series to browse
-			$seriesDao = DAORegistry::getDAO('SeriesDAO');
+			$seriesDao = DAORegistry::getDAO('SeriesDAO'); /* @var $seriesDao SeriesDAO */
 			$series = $seriesDao->getByPressId($press->getId());
 			$templateMgr->assign('browseSeriesFactory', $series);
 		}
@@ -107,7 +107,7 @@ class BrowseBlockPlugin extends BlockPlugin {
 		$categoriesDisplay = $this->getSetting($press->getId(), 'browseCategories');
 		if ($categoriesDisplay) {
 			// Provide a list of categories to browse
-			$categoryDao = DAORegistry::getDAO('CategoryDAO');
+			$categoryDao = DAORegistry::getDAO('CategoryDAO'); /* @var $categoryDao CategoryDAO */
 			$categories = $categoryDao->getByContextId($press->getId());
 			$templateMgr->assign('browseCategoryFactory', $categories);
 		}

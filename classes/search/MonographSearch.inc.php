@@ -226,7 +226,7 @@ class MonographSearch extends SubmissionSearch {
 	 */
 	function formatResults($results, $user = null) {
 		$contextDao = Application::getContextDAO();
-		$seriesDao = DAORegistry::getDAO('SeriesDAO');
+		$seriesDao = DAORegistry::getDAO('SeriesDAO'); /* @var $seriesDao SeriesDAO */
 
 		$publishedSubmissionCache = array();
 		$monographCache = array();

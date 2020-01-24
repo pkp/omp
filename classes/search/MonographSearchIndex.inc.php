@@ -24,7 +24,7 @@ class MonographSearchIndex extends SubmissionSearchIndex {
 	 * @param $position int
 	 */
 	public function indexObjectKeywords($objectId, $text, &$position) {
-		$searchDao = DAORegistry::getDAO('MonographSearchDAO');
+		$searchDao = DAORegistry::getDAO('MonographSearchDAO'); /* @var $searchDao MonographSearchDAO */
 		$keywords = $this->filterKeywords($text);
 		for ($i = 0, $count = count($keywords); $i < $count; $i++) {
 			if ($searchDao->insertObjectKeyword($objectId, $keywords[$i], $position) !== null) {
@@ -41,7 +41,7 @@ class MonographSearchIndex extends SubmissionSearchIndex {
 	 * @param $assocId int optional
 	 */
 	public function updateTextIndex($monographId, $type, $text, $assocId = null) {
-		$searchDao = DAORegistry::getDAO('MonographSearchDAO');
+		$searchDao = DAORegistry::getDAO('MonographSearchDAO'); /* @var $searchDao MonographSearchDAO */
 		$objectId = $searchDao->insertObject($monographId, $type, $assocId);
 		$position = 0;
 		$this->indexObjectKeywords($objectId, $text, $position);
@@ -63,7 +63,7 @@ class MonographSearchIndex extends SubmissionSearchIndex {
 
 		if (isset($parser)) {
 			if ($parser->open()) {
-				$searchDao = DAORegistry::getDAO('MonographSearchDAO');
+				$searchDao = DAORegistry::getDAO('MonographSearchDAO'); /* @var $searchDao MonographSearchDAO */
 				$objectId = $searchDao->insertObject($monographId, $type, $fileId);
 
 				$position = 0;
@@ -84,7 +84,7 @@ class MonographSearchIndex extends SubmissionSearchIndex {
 	 * @param $assocId int optional
 	 */
 	public function deleteTextIndex($monographId, $type = null, $assocId = null) {
-		$searchDao = DAORegistry::getDAO('MonographSearchDAO');
+		$searchDao = DAORegistry::getDAO('MonographSearchDAO'); /* @var $searchDao MonographSearchDAO */
 		return $searchDao->deleteSubmissionKeywords($monographId, $type, $assocId);
 	}
 
@@ -142,7 +142,7 @@ class MonographSearchIndex extends SubmissionSearchIndex {
 	 * @copydoc SubmissionSearchIndex::clearSubmissionFiles()
 	 */
 	public function clearSubmissionFiles($submission) {
-		$searchDao = DAORegistry::getDAO('MonographSearchDAO');
+		$searchDao = DAORegistry::getDAO('MonographSearchDAO'); /* @var $searchDao MonographSearchDAO */
 		$searchDao->deleteSubmissionKeywords($submission->getId(), SUBMISSION_SEARCH_GALLEY_FILE);
 	}
 
@@ -176,7 +176,7 @@ class MonographSearchIndex extends SubmissionSearchIndex {
 	public function rebuildIndex($log = false) {
 		// Clear index
 		if ($log) echo 'Clearing index ... ';
-		$searchDao = DAORegistry::getDAO('MonographSearchDAO');
+		$searchDao = DAORegistry::getDAO('MonographSearchDAO'); /* @var $searchDao MonographSearchDAO */
 		// FIXME Abstract into MonographSearchDAO?
 		$searchDao->update('DELETE FROM submission_search_object_keywords');
 		$searchDao->update('DELETE FROM submission_search_objects');
@@ -186,8 +186,8 @@ class MonographSearchIndex extends SubmissionSearchIndex {
 		if ($log) echo "done\n";
 
 		// Build index
-		$pressDao = DAORegistry::getDAO('PressDAO');
-		$submissionDao = DAORegistry::getDAO('SubmissionDAO');
+		$pressDao = DAORegistry::getDAO('PressDAO'); /* @var $pressDao PressDAO */
+		$submissionDao = DAORegistry::getDAO('SubmissionDAO'); /* @var $submissionDao SubmissionDAO */
 
 		$presses = $pressDao->getAll();
 		while ($press = $presses->next()) {

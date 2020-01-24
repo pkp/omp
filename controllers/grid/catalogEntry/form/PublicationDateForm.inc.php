@@ -42,7 +42,7 @@ class PublicationDateForm extends Form {
 		$this->addCheck(new FormValidatorCustom(
 			$this, 'date', 'required', 'grid.catalogEntry.dateRequired',
 			function($date) use ($form) {
-				$onixCodelistItemDao = DAORegistry::getDAO('ONIXCodelistItemDAO');
+				$onixCodelistItemDao = DAORegistry::getDAO('ONIXCodelistItemDAO'); /* @var $onixCodelistItemDao ONIXCodelistItemDAO */
 				$dateFormat = $form->getData('dateFormat');
 				if (!$dateFormat) return false;
 				$dateFormats = $onixCodelistItemDao->getCodes('List55');
@@ -151,7 +151,7 @@ class PublicationDateForm extends Form {
 			$templateMgr->assign('dateFormat', '20'); // YYYYMMDD Onix code as a default
 		}
 
-		$publicationFormatDao = DAORegistry::getDAO('PublicationFormatDAO');
+		$publicationFormatDao = DAORegistry::getDAO('PublicationFormatDAO'); /* @var $publicationFormatDao PublicationFormatDAO */
 		$publicationFormat = $publicationFormatDao->getById($representationId, $this->getPublication()->getId());
 
 		if ($publicationFormat) { // the format exists for this submission
@@ -159,7 +159,7 @@ class PublicationDateForm extends Form {
 			$publicationDates = $publicationFormat->getPublicationDates();
 			$assignedRoles = array_keys($publicationDates->toAssociativeArray('role')); // currently assigned roles
 			if ($publicationDate) $assignedRoles = array_diff($assignedRoles, array($publicationDate->getRole())); // allow existing roles to keep their value
-			$onixCodelistItemDao = DAORegistry::getDAO('ONIXCodelistItemDAO');
+			$onixCodelistItemDao = DAORegistry::getDAO('ONIXCodelistItemDAO'); /* @var $onixCodelistItemDao ONIXCodelistItemDAO */
 			$roles = $onixCodelistItemDao->getCodes('List163', $assignedRoles); // ONIX list for these
 			$templateMgr->assign('publicationDateRoles', $roles);
 
@@ -192,8 +192,8 @@ class PublicationDateForm extends Form {
 	 * @see Form::execute()
 	 */
 	function execute() {
-		$publicationDateDao = DAORegistry::getDAO('PublicationDateDAO');
-		$publicationFormatDao = DAORegistry::getDAO('PublicationFormatDAO');
+		$publicationDateDao = DAORegistry::getDAO('PublicationDateDAO'); /* @var $publicationDateDao PublicationDateDAO */
+		$publicationFormatDao = DAORegistry::getDAO('PublicationFormatDAO'); /* @var $publicationFormatDao PublicationFormatDAO */
 
 		$submission = $this->getSubmission();
 		$publicationDate = $this->getPublicationDate();

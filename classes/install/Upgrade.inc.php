@@ -48,9 +48,9 @@ class Upgrade extends Installer {
 	 * @return boolean
 	 */
 	function fixFilenames($upgrade, $params, $dryrun = false) {
-		$pressDao = DAORegistry::getDAO('PressDAO');
-		$submissionDao = DAORegistry::getDAO('SubmissionDAO');
-		$submissionFileDao = DAORegistry::getDAO('SubmissionFileDAO');
+		$pressDao = DAORegistry::getDAO('PressDAO'); /* @var $pressDao PressDAO */
+		$submissionDao = DAORegistry::getDAO('SubmissionDAO'); /* @var $submissionDao SubmissionDAO */
+		$submissionFileDao = DAORegistry::getDAO('SubmissionFileDAO'); /* @var $submissionFileDao SubmissionFileDAO */
 		DAORegistry::getDAO('GenreDAO'); // Load constants
 		$siteDao = DAORegistry::getDAO('SiteDAO'); /* @var $siteDao SiteDAO */
 		$site = $siteDao->getSite();
@@ -104,9 +104,9 @@ class Upgrade extends Installer {
 	 * @return boolean
 	 */
 	function enableDefaultTheme() {
-		$pressDao = DAORegistry::getDAO('PressDAO');
+		$pressDao = DAORegistry::getDAO('PressDAO'); /* @var $pressDao PressDAO */
 		$contexts = $pressDao->getAll();
-		$pluginSettingsDao = DAORegistry::getDAO('PluginSettingsDAO');
+		$pluginSettingsDao = DAORegistry::getDAO('PluginSettingsDAO'); /* @var $pluginSettingsDao PluginSettingsDAO */
 
 		// Site-wide
 		$pluginSettingsDao->updateSetting(0, 'defaultthemeplugin', 'enabled', '1', 'int');
@@ -152,7 +152,7 @@ class Upgrade extends Installer {
 	 * @return boolean
 	 */
 	function fixAuthorSettings() {
-		$authorDao = DAORegistry::getDAO('AuthorDAO');
+		$authorDao = DAORegistry::getDAO('AuthorDAO'); /* @var $authorDao AuthorDAO */
 
 		// Get all authors with broken data
 		$result = $authorDao->retrieve(
@@ -194,7 +194,7 @@ class Upgrade extends Installer {
 	 * @return boolean True indicates success.
 	 */
 	function htmlifyEmailTemplates() {
-		$emailTemplateDao = DAORegistry::getDAO('EmailTemplateDAO');
+		$emailTemplateDao = DAORegistry::getDAO('EmailTemplateDAO'); /* @var $emailTemplateDao EmailTemplateDAO */
 
 		// Convert the email templates in email_templates_data to localized
 		$result = $emailTemplateDao->retrieve('SELECT * FROM email_templates_data');
@@ -239,8 +239,8 @@ class Upgrade extends Installer {
 		$result->Close();
 
 		// Localize the email header and footer fields.
-		$contextDao = DAORegistry::getDAO('PressDAO');
-		$settingsDao = DAORegistry::getDAO('PressSettingsDAO');
+		$contextDao = DAORegistry::getDAO('PressDAO'); /* @var $contextDao PressDAO */
+		$settingsDao = DAORegistry::getDAO('PressSettingsDAO'); /* @var $settingsDao PressSettingsDAO */
 		$contexts = $contextDao->getAll();
 		while ($context = $contexts->next()) {
 			foreach (array('emailFooter', 'emailSignature') as $settingName) {
@@ -261,7 +261,7 @@ class Upgrade extends Installer {
 	 * @return boolean True indicates success.
 	 */
 	function convertQueries() {
-		$submissionFileDao = DAORegistry::getDAO('SubmissionFileDAO');
+		$submissionFileDao = DAORegistry::getDAO('SubmissionFileDAO'); /* @var $submissionFileDao SubmissionFileDAO */
 		import('lib.pkp.classes.submission.SubmissionFile');
 
 		$filesResult = $submissionFileDao->retrieve(
@@ -269,10 +269,10 @@ class Upgrade extends Installer {
 			array(ASSOC_TYPE_SUBMISSION_FILE, 'SIGNOFF_COPYEDITING', 'SIGNOFF_PROOFING')
 		);
 
-		$queryDao = DAORegistry::getDAO('QueryDAO');
-		$noteDao = DAORegistry::getDAO('NoteDAO');
-		$userDao = DAORegistry::getDAO('UserDAO');
-		$stageAssignmentDao = DAORegistry::getDAO('StageAssignmentDAO');
+		$queryDao = DAORegistry::getDAO('QueryDAO'); /* @var $queryDao QueryDAO */
+		$noteDao = DAORegistry::getDAO('NoteDAO'); /* @var $noteDao NoteDAO */
+		$userDao = DAORegistry::getDAO('UserDAO'); /* @var $userDao UserDAO */
+		$stageAssignmentDao = DAORegistry::getDAO('StageAssignmentDAO'); /* @var $stageAssignmentDao StageAssignmentDAO */
 
 		//
 		// 1. Go through all signoff/file pairs and migrate them into queries.
@@ -389,7 +389,7 @@ class Upgrade extends Installer {
 	 */
 	function fixQueriesAssocTypes() {
 		// Get queries by submission ids, in order to resequence them correctly after the assoc_type change
-		$queryDao = DAORegistry::getDAO('QueryDAO');
+		$queryDao = DAORegistry::getDAO('QueryDAO'); /* @var $queryDao QueryDAO */
 		$allQueriesResult = $queryDao->retrieve(
 			'SELECT DISTINCT q.*,
 				COALESCE(pf.submission_id, qs.assoc_id) AS submission_id
@@ -434,10 +434,10 @@ class Upgrade extends Installer {
 	 */
 	function convertCommentsToEditor() {
 		$submissionDao = Application::getSubmissionDAO();
-		$stageAssignmetDao = DAORegistry::getDAO('StageAssignmentDAO');
-		$queryDao = DAORegistry::getDAO('QueryDAO');
-		$noteDao = DAORegistry::getDAO('NoteDAO');
-		$userGroupDao = DAORegistry::getDAO('UserGroupDAO');
+		$stageAssignmetDao = DAORegistry::getDAO('StageAssignmentDAO'); /* @var $stageAssignmetDao StageAssignmentDAO */
+		$queryDao = DAORegistry::getDAO('QueryDAO'); /* @var $queryDao QueryDAO */
+		$noteDao = DAORegistry::getDAO('NoteDAO'); /* @var $noteDao NoteDAO */
+		$userGroupDao = DAORegistry::getDAO('UserGroupDAO'); /* @var $userGroupDao UserGroupDAO */
 
 		import('lib.pkp.classes.security.Role'); // ROLE_ID_...
 
@@ -500,9 +500,9 @@ class Upgrade extends Installer {
 	 * @param $queryId int Query ID
 	 */
 	private function _transferSignoffData($signoffId, $queryId) {
-		$noteDao = DAORegistry::getDAO('NoteDAO');
-		$submissionFileDao = DAORegistry::getDAO('SubmissionFileDAO');
-		$userDao = DAORegistry::getDAO('UserDAO');
+		$noteDao = DAORegistry::getDAO('NoteDAO'); /* @var $noteDao NoteDAO */
+		$submissionFileDao = DAORegistry::getDAO('SubmissionFileDAO'); /* @var $submissionFileDao SubmissionFileDAO */
+		$userDao = DAORegistry::getDAO('UserDAO'); /* @var $userDao UserDAO */
 
 		$notes = $noteDao->getByAssoc(1048582 /* ASSOC_TYPE_SIGNOFF */, $signoffId);
 		while ($note = $notes->next()) {
@@ -557,7 +557,7 @@ class Upgrade extends Installer {
 	function migrateStaticPagesToNavigationMenuItems() {
 		if ($this->tableExists('static_pages')) {
 			$contextDao = Application::getContextDAO();
-			$navigationMenuItemDao = DAORegistry::getDAO('NavigationMenuItemDAO');
+			$navigationMenuItemDao = DAORegistry::getDAO('NavigationMenuItemDAO'); /* @var $navigationMenuItemDao NavigationMenuItemDAO */
 
 			import('plugins.generic.staticPages.classes.StaticPagesDAO');
 
@@ -585,7 +585,7 @@ class Upgrade extends Installer {
 	 * @return boolean
 	 */
 	function migrateUserAndAuthorNames() {
-		$userDao = DAORegistry::getDAO('UserDAO');
+		$userDao = DAORegistry::getDAO('UserDAO'); /* @var $userDao UserDAO */
 		import('lib.pkp.classes.identity.Identity'); // IDENTITY_SETTING_...
 		// the user names will be saved in the site's primary locale
 		$userDao->update("INSERT INTO user_settings (user_id, locale, setting_name, setting_value, setting_type) SELECT DISTINCT u.user_id, s.primary_locale, ?, u.first_name, 'string' FROM users_tmp u, site s", array(IDENTITY_SETTING_GIVENNAME));
@@ -617,7 +617,7 @@ class Upgrade extends Installer {
 
 		// salutation and suffix will be migrated to the preferred public name
 		// user preferred public names will be inserted for each supported site locales
-		$siteDao = DAORegistry::getDAO('SiteDAO');
+		$siteDao = DAORegistry::getDAO('SiteDAO'); /* @var $siteDao SiteDAO */
 		$site = $siteDao->getSite();
 		$supportedLocales = $site->getSupportedLocales();
 		$userResult = $userDao->retrieve("
@@ -648,7 +648,7 @@ class Upgrade extends Installer {
 		// author suffix will be migrated to the author preferred public name
 		// author preferred public names will be inserted for each press supported locale
 		// get supported locales for the press (there shold actually be only one press)
-		$pressDao = DAORegistry::getDAO('PressDAO');
+		$pressDao = DAORegistry::getDAO('PressDAO'); /* @var $pressDao PressDAO */
 		$presses = $pressDao->getAll();
 		$pressessSupportedLocales = array();
 		while ($press = $presses->next()) {

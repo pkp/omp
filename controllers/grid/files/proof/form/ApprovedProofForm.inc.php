@@ -37,7 +37,7 @@ class ApprovedProofForm extends Form {
 		$this->monograph =& $monograph;
 		$this->publicationFormat =& $publicationFormat;
 
-		$submissionFileDao = DAORegistry::getDAO('SubmissionFileDAO');
+		$submissionFileDao = DAORegistry::getDAO('SubmissionFileDAO'); /* @var $submissionFileDao SubmissionFileDAO */
 		list($fileId, $revision) = explode('-', $fileIdAndRevision);
 		$this->approvedProof =& $submissionFileDao->getRevision($fileId, $revision, SUBMISSION_FILE_PROOF, $this->monograph->getId());
 
@@ -93,7 +93,7 @@ class ApprovedProofForm extends Form {
 	 * @copydoc Form::execute()
 	 */
 	function execute() {
-		$submissionFileDao = DAORegistry::getDAO('SubmissionFileDAO');
+		$submissionFileDao = DAORegistry::getDAO('SubmissionFileDAO'); /* @var $submissionFileDao SubmissionFileDAO */
 		$salesType = $this->getData('salesType');
 		if ($salesType === 'notAvailable') {
 			// Not available

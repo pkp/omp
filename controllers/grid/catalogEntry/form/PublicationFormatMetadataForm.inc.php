@@ -95,7 +95,7 @@ class PublicationFormatMetadataForm extends Form {
 		$templateMgr->assign('stageId', $this->getStageId());
 		$templateMgr->assign('formParams', $this->getFormParams());
 
-		$onixCodelistItemDao = DAORegistry::getDAO('ONIXCodelistItemDAO');
+		$onixCodelistItemDao = DAORegistry::getDAO('ONIXCodelistItemDAO'); /* @var $onixCodelistItemDao ONIXCodelistItemDAO */
 
 		// Check if e-commerce is available
 		$paymentManager = Application::getPaymentManager($context);
@@ -258,7 +258,7 @@ class PublicationFormatMetadataForm extends Form {
 		$pubIdPluginHelper = $this->_getPubIdPluginHelper();
 		$pubIdPluginHelper->execute($submission->getContextId(), $this, $publicationFormat);
 
-		$publicationFormatDao = DAORegistry::getDAO('PublicationFormatDAO');
+		$publicationFormatDao = DAORegistry::getDAO('PublicationFormatDAO'); /* @var $publicationFormatDao PublicationFormatDAO */
 		$publicationFormatDao->updateObject($publicationFormat);
 	}
 

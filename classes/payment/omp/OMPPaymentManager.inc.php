@@ -47,7 +47,7 @@ class OMPPaymentManager extends PaymentManager {
 
 	 	switch ($type) {
 			case PAYMENT_TYPE_PURCHASE_FILE:
-				$submissionFileDao = DAORegistry::getDAO('SubmissionFileDAO');
+				$submissionFileDao = DAORegistry::getDAO('SubmissionFileDAO'); /* @var $submissionFileDao SubmissionFileDAO */
 				list($fileId, $revision) = array_map(function($a) {
 					return (int) $a;
 				}, explode('-', $assocId));
@@ -101,11 +101,11 @@ class OMPPaymentManager extends PaymentManager {
 				assert(false);
 		}
 
-		$ompCompletedPaymentDao = DAORegistry::getDAO('OMPCompletedPaymentDAO');
+		$ompCompletedPaymentDao = DAORegistry::getDAO('OMPCompletedPaymentDAO'); /* @var $ompCompletedPaymentDao OMPCompletedPaymentDAO */
 		$completedPayment = $this->createCompletedPayment($queuedPayment, $payMethodPluginName);
 		$ompCompletedPaymentDao->insertCompletedPayment($completedPayment);
 
-		$queuedPaymentDao = DAORegistry::getDAO('QueuedPaymentDAO');
+		$queuedPaymentDao = DAORegistry::getDAO('QueuedPaymentDAO'); /* @var $queuedPaymentDao QueuedPaymentDAO */
 		$queuedPaymentDao->deleteById($queuedPayment->getId());
 
 		return $returner;
@@ -140,7 +140,7 @@ class OMPPaymentManager extends PaymentManager {
 			case PAYMENT_TYPE_PURCHASE_FILE:
 				list($fileId, $revision) = explode('-', $payment->getAssocId());
 				assert($fileId && $revision);
-				$submissionFileDao = DAORegistry::getDAO('SubmissionFileDAO');
+				$submissionFileDao = DAORegistry::getDAO('SubmissionFileDAO'); /* @var $submissionFileDao SubmissionFileDAO */
 				$submissionFile = $submissionFileDao->getRevision($fileId, $revision, SUBMISSION_FILE_PROOF);
 				if (!$submissionFile || $submissionFile->getAssocType() !== ASSOC_TYPE_PUBLICATION_FORMAT) return false;
 

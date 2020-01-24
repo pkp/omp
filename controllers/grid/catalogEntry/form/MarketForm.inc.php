@@ -126,7 +126,7 @@ class MarketForm extends Form {
 		$templateMgr->assign('submissionId', $submission->getId());
 		$templateMgr->assign('publicationId', $this->getPublication()->getId());
 		$market = $this->getMarket();
-		$onixCodelistItemDao = DAORegistry::getDAO('ONIXCodelistItemDAO');
+		$onixCodelistItemDao = DAORegistry::getDAO('ONIXCodelistItemDAO'); /* @var $onixCodelistItemDao ONIXCodelistItemDAO */
 		$templateMgr->assign(array(
 			'countryCodes' => $onixCodelistItemDao->getCodes('List91'), // countries (CA, US, GB, etc)
 			'regionCodes' => $onixCodelistItemDao->getCodes('List49'), // regions (British Columbia, England, etc)
@@ -183,7 +183,7 @@ class MarketForm extends Form {
 			));
 		}
 
-		$publicationFormatDao = DAORegistry::getDAO('PublicationFormatDAO');
+		$publicationFormatDao = DAORegistry::getDAO('PublicationFormatDAO'); /* @var $publicationFormatDao PublicationFormatDAO */
 		$publicationFormat = $publicationFormatDao->getById($representationId, $this->getPublication()->getId());
 
 		if ($publicationFormat) { // the format exists for this submission
@@ -226,8 +226,8 @@ class MarketForm extends Form {
 	 * @see Form::execute()
 	 */
 	function execute() {
-		$marketDao = DAORegistry::getDAO('MarketDAO');
-		$publicationFormatDao = DAORegistry::getDAO('PublicationFormatDAO');
+		$marketDao = DAORegistry::getDAO('MarketDAO'); /* @var $marketDao MarketDAO */
+		$publicationFormatDao = DAORegistry::getDAO('PublicationFormatDAO'); /* @var $publicationFormatDao PublicationFormatDAO */
 
 		$submission = $this->getSubmission();
 		$market = $this->getMarket();

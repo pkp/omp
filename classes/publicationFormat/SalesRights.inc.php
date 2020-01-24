@@ -59,7 +59,7 @@ class SalesRights extends DataObject {
 	 * @return string
 	 */
 	function getNameForONIXCode() {
-		$onixCodelistItemDao = DAORegistry::getDAO('ONIXCodelistItemDAO');
+		$onixCodelistItemDao = DAORegistry::getDAO('ONIXCodelistItemDAO'); /* @var $onixCodelistItemDao ONIXCodelistItemDAO */
 		$codes =& $onixCodelistItemDao->getCodes('List46'); // List46 is for things like 'unrestricted sale with exclusive rights', etc.
 		return $codes[$this->getType()];
 	}

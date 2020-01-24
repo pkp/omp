@@ -66,7 +66,7 @@ class NativeXmlMonographFilter extends NativeXmlSubmissionFilter {
 		$seriesPath = $node->getAttribute('series');
 		$seriesPosition = $node->getAttribute('series_position');
 		if ($seriesPath !== '') {
-			$seriesDao = DAORegistry::getDAO('SeriesDAO');
+			$seriesDao = DAORegistry::getDAO('SeriesDAO'); /* @var $seriesDao SeriesDAO */
 			$series = $seriesDao->getByPath($seriesPath, $submission->getContextId());
 			if (!$series) {
 				$deployment->addError(ASSOC_TYPE_SUBMISSION, $submission->getId(), __('plugins.importexport.native.error.unknownSeries', array('param' => $seriesPath)));
@@ -126,7 +126,7 @@ class NativeXmlMonographFilter extends NativeXmlSubmissionFilter {
 		}
 		// Caps on class name for consistency with imports, whose filter
 		// group names are generated implicitly.
-		$filterDao = DAORegistry::getDAO('FilterDAO');
+		$filterDao = DAORegistry::getDAO('FilterDAO'); /* @var $filterDao FilterDAO */
 		$importFilters = $filterDao->getObjectsByGroup('native-xml=>' . $importClass);
 		$importFilter = array_shift($importFilters);
 		return $importFilter;

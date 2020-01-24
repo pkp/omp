@@ -61,7 +61,7 @@ class MonographNativeXmlFilter extends SubmissionNativeXmlFilter {
 
 		// Add the series, if one is designated.
 		if ($seriesId = $submission->getSeriesId()) {
-			$seriesDao = DAORegistry::getDAO('SeriesDAO');
+			$seriesDao = DAORegistry::getDAO('SeriesDAO'); /* @var $seriesDao SeriesDAO */
 			$series = $seriesDao->getById($seriesId, $submission->getContextId());
 			assert($series);
 			$submissionNode->setAttribute('series', $series->getPath());

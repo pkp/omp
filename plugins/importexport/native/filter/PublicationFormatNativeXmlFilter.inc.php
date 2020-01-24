@@ -56,7 +56,7 @@ class PublicationFormatNativeXmlFilter extends RepresentationNativeXmlFilter {
 		if ($context->getData('publisher') && $context->getData('location') && $context->getData('codeType') && $context->getData('codeValue')) {
 			$submission = $this->getDeployment()->getSubmission();
 
-			$filterDao = DAORegistry::getDAO('FilterDAO');
+			$filterDao = DAORegistry::getDAO('FilterDAO'); /* @var $filterDao FilterDAO */
 			$nativeExportFilters = $filterDao->getObjectsByGroup('monograph=>onix30-xml');
 			assert(count($nativeExportFilters) == 1); // Assert only a single serialization filter
 			$exportFilter = array_shift($nativeExportFilters);
@@ -91,7 +91,7 @@ class PublicationFormatNativeXmlFilter extends RepresentationNativeXmlFilter {
 	function getFiles($representation) {
 		$deployment = $this->getDeployment();
 		$submission = $deployment->getSubmission();
-		$submissionFileDao = DAORegistry::getDAO('SubmissionFileDAO');
+		$submissionFileDao = DAORegistry::getDAO('SubmissionFileDAO'); /* @var $submissionFileDao SubmissionFileDAO */
 		return array_filter(
 			$submissionFileDao->getLatestRevisions($submission->getId()),
 			function($a) use ($representation) {

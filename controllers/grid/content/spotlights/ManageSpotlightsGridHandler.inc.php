@@ -82,7 +82,7 @@ class ManageSpotlightsGridHandler extends GridHandler {
 		$spotlightId = $request->getUserVar('spotlightId');
 		if ($spotlightId) {
 			$press = $request->getPress();
-			$spotlightDao = DAORegistry::getDAO('SpotlightDAO');
+			$spotlightDao = DAORegistry::getDAO('SpotlightDAO'); /* @var $spotlightDao SpotlightDAO */
 			$spotlight = $spotlightDao->getById($spotlightId);
 			if ($spotlight == null || $spotlight->getPressId() != $press->getId()) {
 				return false;
@@ -175,7 +175,7 @@ class ManageSpotlightsGridHandler extends GridHandler {
 	 */
 	function loadData($request, $filter = null) {
 
-		$spotlightDao = DAORegistry::getDAO('SpotlightDAO');
+		$spotlightDao = DAORegistry::getDAO('SpotlightDAO'); /* @var $spotlightDao SpotlightDAO */
 		$press = $this->getPress();
 		return $spotlightDao->getByPressId($press->getId());
 	}
@@ -229,7 +229,7 @@ class ManageSpotlightsGridHandler extends GridHandler {
 
 		$press = $this->getPress();
 
-		$spotlightDao = DAORegistry::getDAO('SpotlightDAO');
+		$spotlightDao = DAORegistry::getDAO('SpotlightDAO'); /* @var $spotlightDao SpotlightDAO */
 		$spotlight = $spotlightDao->getById($spotlightId, $press->getId());
 
 		// Form handling
@@ -280,7 +280,7 @@ class ManageSpotlightsGridHandler extends GridHandler {
 		// Identify the entry to be deleted
 		$spotlightId = $request->getUserVar('spotlightId');
 
-		$spotlightDao = DAORegistry::getDAO('SpotlightDAO');
+		$spotlightDao = DAORegistry::getDAO('SpotlightDAO'); /* @var $spotlightDao SpotlightDAO */
 		$press = $this->getPress();
 		$spotlight = $spotlightDao->getById($spotlightId, $press->getId());
 		if ($spotlight != null) { // authorized
@@ -335,7 +335,7 @@ class ManageSpotlightsGridHandler extends GridHandler {
 
 		$matches = array();
 
-		$seriesDao = DAORegistry::getDAO('SeriesDAO');
+		$seriesDao = DAORegistry::getDAO('SeriesDAO'); /* @var $seriesDao SeriesDAO */
 		$allSeries = $seriesDao->getByPressId($press->getId());
 		while ($series = $allSeries->next()) {
 			if ($name == '' || preg_match('/'. preg_quote($name, '/') . '/i', $series->getLocalizedTitle())) {

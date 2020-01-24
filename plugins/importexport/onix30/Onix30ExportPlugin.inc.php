@@ -137,7 +137,7 @@ class Onix30ExportPlugin extends ImportExportPlugin {
 	function exportSubmissions($submissionIds, $context, $user) {
 		$submissionDao = Application::getSubmissionDAO();
 		$xml = '';
-		$filterDao = DAORegistry::getDAO('FilterDAO');
+		$filterDao = DAORegistry::getDAO('FilterDAO'); /* @var $filterDao FilterDAO */
 		$nativeExportFilters = $filterDao->getObjectsByGroup('monograph=>onix30-xml');
 		assert(count($nativeExportFilters) == 1); // Assert only a single serialization filter
 		$exportFilter = array_shift($nativeExportFilters);

@@ -382,7 +382,7 @@ class PublicationFormatGridHandler extends CategoryGridHandler {
 	 */
 	function setAvailable($args, $request) {
 		$context = $request->getContext();
-		$publicationFormatDao = DAORegistry::getDAO('PublicationFormatDAO');
+		$publicationFormatDao = DAORegistry::getDAO('PublicationFormatDAO'); /* @var $publicationFormatDao PublicationFormatDAO */
 		$publicationFormat = $this->getAuthorizedContextObject(ASSOC_TYPE_REPRESENTATION);
 
 		if (!$publicationFormat) return new JSONMessage(false, __('manager.setup.errorDeletingItem'));
@@ -506,7 +506,7 @@ class PublicationFormatGridHandler extends CategoryGridHandler {
 	 */
 	function setProofFileCompletion($args, $request) {
 		$submission = $this->getSubmission();
-		$submissionFileDao = DAORegistry::getDAO('SubmissionFileDAO');
+		$submissionFileDao = DAORegistry::getDAO('SubmissionFileDAO'); /* @var $submissionFileDao SubmissionFileDAO */
 		import('lib.pkp.classes.submission.SubmissionFile'); // Constants
 		$submissionFile = $submissionFileDao->getRevision(
 			$request->getUserVar('fileId'),
@@ -657,7 +657,7 @@ class PublicationFormatGridHandler extends CategoryGridHandler {
 	 */
 	function dependentFiles($args, $request) {
 		$submission = $this->getSubmission();
-		$submissionFileDao = DAORegistry::getDAO('SubmissionFileDAO');
+		$submissionFileDao = DAORegistry::getDAO('SubmissionFileDAO'); /* @var $submissionFileDao SubmissionFileDAO */
 		import('lib.pkp.classes.submission.SubmissionFile'); // Constants
 		$submissionFile = $submissionFileDao->getRevision(
 			$request->getUserVar('fileId'),

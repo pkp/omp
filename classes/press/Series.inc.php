@@ -267,7 +267,7 @@ class Series extends PKPSection {
 	 * @return string
 	 */
 	function getEditorsString() {
-		$subEditorsDao = DAORegistry::getDAO('SubEditorsDAO');
+		$subEditorsDao = DAORegistry::getDAO('SubEditorsDAO'); /* @var $subEditorsDao SubEditorsDAO */
 		$editors = $subEditorsDao->getBySectionId($this->getId(), $this->getPressId());
 
 		$separator = ', ';

@@ -77,7 +77,7 @@ class CatalogHandler extends PKPCatalogHandler {
 		$submissionsIterator = $submissionService->getMany($params);
 		$total = $submissionService->getMax($params);
 
-		$featureDao = DAORegistry::getDAO('FeatureDAO');
+		$featureDao = DAORegistry::getDAO('FeatureDAO'); /* @var $featureDao FeatureDAO */
 		$featuredMonographIds = $featureDao->getSequencesByAssoc(ASSOC_TYPE_PRESS, $context->getId());
 
 		$this->_setupPaginationTemplate($request, count($submissionsIterator), $page, $count, $offset, $total);
@@ -101,7 +101,7 @@ class CatalogHandler extends PKPCatalogHandler {
 		$press = $request->getPress();
 
 		// Provide a list of new releases to browse
-		$newReleaseDao = DAORegistry::getDAO('NewReleaseDAO');
+		$newReleaseDao = DAORegistry::getDAO('NewReleaseDAO'); /* @var $newReleaseDao NewReleaseDAO */
 		$newReleases = $newReleaseDao->getMonographsByAssoc(ASSOC_TYPE_PRESS, $press->getId());
 		$templateMgr->assign('publishedSubmissions', $newReleases);
 
@@ -125,7 +125,7 @@ class CatalogHandler extends PKPCatalogHandler {
 		$context = $request->getContext();
 
 		// Get the series
-		$seriesDao = DAORegistry::getDAO('SeriesDAO');
+		$seriesDao = DAORegistry::getDAO('SeriesDAO'); /* @var $seriesDao SeriesDAO */
 		$series = $seriesDao->getByPath($seriesPath, $context->getId());
 
 		if (!$series) {
@@ -158,13 +158,13 @@ class CatalogHandler extends PKPCatalogHandler {
 		$submissionsIterator = $submissionService->getMany($params);
 		$total = $submissionService->getMax($params);
 
-		$featureDao = DAORegistry::getDAO('FeatureDAO');
+		$featureDao = DAORegistry::getDAO('FeatureDAO'); /* @var $featureDao FeatureDAO */
 		$featuredMonographIds = $featureDao->getSequencesByAssoc(ASSOC_TYPE_SERIES, $series->getId());
 
 		// Provide a list of new releases to browse
 		$newReleases = array();
 		if ($page === 1) {
-			$newReleaseDao = DAORegistry::getDAO('NewReleaseDAO');
+			$newReleaseDao = DAORegistry::getDAO('NewReleaseDAO'); /* @var $newReleaseDao NewReleaseDAO */
 			$newReleases = $newReleaseDao->getMonographsByAssoc(ASSOC_TYPE_SERIES, $series->getId());
 		}
 
@@ -227,7 +227,7 @@ class CatalogHandler extends PKPCatalogHandler {
 		switch ($type) {
 			case 'category':
 				$path = '/categories/';
-				$categoryDao = DAORegistry::getDAO('CategoryDAO');
+				$categoryDao = DAORegistry::getDAO('CategoryDAO'); /* @var $categoryDao CategoryDAO */
 				$category = $categoryDao->getById($id, $press->getId());
 				if ($category) {
 					$imageInfo = $category->getImage();
@@ -235,7 +235,7 @@ class CatalogHandler extends PKPCatalogHandler {
 				break;
 			case 'series':
 				$path = '/series/';
-				$seriesDao = DAORegistry::getDAO('SeriesDAO');
+				$seriesDao = DAORegistry::getDAO('SeriesDAO'); /* @var $seriesDao SeriesDAO */
 				$series = $seriesDao->getById($id, $press->getId());
 				if ($series) {
 					$imageInfo = $series->getImage();
@@ -266,7 +266,7 @@ class CatalogHandler extends PKPCatalogHandler {
 		switch ($type) {
 			case 'category':
 				$path = '/categories/';
-				$categoryDao = DAORegistry::getDAO('CategoryDAO');
+				$categoryDao = DAORegistry::getDAO('CategoryDAO'); /* @var $categoryDao CategoryDAO */
 				$category = $categoryDao->getById($id, $press->getId());
 				if ($category) {
 					$imageInfo = $category->getImage();
@@ -274,7 +274,7 @@ class CatalogHandler extends PKPCatalogHandler {
 				break;
 			case 'series':
 				$path = '/series/';
-				$seriesDao = DAORegistry::getDAO('SeriesDAO');
+				$seriesDao = DAORegistry::getDAO('SeriesDAO'); /* @var $seriesDao SeriesDAO */
 				$series = $seriesDao->getById($id, $press->getId());
 				if ($series) {
 					$imageInfo = $series->getImage();

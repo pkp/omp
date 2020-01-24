@@ -235,7 +235,7 @@ class ChapterForm extends Form {
 	function execute(...$functionParams) {
 		parent::execute(...$functionParams);
 
-		$chapterDao = DAORegistry::getDAO('ChapterDAO');
+		$chapterDao = DAORegistry::getDAO('ChapterDAO'); /* @var $chapterDao ChapterDAO */
 		$chapter = $this->getChapter();
 		$request = Application::get()->getRequest();
 		$isEdit = !!$chapter;

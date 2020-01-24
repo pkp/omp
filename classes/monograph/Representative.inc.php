@@ -52,7 +52,7 @@ class Representative extends DataObject {
 	 * @return string
 	 */
 	function getNameForONIXCode() {
-		$onixCodelistItemDao = DAORegistry::getDAO('ONIXCodelistItemDAO');
+		$onixCodelistItemDao = DAORegistry::getDAO('ONIXCodelistItemDAO'); /* @var $onixCodelistItemDao ONIXCodelistItemDAO */
 		if ($this->getIsSupplier()) {
 			$listName = 'List93'; // List93 -> Publisher to retailers, Wholesaler, etc
 		} else {

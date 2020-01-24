@@ -38,7 +38,7 @@ class SalesRightsForm extends Form {
 		$this->addCheck(new FormValidatorCustom(
 			$this, 'ROWSetting', 'optional', 'grid.catalogEntry.oneROWPerFormat',
 			function($ROWSetting) use ($form, $salesRights) {
-				$salesRightsDao = DAORegistry::getDAO('SalesRightsDAO');
+				$salesRightsDao = DAORegistry::getDAO('SalesRightsDAO'); /* @var $salesRightsDao SalesRightsDAO */
 				$pubFormatId = $form->getData('representationId');
 				return $ROWSetting == '' || $salesRightsDao->getROWByPublicationFormatId($pubFormatId) == null ||
 					($salesRights != null && $salesRightsDao->getROWByPublicationFormatId($pubFormatId)->getId() == $salesRights->getId());
@@ -132,7 +132,7 @@ class SalesRightsForm extends Form {
 		$templateMgr->assign('submissionId', $submission->getId());
 		$templateMgr->assign('publicationId', $this->getPublication()->getId());
 		$salesRights = $this->getSalesRights();
-		$onixCodelistItemDao = DAORegistry::getDAO('ONIXCodelistItemDAO');
+		$onixCodelistItemDao = DAORegistry::getDAO('ONIXCodelistItemDAO'); /* @var $onixCodelistItemDao ONIXCodelistItemDAO */
 		$templateMgr->assign('countryCodes', $onixCodelistItemDao->getCodes('List91')); // countries (CA, US, GB, etc)
 		$templateMgr->assign('regionCodes', $onixCodelistItemDao->getCodes('List49')); // regions (British Columbia, England, etc)
 
@@ -150,7 +150,7 @@ class SalesRightsForm extends Form {
 			$representationId = (int) $request->getUserVar('representationId');
 		}
 
-		$publicationFormatDao = DAORegistry::getDAO('PublicationFormatDAO');
+		$publicationFormatDao = DAORegistry::getDAO('PublicationFormatDAO'); /* @var $publicationFormatDao PublicationFormatDAO */
 		$publicationFormat = $publicationFormatDao->getById($representationId, $this->getPublication()->getId());
 
 		if ($publicationFormat) { // the format exists for this submission
@@ -192,8 +192,8 @@ class SalesRightsForm extends Form {
 	 * @see Form::execute()
 	 */
 	function execute() {
-		$salesRightsDao = DAORegistry::getDAO('SalesRightsDAO');
-		$publicationFormatDao = DAORegistry::getDAO('PublicationFormatDAO');
+		$salesRightsDao = DAORegistry::getDAO('SalesRightsDAO'); /* @var $salesRightsDao SalesRightsDAO */
+		$publicationFormatDao = DAORegistry::getDAO('PublicationFormatDAO'); /* @var $publicationFormatDao PublicationFormatDAO */
 
 		$submission = $this->getSubmission();
 		$salesRights = $this->getSalesRights();

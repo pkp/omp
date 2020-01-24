@@ -121,14 +121,14 @@ class IdentificationCodeGridHandler extends GridHandler {
 		// Retrieve the authorized submission.
 		$this->setSubmission($this->getAuthorizedContextObject(ASSOC_TYPE_SUBMISSION));
 		$this->setPublication($this->getAuthorizedContextObject(ASSOC_TYPE_PUBLICATION));
-		$publicationFormatDao = DAORegistry::getDAO('PublicationFormatDAO');
+		$publicationFormatDao = DAORegistry::getDAO('PublicationFormatDAO'); /* @var $publicationFormatDao PublicationFormatDAO */
 		$representationId = null;
 
 		// Retrieve the associated publication format for this grid.
 		$identificationCodeId = (int) $request->getUserVar('identificationCodeId'); // set if editing or deleting a code
 
 		if ($identificationCodeId != '') {
-			$identificationCodeDao = DAORegistry::getDAO('IdentificationCodeDAO');
+			$identificationCodeDao = DAORegistry::getDAO('IdentificationCodeDAO'); /* @var $identificationCodeDao IdentificationCodeDAO */
 			$identificationCode = $identificationCodeDao->getById($identificationCodeId, $this->getPublication()->getId());
 			if ($identificationCode) {
 				$representationId = $identificationCode->getPublicationFormatId();
@@ -226,7 +226,7 @@ class IdentificationCodeGridHandler extends GridHandler {
 	 */
 	function loadData($request, $filter = null) {
 		$publicationFormat = $this->getPublicationFormat();
-		$identificationCodeDao = DAORegistry::getDAO('IdentificationCodeDAO');
+		$identificationCodeDao = DAORegistry::getDAO('IdentificationCodeDAO'); /* @var $identificationCodeDao IdentificationCodeDAO */
 		$data = $identificationCodeDao->getByPublicationFormatId($publicationFormat->getId());
 		return $data->toArray();
 	}
@@ -256,7 +256,7 @@ class IdentificationCodeGridHandler extends GridHandler {
 		$identificationCodeId = (int) $request->getUserVar('identificationCodeId');
 		$submission = $this->getSubmission();
 
-		$identificationCodeDao = DAORegistry::getDAO('IdentificationCodeDAO');
+		$identificationCodeDao = DAORegistry::getDAO('IdentificationCodeDAO'); /* @var $identificationCodeDao IdentificationCodeDAO */
 		$identificationCode = $identificationCodeDao->getById($identificationCodeId, $this->getPublication()->getId());
 
 		// Form handling
@@ -278,7 +278,7 @@ class IdentificationCodeGridHandler extends GridHandler {
 		$identificationCodeId = $request->getUserVar('identificationCodeId');
 		$submission = $this->getSubmission();
 
-		$identificationCodeDao = DAORegistry::getDAO('IdentificationCodeDAO');
+		$identificationCodeDao = DAORegistry::getDAO('IdentificationCodeDAO'); /* @var $identificationCodeDao IdentificationCodeDAO */
 		$identificationCode = $identificationCodeDao->getById($identificationCodeId, $this->getPublication()->getId());
 
 		// Form handling
@@ -329,7 +329,7 @@ class IdentificationCodeGridHandler extends GridHandler {
 		// Identify the code to be deleted
 		$identificationCodeId = $request->getUserVar('identificationCodeId');
 
-		$identificationCodeDao = DAORegistry::getDAO('IdentificationCodeDAO');
+		$identificationCodeDao = DAORegistry::getDAO('IdentificationCodeDAO'); /* @var $identificationCodeDao IdentificationCodeDAO */
 		$identificationCode = $identificationCodeDao->getById($identificationCodeId, $this->getPublication()->getId());
 		if ($identificationCode != null) { // authorized
 

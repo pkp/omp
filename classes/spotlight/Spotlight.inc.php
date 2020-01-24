@@ -154,7 +154,7 @@ class Spotlight extends DataObject {
 				return Services::get('submission')->get($this->getAssocId());
 				break;
 			case SPOTLIGHT_TYPE_SERIES:
-				$seriesDao = DAORegistry::getDAO('SeriesDAO');
+				$seriesDao = DAORegistry::getDAO('SeriesDAO'); /* @var $seriesDao SeriesDAO */
 				return $seriesDao->getById($this->getAssocId(), $this->getPressId());
 				break;
 			default:

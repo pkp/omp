@@ -97,7 +97,7 @@ class CSVImportExportPlugin extends ImportExportPlugin {
 
 		if (is_array($data) && count($data) > 0) {
 
-			$userDao = DAORegistry::getDAO('UserDAO');
+			$userDao = DAORegistry::getDAO('UserDAO'); /* @var $userDao UserDAO */
 			$user = $userDao->getByUsername($username);
 			if (!$user) {
 				echo __('plugins.importexport.csv.unknownUser', array('username' => $username)) . "\n";
@@ -105,15 +105,15 @@ class CSVImportExportPlugin extends ImportExportPlugin {
 			}
 
 			$submissionDao = Application::getSubmissionDAO();
-			$authorDao = DAORegistry::getDAO('AuthorDAO');
+			$authorDao = DAORegistry::getDAO('AuthorDAO'); /* @var $authorDao AuthorDAO */
 			$pressDao = Application::getContextDAO();
-			$userGroupDao = DAORegistry::getDAO('UserGroupDAO');
-			$seriesDao = DAORegistry::getDAO('SeriesDAO');
-			$publicationFormatDao = DAORegistry::getDAO('PublicationFormatDAO');
-			$submissionFileDao = DAORegistry::getDAO('SubmissionFileDAO');
+			$userGroupDao = DAORegistry::getDAO('UserGroupDAO'); /* @var $userGroupDao UserGroupDAO */
+			$seriesDao = DAORegistry::getDAO('SeriesDAO'); /* @var $seriesDao SeriesDAO */
+			$publicationFormatDao = DAORegistry::getDAO('PublicationFormatDAO'); /* @var $publicationFormatDao PublicationFormatDAO */
+			$submissionFileDao = DAORegistry::getDAO('SubmissionFileDAO'); /* @var $submissionFileDao SubmissionFileDAO */
 			import('lib.pkp.classes.submission.SubmissionFile'); // constants.
-			$genreDao = DAORegistry::getDAO('GenreDAO');
-			$publicationDateDao = DAORegistry::getDAO('PublicationDateDAO');
+			$genreDao = DAORegistry::getDAO('GenreDAO'); /* @var $genreDao GenreDAO */
+			$publicationDateDao = DAORegistry::getDAO('PublicationDateDAO'); /* @var $publicationDateDao PublicationDateDAO */
 
 			foreach ($data as $csvLine) {
 				// Format is:

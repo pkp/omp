@@ -24,7 +24,7 @@ class UserAction extends PKPUserAction {
 		if (!parent::mergeUsers($oldUserId, $newUserId)) return false;
 
 		// Transfer completed payments.
-		$paymentDao = DAORegistry::getDAO('OMPCompletedPaymentDAO');
+		$paymentDao = DAORegistry::getDAO('OMPCompletedPaymentDAO'); /* @var $paymentDao OMPCompletedPaymentDAO */
 		$paymentFactory = $paymentDao->getByUserId($oldUserId);
 		while ($payment = $paymentFactory->next()) {
 			$payment->setUserId($newUserId);

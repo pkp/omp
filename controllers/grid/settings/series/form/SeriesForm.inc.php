@@ -46,7 +46,7 @@ class SeriesForm extends PKPSectionForm {
 		$this->addCheck(new FormValidatorCustom(
 			$this, 'path', 'required', 'grid.series.pathExists',
 			function($path) use ($form, $pressId) {
-				$seriesDao = DAORegistry::getDAO('SeriesDAO');
+				$seriesDao = DAORegistry::getDAO('SeriesDAO'); /* @var $seriesDao SeriesDAO */
 				return !$seriesDao->getByPath($path,$pressId) || ($form->getData('oldPath') != null && $form->getData('oldPath') == $path);
 		}));
 	}
@@ -58,7 +58,7 @@ class SeriesForm extends PKPSectionForm {
 		$request = Application::get()->getRequest();
 		$press = $request->getPress();
 
-		$seriesDao = DAORegistry::getDAO('SeriesDAO');
+		$seriesDao = DAORegistry::getDAO('SeriesDAO'); /* @var $seriesDao SeriesDAO */
 		$seriesId = $this->getSeriesId();
 		if ($seriesId) {
 			$series = $seriesDao->getById($seriesId, $press->getId());
@@ -98,7 +98,7 @@ class SeriesForm extends PKPSectionForm {
 		if ($temporaryFileId = $this->getData('temporaryFileId')) {
 			import('lib.pkp.classes.file.TemporaryFileManager');
 			$temporaryFileManager = new TemporaryFileManager();
-			$temporaryFileDao = DAORegistry::getDAO('TemporaryFileDAO');
+			$temporaryFileDao = DAORegistry::getDAO('TemporaryFileDAO'); /* @var $temporaryFileDao TemporaryFileDAO */
 			$temporaryFile = $temporaryFileDao->getTemporaryFile($temporaryFileId, $this->_userId);
 			if (	!$temporaryFile ||
 					!($this->_imageExtension = $temporaryFileManager->getImageExtension($temporaryFile->getFileType())) ||
@@ -121,7 +121,7 @@ class SeriesForm extends PKPSectionForm {
 
 		$context = $request->getContext();
 
-		$categoryDao = DAORegistry::getDAO('CategoryDAO');
+		$categoryDao = DAORegistry::getDAO('CategoryDAO'); /* @var $categoryDao CategoryDAO */
 		$categoryCount = $categoryDao->getCountByContextId($context->getId());
 		$templateMgr->assign('categoryCount', $categoryCount);
 
@@ -141,7 +141,7 @@ class SeriesForm extends PKPSectionForm {
 
 		// Categories list
 		$items = [];
-		$categoryDao = DAORegistry::getDAO('CategoryDAO');
+		$categoryDao = DAORegistry::getDAO('CategoryDAO'); /* @var $categoryDao CategoryDAO */
 		$categories = $categoryDao->getByContextId($context->getId());
 		if (!$categories->wasEmpty) {
 			while ($category = $categories->next()) {
@@ -185,7 +185,7 @@ class SeriesForm extends PKPSectionForm {
 		$this->readUserVars(array('seriesId', 'path', 'featured', 'restricted', 'description', 'categories', 'prefix', 'subtitle', 'temporaryFileId', 'onlineIssn', 'printIssn', 'sortOption'));
 		// For path duplicate checking; excuse the current path.
 		if ($seriesId = $this->getSeriesId()) {
-			$seriesDao = DAORegistry::getDAO('SeriesDAO');
+			$seriesDao = DAORegistry::getDAO('SeriesDAO'); /* @var $seriesDao SeriesDAO */
 			$series = $seriesDao->getById($seriesId, $this->_pressId);
 			$this->setData('oldPath', $series->getPath());
 		}
@@ -197,7 +197,7 @@ class SeriesForm extends PKPSectionForm {
 	function execute(...$functionParams) {
 		parent::execute(...$functionParams);
 
-		$seriesDao = DAORegistry::getDAO('SeriesDAO');
+		$seriesDao = DAORegistry::getDAO('SeriesDAO'); /* @var $seriesDao SeriesDAO */
 		$request = Application::get()->getRequest();
 		$press = $request->getPress();
 
@@ -231,7 +231,7 @@ class SeriesForm extends PKPSectionForm {
 		// Handle the image upload if there was one.
 		if ($temporaryFileId = $this->getData('temporaryFileId')) {
 			// Fetch the temporary file storing the uploaded library file
-			$temporaryFileDao = DAORegistry::getDAO('TemporaryFileDAO');
+			$temporaryFileDao = DAORegistry::getDAO('TemporaryFileDAO'); /* @var $temporaryFileDao TemporaryFileDAO */
 
 			$temporaryFile = $temporaryFileDao->getTemporaryFile($temporaryFileId, $this->_userId);
 			$temporaryFilePath = $temporaryFile->getFilePath();
@@ -308,7 +308,7 @@ class SeriesForm extends PKPSectionForm {
 		$this->_saveSubEditors($press->getId());
 
 		// Save the category associations.
-		$seriesDao = DAORegistry::getDAO('SeriesDAO');
+		$seriesDao = DAORegistry::getDAO('SeriesDAO'); /* @var $seriesDao SeriesDAO */
 		$seriesDao->removeCategories($this->getSeriesId());
 		$categoryIds = $this->getData('categories');
 		if (!empty($categoryIds)) {

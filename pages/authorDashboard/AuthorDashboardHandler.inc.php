@@ -37,7 +37,7 @@ class AuthorDashboardHandler extends PKPAuthorDashboardHandler {
 	function submission($args, $request) {
 		$submission = $this->getAuthorizedContextObject(ASSOC_TYPE_SUBMISSION);
 		$templateMgr = TemplateManager::getManager($request);
-		$reviewRoundDao = DAORegistry::getDAO('ReviewRoundDAO');
+		$reviewRoundDao = DAORegistry::getDAO('ReviewRoundDAO'); /* @var $reviewRoundDao ReviewRoundDAO */
 		$internalReviewRounds = $reviewRoundDao->getBySubmissionId($submission->getId(), WORKFLOW_STAGE_ID_INTERNAL_REVIEW);
 		$templateMgr->assign('internalReviewRounds', $internalReviewRounds);
 		return parent::submission($args, $request);

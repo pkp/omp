@@ -32,7 +32,7 @@ class SubmissionSubmitStep1Form extends PKPSubmissionSubmitStep1Form {
 		$templateMgr = TemplateManager::getManager($request);
 
 		// Get series for this context
-		$seriesDao = DAORegistry::getDAO('SeriesDAO');
+		$seriesDao = DAORegistry::getDAO('SeriesDAO'); /* @var $seriesDao SeriesDAO */
 		$seriesOptions = array('' => __('submission.submit.selectSeries')) + $seriesDao->getTitlesByPressId($this->context->getId(), true);
 		$templateMgr->assign('seriesOptions', $seriesOptions);
 

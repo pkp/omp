@@ -58,7 +58,7 @@ class NavigationMenuItemsForm extends PKPNavigationMenuItemsForm {
 	 * @copydoc PKPNavigationMenuItemsForm::initData
 	 */
 	function initData() {
-		$navigationMenuItemDao = DAORegistry::getDAO('NavigationMenuItemDAO');
+		$navigationMenuItemDao = DAORegistry::getDAO('NavigationMenuItemDAO'); /* @var $navigationMenuItemDao NavigationMenuItemDAO */
 		$navigationMenuItem = $navigationMenuItemDao->getById($this->navigationMenuItemId);
 
 		if ($navigationMenuItem) {
@@ -90,7 +90,7 @@ class NavigationMenuItemsForm extends PKPNavigationMenuItemsForm {
 	function execute() {
 		parent::execute();
 
-		$navigationMenuItemDao = DAORegistry::getDAO('NavigationMenuItemDAO');
+		$navigationMenuItemDao = DAORegistry::getDAO('NavigationMenuItemDAO'); /* @var $navigationMenuItemDao NavigationMenuItemDAO */
 
 		$navigationMenuItem = $navigationMenuItemDao->getById($this->navigationMenuItemId);
 		if (!$navigationMenuItem) {

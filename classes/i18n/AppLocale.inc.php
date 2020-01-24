@@ -198,10 +198,10 @@ class AppLocale extends PKPLocale {
 	static function uninstallLocale($locale) {
 		parent::uninstallLocale($locale);
 
-		$genreDao = DAORegistry::getDAO('GenreDAO');
+		$genreDao = DAORegistry::getDAO('GenreDAO'); /* @var $genreDao GenreDAO */
 		$genreDao->deleteSettingsByLocale($locale);
 
-		$userGroupDao = DAORegistry::getDAO('UserGroupDAO');
+		$userGroupDao = DAORegistry::getDAO('UserGroupDAO'); /* @var $userGroupDao UserGroupDAO */
 		$userGroupDao->deleteSettingsByLocale($locale);
 	}
 

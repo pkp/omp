@@ -31,7 +31,7 @@ class SubmissionMetadataFormImplementation extends PKPSubmissionMetadataFormImpl
 	 */
 	function initData($submission) {
 		parent::initData($submission);
-		$seriesDao = DAORegistry::getDAO('SeriesDAO');
+		$seriesDao = DAORegistry::getDAO('SeriesDAO'); /* @var $seriesDao SeriesDAO */
 		if (isset($submission)) {
 			$this->_parentForm->setData('series', $seriesDao->getById($submission->getSeriesId()));
 		}

@@ -192,7 +192,7 @@ class SeriesDAO extends PKPSectionDAO {
 		// Validate the $contextId, if supplied.
 		if (!$this->seriesExists($seriesId, $contextId)) return false;
 
-		$subEditorsDao = DAORegistry::getDAO('SubEditorsDAO');
+		$subEditorsDao = DAORegistry::getDAO('SubEditorsDAO'); /* @var $subEditorsDao SubEditorsDAO */
 		$subEditorsDao->deleteBySectionId($seriesId, $contextId);
 
 		// Remove monographs from this series
@@ -367,7 +367,7 @@ class SeriesDAO extends PKPSectionDAO {
 		$params = array((int) $seriesId);
 		if ($pressId) $params[] = (int) $pressId;
 
-		$categoryDao = DAORegistry::getDAO('CategoryDAO');
+		$categoryDao = DAORegistry::getDAO('CategoryDAO'); /* @var $categoryDao CategoryDAO */
 		$result = $this->retrieve(
 			'SELECT	c.*
 			FROM	categories c,
@@ -393,7 +393,7 @@ class SeriesDAO extends PKPSectionDAO {
 		$params = array((int) $seriesId);
 		if ($pressId) $params[] = (int) $pressId;
 
-		$categoryDao = DAORegistry::getDAO('CategoryDAO');
+		$categoryDao = DAORegistry::getDAO('CategoryDAO'); /* @var $categoryDao CategoryDAO */
 		$result = $this->retrieve(
 			'SELECT	c.*
 			FROM	series s

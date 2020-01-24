@@ -24,7 +24,7 @@ class PublicationDate extends DataObject {
 	 */
 	function __construct() {
 
-		$onixCodelistItemDao = DAORegistry::getDAO('ONIXCodelistItemDAO');
+		$onixCodelistItemDao = DAORegistry::getDAO('ONIXCodelistItemDAO'); /* @var $onixCodelistItemDao ONIXCodelistItemDAO */
 		$this->dateFormats =& $onixCodelistItemDao->getCodes('List55');
 
 		parent::__construct();
@@ -83,7 +83,7 @@ class PublicationDate extends DataObject {
 	 * @return string
 	 */
 	function getNameForONIXCode() {
-		$onixCodelistItemDao = DAORegistry::getDAO('ONIXCodelistItemDAO');
+		$onixCodelistItemDao = DAORegistry::getDAO('ONIXCodelistItemDAO'); /* @var $onixCodelistItemDao ONIXCodelistItemDAO */
 		$codes =& $onixCodelistItemDao->getCodes('List163'); // List163 is for Publication date, Embargo date, Announcement date, etc
 		return $codes[$this->getRole()];
 	}

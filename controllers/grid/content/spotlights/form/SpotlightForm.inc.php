@@ -57,7 +57,7 @@ class SpotlightForm extends Form {
 	function fetch($request, $template = null, $display = false) {
 		$templateMgr = TemplateManager::getManager($request);
 
-		$spotlightDao = DAORegistry::getDAO('SpotlightDAO');
+		$spotlightDao = DAORegistry::getDAO('SpotlightDAO'); /* @var $spotlightDao SpotlightDAO */
 		$spotlight = $spotlightDao->getById($this->getSpotlightId());
 		$templateMgr->assign(array(
 			'spotlight' => $spotlight,
@@ -89,7 +89,7 @@ class SpotlightForm extends Form {
 	 */
 	function execute() {
 
-		$spotlightDao = DAORegistry::getDAO('SpotlightDAO');
+		$spotlightDao = DAORegistry::getDAO('SpotlightDAO'); /* @var $spotlightDao SpotlightDAO */
 
 		$spotlight = $spotlightDao->getById($this->getSpotlightId(), $this->getPressId());
 
@@ -153,7 +153,7 @@ class SpotlightForm extends Form {
 				$returner = isset($submission) ? $submission->getLocalizedTitle() : '';
 				break;
 			case SPOTLIGHT_TYPE_SERIES:
-				$seriesDao = DAORegistry::getDAO('SeriesDAO');
+				$seriesDao = DAORegistry::getDAO('SeriesDAO'); /* @var $seriesDao SeriesDAO */
 				$series = $seriesDao->getById($assocId, $this->getPressId());
 				$returner = isset($series) ? $series->getLocalizedTitle() : '';
 				break;

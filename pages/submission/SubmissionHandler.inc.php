@@ -40,7 +40,7 @@ class SubmissionHandler extends PKPSubmissionHandler {
 		$codeList = (int) $request->getUserVar('codeList');
 		$term = $request->getUserVar('term');
 
-		$onixCodelistItemDao = DAORegistry::getDAO('ONIXCodelistItemDAO');
+		$onixCodelistItemDao = DAORegistry::getDAO('ONIXCodelistItemDAO'); /* @var $onixCodelistItemDao ONIXCodelistItemDAO */
 		$codes = $onixCodelistItemDao->getCodes('List' . $codeList, array(), $term); // $term is escaped in the getCodes method.
 		header('Content-Type: text/json');
 		echo json_encode(array_values($codes));

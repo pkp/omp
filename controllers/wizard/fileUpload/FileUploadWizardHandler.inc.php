@@ -30,7 +30,7 @@ class FileUploadWizardHandler extends PKPFileUploadWizardHandler {
 		// we don't need to validate in another places.
 		$fileStage = $request->getUserVar('fileStage');
 		if ($fileStage) {
-			$submissionFileDao = DAORegistry::getDAO('SubmissionFileDAO');
+			$submissionFileDao = DAORegistry::getDAO('SubmissionFileDAO'); /* @var $submissionFileDao SubmissionFileDAO */
 			$fileStages = $submissionFileDao->getAllFileStages();
 			if (!in_array($fileStage, $fileStages)) {
 				return false;

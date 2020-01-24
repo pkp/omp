@@ -96,8 +96,8 @@ class Dc11SchemaPublicationFormatAdapter extends MetadataDataObjectAdapter {
 		}
 
 		// Subject
-		$submissionKeywordDao = DAORegistry::getDAO('SubmissionKeywordDAO');
-		$submissionSubjectDao = DAORegistry::getDAO('SubmissionSubjectDAO');
+		$submissionKeywordDao = DAORegistry::getDAO('SubmissionKeywordDAO'); /* @var $submissionKeywordDao SubmissionKeywordDAO */
+		$submissionSubjectDao = DAORegistry::getDAO('SubmissionSubjectDAO'); /* @var $submissionSubjectDao SubmissionSubjectDAO */
 		$supportedLocales = array_keys(AppLocale::getSupportedFormLocales());
 		$subjects = array_merge_recursive(
 			(array) $submissionKeywordDao->getKeywords($monograph->getId(), $supportedLocales),
@@ -141,7 +141,7 @@ class Dc11SchemaPublicationFormatAdapter extends MetadataDataObjectAdapter {
 		$this->_addLocalizedElements($dc11Description, 'dc:type', $types);
 
 		// Format
-		$onixCodelistItemDao = DAORegistry::getDAO('ONIXCodelistItemDAO');
+		$onixCodelistItemDao = DAORegistry::getDAO('ONIXCodelistItemDAO'); /* @var $onixCodelistItemDao ONIXCodelistItemDAO */
 		$entryKeys = $onixCodelistItemDao->getCodes('List7'); // List7 is for object formats
 		if ($publicationFormat->getEntryKey()) {
 			$formatName = $entryKeys[$publicationFormat->getEntryKey()];

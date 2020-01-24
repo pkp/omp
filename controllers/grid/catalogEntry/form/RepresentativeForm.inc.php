@@ -38,7 +38,7 @@ class RepresentativeForm extends Form {
 				$request = Application::get()->getRequest();
 				$agentRole = $request->getUserVar('agentRole');
 				$supplierRole = $request->getUserVar('supplierRole');
-				$onixDao = DAORegistry::getDAO('ONIXCodelistItemDAO');
+				$onixDao = DAORegistry::getDAO('ONIXCodelistItemDAO'); /* @var $onixDao ONIXCodelistItemDAO */
 				return (!$isSupplier && $onixDao->codeExistsInList($agentRole, 'List69')) || ($isSupplier && $onixDao->codeExistsInList($supplierRole, 'List93'));
 			}
 		));
@@ -115,7 +115,7 @@ class RepresentativeForm extends Form {
 		$monograph = $this->getMonograph();
 		$templateMgr->assign('submissionId', $monograph->getId());
 		$representative = $this->getRepresentative();
-		$onixCodelistItemDao = DAORegistry::getDAO('ONIXCodelistItemDAO');
+		$onixCodelistItemDao = DAORegistry::getDAO('ONIXCodelistItemDAO'); /* @var $onixCodelistItemDao ONIXCodelistItemDAO */
 		$templateMgr->assign(array(
 			'idTypeCodes' => $onixCodelistItemDao->getCodes('List92'), // GLN, etc
 			'agentRoleCodes' => $onixCodelistItemDao->getCodes('List69'), // Sales Agent, etc
@@ -163,7 +163,7 @@ class RepresentativeForm extends Form {
 	 * @see Form::execute()
 	 */
 	function execute() {
-		$representativeDao = DAORegistry::getDAO('RepresentativeDAO');
+		$representativeDao = DAORegistry::getDAO('RepresentativeDAO'); /* @var $representativeDao RepresentativeDAO */
 		$monograph = $this->getMonograph();
 		$representative = $this->getRepresentative();
 

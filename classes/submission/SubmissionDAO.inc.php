@@ -48,10 +48,10 @@ class SubmissionDAO extends PKPSubmissionDAO {
 		parent::deleteById($submissionId);
 
 		// Delete references to features or new releases.
-		$featureDao = DAORegistry::getDAO('FeatureDAO');
+		$featureDao = DAORegistry::getDAO('FeatureDAO'); /* @var $featureDao FeatureDAO */
 		$featureDao->deleteByMonographId($submissionId);
 
-		$newReleaseDao = DAORegistry::getDAO('NewReleaseDAO');
+		$newReleaseDao = DAORegistry::getDAO('NewReleaseDAO'); /* @var $newReleaseDao NewReleaseDAO */
 		$newReleaseDao->deleteByMonographId($submissionId);
 
 		$monographSearchIndex = Application::getSubmissionSearchIndex();

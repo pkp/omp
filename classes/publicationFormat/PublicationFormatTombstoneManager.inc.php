@@ -28,12 +28,12 @@ class PublicationFormatTombstoneManager {
 	 */
 	function insertTombstoneByPublicationFormat($publicationFormat, $press) {
 		$publication = Services::get('publication')->get($publicationFormat->getData('publicationId'));
-		$submissionDao = DAORegistry::getDAO('SubmissionDAO');
+		$submissionDao = DAORegistry::getDAO('SubmissionDAO'); /* @var $submissionDao SubmissionDAO */
 		$monograph = $submissionDao->getById($publication->getData('submissionId'));
-		$seriesDao = DAORegistry::getDAO('SeriesDAO');
+		$seriesDao = DAORegistry::getDAO('SeriesDAO'); /* @var $seriesDao SeriesDAO */
 		$series = $seriesDao->getById($monograph->getSeriesId());
 
-		$dataObjectTombstoneDao = DAORegistry::getDAO('DataObjectTombstoneDAO');
+		$dataObjectTombstoneDao = DAORegistry::getDAO('DataObjectTombstoneDAO'); /* @var $dataObjectTombstoneDao DataObjectTombstoneDAO */
 		// delete publication format tombstone to ensure that there aren't
 		// more than one tombstone for this publication format
 		$dataObjectTombstoneDao->deleteByDataObjectId($publicationFormat->getId());
@@ -94,7 +94,7 @@ class PublicationFormatTombstoneManager {
 	 */
 	function deleteTombstonesByPublicationFormats($publicationFormats) {
 		foreach ($publicationFormats as $publicationFormat) {
-			$tombstoneDao = DAORegistry::getDAO('DataObjectTombstoneDAO');
+			$tombstoneDao = DAORegistry::getDAO('DataObjectTombstoneDAO'); /* @var $tombstoneDao DataObjectTombstoneDAO */
 			$tombstoneDao->deleteByDataObjectId($publicationFormat->getId());
 		}
 	}
