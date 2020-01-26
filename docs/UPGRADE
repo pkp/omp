@@ -31,7 +31,7 @@ If you have not made local code modifications to the system, upgrade by
 downloading the complete package for the latest release of OMP:
 
     - Download and decompress the package from the OMP web site into an empty
-      directory (NOT over top of your current OJS installation)
+      directory (NOT over top of your current OMP installation)
     - Move or copy the following files and directories from your current OMP
       installation:
         - config.inc.php
@@ -65,8 +65,8 @@ them on top of the new release. This may cause merge conflicts which have to
 be resolved in the usual way, e.g. using a merge tool like kdiff3.
 
 "TAG" should be replaced with the git tag corresponding to the new release.
-OMP release version tags are of the form "ojs-MAJOR_MINOR_REVSION-BUILD".
-For example, the tag for the initial release of OMP 1.0 is "ojs-1_0_0-0".
+OMP release version tags are of the form "omp-MAJOR_MINOR_REVSION-BUILD".
+For example, the tag for the initial release of OMP 1.0 is "omp-1_0_0-0".
 
 Consult the README of the latest OMP package or the OMP web site for the
 tag corresponding to the latest available OMP release.
@@ -93,7 +93,7 @@ If you have the CLI version of PHP installed (e.g., /usr/bin/php), you can
 upgrade the database as follows:
 
     - Edit config.inc.php and change "installed = On" to "installed = Off"
-    - Run the following command from the OJS directory (not including the $):
+    - Run the following command from the OMP directory (not including the $):
       $ php tools/upgrade.php upgrade
     - Re-edit config.inc.php and change "installed = Off" back to
        "installed = On"
