@@ -31,7 +31,7 @@ class ApprovedProofForm extends Form {
 	 * @param $publicationFormat PublicationFormat
 	 * @param $fileId string fileId-revision
 	 */
-	function __construct($monograph, $publicationFormat, $fileIdAndRevision) {
+	public function __construct($monograph, $publicationFormat, $fileIdAndRevision) {
 		parent::__construct('controllers/grid/files/proof/form/approvedProofForm.tpl');
 
 		$this->monograph =& $monograph;
@@ -54,7 +54,7 @@ class ApprovedProofForm extends Form {
 	/**
 	 * @copydoc Form::fetch
 	 */
-	function fetch($request, $template = null, $display = false) {
+	public function fetch($request, $template = null, $display = false) {
 		$templateMgr = TemplateManager::getManager($request);
 		$templateMgr->assign('fileId', $this->approvedProof->getFileIdAndRevision());
 		$templateMgr->assign('submissionId', $this->monograph->getId());
@@ -75,14 +75,14 @@ class ApprovedProofForm extends Form {
 	/**
 	 * @see Form::readInputData()
 	 */
-	function readInputData() {
+	public function readInputData() {
 		$this->readUserVars(array('price', 'salesType'));
 	}
 
 	/**
 	 * @see Form::initData()
 	 */
-	function initData() {
+	public function initData() {
 		$this->_data = array(
 			'price' => $this->approvedProof->getDirectSalesPrice(),
 			'salesType' => $this->approvedProof->getSalesType(),
@@ -92,7 +92,8 @@ class ApprovedProofForm extends Form {
 	/**
 	 * @copydoc Form::execute()
 	 */
-	function execute() {
+	public function execute(...$functionArgs) {
+		parent::execute(...$functionArgs);
 		$submissionFileDao = DAORegistry::getDAO('SubmissionFileDAO'); /* @var $submissionFileDao SubmissionFileDAO */
 		$salesType = $this->getData('salesType');
 		if ($salesType === 'notAvailable') {

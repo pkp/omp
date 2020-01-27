@@ -28,7 +28,7 @@ class IdentificationCodeForm extends Form {
 	/**
 	 * Constructor.
 	 */
-	function __construct($submission, $publication, $identificationCode) {
+	public function __construct($submission, $publication, $identificationCode) {
 		parent::__construct('controllers/grid/catalogEntry/form/codeForm.tpl');
 		$this->setSubmission($submission);
 		$this->setPublication($publication);
@@ -49,7 +49,7 @@ class IdentificationCodeForm extends Form {
 	 * Get the code
 	 * @return IdentificationCode
 	 */
-	function &getIdentificationCode() {
+	public function getIdentificationCode() {
 		return $this->_identificationCode;
 	}
 
@@ -57,7 +57,7 @@ class IdentificationCodeForm extends Form {
 	 * Set the code
 	 * @param @identificationCode IdentificationCode
 	 */
-	function setIdentificationCode($identificationCode) {
+	public function setIdentificationCode($identificationCode) {
 		$this->_identificationCode = $identificationCode;
 	}
 
@@ -65,7 +65,7 @@ class IdentificationCodeForm extends Form {
 	 * Get the Submission
 	 * @return Submission
 	 */
-	function getSubmission() {
+	public function getSubmission() {
 		return $this->_submission;
 	}
 
@@ -73,7 +73,7 @@ class IdentificationCodeForm extends Form {
 	 * Set the Submission
 	 * @param Submission
 	 */
-	function setSubmission($submission) {
+	public function setSubmission($submission) {
 		$this->_submission = $submission;
 	}
 
@@ -81,7 +81,7 @@ class IdentificationCodeForm extends Form {
 	 * Get the Publication
 	 * @return Publication
 	 */
-	function getPublication() {
+	public function getPublication() {
 		return $this->_publication;
 	}
 
@@ -89,7 +89,7 @@ class IdentificationCodeForm extends Form {
 	 * Set the Publication
 	 * @param Publication
 	 */
-	function setPublication($publication) {
+	public function setPublication($publication) {
 		$this->_publication = $publication;
 	}
 
@@ -100,7 +100,7 @@ class IdentificationCodeForm extends Form {
 	/**
 	 * Initialize form data from the identification code.
 	 */
-	function initData() {
+	public function initData() {
 		$code = $this->getIdentificationCode();
 
 		if ($code) {
@@ -115,7 +115,7 @@ class IdentificationCodeForm extends Form {
 	/**
 	 * @copydoc Form::fetch()
 	 */
-	function fetch($request, $template = null, $display = false) {
+	public function fetch($request, $template = null, $display = false) {
 		$templateMgr = TemplateManager::getManager($request);
 		$submission = $this->getSubmission();
 		$templateMgr->assign('submissionId', $submission->getId());
@@ -161,7 +161,7 @@ class IdentificationCodeForm extends Form {
 	 * Assign form data to user-submitted data.
 	 * @see Form::readInputData()
 	 */
-	function readInputData() {
+	public function readInputData() {
 		$this->readUserVars(array(
 			'identificationCodeId',
 			'representationId',
@@ -171,10 +171,10 @@ class IdentificationCodeForm extends Form {
 	}
 
 	/**
-	 * Save the code
-	 * @see Form::execute()
+	 * @copydoc Form::execute()
 	 */
-	function execute() {
+	public function execute(...$functionArgs) {
+		parent::execute(...$functionArgs);
 		$identificationCodeDao = DAORegistry::getDAO('IdentificationCodeDAO'); /* @var $identificationCodeDao IdentificationCodeDAO */
 		$publicationFormatDao = DAORegistry::getDAO('PublicationFormatDAO'); /* @var $publicationFormatDao PublicationFormatDAO */
 

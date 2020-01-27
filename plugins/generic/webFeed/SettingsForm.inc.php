@@ -28,7 +28,7 @@ class SettingsForm extends Form {
 	 * @param $plugin WebFeedPlugin Web feed plugin
 	 * @param $contextId int Context ID
 	 */
-	function __construct($plugin, $contextId) {
+	public function __construct($plugin, $contextId) {
 		$this->_contextId = $contextId;
 		$this->_plugin = $plugin;
 
@@ -40,7 +40,7 @@ class SettingsForm extends Form {
 	/**
 	 * Initialize form data.
 	 */
-	function initData() {
+	public function initData() {
 		$contextId = $this->_contextId;
 		$plugin = $this->_plugin;
 
@@ -51,7 +51,7 @@ class SettingsForm extends Form {
 	/**
 	 * Assign form data to user-submitted data.
 	 */
-	function readInputData() {
+	public function readInputData() {
 		$this->readUserVars(array('displayPage', 'recentItems'));
 
 		// check that recent items value is a positive integer
@@ -65,21 +65,23 @@ class SettingsForm extends Form {
 	 * Fetch the form.
 	 * @copydoc Form::fetch()
 	 */
-	function fetch($request, $template = null, $display = false) {
+	public function fetch($request, $template = null, $display = false) {
 		$templateMgr = TemplateManager::getManager($request);
 		$templateMgr->assign('pluginName', $this->_plugin->getName());
 		return parent::fetch($request, $template, $display);
 	}
 
 	/**
-	 * Save settings. 
+	 * @copydoc Form::execute()
 	 */
-	function execute() {
+	public function execute(...$functionArgs) {
 		$plugin = $this->_plugin;
 		$contextId = $this->_contextId;
 
 		$plugin->updateSetting($contextId, 'displayPage', $this->getData('displayPage'));
 		$plugin->updateSetting($contextId, 'recentItems', $this->getData('recentItems'));
+
+		parent::execute(...$functionArgs);
 	}
 }
 

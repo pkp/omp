@@ -25,7 +25,7 @@ class MarketForm extends Form {
 	/**
 	 * Constructor.
 	 */
-	function __construct($submission, $publication, $market) {
+	public function __construct($submission, $publication, $market) {
 		parent::__construct('controllers/grid/catalogEntry/form/marketForm.tpl');
 		$this->setSubmission($submission);
 		$this->setPublication($publication);
@@ -46,7 +46,7 @@ class MarketForm extends Form {
 	 * Get the entry
 	 * @return Market
 	 */
-	function getMarket() {
+	public function getMarket() {
 		return $this->_market;
 	}
 
@@ -54,7 +54,7 @@ class MarketForm extends Form {
 	 * Set the entry
 	 * @param @market Market
 	 */
-	function setMarket($market) {
+	public function setMarket($market) {
 		$this->_market = $market;
 	}
 
@@ -62,7 +62,7 @@ class MarketForm extends Form {
 	 * Get the Submission
 	 * @return Submission
 	 */
-	function getSubmission() {
+	public function getSubmission() {
 		return $this->_submission;
 	}
 
@@ -70,7 +70,7 @@ class MarketForm extends Form {
 	 * Set the Submission
 	 * @param Submission
 	 */
-	function setSubmission($submission) {
+	public function setSubmission($submission) {
 		$this->_submission = $submission;
 	}
 
@@ -78,7 +78,7 @@ class MarketForm extends Form {
 	 * Get the Publication
 	 * @return Publication
 	 */
-	function getPublication() {
+	public function getPublication() {
 		return $this->_publication;
 	}
 
@@ -86,7 +86,7 @@ class MarketForm extends Form {
 	 * Set the Publication
 	 * @param Publication
 	 */
-	function setPublication($publication) {
+	public function setPublication($publication) {
 		$this->_publication = $publication;
 	}
 
@@ -97,7 +97,7 @@ class MarketForm extends Form {
 	/**
 	 * Initialize form data from the market entry.
 	 */
-	function initData() {
+	public function initData() {
 		$market = $this->getMarket();
 
 		if ($market) {
@@ -120,7 +120,7 @@ class MarketForm extends Form {
 	/**
 	 * @copydoc Form::fetch()
 	 */
-	function fetch($request, $template = null, $display = false) {
+	public function fetch($request, $template = null, $display = false) {
 		$templateMgr = TemplateManager::getManager($request);
 		$submission = $this->getSubmission();
 		$templateMgr->assign('submissionId', $submission->getId());
@@ -199,7 +199,7 @@ class MarketForm extends Form {
 	 * Assign form data to user-submitted data.
 	 * @see Form::readInputData()
 	 */
-	function readInputData() {
+	public function readInputData() {
 		$this->readUserVars(array(
 			'marketId',
 			'representationId',
@@ -222,10 +222,10 @@ class MarketForm extends Form {
 	}
 
 	/**
-	 * Save the entry
-	 * @see Form::execute()
+	 * @copydoc Form::execute()
 	 */
-	function execute() {
+	public function execute(...$functionArgs) {
+		parent::execute(...$functionArgs);
 		$marketDao = DAORegistry::getDAO('MarketDAO'); /* @var $marketDao MarketDAO */
 		$publicationFormatDao = DAORegistry::getDAO('PublicationFormatDAO'); /* @var $publicationFormatDao PublicationFormatDAO */
 

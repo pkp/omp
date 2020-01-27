@@ -51,7 +51,7 @@ class URNSettingsForm extends Form {
 	 * @param $plugin URNPubIdPlugin
 	 * @param $contextId integer
 	 */
-	function __construct($plugin, $contextId) {
+	public function __construct($plugin, $contextId) {
 		$this->_contextId = $contextId;
 		$this->_plugin = $plugin;
 
@@ -107,7 +107,7 @@ class URNSettingsForm extends Form {
 	/**
 	 * @copydoc Form::fetch()
 	 */
-	function fetch($request, $template = null, $display = false) {
+	public function fetch($request, $template = null, $display = false) {
 		$urnNamespaces = array(
 			'' => '',
 			'urn:nbn:de' => 'urn:nbn:de',
@@ -124,7 +124,7 @@ class URNSettingsForm extends Form {
 	/**
 	 * @copydoc Form::initData()
 	 */
-	function initData() {
+	public function initData() {
 		$contextId = $this->_getContextId();
 		$plugin = $this->_getPlugin();
 		foreach($this->_getFormFields() as $fieldName => $fieldType) {
@@ -135,25 +135,26 @@ class URNSettingsForm extends Form {
 	/**
 	 * @copydoc Form::readInputData()
 	 */
-	function readInputData() {
+	public function readInputData() {
 		$this->readUserVars(array_keys($this->_getFormFields()));
 	}
 
 	/**
 	 * @copydoc Form::execute()
 	 */
-	function execute() {
+	public function execute(...$functionArgs) {
 		$contextId = $this->_getContextId();
 		$plugin = $this->_getPlugin();
 		foreach($this->_getFormFields() as $fieldName => $fieldType) {
 			$plugin->updateSetting($contextId, $fieldName, $this->getData($fieldName), $fieldType);
 		}
+		parent::execute(...$functionArgs);
 	}
 
 	//
 	// Private helper methods
 	//
-	function _getFormFields() {
+	public function _getFormFields() {
 		return array(
 			'enablePublicationURN' => 'bool',
 			'enableChapterURN' => 'bool',

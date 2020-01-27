@@ -28,7 +28,7 @@ class PublicationDateForm extends Form {
 	/**
 	 * Constructor.
 	 */
-	function __construct($submission, $publication, $publicationDate) {
+	public function __construct($submission, $publication, $publicationDate) {
 		parent::__construct('controllers/grid/catalogEntry/form/pubDateForm.tpl');
 		$this->setSubmission($submission);
 		$this->setPublication($publication);
@@ -66,7 +66,7 @@ class PublicationDateForm extends Form {
 	 * Get the date
 	 * @return PublicationDate
 	 */
-	function getPublicationDate() {
+	public function getPublicationDate() {
 		return $this->_publicationDate;
 	}
 
@@ -74,7 +74,7 @@ class PublicationDateForm extends Form {
 	 * Set the date
 	 * @param @publicationDate PublicationDate
 	 */
-	function setPublicationDate($publicationDate) {
+	public function setPublicationDate($publicationDate) {
 		$this->_publicationDate = $publicationDate;
 	}
 
@@ -82,7 +82,7 @@ class PublicationDateForm extends Form {
 	 * Get the Submission
 	 * @return Submission
 	 */
-	function getSubmission() {
+	public function getSubmission() {
 		return $this->_submission;
 	}
 
@@ -90,7 +90,7 @@ class PublicationDateForm extends Form {
 	 * Set the Submission
 	 * @param Submission
 	 */
-	function setSubmission($submission) {
+	public function setSubmission($submission) {
 		$this->_submission = $submission;
 	}
 
@@ -98,7 +98,7 @@ class PublicationDateForm extends Form {
 	 * Get the Publication
 	 * @return Publication
 	 */
-	function getPublication() {
+	public function getPublication() {
 		return $this->_publication;
 	}
 
@@ -106,7 +106,7 @@ class PublicationDateForm extends Form {
 	 * Set the Publication
 	 * @param Publication
 	 */
-	function setPublication($publication) {
+	public function setPublication($publication) {
 		$this->_publication = $publication;
 	}
 
@@ -117,7 +117,7 @@ class PublicationDateForm extends Form {
 	/**
 	 * Initialize form data from the publication date.
 	 */
-	function initData() {
+	public function initData() {
 		$date = $this->getPublicationDate();
 
 		if ($date) {
@@ -133,7 +133,7 @@ class PublicationDateForm extends Form {
 	/**
 	 * @copydoc Form::fetch()
 	 */
-	function fetch($request, $template = null, $display = false) {
+	public function fetch($request, $template = null, $display = false) {
 		$templateMgr = TemplateManager::getManager($request);
 		$submission = $this->getSubmission();
 		$templateMgr->assign('submissionId', $submission->getId());
@@ -177,7 +177,7 @@ class PublicationDateForm extends Form {
 	 * Assign form data to user-submitted data.
 	 * @see Form::readInputData()
 	 */
-	function readInputData() {
+	public function readInputData() {
 		$this->readUserVars(array(
 			'publicationDateId',
 			'representationId',
@@ -188,10 +188,10 @@ class PublicationDateForm extends Form {
 	}
 
 	/**
-	 * Save the date
-	 * @see Form::execute()
+	 * @copydoc Form::execute()
 	 */
-	function execute() {
+	public function execute(...$functionArgs) {
+		parent::execute(...$functionArgs);
 		$publicationDateDao = DAORegistry::getDAO('PublicationDateDAO'); /* @var $publicationDateDao PublicationDateDAO */
 		$publicationFormatDao = DAORegistry::getDAO('PublicationFormatDAO'); /* @var $publicationFormatDao PublicationFormatDAO */
 
@@ -227,5 +227,4 @@ class PublicationDateForm extends Form {
 		return $publicationDateId;
 	}
 }
-
 

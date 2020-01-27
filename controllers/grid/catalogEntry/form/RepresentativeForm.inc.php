@@ -25,7 +25,7 @@ class RepresentativeForm extends Form {
 	/**
 	 * Constructor.
 	 */
-	function __construct($monograph, $representative) {
+	public function __construct($monograph, $representative) {
 		parent::__construct('controllers/grid/catalogEntry/form/representativeForm.tpl');
 		$this->setMonograph($monograph);
 		$this->setRepresentative($representative);
@@ -53,7 +53,7 @@ class RepresentativeForm extends Form {
 	 * Get the representative
 	 * @return Representative
 	 */
-	function &getRepresentative() {
+	public function &getRepresentative() {
 		return $this->_representative;
 	}
 
@@ -61,7 +61,7 @@ class RepresentativeForm extends Form {
 	 * Set the representative
 	 * @param @representative Representative
 	 */
-	function setRepresentative($representative) {
+	public function setRepresentative($representative) {
 		$this->_representative = $representative;
 	}
 
@@ -69,7 +69,7 @@ class RepresentativeForm extends Form {
 	 * Get the Monograph
 	 * @return Monograph
 	 */
-	function getMonograph() {
+	public function getMonograph() {
 		return $this->_monograph;
 	}
 
@@ -77,7 +77,7 @@ class RepresentativeForm extends Form {
 	 * Set the Monograph
 	 * @param Monograph
 	 */
-	function setMonograph($monograph) {
+	public function setMonograph($monograph) {
 		$this->_monograph = $monograph;
 	}
 
@@ -88,7 +88,7 @@ class RepresentativeForm extends Form {
 	/**
 	 * Initialize form data from the representative entry.
 	 */
-	function initData() {
+	public function initData() {
 		$representative = $this->getRepresentative();
 
 		if ($representative) {
@@ -109,7 +109,7 @@ class RepresentativeForm extends Form {
 	/**
 	 * @copydoc Form::fetch()
 	 */
-	function fetch($request, $template = null, $display = false) {
+	public function fetch($request, $template = null, $display = false) {
 		$templateMgr = TemplateManager::getManager($request);
 
 		$monograph = $this->getMonograph();
@@ -143,7 +143,7 @@ class RepresentativeForm extends Form {
 	 * Assign form data to user-submitted data.
 	 * @see Form::readInputData()
 	 */
-	function readInputData() {
+	public function readInputData() {
 		$this->readUserVars(array(
 			'representativeId',
 			'agentRole',
@@ -159,10 +159,10 @@ class RepresentativeForm extends Form {
 	}
 
 	/**
-	 * Save the representative
-	 * @see Form::execute()
+	 * @copydoc Form::execute()
 	 */
-	function execute() {
+	public function execute(...$functionArgs) {
+		parent::execute(...$functionArgs);
 		$representativeDao = DAORegistry::getDAO('RepresentativeDAO'); /* @var $representativeDao RepresentativeDAO */
 		$monograph = $this->getMonograph();
 		$representative = $this->getRepresentative();

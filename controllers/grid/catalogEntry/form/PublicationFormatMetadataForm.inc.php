@@ -52,7 +52,7 @@ class PublicationFormatMetadataForm extends Form {
 	 * @param $stageId integer
 	 * @param $formParams array
 	 */
-	function __construct($submission, $publication, $representation, $isPhysicalFormat = true, $remoteURL = null, $stageId = null, $formParams = null) {
+	public function __construct($submission, $publication, $representation, $isPhysicalFormat = true, $remoteURL = null, $stageId = null, $formParams = null) {
 		parent::__construct('controllers/tab/catalogEntry/form/publicationMetadataFormFields.tpl');
 		$this->_submission = $submission;
 		$this->_publication = $publication;
@@ -79,7 +79,7 @@ class PublicationFormatMetadataForm extends Form {
 	/**
 	 * @copydoc Form::fetch
 	 */
-	function fetch($request, $template = null, $display = false) {
+	public function fetch($request, $template = null, $display = false) {
 		$publicationFormat = $this->getPublicationFormat();
 		$context = $request->getContext();
 
@@ -139,7 +139,7 @@ class PublicationFormatMetadataForm extends Form {
 	/**
 	 * Initialize form data for an instance of this form.
 	 */
-	function initData() {
+	public function initData() {
 		AppLocale::requireComponents(
 			LOCALE_COMPONENT_APP_COMMON,
 			LOCALE_COMPONENT_PKP_SUBMISSION,
@@ -183,7 +183,7 @@ class PublicationFormatMetadataForm extends Form {
 	/**
 	 * Assign form data to user-submitted data.
 	 */
-	function readInputData() {
+	public function readInputData() {
 		$submission = $this->getSubmission();
 		$this->readUserVars(array(
 			'directSalesPrice',
@@ -217,7 +217,7 @@ class PublicationFormatMetadataForm extends Form {
 	/**
 	 * @copydoc Form::validate()
 	 */
-	function validate($callHooks = true) {
+	public function validate($callHooks = true) {
 		$submission = $this->getSubmission();
 		$publicationFormat = $this->getPublicationFormat();
 		$pubIdPluginHelper = $this->_getPubIdPluginHelper();
@@ -226,10 +226,10 @@ class PublicationFormatMetadataForm extends Form {
 	}
 
 	/**
-	 * Save the metadata and store the catalog data for this specific publication format.
+	 * @copydoc Form::execute()
 	 */
-	function execute() {
-		parent::execute();
+	public function execute(...$functionArgs) {
+		parent::execute(...$functionArgs);
 
 		$submission = $this->getSubmission();
 		$publicationFormat = $this->getPublicationFormat();
@@ -269,7 +269,7 @@ class PublicationFormatMetadataForm extends Form {
 	 * Get the Submission
 	 * @return Submission
 	 */
-	function getSubmission() {
+	public function getSubmission() {
 		return $this->_submission;
 	}
 
@@ -277,7 +277,7 @@ class PublicationFormatMetadataForm extends Form {
 	 * Get the Publication
 	 * @return Publication
 	 */
-	function getPublication() {
+	public function getPublication() {
 		return $this->_publication;
 	}
 
@@ -285,7 +285,7 @@ class PublicationFormatMetadataForm extends Form {
 	 * Get the stage id
 	 * @return int
 	 */
-	function getStageId() {
+	public function getStageId() {
 		return $this->_stageId;
 	}
 
@@ -293,7 +293,7 @@ class PublicationFormatMetadataForm extends Form {
 	 * Get physical format setting
 	 * @return bool
 	 */
-	function getPhysicalFormat() {
+	public function getPhysicalFormat() {
 		return $this->_isPhysicalFormat;
 	}
 
@@ -301,7 +301,7 @@ class PublicationFormatMetadataForm extends Form {
 	 * Get the remote URL
 	 * @return string
 	 */
-	function getRemoteURL() {
+	public function getRemoteURL() {
 		return $this->_remoteURL;
 	}
 
@@ -309,14 +309,14 @@ class PublicationFormatMetadataForm extends Form {
 	 * Get the publication format
 	 * @return PublicationFormat
 	 */
-	function getPublicationFormat() {
+	public function getPublicationFormat() {
 		return $this->_publicationFormat;
 	}
 
 	/**
 	 * Get the extra form parameters.
 	 */
-	function getFormParams() {
+	public function getFormParams() {
 		return $this->_formParams;
 	}
 
@@ -324,10 +324,8 @@ class PublicationFormatMetadataForm extends Form {
 	 * returns the PKPPubIdPluginHelper associated with this form.
 	 * @return PKPPubIdPluginHelper
 	 */
-	function _getPubIdPluginHelper() {
+	public function _getPubIdPluginHelper() {
 		return $this->_pubIdPluginHelper;
 	}
-
 }
-
 

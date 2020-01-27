@@ -23,15 +23,15 @@ class PublicIdentifiersForm extends PKPPublicIdentifiersForm {
 	 * @param $stageId integer
 	 * @param $formParams array
 	 */
-	function __construct($pubObject, $stageId = null, $formParams = null) {
+	public function __construct($pubObject, $stageId = null, $formParams = null) {
 		parent::__construct($pubObject, $stageId, $formParams);
 	}
 
 	/**
 	 * @copydoc Form::execute()
 	 */
-	function execute() {
-		parent::execute();
+	public function execute(...$functionArgs) {
+		parent::execute(...$functionArgs);
 		$pubObject = $this->getPubObject();
 		if (is_a($pubObject, 'Chapter')) {
 			$chapterDao = DAORegistry::getDAO('ChapterDAO'); /* @var $chapterDao ChapterDAO */
@@ -42,7 +42,7 @@ class PublicIdentifiersForm extends PKPPublicIdentifiersForm {
 	/**
 	 * @copydoc PKPPublicIdentifiersForm::getAssocType()
 	 */
-	function getAssocType($pubObject) {
+	public function getAssocType($pubObject) {
 		if (is_a($pubObject, 'Chapter')) {
 			return ASSOC_TYPE_CHAPTER;
 		}

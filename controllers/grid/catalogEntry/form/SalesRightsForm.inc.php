@@ -25,7 +25,7 @@ class SalesRightsForm extends Form {
 	/**
 	 * Constructor.
 	 */
-	function __construct($submission, $publication, $salesRights) {
+	public function __construct($submission, $publication, $salesRights) {
 		parent::__construct('controllers/grid/catalogEntry/form/salesRightsForm.tpl');
 		$this->setSubmission($submission);
 		$this->setPublication($publication);
@@ -56,7 +56,7 @@ class SalesRightsForm extends Form {
 	 * Get the entry
 	 * @return SalesRights
 	 */
-	function getSalesRights() {
+	public function getSalesRights() {
 		return $this->_salesRights;
 	}
 
@@ -64,7 +64,7 @@ class SalesRightsForm extends Form {
 	 * Set the entry
 	 * @param @salesRights SalesRights
 	 */
-	function setSalesRights($salesRights) {
+	public function setSalesRights($salesRights) {
 		$this->_salesRights = $salesRights;
 	}
 
@@ -72,7 +72,7 @@ class SalesRightsForm extends Form {
 	 * Get the Submission
 	 * @return Submission
 	 */
-	function getSubmission() {
+	public function getSubmission() {
 		return $this->_submission;
 	}
 
@@ -80,7 +80,7 @@ class SalesRightsForm extends Form {
 	 * Set the Submission
 	 * @param Submission
 	 */
-	function setSubmission($submission) {
+	public function setSubmission($submission) {
 		$this->_submission = $submission;
 	}
 
@@ -88,7 +88,7 @@ class SalesRightsForm extends Form {
 	 * Get the Publication
 	 * @return Publication
 	 */
-	function getPublication() {
+	public function getPublication() {
 		return $this->_publication;
 	}
 
@@ -96,7 +96,7 @@ class SalesRightsForm extends Form {
 	 * Set the Publication
 	 * @param Publication
 	 */
-	function setPublication($publication) {
+	public function setPublication($publication) {
 		$this->_publication = $publication;
 	}
 
@@ -107,7 +107,7 @@ class SalesRightsForm extends Form {
 	/**
 	 * Initialize form data from the sales rights entry.
 	 */
-	function initData() {
+	public function initData() {
 		$salesRights = $this->getSalesRights();
 
 		if ($salesRights) {
@@ -126,7 +126,7 @@ class SalesRightsForm extends Form {
 	/**
 	 * @copydoc Form::fetch()
 	 */
-	function fetch($request, $template = null, $display = false) {
+	public function fetch($request, $template = null, $display = false) {
 		$templateMgr = TemplateManager::getManager($request);
 		$submission = $this->getSubmission();
 		$templateMgr->assign('submissionId', $submission->getId());
@@ -174,7 +174,7 @@ class SalesRightsForm extends Form {
 	 * Assign form data to user-submitted data.
 	 * @see Form::readInputData()
 	 */
-	function readInputData() {
+	public function readInputData() {
 		$this->readUserVars(array(
 			'salesRightsId',
 			'representationId',
@@ -188,10 +188,10 @@ class SalesRightsForm extends Form {
 	}
 
 	/**
-	 * Save the entry
-	 * @see Form::execute()
+	 * @copydoc Form::execute()
 	 */
-	function execute() {
+	public function execute(...$functionArgs) {
+		parent::execute(...$functionArgs);
 		$salesRightsDao = DAORegistry::getDAO('SalesRightsDAO'); /* @var $salesRightsDao SalesRightsDAO */
 		$publicationFormatDao = DAORegistry::getDAO('PublicationFormatDAO'); /* @var $publicationFormatDao PublicationFormatDAO */
 

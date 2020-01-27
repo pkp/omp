@@ -28,7 +28,7 @@ class DOISettingsForm extends Form {
 	 * Get the context ID.
 	 * @return integer
 	 */
-	function _getContextId() {
+	public function _getContextId() {
 		return $this->_contextId;
 	}
 
@@ -39,7 +39,7 @@ class DOISettingsForm extends Form {
 	 * Get the plugin.
 	 * @return DOIPubIdPlugin
 	 */
-	function _getPlugin() {
+	public function _getPlugin() {
 		return $this->_plugin;
 	}
 
@@ -52,7 +52,7 @@ class DOISettingsForm extends Form {
 	 * @param $plugin DOIPubIdPlugin
 	 * @param $contextId integer
 	 */
-	function __construct($plugin, $contextId) {
+	public function __construct($plugin, $contextId) {
 		$this->_contextId = $contextId;
 		$this->_plugin = $plugin;
 
@@ -107,7 +107,7 @@ class DOISettingsForm extends Form {
 	/**
 	 * @copydoc Form::initData()
 	 */
-	function initData() {
+	public function initData() {
 		$contextId = $this->_getContextId();
 		$plugin = $this->_getPlugin();
 		foreach($this->_getFormFields() as $fieldName => $fieldType) {
@@ -118,26 +118,27 @@ class DOISettingsForm extends Form {
 	/**
 	 * @copydoc Form::readInputData()
 	 */
-	function readInputData() {
+	public function readInputData() {
 		$this->readUserVars(array_keys($this->_getFormFields()));
 	}
 
 	/**
 	 * @copydoc Form::execute()
 	 */
-	function execute() {
+	public function execute(...$functionArgs) {
 		$plugin = $this->_getPlugin();
 		$contextId = $this->_getContextId();
 		foreach($this->_getFormFields() as $fieldName => $fieldType) {
 			$plugin->updateSetting($contextId, $fieldName, $this->getData($fieldName), $fieldType);
 		}
+		parent::execute(...$functionArgs);
 	}
 
 
 	//
 	// Private helper methods
 	//
-	function _getFormFields() {
+	public function _getFormFields() {
 		return array(
 			'enablePublicationDoi' => 'bool',
 			'enableChapterDoi' => 'bool',
