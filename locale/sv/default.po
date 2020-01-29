@@ -1,6 +1,6 @@
 msgid ""
 msgstr ""
-"PO-Revision-Date: 2020-01-25 16:35+0000\n"
+"PO-Revision-Date: 2020-01-30 12:35+0000\n"
 "Last-Translator: Magnus Annemark <magnus.annemark@ub.lu.se>\n"
 "Language-Team: Swedish <http://translate.pkp.sfu.ca/projects/omp/default/sv/>"
 "\n"
@@ -67,3 +67,9 @@ msgstr "Kapitelförfattare"
 
 msgid "default.groups.name.chapterAuthor"
 msgstr "Kapitelförfattare"
+
+msgid "default.genres.figure"
+msgstr "Figur"
+
+msgid "default.genres.bibliography"
+msgstr "Bibliografi"
