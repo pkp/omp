@@ -1,6 +1,6 @@
 msgid ""
 msgstr ""
-"PO-Revision-Date: 2020-01-24 16:02+0000\n"
+"PO-Revision-Date: 2020-01-30 12:35+0000\n"
 "Last-Translator: Magnus Annemark <magnus.annemark@ub.lu.se>\n"
 "Language-Team: Swedish <http://translate.pkp.sfu.ca/projects/omp/default/sv/>"
 "\n"
@@ -53,3 +53,23 @@ msgstr "Ordlista"
 
 msgid "default.genres.appendix"
 msgstr "Bilaga"
+
+#, fuzzy
+msgid "default.groups.plural.volumeEditor"
+msgstr "Redaktörer"
+
+#, fuzzy
+msgid "default.groups.name.volumeEditor"
+msgstr "Redaktör"
+
+msgid "default.groups.plural.chapterAuthor"
+msgstr "Kapitelförfattare"
+
+msgid "default.groups.name.chapterAuthor"
+msgstr "Kapitelförfattare"
+
+msgid "default.genres.figure"
+msgstr "Figur"
+
+msgid "default.genres.bibliography"
+msgstr "Bibliografi"

@@ -2,17 +2,72 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"Last-Translator: \n"
-"Language-Team: \n"
+"POT-Creation-Date: 2019-09-30T12:01:00-07:00\n"
+"PO-Revision-Date: 2020-01-25 16:35+0000\n"
+"Last-Translator: Felipe Saldanha <fgsaldanha@gmail.com>\n"
+"Language-Team: Portuguese (Brazil) <http://translate.pkp.sfu.ca/projects/omp/"
+"themes-default/pt_BR/>\n"
+"Language: pt_BR\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"POT-Creation-Date: 2019-09-30T12:01:00-07:00\n"
-"PO-Revision-Date: 2019-09-30T12:01:00-07:00\n"
-"Language: \n"
+"Plural-Forms: nplurals=2; plural=n > 1;\n"
+"X-Generator: Weblate 3.9.1\n"
 
 msgid "plugins.themes.default.name"
 msgstr "Tema Padrão"
 
 msgid "plugins.themes.default.description"
 msgstr "Este tema implementa o tema padrão."
+
+msgid "plugins.themes.default.option.useHomepageImageAsHeader.option"
+msgstr "Mostrar a imagem da página inicial como plano de fundo do cabeçalho."
+
+msgid "plugins.themes.default.option.useHomepageImageAsHeader.description"
+msgstr ""
+"Quando uma imagem da página inicial tiver sido carregada, mostrá-la no plano "
+"de fundo do cabeçalho em vez de sua posição usual na página inicial."
+
+msgid "plugins.themes.default.option.useHomepageImageAsHeader.label"
+msgstr "Imagem de Plano de Fundo do Cabeçalho"
+
+msgid "plugins.themes.default.option.colour.description"
+msgstr "Escolha uma cor para o cabeçalho."
+
+msgid "plugins.themes.default.option.colour.label"
+msgstr "Cor"
+
+msgid "plugins.themes.default.option.typography.lora_openSans"
+msgstr ""
+"Lora/Open Sans: Uma combinação complementar com títulos serifados e corpo do "
+"texto sem serifa."
+
+msgid "plugins.themes.default.option.typography.lora"
+msgstr "Lora: Uma ampla fonte serifada boa para leitura online."
+
+msgid "plugins.themes.default.option.typography.lato"
+msgstr "Lato: Uma popular fonte sem serifa."
+
+msgid "plugins.themes.default.option.typography.notoSans_notoSerif"
+msgstr ""
+"Noto Sans/Noto Serif: Uma combinação complementar com títulos sem serifa e "
+"corpo do texto serifado."
+
+msgid "plugins.themes.default.option.typography.notoSerif_notoSans"
+msgstr ""
+"Noto Serif/Noto Sans: Uma combinação complementar com títulos serifados e "
+"corpo do texto sem serifa."
+
+msgid "plugins.themes.default.option.typography.notoSerif"
+msgstr "Noto Serif: Uma variante serifada da fonte nato-digital do Google."
+
+msgid "plugins.themes.default.option.typography.notoSans"
+msgstr ""
+"Noto Sans: Uma fonte nato-digital projetada pelo Google para suporte "
+"extensivo de linguagem."
+
+msgid "plugins.themes.default.option.typography.description"
+msgstr "Escolha uma combinação de fontes que se adéqua a esta revista."
+
+msgid "plugins.themes.default.option.typography.label"
+msgstr "Tipografia"
