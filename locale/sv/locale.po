@@ -1,6 +1,6 @@
 msgid ""
 msgstr ""
-"PO-Revision-Date: 2020-01-30 12:35+0000\n"
+"PO-Revision-Date: 2020-01-30 18:33+0000\n"
 "Last-Translator: Magnus Annemark <magnus.annemark@ub.lu.se>\n"
 "Language-Team: Swedish <http://translate.pkp.sfu.ca/projects/omp/locale/sv/>"
 "\n"
@@ -633,3 +633,297 @@ msgstr "Publikomfång (till)"
 #, fuzzy
 msgid "monograph.audience.rangeFrom"
 msgstr "Publikomfång (från)"
+
+msgid "notification.type.public"
+msgstr "Offentliga meddelanden"
+
+msgid "notification.type.userComment"
+msgstr "En läsare har skrivit en kommentar till \"{$title}\"."
+
+msgid "notification.removedSubmission"
+msgstr "Bidrag borttaget."
+
+msgid "notification.proofsApproved"
+msgstr "Korrektur godkänd."
+
+msgid "notification.savedPublicationFormatMetadata"
+msgstr "Metadata om publikationsformatet sparad."
+
+msgid "notification.savedCatalogMetadata"
+msgstr "Metadata sparad."
+
+msgid "notification.removedMarket"
+msgstr "Marknad borttagen."
+
+msgid "notification.editedMarket"
+msgstr "Marknad redigerad."
+
+msgid "notification.addedMarket"
+msgstr "Marknad tillagd."
+
+msgid "notification.removedRepresentative"
+msgstr "Representant borttagen."
+
+msgid "notification.editedRepresentative"
+msgstr "Representant redigerad."
+
+msgid "notification.addedRepresentative"
+msgstr "Representant tillagd."
+
+msgid "notification.removedSalesRights"
+msgstr "Försäljningsrättigheter borttagna."
+
+msgid "notification.editedSalesRights"
+msgstr "Försäljningsrättigheter redigerade."
+
+msgid "notification.addedSalesRights"
+msgstr "Försäljningsrättigheter tillagda."
+
+msgid "notification.removedPublicationFormat"
+msgstr "Publikationsformat borttaget."
+
+msgid "notification.editedPublicationFormat"
+msgstr "Publikationsformat redigerat."
+
+msgid "notification.addedPublicationFormat"
+msgstr "Publikationsformat tillagt."
+
+msgid "notification.removedPublicationDate"
+msgstr "Publiceringsdatum borttaget."
+
+msgid "notification.editedPublicationDate"
+msgstr "Publiceringsdatum redigerat."
+
+msgid "notification.addedPublicationDate"
+msgstr "Publiceringsdatum tillagt."
+
+msgid "notification.removedIdentificationCode"
+msgstr "Identifikationskod borttagen."
+
+msgid "notification.editedIdentificationCode"
+msgstr "Edifikationskod redigerad."
+
+msgid "notification.addedIdentificationCode"
+msgstr "Identifikationskod tillagd."
+
+msgid "log.imported"
+msgstr "{$userName} har importerat boken {$submissionId}."
+
+msgid "log.proofread.complete"
+msgstr "{$proofreaderName} har skickat {$submissionId} till schemaläggning."
+
+msgid "log.proofread.assign"
+msgstr ""
+"{$assignerName} har valt {$proofreaderName} som korrekturläsare för "
+"{$submissionId}."
+
+msgid "log.editor.editorAssigned"
+msgstr "{$editorName} har valts som redaktör för bidraget {$submissionId}."
+
+msgid "log.editor.restored"
+msgstr "Bidraget {$submissionId} har återförts i kön."
+
+msgid "log.editor.archived"
+msgstr "Bidraget {$submissionId} har arkiverats."
+
+msgid "installer.installApplication"
+msgstr "Installera Open Monograph Press"
+
+msgid "installer.ompUpgrade"
+msgstr "OMP-uppgradering"
+
+msgid "installer.appInstallation"
+msgstr "OMP-installation"
+
+msgid "help.goToEditPage"
+msgstr "Öppna en ny sida för att redigera denna information"
+
+msgid "help.searchReturnResults"
+msgstr "Tillbaka till sökresultat"
+
+msgid "about.aboutThisPublishingSystem.altText"
+msgstr "Redaktions- och publiceringsprocess i OMP"
+
+msgid "about.aboutThisPublishingSystem"
+msgstr "Om detta publiceringssystem"
+
+msgid "about.pressSponsorship"
+msgstr "Sponsorer"
+
+msgid "about.openAccessPolicy"
+msgstr "Open access-policy"
+
+msgid "about.publicationFrequency"
+msgstr "Publiceringsfrekvens"
+
+msgid "about.reviewPolicy"
+msgstr "Granskningsprocess"
+
+msgid "about.privacyStatement"
+msgstr "Integritetspolicy"
+
+msgid "about.copyrightNotice"
+msgstr "Upplysningar om upphovsrätt"
+
+msgid "about.submissionPreparationChecklist"
+msgstr "Checklista för bidrag"
+
+msgid "about.authorGuidelines"
+msgstr "Riktlinjer för författare"
+
+msgid "about.onlineSubmissions.newSubmission"
+msgstr "Skapa ett nytt bidrag"
+
+msgid "about.onlineSubmissions.submissionActions"
+msgstr "{$newSubmission} eller {$viewSubmissions}."
+
+msgid "about.onlineSubmissions.registrationRequired"
+msgstr "{$login} eller {$register} för att skicka in ett bidrag."
+
+msgid "about.onlineSubmissions.register"
+msgstr "Registrera"
+
+msgid "about.onlineSubmissions.login"
+msgstr "Inloggning"
+
+msgid "about.onlineSubmissions"
+msgstr "Online-bidrag"
+
+msgid "about.submissions"
+msgstr "Bidrag"
+
+msgid "about.seriesPolicies"
+msgstr "Riktlinjer för serier och kategorier"
+
+msgid "about.editorialPolicies"
+msgstr "Redaktionella riktlinjer"
+
+msgid "about.editorialTeam"
+msgstr "Redaktionsmedlemmar"
+
+msgid "about.aboutContext"
+msgstr "Om pressen"
+
+msgid "about.pressContact"
+msgstr "Kontakt"
+
+msgid "site.pressView"
+msgstr "Visa pressens webbsida"
+
+msgid "user.register.form.userGroupRequired"
+msgstr "Du måste välja minst en roll"
+
+msgid "user.register.reviewerInterests"
+msgstr "Intressen (väsentliga områden och forskningsmetoder):"
+
+msgid "user.register.reviewerDescription"
+msgstr "Villig att granska bidrag för hela webbplatsen."
+
+msgid "user.register.reviewerDescriptionNoInterests"
+msgstr "Villig att granska bidrag."
+
+msgid "user.register.authorDescription"
+msgstr "Kan skicka in böcker till pressen."
+
+msgid "user.register.readerDescription"
+msgstr "Meddelas genom e-mail när en bok publiceras."
+
+msgid "user.register.form.passwordLengthTooShort"
+msgstr "Lösenordet är för kort."
+
+msgid "user.register.privacyStatement"
+msgstr "Integritetspolicy"
+
+msgid "user.register.noContexts"
+msgstr "Det finns inga pressar där du kan registrera dig."
+
+msgid "user.register.selectContext"
+msgstr "Välj vilken press du vill registrera dig hos:"
+
+#, fuzzy
+msgid "user.role.productionEditors"
+msgstr "Faktorer"
+
+msgid "user.role.proofreaders"
+msgstr "Korrekturläsare"
+
+msgid "user.role.editors"
+msgstr "Redaktörer"
+
+msgid "user.role.subEditors"
+msgstr "Serieredaktörer"
+
+msgid "user.role.managers"
+msgstr "Föreståndare"
+
+msgid "user.role.proofreader"
+msgstr "Korrekturläsare"
+
+msgid "user.role.subEditor"
+msgstr "Serieredaktör"
+
+msgid "user.register.otherContextRoles"
+msgstr "Begär följande roller."
+
+msgid "user.register.contextsPrompt"
+msgstr "Vilka pressar vill du registrera dig hos?"
+
+msgid "user.reviewerPrompt.optin"
+msgstr ""
+"Ja, kontakta mig med förfrågningar om att granska bidrag till denna press."
+
+msgid "user.reviewerPrompt.userGroup"
+msgstr "Ja, ansök om rollen {$userGroup}."
+
+msgid "user.reviewerPrompt"
+msgstr "Vill du granska bidrag till denna press?"
+
+msgid "user.noRoles.regReviewerClosed"
+msgstr ""
+"Registrera dig som granskare: Granskarregistrering är för tillfället "
+"avstängd."
+
+msgid "user.noRoles.regReviewer"
+msgstr "Registrera dig som granskare"
+
+msgid "user.noRoles.submitMonographRegClosed"
+msgstr "Skicka in en bok: Författarregistrering är för tillfället avstängd."
+
+msgid "user.noRoles.submitMonograph"
+msgstr "Skicka in ett förslag"
+
+msgid "user.noRoles.selectUsersWithoutRoles"
+msgstr "Inkludera användare utan roller i denna press."
+
+msgid "context.select"
+msgstr "Byt press:"
+
+msgid "context.current"
+msgstr "Aktuell press:"
+
+msgid "context.contexts"
+msgstr "Pressar"
+
+msgid "navigation.navigationMenus.newRelease.description"
+msgstr "Länk till dina nya utgivningar."
+
+msgid "navigation.navigationMenus.newRelease"
+msgstr "Nya utgivningar"
+
+msgid "navigation.navigationMenus.category.description"
+msgstr "Länk till en kategori."
+
+msgid "navigation.navigationMenus.category.generic"
+msgstr "Kategori"
+
+msgid "navigation.navigationMenus.series.description"
+msgstr "Länk till en serie."
+
+msgid "navigation.navigationMenus.series.generic"
+msgstr "Serier"
+
+msgid "navigation.navigationMenus.catalog.description"
+msgstr "Länk till din katalog."
+
+msgid "context.context"
+msgstr "Press"
