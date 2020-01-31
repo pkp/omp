@@ -168,10 +168,9 @@ class CatalogBookHandler extends Handler {
 		$templateMgr->assign('availableFiles', $filteredAvailableFiles);
 
 		// Provide the currency to the template, if configured.
-		$currencyDao = DAORegistry::getDAO('CurrencyDAO'); /* @var $currencyDao CurrencyDAO */
-		if ($currency = $request->getContext()->getSetting('currency')) {
-			$templateMgr->assign('currency', $currencyDao->getCurrencyByAlphaCode($currency));
-		}
+		$isoCodes = new \Sokil\IsoCodes\IsoCodesFactory();
+		$currency = $isoCodes->getCurrencies()->getByLetterCode($request->getContext()->getData('currency'));
+		$templateMgr->assign('currency', $currency);
 
 		// Add data for backwards compatibility
 		$templateMgr->assign([

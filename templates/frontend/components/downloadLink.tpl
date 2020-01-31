@@ -28,8 +28,8 @@
 	{if $useFilename}
 		{$downloadFile->getLocalizedName()}
 	{else}
-		{if $downloadFile->getDirectSalesPrice()}
-			{translate key="payment.directSales.purchase" format=$publicationFormat->getLocalizedName() amount=$currency->format($downloadFile->getDirectSalesPrice()) currency=$currency->getCodeAlpha()}
+		{if $downloadFile->getDirectSalesPrice() && $currency}{$downloadFile->getDirectSalesPrice()}
+			{translate key="payment.directSales.purchase" format=$publicationFormat->getLocalizedName() amount=$downloadFile->getDirectSalesPrice() currency=$currency->getLetterCode()}
 		{else}
 			{$publicationFormat->getLocalizedName()}
 		{/if}
