@@ -1,2 +1,64 @@
 msgid ""
-msgstr "X-Generator: Weblate\nMIME-Version: 1.0\nContent-Type: text/plain; charset=UTF-8\nContent-Transfer-Encoding: 8bit"
+msgstr ""
+"PO-Revision-Date: 2020-02-01 11:35+0000\n"
+"Last-Translator: Magnus Annemark <magnus.annemark@ub.lu.se>\n"
+"Language-Team: Swedish <http://translate.pkp.sfu.ca/projects/omp/editor/sv/>"
+"\n"
+"Language: sv\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: Weblate 3.9.1\n"
+
+msgid "editor.monograph.copyediting.personalMessageToUser"
+msgstr "Meddelande till användaren"
+
+msgid "editor.monograph.final.selectFinalDraftFiles"
+msgstr "Välja slutgiltiga utkastfiler"
+
+msgid "editor.monograph.externalReview"
+msgstr "Påbörja extern granskning"
+
+msgid "editor.monograph.internalReviewDescription"
+msgstr ""
+"Välj filer nedan som ska skickas vidare till det interna granskningssteget."
+
+msgid "editor.monograph.internalReview"
+msgstr "Påbörja intern granskning"
+
+msgid "editor.monograph.selectProofreadingFiles"
+msgstr "Korrekturläsningsfiler"
+
+msgid "editor.monograph.editorToEnter"
+msgstr "Redaktör anger rekommendation/kommentarer till granskaren"
+
+msgid "editor.monograph.peerReviewOptions"
+msgstr "Granskningsalternativ"
+
+msgid "editor.monograph.uploadReviewForReviewer"
+msgstr "Ladda upp granskning"
+
+msgid "editor.monograph.replaceReviewer"
+msgstr "Ersätt granskare"
+
+msgid "editor.monograph.selectReviewerInstructions"
+msgstr "Välj en granskare ovan och tryck 'Välj granskare' för att fortsätta."
+
+msgid "editor.monograph.recommendation"
+msgstr "Rekommendation"
+
+msgid "editor.monograph.enterReviewerRecommendation"
+msgstr "Ange rekommendation för granskare"
+
+msgid "editor.monograph.enterRecommendation"
+msgstr "Ange rekommendation"
+
+msgid "editor.monograph.clearReview"
+msgstr "Rensa granskare"
+
+msgid "editor.monograph.cancelReview"
+msgstr "Avbryt förfrågan"
+
+msgid "editor.submissionArchive"
+msgstr "Bidragsarkiv"
