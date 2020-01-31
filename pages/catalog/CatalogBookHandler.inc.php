@@ -276,7 +276,7 @@ class CatalogBookHandler extends Handler {
 		$user = $request->getUser();
 		if ($submissionFile->getDirectSalesPrice() === '0' || ($user && $ompCompletedPaymentDao->hasPaidPurchaseFile($user->getId(), $fileIdAndRevision))) {
 			// Paid purchase or open access.
-			if (!$user && $press->getSetting('restrictMonographAccess')) {
+			if (!$user && $press->getData('restrictMonographAccess')) {
 				// User needs to register first.
 				Validation::redirectLogin();
 			}
@@ -316,7 +316,7 @@ class CatalogBookHandler extends Handler {
 			$user->getId(),
 			$fileIdAndRevision,
 			$submissionFile->getDirectSalesPrice(),
-			$press->getSetting('currency')
+			$press->getData('currency')
 		);
 		$paymentManager->queuePayment($queuedPayment);
 
