@@ -410,6 +410,10 @@
 		<field name="publication_type" type="C2" size="32">
 			<DEFAULT VALUE="publication"/><!-- PUBLICATION_TYPE_PUBLICATION -->
 		</field>
+		<field name="seq" type="F">
+			<NOTNULL/>
+			<DEFAULT VALUE="0"/>
+		</field>
 		<field name="series_id" type="I8" />
 		<field name="series_position" type="C2" size="255" />
 		<field name="submission_id" type="I8">
