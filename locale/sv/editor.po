@@ -1,2 +1,166 @@
 msgid ""
-msgstr "X-Generator: Weblate\nMIME-Version: 1.0\nContent-Type: text/plain; charset=UTF-8\nContent-Transfer-Encoding: 8bit"
+msgstr ""
+"PO-Revision-Date: 2020-02-04 11:35+0000\n"
+"Last-Translator: Magnus Annemark <magnus.annemark@ub.lu.se>\n"
+"Language-Team: Swedish <http://translate.pkp.sfu.ca/projects/omp/editor/sv/>"
+"\n"
+"Language: sv\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: Weblate 3.9.1\n"
+
+msgid "editor.monograph.copyediting.personalMessageToUser"
+msgstr "Meddelande till användaren"
+
+msgid "editor.monograph.final.selectFinalDraftFiles"
+msgstr "Välja slutgiltiga utkastfiler"
+
+msgid "editor.monograph.externalReview"
+msgstr "Påbörja extern granskning"
+
+msgid "editor.monograph.internalReviewDescription"
+msgstr ""
+"Välj filer nedan som ska skickas vidare till det interna granskningssteget."
+
+msgid "editor.monograph.internalReview"
+msgstr "Påbörja intern granskning"
+
+msgid "editor.monograph.selectProofreadingFiles"
+msgstr "Korrekturläsningsfiler"
+
+msgid "editor.monograph.editorToEnter"
+msgstr "Redaktör anger rekommendation/kommentarer till granskaren"
+
+msgid "editor.monograph.peerReviewOptions"
+msgstr "Granskningsalternativ"
+
+msgid "editor.monograph.uploadReviewForReviewer"
+msgstr "Ladda upp granskning"
+
+msgid "editor.monograph.replaceReviewer"
+msgstr "Ersätt granskare"
+
+msgid "editor.monograph.selectReviewerInstructions"
+msgstr "Välj en granskare ovan och tryck 'Välj granskare' för att fortsätta."
+
+msgid "editor.monograph.recommendation"
+msgstr "Rekommendation"
+
+msgid "editor.monograph.enterReviewerRecommendation"
+msgstr "Ange rekommendation för granskare"
+
+msgid "editor.monograph.enterRecommendation"
+msgstr "Ange rekommendation"
+
+msgid "editor.monograph.clearReview"
+msgstr "Rensa granskare"
+
+msgid "editor.monograph.cancelReview"
+msgstr "Avbryt förfrågan"
+
+msgid "editor.submissionArchive"
+msgstr "Bidragsarkiv"
+
+msgid "editor.publicIdentificationExistsForTheSameType"
+msgstr ""
+"ID:t {$publicIdentifier}' är redan angivet för ett annat objekt av samma "
+"typ. Välj ett unikt ID för objekt av samma typ i din press."
+
+msgid "editor.monograph.proof.addNote"
+msgstr "Lägg till svar"
+
+msgid "editor.monograph.approvedProofs.edit.linkTitle"
+msgstr "Ange villkor"
+
+msgid "editor.monograph.approvedProofs.edit"
+msgstr "Ange villkor för nedladdning"
+
+msgid "editor.monograph.production.approvalAndPublishingDescription"
+msgstr ""
+"Olika publikationsformat, som t.ex. inbunden, limmad och digital, kan laddas "
+"upp i sektionen Publikationsformat nedan. Du kan använda rutnätet för "
+"publikationsformat nedan som en checklista för vad som fortfarande behöver "
+"åtgärdas innan publikationsformation kan publiceras."
+
+msgid "editor.monograph.production.approvalAndPublishing"
+msgstr "Godkännande och publicering"
+
+msgid "editor.monograph.proofs"
+msgstr "Korrekturer"
+
+msgid "editor.monograph.editorial.fairCopy"
+msgstr "Renskrift"
+
+msgid "editor.monograph.legend.complete"
+msgstr "Åtgärd avslutad"
+
+msgid "editor.monograph.legend.in_progress"
+msgstr "Åtgärd pågår eller ännu ej avslutad"
+
+msgid "editor.monograph.legend.delete"
+msgstr "Ta bort objekt"
+
+msgid "editor.monograph.legend.edit"
+msgstr "Redigera objekt"
+
+msgid "editor.monograph.legend.notes_new"
+msgstr ""
+"Filinformation: anteckningar, meddelandealternativ, och historik (Nya "
+"anteckningar finns)"
+
+msgid "editor.monograph.legend.notes"
+msgstr ""
+"Filinformation: anteckningar, meddelandealternativ, och historik ("
+"Anteckningar finns)"
+
+msgid "editor.monograph.legend.notes_none"
+msgstr ""
+"Filinformation: anteckningar, meddelandealternativ, och historik (Inga "
+"anteckningar tillagda ännu)"
+
+msgid "editor.monograph.legend.more_info"
+msgstr ""
+"Ytterligare information: anteckningar, meddelandealternativ, och historik"
+
+msgid "editor.monograph.legend.settings"
+msgstr ""
+"Visa objektets inställningar, t.ex. information och borttagningsmöjligheter"
+
+msgid "editor.monograph.legend.add_user"
+msgstr "Lägg till en användare till sektionen"
+
+msgid "editor.monograph.legend.add"
+msgstr "Ladda upp en fil till sektionen"
+
+msgid "editor.monograph.legend.participants"
+msgstr ""
+"Visa och hantera detta bidrags deltagare: författare, redaktörer, "
+"formgivare, etc."
+
+msgid "editor.monograph.legend.bookInfo"
+msgstr ""
+"Visa och hantera bidragets metadata, anteckningar, meddelanden, och historik"
+
+msgid "editor.monograph.legend.catalogEntry"
+msgstr ""
+"Visa och hantera bidragets katalogpost, inklusive metadata och "
+"publikationsformat"
+
+msgid "editor.monograph.legend.itemActionsDescription"
+msgstr "Åtgärder och alternativ för en enskild fil."
+
+msgid "editor.monograph.legend.sectionActionsDescription"
+msgstr ""
+"Alternativ för en given sektion, exempelvis uppladdning av filer eller "
+"användarhantering."
+
+msgid "editor.monograph.legend.submissionActionsDescription"
+msgstr "Allmänna åtgärder och alternativ för bidrag."
+
+msgid "editor.monograph.copyediting.currentFiles"
+msgstr "Aktuella filer"
+
+msgid "editor.monograph.final.currentFiles"
+msgstr "Aktuella slutgiltiga utkastfiler"
