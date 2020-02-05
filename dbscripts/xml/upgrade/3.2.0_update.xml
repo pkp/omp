@@ -19,5 +19,8 @@
 		<query>DROP TABLE cataloguing_metadata_fields</query>
 		<query>DROP TABLE cataloguing_metadata_field_settings</query>
 	</sql>
+	<sql><!-- pkp/pkp-lib#5445 Use new setting name for licenseUrl -->
+		<query>UPDATE journal_settings SET setting_name="licenseUrl" WHERE setting_name="licenseURL"</query>
+	</sql>
 </data>
 
