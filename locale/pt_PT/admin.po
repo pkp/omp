@@ -1,0 +1,38 @@
+msgid ""
+msgstr ""
+"PO-Revision-Date: 2020-02-05 19:31+0000\n"
+"Last-Translator: Carla Marques <carla.marques@sdum.uminho.pt>\n"
+"Language-Team: Portuguese (Portugal) <http://translate.pkp.sfu.ca/projects/"
+"omp/admin/pt_PT/>\n"
+"Language: pt_PT\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=n > 1;\n"
+"X-Generator: Weblate 3.9.1\n"
+
+msgid "admin.languages.primaryLocaleInstructions"
+msgstr "Este será o idioma padrão para o site e qualquer editora alojada."
+
+msgid "admin.settings.noPressRedirect"
+msgstr "Não redirecionar"
+
+msgid "admin.settings.redirectInstructions"
+msgstr ""
+"Pedidos ao site principal serão redirecionados para esta editora. Esta ação "
+"será util caso o site apenas tenha uma editora alojada, por exemplo."
+
+msgid "admin.settings.redirect"
+msgstr "Redirecionar para editora"
+
+msgid "admin.settings.info.success"
+msgstr "As informações do site foram atualizadas com sucesso."
+
+msgid "admin.settings.config.success"
+msgstr "As configuração do site foram atualizadas com sucesso."
+
+msgid "admin.settings.appearance.success"
+msgstr "As configurações da aparência do site foram atualizadas com sucesso."
+
+msgid "admin.hostedContexts"
+msgstr "Editoras Alojadas"
