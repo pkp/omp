@@ -1,2 +1,204 @@
 msgid ""
-msgstr "X-Generator: Weblate\nMIME-Version: 1.0\nContent-Type: text/plain; charset=UTF-8\nContent-Transfer-Encoding: 8bit"
+msgstr ""
+"PO-Revision-Date: 2020-02-07 10:35+0000\n"
+"Last-Translator: Carla Marques <carla.marques@sdum.uminho.pt>\n"
+"Language-Team: Portuguese (Portugal) <http://translate.pkp.sfu.ca/projects/"
+"omp/editor/pt_PT/>\n"
+"Language: pt_PT\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=n > 1;\n"
+"X-Generator: Weblate 3.9.1\n"
+
+msgid "editor.publicIdentificationExistsForTheSameType"
+msgstr ""
+"O identificador público '{$publicIdentifier}' já existe para outro objeto do "
+"mesmo tipo. Escolha identificadores únicos para objetos do mesmo tipo."
+
+msgid "editor.submission.proof.manageProofFilesDescription"
+msgstr ""
+"Qualquer ficheiro já enviado para qualquer etapa do processo editorial pode "
+"ser adicionado aos ficheiros de prova assinalando a opção 'Incluir' abaixo e "
+"clicando em 'Pesquisar': todos os ficheiros disponíveis aparecerão e podem "
+"ser incluídos."
+
+msgid "editor.monograph.proof.addNote"
+msgstr "Adicionar resposta"
+
+msgid "editor.monograph.approvedProofs.edit.linkTitle"
+msgstr "Estabelecer condições"
+
+msgid "editor.monograph.approvedProofs.edit"
+msgstr "Estabelecer condições para descarregar"
+
+msgid "editor.monograph.production.publicationFormatDescription"
+msgstr ""
+"Adicionar formatos de publicação (ex., digital, em papel) para que o editor "
+"de layout prepare as provas para a leitura de provas. As <em>Provas</em> "
+"devem ser verificadas e aprovadas e a entrada no <em>Catálogo</em> para o "
+"formato deve ser marcada como publicada na entrada do catálogo do livro, "
+"para que esse formato fique <em>Disponível</em> (i.e., publicado)."
+
+msgid "editor.monograph.production.approvalAndPublishingDescription"
+msgstr ""
+"Diferentes formatos de publicação, tal como capa dura, capa mole e digital, "
+"podem ser transferidos para a secção de Formatos de Publicação abaixo. Pode "
+"utilizar a grelha de formatos de publicação abaixo como lista de verificação "
+"para as tarefas a fazer até publicar um formato."
+
+msgid "editor.monograph.production.approvalAndPublishing"
+msgstr "Aprovação e Publicação"
+
+msgid "editor.monograph.proofs"
+msgstr "Provas"
+
+msgid "editor.monograph.editorial.fairCopy"
+msgstr "Ficheiro revisto"
+
+msgid "editor.submission.introduction"
+msgstr ""
+"Na etapa Submissão, o editor, após verificar os ficheiros submetidos, "
+"seleciona a ação apropriada (que inclui notificação ao autor): Enviar para "
+"Revisão Interna (implica escolher os ficheiros a enviar para Revisão "
+"Interna); Enviar para Revisão Externa (implica escolher os ficheiros a "
+"enviar para Revisão Externa); Aceitar Submissão (implica escolher os "
+"ficheiros a enviar para a etapa de Edição); ou Rejeitar Submissão (arquiva a "
+"submissão)."
+
+msgid "editor.monograph.legend.uploaded"
+msgstr "Ficheiro enviado pelo papel na coluna título da tabela"
+
+msgid "editor.monograph.legend.complete"
+msgstr "Ação concluída"
+
+msgid "editor.monograph.legend.in_progress"
+msgstr "Ação em progresso ou ainda não concluída"
+
+msgid "editor.monograph.legend.delete"
+msgstr "Eliminar item"
+
+msgid "editor.monograph.legend.edit"
+msgstr "Editar item"
+
+msgid "editor.monograph.legend.notes_new"
+msgstr ""
+"Informação do ficheiro: notas, opções de notificação, e histórico (Novas "
+"notas desde a última visita)"
+
+msgid "editor.monograph.legend.notes"
+msgstr ""
+"Informação do ficheiro: notas, opções de notificação, e histórioc (Notas "
+"encontram-se disponíveis)"
+
+msgid "editor.monograph.legend.notes_none"
+msgstr ""
+"Informações do ficheiro: notas, opções de notificação, e histórico (Não "
+"foram adicionadas notas)"
+
+msgid "editor.monograph.legend.more_info"
+msgstr "Mais informação: notas do ficheiro, opções de notificação, e histórico"
+
+msgid "editor.monograph.legend.settings"
+msgstr ""
+"Ver e aceder às configurações do item, tais como opções de informação e "
+"eliminação"
+
+msgid "editor.monograph.legend.add_user"
+msgstr "Adicionar utilizador à secção"
+
+msgid "editor.monograph.legend.add"
+msgstr "Enviar um ficheiro para a secção"
+
+msgid "editor.monograph.legend.participants"
+msgstr ""
+"Ver e gerir os participantes desta submissão: autores, editores, designers, "
+"e outros"
+
+msgid "editor.monograph.legend.bookInfo"
+msgstr "Ver e gerir metadados, notas, notificações, e histórico da submissão"
+
+msgid "editor.monograph.legend.catalogEntry"
+msgstr ""
+"Ver e gerir a entrada no catálogo da submissão, incluindo metadados e "
+"formatos de publicação"
+
+msgid "editor.monograph.legend.itemActionsDescription"
+msgstr "Ações e opções específicas de um ficheiro."
+
+msgid "editor.monograph.legend.itemActions"
+msgstr "Ações de item"
+
+msgid "editor.monograph.legend.sectionActionsDescription"
+msgstr ""
+"Opções específicas de uma dada secção, por exemplo envio de ficheiros ou "
+"inclusão de utilizadores."
+
+msgid "editor.monograph.legend.sectionActions"
+msgstr "Ações da Secção"
+
+msgid "editor.monograph.legend.submissionActionsDescription"
+msgstr "Ações e opções gerais da submissão."
+
+msgid "editor.monograph.legend.submissionActions"
+msgstr "Ações da Submissão"
+
+msgid "editor.monograph.copyediting.personalMessageToUser"
+msgstr "Mensagem ao utilizador"
+
+msgid "editor.monograph.copyediting.currentFiles"
+msgstr "Ficheiros Atuais"
+
+msgid "editor.monograph.final.currentFiles"
+msgstr "Fciheiros de Rascunho Finais Atuais"
+
+msgid "editor.monograph.final.selectFinalDraftFiles"
+msgstr "Selecionar Ficheiros de Rascunho Finais"
+
+msgid "editor.monograph.externalReview"
+msgstr "Iniciar Revisão Externa"
+
+msgid "editor.monograph.internalReviewDescription"
+msgstr ""
+"Selecione os ficheiros abaixo para enviar para a etapa de revisão interna."
+
+msgid "editor.monograph.internalReview"
+msgstr "Iniciar Revisão Interna"
+
+msgid "editor.monograph.selectProofreadingFiles"
+msgstr "Ficheiros para Leitura de Provas"
+
+msgid "editor.monograph.peerReviewOptions"
+msgstr "Opções de Revisão por Pares"
+
+msgid "editor.monograph.uploadReviewForReviewer"
+msgstr "Enviar revisão"
+
+msgid "editor.monograph.editorToEnter"
+msgstr "Editor insere recomendação/comentários pelo revisor"
+
+msgid "editor.monograph.replaceReviewer"
+msgstr "Substituir Revisor"
+
+msgid "editor.monograph.selectReviewerInstructions"
+msgstr ""
+"Selecione um revisor da lista abaixo e clique no botão \"Selecionar Revisor\""
+" para continuar."
+
+msgid "editor.monograph.recommendation"
+msgstr "Recomendação"
+
+msgid "editor.monograph.enterReviewerRecommendation"
+msgstr "Insira a Recomendação do Revisor"
+
+msgid "editor.monograph.enterRecommendation"
+msgstr "Inserir Recomendação"
+
+msgid "editor.monograph.clearReview"
+msgstr "Eliminar Revisor"
+
+msgid "editor.monograph.cancelReview"
+msgstr "Cancelar Pedido"
+
+msgid "editor.submissionArchive"
+msgstr "Arquivo de Submissões"
