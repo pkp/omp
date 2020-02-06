@@ -1,0 +1,23 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: \n"
+"Report-Msgid-Bugs-To: \n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"POT-Creation-Date: 2020-02-06T15:53:24+00:00\n"
+"PO-Revision-Date: 2020-02-06T15:53:24+00:00\n"
+"Language: \n"
+
+msgid "emails.paypalInvestigatePayment.subject"
+msgstr "Nenavadno delovanje storitve PayPal"
+
+msgid "emails.paypalInvestigatePayment.body"
+msgstr ""
+"Sistem Open Monograph Press je zaznal nenavadno delovanje v zvezi s podporo plačila PayPal za publikacijo {$contextName}. To delovanje lahko zahteva nadaljnjo raziskavo ali ročno posredovanje.<br /> <br /> To e-poštno sporočilo je generirano s pomočjo vtičnika Open Monograph Press PayPal.<br /> <br /> Celotna informacija za zahtevo:<br /> {$postInfo}<br /> <br /> Dodatne inforacije (če so dodane):<br /> {$additionalInfo}<br /> <br /> Strežnik vars:<br /> {$serverVars}<br />\n"
+""
+
+msgid "emails.paypalInvestigatePayment.description"
+msgstr "To predlogo e-poštnega sporočila se uporablja za obveščanje primarnega kontakta založbe o sumljivem delovanju ali delovanju, ki zahteva ročno posredovanje in jo je zaznal vtičnik PayPal."
