@@ -1,2 +1,181 @@
 msgid ""
-msgstr "X-Generator: Weblate\nMIME-Version: 1.0\nContent-Type: text/plain; charset=UTF-8\nContent-Transfer-Encoding: 8bit"
+msgstr ""
+"PO-Revision-Date: 2020-02-07 10:35+0000\n"
+"Last-Translator: Carla Marques <carla.marques@sdum.uminho.pt>\n"
+"Language-Team: Portuguese (Portugal) <http://translate.pkp.sfu.ca/projects/"
+"omp/default/pt_PT/>\n"
+"Language: pt_PT\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=n > 1;\n"
+"X-Generator: Weblate 3.9.1\n"
+
+msgid "default.contextSettings.emailSignature"
+msgstr ""
+"<br/>\n"
+"________________________________________________________________________<br/>"
+"\n"
+"<a href=\"{$ldelim}$contextUrl{$rdelim}\">{$ldelim}$contextName{$rdelim}</a>"
+
+msgid "default.groups.abbrev.externalReviewer"
+msgstr "RE"
+
+msgid "default.groups.plural.externalReviewer"
+msgstr "Revisores Externos"
+
+msgid "default.groups.name.externalReviewer"
+msgstr "Revisor Externo"
+
+msgid "default.contextSettings.forLibrarians"
+msgstr ""
+"Encorajamos as blibiotecas a listar esta editora nos seus cataálogos de "
+"recursos eletrónicos. Este sistema de publicação em open source também é "
+"adequado para bibliotecas que queiram alojar editoras para os seus membros "
+"que estejam envolvidos em processos de edição e publicação (veja <a href=\""
+"http://pkp.sfu.ca/omp\">Open Monograph Press</a>)."
+
+msgid "default.contextSettings.forAuthors"
+msgstr ""
+"Interessado em submeter o seu manuscrito a esta editora? Leia o <a href=\""
+"{$indexUrl}/{$contextPath}/about\">Sobre a Editora</a> para saber mais sobre "
+"as políticas da editora e as <a href=\"{$indexUrl}/{$contextPath}/about/"
+"submissions#authorGuidelines\">Instruções aos Autores</a>. Os autores têm "
+"primeiro que se  <a href=\"{$indexUrl}/{$contextPath}/user/register\""
+">registar</a> na editora antes de enviar a submissão, ou se já estiver "
+"registado pode simplesmente <a href=\"{$indexUrl}/index/login\">entrar no "
+"sistema</a> e iniciar o process de submissão em 5 passos."
+
+msgid "default.contextSettings.forReaders"
+msgstr ""
+"Encorajamos os leitores a registar-se para receber notificações da editora. "
+"Aceda através do botão de <a href=\"{$indexUrl}/{$contextPath}/user/"
+"register\">Registo</a> no canto superior direito da página de início da "
+"editora. Com este registo, o leitor irá receber por e-mail o Sumário de cada "
+"nova monografia publicada pela editora. Esta lista também permite que a "
+"editora anunce um certo nível de apoio ou de quantidade de leitores. Saiba "
+"mais sobre a <a href=\"{$indexUrl}/{$contextPath}/about/submissions#"
+"privacyStatement\">Declaração de Privacidade</a> da editora que assegura aos "
+"leitores que o seu nome e e-mail não serão utilizados para outros propósitos."
+
+msgid "default.contextSettings.openAccessPolicy"
+msgstr ""
+"Esta editora fornece acesso aberto imediato aos seus conteúdos seguindo o "
+"princípio de que a disponibilização gratuita da investigação apoia uma maior "
+"troca global de conhecimento."
+
+msgid "default.contextSettings.privacyStatement"
+msgstr ""
+"<p>Os nomes e endereços de e-mail inseridos nesta editora serão usados "
+"exclusivamente para os propósitos da editora e não serão tornados públicos "
+"para qualquer outro propósito ou disponibilizados a terceiros.</p>"
+
+msgid "default.contextSettings.checklist.bibliographicRequirements"
+msgstr ""
+"O texto cumpre as normas estilísticas e bibliográficas referidas nas <a href="
+"\"{$indexUrl}/{$contextPath}/about/submissions#authorGuidelines\" target=\""
+"_blank\">Instruções aos Autores</a>, que podem ser lidas em Sobre a Editora."
+
+msgid "default.contextSettings.checklist.submissionAppearance"
+msgstr ""
+"O texto foi formatado em espaço simples; com fonte a 12 pontos; adota "
+"itálicos, em vez de sublinhados (exceto para endereços URL); e todas as "
+"ilustrações, figuras, e tabelas encontram-se no correto local no texto, e "
+"não todas no final."
+
+msgid "default.contextSettings.checklist.addressesLinked"
+msgstr "Foram inseridos os URLs das referências, quando disponíveis."
+
+msgid "default.contextSettings.checklist.fileFormat"
+msgstr ""
+"O ficheiro da submissão encontra-se em formato Microsoft Word, RTF, ou "
+"OpenDocument."
+
+msgid "default.contextSettings.checklist.notPreviouslyPublished"
+msgstr ""
+"A submissão não foi previamente publicada, nem se encontra em consideração "
+"em outra editora (ou foi inserida uma explicação nos Comentários ao Editor)."
+
+msgid "default.groups.abbrev.volumeEditor"
+msgstr "EV"
+
+msgid "default.groups.plural.volumeEditor"
+msgstr "Editores de volume"
+
+msgid "default.groups.name.volumeEditor"
+msgstr "Editor de volume"
+
+msgid "default.groups.abbrev.chapterAuthor"
+msgstr "AC"
+
+msgid "default.groups.plural.chapterAuthor"
+msgstr "Autores de Capítulo"
+
+msgid "default.groups.name.chapterAuthor"
+msgstr "Autor de Capítulo"
+
+msgid "default.groups.abbrev.sectionEditor"
+msgstr "EdS"
+
+msgid "default.groups.plural.sectionEditor"
+msgstr "Editores de série"
+
+msgid "default.groups.name.sectionEditor"
+msgstr "Editor de série"
+
+msgid "default.groups.abbrev.editor"
+msgstr "Ed"
+
+msgid "default.groups.plural.editor"
+msgstr "Editores"
+
+msgid "default.groups.name.editor"
+msgstr "Editor"
+
+msgid "default.groups.abbrev.manager"
+msgstr "EG"
+
+msgid "default.groups.plural.manager"
+msgstr "Editores gestores"
+
+msgid "default.groups.name.manager"
+msgstr "Editor gestor"
+
+msgid "default.genres.other"
+msgstr "Outro"
+
+msgid "default.genres.illustration"
+msgstr "Ilustração"
+
+msgid "default.genres.photo"
+msgstr "Fotografia"
+
+msgid "default.genres.figure"
+msgstr "Figura"
+
+msgid "default.genres.table"
+msgstr "Tabela"
+
+msgid "default.genres.prospectus"
+msgstr "Prospecto"
+
+msgid "default.genres.preface"
+msgstr "Prefácio"
+
+msgid "default.genres.index"
+msgstr "Sumário"
+
+msgid "default.genres.glossary"
+msgstr "Glossário"
+
+msgid "default.genres.chapter"
+msgstr "Manuscrito do Capítulo"
+
+msgid "default.genres.manuscript"
+msgstr "Manuscrito do livro"
+
+msgid "default.genres.bibliography"
+msgstr "Bibliografia"
+
+msgid "default.genres.appendix"
+msgstr "Anexo"
