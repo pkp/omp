@@ -1,2 +1,45 @@
 msgid ""
-msgstr "X-Generator: Weblate\nMIME-Version: 1.0\nContent-Type: text/plain; charset=UTF-8\nContent-Transfer-Encoding: 8bit"
+msgstr ""
+"PO-Revision-Date: 2020-02-07 10:35+0000\n"
+"Last-Translator: Niels Erik Frederiksen <nef@kb.dk>\n"
+"Language-Team: Danish <http://translate.pkp.sfu.ca/projects/omp/"
+"generic-webFeed/da/>\n"
+"Language: da\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: Weblate 3.9.1\n"
+
+msgid "plugins.generic.webfeed.rss2.altText"
+msgstr "RSS2-logo"
+
+msgid "plugins.generic.webfeed.rss1.altText"
+msgstr "RSS1-logo"
+
+msgid "plugins.generic.webfeed.atom.altText"
+msgstr "Atom-logo"
+
+msgid "plugins.generic.webfeed.settings.recentItemsRequired"
+msgstr "Indtast et positivt heltal for nyligt publicerede poster."
+
+msgid "plugins.generic.webfeed.settings.recentBooks"
+msgstr "Antal emner, der skal vises"
+
+msgid "plugins.generic.webfeed.settings.all"
+msgstr "Vis links til web feeds på alle forlagssider."
+
+msgid "plugins.generic.webfeed.settings.homepage"
+msgstr "Vis kun links til web feeds på startsiden."
+
+msgid "plugins.generic.webfeed.settings"
+msgstr "Indstillinger"
+
+msgid "plugins.generic.webfeed.newcontent"
+msgstr "Nyt indhold"
+
+msgid "plugins.generic.webfeed.description"
+msgstr "Denne plugin leverer RSS/Atom web feeds til forlaget."
+
+msgid "plugins.generic.webfeed.displayName"
+msgstr "Web Feed plugin"
