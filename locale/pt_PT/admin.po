@@ -1,6 +1,6 @@
 msgid ""
 msgstr ""
-"PO-Revision-Date: 2020-02-05 19:31+0000\n"
+"PO-Revision-Date: 2020-02-07 10:35+0000\n"
 "Last-Translator: Carla Marques <carla.marques@sdum.uminho.pt>\n"
 "Language-Team: Portuguese (Portugal) <http://translate.pkp.sfu.ca/projects/"
 "omp/admin/pt_PT/>\n"
@@ -36,3 +36,102 @@ msgstr "As configurações da aparência do site foram atualizadas com sucesso."
 
 msgid "admin.hostedContexts"
 msgstr "Editoras Alojadas"
+
+msgid "admin.overwriteConfigFileInstructions"
+msgstr ""
+"<h4>AVISO!</div>\n"
+"<p>O sistema não conseguiu substituir automaticamente o ficheiro de "
+"configuração. Para aplicar as suas alterações de configuração deve abrir  "
+"<tt>config.inc.php</tt> num editor de texto adequado e substituir os "
+"conteúdos pelos do campo de texto abaixo.</p>"
+
+msgid "admin.presses.addPress"
+msgstr "Adicionar Editora"
+
+msgid "admin.contexts.contextDescription"
+msgstr "Descrição da editora"
+
+msgid "admin.contexts.form.edit.success"
+msgstr "{$name} foi editado com sucesso."
+
+msgid "admin.contexts.form.create.success"
+msgstr "{$name} foi criado com sucesso."
+
+msgid "admin.contexts.form.pathExists"
+msgstr "O caminho selecionado já se encontra em uso por outra editora."
+
+msgid "admin.contexts.form.pathAlphaNumeric"
+msgstr ""
+"O caminho apenas pode incluir letras, números e os caracteres _ e -. Deve "
+"iniciar e terminar com uma letra ou número."
+
+msgid "admin.contexts.form.pathRequired"
+msgstr "É necessário inserir um caminho."
+
+msgid "admin.contexts.form.titleRequired"
+msgstr "É necessário inserir um título."
+
+msgid "admin.contexts.create"
+msgstr "Criar Editora"
+
+msgid "admin.presses.noneCreated"
+msgstr "Não foram criadas editoras."
+
+msgid "admin.presses.pressSettings"
+msgstr "Configurações da Editora"
+
+msgid "admin.systemConfiguration"
+msgstr "Configurações do OMP"
+
+msgid "admin.systemVersion"
+msgstr "Versão do OMP"
+
+msgid "admin.languages.confirmDisable"
+msgstr ""
+"Deseja realmente desativar este idioma? Esta ação pode afetar editoras "
+"alojadas que estejam a utilizar o idioma."
+
+msgid "admin.languages.downloadUnavailable"
+msgstr ""
+"<p>O download do pacote de idiomas do servidor do Public Knowledge Project "
+"não se encontra disponível porque:</p>\n"
+"\t<ul>\n"
+"\t\t<li>O seu servidor não tem ou permite execução da ferramenta GNU \"tar\""
+"</li>\n"
+"\t\t<li>O OMP não consegue modificar o ficheiro de registo do idioma, "
+"geralmente \"registry/locales.xml\".</li>\n"
+"\t</ul>\n"
+"<p>Os pacotes de idiomas podem ser descarregados manualmente do <a href=\""
+"http://pkp.sfu.ca\" target=\"_blank\">site do PKP</a>.</p>"
+
+msgid "admin.languages.downloadFailed"
+msgstr ""
+"O download do idioma falhou. A(s) mensagem(ns) de erro abaixo descrevem a "
+"falha."
+
+msgid "admin.languages.noLocalesToDownload"
+msgstr "Não existem idiomas disponíveis para download."
+
+msgid "admin.languages.installNewLocalesInstructions"
+msgstr ""
+"Selecione qualquer idioma adicionar para instalar o suporte neste sistema. "
+"Os idiomas devem ser instalados antes de poderem ser utilizados pelas "
+"editoras alojadas. Veja a documentação do OMP para mais informações sobre "
+"adicionar suporte para novos idiomas."
+
+msgid "admin.languages.confirmUninstall"
+msgstr ""
+"Deseja realmente desinstalar este idioma? Esta ação pode afetar as editoras "
+"alojadas que estejam a utilizar este idioma."
+
+msgid "admin.locale.maybeIncomplete"
+msgstr "* Os idiomas marcados podem estar incompletos."
+
+msgid "admin.languages.supportedLocalesInstructions"
+msgstr ""
+"Selecione todos os idiomas para disponibilizar no site. Os idiomas "
+"selecionados ficarão disponíveis para todas as editores hospedadas no site, "
+"e também para aparecer num menu de idiomas selecionados que aparece em cada "
+"página (que pode ser substituído em páginas específicas da editora). Se não "
+"estiverem selecionado vários idiomas, o menu de alteração de idioma não "
+"aparecerá e as editoras não terão configurações de idioma."
