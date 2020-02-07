@@ -1,6 +1,6 @@
 msgid ""
 msgstr ""
-"PO-Revision-Date: 2020-02-01 11:35+0000\n"
+"PO-Revision-Date: 2020-02-08 03:32+0000\n"
 "Last-Translator: Magnus Annemark <magnus.annemark@ub.lu.se>\n"
 "Language-Team: Swedish <http://translate.pkp.sfu.ca/projects/omp/locale/sv/>"
 "\n"
@@ -243,7 +243,6 @@ msgstr "Bok"
 msgid "grid.content.spotlights.form.title"
 msgstr "Spotlight-titel"
 
-#, fuzzy
 msgid "grid.content.spotlights.form.item"
 msgstr "Ange spotlight-titeln (autocomplete)"
 
@@ -372,13 +371,11 @@ msgstr ""
 "Det finns redan en ROW-försäljningstyp (resten av världen) definierad för "
 "detta publikationsformat."
 
-#, fuzzy
 msgid "grid.catalogEntry.salesRightsROW.tip"
 msgstr ""
 "Kryssa i för att använda försäljningsrättigheterna för hela ditt format. "
 "Länder och regioner behöver inte anges i detta fall."
 
-#, fuzzy
 msgid "monograph.publicationFormat.technicalProtection"
 msgstr "Digitalt tekniskt skydd"
 
@@ -469,7 +466,6 @@ msgstr "Tillgänglig"
 msgid "grid.catalogEntry.availability"
 msgstr "Tillgänglighet"
 
-#, fuzzy
 msgid "grid.catalogEntry.publicationFormatRequired"
 msgstr "Ett publikationsformat måste väljas."
 
@@ -620,13 +616,13 @@ msgid "monograph.languages"
 msgstr "Språk (engelska, franska, spanska)"
 
 msgid "monograph.audience.rangeExact"
-msgstr "Publikomfång (exakt)"
+msgstr "Publikintervall (exakt)"
 
 msgid "monograph.audience.rangeTo"
-msgstr "Publikomfång (till)"
+msgstr "Publikintervall (till)"
 
 msgid "monograph.audience.rangeFrom"
-msgstr "Publikomfång (från)"
+msgstr "Publikintervall (från)"
 
 msgid "notification.type.public"
 msgstr "Offentliga meddelanden"
@@ -834,9 +830,8 @@ msgstr "Det finns inga pressar där du kan registrera dig."
 msgid "user.register.selectContext"
 msgstr "Välj vilken press du vill registrera dig hos:"
 
-#, fuzzy
 msgid "user.role.productionEditors"
-msgstr "Faktorer"
+msgstr "Produktionsredaktörer"
 
 msgid "user.role.proofreaders"
 msgstr "Korrekturläsare"
@@ -1037,6 +1032,8 @@ msgstr "Ingen betalningsmetod bestämd."
 
 msgid "notification.type.formatNeedsApprovedSubmission"
 msgstr ""
+"Boken kommer inte synas i katalogen förrän den är publicerad. Tryck på "
+"publicera-fliken för att lägga till boken i katalogen."
 
 msgid "notification.type.approveSubmissionTitle"
 msgstr "Inväntar godkännande."
@@ -1077,7 +1074,7 @@ msgid "user.role.copyeditors"
 msgstr "Manusredaktörer"
 
 msgid "user.role.productionEditor"
-msgstr ""
+msgstr "Produktionsredaktör"
 
 msgid "user.role.copyeditor"
 msgstr "Manusredaktör"
@@ -1171,7 +1168,7 @@ msgid "submission.search"
 msgstr "Sök böcker"
 
 msgid "catalog.viewableFile.title"
-msgstr ""
+msgstr "{$type}-visning av filen {$title}"
 
 msgid "catalog.viewableFile.return"
 msgstr "Tillbaka till detaljer om {$monographTitle}"
@@ -1226,3 +1223,79 @@ msgstr "{$number} titlar hittades för sökfrågan \"{$searchQuery}\"."
 
 msgid "grid.action.proofApproved"
 msgstr "Formatet har gått igenom korrektur"
+
+msgid "notification.type.submissionSubmitted"
+msgstr "En ny bok, \"{$title},\" har skickats in."
+
+msgid "rt.metadata.pkp.dctype"
+msgstr "Bok"
+
+msgid "debug.notes.helpMappingLoad"
+msgstr ""
+"Laddade om XML-hjälp för att mappa filen {$filename} till sökning efter "
+"{$id}."
+
+msgid "payment.directSales.price.description"
+msgstr ""
+"Filformat kan tillgängliggöras för nedladdning från pressens hemsida utan "
+"kostnad för läsaren (open access), eller genom direktförsäljning (genom en "
+"online-betalsystem, vilket ställs in under Distribution). Välj "
+"tillgänglighetsinställning för filen."
+
+msgid "user.authorization.workflowStageSettingMissing"
+msgstr ""
+"Åtkomst nekad! Användartypen du är inloggad som har inte blivit tilldelad "
+"åtkomst till detta steg i arbetsflödet. Kontrollera dina inställningar."
+
+msgid "spotlight.title.homePage"
+msgstr "I spotlight"
+
+msgid "about.aboutOMPSite"
+msgstr ""
+"Denna sidan använder Open Monograph Press {$ompVersion}, som är en open "
+"source-programvara för bokpublicering, utvecklat av <a href=\"http://pkp.sfu."
+"ca/\">Public Knowledge Project</a> under GNU General Public License."
+
+msgid "about.aboutOMPPress"
+msgstr ""
+"Denna press använder Open Monograph Press {$ompVersion}, som är en open "
+"source-programvara för bokpublicering, utvecklat av <a href=\"http://pkp.sfu."
+"ca/\">Public Knowledge Project</a> under GNU General Public License."
+
+msgid "about.submissionPreparationChecklist.description"
+msgstr ""
+"Författare som skickar in bidrag måste kontrollera att bidraget uppfyller "
+"följande riktlinjer. Bidrag som inte efterlever riktlinjerna kan komma att "
+"skickas tillbaka till författaren. "
+
+msgid "navigation.skip.spotlights"
+msgstr "Gå till spotlight"
+
+msgid "common.homePageHeader.altText"
+msgstr "Hemsidans sidhuvud"
+
+msgid "catalog.loginRequiredForPayment"
+msgstr ""
+"N.B.: För att kunna göra ett köp måste du först logga in. Du kommer skickas "
+"till inloggningssidan när du valt en vara att köpa. Alla böcker med en open "
+"access-ikon kan laddas ned gratis, utan inloggning."
+
+msgid "catalog.dateAdded"
+msgstr "Tillagd {$dateAdded}"
+
+msgid "series.path"
+msgstr "Sökväg"
+
+msgid "grid.action.releaseMonograph"
+msgstr "Markera detta bidrag som en 'ny utgivning'"
+
+msgid "grid.content.spotlights.locationRequired"
+msgstr "Välj plats för denna spotlight."
+
+msgid "monograph.proofReadingDescription"
+msgstr ""
+"Layoutredaktören laddar upp filerna som är klara för publicering här. Använd "
+"<em>+Assign</em> för att välja författare och andra för korrekturläsning."
+
+msgid "monograph.audience.rangeQualifier"
+msgstr "Kvalificering av publikintervallet"
