@@ -1,6 +1,6 @@
 msgid ""
 msgstr ""
-"PO-Revision-Date: 2020-02-07 10:35+0000\n"
+"PO-Revision-Date: 2020-02-08 03:32+0000\n"
 "Last-Translator: Magnus Annemark <magnus.annemark@ub.lu.se>\n"
 "Language-Team: Swedish <http://translate.pkp.sfu.ca/projects/omp/admin/sv/>\n"
 "Language: sv_SE\n"
@@ -68,3 +68,70 @@ msgid "admin.languages.primaryLocaleInstructions"
 msgstr ""
 "Detta kommer vara det förinställda språket för installationen och för alla "
 "hysta pressar."
+
+msgid "admin.overwriteConfigFileInstructions"
+msgstr ""
+"<h4>OBS</div>\n"
+"<p>Systemet kunde inte skriva över konfigurationsfilen automatiskt. För att "
+"göra ändringarna måste du öppna <tt>config.inc.php</tt> i en lämplig "
+"texthanterare och byta ut dess innehåll med innehållet i textfältet "
+"nedan.</p>"
+
+msgid "admin.presses.addPress"
+msgstr "Lägg till press"
+
+msgid "admin.contexts.contextDescription"
+msgstr "Beskrivning av pressen"
+
+msgid "admin.contexts.form.edit.success"
+msgstr "{$name} har redigerats."
+
+msgid "admin.contexts.form.create.success"
+msgstr "{$name} har skapats."
+
+msgid "admin.contexts.form.pathExists"
+msgstr "Den valda sökvägen används redan av en annan press."
+
+msgid "admin.contexts.form.pathAlphaNumeric"
+msgstr ""
+"Sökvägen får bara innehålla bokstäver, nummer och tecknen _ och -. Den måste "
+"börja och sluta med en bokstav eller ett nummer."
+
+msgid "admin.contexts.form.pathRequired"
+msgstr "En sökväg krävs."
+
+msgid "admin.contexts.form.titleRequired"
+msgstr "En titel krävs."
+
+msgid "admin.contexts.create"
+msgstr "Skapa press"
+
+msgid "admin.presses.noneCreated"
+msgstr "Inga pressar har skapats."
+
+msgid "admin.presses.pressSettings"
+msgstr "Pressinställningar"
+
+msgid "admin.systemConfiguration"
+msgstr "OMP-konfiguration"
+
+msgid "admin.systemVersion"
+msgstr "OMP-version"
+
+msgid "admin.languages.confirmDisable"
+msgstr ""
+"Är du säker på att du vill avaktivera detta språk? Det kan påverka pressar "
+"som använder språket."
+
+msgid "admin.languages.downloadUnavailable"
+msgstr ""
+"<p>Nedladdning av språkpaket från PKPs webbserver är för tillfället inte "
+"tillgängligt eftersom:</p>\n"
+"\t<ul>\n"
+"\t\t<li>Din server har inte eller tillåter inte körning av GNU \"tar\""
+"-verktyget</li>\n"
+"\t\t<li>OMP kan inte skriva till språkets registerfil, vanligtvis \"registry/"
+"locales.xml\".</li>\n"
+"\t</ul>\n"
+"<p>Språkpaket kan laddas ned manuellt från <a href=\"http://pkp.sfu.ca\" "
+"target=\"_blank\">PKPs webbsida</a>.</p>"
