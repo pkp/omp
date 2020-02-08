@@ -1,6 +1,6 @@
 msgid ""
 msgstr ""
-"PO-Revision-Date: 2020-02-07 10:35+0000\n"
+"PO-Revision-Date: 2020-02-09 18:35+0000\n"
 "Last-Translator: Niels Erik Frederiksen <nef@kb.dk>\n"
 "Language-Team: Danish <http://translate.pkp.sfu.ca/projects/omp/"
 "generic-webFeed/da/>\n"
@@ -42,4 +42,4 @@ msgid "plugins.generic.webfeed.description"
 msgstr "Denne plugin leverer RSS/Atom web feeds til forlaget."
 
 msgid "plugins.generic.webfeed.displayName"
-msgstr "Web Feed plugin"
+msgstr "Web Feed-plugin"
