@@ -1,0 +1,245 @@
+msgid ""
+msgstr ""
+"PO-Revision-Date: 2020-02-07 10:35+0000\n"
+"Last-Translator: Niels Erik Frederiksen <nef@kb.dk>\n"
+"Language-Team: Danish <http://translate.pkp.sfu.ca/projects/omp/pubIds-urn/"
+"da/>\n"
+"Language: da_DK\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: Weblate 3.9.1\n"
+
+msgid "plugins.pubIds.urn.editor.preview.objects"
+msgstr "Element"
+
+msgid "plugins.pubIds.urn.editor.preview.galleys"
+msgstr "Publiceringsversion: {$galleyLabel}"
+
+msgid "plugins.pubIds.urn.editor.preview.publication.none"
+msgstr "En URN er ikke blevet tildelt denne publikation."
+
+msgid "plugins.pubIds.urn.editor.preview.publication"
+msgstr "Denne publikations URN bliver {$urn}."
+
+msgid "plugins.pubIds.urn.editor.missingPrefix"
+msgstr "URN'en skal begynde med {$urnPrefix}."
+
+msgid "plugins.pubIds.urn.editor.missingParts"
+msgstr ""
+"Du kan ikke generere et URN, fordi en eller flere dele af URN-mønsteret "
+"mangler data. Det kan være nødvendigt, at du knytter publikationen til et "
+"nummer, angiver et udgiver-ID eller indtaster sidenumre."
+
+msgid "plugins.pubIds.urn.editor.missingIssue"
+msgstr ""
+"Du kan ikke generere en URN, før denne publikation er blevet tilknyttet et "
+"nummer."
+
+msgid "plugins.pubIds.urn.editor.urn.assignUrn"
+msgstr "Tildel"
+
+msgid "plugins.pubIds.urn.editor.urn.description"
+msgstr "URN'en skal begynde med {$prefix}."
+
+msgid "plugins.pubIds.urn.form.checkNoRequired"
+msgstr "Kontrolnummeret mangler."
+
+msgid "plugins.pubIds.urn.editor.assignURN.assigned"
+msgstr "URN'en {$pubId} er blevet tildelt."
+
+msgid "plugins.pubIds.urn.editor.assignURN.pattern"
+msgstr ""
+"URN'en {$pubId} kan ikke tildeles, fordi den indeholder et uopløseligt "
+"mønster."
+
+msgid "plugins.pubIds.urn.editor.assignURN.emptySuffix"
+msgstr "URN kan ikke tildeles, fordi det brugerdefinerede suffiks mangler."
+
+msgid "plugins.pubIds.urn.editor.assignURN"
+msgstr "Tildel URN'en {$pubId} to denne {$pubObjectType}"
+
+msgid "plugins.pubIds.urn.editor.addCheckNo"
+msgstr "Tilføj kontrolnummer"
+
+msgid "plugins.pubIds.urn.editor.clearObjectsURN.confirm"
+msgstr "Er du sikker på, at du vil slette den eksisterende URN?"
+
+msgid "plugins.pubIds.urn.editor.clearObjectsURN"
+msgstr "Fjern"
+
+msgid "plugins.pubIds.urn.editor.urnSuffixCustomIdentifierNotUnique"
+msgstr ""
+"Det angivne URN-suffiks er allerede i brug i forbindelse med et andet "
+"offentliggjort element. Indtast et unikt URN-suffiks for hvert element."
+
+msgid "plugins.pubIds.urn.editor.assigned"
+msgstr "URN'en er tildelt denne {$pubObjectType}."
+
+msgid "plugins.pubIds.urn.editor.canBeAssigned"
+msgstr ""
+"Hvad du ser er en forhåndsvisning af URN'en. Markér afkrydsningsfeltet, og "
+"gem formularen for at tildele URN."
+
+msgid "plugins.pubIds.urn.editor.patternNotResolved"
+msgstr "URN'en kan ikke tildeles, fordi den indeholder et uopløseligt mønster."
+
+msgid "plugins.pubIds.urn.editor.customSuffixMissing"
+msgstr "URN'en kan ikke tildeles, fordi det brugerdefinerede suffiks mangler."
+
+msgid "plugins.pubIds.urn.editor.urnObjectTypeSubmissionFile"
+msgstr "fil"
+
+msgid "plugins.pubIds.urn.editor.urnObjectTypeRepresentation"
+msgstr "publikationsformat"
+
+msgid "plugins.pubIds.urn.editor.urnObjectTypeChapter"
+msgstr "kapitel"
+
+msgid "plugins.pubIds.urn.editor.urnObjectTypeSubmission"
+msgstr "monografi"
+
+msgid "plugins.pubIds.urn.editor.urn"
+msgstr "URN"
+
+msgid "plugins.pubIds.urn.manager.settings.urnReassign.confirm"
+msgstr "Er du sikker på, at du vil slette alle eksisterende URN'er?"
+
+msgid "plugins.pubIds.urn.manager.settings.urnReassign.description"
+msgstr ""
+"Hvis du ændrer din URN-konfiguration, påvirkes URN'er, der allerede er "
+"tildelt, ikke. Når URN-konfigurationen er gemt, skal du bruge denne knap til "
+"at rydde alle eksisterende URN'er, så de nye indstillinger træder i kraft "
+"for alle eksisterende objekter."
+
+msgid "plugins.pubIds.urn.manager.settings.urnReassign"
+msgstr "Tildel URN'er igen"
+
+msgid "plugins.pubIds.urn.manager.settings.form.urnResolverRequired"
+msgstr "Indtast resolver-URL."
+
+msgid "plugins.pubIds.urn.manager.settings.urnResolver.description"
+msgstr "(f.eks. http://nbn-resolving.de/)"
+
+msgid "plugins.pubIds.urn.manager.settings.urnResolver"
+msgstr "Resolver-URL"
+
+msgid "plugins.pubIds.urn.manager.settings.namespace.description"
+msgstr ""
+"Det persistente identifikator-navneområde, der normailt kræves til "
+"registreringen (f.eks. Det Kgl. Bibliotek)."
+
+msgid "plugins.pubIds.urn.manager.settings.namespace.choose"
+msgstr "Vælg"
+
+msgid "plugins.pubIds.urn.manager.settings.namespace"
+msgstr "Navnerum"
+
+msgid "plugins.pubIds.urn.manager.settings.checkNo.label"
+msgstr ""
+"Kontrolnummeret beregnes automatisk og tilføjes i slutningen som det sidste "
+"ciffer i en URN."
+
+msgid "plugins.pubIds.urn.manager.settings.checkNo"
+msgstr "Kontrolnummer"
+
+msgid "plugins.pubIds.urn.manager.settings.urnSubmissionFileSuffixPatternRequired"
+msgstr "Indtast URN-suffiksmønsteret til filer."
+
+msgid "plugins.pubIds.urn.manager.settings.urnRepresentationSuffixPatternRequired"
+msgstr "Indtast URN-suffiksmønsteret til publikationsformater."
+
+msgid "plugins.pubIds.urn.manager.settings.urnChapterSuffixPatternRequired"
+msgstr "Indtast URN-suffiksmønsteret til kapitler."
+
+msgid "plugins.pubIds.urn.manager.settings.urnPublicationSuffixPatternRequired"
+msgstr "Indtast URN-suffiksmønsteret til monografier."
+
+msgid "plugins.pubIds.urn.manager.settings.urnSuffixCustomIdentifier"
+msgstr ""
+"Indtast et individuelt URN-suffiks for hver publiceret element. Du finder et "
+"ekstra URN-indtastningsfelt på hvert elements metadataside."
+
+msgid "plugins.pubIds.urn.manager.settings.urnSuffixDefault.description"
+msgstr ""
+"%p.%m til monografier<br />%p.%m.c%c til kapitler<br />%p.%m.%f til "
+"publikationsformater<br />%p.%m.%f.%s til filer."
+
+msgid "plugins.pubIds.urn.manager.settings.urnSuffixDefault"
+msgstr "Brug standardmønstre."
+
+msgid "plugins.pubIds.urn.manager.settings.urnSuffixPattern.files"
+msgstr "til filer"
+
+msgid "plugins.pubIds.urn.manager.settings.urnSuffixPattern.representations"
+msgstr "til publikationsformater"
+
+msgid "plugins.pubIds.urn.manager.settings.urnSuffixPattern.chapters"
+msgstr "til kapitler"
+
+msgid "plugins.pubIds.urn.manager.settings.urnSuffixPattern.submissions"
+msgstr "til monografier"
+
+msgid "plugins.pubIds.urn.manager.settings.urnSuffixPattern.example"
+msgstr "For eksmpel, press%ppub%r vil generere URNsuffikset \"pressESPpub100\"."
+
+msgid "plugins.pubIds.urn.manager.settings.urnSuffixPattern"
+msgstr ""
+"Brug det nedenstående mønster til at generere URN-suffikser. Brug %p til "
+"forlagsinitialer, %m for monografi-id'er, %c for kapitel-id, %f for "
+"publikationsformat-id,% s for fil id og %x for \"Brugerdefinerede "
+"identifikatorer\"."
+
+msgid "plugins.pubIds.urn.manager.settings.urnSuffix.description"
+msgstr ""
+"Et URN-suffiks kan tage enhver form, men skal være unikt blandt alle "
+"udgivelsesobjekter, der har fået tildelt det samme URN-præfiks:"
+
+msgid "plugins.pubIds.urn.manager.settings.urnSuffix"
+msgstr "URN-suffiks"
+
+msgid "plugins.pubIds.urn.manager.settings.form.urnPrefixPattern"
+msgstr "URN-prefikset skal have formen \"urn:\"&lt;NID&gt;\":\"&lt;NSS&gt;."
+
+msgid "plugins.pubIds.urn.manager.settings.urnPrefix.description"
+msgstr ""
+"URN-præfikset er den fastdefinerede, og uforanderlige del af URN'en (f.eks. "
+"\"urn:nbn:de:0000-\")."
+
+msgid "plugins.pubIds.urn.manager.settings.urnPrefix"
+msgstr "URN-præks"
+
+msgid "plugins.pubIds.urn.manager.settings.enableSubmissionFileURN"
+msgstr "Filer"
+
+msgid "plugins.pubIds.urn.manager.settings.enableRepresentationURN"
+msgstr "Publikationsformater"
+
+msgid "plugins.pubIds.urn.manager.settings.enableChapterURN"
+msgstr "Kapitler"
+
+msgid "plugins.pubIds.urn.manager.settings.enablePublicationURN"
+msgstr "Monografier"
+
+msgid "plugins.pubIds.urn.manager.settings.explainURNs"
+msgstr ""
+"Vælg de publiceringsobjekter, der vil skal have tildelt Uniform Resource "
+"Names (URN):"
+
+msgid "plugins.pubIds.urn.manager.settings.urnObjectsRequired"
+msgstr "Vælg de objekter, der skal tildeles URN'er."
+
+msgid "plugins.pubIds.urn.manager.settings.urnObjects"
+msgstr "Forlagsindhold"
+
+msgid "plugins.pubIds.urn.manager.settings.description"
+msgstr "Konfigurer URN-pluginen for at gøre det muligt at anvende URN'er i OMP:"
+
+msgid "plugins.pubIds.urn.description"
+msgstr ""
+"Denne plugin muliggør tildeling af Uniform Resource Names til monografier, "
+"kapitler, publikationsformater og filer i OMP."
+
+msgid "plugins.pubIds.urn.displayName"
+msgstr "URN"
