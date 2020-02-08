@@ -1,6 +1,6 @@
 msgid ""
 msgstr ""
-"PO-Revision-Date: 2020-02-07 10:35+0000\n"
+"PO-Revision-Date: 2020-02-09 18:35+0000\n"
 "Last-Translator: Niels Erik Frederiksen <nef@kb.dk>\n"
 "Language-Team: Danish <http://translate.pkp.sfu.ca/projects/omp/"
 "generic-googleScholar/da/>\n"
@@ -16,4 +16,4 @@ msgstr ""
 "Denne plugin muliggør indeksering af offentliggjort indhold i Google Scholar."
 
 msgid "plugins.generic.googleScholar.name"
-msgstr "Google Scholar indekseringsplugin"
+msgstr "Google Scholar indekserings-plugin"
