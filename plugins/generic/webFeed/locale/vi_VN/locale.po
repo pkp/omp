@@ -1,0 +1,39 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: \n"
+"Report-Msgid-Bugs-To: \n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"POT-Creation-Date: 2020-02-08T17:42:25+00:00\n"
+"PO-Revision-Date: 2020-02-08T17:42:25+00:00\n"
+"Language: \n"
+
+msgid "plugins.generic.webfeed.displayName"
+msgstr "Công cụ kênh cập nhật tự động"
+
+msgid "plugins.generic.webfeed.description"
+msgstr "Công cụ này tạo ra các kênh cập nhật tự động RSS/Atom cho số mới ra."
+
+msgid "plugins.generic.webfeed.settings"
+msgstr "Thiết lập"
+
+msgid "plugins.generic.webfeed.settings.recentItemsRequired"
+msgstr "Vui lòng nhập một số nguyên dương các bài xuất bản gần đây."
+
+msgid "plugins.generic.webfeed.settings.homepage"
+msgstr "Chỉ hiển thị đường dẫn cập nhật tin ở các trang số tạp chí và trang chủ."
+
+msgid "plugins.generic.webfeed.settings.all"
+msgstr "Chỉ hiển thị đường dẫn cập nhật tin ở tất cả các trang của tạp chí."
+
+msgid "plugins.generic.webfeed.atom.altText"
+msgstr "Biểu tượng Atom"
+
+msgid "plugins.generic.webfeed.rss1.altText"
+msgstr "Biểu tượng RSS1"
+
+msgid "plugins.generic.webfeed.rss2.altText"
+msgstr "Biểu tượng RSS2"

@@ -1,0 +1,60 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: \n"
+"Report-Msgid-Bugs-To: \n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"POT-Creation-Date: 2020-02-08T17:42:30+00:00\n"
+"PO-Revision-Date: 2020-02-08T17:42:30+00:00\n"
+"Language: \n"
+
+msgid "plugins.paymethod.paypal.displayName"
+msgstr "Provizija pri nakupu s PayPalom"
+
+msgid "plugins.paymethod.paypal.settings.paypalenable"
+msgstr "Aktiviraj PayPal"
+
+msgid "plugins.paymethod.paypal.settings.paypalurl"
+msgstr "IPN URL"
+
+msgid "plugins.paymethod.paypal.settings.paypalurl.description"
+msgstr "To je URL za storitev PayPal Instant Payment Notification (IPN -- Obvestilo o nakupu) Za preizkus uporabite <code>https://www.sandbox.paypal.com/cgi-bin/webscr</code>; za proizvodne sisteme uporabite <code>https://www.paypal.com/cgi-bin/webscr</code>."
+
+msgid "plugins.paymethod.paypal.settings.selleraccount"
+msgstr "Račun prodajalca"
+
+msgid "plugins.paymethod.paypal.settings.selleraccount.description"
+msgstr "To je uporabniško ime prodajalčevega računa, ponavadi je to e-pošta. Poskrbite, da boste na vašem računu aktivirali obvestilo o plačilu Instant Payment Notification (IPN)."
+
+msgid "plugins.paymethod.paypal.settings.curlNotInstalled"
+msgstr "Pozor: Podpora CURL za PHP ni nameščena. Nadzor nad plačilom prek PayPala zahteva knjižnico CURL in ne bo deloval, dokler ne boste namestili knjižnice."
+
+msgid "plugins.paymethod.paypal.settings"
+msgstr "Nastavitve v PayPalu"
+
+msgid "plugins.paymethod.paypal"
+msgstr "Provizija pri nakupu s PayPalom"
+
+msgid "plugins.paymethod.paypal.description"
+msgstr "PayPal svojim uporabnikom omogoča uporabo vseh večjih kreditnih kartic, ne glede na to, ali so člani PayPala. Upravljalec mora ustvariti poslovni račun <a href=\"http://www.paypal.com\" target=\"_blank\">PayPal Business Account</a>."
+
+msgid "plugins.paymethod.paypal.warning"
+msgstr "Ukaz Nadaljuj vodi do PayPalove spletne strani, na kateri lahko uporabljate kreditno kartico (registracija ni potrebna). Po plačilu uporabljajte PayPalov ukaz Nazaj na ponudnika storitev, s katerim se boste vrnili na spletno stran, kjer vam bo kupljeni naslov na voljo za prenos."
+
+msgid "plugins.paymethod.paypal.purchase.title"
+msgstr "Naslov"
+
+msgid "plugins.paymethod.paypal.purchase.fee"
+msgstr "Provizija"
+
+msgid "plugins.paymethod.paypal.purchase.description"
+msgstr "Opis"
+
+msgid "plugins.paymethod.paypal.purchase.cancelled"
+msgstr "Vaš nakup je preklican."
+
+msgid "plugins.paymethod.paypal.purchase.cancelled.title"
+msgstr "Nakup preklican"

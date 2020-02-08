@@ -1,0 +1,80 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: \n"
+"Report-Msgid-Bugs-To: \n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"POT-Creation-Date: 2020-02-08T17:42:28+00:00\n"
+"PO-Revision-Date: 2020-02-08T17:42:28+00:00\n"
+"Language: \n"
+
+msgid "plugins.importexport.users.displayName"
+msgstr "Vtičnik XML za uporabnike"
+
+msgid "plugins.importexport.users.description"
+msgstr "Uvoz in izvoz uporabnikov"
+
+msgid "plugins.importexport.users.cliUsage"
+msgstr ""
+"Uporaba: {$scriptName} {$pluginName} [command] ... Ukazi: uvoz [xmlFileName] [press_path] [optional flags] izvoz [xmlFileName] [press_path] izvoz [xmlFileName] [press_path] [role_path1] [role_path2] ... Izbirne zastavice: continue_on_error: Če je tako določeno, ne prenehajte z uvozom uporabnikov, če pride do napake send_notify: Če je tako določeno, uvoženim uporabnikom pošljite e-poštno obvestilo z uporabniškim imenom in geslom. Primeri: Uvozi uporabnike v myPress iz datoteke myImportFile.xml in nadaljuj kljub napaki: {$scriptName} {$pluginName} uvozi myImportFile.xml myPress continue_on_error Izvozi vse uporabnike iz myPress: {$scriptName} {$pluginName} izvozi myExportFile.xml myPress Izvozi vse uporabnike, ki so vpisani kot recenzenti, skupaj z le njihovo vlogo recenzenta: {$scriptName} {$pluginName} izvozi myExportFile.xml myPress reviewer\n"
+""
+
+msgid "plugins.importexport.users.import.importUsers"
+msgstr "Uvoz uporabnikov"
+
+msgid "plugins.importexport.users.import.instructions"
+msgstr "Izberite podatkovno datoteko XML z informacijami o uporabniku, ki jo želite uvoziti v tiskovni portal. Za podrobnosti o formatu te datoteke si oglejte stran za pomoč.<br /><br />Ne pozabite, da morebitna uporabniška imena ali e-poštni naslovi, ki se nahajajo v datoteki, vendar že obstajajo v sistemu, ne bodo uvoženi in da bodo nove vloge, ki jih ustvarite, dodeljene obstoječim uporabnikom."
+
+msgid "plugins.importexport.users.import.dataFile"
+msgstr "Datoteka s podatki o uporabniku"
+
+msgid "plugins.importexport.users.import.sendNotify"
+msgstr "Vsem uvoženim uporabnikom pošlji e-poštno obvestiloz uporabniškim imenom in geslom."
+
+msgid "plugins.importexport.users.import.continueOnError"
+msgstr "V primeru napake nadaljuj z uvozom drugih uporabnikov."
+
+msgid "plugins.importexport.users.import.usersWereImported"
+msgstr "Naslednji uporabniki so bili uspešno uvoženi v sistem"
+
+msgid "plugins.importexport.users.import.errorsOccurred"
+msgstr "Med uvozom je prišlo do napak"
+
+msgid "plugins.importexport.users.import.confirmUsers"
+msgstr "Potrdite, da ste v sistem želeli uvoziti navedene uporabnike"
+
+msgid "plugins.importexport.users.import.warning"
+msgstr "Opozorilo"
+
+msgid "plugins.importexport.users.import.encryptionMismatch"
+msgstr "Ni mogoče uporabiti gesel z {$importHash}; OMP je konfiguriran za uporabo {$ompHash}. Če želite nadaljevati, ponastavite gesla uvoženih uporabnikov."
+
+msgid "plugins.importexport.users.unknownPress"
+msgstr "Določena je bila neznana pot do publikacije \"{$contextPath}\"."
+
+msgid "plugins.importexport.users.export.exportUsers"
+msgstr "Izvozi uporabnike"
+
+msgid "plugins.importexport.users.export.exportByRole"
+msgstr "Izvozi glede na vlogo"
+
+msgid "plugins.importexport.users.export.exportAllUsers"
+msgstr "Izvozi vse"
+
+msgid "plugins.importexport.users.export.errorsOccurred"
+msgstr "Med izvozom je prišlo do napak"
+
+msgid "plugins.importexport.users.export.couldNotWriteFile"
+msgstr "Ni bilo mogoče pisati v datoteko \"{$fileName}\"."
+
+msgid "plugins.importexport.users.importComplete"
+msgstr "Uvoz je uspešno zaključen. Uporabniki z uporabniškimi imeni in e-poštnimi naslovi, ki se še ne uporabljajo, so bili uvoženi skupaj s povezanimi uporabniškimi skupinami."
+
+msgid "plugins.importexport.users.results"
+msgstr "Rezultati"
+
+msgid "plugins.importexport.users.uploadFile"
+msgstr "Za nadaljevanje prenesite datoteko pod \"Uvoz\"."

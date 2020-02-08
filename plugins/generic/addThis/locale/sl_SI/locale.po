@@ -1,0 +1,54 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: \n"
+"Report-Msgid-Bugs-To: \n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"POT-Creation-Date: 2020-02-08T17:42:21+00:00\n"
+"PO-Revision-Date: 2020-02-08T17:42:21+00:00\n"
+"Language: \n"
+
+msgid "plugins.generic.addThis.displayName"
+msgstr "AddThis"
+
+msgid "plugins.generic.addThis.description"
+msgstr "Ta vtičnik zagotavlja deljenje prispevkov AddThis na socialnih omrežjih."
+
+msgid "plugins.generic.addThis.title"
+msgstr "AddThis"
+
+msgid "plugins.generic.addThis.settings"
+msgstr "Nastavitve"
+
+msgid "plugins.generic.addThis.settings.statistics"
+msgstr "Statistike"
+
+msgid "plugins.generic.addThis.form.saved"
+msgstr "Nastavitve obrazca AddThis shranjene."
+
+msgid "plugins.generic.addThis.form.profileId"
+msgstr "Profil ID AddThis "
+
+msgid "plugins.generic.addThis.form.username"
+msgstr "Uporabniško ime AddThis"
+
+msgid "plugins.generic.addThis.form.password"
+msgstr "Geslo AddThis (obvezno za prikazovanje statistike)"
+
+msgid "plugins.generic.addThis.form.registerLink"
+msgstr "<a href=\"https://www.addthis.com/register\">Registrirajte</a> se za brezplačna poglobljena analitična poročila in boljše razumevanje socialnega prometa vašega spletišča."
+
+msgid "plugins.generic.addThis.settings.displayStyle"
+msgstr "Izberite, kako naj se prikazuje AddThis"
+
+msgid "plugins.generic.addThis.grid.shares"
+msgstr "Delitve"
+
+msgid "plugins.generic.addThis.grid.title"
+msgstr "Največkrat deljene povezave"
+
+msgid "plugins.generic.addThis.statistics.instructions"
+msgstr "Seznam prikazuje najbolj popularne deljene povezave zadnjega tedna. Za pregled vseh možnih statistik AddThis obiščite <a href=\"http://www.addthis.com/analytics\" target=\"_blank\">AddThis Analytics</a> spletišče in se prijavite."

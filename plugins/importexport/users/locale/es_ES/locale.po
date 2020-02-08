@@ -1,0 +1,89 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: \n"
+"Report-Msgid-Bugs-To: \n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"POT-Creation-Date: 2020-02-08T17:42:27+00:00\n"
+"PO-Revision-Date: 2020-02-08T17:42:27+00:00\n"
+"Language: \n"
+
+msgid "plugins.importexport.users.displayName"
+msgstr "Complemeto XML de usuarios"
+
+msgid "plugins.importexport.users.description"
+msgstr "Importación y exportación de usuarios"
+
+msgid "plugins.importexport.users.cliUsage"
+msgstr ""
+"Uso: {$scriptName} {$pluginName} [command] ...\n"
+"Comandos:\n"
+"\timport [xmlFileName] [press_path] [optional flags]\n"
+"\texport [xmlFileName] [press_path]\n"
+"\texport [xmlFileName] [press_path] [role_path1] [role_path2] ...\n"
+"\n"
+"Banderas opcionales:\n"
+"\tcontinue_on_error: Si se ha indicado, no detengas el proceso de importación de usuarios si se produce un error.\n"
+"\n"
+"\tsend_notify: Si se ha indicado, manda correos electrónicos de notificación con los nombres de usuario y contraseña a los usuarios importados\n"
+"\n"
+"Ejemplos:\n"
+"\tImportar usuarios a miEditorial desde miFichero.xml, sin parar cuando ocurra un error:\n"
+"\t{$scriptName} {$pluginName} import miFichero.xml miEditorial continue_on_error\n"
+"\n"
+"\tExportar todos los usuarios de miRevista:\n"
+"\t{$scriptName} {$pluginName} export miExportacion.xml miEditorial\n"
+"\n"
+"\tExportar todos los usuarios registrados como revisores, sólo con sus funciones de revisión:\n"
+"\t{$scriptName} {$pluginName} export miExportacion.xml revisor de miEditorial"
+
+msgid "plugins.importexport.users.import.importUsers"
+msgstr "Importar usuarios"
+
+msgid "plugins.importexport.users.import.instructions"
+msgstr "Seleccione un fichero XML que contenga los datos de los usarios que quiere importar a la editorial. Consulte la ayuda de la editorial para conocer los detalles del formato de este fichero.<br /><br />Tenga en cuenta que si el fichero importado contiene nombres de usuario o direcciones de correo electrónico que ya existan en el sistema, no se importarán los datos de esos usuarios y las nuevas funciones que se creen se asignarán a los usuarios existentes."
+
+msgid "plugins.importexport.users.import.dataFile"
+msgstr "Fichero de datos de usuario"
+
+msgid "plugins.importexport.users.import.sendNotify"
+msgstr "Enviar un correo electrónico de notificación a cada usuarios importados con su nombre de usuario y contraseña."
+
+msgid "plugins.importexport.users.import.continueOnError"
+msgstr "Continuar importando el resto de usuarios si se produce un error."
+
+msgid "plugins.importexport.users.import.usersWereImported"
+msgstr "Los siguientes usuarios se han importado correctamente en el sistema"
+
+msgid "plugins.importexport.users.import.errorsOccurred"
+msgstr "Se han producido errores durante la importación"
+
+msgid "plugins.importexport.users.import.confirmUsers"
+msgstr "Confirme que estos son los usuarios que desea importar en el sistema"
+
+msgid "plugins.importexport.users.unknownPress"
+msgstr "Se ha especificado una ruta desconocida \"{$contextPath}\"."
+
+msgid "plugins.importexport.users.export.exportUsers"
+msgstr "Exportar usuarios"
+
+msgid "plugins.importexport.users.export.exportByRole"
+msgstr "Exportar por función"
+
+msgid "plugins.importexport.users.export.exportAllUsers"
+msgstr "Exportar todo"
+
+msgid "plugins.importexport.users.export.errorsOccurred"
+msgstr "Se han producido errores durante la exportación"
+
+msgid "plugins.importexport.users.export.couldNotWriteFile"
+msgstr "No ha sido posible escribir al fichero \"{$fileName}\"."
+
+msgid "plugins.importexport.users.import.warning"
+msgstr "Aviso"
+
+msgid "plugins.importexport.users.import.encryptionMismatch"
+msgstr "No es posible usar contraseñas codificadas con {$importHash}; OMP está configurado para utilizar {$ompHash}. Si decide continuar, necesitará restablecer las contraseñas de los usuarios importados."

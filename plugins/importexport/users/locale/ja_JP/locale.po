@@ -1,0 +1,99 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: \n"
+"Report-Msgid-Bugs-To: \n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"POT-Creation-Date: 2020-02-08T17:42:28+00:00\n"
+"PO-Revision-Date: 2020-02-08T17:42:28+00:00\n"
+"Language: \n"
+
+msgid "plugins.importexport.users.displayName"
+msgstr "ユーザXMLプラグイン"
+
+msgid "plugins.importexport.users.description"
+msgstr "ユーザのインポート・エクスポート"
+
+msgid "plugins.importexport.users.cliUsage"
+msgstr ""
+"使用法: {$scriptName} {$pluginName} [command] ...\n"
+"コマンド:\n"
+"\timport [xmlFileName] [press_path] [optional flags]\n"
+"\texport [xmlFileName] [press_path]\n"
+"\texport [xmlFileName] [press_path] [role_path1] [role_path2] ...\n"
+"\n"
+"オプションフラグ:\n"
+"\tcontinue_on_error: 指定すると、エラーが発生してもユーザのインポートを中止しない\n"
+"\n"
+"\tsend_notify: 指定すると、インポートしたユーザにユーザ名とパスワードを含む通知メールを送信する\n"
+"\n"
+"使用例:\n"
+"\tImport users into myPress from myImportFile.xmlからmyPressへユーザをインポートする。エラーが発生しても継続する:\n"
+"\t{$scriptName} {$pluginName} import myImportFile.xml myPress continue_on_error\n"
+"\n"
+"\tmyPressからすべてのユーザをエクスポートする:\n"
+"\t{$scriptName} {$pluginName} export myExportFile.xml myPress\n"
+"\n"
+"\t査読者として登録されたすべてのユーザをその査読役割と共にエクスポートする:\n"
+"\t{$scriptName} {$pluginName} export myExportFile.xml myPress reviewer\n"
+""
+
+msgid "plugins.importexport.users.import.importUsers"
+msgstr "ユーザのインポート"
+
+msgid "plugins.importexport.users.import.instructions"
+msgstr "この雑誌にインポートするユーザ情報が含まれているXMLデータファイルを選択してください。このファイルのフォーマットに関しての詳細については雑誌のヘルプを参照してください。<br /><br />インポートするファイルに、既にシステムに存在するユーザ名またはメールアドレスが含まれている場合、そのユーザに関するユーザ情報はインポートされず、作成されるべき新しい役割は既存のユーザに与えられることに注意してください。"
+
+msgid "plugins.importexport.users.import.failedToImportUser"
+msgstr "ユーザのインポートに失敗しました"
+
+msgid "plugins.importexport.users.import.failedToImportRole"
+msgstr "ユーザに役割を与えることに失敗しました"
+
+msgid "plugins.importexport.users.import.dataFile"
+msgstr "ユーザデータファイル"
+
+msgid "plugins.importexport.users.import.sendNotify"
+msgstr "インポートしたユーザにユーザ名とパスワードを含む通知メールを送信する。"
+
+msgid "plugins.importexport.users.import.continueOnError"
+msgstr "エラーが発生した場合、次のユーザのインポートを継続する。"
+
+msgid "plugins.importexport.users.import.noFileError"
+msgstr "ファイルはアップロードされませんでした。"
+
+msgid "plugins.importexport.users.import.usersWereImported"
+msgstr "以下のユーザがシステムにインポートされました。"
+
+msgid "plugins.importexport.users.import.errorsOccurred"
+msgstr "インポート処理中にエラーが発生しました"
+
+msgid "plugins.importexport.users.import.confirmUsers"
+msgstr "これらのユーザがシステムにインポートするユーザであるか確認してください。"
+
+msgid "plugins.importexport.users.unknownPress"
+msgstr "不明な雑誌用パス名 \"{$contextPath}\" が指定されました。"
+
+msgid "plugins.importexport.users.export.exportUsers"
+msgstr "ユーザのエクスポート"
+
+msgid "plugins.importexport.users.export.exportByRole"
+msgstr "役割によるエクスポート"
+
+msgid "plugins.importexport.users.export.exportAllUsers"
+msgstr "全ユーザのエクスポート"
+
+msgid "plugins.importexport.users.export.errorsOccurred"
+msgstr "エクスポート処理中にエラーが発生しました"
+
+msgid "plugins.importexport.users.export.couldNotWriteFile"
+msgstr "ファイル \"{$fileName}\" に書き込むことができませんでした。"
+
+msgid "plugins.importexport.users.import.warning"
+msgstr "警告"
+
+msgid "plugins.importexport.users.import.encryptionMismatch"
+msgstr "Cannot use passwords hashed with {$importHash}でハッシュされたパスワードは使用できません。この雑誌は{$ompHash}を使用するよう設定されています。処理を継続する場合は、インポートしたユーザパスワードを再設定する必要があります。"
