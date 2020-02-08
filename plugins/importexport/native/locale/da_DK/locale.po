@@ -1,6 +1,6 @@
 msgid ""
 msgstr ""
-"PO-Revision-Date: 2020-02-07 10:35+0000\n"
+"PO-Revision-Date: 2020-02-09 18:35+0000\n"
 "Last-Translator: Niels Erik Frederiksen <nef@kb.dk>\n"
 "Language-Team: Danish <http://translate.pkp.sfu.ca/projects/omp/"
 "importexport-native/da/>\n"
@@ -16,7 +16,7 @@ msgstr "Ukendt serie {$param}"
 
 msgid "plugins.importexport.native.onix30.pressMissingFields"
 msgstr ""
-"Dette fprlag mangler nogle nødvendige oplysninger om ONIX-metadata, der er "
+"Dette forlag mangler nogle nødvendige oplysninger om ONIX-metadata, der er "
 "brugt i forbindelse med denne eksport. Gå til Indstillinger > workflow > "
 "Produktion og udfyld de manglende oplysninger."
 
