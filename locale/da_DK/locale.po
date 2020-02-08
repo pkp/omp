@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2019-11-28T15:10:04-08:00\n"
-"PO-Revision-Date: 2020-01-22 21:11+0000\n"
+"PO-Revision-Date: 2020-02-09 18:35+0000\n"
 "Last-Translator: Niels Erik Frederiksen <nef@kb.dk>\n"
 "Language-Team: Danish <http://translate.pkp.sfu.ca/projects/omp/locale/da/>\n"
 "Language: da_DK\n"
@@ -230,7 +230,10 @@ msgid "grid.catalogEntry.availableRepresentation.message"
 msgstr "<p>Gør dette format <em>tilgængeligt for læsere</em>. Downloadbare filer og andre distributioner vises i bogens katalogpost.</p>"
 
 msgid "grid.catalogEntry.availableRepresentation.removeMessage"
-msgstr "<p>Dette format vil <em> ikke være tilgængeligt for læsere</em>. Eventuelle downloadbare filer eller andre distributioner vises ikke længere i bogens katalogpost. </p>"
+msgstr ""
+"<p>Dette format vil <em> ikke være tilgængeligt for læsere</em>. Eventuelle "
+"filer der kan downloades eller andre distributioner vises ikke længere i "
+"bogens katalogpost. </p>"
 
 msgid "grid.catalogEntry.availableRepresentation.catalogNotApprovedWarning"
 msgstr "Katalogpost ikke godkendt."
@@ -281,11 +284,13 @@ msgid "grid.catalogEntry.salesRightsROW"
 msgstr "Resten af verden?"
 
 msgid "grid.catalogEntry.salesRightsROW.tip"
-msgstr "Marker dette felt for at bruge denne salgsrettighedsindgang som en fællesbetegnelse til dit format. Lande og regioner behøver ikke vælges i dette tilfælde."
+msgstr ""
+"Markér dette felt for at bruge denne salgsrettighedsindgang som en "
+"fællesbetegnelse til dit format. Lande og regioner behøver ikke vælges i "
+"dette tilfælde."
 
 msgid "grid.catalogEntry.oneROWPerFormat"
 msgstr "Der er allerede defineret en ROW-salgstype (resten af verden) til dette publikationsformat."
-
 
 msgid "grid.catalogEntry.countries"
 msgstr "Lande"
@@ -378,7 +383,7 @@ msgid "grid.action.addRepresentative"
 msgstr "Tilføj repræsentant"
 
 msgid "grid.action.editRepresentative"
-msgstr "Rediger denne repræsentant"
+msgstr "Redigér denne repræsentant"
 
 msgid "grid.action.deleteRepresentative"
 msgstr "Slet denne repræsentant"
@@ -408,7 +413,7 @@ msgid "grid.content.spotlights.form.location"
 msgstr "Spotlights-område"
 
 msgid "grid.content.spotlights.form.item"
-msgstr "Indtast spotlighted titel (autofuldførelse)"
+msgstr "Indtast spotlightet titel (autofuldførelse)"
 
 msgid "grid.content.spotlights.form.title"
 msgstr "Spotlight-titel"
@@ -426,7 +431,7 @@ msgid "grid.content.spotlights.locationRequired"
 msgstr "Vælg en placering til dette spotlight."
 
 msgid "grid.action.editSpotlight"
-msgstr "Rediger dette spotlight"
+msgstr "Redigér dette spotlight"
 
 msgid "grid.action.deleteSpotlight"
 msgstr "Slet dette spotlight"
@@ -450,7 +455,7 @@ msgid "grid.action.formatInCatalogEntry"
 msgstr "Format vises i katalogposten"
 
 msgid "grid.action.editFormat"
-msgstr "Rediger dette format"
+msgstr "Redigér dette format"
 
 msgid "grid.action.deleteFormat"
 msgstr "Slet dette format"
@@ -480,19 +485,19 @@ msgid "grid.action.featureMonograph"
 msgstr "Vis dette i katalogkarusellen"
 
 msgid "grid.action.releaseMonograph"
-msgstr "Marker denne indsendelse som en 'ny udgivelse'"
+msgstr "Markér denne indsendelse som en 'ny udgivelse'"
 
 msgid "grid.action.manageCategories"
-msgstr "Konfigurer kategorier til dette forlag"
+msgstr "Konfigurér kategorier til dette forlag"
 
 msgid "grid.action.manageSeries"
-msgstr "Konfigurer serier til dette forlag"
+msgstr "Konfigurér serier til dette forlag"
 
 msgid "grid.action.addCode"
 msgstr "Tilføj kode"
 
 msgid "grid.action.editCode"
-msgstr "Rediger kodn"
+msgstr "Redigér kode"
 
 msgid "grid.action.deleteCode"
 msgstr "Slet koden"
@@ -501,7 +506,7 @@ msgid "grid.action.addRights"
 msgstr "Tilføj salgsrettigheder"
 
 msgid "grid.action.editRights"
-msgstr "Rediger disse rettigheder"
+msgstr "Redigér disse rettigheder"
 
 msgid "grid.action.deleteRights"
 msgstr "Slet disse rettigheder"
@@ -510,7 +515,7 @@ msgid "grid.action.addMarket"
 msgstr "Tilføj marked"
 
 msgid "grid.action.editMarket"
-msgstr "Rediger dette marked"
+msgstr "Redigér dette marked"
 
 msgid "grid.action.deleteMarket"
 msgstr "Slet dette marked"
@@ -519,7 +524,7 @@ msgid "grid.action.addDate"
 msgstr "Tilføj publiceringsdato"
 
 msgid "grid.action.editDate"
-msgstr "Rediger denne dato"
+msgstr "Redigér denne dato"
 
 msgid "grid.action.deleteDate"
 msgstr "Slet denne dato"
@@ -612,10 +617,10 @@ msgid "catalog.manage.newRelease"
 msgstr "Udgivelse"
 
 msgid "catalog.manage.manageSeries"
-msgstr "Administrer serien"
+msgstr "Administrér serien"
 
 msgid "catalog.manage.manageCategories"
-msgstr "Administrer kategorier"
+msgstr "Administrér kategorier"
 
 msgid "catalog.manage.noMonographs"
 msgstr "Der er ingen tildelte monografier."
@@ -780,7 +785,7 @@ msgid "navigation.catalog.allMonographs"
 msgstr "Alle monografier"
 
 msgid "navigation.catalog.manage"
-msgstr "Administrer"
+msgstr "Administrér"
 
 msgid "navigation.catalog.administration.short"
 msgstr "Administration"
@@ -855,7 +860,7 @@ msgid "context.select"
 msgstr "Skift til et andet forlag:"
 
 msgid "user.noRoles.selectUsersWithoutRoles"
-msgstr "Inkluder brugere uden roller hos dette forlag."
+msgstr "Inkludér brugere uden roller hos dette forlag."
 
 msgid "user.noRoles.submitMonograph"
 msgstr "Indsend et forslag"
@@ -864,10 +869,11 @@ msgid "user.noRoles.submitMonographRegClosed"
 msgstr "Indsend en monografi: Forfatterregistrering er i øjeblikket deaktiveret."
 
 msgid "user.noRoles.regReviewer"
-msgstr "Registrer dig som bedømmer"
+msgstr "Registrér dig som bedømmer"
 
 msgid "user.noRoles.regReviewerClosed"
-msgstr "Registrer dig som bedømmer: bedømmerregistrering er i øjeblikket deaktiveret."
+msgstr ""
+"Registrér dig som bedømmer: bedømmerregistrering er i øjeblikket deaktiveret."
 
 msgid "user.reviewerPrompt"
 msgstr "Vil du være villig til at bedømme indsendelser fra dette forlag?"
@@ -987,7 +993,7 @@ msgid "about.onlineSubmissions.login"
 msgstr "Login"
 
 msgid "about.onlineSubmissions.register"
-msgstr "Registrer"
+msgstr "Registrér"
 
 msgid "about.onlineSubmissions.registrationRequired"
 msgstr "{$login} eller {$register} for at foretage en indsendelse."
@@ -999,7 +1005,7 @@ msgid "about.onlineSubmissions.newSubmission"
 msgstr "Foretag en ny indsendelse"
 
 msgid "about.onlineSubmissions.viewSubmissions"
-msgstr "se dine endnu igangværende indsendelser"
+msgstr "se dine igangværende indsendelser"
 
 msgid "about.authorGuidelines"
 msgstr "Forfattervejledninger"
@@ -1017,7 +1023,7 @@ msgid "about.privacyStatement"
 msgstr "Erklæring om beskyttelse af personlige oplysninger"
 
 msgid "about.reviewPolicy"
-msgstr "Peer review proces"
+msgstr "Fagfællebedømmelsesproces"
 
 msgid "about.publicationFrequency"
 msgstr "Publikationsfrekvens"
@@ -1061,7 +1067,7 @@ msgid "installer.ompUpgrade"
 msgstr "OMP-opgradering"
 
 msgid "installer.installApplication"
-msgstr "Installer Open Monograph Press"
+msgstr "Installér Open Monograph Press"
 
 msgid "installer.installationInstructions"
 msgstr ""
@@ -1160,7 +1166,7 @@ msgid "installer.databaseSettingsInstructions"
 msgstr "OMP kræver adgang til en SQL-database for at gemme des data. Se systemkravene ovenfor der indeholder en liste over understøttede databaser. Angiv de indstillinger, der skal bruges for at oprette forbindelse til databasen i felterne herunder."
 
 msgid "installer.upgradeApplication"
-msgstr "Opgrader Open Monograph Press"
+msgstr "Opgradér Open Monograph Press"
 
 msgid "installer.overwriteConfigFileInstructions"
 msgstr ""
@@ -1359,13 +1365,19 @@ msgid "notification.type.visitCatalogTitle"
 msgstr "Katalogstyring"
 
 msgid "user.authorization.invalidReviewAssignment"
-msgstr "Du er blevet nægtet adgang fordi du ikke ser ud til at være en valid korrekturlæser i forbindelse med denne monografi."
+msgstr ""
+"Du er blevet nægtet adgang, fordi du ikke ser ud til at være en valid "
+"bedømmer i forbindelse med denne monografi."
 
 msgid "user.authorization.monographAuthor"
-msgstr "Du er blevet nægtet adgang fordi du ikke ser ud til af være forfatter til denne monografi."
+msgstr ""
+"Du er blevet nægtet adgang, fordi du ikke ser ud til af være forfatter til "
+"denne monografi."
 
 msgid "user.authorization.monographReviewer"
-msgstr "Du er blevet nægtet adgang fordi du ikke synes at være blevet tildelt korrekturlæserrollen til denne monografi."
+msgstr ""
+"Du er blevet nægtet adgang, fordi du ikke synes at være blevet tildelt "
+"bedømmerrollen til denne monografi."
 
 msgid "user.authorization.monographFile"
 msgstr "Du er blevet nægtet adgang til den angivne monografi-fil."
@@ -1383,7 +1395,9 @@ msgid "user.authorization.workflowStageAssignmentMissing"
 msgstr "Adgang nægtet! Du er ikke blevet tilknyttet dette redaktionelle trin."
 
 msgid "user.authorization.workflowStageSettingMissing"
-msgstr "Adgang nægtet! Den brugergruppe, du i øjeblikket er en del af, er ikke tilknyttet dette redaktionelle trin. Kontroller dine forlagsindstillinger."
+msgstr ""
+"Adgang nægtet! Den brugergruppe, du i øjeblikket er en del af, er ikke "
+"tilknyttet dette redaktionelle trin. Kontrollér dine forlagsindstillinger."
 
 msgid "payment.directSales"
 msgstr "Download fra forlagets webside"
