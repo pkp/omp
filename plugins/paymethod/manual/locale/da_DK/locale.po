@@ -1,6 +1,6 @@
 msgid ""
 msgstr ""
-"PO-Revision-Date: 2020-02-07 10:35+0000\n"
+"PO-Revision-Date: 2020-02-09 18:35+0000\n"
 "Last-Translator: Niels Erik Frederiksen <nef@kb.dk>\n"
 "Language-Team: Danish <http://translate.pkp.sfu.ca/projects/omp/"
 "paymethod-manual/da/>\n"
@@ -34,8 +34,8 @@ msgstr "Manuel betaling af gebyr"
 
 msgid "plugins.paymethod.manual.description"
 msgstr ""
-"Abonnementschefen registrerer manuelt modtagelse af en brugers betaling ("
-"uden for denne software)."
+"Abonnementschefen registrerer manuel modtagelse af en brugers betaling (uden "
+"for denne software)."
 
 msgid "plugins.paymethod.manual.displayName"
 msgstr "Manuel betaling af gebyr"
