@@ -1,0 +1,1042 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: \n"
+"Report-Msgid-Bugs-To: \n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"POT-Creation-Date: 2020-02-13T19:56:53+00:00\n"
+"PO-Revision-Date: 2020-02-13T19:56:53+00:00\n"
+"Language: \n"
+
+msgid "manager.language.confirmDefaultSettingsOverwrite"
+msgstr "Tämä korvaa kaikki tähän kielialueeseen liittyvät, kielialuekohtaiset painon asetukset"
+
+msgid "manager.languages.noneAvailable"
+msgstr "Valitettavasti muita kieliä ei ole käytettävissä. Jos haluat käyttää tässä painossa muita kieliä, ota yhteyttä sivuston ylläpitäjään."
+
+msgid "manager.languages.primaryLocaleInstructions"
+msgstr "Tätä kieltä käytetään painon sivuston oletuskielenä."
+
+msgid "manager.series.form.mustAllowPermission"
+msgstr "Varmista, että vähintään yksi valintaruutu on rastitettu kunkin sarjan toimittajan valinnan kohdalla."
+
+msgid "manager.series.form.reviewFormId"
+msgstr "Varmista, että olet valinnut kelvollisen arviointilomakkeen."
+
+msgid "manager.series.submissionIndexing"
+msgstr "Ei sisällytetä painon indeksointiin"
+
+msgid "manager.series.editorRestriction"
+msgstr "Ainoastaan toimittajat ja sarjan toimittajat voivat lähettää kohteita."
+
+msgid "manager.series.confirmDelete"
+msgstr "Haluatko varmasti poistaa tämän sarjan pysyvästi?"
+
+msgid "manager.series.indexed"
+msgstr "Indeksoitu"
+
+msgid "manager.series.open"
+msgstr "Käsikirjoitukset vapaasti lähetettävissä"
+
+msgid "manager.series.readingTools"
+msgstr "Lukutyökalut"
+
+msgid "manager.series.submissionReview"
+msgstr "Ei vertaisarvioida"
+
+msgid "manager.series.submissionsToThisSection"
+msgstr "Tähän sarjaan lähetetyt käsikirjoitukset"
+
+msgid "manager.series.abstractsNotRequired"
+msgstr "Älä vaadi abstrakteja"
+
+msgid "manager.series.disableComments"
+msgstr "Estä lukijoiden kommentit tähän sarjaan."
+
+msgid "manager.series.book"
+msgstr "Kirjasarja"
+
+msgid "manager.series.create"
+msgstr "Luo sarja"
+
+msgid "manager.series.policy"
+msgstr "Sarjan kuvaus"
+
+msgid "manager.series.assigned"
+msgstr "Tämän sarjan toimittajat"
+
+msgid "manager.series.seriesEditorInstructions"
+msgstr "Lisää tälle sarjalle sarjan toimittaja saatavilla olevista sarjan toimittajista. Määritä sen jälkeen valvooko sarjan toimittaja tämän sarjan käsikirjoitusten ARVIOINTIA (vertaisarviointi) ja/tai TOIMITUSTYÖTÄ (tekninen toimittaminen, taitto ja oikoluku). Sarjan toimittajat luodaan klikkaamalla <a href=\"{$seriesEditorsUrl}\">Sarjan toimittajat</a> Painon hallinnoinnin Roolit-kohdassa."
+
+msgid "manager.series.hideAbout"
+msgstr "Poista tämä sarja Tietoa painosta -sivulta."
+
+msgid "manager.series.unassigned"
+msgstr "Käytettävissä olevat Sarjan toimittajat"
+
+msgid "manager.series.form.abbrevRequired"
+msgstr "Sarjalle vaaditaan lyhennetty nimeke."
+
+msgid "manager.series.form.titleRequired"
+msgstr "Sarjalle vaaditaan nimeke."
+
+msgid "manager.series.noneCreated"
+msgstr "Yhtään sarjaa ei ole luotu."
+
+msgid "manager.series.existingUsers"
+msgstr "Olemassa olevat käyttäjät"
+
+msgid "manager.series.seriesTitle"
+msgstr "Sarjan nimeke"
+
+msgid "manager.series.restricted"
+msgstr "Älä salli kirjoittajien lähettää käsikirjoituksia suoraan tähän sarjaan."
+
+msgid "manager.payment.generalOptions"
+msgstr "Yleiset valinnat"
+
+msgid "manager.payment.options.enablePayments"
+msgstr "Maksut otetaan käyttöön tälle painolle. Huomaa, että käyttäjien tulee kirjautua sisään maksaakseen."
+
+msgid "manager.settings"
+msgstr "Asetukset"
+
+msgid "manager.settings.pressSettings"
+msgstr "Painon asetukset"
+
+msgid "manager.settings.press"
+msgstr "Paino"
+
+msgid "manager.settings.publisherInformation"
+msgstr "Nämä kentät vaaditaan kelvollisten <a href=\"https://en.wikipedia.org/wiki/ONIX_for_Books\">ONIX-metatietojen</a> luomiseen. Täytä kaikki kentät, jos haluat julkaista ONIX-metatietoja."
+
+msgid "manager.settings.publisher"
+msgstr "Julkaisijan nimi"
+
+msgid "manager.settings.location"
+msgstr "Maantieteellinen sijainti"
+
+msgid "manager.settings.publisherCode"
+msgstr "Julkaisijan koodi"
+
+msgid "manager.settings.publisherCodeType"
+msgstr "Julkaisijan koodityyppi"
+
+msgid "manager.settings.publisherCodeType.tip"
+msgstr "Jos sinulla on julkaisijan nimikoodi, täytä se alla. Se sisällytetään luotuihin metatietoihin. Kenttä on pakollinen, jos luot ONIX-metatietoja julkaisuillesi."
+
+msgid "manager.settings.distributionDescription"
+msgstr "Kaikki jakeluprosessiin liittyvät asetukset (ilmoitus, indeksointi, arkistointi, maksaminen, lukutyökalut)."
+
+msgid "manager.statistics.reports.defaultReport.monographDownloads"
+msgstr "Kirjatiedostojen lataukset"
+
+msgid "manager.statistics.reports.defaultReport.monographAbstract"
+msgstr "Kirjan abstraktisivun katselukerrat"
+
+msgid "manager.statistics.reports.defaultReport.monographAbstractAndDownloads"
+msgstr "Kirjan abstrakti ja lataukset"
+
+msgid "manager.statistics.reports.defaultReport.seriesIndexPageViews"
+msgstr "Sarjan pääsivun katselukerrat"
+
+msgid "manager.statistics.reports.defaultReport.pressIndexPageViews"
+msgstr "Painon pääsivun katselukerrat"
+
+msgid "manager.statistics.reports.filters.byContext.description"
+msgstr "Rajaa tuloksia kontekstin (sarja ja/tai kirja) mukaan."
+
+msgid "manager.statistics.reports.filters.byObject.description"
+msgstr "Rajaa tuloksia kohteen tyypin (paino, sarja, kirja, tiedostotyypit) ja/tai yhden tai useamman kohteen tunnisteen perusteella."
+
+msgid "manager.tools"
+msgstr "Työkalut"
+
+msgid "manager.tools.importExport"
+msgstr "Kaikki tietojen (painot, kirjat, käyttäjät) tuomisen ja viemisen työkalut"
+
+msgid "manager.tools.statistics"
+msgstr "Käyttötilastoihin liittyvien raporttien (luettelon hakemistosivun katselukerrat, kirjan abstraktisivun katselukerrat, kirjan tiedostolataukset) luomiseen liittyvät työkalut."
+
+msgid "manager.users"
+msgstr "Käyttäjien hallinnointi"
+
+msgid "manager.users.availableRoles"
+msgstr "Käytettävissä olevat roolit"
+
+msgid "manager.users.currentRoles"
+msgstr "Nykyiset roolit"
+
+msgid "manager.users.selectRole"
+msgstr "Valitse rooli"
+
+msgid "manager.people.allEnrolledUsers"
+msgstr "Tähän painoon lisätyt käyttäjät"
+
+msgid "manager.people.allPresses"
+msgstr "Kaikki painot"
+
+msgid "manager.people.allSiteUsers"
+msgstr "Lisää tämän sivuston käyttäjä tähän painoon"
+
+msgid "manager.people.allUsers"
+msgstr "Kaikki käyttäjät, joilla on rooleja"
+
+msgid "manager.people.confirmRemove"
+msgstr "Poistetaanko tämä käyttäjä tästä painosta? Tämä toiminto poistaa käyttäjän kaikista tähän painoon liittyvistä rooleista."
+
+msgid "manager.people.enrollExistingUser"
+msgstr "Lisää olemassa oleva käyttäjä rooliin"
+
+msgid "manager.people.enrollSyncPress"
+msgstr "Painoon"
+
+msgid "manager.people.mergeUsers.from.description"
+msgstr "Valitse käyttäjä, joka yhdistetään toiseen käyttäjätiliin (esim. jos jollakulla on kaksi käyttäjätiliä). Ensin valittu tili poistetaan ja sen käsikirjoitukset, toimeksiannot jne. siirretään toiselle tilille."
+
+msgid "manager.people.mergeUsers.into.description"
+msgstr "Valitse käyttäjä, kenelle aiemman käyttäjän kirjoittajahenkilöllisyys, toimitustoimeksiannot jne. siirretään."
+
+msgid "manager.people.syncUserDescription"
+msgstr "Rooliin lisäämisen synkronointi lisää kaikki määrätyn painon määrätyssä roolissa olevat käyttäjät tämän painon vastaavaan rooliin. Tämä toiminto mahdollistaa sen, että samankaltaisten käyttäjien joukko (esim. arvioijat) voidaan synkronoida painojen välillä."
+
+msgid "manager.people.confirmDisable"
+msgstr ""
+"Estä tämä käyttäjä? Tämä estää käyttäjän kirjautumisen järjestelmään.\n"
+"\n"
+"Voit halutessasi kertoa käyttäjälle syyn siihen, miksi hänen käyttäjätilinsä on poistettu käytöstä."
+
+msgid "manager.people.noAdministrativeRights"
+msgstr ""
+"Sinulla ei ole hallinnollisia oikeuksia tähän käyttäjään. Syynä tähän voi olla:\n"
+"<ul>\n"
+"\t\t\t<li>Käyttäjä on sivuston ylläpitäjä</li>\n"
+"\t\t\t<li>Käyttäjä on aktiivisena painoissa, joita sinä et hallinnoi</li>\n"
+"\t\t</ul>\n"
+"Tämän tehtävän voi suorittaa vain sivuston ylläpitäjä.\n"
+""
+
+msgid "manager.system"
+msgstr "Järjestelmäasetukset"
+
+msgid "manager.system.archiving"
+msgstr "Arkistointi"
+
+msgid "manager.system.reviewForms"
+msgstr "Arviointilomakkeet"
+
+msgid "manager.system.readingTools"
+msgstr "Lukutyökalut"
+
+msgid "manager.system.payments"
+msgstr "Maksut"
+
+msgid "user.authorization.pluginLevel"
+msgstr "Sinulla ei ole riittäviä oikeuksia tämän lisäosan hallinnointiin."
+
+msgid "manager.pressManagement"
+msgstr "Painon hallinnointi"
+
+msgid "manager.setup"
+msgstr "Asetukset"
+
+msgid "manager.setup.aboutItemContent"
+msgstr "Sisältö"
+
+msgid "manager.setup.addAboutItem"
+msgstr "Lisää Tietoa-kohta"
+
+msgid "manager.setup.addChecklistItem"
+msgstr "Lisää tarkistuslistan kohta"
+
+msgid "manager.setup.addItem"
+msgstr "Lisää kohta"
+
+msgid "manager.setup.addItemtoAboutPress"
+msgstr "Lisää kohta näkyviin Tietoa painosta -sivulle"
+
+msgid "manager.setup.addNavItem"
+msgstr "Lisää kohta"
+
+msgid "manager.setup.addSponsor"
+msgstr "Lisää tukiorganisaatio"
+
+msgid "manager.setup.announcements"
+msgstr "Ilmoitukset"
+
+msgid "manager.setup.announcementsDescription"
+msgstr "Ilmoituksia julkaisemalla lukijoille voidaan kertoa painon uutisista ja tapahtumista. Julkaistut ilmoitukset näkyvät Ilmoitukset-sivulla."
+
+msgid "manager.setup.announcementsIntroduction"
+msgstr "Lisätietoja"
+
+msgid "manager.setup.announcementsIntroductionDescription"
+msgstr "Syötä mitä tahansa lisätietoja, joiden halutaan näkyvän Ilmoitukset-sivun lukijoille."
+
+msgid "manager.setup.appearInAboutPress"
+msgstr "(Näkyy Tietoa painosta -sivulla) "
+
+msgid "manager.setup.copyediting"
+msgstr "Tekniset toimittajat"
+
+msgid "manager.setup.copyeditInstructions"
+msgstr "Teknisen toimittamisen ohjeet"
+
+msgid "manager.setup.copyeditInstructionsDescription"
+msgstr "Teknisen toimittamisen ohjeet tulevat teknisten toimittajien, kirjoittajien ja osastotoimittajien saataville käsikirjoituksen toimittamisvaiheessa. Alla HTML-muotoiset oletusohjeet, joita painon hallinnoija voi muokata tai korvata missä tahansa vaiheessa (HTML-muodossa tai pelkkänä tekstinä)."
+
+msgid "manager.setup.copyrightNotice"
+msgstr "Tekijänoikeushuomautus"
+
+msgid "manager.setup.coverage"
+msgstr "Kattavuus"
+
+msgid "manager.setup.customizingTheLook"
+msgstr "Vaihe 5. Ulkoasun ja yleisilmeen mukauttaminen"
+
+msgid "manager.setup.customTags"
+msgstr "Mukautetut tagit"
+
+msgid "manager.setup.customTagsDescription"
+msgstr "Mukautetut HTML-muotoiset ylätunnisteen tagit, jotka sijoitetaan jokaisen sivun ylätunnisteeseen (esim. meta-tagit)."
+
+msgid "manager.setup.details"
+msgstr "Tiedot"
+
+msgid "manager.setup.details.description"
+msgstr "Painon nimi, yhteystiedot, tukijat ja hakukoneet."
+
+msgid "manager.setup.disableUserRegistration"
+msgstr "Painon hallinnoija rekisteröi kaikki käyttäjätilit. Toimittajat tai osastotoimittajat voivat rekisteröidä käyttäjätilejä arvioijille."
+
+msgid "manager.setup.discipline"
+msgstr "Akateeminen tieteenala ja alatieteet"
+
+msgid "manager.setup.disciplineDescription"
+msgstr "Hyödyllinen, kun paino ylittää tieteenalojen väliset rajat ja/tai kun tekijät lähettävät monitieteellisiä kohteita."
+
+msgid "manager.setup.disciplineExamples"
+msgstr "(Esim. historia; koulutus; sosiologia; psykologia; kulttuurintutkimus; laki)"
+
+msgid "manager.setup.disciplineProvideExamples"
+msgstr "Anna esimerkkejä tähän painoon liittyvistä olennaisista akateemisista tieteenaloista"
+
+msgid "manager.setup.displayCurrentMonograph"
+msgstr "Lisää uusimman kirjan sisällysluettelo (jos saatavilla)."
+
+msgid "manager.setup.displayOnHomepage"
+msgstr "Etusivun sisältö"
+
+msgid "manager.setup.displayFeaturedBooks"
+msgstr "Näytä esittelyssä olevat kirjat etusivulla."
+
+msgid "manager.setup.displayInSpotlight"
+msgstr "Näytä kirjat nostoissa etusivulla."
+
+msgid "manager.setup.displayNewReleases"
+msgstr "Näytä uutuudet etusivulla."
+
+msgid "manager.setup.doiPrefix"
+msgstr "DOI-prefiksi"
+
+msgid "manager.setup.doiPrefixDescription"
+msgstr "DOI (Digital Object Identifier) -prefiksi on <a href=\"http://www.crossref.org\" target=\"_blank\">CrossRef</a>:in myöntämä ja se on muodossa 10.xxxx (esim. 10.1234)."
+
+msgid "manager.setup.editorDecision"
+msgstr "Toimittajan päätös"
+
+msgid "manager.setup.emailBounceAddress"
+msgstr "Palautusosoite"
+
+msgid "manager.setup.emailBounceAddressDescription"
+msgstr "Tähän osoitteeseen lähetetään virheilmoitus aina, kun sähköpostia ei voida toimittaa perille."
+
+msgid "manager.setup.emailBounceAddressDisabled"
+msgstr "<strong>Huom!</strong> Aktivoidakseen tämän valinnan sivuston ylläpitäjän täytyy ottaa käyttöön <tt>allow_envelope_sender</tt> -valinta OMP:n määritystiedostossa. Palvelimen lisämäärityksiä saatetaan edellyttää tämän toiminnon tukemiseksi (joka ei välttämättä ole mahdollista kaikilla palvelimilla), kuten OMP:n käyttöohjeissa mainitaan."
+
+msgid "manager.setup.emails"
+msgstr "Sähköpostitunnistautuminen"
+
+msgid "manager.setup.emailSignature"
+msgstr "Allekirjoitus"
+
+msgid "manager.setup.emailSignatureDescription"
+msgstr "Valmiisiin sähköposteihin, jotka järjestelmä lähettää painon puolesta, lisätään seuraava allekirjoitus."
+
+msgid "manager.setup.enableAnnouncements"
+msgstr "Ota ilmoitukset käyttöön."
+
+msgid "manager.setup.enableAnnouncementsHomepage1"
+msgstr "Näytä"
+
+msgid "manager.setup.enableAnnouncementsHomepage2"
+msgstr "viimeisintä ilmoitusta painon etusivulla."
+
+msgid "manager.setup.enablePressInstructions"
+msgstr "Näytä tämä paino julkisesti sivustolla"
+
+msgid "manager.setup.enablePublicMonographId"
+msgstr "Mukautettuja tunnisteita käytetään julkaistujen kohteiden identifioimiseen."
+
+msgid "manager.setup.enablePublicGalleyId"
+msgstr "Mukautettuja tunnisteita käytetään julkaistujen kohteiden julkaistavien tiedostojen (esim. HTML- tai PDF-tiedostot) identifioimiseen."
+
+msgid "manager.setup.enableUserRegistration"
+msgstr "Vierailijat voivat rekisteröidä käyttäjätilin painoon."
+
+msgid "manager.setup.focusAndScope"
+msgstr "Painon tarkoitus ja toimintaperiaatteet"
+
+msgid "manager.setup.focusAndScope.description"
+msgstr "Kuvaile kirjoittajille, lukijoille ja kirjastonhoitajille millaisia kirjoja ja muita kohteita paino julkaisee."
+
+msgid "manager.setup.focusScope"
+msgstr "Tarkoitus ja toimintaperiaatteet"
+
+msgid "manager.setup.focusScopeDescription"
+msgstr "<strong>HTML-MUOTOINEN ESIMERKKITEKSTI</strong>"
+
+msgid "manager.setup.forAuthorsToIndexTheirWork"
+msgstr "Kirjoittajille töiden indeksointia varten"
+
+msgid "manager.setup.forAuthorsToIndexTheirWorkDescription"
+msgstr "OMP noudattaa <a href=\"http://www.openarchives.org/\" target=\"_blank\">Open Archives Initiativen</a> protokollaa metatietojen haravoinnista, joka on nouseva standardi elektronisten tutkimusresurssien hyvin indeksoidun saatavuuden tarjoamisessa maailmanlaajuisesti. Kirjoittajat käyttävät samanlaista mallipohjaa antaessaan käsikirjoitustensa metatiedot. Painon hallinnoijan tulee valita käytettävät indeksointikategoriat ja avustaa kirjoittajia töidensä indeksoinnissa tarjoamalla olennaisia esimerkkejä, ehdot puolipisteellä (esim. ehto1; ehto2) erotellen. Merkinnät tulee esitellä esimerkkeinä \"esim.\" -lyhennettä tai \"esimerkiksi\"-termiä käyttäen."
+
+msgid "manager.setup.form.contactEmailRequired"
+msgstr "Ensisijainen sähköposti yhteydenottoja varten vaaditaan."
+
+msgid "manager.setup.form.contactNameRequired"
+msgstr "Ensisijainen yhteyshenkilö vaaditaan."
+
+msgid "manager.setup.form.pressNameRequired"
+msgstr "Painon nimi vaaditaan."
+
+msgid "manager.setup.form.numReviewersPerSubmission"
+msgstr "Arvioijien määrä käsikirjoitusta kohti vaaditaan."
+
+msgid "manager.setup.form.supportEmailRequired"
+msgstr "Teknisen tuen sähköposti vaaditaan."
+
+msgid "manager.setup.form.supportNameRequired"
+msgstr "Teknisen tuen henkilö vaaditaan."
+
+msgid "manager.setup.form.pressInitialsRequired"
+msgstr "Painon alkukirjaimet tarvitaan."
+
+msgid "manager.setup.generalInformation"
+msgstr "Yleisiä tietoja"
+
+msgid "manager.setup.gettingDownTheDetails"
+msgstr "Vaihe 1. Perustiedot"
+
+msgid "manager.setup.guidelines"
+msgstr "Ohjeet"
+
+msgid "manager.setup.preparingWorkflow"
+msgstr "Vaihe 3. Työnkulun valmisteleminen"
+
+msgid "manager.setup.information.description"
+msgstr "Lyhyet kuvaukset painosta kirjastonhoitajille, mahdollisille kirjoittajille ja lukijoille. Kuvaukset tulevat näkyville sivuston sivupalkkiin, kun Tietoa-lohko on lisätty."
+
+msgid "manager.setup.information.forAuthors"
+msgstr "Kirjoittajille"
+
+msgid "manager.setup.information.forLibrarians"
+msgstr "Kirjastonhoitajille"
+
+msgid "manager.setup.information.forReaders"
+msgstr "Lukijoille"
+
+msgid "manager.setup.institution"
+msgstr "Instituutio"
+
+msgid "manager.setup.labelName"
+msgstr "Selitteen nimi"
+
+msgid "manager.setup.layoutAndGalleys"
+msgstr "Taittajat"
+
+msgid "manager.setup.layoutInstructions"
+msgstr "Taitto-ohjeet"
+
+msgid "manager.setup.layoutInstructionsDescription"
+msgstr "Julkaistavien kohteiden muotoilua varten voidaan tehdä taitto-ohjeet, jotka voidaan syöttää alle joko HTML-muodossa tai pelkkänä tekstinä. Ne tulevat taittajan ja osastotoimittajan saataville jokaisen käsikirjoituksen toimittamissivulla. (Koska jokainen paino saattaa käyttää eri tiedostomuotoja, bibliografisia standardeja, tyylitiedostoja jne., oletusohjeita ei anneta.)"
+
+msgid "manager.setup.layoutTemplates"
+msgstr "Taiton mallipohjat"
+
+msgid "manager.setup.layoutTemplatesDescription"
+msgstr "Jokaiselle painossa julkaistavalle, mitä tahansa tiedostomuotoa (esim. pdf, doc jne.) käyttävälle, standardimuodolle (esim. kirja, kirja-arvostelu jne.), voidaan ladata mallipohja, joka näkyy Taitto-kohdassa. Mallipohjiin voi lisätä huomautuksia, jotka määrittävät kirjasinlajin, koon, reunukset jne. ja toimivat ohjeena taittajille ja oikolukijoille."
+
+msgid "manager.setup.layoutTemplates.file"
+msgstr "Mallipohjatiedosto"
+
+msgid "manager.setup.layoutTemplates.title"
+msgstr "Otsikko"
+
+msgid "manager.setup.lists"
+msgstr "Listat"
+
+msgid "manager.setup.listsDescription"
+msgstr "Rajoita listan sivuilla näytettävien kohteiden (esim. käsikirjoitukset, käyttäjät tai toimitustoimeksiannot) määrää. Rajoita myös listan seuraaville sivuille johtavien linkkien näytettävää määrää."
+
+msgid "manager.setup.look"
+msgstr "Ulkoasu & Yleisilme"
+
+msgid "manager.setup.look.description"
+msgstr "Etusivun ylätunniste, sisältö, painon ylätunniste, alatunniste, navigointipalkki ja tyylitiedosto."
+
+msgid "manager.setup.settings"
+msgstr "Asetukset"
+
+msgid "manager.setup.management.description"
+msgstr "Käyttöoikeudet ja turvallisuus, aikataulutus, ilmoitukset, tekninen toimittaminen, taitto ja oikoluku."
+
+msgid "manager.setup.managementOfBasicEditorialSteps"
+msgstr "Toimituksellisten perusvaiheiden hallinnointi"
+
+msgid "manager.setup.managingPublishingSetup"
+msgstr "Hallinnoinnin ja julkaisemisen asetukset"
+
+msgid "manager.setup.managingThePress"
+msgstr "Vaihe 4. Asetusten hallinnointi"
+
+msgid "manager.setup.noImageFileUploaded"
+msgstr "Ei ladattua kuvatiedostoa."
+
+msgid "manager.setup.noStyleSheetUploaded"
+msgstr "Ei ladattua tyylitiedostoa."
+
+msgid "manager.setup.note"
+msgstr "Huomautus"
+
+msgid "manager.setup.notifyAllAuthorsOnDecision"
+msgstr "Käyttäessäsi Ilmoita kirjoittajalle -sähköpostia, muista lisätä vastaanottajaksi käsikirjoituksen lähettäneen käyttäjän lisäksi kaikki kirjoittajat, kun kyseessä on käsikirjoitus, jolla on monta kirjoittajaa."
+
+msgid "manager.setup.noUseCopyeditors"
+msgstr "Käsikirjoitukselle valittu toimittaja tai osastotoimittaja hoitaa teknisen toimittamisen."
+
+msgid "manager.setup.noUseLayoutEditors"
+msgstr "Käsikirjoitukselle valittu toimittaja tai osastotoimittaja valmistelee HTML-, PDF- ja muut tiedostot."
+
+msgid "manager.setup.noUseProofreaders"
+msgstr "Käsikirjoitukselle valittu toimittaja tai osastotoimittaja tarkistaa julkaistavat tiedostot."
+
+msgid "manager.setup.numPageLinks"
+msgstr "Sivun linkit"
+
+msgid "manager.setup.onlineAccessManagement"
+msgstr "Pääsy painon sisältöön"
+
+msgid "manager.setup.onlineIssn"
+msgstr "Verkkokirjan ISSN"
+
+msgid "manager.setup.policies"
+msgstr "Toimintaperiaatteet"
+
+msgid "manager.setup.policies.description"
+msgstr "Painon tarkoitus, vertaisarviointi, osastot, yksityisyyden suoja, turvallisuus ja lisätietoja kohteista."
+
+msgid "manager.setup.appearanceDescription"
+msgstr "Tällä sivulla voidaan määrittää painon eri osien ulkoasu, kuten ylä- ja alatunnisteiden osat, painon tyyli ja teema, sekä se, kuinka listattu tieto esitetään käyttäjille."
+
+msgid "manager.setup.pressDescription"
+msgstr "Paino lyhyesti"
+
+msgid "manager.setup.pressDescription.description"
+msgstr "Lyhyt kuvaus painosta."
+
+msgid "manager.setup.aboutPress"
+msgstr "Tietoa painosta"
+
+msgid "manager.setup.aboutPress.description"
+msgstr "Sisällytä tähän mitä tahansa tietoa painosta, joka saattaa kiinnostaa lukijoita, kirjoittajia ja arvioijia. Tällaisia tietoja voivat olla esim. avoimen saatavuuden periaate, painon tarkoitus ja toimintaperiaatteet, tekijänoikeushuomautus, tiedonanto tukemista koskien, painon historia ja tietosuojaseloste."
+
+msgid "manager.setup.pressArchiving"
+msgstr "Painon arkistointi"
+
+msgid "manager.setup.homepageContent"
+msgstr "Painon etusivun sisältö"
+
+msgid "manager.setup.homepageContentDescription"
+msgstr "Painon etusivu koostuu oletusarvoisesti siirtymälinkeistä. Muuta sisältöä etusivulle voidaan liittää käyttämällä yhtä tai kaikkia seuraavista vaihtoehdoista, jotka ilmestyvät esitetyssä järjestyksessä."
+
+msgid "manager.setup.pressHomepageContent"
+msgstr "Painon etusivun sisältö"
+
+msgid "manager.setup.pressHomepageContentDescription"
+msgstr "Painon etusivu koostuu oletusarvoisesti siirtymälinkeistä. Muuta sisältöä etusivulle voidaan liittää käyttämällä yhtä tai kaikkia seuraavista vaihtoehdoista, jotka ilmestyvät esitetyssä järjestyksessä."
+
+msgid "manager.setup.pressInitials"
+msgstr "Painon alkukirjaimet"
+
+msgid "manager.setup.layout"
+msgstr "Painon taitto"
+
+msgid "manager.setup.pageHeader"
+msgstr "Painon sivun ylätunniste"
+
+msgid "manager.setup.pageHeaderDescription"
+msgstr ""
+
+msgid "manager.setup.pressPolicies"
+msgstr "Vaihe 2. Painon toimintaperiaatteet"
+
+msgid "manager.setup.pressSetup"
+msgstr "Painon asetukset"
+
+msgid "manager.setup.pressSetupUpdated"
+msgstr "Painosi asetukset on päivitetty."
+
+msgid "manager.setup.styleSheetInvalid"
+msgstr "Virheellinen tyylitiedoston muoto. Hyväksytty muoto on .css."
+
+msgid "manager.setup.pressTheme"
+msgstr "Painon teema"
+
+msgid "manager.setup.contextName"
+msgstr "Painon nimi"
+
+msgid "manager.setup.printIssn"
+msgstr "Painetun kirjan ISSN"
+
+msgid "manager.setup.proofingInstructions"
+msgstr "Oikolukuohjeet"
+
+msgid "manager.setup.proofingInstructionsDescription"
+msgstr "Oikoluvun ohjeet tulevat oikolukijoiden, kirjoittajien, taittajien ja osastotoimittajien saataville käsikirjoituksen toimittamisvaiheessa. Alla HTML-muotoiset oletusohjeet, joita painon hallinnoija voi muokata tai korvata missä tahansa vaiheessa (HTML-muodossa tai pelkkänä tekstinä)."
+
+msgid "manager.setup.proofreading"
+msgstr "Oikolukijat"
+
+msgid "manager.setup.provideRefLinkInstructions"
+msgstr "Anna ohjeet taittajille."
+
+msgid "manager.setup.publicationScheduleDescription"
+msgstr "Nimekkeitä voidaan julkaista kokonaisuutena osana kirjaa, jolla on oma sisällysluettelonsa. Vaihtoehtoisesti yksittäisiä nimekkeitä voidaan julkaista heti niiden ollessa valmiita, lisäämällä ne uusimman niteen sisällysluetteloon. Kerro lukijoille tämän painon käytännöstä asian suhteen sekä oletetusta julkaisutiheydestä Tietoa painosta -sivulla."
+
+msgid "manager.setup.publisher"
+msgstr "Julkaisija"
+
+msgid "manager.setup.publisherDescription"
+msgstr "Painoa ylläpitävän organisaation nimi näkyy Tietoa painosta -sivulla."
+
+msgid "manager.setup.referenceLinking"
+msgstr "Lähdeviitteiden linkitys"
+
+msgid "manager.setup.refLinkInstructions.description"
+msgstr "Taiton ohjeet lähdeviitteiden linkitykseen"
+
+msgid "manager.setup.restrictMonographAccess"
+msgstr "Käyttäjien tulee olla rekisteröityneitä ja sisäänkirjautuneita katsellakseen avoimesti saatavilla olevaa sisältöä."
+
+msgid "manager.setup.restrictSiteAccess"
+msgstr "Käyttäjien tulee olla rekisteröityneitä ja sisäänkirjautuneita katsellakseen painon sivustoa."
+
+msgid "manager.setup.reviewGuidelines"
+msgstr "Ulkopuolista arviointia koskevat ohjeet"
+
+msgid "manager.setup.reviewGuidelinesDescription"
+msgstr "Anna ulkopuolisille arvioijille kriteerit, joiden perusteella he arvioivat soveltuuko käsikirjoitus julkaistavaksi painossa. Ohjeet voivat sisältää myös ohjeita vaikuttavan ja hyödyllisen arvion kirjoittamiseksi. Arvioijilla on mahdollisuus antaa sekä kirjoittajalle että toimittajalle tarkoitettuja kommentteja ja erillisiä, vain toimittajalle tarkoitettuja kommentteja."
+
+msgid "manager.setup.internalReviewGuidelines"
+msgstr "Sisäistä arviointia koskevat ohjeet"
+
+msgid "manager.setup.internalReviewGuidelinesDescription"
+msgstr "Aivan kuten ulkopuolista arviointia koskevat ohjeet, nämäkin ohjeet tarjoavat arvioijille tietoa käsikirjoituksen arviointiin liittyen. Nämä ohjeet koskevat painoja, jotka yleisesti käyttävät arviointiprosessissa painon sisäisiä arvioijia."
+
+msgid "manager.setup.reviewOptions"
+msgstr "Arviointiin liittyvät valinnat"
+
+msgid "manager.setup.reviewOptions.automatedReminders"
+msgstr "Automaattiset sähköpostimuistutukset"
+
+msgid "manager.setup.reviewOptions.automatedRemindersDisabled"
+msgstr "Aktivoidakseen nämä valinnat sivuston ylläpitäjän täytyy ottaa käyttöön <tt>scheduled_tasks</tt> -valinta OMP:n määritystiedostossa. Palvelimen lisämäärityksiä saatetaan edellyttää tämän toiminnon tukemiseksi (joka ei välttämättä ole mahdollista kaikilla palvelimilla), kuten OMP:n käyttöohjeissa mainitaan."
+
+msgid "manager.setup.reviewOptions.blindReview"
+msgstr "Sokkoarviointi"
+
+msgid "manager.setup.reviewOptions.onQuality"
+msgstr "Toimittajat arvostelevat arvioijat viisiportaisella laatuasteikolla jokaisen arviointitapahtuman jälkeen."
+
+msgid "manager.setup.reviewOptions.restrictReviewerFileAccess"
+msgstr "Arvioijilla on pääsy käsikirjoitustiedostoon vasta suostuttuaan arvioimaan sen."
+
+msgid "manager.setup.reviewOptions.reviewerAccess"
+msgstr "Arvioijan pääsy käsikirjoitukseen"
+
+msgid "manager.setup.reviewOptions.reviewerAccessKeysEnabled"
+msgstr "Salli arvioijalle pääsy yhdellä klikkauksella."
+
+msgid "manager.setup.reviewOptions.reviewerAccessKeysEnabled.description"
+msgstr "<strong>Huom!</strong> Arvioijille lähetettävässä sähköpostikutsussa on erityinen URL-osoite, jonka kautta arvioijat pääsevät suoraan käsikirjoituksen arviointisivulle (muille sivuille pääsy vaatii sisäänkirjautumisen). Tietoturvasyistä tämän valinnan kohdalla toimittajat eivät voi muokata sähköpostiosoitteita eivätkä lisätä kopioita tai piilokopioita ennen viestin lähettämistä."
+
+msgid "manager.setup.reviewOptions.reviewerRatings"
+msgstr "Arvioijien arvostelu"
+
+msgid "manager.setup.reviewOptions.reviewerReminders"
+msgstr "Arvioijan muistutukset"
+
+msgid "manager.setup.reviewOptions.showEnsuringLink"
+msgstr "Anna linkkejä sokkoarvioinnin varmistamiseen liittyen sellaisilla sivuilla, joissa kirjoittajat ja arvioijat lataavat tiedostoja."
+
+msgid "manager.setup.reviewPolicy"
+msgstr "Arviointiperiaatteet"
+
+msgid "manager.setup.reviewProcess"
+msgstr "Arviointiprosessi"
+
+msgid "manager.setup.reviewProcessDescription"
+msgstr "OMP tukee kahta arviointiprosessin hallinnointimallia. Standardi arviointiprosessi on suositeltava, koska siinä arvioijat johdatetaan prosessin läpi vaihe kerrallaan. Se myös takaa jokaiselle käsikirjoitukselle täyden arviointihistorian, hyödyntää automaattista muistutustoimintoa sekä standardimuotoisia suosituksia käsikirjoituksille (Hyväksy; Hyväksy korjauksin; Lähetä arviointiin; Lähetä toiseen julkaisuun; Hylkää; Katso kommentit).<br /><br />Valitse yksi seuraavista:"
+
+msgid "manager.setup.reviewProcessEmail"
+msgstr "Arviointiprosessi sähköpostin liitetiedostoja käyttäen"
+
+msgid "manager.setup.reviewProcessStandard"
+msgstr "Standardi arviointiprosessi"
+
+msgid "manager.setup.reviewProcessStandardDescription"
+msgstr "Toimittajat lähettävät valituille arvioijille sähköpostilla käsikirjoituksen nimekkeen ja abstraktin sekä kutsun kirjautua painon verkkosivustolle arvioinnin suorittamista varten. Verkkosivustolla arvioijat hyväksyvät/hylkäävät arviointikutsun, lataavat käsikirjoituksia, lähettävät kommenttinsa ja valitsevat suosituksen."
+
+msgid "manager.setup.searchEngineIndexing"
+msgstr "Hakukoneindeksointi"
+
+msgid "manager.setup.searchEngineIndexingDescription"
+msgstr "Anna painosta lyhyt kuvaus, jonka hakukoneet voivat näyttää listatessaan painon hakutuloksissa."
+
+msgid "manager.setup.sectionsAndSectionEditors"
+msgstr "Osastot ja osastotoimittajat"
+
+msgid "manager.setup.sectionsDefaultSectionDescription"
+msgstr "(Jos osastoja ei ole lisätty, kohteet lähetetään oletusarvoisesti Kirjat-osastoon.)"
+
+msgid "manager.setup.sectionsDescription"
+msgstr "Luodaksesi tai muokataksesi painon osastoja (esim. kirjat, kirja-arvostelut jne.) mene Osaston hallinnointi -kohtaan.<br /><br />Painolle kohteita lähettävät kirjoittajat nimittävät..."
+
+msgid "manager.setup.securitySettings"
+msgstr "Käyttöoikeus- ja turvallisuusasetukset"
+
+msgid "manager.setup.securitySettings.note"
+msgstr "Muita turvallisuuteen ja käyttöoikeuksiin liittyviä valintoja voidaan määrittää <a href=\"{$accessAndSecurityUrl}\" target=\"_blank\" class=\"action\">Käyttöoikeudet ja turvallisuus</a> -sivulla."
+
+msgid "manager.setup.selectEditorDescription"
+msgstr "Painon toimittaja, joka on mukana toimitusprosessin alusta loppuun asti."
+
+msgid "manager.setup.selectSectionDescription"
+msgstr "Painon osasto, johon kohdetta harkitaan."
+
+msgid "manager.setup.showGalleyLinksDescription"
+msgstr "Näytä aina julkaistavien tiedostojen linkit ja ilmaise rajoitettu saatavuus."
+
+msgid "manager.setup.siteAccess"
+msgstr "Sivuston ja sisällön saatavuuden lisärajoitukset"
+
+msgid "manager.setup.stepsToPressSite"
+msgstr "Painon verkkosivuston luonnin viisi vaihetta"
+
+msgid "manager.setup.subjectExamples"
+msgstr "(Esim. fotosynteesi; mustat aukot; neliväriteoreema; Bayesin teoreema)"
+
+msgid "manager.setup.subjectKeywordTopic"
+msgstr "Avainsanat"
+
+msgid "manager.setup.subjectProvideExamples"
+msgstr "Anna esimerkkejä avainsanoista tai aiheista kirjoittajien avuksi"
+
+msgid "manager.setup.submissionGuidelines"
+msgstr "Käsikirjoituksen lähettämisen ohjeet"
+
+msgid "manager.setup.submissionPreparationChecklist"
+msgstr "Käsikirjoituksen lähettämisen tarkistuslista"
+
+msgid "maganer.setup.submissionChecklistItemRequired"
+msgstr "Tarkistuslistan kohta vaaditaan."
+
+msgid "manager.setup.workflow"
+msgstr "Työnkulku"
+
+msgid "manager.setup.submissions.description"
+msgstr "Ohjeet kirjoittajille, tekijänoikeudet ja indeksointi (sis. rekisteröinnin)."
+
+msgid "manager.setup.coverThumbnails"
+msgstr "Kannen pikkukuvat"
+
+msgid "manager.setup.coverThumbnailsDescription"
+msgstr "Määritä kannen pikkukuvien maksimileveys ja -korkeus. Mikäli pikkukuvien koko on näitä asetuksia suurempi, kokoa pienennetään, mutta kuvien ollessa asetuksia pienempiä, niitä ei laajenneta. Kuvia ei koskaan venytetä näihin mittoihin."
+
+msgid "manager.setup.coverThumbnailsMaxHeight"
+msgstr "Maksimikorkeus"
+
+msgid "manager.setup.coverThumbnailsMaxHeightRequired"
+msgstr "Kannen pikkukuvien maksimikorkeus vaaditaan."
+
+msgid "manager.setup.coverThumbnailsMaxWidth"
+msgstr "Maksimileveys"
+
+msgid "manager.setup.coverThumbnailsMaxWidthRequired"
+msgstr "Kannen pikkukuvien maksimileveys vaaditaan."
+
+msgid "manager.setup.coverThumbnailsResize"
+msgstr "Muuta kaikkien olemassa olevien kannen pikkukuvien kokoa."
+
+msgid "manager.setup.typeExamples"
+msgstr "(Esim. historiatutkimus; kvasikokeellinen; kirjallisuusanalyysi; kysely/haastattelu)"
+
+msgid "manager.setup.typeMethodApproach"
+msgstr "Tyyppi (menetelmä/lähestymistapa)"
+
+msgid "manager.setup.typeProvideExamples"
+msgstr "Anna esimerkkejä tälle alalle oleellisista tutkimustyypeistä ja -menetelmistä sekä lähestymistavoista"
+
+msgid "manager.setup.useCopyeditors"
+msgstr "Jokaiselle käsikirjoitukselle valitaan tekninen toimittaja."
+
+msgid "manager.setup.useEditorialReviewBoard"
+msgstr "Paino käyttää toimitus-/arviointineuvostoa."
+
+msgid "manager.setup.useImageTitle"
+msgstr "Nimekkeen kuva"
+
+msgid "manager.setup.useStyleSheet"
+msgstr "Painon tyylitiedosto"
+
+msgid "manager.setup.useLayoutEditors"
+msgstr "Sähköisen julkaisun HTML-, PDF- ja muiden tiedostojen valmisteluun valitaan taittaja."
+
+msgid "manager.setup.useProofreaders"
+msgstr "Julkaistavien tiedostojen tarkistamiseen (yhdessä kirjoittajien kanssa) ennen julkaisua valitaan oikolukija."
+
+msgid "manager.setup.userRegistration"
+msgstr "Käyttäjärekisteröinti"
+
+msgid "manager.setup.useTextTitle"
+msgstr "Nimekkeen teksti"
+
+msgid "manager.setup.volumePerYear"
+msgstr "Nidettä vuodessa"
+
+msgid "manager.setup.publicationFormat.code"
+msgstr "Muoto"
+
+msgid "manager.setup.publicationFormat.codeRequired"
+msgstr "Muoto on valittava."
+
+msgid "manager.setup.publicationFormat.nameRequired"
+msgstr "Tälle muodolle on annettava nimi."
+
+msgid "manager.setup.publicationFormat.physicalFormat"
+msgstr "Onko tämä fyysinen (ei digitaalinen) muoto?"
+
+msgid "manager.setup.publicationFormat.inUse"
+msgstr "Tätä julkaisumuotoa ei voi poistaa, koska se on tällä hetkellä yhden painosi kirjan käytössä."
+
+msgid "manager.setup.newPublicationFormat"
+msgstr "Uusi julkaisumuoto"
+
+msgid "manager.setup.newPublicationFormatDescription"
+msgstr "Luo uusi julkaisumuoto täyttämällä alla oleva lomake ja klikkaamalla ”Luo”-painiketta."
+
+msgid "manager.setup.genresDescription"
+msgstr "Näitä lajityyppejä käytetään tiedostojen nimeämistarkoituksiin ja ne näytetään vetovalikossa tiedostojen lataamisen yhteydessä. ##-merkityt lajityypit mahdollistavat sen, että käyttäjät voivat yhdistää tiedoston joko koko kirjaan 99Z tai vain tiettyyn lukuun numerolla (esim. 02)."
+
+msgid "manager.setup.reviewProcessEmailDescription"
+msgstr "Toimittajat lähettävät arvioijille arviointipyynnön sähköpostilla, jonka liitteenä käsikirjoitus on. Arvioijat ilmoittavat sähköpostitse joko hyväksyvänsä tai hylkäävänsä arviointipyynnön. Samoin itse arviointi ja suositus toimitetaan sähköpostitse. Toimittajat syöttävät arvioijan suostumuksen/kieltäytymisen, arvioinnin sekä suosituksen käsikirjoituksen Arviointi-sivulle, jotta arviointiprosessi tallentuu järjestelmään."
+
+msgid "manager.setup.genres"
+msgstr "Lajityypit"
+
+msgid "manager.setup.newGenre"
+msgstr "Uusi kirjan lajityyppi"
+
+msgid "manager.setup.newGenreDescription"
+msgstr "Luo uusi lajityyppi täyttämällä alla oleva lomake ja klikkaamalla ”Luo”-painiketta."
+
+msgid "manager.setup.deleteSelected"
+msgstr "Poista valitut"
+
+msgid "manager.setup.restoreDefaults"
+msgstr "Palauta oletusasetukset"
+
+msgid "manager.setup.prospectus"
+msgstr "Esiteopas"
+
+msgid "manager.setup.prospectusDescription"
+msgstr "Esiteopas on painon laatima asiakirja. Sen tarkoitus on auttaa kirjoittajaa kuvailemaan lähetettyjä materiaaleja tavalla, joka mahdollistaa sen, että paino voi määritellä käsikirjoituksen arvon. Esite voi sisältää paljon kohtia aina markkinointipotentiaalista teoreettiseen arvoon. Joka tapauksessa painon tulisi luoda sellainen esiteopas, joka täydentää sen julkaisutavoitteita."
+
+msgid "manager.setup.submitToCategories"
+msgstr "Salli käsikirjoitusten lähetys kategoriaan"
+
+msgid "manager.setup.submitToSeries"
+msgstr "Salli käsikirjoitusten lähetys sarjaan"
+
+msgid "manager.setup.issnDescription"
+msgstr "ISSN (International Standard Serial Number) on kahdeksannumeroinen tunnus, joka toimii aikakausjulkaisujen, mukaan lukien sähköiset kausijulkaisut, tunnuksena. Tunnuksen saa <a href=\"https://www.kiwi.fi/display/ISSN\" target=\"_blank\">Suomen ISSN-keskuksesta</a>."
+
+msgid "manager.setup.cataloguingMetadata"
+msgstr "Metatietojen luettelointi"
+
+msgid "manager.setup.currentFormats"
+msgstr "Nykyiset muodot"
+
+msgid "manager.setup.categoriesAndSeries"
+msgstr "Kategoriat ja sarjat"
+
+msgid "manager.setup.categories.description"
+msgstr "Voit luoda luettelon kategorioista helpottaaksesi julkaisuidesi järjestelyä. Kategoriat ovat aihealueittaisia (esim. taloustiede; kirjallisuus; runous jne.) kirjaryhmittymiä. Pääkategorioihin voidaan sisällyttää toisia kategorioita, esimerkiksi Taloustiede-pääkategoria voi sisältää erilliset Mikro- ja Makrotaloustieteiden kategoriat. Kävijät voivat hakea ja selailla painon sisältöä kategorioiden mukaan."
+
+msgid "manager.setup.series.description"
+msgstr "Voit luoda sarjoja helpottaaksesi julkaisuidesi järjestelyä. Sarja edustaa erityistä kirjojen joukkoa, jotka käsittelevät jonkun, yleensä yhden tai useamman tiedekunnan jäsenen, ehdottamaa ja valvomaa teemaa tai aiheita. Kävijät voivat hakea ja selailla painon sisältöä sarjojen mukaan."
+
+msgid "manager.setup.reviewForms"
+msgstr "Arviointilomakkeet"
+
+msgid "manager.setup.roleType"
+msgstr "Roolityyppi"
+
+msgid "manager.setup.authorRoles"
+msgstr "Kirjoittajaroolit"
+
+msgid "manager.setup.managerialRoles"
+msgstr "Hallinnon roolit"
+
+msgid "manager.setup.availableRoles"
+msgstr "Käytettävissä olevat roolit"
+
+msgid "manager.setup.currentRoles"
+msgstr "Nykyiset roolit"
+
+msgid "manager.setup.internalReviewRoles"
+msgstr "Sisäisen arvioinnin roolit"
+
+msgid "manager.setup.masthead"
+msgstr "Tunnuslaatikko"
+
+msgid "manager.setup.editorialTeam"
+msgstr "Toimituskunta"
+
+msgid "manager.setup.editorialTeam.description"
+msgstr "Lista toimittajista, toimitusjohtajista ja muista painoon liittyvistä henkilöistä."
+
+msgid "manager.setup.files"
+msgstr "Tiedostot"
+
+msgid "manager.setup.productionTemplates"
+msgstr "Tuotannon mallipohjat"
+
+msgid "manager.files.note"
+msgstr "Huom! Tiedostoselain (Files Browser) on erikoisominaisuus, jonka avulla painoon liittyviä tiedostoja ja hakemistoja voidaan katsoa ja käsitellä suoraan."
+
+msgid "manager.setup.authorCopyrightNotice.sample"
+msgstr ""
+"<h3>Ehdotetut Creative Commons -tekijänoikeushuomautukset</h3>\n"
+"<h4>Ehdotettu käytäntö painoille, jotka tarjoavat avoimen saatavuuden (Open Access)</h4>\n"
+"Tässä painossa julkaisevat kirjoittajat hyväksyvät seuraavat ehdot:\n"
+"<ol type=\"a\">\n"
+"\t<li>Kirjoittajat säilyttävät tekijänoikeuden ja myöntävät painolle oikeuden julkaista työn ensimmäisenä. Samanaikaisesti työ lisensoidaan <a target=\"_blank\" href=\"http://creativecommons.org/licenses/by/3.0/\">Creative Commons Attribution License</a> -lisenssillä, joka sallii muiden jakaa työtä vain, jos työn alkuperäinen tekijä sekä sen ensijulkaisu tässä painossa mainitaan.</li>\n"
+"\t<li>Kirjoittajat voivat tehdä erillisiä, muita sopimuksellisia sarjoja työn tässä painossa julkaistun version levittämiseksi ilman yksityisoikeutta (esim. lähettää sen julkaisuarkistoon tai julkaista sen kirjassa) vain, jos työn ensijulkaisu tässä painossa mainitaan.</li>\n"
+"\t<li>Kirjoittajilla on lupa lähettää työnsä verkkoon (esim. julkaisuarkistoihin tai omille verkkosivuilleen) sekä ennen käsikirjoituksen lähetysprosessia että sen aikana. Kirjoittajia myös kannustetaan toimimaan näin, koska se voi johtaa hyödyllisiin kanssakäymisiin sekä siihen, että julkaistuun työhön viitataan jo aikaisessa vaiheessa ja enemmän. (Lisää <a target=\"_blank\" href=\"http://opcit.eprints.org/oacitation-biblio.html\">avoimen saatavuuden vaikutuksesta</a>).</li>\n"
+"</ol>\n"
+"\n"
+"<h4>Ehdotettu käytäntö painoille, jotka tarjoavat viiveellisen avoimen saatavuuden (Delayed Open Access) </h4>\n"
+"Tässä painossa julkaisevat kirjoittajat hyväksyvät seuraavat ehdot:\n"
+"<ol type=\"a\">\n"
+"\t<li> Kirjoittajat säilyttävät tekijänoikeuden ja myöntävät painolle oikeuden julkaista työn ensimmäisenä. [MÄÄRITÄ AJANJAKSO] julkaisemisen jälkeen työ samanaikaisesti lisensoidaan <a target=\"_blank\" href=\"http://creativecommons.org/licenses/by/3.0/\">Creative Commons Attribution License</a> -lisenssillä, joka sallii muiden jakaa työtä vain, jos työn alkuperäinen tekijä sekä sen ensijulkaisu tässä painossa mainitaan.</li>\n"
+"\t <li>Kirjoittajat voivat tehdä erillisiä, muita sopimuksellisia sarjoja työn tässä painossa julkaistun version levittämiseksi ilman yksityisoikeutta (esim. lähettää sen julkaisuarkistoon tai julkaista sen kirjassa) vain, jos työn ensijulkaisu tässä painossa mainitaan.</li>\n"
+"\t <li>Kirjoittajilla on lupa lähettää työnsä verkkoon (esim. julkaisuarkistoihin tai omille verkkosivuilleen) sekä ennen käsikirjoituksen lähetysprosessia että sen aikana. Kirjoittajia myös kannustetaan toimimaan näin, koska se voi johtaa hyödyllisiin kanssakäymisiin sekä siihen, että julkaistuun työhön viitataan jo aikaisemmassa vaiheessa ja enemmän. (Lisää <a target=\"_blank\" href=\"http://opcit.eprints.org/oacitation-biblio.html\">avoimen saatavuuden vaikutuksesta</a>).</li>\n"
+"</ol>"
+
+msgid "manager.setup.basicEditorialStepsDescription"
+msgstr ""
+"Vaiheet: Käsikirjoitusjono &gt; Käsikirjoituksen arviointi &gt; Käsikirjoituksen toimittaminen &gt; Sisällysluettelo.<br /><br />\n"
+"Valitse malli näiden toimitusprosessin kohtien käsittelyä varten. (Valitaksesi hallinnoivan toimittajan ja sarjan toimittajat mene Toimittajat-kohtaan Painon hallinnointi -sivulla.)"
+
+msgid "manager.setup.referenceLinkingDescription"
+msgstr ""
+"<p>Kun lukijoiden halutaan löytävän verkkoversiot töistä, joihin kirjoittaja viittaa, seuraavat vaihtoehdot ovat käytettävissä.</p>\n"
+"\n"
+"<ol>\n"
+"\t<li><strong>Lisää lukutyökalu</strong><p>Painon hallinnoija voi lisätä “Etsi lähdeviitteitä” julkaistujen kohteiden lukutyökaluihin, mahdollistaen sen, että lukijat voivat liittää lähdeviitteen nimekkeen ja hakea viitattua työtä etukäteen valituista tieteellisistä tietokannoista.</p></li>\n"
+"\t<li><strong>Upota linkit lähdeviitteisiin</strong><p>Taittaja voi lisätä linkin verkosta löytyviin lähdeviitteisiin seuraamalla seuraavia ohjeita (joita voidaan muokata).</p></li>\n"
+"</ol>"
+
+msgid "manager.publication.library"
+msgstr "Painon kirjasto"
+
+msgid "manager.setup.resetPermissions"
+msgstr "Palauta kirjojen käyttöoikeudet"
+
+msgid "manager.setup.resetPermissions.confirm"
+msgstr "Haluatko varmasti palauttaa oletusarvoisiksi käyttöoikeustiedot, jotka on jo liitetty kirjoihin?"
+
+msgid "manager.setup.resetPermissions.description"
+msgstr "Tekijänoikeusilmauksen ja -suojan tiedot liitetään pysyvästi julkaistuun sisältöön. Tämä varmistaa sen, että kyseiset tiedot eivät muutu, vaikka paino muuttaisi toimintaperiaatteitaan uusia käsikirjoituksia koskien. Palauttaaksesi tallennetut käyttöoikeustiedot, jotka on jo liitetty julkaistuun sisältöön, käytä alla olevaa painiketta."
+
+msgid "grid.genres.title.short"
+msgstr "Osat"
+
+msgid "grid.genres.title"
+msgstr "Kirjan osat"
+
+msgid "manager.setup.notifications.copyPrimaryContact"
+msgstr "Lähetä kopio ensisijaiselle yhteyshenkilölle, joka on mainittu painon asetuksissa."
+
+msgid "grid.category.add"
+msgstr "Lisää kategoria"
+
+msgid "grid.category.edit"
+msgstr "Muokkaa kategoriaa"
+
+msgid "grid.category.name"
+msgstr "Nimi"
+
+msgid "grid.category.path"
+msgstr "Polku"
+
+msgid "grid.category.urlWillBe"
+msgstr "Kategorian URL-osoitteeksi tulee: {$sampleUrl}"
+
+msgid "grid.series.urlWillBe"
+msgstr "Sarjan URL-osoitteeksi tulee: {$sampleUrl}"
+
+msgid "grid.category.pathAlphaNumeric"
+msgstr "Kategorian polku saa sisältää vain kirjaimia ja numeroita."
+
+msgid "grid.category.pathExists"
+msgstr "Kategorian polku on jo olemassa. Anna yksilöllinen polku."
+
+msgid "grid.category.description"
+msgstr "Kuvaus"
+
+msgid "grid.category.parentCategory"
+msgstr "Pääkategoria"
+
+msgid "grid.category.removeText"
+msgstr "Haluatko varmasti poistaa tämän kategorian?"
+
+msgid "grid.category.nameRequired"
+msgstr "Anna kategorian nimi."
+
+msgid "grid.category.categoryDetails"
+msgstr "Kategorian tiedot"
+
+msgid "grid.series.pathAlphaNumeric"
+msgstr "Sarjan polku saa sisältää vain kirjaimia ja numeroita."
+
+msgid "grid.series.pathExists"
+msgstr "Sarjan polku on jo olemassa. Anna yksilöllinen polku."
+
+msgid "manager.navigationMenus.form.navigationMenuItem.series"
+msgstr "Valitse sarja"
+
+msgid "manager.navigationMenus.form.navigationMenuItemSeriesMessage"
+msgstr "Valitse sarja, jonka haluat linkittää tähän valikon kohtaan."
+
+msgid "manager.navigationMenus.form.navigationMenuItem.category"
+msgstr "Valitse kategoria"
+
+msgid "manager.navigationMenus.form.navigationMenuItemCategoryMessage"
+msgstr "Valitse kategoria, jonka haluat linkittää tähän valikon kohtaan."
