@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2019-11-28T15:10:04-08:00\n"
-"PO-Revision-Date: 2020-01-24 14:35+0000\n"
+"PO-Revision-Date: 2020-02-09 18:35+0000\n"
 "Last-Translator: Niels Erik Frederiksen <nef@kb.dk>\n"
 "Language-Team: Danish <http://translate.pkp.sfu.ca/projects/omp/default/da/>"
 "\n"
@@ -60,7 +60,7 @@ msgid "default.groups.plural.manager"
 msgstr "Forlagschefer"
 
 msgid "default.groups.abbrev.manager"
-msgstr "FC"
+msgstr "PM"
 
 msgid "default.groups.name.editor"
 msgstr "Forlagsredaktør"
@@ -69,7 +69,7 @@ msgid "default.groups.plural.editor"
 msgstr "Forlagsredaktører"
 
 msgid "default.groups.abbrev.editor"
-msgstr "FR"
+msgstr "PE"
 
 msgid "default.groups.name.seriesEditor"
 msgstr "Serieredaktør"
@@ -87,7 +87,7 @@ msgid "default.groups.plural.chapterAuthor"
 msgstr "Kapitelforfattere"
 
 msgid "default.groups.abbrev.chapterAuthor"
-msgstr "KP"
+msgstr "CA"
 
 msgid "default.groups.name.volumeEditor"
 msgstr "Bindredaktør"
@@ -96,7 +96,7 @@ msgid "default.groups.plural.volumeEditor"
 msgstr "Bindredaktører"
 
 msgid "default.groups.abbrev.volumeEditor"
-msgstr "ÅRed"
+msgstr "VE"
 
 msgid "default.pressSettings.checklist.notPreviouslyPublished"
 msgstr "Indsendelsen er ikke tidligere blevet offentliggjort, og det er heller ikke sendt til bedømmelse hos et andet forlag (eller der er givet en forklaring i kommentarfeltet til redaktøren)."
@@ -147,7 +147,7 @@ msgid "default.groups.plural.externalReviewer"
 msgstr "Eksterne bedømmere"
 
 msgid "default.groups.abbrev.externalReviewer"
-msgstr "EB"
+msgstr "ER"
 
 msgid "default.contextSettings.forLibrarians"
 msgstr ""

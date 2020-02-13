@@ -1,6 +1,6 @@
 msgid ""
 msgstr ""
-"PO-Revision-Date: 2020-02-07 10:35+0000\n"
+"PO-Revision-Date: 2020-02-09 18:36+0000\n"
 "Last-Translator: Niels Erik Frederiksen <nef@kb.dk>\n"
 "Language-Team: Danish <http://translate.pkp.sfu.ca/projects/omp/api/da/>\n"
 "Language: da_DK\n"
@@ -22,8 +22,7 @@ msgid "api.publications.403.submissionsDidNotMatch"
 msgstr "Den publikation, du anmodede om, er ikke en del af denne indsendelse."
 
 msgid "api.publications.403.contextsDidNotMatch"
-msgstr ""
-"Den publikation, du anmodede om, er ikke er ikke at finde hos dette forlag."
+msgstr "Den publikation, du anmodede om, er ikke at finde hos dette forlag."
 
 msgid "api.emailTemplates.403.notAllowedChangeContext"
 msgstr ""

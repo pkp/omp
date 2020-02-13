@@ -1,6 +1,6 @@
 msgid ""
 msgstr ""
-"PO-Revision-Date: 2020-02-07 10:35+0000\n"
+"PO-Revision-Date: 2020-02-09 18:35+0000\n"
 "Last-Translator: Niels Erik Frederiksen <nef@kb.dk>\n"
 "Language-Team: Danish <http://translate.pkp.sfu.ca/projects/omp/pubIds-urn/"
 "da/>\n"
@@ -193,8 +193,8 @@ msgstr ""
 
 msgid "plugins.pubIds.urn.manager.settings.urnSuffix.description"
 msgstr ""
-"Et URN-suffiks kan tage enhver form, men skal være unikt blandt alle "
-"udgivelsesobjekter, der har fået tildelt det samme URN-præfiks:"
+"Et URN-suffiks kan antage en hvilken som helst form, men skal være unikt "
+"blandt alle udgivelsesobjekter, der har fået tildelt det samme URN-præfiks:"
 
 msgid "plugins.pubIds.urn.manager.settings.urnSuffix"
 msgstr "URN-suffiks"
@@ -224,8 +224,8 @@ msgstr "Monografier"
 
 msgid "plugins.pubIds.urn.manager.settings.explainURNs"
 msgstr ""
-"Vælg de publiceringsobjekter, der vil skal have tildelt Uniform Resource "
-"Names (URN):"
+"Vælg de publiceringsobjekter, der skal have tildelt Uniform Resource Names "
+"(URN):"
 
 msgid "plugins.pubIds.urn.manager.settings.urnObjectsRequired"
 msgstr "Vælg de objekter, der skal tildeles URN'er."
@@ -234,7 +234,7 @@ msgid "plugins.pubIds.urn.manager.settings.urnObjects"
 msgstr "Forlagsindhold"
 
 msgid "plugins.pubIds.urn.manager.settings.description"
-msgstr "Konfigurer URN-pluginen for at gøre det muligt at anvende URN'er i OMP:"
+msgstr "Konfigurér URN-pluginen for at gøre det muligt at anvende URN'er i OMP:"
 
 msgid "plugins.pubIds.urn.description"
 msgstr ""

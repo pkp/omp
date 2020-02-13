@@ -1,6 +1,6 @@
 msgid ""
 msgstr ""
-"PO-Revision-Date: 2020-02-07 10:35+0000\n"
+"PO-Revision-Date: 2020-02-09 18:35+0000\n"
 "Last-Translator: Niels Erik Frederiksen <nef@kb.dk>\n"
 "Language-Team: Danish <http://translate.pkp.sfu.ca/projects/omp/pubIds-doi/"
 "da/>\n"
@@ -44,7 +44,7 @@ msgid "plugins.pubIds.doi.editor.assignDoi.emptySuffix"
 msgstr "DOI kan ikke tildeles, fordi det brugerdefinerede suffiks mangler."
 
 msgid "plugins.pubIds.doi.editor.assignDoi"
-msgstr "Tildel DPI'en {$pubId} til dette {$pubObjectType}"
+msgstr "Tildel DOI'en {$pubId} til dette {$pubObjectType}"
 
 msgid "plugins.pubIds.doi.editor.clearObjectsDoi.confirm"
 msgstr "Er du sikker på, at du vil slette den eksisterende DOI?"
@@ -160,8 +160,8 @@ msgstr ""
 
 msgid "plugins.pubIds.doi.manager.settings.doiSuffix.description"
 msgstr ""
-"Et DOI-suffiks kan tage enhver form, men skal være unikt i forhold til de "
-"publiceringsobjekter, der har samme DOI-præfiks:"
+"Et DOI-suffiks kan antage en hvilken som helst form, men skal være unikt i "
+"forhold til de publiceringsobjekter, der har samme DOI-præfiks:"
 
 msgid "plugins.pubIds.doi.manager.settings.doiSuffix"
 msgstr "DOI-suffiks"

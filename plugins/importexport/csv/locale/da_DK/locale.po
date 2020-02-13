@@ -1,6 +1,6 @@
 msgid ""
 msgstr ""
-"PO-Revision-Date: 2020-02-07 10:35+0000\n"
+"PO-Revision-Date: 2020-02-09 18:35+0000\n"
 "Last-Translator: Niels Erik Frederiksen <nef@kb.dk>\n"
 "Language-Team: Danish <http://translate.pkp.sfu.ca/projects/omp/"
 "importexport-csv/da/>\n"
@@ -24,8 +24,8 @@ msgstr ""
 
 msgid "plugins.importexport.csv.noAuthorGroup"
 msgstr ""
-"Der er ingen foruddefineret forfattergruppe  i forbindelse med forlaget "
-"{$press}.  Springer over denne indsendelse."
+"Der er ingen foruddefineret forfattergruppe hos forlaget {$press}.  Springer "
+"over denne indsendelse."
 
 msgid "plugins.importexport.csv.noGenre"
 msgstr "Der er ingen manuskriptgenre.  Afslutter."

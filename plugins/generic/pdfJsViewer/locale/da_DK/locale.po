@@ -1,6 +1,6 @@
 msgid ""
 msgstr ""
-"PO-Revision-Date: 2020-02-07 10:35+0000\n"
+"PO-Revision-Date: 2020-02-09 18:35+0000\n"
 "Last-Translator: Niels Erik Frederiksen <nef@kb.dk>\n"
 "Language-Team: Danish <http://translate.pkp.sfu.ca/projects/omp/"
 "generic-pdfJsViewer/da/>\n"
@@ -13,7 +13,7 @@ msgstr ""
 
 msgid "plugins.generic.pdfJsViewer.description"
 msgstr ""
-"Dette plugin giver support til visning af PDF'er ved hjælp af PDF.js-"
+"Denne plugin giver support til visning af PDF'er ved hjælp af PDF.js-"
 "biblioteket."
 
 msgid "plugins.generic.pdfJsViewer.displayName"
