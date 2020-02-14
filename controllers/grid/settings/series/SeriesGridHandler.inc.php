@@ -208,6 +208,8 @@ class SeriesGridHandler extends SetupGridHandler {
 
 		if ($seriesForm->validate()) {
 			$seriesForm->execute();
+			$notificationManager = new NotificationManager();
+			$notificationManager->createTrivialNotification($request->getUser()->getId());
 			return DAO::getDataChangedEvent($seriesForm->getSeriesId());
 		} else {
 			return new JSONMessage(false);
