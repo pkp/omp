@@ -398,8 +398,17 @@ class ChapterGridHandler extends CategoryGridHandler {
 			'chapterId' => $chapter->getId(),
 		));
 
-		if (array_intersect(array(ROLE_ID_MANAGER, ROLE_ID_SUB_EDITOR, ROLE_ID_ASSISTANT), $this->getAuthorizedContextObject(ASSOC_TYPE_USER_ROLES))){
-			$templateMgr->assign('showIdentifierTab', true);
+		if (array_intersect(array(ROLE_ID_MANAGER, ROLE_ID_SUB_EDITOR, ROLE_ID_ASSISTANT), $this->getAuthorizedContextObject(ASSOC_TYPE_USER_ROLES))) {
+			$publisherIdEnabled = in_array('chapter', (array) $request->getContext()->getData('enablePublisherId'));
+			$pubIdPlugins = PluginRegistry::getPlugins('pubIds');
+			$pubIdEnabled = false;
+			foreach ($pubIdPlugins as $pubIdPlugin) {
+				if ($pubIdPlugin->isObjectTypeEnabled('Chapter', $request->getContext()->getId())) {
+					$pubIdEnabled = true;
+					break;
+				}
+			}
+			$templateMgr->assign('showIdentifierTab', $publisherIdEnabled || $pubIdEnabled);
 		}
 
 		return new JSONMessage(true, $templateMgr->fetch('controllers/grid/users/chapter/editChapter.tpl'));

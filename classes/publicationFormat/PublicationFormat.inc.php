@@ -30,9 +30,7 @@ class PublicationFormat extends Representation {
 	 * @return string
 	 */
 	function getBestId() {
-		$publicationFormatId = $this->getStoredPubId('publisher-id');
-		if (!empty($publicationFormatId)) return $publicationFormatId;
-		return $this->getId();
+		return $this->getData('urlPath') ?? $this->getId();
 	}
 
 	/**

@@ -37,6 +37,7 @@ class PublicationFormatForm extends Form {
 		// Validation checks for this form
 		$this->addCheck(new FormValidator($this, 'name', 'required', 'grid.catalogEntry.nameRequired'));
 		$this->addCheck(new FormValidator($this, 'entryKey', 'required', 'grid.catalogEntry.publicationFormatRequired'));
+		$this->addCheck(new FormValidatorRegExp($this, 'urlPath', 'optional', 'validator.alpha_dash', '/^[-_a-z0-9]*$/'));
 		$this->addCheck(new FormValidatorPost($this));
 		$this->addCheck(new FormValidatorCSRF($this));
 	}
@@ -109,6 +110,7 @@ class PublicationFormatForm extends Form {
 				'name' => $format->getName(null),
 				'isPhysicalFormat' => $format->getPhysicalFormat()?true:false,
 				'remoteURL' => $format->getRemoteURL(),
+				'urlPath' => $format->getData('urlPath'),
 			);
 		} else {
 			$this->setData('entryKey', 'DA');
@@ -143,6 +145,7 @@ class PublicationFormatForm extends Form {
 			'entryKey',
 			'isPhysicalFormat',
 			'remoteURL',
+			'urlPath',
 		));
 	}
 
@@ -172,6 +175,7 @@ class PublicationFormatForm extends Form {
 		$publicationFormat->setEntryKey($this->getData('entryKey'));
 		$publicationFormat->setPhysicalFormat($this->getData('isPhysicalFormat')?true:false);
 		$publicationFormat->setRemoteURL($this->getData('remoteURL'));
+		$publicationFormat->setData('urlPath', $this->getData('urlPath'));
 
 		if ($existingFormat) {
 			$publicationFormatDao->updateObject($publicationFormat);

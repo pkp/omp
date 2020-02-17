@@ -42,6 +42,9 @@
 				{fbvElement type="text" id="remoteURL" label="grid.catalogEntry.remoteURL" value=$remoteURL}
 			</div>
 		{/fbvFormSection}
+		{fbvFormSection id="urlPathSection" title="publication.urlPath"}
+			{fbvElement type="text" label="publication.urlPath.description" value=$urlPath id="urlPath" size=$fbvStyles.size.MEDIUM inline=true}
+		{/fbvFormSection}
 	{/fbvFormArea}
 	<p><span class="formRequired">{translate key="common.requiredField"}</span></p>
 	{fbvFormButtons}

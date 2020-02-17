@@ -42,7 +42,10 @@ class OmpPublishedSubmissionRequiredPolicy extends DataObjectRequiredPolicy {
 		if (!$submissionId) return AUTHORIZATION_DENY;
 
 		// Make sure the published submissions belongs to the press.
-		$submission = DAORegistry::getDAO('SubmissionDAO')->getByBestId($submissionId, $this->context->getId());
+		$submission = Services::get('submission')->getByUrlPath($submissionId, $this->context->getId());
+		if (!$submission && ctype_digit($submissionId)) {
+			$submission = Services::get('submission')->get($submissionId);
+		}
 		if (!$submission || $submission->getData('status') !== STATUS_PUBLISHED) return AUTHORIZATION_DENY;
 
 		// Save the published submission to the authorization context.

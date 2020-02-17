@@ -68,6 +68,15 @@
 				"nullable"
 			]
 		},
+		"enablePublisherId": {
+			"type": "array",
+			"items": {
+				"type": "string",
+				"validation": [
+					"in:publication,chapter,representation,file"
+				]
+			}
+		},
 		"internalReviewGuidelines": {
 			"type": "string",
 			"multilingual": true,

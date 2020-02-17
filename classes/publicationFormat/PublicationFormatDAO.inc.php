@@ -135,9 +135,25 @@ class PublicationFormatDAO extends RepresentationDAO implements PKPPubIdPluginDA
 	 * @return PublicationFormat|null
 	 */
 	function getByBestId($representationId, $publicationId) {
-		$publicationFormat = null;
-		if ($representationId != '') $publicationFormat = $this->getByPubId('publisher-id', $representationId, $publicationId);
-		if (!isset($publicationFormat) && ctype_digit("$representationId")) $publicationFormat = $this->getById((int) $representationId, $publicationId);
+
+		$result = $this->retrieve(
+			'SELECT pf.*
+			FROM	publication_formats pf
+			WHERE pf.url_path = ?
+				AND pf.publication_id = ?',
+			[
+				$representationId,
+				$publicationId,
+			]
+		);
+
+		if ($result->RecordCount() != 0) {
+			$publicationFormat = $this->_fromRow($result->GetRowAssoc(false));
+		} elseif (ctype_digit($representationId)) {
+			$publicationFormat = $this->getById($representationId);
+		}
+		$result->Close();
+
 		return $publicationFormat;
 	}
 
@@ -270,6 +286,7 @@ class PublicationFormatDAO extends RepresentationDAO implements PKPPubIdPluginDA
 		$publicationFormat->setTechnicalProtectionCode($row['technical_protection_code']);
 		$publicationFormat->setReturnableIndicatorCode($row['returnable_indicator_code']);
 		$publicationFormat->setRemoteURL($row['remote_url']);
+		$publicationFormat->setData('urlPath', $row['url_path']);
 		$publicationFormat->setIsAvailable($row['is_available']);
 
 		$this->getDataObjectSettings(
@@ -292,9 +309,9 @@ class PublicationFormatDAO extends RepresentationDAO implements PKPPubIdPluginDA
 	function insertObject($publicationFormat) {
 		$this->update(
 			'INSERT INTO publication_formats
-				(is_approved, entry_key, physical_format, publication_id, seq, file_size, front_matter, back_matter, height, height_unit_code, width, width_unit_code, thickness, thickness_unit_code, weight, weight_unit_code, product_composition_code, product_form_detail_code, country_manufacture_code, imprint, product_availability_code, technical_protection_code, returnable_indicator_code, remote_url, is_available)
+				(is_approved, entry_key, physical_format, publication_id, seq, file_size, front_matter, back_matter, height, height_unit_code, width, width_unit_code, thickness, thickness_unit_code, weight, weight_unit_code, product_composition_code, product_form_detail_code, country_manufacture_code, imprint, product_availability_code, technical_protection_code, returnable_indicator_code, remote_url, url_path, is_available)
 			VALUES
-				(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)',
+				(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)',
 			array(
 				(int) $publicationFormat->getIsApproved(),
 				$publicationFormat->getEntryKey(),
@@ -320,6 +337,7 @@ class PublicationFormatDAO extends RepresentationDAO implements PKPPubIdPluginDA
 				$publicationFormat->getTechnicalProtectionCode(),
 				$publicationFormat->getReturnableIndicatorCode(),
 				$publicationFormat->getRemoteURL(),
+				$publicationFormat->getData('urlPath'),
 				(int) $publicationFormat->getIsAvailable(),
 			)
 		);
@@ -360,6 +378,7 @@ class PublicationFormatDAO extends RepresentationDAO implements PKPPubIdPluginDA
 				technical_protection_code = ?,
 				returnable_indicator_code = ?,
 				remote_url = ?,
+				url_path = ?,
 				is_available = ?
 			WHERE	publication_format_id = ?',
 			array(
@@ -386,6 +405,7 @@ class PublicationFormatDAO extends RepresentationDAO implements PKPPubIdPluginDA
 				$publicationFormat->getTechnicalProtectionCode(),
 				$publicationFormat->getReturnableIndicatorCode(),
 				$publicationFormat->getRemoteURL(),
+				$publicationFormat->getData('urlPath'),
 				(int) $publicationFormat->getIsAvailable(),
 				(int) $publicationFormat->getId()
 			)

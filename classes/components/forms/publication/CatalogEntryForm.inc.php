@@ -88,7 +88,12 @@ class CatalogEntryForm extends FormComponent {
 			]));
 		}
 
-		$this->addField(new FieldUploadImage('coverImage', [
+		$this->addField(new FieldText('urlPath', [
+				'label' => __('publication.urlPath'),
+				'description' => __('publication.urlPath.description'),
+				'value' => $publication->getData('urlPath'),
+			]))
+			->addField(new FieldUploadImage('coverImage', [
 				'label' => __('monograph.coverImage'),
 				'value' => $publication->getData('coverImage'),
 				'isMultilingual' => true,

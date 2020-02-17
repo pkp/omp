@@ -84,6 +84,14 @@ class CatalogBookHandler extends Handler {
 			$request->getDispatcher()->handle404();
 		}
 
+		// If the publication has been reached through an outdated
+		// urlPath, redirect to the latest version
+		if (!ctype_digit($submissionId) && $submissionId !== $this->publication->getData('urlPath') && !$subPath) {
+			$newArgs = $args;
+			$newArgs = $this->publication->getData('urlPath') ?? $this->publication->getId();
+			$request->redirect(null, $request->getRequestedPage(), $request->getRequestedOp(), $newArgs);
+		}
+
 		$templateMgr->assign([
 			'publishedSubmission' => $submission,
 			'publication' => $this->publication,
@@ -226,8 +234,8 @@ class CatalogBookHandler extends Handler {
 			$bestFileId = array_shift($args);
 		}
 
-		$publicationFormat = DAORegistry::getDAO('PublicationFormatDAO')->getByBestId($representationId, $publicationId);
-		if (!$publicationFormat || !$publicationFormat->getIsAvailable() || $remoteURL = $publicationFormat->getRemoteURL()) fatalError('Invalid publication format specified.');
+		$publicationFormat = Application::get()->getRepresentationDAO()->getByBestId($representationId, $publicationId);
+		if (!$publicationFormat || !$publicationFormat->getIsAvailable() || $remoteURL = $publicationFormat->getRemoteURL()) $dispatcher->handle404();
 
 		import('lib.pkp.classes.submission.SubmissionFile'); // File constants
 		$submissionFile = DAORegistry::getDAO('SubmissionFileDAO')->getByBestId($bestFileId, $submission->getId());
@@ -242,15 +250,15 @@ class CatalogBookHandler extends Handler {
 
 		switch ($submissionFile->getAssocType()) {
 			case ASSOC_TYPE_PUBLICATION_FORMAT: // Publication format file
-				if ($submissionFile->getAssocId() != $publicationFormat->getId() || $submissionFile->getDirectSalesPrice() === null) fatalError('Invalid monograph file specified!');
+				if ($submissionFile->getAssocId() != $publicationFormat->getId() || $submissionFile->getDirectSalesPrice() === null) $dispatcher->handle404();
 				break;
 			case ASSOC_TYPE_SUBMISSION_FILE: // Dependent file
 				$genreDao = DAORegistry::getDAO('GenreDAO'); /* @var $genreDao GenreDAO */
 				$genre = $genreDao->getById($submissionFile->getGenreId());
-				if (!$genre->getDependent()) fatalError('Invalid monograph file specified!');
+				if (!$genre->getDependent()) $dispatcher->handle404();
 				return $monographFileManager->downloadById($fileId, $revision);
 				break;
-			default: fatalError('Invalid monograph file specified!');
+			default: $dispatcher->handle404();
 		}
 
 		$urlPath = [$submission->getBestId()];
