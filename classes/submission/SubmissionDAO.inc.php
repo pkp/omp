@@ -30,18 +30,6 @@ class SubmissionDAO extends PKPSubmissionDAO {
 	}
 
 	/**
-	 * Retrieve submission by public monograph ID or, failing that,
-	 * internal monograph ID; public monograph ID takes precedence.
-	 * @param $submissionId string
-	 * @param $contextId int
-	 * @return Submission|null
-	 */
-	function getByBestId($submissionId, $contextId) {
-		$submission = $this->getByPubId('publisher-id', $submissionId, $contextId);
-		return $submission ?? $this->getById($submissionId);
-	}
-
-	/**
 	 * @copydoc PKPSubmissionDAO::deleteById
 	 */
 	function deleteById($submissionId) {
