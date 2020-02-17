@@ -149,12 +149,12 @@ class PublicationFormatDAO extends RepresentationDAO implements PKPPubIdPluginDA
 
 		if ($result->RecordCount() != 0) {
 			$publicationFormat = $this->_fromRow($result->GetRowAssoc(false));
-		} elseif (ctype_digit($representationId)) {
+		} elseif (is_int($representationId) || ctype_digit($representationId)) {
 			$publicationFormat = $this->getById($representationId);
 		}
 		$result->Close();
 
-		return $publicationFormat;
+		return $publicationFormat ?? null;
 	}
 
 	/**
