@@ -88,7 +88,9 @@ class CatalogBookHandler extends Handler {
 		// urlPath, redirect to the latest version
 		if (!ctype_digit($submissionId) && $submissionId !== $this->publication->getData('urlPath') && !$subPath) {
 			$newArgs = $args;
-			$newArgs = $this->publication->getData('urlPath') ?? $this->publication->getId();
+			$newArgs = $this->publication->getData('urlPath')
+				? $this->publication->getData('urlPath')
+				: $this->publication->getId();
 			$request->redirect(null, $request->getRequestedPage(), $request->getRequestedOp(), $newArgs);
 		}
 
