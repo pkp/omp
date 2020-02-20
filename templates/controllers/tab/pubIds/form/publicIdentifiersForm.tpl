@@ -52,9 +52,12 @@
 {/if}
 
 {csrf}
-{fbvFormSection}
-	{fbvElement type="text" label="submission.publisherId" id="publisherId" name="publisherId" value=$publisherId size=$fbvStyles.size.MEDIUM}
-{/fbvFormSection}
+
+{if $enablePublisherId}
+	{fbvFormSection}
+		{fbvElement type="text" label="submission.publisherId" id="publisherId" name="publisherId" value=$publisherId size=$fbvStyles.size.MEDIUM}
+	{/fbvFormSection}
+{/if}
 
 {foreach from=$pubIdPlugins item=pubIdPlugin}
 	{assign var=pubIdMetadataFile value=$pubIdPlugin->getPubIdMetadataFile()}

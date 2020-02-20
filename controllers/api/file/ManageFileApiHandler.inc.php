@@ -31,6 +31,27 @@ class ManageFileApiHandler extends PKPManageFileApiHandler {
 	}
 
 	/**
+	 * @copydoc PKPManageFileApiHandler::editMetadata
+	 */
+	function editMetadata($args, $request) {
+		$submissionFile = $this->getAuthorizedContextObject(ASSOC_TYPE_SUBMISSION_FILE);
+		if ($submissionFile->getFileStage() == SUBMISSION_FILE_PROOF) {
+			$publisherIdEnabled = in_array('file', (array) $request->getContext()->getData('enablePublisherId'));
+			$pubIdPlugins = PluginRegistry::getPlugins('pubIds');
+			$pubIdEnabled = false;
+			foreach ($pubIdPlugins as $pubIdPlugin) {
+				if ($pubIdPlugin->isObjectTypeEnabled('SubmissionFile', $request->getContext()->getId())) {
+					$pubIdEnabled = true;
+					break;
+				}
+			}
+			$templateMgr = TemplateManager::getManager($request);
+			$templateMgr->assign('showIdentifierTab', $publisherIdEnabled || $pubIdEnabled);
+		}
+		return parent::editMetadata($args, $request);
+	}
+
+	/**
 	 * Edit proof submission file pub ids.
 	 * @param $args array
 	 * @param $request PKPRequest
@@ -39,8 +60,8 @@ class ManageFileApiHandler extends PKPManageFileApiHandler {
 	function identifiers($args, $request) {
 		$submissionFile = $this->getAuthorizedContextObject(ASSOC_TYPE_SUBMISSION_FILE);
 		$stageId = $request->getUserVar('stageId');
-		import('lib.pkp.controllers.tab.pubIds.form.PKPPublicIdentifiersForm');
-		$form = new PKPPublicIdentifiersForm($submissionFile, $stageId);
+		import('controllers.tab.pubIds.form.PublicIdentifiersForm');
+		$form = new PublicIdentifiersForm($submissionFile, $stageId);
 		$form->initData();
 		return new JSONMessage(true, $form->fetch($request));
 	}

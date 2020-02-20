@@ -241,6 +241,18 @@ class PublicationFormatGridHandler extends CategoryGridHandler {
 		$templateMgr->assign('publicationId', $this->getPublication()->getId());
 		$templateMgr->assign('representationId', $representationId);
 		$templateMgr->assign('remoteRepresentation', $remoteURL);
+
+		$publisherIdEnabled = in_array('representation', (array) $request->getContext()->getData('enablePublisherId'));
+		$pubIdPlugins = PluginRegistry::getPlugins('pubIds');
+		$pubIdEnabled = false;
+		foreach ($pubIdPlugins as $pubIdPlugin) {
+			if ($pubIdPlugin->isObjectTypeEnabled('Representation', $request->getContext()->getId())) {
+				$pubIdEnabled = true;
+				break;
+			}
+		}
+		$templateMgr->assign('showIdentifierTab', $publisherIdEnabled || $pubIdEnabled);
+
 		return new JSONMessage(true, $templateMgr->fetch('controllers/grid/catalogEntry/editFormat.tpl'));
 	}
 
@@ -607,8 +619,8 @@ class PublicationFormatGridHandler extends CategoryGridHandler {
 	function identifiers($args, $request) {
 		$representation = $this->getAuthorizedContextObject(ASSOC_TYPE_REPRESENTATION);
 
-		import('lib.pkp.controllers.tab.pubIds.form.PKPPublicIdentifiersForm');
-		$form = new PKPPublicIdentifiersForm($representation);
+		import('controllers.tab.pubIds.form.PublicIdentifiersForm');
+		$form = new PublicIdentifiersForm($representation);
 		$form->initData();
 		return new JSONMessage(true, $form->fetch($request));
 	}
@@ -622,8 +634,8 @@ class PublicationFormatGridHandler extends CategoryGridHandler {
 	function updateIdentifiers($args, $request) {
 		$representation = $this->getAuthorizedContextObject(ASSOC_TYPE_REPRESENTATION);
 
-		import('lib.pkp.controllers.tab.pubIds.form.PKPPublicIdentifiersForm');
-		$form = new PKPPublicIdentifiersForm($representation);
+		import('controllers.tab.pubIds.form.PublicIdentifiersForm');
+		$form = new PublicIdentifiersForm($representation);
 		$form->readInputData();
 		if ($form->validate()) {
 			$form->execute();
@@ -644,8 +656,8 @@ class PublicationFormatGridHandler extends CategoryGridHandler {
 
 		$representation = $this->getAuthorizedContextObject(ASSOC_TYPE_REPRESENTATION);
 
-		import('lib.pkp.controllers.tab.pubIds.form.PKPPublicIdentifiersForm');
-		$form = new PKPPublicIdentifiersForm($representation);
+		import('controllers.tab.pubIds.form.PublicIdentifiersForm');
+		$form = new PublicIdentifiersForm($representation);
 		$form->clearPubId($request->getUserVar('pubIdPlugIn'));
 		return new JSONMessage(true);
 	}
