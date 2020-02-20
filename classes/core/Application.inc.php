@@ -157,6 +157,7 @@ class Application extends PKPApplication {
 
 	/**
 	 * Get the submission DAO.
+	 * @deprecated Just use DAORegistry::getDAO('SubmissionDAO') directly.
 	 */
 	public static function getSubmissionDAO() {
 		return DAORegistry::getDAO('SubmissionDAO');

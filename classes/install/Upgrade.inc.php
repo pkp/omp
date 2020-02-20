@@ -433,7 +433,7 @@ class Upgrade extends Installer {
 	 * @return boolean True indicates success.
 	 */
 	function convertCommentsToEditor() {
-		$submissionDao = Application::getSubmissionDAO();
+		$submissionDao = DAORegistry::getDAO('SubmissionDAO'); /* @var $submissionDao SubmissionDAO */
 		$stageAssignmetDao = DAORegistry::getDAO('StageAssignmentDAO'); /* @var $stageAssignmetDao StageAssignmentDAO */
 		$queryDao = DAORegistry::getDAO('QueryDAO'); /* @var $queryDao QueryDAO */
 		$noteDao = DAORegistry::getDAO('NoteDAO'); /* @var $noteDao NoteDAO */
@@ -735,7 +735,8 @@ class Upgrade extends Installer {
 		$publicFileManager = new \PublicFileManager();
 		$contexts = [];
 
-		$result = Application::getSubmissionDAO()->retrieve(
+		$submissionDao = DAORegistry::getDAO('SubmissionDAO'); /* @var $submissionDao SubmissionDAO */
+		$result = $submissionDao->retrieve(
 			'SELECT
 				ps.submission_id as submission_id,
 				ps.cover_image as cover_image,
@@ -794,7 +795,8 @@ class Upgrade extends Installer {
 			// Create a submission_settings entry for each locale
 			foreach ($contexts[$row['context_id']]->getSupportedFormLocales() as $localeKey) {
 				$newCoverPathInfo = pathinfo($newCoverPath);
-				Application::getSubmissionDAO()->update(
+				$submissionDao = DAORegistry::getDAO('SubmissionDAO'); /* @var $submissionDao SubmissionDAO */
+				$submissionDao->update(
 					'INSERT INTO submission_settings
 						SET
 							submission_id = ?,

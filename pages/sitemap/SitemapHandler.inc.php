@@ -41,8 +41,9 @@ class SitemapHandler extends PKPSitemapHandler {
 				// Consider only available publication formats
 				if ($format->getIsAvailable()) {
 					// Consider only available publication format files
+					$submissionDao = DAORegistry::getDAO('SubmissionDAO'); /* @var $submissionDao SubmissionDAO */
 					$availableFiles = array_filter(
-						Application::getSubmissionDAO()->getLatestRevisionsByAssocId(ASSOC_TYPE_PUBLICATION_FORMAT, $format->getId(), $submission->getId()),
+						$submissionDao->getLatestRevisionsByAssocId(ASSOC_TYPE_PUBLICATION_FORMAT, $format->getId(), $submission->getId()),
 						function($a) {
 							return $a->getDirectSalesPrice() !== null;
 						}
