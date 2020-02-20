@@ -1,6 +1,6 @@
 msgid ""
 msgstr ""
-"PO-Revision-Date: 2020-02-04 11:35+0000\n"
+"PO-Revision-Date: 2020-02-21 10:36+0000\n"
 "Last-Translator: Magnus Annemark <magnus.annemark@ub.lu.se>\n"
 "Language-Team: Swedish <http://translate.pkp.sfu.ca/projects/omp/submission/"
 "sv/>\n"
@@ -162,3 +162,88 @@ msgstr "Välj komponent"
 
 msgid "submission.submit.title"
 msgstr "Skicka in en bok"
+
+msgid "submission.incomplete"
+msgstr "Inväntar godkännande"
+
+msgid "submission.complete"
+msgstr "Godkänd"
+
+msgid "grid.copyediting.deleteCopyeditorResponse"
+msgstr "Radera manusredaktörens dokument"
+
+msgid "grid.chapters.title"
+msgstr "Kapitel"
+
+msgid "submission.submit.noContext"
+msgstr "Bidragets press kunde inte hittas."
+
+msgid "submission.submit.userGroupDescription"
+msgstr "Välj redaktörsrollen om bidraget som skickas in är en antologi."
+
+msgid "submission.submit.userGroup"
+msgstr "Skicka in bidraget i min roll som..."
+
+msgid "submission.submit.placement"
+msgstr "Bidragets placering"
+
+msgid "submission.submit.checklistErrors"
+msgstr ""
+"Läs och fyll i checklistan . Det finns {$itemsRemaining} rutor som inte "
+"kryssats i än."
+
+msgid "submission.submit.whatNext.description"
+msgstr ""
+"Pressen har meddelats om ditt bidrag, och du har fått en bekräftelse via e-"
+"post. Du kommer kontaktas när redaktören har gått igenom ditt bidrag."
+
+msgid "submission.submit.generalInformation"
+msgstr "Allmän information"
+
+msgid "submission.submit.coverNote"
+msgstr "Ansökningsbrev till redaktören"
+
+msgid "submission.submit.nextSteps"
+msgstr "Nästa steg"
+
+msgid "submission.submit.confirmation"
+msgstr "Bekräftelse"
+
+msgid "submission.submit.finishingUp"
+msgstr "Färdigställande"
+
+msgid "submission.submit.metadata"
+msgstr "Metadata"
+
+msgid "submission.submit.catalog"
+msgstr "Katalog"
+
+msgid "submission.submit.prepare"
+msgstr "Förbered"
+
+msgid "submission.submit.submissionFile"
+msgstr "Fil"
+
+msgid "submission.submit.form.contributorRoleRequired"
+msgstr "Välj medarbetarens roll."
+
+msgid "submission.submit.form.abstractRequired"
+msgstr "Ange en kort sammanfattning av din bok."
+
+msgid "submission.submit.form.titleRequired"
+msgstr "Ange bokens titel."
+
+msgid "submission.submit.form.authorRequiredFields"
+msgstr "För- och efternamn samt e-postadress för varje författare krävs."
+
+msgid "submission.submit.form.authorRequired"
+msgstr "Det krävs minst en författare."
+
+msgid "submission.submit.contributorRole"
+msgstr "Medarbetarens roll"
+
+msgid "submission.supportingAgencies"
+msgstr "Finansierande organisation"
+
+msgid "submission.copyedit"
+msgstr "Manusredigering"
