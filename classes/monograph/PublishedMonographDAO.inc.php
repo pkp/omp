@@ -102,6 +102,15 @@ class PublishedMonographDAO extends MonographDAO {
 	}
 
 	/**
+	 * Fetch by application-independent submission ID.
+	 * @param $submissionId int
+	 * @param $contextId int optional
+	 */
+	function getBySubmissionId($submissionId, $contextId = null) {
+		return $this->getById($submissionId, $contextId);
+	}
+
+	/**
 	 * Retrieve Published Monograph by monograph id
 	 * @param $monographId int
 	 * @param $pressId int
