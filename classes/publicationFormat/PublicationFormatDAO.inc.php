@@ -19,13 +19,6 @@ import('lib.pkp.classes.plugins.PKPPubIdPluginDAO');
 
 class PublicationFormatDAO extends RepresentationDAO implements PKPPubIdPluginDAO {
 	/**
-	 * Constructor
-	 */
-	function __construct() {
-		parent::__construct();
-	}
-
-	/**
 	 * @copydoc RepresentationDAO::getById()
 	 */
 	function getById($representationId, $publicationId = null, $contextId = null) {
