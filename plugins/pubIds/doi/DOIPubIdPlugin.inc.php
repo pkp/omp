@@ -25,7 +25,6 @@ class DOIPubIdPlugin extends PubIdPlugin {
 		$success = parent::register($category, $path, $mainContextId);
 		if (!Config::getVar('general', 'installed') || defined('RUNNING_UPGRADE')) return $success;
 		if ($success && $this->getEnabled($mainContextId)) {
-			HookRegistry::register('Schema::get::publication', array($this, 'addToSchema'));
 			HookRegistry::register('Publication::getProperties::summaryProperties', array($this, 'modifyObjectProperties'));
 			HookRegistry::register('Publication::getProperties::fullProperties', array($this, 'modifyObjectProperties'));
 			HookRegistry::register('Publication::validate', array($this, 'validatePublicationDoi'));
@@ -222,22 +221,6 @@ class DOIPubIdPlugin extends PubIdPlugin {
 		$replace = array ('%25', '%22', '%23', '%20', '%3c', '%3e', '%7b');
 		$pubId = str_replace($search, $replace, $pubId);
 		return $pubId;
-	}
-
-	/**
-	 * Add properties to the publication schema
-	 *
-	 * @param $hookName string `Schema::get::publication`
-	 * @param $schema object Publication schema
-	 */
-	public function addToSchema($hookName, $schema) {
-		$schema->properties->{'pub-id::doi'} = json_decode('{
-			"type": "string",
-			"apiSummary": true,
-			"validation": [
-				"nullable"
-			]
-		}');
 	}
 
 	/**
