@@ -72,12 +72,15 @@ class CatalogEntryForm extends FormComponent {
 
 		// Categories
 		$categoryOptions = [];
-		$result = DAORegistry::getDAO('CategoryDAO')->getByContextId($submission->getData('contextId'));
-		while (!$result->eof()) {
-			$category = $result->next();
+		$categories = \DAORegistry::getDAO('CategoryDAO')->getByContextId($submission->getData('contextId'))->toAssociativeArray();
+		foreach ($categories as $category) {
+			$label = $category->getLocalizedTitle();
+			if ($category->getParentId()) {
+				$label = $categories[$category->getParentId()]->getLocalizedTitle() . ' > ' . $label;
+			}
 			$categoryOptions[] = [
 				'value' => (int) $category->getId(),
-				'label' => $category->getLocalizedTitle(),
+				'label' => $label,
 			];
 		}
 		if (!empty($categoryOptions)) {
