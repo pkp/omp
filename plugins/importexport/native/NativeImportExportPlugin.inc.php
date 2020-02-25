@@ -290,7 +290,6 @@ class NativeImportExportPlugin extends ImportExportPlugin {
 
 				// Are there any import warnings? Display them.
 				$errorTypes = array(
-					ASSOC_TYPE_ISSUE => 'issue.issue',
 					ASSOC_TYPE_SUBMISSION => 'submission.submission',
 					ASSOC_TYPE_SECTION => 'section.section',
 				);
@@ -346,21 +345,13 @@ class NativeImportExportPlugin extends ImportExportPlugin {
 					return;
 				}
 				if ($xmlFile != '') switch (array_shift($args)) {
-					case 'article':
-					case 'articles':
+					case 'monograph':
+					case 'monographs':
 						file_put_contents($xmlFile, $this->exportSubmissions(
 							$args,
 							$press,
 							null,
 							$opts
-						));
-						return;
-					case 'issue':
-					case 'issues':
-						file_put_contents($xmlFile, $this->exportIssues(
-							$args,
-							$press,
-							null
 						));
 						return;
 				}
