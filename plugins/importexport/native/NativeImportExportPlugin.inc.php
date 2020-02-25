@@ -184,7 +184,7 @@ class NativeImportExportPlugin extends ImportExportPlugin {
 	 * @param $user User
 	 * @return string XML contents representing the supplied submission IDs.
 	 */
-	function exportSubmissions($submissionIds, $context, $user) {
+	function exportSubmissions($submissionIds, $context, $user, $opts) {
 		$submissionDao = Application::getSubmissionDAO();
 		$xml = '';
 		$filterDao = DAORegistry::getDAO('FilterDAO');
@@ -198,6 +198,7 @@ class NativeImportExportPlugin extends ImportExportPlugin {
 			if ($submission) $submissions[] = $submission;
 		}
 		libxml_use_internal_errors(true);
+		$exportFilter->setOpts($opts);
 		$submissionXml = $exportFilter->execute($submissions, true);
 		$xml = $submissionXml->saveXml();
 		$errors = array_filter(libxml_get_errors(), function($a) {
@@ -228,7 +229,144 @@ class NativeImportExportPlugin extends ImportExportPlugin {
 	 * @copydoc ImportExportPlugin::executeCLI
 	 */
 	function executeCLI($scriptName, &$args) {
-		fatalError('Not implemented.');
+		$opts = $this->parseOpts($args, ['no-embed', 'use-file-urls']);
+		$command = array_shift($args);
+		$xmlFile = array_shift($args);
+		$pressPath = array_shift($args);
+
+		AppLocale::requireComponents(LOCALE_COMPONENT_APP_MANAGER, LOCALE_COMPONENT_PKP_MANAGER, LOCALE_COMPONENT_PKP_SUBMISSION);
+		$pressDao = DAORegistry::getDAO('PressDAO');
+		$userDao = DAORegistry::getDAO('UserDAO');
+		$press = $pressDao->getByPath($pressPath);
+
+		if (!$press) {
+			if ($pressPath != '') {
+				echo __('plugins.importexport.common.cliError') . "\n";
+				echo __('plugins.importexport.common.error.unknownPress', array('pressPath' => $pressPath)) . "\n\n";
+			}
+			$this->usage($scriptName);
+			return;
+		}
+
+		if ($xmlFile && $this->isRelativePath($xmlFile)) {
+			$xmlFile = PWD . '/' . $xmlFile;
+		}
+
+		switch ($command) {
+			case 'import':
+				$userName = array_shift($args);
+				$user = $userDao->getByUsername($userName);
+
+				if (!$user) {
+					if ($userName != '') {
+						echo __('plugins.importexport.common.cliError') . "\n";
+						echo __('plugins.importexport.native.error.unknownUser', array('userName' => $userName)) . "\n\n";
+					}
+					$this->usage($scriptName);
+					return;
+				}
+
+				if (!file_exists($xmlFile)) {
+					echo __('plugins.importexport.common.cliError') . "\n";
+					echo __('plugins.importexport.common.export.error.inputFileNotReadable', array('param' => $xmlFile)) . "\n\n";
+					$this->usage($scriptName);
+					return;
+				}
+
+				$filter = 'native-xml=>issue';
+				// is this articles import:
+				$xmlString = file_get_contents($xmlFile);
+				$document = new DOMDocument();
+				$document->loadXml($xmlString);
+				if (in_array($document->documentElement->tagName, array('article', 'articles'))) {
+					$filter = 'native-xml=>article';
+				}
+				$deployment = new NativeImportExportDeployment($press, $user);
+				$deployment->setImportPath(dirname($xmlFile));
+				$content = $this->importSubmissions($xmlString, $filter, $deployment);
+				$validationErrors = array_filter(libxml_get_errors(), function($a) {
+					return $a->level == LIBXML_ERR_ERROR || $a->level == LIBXML_ERR_FATAL;
+				});
+
+				// Are there any import warnings? Display them.
+				$errorTypes = array(
+					ASSOC_TYPE_ISSUE => 'issue.issue',
+					ASSOC_TYPE_SUBMISSION => 'submission.submission',
+					ASSOC_TYPE_SECTION => 'section.section',
+				);
+				foreach ($errorTypes as $assocType => $localeKey) {
+					$foundWarnings = $deployment->getProcessedObjectsWarnings($assocType);
+					if (!empty($foundWarnings)) {
+						echo __('plugins.importexport.common.warningsEncountered') . "\n";
+						$i = 0;
+						foreach ($foundWarnings as $foundWarningMessages) {
+							if (count($foundWarningMessages) > 0) {
+								echo ++$i . '.' . __($localeKey) . "\n";
+								foreach ($foundWarningMessages as $foundWarningMessage) {
+									echo '- ' . $foundWarningMessage . "\n";
+								}
+							}
+						}
+					}
+				}
+
+				// Are there any import errors? Display them.
+				$foundErrors = false;
+				foreach ($errorTypes as $assocType => $localeKey) {
+					$currentErrors = $deployment->getProcessedObjectsErrors($assocType);
+					if (!empty($currentErrors)) {
+						echo __('plugins.importexport.common.errorsOccured') . "\n";
+						$i = 0;
+						foreach ($currentErrors as $currentErrorMessages) {
+							if (count($currentErrorMessages) > 0) {
+								echo ++$i . '.' . __($localeKey) . "\n";
+								foreach ($currentErrorMessages as $currentErrorMessage) {
+									echo '- ' . $currentErrorMessage . "\n";
+								}
+							}
+						}
+						$foundErrors = true;
+					}
+				}
+				// If there are any data or validataion errors
+				// delete imported objects.
+				if ($foundErrors || !empty($validationErrors)) {
+					// remove all imported issues and sumissions
+					foreach (array_keys($errorTypes) as $assocType) {
+						$deployment->removeImportedObjects($assocType);
+					}
+				}
+				return;
+			case 'export':
+				$outputDir = dirname($xmlFile);
+				if (!is_writable($outputDir) || (file_exists($xmlFile) && !is_writable($xmlFile))) {
+					echo __('plugins.importexport.common.cliError') . "\n";
+					echo __('plugins.importexport.common.export.error.outputFileNotWritable', array('param' => $xmlFile)) . "\n\n";
+					$this->usage($scriptName);
+					return;
+				}
+				if ($xmlFile != '') switch (array_shift($args)) {
+					case 'article':
+					case 'articles':
+						file_put_contents($xmlFile, $this->exportSubmissions(
+							$args,
+							$press,
+							null,
+							$opts
+						));
+						return;
+					case 'issue':
+					case 'issues':
+						file_put_contents($xmlFile, $this->exportIssues(
+							$args,
+							$press,
+							null
+						));
+						return;
+				}
+				break;
+		}
+		$this->usage($scriptName);
 	}
 
 	/**
@@ -236,6 +374,39 @@ class NativeImportExportPlugin extends ImportExportPlugin {
 	 */
 	function usage($scriptName) {
 		fatalError('Not implemented.');
+	}
+
+	/**
+	 * Pull out getopt style long options.
+	 * @param &$args array
+	 * #param $optCodes array
+	 */
+	function parseOpts(&$args, $optCodes) {
+		$newArgs = [];
+		$opts = [];
+		$sticky = null;
+		foreach ($args as $arg) {
+			if ($sticky) {
+				$opts[$sticky] = $arg;
+				$sticky = null;
+				continue;
+			}
+			if (!starts_with($arg, '--')) {
+				$newArgs[] = $arg;
+				continue;
+			}
+			$opt = substr($arg, 2);
+			if (in_array($opt, $optCodes)) {
+				$opts[$opt] = true;
+				continue;
+			}
+			if (in_array($opt . ":", $optCodes)) {
+				$sticky = $opt;
+				continue;
+			}
+		}
+		$args = $newArgs;
+		return $opts;
 	}
 }
 
