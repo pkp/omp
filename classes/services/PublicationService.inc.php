@@ -51,6 +51,18 @@ class PublicationService extends PKPPublicationService {
 		$values =& $args[0];
 		$publication = $args[1];
 		$props = $args[2];
+		$dependencies = $args[3];
+		$request = $dependencies['request'];
+		$dispatcher = $request->getDispatcher();
+
+		// Get required submission and context
+		$submission = !empty($args['submission'])
+			? $args['submission']
+			: $args['submission'] = Services::get('submission')->get($publication->getData('submissionId'));
+
+		$submissionContext = !empty($dependencies['context'])
+			? $dependencies['context']
+			: $dependencies['context'] = Services::get('context')->get($submission->getData('contextId'));
 
 		foreach ($props as $prop) {
 			switch ($prop) {
@@ -75,6 +87,16 @@ class PublicationService extends PKPPublicationService {
 							return $publicationFormat->_data;
 						},
 						$publication->getData('publicationFormats')
+					);
+					break;
+				case 'urlPublished':
+					$values[$prop] = $dispatcher->url(
+						$request,
+						ROUTE_PAGE,
+						$submissionContext->getData('urlPath'),
+						'catalog',
+						'book',
+						[$submission->getBestId(), 'version', $publication->getId()]
 					);
 					break;
 			}
