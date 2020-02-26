@@ -784,6 +784,7 @@
 			<NOTNULL/>
 		</field>
 		<field name="setting_value" type="X"/>
+		<field name="setting_type" type="C2" size="6"/>
 		<descr>Press settings.</descr>
 		<index name="press_settings_press_id">
 			<col>press_id</col>
