@@ -273,13 +273,13 @@ class NativeImportExportPlugin extends ImportExportPlugin {
 					return;
 				}
 
-				$filter = 'native-xml=>issue';
-				// is this articles import:
+				$filter = 'native-xml=>monograph';
+				// is this monographs import:
 				$xmlString = file_get_contents($xmlFile);
 				$document = new DOMDocument();
 				$document->loadXml($xmlString);
-				if (in_array($document->documentElement->tagName, array('article', 'articles'))) {
-					$filter = 'native-xml=>article';
+				if (in_array($document->documentElement->tagName, array('monograph', 'monographs'))) {
+					$filter = 'native-xml=>monograph';
 				}
 				$deployment = new NativeImportExportDeployment($press, $user);
 				$deployment->setImportPath(dirname($xmlFile));
