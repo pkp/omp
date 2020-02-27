@@ -178,9 +178,10 @@ class CatalogBookHandler extends Handler {
 		$templateMgr->assign('availableFiles', $filteredAvailableFiles);
 
 		// Provide the currency to the template, if configured.
-		$isoCodes = new \Sokil\IsoCodes\IsoCodesFactory();
-		$currency = $isoCodes->getCurrencies()->getByLetterCode($request->getContext()->getData('currency'));
-		$templateMgr->assign('currency', $currency);
+		if ($currencyCode = $request->getContext()->getData('currency')) {
+			$isoCodes = new \Sokil\IsoCodes\IsoCodesFactory();
+			$templateMgr->assign('currency', $isoCodes->getCurrencies()->getByLetterCode($currencyCode));
+		}
 
 		// Add data for backwards compatibility
 		$templateMgr->assign([
