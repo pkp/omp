@@ -94,7 +94,7 @@ class CoverHandler extends PKPHandler {
 
 		$coverImageThumbnailUrl = $submission->getCurrentPublication()->getLocalizedCoverImageThumbnailUrl($submission->getData('contextId'));
 		if (!$coverImageThumbnailUrl) {
-			$coverImageThumbnailUrl = $request->getBaseUrl() . '/templates/images/book-default-small.png';
+			$coverImageThumbnailUrl = $request->getBaseUrl() . '/templates/images/book-default_t.png';
 		}
 
 		// Can't use Request::redirectUrl; FireFox doesn't
