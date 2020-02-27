@@ -22,7 +22,7 @@
 <div class="page page_catalog_series">
 
 	{* Breadcrumb *}
-	{include file="frontend/components/breadcrumbs_catalog.tpl" type="series" currentTitle=$series->getLocalizedTitle()|escape}
+	{include file="frontend/components/breadcrumbs_catalog.tpl" type="series" currentTitle=$series->getLocalizedTitle()}
 	<h1>{$series->getLocalizedTitle()|escape}</h1>
 
 	{* Count of monographs in this series *}
