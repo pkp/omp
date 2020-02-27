@@ -1409,3 +1409,8 @@ msgstr "Hide other presses"
 msgid "submission.round"
 msgstr "Round&nbsp;{$round}"
 
+msgid "user.authorization.invalidPublishedSubmission"
+msgstr "An invalid published submission was specified."
+
+msgid "catalog.coverImageTitle"
+msgstr "Cover Image"
