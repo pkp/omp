@@ -1307,6 +1307,9 @@ msgstr "A configured payment method is required before you can define e-commerce
 msgid "notification.type.visitCatalogTitle"
 msgstr "Catalog Management"
 
+msgid "notification.type.visitCatalog"
+msgstr "The monograph has been approved. Please visit Catalog to manage its catalog details, using the catalog link just above."
+
 msgid "user.authorization.invalidReviewAssignment"
 msgstr "You have been denied access because you do not seem to be a valid reviewer for this monograph."
 
