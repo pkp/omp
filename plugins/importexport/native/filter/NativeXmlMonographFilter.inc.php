@@ -44,13 +44,13 @@ class NativeXmlMonographFilter extends NativeXmlSubmissionFilter {
 		$importedObjects =& parent::process($document);
 
 		// Index imported content
-		// $monographSearchIndex = Application::getSubmissionSearchIndex();
-		// foreach ($importedObjects as $submission) {
-		// 	assert(is_a($submission, 'Submission'));
-		// 	$monographSearchIndex->submissionMetadataChanged($submission);
-		// 	$monographSearchIndex->submissionFilesChanged($submission);
-		// }
-		// $monographSearchIndex->submissionChangesFinished();
+		$monographSearchIndex = Application::getSubmissionSearchIndex();
+		foreach ($importedObjects as $submission) {
+			assert(is_a($submission, 'Submission'));
+			$monographSearchIndex->submissionMetadataChanged($submission);
+			$monographSearchIndex->submissionFilesChanged($submission);
+		}
+		$monographSearchIndex->submissionChangesFinished();
 
 		return $importedObjects;
 	}
@@ -63,18 +63,6 @@ class NativeXmlMonographFilter extends NativeXmlSubmissionFilter {
 	 */
 	function populateObject($submission, $node) {
 		$deployment = $this->getDeployment();
-		// $seriesPath = $node->getAttribute('series');
-		// $seriesPosition = $node->getAttribute('series_position');
-		// if ($seriesPath !== '') {
-		// 	$seriesDao = DAORegistry::getDAO('SeriesDAO'); /* @var $seriesDao SeriesDAO */
-		// 	$series = $seriesDao->getByPath($seriesPath, $submission->getContextId());
-		// 	if (!$series) {
-		// 		$deployment->addError(ASSOC_TYPE_SUBMISSION, $submission->getId(), __('plugins.importexport.native.error.unknownSeries', array('param' => $seriesPath)));
-		// 	} else {
-		// 		$submission->setSeriesId($series->getId());
-		// 		$submission->setSeriesPosition($seriesPosition);
-		// 	}
-		// }
 
 		$workType = $node->getAttribute('work_type');
 		$submission->setData('workType', $workType);
@@ -151,14 +139,6 @@ class NativeXmlMonographFilter extends NativeXmlSubmissionFilter {
 		$formatDoc->appendChild($formatDoc->importNode($n, true));
 		return $importFilter->execute($formatDoc);
 	}
-
-	// /**
-	//  * Get the representation export filter group name
-	//  * @return string
-	//  */
-	// function getRepresentationExportFilterGroupName() {
-	// 	return 'publication-format=>native-xml';
-	// }
 }
 
 

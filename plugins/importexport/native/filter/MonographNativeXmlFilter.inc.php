@@ -61,9 +61,8 @@ class MonographNativeXmlFilter extends SubmissionNativeXmlFilter {
 	function createSubmissionNode($doc, $submission) {
 		$submissionNode = parent::createSubmissionNode($doc, $submission);
 
-		$submissionNode->setAttribute('work_type', $submission->getWorkType());
+		$submissionNode->setAttribute('work_type', $submission->getData('workType'));
 		
-
 		return $submissionNode;
 	}
 }

@@ -79,6 +79,8 @@ class ChapterNativeXmlFilter extends NativeExportFilter {
 		$deployment = $this->getDeployment();
 		$context = $deployment->getContext();
 
+		$publication = $deployment->getPublication();
+
 		// Create the entity node
 		$entityNode = $doc->createElementNS($deployment->getNamespace(), 'chapter');
 		$entityNode->setAttribute('seq', $chapter->getSequence());
@@ -99,6 +101,17 @@ class ChapterNativeXmlFilter extends NativeExportFilter {
 			$entityNode->appendChild($this->createChapterAuthorNode($doc, $chapterAuthor));
 		}
 
+		$submissionFileDao = DAORegistry::getDAO('SubmissionFileDAO'); /** @var $submissionFileDao SubmissionFileDAO */
+		$submissionFiles = $submissionFileDao->getBySubmissionId($publication->getData('submissionId'));
+		foreach ($submissionFiles as $submissionFile) { /** @var $submissionFile SubmissionFile */
+			if ($submissionFile->getData('chapterId') == $chapter->getId()) {
+				$referenceFileNode = $doc->createElementNS($deployment->getNamespace(), 'submission_file_ref');
+				$referenceFileNode->setAttribute('id', $submissionFile->getId());
+				$referenceFileNode->setAttribute('revision', $submissionFile->getRevision());
+				$entityNode->appendChild($referenceFileNode);
+			}
+		}
+		
 		return $entityNode;
 	}
 

@@ -56,6 +56,7 @@ class PublicationFormatNativeXmlFilter extends RepresentationNativeXmlFilter {
 		// If all nexessary press settings exist, export ONIX metadata
 		$context = $this->getDeployment()->getContext();
 		if ($context->getData('publisher') && $context->getData('location') && $context->getData('codeType') && $context->getData('codeValue')) {
+			$publication = $this->getDeployment()->getPublication();
 			$submission = $this->getDeployment()->getSubmission();
 
 			$filterDao = DAORegistry::getDAO('FilterDAO'); /* @var $filterDao FilterDAO */
@@ -66,7 +67,7 @@ class PublicationFormatNativeXmlFilter extends RepresentationNativeXmlFilter {
 			$request = Application::get()->getRequest();
 			$exportFilter->setDeployment(new Onix30ExportDeployment($request->getContext(), $request->getUser()));
 
-			$onixDoc  = $exportFilter->execute($submission);
+			$onixDoc = $exportFilter->execute($submission);
 			if ($onixDoc) { // we do this to ensure validation.
 				// assemble just the Product node we want.
 				$publicationFormatDOMElement = $exportFilter->createProductNode($doc, $submission, $representation);

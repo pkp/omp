@@ -42,16 +42,6 @@ class PublicationNativeXmlFilter extends PKPPublicationNativeXmlFilter {
 	function getRepresentationExportFilterGroupName() {
 		return 'publication-format=>native-xml';
 	}
-	//
-	// Implement abstract methods from SubmissionNativeXmlFilter
-	//
-	// /**
-	//  * Get the representation export filter group name
-	//  * @return string
-	//  */
-	// function getRepresentationExportFilterGroupName() {
-	// 	return 'article-galley=>native-xml';
-	// }
 
 	//
 	// Submission conversion functions
@@ -67,6 +57,8 @@ class PublicationNativeXmlFilter extends PKPPublicationNativeXmlFilter {
 		$entityNode = parent::createEntityNode($doc, $entity);
 
 		$context = $deployment->getContext();
+		
+		$deployment->setPublication($entity);
 
 		// Add the series, if one is designated.
 		if ($seriesId = $entity->getData('seriesId')) {
@@ -80,7 +72,7 @@ class PublicationNativeXmlFilter extends PKPPublicationNativeXmlFilter {
 		$this->addChapters($doc, $entityNode, $entity);
 
 		// cover images
-		$coversNode = $this->createCoversNode($this, $doc, $entity);
+		$coversNode = $this->createPublicationCoversNode($this, $doc, $entity);
 		if ($coversNode) $entityNode->appendChild($coversNode);
 
 		return $entityNode;
@@ -93,7 +85,7 @@ class PublicationNativeXmlFilter extends PKPPublicationNativeXmlFilter {
 	 * @param $entity Publication
 	 */
 	function addChapters($doc, $entityNode, $entity) {
-		$filterDao = DAORegistry::getDAO('FilterDAO'); /* @var $filterDao FilterDAO */
+		$filterDao = DAORegistry::getDAO('FilterDAO'); /** @var $filterDao FilterDAO */
 		$nativeExportFilters = $filterDao->getObjectsByGroup('chapter=>native-xml');
 		assert(count($nativeExportFilters)==1); // Assert only a single serialization filter
 		$exportFilter = array_shift($nativeExportFilters);
@@ -114,8 +106,11 @@ class PublicationNativeXmlFilter extends PKPPublicationNativeXmlFilter {
 	 * @param $object Publication
 	 * @return DOMElement
 	 */
-	function createCoversNode($filter, $doc, $object) {
+	function createPublicationCoversNode($filter, $doc, $object) {
 		$deployment = $filter->getDeployment();
+
+		$context = $deployment->getContext();
+
 		$coversNode = null;
 		$coverImages = $object->getData('coverImage');
 		if (!empty($coverImages)) {
@@ -126,22 +121,12 @@ class PublicationNativeXmlFilter extends PKPPublicationNativeXmlFilter {
 				$coverNode = $doc->createElementNS($deployment->getNamespace(), 'cover');
 				$coverNode->setAttribute('locale', $locale);
 				$coverNode->appendChild($node = $doc->createElementNS($deployment->getNamespace(), 'cover_image', htmlspecialchars($coverImageName, ENT_COMPAT, 'UTF-8')));
-				$coverNode->appendChild($node = $doc->createElementNS($deployment->getNamespace(), 'cover_image_alt_text', htmlspecialchars($object->getLocalizedData('coverImageAltText', $locale), ENT_COMPAT, 'UTF-8')));
+				$coverNode->appendChild($node = $doc->createElementNS($deployment->getNamespace(), 'cover_image_alt_text', htmlspecialchars($coverImage['altText'], ENT_COMPAT, 'UTF-8')));
 
 				import('classes.file.PublicFileManager');
 				$publicFileManager = new PublicFileManager();
 
-				$contextId = null;
-
-				if (is_a($object, 'Publication')) {
-					/** @var $submissionService APP\Services\SubmissionService */
-					$submissionService = Services::get('submission');
-					$submission = $submissionService->get($object->getData('submissionId'));
-
-					$contextId = $submission->getData('contextId');
-				} else if (is_a($object, 'Issue')) {
-					$contextId = $object->getData('contextId');
-				}
+				$contextId = $context->getId();
 				
 				$filePath = $publicFileManager->getContextFilesPath($contextId) . '/' . $coverImageName;
 				$embedNode = $doc->createElementNS($deployment->getNamespace(), 'embed', base64_encode(file_get_contents($filePath)));
@@ -174,5 +159,4 @@ class PublicationNativeXmlFilter extends PKPPublicationNativeXmlFilter {
 			}
 		}
 	}
-
 }

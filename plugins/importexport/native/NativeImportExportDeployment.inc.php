@@ -59,6 +59,22 @@ class NativeImportExportDeployment extends PKPNativeImportExportDeployment {
 	function getSchemaFilename() {
 		return 'native.xsd';
 	}
+
+	/**
+	 * Get the publication node name
+	 * @return string
+	 */
+	function getPublicationNodeName() {
+		return 'publication';
+	}
+
+	/**
+	 * Get the publications node name
+	 * @return string
+	 */
+	function getPublicationsNodeName() {
+		return 'publications';
+	}
 }
 
 

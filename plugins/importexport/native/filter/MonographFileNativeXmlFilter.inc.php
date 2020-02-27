@@ -48,10 +48,6 @@ class MonographFileNativeXmlFilter extends SubmissionFileNativeXmlFilter {
 	function createSubmissionFileNode($doc, $submissionFile) {
 		$deployment = $this->getDeployment();
 		$submissionFileNode = parent::createSubmissionFileNode($doc, $submissionFile);
-
-		if ($submissionFile->getData('chapterId')) {
-			$submissionFileNode->appendChild($doc->createElementNS($deployment->getNamespace(), 'chapterId', $submissionFile->getData('chapterId')));
-		}
 		
 		if ($submissionFile->getData('directSalesPrice')) {
 			$submissionFileNode->appendChild($doc->createElementNS($deployment->getNamespace(), 'directSalesPrice', $submissionFile->getData('directSalesPrice')));
@@ -61,9 +57,6 @@ class MonographFileNativeXmlFilter extends SubmissionFileNativeXmlFilter {
 			$submissionFileNode->appendChild($doc->createElementNS($deployment->getNamespace(), 'salesType', $submissionFile->getData('salesType')));
 		}
 
-		if ($submissionFile->getData('viewable')) {
-			$submissionFileNode->appendChild($doc->createElementNS($deployment->getNamespace(), 'viewable', $submissionFile->getData('viewable')));
-		}
 		// FIXME: is permission file ID implemented?
 		// FIXME: is chapter ID implemented?
 		// FIXME: is contact author ID implemented?
