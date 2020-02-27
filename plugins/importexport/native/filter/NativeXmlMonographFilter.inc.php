@@ -44,13 +44,13 @@ class NativeXmlMonographFilter extends NativeXmlSubmissionFilter {
 		$importedObjects =& parent::process($document);
 
 		// Index imported content
-		$monographSearchIndex = Application::getSubmissionSearchIndex();
-		foreach ($importedObjects as $submission) {
-			assert(is_a($submission, 'Submission'));
-			$monographSearchIndex->submissionMetadataChanged($submission);
-			$monographSearchIndex->submissionFilesChanged($submission);
-		}
-		$monographSearchIndex->submissionChangesFinished();
+		// $monographSearchIndex = Application::getSubmissionSearchIndex();
+		// foreach ($importedObjects as $submission) {
+		// 	assert(is_a($submission, 'Submission'));
+		// 	$monographSearchIndex->submissionMetadataChanged($submission);
+		// 	$monographSearchIndex->submissionFilesChanged($submission);
+		// }
+		// $monographSearchIndex->submissionChangesFinished();
 
 		return $importedObjects;
 	}
@@ -63,20 +63,22 @@ class NativeXmlMonographFilter extends NativeXmlSubmissionFilter {
 	 */
 	function populateObject($submission, $node) {
 		$deployment = $this->getDeployment();
-		$seriesPath = $node->getAttribute('series');
-		$seriesPosition = $node->getAttribute('series_position');
-		if ($seriesPath !== '') {
-			$seriesDao = DAORegistry::getDAO('SeriesDAO'); /* @var $seriesDao SeriesDAO */
-			$series = $seriesDao->getByPath($seriesPath, $submission->getContextId());
-			if (!$series) {
-				$deployment->addError(ASSOC_TYPE_SUBMISSION, $submission->getId(), __('plugins.importexport.native.error.unknownSeries', array('param' => $seriesPath)));
-			} else {
-				$submission->setSeriesId($series->getId());
-				$submission->setSeriesPosition($seriesPosition);
-			}
-		}
+		// $seriesPath = $node->getAttribute('series');
+		// $seriesPosition = $node->getAttribute('series_position');
+		// if ($seriesPath !== '') {
+		// 	$seriesDao = DAORegistry::getDAO('SeriesDAO'); /* @var $seriesDao SeriesDAO */
+		// 	$series = $seriesDao->getByPath($seriesPath, $submission->getContextId());
+		// 	if (!$series) {
+		// 		$deployment->addError(ASSOC_TYPE_SUBMISSION, $submission->getId(), __('plugins.importexport.native.error.unknownSeries', array('param' => $seriesPath)));
+		// 	} else {
+		// 		$submission->setSeriesId($series->getId());
+		// 		$submission->setSeriesPosition($seriesPosition);
+		// 	}
+		// }
+
 		$workType = $node->getAttribute('work_type');
-		$submission->setWorkType($workType);
+		$submission->setData('workType', $workType);
+		
 		return parent::populateObject($submission, $node);
 	}
 
@@ -91,8 +93,8 @@ class NativeXmlMonographFilter extends NativeXmlSubmissionFilter {
 			case 'supplementary_file':
 				$this->parseSubmissionFile($n, $submission);
 				break;
-			case 'publication_format':
-				$this->parsePublicationFormat($n, $submission);
+			case 'publication':
+				$this->parsePublication($n, $submission);
 				break;
 			default:
 				parent::handleChildElement($n, $submission);
@@ -118,8 +120,8 @@ class NativeXmlMonographFilter extends NativeXmlSubmissionFilter {
 			case 'supplementary_file':
 				$importClass='SupplementaryFile';
 				break;
-			case 'publication_format':
-				$importClass='PublicationFormat';
+			case 'publication':
+				$importClass='Publication';
 				break;
 			default:
 				$deployment->addError(ASSOC_TYPE_SUBMISSION, $submission->getId(), __('plugins.importexport.common.error.unknownElement', array('param' => $elementName)));
@@ -137,28 +139,26 @@ class NativeXmlMonographFilter extends NativeXmlSubmissionFilter {
 	 * @param $n DOMElement
 	 * @param $submission Submission
 	 */
-	function parsePublicationFormat($n, $submission) {
+	function parsePublication($n, $submission) {
 		$importFilter = $this->getImportFilter($n->tagName);
 		assert($importFilter); // There should be a filter
 
 		$existingDeployment = $this->getDeployment();
 		$request = Application::get()->getRequest();
-		$onixDeployment = new Onix30ExportDeployment($request->getContext(), $request->getUser());
-		$onixDeployment->setSubmission($existingDeployment->getSubmission());
-		$onixDeployment->setFileDBIds($existingDeployment->getFileDBIds());
-		$importFilter->setDeployment($onixDeployment);
+		
+		$importFilter->setDeployment($existingDeployment);
 		$formatDoc = new DOMDocument();
 		$formatDoc->appendChild($formatDoc->importNode($n, true));
 		return $importFilter->execute($formatDoc);
 	}
 
-	/**
-	 * Get the representation export filter group name
-	 * @return string
-	 */
-	function getRepresentationExportFilterGroupName() {
-		return 'publication-format=>native-xml';
-	}
+	// /**
+	//  * Get the representation export filter group name
+	//  * @return string
+	//  */
+	// function getRepresentationExportFilterGroupName() {
+	// 	return 'publication-format=>native-xml';
+	// }
 }
 
 

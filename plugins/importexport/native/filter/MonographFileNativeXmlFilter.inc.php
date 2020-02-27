@@ -15,7 +15,7 @@
 
 import('lib.pkp.plugins.importexport.native.filter.SubmissionFileNativeXmlFilter');
 
-class ArtworkFileNativeXmlFilter extends SubmissionFileNativeXmlFilter {
+class MonographFileNativeXmlFilter extends SubmissionFileNativeXmlFilter {
 	/**
 	 * Constructor
 	 * @param $filterGroup FilterGroup
@@ -32,7 +32,7 @@ class ArtworkFileNativeXmlFilter extends SubmissionFileNativeXmlFilter {
 	 * @copydoc PersistableFilter::getClassName()
 	 */
 	function getClassName() {
-		return 'plugins.importexport.native.filter.ArtworkFileNativeXmlFilter';
+		return 'plugins.importexport.native.filter.MonographFileNativeXmlFilter';
 	}
 
 
@@ -48,23 +48,22 @@ class ArtworkFileNativeXmlFilter extends SubmissionFileNativeXmlFilter {
 	function createSubmissionFileNode($doc, $submissionFile) {
 		$deployment = $this->getDeployment();
 		$submissionFileNode = parent::createSubmissionFileNode($doc, $submissionFile);
-		if ($caption = $submissionFile->getCaption()) {
-			$submissionFileNode->appendChild($doc->createElementNS($deployment->getNamespace(), 'caption', htmlspecialchars($caption, ENT_COMPAT, 'UTF-8')));
+
+		if ($submissionFile->getData('chapterId')) {
+			$submissionFileNode->appendChild($doc->createElementNS($deployment->getNamespace(), 'chapterId', $submissionFile->getData('chapterId')));
 		}
-		if ($credit = $submissionFile->getCredit()) {
-			$submissionFileNode->appendChild($doc->createElementNS($deployment->getNamespace(), 'credit', htmlspecialchars($credit, ENT_COMPAT, 'UTF-8')));
-		}
-		if ($copyrightOwner = $submissionFile->getCopyrightOwner()) {
-			$submissionFileNode->appendChild($doc->createElementNS($deployment->getNamespace(), 'copyright_owner', htmlspecialchars($copyrightOwner, ENT_COMPAT, 'UTF-8')));
-		}
-		if ($copyrightOwnerContact = $submissionFile->getCopyrightOwnerContactDetails()) {
-			$submissionFileNode->appendChild($doc->createElementNS($deployment->getNamespace(), 'copyright_owner_contact', htmlspecialchars($copyrightOwnerContact, ENT_COMPAT, 'UTF-8')));
-		}
-		if ($permissionTerms = $submissionFile->getPermissionTerms()) {
-			$submissionFileNode->appendChild($doc->createElementNS($deployment->getNamespace(), 'permission_terms', htmlspecialchars($permissionTerms, ENT_COMPAT, 'UTF-8')));
+		
+		if ($submissionFile->getData('directSalesPrice')) {
+			$submissionFileNode->appendChild($doc->createElementNS($deployment->getNamespace(), 'directSalesPrice', $submissionFile->getData('directSalesPrice')));
 		}
 
-		$submissionFileNode->appendChild($doc->createElementNS($deployment->getNamespace(), 'chapterId', $submissionFile->getData('chapterId')));
+		if ($submissionFile->getData('salesType')) {
+			$submissionFileNode->appendChild($doc->createElementNS($deployment->getNamespace(), 'salesType', $submissionFile->getData('salesType')));
+		}
+
+		if ($submissionFile->getData('viewable')) {
+			$submissionFileNode->appendChild($doc->createElementNS($deployment->getNamespace(), 'viewable', $submissionFile->getData('viewable')));
+		}
 		// FIXME: is permission file ID implemented?
 		// FIXME: is chapter ID implemented?
 		// FIXME: is contact author ID implemented?
@@ -76,7 +75,7 @@ class ArtworkFileNativeXmlFilter extends SubmissionFileNativeXmlFilter {
 	 * Get the submission file element name
 	 */
 	function getSubmissionFileElementName() {
-		return 'artwork_file';
+		return 'submission_file';
 	}
 }
 

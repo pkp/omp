@@ -106,6 +106,9 @@ class NativeImportExportPlugin extends ImportExportPlugin {
 						'exportSubmissionsListPanel' => $exportSubmissionsListPanel->getConfig()
 					]
 				]);
+
+				$templateMgr->assign('currentcontext', $context);
+
 				$templateMgr->display($this->getTemplateResource('index.tpl'));
 				break;
 			case 'uploadImportXML':

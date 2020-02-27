@@ -42,7 +42,7 @@ class PublicationFormatNativeXmlFilter extends RepresentationNativeXmlFilter {
 	 * Create and return a representation node. Extend the parent class
 	 * with publication format specific data.
 	 * @param $doc DOMDocument
-	 * @param $representation Representation
+	 * @param $representation PublicationFormat
 	 * @return DOMElement
 	 */
 	function createRepresentationNode($doc, $representation) {
@@ -50,6 +50,8 @@ class PublicationFormatNativeXmlFilter extends RepresentationNativeXmlFilter {
 		$representationNode->setAttribute('approved', $representation->getIsApproved()?'true':'false');
 		$representationNode->setAttribute('available', $representation->getIsAvailable()?'true':'false');
 		$representationNode->setAttribute('physical_format', $representation->getPhysicalFormat()?'true':'false');
+		$representationNode->setAttribute('url_path', $representation->getData('urlPath'));
+		$representationNode->setAttribute('entry_key', $representation->getData('entryKey'));
 
 		// If all nexessary press settings exist, export ONIX metadata
 		$context = $this->getDeployment()->getContext();
