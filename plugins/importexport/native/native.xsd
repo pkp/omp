@@ -23,8 +23,6 @@
 		<complexType>
 			<complexContent>
 				<extension base="pkp:submission">
-					<attribute name="series" type="normalizedString" />
-					<attribute name="series_position" type="normalizedString" />
 					<attribute name="work_type" type="int" />
 					<attribute name="stage" use="required">
 						<simpleType>
@@ -44,6 +42,53 @@
 	<element name="monographs" substitutionGroup="pkp:submissions" />
 	<element name="Product" substitutionGroup="onix:Product" />
 
+	<complexType name="ojschapter">
+		<sequence>
+			<!-- Metadata -->
+			<element name="title" type="pkp:localizedNode" minOccurs="0" maxOccurs="unbounded" />
+			<element name="abstract" type="pkp:localizedNode" minOccurs="0" maxOccurs="unbounded" />
+			<element name="subtitle" type="pkp:localizedNode" minOccurs="0" maxOccurs="unbounded" />
+			<element name="pages" type="string" minOccurs="0" maxOccurs="1" />
+			<element name="chapterAuthor" minOccurs="0" maxOccurs="unbounded" >
+				<complexType>
+					<attribute name="author_id" type="int" use="required" />
+					<attribute name="primary_contact" type="int" use="required" />
+					<attribute name="seq" type="int" use="required" />
+				</complexType>
+			</element>
+			<element name="submission_file_ref" type="pkp:submission_file_ref" minOccurs="0" maxOccurs="unbounded" />
+		</sequence>
+		<attribute name="seq" type="int" use="required" />
+		<attribute name="id" type="int" use="required" />
+	</complexType>
+
+	<element name="chapter" type="pkp:ojschapter" />
+
+	<element name="chapters">
+		<complexType>
+			<sequence>
+				<element ref="pkp:chapter" minOccurs="1" maxOccurs="unbounded" />
+			</sequence>
+		</complexType>
+	</element>
+
+	<element name="publication" substitutionGroup="pkp:pkppublication">
+		<complexType>
+			<complexContent>
+				<extension base="pkp:pkppublication">
+					<sequence>
+						<element ref="pkp:chapters" maxOccurs="1" minOccurs="0" />
+						<element ref="pkp:covers" minOccurs="0" maxOccurs="1" />
+					</sequence>
+					<attribute name="series" type="normalizedString" />
+					<attribute name="series_position" type="normalizedString" />
+					<attribute name="seq" type="int" />
+					<attribute name="access_status" type="int" />
+				</extension>
+			</complexContent>
+		</complexType>
+	</element>
+
 	<!-- Configure the use of the "publication_format" representation -->
 	<element name="publication_format" substitutionGroup="pkp:representation">
 		<complexType>
@@ -55,6 +100,7 @@
 					<attribute name="approved" type="boolean"/>
 					<attribute name="available" type="boolean"/>
 					<attribute name="physical_format" type="boolean"/>
+					<attribute name="entry_key" type="string" use="optional" />
 				</extension>
 			</complexContent>
 		</complexType>
@@ -94,6 +140,25 @@
 					</sequence>
 				</extension>
 			</complexContent>
+		</complexType>
+	</element>
+
+	<element name="covers">
+		<complexType>
+			<sequence>
+				<element ref="pkp:cover" minOccurs="1" maxOccurs="unbounded" />
+			</sequence>
+		</complexType>
+	</element>
+
+	<element name="cover">
+		<complexType>
+			<sequence>
+				<element name="cover_image" type="string" minOccurs="1" maxOccurs="1" />
+				<element name="cover_image_alt_text" type="string" minOccurs="1" maxOccurs="1" />
+				<element name="embed" type="pkp:embed" />
+			</sequence>
+			<attribute name="locale" type="string" />
 		</complexType>
 	</element>
 </schema>

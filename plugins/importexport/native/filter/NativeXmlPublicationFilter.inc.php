@@ -16,15 +16,6 @@
 import('lib.pkp.plugins.importexport.native.filter.NativeXmlPKPPublicationFilter');
 
 class NativeXmlPublicationFilter extends NativeXmlPKPPublicationFilter {
-	/**
-	 * Constructor
-	 * @param $filterGroup FilterGroup
-	 */
-	function __construct($filterGroup) {
-		parent::__construct($filterGroup);
-	}
-
-
 	//
 	// Implement template methods from PersistableFilter
 	//
@@ -33,17 +24,6 @@ class NativeXmlPublicationFilter extends NativeXmlPKPPublicationFilter {
 	 */
 	function getClassName() {
 		return 'plugins.importexport.native.filter.NativeXmlPublicationFilter';
-	}
-
-	/**
-	 * @see Filter::process()
-	 * @param $document DOMDocument|string
-	 * @return array Array of imported documents
-	 */
-	function &process(&$document) {
-		$importedObjects =& parent::process($document);
-
-		return $importedObjects;
 	}
 
 	/**

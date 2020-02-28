@@ -55,7 +55,7 @@ class PublicationFormatNativeXmlFilter extends RepresentationNativeXmlFilter {
 
 		// If all nexessary press settings exist, export ONIX metadata
 		$context = $this->getDeployment()->getContext();
-		if ($context->getData('publisher') && $context->getData('location') && $context->getData('codeType') && $context->getData('codeValue')) {
+		if ($context->getContactName() && $context->getContactEmail() && $context->getData('publisher') && $context->getData('location') && $context->getData('codeType') && $context->getData('codeValue')) {
 			$publication = $this->getDeployment()->getPublication();
 			$submission = $this->getDeployment()->getSubmission();
 

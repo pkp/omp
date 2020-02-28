@@ -16,17 +16,6 @@
 import('lib.pkp.plugins.importexport.native.filter.SubmissionNativeXmlFilter');
 
 class MonographNativeXmlFilter extends SubmissionNativeXmlFilter {
-	/**
-	 * Constructor
-	 * @param $filterGroup FilterGroup
-	 */
-	function __construct($filterGroup) {
-		parent::__construct($filterGroup);
-
-		$this->_noValidation = true;
-	}
-
-
 	//
 	// Implement template methods from PersistableFilter
 	//
