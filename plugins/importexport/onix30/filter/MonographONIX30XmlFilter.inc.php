@@ -268,8 +268,8 @@ class MonographONIX30XmlFilter extends NativeExportFilter {
 			$titleElementNode->appendChild($this->_buildTextNode($doc, 'TitleWithoutPrefix', $publication->getLocalizedTitle()));
 		}
 
-		if ($publication->getData('subtitle')) {
-			$titleElementNode->appendChild($this->_buildTextNode($doc, 'Subtitle', $publication->getData('subtitle')));
+		if ($publication->getData('subtitle', $publication->getData('locale')) {
+			$titleElementNode->appendChild($this->_buildTextNode($doc, 'Subtitle', $publication->getData('subtitle', $publication->getData('locale'))));
 		}
 
 		/* --- Contributor information --- */

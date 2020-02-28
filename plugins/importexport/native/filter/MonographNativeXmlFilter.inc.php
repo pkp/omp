@@ -16,15 +16,6 @@
 import('lib.pkp.plugins.importexport.native.filter.SubmissionNativeXmlFilter');
 
 class MonographNativeXmlFilter extends SubmissionNativeXmlFilter {
-	/**
-	 * Constructor
-	 * @param $filterGroup FilterGroup
-	 */
-	function __construct($filterGroup) {
-		parent::__construct($filterGroup);
-	}
-
-
 	//
 	// Implement template methods from PersistableFilter
 	//
@@ -59,16 +50,8 @@ class MonographNativeXmlFilter extends SubmissionNativeXmlFilter {
 	function createSubmissionNode($doc, $submission) {
 		$submissionNode = parent::createSubmissionNode($doc, $submission);
 
-		// Add the series, if one is designated.
-		if ($seriesId = $submission->getSeriesId()) {
-			$seriesDao = DAORegistry::getDAO('SeriesDAO'); /* @var $seriesDao SeriesDAO */
-			$series = $seriesDao->getById($seriesId, $submission->getContextId());
-			assert($series);
-			$submissionNode->setAttribute('series', $series->getPath());
-			$submissionNode->setAttribute('series_position', $submission->getSeriesPosition());
-			$submissionNode->setAttribute('work_type', $submission->getWorkType());
-		}
-
+		$submissionNode->setAttribute('work_type', $submission->getData('workType'));
+		
 		return $submissionNode;
 	}
 }

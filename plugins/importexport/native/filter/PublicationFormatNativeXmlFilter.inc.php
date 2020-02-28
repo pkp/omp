@@ -42,7 +42,7 @@ class PublicationFormatNativeXmlFilter extends RepresentationNativeXmlFilter {
 	 * Create and return a representation node. Extend the parent class
 	 * with publication format specific data.
 	 * @param $doc DOMDocument
-	 * @param $representation Representation
+	 * @param $representation PublicationFormat
 	 * @return DOMElement
 	 */
 	function createRepresentationNode($doc, $representation) {
@@ -50,10 +50,13 @@ class PublicationFormatNativeXmlFilter extends RepresentationNativeXmlFilter {
 		$representationNode->setAttribute('approved', $representation->getIsApproved()?'true':'false');
 		$representationNode->setAttribute('available', $representation->getIsAvailable()?'true':'false');
 		$representationNode->setAttribute('physical_format', $representation->getPhysicalFormat()?'true':'false');
+		$representationNode->setAttribute('url_path', $representation->getData('urlPath'));
+		$representationNode->setAttribute('entry_key', $representation->getData('entryKey'));
 
 		// If all nexessary press settings exist, export ONIX metadata
 		$context = $this->getDeployment()->getContext();
-		if ($context->getData('publisher') && $context->getData('location') && $context->getData('codeType') && $context->getData('codeValue')) {
+		if ($context->getContactName() && $context->getContactEmail() && $context->getData('publisher') && $context->getData('location') && $context->getData('codeType') && $context->getData('codeValue')) {
+			$publication = $this->getDeployment()->getPublication();
 			$submission = $this->getDeployment()->getSubmission();
 
 			$filterDao = DAORegistry::getDAO('FilterDAO'); /* @var $filterDao FilterDAO */
@@ -64,7 +67,7 @@ class PublicationFormatNativeXmlFilter extends RepresentationNativeXmlFilter {
 			$request = Application::get()->getRequest();
 			$exportFilter->setDeployment(new Onix30ExportDeployment($request->getContext(), $request->getUser()));
 
-			$onixDoc  = $exportFilter->execute($submission);
+			$onixDoc = $exportFilter->execute($submission);
 			if ($onixDoc) { // we do this to ensure validation.
 				// assemble just the Product node we want.
 				$publicationFormatDOMElement = $exportFilter->createProductNode($doc, $submission, $representation);

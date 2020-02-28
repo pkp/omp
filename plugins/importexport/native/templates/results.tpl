@@ -11,7 +11,7 @@
 	<h2>{translate key="plugins.importexport.common.warningsEncountered"}</h2>
 	{foreach from=$submissionsWarnings item=submissionsWarningMessages name=submissionsWarnings}
 		{if $submissionsWarningMessages|@count > 0}
-			<p>$smarty.foreach.submissionsWarnings.iteration}. {translate key="submissions.submission"}</p>
+			<p>{$smarty.foreach.submissionsWarnings.iteration}. {translate key="submission.submission"}</p>
 			<ul>
 				{foreach from=$submissionsWarningMessages item=submissionsWarningMessage}
 					<li>{$submissionsWarningMessage|escape}</li>

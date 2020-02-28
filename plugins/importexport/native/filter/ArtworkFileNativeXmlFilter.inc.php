@@ -64,6 +64,7 @@ class ArtworkFileNativeXmlFilter extends SubmissionFileNativeXmlFilter {
 			$submissionFileNode->appendChild($doc->createElementNS($deployment->getNamespace(), 'permission_terms', htmlspecialchars($permissionTerms, ENT_COMPAT, 'UTF-8')));
 		}
 
+		$submissionFileNode->appendChild($doc->createElementNS($deployment->getNamespace(), 'chapterId', $submissionFile->getData('chapterId')));
 		// FIXME: is permission file ID implemented?
 		// FIXME: is chapter ID implemented?
 		// FIXME: is contact author ID implemented?

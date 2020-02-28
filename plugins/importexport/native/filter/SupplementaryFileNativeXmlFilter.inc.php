@@ -60,6 +60,9 @@ class SupplementaryFileNativeXmlFilter extends SubmissionFileNativeXmlFilter {
 		if ($language = $submissionFile->getLanguage()) {
 			$submissionFileNode->appendChild($doc->createElementNS($deployment->getNamespace(), 'language', htmlspecialchars($language, ENT_COMPAT, 'UTF-8')));
 		}
+
+		$submissionFileNode->appendChild($doc->createElementNS($deployment->getNamespace(), 'chapterId', $submissionFile->getData('chapterId')));
+
 		return $submissionFileNode;
 	}
 
