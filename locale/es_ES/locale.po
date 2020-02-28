@@ -2,14 +2,17 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"Last-Translator: \n"
-"Language-Team: \n"
+"POT-Creation-Date: 2019-09-30T06:23:44-07:00\n"
+"PO-Revision-Date: 2020-02-28 23:00+0000\n"
+"Last-Translator: Jordi LC <jordi.lacruz@uab.cat>\n"
+"Language-Team: Spanish <http://translate.pkp.sfu.ca/projects/omp/locale/es/>"
+"\n"
+"Language: es_ES\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"POT-Creation-Date: 2019-09-30T06:23:44-07:00\n"
-"PO-Revision-Date: 2019-09-30T06:23:44-07:00\n"
-"Language: \n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: Weblate 3.9.1\n"
 
 msgid "monograph.audience"
 msgstr "Tipo de lector"
@@ -81,7 +84,7 @@ msgid "monograph.publicationFormat.price"
 msgstr "Precio"
 
 msgid "monograph.publicationFormat.priceRequired"
-msgstr "Se exige precio"
+msgstr "Se necesita un precio."
 
 msgid "monograph.publicationFormat.priceType"
 msgstr "Tipo de precio"
@@ -168,10 +171,10 @@ msgid "grid.catalogEntry.physicalFormat"
 msgstr "Formato físico"
 
 msgid "grid.catalogEntry.monographRequired"
-msgstr "Se requiere identificación de monografía"
+msgstr "Se requiere una identificación de la monografía."
 
 msgid "grid.catalogEntry.publicationFormatRequired"
-msgstr "Debe elegirse formato de publicación"
+msgstr "Debe elegirse un formato de publicación."
 
 msgid "grid.catalogEntry.isAvailable"
 msgstr "Disponible"
@@ -198,7 +201,7 @@ msgid "grid.catalogEntry.availablePublicationFormat.proofNotApproved"
 msgstr "Prueba no aprobada."
 
 msgid "grid.catalogEntry.fileSizeRequired"
-msgstr "Se requiere un tamaño de fichero para formatos digitales"
+msgstr "Se requiere un tamaño de archivo para formatos digitales."
 
 msgid "grid.catalogEntry.productAvailabilityRequired"
 msgstr "Se requiere un código de disponibilidad del producto."
@@ -618,13 +621,13 @@ msgid "common.plusMore"
 msgstr "+ Más"
 
 msgid "common.listbuilder.completeForm"
-msgstr "Rellena el formulario completamente"
+msgstr "Rellene todo el formulario."
 
 msgid "common.listbuilder.selectValidOption"
-msgstr "Selecciona una opción válida de la lista"
+msgstr "Seleccione una opción válida de la lista."
 
 msgid "common.listbuilder.itemExists"
-msgstr "No puedes añadir el mismo elemento dos veces"
+msgstr "No puede añadir el mismo elemento dos veces."
 
 msgid "common.catalogInformation"
 msgstr "La información de catálogo no necesita completarse en una propuesta inicial de la obra, a excepción de Título y Resumen."
@@ -693,7 +696,7 @@ msgid "context.context"
 msgstr "Editorial"
 
 msgid "context.select"
-msgstr "Seleccionar una publicación"
+msgstr "Cambiar a otra publicación:"
 
 msgid "user.noRoles.selectUsersWithoutRoles"
 msgstr "Incluir usuarios/as sin roles en la publicación."
@@ -702,7 +705,9 @@ msgid "user.noRoles.submitMonograph"
 msgstr "Presentar una propuesta"
 
 msgid "user.noRoles.submitMonographRegClosed"
-msgstr "Presentar una monografía: El registro del autor se encuentra actualmente deshabilitado"
+msgstr ""
+"Enviar una monografía: el registro de autor/a se encuentra actualmente "
+"deshabilitado."
 
 msgid "user.noRoles.regReviewer"
 msgstr "Registrarse como corrector"
@@ -750,7 +755,7 @@ msgid "user.register.completeForm"
 msgstr "Complete el formulario para registrarse en la publicación."
 
 msgid "user.register.selectContext"
-msgstr "Seleccione una publicación con la que registrarse"
+msgstr "Seleccione una publicación en la que registrarse:"
 
 msgid "user.register.noContexts"
 msgstr "No hay publicaciones con las que registrarse en el sitio."
@@ -789,7 +794,7 @@ msgid "user.register.reviewerInterests"
 msgstr "Identificar los intereses de la revisión (áreas sustantivas y métodos de investigación):"
 
 msgid "user.register.form.userGroupRequired"
-msgstr "Debes seleccionar al menos un rol."
+msgstr "Debe seleccionar por lo menos un rol"
 
 msgid "site.pressView"
 msgstr "Ver página web de la editorial"
@@ -984,7 +989,7 @@ msgid "log.editor.decision"
 msgstr "{$editorName} grabó la decisión del editor/a ({$decision}) en la monografía {$submissionId}."
 
 msgid "log.editor.archived"
-msgstr "Se completó el envío {$submissionId}"
+msgstr "El envío {$submissionId} fue archivado."
 
 msgid "log.editor.restored"
 msgstr "Se restauró el envío {$submissionId} a la lista."
@@ -1218,7 +1223,7 @@ msgid "payment.directSales.monograph.description"
 msgstr "Esta transacción es relativa a la compra de una descarga directa de una monografía sola o un capítulo de una monografía."
 
 msgid "debug.notes.currencyListLoad"
-msgstr "Lista de monedas \"{$filename}\" cargada de XML."
+msgstr "Listado de monedas \"{$filename}\" cargado desde XML"
 
 msgid "debug.notes.helpMappingLoad"
 msgstr "El archivo {$filename} de asignación de ayuda XML se volvió a cargar en busca de {$id}."
@@ -1239,7 +1244,7 @@ msgid "monograph.miscellaneousDetails"
 msgstr "Detalles sobre este monográfico"
 
 msgid "monograph.publicationFormat.productDimensionsSeparator"
-msgstr "x"
+msgstr " x "
 
 msgid "grid.catalogEntry.remotelyHostedContent"
 msgstr "Este formato estará disponible en un sitio web independiente"
@@ -1257,7 +1262,8 @@ msgid "grid.catalogEntry.approvedRepresentation.title"
 msgstr "Aceptación de formato"
 
 msgid "grid.catalogEntry.approvedRepresentation.removeMessage"
-msgstr "<p>Indica que los metadatos para este formato no han sido aceptados.<p>"
+msgstr ""
+"<p>Indicar que los metadatos para este formato no han sido aceptados.</p>"
 
 msgid "grid.catalogEntry.availableRepresentation.title"
 msgstr "Disponibilidad de formato"
@@ -1437,7 +1443,7 @@ msgid "user.reviewerPrompt"
 msgstr "¿Estaría dispuesto a revisar los envíos a esta editorial?"
 
 msgid "user.reviewerPrompt.userGroup"
-msgstr "Sí, solicitar el rol {$userGroup}"
+msgstr "Sí, solicitar el rol de {$userGroup}."
 
 msgid "user.reviewerPrompt.optin"
 msgstr "Sí, me gustaría que me contacten para revisar los envíos de esta editorial."
@@ -1458,7 +1464,7 @@ msgid "catalog.manage.categoryFeatured"
 msgstr "Destacado en categoría"
 
 msgid "catalog.manage.seriesFeatured"
-msgstr "Destacado en series."
+msgstr "Destacado en series"
 
 msgid "catalog.manage.featuredSuccess"
 msgstr "La monografía está destacada."
@@ -1467,7 +1473,7 @@ msgid "catalog.manage.notFeaturedSuccess"
 msgstr "Monografía no destacada."
 
 msgid "catalog.manage.newReleaseSuccess"
-msgstr "Monografía marcada como una nueva publicación"
+msgstr "La monografía está marcada como un nuevo lanzamiento."
 
 msgid "grid.series.urlWillBe"
 msgstr "La URL de la colección es {$sampleUrl}. La ruta es una cadena de caracteres que sirven para identificar una serie."
@@ -1475,3 +1481,73 @@ msgstr "La URL de la colección es {$sampleUrl}. La ruta es una cadena de caract
 msgid "submission.round"
 msgstr "Ronda&nbsp;{$round}"
 
+msgid "catalog.coverImageTitle"
+msgstr "Imagen de cubierta"
+
+msgid "user.authorization.invalidPublishedSubmission"
+msgstr "Se ha especificado un envío publicado no válido."
+
+msgid "notification.type.visitCatalog"
+msgstr ""
+"La monografía ha sido aceptada. Visite el catálogo para gestionar sus "
+"detalles de catálogo mediante el enlace que aparece justo encima."
+
+msgid "notification.type.formatNeedsApprovedSubmission"
+msgstr ""
+"La monografía no aparecerá listada en el catálogo hasta que no esté "
+"publicada. Para añadir este libro al catálogo haga clic en la pestaña \""
+"Publicación\"."
+
+msgid "navigation.navigationMenus.newRelease.description"
+msgstr "Enlace a sus nuevos lanzamientos."
+
+msgid "navigation.navigationMenus.newRelease"
+msgstr "Nuevos lanzamientos"
+
+msgid "navigation.navigationMenus.category.description"
+msgstr "Enlace a una categoría."
+
+msgid "navigation.navigationMenus.category.generic"
+msgstr "Categoría"
+
+msgid "navigation.navigationMenus.series.description"
+msgstr "Enlace a series."
+
+msgid "navigation.navigationMenus.series.generic"
+msgstr "Series"
+
+msgid "navigation.skip.spotlights"
+msgstr "Pasar a destacados"
+
+msgid "common.publications"
+msgstr "Monografías"
+
+msgid "common.publication"
+msgstr "Monografía"
+
+msgid "submission.search"
+msgstr "Búsqueda de libros"
+
+msgid "catalog.manage.isNotNewRelease"
+msgstr ""
+"Esta monografía no es un nuevo lanzamiento. Hacer que la monografía sea un "
+"nuevo lanzamiento."
+
+msgid "catalog.manage.isNewRelease"
+msgstr ""
+"Esta monografía es un nuevo lanzamiento. Hacer que la monografía no sea un "
+"nuevo lanzamiento."
+
+msgid "catalog.manage.isNotFeatured"
+msgstr "Esta monografía no está destacada. Hacer la monografía destacada."
+
+msgid "catalog.manage.isFeatured"
+msgstr "Esta monografía está destacada. Hacer la monografía no destacada."
+
+msgid "grid.catalogEntry.approvedRepresentation.message"
+msgstr ""
+"<p>Aprobar los metadatos para este formato. Los metadatos pueden comprobarse "
+"desde el panel de edición para cada formato.</p>"
+
+msgid "monograph.audience.success"
+msgstr "Los detalles de audiencia han sido actualizados."
