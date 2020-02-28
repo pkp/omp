@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2019-11-28T15:10:04-08:00\n"
-"PO-Revision-Date: 2020-02-11 07:30+0000\n"
+"PO-Revision-Date: 2020-02-28 23:00+0000\n"
 "Last-Translator: Niels Erik Frederiksen <nef@kb.dk>\n"
 "Language-Team: Danish <http://translate.pkp.sfu.ca/projects/omp/locale/da/>\n"
 "Language: da_DK\n"
@@ -1512,3 +1512,9 @@ msgstr "Denne monografi er udvalgt. Fjern denne monografi fra udvalgte."
 
 msgid "monograph.audience.success"
 msgstr "Publikumdetaljerne er blevet opdateret."
+
+msgid "catalog.coverImageTitle"
+msgstr "Forsidebillede"
+
+msgid "user.authorization.invalidPublishedSubmission"
+msgstr "En ugyldig publiceret indsendelse blev angivet."
