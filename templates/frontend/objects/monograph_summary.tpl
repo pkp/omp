@@ -12,7 +12,11 @@
  *}
 <div class="obj_monograph_summary{if $isFeatured} is_featured{/if}">
 	<a href="{url page="catalog" op="book" path=$monograph->getBestId()}" class="cover">
-		<img alt="{translate key="catalog.coverImageTitle" monographTitle=$monograph->getLocalizedFullTitle()|strip_tags|escape}" src="{url router=$smarty.const.ROUTE_COMPONENT component="submission.CoverHandler" op="thumbnail" submissionId=$monograph->getId() random=$monograph->getId()|uniqid}" />
+		{assign var="coverImage" value=$monograph->getCurrentPublication()->getLocalizedData('coverImage')}
+		<img
+			src="{$monograph->getCurrentPublication()->getLocalizedCoverImageThumbnailUrl($monograph->getData('contextId'))}"
+			alt="{$coverImage.altText|escape|default:''}"
+		>
 	</a>
 	{if $monograph->getSeriesPosition()}
 		<div class="seriesPosition">

@@ -67,13 +67,7 @@ class Publication extends PKPPublication {
 	 */
 	public function getLocalizedCoverImageThumbnailUrl($contextId) {
 		$url = $this->getLocalizedCoverImageUrl($contextId);
-
-		if (!$url) {
-			return Application::get()->getRequest()->getBaseUrl() . '/templates/images/book-default-small.png';
-		}
-
 		$pathParts = pathinfo($url);
-
 		return join('/', [
 			$pathParts['dirname'],
 			Services::get('publication')->getThumbnailFilename($pathParts['basename']),
