@@ -11,6 +11,7 @@
 #
 # Usage: buildpkg.sh <version> [<tag>]
 #
+#
 
 GITREP=git://github.com/pkp/omp.git
 
@@ -25,21 +26,16 @@ PREFIX=omp
 BUILD=$PREFIX-$VERSION
 TMPDIR=`mktemp -d $PREFIX.XXXXXX` || exit 1
 
-EXCLUDE="dbscripts/xml/data/locale/en_US/sample.xml					\
-dbscripts/xml/data/locale/te_ST								\
-dbscripts/xml/data/sample.xml								\
+EXCLUDE="docs/dev									\
+tests											\
+cypress											\
+tools/buildpkg.sh									\
+lib/pkp/cypress										\
+tools/test										\
+lib/pkp/tools/travis									\
+lib/pkp/plugins/*/*/tests								\
 docs/dev										\
 docs/doxygen										\
-lib/adodb/CHANGED_FILES									\
-lib/adodb/diff										\
-lib/smarty/CHANGED_FILES								\
-lib/smarty/diff										\
-locale/te_ST										\
-cache/*.php										\
-tools/buildpkg.sh									\
-tools/genLocaleReport.sh								\
-tools/genTestLocale.php									\
-tools/test										\
 lib/pkp/tools/travis									\
 lib/pkp/lib/vendor/smarty/smarty/demo							\
 plugins/generic/customBlockManager/.git							\
@@ -50,8 +46,6 @@ plugins/paymethod/paypal/vendor/guzzle/guzzle/docs/					\
 plugins/paymethod/paypal/vendor/guzzle/guzzle/tests/					\
 plugins/paymethod/paypal/vendor/symfony/http-foundation/Tests/				\
 lib/pkp/plugins/*/*/tests								\
-plugins/*/*/tests									\
-tests											\
 lib/pkp/tests										\
 .git											\
 .openshift										\
