@@ -2,14 +2,17 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"Last-Translator: \n"
-"Language-Team: \n"
+"POT-Creation-Date: 2019-09-30T06:23:44-07:00\n"
+"PO-Revision-Date: 2020-02-28 23:00+0000\n"
+"Last-Translator: Jordi LC <jordi.lacruz@uab.cat>\n"
+"Language-Team: Spanish <http://translate.pkp.sfu.ca/projects/omp/submission/"
+"es/>\n"
+"Language: es_ES\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"POT-Creation-Date: 2019-09-30T06:23:44-07:00\n"
-"PO-Revision-Date: 2019-09-30T06:23:44-07:00\n"
-"Language: \n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: Weblate 3.9.1\n"
 
 msgid "submission.submit.title"
 msgstr "Enviar una monografía"
@@ -30,10 +33,10 @@ msgid "submission.workflowType.description"
 msgstr "Una monografía es una obra escrita totalmente por uno o más autores/as. Una obra colectiva tiene diferentes autores/as para cada capítulo (los detalles de capítulo se introducen posteriormente durante el proceso)."
 
 msgid "submission.workflowType.editedVolume"
-msgstr "Obra colectiva"
+msgstr "Obra colectiva: los autores/as se asocian con sus propios capítulos."
 
 msgid "submission.workflowType.authoredWork"
-msgstr "Monografía"
+msgstr "Monografía: los autores/as se asocian con el libro completo."
 
 msgid "submission.monograph"
 msgstr "Monografía"
@@ -81,7 +84,7 @@ msgid "manuscript.submission"
 msgstr "Propuesta de manuscrito"
 
 msgid "submission.round"
-msgstr "Ronda {$round}"
+msgstr "Ronda&nbsp;{$round}"
 
 msgid "submissions.queuedReview"
 msgstr "En revisión"
@@ -123,7 +126,7 @@ msgid "submission.submit.cancelSubmission"
 msgstr "Puedes completar esta propuesta más tarde seleccionando Propuestas Activas desde la página de inicio del autor."
 
 msgid "submission.submit.selectSeries"
-msgstr "Seleccionar serie, colección, ..."
+msgstr "Seleccionar serie (opcional)"
 
 msgid "submission.submit.seriesPosition"
 msgstr "Lugar que ocupa dentro de esta serie, colección, ... (por ejemplo, Libro 2, o Volumen 2)"
@@ -213,7 +216,7 @@ msgid "submission.catalogEntry.new"
 msgstr "Nueva entrada de catálogo"
 
 msgid "submission.catalogEntry.confirm"
-msgstr "Crear un registro de este libro en el catálogo basado en los metadatos situados a continuación."
+msgstr "Añadir este libro al catálogo público"
 
 msgid "submission.catalogEntry.confirm.required"
 msgstr "Confirma que la propuesta está lista para situarse en el catálogo."
@@ -300,7 +303,7 @@ msgid "submission.editorSeparator"
 msgstr ","
 
 msgid "submission.authorListSeparator"
-msgstr ";"
+msgstr "; "
 
 msgid "author.submit.seriesRequired"
 msgstr "Se requieren series válidas."
@@ -340,3 +343,50 @@ msgstr "Ordenar los elementos"
 
 msgid "submission.list.orderingFeatures"
 msgstr "Arrastre y suelte o pulse los botones de arriba y abajo para cambiar el orden de los elementos en la página principal."
+
+msgid "submission.submit.noContext"
+msgstr "La publicación del envío no pudo encontrarse."
+
+msgid "author.isVolumeEditor"
+msgstr "Identificar a este contribuidor/a como editor/a de este volumen."
+
+msgid "publication.scheduledIn"
+msgstr "Programado para publicarse en <a href=\"{$issueUrl}\">{$issueName}</a>."
+
+msgid "publication.publish.confirmation"
+msgstr ""
+"Todos los requisitos de publicación se cumplen. ¿Seguro que desea hacer "
+"pública esta entrada del catálogo?"
+
+msgid "publication.publishedIn"
+msgstr "Publicado en <a href=\"{$issueUrl}\">{$issueName}</a>."
+
+msgid "publication.required.issue"
+msgstr "La publicación debe asignarse a un número antes de poder ser publicada."
+
+msgid "publication.invalidSeries"
+msgstr "Las series para esta publicación no pudieron encontrarse."
+
+msgid "publication.catalogEntry.success"
+msgstr "Los detalles de entrada del catálogo han sido actualizados."
+
+msgid "catalog.browseTitles"
+msgstr "{$numTitles} títulos"
+
+msgid "submission.catalogEntry.enableChapterPublicationDates"
+msgstr "Cada capítulo puede tener su propia fecha de publicación."
+
+msgid "submission.catalogEntry.disableChapterPublicationDates"
+msgstr "Todos los capítulos utilizarán la fecha de publicación del monográfico."
+
+msgid "submission.catalogEntry.chapterPublicationDates"
+msgstr "Fechas de publicación"
+
+msgid "submission.chapter.pages"
+msgstr "Páginas"
+
+msgid "submission.workflowType.change"
+msgstr "Cambiar"
+
+msgid "submission.workflowType.editedVolume.label"
+msgstr "Obra colectiva"
