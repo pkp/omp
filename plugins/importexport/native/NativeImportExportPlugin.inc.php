@@ -124,7 +124,7 @@ class NativeImportExportPlugin extends ImportExportPlugin {
 				} else {
 					$json = new JSONMessage(false, __('common.uploadFailed'));
 				}
-
+				header('Content-Type: application/json');
 				return $json->getString();
 			case 'importBounce':
 				$json = new JSONMessage(true);
@@ -132,6 +132,7 @@ class NativeImportExportPlugin extends ImportExportPlugin {
 					'title' => __('plugins.importexport.native.results'),
 					'url' => $request->url(null, null, null, array('plugin', $this->getName(), 'import'), array('temporaryFileId' => $request->getUserVar('temporaryFileId'))),
 				));
+				header('Content-Type: application/json');
 				return $json->getString();
 			case 'import':
 				AppLocale::requireComponents(LOCALE_COMPONENT_PKP_SUBMISSION);
@@ -141,6 +142,7 @@ class NativeImportExportPlugin extends ImportExportPlugin {
 				$temporaryFile = $temporaryFileDao->getTemporaryFile($temporaryFileId, $user->getId());
 				if (!$temporaryFile) {
 					$json = new JSONMessage(true, __('plugins.inportexport.native.uploadFile'));
+					header('Content-Type: application/json');
 					return $json->getString();
 				}
 				$temporaryFilePath = $temporaryFile->getFilePath();
@@ -174,6 +176,7 @@ class NativeImportExportPlugin extends ImportExportPlugin {
 				}
 				// Display the results
 				$json = new JSONMessage(true, $templateMgr->fetch($this->getTemplateResource('results.tpl')));
+				header('Content-Type: application/json');
 				return $json->getString();
 			case 'export':
 				$exportXml = $this->exportSubmissions(
