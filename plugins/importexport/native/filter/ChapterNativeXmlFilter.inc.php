@@ -23,8 +23,6 @@ class ChapterNativeXmlFilter extends NativeExportFilter {
 	function __construct($filterGroup) {
 		$this->setDisplayName('Native XML chapter export');
 		parent::__construct($filterGroup);
-
-		$this->getNoValidation(true);
 	}
 
 
