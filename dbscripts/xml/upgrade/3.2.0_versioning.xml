@@ -15,11 +15,6 @@
 
 <data>
 	<sql>
-		<!-- Remove the unused submission_id column from submission_chapters -->
-		<query>
-			ALTER TABLE submission_chapter_authors DROP COLUMN submission_id
-		</query>
-
 		<!-- change date_published from datetime to date before migrating -->
 		<query>
 			ALTER TABLE temp_published_submissions MODIFY COLUMN date_published date NULL
