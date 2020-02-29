@@ -364,6 +364,9 @@
 		<field name="context_id" type="I8">
 			<NOTNULL />
 		</field>
+		<field name="locale" type="C2" size="14">
+			<!-- DEPRECATED: Held over for the OJS 2.x to 3. upgrade process pkp/pkp-lib#3572 -->
+		</field>
 		<field name="current_publication_id" type="I8" />
 		<field name="date_last_activity" type="T"/>
 		<field name="date_submitted" type="T"/>
@@ -475,6 +478,9 @@
 		</field>
 		<field name="publication_id" type="I8">
 			<NOTNULL/>
+		</field>
+		<field name="submission_id" type="I8">
+			<!-- DEPRECATED: Held over for the OJS 2.x to 3. upgrade process pkp/pkp-lib#3572 -->
 		</field>
 		<field name="physical_format" type="I1">
 			<DEFAULT VALUE="1"/>
