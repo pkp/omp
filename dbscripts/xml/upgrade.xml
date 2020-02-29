@@ -138,7 +138,6 @@
 
 	<upgrade minversion="0.9.9.0" maxversion="3.1.9.9">
 		<data file="dbscripts/xml/upgrade/3.2.0_update.xml" />
-		<data file="dbscripts/xml/upgrade/3.2.0_setting_type.xml" />
 		<data file="dbscripts/xml/upgrade/3.2.0_stylesheet.xml" />
 		<data file="dbscripts/xml/upgrade/3.2.0_navigation_menu_items_locale_change.xml" />
 		<code function="migrateSiteLocales" />
