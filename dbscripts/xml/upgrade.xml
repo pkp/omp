@@ -45,6 +45,7 @@
 		<code function="migrateSubmissionCoverImages" />
 		<data file="dbscripts/xml/upgrade/3.2.0_preupdate_email_templates.xml" />
 		<data file="dbscripts/xml/upgrade/3.2.0_preupdate_versioning.xml" />
+		<data file="dbscripts/xml/upgrade/3.2.0_preupdate_versioning_add_ps_seq.xml" condition="return !$installer->columnExists('temp_published_submissions', 'seq');" />
 		<data file="dbscripts/xml/upgrade/3.2.0_preupdate_last_activity.xml" />
 	</upgrade>
 
