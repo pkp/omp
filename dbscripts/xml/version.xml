@@ -15,7 +15,7 @@
 	<type>core</type>
 	<release>3.2.0.0</release>
 	<tag>omp-3_2_0-0</tag>
-	<date>2018-04-04</date>
+	<date>2020-02-28</date>
 	<info>http://pkp.sfu.ca/omp/</info>
 	<package>http://pkp.sfu.ca/omp/download/omp-3.2.0.tar.gz</package>
 </version>
