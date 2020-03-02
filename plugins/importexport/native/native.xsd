@@ -72,6 +72,9 @@
 		</complexType>
 	</element>
 
+	<!-- Permit "citation" as a root element to keep the filters happy -->
+	<element name="citation" type="string" />
+
 	<element name="publication" substitutionGroup="pkp:pkppublication">
 		<complexType>
 			<complexContent>
@@ -79,6 +82,7 @@
 					<sequence>
 						<element ref="pkp:chapters" maxOccurs="1" minOccurs="0" />
 						<element ref="pkp:covers" minOccurs="0" maxOccurs="1" />
+						<element ref="pkp:citations" minOccurs="0" maxOccurs="unbounded"/>
 					</sequence>
 					<attribute name="series" type="normalizedString" />
 					<attribute name="series_position" type="normalizedString" />
