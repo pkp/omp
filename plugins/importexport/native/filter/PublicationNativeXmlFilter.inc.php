@@ -66,6 +66,11 @@ class PublicationNativeXmlFilter extends PKPPublicationNativeXmlFilter {
 		$coversNode = $this->createPublicationCoversNode($this, $doc, $entity);
 		if ($coversNode) $entityNode->appendChild($coversNode);
 
+		$citationsListNode = $this->createCitationsNode($doc, $deployment, $entity);
+		if ($citationsListNode) {
+			$entityNode->appendChild($citationsListNode);
+		}
+
 		return $entityNode;
 	}
 
@@ -149,5 +154,29 @@ class PublicationNativeXmlFilter extends PKPPublicationNativeXmlFilter {
 				}
 			}
 		}
+	}
+
+	/**
+	 * Create and return a Citations node.
+	 * @param $doc DOMDocument
+	 * @param $deployment
+	 * @param $publication Publication
+	 * @return DOMElement
+	 */
+	private function createCitationsNode($doc, $deployment, $publication) {
+		$citationDao = DAORegistry::getDAO('CitationDAO');
+
+		$nodeCitations = $doc->createElementNS($deployment->getNamespace(), 'citations');
+		$submissionCitations = $citationDao->getByPublicationId($publication->getId());
+		if ($submissionCitations->getCount() != 0) {
+			while ($elementCitation = $submissionCitations->next()) {
+				$rawCitation = $elementCitation->getRawCitation();
+				$nodeCitations->appendChild($node = $doc->createElementNS($deployment->getNamespace(), 'citation', htmlspecialchars($rawCitation, ENT_COMPAT, 'UTF-8')));
+			}
+
+			return $nodeCitations;
+		}
+
+		return null;
 	}
 }
