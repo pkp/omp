@@ -1,9 +1,9 @@
 /**
  * @file plugins/themes/default/styles/body.less
  *
- * Copyright (c) 2014-2016 Simon Fraser University Library
- * Copyright (c) 2003-2016 John Willinsky
- * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
+ * Copyright (c) 2014-2020 Simon Fraser University
+ * Copyright (c) 2003-2020 John Willinsky
+ * Distributed under the GNU GPL v3. For full terms see the file docs/COPYING.
  *
  * @brief Classes for site-wide elements and layout scaffolding
  */
@@ -27,9 +27,10 @@ a {
 
 
 // Page container widths
-.pkp_site_name,
+.pkp_site_name_wrapper,
 .pkp_navigation_primary_wrapper,
 .pkp_navigation_user,
+.pkp_search_mobile,
 .pkp_structure_content,
 .pkp_structure_footer {
 	.pkp_helpers_clear;
@@ -147,6 +148,28 @@ a {
 
 		&:after {
 			left: @screen-lg-desktop-container - @sidebar-width;
+		}
+	}
+}
+
+// Center the content panel when no sidebar is present
+.pkp_structure_main:first-child:last-child {
+
+	@media(min-width: @screen-desktop) {
+		float: none;
+		margin-left: auto;
+		margin-right: auto;
+		margin-top: @quadruple;
+
+		// Aligns the left and right borders
+		@no-sidebar-margins: @sidebar-width / 2;
+		&:before {
+			left: @no-sidebar-margins;
+		}
+
+		&:after {
+			left: auto;
+			right: @no-sidebar-margins;
 		}
 	}
 }

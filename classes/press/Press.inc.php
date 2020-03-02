@@ -7,9 +7,9 @@
 /**
  * @file classes/press/Press.inc.php
  *
- * Copyright (c) 2014-2016 Simon Fraser University Library
- * Copyright (c) 2003-2016 John Willinsky
- * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
+ * Copyright (c) 2014-2020 Simon Fraser University
+ * Copyright (c) 2003-2020 John Willinsky
+ * Distributed under the GNU GPL v3. For full terms see the file docs/COPYING.
  *
  * @class Press
  * @ingroup press
@@ -24,8 +24,8 @@ class Press extends Context {
 	/**
 	 * Constructor
 	 */
-	function Press() {
-		parent::Context();
+	function __construct() {
+		parent::__construct();
 	}
 
 	/**
@@ -34,7 +34,7 @@ class Press extends Context {
 	 * @return string
 	 */
 	function getPageHeaderTitle() {
-		$titleArray = $this->getSetting('name');
+		$titleArray = $this->getData('name');
 		foreach (array(AppLocale::getLocale(), AppLocale::getPrimaryLocale()) as $locale) {
 			if (isset($titleArray[$locale])) return $titleArray[$locale];
 		}
@@ -46,7 +46,7 @@ class Press extends Context {
 	 * @return string
 	 */
 	function getPageHeaderLogo() {
-		$logoArray = $this->getSetting('pageHeaderLogoImage');
+		$logoArray = $this->getData('pageHeaderLogoImage');
 		foreach (array(AppLocale::getLocale(), AppLocale::getPrimaryLocale()) as $locale) {
 			if (isset($logoArray[$locale])) return $logoArray[$locale];
 		}
@@ -59,7 +59,7 @@ class Press extends Context {
 	 * @return boolean
 	 */
 	function hasRequiredOnixHeaderFields() {
-		if ($this->getSetting('codeType') != '' && $this->getSetting('codeValue') != '') {
+		if ($this->getData('codeType') != '' && $this->getData('codeValue') != '') {
 			return true;
 		} else {
 			return false;
@@ -70,16 +70,8 @@ class Press extends Context {
 	 * Get the association type for this context.
 	 * @return int
 	 */
-	function getAssocType() {
+	public function getAssocType() {
 		return ASSOC_TYPE_PRESS;
-	}
-
-	/**
-	 * Get the settings DAO for this context object.
-	 * @return DAO
-	 */
-	static function getSettingsDAO() {
-		return DAORegistry::getDAO('PressSettingsDAO');
 	}
 
 	/**
@@ -90,5 +82,3 @@ class Press extends Context {
 		return DAORegistry::getDAO('PressDAO');
 	}
 }
-
-?>

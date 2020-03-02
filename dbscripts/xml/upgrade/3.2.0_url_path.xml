@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE data SYSTEM "../../../lib/pkp/dtd/xmlData.dtd">
+
+<!--
+  * dbscripts/xml/upgrade/3.2.0_stylesheet.xml
+  *
+  * Copyright (c) 2013-2020 Simon Fraser University
+  * Copyright (c) 2003-2020 John Willinsky
+  * Distributed under the GNU GPL v3. For full terms see the file docs/COPYING.
+  *
+  * Create new url_path values from pub-id::publisher-id values. #5430
+  *
+  -->
+
+<data>
+	<sql>
+		<query>
+			UPDATE publications as p
+			SET url_path = (
+				SELECT ps.setting_value
+				FROM publication_settings as ps
+				WHERE ps.publication_id = p.publication_id
+					AND ps.setting_name = 'pub-id::publisher-id'
+			)
+		</query>
+		<query>
+			UPDATE publication_formats as pf
+			SET url_path = (
+				SELECT pft.setting_value
+				FROM publication_format_settings as pft
+				WHERE pft.publication_format_id = pf.publication_format_id
+					AND pft.setting_name = 'pub-id::publisher-id'
+			)
+		</query>
+	</sql>
+</data>

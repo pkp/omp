@@ -7,46 +7,29 @@
 /**
  * @file pages/user/index.php
  *
- * Copyright (c) 2014-2016 Simon Fraser University Library
- * Copyright (c) 2003-2016 John Willinsky
- * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
+ * Copyright (c) 2014-2020 Simon Fraser University
+ * Copyright (c) 2003-2020 John Willinsky
+ * Distributed under the GNU GPL v3. For full terms see the file docs/COPYING.
  *
  * @ingroup pages_user
  * @brief Handle requests for user functions.
  *
  */
 
-
 switch ($op) {
 	//
-	// Profiles
-	//
-	case 'profile':
-		import('lib.pkp.pages.user.ProfileHandler');
-		define('HANDLER_CLASS', 'ProfileHandler');
-		break;
-	//
-	// Registration
-	//
-	case 'register':
-	case 'registerUser':
-	case 'registrationComplete':
-	case 'activateUser':
-		import('lib.pkp.pages.user.RegistrationHandler');
-		define('HANDLER_CLASS', 'RegistrationHandler');
-		break;
-	//
-	// Default handler
+	// Misc.
 	//
 	case 'index':
 	case 'setLocale':
-	case 'become':
 	case 'authorizationDenied':
 	case 'getInterests':
 	case 'toggleHelp':
 		define('HANDLER_CLASS', 'UserHandler');
 		import('pages.user.UserHandler');
 		break;
+	default:
+		require_once('lib/pkp/pages/user/index.php');
 }
 
-?>
+

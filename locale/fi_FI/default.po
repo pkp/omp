@@ -1,0 +1,147 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: \n"
+"Report-Msgid-Bugs-To: \n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"POT-Creation-Date: 2020-02-13T19:56:53+00:00\n"
+"PO-Revision-Date: 2020-02-13T19:56:53+00:00\n"
+"Language: \n"
+
+msgid "default.genres.appendix"
+msgstr "Liite"
+
+msgid "default.genres.bibliography"
+msgstr "Bibliografia"
+
+msgid "default.genres.manuscript"
+msgstr "Kirjan käsikirjoitus"
+
+msgid "default.genres.chapter"
+msgstr "Luvun käsikirjoitus"
+
+msgid "default.genres.glossary"
+msgstr "Sanasto"
+
+msgid "default.genres.index"
+msgstr "Hakemisto"
+
+msgid "default.genres.preface"
+msgstr "Alkusanat"
+
+msgid "default.genres.prospectus"
+msgstr "Esite"
+
+msgid "default.genres.table"
+msgstr "Taulukko"
+
+msgid "default.genres.figure"
+msgstr "Kuvio"
+
+msgid "default.genres.photo"
+msgstr "Valokuva"
+
+msgid "default.genres.illustration"
+msgstr "Kuva"
+
+msgid "default.genres.other"
+msgstr "Muu"
+
+msgid "default.groups.name.manager"
+msgstr "Painon hallinnoija"
+
+msgid "default.groups.plural.manager"
+msgstr "Painon hallinnoijat"
+
+msgid "default.groups.abbrev.manager"
+msgstr "PH"
+
+msgid "default.groups.name.editor"
+msgstr "Painon toimittaja"
+
+msgid "default.groups.plural.editor"
+msgstr "Painon toimittajat"
+
+msgid "default.groups.abbrev.editor"
+msgstr "PT"
+
+msgid "default.groups.name.seriesEditor"
+msgstr "Sarjan toimittaja"
+
+msgid "default.groups.plural.seriesEditor"
+msgstr "Sarjan toimittajat"
+
+msgid "default.groups.abbrev.seriesEditor"
+msgstr "ST"
+
+msgid "default.groups.name.chapterAuthor"
+msgstr "Luvun kirjoittaja"
+
+msgid "default.groups.plural.chapterAuthor"
+msgstr "Luvun kirjoittajat"
+
+msgid "default.groups.abbrev.chapterAuthor"
+msgstr "LK"
+
+msgid "default.groups.name.volumeEditor"
+msgstr "Niteen toimittaja"
+
+msgid "default.groups.plural.volumeEditor"
+msgstr "Niteen toimittajat"
+
+msgid "default.groups.abbrev.volumeEditor"
+msgstr "NT"
+
+msgid "default.pressSettings.checklist.notPreviouslyPublished"
+msgstr "Tätä käsikirjoitusta ei ole aiemmin julkaistu, eikä sitä ole lähetetty toiseen painoon (tai asiasta on annettu selvitys Kommentteja toimittajalle -kohdassa)."
+
+msgid "default.pressSettings.checklist.fileFormat"
+msgstr "Käsikirjoitustiedosto on Microsoft Word, RTF tai OpenDocument -tiedostomuodossa."
+
+msgid "default.pressSettings.checklist.addressesLinked"
+msgstr "Lähteiden URL-osoitteet on annettu, mikäli ne ovat saatavilla."
+
+msgid "default.pressSettings.checklist.submissionAppearance"
+msgstr "Tekstin riviväli on yksi; kirjasinkoko on 12; tekstissä käytetään kursiivia, ei alleviivausta (paitsi URL-osoitteissa); ja kaikki kuvat, kuviot ja taulukot on sijoitettu ensisijaisesti sopiviin kohtiin tekstin lomaan, ei tekstin loppuun."
+
+msgid "default.pressSettings.checklist.bibliographicRequirements"
+msgstr "Teksti noudattaa <a href=\"{$indexUrl}/{$pressPath}/about/submissions#authorGuidelines\" target=\"_blank\">Kirjoittajan ohjeissa</a> mainittuja stilistisiä ja bibliografisia vaatimuksia, jotka löytyvät Tietoa painosta -kohdasta."
+
+msgid "default.pressSettings.privacyStatement"
+msgstr "Tämän painon sivustolle syötettyjä nimiä ja sähköpostiosoitteita käytetään yksinomaan tämän painon tarkoituksiin, eikä niitä luovuteta mihinkään muuhun tarkoitukseen tai muille osapuolille."
+
+msgid "default.pressSettings.openAccessPolicy"
+msgstr "Tämä painon sisällöt ovat välittömästi avoimesti saatavilla noudattaen periaatetta, jonka mukaan tutkimuksen tekeminen vapaasti saatavilla olevaksi suurelle yleisölle tukee suurempaa globaalia tiedonvaihtoa."
+
+msgid "default.pressSettings.emailSignature"
+msgstr ""
+"<br/>\n"
+"________________________________________________________________________<br/>\n"
+"<a href=\"{$ldelim}$contextUrl{$rdelim}\">{$ldelim}$contextName{$rdelim}</a>"
+
+msgid "default.pressSettings.forReaders"
+msgstr "Kehotamme lukijoita rekisteröitymään palveluun, joka ilmoittaa tämän painon uusista julkaisuista. Käytä tämän painon etusivun yläosassa olevaa <a href=\"{$indexUrl}/{$pressPath}/user/register\">Rekisteröidy</a> -linkkiä. Rekisteröitymisen tuloksena lukijalle lähetetään sähköpostitse painon jokaisen uuden kirjan sisällysluettelo. Tämän palvelun käyttäjälistan avulla paino myös kerää tietoa kannattajamääristään ja lukijakunnastaan. Painon <a href=\"{$indexUrl}/{$pressPath}/about/submissions#privacyStatement\">Tietosuojaseloste</a> takaa, että lukijoiden nimiä ja sähköpostiosoitteita ei käytetä muihin tarkoituksiin."
+
+msgid "default.pressSettings.forAuthors"
+msgstr "Kiinnostaako tähän painoon kirjoittaminen? Suosittelemme, että tutustut <a href=\"{$indexUrl}/{$pressPath}/about\">Tietoa painosta</a> -sivulla painon osastojen käytäntöihin sekä <a href=\"{$indexUrl}/{$pressPath}/about/submissions#authorGuidelines\">Kirjoittajan ohjeisiin</a>. Kirjoittajien tulee <a href=\"{$indexUrl}/{$pressPath}/user/register\">rekisteröityä</a> painon käyttäjäksi ennen käsikirjoituksen lähettämistä tai jo rekisteröidyttyään <a href=\"{$indexUrl}/index/login\">kirjautua sisään</a> aloittaakseen viisivaiheisen prosessin."
+
+msgid "default.pressSettings.forLibrarians"
+msgstr "Suosittelemme, että tutkimuskirjastojen hoitajat listaavat tämän painon kirjastojensa sähköisten painojen kokoelmaan. Tämä avoimen lähdekoodin julkaisujärjestelmä sopii kirjastojen ylläpitämänä myös tiedekuntien jäsenten käyttöön sellaisten painojen yhteydessä, joiden julkaisujen toimittamiseen he osallistuvat (ks. <a href=\"http://pkp.sfu.ca/omp\">Open Monograph Press</a>)."
+
+msgid "default.pressSettings.manager.setup.category"
+msgstr "Kategoria"
+
+msgid "default.pressSettings.manager.series.book"
+msgstr "Kirjasarja"
+
+msgid "default.groups.name.externalReviewer"
+msgstr "Ulkopuolinen arvioija"
+
+msgid "default.groups.plural.externalReviewer"
+msgstr "Ulkopuoliset arvioijat"
+
+msgid "default.groups.abbrev.externalReviewer"
+msgstr "UA"

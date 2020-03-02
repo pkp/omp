@@ -3,9 +3,9 @@
 /**
  * @file classes/publicationFormat/IdentificationCodeDAO.inc.php
  *
- * Copyright (c) 2014-2016 Simon Fraser University Library
- * Copyright (c) 2003-2016 John Willinsky
- * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
+ * Copyright (c) 2014-2020 Simon Fraser University
+ * Copyright (c) 2003-2020 John Willinsky
+ * Distributed under the GNU GPL v3. For full terms see the file docs/COPYING.
  *
  * @class IdentificationCodeDAO
  * @ingroup publicationFormat
@@ -20,20 +20,20 @@ class IdentificationCodeDAO extends DAO {
 	/**
 	 * Constructor
 	 */
-	function IdentificationCodeDAO() {
-		parent::DAO();
+	function __construct() {
+		parent::__construct();
 	}
 
 	/**
 	 * Retrieve an identification code by type id.
 	 * @param $identificationCodeId int
-	 * @param $monographId optional int
+	 * @param $publicationId optional int
 	 * @return IdentificationCode
 	 */
-	function getById($identificationCodeId, $monographId = null){
+	function getById($identificationCodeId, $publicationId = null){
 		$sqlParams = array((int) $identificationCodeId);
-		if ($monographId) {
-			$sqlParams[] = (int) $monographId;
+		if ($publicationId) {
+			$sqlParams[] = (int) $publicationId;
 		}
 
 		$result = $this->retrieve(
@@ -41,7 +41,7 @@ class IdentificationCodeDAO extends DAO {
 			FROM	identification_codes i
 				JOIN publication_formats pf ON (i.publication_format_id = pf.publication_format_id)
 			WHERE i.identification_code_id = ?
-				' . ($monographId?' AND pf.submission_id = ?':''),
+				' . ($publicationId?' AND pf.publication_id = ?':''),
 			$sqlParams
 		);
 
@@ -156,4 +156,4 @@ class IdentificationCodeDAO extends DAO {
 	}
 }
 
-?>
+

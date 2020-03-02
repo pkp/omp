@@ -1,9 +1,9 @@
 /**
  * @file plugins/themes/default/styles/pages/viewFile.less
  *
- * Copyright (c) 2014-2016 Simon Fraser University Library
- * Copyright (c) 2003-2016 John Willinsky
- * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
+ * Copyright (c) 2014-2020 Simon Fraser University
+ * Copyright (c) 2003-2020 John Willinsky
+ * Distributed under the GNU GPL v3. For full terms see the file docs/COPYING.
  *
  * @brief Styles applying to the lightweight page for viewing PDFs
  * @link templates/frontend/pages/viewPdf.tpl
@@ -31,7 +31,7 @@
 		background: @bg;
 
 		&:before {
-			&:extend(.fa);
+			.fa();
 			content: @fa-var-arrow-left;
 		}
 
@@ -73,7 +73,7 @@
 		}
 
 		&:before {
-			&:extend(.fa);
+			.fa();
 			content: @fa-var-download;
 		}
 
@@ -116,5 +116,36 @@
 		height: 100%;
 		padding-top: @line-header;
 		border: none;
+	}
+
+	&.viewable_file_frame_with_notice {
+
+		iframe {
+			padding-top: @line-header * 3;
+		}
+	}
+
+	.viewable_file_frame_notice {
+		position: absolute;
+		top: @line-header;
+		width: 100%;
+		height: @line-header * 2;
+		background: @no;
+	}
+
+	.viewable_file_frame_notice_message {
+		position: absolute;
+		top: 50%;
+		left: 50%;
+		width: 100%;
+		transform: translate(-50%, -50%);
+		color: @text-bg-base;
+		font-weight: @bold;
+		text-align: center;
+
+		a {
+			color: @text-bg-base;
+			text-decoration: underline;
+		}
 	}
 }

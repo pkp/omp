@@ -3,9 +3,9 @@
 /**
  * @file tests/classes/monograph/SubmissionFileDAOTest.php
  *
- * Copyright (c) 2014-2016 Simon Fraser University Library
- * Copyright (c) 2000-2016 John Willinsky
- * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
+ * Copyright (c) 2014-2020 Simon Fraser University
+ * Copyright (c) 2000-2020 John Willinsky
+ * Distributed under the GNU GPL v3. For full terms see the file docs/COPYING.
  *
  * @class SubmissionFileDAOTest
  * @ingroup tests_classes_monograph
@@ -15,11 +15,11 @@
  */
 
 import('lib.pkp.tests.DatabaseTestCase');
-import('classes.monograph.SubmissionFileDAO');
+import('lib.pkp.classes.submission.SubmissionFileDAO');
 import('lib.pkp.classes.submission.SubmissionArtworkFileDAODelegate');
 import('lib.pkp.classes.submission.SubmissionFile');
 import('lib.pkp.classes.submission.SubmissionArtworkFile');
-import('classes.monograph.MonographDAO');
+import('classes.submission.SubmissionDAO');
 import('lib.pkp.classes.submission.Genre');
 import('lib.pkp.classes.submission.reviewRound.ReviewRound');
 import('lib.pkp.classes.db.DBResultRange');
@@ -39,7 +39,7 @@ define('TMP_FILES', '/tmp');
 class SubmissionFileDAOTest extends DatabaseTestCase {
 	private $testFile;
 
-	protected function setUp() {
+	protected function setUp() : void {
 		// Create a test file on the file system.
 		$this->testFile = tempnam(TMP_FILES, 'SubmissionFile');
 
@@ -51,47 +51,53 @@ class SubmissionFileDAOTest extends DatabaseTestCase {
 		$press->setId(SUBMISSION_FILE_DAO_TEST_PRESS_ID);
 
 		// Mock a request
-		$mockRequest = $this->getMock('PKPRequest', array('getContext'));
+		$mockRequest = $this->getMockBuilder(PKPRequest::class)
+			->setMethods(array('getContext'))
+			->getMock();
 		$mockRequest->expects($this->any())
 			->method('getContext')
 			->will($this->returnValue($press));
 		Registry::get('request', true, $mockRequest);
 
 		// Register a mock monograph DAO.
-		$monographDao = $this->getMock('MonographDAO', array('getById'));
-		$monograph = new Monograph();
+		$submissionDao = $this->getMockBuilder(SubmissionDAO::class)
+			->setMethods(array('getById'))
+			->getMock();
+		$monograph = new Submission();
 		$monograph->setId(SUBMISSION_FILE_DAO_TEST_SUBMISSION_ID);
 		$monograph->setPressId(SUBMISSION_FILE_DAO_TEST_PRESS_ID);
-		$monographDao->expects($this->any())
-		             ->method('getById')
-		             ->will($this->returnValue($monograph));
-		DAORegistry::registerDAO('MonographDAO', $monographDao);
+		$monograph->setLocale('en_US');
+		$submissionDao->expects($this->any())
+			->method('getById')
+			->will($this->returnValue($monograph));
+		DAORegistry::registerDAO('SubmissionDAO', $submissionDao);
 
 		// Register a mock genre DAO.
-		$genreDao = $this->getMock('GenreDAO', array('getById'));
+		$genreDao = $this->getMockBuilder(GenreDAO::class)
+			->setMethods(array('getById'))
+			->getMock();
 		DAORegistry::registerDAO('GenreDAO', $genreDao);
 		$genreDao->expects($this->any())
-		         ->method('getById')
-		         ->will($this->returnCallback(array($this, 'getTestGenre')));
+			->method('getById')
+			->will($this->returnCallback(array($this, 'getTestGenre')));
 
 		$this->_cleanFiles();
 
-		$application = PKPApplication::getApplication();
-		$request = $application->getRequest();
+		$request = Application::get()->getRequest();
 		if (is_null($request->getRouter())) {
 			$router = new PKPRouter();
 			$request->setRouter($router);
 		}
 	}
 
-	protected function tearDown() {
+	protected function tearDown() : void {
 		if (file_exists($this->testFile)) unlink($this->testFile);
 		$this->_cleanFiles();
 	}
 
 	/**
 	 * @covers SubmissionFileDAO
-	 * @covers PKPSubmissionFileDAO
+	 * @covers SubmissionFileDAO
 	 * @covers SubmissionFileDAODelegate
 	 * @covers SubmissionArtworkFileDAODelegate
 	 * @covers SubmissionFileDAODelegate
@@ -100,12 +106,41 @@ class SubmissionFileDAOTest extends DatabaseTestCase {
 		//
 		// Create test data.
 		//
+		// Create a submission
+		$submissionDao = Application::getSubmissionDao();
+		$submission = $submissionDao->newDataObject();
+		$submission->setPressId(SUBMISSION_FILE_DAO_TEST_PRESS_ID);
+		$submission->setLocale('en_US');
+		$submissionId = $submissionDao->insertObject($submission);
+
+		$publicationDao = DAORegistry::getDAO('PublicationDAO');
+		$publication = $publicationDao->newDataObject();
+		$publication->setData('submissionId', $submissionId);
+		$publication->setData('locale', 'en_US');
+		$publicationDao->insertObject($publication);
+
+		$submission->setData('currentPublicationId', $publication->getId());
+		$submissionDao->updateObject($submission);
+
+		$submissionDao = $this->getMockBuilder(SubmissionDAO::class)
+			->setMethods(array('getById'))
+			->getMock();
+		$monograph = new Submission();
+		$monograph->setId($submissionId);
+		$monograph->setPressId(SUBMISSION_FILE_DAO_TEST_PRESS_ID);
+		$monograph->setLocale('en_US');
+		$submissionDao->expects($this->any())
+			->method('getById')
+			->will($this->returnValue($monograph));
+		DAORegistry::registerDAO('SubmissionDAO', $submissionDao);
+
 		// Create two test files, one monograph file one artwork file.
 		$file1Rev1 = new SubmissionArtworkFile();
-		$file1Rev1->setName('test-artwork', 'en_US');
+		$file1Rev1->setSubmissionLocale('en_US');
+		$file1Rev1->setUploaderUserId(1);
 		$file1Rev1->setCaption('test-caption');
 		$file1Rev1->setFileStage(SUBMISSION_FILE_PROOF);
-		$file1Rev1->setSubmissionId(SUBMISSION_FILE_DAO_TEST_SUBMISSION_ID);
+		$file1Rev1->setSubmissionId($submissionId);
 		$file1Rev1->setFileType('image/jpeg');
 		$file1Rev1->setFileSize(512);
 		$file1Rev1->setDateUploaded('2011-12-04 00:00:00');
@@ -114,22 +149,14 @@ class SubmissionFileDAOTest extends DatabaseTestCase {
 		$file1Rev1->setAssocId(5);
 
 		$file2Rev1 = new SubmissionFile();
-		$file2Rev1->setName('test-document', 'en_US');
+		$file2Rev1->setSubmissionLocale('en_US');
+		$file2Rev1->setUploaderUserId(1);
 		$file2Rev1->setFileStage(SUBMISSION_FILE_PROOF);
-		$file2Rev1->setSubmissionId(SUBMISSION_FILE_DAO_TEST_SUBMISSION_ID);
+		$file2Rev1->setSubmissionId($submissionId);
 		$file2Rev1->setFileType('application/pdf');
 		$file2Rev1->setFileSize(256);
 		$file2Rev1->setDateUploaded('2011-12-05 00:00:00');
 		$file2Rev1->setDateModified('2011-12-05 00:00:00');
-
-
-		//
-		// isInlineable()
-		//
-		// Test the isInlineable method.
-		$submissionFileDao = DAORegistry::getDAO('SubmissionFileDAO'); /* @var $submissionFileDao SubmissionFileDAO */
-		self::assertFalse($submissionFileDao->isInlineable($file2Rev1));
-		self::assertTrue($submissionFileDao->isInlineable($file1Rev1));
 
 
 		//
@@ -143,7 +170,7 @@ class SubmissionFileDAOTest extends DatabaseTestCase {
 
 		// Persist a second revision of the artwork file but this time with a
 		// document genre so that it needs to be downcast for insert.
-		$downcastFile = clone($file1Rev1); /* @var $downcastFile SubmissionArtworkFile */
+		$downcastFile = clone($file1Rev1);
 		$downcastFile->setRevision(2);
 		$downcastFile->setDateUploaded('2011-12-05 00:00:00');
 		$downcastFile->setDateModified('2011-12-05 00:00:00');
@@ -156,7 +183,7 @@ class SubmissionFileDAOTest extends DatabaseTestCase {
 
 		// Persist a second revision of the monograph file but this time with an
 		// artwork genre so that it needs to be upcast for insert.
-		$upcastFile = clone($file2Rev1); /* @var $upcastFile SubmissionFile */
+		$upcastFile = clone($file2Rev1);
 		$upcastFile->setRevision(2);
 		$file2Rev2 = $this->_insertFile($upcastFile, 'test upcast', SUBMISSION_FILE_DAO_TEST_ART_GENRE_ID);
 
@@ -173,13 +200,14 @@ class SubmissionFileDAOTest extends DatabaseTestCase {
 		// getRevision()
 		//
 		// Retrieve the first revision of the artwork file.
+		$submissionFileDao = DAORegistry::getDAO('SubmissionFileDAO');
 		self::assertNull($submissionFileDao->getRevision(null, $file1Rev1->getRevision()));
 		self::assertNull($submissionFileDao->getRevision($file1Rev1->getFileId(), null));
 		self::assertEquals($file1Rev1, $submissionFileDao->getRevision($file1Rev1->getFileId(), $file1Rev1->getRevision()));
 		self::assertEquals($file1Rev1, $submissionFileDao->getRevision($file1Rev1->getFileId(), $file1Rev1->getRevision(), $file1Rev1->getFileStage()));
-		self::assertEquals($file1Rev1, $submissionFileDao->getRevision($file1Rev1->getFileId(), $file1Rev1->getRevision(), $file1Rev1->getFileStage(), SUBMISSION_FILE_DAO_TEST_SUBMISSION_ID));
+		self::assertEquals($file1Rev1, $submissionFileDao->getRevision($file1Rev1->getFileId(), $file1Rev1->getRevision(), $file1Rev1->getFileStage(), $submissionId));
 		self::assertNull($submissionFileDao->getRevision($file1Rev1->getFileId(), $file1Rev1->getRevision(), SUBMISSION_FILE_PROOF+1));
-		self::assertNull($submissionFileDao->getRevision($file1Rev1->getFileId(), $file1Rev1->getRevision(), null, SUBMISSION_FILE_DAO_TEST_SUBMISSION_ID+1));
+		self::assertNull($submissionFileDao->getRevision($file1Rev1->getFileId(), $file1Rev1->getRevision(), null, $submissionId+1));
 
 
 		//
@@ -227,9 +255,9 @@ class SubmissionFileDAOTest extends DatabaseTestCase {
 		self::assertNull($submissionFileDao->getLatestRevision(null));
 		self::assertEquals($file1Rev2, $submissionFileDao->getLatestRevision($file1Rev1->getFileId()));
 		self::assertEquals($file1Rev2, $submissionFileDao->getLatestRevision($file1Rev1->getFileId(), $file1Rev1->getFileStage()));
-		self::assertEquals($file1Rev2, $submissionFileDao->getLatestRevision($file1Rev1->getFileId(), $file1Rev1->getFileStage(), SUBMISSION_FILE_DAO_TEST_SUBMISSION_ID));
+		self::assertEquals($file1Rev2, $submissionFileDao->getLatestRevision($file1Rev1->getFileId(), $file1Rev1->getFileStage(), $submissionId));
 		self::assertNull($submissionFileDao->getLatestRevision($file1Rev1->getFileId(), SUBMISSION_FILE_PROOF+1));
-		self::assertNull($submissionFileDao->getLatestRevision($file1Rev1->getFileId(), null, SUBMISSION_FILE_DAO_TEST_SUBMISSION_ID+1));
+		self::assertNull($submissionFileDao->getLatestRevision($file1Rev1->getFileId(), null, $submissionId+1));
 
 
 		//
@@ -244,24 +272,24 @@ class SubmissionFileDAOTest extends DatabaseTestCase {
 		// Retrieve the latest revisions of both files.
 		self::assertNull($submissionFileDao->getLatestRevisions(null));
 		self::assertEquals(array($uniqueId1_2 => $file1Rev2, $uniqueId2_2 => $file2Rev2),
-				$submissionFileDao->getLatestRevisions(SUBMISSION_FILE_DAO_TEST_SUBMISSION_ID));
+				$submissionFileDao->getLatestRevisions($submissionId));
 		self::assertEquals(array($uniqueId1_2 => $file1Rev2, $uniqueId2_2 => $file2Rev2),
-				$submissionFileDao->getLatestRevisions(SUBMISSION_FILE_DAO_TEST_SUBMISSION_ID, SUBMISSION_FILE_PROOF));
+				$submissionFileDao->getLatestRevisions($submissionId, SUBMISSION_FILE_PROOF));
 		self::assertEquals(array(),
-				$submissionFileDao->getLatestRevisions(SUBMISSION_FILE_DAO_TEST_SUBMISSION_ID+1));
+				$submissionFileDao->getLatestRevisions($submissionId+1));
 		self::assertEquals(array(),
-				$submissionFileDao->getLatestRevisions(SUBMISSION_FILE_DAO_TEST_SUBMISSION_ID, SUBMISSION_FILE_PROOF+1));
+				$submissionFileDao->getLatestRevisions($submissionId, SUBMISSION_FILE_PROOF+1));
 
 		// Test paging.
 		$rangeInfo = new DBResultRange(2, 1);
 		self::assertEquals(array($uniqueId1_2 => $file1Rev2, $uniqueId2_2 => $file2Rev2),
-				$submissionFileDao->getLatestRevisions(SUBMISSION_FILE_DAO_TEST_SUBMISSION_ID, null, $rangeInfo));
+				$submissionFileDao->getLatestRevisions($submissionId, null, $rangeInfo));
 		$rangeInfo = new DBResultRange(1, 1);
 		self::assertEquals(array($uniqueId1_2 => $file1Rev2),
-				$submissionFileDao->getLatestRevisions(SUBMISSION_FILE_DAO_TEST_SUBMISSION_ID, null, $rangeInfo));
+				$submissionFileDao->getLatestRevisions($submissionId, null, $rangeInfo));
 		$rangeInfo = new DBResultRange(1, 2);
 		self::assertEquals(array($uniqueId2_2 => $file2Rev2),
-				$submissionFileDao->getLatestRevisions(SUBMISSION_FILE_DAO_TEST_SUBMISSION_ID, null, $rangeInfo));
+				$submissionFileDao->getLatestRevisions($submissionId, null, $rangeInfo));
 
 
 		//
@@ -272,9 +300,9 @@ class SubmissionFileDAOTest extends DatabaseTestCase {
 		self::assertEquals(array($uniqueId1_2 => $file1Rev2, $uniqueId1_1 => $file1Rev1),
 				$submissionFileDao->getAllRevisions($file1Rev1->getFileId(), SUBMISSION_FILE_PROOF));
 		self::assertEquals(array($uniqueId1_2 => $file1Rev2, $uniqueId1_1 => $file1Rev1),
-				$submissionFileDao->getAllRevisions($file1Rev1->getFileId(), SUBMISSION_FILE_PROOF, SUBMISSION_FILE_DAO_TEST_SUBMISSION_ID));
+				$submissionFileDao->getAllRevisions($file1Rev1->getFileId(), SUBMISSION_FILE_PROOF, $submissionId));
 		self::assertEquals(array(),
-				$submissionFileDao->getAllRevisions($file1Rev1->getFileId(), null, SUBMISSION_FILE_DAO_TEST_SUBMISSION_ID+1));
+				$submissionFileDao->getAllRevisions($file1Rev1->getFileId(), null, $submissionId+1));
 		self::assertEquals(array(),
 				$submissionFileDao->getAllRevisions($file1Rev1->getFileId(), SUBMISSION_FILE_PROOF+1, null));
 
@@ -313,7 +341,7 @@ class SubmissionFileDAOTest extends DatabaseTestCase {
 
 		// Insert review round file assignments.
 		$reviewRoundDao = DAORegistry::getDAO('ReviewRoundDAO');
-		$reviewRound = $reviewRoundDao->build(SUBMISSION_FILE_DAO_TEST_SUBMISSION_ID, WORKFLOW_STAGE_ID_INTERNAL_REVIEW, 1);
+		$reviewRound = $reviewRoundDao->build($submissionId, WORKFLOW_STAGE_ID_INTERNAL_REVIEW, 1);
 		$submissionFileDao->assignRevisionToReviewRound($file1Rev1->getFileId(), $file1Rev1->getRevision(), $reviewRound);
 		$submissionFileDao->assignRevisionToReviewRound($file2Rev2->getFileId(), $file2Rev2->getRevision(), $reviewRound);
 
@@ -392,7 +420,7 @@ class SubmissionFileDAOTest extends DatabaseTestCase {
 		// deleteAllRevisionsBySubmissionId()
 		//
 		// Delete all revisions by submission id.
-		self::assertEquals(4, $submissionFileDao->deleteAllRevisionsBySubmissionId(SUBMISSION_FILE_DAO_TEST_SUBMISSION_ID));
+		self::assertEquals(4, $submissionFileDao->deleteAllRevisionsBySubmissionId($submissionId));
 		self::assertNull($submissionFileDao->getRevision($file2Rev1->getFileId(), $file2Rev1->getRevision()));
 		self::assertNull($submissionFileDao->getRevision($file1Rev1->getFileId(), $file1Rev1->getRevision()));
 		self::assertNull($submissionFileDao->getRevision($file1Rev2->getFileId(), $file1Rev2->getRevision()));
@@ -406,6 +434,7 @@ class SubmissionFileDAOTest extends DatabaseTestCase {
 		$file1Rev1->setFileId(null);
 		$file1Rev1->setRevision(null);
 		$file1Rev1 = $submissionFileDao->insertObject($file1Rev1, $this->testFile);
+
 		$file1Rev2->setFileId(null);
 		$file1Rev2->setRevision(null);
 		$file1Rev2->setGenreId(SUBMISSION_FILE_DAO_TEST_DOC_GENRE_ID);
@@ -432,14 +461,20 @@ class SubmissionFileDAOTest extends DatabaseTestCase {
 		self::assertEquals(2, $submissionFileDao->getLatestRevisionNumber($file1Rev1->getFileId()));
 		$submissionFiles = $submissionFileDao->getAllRevisions($file1Rev1->getFileId());
 		self::assertEquals(2, count($submissionFiles));
-		foreach($submissionFiles as $submissionFile) { /* @var $submissionFile SubmissionFile */
+		foreach($submissionFiles as $submissionFile) {
 			self::assertTrue(is_a($submissionFile, 'SubmissionArtworkFile'));
 		}
+
+		$this->_cleanFiles($submissionId);
+
+		// Delete the test submission
+		$submissionDao = Application::getSubmissionDao();
+		$submissionDao->deleteById($submissionId);
 	}
 
 	function testNewDataObjectByGenreId() {
 		// Instantiate the SUT.
-		$submissionFileDao = DAORegistry::getDAO('SubmissionFileDAO'); /* @var $submissionFileDao SubmissionFileDAO */
+		$submissionFileDao = DAORegistry::getDAO('SubmissionFileDAO');
 
 		// Test whether the newDataObjectByGenreId method will return a monograph file.
 		$fileObject = $submissionFileDao->newDataObjectByGenreId(SUBMISSION_FILE_DAO_TEST_DOC_GENRE_ID);
@@ -449,7 +484,6 @@ class SubmissionFileDAOTest extends DatabaseTestCase {
 		$fileObject = $submissionFileDao->newDataObjectByGenreId(SUBMISSION_FILE_DAO_TEST_ART_GENRE_ID);
 		self::assertTrue(is_a($fileObject, 'SubmissionArtworkFile'));
 	}
-
 
 	//
 	// Public helper methods
@@ -465,26 +499,22 @@ class SubmissionFileDAOTest extends DatabaseTestCase {
 			case SUBMISSION_FILE_DAO_TEST_DOC_GENRE_ID:
 				$category = GENRE_CATEGORY_DOCUMENT;
 				$name = 'Document Genre';
-				$designation = 'D';
 				break;
 
 			case SUBMISSION_FILE_DAO_TEST_ART_GENRE_ID:
 				$category = GENRE_CATEGORY_ARTWORK;
 				$name = 'Artwork Genre';
-				$designation = 'A';
 				break;
 
 			default:
 				self::fail();
 		}
 		$genre = new Genre();
-		$application = PKPApplication::getApplication();
-		$request = $application->getRequest();
+		$request = Application::get()->getRequest();
 		$press = $request->getContext();
 		$genre->setContextId($press->getId());
 		$genre->setId($genreId);
 		$genre->setName($name, 'en_US');
-		$genre->setDesignation($designation);
 		$genre->setCategory($category);
 		return $genre;
 	}
@@ -501,7 +531,6 @@ class SubmissionFileDAOTest extends DatabaseTestCase {
 	 * @param $targetFile SubmissionFile
 	 */
 	function _compareFiles($sourceFile, $targetFile) {
-		self::assertEquals($sourceFile->getName('en_US'), $targetFile->getName('en_US'));
 		self::assertEquals($sourceFile->getFileStage(), $targetFile->getFileStage());
 		self::assertEquals($sourceFile->getSubmissionId(), $targetFile->getSubmissionId());
 		self::assertEquals($sourceFile->getFileType(), $targetFile->getFileType());
@@ -538,10 +567,11 @@ class SubmissionFileDAOTest extends DatabaseTestCase {
 	/**
 	 * Remove remnants from the tests.
 	 */
-	private function _cleanFiles() {
+	private function _cleanFiles($submissionId = null) {
 		// Delete the test submission's files.
 		$submissionFileDao = DAORegistry::getDAO('SubmissionFileDAO'); /* @var $submissionFileDao SubmissionFileDAO */
-		$submissionFileDao->deleteAllRevisionsBySubmissionId(SUBMISSION_FILE_DAO_TEST_SUBMISSION_ID);
+		if (!$submissionId) $submissionId = SUBMISSION_FILE_DAO_TEST_SUBMISSION_ID;
+		$submissionFileDao->deleteAllRevisionsBySubmissionId($submissionId);
 	}
 }
-?>
+

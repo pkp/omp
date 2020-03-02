@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE data SYSTEM "../../../lib/pkp/dtd/xmlData.dtd">
+
+<!--
+  * dbscripts/xml/upgrade/3.1.1_preupdate_categories.xml
+  *
+  * Copyright (c) 2013-2020 Simon Fraser University
+  * Copyright (c) 2003-2020 John Willinsky
+  * Distributed under the GNU GPL v3. For full terms see the file docs/COPYING.
+  *
+  * Pre-update operation regarding categories.
+  *
+  -->
+
+<data>
+	<sql>
+		<!--  rename the column press_id into context_id, pkp/pkp-lib#4158 -->
+		<rename table="categories" column="press_id" to="context_id" />
+	</sql>
+</data>

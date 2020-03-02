@@ -3,9 +3,9 @@
 /**
  * @file plugins/metadata/mods34/filter/Mods34SchemaMonographAdapter.inc.php
  *
- * Copyright (c) 2014-2016 Simon Fraser University Library
- * Copyright (c) 2000-2016 John Willinsky
- * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
+ * Copyright (c) 2014-2020 Simon Fraser University
+ * Copyright (c) 2000-2020 John Willinsky
+ * Distributed under the GNU GPL v3. For full terms see the file docs/COPYING.
  *
  * @class Mods34SchemaMonographAdapter
  * @ingroup plugins_metadata_mods34_filter
@@ -23,9 +23,9 @@ class Mods34SchemaMonographAdapter extends Mods34SchemaSubmissionAdapter {
 	 * Constructor
 	 * @param $filterGroup FilterGroup
 	 */
-	function Mods34SchemaMonographAdapter(&$filterGroup) {
+	function __construct(&$filterGroup) {
 		// Configure the submission adapter
-		parent::Mods34SchemaSubmissionAdapter($filterGroup);
+		parent::__construct($filterGroup);
 	}
 
 
@@ -70,7 +70,7 @@ class Mods34SchemaMonographAdapter extends Mods34SchemaSubmissionAdapter {
 	 * @see MetadataDataObjectAdapter::extractMetadataFromDataObject()
 	 * @param $monograph Monograph
 	 */
-	function extractMetadataFromDataObject($monograph) {
+	function extractMetadataFromDataObject(&$monograph) {
 		assert(is_a($monograph, 'Monograph'));
 
 		// Define the role of the author(s) of the monograph object
@@ -98,4 +98,4 @@ class Mods34SchemaMonographAdapter extends Mods34SchemaSubmissionAdapter {
 		return $mods34Description;
 	}
 }
-?>
+

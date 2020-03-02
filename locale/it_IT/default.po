@@ -1,0 +1,146 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: \n"
+"Report-Msgid-Bugs-To: \n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"POT-Creation-Date: 2020-01-22T20:59:47+00:00\n"
+"PO-Revision-Date: 2020-01-22T20:59:47+00:00\n"
+"Language: \n"
+
+msgid "default.genres.appendix"
+msgstr "Appendice"
+
+msgid "default.genres.bibliography"
+msgstr "Bibliografia"
+
+msgid "default.genres.manuscript"
+msgstr "Libro manoscritto"
+
+msgid "default.genres.chapter"
+msgstr "Capitolo manoscritto"
+
+msgid "default.genres.glossary"
+msgstr "Glossario"
+
+msgid "default.genres.index"
+msgstr "Indice"
+
+msgid "default.genres.preface"
+msgstr "Prefazione"
+
+msgid "default.genres.prospectus"
+msgstr "Prospetto"
+
+msgid "default.genres.table"
+msgstr "Tavola"
+
+msgid "default.genres.figure"
+msgstr "Figura"
+
+msgid "default.genres.photo"
+msgstr "Foto"
+
+msgid "default.genres.illustration"
+msgstr "Illustrazione"
+
+msgid "default.genres.other"
+msgstr "Altro"
+
+msgid "default.groups.name.author"
+msgstr "Autore"
+
+msgid "default.groups.plural.author"
+msgstr "Autori"
+
+msgid "default.groups.name.manager"
+msgstr "Press manager"
+
+msgid "default.groups.plural.manager"
+msgstr "Press managers"
+
+msgid "default.groups.abbrev.manager"
+msgstr "PM"
+
+msgid "default.groups.name.editor"
+msgstr "Press editor"
+
+msgid "default.groups.plural.editor"
+msgstr "Press editors"
+
+msgid "default.groups.abbrev.editor"
+msgstr "PE"
+
+msgid "default.groups.name.seriesEditor"
+msgstr "Series editor"
+
+msgid "default.groups.plural.seriesEditor"
+msgstr "Series editors"
+
+msgid "default.groups.abbrev.seriesEditor"
+msgstr "AcqE"
+
+msgid "default.groups.name.chapterAuthor"
+msgstr "Autore di un capitolo"
+
+msgid "default.groups.plural.chapterAuthor"
+msgstr "Autori di un capitolo"
+
+msgid "default.groups.abbrev.chapterAuthor"
+msgstr "CA"
+
+msgid "default.groups.name.volumeEditor"
+msgstr "Curatore del Libro"
+
+msgid "default.groups.plural.volumeEditor"
+msgstr "Curatori del Libro"
+
+msgid "default.groups.abbrev.volumeEditor"
+msgstr "VE"
+
+msgid "default.pressSettings.checklist.notPreviouslyPublished"
+msgstr "Il documento sottomesso non è stato precedentemente pubblicato, né è stato sottoposto ad altro editore (oppure vedi il chiarimento dato in Commenti dall'Editore)."
+
+msgid "default.pressSettings.checklist.fileFormat"
+msgstr "Il file del documento sottomesso è nei formati Microsoft Word, RTF, OpenDocument o WordPerfect."
+
+msgid "default.pressSettings.checklist.addressesLinked"
+msgstr "Qualora disponibili, sono state fornite le URL per la consultazione."
+
+msgid "default.pressSettings.checklist.submissionAppearance"
+msgstr "Il testo è pubblicato a interlinea singola; utilizza un font di 12 punti; impiega il carattere corsivo anziché sottolineare (a parte gli indirizzi URL); tutte le illustrazioni, le figure e le tabelle sono posizionate all'interno del testo nei punti appropriati e non messi alla fine del testo."
+
+msgid "default.pressSettings.checklist.bibliographicRequirements"
+msgstr "Il testo è conforme ai requisiti stilistici e bibliografici dichiarati nelle <a href=\"{$indexUrl}/{$pressPath}/about/submissions#authorGuidelines\" target=\"_blank\">Linee guida per l'Autore</a>, che si trovano nella rubrica A proposito di questa edizione."
+
+msgid "default.pressSettings.privacyStatement"
+msgstr "I nomi e gli indirizzi email inseriti in questo sito editoriale verranno utilizzati esclusivamente per gli scopi dichiarati e non saranno utilizzati per altri scopi o trasmessi a terzi.."
+
+msgid "default.pressSettings.openAccessPolicy"
+msgstr "Tutti i contenuti presenti su questo sito sono ad accesso aperto, in base al principio che la ricerca deve essere liberamente disponibile in modo da favorire lo scambio di conoscenze su scala mondiale."
+
+msgid "default.pressSettings.emailHeader"
+msgstr ""
+"Questo messaggio è stato inviato a nome di {$pressName}.\r\n"
+"________________________________________________________________________\r\n"
+""
+
+msgid "default.pressSettings.emailSignature"
+msgstr ""
+"\r\n"
+"________________________________________________________________________\r\n"
+"{$pressName}\r\n"
+"{$indexUrl}/{$pressPath}\r\n"
+""
+
+msgid "default.pressSettings.forReaders"
+msgstr "Invitiamo i lettori a iscriversi al servizio di notifiche di questo sito. Per far ciò occorre utilizzare il link <a href=\"{$indexUrl}/{$pressPath}/user/register\">Registrati</a> che si trova nella parte superiore della homepage. La registrazione consentirà a chi lo desidera di ricevere via email l'Indice di ogni nuova monografia pubblicata sul sito. Nello stesso tempo, questo elenco consentirà al nostro sito di conoscere il numero dei propri lettori. Leggi la <a href=\"{$indexUrl}/{$pressPath}/about/submissions#privacyStatement\">Dichiarazione sulla privacy</a> che assicura i lettori sul fatto che il loro nome e l'indirizzo e-mail non saranno utilizzati per altri scopi."
+
+msgid "default.pressSettings.forAuthors"
+msgstr "Sei un docente del nostro Ateneo e vuoi inviare un tuo lavoro a fedOAPress? Si raccomanda di rileggere la pagina <a href=\"{$indexUrl}/{$pressPath}/about\">Informazioni sul Sito</a> per vedere le politiche del nostro Sito e di leggere la pagina <a href=\"{$indexUrl}/{$pressPath}/about/submissions#authorGuidelines\">Linee Guida per gli Autori</a>. Gli autori devono <a href=\"{$indexUrl}/{$pressPath}/user/register\">registrarsi</a> sul sito prima di inviare i propri lavori, o se già registrati possono semplicemente <a href=\"{$indexUrl}/index/login\">accedere</a> e iniziare il processo di immissione in 5 fasi.."
+
+msgid "default.pressSettings.forLibrarians"
+msgstr "Incoraggiamo i bibliotecari di ricerca ad inserire questa Press nella lista delle risorse elettroniche possedute dalla biblioteca. Inoltre, questo sistema di pubblicazione open source, oltre che conveniente, può essere utilizzato da docenti e ricercatori anche per le pubblicazioni di cui hanno la curatela (vedi <a href=\"http://pkp.sfu.ca/omp\">Open Monograph Press</a>)."

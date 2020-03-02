@@ -1,9 +1,9 @@
 {**
  * plugins/importexport/users/templates/index.tpl
  *
- * Copyright (c) 2014-2016 Simon Fraser University Library
- * Copyright (c) 2003-2016 John Willinsky
- * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
+ * Copyright (c) 2014-2020 Simon Fraser University
+ * Copyright (c) 2003-2020 John Willinsky
+ * Distributed under the GNU GPL v3. For full terms see the file docs/COPYING.
  *
  * List of operations this plugin can perform
  *}
@@ -66,7 +66,7 @@
 		<form id="exportXmlForm" class="pkp_form" action="{plugin_url path="export"}" method="post">
 			{csrf}
 			{fbvFormArea id="exportForm"}
-				{url|assign:usersGridUrl router=$smarty.const.ROUTE_COMPONENT component="grid.users.exportableUsers.ExportableUsersGridHandler" pluginName="UserImportExportPlugin" op="fetchGrid" escape=false}
+				{capture assign=usersGridUrl}{url router=$smarty.const.ROUTE_COMPONENT component="grid.users.exportableUsers.ExportableUsersGridHandler" pluginName="UserImportExportPlugin" op="fetchGrid" escape=false}{/capture}
 				{load_url_in_div id="usersGridContainer" url=$usersGridUrl}
 				{fbvFormButtons submitText="plugins.importexport.users.export.exportUsers" hideCancel="true"}
 			{/fbvFormArea}

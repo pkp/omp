@@ -1,0 +1,141 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: \n"
+"Report-Msgid-Bugs-To: \n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"POT-Creation-Date: 2019-09-30T06:23:43-07:00\n"
+"PO-Revision-Date: 2019-09-30T06:23:43-07:00\n"
+"Language: \n"
+
+msgid "default.genres.appendix"
+msgstr "Appendix"
+
+msgid "default.genres.bibliography"
+msgstr "Bibliography"
+
+msgid "default.genres.manuscript"
+msgstr "Book Manuscript"
+
+msgid "default.genres.chapter"
+msgstr "Chapter Manuscript"
+
+msgid "default.genres.glossary"
+msgstr "Glossary"
+
+msgid "default.genres.index"
+msgstr "Index"
+
+msgid "default.genres.preface"
+msgstr "Preface"
+
+msgid "default.genres.prospectus"
+msgstr "Prospectus"
+
+msgid "default.genres.table"
+msgstr "Table"
+
+msgid "default.genres.figure"
+msgstr "Figure"
+
+msgid "default.genres.photo"
+msgstr "Photo"
+
+msgid "default.genres.illustration"
+msgstr "Illustration"
+
+msgid "default.genres.other"
+msgstr "Other"
+
+msgid "default.groups.name.manager"
+msgstr "Press manager"
+
+msgid "default.groups.plural.manager"
+msgstr "Press managers"
+
+msgid "default.groups.abbrev.manager"
+msgstr "PM"
+
+msgid "default.groups.name.editor"
+msgstr "Press editor"
+
+msgid "default.groups.plural.editor"
+msgstr "Press editors"
+
+msgid "default.groups.abbrev.editor"
+msgstr "PE"
+
+msgid "default.groups.name.sectionEditor"
+msgstr "Series editor"
+
+msgid "default.groups.plural.sectionEditor"
+msgstr "Series editors"
+
+msgid "default.groups.abbrev.sectionEditor"
+msgstr "AcqE"
+
+msgid "default.groups.name.chapterAuthor"
+msgstr "Chapter Author"
+
+msgid "default.groups.plural.chapterAuthor"
+msgstr "Chapter Authors"
+
+msgid "default.groups.abbrev.chapterAuthor"
+msgstr "CA"
+
+msgid "default.groups.name.volumeEditor"
+msgstr "Volume editor"
+
+msgid "default.groups.plural.volumeEditor"
+msgstr "Volume editors"
+
+msgid "default.groups.abbrev.volumeEditor"
+msgstr "VE"
+
+msgid "default.contextSettings.checklist.notPreviouslyPublished"
+msgstr "The submission has not been previously published, nor is it before another press for consideration (or an explanation has been provided in Comments to the Editor)."
+
+msgid "default.contextSettings.checklist.fileFormat"
+msgstr "The submission file is in the Microsoft Word, RTF, or OpenDocument file format."
+
+msgid "default.contextSettings.checklist.addressesLinked"
+msgstr "Where available, URLs for the references have been provided."
+
+msgid "default.contextSettings.checklist.submissionAppearance"
+msgstr "The text is single-spaced; uses a 12-point font; employs italics, rather than underlining (except with URL addresses); and all illustrations, figures, and tables are placed within the text at the appropriate points, rather than at the end."
+
+msgid "default.contextSettings.checklist.bibliographicRequirements"
+msgstr "The text adheres to the stylistic and bibliographic requirements outlined in the <a href=\"{$indexUrl}/{$contextPath}/about/submissions#authorGuidelines\" target=\"_blank\">Author Guidelines</a>, which is found in About the Press."
+
+msgid "default.contextSettings.privacyStatement"
+msgstr "<p>The names and email addresses entered in this press site will be used exclusively for the stated purposes of this press and will not be made available for any other purpose or to any other party.</p>"
+
+msgid "default.contextSettings.openAccessPolicy"
+msgstr "This press provides immediate open access to its content on the principle that making research freely available to the public supports a greater global exchange of knowledge."
+
+msgid "default.contextSettings.emailSignature"
+msgstr ""
+"<br/>\n"
+"________________________________________________________________________<br/>\n"
+"<a href=\"{$ldelim}$contextUrl{$rdelim}\">{$ldelim}$contextName{$rdelim}</a>"
+
+msgid "default.contextSettings.forReaders"
+msgstr "We encourage readers to sign up for the publishing notification service for this press. Use the <a href=\"{$indexUrl}/{$contextPath}/user/register\">Register</a> link at the top of the homepage for the press. This registration will result in the reader receiving the Table of Contents by email for each new monograph of the press. This list also allows the press to claim a certain level of support or readership. See the press <a href=\"{$indexUrl}/{$contextPath}/about/submissions#privacyStatement\">Privacy Statement</a> which assures readers that their name and email address will not be used for other purposes."
+
+msgid "default.contextSettings.forAuthors"
+msgstr "Interested in submitting to this press? We recommend that you review the <a href=\"{$indexUrl}/{$contextPath}/about\">About the Press</a> page for the press' section policies and <a href=\"{$indexUrl}/{$contextPath}/about/submissions#authorGuidelines\">Author Guidelines</a>. Authors need to <a href=\"{$indexUrl}/{$contextPath}/user/register\">register</a> with the press prior to submitting, or if already registered can simply <a href=\"{$indexUrl}/index/login\">log in</a> and begin the 5 step process."
+
+msgid "default.contextSettings.forLibrarians"
+msgstr "We encourage research librarians to list this press among their library's electronic press holdings. As well, this open source publishing system is suitable for libraries to host for their faculty members to use with presses they are involved in editing (see <a href=\"http://pkp.sfu.ca/omp\">Open Monograph Press</a>)."
+
+msgid "default.groups.name.externalReviewer"
+msgstr "External Reviewer"
+
+msgid "default.groups.plural.externalReviewer"
+msgstr "External Reviewers"
+
+msgid "default.groups.abbrev.externalReviewer"
+msgstr "ER"

@@ -3,9 +3,9 @@
 /**
  * @file plugins/generic/webFeed/WebFeedPlugin.inc.php
  *
- * Copyright (c) 2014-2016 Simon Fraser University Library
- * Copyright (c) 2003-2016 John Willinsky
- * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
+ * Copyright (c) 2014-2020 Simon Fraser University
+ * Copyright (c) 2003-2020 John Willinsky
+ * Distributed under the GNU GPL v3. For full terms see the file docs/COPYING.
  *
  * @class WebFeedPlugin
  * @ingroup plugins_block_webFeed
@@ -32,11 +32,20 @@ class WebFeedPlugin extends GenericPlugin {
 		return __('plugins.generic.webfeed.description');
 	}
 
-	function register($category, $path) {
-		if (parent::register($category, $path)) {
-			if ($this->getEnabled()) {
+	/**
+	 * @copydoc Plugin::register()
+	 */
+	function register($category, $path, $mainContextId = null) {
+		if (parent::register($category, $path, $mainContextId)) {
+			if ($this->getEnabled($mainContextId)) {
 				HookRegistry::register('TemplateManager::display',array($this, 'callbackAddLinks'));
-				HookRegistry::register('PluginRegistry::loadCategory', array($this, 'callbackLoadCategory'));
+				$this->import('WebFeedBlockPlugin');
+				$blockPlugin = new WebFeedBlockPlugin($this);
+				PluginRegistry::register('blocks', $blockPlugin, $this->getPluginPath());
+
+				$this->import('WebFeedGatewayPlugin');
+				$gatewayPlugin = new WebFeedGatewayPlugin($this);
+				PluginRegistry::register('gateways', $gatewayPlugin, $this->getPluginPath());
 			}
 			return true;
 		}
@@ -53,47 +62,15 @@ class WebFeedPlugin extends GenericPlugin {
 	}
 
 	/**
-	 * @copydoc PKPPlugin::getTemplatePath()
-	 */
-	function getTemplatePath($inCore = false) {
-		return parent::getTemplatePath($inCore) . 'templates/';
-	}
-
-	/**
-	 * Register as a block plugin, even though this is a generic plugin.
-	 * This will allow the plugin to behave as a block plugin, i.e. to
-	 * have layout tasks performed on it.
-	 * @param $hookName string
-	 * @param $args array
-	 */
-	function callbackLoadCategory($hookName, $args) {
-		$category =& $args[0];
-		$plugins =& $args[1];
-		switch ($category) {
-			case 'blocks':
-				$this->import('WebFeedBlockPlugin');
-				$blockPlugin = new WebFeedBlockPlugin($this->getName());
-				$plugins[$blockPlugin->getSeq()][$blockPlugin->getPluginPath()] = $blockPlugin;
-				break;
-			case 'gateways':
-				$this->import('WebFeedGatewayPlugin');
-				$gatewayPlugin = new WebFeedGatewayPlugin($this->getName());
-				$plugins[$gatewayPlugin->getSeq()][$gatewayPlugin->getPluginPath()] = $gatewayPlugin;
-				break;
-		}
-		return false;
-	}
-
-	/**
 	 * Add feed links to page <head> on select/all pages.
 	 */
 	function callbackAddLinks($hookName, $args) {
 		// Only page requests will be handled
-		$request = $this->getRequest();
+		$request = Application::get()->getRequest();
 		if (!is_a($request->getRouter(), 'PKPPageRouter')) return false;
 
 		$templateManager =& $args[0];
-		$currentPress = $templateManager->get_template_vars('currentPress');
+		$currentPress = $templateManager->getTemplateVars('currentPress');
 		$displayPage = $this->getSetting($currentPress->getId(), 'displayPage');
 
 		// Define when the <link> elements should appear
@@ -156,7 +133,7 @@ class WebFeedPlugin extends GenericPlugin {
 
 				AppLocale::requireComponents(LOCALE_COMPONENT_APP_COMMON,  LOCALE_COMPONENT_PKP_MANAGER);
 				$templateMgr = TemplateManager::getManager($request);
-				$templateMgr->register_function('plugin_url', array($this, 'smartyPluginUrl'));
+				$templateMgr->registerPlugin('function', 'plugin_url', array($this, 'smartyPluginUrl'));
 
 				$this->import('SettingsForm');
 				$form = new SettingsForm($this, $context->getId());
@@ -176,4 +153,4 @@ class WebFeedPlugin extends GenericPlugin {
 	}
 }
 
-?>
+

@@ -1,0 +1,62 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: \n"
+"Report-Msgid-Bugs-To: \n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"POT-Creation-Date: 2019-09-30T07:09:52-07:00\n"
+"PO-Revision-Date: 2019-09-30T07:09:52-07:00\n"
+"Language: \n"
+
+msgid "plugins.importexport.csv.displayName"
+msgstr "Tab Delimited Content Import Plugin"
+
+msgid "plugins.importexport.csv.description"
+msgstr "Import submissions into presses from tab delimited data."
+
+msgid "plugins.importexport.csv.cliOnly"
+msgstr ""
+"\n"
+"\t\t<p>This plugin currently supports command-line operation only. Execute...\n"
+"\t\t\t<pre>php tools/importExport.php CSVImportExportPlugin</pre>\n"
+"\t\t\t...for more information.</p>\n"
+"\t"
+
+msgid "plugins.importexport.csv.cliUsage"
+msgstr ""
+"Command-line tool for importing CSV data into OMP\n"
+"\t\t\tUsage:\n"
+"\t\t\t{$scriptName} [--dry-run] fileName.csv username\n"
+"\t\t\tThe --dry-run option can be used to test without making changes.\n"
+"\t\t\tSpecify the username you wish to assign the submissions to.\n"
+""
+
+msgid "plugins.importexport.csv.fileDoesNotExist"
+msgstr "The file \"{$filename}\" does not exist.  Exiting."
+
+msgid "plugins.importexport.csv.unknownUser"
+msgstr "Unknown User: \"{$username}\".  Exiting."
+
+msgid "plugins.importexport.csv.unknownLocale"
+msgstr "Unknown Locale: \"{$locale}\".  Skipping."
+
+msgid "plugins.importexport.csv.unknownPress"
+msgstr "Unknown Press: \"{$contextPath}\".  Skipping."
+
+msgid "plugins.importexport.csv.noGenre"
+msgstr "There is no manuscript genre.  Exiting."
+
+msgid "plugins.importexport.csv.noAuthorGroup"
+msgstr "There is no default author group in the press {$press}.  Skipping this submission."
+
+msgid "plugins.importexport.csv.noSeries"
+msgstr "The series path {$seriesPath} does not exist.  Unable to add it to this submission."
+
+msgid "plugins.importexport.csv.import.submission"
+msgstr "Submission: '{$title}' successfully imported."
+
+msgid "plugins.importexport.csv.import.success.description"
+msgstr "The import was successful. Successfully-imported items are listed below."

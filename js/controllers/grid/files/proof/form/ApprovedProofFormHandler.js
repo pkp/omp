@@ -4,9 +4,9 @@
 /**
  * @file js/controllers/grid/files/proof/form/ApprovedProofFormHandler.js
  *
- * Copyright (c) 2014-2016 Simon Fraser University Library
- * Copyright (c) 2000-2016 John Willinsky
- * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
+ * Copyright (c) 2014-2020 Simon Fraser University
+ * Copyright (c) 2000-2020 John Willinsky
+ * Distributed under the GNU GPL v3. For full terms see the file docs/COPYING.
  *
  * @class ApprovedProofFormHandler
  * @ingroup js_controllers_grid_files_proof_form
@@ -16,8 +16,7 @@
 (function($) {
 
 	/** @type {Object} */
-	$.pkp.controllers.grid.files = $.pkp.controllers.grid.files ||
-			{ proof: { form: { } } };
+	$.pkp.controllers.grid.files.proof = { form: { } };
 
 
 
@@ -131,5 +130,4 @@
 	};
 
 
-/** @param {jQuery} $ jQuery closure. */
 }(jQuery));

@@ -3,9 +3,9 @@
 /**
  * @file classes/press/NewReleaseDAO.inc.php
  *
- * Copyright (c) 2014-2016 Simon Fraser University Library
- * Copyright (c) 2003-2016 John Willinsky
- * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
+ * Copyright (c) 2014-2020 Simon Fraser University
+ * Copyright (c) 2003-2020 John Willinsky
+ * Distributed under the GNU GPL v3. For full terms see the file docs/COPYING.
  *
  * @class NewReleaseDAO
  * @ingroup press
@@ -18,8 +18,8 @@ class NewReleaseDAO extends DAO {
 	/**
 	 * Constructor
 	 */
-	function NewReleaseDAO() {
-		parent::DAO();
+	function __construct() {
+		parent::__construct();
 	}
 
 	/**
@@ -52,22 +52,25 @@ class NewReleaseDAO extends DAO {
 	 * @return array Monograph
 	 */
 	function getMonographsByAssoc($assocType, $assocId) {
+		// import STATUS_PUBLISHED constant
+		import('classes.submission.Submission');
 		$result = $this->retrieve(
 			'SELECT	n.submission_id
 			FROM	new_releases n,
-				published_submissions ps
-			WHERE	n.submission_id = ps.submission_id
+				submissions s,
+				publications p
+			WHERE	n.submission_id = s.submission_id
+				AND p.publication_id = s.current_publication_id
 				AND n.assoc_type = ? AND n.assoc_id = ?
-				AND ps.date_published IS NOT NULL
-			ORDER BY ps.date_published DESC',
-			array((int) $assocType, (int) $assocId)
+				AND s.status = ?
+			ORDER BY p.date_published DESC',
+			array((int) $assocType, (int) $assocId, STATUS_PUBLISHED)
 		);
 
 		$returner = array();
-		$publishedMonographDao = DAORegistry::getDAO('PublishedMonographDAO');
 		while (!$result->EOF) {
 			list($monographId) = $result->fields;
-			$returner[] = $publishedMonographDao->getById($monographId);
+			$returner[] = Services::get('submission')->get($monographId);
 			$result->MoveNext();
 		}
 		$result->Close();
@@ -159,6 +162,30 @@ class NewReleaseDAO extends DAO {
 
 		return false;
 	}
+
+	/**
+	 * Return the monograph's new release settings in all assoc types
+	 *
+	 * @param $monographId int The monograph ID to get the new release state
+	 * @return array
+	 */
+	function getNewReleaseAll($monographId) {
+		$result = $this->retrieve(
+			'SELECT assoc_type, assoc_id FROM new_releases WHERE submission_id = ?',
+			array((int) $monographId)
+		);
+
+		$newRelease = array();
+		while (!$result->EOF) {
+			$newRelease[] = array(
+				'assoc_type' => (int) $result->fields['assoc_type'],
+				'assoc_id' => (int) $result->fields['assoc_id'],
+			);
+			$result->MoveNext();
+		}
+
+		return $newRelease;
+	}
 }
 
-?>
+

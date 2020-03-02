@@ -1,0 +1,345 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: \n"
+"Report-Msgid-Bugs-To: \n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"POT-Creation-Date: 2020-02-13T19:56:53+00:00\n"
+"PO-Revision-Date: 2020-02-13T19:56:53+00:00\n"
+"Language: \n"
+
+msgid "submission.submit.title"
+msgstr "Lähetä käsikirjoitus"
+
+msgid "submission.upload.selectComponent"
+msgstr "Valitse osa"
+
+msgid "submission.title"
+msgstr "Kirjan nimeke"
+
+msgid "submission.select"
+msgstr "Valitse käsikirjoitus"
+
+msgid "submission.synopsis"
+msgstr "Tiivistelmä"
+
+msgid "submission.workflowType"
+msgstr "Käsikirjoitustyyppi"
+
+msgid "submission.workflowType.description"
+msgstr "Erillisteos on yhden tai useamman kirjoittajan kokonaan kirjoittama teos. Toimitetussa teoksessa jokaisella luvulla on eri kirjoittaja (lukujen tiedot syötetään myöhemmin)."
+
+msgid "submission.workflowType.editedVolume"
+msgstr "Toimitettu teos: Jokaisella luvulla on eri kirjoittaja."
+
+msgid "submission.workflowType.authoredWork"
+msgstr "Erillisteos: Yhden tai useamman kirjoittajan kokonaan kirjoittama teos."
+
+msgid "submission.workflowType.editedVolume.selectEditors"
+msgstr "Valitse niteen toimittajat"
+
+msgid "submission.workflowType.editedVolume.selectEditors.description"
+msgstr "Valitse kirjoittajat, jotka ovat toimittaneet koko niteen."
+
+msgid "submission.editorName"
+msgstr "{$editorName} (toim.)"
+
+msgid "submission.monograph"
+msgstr "Kirja"
+
+msgid "submission.published"
+msgstr "Valmis tuotantoon"
+
+msgid "submission.fairCopy"
+msgstr "Puhtaaksi kirjoitettu käsikirjoitus"
+
+msgid "submission.authorListSeparator"
+msgstr "; "
+
+msgid "submission.artwork.permissions"
+msgstr "Luvat"
+
+msgid "submission.chapter"
+msgstr "Luku"
+
+msgid "submission.chapters"
+msgstr "Luvut"
+
+msgid "submission.chaptersDescription"
+msgstr "Tässä voit luetella luvut ja valita tekijät yllä olevasta tekijälistasta. Nämä tekijät saavat pääsyn lukuihin julkaisuprosessin eri vaiheissa."
+
+msgid "submission.chapter.addChapter"
+msgstr "Lisää luku"
+
+msgid "submission.chapter.editChapter"
+msgstr "Muokkaa lukua"
+
+msgid "submission.copyedit"
+msgstr "Tekninen toimittaminen"
+
+msgid "submission.publicationFormats"
+msgstr "Julkaisumuodot"
+
+msgid "submission.proofs"
+msgstr "Korjausvedokset"
+
+msgid "submission.download"
+msgstr "Lataa"
+
+msgid "submission.sharing"
+msgstr "Jaa tämä"
+
+msgid "manuscript.submission"
+msgstr "Käsikirjoituksen lähetys"
+
+msgid "submission.round"
+msgstr "Kierros&nbsp;{$round}"
+
+msgid "submissions.queuedReview"
+msgstr "Arvioitavana"
+
+msgid "manuscript.submissions"
+msgstr "Vastaanotetut käsikirjoitukset"
+
+msgid "submission.confirmSubmit"
+msgstr "Oletko varma, että haluat lähettää tämän käsikirjoituksen painolle?"
+
+msgid "submission.metadata"
+msgstr "Metatiedot"
+
+msgid "submission.supportingAgencies"
+msgstr "Kannattajajärjestöt"
+
+msgid "grid.action.addChapter"
+msgstr "Luo uusi luku"
+
+msgid "grid.action.editChapter"
+msgstr "Muokkaa tätä lukua"
+
+msgid "grid.action.deleteChapter"
+msgstr "Poista tämä luku"
+
+msgid "submission.submit"
+msgstr "Uuden kirjan lähetys"
+
+msgid "submission.submit.newSubmissionMultiple"
+msgstr "Uuden käsikirjoituksen lähetys painolle:"
+
+msgid "submission.submit.newSubmissionSingle"
+msgstr "Uusi käsikirjoitus"
+
+msgid "submission.submit.upload"
+msgstr "Lataa käsikirjoitus"
+
+msgid "submission.submit.cancelSubmission"
+msgstr "Voit viimeistellä tämän lähetyksen myöhemmin valitsemalla Aktiiviset käsikirjoitukset Kirjoittajan etusivulta."
+
+msgid "submission.submit.selectSeries"
+msgstr "Valitse sarja (valinnainen)"
+
+msgid "author.submit.seriesRequired"
+msgstr "Kelvollinen sarja vaaditaan."
+
+msgid "submission.submit.seriesPosition"
+msgstr "Sijoitus sarjassa"
+
+msgid "submission.submit.seriesPosition.description"
+msgstr "Esimerkiksi: Kirja 2, Nide 2"
+
+msgid "submission.submit.form.localeRequired"
+msgstr "Valitse käsikirjoituksen kieli."
+
+msgid "submission.submit.privacyStatement"
+msgstr "Tietosuojaseloste"
+
+msgid "submission.submit.contributorRole"
+msgstr "Tekijän rooli"
+
+msgid "submission.submit.form.authorRequired"
+msgstr "Vähintään yksi kirjoittaja vaaditaan."
+
+msgid "submission.submit.form.authorRequiredFields"
+msgstr "Jokaisen kirjoittajan etunimi, sukunimi ja sähköpostiosoite vaaditaan."
+
+msgid "submission.submit.form.titleRequired"
+msgstr "Syötä kirjasi nimeke."
+
+msgid "submission.submit.form.abstractRequired"
+msgstr "Kirjoita lyhyt yhteenveto kirjastasi."
+
+msgid "submission.submit.form.contributorRoleRequired"
+msgstr "Valitse tekijän rooli."
+
+msgid "submission.submit.submissionFile"
+msgstr "Käsikirjoitustiedosto"
+
+msgid "submission.submit.prepare"
+msgstr "Valmistelu"
+
+msgid "submission.submit.catalog"
+msgstr "Luettelo"
+
+msgid "submission.submit.metadata"
+msgstr "Metatiedot"
+
+msgid "submission.submit.finishingUp"
+msgstr "Viimeistely"
+
+msgid "submission.submit.confirmation"
+msgstr "Vahvistus"
+
+msgid "submission.submit.nextSteps"
+msgstr "Seuraavat vaiheet"
+
+msgid "submission.submit.coverNote"
+msgstr "Saate toimittajalle"
+
+msgid "submission.submit.generalInformation"
+msgstr "Yleisiä tietoja"
+
+msgid "submission.submit.whatNext.description"
+msgstr "Painolle on ilmoitettu käsikirjoituksestasi ja sinulle on lähetetty sähköpostitse vahvistus säilytettäväksi. Toimittajan arvioitua käsikirjoituksen sinuun otetaan yhteyttä."
+
+msgid "submission.submit.checklistErrors"
+msgstr "Lue ja kuittaa käsikirjoituksen tarkistuslistan kohdat. {$itemsRemaining} kohtaa on vielä kuittaamatta."
+
+msgid "submission.submit.placement"
+msgstr "Käsikirjoituksen sijoittaminen"
+
+msgid "submission.submit.placement.categories"
+msgstr "Kategoriat"
+
+msgid "submission.submit.placement.categoriesDescription"
+msgstr "Valitse painon kategorioista se, jonne tämä työ lähetetään käsiteltäväksi."
+
+msgid "submission.submit.userGroup"
+msgstr "Lähetä roolissani..."
+
+msgid "submission.submit.userGroupDescription"
+msgstr "Jos olet lähettämässä toimitettua teosta, sinun tulee valita niteen toimittajan rooli."
+
+msgid "grid.chapters.title"
+msgstr "Luvut"
+
+msgid "grid.copyediting.deleteCopyeditorResponse"
+msgstr "Poista teknisen toimittajan lataus"
+
+msgid "submission.catalogEntry"
+msgstr "Luettelomerkintä"
+
+msgid "submission.complete"
+msgstr "Hyväksytty"
+
+msgid "submission.incomplete"
+msgstr "Odottaa hyväksyntää"
+
+msgid "submission.editCatalogEntry"
+msgstr "Merkintä"
+
+msgid "submission.catalogEntry.new"
+msgstr "Lisää merkintä"
+
+msgid "submission.catalogEntry.add"
+msgstr "Lisää valitut luetteloon"
+
+msgid "submission.catalogEntry.select"
+msgstr "Valitse kirjat, jotka lisätään luetteloon"
+
+msgid "submission.catalogEntry.selectionMissing"
+msgstr "Valitse vähintään yksi kirja, joka lisätään luetteloon."
+
+msgid "submission.catalogEntry.confirm"
+msgstr "Lisää tämä kirja julkiseen luetteloon"
+
+msgid "submission.catalogEntry.confirm.required"
+msgstr "Vahvista, että käsikirjoitus on valmis luetteloon sijoitettavaksi."
+
+msgid "submission.catalogEntry.isAvailable"
+msgstr "Tämä kirja on valmis sisällytettäväksi julkiseen luetteloon."
+
+msgid "submission.catalogEntry.viewSubmission"
+msgstr "Näytä käsikirjoitus"
+
+msgid "submission.catalogEntry.monographMetadata"
+msgstr "Kirja"
+
+msgid "submission.catalogEntry.catalogMetadata"
+msgstr "Luettelo"
+
+msgid "submission.catalogEntry.publicationMetadata"
+msgstr "Julkaisumuoto"
+
+msgid "submission.event.metadataPublished"
+msgstr "Kirjan metatiedot on hyväksytty julkaistavaksi."
+
+msgid "submission.event.metadataUnpublished"
+msgstr "Kirjan metatiedot eivät ole enää julkaistuna."
+
+msgid "submission.event.publicationFormatMadeAvailable"
+msgstr "Julkaisumuoto ”{$publicationFormatName}” on nyt saatavissa."
+
+msgid "submission.event.publicationFormatMadeUnavailable"
+msgstr "Julkaisumuoto \"{$publicationFormatName}\" ei ole enää saatavissa."
+
+msgid "submission.event.publicationFormatPublished"
+msgstr "Julkaisumuoto \"{$publicationFormatName}\" on hyväksytty julkaistavaksi."
+
+msgid "submission.event.publicationFormatUnpublished"
+msgstr "Julkaisumuoto \"{$publicationFormatName}\" ei ole enää julkaistuna."
+
+msgid "submission.event.catalogMetadataUpdated"
+msgstr "Luettelon metatiedot päivitettiin."
+
+msgid "submission.event.publicationMetadataUpdated"
+msgstr "Julkaisumuodon \"{$formatName}\" metatiedot päivitettiin."
+
+msgid "submission.event.publicationFormatCreated"
+msgstr "Julkaisumuoto \"{$formatName}\" luotiin."
+
+msgid "submission.event.publicationFormatRemoved"
+msgstr "Julkaisumuoto \"{$formatName}\" poistettiin."
+
+msgid "submission.submit.titleAndSummary"
+msgstr "Nimeke ja yhteenveto"
+
+msgid "workflow.review.externalReview"
+msgstr "Ulkopuolinen arviointi"
+
+msgid "editor.submission.decision.sendExternalReview"
+msgstr "Lähetä ulkopuoliseen arviointiin."
+
+msgid "submission.upload.fileContents"
+msgstr "Käsikirjoituksen osa"
+
+msgid "submission.dependentFiles"
+msgstr "Riippuvat tiedostot"
+
+msgid "submission.metadataDescription"
+msgstr "Nämä määritykset perustuvat Dublin Core -metatietosanastostandardiin. Se on kansainvälinen standardi, jolla kuvataan painon julkaisemia sisältöjä."
+
+msgid "section.any"
+msgstr "Mikä tahansa sarja"
+
+msgid "submission.list.monographs"
+msgstr "Kirjat"
+
+msgid "submission.list.countMonographs"
+msgstr "{$count} kirjaa"
+
+msgid "submission.list.itemsOfTotalMonographs"
+msgstr "{$count}/{$total} kirjasta"
+
+msgid "submission.list.orderFeatures"
+msgstr "Järjestä esittelyssä olevat"
+
+msgid "submission.list.orderingFeatures"
+msgstr "Vedä ja pudota tai napauta ylös- ja alas-painikkeita muuttaaksesi esittelyssä olevien kohteiden järjestystä etusivulla."
+
+msgid "submission.list.orderingFeaturesSection"
+msgstr "Vedä ja pudota tai napauta ylös- ja alas-painikkeita muuttaaksesi kohteen {$title} ominaisuuksien järjestystä."
+
+msgid "submission.list.saveFeatureOrder"
+msgstr "Tallenna järjestys"

@@ -1,11 +1,11 @@
 {**
  * templates/controllers/grid/pubIds/form/assignPublicIdentifiersForm.tpl
  *
- * Copyright (c) 2014-2016 Simon Fraser University Library
- * Copyright (c) 2003-2016 John Willinsky
- * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
+ * Copyright (c) 2014-2020 Simon Fraser University
+ * Copyright (c) 2003-2020 John Willinsky
+ * Distributed under the GNU GPL v3. For full terms see the file docs/COPYING.
  *
- *} 
+ *}
  <script>
 	$(function() {ldelim}
 		// Attach the form handler.
@@ -18,10 +18,10 @@
 	{rdelim});
 </script>
 {if $pubObject instanceof Representation}
-	<form class="pkp_form" id="assignPublicIdentifierForm" method="post" action="{url component="grid.catalogEntry.PublicationFormatGridHandler" op="setApproved" submissionId=$pubObject->getSubmissionId() representationId=$pubObject->getId() newApprovedState=$approval confirmed=true escape=false}">
+	<form class="pkp_form" id="assignPublicIdentifierForm" method="post" action="{url component="grid.catalogEntry.PublicationFormatGridHandler" op="setApproved" submissionId=$submissionId publicationId=$pubObject->getData('publicationId') representationId=$pubObject->getId() newApprovedState=$approval confirmed=true escape=false}">
 		{assign var=remoteObject value=$pubObject->getRemoteURL()}
 {elseif $pubObject instanceof SubmissionFile}
-	<form class="pkp_form" id="assignPublicIdentifierForm" method="post" action="{url component="grid.catalogEntry.PublicationFormatGridHandler" op="setProofFileCompletion" fileId=$pubObject->getFileId() revision=$pubObject->getRevision() submissionId=$pubObject->getSubmissionId() approval=$approval confirmed=true escape=false}">
+	<form class="pkp_form" id="assignPublicIdentifierForm" method="post" action="{url component="grid.catalogEntry.PublicationFormatGridHandler" op="setProofFileCompletion" fileId=$pubObject->getFileId() revision=$pubObject->getRevision() submissionId=$pubObject->getSubmissionId() publicationId=$publicationId approval=$approval confirmed=true escape=false}">
 {/if}
 {csrf}
 {fbvFormArea id="confirmationText"}

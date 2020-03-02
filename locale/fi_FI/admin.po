@@ -1,0 +1,104 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: \n"
+"Report-Msgid-Bugs-To: \n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"POT-Creation-Date: 2020-02-13T19:56:53+00:00\n"
+"PO-Revision-Date: 2020-02-13T19:56:53+00:00\n"
+"Language: \n"
+
+msgid "admin.hostedPresses"
+msgstr "Ylläpidetyt painot"
+
+msgid "admin.settings.pressRedirect"
+msgstr "Painon uudelleenohjaus"
+
+msgid "admin.settings.pressRedirectInstructions"
+msgstr "Pyynnöt pääsivustolle uudelleenohjataan tähän painoon. Tämä saattaa olla hyödyllinen toiminto, jos sivustolla ylläpidetään vain yhtä painoa."
+
+msgid "admin.settings.noPressRedirect"
+msgstr "Älä uudelleenohjaa"
+
+msgid "admin.languages.primaryLocaleInstructions"
+msgstr "Tätä kieltä käytetään sivuston ja kaikkien ylläpidettyjen painojen oletuskielenä."
+
+msgid "admin.languages.supportedLocalesInstructions"
+msgstr "Valitse kaikki sivustolla tuettavat kielialueet. Valitut kielialueet ovat kaikkien sivustolla ylläpidettävien painojen käytössä. Ne esiintyvät myös kielivalikossa, joka näkyy jokaisella sivuston sivulla (tämä voidaan ohittaa painokohtaisilla sivuilla). Mikäli valitaan vain yksi kielialue, kielivalikko ei tule näkyviin ja laajennetut kieliasetukset eivät ole painojen käytettävissä."
+
+msgid "admin.locale.maybeIncomplete"
+msgstr "Tähdellä (*) merkityt kielialueet saattavat olla vaillinaisia."
+
+msgid "admin.languages.confirmUninstall"
+msgstr "Haluatko varmasti poistaa tämän kielialueen? Se saattaa vahingoittaa muita ylläpidettyjä painoja, joilla on tämä kielialue käytössä."
+
+msgid "admin.languages.installNewLocalesInstructions"
+msgstr "Valitse mitä tahansa lisäkielialueita, joille asennetaan tuki tässä järjestelmässä. Kielialueet täytyy asentaa ennen kuin ylläpidetyt painot voivat käyttää niitä. Katso OMP:n ohjeista tietoja siitä, kuinka uusille kielille lisätään tuki."
+
+msgid "admin.languages.noLocalesToDownload"
+msgstr "Ei ladattavissa olevia kielialueita."
+
+msgid "admin.languages.downloadFailed"
+msgstr "Kielialueen lataaminen epäonnistui. Tarkemmat tiedot ongelmasta alla."
+
+msgid "admin.languages.downloadUnavailable"
+msgstr ""
+"<p>Kielipakettien lataaminen Public Knowledge Projectin verkkopalvelimelta ei ole juuri nyt mahdollista, koska:</p>\n"
+"\t<ul>\n"
+"\t\t<li>Palvelimellasi ei ole GNU:n tar-ohjelmaa tai palvelin ei salli sen suorittamista.</li>\n"
+"\t\t<li>OMP ei voi muuntaa kielialueen rekisteritiedostoa, yleensä \"registry/locales.xml\".</li>\n"
+"\t</ul>\n"
+"<p>Kielipaketteja voidaan ladata manuaalisesti <a href=\"http://pkp.sfu.ca\" target=\"_blank\">PKP:n verkkosivustolta</a>.</p>"
+
+msgid "admin.languages.confirmDisable"
+msgstr "Haluatko varmasti poistaa tämän kielialueen käytöstä? Se saattaa vahingoittaa muita ylläpidettyjä painoja, joilla on tämä kielialue käytössä."
+
+msgid "admin.systemVersion"
+msgstr "OMP-versio"
+
+msgid "admin.systemConfiguration"
+msgstr "OMP:n määritys"
+
+msgid "admin.presses.pressSettings"
+msgstr "Painon asetukset"
+
+msgid "admin.presses.noneCreated"
+msgstr "Yhtään painoa ei ole luotu."
+
+msgid "admin.contexts.create"
+msgstr "Luo paino"
+
+msgid "admin.presses.createInstructions"
+msgstr "Sinut lisätään automaattisesti tämän painon hallinnoijaksi. Uuden painon luonnin jälkeen sinut uudelleenohjataan ohjattuun asetusten luontiin painon aloitusasetusten loppuun saattamiseksi."
+
+msgid "admin.presses.urlWillBe"
+msgstr "Painon URL-osoitteeksi tulee {$sampleUrl}"
+
+msgid "admin.contexts.form.titleRequired"
+msgstr "Otsikko vaaditaan."
+
+msgid "admin.contexts.form.pathRequired"
+msgstr "Polku vaaditaan."
+
+msgid "admin.contexts.form.pathAlphaNumeric"
+msgstr "Polku voi sisältää vain aakkosnumeerisia merkkejä, alaviivoja ja yhdysmerkkejä, ja sen täytyy alkaa ja päättyä aakkosnumeeriseen merkkiin."
+
+msgid "admin.contexts.form.pathExists"
+msgstr "Valittu polku on jo toisen painon käytössä."
+
+msgid "admin.presses.enablePressInstructions"
+msgstr "Näytä tämä paino julkisesti sivustolla"
+
+msgid "admin.presses.pressDescription"
+msgstr "Painon kuvaus"
+
+msgid "admin.presses.addPress"
+msgstr "Lisää paino"
+
+msgid "admin.overwriteConfigFileInstructions"
+msgstr ""
+"<h4>HUOM!</div>\n"
+"<p>Järjestelmä ei voinut korvata määritystiedostoa automaattisesti. Ottaaksesi määritysmuutokset käyttöön avaa <tt>config.inc.php</tt> sopivassa tekstieditorissa ja korvaa sen sisältö alla olevan tekstikentän sisällöllä.</p>"

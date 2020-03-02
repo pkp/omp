@@ -1,9 +1,9 @@
 {**
  * controllers/modals/submissionMetadata/form/selectMonographForm.tpl
  *
- * Copyright (c) 2014-2016 Simon Fraser University Library
- * Copyright (c) 2003-2016 John Willinsky
- * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
+ * Copyright (c) 2014-2020 Simon Fraser University
+ * Copyright (c) 2003-2020 John Willinsky
+ * Distributed under the GNU GPL v3. For full terms see the file docs/COPYING.
  *
  * Display a monograph selection form with the monograph's metadata
  * below.
@@ -11,38 +11,30 @@
  *}
 
 {* Help Link *}
-{help file="catalog.md#new-catalog-entry" class="pkp_help_modal"}
+{help file="catalog" section="new-catalog-entry" class="pkp_help_modal"}
 
 <script type="text/javascript">
 	$(function() {ldelim}
-		// Attach the form handler. (Triggers selectMonograph event.)
-		$('#selectMonographForm').pkpHandler(
-			'$.pkp.controllers.form.DropdownHandler',
-			{ldelim}
-				getOptionsUrl: {url|json_encode router=$smarty.const.ROUTE_COMPONENT op="getSubmissions" escape=false},
-				eventName: 'selectMonograph'
-			{rdelim}
-		);
-		// Attach the containing div handler. (Consumes selectMonograph event.)
-		$('#selectMonographContainer').pkpHandler(
-			'$.pkp.controllers.modals.submissionMetadata.MonographlessCatalogEntryHandler',
-			{ldelim}
-				metadataFormUrlTemplate: {url|json_encode router=$smarty.const.ROUTE_COMPONENT component="modals.submissionMetadata.CatalogEntryHandler" op="fetch" submissionId=MONOGRAPH_ID stageId=STAGE_ID escape=false}
-			{rdelim}
-		);
+		// Attach the form handler.
+		$('#newCatalogEntryForm').pkpHandler('$.pkp.controllers.form.AjaxFormHandler');
 	{rdelim});
 </script>
 
-<div id="selectMonographContainer">
-
-	<form class="pkp_form" id="selectMonographForm">
-		{fbvFormArea id="monographSelectForm"}
-			{fbvFormSection}
-				{fbvElement type="select" class="noStyling" id="monographSelect" from="submission.select"|translate|to_array translate=false}
-			{/fbvFormSection}
-		{/fbvFormArea}
-	</form>
-
-	<div id="metadataFormContainer">
-	</div>
-</div>
+<form id="newCatalogEntryForm" class="pkp_form" action="{url router=$smarty.const.ROUTE_COMPONENT component="modals.submissionMetadata.SelectMonographHandler" op="select"}" method="post">
+	{csrf}
+	{fbvFormArea}
+		{fbvFormSection}
+			{assign var="uuid" value=""|uniqid|escape}
+			<div id="select-new-entry-{$uuid}">
+				<select-submissions-list-panel
+					v-bind="components.selectNewEntryListPanel"
+					@set="set"
+				/>
+			</div>
+			<script type="text/javascript">
+				pkp.registry.init('select-new-entry-{$uuid}', 'Container', {$selectNewEntryData|json_encode});
+			</script>
+		{/fbvFormSection}
+		{fbvFormButtons submitText="submission.catalogEntry.add" hideCancel="true"}
+	{/fbvFormArea}
+</form>

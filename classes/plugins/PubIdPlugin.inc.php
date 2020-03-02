@@ -3,9 +3,9 @@
 /**
  * @file classes/plugins/PubIdPlugin.inc.php
  *
- * Copyright (c) 2014-2016 Simon Fraser University Library
- * Copyright (c) 2003-2016 John Willinsky
- * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
+ * Copyright (c) 2014-2020 Simon Fraser University
+ * Copyright (c) 2003-2020 John Willinsky
+ * Distributed under the GNU GPL v3. For full terms see the file docs/COPYING.
  *
  * @class PubIdPlugin
  * @ingroup plugins
@@ -20,14 +20,23 @@ abstract class PubIdPlugin extends PKPPubIdPlugin {
 	/**
 	 * Constructor
 	 */
-	function PubIdPlugin() {
-		parent::PKPPubIdPlugin();
+	function __construct() {
+		parent::__construct();
 	}
 
 
 	//
 	// Protected template methods from PKPPlubIdPlugin
 	//
+	/**
+	 * @copydoc PKPPubIdPlugin::getPubObjectTypes()
+	 */
+	function getPubObjectTypes() {
+		$pubObjectTypes = parent::getPubObjectTypes();
+		array_push($pubObjectTypes, 'Chapter');
+		return $pubObjectTypes;
+	}
+
 	/**
 	 * @copydoc PKPPubIdPlugin::getPubId()
 	 */
@@ -46,15 +55,20 @@ abstract class PubIdPlugin extends PKPPubIdPlugin {
 		$submission = ($pubObjectType == 'Submission' ? $pubObject : null);
 		$representation = ($pubObjectType == 'Representation' ? $pubObject : null);
 		$submissionFile = ($pubObjectType == 'SubmissionFile' ? $pubObject : null);
+		$chapter = ($pubObjectType == 'Chapter' ? $pubObject : null);
 
 		// Get the context id.
 		if ($pubObjectType == 'Submission') {
 			$contextId = $pubObject->getContextId();
 		} else {
 			// Retrieve the submission.
-			assert(is_a($pubObject, 'Representation') || is_a($pubObject, 'SubmissionFile'));
-			$submissionDao = Application::getSubmissionDAO();
-			$submission = $submissionDao->getById($pubObject->getSubmissionId(), null, true);
+			if (is_a($pubObject, 'Chapter') || is_a($pubObject, 'Representation')) {
+				$publication = Services::get('publication')->get($pubObject->getData('publicationId'));
+				$submission = Services::get('submission')->get($publication->getData('submissionId'));
+			} else {
+				assert(is_a($pubObject, 'SubmissionFile'));
+				$submission = Services::get('submission')->get($pubObject->getSubmissionId());
+			}
 			if (!$submission) return null;
 			// Now we can identify the context.
 			$contextId = $submission->getContextId();
@@ -97,6 +111,11 @@ abstract class PubIdPlugin extends PKPPubIdPlugin {
 					$pubIdSuffix = PKPString::regexp_replace('/%m/', $submission->getId(), $pubIdSuffix);
 				}
 
+				if ($chapter) {
+					// %c - chapter id
+					$pubIdSuffix = PKPString::regexp_replace('/%c/', $chapter->getId(), $pubIdSuffix);
+				}
+
 				if ($representation) {
 					// %f - publication format id
 					$pubIdSuffix = PKPString::regexp_replace('/%f/', $representation->getId(), $pubIdSuffix);
@@ -116,6 +135,10 @@ abstract class PubIdPlugin extends PKPPubIdPlugin {
 					$pubIdSuffix .= '.' . $submission->getId();
 				}
 
+				if ($chapter) {
+					$pubIdSuffix .= '.c' . $chapter->getId();
+				}
+
 				if ($representation) {
 					$pubIdSuffix .= '.' . $representation->getId();
 				}
@@ -132,7 +155,28 @@ abstract class PubIdPlugin extends PKPPubIdPlugin {
 		return $pubId;
 	}
 
+	/**
+	 * @copydoc PKPPubIdPlugin::getDAOs()
+	 */
+	function getDAOs() {
+		return array_merge(parent::getDAOs(), array('Chapter' => DAORegistry::getDAO('ChapterDAO')));
+	}
 
+	/**
+	 * @copydoc PKPPubIdPlugin::checkDuplicate()
+	 */
+	function checkDuplicate($pubId, $pubObjectType, $excludeId, $contextId) {
+		foreach ($this->getPubObjectTypes() as $type) {
+			if ($type === 'Chapter') {
+				$excludeTypeId = $type === $pubObjectType ? $excludeId : null;
+				if (DAORegistry::getDAO('ChapterDAO')->pubIdExists($this->getPubIdType(), $pubId, $excludeTypeId, $contextId)) {
+					return false;
+				}
+			}
+		}
+
+		return true;
+	}
 }
 
-?>
+

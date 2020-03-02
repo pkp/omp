@@ -1,9 +1,9 @@
 {**
  * templates/frontend/components/monographList.tpl
  *
- * Copyright (c) 2014-2016 Simon Fraser University Library
- * Copyright (c) 2003-2016 John Willinsky
- * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
+ * Copyright (c) 2014-2020 Simon Fraser University
+ * Copyright (c) 2003-2020 John Willinsky
+ * Distributed under the GNU GPL v3. For full terms see the file docs/COPYING.
  *
  * @brief Display a list of monographs.
  *
@@ -24,28 +24,25 @@
 		</{$heading}>
 	{/if}
 
-	{* Show featured items first *}
-	{if $featured && count($featured) > 0}
-		{foreach from=$featured key=id item=array_key}
-			{if isset($monographs[$id])}
-				{include file="frontend/objects/monograph_summary.tpl" monograph=$monographs[$id] isFeatured=1}
-			{/if}
-		{/foreach}
-	{/if}
-
 	{assign var=counter value=1}
-	{foreach name="monographListLoop" from=$monographs item=monograph key=key}
-		{if is_array($featured) && array_key_exists($key, $featured)}
-			{php}continue;{/php}
+	{foreach name="monographListLoop" from=$monographs item=monograph}
+		{if is_array($featured) && array_key_exists($monograph->getId(), $featured)}
+			{assign var="isFeatured" value=true}
+		{else}
+			{assign var="isFeatured" value=false}
 		{/if}
-		{if $counter is odd by 1}
-			<div class="row">
+		{if $isFeatured}
+			{include file="frontend/objects/monograph_summary.tpl" monograph=$monograph isFeatured=$isFeatured}
+		{else}
+			{if $counter is odd by 1}
+				<div class="row">
+			{/if}
+				{include file="frontend/objects/monograph_summary.tpl" monograph=$monograph isFeatured=$isFeatured}
+			{if $counter is even by 1}
+				</div>
+			{/if}
+			{assign var=counter value=$counter+1}
 		{/if}
-			{include file="frontend/objects/monograph_summary.tpl" monograph=$monograph}
-		{if $counter is even by 1}
-			</div>
-		{/if}
-		{assign var=counter value=$counter+1}
 	{/foreach}
 	{* Close .row if we have an odd number of titles *}
 	{if $counter > 1 && $counter is even by 1}

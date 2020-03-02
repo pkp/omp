@@ -1,0 +1,102 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: \n"
+"Report-Msgid-Bugs-To: \n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"POT-Creation-Date: 2020-02-08T17:42:27+00:00\n"
+"PO-Revision-Date: 2020-02-08T17:42:27+00:00\n"
+"Language: \n"
+
+msgid "plugins.importexport.users.displayName"
+msgstr "پلاگین XML کاربران"
+
+msgid "plugins.importexport.users.description"
+msgstr "ورود و خروج کاربران"
+
+msgid "plugins.importexport.users.cliUsage"
+msgstr ""
+"کاربرد: {$scriptName} {$pluginName} [command] ...\n"
+"Commands:\n"
+"\timport [xmlFileName] [press_path] [optional flags]\n"
+"\texport [xmlFileName] [press_path]\n"
+"\texport [xmlFileName] [press_path] [role_path1] [role_path2] ...\n"
+"\n"
+"Optional flags:\n"
+"\tcontinue_on_error: چنانچه دکر شود در صورت بروز خطا عمل ادامه مییابد.\n"
+"\n"
+"\tsend_notify: چنانچه ذکر شود ایمیل برای کاربران میفرستد و نام کاربری و رمزعبور را اعلام میکند\n"
+"\n"
+"\n"
+"مثال:\n"
+"کاربران را بداخل myPress از فایل مجله myPressFile.xml وارد میکند و با بروز خطا ادامه می یابد\n"
+"\t{$scriptName} {$pluginName} import myImportFile.xml myPress continue_on_error\n"
+"\n"
+"\tتمام کاربران myPress را انتقال میدهد:\n"
+"\t{$scriptName} {$pluginName} export myExportFile.xml myPress\n"
+"\n"
+"\tتمامی کاربرانی که به عنوان کارشناس ثبت نام کرده اند را منتقل میکند :\n"
+"\t{$scriptName} {$pluginName} export myExportFile.xml myPress reviewer\n"
+""
+
+msgid "plugins.importexport.users.import.importUsers"
+msgstr "انتقال کاربران"
+
+msgid "plugins.importexport.users.import.instructions"
+msgstr ""
+"فایل داده حاوی اطلاعات کاربران را انتخاب کنید تا انتقال یابد. برای اطلاع از فورمات این فایل به راهنمای مجله مراجعه کنید.\n"
+"چنانچه فایل منتقل شده حاوی نام کاربری یا ایمیل های باشدکه از قبل در سیستم باشند اطلاعات آن کاربران منتقل نمیشود و رل های جدید به آنان انتساب داده میشود."
+
+msgid "plugins.importexport.users.import.failedToImportUser"
+msgstr "شکست در انتقال کاربر"
+
+msgid "plugins.importexport.users.import.failedToImportRole"
+msgstr "شکست در انتساب کاربر به رل"
+
+msgid "plugins.importexport.users.import.dataFile"
+msgstr "فایل داده کاربر"
+
+msgid "plugins.importexport.users.import.sendNotify"
+msgstr "ایمیل خبر دهنده ای به هر کاربر منتقل شده بفرست و با آن نام کاربری و روز عبور را ارسال کن."
+
+msgid "plugins.importexport.users.import.continueOnError"
+msgstr "در صورت بروز خطا عمل انتقال بقیه کاربران را ادامه بده."
+
+msgid "plugins.importexport.users.import.noFileError"
+msgstr "هیچ فایلی آپلود نشده است"
+
+msgid "plugins.importexport.users.import.usersWereImported"
+msgstr "کاربران زیر بداخل سیستم منتقل شدند."
+
+msgid "plugins.importexport.users.import.errorsOccurred"
+msgstr "خطا هنگام انتقال"
+
+msgid "plugins.importexport.users.import.confirmUsers"
+msgstr "تایید کنید که این کاربران را میخواهید منتقل کنید."
+
+msgid "plugins.importexport.users.import.warning"
+msgstr "هشدار"
+
+msgid "plugins.importexport.users.import.encryptionMismatch"
+msgstr "رمزهای عبور کد گذاری شده به {$importHash} را نمیتواند منتقل کند. تنظیم این نصب او جی اس به نحوی بوده است که فقط از {$ompHash} استفاده میکند."
+
+msgid "plugins.importexport.users.unknownPress"
+msgstr "مسیر مجله داده شده \"{$contextPath}\" نامعلوم است."
+
+msgid "plugins.importexport.users.export.exportUsers"
+msgstr "استخراج کاربران"
+
+msgid "plugins.importexport.users.export.exportByRole"
+msgstr "استخراج بر حسب رل"
+
+msgid "plugins.importexport.users.export.exportAllUsers"
+msgstr "استخراج همه"
+
+msgid "plugins.importexport.users.export.errorsOccurred"
+msgstr "بروز خطا هنگام استخراج"
+
+msgid "plugins.importexport.users.export.couldNotWriteFile"
+msgstr "نوشتن در فایل \"{$fileName}\" ممکن نیست."

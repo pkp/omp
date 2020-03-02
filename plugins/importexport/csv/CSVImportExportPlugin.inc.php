@@ -3,9 +3,9 @@
 /**
  * @file plugins/importexport/csv/CSVImportExportPlugin.inc.php
  *
- * Copyright (c) 2013-2016 Simon Fraser University Library
- * Copyright (c) 2003-2016 John Willinsky
- * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
+ * Copyright (c) 2013-2020 Simon Fraser University
+ * Copyright (c) 2003-2020 John Willinsky
+ * Distributed under the GNU GPL v3. For full terms see the file docs/COPYING.
  *
  * @class CSVImportExportPlugin
  * @ingroup plugins_importexport_csv
@@ -19,18 +19,15 @@ class CSVImportExportPlugin extends ImportExportPlugin {
 	/**
 	 * Constructor
 	 */
-	function CSVImportExportPlugin() {
-		parent::ImportExportPlugin();
+	function __construct() {
+		parent::__construct();
 	}
 
 	/**
-	 * Called as a plugin is registered to the registry
-	 * @param $category String Name of category plugin was registered to
-	 * @return boolean True iff plugin initialized successfully; if false,
-	 * 	the plugin will not be registered.
+	 * @copydoc Plugin::register()
 	 */
-	function register($category, $path) {
-		$success = parent::register($category, $path);
+	function register($category, $path, $mainContextId = null) {
+		$success = parent::register($category, $path, $mainContextId);
 		$this->addLocaleData();
 		return $success;
 	}
@@ -70,7 +67,7 @@ class CSVImportExportPlugin extends ImportExportPlugin {
 		switch (array_shift($args)) {
 			case 'index':
 			case '':
-				$templateMgr->display($this->getTemplatePath() . '/index.tpl');
+				$templateMgr->display($this->getTemplateResource('index.tpl'));
 				break;
 		}
 	}
@@ -100,23 +97,23 @@ class CSVImportExportPlugin extends ImportExportPlugin {
 
 		if (is_array($data) && count($data) > 0) {
 
-			$userDao = DAORegistry::getDAO('UserDAO');
+			$userDao = DAORegistry::getDAO('UserDAO'); /* @var $userDao UserDAO */
 			$user = $userDao->getByUsername($username);
 			if (!$user) {
 				echo __('plugins.importexport.csv.unknownUser', array('username' => $username)) . "\n";
 				exit();
 			}
 
-			$submissionDao = Application::getSubmissionDAO();
-			$authorDao = DAORegistry::getDAO('AuthorDAO');
+			$submissionDao = DAORegistry::getDAO('SubmissionDAO'); /* @var $submissionDao SubmissionDAO */
+			$authorDao = DAORegistry::getDAO('AuthorDAO'); /* @var $authorDao AuthorDAO */
 			$pressDao = Application::getContextDAO();
-			$userGroupDao = DAORegistry::getDAO('UserGroupDAO');
-			$seriesDao = DAORegistry::getDAO('SeriesDAO');
-			$publicationFormatDao = DAORegistry::getDAO('PublicationFormatDAO');
-			$submissionFileDao = DAORegistry::getDAO('SubmissionFileDAO');
+			$userGroupDao = DAORegistry::getDAO('UserGroupDAO'); /* @var $userGroupDao UserGroupDAO */
+			$seriesDao = DAORegistry::getDAO('SeriesDAO'); /* @var $seriesDao SeriesDAO */
+			$publicationFormatDao = DAORegistry::getDAO('PublicationFormatDAO'); /* @var $publicationFormatDao PublicationFormatDAO */
+			$submissionFileDao = DAORegistry::getDAO('SubmissionFileDAO'); /* @var $submissionFileDao SubmissionFileDAO */
 			import('lib.pkp.classes.submission.SubmissionFile'); // constants.
-			$genreDao = DAORegistry::getDAO('GenreDAO');
-			$publicationDateDao = DAORegistry::getDAO('PublicationDateDAO');
+			$genreDao = DAORegistry::getDAO('GenreDAO'); /* @var $genreDao GenreDAO */
+			$publicationDateDao = DAORegistry::getDAO('PublicationDateDAO'); /* @var $publicationDateDao PublicationDateDAO */
 
 			foreach ($data as $csvLine) {
 				// Format is:
@@ -146,7 +143,7 @@ class CSVImportExportPlugin extends ImportExportPlugin {
 						$submission = $submissionDao->newDataObject();
 						$submission->setContextId($press->getId());
 						$submission->setUserId($user->getId());
-						$submission->stampStatusModified();
+						$submission->stampLastActivity();
 						$submission->setStatus(STATUS_PUBLISHED);
 						$submission->setWorkType($isEditedVolume == 1?WORK_TYPE_EDITED_VOLUME:WORK_TYPE_AUTHORED_WORK);
 						$submission->setCopyrightNotice($press->getLocalizedSetting('copyrightNotice'), $locale);
@@ -166,14 +163,14 @@ class CSVImportExportPlugin extends ImportExportPlugin {
 						$authors = preg_split('/,\s*/', $authorString);
 						$firstAuthor = true;
 						foreach ($authors as $authorString) {
-							// Examine the author string. Best case is: First1 Last1 <email@address.com>, First2 Last2 <email@address.com>, etc
+							// Examine the author string. Best case is: Given1 Family1 <email@address.com>, Given2 Family2 <email@address.com>, etc
 							// But default to press email address based on press path if not present.
-							$firstName = $lastName = $emailAddress = null;
+							$givenName = $familyName = $emailAddress = null;
 							$authorString = trim($authorString); // whitespace.
 							if (preg_match('/^(\w+)(\s+\w+)?\s*(<([^>]+)>)?$/', $authorString, $matches)) {
-								$firstName = $matches[1]; // Mandatory
+								$givenName = $matches[1]; // Mandatory
 								if (count($matches) > 2) {
-									$lastName = $matches[2];
+									$familyName = $matches[2];
 								}
 								if (count($matches) == 5) {
 									$emailAddress = $matches[4];
@@ -184,8 +181,8 @@ class CSVImportExportPlugin extends ImportExportPlugin {
 							$author = $authorDao->newDataObject();
 							$author->setSubmissionId($submissionId);
 							$author->setUserGroupId($authorGroup->getId());
-							$author->setFirstName($firstName);
-							$author->setLastName($lastName);
+							$author->setGivenName($givenName, $locale);
+							$author->setFamilyName($familyName, $locale);
 							$author->setEmail($emailAddress);
 							if ($firstAuthor) {
 								$author->setPrimaryContact(1);
@@ -232,6 +229,7 @@ class CSVImportExportPlugin extends ImportExportPlugin {
 						$temporaryFileManager->copyFile($pdfUrl, $temporaryFilename);
 						$submissionFile = $submissionFileDao->newDataObjectByGenreId($genre->getId());
 						$submissionFile->setSubmissionId($submissionId);
+						$submissionFile->setSubmissionLocale($submission->getLocale());
 						$submissionFile->setGenreId($genre->getId());
 						$submissionFile->setFileStage(SUBMISSION_FILE_PROOF);
 						$submissionFile->setDateUploaded(Core::getCurrentDate());
@@ -246,7 +244,7 @@ class CSVImportExportPlugin extends ImportExportPlugin {
 
 						$submissionFileDao->insertObject($submissionFile, $temporaryFilename);
 						$fileManager = new FileManager();
-						$fileManager->deleteFile($temporaryFilename);
+						$fileManager->deleteByPath($temporaryFilename);
 
 						echo __('plugins.importexport.csv.import.submission', array('title' => $title)) . "\n";
 					} else {
@@ -270,4 +268,4 @@ class CSVImportExportPlugin extends ImportExportPlugin {
 	}
 }
 
-?>
+

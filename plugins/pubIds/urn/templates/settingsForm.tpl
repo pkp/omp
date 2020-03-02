@@ -1,9 +1,9 @@
 {**
  * plugins/pubIds/urn/templates/settingsForm.tpl
  *
- * Copyright (c) 2014-2016 Simon Fraser University Library
- * Copyright (c) 2003-2016 John Willinsky
- * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
+ * Copyright (c) 2014-2020 Simon Fraser University
+ * Copyright (c) 2003-2020 John Willinsky
+ * Distributed under the GNU GPL v3. For full terms see the file docs/COPYING.
  *
  * URN plugin settings
  *
@@ -24,7 +24,8 @@
 	{fbvFormArea id="urnObjectsFormArea" title="plugins.pubIds.urn.manager.settings.urnObjects"}
 		{fbvFormSection list="true"}
 			<p class="pkp_help">{translate key="plugins.pubIds.urn.manager.settings.explainURNs"}</p>
-			{fbvElement type="checkbox" id="enableSubmissionURN" label="plugins.pubIds.urn.manager.settings.enableSubmissionURN" maxlength="40" checked=$enableSubmissionURN|compare:true}
+			{fbvElement type="checkbox" id="enablePublicationURN" label="plugins.pubIds.urn.manager.settings.enablePublicationURN" maxlength="40" checked=$enablePublicationURN|compare:true}
+			{fbvElement type="checkbox" id="enableChapterURN" label="plugins.pubIds.urn.manager.settings.enableChapterURN" maxlength="40" checked=$enableChapterURN|compare:true}
 			{fbvElement type="checkbox" id="enableRepresentationURN" label="plugins.pubIds.urn.manager.settings.enableRepresentationURN" maxlength="40" checked=$enableRepresentationURN|compare:true}
 			{fbvElement type="checkbox" id="enableSubmissionFileURN" label="plugins.pubIds.urn.manager.settings.enableSubmissionFileURN" maxlength="40" checked=$enableSubmissionFileURN|compare:true}
 		{/fbvFormSection}
@@ -52,7 +53,8 @@
 		{fbvFormSection list="true"}
 			{fbvElement type="radio" id="urnSuffixPattern" name="urnSuffix" value="pattern" label="plugins.pubIds.urn.manager.settings.urnSuffixPattern" checked=$urnSuffix|compare:"pattern"}
 			<p class="pkp_help">{translate key="plugins.pubIds.urn.manager.settings.urnSuffixPattern.example"}</p>
-			{fbvElement type="text" id="urnSubmissionSuffixPattern" value=$urnSubmissionSuffixPattern label="plugins.pubIds.urn.manager.settings.urnSuffixPattern.submissions" maxlength="40" inline=true size=$fbvStyles.size.MEDIUM}
+			{fbvElement type="text" id="urnPublicationSuffixPattern" value=$urnPublicationSuffixPattern label="plugins.pubIds.urn.manager.settings.urnSuffixPattern.submissions" maxlength="40" inline=true size=$fbvStyles.size.MEDIUM}
+			{fbvElement type="text" id="urnChapterSuffixPattern" value=$urnChapterSuffixPattern label="plugins.pubIds.urn.manager.settings.urnSuffixPattern.chapters" maxlength="40" inline=true size=$fbvStyles.size.MEDIUM}
 			{fbvElement type="text" id="urnRepresentationSuffixPattern" value=$urnRepresentationSuffixPattern label="plugins.pubIds.urn.manager.settings.urnSuffixPattern.representations" maxlength="40" inline=true size=$fbvStyles.size.MEDIUM}
 			{fbvElement type="text" id="urnSubmissionFileSuffixPattern" value=$urnSubmissionFileSuffixPattern label="plugins.pubIds.urn.manager.settings.urnSuffixPattern.files" maxlength="40" inline=true size=$fbvStyles.size.MEDIUM}
 		{/fbvFormSection}

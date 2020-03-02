@@ -1,9 +1,9 @@
 {**
  * plugins/paymethod/manual/templates/paymentForm.tpl
  *
- * Copyright (c) 2014-2016 Simon Fraser University Library
- * Copyright (c) 2003-2016 John Willinsky
- * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
+ * Copyright (c) 2014-2020 Simon Fraser University
+ * Copyright (c) 2003-2020 John Willinsky
+ * Distributed under the GNU GPL v3. For full terms see the file docs/COPYING.
  *
  * Manual payment page
  *}
@@ -12,6 +12,7 @@
 
 <div class="page page_payment">
 	{include file="frontend/components/breadcrumbs.tpl" currentTitleKey="plugins.paymethod.manual"}
+	<h1>{translate key="plugins.paymethod.manual"}</h1>
 
 	<p>{$manualInstructions|nl2br}</p>
 
@@ -26,15 +27,10 @@
 				<td class="value" width="80%"><strong>{$itemAmount|string_format:"%.2f"}{if $itemCurrencyCode} ({$itemCurrencyCode|escape}){/if}</strong></td>
 			</tr>
 		{/if}
-		{if $itemDescription}
-		<tr>
-			<td colspan="2">{$itemDescription|nl2br}</td>
-		</tr>
-		{/if}
 	</table>
 
 	<p>
-		<a href="{url page="payment" op="plugin" path="ManualPayment"|to_array:"notify":$queuedPaymentId|escape}" class="action">{translate key="plugins.paymethod.manual.sendNotificationOfPayment"}</a>
+		<a href="{url page="payment" op="plugin" path="ManualPayment"|to_array:"notify":$queuedPaymentId}" class="action">{translate key="plugins.paymethod.manual.sendNotificationOfPayment"}</a>
 	</p>
 
 </div><!-- .page -->

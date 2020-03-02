@@ -3,9 +3,9 @@
 /**
  * @file pages/manageCatalog/ManageCatalogHandler.inc.php
  *
- * Copyright (c) 2014-2016 Simon Fraser University Library
- * Copyright (c) 2003-2016 John Willinsky
- * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
+ * Copyright (c) 2014-2020 Simon Fraser University
+ * Copyright (c) 2003-2020 John Willinsky
+ * Distributed under the GNU GPL v3. For full terms see the file docs/COPYING.
  *
  * @class ManageCatalogHandler
  * @ingroup pages_manageCatalog
@@ -19,8 +19,8 @@ class ManageCatalogHandler extends Handler {
 	/**
 	 * Constructor
 	 */
-	function ManageCatalogHandler() {
-		parent::Handler();
+	function __construct() {
+		parent::__construct();
 
 		$this->addRoleAssignment(
 			array(ROLE_ID_SUB_EDITOR, ROLE_ID_MANAGER),
@@ -47,11 +47,11 @@ class ManageCatalogHandler extends Handler {
 	/**
 	 * @copydoc PKPHandler::initialize()
 	 */
-	function initialize($request, $args) {
+	function initialize($request) {
 		$this->setupTemplate($request);
 
 		// Call parent method.
-		parent::initialize($request, $args);
+		parent::initialize($request);
 	}
 
 
@@ -65,10 +65,55 @@ class ManageCatalogHandler extends Handler {
 	 * @return JSONMessage JSON object
 	 */
 	function index($args, $request) {
-		// Render the view.
+		AppLocale::requireComponents(LOCALE_COMPONENT_APP_SUBMISSION);
+		$context = $request->getContext();
+
+		// Catalog list
+		list($catalogSortBy, $catalogSortDir) = explode('-', $context->getData('catalogSortOption'));
+		$catalogSortBy = empty($catalogSortBy) ? ORDERBY_DATE_PUBLISHED : $catalogSortBy;
+		$catalogSortDir = $catalogSortDir == SORT_DIRECTION_ASC ? 'ASC' : 'DESC';
+		$catalogList = new \APP\components\listPanels\CatalogListPanel(
+			'catalog',
+			__('submission.list.monographs'),
+			[
+				'apiUrl' => $request->getDispatcher()->url(
+					$request,
+					ROUTE_API,
+					$context->getPath(),
+					'_submissions'
+				),
+				'catalogSortBy' => $catalogSortBy,
+				'catalogSortDir' => $catalogSortDir,
+				'getParams' => [
+					'status' => STATUS_PUBLISHED,
+					'orderByFeatured' => true,
+					'orderBy' => $catalogSortBy,
+					'orderDirection' => $catalogSortDir,
+				],
+			]
+		);
+
+		$submissionService = \Services::get('submission');
+		$params = array_merge($catalogList->getParams, [
+			'count' => $catalogList->count,
+			'contextId' => $context->getId(),
+		]);
+		$submissionsIterator = $submissionService->getMany($params);
+		$items = [];
+		foreach ($submissionsIterator as $submission) {
+			$items[] = $submissionService->getBackendListProperties($submission, ['request' => $request]);
+		}
+		$catalogList->set([
+			'items' => $items,
+			'itemsMax' => $submissionService->getMax($params),
+		]);
+
 		$templateMgr = TemplateManager::getManager($request);
+		$templateMgr->assign('catalogListData', [
+			'components' => [
+				'catalog' => $catalogList->getConfig()
+			]
+		]);
 		return $templateMgr->display('manageCatalog/index.tpl');
 	}
 }
-
-?>

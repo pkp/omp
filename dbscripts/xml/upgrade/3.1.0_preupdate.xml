@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE data SYSTEM "../../../lib/pkp/dtd/xmlData.dtd">
+
+<!--
+  * dbscripts/xml/upgrade/3.1.0_preupdate.xml
+  *
+  * Copyright (c) 2013-2020 Simon Fraser University
+  * Copyright (c) 2003-2020 John Willinsky
+  * Distributed under the GNU GPL v3. For full terms see the file docs/COPYING.
+  *
+  -->
+
+<data>
+	<sql>
+		<!-- ROLE_ID_SUB_EDITOR changes from 0x00000201 to 0x00000011 -->
+		<query>UPDATE email_templates_default SET from_role_id=17 WHERE from_role_id=513</query>
+		<query>UPDATE email_templates_default SET to_role_id=17 WHERE to_role_id=513</query>
+		<query>UPDATE user_groups SET role_id=17 WHERE role_id=513</query>
+		<query>UPDATE submission_comments SET role_id=17 WHERE role_id=513</query>
+	</sql>
+</data>

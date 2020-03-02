@@ -3,9 +3,9 @@
 /**
  * @file controllers/grid/catalogEntry/PublicationFormatGridCellProvider.inc.php
  *
- * Copyright (c) 2014-2016 Simon Fraser University Library
- * Copyright (c) 2000-2016 John Willinsky
- * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
+ * Copyright (c) 2014-2020 Simon Fraser University
+ * Copyright (c) 2000-2020 John Willinsky
+ * Distributed under the GNU GPL v3. For full terms see the file docs/COPYING.
  *
  * @class PublicationFormatGridCellProvider
  * @ingroup controllers_grid_catalogEntry
@@ -23,13 +23,20 @@ class PublicationFormatGridCellProvider extends DataObjectGridCellProvider {
 	/** @var int Submission ID */
 	var $_submissionId;
 
+	/** @var boolean */
+	protected $_canManage;
+
 	/**
 	 * Constructor
 	 * @param $submissionId int Submission ID
+	 * @param $canManage boolean
+	 * @param $publicationId int Publication ID
 	 */
-	function PublicationFormatGridCellProvider($submissionId) {
-		parent::DataObjectGridCellProvider();
+	function __construct($submissionId, $canManage, $publicationId) {
+		parent::__construct();
 		$this->_submissionId = $submissionId;
+		$this->_publicationId = $publicationId;
+		$this->_canManage = $canManage;
 	}
 
 
@@ -42,6 +49,14 @@ class PublicationFormatGridCellProvider extends DataObjectGridCellProvider {
 	 */
 	function getSubmissionId() {
 		return $this->_submissionId;
+	}
+
+	/**
+	 * Get publication ID.
+	 * @return int
+	 */
+	function getPublicationId() {
+		return $this->_publicationId;
 	}
 
 
@@ -57,18 +72,22 @@ class PublicationFormatGridCellProvider extends DataObjectGridCellProvider {
 	 */
 	function getTemplateVarsFromRowColumn($row, $column) {
 		$data = $row->getData();
-		if (is_a($data, 'Representation')) switch ($column->getId()) {
-			case 'indent': return array();
-			case 'name':
-				$remoteURL = $data->getRemoteURL();
-				if ($remoteURL) {
-					return array('label' => '<a href="'.htmlspecialchars($remoteURL).'" target="_blank">'.htmlspecialchars($data->getLocalizedName()).'</a>' . '<span class="onix_code">' . $data->getNameForONIXCode() . '</span>');
-				}
-				return array('label' => htmlspecialchars($data->getLocalizedName()) . '<span class="onix_code">' . $data->getNameForONIXCode() . '</span>');
-			case 'isAvailable':
-				return array('status' => $data->getIsAvailable()?'completed':'new');
-			case 'isComplete':
-				return array('status' => $data->getIsApproved()?'completed':'new');
+
+		if (is_a($data, 'Representation')) {
+			/** @var $data Representation */
+			switch ($column->getId()) {
+				case 'indent': return array();
+				case 'name':
+					$remoteURL = $data->getRemoteURL();
+					if ($remoteURL) {
+						return array('label' => '<a href="'.htmlspecialchars($remoteURL).'" target="_blank">'.htmlspecialchars($data->getLocalizedName()).'</a>' . '<span class="onix_code">' . $data->getNameForONIXCode() . '</span>');
+					}
+					return array('label' => htmlspecialchars($data->getLocalizedName()) . '<span class="onix_code">' . $data->getNameForONIXCode() . '</span>');
+				case 'isAvailable':
+					return array('status' => $data->getIsAvailable()?'completed':'new');
+				case 'isComplete':
+					return array('status' => $data->getIsApproved()?'completed':'new');
+			}
 		} else {
 			assert(is_array($data) && isset($data['submissionFile']));
 			$proofFile = $data['submissionFile'];
@@ -83,13 +102,26 @@ class PublicationFormatGridCellProvider extends DataObjectGridCellProvider {
 					return array('status' => $proofFile->getViewable()?'completed':'new');
 			}
 		}
+
 		return parent::getTemplateVarsFromRowColumn($row, $column);
+	}
+
+	/**
+	 * Get request arguments.
+	 * @param $row GridRow
+	 * @return array
+	 */
+	function getRequestArgs($row) {
+		return array(
+			'submissionId' => $this->getSubmissionId(),
+			'publicationId' => $this->getPublicationId(),
+		);
 	}
 
 	/**
 	 * @see GridCellProvider::getCellActions()
 	 */
-	function getCellActions($request, $row, $column) {
+	function getCellActions($request, $row, $column, $position = GRID_ACTION_POSITION_DEFAULT) {
 		$data = $row->getData();
 		$router = $request->getRouter();
 		if (is_a($data, 'Representation')) {
@@ -106,7 +138,8 @@ class PublicationFormatGridCellProvider extends DataObjectGridCellProvider {
 								array(
 									'representationId' => $data->getId(),
 									'newAvailableState' => $data->getIsAvailable()?0:1,
-									'submissionId' => $data->getSubmissionId(),
+									'submissionId' => $this->getSubmissionId(),
+									'publicationId' => $data->getData('publicationId'),
 								)
 							),
 							'modal_approve'
@@ -122,22 +155,25 @@ class PublicationFormatGridCellProvider extends DataObjectGridCellProvider {
 					if ($remoteURL) {
 						return array();
 					}
+					// If this is just an author account, don't give any actions
+					if (!$this->_canManage) return array();
 					import('lib.pkp.controllers.api.file.linkAction.AddFileLinkAction');
 					import('lib.pkp.controllers.grid.files.fileList.linkAction.SelectFilesLinkAction');
 					AppLocale::requireComponents(LOCALE_COMPONENT_PKP_EDITOR);
 					return array(
 						new AddFileLinkAction(
-							$request, $data->getSubmissionId(), WORKFLOW_STAGE_ID_PRODUCTION,
-							array(ROLE_ID_MANAGER, ROLE_ID_SUB_EDITOR, ROLE_ID_ASSISTANT), null, SUBMISSION_FILE_PROOF,
+							$request, $this->getSubmissionId(), WORKFLOW_STAGE_ID_PRODUCTION,
+							array(ROLE_ID_MANAGER, ROLE_ID_SUB_EDITOR, ROLE_ID_ASSISTANT), SUBMISSION_FILE_PROOF,
 							ASSOC_TYPE_REPRESENTATION, $data->getId()
 						),
 						new SelectFilesLinkAction(
 							$request,
 							array(
-								'submissionId' => $data->getSubmissionId(),
+								'submissionId' => $this->getSubmissionId(),
 								'assocType' => ASSOC_TYPE_REPRESENTATION,
 								'assocId' => $data->getId(),
 								'representationId' => $data->getId(),
+								'publicationId' => $this->getPublicationId(),
 								'stageId' => WORKFLOW_STAGE_ID_PRODUCTION,
 								'fileStage' => SUBMISSION_FILE_PROOF,
 							),
@@ -154,7 +190,8 @@ class PublicationFormatGridCellProvider extends DataObjectGridCellProvider {
 								array(
 									'representationId' => $data->getId(),
 									'newApprovedState' => $data->getIsApproved()?0:1,
-									'submissionId' => $data->getSubmissionId(),
+									'submissionId' => $this->getSubmissionId(),
+									'publicationId' => $data->getData('publicationId'),
 								)
 							),
 							__('grid.catalogEntry.approvedRepresentation.title'),
@@ -185,6 +222,7 @@ class PublicationFormatGridCellProvider extends DataObjectGridCellProvider {
 							$router->url($request, null, null, 'editApprovedProof', null, array(
 								'fileId' => $submissionFile->getFileId() . '-' . $submissionFile->getRevision(),
 								'submissionId' => $submissionFile->getSubmissionId(),
+								'publicationId' => $this->getPublicationId(),
 								'representationId' => $submissionFile->getAssocId(),
 							)),
 							__('editor.monograph.approvedProofs.edit'),
@@ -196,7 +234,7 @@ class PublicationFormatGridCellProvider extends DataObjectGridCellProvider {
 				case 'name':
 					import('lib.pkp.controllers.grid.files.FileNameGridColumn');
 					$fileNameColumn = new FileNameGridColumn(true, WORKFLOW_STAGE_ID_PRODUCTION, true);
-					return $fileNameColumn->getCellActions($request, $row);
+					return $fileNameColumn->getCellActions($request, $row, $position);
 				case 'isComplete':
 					AppLocale::requireComponents(LOCALE_COMPONENT_PKP_EDITOR);
 					import('lib.pkp.classes.linkAction.request.AjaxModal');
@@ -209,6 +247,7 @@ class PublicationFormatGridCellProvider extends DataObjectGridCellProvider {
 								null,
 								array(
 									'submissionId' => $submissionFile->getSubmissionId(),
+									'publicationId' => $this->getPublicationId(),
 									'fileId' => $submissionFile->getFileId(),
 									'revision' => $submissionFile->getRevision(),
 									'approval' => !$submissionFile->getViewable(),
@@ -223,8 +262,8 @@ class PublicationFormatGridCellProvider extends DataObjectGridCellProvider {
 					));
 			}
 		}
-		return parent::getCellActions($request, $row, $column);
+		return parent::getCellActions($request, $row, $column, $position);
 	}
 }
 
-?>
+

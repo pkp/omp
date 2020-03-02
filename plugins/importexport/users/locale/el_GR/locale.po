@@ -1,0 +1,99 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: \n"
+"Report-Msgid-Bugs-To: \n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"POT-Creation-Date: 2020-02-08T17:42:27+00:00\n"
+"PO-Revision-Date: 2020-02-08T17:42:27+00:00\n"
+"Language: \n"
+
+msgid "plugins.importexport.users.displayName"
+msgstr "XML Plugin Χρηστών"
+
+msgid "plugins.importexport.users.description"
+msgstr "Εισαγωγή και εξαγωγή χρηστών"
+
+msgid "plugins.importexport.users.cliUsage"
+msgstr ""
+"Usage: {$scriptName} {$pluginName} [command] ...\n"
+"Commands:\n"
+"\timport [xmlFileName] [press_path] [optional flags]\n"
+"\texport [xmlFileName] [press_path]\n"
+"\texport [xmlFileName] [press_path] [role_path1] [role_path2] ...\n"
+"\n"
+"Προαιρετικά flags:\n"
+"\tcontinue_on_error: Αν οριστεί, δεν θα σταματάει η εισαγωγή χρηστών αν εμφανιστεί ένα σφάλμα\n"
+"\n"
+"\tsend_notify: Αν οριστεί, θα αποστέλλεται ενημερωτικό email με τα ονόματα χρηστών και του κωδικούς πρόσβασης στους εισηγμένους χρήστες\n"
+"\n"
+"Παραδείγματα:\n"
+"\tΕισαγωγή χρηστών στο myPress από το myImportFile.xml, continuing on error:\n"
+"\t{$scriptName} {$pluginName} import myImportFile.xml myPress continue_on_error\n"
+"\n"
+"\tΕξαγωγή όλων των χρηστών από το myPress:\n"
+"\t{$scriptName} {$pluginName} export myExportFile.xml myPress\n"
+"\n"
+"\tΕξαγωγή όλων των χρηστών που έναι εγγεγραμμένοι ως αξιολογητές, μαζί μόνο με τον ρόλο του αξιολογητή :\n"
+"\t{$scriptName} {$pluginName} export myExportFile.xml myPress reviewer\n"
+""
+
+msgid "plugins.importexport.users.import.importUsers"
+msgstr "Εισαγωγή Χρηστών"
+
+msgid "plugins.importexport.users.import.instructions"
+msgstr "Επιλέξτε ένα αρχείο δεδομένων XML που περιέχει τις πληροφορίες των χρηστών για εισαγωγή σε αυτό το περιοδικό. Δείτε την βοήθεια του περιοδικου για πληροφορίες σχετικά με την μορφή του αρχείου αυτού.<br /><br />Σημειώστε ότι αν το αρχείο αυτό περιέχει ονόματα χρηστών και διευθύνσεις email που ήδη υπάρχουν στο σύστημα, τα δεδομένα για αυτούς τους χρήστες δεν θα εισαχθούν και κάθε νέος ρόλος που θα πρέπει να δημιουργηθού θα ανατεθούν στους υφιστάμενους χρήστες."
+
+msgid "plugins.importexport.users.import.failedToImportUser"
+msgstr "Αποτυχία εισαγωγής χρήστη"
+
+msgid "plugins.importexport.users.import.failedToImportRole"
+msgstr "Αποτυχία ανάθεσης ρόλου σε χρήστη"
+
+msgid "plugins.importexport.users.import.dataFile"
+msgstr "Αρχείο δεδομένων χρηστών"
+
+msgid "plugins.importexport.users.import.sendNotify"
+msgstr "Αποστολή ενημερωτικού email σε κάθε εισηγμένο χρήστη με το όνομα χρήστη και τον κωδικό πρόσβασης στο σύστημα."
+
+msgid "plugins.importexport.users.import.continueOnError"
+msgstr "Συνεχίστε την εισαγωγή χρηστών όταν εμφανιστεί σφάλμα."
+
+msgid "plugins.importexport.users.import.noFileError"
+msgstr "Δεν φορτώθηκε κανένα αρχείο!"
+
+msgid "plugins.importexport.users.import.usersWereImported"
+msgstr "Οι παρακάτω χρήστες εισήχθησαν στο σύστημα με επιτυχία."
+
+msgid "plugins.importexport.users.import.errorsOccurred"
+msgstr "Εμφανίστηκαν σφάλματα κατά την διάρκεια της εισαγωγής"
+
+msgid "plugins.importexport.users.import.confirmUsers"
+msgstr "Επιβεβαιώστε ότι αυτοί είναι οι χρήστες που θέλετε να εισάγετε στο σύστημα"
+
+msgid "plugins.importexport.users.import.warning"
+msgstr "Προειδοποίηση"
+
+msgid "plugins.importexport.users.import.encryptionMismatch"
+msgstr "Δεν μπορείτε να χρησιμοποιήσετε κωδικούς πρόσβασης κρυπτογραφημένους με το  {$importHash}. Το OMP έχει ρυθμιστεί ώστε να χρησιμοποιεί το {$ompHash}. Αν συνεχίσετε θα πρέπει να επναφέρετε τους κωδικούς πρόσβασης των εισηγμένων χρηστών."
+
+msgid "plugins.importexport.users.unknownPress"
+msgstr "Ορίστηκε μια άγνωστη διαδρομή περιοδικού \"{$contextPath}\"."
+
+msgid "plugins.importexport.users.export.exportUsers"
+msgstr "Εξαγωγή χρηστών "
+
+msgid "plugins.importexport.users.export.exportByRole"
+msgstr "Εξαγωγή κατά ρόλο"
+
+msgid "plugins.importexport.users.export.exportAllUsers"
+msgstr "Εξαγωγή όλων"
+
+msgid "plugins.importexport.users.export.errorsOccurred"
+msgstr "Εμφανίστηκαν σφάλματα κατά την διάρκεια της εξαγωγής"
+
+msgid "plugins.importexport.users.export.couldNotWriteFile"
+msgstr "Δεν ήταν δυνατή η εγγραφή στο αρχείο \"{$fileName}\"."

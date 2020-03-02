@@ -3,9 +3,9 @@
 /**
  * @file controllers/grid/catalogEntry/form/PublicationDateForm.inc.php
  *
- * Copyright (c) 2014-2016 Simon Fraser University Library
- * Copyright (c) 2003-2016 John Willinsky
- * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
+ * Copyright (c) 2014-2020 Simon Fraser University
+ * Copyright (c) 2003-2020 John Willinsky
+ * Distributed under the GNU GPL v3. For full terms see the file docs/COPYING.
  *
  * @class PublicationDateForm
  * @ingroup controllers_grid_catalogEntry_form
@@ -16,8 +16,11 @@
 import('lib.pkp.classes.form.Form');
 
 class PublicationDateForm extends Form {
-	/** The monograph associated with the format being edited **/
-	var $_monograph;
+	/** The submission associated with the format being edited **/
+	var $_submission;
+
+	/** The publication associated with the format being edited **/
+	var $_publication;
 
 	/** PublicationDate the code being edited **/
 	var $_publicationDate;
@@ -25,28 +28,30 @@ class PublicationDateForm extends Form {
 	/**
 	 * Constructor.
 	 */
-	function PublicationDateForm($monograph, $publicationDate) {
-		parent::Form('controllers/grid/catalogEntry/form/pubDateForm.tpl');
-		$this->setMonograph($monograph);
+	public function __construct($submission, $publication, $publicationDate) {
+		parent::__construct('controllers/grid/catalogEntry/form/pubDateForm.tpl');
+		$this->setSubmission($submission);
+		$this->setPublication($publication);
 		$this->setPublicationDate($publicationDate);
 
 		// Validation checks for this form
+		$form = $this;
 		$this->addCheck(new FormValidator($this, 'role', 'required', 'grid.catalogEntry.roleRequired'));
 		$this->addCheck(new FormValidator($this, 'dateFormat', 'required', 'grid.catalogEntry.dateFormatRequired'));
 
 		$this->addCheck(new FormValidatorCustom(
-				$this, 'date', 'required', 'grid.catalogEntry.dateRequired',
-				create_function(
-						'$date, $form, $onixCodelistItemDao',
-						'$dateFormat = $form->getData(\'dateFormat\');
-						if (!$dateFormat) return false;
-						$dateFormats = $onixCodelistItemDao->getCodes(\'List55\');
-						$format = $dateFormats[$dateFormat];
-						if (stristr($format, \'string\') && $date != \'\') return true;
-						$format = trim(preg_replace(\'/\s*\(.*?\)/i\', \'\', $format));
-						if (count(str_split($date)) == count(str_split($format))) return true;
-						return false;'), array(&$this, DAORegistry::getDAO('ONIXCodelistItemDAO')
-			)
+			$this, 'date', 'required', 'grid.catalogEntry.dateRequired',
+			function($date) use ($form) {
+				$onixCodelistItemDao = DAORegistry::getDAO('ONIXCodelistItemDAO'); /* @var $onixCodelistItemDao ONIXCodelistItemDAO */
+				$dateFormat = $form->getData('dateFormat');
+				if (!$dateFormat) return false;
+				$dateFormats = $onixCodelistItemDao->getCodes('List55');
+				$format = $dateFormats[$dateFormat];
+				if (stristr($format, 'string') && $date != '') return true;
+				$format = trim(preg_replace('/\s*\(.*?\)/i', '', $format));
+				if (count(str_split($date)) == count(str_split($format))) return true;
+				return false;
+			}
 		));
 
 		$this->addCheck(new FormValidator($this, 'representationId', 'required', 'grid.catalogEntry.publicationFormatRequired'));
@@ -61,7 +66,7 @@ class PublicationDateForm extends Form {
 	 * Get the date
 	 * @return PublicationDate
 	 */
-	function getPublicationDate() {
+	public function getPublicationDate() {
 		return $this->_publicationDate;
 	}
 
@@ -69,24 +74,40 @@ class PublicationDateForm extends Form {
 	 * Set the date
 	 * @param @publicationDate PublicationDate
 	 */
-	function setPublicationDate($publicationDate) {
+	public function setPublicationDate($publicationDate) {
 		$this->_publicationDate = $publicationDate;
 	}
 
 	/**
-	 * Get the Monograph
-	 * @return Monograph
+	 * Get the Submission
+	 * @return Submission
 	 */
-	function getMonograph() {
-		return $this->_monograph;
+	public function getSubmission() {
+		return $this->_submission;
 	}
 
 	/**
-	 * Set the Monograph
-	 * @param Monograph
+	 * Set the Submission
+	 * @param Submission
 	 */
-	function setMonograph($monograph) {
-		$this->_monograph = $monograph;
+	public function setSubmission($submission) {
+		$this->_submission = $submission;
+	}
+
+	/**
+	 * Get the Publication
+	 * @return Publication
+	 */
+	public function getPublication() {
+		return $this->_publication;
+	}
+
+	/**
+	 * Set the Publication
+	 * @param Publication
+	 */
+	public function setPublication($publication) {
+		$this->_publication = $publication;
 	}
 
 
@@ -96,7 +117,7 @@ class PublicationDateForm extends Form {
 	/**
 	 * Initialize form data from the publication date.
 	 */
-	function initData() {
+	public function initData() {
 		$date = $this->getPublicationDate();
 
 		if ($date) {
@@ -110,13 +131,13 @@ class PublicationDateForm extends Form {
 	}
 
 	/**
-	 * Fetch the form.
-	 * @see Form::fetch()
+	 * @copydoc Form::fetch()
 	 */
-	function fetch($request) {
+	public function fetch($request, $template = null, $display = false) {
 		$templateMgr = TemplateManager::getManager($request);
-		$monograph = $this->getMonograph();
-		$templateMgr->assign('submissionId', $monograph->getId());
+		$submission = $this->getSubmission();
+		$templateMgr->assign('submissionId', $submission->getId());
+		$templateMgr->assign('publicationId', $this->getPublication()->getId());
 		$publicationDate = $this->getPublicationDate();
 
 		if ($publicationDate) {
@@ -130,15 +151,15 @@ class PublicationDateForm extends Form {
 			$templateMgr->assign('dateFormat', '20'); // YYYYMMDD Onix code as a default
 		}
 
-		$publicationFormatDao = DAORegistry::getDAO('PublicationFormatDAO');
-		$publicationFormat = $publicationFormatDao->getById($representationId, $monograph->getId());
+		$publicationFormatDao = DAORegistry::getDAO('PublicationFormatDAO'); /* @var $publicationFormatDao PublicationFormatDAO */
+		$publicationFormat = $publicationFormatDao->getById($representationId, $this->getPublication()->getId());
 
-		if ($publicationFormat) { // the format exists for this monograph
+		if ($publicationFormat) { // the format exists for this submission
 			$templateMgr->assign('representationId', $representationId);
 			$publicationDates = $publicationFormat->getPublicationDates();
 			$assignedRoles = array_keys($publicationDates->toAssociativeArray('role')); // currently assigned roles
 			if ($publicationDate) $assignedRoles = array_diff($assignedRoles, array($publicationDate->getRole())); // allow existing roles to keep their value
-			$onixCodelistItemDao = DAORegistry::getDAO('ONIXCodelistItemDAO');
+			$onixCodelistItemDao = DAORegistry::getDAO('ONIXCodelistItemDAO'); /* @var $onixCodelistItemDao ONIXCodelistItemDAO */
 			$roles = $onixCodelistItemDao->getCodes('List163', $assignedRoles); // ONIX list for these
 			$templateMgr->assign('publicationDateRoles', $roles);
 
@@ -146,17 +167,17 @@ class PublicationDateForm extends Form {
 			$dateFormats = $onixCodelistItemDao->getCodes('List55');
 			$templateMgr->assign('publicationDateFormats', $dateFormats);
 		} else {
-			fatalError('Format not in authorized monograph');
+			fatalError('Format not in authorized submission');
 		}
 
-		return parent::fetch($request);
+		return parent::fetch($request, $template, $display);
 	}
 
 	/**
 	 * Assign form data to user-submitted data.
 	 * @see Form::readInputData()
 	 */
-	function readInputData() {
+	public function readInputData() {
 		$this->readUserVars(array(
 			'publicationDateId',
 			'representationId',
@@ -167,25 +188,25 @@ class PublicationDateForm extends Form {
 	}
 
 	/**
-	 * Save the date
-	 * @see Form::execute()
+	 * @copydoc Form::execute()
 	 */
-	function execute() {
-		$publicationDateDao = DAORegistry::getDAO('PublicationDateDAO');
-		$publicationFormatDao = DAORegistry::getDAO('PublicationFormatDAO');
+	public function execute(...$functionArgs) {
+		parent::execute(...$functionArgs);
+		$publicationDateDao = DAORegistry::getDAO('PublicationDateDAO'); /* @var $publicationDateDao PublicationDateDAO */
+		$publicationFormatDao = DAORegistry::getDAO('PublicationFormatDAO'); /* @var $publicationFormatDao PublicationFormatDAO */
 
-		$monograph = $this->getMonograph();
+		$submission = $this->getSubmission();
 		$publicationDate = $this->getPublicationDate();
-		$publicationFormat = $publicationFormatDao->getById($this->getData('representationId'), $monograph->getId());
+		$publicationFormat = $publicationFormatDao->getById($this->getData('representationId'), $this->getPublication()->getId());
 
 		if (!$publicationDate) {
-			// this is a new publication date for this published monograph
+			// this is a new publication date for this published submission
 			$publicationDate = $publicationDateDao->newDataObject();
 			$existingFormat = false;
-			if ($publicationFormat != null) { // ensure this assigned format is in this monograph
+			if ($publicationFormat != null) { // ensure this assigned format is in this submission
 				$publicationDate->setPublicationFormatId($publicationFormat->getId());
 			} else {
-				fatalError('This assigned format not in authorized monograph context!');
+				fatalError('This assigned format not in authorized submission context!');
 			}
 		} else {
 			$existingFormat = true;
@@ -207,4 +228,3 @@ class PublicationDateForm extends Form {
 	}
 }
 
-?>

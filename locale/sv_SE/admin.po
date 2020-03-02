@@ -1,0 +1,137 @@
+msgid ""
+msgstr ""
+"PO-Revision-Date: 2020-02-08 03:32+0000\n"
+"Last-Translator: Magnus Annemark <magnus.annemark@ub.lu.se>\n"
+"Language-Team: Swedish <http://translate.pkp.sfu.ca/projects/omp/admin/sv/>\n"
+"Language: sv_SE\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: Weblate 3.9.1\n"
+
+msgid "admin.settings.noPressRedirect"
+msgstr "Omdirigera ej"
+
+msgid "admin.settings.redirectInstructions"
+msgstr ""
+"Anrop till huvudsidan kommer att dirigeras om till den valda pressen. Detta "
+"kan till exempel vara lämpligt om webbplatsen endast hyser en press."
+
+msgid "admin.settings.redirect"
+msgstr "Omdirigering av press"
+
+msgid "admin.settings.info.success"
+msgstr "Informationen om webbplatsen har uppdaterats."
+
+msgid "admin.settings.config.success"
+msgstr "Webbplatsens inställningar har uppdaterats."
+
+msgid "admin.settings.appearance.success"
+msgstr "Webbplatsens utseende har uppdaterats."
+
+msgid "admin.hostedContexts"
+msgstr "Pressar på den här webbplatsen"
+
+msgid "admin.languages.downloadFailed"
+msgstr ""
+"Nedladdningen av språk/region misslyckades. Se nedan för beskrivning av "
+"felet."
+
+msgid "admin.languages.noLocalesToDownload"
+msgstr "Inga språk/regioner är tillgängliga för nedladdning."
+
+msgid "admin.languages.installNewLocalesInstructions"
+msgstr ""
+"Välj ytterligare språk/regioner för installation i systemet. Språk/regioner "
+"måste installeras innan de kan användas av pressar på sidan. För "
+"instruktioner om hur ytterligare språk läggs till, se OMP-dokumentationen."
+
+msgid "admin.languages.confirmUninstall"
+msgstr ""
+"Är du säker på att du vill avinstallera detta språk/region? Detta kan "
+"påverka pressar som för tillfället använder språket/regionen."
+
+msgid "admin.locale.maybeIncomplete"
+msgstr "* Markerade språk/regioner kan vara ofullständiga."
+
+msgid "admin.languages.supportedLocalesInstructions"
+msgstr ""
+"Välj alla språk/regioner som ska finnas på sidan. De valda språken/"
+"regionerna kommer kunna användas av sidans alla pressar, och kommer också "
+"finnas i språkmenyn (som kan tas bort på sidor specifika för en viss press)  "
+"i den publika vyn.  Om bara ett språk/region väljs kommer inte språkmenyn "
+"vara synlig, och ytterligare språkinställningar kommer inte vara "
+"tillgängliga för pressarna."
+
+msgid "admin.languages.primaryLocaleInstructions"
+msgstr ""
+"Detta kommer vara det förinställda språket för installationen och för alla "
+"hysta pressar."
+
+msgid "admin.overwriteConfigFileInstructions"
+msgstr ""
+"<h4>OBS</div>\n"
+"<p>Systemet kunde inte skriva över konfigurationsfilen automatiskt. För att "
+"göra ändringarna måste du öppna <tt>config.inc.php</tt> i en lämplig "
+"texthanterare och byta ut dess innehåll med innehållet i textfältet "
+"nedan.</p>"
+
+msgid "admin.presses.addPress"
+msgstr "Lägg till press"
+
+msgid "admin.contexts.contextDescription"
+msgstr "Beskrivning av pressen"
+
+msgid "admin.contexts.form.edit.success"
+msgstr "{$name} har redigerats."
+
+msgid "admin.contexts.form.create.success"
+msgstr "{$name} har skapats."
+
+msgid "admin.contexts.form.pathExists"
+msgstr "Den valda sökvägen används redan av en annan press."
+
+msgid "admin.contexts.form.pathAlphaNumeric"
+msgstr ""
+"Sökvägen får bara innehålla bokstäver, nummer och tecknen _ och -. Den måste "
+"börja och sluta med en bokstav eller ett nummer."
+
+msgid "admin.contexts.form.pathRequired"
+msgstr "En sökväg krävs."
+
+msgid "admin.contexts.form.titleRequired"
+msgstr "En titel krävs."
+
+msgid "admin.contexts.create"
+msgstr "Skapa press"
+
+msgid "admin.presses.noneCreated"
+msgstr "Inga pressar har skapats."
+
+msgid "admin.presses.pressSettings"
+msgstr "Pressinställningar"
+
+msgid "admin.systemConfiguration"
+msgstr "OMP-konfiguration"
+
+msgid "admin.systemVersion"
+msgstr "OMP-version"
+
+msgid "admin.languages.confirmDisable"
+msgstr ""
+"Är du säker på att du vill avaktivera detta språk? Det kan påverka pressar "
+"som använder språket."
+
+msgid "admin.languages.downloadUnavailable"
+msgstr ""
+"<p>Nedladdning av språkpaket från PKPs webbserver är för tillfället inte "
+"tillgängligt eftersom:</p>\n"
+"\t<ul>\n"
+"\t\t<li>Din server har inte eller tillåter inte körning av GNU \"tar\""
+"-verktyget</li>\n"
+"\t\t<li>OMP kan inte skriva till språkets registerfil, vanligtvis \"registry/"
+"locales.xml\".</li>\n"
+"\t</ul>\n"
+"<p>Språkpaket kan laddas ned manuellt från <a href=\"http://pkp.sfu.ca\" "
+"target=\"_blank\">PKPs webbsida</a>.</p>"

@@ -1,0 +1,5 @@
+./lib/pkp/lib
+./plugins/paymethod/paypal/vendor
+./node_modules
+./lib/ui-library/node_modules
+./lib/pkp/js/lib

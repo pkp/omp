@@ -3,9 +3,9 @@
 /**
  * @file controllers/grid/catalogEntry/MarketsGridHandler.inc.php
  *
- * Copyright (c) 2014-2016 Simon Fraser University Library
- * Copyright (c) 2000-2016 John Willinsky
- * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
+ * Copyright (c) 2014-2020 Simon Fraser University
+ * Copyright (c) 2000-2020 John Willinsky
+ * Distributed under the GNU GPL v3. For full terms see the file docs/COPYING.
  *
  * @class MarketsGridHandler
  * @ingroup controllers_grid_catalogEntry
@@ -24,8 +24,11 @@ import('controllers.grid.catalogEntry.MarketsGridRow');
 import('lib.pkp.classes.linkAction.request.AjaxModal');
 
 class MarketsGridHandler extends GridHandler {
-	/** @var Monograph */
-	var $_monograph;
+	/** @var Submission */
+	var $_submission;
+
+	/** @var Publication */
+	var $_publication;
 
 	/** @var PublicationFormat */
 	var $_publicationFormat;
@@ -33,8 +36,8 @@ class MarketsGridHandler extends GridHandler {
 	/**
 	 * Constructor
 	 */
-	function MarketsGridHandler() {
-		parent::GridHandler();
+	function __construct() {
+		parent::__construct();
 		$this->addRoleAssignment(
 				array(ROLE_ID_MANAGER),
 				array('fetchGrid', 'fetchRow', 'addMarket', 'editMarket',
@@ -46,19 +49,35 @@ class MarketsGridHandler extends GridHandler {
 	// Getters/Setters
 	//
 	/**
-	 * Get the monograph associated with this grid.
-	 * @return Monograph
+	 * Get the submission associated with this grid.
+	 * @return Submission
 	 */
-	function getMonograph() {
-		return $this->_monograph;
+	function getSubmission() {
+		return $this->_submission;
 	}
 
 	/**
-	 * Set the Monograph
-	 * @param Monograph
+	 * Set the Submission
+	 * @param Submission
 	 */
-	function setMonograph($monograph) {
-		$this->_monograph = $monograph;
+	function setSubmission($submission) {
+		$this->_submission = $submission;
+	}
+
+	/**
+	 * Get the Publication associated with this grid.
+	 * @return Publication
+	 */
+	function getPublication() {
+		return $this->_publication;
+	}
+
+	/**
+	 * Set the Publication
+	 * @param Publication
+	 */
+	function setPublication($publication) {
+		$this->_publication = $publication;
 	}
 
 	/**
@@ -87,30 +106,30 @@ class MarketsGridHandler extends GridHandler {
 	 * @param $roleAssignments array
 	 */
 	function authorize($request, &$args, $roleAssignments) {
-		import('lib.pkp.classes.security.authorization.SubmissionAccessPolicy');
-		$this->addPolicy(new SubmissionAccessPolicy($request, $args, $roleAssignments));
+		import('lib.pkp.classes.security.authorization.PublicationAccessPolicy');
+		$this->addPolicy(new PublicationAccessPolicy($request, $args, $roleAssignments));
 		return parent::authorize($request, $args, $roleAssignments);
 	}
 
-	/*
-	 * Configure the grid
-	 * @param $request PKPRequest
+	/**
+	 * @copydoc GridHandler::initialize()
 	 */
-	function initialize($request) {
-		parent::initialize($request);
+	function initialize($request, $args = null) {
+		parent::initialize($request, $args);
 
-		// Retrieve the authorized monograph.
-		$monograph = $this->getAuthorizedContextObject(ASSOC_TYPE_MONOGRAPH);
-		$this->setMonograph($monograph);
-		$publicationFormatDao = DAORegistry::getDAO('PublicationFormatDAO');
+		// Retrieve the authorized submission.
+		$submission = $this->getAuthorizedContextObject(ASSOC_TYPE_SUBMISSION);
+		$this->setPublication($this->getAuthorizedContextObject(ASSOC_TYPE_PUBLICATION));
+		$this->setSubmission($submission);
+		$publicationFormatDao = DAORegistry::getDAO('PublicationFormatDAO'); /* @var $publicationFormatDao PublicationFormatDAO */
 		$representationId = null;
 
 		// Retrieve the associated publication format for this grid.
 		$marketId = (int) $request->getUserVar('marketId'); // set if editing or deleting a market entry
 
 		if ($marketId != '') {
-			$marketDao = DAORegistry::getDAO('MarketDAO');
-			$market = $marketDao->getById($marketId, $monograph->getId());
+			$marketDao = DAORegistry::getDAO('MarketDAO'); /* @var $marketDao MarketDAO */
+			$market = $marketDao->getById($marketId, $this->getPublication()->getId());
 			if ($market) {
 				$representationId = $market->getPublicationFormatId();
 			}
@@ -118,12 +137,12 @@ class MarketsGridHandler extends GridHandler {
 			$representationId = (int) $request->getUserVar('representationId');
 		}
 
-		$publicationFormat = $publicationFormatDao->getById($representationId, $monograph->getId());
+		$publicationFormat = $publicationFormatDao->getById($representationId, $this->getPublication()->getId());
 
 		if ($publicationFormat) {
 			$this->setPublicationFormat($publicationFormat);
 		} else {
-			fatalError('The publication format is not assigned to authorized monograph!');
+			fatalError('The publication format is not assigned to authorized submission!');
 		}
 
 		// Load submission-specific translations
@@ -177,7 +196,7 @@ class MarketsGridHandler extends GridHandler {
 		$this->addColumn(
 			new GridColumn(
 				'price',
-				'monograph.publicationFormat.price',
+				'submission.publicationFormat.price',
 				null,
 				null,
 				$cellProvider
@@ -194,22 +213,20 @@ class MarketsGridHandler extends GridHandler {
 	 * @return MarketsGridRow
 	 */
 	function getRowInstance() {
-		return new MarketsGridRow($this->getMonograph());
+		return new MarketsGridRow($this->getSubmission());
 	}
 
 	/**
 	 * Get the arguments that will identify the data in the grid
-	 * In this case, the monograph.
+	 * In this case, the submission.
 	 * @return array
 	 */
 	function getRequestArgs() {
-		$monograph = $this->getMonograph();
-		$publicationFormat = $this->getPublicationFormat();
-
-		return array(
-			'submissionId' => $monograph->getId(),
-			'representationId' => $publicationFormat->getId()
-		);
+		return [
+			'submissionId' => $this->getSubmission()->getId(),
+			'publicationId' => $this->getPublication()->getId(),
+			'representationId' => $this->getPublicationFormat()->getId()
+		];
 	}
 
 	/**
@@ -217,7 +234,7 @@ class MarketsGridHandler extends GridHandler {
 	 */
 	function loadData($request, $filter = null) {
 		$publicationFormat = $this->getPublicationFormat();
-		$marketDao = DAORegistry::getDAO('MarketDAO');
+		$marketDao = DAORegistry::getDAO('MarketDAO'); /* @var $marketDao MarketDAO */
 		$data = $marketDao->getByPublicationFormatId($publicationFormat->getId());
 		return $data->toArray();
 	}
@@ -244,14 +261,14 @@ class MarketsGridHandler extends GridHandler {
 	function editMarket($args, $request) {
 		// Identify the market entry to be updated
 		$marketId = (int) $request->getUserVar('marketId');
-		$monograph = $this->getMonograph();
+		$submission = $this->getSubmission();
 
-		$marketDao = DAORegistry::getDAO('MarketDAO');
-		$market = $marketDao->getById($marketId, $monograph->getId());
+		$marketDao = DAORegistry::getDAO('MarketDAO'); /* @var $marketDao MarketDAO */
+		$market = $marketDao->getById($marketId, $this->getPublication()->getId());
 
 		// Form handling
 		import('controllers.grid.catalogEntry.form.MarketForm');
-		$marketForm = new MarketForm($monograph, $market);
+		$marketForm = new MarketForm($submission, $this->getPublication(), $market);
 		$marketForm->initData();
 
 		return new JSONMessage(true, $marketForm->fetch($request));
@@ -266,21 +283,21 @@ class MarketsGridHandler extends GridHandler {
 	function updateMarket($args, $request) {
 		// Identify the market entry to be updated
 		$marketId = $request->getUserVar('marketId');
-		$monograph = $this->getMonograph();
+		$submission = $this->getSubmission();
 
-		$marketDao = DAORegistry::getDAO('MarketDAO');
-		$market = $marketDao->getById($marketId, $monograph->getId());
+		$marketDao = DAORegistry::getDAO('MarketDAO'); /* @var $marketDao MarketDAO */
+		$market = $marketDao->getById($marketId, $this->getPublication()->getId());
 
 		// Form handling
 		import('controllers.grid.catalogEntry.form.MarketForm');
-		$marketForm = new MarketForm($monograph, $market);
+		$marketForm = new MarketForm($submission, $this->getPublication(), $market);
 		$marketForm->readInputData();
 		if ($marketForm->validate()) {
 			$marketId = $marketForm->execute();
 
 			if(!isset($market)) {
 				// This is a new entry
-				$market = $marketDao->getById($marketId, $monograph->getId());
+				$market = $marketDao->getById($marketId, $this->getPublication()->getId());
 				// New added entry action notification content.
 				$notificationContent = __('notification.addedMarket');
 			} else {
@@ -319,8 +336,8 @@ class MarketsGridHandler extends GridHandler {
 		// Identify the markets entry to be deleted
 		$marketId = $request->getUserVar('marketId');
 
-		$marketDao = DAORegistry::getDAO('MarketDAO');
-		$market = $marketDao->getById($marketId, $this->getMonograph()->getId());
+		$marketDao = DAORegistry::getDAO('MarketDAO'); /* @var $marketDao MarketDAO */
+		$market = $marketDao->getById($marketId, $this->getPublication()->getId());
 		if ($market != null) { // authorized
 
 			$result = $marketDao->deleteObject($market);
@@ -337,4 +354,4 @@ class MarketsGridHandler extends GridHandler {
 	}
 }
 
-?>
+

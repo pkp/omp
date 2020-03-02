@@ -1,0 +1,182 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: \n"
+"Report-Msgid-Bugs-To: \n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"POT-Creation-Date: 2019-09-30T06:23:44-07:00\n"
+"PO-Revision-Date: 2019-09-30T06:23:44-07:00\n"
+"Language: \n"
+
+msgid "editor.pressSignoff"
+msgstr "Fermeture de session de la presse"
+
+msgid "editor.submissionArchive"
+msgstr "Archives des soumissions"
+
+msgid "editor.monograph.cancelReview"
+msgstr "Annuler la requête"
+
+msgid "editor.monograph.clearReview"
+msgstr "Supprimer l'évaluateur"
+
+msgid "editor.monograph.enterRecommendation"
+msgstr "Saisir la recommendation"
+
+msgid "editor.monograph.enterReviewerRecommendation"
+msgstr "Saisir la recommendation de l'évaluateur"
+
+msgid "editor.monograph.recommendation"
+msgstr "Recommendation"
+
+msgid "editor.monograph.selectReviewerInstructions"
+msgstr "Choisir un évaluateur et une presse ci-haut, cliquer sur \"Choisir un évaluateur\" pour continuer."
+
+msgid "editor.monograph.replaceReviewer"
+msgstr "Remplacer l'évaluateur"
+
+msgid "editor.monograph.editorToEnter"
+msgstr "Le rédacteur en chef doit saisir sa recommandation et ses commentaires pour l'évaluateur"
+
+msgid "editor.monograph.uploadReviewForReviewer"
+msgstr "Télécharger l'évaluation"
+
+msgid "editor.monograph.peerReviewOptions"
+msgstr "Options d'évaluation par les pairs"
+
+msgid "editor.monograph.selectProofreadingFiles"
+msgstr "Fichiers d'épreuves"
+
+msgid "editor.monograph.internalReview"
+msgstr "Procéder à l'évaluation interne"
+
+msgid "editor.monograph.internalReviewDescription"
+msgstr "Vous entamez le processus d'évaluation interne de cette soumission. La liste des fichiers faisant partie de cette soumission est affichée ci-dessous. Ils peuvent être sélectionnés pour être révisés."
+
+msgid "editor.monograph.externalReview"
+msgstr "Procéder à l'évaluation externe"
+
+msgid "editor.monograph.final.selectFinalDraftFiles"
+msgstr "Choisir les fichiers d'épreuves finales"
+
+msgid "editor.monograph.final.currentFiles"
+msgstr "Fichiers courants d'épreuves finales"
+
+msgid "editor.monograph.copyediting.currentFiles"
+msgstr "Fichiers en cours"
+
+msgid "editor.monograph.copyediting.personalMessageToUser"
+msgstr "Message à l'utilisateur"
+
+msgid "editor.monograph.legend.submissionActions"
+msgstr "Actions de soumission"
+
+msgid "editor.monograph.legend.submissionActionsDescription"
+msgstr "Actions et options de soumission générales."
+
+msgid "editor.monograph.legend.sectionActions"
+msgstr "Actions de section "
+
+msgid "editor.monograph.legend.sectionActionsDescription"
+msgstr "Les options associées à une section particulière, comme le téléchargement de fichiers ou l'ajout d'utilisateurs."
+
+msgid "editor.monograph.legend.itemActions"
+msgstr "Actions des articles "
+
+msgid "editor.monograph.legend.itemActionsDescription"
+msgstr "Les actions et options associées à un fichier particulier."
+
+msgid "editor.monograph.legend.catalogEntry"
+msgstr "Visionner et gérer l'entrée dans le catalogue de soumission, incluant les formats des métadonnées et de publication."
+
+msgid "editor.monograph.legend.bookInfo"
+msgstr "Visionner et gérer les métadonnées, les notes, les avis et l'historique de la soumission."
+
+msgid "editor.monograph.legend.participants"
+msgstr "Visionner et gérer la liste des personnes impliquées dans cette soumission: auteurs, évaluateurs, concepteurs et autres."
+
+msgid "editor.monograph.legend.add"
+msgstr "Télécharger un fichier dans la section."
+
+msgid "editor.monograph.legend.add_user"
+msgstr "Ajouter un utilisateur à la section"
+
+msgid "editor.monograph.legend.settings"
+msgstr "Visionner et accéder aux paramètres des articles, comme les fonctions d'information et de suppression."
+
+msgid "editor.monograph.legend.more_info"
+msgstr "Renseignements supplémentaires: notes sur les fichiers, options d'alerte et historique."
+
+msgid "editor.monograph.legend.notes_none"
+msgstr "Renseignements sur le fichier: notes, options d'alerte et historique (Aucunes notes ajoutées pour le moment)"
+
+msgid "editor.monograph.legend.notes"
+msgstr "Renseignements sur le fichier: notes, options d'alertes et historique (Les notes sont disponibles)"
+
+msgid "editor.monograph.legend.notes_new"
+msgstr "Renseignements sur le fichier: notes, options d'alerte et historique (Nouvelles notes ajoutées depuis la dernière visite)"
+
+msgid "editor.monograph.legend.edit"
+msgstr "Modifier l'article"
+
+msgid "editor.monograph.legend.delete"
+msgstr "Supprimer l'article"
+
+msgid "editor.monograph.legend.in_progress"
+msgstr "Action en cours ou qui n'est pas encore complétée"
+
+msgid "editor.monograph.legend.complete"
+msgstr "Action complétée"
+
+msgid "editor.monograph.legend.uploaded"
+msgstr "Fichier téléchargé par le rôle correspondant au titre de la colonne de la grille."
+
+msgid "editor.submission.introduction"
+msgstr "Au moment de soumettre un fichier, le rédacteur en chef, après avoir consulté les fichiers soumis, choisit l'action appropriée (qui comprend envoyer un avis à l'auteur): Acheminer pour évaluation interne (exige la sélection des fichiers pour l'évaluation interne); Acheminer pour évaluation externe (exige la sélection des fichiers pour l'évaluation externe); Accepter la soumission (exige la sélection des fichiers pour l'étape de rédaction); ou Refuser la soumission (archivage de la soumission)."
+
+msgid "editor.submission.editorial.finalDraftDescription"
+msgstr "Pour les ouvrages dans lesquels les chapitres ont été écrits par des auteurs différents, le fichier de soumission peut être divisé en fichiers-chapitres pour l'étape de révision. Ces fichiers seront ensuite examinés par les auteurs des chapitres après avoir été téléchargés dans <span class=\"pkp_help_title\">Révision</span>."
+
+msgid "editor.monograph.editorial.fairCopy"
+msgstr "Copie au net"
+
+msgid "editor.monograph.editorial.fairCopyDescription"
+msgstr "Le réviseur télécharge une copie au net de la soumission qui sera ensuite examinée par le rédacteur en chef, avant de passer à l'étape de publication."
+
+msgid "editor.submission.production.introduction"
+msgstr ""
+"À l'étape de publication, le rédacteur en chef choisit le format du livre (ex.: numérique, couverture souple, etc.) dans\n"
+" <span class=\"pkp_help_title\">Formats de publication</span>. Le rédacteur metteur en page préparera ensuite des fichiers publiables à partir des fichiers destinés à la publication. Les fichiers publiables sont téléchargés pour chaque format dans <span class=\"pkp_help_title\">Épreuves</span>, où ils seront révisés. Le livre est <em>Disponible</em> (c'est-à-dire publié) pour chacun des formats dans <span class=\"pkp_help_title\">Formats de publication</span>, lorsque les <em>Épreuves</em> ont été vérifiées et approuvées, et on indique que l'entrée de catalogue a été ajoutée à l'entrée de catalogue du livre."
+
+msgid "editor.submission.production.productionReadyFilesDescription"
+msgstr "Le rédacteur metteur en page prépare ces fichiers pour chaque format de publication, puis il télécharge les  <span class=\"pkp_help_title\">Épreuves</span> appropriées pour révision."
+
+msgid "editor.monograph.proofs"
+msgstr "Épreuves"
+
+msgid "editor.monograph.production.approvalAndPublishing"
+msgstr "Approbation et publication"
+
+msgid "editor.monograph.production.approvalAndPublishingDescription"
+msgstr "Les livres peuvent être publiés sous différents formats, soit avec une couverture rigide ou souple, ou en format électronique, et ces formats peuvent être téléchargés dans la section Formats de publication ci-dessous. Vous pouvez utiliser la grille de formats suivante à titre d'aide-mémoire pour savoir ce qu'il faut faire avant de publier un format particulier."
+
+msgid "editor.monograph.production.publicationFormatDescription"
+msgstr "Ajoutez les formats de publication (ex.: numérique, couverture souple) afin que le rédacteur metteur en page prépare les épreuves qui seront révisées. On doit indiquer que les <em>Épreuves</em> ont été approuvées, et on doit cocher l'entrée de <em>Catalogue</em> pour le format en question afin d'indiquer que cette entrée a été ajoutée au catalogue d'entrée du livre, avant que le format ne soit <em>Disponible</em> (c'est-à-dire publié)."
+
+msgid "editor.monograph.approvedProofs.edit"
+msgstr "Choisir les modalités de téléchargement"
+
+msgid "editor.monograph.approvedProofs.edit.linkTitle"
+msgstr "Choisir les modalités"
+
+msgid "editor.monograph.proof.addNote"
+msgstr "Ajouter une réponse"
+
+msgid "editor.internalReview.introduction"
+msgstr "Pendant l'évaluation interne, le rédacteur en chef choisit des évaluateurs internes pour chaque fichier soumis et tient compte de leurs commentaires avant de choisir une action appropriée (qui comprend l'envoi d'un avis à l'auteur): À réviser (les révisions ne seront examinées que par le rédacteur en chef); Soumettre à nouveau pour révision (une nouvelle série de révisions sera entreprise); Envoyer à l'évaluateur externe (il faut choisir les fichiers qui seront envoyés à l'évaluateur externe); Accepter la soumission (il faut choisir les fichiers qui seront envoyés au rédacteur en chef); ou Refuser la soumission (archiver la soumission)."
+
+msgid "editor.externalReview.introduction"
+msgstr "Pendant l'évaluation externe, le rédacteur en chef choisit des évaluateurs qui ne font pas partie de la presse pour chaque fichier soumis et tient compte de leurs commentaires avant de choisir une action appropriée (qui comprend l'envoi d'un avis à l'auteur): À réviser (les révisions ne seront examinées que par le rédacteur en chef); Soumettre à nouveau pour révision (une nouvelle série de révisions sera entreprise); Accepter la soumission (il faut choisir les fichiers qui seront envoyés au rédacteur en chef); ou Refuser la soumission (le rédacteur en chef archive la soumission)."

@@ -1,9 +1,9 @@
 {**
  * templates/controllers/tab/catalogEntry/form/publicationMetadataFormFields.tpl
  *
- * Copyright (c) 2014-2016 Simon Fraser University Library
- * Copyright (c) 2003-2016 John Willinsky
- * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
+ * Copyright (c) 2014-2020 Simon Fraser University
+ * Copyright (c) 2003-2020 John Willinsky
+ * Distributed under the GNU GPL v3. For full terms see the file docs/COPYING.
  *
  *}
 {* generate a unique form id since this form is used on several tabs *}
@@ -20,18 +20,17 @@
 		);
 	{rdelim});
 </script>
-<form class="pkp_form" id="{$publicationFormId|escape}" method="post" action="{url router=$smarty.const.ROUTE_COMPONENT op="saveForm"}">
+<form class="pkp_form" id="{$publicationFormId|escape}" method="post" action="{url router=$smarty.const.ROUTE_COMPONENT op="updateFormatMetadata"}">
 	{csrf}
 	{include file="controllers/notification/inPlaceNotification.tpl" notificationId=$publicationFormId|concat:"-notification" requestOptions=$notificationRequestOptions}
 
 	<input type="hidden" name="submissionId" value="{$submissionId|escape}" />
+	<input type="hidden" name="publicationId" value="{$publicationId|escape}" />
 	<input type="hidden" name="stageId" value="{$stageId|escape}" />
 	<input type="hidden" name="tabPos" value="{$formParams.tabPos|escape}" />
 	<input type="hidden" name="representationId" value="{$representationId|escape}" />
 	<input type="hidden" name="displayedInContainer" value="{$formParams.displayedInContainer|escape}" />
 	<input type="hidden" name="tab" value="publication" />
-
-	<h3>{translate key="monograph.publicationFormat.formatMetadata"}</h3>
 
 	{if !$pubObject->getRemoteURL()}
 		{foreach from=$pubIdPlugins item=pubIdPlugin}
@@ -45,7 +44,7 @@
 		{fbvFormSection}
 			<!-- Product Identification Codes -->
 			{assign var="divId" value="identificationCodeGridContainer"|concat:$representationId|escape}
-			{url|assign:identGridUrl router=$smarty.const.ROUTE_COMPONENT component="grid.catalogEntry.IdentificationCodeGridHandler" op="fetchGrid" submissionId=$submissionId representationId=$representationId escape=false}
+			{capture assign=identGridUrl}{url router=$smarty.const.ROUTE_COMPONENT component="grid.catalogEntry.IdentificationCodeGridHandler" op="fetchGrid" submissionId=$submissionId publicationId=$publicationId representationId=$representationId escape=false}{/capture}
 			{load_url_in_div id=$divId url=$identGridUrl}
 		{/fbvFormSection}
 	{/fbvFormArea}
@@ -54,7 +53,7 @@
 		{fbvFormSection}
 			<!-- Sales rights and regions -->
 			{assign var="divId" value="salesRightsGridContainer"|concat:$representationId|escape}
-			{url|assign:salesGridUrl router=$smarty.const.ROUTE_COMPONENT component="grid.catalogEntry.SalesRightsGridHandler" op="fetchGrid" submissionId=$submissionId representationId=$representationId escape=false}
+			{capture assign=salesGridUrl}{url router=$smarty.const.ROUTE_COMPONENT component="grid.catalogEntry.SalesRightsGridHandler" op="fetchGrid" submissionId=$submissionId publicationId=$publicationId representationId=$representationId escape=false}{/capture}
 			{load_url_in_div id=$divId url=$salesGridUrl}
 		{/fbvFormSection}
 	{/fbvFormArea}
@@ -63,7 +62,7 @@
 		{fbvFormSection}
 			<!-- Market regions -->
 			{assign var="divId" value="marketsGridContainer"|concat:$representationId|escape}
-			{url|assign:marketsGridUrl router=$smarty.const.ROUTE_COMPONENT component="grid.catalogEntry.MarketsGridHandler" op="fetchGrid" submissionId=$submissionId representationId=$representationId escape=false}
+			{capture assign=marketsGridUrl}{url router=$smarty.const.ROUTE_COMPONENT component="grid.catalogEntry.MarketsGridHandler" op="fetchGrid" submissionId=$submissionId publicationId=$publicationId representationId=$representationId escape=false}{/capture}
 			{load_url_in_div id=$divId url=$marketsGridUrl}
 		{/fbvFormSection}
 	{/fbvFormArea}
@@ -72,7 +71,7 @@
 		{fbvFormSection}
 			<!-- Product Publication/Embargo dates -->
 			{assign var="divId" value="publicationDateGridContainer"|concat:$representationId|escape}
-			{url|assign:dateGridUrl router=$smarty.const.ROUTE_COMPONENT component="grid.catalogEntry.PublicationDateGridHandler" op="fetchGrid" submissionId=$submissionId representationId=$representationId escape=false}
+			{capture assign=dateGridUrl}{url router=$smarty.const.ROUTE_COMPONENT component="grid.catalogEntry.PublicationDateGridHandler" op="fetchGrid" submissionId=$submissionId publicationId=$publicationId representationId=$representationId escape=false}{/capture}
 			{load_url_in_div id=$divId url=$dateGridUrl}
 		{/fbvFormSection}
 	{/fbvFormArea}
@@ -86,7 +85,7 @@
 
 	{fbvFormArea id="productAvailability" title="monograph.publicationFormat.productAvailability" class="border"}
 		{fbvFormSection for="productAvailability" required="true"}
-			{fbvElement type="select" from=$productAvailabilityCodes required=true selected=$productAvailabilityCode translate=false id="productAvailabilityCode"}
+			{fbvElement type="select" from=$productAvailabilityCodes required=true selected=$productAvailabilityCode translate=false id="productAvailabilityCode" required="true"}
 		{/fbvFormSection}
 	{/fbvFormArea}
 
@@ -102,6 +101,8 @@
 		{include file="controllers/tab/catalogEntry/form/digitalPublicationFormat.tpl"}
 	{/if}
 
-	{fbvFormButtons id="publicationMetadataFormSubmit" submitText="common.save"}
+	{if !$formParams.hideSubmit}
+		<p><span class="formRequired">{translate key="common.requiredField"}</span></p>
+		{fbvFormButtons id="publicationMetadataFormSubmit" submitText="common.save"}
+	{/if}
 </form>
-<p><span class="formRequired">{translate key="common.requiredField"}</span></p>

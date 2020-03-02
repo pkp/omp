@@ -3,9 +3,9 @@
 /**
  * @file classes/submission/form/SubmissionSubmitStep4Form.inc.php
  *
- * Copyright (c) 2014-2016 Simon Fraser University Library
- * Copyright (c) 2003-2016 John Willinsky
- * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
+ * Copyright (c) 2014-2020 Simon Fraser University
+ * Copyright (c) 2003-2020 John Willinsky
+ * Distributed under the GNU GPL v3. For full terms see the file docs/COPYING.
  *
  * @class SubmissionSubmitStep4Form
  * @ingroup submission_form
@@ -19,30 +19,29 @@ class SubmissionSubmitStep4Form extends PKPSubmissionSubmitStep4Form {
 	/**
 	 * Constructor.
 	 */
-	function SubmissionSubmitStep4Form($context, $submission) {
-		parent::PKPSubmissionSubmitStep4Form($context, $submission);
+	function __construct($context, $submission) {
+		parent::__construct($context, $submission);
 	}
 
 	/**
 	 * Save changes to submission.
-	 * @param $args array
-	 * @param $request PKPRequest
 	 * @return int the submission ID
 	 */
-	function execute($args, $request) {
-		parent::execute($args, $request);
+	function execute(...$functionParams) {
+		parent::execute(...$functionParams);
 
 		// Send author notification email
 		import('classes.mail.MonographMailTemplate');
 		$mail = new MonographMailTemplate($this->submission, 'SUBMISSION_ACK', null, null, false);
 		$authorMail = new MonographMailTemplate($this->submission, 'SUBMISSION_ACK_NOT_USER', null, null, false);
 
+		$request = Application::get()->getRequest();
 		$context = $request->getContext();
 		$router = $request->getRouter();
 		if ($mail->isEnabled()) {
 			// submission ack emails should be from the contact.
-			$mail->setFrom($this->context->getSetting('contactEmail'), $this->context->getSetting('contactName'));
-			$authorMail->setFrom($this->context->getSetting('contactEmail'), $this->context->getSetting('contactName'));
+			$mail->setFrom($this->context->getData('contactEmail'), $this->context->getData('contactName'));
+			$authorMail->setFrom($this->context->getData('contactEmail'), $this->context->getData('contactName'));
 
 			$user = $request->getUser();
 			$primaryAuthor = $this->submission->getPrimaryAuthor();
@@ -54,15 +53,6 @@ class SubmissionSubmitStep4Form extends PKPSubmissionSubmitStep4Form {
 
 			if ($user->getEmail() != $primaryAuthor->getEmail()) {
 				$authorMail->addRecipient($primaryAuthor->getEmail(), $primaryAuthor->getFullName());
-			}
-			if ($context->getSetting('copySubmissionAckPrimaryContact')) {
-				$authorMail->addBcc(
-					$context->getSetting('contactEmail'),
-					$context->getSetting('contactName')
-				);
-			}
-			if ($copyAddress = $context->getSetting('copySubmissionAckAddress')) {
-				$authorMail->addBcc($copyAddress);
 			}
 
 			$assignedAuthors = $this->submission->getAuthors();
@@ -80,20 +70,28 @@ class SubmissionSubmitStep4Form extends PKPSubmissionSubmitStep4Form {
 			$mail->assignParams(array(
 				'authorName' => $user->getFullName(),
 				'authorUsername' => $user->getUsername(),
-				'editorialContactSignature' => $context->getSetting('contactName') . "\n" . $context->getLocalizedName(),
+				'editorialContactSignature' => $context->getData('contactName') . "\n" . $context->getLocalizedName(),
 				'submissionUrl' => $router->url($request, null, 'authorDashboard', 'submission', $this->submissionId),
 			));
 
 			$authorMail->assignParams(array(
 				'submitterName' => $user->getFullName(),
-				'editorialContactSignature' => $context->getSetting('contactName') . "\n" . $context->getLocalizedName(),
+				'editorialContactSignature' => $context->getData('contactName') . "\n" . $context->getLocalizedName(),
 			));
 
-			$mail->send($request);
+			if (!$mail->send($request)) {
+				import('classes.notification.NotificationManager');
+				$notificationMgr = new NotificationManager();
+				$notificationMgr->createTrivialNotification($request->getUser()->getId(), NOTIFICATION_TYPE_ERROR, array('contents' => __('email.compose.error')));
+			}
 
 			$recipients = $authorMail->getRecipients();
 			if (!empty($recipients)) {
-				$authorMail->send($request);
+				if (!$authorMail->send($request)) {
+					import('classes.notification.NotificationManager');
+					$notificationMgr = new NotificationManager();
+					$notificationMgr->createTrivialNotification($request->getUser()->getId(), NOTIFICATION_TYPE_ERROR, array('contents' => __('email.compose.error')));
+				}
 			}
 		}
 
@@ -105,5 +103,3 @@ class SubmissionSubmitStep4Form extends PKPSubmissionSubmitStep4Form {
 		return $this->submissionId;
 	}
 }
-
-?>

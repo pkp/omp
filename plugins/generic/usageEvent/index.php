@@ -7,9 +7,9 @@
 /**
  * @file plugins/generic/usageEvent/index.php
  *
- * Copyright (c) 2013-2016 Simon Fraser University Library
- * Copyright (c) 2003-2016 John Willinsky
- * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
+ * Copyright (c) 2013-2020 Simon Fraser University
+ * Copyright (c) 2003-2020 John Willinsky
+ * Distributed under the GNU GPL v3. For full terms see the file docs/COPYING.
  *
  * @ingroup plugins_generic_usageEvent
  * @brief Wrapper for usage event plugin.
@@ -19,4 +19,4 @@ require_once('UsageEventPlugin.inc.php');
 
 return new UsageEventPlugin();
 
-?>
+

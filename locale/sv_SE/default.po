@@ -1,0 +1,93 @@
+msgid ""
+msgstr ""
+"PO-Revision-Date: 2020-02-04 11:35+0000\n"
+"Last-Translator: Magnus Annemark <magnus.annemark@ub.lu.se>\n"
+"Language-Team: Swedish <http://translate.pkp.sfu.ca/projects/omp/default/sv/>"
+"\n"
+"Language: sv_SE\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: Weblate 3.9.1\n"
+
+msgid "default.groups.abbrev.sectionEditor"
+msgstr "AcqE"
+
+#, fuzzy
+msgid "default.groups.plural.sectionEditor"
+msgstr "Redaktörer för serie"
+
+msgid "default.groups.name.sectionEditor"
+msgstr "Redaktör för serie"
+
+msgid "default.groups.abbrev.manager"
+msgstr "PM"
+
+msgid "default.genres.other"
+msgstr "Övrigt"
+
+msgid "default.genres.illustration"
+msgstr "Illustration"
+
+msgid "default.genres.photo"
+msgstr "Fotografi"
+
+msgid "default.genres.chapter"
+msgstr "Kapitelmanuskript"
+
+msgid "default.genres.manuscript"
+msgstr "Bokmanuskript"
+
+msgid "default.genres.prospectus"
+msgstr "Prospekt"
+
+msgid "default.genres.preface"
+msgstr "Förord"
+
+msgid "default.genres.index"
+msgstr "Index"
+
+msgid "default.genres.glossary"
+msgstr "Ordlista"
+
+msgid "default.genres.appendix"
+msgstr "Bilaga"
+
+#, fuzzy
+msgid "default.groups.plural.volumeEditor"
+msgstr "Redaktörer"
+
+#, fuzzy
+msgid "default.groups.name.volumeEditor"
+msgstr "Redaktör"
+
+msgid "default.groups.plural.chapterAuthor"
+msgstr "Kapitelförfattare"
+
+msgid "default.groups.name.chapterAuthor"
+msgstr "Kapitelförfattare"
+
+msgid "default.genres.figure"
+msgstr "Figur"
+
+msgid "default.genres.bibliography"
+msgstr "Bibliografi"
+
+msgid "default.groups.abbrev.chapterAuthor"
+msgstr "KF"
+
+msgid "default.groups.abbrev.editor"
+msgstr "Red"
+
+msgid "default.groups.plural.editor"
+msgstr "Redaktörer"
+
+msgid "default.groups.name.editor"
+msgstr "Redaktör"
+
+msgid "default.groups.plural.manager"
+msgstr "Föreståndare"
+
+msgid "default.groups.name.manager"
+msgstr "Föreståndare"

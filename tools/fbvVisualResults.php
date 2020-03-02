@@ -3,9 +3,9 @@
 /**
  * @file tools/fbvVisualResults.php
  *
- * Copyright (c) 2014-2016 Simon Fraser University Library
- * Copyright (c) 2003-2016 John Willinsky
- * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
+ * Copyright (c) 2014-2020 Simon Fraser University
+ * Copyright (c) 2003-2020 John Willinsky
+ * Distributed under the GNU GPL v3. For full terms see the file docs/COPYING.
  *
  * @class fbvVisualResults
  * @ingroup tools
@@ -19,7 +19,7 @@ define('INDEX_FILE_LOCATION', dirname(dirname(__FILE__)) . '/index.php');
 chdir(dirname(INDEX_FILE_LOCATION)); /* Change to base directory */
 require('lib/pkp/includes/bootstrap.inc.php');
 
-$application = PKPApplication::getApplication();
+$application = Application::get();
 $request = $application->getRequest();
 
 // FIXME: Write and use a CLIRouter here (see classdoc)
@@ -39,8 +39,8 @@ import('lib.pkp.classes.form.Form');
 //      allowing Form::display() to use FBVTemplateManager
 class FBVTemplateManager extends TemplateManager {
 
-	function FBVTemplateManager() {
-		parent::TemplateManager();
+	function __construct() {
+		parent::__construct();
 
 		$this->caching = 0;
 
@@ -86,7 +86,7 @@ class FBVTemplateManager extends TemplateManager {
 // main class for this tool
 class fbvVisualResults {
 	// constructor: set FBVTemplateManager instance in the registry
-	function fbvVisualResults() {
+	function __construct() {
 		FBVTemplateManager::getManager();
 	}
 
@@ -112,4 +112,4 @@ class fbvVisualResults {
 $tool = new fbvVisualResults();
 $tool->execute();
 
-?>
+

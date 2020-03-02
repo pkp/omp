@@ -1,0 +1,162 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: \n"
+"Report-Msgid-Bugs-To: \n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"POT-Creation-Date: 2019-09-30T12:00:53-07:00\n"
+"PO-Revision-Date: 2019-09-30T12:00:53-07:00\n"
+"Language: \n"
+
+msgid "editor.submissionArchive"
+msgstr "Submissões"
+
+msgid "editor.monograph.cancelReview"
+msgstr "Cancelar solicitação"
+
+msgid "editor.monograph.clearReview"
+msgstr "Liberar avaliador"
+
+msgid "editor.monograph.enterRecommendation"
+msgstr "Recomendação"
+
+msgid "editor.monograph.enterReviewerRecommendation"
+msgstr "Digite a recomendação"
+
+msgid "editor.monograph.recommendation"
+msgstr "Recomendação"
+
+msgid "editor.monograph.selectReviewerInstructions"
+msgstr "Escolha um avaliador da lista acima e pressione o botão 'Designar avaliador' para continuar."
+
+msgid "editor.monograph.replaceReviewer"
+msgstr "Substituir avaliador"
+
+msgid "editor.monograph.editorToEnter"
+msgstr "Editor informa recomendação/comentários pelo avaliador"
+
+msgid "editor.monograph.uploadReviewForReviewer"
+msgstr "Enviar revisão"
+
+msgid "editor.monograph.peerReviewOptions"
+msgstr "Opções de avaliação pelos pares"
+
+msgid "editor.monograph.selectProofreadingFiles"
+msgstr "Arquivos para leitura de provas"
+
+msgid "editor.monograph.internalReview"
+msgstr "Iniciar avaliação interna"
+
+msgid "editor.monograph.internalReviewDescription"
+msgstr "Iniciando avaliação interna para esta submissão. Arquivos que fazem parte da submissão são listados a seguir, para que os escolhidos sejam encaminhados para avaliação."
+
+msgid "editor.monograph.externalReview"
+msgstr "Iniciar avaliação externa"
+
+msgid "editor.monograph.final.selectFinalDraftFiles"
+msgstr "Escolher versão final de arquivo"
+
+msgid "editor.monograph.final.currentFiles"
+msgstr "Versões finais atuais de arquivos"
+
+msgid "editor.monograph.copyediting.currentFiles"
+msgstr "Arquivos atuais"
+
+msgid "editor.monograph.copyediting.personalMessageToUser"
+msgstr "Mensagem ao usuário"
+
+msgid "editor.monograph.legend.submissionActions"
+msgstr "Ações de submissão"
+
+msgid "editor.monograph.legend.submissionActionsDescription"
+msgstr "Ações e opções gerais de submissão."
+
+msgid "editor.monograph.legend.sectionActions"
+msgstr "Ações de seção"
+
+msgid "editor.monograph.legend.sectionActionsDescription"
+msgstr "Opções específicas a uma seção, como, por exemplo, o envio de arquivos ou inclusão de usuários."
+
+msgid "editor.monograph.legend.itemActions"
+msgstr "Ações de item"
+
+msgid "editor.monograph.legend.itemActionsDescription"
+msgstr "Ações e opções específicas a um arquivo."
+
+msgid "editor.monograph.legend.catalogEntry"
+msgstr "Ver e gerenciar entradas do catálogo de submissão, incluindo metadados e formatos de publicação"
+
+msgid "editor.monograph.legend.bookInfo"
+msgstr "Ver e gerenciar metadados, notas, notificações e histórico da submissão"
+
+msgid "editor.monograph.legend.participants"
+msgstr "Ver e gerenciar os participantes desta submissão: autores, editores, designers, entre outros"
+
+msgid "editor.monograph.legend.add"
+msgstr "Enviar arquivo para a seção"
+
+msgid "editor.monograph.legend.add_user"
+msgstr "Incluir usuário na seção"
+
+msgid "editor.monograph.legend.settings"
+msgstr "Ver e acessar configurações do item, como opções de informação e exclusão"
+
+msgid "editor.monograph.legend.more_info"
+msgstr "Mais informação: notas, opções de notificação e histórico do arquivo"
+
+msgid "editor.monograph.legend.notes_none"
+msgstr "Informação do arquivo: notas,  opções de notificação e histórico (Nenhuma nota incluída ainda)"
+
+msgid "editor.monograph.legend.notes"
+msgstr "Informação do arquivo: notas, opções de notificação e histórico (Nota disponíveis)"
+
+msgid "editor.monograph.legend.notes_new"
+msgstr "Informação do arquivo: notas, opções de notificação e histórico (Novas notas desde sua última visita)"
+
+msgid "editor.monograph.legend.edit"
+msgstr "Editar item"
+
+msgid "editor.monograph.legend.delete"
+msgstr "Excluir item"
+
+msgid "editor.monograph.legend.in_progress"
+msgstr "Ação em progresso ou não concluída ainda"
+
+msgid "editor.monograph.legend.complete"
+msgstr "Ação concluída"
+
+msgid "editor.monograph.legend.uploaded"
+msgstr "Arquivo enviado pelo papel na coluna título do grid"
+
+msgid "editor.submission.introduction"
+msgstr "No estágio Submissão, após consultar os arquivos enviados, o editor escolhe a ação apropriada (que inclui notificar o autor): Enviar para avaliação interna (implica em escolher arquivos para a avaliação interna); Enviar para avaliação externa (implica em escolher arquivos para avaliação externa); Aceitar (implica em escolher arquivos para o estágio editorial); Rejeitar (arquiva a submissão)."
+
+msgid "editor.monograph.editorial.fairCopy"
+msgstr "Texto limpo"
+
+msgid "editor.monograph.proofs"
+msgstr "Provas"
+
+msgid "editor.monograph.production.approvalAndPublishing"
+msgstr "Aprovação e publicação"
+
+msgid "editor.monograph.production.approvalAndPublishingDescription"
+msgstr "Formatos de publicação distintos, como capa dura, capa macia e digital, podem ser enviados na seção Formatos de publicação a seguir. Use o grid de formatos de publicação como uma lista de verificação do que ainda é necessáiro fazer para publicar um formato."
+
+msgid "editor.monograph.production.publicationFormatDescription"
+msgstr "Incluir formatos de publicação (ex.: digital, brochura), para os quais o editor de layout deve prepara provas para leitura. As <em>Provas</em> devem ser marcadas como aprovadas e a entrada no <em>Catálogo</em> deve ser maracada como incluída no catálogo de entradas do livro antes de tornar um formato <em>Disponível</em> (isto é, publicado)."
+
+msgid "editor.monograph.approvedProofs.edit"
+msgstr "Estabelecer condições para baixar"
+
+msgid "editor.monograph.approvedProofs.edit.linkTitle"
+msgstr "Estabelecer termos"
+
+msgid "editor.monograph.proof.addNote"
+msgstr "Incluir resposta"
+
+msgid "editor.submission.proof.manageProofFilesDescription"
+msgstr "Qualquer arquivo já enviado para qualquer estágio do processo editorial pode ser adicionado aos arquivos de prova assinalando a opção 'incluir' abaixo e clicando em 'Buscar': todos os arquivos disponíveis serão listados e podem ser incluídos."

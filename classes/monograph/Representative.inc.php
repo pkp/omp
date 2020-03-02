@@ -2,9 +2,9 @@
 /**
  * @file classes/monograph/Representative.inc.php
  *
- * Copyright (c) 2014-2016 Simon Fraser University Library
- * Copyright (c) 2003-2016 John Willinsky
- * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
+ * Copyright (c) 2014-2020 Simon Fraser University
+ * Copyright (c) 2003-2020 John Willinsky
+ * Distributed under the GNU GPL v3. For full terms see the file docs/COPYING.
  *
  * @class Representative
  * @ingroup monograph
@@ -15,13 +15,6 @@
  */
 
 class Representative extends DataObject {
-	/**
-	 * Constructor
-	 */
-	function Representative() {
-		parent::DataObject();
-	}
-
 	/**
 	 * get monograph id.
 	 * @return int
@@ -59,7 +52,7 @@ class Representative extends DataObject {
 	 * @return string
 	 */
 	function getNameForONIXCode() {
-		$onixCodelistItemDao = DAORegistry::getDAO('ONIXCodelistItemDAO');
+		$onixCodelistItemDao = DAORegistry::getDAO('ONIXCodelistItemDAO'); /* @var $onixCodelistItemDao ONIXCodelistItemDAO */
 		if ($this->getIsSupplier()) {
 			$listName = 'List93'; // List93 -> Publisher to retailers, Wholesaler, etc
 		} else {
@@ -181,4 +174,4 @@ class Representative extends DataObject {
 		$this->setData('isSupplier', $isSupplier);
 	}
 }
-?>
+

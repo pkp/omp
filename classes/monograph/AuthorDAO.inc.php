@@ -3,9 +3,9 @@
 /**
  * @file classes/monograph/AuthorDAO.inc.php
  *
- * Copyright (c) 2014-2016 Simon Fraser University Library
- * Copyright (c) 2003-2016 John Willinsky
- * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
+ * Copyright (c) 2014-2020 Simon Fraser University
+ * Copyright (c) 2003-2020 John Willinsky
+ * Distributed under the GNU GPL v3. For full terms see the file docs/COPYING.
  *
  * @class AuthorDAO
  * @ingroup monograph
@@ -18,17 +18,10 @@
 
 
 import('classes.monograph.Author');
-import('classes.monograph.Monograph');
+import('classes.submission.Submission');
 import('lib.pkp.classes.submission.PKPAuthorDAO');
 
 class AuthorDAO extends PKPAuthorDAO {
-	/**
-	 * Constructor
-	 */
-	function AuthorDAO() {
-		parent::PKPAuthorDAO();
-	}
-
 	/**
 	 * Retrieve all published authors for a press in an associative array by
 	 * the first letter of the last name, for example:
@@ -77,7 +70,7 @@ class AuthorDAO extends PKPAuthorDAO {
 				LEFT JOIN author_settings aspl ON (a.author_id = aspl.author_id AND aspl.setting_name = ? AND aspl.locale = ?)
 				LEFT JOIN author_settings asl ON (a.author_id = asl.author_id AND asl.setting_name = ? AND asl.locale = ?)
 				JOIN submissions s ON (a.submission_id = s.submission_id)
-			WHERE	s.status = ' . STATUS_PUBLISHED . ' ' .
+			WHERE AND	s.status = ' . STATUS_PUBLISHED . ' ' .
 				(isset($pressId)?'AND s.context_id = ? ':'') . '
 				AND (a.last_name IS NOT NULL AND a.last_name <> \'\')' .
 				$initialSql . '
@@ -88,14 +81,6 @@ class AuthorDAO extends PKPAuthorDAO {
 
 		return new DAOResultFactory($result, $this, '_fromRow');
 	}
-
-	/**
-	 * Get a new data object
-	 * @return DataObject
-	 */
-	function newDataObject() {
-		return new Author();
-	}
 }
 
-?>
+

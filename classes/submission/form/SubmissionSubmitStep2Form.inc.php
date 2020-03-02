@@ -3,9 +3,9 @@
 /**
  * @file classes/submission/form/SubmissionSubmitStep2Form.inc.php
  *
- * Copyright (c) 2014-2016 Simon Fraser University Library
- * Copyright (c) 2003-2016 John Willinsky
- * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
+ * Copyright (c) 2014-2020 Simon Fraser University
+ * Copyright (c) 2003-2020 John Willinsky
+ * Distributed under the GNU GPL v3. For full terms see the file docs/COPYING.
  *
  * @class SubmissionSubmitStep2Form
  * @ingroup submission_form
@@ -19,9 +19,9 @@ class SubmissionSubmitStep2Form extends PKPSubmissionSubmitStep2Form {
 	/**
 	 * Constructor.
 	 */
-	function SubmissionSubmitStep2Form($context, $submission) {
-		parent::PKPSubmissionSubmitStep2Form($context, $submission);
+	function __construct($context, $submission) {
+		parent::__construct($context, $submission);
 	}
 }
 
-?>
+

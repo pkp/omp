@@ -1,0 +1,48 @@
+msgid ""
+msgstr ""
+"PO-Revision-Date: 2020-02-09 18:35+0000\n"
+"Last-Translator: Niels Erik Frederiksen <nef@kb.dk>\n"
+"Language-Team: Danish <http://translate.pkp.sfu.ca/projects/omp/"
+"importexport-native/da/>\n"
+"Language: da_DK\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: Weblate 3.9.1\n"
+
+msgid "plugins.importexport.native.error.unknownSeries"
+msgstr "Ukendt serie {$param}"
+
+msgid "plugins.importexport.native.onix30.pressMissingFields"
+msgstr ""
+"Dette forlag mangler nogle nødvendige oplysninger om ONIX-metadata, der er "
+"brugt i forbindelse med denne eksport. Gå til Indstillinger > workflow > "
+"Produktion og udfyld de manglende oplysninger."
+
+msgid "plugins.importexport.native.importComplete"
+msgstr "Importen blev afsluttet. Følgende elementer blev importeret:"
+
+msgid "plugins.inportexport.native.uploadFile"
+msgstr "Upload en fil under \"Import\" for at fortsætte."
+
+msgid "plugins.importexport.native.results"
+msgstr "Resultater"
+
+msgid "plugins.importexport.native.exportSubmissionsSelect"
+msgstr "Vælg de monografier, der skal eksporteres"
+
+msgid "plugins.importexport.native.export"
+msgstr "Eksportér"
+
+msgid "plugins.importexport.native.import.instructions"
+msgstr "Upload XML-fil til import"
+
+msgid "plugins.importexport.native.import"
+msgstr "Importér"
+
+msgid "plugins.importexport.native.description"
+msgstr "Importér og eksportér bøger i OMPs oprindelige XML-format."
+
+msgid "plugins.importexport.native.displayName"
+msgstr "Native XML Plugin"

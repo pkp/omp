@@ -3,9 +3,9 @@
 /**
  * @file controllers/api/file/ManageFileApiHandler.inc.php
  *
- * Copyright (c) 2014-2016 Simon Fraser University Library
- * Copyright (c) 2000-2016 John Willinsky
- * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
+ * Copyright (c) 2014-2020 Simon Fraser University
+ * Copyright (c) 2000-2020 John Willinsky
+ * Distributed under the GNU GPL v3. For full terms see the file docs/COPYING.
  *
  * @class ManageFileApiHandler
  * @ingroup controllers_api_file
@@ -22,12 +22,33 @@ class ManageFileApiHandler extends PKPManageFileApiHandler {
 	/**
 	 * Constructor.
 	 */
-	function ManageFileApiHandler() {
-		parent::PKPManageFileApiHandler();
+	function __construct() {
+		parent::__construct();
 		$this->addRoleAssignment(
 			array(ROLE_ID_MANAGER, ROLE_ID_SUB_EDITOR, ROLE_ID_ASSISTANT, ROLE_ID_REVIEWER, ROLE_ID_AUTHOR),
 			array('identifiers', 'updateIdentifiers', 'clearPubId',)
 		);
+	}
+
+	/**
+	 * @copydoc PKPManageFileApiHandler::editMetadata
+	 */
+	function editMetadata($args, $request) {
+		$submissionFile = $this->getAuthorizedContextObject(ASSOC_TYPE_SUBMISSION_FILE);
+		if ($submissionFile->getFileStage() == SUBMISSION_FILE_PROOF) {
+			$publisherIdEnabled = in_array('file', (array) $request->getContext()->getData('enablePublisherId'));
+			$pubIdPlugins = PluginRegistry::getPlugins('pubIds');
+			$pubIdEnabled = false;
+			foreach ($pubIdPlugins as $pubIdPlugin) {
+				if ($pubIdPlugin->isObjectTypeEnabled('SubmissionFile', $request->getContext()->getId())) {
+					$pubIdEnabled = true;
+					break;
+				}
+			}
+			$templateMgr = TemplateManager::getManager($request);
+			$templateMgr->assign('showIdentifierTab', $publisherIdEnabled || $pubIdEnabled);
+		}
+		return parent::editMetadata($args, $request);
 	}
 
 	/**
@@ -39,9 +60,9 @@ class ManageFileApiHandler extends PKPManageFileApiHandler {
 	function identifiers($args, $request) {
 		$submissionFile = $this->getAuthorizedContextObject(ASSOC_TYPE_SUBMISSION_FILE);
 		$stageId = $request->getUserVar('stageId');
-		import('lib.pkp.controllers.tab.pubIds.form.PKPPublicIdentifiersForm');
-		$form = new PKPPublicIdentifiersForm($submissionFile, $stageId);
-		$form->initData($request);
+		import('controllers.tab.pubIds.form.PublicIdentifiersForm');
+		$form = new PublicIdentifiersForm($submissionFile, $stageId);
+		$form->initData();
 		return new JSONMessage(true, $form->fetch($request));
 	}
 
@@ -57,8 +78,8 @@ class ManageFileApiHandler extends PKPManageFileApiHandler {
 		import('lib.pkp.controllers.tab.pubIds.form.PKPPublicIdentifiersForm');
 		$form = new PKPPublicIdentifiersForm($submissionFile, $stageId);
 		$form->readInputData();
-		if ($form->validate($request)) {
-			$form->execute($request);
+		if ($form->validate()) {
+			$form->execute();
 			return DAO::getDataChangedEvent($submissionFile->getId());
 		} else {
 			return new JSONMessage(true, $form->fetch($request));
@@ -92,8 +113,9 @@ class ManageFileApiHandler extends PKPManageFileApiHandler {
 		// update the submission's search index if this was a proof file
 		if ($submissionFile->getFileStage() == SUBMISSION_FILE_PROOF) {
 			import('lib.pkp.classes.search.SubmissionSearch');
-			import('classes.search.MonographSearchIndex');
-			MonographSearchIndex::deleteTextIndex($submission->getId(), SUBMISSION_SEARCH_GALLEY_FILE, $submissionFile->getFileId());
+			$monographSearchIndex = Application::getSubmissionSearchIndex();
+			$monographSearchIndex->deleteTextIndex($submission->getId(), SUBMISSION_SEARCH_GALLEY_FILE, $submissionFile->getFileId());
+			$monographSearchIndex->submissionChangesFinished();
 		}
 	}
 
@@ -135,4 +157,4 @@ class ManageFileApiHandler extends PKPManageFileApiHandler {
 	}
 }
 
-?>
+

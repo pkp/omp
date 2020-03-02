@@ -1,0 +1,186 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: \n"
+"Report-Msgid-Bugs-To: \n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"POT-Creation-Date: 2020-01-22T20:59:56+00:00\n"
+"PO-Revision-Date: 2020-01-22T20:59:56+00:00\n"
+"Language: \n"
+
+msgid "editor.pressSignoff"
+msgstr "Sessione terminata"
+
+msgid "editor.submissionArchive"
+msgstr "Archivio di caricamento"
+
+msgid "editor.monograph.cancelReview"
+msgstr "Annulla la richiesta"
+
+msgid "editor.monograph.clearReview"
+msgstr "Cancella il recensore"
+
+msgid "editor.monograph.enterRecommendation"
+msgstr "Inserisci la raccomandazione"
+
+msgid "editor.monograph.enterReviewerRecommendation"
+msgstr "Inserisci la raccomandazione del recensore"
+
+msgid "editor.monograph.recommendation"
+msgstr "Raccomandazione"
+
+msgid "editor.monograph.selectReviewerInstructions"
+msgstr "Seleziona un recensore qui in alto e poi clicca su \"Scegli un recensore\" per continuare."
+
+msgid "editor.submission.selectedReviewer"
+msgstr "Recensore selezionato"
+
+msgid "editor.monograph.replaceReviewer"
+msgstr "Sostituire il recensore"
+
+msgid "editor.monograph.editorToEnter"
+msgstr "L'Editor deve inserire la sua raccomandazione o i suoi commenti per il recensore"
+
+msgid "editor.monograph.uploadReviewForReviewer"
+msgstr "Carica la recensione"
+
+msgid "editor.monograph.peerReviewOptions"
+msgstr "Opzioni per la Peer Review "
+
+msgid "editor.monograph.selectProofreadingFiles"
+msgstr "Files per la correzione delle bozze"
+
+msgid "editor.monograph.internalReview"
+msgstr "Procedere alla valutazione interna"
+
+msgid "editor.monograph.internalReviewDescription"
+msgstr "Si sta per avviare una valutazione interna per questa immissione. I file che fanno parte della immissione sono elencati di seguito e possono essere selezionati per la valutazione."
+
+msgid "editor.monograph.externalReview"
+msgstr "Procedere alla valutazione esterna"
+
+msgid "editor.submissions.lastAssigned"
+msgstr "Il più recente"
+
+msgid "editor.monograph.final.selectFinalDraftFiles"
+msgstr "Selezionare il file per la bozza finale"
+
+msgid "editor.monograph.final.currentFiles"
+msgstr "File corrente per la bozza finale"
+
+msgid "editor.monograph.copyediting.currentFiles"
+msgstr "File correnti"
+
+msgid "editor.monograph.copyediting.personalMessageToUser"
+msgstr "Messaggio all'utente"
+
+msgid "editor.monograph.legend.submissionActions"
+msgstr "Azioni per il caricamento"
+
+msgid "editor.monograph.legend.submissionActionsDescription"
+msgstr "Azioni e opzioni per il caricamento complessivo."
+
+msgid "editor.monograph.legend.sectionActions"
+msgstr "Azioni per la sezione"
+
+msgid "editor.monograph.legend.sectionActionsDescription"
+msgstr "Opzioni particolari per una certa sezione, come ad esempio caricamento di file o aggiunta di utenti."
+
+msgid "editor.monograph.legend.itemActions"
+msgstr "Azioni per i documenti"
+
+msgid "editor.monograph.legend.itemActionsDescription"
+msgstr "Azioni e opzioni particolari per un singolo file."
+
+msgid "editor.monograph.legend.catalogEntry"
+msgstr "Visualizzare e gestire il caricamento del record, inclusi i metadati ed i formati di pubblicazione"
+
+msgid "editor.monograph.legend.bookInfo"
+msgstr "Visualizzare e gestire i metadati, le note, gli avvisi e lo storico del caricamento"
+
+msgid "editor.monograph.legend.participants"
+msgstr "Visualizzare e gestire tutti gli attori coinvolti nel caricamento: autori, editor, designer e altri"
+
+msgid "editor.monograph.legend.add"
+msgstr "Caricare un file nella sezione"
+
+msgid "editor.monograph.legend.add_user"
+msgstr "Aggiungere uh utente alla sezione"
+
+msgid "editor.monograph.legend.settings"
+msgstr "Visualizzare e accedere ai parametri del documento, come le opzioni relative alle informazioni e alla cancellazione"
+
+msgid "editor.monograph.legend.more_info"
+msgstr "Informazioni supplementari: note sui file, opzioni per le notifiche e storico"
+
+msgid "editor.monograph.legend.notes_none"
+msgstr "Informazioni sul file: note, opzioni per le notifiche e storico (al momento non ci sono note)"
+
+msgid "editor.monograph.legend.notes"
+msgstr "Informazioni sul file: note, opzioni per le notifiche e storico(note disponibili)"
+
+msgid "editor.monograph.legend.notes_new"
+msgstr "Informazioni sul file: note, opzioni per le notifiche e storico (dopo l'ultima visita sono state aggiunte nuove note)"
+
+msgid "editor.monograph.legend.edit"
+msgstr "Edita il documento"
+
+msgid "editor.monograph.legend.delete"
+msgstr "Cancella il documento"
+
+msgid "editor.monograph.legend.in_progress"
+msgstr "Azione in corso oppure non ancora completata"
+
+msgid "editor.monograph.legend.complete"
+msgstr "Azione completata"
+
+msgid "editor.monograph.legend.uploaded"
+msgstr "File caricato per il ruolo corrispondente per il titolo della colonna della griglia"
+
+msgid "editor.submission.introduction"
+msgstr "Al momento del caricamento, l'editor, dopo aver consultato i file sottomessi dei fascicoli, sceglie l'azione appropriata (che comprende l'invio di una notifica all'autore) tra queste: Invia per una verifica interna (comporta la selezione dei file per una revisione interna); Invia per una verifica esterna (comporta la selezione dei file per una revisione esterna); Accetta il file sottomesso (comporta la selezione dei file per la fase editoriale); o Rifiuta il file sottomesso (archiviazione del file sottomesso)."
+
+msgid "editor.submission.editorial.finalDraftDescription"
+msgstr "Per i \"volumi editi\", i cui capitoli sono cioè stati scritti da autori diversi, possono essere caricati tanti file quanti sono i capitoli in vista del copyediting. Questi file saranno in seguito esaminati dagli autori dei capitoli, dopo il caricamento dei file successivi al copyediting in <span class=\"pkp_help_title\">Copyediting</span>."
+
+msgid "editor.monograph.editorial.fairCopy"
+msgstr "Bella copia"
+
+msgid "editor.monograph.editorial.fairCopyDescription"
+msgstr "Il copyeditor carica una copia corretta del file per la successiva revisione dell'editor, prima che si passi in Produzione."
+
+msgid "editor.submission.production.introduction"
+msgstr "Al momento dell'entrata in Produzione, l'editor seleziona il tipo di formato (ad esempio, digitale, brossura, ecc) in <span class=\"pkp_help_title\">Formati di pubblicazione</span>, per i quali il layout editor preparerà i file da pubblicare sulla base dei file destinati alla pubblicazione. I file da pubblicare sono caricati per ogni tipo di formato in <span class=\"pkp_help_title\">Pagine di prova</span>, dove poi saranno sottosposte a revisione. Il libro è reso <em>disponibile</em> (cioè pubblicato) per ognuno dei formati in <span class=\"pkp_help_title\">Formati di pubblicazione</span>, dopo che le <em>prove</em> sono state verificate e approvate, e si indica che la voce di catalogo è stata inclusa nella voce di catalogo del libro."
+
+msgid "editor.submission.production.productionReadyFilesDescription"
+msgstr "Il layout editor prepara questi file per ogni formato di pubblicazione e poi li carica  nelle corrispondenti <span class = \"pkp_help_title\"> Pagina di prova</ span> per la correzione."
+
+msgid "editor.monograph.proofs"
+msgstr "Prove"
+
+msgid "editor.monograph.production.approvalAndPublishing"
+msgstr "Approvazione e pubblicazione"
+
+msgid "editor.monograph.production.approvalAndPublishingDescription"
+msgstr "I libri possono essere pubblicati in diversi formati (copertina rigida, brossura e digitale), possono essere caricati nella sezione Formati Pubblicazione che segue. È possibile utilizzare la griglia formati di pubblicazione di sotto come una lista di controllo per ciò che deve ancora essere fatto per pubblicare un formato di pubblicazione."
+
+msgid "editor.monograph.production.publicationFormatDescription"
+msgstr "Aggiungi i formati di pubblicazione (ad esempio, digitale, brossura) per i quali il layout-editor prepara le bozze per la correzione. Occorre indicare che le <em>Bozze</em> sono state approvate e si deve controllare la voce di <em>catalogo</em> per il formato in questione, per indicare che questa voce è stata aggiunta alla voce di catalogo del libro, prima che il formato possa essere reso <em>disponibile</em> (cioè pubblicato)."
+
+msgid "editor.monograph.approvedProofs.edit"
+msgstr "Scegliere le modalità per il caricamento"
+
+msgid "editor.monograph.approvedProofs.edit.linkTitle"
+msgstr "Scegliere le modalità"
+
+msgid "editor.monograph.proof.addNote"
+msgstr "Aggiungi una risposta"
+
+msgid "editor.internalReview.introduction"
+msgstr "Durante la fase di valutazione interna, l'editor assegna revisori interni ai file sottomessi e prende in considerazione le loro recensioni, prima di scegliere l'azione appropriata (che determina l'invio di una notifica all'autore): Da rivedere (le revisioni saranno esaminate dal solo editor); Da ricaricare per la revisione (sarà avviato un nuovo giro di revisioni); Inviare ad un revisore esterno (comporta la scelta dei file da inviare al revisore esterno); Accettare il file sottomesso (occorre scegliere i file che saranno inviati per la fase editoriale); o infine Rifiuta il file sottomesso (archiviazione del file sottomesso)."
+
+msgid "editor.externalReview.introduction"
+msgstr "Durante la fase di valutazione esterna, l'editor sceglie dei revisori esterni alla Press per i file sottomessi e prende in considerazione i loro commenti, prima di scegliere l'azione appropriata (che determina l'invio di una notifica all'autore): Da rivedere (le revisioni saranno esaminate dal solo editor); Da ricaricare per la revisione (sarà avviato un nuovo giro di revisioni); Accettare il file sottomesso (occorre scegliere i file che saranno inviati per la fase editoriale); o infine Rifiuta il file sottomesso (archiviazione del file sottomesso)."

@@ -3,9 +3,9 @@
 /**
  * @file classes/codelist/QualifierDAO.inc.php
  *
- * Copyright (c) 2014-2016 Simon Fraser University Library
- * Copyright (c) 2000-2016 John Willinsky
- * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
+ * Copyright (c) 2014-2020 Simon Fraser University
+ * Copyright (c) 2000-2020 John Willinsky
+ * Distributed under the GNU GPL v3. For full terms see the file docs/COPYING.
  *
  * @class QualifierDAO
  * @ingroup codelist
@@ -24,8 +24,8 @@ class QualifierDAO extends CodelistItemDAO {
 	/**
 	 * Constructor.
 	 */
-	function QualifierDAO() {
-		parent::CodelistItemDAO();
+	function __construct() {
+		parent::__construct();
 	}
 
 	/**
@@ -58,4 +58,4 @@ class QualifierDAO extends CodelistItemDAO {
 	}
 }
 
-?>
+

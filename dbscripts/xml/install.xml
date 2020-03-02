@@ -3,14 +3,16 @@
 <!--
   * dbscripts/xml/install.xml
   *
-  * Copyright (c) 2014-2016 Simon Fraser University Library
-  * Copyright (c) 2003-2016 John Willinsky
-  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
+  * Copyright (c) 2014-2020 Simon Fraser University
+  * Copyright (c) 2003-2020 John Willinsky
+  * Distributed under the GNU GPL v3. For full terms see the file docs/COPYING.
   *
   * Installation descriptor file.
   -->
 
-<install version="1.2.0.0">
+<install version="3.2.0.0">
+	<code function="checkPhpVersion" />
+
 	<code function="createDirectories" />
 	<code function="createDatabase" />
 
@@ -26,19 +28,18 @@
 	<schema file="lib/pkp/xml/schema/reviewForms.xml" />
 	<schema file="lib/pkp/xml/schema/submissions.xml" />
 	<schema file="lib/pkp/xml/schema/submissionFiles.xml" />
-	<schema file="lib/pkp/xml/schema/mutex.xml" />
 	<schema file="lib/pkp/xml/schema/tombstone.xml" />
 	<schema file="lib/pkp/xml/schema/rolesAndUserGroups.xml" />
 	<schema file="lib/pkp/xml/schema/genres.xml" />
 	<schema file="lib/pkp/xml/schema/libraryFiles.xml" />
 	<schema file="lib/pkp/xml/schema/views.xml" />
 	<schema file="lib/pkp/xml/schema/metrics.xml" />
+	<schema file="lib/pkp/xml/schema/categories.xml" />
 	<schema file="dbscripts/xml/omp_schema.xml" />
+	<schema file="lib/pkp/xml/schema/navigationMenus.xml" />
 
-	<!-- PKP data components -->
-	<data file="lib/pkp/xml/mutexData.xml" />
-	
 	<code function="createData" />
 	<code function="createConfig" />
 	<code function="addPluginVersions"/>
+	<code function="installDefaultNavigationMenus"/>
 </install>

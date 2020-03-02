@@ -3,9 +3,9 @@
 /**
  * @file classes/mail/MonographMailTemplate.inc.php
  *
- * Copyright (c) 2014-2016 Simon Fraser University Library
- * Copyright (c) 2003-2016 John Willinsky
- * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
+ * Copyright (c) 2014-2020 Simon Fraser University
+ * Copyright (c) 2003-2020 John Willinsky
+ * Distributed under the GNU GPL v3. For full terms see the file docs/COPYING.
  *
  * @class MonographMailTemplate
  * @ingroup mail
@@ -16,25 +16,19 @@
  */
 
 import('lib.pkp.classes.mail.SubmissionMailTemplate');
-import('classes.log.SubmissionEmailLogEntry'); // Bring in log constants
+import('lib.pkp.classes.log.SubmissionEmailLogEntry'); // Bring in log constants
 
 class MonographMailTemplate extends SubmissionMailTemplate {
 	/**
-	 * Constructor.
-	 * @param $submission Submission
-	 * @param $emailKey string optional
-	 * @param $locale string optional
-	 * @param $context object optional
-	 * @param $includeSignature boolean optional
-	 * @see MailTemplate::MailTemplate()
+	 * Assign parameters to the mail template.
+	 * @param $paramArray array
 	 */
-	function MonographMailTemplate($submission, $emailKey = null, $locale = null, $context = null, $includeSignature = true) {
-		parent::SubmissionMailTemplate($submission, $emailKey, $locale, $context, $includeSignature);
-	}
-
 	function assignParams($paramArray = array()) {
 		$submission = $this->submission;
-		$paramArray['seriesName'] = strip_tags($submission->getSeriesTitle());
+		$seriesDao = DAORegistry::getDAO('SeriesDAO'); /* @var $seriesDao SeriesDAO */
+		$series = $seriesDao->getById($submission->getSeriesId());
+		$paramArray['seriesPath'] = $series ? $series->getPath() : '';
+		$paramArray['seriesName'] = $series ? $series->getLocalizedTitle() : '';
 		parent::assignParams($paramArray);
 	}
 
@@ -67,4 +61,4 @@ class MonographMailTemplate extends SubmissionMailTemplate {
 	}
 }
 
-?>
+

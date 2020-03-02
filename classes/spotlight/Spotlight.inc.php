@@ -3,9 +3,9 @@
 /**
  * @file classes/spotlight/Spotlight.inc.php
  *
- * Copyright (c) 2014-2016 Simon Fraser University Library
- * Copyright (c) 2000-2016 John Willinsky
- * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
+ * Copyright (c) 2014-2020 Simon Fraser University
+ * Copyright (c) 2000-2020 John Willinsky
+ * Distributed under the GNU GPL v3. For full terms see the file docs/COPYING.
  *
  * @class Spotlight
  * @ingroup spotlight
@@ -23,8 +23,8 @@ class Spotlight extends DataObject {
 	/**
 	 * Constructor
 	 */
-	function Spotlight() {
-		parent::DataObject();
+	function __construct() {
+		parent::__construct();
 	}
 
 	//
@@ -151,11 +151,10 @@ class Spotlight extends DataObject {
 	function getSpotlightItem() {
 		switch ($this->getAssocType()) {
 			case SPOTLIGHT_TYPE_BOOK:
-				$publishedMonographDao = DAORegistry::getDAO('PublishedMonographDAO');
-				return $publishedMonographDao->getById($this->getAssocId(), $this->getPressId());
+				return Services::get('submission')->get($this->getAssocId());
 				break;
 			case SPOTLIGHT_TYPE_SERIES:
-				$seriesDao = DAORegistry::getDAO('SeriesDAO');
+				$seriesDao = DAORegistry::getDAO('SeriesDAO'); /* @var $seriesDao SeriesDAO */
 				return $seriesDao->getById($this->getAssocId(), $this->getPressId());
 				break;
 			default:
@@ -165,4 +164,4 @@ class Spotlight extends DataObject {
 	}
 }
 
-?>
+

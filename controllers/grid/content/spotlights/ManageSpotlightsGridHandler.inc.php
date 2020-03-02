@@ -3,9 +3,9 @@
 /**
  * @file controllers/grid/content/spotlights/ManageSpotlightsGridHandler.inc.php
  *
- * Copyright (c) 2014-2016 Simon Fraser University Library
- * Copyright (c) 2000-2016 John Willinsky
- * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
+ * Copyright (c) 2014-2020 Simon Fraser University
+ * Copyright (c) 2000-2020 John Willinsky
+ * Distributed under the GNU GPL v3. For full terms see the file docs/COPYING.
  *
  * @class SpotlightsGridHandler
  * @ingroup controllers_grid_content_spotlights
@@ -38,8 +38,8 @@ class ManageSpotlightsGridHandler extends GridHandler {
 	/**
 	 * Constructor
 	 */
-	function ManageSpotlightsGridHandler() {
-		parent::GridHandler();
+	function __construct() {
+		parent::__construct();
 		$this->addRoleAssignment(
 				array(ROLE_ID_MANAGER),
 				array('fetchGrid', 'fetchRow', 'addSpotlight', 'editSpotlight',
@@ -82,7 +82,7 @@ class ManageSpotlightsGridHandler extends GridHandler {
 		$spotlightId = $request->getUserVar('spotlightId');
 		if ($spotlightId) {
 			$press = $request->getPress();
-			$spotlightDao = DAORegistry::getDAO('SpotlightDAO');
+			$spotlightDao = DAORegistry::getDAO('SpotlightDAO'); /* @var $spotlightDao SpotlightDAO */
 			$spotlight = $spotlightDao->getById($spotlightId);
 			if ($spotlight == null || $spotlight->getPressId() != $press->getId()) {
 				return false;
@@ -92,12 +92,11 @@ class ManageSpotlightsGridHandler extends GridHandler {
 		return $returner;
 	}
 
-	/*
-	 * Configure the grid
-	 * @param $request PKPRequest
+	/**
+	 * @copydoc GridHandler::initialize()
 	 */
-	function initialize($request) {
-		parent::initialize($request);
+	function initialize($request, $args = null) {
+		parent::initialize($request, $args);
 
 		// Load locale components.
 		AppLocale::requireComponents(LOCALE_COMPONENT_APP_SUBMISSION, LOCALE_COMPONENT_APP_MANAGER);
@@ -176,7 +175,7 @@ class ManageSpotlightsGridHandler extends GridHandler {
 	 */
 	function loadData($request, $filter = null) {
 
-		$spotlightDao = DAORegistry::getDAO('SpotlightDAO');
+		$spotlightDao = DAORegistry::getDAO('SpotlightDAO'); /* @var $spotlightDao SpotlightDAO */
 		$press = $this->getPress();
 		return $spotlightDao->getByPressId($press->getId());
 	}
@@ -213,7 +212,7 @@ class ManageSpotlightsGridHandler extends GridHandler {
 		$pressId = $press->getId();
 
 		$spotlightForm = new SpotlightForm($pressId, $spotlightId);
-		$spotlightForm->initData($args, $request);
+		$spotlightForm->initData();
 
 		return new JSONMessage(true, $spotlightForm->fetch($request));
 	}
@@ -230,7 +229,7 @@ class ManageSpotlightsGridHandler extends GridHandler {
 
 		$press = $this->getPress();
 
-		$spotlightDao = DAORegistry::getDAO('SpotlightDAO');
+		$spotlightDao = DAORegistry::getDAO('SpotlightDAO'); /* @var $spotlightDao SpotlightDAO */
 		$spotlight = $spotlightDao->getById($spotlightId, $press->getId());
 
 		// Form handling
@@ -238,7 +237,7 @@ class ManageSpotlightsGridHandler extends GridHandler {
 
 		$spotlightForm->readInputData();
 		if ($spotlightForm->validate()) {
-			$spotlightId = $spotlightForm->execute($request);
+			$spotlightId = $spotlightForm->execute();
 
 			if(!isset($spotlight)) {
 				// This is a new entry
@@ -281,7 +280,7 @@ class ManageSpotlightsGridHandler extends GridHandler {
 		// Identify the entry to be deleted
 		$spotlightId = $request->getUserVar('spotlightId');
 
-		$spotlightDao = DAORegistry::getDAO('SpotlightDAO');
+		$spotlightDao = DAORegistry::getDAO('SpotlightDAO'); /* @var $spotlightDao SpotlightDAO */
 		$press = $this->getPress();
 		$spotlight = $spotlightDao->getById($spotlightId, $press->getId());
 		if ($spotlight != null) { // authorized
@@ -314,12 +313,19 @@ class ManageSpotlightsGridHandler extends GridHandler {
 		// get the items that match.
 		$matches = array();
 
-		$publishedMonographDao = DAORegistry::getDAO('PublishedMonographDAO');
-		$publishedMonographs = $publishedMonographDao->getByPressId($press->getId());
-		while ($monograph = $publishedMonographs->next()) {
-			if ($name == '' || preg_match('/'. preg_quote($name, '/') . '/i', $monograph->getLocalizedTitle())) {
-				$matches[] = array('label' => $monograph->getLocalizedTitle(), 'value' => $monograph->getId() . ':' . SPOTLIGHT_TYPE_BOOK);
-			}
+		$args = [
+			'status' => STATUS_PUBLISHED,
+			'contextId' => $press->getId(),
+			'count' => 100
+		];
+
+		if ($name) {
+			$args['searchPhrase'] = $name;
+		}
+
+		$submissionsIterator = Services::get('submission')->getMany($args);
+		foreach ($submissionsIterator as $submission) {
+			$matches[] = array('label' => $submission->getLocalizedTitle(), 'value' => $submission->getId() . ':' . SPOTLIGHT_TYPE_BOOK);
 		}
 
 		if (!empty($matches)) {
@@ -329,7 +335,7 @@ class ManageSpotlightsGridHandler extends GridHandler {
 
 		$matches = array();
 
-		$seriesDao = DAORegistry::getDAO('SeriesDAO');
+		$seriesDao = DAORegistry::getDAO('SeriesDAO'); /* @var $seriesDao SeriesDAO */
 		$allSeries = $seriesDao->getByPressId($press->getId());
 		while ($series = $allSeries->next()) {
 			if ($name == '' || preg_match('/'. preg_quote($name, '/') . '/i', $series->getLocalizedTitle())) {
@@ -350,4 +356,4 @@ class ManageSpotlightsGridHandler extends GridHandler {
 	}
 }
 
-?>
+

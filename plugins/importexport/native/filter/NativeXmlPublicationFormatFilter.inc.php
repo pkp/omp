@@ -3,9 +3,9 @@
 /**
  * @file plugins/importexport/native/filter/NativeXmlPublicationFormatFilter.inc.php
  *
- * Copyright (c) 2014-2016 Simon Fraser University Library
- * Copyright (c) 2000-2016 John Willinsky
- * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
+ * Copyright (c) 2014-2020 Simon Fraser University
+ * Copyright (c) 2000-2020 John Willinsky
+ * Distributed under the GNU GPL v3. For full terms see the file docs/COPYING.
  *
  * @class NativeXmlPublicationFormatFilter
  * @ingroup plugins_importexport_native
@@ -20,8 +20,8 @@ class NativeXmlPublicationFormatFilter extends NativeXmlRepresentationFilter {
 	 * Constructor
 	 * @param $filterGroup FilterGroup
 	 */
-	function NativeXmlPublicationFormatFilter($filterGroup) {
-		parent::NativeXmlRepresentationFilter($filterGroup);
+	function __construct($filterGroup) {
+		parent::__construct($filterGroup);
 	}
 
 	//
@@ -70,6 +70,8 @@ class NativeXmlPublicationFormatFilter extends NativeXmlRepresentationFilter {
 		if ($node->getAttribute('approved') == 'true') $representation->setIsApproved(true);
 		if ($node->getAttribute('available') == 'true') $representation->setIsAvailable(true);
 		if ($node->getAttribute('physical_format') == 'true') $representation->setPhysicalFormat(true);
+		if ($node->getAttribute('entry_key')) $representation->setEntryKey($node->getAttribute('entry_key'));
+		
 
 		$representationDao = Application::getRepresentationDAO();
 		$representationDao->insertObject($representation);
@@ -100,7 +102,7 @@ class NativeXmlPublicationFormatFilter extends NativeXmlRepresentationFilter {
 		$DBId = $deployment->getFileDBId($fileId, $revisionId);
 		if ($DBId) {
 			// Update the submission file.
-			$submissionFileDao = DAORegistry::getDAO('SubmissionFileDAO');
+			$submissionFileDao = DAORegistry::getDAO('SubmissionFileDAO'); /* @var $submissionFileDao SubmissionFileDAO */
 			$submissionFile = $submissionFileDao->getRevision($DBId, $revisionId);
 			$submissionFile->setAssocType(ASSOC_TYPE_REPRESENTATION);
 			$submissionFile->setAssocId($representation->getId());
@@ -115,7 +117,8 @@ class NativeXmlPublicationFormatFilter extends NativeXmlRepresentationFilter {
 	 */
 	function _processProductNode($node, $deployment, &$representation) {
 
-		$onixDeployment = new Onix30ExportDeployment(Request::getContext(), Request::getUser());
+		$request = Application::get()->getRequest();
+		$onixDeployment = new Onix30ExportDeployment($request->getContext(), $request->getUser());
 
 		$representation->setProductCompositionCode($this->_extractTextFromNode($node, $onixDeployment, 'ProductComposition'));
 		$representation->setEntryKey($this->_extractTextFromNode($node, $onixDeployment, 'ProductForm'));
@@ -126,14 +129,12 @@ class NativeXmlPublicationFormatFilter extends NativeXmlRepresentationFilter {
 		$this->_extractMeasureContent($node, $onixDeployment, $representation);
 		$this->_extractExtentContent($node, $onixDeployment, $representation);
 
-		// if this is a published monograph, extract the Audience elements and store them.
-		$publishedMonographDao = DAORegistry::getDAO('PublishedMonographDAO');
-		$publishedMonograph = $publishedMonographDao->getById($representation->getSubmissionId());
-		if ($publishedMonograph) {
-			$publishedMonograph->setAudience($this->_extractTextFromNode($node, $onixDeployment, 'AudienceCodeType'));
-			$publishedMonograph->setAudienceRangeQualifier($this->_extractTextFromNode($node, $onixDeployment, 'AudienceRangeQualifier'));
+		$submission = Services::get('submission')->get($representation->getSubmissionId());
+		if ($submission) {
+			$submission->setAudience($this->_extractTextFromNode($node, $onixDeployment, 'AudienceCodeType'));
+			$submission->setAudienceRangeQualifier($this->_extractTextFromNode($node, $onixDeployment, 'AudienceRangeQualifier'));
 			$this->_extractAudienceRangeContent($node, $onixDeployment, $representation);
-			$publishedMonographDao->updateObject($publishedMonograph);
+			DAORegistry::getDAO('SubmissionDAO')->updateObject($submission);
 		}
 
 		// Things below here require a publication format id since they are dependent on the PublicationFormat.
@@ -142,7 +143,7 @@ class NativeXmlPublicationFormatFilter extends NativeXmlRepresentationFilter {
 		$nodeList = $node->getElementsByTagNameNS($onixDeployment->getNamespace(), 'ProductIdentifier');
 
 		if ($nodeList->length > 0) {
-			$identificationCodeDao = DAORegistry::getDAO('IdentificationCodeDAO');
+			$identificationCodeDao = DAORegistry::getDAO('IdentificationCodeDAO'); /* @var $identificationCodeDao IdentificationCodeDAO */
 			for ($i = 0 ; $i < $nodeList->length ; $i++) {
 				$n = $nodeList->item($i);
 				$identificationCode = $identificationCodeDao->newDataObject();
@@ -166,7 +167,7 @@ class NativeXmlPublicationFormatFilter extends NativeXmlRepresentationFilter {
 		$nodeList = $node->getElementsByTagNameNS($onixDeployment->getNamespace(), 'PublishingDate');
 
 		if ($nodeList->length > 0) {
-			$publicationDateDao = DAORegistry::getDAO('PublicationDateDAO');
+			$publicationDateDao = DAORegistry::getDAO('PublicationDateDAO'); /* @var $publicationDateDao PublicationDateDAO */
 			for ($i = 0 ; $i < $nodeList->length ; $i++) {
 				$n = $nodeList->item($i);
 				$date = $publicationDateDao->newDataObject();
@@ -187,7 +188,7 @@ class NativeXmlPublicationFormatFilter extends NativeXmlRepresentationFilter {
 		// Extract SalesRights elements.
 		$nodeList = $node->getElementsByTagNameNS($onixDeployment->getNamespace(), 'SalesRights');
 		if ($nodeList->length > 0) {
-			$salesRightsDao = DAORegistry::getDAO('SalesRightsDAO');
+			$salesRightsDao = DAORegistry::getDAO('SalesRightsDAO'); /* @var $salesRightsDao SalesRightsDAO */
 			for ($i = 0 ; $i < $nodeList->length ; $i ++) {
 				$salesRights = $salesRightsDao->newDataObject();
 				$salesRights->setPublicationFormatId($representation->getId());
@@ -218,8 +219,8 @@ class NativeXmlPublicationFormatFilter extends NativeXmlRepresentationFilter {
 		// Extract ProductSupply elements.  Contains Markets, Pricing, Suppliers, and Sales Agents.
 		$nodeList = $node->getElementsByTagNameNS($onixDeployment->getNamespace(), 'ProductSupply');
 		if ($nodeList->length > 0) {
-			$marketDao = DAORegistry::getDAO('MarketDAO');
-			$representativeDao = DAORegistry::getDAO('RepresentativeDAO');
+			$marketDao = DAORegistry::getDAO('MarketDAO'); /* @var $marketDao MarketDAO */
+			$representativeDao = DAORegistry::getDAO('RepresentativeDAO'); /* @var $representativeDao RepresentativeDAO */
 
 			for ($i = 0 ; $i < $nodeList->length ; $i ++) {
 				$productSupplyNode = $nodeList->item($i);
@@ -428,4 +429,4 @@ class NativeXmlPublicationFormatFilter extends NativeXmlRepresentationFilter {
 	}
 }
 
-?>
+

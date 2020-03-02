@@ -3,9 +3,9 @@
 /**
  * @file classes/search/MonographSearchIndex.inc.php
  *
- * Copyright (c) 2014-2016 Simon Fraser University Library
- * Copyright (c) 2003-2016 John Willinsky
- * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
+ * Copyright (c) 2014-2020 Simon Fraser University
+ * Copyright (c) 2003-2020 John Willinsky
+ * Distributed under the GNU GPL v3. For full terms see the file docs/COPYING.
  *
  * @class MonographSearchIndex
  * @ingroup search
@@ -23,9 +23,9 @@ class MonographSearchIndex extends SubmissionSearchIndex {
 	 * @param $text string
 	 * @param $position int
 	 */
-	function indexObjectKeywords($objectId, $text, &$position) {
-		$searchDao = DAORegistry::getDAO('MonographSearchDAO');
-		$keywords = self::filterKeywords($text);
+	public function indexObjectKeywords($objectId, $text, &$position) {
+		$searchDao = DAORegistry::getDAO('MonographSearchDAO'); /* @var $searchDao MonographSearchDAO */
+		$keywords = $this->filterKeywords($text);
 		for ($i = 0, $count = count($keywords); $i < $count; $i++) {
 			if ($searchDao->insertObjectKeyword($objectId, $keywords[$i], $position) !== null) {
 				$position += 1;
@@ -40,11 +40,11 @@ class MonographSearchIndex extends SubmissionSearchIndex {
 	 * @param $text string
 	 * @param $assocId int optional
 	 */
-	function updateTextIndex($monographId, $type, $text, $assocId = null) {
-		$searchDao = DAORegistry::getDAO('MonographSearchDAO');
+	public function updateTextIndex($monographId, $type, $text, $assocId = null) {
+		$searchDao = DAORegistry::getDAO('MonographSearchDAO'); /* @var $searchDao MonographSearchDAO */
 		$objectId = $searchDao->insertObject($monographId, $type, $assocId);
 		$position = 0;
-		self::indexObjectKeywords($objectId, $text, $position);
+		$this->indexObjectKeywords($objectId, $text, $position);
 	}
 
 	/**
@@ -53,7 +53,7 @@ class MonographSearchIndex extends SubmissionSearchIndex {
 	 * @param $type int
 	 * @param $fileId int
 	 */
-	function updateFileIndex($monographId, $type, $fileId) {
+	public function updateFileIndex($monographId, $type, $fileId) {
 		$submissionFileDao = DAORegistry::getDAO('SubmissionFileDAO'); /* @var $submissionFileDao SubmissionFileDAO */
 		$file = $submissionFileDao->getLatestRevision($fileId);
 
@@ -63,12 +63,12 @@ class MonographSearchIndex extends SubmissionSearchIndex {
 
 		if (isset($parser)) {
 			if ($parser->open()) {
-				$searchDao = DAORegistry::getDAO('MonographSearchDAO');
+				$searchDao = DAORegistry::getDAO('MonographSearchDAO'); /* @var $searchDao MonographSearchDAO */
 				$objectId = $searchDao->insertObject($monographId, $type, $fileId);
 
 				$position = 0;
 				while(($text = $parser->read()) !== false) {
-					self::indexObjectKeywords($objectId, $text, $position);
+					$this->indexObjectKeywords($objectId, $text, $position);
 				}
 				$parser->close();
 			} else {
@@ -83,45 +83,40 @@ class MonographSearchIndex extends SubmissionSearchIndex {
 	 * @param $type int optional
 	 * @param $assocId int optional
 	 */
-	function deleteTextIndex($monographId, $type = null, $assocId = null) {
-		$searchDao = DAORegistry::getDAO('MonographSearchDAO');
+	public function deleteTextIndex($monographId, $type = null, $assocId = null) {
+		$searchDao = DAORegistry::getDAO('MonographSearchDAO'); /* @var $searchDao MonographSearchDAO */
 		return $searchDao->deleteSubmissionKeywords($monographId, $type, $assocId);
 	}
 
 	/**
 	 * Index monograph metadata.
-	 * @param $monograph Monograph
+	 * @param Submission $submission
 	 */
-	function indexMonographMetadata(&$monograph) {
+	public function submissionMetadataChanged($submission) {
+		$publication = $submission->getCurrentPublication();
+
 		// Build author keywords
-		$authorText = array();
-		$authorDao = DAORegistry::getDAO('AuthorDAO');
-		$authors = $authorDao->getBySubmissionId($monograph->getId());
-		foreach ($authors as $author) {
-			array_push($authorText, $author->getFirstName());
-			array_push($authorText, $author->getMiddleName());
-			array_push($authorText, $author->getLastName());
-			$affiliations = $author->getAffiliation(null);
-			if (is_array($affiliations)) foreach ($affiliations as $affiliation) { // Localized
-				array_push($authorText, strip_tags($affiliation));
-			}
-			$bios = $author->getBiography(null);
-			if (is_array($bios)) foreach ($bios as $bio) { // Localized
-				array_push($authorText, strip_tags($bio));
-			}
+		$authorText = [];
+		foreach ($publication->getData('authors') as $author) {
+			$authorText = array_merge(
+				$authorText,
+				array_values((array) $author->getData('givenName')),
+				array_values((array) $author->getData('familyName')),
+				array_values(array_map('strip_tags', (array) $author->getData('affiliation'))),
+				array_values(array_map('strip_tags', (array) $author->getData('biography')))
+			);
 		}
 
 		// Update search index
 		import('classes.search.MonographSearch');
-		$monographId = $monograph->getId();
-		self::updateTextIndex($monographId, SUBMISSION_SEARCH_AUTHOR, $authorText);
-		self::updateTextIndex($monographId, SUBMISSION_SEARCH_TITLE, $monograph->getTitle(null));
-		self::updateTextIndex($monographId, SUBMISSION_SEARCH_ABSTRACT, $monograph->getAbstract(null));
+		$submissionId = $submission->getId();
+		$this->updateTextIndex($submissionId, SUBMISSION_SEARCH_AUTHOR, $authorText);
+		$this->updateTextIndex($submissionId, SUBMISSION_SEARCH_TITLE, $publication->getData('title'));
+		$this->updateTextIndex($submissionId, SUBMISSION_SEARCH_ABSTRACT, $publication->getData('abstract'));
 
-		self::updateTextIndex($monographId, SUBMISSION_SEARCH_DISCIPLINE, (array) $monograph->getDiscipline(null));
-		self::updateTextIndex($monographId, SUBMISSION_SEARCH_SUBJECT, (array) $monograph->getSubject(null));
-		self::updateTextIndex($monographId, SUBMISSION_SEARCH_TYPE, $monograph->getType(null));
-		self::updateTextIndex($monographId, SUBMISSION_SEARCH_COVERAGE, (array) $monograph->getCoverage(null));
+		$this->updateTextIndex($submissionId, SUBMISSION_SEARCH_DISCIPLINE, (array) $publication->getData('disciplines'));
+		$this->updateTextIndex($submissionId, SUBMISSION_SEARCH_TYPE, (array) $publication->getData('type'));
+		$this->updateTextIndex($submissionId, SUBMISSION_SEARCH_COVERAGE, (array) $publication->getData('coverage'));
 		// FIXME Index sponsors too?
 	}
 
@@ -129,7 +124,7 @@ class MonographSearchIndex extends SubmissionSearchIndex {
 	 * Index all monograph files (galley files).
 	 * @param $monograph Monograph
 	 */
-	function indexMonographFiles(&$monograph) {
+	public function submissionFilesChanged($monograph) {
 		// Index galley files
 		$submissionFileDao = DAORegistry::getDAO('SubmissionFileDAO'); /* @var $submissionFileDao SubmissionFileDAO */
 		import('lib.pkp.classes.submission.SubmissionFile'); // Constants
@@ -137,28 +132,51 @@ class MonographSearchIndex extends SubmissionSearchIndex {
 		$files = $submissionFileDao->getLatestRevisions($monograph->getId(), SUBMISSION_FILE_PROOF);
 
 		foreach ($files as $file) {
-			if ($file->getFileId() && $file->getViewable()) {
-				self::updateFileIndex($monograph->getId(), SUBMISSION_SEARCH_GALLEY_FILE, $file->getFileId());
+			if ($file->getFileId()) {
+				$this->updateFileIndex($monograph->getId(), SUBMISSION_SEARCH_GALLEY_FILE, $file->getFileId());
 			}
 		}
 	}
 
 	/**
-	 * Remove indexed file contents for a monograph
-	 * @param $monograph Monograph
+	 * @copydoc SubmissionSearchIndex::clearSubmissionFiles()
 	 */
-	function clearMonographFiles($monograph) {
-		$searchDao = DAORegistry::getDAO('MonographSearchDAO');
-		$searchDao->deleteSubmissionKeywords($monograph->getId(), SUBMISSION_SEARCH_GALLEY_FILE);
+	public function clearSubmissionFiles($submission) {
+		$searchDao = DAORegistry::getDAO('MonographSearchDAO'); /* @var $searchDao MonographSearchDAO */
+		$searchDao->deleteSubmissionKeywords($submission->getId(), SUBMISSION_SEARCH_GALLEY_FILE);
 	}
 
 	/**
-	 * Rebuild the search index for all presses.
+	 * @copydoc SubmissionSearchIndex::submissionChangesFinished()
 	 */
-	function rebuildIndex($log = false) {
+	public function submissionChangesFinished() {
+		// Trigger a hook to let the indexing back-end know that
+		// the index may be updated.
+		HookRegistry::call(
+			'MonographSearchIndex::monographChangesFinished'
+		);
+
+		// The default indexing back-end works completely synchronously
+		// and will therefore not do anything here.
+	}
+
+	/**
+	 * @copydoc SubmissionSearchIndex::submissionChangesFinished()
+	 */
+	public function monographChangesFinished() {
+		if (Config::getVar('debug', 'deprecation_warnings')) trigger_error('Deprecated call to monographChangesFinished. Use submissionChangesFinished instead.');
+		$this->submissionChangesFinished();
+	}
+
+
+	/**
+	 * Rebuild the search index for all presses.
+	 * @param $log boolean Whether or not to log progress to the console.
+	 */
+	public function rebuildIndex($log = false) {
 		// Clear index
 		if ($log) echo 'Clearing index ... ';
-		$searchDao = DAORegistry::getDAO('MonographSearchDAO');
+		$searchDao = DAORegistry::getDAO('MonographSearchDAO'); /* @var $searchDao MonographSearchDAO */
 		// FIXME Abstract into MonographSearchDAO?
 		$searchDao->update('DELETE FROM submission_search_object_keywords');
 		$searchDao->update('DELETE FROM submission_search_objects');
@@ -168,8 +186,8 @@ class MonographSearchIndex extends SubmissionSearchIndex {
 		if ($log) echo "done\n";
 
 		// Build index
-		$pressDao = DAORegistry::getDAO('PressDAO');
-		$monographDao = DAORegistry::getDAO('MonographDAO');
+		$pressDao = DAORegistry::getDAO('PressDAO'); /* @var $pressDao PressDAO */
+		$submissionDao = DAORegistry::getDAO('SubmissionDAO'); /* @var $submissionDao SubmissionDAO */
 
 		$presses = $pressDao->getAll();
 		while ($press = $presses->next()) {
@@ -177,20 +195,19 @@ class MonographSearchIndex extends SubmissionSearchIndex {
 
 			if ($log) echo "Indexing \"", $press->getLocalizedName(), "\" ... ";
 
-			$monographs = $monographDao->getByPressId($press->getId());
+			$monographs = $submissionDao->getByContextId($press->getId());
 			while (!$monographs->eof()) {
 				$monograph = $monographs->next();
 				if ($monograph->getDatePublished()) {
-					self::indexMonographMetadata($monograph);
-					self::indexMonographFiles($monograph);
+					$this->submissionMetadataChanged($monograph);
+					$this->submissionFilesChanged($monograph);
 					$numIndexed++;
 				}
 			}
+			$this->submissionChangesFinished();
 
 			if ($log) echo $numIndexed, " monographs indexed\n";
 		}
 	}
-
 }
 
-?>

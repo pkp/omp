@@ -3,9 +3,9 @@
 /**
  * @file classes/monograph/RepresentativeDAO.inc.php
  *
- * Copyright (c) 2014-2016 Simon Fraser University Library
- * Copyright (c) 2003-2016 John Willinsky
- * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
+ * Copyright (c) 2014-2020 Simon Fraser University
+ * Copyright (c) 2003-2020 John Willinsky
+ * Distributed under the GNU GPL v3. For full terms see the file docs/COPYING.
  *
  * @class RepresentativeDAO
  * @ingroup monograph
@@ -17,13 +17,6 @@
 import('classes.monograph.Representative');
 
 class RepresentativeDAO extends DAO {
-	/**
-	 * Constructor
-	 */
-	function RepresentativeDAO() {
-		parent::DAO();
-	}
-
 	/**
 	 * Retrieve a representative entry by id.
 	 * @param $representativeId int
@@ -39,9 +32,9 @@ class RepresentativeDAO extends DAO {
 		$result = $this->retrieve(
 			'SELECT r.*
 				FROM representatives r
-			JOIN published_submissions ps ON (r.submission_id = ps.submission_id)
+			JOIN submissions s ON (r.submission_id = s.submission_id)
 			WHERE r.representative_id = ?
-				' . ($monographId?' AND ps.submission_id = ?':''),
+				' . ($monographId?' AND s.submission_id = ?':''),
 			$sqlParams
 		);
 
@@ -193,4 +186,4 @@ class RepresentativeDAO extends DAO {
 	}
 }
 
-?>
+

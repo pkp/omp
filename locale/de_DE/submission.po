@@ -1,0 +1,288 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: \n"
+"Report-Msgid-Bugs-To: \n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"POT-Creation-Date: 2019-09-30T06:23:43-07:00\n"
+"PO-Revision-Date: 2019-09-30T06:23:43-07:00\n"
+"Language: \n"
+
+msgid "submission.submit.title"
+msgstr "Monografie einreichen"
+
+msgid "submission.upload.selectComponent"
+msgstr "Komponente auswählen"
+
+msgid "submission.title"
+msgstr "Buchtitel"
+
+msgid "submission.select"
+msgstr "Wählen Sie ein Manuskript aus"
+
+msgid "submission.synopsis"
+msgstr "Über dieses Buch"
+
+msgid "submission.workflowType"
+msgstr "Art des Buches"
+
+msgid "submission.workflowType.description"
+msgstr "Eine Monografie ist ein Werk, das von einer Autorin/einem Autor oder mehreren Autor/innen gemeinsam verfasst worden ist. Ein Sammelband besteht aus mehreren Kapiteln jeweils unterschiedlicher Autor/innen (detaillierte Kapitelangaben sind erst zu einem späteren Zeitpunkt im Veröffentlichungsprozess zu machen)."
+
+msgid "submission.workflowType.editedVolume"
+msgstr "Sammelband"
+
+msgid "submission.workflowType.authoredWork"
+msgstr "Monografie"
+
+msgid "submission.monograph"
+msgstr "Monografie"
+
+msgid "submission.published"
+msgstr "Druckreif"
+
+msgid "submission.fairCopy"
+msgstr "Reinschrift"
+
+msgid "submission.artwork.permissions"
+msgstr "Rechte"
+
+msgid "submission.chapter"
+msgstr "Kapitel"
+
+msgid "submission.chapters"
+msgstr "Kapitel"
+
+msgid "submission.chaptersDescription"
+msgstr "Hier können Sie die Kapitel auflisten und ihnen Personen zuordnen, die in der oben stehenden Liste der Beiträger/innen (z.B. Kapitelautor/innen, Übersetzer/innen) verzeichnet sind. Beiträger/innen, die Sie an dieser Stelle dem Kapitel zuordnen, werden während des Veröffentlichungsprozesses Zugang zu dem Kapitel haben."
+
+msgid "submission.chapter.addChapter"
+msgstr "Kapitel hinzufügen"
+
+msgid "submission.chapter.editChapter"
+msgstr "Kapitel bearbeiten"
+
+msgid "submission.copyedit"
+msgstr "Lektorat"
+
+msgid "submission.publicationFormats"
+msgstr "Formate"
+
+msgid "submission.proofs"
+msgstr "Proofs"
+
+msgid "submission.download"
+msgstr "Download"
+
+msgid "submission.sharing"
+msgstr "Teilen"
+
+msgid "manuscript.submission"
+msgstr "Manuskript einreichen"
+
+msgid "submission.round"
+msgstr "Runde&nbsp;{$round}"
+
+msgid "submissions.queuedReview"
+msgstr "In Begutachtung"
+
+msgid "manuscript.submissions"
+msgstr "Manuskripte einreichen"
+
+msgid "submission.confirmSubmit"
+msgstr "Sind Sie sicher, dass Sie das Manuskript einreichen möchten?"
+
+msgid "submission.metadata"
+msgstr "Metadaten"
+
+msgid "submission.supportingAgencies"
+msgstr "Träger"
+
+msgid "grid.action.addChapter"
+msgstr "Ein neues Kapitel erzeugen"
+
+msgid "grid.action.editChapter"
+msgstr "Kapitel bearbeiten"
+
+msgid "grid.action.deleteChapter"
+msgstr "Kapitel löschen"
+
+msgid "submission.submit"
+msgstr "Ein neues Buchmanuskript einreichen"
+
+msgid "submission.submit.newSubmissionMultiple"
+msgstr "Ein neues Buchmanuskript einreichen bei"
+
+msgid "submission.submit.newSubmissionSingle"
+msgstr "Ein neues Manuskript bei {$contextName} einreichen"
+
+msgid "submission.submit.upload"
+msgstr "Einreichung hochladen"
+
+msgid "submission.submit.cancelSubmission"
+msgstr "Sie können den Einreichungsprozess auch zu einem späteren Zeitpunkt abschließen. Gehen Sie dazu auf die Startseite und wählen Sie die entsprechenden Manuskripte aus."
+
+msgid "submission.submit.selectSeries"
+msgstr "Reihe auswählen"
+
+msgid "submission.submit.seriesPosition"
+msgstr "Position innerhalb der Reihe (z.B. Band 2)"
+
+msgid "submission.submit.seriesPosition.description"
+msgstr "Beispiel: Buch 2, Band 2"
+
+msgid "submission.submit.form.localeRequired"
+msgstr "Bitte wählen Sie die Sprache des Manuskripts aus."
+
+msgid "submission.submit.submissionChecklist"
+msgstr "Checkliste für den Einreichungsprozess"
+
+msgid "submission.submit.submissionChecklistDescription"
+msgstr "Die eingereichten Manuskripte müssen den folgenden Vorgaben entsprechen. Um fortfahren zu können, müssen Sie die Erfüllung der Vorgaben bestätigen (Kommentare an die Redaktion können unten hinzugefügt werden)."
+
+msgid "submission.submit.privacyStatement"
+msgstr "Datenschutzerklärung"
+
+msgid "submission.submit.contributorRole"
+msgstr "Funktion des Beiträgers/der Beiträgerin"
+
+msgid "submission.submit.form.authorRequired"
+msgstr "Es muss mindestens ein Autor/eine Autorin angegeben werden."
+
+msgid "submission.submit.form.authorRequiredFields"
+msgstr "Es werden Vorname, Nachname und E-Mail-Adresse aller Autor/innen benötigt."
+
+msgid "submission.submit.form.titleRequired"
+msgstr "Bitte geben Sie den Titel Ihrer Monografie ein."
+
+msgid "submission.submit.form.abstractRequired"
+msgstr "Bitte geben Sie eine kurze Zusammenfassung Ihrer Monografie ein."
+
+msgid "submission.submit.form.contributorRoleRequired"
+msgstr "Bitte wählen Sie die Funktion der Beiträgerin/des Beiträgers."
+
+msgid "submission.submit.submissionFile"
+msgstr "Manuskriptdatei"
+
+msgid "submission.submit.prepare"
+msgstr "Vorbereiten"
+
+msgid "submission.submit.catalog"
+msgstr "Katalog"
+
+msgid "submission.submit.metadata"
+msgstr "Metadaten"
+
+msgid "submission.submit.finishingUp"
+msgstr "Fertigstellen"
+
+msgid "submission.submit.confirmation"
+msgstr "Bestätigung"
+
+msgid "submission.submit.nextSteps"
+msgstr "Die nächsten Schritte"
+
+msgid "submission.submit.coverNote"
+msgstr "Vermerk für den/die Herausgeber/in"
+
+msgid "submission.submit.generalInformation"
+msgstr "Allgemeine Informationen"
+
+msgid "submission.submit.whatNext.description"
+msgstr "Der Verlag wurde über die Einsendung Ihres Manuskriptes informiert. Für Ihre Unterlagen haben wir Ihnen eine Bestätigung per E-Mail zugesandt. Sobald der/die Herausgeber/in das Manuskript geprüft hat, wird er sich mit Ihnen in Verbindung setzen."
+
+msgid "submission.submit.checklistErrors"
+msgstr "Bitte lesen und bestätigen Sie die Punkte der Einreichungscheckliste. {$itemsRemaining} Punkte wurden bisher noch nicht bestätigt."
+
+msgid "submission.submit.placement"
+msgstr "Manuskriptplatzierung"
+
+msgid "submission.submit.userGroup"
+msgstr "Einreichen in meiner Funktion als ..."
+
+msgid "submission.submit.userGroupDescription"
+msgstr "Wenn Sie einen Sammelband einreichen, sollten Sie die Funktion \"Sammelbandherausgeber/in\" auswählen."
+
+msgid "grid.chapters.title"
+msgstr "Kapitel"
+
+msgid "grid.copyediting.deleteCopyeditorResponse"
+msgstr "Vom Lektor hochgeladenes Dokument löschen"
+
+msgid "publication.catalogEntry"
+msgstr "Katalog"
+
+msgid "submission.complete"
+msgstr "Freigegeben"
+
+msgid "submission.incomplete"
+msgstr "Warte auf Freigabe"
+
+msgid "submission.editCatalogEntry"
+msgstr "Eintrag"
+
+msgid "submission.catalogEntry.new"
+msgstr "Neuer Katalogeintrag"
+
+msgid "submission.catalogEntry.confirm"
+msgstr "Erstelle anhand der angegebenen Metadaten einen neuen Katalogeintrag."
+
+msgid "submission.catalogEntry.confirm.required"
+msgstr "Bitte bestätigen Sie, dass der Publikationsprozess abgeschlossen ist und das Buch in den Katalog aufgenommen werden soll."
+
+msgid "submission.catalogEntry.isAvailable"
+msgstr "Diese Monografie ist fertig und soll in den öffentlichen Katalog aufgenommen werden."
+
+msgid "submission.catalogEntry.monographMetadata"
+msgstr "Monografie"
+
+msgid "submission.catalogEntry.catalogMetadata"
+msgstr "Katalog"
+
+msgid "submission.catalogEntry.publicationMetadata"
+msgstr "Format"
+
+msgid "submission.event.metadataPublished"
+msgstr "Die Metadaten der Monografie sind zur Veröffentlichung akzeptiert worden."
+
+msgid "submission.event.metadataUnpublished"
+msgstr "Die Veröffentlichung der Metadaten dieser Monografie wurde eingestellt."
+
+msgid "submission.event.publicationFormatMadeAvailable"
+msgstr "Das \"{$publicationFormatName}\"-Format wurde verfügbar gemacht."
+
+msgid "submission.event.publicationFormatMadeUnavailable"
+msgstr "Das \"{$publicationFormatName}\"-Format ist nicht länger verfügbar."
+
+msgid "submission.event.publicationFormatPublished"
+msgstr "Das \"{$publicationFormatName}\"-Format ist für die Veröffentlichung akzeptiert worden."
+
+msgid "submission.event.publicationFormatUnpublished"
+msgstr "Die Veröffentlichung des \"{$publicationFormatName}\"-Formats wurde eingestellt."
+
+msgid "submission.event.catalogMetadataUpdated"
+msgstr "Die Katalogmetadaten wurden aktualisiert."
+
+msgid "submission.event.publicationMetadataUpdated"
+msgstr "Die Metadaten für das Format \"{$formatName}\" wurden upgedatet."
+
+msgid "submission.event.publicationFormatCreated"
+msgstr "Das Format \"{$formatName}\" wurde erstellt."
+
+msgid "submission.event.publicationFormatRemoved"
+msgstr "Das Format \"{$formatName}\" wurde entfernt."
+
+msgid "submission.submit.titleAndSummary"
+msgstr "Titel und Zusammenfassung"
+
+msgid "workflow.review.externalReview"
+msgstr "Externe Begutachtung"
+
+msgid "editor.submission.decision.sendExternalReview"
+msgstr "In externe Begutachtung geben"
+
+msgid "submission.upload.fileContents"
+msgstr "Einreichungs-Komponente"

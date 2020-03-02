@@ -3,9 +3,9 @@
 /**
  * @file plugins/importexport/native/filter/AuthorNativeXmlFilter.inc.php
  *
- * Copyright (c) 2014-2016 Simon Fraser University Library
- * Copyright (c) 2000-2016 John Willinsky
- * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
+ * Copyright (c) 2014-2020 Simon Fraser University
+ * Copyright (c) 2000-2020 John Willinsky
+ * Distributed under the GNU GPL v3. For full terms see the file docs/COPYING.
  *
  * @class AuthorNativeXmlFilter
  * @ingroup plugins_importexport_native
@@ -16,15 +16,6 @@
 import('lib.pkp.plugins.importexport.native.filter.PKPAuthorNativeXmlFilter');
 
 class AuthorNativeXmlFilter extends PKPAuthorNativeXmlFilter {
-	/**
-	 * Constructor
-	 * @param $filterGroup FilterGroup
-	 */
-	function AuthorNativeXmlFilter($filterGroup) {
-		parent::PKPAuthorNativeXmlFilter($filterGroup);
-	}
-
-
 	//
 	// Implement template methods from PersistableFilter
 	//
@@ -36,4 +27,4 @@ class AuthorNativeXmlFilter extends PKPAuthorNativeXmlFilter {
 	}
 }
 
-?>
+

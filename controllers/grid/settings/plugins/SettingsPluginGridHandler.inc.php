@@ -3,9 +3,9 @@
 /**
  * @file controllers/grid/settings/plugins/SettingsPluginGridHandler.inc.php
  *
- * Copyright (c) 2014-2016 Simon Fraser University Library
- * Copyright (c) 2003-2016 John Willinsky
- * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
+ * Copyright (c) 2014-2020 Simon Fraser University
+ * Copyright (c) 2003-2020 John Willinsky
+ * Distributed under the GNU GPL v3. For full terms see the file docs/COPYING.
  *
  * @class SettingsPluginGridHandler
  * @ingroup controllers_grid_settings_plugins
@@ -19,10 +19,10 @@ class SettingsPluginGridHandler extends PluginGridHandler {
 	/**
 	 * Constructor
 	 */
-	function SettingsPluginGridHandler() {
+	function __construct() {
 		$roles = array(ROLE_ID_SITE_ADMIN, ROLE_ID_MANAGER);
 		$this->addRoleAssignment($roles, array('manage'));
-		parent::PluginGridHandler($roles);
+		parent::__construct($roles);
 	}
 
 
@@ -32,10 +32,10 @@ class SettingsPluginGridHandler extends PluginGridHandler {
 	/**
 	 * @copydoc PluginGridHandler::loadCategoryData()
 	 */
-	function loadCategoryData($request, $categoryDataElement, $filter) {
+	function loadCategoryData($request, &$categoryDataElement, $filter = null) {
 		$plugins = parent::loadCategoryData($request, $categoryDataElement, $filter);
 
-		$pressDao = DAORegistry::getDAO('PressDAO');
+		$pressDao = DAORegistry::getDAO('PressDAO'); /* @var $pressDao PressDAO */
 		$presses = $pressDao->getAll();
 		$singlePress = false;
 		if ($presses->getCount() == 1) {
@@ -70,10 +70,8 @@ class SettingsPluginGridHandler extends PluginGridHandler {
 	 * @copydoc GridHandler::getRowInstance()
 	 */
 	function getRowInstance() {
-		$userRoles = $this->getAuthorizedContextObject(ASSOC_TYPE_USER_ROLES);
-
-		import('controllers.grid.plugins.PluginGridRow');
-		return new PluginGridRow($userRoles, CONTEXT_PRESS);
+		import('lib.pkp.controllers.grid.plugins.PluginGridRow');
+		return new PluginGridRow($this->getAuthorizedContextObject(ASSOC_TYPE_USER_ROLES));
 	}
 
 	/**
@@ -84,7 +82,7 @@ class SettingsPluginGridHandler extends PluginGridHandler {
 		$pluginName = $request->getUserVar('plugin');
 
 		if ($categoryName && $pluginName) {
-			import('classes.security.authorization.OmpPluginAccessPolicy');
+			import('lib.pkp.classes.security.authorization.PluginAccessPolicy');
 			switch ($request->getRequestedOp()) {
 				case 'enable':
 				case 'disable':
@@ -95,10 +93,13 @@ class SettingsPluginGridHandler extends PluginGridHandler {
 					$accessMode = ACCESS_MODE_ADMIN;
 					break;
 			}
-			$this->addPolicy(new OmpPluginAccessPolicy($request, $args, $roleAssignments, $accessMode));
+			$this->addPolicy(new PluginAccessPolicy($request, $args, $roleAssignments, $accessMode));
+		} else {
+			import('lib.pkp.classes.security.authorization.ContextAccessPolicy');
+			$this->addPolicy(new ContextAccessPolicy($request, $roleAssignments));
 		}
 		return parent::authorize($request, $args, $roleAssignments);
 	}
 }
 
-?>
+

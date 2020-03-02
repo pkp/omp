@@ -3,9 +3,9 @@
 /**
  * @file classes/publicationFormat/PublicationDateDAO.inc.php
  *
- * Copyright (c) 2014-2016 Simon Fraser University Library
- * Copyright (c) 2003-2016 John Willinsky
- * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
+ * Copyright (c) 2014-2020 Simon Fraser University
+ * Copyright (c) 2003-2020 John Willinsky
+ * Distributed under the GNU GPL v3. For full terms see the file docs/COPYING.
  *
  * @class PublicationDateDAO
  * @ingroup publicationFormat
@@ -20,20 +20,20 @@ class PublicationDateDAO extends DAO {
 	/**
 	 * Constructor
 	 */
-	function PublicationDateDAO() {
-		parent::DAO();
+	function __construct() {
+		parent::__construct();
 	}
 
 	/**
 	 * Retrieve a publication date by type id.
 	 * @param $publicationDateId int
-	 * @param $monographId optional int
+	 * @param $publicationId optional int
 	 * @return PublicationDate
 	 */
-	function getById($publicationDateId, $monographId = null){
+	function getById($publicationDateId, $publicationId = null){
 		$sqlParams = array((int) $publicationDateId);
-		if ($monographId) {
-			$sqlParams[] = (int) $monographId;
+		if ($publicationId) {
+			$sqlParams[] = (int) $publicationId;
 		}
 
 		$result = $this->retrieve(
@@ -41,7 +41,7 @@ class PublicationDateDAO extends DAO {
 			FROM	publication_dates p
 				JOIN publication_formats pf ON (p.publication_format_id = pf.publication_format_id)
 			WHERE p.publication_date_id = ?
-				' . ($monographId?' AND pf.submission_id = ?':''),
+				' . ($publicationId?' AND pf.publication_id = ?':''),
 			$sqlParams
 		);
 
@@ -161,4 +161,4 @@ class PublicationDateDAO extends DAO {
 	}
 }
 
-?>
+

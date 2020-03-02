@@ -3,9 +3,9 @@
 /**
  * @file classes/template/TemplateManager.inc.php
  *
- * Copyright (c) 2014-2016 Simon Fraser University Library
- * Copyright (c) 2003-2016 John Willinsky
- * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
+ * Copyright (c) 2014-2020 Simon Fraser University
+ * Copyright (c) 2003-2020 John Willinsky
+ * Distributed under the GNU GPL v3. For full terms see the file docs/COPYING.
  *
  * @class TemplateManager
  * @ingroup template
@@ -20,12 +20,11 @@ import('lib.pkp.classes.template.PKPTemplateManager');
 
 class TemplateManager extends PKPTemplateManager {
 	/**
-	 * Constructor.
 	 * Initialize template engine and assign basic template variables.
 	 * @param $request PKPRequest
 	 */
-	function TemplateManager($request) {
-		parent::PKPTemplateManager($request);
+	public function initialize($request) {
+		parent::initialize($request);
 		AppLocale::requireComponents(LOCALE_COMPONENT_APP_COMMON);
 
 		if (!defined('SESSION_DISABLE_INIT')) {
@@ -43,55 +42,41 @@ class TemplateManager extends PKPTemplateManager {
 			$this->assign('sitePublicFilesDir', $siteFilesDir);
 			$this->assign('publicFilesDir', $siteFilesDir); // May be overridden by press
 
-			$siteStyleFilename = $publicFileManager->getSiteFilesPath() . '/' . $site->getSiteStyleFilename();
-			if (file_exists($siteStyleFilename)) {
-				$this->addStyleSheet(
-					'siteStylesheet',
-					$request->getBaseUrl() . '/' . $siteStyleFilename,
-					array(
-						'priority' => STYLE_SEQUENCE_LAST
-					)
-				);
-			}
-
 			// Pass app-specific details to template
 			$this->assign(array(
 				'brandImage' => 'templates/images/omp_brand.png',
-				'packageKey' => 'common.openMonographPress',
-				'pkpLink'    => 'http://pkp.sfu.ca/omp',
+				'packageKey' => 'common.software',
 			));
 
 			// Get a count of unread tasks.
 			if ($user = $request->getUser()) {
-				$notificationDao = DAORegistry::getDAO('NotificationDAO');
+				$notificationDao = DAORegistry::getDAO('NotificationDAO'); /* @var $notificationDao NotificationDAO */
 				// Exclude certain tasks, defined in the notifications grid handler
 				import('lib.pkp.controllers.grid.notifications.TaskNotificationsGridHandler');
 				$this->assign('unreadNotificationCount', $notificationDao->getNotificationCount(false, $user->getId(), null, NOTIFICATION_LEVEL_TASK));
 			}
 
 			if (isset($context)) {
-				$this->assign('currentPress', $context);
-
-				$this->assign('siteTitle', $context->getLocalizedName());
-				$this->assign('publicFilesDir', $request->getBaseUrl() . '/' . $publicFileManager->getContextFilesPath($context->getAssocType(), $context->getId()));
-
-				$this->assign('primaryLocale', $context->getPrimaryLocale());
-				$this->assign('supportedLocales', $context->getSupportedLocaleNames());
-
-				// Assign page header
-				$this->assign('displayPageHeaderTitle', $context->getPageHeaderTitle());
-				$this->assign('displayPageHeaderLogo', $context->getPageHeaderLogo());
-				$this->assign('numPageLinks', $context->getSetting('numPageLinks'));
-				$this->assign('itemsPerPage', $context->getSetting('itemsPerPage'));
-				$this->assign('enableAnnouncements', $context->getSetting('enableAnnouncements'));
-				$this->assign('disableUserReg', $context->getSetting('disableUserReg'));
+				$this->assign([
+					'currentPress' => $context,
+					'siteTitle' => $context->getLocalizedName(),
+					'publicFilesDir' => $request->getBaseUrl() . '/' . $publicFileManager->getContextFilesPath($context->getId()),
+					'primaryLocale' => $context->getPrimaryLocale(),
+					'supportedLocales' => $context->getSupportedLocaleNames(),
+					'displayPageHeaderTitle' => $context->getPageHeaderTitle(),
+					'displayPageHeaderLogo' => $context->getPageHeaderLogo(),
+					'numPageLinks' => $context->getData('numPageLinks'),
+					'itemsPerPage' => $context->getData('itemsPerPage'),
+					'enableAnnouncements' => $context->getData('enableAnnouncements'),
+					'disableUserReg' => $context->getData('disableUserReg'),
+				]);
 
 				// Assign stylesheets and footer
-				$contextStyleSheet = $context->getSetting('styleSheet');
+				$contextStyleSheet = $context->getData('styleSheet');
 				if ($contextStyleSheet) {
 					$this->addStyleSheet(
 						'contextStylesheet',
-						$request->getBaseUrl() . '/' . $publicFileManager->getContextFilesPath(ASSOC_TYPE_PRESS, $context->getId()) . '/' . $contextStyleSheet['uploadName'],
+						$request->getBaseUrl() . '/' . $publicFileManager->getContextFilesPath($context->getId()) . '/' . $contextStyleSheet['uploadName'],
 						array(
 							'priority' => STYLE_SEQUENCE_LAST
 						)
@@ -103,19 +88,10 @@ class TemplateManager extends PKPTemplateManager {
 				// variable in templates/common/header.tpl, instead of
 				// reproducing a lot of OMP/OJS-specific logic there.
 				$dispatcher = $request->getDispatcher();
-				$this->assign( 'contextSettingsUrl', $dispatcher->url($request, ROUTE_PAGE, null, 'management', 'settings', 'press') );
+				$this->assign( 'contextSettingsUrl', $dispatcher->url($request, ROUTE_PAGE, null, 'management', 'settings', 'context') );
 
-				$this->assign('pageFooter', $context->getLocalizedSetting('pageFooter'));
-			} else {
-				// Add the site-wide logo, if set for this locale or the primary locale
-				$this->assign('displayPageHeaderTitle', $site->getLocalizedPageHeaderTitle());
-				$this->assign('displayPageHeaderLogo', $site->getLocalizedSetting('pageHeaderTitleImage'));
-				$this->assign('siteTitle', $site->getLocalizedTitle());
-				$this->assign('primaryLocale', $site->getPrimaryLocale());
-				$this->assign('supportedLocales', $site->getSupportedLocaleNames());
+				$this->assign('pageFooter', $context->getLocalizedData('pageFooter'));
 			}
 		}
 	}
 }
-
-?>

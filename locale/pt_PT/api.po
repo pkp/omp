@@ -1,0 +1,29 @@
+msgid ""
+msgstr ""
+"PO-Revision-Date: 2020-02-07 10:35+0000\n"
+"Last-Translator: Carla Marques <carla.marques@sdum.uminho.pt>\n"
+"Language-Team: Portuguese (Portugal) <http://translate.pkp.sfu.ca/projects/"
+"omp/api/pt_PT/>\n"
+"Language: pt_PT\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=n > 1;\n"
+"X-Generator: Weblate 3.9.1\n"
+
+msgid "api.submissions.403.contextRequired"
+msgstr ""
+"Para enviar ou editar uma submissão deve fazer um pedido ao endpoint da API "
+"da editora."
+
+msgid "api.submissions.403.cantChangeContext"
+msgstr "Não pode alterar a editora de uma submissão."
+
+msgid "api.publications.403.submissionsDidNotMatch"
+msgstr "A publicação que solicitou não faz parte desta submissão."
+
+msgid "api.publications.403.contextsDidNotMatch"
+msgstr "A publicação que solicitou não faz parte desta editora."
+
+msgid "api.emailTemplates.403.notAllowedChangeContext"
+msgstr "Não tem permissões para mover este e-mail padrão para outra editora."

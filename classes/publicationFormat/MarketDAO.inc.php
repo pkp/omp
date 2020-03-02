@@ -3,9 +3,9 @@
 /**
  * @file classes/publicationFormat/MarketDAO.inc.php
  *
- * Copyright (c) 2014-2016 Simon Fraser University Library
- * Copyright (c) 2003-2016 John Willinsky
- * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
+ * Copyright (c) 2014-2020 Simon Fraser University
+ * Copyright (c) 2003-2020 John Willinsky
+ * Distributed under the GNU GPL v3. For full terms see the file docs/COPYING.
  *
  * @class MarketDAO
  * @ingroup publicationFormat
@@ -20,20 +20,20 @@ class MarketDAO extends DAO {
 	/**
 	 * Constructor
 	 */
-	function MarketDAO() {
-		parent::DAO();
+	function __construct() {
+		parent::__construct();
 	}
 
 	/**
 	 * Retrieve a market entry by type id.
 	 * @param $marketId int
-	 * @param $monographId optional int
+	 * @param $publicationId optional int
 	 * @return Market
 	 */
-	function getById($marketId, $monographId = null){
+	function getById($marketId, $publicationId = null){
 		$sqlParams = array((int) $marketId);
-		if ($monographId) {
-			$sqlParams[] = (int) $monographId;
+		if ($publicationId) {
+			$sqlParams[] = (int) $publicationId;
 		}
 
 		$result = $this->retrieve(
@@ -41,7 +41,7 @@ class MarketDAO extends DAO {
 			FROM	markets m
 				JOIN publication_formats pf ON (m.publication_format_id = pf.publication_format_id)
 			WHERE	m.market_id = ?
-				' . ($monographId?' AND pf.submission_id = ?':''),
+				' . ($publicationId?' AND pf.publication_id = ?':''),
 			$sqlParams
 		);
 
@@ -209,4 +209,4 @@ class MarketDAO extends DAO {
 	}
 }
 
-?>
+

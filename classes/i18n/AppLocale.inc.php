@@ -3,9 +3,9 @@
 /**
  * @file classes/i18n/AppLocale.inc.php
  *
- * Copyright (c) 2014-2016 Simon Fraser University Library
- * Copyright (c) 2003-2016 John Willinsky
- * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
+ * Copyright (c) 2014-2020 Simon Fraser University
+ * Copyright (c) 2003-2020 John Willinsky
+ * Distributed under the GNU GPL v3. For full terms see the file docs/COPYING.
  *
  * @class Locale
  * @ingroup i18n
@@ -24,7 +24,7 @@ class AppLocale extends PKPLocale {
 	static function getSupportedLocales() {
 		static $supportedLocales;
 		if (!isset($supportedLocales)) {
-			if (defined('SESSION_DISABLE_INIT') || !Config::getVar('general', 'installed')) {
+			if (defined('SESSION_DISABLE_INIT')) {
 				$supportedLocales = AppLocale::getAllLocales();
 			} elseif (($press = self::$request->getPress())) {
 				$supportedLocales = $press->getSupportedLocaleNames();
@@ -43,7 +43,7 @@ class AppLocale extends PKPLocale {
 	static function getSupportedFormLocales() {
 		static $supportedFormLocales;
 		if (!isset($supportedFormLocales)) {
-			if (defined('SESSION_DISABLE_INIT') || !Config::getVar('general', 'installed')) {
+			if (defined('SESSION_DISABLE_INIT')) {
 				$supportedFormLocales = AppLocale::getAllLocales();
 			} elseif (($press = self::$request->getPress())) {
 				$supportedFormLocales = $press->getSupportedFormLocaleNames();
@@ -63,7 +63,7 @@ class AppLocale extends PKPLocale {
 	static function getLocale() {
 		static $currentLocale;
 		if (!isset($currentLocale)) {
-			if (defined('SESSION_DISABLE_INIT') || !Config::getVar('general', 'installed')) {
+			if (defined('SESSION_DISABLE_INIT')) {
 				// If the locale is specified in the URL, allow
 				// it to override. (Necessary when locale is
 				// being set, as cookie will not yet be re-set)
@@ -145,7 +145,7 @@ class AppLocale extends PKPLocale {
 		static $locale;
 		if ($locale) return $locale;
 
-		if (defined('SESSION_DISABLE_INIT') || !Config::getVar('general', 'installed')) return $locale = LOCALE_DEFAULT;
+		if (defined('SESSION_DISABLE_INIT')) return $locale = LOCALE_DEFAULT;
 
 		$press = self::$request->getPress();
 
@@ -198,10 +198,10 @@ class AppLocale extends PKPLocale {
 	static function uninstallLocale($locale) {
 		parent::uninstallLocale($locale);
 
-		$genreDao = DAORegistry::getDAO('GenreDAO');
+		$genreDao = DAORegistry::getDAO('GenreDAO'); /* @var $genreDao GenreDAO */
 		$genreDao->deleteSettingsByLocale($locale);
 
-		$userGroupDao = DAORegistry::getDAO('UserGroupDAO');
+		$userGroupDao = DAORegistry::getDAO('UserGroupDAO'); /* @var $userGroupDao UserGroupDAO */
 		$userGroupDao->deleteSettingsByLocale($locale);
 	}
 
@@ -211,16 +211,19 @@ class AppLocale extends PKPLocale {
 	 * @return array
 	 */
 	static function makeComponentMap($locale) {
-		$componentMap = parent::makeComponentMap($locale);
 		$baseDir = "locale/$locale/";
-		$componentMap[LOCALE_COMPONENT_APP_COMMON] = $baseDir . 'locale.xml';
-		$componentMap[LOCALE_COMPONENT_APP_MANAGER] = $baseDir . 'manager.xml';
-		$componentMap[LOCALE_COMPONENT_APP_SUBMISSION] = $baseDir . 'submission.xml';
-		$componentMap[LOCALE_COMPONENT_APP_EDITOR] = $baseDir . 'editor.xml';
-		$componentMap[LOCALE_COMPONENT_APP_ADMIN] = $baseDir . 'admin.xml';
-		$componentMap[LOCALE_COMPONENT_APP_DEFAULT] = $baseDir . 'default.xml';
-		return $componentMap;
+		return parent::makeComponentMap($locale) + array(
+			LOCALE_COMPONENT_APP_COMMON => $baseDir . 'locale.po',
+			LOCALE_COMPONENT_APP_AUTHOR => $baseDir . 'author.po',
+			LOCALE_COMPONENT_APP_MANAGER => $baseDir . 'manager.po',
+			LOCALE_COMPONENT_APP_SUBMISSION => $baseDir . 'submission.po',
+			LOCALE_COMPONENT_APP_EDITOR => $baseDir . 'editor.po',
+			LOCALE_COMPONENT_APP_ADMIN => $baseDir . 'admin.po',
+			LOCALE_COMPONENT_APP_DEFAULT => $baseDir . 'default.po',
+			LOCALE_COMPONENT_APP_API => $baseDir . 'api.po',
+			LOCALE_COMPONENT_APP_EMAIL => $baseDir . 'emails.po',
+		);
 	}
 }
 
-?>
+

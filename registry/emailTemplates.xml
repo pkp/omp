@@ -3,51 +3,51 @@
 <!--
   * registry/emailTemplates.xml
   *
-  * Copyright (c) 2014-2016 Simon Fraser University Library
-  * Copyright (c) 2003-2016 John Willinsky
-  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
+  * Copyright (c) 2014-2020 Simon Fraser University
+  * Copyright (c) 2003-2020 John Willinsky
+  * Distributed under the GNU GPL v3. For full terms see the file docs/COPYING.
   *
   * Email templates XML file.
   -->
 <emails>
-	<email key="NOTIFICATION" can_edit="1" can_disable="0"/>
-	<email key="NOTIFICATION_MAILLIST" can_edit="1" can_disable="0"/>
-	<email key="NOTIFICATION_MAILLIST_WELCOME" can_edit="1" can_disable="0"/>
-	<email key="NOTIFICATION_CENTER_DEFAULT" can_edit="1" can_disable="0"/>
-	<email key="PASSWORD_RESET_CONFIRM" can_edit="1" can_disable="0"/>
-	<email key="PASSWORD_RESET" can_edit="1" can_disable="0"/>
-	<email key="USER_REGISTER" can_edit="1" can_disable="0"/>
-	<email key="USER_VALIDATE" can_edit="1" can_disable="0"/>
-	<email key="REVIEWER_REGISTER" can_edit="1" can_disable="0"/>
-	<email key="PUBLISH_NOTIFY" can_edit="1" can_disable="0"/>
-	<email key="SUBMISSION_ACK" can_edit="1" can_disable="1" to_role_id="65536"/>
-	<email key="SUBMISSION_ACK_NOT_USER" can_edit="1" can_disable="1" to_role_id="65536"/>
-	<email key="SUBMISSION_UNSUITABLE" can_edit="1" can_disable="1" to_role_id="65536" from_role_id="513"/>
-	<email key="EDITOR_ASSIGN" can_edit="1" can_disable="1" from_role_id="17" to_role_id="513"/>
-	<email key="REVIEW_CANCEL" can_edit="1" can_disable="1" from_role_id="513" to_role_id="4096"/>
-	<email key="AUDITOR_REQUEST" can_edit="1" can_disable="1" from_role_id="513" to_role_id="4097"/>
-	<email key="REVIEW_REQUEST" can_edit="1" can_disable="1" from_role_id="513" to_role_id="4096"/>
-	<email key="REVIEW_REQUEST_ONECLICK" can_edit="1" can_disable="1" from_role_id="513" to_role_id="4096"/>
-	<email key="REVIEW_REQUEST_REMIND_AUTO" can_edit="1" can_disable="0" to_role_id="4096"/>
-	<email key="REVIEW_REQUEST_REMIND_AUTO_ONECLICK" can_edit="1" can_disable="0" to_role_id="4096"/>
-	<email key="REVIEW_REQUEST_ATTACHED" can_edit="1" can_disable="0" from_role_id="513" to_role_id="4096"/>
-	<email key="REVIEW_CONFIRM" can_edit="1" can_disable="1" from_role_id="4096" to_role_id="513"/>
-	<email key="REVIEW_DECLINE" can_edit="1" can_disable="1" from_role_id="4096" to_role_id="513"/>
-	<email key="REVIEW_ACK" can_edit="1" can_disable="1" from_role_id="513" to_role_id="4096"/>
-	<email key="REVIEW_REMIND" can_edit="1" can_disable="0" from_role_id="513" to_role_id="4096"/>
-	<email key="REVIEW_REMIND_AUTO" can_edit="1" can_disable="0" to_role_id="4096"/>
-	<email key="REVIEW_REMIND_ONECLICK" can_edit="1" can_disable="0" from_role_id="513" to_role_id="4096"/>
-	<email key="REVIEW_REMIND_AUTO_ONECLICK" can_edit="1" can_disable="0" to_role_id="4096"/>
-	<email key="EDITOR_DECISION_ACCEPT" can_edit="1" can_disable="0" from_role_id="513" to_role_id="65536"/>
-	<email key="EDITOR_DECISION_SEND_TO_EXTERNAL" can_edit="1" can_disable="0" from_role_id="513" to_role_id="65536"/>
-	<email key="EDITOR_DECISION_SEND_TO_PRODUCTION" can_edit="1" can_disable="0" from_role_id="513" to_role_id="65536"/>
-	<email key="EDITOR_DECISION_REVISIONS" can_edit="1" can_disable="0" from_role_id="513" to_role_id="65536"/>
-	<email key="EDITOR_DECISION_RESUBMIT" can_edit="1" can_disable="0" from_role_id="513" to_role_id="65536"/>
-	<email key="EDITOR_DECISION_DECLINE" can_edit="1" can_disable="0" from_role_id="513" to_role_id="65536"/>
-	<email key="COPYEDIT_REQUEST" can_edit="1" can_disable="1" from_role_id="513" to_role_id="4097"/>
-	<email key="LAYOUT_REQUEST" can_edit="1" can_disable="1" from_role_id="513" to_role_id="4097"/>
-	<email key="LAYOUT_COMPLETE" can_edit="1" can_disable="1" from_role_id="4097" to_role_id="513"/>
-	<email key="INDEX_REQUEST" can_edit="1" can_disable="1" from_role_id="513" to_role_id="4097"/>
-	<email key="INDEX_COMPLETE" can_edit="1" can_disable="1" from_role_id="4097" to_role_id="513"/>
-	<email key="EMAIL_LINK" can_edit="1" can_disable="0" from_role_id="1048576"/>
+	<email key="NOTIFICATION" can_edit="1" can_disable="0" subject="emails.notification.subject" description="emails.notification.description" body="emails.notification.body"/>
+	<email key="NOTIFICATION_CENTER_DEFAULT" can_edit="1" can_disable="0" subject="emails.notificationCenterDefault.subject" description="emails.notificationCenterDefault.description" body="emails.notificationCenterDefault.body"/>
+	<email key="PASSWORD_RESET_CONFIRM" can_edit="1" can_disable="0" subject="emails.passwordResetConfirm.subject" description="emails.passwordResetConfirm.description" body="emails.passwordResetConfirm.body"/>
+	<email key="PASSWORD_RESET" can_edit="1" can_disable="0" subject="emails.passwordReset.subject" description="emails.passwordReset.description" body="emails.passwordReset.body"/>
+	<email key="USER_REGISTER" can_edit="1" can_disable="0" subject="emails.userRegister.subject" description="emails.userRegister.description" body="emails.userRegister.body"/>
+	<email key="USER_VALIDATE" can_edit="1" can_disable="0" subject="emails.userValidate.subject" description="emails.userValidate.description" body="emails.userValidate.body"/>
+	<email key="REVIEWER_REGISTER" can_edit="1" can_disable="0" subject="emails.reviewerRegister.subject" description="emails.reviewerRegister.description" body="emails.reviewerRegister.body"/>
+	<email key="PUBLISH_NOTIFY" can_edit="1" can_disable="0" subject="emails.publishNotify.subject" description="emails.publishNotify.description" body="emails.publishNotify.body"/>
+	<email key="SUBMISSION_ACK" can_edit="1" can_disable="1" to_role_id="65536" subject="emails.submissionAck.subject" description="emails.submissionAck.description" body="emails.submissionAck.body"/>
+	<email key="SUBMISSION_ACK_NOT_USER" can_edit="1" can_disable="1" to_role_id="65536" subject="emails.submissionAckNotUser.subject" description="emails.submissionAckNotUser.description" body="emails.submissionAckNotUser.body"/>
+	<email key="EDITOR_ASSIGN" can_edit="1" can_disable="1" from_role_id="16" to_role_id="16" subject="emails.editorAssign.subject" description="emails.editorAssign.description" body="emails.editorAssign.body"/>
+	<email key="REVIEW_CANCEL" can_edit="1" can_disable="1" from_role_id="16" to_role_id="4096" subject="emails.reviewCancel.subject" description="emails.reviewCancel.description" body="emails.reviewCancel.body"/>
+	<email key="REVIEW_REINSTATE" can_edit="1" can_disable="1" from_role_id="16" to_role_id="4096" subject="emails.reviewReinstate.subject" description="emails.reviewReinstate.description" body="emails.reviewReinstate.body"/>
+	<email key="REVIEW_REQUEST" can_edit="1" can_disable="1" from_role_id="16" to_role_id="4096" subject="emails.reviewRequest.subject" description="emails.reviewRequest.description" body="emails.reviewRequest.body"/>
+	<email key="REVIEW_REQUEST_ONECLICK" can_edit="1" can_disable="1" from_role_id="16" to_role_id="4096" subject="emails.reviewRequestOneclick.subject" description="emails.reviewRequestOneclick.description" body="emails.reviewRequestOneclick.body"/>
+	<email key="REVIEW_REQUEST_REMIND_AUTO" can_edit="1" can_disable="0" to_role_id="4096" subject="emails.reviewRequestRemindAuto.subject" description="emails.reviewRequestRemindAuto.description" body="emails.reviewRequestRemindAuto.body"/>
+	<email key="REVIEW_REQUEST_REMIND_AUTO_ONECLICK" can_edit="1" can_disable="0" to_role_id="4096" subject="emails.reviewRequestRemindAutoOneclick.subject" description="emails.reviewRequestRemindAutoOneclick.description" body="emails.reviewRequestRemindAutoOneclick.body"/>
+	<email key="REVIEW_REQUEST_ATTACHED" can_edit="1" can_disable="0" from_role_id="16" to_role_id="4096" subject="emails.reviewRequestAttached.subject" description="emails.reviewRequestAttached.description" body="emails.reviewRequestAttached.body"/>
+	<email key="REVIEW_CONFIRM" can_edit="1" can_disable="1" from_role_id="4096" to_role_id="16" subject="emails.reviewConfirm.subject" description="emails.reviewConfirm.description" body="emails.reviewConfirm.body"/>
+	<email key="REVIEW_DECLINE" can_edit="1" can_disable="1" from_role_id="4096" to_role_id="16" subject="emails.reviewDecline.subject" description="emails.reviewDecline.description" body="emails.reviewDecline.body"/>
+	<email key="REVIEW_ACK" can_edit="1" can_disable="1" from_role_id="16" to_role_id="4096" subject="emails.reviewAck.subject" description="emails.reviewAck.description" body="emails.reviewAck.body"/>
+	<email key="REVIEW_REMIND" can_edit="1" can_disable="0" from_role_id="16" to_role_id="4096" subject="emails.reviewRemind.subject" description="emails.reviewRemind.description" body="emails.reviewRemind.body"/>
+	<email key="REVIEW_REMIND_AUTO" can_edit="1" can_disable="0" to_role_id="4096" subject="emails.reviewRemindAuto.subject" description="emails.reviewRemindAuto.description" body="emails.reviewRemindAuto.body"/>
+	<email key="REVIEW_REMIND_ONECLICK" can_edit="1" can_disable="0" from_role_id="16" to_role_id="4096" subject="emails.reviewRemindOneclick.subject" description="emails.reviewRemindOneclick.description" body="emails.reviewRemindOneclick.body"/>
+	<email key="REVIEW_REMIND_AUTO_ONECLICK" can_edit="1" can_disable="0" to_role_id="4096" subject="emails.reviewRemindAutoOneclick.subject" description="emails.reviewRemindAutoOneclick.description" body="emails.reviewRemindAutoOneclick.body"/>
+	<email key="EDITOR_DECISION_ACCEPT" can_edit="1" can_disable="0" from_role_id="16" to_role_id="65536" subject="emails.editorDecisionAccept.subject" description="emails.editorDecisionAccept.description" body="emails.editorDecisionAccept.body"/>
+	<email key="EDITOR_DECISION_SEND_TO_EXTERNAL" can_edit="1" can_disable="0" from_role_id="16" to_role_id="65536" subject="emails.editorDecisionSendToExternal.subject" description="emails.editorDecisionSendToExternal.description" body="emails.editorDecisionSendToExternal.body"/>
+	<email key="EDITOR_DECISION_SEND_TO_PRODUCTION" can_edit="1" can_disable="0" from_role_id="16" to_role_id="65536" subject="emails.editorDecisionSendToProduction.subject" description="emails.editorDecisionSendToProduction.description" body="emails.editorDecisionSendToProduction.body"/>
+	<email key="EDITOR_DECISION_REVISIONS" can_edit="1" can_disable="0" from_role_id="16" to_role_id="65536" subject="emails.editorDecisionRevisions.subject" description="emails.editorDecisionRevisions.description" body="emails.editorDecisionRevisions.body"/>
+	<email key="EDITOR_DECISION_RESUBMIT" can_edit="1" can_disable="0" from_role_id="16" to_role_id="65536" subject="emails.editorDecisionResubmit.subject" description="emails.editorDecisionResubmit.description" body="emails.editorDecisionResubmit.body"/>
+	<email key="EDITOR_DECISION_DECLINE" can_edit="1" can_disable="0" from_role_id="16" to_role_id="65536" subject="emails.editorDecisionDecline.subject" description="emails.editorDecisionDecline.description" body="emails.editorDecisionDecline.body"/>
+	<email key="EDITOR_DECISION_INITIAL_DECLINE" can_edit="1" can_disable="0" from_role_id="16" to_role_id="65536" subject="emails.editorDecisionInitialDecline.subject" description="emails.editorDecisionInitialDecline.description" body="emails.editorDecisionInitialDecline.body"/>
+	<email key="EDITOR_RECOMMENDATION" can_edit="1" can_disable="0" from_role_id="16" to_role_id="16" subject="emails.editorRecommendation.subject" description="emails.editorRecommendation.description" body="emails.editorRecommendation.body"/>
+	<email key="COPYEDIT_REQUEST" can_edit="1" can_disable="1" from_role_id="16" to_role_id="4097" subject="emails.copyeditRequest.subject" description="emails.copyeditRequest.description" body="emails.copyeditRequest.body"/>
+	<email key="LAYOUT_REQUEST" can_edit="1" can_disable="1" from_role_id="16" to_role_id="4097" subject="emails.layoutRequest.subject" description="emails.layoutRequest.description" body="emails.layoutRequest.body"/>
+	<email key="LAYOUT_COMPLETE" can_edit="1" can_disable="1" from_role_id="4097" to_role_id="16" subject="emails.layoutComplete.subject" description="emails.layoutComplete.description" body="emails.layoutComplete.body"/>
+	<email key="INDEX_REQUEST" can_edit="1" can_disable="1" from_role_id="16" to_role_id="4097" subject="emails.indexRequest.subject" description="emails.indexRequest.description" body="emails.indexRequest.body"/>
+	<email key="INDEX_COMPLETE" can_edit="1" can_disable="1" from_role_id="4097" to_role_id="16" subject="emails.indexComplete.subject" description="emails.indexComplete.description" body="emails.indexComplete.body"/>
+	<email key="EMAIL_LINK" can_edit="1" can_disable="0" from_role_id="1048576" subject="emails.emailLink.subject" description="emails.emailLink.description" body="emails.emailLink.body"/>
+	<email key="STATISTICS_REPORT_NOTIFICATION" can_edit="1" can_disable="0" from_role_id="16" to_role_id="17" subject="emails.statisticsReportNotification.subject" description="emails.statisticsReportNotification.description" body="emails.statisticsReportNotification.body"/>
 </emails>

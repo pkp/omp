@@ -3,9 +3,9 @@
 /**
  * @file controllers/grid/catalogEntry/RepresentativesGridHandler.inc.php
  *
- * Copyright (c) 2014-2016 Simon Fraser University Library
- * Copyright (c) 2000-2016 John Willinsky
- * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
+ * Copyright (c) 2014-2020 Simon Fraser University
+ * Copyright (c) 2000-2020 John Willinsky
+ * Distributed under the GNU GPL v3. For full terms see the file docs/COPYING.
  *
  * @class RepresentativesGridHandler
  * @ingroup controllers_grid_catalogEntry
@@ -32,10 +32,10 @@ class RepresentativesGridHandler extends CategoryGridHandler {
 	/**
 	 * Constructor
 	 */
-	function RepresentativesGridHandler() {
-		parent::CategoryGridHandler();
+	function __construct() {
+		parent::__construct();
 		$this->addRoleAssignment(
-				array(ROLE_ID_MANAGER),
+				array(ROLE_ID_MANAGER, ROLE_ID_SUB_EDITOR, ROLE_ID_ASSISTANT),
 				array('fetchGrid', 'fetchCategory', 'fetchRow', 'addRepresentative', 'editRepresentative',
 				'updateRepresentative', 'deleteRepresentative'));
 	}
@@ -77,11 +77,10 @@ class RepresentativesGridHandler extends CategoryGridHandler {
 	}
 
 	/*
-	 * Configure the grid
-	 * @param $request PKPRequest
+	 * @copydoc CategoryGridHandler::initialize
 	 */
-	function initialize($request) {
-		parent::initialize($request);
+	function initialize($request, $args = null) {
+		parent::initialize($request, $args);
 
 		// Retrieve the authorized monograph.
 		$this->setMonograph($this->getAuthorizedContextObject(ASSOC_TYPE_MONOGRAPH));
@@ -89,7 +88,7 @@ class RepresentativesGridHandler extends CategoryGridHandler {
 		$representativeId = (int) $request->getUserVar('representativeId'); // set if editing or deleting a representative entry
 
 		if ($representativeId != '') {
-			$representativeDao = DAORegistry::getDAO('RepresentativeDAO');
+			$representativeDao = DAORegistry::getDAO('RepresentativeDAO'); /* @var $representativeDao RepresentativeDAO */
 			$representative = $representativeDao->getById($representativeId, $this->getMonograph()->getId());
 			if (!isset($representative)) {
 				fatalError('Representative referenced outside of authorized monograph context!');
@@ -169,8 +168,8 @@ class RepresentativesGridHandler extends CategoryGridHandler {
 	/**
 	 * @see CategoryGridHandler::loadCategoryData()
 	 */
-	function loadCategoryData($request, $category, $filter) {
-		$representativeDao = DAORegistry::getDAO('RepresentativeDAO');
+	function loadCategoryData($request, &$category, $filter = null) {
+		$representativeDao = DAORegistry::getDAO('RepresentativeDAO'); /* @var $representativeDao RepresentativeDAO */
 		if ($category['isSupplier']) {
 			$representatives = $representativeDao->getSuppliersByMonographId($this->getMonograph()->getId());
 		} else {
@@ -230,7 +229,7 @@ class RepresentativesGridHandler extends CategoryGridHandler {
 		$representativeId = (int) $request->getUserVar('representativeId');
 		$monograph = $this->getMonograph();
 
-		$representativeDao = DAORegistry::getDAO('RepresentativeDAO');
+		$representativeDao = DAORegistry::getDAO('RepresentativeDAO'); /* @var $representativeDao RepresentativeDAO */
 		$representative = $representativeDao->getById($representativeId, $monograph->getId());
 
 		// Form handling
@@ -252,7 +251,7 @@ class RepresentativesGridHandler extends CategoryGridHandler {
 		$representativeId = $request->getUserVar('representativeId');
 		$monograph = $this->getMonograph();
 
-		$representativeDao = DAORegistry::getDAO('RepresentativeDAO');
+		$representativeDao = DAORegistry::getDAO('RepresentativeDAO'); /* @var $representativeDao RepresentativeDAO */
 		$representative = $representativeDao->getById($representativeId, $monograph->getId());
 
 		// Form handling
@@ -299,26 +298,43 @@ class RepresentativesGridHandler extends CategoryGridHandler {
 	 * @return JSONMessage JSON object
 	 */
 	function deleteRepresentative($args, $request) {
+		\AppLocale::requireComponents(LOCALE_COMPONENT_PKP_MANAGER, LOCALE_COMPONENT_APP_MANAGER);
 
 		// Identify the representative entry to be deleted
 		$representativeId = $request->getUserVar('representativeId');
 
-		$representativeDao = DAORegistry::getDAO('RepresentativeDAO');
+		$representativeDao = DAORegistry::getDAO('RepresentativeDAO'); /* @var $representativeDao RepresentativeDAO */
 		$representative = $representativeDao->getById($representativeId, $this->getMonograph()->getId());
-		if ($representative != null) { // authorized
 
-			$result = $representativeDao->deleteObject($representative);
+		if (!$representative) {
+			return new JSONMessage(false, __('api.404.resourceNotFound'));
+		}
 
-			if ($result) {
-				$currentUser = $request->getUser();
-				$notificationMgr = new NotificationManager();
-				$notificationMgr->createTrivialNotification($currentUser->getId(), NOTIFICATION_TYPE_SUCCESS, array('contents' => __('notification.removedRepresentative')));
-				return DAO::getDataChangedEvent($representative->getId(), (int) $representative->getIsSupplier());
-			} else {
-				return new JSONMessage(false, __('manager.setup.errorDeletingItem'));
+		// Don't allow a representative to be deleted if they are associated
+		// with a publication format's market metadata
+		$submission = $this->getAuthorizedContextObject(ASSOC_TYPE_SUBMISSION);
+		foreach ($submission->getData('publications') as $publication) {
+			foreach ($publication->getData('publicationFormats') as $publicationFormat) {
+				$markets = DAORegistry::getDAO('MarketDAO')->getByPublicationFormatId($publicationFormat->getId())->toArray();
+				foreach ($markets as $market) {
+					if (in_array($representative->getId(), [$market->getAgentId(), $market->getSupplierId()])) {
+						return new JSONMessage(false, __('manager.representative.inUse'));
+					}
+				}
 			}
+		}
+
+		$result = $representativeDao->deleteObject($representative);
+
+		if ($result) {
+			$currentUser = $request->getUser();
+			$notificationMgr = new NotificationManager();
+			$notificationMgr->createTrivialNotification($currentUser->getId(), NOTIFICATION_TYPE_SUCCESS, array('contents' => __('notification.removedRepresentative')));
+			return DAO::getDataChangedEvent($representative->getId(), (int) $representative->getIsSupplier());
+		} else {
+			return new JSONMessage(false, __('manager.setup.errorDeletingItem'));
 		}
 	}
 }
 
-?>
+

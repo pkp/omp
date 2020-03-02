@@ -3,9 +3,9 @@
 /**
  * @file pages/information/InformationHandler.inc.php
  *
- * Copyright (c) 2014-2016 Simon Fraser University Library
- * Copyright (c) 2003-2016 John Willinsky
- * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
+ * Copyright (c) 2014-2020 Simon Fraser University
+ * Copyright (c) 2003-2020 John Willinsky
+ * Distributed under the GNU GPL v3. For full terms see the file docs/COPYING.
  *
  * @class InformationHandler
  * @ingroup pages_information
@@ -19,8 +19,8 @@ class InformationHandler extends Handler {
 	/**
 	 * Constructor
 	 */
-	function InformationHandler() {
-		parent::Handler();
+	function __construct() {
+		parent::__construct();
 	}
 
 	/**
@@ -29,7 +29,7 @@ class InformationHandler extends Handler {
 	 * @param $request PKPRequest
 	 */
 	function index($args, $request) {
-		$this->validate();
+		$this->validate(null, $request);
 		$press = $request->getPress();
 		if ($press == null) $request->redirect('index');
 
@@ -58,7 +58,7 @@ class InformationHandler extends Handler {
 				$pageTitle = $pageCrumbTitle = 'navigation.competingInterestPolicy';
 				break;
 			case 'sampleCopyrightWording':
-				$content = __('manager.setup.authorCopyrightNotice.sample');
+				$content = __('manager.setup.copyrightNotice.sample');
 				$pageTitle = $pageCrumbTitle = 'manager.setup.copyrightNotice';
 				break;
 			default:
@@ -109,4 +109,4 @@ class InformationHandler extends Handler {
 	}
 }
 
-?>
+

@@ -1,9 +1,9 @@
 {**
  * templates/frontend/components/download_link.tpl
  *
- * Copyright (c) 2014-2016 Simon Fraser University Library
- * Copyright (c) 2003-2016 John Willinsky
- * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
+ * Copyright (c) 2014-2020 Simon Fraser University
+ * Copyright (c) 2003-2020 John Willinsky
+ * Distributed under the GNU GPL v3. For full terms see the file docs/COPYING.
  *
  * @brief Display a download link for files
  *
@@ -17,10 +17,10 @@
 {assign var=publicationFormatId value=$publicationFormat->getBestId()}
 
 {* Generate the download URL *}
-{if $downloadFile->getDocumentType()==$smarty.const.DOCUMENT_TYPE_PDF}
-	{url|assign:downloadUrl op="view" path=$monograph->getBestId()|to_array:$publicationFormatId:$downloadFile->getBestId()}
+{if $publication->getId() === $monograph->getCurrentPublication()->getId()}
+	{capture assign=downloadUrl}{url op="view" path=$monograph->getBestId()|to_array:$publicationFormatId:$downloadFile->getBestId()}{/capture}
 {else}
-	{url|assign:downloadUrl op="download" path=$monograph->getBestId()|to_array:$publicationFormatId:$downloadFile->getBestId()}
+	{capture assign=downloadUrl}{url op="view" path=$monograph->getBestId()|to_array:"version":$publication->getId():$publicationFormatId:$downloadFile->getBestId()}{/capture}
 {/if}
 
 {* Display the download link *}
@@ -28,8 +28,8 @@
 	{if $useFilename}
 		{$downloadFile->getLocalizedName()}
 	{else}
-		{if $downloadFile->getDirectSalesPrice()}
-			{translate key="payment.directSales.purchase" format=$publicationFormat->getLocalizedName() amount=$currency->publicationFormat($downloadFile->getDirectSalesPrice()) currency=$currency->getCodeAlpha()}
+		{if $downloadFile->getDirectSalesPrice() && $currency}{$downloadFile->getDirectSalesPrice()}
+			{translate key="payment.directSales.purchase" format=$publicationFormat->getLocalizedName() amount=$downloadFile->getDirectSalesPrice() currency=$currency->getLetterCode()}
 		{else}
 			{$publicationFormat->getLocalizedName()}
 		{/if}

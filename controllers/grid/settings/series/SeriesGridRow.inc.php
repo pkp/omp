@@ -3,9 +3,9 @@
 /**
  * @file controllers/grid/settings/series/SeriesGridRow.inc.php
  *
- * Copyright (c) 2014-2016 Simon Fraser University Library
- * Copyright (c) 2003-2016 John Willinsky
- * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
+ * Copyright (c) 2014-2020 Simon Fraser University
+ * Copyright (c) 2003-2020 John Willinsky
+ * Distributed under the GNU GPL v3. For full terms see the file docs/COPYING.
  *
  * @class SeriesGridRow
  * @ingroup controllers_grid_settings_series
@@ -19,8 +19,8 @@ class SeriesGridRow extends GridRow {
 	/**
 	 * Constructor
 	 */
-	function SeriesGridRow() {
-		parent::GridRow();
+	function __construct() {
+		parent::__construct();
 	}
 
 	//
@@ -84,4 +84,4 @@ class SeriesGridRow extends GridRow {
 	}
 }
 
-?>
+

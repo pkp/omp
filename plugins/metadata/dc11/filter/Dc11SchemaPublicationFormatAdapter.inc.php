@@ -3,9 +3,9 @@
 /**
  * @file plugins/metadata/dc11/filter/Dc11SchemaPublicationFormatAdapter.inc.php
  *
- * Copyright (c) 2014-2016 Simon Fraser University Library
- * Copyright (c) 2000-2016 John Willinsky
- * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
+ * Copyright (c) 2014-2020 Simon Fraser University
+ * Copyright (c) 2000-2020 John Willinsky
+ * Distributed under the GNU GPL v3. For full terms see the file docs/COPYING.
  *
  * @class Dc11SchemaPublicationFormatAdapter
  * @ingroup plugins_metadata_dc11_filter
@@ -24,8 +24,8 @@ class Dc11SchemaPublicationFormatAdapter extends MetadataDataObjectAdapter {
 	 * Constructor
 	 * @param $filterGroup FilterGroup
 	 */
-	function Dc11SchemaPublicationFormatAdapter(&$filterGroup) {
-		parent::MetadataDataObjectAdapter($filterGroup);
+	function __construct(&$filterGroup) {
+		parent::__construct($filterGroup);
 	}
 
 
@@ -47,9 +47,8 @@ class Dc11SchemaPublicationFormatAdapter extends MetadataDataObjectAdapter {
 	 * @see MetadataDataObjectAdapter::injectMetadataIntoDataObject()
 	 * @param $dc11Description MetadataDescription
 	 * @param $publicationFormat PublicationFormat
-	 * @param $authorClassName string the application specific author class name
 	 */
-	function &injectMetadataIntoDataObject(&$dc11Description, &$publicationFormat, $authorClassName) {
+	function &injectMetadataIntoDataObject(&$dc11Description, &$publicationFormat) {
 		// Not implemented
 		assert(false);
 	}
@@ -59,7 +58,7 @@ class Dc11SchemaPublicationFormatAdapter extends MetadataDataObjectAdapter {
 	 * @param $publicationFormat PublicationFormat
 	 * @return MetadataDescription
 	 */
-	function extractMetadataFromDataObject($publicationFormat) {
+	function extractMetadataFromDataObject(&$publicationFormat) {
 		assert(is_a($publicationFormat, 'PublicationFormat'));
 
 		AppLocale::requireComponents(LOCALE_COMPONENT_APP_COMMON);
@@ -71,8 +70,8 @@ class Dc11SchemaPublicationFormatAdapter extends MetadataDataObjectAdapter {
 		// contains cached entities and avoids extra database access if this
 		// adapter is called from an OAI context.
 		$oaiDao = DAORegistry::getDAO('OAIDAO'); /* @var $oaiDao OAIDAO */
-		$publishedMonographDao = DAORegistry::getDAO('PublishedMonographDAO');
-		$monograph = $publishedMonographDao->getById($publicationFormat->getMonographId());
+		$publication = Services::get('publication')->get($publicationFormat->getData('publicationId'));
+		$monograph = Services::get('submission')->get($publication->getData('submissionId'));
 		$press = $oaiDao->getPress($monograph->getPressId());
 		$series = $oaiDao->getSeries($monograph->getSeriesId()); /* @var $series Series */
 		$dc11Description = $this->instantiateMetadataDescription();
@@ -87,7 +86,7 @@ class Dc11SchemaPublicationFormatAdapter extends MetadataDataObjectAdapter {
 		// Creator
 		$authors = $monograph->getAuthors();
 		foreach($authors as $author) {
-			$authorName = $author->getFullName(true);
+			$authorName = $author->getFullName(false, true);
 			$affiliation = $author->getLocalizedAffiliation();
 			if (!empty($affiliation)) {
 				$authorName .= '; ' . $affiliation;
@@ -97,9 +96,12 @@ class Dc11SchemaPublicationFormatAdapter extends MetadataDataObjectAdapter {
 		}
 
 		// Subject
+		$submissionKeywordDao = DAORegistry::getDAO('SubmissionKeywordDAO'); /* @var $submissionKeywordDao SubmissionKeywordDAO */
+		$submissionSubjectDao = DAORegistry::getDAO('SubmissionSubjectDAO'); /* @var $submissionSubjectDao SubmissionSubjectDAO */
+		$supportedLocales = array_keys(AppLocale::getSupportedFormLocales());
 		$subjects = array_merge_recursive(
-			(array) $monograph->getDiscipline(null),
-			(array) $monograph->getSubject(null)
+			(array) $submissionKeywordDao->getKeywords($monograph->getId(), $supportedLocales),
+			(array) $submissionSubjectDao->getSubjects($monograph->getId(), $supportedLocales)
 		);
 		$this->_addLocalizedElements($dc11Description, 'dc:subject', $subjects);
 
@@ -127,7 +129,7 @@ class Dc11SchemaPublicationFormatAdapter extends MetadataDataObjectAdapter {
 		// Date
 		// FIXME: should we use the publication dates of the publication format? If yes,
 		// in which role preference order?
-		if (is_a($monograph, 'PublishedMonograph')) {
+		if (is_a($monograph, 'Submission')) {
 			if ($monograph->getDatePublished()) $dc11Description->addStatement('dc:date', date('Y-m-d', strtotime($monograph->getDatePublished())));
 		}
 
@@ -139,7 +141,7 @@ class Dc11SchemaPublicationFormatAdapter extends MetadataDataObjectAdapter {
 		$this->_addLocalizedElements($dc11Description, 'dc:type', $types);
 
 		// Format
-		$onixCodelistItemDao = DAORegistry::getDAO('ONIXCodelistItemDAO');
+		$onixCodelistItemDao = DAORegistry::getDAO('ONIXCodelistItemDAO'); /* @var $onixCodelistItemDao ONIXCodelistItemDAO */
 		$entryKeys = $onixCodelistItemDao->getCodes('List7'); // List7 is for object formats
 		if ($publicationFormat->getEntryKey()) {
 			$formatName = $entryKeys[$publicationFormat->getEntryKey()];
@@ -147,8 +149,18 @@ class Dc11SchemaPublicationFormatAdapter extends MetadataDataObjectAdapter {
 		}
 
 		// Identifier: URL
-		if (is_a($monograph, 'PublishedMonograph')) {
-			$dc11Description->addStatement('dc:identifier', Request::url($press->getPath(), 'catalog', 'book', array($monograph->getId())));
+		if (is_a($monograph, 'Submission')) {
+			$request = Application::get()->getRequest();
+			$dc11Description->addStatement('dc:identifier', $request->url($press->getPath(), 'catalog', 'book', array($monograph->getId())));
+		}
+
+		// Public idntifiers (e.g. DOI, URN)
+		$pubIdPlugins = PluginRegistry::loadCategory('pubIds', true);
+		foreach ((array) $pubIdPlugins as $plugin) {
+			$pubId = $plugin->getPubId($publicationFormat);
+			if ($pubId) {
+				$dc11Description->addStatement('dc:identifier', $pubId);
+			}
 		}
 
 		// Identifier: others
@@ -215,4 +227,4 @@ class Dc11SchemaPublicationFormatAdapter extends MetadataDataObjectAdapter {
 		}
 	}
 }
-?>
+

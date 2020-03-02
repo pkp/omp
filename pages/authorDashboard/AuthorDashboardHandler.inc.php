@@ -3,9 +3,9 @@
 /**
  * @file pages/authorDashboard/AuthorDashboardHandler.inc.php
  *
- * Copyright (c) 2014-2016 Simon Fraser University Library
- * Copyright (c) 2003-2016 John Willinsky
- * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
+ * Copyright (c) 2014-2020 Simon Fraser University
+ * Copyright (c) 2003-2020 John Willinsky
+ * Distributed under the GNU GPL v3. For full terms see the file docs/COPYING.
  *
  * @class AuthorDashboardHandler
  * @ingroup pages_authorDashboard
@@ -21,8 +21,8 @@ class AuthorDashboardHandler extends PKPAuthorDashboardHandler {
 	/**
 	 * Constructor
 	 */
-	function AuthorDashboardHandler() {
-		parent::PKPAuthorDashboardHandler();
+	function __construct() {
+		parent::__construct();
 	}
 
 
@@ -37,10 +37,38 @@ class AuthorDashboardHandler extends PKPAuthorDashboardHandler {
 	function submission($args, $request) {
 		$submission = $this->getAuthorizedContextObject(ASSOC_TYPE_SUBMISSION);
 		$templateMgr = TemplateManager::getManager($request);
-		$reviewRoundDao = DAORegistry::getDAO('ReviewRoundDAO');
+		$reviewRoundDao = DAORegistry::getDAO('ReviewRoundDAO'); /* @var $reviewRoundDao ReviewRoundDAO */
 		$internalReviewRounds = $reviewRoundDao->getBySubmissionId($submission->getId(), WORKFLOW_STAGE_ID_INTERNAL_REVIEW);
 		$templateMgr->assign('internalReviewRounds', $internalReviewRounds);
 		return parent::submission($args, $request);
+	}
+
+	/**
+	 * @copydoc PKPAuthorDashboardHandler::setupTemplate()
+	 */
+	function setupTemplate($request) {
+		parent::setupTemplate($request);
+
+		$submission = $this->getAuthorizedContextObject(ASSOC_TYPE_SUBMISSION);
+
+		$chaptersGridUrl = $request->getDispatcher()->url(
+			$request,
+			ROUTE_COMPONENT,
+			null,
+			'grid.users.chapter.ChapterGridHandler',
+			'fetchGrid',
+			null,
+			[
+				'submissionId' => $submission->getId(),
+				'publicationId' => '__publicationId__',
+			]
+		);
+
+		$templateMgr = TemplateManager::getManager($request);
+		$workflowData = $templateMgr->getTemplateVars('workflowData');
+		$workflowData['chaptersGridUrl'] = $chaptersGridUrl;
+
+		$templateMgr->assign('workflowData', $workflowData);
 	}
 
 
@@ -74,6 +102,24 @@ class AuthorDashboardHandler extends PKPAuthorDashboardHandler {
 		$notificationRequestOptions[NOTIFICATION_LEVEL_NORMAL][NOTIFICATION_TYPE_EDITOR_DECISION_INTERNAL_REVIEW] = $submissionAssocTypeAndIdArray;
 		return $notificationRequestOptions;
 	}
+
+	/**
+	 * @copydoc PKPWorkflowHandler::_getRepresentationsGridUrl()
+	 */
+	protected function _getRepresentationsGridUrl($request, $submission) {
+		return $request->getDispatcher()->url(
+			$request,
+			ROUTE_COMPONENT,
+			null,
+			'grid.catalogEntry.PublicationFormatGridHandler',
+			'fetchGrid',
+			null,
+			[
+				'submissionId' => $submission->getId(),
+				'publicationId' => '__publicationId__',
+			]
+		);
+	}
 }
 
-?>
+

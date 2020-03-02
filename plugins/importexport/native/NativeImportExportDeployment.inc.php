@@ -3,9 +3,9 @@
 /**
  * @file plugins/importexport/native/NativeImportExportDeployment.inc.php
  *
- * Copyright (c) 2014-2016 Simon Fraser University Library
- * Copyright (c) 2000-2016 John Willinsky
- * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
+ * Copyright (c) 2014-2020 Simon Fraser University
+ * Copyright (c) 2000-2020 John Willinsky
+ * Distributed under the GNU GPL v3. For full terms see the file docs/COPYING.
  *
  * @class NativeImportExportDeployment
  * @ingroup plugins_importexport_native
@@ -22,8 +22,8 @@ class NativeImportExportDeployment extends PKPNativeImportExportDeployment {
 	 * @param $context Context
 	 * @param $user User
 	 */
-	function NativeImportExportDeployment($context, $user) {
-		parent::PKPNativeImportExportDeployment($context, $user);
+	function __construct($context, $user) {
+		parent::__construct($context, $user);
 	}
 
 	//
@@ -61,4 +61,4 @@ class NativeImportExportDeployment extends PKPNativeImportExportDeployment {
 	}
 }
 
-?>
+

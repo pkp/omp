@@ -1,0 +1,165 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: \n"
+"Report-Msgid-Bugs-To: \n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"POT-Creation-Date: 2019-09-30T06:23:43-07:00\n"
+"PO-Revision-Date: 2019-09-30T06:23:43-07:00\n"
+"Language: \n"
+
+msgid "editor.submissionArchive"
+msgstr "Submission Archive"
+
+msgid "editor.monograph.cancelReview"
+msgstr "Cancel Request"
+
+msgid "editor.monograph.clearReview"
+msgstr "Clear Reviewer"
+
+msgid "editor.monograph.enterRecommendation"
+msgstr "Enter Recommendation"
+
+msgid "editor.monograph.enterReviewerRecommendation"
+msgstr "Enter Reviewer Recommendation"
+
+msgid "editor.monograph.recommendation"
+msgstr "Recommendation"
+
+msgid "editor.monograph.selectReviewerInstructions"
+msgstr "Select a reviewer above and press the 'Select Reviewer' button to continue."
+
+msgid "editor.monograph.replaceReviewer"
+msgstr "Replace Reviewer"
+
+msgid "editor.monograph.editorToEnter"
+msgstr "Editor to enter recommendation/comments for reviewer"
+
+msgid "editor.monograph.uploadReviewForReviewer"
+msgstr "Upload review"
+
+msgid "editor.monograph.peerReviewOptions"
+msgstr "Peer Review Options"
+
+msgid "editor.monograph.selectProofreadingFiles"
+msgstr "Proofreading Files"
+
+msgid "editor.monograph.internalReview"
+msgstr "Initiate Internal Review"
+
+msgid "editor.monograph.internalReviewDescription"
+msgstr "Select files below to send them to the internal review stage."
+
+msgid "editor.monograph.externalReview"
+msgstr "Initiate External Review"
+
+msgid "editor.monograph.final.selectFinalDraftFiles"
+msgstr "Select Final Draft Files"
+
+msgid "editor.monograph.final.currentFiles"
+msgstr "Current Final Draft Files"
+
+msgid "editor.monograph.copyediting.currentFiles"
+msgstr "Current Files"
+
+msgid "editor.monograph.copyediting.personalMessageToUser"
+msgstr "Message to user"
+
+msgid "editor.monograph.legend.submissionActions"
+msgstr "Submission Actions"
+
+msgid "editor.monograph.legend.submissionActionsDescription"
+msgstr "Overall submission actions and options."
+
+msgid "editor.monograph.legend.sectionActions"
+msgstr "Section Actions"
+
+msgid "editor.monograph.legend.sectionActionsDescription"
+msgstr "Options particular to a given section, for example uploading files or adding users."
+
+msgid "editor.monograph.legend.itemActions"
+msgstr "Item Actions"
+
+msgid "editor.monograph.legend.itemActionsDescription"
+msgstr "Actions and options particular to an individual file."
+
+msgid "editor.monograph.legend.catalogEntry"
+msgstr "View and manage the submission catalog entry, including metadata and publishing formats"
+
+msgid "editor.monograph.legend.bookInfo"
+msgstr "View and manage submission metadata, notes, notifications, and history"
+
+msgid "editor.monograph.legend.participants"
+msgstr "View and manage this submission's participants: authors, editors, designers, and more"
+
+msgid "editor.monograph.legend.add"
+msgstr "Upload a file to the section"
+
+msgid "editor.monograph.legend.add_user"
+msgstr "Add a user to the section"
+
+msgid "editor.monograph.legend.settings"
+msgstr "View and access item settings, such as information and delete options"
+
+msgid "editor.monograph.legend.more_info"
+msgstr "More Information: file notes, notification options, and history"
+
+msgid "editor.monograph.legend.notes_none"
+msgstr "File information: notes, notification options, and history (No notes added yet)"
+
+msgid "editor.monograph.legend.notes"
+msgstr "File information: notes, notification options, and history (Notes are available)"
+
+msgid "editor.monograph.legend.notes_new"
+msgstr "File information: notes, notification options, and history (New notes added since last visit)"
+
+msgid "editor.monograph.legend.edit"
+msgstr "Edit item"
+
+msgid "editor.monograph.legend.delete"
+msgstr "Delete item"
+
+msgid "editor.monograph.legend.in_progress"
+msgstr "Action in progress or not yet complete"
+
+msgid "editor.monograph.legend.complete"
+msgstr "Action complete"
+
+msgid "editor.monograph.legend.uploaded"
+msgstr "File uploaded by the role in the grid column title"
+
+msgid "editor.submission.introduction"
+msgstr "In Submission, the editor, after the consulting the files submitted, selects the appropriate action (which includes notifying the author): Send to Internal Review (entails selecting files for Internal Review); Send to External Review (entails selecting files for External Review); Accept Submission (entails selecting files for Editorial stage); or Decline Submission (archives submission)."
+
+msgid "editor.monograph.editorial.fairCopy"
+msgstr "Fair Copy"
+
+msgid "editor.monograph.proofs"
+msgstr "Proofs"
+
+msgid "editor.monograph.production.approvalAndPublishing"
+msgstr "Approval and Publishing"
+
+msgid "editor.monograph.production.approvalAndPublishingDescription"
+msgstr "Different publication formats, such as hardcover, softcover and digital, can be uploaded in the Publication Formats section below. You can use the publication formats grid below as a checklist for what still needs to be done to publish a publication format."
+
+msgid "editor.monograph.production.publicationFormatDescription"
+msgstr "Add publication formats (e.g., digital, paperback) for which the layout editor prepares page proofs for proofreading. The <em>Proofs</em> need to be checked as approved and the <em>Catalog</em> entry for the format needs to be checked as posted in the book’s catalog entry, before a format can be made <em>Available</em> (i.e., published)."
+
+msgid "editor.monograph.approvedProofs.edit"
+msgstr "Set Terms for Downloading"
+
+msgid "editor.monograph.approvedProofs.edit.linkTitle"
+msgstr "Set Terms"
+
+msgid "editor.monograph.proof.addNote"
+msgstr "Add response"
+
+msgid "editor.submission.proof.manageProofFilesDescription"
+msgstr "Any files that have already been uploaded to any submission stage can be added to the Proof Files listing by checking the Include checkbox below and clicking Search: all available files will be listed and can be chosen for inclusion."
+
+msgid "editor.publicIdentificationExistsForTheSameType"
+msgstr "The public identifier '{$publicIdentifier}' already exists for another object of the same type. Please choose unique identifiers for the objects of the same type within your press."

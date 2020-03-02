@@ -1,0 +1,83 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: \n"
+"Report-Msgid-Bugs-To: \n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"POT-Creation-Date: 2019-11-28T15:10:05-08:00\n"
+"PO-Revision-Date: 2019-11-28T15:10:05-08:00\n"
+"Language: \n"
+
+msgid "admin.hostedContexts"
+msgstr "Φιλοξενούμενες Εκδόσεις"
+
+msgid "admin.settings.redirect"
+msgstr "Προώθηση σε URL της Έκδοσης"
+
+msgid "admin.settings.redirectInstructions"
+msgstr "Αιτήματα πρόσβασης στον κυρίως ιστότοπο της συλλογής θα προωθούνται στην ιστοσελίδα της έκδοσης. Αυτό μπορεί να φανεί χρήσιμο αν η συλλογή φιλοξενεί για παράδειγμα μόνο μία έκδοση."
+
+msgid "admin.settings.noPressRedirect"
+msgstr "Καμία προώθηση"
+
+msgid "admin.languages.primaryLocaleInstructions"
+msgstr "Αυτή θα είναι η εξ'ορισμού γλώσσα της συλλογής και των φιλοξενούμενων εκδόσεων."
+
+msgid "admin.languages.supportedLocalesInstructions"
+msgstr "Επιλέξτε όλες τις τοπικές ρυθμίσεις που θέλετε να υποστηρίζονται στη συλλογή. Οι επιλεγμένες τοπικές ρυθμίσεις θα είναι διαθέσιμες για χρήση από όλες τις εκδόσεις της συλλογής, και θα εμφανίζονται σε ένα Μενού Επιλογής Γλώσσας στην ιστοσελίδα κάθε έκδοσης. Εάν δεν επιλεχθούν πολλαπλές τοπικές ρυθμίσεις, το παραπάνω Μενού Επιλογής Γλώσσας δεν θα εμφανίζεται και συνεπώς δεν θα είναι δυνατή η ρύθμιση της γλώσσας στις ιστοσελίδες των εκδόσεων."
+
+msgid "admin.locale.maybeIncomplete"
+msgstr "* Επιλεγμένες τοπικές ρυθμίσεις μπορεί να μην είναι ολοκληρωμένες."
+
+msgid "admin.languages.confirmUninstall"
+msgstr "Είστε σίγουρος ότι θέλετε να απεγκαταστήσετε αυτή τη ρύθμιση; Αυτό θα επηρεάσει όσες φιλοξενούμενες εκδόσεις χρησιμοποιούν αυτή την ρύθμιση."
+
+msgid "admin.languages.installNewLocalesInstructions"
+msgstr "Επιλέξτε  τις επιπρόσθετες τοπικές ρυθμίσεις που  θέλετε να εγκαταστήσετε για να τις  υποστηρίζει το σύστημα. Οι ρυθμίσεις πρέπει  να εγκατασταθούν πριν χρησιμοποιηθούν από  κάποια έκδοση. Δείτε την τεκμηρίωση του OMP  για πληροφορίες και τεκμηρίωση σχετικά με την  προσθήκη νέων γλωσσών."
+
+msgid "admin.languages.noLocalesToDownload"
+msgstr "Δεν υπάρχουν διαθέσιμες τοπικές ρυθμίσεις για κατέβασμα."
+
+msgid "admin.languages.downloadFailed"
+msgstr "Το κατέβασμα της τοπικής ρύθμισης απέτυχε. Στο(α) μήνυμα(τα) περιγράφεται το σφάλμα."
+
+msgid "admin.languages.downloadUnavailable"
+msgstr ""
+"<p>Το κατέβασμα πακέτων γλώσσας από τον ιστότοπο του Public Knowledge Project δεν είναι προσψρινά διαθέσιμο λόγω ότι:</p>\n"
+"\t<ul>\n"
+"\t\t<li>Ο εξυπηρετητής (server) δεν έχει ή δεν επιτρέπει την εκτέλεση GNU \"tar\" utility</li>\n"
+"\t\t<li> Το OMP δεν είναι δυνατό να μετατρέψει το registry αρχείο των τοπικών ρυθμίσεων, συνήθως  συνήθως το \"registry/locales.xml\".</li>\n"
+"\t</ul>\n"
+"<p>Τα πακέτα γλωσσών μπορούν να κατέβουν από τον <a href=\"http://pkp.sfu.ca\" target=\"_blank\">ιστότοπο του PKP</a>.</p>"
+
+msgid "admin.languages.confirmDisable"
+msgstr "Είστε σίγουρος ότι επιθυμείτε να απενεργοποιήσετε αυτή την τοπική ρύθμιση; Αυτό θα επηρεάσει όσες φιλοξενούμενες εκδόσεις χρησιμοποιούν τη συγκεκριμένη ρύθμιση."
+
+msgid "admin.systemVersion"
+msgstr "OMP Έκδοση"
+
+msgid "admin.systemConfiguration"
+msgstr "Ρυθμίσεις OMP"
+
+msgid "admin.systemConfigurationDescription"
+msgstr "Διαμόρφωση Ρυθμίσεων (Configuration) OMP από <tt>config.inc.php<tt>"
+
+msgid "admin.presses.pressSettings"
+msgstr "Ρυθμίσεις Έκδοσης"
+
+msgid "admin.presses.noneCreated"
+msgstr "Καμία Έκδοση δεν έχει δημιουργηθεί."
+
+msgid "admin.contexts.contextDescription"
+msgstr "Περιγραφή Έκδοσης"
+
+msgid "admin.presses.addPress"
+msgstr "Προσθήκη Έκδοσης"
+
+msgid "admin.overwriteConfigFileInstructions"
+msgstr ""
+"<h4>ΣΗΜΕΙΩΣΗ!</div>\n"
+"<p>Δεν ήταν δυνατή η αυτόματη αντικατάσταση του αρχείου ρυθμίσεων από το σύστημα. Για να εφαρμόσετε τις αλλαγές στις ρυθμίσεις πρέπει να ανοίξετε <tt>config.inc.php</tt> με κατάλληλο πρόγραμμα διόρθωσης κειμένων και να αντικαταστήσετε τα περιεχόμενα αυτού με τα περιεχόμενα του πεδίου κειμένου που βρίκεται παρακάτω.</p>"

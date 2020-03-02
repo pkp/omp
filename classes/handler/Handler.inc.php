@@ -3,9 +3,9 @@
 /**
  * @file classes/handler/Handler.inc.php
  *
- * Copyright (c) 2014-2016 Simon Fraser University Library
- * Copyright (c) 2003-2016 John Willinsky
- * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
+ * Copyright (c) 2014-2020 Simon Fraser University
+ * Copyright (c) 2003-2020 John Willinsky
+ * Distributed under the GNU GPL v3. For full terms see the file docs/COPYING.
  *
  * @class Handler
  * @ingroup core
@@ -16,13 +16,6 @@
 import('lib.pkp.classes.handler.PKPHandler');
 
 class Handler extends PKPHandler {
-	/**
-	 * Constructor
-	 */
-	function Handler() {
-		parent::PKPHandler();
-	}
-
 	/**
 	 * Returns a "best-guess" press, based in the request data, if
 	 * a request needs to have one in its context but may be in a site-level
@@ -39,7 +32,7 @@ class Handler extends PKPHandler {
 		if ($requestedPath === 'index' || $requestedPath === '') {
 			// No press requested. Check how many presses has the site.
 			$pressDao = DAORegistry::getDAO('PressDAO'); /* @var $pressDao PressDAO */
-			$presses = $pressDao->getAll();
+			$presses = $pressDao->getAll(true);
 			$pressesCount = $presses->getCount();
 			$press = null;
 			if ($pressesCount === 1) {
@@ -69,4 +62,4 @@ class Handler extends PKPHandler {
 	}
 }
 
-?>
+

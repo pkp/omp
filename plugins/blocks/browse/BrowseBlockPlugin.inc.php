@@ -3,9 +3,9 @@
 /**
  * @file plugins/blocks/browse/BrowseBlockPlugin.inc.php
  *
- * Copyright (c) 2014-2016 Simon Fraser University Library
- * Copyright (c) 2003-2016 John Willinsky
- * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
+ * Copyright (c) 2014-2020 Simon Fraser University
+ * Copyright (c) 2003-2020 John Willinsky
+ * Distributed under the GNU GPL v3. For full terms see the file docs/COPYING.
  *
  * @class BrowseBlockPlugin
  * @ingroup plugins_blocks_browse
@@ -99,7 +99,7 @@ class BrowseBlockPlugin extends BlockPlugin {
 		$seriesDisplay = $this->getSetting($press->getId(), 'browseSeries');
 		if ($seriesDisplay) {
 			// Provide a list of series to browse
-			$seriesDao = DAORegistry::getDAO('SeriesDAO');
+			$seriesDao = DAORegistry::getDAO('SeriesDAO'); /* @var $seriesDao SeriesDAO */
 			$series = $seriesDao->getByPressId($press->getId());
 			$templateMgr->assign('browseSeriesFactory', $series);
 		}
@@ -107,8 +107,8 @@ class BrowseBlockPlugin extends BlockPlugin {
 		$categoriesDisplay = $this->getSetting($press->getId(), 'browseCategories');
 		if ($categoriesDisplay) {
 			// Provide a list of categories to browse
-			$categoryDao = DAORegistry::getDAO('CategoryDAO');
-			$categories = $categoryDao->getByPressId($press->getId());
+			$categoryDao = DAORegistry::getDAO('CategoryDAO'); /* @var $categoryDao CategoryDAO */
+			$categories = $categoryDao->getByContextId($press->getId());
 			$templateMgr->assign('browseCategoryFactory', $categories);
 		}
 
@@ -131,4 +131,4 @@ class BrowseBlockPlugin extends BlockPlugin {
 	}
 }
 
-?>
+

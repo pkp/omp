@@ -3,9 +3,9 @@
 /**
  * @file classes/submission/form/SubmissionSubmitStep1Form.inc.php
  *
- * Copyright (c) 2014-2016 Simon Fraser University Library
- * Copyright (c) 2003-2016 John Willinsky
- * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
+ * Copyright (c) 2014-2020 Simon Fraser University
+ * Copyright (c) 2003-2020 John Willinsky
+ * Distributed under the GNU GPL v3. For full terms see the file docs/COPYING.
  *
  * @class SubmissionSubmitStep1Form
  * @ingroup submission_form
@@ -14,34 +14,35 @@
  */
 
 import('lib.pkp.classes.submission.form.PKPSubmissionSubmitStep1Form');
-import('classes.monograph.Monograph'); // WORK_TYPE_... constants for form
+import('classes.submission.Submission'); // WORK_TYPE_... constants for form
 
 class SubmissionSubmitStep1Form extends PKPSubmissionSubmitStep1Form {
 	/**
 	 * Constructor.
 	 */
-	function SubmissionSubmitStep1Form($context, $submission = null) {
-		parent::PKPSubmissionSubmitStep1Form($context, $submission);
+	function __construct($context, $submission = null) {
+		parent::__construct($context, $submission);
+		$this->addCheck(new FormValidatorCustom($this, 'seriesId', 'optional', 'author.submit.seriesRequired', array(DAORegistry::getDAO('SeriesDAO'), 'getById'), array($context->getId())));
 	}
 
 	/**
-	 * Fetch the form.
+	 * @copydoc PKPSubmissionSubmitStep1Form::fetch
 	 */
-	function fetch($request) {
+	function fetch($request, $template = null, $display = false) {
 		$templateMgr = TemplateManager::getManager($request);
 
 		// Get series for this context
-		$seriesDao = DAORegistry::getDAO('SeriesDAO');
-		$seriesOptions = array('0' => __('submission.submit.selectSeries')) + $seriesDao->getTitlesByPressId($this->context->getId(), true);
+		$seriesDao = DAORegistry::getDAO('SeriesDAO'); /* @var $seriesDao SeriesDAO */
+		$seriesOptions = array('' => __('submission.submit.selectSeries')) + $seriesDao->getTitlesByPressId($this->context->getId(), true);
 		$templateMgr->assign('seriesOptions', $seriesOptions);
 
-		return parent::fetch($request);
+		return parent::fetch($request, $template, $display);
 	}
 
 	/**
-	 * Initialize form data from current submission.
+	 * @copydoc PKPSubmissionSubmitStep1Form::initData
 	 */
-	function initData() {
+	function initData($data = array()) {
 		if (isset($this->submission)) {
 			parent::initData(array(
 				'seriesId' => $this->submission->getSeriesId(),
@@ -64,25 +65,6 @@ class SubmissionSubmitStep1Form extends PKPSubmissionSubmitStep1Form {
 	}
 
 	/**
-	 * Perform additional validation checks
-	 * @copydoc Form::validate
-	 */
-	function validate() {
-		if (!parent::validate()) return false;
-
-		// Validate that the series ID is attached to this press.
-		if ($seriesId = $this->getData('seriesId')) {
-			$request = Application::getRequest();
-			$context = $request->getContext();
-			$seriesDao = DAORegistry::getDAO('SeriesDAO');
-			$series = $seriesDao->getById($seriesId, $context->getId());
-			if (!$series) return false;
-		}
-
-		return true;
-	}
-
-	/**
 	 * Set the submission data from the form.
 	 * @param $submission Submission
 	 */
@@ -94,4 +76,4 @@ class SubmissionSubmitStep1Form extends PKPSubmissionSubmitStep1Form {
 	}
 }
 
-?>
+

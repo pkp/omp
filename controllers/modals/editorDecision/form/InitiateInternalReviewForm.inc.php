@@ -3,9 +3,9 @@
 /**
  * @file controllers/modals/editorDecision/form/InitiateInternalReviewForm.inc.php
  *
- * Copyright (c) 2014-2016 Simon Fraser University Library
- * Copyright (c) 2003-2016 John Willinsky
- * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
+ * Copyright (c) 2014-2020 Simon Fraser University
+ * Copyright (c) 2003-2020 John Willinsky
+ * Distributed under the GNU GPL v3. For full terms see the file docs/COPYING.
  *
  * @class InitiateReviewForm
  * @ingroup controllers_modal_editorDecision_form
@@ -23,8 +23,8 @@ class InitiateInternalReviewForm extends InitiateReviewForm {
 	 * @param $decision int SUBMISSION_EDITOR_DECISION_...
 	 * @param $stageId int WORKFLOW_STAGE_ID_...
 	 */
-	function InitiateInternalReviewForm($submission, $decision, $stageId) {
-		parent::InitiateReviewForm($submission, $decision, $stageId, 'controllers/modals/editorDecision/form/initiateInternalReviewForm.tpl');
+	function __construct($submission, $decision, $stageId) {
+		parent::__construct($submission, $decision, $stageId, 'controllers/modals/editorDecision/form/initiateInternalReviewForm.tpl');
 	}
 
 	/**
@@ -36,4 +36,4 @@ class InitiateInternalReviewForm extends InitiateReviewForm {
 	}
 }
 
-?>
+

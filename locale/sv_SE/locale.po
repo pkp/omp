@@ -1,0 +1,1301 @@
+msgid ""
+msgstr ""
+"PO-Revision-Date: 2020-02-08 03:32+0000\n"
+"Last-Translator: Magnus Annemark <magnus.annemark@ub.lu.se>\n"
+"Language-Team: Swedish <http://translate.pkp.sfu.ca/projects/omp/locale/sv/>"
+"\n"
+"Language: sv_SE\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: Weblate 3.9.1\n"
+
+msgid "monograph.coverImage"
+msgstr "Omslag"
+
+msgid "monograph.audience.success"
+msgstr "Publikinställningarna har uppdaterats."
+
+msgid "monograph.audience"
+msgstr "Publik"
+
+msgid "catalog.foundTitleSearch"
+msgstr "En titel matchade ditt sökord \"{$searchQuery}\"."
+
+msgid "catalog.noTitlesSearch"
+msgstr "Inga titlar matchar din sökfråga \"{$searchQuery}\"."
+
+msgid "catalog.noTitlesNew"
+msgstr "Inga nya utgivningar är tillgängliga för tillfället."
+
+msgid "catalog.noTitles"
+msgstr "Inga titlar har publicerats ännu."
+
+msgid "catalog.manage.isNotNewRelease"
+msgstr "Denna bok är inte en ny utgivning. Markera den som ny utgivning."
+
+msgid "catalog.manage.isNewRelease"
+msgstr ""
+"Denna boken är markerad som ny utgivning. Avmarkera den som ny utgivning."
+
+msgid "catalog.manage.filter.searchByAuthorOrTitle"
+msgstr "Sök efter titel och författare"
+
+msgid "catalog.manage.feature.seriesNewRelease"
+msgstr "Ny utgivning i serie"
+
+msgid "catalog.manage.feature.categoryNewRelease"
+msgstr "Ny utgivning i kategori"
+
+msgid "catalog.manage.feature.newRelease"
+msgstr "Ny utgivning"
+
+msgid "catalog.manage.notNewReleaseSuccess"
+msgstr "Boken är avmarkerad som ny release."
+
+msgid "catalog.manage.newReleaseSuccess"
+msgstr "Boken är markerad som en ny utgivning."
+
+msgid "catalog.manage.noMonographs"
+msgstr "Det finns inga böcker tilldelade."
+
+msgid "catalog.manage.manageCategories"
+msgstr "Hantera kategorier"
+
+msgid "catalog.manage.manageSeries"
+msgstr "Hantera serier"
+
+msgid "catalog.manage.newRelease"
+msgstr "Utgivning"
+
+msgid "catalog.manage.placeIntoCarousel"
+msgstr "Karusell"
+
+msgid "catalog.selectCategory"
+msgstr "Välj kategori"
+
+msgid "catalog.selectSeries"
+msgstr "Välj serie"
+
+msgid "catalog.manage.series.printIssn"
+msgstr "Print-ISSN"
+
+msgid "catalog.manage.series.onlineIssn"
+msgstr "Online-ISSN"
+
+msgid "catalog.manage.series.issn.equalValidation"
+msgstr "Online- och print-ISSN får inte matcha."
+
+msgid "catalog.manage.series.issn.validation"
+msgstr "Ange ett giltigt ISSN."
+
+msgid "catalog.manage.series.issn"
+msgstr "ISSN"
+
+msgid "catalog.manage.series"
+msgstr "Serier"
+
+msgid "catalog.manage.category"
+msgstr "Kategori"
+
+msgid "catalog.manage.newReleases"
+msgstr "Nya utgivningar"
+
+msgid "catalog.manage"
+msgstr "Kataloghantering"
+
+msgid "series.featured.description"
+msgstr "Serien kommer visas i huvudmenyn"
+
+msgid "series.series"
+msgstr "Serier"
+
+msgid "grid.reviewAttachments.availableFiles"
+msgstr "Tillgängliga filer"
+
+msgid "grid.reviewAttachments.add"
+msgstr "Lägg till bilaga till granskning"
+
+msgid "grid.action.formatAvailable"
+msgstr "Stäng eller öppna tillgängligheten för detta format"
+
+msgid "grid.action.availableRepresentation"
+msgstr "Godkänn/avslå detta format"
+
+msgid "grid.action.approveProofs"
+msgstr "Visa korrekturer"
+
+msgid "grid.action.submissionEmail"
+msgstr "Tryck för att läsa detta e-mail"
+
+msgid "grid.action.moreAnnouncements"
+msgstr "Gå till meddelanden"
+
+msgid "grid.action.publicationFormatTab"
+msgstr "Visa fliken med publikationsformat"
+
+msgid "grid.action.createContext"
+msgstr "Skapa en ny press"
+
+msgid "grid.action.deleteDate"
+msgstr "Ta bort datum"
+
+msgid "grid.action.editDate"
+msgstr "Redigera datum"
+
+msgid "grid.action.addDate"
+msgstr "Lägg till publiceringsdatum"
+
+msgid "grid.action.deleteMarket"
+msgstr "Ta bort marknad"
+
+msgid "grid.action.editMarket"
+msgstr "Redigera marknad"
+
+msgid "grid.action.addMarket"
+msgstr "Lägg till marknad"
+
+msgid "grid.action.deleteRights"
+msgstr "Ta bort dessa rättigheter"
+
+msgid "grid.action.editRights"
+msgstr "Redigera dessa rättigheter"
+
+msgid "grid.action.addRights"
+msgstr "Ange försäljningsrättigheter"
+
+msgid "grid.action.deleteCode"
+msgstr "Ta bort kod"
+
+msgid "grid.action.editCode"
+msgstr "Redigera kod"
+
+msgid "grid.action.addCode"
+msgstr "Lägg till kod"
+
+msgid "grid.action.manageSeries"
+msgstr "Konfigurera serier"
+
+msgid "grid.action.manageCategories"
+msgstr "Konfigurera kategorier"
+
+msgid "grid.action.feature"
+msgstr "Koppla på funktionsdisplayen"
+
+msgid "grid.action.publicCatalog"
+msgstr "Visa detta objekt i katalogen"
+
+msgid "grid.action.newCatalogEntry"
+msgstr "Ny katalogpost"
+
+msgid "grid.action.addAnnouncement"
+msgstr "Lägg till ett meddelande"
+
+msgid "grid.action.pageProofApproved"
+msgstr "Korrekturfilen är färdig för publicering"
+
+msgid "grid.action.approveProof"
+msgstr "Godkänn korrekturen för indexering och inkludering i katalogen"
+
+msgid "grid.action.addFormat"
+msgstr "Lägg till publikationsformat"
+
+msgid "grid.action.deleteFormat"
+msgstr "Ta bort detta format"
+
+msgid "grid.action.editFormat"
+msgstr "Redigera detta format"
+
+msgid "grid.action.formatInCatalogEntry"
+msgstr "Formatet visas i katalogposten"
+
+msgid "grid.action.catalogEntry"
+msgstr "Visa katalogpost"
+
+msgid "grid.libraryFiles.column.files"
+msgstr "Filer"
+
+msgid "manager.series.indexed"
+msgstr "Indexerad"
+
+msgid "manager.series.open"
+msgstr "Öppna bidrag"
+
+msgid "grid.action.addSpotlight"
+msgstr "Lägg till spotlight"
+
+msgid "grid.action.deleteSpotlight"
+msgstr "Ta bort spotlight"
+
+msgid "grid.action.editSpotlight"
+msgstr "Redigera spotlight"
+
+msgid "grid.content.spotlights.titleRequired"
+msgstr "En spotlight-titel krävs."
+
+msgid "grid.content.spotlights.itemRequired"
+msgstr "Ett objekt krävs."
+
+msgid "grid.content.spotlights.form.type.book"
+msgstr "Bok"
+
+msgid "grid.content.spotlights.form.title"
+msgstr "Spotlight-titel"
+
+msgid "grid.content.spotlights.form.item"
+msgstr "Ange spotlight-titeln (autocomplete)"
+
+msgid "grid.content.spotlights.form.location"
+msgstr "Plats för spotlight"
+
+msgid "grid.content.spotlights.category.homepage"
+msgstr "Hemsida"
+
+msgid "grid.content.spotlights.spotlightItemTitle"
+msgstr "Spotlight-element"
+
+msgid "spotlight.author"
+msgstr "Författare, "
+
+msgid "spotlight.noneExist"
+msgstr "Det finns inga aktuella spotlights."
+
+msgid "spotlight.spotlights"
+msgstr "Spotlights"
+
+msgid "spotlight"
+msgstr "Spotlight"
+
+msgid "grid.action.deleteRepresentative"
+msgstr "Ta bort representant"
+
+msgid "grid.action.editRepresentative"
+msgstr "Redigera representant"
+
+msgid "grid.action.addRepresentative"
+msgstr "Lägg till representant"
+
+msgid "grid.catalogEntry.representativesDescription"
+msgstr ""
+"Lämna denna del tom om du levererar dina egna tjänster till dina kunder."
+
+msgid "grid.catalogEntry.representativeIdType"
+msgstr "Typ av representant-ID (GLN rekommenderas)"
+
+msgid "grid.catalogEntry.representativeIdValue"
+msgstr "Representant-ID"
+
+msgid "grid.catalogEntry.representativeWebsite"
+msgstr "Webbsida"
+
+msgid "grid.catalogEntry.representativeEmail"
+msgstr "E-mail"
+
+msgid "grid.catalogEntry.representativePhone"
+msgstr "Telefon"
+
+msgid "grid.catalogEntry.representativeName"
+msgstr "Namn"
+
+msgid "grid.catalogEntry.representativeRole"
+msgstr "Roll"
+
+msgid "grid.catalogEntry.representativeRoleChoice"
+msgstr "Välj en roll:"
+
+msgid "grid.catalogEntry.supplier"
+msgstr "Leverantör"
+
+msgid "grid.catalogEntry.agentTip"
+msgstr ""
+"Du kan välja en agent som representerar dig i det definierade området. Det "
+"är ej obligatoriskt."
+
+msgid "grid.catalogEntry.agent"
+msgstr "Agent"
+
+msgid "grid.catalogEntry.suppliersCategory"
+msgstr "Leverantörer"
+
+msgid "grid.catalogEntry.agentsCategory"
+msgstr "Agenter"
+
+msgid "grid.catalogEntry.representativeType"
+msgstr "Typ av representant"
+
+msgid "grid.catalogEntry.representatives"
+msgstr "Representanter"
+
+msgid "grid.catalogEntry.dateRequired"
+msgstr "Ett datum krävs och värdet måste matcha det valda datumformatet."
+
+msgid "grid.catalogEntry.dateFormat"
+msgstr "Datumformat"
+
+msgid "grid.catalogEntry.dateRole"
+msgstr "Roll"
+
+msgid "grid.catalogEntry.dateValue"
+msgstr "Datum"
+
+msgid "grid.catalogEntry.dateFormatRequired"
+msgstr "Ett datumformat krävs."
+
+msgid "grid.catalogEntry.roleRequired"
+msgstr "En representant-roll krävs."
+
+msgid "grid.catalogEntry.publicationDates"
+msgstr "Publiceringsdatum"
+
+msgid "grid.catalogEntry.marketTerritory"
+msgstr "Område"
+
+msgid "grid.catalogEntry.markets"
+msgstr "Marknadsområde"
+
+msgid "grid.catalogEntry.excluded"
+msgstr "Exkluderad"
+
+msgid "grid.catalogEntry.included"
+msgstr "Inkluderad"
+
+msgid "grid.catalogEntry.regions"
+msgstr "Regioner"
+
+msgid "grid.catalogEntry.countries"
+msgstr "Länder"
+
+msgid "grid.catalogEntry.oneROWPerFormat"
+msgstr ""
+"Det finns redan en ROW-försäljningstyp (resten av världen) definierad för "
+"detta publikationsformat."
+
+msgid "grid.catalogEntry.salesRightsROW.tip"
+msgstr ""
+"Kryssa i för att använda försäljningsrättigheterna för hela ditt format. "
+"Länder och regioner behöver inte anges i detta fall."
+
+msgid "monograph.publicationFormat.technicalProtection"
+msgstr "Digitalt tekniskt skydd"
+
+msgid "monograph.task.addNote"
+msgstr "Lägg till i uppgift"
+
+msgid "grid.catalogEntry.salesRightsROW"
+msgstr "Resten av världen?"
+
+msgid "grid.catalogEntry.salesRightsType"
+msgstr "Typ av försäljningsrättigheter"
+
+msgid "grid.catalogEntry.salesRightsValue"
+msgstr "Kodvärde"
+
+msgid "grid.catalogEntry.salesRights"
+msgstr "Försäljningsrättigheter"
+
+msgid "grid.catalogEntry.valueRequired"
+msgstr "Det krävs ett värde."
+
+msgid "grid.catalogEntry.codeRequired"
+msgstr "Identifikationskod krävs."
+
+msgid "grid.catalogEntry.identificationCodeType"
+msgstr "ONIX-kodtyp"
+
+msgid "grid.catalogEntry.identificationCodeValue"
+msgstr "Kodvärde"
+
+msgid "grid.catalogEntry.productCompositionRequired"
+msgstr "Sammansättningskod för produkten måste anges."
+
+msgid "grid.catalogEntry.productAvailabilityRequired"
+msgstr "En tillgänglighetskod för produkten krävs."
+
+msgid "grid.catalogEntry.fileSizeRequired"
+msgstr "Angiven filstorlek krävs."
+
+msgid "grid.catalogEntry.availableRepresentation.notApproved"
+msgstr "Inväntar godkännande"
+
+msgid "grid.catalogEntry.availableRepresentation.approved"
+msgstr "Godkänd"
+
+msgid "grid.catalogEntry.availableRepresentation.proofNotApproved"
+msgstr "Korrektur ej godkänd."
+
+msgid "grid.catalogEntry.availableRepresentation.notApprovedWarning"
+msgstr "Format finns ej i katalogpost."
+
+msgid "grid.catalogEntry.availableRepresentation.catalogNotApprovedWarning"
+msgstr "Katalogpost ej godkänd."
+
+msgid "grid.catalogEntry.availableRepresentation.removeMessage"
+msgstr ""
+"<p>Gör detta format <em>stängt</em> för läsaren. Nedladdningsbara filer "
+"kommer inte vara synliga i bokens katalogpost.</p>"
+
+msgid "grid.catalogEntry.availableRepresentation.message"
+msgstr ""
+"<p>Gör detta format <em>öppet tillgängligt</em> för läsare. Nedladdningsbara "
+"filer visas i bokens katalogpost.</p>"
+
+msgid "grid.catalogEntry.availableRepresentation.title"
+msgstr "Formatets tillgänglighet"
+
+msgid "grid.catalogEntry.approvedRepresentation.removeMessage"
+msgstr "<p>Ange att formatets metadata inte har godkänts.</p>"
+
+msgid "grid.catalogEntry.approvedRepresentation.message"
+msgstr ""
+"<p>Godkänn metadatan för detta format. Metadata kan kontrolleras genom "
+"katalogposten.</p>"
+
+msgid "grid.catalogEntry.approvedRepresentation.title"
+msgstr "Godkänn format"
+
+msgid "grid.catalogEntry.proof"
+msgstr "Korrektur"
+
+msgid "grid.catalogEntry.isNotAvailable"
+msgstr "Ej tillgänglig"
+
+msgid "grid.catalogEntry.isAvailable"
+msgstr "Tillgänglig"
+
+msgid "grid.catalogEntry.availability"
+msgstr "Tillgänglighet"
+
+msgid "grid.catalogEntry.publicationFormatRequired"
+msgstr "Ett publikationsformat måste väljas."
+
+msgid "grid.catalogEntry.monographRequired"
+msgstr "Ett monografi-id krävs."
+
+msgid "grid.catalogEntry.remoteURL"
+msgstr "URL till externt material"
+
+msgid "grid.catalogEntry.remotelyHostedContent"
+msgstr "Detta format är tillgängligt på en separat webbsida"
+
+msgid "grid.catalogEntry.physicalFormat"
+msgstr "Fysiskt format"
+
+msgid "grid.catalogEntry.publicationFormatDetails"
+msgstr "Formatdetaljer"
+
+msgid "grid.catalogEntry.validPriceRequired"
+msgstr "Ett giltigt pris krävs."
+
+msgid "grid.catalogEntry.nameRequired"
+msgstr "Ett namn krävs."
+
+msgid "grid.catalogEntry.publicationFormatType"
+msgstr "Publikationsformat"
+
+msgid "monograph.publicationFormat.openTab"
+msgstr "Öppna fliken för publikationsformat."
+
+msgid "monograph.publicationFormat.formatDoesNotExist"
+msgstr ""
+"<p>Det valda publikationsformatet existerar inte längre i denna "
+"monografi.</p>"
+
+msgid "monograph.publicationFormat.missingONIXFields"
+msgstr "Vissa metadatafält saknas."
+
+msgid "monograph.publicationFormat.noCodesAssigned"
+msgstr "Identifikationskod saknas."
+
+msgid "monograph.publicationFormat.noMarketsAssigned"
+msgstr "Marknader och priser saknas."
+
+msgid "monograph.publicationFormat.isApproved"
+msgstr ""
+"Inkludera metadatan för detta publikationsformat i katalogposten för denna "
+"bok."
+
+msgid "monograph.publicationFormat.taxType"
+msgstr "Typ av beskattning"
+
+msgid "monograph.publicationFormat.taxRate"
+msgstr "Beskattningsprocent"
+
+#, fuzzy
+msgid "monograph.publicationFormat.productRegion"
+msgstr "Region för distribution"
+
+msgid "monograph.publicationFormat.countryOfManufacture"
+msgstr "Tillverkningsland"
+
+msgid "monograph.publicationFormat.productWidth"
+msgstr "Bredd"
+
+msgid "monograph.publicationFormat.productWeight"
+msgstr "Vikt"
+
+msgid "monograph.publicationFormat.productThickness"
+msgstr "Tjocklek"
+
+msgid "monograph.publicationFormat.productHeight"
+msgstr "Höjd"
+
+msgid "monograph.publicationFormat.productFileSize.override"
+msgstr "Mata in din egen filstorlek?"
+
+msgid "monograph.publicationFormat.productFileSize"
+msgstr "Filstorlek i MB"
+
+msgid "monograph.publicationFormat.productDimensionsSeparator"
+msgstr " x "
+
+msgid "monograph.publicationFormat.productDimensions"
+msgstr "Fysiska dimensioner"
+
+msgid "monograph.publicationFormat.digitalInformation"
+msgstr "Digital information"
+
+msgid "monograph.publicationFormat.returnInformation"
+msgstr "Returindikator"
+
+msgid "monograph.publicationFormat.productAvailability"
+msgstr "Produktens tillgänglighet"
+
+msgid "monograph.publicationFormat.discountAmount"
+msgstr "Rabattprocent, om tillämpligt"
+
+msgid "monograph.publicationFormat.priceType"
+msgstr "Pristyp"
+
+msgid "monograph.publicationFormat.priceRequired"
+msgstr "Ange pris (obligatoriskt)."
+
+msgid "monograph.publicationFormat.price"
+msgstr "Pris"
+
+msgid "monograph.publicationFormat.productIdentifierType"
+msgstr "Identifikatorer"
+
+msgid "monograph.publicationFormat.productFormDetailCode"
+msgstr "Detaljer (ej obligatoriskt)"
+
+msgid "monograph.publicationFormat.productComposition"
+msgstr "Produktens sammansättning"
+
+msgid "monograph.publicationFormat.pageCounts"
+msgstr "Sidantal"
+
+msgid "monograph.publicationFormat.imprint"
+msgstr "Imprint (förlagsetikett)"
+
+msgid "monograph.accessLogoOpen.altText"
+msgstr "Open Access"
+
+msgid "submission.pageProofs"
+msgstr "Korrektur"
+
+msgid "monograph.type"
+msgstr "Typ av bidrag"
+
+msgid "monograph.carousel.publicationFormats"
+msgstr "Format:"
+
+msgid "monograph.miscellaneousDetails"
+msgstr "Detaljer om denna publikation"
+
+msgid "monograph.publicationFormatDetails"
+msgstr "Detaljer om det tillgängliga publikationsformatet: {$format}"
+
+msgid "monograph.publicationFormat"
+msgstr "Format"
+
+msgid "monograph.publicationFormats"
+msgstr "Publikationsformat"
+
+msgid "monograph.languages"
+msgstr "Språk (engelska, franska, spanska)"
+
+msgid "monograph.audience.rangeExact"
+msgstr "Publikintervall (exakt)"
+
+msgid "monograph.audience.rangeTo"
+msgstr "Publikintervall (till)"
+
+msgid "monograph.audience.rangeFrom"
+msgstr "Publikintervall (från)"
+
+msgid "notification.type.public"
+msgstr "Offentliga meddelanden"
+
+msgid "notification.type.userComment"
+msgstr "En läsare har skrivit en kommentar till \"{$title}\"."
+
+msgid "notification.removedSubmission"
+msgstr "Bidrag borttaget."
+
+msgid "notification.proofsApproved"
+msgstr "Korrektur godkänd."
+
+msgid "notification.savedPublicationFormatMetadata"
+msgstr "Metadata om publikationsformatet sparad."
+
+msgid "notification.savedCatalogMetadata"
+msgstr "Metadata sparad."
+
+msgid "notification.removedMarket"
+msgstr "Marknad borttagen."
+
+msgid "notification.editedMarket"
+msgstr "Marknad redigerad."
+
+msgid "notification.addedMarket"
+msgstr "Marknad tillagd."
+
+msgid "notification.removedRepresentative"
+msgstr "Representant borttagen."
+
+msgid "notification.editedRepresentative"
+msgstr "Representant redigerad."
+
+msgid "notification.addedRepresentative"
+msgstr "Representant tillagd."
+
+msgid "notification.removedSalesRights"
+msgstr "Försäljningsrättigheter borttagna."
+
+msgid "notification.editedSalesRights"
+msgstr "Försäljningsrättigheter redigerade."
+
+msgid "notification.addedSalesRights"
+msgstr "Försäljningsrättigheter tillagda."
+
+msgid "notification.removedPublicationFormat"
+msgstr "Publikationsformat borttaget."
+
+msgid "notification.editedPublicationFormat"
+msgstr "Publikationsformat redigerat."
+
+msgid "notification.addedPublicationFormat"
+msgstr "Publikationsformat tillagt."
+
+msgid "notification.removedPublicationDate"
+msgstr "Publiceringsdatum borttaget."
+
+msgid "notification.editedPublicationDate"
+msgstr "Publiceringsdatum redigerat."
+
+msgid "notification.addedPublicationDate"
+msgstr "Publiceringsdatum tillagt."
+
+msgid "notification.removedIdentificationCode"
+msgstr "Identifikationskod borttagen."
+
+msgid "notification.editedIdentificationCode"
+msgstr "Edifikationskod redigerad."
+
+msgid "notification.addedIdentificationCode"
+msgstr "Identifikationskod tillagd."
+
+msgid "log.imported"
+msgstr "{$userName} har importerat boken {$submissionId}."
+
+msgid "log.proofread.complete"
+msgstr "{$proofreaderName} har skickat {$submissionId} till schemaläggning."
+
+msgid "log.proofread.assign"
+msgstr ""
+"{$assignerName} har valt {$proofreaderName} som korrekturläsare för "
+"{$submissionId}."
+
+msgid "log.editor.editorAssigned"
+msgstr "{$editorName} har valts som redaktör för bidraget {$submissionId}."
+
+msgid "log.editor.restored"
+msgstr "Bidraget {$submissionId} har återförts i kön."
+
+msgid "log.editor.archived"
+msgstr "Bidraget {$submissionId} har arkiverats."
+
+msgid "installer.installApplication"
+msgstr "Installera Open Monograph Press"
+
+msgid "installer.ompUpgrade"
+msgstr "OMP-uppgradering"
+
+msgid "installer.appInstallation"
+msgstr "OMP-installation"
+
+msgid "help.goToEditPage"
+msgstr "Öppna en ny sida för att redigera denna information"
+
+msgid "help.searchReturnResults"
+msgstr "Tillbaka till sökresultat"
+
+msgid "about.aboutThisPublishingSystem.altText"
+msgstr "Redaktions- och publiceringsprocess i OMP"
+
+msgid "about.aboutThisPublishingSystem"
+msgstr "Om detta publiceringssystem"
+
+msgid "about.pressSponsorship"
+msgstr "Sponsorer"
+
+msgid "about.openAccessPolicy"
+msgstr "Open access-policy"
+
+msgid "about.publicationFrequency"
+msgstr "Publiceringsfrekvens"
+
+msgid "about.reviewPolicy"
+msgstr "Granskningsprocess"
+
+msgid "about.privacyStatement"
+msgstr "Integritetspolicy"
+
+msgid "about.copyrightNotice"
+msgstr "Upplysningar om upphovsrätt"
+
+msgid "about.submissionPreparationChecklist"
+msgstr "Checklista för bidrag"
+
+msgid "about.authorGuidelines"
+msgstr "Riktlinjer för författare"
+
+msgid "about.onlineSubmissions.newSubmission"
+msgstr "Skapa ett nytt bidrag"
+
+msgid "about.onlineSubmissions.submissionActions"
+msgstr "{$newSubmission} eller {$viewSubmissions}."
+
+msgid "about.onlineSubmissions.registrationRequired"
+msgstr "{$login} eller {$register} för att skicka in ett bidrag."
+
+msgid "about.onlineSubmissions.register"
+msgstr "Registrera"
+
+msgid "about.onlineSubmissions.login"
+msgstr "Inloggning"
+
+msgid "about.onlineSubmissions"
+msgstr "Online-bidrag"
+
+msgid "about.submissions"
+msgstr "Bidrag"
+
+msgid "about.seriesPolicies"
+msgstr "Riktlinjer för serier och kategorier"
+
+msgid "about.editorialPolicies"
+msgstr "Redaktionella riktlinjer"
+
+msgid "about.editorialTeam"
+msgstr "Redaktionsmedlemmar"
+
+msgid "about.aboutContext"
+msgstr "Om pressen"
+
+msgid "about.pressContact"
+msgstr "Kontakt"
+
+msgid "site.pressView"
+msgstr "Visa pressens webbsida"
+
+msgid "user.register.form.userGroupRequired"
+msgstr "Du måste välja minst en roll"
+
+msgid "user.register.reviewerInterests"
+msgstr "Intressen (väsentliga områden och forskningsmetoder):"
+
+msgid "user.register.reviewerDescription"
+msgstr "Villig att granska bidrag för hela webbplatsen."
+
+msgid "user.register.reviewerDescriptionNoInterests"
+msgstr "Villig att granska bidrag."
+
+msgid "user.register.authorDescription"
+msgstr "Kan skicka in böcker till pressen."
+
+msgid "user.register.readerDescription"
+msgstr "Meddelas genom e-mail när en bok publiceras."
+
+msgid "user.register.form.passwordLengthTooShort"
+msgstr "Lösenordet är för kort."
+
+msgid "user.register.privacyStatement"
+msgstr "Integritetspolicy"
+
+msgid "user.register.noContexts"
+msgstr "Det finns inga pressar där du kan registrera dig."
+
+msgid "user.register.selectContext"
+msgstr "Välj vilken press du vill registrera dig hos:"
+
+msgid "user.role.productionEditors"
+msgstr "Produktionsredaktörer"
+
+msgid "user.role.proofreaders"
+msgstr "Korrekturläsare"
+
+msgid "user.role.editors"
+msgstr "Redaktörer"
+
+msgid "user.role.subEditors"
+msgstr "Serieredaktörer"
+
+msgid "user.role.managers"
+msgstr "Föreståndare"
+
+msgid "user.role.proofreader"
+msgstr "Korrekturläsare"
+
+msgid "user.role.subEditor"
+msgstr "Serieredaktör"
+
+msgid "user.register.otherContextRoles"
+msgstr "Begär följande roller."
+
+msgid "user.register.contextsPrompt"
+msgstr "Vilka pressar vill du registrera dig hos?"
+
+msgid "user.reviewerPrompt.optin"
+msgstr ""
+"Ja, kontakta mig med förfrågningar om att granska bidrag till denna press."
+
+msgid "user.reviewerPrompt.userGroup"
+msgstr "Ja, ansök om rollen {$userGroup}."
+
+msgid "user.reviewerPrompt"
+msgstr "Vill du granska bidrag till denna press?"
+
+msgid "user.noRoles.regReviewerClosed"
+msgstr ""
+"Registrera dig som granskare: Granskarregistrering är för tillfället "
+"avstängd."
+
+msgid "user.noRoles.regReviewer"
+msgstr "Registrera dig som granskare"
+
+msgid "user.noRoles.submitMonographRegClosed"
+msgstr "Skicka in en bok: Författarregistrering är för tillfället avstängd."
+
+msgid "user.noRoles.submitMonograph"
+msgstr "Skicka in ett förslag"
+
+msgid "user.noRoles.selectUsersWithoutRoles"
+msgstr "Inkludera användare utan roller i denna press."
+
+msgid "context.select"
+msgstr "Byt press:"
+
+msgid "context.current"
+msgstr "Aktuell press:"
+
+msgid "context.contexts"
+msgstr "Pressar"
+
+msgid "navigation.navigationMenus.newRelease.description"
+msgstr "Länk till dina nya utgivningar."
+
+msgid "navigation.navigationMenus.newRelease"
+msgstr "Nya utgivningar"
+
+msgid "navigation.navigationMenus.category.description"
+msgstr "Länk till en kategori."
+
+msgid "navigation.navigationMenus.category.generic"
+msgstr "Kategori"
+
+msgid "navigation.navigationMenus.series.description"
+msgstr "Länk till en serie."
+
+msgid "navigation.navigationMenus.series.generic"
+msgstr "Serier"
+
+msgid "navigation.navigationMenus.catalog.description"
+msgstr "Länk till din katalog."
+
+msgid "context.context"
+msgstr "Press"
+
+msgid "user.role.pressEditor"
+msgstr "Redaktör"
+
+msgid "user.role.manager"
+msgstr "Föreståndare"
+
+msgid "notification.type.editorAssignmentTask"
+msgstr "En ny bok har skickats in och behöver tilldelas en redaktör."
+
+msgid "about.onlineSubmissions.viewSubmissions"
+msgstr "se dina pågående bidrag"
+
+msgid "submission.round"
+msgstr "Omgång&nbsp;{$round}"
+
+msgid "user.profile.form.hideOtherContexts"
+msgstr "Dölj andra pressar"
+
+msgid "user.profile.form.showOtherContexts"
+msgstr "Registrera dig vid andra pressar"
+
+msgid "submission.pdf.download"
+msgstr "Ladda ned denna PDF-fil"
+
+msgid "debug.notes.currencyListLoad"
+msgstr "Valutalista \"{$filename}\" från XML"
+
+msgid "payment.directSales.monograph.description"
+msgstr ""
+"Denna transaktion gäller för köp av en direktnedladdning av en enskild bok "
+"eller bokkapitel."
+
+msgid "payment.directSales.monograph.name"
+msgstr "Köp bok- eller kapitel-nedladdning"
+
+msgid "payment.directSales.download"
+msgstr "Ladda ned{$format}"
+
+msgid "payment.directSales.purchase"
+msgstr "Köp {$format} ({$amount} {$currency})"
+
+msgid "payment.directSales.validPriceRequired"
+msgstr "Ett giltigt pris i numeriska värden krävs."
+
+msgid "payment.directSales.openAccess"
+msgstr "Open access"
+
+msgid "payment.directSales.notSet"
+msgstr "Ej inställd"
+
+msgid "payment.directSales.notAvailable"
+msgstr "Ej tillgänglig"
+
+msgid "payment.directSales.amount"
+msgstr "{$amount} ({$currency})"
+
+msgid "payment.directSales.directSales"
+msgstr "Direkt försäljning"
+
+msgid "payment.directSales.numericOnly"
+msgstr "Priser ska endast anges i numeriska värden. Ange inte valutasymboler."
+
+msgid "payment.directSales.priceCurrency"
+msgstr "Pris ({$currency})"
+
+msgid "payment.directSales.approved"
+msgstr "Godkänd"
+
+msgid "payment.directSales.catalog"
+msgstr "Katalog"
+
+msgid "payment.directSales.availability"
+msgstr "Tillgänglighet"
+
+msgid "payment.directSales.price"
+msgstr "Pris"
+
+msgid "payment.directSales"
+msgstr "Ladda ned från webbsidan"
+
+msgid "user.authorization.workflowStageAssignmentMissing"
+msgstr "Åtkomst nekad! Du har inte tillgång till detta steg i arbetsflödet."
+
+msgid "user.authorization.seriesAssignment"
+msgstr "Du försöker nå en bok som inte är en del av din serie."
+
+msgid "user.authorization.invalidMonograph"
+msgstr "Fel bok, eller ingen bok, har begärts!"
+
+msgid "user.authorization.noContext"
+msgstr "Ingen press i kontexten!"
+
+msgid "user.authorization.monographFile"
+msgstr "Du har nekats tillgång till den specifika filen."
+
+msgid "user.authorization.monographReviewer"
+msgstr "Du har nekats tillgång eftersom du inte är granskare för denna bok."
+
+msgid "user.authorization.monographAuthor"
+msgstr "Du har nekats tillgång eftersom du inte är författare till denna bok."
+
+msgid "user.authorization.invalidReviewAssignment"
+msgstr "Du har nekats tillgång eftersom du inte är granskare för denna bok."
+
+msgid "notification.type.visitCatalogTitle"
+msgstr "Katalogadministration"
+
+msgid "notification.type.configurePaymentMethod"
+msgstr "Välj en betalningsmetod för att kunna ställa in försäljningsalternativ."
+
+msgid "notification.type.configurePaymentMethod.title"
+msgstr "Ingen betalningsmetod bestämd."
+
+msgid "notification.type.formatNeedsApprovedSubmission"
+msgstr ""
+"Boken kommer inte synas i katalogen förrän den är publicerad. Tryck på "
+"publicera-fliken för att lägga till boken i katalogen."
+
+msgid "notification.type.approveSubmissionTitle"
+msgstr "Inväntar godkännande."
+
+msgid "notification.type.approveSubmission"
+msgstr ""
+"Detta bidrag väntar på godkännande i katalogposten innan det blir synligt i "
+"den publika vyn."
+
+msgid "notification.type.editorDecisionInternalReview"
+msgstr "Den interna granskningsprocessen har inletts."
+
+msgid "notification.type.indexRequest"
+msgstr "Du har ombetts att indexera \"{$title}\"."
+
+msgid "notification.type.layouteditorRequest"
+msgstr "Du har ombetts att granska layouter för \"{$title}\"."
+
+msgid "notification.type.copyeditorRequest"
+msgstr ""
+
+msgid "notification.type.submissions"
+msgstr "Status för bidrag"
+
+msgid "notification.type.site"
+msgstr "Webbplatshändelser"
+
+msgid "notification.type.reviewing"
+msgstr "Status för granskning"
+
+msgid "notification.type.editing"
+msgstr "Status för redigering"
+
+msgid "user.register.registrationDisabled"
+msgstr "Pressen har stängt av användarregistrering."
+
+msgid "user.role.copyeditors"
+msgstr "Manusredaktörer"
+
+msgid "user.role.productionEditor"
+msgstr "Produktionsredaktör"
+
+msgid "user.role.copyeditor"
+msgstr "Manusredaktör"
+
+msgid "user.register.noContextReviewerInterests"
+msgstr ""
+"Om du har anmält dig som granskare för en press, anmäl dina ämnesintressen."
+
+msgid "navigation.linksAndMedia"
+msgstr "Länkar och sociala medier"
+
+msgid "navigation.wizard"
+msgstr "Inställningsguide"
+
+msgid "navigation.published"
+msgstr "Publicerad"
+
+msgid "navigation.newReleases"
+msgstr "Nya utgivningar"
+
+msgid "navigation.catalog.administration"
+msgstr "Katalogadministration"
+
+msgid "navigation.catalog.administration.short"
+msgstr "Administreration"
+
+msgid "navigation.catalog.manage"
+msgstr "Administrera"
+
+msgid "navigation.infoForLibrarians.long"
+msgstr "Information för bibliotekarier"
+
+msgid "navigation.infoForAuthors.long"
+msgstr "Information för författare"
+
+msgid "navigation.infoForLibrarians"
+msgstr "För bibliotekarier"
+
+msgid "navigation.infoForAuthors"
+msgstr "För författare"
+
+msgid "navigation.catalog.administration.series"
+msgstr "Serier"
+
+msgid "navigation.catalog.administration.categories"
+msgstr "Kategorier"
+
+msgid "navigation.catalog.allMonographs"
+msgstr "Alla böcker"
+
+msgid "navigation.competingInterestPolicy"
+msgstr "Policy för intressekonflikter"
+
+msgid "navigation.catalog"
+msgstr "Katalog"
+
+msgid "common.omp"
+msgstr "OMP"
+
+msgid "common.software"
+msgstr "Open Monograph Press"
+
+msgid "common.listbuilder.itemExists"
+msgstr "Du kan inte lägga till samma objekt samtidigt."
+
+msgid "common.listbuilder.selectValidOption"
+msgstr "Välj ett giltigt alternativ i listan."
+
+msgid "common.listbuilder.completeForm"
+msgstr "Fyll i alla fält i formuläret."
+
+msgid "common.moreInfo"
+msgstr "Mer information"
+
+msgid "common.searchCatalog"
+msgstr "Sök katalog"
+
+msgid "common.preview"
+msgstr "Förhandsvisning"
+
+msgid "common.prefix"
+msgstr "Prefix"
+
+msgid "common.publications"
+msgstr "Böcker"
+
+msgid "common.publication"
+msgstr "Bok"
+
+msgid "submission.search"
+msgstr "Sök böcker"
+
+msgid "catalog.viewableFile.title"
+msgstr "{$type}-visning av filen {$title}"
+
+msgid "catalog.viewableFile.return"
+msgstr "Tillbaka till detaljer om {$monographTitle}"
+
+msgid "catalog.sortBy.seriesPositionDesc"
+msgstr "Position i serien (högst först)"
+
+msgid "catalog.sortBy.seriesPositionAsc"
+msgstr "Position i serien (lägst först)"
+
+msgid "catalog.sortBy.catalogDescription"
+msgstr "Bestäm ordningen på böckerna i katalogen."
+
+msgid "catalog.sortBy.categoryDescription"
+msgstr "Bestäm ordningen på böckerna i denna kategori."
+
+msgid "catalog.sortBy.seriesDescription"
+msgstr "Bestäm ordningen på böckerna i denna serie."
+
+msgid "catalog.sortBy"
+msgstr "Ordna böcker"
+
+msgid "catalog.aboutTheAuthor"
+msgstr "Om {$roleName}"
+
+msgid "catalog.category.subcategories"
+msgstr "Underkategorier"
+
+msgid "catalog.parentCategory"
+msgstr "Huvudkategori"
+
+msgid "catalog.categories"
+msgstr "Kategorier"
+
+msgid "catalog.forthcoming"
+msgstr "Kommande"
+
+msgid "catalog.published"
+msgstr "Publicerad"
+
+msgid "catalog.publicationInfo"
+msgstr "Information om publikationen"
+
+msgid "catalog.newReleases"
+msgstr "Nya utgivningar"
+
+msgid "catalog.category.heading"
+msgstr "Alla böcker"
+
+msgid "catalog.foundTitlesSearch"
+msgstr "{$number} titlar hittades för sökfrågan \"{$searchQuery}\"."
+
+msgid "grid.action.proofApproved"
+msgstr "Formatet har gått igenom korrektur"
+
+msgid "notification.type.submissionSubmitted"
+msgstr "En ny bok, \"{$title},\" har skickats in."
+
+msgid "rt.metadata.pkp.dctype"
+msgstr "Bok"
+
+msgid "debug.notes.helpMappingLoad"
+msgstr ""
+"Laddade om XML-hjälp för att mappa filen {$filename} till sökning efter "
+"{$id}."
+
+msgid "payment.directSales.price.description"
+msgstr ""
+"Filformat kan tillgängliggöras för nedladdning från pressens hemsida utan "
+"kostnad för läsaren (open access), eller genom direktförsäljning (genom en "
+"online-betalsystem, vilket ställs in under Distribution). Välj "
+"tillgänglighetsinställning för filen."
+
+msgid "user.authorization.workflowStageSettingMissing"
+msgstr ""
+"Åtkomst nekad! Användartypen du är inloggad som har inte blivit tilldelad "
+"åtkomst till detta steg i arbetsflödet. Kontrollera dina inställningar."
+
+msgid "spotlight.title.homePage"
+msgstr "I spotlight"
+
+msgid "about.aboutOMPSite"
+msgstr ""
+"Denna sidan använder Open Monograph Press {$ompVersion}, som är en open "
+"source-programvara för bokpublicering, utvecklat av <a href=\"http://pkp.sfu."
+"ca/\">Public Knowledge Project</a> under GNU General Public License."
+
+msgid "about.aboutOMPPress"
+msgstr ""
+"Denna press använder Open Monograph Press {$ompVersion}, som är en open "
+"source-programvara för bokpublicering, utvecklat av <a href=\"http://pkp.sfu."
+"ca/\">Public Knowledge Project</a> under GNU General Public License."
+
+msgid "about.submissionPreparationChecklist.description"
+msgstr ""
+"Författare som skickar in bidrag måste kontrollera att bidraget uppfyller "
+"följande riktlinjer. Bidrag som inte efterlever riktlinjerna kan komma att "
+"skickas tillbaka till författaren. "
+
+msgid "navigation.skip.spotlights"
+msgstr "Gå till spotlight"
+
+msgid "common.homePageHeader.altText"
+msgstr "Hemsidans sidhuvud"
+
+msgid "catalog.loginRequiredForPayment"
+msgstr ""
+"N.B.: För att kunna göra ett köp måste du först logga in. Du kommer skickas "
+"till inloggningssidan när du valt en vara att köpa. Alla böcker med en open "
+"access-ikon kan laddas ned gratis, utan inloggning."
+
+msgid "catalog.dateAdded"
+msgstr "Tillagd {$dateAdded}"
+
+msgid "series.path"
+msgstr "Sökväg"
+
+msgid "grid.action.releaseMonograph"
+msgstr "Markera detta bidrag som en 'ny utgivning'"
+
+msgid "grid.content.spotlights.locationRequired"
+msgstr "Välj plats för denna spotlight."
+
+msgid "monograph.proofReadingDescription"
+msgstr ""
+"Layoutredaktören laddar upp filerna som är klara för publicering här. Använd "
+"<em>+Assign</em> för att välja författare och andra för korrekturläsning."
+
+msgid "monograph.audience.rangeQualifier"
+msgstr "Kvalificering av publikintervallet"

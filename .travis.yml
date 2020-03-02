@@ -1,64 +1,81 @@
 # Configure the build matrix
-env:
-  matrix:
-  - TEST=validation
-  - TEST=pgsql
-  - TEST=mysql
-  global:
-  - secure: "PZbLl4MOmgQxp+fDQcitjiFVaBwERHvYbm+6sn71amkwTW87I6mlwXCtWReFGXgdQYQXiu79w28iVPvLbowbJi2Mb5bYt5kadve9Lf86uQfZq2KFYIFrUBAR9ACK2jhPNQWVZRh73+Jd5qaBzR3pgOFdFiBmasReT0+NpI3JLLk="
+matrix:
+  include:
+  # Validation
+  - env: TEST=validation
+    php: 7.3
+  # PostgreSQL / various PHP
+  - env: TEST=pgsql
+    php: 7.2
+  - env: TEST=pgsql
+    php: 7.3
+  - env: TEST=pgsql
+    php: 7.4
+  # MySQL / various PHP
+  - env: TEST=mysql
+    php: 7.2
+  - env: TEST=mysql
+    php: 7.3
+  - env: TEST=mysql
+    php: 7.4
+  # Path info disabled (DISABLED pending a fix of pkp/pkp-lib#4414)
+  # - env: TEST=mysql DISABLE_PATH_INFO=1
+  #   php: 7.2
 language: php
-php:
-  - 5.3
 python:
-  - 3.3
-addons:
-  postgresql: "9.1"
+  - 3.3 # Required by Javascript linter/builder
 git:
-  # We have to init submodules ourselves to make it recursive
+  # Inhibit automatic submodule checkout (see below)
   submodules: false
-
+cache:
+  npm: true
+  directories:
+    - $HOME/.composer/cache
+    - $HOME/.cache
+addons:
+  chrome: beta
+  apt:
+    update: true
 before_install:
-  # Start submodules
+  # Check out submodules (this script checks out developer forks if necessary)
   - ./tools/startSubmodulesTRAVIS.sh
 
-  # Install composer dependencies
-  - cd lib/pkp && composer update && cd ../..
+  # Update to latest stable version of npm
+  - npm i g -npm
 
-  # Configure the webserver
-  - if [[ "$TEST" != "validation" ]]; then ./lib/pkp/tools/travis/prepare-webserver.sh; fi
+  - |
+    if [[ "$TEST" != "validation" ]]; then
+      # Prepare for unit and integration tests.
 
-  # Start xvfb
-  - if [[ "$TEST" != "validation" ]]; then ./lib/pkp/tools/travis/start-xvfb.sh; fi
+      # Prepare the server environment
+      ./lib/pkp/tools/travis/prepare-webserver.sh
 
-  # Start Selenium
-  - if [[ "$TEST" != "validation" ]]; then ./lib/pkp/tools/travis/start-selenium.sh; fi
-
-  # Prepare code coverage
-  - if [[ "$TEST" == "mysql" ]]; then ./lib/pkp/tools/travis/prepare-code-coverage.sh; fi
-
-  # Install the JS linter
-  - if [[ "$TEST" == "validation" ]]; then ./lib/pkp/tools/travis/install-linter.sh; fi
-
-  # Sleep and output our logs, to avoid hanging build with no access to
-  # logs. This is useful for debugging but too verbose to leave enabled.
-  # - (sleep 590; cat access.log; cat error.log; cat xvfb-output; cat selenium-output; cat ./lib/pkp/tests/results/error.log) &
-
+      # Prepare the local codebase
+      ./lib/pkp/tools/travis/install-composer-dependencies.sh
+      npm install && npm run build
+    else
+      # Prepare for validation tests.
+      ./lib/pkp/tools/travis/install-linter.sh
+    fi
 script:
-  - if [[ "$TEST" != "validation" ]]; then ./lib/pkp/tools/travis/run-tests.sh; fi
-  # ./lib/tools/buildjs.sh not included in latter command pending stats porting
-  - if [[ "$TEST" == "validation" ]]; then ./lib/pkp/tools/travis/validate-xml.sh && ./lib/pkp/tools/buildjs.sh && ./lib/pkp/tools/checkHelp.sh; fi
+  - |
+    if [[ "$TEST" != "validation" ]]; then
+      # Run the unit and integration tests.
+      source ./lib/pkp/tools/travis/prepare-tests.sh
+      ./lib/pkp/tools/travis/run-tests.sh
+    else
+      # Run the validation tests.
+      ./lib/pkp/tools/travis/validate-xml.sh
+      ./lib/pkp/tools/buildjs.sh -n
+      ./lib/pkp/tools/checkHelp.sh
+      ./lib/pkp/tools/travis/validate-json.sh
+      npm run lint
+    fi
 
 after_script:
-  # Merge the coverage reports into one HTML report and upload to http://pkp.sfu.ca/test-coverage
-  - if [[ "$TEST" == "mysql" ]]; then ./lib/pkp/tools/travis/post-code-coverage.sh; fi
-
-  # Upload the completed database to the PKP server for other uses
-  - if [[ "$TEST" != "validation" ]]; then ./lib/pkp/tools/travis/post-data-build.sh; fi
-
-  # Print logs and outputs for debugging.
-  # - cat access.log
   - cat error.log
-  # - cat xvfb-output
-  # - cat selenium-output
-  - cat ./lib/pkp/tests/results/error.log
-  - for f in lib/pkp/tests/results/*.png; do echo ============== START ${f} ================== ; cat $f | base64 ; echo ============== END ${f} ================== ; done
+
+after_failure:
+  - sudo apt-get install sharutils
+  - tar cz cypress/screenshots | uuencode /dev/stdout
+  - cat error.log

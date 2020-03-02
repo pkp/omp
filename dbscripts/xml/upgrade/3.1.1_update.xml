@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE data SYSTEM "../../../lib/pkp/dtd/xmlData.dtd">
+
+<!--
+  * 3.1.1_update.xml
+  *
+  * Copyright (c) 2014-2020 Simon Fraser University
+  * Copyright (c) 2003-2020 John Willinsky
+  * Distributed under the GNU GPL v3. For full terms see the file docs/COPYING.
+  *
+  * 3.1.1 database updates XML file.
+  -->
+<data>
+	<sql><!-- Issue #1815 -->
+		<query>INSERT INTO plugin_settings (plugin_name, setting_name, setting_value, setting_type, context_id) SELECT 'googlescholarplugin', 'enabled', '1', 'bool', p.press_id FROM presses p WHERE NOT EXISTS (SELECT ps.plugin_name FROM plugin_settings ps WHERE ps.plugin_name = 'googlescholarplugin' AND ps.context_id = p.press_id)</query>
+		<query>INSERT INTO plugin_settings (plugin_name, setting_name, setting_value, setting_type, context_id) SELECT 'dublincoremetaplugin', 'enabled', '1', 'bool', p.press_id FROM presses p WHERE NOT EXISTS (SELECT ps.plugin_name FROM plugin_settings ps WHERE ps.plugin_name = 'dublincoremetaplugin' AND ps.context_id = p.press_id)</query>
+		<query>UPDATE versions SET product_type='plugins.generic' WHERE product_type='plugins.viewableFiles'</query>
+	</sql>
+	<sql><!-- pkp/pkp-lib#2896 -->
+		<query>UPDATE press_settings SET setting_name = 'citationsEnabledSubmission' WHERE setting_name = 'referencesEnabledSubmission'</query>
+		<query>UPDATE press_settings SET setting_name = 'citationsEnabledWorkflow' WHERE setting_name = 'referencesEnabledWorkflow'</query>
+		<query>UPDATE press_settings SET setting_name = 'citationsRequired' WHERE setting_name = 'referencesRequired'</query>
+	</sql>
+	<sql><!-- pkp/pkp-lib#2441 rename masthead to editorialTeam in press_settings -->
+		<query>UPDATE press_settings SET setting_name = 'editorialTeam' WHERE setting_name = 'masthead'</query>
+	</sql>
+	<sql>
+		<!-- issue #2874: remove citationLookup, citationParser and nlm30 metadata plugin -->
+		<!-- remove filter_settings -->
+		<query driver="mysql">DELETE FROM fs USING filter_settings fs INNER JOIN filters f ON (fs.filter_id = f.filter_id) INNER JOIN filter_groups fg ON (f.filter_group_id = fg.filter_group_id AND fg.symbolic IN ('citation=>nlm30', 'isbn=>nlm30-element-citation', 'nlm30-article-xml=>nlm23-article-xml', 'nlm30-element-citation=>isbn', 'nlm30-element-citation=>nlm30-element-citation', 'nlm30-element-citation=>nlm30-xml', 'nlm30-element-citation=>plaintext', 'nlm30=>citation', 'plaintext=>nlm30-element-citation', 'submission=>nlm23-article-xml', 'submission=>nlm30-article-xml', 'submission=>reference-list'))</query>
+		<query driver="mysqli">DELETE FROM fs USING filter_settings fs INNER JOIN filters f ON (fs.filter_id = f.filter_id) INNER JOIN filter_groups fg ON (f.filter_group_id = fg.filter_group_id AND fg.symbolic IN ('citation=>nlm30', 'isbn=>nlm30-element-citation', 'nlm30-article-xml=>nlm23-article-xml', 'nlm30-element-citation=>isbn', 'nlm30-element-citation=>nlm30-element-citation', 'nlm30-element-citation=>nlm30-xml', 'nlm30-element-citation=>plaintext', 'nlm30=>citation', 'plaintext=>nlm30-element-citation', 'submission=>nlm23-article-xml', 'submission=>nlm30-article-xml', 'submission=>reference-list'))</query>
+		<query driver="postgres7">DELETE FROM filter_settings fs USING filters f, filter_groups fg WHERE fs.filter_id = f.filter_id AND f.filter_group_id = fg.filter_group_id AND fg.symbolic IN ('citation=>nlm30', 'isbn=>nlm30-element-citation', 'nlm30-article-xml=>nlm23-article-xml', 'nlm30-element-citation=>isbn', 'nlm30-element-citation=>nlm30-element-citation', 'nlm30-element-citation=>nlm30-xml', 'nlm30-element-citation=>plaintext', 'nlm30=>citation', 'plaintext=>nlm30-element-citation', 'submission=>nlm23-article-xml', 'submission=>nlm30-article-xml', 'submission=>reference-list')</query>
+		<!-- remove filters -->
+		<query driver="mysql">DELETE FROM f USING filters f INNER JOIN filter_groups fg ON (f.filter_group_id = fg.filter_group_id AND fg.symbolic IN ('citation=>nlm30', 'isbn=>nlm30-element-citation', 'nlm30-article-xml=>nlm23-article-xml', 'nlm30-element-citation=>isbn', 'nlm30-element-citation=>nlm30-element-citation', 'nlm30-element-citation=>nlm30-xml', 'nlm30-element-citation=>plaintext', 'nlm30=>citation', 'plaintext=>nlm30-element-citation', 'submission=>nlm23-article-xml', 'submission=>nlm30-article-xml', 'submission=>reference-list'))</query>
+		<query driver="mysqli">DELETE FROM f USING filters f INNER JOIN filter_groups fg ON (f.filter_group_id = fg.filter_group_id AND fg.symbolic IN ('citation=>nlm30', 'isbn=>nlm30-element-citation', 'nlm30-article-xml=>nlm23-article-xml', 'nlm30-element-citation=>isbn', 'nlm30-element-citation=>nlm30-element-citation', 'nlm30-element-citation=>nlm30-xml', 'nlm30-element-citation=>plaintext', 'nlm30=>citation', 'plaintext=>nlm30-element-citation', 'submission=>nlm23-article-xml', 'submission=>nlm30-article-xml', 'submission=>reference-list'))</query>
+		<query driver="postgres7">DELETE FROM filters f USING filter_groups fg WHERE f.filter_group_id = fg.filter_group_id AND fg.symbolic IN ('citation=>nlm30', 'isbn=>nlm30-element-citation', 'nlm30-article-xml=>nlm23-article-xml', 'nlm30-element-citation=>isbn', 'nlm30-element-citation=>nlm30-element-citation', 'nlm30-element-citation=>nlm30-xml', 'nlm30-element-citation=>plaintext', 'nlm30=>citation', 'plaintext=>nlm30-element-citation', 'submission=>nlm23-article-xml', 'submission=>nlm30-article-xml', 'submission=>reference-list')</query>
+		<!-- remove filter_groups -->
+		<query>DELETE FROM filter_groups WHERE symbolic IN ('citation=>nlm30', 'isbn=>nlm30-element-citation', 'nlm30-article-xml=>nlm23-article-xml', 'nlm30-element-citation=>isbn', 'nlm30-element-citation=>nlm30-element-citation', 'nlm30-element-citation=>nlm30-xml', 'nlm30-element-citation=>plaintext', 'nlm30=>citation', 'plaintext=>nlm30-element-citation', 'submission=>nlm23-article-xml', 'submission=>nlm30-article-xml', 'submission=>reference-list')</query>
+	</sql>
+	<sql><!-- pkp/pkp-lib#3311 rename subject(EnabledSubmission, EnabledWorkflow, Required) to subjects(EnabledSubmission, EnabledWorkflow, Required) in press_settings -->
+		<query>UPDATE press_settings SET setting_name = 'subjectsEnabledSubmission' WHERE setting_name = 'subjectEnabledSubmission'</query>
+		<query>UPDATE press_settings SET setting_name = 'subjectsEnabledWorkflow' WHERE setting_name = 'subjectEnabledWorkflow'</query>
+		<query>UPDATE press_settings SET setting_name = 'subjectsRequired' WHERE setting_name = 'subjectRequired'</query>
+	</sql>
+	<!-- pkp/pkp-lib#2894 Set 0 review ratings to NULL -->
+	<sql>
+		<query>UPDATE review_assignments SET quality = NULL WHERE quality = 0</query>
+	</sql>
+	<!-- pkp/pkp-lib#2894 Update old localised user gossip entries -->
+	<sql>
+		<query driver="mysql">UPDATE users u, (SELECT user_id, GROUP_CONCAT(DISTINCT setting_value SEPARATOR ' ') AS groupedGossips FROM user_settings WHERE setting_name = 'gossip' AND setting_value &lt;&gt; '' GROUP BY user_id) us SET u.gossip = us.groupedGossips WHERE us.user_id = u.user_id</query>
+		<query driver="mysqli">UPDATE users u, (SELECT user_id, GROUP_CONCAT(DISTINCT setting_value SEPARATOR ' ') AS groupedGossips FROM user_settings WHERE setting_name = 'gossip' AND setting_value &lt;&gt; '' GROUP BY user_id) us SET u.gossip = us.groupedGossips WHERE us.user_id = u.user_id</query>
+		<query driver="postgres7">UPDATE users SET gossip = us.groupedGossips FROM (SELECT user_id, string_agg(DISTINCT setting_value, ' ') AS groupedGossips FROM user_settings WHERE setting_name = 'gossip' AND setting_value &lt;&gt; '' GROUP BY user_id) AS us WHERE us.user_id = users.user_id</query>
+		<query>DELETE FROM user_settings WHERE setting_name='gossip'</query>
+	</sql>
+	<sql><!-- pkp/pkp-lib#3412 Clean up notifications left over from deleted announcements -->
+		<query driver="mysql">DELETE n FROM notifications n LEFT JOIN announcements a ON (n.assoc_id = a.announcement_id) WHERE a.announcement_id IS NULL AND n.assoc_type = 522</query><!-- ASSOC_TYPE_ANNOUNCEMENT -->
+		<query driver="mysqli">DELETE n FROM notifications n LEFT JOIN announcements a ON (n.assoc_id = a.announcement_id) WHERE a.announcement_id IS NULL AND n.assoc_type = 522</query><!-- ASSOC_TYPE_ANNOUNCEMENT -->
+		<query driver="postgres7">DELETE FROM notifications USING notifications n LEFT JOIN announcements a ON (n.assoc_id = a.announcement_id) WHERE a.announcement_id IS NULL AND n.assoc_type = 522 AND notifications.notification_id = n.notification_id</query><!-- ASSOC_TYPE_ANNOUNCEMENT -->
+	</sql>
+</data>

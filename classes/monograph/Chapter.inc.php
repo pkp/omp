@@ -3,9 +3,9 @@
 /**
  * @file classes/monograph/Chapter.inc.php
  *
- * Copyright (c) 2014-2016 Simon Fraser University Library
- * Copyright (c) 2000-2016 John Willinsky
- * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
+ * Copyright (c) 2014-2020 Simon Fraser University
+ * Copyright (c) 2000-2020 John Willinsky
+ * Distributed under the GNU GPL v3. For full terms see the file docs/COPYING.
  *
  * @class Chapter
  * @ingroup monograph
@@ -18,27 +18,47 @@ class Chapter extends DataObject {
 	/**
 	 * Constructor
 	 */
-	function Chapter() {
-		parent::DataObject();
+	function __construct() {
+		parent::__construct();
 	}
 
 	//
 	// Get/set methods
 	//
-	/**
-	 * Get the monographId this chapter belongs to
-	 * @return int
-	 */
-	function getMonographId() {
-		return $this->getData('monographId');
-	}
 
 	/**
-	 * Set the monographId this chapter belongs to
-	 * @param int $monographId
+	 * Get localized data for this object.
+	 *
+	 * It selects the locale in the following order:
+	 * - $preferredLocale
+	 * - the user's current locale
+	 * - the first locale we find data for
+	 *
+	 * @todo Chapters should have access to their publication's locale
+	 *  and should fall back to that after the user's current locale
+	 *  and before the last fall back to the first data available.
+	 * @param string $key
+	 * @param string $preferredLocale
+	 * @return mixed
 	 */
-	function setMonographId($monographId) {
-		return $this->setData('monographId', $monographId);
+	public function getLocalizedData($key, $preferredLocale = null) {
+		// 1. Preferred locale
+		if ($preferredLocale && $this->getData($key, $preferredLocale)) {
+			return $this->getData($key, $preferredLocale);
+		}
+		// 2. User's current locale
+		if (!empty($this->getData($key, AppLocale::getLocale()))) {
+			return $this->getData($key, AppLocale::getLocale());
+		}
+		// 3. The first locale we can find data for
+		$data = $this->getData($key, null);
+		foreach ((array) $data as $value) {
+			if (!empty($value)) {
+				return $value;
+			}
+		}
+
+		return null;
 	}
 
 	/**
@@ -128,21 +148,107 @@ class Chapter extends DataObject {
 	 */
 	function getAuthors() {
 		$chapterAuthorDao = DAORegistry::getDAO('ChapterAuthorDAO'); /* @var $chapterAuthorDao ChapterAuthorDAO */
-		return $chapterAuthorDao->getAuthors($this->getMonographId(), $this->getId());
+		return $chapterAuthorDao->getAuthors($this->getData('publicationId'), $this->getId());
 	}
 
 	/**
 	 * Get the author names for this chapter and return them as a string.
+	 * @param $preferred boolean If the preferred public name should be used, if exist
 	 * @return string
 	 */
-	function getAuthorNamesAsString() {
+	function getAuthorNamesAsString($preferred = true) {
 		$authorNames = array();
 		$authors = $this->getAuthors();
 		while ($author = $authors->next()) {
-			$authorNames[] = $author->getFullName();
+			$authorNames[] = $author->getFullName($preferred);
 		}
 		return join(', ', $authorNames);
 	}
+
+	/**
+	 * Get stored public ID of the chapter.
+	 * @param @literal $pubIdType string One of the NLM pub-id-type values or
+	 * 'other::something' if not part of the official NLM list
+	 * (see <http://dtd.nlm.nih.gov/publishing/tag-library/n-4zh0.html>). @endliteral
+	 * @return int
+	 */
+	function getStoredPubId($pubIdType) {
+		return $this->getData('pub-id::'.$pubIdType);
+	}
+
+	/**
+	 * Set the stored public ID of the chapter.
+	 * @param $pubIdType string One of the NLM pub-id-type values or
+	 * 'other::something' if not part of the official NLM list
+	 * (see <http://dtd.nlm.nih.gov/publishing/tag-library/n-4zh0.html>).
+	 * @param $pubId string
+	 */
+	function setStoredPubId($pubIdType, $pubId) {
+		$this->setData('pub-id::'.$pubIdType, $pubId);
+	}
+
+	/**
+	 * @copydoc DataObject::getDAO()
+	 */
+	function getDAO() {
+		return DAORegistry::getDAO('ChapterDAO');
+	}
+
+	/**
+	 * Get abstract of chapter (primary locale)
+	 * @param $locale string
+	 * @return string
+	 */
+	function getAbstract($locale = null) {
+		return $this->getData('abstract', $locale);
+	}
+
+	/**
+	 * Set abstract of chapter
+	 * @param $abstract string
+	 * @param $locale string
+	 */
+	function setAbstract($abstract, $locale = null) {
+		return $this->setData('abstract', $abstract, $locale);
+	}
+	/**
+	 * Get localized abstract of a chapter.
+	 */
+	function getLocalizedAbstract() {
+		return $this->getLocalizedData('abstract');
+	}
+
+	/**
+	 * get date published
+	 * @return date
+	 */
+	function getDatePublished() {
+		return $this->getData('datePublished');
+	}
+
+	/**
+	 * set date published
+	 * @param $datePublished date
+	 */
+	function setDatePublished($datePublished) {
+		return $this->setData('datePublished', $datePublished);
+	}
+
+	/**
+	 * get pages
+	 * @return string
+	 */
+	function getPages() {
+		return $this->getData('pages');
+	}
+
+	/**
+	 * set pages
+	 * @param $pages string
+	 */
+	function setPages($pages) {
+		$this->setData('pages', $pages);
+	}
 }
 
-?>
+

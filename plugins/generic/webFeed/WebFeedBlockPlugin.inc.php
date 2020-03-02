@@ -3,9 +3,9 @@
 /**
  * @file plugins/generic/webFeed/WebFeedBlockPlugin.inc.php
  *
- * Copyright (c) 2014-2016 Simon Fraser University Library
- * Copyright (c) 2003-2016 John Willinsky
- * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
+ * Copyright (c) 2014-2020 Simon Fraser University
+ * Copyright (c) 2003-2020 John Willinsky
+ * Distributed under the GNU GPL v3. For full terms see the file docs/COPYING.
  *
  * @class WebFeedBlockPlugin
  * @ingroup plugins_generic_webFeed
@@ -16,12 +16,16 @@
 import('lib.pkp.classes.plugins.BlockPlugin');
 
 class WebFeedBlockPlugin extends BlockPlugin {
-	/** @var string Name of parent plugin */
-	var $parentPluginName;
+	/** @var WebFeedPlugin Parent plugin */
+	protected $_parentPlugin;
 
-	function WebFeedBlockPlugin($parentPluginName) {
-		parent::BlockPlugin();
-		$this->parentPluginName = $parentPluginName;
+	/**
+	 * Constructor
+	 * @var $parentPlugin WebFeedPlugin
+	 */
+	function __construct($parentPlugin) {
+		parent::__construct();
+		$this->_parentPlugin = $parentPlugin;
 	}
 
 	/**
@@ -29,14 +33,14 @@ class WebFeedBlockPlugin extends BlockPlugin {
 	 * its category.
 	 * @return String name of plugin
 	 */
-	function getName() {
+	public function getName() {
 		return 'WebFeedBlockPlugin';
 	}
 
 	/**
 	 * Hide this plugin from the management interface (it's subsidiary)
 	 */
-	function getHideManagement() {
+	public function getHideManagement() {
 		return true;
 	}
 
@@ -44,14 +48,14 @@ class WebFeedBlockPlugin extends BlockPlugin {
 	 * Get the display name of this plugin.
 	 * @return String
 	 */
-	function getDisplayName() {
+	public function getDisplayName() {
 		return __('plugins.generic.webfeed.displayName');
 	}
 
 	/**
 	 * Get a description of the plugin.
 	 */
-	function getDescription() {
+	public function getDescription() {
 		return __('plugins.generic.webfeed.description');
 	}
 
@@ -59,32 +63,17 @@ class WebFeedBlockPlugin extends BlockPlugin {
 	 * Get the supported contexts (e.g. BLOCK_CONTEXT_...) for this block.
 	 * @return array
 	 */
-	function getSupportedContexts() {
-		return array(BLOCK_CONTEXT_LEFT_SIDEBAR);
-	}
-
-	/**
-	 * Get the web feed plugin
-	 * @return WebFeedPlugin
-	 */
-	function getWebFeedPlugin() {
-		return PluginRegistry::getPlugin('generic', $this->parentPluginName);
+	public function getSupportedContexts() {
+		return array(BLOCK_CONTEXT_SIDEBAR);
 	}
 
 	/**
 	 * Override the builtin to get the correct plugin path.
 	 * @return string
 	 */
-	function getPluginPath() {
-		return $this->getWebFeedPlugin()->getPluginPath();
-	}
-
-	/**
-	 * @copydoc PKPPlugin::getTemplatePath
-	 */
-	function getTemplatePath($inCore = false) {
-		return $this->getWebFeedPlugin($inCore)->getTemplatePath();
+	public function getPluginPath() {
+		return $this->_parentPlugin->getPluginPath();
 	}
 }
 
-?>
+

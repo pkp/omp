@@ -1,0 +1,39 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: \n"
+"Report-Msgid-Bugs-To: \n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"POT-Creation-Date: 2020-02-08T17:42:24+00:00\n"
+"PO-Revision-Date: 2020-02-08T17:42:24+00:00\n"
+"Language: \n"
+
+msgid "plugins.generic.webfeed.displayName"
+msgstr "Modul pentru fluxuri web"
+
+msgid "plugins.generic.webfeed.description"
+msgstr "Acest modul emite fluxuri web RSS/Atom pentru numărul curent."
+
+msgid "plugins.generic.webfeed.settings"
+msgstr "Setări"
+
+msgid "plugins.generic.webfeed.settings.homepage"
+msgstr "Afișează linkurile fluxului doar pe pagina principală și pe paginile numărului de revistă."
+
+msgid "plugins.generic.webfeed.settings.all"
+msgstr "Afișează linkurile fluxului pe toate paginile revistei."
+
+msgid "plugins.generic.webfeed.settings.recentItemsRequired"
+msgstr "Introdu un număr zecimal pozitiv pentru articolele publicate recent."
+
+msgid "plugins.generic.webfeed.atom.altText"
+msgstr "Atom logo"
+
+msgid "plugins.generic.webfeed.rss1.altText"
+msgstr "RSS1 logo"
+
+msgid "plugins.generic.webfeed.rss2.altText"
+msgstr "RSS2 logo"

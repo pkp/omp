@@ -3,9 +3,9 @@
 /**
  * @file classes/monograph/ChapterDAO.inc.php
  *
- * Copyright (c) 2014-2016 Simon Fraser University Library
- * Copyright (c) 2000-2016 John Willinsky
- * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
+ * Copyright (c) 2014-2020 Simon Fraser University
+ * Copyright (c) 2000-2020 John Willinsky
+ * Distributed under the GNU GPL v3. For full terms see the file docs/COPYING.
  *
  * @class ChapterDAO
  * @ingroup monograph
@@ -18,54 +18,68 @@
 import('classes.monograph.Chapter');
 import('classes.monograph.ChapterAuthor');
 
-class ChapterDAO extends DAO {
-	/**
-	 * Constructor.
-	 */
-	function ChapterDAO() {
-		parent::DAO();
-	}
-
+class ChapterDAO extends DAO implements PKPPubIdPluginDAO {
 	/**
 	 * Retrieve a chapter by ID.
 	 * @param $chapterId int
-	 * @param $assocType int optional
-	 * @param $monographId int optional
+	 * @param $publicationId int optional
 	 * @return Chapter
 	 */
-	function getChapter($chapterId, $monographId = null) {
+	function getChapter($chapterId, $publicationId = null) {
 		$params = array((int) $chapterId);
-		if ($monographId !== null) {
-			$params[] = (int) $monographId;
+		if ($publicationId !== null) {
+			$params[] = (int) $publicationId;
 		}
 
 		$result = $this->retrieve(
-			'SELECT * FROM submission_chapters WHERE chapter_id = ?' . ($monographId !== null?' AND submission_id = ? ':''),
+			'SELECT * FROM submission_chapters WHERE chapter_id = ?'
+			. ($publicationId !== null?' AND publication_id = ? ':''),
 			$params
 		);
 
 		$returner = null;
 		if ($result->RecordCount() != 0) {
-			$returner = $this->_returnFromRow($result->GetRowAssoc(false));
+			$returner = $this->_fromRow($result->GetRowAssoc(false));
 		}
 		$result->Close();
 		return $returner;
 	}
 
 	/**
-	 * Get all chapters for a given monograph.
-	 * @param $monographId int
-	 * @param $rangeInfo object RangeInfo object (optional)
+	 * Retrieve all chapters of a publication.
+	 * @param $publicationId int
+	 * @param $orderBySequence boolean
 	 * @return DAOResultFactory
 	 */
-	function getChapters($monographId, $rangeInfo = null) {
-		$result = $this->retrieveRange(
-			'SELECT chapter_id, submission_id, chapter_seq FROM submission_chapters WHERE submission_id = ? ORDER BY chapter_seq',
-			(int) $monographId,
-			$rangeInfo
+	function getByPublicationId($publicationId, $orderBySequence = true) {
+		$result = $this->retrieve(
+			'SELECT	spc.*
+			FROM submission_chapters spc
+			INNER JOIN publications p ON (spc.publication_id = p.publication_id)
+			WHERE p.publication_id = ?'
+			. ($orderBySequence ? ' ORDER BY spc.seq ASC' : ''),
+			(int) $publicationId
 		);
 
-		return new DAOResultFactory($result, $this, '_returnFromRow', array('id'));
+		return new DAOResultFactory($result, $this, '_fromRow');
+	}
+
+	/**
+	 * Retrieve all chapters of a press.
+	 * @param $pressId int
+	 * @return DAOResultFactory
+	 */
+	function getByContextId($pressId) {
+		$result = $this->retrieve(
+			'SELECT	spc.*
+			FROM submission_chapters spc
+			INNER JOIN publications p ON (spc.publication_id = p.publication_id)
+			INNER JOIN submissions s ON (p.submission_id = s.submission_id)
+			WHERE s.context_id = ?',
+			(int) $pressId
+		);
+
+		return new DAOResultFactory($result, $this, '_fromRow');
 	}
 
 	/**
@@ -73,7 +87,21 @@ class ChapterDAO extends DAO {
 	 * @return array
 	 */
 	function getLocaleFieldNames() {
-		return array('title', 'subtitle');
+		return array('title', 'subtitle','abstract');
+	}
+
+	/**
+	 * Get a list of additional fields that do not have
+	 * dedicated accessors.
+	 * @return array
+	 */
+	function getAdditionalFieldNames() {
+		$additionalFields = parent::getAdditionalFieldNames();
+		// FIXME: Move this to a PID plug-in.
+		$additionalFields[] = 'pub-id::publisher-id';
+		$additionalFields[] = 'datePublished';
+		$additionalFields[] = 'pages';
+		return $additionalFields;
 	}
 
 	/**
@@ -89,14 +117,15 @@ class ChapterDAO extends DAO {
 	 * @param $row array
 	 * @return Chapter
 	 */
-	function _returnFromRow($row) {
+	function _fromRow($row) {
 		$chapter = $this->newDataObject();
-		$chapter->setId($row['chapter_id']);
-		$chapter->setMonographId($row['submission_id']);
-		$chapter->setSequence($row['chapter_seq']);
+		$chapter->setId((int) $row['chapter_id']);
+		$chapter->setData('publicationId', (int) $row['publication_id']);
+		$chapter->setSequence((int) $row['seq']);
+
 		$this->getDataObjectSettings('submission_chapter_settings', 'chapter_id', $row['chapter_id'], $chapter);
 
-		HookRegistry::call('ChapterDAO::_returnFromRow', array(&$chapter, &$row));
+		HookRegistry::call('ChapterDAO::_fromRow', array(&$chapter, &$row));
 
 		return $chapter;
 	}
@@ -118,12 +147,12 @@ class ChapterDAO extends DAO {
 	function insertChapter($chapter) {
 		$this->update(
 			'INSERT INTO submission_chapters
-				(submission_id, chapter_seq)
+				(publication_id, seq)
 				VALUES
 				(?, ?)',
 			array(
-				(int) $chapter->getMonographId(),
-				(int) $chapter->getSequence()
+				(int) $chapter->getData('publicationId'),
+				(int) $chapter->getSequence(),
 			)
 		);
 
@@ -139,12 +168,12 @@ class ChapterDAO extends DAO {
 	function updateObject($chapter) {
 		$this->update(
 			'UPDATE submission_chapters
-				SET	submission_id = ?,
-					chapter_seq = ?
+				SET	publication_id = ?,
+					seq = ?
 				WHERE
 					chapter_id = ?',
 			array(
-				(int) $chapter->getMonographId(),
+				(int) $chapter->getData('publicationId'),
 				(int) $chapter->getSequence(),
 				(int) $chapter->getId()
 			)
@@ -168,36 +197,31 @@ class ChapterDAO extends DAO {
 		$this->update('DELETE FROM submission_chapter_authors WHERE chapter_id = ?', (int) $chapterId);
 		$this->update('DELETE FROM submission_chapter_settings WHERE chapter_id = ?', (int) $chapterId);
 		$this->update('DELETE FROM submission_chapters WHERE chapter_id = ?', (int) $chapterId);
-	}
-
-	/**
-	 * Delete board chapters by assoc ID, including membership info
-	 * @param $assocType int
-	 * @param $monographId int
-	 */
-	function deleteByMonographId($monographId) {
-		$chapters = $this->getChapters($monographId);
-		while ($chapter = $chapters->next()) {
-			$this->deleteObject($chapter);
-		}
+		$this->update('DELETE FROM submission_file_settings WHERE setting_name = ? AND setting_value = ?', ['chapterId', (int) $chapterId]);
 	}
 
 	/**
 	 * Sequentially renumber  chapters in their sequence order, optionally by monographId
-	 * @param $monographId int
+	 * @param $publicationId int
 	 */
-	function resequenceChapters($monographId = null) {
+	function resequenceChapters($publicationId) {
+		$params = array();
+		if ($publicationId !== null) {
+			$params[] = (int) $publicationId;
+		}
+
 		$result = $this->retrieve(
-			'SELECT chapter_id FROM submission_chapters' .
-			($monographId !== null?' WHERE submission_id = ?':'') .
-			' ORDER BY seq',
-			($monographId !== null)?(int) $monographId:null
+			'SELECT chapter_id FROM submission_chapters
+			WHERE 1=1'
+			. ($publicationId !== null ? ' AND publication_id = ?':'')
+			. ' ORDER BY seq',
+			$params
 		);
 
 		for ($i=1; !$result->EOF; $i++) {
 			list($chapterId) = $result->fields;
 			$this->update(
-				'UPDATE submission_chapters SET chapter_seq = ? WHERE chapter_id = ?',
+				'UPDATE submission_chapters SET seq = ? WHERE chapter_id = ?',
 				array(
 					(int) $i,
 					(int) $chapterId
@@ -217,6 +241,81 @@ class ChapterDAO extends DAO {
 	function getInsertId() {
 		return $this->_getInsertId('submission_chapters', 'chapter_id');
 	}
-}
 
-?>
+	/**
+	 * @copydoc PKPPubIdPluginDAO::pubIdExists()
+	 */
+	function pubIdExists($pubIdType, $pubId, $excludePubObjectId, $contextId) {
+		$result = $this->retrieve(
+			'SELECT COUNT(*)
+			FROM submission_chapter_settings scs
+			INNER JOIN submission_chapters sc ON scs.chapter_id = sc.chapter_id
+			INNER JOIN publications p ON sc.publication_id = p.publication_id
+			INNER JOIN submissions s ON p.submission_id = s.submission_id
+			WHERE scs.setting_name = ?
+			AND scs.setting_value = ?
+			AND sc.chapter_id <> ?
+			AND s.context_id = ?',
+			array(
+				'pub-id::'.$pubIdType,
+				$pubId,
+				(int) $excludePubObjectId,
+				(int) $contextId
+			)
+		);
+		$returner = $result->fields[0] ? true : false;
+		$result->Close();
+		return $returner;
+	}
+
+	/**
+	 * @copydoc PKPPubIdPluginDAO::changePubId()
+	 */
+	function changePubId($pubObjectId, $pubIdType, $pubId) {
+		$idFields = array(
+			'chapter_id', 'locale', 'setting_name'
+		);
+		$updateArray = array(
+			'chapter_id' => (int) $pubObjectId,
+			'locale' => '',
+			'setting_name' => 'pub-id::'.$pubIdType,
+			'setting_type' => 'string',
+			'setting_value' => (string)$pubId
+		);
+		$this->replace('submission_chapter_settings', $updateArray, $idFields);
+	}
+
+	/**
+	 * @copydoc PKPPubIdPluginDAO::deletePubId()
+	 */
+	function deletePubId($pubObjectId, $pubIdType) {
+		$settingName = 'pub-id::'.$pubIdType;
+		$this->update(
+			'DELETE FROM submission_chapter_settings WHERE setting_name = ? AND chapter_id = ?',
+			array(
+				$settingName,
+				(int)$pubObjectId
+			)
+		);
+		$this->flushCache();
+	}
+
+	/**
+	 * @copydoc PKPPubIdPluginDAO::deleteAllPubIds()
+	 */
+	function deleteAllPubIds($contextId, $pubIdType) {
+		$settingName = 'pub-id::'.$pubIdType;
+
+		$chapters = $this->getByContextId($contextId);
+		while ($chapter = $chapters->next()) {
+			$this->update(
+				'DELETE FROM submission_chapter_settings WHERE setting_name = ? AND chapter_id = ?',
+				array(
+					$settingName,
+					(int)$chapter->getId()
+				)
+			);
+		}
+		$this->flushCache();
+	}
+}

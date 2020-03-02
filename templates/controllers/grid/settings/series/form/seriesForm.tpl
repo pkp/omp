@@ -1,9 +1,9 @@
 {**
  * templates/controllers/grid/settings/series/form/seriesForm.tpl
  *
- * Copyright (c) 2014-2016 Simon Fraser University Library
- * Copyright (c) 2003-2016 John Willinsky
- * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
+ * Copyright (c) 2014-2020 Simon Fraser University
+ * Copyright (c) 2003-2020 John Willinsky
+ * Distributed under the GNU GPL v3. For full terms see the file docs/COPYING.
  *
  * Series form under press management.
  *}
@@ -21,7 +21,7 @@
 					baseUrl: {$baseUrl|json_encode},
 					filters: {ldelim}
 						mime_types : [
-							{ldelim} title : "Image files", extensions : "jpg,jpeg,png" {rdelim}
+							{ldelim} title : "Image files", extensions : "jpg,jpeg,png,svg" {rdelim}
 						]
 					{rdelim}
 				{rdelim}
@@ -32,6 +32,7 @@
 
 <form class="pkp_form" id="seriesForm" method="post" action="{url router=$smarty.const.ROUTE_COMPONENT component="grid.settings.series.SeriesGridHandler" op="updateSeries" seriesId=$seriesId}">
 	{csrf}
+	<input type="hidden" name="seriesId" value="{$seriesId|escape}"/>
 	{include file="controllers/notification/inPlaceNotification.tpl" notificationId="seriesFormNotification"}
 
 	{fbvFormArea id="file"}
@@ -43,7 +44,7 @@
 	<input type="hidden" name="temporaryFileId" id="temporaryFileId" value="" />
 
 	{if $image}
-		{translate|assign:"altTitle" key="monograph.currentCoverImage"}
+		{capture assign="altTitle"}{translate key="submission.currentCoverImage"}{/capture}
 		<img class="pkp_helpers_container_center" height="{$image.thumbnailHeight}" width="{$image.thumbnailWidth}" src="{url router=$smarty.const.ROUTE_PAGE page="catalog" op="thumbnail" type="series" id=$seriesId}" alt="{$altTitle|escape}" />
 	{/if}
 
@@ -53,7 +54,7 @@
 				{fbvElement label="common.prefixAndTitle.tip" type="text" multilingual=true name="prefix" id="prefix" value=$prefix}
 			{/fbvFormSection}
 			{fbvFormSection for="title" title="common.title" inline="true" size=$fbvStyles.size.LARGE required=true}
-				{fbvElement type="text" multilingual=true name="title" id="title" value=$title}
+				{fbvElement type="text" multilingual=true name="title" id="title" value=$title required=true}
 			{/fbvFormSection}
 		</div>
 
@@ -78,27 +79,38 @@
 			{fbvElement type="select" id="sortOption" from=$sortOptions selected=$sortOption translate=false}
 		{/fbvFormSection}
 
-		<input type="hidden" name="seriesId" value="{$seriesId|escape}"/>
-		{if $categoryCount > 0}
-			{fbvFormSection for="context"}
-				<div id="seriesCategoriesContainer">
-					{url|assign:seriesCategoriesUrl router=$smarty.const.ROUTE_COMPONENT component="listbuilder.settings.CategoriesListbuilderHandler" op="fetch" sectionId=$seriesId escape=false}
-					{load_url_in_div id="seriesCategoriesContainer" url=$seriesCategoriesUrl}
+		{if $hasSubEditors}
+			{fbvFormSection}
+				{assign var="uuid" value=""|uniqid|escape}
+				<div id="subeditors-{$uuid}">
+					<list-panel
+						v-bind="components.subeditors"
+						@set="set"
+					/>
 				</div>
+				<script type="text/javascript">
+					pkp.registry.init('subeditors-{$uuid}', 'Container', {$subEditorsListData|json_encode});
+				</script>
 			{/fbvFormSection}
 		{/if}
 
-		{fbvFormSection for="context"}
-			{if $seriesEditorCount > 0}{* only include the series editor listbuilder if there are series editors available *}
-				<div id="seriesEditorsContainer">
-					{url|assign:seriesEditorsUrl router=$smarty.const.ROUTE_COMPONENT component="listbuilder.settings.SubEditorsListbuilderHandler" op="fetch" sectionId=$seriesId escape=false}
-					{load_url_in_div id="seriesEditorsContainer" url=$seriesEditorsUrl}
+		{if $hasCategories}
+			{fbvFormSection}
+				{assign var="uuid" value=""|uniqid|escape}
+				<div id="categories-{$uuid}">
+					<list-panel
+						v-bind="components.categories"
+						@set="set"
+					/>
 				</div>
-			{/if}
-		{/fbvFormSection}
+				<script type="text/javascript">
+					pkp.registry.init('categories-{$uuid}', 'Container', {$categoriesListData|json_encode});
+				</script>
+			{/fbvFormSection}
+		{/if}
 
 		{capture assign="instruct"}
-			{url|assign:"sampleUrl" router=$smarty.const.ROUTE_PAGE page="catalog" op="series" path="Path"}
+			{capture assign="sampleUrl"}{url router=$smarty.const.ROUTE_PAGE page="catalog" op="series" path="Path"}{/capture}
 			{translate key="grid.series.urlWillBe" sampleUrl=$sampleUrl}
 		{/capture}
 		{fbvFormSection title="series.path" required=true for="path"}
@@ -106,6 +118,6 @@
 		{/fbvFormSection}
 	{/fbvFormArea}
 
+	<p><span class="formRequired">{translate key="common.requiredField"}</span></p>
 	{fbvFormButtons submitText="common.save"}
 </form>
-<p><span class="formRequired">{translate key="common.requiredField"}</span></p>

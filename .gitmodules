@@ -1,15 +1,15 @@
 [submodule "lib/pkp"]
 	path = lib/pkp
 	url = git://github.com/pkp/pkp-lib
+[submodule "plugins/generic/usageStats"]
+        path = plugins/generic/usageStats
+        url = https://github.com/pkp/usageStats.git
 [submodule "plugins/generic/customBlockManager"]
 	path = plugins/generic/customBlockManager
 	url = git://github.com/pkp/customBlockManager
 [submodule "plugins/generic/staticPages"]
 	path = plugins/generic/staticPages
 	url = git://github.com/pkp/staticPages
-[submodule "plugins/generic/translator"]
-	path = plugins/generic/translator
-	url = git://github.com/pkp/translator
 [submodule "plugins/generic/tinymce"]
 	path = plugins/generic/tinymce
 	url = git://github.com/pkp/tinymce
@@ -19,3 +19,12 @@
 [submodule "plugins/blocks/makeSubmission"]
 	path = plugins/blocks/makeSubmission
 	url = https://github.com/pkp/makeSubmission.git
+[submodule "plugins/reports/reviewReport"]
+	path = plugins/reports/reviewReport
+	url = https://github.com/pkp/reviewReport
+[submodule "plugins/generic/googleAnalytics"]
+	path = plugins/generic/googleAnalytics
+	url = https://github.com/pkp/googleAnalytics
+[submodule "lib/ui-library"]
+	path = lib/ui-library
+	url = https://github.com/pkp/ui-library

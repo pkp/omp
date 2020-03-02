@@ -3,9 +3,9 @@
 /**
  * @file classes/codelist/ONIXCodelistItemDAO.inc.php
  *
- * Copyright (c) 2014-2016 Simon Fraser University Library
- * Copyright (c) 2000-2016 John Willinsky
- * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
+ * Copyright (c) 2014-2020 Simon Fraser University
+ * Copyright (c) 2000-2020 John Willinsky
+ * Distributed under the GNU GPL v3. For full terms see the file docs/COPYING.
  *
  * @class ONIXCodelistItemDAO
  * @ingroup codelist
@@ -25,8 +25,8 @@ class ONIXCodelistItemDAO extends DAO {
 	/**
 	 * Constructor.
 	 */
-	function ONIXCodelistItemDAO() {
-		parent::DAO();
+	function __construct() {
+		parent::__construct();
 	}
 
 	function &_getCache($locale = null) {
@@ -97,7 +97,7 @@ class ONIXCodelistItemDAO extends DAO {
 				fwrite($fp, $filteredXml);
 				fclose($fp);
 				$data = $xmlDao->parseWithHandler($tmpName, $handler);
-				$fileManager->deleteFile($tmpName);
+				$fileManager->deleteByPath($tmpName);
 			} else {
 				fatalError('misconfigured directory permissions on: ' . $tmpDir);
 			}
@@ -171,7 +171,7 @@ class ONIXCodelistItemDAO extends DAO {
 		$cache =& $this->_getCache($locale);
 		$returner = array();
 		foreach ($cache->getContents() as $code => $entry) {
-			$returner[] =& $this->_returnFromRow($code, $entry);
+			$returner[] =& $this->_fromRow($code, $entry);
 		}
 		return $returner;
 	}
@@ -227,14 +227,14 @@ class ONIXCodelistItemDAO extends DAO {
 	 * @param $row array
 	 * @return CodelistItem
 	 */
-	function &_returnFromRow($code, &$entry) {
+	function &_fromRow($code, &$entry) {
 		$codelistItem = $this->newDataObject();
 		$codelistItem->setCode($code);
 		$codelistItem->setText($entry[0]);
 
-		HookRegistry::call('ONIXCodelistItemDAO::_returnFromRow', array(&$codelistItem, &$code, &$entry));
+		HookRegistry::call('ONIXCodelistItemDAO::_fromRow', array(&$codelistItem, &$code, &$entry));
 
 		return $codelistItem;
 	}
 }
-?>
+

@@ -3,9 +3,9 @@
 /**
  * @file plugins/blocks/browse/BrowseBlockSettingsForm.inc.php
  *
- * Copyright (c) 2014-2016 Simon Fraser University Library
- * Copyright (c) 2003-2016 John Willinsky
- * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
+ * Copyright (c) 2014-2020 Simon Fraser University
+ * Copyright (c) 2003-2020 John Willinsky
+ * Distributed under the GNU GPL v3. For full terms see the file docs/COPYING.
  *
  * @class BrowseBlockSettingsForm
  * @ingroup plugins_blocks_browse
@@ -36,11 +36,11 @@ class BrowseBlockSettingsForm extends Form {
 	 * @param $plugin BrowseBlockPlugin
 	 * @param $pressId int
 	 */
-	function BrowseBlockSettingsForm($plugin, $pressId) {
+	public function __construct($plugin, $pressId) {
 		$this->setPressId($pressId);
 		$this->setPlugin($plugin);
 
-		parent::Form($plugin->getTemplatePath() . 'settingsForm.tpl');
+		parent::__construct($plugin->getTemplateResource('settingsForm.tpl'));
 
 		$this->addCheck(new FormValidatorPost($this));
 		$this->addCheck(new FormValidatorCSRF($this));
@@ -56,7 +56,7 @@ class BrowseBlockSettingsForm extends Form {
 	 * Get the Press ID.
 	 * @return int
 	 */
-	function getPressId() {
+	public function getPressId() {
 		return $this->_pressId;
 	}
 
@@ -64,7 +64,7 @@ class BrowseBlockSettingsForm extends Form {
 	 * Set the Press ID.
 	 * @param $pressId int
 	 */
-	function setPressId($pressId) {
+	public function setPressId($pressId) {
 		$this->_pressId = $pressId;
 	}
 
@@ -72,7 +72,7 @@ class BrowseBlockSettingsForm extends Form {
 	 * Get the plugin.
 	 * @return BrowseBlockPlugin
 	 */
-	function getPlugin() {
+	public function getPlugin() {
 		return $this->_plugin;
 	}
 
@@ -80,7 +80,7 @@ class BrowseBlockSettingsForm extends Form {
 	 * Set the plugin.
 	 * @param $plugin BrowseBlockPlugin
 	 */
-	function setPlugin($plugin) {
+	public function setPlugin($plugin) {
 		$this->_plugin = $plugin;
 	}
 
@@ -90,7 +90,7 @@ class BrowseBlockSettingsForm extends Form {
 	/**
 	 * @see Form::initData()
 	 */
-	function initData() {
+	public function initData() {
 		$pressId = $this->getPressId();
 		$plugin = $this->getPlugin();
 		foreach($this->_getFormFields() as $fieldName => $fieldType) {
@@ -101,25 +101,26 @@ class BrowseBlockSettingsForm extends Form {
 	/**
 	 * @see Form::readInputData()
 	 */
-	function readInputData() {
+	public function readInputData() {
 		$this->readUserVars(array_keys($this->_getFormFields()));
 	}
 
 	/**
-	 * @see Form::execute()
+	 * @copydoc Form::execute()
 	 */
-	function execute() {
+	public function execute(...$functionArgs) {
 		$plugin = $this->getPlugin();
 		$pressId = $this->getPressId();
 		foreach($this->_getFormFields() as $fieldName => $fieldType) {
 			$plugin->updateSetting($pressId, $fieldName, $this->getData($fieldName), $fieldType);
 		}
+		parent::execute(...$functionArgs);
 	}
 
 	//
 	// Private helper methods
 	//
-	function _getFormFields() {
+	public function _getFormFields() {
 		return array(
 			'browseNewReleases' => 'bool',
 			'browseCategories' => 'bool',
@@ -128,4 +129,4 @@ class BrowseBlockSettingsForm extends Form {
 	}
 }
 
-?>
+

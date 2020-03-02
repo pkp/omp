@@ -1,9 +1,9 @@
 {**
  * templates/controllers/grid/catalogEntry/form/salesRightsForm.tpl
  *
- * Copyright (c) 2014-2016 Simon Fraser University Library
- * Copyright (c) 2003-2016 John Willinsky
- * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
+ * Copyright (c) 2014-2020 Simon Fraser University
+ * Copyright (c) 2003-2020 John Willinsky
+ * Distributed under the GNU GPL v3. For full terms see the file docs/COPYING.
  *
  * Sales Rights form.
  *}
@@ -18,14 +18,15 @@
 <form class="pkp_form" id="addSalesRightsForm" method="post" action="{url router=$smarty.const.ROUTE_COMPONENT component="grid.catalogEntry.SalesRightsGridHandler" op="updateRights"}">
 	{csrf}
 	<input type="hidden" name="submissionId" value="{$submissionId|escape}" />
+	<input type="hidden" name="publicationId" value="{$publicationId|escape}" />
 	<input type="hidden" name="representationId" value="{$representationId|escape}" />
 	<input type="hidden" name="salesRightsId" value="{$salesRightsId|escape}" />
 	{fbvFormArea id="addRights"}
 		{fbvFormSection title="grid.catalogEntry.salesRightsType" for="type" required="true"}
-			{fbvElement type="select" from=$salesRights selected=$type id="type" translate=false}
+			{fbvElement type="select" from=$salesRights selected=$type id="type" translate=false required="true"}
 		{/fbvFormSection}
 		{fbvFormSection for="value" list="true" description="grid.catalogEntry.salesRightsROW.tip"}
-		
+
 			{if $ROWSetting}
 				{assign var="checked" value=true}
 			{else}
@@ -34,7 +35,7 @@
 
 			{fbvElement type="checkbox" id="ROWSetting" checked=$checked list="true" label="grid.catalogEntry.salesRightsROW"}
 		{/fbvFormSection}
-		
+
 		{include file="controllers/grid/catalogEntry/form/countriesAndRegions.tpl"}
 
 		{fbvFormButtons}

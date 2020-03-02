@@ -7,9 +7,9 @@
 /**
  * @file pages/catalog/index.php
  *
- * Copyright (c) 2014-2016 Simon Fraser University Library
- * Copyright (c) 2003-2016 John Willinsky
- * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
+ * Copyright (c) 2014-2020 Simon Fraser University
+ * Copyright (c) 2003-2020 John Willinsky
+ * Distributed under the GNU GPL v3. For full terms see the file docs/COPYING.
  *
  * @ingroup pages_catalog
  * @brief Handle requests for the public catalog view.
@@ -18,6 +18,7 @@
 
 switch ($op) {
 	case 'index':
+	case 'page':
 	case 'category':
 	case 'fullSize':
 	case 'newReleases':
@@ -35,4 +36,4 @@ switch ($op) {
 		break;
 }
 
-?>
+

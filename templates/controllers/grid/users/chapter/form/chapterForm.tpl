@@ -1,9 +1,9 @@
 {**
  * templates/controllers/grid/users/chapter/form/chapterForm.tpl
  *
- * Copyright (c) 2014-2016 Simon Fraser University Library
- * Copyright (c) 2003-2016 John Willinsky
- * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
+ * Copyright (c) 2014-2020 Simon Fraser University
+ * Copyright (c) 2003-2020 John Willinsky
+ * Distributed under the GNU GPL v3. For full terms see the file docs/COPYING.
  *
  * Chapters grid form
  *
@@ -21,6 +21,7 @@
 <form class="pkp_form" id="editChapterForm" method="post" action="{url router=$smarty.const.ROUTE_COMPONENT component="grid.users.chapter.ChapterGridHandler" op="updateChapter"}">
 	{csrf}
 	<input type="hidden" name="submissionId" value="{$submissionId|escape}" />
+	<input type="hidden" name="publicationId" value="{$publicationId|escape}" />
 	<input type="hidden" name="chapterId" value="{$chapterId|escape}" />
 
 	{include file="controllers/notification/inPlaceNotification.tpl" notificationId="chapterFormNotification"}
@@ -33,18 +34,48 @@
 		{fbvElement type="text" name="subtitle" id="subtitle" value=$subtitle maxlength="255" multilingual=true}
 	{/fbvFormSection}
 
-	{fbvFormSection}
-		<!--  Chapter Contributors -->
-		{url|assign:chapterAuthorUrl router=$smarty.const.ROUTE_COMPONENT component="listbuilder.users.ChapterAuthorListbuilderHandler" op="fetch" submissionId=$submissionId chapterId=$chapterId escape=false}
-		{load_url_in_div id="chapterAuthorContainer" url=$chapterAuthorUrl}
+	{fbvFormSection title="common.abstract" for="abstract"}
+	    {fbvElement type="textarea" name="abstract" id="abstract" value=$abstract  rich="extended" multilingual=true}
 	{/fbvFormSection}
 
-	{fbvFormSection}
-		<!-- Chapter Files -->
-		{url|assign:chapterFilesUrl router=$smarty.const.ROUTE_COMPONENT component="listbuilder.files.ChapterFilesListbuilderHandler" op="fetch" submissionId=$submissionId chapterId=$chapterId escape=false}
-		{load_url_in_div id="chapterFilesContainer" url=$chapterFilesUrl}
+	{fbvFormSection title="submission.chapter.pages" for="customExtras"}
+	    {fbvElement type="text" id="pages" value=$pages inline=true size=$fbvStyles.size.LARGE}
 	{/fbvFormSection}
 
+	{if $enableChapterPublicationDates}
+		{fbvFormSection title="publication.datePublished" for="customExtras"}
+		{fbvElement type="text" id="datePublished" value=$datePublished inline=true size=$fbvStyles.size.LARGE  class="datepicker"}
+		{/fbvFormSection}
+	{/if}
+
+	{fbvFormSection}
+		{assign var="uuid" value=""|uniqid|escape}
+		<div id="chapter-authors-{$uuid}">
+			<list-panel
+				v-bind="components.authors"
+				@set="set"
+			/>
+		</div>
+		<script type="text/javascript">
+			pkp.registry.init('chapter-authors-{$uuid}', 'Container', {$chapterAuthorsListData|json_encode});
+		</script>
+	{/fbvFormSection}
+
+	{if $chapterId}
+		{fbvFormSection}
+			{assign var="uuid" value=""|uniqid|escape}
+			<div id="chapter-files-{$uuid}">
+				<list-panel
+					v-bind="components.chapterFilesListPanel"
+					@set="set"
+				/>
+			</div>
+			<script type="text/javascript">
+				pkp.registry.init('chapter-files-{$uuid}', 'Container', {$chapterFilesListData|json_encode});
+			</script>
+		{/fbvFormSection}
+	{/if}
+
+	<p><span class="formRequired">{translate key="common.requiredField"}</span></p>
 	{fbvFormButtons submitText="common.save"}
 </form>
-<p><span class="formRequired">{translate key="common.requiredField"}</span></p>

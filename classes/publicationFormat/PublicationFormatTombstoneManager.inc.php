@@ -3,9 +3,9 @@
 /**
  * @file classes/publicationFormat/PublicationFormatTombstoneManager.inc.php
  *
- * Copyright (c) 2014-2016 Simon Fraser University Library
- * Copyright (c) 2000-2016 John Willinsky
- * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
+ * Copyright (c) 2014-2020 Simon Fraser University
+ * Copyright (c) 2000-2020 John Willinsky
+ * Distributed under the GNU GPL v3. For full terms see the file docs/COPYING.
  *
  * @class PublicationFormatTombstoneManager
  * @ingroup publicationFormat
@@ -18,7 +18,7 @@ class PublicationFormatTombstoneManager {
 	/**
 	 * Constructor
 	 */
-	function PublicationFormatTombstoneManager() {
+	function __construct() {
 	}
 
 	/**
@@ -27,12 +27,13 @@ class PublicationFormatTombstoneManager {
 	 * @param $press Press
 	 */
 	function insertTombstoneByPublicationFormat($publicationFormat, $press) {
-		$monographDao = DAORegistry::getDAO('MonographDAO');
-		$monograph = $monographDao->getById($publicationFormat->getMonographId());
-		$seriesDao = DAORegistry::getDAO('SeriesDAO');
+		$publication = Services::get('publication')->get($publicationFormat->getData('publicationId'));
+		$submissionDao = DAORegistry::getDAO('SubmissionDAO'); /* @var $submissionDao SubmissionDAO */
+		$monograph = $submissionDao->getById($publication->getData('submissionId'));
+		$seriesDao = DAORegistry::getDAO('SeriesDAO'); /* @var $seriesDao SeriesDAO */
 		$series = $seriesDao->getById($monograph->getSeriesId());
 
-		$dataObjectTombstoneDao = DAORegistry::getDAO('DataObjectTombstoneDAO');
+		$dataObjectTombstoneDao = DAORegistry::getDAO('DataObjectTombstoneDAO'); /* @var $dataObjectTombstoneDao DataObjectTombstoneDAO */
 		// delete publication format tombstone to ensure that there aren't
 		// more than one tombstone for this publication format
 		$dataObjectTombstoneDao->deleteByDataObjectId($publicationFormat->getId());
@@ -75,14 +76,15 @@ class PublicationFormatTombstoneManager {
 
 	/**
 	 * Insert tombstone for every publication format of the
-	 * published monographs inside the passed press.
+	 * published submissions inside the passed press.
 	 * @param $press
 	 */
 	function insertTombstonesByPress($press) {
-		$publishedMonographFactory = $this->_getPublishedMonographFactoryByPressId($press->getId());
-		while ($publishedMonograph = $publishedMonographFactory->next()) { /* @var $publishedMonograph PublishedMonograph */
-			$publicationFormats = $publishedMonograph->getPublicationFormats();
-			$this->insertTombstonesByPublicationFormats($publicationFormats, $press);
+		$submissionsIterator = Services::get('submission')->getMany(['contextId' => $press->getId(), 'status' => STATUS_PUBLISHED, 'count' => 2000]);
+		foreach ($submissionsIterator as $submission) {
+			foreach ($submission->getData('publications') as $publication) {
+				$this->insertTombstonesByPublicationFormats($publication->getData('publicationFormats'), $press);
+			}
 		}
 	}
 
@@ -92,7 +94,7 @@ class PublicationFormatTombstoneManager {
 	 */
 	function deleteTombstonesByPublicationFormats($publicationFormats) {
 		foreach ($publicationFormats as $publicationFormat) {
-			$tombstoneDao = DAORegistry::getDAO('DataObjectTombstoneDAO');
+			$tombstoneDao = DAORegistry::getDAO('DataObjectTombstoneDAO'); /* @var $tombstoneDao DataObjectTombstoneDAO */
 			$tombstoneDao->deleteByDataObjectId($publicationFormat->getId());
 		}
 	}
@@ -102,26 +104,13 @@ class PublicationFormatTombstoneManager {
 	 * @param $pressId int
 	 */
 	function deleteTombstonesByPressId($pressId) {
-		$publishedMonographFactory = $this->_getPublishedMonographFactoryByPressId($pressId);
-		while ($publishedMonograph = $publishedMonographFactory->next()) {
-			$publicationFormats = $publishedMonograph->getPublicationFormats();
-			$this->deleteTombstonesByPublicationFormats($publicationFormats);
+		$submissionsIterator = Services::get('submission')->getMany(['contextId' => $pressId, 'status' => STATUS_PUBLISHED, 'count' => 2000]);
+		foreach ($submissionsIterator as $submission) {
+			foreach ($submission->getData('publications') as $publication) {
+				$this->deleteTombstonesByPublicationFormats($publication->getData('publicationFormats'));
+			}
 		}
-	}
-
-
-	//
-	// Private helper methods.
-	//
-	/**
-	 * Get the published monograph factory for the passed press id.
-	 * @param $pressId int
-	 * @return DAOResultFactory
-	 */
-	function _getPublishedMonographFactoryByPressId($pressId) {
-		$publishedMonographDao = DAORegistry::getDAO('PublishedMonographDAO');
-		return $publishedMonographDao->getByPressId($pressId);
 	}
 }
 
-?>
+

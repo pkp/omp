@@ -1,0 +1,66 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: \n"
+"Report-Msgid-Bugs-To: \n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"POT-Creation-Date: 2020-02-08T17:42:27+00:00\n"
+"PO-Revision-Date: 2020-02-08T17:42:27+00:00\n"
+"Language: \n"
+
+msgid "plugins.importexport.onix30.displayName"
+msgstr "Complemento de exportación de monografías ONIX 3.0"
+
+msgid "plugins.importexport.onix30.description"
+msgstr "Exportar metadatos de monografías en formato ONIX 3.0"
+
+msgid "plugins.importexport.onix30.cliUsage"
+msgstr "Uso: {$scriptName} {$pluginName} [xmlFileName] [pressPath] [monographId]"
+
+msgid "plugins.importexport.onix30.cliError"
+msgstr "ERROR:"
+
+msgid "plugins.importexport.onix30.error.unknownPress"
+msgstr "La ruta editorial, \"{$contextPath},\" no existe."
+
+msgid "plugins.importexport.onix30.export.error.couldNotWrite"
+msgstr "No se pudo escribir en el fichero \"{$fileName}\"."
+
+msgid "plugins.importexport.onix30.export.error.monographNotFound"
+msgstr "Ninguna monografía coincide con el ID de monografías indicado \"{$monographId}\"."
+
+msgid "plugins.importexport.onix30.noFormats"
+msgstr "No se muestran las monografías sin formato de publicación."
+
+msgid "plugins.importexport.onix30.selectMonograph"
+msgstr "Selecciona la monografía que deseas exportar:"
+
+msgid "plugins.importexport.onix30.exportButton"
+msgstr "Exportar"
+
+msgid "plugins.importexport.onix30.exportFormats"
+msgstr "Formatos disponibles"
+
+msgid "plugins.importexport.onix30.unavailable"
+msgstr "No disponible"
+
+msgid "plugins.importexport.onix30.validityStatus"
+msgstr "Estado ONIX"
+
+msgid "plugins.importexport.onix30.formatValid"
+msgstr "Válido"
+
+msgid "plugins.importexport.onix30.formatInvalid"
+msgstr "No válido"
+
+msgid "plugins.importexport.onix30.pressMissingFields"
+msgstr "Falta información necesaria en esta editorial. Por favor, ve a Administración > Ajustes > Publicación > Producción e introduce los datos que faltan."
+
+msgid "plugins.importexport.onix30.form.addresseeField"
+msgstr "Destinatario (receptor) de esta exportación"
+
+msgid "plugins.importexport.onix30.form.addresseeField.tip"
+msgstr "Debes dejar este campo en blanco y crear una exportación general. Esto supondrá que la exportación ONIX no tenga &lt;Destinatario%gt; ."

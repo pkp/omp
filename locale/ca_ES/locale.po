@@ -1,0 +1,1158 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: \n"
+"Report-Msgid-Bugs-To: \n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"POT-Creation-Date: 2019-11-28T15:10:03-08:00\n"
+"PO-Revision-Date: 2019-11-28T15:10:03-08:00\n"
+"Language: \n"
+
+msgid "monograph.audience"
+msgstr "Audiència"
+
+msgid "monograph.coverImage"
+msgstr "Imatge de la portada"
+
+msgid "monograph.audience.rangeQualifier"
+msgstr "Qualificador de l'interval d'audiència"
+
+msgid "monograph.audience.rangeFrom"
+msgstr "Interval d'audiència (mínim)"
+
+msgid "monograph.audience.rangeTo"
+msgstr "Interval d'audiència (màxim)"
+
+msgid "monograph.audience.rangeExact"
+msgstr "Interval d'audiència (exacte)"
+
+msgid "monograph.languages"
+msgstr "Llengües (anglès, francès, espanyol)"
+
+msgid "monograph.publicationFormats"
+msgstr "Formats de publicació"
+
+msgid "monograph.carousel.publicationFormats"
+msgstr "Formats:"
+
+msgid "monograph.type"
+msgstr "Tipus de tramesa"
+
+msgid "submission.pageProofs"
+msgstr "Galerades"
+
+msgid "monograph.proofReadingDescription"
+msgstr "El maquetista carregarà aquí els fitxers preparats per producció que s'hagin preparat per publicar-los. Utilitzeu <em>+Assigna</em> per designar els autors/ores i els altres usuaris/àries que s'encarregaran de corregir les galerades, amb els fitxers corregits carregats per a l'aprovació prèvia a la publicació."
+
+msgid "monograph.task.addNote"
+msgstr "Afegeix a la tasca"
+
+msgid "monograph.accessLogoOpen.altText"
+msgstr "Accés obert"
+
+msgid "monograph.publicationFormat.imprint"
+msgstr "Imprint (Brand Name)"
+
+msgid "monograph.publicationFormat.pageCounts"
+msgstr "Page Counts"
+
+msgid "monograph.publicationFormat.frontMatterCount"
+msgstr "Front Matter"
+
+msgid "monograph.publicationFormat.backMatterCount"
+msgstr "Back Matter"
+
+msgid "monograph.publicationFormat.productComposition"
+msgstr "Product Composition"
+
+msgid "monograph.publicationFormat.productFormDetailCode"
+msgstr "Product Detail (not required)"
+
+msgid "monograph.publicationFormat.productIdentifierType"
+msgstr "Product Identification"
+
+msgid "monograph.publicationFormat.price"
+msgstr "Price"
+
+msgid "monograph.publicationFormat.priceRequired"
+msgstr "A price is required."
+
+msgid "monograph.publicationFormat.priceType"
+msgstr "Price Type"
+
+msgid "monograph.publicationFormat.discountAmount"
+msgstr "Discount percentage, if applicable"
+
+msgid "monograph.publicationFormat.productAvailability"
+msgstr "Product Availability"
+
+msgid "monograph.publicationFormat.returnInformation"
+msgstr "Returnable Indicator"
+
+msgid "monograph.publicationFormat.digitalInformation"
+msgstr "Digital Information"
+
+msgid "monograph.publicationFormat.productDimensions"
+msgstr "Physical Dimensions"
+
+msgid "monograph.publicationFormat.productDimensionsSeparator"
+msgstr " x "
+
+msgid "monograph.publicationFormat.productFileSize"
+msgstr "File Size in Mbytes"
+
+msgid "monograph.publicationFormat.productFileSize.override"
+msgstr "Enter your own file size value?"
+
+msgid "monograph.publicationFormat.productHeight"
+msgstr "Height"
+
+msgid "monograph.publicationFormat.productThickness"
+msgstr "Thickness"
+
+msgid "monograph.publicationFormat.productWeight"
+msgstr "Weight"
+
+msgid "monograph.publicationFormat.productWidth"
+msgstr "Width"
+
+msgid "monograph.publicationFormat.countryOfManufacture"
+msgstr "Country of Manufacture"
+
+msgid "monograph.publicationFormat.technicalProtection"
+msgstr "Protecció tècnica digital"
+
+msgid "monograph.publicationFormat.productRegion"
+msgstr "Regió de distribució del producte"
+
+msgid "monograph.publicationFormat.taxRate"
+msgstr "Taxa impositiva"
+
+msgid "monograph.publicationFormat.taxType"
+msgstr "Tipus de taxa"
+
+msgid "monograph.publicationFormat.isApproved"
+msgstr "Inclou les metadades d'aquest format de publicació a l'entrada de catàleg per a aquest llibre."
+
+msgid "monograph.publicationFormat.noMarketsAssigned"
+msgstr "Falten preus i mercats."
+
+msgid "monograph.publicationFormat.noCodesAssigned"
+msgstr "Falta un codi d'identificació."
+
+msgid "monograph.publicationFormat.missingONIXFields"
+msgstr "Falten alguns camps de metadades."
+
+msgid "monograph.publicationFormat.formatDoesNotExist"
+msgstr "<p>El format de publicació triat ja no existeix per a aquesta monografia.</p>"
+
+msgid "monograph.publicationFormat.openTab"
+msgstr "Obre la pestanya de format de publicació."
+
+msgid "grid.catalogEntry.publicationFormatType"
+msgstr "Format de publicació"
+
+msgid "grid.catalogEntry.nameRequired"
+msgstr "Cal que introduïu un nom."
+
+msgid "grid.catalogEntry.validPriceRequired"
+msgstr "Cal que introduïu un preu vàlid."
+
+msgid "grid.catalogEntry.publicationFormatDetails"
+msgstr "Detalls del format"
+
+msgid "grid.catalogEntry.physicalFormat"
+msgstr "Format físic"
+
+msgid "grid.catalogEntry.monographRequired"
+msgstr "Cal que introduïu un identificador de monografia."
+
+msgid "grid.catalogEntry.publicationFormatRequired"
+msgstr "Cal que trieu un format de publicació."
+
+msgid "grid.catalogEntry.isAvailable"
+msgstr "Disponibles"
+
+msgid "grid.catalogEntry.proof"
+msgstr "Prova"
+
+msgid "grid.catalogEntry.fileSizeRequired"
+msgstr "Cal introduir una mida de fitxer per als formats digitals."
+
+msgid "grid.catalogEntry.productAvailabilityRequired"
+msgstr "Cal introduir un codi de disponibilitat per al producte."
+
+msgid "grid.catalogEntry.productCompositionRequired"
+msgstr "Cal introduir un codi de composició per al producte."
+
+msgid "grid.catalogEntry.identificationCodeValue"
+msgstr "Valor del codi"
+
+msgid "grid.catalogEntry.identificationCodeType"
+msgstr "Tipus de codi ONIX"
+
+msgid "grid.catalogEntry.codeRequired"
+msgstr "Cal que introduïu un codi."
+
+msgid "grid.catalogEntry.valueRequired"
+msgstr "Cal introduir un valor."
+
+msgid "grid.catalogEntry.salesRights"
+msgstr "Drets de comercialització"
+
+msgid "grid.catalogEntry.salesRightsValue"
+msgstr "Valor del codi"
+
+msgid "grid.catalogEntry.salesRightsType"
+msgstr "Tipus de drets de comercialització"
+
+msgid "grid.catalogEntry.salesRightsROW"
+msgstr "Resta del món?"
+
+msgid "grid.catalogEntry.salesRightsROW.tip"
+msgstr "Marqueu la casella per utilitzar aquesta entrada de drets de comercialització com a principal.   No cal que introduïu països o províncies en aquest cas."
+
+msgid "grid.catalogEntry.oneROWPerFormat"
+msgstr "Ja hi ha un tipus de vendes ROW definit per a aquesta publicació."
+
+msgid "grid.catalogEntry.countries"
+msgstr "Països"
+
+msgid "grid.catalogEntry.regions"
+msgstr "Províncies"
+
+msgid "grid.catalogEntry.included"
+msgstr "Inclosos"
+
+msgid "grid.catalogEntry.excluded"
+msgstr "Exclosos"
+
+msgid "grid.catalogEntry.markets"
+msgstr "Territoris de mercat"
+
+msgid "grid.catalogEntry.marketTerritory"
+msgstr "Territori"
+
+msgid "grid.catalogEntry.publicationDates"
+msgstr "Dates de publicació"
+
+msgid "grid.catalogEntry.roleRequired"
+msgstr "Cal que introduïu un rol de representant."
+
+msgid "grid.catalogEntry.dateFormatRequired"
+msgstr "Cal que introduïu un format de data."
+
+msgid "grid.catalogEntry.dateValue"
+msgstr "Data"
+
+msgid "grid.catalogEntry.dateRole"
+msgstr "Rol"
+
+msgid "grid.catalogEntry.dateFormat"
+msgstr "Format de data"
+
+msgid "grid.catalogEntry.dateRequired"
+msgstr "Cal que introduïu una data amb un valor que coincideixi amb el format triat."
+
+msgid "grid.catalogEntry.representatives"
+msgstr "Representants"
+
+msgid "grid.catalogEntry.representativeType"
+msgstr "Tipus de representants"
+
+msgid "grid.catalogEntry.agentsCategory"
+msgstr "Agents"
+
+msgid "grid.catalogEntry.suppliersCategory"
+msgstr "Proveïdors"
+
+msgid "grid.catalogEntry.agent"
+msgstr "Agent"
+
+msgid "grid.catalogEntry.agentTip"
+msgstr "Podeu assignar un agent per representar-vos en el territori que heu definit.  No es requereix."
+
+msgid "grid.catalogEntry.supplier"
+msgstr "Proveïdor"
+
+msgid "grid.catalogEntry.representativeRoleChoice"
+msgstr "Trieu un rol:"
+
+msgid "grid.catalogEntry.representativeRole"
+msgstr "Rol"
+
+msgid "grid.catalogEntry.representativeName"
+msgstr "Nom"
+
+msgid "grid.catalogEntry.representativePhone"
+msgstr "Telèfon"
+
+msgid "grid.catalogEntry.representativeEmail"
+msgstr "Adreça electrònica"
+
+msgid "grid.catalogEntry.representativeWebsite"
+msgstr "Lloc web"
+
+msgid "grid.catalogEntry.representativeIdValue"
+msgstr "Identificador del representant"
+
+msgid "grid.catalogEntry.representativeIdType"
+msgstr "Tipus d'identificador del representant (es recomana GLN)"
+
+msgid "grid.catalogEntry.representativesDescription"
+msgstr "Podeu deixar buida la secció següent si proporcioneu els vostres serveis directament als clients."
+
+msgid "grid.action.addRepresentative"
+msgstr "Afegeix un representant"
+
+msgid "grid.action.editRepresentative"
+msgstr "Edita aquest representant"
+
+msgid "grid.action.deleteRepresentative"
+msgstr "Elimina aquest representant"
+
+msgid "spotlight.spotlights"
+msgstr "Punts destacats"
+
+msgid "spotlight.noneExist"
+msgstr "No hi ha punts destacats"
+
+msgid "spotlight.title.homePage"
+msgstr "El centre d'atenció"
+
+msgid "spotlight.author"
+msgstr "Autor/a, "
+
+msgid "grid.content.spotlights.spotlightItemTitle"
+msgstr "Element del punt destacat"
+
+msgid "grid.content.spotlights.category.homepage"
+msgstr "Inici"
+
+msgid "grid.content.spotlights.form.location"
+msgstr "Ubicació del punt destacat"
+
+msgid "grid.content.spotlights.form.item"
+msgstr "Introduïu el títol destacat (autocompleta)"
+
+msgid "grid.content.spotlights.form.title"
+msgstr "Títol del punt destacat"
+
+msgid "grid.content.spotlights.form.type.book"
+msgstr "Llibre"
+
+msgid "grid.content.spotlights.itemRequired"
+msgstr "Cal que introduïu un element."
+
+msgid "grid.content.spotlights.titleRequired"
+msgstr "Cal que introduïu un títol per al punt destacat."
+
+msgid "grid.content.spotlights.locationRequired"
+msgstr "Trieu una ubicació per al punt destacat."
+
+msgid "grid.action.editSpotlight"
+msgstr "Edita aquest punt destacat"
+
+msgid "grid.action.deleteSpotlight"
+msgstr "Elimina aquest punt destacat"
+
+msgid "grid.action.addSpotlight"
+msgstr "Afegeix un punt destacat"
+
+msgid "manager.series.open"
+msgstr "Trameses obertes"
+
+msgid "manager.series.indexed"
+msgstr "Elements indexats"
+
+msgid "grid.libraryFiles.column.files"
+msgstr "Fitxers"
+
+msgid "grid.action.catalogEntry"
+msgstr "Visualitza la forma de l'entrada de catàleg"
+
+msgid "grid.action.formatInCatalogEntry"
+msgstr "El format apareix a l'entrada de catàleg"
+
+msgid "grid.action.editFormat"
+msgstr "Edita aquest format"
+
+msgid "grid.action.deleteFormat"
+msgstr "Elimina aquest format"
+
+msgid "grid.action.addFormat"
+msgstr "Afegeix un format de publicació"
+
+msgid "grid.action.approveProof"
+msgstr "Aprova la inclusió i la indexació de la galerada al catàleg"
+
+msgid "grid.action.pageProofApproved"
+msgstr "El fitxer de galerades ja es pot publicar"
+
+msgid "grid.action.addAnnouncement"
+msgstr "Afegeix un anunci"
+
+msgid "grid.action.newCatalogEntry"
+msgstr "Nova entrada de catàleg"
+
+msgid "grid.action.publicCatalog"
+msgstr "Mostra aquest element al catàleg"
+
+msgid "grid.action.feature"
+msgstr "Canvia la funció de visualització de pantalla"
+
+msgid "grid.action.featureMonograph"
+msgstr "Destaca-ho al carrusel del catàleg"
+
+msgid "grid.action.releaseMonograph"
+msgstr "Marca aquesta tramesa com a «nou llançament»"
+
+msgid "grid.action.manageCategories"
+msgstr "Configura les categories per a aquesta publicació"
+
+msgid "grid.action.manageSeries"
+msgstr "Configura les col·leccions per a aquesta publicació"
+
+msgid "grid.action.addCode"
+msgstr "Afegeix un codi"
+
+msgid "grid.action.editCode"
+msgstr "Edita aquest codi"
+
+msgid "grid.action.deleteCode"
+msgstr "Elimina aquest codi"
+
+msgid "grid.action.addRights"
+msgstr "Afegeix drets de comercialització"
+
+msgid "grid.action.editRights"
+msgstr "Edita aquests drets"
+
+msgid "grid.action.deleteRights"
+msgstr "Elimina aquests drets"
+
+msgid "grid.action.addMarket"
+msgstr "Afegeix un mercat"
+
+msgid "grid.action.editMarket"
+msgstr "Edita aquest mercat"
+
+msgid "grid.action.deleteMarket"
+msgstr "Elimina aquest mercat"
+
+msgid "grid.action.addDate"
+msgstr "Afegeix una data de publicació"
+
+msgid "grid.action.editDate"
+msgstr "Edita aquesta data"
+
+msgid "grid.action.deleteDate"
+msgstr "Elimina aquesta data"
+
+msgid "grid.action.createContext"
+msgstr "Crea una nova publicació"
+
+msgid "grid.action.publicationFormatTab"
+msgstr "Mostra la pestanya de format de publicació"
+
+msgid "grid.action.moreAnnouncements"
+msgstr "Vés a la pàgina d'anuncis de premsa"
+
+msgid "grid.action.submissionEmail"
+msgstr "Feu clic per llegir aquest correu electrònic"
+
+msgid "grid.action.approveProofs"
+msgstr "Visualitza la graella de galerades"
+
+msgid "grid.action.proofApproved"
+msgstr "S'ha comprovat el format"
+
+msgid "grid.action.formatAvailable"
+msgstr "El format està disponible i s'ha publicat"
+
+msgid "grid.reviewAttachments.add"
+msgstr "Afegeix un fitxer adjunt a la revisió"
+
+msgid "grid.reviewAttachments.availableFiles"
+msgstr "Fitxers disponibles"
+
+msgid "series.series"
+msgstr "Sèries"
+
+msgid "series.featured.description"
+msgstr "Aquestes col·leccions apareixeran al menú de navegació principal"
+
+msgid "series.path"
+msgstr "Ruta"
+
+msgid "grid.series.urlWillBe"
+msgstr "Les URL de les col·leccions seran {$sampleUrl}. La «ruta» és una cadena de caràcters que s'utilitza per identificar una col·lecció."
+
+msgid "catalog.manage"
+msgstr "Administració del catàleg"
+
+msgid "catalog.manage.homepage"
+msgstr "Inici"
+
+msgid "catalog.manage.newReleases"
+msgstr "Nous llançaments"
+
+msgid "catalog.manage.category"
+msgstr "Categoria"
+
+msgid "catalog.manage.series"
+msgstr "Sèries"
+
+msgid "catalog.manage.managementIntroduction"
+msgstr "Benvingut/da a l'administració del catàleg. Des d'aquesta pàgina podeu publicar entrades de catàleg noves, revisar i configurar el llistat de llibres destacats, revisar i configurar la llista de noves publicacions, i revisar i configurar els llibres per categoria i col·lecció."
+
+msgid "catalog.selectSeries"
+msgstr "Selecciona una col·lecció"
+
+msgid "catalog.selectCategory"
+msgstr "Selecciona una categoria"
+
+msgid "catalog.manage.spotlightDescription"
+msgstr "A la pàgina d'inici apareixen tres punts destacats (p.ex., Llibre destacat), amb un títol, una imatge i un text destacats."
+
+msgid "catalog.manage.homepageDescription"
+msgstr "La imatge de la portada dels llibres seleccionats apareix al principi de la pàgina d'inici com una selecció que es pot desplaçar. Feu clic a «Funció» i després a l'estrella per afegir un llibre al carrusel; feu clic al signe d'exclamació per destacar-lo com a nou llançament. Arrossegueu-lo i deixeu-lo anar per ordenar-lo."
+
+msgid "catalog.manage.categoryDescription"
+msgstr "Feu clic a «Funció» i després a l'estrella per seleccionar un llibre destacat en aquesta categoria. Arrossegueu-lo i deixeu-lo anar per ordenar-lo."
+
+msgid "catalog.manage.seriesDescription"
+msgstr "Feu clic a «Funció» i després a l'estrella per seleccionar un llibre destacat en aquesta categoria. Arrossegueu-lo i deixeu-lo anar per ordenar-lo. Les col·leccions s'identifiquen amb un editor/a (o editors/ores) i un títol de col·lecció, dins d'una categoria o com a obra independent."
+
+msgid "catalog.manage.placeIntoCarousel"
+msgstr "Carrusel"
+
+msgid "catalog.manage.newRelease"
+msgstr "Llançament"
+
+msgid "catalog.manage.manageSeries"
+msgstr "Administra les col·leccions"
+
+msgid "catalog.manage.manageCategories"
+msgstr "Administra les categories"
+
+msgid "catalog.manage.noMonographs"
+msgstr "No hi ha monografies assignades."
+
+msgid "catalog.feature"
+msgstr "Funció"
+
+msgid "catalog.featuredBooks"
+msgstr "Llibres destacats"
+
+msgid "catalog.dateAdded"
+msgstr "S'ha afegit a {$dateAdded} "
+
+msgid "catalog.publicationInfo"
+msgstr "Informació de publicació"
+
+msgid "catalog.aboutTheAuthor"
+msgstr "Informació sobre {$roleName}"
+
+msgid "catalog.loginRequiredForPayment"
+msgstr "Nota: per comprar elements, primer haureu d'iniciar la sessió. Si seleccioneu un element per comprar-lo, se us redirigirà a la pàgina d'inici de sessió. Qualsevol element marcat amb una icona d'accés obert pot descarregar-se de manera gratuïta, sense iniciar la sessió."
+
+msgid "common.prefix"
+msgstr "Prefix"
+
+msgid "common.preview"
+msgstr "Previsualitza"
+
+msgid "common.feature"
+msgstr "Funció"
+
+msgid "common.searchCatalog"
+msgstr "Cerca el catàleg"
+
+msgid "common.moreInfo"
+msgstr "Més informació"
+
+msgid "common.listbuilder.completeForm"
+msgstr "Empleneu el formulari complet."
+
+msgid "common.listbuilder.selectValidOption"
+msgstr "Seleccioneu una opció vàlida de la llista."
+
+msgid "common.listbuilder.itemExists"
+msgstr "No podeu afegir el mateix element dues vegades."
+
+msgid "common.software"
+msgstr "Open Monograph Press"
+
+msgid "common.omp"
+msgstr "OMP"
+
+msgid "common.homePageHeader.altText"
+msgstr "Capçalera de la pàgina inicial"
+
+msgid "navigation.catalog"
+msgstr "Catàleg"
+
+msgid "navigation.competingInterestPolicy"
+msgstr "Política de conflicte d'interessos"
+
+msgid "navigation.catalog.manage"
+msgstr "Administra"
+
+msgid "navigation.catalog.administration.short"
+msgstr "Gestió"
+
+msgid "navigation.catalog.administration"
+msgstr "Administració del catàleg"
+
+msgid "navigation.catalog.administration.categories"
+msgstr "Categories"
+
+msgid "navigation.catalog.administration.series"
+msgstr "Sèries"
+
+msgid "navigation.infoForAuthors"
+msgstr "Per als autors/ores"
+
+msgid "navigation.infoForLibrarians"
+msgstr "Per als bibliotecaris/àries"
+
+msgid "navigation.infoForAuthors.long"
+msgstr "Informació per als autors/ores"
+
+msgid "navigation.infoForLibrarians.long"
+msgstr "Informació per als bibliotecaris/àries"
+
+msgid "navigation.newReleases"
+msgstr "Nous llançaments"
+
+msgid "navigation.published"
+msgstr "Publicat"
+
+msgid "navigation.wizard"
+msgstr "Assistent"
+
+msgid "navigation.linksAndMedia"
+msgstr "Enllaços i xarxes socials"
+
+msgid "context.contexts"
+msgstr "Publicacions"
+
+msgid "context.context"
+msgstr "Publicació"
+
+msgid "context.select"
+msgstr "Seleccioneu una publicació..."
+
+msgid "user.noRoles.selectUsersWithoutRoles"
+msgstr "Inclou usuaris/àries sense rols en aquesta publicació."
+
+msgid "user.noRoles.submitMonograph"
+msgstr "Tramet una proposta"
+
+msgid "user.noRoles.submitMonographRegClosed"
+msgstr "Tramet una monografia: el registre d'autors/ores no està habilitat."
+
+msgid "user.noRoles.regReviewer"
+msgstr "Registra'm com a revisor/a"
+
+msgid "user.noRoles.regReviewerClosed"
+msgstr "Registra'm com a revisor/a: El registre de revisors/ores no està habilitat."
+
+msgid "user.role.manager"
+msgstr "Cap editorial"
+
+msgid "user.role.pressEditor"
+msgstr "Editor/a"
+
+msgid "user.role.copyeditor"
+msgstr "Corrector/a d’originals"
+
+msgid "user.role.proofreader"
+msgstr "Corrector/a de proves"
+
+msgid "user.role.productionEditor"
+msgstr "Cap de producció"
+
+msgid "user.role.managers"
+msgstr "Caps editorials"
+
+msgid "user.role.editors"
+msgstr "Editors/ores"
+
+msgid "user.role.copyeditors"
+msgstr "Correctors/ores d’originals"
+
+msgid "user.role.proofreaders"
+msgstr "Correctors/ores de proves"
+
+msgid "user.role.productionEditors"
+msgstr "Caps de producció"
+
+msgid "user.register.completeForm"
+msgstr "Empleneu aquest formulari per registrar-vos en aquesta publicació."
+
+msgid "user.register.selectContext"
+msgstr "Seleccioneu una publicació per registrar-vos-hi"
+
+msgid "user.register.noContexts"
+msgstr "Aquest lloc web no conté cap publicació en la qual us pugueu registrar."
+
+msgid "user.register.privacyStatement"
+msgstr "Declaració de privacitat"
+
+msgid "user.register.alreadyRegisteredOtherContext"
+msgstr "<a href=\"{$registerUrl}\">Feu clic aquí</a> si ja esteu registrat amb aquesta o una altra publicació d'aquest lloc."
+
+msgid "user.register.notAlreadyRegisteredOtherContext"
+msgstr "<a href=\"{$registerUrl}\">Feu clic aquí</a> si encara <strong>no</strong> esteu registrat amb aquesta o una altra publicació d'aquest lloc."
+
+msgid "user.register.loginToRegister"
+msgstr "Introduïu el vostre nom d'usuari/ària i la vostra contrasenya per registrar-vos en aquesta publicació."
+
+msgid "user.register.registrationDisabled"
+msgstr "Actualment aquesta publicació no accepta registres d'usuaris/àries."
+
+msgid "user.register.form.passwordLengthTooShort"
+msgstr "La contrasenya que heu introduït és massa curta."
+
+msgid "user.register.readerDescription"
+msgstr "Rebreu una notificació per correu electrònic quan es publiqui una monografia."
+
+msgid "user.register.authorDescription"
+msgstr "Podreu trametre articles a la publicació."
+
+msgid "user.register.reviewerDescriptionNoInterests"
+msgstr "Esteu disposat/ada a fer un aavaluació d'expert/a dels articles de la publicació."
+
+msgid "user.register.reviewerDescription"
+msgstr "Esteu disposat/ada a fer avaluació d'expert/a dels articles del lloc."
+
+msgid "user.register.reviewerInterests"
+msgstr "Indiqueu els vostres interessos de revisió (àrees de coneixement i mètodes de recerca):"
+
+msgid "user.register.form.userGroupRequired"
+msgstr "Heu de seleccionar com a mínim un rol"
+
+msgid "site.pressView"
+msgstr "Visualitzeu el lloc web de publicacions"
+
+msgid "about.pressContact"
+msgstr "Contacte de la publicació"
+
+msgid "about.aboutThePress"
+msgstr "Informació sobre les publicacions"
+
+msgid "about.editorialTeam"
+msgstr "Equip editorial"
+
+msgid "about.editorialPolicies"
+msgstr "Polítiques editorials"
+
+msgid "about.focusAndScope"
+msgstr "Objectius i temàtica"
+
+msgid "about.seriesPolicies"
+msgstr "Col·leccions i polítiques de categoria"
+
+msgid "about.submissions"
+msgstr "Trameses"
+
+msgid "about.sponsors"
+msgstr "Patrocinadors/ores"
+
+msgid "about.contributors"
+msgstr "Fonts de suport"
+
+msgid "about.onlineSubmissions"
+msgstr "Trameses en línia"
+
+msgid "about.onlineSubmissions.login"
+msgstr "Vés a l’inici de sessió"
+
+msgid "about.onlineSubmissions.registrationRequired"
+msgstr "Necessiteu registrar-vos i iniciar la sessió per poder trametre elements en línia i consultar l’estat de les trameses en curs."
+
+msgid "about.authorGuidelines"
+msgstr "Directrius per a l’autor/a"
+
+msgid "about.submissionPreparationChecklist"
+msgstr "Llista de verificació per preparar trameses"
+
+msgid "about.submissionPreparationChecklist.description"
+msgstr "Com a part del procés de la tramesa, els autors/ores han de verificar que compleixen totes les condicions següents. En cas que no se segueixin aquestes instruccions, les trameses es podran retornar als autors/ores."
+
+msgid "about.copyrightNotice"
+msgstr "Avís de drets d'autor/a"
+
+msgid "about.privacyStatement"
+msgstr "Declaració de privacitat"
+
+msgid "about.reviewPolicy"
+msgstr "Procés d'avaluació d'experts/ertes"
+
+msgid "about.publicationFrequency"
+msgstr "Freqüència de publicació"
+
+msgid "about.openAccessPolicy"
+msgstr "Política d’accés obert"
+
+msgid "about.pressSponsorship"
+msgstr "Patrocini de la publicació"
+
+msgid "about.aboutThisPublishingSystem"
+msgstr "Sobre aquest sistema de publicació"
+
+msgid "about.aboutThisPublishingSystem.altText"
+msgstr "Procés editorial i de publicació de l'OMP"
+
+msgid "about.aboutOMPPress"
+msgstr "Aquesta publicació utilitza Open Monographic Press {$ompVersion}, un programari de publicació i administració de publicacions de codi obert desenvolupat, acceptat i distribuït de manera gratuïta pel <a href=\"http://pkp.sfu.ca/\">Public Knowledge Project</a> sota la llicència general de GNU."
+
+msgid "about.aboutOMPSite"
+msgstr "Aquest lloc web utilitza Open Monograph Press {$ompVersion}, un programari de publicació i administració de publicacions de codi obert desenvolupat, acceptat i distribuït de manera gratuïta pel <a href=\"http://pkp.sfu.ca/\">Public Knowledge Project</a> sota la llicència general de GNU."
+
+msgid "help.searchReturnResults"
+msgstr "Torna als resultats de la cerca"
+
+msgid "help.goToEditPage"
+msgstr "Obre una pàgina nova per editar aquesta informació"
+
+msgid "installer.appInstallation"
+msgstr "Instal·lació de l'OMP"
+
+msgid "installer.ompUpgrade"
+msgstr "Actualització de l'OMP"
+
+msgid "installer.installApplication"
+msgstr "Instal·la l'Open Monograph Press"
+
+msgid "installer.installationInstructions"
+msgstr ""
+"\n"
+"<p>Gràcies per descarregar l'<strong>Open Monograph Press {$version}</strong> del Public Knowledge Project. Abans de continuar, llegiu el fitxer <a href=\"{$baseUrl}/docs/README\">README</a> inclòs en aquest programari. Per obtenir més informació sobre el Public Knowledge Project i els seus projectes de programari, visiteu el <a href=\"http://pkp.sfu.ca/\" target=\"_blank\">lloc web de PKP</a>. Si teniu informes d'errors o preguntes que requereixin assistència tècnica sobre l'Open Monograph Press, consulteu el <a href=\"http://pkp.sfu.ca/support/forum\" target=\"_blank\">fòrum d'ajuda</a> o visiteu el <a href=\"http://pkp.sfu.ca/bugzilla/\" target=\"_blank\">sistema d'informació d'errors</a> de PKP en línia. Malgrat que el fòrum d'ajuda és el mètode preferit de contacte, també podeu enviar un correu electrònic a l'equip a <a href=\"mailto:pkp.contact@gmail.com\">pkp.contact@gmail.com</a>.</p>\n"
+"\n"
+"<h4>Actualiza</h4>\n"
+"\n"
+"<p>Si esteu actualitzant una instal·lació existent de l'OMP 0.x, <a href=\"{$upgradeUrl}\">feu clic aquí</a> per continuar.</p>"
+
+msgid "installer.preInstallationInstructionsTitle"
+msgstr "Passos previs a la instal·lació"
+
+msgid "installer.preInstallationInstructions"
+msgstr ""
+"<p>1. Els fitxers i directoris següents (i el seu contingut) han de tenir permisos d'escriptura.</p>\n"
+"<ul>\n"
+"\t<li><tt>config.inc.php</tt> té permisos d'escriptura (opcional): {$writable_config}</li>\n"
+"\t<li><tt>public/</tt> té permisos d'escriptura: {$writable_public}</li>\n"
+"\t<li><tt>cache/</tt> té permisos d'escriptura: {$writable_cache}</li>\n"
+"\t<li><tt>cache/t_cache/</tt> té permisos d'escriptura: {$writable_templates_cache}</li>\n"
+"\t<li><tt>cache/t_compile/</tt> té permisos d'escriptura: {$writable_templates_compile}</li>\n"
+"\t<li><tt>cache/_db</tt> té permisos d'escriptura: {$writable_db_cache}</li>\n"
+"</ul>\n"
+"\n"
+"<p>2. Heu de crear un directori per als fitxers carregats i li heu de donar permís d'escriptura (consulteu «Configuració dels fitxers» més avall).</p>"
+
+msgid "installer.upgradeInstructions"
+msgstr ""
+"<h4>Versió {$version} de l'OMP</h4>\n"
+"\n"
+"<p>Gràcies per descarregar el projecte <strong>Open Monograph Press</strong> del Public Knowledge Project. Abans de continuar, llegiu els fitxers <a href=\"{$baseUrl}/docs/README\">README</a> i <a href=\"{$baseUrl}/docs/UPGRADE\">UPGRADE</a> inclosos en aquest programari. Per obtenir més informació sobre el Public Knowledge Project i els seus projectes de programari, visiteu el <a href=\"http://pkp.sfu.ca/\" target=\"_blank\">lloc web de PKP</a>. Si teniu informes d'errors o preguntes que requereixin assistència tècnica sobre l'Open Monograph Press, consulteu el <a href=\"http://pkp.sfu.ca/support/forum\" target=\"_blank\">fòrum d'ajuda</a> o visiteu el <a href=\"http://pkp.sfu.ca/bugzilla/\" target=\"_blank\">sistema d'informació d'errors</a> de PKP en línia. Malgrat que el fòrum d'ajuda és el mètode preferit de contacte, també podeu enviar un correu electrònic a l'equip a <a href=\"mailto:pkp.contact@gmail.com\">pkp.contact@gmail.com</a>.</p>\n"
+"<p>És <strong>molt recomanable</strong> que feu una còpia de seguretat de la vostra base de dades, del vostre directori de fitxers i del directori d'instal·lació de l'OMP abans de continuar.</p>\n"
+"<p>Si esteu executant el programari en el <a href=\"http://www.php.net/features.safe-mode\" target=\"_blank\">Mode Segur de PHP</a>, comproveu que la directriu max_execution_time al vostre fitxer de configuració php.ini està limitada per un valor màxim. Si se sobrepassa aquesta o qualsevol altra limitació de temps (p. ex., la directriu «Timeout» d'Apache), i s'interromp el procés d'actualització, caldrà intervenir-hi manualment.</p>"
+
+msgid "installer.localeSettingsInstructions"
+msgstr ""
+"Per garantir la compatibilitat amb Unicode (UTF-8), seleccioneu UTF-8 per a totes les configuracions de jocs de caràcters. Tingueu en compte que per garantir la compatibilitat cal un servidor de base de dades MySQL >= 4.1.1 o PostgreSQL >= 9.1.5. Tingueu en compte també que per garantir la màxima compatibilitat amb Unicode necessiteu la biblioteca <a href=\"http://www.php.net/mbstring\" target=\"_blank\">mbstring</a> (habilitada per defecte a la majoria d'instal·lacions recents de PHP). Podríeu experimentar problemes en utilitzar els caràcters avançats si el vostre servidor no compleix aquests requisits.\n"
+"<br /><br />\n"
+"El vostre servidor actual és compatible amb mbstring: <strong>{$supportsMBString}</strong>"
+
+msgid "installer.allowFileUploads"
+msgstr "Actualment, el vostre servidor permet carregar fitxers: <strong>{$allowFileUploads}</strong>"
+
+msgid "installer.maxFileUploadSize"
+msgstr "Actualment, el vostre servidor permet la càrrega de fitxers amb una mida màxima de: <strong>{$maxFileUploadSize}</strong>"
+
+msgid "installer.localeInstructions"
+msgstr "Llengua principal per a aquest sistema. Consulteu la documentació de l'OMP si voleu utilitzar alguna llengua no llistada."
+
+msgid "installer.additionalLocalesInstructions"
+msgstr "Seleccioneu les llengües addicionals que vulgueu utilitzar en aquest sistema. Aquestes llengües estaran disponibles a les publicacions allotjades al lloc web. També podeu instal·lar llengües addicionals des de la interfície d'administració del lloc web en qualsevol moment. Les configuracions regionals marcades amb * poden estar incompletes."
+
+msgid "installer.filesDirInstructions"
+msgstr "Introduïu el nom sencer de la ruta en un directori existent en què vulgueu conservar els fitxers carregats. No s'ha de poder accedir directament a aquest directori a través del web. <strong>Comproveu que aquest directori existeix i s'hi pot escriure abans de fer la instal·lació.</strong> Les rutes dels directoris de Windows han d'utilitzar barres obliqües, p.ex. «C:/mypress/files»."
+
+msgid "installer.databaseSettingsInstructions"
+msgstr "L'OMP ha de tenir accés a la base de dades SQL per emmagatzemar-hi les dades. Consulteu la llista de bases de dades compatibles a la secció de requeriments del sistema. Indiqueu els paràmetres que s'utilitzaran per connectar a la base de dades en els camps que es mostren a continuació."
+
+msgid "installer.upgradeApplication"
+msgstr "Actualitza l'Open Monograph Press"
+
+msgid "installer.overwriteConfigFileInstructions"
+msgstr ""
+"<h4>IMPORTANT!</h4>\n"
+"<p>L'instal·lador no ha pogut sobreescriure automàticament el fitxer de configuració. Abans d'intentar utilitzar el sistema, obriu el fitxer <tt>config.inc.php</tt> en un editor de textos compatible i reemplaceu-ne el contingut amb el del camp de text a continuació.</p>"
+
+msgid "installer.installationComplete"
+msgstr ""
+"<p>La instal·lació de l'OMP s'ha completat amb èxit.</p>\n"
+"<p>Per començar a utilitzar el sistema, <a href=\"{$loginUrl}\">inicieu la sessió</a> amb el nom d'usuari i la contrasenya que heu introduït a la pàgina anterior.</p>\n"
+"<p>Si voleu rebre novetats i actualitzacions, <strong>registreu-vos a <a href=\"http://pkp.sfu.ca/omp/register\" target=\"_blank\">http://pkp.sfu.ca/omp/register</a>.</strong> Si teniu cap pregunta o comentari, consulteu <a href=\"http://pkp.sfu.ca/support/forum\" target=\"_blank\">el fòrum d'ajuda</a>.</p>"
+
+msgid "installer.upgradeComplete"
+msgstr ""
+"<p>L'actualització de l'OMP a la versió {$version} s'ha completat amb èxit.</p>\n"
+"<p>Recordeu que heu de tornar a activar la configuració d'instal·lació al vostre fitxer config.inc.php amb l'opció <em>Activa</em>.</p>\n"
+"<p>Si encara no us heu registrat i voleu rebre notícies i actualitzacions, <strong>registreu-vos a <a href=\"http://pkp.sfu.ca/omp/register\" target=\"_blank\">http://pkp.sfu.ca/omp/register</a>.</strong> Si teniu cap pregunta o comentari, consulteu <a href=\"http://pkp.sfu.ca/support/forum\" target=\"_blank\">el fòrum d'ajuda</a>.</p>"
+
+msgid "log.review.reviewDueDateSet"
+msgstr "La data de venciment per a la ronda {$round} de revisió de la tramesa {$submissionId} feta per {$reviewerName} s'ha enviat a {$dueDate}."
+
+msgid "log.review.reviewDeclined"
+msgstr "{$reviewerName} ha rebutjat la ronda {$round} de revisió per a la tramesa {$submissionId}."
+
+msgid "log.review.reviewAccepted"
+msgstr "{$reviewerName} ha acceptat la ronda {$round} de revisió per a la tramesa {$submissionId}."
+
+msgid "log.review.reviewUnconsidered"
+msgstr "{$editorName} ha marcat la ronda {$round} de revisió per a la tramesa {$submissionId} com a no considerada."
+
+msgid "log.editor.decision"
+msgstr "{$editorName} ha registrat una decisió de l'editor/a ({$decision}) per a la monografia {$submissionId}."
+
+msgid "log.editor.archived"
+msgstr "S'ha arxivat la tramesa {$submissionId}."
+
+msgid "log.editor.restored"
+msgstr "La tramesa {$submissionId} s'ha restaurat a la cua."
+
+msgid "log.editor.editorAssigned"
+msgstr "{$editorName} s'ha assignat a com a editor/a de la tramesa {$submissionId}."
+
+msgid "log.proofread.assign"
+msgstr " {$assignerName} ha assignat a {$proofreaderName} com a corrector/a de proves de la tramesa {$submissionId}."
+
+msgid "log.proofread.complete"
+msgstr "{$proofreaderName} ha tramès {$submissionId} per a la planificació."
+
+msgid "log.imported"
+msgstr "{$userName} ha importat la monografia {$submissionId}."
+
+msgid "notification.addedIdentificationCode"
+msgstr "S'ha afegit un codi d'identificació."
+
+msgid "notification.editedIdentificationCode"
+msgstr "S'ha editat el codi d'Identificació."
+
+msgid "notification.removedIdentificationCode"
+msgstr "S'ha eliminat el codi d'identificació."
+
+msgid "notification.addedPublicationDate"
+msgstr "S'ha afegit una data de publicació."
+
+msgid "notification.editedPublicationDate"
+msgstr "S'ha editat la data de publicació."
+
+msgid "notification.removedPublicationDate"
+msgstr "S'ha eliminat la data de publicació."
+
+msgid "notification.addedPublicationFormat"
+msgstr "S'ha afegit un format de publicació."
+
+msgid "notification.editedPublicationFormat"
+msgstr "S'ha editat el format de publicació."
+
+msgid "notification.removedPublicationFormat"
+msgstr "S'ha eliminat el format de publicació."
+
+msgid "notification.addedSalesRights"
+msgstr "S'han afegit drets de comercialització."
+
+msgid "notification.editedSalesRights"
+msgstr "S'ha editat els drets de comercialització."
+
+msgid "notification.removedSalesRights"
+msgstr "S'han eliminat els drets de comercialització."
+
+msgid "notification.addedRepresentative"
+msgstr "S'han afegit representants."
+
+msgid "notification.editedRepresentative"
+msgstr "S'han editat els representants."
+
+msgid "notification.removedRepresentative"
+msgstr "S'han eliminat els representants."
+
+msgid "notification.addedMarket"
+msgstr "S'ha afegit un mercat."
+
+msgid "notification.editedMarket"
+msgstr "S'ha editat el mercat."
+
+msgid "notification.removedMarket"
+msgstr "S'ha eliminat el mercat."
+
+msgid "notification.addedSpotlight"
+msgstr "S'ha afegit un punt destacat."
+
+msgid "notification.editedSpotlight"
+msgstr "S'ha editat el punt destacat."
+
+msgid "notification.removedSpotlight"
+msgstr "S'ha eliminat el punt destacat."
+
+msgid "notification.savedCatalogMetadata"
+msgstr "S'han desat les metadades del catàleg."
+
+msgid "notification.savedPublicationFormatMetadata"
+msgstr "S'han desat les metadades del format de la publicació."
+
+msgid "notification.proofsApproved"
+msgstr "S'han aprovat les galerades."
+
+msgid "notification.removedSubmission"
+msgstr "La tramesa ha estat eliminada."
+
+msgid "notification.type.submissionSubmitted"
+msgstr "Una nova monografia, «{$title}», ha estat enviada."
+
+msgid "notification.type.editing"
+msgstr "Esdeveniments d'edició"
+
+msgid "notification.type.reviewing"
+msgstr "Esdeveniments de revisió"
+
+msgid "notification.type.site"
+msgstr "Esdeveniments del lloc"
+
+msgid "notification.type.submissions"
+msgstr "Esdeveniments de tramesa"
+
+msgid "notification.type.userComment"
+msgstr "Un lector/a ha fet un comentari a «{$title}» ."
+
+msgid "notification.type.editorAssignmentTask"
+msgstr "S'ha enviat una nova monografia a la qual s'ha d'assignar un editor/a."
+
+msgid "notification.type.copyeditorRequest"
+msgstr "Se us ha demanat revisar els continguts per a «{$file}»."
+
+msgid "notification.type.layouteditorRequest"
+msgstr "Se us ha demanat revisar la maquetació per a «{$title}»."
+
+msgid "notification.type.indexRequest"
+msgstr "Se us ha demanat crear un índex per a «{$title}»."
+
+msgid "notification.type.editorDecisionInternalReview"
+msgstr "El procés de revisió interna ha començat."
+
+msgid "notification.type.approveSubmission"
+msgstr "Aquesta tramesa espera aprovació a l'eina d'entrades del catàleg abans d'aparèixer al catàleg públic."
+
+msgid "notification.type.approveSubmissionTitle"
+msgstr "Esperant l'aprovació."
+
+msgid "notification.type.configurePaymentMethod.title"
+msgstr "No s'ha configurat cap mètode de pagament."
+
+msgid "notification.type.configurePaymentMethod"
+msgstr "Cal que configureu un mètode de pagament abans de definir les opcions de configuració de comerç electrònic."
+
+msgid "notification.type.visitCatalogTitle"
+msgstr "Administració del catàleg"
+
+msgid "user.authorization.invalidReviewAssignment"
+msgstr "Accés denegat. Se us ha restringit l'accés perquè no sou un revisor/a vàlid per a aquesta monografia."
+
+msgid "user.authorization.monographAuthor"
+msgstr "Accés denegat. Se us ha restringit l'accés perquè no sou l'autor/a d'aquesta monografia."
+
+msgid "user.authorization.monographReviewer"
+msgstr "Accés denegat. Se us ha restringit l'accés perquè no sou un dels revisors/ores assignat per a aquesta monografia."
+
+msgid "user.authorization.monographFile"
+msgstr "Accés denegat. Se us ha restringit l'accés a aquest fitxer monogràfic específic."
+
+msgid "user.authorization.invalidMonograph"
+msgstr "La monografia no és vàlida o no s'ha sol·licitat cap monografia."
+
+msgid "user.authorization.noContext"
+msgstr "Cap publicació en context."
+
+msgid "user.authorization.seriesAssignment"
+msgstr "Esteu intentant accedir a una monografia que no forma part de la vostra col·lecció."
+
+msgid "user.authorization.workflowStageAssignmentMissing"
+msgstr "Accés denegat. No se us ha assignat a cap de les fases d'aquest circuit de treball."
+
+msgid "user.authorization.workflowStageSettingMissing"
+msgstr "Accés denegat. El grup d'usuaris/àries del qual formeu part actualment no s'ha assignat a cap fase d'aquest circuit de treball. Comproveu la configuració de les publicacions."
+
+msgid "payment.directSales"
+msgstr "Descarrega-ho des del lloc web de publicacions"
+
+msgid "payment.directSales.price"
+msgstr "Preu"
+
+msgid "payment.directSales.availability"
+msgstr "Disponibilitat"
+
+msgid "payment.directSales.catalog"
+msgstr "Catàleg"
+
+msgid "payment.directSales.approved"
+msgstr "Aprovat"
+
+msgid "payment.directSales.priceCurrency"
+msgstr "Preu ({$currency})"
+
+msgid "payment.directSales.directSales"
+msgstr "Vendes directes"
+
+msgid "payment.directSales.amount"
+msgstr "{$amount} ({$currency})"
+
+msgid "payment.directSales.notAvailable"
+msgstr "No disponible"
+
+msgid "payment.directSales.notSet"
+msgstr "No està configurat"
+
+msgid "payment.directSales.openAccess"
+msgstr "Accés obert"
+
+msgid "payment.directSales.price.description"
+msgstr "Els formats de fitxer es poden descarregar des de la pàgina de publicacions a través d'un accés obert sense cost per als lectors/ores o a través de la venda directa; cal utilitzar un processador de pagaments en línia, tal com està configurat a «Distribució». Heu d'indicar la base d'accés per a aquest fitxer."
+
+msgid "payment.directSales.validPriceRequired"
+msgstr "Cal que introduïu un preu numèric vàlid."
+
+msgid "payment.directSales.purchase"
+msgstr "Compra ({$amount} {$currency})"
+
+msgid "payment.directSales.download"
+msgstr "Baixa"
+
+msgid "payment.directSales.monograph.name"
+msgstr "Compra la monografia o descarrega'n un capítol"
+
+msgid "payment.directSales.monograph.description"
+msgstr "Aquesta transacció implica la compra o la descàrrega directa d'una monografia o d'un capítol de la monografia."
+
+msgid "debug.notes.currencyListLoad"
+msgstr "S'ha carregat la llista de monedes «{$filename}» des d'XML"
+
+msgid "debug.notes.helpMappingLoad"
+msgstr "S'ha tornat a carregar el fitxer de mapatge d'ajuda XML {$filename} a la cerca de {$id}."
+
+msgid "rt.metadata.pkp.dctype"
+msgstr "Llibre"
+
+msgid "submission.pdf.download"
+msgstr "Descarrega aquest fitxer PDF"
+
+msgid "submission.round"
+msgstr "Ronda&nbsp;{$round}"

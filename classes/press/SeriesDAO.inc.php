@@ -3,9 +3,9 @@
 /**
  * @file classes/press/SeriesDAO.inc.php
  *
- * Copyright (c) 2014-2016 Simon Fraser University Library
- * Copyright (c) 2003-2016 John Willinsky
- * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
+ * Copyright (c) 2014-2020 Simon Fraser University
+ * Copyright (c) 2003-2020 John Willinsky
+ * Distributed under the GNU GPL v3. For full terms see the file docs/COPYING.
  *
  * @class SeriesDAO
  * @ingroup press
@@ -18,13 +18,6 @@ import ('classes.press.Series');
 import ('lib.pkp.classes.context.PKPSectionDAO');
 
 class SeriesDAO extends PKPSectionDAO {
-	/**
-	 * Constructor
-	 */
-	function SeriesDAO() {
-		parent::PKPSectionDAO();
-	}
-
 	/**
 	 * Retrieve an series by ID.
 	 * @param $seriesId int
@@ -199,12 +192,16 @@ class SeriesDAO extends PKPSectionDAO {
 		// Validate the $contextId, if supplied.
 		if (!$this->seriesExists($seriesId, $contextId)) return false;
 
-		$subEditorsDao = DAORegistry::getDAO('SubEditorsDAO');
+		$subEditorsDao = DAORegistry::getDAO('SubEditorsDAO'); /* @var $subEditorsDao SubEditorsDAO */
 		$subEditorsDao->deleteBySectionId($seriesId, $contextId);
 
 		// Remove monographs from this series
-		$monographDao = DAORegistry::getDAO('MonographDAO');
-		$monographDao->removeMonographsFromSeries($seriesId);
+		$submissionsIterator = Services::get('submission')->getMany(['seriesIds' => $seriesId, 'count' => 1000]);
+		foreach ($submissionsIterator as $submission) {
+			foreach ((array) $submission->getData('publications') as $publication) {
+				Services::get('publication')->edit($publication, ['seriesId' => 0]);
+			}
+		}
 
 		// Delete the series and settings.
 		$this->update('DELETE FROM series WHERE series_id = ?', (int) $seriesId);
@@ -263,10 +260,9 @@ class SeriesDAO extends PKPSectionDAO {
 	}
 
 	/**
-	 * Retrieve all series for a press.
-	 * @return DAOResultFactory containing Series ordered by sequence
+	 * @copydoc PKPSectionDAO::getByContextId()
 	 */
-	function getByContextId($pressId, $rangeInfo = null) {
+	function getByContextId($pressId, $rangeInfo = null, $submittableOnly = false) {
 		$params = array(
 			'title', AppLocale::getPrimaryLocale(),
 			'title', AppLocale::getLocale(),
@@ -297,10 +293,10 @@ class SeriesDAO extends PKPSectionDAO {
 		while ($series = $seriesIterator->next()) {
 			if ($submittableOnly) {
 				if (!$series->getEditorRestricted()) {
-					$seriesTitles[$series->getId()] = join(' ', array($series->getLocalizedPrefix(), $series->getLocalizedTitle()));
+					$seriesTitles[$series->getId()] = $series->getLocalizedTitle();
 				}
 			} else {
-				$seriesTitles[$series->getId()] = join(' ', array($series->getLocalizedPrefix(), $series->getLocalizedTitle()));
+				$seriesTitles[$series->getId()] = $series->getLocalizedTitle();
 			}
 		}
 
@@ -351,17 +347,14 @@ class SeriesDAO extends PKPSectionDAO {
 	}
 
 	/**
-	 * Unassociate a category with a series.
+	 * Unassociate all categories with a series
+	 *
 	 * @param $seriesId int
-	 * @param $categoryId int
 	 */
-	function removeCategory($seriesId, $categoryId) {
+	public function removeCategories($seriesId) {
 		$this->update(
-			'DELETE FROM series_categories WHERE series_id = ? AND category_id = ?',
-			array(
-				(int) $seriesId,
-				(int) $categoryId
-			)
+			'DELETE FROM series_categories WHERE series_id = ?',
+			array((int) $seriesId)
 		);
 	}
 
@@ -374,7 +367,7 @@ class SeriesDAO extends PKPSectionDAO {
 		$params = array((int) $seriesId);
 		if ($pressId) $params[] = (int) $pressId;
 
-		$categoryDao = DAORegistry::getDAO('CategoryDAO');
+		$categoryDao = DAORegistry::getDAO('CategoryDAO'); /* @var $categoryDao CategoryDAO */
 		$result = $this->retrieve(
 			'SELECT	c.*
 			FROM	categories c,
@@ -382,7 +375,7 @@ class SeriesDAO extends PKPSectionDAO {
 				series s
 			WHERE	c.category_id = sc.category_id AND
 				s.series_id = ? AND
-				' . ($pressId?' c.press_id = s.press_id AND s.press_id = ? AND':'') . '
+				' . ($pressId?' c.context_id = s.press_id AND s.press_id = ? AND':'') . '
 				s.series_id = sc.series_id',
 			$params
 		);
@@ -400,11 +393,11 @@ class SeriesDAO extends PKPSectionDAO {
 		$params = array((int) $seriesId);
 		if ($pressId) $params[] = (int) $pressId;
 
-		$categoryDao = DAORegistry::getDAO('CategoryDAO');
+		$categoryDao = DAORegistry::getDAO('CategoryDAO'); /* @var $categoryDao CategoryDAO */
 		$result = $this->retrieve(
 			'SELECT	c.*
 			FROM	series s
-				JOIN categories c ON (c.press_id = s.press_id)
+				JOIN categories c ON (c.context_id = s.press_id)
 				LEFT JOIN series_categories sc ON (s.series_id = sc.series_id AND sc.category_id = c.category_id)
 			WHERE	s.series_id = ? AND
 				' . ($pressId?' s.press_id = ? AND':'') . '
@@ -434,4 +427,4 @@ class SeriesDAO extends PKPSectionDAO {
 	}
 }
 
-?>
+

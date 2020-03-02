@@ -1,0 +1,165 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: \n"
+"Report-Msgid-Bugs-To: \n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"POT-Creation-Date: 2020-02-13T19:56:53+00:00\n"
+"PO-Revision-Date: 2020-02-13T19:56:53+00:00\n"
+"Language: \n"
+
+msgid "editor.submissionArchive"
+msgstr "Käsikirjoitusarkisto"
+
+msgid "editor.monograph.cancelReview"
+msgstr "Peruuta pyyntö"
+
+msgid "editor.monograph.clearReview"
+msgstr "Poista arvioija"
+
+msgid "editor.monograph.enterRecommendation"
+msgstr "Anna suositus"
+
+msgid "editor.monograph.enterReviewerRecommendation"
+msgstr "Anna arvioijasuositus"
+
+msgid "editor.monograph.recommendation"
+msgstr "Suositus"
+
+msgid "editor.monograph.selectReviewerInstructions"
+msgstr "Valitse arvioija yllä ja paina \"Valitse arvioija\" -painiketta jatkaaksesi."
+
+msgid "editor.monograph.replaceReviewer"
+msgstr "Korvaa arvioija"
+
+msgid "editor.monograph.editorToEnter"
+msgstr "Toimittaja täyttää suosituksen/kommentteja arvioijalle"
+
+msgid "editor.monograph.uploadReviewForReviewer"
+msgstr "Lataa arviointi"
+
+msgid "editor.monograph.peerReviewOptions"
+msgstr "Vertaisarvioinnin vaihtoehdot"
+
+msgid "editor.monograph.selectProofreadingFiles"
+msgstr "Oikolukutiedostot"
+
+msgid "editor.monograph.internalReview"
+msgstr "Aloita sisäinen arviointi"
+
+msgid "editor.monograph.internalReviewDescription"
+msgstr "Valitse tiedostot alla lähettääksesi ne sisäiseen arviointivaiheeseen."
+
+msgid "editor.monograph.externalReview"
+msgstr "Aloita ulkopuolinen arviointi"
+
+msgid "editor.monograph.final.selectFinalDraftFiles"
+msgstr "Valitse lopulliset luonnostiedostot"
+
+msgid "editor.monograph.final.currentFiles"
+msgstr "Nykyiset lopulliset luonnostiedostot"
+
+msgid "editor.monograph.copyediting.currentFiles"
+msgstr "Nykyiset tiedostot"
+
+msgid "editor.monograph.copyediting.personalMessageToUser"
+msgstr "Viesti käyttäjälle"
+
+msgid "editor.monograph.legend.submissionActions"
+msgstr "Käsikirjoituksen toiminnot"
+
+msgid "editor.monograph.legend.submissionActionsDescription"
+msgstr "Kaikki käsikirjoituksen toiminnot ja valinnat"
+
+msgid "editor.monograph.legend.sectionActions"
+msgstr "Osaston toiminnot"
+
+msgid "editor.monograph.legend.sectionActionsDescription"
+msgstr "Kyseessä olevan osaston erityisvalinnat, esim. tiedostojen lataaminen tai käyttäjien lisääminen."
+
+msgid "editor.monograph.legend.itemActions"
+msgstr "Kohteen toiminnot"
+
+msgid "editor.monograph.legend.itemActionsDescription"
+msgstr "Yksittäisen tiedoston erityistoiminnot ja -valinnat."
+
+msgid "editor.monograph.legend.catalogEntry"
+msgstr "Tarkastele ja hallinnoi käsikirjoituksen luettelomerkintöjä, kuten metatietoja ja julkaisumuotoja."
+
+msgid "editor.monograph.legend.bookInfo"
+msgstr "Tarkastele ja hallinnoi käsikirjoituksen metatietoja, muistiinpanoja, ilmoituksia ja historiaa."
+
+msgid "editor.monograph.legend.participants"
+msgstr "Tarkastele ja hallinnoi tähän käsikirjoitukseen liittyviä henkilöitä, kuten kirjoittajia, toimittajia, suunnittelijoita jne."
+
+msgid "editor.monograph.legend.add"
+msgstr "Lataa tiedosto osastoon"
+
+msgid "editor.monograph.legend.add_user"
+msgstr "Lisää käyttäjä osastoon"
+
+msgid "editor.monograph.legend.settings"
+msgstr "Tarkastele ja käytä kohteen asetuksia, kuten tieto- ja poistamisvalintoja"
+
+msgid "editor.monograph.legend.more_info"
+msgstr "Lisätietoja: tiedoston muistiinpanot, ilmoitusvalinnat ja historia"
+
+msgid "editor.monograph.legend.notes_none"
+msgstr "Tiedoston tiedot: muistiinpanot, ilmoitusvalinnat ja historia (ei lisättyjä muistiinpanoja)"
+
+msgid "editor.monograph.legend.notes"
+msgstr "Tiedoston tiedot: muistiinpanot, ilmoitusvalinnat ja historia (muistiinpanoja saatavilla)"
+
+msgid "editor.monograph.legend.notes_new"
+msgstr "Tiedoston tiedot: muistiinpanot, ilmoitusvalinnat ja historia (uusia muistiinpanoja lisätty edellisen käynnin jälkeen)"
+
+msgid "editor.monograph.legend.edit"
+msgstr "Muokkaa kohdetta"
+
+msgid "editor.monograph.legend.delete"
+msgstr "Poista kohde"
+
+msgid "editor.monograph.legend.in_progress"
+msgstr "Toiminto käynnissä tai ei vielä valmis"
+
+msgid "editor.monograph.legend.complete"
+msgstr "Toiminto valmis"
+
+msgid "editor.monograph.legend.uploaded"
+msgstr "Taulukon sarakeotsikossa mainitun roolin lataama tiedosto"
+
+msgid "editor.submission.introduction"
+msgstr "Tutustuttuaan lähetettyihin tiedostoihin, toimittaja valitsee Käsikirjoitus-kohdassa sopivan toiminnon (josta lähetetään ilmoitus kirjoittajalle) seuraavista: Lähetä sisäiseen arviointiin (sisältää sisäisesti arvioitavien tiedostojen valinnan); Lähetä ulkopuoliseen arviointiin (sisältää ulkopuolisesti arvioitavien tiedostojen valinnan); Hyväksy käsikirjoitus (sisältää tiedostojen valinnan toimitusvaiheeseen); tai Hylkää käsikirjoitus (arkistoi käsikirjoituksen)."
+
+msgid "editor.monograph.editorial.fairCopy"
+msgstr "Puhtaaksi kirjoitettu käsikirjoitus"
+
+msgid "editor.monograph.proofs"
+msgstr "Korjausvedokset"
+
+msgid "editor.monograph.production.approvalAndPublishing"
+msgstr "Hyväksyntä ja julkaiseminen"
+
+msgid "editor.monograph.production.approvalAndPublishingDescription"
+msgstr "Erilaisia julkaisumuotoja, kuten kovakantinen, pehmeäkantinen ja digitaalinen, voidaan ladata alla olevassa Julkaisumuodot -osiossa. Alla olevaa julkaisumuotokehikkoa voit käyttää julkaisumuodon julkaisemiseen liittyvien vaadittujen tehtävien tarkistuslistana."
+
+msgid "editor.monograph.production.publicationFormatDescription"
+msgstr "Lisää julkaisumuodot (esim. digitaalinen, pehmeäkantinen), joita varten taittaja valmistelee korjausvedokset oikolukuun. <em>Korjausvedokset</em> pitää merkitä hyväksytyiksi ja muodon <em>Luettelo</em>merkinnät on merkittävä ajantasaisiksi kirjan luettelomerkintöihin, ennen kuin muodosta voidaan tehdä <em>Saatavilla</em> oleva (eli julkaistu)."
+
+msgid "editor.monograph.approvedProofs.edit"
+msgstr "Aseta latausehdot"
+
+msgid "editor.monograph.approvedProofs.edit.linkTitle"
+msgstr "Aseta ehdot"
+
+msgid "editor.monograph.proof.addNote"
+msgstr "Lisää vastaus"
+
+msgid "editor.submission.proof.manageProofFilesDescription"
+msgstr "Mitä tahansa tiedostoja, joita on ladattu käsikirjoituksen eri lähetysvaiheissa, voidaan lisätä korjausvedostiedostojen listalle rastittamalla Sisällytä-valintaruutu alla ja klikkaamalla \"Hae\": kaikki saatavilla olevat tiedostot näytetään ja voidaan valita lisättäväksi."
+
+msgid "editor.publicIdentificationExistsForTheSameType"
+msgstr "Julkinen tunniste '{$publicIdentifier}' on jo olemassa toisella samantyyppisellä kohteella. Valitse painosi samantyyppisille kohteille yksilöivät tunnisteet."

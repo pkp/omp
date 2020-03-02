@@ -3,9 +3,9 @@
 /**
  * @file plugins/importexport/native/filter/NativeXmlMonographFilter.inc.php
  *
- * Copyright (c) 2014-2016 Simon Fraser University Library
- * Copyright (c) 2000-2016 John Willinsky
- * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
+ * Copyright (c) 2014-2020 Simon Fraser University
+ * Copyright (c) 2000-2020 John Willinsky
+ * Distributed under the GNU GPL v3. For full terms see the file docs/COPYING.
  *
  * @class NativeXmlMonographFilter
  * @ingroup plugins_importexport_native
@@ -20,8 +20,8 @@ class NativeXmlMonographFilter extends NativeXmlSubmissionFilter {
 	 * Constructor
 	 * @param $filterGroup FilterGroup
 	 */
-	function NativeXmlMonographFilter($filterGroup) {
-		parent::NativeXmlSubmissionFilter($filterGroup);
+	function __construct($filterGroup) {
+		parent::__construct($filterGroup);
 	}
 
 
@@ -36,11 +36,23 @@ class NativeXmlMonographFilter extends NativeXmlSubmissionFilter {
 	}
 
 	/**
-	 * Get the published submission DAO for this application.
-	 * @return DAO
+	 * @see Filter::process()
+	 * @param $document DOMDocument|string
+	 * @return array Array of imported documents
 	 */
-	function getPublishedSubmissionDAO() {
-		return DAORegistry::getDAO('PublishedMonographDAO');
+	function &process(&$document) {
+		$importedObjects =& parent::process($document);
+
+		// Index imported content
+		$monographSearchIndex = Application::getSubmissionSearchIndex();
+		foreach ($importedObjects as $submission) {
+			assert(is_a($submission, 'Submission'));
+			$monographSearchIndex->submissionMetadataChanged($submission);
+			$monographSearchIndex->submissionFilesChanged($submission);
+		}
+		$monographSearchIndex->submissionChangesFinished();
+
+		return $importedObjects;
 	}
 
 	/**
@@ -50,19 +62,11 @@ class NativeXmlMonographFilter extends NativeXmlSubmissionFilter {
 	 * @return Submission
 	 */
 	function populateObject($submission, $node) {
-		$seriesPath = $node->getAttribute('series');
-		$seriesPosition = $node->getAttribute('series_position');
-		if ($seriesPath !== '') {
-			$seriesDao = DAORegistry::getDAO('SeriesDAO');
-			$series = $seriesDao->getByPath($seriesPath, $submission->getContextId());
-			if (!$series) {
-				fatalError('Could not find a series with the path "' . $seriesPath . '"!');
-			}
-			$submission->setSeriesId($series->getId());
-			$submission->setSeriesPosition($seriesPosition);
-		}
+		$deployment = $this->getDeployment();
+
 		$workType = $node->getAttribute('work_type');
-		$submission->setWorkType($workType);
+		$submission->setData('workType', $workType);
+		
 		return parent::populateObject($submission, $node);
 	}
 
@@ -77,8 +81,8 @@ class NativeXmlMonographFilter extends NativeXmlSubmissionFilter {
 			case 'supplementary_file':
 				$this->parseSubmissionFile($n, $submission);
 				break;
-			case 'publication_format':
-				$this->parsePublicationFormat($n, $submission);
+			case 'publication':
+				$this->parsePublication($n, $submission);
 				break;
 			default:
 				parent::handleChildElement($n, $submission);
@@ -91,6 +95,8 @@ class NativeXmlMonographFilter extends NativeXmlSubmissionFilter {
 	 * @return Filter
 	 */
 	function getImportFilter($elementName) {
+		$deployment = $this->getDeployment();
+		$submission = $deployment->getSubmission();
 		$importClass = null; // Scrutinizer
 		switch ($elementName) {
 			case 'submission_file':
@@ -102,15 +108,15 @@ class NativeXmlMonographFilter extends NativeXmlSubmissionFilter {
 			case 'supplementary_file':
 				$importClass='SupplementaryFile';
 				break;
-			case 'publication_format':
-				$importClass='PublicationFormat';
+			case 'publication':
+				$importClass='Publication';
 				break;
 			default:
-				fatalError('Unknown submission file node ' . $elementName);
+				$deployment->addError(ASSOC_TYPE_SUBMISSION, $submission->getId(), __('plugins.importexport.common.error.unknownElement', array('param' => $elementName)));
 		}
 		// Caps on class name for consistency with imports, whose filter
 		// group names are generated implicitly.
-		$filterDao = DAORegistry::getDAO('FilterDAO');
+		$filterDao = DAORegistry::getDAO('FilterDAO'); /* @var $filterDao FilterDAO */
 		$importFilters = $filterDao->getObjectsByGroup('native-xml=>' . $importClass);
 		$importFilter = array_shift($importFilters);
 		return $importFilter;
@@ -121,37 +127,18 @@ class NativeXmlMonographFilter extends NativeXmlSubmissionFilter {
 	 * @param $n DOMElement
 	 * @param $submission Submission
 	 */
-	function parsePublicationFormat($n, $submission) {
+	function parsePublication($n, $submission) {
 		$importFilter = $this->getImportFilter($n->tagName);
 		assert($importFilter); // There should be a filter
 
 		$existingDeployment = $this->getDeployment();
-		$onixDeployment = new Onix30ExportDeployment(Request::getContext(), Request::getUser());
-		$onixDeployment->setSubmission($existingDeployment->getSubmission());
-		$onixDeployment->setFileDBIds($existingDeployment->getFileDBIds());
-		$importFilter->setDeployment($onixDeployment);
+		$request = Application::get()->getRequest();
+		
+		$importFilter->setDeployment($existingDeployment);
 		$formatDoc = new DOMDocument();
 		$formatDoc->appendChild($formatDoc->importNode($n, true));
 		return $importFilter->execute($formatDoc);
 	}
-
-	/**
-	 * Get the representation export filter group name
-	 * @return string
-	 */
-	function getRepresentationExportFilterGroupName() {
-		return 'publication-format=>native-xml';
-	}
-
-	/**
-	 * Class-specific methods for published submissions.
-	 * @param PublishedMonograph $submission
-	 * @param DOMElement $node
-	 * @return PublishedMonograph
-	 */
-	function populatePublishedSubmission($submission, $node) {
-		return $submission;
-	}
 }
 
-?>
+

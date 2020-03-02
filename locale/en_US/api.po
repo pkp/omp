@@ -1,0 +1,27 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: \n"
+"Report-Msgid-Bugs-To: \n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"POT-Creation-Date: 2019-09-30T06:23:43-07:00\n"
+"PO-Revision-Date: 2019-09-30T06:23:43-07:00\n"
+"Language: \n"
+
+msgid "api.emailTemplates.403.notAllowedChangeContext"
+msgstr "You do not have permission to move this email template to another press."
+
+msgid "api.publications.403.contextsDidNotMatch"
+msgstr "The publication that you requested is not part of this press."
+
+msgid "api.publications.403.submissionsDidNotMatch"
+msgstr "The publication that you requested is not part of this submission."
+
+msgid "api.submissions.403.cantChangeContext"
+msgstr "You can not change the press of a submission."
+
+msgid "api.submissions.403.contextRequired"
+msgstr "To make or edit a submission you must make a request to the press's API endpoint."

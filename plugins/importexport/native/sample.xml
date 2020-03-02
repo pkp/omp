@@ -2,8 +2,8 @@
 <!--
   * plugins/importexport/native/sample.xsl
   *
-  * Copyright (c) 2014-2016 Simon Fraser University Library
-  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
+  * Copyright (c) 2014-2020 Simon Fraser University
+  * Distributed under the GNU GPL v3. For full terms see the file docs/COPYING.
   *
   * Sample native XML import document.
   -->
@@ -18,8 +18,8 @@
 	<authors xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 		xsi:schemaLocation="http://pkp.sfu.ca native.xsd">
 		<author primary_contact="true" user_group_ref="Author">
-			<firstname>John</firstname>
-			<lastname>Public</lastname>
+			<givenname locale="en_US">John</givenname>
+			<familyname locale="en_US">Public</familyname>
 			<email>john_q_public@email.com</email>
 		</author>
 	</authors>
@@ -27,7 +27,7 @@
 		stage="submission" id="1" xsi:schemaLocation="http://pkp.sfu.ca native.xsd">
 		<revision number="1" genre="Book Manuscript" filename="Submission.pdf"
 			viewable="true" date_uploaded="2013-11-05" date_modified="2013-11-05"
-			user_group_ref="Author" uploader="author_username"
+			uploader="author_username"
 			filesize="10" filetype="application/pdf">
 			<name locale="en_US">Submission Title</name>
 			<embed encoding="base64">base64 encoded file contents go here</embed>
@@ -37,7 +37,7 @@
 		stage="proof" id="2" xsi:schemaLocation="http://pkp.sfu.ca native.xsd">
 		<revision number="1" genre="Book Manuscript" filename="Submission.pdf"
 			viewable="true" date_uploaded="2013-11-05" date_modified="2013-11-05"
-			direct_sales_price="10" user_group_ref="Author" uploader="author_username"
+			direct_sales_price="10" uploader="author_username"
 			filesize="10" filetype="application/pdf">
 			<name locale="en_US">Submission Title</name>
 			<embed encoding="base64">base64 encoded file contents go here</embed>

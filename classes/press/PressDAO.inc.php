@@ -2,9 +2,9 @@
 /**
  * @file classes/press/PressDAO.inc.php
  *
- * Copyright (c) 2014-2016 Simon Fraser University Library
- * Copyright (c) 2003-2016 John Willinsky
- * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
+ * Copyright (c) 2014-2020 Simon Fraser University
+ * Copyright (c) 2003-2020 John Willinsky
+ * Distributed under the GNU GPL v3. For full terms see the file docs/COPYING.
  *
  * @class PressDAO
  * @ingroup press
@@ -17,12 +17,26 @@ import('classes.press.Press');
 import('lib.pkp.classes.context.ContextDAO');
 
 class PressDAO extends ContextDAO {
-	/**
-	 * Constructor
-	 */
-	function PressDAO() {
-		parent::ContextDAO();
-	}
+	/** @copydoc SchemaDAO::$schemaName */
+	var $schemaName = 'context';
+
+	/** @copydoc SchemaDAO::$tableName */
+	var $tableName = 'presses';
+
+	/** @copydoc SchemaDAO::$settingsTableName */
+	var $settingsTableName = 'press_settings';
+
+	/** @copydoc SchemaDAO::$primaryKeyColumn */
+	var $primaryKeyColumn = 'press_id';
+
+	/** @var array Maps schema properties for the primary table to their column names */
+	var $primaryTableColumns = [
+		'id' => 'press_id',
+		'urlPath' => 'path',
+		'enabled' => 'enabled',
+		'seq' => 'seq',
+		'primaryLocale' => 'primary_locale',
+	];
 
 	/**
 	 * Construct a new data object corresponding to this DAO.
@@ -33,54 +47,6 @@ class PressDAO extends ContextDAO {
 	}
 
 	/**
-	 * Internal function to return a Press object from a row.
-	 * @param $row array
-	 * @return Press
-	 */
-	function _fromRow($row) {
-		$press = parent::_fromRow($row);
-		$press->setPrimaryLocale($row['primary_locale']);
-		$press->setEnabled($row['enabled']);
-		HookRegistry::call('PressDAO::_fromRow', array(&$press, &$row));
-		return $press;
-	}
-
-	/**
-	 * Delete a press by ID, INCLUDING ALL DEPENDENT ITEMS.
-	 * @param $pressId int
-	 */
-	function deleteById($pressId) {
-		$pressSettingsDao = DAORegistry::getDAO('PressSettingsDAO');
-		$pressSettingsDao->deleteById($pressId);
-
-		$seriesDao = DAORegistry::getDAO('SeriesDAO');
-		$seriesDao->deleteByPressId($pressId);
-
-		$emailTemplateDao = DAORegistry::getDAO('EmailTemplateDAO');
-		$emailTemplateDao->deleteEmailTemplatesByContext($pressId);
-
-		$notificationStatusDao = DAORegistry::getDAO('NotificationStatusDAO');
-		$notificationStatusDao->deleteByPressId($pressId);
-
-		$monographDao = DAORegistry::getDAO('MonographDAO');
-		$monographDao->deleteByContextId($pressId);
-
-		$pluginSettingsDao = DAORegistry::getDAO('PluginSettingsDAO');
-		$pluginSettingsDao->deleteByContextId($pressId);
-
-		$reviewFormDao = DAORegistry::getDAO('ReviewFormDAO');
-		$reviewFormDao->deleteByAssoc(ASSOC_TYPE_PRESS, $pressId);
-
-		$featureDao = DAORegistry::getDAO('FeatureDAO');
-		$featureDao->deleteByAssoc(ASSOC_TYPE_PRESS, $pressId);
-
-		$newReleaseDao = DAORegistry::getDAO('NewReleaseDAO');
-		$newReleaseDao->deleteByAssoc(ASSOC_TYPE_PRESS, $pressId);
-
-		parent::deleteById($pressId);
-	}
-
-	/**
 	 * Delete the public IDs of all publishing objects in a press.
 	 * @param $pressId int
 	 * @param $pubIdType string One of the NLM pub-id-type values or
@@ -88,7 +54,7 @@ class PressDAO extends ContextDAO {
 	 * (see <http://dtd.nlm.nih.gov/publishing/tag-library/n-4zh0.html>).
 	 */
 	function deleteAllPubIds($pressId, $pubIdType) {
-		$pubObjectDaos = array('MonographDAO', 'PublicationFormatDAO');
+		$pubObjectDaos = array('PublicationDAO', 'ChapterDAO', 'PublicationFormatDAO');
 		foreach($pubObjectDaos as $daoName) {
 			$dao = DAORegistry::getDAO($daoName);
 			$dao->deleteAllPubIds($pressId, $pubIdType);
@@ -114,55 +80,27 @@ class PressDAO extends ContextDAO {
 	 * @return boolean
 	 */
 	function anyPubIdExists($pressId, $pubIdType, $pubId,
-			$assocType = ASSOC_TYPE_ANY, $assocId = 0, $forSameType = false) {
-				$pubObjectDaos = array(
-						ASSOC_TYPE_SUBMISSION => Application::getSubmissionDAO(),
-						ASSOC_TYPE_REPRESENTATION => Application::getRepresentationDAO(),
-						ASSOC_TYPE_SUBMISSION_FILE => DAORegistry::getDAO('SubmissionFileDAO')
-				);
-				if ($forSameType) {
-					$dao = $pubObjectDaos[$assocType];
-					$excludedId = $assocId;
-					if ($dao->pubIdExists($pubIdType, $pubId, $excludedId, $pressId)) return true;
-					return false;
-				}
-				foreach($pubObjectDaos as $daoAssocType => $dao) {
-					if ($assocType == $daoAssocType) {
-						$excludedId = $assocId;
-					} else {
-						$excludedId = 0;
-					}
-					if ($dao->pubIdExists($pubIdType, $pubId, $excludedId, $pressId)) return true;
-				}
-				return false;
-	}
-
-	//
-	// Private functions
-	//
-	/**
-	 * Get the table name for this context.
-	 * @return string
-	 */
-	protected function _getTableName() {
-		return 'presses';
-	}
-
-	/**
-	 * Get the table name for this context's settings table.
-	 * @return string
-	 */
-	protected function _getSettingsTableName() {
-		return 'press_settings';
-	}
-
-	/**
-	 * Get the name of the primary key column for this context.
-	 * @return string
-	 */
-	protected function _getPrimaryKeyColumn() {
-		return 'press_id';
+		$assocType = ASSOC_TYPE_ANY, $assocId = 0, $forSameType = false) {
+		$pubObjectDaos = array(
+			ASSOC_TYPE_SUBMISSION => DAORegistry::getDAO('SubmissionDAO'),
+			ASSOC_TYPE_CHAPTER => DAORegistry::getDAO('ChapterDAO'),
+			ASSOC_TYPE_REPRESENTATION => Application::getRepresentationDAO(),
+			ASSOC_TYPE_SUBMISSION_FILE => DAORegistry::getDAO('SubmissionFileDAO')
+		);
+		if ($forSameType) {
+			$dao = $pubObjectDaos[$assocType];
+			$excludedId = $assocId;
+			if ($dao->pubIdExists($pubIdType, $pubId, $excludedId, $pressId)) return true;
+			return false;
+		}
+		foreach($pubObjectDaos as $daoAssocType => $dao) {
+			if ($assocType == $daoAssocType) {
+				$excludedId = $assocId;
+			} else {
+				$excludedId = 0;
+			}
+			if ($dao->pubIdExists($pubIdType, $pubId, $excludedId, $pressId)) return true;
+		}
+		return false;
 	}
 }
-
-?>

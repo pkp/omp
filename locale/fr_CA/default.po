@@ -1,0 +1,136 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: \n"
+"Report-Msgid-Bugs-To: \n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"POT-Creation-Date: 2019-09-30T06:23:44-07:00\n"
+"PO-Revision-Date: 2019-09-30T06:23:44-07:00\n"
+"Language: \n"
+
+msgid "default.genres.appendix"
+msgstr "Annexe"
+
+msgid "default.genres.bibliography"
+msgstr "Bibliographie"
+
+msgid "default.genres.manuscript"
+msgstr "Manuscrit de livre"
+
+msgid "default.genres.chapter"
+msgstr "Manuscrit de chapitre"
+
+msgid "default.genres.glossary"
+msgstr "Glossaire"
+
+msgid "default.genres.index"
+msgstr "Index"
+
+msgid "default.genres.preface"
+msgstr "Préface"
+
+msgid "default.genres.prospectus"
+msgstr "Prospectus"
+
+msgid "default.genres.table"
+msgstr "Tableau"
+
+msgid "default.genres.figure"
+msgstr "Figure"
+
+msgid "default.genres.photo"
+msgstr "Photo"
+
+msgid "default.genres.illustration"
+msgstr "Illustration"
+
+msgid "default.genres.other"
+msgstr "Autre"
+
+msgid "default.groups.name.editor"
+msgstr "Rédacteur/Rédactrice en chef de la presse"
+
+msgid "default.groups.plural.editor"
+msgstr "Rédacteurs en chef de la presse"
+
+msgid "default.groups.abbrev.editor"
+msgstr "RP"
+
+msgid "default.groups.name.sectionEditor"
+msgstr "Rédacteur/Rédactrice en chef de la série"
+
+msgid "default.groups.plural.sectionEditor"
+msgstr "Rédacteurs en chef de la série"
+
+msgid "default.groups.abbrev.sectionEditor"
+msgstr "RS"
+
+msgid "default.groups.name.chapterAuthor"
+msgstr "Auteur du chapitre"
+
+msgid "default.groups.plural.chapterAuthor"
+msgstr "Auteurs du chapitre"
+
+msgid "default.groups.abbrev.chapterAuthor"
+msgstr "AC"
+
+msgid "default.groups.name.volumeEditor"
+msgstr "Rédacteur/Rédactrice en chef du volume"
+
+msgid "default.groups.plural.volumeEditor"
+msgstr "Rédacteurs en chef du volume"
+
+msgid "default.groups.abbrev.volumeEditor"
+msgstr "RV"
+
+msgid "default.contextSettings.checklist.notPreviouslyPublished"
+msgstr "Cette soumission n'a jamais été publiée et n'a pas été soumise à une autre presse (ou une explication a été ajoutée à la section Commentaires du rédacteur en chef)."
+
+msgid "default.contextSettings.checklist.fileFormat"
+msgstr "Le fichier soumis est de format Microsoft Word, RTF ou OpenDocument."
+
+msgid "default.contextSettings.checklist.addressesLinked"
+msgstr "Les adresses URL des références ont été fournies si elles étaient disponibles."
+
+msgid "default.contextSettings.checklist.submissionAppearance"
+msgstr "Le texte est publié à simple interligne; utilisez une police de caractères en 12 points; utilisez des caractères italiques au lieu de souligner (sauf pour les adresses URL); et toutes les illustrations, figures et tableaux sont insérés dans le texte aux endroits appropriés plutôt qu'à la fin."
+
+msgid "default.contextSettings.checklist.bibliographicRequirements"
+msgstr "Le texte respecte les exigences stylistiques et bibliographiques conformément aux <a href=\"{$indexUrl}/{$contextPath}/about/submissions#authorGuidelines\" target=\"_blank\">lignes directrices à l'intention des auteurs</a>, disponibles dans la rubrique À propos de cette presse."
+
+msgid "default.contextSettings.privacyStatement"
+msgstr "<p>Les noms et adresses courriel saisis sur ce site de presse seront utilisés exclusivement pour les fins convenues de cette presse. Ils ne seront pas utilisés pour d'autres fins ou transmis à une tierce partie.</p>"
+
+msgid "default.contextSettings.openAccessPolicy"
+msgstr "Cette presse offre un accès libre immédiat à son contenu en partant du principe que la recherche doit être accessible au grand public, car cela favorise un meilleur échange des connaissances à l'échelle mondiale."
+
+msgid "default.contextSettings.emailSignature"
+msgstr ""
+"________________________________________________________________________\n"
+"{$contextName}\n"
+"{$indexUrl}/{$contextPath}\n"
+""
+
+msgid "default.contextSettings.forReaders"
+msgstr "Nous encourageons les lecteurs à s'abonner au service d'avis de publication de cette presse. Utilisez le lien <a href=\"{$indexUrl}/{$contextPath}/user/register\">d'inscription</a> situé en haut de la page d'accueil de la presse. Cette inscription permettra au lecteur de recevoir la table des matières de chaque nouvelle monographie de cette presse par courriel. Cette liste permet également à la presse d'affirmer qu'elle compte un certain nombre de lecteurs. Consultez <a href=\"{$indexUrl}/{$contextPath}/about/submissions#privacyStatement\">l'énoncé de confidentialité </a> de la presse, lequel stipule que les noms et adresses courriel de ses lecteurs ne seront pas utilisés à d'autres fins."
+
+msgid "default.contextSettings.forAuthors"
+msgstr ""
+"Vous souhaitez soumettre une contribution à cette presse? Nous vous recommandons de lire la page\n"
+" <a href=\"{$indexUrl}/{$contextPath}/about\">À propos de cette presse</a> pour connaitre ses règlements et la page\n"
+" <a href=\"{$indexUrl}/{$contextPath}/about/submissions#authorGuidelines\">Lignes directrices à l'intention des auteurs</a>. Les auteurs doivent <a href=\"{$indexUrl}/{$contextPath}/user/register\">s'inscrire</a> auprès de la presse avant d'envoyer une soumission. Si vous êtes déjà inscrit(e), il suffit simplement <a href=\"{$indexUrl}/index/login\">d'ouvrir une session</a> pour débuter la procédure en 5 étapes."
+
+msgid "default.contextSettings.forLibrarians"
+msgstr "Nous encourageons les bibliothécaires de recherche à ajouter cette presse à la liste électronique des ressources documentaires de la bibliothèque. De plus, ce système d'édition à libre accès convient à toutes les bibliothèques et permet aux membres des facultés de l'utiliser pour les presses auxquelles ils contribuent à titre de rédacteur en chef. (voir <a href=\"http://pkp.sfu.ca/omp\">Open Monograph Press</a>)."
+
+msgid "default.groups.name.manager"
+msgstr "Gestionnaire de la presse"
+
+msgid "default.groups.plural.manager"
+msgstr "Gestionnaires de la presse"
+
+msgid "default.groups.abbrev.manager"
+msgstr "MP"

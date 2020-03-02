@@ -1,0 +1,249 @@
+msgid ""
+msgstr ""
+"PO-Revision-Date: 2020-02-21 10:36+0000\n"
+"Last-Translator: Magnus Annemark <magnus.annemark@ub.lu.se>\n"
+"Language-Team: Swedish <http://translate.pkp.sfu.ca/projects/omp/submission/"
+"sv/>\n"
+"Language: sv_SE\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: Weblate 3.9.1\n"
+
+msgid "submission.submit.privacyStatement"
+msgstr "Integritetspolicy"
+
+msgid "submission.submit.form.localeRequired"
+msgstr "Välj språk för ditt bidrag."
+
+msgid "submission.submit.seriesPosition.description"
+msgstr "Exempel: Bok 2, Volym 2"
+
+msgid "submission.submit.seriesPosition"
+msgstr "Position i serien"
+
+msgid "author.submit.seriesRequired"
+msgstr "En giltig serie måste anges."
+
+msgid "author.isVolumeEditor"
+msgstr "Markera denna person som redaktör för volymen."
+
+msgid "submission.submit.selectSeries"
+msgstr "Välj serie (valfritt)"
+
+msgid "submission.submit.cancelSubmission"
+msgstr ""
+"Du kan färdigställa detta bidrag senare genom att välja aktiva bidrag från "
+"författarens sida."
+
+msgid "submission.submit.upload"
+msgstr "Ladda upp bidrag"
+
+msgid "submission.submit.newSubmissionSingle"
+msgstr "Nytt bidrag"
+
+msgid "submission.submit.newSubmissionMultiple"
+msgstr "Påbörja ett nytt bidrag i"
+
+msgid "submission.submit"
+msgstr "Påbörja ett nytt bidrag"
+
+msgid "grid.action.deleteChapter"
+msgstr "Ta bort detta kapitel"
+
+msgid "grid.action.editChapter"
+msgstr "Redigera detta kapitel"
+
+msgid "grid.action.addChapter"
+msgstr "Skapa ett nytt kapitel"
+
+msgid "submission.metadata"
+msgstr "Metadata"
+
+msgid "submission.confirmSubmit"
+msgstr "Är du säker på att du vill skicka in detta manuskript?"
+
+msgid "manuscript.submissions"
+msgstr "Inskickade bidrag"
+
+msgid "submissions.queuedReview"
+msgstr "Under ganskning"
+
+msgid "submission.round"
+msgstr "Omgång&nbsp;{$round}"
+
+msgid "manuscript.submission"
+msgstr "Skicka in manuskript"
+
+msgid "submission.sharing"
+msgstr "Dela"
+
+msgid "submission.download"
+msgstr "Ladda ned"
+
+msgid "submission.proofs"
+msgstr "Korrekturer"
+
+msgid "submission.publicationFormats"
+msgstr "Publikationsformat"
+
+msgid "submission.chapter.pages"
+msgstr "Sidor"
+
+msgid "submission.chapter.editChapter"
+msgstr "Redigera kapitel"
+
+msgid "submission.chapter.addChapter"
+msgstr "Lägg till kapitel"
+
+msgid "submission.chaptersDescription"
+msgstr ""
+"Du kan lista kapitlen här, och tilldela författare från listan ovan. Dessa "
+"författare kommer ha tillgång till kapitlet under de olika stegen i "
+"publiceringsprocessen."
+
+msgid "submission.chapters"
+msgstr "Kapitel"
+
+msgid "submission.chapter"
+msgstr "Kapitel"
+
+msgid "submission.artwork.permissions"
+msgstr "Tillstånd"
+
+msgid "submission.authorListSeparator"
+msgstr "; "
+
+msgid "submission.fairCopy"
+msgstr "Renskrift"
+
+msgid "submission.published"
+msgstr "Klar för produktion"
+
+msgid "submission.monograph"
+msgstr "Monografi"
+
+msgid "submission.editorName"
+msgstr "{$editorName} (red.)"
+
+msgid "submission.workflowType.change"
+msgstr "Ändra"
+
+msgid "submission.workflowType.authoredWork"
+msgstr "Monografi: Författare är knutna till boken som helhet."
+
+msgid "submission.workflowType.editedVolume"
+msgstr "Antologi: Författare är knutna till sina respektive kapitel."
+
+msgid "submission.workflowType.editedVolume.label"
+msgstr "Antologi"
+
+msgid "submission.workflowType.description"
+msgstr ""
+"En monografi är ett verk författat i sin helhet av en eller flera "
+"författare. En antologi har flera olika författare för varje kapitel ("
+"detaljer om varje kapitel läggs till senare i processen)."
+
+msgid "submission.workflowType"
+msgstr "Typ av bidrag"
+
+msgid "submission.synopsis"
+msgstr "Synopsis"
+
+msgid "submission.select"
+msgstr "Välj bidrag"
+
+msgid "submission.title"
+msgstr "Boktitel"
+
+msgid "submission.upload.selectComponent"
+msgstr "Välj komponent"
+
+msgid "submission.submit.title"
+msgstr "Skicka in en bok"
+
+msgid "submission.incomplete"
+msgstr "Inväntar godkännande"
+
+msgid "submission.complete"
+msgstr "Godkänd"
+
+msgid "grid.copyediting.deleteCopyeditorResponse"
+msgstr "Radera manusredaktörens dokument"
+
+msgid "grid.chapters.title"
+msgstr "Kapitel"
+
+msgid "submission.submit.noContext"
+msgstr "Bidragets press kunde inte hittas."
+
+msgid "submission.submit.userGroupDescription"
+msgstr "Välj redaktörsrollen om bidraget som skickas in är en antologi."
+
+msgid "submission.submit.userGroup"
+msgstr "Skicka in bidraget i min roll som..."
+
+msgid "submission.submit.placement"
+msgstr "Bidragets placering"
+
+msgid "submission.submit.checklistErrors"
+msgstr ""
+"Läs och fyll i checklistan . Det finns {$itemsRemaining} rutor som inte "
+"kryssats i än."
+
+msgid "submission.submit.whatNext.description"
+msgstr ""
+"Pressen har meddelats om ditt bidrag, och du har fått en bekräftelse via e-"
+"post. Du kommer kontaktas när redaktören har gått igenom ditt bidrag."
+
+msgid "submission.submit.generalInformation"
+msgstr "Allmän information"
+
+msgid "submission.submit.coverNote"
+msgstr "Ansökningsbrev till redaktören"
+
+msgid "submission.submit.nextSteps"
+msgstr "Nästa steg"
+
+msgid "submission.submit.confirmation"
+msgstr "Bekräftelse"
+
+msgid "submission.submit.finishingUp"
+msgstr "Färdigställande"
+
+msgid "submission.submit.metadata"
+msgstr "Metadata"
+
+msgid "submission.submit.catalog"
+msgstr "Katalog"
+
+msgid "submission.submit.prepare"
+msgstr "Förbered"
+
+msgid "submission.submit.submissionFile"
+msgstr "Fil"
+
+msgid "submission.submit.form.contributorRoleRequired"
+msgstr "Välj medarbetarens roll."
+
+msgid "submission.submit.form.abstractRequired"
+msgstr "Ange en kort sammanfattning av din bok."
+
+msgid "submission.submit.form.titleRequired"
+msgstr "Ange bokens titel."
+
+msgid "submission.submit.form.authorRequiredFields"
+msgstr "För- och efternamn samt e-postadress för varje författare krävs."
+
+msgid "submission.submit.form.authorRequired"
+msgstr "Det krävs minst en författare."
+
+msgid "submission.submit.contributorRole"
+msgstr "Medarbetarens roll"
+
+msgid "submission.supportingAgencies"
+msgstr "Finansierande organisation"
+
+msgid "submission.copyedit"
+msgstr "Manusredigering"

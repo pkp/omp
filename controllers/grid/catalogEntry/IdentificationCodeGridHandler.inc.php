@@ -3,9 +3,9 @@
 /**
  * @file controllers/grid/catalogEntry/IdentificationCodeGridHandler.inc.php
  *
- * Copyright (c) 2014-2016 Simon Fraser University Library
- * Copyright (c) 2000-2016 John Willinsky
- * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
+ * Copyright (c) 2014-2020 Simon Fraser University
+ * Copyright (c) 2000-2020 John Willinsky
+ * Distributed under the GNU GPL v3. For full terms see the file docs/COPYING.
  *
  * @class IdentificationCodeGridHandler
  * @ingroup controllers_grid_catalogEntry
@@ -25,8 +25,11 @@ import('controllers.grid.catalogEntry.IdentificationCodeGridRow');
 import('lib.pkp.classes.linkAction.request.AjaxModal');
 
 class IdentificationCodeGridHandler extends GridHandler {
-	/** @var Monograph */
-	var $_monograph;
+	/** @var Submission */
+	var $_submission;
+
+	/** @var Publication */
+	var $_publication;
 
 	/** @var PublicationFormat */
 	var $_publicationFormat;
@@ -34,8 +37,8 @@ class IdentificationCodeGridHandler extends GridHandler {
 	/**
 	 * Constructor
 	 */
-	function IdentificationCodeGridHandler() {
-		parent::GridHandler();
+	function __construct() {
+		parent::__construct();
 		$this->addRoleAssignment(
 				array(ROLE_ID_MANAGER),
 				array('fetchGrid', 'fetchRow', 'addCode', 'editCode',
@@ -47,19 +50,35 @@ class IdentificationCodeGridHandler extends GridHandler {
 	// Getters/Setters
 	//
 	/**
-	 * Get the monograph associated with this grid.
-	 * @return Monograph
+	 * Get the submission associated with this grid.
+	 * @return Submission
 	 */
-	function getMonograph() {
-		return $this->_monograph;
+	function getSubmission() {
+		return $this->_submission;
 	}
 
 	/**
-	 * Set the Monograph
-	 * @param Monograph
+	 * Set the Submission
+	 * @param Submission
 	 */
-	function setMonograph($monograph) {
-		$this->_monograph = $monograph;
+	function setSubmission($submission) {
+		$this->_submission = $submission;
+	}
+
+	/**
+	 * Get the publication associated with this grid.
+	 * @return Publication
+	 */
+	function getPublication() {
+		return $this->_publication;
+	}
+
+	/**
+	 * Set the Publication
+	 * @param Publication
+	 */
+	function setPublication($publication) {
+		$this->_publication = $publication;
 	}
 
 	/**
@@ -88,29 +107,29 @@ class IdentificationCodeGridHandler extends GridHandler {
 	 * @param $roleAssignments array
 	 */
 	function authorize($request, &$args, $roleAssignments) {
-		import('lib.pkp.classes.security.authorization.SubmissionAccessPolicy');
-		$this->addPolicy(new SubmissionAccessPolicy($request, $args, $roleAssignments));
+		import('lib.pkp.classes.security.authorization.PublicationAccessPolicy');
+		$this->addPolicy(new PublicationAccessPolicy($request, $args, $roleAssignments));
 		return parent::authorize($request, $args, $roleAssignments);
 	}
 
-	/*
-	 * Configure the grid
-	 * @param $request PKPRequest
+	/**
+	 * @copydoc GridHandler::initialize()
 	 */
-	function initialize($request) {
-		parent::initialize($request);
+	function initialize($request, $args = null) {
+		parent::initialize($request, $args);
 
-		// Retrieve the authorized monograph.
-		$this->setMonograph($this->getAuthorizedContextObject(ASSOC_TYPE_MONOGRAPH));
-		$publicationFormatDao = DAORegistry::getDAO('PublicationFormatDAO');
+		// Retrieve the authorized submission.
+		$this->setSubmission($this->getAuthorizedContextObject(ASSOC_TYPE_SUBMISSION));
+		$this->setPublication($this->getAuthorizedContextObject(ASSOC_TYPE_PUBLICATION));
+		$publicationFormatDao = DAORegistry::getDAO('PublicationFormatDAO'); /* @var $publicationFormatDao PublicationFormatDAO */
 		$representationId = null;
 
 		// Retrieve the associated publication format for this grid.
 		$identificationCodeId = (int) $request->getUserVar('identificationCodeId'); // set if editing or deleting a code
 
 		if ($identificationCodeId != '') {
-			$identificationCodeDao = DAORegistry::getDAO('IdentificationCodeDAO');
-			$identificationCode = $identificationCodeDao->getById($identificationCodeId, $this->getMonograph()->getId());
+			$identificationCodeDao = DAORegistry::getDAO('IdentificationCodeDAO'); /* @var $identificationCodeDao IdentificationCodeDAO */
+			$identificationCode = $identificationCodeDao->getById($identificationCodeId, $this->getPublication()->getId());
 			if ($identificationCode) {
 				$representationId = $identificationCode->getPublicationFormatId();
 			}
@@ -118,12 +137,12 @@ class IdentificationCodeGridHandler extends GridHandler {
 			$representationId = (int) $request->getUserVar('representationId');
 		}
 
-		$publicationFormat = $publicationFormatDao->getById($representationId, $this->getMonograph()->getId());
+		$publicationFormat = $publicationFormatDao->getById($representationId, $this->getPublication()->getId());
 
 		if ($publicationFormat) {
 			$this->setPublicationFormat($publicationFormat);
 		} else {
-			fatalError('The publication format is not assigned to authorized monograph!');
+			fatalError('The publication format is not assigned to authorized submission!');
 		}
 
 		// Load submission-specific translations
@@ -136,7 +155,7 @@ class IdentificationCodeGridHandler extends GridHandler {
 		);
 
 		// Basic grid configuration
-		$this->setTitle('monograph.publicationFormat.productIdentifierType');
+		$this->setTitle('submission.publicationFormat.productIdentifierType');
 
 		// Grid actions
 		$router = $request->getRouter();
@@ -186,22 +205,20 @@ class IdentificationCodeGridHandler extends GridHandler {
 	 * @return IdentificationCodeGridRow
 	 */
 	function getRowInstance() {
-		return new IdentificationCodeGridRow($this->getMonograph());
+		return new IdentificationCodeGridRow($this->getSubmission());
 	}
 
 	/**
 	 * Get the arguments that will identify the data in the grid
-	 * In this case, the monograph.
+	 * In this case, the submission.
 	 * @return array
 	 */
 	function getRequestArgs() {
-		$monograph = $this->getMonograph();
-		$publicationFormat = $this->getPublicationFormat();
-
-		return array(
-			'submissionId' => $monograph->getId(),
-			'representationId' => $publicationFormat->getId()
-		);
+		return [
+			'submissionId' => $this->getSubmission()->getId(),
+			'publicationId' => $this->getPublication()->getId(),
+			'representationId' => $this->getPublicationFormat()->getId()
+		];
 	}
 
 	/**
@@ -209,7 +226,7 @@ class IdentificationCodeGridHandler extends GridHandler {
 	 */
 	function loadData($request, $filter = null) {
 		$publicationFormat = $this->getPublicationFormat();
-		$identificationCodeDao = DAORegistry::getDAO('IdentificationCodeDAO');
+		$identificationCodeDao = DAORegistry::getDAO('IdentificationCodeDAO'); /* @var $identificationCodeDao IdentificationCodeDAO */
 		$data = $identificationCodeDao->getByPublicationFormatId($publicationFormat->getId());
 		return $data->toArray();
 	}
@@ -237,14 +254,14 @@ class IdentificationCodeGridHandler extends GridHandler {
 	function editCode($args, $request) {
 		// Identify the code to be updated
 		$identificationCodeId = (int) $request->getUserVar('identificationCodeId');
-		$monograph = $this->getMonograph();
+		$submission = $this->getSubmission();
 
-		$identificationCodeDao = DAORegistry::getDAO('IdentificationCodeDAO');
-		$identificationCode = $identificationCodeDao->getById($identificationCodeId, $monograph->getId());
+		$identificationCodeDao = DAORegistry::getDAO('IdentificationCodeDAO'); /* @var $identificationCodeDao IdentificationCodeDAO */
+		$identificationCode = $identificationCodeDao->getById($identificationCodeId, $this->getPublication()->getId());
 
 		// Form handling
 		import('controllers.grid.catalogEntry.form.IdentificationCodeForm');
-		$identificationCodeForm = new IdentificationCodeForm($monograph, $identificationCode);
+		$identificationCodeForm = new IdentificationCodeForm($submission, $this->getPublication(), $identificationCode);
 		$identificationCodeForm->initData();
 
 		return new JSONMessage(true, $identificationCodeForm->fetch($request));
@@ -259,21 +276,21 @@ class IdentificationCodeGridHandler extends GridHandler {
 	function updateCode($args, $request) {
 		// Identify the code to be updated
 		$identificationCodeId = $request->getUserVar('identificationCodeId');
-		$monograph = $this->getMonograph();
+		$submission = $this->getSubmission();
 
-		$identificationCodeDao = DAORegistry::getDAO('IdentificationCodeDAO');
-		$identificationCode = $identificationCodeDao->getById($identificationCodeId, $monograph->getId());
+		$identificationCodeDao = DAORegistry::getDAO('IdentificationCodeDAO'); /* @var $identificationCodeDao IdentificationCodeDAO */
+		$identificationCode = $identificationCodeDao->getById($identificationCodeId, $this->getPublication()->getId());
 
 		// Form handling
 		import('controllers.grid.catalogEntry.form.IdentificationCodeForm');
-		$identificationCodeForm = new IdentificationCodeForm($monograph, $identificationCode);
+		$identificationCodeForm = new IdentificationCodeForm($submission, $this->getPublication(), $identificationCode);
 		$identificationCodeForm->readInputData();
 		if ($identificationCodeForm->validate()) {
 			$identificationCodeId = $identificationCodeForm->execute();
 
 			if(!isset($identificationCode)) {
 				// This is a new code
-				$identificationCode = $identificationCodeDao->getById($identificationCodeId, $monograph->getId());
+				$identificationCode = $identificationCodeDao->getById($identificationCodeId, $this->getPublication()->getId());
 				// New added code action notification content.
 				$notificationContent = __('notification.addedIdentificationCode');
 			} else {
@@ -312,8 +329,8 @@ class IdentificationCodeGridHandler extends GridHandler {
 		// Identify the code to be deleted
 		$identificationCodeId = $request->getUserVar('identificationCodeId');
 
-		$identificationCodeDao = DAORegistry::getDAO('IdentificationCodeDAO');
-		$identificationCode = $identificationCodeDao->getById($identificationCodeId, $this->getMonograph()->getId());
+		$identificationCodeDao = DAORegistry::getDAO('IdentificationCodeDAO'); /* @var $identificationCodeDao IdentificationCodeDAO */
+		$identificationCode = $identificationCodeDao->getById($identificationCodeId, $this->getPublication()->getId());
 		if ($identificationCode != null) { // authorized
 
 			$result = $identificationCodeDao->deleteObject($identificationCode);
@@ -330,4 +347,4 @@ class IdentificationCodeGridHandler extends GridHandler {
 	}
 }
 
-?>
+

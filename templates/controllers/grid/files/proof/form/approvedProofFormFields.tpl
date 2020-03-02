@@ -1,9 +1,9 @@
 {**
  * templates/controllers/grid/files/proof/form/approvedProofFormFields.tpl
  *
- * Copyright (c) 2014-2016 Simon Fraser University Library
- * Copyright (c) 2003-2016 John Willinsky
- * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
+ * Copyright (c) 2014-2020 Simon Fraser University
+ * Copyright (c) 2003-2020 John Willinsky
+ * Distributed under the GNU GPL v3. For full terms see the file docs/COPYING.
  *
  * Form to control pricing of approved proofs for direct sales.
  *}
@@ -14,7 +14,7 @@
 {/fbvFormSection}
 
 {fbvFormSection for="price"}
-	{translate|assign:"priceLabel" key="payment.directSales.priceCurrency" currency=$currentPress->getSetting('currency')}
+	{capture assign="priceLabel"}{translate key="payment.directSales.priceCurrency" currency=$currentPress->getSetting('currency')}{/capture}
 	{fbvElement type="text" id="price" label=$priceLabel subLabelTranslate=false size=$fbvStyles.size.MEDIUM value=$price maxlength="255"}
 	<p>{translate key="payment.directSales.numericOnly"}</p>
 {/fbvFormSection}

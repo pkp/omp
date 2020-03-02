@@ -3,9 +3,9 @@
 /**
  * @file controllers/grid/catalogEntry/PublicationFormatGridCategoryRow.inc.php
  *
- * Copyright (c) 2014-2016 Simon Fraser University Library
- * Copyright (c) 2000-2016 John Willinsky
- * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
+ * Copyright (c) 2014-2020 Simon Fraser University
+ * Copyright (c) 2000-2020 John Willinsky
+ * Distributed under the GNU GPL v3. For full terms see the file docs/COPYING.
  *
  * @class PublicationFormatGridCategoryRow
  * @ingroup controllers_grid_representations
@@ -20,14 +20,24 @@ class PublicationFormatGridCategoryRow extends GridCategoryRow {
 	/** @var Submission **/
 	var $_submission;
 
+	/** @var boolean */
+	protected $_canManage;
+
+	/** @var Publication **/
+	var $_publication;
+
 	/**
 	 * Constructor
 	 * @param $submission Submission
 	 * @param $cellProvider GridCellProvider
+	 * @param $canManage boolean
+	 * @param $publication Publication
 	 */
-	function PublicationFormatGridCategoryRow($submission, $cellProvider) {
+	function __construct($submission, $cellProvider, $canManage, $publication) {
 		$this->_submission = $submission;
-		parent::GridCategoryRow();
+		$this->_canManage = $canManage;
+		$this->_publication = $publication;
+		parent::__construct();
 		$this->setCellProvider($cellProvider);
 	}
 
@@ -57,11 +67,12 @@ class PublicationFormatGridCategoryRow extends GridCategoryRow {
 
 		// Is this a new row or an existing row?
 		$representation = $this->getData();
-		if ($representation && is_numeric($representation->getId())) {
+		if ($representation && is_numeric($representation->getId()) && $this->_canManage) {
 			$router = $request->getRouter();
 			$actionArgs = array(
 				'submissionId' => $submission->getId(),
-				'representationId' => $representation->getId()
+				'representationId' => $representation->getId(),
+				'publicationId' => $this->getPublication()->getId(),
 			);
 
 			// Add row-level actions
@@ -104,5 +115,13 @@ class PublicationFormatGridCategoryRow extends GridCategoryRow {
 	function getSubmission() {
 		return $this->_submission;
 	}
+
+	/**
+	 * Get the publication for this row (already authorized)
+	 * @return Publication
+	 */
+	function getPublication() {
+		return $this->_publication;
+	}
 }
-?>
+

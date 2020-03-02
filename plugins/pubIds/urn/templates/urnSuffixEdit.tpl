@@ -1,9 +1,9 @@
 {**
  * @file plugins/pubIds/urn/templates/urnSuffixEdit.tpl
  *
- * Copyright (c) 2014-2016 Simon Fraser University Library
- * Copyright (c) 2003-2016 John Willinsky
- * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
+ * Copyright (c) 2014-2020 Simon Fraser University
+ * Copyright (c) 2003-2020 John Willinsky
+ * Distributed under the GNU GPL v3. For full terms see the file docs/COPYING.
  *
  * Edit custom URN suffix for an object (submission, representation, file)
  *}
@@ -26,8 +26,8 @@
 				{/fbvFormSection}
 				{if $canBeAssigned}
 					<p class="pkp_help">{translate key="plugins.pubIds.urn.editor.canBeAssigned"}</p>
-					{assign var=templatePath value=$pubIdPlugin->getTemplatePath()}
-					{include file="`$templatePath`urnAssignCheckBox.tpl" pubId="" pubObjectType=$pubObjectType}
+					{assign var=templatePath value=$pubIdPlugin->getTemplateResource('urnAssignCheckBox.tpl')}
+					{include file=$templatePath pubId="" pubObjectType=$pubObjectType}
 				{else}
 					<p class="pkp_help">{translate key="plugins.pubIds.urn.editor.customSuffixMissing"}</p>
 				{/if}
@@ -44,8 +44,8 @@
 			<p>{$pubIdPlugin->getPubId($pubObject)|escape}</p>
 			{if $canBeAssigned}
 				<p class="pkp_help">{translate key="plugins.pubIds.urn.editor.canBeAssigned"}</p>
-				{assign var=templatePath value=$pubIdPlugin->getTemplatePath()}
-				{include file="`$templatePath`urnAssignCheckBox.tpl" pubId="" pubObjectType=$pubObjectType}
+				{assign var=templatePath value=$pubIdPlugin->getTemplateResource('urnAssignCheckBox.tpl')}
+				{include file=$templatePath pubId="" pubObjectType=$pubObjectType}
 			{else}
 				<p class="pkp_help">{translate key="plugins.pubIds.urn.editor.patternNotResolved"}</p>
 			{/if}

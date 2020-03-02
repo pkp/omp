@@ -3,9 +3,9 @@
 /**
  * @file controllers/grid/users/chapter/ChapterGridCategoryRow.inc.php
  *
- * Copyright (c) 2014-2016 Simon Fraser University Library
- * Copyright (c) 2000-2016 John Willinsky
- * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
+ * Copyright (c) 2014-2020 Simon Fraser University
+ * Copyright (c) 2000-2020 John Willinsky
+ * Distributed under the GNU GPL v3. For full terms see the file docs/COPYING.
  *
  * @class ChapterGridCategoryRow
  * @ingroup controllers_grid_users_chapter
@@ -23,6 +23,9 @@ class ChapterGridCategoryRow extends GridCategoryRow {
 	/** @var Monograph **/
 	var $_monograph;
 
+	/** @var Publication **/
+	var $_publication;
+
 	/** @var Chapter **/
 	var $_chapter;
 
@@ -32,22 +35,22 @@ class ChapterGridCategoryRow extends GridCategoryRow {
 	/**
 	 * Constructor
 	 */
-	function ChapterGridCategoryRow($monograph, $readOnly = false) {
+	function __construct($monograph, $publication, $readOnly = false) {
 		$this->_monograph = $monograph;
+		$this->_publication = $publication;
 		$this->_readOnly = $readOnly;
-		parent::GridCategoryRow();
+		parent::__construct();
 	}
 
 	//
 	// Overridden methods from GridCategoryRow
 	//
 	/**
-	 * @see GridCategoryRow::initialize()
-	 * @param $request PKPRequest
+	 * @copydoc GridCategoryRow::initialize()
 	 */
-	function initialize($request) {
+	function initialize($request, $template = null) {
 		// Do the default initialization
-		parent::initialize($request);
+		parent::initialize($request, $template);
 
 		// Retrieve the monograph id from the request
 		$monograph = $this->getMonograph();
@@ -63,6 +66,7 @@ class ChapterGridCategoryRow extends GridCategoryRow {
 				$router = $request->getRouter();
 				$actionArgs = array(
 					'submissionId' => $monograph->getId(),
+					'publicationId' => $this->getPublication()->getId(),
 					'chapterId' => $chapterId
 				);
 
@@ -93,6 +97,14 @@ class ChapterGridCategoryRow extends GridCategoryRow {
 	}
 
 	/**
+	 * Get the publication for this row (already authorized)
+	 * @return Publication
+	 */
+	function getPublication() {
+		return $this->_publication;
+	}
+
+	/**
 	 * Get the chapter for this row
 	 * @return Chapter
 	 */
@@ -108,4 +120,4 @@ class ChapterGridCategoryRow extends GridCategoryRow {
 		return $this->_readOnly;
 	}
 }
-?>
+

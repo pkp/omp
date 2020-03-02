@@ -3,9 +3,9 @@
 /**
  * @file plugins/generic/webFeed/SettingsForm.inc.php
  *
- * Copyright (c) 2014-2016 Simon Fraser University Library
- * Copyright (c) 2003-2016 John Willinsky
- * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
+ * Copyright (c) 2014-2020 Simon Fraser University
+ * Copyright (c) 2003-2020 John Willinsky
+ * Distributed under the GNU GPL v3. For full terms see the file docs/COPYING.
  *
  * @class SettingsForm
  * @ingroup plugins_generic_webFeed
@@ -28,11 +28,11 @@ class SettingsForm extends Form {
 	 * @param $plugin WebFeedPlugin Web feed plugin
 	 * @param $contextId int Context ID
 	 */
-	function SettingsForm($plugin, $contextId) {
+	public function __construct($plugin, $contextId) {
 		$this->_contextId = $contextId;
 		$this->_plugin = $plugin;
 
-		parent::Form($plugin->getTemplatePath() . 'settingsForm.tpl');
+		parent::__construct($plugin->getTemplateResource('settingsForm.tpl'));
 		$this->addCheck(new FormValidatorPost($this));
 		$this->addCheck(new FormValidatorCSRF($this));
 	}
@@ -40,7 +40,7 @@ class SettingsForm extends Form {
 	/**
 	 * Initialize form data.
 	 */
-	function initData() {
+	public function initData() {
 		$contextId = $this->_contextId;
 		$plugin = $this->_plugin;
 
@@ -51,7 +51,7 @@ class SettingsForm extends Form {
 	/**
 	 * Assign form data to user-submitted data.
 	 */
-	function readInputData() {
+	public function readInputData() {
 		$this->readUserVars(array('displayPage', 'recentItems'));
 
 		// check that recent items value is a positive integer
@@ -65,22 +65,24 @@ class SettingsForm extends Form {
 	 * Fetch the form.
 	 * @copydoc Form::fetch()
 	 */
-	function fetch($request) {
+	public function fetch($request, $template = null, $display = false) {
 		$templateMgr = TemplateManager::getManager($request);
 		$templateMgr->assign('pluginName', $this->_plugin->getName());
-		return parent::fetch($request);
+		return parent::fetch($request, $template, $display);
 	}
 
 	/**
-	 * Save settings. 
+	 * @copydoc Form::execute()
 	 */
-	function execute() {
+	public function execute(...$functionArgs) {
 		$plugin = $this->_plugin;
 		$contextId = $this->_contextId;
 
 		$plugin->updateSetting($contextId, 'displayPage', $this->getData('displayPage'));
 		$plugin->updateSetting($contextId, 'recentItems', $this->getData('recentItems'));
+
+		parent::execute(...$functionArgs);
 	}
 }
 
-?>
+

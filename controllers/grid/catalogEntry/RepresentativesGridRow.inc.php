@@ -3,9 +3,9 @@
 /**
  * @file controllers/grid/catalogEntry/RepresentativesGridRow.inc.php
  *
- * Copyright (c) 2014-2016 Simon Fraser University Library
- * Copyright (c) 2000-2016 John Willinsky
- * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
+ * Copyright (c) 2014-2020 Simon Fraser University
+ * Copyright (c) 2000-2020 John Willinsky
+ * Distributed under the GNU GPL v3. For full terms see the file docs/COPYING.
  *
  * @class RepresentativesGridRow
  * @ingroup controllers_grid_catalogEntry
@@ -22,9 +22,9 @@ class RepresentativesGridRow extends GridRow {
 	/**
 	 * Constructor
 	 */
-	function RepresentativesGridRow($monograph) {
+	function __construct($monograph) {
 		$this->_monograph = $monograph;
-		parent::GridRow();
+		parent::__construct();
 	}
 
 	//
@@ -90,4 +90,4 @@ class RepresentativesGridRow extends GridRow {
 		return $this->_monograph;
 	}
 }
-?>
+

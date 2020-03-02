@@ -3,9 +3,9 @@
 /**
  * @file plugins/generic/usageEvent/UsageEventPlugin.inc.php
  *
- * Copyright (c) 2013-2016 Simon Fraser University Library
- * Copyright (c) 2003-2016 John Willinsky
- * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
+ * Copyright (c) 2013-2020 Simon Fraser University
+ * Copyright (c) 2003-2020 John Willinsky
+ * Distributed under the GNU GPL v3. For full terms see the file docs/COPYING.
  *
  * @class UsageEventPlugin
  * @ingroup plugins_generic_usageEvent
@@ -19,8 +19,8 @@ class UsageEventPlugin extends PKPUsageEventPlugin {
 	/**
 	 * Constructor
 	 */
-	function UsageEventPlugin() {
-		parent::PKPUsageEventPlugin();
+	function __construct() {
+		parent::__construct();
 	}
 
 
@@ -35,9 +35,20 @@ class UsageEventPlugin extends PKPUsageEventPlugin {
 		$ompHooks = array(
 			'CatalogBookHandler::view',
 			'CatalogBookHandler::download',
+			'HtmlMonographFilePlugin::monographDownload',
+			'HtmlMonographFilePlugin::monographDownloadFinished',
 		);
 
 		return array_merge($hooks, $ompHooks);
+	}
+
+	/**
+	 * @copydoc PKPUsageEventPlugin::getDownloadFinishedEventHooks()
+	 */
+	protected function getDownloadFinishedEventHooks() {
+		return array_merge(parent::getDownloadFinishedEventHooks(), array(
+			'HtmlMonographFilePlugin::monographDownloadFinished'
+		));
 	}
 
 	/**
@@ -59,12 +70,12 @@ class UsageEventPlugin extends PKPUsageEventPlugin {
 
 					if (!in_array($page, $wantedPages) || !in_array($op, $wantedOps)) break;
 
-					$press = $templateMgr->get_template_vars('currentContext'); /* @var $press Press */
-					$series = $templateMgr->get_template_vars('series'); /* @var $series Series */
-					$publishedMonograph = $templateMgr->get_template_vars('publishedMonograph');
+					$press = $templateMgr->getTemplateVars('currentContext'); /* @var $press Press */
+					$series = $templateMgr->getTemplateVars('series'); /* @var $series Series */
+					$submission = $templateMgr->getTemplateVars('submission');
 
 					// No published objects, no usage event.
-					if (!$press && !$series && !$publishedMonograph) break;
+					if (!$press && !$series && !$submission) break;
 
 					if ($press) {
 						$pubObject = $press;
@@ -79,8 +90,8 @@ class UsageEventPlugin extends PKPUsageEventPlugin {
 						$idParams = array('s' . $series->getId());
 					}
 
-					if ($publishedMonograph) {
-						$pubObject = $publishedMonograph;
+					if ($submission) {
+						$pubObject = $submission;
 						$assocType = ASSOC_TYPE_MONOGRAPH;
 						$canonicalUrlParams = array($pubObject->getId());
 						$idParams = array('m' . $pubObject->getId());
@@ -93,12 +104,16 @@ class UsageEventPlugin extends PKPUsageEventPlugin {
 					// Publication format file.
 				case 'CatalogBookHandler::view':
 				case 'CatalogBookHandler::download':
+				case 'HtmlMonographFilePlugin::monographDownload':
 					$pubObject = $hookArgs[3];
 					$assocType = ASSOC_TYPE_SUBMISSION_FILE;
 					$canonicalUrlOp = 'download';
-					$publishedMonograph = $hookArgs[1];
-					$canonicalUrlParams = array($publishedMonograph->getId(), $pubObject->getAssocId(), $pubObject->getFileId() . '-' . $pubObject->getRevision());
-					$idParams = array('m' . $publishedMonograph->getId(), 'f' . $pubObject->getId());
+					$submission = $hookArgs[1];
+					$publicationFormat = $hookArgs[2];
+					// if file is not a publication format file (e.g. CSS or images), there is no usage event.
+					if ($pubObject->getAssocId() != $publicationFormat->getId()) return false;
+					$canonicalUrlParams = array($submission->getId(), $pubObject->getAssocId(), $pubObject->getFileId() . '-' . $pubObject->getRevision());
+					$idParams = array('m' . $submission->getId(), 'f' . $pubObject->getId());
 					$downloadSuccess = false;
 					break;
 				default:
@@ -134,8 +149,8 @@ class UsageEventPlugin extends PKPUsageEventPlugin {
 	 * @see PKPUsageEventPlugin::isPubIdObjectType()
 	 */
 	protected function isPubIdObjectType($pubObject) {
-		return is_a($pubObject, 'PublishedMonograph');
+		return is_a($pubObject, 'Submission');
 	}
 }
 
-?>
+

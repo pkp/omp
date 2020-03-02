@@ -2,9 +2,9 @@
 /**
  * @file controllers/api/file/linkAction/DownloadCopyeditedFileLinkAction.inc.php
  *
- * Copyright (c) 2014-2016 Simon Fraser University Library
- * Copyright (c) 2003-2016 John Willinsky
- * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
+ * Copyright (c) 2014-2020 Simon Fraser University
+ * Copyright (c) 2003-2020 John Willinsky
+ * Distributed under the GNU GPL v3. For full terms see the file docs/COPYING.
  *
  * @class DownloadCopyeditedFileLinkAction
  * @ingroup controllers_api_file_linkAction
@@ -27,11 +27,11 @@ class DownloadCopyeditedFileLinkAction extends DownloadFileLinkAction {
 	 * @param $monographFile SubmissionFile the monograph file to
 	 *  link to.
 	 */
-	function DownloadCopyeditedFileLinkAction($request, $monographFile, $user, $userGroup) {
+	function __construct($request, $monographFile, $user, $userGroup) {
 		$this->_user = $user;
 		$this->_userGroup = $userGroup;
 
-		parent::DownloadFileLinkAction($request, $monographFile);
+		parent::__construct($request, $monographFile);
 	}
 
 	/**
@@ -44,4 +44,4 @@ class DownloadCopyeditedFileLinkAction extends DownloadFileLinkAction {
 	}
 }
 
-?>
+

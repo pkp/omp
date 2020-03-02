@@ -3,9 +3,9 @@
 /**
  * @file controllers/modals/submissionMetadata/SelectMonographHandler.inc.php
  *
- * Copyright (c) 2014-2016 Simon Fraser University Library
- * Copyright (c) 2003-2016 John Willinsky
- * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
+ * Copyright (c) 2014-2020 Simon Fraser University
+ * Copyright (c) 2003-2020 John Willinsky
+ * Distributed under the GNU GPL v3. For full terms see the file docs/COPYING.
  *
  * @class SelectMonographHandler
  * @ingroup controllers_modals_submissionMetadata
@@ -23,11 +23,11 @@ class SelectMonographHandler extends Handler {
 	/**
 	 * Constructor.
 	 */
-	function SelectMonographHandler() {
-		parent::Handler();
+	function __construct() {
+		parent::__construct();
 		$this->addRoleAssignment(
 			array(ROLE_ID_SUB_EDITOR, ROLE_ID_MANAGER),
-			array('fetch', 'getSubmissions')
+			array('fetch', 'select')
 		);
 	}
 
@@ -53,28 +53,78 @@ class SelectMonographHandler extends Handler {
 	 * @return JSONMessage JSON object
 	 */
 	function fetch($args, $request) {
+		AppLocale::requireComponents(LOCALE_COMPONENT_APP_SUBMISSION);
 		$templateMgr = TemplateManager::getManager($request);
-		AppLocale::requireComponents(LOCALE_COMPONENT_APP_SUBMISSION); // submission.select
+
+		// import STATUS_* constants
+		import('lib.pkp.classes.submission.PKPSubmission');
+		$selectNewEntryListPanel = new \PKP\components\listPanels\PKPSelectSubmissionsListPanel(
+			'selectNewEntryListPanel',
+			__('submission.catalogEntry.select'),
+			[
+				'apiUrl' => $request->getDispatcher()->url(
+					$request,
+					ROUTE_API,
+					$request->getContext()->getPath(),
+					'_submissions'
+				),
+				'canSelect' => true,
+				'getParams' => array(
+					'status' => STATUS_QUEUED,
+				),
+				'selectorName' => 'selectedSubmissions[]',
+			]
+		);
+		$params = array_merge($selectNewEntryListPanel->getParams, ['contextId' => $request->getContext()->getId()]);
+		$submissionsIterator = \Services::get('submission')->getMany($params);
+		$items = [];
+		foreach ($submissionsIterator as $submission) {
+			$items[] = \Services::get('submission')->getBackendListProperties($submission, ['request' => $request]);
+		}
+		$selectNewEntryListPanel->set([
+			'items' => $items,
+			'itemsMax' => \Services::get('submission')->getMax($params),
+		]);
+		$templateMgr->assign('selectNewEntryData', [
+			'components' => [
+				'selectNewEntryListPanel' => $selectNewEntryListPanel->getConfig()
+			]
+		]);
 		return new JSONMessage(true, $templateMgr->fetch('controllers/modals/submissionMetadata/selectMonograph.tpl'));
 	}
 
 	/**
-	 * Get a list of submission options for new catalog entries.
+	 * Add selected submissions to the catalog
+	 *
 	 * @param $args array
 	 * @param $request PKPRequest
+	 * @return JSONMessage JSON object
 	 */
-	function getSubmissions($args, $request) {
-		$press = $request->getPress();
-		$monographDao = DAORegistry::getDAO('MonographDAO');
-		$submissionsIterator = $monographDao->getUnpublishedMonographsByPressId($press->getId());
-		$submissions = array();
-		while ($monograph = $submissionsIterator->next()) {
-			$submissions[$monograph->getId()] = $monograph->getLocalizedTitle();
+	function select($args, $request) {
+
+		if (!$request->checkCSRF() || !$context = $request->getContext()) {
+			return new JSONMessage(false, __('form.csrfInvalid'));
 		}
 
-		$jsonMessage = new JSONMessage(true, $submissions);
-		return $jsonMessage->getString();
+		$selectedSubmissions = empty($args['selectedSubmissions']) ? array() : array_map('intval', $args['selectedSubmissions']);
+
+		if (empty($selectedSubmissions)) {
+			return new JSONMessage(false, __('submission.catalogEntry.selectionMissing'));
+		}
+
+		foreach ($selectedSubmissions as $submissionId) {
+			$submission = Services::get('submission')->get($submissionId);
+			$publication = $submission->getCurrentPublication();
+			if ($publication->getData('status') === STATUS_PUBLISHED) {
+				continue;
+			}
+			Services::get('publication')->publish($publication);
+		}
+
+		$json = new JSONMessage(true);
+		$json->setGlobalEvent('catalogEntryAdded', array(
+			'submissionsAdded' => $selectedSubmissions,
+		));
+		return $json;
 	}
 }
-
-?>

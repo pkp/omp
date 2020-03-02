@@ -1,0 +1,264 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: \n"
+"Report-Msgid-Bugs-To: \n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"POT-Creation-Date: 2019-11-28T15:10:04-08:00\n"
+"PO-Revision-Date: 2019-11-28T15:10:04-08:00\n"
+"Language: \n"
+
+msgid "submission.submit.title"
+msgstr "Tramet una monografia"
+
+msgid "submission.title"
+msgstr "Títol del llibre"
+
+msgid "submission.select"
+msgstr "Selecciona la tramesa"
+
+msgid "submission.synopsis"
+msgstr "Resum"
+
+msgid "submission.workflowType"
+msgstr "Tipus de circuit de treball editorial"
+
+msgid "submission.workflowType.description"
+msgstr "Una monografia és un treball escrit completament per un o diversos autors/ores. Un volum editat té un autor/a diferent per a cada capítol (els detalls del capítol s'hi afegeixen en etapes posteriors del procés)."
+
+msgid "submission.workflowType.editedVolume"
+msgstr "Volum editat: els autors/ores tenen el seu capítol associat."
+
+msgid "submission.workflowType.authoredWork"
+msgstr "Monografia: els autors/ores s'associen a tot el llibre."
+
+msgid "submission.monograph"
+msgstr "Monografia"
+
+msgid "submission.published"
+msgstr "Producció preparada"
+
+msgid "submission.fairCopy"
+msgstr "Còpia original"
+
+msgid "submission.artwork.permissions"
+msgstr "Permisos"
+
+msgid "submission.chapter"
+msgstr "Capítol"
+
+msgid "submission.chapters"
+msgstr "Capítols"
+
+msgid "submission.chaptersDescription"
+msgstr "Podeu enumerar-hi els capítols i assignar-hi contribuïdors de la llista de contribuïdors de dalt. Aquests contribuïdors podran accedir al capítol en diverses fases del procés de publicació."
+
+msgid "submission.chapter.addChapter"
+msgstr "Afegeix-hi un capítol"
+
+msgid "submission.chapter.editChapter"
+msgstr "Edita el capítol"
+
+msgid "submission.copyedit"
+msgstr "Correcció d'originals"
+
+msgid "submission.publicationFormats"
+msgstr "Formats de publicació"
+
+msgid "submission.proofs"
+msgstr "Galerades"
+
+msgid "submission.download"
+msgstr "Baixa"
+
+msgid "submission.sharing"
+msgstr "Comparteix-ho"
+
+msgid "manuscript.submission"
+msgstr "Tramesa de manuscrit"
+
+msgid "submission.round"
+msgstr "Ronda {$round}"
+
+msgid "submissions.queuedReview"
+msgstr "En revisió"
+
+msgid "manuscript.submissions"
+msgstr "Trameses de manuscrits"
+
+msgid "submission.confirmSubmit"
+msgstr "Esteu segur/a que voleu enviar aquest manuscrit a la publicació?"
+
+msgid "submission.metadata"
+msgstr "Metadades"
+
+msgid "submission.supportingAgencies"
+msgstr "Agències de suport"
+
+msgid "grid.action.addChapter"
+msgstr "Creació d'un capítol nou"
+
+msgid "grid.action.editChapter"
+msgstr "Edició d'aquest capítol"
+
+msgid "grid.action.deleteChapter"
+msgstr "Suprimeix aquest capítol"
+
+msgid "submission.submit"
+msgstr "Comença una tramesa d'un llibre nou"
+
+msgid "submission.submit.newSubmissionMultiple"
+msgstr "Comença una tramesa nova a"
+
+msgid "submission.submit.newSubmissionSingle"
+msgstr "Comença una tramesa nova a {$contextName}"
+
+msgid "submission.submit.upload"
+msgstr "Penja"
+
+msgid "submission.submit.cancelSubmission"
+msgstr "Podeu completar aquesta tramesa més endavant si seleccioneu «Trameses actives» a la pàgina d'inici de l’autor/a."
+
+msgid "submission.submit.selectSeries"
+msgstr "Selecció de sèries..."
+
+msgid "submission.submit.seriesPosition"
+msgstr "Posició dins aquesta sèrie (p. ex. Llibre 2 o Volum 2)"
+
+msgid "submission.submit.form.localeRequired"
+msgstr "Seleccioneu la llengua per a la tramesa."
+
+msgid "submission.submit.submissionChecklist"
+msgstr "Llista de verificació de la tramesa"
+
+msgid "submission.submit.submissionChecklistDescription"
+msgstr "Completeu i marqueu els següents requisits per fer trameses a aquesta publicació per poder continuar (podeu afegir-hi comentaris a l'editor/a a sota)."
+
+msgid "submission.submit.privacyStatement"
+msgstr "Declaració de privacitat"
+
+msgid "submission.submit.contributorRole"
+msgstr "Rol del contribuïdor"
+
+msgid "submission.submit.form.authorRequired"
+msgstr "Heu d’introduir un autor/a com a mínim."
+
+msgid "submission.submit.form.authorRequiredFields"
+msgstr "Heu d’introduir el nom, els cognoms i l'adreça de correu electrònic de cada autor/a."
+
+msgid "submission.submit.form.titleRequired"
+msgstr "Introduïu-hi el títol de la monografia."
+
+msgid "submission.submit.form.abstractRequired"
+msgstr "Introduïu-hi un resum breu de la monografia."
+
+msgid "submission.submit.form.contributorRoleRequired"
+msgstr "Seleccioneu el rol del contribuïdor."
+
+msgid "submission.submit.submissionFile"
+msgstr "Fitxer de la tramesa"
+
+msgid "submission.submit.prepare"
+msgstr "Preparació"
+
+msgid "submission.submit.catalog"
+msgstr "Catàleg"
+
+msgid "submission.submit.metadata"
+msgstr "Metadades"
+
+msgid "submission.submit.finishingUp"
+msgstr "Finalització"
+
+msgid "submission.submit.nextSteps"
+msgstr "Passos següents"
+
+msgid "submission.submit.coverNote"
+msgstr "Nota per a l'editor/a"
+
+msgid "submission.submit.generalInformation"
+msgstr "Informació general"
+
+msgid "submission.submit.whatNext.description"
+msgstr "Hem informat de la publicació de la vostra tramesa i rebreu un correu electrònic per confirmar els vostres registres.  Un cop l'editor/a hagi revisat la tramesa, es posarà en contacte amb vós."
+
+msgid "submission.submit.checklistErrors"
+msgstr "Llegiu i marqueu els elements de la llista de verificació de la tramesa.  Hi ha {$itemsRemaining} elements sense marcar."
+
+msgid "submission.submit.placement"
+msgstr "Ubicació de la tramesa"
+
+msgid "submission.submit.userGroup"
+msgstr "Envia amb el rol de..."
+
+msgid "submission.submit.userGroupDescription"
+msgstr "Si envieu un volum editat, és recomanable que seleccioneu el rol d'editor/a de volum."
+
+msgid "grid.chapters.title"
+msgstr "Capítols"
+
+msgid "grid.copyediting.deleteCopyeditorResponse"
+msgstr "Suprimeix la càrrega del corrector/a"
+
+msgid "publication.catalogEntry"
+msgstr "Catàleg"
+
+msgid "submission.editCatalogEntry"
+msgstr "Entrada"
+
+msgid "submission.catalogEntry.new"
+msgstr "Nova entrada de catàleg"
+
+msgid "submission.catalogEntry.confirm"
+msgstr "Crea una entrada de catàleg per a aquest llibre basada en les metadades de sota."
+
+msgid "submission.catalogEntry.confirm.required"
+msgstr "Confirmeu que la tramesa està preparada per introduir-la al catàleg."
+
+msgid "submission.catalogEntry.isAvailable"
+msgstr "Aquesta monografia està preparada per incloure-la al catàleg públic."
+
+msgid "submission.catalogEntry.monographMetadata"
+msgstr "Monografia"
+
+msgid "submission.catalogEntry.catalogMetadata"
+msgstr "Catàleg"
+
+msgid "submission.catalogEntry.publicationMetadata"
+msgstr "Format de publicació"
+
+msgid "submission.event.metadataPublished"
+msgstr "Les metadades de la monografia estan aprovades per a la publicació."
+
+msgid "submission.event.metadataUnpublished"
+msgstr "Les metadades de la monografia ja no estan publicades."
+
+msgid "submission.event.publicationFormatMadeAvailable"
+msgstr "El format de publicació «{$publicationFormatName}» ja està disponible."
+
+msgid "submission.event.publicationFormatMadeUnavailable"
+msgstr "El format de publicació «{$publicationFormatName}» ja no està disponible."
+
+msgid "submission.event.publicationFormatPublished"
+msgstr "El format de publicació «{$publicationFormatName}» està aprovat per a la publicació."
+
+msgid "submission.event.publicationFormatUnpublished"
+msgstr "El format de publicació «{$publicationFormatName}» ja no està publicat."
+
+msgid "submission.event.catalogMetadataUpdated"
+msgstr "S'han actualitzat les metadades del catàleg."
+
+msgid "submission.event.publicationMetadataUpdated"
+msgstr "S'han actualitzat les metadades del format de publicació «{$formatName}» estan actualitzades."
+
+msgid "submission.event.publicationFormatCreated"
+msgstr "S'ha creat el format de publicació «{$formatName}»."
+
+msgid "submission.event.publicationFormatRemoved"
+msgstr "S'ha eliminat el format de publicació «{$formatName}»."
+
+msgid "submission.submit.titleAndSummary"
+msgstr "Títol i resum"

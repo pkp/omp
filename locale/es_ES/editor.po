@@ -1,0 +1,189 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: \n"
+"Report-Msgid-Bugs-To: \n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"POT-Creation-Date: 2019-09-30T06:23:44-07:00\n"
+"PO-Revision-Date: 2019-09-30T06:23:44-07:00\n"
+"Language: \n"
+
+msgid "editor.pressSignoff"
+msgstr "Pulse Cerrar sesión"
+
+msgid "editor.submissionArchive"
+msgstr "Archivo de envíos"
+
+msgid "editor.monograph.cancelReview"
+msgstr "Cancelar solicitud"
+
+msgid "editor.monograph.clearReview"
+msgstr "Eliminar revisor/a"
+
+msgid "editor.monograph.enterRecommendation"
+msgstr "Introducir recomendación"
+
+msgid "editor.monograph.enterReviewerRecommendation"
+msgstr "Introducir recomendación del revisor/a"
+
+msgid "editor.monograph.recommendation"
+msgstr "Recomendación"
+
+msgid "editor.monograph.selectReviewerInstructions"
+msgstr "Seleccione un revisor/a y pulse el botón \"Seleccionar revisor/a\" para continuar."
+
+msgid "editor.submission.selectedReviewer"
+msgstr "Revisor/a seleccionado"
+
+msgid "editor.monograph.replaceReviewer"
+msgstr "Reemplazar revisor/a"
+
+msgid "editor.monograph.editorToEnter"
+msgstr "Recomendaciones/comentarios del editor/a para el revisor/a"
+
+msgid "editor.monograph.uploadReviewForReviewer"
+msgstr "Cargar revisión"
+
+msgid "editor.monograph.peerReviewOptions"
+msgstr "Opciones de evaluación por pares"
+
+msgid "editor.monograph.selectProofreadingFiles"
+msgstr "Corrección de archivos"
+
+msgid "editor.monograph.internalReview"
+msgstr "Iniciar revisión interna"
+
+msgid "editor.monograph.internalReviewDescription"
+msgstr "Está a punto de iniciar una revisión interna para este envío.  Los archivos que formen parte de este envío se enumeran abajo y se pueden seleccionar para su revisión."
+
+msgid "editor.monograph.externalReview"
+msgstr "Iniciar revisión externa"
+
+msgid "editor.monograph.final.selectFinalDraftFiles"
+msgstr "Seleccionar los archivos del borrador final"
+
+msgid "editor.monograph.final.currentFiles"
+msgstr "Archivos actuales del borrador final"
+
+msgid "editor.monograph.copyediting.currentFiles"
+msgstr "Archivos actuales"
+
+msgid "editor.monograph.copyediting.personalMessageToUser"
+msgstr "Mensaje al usuario"
+
+msgid "editor.monograph.legend.submissionActions"
+msgstr "Acciones de envío"
+
+msgid "editor.monograph.legend.submissionActionsDescription"
+msgstr "Opciones y acciones generales de envío."
+
+msgid "editor.monograph.legend.sectionActions"
+msgstr "Acciones de sección"
+
+msgid "editor.monograph.legend.sectionActionsDescription"
+msgstr "Opciones específicas de una sección determinada, por ejemplo, cargar archivos o añadir usuarios."
+
+msgid "editor.monograph.legend.itemActions"
+msgstr "Acciones de elemento"
+
+msgid "editor.monograph.legend.itemActionsDescription"
+msgstr "Acciones y opciones específicas de un archivo individual."
+
+msgid "editor.monograph.legend.catalogEntry"
+msgstr "Ver y gestionar la entrada de catálogo del envío, incluso formatos de metadatos y publicación"
+
+msgid "editor.monograph.legend.bookInfo"
+msgstr "Ver y gestionar metadatos, notas, notificaciones y el historial del envío"
+
+msgid "editor.monograph.legend.participants"
+msgstr "Ver y gestionar los participantes de este envío: autores/as, editores/as, diseñadores/as, etc."
+
+msgid "editor.monograph.legend.add"
+msgstr "Cargar un archivo a la sección"
+
+msgid "editor.monograph.legend.add_user"
+msgstr "Añadir un usuario/a a la sección"
+
+msgid "editor.monograph.legend.settings"
+msgstr "Ver y acceder a la configuración de elemento, como información y opciones de eliminación"
+
+msgid "editor.monograph.legend.more_info"
+msgstr "Más información: notas de archivo, opciones de notificación e historial"
+
+msgid "editor.monograph.legend.notes_none"
+msgstr "Información de archivo: notas, opciones de notificación e historial (sin notas todavía)"
+
+msgid "editor.monograph.legend.notes"
+msgstr "Información de archivo: notas, opciones de notificación e historial (con notas)"
+
+msgid "editor.monograph.legend.notes_new"
+msgstr "Información de archivo: notas, opciones de notificación e historial (nuevas notas añadidas desde la última visita)"
+
+msgid "editor.monograph.legend.edit"
+msgstr "Editar elemento"
+
+msgid "editor.monograph.legend.delete"
+msgstr "Eliminar elemento"
+
+msgid "editor.monograph.legend.in_progress"
+msgstr "Acción en curso o incompleta"
+
+msgid "editor.monograph.legend.complete"
+msgstr "Acción completa"
+
+msgid "editor.monograph.legend.uploaded"
+msgstr "Archivo cargado por el rol en el título de la columna de cuadrícula"
+
+msgid "editor.submission.introduction"
+msgstr "Durante el envío, el editor/a, después de consultar los archivos enviados, selecciona la acción adecuada (la cual incluye notificar al autor/a): enviar a revisión interna (implica seleccionar los archivos para la revisión interna), enviar a revisión externa (implica seleccionar los archivos para la revisión externa), aceptar el envío (implica seleccionar los archivos para la fase editorial), o rechazar el envío (envío de archivos)."
+
+msgid "editor.submission.editorial.finalDraftDescription"
+msgstr "Para volúmenes editados con diferentes autores/as por capítulo, el archivo de envío puede dividirse en varios archivos de tamaño de un capítulo cada uno. Éstos se revisan por el autor/a de cada capítulo después de que los archivos corregidos se suban a <span class=\"pkp_help_title\">Corrección de originales</span>."
+
+msgid "editor.monograph.editorial.fairCopy"
+msgstr "Copia en limpio"
+
+msgid "editor.monograph.editorial.fairCopyDescription"
+msgstr "El corrector/a sube una copia original o en limpio del envío para su revisión por el editor/a, antes de enviarla a producción."
+
+msgid "editor.submission.production.introduction"
+msgstr "Durante la producción, el editor/a selecciona formatos del libro (por ejemplo digital, en rústica, etc) en <span class=\"pkp_help_title\">Formatos de publicación</span>, para los cuales el/la maquetista prepara archivos de calidad de publicación basándose en los archivos listos para producción. Los archivos de calidad de publicación se suben para cada formato en <span class=\"pkp_help_title\">Pruebas de página</span>, dónde se revisan. El libro se hace <em>Disponible</em> (i.e., publicado) para cada formato en <span class=\"pkp_help_title\">Formatos de publicación</span>, tras marcar la opción <em>Pruebas</em> como aprobada, y la entrada de Catálogo como incluida en la entrada de catálogo del libro."
+
+msgid "editor.submission.production.productionReadyFilesDescription"
+msgstr "El/la maquetista prepara estos archivos para cada formato de publicación y después los sube a las <span class=\"pkp_help_title\">Pruebas de página</span> correspondientes para su corrección."
+
+msgid "editor.monograph.proofs"
+msgstr "Pruebas"
+
+msgid "editor.monograph.production.approvalAndPublishing"
+msgstr "Aprobación y publicaciones"
+
+msgid "editor.monograph.production.approvalAndPublishingDescription"
+msgstr "Los diferentes formatos de publicación, como tapa dura, tapa blanda y digital, pueden cargarse a la sección Formatos de publicación que se ve a continuación. Se puede usar la cuadrícula de formatos de publicación mostrada a continuación, como una lista de comprobación de lo que todavía queda por hacer para publicar un formato de publicación."
+
+msgid "editor.monograph.production.publicationFormatDescription"
+msgstr "Añadir formatos de publicación (p.ej., digital, en rústica) para los cuales el/la maquetista prepara pruebas de página para su corrección. Las <em>Pruebas</em> deben marcarse como aprobadas y la entrada de <em>Catálogo</em> para el formato debe marcarse como publicada en la entrada de catálogo del libro, antes de que un formato se pueda hacer <em>Disponible</em> (i.e., publicado)."
+
+msgid "editor.monograph.approvedProofs.edit"
+msgstr "Establecer condiciones para la descarga"
+
+msgid "editor.monograph.approvedProofs.edit.linkTitle"
+msgstr "Establecer condiciones"
+
+msgid "editor.monograph.proof.addNote"
+msgstr "Añadir respuesta"
+
+msgid "editor.internalReview.introduction"
+msgstr "Durante la revisión interna, el editor/a asigna revisores/as internos a los archivos de envío y verifica los resultados de la revisión, antes de seleccionar la acción apropiada (la cual incluye notificar al autor/a): solicitar revisiones (revisiones hechas sólo por el editor/a), reenviar para revisión (se inicia otra ronda de revisiones), enviar para revisión externa (implica seleccionar los archivos para la revisión externa), aceptar el envío (implica seleccionar los archivos para la fase editorial), o rechazar el envío (archiva el envío)."
+
+msgid "editor.externalReview.introduction"
+msgstr "Durante la revisión externa, el editor/a asigna revisores/as externos a los archivos de envío y verifica los resultados de la revisión, antes de seleccionar la acción apropiada (la cual incluye notificar al autor/a): solicitar revisiones (revisiones hechas sólo por el editor), reenviar a revisión (se inicia otra ronda de revisiones), aceptar el envío (implica seleccionar los archivos para la fase editorial), o rechazar el envío (el editor/a archiva el envío)."
+
+msgid "editor.submission.proof.manageProofFilesDescription"
+msgstr "Cualquier fichero que ya haya sido subido en cualquier fase del envío puede añadirse al listado \"Ficheros de prueba\" marcando la siguiente casilla \"Añadir\" y pulsando \"Buscar\": todos los ficheros disponibles se listarán y podrán incluirse."
+
+msgid "editor.publicIdentificationExistsForTheSameType"
+msgstr "El identificador público '{$publicIdentifier}' ya existe y está asignado a otro objeto del mismo tipo. Por favor, elija identificadores únicos para los objetos del mismo tipo."

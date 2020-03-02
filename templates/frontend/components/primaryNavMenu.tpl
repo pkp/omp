@@ -1,9 +1,9 @@
 {**
  * templates/frontend/components/primaryNavMenu.tpl
  *
- * Copyright (c) 2014-2016 Simon Fraser University Library
- * Copyright (c) 2003-2016 John Willinsky
- * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
+ * Copyright (c) 2014-2020 Simon Fraser University
+ * Copyright (c) 2003-2020 John Willinsky
+ * Distributed under the GNU GPL v3. For full terms see the file docs/COPYING.
  *
  * Primary navigation menu list for OMP
  *}
@@ -24,21 +24,21 @@
 		</a>
 	</li>
 
-	{if $currentPress && ($currentPress->getLocalizedSetting('masthead') || $currentPress->getLocalizedSetting('submissions'))}
-		{assign var="submenu_attr" value=" aria-haspopup='true' aria-expanded='false'"}
+	{if $currentPress && ($currentPress->getLocalizedSetting('editorialTeam') || $currentPress->getLocalizedSetting('submissions'))}
+		{assign var="hasSubmenu" value=true}
 	{/if}
-	<li{$submenu_attr}>
+	<li>
 		<a href="{url router=$smarty.const.ROUTE_PAGE page="about"}">
 			{translate key="navigation.about"}
 		</a>
-		{if $submenu_attr}
+		{if $hasSubmenu}
 		<ul>
 			<li>
 				<a href="{url router=$smarty.const.ROUTE_PAGE page="about"}">
 					{translate key="about.aboutContext"}
 				</a>
 			</li>
-			{if $currentPress && $currentPress->getLocalizedSetting('masthead') != ''}
+			{if $currentPress && $currentPress->getLocalizedSetting('editorialTeam') != ''}
 				<li>
 					<a href="{url router=$smarty.const.ROUTE_PAGE page="about" op="editorialTeam"}">
 						{translate key="about.editorialTeam"}

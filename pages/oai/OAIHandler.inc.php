@@ -3,9 +3,9 @@
 /**
  * @file pages/oai/OAIHandler.inc.php
  *
- * Copyright (c) 2014-2016 Simon Fraser University Library
- * Copyright (c) 2003-2016 John Willinsky
- * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
+ * Copyright (c) 2014-2020 Simon Fraser University
+ * Copyright (c) 2003-2020 John Willinsky
+ * Distributed under the GNU GPL v3. For full terms see the file docs/COPYING.
  *
  * @class OAIHandler
  * @ingroup pages_oai
@@ -22,8 +22,8 @@ class OAIHandler extends Handler {
 	/**
 	 * Constructor
 	 */
-	function OAIHandler() {
-		parent::Handler();
+	function __construct() {
+		parent::__construct();
 	}
 
 	/**
@@ -52,4 +52,4 @@ class OAIHandler extends Handler {
 	}
 }
 
-?>
+

@@ -3,9 +3,9 @@
 /**
  * @file plugins/importexport/native/filter/MonographNativeXmlFilter.inc.php
  *
- * Copyright (c) 2014-2016 Simon Fraser University Library
- * Copyright (c) 2000-2016 John Willinsky
- * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
+ * Copyright (c) 2014-2020 Simon Fraser University
+ * Copyright (c) 2000-2020 John Willinsky
+ * Distributed under the GNU GPL v3. For full terms see the file docs/COPYING.
  *
  * @class MonographNativeXmlFilter
  * @ingroup plugins_importexport_native
@@ -16,15 +16,6 @@
 import('lib.pkp.plugins.importexport.native.filter.SubmissionNativeXmlFilter');
 
 class MonographNativeXmlFilter extends SubmissionNativeXmlFilter {
-	/**
-	 * Constructor
-	 * @param $filterGroup FilterGroup
-	 */
-	function MonographNativeXmlFilter($filterGroup) {
-		parent::SubmissionNativeXmlFilter($filterGroup);
-	}
-
-
 	//
 	// Implement template methods from PersistableFilter
 	//
@@ -59,18 +50,10 @@ class MonographNativeXmlFilter extends SubmissionNativeXmlFilter {
 	function createSubmissionNode($doc, $submission) {
 		$submissionNode = parent::createSubmissionNode($doc, $submission);
 
-		// Add the series, if one is designated.
-		if ($seriesId = $submission->getSeriesId()) {
-			$seriesDao = DAORegistry::getDAO('SeriesDAO');
-			$series = $seriesDao->getById($seriesId, $submission->getContextId());
-			assert($series);
-			$submissionNode->setAttribute('series', $series->getPath());
-			$submissionNode->setAttribute('series_position', $submission->getSeriesPosition());
-			$submissionNode->setAttribute('work_type', $submission->getWorkType());
-		}
-
+		$submissionNode->setAttribute('work_type', $submission->getData('workType'));
+		
 		return $submissionNode;
 	}
 }
 
-?>
+

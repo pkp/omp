@@ -1,0 +1,255 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: \n"
+"Report-Msgid-Bugs-To: \n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"POT-Creation-Date: 2019-09-30T12:00:53-07:00\n"
+"PO-Revision-Date: 2019-09-30T12:00:53-07:00\n"
+"Language: \n"
+
+msgid "default.genres.appendix"
+msgstr "Apêndice"
+
+msgid "default.genres.bibliography"
+msgstr "Bibliografia"
+
+msgid "default.genres.manuscript"
+msgstr "Manuscrito de livro"
+
+msgid "default.genres.chapter"
+msgstr "Manuscrito de capítulo"
+
+msgid "default.genres.glossary"
+msgstr "Glossário"
+
+msgid "default.genres.index"
+msgstr "Sumário"
+
+msgid "default.genres.preface"
+msgstr "Prefácio"
+
+msgid "default.genres.prospectus"
+msgstr "Prospecto"
+
+msgid "default.genres.table"
+msgstr "Tabela"
+
+msgid "default.genres.figure"
+msgstr "Figura"
+
+msgid "default.genres.photo"
+msgstr "Foto"
+
+msgid "default.genres.illustration"
+msgstr "Ilustração"
+
+msgid "default.genres.other"
+msgstr "Outro"
+
+msgid "default.groups.name.siteAdmin"
+msgstr "Admin do site"
+
+msgid "default.groups.plural.siteAdmin"
+msgstr "Admins do site"
+
+msgid "default.groups.name.pressManager"
+msgstr "Gerente de editora"
+
+msgid "default.groups.plural.pressManager"
+msgstr "Gerentes de editora"
+
+msgid "default.groups.abbrev.pressManager"
+msgstr "GerImp"
+
+msgid "default.groups.name.editor"
+msgstr "Editor geral"
+
+msgid "default.groups.plural.editor"
+msgstr "Editores gerais "
+
+msgid "default.groups.abbrev.editor"
+msgstr "EdGer"
+
+msgid "default.groups.name.productionEditor"
+msgstr "Editor de produção"
+
+msgid "default.groups.plural.productionEditor"
+msgstr "Editores de produção"
+
+msgid "default.groups.abbrev.productionEditor"
+msgstr "EdProd"
+
+msgid "default.groups.name.sectionEditor"
+msgstr "Editor de série"
+
+msgid "default.groups.plural.sectionEditor"
+msgstr "Editores de série"
+
+msgid "default.groups.abbrev.sectionEditor"
+msgstr "EdSer"
+
+msgid "default.groups.name.copyeditor"
+msgstr "Editor de texto"
+
+msgid "default.groups.plural.copyeditor"
+msgstr "Editores de texto"
+
+msgid "default.groups.abbrev.copyeditor"
+msgstr "EdText"
+
+msgid "default.groups.name.proofreader"
+msgstr "Leitor de provas"
+
+msgid "default.groups.plural.proofreader"
+msgstr "Leitores de provas"
+
+msgid "default.groups.abbrev.proofreader"
+msgstr "LeitProv"
+
+msgid "default.groups.name.designer"
+msgstr "Designer"
+
+msgid "default.groups.plural.designer"
+msgstr "Designers"
+
+msgid "default.groups.abbrev.designer"
+msgstr "Design"
+
+msgid "default.groups.name.internalReviewer"
+msgstr "Revisor interno"
+
+msgid "default.groups.plural.internalReviewer"
+msgstr "Revisor interno"
+
+msgid "default.groups.abbrev.internalReviewer"
+msgstr "RevInt"
+
+msgid "default.groups.name.externalReviewer"
+msgstr "Revisor externo"
+
+msgid "default.groups.plural.externalReviewer"
+msgstr "Revisor externo"
+
+msgid "default.groups.abbrev.externalReviewer"
+msgstr "RevExt"
+
+msgid "default.groups.name.marketing"
+msgstr "Coordenador de marketing e vendas"
+
+msgid "default.groups.plural.marketing"
+msgstr "Coordenadores de marketing e vendas"
+
+msgid "default.groups.abbrev.marketing"
+msgstr "CMV"
+
+msgid "default.groups.name.funding"
+msgstr "Coordenador de financiamento"
+
+msgid "default.groups.plural.funding"
+msgstr "Coordenadores de financiamento"
+
+msgid "default.groups.abbrev.funding"
+msgstr "CF"
+
+msgid "default.groups.name.indexer"
+msgstr "Indexador"
+
+msgid "default.groups.plural.indexer"
+msgstr "Indexadores"
+
+msgid "default.groups.abbrev.indexer"
+msgstr "IND"
+
+msgid "default.groups.name.layoutEditor"
+msgstr "Editor de layout"
+
+msgid "default.groups.plural.layoutEditor"
+msgstr "Editores de layout"
+
+msgid "default.groups.abbrev.layoutEditor"
+msgstr "EdLay"
+
+msgid "default.groups.name.author"
+msgstr "Autor"
+
+msgid "default.groups.plural.author"
+msgstr "Autores"
+
+msgid "default.groups.abbrev.author"
+msgstr "AU"
+
+msgid "default.groups.name.chapterAuthor"
+msgstr "Autor de capítulo"
+
+msgid "default.groups.plural.chapterAuthor"
+msgstr "Autores de capítulos"
+
+msgid "default.groups.abbrev.chapterAuthor"
+msgstr "AUCap"
+
+msgid "default.groups.name.volumeEditor"
+msgstr "Editor de volume"
+
+msgid "default.groups.plural.volumeEditor"
+msgstr "Editores de volumes"
+
+msgid "default.groups.abbrev.volumeEditor"
+msgstr "EdVol"
+
+msgid "default.groups.name.translator"
+msgstr "Tradutor"
+
+msgid "default.groups.plural.translator"
+msgstr "Tradutores"
+
+msgid "default.groups.abbrev.translator"
+msgstr "Trads"
+
+msgid "default.contextSettings.checklist.notPreviouslyPublished"
+msgstr "A submissão não foi publicada anteriormente, e não está em outra editora para consideração (ou uma explicação foi oferecida em Comentários ao editor)."
+
+msgid "default.contextSettings.checklist.fileFormat"
+msgstr "O arquivo de submissão está no formato Microsoft Word, RTF, ou OpenDocument."
+
+msgid "default.contextSettings.checklist.addressesLinked"
+msgstr "URLs para as referências form informadas, quando disponíveis."
+
+msgid "default.contextSettings.checklist.submissionAppearance"
+msgstr "O texto está formatado com linha simples; usa fonte tamanho 12 pontos, adota itálico em vez de sublinhado (exceto para URLs); todas as ilustrações, figuras e tabelas estão incluídas no texto em locais específicos, em vez de estarem no final.."
+
+msgid "default.contextSettings.checklist.bibliographicRequirements"
+msgstr "O texto segue as normas bibliográficas e de estilo definida na página <a href=\"{$indexUrl}/{$contextPath}/about/submissions#authorGuidelines\" target=\"_blank\">Diretrizes para Autores</a>, disponível na página Sobre a editora."
+
+msgid "default.contextSettings.privacyStatement"
+msgstr "<p>Os nomes e endereços de e-mail informados nesta editora serão usados exclusivamente para os propósitos da mesma e não serão divulgados ou oferecidos para nenhum outro propósito ou a terceiros.</p>"
+
+msgid "default.contextSettings.openAccessPolicy"
+msgstr "Esta editora oferece acesso aberto imediato ao seu conteúdo, seguindo o princípio que tornar a pesquisa acessível ao público abertamente proporciona maior intercâmbio de conhecimento de forma global."
+
+msgid "default.contextSettings.emailSignature"
+msgstr ""
+"<br/>\n"
+"________________________________________________________________________<br/>\n"
+"<a href=\"{$ldelim}$contextUrl{$rdelim}\">{$ldelim}$contextName{$rdelim}</a>"
+
+msgid "default.contextSettings.forReaders"
+msgstr "Estimulamos os leitores a se cadastrarem no site para receber notificações da editora. Acesse a página <a href=\"{$indexUrl}/{$contextPath}/user/register\">Cadastro</a> no topo da págin. O cadastro permitirá ao leitor receber em seu e-mail o Sumário de cada monografia publicada. A lista também permite à editora afirmar o apoio de seus seguidores ou de leitura de suas publicações. Acesse a página sobre a <a href=\"{$indexUrl}/{$contextPath}/about/submissions#privacyStatement\">Declaração de Privacidade</a>, que assegura aos leitores que seus nomes e endereços de e-mail não serão usados para outros propósitos."
+
+msgid "default.contextSettings.forAuthors"
+msgstr "Interessado em publicar nesta editora? Recomendamos que leia atentamente a página <a href=\"{$indexUrl}/{$contextPath}/about\">Sobre a editora</a>, que contém as políticas de seções, bem como as <a href=\"{$indexUrl}/{$contextPath}/about/submissions#authorGuidelines\">Diretrize para autores</a>. É necessário que os autores façam um <a href=\"{$indexUrl}/{$contextPath}/user/register\">cadastro</a> no sistema antes de realizar a submissão, ou, caso já possuam um, basta fazer o <a href=\"{$indexUrl}/index/login\">acesso</a> e iniciar os 5 passos do processo de submissão."
+
+msgid "default.contextSettings.forLibrarians"
+msgstr "Estimulamos bibliotecas de pesquisa a listar esta editora como um fonte de conteúdo eletrônico. Este sistema de código aberto também é útil para bibliotecas, universidades e seus membros, para uso em conjunto com as editoras com as quais possuem envolvimento editorial (saiba mais acessando <a href=\"http://pkp.sfu.ca/omp\">Open Monograph Press</a>)."
+
+msgid "default.groups.name.manager"
+msgstr "Gerente da editora"
+
+msgid "default.groups.plural.manager"
+msgstr "Gerentes da editora"
+
+msgid "default.groups.abbrev.manager"
+msgstr "GE"

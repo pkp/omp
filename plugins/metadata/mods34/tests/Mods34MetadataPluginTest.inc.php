@@ -3,9 +3,9 @@
 /**
  * @file plugins/metadata/mods34/tests/Mods34MetadataPluginTest.inc.php
  *
- * Copyright (c) 2014-2016 Simon Fraser University Library
- * Copyright (c) 2000-2016 John Willinsky
- * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
+ * Copyright (c) 2014-2020 Simon Fraser University
+ * Copyright (c) 2000-2020 John Willinsky
+ * Distributed under the GNU GPL v3. For full terms see the file docs/COPYING.
  *
  * @class Mods34MetadataPluginTest
  * @ingroup plugins_metadata_mods34_tests
@@ -27,4 +27,4 @@ class Mods34MetadataPluginTest extends PKPMods34MetadataPluginTest {
 				array('monograph=>mods34', 'mods34=>monograph'));
 	}
 }
-?>
+

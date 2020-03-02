@@ -3,9 +3,9 @@
 /**
  * @file controllers/grid/settings/series/SeriesGridHandler.inc.php
  *
- * Copyright (c) 2014-2016 Simon Fraser University Library
- * Copyright (c) 2003-2016 John Willinsky
- * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
+ * Copyright (c) 2014-2020 Simon Fraser University
+ * Copyright (c) 2003-2020 John Willinsky
+ * Distributed under the GNU GPL v3. For full terms see the file docs/COPYING.
  *
  * @class SeriesGridHandler
  * @ingroup controllers_grid_settings_series
@@ -20,8 +20,8 @@ class SeriesGridHandler extends SetupGridHandler {
 	/**
 	 * Constructor
 	 */
-	function SeriesGridHandler() {
-		parent::SetupGridHandler();
+	function __construct() {
+		parent::__construct();
 		$this->addRoleAssignment(
 			array(ROLE_ID_MANAGER),
 			array('fetchGrid', 'fetchRow', 'addSeries', 'editSeries', 'updateSeries', 'deleteSeries', 'saveSequence')
@@ -33,11 +33,10 @@ class SeriesGridHandler extends SetupGridHandler {
 	// Overridden template methods
 	//
 	/*
-	 * Configure the grid
-	 * @param $request PKPRequest
+	 * @copydoc SetupGridHandler::initialize
 	 */
-	function initialize($request) {
-		parent::initialize($request);
+	function initialize($request, $args = null) {
+		parent::initialize($request, $args);
 		$press = $request->getPress();
 
 		// FIXME are these all required?
@@ -52,9 +51,9 @@ class SeriesGridHandler extends SetupGridHandler {
 		$this->setTitle('catalog.manage.series');
 
 		// Elements to be displayed in the grid
-		$seriesDao = DAORegistry::getDAO('SeriesDAO');
+		$seriesDao = DAORegistry::getDAO('SeriesDAO'); /* @var $seriesDao SeriesDAO */
 		DAORegistry::getDAO('CategoryDAO'); // Load constants?
-		$subEditorsDao = DAORegistry::getDAO('SubEditorsDAO');
+		$subEditorsDao = DAORegistry::getDAO('SubEditorsDAO'); /* @var $subEditorsDao SubEditorsDAO */
 		$seriesIterator = $seriesDao->getByPressId($press->getId());
 
 		$gridData = array();
@@ -75,7 +74,7 @@ class SeriesGridHandler extends SetupGridHandler {
 			} else {
 				$editors = array();
 				foreach ($assignedSeriesEditors as $seriesEditor) {
-					$editors[] = $seriesEditor->getLastName();
+					$editors[] = $seriesEditor->getFullName();
 				}
 				$editorsString = implode(', ', $editors);
 			}
@@ -157,7 +156,7 @@ class SeriesGridHandler extends SetupGridHandler {
 	 * @copydoc GridHandler::setDataElementSequence()
 	 */
 	function setDataElementSequence($request, $rowId, $gridDataElement, $newSequence) {
-		$seriesDao = DAORegistry::getDAO('SeriesDAO');
+		$seriesDao = DAORegistry::getDAO('SeriesDAO'); /* @var $seriesDao SeriesDAO */
 		$press = $request->getPress();
 		$series = $seriesDao->getById($rowId, $press->getId());
 		$series->setSequence($newSequence);
@@ -190,7 +189,7 @@ class SeriesGridHandler extends SetupGridHandler {
 
 		import('controllers.grid.settings.series.form.SeriesForm');
 		$seriesForm = new SeriesForm($request, $seriesId);
-		$seriesForm->initData($args, $request);
+		$seriesForm->initData();
 		return new JSONMessage(true, $seriesForm->fetch($request));
 	}
 
@@ -208,7 +207,9 @@ class SeriesGridHandler extends SetupGridHandler {
 		$seriesForm->readInputData();
 
 		if ($seriesForm->validate()) {
-			$seriesForm->execute($args, $request);
+			$seriesForm->execute();
+			$notificationManager = new NotificationManager();
+			$notificationManager->createTrivialNotification($request->getUser()->getId());
 			return DAO::getDataChangedEvent($seriesForm->getSeriesId());
 		} else {
 			return new JSONMessage(false);
@@ -224,7 +225,7 @@ class SeriesGridHandler extends SetupGridHandler {
 	function deleteSeries($args, $request) {
 		$press = $request->getPress();
 
-		$seriesDao = DAORegistry::getDAO('SeriesDAO');
+		$seriesDao = DAORegistry::getDAO('SeriesDAO'); /* @var $seriesDao SeriesDAO */
 		$series = $seriesDao->getById(
 			$request->getUserVar('seriesId'),
 			$press->getId()
@@ -240,4 +241,4 @@ class SeriesGridHandler extends SetupGridHandler {
 	}
 }
 
-?>
+

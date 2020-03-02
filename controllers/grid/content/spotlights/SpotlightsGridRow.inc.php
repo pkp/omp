@@ -3,9 +3,9 @@
 /**
  * @file controllers/grid/content/spotlights/SpotlightsGridRow.inc.php
  *
- * Copyright (c) 2014-2016 Simon Fraser University Library
- * Copyright (c) 2000-2016 John Willinsky
- * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
+ * Copyright (c) 2014-2020 Simon Fraser University
+ * Copyright (c) 2000-2020 John Willinsky
+ * Distributed under the GNU GPL v3. For full terms see the file docs/COPYING.
  *
  * @class SpotlightsGridRow
  * @ingroup controllers_grid_content_spotlights
@@ -23,9 +23,9 @@ class SpotlightsGridRow extends GridRow {
 	 * Constructor
 	 * @param $press Press
 	 */
-	function SpotlightsGridRow($press) {
+	function __construct($press) {
 		$this->setPress($press);
-		parent::GridRow();
+		parent::__construct();
 	}
 
 	//
@@ -67,9 +67,9 @@ class SpotlightsGridRow extends GridRow {
 			import('lib.pkp.classes.linkAction.request.RemoteActionConfirmationModal');
 			$this->addAction(
 				new LinkAction(
-					$request->getSession(),
 					'deleteSpotlight',
 					new RemoteActionConfirmationModal(
+						$request->getSession(),
 						__('common.confirmDelete'),
 						__('common.delete'),
 						$router->url($request, null, null, 'deleteSpotlight', null, $actionArgs),
@@ -98,4 +98,4 @@ class SpotlightsGridRow extends GridRow {
 		$this->_press = $press;
 	}
 }
-?>
+

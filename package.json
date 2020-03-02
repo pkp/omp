@@ -1,0 +1,90 @@
+{
+  "name": "OMP",
+  "description": "Open Monograph Systems (OMP) is a monograph management and publishing system that has been developed by the Public Knowledge Project through its federally funded efforts to expand and improve access to research.",
+  "version": "3.2.0",
+  "author": "Public Knowledge Project",
+  "private": true,
+  "scripts": {
+    "dev": "vue-cli-service build --no-clean --watch",
+    "build": "vue-cli-service build --no-clean",
+    "lint": "vue-cli-service lint js/load.js lib/pkp/js/load.js lib/pkp/js/classes/VueRegistry.js"
+  },
+  "dependencies": {
+    "@tinymce/tinymce-vue": "^1.1.0",
+    "chart.js": "^2.9.3",
+    "debounce": "^1.2.0",
+    "tinymce": "^4.9.8",
+    "v-tooltip": "^2.0.2",
+    "vue": "^2.6.11",
+    "vue-autosuggest": "^2.0.4",
+    "vue-chartjs": "^3.5.0",
+    "vue-color": "^2.7.0",
+    "vue-scrollto": "^2.17.1",
+    "vue-slider-component": "^2.8.16",
+    "vue2-dropzone": "^3.6.0",
+    "vuedraggable": "^2.23.2"
+  },
+  "devDependencies": {
+    "@foreachbe/cypress-tinymce": "^1.0.0",
+    "@vue/cli-plugin-babel": "^4.1.2",
+    "@vue/cli-plugin-eslint": "^4.1.2",
+    "@vue/cli-service": "^4.1.2",
+    "@vue/eslint-config-prettier": "^4.0.1",
+    "babel-eslint": "^10.0.3",
+    "cypress": "^3.8.1",
+    "cypress-failed-log": "^2.5.1",
+    "cypress-file-upload": "^3.5.1",
+    "cypress-wait-until": "^1.6.1",
+    "element-resize-event": "^3.0.3",
+    "eslint": "^5.16.0",
+    "eslint-plugin-vue": "^5.2.3",
+    "less": "^3.10.3",
+    "less-loader": "^4.1.0",
+    "lint-staged": "^8.2.1",
+    "vue-template-compiler": "^2.6.11"
+  },
+  "eslintConfig": {
+    "root": true,
+    "env": {
+      "node": true
+    },
+    "extends": [
+      "plugin:vue/essential",
+      "@vue/prettier"
+    ],
+    "globals": {
+      "$": true,
+      "pkp": true
+    },
+    "rules": {
+      "prettier/prettier": [
+        "warn",
+        {
+          "bracketSpacing": false,
+          "singleQuote": true,
+          "useTabs": true,
+          "htmlWhitespaceSensitivity": "ignore"
+        }
+      ],
+      "no-unused-vars": [
+        "error",
+        {
+          "args": "none"
+        }
+      ]
+    },
+    "parserOptions": {
+      "parser": "babel-eslint"
+    }
+  },
+  "postcss": {
+    "plugins": {
+      "autoprefixer": {}
+    }
+  },
+  "browserslist": [
+    "> 1%",
+    "last 2 versions",
+    "not ie <= 10"
+  ]
+}

@@ -3,9 +3,9 @@
 /**
  * @file classes/publicationFormat/IdentificationCode.inc.php
  *
- * Copyright (c) 2014-2016 Simon Fraser University Library
- * Copyright (c) 2003-2016 John Willinsky
- * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
+ * Copyright (c) 2014-2020 Simon Fraser University
+ * Copyright (c) 2003-2020 John Willinsky
+ * Distributed under the GNU GPL v3. For full terms see the file docs/COPYING.
  *
  * @class IdentificationCode
  * @ingroup publicationFormat
@@ -18,8 +18,8 @@ class IdentificationCode extends DataObject {
 	/**
 	 * Constructor
 	 */
-	function IdentificationCode() {
-		parent::DataObject();
+	function __construct() {
+		parent::__construct();
 	}
 
 	/**
@@ -59,7 +59,7 @@ class IdentificationCode extends DataObject {
 	 * @return string
 	 */
 	function getNameForONIXCode() {
-		$onixCodelistItemDao = DAORegistry::getDAO('ONIXCodelistItemDAO');
+		$onixCodelistItemDao = DAORegistry::getDAO('ONIXCodelistItemDAO'); /* @var $onixCodelistItemDao ONIXCodelistItemDAO */
 		$codes =& $onixCodelistItemDao->getCodes('List5'); // List5 is for ISBN, GTIN-13, etc.
 		return $codes[$this->getCode()];
 	}
@@ -81,4 +81,4 @@ class IdentificationCode extends DataObject {
 	}
 }
 
-?>
+

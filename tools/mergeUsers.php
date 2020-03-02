@@ -3,95 +3,20 @@
 /**
  * @file tools/mergeUsers.php
  *
- * Copyright (c) 2014-2016 Simon Fraser University Library
- * Copyright (c) 2003-2016 John Willinsky
- * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
+ * Copyright (c) 2014-2020 Simon Fraser University
+ * Copyright (c) 2003-2020 John Willinsky
+ * Distributed under the GNU GPL v3. For full terms see the file docs/COPYING.
  *
  * @class mergeUsers
  * @ingroup tools
  *
- * @brief CLI tool for merging two OMP 2 user accounts.
+ * @brief CLI tool for merging two user accounts.
  */
-
-
 
 require(dirname(__FILE__) . '/bootstrap.inc.php');
 
-class mergeUsers extends CommandLineTool {
+import('lib.pkp.classes.cliTool.MergeUsersTool');
 
-	/** @var $username1 string */
-	var $username1;
-
-	/** @var $username2 string */
-	var $username2;
-
-	/**
-	 * Constructor.
-	 * @param $argv array command-line arguments
-	 */
-	function mergeUsers($argv = array()) {
-		parent::CommandLineTool($argv);
-
-		if (!isset($this->argv[0]) || !isset($this->argv[1]) ) {
-			$this->usage();
-			exit(1);
-		}
-
-		$this->username1 = $this->argv[0];
-		$this->username2 = $this->argv[1];
-	}
-
-	/**
-	 * Print command usage information.
-	 */
-	function usage() {
-		echo "OMP 2 merge users tool\n"
-			. "Use this tool to merge two OMP 2 user accounts.\n\n"
-			. "Usage: {$this->scriptName} [username1] [username2]\n"
-			. "username1      The first user to merge.\n"
-			. "username2      The second user to merge. All roles and content associated\n"
-			. "               with this user account will be transferred to the user account\n"
-			. "               that corresponds to username1. The user account that corresponds\n"
-			. "               to username2 will be deleted.\n";
-	}
-
-	/**
-	 * Execute the merge users command.
-	 */
-	function execute() {
-		$roleDao =& DAORegistry::getDAO('RoleDAO');
-		$userDao =& DAORegistry::getDAO('UserDAO');
-
-		$oldUser =& $userDao->getByUsername($this->username2);
-		$newUser =& $userDao->getByUsername($this->username1);
-
-		$oldUserId = isset($oldUser) ? $oldUser->getId() : null;
-		$newUserId = isset($newUser) ? $newUser->getId() : null;
-
-		if (empty($oldUserId)) {
-			printf("Error: '%s' is not a valid username.\n",
-				$this->username2);
-			exit;
-		}
-
-		if (empty($newUserId)) {
-			printf("Error: '%s' is not a valid username.\n",
-				$this->username1);
-			exit;
-		}
-
-		// Both user IDs are valid. Merge the accounts.
-		import('classes.user.UserAction');
-		$userAction = new UserAction();
-		$userAction->mergeUsers($oldUserId, $newUserId);
-
-		printf("Merge completed: '%s' merged into '%s'.\n",
-			$this->username2,
-			$this->username1
-		);
-	}
-}
-
-$tool = new mergeUsers(isset($argv) ? $argv : array());
+$tool = new MergeUsersTool(isset($argv) ? $argv : array());
 $tool->execute();
-?>
+

@@ -1,0 +1,270 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: \n"
+"Report-Msgid-Bugs-To: \n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"POT-Creation-Date: 2019-11-28T15:10:06-08:00\n"
+"PO-Revision-Date: 2019-11-28T15:10:06-08:00\n"
+"Language: \n"
+
+msgid "submission.select"
+msgstr "Επιλογή Υποβολής"
+
+msgid "submission.synopsis"
+msgstr "Σύνοψη"
+
+msgid "submission.workflowType"
+msgstr "Τύπος Βιβλίου"
+
+msgid "submission.workflowType.description"
+msgstr "Μια μονογραφία είναι ένα έργο που έχει συγγραφεί εξ' ολοκλήρου από έναν ή πολλούς συγγραφείς. Ένα έργο υπο επιμέλια έχει διαφορετικούς συγγραφείς για κάθε κεφάλαιο (λεπτομέρειες για το κάθε κεφάλαιο εισάγονται αργότερα κατα τη διάρκεια της διαδικασίας.)"
+
+msgid "submission.workflowType.editedVolume"
+msgstr "Έργο υπο Επιμέλεια"
+
+msgid "submission.workflowType.authoredWork"
+msgstr "Μονογραφία"
+
+msgid "submission.monograph"
+msgstr "Μονογραφία"
+
+msgid "submission.published"
+msgstr "Η Παραγωγή είναι έτοιμη"
+
+msgid "submission.fairCopy"
+msgstr "Τελικό Αντιγραφο (Fair Copy)"
+
+msgid "submission.artwork.permissions"
+msgstr "Άδειες (Permissions)"
+
+msgid "submission.chapter"
+msgstr "Κεφάλαιο"
+
+msgid "submission.chapters"
+msgstr "Κεφάλαια"
+
+msgid "submission.chaptersDescription"
+msgstr "Εδώ μπορείτε να απαριθμείσετε τα κεφάλαια, τα οποία μπορείτε να ανθέσετε στους συντελεστές του έργου από την παραπάνω λίστα. Οι συντελεστές θα έχουν πρόσβαση στα συγκεκριμένα κεφάλαια σε διάφορες φάσεις της εκδοτικής διαδικασίας."
+
+msgid "submission.chapter.addChapter"
+msgstr "Προσθήκη Κεφαλαίου"
+
+msgid "submission.chapter.editChapter"
+msgstr "Επεξεργασία Κεφαλαίου"
+
+msgid "submission.copyedit"
+msgstr "Επιμέλια Κειμένου"
+
+msgid "submission.publicationFormats"
+msgstr "Μορφότυπα Δημοσίευσης"
+
+msgid "submission.proofs"
+msgstr "Τυπογραφικά Δοκίμια"
+
+msgid "submission.download"
+msgstr "Λήψη αρχείων"
+
+msgid "submission.sharing"
+msgstr "Μοιραστείτε το"
+
+msgid "manuscript.submission"
+msgstr "Υποβολή Χειρογράφου"
+
+msgid "submission.round"
+msgstr "Γύρος&nbsp;{$round}"
+
+msgid "submissions.queuedReview"
+msgstr "Σε αξιολόγηση (In Review)"
+
+msgid "manuscript.submissions"
+msgstr "Χειρόγραφο Υποβολών"
+
+msgid "submission.confirmSubmit"
+msgstr "Είστε σίγουροι ότι επιθυμείτε να υποβάλετε αυτό το χειρόγραφο στις Εκδόσεις μας;"
+
+msgid "submission.metadata"
+msgstr "Μεταδεδομένα"
+
+msgid "submission.supportingAgencies"
+msgstr "Οργανισμοί Υποστήριξης"
+
+msgid "grid.action.addChapter"
+msgstr "Δημιουργία ενός νέου κεφαλαίου"
+
+msgid "grid.action.editChapter"
+msgstr "Επεξεργασία κεφαλαίου"
+
+msgid "grid.action.deleteChapter"
+msgstr "Διαγραφή αυτού του κεφαλαίου"
+
+msgid "submission.submit"
+msgstr "Εισαγωγή Νέας Υποβολής Βιβλίου"
+
+msgid "submission.submit.newSubmissionMultiple"
+msgstr "Ξεκινήστε μια νέα υποβολή στις Εκδόσεις"
+
+msgid "submission.submit.upload"
+msgstr "Μεταφόρτωση"
+
+msgid "submission.submit.upload.description"
+msgstr "Η μεταφόρτωση αρχείων που σχετίζεται με αυτή την υποβολή, συμπεριλαμβάνει χειρόγραφα, πρόταση για μια έκδοση, συνοδευτική επιστολή, καλλιτεχνικά έργα κλπ. Έαν είναι εφικτό, για τα έργα υπο επιμέλεια, καθώς και για τις μονογραφίες, ανεβάστε το κείμενο του έργου σε ξεχωριστό αρχείο."
+
+msgid "submission.submit.cancelSubmission"
+msgstr "Μπορείτε να ολοκληρώσετε τη διαδικασία υποβολής μετέπειτα, επιλέγοντας Ενεργές Υποβολές από την Αρχική Σελίδα του Συγγραφέα."
+
+msgid "submission.submit.copyrightNoticeAgree"
+msgstr "Συμφωνώ να τηρήσω και δεσμέυομαι από τους όρους της δήλωσης πνευματικών δικαιωμάτων."
+
+msgid "submission.submit.selectSeries"
+msgstr "Επιλογή Σειράς..."
+
+msgid "submission.submit.seriesPosition"
+msgstr "Θέση σε αυτή τη Σειρά (πχ. Βιβλίο 2, ή Τόμος 2)"
+
+msgid "submission.submit.form.localeRequired"
+msgstr "Παρακαλώ επιλέξτε τη γλώσσα της υποβολής σας"
+
+msgid "submission.submit.submissionChecklist"
+msgstr "Λίστα Υποβολών"
+
+msgid "submission.submit.submissionChecklistDescription"
+msgstr "Ελέξτε εάν η συγκεκριμένη υποβολή είναι έτοιμη για εξέταση από αυτές τις εκδόσεις, ελέγχοντας και ολοκληρώνοντας τα ακόλουθα (προσθήκη σχολίων προς τον επιμελητή μπορούν να προστεθούν παρακάτω)."
+
+msgid "submission.submit.privacyStatement"
+msgstr "Πολιτική Προστασίας Προσωπικών Δεδομένων"
+
+msgid "submission.submit.contributorRole"
+msgstr "Ρόλος Συντελεστή"
+
+msgid "submission.submit.form.authorRequired"
+msgstr "Απαιτείται τουλάχιστον ένας συγγραφέας."
+
+msgid "submission.submit.form.authorRequiredFields"
+msgstr "Απαιτείται το όνομα, το επίθετο και η ηλεκτρονική διεύθυνση του/ων συγγραφέα/ων."
+
+msgid "submission.submit.form.titleRequired"
+msgstr "Παρακαλούμε εισάγετε τον τίτλο της μονογραφίας."
+
+msgid "submission.submit.form.abstractRequired"
+msgstr "Παρακαλούμε εισάγετε μια σύντομη περίληψη της μονογραφίας."
+
+msgid "submission.submit.form.contributorRoleRequired"
+msgstr "Παρακαλούμε επιλέξτε το ρόλο του συντελεστή."
+
+msgid "submission.submit.submissionFile"
+msgstr "Αρχείο Υποβολής"
+
+msgid "submission.submit.prepare"
+msgstr "Προετοιμασία"
+
+msgid "submission.submit.catalog"
+msgstr "Κατάλογος"
+
+msgid "submission.submit.metadata"
+msgstr "Μεταδεδομένα"
+
+msgid "submission.submit.finishingUp"
+msgstr "Ολοκληρώνοντας"
+
+msgid "submission.submit.nextSteps"
+msgstr "Επόμενα Βήματα"
+
+msgid "submission.submit.coverNote"
+msgstr "Σημειώσεις Εξωφύλλου για τον επιμελητή έκδοσης"
+
+msgid "submission.submit.generalInformation"
+msgstr "Γενικές Πληροφορίες"
+
+msgid "submission.submit.whatNext.description"
+msgstr "Οι εκδόσεις έχουν ενημερωθεί για την υποβολή σας και θα λάβετε ένα email επιβεβαίωσης για το αρχείο σας. Μόλις η εργασία σας αξιολογηθεί από τους επιμελητές, θα επικοινωνήσουμε μαζί σας."
+
+msgid "submission.submit.checklistErrors"
+msgstr "Παρακαλούμε διαβάστε και επισημάνετε τα στοιχεία στη λίστας ελέγχου της υποβολής σας. Το στοιχείο {$itemsRemaining} δεν έχει ελεγχθεί."
+
+msgid "submission.submit.placement"
+msgstr "Τοποθέτηση υποβολής"
+
+msgid "submission.submit.placement.seriesDescription"
+msgstr "Εάν το βιβλίο επίσης πρέπει να ενταχθεί σε μια σειρά..."
+
+msgid "submission.submit.placement.seriesPositionDescription"
+msgstr "Τα βιβλία που ανήκουν σε μια σειρά διατηρούνται αντίστροφα από το χρόνο δημοσίευσης, ώστε να είναι ορατή η ανάπτυξή της σειράς και να εμφανίζεται η πιο πρόσφατη έκδοση."
+
+msgid "submission.submit.userGroup"
+msgstr "Υποβολή με το ρόλο μου ως..."
+
+msgid "submission.submit.userGroupDescription"
+msgstr "Εάν υποβάλλετε ένα 'Εργο υπο Επιμέλεια, τότε θα πρέπει να επιλέξετε το ρόλο του επιμελητή τόμου."
+
+msgid "submission.submit.titleAndSummary"
+msgstr "Τίτλος και Περίληψη"
+
+msgid "submission.upload.selectBookElement"
+msgstr "Επιλέξτε στοιχείο βιβλίου"
+
+msgid "grid.chapters.title"
+msgstr "Κεφάλαια"
+
+msgid "grid.copyediting.deleteCopyeditorResponse"
+msgstr "Διαγραφή αρχείου Επιμελητή Κειμένου"
+
+msgid "publication.catalogEntry"
+msgstr "Κατάλογος"
+
+msgid "submission.editCatalogEntry"
+msgstr "Καταχώριση"
+
+msgid "submission.catalogEntry.new"
+msgstr "Νέα Καταχώριση στον καταλογο"
+
+msgid "submission.catalogEntry.confirm"
+msgstr "Δημιουργείστε μια καταχώριση στον κατάλογο γι'αυτό το βιβλίο, βασιζόμενοι στα παρακάτω μεταδεδομένα."
+
+msgid "submission.catalogEntry.confirm.required"
+msgstr "Παρακαλούμε επιβεβαιώστε ότι η υποβολή είναι έτοιμη να κατχωρηθεί στον καταλόγο."
+
+msgid "submission.catalogEntry.isAvailable"
+msgstr "Η μονογραφία έιναι έτοιμη να συμπεριληφθεί και να δημοσιευθεί στον κατάλογο."
+
+msgid "submission.catalogEntry.monographMetadata"
+msgstr "Μονογραφία"
+
+msgid "submission.catalogEntry.catalogMetadata"
+msgstr "Κατάλογος"
+
+msgid "submission.catalogEntry.publicationMetadata"
+msgstr "Μορφότυπο Έκδοσης"
+
+msgid "submission.event.metadataPublished"
+msgstr "Τα μεταδεδομένα της μονογραφίας έχουν εγκριθεί για δημοσίευση."
+
+msgid "submission.event.metadataUnpublished"
+msgstr "Τα μεταδεδομένα της μονογραφίας δεν είναι πλέον δημοσιευμένα."
+
+msgid "submission.event.publicationFormatMadeAvailable"
+msgstr "Το μορφότυπο της δημοσίευσης \"{$publicationFormatName}\" είναι διαθέσιμο."
+
+msgid "submission.event.publicationFormatMadeUnavailable"
+msgstr "Το μορφότυπο της δημοσίευσης \"{$publicationFormatName}\" δεν είναι πλέον διαθέσιμο."
+
+msgid "submission.event.publicationFormatPublished"
+msgstr "Το μορφότυπο της δημοσίευσης \"{$publicationFormatName}\" έχει εγκριθεί για δημοσίευση."
+
+msgid "submission.event.publicationFormatUnpublished"
+msgstr "Το μορφότυπο της δημοσίεσυης \"{$publicationFormatName}\" δεν είναι πλέον δημοσιευμένο."
+
+msgid "submission.event.catalogMetadataUpdated"
+msgstr "Τα μεταδεδομένα του καταλόγου έχουν ενημερωθεί."
+
+msgid "submission.event.publicationMetadataUpdated"
+msgstr "Τα μεταδεδομένα του μορφότυπου της δημοσίευσης για το \"{$formatName}\" έχουν ενημερωθεί."
+
+msgid "submission.event.publicationFormatCreated"
+msgstr "Το μορφότυπο της δημοσίευσης \"{$formatName}\" έχει δημιουργηθεί."
+
+msgid "submission.event.publicationFormatRemoved"
+msgstr "Το μορφότυπο της δημοσίευσης \"{$formatName}\" έχει αφαιρεθεί."

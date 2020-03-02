@@ -3,9 +3,9 @@
 /**
  * @file tools/install.php
  *
- * Copyright (c) 2014-2016 Simon Fraser University Library
- * Copyright (c) 2003-2016 John Willinsky
- * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
+ * Copyright (c) 2014-2020 Simon Fraser University
+ * Copyright (c) 2003-2020 John Willinsky
+ * Distributed under the GNU GPL v3. For full terms see the file docs/COPYING.
  *
  * @class installTool
  * @ingroup tools
@@ -24,8 +24,8 @@ class OMPInstallTool extends InstallTool {
 	 * Constructor.
 	 * @param $argv array command-line arguments
 	 */
-	function OMPInstallTool($argv = array()) {
-		parent::InstallTool($argv);
+	function __construct($argv = array()) {
+		parent::__construct($argv);
 	}
 
 	/**
@@ -49,4 +49,4 @@ class OMPInstallTool extends InstallTool {
 $tool = new OMPInstallTool(isset($argv) ? $argv : array());
 $tool->execute();
 
-?>
+

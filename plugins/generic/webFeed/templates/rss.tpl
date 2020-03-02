@@ -1,9 +1,9 @@
 {**
  * plugins/generic/webFeed/templates/rss.tpl
  *
- * Copyright (c) 2014-2016 Simon Fraser University Library
- * Copyright (c) 2003-2016 John Willinsky
- * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
+ * Copyright (c) 2014-2020 Simon Fraser University
+ * Copyright (c) 2003-2020 John Willinsky
+ * Distributed under the GNU GPL v3. For full terms see the file docs/COPYING.
  *
  * RSS feed template
  *
@@ -16,79 +16,79 @@
 	xmlns:prism="http://prismstandard.org/namespaces/1.2/basic/"
 	xmlns:cc="http://web.resource.org/cc/">
 
-	<channel rdf:about="{url press=$press->getPath()}">
+	<channel rdf:about="{url press=$currentPress->getPath()}">
 		{* required elements *}
-		<title>{$press->getLocalizedName()|strip|escape:"html"}</title>
-		<link>{url press=$press->getPath()}</link>
+		<title>{$currentPress->getLocalizedName()|strip|escape:"html"}</title>
+		<link>{url press=$currentPress->getPath()}</link>
 
-		{if $press->getLocalizedDescription()}
-			{assign var="description" value=$press->getLocalizedDescription()}
-		{elseif $press->getLocalizedSetting('searchDescription')}
-			{assign var="description" value=$press->getLocalizedSetting('searchDescription')}
+		{if $currentPress->getLocalizedDescription()}
+			{assign var="description" value=$currentPress->getLocalizedDescription()}
+		{elseif $currentPress->getLocalizedSetting('searchDescription')}
+			{assign var="description" value=$currentPress->getLocalizedSetting('searchDescription')}
 		{/if}
 
 		<description>{$description|strip|escape:"html"}</description>
 
 		{* optional elements *}
-		{assign var="publisherInstitution" value=$press->getSetting('publisherInstitution')}
+		{assign var="publisherInstitution" value=$currentPress->getSetting('publisherInstitution')}
 		{if $publisherInstitution}
 			<dc:publisher>{$publisherInstitution|strip|escape:"html"}</dc:publisher>
 		{/if}
 
-		{if $press->getPrimaryLocale()}
-			<dc:language>{$press->getPrimaryLocale()|replace:'_':'-'|strip|escape:"html"}</dc:language>
+		{if $currentPress->getPrimaryLocale()}
+			<dc:language>{$currentPress->getPrimaryLocale()|replace:'_':'-'|strip|escape:"html"}</dc:language>
 		{/if}
 
-		<prism:publicationName>{$press->getLocalizedName()|strip|escape:"html"}</prism:publicationName>
+		<prism:publicationName>{$currentPress->getLocalizedName()|strip|escape:"html"}</prism:publicationName>
 
-		{if $press->getSetting('printIssn')}
-			{assign var="ISSN" value=$press->getSetting('printIssn')}
-		{elseif $press->getSetting('onlineIssn')}
-			{assign var="ISSN" value=$press->getSetting('onlineIssn')}
+		{if $currentPress->getSetting('printIssn')}
+			{assign var="ISSN" value=$currentPress->getSetting('printIssn')}
+		{elseif $currentPress->getSetting('onlineIssn')}
+			{assign var="ISSN" value=$currentPress->getSetting('onlineIssn')}
 		{/if}
 
 		{if $ISSN}
 			<prism:issn>{$ISSN|escape}</prism:issn>
 		{/if}
 
-		{if $press->getLocalizedSetting('copyrightNotice')}
-			<prism:copyright>{$press->getLocalizedSetting('copyrightNotice')|strip|escape:"html"}</prism:copyright>
+		{if $currentPress->getLocalizedSetting('copyrightNotice')}
+			<prism:copyright>{$currentPress->getLocalizedSetting('copyrightNotice')|strip|escape:"html"}</prism:copyright>
 		{/if}
 
 		<items>
 			<rdf:Seq>
-				{foreach from=$publishedMonographs item=publishedMonograph}
-					<rdf:li rdf:resource="{url page="catalog" op="book" path=$publishedMonograph->getId()}"/>
-				{/foreach}{* publishedMonographs *}
+				{foreach from=$submissions item=submission}
+					<rdf:li rdf:resource="{url page="catalog" op="book" path=$submission->getId()}"/>
+				{/foreach}{* submissions *}
 			</rdf:Seq>
 		</items>
 	</channel>
 
-{foreach name=publishedMonographs from=$publishedMonographs item=publishedMonograph}
-	<item rdf:about="{url page="catalog" op="book" path=$publishedMonograph->getId()}">
+{foreach name=submissions from=$submissions item=submission}
+	<item rdf:about="{url page="catalog" op="book" path=$submission->getId()}">
 
 		{* required elements *}
-		<title>{$publishedMonograph->getLocalizedTitle()|strip|escape:"html"}</title>
-		<link>{url page="catalog" op="book" path=$publishedMonograph->getId()}</link>
+		<title>{$submission->getLocalizedTitle()|strip|escape:"html"}</title>
+		<link>{url page="catalog" op="book" path=$submission->getId()}</link>
 
 		{* optional elements *}
-		{if $publishedMonograph->getLocalizedAbstract()}
-			<description>{$publishedMonograph->getLocalizedAbstract()|strip|escape:"html"}</description>
+		{if $submission->getLocalizedAbstract()}
+			<description>{$submission->getLocalizedAbstract()|strip|escape:"html"}</description>
 		{/if}
 
-		{foreach from=$publishedMonograph->getAuthors() item=author name=authorList}
-			<dc:creator>{$author->getFullName()|strip|escape:"html"}</dc:creator>
+		{foreach from=$submission->getAuthors() item=author name=authorList}
+			<dc:creator>{$author->getFullName(false)|strip|escape:"html"}</dc:creator>
 		{/foreach}
 
 		<dc:rights>
-			{translate|escape key="submission.copyrightStatement" copyrightYear=$publishedMonograph->getCopyrightYear() copyrightHolder=$publishedMonograph->getLocalizedCopyrightHolder()}
-			{$publishedMonograph->getLicenseURL()|escape}
+			{translate|escape key="submission.copyrightStatement" copyrightYear=$submission->getCopyrightYear() copyrightHolder=$submission->getLocalizedCopyrightHolder()}
+			{$submission->getLicenseURL()|escape}
 		</dc:rights>
 
-		<dc:date>{$publishedMonograph->getDatePublished()|date_format:"%Y-%m-%d"}</dc:date>
-		<prism:publicationDate>{$publishedMonograph->getDatePublished()|date_format:"%Y-%m-%d"}</prism:publicationDate>
+		<dc:date>{$submission->getDatePublished()|date_format:"%Y-%m-%d"}</dc:date>
+		<prism:publicationDate>{$submission->getDatePublished()|date_format:"%Y-%m-%d"}</prism:publicationDate>
 	</item>
-{/foreach}{* publishedMonographs *}
+{/foreach}{* submissions *}
 
 </rdf:RDF>
 

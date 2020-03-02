@@ -3,9 +3,9 @@
 /**
  * @file classes/workflow/EditorDecisionActionsManager.inc.php
  *
- * Copyright (c) 2014-2016 Simon Fraser University Library
- * Copyright (c) 2003-2016 John Willinsky
- * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
+ * Copyright (c) 2014-2020 Simon Fraser University
+ * Copyright (c) 2003-2020 John Willinsky
+ * Distributed under the GNU GPL v3. For full terms see the file docs/COPYING.
  *
  * @class EditorDecisionActionsManager
  * @ingroup classes_workflow
@@ -25,22 +25,30 @@ define('SUBMISSION_EDITOR_DECISION_EXTERNAL_REVIEW', 3);
 define('SUBMISSION_EDITOR_DECISION_PENDING_REVISIONS', 4);
 define('SUBMISSION_EDITOR_DECISION_RESUBMIT', 5);
 
+// Review stage recommendation actions.
+define('SUBMISSION_EDITOR_RECOMMEND_EXTERNAL_REVIEW', 15);
+
 // Editorial stage decision actions.
 define('SUBMISSION_EDITOR_DECISION_SEND_TO_PRODUCTION', 7);
 
-class EditorDecisionActionsManager {
+// Editorial stage decision actions.
+import('lib.pkp.classes.workflow.PKPEditorDecisionActionsManager');
+
+class EditorDecisionActionsManager extends PKPEditorDecisionActionsManager {
 
 	/**
 	 * Get decision actions labels.
-	 * @param $decisions
+	 * @param $request PKPRequest
+	 * @param $stageId int
+	 * @param $decisions array
 	 * @return array
 	 */
-	function getActionLabels($decisions) {
+	function getActionLabels($request, $stageId, $decisions) {
 		$allDecisionsData =
-			self::_submissionStageDecisions() +
-			self::_internalReviewStageDecisions() +
-			self::_externalReviewStageDecisions() +
-			self::_editorialStageDecisions();
+			$this->_submissionStageDecisions($stageId) +
+			$this->_internalReviewStageDecisions() +
+			$this->_externalReviewStageDecisions($request) +
+			$this->_editorialStageDecisions();
 
 		$actionLabels = array();
 		foreach($decisions as $decision) {
@@ -56,16 +64,17 @@ class EditorDecisionActionsManager {
 
 	/**
 	 * Check for editor decisions in the review round.
+	 * @param $context Context
 	 * @param $reviewRound ReviewRound
 	 * @param $decisions array
 	 * @return boolean
 	 */
-	function getEditorTakenActionInReviewRound($reviewRound, $decisions = array()) {
-		$editDecisionDao = DAORegistry::getDAO('EditDecisionDAO');
+	public function getEditorTakenActionInReviewRound($context, $reviewRound, $decisions = array()) {
+		$editDecisionDao = DAORegistry::getDAO('EditDecisionDAO'); /* @var $editDecisionDao EditDecisionDAO */
 		$editorDecisions = $editDecisionDao->getEditorDecisions($reviewRound->getSubmissionId(), $reviewRound->getStageId(), $reviewRound->getRound());
 
 		if (empty($decisions)) {
-			$decisions = array_keys(self::_internalReviewStageDecisions());
+			$decisions = array_keys($this->_internalReviewStageDecisions());
 		}
 		$takenDecision = false;
 		foreach ($editorDecisions as $decision) {
@@ -79,162 +88,111 @@ class EditorDecisionActionsManager {
 	}
 
 	/**
-	 * Get the available decisions by stage ID.
-	 * @param $stageId int WORKFLOW_STAGE_ID_...
+	 * @copydoc PKPEditorDecisionActionsManager::getStageDecisions()
 	 */
-	function getStageDecisions($stageId) {
+	public  function getStageDecisions($request, $stageId, $makeDecision = true) {
 		switch ($stageId) {
-			case WORKFLOW_STAGE_ID_SUBMISSION:
-				return self::_submissionStageDecisions();
 			case WORKFLOW_STAGE_ID_INTERNAL_REVIEW:
-				return self::_internalReviewStageDecisions();
-			case WORKFLOW_STAGE_ID_EXTERNAL_REVIEW:
-				return self::_externalReviewStageDecisions();
-			case WORKFLOW_STAGE_ID_EDITING:
-				return self::_editorialStageDecisions();
-			default:
-				assert(false);
+				return $this->_internalReviewStageDecisions($makeDecision);
 		}
+		return parent::getStageDecisions($request, $stageId, $makeDecision);
+	}
+
+	/**
+	 * Get an associative array matching editor recommendation codes with locale strings.
+	 * (Includes default '' => "Choose One" string.)
+	 * @param $stageId integer
+	 * @return array recommendation => localeString
+	 */
+	public function getRecommendationOptions($stageId) {
+		$recommendationOptions = parent::getRecommendationOptions($stageId);
+		if ($stageId == WORKFLOW_STAGE_ID_INTERNAL_REVIEW) {
+			$recommendationOptions[SUBMISSION_EDITOR_RECOMMEND_EXTERNAL_REVIEW] = 'editor.submission.decision.sendExternalReview';
+		}
+		return $recommendationOptions;
 	}
 
 	//
 	// Private helper methods.
 	//
 	/**
-	 * Define and return editor decisions for the submission stage.
-	 * @return array
+	 * @copydoc PKPEditorDecisionActionsManager::_submissionStageDecisions()
 	 */
-	function _submissionStageDecisions() {
-		static $decisions = array(
-			SUBMISSION_EDITOR_DECISION_INTERNAL_REVIEW => array(
-				'name' => 'internalReview',
-				'operation' => 'internalReview',
-				'title' => 'editor.submission.decision.sendInternalReview',
-				'image' => 'advance',
-				'titleIcon' => 'modal_review',
-			),
-			SUBMISSION_EDITOR_DECISION_EXTERNAL_REVIEW => array(
-				'operation' => 'externalReview',
-				'name' => 'externalReview',
-				'title' => 'editor.submission.decision.sendExternalReview',
-				'image' => 'advance',
-				'titleIcon' => 'modal_review',
-			),
-			SUBMISSION_EDITOR_DECISION_ACCEPT => array(
-				'name' => 'accept',
-				'operation' => 'promote',
-				'title' => 'editor.submission.decision.accept',
-				'image' => 'promote',
-				'help' => 'editor.review.NotifyAuthorAccept',
-				'titleIcon' => 'accept_submission',
-			),
-			SUBMISSION_EDITOR_DECISION_DECLINE => array(
-				'name' => 'decline',
-				'operation' => 'sendReviews',
-				'title' => 'editor.submission.decision.decline',
-				'image' => 'decline',
-				'help' => 'editor.review.NotifyAuthorDecline',
-				'titleIcon' => 'decline_submission',
-			),
+	protected function _submissionStageDecisions($stageId, $makeDecision = true) {
+		$decisions = parent::_submissionStageDecisions($stageId, $makeDecision);
+		$decisions[SUBMISSION_EDITOR_DECISION_INTERNAL_REVIEW] = array(
+			'name' => 'internalReview',
+			'operation' => 'internalReview',
+			'title' => 'editor.submission.decision.sendInternalReview',
 		);
-
 		return $decisions;
 	}
 
 	/**
 	 * Define and return editor decisions for the review stage.
+	 * If the user cannot make decisions i.e. if it is a recommendOnly user,
+	 * there will be no decisions options in the review stage.
+	 * @param $makeDecision boolean If the user can make decisions
 	 * @return array
 	 */
-	function _internalReviewStageDecisions() {
-		static $decisions = array(
-			SUBMISSION_EDITOR_DECISION_PENDING_REVISIONS => array(
-				'operation' => 'sendReviewsInReview',
-				'name' => 'requestRevisions',
-				'title' => 'editor.submission.decision.requestRevisions',
-				'image' => 'revisions',
-				'help' => 'editor.review.NotifyAuthorRevisions',
-				'titleIcon' => 'revisions_required',
-			),
-			SUBMISSION_EDITOR_DECISION_RESUBMIT => array(
-				'operation' => 'sendReviewsInReview',
-				'name' => 'resubmit',
-				'title' => 'editor.submission.decision.resubmit',
-				'image' => 'resubmit',
-				'help' => 'editor.review.NotifyAuthorResubmit',
-				'titleIcon' => 'please_resubmit',
-			),
-			SUBMISSION_EDITOR_DECISION_EXTERNAL_REVIEW => array(
-				'operation' => 'promoteInReview',
-				'name' => 'externalReview',
-				'title' => 'editor.submission.decision.sendExternalReview',
-				'image' => 'advance',
-				'help' => 'editor.review.NotifyAuthorExternal',
-				'titleIcon' => 'modal_review',
-			),
-			SUBMISSION_EDITOR_DECISION_ACCEPT => array(
-				'operation' => 'promoteInReview',
-				'name' => 'accept',
-				'title' => 'editor.submission.decision.accept',
-				'image' => 'promote',
-				'help' => 'editor.review.NotifyAuthorAccept',
-				'titleIcon' => 'accept_submission',
-			),
-			SUBMISSION_EDITOR_DECISION_DECLINE => array(
-				'operation' => 'sendReviewsInReview',
-				'name' => 'decline',
-				'title' => 'editor.submission.decision.decline',
-				'image' => 'decline',
-				'help' => 'editor.review.NotifyAuthorDecline',
-				'titleIcon' => 'decline_submission',
-			),
-		);
-
+	protected function _internalReviewStageDecisions($makeDecision = true) {
+		$decisions = array();
+		if ($makeDecision) {
+			$decisions = array(
+				SUBMISSION_EDITOR_DECISION_PENDING_REVISIONS => array(
+					'operation' => 'sendReviewsInReview',
+					'name' => 'requestRevisions',
+					'title' => 'editor.submission.decision.requestRevisions',
+				),
+				SUBMISSION_EDITOR_DECISION_RESUBMIT => array(
+					'name' => 'resubmit',
+					'title' => 'editor.submission.decision.resubmit',
+				),
+				SUBMISSION_EDITOR_DECISION_EXTERNAL_REVIEW => array(
+					'operation' => 'promoteInReview',
+					'name' => 'externalReview',
+					'title' => 'editor.submission.decision.sendExternalReview',
+					'toStage' => 'workflow.review.externalReview',
+				),
+				SUBMISSION_EDITOR_DECISION_ACCEPT => array(
+					'operation' => 'promoteInReview',
+					'name' => 'accept',
+					'title' => 'editor.submission.decision.accept',
+					'toStage' => 'submission.copyediting',
+				),
+				SUBMISSION_EDITOR_DECISION_DECLINE => array(
+					'operation' => 'sendReviewsInReview',
+					'name' => 'decline',
+					'title' => 'editor.submission.decision.decline',
+				),
+			);
+		}
 		return $decisions;
 	}
 
 	/**
 	 * Define and return editor decisions for the review stage.
+	 * If the user cannot make decisions i.e. if it is a recommendOnly user,
+	 * there will be no decisions options in the review stage.
+	 * @param $request PKPRequest
+	 * @param $makeDecision boolean If the user can make decisions
 	 * @return array
 	 */
-	function _externalReviewStageDecisions() {
-		$decisions = self::_internalReviewStageDecisions();
+	protected function _externalReviewStageDecisions($request, $makeDecision = true) {
+		$decisions = $this->_internalReviewStageDecisions($makeDecision);
 		unset($decisions[SUBMISSION_EDITOR_DECISION_EXTERNAL_REVIEW]);
 		return $decisions;
 	}
 
-
 	/**
-	 * Define and return editor decisions for the editorial stage.
+	 * @copydoc PKPEditorDecisionActionsManager::getStageNotifications()
 	 * @return array
 	 */
-	function _editorialStageDecisions() {
-		static $decisions = array(
-			SUBMISSION_EDITOR_DECISION_SEND_TO_PRODUCTION => array(
-				'operation' => 'promote',
-				'name' => 'sendToProduction',
-				'title' => 'editor.submission.decision.sendToProduction',
-				'image' => 'send_production',
-				'titleIcon' => 'modal_send_to_production',
-			),
+	public function getStageNotifications() {
+		return parent::getStageNotifications() + array(
+			NOTIFICATION_TYPE_EDITOR_ASSIGNMENT_INTERNAL_REVIEW
 		);
-
-		return $decisions;
-	}
-
-	/**
-	 * Get the stage-level notification type constants.
-	 * @return array
-	 */
-	static function getStageNotifications() {
-		static $notifications = array(
-			NOTIFICATION_TYPE_EDITOR_ASSIGNMENT_SUBMISSION,
-			NOTIFICATION_TYPE_EDITOR_ASSIGNMENT_INTERNAL_REVIEW,
-			NOTIFICATION_TYPE_EDITOR_ASSIGNMENT_EXTERNAL_REVIEW,
-			NOTIFICATION_TYPE_EDITOR_ASSIGNMENT_EDITING,
-			NOTIFICATION_TYPE_EDITOR_ASSIGNMENT_PRODUCTION
-		);
-		return $notifications;
 	}
 }
 
-?>
+

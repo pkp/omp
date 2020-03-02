@@ -3,9 +3,9 @@
 /**
  * @file pages/payment/PaymentHandler.inc.php
  *
- * Copyright (c) 2014-2016 Simon Fraser University Library
- * Copyright (c) 2003-2016 John Willinsky
- * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
+ * Copyright (c) 2014-2020 Simon Fraser University
+ * Copyright (c) 2003-2020 John Willinsky
+ * Distributed under the GNU GPL v3. For full terms see the file docs/COPYING.
  *
  * @class PaymentHandler
  * @ingroup pages_payment
@@ -19,8 +19,8 @@ class PaymentHandler extends Handler {
 	/**
 	 * Constructor
 	 */
-	function PaymentHandler() {
-		parent::Handler();
+	function __construct() {
+		parent::__construct();
 	}
 		 
 	/**
@@ -29,14 +29,14 @@ class PaymentHandler extends Handler {
 	 * @param $request PKPRequest
 	 */
 	function plugin($args, $request) {
-		$paymentMethodPlugins =& PluginRegistry::loadCategory('paymethod');
+		$paymentMethodPlugins = PluginRegistry::loadCategory('paymethod');
 		$paymentMethodPluginName = array_shift($args);
 		if (empty($paymentMethodPluginName) || !isset($paymentMethodPlugins[$paymentMethodPluginName])) {
 			$request->redirect(null, null, 'index');
 		}
 
-		$paymentMethodPlugin =& $paymentMethodPlugins[$paymentMethodPluginName];
-		if (!$paymentMethodPlugin->isConfigured()) {
+		$paymentMethodPlugin = $paymentMethodPlugins[$paymentMethodPluginName];
+		if (!$paymentMethodPlugin->isConfigured($request->getContext())) {
 			$request->redirect(null, null, 'index');
 		}
 
@@ -44,4 +44,4 @@ class PaymentHandler extends Handler {
 	}
 }
 
-?>
+

@@ -1,0 +1,246 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: \n"
+"Report-Msgid-Bugs-To: \n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"POT-Creation-Date: 2019-11-28T15:10:06-08:00\n"
+"PO-Revision-Date: 2019-11-28T15:10:06-08:00\n"
+"Language: \n"
+
+msgid "default.genres.appendix"
+msgstr "Παράρτημα"
+
+msgid "default.genres.bibliography"
+msgstr "Βιβλιογραφία"
+
+msgid "default.genres.manuscript"
+msgstr "Χειρόγραφο Βιβλίου"
+
+msgid "default.genres.chapter"
+msgstr "Χειρόγραφο Κεφαλαίου"
+
+msgid "default.genres.glossary"
+msgstr "Γλωσσάριο"
+
+msgid "default.genres.index"
+msgstr "Ευρετήριο"
+
+msgid "default.genres.preface"
+msgstr "Πρόλογος"
+
+msgid "default.genres.prospectus"
+msgstr "Πρόταση για έκδοση Βιβλίου (Prospectus)"
+
+msgid "default.genres.table"
+msgstr "Πίνακας"
+
+msgid "default.genres.figure"
+msgstr "Εικόνα/Figure"
+
+msgid "default.genres.photo"
+msgstr "Φωτογραφία"
+
+msgid "default.genres.illustration"
+msgstr "Εικόνογράφηση"
+
+msgid "default.genres.other"
+msgstr "Διάφορα"
+
+msgid "default.groups.name.siteAdmin"
+msgstr "Site Admin"
+
+msgid "default.groups.plural.siteAdmin"
+msgstr "Διαχειριστής Ιστοσελίδας"
+
+msgid "default.groups.name.pressManager"
+msgstr "Διαχειριστής Εκδόσεων"
+
+msgid "default.groups.plural.pressManager"
+msgstr "Διαχειριστές Εκδόσεων"
+
+msgid "default.groups.abbrev.pressManager"
+msgstr "PM"
+
+msgid "default.groups.name.editor"
+msgstr "Επιμελητής Έκδοσης"
+
+msgid "default.groups.plural.editor"
+msgstr "Επιμελητές Έκδοσης"
+
+msgid "default.groups.abbrev.editor"
+msgstr "PE"
+
+msgid "default.groups.name.productionEditor"
+msgstr "Επιμελητής Παραγωγής"
+
+msgid "default.groups.plural.productionEditor"
+msgstr "Επιμελητές Παραγωγής"
+
+msgid "default.groups.abbrev.productionEditor"
+msgstr "ProdE"
+
+msgid "default.groups.name.sectionEditor"
+msgstr "Επιμελητής Σειράς"
+
+msgid "default.groups.plural.sectionEditor"
+msgstr "Επιμελητές Σειράς"
+
+msgid "default.groups.abbrev.sectionEditor"
+msgstr "AcqE"
+
+msgid "default.groups.name.copyeditor"
+msgstr "Επιμελητής Κειμένων"
+
+msgid "default.groups.plural.copyeditor"
+msgstr "Επιμελητές Κειμένων"
+
+msgid "default.groups.abbrev.copyeditor"
+msgstr "CE"
+
+msgid "default.groups.name.proofreader"
+msgstr "Επιμελητής Τυπογραφικών Δοκιμίων"
+
+msgid "default.groups.plural.proofreader"
+msgstr "Επιμελητές Τυπογραφικών Δοκιμίων"
+
+msgid "default.groups.abbrev.proofreader"
+msgstr "PR"
+
+msgid "default.groups.name.designer"
+msgstr "Σχεδιαστής"
+
+msgid "default.groups.plural.designer"
+msgstr "Σχεδιαστές"
+
+msgid "default.groups.abbrev.designer"
+msgstr "Σχέδιο"
+
+msgid "default.groups.name.internalReviewer"
+msgstr "Εσωτερικός Αξιολογητής"
+
+msgid "default.groups.plural.internalReviewer"
+msgstr "Εσωτερικοί Αξιολογητές"
+
+msgid "default.groups.abbrev.internalReviewer"
+msgstr "IR"
+
+msgid "default.groups.name.externalReviewer"
+msgstr "Εξωτερικός Αξιολογητής"
+
+msgid "default.groups.plural.externalReviewer"
+msgstr "Εξωτερικοί Αξιολογητές"
+
+msgid "default.groups.abbrev.externalReviewer"
+msgstr "ER"
+
+msgid "default.groups.name.marketing"
+msgstr "Υπεύθυνος Marketing και Πωλήσεων"
+
+msgid "default.groups.plural.marketing"
+msgstr "Υπεύθυνος Marketing και Πωλήσεων"
+
+msgid "default.groups.abbrev.marketing"
+msgstr "MS"
+
+msgid "default.groups.name.funding"
+msgstr "Υπεύθυνος Χρηματοδότησης"
+
+msgid "default.groups.plural.funding"
+msgstr "Υπεύθυνοι Χρηματοδότησης"
+
+msgid "default.groups.abbrev.funding"
+msgstr "FC"
+
+msgid "default.groups.name.indexer"
+msgstr "Ευρετηριαστής"
+
+msgid "default.groups.plural.indexer"
+msgstr "Ευρετηριαστές"
+
+msgid "default.groups.abbrev.indexer"
+msgstr "IND"
+
+msgid "default.groups.name.layoutEditor"
+msgstr "Επιμελητής Σελιδοποίησης"
+
+msgid "default.groups.plural.layoutEditor"
+msgstr "Επιμελητές Σελιδοποίησης"
+
+msgid "default.groups.abbrev.layoutEditor"
+msgstr "LE"
+
+msgid "default.groups.name.author"
+msgstr "Συγγραφέας"
+
+msgid "default.groups.plural.author"
+msgstr "Συγγραφείς"
+
+msgid "default.groups.abbrev.author"
+msgstr "AU"
+
+msgid "default.groups.name.chapterAuthor"
+msgstr "Συγγραφέας Κεφαλαίου"
+
+msgid "default.groups.plural.chapterAuthor"
+msgstr "Συγγραφείς Κεφαλαίου"
+
+msgid "default.groups.abbrev.chapterAuthor"
+msgstr "CA"
+
+msgid "default.groups.name.volumeEditor"
+msgstr "Επιμελητής Έργου"
+
+msgid "default.groups.plural.volumeEditor"
+msgstr "Επιμελητές Έργου"
+
+msgid "default.groups.abbrev.volumeEditor"
+msgstr "VE"
+
+msgid "default.groups.name.translator"
+msgstr "Μεταφραστής"
+
+msgid "default.groups.plural.translator"
+msgstr "Μεταφραστές"
+
+msgid "default.groups.abbrev.translator"
+msgstr "Μεταφρ."
+
+msgid "default.contextSettings.checklist.notPreviouslyPublished"
+msgstr "Η υποβολή δεν έχει δημοσιευτεί εκ των προτέρων, ούτε έχει υποβληθεί σε άλλες εκδόσεις για εξέταση (ή δεν έχει δοθεί εξήγηση στα Σχόλια προς τον επιμελητή)."
+
+msgid "default.contextSettings.checklist.fileFormat"
+msgstr "Το αρχείο υποβολής είναι σε μορφή αρχείου εγγράφου OpenOffice, Microsoft Word ή RTF."
+
+msgid "default.contextSettings.checklist.addressesLinked"
+msgstr "Όταν είναι διαθέσιμα, παρέχονται τα URL για πρόσβαση σε αναφορές online."
+
+msgid "default.contextSettings.checklist.submissionAppearance"
+msgstr "Το κείμενο έχει μονό διάκενο, χρησιμοποιεί γραμματοσειρά μεγέθους 12, χρησιμοποιεί όπου απαιτείται κείμενο σε πλάγια γραφή και όχι με υπογράμμιση (εκτός από τις διευθύνσεις URL) και όλες οι εικόνες, τα διαγράμματα και οι πίνακες τοποθετούνται εντός του κειμένου σε κατάλληλα σημεία, και όχι στο τέλος αυτού."
+
+msgid "default.contextSettings.checklist.bibliographicRequirements"
+msgstr "Το κείμενο τηρεί τις στιλιστικές και βιβλιογραφικές απαιτήσεις που ορίζονται στις Οδηγίες προς τους συγγραφείς <a href=\"{$indexUrl}/{$contextPath}/about/submissions#authorGuidelines\" target=\"_blank\">Οδηγίες προς Συγγραφείς</a>, που βρίσκονται στο μενού \"Σχετικά με το περιοδικό\"."
+
+msgid "default.contextSettings.privacyStatement"
+msgstr "<p>Τα ονόματα και οι διευθύνσεις ηλεκτρονικού ταχυδρομείου που καταχωρούνται στις ιστοσελίδες των εκδόσεων της συλλογής θα χρησιμοποιούνται αποκλειστικά για τους καθορισμένους σκοπούς των υπηρεσίας μας και δεν θα διατίθεται για κανένα άλλο σκοπό ή σε κανένα τρίτο μέρος.</p>"
+
+msgid "default.contextSettings.openAccessPolicy"
+msgstr "Η συγκεκριμένη έκδοση παρέχει άμεση ανοικτή πρόσβαση στο περιεχόμενό της υποστηρίζοντας την αρχή της υποστήριξης της παγκόσμιας ανταλλαγής γνώσεων και καθιστώντας διαθέσιμη ελεύθερα στο κοινό τα αποτελέσματα της επιστημονικής έρευνας."
+
+msgid "default.contextSettings.emailSignature"
+msgstr ""
+"________________________________________________________________________\n"
+"{$contextName}\n"
+"{$indexUrl}/{$contextPath}"
+
+msgid "default.contextSettings.forReaders"
+msgstr "Η χρήση της συλλογής είναι ελεύθερη και δωρεάν για όλους και δεν απαιτείται η χρήση κωδικού πρόσβασης. Ωστόσο, ενθαρρύνουμε τους αναγνώστες-χρήστες να  εγγραφούν στην υπηρεσία ενημέρωσης για τις εκδόσεις της συλλογής μας. Επιλέξτε τον σύνδεσμο <a href=\"{$indexUrl}/{$contextPath}/user/register\">Εγγραφείτε</a> στη κορυφή της αρχικής σελίδας των Εκδόσεων. Κάθε εγγεγραμμένος χρήστης θα λαμβάνει με email με τους Πίνακες Περιεχομένων κάθε νέας έκδοσης που δημοσιεύεται στη συλλογή.  Επίσης, η λίστα των καταχωρημένων αναγνωστών-χρηστών επιτρέπει στην υπηρεσία και στις εκδόσεις της συλλογής να διαπιστώσουν το πραγματικό επίπεδο ανταπόκρισης και χρήσης. Ενημερωθείτε για την <a href=\"{$indexUrl}/{$contextPath}/about/submissions#privacyStatement\">Πολιτική Προστασίας Προωπικών Δεδομένων</a> της συλλογής, που διαβεβαιώνει ότι τα στοιχεία και τα email των χρηστών δεν θα χρησιμοποιηθούν για άλλους λόγους."
+
+msgid "default.contextSettings.forAuthors"
+msgstr "Ενδιαφέρεστε να πραγματοποιήσετε υποβολή στη συγκεκριμένη έκδοση; Σας συμβουλεύουμε να μελετήσετε τη σελίδα <a href=\"{$indexUrl}/{$contextPath}/about\">Σχετικά με την Έκδοση</a> για τις πολιτικές των ενοτήτων της Έκδοσης, καθώς και τη σελίδα<a href=\"{$indexUrl}/{$contextPath}/about/submissions#authorGuidelines\">Οδηγίες για Συγγραφείς</a>. Οι Συγγραφείς πρέπει να <a href=\"{$indexUrl}/{$contextPath}/user/register\">εγγραφούν</a> στην έκδοση πριν από την υποβολή, ή στην περίπτωση που έχουν εγγραφεί, μπορούν απλά  <a href=\"{$indexUrl}/index/login\">να συνδεθούν</a> και να ξεκινήσουν τη διαδικασία με τα 5 βήματα"
+
+msgid "default.contextSettings.forLibrarians"
+msgstr "Βασική επιδίωξη και επιθυμία της συλλογής \"Τιμαία\" είναι καταχώρηση αυτής ή/και άλλων εκδόσεων της στις συλλογές ηλεκτρονικών εκδόσεων και πηγών πληροφόρησης των βιβλιοθηκών. Επίσης, είναι πιθανόν χρήσιμο να τονιστεί ότι το χρησιμοποιούμενο σύστημα ηλεκτρονικής δημοσίευσης της συλλογής Τιμαία, είναι ανοικτού κώδικα και μπορεί να χρησιμοποιηθεί από τις βιβλιοθήκες για τη φιλοξενία εκδόσεων ή/και την εξυπηρέτηση των μελών της ακαδημαϊκής κοινότητας που είναι μέλη της συντακτικής ομάδας μιας έκδοσης. (Διαβάστε περισσότερα για το  <a href=\"http://pkp.sfu.ca/omp\">Open Monograph Press</a>)."

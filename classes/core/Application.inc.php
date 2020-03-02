@@ -3,9 +3,9 @@
 /**
  * @file classes/core/Application.inc.php
  *
- * Copyright (c) 2014-2016 Simon Fraser University Library
- * Copyright (c) 2003-2016 John Willinsky
- * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
+ * Copyright (c) 2014-2020 Simon Fraser University
+ * Copyright (c) 2003-2020 John Willinsky
+ * Distributed under the GNU GPL v3. For full terms see the file docs/COPYING.
  *
  * @class Application
  * @ingroup core
@@ -17,26 +17,25 @@
 
 import('lib.pkp.classes.core.PKPApplication');
 
-define('PHP_REQUIRED_VERSION', '4.2.0');
 define('REQUIRES_XSL', true);
 
 define('ASSOC_TYPE_MONOGRAPH',			ASSOC_TYPE_SUBMISSION);
-define('ASSOC_TYPE_PUBLISHED_MONOGRAPH',	ASSOC_TYPE_PUBLISHED_SUBMISSION);
 define('ASSOC_TYPE_PUBLICATION_FORMAT',		ASSOC_TYPE_REPRESENTATION);
 
 define('ASSOC_TYPE_PRESS',			0x0000200);
 define('ASSOC_TYPE_CATEGORY',			0x000020D);
 define('ASSOC_TYPE_SERIES',			ASSOC_TYPE_SECTION);
 
+define('ASSOC_TYPE_CHAPTER', 0x0000214);
+
 define('CONTEXT_PRESS', 1);
 
+define('LANGUAGE_PACK_DESCRIPTOR_URL', 'http://pkp.sfu.ca/omp/xml/%s/locales.xml');
+define('LANGUAGE_PACK_TAR_URL', 'http://pkp.sfu.ca/omp/xml/%s/%s.tar.gz');
+
+define('METRIC_TYPE_COUNTER', 'omp::counter');
+
 class Application extends PKPApplication {
-	/**
-	 * Constructor
-	 */
-	function Application() {
-		parent::PKPApplication();
-	}
 
 	/**
 	 * Get the "context depth" of this application, i.e. the number of
@@ -45,7 +44,7 @@ class Application extends PKPApplication {
 	 * Scheduled Conference [2], or Press [1]).
 	 * @return int
 	 */
-	function getContextDepth() {
+	public function getContextDepth() {
 		return 1;
 	}
 
@@ -53,7 +52,7 @@ class Application extends PKPApplication {
 	 * Get a list of contexts for this application.
 	 * @return array
 	 */
-	function getContextList() {
+	public function getContextList() {
 		return array('press');
 	}
 
@@ -61,7 +60,7 @@ class Application extends PKPApplication {
 	 * Get the symbolic name of this application
 	 * @return string
 	 */
-	function getName() {
+	public static function getName() {
 		return 'omp';
 	}
 
@@ -69,8 +68,8 @@ class Application extends PKPApplication {
 	 * Get the locale key for the name of this application.
 	 * @return string
 	 */
-	function getNameKey() {
-		return('common.openMonographPress');
+	public function getNameKey() {
+		return('common.software');
 	}
 
 	/**
@@ -78,7 +77,7 @@ class Application extends PKPApplication {
 	 * application.
 	 * @return string
 	 */
-	function getVersionDescriptorUrl() {
+	public function getVersionDescriptorUrl() {
 		return('http://pkp.sfu.ca/omp/xml/omp-version.xml');
 	}
 
@@ -86,24 +85,20 @@ class Application extends PKPApplication {
 	 * Get the map of DAOName => full.class.Path for this application.
 	 * @return array
 	 */
-	function getDAOMap() {
+	public function getDAOMap() {
 		return array_merge(parent::getDAOMap(), array(
 			'AuthorDAO' => 'classes.monograph.AuthorDAO',
 			'ChapterAuthorDAO' => 'classes.monograph.ChapterAuthorDAO',
 			'ChapterDAO' => 'classes.monograph.ChapterDAO',
-			'CategoryDAO' => 'classes.press.CategoryDAO',
-			'EmailTemplateDAO' => 'classes.mail.EmailTemplateDAO',
 			'FeatureDAO' => 'classes.press.FeatureDAO',
 			'IdentificationCodeDAO' => 'classes.publicationFormat.IdentificationCodeDAO',
 			'LayoutAssignmentDAO' => 'submission.layoutAssignment.LayoutAssignmentDAO',
 			'MarketDAO' => 'classes.publicationFormat.MarketDAO',
-			'SubmissionCommentDAO' => 'lib.pkp.classes.submission.SubmissionCommentDAO',
 			'MetricsDAO' => 'lib.pkp.classes.statistics.PKPMetricsDAO',
-			'MonographDAO' => 'classes.monograph.MonographDAO',
+			'SubmissionDAO' => 'classes.submission.SubmissionDAO',
 			'MonographFileEmailLogDAO' => 'classes.log.MonographFileEmailLogDAO',
 			'MonographSearchDAO' => 'classes.search.MonographSearchDAO',
 			'NewReleaseDAO' => 'classes.press.NewReleaseDAO',
-			'NotificationStatusDAO' => 'classes.press.NotificationStatusDAO',
 			'OAIDAO' => 'classes.oai.omp.OAIDAO',
 			'OMPCompletedPaymentDAO' => 'classes.payment.omp.OMPCompletedPaymentDAO',
 			'ONIXCodelistItemDAO' => 'classes.codelist.ONIXCodelistItemDAO',
@@ -112,26 +107,13 @@ class Application extends PKPApplication {
 			'ProductionAssignmentDAO' => 'classes.submission.productionAssignment.ProductionAssignmentDAO',
 			'PublicationDateDAO' => 'classes.publicationFormat.PublicationDateDAO',
 			'PublicationFormatDAO' => 'classes.publicationFormat.PublicationFormatDAO',
-			'PublishedMonographDAO' => 'classes.monograph.PublishedMonographDAO',
 			'QualifierDAO' => 'classes.codelist.QualifierDAO',
-			'QueuedPaymentDAO' => 'lib.pkp.classes.payment.QueuedPaymentDAO',
 			'RepresentativeDAO' => 'classes.monograph.RepresentativeDAO',
-			'ReviewAssignmentDAO' => 'lib.pkp.classes.submission.reviewAssignment.ReviewAssignmentDAO',
 			'ReviewerSubmissionDAO' => 'classes.submission.reviewer.ReviewerSubmissionDAO',
-			'ReviewFormDAO' => 'lib.pkp.classes.reviewForm.ReviewFormDAO',
-			'ReviewFormElementDAO' => 'lib.pkp.classes.reviewForm.ReviewFormElementDAO',
-			'ReviewFormResponseDAO' => 'lib.pkp.classes.reviewForm.ReviewFormResponseDAO',
-			'RoleDAO' => 'classes.security.RoleDAO',
 			'SalesRightsDAO' => 'classes.publicationFormat.SalesRightsDAO',
 			'SeriesDAO' => 'classes.press.SeriesDAO',
 			'SpotlightDAO' => 'classes.spotlight.SpotlightDAO',
-			'StageAssignmentDAO' => 'lib.pkp.classes.stageAssignment.StageAssignmentDAO',
 			'SubjectDAO' => 'classes.codelist.SubjectDAO',
-			'SubmissionEventLogDAO' => 'classes.log.SubmissionEventLogDAO',
-			'SubmissionFileDAO' => 'classes.monograph.SubmissionFileDAO',
-			'UserGroupAssignmentDAO' => 'lib.pkp.classes.security.UserGroupAssignmentDAO',
-			'UserDAO' => 'classes.user.UserDAO',
-			'UserSettingsDAO' => 'classes.user.UserSettingsDAO',
 		));
 	}
 
@@ -139,14 +121,13 @@ class Application extends PKPApplication {
 	 * Get the list of plugin categories for this application.
 	 * @return array
 	 */
-	function getPluginCategories() {
+	public function getPluginCategories() {
 		return array(
 			// NB: Meta-data plug-ins are first in the list as this
 			// will make them being loaded (and installed) first.
 			// This is necessary as several other plug-in categories
 			// depend on meta-data. This is a very rudimentary type of
 			// dependency management for plug-ins.
-			'viewableFiles',
 			'metadata',
 			'pubIds',
 			'blocks',
@@ -162,38 +143,62 @@ class Application extends PKPApplication {
 	/**
 	 * Get the top-level context DAO.
 	 */
-	static function getContextDAO() {
+	public static function getContextDAO() {
 		return DAORegistry::getDAO('PressDAO');
 	}
 
 	/**
-	 * Get the submission DAO.
+	 * Get the context settings DAO.
+	 * @return SettingsDAO
 	 */
-	static function getSubmissionDAO() {
-		return DAORegistry::getDAO('MonographDAO');
+	public static function getContextSettingsDAO() {
+		return DAORegistry::getDAO('PressSettingsDAO');
+	}
+
+	/**
+	 * Get the submission DAO.
+	 * @deprecated Just use DAORegistry::getDAO('SubmissionDAO') directly.
+	 */
+	public static function getSubmissionDAO() {
+		return DAORegistry::getDAO('SubmissionDAO');
 	}
 
 	/**
 	 * Get the section DAO.
 	 * @return SeriesDAO
 	 */
-	static function getSectionDAO() {
+	public static function getSectionDAO() {
 		return DAORegistry::getDAO('SeriesDAO');
 	}
 
 	/**
 	 * Get the representation DAO.
 	 */
-	static function getRepresentationDAO() {
+	public static function getRepresentationDAO() {
 		return DAORegistry::getDAO('PublicationFormatDAO');
+	}
+
+	/**
+	 * Get a SubmissionSearchIndex instance.
+	 */
+	public static function getSubmissionSearchIndex() {
+		import('classes.search.MonographSearchIndex');
+		return new MonographSearchIndex();
+	}
+
+	/**
+	 * Get a SubmissionSearchDAO instance.
+	 */
+	public static function getSubmissionSearchDAO() {
+		return DAORegistry::getDAO('MonographSearchDAO');
 	}
 
 	/**
 	 * returns the name of the context column in plugin_settings
 	 */
-	static function getPluginSettingsContextColumnName() {
+	public static function getPluginSettingsContextColumnName() {
 		if (defined('SESSION_DISABLE_INIT')) {
-			$pluginSettingsDao = DAORegistry::getDAO('PluginSettingsDAO');
+			$pluginSettingsDao = DAORegistry::getDAO('PluginSettingsDAO'); /* @var $pluginSettingsDao PluginSettingsDAO */
 			$driver = $pluginSettingsDao->getDriver();
 			switch ($driver) {
 				case 'mysql':
@@ -204,6 +209,10 @@ class Application extends PKPApplication {
 					}
 					break;
 				case 'postgres':
+				case 'postgres64':
+				case 'postgres7':
+				case 'postgres8':
+				case 'postgres9':
 					$checkResult = $pluginSettingsDao->retrieve('SELECT column_name FROM information_schema.columns WHERE table_name= ? AND column_name= ?', array('plugin_settings', 'context_id'));
 					if ($checkResult->NumRows() == 0) {
 						return 'press_id';
@@ -217,7 +226,7 @@ class Application extends PKPApplication {
 	/**
 	 * Get the stages used by the application.
 	 */
-	static function getApplicationStages() {
+	public static function getApplicationStages() {
 		// We leave out WORKFLOW_STAGE_ID_PUBLISHED since it technically is not a 'stage'.
 		return array(
 			WORKFLOW_STAGE_ID_SUBMISSION,
@@ -231,16 +240,24 @@ class Application extends PKPApplication {
 	/**
 	 * Get the file directory array map used by the application.
 	 */
-	static function getFileDirectories() {
+	public static function getFileDirectories() {
 		return array('context' => '/presses/', 'submission' => '/monographs/');
 	}
 
 	/**
 	 * Returns the context type for this application.
 	 */
-	static function getContextAssocType() {
+	public static function getContextAssocType() {
 		return ASSOC_TYPE_PRESS;
 	}
-}
 
-?>
+	/**
+	 * Get the payment manager.
+	 * @param $context Context
+	 * @return OMPPaymentManager
+	 */
+	public static function getPaymentManager($context) {
+		import('classes.payment.omp.OMPPaymentManager');
+		return new OMPPaymentManager($context);
+	}
+}

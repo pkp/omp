@@ -3,9 +3,9 @@
 /**
  * @file plugins/generic/webFeed/WebFeedGatewayPlugin.inc.php
  *
- * Copyright (c) 2014-2016 Simon Fraser University Library
- * Copyright (c) 2003-2016 John Willinsky
- * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
+ * Copyright (c) 2014-2020 Simon Fraser University
+ * Copyright (c) 2003-2020 John Willinsky
+ * Distributed under the GNU GPL v3. For full terms see the file docs/COPYING.
  *
  * @class WebFeedGatewayPlugin
  * @ingroup plugins_generic_webFeed
@@ -17,18 +17,23 @@
 import('lib.pkp.classes.plugins.GatewayPlugin');
 
 class WebFeedGatewayPlugin extends GatewayPlugin {
-	/** @var string Name of parent plugin */
-	var $parentPluginName;
+	/** @var WebFeedPlugin Parent plugin */
+	var $_parentPlugin;
 
-	function WebFeedGatewayPlugin($parentPluginName) {
-		parent::GatewayPlugin();
-		$this->parentPluginName = $parentPluginName;
+	/**
+	 * Constructor
+	 * @param $parentPlugin WebFeedPlugin
+	 */
+	public function __construct($parentPlugin) {
+		parent::__construct();
+		$this->_parentPlugin = $parentPlugin;
 	}
 
 	/**
 	 * Hide this plugin from the management interface (it's subsidiary)
+	 * @return boolean
 	 */
-	function getHideManagement() {
+	public function getHideManagement() {
 		return true;
 	}
 
@@ -37,38 +42,29 @@ class WebFeedGatewayPlugin extends GatewayPlugin {
 	 * its category.
 	 * @return String name of plugin
 	 */
-	function getName() {
+	public function getName() {
 		return 'WebFeedGatewayPlugin';
 	}
 
-	function getDisplayName() {
+	/**
+	 * @copydoc Plugin::getDisplayName()
+	 */
+	public function getDisplayName() {
 		return __('plugins.generic.webfeed.displayName');
 	}
 
-	function getDescription() {
-		return __('plugins.generic.webfeed.description');
-	}
-
 	/**
-	 * Get the web feed plugin
-	 * @return WebFeedPlugin
+	 * @copydoc Plugin::getDescription()
 	 */
-	function getWebFeedPlugin() {
-		return PluginRegistry::getPlugin('generic', $this->parentPluginName);
+	public function getDescription() {
+		return __('plugins.generic.webfeed.description');
 	}
 
 	/**
 	 * Override the builtin to get the correct plugin path.
 	 */
 	function getPluginPath() {
-		return $this->getWebFeedPlugin()->getPluginPath();
-	}
-
-	/**
-	 * @copydoc PKPPlugin::getTemplatePath()
-	 */
-	function getTemplatePath($inCore = false) {
-		return $this->getWebFeedPlugin($inCore)->getTemplatePath();
+		return $this->_parentPlugin->getPluginPath();
 	}
 
 	/**
@@ -76,8 +72,8 @@ class WebFeedGatewayPlugin extends GatewayPlugin {
 	 * parent plugin will take care of loading this one when needed)
 	 * @return boolean
 	 */
-	function getEnabled() {
-		return $this->getWebFeedPlugin()->getEnabled();
+	public function getEnabled() {
+		return $this->_parentPlugin->getEnabled();
 	}
 
 	/**
@@ -86,8 +82,7 @@ class WebFeedGatewayPlugin extends GatewayPlugin {
 	 * @param $request PKPRequest Request object.
 	 */
 	function fetch($args, $request) {
-		$webFeedPlugin = $this->getWebFeedPlugin();
-		if (!$webFeedPlugin->getEnabled()) return false;
+		if (!$this->_parentPlugin->getEnabled()) return false;
 
 		// Make sure the feed type is specified and valid
 		$type = array_shift($args);
@@ -104,31 +99,33 @@ class WebFeedGatewayPlugin extends GatewayPlugin {
 		if (!isset($typeMap[$type])) return false;
 
 		$templateMgr = TemplateManager::getManager($request);
-		$press = $request->getContext();
-		$templateMgr->assign('press', $press);
+		$context = $request->getContext();
 
-		$publishedMonographDao = DAORegistry::getDAO('PublishedMonographDAO');
-		$recentItems = (int) $webFeedPlugin->getSetting($press->getId(), 'recentItems');
+		// Bring in orderby constants
+		import('classes.submission.SubmissionDAO');
+
+		$args = [
+			'status' => STATUS_PUBLISHED,
+			'contextId' => $context->getId(),
+			'count' => 1000,
+			'orderBy' => ORDERBY_DATE_PUBLISHED,
+		];
+		$recentItems = (int) $this->_parentPlugin->getSetting($context->getId(), 'recentItems');
 		if ($recentItems > 0) {
-			import('lib.pkp.classes.db.DBResultRange');
-			$rangeInfo = new DBResultRange($recentItems, 1);
-			$publishedMonographObjects = $publishedMonographDao->getByPressId(
-				$press->getId(),
-				null,
-				$rangeInfo
-			);
-			$publishedMonographs = $publishedMonographObjects->toArray();
-		} else $publishedMonographs = array();
-		$templateMgr->assign('publishedMonographs', $publishedMonographs);
+			$args['count'] = $recentItems;
+		}
+		$templateMgr->assign('submissions', iterator_to_array(Services::get('submission')->getMany($args)));
 
-		$versionDao = DAORegistry::getDAO('VersionDAO');
+		$versionDao = DAORegistry::getDAO('VersionDAO'); /* @var $versionDao VersionDAO */
 		$version = $versionDao->getCurrentVersion();
 		$templateMgr->assign('ompVersion', $version->getVersionString());
 
-		$templateMgr->display($this->getTemplatePath() . $typeMap[$type], $mimeTypeMap[$type]);
+		AppLocale::requireComponents(LOCALE_COMPONENT_PKP_SUBMISSION); // submission.copyrightStatement
+
+		$templateMgr->display($this->getTemplateResource($typeMap[$type]), $mimeTypeMap[$type]);
 
 		return true;
 	}
 }
 
-?>
+

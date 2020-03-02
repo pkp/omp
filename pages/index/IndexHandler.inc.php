@@ -3,9 +3,9 @@
 /**
  * @file pages/index/IndexHandler.inc.php
  *
- * Copyright (c) 2014-2016 Simon Fraser University Library
- * Copyright (c) 2003-2016 John Willinsky
- * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
+ * Copyright (c) 2014-2020 Simon Fraser University
+ * Copyright (c) 2003-2020 John Willinsky
+ * Distributed under the GNU GPL v3. For full terms see the file docs/COPYING.
  *
  * @class IndexHandler
  * @ingroup pages_index
@@ -13,18 +13,9 @@
  * @brief Handle site index requests.
  */
 
+import('lib.pkp.pages.index.PKPIndexHandler');
 
-import('classes.handler.Handler');
-
-class IndexHandler extends Handler {
-	/**
-	 * Constructor
-	 */
-	function IndexHandler() {
-		parent::Handler();
-	}
-
-
+class IndexHandler extends PKPIndexHandler {
 	//
 	// Public handler operations
 	//
@@ -79,11 +70,11 @@ class IndexHandler extends Handler {
 	 * @param $press Press
 	 * @param $templateMgr TemplateManager
 	 */
-	function _displayPressIndexPage($press, &$templateMgr) {
+	function _displayPressIndexPage($press, $templateMgr) {
 
 		// Display New Releases
 		if ($press->getSetting('displayNewReleases')) {
-			$newReleaseDao = DAORegistry::getDAO('NewReleaseDAO');
+			$newReleaseDao = DAORegistry::getDAO('NewReleaseDAO'); /* @var $newReleaseDao NewReleaseDAO */
 			$newReleases = $newReleaseDao->getMonographsByAssoc(ASSOC_TYPE_PRESS, $press->getId());
 			$templateMgr->assign('newReleases', $newReleases);
 		}
@@ -96,35 +87,16 @@ class IndexHandler extends Handler {
 		// Display creative commons logo/licence if enabled.
 		$templateMgr->assign('displayCreativeCommons', $press->getSetting('includeCreativeCommons'));
 
-		// Display announcements if enabled.
-		$enableAnnouncements = $press->getSetting('enableAnnouncements');
-		if ($enableAnnouncements) {
-			$enableAnnouncementsHomepage = $press->getSetting('enableAnnouncementsHomepage');
-			if ($enableAnnouncementsHomepage) {
-				$numAnnouncementsHomepage = $press->getSetting('numAnnouncementsHomepage');
-				$announcementDao = DAORegistry::getDAO('AnnouncementDAO');
-				$announcements =& $announcementDao->getAnnouncementsNotExpiredByAssocId(ASSOC_TYPE_PRESS, $press->getId());
-				$templateMgr->assign('announcements', $announcements->toArray());
-				if (isset($numAnnouncementsHomepage)) {
-					$templateMgr->assign('numAnnouncementsHomepage', $numAnnouncementsHomepage);
-				}
-			}
-		}
+		$this->_setupAnnouncements($press, $templateMgr);
 
 		// Display Featured Books
 		if ($press->getSetting('displayFeaturedBooks')) {
-			$featureDao = DAORegistry::getDAO('FeatureDAO');
+			$featureDao = DAORegistry::getDAO('FeatureDAO'); /* @var $featureDao FeatureDAO */
 			$featuredMonographIds = $featureDao->getSequencesByAssoc(ASSOC_TYPE_PRESS, $press->getId());
 			$featuredMonographs = array();
 			if (!empty($featuredMonographIds)) {
-				$publishedMonographDao = DAORegistry::getDAO('PublishedMonographDAO');
-				$publishedMonographs = $publishedMonographDao->getByPressId($press->getId());
-				while ($publishedMonograph = $publishedMonographs->next()) {
-					foreach($featuredMonographIds as $key => $val) {
-						if ($publishedMonograph->getId() == $key) {
-							$featuredMonographs[] = $publishedMonograph;
-						}
-					}
+				foreach($featuredMonographIds as $submissionId => $value) {
+					$featuredMonographs[] = Services::get('submission')->get($submissionId);
 				}
 			}
 			$templateMgr->assign('featuredMonographs', $featuredMonographs);
@@ -133,7 +105,7 @@ class IndexHandler extends Handler {
 		// Display In Spotlight
 		if ($press->getSetting('displayInSpotlight')) {
 			// Include random spotlight items for the press home page.
-			$spotlightDao = DAORegistry::getDAO('SpotlightDAO');
+			$spotlightDao = DAORegistry::getDAO('SpotlightDAO'); /* @var $spotlightDao SpotlightDAO */
 			$spotlights = $spotlightDao->getRandomByPressId($press->getId(), MAX_SPOTLIGHTS_VISIBLE);
 			$templateMgr->assign('spotlights', $spotlights);
 		}
@@ -142,4 +114,3 @@ class IndexHandler extends Handler {
 	}
 }
 
-?>

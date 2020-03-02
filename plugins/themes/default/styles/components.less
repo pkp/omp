@@ -1,9 +1,9 @@
 /**
  * @file plugins/themes/default/styles/components.less
  *
- * Copyright (c) 2014-2016 Simon Fraser University Library
- * Copyright (c) 2003-2016 John Willinsky
- * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
+ * Copyright (c) 2014-2020 Simon Fraser University
+ * Copyright (c) 2003-2020 John Willinsky
+ * Distributed under the GNU GPL v3. For full terms see the file docs/COPYING.
  *
  * @brief Reusable components
  */
@@ -41,7 +41,7 @@
 	border-right: none;
 
 	&:after {
-		&:extend(.fa);
+		.fa();
 		content: @icon;
 		position: absolute;
 		top: -1px; // border;
@@ -76,7 +76,7 @@
 	text-decoration: none;
 
 	&:after {
-		&:extend(.fa);
+		.fa();
 		content: @icon;
 		position: absolute;
 		top: 2px;
@@ -224,7 +224,7 @@
 	//  more appropriate in the theme.
 	.tagit {
 		&:extend(.pkp_unstyled_list);
-		&:extend(.pkp_form input[type="text"]);
+		&:extend(.cmp_form input[type="text"]);
 		.pkp_helpers_clear();
 
 		// overwrite text field styles
@@ -309,7 +309,7 @@
 	text-decoration: none;
 
 	&:before {
-		&:extend(.fa);
+		.fa();
 		content: @fa-var-pencil;
 	}
 }
@@ -639,4 +639,49 @@
 // Backlink used on error.tpl and message.tpl
 .cmp_back_link {
 	margin-top: @double;
+}
+
+// Skip-to navigation links
+.cmp_skip_to_content a {
+	&:extend(.pkp_screen_reader);
+	display: block;
+	padding: 1em;
+	z-index: 99999;
+	background: @bg;
+	transform: translateX(-50%);
+
+	&:focus {
+		clip: auto;
+		top: 0;
+		left: 50%;
+	}
+}
+
+// Pagination
+.cmp_pagination {
+	.pkp_helpers_clear;
+	text-align: right;
+
+	.prev {
+		float: left;
+		margin-right: 0.5em;
+		text-decoration: none;
+
+		&:before {
+			.fa;
+			content: @fa-var-long-arrow-left;
+			margin-right: 0.5em;
+		}
+	}
+
+	.next {
+		margin-left: 0.5em;
+		text-decoration: none;
+
+		&:after {
+			.fa;
+			content: @fa-var-long-arrow-right;
+			margin-left: 0.5em;
+		}
+	}
 }
