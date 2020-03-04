@@ -1,6 +1,6 @@
 msgid ""
 msgstr ""
-"PO-Revision-Date: 2020-03-04 09:36+0000\n"
+"PO-Revision-Date: 2020-03-05 10:36+0000\n"
 "Last-Translator: Sergei Yukhimets <y_s_n@mail.ru>\n"
 "Language-Team: Russian <http://translate.pkp.sfu.ca/projects/omp/submission/"
 "ru/>\n"
@@ -215,7 +215,6 @@ msgstr "Глава"
 msgid "submission.artwork.permissions"
 msgstr "Разрешения"
 
-#, fuzzy
 msgid "submission.authorListSeparator"
 msgstr "; "
 
@@ -266,3 +265,139 @@ msgstr "Выбрать компонент"
 
 msgid "submission.submit.title"
 msgstr "Послать монографию"
+
+msgid "publication.scheduledIn"
+msgstr ""
+"Запланировано к опубликованию в  <a href=\"{$issueUrl}\">{$issueName}</a>."
+
+msgid "publication.publish.confirmation"
+msgstr ""
+"Требования к публикации выполнены. Вы уверены что хотите сделать этот пункт "
+"каталог публичным?"
+
+msgid "publication.publishedIn"
+msgstr "Опубликовано в  <a href=\"{$issueUrl}\">{$issueName}</a>."
+
+msgid "publication.required.issue"
+msgstr "Публикация должна входить в выпуск перед опубликованием."
+
+msgid "publication.invalidSeries"
+msgstr "Серия данной публикации не найдена."
+
+msgid "publication.catalogEntry.success"
+msgstr "Детали пункта каталога были обновлены."
+
+msgid "publication.catalogEntry"
+msgstr "Пункт каталога"
+
+msgid "catalog.browseTitles"
+msgstr "{$numTitles} Названий(е/я)"
+
+msgid "submission.list.saveFeatureOrder"
+msgstr "Сохранить порядок"
+
+msgid "submission.list.orderingFeaturesSection"
+msgstr ""
+"Перетащите или используйте стрелки вверх и вниз для смены порядка объектов в "
+"{$title}."
+
+msgid "submission.list.orderingFeatures"
+msgstr ""
+"Перетащите или используйте стрелки вверх и вниз для смены порядка объектов "
+"на домашней странице."
+
+msgid "submission.list.orderFeatures"
+msgstr "Порядок признаков"
+
+msgid "submission.list.itemsOfTotalMonographs"
+msgstr "{$count} из {$total} монографий(и/я)"
+
+msgid "submission.list.countMonographs"
+msgstr "{$count} монографий(и/я)"
+
+msgid "submission.list.monographs"
+msgstr "Монографии"
+
+msgid "section.any"
+msgstr "Любые Серии"
+
+msgid "submission.metadataDescription"
+msgstr ""
+"Эти спецификации основаны на наборе метаданных Dublin Core - международном "
+"стандарте описания контента изданий."
+
+msgid "submission.dependentFiles"
+msgstr "Зависимые файлы"
+
+msgid "submission.upload.fileContents"
+msgstr "Компонент подачи"
+
+msgid "workflow.review.externalReview"
+msgstr "Внешнее рецензирование"
+
+msgid "editor.submission.decision.sendExternalReview"
+msgstr "Послать на внешнее рецензирование"
+
+msgid "submission.submit.titleAndSummary"
+msgstr "Название и резюме"
+
+msgid "submission.event.publicationFormatRemoved"
+msgstr "Формат публикации  \"{$formatName}\" был удален."
+
+msgid "submission.event.publicationFormatCreated"
+msgstr "Формат публикации  \"{$formatName}\" был создан."
+
+msgid "submission.event.publicationMetadataUpdated"
+msgstr "Метаданные формата публикации  \"{$formatName}\" были обновлены."
+
+msgid "submission.event.catalogMetadataUpdated"
+msgstr "Метаданные каталога были обновлены."
+
+msgid "submission.event.publicationFormatUnpublished"
+msgstr "Формат публикации \"{$publicationFormatName}\" больше не опубликован."
+
+msgid "submission.event.publicationFormatPublished"
+msgstr ""
+"Формат публикации \"{$publicationFormatName}\" утвержден к опубликованию."
+
+msgid "submission.event.publicationFormatMadeUnavailable"
+msgstr "Формат публикации \"{$publicationFormatName}\" более не доступен."
+
+msgid "submission.event.publicationFormatMadeAvailable"
+msgstr "Формат публикации \"{$publicationFormatName}\" сделан доступным."
+
+msgid "submission.event.metadataUnpublished"
+msgstr "Метаданные монографии больше не опубликованы."
+
+msgid "submission.event.metadataPublished"
+msgstr "Метаданные монографии утверждены к публикации."
+
+msgid "submission.catalogEntry.publicationMetadata"
+msgstr "Формат публикации"
+
+msgid "submission.catalogEntry.catalogMetadata"
+msgstr "Каталог"
+
+msgid "submission.catalogEntry.monographMetadata"
+msgstr "Монография"
+
+msgid "submission.catalogEntry.enableChapterPublicationDates"
+msgstr "Каждая глава может иметь свою дату публикации."
+
+msgid "submission.catalogEntry.disableChapterPublicationDates"
+msgstr "Все главы будут использовать дату публикации монографии."
+
+msgid "submission.catalogEntry.chapterPublicationDates"
+msgstr "Даты публикации"
+
+msgid "submission.catalogEntry.viewSubmission"
+msgstr "Просмотр подачи"
+
+msgid "submission.catalogEntry.isAvailable"
+msgstr "Эта монография готова к размещению в публичном каталоге."
+
+msgid "submission.catalogEntry.confirm.required"
+msgstr "Пожалуйста, подтвердите, что подача готова для размещения в каталоге."
+
+msgid "submission.catalogEntry.confirm"
+msgstr "Добавить эту книгу в публичный каталог"
