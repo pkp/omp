@@ -1,2 +1,97 @@
 msgid ""
-msgstr "X-Generator: Weblate\nMIME-Version: 1.0\nContent-Type: text/plain; charset=UTF-8\nContent-Transfer-Encoding: 8bit"
+msgstr ""
+"PO-Revision-Date: 2020-03-05 10:36+0000\n"
+"Last-Translator: Sergei Yukhimets <y_s_n@mail.ru>\n"
+"Language-Team: Russian <http://translate.pkp.sfu.ca/projects/omp/default/ru/>"
+"\n"
+"Language: ru\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=3; plural=n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%10<="
+"4 && (n%100<10 || n%100>=20) ? 1 : 2;\n"
+"X-Generator: Weblate 3.9.1\n"
+
+msgid "default.groups.abbrev.volumeEditor"
+msgstr "РдТ"
+
+msgid "default.groups.plural.volumeEditor"
+msgstr "Редакторы томов"
+
+msgid "default.groups.name.volumeEditor"
+msgstr "Редактор тома"
+
+msgid "default.groups.abbrev.chapterAuthor"
+msgstr "АвГ"
+
+msgid "default.groups.plural.chapterAuthor"
+msgstr "Авторы глав"
+
+msgid "default.groups.name.chapterAuthor"
+msgstr "Автор главы"
+
+msgid "default.groups.abbrev.sectionEditor"
+msgstr "РдС"
+
+msgid "default.groups.plural.sectionEditor"
+msgstr "Редакторы серий"
+
+msgid "default.groups.name.sectionEditor"
+msgstr "Редактор серии"
+
+msgid "default.groups.abbrev.editor"
+msgstr "РдИ"
+
+msgid "default.groups.plural.editor"
+msgstr "Редакторы издания"
+
+msgid "default.groups.name.editor"
+msgstr "Редактор издания"
+
+msgid "default.groups.abbrev.manager"
+msgstr "МнИ"
+
+msgid "default.groups.plural.manager"
+msgstr "Менеджеры издания"
+
+msgid "default.groups.name.manager"
+msgstr "Менеджер издания"
+
+msgid "default.genres.other"
+msgstr "Другое"
+
+msgid "default.genres.illustration"
+msgstr "Иллюстрация"
+
+msgid "default.genres.photo"
+msgstr "Фото"
+
+msgid "default.genres.figure"
+msgstr "Рисунок"
+
+msgid "default.genres.table"
+msgstr "Таблица"
+
+msgid "default.genres.prospectus"
+msgstr "Брошюра"
+
+msgid "default.genres.preface"
+msgstr "Предисловие"
+
+msgid "default.genres.index"
+msgstr "Индекс"
+
+msgid "default.genres.glossary"
+msgstr "Глоссарий"
+
+msgid "default.genres.chapter"
+msgstr "Рукопись главы"
+
+msgid "default.genres.manuscript"
+msgstr "Рукопись книги"
+
+msgid "default.genres.bibliography"
+msgstr "Библиография"
+
+msgid "default.genres.appendix"
+msgstr "Приложение"
