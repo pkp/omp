@@ -1,2 +1,268 @@
 msgid ""
-msgstr "X-Generator: Weblate\nMIME-Version: 1.0\nContent-Type: text/plain; charset=UTF-8\nContent-Transfer-Encoding: 8bit"
+msgstr ""
+"PO-Revision-Date: 2020-03-04 09:36+0000\n"
+"Last-Translator: Sergei Yukhimets <y_s_n@mail.ru>\n"
+"Language-Team: Russian <http://translate.pkp.sfu.ca/projects/omp/submission/"
+"ru/>\n"
+"Language: ru\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=3; plural=n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%10<="
+"4 && (n%100<10 || n%100>=20) ? 1 : 2;\n"
+"X-Generator: Weblate 3.9.1\n"
+
+msgid "submission.catalogEntry.selectionMissing"
+msgstr "Вы должны выбрать хотя бы одну монографию для добавления в каталог."
+
+msgid "submission.catalogEntry.select"
+msgstr "Выбрать монографии для добавления в каталог"
+
+msgid "submission.catalogEntry.add"
+msgstr "Добавить выделенное в каталог"
+
+msgid "submission.catalogEntry.new"
+msgstr "Добавить запись в каталог"
+
+msgid "submission.editCatalogEntry"
+msgstr "Запись в каталоге"
+
+msgid "submission.incomplete"
+msgstr "Ожидает утверждения"
+
+msgid "submission.complete"
+msgstr "Утверждено"
+
+msgid "grid.copyediting.deleteCopyeditorResponse"
+msgstr "Удалить загрузку корректора"
+
+msgid "grid.chapters.title"
+msgstr "Главы"
+
+msgid "submission.submit.noContext"
+msgstr "Издание этой подачи не может быть найдено."
+
+msgid "submission.submit.userGroupDescription"
+msgstr ""
+"Если Вы посылаете Редактируемое издание, Вы должны выбрать роль редактора "
+"издания."
+
+msgid "submission.submit.userGroup"
+msgstr "Послать от меня в роли..."
+
+msgid "submission.submit.placement"
+msgstr "Размещение подачи"
+
+msgid "submission.submit.checklistErrors"
+msgstr ""
+"Пожалуйста прочтите и отметьте пункты в списке подачи.  Количество не "
+"отмеченных позиций  - {$itemsRemaining} ."
+
+msgid "submission.submit.whatNext.description"
+msgstr ""
+"Издательство проинформировано о Вашей подаче, и Вам отправлено email "
+"сообщение об этом. С Вами свяжутся как только редактор проверит подачу."
+
+msgid "submission.submit.generalInformation"
+msgstr "Общая информация"
+
+msgid "submission.submit.coverNote"
+msgstr "Сопроводительные заметки для Редактора"
+
+msgid "submission.submit.nextSteps"
+msgstr "Следующие шаги"
+
+msgid "submission.submit.confirmation"
+msgstr "Подтверждение"
+
+msgid "submission.submit.finishingUp"
+msgstr "Завершить"
+
+msgid "submission.submit.metadata"
+msgstr "Метаданные"
+
+msgid "submission.submit.catalog"
+msgstr "Каталог"
+
+msgid "submission.submit.prepare"
+msgstr "Подготовка"
+
+msgid "submission.submit.submissionFile"
+msgstr "Файл подачи"
+
+msgid "submission.submit.form.contributorRoleRequired"
+msgstr "Выберите роль участника пожалуйста."
+
+msgid "submission.submit.form.abstractRequired"
+msgstr "Введите краткое резюме вашей монографии."
+
+msgid "submission.submit.form.titleRequired"
+msgstr "Введите название монографии, пожалуйста."
+
+msgid "submission.submit.form.authorRequiredFields"
+msgstr "Требуются Имя, Фамилия и адрес email  каждого автора."
+
+msgid "submission.submit.form.authorRequired"
+msgstr "Требуется хотя бы один автор."
+
+msgid "submission.submit.contributorRole"
+msgstr "Роль участника"
+
+msgid "submission.submit.privacyStatement"
+msgstr "Заявление о конфиденциальности"
+
+msgid "submission.submit.form.localeRequired"
+msgstr "Выберите язык подачи, пожалуйста."
+
+msgid "submission.submit.seriesPosition.description"
+msgstr "Примеры: Книга 2, Том 2"
+
+msgid "submission.submit.seriesPosition"
+msgstr "Место серии"
+
+msgid "author.submit.seriesRequired"
+msgstr "Требуется серия."
+
+msgid "author.isVolumeEditor"
+msgstr "Обозначьте этого автора как редактора этого издания."
+
+msgid "submission.submit.selectSeries"
+msgstr "Выбор серии (не обязательно)"
+
+msgid "submission.submit.cancelSubmission"
+msgstr ""
+"Вы можете завершить эту подачу позже выбрав \"Активные подачи\" на домашней "
+"странице автора."
+
+msgid "submission.submit.upload"
+msgstr "Загрузить подачу"
+
+msgid "submission.submit.newSubmissionSingle"
+msgstr "Новая подача"
+
+msgid "submission.submit.newSubmissionMultiple"
+msgstr "Начать новую подачу в"
+
+msgid "submission.submit"
+msgstr "Начать новую подачу книги"
+
+msgid "grid.action.deleteChapter"
+msgstr "Удалить эту главу"
+
+msgid "grid.action.editChapter"
+msgstr "Править эту главу"
+
+msgid "grid.action.addChapter"
+msgstr "Создать новую главу"
+
+msgid "submission.supportingAgencies"
+msgstr "Поддерживающие агенства"
+
+msgid "submission.metadata"
+msgstr "Метаданные"
+
+msgid "submission.confirmSubmit"
+msgstr "Вы уверены что хотите отправить эту рукопись в издательство?"
+
+msgid "manuscript.submissions"
+msgstr "Подачи рукописи"
+
+msgid "submissions.queuedReview"
+msgstr "На рецензии"
+
+msgid "submission.round"
+msgstr "Раунд&nbsp;{$round}"
+
+msgid "manuscript.submission"
+msgstr "Подача рукописи"
+
+msgid "submission.sharing"
+msgstr "Поделиться этим"
+
+msgid "submission.download"
+msgstr "Загрузить"
+
+msgid "submission.proofs"
+msgstr "Гранки"
+
+msgid "submission.publicationFormats"
+msgstr "Форматы публикации"
+
+msgid "submission.copyedit"
+msgstr "Корректура"
+
+msgid "submission.chapter.pages"
+msgstr "Страницы"
+
+msgid "submission.chapter.editChapter"
+msgstr "Редактировать главу"
+
+msgid "submission.chapter.addChapter"
+msgstr "Добавить главу"
+
+msgid "submission.chaptersDescription"
+msgstr ""
+"Вы можете здесь перечислить главы и назначить авторов из списка авторов "
+"выше. Эти авторы будут иметь доступ к главам во время различных стадий "
+"издательского процесса."
+
+msgid "submission.chapters"
+msgstr "Главы"
+
+msgid "submission.chapter"
+msgstr "Глава"
+
+msgid "submission.artwork.permissions"
+msgstr "Разрешения"
+
+#, fuzzy
+msgid "submission.authorListSeparator"
+msgstr "; "
+
+msgid "submission.fairCopy"
+msgstr "Чистовик"
+
+msgid "submission.published"
+msgstr "Готово к печати"
+
+msgid "submission.monograph"
+msgstr "Монография"
+
+msgid "submission.editorName"
+msgstr "{$editorName} (под ред.)"
+
+msgid "submission.workflowType.change"
+msgstr "Изменить"
+
+msgid "submission.workflowType.authoredWork"
+msgstr "Монография: Авторы ассоциированы с книгой в целом."
+
+msgid "submission.workflowType.editedVolume"
+msgstr "Редактируемое издание: Авторы ассоциированы с их главами."
+
+msgid "submission.workflowType.editedVolume.label"
+msgstr "Редактируемое издание"
+
+msgid "submission.workflowType.description"
+msgstr ""
+"Монография это издание под авторством одного или нескольких авторов в целом. "
+"Редактируемое издание имеет различных авторов для каждой главы (с "
+"последующим вводом деталей для каждой главы.)"
+
+msgid "submission.workflowType"
+msgstr "Тип подачи"
+
+msgid "submission.synopsis"
+msgstr "Краткое описание"
+
+msgid "submission.select"
+msgstr "Выбрать Подачу"
+
+msgid "submission.title"
+msgstr "Название книги"
+
+msgid "submission.upload.selectComponent"
+msgstr "Выбрать компонент"
+
+msgid "submission.submit.title"
+msgstr "Послать монографию"
