@@ -9,8 +9,8 @@
   * Distributed under the GNU GPL v3. For full terms see the file docs/COPYING.
   *
   * Update the context setting `stylesheet` format to drop the image attributes
-	* object and replace it with a string referencing the filename. Also remove
-	* the unused original_style_file_name column from the site table.
+  * object and replace it with a string referencing the filename. Also remove
+  * the unused original_style_file_name column from the site table.
   *
   -->
 
