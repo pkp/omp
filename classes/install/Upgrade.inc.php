@@ -700,18 +700,21 @@ class Upgrade extends Installer {
 		$roles = UserGroupDAO::getNotChangeMetadataEditPermissionRoles();
 		$roleString = '(' . implode(",", $roles) . ')';
 
-		$userGroupDao->update(
-			'UPDATE user_groups
-			SET permit_metadata_edit = 1
-			WHERE role_id IN ' . $roleString
-		);
-
-		$stageAssignmentDao->update(
-			'UPDATE stage_assignments sa
-			JOIN user_groups ug on sa.user_group_id = ug.user_group_id
-			SET sa.can_change_metadata = 1
-			WHERE ug.role_id IN ' . $roleString
-		);
+		$userGroupDao->update('UPDATE user_groups SET permit_metadata_edit = 1 WHERE role_id IN ' . $roleString);
+		switch ($userGroupDao->getDriver()) {
+			case 'mysql':
+			case 'mysqli':
+				$stageAssignmentDao->update('UPDATE stage_assignments sa JOIN user_groups ug on sa.user_group_id = ug.user_group_id SET sa.can_change_metadata = 1 WHERE ug.role_id IN ' . $roleString);
+				break;
+			case 'postgres':
+			case 'postgres64':
+			case 'postgres7':
+			case 'postgres8':
+			case 'postgres9':
+				$stageAssignmentDao->update('UPDATE stage_assignments SET can_change_metadata=1 FROM stage_assignments sa JOIN user_groups ug ON (sa.user_group_id = ug.user_group_id) WHERE ug.role_id IN ' . $roleString);
+				break;
+			default: fatalError("Unknown database type $driver!");
+			}
 
 		return true;
 	}
