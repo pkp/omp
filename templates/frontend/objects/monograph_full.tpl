@@ -306,7 +306,7 @@
 								<p>{$parsedCitation->getCitationWithLinks()|strip_unsafe_html}</p>
 							{/iterate}
 						{elseif $monograph->getCitations()}
-							{$monograph->getCitations()|nl2br}
+							{$monograph->getCitations()|escape|nl2br}
 						{/if}
 					</div>
 				</div>
