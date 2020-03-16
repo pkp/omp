@@ -1,0 +1,137 @@
+msgid ""
+msgstr ""
+"PO-Revision-Date: 2020-03-04 09:36+0000\n"
+"Last-Translator: Sergei Yukhimets <y_s_n@mail.ru>\n"
+"Language-Team: Russian <http://translate.pkp.sfu.ca/projects/omp/admin/ru_RU/>\n"
+"Language: ru_RU\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=3; plural=n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%10<="
+"4 && (n%100<10 || n%100>=20) ? 1 : 2;\n"
+"X-Generator: Weblate 3.9.1\n"
+
+msgid "admin.overwriteConfigFileInstructions"
+msgstr ""
+"<h4>NOTE!</div>\n"
+"<p>Система не может автоматически перезаписать файл конфигурации. Для "
+"применения изменений в конфигурации нужно открыть <tt>config.inc.php</tt> в "
+"подходящем текстовом редакторе и заменить его содержимое текстом "
+"представленным ниже.</p>"
+
+msgid "admin.presses.addPress"
+msgstr "Добавить издательство"
+
+msgid "admin.contexts.contextDescription"
+msgstr "Описание издательства"
+
+msgid "admin.contexts.form.edit.success"
+msgstr "{$name} был успешно отредактирован."
+
+msgid "admin.contexts.form.create.success"
+msgstr "{$name} успешно создан."
+
+msgid "admin.contexts.form.pathExists"
+msgstr "Указанный Вами путь уже используется другим издательством."
+
+msgid "admin.contexts.form.pathAlphaNumeric"
+msgstr ""
+"Путь может содержать только буквы, цифры и символы _ и -. Путь должен "
+"начинаться и заканчиваться буквой или цифрой."
+
+msgid "admin.contexts.form.pathRequired"
+msgstr "Требуется путь."
+
+msgid "admin.contexts.form.titleRequired"
+msgstr "Требуется название."
+
+msgid "admin.contexts.create"
+msgstr "Создать Издательство"
+
+msgid "admin.presses.noneCreated"
+msgstr "Не создано ни одного Издательства."
+
+msgid "admin.presses.pressSettings"
+msgstr "Настройки Издательства"
+
+msgid "admin.systemConfiguration"
+msgstr "Конфигурация OMP"
+
+msgid "admin.systemVersion"
+msgstr "Версия OMP"
+
+msgid "admin.languages.confirmDisable"
+msgstr ""
+"Вы уверены, что хотите отключить этот язык? Это может повлиять на все "
+"размещенные издательства, которые сейчас используют его."
+
+msgid "admin.languages.downloadUnavailable"
+msgstr ""
+"<p>Скачивание языковых пакетов с веб-сервера Public Knowledge Project сейчас "
+"недоступно, поскольку:</p>\n"
+"\t<ul>\n"
+"\t\t<li>На вашем сервере утилита GNU «tar» не установлена или не разрешено "
+"выполнение ее сервером.</li>\n"
+"\t\t<li>OJS нет может изменить файл списка языков, обычно расположенный в «"
+"registry/locales.xml».</li>\n"
+"\t</ul>\n"
+"<p>Языковые пакеты могут быть вручную скачаны с <a href=\"http://pkp.sfu.ca\""
+" target=\"_blank\">веб-сайта PKP</a>.</p>"
+
+msgid "admin.languages.downloadFailed"
+msgstr ""
+"Загрузка языка завершилась ошибкой. Сообщения ниже описывают эту ошибку."
+
+msgid "admin.languages.noLocalesToDownload"
+msgstr "Нет доступных для скачивания языков."
+
+msgid "admin.languages.installNewLocalesInstructions"
+msgstr ""
+"Выберите дополнительные языки для установки их поддержки в этой системе. "
+"Языки должны быть установлены до того, как их можно будет использовать в "
+"размещенных издательствах. Смотрите в документации OMP информацию о том, как "
+"добавить поддержку новых языков."
+
+msgid "admin.settings.redirectInstructions"
+msgstr ""
+"Основной страницей сайта станет главная страница этого издательства. Это "
+"полезно, например, если на сайте размещается только одно издательство."
+
+msgid "admin.settings.appearance.success"
+msgstr "Настройки оформления сайта были успешно обновлены."
+
+msgid "admin.languages.confirmUninstall"
+msgstr ""
+"Вы уверены, что хотите отключить этот язык? Это может повлиять на все "
+"размещенные издательства, которые сейчас используют его."
+
+msgid "admin.locale.maybeIncomplete"
+msgstr "*Поддержка отмеченных языков может быть неполной."
+
+msgid "admin.languages.supportedLocalesInstructions"
+msgstr ""
+"Выберите все языки для поддержки на сайте. Выбранные языки будут доступны "
+"для всех издательств, расположенных на этом сайте, а также появятся в меню "
+"выбора языков на каждой странице сайта (эта настройка может быть изменена на "
+"страницах конкретного издательства). Если выбран только один язык, меню "
+"переключения языков не будет показываться, дополнительные языковые настройки "
+"для издательств также не будут доступны."
+
+msgid "admin.languages.primaryLocaleInstructions"
+msgstr ""
+"Это будет язык по умолчанию для сайта и всех размещенных на нем издательств."
+
+msgid "admin.settings.noPressRedirect"
+msgstr "Не преденаправлять"
+
+msgid "admin.settings.redirect"
+msgstr "Перенаправление издательства"
+
+msgid "admin.settings.info.success"
+msgstr "Информация на сайте была успешно обновлена."
+
+msgid "admin.settings.config.success"
+msgstr "Настройки конфигурации сайта была успешно обновлены."
+
+msgid "admin.hostedContexts"
+msgstr "Издательства на сайте"

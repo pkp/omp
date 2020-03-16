@@ -2,14 +2,14 @@
 <!DOCTYPE data SYSTEM "../../../lib/pkp/dtd/xmlData.dtd">
 
 <!--
-	* 3.2.0_update.xml
-	*
-	* Copyright (c) 2014-2020 Simon Fraser University
-	* Copyright (c) 2003-2020 John Willinsky
-	* Distributed under the GNU GPL v3. For full terms see the file docs/COPYING.
-	*
-	* 3.2.0.0 general updates.
-	-->
+  * 3.2.0_update.xml
+  *
+  * Copyright (c) 2014-2020 Simon Fraser University
+  * Copyright (c) 2003-2020 John Willinsky
+  * Distributed under the GNU GPL v3. For full terms see the file docs/COPYING.
+  *
+  * 3.2.0.0 general updates.
+  -->
 <data>
 	<sql><!-- pkp/pkp-lib#3248 Correct duplication of email signatures -->
 		<query>UPDATE email_templates_default_data SET body=REPLACE(body, '{$editorialContactSignature}', '') WHERE email_key IN ('EDITOR_ASSIGN', 'REVIEW_CANCEL', 'REVIEW_ACK', 'EDITOR_DECISION_ACCEPT', 'EDITOR_DECISION_SEND_TO_EXTERNAL', 'EDITOR_DECISION_SEND_TO_PRODUCTION', 'EDITOR_DECISION_REVISIONS', 'EDITOR_DECISION_RESUBMIT', 'EDITOR_DECISION_DECLINE', 'EDITOR_DECISION_INITIAL_DECLINE', 'EDITOR_RECOMMENDATION', 'COPYEDIT_REQUEST', 'LAYOUT_REQUEST', 'PROOFREAD_LAYOUT_REQUEST')</query>
@@ -20,7 +20,21 @@
 		<query>DROP TABLE cataloguing_metadata_field_settings</query>
 	</sql>
 	<sql><!-- pkp/pkp-lib#5445 Use new setting name for licenseUrl -->
-		<query>UPDATE journal_settings SET setting_name="licenseUrl" WHERE setting_name="licenseURL"</query>
+		<query>UPDATE press_settings SET setting_name='licenseUrl' WHERE setting_name='licenseURL'</query>
 	</sql>
+	<!-- Migrate email templates from email_templates_data to email_templates_settings -->
+	<sql>
+		<query>
+			INSERT INTO email_templates_settings (email_id, locale, setting_value, setting_name)
+			SELECT email_id, locale, subject, 'subject'
+			FROM email_templates_data
+		</query>
+		<query>
+			INSERT INTO email_templates_settings (email_id, locale, setting_value, setting_name)
+			SELECT email_id, locale, body, 'body'
+			FROM email_templates_data
+		</query>
+	</sql>
+	<drop table="email_templates_data" />
 </data>
 
