@@ -150,7 +150,7 @@ class PublicationService extends PKPPublicationService {
 				$submissionContext = Services::get('context')->get($submission->getData('contextId'));
 			}
 
-			$supportedLocales = $submissionContext->getSupportedLocales();
+			$supportedLocales = $submissionContext->getSupportedSubmissionLocales();
 			foreach ($supportedLocales as $localeKey) {
 				if (!array_key_exists($localeKey, $publication->getData('coverImage'))) {
 					continue;
