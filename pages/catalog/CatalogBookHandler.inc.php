@@ -80,7 +80,7 @@ class CatalogBookHandler extends Handler {
 			$this->publication = $submission->getCurrentPublication();
 		}
 
-		if (!$this->publication) {
+		if (!$this->publication || $this->publication->getData('status') !== STATUS_PUBLISHED) {
 			$request->getDispatcher()->handle404();
 		}
 
@@ -239,6 +239,20 @@ class CatalogBookHandler extends Handler {
 
 		$publicationFormat = Application::get()->getRepresentationDAO()->getByBestId($representationId, $publicationId);
 		if (!$publicationFormat || !$publicationFormat->getIsAvailable() || $remoteURL = $publicationFormat->getRemoteURL()) $dispatcher->handle404();
+
+		$publication = null;
+		foreach ((array) $submission->getData('publications') as $iPublication) {
+			if ($iPublication->getId() == $publicationId) {
+				$publication = $iPublication;
+				break;
+			}
+		}
+
+		if (empty($publication)
+				|| $publication->getData('status') !== STATUS_PUBLISHED
+				|| $publicationFormat->getData('publicationId') !== $publication->getId()) {
+			$dispatcher->handle404();
+		}
 
 		import('lib.pkp.classes.submission.SubmissionFile'); // File constants
 		$submissionFile = DAORegistry::getDAO('SubmissionFileDAO')->getByBestId($bestFileId, $submission->getId());
