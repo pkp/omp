@@ -44,7 +44,7 @@
 				</div>
 			</div>
 		{/if}
-		<iframe name="htmlFrame" src="{$downloadUrl}" allowfullscreen webkitallowfullscreen></iframe>
+		<iframe name="htmlFrame" src="{$downloadUrl}" title="{translate key="submission.representationOfTitle" representation=$galley->getLabel() title=$galleyPublication->getLocalizedFullTitle()|escape}" allowfullscreen webkitallowfullscreen></iframe>
 	</div>
 	{call_hook name="Templates::Common::Footer::PageFooter"}
 </body>
