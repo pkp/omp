@@ -9,7 +9,7 @@
  *
  *}
 <div class="pkp_block block_web_feed">
-	<span class="title">{translate key="plugins.generic.webfeed.newcontent"}</span>
+	<h2 class="title">{translate key="plugins.generic.webfeed.newcontent"}</h2>
 	<div class="content">
 		<ul>
 			<li>
