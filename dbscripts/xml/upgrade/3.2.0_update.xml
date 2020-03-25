@@ -34,7 +34,7 @@
 			SELECT email_id, locale, body, 'body'
 			FROM email_templates_data
 		</query>
+		<drop table="email_templates_data" />
 	</sql>
-	<drop table="email_templates_data" />
 </data>
 
