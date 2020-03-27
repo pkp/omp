@@ -15,8 +15,12 @@
 	<sql><!-- pkp/pkp-lib#5617 Make all theme plugins lazy load plugins -->
 		<query>UPDATE versions SET lazy_load = 1 WHERE product_type = 'plugins.themes'</query>
 	</sql>
-	<sql><!-- pkp/pkp-lib#5573: Filters need updating for shift to Submissions instead of Articles -->
+	<sql><!-- pkp/pkp-lib#5573: Filters need updating for shift to Submissions instead of Monographs -->
 		<query>UPDATE filter_groups SET input_type = 'class::classes.submission.Submission' WHERE input_type = 'class::classes.monograph.Monograph'</query>
 		<query>UPDATE filter_groups SET output_type = 'class::classes.submission.Submission' WHERE output_type = 'class::classes.monograph.Monograph'</query>
+	</sql>
+	<sql><!-- pkp/pkp-lib#5681: Filters need updating for shift to Submissions instead of Monographs -->
+		<query>UPDATE filter_groups SET input_type = 'class::classes.submission.Submission[]' WHERE input_type = 'class::classes.monograph.Monograph[]'</query>
+		<query>UPDATE filter_groups SET output_type = 'class::classes.submission.Submission[]' WHERE output_type = 'class::classes.monograph.Monograph[]'</query>
 	</sql>
 </data>
