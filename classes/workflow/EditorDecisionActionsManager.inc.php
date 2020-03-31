@@ -24,6 +24,7 @@ define('SUBMISSION_EDITOR_DECISION_DECLINE', 6);
 define('SUBMISSION_EDITOR_DECISION_EXTERNAL_REVIEW', 3);
 define('SUBMISSION_EDITOR_DECISION_PENDING_REVISIONS', 4);
 define('SUBMISSION_EDITOR_DECISION_RESUBMIT', 5);
+define('SUBMISSION_EDITOR_DECISION_NEW_ROUND', 16);
 
 // Review stage recommendation actions.
 define('SUBMISSION_EDITOR_RECOMMEND_EXTERNAL_REVIEW', 15);
@@ -147,6 +148,10 @@ class EditorDecisionActionsManager extends PKPEditorDecisionActionsManager {
 				SUBMISSION_EDITOR_DECISION_RESUBMIT => array(
 					'name' => 'resubmit',
 					'title' => 'editor.submission.decision.resubmit',
+				),
+				SUBMISSION_EDITOR_DECISION_NEW_ROUND => array(
+					'name' => 'newround',
+					'title' => 'editor.submission.decision.newRound',
 				),
 				SUBMISSION_EDITOR_DECISION_EXTERNAL_REVIEW => array(
 					'operation' => 'promoteInReview',
