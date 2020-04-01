@@ -32,12 +32,20 @@
 			{assign var="isFeatured" value=false}
 		{/if}
 		{if $isFeatured}
-			{include file="frontend/objects/monograph_summary.tpl" monograph=$monograph isFeatured=$isFeatured}
+			{if $heading && $titleKey}
+				{include file="frontend/objects/monograph_summary.tpl" monograph=$monograph isFeatured=$isFeatured heading="h3"}
+			{else}
+				{include file="frontend/objects/monograph_summary.tpl" monograph=$monograph isFeatured=$isFeatured heading="h2"}
+			{/if}
 		{else}
 			{if $counter is odd by 1}
 				<div class="row">
 			{/if}
-				{include file="frontend/objects/monograph_summary.tpl" monograph=$monograph isFeatured=$isFeatured}
+				{if $heading && $titleKey}
+					{include file="frontend/objects/monograph_summary.tpl" monograph=$monograph isFeatured=$isFeatured heading="h3"}
+				{else}
+					{include file="frontend/objects/monograph_summary.tpl" monograph=$monograph isFeatured=$isFeatured heading="h2"}
+				{/if}
 			{if $counter is even by 1}
 				</div>
 			{/if}

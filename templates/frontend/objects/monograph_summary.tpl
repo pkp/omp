@@ -11,25 +11,29 @@
  * @uses $isFeatured bool Is this a featured monograph?
  *}
 <div class="obj_monograph_summary{if $isFeatured} is_featured{/if}">
-	<a href="{url page="catalog" op="book" path=$monograph->getBestId()}" class="cover">
-		{assign var="coverImage" value=$monograph->getCurrentPublication()->getLocalizedData('coverImage')}
-		<img
-			src="{$monograph->getCurrentPublication()->getLocalizedCoverImageThumbnailUrl($monograph->getData('contextId'))}"
-			alt="{$coverImage.altText|escape|default:''}"
-		>
-	</a>
-	{if $monograph->getSeriesPosition()}
-		<div class="seriesPosition">
-			{$monograph->getSeriesPosition()|escape}
+		<a href="{url page="catalog" op="book" path=$monograph->getBestId()}" class="cover">
+			{assign var="coverImage" value=$monograph->getCurrentPublication()->getLocalizedData('coverImage')}
+			<img
+				src="{$monograph->getCurrentPublication()->getLocalizedCoverImageThumbnailUrl($monograph->getData('contextId'))}"
+				alt="{$coverImage.altText|escape|default:''}"
+			>
+		</a>
+		<div class="wrapper">
+			{if $monograph->getSeriesPosition()}
+				<div class="seriesPosition">
+					{$monograph->getSeriesPosition()|escape}
+				</div>
+			{/if}
+			<{$heading} class="title">
+				<a href="{url router=$smarty.const.ROUTE_PAGE page="catalog" op="book" path=$monograph->getBestId()}">
+					{$monograph->getLocalizedFullTitle()|escape}
+				</a>
+			</{$heading}>
+			<div class="author">
+				{$monograph->getAuthorOrEditorString()|escape}
+			</div>
+			<div class="date">
+				{$monograph->getDatePublished()|date_format:$dateFormatLong}
+			</div>
 		</div>
-	{/if}
-	<a href="{url router=$smarty.const.ROUTE_PAGE page="catalog" op="book" path=$monograph->getBestId()}" class="title">
-		{$monograph->getLocalizedFullTitle()|escape}
-	</a>
-	<div class="author">
-		{$monograph->getAuthorOrEditorString()|escape}
-	</div>
-	<div class="date">
-		{$monograph->getDatePublished()|date_format:$dateFormatLong}
-	</div>
 </div><!-- .obj_monograph_summary -->
