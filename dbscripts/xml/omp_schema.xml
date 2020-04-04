@@ -312,47 +312,6 @@
 
 	<!--
 	  *
-	  * TABLE series_editors
-	  *
-	  -->
-	<table name="series_editors">
-		<field name="press_id" type="I8">
-			<NOTNULL />
-		</field>
-		<field name="series_id" type="I8">
-			<NOTNULL />
-		</field>
-		<field name="user_id" type="I8">
-			<NOTNULL />
-		</field>
-		<field name="can_edit" type="I1">
-			<NOTNULL />
-			<DEFAULT VALUE="1" />
-		</field>
-		<field name="can_review" type="I1">
-			<NOTNULL />
-			<DEFAULT VALUE="1" />
-		</field>
-		<descr>Assignments of series editors to series.</descr>
-		<index name="series_editors_press_id">
-			<col>press_id</col>
-		</index>
-		<index name="series_editors_series_id">
-			<col>series_id</col>
-		</index>
-		<index name="series_editors_user_id">
-			<col>user_id</col>
-		</index>
-		<index name="series_editors_pkey">
-			<col>press_id</col>
-			<col>series_id</col>
-			<col>user_id</col>
-			<UNIQUE />
-		</index>
-	</table>
-
-	<!--
-	  *
 	  * TABLE publications
 	  *
 	  -->
