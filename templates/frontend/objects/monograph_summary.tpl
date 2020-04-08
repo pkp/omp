@@ -18,22 +18,20 @@
 				alt="{$coverImage.altText|escape|default:''}"
 			>
 		</a>
-		<div class="wrapper">
-			{if $monograph->getSeriesPosition()}
-				<div class="seriesPosition">
-					{$monograph->getSeriesPosition()|escape}
-				</div>
-			{/if}
-			<{$heading} class="title">
-				<a href="{url router=$smarty.const.ROUTE_PAGE page="catalog" op="book" path=$monograph->getBestId()}">
-					{$monograph->getLocalizedFullTitle()|escape}
-				</a>
-			</{$heading}>
-			<div class="author">
-				{$monograph->getAuthorOrEditorString()|escape}
+		{if $monograph->getSeriesPosition()}
+			<div class="seriesPosition">
+				{$monograph->getSeriesPosition()|escape}
 			</div>
-			<div class="date">
-				{$monograph->getDatePublished()|date_format:$dateFormatLong}
-			</div>
+		{/if}
+		<{$heading} class="title">
+			<a href="{url router=$smarty.const.ROUTE_PAGE page="catalog" op="book" path=$monograph->getBestId()}">
+				{$monograph->getLocalizedFullTitle()|escape}
+			</a>
+		</{$heading}>
+		<div class="author">
+			{$monograph->getAuthorOrEditorString()|escape}
+		</div>
+		<div class="date">
+			{$monograph->getDatePublished()|date_format:$dateFormatLong}
 		</div>
 </div><!-- .obj_monograph_summary -->

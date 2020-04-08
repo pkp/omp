@@ -37,17 +37,14 @@
 		text-decoration: none;
 	}
 
-	.wrapper {
-		padding-right: 1rem;
-	}
-
 	.title {
-		display: inline-block;
 		font-family: @font-heading;
 		font-size: @font-base;
 		font-weight: @bold;
-		margin: 0;
-		line-height: 0;
+		margin-top: 0;
+		margin-bottom: 0;
+		margin-left: 0;
+		line-height: @line-base;
 	}
 
 	.author {
@@ -71,7 +68,7 @@
 
 	@media(min-width: @screen-tablet) {
 
-		> * {
+		> *, .title {
 			display: block;
 			margin-left: @base * 11;
 		}
