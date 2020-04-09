@@ -353,7 +353,7 @@ class CatalogBookHandler extends Handler {
 	 * @param $request PKPRequest
 	 * @param $submission Submission
 	 */
-	function setupTemplate($request, $submission) {
+	function setupTemplate($request, $submission = null) {
 		$templateMgr = TemplateManager::getmanager($request);
 		if ($seriesId = $submission->getSeriesId()) {
 			$seriesDao = DAORegistry::getDAO('SeriesDAO'); /* @var $seriesDao SeriesDAO */
