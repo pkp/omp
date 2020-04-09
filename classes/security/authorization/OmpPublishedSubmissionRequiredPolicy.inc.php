@@ -57,7 +57,7 @@ class OmpPublishedSubmissionRequiredPolicy extends DataObjectRequiredPolicy {
 	 * @copydoc DataObjectRequiredPolicy::getDataObjectId()
 	 * Considers a not numeric public URL identifier
 	 */
-	function getDataObjectId() {
+	function getDataObjectId($lookOnlyByParameterName = false) {
 		// Identify the data object id.
 		$router = $this->_request->getRouter();
 		switch(true) {
@@ -72,7 +72,7 @@ class OmpPublishedSubmissionRequiredPolicy extends DataObjectRequiredPolicy {
 				break;
 
 			default:
-				return parent::getDataObjectId();
+				return parent::getDataObjectId($lookOnlyByParameterName);
 		}
 
 		return false;
