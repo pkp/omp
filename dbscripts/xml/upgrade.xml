@@ -10,7 +10,7 @@
   * Upgrade descriptor file.
   -->
 
-<install version="3.2.0.1">
+<install version="3.2.0.2">
 	<code function="checkPhpVersion" />
 
 	<!-- there are some column and table name changes that need to occur first. -->
