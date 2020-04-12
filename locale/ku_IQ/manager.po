@@ -1,2 +1,397 @@
 msgid ""
-msgstr "X-Generator: Weblate\nMIME-Version: 1.0\nContent-Type: text/plain; charset=UTF-8\nContent-Transfer-Encoding: 8bit"
+msgstr ""
+"PO-Revision-Date: 2020-04-13 01:02+0000\n"
+"Last-Translator: Hewa Salam Khalid <hewa.salam@koyauniversity.org>\n"
+"Language-Team: Kurdish <http://translate.pkp.sfu.ca/projects/omp/manager/"
+"ku_IQ/>\n"
+"Language: ku_IQ\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: Weblate 3.9.1\n"
+
+msgid "manager.setup.homepageContent"
+msgstr "ناوەرۆکی پەڕەی سەرەکی"
+
+msgid "manager.setup.pressArchiving"
+msgstr "ئەرشیفکردنی بڵاوکراوە"
+
+msgid "manager.setup.aboutPress"
+msgstr "دەربارەی بڵاوکراوەکە"
+
+msgid "manager.setup.pressDescription.description"
+msgstr "ناساندنێکی کورتی بڵاوکراوەکەت."
+
+msgid "manager.setup.pressDescription"
+msgstr "کورتەی بڵاوکراوە"
+
+msgid "manager.setup.privacyStatement.success"
+msgstr "تایبەتمەندێتی نوێ کرایەوە."
+
+msgid "manager.setup.policies"
+msgstr "سیاسەتەکان"
+
+msgid "manager.setup.onlineIssn"
+msgstr "ISSNی ئۆنلاین"
+
+msgid "manager.setup.numPageLinks"
+msgstr "لینکی پەیجەکان"
+
+msgid "manager.setup.note"
+msgstr "تێبینی"
+
+msgid "manager.setup.noStyleSheetUploaded"
+msgstr "هیچ ستایلێک بار نەکراوە."
+
+msgid "manager.setup.noImageFileUploaded"
+msgstr "هیچ وێنەیەک بار نەکراوە."
+
+msgid "manager.setup.managingThePress"
+msgstr "هەنگاوی چوارەم: بەڕێوەبردن و ڕێکخستنەکان"
+
+msgid "manager.setup.settings"
+msgstr "ڕێکخستنەکان"
+
+msgid "manager.setup.look"
+msgstr "سەیرکردن و هەستکردن"
+
+msgid "manager.setup.lists.success"
+msgstr "لیستەکانی ئەم گۆڤارە نوێ کرانەوە."
+
+msgid "manager.setup.lists"
+msgstr "لیستەکان"
+
+msgid "manager.setup.layoutTemplates.title"
+msgstr "ناونیشان"
+
+msgid "manager.setup.layoutTemplates.file"
+msgstr "فایلی قاڵب"
+
+msgid "manager.setup.layoutTemplates"
+msgstr "قاڵبەکانی لەیئاوت"
+
+msgid "manager.setup.layoutInstructions"
+msgstr "ڕێنماییەکانی لەیئاوت"
+
+msgid "manager.setup.layoutAndGalleys"
+msgstr "سەرنوسەرانی لەیئاوت"
+
+msgid "manager.setup.labelName"
+msgstr "ناوی لەیبڵ"
+
+msgid "manager.setup.keyInfo"
+msgstr "زانیارییە گرنگەکان"
+
+msgid "manager.setup.itemsPerPage"
+msgstr "دانەکان بە گوێرەی پەڕەکان"
+
+msgid "manager.setup.institution"
+msgstr "دەزگا"
+
+msgid "manager.setup.information.success"
+msgstr "زانیارییەکانی ئەم بڵاوکراوەیە نوێ کرانەوە."
+
+msgid "manager.setup.information.forReaders"
+msgstr "بۆ خوێنەران"
+
+msgid "manager.setup.information.forLibrarians"
+msgstr "بۆ کەسانی کتێبخانە"
+
+msgid "manager.setup.information.forAuthors"
+msgstr "بۆ نوسەران"
+
+msgid "manager.setup.information"
+msgstr "زانیاری"
+
+msgid "manager.setup.identity"
+msgstr "ناسنامەی بڵاوکراوە"
+
+msgid "manager.setup.preparingWorkflow"
+msgstr "هەنگاوی سێیەم: ئامادەکردنی ڕێڕەوی کار"
+
+msgid "manager.setup.guidelines"
+msgstr "ڕێبەرییەکان"
+
+msgid "manager.setup.generalInformation"
+msgstr "زانیاریی گشتی"
+
+msgid "manager.setup.form.supportNameRequired"
+msgstr "ناوی پەیوەندیی هاریکار داوا کراوە."
+
+msgid "manager.setup.form.supportEmailRequired"
+msgstr "ئیمەیڵی هاریکار داوا کراوە."
+
+msgid "manager.setup.form.numReviewersPerSubmission"
+msgstr "ژمارەی هەڵسەنگێنەران بۆ هەر پێشکەشکردنێک داوا کراوە."
+
+msgid "manager.setup.form.contactNameRequired"
+msgstr "ناوی سەرەکی بۆ پەیوەندیکردن داوا کراوە."
+
+msgid "manager.setup.form.contactEmailRequired"
+msgstr "ئیمەیڵی سەرەکی داوا کراوە."
+
+msgid "manager.setup.forAuthorsToIndexTheirWork"
+msgstr "پێنوێنیکردنی بڵاوکراوەکان بۆ نوسەران"
+
+msgid "manager.setup.focusScopeDescription"
+msgstr "<strong>نمونەی داتای HTML </strong>"
+
+msgid "manager.setup.focusScope"
+msgstr "سەرنج و ئامانج"
+
+msgid "manager.setup.focusAndScope"
+msgstr "سەنج و ئامانجی بڵاوکراوەکە"
+
+msgid "manager.setup.numAnnouncementsHomepage"
+msgstr "پیشاندانی پەڕەی سەرەکی"
+
+msgid "manager.setup.enableAnnouncements.enable"
+msgstr "چالاککردنی ئاگادارکردنەوەکان"
+
+msgid "manager.setup.emailSignature"
+msgstr "واژۆ"
+
+msgid "manager.setup.emails"
+msgstr "ناسێنەری ئیمەیڵ"
+
+msgid "manager.setup.editorDecision"
+msgstr "بڕیاری سەرنوسەر"
+
+msgid "manager.setup.doiPrefix"
+msgstr "پێشگری ناسێنەری سەرچاوە دیجیتاڵییەکان"
+
+msgid "manager.setup.displayNewReleases.label"
+msgstr "بەرهەمی نوێ"
+
+msgid "manager.setup.displayOnHomepage"
+msgstr "ناوەرۆکی پەڕەی سەرەکی"
+
+msgid "manager.setup.details"
+msgstr "زانیارییەکان"
+
+msgid "manager.setup.customTags"
+msgstr "تاگکردن"
+
+msgid "manager.setup.copyrightNotice"
+msgstr "ئاگادارکردنەوەی وردبینی"
+
+msgid "manager.setup.copyeditInstructions"
+msgstr "ڕێنماییەکانی وردبینی"
+
+msgid "manager.setup.copyediting"
+msgstr "وردبینەکان"
+
+msgid "manager.setup.contextSummary"
+msgstr "کورتکراوەیەک دەربارەی بڵاوکراوەکە"
+
+msgid "manager.setup.contextAbout"
+msgstr "دەربارەی بڵاوکراوەکە"
+
+msgid "manager.setup.announcementsIntroduction"
+msgstr "زانیاریی گشتی"
+
+msgid "manager.setup.announcements"
+msgstr "ئاگادارکردنەوەکان"
+
+msgid "manager.setup.addSponsor"
+msgstr "دەزگای سپۆنسەر زیاد بکە"
+
+msgid "manager.setup.addNavItem"
+msgstr "دانەیەک زیاد بکە"
+
+msgid "manager.setup.addItem"
+msgstr "دانەیەک زیاد بکە"
+
+msgid "manager.setup.addAboutItem"
+msgstr "زیادکردنی دەربارەی"
+
+msgid "manager.setup.aboutItemContent"
+msgstr "ناوەرۆک"
+
+msgid "manager.setup"
+msgstr "ڕێکخستن"
+
+msgid "manager.pressManagement"
+msgstr "بەڕێوەبردنی بڵاوکراوە"
+
+msgid "manager.system.payments"
+msgstr "پارەدانەکان"
+
+msgid "manager.system.readingTools"
+msgstr "کەرەستەکانی خوێندنەوە"
+
+msgid "manager.system.reviewForms"
+msgstr "فۆڕمەکانی هەڵسەنگاندن"
+
+msgid "manager.system.archiving"
+msgstr "ئەرشیفکردن"
+
+msgid "manager.system"
+msgstr "ڕێکخستنەکانی سیستەمەکە"
+
+msgid "manager.people.enrollSyncPress"
+msgstr "لەگەڵ بڵاوکراوە"
+
+msgid "manager.people.enrollExistingUser"
+msgstr "هەمو بەکارهێنەرەکان تۆمار بکە"
+
+msgid "manager.people.allUsers"
+msgstr "هەمو بەکارهێنەرە تۆمارکراوەکان"
+
+msgid "manager.people.allSiteUsers"
+msgstr "بەکارهێنەرێک لەم پەڕەیە و لەم بڵاوکراوەیە تۆمار بکە"
+
+msgid "manager.people.allPresses"
+msgstr "هەمو بڵاوکراوەکان"
+
+msgid "manager.people.allEnrolledUsers"
+msgstr "ئەو بەکارهێنەرانەی لەم بڵاوکراوەیە تۆمار کراون"
+
+msgid "manager.users.selectRole"
+msgstr "ڕۆڵێک دیاری بکە"
+
+msgid "manager.users.currentRoles"
+msgstr "ڕۆڵەکانی ئێستا"
+
+msgid "manager.users.availableRoles"
+msgstr "ڕۆڵە چالاکەکان"
+
+msgid "manager.tools"
+msgstr "کەرەستەکان"
+
+msgid "manager.statistics.reports.defaultReport.pressIndexPageViews"
+msgstr "پەڕەی پیشاندانی بڵاوکراوەکان"
+
+msgid "manager.statistics.reports.defaultReport.seriesIndexPageViews"
+msgstr "پەڕەی سەرەکیی پیشاندانی زنجیرەکان"
+
+msgid "manager.statistics.reports.defaultReport.monographAbstractAndDownloads"
+msgstr "دابەزاندنی پوختەی مۆنۆگرافەکان"
+
+msgid "manager.statistics.reports.defaultReport.monographAbstract"
+msgstr "پیشاندانی پەڕەی پوختەی مۆنۆگرافەکان"
+
+msgid "manager.statistics.reports.defaultReport.monographDownloads"
+msgstr "دابەزاندنی فایلی مۆنۆگراف"
+
+msgid "manager.settings.publisherCodeType.invalid"
+msgstr "ئەم جۆری کۆدە نابێت."
+
+msgid "manager.settings.publisherCodeType"
+msgstr "جۆری کۆدی بڵاوکەرەوە"
+
+msgid "manager.settings.publisherCode"
+msgstr "کۆدی بڵاوکەرەوە"
+
+msgid "manager.settings.location"
+msgstr "شوێنی جوگرافی"
+
+msgid "manager.settings.publisher"
+msgstr "ناوی بڵاوکەرەوە"
+
+msgid "manager.settings.publisher.identity"
+msgstr "ناسنامەی بڵاوکەرەوە"
+
+msgid "manager.settings.press"
+msgstr "بڵاوکراوە"
+
+msgid "manager.settings.pressSettings"
+msgstr "ڕێکخستنی بڵاوکراوەکە"
+
+msgid "manager.settings"
+msgstr "ڕێکخستنەکان"
+
+msgid "manager.payment.success"
+msgstr "ڕێکخستنی شێوازی پارەدان نوێ کرایەوە."
+
+msgid "manager.payment.options.enablePayments"
+msgstr ""
+"پارە بۆ ئەم بڵاوکراوەیە چالاک دەکرێت. تێبینی؛ بەکارهێنان لە کاتی داخل بوندا "
+"ئاگادار دەکرێنەوە بۆ پارەدان."
+
+msgid "manager.payment.generalOptions"
+msgstr "بژاردە گشتییەکان"
+
+msgid "manager.series.restricted"
+msgstr "ڕێگا بە نوسەران مەدە کە بە ڕاستەوخۆیی بۆ ئەم زنجیرەیە پێشکەش بکەن."
+
+msgid "manager.series.seriesTitle"
+msgstr "ناونیشانی زنجیرە"
+
+msgid "manager.series.existingUsers"
+msgstr "بەکارهێنەرە تۆمارکراوەکان"
+
+msgid "manager.series.noneCreated"
+msgstr "هیچ زنجیرەیەک دروست نەکراوە."
+
+msgid "manager.series.form.titleRequired"
+msgstr "ناونیشانێک بۆ زنجیرەکە پێویستە."
+
+msgid "manager.series.form.abbrevRequired"
+msgstr "ناونیشانێکی کورتکراوە بۆ ئەم زنجیرەیە پێویستە."
+
+msgid "manager.series.unassigned"
+msgstr "سەرنوسەرانی بەردەست"
+
+msgid "manager.series.hideAbout"
+msgstr "سڕینەوەی ئەم زنجیرەیە لە بەشی دەربارەی بڵاوکراوەکە."
+
+msgid "manager.series.assigned"
+msgstr "سەرنوسەرانی ئەم زنجیرەیە"
+
+msgid "manager.series.policy"
+msgstr "ناساندنی زنجیرەکە"
+
+msgid "manager.series.create"
+msgstr "زنجیرەیەک دروست بکە"
+
+msgid "manager.series.book"
+msgstr "زنیرەی کتێب"
+
+msgid "manager.series.disableComments"
+msgstr "تێچێنی خوێنەر ناچالاک بکە."
+
+msgid "manager.series.abstractsNotRequired"
+msgstr "داوای پوختە مەکە"
+
+msgid "manager.series.submissionsToThisSection"
+msgstr "ئەو بابەتانەی کە بۆ ئەم زنجیرەیە پێشکەش کراون"
+
+msgid "manager.series.submissionReview"
+msgstr "ئەمە هەڵسەنگاندنی بۆ ناکرێت"
+
+msgid "manager.series.readingTools"
+msgstr "کەرەستەکانی خوێندنەوە"
+
+msgid "manager.series.open"
+msgstr "پێشکەشکردنی کراوە"
+
+msgid "manager.series.indexed"
+msgstr "پێنوێن کرا"
+
+msgid "manager.series.confirmDelete"
+msgstr "ئایا تۆ دڵنیایت لە سڕینەوەی تەواوی ئەم زنجیرەیە؟"
+
+msgid "manager.series.editorRestriction"
+msgstr "بابەت تەنیا لە لایەن سەرنوسەرەکانەوە پێشکەش دەکرێت."
+
+msgid "manager.series.submissionIndexing"
+msgstr "ئەمە لە پێنوێنی بڵاوکراوەکە بەردەست نابێت"
+
+msgid "manager.series.form.reviewFormId"
+msgstr "تکایە لەوە دڵنیا ببە کە فۆڕمێکی هەڵسەنگاندنی دروستت هەڵ بژاردووە."
+
+msgid "manager.series.form.mustAllowPermission"
+msgstr "تکایە لەوە دڵنیا ببە کە بۆ هەر ئەرکێک بۆکسێک دەستنیشان کرابێت."
+
+msgid "manager.languages.primaryLocaleInstructions"
+msgstr "ئەم زمانە زمانی سەرەکیی پەڕەیە دەبێت."
+
+msgid "manager.languages.noneAvailable"
+msgstr ""
+"ببورە ئەم زمانە بەردەست نییە. پەیوەندی بە بەڕێوەبەرانی پەڕەکەوە بکە ئەگەر تۆ "
+"دەتەوێت زمانێکی تایبەت بۆ ئەم بڵاوکراوەیە بەکار بهێنیت."
+
+msgid "manager.language.confirmDefaultSettingsOverwrite"
+msgstr "ئەمەڕێکخستنی هەمو بڵاوکراوەکان ئاڵوگۆڕ دەکات کە تۆ هەتە"
