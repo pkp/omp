@@ -2,14 +2,17 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"Last-Translator: \n"
-"Language-Team: \n"
+"POT-Creation-Date: 2019-09-30T07:09:53-07:00\n"
+"PO-Revision-Date: 2020-04-16 14:37+0000\n"
+"Last-Translator: Jordi LC <jordi.lacruz@uab.cat>\n"
+"Language-Team: Catalan <http://translate.pkp.sfu.ca/projects/omp/"
+"importexport-onix30/ca/>\n"
+"Language: ca_ES\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"POT-Creation-Date: 2019-09-30T07:09:53-07:00\n"
-"PO-Revision-Date: 2019-09-30T07:09:53-07:00\n"
-"Language: \n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: Weblate 3.9.1\n"
 
 msgid "plugins.importexport.onix30.displayName"
 msgstr "Mòdul d'exportació de monografies ONIX 3.0"
@@ -34,3 +37,44 @@ msgstr "Vàlid"
 
 msgid "plugins.importexport.onix30.formatInvalid"
 msgstr "Invàlid"
+
+msgid "plugins.importexport.onix30.form.addresseeField.tip"
+msgstr ""
+"Podeu deixar aquest camp en blanc i crear una exportació general. Això "
+"suposarà que l'exportació ONIX no tingui &lt;destinatari&gt; compost. "
+
+msgid "plugins.importexport.onix30.form.addresseeField"
+msgstr "Destinatari (receptor/a) d'aquesta exportació"
+
+msgid "plugins.importexport.onix30.pressMissingFields"
+msgstr ""
+"A aquesta publicació li manca alguna informació necessària. Aneu a "
+"Configuració > Flux de treball > Producció i completeu les dades que hi "
+"falten."
+
+msgid "plugins.importexport.onix30.selectMonograph"
+msgstr "Seleccionar una monografia per exportar:"
+
+msgid "plugins.importexport.onix30.exportSubmissionsSelect"
+msgstr "Seleccionar les monografies per exportar"
+
+msgid "plugins.importexport.onix30.noFormats"
+msgstr "Les monografies sense formats de publicació no es mostren."
+
+msgid "plugins.importexport.onix30.export.error.monographNotFound"
+msgstr ""
+"Cap monografia coincideix amb l'identificador de monografia especificat \""
+"{$monographId}\"."
+
+msgid "plugins.importexport.onix30.export.error.couldNotWrite"
+msgstr "No s'ha pogut escriure en l'arxiu \"{$fileName}\"."
+
+msgid "plugins.importexport.onix30.error.unknownPress"
+msgstr "La ruta editorial especificada, \"{$contextPath}\", no existeix."
+
+msgid "plugins.importexport.onix30.cliUsage"
+msgstr ""
+"Ús: {$scriptName} {$pluginName} [xmlFileName] [pressPath] [monographId] "
+
+msgid "plugins.importexport.onix30.description"
+msgstr "Exportar metadades de monografies en format ONIX 3.0"
