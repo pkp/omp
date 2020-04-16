@@ -1,2 +1,42 @@
 msgid ""
-msgstr "X-Generator: Weblate\nMIME-Version: 1.0\nContent-Type: text/plain; charset=UTF-8\nContent-Transfer-Encoding: 8bit"
+msgstr ""
+"PO-Revision-Date: 2020-04-16 14:37+0000\n"
+"Last-Translator: Fylypovych Georgii <red.ukr@gmail.com>\n"
+"Language-Team: Ukrainian <http://translate.pkp.sfu.ca/projects/omp/"
+"themes-default/uk/>\n"
+"Language: uk\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=3; plural=n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%10<="
+"4 && (n%100<10 || n%100>=20) ? 1 : 2;\n"
+"X-Generator: Weblate 3.9.1\n"
+
+#, fuzzy
+msgid "plugins.themes.default.option.typography.notoSerif_notoSans"
+msgstr ""
+"Noto Serif/Noto Sans: Доповнений сполученням з serif заголовками та sans-"
+"serif основного тексту."
+
+#, fuzzy
+msgid "plugins.themes.default.option.typography.notoSerif"
+msgstr "Noto Serif: serif-варіант для цифрового-нативного шрифту від Google."
+
+#, fuzzy
+msgid "plugins.themes.default.option.typography.notoSans"
+msgstr ""
+"Noto Sans:  Цифровий-нативний шрифт розроблений Google для широкої мовної "
+"підтримки."
+
+msgid "plugins.themes.default.option.typography.description"
+msgstr "Оберіть комбінацію Шрифтів, що відповідає цьому жупналу."
+
+#, fuzzy
+msgid "plugins.themes.default.option.typography.label"
+msgstr "Типографія"
+
+msgid "plugins.themes.default.description"
+msgstr "Ця тема впроваджує тему за замовчуванням."
+
+msgid "plugins.themes.default.name"
+msgstr "Тема за замовчуванням"
