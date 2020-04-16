@@ -787,7 +787,7 @@ class Upgrade extends Installer {
 				$row['submission_id'],
 				$row['submission_id'],
 				'coverImage',
-				'_t'
+				't'
 			]) . '.' . $thumbPathInfo['extension'];
 			$publicFileManager->copyContextFile(
 				$row['context_id'],
