@@ -86,7 +86,7 @@ class CatalogBookHandler extends Handler {
 
 		// If the publication has been reached through an outdated
 		// urlPath, redirect to the latest version
-		if (!ctype_digit($submissionId) && $submissionId !== $this->publication->getData('urlPath') && !$subPath) {
+		if (!ctype_digit((string) $submissionId) && $submissionId !== $this->publication->getData('urlPath') && !$subPath) {
 			$newArgs = $args;
 			$newArgs = $this->publication->getData('urlPath')
 				? $this->publication->getData('urlPath')

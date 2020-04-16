@@ -43,7 +43,7 @@ class OmpPublishedSubmissionRequiredPolicy extends DataObjectRequiredPolicy {
 
 		// Make sure the published submissions belongs to the press.
 		$submission = Services::get('submission')->getByUrlPath($submissionId, $this->context->getId());
-		if (!$submission && ctype_digit($submissionId)) {
+		if (!$submission && ctype_digit((string) $submissionId)) {
 			$submission = Services::get('submission')->get($submissionId);
 		}
 		if (!$submission || $submission->getData('status') !== STATUS_PUBLISHED) return AUTHORIZATION_DENY;
