@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2019-11-28T15:10:03-08:00\n"
-"PO-Revision-Date: 2020-04-16 14:37+0000\n"
+"PO-Revision-Date: 2020-04-17 21:18+0000\n"
 "Last-Translator: Jordi LC <jordi.lacruz@uab.cat>\n"
 "Language-Team: Catalan <http://translate.pkp.sfu.ca/projects/omp/manager/ca/>"
 "\n"
@@ -910,3 +910,45 @@ msgstr ""
 
 msgid "manager.payment.generalOptions"
 msgstr "Opcions generals"
+
+msgid "manager.setup.displayNewReleases.label"
+msgstr "Novetats"
+
+msgid "manager.setup.displayInSpotlight.label"
+msgstr "Focus"
+
+msgid "manager.setup.displayFeaturedBooks.label"
+msgstr "Llibres destacats"
+
+msgid "manager.setup.displayOnHomepage"
+msgstr "Contingut de la pàgina d'inici"
+
+msgid "manager.setup.coverThumbnailsMaxWidthHeight.description"
+msgstr ""
+"Les imatges es reduiran quan siguin més grans d'aquesta mida, però mai "
+"s'ampliaran ni s'estiraran per ajustar-se a aquestes dimensions."
+
+msgid "manager.setup.coverThumbnailsMaxWidth"
+msgstr "Amplada màxima de la imatge de coberta"
+
+msgid "manager.setup.coverThumbnailsMaxHeight"
+msgstr "Alçària màxima de la imatge de coberta"
+
+msgid "manager.setup.contextSummary"
+msgstr "Resum de la publicació"
+
+msgid "manager.setup.contextAbout.description"
+msgstr ""
+"Incloeu tota la informació sobre la vostra publicació que considereu "
+"d'interès per a lectors/es, autors/es o revisors/es. Això podria incloure la "
+"política d'accés obert, el focus i l'abast de la publicació, la divulgació "
+"del patrocini i la història de la revista."
+
+msgid "manager.setup.contextAbout"
+msgstr "Quant a la publicació"
+
+msgid "manager.setup.announcements.success"
+msgstr "La configuració dels avisos s'ha actualitzat."
+
+msgid "user.authorization.pluginLevel"
+msgstr "No teniu suficients privilegis per gestionar aquest mòdul."
