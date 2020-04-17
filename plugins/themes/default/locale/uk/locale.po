@@ -1,6 +1,6 @@
 msgid ""
 msgstr ""
-"PO-Revision-Date: 2020-04-16 14:37+0000\n"
+"PO-Revision-Date: 2020-04-17 14:15+0000\n"
 "Last-Translator: Fylypovych Georgii <red.ukr@gmail.com>\n"
 "Language-Team: Ukrainian <http://translate.pkp.sfu.ca/projects/omp/"
 "themes-default/uk/>\n"
@@ -40,3 +40,24 @@ msgstr "Ця тема впроваджує тему за замовчуванн�
 
 msgid "plugins.themes.default.name"
 msgstr "Тема за замовчуванням"
+
+msgid "plugins.themes.default.option.useHomepageImageAsHeader.option"
+msgstr "Показувати зображення домашньої сторінки фоном заголовку."
+
+msgid "plugins.themes.default.option.useHomepageImageAsHeader.description"
+msgstr ""
+"Коли зображення  домашньої сторінки завантажено, відображати його на фоні "
+"заголовку замість звичного позиціонування на домашній сторінці."
+
+msgid "plugins.themes.default.option.useHomepageImageAsHeader.label"
+msgstr "Фонове зображення Заголовку"
+
+msgid "plugins.themes.default.option.colour.description"
+msgstr "Оберіть колір для заголовку."
+
+msgid "plugins.themes.default.option.colour.label"
+msgstr "Колір"
+
+#, fuzzy
+msgid "plugins.themes.default.option.typography.lato"
+msgstr "Lato: Популярний новітній sans-serif шрифт."
