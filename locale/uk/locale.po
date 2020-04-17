@@ -1,2 +1,85 @@
 msgid ""
-msgstr "X-Generator: Weblate\nMIME-Version: 1.0\nContent-Type: text/plain; charset=UTF-8\nContent-Transfer-Encoding: 8bit"
+msgstr ""
+"PO-Revision-Date: 2020-04-17 14:15+0000\n"
+"Last-Translator: Fylypovych Georgii <red.ukr@gmail.com>\n"
+"Language-Team: Ukrainian <http://translate.pkp.sfu.ca/projects/omp/locale/uk/"
+">\n"
+"Language: uk\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=3; plural=n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%10<="
+"4 && (n%100<10 || n%100>=20) ? 1 : 2;\n"
+"X-Generator: Weblate 3.9.1\n"
+
+msgid "monograph.publicationFormat.missingONIXFields"
+msgstr "Відсутні певні поля з метаданими."
+
+msgid "monograph.publicationFormat.noCodesAssigned"
+msgstr "Відсутній ідентифікатор."
+
+msgid "monograph.publicationFormat.noMarketsAssigned"
+msgstr "Відсутні магазини і ціни."
+
+msgid "monograph.publicationFormat.productRegion"
+msgstr "Регіон Росповсюдження"
+
+msgid "monograph.publicationFormat.countryOfManufacture"
+msgstr "Країна-виробник"
+
+msgid "monograph.publicationFormat.productWidth"
+msgstr "Довжина"
+
+msgid "monograph.publicationFormat.productWeight"
+msgstr "Вага"
+
+msgid "monograph.publicationFormat.productThickness"
+msgstr "Товщина"
+
+msgid "monograph.publicationFormat.productHeight"
+msgstr "Висота"
+
+msgid "monograph.publicationFormat.productFileSize"
+msgstr "Розмір файлу в Мб"
+
+msgid "monograph.publicationFormat.productDimensions"
+msgstr "Фізичні розміри"
+
+msgid "monograph.publicationFormat.digitalInformation"
+msgstr "Цифрова Інформація"
+
+msgid "monograph.publicationFormat.discountAmount"
+msgstr "Відсоток знижки, якщо така застосовується"
+
+msgid "monograph.publicationFormat.priceRequired"
+msgstr "Необхідно зазначити ціну."
+
+msgid "monograph.publicationFormat.price"
+msgstr "Ціна"
+
+msgid "monograph.publicationFormat.pageCounts"
+msgstr "Кількість сторінок"
+
+msgid "monograph.accessLogoOpen.altText"
+msgstr "Відкритий Доступ"
+
+msgid "monograph.task.addNote"
+msgstr "Додати до завдання"
+
+msgid "monograph.type"
+msgstr "Тип Подання"
+
+msgid "monograph.carousel.publicationFormats"
+msgstr "Формати:"
+
+msgid "monograph.miscellaneousDetails"
+msgstr "Деталі про цю монографію"
+
+msgid "monograph.languages"
+msgstr "Мови (Англійська, Французька, Іспанська)"
+
+msgid "monograph.coverImage"
+msgstr "Зображення Обкладинки"
+
+msgid "monograph.audience"
+msgstr "Аудиторія"
