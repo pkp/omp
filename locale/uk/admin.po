@@ -1,6 +1,6 @@
 msgid ""
 msgstr ""
-"PO-Revision-Date: 2020-04-16 14:37+0000\n"
+"PO-Revision-Date: 2020-04-18 18:17+0000\n"
 "Last-Translator: Fylypovych Georgii <red.ukr@gmail.com>\n"
 "Language-Team: Ukrainian <http://translate.pkp.sfu.ca/projects/omp/admin/uk/>"
 "\n"
@@ -50,3 +50,38 @@ msgstr "Налаштування оформлення сайту були усп
 
 msgid "admin.hostedContexts"
 msgstr "Видавництво на сайті"
+
+msgid "admin.languages.downloadUnavailable"
+msgstr ""
+"<p>Завантаження мовних пакетів з веб-серверу Public Knowledge Project "
+"недоступно через наступне:</p>\n"
+"\t<ul>\n"
+"\t\t<li>На вашому сервері Або не встановлено утиліту GNU \"tar\" або не "
+"дозволено використання її сервером.</li>\n"
+"\t\t<li>OMP не зміг модифікувати файл реєстру мов, який зазвичай знаходиться "
+"в \"registry/locales.xml\".</li>\n"
+"\t</ul>\n"
+"<p>Мовні пакети можуть бути завантажені з <a href=\"http://pkp.sfu.ca\" "
+"target=\"_blank\">веб-сайту PKP</a>.</p>"
+
+#, fuzzy
+msgid "admin.languages.downloadFailed"
+msgstr ""
+"Помилка при завантаженні мови. Повідомлення з помилками нижче описують "
+"проблему."
+
+msgid "admin.languages.noLocalesToDownload"
+msgstr "Немає доступних мов для зкачування."
+
+#, fuzzy
+msgid "admin.languages.installNewLocalesInstructions"
+msgstr ""
+"Оберіть додаткові мови для встановлення їх підтримки у цій системі. Мови "
+"повинні бути проінстальовані до того, як ними почнуть користуватися "
+"розміщені видавництва. Детальніше дивіться документацію OMP , як додати "
+"підтримку нових мов."
+
+msgid "admin.languages.confirmUninstall"
+msgstr ""
+"Ви впевнені, що хочете вимкнути цю мову? Це може вплинути на всі розміщені "
+"видавництва, які використовують цю мову."
