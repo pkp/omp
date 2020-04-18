@@ -1,6 +1,6 @@
 msgid ""
 msgstr ""
-"PO-Revision-Date: 2020-04-17 14:15+0000\n"
+"PO-Revision-Date: 2020-04-18 18:17+0000\n"
 "Last-Translator: Fylypovych Georgii <red.ukr@gmail.com>\n"
 "Language-Team: Ukrainian <http://translate.pkp.sfu.ca/projects/omp/locale/uk/"
 ">\n"
@@ -83,3 +83,336 @@ msgstr "Зображення Обкладинки"
 
 msgid "monograph.audience"
 msgstr "Аудиторія"
+
+#, fuzzy
+msgid "grid.catalogEntry.representativeIdType"
+msgstr "ID Тип Представника (рекомендовано GLN)"
+
+#, fuzzy
+msgid "grid.catalogEntry.representativeIdValue"
+msgstr "ID Представника"
+
+msgid "grid.catalogEntry.representativeWebsite"
+msgstr "Адреса веб-сайту"
+
+msgid "grid.catalogEntry.representativeEmail"
+msgstr "Адреса електронної пошти"
+
+msgid "grid.catalogEntry.representativePhone"
+msgstr "Телефон"
+
+msgid "grid.catalogEntry.representativeName"
+msgstr "Ім'я"
+
+msgid "grid.catalogEntry.representativeRole"
+msgstr "Роль"
+
+msgid "grid.catalogEntry.representativeRoleChoice"
+msgstr "Оберіть роль:"
+
+msgid "grid.catalogEntry.supplier"
+msgstr "Постачальник"
+
+#, fuzzy
+msgid "grid.catalogEntry.agentTip"
+msgstr ""
+"Ви можете призначити агента для представництва ваших інтересів у обраному "
+"вами регіоні.  Не є обов'язковим."
+
+msgid "grid.catalogEntry.agent"
+msgstr "Агент"
+
+msgid "grid.catalogEntry.suppliersCategory"
+msgstr "Постачальники"
+
+#, fuzzy
+msgid "grid.catalogEntry.agentsCategory"
+msgstr "Агенти"
+
+#, fuzzy
+msgid "grid.catalogEntry.representativeType"
+msgstr "Тип Представництва"
+
+msgid "grid.catalogEntry.representatives"
+msgstr "Представники"
+
+#, fuzzy
+msgid "grid.catalogEntry.dateRequired"
+msgstr ""
+"Необхідно ввести дату і значення дати має співпадати з обраним форматом дати."
+
+msgid "grid.catalogEntry.dateFormat"
+msgstr "Формат Дати"
+
+msgid "grid.catalogEntry.dateRole"
+msgstr "Роль"
+
+msgid "grid.catalogEntry.dateValue"
+msgstr "Дата"
+
+#, fuzzy
+msgid "grid.catalogEntry.dateFormatRequired"
+msgstr "Необхіден формат дати"
+
+#, fuzzy
+msgid "grid.catalogEntry.roleRequired"
+msgstr "Необхідна роль представника."
+
+msgid "grid.catalogEntry.publicationDates"
+msgstr "Дати Публікації"
+
+#, fuzzy
+msgid "grid.catalogEntry.marketTerritory"
+msgstr "Територія"
+
+#, fuzzy
+msgid "grid.catalogEntry.markets"
+msgstr "Території Магазинів"
+
+msgid "grid.catalogEntry.excluded"
+msgstr "Виключено"
+
+msgid "grid.catalogEntry.included"
+msgstr "Включно"
+
+#, fuzzy
+msgid "grid.catalogEntry.regions"
+msgstr "Регіони\\Області"
+
+msgid "grid.catalogEntry.countries"
+msgstr "Країни"
+
+#, fuzzy
+msgid "grid.catalogEntry.oneROWPerFormat"
+msgstr "There is already a ROW sales type defined for this publication format."
+
+#, fuzzy
+msgid "grid.catalogEntry.salesRightsROW.tip"
+msgstr ""
+"Check this box to use this Sales Rights entry as a catch-all for your "
+"format.  Countries and regions need not be chosen in this case."
+
+msgid "grid.catalogEntry.salesRightsROW"
+msgstr "Решта Світу?"
+
+#, fuzzy
+msgid "grid.catalogEntry.salesRightsType"
+msgstr "Види Прав на росповсюдження"
+
+#, fuzzy
+msgid "grid.catalogEntry.salesRightsValue"
+msgstr "Код"
+
+#, fuzzy
+msgid "grid.catalogEntry.salesRights"
+msgstr "Права на Росповсюдження"
+
+msgid "grid.catalogEntry.valueRequired"
+msgstr "Необхідно ввести значення."
+
+#, fuzzy
+msgid "monograph.audience.rangeQualifier"
+msgstr "Audience Range Qualifier"
+
+#, fuzzy
+msgid "monograph.publicationFormat.taxRate"
+msgstr "Ставка Податку"
+
+#, fuzzy
+msgid "monograph.publicationFormat.productFormDetailCode"
+msgstr "Деталі Товару (не обов'язково)"
+
+#, fuzzy
+msgid "grid.catalogEntry.identificationCodeValue"
+msgstr "Значення Коду"
+
+#, fuzzy
+msgid "grid.catalogEntry.productAvailabilityRequired"
+msgstr "Необхідно ввести код доступності товару"
+
+#, fuzzy
+msgid "grid.catalogEntry.fileSizeRequired"
+msgstr "Необхідно ввести розмір файлу для цифрових форматів."
+
+#, fuzzy
+msgid "grid.catalogEntry.availableRepresentation.proofNotApproved"
+msgstr "Підтвердження не затверджено."
+
+#, fuzzy
+msgid "grid.catalogEntry.availableRepresentation.notApprovedWarning"
+msgstr "Формат відсутній в каталозі."
+
+#, fuzzy
+msgid "grid.catalogEntry.availableRepresentation.catalogNotApprovedWarning"
+msgstr "Запис у каталозі не підтверджено."
+
+#, fuzzy
+msgid "grid.catalogEntry.availableRepresentation.title"
+msgstr "Доступність формату"
+
+#, fuzzy
+msgid "grid.catalogEntry.approvedRepresentation.title"
+msgstr "Затвердження формату"
+
+#, fuzzy
+msgid "grid.catalogEntry.proof"
+msgstr "Підтвердження"
+
+#, fuzzy
+msgid "grid.catalogEntry.publicationFormatRequired"
+msgstr "Необхідно обрати публікаційний формат."
+
+#, fuzzy
+msgid "grid.catalogEntry.remoteURL"
+msgstr "URL дистанційно розміщеного контенту"
+
+#, fuzzy
+msgid "grid.catalogEntry.remotelyHostedContent"
+msgstr "Цей формат буде доступний на окремому сайті"
+
+#, fuzzy
+msgid "grid.catalogEntry.physicalFormat"
+msgstr "Фізичний формат"
+
+#, fuzzy
+msgid "grid.catalogEntry.publicationFormatDetails"
+msgstr "Деталі Формату"
+
+#, fuzzy
+msgid "grid.catalogEntry.publicationFormatType"
+msgstr "Публікаційний формат"
+
+#, fuzzy
+msgid "monograph.publicationFormat.isApproved"
+msgstr ""
+"Включити метадані для цього публікаційного формату в каталозі для цієї книги."
+
+#, fuzzy
+msgid "monograph.publicationFormat.taxType"
+msgstr "Види податку"
+
+#, fuzzy
+msgid "monograph.publicationFormat.returnInformation"
+msgstr "Маркер можливості повернення"
+
+#, fuzzy
+msgid "monograph.publicationFormat.productIdentifierType"
+msgstr "Ідентифікація Товару"
+
+#, fuzzy
+msgid "grid.catalogEntry.codeRequired"
+msgstr "необхідно ввести Ідентифікаційний код."
+
+msgid "grid.catalogEntry.identificationCodeType"
+msgstr "ONIX Code Type"
+
+msgid "grid.catalogEntry.productCompositionRequired"
+msgstr "A product composition code must be chosen."
+
+msgid "grid.catalogEntry.availableRepresentation.notApproved"
+msgstr "Очікує підтвердження"
+
+msgid "grid.catalogEntry.availableRepresentation.approved"
+msgstr "Підтверджено"
+
+msgid "grid.catalogEntry.availableRepresentation.removeMessage"
+msgstr ""
+"<p>This format will <em>unavailable to readers</em>. Any downloadable files "
+"or other distributions will no longer appear in the book's catalog entry.</p>"
+
+msgid "grid.catalogEntry.availableRepresentation.message"
+msgstr ""
+"<p>Зробіть цей формат<em>доступним для читачів</em>. Можливість завантаження "
+"файлів і інші види доставки з'являться на сторінці книги у каталозі.</p>"
+
+msgid "grid.catalogEntry.approvedRepresentation.removeMessage"
+msgstr ""
+"<p>Indicate that the metadata for this format has not been approved.</p>"
+
+msgid "grid.catalogEntry.approvedRepresentation.message"
+msgstr ""
+"<p>Approve the metadata for this format. Metadata can be checked from the "
+"Edit panel for each format.</p>"
+
+msgid "grid.catalogEntry.isNotAvailable"
+msgstr "Не доступно"
+
+msgid "grid.catalogEntry.isAvailable"
+msgstr "Доступно"
+
+msgid "grid.catalogEntry.availability"
+msgstr "Доступність"
+
+msgid "grid.catalogEntry.monographRequired"
+msgstr "Необхідно ввести ID  Монографії."
+
+msgid "monograph.proofReadingDescription"
+msgstr ""
+"The layout editor uploads the production-ready files that have been prepared "
+"for publication here. Use <em>+Assign</em> to designate authors and others "
+"to proofread the page proofs, with corrected files uploaded for approval "
+"prior to publication."
+
+msgid "grid.catalogEntry.validPriceRequired"
+msgstr "Необхідно ввести коректну ціну."
+
+msgid "grid.catalogEntry.nameRequired"
+msgstr "Необхідно ввести Ім'я."
+
+msgid "monograph.publicationFormat.openTab"
+msgstr "Open publication format tab."
+
+msgid "monograph.publicationFormat.formatDoesNotExist"
+msgstr ""
+"<p>Обраний вами публікаційний формат більше не існує для цієї монографії.</p>"
+
+msgid "monograph.publicationFormat.technicalProtection"
+msgstr "Цифровий Захист"
+
+msgid "monograph.publicationFormat.productFileSize.override"
+msgstr "Ввести власне значення розміру файлу?"
+
+msgid "monograph.publicationFormat.productDimensionsSeparator"
+msgstr " x "
+
+msgid "monograph.publicationFormat.productAvailability"
+msgstr "Доступність Товару"
+
+msgid "monograph.publicationFormat.priceType"
+msgstr "Тип Ціни"
+
+msgid "monograph.publicationFormat.productComposition"
+msgstr "Product Composition"
+
+msgid "monograph.publicationFormat.backMatterCount"
+msgstr "Back Matter"
+
+msgid "monograph.publicationFormat.frontMatterCount"
+msgstr "Front Matter"
+
+msgid "monograph.publicationFormat.imprint"
+msgstr "Видавництво (Назва Компанії)"
+
+msgid "submission.pageProofs"
+msgstr "Підтвердження сторінок"
+
+msgid "monograph.publicationFormatDetails"
+msgstr "Деталі щодо доступних публікаційних форматів : {$format}"
+
+msgid "monograph.publicationFormat"
+msgstr "Формат"
+
+msgid "monograph.publicationFormats"
+msgstr "Публікаційні формати"
+
+msgid "monograph.audience.rangeExact"
+msgstr "Вибір Аудиторії (конкретно)"
+
+msgid "monograph.audience.rangeTo"
+msgstr "Вибір Аудиторії (до)"
+
+msgid "monograph.audience.rangeFrom"
+msgstr "Вибір Аудиторії (від)"
+
+msgid "monograph.audience.success"
+msgstr "Деталі аудиторії збережено."
