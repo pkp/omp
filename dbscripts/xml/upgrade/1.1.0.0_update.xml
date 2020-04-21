@@ -70,10 +70,10 @@
 
 	<!-- Bug #8495: Review round and signoff deletes leave orphaned notifications. -->
 	<sql>
-		<query driver="mysql">DELETE notifications FROM notifications LEFT JOIN review_rounds ON (notifications.assoc_id=review_rounds.review_round_id) WHERE notifications.assoc_type=523 AND review_rounds.review_round_id IS NULL</query><!-- ASSOC_TYPE_REVIEW_ROUND -->
-		<query driver="postgres7">DELETE FROM notifications n WHERE n.assoc_type=523 AND NOT EXISTS(SELECT 1 FROM review_rounds r WHERE r.review_round_id=n.assoc_id)</query><!-- ASSOC_TYPE_REVIEW_ROUND -->
-		<query driver="mysql">DELETE notifications FROM notifications LEFT JOIN signoffs ON (notifications.assoc_id=signoffs.signoff_id) WHERE notifications.assoc_type=1048582 AND signoffs.signoff_id IS NULL</query><!-- ASSOC_TYPE_SIGNOFF -->
-		<query driver="postgres7">DELETE FROM notifications n WHERE n.assoc_type=1048582 AND NOT EXISTS(SELECT 1 FROM signoffs s WHERE s.signoff_id=n.assoc_id)</query><!-- ASSOC_TYPE_SIGNOFF -->
+		<query driver="mysql,mysqli">DELETE notifications FROM notifications LEFT JOIN review_rounds ON (notifications.assoc_id=review_rounds.review_round_id) WHERE notifications.assoc_type=523 AND review_rounds.review_round_id IS NULL</query><!-- ASSOC_TYPE_REVIEW_ROUND -->
+		<query driver="postgres,postgres64,postgres7,postgres8,postgres9">DELETE FROM notifications n WHERE n.assoc_type=523 AND NOT EXISTS(SELECT 1 FROM review_rounds r WHERE r.review_round_id=n.assoc_id)</query><!-- ASSOC_TYPE_REVIEW_ROUND -->
+		<query driver="mysql,mysqli">DELETE notifications FROM notifications LEFT JOIN signoffs ON (notifications.assoc_id=signoffs.signoff_id) WHERE notifications.assoc_type=1048582 AND signoffs.signoff_id IS NULL</query><!-- ASSOC_TYPE_SIGNOFF -->
+		<query driver="postgres,postgres64,postgres7,postgres8,postgres9">DELETE FROM notifications n WHERE n.assoc_type=1048582 AND NOT EXISTS(SELECT 1 FROM signoffs s WHERE s.signoff_id=n.assoc_id)</query><!-- ASSOC_TYPE_SIGNOFF -->
 	</sql>
 
 	<!-- Bug #8551: Ambiguity between acronym and initials -->
