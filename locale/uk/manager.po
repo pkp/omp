@@ -1,2 +1,161 @@
 msgid ""
-msgstr "X-Generator: Weblate\nMIME-Version: 1.0\nContent-Type: text/plain; charset=UTF-8\nContent-Transfer-Encoding: 8bit"
+msgstr ""
+"PO-Revision-Date: 2020-04-22 14:38+0000\n"
+"Last-Translator: Fylypovych Georgii <red.ukr@gmail.com>\n"
+"Language-Team: Ukrainian <http://translate.pkp.sfu.ca/projects/omp/manager/"
+"uk/>\n"
+"Language: uk\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=3; plural=n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%10<="
+"4 && (n%100<10 || n%100>=20) ? 1 : 2;\n"
+"X-Generator: Weblate 3.9.1\n"
+
+msgid "manager.setup.copyeditInstructions"
+msgstr "Інструкції з Літературного Редагування"
+
+msgid "manager.setup.copyediting"
+msgstr "Літературні Редактори"
+
+msgid "manager.setup.contextAbout"
+msgstr "Про Видавництво"
+
+msgid "manager.setup.appearInAboutPress"
+msgstr "(для появи в \"Про Видавництво\") "
+
+msgid "manager.setup.announcementsIntroduction"
+msgstr "Додаткова Інформація"
+
+msgid "manager.setup.announcements.success"
+msgstr "Налаштування оголошень оновлено."
+
+msgid "manager.setup.announcements"
+msgstr "Оголошення"
+
+msgid "manager.setup.addSponsor"
+msgstr "Додати Організацію-Спонсора"
+
+msgid "manager.setup.addNavItem"
+msgstr "Додати матеріал"
+
+msgid "manager.setup.addItemtoAboutPress"
+msgstr "Додати матеріал, що з'явиться на сторіці \"Про Видавництво\""
+
+msgid "manager.setup.addItem"
+msgstr "Додати Матеріал"
+
+msgid "manager.setup.addAboutItem"
+msgstr "Додати Інформацію Про"
+
+msgid "manager.setup.aboutItemContent"
+msgstr "Контент"
+
+msgid "manager.setup"
+msgstr "Інсталяція"
+
+msgid "manager.pressManagement"
+msgstr "Керування Видавництвом"
+
+msgid "user.authorization.pluginLevel"
+msgstr "У вас недостатньо прав для керування цим плагіном."
+
+msgid "manager.system.payments"
+msgstr "Платежі"
+
+msgid "manager.system.archiving"
+msgstr "Архівування"
+
+msgid "manager.system"
+msgstr "Системні Налаштування"
+
+msgid "manager.people.confirmDisable"
+msgstr ""
+"Деактивувати цього користувача? Це зробить неможливим вхід користовуча до "
+"системи.\n"
+"\n"
+"Ви можете вказати користувачу причину деактивування облікового запису."
+
+msgid "manager.people.allPresses"
+msgstr "Усі Видавництва"
+
+msgid "manager.users.selectRole"
+msgstr "Обрати Роль"
+
+msgid "manager.users.availableRoles"
+msgstr "Доступні Ролі"
+
+msgid "manager.tools"
+msgstr "Інструменти"
+
+msgid "manager.statistics.reports.defaultReport.monographAbstract"
+msgstr "Переглядів Анотації Монографії"
+
+msgid "manager.statistics.reports.defaultReport.monographDownloads"
+msgstr "Завантаження файлів Монографії"
+
+msgid "manager.settings.publisherCode"
+msgstr "Код Видавця"
+
+msgid "manager.settings.location"
+msgstr "Географічне місцезнаходження"
+
+msgid "manager.settings.publisher"
+msgstr "Ім'я Видавця"
+
+msgid "manager.settings.publisher.identity"
+msgstr "Ідентифікатор Видавця"
+
+msgid "manager.settings.press"
+msgstr "Видавництво"
+
+msgid "manager.settings.pressSettings"
+msgstr "Налаштування Видавництва"
+
+msgid "manager.settings"
+msgstr "Налаштування"
+
+msgid "manager.payment.success"
+msgstr "Налаштування оплати оновлено."
+
+msgid "manager.payment.generalOptions"
+msgstr "Загальні Налаштування"
+
+msgid "manager.series.seriesTitle"
+msgstr "Назва Серії"
+
+msgid "manager.series.existingUsers"
+msgstr "Існуючі Користувачі"
+
+msgid "manager.series.noneCreated"
+msgstr "Жодної серії не створено."
+
+msgid "manager.series.form.titleRequired"
+msgstr "Необхідно ввести назву для Серії."
+
+msgid "manager.series.unassigned"
+msgstr "Доступні Редактори Серій"
+
+msgid "manager.series.assigned"
+msgstr "Редактори для Серій"
+
+msgid "manager.series.policy"
+msgstr "Опис Серії"
+
+msgid "manager.series.create"
+msgstr "Створити Серії"
+
+msgid "manager.series.book"
+msgstr "Серії Книг"
+
+msgid "manager.series.disableComments"
+msgstr "Заблокувати можливість коментування для цих Серій."
+
+msgid "manager.series.abstractsNotRequired"
+msgstr "Не вимагати анотації"
+
+msgid "manager.series.indexed"
+msgstr "Індексовано"
+
+msgid "manager.series.open"
+msgstr "Відкрити Подання"
