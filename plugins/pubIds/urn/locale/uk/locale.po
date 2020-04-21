@@ -1,6 +1,6 @@
 msgid ""
 msgstr ""
-"PO-Revision-Date: 2020-04-17 14:15+0000\n"
+"PO-Revision-Date: 2020-04-22 14:38+0000\n"
 "Last-Translator: Fylypovych Georgii <red.ukr@gmail.com>\n"
 "Language-Team: Ukrainian <http://translate.pkp.sfu.ca/projects/omp/"
 "pubIds-urn/uk/>\n"
@@ -153,7 +153,6 @@ msgstr ""
 "Налаштуйте плагін URN, щоб мати змогу керувати та використовувати URN-и в "
 "OMP:"
 
-#, fuzzy
 msgid "plugins.pubIds.urn.description"
 msgstr ""
 "Цей плагін активує призначення \"Uniform Resource Names\" для монографій, "
@@ -161,3 +160,25 @@ msgstr ""
 
 msgid "plugins.pubIds.urn.displayName"
 msgstr "URN"
+
+msgid "plugins.pubIds.urn.manager.settings.namespace"
+msgstr "Найменування"
+
+#, fuzzy
+msgid "plugins.pubIds.urn.manager.settings.checkNo"
+msgstr "Перевірити число"
+
+msgid "plugins.pubIds.urn.manager.settings.form.urnPrefixPattern"
+msgstr ""
+"Шаблон префіксу URN має бути сформовано за зразком \"urn:\"&lt;NID&gt;\":\""
+"&lt;NSS&gt;."
+
+msgid "plugins.pubIds.urn.manager.settings.urnPrefix.description"
+msgstr ""
+"URN префікс є статичним, частиною URN, яка ніколи не змінюється (наприклад \""
+"urn:nbn:de:0000-\")."
+
+msgid "plugins.pubIds.urn.manager.settings.explainURNs"
+msgstr ""
+"Будь ласка оберіть об'єкти, що при публікації отримають Uniform Resource "
+"Names (URN):"
