@@ -1,6 +1,6 @@
 msgid ""
 msgstr ""
-"PO-Revision-Date: 2020-04-22 14:38+0000\n"
+"PO-Revision-Date: 2020-04-23 16:38+0000\n"
 "Last-Translator: Fylypovych Georgii <red.ukr@gmail.com>\n"
 "Language-Team: Ukrainian <http://translate.pkp.sfu.ca/projects/omp/manager/"
 "uk/>\n"
@@ -159,3 +159,30 @@ msgstr "Індексовано"
 
 msgid "manager.series.open"
 msgstr "Відкрити Подання"
+
+msgid "manager.setup.emailSignature"
+msgstr "Підпис"
+
+msgid "manager.setup.emails"
+msgstr "Ідентифікація за адресою електронної пошти"
+
+msgid "manager.setup.editorDecision"
+msgstr "Рішення Редактора"
+
+msgid "manager.setup.doiPrefix"
+msgstr "Префікс DOI"
+
+msgid "manager.setup.displayNewReleases.label"
+msgstr "Нові Видання"
+
+msgid "manager.setup.details"
+msgstr "Детальніше"
+
+msgid "manager.setup.customTags"
+msgstr "Користувацькі Теги"
+
+msgid "manager.setup.coverThumbnailsMaxWidth"
+msgstr "Максимальна ширина зображення обкладинки"
+
+msgid "manager.setup.coverThumbnailsMaxHeight"
+msgstr "Максимальна довжина зображення обкладинки"
