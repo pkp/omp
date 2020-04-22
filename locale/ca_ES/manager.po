@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2019-11-28T15:10:03-08:00\n"
-"PO-Revision-Date: 2020-04-17 21:18+0000\n"
+"PO-Revision-Date: 2020-04-23 16:38+0000\n"
 "Last-Translator: Jordi LC <jordi.lacruz@uab.cat>\n"
 "Language-Team: Catalan <http://translate.pkp.sfu.ca/projects/omp/manager/ca/>"
 "\n"
@@ -952,3 +952,124 @@ msgstr "La configuració dels avisos s'ha actualitzat."
 
 msgid "user.authorization.pluginLevel"
 msgstr "No teniu suficients privilegis per gestionar aquest mòdul."
+
+msgid "stats.publications.abstracts"
+msgstr "Entrades del catàleg"
+
+msgid "stats.publications.countOfTotal"
+msgstr "{$count} de {$total} monografies"
+
+msgid "stats.publications.totalGalleyViews.timelineInterval"
+msgstr "Visualitzacions totals d'arxiu per data"
+
+msgid "stats.publications.totalAbstractViews.timelineInterval"
+msgstr "Visualitzacions totals del catàleg per data"
+
+msgid "stats.publications.none"
+msgstr ""
+"No s'ha trobat cap monografia amb estadístiques d'ús que coincideixin amb "
+"aquests paràmetres."
+
+msgid "stats.publications.details"
+msgstr "Detalls de la monografia"
+
+msgid "stats.publicationStats"
+msgstr "Estadístiques de la monografia"
+
+msgid "grid.series.urlWillBe"
+msgstr "L'URL de la sèrie serà: {$sampleUrl}"
+
+msgid "manager.navigationMenus.form.navigationMenuItem.category"
+msgstr "Seleccionar categoria"
+
+msgid "manager.navigationMenus.form.navigationMenuItem.series"
+msgstr "Seleccionar sèrie"
+
+msgid "grid.series.pathExists"
+msgstr "La ruta de la sèrie ja existeix. Introduïu una ruta única."
+
+msgid "grid.series.pathAlphaNumeric"
+msgstr "La ruta de les sèries només admet lletres i números."
+
+msgid "manager.setup.notifications.copyPrimaryContact"
+msgstr ""
+"Enviar una còpia al contacte principal, identificat en la configuració de la "
+"publicació."
+
+msgid "grid.genres.title"
+msgstr "Components de la monografia"
+
+msgid "grid.genres.title.short"
+msgstr "Components"
+
+msgid "manager.setup.resetPermissions.success"
+msgstr "Els permisos de monografia s'han reiniciat correctament."
+
+msgid "manager.setup.resetPermissions.confirm"
+msgstr ""
+"Segur que voleu reiniciar les dades de permisos ja associades a les "
+"monografies?"
+
+msgid "manager.setup.resetPermissions"
+msgstr "Reiniciar els permisos de monografia"
+
+msgid "manager.setup.siteAccess.viewContent"
+msgstr "Veure el contingut de la monografia"
+
+msgid "manager.setup.siteAccess.view"
+msgstr "Accés al lloc"
+
+msgid "manager.setup.searchEngineIndexing.success"
+msgstr "La configuració d'indexació del motor de cerca s'ha actualitzat."
+
+msgid "manager.setup.searchDescription.description"
+msgstr ""
+"Proporcioneu una descripció breu (50-300 caràcters) de la publicació que els "
+"motors de cerca puguin mostrar quan llistin la publicació en els resultats "
+"de cerca."
+
+msgid "manager.setup.reviewOptions.reviewerAccessKeysEnabled.label"
+msgstr ""
+"Incloure un enllaç segur en el correu electrònic d'invitació als revisors/"
+"ores."
+
+msgid "manager.setup.reviewOptions.reviewerAccessKeysEnabled"
+msgstr "Accés del revisor/a amb un sol clic"
+
+msgid "manager.setup.reviewOptions.restrictReviewerFileAccess"
+msgstr "Restringir l'accés a l'arxiu"
+
+msgid "manager.setup.aboutPress"
+msgstr "Quant a la publicació"
+
+msgid "manager.setup.privacyStatement.success"
+msgstr "La declaració de privacitat s'ha actualitzat."
+
+msgid "manager.setup.numPageLinks.description"
+msgstr ""
+"Limitar el nombre d'enllaços que es mostren en les pàgines successives en "
+"una llista."
+
+msgid "manager.setup.masthead.success"
+msgstr "Els detalls de la capçalera d'aquesta publicació s'han actualitzat."
+
+msgid "manager.setup.lists.success"
+msgstr "La configuració de llista d'aquesta revista s'ha actualitzat."
+
+msgid "manager.setup.keyInfo"
+msgstr "Informació clau"
+
+msgid "manager.setup.itemsPerPage"
+msgstr "Elements per pàgina"
+
+msgid "manager.setup.information.success"
+msgstr "La informació d'aquesta publicació s'ha actualitzat."
+
+msgid "manager.setup.information"
+msgstr "Informació"
+
+msgid "manager.setup.identity"
+msgstr "Identitat de la publicació"
+
+msgid "manager.setup.numAnnouncementsHomepage"
+msgstr "Mostrar a la pàgina d'inici"
