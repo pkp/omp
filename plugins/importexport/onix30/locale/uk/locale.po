@@ -1,2 +1,43 @@
 msgid ""
-msgstr "X-Generator: Weblate\nMIME-Version: 1.0\nContent-Type: text/plain; charset=UTF-8\nContent-Transfer-Encoding: 8bit"
+msgstr ""
+"PO-Revision-Date: 2020-04-22 14:38+0000\n"
+"Last-Translator: Fylypovych Georgii <red.ukr@gmail.com>\n"
+"Language-Team: Ukrainian <http://translate.pkp.sfu.ca/projects/omp/"
+"importexport-onix30/uk/>\n"
+"Language: uk\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=3; plural=n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%10<="
+"4 && (n%100<10 || n%100>=20) ? 1 : 2;\n"
+"X-Generator: Weblate 3.9.1\n"
+
+msgid "plugins.importexport.onix30.displayName"
+msgstr "Плагін Експорту Монографій ONIX 3.0"
+
+msgid "plugins.importexport.onix30.formatInvalid"
+msgstr "Недійсно"
+
+msgid "plugins.importexport.onix30.formatValid"
+msgstr "Дійсно"
+
+msgid "plugins.importexport.onix30.validityStatus"
+msgstr "Статус ONIX"
+
+msgid "plugins.importexport.onix30.unavailable"
+msgstr "Недоступно"
+
+msgid "plugins.importexport.onix30.exportFormats"
+msgstr "Доступні Формати"
+
+msgid "plugins.importexport.onix30.exportButton"
+msgstr "Експортувати"
+
+msgid "plugins.importexport.onix30.selectMonograph"
+msgstr "Оберіть монографію для експорту:"
+
+msgid "plugins.importexport.onix30.exportSubmissionsSelect"
+msgstr "Оберіть Монографії для експорту"
+
+msgid "plugins.importexport.onix30.cliError"
+msgstr "ПОМИЛКА:"
