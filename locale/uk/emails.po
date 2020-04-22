@@ -1,2 +1,64 @@
 msgid ""
-msgstr "X-Generator: Weblate\nMIME-Version: 1.0\nContent-Type: text/plain; charset=UTF-8\nContent-Transfer-Encoding: 8bit"
+msgstr ""
+"PO-Revision-Date: 2020-04-22 14:38+0000\n"
+"Last-Translator: Fylypovych Georgii <red.ukr@gmail.com>\n"
+"Language-Team: Ukrainian <http://translate.pkp.sfu.ca/projects/omp/emails/uk/"
+">\n"
+"Language: uk\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=3; plural=n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%10<="
+"4 && (n%100<10 || n%100>=20) ? 1 : 2;\n"
+"X-Generator: Weblate 3.9.1\n"
+
+msgid "emails.reviewRemind.subject"
+msgstr "Нагадування про рецензування рукопису"
+
+msgid "emails.reviewDecline.subject"
+msgstr "Не маю змоги рецензувати"
+
+msgid "emails.reviewConfirm.subject"
+msgstr "Маю змогу рецензувати"
+
+msgid "emails.reviewCancel.subject"
+msgstr "Запит на рецензування скасовано"
+
+msgid "emails.reviewRequestAttached.subject"
+msgstr "Запит на Рецензування Рукопису"
+
+msgid "emails.reviewRequestRemindAutoOneclick.subject"
+msgstr "Запит на Рецензування Рукопису"
+
+msgid "emails.reviewRequestRemindAuto.subject"
+msgstr "Запит на Рецензування Рукопису"
+
+msgid "emails.reviewRequestOneclick.subject"
+msgstr "Запит на Рецензування Рукопису"
+
+msgid "emails.reviewRequest.subject"
+msgstr "Запит на Рецензування Рукопису"
+
+msgid "emails.editorAssign.subject"
+msgstr "Призначення Редакторів"
+
+msgid "emails.publishNotify.subject"
+msgstr "Опубліковано Нову Книгу"
+
+msgid "emails.reviewerRegister.subject"
+msgstr "Зареєструватися як Рецензент у {$contextName}"
+
+msgid "emails.userValidate.subject"
+msgstr "Підтвердіть Ваш Обліковий Запис"
+
+msgid "emails.userRegister.subject"
+msgstr "Реєстрація Видавництва"
+
+msgid "emails.passwordReset.subject"
+msgstr "Скидання Пароля"
+
+msgid "emails.passwordResetConfirm.subject"
+msgstr "Підтвердження Скидання Пароля"
+
+msgid "emails.notification.subject"
+msgstr "Нове Повідомлення від {$siteTitle}"
