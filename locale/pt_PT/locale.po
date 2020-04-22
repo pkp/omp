@@ -1,2 +1,494 @@
 msgid ""
-msgstr "X-Generator: Weblate\nMIME-Version: 1.0\nContent-Type: text/plain; charset=UTF-8\nContent-Transfer-Encoding: 8bit"
+msgstr ""
+"PO-Revision-Date: 2020-04-23 16:38+0000\n"
+"Last-Translator: Carlos Costa <carlos.costa@uc.pt>\n"
+"Language-Team: Portuguese (Portugal) <http://translate.pkp.sfu.ca/projects/"
+"omp/locale/pt_PT/>\n"
+"Language: pt_PT\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=n > 1;\n"
+"X-Generator: Weblate 3.9.1\n"
+
+msgid "grid.action.addFormat"
+msgstr "Adicionar Formato da Publicação"
+
+msgid "grid.action.deleteFormat"
+msgstr "Remover este formato"
+
+msgid "grid.action.editFormat"
+msgstr "Editar este formato"
+
+msgid "grid.action.formatInCatalogEntry"
+msgstr "O formato aparece na entrada do catálogo"
+
+msgid "grid.action.catalogEntry"
+msgstr "Ver o formulário de entrada de catálogo"
+
+msgid "grid.libraryFiles.column.files"
+msgstr "Ficheiros"
+
+msgid "manager.series.indexed"
+msgstr "Indexado"
+
+msgid "manager.series.open"
+msgstr "Submissões Abertas"
+
+msgid "grid.action.deleteRepresentative"
+msgstr "Remover este Representante"
+
+msgid "grid.action.editRepresentative"
+msgstr "Editar este Representante"
+
+msgid "grid.action.addRepresentative"
+msgstr "Adicionar Representante"
+
+msgid "grid.catalogEntry.representativesDescription"
+msgstr ""
+"Pode deixar a seguinte secção vazia se fornecer serviços próprios aos seus "
+"clientes."
+
+msgid "grid.catalogEntry.representativeIdType"
+msgstr "Tipo de ID Representante (GLN is recommended)"
+
+msgid "grid.catalogEntry.representativeIdValue"
+msgstr "ID de Representante"
+
+msgid "grid.catalogEntry.representativeWebsite"
+msgstr "Website"
+
+msgid "grid.catalogEntry.representativeEmail"
+msgstr "E-mail"
+
+msgid "grid.catalogEntry.representativePhone"
+msgstr "Telefone"
+
+msgid "grid.catalogEntry.representativeName"
+msgstr "Noome"
+
+msgid "grid.catalogEntry.representativeRole"
+msgstr "Função"
+
+msgid "grid.catalogEntry.representativeRoleChoice"
+msgstr "Escolha uma função:"
+
+msgid "grid.catalogEntry.supplier"
+msgstr "Fornecedor"
+
+msgid "grid.catalogEntry.agentTip"
+msgstr ""
+"Pode designar um agente para o representar neste território definido. Não é "
+"necessário."
+
+msgid "grid.catalogEntry.agent"
+msgstr "Agente"
+
+msgid "grid.catalogEntry.suppliersCategory"
+msgstr "Fornecedores"
+
+msgid "grid.catalogEntry.agentsCategory"
+msgstr "Agentes"
+
+msgid "grid.catalogEntry.salesRightsValue"
+msgstr "Código do valor"
+
+msgid "notification.removedSpotlight"
+msgstr "Destaque removido."
+
+msgid "notification.editedSpotlight"
+msgstr "Destaque editado."
+
+msgid "notification.addedSpotlight"
+msgstr "Destaque adicionado."
+
+msgid "navigation.skip.spotlights"
+msgstr "Saltar para os destaques"
+
+msgid "grid.action.addSpotlight"
+msgstr "Adicionar Destaque"
+
+msgid "grid.action.deleteSpotlight"
+msgstr "Remover este destaque"
+
+msgid "grid.action.editSpotlight"
+msgstr "Editar este destaque"
+
+msgid "grid.content.spotlights.locationRequired"
+msgstr "Por favor escolha uma localização para este destaque."
+
+msgid "grid.content.spotlights.titleRequired"
+msgstr "É necessário um título de destaque."
+
+msgid "grid.content.spotlights.itemRequired"
+msgstr "É necessário um item."
+
+msgid "grid.content.spotlights.form.type.book"
+msgstr "Livro"
+
+msgid "grid.content.spotlights.form.title"
+msgstr "Título do destaque"
+
+msgid "grid.content.spotlights.form.item"
+msgstr "Introduzir o título do destaque (autocompletar)"
+
+msgid "grid.content.spotlights.form.location"
+msgstr "Posição dos destaques"
+
+msgid "grid.content.spotlights.category.homepage"
+msgstr "Página inicial"
+
+msgid "grid.content.spotlights.spotlightItemTitle"
+msgstr "Item Destacado"
+
+msgid "spotlight.author"
+msgstr "Autor, "
+
+msgid "spotlight.title.homePage"
+msgstr "Em destaque"
+
+msgid "spotlight.noneExist"
+msgstr "Não existem destaques."
+
+msgid "spotlight.spotlights"
+msgstr "Destaques"
+
+msgid "spotlight"
+msgstr "Destaque"
+
+msgid "catalog.featuredBooks"
+msgstr "Livros em Destaque"
+
+msgid "catalog.featured"
+msgstr "Destaque"
+
+msgid "navigation.newReleases"
+msgstr "Novos Lançamentos"
+
+msgid "grid.catalogEntry.representativeType"
+msgstr "Tipo de representante"
+
+msgid "grid.catalogEntry.representatives"
+msgstr "Representantes"
+
+msgid "grid.catalogEntry.dateRequired"
+msgstr ""
+"É necessária uma data e esta deve corresponder ao formato da data escolhida."
+
+msgid "grid.catalogEntry.dateFormat"
+msgstr "Formato de Data"
+
+msgid "grid.catalogEntry.dateRole"
+msgstr "Função"
+
+msgid "grid.catalogEntry.dateValue"
+msgstr "Data"
+
+msgid "grid.catalogEntry.dateFormatRequired"
+msgstr "É necessário um formato de data."
+
+msgid "grid.catalogEntry.roleRequired"
+msgstr "A indicação de um representante é necessária."
+
+msgid "grid.catalogEntry.publicationDates"
+msgstr "Datas de publicação"
+
+msgid "grid.catalogEntry.marketTerritory"
+msgstr "Território"
+
+msgid "grid.catalogEntry.markets"
+msgstr "Territórios de Mercado"
+
+msgid "grid.catalogEntry.excluded"
+msgstr "Excluído"
+
+msgid "grid.catalogEntry.included"
+msgstr "Incluído"
+
+msgid "grid.catalogEntry.regions"
+msgstr "Regiões"
+
+msgid "grid.catalogEntry.countries"
+msgstr "Países"
+
+msgid "grid.catalogEntry.oneROWPerFormat"
+msgstr ""
+"O \"Resto do Mundo\" já foi definido como o âmbito de aplicação para as "
+"condições de distribuição deste formato."
+
+msgid "grid.catalogEntry.salesRightsROW.tip"
+msgstr ""
+"Marque esta caixa para usar esta entrada de Direitos de Venda como um \""
+"catch-all\" para o seu formato. Os países e regiões não precisam ser "
+"escolhidos neste caso."
+
+msgid "grid.catalogEntry.salesRightsROW"
+msgstr "Resto do Mundo?"
+
+msgid "grid.catalogEntry.salesRightsType"
+msgstr "Tipo de direitos de venda"
+
+msgid "grid.catalogEntry.salesRights"
+msgstr "Direitos de Venda"
+
+msgid "grid.catalogEntry.valueRequired"
+msgstr "É necessário um valor."
+
+msgid "grid.catalogEntry.codeRequired"
+msgstr "É necessário um código de identificação."
+
+msgid "grid.catalogEntry.identificationCodeType"
+msgstr "Tipo de código ONIX"
+
+msgid "grid.catalogEntry.identificationCodeValue"
+msgstr "Valor de código"
+
+msgid "grid.catalogEntry.productCompositionRequired"
+msgstr "Deve ser escolhido um código de composição do produto."
+
+msgid "grid.catalogEntry.productAvailabilityRequired"
+msgstr "É necessário um código de disponibilidade do produto."
+
+msgid "grid.catalogEntry.fileSizeRequired"
+msgstr "É necessário um tamanho de ficheiro para formatos digitais."
+
+msgid "grid.catalogEntry.availableRepresentation.notApproved"
+msgstr "A aguardar aprovação"
+
+msgid "grid.catalogEntry.availableRepresentation.approved"
+msgstr "Aprovado"
+
+msgid "grid.catalogEntry.availableRepresentation.proofNotApproved"
+msgstr "Prova não aprovada."
+
+msgid "grid.catalogEntry.availableRepresentation.notApprovedWarning"
+msgstr "Formato não disponível na entrada do catálogo."
+
+msgid "grid.catalogEntry.availableRepresentation.catalogNotApprovedWarning"
+msgstr "Entrada no catálogo não aprovada."
+
+msgid "grid.catalogEntry.availableRepresentation.removeMessage"
+msgstr ""
+"<p>Este formato estará <em> indisponível para os leitores</em>. Qualquer "
+"ficheiro descarregável ou outras distribuições deixarão de aparecer na "
+"entrada do livro no catálogo .</p>"
+
+msgid "grid.catalogEntry.availableRepresentation.message"
+msgstr ""
+"<p>Disponibilize este formato <em>aos leitores</em>. Os ficheiros para "
+"download e quaisquer outras distribuições aparecerão na entrada do catálogo "
+"do livro.</p>"
+
+msgid "grid.catalogEntry.availableRepresentation.title"
+msgstr "Disponibilidade do Formato"
+
+msgid "grid.catalogEntry.approvedRepresentation.removeMessage"
+msgstr "<p>Indicar que os metadados para este formato não foram aprovados.</p>"
+
+msgid "grid.catalogEntry.approvedRepresentation.message"
+msgstr ""
+"<p>Aprovar os metadados para este formato. Os metadados podem ser "
+"verificados a partir do painel Editar em cada formato.</p>"
+
+msgid "grid.catalogEntry.approvedRepresentation.title"
+msgstr "Aprovação do Formato"
+
+msgid "grid.catalogEntry.proof"
+msgstr "Prova"
+
+msgid "grid.catalogEntry.isNotAvailable"
+msgstr "Não Disponível"
+
+msgid "grid.catalogEntry.isAvailable"
+msgstr "Disponível"
+
+msgid "grid.catalogEntry.availability"
+msgstr "Disponibilidade"
+
+msgid "grid.catalogEntry.publicationFormatRequired"
+msgstr "Deve ser escolhido um formato de publicação."
+
+msgid "grid.catalogEntry.monographRequired"
+msgstr "É necessário o id da monoografia."
+
+msgid "grid.catalogEntry.remoteURL"
+msgstr "URL do conteúdo alojado remotamente"
+
+msgid "grid.catalogEntry.remotelyHostedContent"
+msgstr "Este formato estará disponível num website separado"
+
+msgid "grid.catalogEntry.physicalFormat"
+msgstr "Formato físico"
+
+msgid "grid.catalogEntry.publicationFormatDetails"
+msgstr "Detalhes do Formato"
+
+msgid "grid.catalogEntry.validPriceRequired"
+msgstr "É necessário um preço válido."
+
+msgid "grid.catalogEntry.nameRequired"
+msgstr "É necessário um nome."
+
+msgid "grid.catalogEntry.publicationFormatType"
+msgstr "Formato de publicação"
+
+msgid "monograph.publicationFormat.openTab"
+msgstr "Abrir separador Formato de publicação."
+
+msgid "monograph.publicationFormat.formatDoesNotExist"
+msgstr ""
+"<p>O formato de publicação que escolheu já não existe para esta "
+"monografia.</p>"
+
+msgid "monograph.publicationFormat.missingONIXFields"
+msgstr "Faltam alguns campos de metadados."
+
+msgid "monograph.publicationFormat.noCodesAssigned"
+msgstr "Falta um código de identificação."
+
+msgid "monograph.publicationFormat.noMarketsAssigned"
+msgstr "Mercados e preços em falta."
+
+msgid "monograph.publicationFormat.isApproved"
+msgstr ""
+"Incluir os metadados para este formato de publicação na entrada do catálogo "
+"deste livro."
+
+msgid "monograph.publicationFormat.taxType"
+msgstr "Tipo de Imposto"
+
+msgid "monograph.publicationFormat.taxRate"
+msgstr "Taxa de imposto"
+
+msgid "monograph.publicationFormat.productRegion"
+msgstr "Região de Distribuição de Produto"
+
+msgid "monograph.publicationFormat.technicalProtection"
+msgstr "Protecção Técnica Digital"
+
+msgid "monograph.publicationFormat.countryOfManufacture"
+msgstr "País de Produção"
+
+msgid "monograph.publicationFormat.productWidth"
+msgstr "Largura"
+
+msgid "monograph.publicationFormat.productWeight"
+msgstr "Peso"
+
+msgid "monograph.publicationFormat.productThickness"
+msgstr "Espessura"
+
+msgid "monograph.publicationFormat.productHeight"
+msgstr "Altura"
+
+msgid "monograph.publicationFormat.productFileSize.override"
+msgstr "Introduz o valor do tamanho do seu ficheiro?"
+
+msgid "monograph.publicationFormat.productFileSize"
+msgstr "Tamanho do ficheiro em Mbytes"
+
+msgid "monograph.publicationFormat.productDimensionsSeparator"
+msgstr " x "
+
+msgid "monograph.publicationFormat.productDimensions"
+msgstr "Dimensões Físicas"
+
+msgid "monograph.publicationFormat.digitalInformation"
+msgstr "Informação Digital"
+
+msgid "monograph.publicationFormat.returnInformation"
+msgstr "Indicador de Devolução"
+
+msgid "monograph.publicationFormat.productAvailability"
+msgstr "Disponibilidade do produto"
+
+msgid "monograph.publicationFormat.discountAmount"
+msgstr "Percentagem de desconto, se aplicável"
+
+msgid "monograph.publicationFormat.priceType"
+msgstr "Tipo de Preço"
+
+msgid "monograph.publicationFormat.priceRequired"
+msgstr "É necessário um preço."
+
+msgid "monograph.publicationFormat.price"
+msgstr "Preço"
+
+msgid "monograph.publicationFormat.productIdentifierType"
+msgstr "Identificação do produto"
+
+msgid "monograph.publicationFormat.productFormDetailCode"
+msgstr "Detalhe do produto (opcional)"
+
+msgid "monograph.publicationFormat.productComposition"
+msgstr "Composição do produto"
+
+msgid "monograph.publicationFormat.backMatterCount"
+msgstr "Cólofon"
+
+msgid "monograph.publicationFormat.frontMatterCount"
+msgstr "Frontispício"
+
+msgid "monograph.publicationFormat.pageCounts"
+msgstr "Número de páginas"
+
+msgid "monograph.publicationFormat.imprint"
+msgstr "Marca (nome comercial)"
+
+msgid "monograph.accessLogoOpen.altText"
+msgstr "Acesso Aberto"
+
+msgid "monograph.task.addNote"
+msgstr "Adicionar à tarefa"
+
+msgid "monograph.proofReadingDescription"
+msgstr ""
+"O editor de layout carrega aqui os arquivos prontos para a produção que "
+"foram preparados para publicação. Utilize <em>+Assign</em> para designar "
+"autores e outros para rever as provas de página, com os ficheiros corrigidos "
+"carregados para aprovação antes da publicação."
+
+msgid "submission.pageProofs"
+msgstr "Provas de página"
+
+msgid "monograph.type"
+msgstr "Tipo de Submissão"
+
+msgid "monograph.carousel.publicationFormats"
+msgstr "Formatos:"
+
+msgid "monograph.miscellaneousDetails"
+msgstr "Detalhes sobre esta monografia"
+
+msgid "monograph.publicationFormatDetails"
+msgstr "Detalhes sobre o formato disponível para publicação: {$format}"
+
+msgid "monograph.publicationFormat"
+msgstr "Formato"
+
+msgid "monograph.publicationFormats"
+msgstr "Formatos de publicação"
+
+msgid "monograph.languages"
+msgstr "Idiomas (Inglês, Francês, Espanhol)"
+
+msgid "monograph.audience.rangeExact"
+msgstr "Alcance de audiência (exato)"
+
+msgid "monograph.audience.rangeTo"
+msgstr "Alcance de audiência (a)"
+
+msgid "monograph.audience.rangeFrom"
+msgstr "Alcance de audiência (de)"
+
+msgid "monograph.audience.rangeQualifier"
+msgstr "Qualificadores de alcance de audiência"
+
+msgid "monograph.coverImage"
+msgstr "Imagem da capa"
+
+msgid "monograph.audience.success"
+msgstr "Os detalhes de audiência foram atualizados."
+
+msgid "monograph.audience"
+msgstr "Audiência"
