@@ -1,6 +1,6 @@
 msgid ""
 msgstr ""
-"PO-Revision-Date: 2020-04-16 14:37+0000\n"
+"PO-Revision-Date: 2020-04-23 16:38+0000\n"
 "Last-Translator: Fylypovych Georgii <red.ukr@gmail.com>\n"
 "Language-Team: Ukrainian <http://translate.pkp.sfu.ca/projects/omp/editor/uk/"
 ">\n"
@@ -14,3 +14,54 @@ msgstr ""
 
 msgid "editor.monograph.recommendation"
 msgstr "Рекомендація"
+
+msgid "editor.monograph.legend.catalogEntry"
+msgstr ""
+"Переглянути і керувати поданням в каталозі, включно з метаданими і видами "
+"видання"
+
+#, fuzzy
+msgid "editor.monograph.legend.sectionActions"
+msgstr "Дії з Розділами"
+
+msgid "editor.monograph.legend.submissionActions"
+msgstr "Дії з Поданням"
+
+msgid "editor.monograph.copyediting.personalMessageToUser"
+msgstr "Повідомлення для користувача"
+
+msgid "editor.monograph.externalReview"
+msgstr "Розпочати зовнішнє рецензування"
+
+msgid "editor.monograph.internalReviewDescription"
+msgstr ""
+"Оберіть файли зі списку, щоб надіслати на етап внутрішнього рецензування."
+
+msgid "editor.monograph.internalReview"
+msgstr "Розпочати процес внутрішнього рецензування"
+
+msgid "editor.monograph.uploadReviewForReviewer"
+msgstr "Завантажити Рецензію"
+
+msgid "editor.monograph.replaceReviewer"
+msgstr "Замінити Рецензента"
+
+msgid "editor.monograph.selectReviewerInstructions"
+msgstr ""
+"Оберіть Рецензента зі списку і натисніть на кнопку \"Обрати Рецензента\" щоб "
+"продовжити."
+
+msgid "editor.monograph.enterReviewerRecommendation"
+msgstr "Ввести Рекомендацію Рецензента"
+
+msgid "editor.monograph.enterRecommendation"
+msgstr "Ввести Рекомендацію"
+
+msgid "editor.monograph.clearReview"
+msgstr "Очистити Рецензентів"
+
+msgid "editor.monograph.cancelReview"
+msgstr "Скасувати Запит"
+
+msgid "editor.submissionArchive"
+msgstr "Архів Подань"
