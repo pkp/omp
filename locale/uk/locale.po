@@ -1,6 +1,6 @@
 msgid ""
 msgstr ""
-"PO-Revision-Date: 2020-04-22 14:38+0000\n"
+"PO-Revision-Date: 2020-04-23 16:38+0000\n"
 "Last-Translator: Fylypovych Georgii <red.ukr@gmail.com>\n"
 "Language-Team: Ukrainian <http://translate.pkp.sfu.ca/projects/omp/locale/uk/"
 ">\n"
@@ -238,9 +238,8 @@ msgstr "Затвердження формату"
 msgid "grid.catalogEntry.proof"
 msgstr "Підтвердження"
 
-#, fuzzy
 msgid "grid.catalogEntry.publicationFormatRequired"
-msgstr "Необхідно обрати публікаційний формат."
+msgstr "Необхідно обрати Вид Видання."
 
 msgid "grid.catalogEntry.remoteURL"
 msgstr "URL дистанційно розміщеного контенту"
@@ -255,14 +254,11 @@ msgstr "Фізичний формат"
 msgid "grid.catalogEntry.publicationFormatDetails"
 msgstr "Деталі Формату"
 
-#, fuzzy
 msgid "grid.catalogEntry.publicationFormatType"
-msgstr "Публікаційний формат"
+msgstr "Вид Видання"
 
-#, fuzzy
 msgid "monograph.publicationFormat.isApproved"
-msgstr ""
-"Включити метадані для цього публікаційного формату в каталозі для цієї книги."
+msgstr "Включити метадані для цього виду видання в каталозі для цієї книги."
 
 msgid "monograph.publicationFormat.taxType"
 msgstr "Види податку"
@@ -336,11 +332,10 @@ msgid "grid.catalogEntry.nameRequired"
 msgstr "Необхідно ввести Ім'я."
 
 msgid "monograph.publicationFormat.openTab"
-msgstr "Open publication format tab."
+msgstr "Відкрити вкладку \"Вид Видання\""
 
 msgid "monograph.publicationFormat.formatDoesNotExist"
-msgstr ""
-"<p>Обраний вами публікаційний формат більше не існує для цієї монографії.</p>"
+msgstr "<p>Обраний вами вид видання більше не існує для цієї монографії.</p>"
 
 msgid "monograph.publicationFormat.technicalProtection"
 msgstr "Цифровий Захист"
@@ -373,13 +368,13 @@ msgid "submission.pageProofs"
 msgstr "Підтвердження сторінок"
 
 msgid "monograph.publicationFormatDetails"
-msgstr "Деталі щодо доступних публікаційних форматів : {$format}"
+msgstr "Деталі щодо доступних видів видань: {$format}"
 
 msgid "monograph.publicationFormat"
 msgstr "Формат"
 
 msgid "monograph.publicationFormats"
-msgstr "Публікаційні формати"
+msgstr "Види Видань"
 
 msgid "monograph.audience.rangeExact"
 msgstr "Вибір Аудиторії (конкретно)"
