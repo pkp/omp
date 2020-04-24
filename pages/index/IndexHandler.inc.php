@@ -20,45 +20,32 @@ class IndexHandler extends PKPIndexHandler {
 	// Public handler operations
 	//
 	/**
-	 * Display the site or press index page.
-	 * (If a site admin is logged in and no presses exist, redirect to the
-	 * press administration page -- this may be useful upon install.)
-	 *
+	 * If no press is selected, display list of presses.
+	 * Otherwise, display the index page for the selected press.
 	 * @param $args array
 	 * @param $request Request
 	 */
 	function index($args, $request) {
-		$targetPress = $this->getTargetContext($request);
 		$press = $request->getPress();
 		$user = $request->getUser();
 
-		if ($user && !$targetPress && Validation::isSiteAdmin()) {
+		if ($user && !$this->getTargetContext($request) && Validation::isSiteAdmin()) {
 			// If the user is a site admin and no press exists,
 			// send them to press administration to create one.
 			return $request->redirect(null, 'admin', 'contexts');
 		}
 
-		// Public access.
 		$this->setupTemplate($request);
-		$templateMgr = TemplateManager::getManager($request);
 
 		if ($press) {
 			// Display the current press home.
-			$this->_displayPressIndexPage($press, $templateMgr);
-		} elseif ($targetPress) {
-			// We're not on a press homepage, but there's one
-			// available; redirect there.
-			$request->redirect($targetPress->getPath());
+			$this->_displayPressIndexPage($press, $request);
 		} else {
-			// A target press couldn't be determined for some reason.
-			if ($user) {
-				// Redirect to user profile.
-				$request->redirect(null, 'user', 'profile');
-			} else {
-				// Not logged in. Redirect to login page.
-				$request->redirect(null, 'login');
-			}
+			// Display the site home.
+			$site = $request->getSite();
+			$this->_displaySiteIndexPage($site, $request);
 		}
+
 	}
 
 
@@ -66,11 +53,36 @@ class IndexHandler extends PKPIndexHandler {
 	// Private helper methods.
 	//
 	/**
+	 * Display the site index page.
+	 * @param $site Site
+	 * @param $request Request
+	 */
+	function _displaySiteIndexPage($site, $request) {
+		$templateMgr = TemplateManager::getManager($request);
+		$pressDao = DAORegistry::getDAO('PressDAO'); /* @var $pressDao PressDAO */
+
+		if ($site->getRedirect() && ($press = $pressDao->getById($site->getRedirect())) != null) {
+			$request->redirect($press->getPath());
+		}
+
+		$templateMgr->assign(array(
+			'pageTitleTranslated' => $site->getLocalizedTitle(),
+			'about' => $site->getLocalizedAbout(),
+			'pressesFilesPath' => $request->getBaseUrl() . '/' . Config::getVar('files', 'public_files_dir') . '/presses/',
+			'presses' => $pressDao->getAll(true),
+			'site' => $site,
+		));
+		$templateMgr->setCacheability(CACHEABILITY_PUBLIC);
+		$templateMgr->display('frontend/pages/indexSite.tpl');
+	}
+
+	/**
 	 * Display a given press index page.
 	 * @param $press Press
-	 * @param $templateMgr TemplateManager
+	 * @param $request Request
 	 */
-	function _displayPressIndexPage($press, $templateMgr) {
+	function _displayPressIndexPage($press, $request) {
+		$templateMgr = TemplateManager::getManager($request);
 
 		// Display New Releases
 		if ($press->getSetting('displayNewReleases')) {

@@ -70,6 +70,25 @@ class ContextService extends \PKP\Services\PKPContextService {
 				|| ($newContext->getData('coverThumbnailsMaxHeight') !== $currentContext->getData('coverThumbnailsMaxHeight'))) {
 			$this->resizeCoverThumbnails($newContext, $newContext->getData('coverThumbnailsMaxWidth'), $newContext->getData('coverThumbnailsMaxHeight'));
 		}
+
+		// Move an uploaded press thumbnail and set the updated data
+		if (!empty($params['pressThumbnail'])) {
+			$supportedLocales = $newContext->getSupportedFormLocales();
+			foreach ($supportedLocales as $localeKey) {
+				if (!array_key_exists($localeKey, $params['pressThumbnail'])) {
+					continue;
+				}
+				$localeValue = $this->_saveFileParam(
+					$newContext,
+					$params['pressThumbnail'][$localeKey],
+					'pressThumbnail',
+					$request->getUser()->getId(),
+					$localeKey,
+					true
+				);
+				$newContext->setData('pressThumbnail', $localeValue, $localeKey);
+			}
+		}
 	}
 
 	/**
