@@ -27,12 +27,16 @@ class IndexHandler extends PKPIndexHandler {
 	 */
 	function index($args, $request) {
 		$press = $request->getPress();
+		$targetContext = $this->getTargetContext($request);
 		$user = $request->getUser();
 
-		if ($user && !$this->getTargetContext($request) && Validation::isSiteAdmin()) {
+		if ($user && !$targetContext && Validation::isSiteAdmin()) {
 			// If the user is a site admin and no press exists,
 			// send them to press administration to create one.
 			return $request->redirect(null, 'admin', 'contexts');
+		}
+		if (!$press && $targetContext) {
+			$request->redirect($targetContext->getPath());
 		}
 
 		$this->setupTemplate($request);
