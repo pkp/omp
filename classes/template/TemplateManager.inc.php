@@ -63,7 +63,7 @@ class TemplateManager extends PKPTemplateManager {
 					'publicFilesDir' => $request->getBaseUrl() . '/' . $publicFileManager->getContextFilesPath($context->getId()),
 					'primaryLocale' => $context->getPrimaryLocale(),
 					'supportedLocales' => $context->getSupportedLocaleNames(),
-					'displayPageHeaderTitle' => $context->getPageHeaderTitle(),
+					'displayPageHeaderTitle' => $context->getLocalizedPageHeaderTitle(),
 					'displayPageHeaderLogo' => $context->getLocalizedPageHeaderLogo(),
 					'displayPageHeaderLogoAltText' => $context->getLocalizedData('pageHeaderLogoImageAltText'),
 					'numPageLinks' => $context->getData('numPageLinks'),
