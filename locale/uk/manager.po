@@ -1,6 +1,6 @@
 msgid ""
 msgstr ""
-"PO-Revision-Date: 2020-04-23 16:38+0000\n"
+"PO-Revision-Date: 2020-04-25 13:38+0000\n"
 "Last-Translator: Fylypovych Georgii <red.ukr@gmail.com>\n"
 "Language-Team: Ukrainian <http://translate.pkp.sfu.ca/projects/omp/manager/"
 "uk/>\n"
@@ -186,3 +186,20 @@ msgstr "Максимальна ширина зображення обклади�
 
 msgid "manager.setup.coverThumbnailsMaxHeight"
 msgstr "Максимальна довжина зображення обкладинки"
+
+#, fuzzy
+msgid "manager.series.form.mustAllowPermission"
+msgstr ""
+"Переконайтеся, що хоча-б один чекбокс відмічнено для призначення кожного  "
+"Редактора Серій."
+
+msgid "manager.languages.primaryLocaleInstructions"
+msgstr "Ця мова буде встановлена за замовчуванням для сайту цього видавництва."
+
+msgid "manager.languages.noneAvailable"
+msgstr ""
+"Вибачте, відсутні додаткові мовні пакети. Напишіть адміністратору вашого "
+"сайтк якщо хочете мати додаткові мови для вашого видавництва."
+
+msgid "manager.setup.generalInformation"
+msgstr "Загальна Інформація"
