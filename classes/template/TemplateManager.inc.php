@@ -64,7 +64,8 @@ class TemplateManager extends PKPTemplateManager {
 					'primaryLocale' => $context->getPrimaryLocale(),
 					'supportedLocales' => $context->getSupportedLocaleNames(),
 					'displayPageHeaderTitle' => $context->getPageHeaderTitle(),
-					'displayPageHeaderLogo' => $context->getPageHeaderLogo(),
+					'displayPageHeaderLogo' => $context->getLocalizedPageHeaderLogo(),
+					'displayPageHeaderLogoAltText' => $context->getLocalizedData('pageHeaderLogoImageAltText'),
 					'numPageLinks' => $context->getData('numPageLinks'),
 					'itemsPerPage' => $context->getData('itemsPerPage'),
 					'enableAnnouncements' => $context->getData('enableAnnouncements'),
@@ -91,6 +92,28 @@ class TemplateManager extends PKPTemplateManager {
 				$this->assign( 'contextSettingsUrl', $dispatcher->url($request, ROUTE_PAGE, null, 'management', 'settings', 'context') );
 
 				$this->assign('pageFooter', $context->getLocalizedData('pageFooter'));
+			} else {
+				// Check if registration is open for any contexts
+				$contextDao = Application::getContextDAO();
+				$contexts = $contextDao->getAll(true)->toArray();
+				$contextsForRegistration = array();
+				foreach($contexts as $context) {
+					if (!$context->getData('disableUserReg')) {
+						$contextsForRegistration[] = $context;
+					}
+				}
+
+				$this->assign(array(
+					'contexts' => $contextsForRegistration,
+					'disableUserReg' => empty($contextsForRegistration),
+					'displayPageHeaderTitle' => $site->getLocalizedPageHeaderTitle(),
+					'displayPageHeaderLogo' => $site->getLocalizedData('pageHeaderTitleImage'),
+					'siteTitle' => $site->getLocalizedTitle(),
+					'primaryLocale' => $site->getPrimaryLocale(),
+					'supportedLocales' => $site->getSupportedLocaleNames(),
+					'pageFooter' => $site->getLocalizedData('pageFooter'),
+				));
+
 			}
 		}
 	}
