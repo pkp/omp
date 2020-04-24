@@ -1,6 +1,6 @@
 msgid ""
 msgstr ""
-"PO-Revision-Date: 2020-04-23 16:38+0000\n"
+"PO-Revision-Date: 2020-04-25 13:38+0000\n"
 "Last-Translator: Fylypovych Georgii <red.ukr@gmail.com>\n"
 "Language-Team: Ukrainian <http://translate.pkp.sfu.ca/projects/omp/locale/uk/"
 ">\n"
@@ -412,9 +412,8 @@ msgstr "Політика Відкритого Доступу"
 msgid "about.reviewPolicy"
 msgstr "Процес рецензування"
 
-#, fuzzy
 msgid "about.privacyStatement"
-msgstr "Положення про конфіденційність"
+msgstr "Заява Про Конфіденційність"
 
 #, fuzzy
 msgid "about.copyrightNotice"
@@ -810,3 +809,6 @@ msgstr "Редагувати цього представника"
 
 msgid "grid.action.addRepresentative"
 msgstr "Додати представника"
+
+msgid "submission.round"
+msgstr "Раунд&nbsp;{$round}"
