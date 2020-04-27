@@ -1,6 +1,6 @@
 msgid ""
 msgstr ""
-"PO-Revision-Date: 2020-04-22 14:38+0000\n"
+"PO-Revision-Date: 2020-04-27 23:20+0000\n"
 "Last-Translator: Fylypovych Georgii <red.ukr@gmail.com>\n"
 "Language-Team: Ukrainian <http://translate.pkp.sfu.ca/projects/omp/"
 "importexport-native/uk/>\n"
@@ -29,3 +29,16 @@ msgstr "Завантажте XML файл для імпорту"
 
 msgid "plugins.importexport.native.import"
 msgstr "Імпортувати"
+
+msgid "plugins.importexport.native.importComplete"
+msgstr ""
+"Імпортування успішно завершено. Нижченаведені елементи були імпортовані:"
+
+msgid "plugins.inportexport.native.uploadFile"
+msgstr "Будь ласка, завантажте файл у розділ \"Імпортувати\" щоб продовжити."
+
+msgid "plugins.importexport.native.description"
+msgstr "Імпортує та експортує статті та випуски у власний XML-формат OJS."
+
+msgid "plugins.importexport.native.displayName"
+msgstr "Модуль \"Власний XML\""
