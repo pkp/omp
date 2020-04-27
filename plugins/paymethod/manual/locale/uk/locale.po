@@ -1,6 +1,6 @@
 msgid ""
 msgstr ""
-"PO-Revision-Date: 2020-04-23 16:38+0000\n"
+"PO-Revision-Date: 2020-04-27 23:20+0000\n"
 "Last-Translator: Fylypovych Georgii <red.ukr@gmail.com>\n"
 "Language-Team: Ukrainian <http://translate.pkp.sfu.ca/projects/omp/"
 "paymethod-manual/uk/>\n"
@@ -33,7 +33,6 @@ msgstr "Інструкції з ручної оплати"
 msgid "plugins.paymethod.manual"
 msgstr "Ручний Метод Оплати"
 
-#, fuzzy
 msgid "plugins.paymethod.manual.description"
 msgstr ""
 "Менеджер запише вручну дані про оплату користувачем (поза межами цієї "
