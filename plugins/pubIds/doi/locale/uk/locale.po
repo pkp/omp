@@ -1,6 +1,6 @@
 msgid ""
 msgstr ""
-"PO-Revision-Date: 2020-04-23 16:38+0000\n"
+"PO-Revision-Date: 2020-04-27 23:20+0000\n"
 "Last-Translator: Fylypovych Georgii <red.ukr@gmail.com>\n"
 "Language-Team: Ukrainian <http://translate.pkp.sfu.ca/projects/omp/"
 "pubIds-doi/uk/>\n"
@@ -123,7 +123,6 @@ msgid "plugins.pubIds.doi.manager.settings.doiSuffixPattern.example"
 msgstr ""
 "Наприклад, press%ppub%r створить DOI з значенням - 10.1234/pressESPpub100"
 
-#, fuzzy
 msgid "plugins.pubIds.doi.manager.settings.doiSuffix.description"
 msgstr ""
 "Суфікс DOI може бути довільним, але має бути унікальним серед усіх об'єктів "
@@ -164,3 +163,23 @@ msgstr "Оберіть об'єкти яким необхідно привлас�
 
 msgid "plugins.pubIds.doi.manager.settings.description"
 msgstr "Налаштуйте Плагін DOI, щоб мати можливість користуватись DOI в OMP:"
+
+#, fuzzy
+msgid "plugins.pubIds.doi.editor.assignDoi.pattern"
+msgstr ""
+"DOI {$pubId} не може бути призначено, оскільки він містить незрозумілий "
+"шаблон."
+
+msgid "plugins.pubIds.doi.editor.missingParts"
+msgstr ""
+"Неможливо згенерувати DOI, оскільки одна або більше частин шаблону DOI "
+"відсутні."
+
+msgid "plugins.pubIds.doi.manager.settings.doiSuffixDefault.description"
+msgstr ""
+"%p.%m для монографій<br />%p.%m.c%c для розділів<br />%p.%m.%f для видів "
+"видань<br />%p.%m.%f.%s для файлів."
+
+#, fuzzy
+msgid "plugins.pubIds.doi.manager.settings.doiObjects"
+msgstr "Контент Видавництва"
