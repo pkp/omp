@@ -1,6 +1,6 @@
 msgid ""
 msgstr ""
-"PO-Revision-Date: 2020-04-25 13:38+0000\n"
+"PO-Revision-Date: 2020-04-27 23:20+0000\n"
 "Last-Translator: Fylypovych Georgii <red.ukr@gmail.com>\n"
 "Language-Team: Ukrainian <http://translate.pkp.sfu.ca/projects/omp/locale/uk/"
 ">\n"
@@ -184,9 +184,8 @@ msgstr "Решта Світу?"
 msgid "grid.catalogEntry.salesRightsType"
 msgstr "Види Прав на росповсюдження"
 
-#, fuzzy
 msgid "grid.catalogEntry.salesRightsValue"
-msgstr "Код"
+msgstr "Значення Коду"
 
 msgid "grid.catalogEntry.salesRights"
 msgstr "Права на Росповсюдження"
@@ -203,40 +202,32 @@ msgstr "Ставка Податку"
 msgid "monograph.publicationFormat.productFormDetailCode"
 msgstr "Деталі Товару (не обов'язково)"
 
-#, fuzzy
 msgid "grid.catalogEntry.identificationCodeValue"
 msgstr "Значення Коду"
 
-#, fuzzy
 msgid "grid.catalogEntry.productAvailabilityRequired"
-msgstr "Необхідно ввести код доступності товару"
+msgstr "Необхідно ввести код доступності товару."
 
 msgid "grid.catalogEntry.fileSizeRequired"
 msgstr "Необхідно ввести розмір файлу для цифрових форматів."
 
-#, fuzzy
 msgid "grid.catalogEntry.availableRepresentation.proofNotApproved"
-msgstr "Підтвердження не затверджено."
+msgstr "Коректура не затверджена."
 
-#, fuzzy
 msgid "grid.catalogEntry.availableRepresentation.notApprovedWarning"
 msgstr "Формат відсутній в каталозі."
 
-#, fuzzy
 msgid "grid.catalogEntry.availableRepresentation.catalogNotApprovedWarning"
 msgstr "Запис у каталозі не підтверджено."
 
-#, fuzzy
 msgid "grid.catalogEntry.availableRepresentation.title"
-msgstr "Доступність формату"
+msgstr "Доступність Формату"
 
-#, fuzzy
 msgid "grid.catalogEntry.approvedRepresentation.title"
-msgstr "Затвердження формату"
+msgstr "Підтвердження формату"
 
-#, fuzzy
 msgid "grid.catalogEntry.proof"
-msgstr "Підтвердження"
+msgstr "Коректура"
 
 msgid "grid.catalogEntry.publicationFormatRequired"
 msgstr "Необхідно обрати Вид Видання."
@@ -263,17 +254,14 @@ msgstr "Включити метадані для цього виду видан�
 msgid "monograph.publicationFormat.taxType"
 msgstr "Види податку"
 
-#, fuzzy
 msgid "monograph.publicationFormat.returnInformation"
 msgstr "Індикатор можливості повернення"
 
-#, fuzzy
 msgid "monograph.publicationFormat.productIdentifierType"
 msgstr "Ідентифікація Товару"
 
-#, fuzzy
 msgid "grid.catalogEntry.codeRequired"
-msgstr "необхідно ввести Ідентифікаційний код."
+msgstr "Необхідно ввести Ідентифікаційний код."
 
 msgid "grid.catalogEntry.identificationCodeType"
 msgstr "ONIX Code Type"
