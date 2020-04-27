@@ -1,6 +1,6 @@
 msgid ""
 msgstr ""
-"PO-Revision-Date: 2020-04-22 14:38+0000\n"
+"PO-Revision-Date: 2020-04-27 23:20+0000\n"
 "Last-Translator: Fylypovych Georgii <red.ukr@gmail.com>\n"
 "Language-Team: Ukrainian <http://translate.pkp.sfu.ca/projects/omp/api/uk/>\n"
 "Language: uk\n"
@@ -20,3 +20,11 @@ msgstr "Публікація яку ви шукаєте не належить ж
 msgid "api.emailTemplates.403.notAllowedChangeContext"
 msgstr ""
 "У вас недостатньо прав для переносу цього шаблону листа в ынше видавництво."
+
+msgid "api.publications.403.submissionsDidNotMatch"
+msgstr "Публікація, яку ви шукаєте не є частиною цього подання."
+
+msgid "api.submissions.403.contextRequired"
+msgstr ""
+"Щоб зробити чи редагувати подання, ви маєте зробити запит до кінцевої точки "
+"API Видавництва."
