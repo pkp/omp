@@ -1,0 +1,122 @@
+msgid ""
+msgstr ""
+"PO-Revision-Date: 2020-04-27 23:20+0000\n"
+"Last-Translator: Fylypovych Georgii <red.ukr@gmail.com>\n"
+"Language-Team: Ukrainian <http://translate.pkp.sfu.ca/projects/omp/editor/uk/"
+">\n"
+"Language: uk\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=3; plural=n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%10<="
+"4 && (n%100<10 || n%100>=20) ? 1 : 2;\n"
+"X-Generator: Weblate 3.9.1\n"
+
+msgid "editor.monograph.recommendation"
+msgstr "Рекомендація"
+
+msgid "editor.monograph.legend.catalogEntry"
+msgstr ""
+"Переглянути і керувати поданням в каталозі, включно з метаданими і видами "
+"видання"
+
+#, fuzzy
+msgid "editor.monograph.legend.sectionActions"
+msgstr "Дії з Розділами"
+
+msgid "editor.monograph.legend.submissionActions"
+msgstr "Дії з Поданням"
+
+msgid "editor.monograph.copyediting.personalMessageToUser"
+msgstr "Повідомлення для користувача"
+
+msgid "editor.monograph.externalReview"
+msgstr "Розпочати зовнішнє рецензування"
+
+msgid "editor.monograph.internalReviewDescription"
+msgstr ""
+"Оберіть файли зі списку, щоб надіслати на етап внутрішнього рецензування."
+
+msgid "editor.monograph.internalReview"
+msgstr "Розпочати процес внутрішнього рецензування"
+
+msgid "editor.monograph.uploadReviewForReviewer"
+msgstr "Завантажити Рецензію"
+
+msgid "editor.monograph.replaceReviewer"
+msgstr "Замінити Рецензента"
+
+msgid "editor.monograph.selectReviewerInstructions"
+msgstr ""
+"Оберіть Рецензента зі списку і натисніть на кнопку \"Обрати Рецензента\" щоб "
+"продовжити."
+
+msgid "editor.monograph.enterReviewerRecommendation"
+msgstr "Ввести Рекомендацію Рецензента"
+
+msgid "editor.monograph.enterRecommendation"
+msgstr "Ввести Рекомендацію"
+
+msgid "editor.monograph.clearReview"
+msgstr "Очистити Рецензентів"
+
+msgid "editor.monograph.cancelReview"
+msgstr "Скасувати Запит"
+
+msgid "editor.submissionArchive"
+msgstr "Архів Подань"
+
+msgid "editor.monograph.proof.addNote"
+msgstr "Додати відповідь"
+
+msgid "editor.monograph.production.approvalAndPublishing"
+msgstr "Затвердження та Публікація"
+
+msgid "editor.monograph.editorial.fairCopy"
+msgstr "Чистовик"
+
+msgid "editor.monograph.legend.complete"
+msgstr "Дію Виконано"
+
+msgid "editor.monograph.legend.in_progress"
+msgstr "Дія в процесі виконання або ще не виконана"
+
+#, fuzzy
+msgid "editor.monograph.legend.delete"
+msgstr "Видалити Елемент"
+
+#, fuzzy
+msgid "editor.monograph.legend.edit"
+msgstr "Редагувати елемент"
+
+msgid "editor.monograph.legend.more_info"
+msgstr "Більше Інформації: нотатки, налаштування та історія файлу"
+
+#, fuzzy
+msgid "editor.monograph.legend.add_user"
+msgstr "Додати користувача до розділу"
+
+#, fuzzy
+msgid "editor.monograph.legend.add"
+msgstr "Завантажити файл до розділу"
+
+msgid "editor.monograph.legend.participants"
+msgstr ""
+"Переглянути та керувати учасниками цього подання: авторами, редакторами, "
+"дизайнерами, тощо."
+
+msgid "editor.monograph.legend.bookInfo"
+msgstr ""
+"Переглянути та керувати метаданими, нотатками, сповіщеннями та історією "
+"подання."
+
+#, fuzzy
+msgid "editor.monograph.legend.itemActions"
+msgstr "Дії з Елементами"
+
+#, fuzzy
+msgid "editor.monograph.final.selectFinalDraftFiles"
+msgstr "Оберіть Фінальні Версії Чернеток"
+
+msgid "editor.monograph.peerReviewOptions"
+msgstr "Налаштування Рецензування"
