@@ -1,6 +1,6 @@
 msgid ""
 msgstr ""
-"PO-Revision-Date: 2020-04-23 16:38+0000\n"
+"PO-Revision-Date: 2020-04-27 23:20+0000\n"
 "Last-Translator: Fylypovych Georgii <red.ukr@gmail.com>\n"
 "Language-Team: Ukrainian <http://translate.pkp.sfu.ca/projects/omp/editor/uk/"
 ">\n"
@@ -65,3 +65,58 @@ msgstr "Скасувати Запит"
 
 msgid "editor.submissionArchive"
 msgstr "Архів Подань"
+
+msgid "editor.monograph.proof.addNote"
+msgstr "Додати відповідь"
+
+msgid "editor.monograph.production.approvalAndPublishing"
+msgstr "Затвердження та Публікація"
+
+msgid "editor.monograph.editorial.fairCopy"
+msgstr "Чистовик"
+
+msgid "editor.monograph.legend.complete"
+msgstr "Дію Виконано"
+
+msgid "editor.monograph.legend.in_progress"
+msgstr "Дія в процесі виконання або ще не виконана"
+
+#, fuzzy
+msgid "editor.monograph.legend.delete"
+msgstr "Видалити Елемент"
+
+#, fuzzy
+msgid "editor.monograph.legend.edit"
+msgstr "Редагувати елемент"
+
+msgid "editor.monograph.legend.more_info"
+msgstr "Більше Інформації: нотатки, налаштування та історія файлу"
+
+#, fuzzy
+msgid "editor.monograph.legend.add_user"
+msgstr "Додати користувача до розділу"
+
+#, fuzzy
+msgid "editor.monograph.legend.add"
+msgstr "Завантажити файл до розділу"
+
+msgid "editor.monograph.legend.participants"
+msgstr ""
+"Переглянути та керувати учасниками цього подання: авторами, редакторами, "
+"дизайнерами, тощо."
+
+msgid "editor.monograph.legend.bookInfo"
+msgstr ""
+"Переглянути та керувати метаданими, нотатками, сповіщеннями та історією "
+"подання."
+
+#, fuzzy
+msgid "editor.monograph.legend.itemActions"
+msgstr "Дії з Елементами"
+
+#, fuzzy
+msgid "editor.monograph.final.selectFinalDraftFiles"
+msgstr "Оберіть Фінальні Версії Чернеток"
+
+msgid "editor.monograph.peerReviewOptions"
+msgstr "Налаштування Рецензування"
