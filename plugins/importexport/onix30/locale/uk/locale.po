@@ -1,6 +1,6 @@
 msgid ""
 msgstr ""
-"PO-Revision-Date: 2020-04-22 14:38+0000\n"
+"PO-Revision-Date: 2020-04-27 23:20+0000\n"
 "Last-Translator: Fylypovych Georgii <red.ukr@gmail.com>\n"
 "Language-Team: Ukrainian <http://translate.pkp.sfu.ca/projects/omp/"
 "importexport-onix30/uk/>\n"
@@ -41,3 +41,9 @@ msgstr "Оберіть Монографії для експорту"
 
 msgid "plugins.importexport.onix30.cliError"
 msgstr "ПОМИЛКА:"
+
+msgid "plugins.importexport.onix30.export.error.couldNotWrite"
+msgstr "Не вдалося записати у файл \"{$fileName}\"."
+
+msgid "plugins.importexport.onix30.error.unknownPress"
+msgstr "Вказаний шлях видавництва \"{$contextPath}\" не існує."
