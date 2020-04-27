@@ -2,14 +2,17 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"Last-Translator: \n"
-"Language-Team: \n"
+"POT-Creation-Date: 2019-09-30T07:09:54-07:00\n"
+"PO-Revision-Date: 2020-04-17 21:18+0000\n"
+"Last-Translator: Jordi LC <jordi.lacruz@uab.cat>\n"
+"Language-Team: Catalan <http://translate.pkp.sfu.ca/projects/omp/pubIds-doi/"
+"ca/>\n"
+"Language: ca_ES\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"POT-Creation-Date: 2019-09-30T07:09:54-07:00\n"
-"PO-Revision-Date: 2019-09-30T07:09:54-07:00\n"
-"Language: \n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: Weblate 3.9.1\n"
 
 msgid "plugins.pubIds.doi.displayName"
 msgstr "Mòdul DOI"
@@ -28,3 +31,187 @@ msgstr "Reassignar DOIs"
 
 msgid "plugins.pubIds.doi.editor.doi"
 msgstr "Mòdul DOI"
+
+msgid "plugins.pubIds.doi.editor.preview.objects"
+msgstr "Element"
+
+msgid "plugins.pubIds.doi.editor.preview.files"
+msgstr "Arxiu: {$title}"
+
+msgid "plugins.pubIds.doi.editor.preview.publicationFormats"
+msgstr "Format de publicació: {$title}"
+
+msgid "plugins.pubIds.doi.editor.preview.chapters"
+msgstr "Capítol: {$title}"
+
+msgid "plugins.pubIds.doi.editor.preview.publication.none"
+msgstr "No s'ha assignat cap DOI a aquesta publicació."
+
+msgid "plugins.pubIds.doi.editor.preview.publication"
+msgstr "El DOI per a aquesta publicació serà {$doi}."
+
+msgid "plugins.pubIds.doi.editor.missingPrefix"
+msgstr "El DOI ha de començar amb {$doiPrefix}."
+
+msgid "plugins.pubIds.doi.editor.assignDoi.assigned"
+msgstr "El DOI {$pubId} s'ha assignat."
+
+msgid "plugins.pubIds.doi.editor.assignDoi.pattern"
+msgstr "El DOI {$pubId} no es pot assignar perquè conté un patró no resolt."
+
+msgid "plugins.pubIds.doi.editor.assignDoi.emptySuffix"
+msgstr "El DOI no es pot assignar perquè falta el sufix personalitzat."
+
+msgid "plugins.pubIds.doi.editor.assignDoi"
+msgstr "Assignar el DOI {$pubId} a aquest {$pubObjectType}"
+
+msgid "plugins.pubIds.doi.editor.clearObjectsDoi.confirm"
+msgstr "Segur que voleu eliminar el DOI existent?"
+
+msgid "plugins.pubIds.doi.editor.clearObjectsDoi"
+msgstr "Netejar"
+
+msgid "plugins.pubIds.doi.editor.doiSuffixCustomIdentifierNotUnique"
+msgstr ""
+"El sufix DOI proporcionat ja està en ús en un altre element publicat. "
+"Introduïu un sufix DOI únic per a cada element."
+
+msgid "plugins.pubIds.doi.editor.assigned"
+msgstr "El DOI s'assigna a aquest {$pubObjectType}."
+
+msgid "plugins.pubIds.doi.editor.canBeAssigned"
+msgstr ""
+"Això que veieu és la vista prèvia del DOI. Seleccioneu la casella de "
+"verificació i guardeu el formulari per assignar el DOI."
+
+msgid "plugins.pubIds.doi.editor.patternNotResolved"
+msgstr "El DOI no es pot assignar perquè conté un patró no resolt."
+
+msgid "plugins.pubIds.doi.editor.missingParts"
+msgstr ""
+"No podeu generar un DOI perquè falten dades en una o més parts del patró DOI."
+
+msgid "plugins.pubIds.doi.editor.customSuffixMissing"
+msgstr "El DOI no es pot assignar perquè falta el sufix personalitzat."
+
+msgid "plugins.pubIds.doi.editor.doiObjectTypeSubmissionFile"
+msgstr "arxiu"
+
+msgid "plugins.pubIds.doi.editor.doiObjectTypeRepresentation"
+msgstr "format de publicació"
+
+msgid "plugins.pubIds.doi.editor.doiObjectTypeChapter"
+msgstr "capítol"
+
+msgid "plugins.pubIds.doi.editor.doiObjectTypeSubmission"
+msgstr "monografia"
+
+msgid "plugins.pubIds.doi.editor.doi.assignDoi"
+msgstr "Assignar"
+
+msgid "plugins.pubIds.doi.editor.doi.description"
+msgstr "El DOI ha de començar amb {$prefix}."
+
+msgid "plugins.pubIds.doi.manager.settings.doiReassign.confirm"
+msgstr "Segur que voleu eliminar tots els DOI existents?"
+
+msgid "plugins.pubIds.doi.manager.settings.doiReassign.description"
+msgstr ""
+"Si canvieu la configuració del DOI, els DOI que ja s'havien assignat no es "
+"veuran afectats. Un cop guardada la configuració del DOI feu servir aquest "
+"botó per netejar tots els DOI existents, d'aquesta manera la nova "
+"configuració s'aplicarà a tots els objectes existents."
+
+msgid "plugins.pubIds.doi.manager.settings.doiSubmissionFileSuffixPatternRequired"
+msgstr "Introduïu el patró de sufix DOI per a arxius."
+
+msgid "plugins.pubIds.doi.manager.settings.doiRepresentationSuffixPatternRequired"
+msgstr "Introduïu el patró de sufix DOI per a formats de publicació."
+
+msgid "plugins.pubIds.doi.manager.settings.doiChapterSuffixPatternRequired"
+msgstr "Introduïu el patró de sufix DOI per a capítols."
+
+msgid "plugins.pubIds.doi.manager.settings.doiPublicationSuffixPatternRequired"
+msgstr "Introduïu el patró de sufix DOI per a monografies."
+
+msgid "plugins.pubIds.doi.manager.settings.doiSuffixCustomIdentifier"
+msgstr ""
+"Introduïu un sufix DOI propi per a cada element publicat. Trobareu un camp "
+"d'entrada DOI addicional a la pàgina de metadades de cada element."
+
+msgid "plugins.pubIds.doi.manager.settings.doiSuffixDefault.description"
+msgstr ""
+"%p.%m per a monografies<br />%p.%m.c%c per a capítols<br />%p.%m.%f per a "
+"formats de publicació<br />%p.%m.%f.%s per a arxius."
+
+msgid "plugins.pubIds.doi.manager.settings.doiSuffixDefault"
+msgstr "Utilitzar patrons predeterminats."
+
+msgid "plugins.pubIds.doi.manager.settings.doiSuffixPattern.files"
+msgstr "per a arxius"
+
+msgid "plugins.pubIds.doi.manager.settings.doiSuffixPattern.representations"
+msgstr "per a formats de publicació"
+
+msgid "plugins.pubIds.doi.manager.settings.doiSuffixPattern.chapters"
+msgstr "per a capítols"
+
+msgid "plugins.pubIds.doi.manager.settings.doiSuffixPattern.submissions"
+msgstr "per a monografies"
+
+msgid "plugins.pubIds.doi.manager.settings.doiSuffixPattern.example"
+msgstr ""
+"Per exemple, press%ppub%r podria crear un DOI tipus 10.1234/pressESPpub100"
+
+msgid "plugins.pubIds.doi.manager.settings.doiSuffixPattern"
+msgstr ""
+"Feu servir el patró introduït a sota per generar els sufixos DOI. Utilitzeu %"
+"p per a les inicials de la publicació, %m per a l'identificador de la "
+"monografia, %c per a l'identificador del capítol, %f per a l'identificador "
+"del format de publicació, %s per a l'identificador de l'arxiu i %x per a un "
+"\"identificador personalitzat\"."
+
+msgid "plugins.pubIds.doi.manager.settings.doiSuffix.description"
+msgstr ""
+"El sufix DOI pot tenir qualsevol forma, però ha de ser únic per a cada "
+"objecte publicat amb el mateix prefix DOI:"
+
+msgid "plugins.pubIds.doi.manager.settings.doiPrefixPattern"
+msgstr "El prefix DOI és obligatori i ha de tenir la forma 10.xxxx."
+
+msgid "plugins.pubIds.doi.manager.settings.doiPrefix.description"
+msgstr ""
+"El prefix DOI l'assignen les agències de registre (p. ex. <a href=\""
+"http://www.crossref.org\" target=\"_new\">CrossRef</a>) i té el format "
+"10.xxxx (p. ex. 10.1234):"
+
+msgid "plugins.pubIds.doi.manager.settings.enableSubmissionFileDoi"
+msgstr "Arxius"
+
+msgid "plugins.pubIds.doi.manager.settings.enableRepresentationDoi"
+msgstr "Formats de publicació"
+
+msgid "plugins.pubIds.doi.manager.settings.enableChapterDoi"
+msgstr "Capítols"
+
+msgid "plugins.pubIds.doi.manager.settings.enablePublicationDoi"
+msgstr "Monografies"
+
+msgid "plugins.pubIds.doi.manager.settings.explainDois"
+msgstr ""
+"Seleccioneu els objectes de publicació que han de tenir assignats un "
+"identificador d'objecte digital (DOI):"
+
+msgid "plugins.pubIds.doi.manager.settings.doiObjectsRequired"
+msgstr "Seleccioneu els objectes DOI que s'haurien d'assignar."
+
+msgid "plugins.pubIds.doi.manager.settings.doiObjects"
+msgstr "Contingut de la publicació"
+
+msgid "plugins.pubIds.doi.manager.settings.description"
+msgstr "Configureu el mòdul DOI per poder gestionar i utilitzar els DOI a OMP:"
+
+msgid "plugins.pubIds.doi.description"
+msgstr ""
+"Aquest mòdul permet l'assignació d'identificadors d'objectes digitals (DOI) "
+"a monografies, capítols, formats de publicació i arxius en OMP."
