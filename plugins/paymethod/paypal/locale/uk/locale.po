@@ -1,6 +1,6 @@
 msgid ""
 msgstr ""
-"PO-Revision-Date: 2020-04-23 16:38+0000\n"
+"PO-Revision-Date: 2020-04-27 23:20+0000\n"
 "Last-Translator: Fylypovych Georgii <red.ukr@gmail.com>\n"
 "Language-Team: Ukrainian <http://translate.pkp.sfu.ca/projects/omp/"
 "paymethod-paypal/uk/>\n"
@@ -12,12 +12,10 @@ msgstr ""
 "4 && (n%100<10 || n%100>=20) ? 1 : 2;\n"
 "X-Generator: Weblate 3.9.1\n"
 
-#, fuzzy
 msgid "plugins.paymethod.paypal.error"
 msgstr ""
 "Помилка при проведенні транзакції. Будь ласка, напишіть Менеджеру Видання."
 
-#, fuzzy
 msgid "plugins.paymethod.paypal.settings.secret"
 msgstr "Секретна Комбінація"
 
