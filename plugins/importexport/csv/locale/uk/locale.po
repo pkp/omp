@@ -1,6 +1,6 @@
 msgid ""
 msgstr ""
-"PO-Revision-Date: 2020-04-23 16:38+0000\n"
+"PO-Revision-Date: 2020-04-27 23:20+0000\n"
 "Last-Translator: Fylypovych Georgii <red.ukr@gmail.com>\n"
 "Language-Team: Ukrainian <http://translate.pkp.sfu.ca/projects/omp/"
 "importexport-csv/uk/>\n"
@@ -31,7 +31,6 @@ msgstr ""
 msgid "plugins.importexport.csv.noGenre"
 msgstr "Відсутній жанр Рукопису.  Ініційовано вихід."
 
-#, fuzzy
 msgid "plugins.importexport.csv.unknownPress"
 msgstr "Невідомий Видавець: \"{$contextPath}\".  Пропускаємо значення."
 
@@ -44,7 +43,6 @@ msgstr "Невідомий Користувач: \"{$username}\".  Ініцій�
 msgid "plugins.importexport.csv.fileDoesNotExist"
 msgstr "Файл \"{$filename}\" не існує.  Ініційовано Вихід."
 
-#, fuzzy
 msgid "plugins.importexport.csv.cliUsage"
 msgstr ""
 "Утиліта імпорту даних CSV до OMP за допомогою командного рядка\n"
@@ -55,7 +53,6 @@ msgstr ""
 "\t\t\tВкажіть \"username\" (ім'я користувача) з яким ви хочете асоціювати "
 "подання (зробити автором).\n"
 
-#, fuzzy
 msgid "plugins.importexport.csv.cliOnly"
 msgstr ""
 "\n"
@@ -65,10 +62,8 @@ msgstr ""
 "\t\t\t...для отримання більше інформації.</p>\n"
 "\t"
 
-#, fuzzy
 msgid "plugins.importexport.csv.description"
-msgstr ""
-"Імпортувати подання до видавництв з розділеного табуляцією масиву даних."
+msgstr "Імпортувати подання до видавництв з даними, що розділені табуляцією."
 
 msgid "plugins.importexport.csv.displayName"
 msgstr "Плагін для імпорту даних розділених табуляцією"
