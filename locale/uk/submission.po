@@ -1,6 +1,6 @@
 msgid ""
 msgstr ""
-"PO-Revision-Date: 2020-04-25 13:38+0000\n"
+"PO-Revision-Date: 2020-04-27 23:20+0000\n"
 "Last-Translator: Fylypovych Georgii <red.ukr@gmail.com>\n"
 "Language-Team: Ukrainian <http://translate.pkp.sfu.ca/projects/omp/"
 "submission/uk/>\n"
@@ -39,22 +39,18 @@ msgstr "Під редакцією {$editorName}"
 msgid "submission.workflowType.change"
 msgstr "Змінити"
 
-#, fuzzy
 msgid "submission.workflowType.editedVolume"
-msgstr "Редагований Том: Автори пов'язані з їхніми главами"
+msgstr "Редагований Том: Автори пов'язані з їхніми розділами."
 
-#, fuzzy
 msgid "submission.workflowType.editedVolume.label"
 msgstr "Редагований Том"
 
-#, fuzzy
 msgid "submission.workflowType.description"
 msgstr ""
 "Монографія, - це видання за цілковитим авторством одного або декількох "
-"авторів. Відредагований том має різних авторів для кожної глави (з деталям "
-"глави введеними пізніше в цьому процесі.)"
+"авторів. Відредагований том має різних авторів для кожного розділу (з "
+"деталям розділів введеними пізніше в цьому процесі.)"
 
-#, fuzzy
 msgid "submission.workflowType"
 msgstr "Тип Подання"
 
@@ -190,7 +186,6 @@ msgstr "Очікує підтвердження"
 msgid "submission.complete"
 msgstr "Підтверджено"
 
-#, fuzzy
 msgid "grid.copyediting.deleteCopyeditorResponse"
 msgstr "Видалити файли Літературного Редактора"
 
@@ -250,7 +245,6 @@ msgstr ""
 msgid "submission.submit.form.authorRequired"
 msgstr "Необхідно обрати хоча-б одного автора."
 
-#, fuzzy
 msgid "submission.submit.contributorRole"
 msgstr "Роль користувача"
 
@@ -266,7 +260,6 @@ msgstr "Приклади: Книга 2, Том 2"
 msgid "submission.submit.seriesPosition"
 msgstr "Позиція Серії"
 
-#, fuzzy
 msgid "author.submit.seriesRequired"
 msgstr "Необхідно ввести існуючу Серію."
 
@@ -343,3 +336,9 @@ msgstr ""
 
 msgid "submission.workflowType.authoredWork"
 msgstr "Монографія: Автори, що пов'язані з цією книгою в цілому."
+
+msgid "publication.catalogEntry.success"
+msgstr "Деталі запису каталогу були оновлені."
+
+msgid "submission.upload.fileContents"
+msgstr "Компонент Подання"
