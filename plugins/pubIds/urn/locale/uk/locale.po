@@ -1,6 +1,6 @@
 msgid ""
 msgstr ""
-"PO-Revision-Date: 2020-04-23 16:38+0000\n"
+"PO-Revision-Date: 2020-04-27 23:20+0000\n"
 "Last-Translator: Fylypovych Georgii <red.ukr@gmail.com>\n"
 "Language-Team: Ukrainian <http://translate.pkp.sfu.ca/projects/omp/"
 "pubIds-urn/uk/>\n"
@@ -31,7 +31,7 @@ msgstr "URN має починатися з {$urnPrefix}."
 msgid "plugins.pubIds.urn.editor.missingIssue"
 msgstr ""
 "Ви можете згенерувати URN до того часу, доки публікація не призначена до "
-"номеру"
+"номеру."
 
 msgid "plugins.pubIds.urn.editor.urn.assignUrn"
 msgstr "Призначити"
@@ -42,9 +42,8 @@ msgstr "URN має починатися з {$prefix}."
 msgid "plugins.pubIds.urn.editor.assignURN.assigned"
 msgstr "URN {$pubId} був призначений."
 
-#, fuzzy
 msgid "plugins.pubIds.urn.editor.assignURN.emptySuffix"
-msgstr "URN не може бути призначено, оскільки користувацький суфікс відсутній."
+msgstr "URN не можна призначити оскільки відсутній суфікс."
 
 msgid "plugins.pubIds.urn.editor.assignURN"
 msgstr "Призначити URN {$pubId} для {$pubObjectType}"
@@ -182,3 +181,24 @@ msgid "plugins.pubIds.urn.manager.settings.explainURNs"
 msgstr ""
 "Будь ласка оберіть об'єкти, що при публікації отримають Uniform Resource "
 "Names (URN):"
+
+msgid "plugins.pubIds.urn.editor.urnObjectTypeRepresentation"
+msgstr "вид видання"
+
+msgid "plugins.pubIds.urn.manager.settings.urnRepresentationSuffixPatternRequired"
+msgstr "Введіть зразок URN Суфіксу для видів видань."
+
+msgid "plugins.pubIds.urn.manager.settings.urnSuffixDefault.description"
+msgstr ""
+"%p.%m для монографій<br />%p.%m.c%c для розділів<br />%p.%m.%f для видів "
+"видань<br />%p.%m.%f.%s для файлів."
+
+msgid "plugins.pubIds.urn.manager.settings.urnSuffixPattern.representations"
+msgstr "для Видів Видань"
+
+msgid "plugins.pubIds.urn.manager.settings.enableRepresentationURN"
+msgstr "Види Видань"
+
+#, fuzzy
+msgid "plugins.pubIds.urn.manager.settings.urnObjects"
+msgstr "Контент Видавництва"
