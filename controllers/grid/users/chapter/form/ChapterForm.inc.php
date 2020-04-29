@@ -278,7 +278,7 @@ class ChapterForm extends Form {
 				foreach ($revisions as $revision) {
 					if (in_array($revision->getFileId(), $selectedFiles)) {
 						$revision->setData('chapterId', $this->getChapter()->getId());
-					} else {
+					} elseif ($revision->getData('chapterId') == $chapter->getId()) {
 						$revision->setData('chapterId', null);
 					}
 					DAORegistry::getDAO('SubmissionFileDAO')->updateObject($revision);
