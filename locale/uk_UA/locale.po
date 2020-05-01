@@ -1,10 +1,10 @@
 msgid ""
 msgstr ""
-"PO-Revision-Date: 2020-04-27 23:20+0000\n"
+"PO-Revision-Date: 2020-04-29 11:38+0000\n"
 "Last-Translator: Fylypovych Georgii <red.ukr@gmail.com>\n"
-"Language-Team: Ukrainian <http://translate.pkp.sfu.ca/projects/omp/locale/uk/"
-">\n"
-"Language: uk\n"
+"Language-Team: Ukrainian <http://translate.pkp.sfu.ca/projects/omp/locale/"
+"uk_UA/>\n"
+"Language: uk_UA\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -241,7 +241,6 @@ msgstr "Цей формат буде доступний на окремому с
 msgid "grid.catalogEntry.physicalFormat"
 msgstr "Фізичний формат"
 
-#, fuzzy
 msgid "grid.catalogEntry.publicationFormatDetails"
 msgstr "Деталі Формату"
 
@@ -639,19 +638,19 @@ msgid "catalog.manage.feature.categoryNewRelease"
 msgstr "Нові Видання в категорії"
 
 msgid "catalog.manage.feature.newRelease"
-msgstr "Нове Видання"
+msgstr "Нова версія"
 
 msgid "catalog.manage.newReleaseSuccess"
 msgstr "Монографія позначена \"Нове Видання\""
 
 msgid "catalog.manage.seriesFeatured"
-msgstr "Майбутні видання в Серіях"
+msgstr "Популярні в Серіях"
 
 msgid "catalog.manage.categoryFeatured"
-msgstr "Майбутні видання в категорії"
+msgstr "Популярні в категорії"
 
 msgid "catalog.manage.featured"
-msgstr "Майбутні видання"
+msgstr "Популярні"
 
 msgid "catalog.manage.noMonographs"
 msgstr "Відсутні призначені монографії."
@@ -662,9 +661,8 @@ msgstr "Керувати категоріями"
 msgid "catalog.manage.manageSeries"
 msgstr "Керувати Серіями"
 
-#, fuzzy
 msgid "catalog.manage.newRelease"
-msgstr "Дата"
+msgstr "Версія"
 
 msgid "catalog.manage.placeIntoCarousel"
 msgstr "Карусель"
@@ -705,7 +703,6 @@ msgstr "Управління каталогом"
 msgid "series.path"
 msgstr "Шлях"
 
-#, fuzzy
 msgid "series.series"
 msgstr "Серії"
 
@@ -748,9 +745,8 @@ msgstr "Видалити ці права"
 msgid "grid.action.editRights"
 msgstr "редагувати ці права"
 
-#, fuzzy
 msgid "grid.action.addRights"
-msgstr "Додати Права Продажу"
+msgstr "Додати Права на Росповсюдження"
 
 msgid "grid.action.manageSeries"
 msgstr "Налаштувати \"Серійні видання\" для цього видавництва"
@@ -761,7 +757,6 @@ msgstr "Налаштувати категорії для цього видавн
 msgid "grid.action.releaseMonograph"
 msgstr "Додати мітку \"Нове Видання\" до цього Подання"
 
-#, fuzzy
 msgid "grid.action.publicCatalog"
 msgstr "Переглянути цей елемент в каталозі"
 
@@ -800,3 +795,128 @@ msgstr "Додати представника"
 
 msgid "submission.round"
 msgstr "Раунд&nbsp;{$round}"
+
+msgid "about.pressContact"
+msgstr "Контакти Видавництва"
+
+msgid "site.pressView"
+msgstr "Переглянути Сайт Видавництва"
+
+msgid "user.register.reviewerInterests"
+msgstr "Вкажіть коло наукових інтересів (галузі та методологічні підходи):"
+
+msgid "user.register.reviewerDescription"
+msgstr "Дає свою згоду на рецензування рукописів для редакції."
+
+msgid "user.register.reviewerDescriptionNoInterests"
+msgstr "Дає свою згоду на рецензування рукописів для видавництва."
+
+msgid "user.register.authorDescription"
+msgstr "Має можливість подавати матеріали до видавництв."
+
+msgid "user.register.readerDescription"
+msgstr "Повідомляється поштою про публікацію нових монографій."
+
+msgid "user.register.registrationDisabled"
+msgstr "Зараз це видавництво не дозволяє реєстрацію користувачів."
+
+msgid "user.register.noContexts"
+msgstr "На цьому сайті немає видавництв, у яких Ви можете зареєструватись."
+
+msgid "user.register.selectContext"
+msgstr "Вибрати видавництво для реєстрації:"
+
+msgid "user.role.proofreaders"
+msgstr "Коректори"
+
+msgid "user.role.managers"
+msgstr "Менеджери видавництва"
+
+msgid "user.role.proofreader"
+msgstr "Коректор"
+
+msgid "user.role.pressEditor"
+msgstr "Редактор Видавництва"
+
+msgid "user.role.manager"
+msgstr "Менеджер видавництва"
+
+msgid "user.register.noContextReviewerInterests"
+msgstr ""
+"Якщо Ви запитуєте в видавництві роль рецензента, будь ласка, зазначте свої "
+"наукові інтереси."
+
+msgid "user.register.contextsPrompt"
+msgstr "У яких видавництвах на цьому сайті Ви хочете зареєструватися?"
+
+msgid "user.reviewerPrompt.optin"
+msgstr ""
+"Так, я хочу, щоб до мене зверталися з запитами на рецензування матеріалів "
+"для даного видавництва."
+
+#, fuzzy
+msgid "user.reviewerPrompt.userGroup"
+msgstr "Так, запитати роль {$userGroup}."
+
+msgid "user.reviewerPrompt"
+msgstr "Хотіли б Ви рецензувати рукописи для цього видавництва?"
+
+msgid "user.noRoles.regReviewerClosed"
+msgstr "Зареєструватися як рецензент: Реєстрація рецензентів наразі відключена."
+
+msgid "user.noRoles.submitMonographRegClosed"
+msgstr "Надіслати Монографію: Реєстрація авторів наразі відключена."
+
+msgid "user.noRoles.selectUsersWithoutRoles"
+msgstr "Включити користувачів без призначених ролей в цьому видавництві."
+
+msgid "context.current"
+msgstr "Поточне Видавництво:"
+
+msgid "navigation.catalog.administration"
+msgstr "Адміністрування Каталогу"
+
+msgid "navigation.competingInterestPolicy"
+msgstr "Політика щодо конфлікту інтересів"
+
+msgid "catalog.featuredBooks"
+msgstr "Популярні Книги"
+
+msgid "catalog.featured"
+msgstr "Популярні"
+
+msgid "catalog.manage.notNewReleaseSuccess"
+msgstr "Мітка \"Нове Видання\" знято з монографії."
+
+msgid "grid.action.availableRepresentation"
+msgstr "Підтвердити/скасувати цей формат"
+
+msgid "grid.action.publicationFormatTab"
+msgstr "Показати вкладку \"Вид Видання\""
+
+msgid "grid.action.deleteCode"
+msgstr "Видалити цей Код"
+
+msgid "grid.action.editCode"
+msgstr "Редагувати цей Код"
+
+msgid "grid.action.addCode"
+msgstr "Додати Код"
+
+msgid "grid.action.approveProof"
+msgstr "Схвалити цю правку для індексування та включення в каталог"
+
+msgid "grid.action.addFormat"
+msgstr "Додати вид видання"
+
+msgid "grid.action.deleteFormat"
+msgstr "Видалити цей формат"
+
+msgid "grid.action.editFormat"
+msgstr "Редагувати цей формат"
+
+msgid "grid.action.formatInCatalogEntry"
+msgstr "Формат з'явиться в каталозі"
+
+msgid "grid.action.catalogEntry"
+msgstr "Переглянути форму запису каталога"
