@@ -1,10 +1,10 @@
 msgid ""
 msgstr ""
-"PO-Revision-Date: 2020-04-27 23:20+0000\n"
+"PO-Revision-Date: 2020-04-29 11:38+0000\n"
 "Last-Translator: Fylypovych Georgii <red.ukr@gmail.com>\n"
 "Language-Team: Ukrainian <http://translate.pkp.sfu.ca/projects/omp/"
-"pubIds-urn/uk/>\n"
-"Language: uk\n"
+"pubIds-urn/uk_UA/>\n"
+"Language: uk_UA\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -27,11 +27,10 @@ msgstr "URN для цієї публікації буде таким: {$urn}."
 msgid "plugins.pubIds.urn.editor.missingPrefix"
 msgstr "URN має починатися з {$urnPrefix}."
 
-#, fuzzy
 msgid "plugins.pubIds.urn.editor.missingIssue"
 msgstr ""
-"Ви можете згенерувати URN до того часу, доки публікація не призначена до "
-"номеру."
+"Ви не зможете згенерувати URN, доки ця публікація не призначена до "
+"конкретного випуску."
 
 msgid "plugins.pubIds.urn.editor.urn.assignUrn"
 msgstr "Призначити"
@@ -163,9 +162,8 @@ msgstr "URN"
 msgid "plugins.pubIds.urn.manager.settings.namespace"
 msgstr "Найменування"
 
-#, fuzzy
 msgid "plugins.pubIds.urn.manager.settings.checkNo"
-msgstr "Перевірити число"
+msgstr "Контрольне число"
 
 msgid "plugins.pubIds.urn.manager.settings.form.urnPrefixPattern"
 msgstr ""
@@ -199,6 +197,54 @@ msgstr "для Видів Видань"
 msgid "plugins.pubIds.urn.manager.settings.enableRepresentationURN"
 msgstr "Види Видань"
 
-#, fuzzy
 msgid "plugins.pubIds.urn.manager.settings.urnObjects"
 msgstr "Контент Видавництва"
+
+msgid "plugins.pubIds.urn.editor.missingParts"
+msgstr ""
+"Ви не можете згенерувати URN, так як для однієї чи декількох частин шаблону "
+"URN не вистачає даних. Вам необхідно призначити публікацію в конкретний "
+"випуск, задати ID видавця або ввести номера сторінок."
+
+msgid "plugins.pubIds.urn.form.checkNoRequired"
+msgstr "Відсутнє контрольне число."
+
+msgid "plugins.pubIds.urn.editor.assignURN.pattern"
+msgstr ""
+"Не можна призначити URN {$pubId} оскільки він містить не замінений шаблон."
+
+msgid "plugins.pubIds.urn.editor.addCheckNo"
+msgstr "Додати контрольне число"
+
+msgid "plugins.pubIds.urn.editor.patternNotResolved"
+msgstr "Не можна призначити URN, оскільки він містить не замінений шаблон."
+
+msgid "plugins.pubIds.urn.manager.settings.urnReassign.description"
+msgstr ""
+"Якщо ви зміните свою URN-конфігурацію, то вона не стосуватиметься URN, які "
+"вже були призначені. Після збереження конфігурації URN використовуйте цю "
+"кнопку, щоб видалити усі існуючі URN для того, щоб нові налаштування "
+"вплинули на існуючі об'єкти."
+
+msgid "plugins.pubIds.urn.manager.settings.form.urnResolverRequired"
+msgstr "Будь ласка, введіть URL-адресу перетворювача."
+
+msgid "plugins.pubIds.urn.manager.settings.urnResolver"
+msgstr "URL-адреса перетворювача"
+
+msgid "plugins.pubIds.urn.manager.settings.namespace.description"
+msgstr ""
+"Частіше всього, простір імен необхідно додатково реєструвати (наприклад, у "
+"Національній бібліотеці Німеччини)."
+
+msgid "plugins.pubIds.urn.manager.settings.checkNo.label"
+msgstr ""
+"Контрольне число автоматично вираховуватиметься та буде додаватись у кінець "
+"ідентифікатору, як остання цифра URN."
+
+msgid "plugins.pubIds.urn.manager.settings.urnSuffixPattern"
+msgstr ""
+"Використати нижченаведений шаблон для генерування суфіксів URN. "
+"Використовуйте %p для абревіатури видавництва, %m для монографій, %c для "
+"розділу, %f для виду видання, %s для файлу та %x для \"власного "
+"ідентифікатора\"."
