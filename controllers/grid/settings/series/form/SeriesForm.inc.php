@@ -159,7 +159,7 @@ class SeriesForm extends PKPSectionForm {
 				'canSelect' => true,
 				'items' => $items,
 				'itemsMax' => count($items),
-				'selected' => $this->getData('categories'),
+				'selected' => (array) $this->getData('categories'),
 				'selectorName' => 'categories[]',
 			]
 		);
