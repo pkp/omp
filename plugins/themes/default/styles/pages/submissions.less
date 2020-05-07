@@ -23,10 +23,6 @@
 		li {
 			position: relative;
 			border-bottom: none;
-
-			&:before {
-				&:extend(.fa all);
-			}
 		}
 	}
 
@@ -44,7 +40,7 @@
 		li {
 			padding: @double;
 
-			&:before {
+			.fa {
 				content: @fa-var-check;
 				top: 50%;
 				left: @half;
@@ -73,7 +69,7 @@
 				padding: @double @double @double (@double * 2);
 				border-bottom: @bg-border;
 				
-				&:before {
+				.fa {
 					left: @double;
 				}
 			}
