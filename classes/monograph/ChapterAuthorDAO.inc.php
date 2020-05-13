@@ -39,7 +39,7 @@ class ChapterAuthorDAO extends DAO {
 				sca.primary_contact,
 				sca.seq,
 				ug.show_title,
-				p.locale
+				p.locale AS submission_locale
 			FROM	authors a
 				JOIN publications p ON (p.publication_id = a.publication_id)
 				JOIN submission_chapter_authors sca ON (a.author_id = sca.author_id)

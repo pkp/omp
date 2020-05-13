@@ -2,14 +2,17 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"Last-Translator: \n"
-"Language-Team: \n"
+"POT-Creation-Date: 2019-11-28T15:10:04-08:00\n"
+"PO-Revision-Date: 2020-04-16 14:37+0000\n"
+"Last-Translator: Jordi LC <jordi.lacruz@uab.cat>\n"
+"Language-Team: Catalan <http://translate.pkp.sfu.ca/projects/omp/submission/"
+"ca/>\n"
+"Language: ca_ES\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"POT-Creation-Date: 2019-11-28T15:10:04-08:00\n"
-"PO-Revision-Date: 2019-11-28T15:10:04-08:00\n"
-"Language: \n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: Weblate 3.9.1\n"
 
 msgid "submission.submit.title"
 msgstr "Tramet una monografia"
@@ -27,7 +30,10 @@ msgid "submission.workflowType"
 msgstr "Tipus de circuit de treball editorial"
 
 msgid "submission.workflowType.description"
-msgstr "Una monografia és un treball escrit completament per un o diversos autors/ores. Un volum editat té un autor/a diferent per a cada capítol (els detalls del capítol s'hi afegeixen en etapes posteriors del procés)."
+msgstr ""
+"Una monografia és un treball escrit completament per un o diversos autors/"
+"es. Una obra col·lectiva té un autor/a diferent per a cada capítol (els "
+"detalls del capítol s'afegeixen en etapes posteriors del procés)."
 
 msgid "submission.workflowType.editedVolume"
 msgstr "Volum editat: els autors/ores tenen el seu capítol associat."
@@ -81,7 +87,7 @@ msgid "manuscript.submission"
 msgstr "Tramesa de manuscrit"
 
 msgid "submission.round"
-msgstr "Ronda {$round}"
+msgstr "Ronda&nbsp;{$round}"
 
 msgid "submissions.queuedReview"
 msgstr "En revisió"
@@ -123,7 +129,7 @@ msgid "submission.submit.cancelSubmission"
 msgstr "Podeu completar aquesta tramesa més endavant si seleccioneu «Trameses actives» a la pàgina d'inici de l’autor/a."
 
 msgid "submission.submit.selectSeries"
-msgstr "Selecció de sèries..."
+msgstr "Seleccionar sèries (opcional)"
 
 msgid "submission.submit.seriesPosition"
 msgstr "Posició dins aquesta sèrie (p. ex. Llibre 2 o Volum 2)"
@@ -213,7 +219,7 @@ msgid "submission.catalogEntry.new"
 msgstr "Nova entrada de catàleg"
 
 msgid "submission.catalogEntry.confirm"
-msgstr "Crea una entrada de catàleg per a aquest llibre basada en les metadades de sota."
+msgstr "Afegir aquest llibre al catàleg públic"
 
 msgid "submission.catalogEntry.confirm.required"
 msgstr "Confirmeu que la tramesa està preparada per introduir-la al catàleg."
@@ -262,3 +268,131 @@ msgstr "S'ha eliminat el format de publicació «{$formatName}»."
 
 msgid "submission.submit.titleAndSummary"
 msgstr "Títol i resum"
+
+msgid "publication.scheduledIn"
+msgstr "Programat per publicar-se a <a href=\"{$issueUrl}\">{$issueName}</a>."
+
+msgid "publication.publish.confirmation"
+msgstr ""
+"Tots els requisits de publicació es compleixen. Segur que voleu fer pública "
+"aquesta entrada del catàleg?"
+
+msgid "publication.publishedIn"
+msgstr "Publicat a <a href=\"{$issueUrl}\">{$issueName}</a>."
+
+msgid "publication.required.issue"
+msgstr "La publicació ha d'assignar-se a un número abans de poder-se publicar."
+
+msgid "publication.invalidSeries"
+msgstr "Les series per a aquesta publicació no s'han trobat."
+
+msgid "publication.catalogEntry.success"
+msgstr "Els detalls d'entrada del catàleg s'han actualitzat."
+
+msgid "catalog.browseTitles"
+msgstr "{$numTitles} títols"
+
+msgid "submission.list.saveFeatureOrder"
+msgstr "Guardar l'ordre"
+
+msgid "submission.list.orderingFeaturesSection"
+msgstr ""
+"Arrossegueu i deixeu anar o polseu els botons amunt i avall per canviar "
+"l'ordre dels elements a {$title}."
+
+msgid "submission.list.orderingFeatures"
+msgstr ""
+"Arrossegueu i deixeu anar o polseu els botons amunt i avall per canviar "
+"l'ordre dels elements de la pàgina d'inici."
+
+msgid "submission.list.orderFeatures"
+msgstr "Ordenar elements"
+
+msgid "submission.list.itemsOfTotalMonographs"
+msgstr "{$count} de {$total} monografies"
+
+msgid "submission.list.countMonographs"
+msgstr "{$count} monografies"
+
+msgid "submission.list.monographs"
+msgstr "Monografies"
+
+msgid "section.any"
+msgstr "Qualsevol serie"
+
+msgid "submission.metadataDescription"
+msgstr ""
+"Aquestes especificacions es basen en el conjunt de metadades Dublin Core, un "
+"estàndard internacional que s'utilitza per descriure contingut editorial."
+
+msgid "submission.dependentFiles"
+msgstr "Arxius dependents"
+
+msgid "submission.upload.fileContents"
+msgstr "Component de tramesa"
+
+msgid "workflow.review.externalReview"
+msgstr "Revisió externa"
+
+msgid "editor.submission.decision.sendExternalReview"
+msgstr "Enviar per a una revisió externa"
+
+msgid "submission.catalogEntry.enableChapterPublicationDates"
+msgstr "Cada capítol pot tenir data de publicació pròpia."
+
+msgid "submission.catalogEntry.disableChapterPublicationDates"
+msgstr "Tots els capítols faran servir la data de publicació de la monografia."
+
+msgid "submission.catalogEntry.chapterPublicationDates"
+msgstr "Dates de publicació"
+
+msgid "submission.catalogEntry.viewSubmission"
+msgstr "Veure tramesa"
+
+msgid "submission.catalogEntry.selectionMissing"
+msgstr "Heu de seleccionar com a mínim una monografia per afegir-la al catàleg."
+
+msgid "submission.catalogEntry.select"
+msgstr "Seleccioneu monografies per afegir-les al catàleg"
+
+msgid "submission.catalogEntry.add"
+msgstr "Afegir els seleccionats al catàleg"
+
+msgid "submission.incomplete"
+msgstr "Esperant acceptació"
+
+msgid "submission.complete"
+msgstr "Acceptat"
+
+msgid "submission.submit.noContext"
+msgstr "No s'ha pogut trobar la publicació de la tramesa."
+
+msgid "submission.submit.confirmation"
+msgstr "Confirmació"
+
+msgid "submission.submit.seriesPosition.description"
+msgstr "Exemples: llibre 2, volum 2"
+
+msgid "author.submit.seriesRequired"
+msgstr "Són necessàries series vàlides."
+
+msgid "author.isVolumeEditor"
+msgstr "Identificar aquest contribuïdor/a com l'editor/a d'aquest volum."
+
+msgid "submission.chapter.pages"
+msgstr "Pàgines"
+
+msgid "submission.authorListSeparator"
+msgstr "; "
+
+msgid "submission.editorName"
+msgstr "{$editorName} (ed)"
+
+msgid "submission.workflowType.change"
+msgstr "Canviar"
+
+msgid "submission.workflowType.editedVolume.label"
+msgstr "Obra col·lectiva"
+
+msgid "submission.upload.selectComponent"
+msgstr "Seleccionar component"

@@ -43,7 +43,7 @@ class OmpPublishedSubmissionRequiredPolicy extends DataObjectRequiredPolicy {
 
 		// Make sure the published submissions belongs to the press.
 		$submission = Services::get('submission')->getByUrlPath($submissionId, $this->context->getId());
-		if (!$submission && ctype_digit($submissionId)) {
+		if (!$submission && ctype_digit((string) $submissionId)) {
 			$submission = Services::get('submission')->get($submissionId);
 		}
 		if (!$submission || $submission->getData('status') !== STATUS_PUBLISHED) return AUTHORIZATION_DENY;
@@ -57,7 +57,7 @@ class OmpPublishedSubmissionRequiredPolicy extends DataObjectRequiredPolicy {
 	 * @copydoc DataObjectRequiredPolicy::getDataObjectId()
 	 * Considers a not numeric public URL identifier
 	 */
-	function getDataObjectId() {
+	function getDataObjectId($lookOnlyByParameterName = false) {
 		// Identify the data object id.
 		$router = $this->_request->getRouter();
 		switch(true) {
@@ -72,7 +72,7 @@ class OmpPublishedSubmissionRequiredPolicy extends DataObjectRequiredPolicy {
 				break;
 
 			default:
-				return parent::getDataObjectId();
+				return parent::getDataObjectId($lookOnlyByParameterName);
 		}
 
 		return false;

@@ -28,6 +28,8 @@
 	<locale key="it_IT" complete="false" name="Italiano" iso639-2b="ita" iso639-3="ita" />
 	<locale key="pt_BR" complete="false"  name="Português (Brasil)" iso639-2b="por" iso639-3="por" />
 	<locale key="pt_PT" complete="false" name="Português (Portugal)" iso639-2b="por" iso639-3="por" />
+	<locale key="ru_RU" complete="false" name="Русский" iso639-2b="rus" iso639-3="rus" />
 	<locale key="sl_SI" complete="true" name="Slovenščina" iso639-2b="slv" iso639-3="slv" />
 	<locale key="sv_SE" complete="false" name="Svenska" iso639-2b="swe" iso639-3="swe" />
+	<locale key="uk_UA" complete="false" name="Українська" iso639-2b="ukr" iso639-3="ukr" />
 </locales>

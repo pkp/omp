@@ -86,7 +86,7 @@ class CatalogBookHandler extends Handler {
 
 		// If the publication has been reached through an outdated
 		// urlPath, redirect to the latest version
-		if (!ctype_digit($submissionId) && $submissionId !== $this->publication->getData('urlPath') && !$subPath) {
+		if (!ctype_digit((string) $submissionId) && $submissionId !== $this->publication->getData('urlPath') && !$subPath) {
 			$newArgs = $args;
 			$newArgs = $this->publication->getData('urlPath')
 				? $this->publication->getData('urlPath')
@@ -353,7 +353,7 @@ class CatalogBookHandler extends Handler {
 	 * @param $request PKPRequest
 	 * @param $submission Submission
 	 */
-	function setupTemplate($request, $submission) {
+	function setupTemplate($request, $submission = null) {
 		$templateMgr = TemplateManager::getmanager($request);
 		if ($seriesId = $submission->getSeriesId()) {
 			$seriesDao = DAORegistry::getDAO('SeriesDAO'); /* @var $seriesDao SeriesDAO */
