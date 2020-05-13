@@ -15,6 +15,16 @@
 {if !$heading}
 	{assign var="heading" value="h2"}
 {/if}
+{if !$titleKey}
+	{assign var="monographHeading" value=$heading}
+{elseif $heading == 'h2'}
+	{assign var="monographHeading" value="h3"}
+{elseif $heading == 'h3'}
+	{assign var="monographHeading" value="h4"}
+{else}
+	{assign var="monographHeading" value="h5"}
+{/if}
+
 <div class="cmp_monographs_list">
 
 	{* Optional title *}
@@ -32,20 +42,12 @@
 			{assign var="isFeatured" value=false}
 		{/if}
 		{if $isFeatured}
-			{if $heading && $titleKey}
-				{include file="frontend/objects/monograph_summary.tpl" monograph=$monograph isFeatured=$isFeatured heading="h3"}
-			{else}
-				{include file="frontend/objects/monograph_summary.tpl" monograph=$monograph isFeatured=$isFeatured heading="h2"}
-			{/if}
+			{include file="frontend/objects/monograph_summary.tpl" monograph=$monograph isFeatured=$isFeatured monographHeading=$monographHeading}
 		{else}
 			{if $counter is odd by 1}
 				<div class="row">
 			{/if}
-				{if $heading && $titleKey}
-					{include file="frontend/objects/monograph_summary.tpl" monograph=$monograph isFeatured=$isFeatured heading="h3"}
-				{else}
-					{include file="frontend/objects/monograph_summary.tpl" monograph=$monograph isFeatured=$isFeatured heading="h2"}
-				{/if}
+				{include file="frontend/objects/monograph_summary.tpl" monograph=$monograph isFeatured=$isFeatured monographHeading=$monographHeading}
 			{if $counter is even by 1}
 				</div>
 			{/if}
