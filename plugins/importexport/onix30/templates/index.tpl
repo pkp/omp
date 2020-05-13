@@ -7,41 +7,69 @@
  *
  * List of operations this plugin can perform
  *}
-{strip}
-{assign var="pageTitle" value="plugins.importexport.onix30.displayName"}
-{include file="common/header.tpl"}
-{/strip}
+{extends file="layouts/backend.tpl"}
 
-<div class="pkp_page_content">
-	{if !$currentContext->getData('publisher') || !$currentContext->getData('location') || !$currentContext->getData('codeType') || !$currentContext->getData('codeValue')}
-		{translate key="plugins.importexport.onix30.pressMissingFields"}
-	{else}
-		<script type="text/javascript">
-			$(function() {ldelim}
-				// Attach the form handler.
-				$('#exportXmlForm').pkpHandler('$.pkp.controllers.form.FormHandler');
-			{rdelim});
-		</script>
-		<form id="exportXmlForm" class="pkp_form" action="{plugin_url path="export"}" method="post">
-			{csrf}
-			{fbvFormArea id="exportForm"}
-				{fbvFormSection}
-					{assign var="uuid" value=""|uniqid|escape}
-					<div id="export-submissions-{$uuid}">
-						<select-submissions-list-panel
-							v-bind="components.exportSubmissionsListPanel"
-							@set="set"
-						/>
-					</div>
-					<script type="text/javascript">
-						pkp.registry.init('export-submissions-{$uuid}', 'Container', {$exportSubmissionsListData|json_encode});
-					</script>
-				{/fbvFormSection}
-				{fbvFormButtons submitText="plugins.importexport.native.export" hideCancel="true"}
-			{/fbvFormArea}
-		</form>
-	{/if}
-</div>
+{block name="page"}
+	<h1 class="app__pageHeading">
+		{$pageTitle|escape}
+	</h1>
 
+	<div class="app__contentPanel">
 
-{include file="common/footer.tpl"}
+		{if !$currentContext->getData('publisher') || !$currentContext->getData('location') || !$currentContext->getData('codeType') || !$currentContext->getData('codeValue')}
+			<p>
+				{capture assign="contextSettingsUrl"}{url page="management" op="settings" path="context"}{/capture}
+				{translate key="plugins.importexport.onix30.pressMissingFields" url=$contextSettingsUrl}
+			</p>
+		{else}
+			<script type="text/javascript">
+				$(function() {ldelim}
+					// Attach the form handler.
+					$('#exportXmlForm').pkpHandler('$.pkp.controllers.form.FormHandler');
+				{rdelim});
+			</script>
+			<form id="exportXmlForm" class="pkp_form" action="{plugin_url path="export"}" method="post">
+				{csrf}
+				{fbvFormArea id="exportForm"}
+					<submissions-list-panel
+						v-bind="components.submissions"
+						@set="set"
+					>
+
+						<template v-slot:item="{ldelim}item{rdelim}">
+							<div class="listPanel__itemSummary">
+								<label>
+									<input
+										type="checkbox"
+										name="selectedSubmissions[]"
+										:value="item.id"
+										v-model="selectedSubmissions"
+									/>
+									<span class="listPanel__itemSubTitle">
+										{{ localize(item.publications.find(p => p.id == item.currentPublicationId).fullTitle) }}
+									</span>
+								</label>
+								<pkp-button element="a" :href="item.urlWorkflow" style="margin-left: auto;">
+									{{ __('common.view') }}
+								</pkp-button>
+							</div>
+						</template>
+					</submissions-list-panel>
+					{fbvFormSection}
+						<pkp-button :disabled="!components.submissions.itemsMax" @click="toggleSelectAll">
+							<template v-if="components.submissions.itemsMax && selectedSubmissions.length >= components.submissions.itemsMax">
+								{translate key="common.selectNone"}
+							</template>
+							<template v-else>
+								{translate key="common.selectAll"}
+							</template>
+						</pkp-button>
+						<pkp-button @click="submit('#exportXmlForm')">
+							{translate key="plugins.importexport.native.exportSubmissions"}
+						</pkp-button>
+					{/fbvFormSection}
+				{/fbvFormArea}
+			</form>
+		{/if}
+	</div>
+{/block}

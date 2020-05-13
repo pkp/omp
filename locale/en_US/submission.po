@@ -353,6 +353,9 @@ msgstr "Drag-and-drop or tap the up and down buttons to change the order of feat
 msgid "submission.list.saveFeatureOrder"
 msgstr "Save Order"
 
+msgid "submission.list.viewEntry"
+msgstr "View Entry"
+
 msgid "catalog.browseTitles"
 msgstr "{$numTitles} Titles"
 

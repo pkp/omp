@@ -355,11 +355,9 @@ class URNPubIdPlugin extends PubIdPlugin {
 				'contextInitials' => $form->submissionContext->getData('acronym', $form->submissionContext->getData('primaryLocale')) ?? '',
 				'isPForPress' => true,
 				'submissionId' => $form->publication->getData('submissionId'),
-				'i18n' => [
-					'assignId' => __('plugins.pubIds.urn.editor.urn.assignUrn'),
-					'clearId' => __('plugins.pubIds.urn.editor.clearObjectsURN'),
-					'missingParts' => __('plugins.pubIds.doi.editor.missingParts'),
-				]
+				'assignIdLabel' => __('plugins.pubIds.urn.editor.urn.assignUrn'),
+				'clearIdLabel' => __('plugins.pubIds.urn.editor.clearObjectsURN'),
+				'missingPartsLabel' => __('plugins.pubIds.doi.editor.missingParts'),
 			];
 			if ($form->publication->getData('pub-id::publisher-id')) {
 				$fieldData['publisherId'] = $form->publication->getData('pub-id::publisher-id');
@@ -388,9 +386,7 @@ class URNPubIdPlugin extends PubIdPlugin {
 				'label' => __('plugins.pubIds.urn.displayName'),
 				'description' => __('plugins.pubIds.urn.editor.urn.description', ['prefix' => $prefix]),
 				'value' => $form->publication->getData('pub-id::other::urn'),
-				'i18n' => [
-					'addCheckNumber' => __('plugins.pubIds.urn.editor.addCheckNo'),
-				],
+				'addCheckNumberLabel' => __('plugins.pubIds.urn.editor.addCheckNo'),
 			]));
 		}
 	}

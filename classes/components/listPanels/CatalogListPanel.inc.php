@@ -18,6 +18,18 @@ import('lib.pkp.classes.submission.PKPSubmissionDAO');
 
 class CatalogListPanel extends \PKP\components\listPanels\ListPanel {
 
+	/** @var string URL to the API endpoint where items can be retrieved */
+	public $apiUrl = '';
+
+	/** @var integer Number of items to show at one time */
+	public $count = 30;
+
+	/** @var array Query parameters to pass if this list executes GET requests  */
+	public $getParams = [];
+
+	/** @var integer Count of total items available for list */
+	public $itemsMax = 0;
+
 	/**
 	 * @copydoc ListPanel::getConfig()
 	 */
@@ -45,41 +57,10 @@ class CatalogListPanel extends \PKP\components\listPanels\ListPanel {
 
 		$config = parent::getConfig();
 
-		$config['i18n']['add'] = __('submission.catalogEntry.new');
-		$config['i18n']['itemCount'] = __('submission.list.countMonographs');
-		$config['i18n']['itemsOfTotal'] = __('submission.list.itemsOfTotalMonographs');
-		$config['i18n']['featured'] = __('catalog.featured');
-		$config['i18n']['newRelease'] = __('catalog.manage.feature.newRelease');
-		$config['i18n']['featuredCategory'] = __('catalog.manage.categoryFeatured');
-		$config['i18n']['newReleaseCategory'] = __('catalog.manage.feature.categoryNewRelease');
-		$config['i18n']['featuredSeries'] = __('catalog.manage.seriesFeatured');
-		$config['i18n']['newReleaseSeries'] = __('catalog.manage.feature.seriesNewRelease');
-		$config['i18n']['editCatalogEntry'] = __('submission.editCatalogEntry');
-		$config['i18n']['viewSubmission'] = __('submission.catalogEntry.viewSubmission');
-		$config['i18n']['saving'] = __('common.saving');
-		$config['i18n']['orderFeatures'] = __('submission.list.orderFeatures');
-		$config['i18n']['orderingFeatures'] = __('submission.list.orderingFeatures');
-		$config['i18n']['orderingFeaturesSection'] = __('submission.list.orderingFeaturesSection');
-		$config['i18n']['saveFeatureOrder'] = __('submission.list.saveFeatureOrder');
-		$config['i18n']['cancel'] = __('common.cancel');
-		$config['i18n']['isFeatured'] = __('catalog.manage.isFeatured');
-		$config['i18n']['isNotFeatured'] = __('catalog.manage.isNotFeatured');
-		$config['i18n']['isNewRelease'] = __('catalog.manage.isNewRelease');
-		$config['i18n']['isNotNewRelease'] = __('catalog.manage.isNotNewRelease');
-		$config['i18n']['paginationLabel'] = __('common.pagination.label');
-		$config['i18n']['goToLabel'] = __('common.pagination.goToPage');
-		$config['i18n']['pageLabel'] = __('common.pageNumber');
-		$config['i18n']['nextPageLabel'] = __('common.pagination.next');
-		$config['i18n']['previousPageLabel'] = __('common.pagination.previous');
-
-		$config['addUrl'] = $request->getDispatcher()->url(
-			$request,
-			ROUTE_COMPONENT,
-			null,
-			'modals.submissionMetadata.SelectMonographHandler',
-			'fetch',
-			null
-		);
+		$config['apiUrl'] = $this->apiUrl;
+		$config['count'] = $this->count;
+		$config['getParams'] = $this->getParams;
+		$config['itemsMax'] = $this->itemsMax;
 
 		$config['filters'] = [];
 
@@ -134,11 +115,52 @@ class CatalogListPanel extends \PKP\components\listPanels\ListPanel {
 		// Attach a CSRF token for post requests
 		$config['csrfToken'] = $request->getSession()->getCSRFToken();
 
+		// Get the form to add a new entry
+		$addEntryApiUrl = $request->getDispatcher()->url(
+			$request,
+			ROUTE_API,
+			$context->getPath(),
+			'_submissions/addToCatalog'
+		);
+		$searchSubmissionsApiUrl = $request->getDispatcher()->url(
+			$request,
+			ROUTE_API,
+			$context->getPath(),
+			'submissions'
+		);
+		$supportedFormLocales = $context->getSupportedFormLocales();
+		$localeNames = \AppLocale::getAllLocales();
+		$locales = array_map(function($localeKey) use ($localeNames) {
+			return ['key' => $localeKey, 'label' => $localeNames[$localeKey]];
+		}, $supportedFormLocales);
+		$addEntryForm = new \APP\components\forms\catalog\AddEntryForm($addEntryApiUrl, $searchSubmissionsApiUrl, $locales);
+		$config['addEntryForm'] = $addEntryForm->getConfig();
+
 		$templateMgr = \TemplateManager::getManager($request);
 		$templateMgr->setConstants([
 			'ASSOC_TYPE_PRESS',
 			'ASSOC_TYPE_CATEGORY',
 			'ASSOC_TYPE_SERIES',
+		]);
+
+		$templateMgr->setLocaleKeys([
+			'submission.catalogEntry.new',
+			'submission.list.saveFeatureOrder',
+			'submission.list.orderFeatures',
+			'catalog.manage.categoryFeatured',
+			'catalog.manage.seriesFeatured',
+			'catalog.manage.featured',
+			'catalog.manage.feature.categoryNewRelease',
+			'catalog.manage.feature.seriesNewRelease',
+			'catalog.manage.feature.newRelease',
+			'submission.list.orderingFeatures',
+			'submission.list.orderingFeaturesSection',
+			'catalog.manage.isFeatured',
+			'catalog.manage.isNotFeatured',
+			'catalog.manage.isNewRelease',
+			'catalog.manage.isNotNewRelease',
+			'submission.list.viewEntry',
+			'submission.list.viewSubmission',
 		]);
 
 		return $config;

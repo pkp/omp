@@ -11,6 +11,12 @@ msgstr ""
 "PO-Revision-Date: 2019-09-30T06:23:43-07:00\n"
 "Language: \n"
 
+msgid "api.submissions.400.submissionIdsRequired"
+msgstr "You must provide one or more submission ids to be added to the catalog."
+
+msgid "api.submissions.400.submissionsNotFound"
+msgstr "One or more of the submissions you specified could not be found."
+
 msgid "api.emailTemplates.403.notAllowedChangeContext"
 msgstr "You do not have permission to move this email template to another press."
 
