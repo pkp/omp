@@ -2,14 +2,17 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"Last-Translator: \n"
-"Language-Team: \n"
+"POT-Creation-Date: 2019-11-28T15:10:03-08:00\n"
+"PO-Revision-Date: 2020-05-15 15:38+0000\n"
+"Last-Translator: Jordi LC <jordi.lacruz@uab.cat>\n"
+"Language-Team: Catalan <http://translate.pkp.sfu.ca/projects/omp/locale/"
+"ca_ES/>\n"
+"Language: ca_ES\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"POT-Creation-Date: 2019-11-28T15:10:03-08:00\n"
-"PO-Revision-Date: 2019-11-28T15:10:03-08:00\n"
-"Language: \n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: Weblate 3.9.1\n"
 
 msgid "monograph.audience"
 msgstr "Audiència"
@@ -1156,3 +1159,132 @@ msgstr "Descarrega aquest fitxer PDF"
 
 msgid "submission.round"
 msgstr "Ronda&nbsp;{$round}"
+
+msgid "catalog.manage.isNotFeatured"
+msgstr "Aquesta monografia no està destacada. Fer que estigui destacada."
+
+msgid "catalog.manage.isFeatured"
+msgstr "Aquesta monografia s'ha destacat. Fer-la no destacada."
+
+msgid "catalog.manage.filter.searchByAuthorOrTitle"
+msgstr "Cercar per títol o autor/a"
+
+msgid "catalog.manage.nonOrderable"
+msgstr "Aquest monografia no es podrà sol·licitar fins que es publiqui."
+
+msgid "catalog.manage.feature.seriesNewRelease"
+msgstr "Nova publicació en series"
+
+msgid "catalog.manage.feature.categoryNewRelease"
+msgstr "Nova publicació en categoria"
+
+msgid "catalog.manage.feature.newRelease"
+msgstr "Nova publicació"
+
+msgid "catalog.manage.notNewReleaseSuccess"
+msgstr "Monografia desmarcada com a nou llançament."
+
+msgid "catalog.manage.newReleaseSuccess"
+msgstr "Monografia marcada com a nou llançament."
+
+msgid "catalog.manage.notFeaturedSuccess"
+msgstr "Monografia no destacada."
+
+msgid "catalog.manage.featuredSuccess"
+msgstr "Monografia destacada."
+
+msgid "catalog.manage.seriesFeatured"
+msgstr "Destacat en sèries"
+
+msgid "catalog.manage.categoryFeatured"
+msgstr "Destacat en categoria"
+
+msgid "catalog.manage.featured"
+msgstr "Destacat"
+
+msgid "catalog.manage.series.printIssn"
+msgstr "ISSN imprès"
+
+msgid "catalog.manage.series.onlineIssn"
+msgstr "ISSN en línia"
+
+msgid "catalog.manage.series.issn.equalValidation"
+msgstr "L'ISSN en línia i el de la versió impresa no poden ser iguals."
+
+msgid "catalog.manage.series.issn.validation"
+msgstr "Introduïu un ISSN vàlid."
+
+msgid "catalog.manage.series.issn"
+msgstr "ISSN"
+
+msgid "grid.action.availableRepresentation"
+msgstr "Accepta/rebutja aquest format"
+
+msgid "spotlight"
+msgstr "Destacat"
+
+msgid "grid.catalogEntry.availableRepresentation.notApproved"
+msgstr "Esperant acceptació"
+
+msgid "grid.catalogEntry.availableRepresentation.approved"
+msgstr "Acceptat"
+
+msgid "grid.catalogEntry.availableRepresentation.proofNotApproved"
+msgstr "Prova no acceptada."
+
+msgid "grid.catalogEntry.availableRepresentation.notApprovedWarning"
+msgstr "Format no disponible en l'entrada del catàleg."
+
+msgid "grid.catalogEntry.availableRepresentation.catalogNotApprovedWarning"
+msgstr "Entrada de catàleg no acceptada."
+
+msgid "grid.catalogEntry.availableRepresentation.removeMessage"
+msgstr ""
+"<p>Aquest format <em>no estarà disponible per als lectors/ores</em>. Tots "
+"els arxius descarregables i les altres distribucions ja no apareixeran més  "
+"a l'entrada del catàleg de llibres.</p>"
+
+msgid "grid.catalogEntry.availableRepresentation.message"
+msgstr ""
+"<p>Fer que aquest format estigui <em>disponible per als lectors/ores</em>. "
+"Els arxius descarregables i qualsevol altra distribució apareixeran a "
+"l'entrada del catàleg de llibres.</p>"
+
+msgid "grid.catalogEntry.availableRepresentation.title"
+msgstr "Disponibilitat del format"
+
+msgid "grid.catalogEntry.approvedRepresentation.removeMessage"
+msgstr ""
+"<p>Indicar que les metadades per a aquest format no han estat aprovades.</p>"
+
+msgid "grid.catalogEntry.approvedRepresentation.message"
+msgstr ""
+"<p>Aprovar les metadades per a aquest format. Les metadades poden comprovar-"
+"se des del tauler d'edició per a cada format.</p>"
+
+msgid "grid.catalogEntry.approvedRepresentation.title"
+msgstr "Acceptació de format"
+
+msgid "grid.catalogEntry.isNotAvailable"
+msgstr "No disponible"
+
+msgid "grid.catalogEntry.availability"
+msgstr "Disponibilitat"
+
+msgid "grid.catalogEntry.remoteURL"
+msgstr "URL de contingut allotjat remotament"
+
+msgid "grid.catalogEntry.remotelyHostedContent"
+msgstr "Aquest format estarà disponible en un lloc web independent"
+
+msgid "monograph.miscellaneousDetails"
+msgstr "Detalls d'aquesta monografia"
+
+msgid "monograph.publicationFormatDetails"
+msgstr "Detalls sobre el format de publicació disponible: {$format}"
+
+msgid "monograph.publicationFormat"
+msgstr "Format"
+
+msgid "monograph.audience.success"
+msgstr "S'han actualitzat els detalls d'audiència."
