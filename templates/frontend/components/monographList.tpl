@@ -42,12 +42,12 @@
 			{assign var="isFeatured" value=false}
 		{/if}
 		{if $isFeatured}
-			{include file="frontend/objects/monograph_summary.tpl" monograph=$monograph isFeatured=$isFeatured monographHeading=$monographHeading}
+			{include file="frontend/objects/monograph_summary.tpl" monograph=$monograph isFeatured=$isFeatured heading=$monographHeading}
 		{else}
 			{if $counter is odd by 1}
 				<div class="row">
 			{/if}
-				{include file="frontend/objects/monograph_summary.tpl" monograph=$monograph isFeatured=$isFeatured monographHeading=$monographHeading}
+				{include file="frontend/objects/monograph_summary.tpl" monograph=$monograph isFeatured=$isFeatured heading=$monographHeading}
 			{if $counter is even by 1}
 				</div>
 			{/if}
