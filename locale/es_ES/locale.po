@@ -3,10 +3,10 @@ msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2019-09-30T06:23:44-07:00\n"
-"PO-Revision-Date: 2020-02-28 23:00+0000\n"
+"PO-Revision-Date: 2020-05-15 15:38+0000\n"
 "Last-Translator: Jordi LC <jordi.lacruz@uab.cat>\n"
-"Language-Team: Spanish <http://translate.pkp.sfu.ca/projects/omp/locale/es/>"
-"\n"
+"Language-Team: Spanish <http://translate.pkp.sfu.ca/projects/omp/locale/"
+"es_ES/>\n"
 "Language: es_ES\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -1238,10 +1238,10 @@ msgid "monograph.publicationFormat"
 msgstr "Formato"
 
 msgid "monograph.publicationFormatDetails"
-msgstr "Detalles sobre los formatos de publicación disponibles: {$format}"
+msgstr "Detalles sobre el formato de publicación disponible: {$format}"
 
 msgid "monograph.miscellaneousDetails"
-msgstr "Detalles sobre este monográfico"
+msgstr "Detalles sobre esta monografía"
 
 msgid "monograph.publicationFormat.productDimensionsSeparator"
 msgstr " x "
@@ -1263,22 +1263,28 @@ msgstr "Aceptación de formato"
 
 msgid "grid.catalogEntry.approvedRepresentation.removeMessage"
 msgstr ""
-"<p>Indicar que los metadatos para este formato no han sido aceptados.</p>"
+"<p>Indicar que los metadatos para este formato no han sido aprobados.</p>"
 
 msgid "grid.catalogEntry.availableRepresentation.title"
 msgstr "Disponibilidad de formato"
 
 msgid "grid.catalogEntry.availableRepresentation.message"
-msgstr "<p>Haz que este formato <em>esté disponible para los lectores/as</em>. Los ficheros descargables y cualquier otra distribución aparecerán en el registro de entrada de libros.</p>"
+msgstr ""
+"<p>Haz que este formato esté <em>disponible para los lectores/as</em>. Los "
+"archivos descargables y cualquier otra distribución aparecerán en la entrada "
+"del catálogo de libros.</p>"
 
 msgid "grid.catalogEntry.availableRepresentation.removeMessage"
-msgstr "<p>Este formato <em>no estará disponible para los lectores/as</em>. Los ficheros descargables o cualquier otra distribución ya no aparecerán en el registro de entrada de libros.</p>"
+msgstr ""
+"<p>Este formato <em>no estará disponible para los lectores/as</em>. Todos "
+"los archivos descargables o las otras distribuciones ya no aparecerán en la "
+"entrada del catálogo de libros.</p>"
 
 msgid "grid.catalogEntry.availableRepresentation.catalogNotApprovedWarning"
-msgstr "Registro de entrada no aceptado."
+msgstr "Entrada de catálogo no aceptada."
 
 msgid "grid.catalogEntry.availableRepresentation.notApprovedWarning"
-msgstr "Formato no disponible en el registro de entrada."
+msgstr "Formato no disponible en la entrada del catálogo."
 
 msgid "grid.catalogEntry.availableRepresentation.proofNotApproved"
 msgstr "Prueba no aceptada."
@@ -1299,7 +1305,7 @@ msgid "catalog.manage.series.issn"
 msgstr "ISSN"
 
 msgid "catalog.manage.series.issn.validation"
-msgstr "Por favor, introduzca un ISSN válido."
+msgstr "Introduzca un ISSN válido."
 
 msgid "catalog.manage.series.issn.equalValidation"
 msgstr "El ISSN en línea y el de la versión impresa no pueden ser iguales."
@@ -1413,16 +1419,16 @@ msgid "notification.type.public"
 msgstr "Anuncios públicos"
 
 msgid "catalog.manage.notNewReleaseSuccess"
-msgstr "La monografía no está marcada como nueva publicación."
+msgstr "Monografía desmarcada como nueva publicación."
 
 msgid "catalog.manage.feature.newRelease"
 msgstr "Nueva publicación"
 
 msgid "catalog.manage.feature.categoryNewRelease"
-msgstr "Nueva publicación en cateogría"
+msgstr "Nueva publicación en categoría"
 
 msgid "catalog.manage.feature.seriesNewRelease"
-msgstr "Nueva publicación en serie"
+msgstr "Nueva publicación en series"
 
 msgid "catalog.manage.nonOrderable"
 msgstr "Esta monografía no se puede solicitar hasta que se publique."
@@ -1467,13 +1473,13 @@ msgid "catalog.manage.seriesFeatured"
 msgstr "Destacado en series"
 
 msgid "catalog.manage.featuredSuccess"
-msgstr "La monografía está destacada."
+msgstr "Monografía destacada."
 
 msgid "catalog.manage.notFeaturedSuccess"
 msgstr "Monografía no destacada."
 
 msgid "catalog.manage.newReleaseSuccess"
-msgstr "La monografía está marcada como un nuevo lanzamiento."
+msgstr "Monografía marcada como nuevo lanzamiento."
 
 msgid "grid.series.urlWillBe"
 msgstr "La URL de la colección es {$sampleUrl}. La ruta es una cadena de caracteres que sirven para identificar una serie."
