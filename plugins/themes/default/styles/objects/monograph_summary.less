@@ -38,10 +38,13 @@
 	}
 
 	.title {
-		display: block;
 		font-family: @font-heading;
 		font-size: @font-base;
 		font-weight: @bold;
+		margin-top: 0;
+		margin-bottom: 0;
+		margin-left: 0;
+		line-height: @line-base;
 	}
 
 	.author {
@@ -65,7 +68,7 @@
 
 	@media(min-width: @screen-tablet) {
 
-		> * {
+		> *, .title {
 			display: block;
 			margin-left: @base * 11;
 		}
