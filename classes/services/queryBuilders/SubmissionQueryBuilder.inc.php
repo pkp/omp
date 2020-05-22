@@ -55,7 +55,7 @@ class SubmissionQueryBuilder extends \PKP\Services\QueryBuilders\PKPSubmissionQu
 		import('classes.submission.SubmissionDAO');
 		switch ($column) {
 			case ORDERBY_SERIES_POSITION:
-				$this->orderColumn = 's.series_position';
+				$this->orderColumn = 'po.series_position';
 				break;
 			default:
 				return parent::orderBy($column, $direction);
@@ -86,6 +86,13 @@ class SubmissionQueryBuilder extends \PKP\Services\QueryBuilders\PKPSubmissionQu
 		if (!empty($this->seriesIds)) {
 			$q->leftJoin('publications as publication_s', 's.current_publication_id', '=', 'publication_s.publication_id');
 			$q->whereIn('publication_s.series_id', $this->seriesIds);
+		}
+
+		// order by series position
+		if ($this->orderColumn === 'po.series_position') {
+			$this->columns[] = 'po.series_position';
+			$q->leftJoin('publications as po', 's.current_publication_id', '=', 'po.publication_id');
+			$q->groupBy('po.series_position');
 		}
 
 		if (!empty($this->orderByFeaturedSeq)) {
