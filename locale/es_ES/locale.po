@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2019-09-30T06:23:44-07:00\n"
-"PO-Revision-Date: 2020-05-15 15:38+0000\n"
+"PO-Revision-Date: 2020-05-23 14:39+0000\n"
 "Last-Translator: Jordi LC <jordi.lacruz@uab.cat>\n"
 "Language-Team: Spanish <http://translate.pkp.sfu.ca/projects/omp/locale/"
 "es_ES/>\n"
@@ -66,10 +66,10 @@ msgid "monograph.publicationFormat.pageCounts"
 msgstr "Número de páginas"
 
 msgid "monograph.publicationFormat.frontMatterCount"
-msgstr "Páginas Preliminares"
+msgstr "Prólogo"
 
 msgid "monograph.publicationFormat.backMatterCount"
-msgstr "Apéndices"
+msgstr "Epílogo"
 
 msgid "monograph.publicationFormat.productComposition"
 msgstr "Composición del producto"
@@ -585,7 +585,7 @@ msgid "catalog.featuredBooks"
 msgstr "Libros destacados"
 
 msgid "catalog.dateAdded"
-msgstr "Añadido {$dateAdded}"
+msgstr "Añadido"
 
 msgid "catalog.publicationInfo"
 msgstr "Información de publicación"
@@ -636,7 +636,7 @@ msgid "common.prefixAndTitle.tip"
 msgstr "Si el título del libro comienza con \"Un/a\" o \"El/La/Los/Las\" (o algo similar que no deba incluirse por orden alfabético) añade la palabra como prefijo."
 
 msgid "common.software"
-msgstr "Abrir Publicación de la Monografía"
+msgstr "Open Monograph Press"
 
 msgid "common.omp"
 msgstr "OMP"
@@ -696,7 +696,7 @@ msgid "context.context"
 msgstr "Editorial"
 
 msgid "context.select"
-msgstr "Cambiar a otra publicación:"
+msgstr "Cambiar a otra editorial:"
 
 msgid "user.noRoles.selectUsersWithoutRoles"
 msgstr "Incluir usuarios/as sin roles en la publicación."
@@ -725,40 +725,40 @@ msgid "user.role.seriesEditor"
 msgstr "Editor/a de la colección"
 
 msgid "user.role.copyeditor"
-msgstr "Corrector de estilo"
+msgstr "Corrector/a de originales"
 
 msgid "user.role.proofreader"
-msgstr "Corrector de pruebas"
+msgstr "Corrector/a de pruebas"
 
 msgid "user.role.productionEditor"
-msgstr "Editor de producción"
+msgstr "Editor/a de producción"
 
 msgid "user.role.managers"
-msgstr "Gestores editoriales"
+msgstr "Gestores/as editoriales"
 
 msgid "user.role.seriesEditors"
 msgstr "Editores de la colección"
 
 msgid "user.role.editors"
-msgstr "Editores"
+msgstr "Editores/as"
 
 msgid "user.role.copyeditors"
-msgstr "Correctores de estilo"
+msgstr "Correctores/as de originales"
 
 msgid "user.role.proofreaders"
-msgstr "Correctores de pruebas"
+msgstr "Correctores/as de pruebas"
 
 msgid "user.role.productionEditors"
-msgstr "Editores de producción"
+msgstr "Editores/as de producción"
 
 msgid "user.register.completeForm"
 msgstr "Complete el formulario para registrarse en la publicación."
 
 msgid "user.register.selectContext"
-msgstr "Seleccione una publicación en la que registrarse:"
+msgstr "Seleccione una editorial en la que registrarse:"
 
 msgid "user.register.noContexts"
-msgstr "No hay publicaciones con las que registrarse en el sitio."
+msgstr "No hay editoriales en las que registrarse en este sitio."
 
 msgid "user.register.privacyStatement"
 msgstr "Declaración de privacidad"
@@ -1160,7 +1160,7 @@ msgid "user.authorization.invalidSeriesEditorSubmission"
 msgstr "¡No se ha solicitado propuesta de editor de colección o esta no es válida!"
 
 msgid "user.authorization.noContext"
-msgstr "¡Publicación fuera de contexto!"
+msgstr "¡Ninguna editorial dentro del contexto!"
 
 msgid "user.authorization.seriesAssignment"
 msgstr "Estás intentando acceder a una monografía que no es parte de tu serie."
@@ -1395,10 +1395,10 @@ msgid "user.profile.form.hideOtherContexts"
 msgstr "Oculta otras editoriales"
 
 msgid "user.role.subEditor"
-msgstr "Editor de la colección"
+msgstr "Editor/a de la sèrie"
 
 msgid "user.role.subEditors"
-msgstr "Editor de la colección"
+msgstr "Editor/a de la serie"
 
 msgid "about.aboutContext"
 msgstr "Sobre la editorial"
@@ -1413,7 +1413,9 @@ msgid "about.onlineSubmissions.viewSubmissions"
 msgstr "Ver sus envíos pendientes"
 
 msgid "log.editor.recommendation"
-msgstr "{$editorName} registró una recomendación del editorial  ({$decision}) para la monografía {$submissionId} ."
+msgstr ""
+"{$editorName} registró una recomendación editorial ({$decision}) para la "
+"monografía {$submissionId}."
 
 msgid "notification.type.public"
 msgstr "Anuncios públicos"
@@ -1437,7 +1439,7 @@ msgid "catalog.manage.filter.searchByAuthorOrTitle"
 msgstr "Buscar por título o autor"
 
 msgid "catalog.forthcoming"
-msgstr "Próximo"
+msgstr "Próximamente"
 
 msgid "navigation.catalog.allMonographs"
 msgstr "Todas las monografías"
@@ -1455,13 +1457,15 @@ msgid "user.reviewerPrompt.optin"
 msgstr "Sí, me gustaría que me contacten para revisar los envíos de esta editorial."
 
 msgid "user.register.contextsPrompt"
-msgstr "¿En qué Editoriales querría registrarse?"
+msgstr "¿En qué editoriales de este sitio le gustaría registrarse?"
 
 msgid "user.register.otherContextRoles"
 msgstr "Solicita los siguientes roles."
 
 msgid "user.register.noContextReviewerInterests"
-msgstr "Si solicitó ser revisor de cualquier editorial, ingrese sus intereses."
+msgstr ""
+"Si solicitó ser revisor de alguna editorial debe introcir sus temas de "
+"interés."
 
 msgid "catalog.manage.featured"
 msgstr "Destacado"
