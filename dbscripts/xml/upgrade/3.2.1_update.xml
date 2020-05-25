@@ -23,4 +23,25 @@
 		<query>UPDATE filter_groups SET input_type = 'class::classes.submission.Submission[]' WHERE input_type = 'class::classes.monograph.Monograph[]'</query>
 		<query>UPDATE filter_groups SET output_type = 'class::classes.submission.Submission[]' WHERE output_type = 'class::classes.monograph.Monograph[]'</query>
 	</sql>
+	<sql><!-- pkp/pkp-lib#5833: Set series_position to publications table instead of the publication_settings table -->
+		<query driver="postgres,postgres64,postgres7,postgres8,postgres9">
+			UPDATE publications
+			SET series_position = ps.setting_value
+			FROM publication_settings ps
+			WHERE publications.publication_id = ps.publication_id 
+			AND ps.setting_name = 'seriesPosition'
+			AND publications.series_position is null
+		</query>
+		<query driver="mysql,mysqli">
+			UPDATE publications as p
+			SET p.series_position = (
+				SELECT ps.setting_value
+				FROM publication_settings as ps
+				WHERE p.publication_id = ps.publication_id
+				AND ps.setting_name = 'seriesPosition'
+			)
+			where p.series_position is null
+		</query>
+		<query>DELETE FROM publication_settings WHERE setting_name = 'seriesPosition'</query>
+	</sql>
 </data>
