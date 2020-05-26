@@ -30,6 +30,7 @@ class PublicationDAO extends PKPPublicationDAO {
 		'status' => 'status',
 		'urlPath' => 'url_path',
 		'version' => 'version',
+		'seriesPosition' => 'series_position',
 	];
 
 	/**
