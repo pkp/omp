@@ -1,6 +1,6 @@
 msgid ""
 msgstr ""
-"PO-Revision-Date: 2020-04-29 11:38+0000\n"
+"PO-Revision-Date: 2020-05-05 01:48+0000\n"
 "Last-Translator: Fylypovych Georgii <red.ukr@gmail.com>\n"
 "Language-Team: Ukrainian <http://translate.pkp.sfu.ca/projects/omp/"
 "submission/uk_UA/>\n"
@@ -371,6 +371,5 @@ msgstr ""
 "Ви можете завершити це подання пізніше, вибравши його у списку \"Активні "
 "подання\" на своїй персональній сторінці."
 
-#, fuzzy
 msgid "submission.supportingAgencies"
 msgstr "Спонсори"
