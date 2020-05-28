@@ -15,6 +15,7 @@
 namespace APP\components\forms\context;
 use \PKP\components\forms\context\PKPAppearanceSetupForm;
 use \PKP\components\forms\FieldOptions;
+use \PKP\components\forms\FieldUploadImage;
 
 class AppearanceSetupForm extends PKPAppearanceSetupForm {
 
@@ -56,6 +57,16 @@ class AppearanceSetupForm extends PKPAppearanceSetupForm {
 				'type' => 'radio',
 				'value' => $context->getData('catalogSortOption'),
 				'options' => $catalogSortOptions,
-			]));
+			]))
+			->addField(new FieldUploadImage('pressThumbnail', [
+				'label' => __('manager.setup.pressThumbnail'),
+				'tooltip' => __('manager.setup.pressThumbnail.description'),
+				'isMultilingual' => true,
+				'value' => $context->getData('pressThumbnail'),
+				'baseUrl' => $baseUrl,
+				'options' => [
+					'url' => $temporaryFileApiUrl,
+				],
+			]), [FIELD_POSITION_AFTER, 'pageHeaderLogoImage']);
 	}
 }

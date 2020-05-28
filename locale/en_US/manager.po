@@ -657,6 +657,12 @@ msgstr "Invalid style sheet format. Accepted format is .css."
 msgid "manager.setup.pressTheme"
 msgstr "Press Theme"
 
+msgid "manager.setup.pressThumbnail"
+msgstr "Press thumbnail"
+
+msgid "manager.setup.pressThumbnail.description"
+msgstr "A small logo or representation of the press that can be used in lists of presses."
+
 msgid "manager.setup.contextTitle"
 msgstr "Press Name"
 
