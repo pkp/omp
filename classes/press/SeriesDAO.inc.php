@@ -193,7 +193,7 @@ class SeriesDAO extends PKPSectionDAO {
 		if (!$this->seriesExists($seriesId, $contextId)) return false;
 
 		$subEditorsDao = DAORegistry::getDAO('SubEditorsDAO'); /* @var $subEditorsDao SubEditorsDAO */
-		$subEditorsDao->deleteBySectionId($seriesId, $contextId);
+		$subEditorsDao->deleteBySubmissionGroupId($seriesId, ASSOC_TYPE_SECTION, $contextId);
 
 		// Remove monographs from this series
 		$submissionsIterator = Services::get('submission')->getMany(['seriesIds' => $seriesId, 'count' => 1000]);
@@ -216,39 +216,6 @@ class SeriesDAO extends PKPSectionDAO {
 	 */
 	function deleteByPressId($pressId) {
 		$this->deleteByContextId($pressId);
-	}
-
-	/**
-	 * Retrieve an array associating all series editor IDs with
-	 * arrays containing the series they edit.
-	 * @return array editorId => array(series they edit)
-	 */
-	function getEditorSeries($pressId) {
-		$result = $this->retrieve(
-			'SELECT	a.*,
-				ae.user_id AS editor_id
-			FROM	series_editors ae,
-				series a
-			WHERE	ae.series_id = a.series_id AND
-				a.press_id = ae.press_id AND
-				a.press_id = ?',
-			(int) $pressId
-		);
-
-		$returner = array();
-		while (!$result->EOF) {
-			$row = $result->GetRowAssoc(false);
-			$series = $this->_fromRow($row);
-			if (!isset($returner[$row['editor_id']])) {
-				$returner[$row['editor_id']] = array($series);
-			} else {
-				$returner[$row['editor_id']][] = $series;
-			}
-			$result->MoveNext();
-		}
-
-		$result->Close();
-		return $returner;
 	}
 
 	/**
