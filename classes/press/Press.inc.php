@@ -42,6 +42,14 @@ class Press extends Context {
 	}
 
 	/**
+	 * @deprecated Since OMP 3.2.1, use getLocalizedPageHeaderTitle instead.
+	 * @return string
+	 */
+	function getPageHeaderTitle() {
+		return $this->getLocalizedPageHeaderTitle();
+	}
+
+	/**
 	 * Get "localized" press page logo (if applicable).
 	 * @return string
 	 */
@@ -51,6 +59,14 @@ class Press extends Context {
 			if (isset($logoArray[$locale])) return $logoArray[$locale];
 		}
 		return null;
+	}
+
+	/**
+	 * @deprecated Since OMP 3.2.1, use getLocalizedPageHeaderLogo instead.
+	 * @return string
+	 */
+	function getPageHeaderTitle() {
+		return $this->getLocalizedPageHeaderLogo();
 	}
 
 	/**
