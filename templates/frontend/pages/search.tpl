@@ -18,7 +18,7 @@
 	{include file="frontend/components/breadcrumbs.tpl" type="category" currentTitleKey="common.search"}
 	<h1>{translate key="common.search"}</h1>
 	<div class="monograph_count">
-		{translate key="catalog.browseTitles" numTitles=$results|@count}
+		{translate key="catalog.browseTitles" numTitles=$results->getCount()}
 	</div>
 
 	{* No query - this may happen because of a screen reader, so don't show an
@@ -26,7 +26,7 @@
 	{if $searchQuery == '' }
 
 	{* No published titles *}
-	{elseif !$results|@count}
+	{elseif $results->getCount() == 0}
 		<div class="search_results">
 			{translate key="catalog.noTitlesSearch" searchQuery=$searchQuery|escape}
 			<a href="#search-form">
@@ -37,8 +37,8 @@
 	{* Monograph List *}
 	{else}
 		<div class="search_results">
-			{if $results|@count > 1}
-				{translate key="catalog.foundTitlesSearch" searchQuery=$searchQuery|escape number=$results|@count}
+			{if $results->getCount() > 1}
+				{translate key="catalog.foundTitlesSearch" searchQuery=$searchQuery|escape number=$results->getCount()}
 			{else}
 				{translate key="catalog.foundTitleSearch" searchQuery=$searchQuery|escape}
 			{/if}
