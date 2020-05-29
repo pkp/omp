@@ -181,36 +181,13 @@ class CatalogHandler extends PKPCatalogHandler {
 	}
 
 	/**
-	 * View the results of a search operation.
+	 * @deprecated Since OMP 3.2.1, use pages/search instead.
 	 * @param $args array
 	 * @param $request PKPRequest
 	 * @return string
 	 */
 	function results($args, $request) {
-		$templateMgr = TemplateManager::getManager($request);
-		$press = $request->getPress();
-		$this->setupTemplate($request);
-
-		$query = $request->getUserVar('query');
-		$templateMgr->assign('searchQuery', $query);
-
-		// Fetch the monographs to display
-		import('classes.search.MonographSearch');
-		$monographSearch = new MonographSearch();
-		$error = null;
-		$resultsIterator = $monographSearch->retrieveResults($request, $press, array(null => $query), $error);
-
-		$submissions = array();
-		while ($result = $resultsIterator->next()) {
-			$submission = $result['publishedSubmission'];
-			if ($submission) {
-				$submissions[$submission->getId()] = $submission;
-			}
-		}
-		$templateMgr->assign('publishedSubmissions', $submissions);
-
-		// Display
-		$templateMgr->display('frontend/pages/searchResults.tpl');
+		$request->redirect(null, 'search');
 	}
 
 	/**

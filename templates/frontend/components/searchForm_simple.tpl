@@ -10,7 +10,7 @@
  * @uses $searchQuery string Previously input search query
  *}
 {if !$currentJournal || $currentJournal->getData('publishingMode') != $smarty.const.PUBLISHING_MODE_NONE}
-	{capture name="searchFormUrl"}{url page="catalog" op="results" escape=false}{/capture}
+	{capture name="searchFormUrl"}{url page="search" op="search" escape=false}{/capture}
 	{$smarty.capture.searchFormUrl|parse_url:$smarty.const.PHP_URL_QUERY|parse_str:$formUrlParameters}
 	<form class="pkp_search {$className|escape}" action="{$smarty.capture.searchFormUrl|strtok:"?"|escape}" method="get" role="search" aria-label="{translate|escape key="submission.search"}">
 		{foreach from=$formUrlParameters key=paramKey item=paramValue}
@@ -24,7 +24,7 @@
 			{translate key="common.search"}
 		</button>
 		<div class="search_controls" aria-hidden="true">
-			<a href="{url page="catalog" op="results"}" class="headerSearchPrompt search_prompt" aria-hidden="true">
+			<a href="{url page="search" op="search"}" class="headerSearchPrompt search_prompt" aria-hidden="true">
 				{translate key="common.search"}
 			</a>
 			<a href="#" class="search_cancel headerSearchCancel" aria-hidden="true"></a>
