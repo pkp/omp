@@ -65,7 +65,7 @@ class Press extends Context {
 	 * @deprecated Since OMP 3.2.1, use getLocalizedPageHeaderLogo instead.
 	 * @return string
 	 */
-	function getPageHeaderTitle() {
+	function getPageHeaderLogo() {
 		return $this->getLocalizedPageHeaderLogo();
 	}
 
