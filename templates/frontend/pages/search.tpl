@@ -1,13 +1,13 @@
 {**
- * templates/frontend/pages/searchResults.tpl
+ * templates/frontend/pages/search.tpl
  *
  * Copyright (c) 2014-2020 Simon Fraser University
  * Copyright (c) 2003-2020 John Willinsky
  * Distributed under the GNU GPL v3. For full terms see the file docs/COPYING.
  *
- * @brief Display the page to view the catalog.
+ * @brief Display the page to search and view search results.
  *
- * @uses $publishedSubmissions array List of published submissions
+ * @uses $results array List of search results
  * @uses $searchQuery string The search query, if one was just made
  *}
 {include file="frontend/components/header.tpl" pageTitle="common.search"}
@@ -18,7 +18,7 @@
 	{include file="frontend/components/breadcrumbs.tpl" type="category" currentTitleKey="common.search"}
 	<h1>{translate key="common.search"}</h1>
 	<div class="monograph_count">
-		{translate key="catalog.browseTitles" numTitles=$publishedSubmissions|@count}
+		{translate key="catalog.browseTitles" numTitles=$results|@count}
 	</div>
 
 	{* No query - this may happen because of a screen reader, so don't show an
@@ -26,7 +26,7 @@
 	{if $searchQuery == '' }
 
 	{* No published titles *}
-	{elseif !$publishedSubmissions|@count}
+	{elseif !$results|@count}
 		<div class="search_results">
 			{translate key="catalog.noTitlesSearch" searchQuery=$searchQuery|escape}
 			<a href="#search-form">
@@ -37,8 +37,8 @@
 	{* Monograph List *}
 	{else}
 		<div class="search_results">
-			{if $publishedSubmissions|@count > 1}
-				{translate key="catalog.foundTitlesSearch" searchQuery=$searchQuery|escape number=$publishedSubmissions|@count}
+			{if $results|@count > 1}
+				{translate key="catalog.foundTitlesSearch" searchQuery=$searchQuery|escape number=$results|@count}
 			{else}
 				{translate key="catalog.foundTitleSearch" searchQuery=$searchQuery|escape}
 			{/if}
@@ -46,7 +46,23 @@
 				{translate key="search.searchAgain"}
 			</a>
 		</div>
-		{include file="frontend/components/monographList.tpl" monographs=$publishedSubmissions}
+		<div class="cmp_monographs_list">
+			{assign var=counter value=1}
+			{iterate from=results item=result}
+				{if $counter is odd by 1}
+					<div class="row">
+				{/if}
+					{include file="frontend/objects/monograph_summary.tpl" monograph=$result.publishedSubmission press=$result.press heading="h2"}
+				{if $counter is even by 1}
+					</div>
+				{/if}
+				{assign var=counter value=$counter+1}
+			{/iterate}
+			{* Close .row if we have an odd number of titles *}
+			{if $counter > 1 && $counter is even by 1}
+				</div>
+			{/if}
+		</div>
 	{/if}
 
 	<a name="search-form"></a>

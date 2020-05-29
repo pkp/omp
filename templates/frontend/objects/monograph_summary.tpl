@@ -11,7 +11,7 @@
  * @uses $isFeatured bool Is this a featured monograph?
  *}
 <div class="obj_monograph_summary{if $isFeatured} is_featured{/if}">
-		<a href="{url page="catalog" op="book" path=$monograph->getBestId()}" class="cover">
+		<a {if $press}href="{url press=$press->getPath() page="catalog" op="book" path=$monograph->getBestId()}"{else}href="{url page="catalog" op="book" path=$monograph->getBestId()}"{/if} class="cover">
 			{assign var="coverImage" value=$monograph->getCurrentPublication()->getLocalizedData('coverImage')}
 			<img
 				src="{$monograph->getCurrentPublication()->getLocalizedCoverImageThumbnailUrl($monograph->getData('contextId'))}"
@@ -24,7 +24,7 @@
 			</div>
 		{/if}
 		<{$heading} class="title">
-			<a href="{url router=$smarty.const.ROUTE_PAGE page="catalog" op="book" path=$monograph->getBestId()}">
+			<a {if $press}href="{url press=$press->getPath() page="catalog" op="book" path=$monograph->getBestId()}"{else}href="{url page="catalog" op="book" path=$monograph->getBestId()}"{/if}>
 				{$monograph->getLocalizedFullTitle()|escape}
 			</a>
 		</{$heading}>
