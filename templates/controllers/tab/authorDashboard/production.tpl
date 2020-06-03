@@ -15,8 +15,10 @@
 	{load_url_in_div id="queriesGrid" url=$queriesGridUrl}
 
 	<!-- Display galleys grid -->
-	{capture assign=representationsGridUrl}{url router=$smarty.const.ROUTE_COMPONENT component="grid.catalogEntry.PublicationFormatGridHandler" op="fetchGrid" submissionId=$submission->getId() stageId=$smarty.const.WORKFLOW_STAGE_ID_PRODUCTION escape=false}{/capture}
-	{load_url_in_div id="formatsGridContainer"|uniqid url=$representationsGridUrl}
+	{if $canAccessProductionStage}
+		{capture assign=representationsGridUrl}{url router=$smarty.const.ROUTE_COMPONENT component="grid.catalogEntry.PublicationFormatGridHandler" op="fetchGrid" submissionId=$submission->getId() stageId=$smarty.const.WORKFLOW_STAGE_ID_PRODUCTION escape=false}{/capture}
+		{load_url_in_div id="formatsGridContainer"|uniqid url=$representationsGridUrl}
+	{/if}
 {else}
 	{translate key="submission.stageNotInitiated"}
 {/if}
