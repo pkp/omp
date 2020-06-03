@@ -141,10 +141,7 @@ class ChapterForm extends Form {
 		if ($this->getChapter()) {
 			$selectedChapterAuthors = DAORegistry::getDAO('ChapterAuthorDAO')->getAuthors($this->getPublication()->getId(), $this->getChapter()->getId())->toArray();
 			foreach ($selectedChapterAuthors as $selectedChapterAuthor) {
-				$chapterAuthorOptions[] = [
-					'id' => $selectedChapterAuthor->getId(),
-					'title' => $selectedChapterAuthor->getFullName(),
-				];
+				$chapterAuthorOptions[$selectedChapterAuthor->getId()] = $selectedChapterAuthor->getFullName();
 			}
 		}
 		$authorsIterator = Services::get('author')->getMany(['publicationIds' => $this->getPublication()->getId(), 'count' => 1000]);
@@ -156,30 +153,14 @@ class ChapterForm extends Form {
 				}
 			}
 			if (!$isIncluded) {
-				$chapterAuthorOptions[] = [
-					'id' => $author->getId(),
-					'title' => $author->getFullName(),
-				];
+				$chapterAuthorOptions[$author->getId()] = $author->getFullName();
 			}
 		}
 
-		$chapterAuthorsListPanel = new \PKP\components\listPanels\ListPanel(
-			'authors',
-			__('submission.submit.addAuthor'),
-			[
-				'canOrder' => true,
-				'canSelect' => true,
-				'items' => $chapterAuthorOptions,
-				'itemsMax' => count($chapterAuthorOptions),
-				'selected' => array_map(function($author) { return $author->getId(); }, $selectedChapterAuthors),
-				'selectorName' => 'authors[]',
-			]
-		);
 		$templateMgr = TemplateManager::getManager($request);
-		$templateMgr->assign('chapterAuthorsListData', [
-			'components' => [
-				'authors' => $chapterAuthorsListPanel->getConfig()
-			]
+		$templateMgr->assign([
+			'chapterAuthorOptions' => $chapterAuthorOptions,
+			'selectedChapterAuthors' => array_map(function($author) { return $author->getId(); }, $selectedChapterAuthors),
 		]);
 
 		if ($this->getChapter()) {
@@ -187,10 +168,7 @@ class ChapterForm extends Form {
 			$chapterFileOptions = [];
 			foreach ($submissionFiles as $submissionFile) {
 				if (!$submissionFile->getData('chapterId') || $submissionFile->getData('chapterId') == $this->getChapter()->getId()) {
-					$chapterFileOptions[] = [
-						'id' => $submissionFile->getFileId(),
-						'title' => $submissionFile->getLocalizedName(),
-					];
+					$chapterFileOptions[$submissionFile->getFileId()] = $submissionFile->getLocalizedName();
 				}
 			}
 			$selectedChapterFiles = [];
@@ -199,22 +177,10 @@ class ChapterForm extends Form {
 					$selectedChapterFiles[] = $submissionFile->getFileId();
 				}
 			}
-			$chapterFilesListPanel = new \PKP\components\listPanels\ListPanel(
-				'files',
-				__('submission.files'),
-				[
-					'canSelect' => true,
-					'items' => $chapterFileOptions,
-					'itemsMax' => count($chapterFileOptions),
-					'selected' => $selectedChapterFiles,
-					'selectorName' => 'files[]',
-				]
-			);
 			$templateMgr = TemplateManager::getManager($request);
-			$templateMgr->assign('chapterFilesListData', [
-				'components' => [
-					'chapterFilesListPanel' => $chapterFilesListPanel->getConfig()
-				]
+			$templateMgr->assign([
+				'chapterFileOptions' => $chapterFileOptions,
+				'selectedChapterFiles' => $selectedChapterFiles,
 			]);
 		}
 

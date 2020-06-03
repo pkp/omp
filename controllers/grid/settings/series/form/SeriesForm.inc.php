@@ -85,7 +85,6 @@ class SeriesForm extends PKPSectionForm {
 				'onlineIssn' => $series->getOnlineISSN(),
 				'printIssn' => $series->getPrintISSN(),
 				'sortOption' => $sortOption,
-				'subEditors' => $this->_getAssignedSubEditorIds($seriesId, $press->getId()),
 				'categories' => $categoryIds,
 			);
 		}
@@ -129,49 +128,41 @@ class SeriesForm extends PKPSectionForm {
 		$templateMgr->assign('sortOptions', DAORegistry::getDAO('SubmissionDAO')->getSortSelectOptions());
 
 		// Series Editors
-		$subEditorsListPanel = $this->_getSubEditorsListPanel($context->getId(), $request);
-		$templateMgr->assign(array(
-			'hasSubEditors' => !empty($subEditorsListPanel->items),
-			'subEditorsListData' => [
-				'components' => [
-					'subeditors' => $subEditorsListPanel->getConfig(),
-				]
-			]
-		));
-
-		// Categories list
-		$items = [];
-		$categoryDao = DAORegistry::getDAO('CategoryDAO'); /* @var $categoryDao CategoryDAO */
-		$categories = $categoryDao->getByContextId($context->getId());
-		if (!$categories->wasEmpty) {
-			while ($category = $categories->next()) {
-				$items[] = array(
-					'id' => $category->getId(),
-					'title' => $category->getLocalizedTitle(),
-				);
-			}
+		$usersIterator = Services::get('user')->getMany([
+			'contextId' => $context->getId(),
+			'roleIds' => ROLE_ID_SUB_EDITOR,
+		]);
+		$availableSubeditors = [];
+		foreach ($usersIterator as $user) {
+			$availableSubeditors[(int) $user->getId()] = $user->getFullName();
+		}
+		$assignedToSeries = [];
+		if ($this->getSeriesId()) {
+			$assignedToSeries = Services::get('user')->getIds([
+				'contextId' => $context->getId(),
+				'roleIds' => ROLE_ID_SUB_EDITOR,
+				'assignedToSection' => (int) $this->getSeriesId(),
+			]);
 		}
 
-		$categoriesList = new \PKP\components\listPanels\ListPanel(
-			'categories',
-			__('grid.category.categories'),
-			[
-				'canSelect' => true,
-				'items' => $items,
-				'itemsMax' => count($items),
-				'selected' => (array) $this->getData('categories'),
-				'selectorName' => 'categories[]',
-			]
-		);
+		// Categories list
+		$allCategories = [];
+		$categoryDao = DAORegistry::getDAO('CategoryDAO'); /* @var $categoryDao CategoryDAO */
+		$categoriesResult = $categoryDao->getByContextId($context->getId())->toAssociativeArray();
+		foreach ($categoriesResult as $category) {
+			$title = $category->getLocalizedTitle();
+			if ($category->getParentId()) {
+				$title = $categoriesResult[$category->getParentId()]->getLocalizedTitle() . ' > ' . $title;
+			}
+			$allCategories[(int) $category->getId()] = $title;
+		}
 
-		$templateMgr->assign(array(
-			'hasCategories' => !empty($categoriesList->items),
-			'categoriesListData' => [
-				'components' => [
-					'categories' => $categoriesList->getConfig(),
-				]
-			]
-		));
+		$templateMgr->assign([
+			'availableSubeditors' => $availableSubeditors,
+			'assignedToSeries' => $assignedToSeries,
+			'allCategories' => $allCategories,
+			'selectedCategories' => (array) $this->getData('categories'),
+		]);
 
 		return parent::fetch($request, $template, $display);
 	}
@@ -304,8 +295,18 @@ class SeriesForm extends PKPSectionForm {
 		// Update series object to store image information.
 		$seriesDao->updateObject($series);
 
-		// Save the series editor associations.
-		$this->_saveSubEditors($press->getId());
+		// Update series editors
+		$subEditorsDao = DAORegistry::getDAO('SubEditorsDAO'); /* @var $subEditorsDao SubEditorsDAO */
+		$subEditorsDao->deleteBySubmissionGroupId($series->getId(), ASSOC_TYPE_SERIES, $series->getContextId());
+		$subEditors = $this->getData('subEditors');
+		if (!empty($subEditors)) {
+			$roleDao = DAORegistry::getDAO('RoleDAO'); /* @var $roleDao RoleDAO */
+			foreach ($subEditors as $subEditor) {
+				if ($roleDao->userHasRole($series->getContextId(), $subEditor, ROLE_ID_SUB_EDITOR)) {
+					$subEditorsDao->insertEditor($series->getContextId(), $series->getId(), $subEditor, ASSOC_TYPE_SERIES);
+				}
+			}
+		}
 
 		// Save the category associations.
 		$seriesDao = DAORegistry::getDAO('SeriesDAO'); /* @var $seriesDao SeriesDAO */

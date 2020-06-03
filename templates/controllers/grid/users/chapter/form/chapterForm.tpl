@@ -48,31 +48,17 @@
 		{/fbvFormSection}
 	{/if}
 
-	{fbvFormSection}
-		{assign var="uuid" value=""|uniqid|escape}
-		<div id="chapter-authors-{$uuid}">
-			<list-panel
-				v-bind="components.authors"
-				@set="set"
-			/>
-		</div>
-		<script type="text/javascript">
-			pkp.registry.init('chapter-authors-{$uuid}', 'Container', {$chapterAuthorsListData|json_encode});
-		</script>
+	{fbvFormSection list=true title="submission.submit.addAuthor"}
+		{foreach from=$chapterAuthorOptions item="chapterAuthor" key="id"}
+			{fbvElement type="checkbox" id="authors[]" value=$id checked=in_array($id, $selectedChapterAuthors) label=$chapterAuthor translate=false}
+		{/foreach}
 	{/fbvFormSection}
 
 	{if $chapterId}
-		{fbvFormSection}
-			{assign var="uuid" value=""|uniqid|escape}
-			<div id="chapter-files-{$uuid}">
-				<list-panel
-					v-bind="components.chapterFilesListPanel"
-					@set="set"
-				/>
-			</div>
-			<script type="text/javascript">
-				pkp.registry.init('chapter-files-{$uuid}', 'Container', {$chapterFilesListData|json_encode});
-			</script>
+		{fbvFormSection list=true title="submission.files"}
+			{foreach from=$chapterFileOptions item="chapterFile" key="id"}
+				{fbvElement type="checkbox" id="files[]" value=$id checked=in_array($id, $selectedChapterFiles) label=$chapterFile translate=false}
+			{/foreach}
 		{/fbvFormSection}
 	{/if}
 
