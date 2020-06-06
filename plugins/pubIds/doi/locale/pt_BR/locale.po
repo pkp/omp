@@ -188,3 +188,6 @@ msgstr ""
 
 msgid "plugins.pubIds.doi.editor.assignDoi.assigned"
 msgstr "O DOI {$pubId} foi atribuído."
+
+msgid "plugins.pubIds.doi.editor.missingPrefix"
+msgstr "O DOI deve começar com {$doiPrefix}."
