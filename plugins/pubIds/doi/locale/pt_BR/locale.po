@@ -185,3 +185,6 @@ msgstr "O DOI não pode ser atribuído porque falta o sufixo personalizado."
 msgid "plugins.pubIds.doi.editor.assignDoi.pattern"
 msgstr ""
 "O DOI {$pubId} não pode ser atribuído porque contém um padrão não resolvido."
+
+msgid "plugins.pubIds.doi.editor.assignDoi.assigned"
+msgstr "O DOI {$pubId} foi atribuído."
