@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2019-09-30T12:01:00-07:00\n"
-"PO-Revision-Date: 2020-06-06 03:00+0000\n"
+"PO-Revision-Date: 2020-06-06 03:03+0000\n"
 "Last-Translator: Diego José Macêdo <diegojmacedo@gmail.com>\n"
 "Language-Team: Portuguese (Brazil) <http://translate.pkp.sfu.ca/projects/omp/"
 "pubIds-doi/pt_BR/>\n"
@@ -21,7 +21,9 @@ msgid "plugins.pubIds.doi.readerDisplayName"
 msgstr "DOI:"
 
 msgid "plugins.pubIds.doi.manager.settings.description"
-msgstr "Por favor, configure o plug-in DOI para ser capaz de gerir e utilizar DOIs no OMP:"
+msgstr ""
+"Por favor, configure o plugin DOI para ser capaz de gerir e utilizar DOIs no "
+"OMP:"
 
 msgid "plugins.pubIds.doi.manager.settings.doiObjectsRequired"
 msgstr "Por favor, escolha os objetos aos quais o DOI deve ser atribuído."
@@ -33,7 +35,10 @@ msgid "plugins.pubIds.doi.manager.settings.doiPrefix"
 msgstr "Prefixo DOI"
 
 msgid "plugins.pubIds.doi.manager.settings.doiPrefix.description"
-msgstr "O prefixo DOI é atribuído por agências de registro (por exemplo <a href=\"http://www.crossref.org\" target=\"_new\"> CrossRef </a>) e está no formato 10.xxxx (por exemplo, 10,1234):"
+msgstr ""
+"O prefixo DOI é atribuído por agências de registro (por exemplo <a href=\""
+"http://www.crossref.org\" target=\"_new\"> CrossRef </a>) e está no formato "
+"10.xxxx (por exemplo, 10.1234):"
 
 msgid "plugins.pubIds.doi.manager.settings.doiPrefixPattern"
 msgstr "O prefixo DOI é obrigatório e deve ser na forma 10.xxxx."
@@ -117,7 +122,6 @@ msgstr ""
 "Digite um sufixo DOI individual para cada item publicado. Você encontrará um "
 "campo de entrada DOI adicional na página de metadados de cada item."
 
-#, fuzzy
 msgid "plugins.pubIds.doi.editor.assignDoi"
 msgstr "Atribua o DOI {$pubId} a este {$pubObjectType}"
 
@@ -181,7 +185,6 @@ msgstr "Digite o padrão de sufixo DOI para monografias."
 msgid "plugins.pubIds.doi.editor.assignDoi.emptySuffix"
 msgstr "O DOI não pode ser atribuído porque falta o sufixo personalizado."
 
-#, fuzzy
 msgid "plugins.pubIds.doi.editor.assignDoi.pattern"
 msgstr ""
 "O DOI {$pubId} não pode ser atribuído porque contém um padrão não resolvido."
@@ -194,3 +197,18 @@ msgstr "O DOI deve começar com {$doiPrefix}."
 
 msgid "plugins.pubIds.doi.editor.preview.publication"
 msgstr "O DOI para esta publicação será {$doi}."
+
+msgid "plugins.pubIds.doi.editor.preview.objects"
+msgstr "Item"
+
+msgid "plugins.pubIds.doi.editor.preview.files"
+msgstr "Arquivo: {$title}"
+
+msgid "plugins.pubIds.doi.editor.preview.publicationFormats"
+msgstr "Formato da publicação: {$title}"
+
+msgid "plugins.pubIds.doi.editor.preview.chapters"
+msgstr "Capítulo: {$title}"
+
+msgid "plugins.pubIds.doi.editor.preview.publication.none"
+msgstr "Um DOI não foi atribuído a esta publicação."
