@@ -291,6 +291,35 @@ class OMPMigration extends Migration {
 			$table->string('currency_code_alpha', 3)->nullable();
 			$table->string('payment_method_plugin_name', 80)->nullable();
 		});
+	}
 
+	/**
+	 * Reverse the migration.
+	 * @return void
+	 */
+	public function down() {
+		Capsule::schema()->drop('completed_payments');
+		Capsule::schema()->drop('identification_codes');
+		Capsule::schema()->drop('publication_dates');
+		Capsule::schema()->drop('sales_rights');
+		Capsule::schema()->drop('markets');
+		Capsule::schema()->drop('representatives');
+		Capsule::schema()->drop('features');
+		Capsule::schema()->drop('new_releases');
+		Capsule::schema()->drop('series');
+		Capsule::schema()->drop('series_settings');
+		Capsule::schema()->drop('series_categories');
+		Capsule::schema()->drop('publications');
+		Capsule::schema()->drop('publication_formats');
+		Capsule::schema()->drop('publication_format_settings');
+		Capsule::schema()->drop('submission_chapters');
+		Capsule::schema()->drop('submission_chapter_settings');
+		Capsule::schema()->drop('submission_chapter_authors');
+		Capsule::schema()->drop('presses');
+		Capsule::schema()->drop('press_settings');
+		Capsule::schema()->drop('spotlights');
+		Capsule::schema()->drop('spotlight_settings');
+		Capsule::schema()->drop('queued_payments');
+		Capsule::schema()->drop('completed_payments');
 	}
 }
