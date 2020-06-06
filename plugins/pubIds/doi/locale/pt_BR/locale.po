@@ -111,3 +111,8 @@ msgid "plugins.pubIds.doi.description"
 msgstr ""
 "Este plugin permite a atribuição dos Identificadores de Objetos Digitais "
 "(DOIs) a monografias, capítulos, formatos de publicação e arquivos no OMP."
+
+msgid "plugins.pubIds.doi.manager.settings.doiSuffixCustomIdentifier"
+msgstr ""
+"Digite um sufixo DOI individual para cada item publicado. Você encontrará um "
+"campo de entrada DOI adicional na página de metadados de cada item."
