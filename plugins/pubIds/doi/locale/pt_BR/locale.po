@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2019-09-30T12:01:00-07:00\n"
-"PO-Revision-Date: 2020-06-06 02:50+0000\n"
+"PO-Revision-Date: 2020-06-06 02:59+0000\n"
 "Last-Translator: Diego José Macêdo <diegojmacedo@gmail.com>\n"
 "Language-Team: Portuguese (Brazil) <http://translate.pkp.sfu.ca/projects/omp/"
 "pubIds-doi/pt_BR/>\n"
@@ -116,3 +116,64 @@ msgid "plugins.pubIds.doi.manager.settings.doiSuffixCustomIdentifier"
 msgstr ""
 "Digite um sufixo DOI individual para cada item publicado. Você encontrará um "
 "campo de entrada DOI adicional na página de metadados de cada item."
+
+#, fuzzy
+msgid "plugins.pubIds.doi.editor.assignDoi"
+msgstr "Atribua o DOI {$pubId} a este {$pubObjectType}"
+
+msgid "plugins.pubIds.doi.editor.clearObjectsDoi.confirm"
+msgstr "Tem certeza de que deseja deletar o DOI existente?"
+
+msgid "plugins.pubIds.doi.editor.clearObjectsDoi"
+msgstr "Limpar"
+
+msgid "plugins.pubIds.doi.editor.assigned"
+msgstr "O DOI é atribuído a este {$pubObjectType}."
+
+msgid "plugins.pubIds.doi.editor.canBeAssigned"
+msgstr ""
+"O que está vendo é uma pré-visualização do DOI. Selecione a caixa de "
+"verificação e salve o formulário para atribuir o DOI."
+
+msgid "plugins.pubIds.doi.editor.patternNotResolved"
+msgstr ""
+"Não é possível atribuir o DOI porque este contém um padrão não resolvido."
+
+msgid "plugins.pubIds.doi.editor.missingParts"
+msgstr ""
+"Não é possível gerar um DOI porque faltam dados em uma ou mais partes do "
+"padrão do DOI."
+
+msgid "plugins.pubIds.doi.editor.customSuffixMissing"
+msgstr "O DOI não pode ser atribuído porque falta o sufixo personalizado."
+
+msgid "plugins.pubIds.doi.editor.doiObjectTypeSubmissionFile"
+msgstr "Arquivo"
+
+msgid "plugins.pubIds.doi.editor.doiObjectTypeChapter"
+msgstr "capítulo"
+
+msgid "plugins.pubIds.doi.editor.doiObjectTypeSubmission"
+msgstr "monografia"
+
+msgid "plugins.pubIds.doi.editor.doi.assignDoi"
+msgstr "Atribuir"
+
+msgid "plugins.pubIds.doi.editor.doi.description"
+msgstr "O DOI deve começar com  {$prefix}."
+
+msgid "plugins.pubIds.doi.manager.settings.doiReassign.description"
+msgstr ""
+"Se você alterar a configuração de seu DOI, os DOIs que já foram atribuídos "
+"não serão afetados.Uma vez que a configuração do DOI for salva, use este "
+"botão para deletar todos os DOIs existentes, para que a nova configuração "
+"surta efeito com os objetos existentes."
+
+msgid "plugins.pubIds.doi.manager.settings.doiSubmissionFileSuffixPatternRequired"
+msgstr "Digite o padrão de sufixo DOI para os arquivos."
+
+msgid "plugins.pubIds.doi.manager.settings.doiChapterSuffixPatternRequired"
+msgstr "Digite o padrão de sufixo DOI para os capítulos."
+
+msgid "plugins.pubIds.doi.manager.settings.doiPublicationSuffixPatternRequired"
+msgstr "Digite o padrão de sufixo DOI para monografias."
