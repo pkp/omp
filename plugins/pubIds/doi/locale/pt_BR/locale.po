@@ -2,14 +2,17 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"Last-Translator: \n"
-"Language-Team: \n"
+"POT-Creation-Date: 2019-09-30T12:01:00-07:00\n"
+"PO-Revision-Date: 2020-06-06 02:50+0000\n"
+"Last-Translator: Diego José Macêdo <diegojmacedo@gmail.com>\n"
+"Language-Team: Portuguese (Brazil) <http://translate.pkp.sfu.ca/projects/omp/"
+"pubIds-doi/pt_BR/>\n"
+"Language: pt_BR\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"POT-Creation-Date: 2019-09-30T12:01:00-07:00\n"
-"PO-Revision-Date: 2019-09-30T12:01:00-07:00\n"
-"Language: \n"
+"Plural-Forms: nplurals=2; plural=n > 1;\n"
+"X-Generator: Weblate 3.9.1\n"
 
 msgid "plugins.pubIds.doi.displayName"
 msgstr "DOI"
@@ -67,3 +70,44 @@ msgstr "formato de publicação"
 
 msgid "plugins.pubIds.doi.editor.doiSuffixCustomIdentifierNotUnique"
 msgstr "O sufixo DOI já está em uso por outro item publicado. Por favor insira um sufixo DOI exclusivo para cada item."
+
+msgid "plugins.pubIds.doi.manager.settings.doiSuffixDefault.description"
+msgstr ""
+"%p.%m para monografias<br />%p.%m.c%c para capítulos<br />%p.%m.%f para "
+"formatos de publicação<br />%p.%m.%f.%s para arquivos."
+
+msgid "plugins.pubIds.doi.manager.settings.doiSuffixPattern.files"
+msgstr "para arquivos"
+
+msgid "plugins.pubIds.doi.manager.settings.doiSuffixPattern.chapters"
+msgstr "para capítulos"
+
+msgid "plugins.pubIds.doi.manager.settings.doiSuffixPattern.submissions"
+msgstr "para monografias"
+
+msgid "plugins.pubIds.doi.manager.settings.doiSuffixPattern"
+msgstr ""
+"Use o padrão a seguir para gerar sufixos DOI. Use %p para as iniciais da "
+"editora, %m para a identificação da monografia, %c para a identificação do "
+"capítulo, %f para a identificação do formato de publicação, %s para a "
+"identificação do arquivo e %x para o \"Identificador Personalizado\"."
+
+msgid "plugins.pubIds.doi.manager.settings.enableSubmissionFileDoi"
+msgstr "Arquivos"
+
+msgid "plugins.pubIds.doi.manager.settings.enableRepresentationDoi"
+msgstr "Formatos de publicação"
+
+msgid "plugins.pubIds.doi.manager.settings.enableChapterDoi"
+msgstr "Capítulos"
+
+msgid "plugins.pubIds.doi.manager.settings.enablePublicationDoi"
+msgstr "Monografias"
+
+msgid "plugins.pubIds.doi.manager.settings.doiObjects"
+msgstr "Conteúdo da editora"
+
+msgid "plugins.pubIds.doi.description"
+msgstr ""
+"Este plugin permite a atribuição dos Identificadores de Objetos Digitais "
+"(DOIs) a monografias, capítulos, formatos de publicação e arquivos no OMP."
