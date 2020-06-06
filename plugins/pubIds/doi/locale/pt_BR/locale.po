@@ -177,3 +177,6 @@ msgstr "Digite o padrão de sufixo DOI para os capítulos."
 
 msgid "plugins.pubIds.doi.manager.settings.doiPublicationSuffixPatternRequired"
 msgstr "Digite o padrão de sufixo DOI para monografias."
+
+msgid "plugins.pubIds.doi.editor.assignDoi.emptySuffix"
+msgstr "O DOI não pode ser atribuído porque falta o sufixo personalizado."
