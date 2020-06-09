@@ -23,7 +23,7 @@ describe('Data suite tests', function() {
 
 		// Submit review with no competing interests
 		cy.login('agallego', null, 'publicknowledge');
-		cy.get('#myQueue').find('a').contains('View Brower').click({force: true});
+		cy.get('a:contains("View Lost Tracks")').click({force: true});
 
 		cy.get('form#reviewStep1Form');
 		cy.get('label[for="noCompetingInterests"]').should('not.exist');
@@ -62,7 +62,7 @@ describe('Data suite tests', function() {
 		// The PUT request won't contain the entered content for this forum unless we click it first.
 		cy.get('p:contains("Reviewer competing interests disclosure")').click();
 		cy.get('div[id="reviewerGuidance"] button:contains("Save")').click();
-		cy.get('div:contains("Reviewer guidance has been updated.")');
+		cy.get('#reviewerGuidance [role="status"]').contains('Saved');
 		cy.logout();
 
 		// Send the submission to review
@@ -73,7 +73,7 @@ describe('Data suite tests', function() {
 		// Submit review with competing interests
 		const competingInterests = 'I work for a competing company';
 		cy.login('alzacharia', null, 'publicknowledge');
-		cy.get('#myQueue').find('a').contains('View Brower').click({force: true});
+		cy.get('a:contains("View Lost Tracks")').click({force: true});
 
 		cy.get('input#hasCompetingInterests').click();
 		cy.wait(2000); // Give TinyMCE control time to load
@@ -112,7 +112,7 @@ describe('Data suite tests', function() {
 		cy.wait(2000); // Give TinyMCE control time to load
 		cy.setTinyMceContent('reviewerGuidance-competingInterests-control-en_US', '');
 		cy.get('div[id="reviewerGuidance"] button:contains("Save")').click();
-		cy.get('div:contains("Reviewer guidance has been updated.")');
+		cy.get('#reviewerGuidance [role="status"]').contains('Saved');
 		cy.logout();
 
 		// The CI statement entered previously should still be visible.

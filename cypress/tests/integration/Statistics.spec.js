@@ -14,8 +14,7 @@ describe('Statistics Tests', function() {
 
 	it('Check statistics', function() {
 		cy.login('dbarnes', null, 'publicknowledge');
-		cy.get('ul[id="navigationPrimary"] a:contains("Statistics")').click();
-		cy.get('ul[id="navigationPrimary"] a:contains("Monographs")').click();
+		cy.get('.app__nav a:contains("Monographs")').click();
 		cy.checkGraph(
 			'Total catalog views by date',
 			'Abstract Views',
