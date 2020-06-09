@@ -51,7 +51,7 @@ describe('Data suite tests', function() {
 		});
 		cy.logout();
 
-		cy.findSubmissionAsEditor('dbarnes', null, title);
+		cy.findSubmissionAsEditor('dbarnes', null, 'Power');
 		cy.sendToReview('External');
 		cy.get('li.ui-state-active a:contains("External Review")');
 		cy.assignReviewer('Adela Gallego');

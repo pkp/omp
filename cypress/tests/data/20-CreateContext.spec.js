@@ -44,14 +44,14 @@ describe('Data suite tests', function() {
 		cy.login('admin', 'admin');
 		cy.get('a').contains('admin').click();
 		cy.get('a').contains('Dashboard').click();
-		cy.get('a').contains('Administration').click();
+		cy.get('.app__nav a').contains('Administration').click();
 		cy.get('a').contains('Hosted Presses').click();
 		cy.get('a[class=show_extras]').click();
 		cy.contains('Settings wizard').click();
 
 		cy.get('button[id="appearance-button"]').click();
-		cy.get('div[id=appearance]').find('button').contains('Save').click();
-		cy.contains('The theme has been updated.');
+		cy.get('#appearance button').contains('Save').click();
+		cy.get('#appearance [role="status"]').contains('Saved');
 
 		cy.get('button[id="languages-button"]').click();
 		cy.get('input[id^=select-cell-fr_CA-submissionLocale]').click();
@@ -60,7 +60,8 @@ describe('Data suite tests', function() {
 		cy.get('button[id="indexing-button"]').click();
 		cy.get('input[name="searchDescription-en_US"]').type(Cypress.env('contextDescriptions')['en_US']);
 		cy.get('textarea[name="customHeaders-en_US"]').type('<meta name="pkp" content="Test metatag.">');
-		cy.get('div[id=indexing]').find('button').contains('Save').click();
+		cy.get('#indexing button').contains('Save').click();
+		cy.get('#indexing [role="status"]').contains('Saved');
 
 		cy.get('label[for="searchIndexing-searchDescription-control-en_US"] ~ button.tooltipButton').click();
 		cy.get('div').contains('Provide a brief description');
@@ -71,19 +72,17 @@ describe('Data suite tests', function() {
 		cy.login('admin', 'admin');
 		cy.get('a').contains('admin').click();
 		cy.get('a').contains('Dashboard').click();
-		cy.get('a').contains('Settings').click();
-		cy.get('a').contains('Press').click();
+		cy.get('.app__nav a').contains('Press').click();
 
 		cy.get('div[id=masthead]').find('button').contains('Save').click();
-		cy.contains('The masthead details for this press have been updated.');
+		cy.get('#masthead [role="status"]').contains('Saved');
 	});
 
 	it('Tests contact settings form', function() {
 		cy.login('admin', 'admin');
 		cy.get('a').contains('admin').click();
 		cy.get('a').contains('Dashboard').click();
-		cy.get('a').contains('Settings').click();
-		cy.get('a').contains('Press').click();
+		cy.get('.app__nav a').contains('Press').click();
 		cy.get('button[id="contact-button"]').click();
 
 		// Submit the form with required fields missing.
@@ -108,14 +107,13 @@ describe('Data suite tests', function() {
 		cy.get('input[name=contactEmail').clear().type('rvaca@mailinator.com');
 		cy.get('input[name=supportEmail').clear().type('rvaca@mailinator.com');
 		cy.get('div[id=contact').find('button').contains('Save').click();
-		cy.contains('The contact details for this');
+		cy.get('#contact [role="status"]').contains('Saved');
 	});
 
 	it('Tests role settings', function() {
 		cy.login('admin', 'admin', 'publicknowledge');
 		cy.get('a:contains("Users & Roles")').click();
-		cy.get('ul#navigationPrimary ul a:contains("Roles")').click();
-		cy.get('button[id="roles-button"]').click();
+		cy.get('button').contains('Roles').click();
 
 		// "Edit" link below "Volume editor" role
 		cy.get('tr[id^="component-grid-settings-roles-usergroupgrid-row-"]:contains("Volume editor") > .first_column > .show_extras').click();

@@ -76,7 +76,7 @@ describe('Data suite tests', function() {
 
 		cy.logout();
 
-		cy.findSubmissionAsEditor('dbarnes', null, title);
+		cy.findSubmissionAsEditor('dbarnes', null, 'Bernnard');
 		cy.sendToReview('Internal');
 		cy.get('li.ui-state-active a:contains("Internal Review")');
 		// Assign a recommendOnly section editor
@@ -84,12 +84,12 @@ describe('Data suite tests', function() {
 		cy.logout();
 		// Find the submission as the section editor
 		cy.login('minoue', null, 'publicknowledge'),
-		cy.get('div[id=myQueue]').find('div').contains(title).parent().parent().click();
+		cy.get('#myQueue').find('a').contains('View Bernnard').click({force: true});
 		// Recommend
 		cy.recordEditorialRecommendation('Send to External Review');
 		cy.logout();
 		// Log in as editor and see the existing recommendation
-		cy.findSubmissionAsEditor('dbarnes', null, title);
+		cy.findSubmissionAsEditor('dbarnes', null, 'Bernnard');
 		cy.get('div.pkp_workflow_recommendations:contains("Recommendations: Send to External Review")');
 	});
 });

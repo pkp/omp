@@ -43,7 +43,7 @@ describe('Data suite tests', function() {
 		});
 		cy.logout();
 
-		cy.findSubmissionAsEditor('dbarnes', null, title);
+		cy.findSubmissionAsEditor('dbarnes', null, 'Clark');
 		cy.sendToReview('External');
 		cy.assignReviewer('Gonzalo Favio');
 		cy.recordEditorialDecision('Accept Submission');

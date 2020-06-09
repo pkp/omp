@@ -16,14 +16,14 @@ describe('Data suite tests', function() {
 
 	it('Tests with Competing Interests disabled', function() {
 		// Send the submission to review
-		cy.findSubmissionAsEditor('dbarnes', null, fullTitle);
+		cy.findSubmissionAsEditor('dbarnes', null, 'Brower');
 		cy.sendToReview('External');
 		cy.assignReviewer('Adela Gallego');
 		cy.logout();
 
 		// Submit review with no competing interests
 		cy.login('agallego', null, 'publicknowledge');
-		cy.get('div[id=myQueue]').find('div').contains(fullTitle).parent().parent().click();
+		cy.get('#myQueue').find('a').contains('View Brower').click({force: true});
 
 		cy.get('form#reviewStep1Form');
 		cy.get('label[for="noCompetingInterests"]').should('not.exist');
@@ -41,7 +41,7 @@ describe('Data suite tests', function() {
 		cy.logout();
 
 		// Find and view the review
-		cy.findSubmissionAsEditor('dbarnes', null, fullTitle);
+		cy.findSubmissionAsEditor('dbarnes', null, 'Brower');
 		cy.waitJQuery();
 		cy.get('span:contains("Adela Gallego")').parent().parent().find('a[title="Read this review"]:visible').click();
 
@@ -53,8 +53,7 @@ describe('Data suite tests', function() {
 	it('Tests with Competing Interests enabled', function() {
 		// Set the CI requirement setting
 		cy.login('dbarnes', null, 'publicknowledge');
-		cy.get('a').contains('Settings').click();
-		cy.get('a').contains('Workflow').click();
+		cy.get('.app__nav a').contains('Workflow').click();
 		cy.get('button[id="review-button"]').click();
 		cy.get('button[id="reviewerGuidance-button"]').click();
 		cy.wait(2000); // Give TinyMCE control time to load
@@ -67,14 +66,14 @@ describe('Data suite tests', function() {
 		cy.logout();
 
 		// Send the submission to review
-		cy.findSubmissionAsEditor('dbarnes', null, fullTitle);
+		cy.findSubmissionAsEditor('dbarnes', null, 'Brower');
 		cy.assignReviewer('Al Zacharia');
 		cy.logout();
 
 		// Submit review with competing interests
 		const competingInterests = 'I work for a competing company';
 		cy.login('alzacharia', null, 'publicknowledge');
-		cy.get('div[id=myQueue]').find('div').contains(fullTitle).parent().parent().click();
+		cy.get('#myQueue').find('a').contains('View Brower').click({force: true});
 
 		cy.get('input#hasCompetingInterests').click();
 		cy.wait(2000); // Give TinyMCE control time to load
@@ -94,7 +93,7 @@ describe('Data suite tests', function() {
 		cy.logout();
 
 		// Find and view the review
-		cy.findSubmissionAsEditor('dbarnes', null, fullTitle);
+		cy.findSubmissionAsEditor('dbarnes', null, 'Brower');
 		cy.waitJQuery();
 		cy.get('span:contains("Al Zacharia")').parent().parent().find('a[title="Read this review"]:visible').click();
 
@@ -107,8 +106,7 @@ describe('Data suite tests', function() {
 
 		// Disable the CI requirement again
 		cy.login('dbarnes', null, 'publicknowledge');
-		cy.get('ul#navigationPrimary a:contains("Settings")').click();
-		cy.get('ul#navigationPrimary a:contains("Workflow")').click();
+		cy.get('.app__nav a').contains('Workflow').click();
 		cy.get('button[id="review-button"]').click();
 		cy.get('button[id="reviewerGuidance-button"]').click();
 		cy.wait(2000); // Give TinyMCE control time to load
@@ -118,7 +116,7 @@ describe('Data suite tests', function() {
 		cy.logout();
 
 		// The CI statement entered previously should still be visible.
-		cy.findSubmissionAsEditor('dbarnes', null, fullTitle);
+		cy.findSubmissionAsEditor('dbarnes', null, 'Brower');
 		cy.waitJQuery();
 		cy.get('span:contains("Al Zacharia")').parent().parent().find('a[title="Read this review"]:visible').click();
 		cy.get('h3:contains("Reviewer Comments")');

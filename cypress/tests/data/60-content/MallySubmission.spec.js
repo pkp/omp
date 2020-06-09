@@ -69,7 +69,7 @@ describe('Data suite tests', function() {
 		});
 		cy.logout();
 
-		cy.findSubmissionAsEditor('dbarnes', null, title);
+		cy.findSubmissionAsEditor('dbarnes', null, 'Ally');
 
 		// Internal review
 		cy.sendToReview('Internal');
@@ -90,7 +90,7 @@ describe('Data suite tests', function() {
 		cy.performReview('gfavio', null, title, null, 'I recommend resubmitting.');
 
 		// Accept submission
-		cy.findSubmissionAsEditor('dbarnes', null, title);
+		cy.findSubmissionAsEditor('dbarnes', null, 'Ally');
 		cy.recordEditorialDecision('Accept Submission');
 		cy.get('li.ui-state-active a:contains("Copyediting")');
 	});
