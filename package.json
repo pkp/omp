@@ -12,6 +12,7 @@
   "dependencies": {
     "@tinymce/tinymce-vue": "^1.1.0",
     "chart.js": "^2.9.3",
+    "clone-deep": "^4.0.1",
     "debounce": "^1.2.0",
     "tinymce": "^4.9.10",
     "v-tooltip": "^2.0.2",
