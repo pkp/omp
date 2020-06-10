@@ -59,12 +59,17 @@ class StatsHandler extends PKPStatsHandler {
       return;
     }
 
-		$statsComponent = $templateMgr->getTemplateVars('statsComponent');
-		$statsComponent->filters = [
-			[
-				'heading' => __('series.series'),
-				'filters' => $seriesFilters,
-			],
+		$filters = $templateMgr->getState('filters');
+		if (is_null($filters)) {
+			$filters = [];
+		}
+
+		$filters[] = [
+			'heading' => __('series.series'),
+			'filters' => $seriesFilters,
 		];
+		$templateMgr->setState([
+			'filters' => $filters
+		]);
 	}
 }
