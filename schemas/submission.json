@@ -3,19 +3,34 @@
 	"description": "A submission to the press.",
 	"properties": {
 		"audience": {
-			"type": "string"
+			"type": "string",
+			"validation": [
+				"nullable"
+			]
 		},
 		"audienceRangeExact": {
-			"type": "string"
+			"type": "string",
+			"validation": [
+				"nullable"
+			]
 		},
 		"audienceRangeFrom": {
-			"type": "string"
+			"type": "string",
+			"validation": [
+				"nullable"
+			]
 		},
 		"audienceRangeQualifier": {
-			"type": "string"
+			"type": "string",
+			"validation": [
+				"nullable"
+			]
 		},
 		"audienceRangeTo": {
-			"type": "string"
+			"type": "string",
+			"validation": [
+				"nullable"
+			]
 		},
 		"enableChapterPublicationDates": {
 			"type": "boolean"

@@ -39,7 +39,7 @@ msgid "plugins.importexport.native.importComplete"
 msgstr "The import completed successfully. The following items were imported:"
 
 msgid "plugins.importexport.native.onix30.pressMissingFields"
-msgstr "This press is missing some required information for ONIX metadata used in this export. Please go to Settings > Workflow > Production and fill in the missing details."
+msgstr "This press is missing some required information for ONIX metadata used in this export. Please go to <a href=\"{$url}\">Press Settings</a> and fill in the missing details."
 
 msgid "plugins.importexport.native.error.unknownSeries"
 msgstr "Unknown series {$param}"

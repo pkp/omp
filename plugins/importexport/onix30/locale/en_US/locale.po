@@ -60,7 +60,7 @@ msgid "plugins.importexport.onix30.formatInvalid"
 msgstr "Invalid"
 
 msgid "plugins.importexport.onix30.pressMissingFields"
-msgstr "This press is missing some required information.  Please go to Settings > Workflow > Production and fill in the missing details."
+msgstr "This press is missing some required information.  Please go to <a href=\"{$url}\">Press Settings</a> and fill in the missing details."
 
 msgid "plugins.importexport.onix30.form.addresseeField"
 msgstr "Addressee (recipient) for this export"

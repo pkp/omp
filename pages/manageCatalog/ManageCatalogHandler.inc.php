@@ -16,6 +16,10 @@
 import('classes.handler.Handler');
 
 class ManageCatalogHandler extends Handler {
+
+	/** @copydoc PKPHandler::_isBackendPage */
+	var $_isBackendPage = true;
+
 	/**
 	 * Constructor
 	 */
@@ -109,7 +113,7 @@ class ManageCatalogHandler extends Handler {
 		]);
 
 		$templateMgr = TemplateManager::getManager($request);
-		$templateMgr->assign('catalogListData', [
+		$templateMgr->setState([
 			'components' => [
 				'catalog' => $catalogList->getConfig()
 			]

@@ -108,16 +108,25 @@ class WorkflowHandler extends PKPWorkflowHandler {
 			'WORK_TYPE_EDITED_VOLUME',
 		]);
 
-		$workflowData = $templateMgr->getTemplateVars('workflowData');
-		$workflowData['chaptersGridUrl'] = $chaptersGridUrl;
-		$workflowData['components'][FORM_AUDIENCE] = $audienceForm->getConfig();
-		$workflowData['components'][FORM_CATALOG_ENTRY] = $catalogEntryForm->getConfig();
-		$workflowData['components'][FORM_PUBLICATION_DATES] = $publicationDatesForm->getConfig();
-		$workflowData['publicationFormIds'][] = FORM_CATALOG_ENTRY;
-		$workflowData['i18n']['editedVolume'] = __('submission.workflowType.editedVolume.label');
-		$workflowData['i18n']['monograph'] = __('common.publication');
+		$components = $templateMgr->getState('components');
+		$components[FORM_AUDIENCE] = $audienceForm->getConfig();
+		$components[FORM_CATALOG_ENTRY] = $catalogEntryForm->getConfig();
+		$components[FORM_PUBLICATION_DATES] = $publicationDatesForm->getConfig();
 
-		$templateMgr->assign('workflowData', $workflowData);
+		$publicationFormIds = $templateMgr->getState('publicationFormIds');
+		$publicationFormIds[] = FORM_CATALOG_ENTRY;
+
+		$templateMgr->setState([
+			'components' => $components,
+			'chaptersGridUrl' => $chaptersGridUrl,
+			'publicationFormIds' => $publicationFormIds,
+			'editedVolumeLabel' => __('submission.workflowType.editedVolume.label'),
+			'monographLabel' => __('common.publication'),
+		]);
+
+		$templateMgr->assign([
+			'pageComponent' => 'WorkflowPage',
+		]);
 	}
 
 

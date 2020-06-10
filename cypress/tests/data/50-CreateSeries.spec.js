@@ -12,8 +12,7 @@ describe('Data suite tests', function() {
 		cy.login('admin', 'admin');
 		cy.get('a').contains('admin').click();
 		cy.get('a').contains('Dashboard').click();
-		cy.get('a').contains('Settings').click();
-		cy.get('a').contains('Press').click();
+		cy.get('.app__nav a').contains('Press').click();
 		cy.get('button[id="series-button"]').click();
 
 		// Create a new "Library & Information Studies" series
@@ -21,7 +20,7 @@ describe('Data suite tests', function() {
 		cy.wait(500); // Avoid occasional failure due to form init taking time
 		cy.get('input[id^="title-en_US-"]').type('Library & Information Studies');
 		cy.get('input[id^="path"]').type('lis');
-		cy.get('div.pkpListPanelItem').contains('David Buskins').click();
+		cy.get('label').contains('David Buskins').click();
 		cy.get('form[id=seriesForm]').contains('Save').click();
 
 		// Create a new "Political Economy" series
@@ -29,7 +28,7 @@ describe('Data suite tests', function() {
 		cy.wait(1000); // Avoid occasional failure due to form init taking time
 		cy.get('input[id^="title-en_US-"]').type('Political Economy');
 		cy.get('input[id^="path"]').type('pe');
-		cy.get('div.pkpListPanelItem').contains('Stephanie Berardo').click();
+		cy.get('label').contains('Stephanie Berardo').click();
 		cy.get('form[id=seriesForm]').contains('Save').click();
 
 		// Create a new "History" series

@@ -659,6 +659,15 @@ msgstr "This monograph is a new release. Make this monograph not a new release."
 msgid "catalog.manage.isNotNewRelease"
 msgstr "This monograph is not a new release. Make this monograph a new release."
 
+msgid "catalog.manage.noSubmissionsSelected"
+msgstr "No submissions were selected to be added to the catalog."
+
+msgid "catalog.manage.submissionsNotFound"
+msgstr "One or more of the submissions could not be found."
+
+msgid "catalog.manage.findSubmissions"
+msgstr "Find monographs to add to the catalog"
+
 msgid "catalog.noTitles"
 msgstr "No titles have been published yet."
 

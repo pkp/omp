@@ -79,33 +79,19 @@
 			{fbvElement type="select" id="sortOption" from=$sortOptions selected=$sortOption translate=false}
 		{/fbvFormSection}
 
-		{if $hasSubEditors}
-			{fbvFormSection}
-				{assign var="uuid" value=""|uniqid|escape}
-				<div id="subeditors-{$uuid}">
-					<list-panel
-						v-bind="components.subeditors"
-						@set="set"
-					/>
-				</div>
-				<script type="text/javascript">
-					pkp.registry.init('subeditors-{$uuid}', 'Container', {$subEditorsListData|json_encode});
-				</script>
+		{if count($availableSubeditors)}
+			{fbvFormSection list=true title="submissionGroup.assignedSubEditors"}
+				{foreach from=$availableSubeditors item="subEditor" key="id"}
+					{fbvElement type="checkbox" id="subEditors[]" value=$id checked=in_array($id, $assignedToSeries) label=$subEditor translate=false}
+				{/foreach}
 			{/fbvFormSection}
 		{/if}
 
-		{if $hasCategories}
-			{fbvFormSection}
-				{assign var="uuid" value=""|uniqid|escape}
-				<div id="categories-{$uuid}">
-					<list-panel
-						v-bind="components.categories"
-						@set="set"
-					/>
-				</div>
-				<script type="text/javascript">
-					pkp.registry.init('categories-{$uuid}', 'Container', {$categoriesListData|json_encode});
-				</script>
+		{if count($allCategories)}
+			{fbvFormSection list=true title="grid.category.categories"}
+				{foreach from=$allCategories item="category" key="id"}
+					{fbvElement type="checkbox" id="categories[]" value=$id checked=in_array($id, $selectedCategories) label=$category translate=false}
+				{/foreach}
 			{/fbvFormSection}
 		{/if}
 

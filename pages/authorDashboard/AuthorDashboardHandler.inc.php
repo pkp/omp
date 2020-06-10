@@ -65,10 +65,9 @@ class AuthorDashboardHandler extends PKPAuthorDashboardHandler {
 		);
 
 		$templateMgr = TemplateManager::getManager($request);
-		$workflowData = $templateMgr->getTemplateVars('workflowData');
-		$workflowData['chaptersGridUrl'] = $chaptersGridUrl;
-
-		$templateMgr->assign('workflowData', $workflowData);
+		$templateMgr->setState([
+			'chaptersGridUrl' => $chaptersGridUrl,
+		]);
 	}
 
 

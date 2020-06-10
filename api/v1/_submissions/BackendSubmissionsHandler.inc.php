@@ -45,6 +45,16 @@ class BackendSubmissionsHandler extends PKPBackendSubmissionsHandler {
 					),
 				),
 			),
+			'PUT' => [
+				[
+					'pattern' => "{$rootPattern}/addToCatalog",
+					'handler' => [$this, 'addToCatalog'],
+					'roles' => [
+						ROLE_ID_SITE_ADMIN,
+						ROLE_ID_MANAGER,
+					],
+				],
+			],
 		);
 		parent::__construct();
 	}
@@ -175,6 +185,55 @@ class BackendSubmissionsHandler extends PKPBackendSubmissionsHandler {
 			foreach($params['featured'] as $feature) {
 				$featureDao->insertFeature($feature['id'], $assocType, $assocId, $feature['seq']);
 			}
+		}
+
+		return $response->withJson(true);
+	}
+
+	/**
+	 * Add one or more submissions to the catalog
+	 *
+	 * @param $slimRequest Request Slim request object
+	 * @param $response Response object
+	 *
+	 * @return Response
+	 */
+	public function addToCatalog($slimRequest, $response, $args) {
+		$params = $slimRequest->getParsedBody();
+
+		if (empty($params['submissionIds'])) {
+			return $response->withStatus(400)->withJsonError('api.submissions.400.submissionIdsRequired');
+		}
+
+		$submissionIds = array_map('intval', (array) $params['submissionIds']);
+
+		if (empty($submissionIds)) {
+			return $response->withStatus(400)->withJsonError('api.submissions.400.submissionIdsRequired');
+		}
+
+
+		$primaryLocale = $this->getRequest()->getContext()->getPrimaryLocale();
+		$allowedLocales = $this->getRequest()->getContext()->getSupportedFormLocales();
+
+		$validPublications = [];
+		foreach ($submissionIds as $submissionId) {
+			$submission = Services::get('submission')->get($submissionId);
+			if (!$submission) {
+				return $response->withStatus(400)->withJsonError('api.submissions.400.submissionsNotFound');
+			}
+			$publication = $submission->getCurrentPublication();
+			if ($publication->getData('status') === STATUS_PUBLISHED) {
+				continue;
+			}
+			$errors = Services::get('publication')->validatePublish($publication, $submission, $allowedLocales, $primaryLocale);
+			if (!empty($errors)) {
+				return $response->withStatus(400)->withJson($errors);
+			}
+			$validPublications[] = $publication;
+		}
+
+		foreach($validPublications as $validPublication) {
+			Services::get('publication')->publish($validPublication);
 		}
 
 		return $response->withJson(true);

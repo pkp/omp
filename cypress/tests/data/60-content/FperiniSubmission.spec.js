@@ -87,7 +87,7 @@ describe('Data suite tests', function() {
 		});
 
 		cy.logout();
-		cy.findSubmissionAsEditor('dbarnes', null, title);
+		cy.findSubmissionAsEditor('dbarnes', null, 'Perini');
 		cy.sendToReview('Internal');
 		cy.get('li.ui-state-active a:contains("Internal Review")');
 	});
