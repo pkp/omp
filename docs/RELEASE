@@ -4,6 +4,16 @@ Git tag: 3_3_0-1
 Release date: 
 ============================
 
+Configuration Changes
+---------------------
+
+See config.TEMPLATE.inc.php for a description and examples of all supported
+configuration parameters.
+
+- The proxy configuration settings have changed. Please review the [proxy]
+  section in config.TEMPLATE.inc.php and adapt your settings in config.inc.php
+  as needed.
+
 New Features
 ------------
 
