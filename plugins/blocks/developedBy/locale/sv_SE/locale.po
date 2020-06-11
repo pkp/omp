@@ -1,6 +1,6 @@
 msgid ""
 msgstr ""
-"PO-Revision-Date: 2020-02-08 03:32+0000\n"
+"PO-Revision-Date: 2020-06-09 08:53+0000\n"
 "Last-Translator: Magnus Annemark <magnus.annemark@ub.lu.se>\n"
 "Language-Team: Swedish <http://translate.pkp.sfu.ca/projects/omp/"
 "blocks-developedBy/sv/>\n"
@@ -16,3 +16,6 @@ msgstr "Denna plugin aktiverar \"Utvecklat av\"-länken i sidomenyn."
 
 msgid "plugins.block.developedBy.displayName"
 msgstr "\"Utvecklat av\"-block"
+
+msgid "plugins.block.developedBy.blockTitle"
+msgstr "Utvecklat av"
