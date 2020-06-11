@@ -2,14 +2,17 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"Last-Translator: \n"
-"Language-Team: \n"
+"POT-Creation-Date: 2019-09-30T12:00:53-07:00\n"
+"PO-Revision-Date: 2020-06-07 03:39+0000\n"
+"Last-Translator: Diego José Macêdo <diegojmacedo@gmail.com>\n"
+"Language-Team: Portuguese (Brazil) <http://translate.pkp.sfu.ca/projects/omp/"
+"locale/pt_BR/>\n"
+"Language: pt_BR\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"POT-Creation-Date: 2019-09-30T12:00:53-07:00\n"
-"PO-Revision-Date: 2019-09-30T12:00:53-07:00\n"
-"Language: \n"
+"Plural-Forms: nplurals=2; plural=n > 1;\n"
+"X-Generator: Weblate 3.9.1\n"
 
 msgid "monograph.audience"
 msgstr "Audiência"
@@ -45,7 +48,11 @@ msgid "submission.pageProofs"
 msgstr "Leitura de provas"
 
 msgid "monograph.proofReadingDescription"
-msgstr "O editor de layout envia os arquivos prontos para produção aqui. Use <em>+Designar</em> para encaminhar as provas a autores e outros participantes, com versões corrigidas enviadas para aprovação antes da publicação."
+msgstr ""
+"O editor de layout envia os arquivos prontos para editoração. Use "
+"<em>+Designar</em> para encaminhar as provas a autores e outros "
+"participantes, com versões corrigidas enviadas para aprovação antes da "
+"publicação."
 
 msgid "monograph.task.addNote"
 msgstr "Incluir para questionamentos"
@@ -81,7 +88,7 @@ msgid "monograph.publicationFormat.priceRequired"
 msgstr "O preço é obrigatório."
 
 msgid "monograph.publicationFormat.priceType"
-msgstr "Tip de preço"
+msgstr "Tipo de preço"
 
 msgid "monograph.publicationFormat.discountAmount"
 msgstr "Percentual de desconto, caso se aplique"
@@ -93,7 +100,7 @@ msgid "monograph.publicationFormat.returnInformation"
 msgstr "Indicador de devolução"
 
 msgid "monograph.publicationFormat.digitalInformation"
-msgstr "Imformação digital"
+msgstr "Informação digital"
 
 msgid "monograph.publicationFormat.productDimensions"
 msgstr "Dimensões físicas"
@@ -102,7 +109,7 @@ msgid "monograph.publicationFormat.productFileSize"
 msgstr "Tamanho em MB"
 
 msgid "monograph.publicationFormat.productFileSize.override"
-msgstr "Informa o tamanho manualmente?"
+msgstr "Informar o tamanho manualmente?"
 
 msgid "monograph.publicationFormat.productHeight"
 msgstr "Altura"
@@ -162,7 +169,7 @@ msgid "grid.catalogEntry.publicationFormatDetails"
 msgstr "Detalhes do formato"
 
 msgid "grid.catalogEntry.physicalFormat"
-msgstr "Format físico"
+msgstr "Formato físico"
 
 msgid "grid.catalogEntry.remoteURL"
 msgstr "URL de conteúdo hospedado remotamente"
@@ -351,7 +358,7 @@ msgid "grid.action.deleteRepresentative"
 msgstr "Excluir representante"
 
 msgid "spotlight.spotlights"
-msgstr "Em destaque"
+msgstr "Em destaques"
 
 msgid "spotlight.noneExist"
 msgstr "Sem destaques."
@@ -429,7 +436,7 @@ msgid "grid.action.pageProofApproved"
 msgstr "Arquivo na página de provas está pronto para publicação"
 
 msgid "grid.action.addAnnouncement"
-msgstr "Incluir not´cia"
+msgstr "Incluir uma notícia"
 
 msgid "grid.action.newCatalogEntry"
 msgstr "Nova entrada de catálogo"
@@ -498,7 +505,7 @@ msgid "grid.action.moreAnnouncements"
 msgstr "Acessar página de notícias"
 
 msgid "grid.action.submissionEmail"
-msgstr "Clique para ler o email"
+msgstr "Clique para ler o e-mail"
 
 msgid "grid.action.approveProofs"
 msgstr "Ver grid de provas"
@@ -522,7 +529,7 @@ msgid "series.series"
 msgstr "Séries"
 
 msgid "series.featured.description"
-msgstr "Esta séria aparecerá no menu principal"
+msgstr "Esta série aparecerá no menu principal"
 
 msgid "series.path"
 msgstr "Caminho"
@@ -720,7 +727,7 @@ msgid "context.context"
 msgstr "Editora"
 
 msgid "context.select"
-msgstr "Selecione uma Editora..."
+msgstr "Selecione uma Editora:"
 
 msgid "user.noRoles.selectUsersWithoutRoles"
 msgstr "Incluir usuários sem papel nesta editora."
@@ -777,7 +784,7 @@ msgid "user.register.completeForm"
 msgstr "Preencha o formulário para se cadastrar nesta editora."
 
 msgid "user.register.selectContext"
-msgstr "Selecione uma editora a qual se registrará"
+msgstr "Selecione uma editora a qual se registrará:"
 
 msgid "user.register.noContexts"
 msgstr "Sem editoras para se registrar nesse site."
@@ -849,7 +856,7 @@ msgid "about.contributors"
 msgstr "Apoio"
 
 msgid "about.onlineSubmissions"
-msgstr "Submissões online>"
+msgstr "Submissões online"
 
 msgid "about.onlineSubmissions.login"
 msgstr "Login"
@@ -885,7 +892,9 @@ msgid "about.pressSponsorship"
 msgstr "Patrocínio da editora"
 
 msgid "about.aboutThisPublishingSystem"
-msgstr "Sobre este sistema de publicação"
+msgstr ""
+"Mais informações sobre o sistema de publicação, Plataforma e Fluxo de "
+"Trabalho da OMP/PKP."
 
 msgid "about.aboutThisPublishingSystem.altText"
 msgstr "Processo Editorial e de Publicação do OMP"
@@ -894,7 +903,11 @@ msgid "about.aboutOMPPress"
 msgstr "Esta editora adota o Open Monograph Press {$ompVersion}, software de código livre para administração e publicação de monografias, desenvolvido, mantido e distribuído gratuitamente pelo <a href=\"http://pkp.sfu.ca/\">Public Knowledge Project</a>, sob a Licença Pública Geral GNU."
 
 msgid "about.aboutOMPSite"
-msgstr "Este site adota o Open Monograph Press {$ompVersion},software de código livre para administração e publicação de monografias, desenvolvido, mantido e distribuído gratuitamente pelo <a href=\"http://pkp.sfu.ca/\">Public Knowledge Project</a>, sob a Licença Pública Geral GNUe."
+msgstr ""
+"Este site adota o Open Monograph Press {$ompVersion}, software de código "
+"livre para administração e publicação de monografias, desenvolvido, mantido "
+"e distribuído gratuitamente pelo <a href=\"http://pkp.sfu.ca/\">Public "
+"Knowledge Project</a>, sob a Licença Pública Geral GNU."
 
 msgid "help.searchReturnResults"
 msgstr "Volta aos resultados da pesquisa"
@@ -964,10 +977,18 @@ msgid "installer.additionalLocalesInstructions"
 msgstr "Escolha idiomas adicionais para uso no sistema. Estes idiomas estarão disponíveis nas editoras hospedadas neste site. Idiomas adicionais podem ser instalados a qualquer tempo a partir da interface de administração. Idiomas marcados com * podem estar incompletos."
 
 msgid "installer.filesDirInstructions"
-msgstr "Informe o caminho físico completo da pasta para hospedar as submissões. Este diretório não deve possuir acesso via <em>Web</em> direto. <strong>Assegure-se de que a pasta existe e possui permissão de escrita antes da instalação.</strong> Caminhos no Windows devem usar a barra, como, por exemplo, \"C:/minhaeditora/arquivos\"."
+msgstr ""
+"Informe o caminho físico completo da pasta para hospedar as submissões. Este "
+"diretório não deve possuir acesso via direto do navegador. <strong>Assegure-"
+"se de que a pasta exista e possui permissão de escrita antes da "
+"instalação.</strong> Caminhos no Windows devem usar a barra, como, por "
+"exemplo, \"C:/minhaeditora/arquivos\"."
 
 msgid "installer.databaseSettingsInstructions"
-msgstr "O OMP exige acesso a uma base de dados SQL para armazenar dados. Veja os requisitos do sistema acima para uma lista de bases de dados suportadas. Nos campos a seguir, informe as configurações de conexão à base."
+msgstr ""
+"O OMP exige acesso a um banco de dados SQL para armazenar dados. Veja os "
+"requisitos do sistema acima para uma lista de banco de dados suportadas. Nos "
+"campos a seguir, informe as configurações de conexão à base."
 
 msgid "installer.upgradeApplication"
 msgstr "Atualizar o Open Monograph Press"
@@ -1008,7 +1029,7 @@ msgid "log.editor.archived"
 msgstr "A submissão {$submissionId} foi arquivada."
 
 msgid "log.editor.restored"
-msgstr "A sumissão {$submissionId} foi restaurada para a fila."
+msgstr "A submissão {$submissionId} foi restaurada para a fila."
 
 msgid "log.editor.editorAssigned"
 msgstr "{$editorName} foi designado como editor da submissão {$submissionId}."
@@ -1170,7 +1191,9 @@ msgid "user.authorization.workflowStageAssignmentMissing"
 msgstr "Acesso negado! Não foi designado a este estágio do processo."
 
 msgid "user.authorization.workflowStageSettingMissing"
-msgstr "Acesso negado! O grupo de usuários no qual está atuando atualmente não foi designado a este estágio do processo. Verifique as configurações da editora."
+msgstr ""
+"Acesso negado! O grupo de usuários no qual está atuando no momento não foi "
+"designado a este estágio do processo. Verifique as configurações da editora."
 
 msgid "payment.directSales"
 msgstr "Baixar do site da editora"
@@ -1224,7 +1247,7 @@ msgid "payment.directSales.monograph.description"
 msgstr "Esta transação é para a compra direta de um arquivo para baixar de uma única mongrafia ou capítulo."
 
 msgid "debug.notes.currencyListLoad"
-msgstr "Lista de moedas carregadas do arquivo XML \"{$filename}\" "
+msgstr "Lista de moedas carregadas do arquivo XML \"{$filename}\""
 
 msgid "debug.notes.helpMappingLoad"
 msgstr "Arquivo de mapeamento de ajuda XML {$filename} recarregado, na busca por {$id}."
@@ -1242,7 +1265,7 @@ msgid "monograph.miscellaneousDetails"
 msgstr "Detalhes sobre essa publicação"
 
 msgid "monograph.publicationFormat.productDimensionsSeparator"
-msgstr "x"
+msgstr " x "
 
 msgid "grid.catalogEntry.remotelyHostedContent"
 msgstr "Este formato estará disponíivel em um site remoto"
@@ -1254,7 +1277,8 @@ msgid "catalog.noTitlesNew"
 msgstr "Sem novos títulos disponíveis neste momento."
 
 msgid "catalog.noTitlesSearch"
-msgstr "Nenhuma publicação  que atenda a busca por \"{$searchQuery}\" foi encontrada."
+msgstr ""
+"Nenhuma publicação que atenda a busca por \"{$searchQuery}\" foi encontrada."
 
 msgid "catalog.foundTitleSearch"
 msgstr "Uma publicação que atende a busca por \"{$searchQuery}\" foi encontrada."
@@ -1284,7 +1308,7 @@ msgid "catalog.viewableFile.title"
 msgstr "Versão {$type} do arquivo {$title}"
 
 msgid "catalog.viewableFile.return"
-msgstr "Retorne para ver os detalhes sobre  {$monographTitle}"
+msgstr "Retorne para ver os detalhes sobre {$monographTitle}"
 
 msgid "context.current"
 msgstr "Editora Atual:"
@@ -1313,3 +1337,161 @@ msgstr "Em destaque"
 msgid "submission.round"
 msgstr "Rodada&nbsp;{$round}"
 
+msgid "catalog.coverImageTitle"
+msgstr "Capa"
+
+msgid "user.authorization.invalidPublishedSubmission"
+msgstr "Uma submissão inválida publicada foi especificada."
+
+msgid "notification.type.visitCatalog"
+msgstr ""
+"A monografia foi aprovada. Visite o Catálogo para gerenciar seus detalhes de "
+"catálogo, usando o link do catálogo logo acima."
+
+msgid "notification.type.formatNeedsApprovedSubmission"
+msgstr ""
+"A monografia não será listada no catálogo até que seja publicada. Para "
+"adicionar este livro ao catálogo, clique na guia Publicação."
+
+msgid "notification.type.public"
+msgstr "Notícias Públicas"
+
+msgid "log.editor.recommendation"
+msgstr ""
+"Uma recomendação do editor ({$decision}) para a monografia {$submissionId} "
+"foi registrada por {$editorName}."
+
+msgid "about.onlineSubmissions.viewSubmissions"
+msgstr "visualizar suas submissões pendentes"
+
+msgid "about.onlineSubmissions.newSubmission"
+msgstr "Faça uma nova submissão"
+
+msgid "about.onlineSubmissions.submissionActions"
+msgstr "{$newSubmission} ou {$viewSubmissions}."
+
+msgid "about.aboutContext"
+msgstr "Sobre a Editora"
+
+msgid "user.register.noContextReviewerInterests"
+msgstr ""
+"Se você pediu para ser um avaliador de qualquer editora, insira seus "
+"assuntos de interesse."
+
+msgid "user.register.otherContextRoles"
+msgstr "Solicite os seguintes papéis."
+
+msgid "user.register.contextsPrompt"
+msgstr "Com quais editoras deste portal você gostaria de se registrar?"
+
+msgid "user.reviewerPrompt.optin"
+msgstr ""
+"Sim, gostaria de ser contatado com solicitações para avaliar submissões a "
+"esta editora."
+
+msgid "user.reviewerPrompt.userGroup"
+msgstr "Sim, solicite o {$userGroup} papel."
+
+msgid "user.reviewerPrompt"
+msgstr "Você gostaria de revisar as submissões para esta editora?"
+
+msgid "navigation.navigationMenus.newRelease.description"
+msgstr "Link para seus Lançamentos."
+
+msgid "navigation.navigationMenus.newRelease"
+msgstr "Lançamentos"
+
+msgid "navigation.navigationMenus.category.description"
+msgstr "Link para uma categoria."
+
+msgid "navigation.navigationMenus.category.generic"
+msgstr "Categoria"
+
+msgid "navigation.navigationMenus.series.description"
+msgstr "Link para uma série."
+
+msgid "navigation.navigationMenus.series.generic"
+msgstr "Series"
+
+msgid "navigation.skip.spotlights"
+msgstr "Ir para destaques"
+
+msgid "navigation.navigationMenus.catalog.description"
+msgstr "Link para o seu catálogo."
+
+msgid "navigation.catalog.allMonographs"
+msgstr "Todas as Monografias"
+
+msgid "common.publications"
+msgstr "Monografias"
+
+msgid "common.publication"
+msgstr "Monografia"
+
+msgid "submission.search"
+msgstr "Busca de Livros"
+
+msgid "catalog.forthcoming"
+msgstr "Próximo"
+
+msgid "catalog.manage.isNotNewRelease"
+msgstr ""
+"Esta monografia não é um lançamento. Faça desta monografia um lançamento."
+
+msgid "catalog.manage.isNewRelease"
+msgstr ""
+"Esta monografia é um lançamento. Faça desta monografia não ser um lançamento."
+
+msgid "catalog.manage.isNotFeatured"
+msgstr ""
+"Esta monografia não está em destaque. Faça a monografia está em destaque."
+
+msgid "catalog.manage.isFeatured"
+msgstr "Esta monografia está em destaque. Faça esta monografia não aparecer."
+
+msgid "catalog.manage.filter.searchByAuthorOrTitle"
+msgstr "Busca por título ou autor"
+
+msgid "catalog.manage.nonOrderable"
+msgstr "Esta monografia não pode ser solicitada até que seja apresentada."
+
+msgid "catalog.manage.feature.seriesNewRelease"
+msgstr "Lançamento em séries"
+
+msgid "catalog.manage.feature.categoryNewRelease"
+msgstr "Lançamento na categoria"
+
+msgid "catalog.manage.feature.newRelease"
+msgstr "Lançamento"
+
+msgid "catalog.manage.notNewReleaseSuccess"
+msgstr "A monografia está desmarcada como um novo lançamento."
+
+msgid "catalog.manage.newReleaseSuccess"
+msgstr "A monografia está marcada como um novo lançamento."
+
+msgid "catalog.manage.notFeaturedSuccess"
+msgstr "Monografia não destacada."
+
+msgid "catalog.manage.featuredSuccess"
+msgstr "Monografia é destaque."
+
+msgid "catalog.manage.seriesFeatured"
+msgstr "Série em destaque"
+
+msgid "catalog.manage.categoryFeatured"
+msgstr "Categoria em destaque"
+
+msgid "catalog.manage.featured"
+msgstr "Destaque"
+
+msgid "submissionGroup.assignedSubEditors"
+msgstr "Editores atribuídos"
+
+msgid "grid.catalogEntry.approvedRepresentation.message"
+msgstr ""
+"<p>Aprove os metadados para este formato. Os metadados podem ser verificados "
+"no painel Editar para cada formato.</p>"
+
+msgid "monograph.audience.success"
+msgstr "Os detalhes da audiência foram atualizados."
