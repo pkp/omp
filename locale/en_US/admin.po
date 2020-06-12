@@ -47,21 +47,6 @@ msgstr "Are you sure you want to uninstall this locale? This may affect any host
 msgid "admin.languages.installNewLocalesInstructions"
 msgstr "Select any additional locales to install support for in this system. Locales must be installed before they can be used by hosted presses. See the OMP documentation for information on adding support for new languages."
 
-msgid "admin.languages.noLocalesToDownload"
-msgstr "No locales are available for download."
-
-msgid "admin.languages.downloadFailed"
-msgstr "The locale download failed. The error message(s) below describe the failure."
-
-msgid "admin.languages.downloadUnavailable"
-msgstr ""
-"<p>Downloading language packs from the Public Knowledge Project web server is not currently available because:</p>\n"
-"\t<ul>\n"
-"\t\t<li>Your server does not have or allow execution of the GNU \"tar\" utility</li>\n"
-"\t\t<li>OMP is unable to modify the locale registry file, typically \"registry/locales.xml\".</li>\n"
-"\t</ul>\n"
-"<p>Language packs can be manually downloaded from the <a href=\"http://pkp.sfu.ca\" target=\"_blank\">PKP web site</a>.</p>"
-
 msgid "admin.languages.confirmDisable"
 msgstr "Are you sure you want to disable this locale? This may affect any hosted presses currently using the locale."
 

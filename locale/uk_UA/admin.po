@@ -51,27 +51,6 @@ msgstr "Налаштування оформлення сайту були усп
 msgid "admin.hostedContexts"
 msgstr "Видавництво на сайті"
 
-msgid "admin.languages.downloadUnavailable"
-msgstr ""
-"<p>Завантаження мовних пакетів з веб-серверу Public Knowledge Project "
-"недоступно через наступне:</p>\n"
-"\t<ul>\n"
-"\t\t<li>На вашому сервері Або не встановлено утиліту GNU \"tar\" або не "
-"дозволено використання її сервером.</li>\n"
-"\t\t<li>OMP не зміг модифікувати файл реєстру мов, який зазвичай знаходиться "
-"в \"registry/locales.xml\".</li>\n"
-"\t</ul>\n"
-"<p>Мовні пакети можуть бути завантажені з <a href=\"http://pkp.sfu.ca\" "
-"target=\"_blank\">веб-сайту PKP</a>.</p>"
-
-msgid "admin.languages.downloadFailed"
-msgstr ""
-"Помилка при завантаженні мови. Повідомлення з помилками нижче описують "
-"проблему."
-
-msgid "admin.languages.noLocalesToDownload"
-msgstr "Немає доступних мов для зкачування."
-
 msgid "admin.languages.installNewLocalesInstructions"
 msgstr ""
 "Оберіть додаткові мови для встановлення їх підтримки у цій системі. Мови "

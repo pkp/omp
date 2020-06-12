@@ -40,21 +40,6 @@ msgstr "Esteu segur que voleu desinstal·lar aquesta configuració regional? Pod
 msgid "admin.languages.installNewLocalesInstructions"
 msgstr "Seleccioneu qualsevol configuració regional addicional per instal·lar-hi ajuda en aquest sistema. Cal que instal·leu les configuracions regionals abans que les publicacions allotjades les puguin fer servir. Consulteu la documentació de l'OMP per obtenir més informació sobre com instal·lar llengües addicionals."
 
-msgid "admin.languages.noLocalesToDownload"
-msgstr "No hi ha configuracions regionals disponibles per descarregar."
-
-msgid "admin.languages.downloadFailed"
-msgstr "No s'ha pogut descarregar la configuració regional. El missatge/s d'error següent descriu el problema."
-
-msgid "admin.languages.downloadUnavailable"
-msgstr ""
-"<p>La descàrrega dels paquets de llengües des del lloc web del Public Knowledge Project no està disponible actualment perquè:</p>\n"
-"\t<ul>\n"
-"\t\t<li>El vostre servidor no té o no permet l'execució de la utilitat «tar» de GNU</li>\n"
-"\t\t<li>L'OMP no ha pogut modificar el fitxer de la configuració regional, normalment a «registry/locales.xml».</li>\n"
-"\t</ul>\n"
-"<p>Els paquets de llengües es poden descarregar manualment des del <a href=\"http://pkp.sfu.ca\" target=\"_blank\">lloc web de PKP</a>.</p>"
-
 msgid "admin.languages.confirmDisable"
 msgstr "Esteu segur que voleu desactivar aquesta configuració regional? Podria afectar qualsevol de les publicacions allotjades que la utilitzin."
 

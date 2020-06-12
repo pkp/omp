@@ -54,21 +54,6 @@ msgstr ""
 "julkaisijat voivat käyttää niitä. Katso OMP:n ohjeista tietoja siitä, kuinka "
 "uusille kielille lisätään tuki."
 
-msgid "admin.languages.noLocalesToDownload"
-msgstr "Ei ladattavissa olevia kielialueita."
-
-msgid "admin.languages.downloadFailed"
-msgstr "Kielialueen lataaminen epäonnistui. Tarkemmat tiedot ongelmasta alla."
-
-msgid "admin.languages.downloadUnavailable"
-msgstr ""
-"<p>Kielipakettien lataaminen Public Knowledge Projectin verkkopalvelimelta ei ole juuri nyt mahdollista, koska:</p>\n"
-"\t<ul>\n"
-"\t\t<li>Palvelimellasi ei ole GNU:n tar-ohjelmaa tai palvelin ei salli sen suorittamista.</li>\n"
-"\t\t<li>OMP ei voi muuntaa kielialueen rekisteritiedostoa, yleensä \"registry/locales.xml\".</li>\n"
-"\t</ul>\n"
-"<p>Kielipaketteja voidaan ladata manuaalisesti <a href=\"http://pkp.sfu.ca\" target=\"_blank\">PKP:n verkkosivustolta</a>.</p>"
-
 msgid "admin.languages.confirmDisable"
 msgstr ""
 "Haluatko varmasti poistaa tämän kielialueen käytöstä? Se saattaa vaikuttaa "

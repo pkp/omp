@@ -38,21 +38,6 @@ msgstr "Sind Sie sicher, dass Sie diese Regionaleinstellung deinstallieren möch
 msgid "admin.languages.installNewLocalesInstructions"
 msgstr "Wählen Sie zusätzliche Regionaleinstellungen (Locales) aus, um deren Unterstützung in diesem System zu installieren. Locales müssen installiert sein, bevor sie von den gehosteten Verlagen genutzt werden können. In der OMP-Dokumentation erhalten Sie weitere Informationen darüber, wie Sie zusätzliche Unterstützung für neue Sprachen erhalten können."
 
-msgid "admin.languages.noLocalesToDownload"
-msgstr "Keine Regionaleinstellungen (Locales) für den Download verfügbar."
-
-msgid "admin.languages.downloadFailed"
-msgstr "Der Regionaleinstellungsdownload (Locale-Download) ist fehlgeschlagen. Die nachfolgende(n) Fehlermeldung(en] beschreiben den Fehler."
-
-msgid "admin.languages.downloadUnavailable"
-msgstr ""
-"<p>Momentan ist es nicht möglich, Sprachpakete vom Public Knowledge Project Web Server herunterzuladen, weil:</p>\n"
-"\t<ul>\n"
-"\t\t<li>Ihr Server das Dienstprogramm GNU \"tar\" nicht besitzt oder dessen Ausführung nicht zulässt.</li>\n"
-"\t\t<li>OMP nicht in der Lage ist, die Locale-Registrierungsdatei, typischerweise \"registry/locales.xml\", zu verändern.</li>\n"
-"\t</ul>\n"
-"<p>Sprachenpakete können von der <a href=\"http://pkp.sfu.ca\" target=\"_blank\">PKP-Website</a> händisch heruntergeladen werden.</p>"
-
 msgid "admin.languages.confirmDisable"
 msgstr "Sind Sie sicher, dass Sie diese Regionaleinstellung löschen wollen? Dies wird alle Verlage auf Ihrer Plattform betreffen, die diese Regionaleinstellung benutzen."
 

@@ -38,21 +38,6 @@ msgstr "Sei certo di voler disinstallare questo parametro? Questo può influenza
 msgid "admin.languages.installNewLocalesInstructions"
 msgstr "Selezionare eventuali ulteriori localizzazioni per installare il supporto per questo sistema. Le localizzazioni devono essere installate prima di poter essere utilizzate da case editrici ospitate. Vedere la documentazione OMP per informazioni sull'aggiunta di supporto per nuove lingue."
 
-msgid "admin.languages.noLocalesToDownload"
-msgstr "Nessun parametro è disponibile per il download."
-
-msgid "admin.languages.downloadFailed"
-msgstr "Il download del parametro è fallito. Il messaggio d'errore che segue descrive il problema."
-
-msgid "admin.languages.downloadUnavailable"
-msgstr ""
-"<p>Il download dei moduli linguistici dal web server del Public Knowledge Project non è al momento disponibile perché:</p>\r\n"
-"\t<ul>\r\n"
-"\t\t<li>il tuo server non dispone o non consente l'esecuzione del programma di utilità GNU \"tar\"</li>\r\n"
-"\t\t<li>OMP non è in grado di modificare il file di registro di sistema locale. Si tratta generalmente del file \"registry/locales.xml\".</li>\r\n"
-"\t</ul>\r\n"
-"<p>I pacchetti per la Lingua possono essere scaricati a mano dal <a href=\"http://pkp.sfu.ca\" target=\"_blank\">sito web di PKP</a>.</p>]"
-
 msgid "admin.languages.confirmDisable"
 msgstr "Sei certo di voler disinstallare questo parametro? Questo può influenzare eventuali Case Editrici che utilizzano al momento questo parametro."
 

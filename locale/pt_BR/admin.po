@@ -59,12 +59,6 @@ msgstr "Tem certeza que deseja desinstalar este idioma? Pode afetar editora que 
 msgid "admin.languages.installNewLocalesInstructions"
 msgstr "Selecione idiomas adicionais para instalar no  sistema. Idiomas devem ser instalados antes de poderem ser usados por editoras hospedados. Consulte a documentação do OMP para obter informações sobre a adição de novos idiomas."
 
-msgid "admin.languages.noLocalesToDownload"
-msgstr "Sem idiomas disponíveis para download."
-
-msgid "admin.languages.downloadFailed"
-msgstr "Falha do download do idioma. A mensagem de erro abaixo descreve a falha."
-
 msgid "admin.languages.confirmDisable"
 msgstr "Tem certeza que deseja desabilitar este idioma? Pode afetar editora que o estão usando atualmente."
 
@@ -90,15 +84,6 @@ msgid "admin.overwriteConfigFileInstructions"
 msgstr ""
 "<h4>ATENÇÃO!</div>\n"
 "<p>O sistema não pode substituir automaticamente o arquivo de configuração. Para aplicar as alterações de configuração que você deve abrir <tt> config.inc.php </ tt> em um editor de texto, substituindo o seu conteúdo com o conteúdo do campo de texto abaixo.</p>"
-
-msgid "admin.languages.downloadUnavailable"
-msgstr ""
-"<p>O download de pacotes de idiomas do servidor do PKP Public Knowledge Project não está disponível porque:</p>\n"
-"\t<ul>\n"
-"\t\t<li>Seu servidor não possui/permite a execução da ferramenta 'tar'</li>\n"
-"\t\t<li>OMP não consegue modificar o arquivo de registro do idioma, tipicamente o \"registry/locales.xml\".</li>\n"
-"\t</ul>\n"
-"<p>Pacotes de idiomas podem ser baixados manualmente do  <a href=\"http://pkp.sfu.ca\" target=\"_blank\">site do PKP </a>.</p>"
 
 msgid "admin.contexts.form.edit.success"
 msgstr "{$name} foi editado com sucesso."

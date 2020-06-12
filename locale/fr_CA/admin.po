@@ -44,21 +44,6 @@ msgstr ""
 msgid "admin.languages.installNewLocalesInstructions"
 msgstr "Choisissez les autres paramètres de support que vous souhaitez installer dans ce système. Les paramètres doivent être installés avant de pouvoir être utilisés par les presses hébergées. Consultez la documentation de l'OMP pour de plus amples renseignements sur l'ajout de support pour les nouvelles langues."
 
-msgid "admin.languages.noLocalesToDownload"
-msgstr "Aucun paramètre ne peut être téléchargé."
-
-msgid "admin.languages.downloadFailed"
-msgstr "Le téléchargement du paramètre a échoué. Les messages d'erreur ci-dessous décrivent le problème."
-
-msgid "admin.languages.downloadUnavailable"
-msgstr ""
-"<p>Le téléchargement des modules de langues à partir du serveur Web du Public Knowledge Project n'est pas disponible pour le moment parce que:</p>\n"
-"\t<ul>\n"
-"\t\t<li>Votre serveur n'a pas ou ne permet pas l'exécution de l'utilitaire GNU \"tar\"</li>\n"
-"\t\t<li>OMP ne peut pas modifier le fichier de registre du paramètre. Il s'agit normalement de \"registry/locales.xml\".</li>\n"
-"\t</ul>\n"
-"<p>Les modules de langues peuvent être téléchargés manuellement à partir du site Web PKP <a href=\"http://pkp.sfu.ca\" target=\"_blank\"> </a>.</p>"
-
 msgid "admin.languages.confirmDisable"
 msgstr ""
 "Vous souhaitez désactiver ce paramètre ? Cela pourrait affecter les presses "

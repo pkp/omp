@@ -42,24 +42,6 @@ msgstr "Ali ste prepričani, da želite odstraniti ta območni jezik? To bo lahk
 msgid "admin.languages.installNewLocalesInstructions"
 msgstr "Izberite dodatne območne jezike, ki jih želite imeti na voljo na tem spletišču. Območni jeziki morajo biti nameščeni, preden jih gostujoča založba lahko uporablja. V dokumentaciji OMP lahko najdete več informacij o podpori novim jezikov."
 
-msgid "admin.languages.noLocalesToDownload"
-msgstr "Nobenih območnih jezikov ni na voljo za namestitev."
-
-msgid "admin.languages.downloadFailed"
-msgstr "Prenos območnih jezikov ni uspel. Spodaj je opis napak(e)."
-
-msgid "admin.languages.downloadUnavailable"
-msgstr ""
-"<p>Prenos jezikovnih paketov s spletne strani Public Knowledge Project "
-"trenutno ni mogoč zaradi:</p>\n"
-"\t<ul>\n"
-"\t\t<li>Vaš strežnik nima ali ne dovoli poganjati orodja GNU 'tar'</li>\n"
-"\t\t<li>OMP ne more spreminjati registrske datoteke za jezikovne prevode, "
-"ponavadi \"registry/locales.xml\".</li>\n"
-"\t</ul>\n"
-"<p>Jezikovne pakete lahko ročno prenesete s <a href=\"http://pkp.sfu.ca\" "
-"target=\"_blank\">spletne strani PKP</a>.</p>"
-
 msgid "admin.languages.confirmDisable"
 msgstr "Ali ste prepričani, da želite odstraniti ta območni jezik? To bo lahko vplivalo na vse gostujoče založbe, ki trenutno uporabljajo območni jezik."
 
