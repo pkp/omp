@@ -15,4 +15,16 @@
 namespace APP\components\listPanels;
 use \PKP\components\listPanels\PKPEmailTemplatesListPanel;
 
-class EmailTemplatesListPanel extends PKPEmailTemplatesListPanel {}
+class EmailTemplatesListPanel extends PKPEmailTemplatesListPanel {
+	/**
+	 * @copydoc ListPanel::getConfig()
+	 */
+	public function getConfig() {
+		$config = parent::getConfig();
+		$filterByStageKey = count($config['filters']) - 1;
+		unset($config['filters'][$filterByStageKey]['filters'][1]); // remove internal review stage
+		$config['filters'][$filterByStageKey]['filters'][2]['title'] = __('manager.publication.reviewStage');
+
+		return $config;
+	}
+}
