@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
-"PO-Revision-Date: 2020-04-23 16:38+0000\n"
-"Last-Translator: Carlos Costa <carlos.costa@uc.pt>\n"
+"PO-Revision-Date: 2020-06-16 22:28+0000\n"
+"Last-Translator: Carla Marques <carla.marques@sdum.uminho.pt>\n"
 "Language-Team: Portuguese (Portugal) <http://translate.pkp.sfu.ca/projects/"
 "omp/locale/pt_PT/>\n"
 "Language: pt_PT\n"
@@ -492,3 +492,132 @@ msgstr "Os detalhes de audiência foram atualizados."
 
 msgid "monograph.audience"
 msgstr "Audiência"
+
+msgid "catalog.manage.newReleases"
+msgstr "Novos Lançamentos"
+
+msgid "catalog.manage"
+msgstr "Gestão do Catálogo"
+
+msgid "series.path"
+msgstr "Caminho"
+
+msgid "series.featured.description"
+msgstr "Esta série aparecerá no menu de navegação"
+
+msgid "series.series"
+msgstr "Séries"
+
+msgid "submissionGroup.assignedSubEditors"
+msgstr "Designar editores"
+
+msgid "grid.reviewAttachments.availableFiles"
+msgstr "Ficheiros disponíveis"
+
+msgid "grid.reviewAttachments.add"
+msgstr "Adicionar Anexo à Revisão"
+
+msgid "grid.action.formatAvailable"
+msgstr "Ativar e desativar a disponibilidade deste formato"
+
+msgid "grid.action.availableRepresentation"
+msgstr "Aprovar/Rejeitar este formato"
+
+msgid "grid.action.proofApproved"
+msgstr "O formato foi revisto"
+
+msgid "grid.action.approveProofs"
+msgstr "Ver grelha de provas"
+
+msgid "grid.action.submissionEmail"
+msgstr "Clique para ler o e-mail"
+
+msgid "grid.action.moreAnnouncements"
+msgstr "Ir para página das notícias da editora"
+
+msgid "grid.action.publicationFormatTab"
+msgstr "Disponibilizar separador do formato de publicação"
+
+msgid "grid.action.createContext"
+msgstr "Criar nova Editora"
+
+msgid "grid.action.deleteDate"
+msgstr "Eliminar data"
+
+msgid "grid.action.editDate"
+msgstr "Editar data"
+
+msgid "grid.action.addDate"
+msgstr "Adicionar data de publicação"
+
+msgid "grid.action.deleteMarket"
+msgstr "Eliminar este mercado"
+
+msgid "grid.action.editMarket"
+msgstr "Editar este mercado"
+
+msgid "grid.action.addMarket"
+msgstr "Adicionar mercado"
+
+msgid "grid.action.deleteRights"
+msgstr "Eliminar estes direitos"
+
+msgid "grid.action.editRights"
+msgstr "Editar estes direitos"
+
+msgid "grid.action.addRights"
+msgstr "Incluir direitos de venda"
+
+msgid "grid.action.deleteCode"
+msgstr "Eliminar este código"
+
+msgid "grid.action.editCode"
+msgstr "Editar o código"
+
+msgid "grid.action.addCode"
+msgstr "Adicionar código"
+
+msgid "grid.action.manageSeries"
+msgstr "Configurar séries para esta editora"
+
+msgid "grid.action.manageCategories"
+msgstr "Configurar categorias para esta editora"
+
+msgid "grid.action.releaseMonograph"
+msgstr "Marcar esta submissão como 'novo lançamento'"
+
+msgid "grid.action.featureMonograph"
+msgstr "Destacar no carrossel do catálogo"
+
+msgid "grid.action.feature"
+msgstr "Alternar a disponibilização de destaques"
+
+msgid "grid.action.publicCatalog"
+msgstr "Ver este item no catálogo"
+
+msgid "grid.action.newCatalogEntry"
+msgstr "Nova Entrada no Catálogo"
+
+msgid "grid.action.addAnnouncement"
+msgstr "Inserir uma notícia"
+
+msgid "grid.action.pageProofApproved"
+msgstr "A página de ficheiro de provas está pronto para publicação"
+
+msgid "grid.action.approveProof"
+msgstr "Aprove a prova para indexação e inclusão no catálogo"
+
+msgid "catalog.manage.series.issn.equalValidation"
+msgstr "O ISSN impresso e o online devem ser diferentes."
+
+msgid "catalog.manage.series.issn.validation"
+msgstr "Insira um ISSN válido."
+
+msgid "catalog.manage.series.issn"
+msgstr "ISSN"
+
+msgid "catalog.manage.series"
+msgstr "Série"
+
+msgid "catalog.manage.category"
+msgstr "Categoria"
