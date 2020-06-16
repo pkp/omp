@@ -1,6 +1,6 @@
 msgid ""
 msgstr ""
-"PO-Revision-Date: 2020-02-26 14:36+0000\n"
+"PO-Revision-Date: 2020-06-16 12:39+0000\n"
 "Last-Translator: Magnus Annemark <magnus.annemark@ub.lu.se>\n"
 "Language-Team: Swedish <http://translate.pkp.sfu.ca/projects/omp/manager/sv/>"
 "\n"
@@ -33,3 +33,279 @@ msgstr "Öppna bidrag"
 
 msgid "manager.series.indexed"
 msgstr "Indexerad"
+
+msgid "manager.settings.press"
+msgstr "Press"
+
+msgid "manager.settings.publisherCodeType.invalid"
+msgstr "Detta är inte en giltig typ av förlagskod."
+
+msgid "manager.setup.announcementsIntroduction"
+msgstr "Ytterligare information"
+
+msgid "manager.setup.announcementsDescription"
+msgstr ""
+"Meddelanden kan publiceras för att informera pressens läsare om nyheter och "
+"evenemang. Publicerade meddelanden är synliga på sidan \"Meddelanden\"."
+
+msgid "manager.setup.announcements.success"
+msgstr "Meddelandeinställningarna har uppdaterats."
+
+msgid "manager.setup.announcements"
+msgstr "Meddelanden"
+
+msgid "manager.setup.addSponsor"
+msgstr "Lägg till sponsor"
+
+msgid "manager.setup.addNavItem"
+msgstr "Lägg till objekt"
+
+msgid "manager.setup.addItemtoAboutPress"
+msgstr "Lägg till objekt i \"Om pressen\""
+
+msgid "manager.setup.addItem"
+msgstr "Lägg till objekt"
+
+msgid "manager.setup.addChecklistItem"
+msgstr "Lägg till objekt i checklistan"
+
+msgid "manager.setup.aboutItemContent"
+msgstr "Innehåll"
+
+msgid "manager.setup"
+msgstr "Inställningar"
+
+msgid "manager.pressManagement"
+msgstr "Pressinställningar"
+
+msgid "user.authorization.pluginLevel"
+msgstr "Du har inte tillräckliga rättigheter för att hantera denna plugin."
+
+msgid "manager.system.payments"
+msgstr "Betalningar"
+
+msgid "manager.system.readingTools"
+msgstr "Läsverktyg"
+
+msgid "manager.system.reviewForms"
+msgstr "Granskningsformulär"
+
+msgid "manager.system.archiving"
+msgstr "Arkivering"
+
+msgid "manager.system"
+msgstr "Systeminställningar"
+
+msgid "manager.people.noAdministrativeRights"
+msgstr ""
+"Du har inte administrativ behörighet till användaren. Detta kan bero på:\n"
+"\t\t<ul>\n"
+"\t\t\t<li>Användaren är en administratör</li>\n"
+"\t\t\t<li>Användaren är aktiv i pressar du inte har rättigheter till</li>\n"
+"\t\t</ul>\n"
+"\tDetta måste utföras av en administratör.\n"
+"\t"
+
+msgid "manager.people.confirmDisable"
+msgstr ""
+"Avaktivera användaren? Detta kommer förhindra användaren från att logga in i "
+"systemet.\n"
+"\n"
+"Du kan även ge användaren ett skäl till avaktiveringen."
+
+msgid "manager.people.syncUserDescription"
+msgstr ""
+
+msgid "manager.people.mergeUsers.into.description"
+msgstr ""
+"Välj en användare till vilken den föregående användares bidrag, uppdrag, "
+"etc. flyttas."
+
+msgid "manager.people.mergeUsers.from.description"
+msgstr ""
+"Välj en användare att slå ihop med ett annat användarkonto (t.ex. om en "
+"person har två användarkonton). Det först valda kontot kommer raderas och "
+"dess bidrag, uppdrag, etc. kommer flyttas över till det andra kontot."
+
+msgid "manager.people.enrollSyncPress"
+msgstr "Med pressen"
+
+msgid "manager.people.enrollExistingUser"
+msgstr "Anmäl en existerande användare"
+
+msgid "manager.people.confirmRemove"
+msgstr ""
+"Radera användaren från pressen? Detta kommer avanmäla användaren från alla "
+"roller inom pressen."
+
+msgid "manager.people.allUsers"
+msgstr "Alla anmälda användare"
+
+msgid "manager.people.allSiteUsers"
+msgstr "Anmäl användare från systemet till pressen"
+
+msgid "manager.people.allPresses"
+msgstr "Alla pressar"
+
+msgid "manager.people.allEnrolledUsers"
+msgstr "Användare anmälda till pressen"
+
+msgid "manager.users.selectRole"
+msgstr "Välj roll"
+
+msgid "manager.users.currentRoles"
+msgstr "Aktuella roller"
+
+msgid "manager.users.availableRoles"
+msgstr "Tillgängliga roller"
+
+msgid "manager.tools.statistics"
+msgstr ""
+"Verktyg för att generera rapporter för användningsstatistik (visningar av "
+"katalogindex, visningar av abstractsidor, filnedladdningar)"
+
+msgid "manager.tools.importExport"
+msgstr ""
+"Alla verktyg för att importera och exportera data (press, bok, användare)"
+
+msgid "manager.tools"
+msgstr "Verktyg"
+
+msgid "manager.statistics.reports.filters.byObject.description"
+msgstr ""
+"Begränsa resultat efter typ av objekt (press, serie, bok, filtyp) och/eller "
+"efter ett eller flera objekt-id."
+
+msgid "manager.statistics.reports.filters.byContext.description"
+msgstr "Begränsa resultat efter kontext (serie och/eller bok)."
+
+msgid "manager.statistics.reports.defaultReport.pressIndexPageViews"
+msgstr "Visningar av pressens huvudsida"
+
+msgid "manager.statistics.reports.defaultReport.seriesIndexPageViews"
+msgstr "Visningar av seriers landningssidor"
+
+msgid "manager.statistics.reports.defaultReport.monographAbstractAndDownloads"
+msgstr "Abstractsidor och nedladdningar"
+
+msgid "manager.statistics.reports.defaultReport.monographAbstract"
+msgstr "Visningar av böckers abstractsidor"
+
+msgid "manager.statistics.reports.defaultReport.monographDownloads"
+msgstr "Nedladdningar av filer"
+
+msgid "manager.settings.distributionDescription"
+msgstr ""
+"Inställningar för distributionsprocessen (avisering, indexering, arkivering, "
+"betalning, läsverktyg)."
+
+msgid "manager.settings.publisherCodeType"
+msgstr "Typ av förlagskod"
+
+msgid "manager.settings.publisherCode"
+msgstr "Förlagskod"
+
+msgid "manager.settings.location"
+msgstr "Geografisk plats"
+
+msgid "manager.settings.publisher"
+msgstr "Förlagets namn"
+
+msgid "manager.settings.publisher.identity.description"
+msgstr ""
+"Dessa fält är obligatoriska för att publicera giltig <a href=\""
+"https://en.wikipedia.org/wiki/ONIX_for_Books\">ONIX-metadata</a>."
+
+msgid "manager.settings.publisher.identity"
+msgstr "Förlagets identitet"
+
+msgid "manager.settings.pressSettings"
+msgstr "Pressinställningar"
+
+msgid "manager.settings"
+msgstr "Inställningar"
+
+msgid "manager.payment.success"
+msgstr "Betalningsinställningarna har uppdaterats."
+
+msgid "manager.payment.options.enablePayments"
+msgstr ""
+"Betalningar kommer vara aktiverade för pressen. Användare måste logga in för "
+"att betala."
+
+msgid "manager.payment.generalOptions"
+msgstr "Allmänna inställningar"
+
+msgid "manager.series.restricted"
+msgstr "Tillåt inte författare att skicka in bidrag direkt till serien."
+
+msgid "manager.series.seriesTitle"
+msgstr "Serietitel"
+
+msgid "manager.series.existingUsers"
+msgstr "Befintliga användare"
+
+msgid "manager.series.noneCreated"
+msgstr "Inga serier har skapats än."
+
+msgid "manager.series.form.titleRequired"
+msgstr "En titel för serien krävs."
+
+msgid "manager.series.form.abbrevRequired"
+msgstr "En förkortning av seriens titel krävs."
+
+msgid "manager.series.unassigned"
+msgstr "Tillgängliga serieredaktörer"
+
+msgid "manager.series.hideAbout"
+msgstr "Undanta den här serien från \"Om pressen\"."
+
+msgid "manager.series.seriesEditorInstructions"
+msgstr ""
+"Ange en redaktör för serien. Ange därefter om serieredaktören ska ha tillsyn "
+"över granskning (peer review) och/eller redaktion (manusredigering, layout "
+"och korrektur) för bidrag till serien. Serieredaktörer kan skapas genom att "
+"klicka på <a href=\"{$seriesEditorsUrl}\">Series Editors</a> under Roller i "
+"Pressinställningar."
+
+msgid "manager.series.assigned"
+msgstr "Redaktörer för serie"
+
+msgid "manager.series.policy"
+msgstr "Beskrivning av serie"
+
+msgid "manager.series.create"
+msgstr "Skapa serie"
+
+msgid "manager.series.book"
+msgstr "Bokserier"
+
+msgid "manager.series.disableComments"
+msgstr "Stäng av läsarkommentarer för serien."
+
+msgid "manager.series.abstractsNotRequired"
+msgstr "Kräv inte abstract"
+
+msgid "manager.series.submissionsToThisSection"
+msgstr "Inskickade bidrag till serien"
+
+msgid "manager.series.submissionReview"
+msgstr "Kommer inte sakkunniggranskas"
+
+msgid "manager.series.readingTools"
+msgstr "Läsverktyg"
+
+msgid "manager.series.confirmDelete"
+msgstr "Är du säker på att du vill permanent radera serien?"
+
+msgid "manager.series.editorRestriction"
+msgstr "Objekt kan bara skickas in av redaktörer och serieredaktörer."
+
+msgid "manager.series.submissionIndexing"
+msgstr "Kommer inte inkluderas i indexering av pressen"
+
+msgid "manager.series.form.reviewFormId"
+msgstr "Kontroller så du har valt ett giltigt formulär för granskning."
+
+msgid "manager.setup.aboutPress"
+msgstr "Om pressen"

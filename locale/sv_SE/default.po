@@ -1,6 +1,6 @@
 msgid ""
 msgstr ""
-"PO-Revision-Date: 2020-06-09 08:53+0000\n"
+"PO-Revision-Date: 2020-06-16 12:39+0000\n"
 "Last-Translator: Magnus Annemark <magnus.annemark@ub.lu.se>\n"
 "Language-Team: Swedish <http://translate.pkp.sfu.ca/projects/omp/default/sv/>"
 "\n"
@@ -14,9 +14,8 @@ msgstr ""
 msgid "default.groups.abbrev.sectionEditor"
 msgstr "AcqE"
 
-#, fuzzy
 msgid "default.groups.plural.sectionEditor"
-msgstr "Redaktörer för serie"
+msgstr "Redaktörer för serier"
 
 msgid "default.groups.name.sectionEditor"
 msgstr "Redaktör för serie"
@@ -94,3 +93,37 @@ msgstr "Föreståndare"
 
 msgid "default.genres.table"
 msgstr "Tabell"
+
+msgid "default.contextSettings.privacyStatement"
+msgstr ""
+"<p>De namn och e-postadresser som används på den här pressens webbplats "
+"kommer endast att användas för pressens arbete och inte göras tillgängliga "
+"för något annat syfte eller till tredje part.</p>"
+
+msgid "default.contextSettings.checklist.bibliographicRequirements"
+msgstr ""
+"Texten följer de stilistiska och bibliografiska kraven som specificeras i <a "
+"href=\"{$indexUrl}/{$contextPath}/about/submissions#authorGuidelines\" "
+"target=\"_blank\">Riktlinjer för författare</a>, som hittas under Om pressen."
+
+msgid "default.contextSettings.checklist.submissionAppearance"
+msgstr ""
+"Texten har enkelt radavstånd; fonten är 12 punkter; använder kursivering "
+"istället för understrykning (förutom vid URL-adresser); alla illustrationer, "
+"figurer och tabeller är placerade på lämpliga platser i texten, inte sist i "
+"dokumentet."
+
+msgid "default.contextSettings.checklist.addressesLinked"
+msgstr "I förekommande fall har URL för referenser bifogats."
+
+msgid "default.contextSettings.checklist.fileFormat"
+msgstr "Bidragsfilen är i Microsoft Word-, RTF-, eller OpenDocument-filformat."
+
+msgid "default.contextSettings.checklist.notPreviouslyPublished"
+msgstr ""
+"Bidraget är inte publicerat sedan tidigare, det övervägs inte heller för "
+"publicering av annat förlag (eller så har en förklaring bifogats som en "
+"kommentar till redaktören)."
+
+msgid "default.groups.abbrev.volumeEditor"
+msgstr "Red."
