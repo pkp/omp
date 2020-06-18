@@ -759,8 +759,9 @@ class Upgrade extends Installer {
 				$result->MoveNext();
 				continue;
 			}
-			if (empty($contexts[$row['context_id']])) {
-				$contexts[$row['context_id']] = Services::get('context')->get($row['context_id']);
+			$context = $contexts[$row['context_id']];
+			if (empty($context)) {
+				$context = Services::get('context')->get($row['context_id']);
 			}
 
 			// Get existing image paths
@@ -796,29 +797,30 @@ class Upgrade extends Installer {
 			);
 
 			// Create a submission_settings entry for each locale
-			foreach ($contexts[$row['context_id']]->getSupportedFormLocales() as $localeKey) {
-				$newCoverPathInfo = pathinfo($newCoverPath);
-				$submissionDao = DAORegistry::getDAO('SubmissionDAO'); /* @var $submissionDao SubmissionDAO */
-				$submissionDao->update(
-					'INSERT INTO submission_settings
+			if(isset($context)) {
+				foreach ($context->getSupportedFormLocales() as $localeKey) {
+					$newCoverPathInfo = pathinfo($newCoverPath);
+					$submissionDao = DAORegistry::getDAO('SubmissionDAO');
+					/* @var $submissionDao SubmissionDAO */
+					$submissionDao->update(
+						'INSERT INTO submission_settings
 						SET
 							submission_id = ?,
 							setting_name = ?,
 							setting_value = ?,
-							locale = ?,
-							setting_type= ?',
-					[
-						$row['submission_id'],
-						'coverImage',
-						serialize([
-							'uploadName' => $newCoverPathInfo['basename'],
-							'dateUploaded' => $coverImage['dateUploaded'],
-							'altText' => '',
-						]),
-						$localeKey,
-						'string',
-					]
-				);
+							locale = ?',
+						[
+							$row['submission_id'],
+							'coverImage',
+							serialize([
+								'uploadName' => $newCoverPathInfo['basename'],
+								'dateUploaded' => $coverImage['dateUploaded'],
+								'altText' => '',
+							]),
+							$localeKey,
+						]
+					);
+				}
 			}
 
 			// Delete the old images
