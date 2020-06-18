@@ -1,6 +1,6 @@
 msgid ""
 msgstr ""
-"PO-Revision-Date: 2020-06-16 22:28+0000\n"
+"PO-Revision-Date: 2020-06-18 18:39+0000\n"
 "Last-Translator: Carla Marques <carla.marques@sdum.uminho.pt>\n"
 "Language-Team: Portuguese (Portugal) <http://translate.pkp.sfu.ca/projects/"
 "omp/locale/pt_PT/>\n"
@@ -621,3 +621,15 @@ msgstr "Série"
 
 msgid "catalog.manage.category"
 msgstr "Categoria"
+
+msgid "catalog.selectCategory"
+msgstr "Selecionar Categoria"
+
+msgid "catalog.selectSeries"
+msgstr "Selecionar Série"
+
+msgid "catalog.manage.series.printIssn"
+msgstr "ISSN impresso"
+
+msgid "catalog.manage.series.onlineIssn"
+msgstr "ISSN online"
