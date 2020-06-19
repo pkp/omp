@@ -1,6 +1,6 @@
 msgid ""
 msgstr ""
-"PO-Revision-Date: 2020-06-18 18:39+0000\n"
+"PO-Revision-Date: 2020-06-20 09:39+0000\n"
 "Last-Translator: Carla Marques <carla.marques@sdum.uminho.pt>\n"
 "Language-Team: Portuguese (Portugal) <http://translate.pkp.sfu.ca/projects/"
 "omp/locale/pt_PT/>\n"
@@ -633,3 +633,15 @@ msgstr "ISSN impresso"
 
 msgid "catalog.manage.series.onlineIssn"
 msgstr "ISSN online"
+
+msgid "catalog.manage.categoryDescription"
+msgstr ""
+"Clique em \"Destacar\", depois na estrela para selecionar um livro destacado "
+"para esta categoria; arraste para ordenar."
+
+msgid "catalog.manage.homepageDescription"
+msgstr ""
+"A imagem da capa dos livros selecionados aparecem no topo da página de "
+"início como configuração deslizável. Clique em \"Destacar\", e depois "
+"selecione a estrela para adicionar o livro ao carrossel; clique no ponto de "
+"exclamação para destacar como novo lançamento; arraste para ordenar."
