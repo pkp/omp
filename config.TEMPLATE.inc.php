@@ -130,6 +130,8 @@ name = omp
 ; port = 3306
 ; unix_socket = /var/run/mysqld/mysqld.sock
 
+; Database collation
+collation = utf8_general_ci
 
 ; Enable persistent connections (recommended)
 persistent = Off
