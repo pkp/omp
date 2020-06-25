@@ -1,6 +1,6 @@
 msgid ""
 msgstr ""
-"PO-Revision-Date: 2020-04-29 11:38+0000\n"
+"PO-Revision-Date: 2020-06-20 09:39+0000\n"
 "Last-Translator: Jordi LC <jordi.lacruz@uab.cat>\n"
 "Language-Team: Spanish <http://translate.pkp.sfu.ca/projects/omp/"
 "paymethod-paypal/es_ES/>\n"
@@ -20,7 +20,7 @@ msgid "plugins.paymethod.paypal.settings.secret"
 msgstr "Contraseña"
 
 msgid "plugins.paymethod.paypal.settings.clientId"
-msgstr "ID del cliente"
+msgstr "ID del cliente/a"
 
 msgid "plugins.paymethod.paypal.settings.accountName"
 msgstr "Nombre de la cuenta"

@@ -1,9 +1,9 @@
 msgid ""
 msgstr ""
-"PO-Revision-Date: 2020-06-16 12:39+0000\n"
+"PO-Revision-Date: 2020-06-18 18:39+0000\n"
 "Last-Translator: Magnus Annemark <magnus.annemark@ub.lu.se>\n"
-"Language-Team: Swedish <http://translate.pkp.sfu.ca/projects/omp/manager/sv/>"
-"\n"
+"Language-Team: Swedish <http://translate.pkp.sfu.ca/projects/omp/manager/"
+"sv_SE/>\n"
 "Language: sv_SE\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -115,6 +115,10 @@ msgstr ""
 
 msgid "manager.people.syncUserDescription"
 msgstr ""
+"Synkroniserad tilldelning innebär att samtliga användare inom en specifik "
+"tidskrift kan tilldelas samma roll/funktion i den här pressen. Funktionen "
+"gör det möjligt för en vald grupp av användare/funktioner (t.ex., granskare) "
+"att synkroniseras mellan olika pressar."
 
 msgid "manager.people.mergeUsers.into.description"
 msgstr ""
@@ -309,3 +313,187 @@ msgstr "Kontroller så du har valt ett giltigt formulär för granskning."
 
 msgid "manager.setup.aboutPress"
 msgstr "Om pressen"
+
+msgid "manager.setup.focusScopeDescription"
+msgstr "<strong>EXEMPELDATA</strong>"
+
+msgid "manager.setup.focusScope"
+msgstr "Ämnesinriktning"
+
+msgid "manager.setup.focusAndScope.description"
+msgstr "Beskriv pressens inriktning för läsare, författare och bibliotekarier."
+
+msgid "manager.setup.focusAndScope"
+msgstr "Pressens ämnesinriktning"
+
+msgid "manager.setup.enableUserRegistration"
+msgstr "Besökare kan registrera sig som användare av pressen."
+
+msgid "manager.setup.enablePublicGalleyId"
+msgstr ""
+"Anpassade identifierare kommer användas för att identifiera "
+"publiceringsversioner (t.ex. HTML- eller PDF-filer) för publicerade verk."
+
+msgid "manager.setup.enablePublicMonographId"
+msgstr ""
+"Anpassade identifierare kommer användas för att identifiera publicerade verk."
+
+msgid "manager.setup.enablePressInstructions"
+msgstr "Gör pressen publik"
+
+msgid "manager.setup.numAnnouncementsHomepage.description"
+msgstr ""
+"Hur många meddelanden som är synliga på förstasidan. Lämna fältet tomt för "
+"att inte visa meddelanden på förstasidan."
+
+msgid "manager.setup.numAnnouncementsHomepage"
+msgstr "Visa på förstasidan"
+
+msgid "manager.setup.enableAnnouncements.description"
+msgstr ""
+"Meddelanden kan innehålla information om nyheter och evenemang. Publicerade "
+"meddelanden kommer att synas på sidan \"Meddelanden\"."
+
+msgid "manager.setup.enableAnnouncements.enable"
+msgstr "Aktivera meddelanden"
+
+msgid "manager.setup.emailSignature.description"
+msgstr ""
+"E-postmeddelanden som skickas för pressens räkning av systemet kommer att ha "
+"följande signatur i slutet."
+
+msgid "manager.setup.emailSignature"
+msgstr "Signatur"
+
+msgid "manager.setup.emails"
+msgstr "E-postidentifiering"
+
+msgid "manager.setup.emailBounceAddress.disabled"
+msgstr ""
+"För att skicka e-postmeddelanden som inte kan levereras till en bounce-"
+"adress måste sidadministratören aktivera  <code>allow_envelope_sender</code> "
+"i konfigureringsfilen. Ytterligare serverkonfigurering kan komma att bli "
+"nödvändig för att stödja den här funktionaliteten (något som inte alla "
+"servrar tillåter, se OMP-dokumentationen för information)."
+
+msgid "manager.setup.emailBounceAddress.description"
+msgstr ""
+"E-postmeddelanden som inte kan levereras producerar ett felmeddelande som "
+"skickas till denna adress."
+
+msgid "manager.setup.emailBounceAddress"
+msgstr "Bounce-adress"
+
+msgid "manager.setup.editorDecision"
+msgstr "Redaktörens beslut"
+
+msgid "manager.setup.doiPrefixDescription"
+msgstr ""
+"DOI (Digital Object Identifier)-prefixet tilldelas av  <a href=\""
+"http://www.crossref.org\" target=\"_blank\">CrossRef</a> och är i formatet "
+"10.xxxx (t.ex. 10.1234)."
+
+msgid "manager.setup.doiPrefix"
+msgstr "DOI-prefix"
+
+msgid "manager.setup.displayNewReleases.label"
+msgstr "Nya utgivningar"
+
+msgid "manager.setup.displayNewReleases"
+msgstr "Visa nya utgivningar på förstasidan"
+
+msgid "manager.setup.displayOnHomepage"
+msgstr "Innehåll på förstasidan"
+
+msgid "manager.setup.displayCurrentMonograph"
+msgstr "Lägg till innehållsförteckningen för denna bok (om tillgängligt)."
+
+msgid "manager.setup.disciplineProvideExamples"
+msgstr "Ge exempel på relevanta akademiska ämnesområden för pressen"
+
+msgid "manager.setup.disciplineExamples"
+msgstr ""
+"(T.ex.  historia, pedagogik, sociologi, psykologi, kulturvetenskaper, "
+"juridik)"
+
+msgid "manager.setup.disciplineDescription"
+msgstr ""
+"Kan exempelvis användas om pressen täcker in flera olika ämnesområden och/"
+"eller när författare skickar in tvärvetenskapliga bidrag."
+
+msgid "manager.setup.discipline"
+msgstr "Akademiskt ämnesområde"
+
+msgid "manager.setup.disableUserRegistration"
+msgstr ""
+"Pressansvarig registrerar alla användarkonton. Redaktörer och "
+"sektionsredaktörer kan registrera användarkonton för granskare."
+
+msgid "manager.setup.details.description"
+msgstr "Pressens namn, kontaktuppgifter, sponsorer och sökmotorer."
+
+msgid "manager.setup.details"
+msgstr "Detaljer"
+
+msgid "manager.setup.customTagsDescription"
+msgstr ""
+"Anpassade header-taggar i HTML som kan placeras i varje sidas header (t.ex. "
+"META-taggar)."
+
+msgid "manager.setup.customTags"
+msgstr "Egna taggar"
+
+msgid "manager.setup.customizingTheLook"
+msgstr "Steg 5. Anpassa utseendet"
+
+msgid "manager.setup.coverThumbnailsMaxWidthHeight.description"
+msgstr ""
+"Bilder kommer förminskas om de överstiger denna storlek, men kommer aldrig "
+"att bli uppskalade eller utsträckta för att passa."
+
+msgid "manager.setup.coverThumbnailsMaxWidth"
+msgstr "Maximal bredd för omslagsbild"
+
+msgid "manager.setup.coverThumbnailsMaxHeight"
+msgstr "Maximal höjd för omslagsbild"
+
+msgid "manager.setup.coverage"
+msgstr "Täckning"
+
+msgid "manager.setup.copyrightNotice"
+msgstr "Upphovsrättsvillkor"
+
+msgid "manager.setup.copyeditInstructionsDescription"
+msgstr ""
+"Instruktionerna kommer vara tillgängliga för manusredaktörer, författare och "
+"sektionsredaktörer i manusredigeringssteget. Nedan finns default-"
+"instruktioner i HTML, dessa kan ändras och/eller ersättas av pressansvarig ("
+"i HTML eller fritext)."
+
+msgid "manager.setup.copyeditInstructions"
+msgstr "Instruktioner för manusredaktörer"
+
+msgid "manager.setup.copyediting"
+msgstr "Manusredaktörer"
+
+msgid "manager.setup.contextSummary"
+msgstr "Kort beskrivning av pressen"
+
+msgid "manager.setup.contextAbout.description"
+msgstr ""
+"Skriv in information som kan vara intressant för läsare, författare eller "
+"granskare. Detta kan exempelvis vara pressens open access-policy, "
+"ämnesinriktning, sponsorer, och pressens historik."
+
+msgid "manager.setup.contextAbout"
+msgstr "Om pressen"
+
+msgid "manager.setup.appearInAboutPress"
+msgstr "(Kommer att visas under Om pressen) "
+
+msgid "manager.setup.announcementsIntroduction.description"
+msgstr ""
+"Lägg till ytterligare information som ska visas för läsare under Meddelanden."
+
+msgid "manager.setup.addAboutItem"
+msgstr "Lägg till \"Om\"-objekt"
