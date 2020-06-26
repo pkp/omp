@@ -1,6 +1,6 @@
 msgid ""
 msgstr ""
-"PO-Revision-Date: 2020-06-26 08:49+0000\n"
+"PO-Revision-Date: 2020-06-27 10:40+0000\n"
 "Last-Translator: rl <biuro@fimagis.pl>\n"
 "Language-Team: Polish <http://translate.pkp.sfu.ca/projects/omp/emails/pl_PL/"
 ">\n"
@@ -189,3 +189,80 @@ msgstr ""
 "Ten email został wysłany automatycznie; prosimy nie odpowiadać na tę "
 "wiadomość.<br />\n"
 "{$principalContactSignature"
+
+msgid "emails.reviewCancel.description"
+msgstr ""
+"Ten mail jest wysyłany przez redaktora serii do recenzenta, aby "
+"poinformować, że recenzja została anulowana."
+
+msgid "emails.reviewCancel.subject"
+msgstr "Prośba o recenzję anulowana"
+
+msgid "emails.reviewRemindOneclick.description"
+msgstr ""
+"Ten mail jest wysłany przed redaktora serii do recenzenta z przypomnieniem o "
+"zbliżającym się terminie oddania recenzji."
+
+msgid "emails.reviewRemindOneclick.subject"
+msgstr "Przypomnienie o recenzji zgłoszenia"
+
+msgid "emails.reviewRemind.description"
+msgstr ""
+"Ten email został wysłany przed redaktora serii z przypomnieniem, że zbliża "
+"się termin oddania recenzji."
+
+msgid "emails.reviewRemind.subject"
+msgstr "Przypomnienie o recenzji zgłoszenia"
+
+msgid "emails.reviewAck.description"
+msgstr ""
+"Ten mail jest wysłany przez redaktora serii, aby potwierdzić otrzymanie "
+"ukończonej recenzji i podziękować recenzentowi za jego pracę."
+
+msgid "emails.reviewAck.body"
+msgstr ""
+"{$reviewerName}:<br />\n"
+"<br />\n"
+"Dziękujemy na oddanie recenzji zgłoszenia,  &quot;{$submissionTitle},&quot; "
+"dla {$contextName}. Doceniamy Twój wkład w jakość prac, które publikujemy."
+
+msgid "emails.reviewAck.subject"
+msgstr "Powiadomienie o recenzji manuskryptu"
+
+msgid "emails.reviewDecline.description"
+msgstr ""
+"Ten email jest wysłany przez recenzenta do redaktora serii w odpowiedzi na "
+"prośbę o recenzję, aby poinformować, że prośba o recenzję została odrzucona."
+
+msgid "emails.reviewDecline.subject"
+msgstr "Niezdolny do recenzji"
+
+msgid "emails.reviewConfirm.description"
+msgstr ""
+"Ten email jest wysłany przez recenzenta do redaktora serii w odpowiedzi na "
+"prośbę o recenzję, aby poinformować, że prośba została zaakceptowana, a "
+"recenzja zostanie ukończona w wyznaczonym terminie."
+
+msgid "emails.reviewConfirm.body"
+msgstr ""
+"Redaktor (redaktorzy)::<br />\n"
+"<br />\n"
+"Jestem zainteresowany recenzją zgłoszenia, &quot;{$submissionTitle},&quot; "
+"dla {$contextName}. Dziękuję za wzięcie mnie pod uwagę, planuję oddać "
+"recenzję w terminie {$reviewDueDate}, lub szybciej. <br />\n"
+"<br />\n"
+"{$reviewerName}"
+
+msgid "emails.reviewConfirm.subject"
+msgstr "Zdolny do recenzji"
+
+msgid "emails.reviewReinstate.description"
+msgstr ""
+"Ten mail jest wysyłany przez Redaktora Serii do recenzenta, aby "
+"poinformować, że recenzja została anulowana. "
+
+msgid "emails.reviewReinstate.subject"
+msgstr "Ponowienie prośby o recenzję"
+
+msgid "emails.reviewRequestAttached.subject"
+msgstr "Prośba o recenzję manuskryptu"
