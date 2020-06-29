@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
-"PO-Revision-Date: 2020-06-20 09:39+0000\n"
-"Last-Translator: Carla Marques <carla.marques@sdum.uminho.pt>\n"
+"PO-Revision-Date: 2020-06-29 18:24+0000\n"
+"Last-Translator: José Carvalho <josekarvalho@gmail.com>\n"
 "Language-Team: Portuguese (Portugal) <http://translate.pkp.sfu.ca/projects/"
 "omp/locale/pt_PT/>\n"
 "Language: pt_PT\n"
@@ -645,3 +645,33 @@ msgstr ""
 "início como configuração deslizável. Clique em \"Destacar\", e depois "
 "selecione a estrela para adicionar o livro ao carrossel; clique no ponto de "
 "exclamação para destacar como novo lançamento; arraste para ordenar."
+
+msgid "catalog.manage.seriesFeatured"
+msgstr "Série em Destaque"
+
+msgid "catalog.manage.categoryFeatured"
+msgstr "Categoria em Destaque"
+
+msgid "catalog.manage.featured"
+msgstr "Destaque"
+
+msgid "catalog.manage.noMonographs"
+msgstr "Nenhuma monografia selecionada."
+
+msgid "catalog.manage.manageCategories"
+msgstr "Gerir Categorias"
+
+msgid "catalog.manage.manageSeries"
+msgstr "Gerir Séries"
+
+msgid "catalog.manage.newRelease"
+msgstr "Lançamento"
+
+msgid "catalog.manage.placeIntoCarousel"
+msgstr "Carrossel"
+
+msgid "catalog.manage.seriesDescription"
+msgstr ""
+"Clique \"Destacar\" e depois a estrela para selecionar um livro nesta série; "
+"arraste para ordenar. As séries são identificadas com um editor e um título, "
+"com ou sem categoria."
