@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
-"PO-Revision-Date: 2020-06-29 18:24+0000\n"
-"Last-Translator: José Carvalho <josekarvalho@gmail.com>\n"
+"PO-Revision-Date: 2020-07-06 20:40+0000\n"
+"Last-Translator: Carla Marques <carla.marques@sdum.uminho.pt>\n"
 "Language-Team: Portuguese (Portugal) <http://translate.pkp.sfu.ca/projects/"
 "omp/locale/pt_PT/>\n"
 "Language: pt_PT\n"
@@ -675,3 +675,59 @@ msgstr ""
 "Clique \"Destacar\" e depois a estrela para selecionar um livro nesta série; "
 "arraste para ordenar. As séries são identificadas com um editor e um título, "
 "com ou sem categoria."
+
+msgid "catalog.foundTitleSearch"
+msgstr "Um título corresponde à sua pesquisa por  \"{$searchQuery}\"."
+
+msgid "catalog.feature"
+msgstr "Destacado"
+
+msgid "catalog.noTitlesSearch"
+msgstr "Não existem títulos para a sua pesquisa por \"{$searchQuery}\"."
+
+msgid "catalog.noTitlesNew"
+msgstr "Sem novos lançamentos disponíveis."
+
+msgid "catalog.noTitles"
+msgstr "Ainda não existem títulos publicados."
+
+msgid "catalog.manage.isNotNewRelease"
+msgstr "Esta monografia não é um novo lançamento. Torná-la um novo lançamento."
+
+msgid "catalog.manage.isNewRelease"
+msgstr ""
+"Esta monografia é um novo lançamento. Retirar esta monografia dos novos "
+"lançamentos."
+
+msgid "catalog.manage.isNotFeatured"
+msgstr "Esta monografia não está destacada. Tornar esta monografia destacada."
+
+msgid "catalog.manage.isFeatured"
+msgstr "Esta monografia está destacada. Torná-la não destacada."
+
+msgid "catalog.manage.filter.searchByAuthorOrTitle"
+msgstr "Pesquisar por título ou autor"
+
+msgid "catalog.manage.nonOrderable"
+msgstr "Esta monografia não é encomendável até ser lançada."
+
+msgid "catalog.manage.feature.seriesNewRelease"
+msgstr "Novo lançamento na série"
+
+msgid "catalog.manage.feature.categoryNewRelease"
+msgstr "Novo lançamento na categoria"
+
+msgid "catalog.manage.feature.newRelease"
+msgstr "Novo lançamento"
+
+msgid "catalog.manage.notNewReleaseSuccess"
+msgstr "A monografia foi desmarcada como novo lançamento."
+
+msgid "catalog.manage.newReleaseSuccess"
+msgstr "A monografia encontra-se marcada como novo lançamento."
+
+msgid "catalog.manage.notFeaturedSuccess"
+msgstr "A monografia não foi destacada."
+
+msgid "catalog.manage.featuredSuccess"
+msgstr "A monografia foi destacada."
