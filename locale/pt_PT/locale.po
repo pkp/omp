@@ -1,6 +1,6 @@
 msgid ""
 msgstr ""
-"PO-Revision-Date: 2020-07-06 20:40+0000\n"
+"PO-Revision-Date: 2020-07-08 16:40+0000\n"
 "Last-Translator: Carla Marques <carla.marques@sdum.uminho.pt>\n"
 "Language-Team: Portuguese (Portugal) <http://translate.pkp.sfu.ca/projects/"
 "omp/locale/pt_PT/>\n"
@@ -731,3 +731,169 @@ msgstr "A monografia não foi destacada."
 
 msgid "catalog.manage.featuredSuccess"
 msgstr "A monografia foi destacada."
+
+msgid "navigation.navigationMenus.category.description"
+msgstr "Link para uma categoria."
+
+msgid "navigation.navigationMenus.category.generic"
+msgstr "Categoria"
+
+msgid "navigation.navigationMenus.series.description"
+msgstr "Link para um série."
+
+msgid "navigation.navigationMenus.series.generic"
+msgstr "Séries"
+
+msgid "navigation.navigationMenus.catalog.description"
+msgstr "Link para o seu catálogo."
+
+msgid "navigation.linksAndMedia"
+msgstr "Links e Redes Sociais"
+
+msgid "navigation.wizard"
+msgstr "Guia"
+
+msgid "navigation.published"
+msgstr "Publicado"
+
+msgid "navigation.infoForLibrarians.long"
+msgstr "Informação aos Bibliotecários"
+
+msgid "navigation.infoForAuthors.long"
+msgstr "Informação aos Autores"
+
+msgid "navigation.infoForLibrarians"
+msgstr "Para Bibliotecários"
+
+msgid "navigation.infoForAuthors"
+msgstr "Para Autores"
+
+msgid "navigation.catalog.administration.series"
+msgstr "Séries"
+
+msgid "navigation.catalog.administration.categories"
+msgstr "Categorias"
+
+msgid "navigation.catalog.administration"
+msgstr "Administração do Catálogo"
+
+msgid "navigation.catalog.administration.short"
+msgstr "Administração"
+
+msgid "navigation.catalog.manage"
+msgstr "Gerir"
+
+msgid "navigation.catalog.allMonographs"
+msgstr "Todas as Monografias"
+
+msgid "navigation.competingInterestPolicy"
+msgstr "Política de conflito de interesses"
+
+msgid "navigation.catalog"
+msgstr "Catálogo"
+
+msgid "common.homePageHeader.altText"
+msgstr "Cabeçalho da página de início"
+
+msgid "common.omp"
+msgstr "OMP"
+
+msgid "common.software"
+msgstr "Open Monograph Press"
+
+msgid "common.listbuilder.itemExists"
+msgstr "Não pode adicionar o mesmo item mais do que uma vez."
+
+msgid "common.listbuilder.selectValidOption"
+msgstr "Selecione uma opção válida da lista."
+
+msgid "common.listbuilder.completeForm"
+msgstr "Preencha todos os campos do formulário."
+
+msgid "common.moreInfo"
+msgstr "Mais Informações"
+
+msgid "common.searchCatalog"
+msgstr "Pesquisar no Catálogo"
+
+msgid "common.feature"
+msgstr "Destaque"
+
+msgid "common.preview"
+msgstr "Pré-visualização"
+
+msgid "common.prefix"
+msgstr "Prefixo"
+
+msgid "common.publications"
+msgstr "Monografias"
+
+msgid "common.publication"
+msgstr "Monografia"
+
+msgid "submission.search"
+msgstr "Pesquisa de Livros"
+
+msgid "catalog.viewableFile.return"
+msgstr "Regressar para visualizar os detalhes sobre {$monographTitle}"
+
+msgid "catalog.viewableFile.title"
+msgstr "Versão {$type} do ficheiro {$title}"
+
+msgid "catalog.sortBy.seriesPositionDesc"
+msgstr "Posição da série (maior primeiro)"
+
+msgid "catalog.sortBy.seriesPositionAsc"
+msgstr "Posição da série (menor primeiro)"
+
+msgid "catalog.sortBy.catalogDescription"
+msgstr "Ecolha a forma de ordenação dos livros no catálogo."
+
+msgid "catalog.sortBy.categoryDescription"
+msgstr "Escolha a forma de ordenação dos livros desta categoria."
+
+msgid "catalog.sortBy.seriesDescription"
+msgstr "Escolha a forma de ordenação dos livros desta série."
+
+msgid "catalog.sortBy"
+msgstr "Ordem das publicações"
+
+msgid "catalog.loginRequiredForPayment"
+msgstr ""
+"Nota: Para poder adquirir item, é necessário primeiro aceder ao sistema. "
+"Selecionar um item para compra irá redirecioná-lo para a página de acesso. "
+"Qualquer item marcado com o ícone de Acesso Aberto pode ser descarregado "
+"gratuitamente, sem acesso ao sistema."
+
+msgid "catalog.aboutTheAuthor"
+msgstr "Sobre o {$roleName}"
+
+msgid "catalog.category.subcategories"
+msgstr "Subcategorias"
+
+msgid "catalog.parentCategory"
+msgstr "Categoria principal"
+
+msgid "catalog.categories"
+msgstr "Categorias"
+
+msgid "catalog.forthcoming"
+msgstr "Próximo"
+
+msgid "catalog.published"
+msgstr "Publicado"
+
+msgid "catalog.publicationInfo"
+msgstr "Informação da Publicação"
+
+msgid "catalog.dateAdded"
+msgstr "Adicionado"
+
+msgid "catalog.newReleases"
+msgstr "Novos lançamentos"
+
+msgid "catalog.category.heading"
+msgstr "Todos os Livros"
+
+msgid "catalog.foundTitlesSearch"
+msgstr "{$number} títulos correspondem à sua pesquisa por \"{$searchQuery}\"."
