@@ -1,6 +1,6 @@
 msgid ""
 msgstr ""
-"PO-Revision-Date: 2020-07-08 16:40+0000\n"
+"PO-Revision-Date: 2020-07-09 17:40+0000\n"
 "Last-Translator: rl <biuro@fimagis.pl>\n"
 "Language-Team: Polish <http://translate.pkp.sfu.ca/projects/omp/locale/pl_PL/"
 ">\n"
@@ -963,7 +963,7 @@ msgid "grid.content.spotlights.titleRequired"
 msgstr "Wyróżniony tytuł jest wymagany."
 
 msgid "grid.content.spotlights.itemRequired"
-msgstr "Pozycja jest wymagana"
+msgstr "Pozycja jest wymagana."
 
 msgid "grid.content.spotlights.form.title"
 msgstr "Wyróżniony tytuł"
@@ -972,7 +972,7 @@ msgid "grid.content.spotlights.form.item"
 msgstr "Wprowadź wyróżniony tytuł (autouzupełniane)"
 
 msgid "grid.content.spotlights.form.location"
-msgstr "Wyróżniona lokalizacja"
+msgstr "Lokalizacja wyróżnionej pozycji"
 
 msgid "grid.content.spotlights.spotlightItemTitle"
 msgstr "Wyróżniony przedmiot"
@@ -1151,7 +1151,7 @@ msgid "grid.action.deleteFormat"
 msgstr "Usuń ten format"
 
 msgid "grid.action.pageProofApproved"
-msgstr "Wersja ostateczna pliku jest gotowa do publikacji"
+msgstr "Wersja pliku po ostatecznych korektach jest gotowa do publikacji"
 
 msgid "grid.action.approveProof"
 msgstr "Zatwierdź korektę do zaindeksowania i załączenia w katalogu"
@@ -1498,7 +1498,7 @@ msgid "monograph.publicationFormat.frontMatterCount"
 msgstr "Materiały wprowadzające"
 
 msgid "submission.pageProofs"
-msgstr "Wersja ostateczna"
+msgstr "Wersja do ostatecznej weryfikacji"
 
 msgid "monograph.accessLogoOpen.altText"
 msgstr "Otwarty dostęp"
@@ -1512,9 +1512,9 @@ msgstr "Znak firmowy (nazwa handlowa)"
 msgid "monograph.proofReadingDescription"
 msgstr ""
 "Edytor układu wydruku załadował plik gotowy do wydania.  Użyj "
-"<em>+Assign</em>, aby wyznaczyć autorów i innych do sprawdzenia wersji "
-"ostatecznej łącznie ze skorygowanymi plikami załadowanymi do zatwierdzenia "
-"przez publikację."
+"<em>+Assign</em>, aby wyznaczyć autorów i innych do sprawdzenia wersji po "
+"ostatnich korektach łącznie ze skorygowanymi plikami załadowanymi do "
+"zatwierdzenia przez publikację."
 
 msgid "monograph.task.addNote"
 msgstr "Dodaj do zadania"
@@ -1557,3 +1557,42 @@ msgstr "Języki (angielski, francuski, hiszpański)"
 
 msgid "monograph.audience"
 msgstr "Grupa odbiorcza"
+
+msgid "notification.removedRepresentative"
+msgstr "Usunięto przedstawiciela."
+
+msgid "about.seriesPolicies"
+msgstr "Zasady zarządzania seriami i kategoriami"
+
+msgid "common.feature"
+msgstr "Cecha"
+
+msgid "catalog.manage.manageCategories"
+msgstr "Zarządzaj kategoriami"
+
+msgid "catalog.manage.manageSeries"
+msgstr "Zarządzaj serią"
+
+msgid "catalog.manage"
+msgstr "Zarządzanie katalogiem"
+
+msgid "monograph.publicationFormat.productIdentifierType"
+msgstr "Identyfikacja produktu"
+
+msgid "monograph.publicationFormat.productFormDetailCode"
+msgstr "Szczegóły produktu (niewymagane)"
+
+msgid "monograph.coverImage"
+msgstr "Okładka"
+
+msgid "grid.action.addSpotlight"
+msgstr "Dodaj wyróżnione"
+
+msgid "grid.action.deleteSpotlight"
+msgstr "Usuń wyróżnioną pozycję"
+
+msgid "grid.action.editSpotlight"
+msgstr "Zmień wyróżnioną pozycję"
+
+msgid "grid.content.spotlights.locationRequired"
+msgstr "Proszę wybierz lokalizację dla wyróżnionej pozycji."
