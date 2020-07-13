@@ -1,6 +1,6 @@
 msgid ""
 msgstr ""
-"PO-Revision-Date: 2020-07-09 17:40+0000\n"
+"PO-Revision-Date: 2020-07-14 16:40+0000\n"
 "Last-Translator: rl <biuro@fimagis.pl>\n"
 "Language-Team: Polish <http://translate.pkp.sfu.ca/projects/omp/locale/pl_PL/"
 ">\n"
@@ -1157,7 +1157,7 @@ msgid "grid.action.approveProof"
 msgstr "Zatwierdź korektę do zaindeksowania i załączenia w katalogu"
 
 msgid "manager.series.indexed"
-msgstr "Zaindeksowane"
+msgstr "Zaindeksowano"
 
 msgid "grid.action.editFormat"
 msgstr "Edytuj ten format"
