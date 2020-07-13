@@ -1,6 +1,6 @@
 msgid ""
 msgstr ""
-"PO-Revision-Date: 2020-07-08 16:40+0000\n"
+"PO-Revision-Date: 2020-07-14 16:40+0000\n"
 "Last-Translator: Carla Marques <carla.marques@sdum.uminho.pt>\n"
 "Language-Team: Portuguese (Portugal) <http://translate.pkp.sfu.ca/projects/"
 "omp/locale/pt_PT/>\n"
@@ -897,3 +897,265 @@ msgstr "Todos os Livros"
 
 msgid "catalog.foundTitlesSearch"
 msgstr "{$number} títulos correspondem à sua pesquisa por \"{$searchQuery}\"."
+
+msgid "installer.preInstallationInstructionsTitle"
+msgstr "Passos de Pré-Instalação"
+
+msgid "installer.installationInstructions"
+msgstr ""
+"\n"
+"<p>Obrigado por transferir o <strong>Open Monograph Press {$version}</strong>"
+" do Public Knowledge Project. Antes de continuar, leia o ficheiro <a href=\""
+"{$baseUrl}/docs/README\">README</a> incluído neste software. Para mais "
+"informações sobre o Public Knowledge Project e os seus projetos de software, "
+"visite o <a href=\"http://pkp.sfu.ca/\" target=\"_blank\">website do PKP</a>"
+". Se tiver algum relatório de erros ou pedidos de suporte técnico sobre o "
+"Open Monograph Press, veja o <a href=\"http://forum.pkp.sfu.ca\" target=\""
+"_blank\">forum de suporte</a> ou visite o <a href=\"http://pkp.sfu.ca/"
+"bugzilla/\" target=\"_blank\">sistema de relatório de erros</a> online do "
+"PKP. Apesar do forum de suporte ser o método preferencial de contacto, pode "
+"também enviar um e-mail à equipa através do <a href=\""
+"mailto:pkp.contact@gmail.com\">pkp.contact@gmail.com</a>.</p>\n"
+"\n"
+"<h4>Atualização</h4>\n"
+"\n"
+"<p>Se está a atualizar uma instalação existente do OMP 0.x, <a href=\""
+"{$upgradeUrl}\">clique aqio</a> para continuar.</p>"
+
+msgid "installer.installApplication"
+msgstr "Instalar o Open Monograph Press"
+
+msgid "installer.ompUpgrade"
+msgstr "Atualização do OMP"
+
+msgid "installer.appInstallation"
+msgstr "Instalação do OMP"
+
+msgid "help.goToEditPage"
+msgstr "Abrir uma nova página para editar esta informação"
+
+msgid "help.searchReturnResults"
+msgstr "Voltar aos Resultados de Pesquisa"
+
+msgid "about.aboutOMPSite"
+msgstr ""
+"Este site utiliza o Open Monograph Press {$ompVersion}, um software em open "
+"source de gestão e publicação editorial, desenvolvido, suportado e "
+"livremente distribuído pelo <a href=\"http://pkp.sfu.ca/\">Public Knowledge "
+"Project</a> sob a Licença Públicar Geral GNU."
+
+msgid "about.aboutOMPPress"
+msgstr ""
+"Esta editora utiliza o Open Monograph Press {$ompVersion}, um software em "
+"open source para gestão e publicação editorial, desenvolvida, suportada e "
+"gratuitamente distribuída pelo <a href=\"http://pkp.sfu.ca/\">Public "
+"Knowledge Project</a> sob a Lincença Pública geral GNU."
+
+msgid "about.aboutThisPublishingSystem.altText"
+msgstr "Processo Editorial e de Publicação do OMP"
+
+msgid "about.aboutThisPublishingSystem"
+msgstr ""
+"Mais informações sobre o sistema de publicação, Plataforma e Fluxo de "
+"trabalho do OMP/PKP."
+
+msgid "about.pressSponsorship"
+msgstr "Patrocínios à Editora"
+
+msgid "about.openAccessPolicy"
+msgstr "Política de Acesso Aberto"
+
+msgid "about.publicationFrequency"
+msgstr "Periodicidade"
+
+msgid "about.reviewPolicy"
+msgstr "Processo de Revisão por pares"
+
+msgid "about.privacyStatement"
+msgstr "Política de Privacidade"
+
+msgid "about.copyrightNotice"
+msgstr "Aviso de Direitos de Autor"
+
+msgid "about.submissionPreparationChecklist.description"
+msgstr ""
+"Como parte do processo de submissão, os autores têm que verificar que "
+"cumprem todos os seguintes requisitos nas suas submissões, e as submissões "
+"poderão ser enviadas de volta aos autores se não cumprirem estas instruções."
+
+msgid "about.submissionPreparationChecklist"
+msgstr "Verificação da Submissão"
+
+msgid "about.authorGuidelines"
+msgstr "Instruções aos Autores"
+
+msgid "about.onlineSubmissions.viewSubmissions"
+msgstr "ver as suas submissões pendentes"
+
+msgid "about.onlineSubmissions.newSubmission"
+msgstr "Enviar uma nova submissão"
+
+msgid "about.onlineSubmissions.submissionActions"
+msgstr "{$newSubmission} ou {$viewSubmissions}."
+
+msgid "about.onlineSubmissions.registrationRequired"
+msgstr "{$login} ou {$register} para enviar uma nova submissão."
+
+msgid "about.onlineSubmissions.register"
+msgstr "Registo"
+
+msgid "about.onlineSubmissions.login"
+msgstr "Acesso"
+
+msgid "about.onlineSubmissions"
+msgstr "Submissões online"
+
+msgid "about.submissions"
+msgstr "Submissões"
+
+msgid "about.seriesPolicies"
+msgstr "Políticas de Séries e Categorias"
+
+msgid "about.focusAndScope"
+msgstr "Âmbito"
+
+msgid "about.editorialPolicies"
+msgstr "Políticas Editoriais"
+
+msgid "about.editorialTeam"
+msgstr "Equipa Editorial"
+
+msgid "about.aboutContext"
+msgstr "Sobre a Editora"
+
+msgid "about.pressContact"
+msgstr "Contacto da Editora"
+
+msgid "site.pressView"
+msgstr "Ver Site da Editora"
+
+msgid "user.register.form.userGroupRequired"
+msgstr "É necessário selecionar pelo menos um papel"
+
+msgid "user.register.reviewerInterests"
+msgstr ""
+"Identificar as suas áreas de interesses de revisão (áreas do conhecimento e "
+"métodos de investigação):"
+
+msgid "user.register.reviewerDescription"
+msgstr "Disponível para realizar revisão por pares de submissões a este portal."
+
+msgid "user.register.reviewerDescriptionNoInterests"
+msgstr ""
+"Disponível para realizar revisão por pares de submissões a esta editora."
+
+msgid "user.register.authorDescription"
+msgstr "Permitida a submissão de itens à editora."
+
+msgid "user.register.readerDescription"
+msgstr "Notificado por e-mail aquando da publicação de uma monografia."
+
+msgid "user.register.form.passwordLengthTooShort"
+msgstr "A senha que inseriu é demasiado curta."
+
+msgid "user.register.registrationDisabled"
+msgstr ""
+"Esta editora não se encontra de momento a aceitar registos de utilizadores."
+
+msgid "user.register.privacyStatement"
+msgstr "Política de Privacidade"
+
+msgid "user.register.noContexts"
+msgstr "Não existem editoras disponíveis para se registar."
+
+msgid "user.register.selectContext"
+msgstr "Selecione a editora onde pretende registar-se:"
+
+msgid "user.role.productionEditors"
+msgstr "Editores de Produção"
+
+msgid "user.role.proofreaders"
+msgstr "Leitores de prova"
+
+msgid "user.role.copyeditors"
+msgstr "Editores de texto"
+
+msgid "user.role.editors"
+msgstr "Editores"
+
+msgid "user.role.subEditors"
+msgstr "Editores de Série"
+
+msgid "user.role.managers"
+msgstr "Editores-gestores"
+
+msgid "user.role.productionEditor"
+msgstr "Editor de produção"
+
+msgid "user.role.proofreader"
+msgstr "Leitor de prova"
+
+msgid "user.role.copyeditor"
+msgstr "Editor de texto"
+
+msgid "user.role.subEditor"
+msgstr "Editor de Série"
+
+msgid "user.role.pressEditor"
+msgstr "Editor"
+
+msgid "user.role.manager"
+msgstr "Editor-gestor"
+
+msgid "user.register.noContextReviewerInterests"
+msgstr ""
+"Se solicitou permissão para ser revisor para uma das editoras do portal, "
+"insira os seus assuntos de interesse."
+
+msgid "user.register.otherContextRoles"
+msgstr "Solicitar os seguintes papéis."
+
+msgid "user.register.contextsPrompt"
+msgstr "Em que editoras deste portal se pretende registar?"
+
+msgid "user.reviewerPrompt.optin"
+msgstr "Sim, gostaria de ser contactado para rever submissões a esta editora."
+
+msgid "user.reviewerPrompt.userGroup"
+msgstr "Sim, solicitar o papel de {$userGroup}."
+
+msgid "user.reviewerPrompt"
+msgstr "Encontra-se disponível para rever submissões a esta editora?"
+
+msgid "user.noRoles.regReviewerClosed"
+msgstr "Registar como Revisor: registo de Revisor temporariamente desativado."
+
+msgid "user.noRoles.regReviewer"
+msgstr "Registar como Revisor"
+
+msgid "user.noRoles.submitMonographRegClosed"
+msgstr "Submeter uma Monografia: registo de Autores temporariamente desativado."
+
+msgid "user.noRoles.submitMonograph"
+msgstr "Submeter nova Proposta"
+
+msgid "user.noRoles.selectUsersWithoutRoles"
+msgstr "Incluir utilizadores sem papéis nesta editora."
+
+msgid "context.select"
+msgstr "Selecione outra editora:"
+
+msgid "context.current"
+msgstr "Editora Atual:"
+
+msgid "context.context"
+msgstr "Editora"
+
+msgid "context.contexts"
+msgstr "Editoras"
+
+msgid "navigation.navigationMenus.newRelease.description"
+msgstr "Link para os Novos Lançamentos."
+
+msgid "navigation.navigationMenus.newRelease"
+msgstr "Novos lançamentos"
