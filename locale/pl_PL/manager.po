@@ -1,2 +1,1370 @@
 msgid ""
-msgstr "X-Generator: Weblate\nMIME-Version: 1.0\nContent-Type: text/plain; charset=UTF-8\nContent-Transfer-Encoding: 8bit"
+msgstr ""
+"PO-Revision-Date: 2020-07-14 16:40+0000\n"
+"Last-Translator: rl <biuro@fimagis.pl>\n"
+"Language-Team: Polish <http://translate.pkp.sfu.ca/projects/omp/manager/"
+"pl_PL/>\n"
+"Language: pl_PL\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=3; plural=n==1 ? 0 : n%10>=2 && n%10<=4 && (n%100<10 "
+"|| n%100>=20) ? 1 : 2;\n"
+"X-Generator: Weblate 3.9.1\n"
+
+msgid "manager.setup.pageHeaderDescription"
+msgstr " "
+
+msgid "stats.publications.abstracts"
+msgstr "Pozycje katalogowe"
+
+msgid "stats.publications.countOfTotal"
+msgstr "Całkowita liczba monografii {$count} {$total}"
+
+msgid "stats.publications.totalGalleyViews.timelineInterval"
+msgstr "Widok całego pliku według daty"
+
+msgid "stats.publications.totalAbstractViews.timelineInterval"
+msgstr "Widok całego katalogu według daty"
+
+msgid "stats.publications.none"
+msgstr ""
+"Nie znaleziono monografii przy użyciu statystyk pasujących do tych "
+"parametrów."
+
+msgid "stats.publications.details"
+msgstr "Szczegóły monografii"
+
+msgid "stats.publicationStats"
+msgstr "Statystyki monografii"
+
+msgid "grid.series.urlWillBe"
+msgstr "Adres URL serii:  {$sampleUrl}"
+
+msgid "manager.navigationMenus.form.navigationMenuItemCategoryMessage"
+msgstr "Wybierz kategorię, do której chciałbyś  włączyć link meny tej pozycji."
+
+msgid "manager.navigationMenus.form.navigationMenuItem.category"
+msgstr "Wybierz kategorię"
+
+msgid "manager.navigationMenus.form.navigationMenuItemSeriesMessage"
+msgstr "Wybierz serię, do której chciałbyś włączyć link menu tej pozycji."
+
+msgid "manager.navigationMenus.form.navigationMenuItem.series"
+msgstr "Wybierz serię"
+
+msgid "grid.series.pathExists"
+msgstr "Ścieżka serii już istnieje. Wprowadź niepowtarzalną ścieżkę."
+
+msgid "grid.series.pathAlphaNumeric"
+msgstr "Ścieżka serii musi składać się tylko z liter i cyfr."
+
+msgid "manager.setup.notifications.copyPrimaryContact"
+msgstr "Wyślij kopię do głównego kontaktu, podanego w Ustawieniach wydawnictwa."
+
+msgid "grid.genres.title"
+msgstr "Komponenty monografii"
+
+msgid "grid.genres.title.short"
+msgstr "Komponenty"
+
+msgid "manager.setup.resetPermissions.success"
+msgstr "Uprawnienia monografii zostały pomyślnie zresetowane."
+
+msgid "manager.setup.resetPermissions.description"
+msgstr ""
+"Oświadczenie o prawach autorskich i informacja o licencji będzie trwale "
+"przyłączona do publikowanych treści, zapewniając, że dane nie zmienią się w "
+"przypadku zmiany polityki wydawnictwa dla nowych zgłoszeń. Aby zresetować "
+"zmagazynowane informacje o uprawnieniach załączone do publikowanych treści, "
+"użyj przycisku poniżej."
+
+msgid "manager.setup.resetPermissions.confirm"
+msgstr ""
+"Czy jesteś pewien, że chcesz zresetować dane uprawnień przypadające "
+"monografii?"
+
+msgid "manager.setup.resetPermissions"
+msgstr "Resetuj uprawnienia monografii"
+
+msgid "manager.publication.library"
+msgstr "Biblioteka wydawnictwa"
+
+msgid "manager.setup.referenceLinkingDescription"
+msgstr ""
+"<p>Następujące opcje są dostępne, aby umożliwić czytelnikom zlokalizowanie "
+"po autorze wersji online prac.</p>\n"
+"\n"
+"<ol>\n"
+"<li><strong>Dodaj Narzędzia czytelnicze</strong><p>Menedżer wydawnictwa może "
+"dodać \"Znajdź odnośniki\" do Narzędzi czytelniczych, które towarzyszą "
+"publikowanym pozycjom i które umożliwiają czytelnikom wklejanie tytułów "
+"odnośników, a następnie przeszukiwanie wcześniej wybranej bazy naukowej dla "
+"cytowanej pracy. </p></li>\n"
+"<li><strong>Linki osadzone w odnośnikach</strong><p> Redaktor składu może "
+"dodać link odnośnika, który można odnaleźć online, używając następujących "
+"instrukcji (które mogą być edytowane).</p></li>\n"
+"</ol>"
+
+msgid "manager.setup.basicEditorialStepsDescription"
+msgstr ""
+"Kroki: Kolejność zgłoszeń &gt; Recenzja zgłoszenia&gt; Redagowanie "
+"zgłoszenia &gt; Spis treści<br /><br />\n"
+"Wybierz sposób obsługiwania tych aspektów w procesie redakcyjnym. (Idź to "
+"Redaktorzy w zarządzaniu wydaniem, aby przypisać Redaktora zarządzającego i "
+"Redaktorów serii.)"
+
+msgid "manager.setup.copyrightNotice.sample"
+msgstr ""
+"<h3>Deklaracja o prawach autorskich na licencji  Creative Commons</h3>\n"
+"<h4>Deklaracja o polityce wydawniczej na zasadzie Otwartego Dostępu</h4>\n"
+"Autorzy, którzy publikują w tym wydawnictwie, przystają na następujące "
+"warunki:\n"
+"<ol type=\"a\">\n"
+"<li>Autorzy zachowują prawa autorskie i przyznają wydawnictwu prawo "
+"pierwszeństwa publikacji, równocześnie licencjonowanej na zasadzie <a target="
+"\"_blank\" href=\"http://creativecommons.org/licenses/by/3.0/\">Licencja "
+"Creative Commons</a>, która pozwala na pracę z uznaniem autorstwa i "
+"pierwszeństwa publikacji w wydawnictwie.</li>\n"
+"<li>\n"
+"<li>Autorzy mają pozwolenie i są zachęcani do opublikowania ich pracy online "
+"(np. w repozytorium instytucjonalnym lub na ich stronie) przez lub w trakcie "
+"procesu zgłoszenia, co może prowadzić do produktywnych wymian, jak również "
+"do wcześniejszych i liczebniejszych cytowań publikowanej pracy (zobacz:<a "
+"target=\"_blank\" href=\"http://opcit.eprints.org/oacitation-biblio.html\">"
+"Efekt Otwartego Dostępu</a>).</li>\n"
+"</ol>\n"
+"<h4>Deklaracja polityki wydawniczej na zasadzie odroczonego Otwartego "
+"Dostępu</h4>\n"
+"Autorzy, którzy publikują w tym wydawnictwie, przystają na następujące "
+"warunki:\n"
+"<ol type=\"a\">\n"
+"<li>Autorzy zachowują prawa autorskie i przyznają wydawnictwu prawo "
+"pierwszeństwa publikacji pracy (określony przedział czasu) po publikacji "
+"równocześnie licencjonowanej na zasadzie <a target=\"_blank\" href=\""
+"http://creativecommons.org/licenses/by/3.0/\">Licencja Creative Commons</a> "
+"która pozwala na pracę z uznaniem autorstwa i pierwszeństwa publikacji w "
+"wydawnictwie.</li>\n"
+"<li>Autorzy mogą wchodzić na oddzielne, dodatkowe serie kontraktowe dla "
+"niewyłącznej dystrybucji wersji pracy publikowanej przez wydawnictwo (np. "
+"publikowanie w repozytorium instytucjonalnym lub w książce)  z uznaniem "
+"autorstwa i pierwszeństwa publikacji w wydawnictwie.</li>\n"
+"<li>Autorzy mają pozwolenie i są zachęcani do opublikowania ich pracy online "
+"(np. w repozytorium instytucjonalnym lub na ich stronie) przez lub w trakcie "
+"procesu zgłoszenia, co może prowadzić do produktywnych wymian, jak również "
+"do wcześniejszych i liczebniejszych cytowań publikowanej pracy (zobacz: <a "
+"target=\"_blank\" href=\"http://opcit.eprints.org/oacitation-biblio.html\">"
+"Efekt Otwartego Dostępu</a>).</li>\n"
+"</ol>"
+
+msgid "manager.files.note"
+msgstr ""
+"Zauważ: Przeglądarka plików to zaawansowana funkcja, która pozwala "
+"wyświetlać i bezpośrednio manewrować na plikach i folderach związanych z "
+"wydawnictwem."
+
+msgid "manager.setup.productionTemplates"
+msgstr "Wzory dla produkcji"
+
+msgid "manager.setup.files"
+msgstr "Pliki"
+
+msgid "manager.setup.editorialTeam.description"
+msgstr ""
+"Lista redaktorów, dyrektorów zarządzających i innych związanych z "
+"wydawnictwem."
+
+msgid "manager.setup.editorialTeam"
+msgstr "Zespół redaktorski"
+
+msgid "manager.setup.masthead"
+msgstr "Stopka redakcyjna"
+
+msgid "manager.setup.internalReviewRoles"
+msgstr "Role związane z wewnętrznym procesem recenzji"
+
+msgid "manager.setup.currentRoles"
+msgstr "Bieżące role"
+
+msgid "manager.setup.availableRoles"
+msgstr "Dostępne role"
+
+msgid "manager.setup.managerialRoles"
+msgstr "Role kierownicze"
+
+msgid "manager.setup.authorRoles"
+msgstr "Role autora"
+
+msgid "manager.setup.roleType"
+msgstr "Typ roli"
+
+msgid "manager.setup.reviewForms"
+msgstr "Formularz recenzji"
+
+msgid "manager.setup.series.description"
+msgstr ""
+"Możesz stworzyć numer serii, aby pomóc zorganizować Twoje publikacje. Seria "
+"reprezentuje zestaw książek poświęcony danemu tematowi, który ktoś "
+"zaproponował, zazwyczaj członek wydziału lub więcej, który potem nadzoruje. "
+"Odwiedzający będą mogli wyszukiwać i przeglądaąć wydawnictwo przez serię."
+
+msgid "manager.setup.categories.description"
+msgstr ""
+"Możesz stworzyć listę kategorii, aby pomóc zorganizować Twoją publikację. "
+"Kategorie to grupy książek posortowane według istoty przedmiotu, np. "
+"ekonomia, literatura, poezja itp. Kategorie mogą być oznaczone nadrzędną "
+"kategorią, np. nadrzędna kategoria - ekonomia zawiera poszczególne "
+"indywidualne kategorie - mikroekonomia i makroekonomia. Odwiedzający będą "
+"mogli znaleźć i przeglądać wydawnictwo poprzez kategorie."
+
+msgid "manager.setup.categoriesAndSeries"
+msgstr "Kategorie i serie"
+
+msgid "manager.setup.currentFormats"
+msgstr "Bieżące formaty"
+
+msgid "manager.setup.issnDescription"
+msgstr ""
+"ISSN to ośmiocyfrowy numer, który identyfikuje periodyczne publikacje, "
+"włącznie z seriami elektronicznymi. Numer można otrzymać z <a href=\""
+"http://www.issn.org\" target=\"_blank\">ISSN International Centre</a>."
+
+msgid "manager.setup.submitToSeries"
+msgstr "Uwzględnij serię zgłoszeń"
+
+msgid "manager.setup.submitToCategories"
+msgstr "Uwzględnij kategorię zgłoszeń"
+
+msgid "manager.setup.prospectusDescription"
+msgstr ""
+"Prospekt to dokument przygotowany przez wydawnictwo, który pomaga autorowi "
+"opisać zgłoszone materiały w sposób, który pozwoli wydawnictwu określić "
+"wartość zgłoszenia. Prospekt może zawierać wiele pozycji: od potencjału "
+"rynkowego do wartości merytorycznej; w każdym przypadku wydawnictwo powinno "
+"stworzyć prospekt, który przekazuje ich program wydawniczy."
+
+msgid "manager.setup.prospectus"
+msgstr "Prospekt"
+
+msgid "manager.setup.restoreDefaults"
+msgstr "Przywróć ustawienia domyślne"
+
+msgid "manager.setup.deleteSelected"
+msgstr "Usuń wybrane"
+
+msgid "manager.setup.newGenreDescription"
+msgstr ""
+"Aby utworzyć nowy gatunek, wypełnij formularz poniżej i kliknij \"Utwórz\"."
+
+msgid "manager.setup.newGenre"
+msgstr "Nowy gatunek monografii"
+
+msgid "manager.setup.genres"
+msgstr "Gatunki"
+
+msgid "manager.setup.reviewProcessEmailDescription"
+msgstr ""
+"Redaktorzy wysyłają recenzentom prośbę o recenzję w emailu z załączonym "
+"zgłoszeniem. Recenzenci wysyłają email redaktorom ze zgodą (z odmową) na "
+"recenzję, jak również recenzję lub rekomendacje. Redaktorzy wprowadzają "
+"zgodę (lub odmowę) recenzenta, jak również recenzję lub rekomendacje do "
+"zgłoszenia na stronie recenzji, aby zapisać proces recenzji."
+
+msgid "manager.setup.genresDescription"
+msgstr ""
+"Te gatunki są w użyciu dla celów nazwania plików i są prezentowane w menu "
+"rozwijanym na załadowanych plikach. Gatunki oznaczone ## pozwalają "
+"użytkownikowi połączyć plik z całą książką 99Z lub z konkretnym rozdziałem "
+"przez numer (np.02)."
+
+msgid "manager.setup.newPublicationFormatDescription"
+msgstr ""
+"Aby stworzyć nowy format publikacji, wypełnij formularz poniżej i kliknij \""
+"Utwórz\"."
+
+msgid "manager.setup.newPublicationFormat"
+msgstr "Nowy format publikacji"
+
+msgid "manager.setup.publicationFormat.inUse"
+msgstr ""
+"Ten format publikacji nie może być usunięty, ponieważ jest obecnie w użyciu "
+"przez inną monografię w Twoim wydawnictwie."
+
+msgid "manager.setup.publicationFormat.physicalFormat"
+msgstr "Czy to format nie cyfrowy?"
+
+msgid "manager.setup.publicationFormat.nameRequired"
+msgstr "Musisz przypisać nazwę do formatu."
+
+msgid "manager.setup.publicationFormat.codeRequired"
+msgstr "Musisz wybrać format."
+
+msgid "manager.setup.publicationFormat.code"
+msgstr "Format"
+
+msgid "manager.setup.volumePerYear"
+msgstr "Tomy na rok"
+
+msgid "manager.setup.useTextTitle"
+msgstr "Tytuł tekstu"
+
+msgid "manager.setup.userRegistration"
+msgstr "Rejestracja użytkownika"
+
+msgid "manager.setup.useProofreaders"
+msgstr ""
+"Korektor będzie przypisany do sprawdzenia (wraz z autorami) szpalty przed "
+"publikacją."
+
+msgid "manager.setup.useLayoutEditors"
+msgstr ""
+"Redaktor składu będzie przypisany do przygotowania HTML, PDF itp., plików do "
+"publikacji elektronicznej."
+
+msgid "manager.setup.useStyleSheet"
+msgstr "Styl strony wydawnictwa"
+
+msgid "manager.setup.useImageTitle"
+msgstr "Tytuł obrazu"
+
+msgid "manager.setup.useEditorialReviewBoard"
+msgstr "Wydawnictwo będzie wspierane przez radę redakcyjną/recenzencką."
+
+msgid "manager.setup.useCopyeditors"
+msgstr "Redaktor będzie przypisany do pracy nad tym zgłoszeniem."
+
+msgid "manager.setup.typeProvideExamples"
+msgstr ""
+"Dostarcz przykłady ważnych typów badań naukowych, metod i podejścia dla tego "
+"obszaru"
+
+msgid "manager.setup.typeMethodApproach"
+msgstr "Typ (Metoda/Podejście)"
+
+msgid "manager.setup.typeExamples"
+msgstr ""
+"(np. Badania historyczne; Quasi-eksperymentalne; Analiza literacka; Ankieta/"
+"Wywiad)"
+
+msgid "manager.setup.submissions.description"
+msgstr ""
+"Wskazówki dla autora, prawa autorskie i indeksowanie (wliczając rejestrację)."
+
+msgid "manager.setup.workflow"
+msgstr "Workflow"
+
+msgid "maganer.setup.submissionChecklistItemRequired"
+msgstr "Lista kontrolna pozycji jest wymagana."
+
+msgid "manager.setup.submissionPreparationChecklist"
+msgstr "Lista kontrolna przygotowań zgłoszenia"
+
+msgid "manager.setup.submissionGuidelines"
+msgstr "Wskazówki dla zgłoszeń"
+
+msgid "manager.setup.subjectProvideExamples"
+msgstr ""
+"Dostarcz przykładowe słowa kluczowe lub tematy jako wskazówki dla autorów"
+
+msgid "manager.setup.subjectKeywordTopic"
+msgstr "Słowa kluczowe"
+
+msgid "manager.setup.subjectExamples"
+msgstr ""
+"(np. Fotosynteza; Czarna Dziura; Problem Map Czterokolorowych; Teoria Bayesa)"
+
+msgid "manager.setup.stepsToPressSite"
+msgstr "Pięć kroków do strony wydawnictwa"
+
+msgid "manager.setup.siteAccess.viewContent"
+msgstr "Wyświetl zawartość monografii"
+
+msgid "manager.setup.siteAccess.view"
+msgstr "Strona dostępu"
+
+msgid "manager.setup.showGalleyLinksDescription"
+msgstr "Zawsze pokazuje linki do korekty szpaltowej i wskaż ograniczony dostęp."
+
+msgid "manager.setup.selectSectionDescription"
+msgstr "Sekcja wydawnictwa, dla której pozycja będzie rozważona."
+
+msgid "manager.setup.selectEditorDescription"
+msgstr "Redaktor wydania, który będzie czuwał nad procesem redaktorskim."
+
+msgid "manager.setup.securitySettings.note"
+msgstr ""
+"Inne opcje powiązane z bezpieczeństwem i dostępem mogą być skonfigurowane "
+"przez stronę  <a href=\"{$accessAndSecurityUrl}\" target=\"_blank\" class=\""
+"action\">Dostęp i Bezpieczeństwo</a>."
+
+msgid "manager.setup.securitySettings"
+msgstr "Ustawienia dostępu i bezpieczeństwa"
+
+msgid "manager.setup.sectionsDescription"
+msgstr ""
+"Aby stworzyć lub modyfikować  sekcje dla wydawnictwa (np. Monografii, "
+"Recenzje Książek itp.) idź do Zarządzania Sekcją. <br /><br />  Autorzy "
+"zgłoszonych pozycji do wydawnictwa przypiszą..."
+
+msgid "manager.setup.sectionsDefaultSectionDescription"
+msgstr ""
+"(Jeśli nie dodano sekcji, pozycje będą zgłaszane domyślnie do sekcji "
+"monografii.)"
+
+msgid "manager.setup.sectionsAndSectionEditors"
+msgstr "Sekcje i Redaktorzy Sekcji"
+
+msgid "manager.setup.searchEngineIndexing.success"
+msgstr "Zaktualizowano ustawienia indeksu wyszukiwarki."
+
+msgid "manager.setup.searchEngineIndexing.description"
+msgstr ""
+"Pomóż wyszukiwarkom jak Google odnajdywać i wyświetlać Twoją stronę. "
+"Zachęcamy Cię do zgłaszania  Twojej mapy strony <a href=\"{$sitemapUrl}\" "
+"target=\"_blank\">sitemap</a>."
+
+msgid "manager.setup.searchEngineIndexing"
+msgstr "Indeksowanie wyszukiwania"
+
+msgid "manager.setup.searchDescription.description"
+msgstr ""
+"Dostarcz krótki opis (50-300 znaków) wydania, który wyszukiwarka wyświetli "
+"wydawnictwo w liście wyszukiwanych."
+
+msgid "manager.setup.reviewProcessStandardDescription"
+msgstr ""
+"Redaktorzy powiadomią mailowo wybranych recenzentów o tytule i abstrakcie "
+"zgłoszenia, jak również wyślą im zaproszenie do zalogowania się na stronę "
+"wydawnictwa, aby ukończyć recenzję. Recenzenci odwiedzają stronę wydawnictwa "
+"aby wyrazić zgodę na recenzję, pobrać zgłoszenia, dodać komentarze i wybrać "
+"rekomendacje."
+
+msgid "manager.setup.reviewProcessStandard"
+msgstr "Proces standardowej recenzji"
+
+msgid "manager.setup.reviewProcessEmail"
+msgstr "Proces recenzji email-załącznik"
+
+msgid "manager.setup.reviewProcessDescription"
+msgstr ""
+"OMP stosuje dwa modele zarządzania procesem recenzji. Zalecany jest "
+"Standardowy proces recenzji, ponieważ prowadzi on recenzentów przez cały "
+"proces, zapewniając całkowity ogląd historii zgłoszenia i korzysta z systemu "
+"automatycznych powiadomień, a także standardowe rekomendacje dla zgłoszeń "
+"(Akceptuj; Akceptuj po korekcie; Zgłoś do recenzji; Zgłoś gdzieś indziej; "
+"Odrzuć; Zobacz komentarze).<br /><br />Wybierz jedno z poniższych:"
+
+msgid "manager.setup.reviewProcess"
+msgstr "Proces recenzji"
+
+msgid "manager.setup.reviewPolicy"
+msgstr "Polityka recenzji"
+
+msgid "manager.setup.reviewOptions.showEnsuringLink"
+msgstr ""
+"Dostarcz linki zapewniający o ślepej recenzji na stronach, gdzie autorzy i "
+"recenzenci ładują pliki."
+
+msgid "manager.setup.reviewOptions.reviewerReminders"
+msgstr "Przypomnienia dla recenzentów"
+
+msgid "manager.setup.reviewOptions.reviewerRatings"
+msgstr "Oceny recenzentów"
+
+msgid "manager.setup.reviewOptions.reviewerAccessKeysEnabled.label"
+msgstr "Zawiera bezpieczny link w emailu z zaproszeniem dla recenzentów."
+
+msgid "manager.setup.reviewOptions.reviewerAccessKeysEnabled.description"
+msgstr ""
+"Recenzenci mogą mieć wysłane bezpieczne linki w emailu z zaproszeniem, który "
+"umożliwi im dostęp do recenzji bez logowania. Dostęp do innych stron wymaga "
+"zalogowania."
+
+msgid "manager.setup.reviewOptions.reviewerAccessKeysEnabled"
+msgstr "Dostęp one-click recenzenta"
+
+msgid "manager.setup.reviewOptions.reviewerAccess"
+msgstr "Dostęp recenzenta"
+
+msgid "manager.setup.reviewOptions.restrictReviewerFileAccess.description"
+msgstr ""
+"Recenzenci będą mieli dostęp do zgłoszenia dopiero po wyrażeniu zgody na "
+"recenzję."
+
+msgid "manager.setup.reviewOptions.restrictReviewerFileAccess"
+msgstr "Plik o ograniczonym dostępie"
+
+msgid "manager.setup.reviewOptions.onQuality"
+msgstr ""
+"Redaktorzy ocenią recenzentów w skali pięciopunktowej po każdej recenzji."
+
+msgid "manager.setup.reviewOptions.blindReview"
+msgstr "Ślepa recenzja"
+
+msgid "manager.setup.reviewOptions.automatedRemindersDisabled"
+msgstr ""
+"Aby aktywować te opcje, administrator strony musi włączyć "
+"<tt>scheduled_tasks</tt> opcję w pliku konfiguracji OMP. Dodatkowa "
+"konfiguracja serweru może być wymagana, aby wzmocnić jego wydajność (może to "
+"nie być możliwe na wszystkich serwerach), tak jak wspomniano w dokumentacji "
+"OMP."
+
+msgid "manager.setup.reviewOptions.automatedReminders"
+msgstr "Automatyczny system przypominania"
+
+msgid "manager.setup.reviewOptions"
+msgstr "Opcje recenzji"
+
+msgid "manager.setup.internalReviewGuidelines"
+msgstr "Wskazówki dla wewnętrznej recenzji"
+
+msgid "manager.setup.reviewGuidelinesDescription"
+msgstr ""
+"Dostarcz zewnętrznym recenzentom kryteria do oceny adekwatności zgłoszenia "
+"do publikacji w tym wydawnictwie, które zwierają instrukcje do przygotowanie "
+"efektywnej i pomocnej recenzji. Recenzencie będą mieli możliwość "
+"wprowadzenia komentarzy dla autora i redaktora, jak i oddzielnych komentarzy "
+"tylko dla redaktora."
+
+msgid "manager.setup.reviewGuidelines"
+msgstr "Wskazówki dla zewnętrznej recenzji"
+
+msgid "manager.setup.restrictSiteAccess"
+msgstr ""
+"Użytkownicy muszą być zarejestrowani i zalogowani, aby zobaczyć stronę "
+"wydania."
+
+msgid "manager.setup.restrictMonographAccess"
+msgstr ""
+"Użytkownicy muszą być zarejestrowani i zalogowani, aby zobaczyć zawartość "
+"otwartego dostępu."
+
+msgid "manager.setup.refLinkInstructions.description"
+msgstr "Instrukcje składu dla linków odnoszących"
+
+msgid "manager.setup.referenceLinking"
+msgstr "Linki odnoszące"
+
+msgid "manager.setup.publisherDescription"
+msgstr ""
+"Nazwa organizacji publikującej wydanie pojawi się w segmencie \"O wydaniu\"."
+
+msgid "manager.setup.publisher"
+msgstr "Wydawca"
+
+msgid "manager.setup.publicationScheduleDescription"
+msgstr ""
+"Pozycje wydawnicze mogą być publikowane zbiorowo, jako część monografii z "
+"oddzielnym spisem treści. Alternatywnie, indywidualne pozycje mogą być "
+"publikowane tak szybko, jak są gotowe, poprzez dodanie je do \"bieżącego\" "
+"tomu w spisie treści. Dostarcz czytelnikom w segmencie \"O wydaniu\" "
+"oświadczenie o systemie, z jakiego korzysta wydawnictwo i jego oczekiwań "
+"dotyczących częstotliwości publikacji."
+
+msgid "manager.setup.provideRefLinkInstructions"
+msgstr "Dostarcz Redaktorom Składu instrukcje."
+
+msgid "manager.setup.proofreading"
+msgstr "Korektorzy"
+
+msgid "manager.setup.proofingInstructionsDescription"
+msgstr ""
+"Instrukcje korektorskie będą dostępne dla korektorów, autorów, redaktorów "
+"składu i redaktorów sekcji w fazie redagowanie zgłoszenia. Poniżej znajduje "
+"się domyślny zestaw instrukcji w HTML, które mogą być redagowane lub "
+"zastąpione przez Menedżera wydawnictwa w dowolnym momencie (w HTML lub w "
+"tekście odkrytym)."
+
+msgid "manager.setup.proofingInstructions"
+msgstr "Instrukcje korektorskie"
+
+msgid "manager.setup.printIssn"
+msgstr "ISSN druku"
+
+msgid "manager.setup.contextTitle"
+msgstr "Nazwa wydawnictwa"
+
+msgid "manager.setup.pressThumbnail.description"
+msgstr "Na liście wydawnictw może być użyte logo wydawnictwa."
+
+msgid "manager.setup.pressThumbnail"
+msgstr "Miniatura wydawnictwa"
+
+msgid "manager.setup.pressTheme"
+msgstr "Temat wydawnictwa"
+
+msgid "manager.setup.styleSheetInvalid"
+msgstr "Nieważny format stylu strony. Akceptowalny format to .css."
+
+msgid "manager.setup.pressSetupUpdated"
+msgstr "Zaktualizowano konfigurację Twojego wydawnictwa."
+
+msgid "manager.setup.pressSetup"
+msgstr "Konfiguracja wydawnictwa"
+
+msgid "manager.setup.pressPolicies"
+msgstr "Krok 2. Polityka wydawnictwa"
+
+msgid "manager.setup.pageHeader"
+msgstr "Nagłówek strony wydawnictwa"
+
+msgid "manager.setup.layout"
+msgstr "Skład wydawnictwa"
+
+msgid "manager.setup.contextInitials"
+msgstr "Inicjały wydawnictwa"
+
+msgid "manager.setup.pressHomepageContentDescription"
+msgstr ""
+"Strona główna wydawnictwa składa się z domyślnych linków nawigacyjnych. "
+"Dodatkowa zawartość strony głównej może być dołączona przy użyciu jednej lub "
+"wszystkich opcji, które ukażą się w zaprezentowanym porządku."
+
+msgid "manager.setup.homepageContentDescription"
+msgstr ""
+"Strona główna wydawnictwa składa się z domyślnych linków nawigacyjnych. "
+"Dodatkowa zawartość strony głównej może być dołączona przy użyciu jednej lub "
+"wszystkich opcji, które ukażą się w zaprezentowanym porządku."
+
+msgid "manager.setup.pressHomepageContent"
+msgstr "Zawartość strony głównej wydawnictwa"
+
+msgid "manager.setup.homepageContent"
+msgstr "Zawartość strony głównej wydawnictwa"
+
+msgid "manager.setup.pressArchiving"
+msgstr "Archiwizowanie wydawnictwa"
+
+msgid "manager.setup.aboutPress.description"
+msgstr ""
+"Załącz wszelkie informacje dotyczące Twojego wydawnictwa, które mogą "
+"zainteresować czytelników, autorów i recenzentów. Może zawierać Twoje zasady "
+"otwartego dostępu, cel i zakres wydań, uwagi redaktorskie, sponsorów, "
+"historię wydawnictwa i oświadczenie o ochronie prywatności."
+
+msgid "manager.setup.aboutPress"
+msgstr "O wydaniu"
+
+msgid "manager.setup.pressDescription.description"
+msgstr "Krótki opis Twojego wydania."
+
+msgid "manager.setup.pressDescription"
+msgstr "Streszczenie wydania"
+
+msgid "manager.setup.appearanceDescription"
+msgstr ""
+"Różne komponenty wyglądu wydania mogą być konfigurowane przez tę stronę, "
+"włączając elementy nagłówka i stopki, styl i temat wydania oraz jak "
+"porządkować informacje prezentowane użytkownikom."
+
+msgid "manager.setup.privacyStatement.success"
+msgstr "Zaktualizowano oświadczenie o ochronie prywatności."
+
+msgid "manager.setup.policies.description"
+msgstr ""
+"Cel, recenzja naukowa, sekcje, prywatność, bezpieczeństwo i inne o pozycjach."
+
+msgid "manager.setup.policies"
+msgstr "Zasady"
+
+msgid "manager.setup.onlineIssn"
+msgstr "ISSN online"
+
+msgid "manager.setup.onlineAccessManagement"
+msgstr "Dostęp do zawartości wydania"
+
+msgid "manager.setup.numPageLinks.description"
+msgstr ""
+"Wprowadź limit linków do wyświetlenia na kolejnych stronach na tej liście."
+
+msgid "manager.setup.numPageLinks"
+msgstr "Linki do stron"
+
+msgid "manager.setup.noUseProofreaders"
+msgstr ""
+"Redaktor lub Redaktor Sekcji przypisany do zgłoszenia sprawdzi korektę "
+"szpaltową."
+
+msgid "manager.setup.noUseLayoutEditors"
+msgstr ""
+"Redaktor lub Redaktor Sekcji przypisany do zgłoszenia przygotuje pliki HTML, "
+"PDF itp."
+
+msgid "manager.setup.noUseCopyeditors"
+msgstr ""
+"Redagowanie będzie prowadzone przez Redaktora lub Redaktora Sekcji "
+"przypisanych do tego zgłoszenia."
+
+msgid "manager.setup.notifyAllAuthorsOnDecision"
+msgstr ""
+"Kiedy używasz powiadomienia autora, dołącz adresy mailowe wszystkich "
+"współautorów dla zgłoszenia z wieloma autorami, nie tylko użytkownika "
+"zgłaszającego."
+
+msgid "manager.setup.note"
+msgstr "Uwagi"
+
+msgid "manager.setup.noStyleSheetUploaded"
+msgstr "Nie załadowano stylu strony."
+
+msgid "manager.setup.noImageFileUploaded"
+msgstr "Nie załadowano pliku z obrazem."
+
+msgid "manager.setup.masthead.success"
+msgstr "Zaktualizowano szczegóły dotyczące stopki redakcyjnej tego wydawnictwa."
+
+msgid "manager.setup.managingThePress"
+msgstr "Krok 4. Zarządzanie ustawieniami"
+
+msgid "manager.setup.managingPublishingSetup"
+msgstr "Układ zarządzania i publikacji"
+
+msgid "manager.setup.managementOfBasicEditorialSteps"
+msgstr "Zarządzanie podstawowymi krokami redakcyjnymi"
+
+msgid "manager.setup.management.description"
+msgstr ""
+"Dostęp i bezpieczeństwo, harmonogramy, ogłoszenia, redakcja, skład i korekty."
+
+msgid "manager.setup.settings"
+msgstr "Ustawienia"
+
+msgid "manager.setup.look.description"
+msgstr ""
+"Nagłówek strony głównej, zawartość, nagłówek wydawnictwa, stopka, pasek "
+"nawigacyjny i styl strony."
+
+msgid "manager.setup.look"
+msgstr "Wygląd i styl"
+
+msgid "manager.setup.lists.success"
+msgstr "Zaktualizowane listę ustawień dla tego pisma."
+
+msgid "manager.setup.lists"
+msgstr "Listy"
+
+msgid "manager.setup.layoutTemplates.title"
+msgstr "Tytuł"
+
+msgid "manager.setup.layoutTemplatesDescription"
+msgstr ""
+"Wzory mogą zostać przesłane do składu dla każdego standardowego formatu "
+"publikowanych wydań (monografie, recenzje książek itp.) przy użyciu każdego "
+"formatu plików (pdf, doc itp.) z dodanymi adnotacjami o konkretnej czcionce, "
+"rozmiarze, marginesie itp., aby posłużyć za wskazówki dla Redaktorów Składu "
+"i Redaktorów Merytorycznych."
+
+msgid "manager.setup.layoutTemplates.file"
+msgstr "Plik wzorcowy"
+
+msgid "manager.setup.layoutTemplates"
+msgstr "Wzory składu"
+
+msgid "manager.setup.layoutInstructionsDescription"
+msgstr ""
+"Instrukcje dotyczące składu mogą być przygotowane dla formatowania "
+"publikowanych pozycji w wydawnictwie i dostępne pod poniższym adresem HTML "
+"lub w tekście odkrytym. Będą dostępne dla Redaktora Składu i Redaktora "
+"Sekcji w zakładce Redagowanie każdego zgłoszenia. (Każde wydawnictwo może "
+"używać swoich formatów plików, standardów bibliograficznych, stylów strony "
+"itp., domyślny zestaw instrukcji nie jest dostarczany.)"
+
+msgid "manager.setup.layoutInstructions"
+msgstr "Instrukcje dotyczące składu"
+
+msgid "manager.setup.layoutAndGalleys"
+msgstr "Redaktorzy składu"
+
+msgid "manager.setup.labelName"
+msgstr "Nazwa marki"
+
+msgid "manager.setup.keyInfo.description"
+msgstr ""
+"Dostarcz krótki opis Twojego wydawnictwa i określ redaktorów, dyrektorów "
+"zarządzających i innych członków Twojego zespołu redakcyjnego."
+
+msgid "manager.setup.keyInfo"
+msgstr "Kluczowe informacje"
+
+msgid "manager.setup.itemsPerPage.description"
+msgstr ""
+"Wprowadź limit pozycji (na przykład: zgłoszeń, użytkowników lub zadań "
+"redakcyjnych) do ujęcia na liście przed prezentowaniem kolejnych pozycji na "
+"innej stronie."
+
+msgid "manager.setup.itemsPerPage"
+msgstr "Pozycje na stronie"
+
+msgid "manager.setup.institution"
+msgstr "Instytucja"
+
+msgid "manager.setup.information.success"
+msgstr "Zaktualizowane informacje dla tego wydawnictwa."
+
+msgid "manager.setup.information.forReaders"
+msgstr "Dla czytelników"
+
+msgid "manager.setup.information.forLibrarians"
+msgstr "Dla bibliotekarzy"
+
+msgid "manager.setup.information.forAuthors"
+msgstr "Dla autorów"
+
+msgid "manager.setup.information.description"
+msgstr ""
+"Krótkie opisy wydawnictwa dla bibliotekarzy oraz przyszłych autorów i "
+"czytelników. Będą dostępne w pasku bocznym strony, kiedy dział informacji "
+"zostanie dodany."
+
+msgid "manager.setup.information"
+msgstr "Informacje"
+
+msgid "manager.setup.identity"
+msgstr "Tożsamość wydawnictwa"
+
+msgid "manager.setup.preparingWorkflow"
+msgstr "Krok 3. Przygotowanie cyklu pracy"
+
+msgid "manager.setup.guidelines"
+msgstr "Wskazówki"
+
+msgid "manager.setup.gettingDownTheDetails"
+msgstr "Krok 1. Przejście do szczegółów"
+
+msgid "manager.setup.generalInformation"
+msgstr "Ogólne informacje"
+
+msgid "manager.setup.form.supportNameRequired"
+msgstr "Dodatkowa nazwa jest wymagana."
+
+msgid "manager.setup.form.supportEmailRequired"
+msgstr "Dodatkowy email jest wymagany."
+
+msgid "manager.setup.form.contactNameRequired"
+msgstr "Podstawowa nazwa kontaktowa jest wymagana."
+
+msgid "manager.setup.form.contactEmailRequired"
+msgstr "Podstawowy email kontaktowy jest wymagany."
+
+msgid "manager.setup.forAuthorsToIndexTheirWorkDescription"
+msgstr ""
+"OMP stosuje się do<a href=\"http://www.openarchives.org/\" target=\"_blank\">"
+"Inicjatywy otwartych archiwów</a>Protokół o zbieraniu metadanych, który jest "
+"nowo powstałym standardem dla zapewnienia dobrze zaindeksowanego dostępu do "
+"elektronicznych źródeł wyszukiwania na skalę globalną. Autorzy będą stosować "
+"podobny szablon, aby dostarczyć metadane dla tego zgłoszenia. Menedżer "
+"wydawnictwa powinien wybrać kategorię do zaindeksowania i zaprezentować "
+"autorom wzory, które posłużą im za przykład w trakcie indeksowania ich prac, "
+"oddzielające terminy średnikiem (np. termin 1; termin 2). Hasła będą "
+"prezentowane jako przykłady przez użycie \"np.\" lub \"na przykład\"."
+
+msgid "manager.setup.forAuthorsToIndexTheirWork"
+msgstr "Dla autorów do indeksowania ich pracy"
+
+msgid "manager.setup.form.numReviewersPerSubmission"
+msgstr "Liczba recenzentów przypadających na zgłoszenie jest wymagana."
+
+msgid "manager.setup.focusScopeDescription"
+msgstr "</strong>PRZYKŁADOWE DANE HTML<strong>"
+
+msgid "manager.setup.focusScope"
+msgstr "Cel i zakres"
+
+msgid "manager.setup.focusAndScope.description"
+msgstr ""
+"Opisz autorów, czytelników i bibliotekarzy o przekroju monografii i innych "
+"pozycji publikowanych przez wydawnictwo."
+
+msgid "manager.setup.focusAndScope"
+msgstr "Cel i zakres wydania"
+
+msgid "manager.setup.enableUserRegistration"
+msgstr "Odwiedzający mogą zgłosić konto użytkownika poprzez wydawnictwo."
+
+msgid "manager.setup.enablePublicGalleyId"
+msgstr ""
+"Stosowne identyfikatory będą stosowane do identyfikacji korekty szpaltowej ("
+"np. HTML lub pliki PDF) dla publikowanych pozycji."
+
+msgid "manager.setup.enablePublicMonographId"
+msgstr ""
+"Stosowne identyfikatory będą stosowane to identyfikacji publikowanych "
+"pozycji."
+
+msgid "manager.setup.enablePressInstructions"
+msgstr "Pozwól temu wydawnictwu na pojawiania się na tej stronie"
+
+msgid "manager.setup.numAnnouncementsHomepage.description"
+msgstr ""
+"Ilość wyświetlanych ogłoszeń na stronie głównej. Zostaw puste, aby nie "
+"wyświetlić żadnych."
+
+msgid "manager.setup.numAnnouncementsHomepage"
+msgstr "Wyświetl na stronie głównej"
+
+msgid "manager.setup.enableAnnouncements.description"
+msgstr ""
+"Ogłoszenia będą publikowane, aby informować czytelników o wydarzeniach i "
+"nowościach. Pojawią się  w Ogłoszeniach."
+
+msgid "manager.setup.enableAnnouncements.enable"
+msgstr "Włącz ogłoszenia"
+
+msgid "manager.setup.emailSignature.description"
+msgstr ""
+"Przygotowane emaile wysyłane przez system w imieniu wydawnictwa będą "
+"posiadać następujące sygnatury na końcu."
+
+msgid "manager.setup.emailSignature"
+msgstr "Podpis"
+
+msgid "manager.setup.emails"
+msgstr "Identyfikator email"
+
+msgid "manager.setup.emailBounceAddress.disabled"
+msgstr ""
+"Aby wysłać niedostarczoną wiadomość na adres zwrotny, administrator strony "
+"musi uruchomić <code>allow_envelope_sender</code> opcję w pliku "
+"konfiguracyjnym. Konfiguracja serweru może  być wymagana, jak wskazano w "
+"dokumentacji OMP."
+
+msgid "manager.setup.emailBounceAddress.description"
+msgstr ""
+"Każde adresat niedostarczonego emaila otrzyma zwrotną wiadomość o błędzie."
+
+msgid "manager.setup.emailBounceAddress"
+msgstr "Adres zwrotny"
+
+msgid "manager.setup.editorDecision"
+msgstr "Decyzja Redaktora"
+
+msgid "manager.setup.doiPrefixDescription"
+msgstr ""
+"Prefiks DOI (cyfrowego identyfikatora dokumentu elektronicznego) jest "
+"przedzielany przez <a href=\"http://www.crossref.org\" target=\"_blank\""
+">CrossRef</a> i występuje w formacie 10.xxxx (e.g. 10.1234)."
+
+msgid "manager.setup.doiPrefix"
+msgstr "Prefiks DOI"
+
+msgid "manager.setup.displayNewReleases.label"
+msgstr "Nowe wydania"
+
+msgid "manager.setup.displayNewReleases"
+msgstr "Wyświetl nowe wydania na stronie głównej"
+
+msgid "manager.setup.displayInSpotlight.label"
+msgstr "Wyróżnione"
+
+msgid "manager.setup.displayInSpotlight"
+msgstr "Wyświetl książki w wyróżnieniach na stronie głównej"
+
+msgid "manager.setup.displayFeaturedBooks.label"
+msgstr "Polecane książki"
+
+msgid "manager.setup.displayFeaturedBooks"
+msgstr "Wyświetl polecane książki na stronie głównej"
+
+msgid "manager.setup.displayOnHomepage"
+msgstr "Zawartość strony głównej"
+
+msgid "manager.setup.displayCurrentMonograph"
+msgstr "Dodaj spis treści dla bieżącej monografii (jeśli jest dostępny)."
+
+msgid "manager.setup.disciplineProvideExamples"
+msgstr ""
+"Zawiera przykłady dyscyplin akademickich właściwych dla tego wydawnictwa"
+
+msgid "manager.setup.disciplineExamples"
+msgstr ""
+"(Np. Historia, edukacja, socjologia, psychologia, kulturoznawstwo, prawo)"
+
+msgid "manager.setup.disciplineDescription"
+msgstr ""
+"Pożyteczne, kiedy wydanie przekroczy granice dyscypliny i/lub kiedy autor "
+"zgłosi pozycję interdyscyplinarną."
+
+msgid "manager.setup.discipline"
+msgstr "Dyscypliny i subdyscypliny akademickie"
+
+msgid "manager.setup.disableUserRegistration"
+msgstr ""
+"Menedżer wydawnictwa zarejestruje wszystkie konta użytkowników. Redaktorzy "
+"lub Redaktorzy Sekcji mogą zarejestrować konta użytkowników dla recenzentów."
+
+msgid "manager.setup.details.description"
+msgstr "Nazwa wydawnictwa, kontaktów, sponsorów i narzędzi wyszukiwania."
+
+msgid "manager.setup.details"
+msgstr "Szczegóły"
+
+msgid "manager.setup.customTagsDescription"
+msgstr ""
+"Dostosuj tagi nagłówka HTML, aby były wstawione w nagłówki każdej strony ("
+"np. tagi META)."
+
+msgid "manager.setup.customTags"
+msgstr "Tag niestandardowy"
+
+msgid "manager.setup.customizingTheLook"
+msgstr "Krok 5. Dostosowywanie wyglądu i stylu"
+
+msgid "manager.setup.coverThumbnailsMaxWidthHeight.description"
+msgstr ""
+"Obrazy zostaną zmniejszone, jeśli przekroczą podane wymiary, ale nigdy nie "
+"zostaną rozszerzone lub rozciągnięte, aby spełniały te wytyczne."
+
+msgid "manager.setup.coverThumbnailsMaxWidth"
+msgstr "Maksymalna szerokość okładki"
+
+msgid "manager.setup.coverThumbnailsMaxHeight"
+msgstr "Maksymalna wysokość okładki"
+
+msgid "manager.setup.coverage"
+msgstr "Pokrycie"
+
+msgid "manager.setup.copyrightNotice"
+msgstr "Informacja o prawach autorskich"
+
+msgid "manager.setup.copyeditInstructionsDescription"
+msgstr ""
+"Instrukcje korektorskie będą dostępne dla korektorów, autorów i redaktorów "
+"serii na etapie Redakcja Zgłoszenia. Poniżej znajduje się domyślny zestaw "
+"instrukcji w HTML, które mogą być modyfikowane lub zastąpione przez "
+"menedżerów wydania w każdym momencie (w HTML lub w tekście odkrytym)."
+
+msgid "manager.setup.copyeditInstructions"
+msgstr "Instrukcje korektorskie"
+
+msgid "manager.setup.copyediting"
+msgstr "Korektorzy"
+
+msgid "manager.setup.contextSummary"
+msgstr "Streszczenie wydania"
+
+msgid "manager.setup.contextAbout.description"
+msgstr ""
+"Zawiera wszelkie informacje o Twoim wydaniu, które mogą zainteresować "
+"czytelników, autorów i recenzentów. To uwzględnia Twoją politykę otwartego "
+"dostępu, cel i zakres Twojego wydania, sponsora i historię pisma."
+
+msgid "manager.setup.contextAbout"
+msgstr "O wydaniu"
+
+msgid "manager.setup.appearInAboutPress"
+msgstr "(Do wyświetlenia w O wydaniu) "
+
+msgid "manager.setup.announcementsIntroduction.description"
+msgstr ""
+"Wprowadź dodatkowe informacje, które powinny być wyświetlane dla czytelników "
+"w ogłoszeniach."
+
+msgid "manager.setup.announcementsIntroduction"
+msgstr "Dodatkowe informacje"
+
+msgid "manager.setup.announcementsDescription"
+msgstr ""
+"Ogłoszenia będą publikowane, aby informować czytelników o wydarzeniach i "
+"nowościach wydawniczych. Opublikowane ogłoszenia pojawią się na stronie "
+"ogłoszeń."
+
+msgid "manager.setup.announcements.success"
+msgstr "Ustawienia ogłoszeń zostały zaktualizowane."
+
+msgid "manager.setup.announcements"
+msgstr "Ogłoszenia"
+
+msgid "manager.setup.addSponsor"
+msgstr "Dodaj sponsorów"
+
+msgid "manager.setup.addNavItem"
+msgstr "Dodaj pozycję"
+
+msgid "manager.setup.addItemtoAboutPress"
+msgstr "Dodaj pozycję do wyświetleń w \"O wydaniu\""
+
+msgid "manager.setup.addItem"
+msgstr "Dodaj pozycję"
+
+msgid "manager.setup.addChecklistItem"
+msgstr "Dodaj listę kontrolną pozycji"
+
+msgid "manager.setup.addAboutItem"
+msgstr "Dodaj O pozycji"
+
+msgid "manager.setup.aboutItemContent"
+msgstr "Zawartość"
+
+msgid "manager.setup"
+msgstr "Konfiguracja"
+
+msgid "manager.people.confirmDisable"
+msgstr ""
+"Dezaktywować użytkownika? To zapobiegnie logowaniu się tego użytkownika do "
+"systemu?\n"
+"\n"
+"Opcjonalnie możesz podać użytkownikowi powód, dla którego dezaktywowano jego "
+"konto."
+
+msgid "manager.people.syncUserDescription"
+msgstr ""
+"Synchronizacja zapisywania zapisze wszystkich użytkowników w przypisanych do "
+"określonych ról w określonym wydaniu do tej samej roli w tym wydaniu. Ta "
+"funkcja umożliwia synchronizowanie wspólnego zestawu użytkowników (np. "
+"recenzentów) do wydań."
+
+msgid "manager.people.mergeUsers.into.description"
+msgstr ""
+"Wybierz użytkownika, któremu chcesz przypisać poprzednie autorstwo "
+"użytkownika, zlecenia redakcyjne itp."
+
+msgid "manager.pressManagement"
+msgstr "Zarządzanie wydaniem"
+
+msgid "user.authorization.pluginLevel"
+msgstr "Nie masz wystarczających upoważnień, aby zarządzać tą wtyczką."
+
+msgid "manager.system.payments"
+msgstr "Płatności"
+
+msgid "manager.system.readingTools"
+msgstr "Narzędzia czytelnicze"
+
+msgid "manager.system.reviewForms"
+msgstr "Formy recenzji"
+
+msgid "manager.system.archiving"
+msgstr "Archiwizowanie"
+
+msgid "manager.system"
+msgstr "Ustawienia systemu"
+
+msgid "manager.people.noAdministrativeRights"
+msgstr ""
+"Przykro nam, nie masz prawa administracyjnych do tego użytkownika. Może t "
+"być spowodowane:\n"
+"<ul>\n"
+"<li>Użytkownik jest administratorem strony</li>\n"
+"<li>Użytkownik jest aktywny w wydaniach, którymi nie zarządzasz</li>\n"
+"</ul>\n"
+"To zadanie musi być wykonane przez administratora strony.\n"
+"\t"
+
+msgid "manager.people.mergeUsers.from.description"
+msgstr ""
+"Wybierz użytkownika, aby połączyć z kontem innego użytkownika (np. kiedy "
+"ktoś ma dwa konta użytkownika). Konto wybrane jako pierwsze zostanie "
+"usunięte, a jego zgłoszenia, przypisane zadanie itp. zostaną przekazane na "
+"drugie konto."
+
+msgid "manager.people.enrollSyncPress"
+msgstr "Z wydania"
+
+msgid "manager.people.enrollExistingUser"
+msgstr "Zapisz istniejącego użytkownika"
+
+msgid "manager.people.confirmRemove"
+msgstr ""
+"Usunąć użytkownika z tego wydania? Poskutkuje to wyrejestrowaniem "
+"użytkownika z wszystkich ról dla tego wydania."
+
+msgid "manager.people.allUsers"
+msgstr "Wszyscy zapisani użytkownicy"
+
+msgid "manager.people.allSiteUsers"
+msgstr "Zapisz użytkownika z tej strony do tego wydania"
+
+msgid "manager.people.allPresses"
+msgstr "Wszystkie wydania"
+
+msgid "manager.people.allEnrolledUsers"
+msgstr "Zapisani użytkownicy do tego wydania"
+
+msgid "manager.users.selectRole"
+msgstr "Wybierz rolę"
+
+msgid "manager.users.currentRoles"
+msgstr "Bieżące role"
+
+msgid "manager.users.availableRoles"
+msgstr "Dostępne role"
+
+msgid "manager.tools.statistics"
+msgstr ""
+"Narzędzia do generowania raportu powiązanych ze statystykami użytkowania ("
+"widok katalogu indeksów, widok abstraktu monografii, pobrane monografie)"
+
+msgid "manager.tools.importExport"
+msgstr ""
+"Wszystkie narzędzia szczegółowe do importowania i eksportowania danych ("
+"wydawnictw, monografii, użytkowników)"
+
+msgid "manager.tools"
+msgstr "Narzędzia"
+
+msgid "manager.statistics.reports.filters.byObject.description"
+msgstr ""
+"Ogranicz wyniki do typu obiektu (wydanie, seria, monografia, typ pliku) i/"
+"lub przez jeden (lub więcej) identyfikator obiektów."
+
+msgid "manager.statistics.reports.filters.byContext.description"
+msgstr "Ogranicz wyniki do zawartości (serii i/lub monografii)."
+
+msgid "manager.statistics.reports.defaultReport.pressIndexPageViews"
+msgstr "Widok głównej strony wydania"
+
+msgid "manager.statistics.reports.defaultReport.seriesIndexPageViews"
+msgstr "Widok głównej strony serii"
+
+msgid "manager.statistics.reports.defaultReport.monographAbstractAndDownloads"
+msgstr "Abstrakt monografii i pobrane"
+
+msgid "manager.statistics.reports.defaultReport.monographAbstract"
+msgstr "Widok abstraktu monografii"
+
+msgid "manager.statistics.reports.defaultReport.monographDownloads"
+msgstr "Pobrane monografie"
+
+msgid "manager.settings.distributionDescription"
+msgstr ""
+"Wszystkie szczegóły ustawień do procesu dystrybucji (powiadomienia, "
+"indeksowanie, archiwizowanie, płatności, narzędzia czytelnicze)."
+
+msgid "manager.settings.publisherCodeType.invalid"
+msgstr "To nie jest aktualny typ kodu wydawcy."
+
+msgid "manager.settings.publisherCodeType"
+msgstr "Typ kodu wydawcy"
+
+msgid "manager.settings.publisherCode"
+msgstr "Kod wydawcy"
+
+msgid "manager.settings.location"
+msgstr "Położenie geograficzne"
+
+msgid "manager.settings.publisher"
+msgstr "Nazwa Wydawcy"
+
+msgid "manager.settings.publisher.identity.description"
+msgstr ""
+"Te pole są wymagane, aby opublikować aktualne <a href=\"https://en.wikipedia."
+"org/wiki/ONIX_for_Books\"> metadane ONIX</a>."
+
+msgid "manager.settings.publisher.identity"
+msgstr "Tożsamość wydawcy"
+
+msgid "manager.settings.press"
+msgstr "Wydawnictwo"
+
+msgid "manager.settings.pressSettings"
+msgstr "Ustawienia wydawnicze"
+
+msgid "manager.settings"
+msgstr "Ustawienia"
+
+msgid "manager.payment.success"
+msgstr "Zaktualizowano ustawienia płatności."
+
+msgid "manager.payment.options.enablePayments"
+msgstr ""
+"Płatności zostaną uruchomione dla tego wydawnictwa. Zauważ, że użytkownicy "
+"muszą się zalogować, aby dokonać płatności."
+
+msgid "manager.payment.generalOptions"
+msgstr "Opcje Ogólne"
+
+msgid "manager.series.restricted"
+msgstr "Nie pozwalaj autorom na bezpośrednie zgłoszenia do tej serii."
+
+msgid "manager.series.seriesTitle"
+msgstr "Tytuł serii"
+
+msgid "manager.series.existingUsers"
+msgstr "Istniejący użytkownicy"
+
+msgid "manager.series.noneCreated"
+msgstr "Seria nie została utworzona."
+
+msgid "manager.series.form.titleRequired"
+msgstr "Tytuł jest wymagany dla tej serii."
+
+msgid "manager.series.form.abbrevRequired"
+msgstr "Skrócony tytuł jest wymagany dla tej serii."
+
+msgid "manager.series.unassigned"
+msgstr "Dostępni Redaktorzy Serii"
+
+msgid "manager.series.hideAbout"
+msgstr "Pomiń tę serię z O wydaniu."
+
+msgid "manager.series.seriesEditorInstructions"
+msgstr ""
+"Dodaj Redaktora Serii do tej serii z dostępnych Redaktorów Serii. Po dodaniu "
+"zaznacz, czy Redaktor Serii ma nadzorować recenzję (recenzję naukową) i/lub "
+"edycję (redakcję, skład i korektę) zgłoszenia do tej serii. Redaktorzy Serii "
+"są tworzeni poprzez kliknięcie<a href=\"{$seriesEditorsUrl}\">Redaktorzy "
+"Serii</a>w Role w Zarządzeniu Wydawnictwem."
+
+msgid "manager.series.assigned"
+msgstr "Redaktorzy dla tej serii"
+
+msgid "manager.series.policy"
+msgstr "Opis serii"
+
+msgid "manager.series.create"
+msgstr "Stwórz serie"
+
+msgid "manager.series.book"
+msgstr "Serie książek"
+
+msgid "manager.series.disableComments"
+msgstr "Wyłączone komentarze czytelników dla tej serii."
+
+msgid "manager.series.abstractsNotRequired"
+msgstr "Nie wymaga abstraktów"
+
+msgid "manager.series.submissionsToThisSection"
+msgstr "Złożono zgłoszenia do tej serii"
+
+msgid "manager.series.submissionReview"
+msgstr "Nie będzie poddane recenzji naukowej"
+
+msgid "manager.series.readingTools"
+msgstr "Narzędzia czytelnicze"
+
+msgid "manager.series.open"
+msgstr "Otwarte zgłoszenia"
+
+msgid "manager.series.indexed"
+msgstr "Zaindeksowano"
+
+msgid "manager.series.confirmDelete"
+msgstr "Jesteś pewien, że chcesz ostatecznie usunąć tę serię?"
+
+msgid "manager.series.editorRestriction"
+msgstr "Pozycje mogą być zgłoszone tylko przez Redaktorów i Redaktorów Serii."
+
+msgid "manager.series.submissionIndexing"
+msgstr "Nie będzie wzięte pod uwagę w indeksowaniu wydania"
+
+msgid "manager.series.form.reviewFormId"
+msgstr "Proszę upewnij się, że wybrałeś prawidłową formę recenzji."
+
+msgid "manager.languages.noneAvailable"
+msgstr ""
+"Przykro nam, brak dostępnych dodatkowych opcji  językowych. Skontaktuj się z "
+"administratorem strony, jeśli chcesz zastosować dodatkowy język dla tego "
+"wydawnictwa."
+
+msgid "manager.series.form.mustAllowPermission"
+msgstr ""
+"Proszę upewnij się, że przynajmniej jedno pole jest zaznaczone dla każdego "
+"zlecenia Redaktora Serii."
+
+msgid "manager.languages.primaryLocaleInstructions"
+msgstr "To będzie domyślny język dla strony wydawnictwa."
+
+msgid "manager.language.confirmDefaultSettingsOverwrite"
+msgstr ""
+"To zastąpi jakiekolwiek szczegółowe ustawienia wydawnicze dla tych ustawień "
+"regionalnych"
