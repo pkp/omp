@@ -104,7 +104,7 @@ class SubmissionQueryBuilder extends \PKP\Services\QueryBuilders\PKPSubmissionQu
 				$assocIds = $this->categoryIds;
 			} else {
 				$assocType = ASSOC_TYPE_PRESS;
-				$assocIds = array(1); // OMP only supports a single press
+				$assocIds = [$this->contextId ? $this->contextId : CONTEXT_ID_NONE];
 			}
 			$q->leftJoin('features as sf', function($join) use ($assocType, $assocIds) {
 				$join->on('s.submission_id', '=', 'sf.submission_id')
