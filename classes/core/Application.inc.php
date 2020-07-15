@@ -147,22 +147,6 @@ class Application extends PKPApplication {
 	}
 
 	/**
-	 * Get the context settings DAO.
-	 * @return SettingsDAO
-	 */
-	public static function getContextSettingsDAO() {
-		return DAORegistry::getDAO('PressSettingsDAO');
-	}
-
-	/**
-	 * Get the submission DAO.
-	 * @deprecated Just use DAORegistry::getDAO('SubmissionDAO') directly.
-	 */
-	public static function getSubmissionDAO() {
-		return DAORegistry::getDAO('SubmissionDAO');
-	}
-
-	/**
 	 * Get the section DAO.
 	 * @return SeriesDAO
 	 */
