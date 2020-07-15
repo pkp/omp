@@ -1,2 +1,88 @@
 msgid ""
-msgstr "X-Generator: Weblate\nMIME-Version: 1.0\nContent-Type: text/plain; charset=UTF-8\nContent-Transfer-Encoding: 8bit"
+msgstr ""
+"PO-Revision-Date: 2020-07-15 12:20+0000\n"
+"Last-Translator: rl <biuro@fimagis.pl>\n"
+"Language-Team: Polish <http://translate.pkp.sfu.ca/projects/omp/submission/"
+"pl_PL/>\n"
+"Language: pl_PL\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=3; plural=n==1 ? 0 : n%10>=2 && n%10<=4 && (n%100<10 "
+"|| n%100>=20) ? 1 : 2;\n"
+"X-Generator: Weblate 3.9.1\n"
+
+msgid "submission.chapter.pages"
+msgstr "Strony"
+
+msgid "submission.chapter.editChapter"
+msgstr "Edytuj rozdział"
+
+msgid "submission.chapter.addChapter"
+msgstr "Dodaj rozdział"
+
+msgid "submission.chaptersDescription"
+msgstr ""
+"Możesz zamieścić rozdziały tutaj i przypisać współpracowników z listy "
+"powyżej.  Wskazani współpracownicy będą mieli dostęp do rozdziału w trakcie "
+"różnych etapów procesu publikacji."
+
+msgid "submission.chapters"
+msgstr "Rozdziały"
+
+msgid "submission.chapter"
+msgstr "Rozdział"
+
+msgid "submission.artwork.permissions"
+msgstr "Pozwolenia"
+
+msgid "submission.authorListSeparator"
+msgstr "; "
+
+msgid "submission.fairCopy"
+msgstr "Wersja ostateczna"
+
+msgid "submission.published"
+msgstr "Gotowa produkcja"
+
+msgid "submission.monograph"
+msgstr "Monografia"
+
+msgid "submission.editorName"
+msgstr "{$editorName} (ed)"
+
+msgid "submission.workflowType.change"
+msgstr "Zmień"
+
+msgid "submission.workflowType.authoredWork"
+msgstr "Monografia: Autorzy są kojarzeni z całością książki."
+
+msgid "submission.workflowType.editedVolume"
+msgstr "Redagowany tom: autorzy są kojarzeni z własnymi rozdziałami."
+
+msgid "submission.workflowType.editedVolume.label"
+msgstr "Redagowany tom"
+
+msgid "submission.workflowType.description"
+msgstr ""
+"Monografia to rozprawa autoryzowana przez jedną lub więcej osób. Zredagowany "
+"tom posiada różnych autorów dla każdego rozdziału (w szczegółach rozdziału "
+"wprowadzonymi w późniejszej facie procesu redakcyjnego.)"
+
+msgid "submission.workflowType"
+msgstr "Typ zgłoszenia"
+
+msgid "submission.synopsis"
+msgstr "Streszczenie"
+
+msgid "submission.select"
+msgstr "Wybierz zgłoszenie"
+
+msgid "submission.title"
+msgstr "Tytuł książki"
+
+msgid "submission.upload.selectComponent"
+msgstr "Wybierz komponent"
+
+msgid "submission.submit.title"
+msgstr "Zgłoś monografię"
