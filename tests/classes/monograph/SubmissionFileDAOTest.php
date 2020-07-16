@@ -107,7 +107,7 @@ class SubmissionFileDAOTest extends DatabaseTestCase {
 		// Create test data.
 		//
 		// Create a submission
-		$submissionDao = Application::getSubmissionDao();
+		$submissionDao = DAORegistry::getDAO('SubmissionDAO');
 		$submission = $submissionDao->newDataObject();
 		$submission->setPressId(SUBMISSION_FILE_DAO_TEST_PRESS_ID);
 		$submission->setLocale('en_US');
@@ -468,7 +468,7 @@ class SubmissionFileDAOTest extends DatabaseTestCase {
 		$this->_cleanFiles($submissionId);
 
 		// Delete the test submission
-		$submissionDao = Application::getSubmissionDao();
+		$submissionDao = DAORegistry::getDAO('SubmissionDAO');
 		$submissionDao->deleteById($submissionId);
 	}
 
