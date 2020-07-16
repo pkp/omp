@@ -1,6 +1,6 @@
 msgid ""
 msgstr ""
-"PO-Revision-Date: 2020-07-15 12:20+0000\n"
+"PO-Revision-Date: 2020-07-17 11:47+0000\n"
 "Last-Translator: rl <biuro@fimagis.pl>\n"
 "Language-Team: Polish <http://translate.pkp.sfu.ca/projects/omp/submission/"
 "pl_PL/>\n"
@@ -86,3 +86,274 @@ msgstr "Wybierz komponent"
 
 msgid "submission.submit.title"
 msgstr "Zgłoś monografię"
+
+msgid "submission.list.countMonographs"
+msgstr "{$count} monografie"
+
+msgid "submission.list.monographs"
+msgstr "Monografie"
+
+msgid "section.any"
+msgstr "Wszystkie serie"
+
+msgid "submission.metadataDescription"
+msgstr ""
+"Te specyfikacje opierają się na zestawie metadanych Dublin Core o "
+"międzynarodowym standardzie używanym do opisu zawartości wydawnictwa."
+
+msgid "submission.dependentFiles"
+msgstr "Pliki zależne"
+
+msgid "submission.upload.fileContents"
+msgstr "Komponent zgłoszenia"
+
+msgid "workflow.review.externalReview"
+msgstr "Zewnętrzna recenzja"
+
+msgid "editor.submission.decision.sendExternalReview"
+msgstr "Wyślij do zewnętrznej recenzji"
+
+msgid "submission.submit.titleAndSummary"
+msgstr "Tytuł i streszczenie"
+
+msgid "submission.event.publicationFormatRemoved"
+msgstr "Format publikacji \"{$formatName}\"został usunięty."
+
+msgid "submission.event.publicationFormatCreated"
+msgstr "Format publikacji \"{$formatName}\" został utworzony."
+
+msgid "submission.event.publicationMetadataUpdated"
+msgstr ""
+"Metadane formatu publikacji dla  \"{$formatName}\" zostały zaktualizowane."
+
+msgid "submission.event.catalogMetadataUpdated"
+msgstr "Metadane katalogu zostały zaktualizowane."
+
+msgid "submission.event.publicationFormatUnpublished"
+msgstr ""
+"Format publikacji \"{$publicationFormatName}\" nie jest już publikowany."
+
+msgid "submission.event.publicationFormatPublished"
+msgstr ""
+"Format publikacji  \"{$publicationFormatName}\" został zatwierdzony dla tej "
+"publikacji."
+
+msgid "submission.event.publicationFormatMadeUnavailable"
+msgstr "Format publikacji \"{$publicationFormatName}\" nie jest już dostępny."
+
+msgid "submission.event.publicationFormatMadeAvailable"
+msgstr "Format publikacji \"{$publicationFormatName}\"  jest udostępniony."
+
+msgid "submission.event.metadataUnpublished"
+msgstr "Metadane monografii nie są już publikowane."
+
+msgid "submission.event.metadataPublished"
+msgstr "Metadane monografii są zatwierdzone do publikacji."
+
+msgid "submission.catalogEntry.publicationMetadata"
+msgstr "Format publikacji"
+
+msgid "submission.catalogEntry.catalogMetadata"
+msgstr "Katalog"
+
+msgid "submission.catalogEntry.monographMetadata"
+msgstr "Monografia"
+
+msgid "submission.catalogEntry.enableChapterPublicationDates"
+msgstr "Każdy rozdział może mieć swoją własną datę publikacji."
+
+msgid "submission.catalogEntry.disableChapterPublicationDates"
+msgstr "Wszystkie rozdziały zastosują datę publikacji tej monografii."
+
+msgid "submission.catalogEntry.chapterPublicationDates"
+msgstr "Terminy publikacji"
+
+msgid "submission.catalogEntry.viewSubmission"
+msgstr "Wyświetl zgłoszenie"
+
+msgid "submission.catalogEntry.isAvailable"
+msgstr "Ta monografia jest gotowa do załączenia w publicznym katalogu."
+
+msgid "submission.catalogEntry.confirm.required"
+msgstr "Proszę potwierdź gotowość zgłoszenia do umieszczenia w katalogu."
+
+msgid "submission.catalogEntry.confirm"
+msgstr "Dodaj tę książkę do publicznego katalogu"
+
+msgid "submission.catalogEntry.selectionMissing"
+msgstr "Musisz wybrać przynajmniej jedną monografię do dodania do katalogu."
+
+msgid "submission.catalogEntry.select"
+msgstr "Wybierz monografie, aby dodać je do katalogu"
+
+msgid "submission.catalogEntry.add"
+msgstr "Dodaj wybrane do katalogu"
+
+msgid "submission.catalogEntry.new"
+msgstr "Dodaj pozycję"
+
+msgid "submission.editCatalogEntry"
+msgstr "Pozycja"
+
+msgid "submission.incomplete"
+msgstr "Oczekujące na zatwierdzenie"
+
+msgid "submission.complete"
+msgstr "Zatwierdzono"
+
+msgid "grid.copyediting.deleteCopyeditorResponse"
+msgstr "Usuń załadowanego redaktora"
+
+msgid "grid.chapters.title"
+msgstr "Rozdziały"
+
+msgid "submission.submit.noContext"
+msgstr "Wydanie zgłoszenia nie mogło być znalezione."
+
+msgid "submission.submit.userGroupDescription"
+msgstr "Jeśli zgłaszasz edytowany tom, powinieneś wybrać rolę redaktora tomu."
+
+msgid "submission.submit.userGroup"
+msgstr "Zgłoś moją rolę jako..."
+
+msgid "submission.submit.placement"
+msgstr "Umiejscowienie zgłoszenia"
+
+msgid "submission.submit.checklistErrors"
+msgstr ""
+"Proszę przeczytaj i sprawdź pozycje w liście kontrolnej zgłoszenia.  "
+"Niektóre pozycje są pominięte. {$itemsRemaining}."
+
+msgid "submission.submit.whatNext.description"
+msgstr ""
+"Wydawnictwo zostało powiadomione o zgłoszeniu, otrzymałeś email z "
+"potwierdzeniem do Twojej ewidencji. . Kiedy redaktor zrecenzuje zgłoszenie, "
+"skontaktujemy się z Tobą."
+
+msgid "submission.submit.generalInformation"
+msgstr "Ogólne informacje"
+
+msgid "submission.submit.coverNote"
+msgstr "Pismo przewodnie dla redaktora"
+
+msgid "submission.submit.nextSteps"
+msgstr "Następne kroki"
+
+msgid "submission.submit.confirmation"
+msgstr "Potwierdzenie"
+
+msgid "submission.submit.finishingUp"
+msgstr "Zakończenie"
+
+msgid "submission.submit.metadata"
+msgstr "Metadane"
+
+msgid "submission.submit.catalog"
+msgstr "Katalog"
+
+msgid "submission.submit.prepare"
+msgstr "Przygotuj"
+
+msgid "submission.submit.submissionFile"
+msgstr "Plik zgłoszenia"
+
+msgid "submission.submit.form.contributorRoleRequired"
+msgstr "Proszę wybierz rolę współautora."
+
+msgid "submission.submit.form.abstractRequired"
+msgstr "Proszę wprowadź krótki opis monografii."
+
+msgid "submission.submit.form.titleRequired"
+msgstr "Proszę wprowadź tytuł monografii."
+
+msgid "submission.submit.form.authorRequiredFields"
+msgstr "Imię, nazwisko i adres email każdego autora jest wymagany."
+
+msgid "submission.submit.form.authorRequired"
+msgstr "Przynajmniej jeden autor jest wymagany."
+
+msgid "submission.submit.contributorRole"
+msgstr "Rola współautora"
+
+msgid "submission.submit.privacyStatement"
+msgstr "Oświadczenie o ochronie prywatności"
+
+msgid "submission.submit.form.localeRequired"
+msgstr "Proszę wybierz język zgłoszenia."
+
+msgid "submission.submit.seriesPosition.description"
+msgstr "Przykłady: książka 2, tom 2"
+
+msgid "submission.submit.seriesPosition"
+msgstr "Pozycja w serii"
+
+msgid "author.submit.seriesRequired"
+msgstr "Aktualna seria jest wymagana."
+
+msgid "author.isVolumeEditor"
+msgstr "Dobierz współautora jako redaktora tego tomu."
+
+msgid "submission.submit.selectSeries"
+msgstr "Wybierz serię (opcjonalnie)"
+
+msgid "submission.submit.cancelSubmission"
+msgstr ""
+"Możesz dokończyć zgłoszenie w późniejszym terminie poprzez wybranie "
+"Aktywnych Zgłoszeń ze strony autora."
+
+msgid "submission.submit.upload"
+msgstr "Wprowadź zgłoszenie"
+
+msgid "submission.submit.newSubmissionSingle"
+msgstr "Nowe zgłoszenie"
+
+msgid "submission.submit.newSubmissionMultiple"
+msgstr "Rozpocznij nowe zgłoszenie"
+
+msgid "submission.submit"
+msgstr "Rozpocznij zgłoszenie nowej książki"
+
+msgid "grid.action.deleteChapter"
+msgstr "Usuń ten rozdział"
+
+msgid "grid.action.editChapter"
+msgstr "Edytuj ten rozdział"
+
+msgid "grid.action.addChapter"
+msgstr "Utwórz nowy rozdział"
+
+msgid "submission.supportingAgencies"
+msgstr "Wspierające agencje"
+
+msgid "submission.metadata"
+msgstr "Metadane"
+
+msgid "submission.confirmSubmit"
+msgstr "Czy jesteś pewien, że chcesz zgłosić swój manuskrypt do wydania?"
+
+msgid "manuscript.submissions"
+msgstr "Zgłoszenia manuskryptu"
+
+msgid "submissions.queuedReview"
+msgstr "W trakcie recenzji"
+
+msgid "submission.round"
+msgstr "Runda &nbsp;{$round}"
+
+msgid "manuscript.submission"
+msgstr "Zgłoszenie manuskryptu"
+
+msgid "submission.sharing"
+msgstr "Udostępnij"
+
+msgid "submission.download"
+msgstr "Pobierz"
+
+msgid "submission.proofs"
+msgstr "Korekty"
+
+msgid "submission.publicationFormats"
+msgstr "Formaty publikacji"
+
+msgid "submission.copyedit"
+msgstr "Redakcja"
