@@ -1,6 +1,6 @@
 msgid ""
 msgstr ""
-"PO-Revision-Date: 2020-07-15 12:20+0000\n"
+"PO-Revision-Date: 2020-07-17 11:47+0000\n"
 "Last-Translator: rl <biuro@fimagis.pl>\n"
 "Language-Team: Polish <http://translate.pkp.sfu.ca/projects/omp/pubIds-doi/"
 "pl_PL/>\n"
@@ -65,7 +65,7 @@ msgstr ""
 "DOI."
 
 msgid "plugins.pubIds.doi.editor.patternNotResolved"
-msgstr "DOI nie mogę być przypisany, ponieważ zawiera nieznany wzór."
+msgstr "DOI nie może być przypisany, ponieważ zawiera nieznany wzór."
 
 msgid "plugins.pubIds.doi.editor.missingParts"
 msgstr ""
