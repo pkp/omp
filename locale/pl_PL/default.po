@@ -1,0 +1,183 @@
+msgid ""
+msgstr ""
+"PO-Revision-Date: 2020-07-09 17:40+0000\n"
+"Last-Translator: rl <biuro@fimagis.pl>\n"
+"Language-Team: Polish <http://translate.pkp.sfu.ca/projects/omp/default/"
+"pl_PL/>\n"
+"Language: pl_PL\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=3; plural=n==1 ? 0 : n%10>=2 && n%10<=4 && (n%100<10 "
+"|| n%100>=20) ? 1 : 2;\n"
+"X-Generator: Weblate 3.9.1\n"
+
+msgid "default.genres.manuscript"
+msgstr "Manuskrypt książki"
+
+msgid "default.genres.bibliography"
+msgstr "Bibliografia"
+
+msgid "default.genres.appendix"
+msgstr "Załączniki"
+
+msgid "default.contextSettings.emailSignature"
+msgstr ""
+"________________________________________________________________________<br/>"
+"\n"
+"<a href=\"{$ldelim}$contextUrl{$rdelim}\">{$ldelim}$contextName{$rdelim}</a>"
+
+msgid "default.groups.abbrev.externalReviewer"
+msgstr "RZ"
+
+msgid "default.groups.plural.externalReviewer"
+msgstr "Recenzenci zewnętrzni"
+
+msgid "default.groups.name.externalReviewer"
+msgstr "Recenzent zewnętrzny"
+
+msgid "default.contextSettings.forLibrarians"
+msgstr ""
+"Zachęcamy  bibliotekarzy naukowych do włączenia tego wydawnictwa w obręb "
+"zasobu elektronicznych wydań. Jednocześnie ten system publikacji w otwartym "
+"dostępie jest odpowiedni dla bibliotek, aby mogły zapewnić swoim członkom "
+"zespołów stosowanie go dla wydań, nad którymi obecnie pracują (see <a href=\""
+"http://pkp.sfu.ca/omp\">Open Monograph Press</a>)."
+
+msgid "default.contextSettings.forAuthors"
+msgstr ""
+"Czy jesteś zainteresowany zgłoszeniem swojej pracy wydawnictwu? Zalecamy "
+"przejrzenie zakładki: <a href=\"{$indexUrl}/{$contextPath}/about\">O "
+"wydanius</a>, sekcję o polityce wydawniczej <a href=\""
+"{$indexUrl}/{$contextPath}/about/submissions#authorGuidelines\"> oraz "
+"zakładki Wskazówki dla autora</a>. Autorzy muszą <a href=\""
+"{$indexUrl}/{$contextPath}/user/register\">zarejestrować się </a> do "
+"wydawnictwa przed zgłoszeniem lub, jeśli są już zarejestrowani, mogą łatwo <"
+"a href=\"{$indexUrl}/index/login\"> zalogować się a</a> ,aby rozpocząć "
+"pięciostopniowy proces zgłoszenia."
+
+msgid "default.contextSettings.forReaders"
+msgstr ""
+"Zachęcamy czytelników do zapisania się do naszego serwisu powiadomień "
+"wydawniczych. Użyj linku <a href=\"{$indexUrl}/{$contextPath}/user/register\""
+">r</a>, który znajduje się w górnej części strony głównej. Rejestracja "
+"poskutkuje otrzymywaniem emailem przez czytelnika spisu treści dla każdej "
+"monografii opublikowanej przez to wydawnictwo. Ta lista pozwala także "
+"wydawnictwu spodziewać się pewnego poziomu wsparcia i czytelnictwa. Zobacz "
+"Oświadczenie o ochronie prywatności <a href=\"{$indexUrl}/{$contextPath}/"
+"about/submissions#privacyStatement\"></a>, które zapewnia, że nazwa i adresy "
+"email czytelników nie będą użyte do innych celów."
+
+msgid "default.contextSettings.openAccessPolicy"
+msgstr ""
+"Wydawnictwo zapewnia natychmiastowy otwarty dostęp zawartości w imię zasady "
+"powszechnej dostępności badań  w ramach publicznego wspierania światowej "
+"wymiany wiedzy."
+
+msgid "default.contextSettings.privacyStatement"
+msgstr ""
+"<p>Nazwy i adresy email wprowadzone na stronie wydawnictwa będą stosowane "
+"wyłącznie dla wyznaczonych celów wydawnictwa oraz nie będą dostępne dla "
+"innych  stron i wykorzystywane do innych celów.</p>"
+
+msgid "default.contextSettings.checklist.bibliographicRequirements"
+msgstr ""
+"Tekst przestrzega wymagań stylistycznych i bibliograficznych przedstawionych "
+"we wskazówkach dla autora <a href=\"{$indexUrl}/{$contextPath}/about/"
+"submissions#authorGuidelines\" target=\"_blank\"></a>, które znajdują się w "
+"zakładce O wydaniu."
+
+msgid "default.contextSettings.checklist.submissionAppearance"
+msgstr ""
+"Tekst ma pojedyncze odstępy; stosuje 12-punktową czcionkę; używa kursywę, "
+"rzadziej podkreślenie (z wyjątkiem adresów URL); wszystkie ilustracje, "
+"rysunki, tabele są umieszczone w odpowiadającym fragmencie tekstu, rzadziej "
+"na końcu."
+
+msgid "default.contextSettings.checklist.addressesLinked"
+msgstr "Adres URL dla odnośników został dostarczony tam, gdzie jest to możliwe."
+
+msgid "default.contextSettings.checklist.fileFormat"
+msgstr ""
+"Plik publikacji jest zapisany w formacie MicrosoftWord, RTF lub OpenDocument."
+
+msgid "default.contextSettings.checklist.notPreviouslyPublished"
+msgstr ""
+"Zgłoszenie nie było wcześniej opublikowane ani nie jest obecnie rozważane do "
+"publikacji w innym wydawnictwo (lub wyjaśnienie zostało zawarte w "
+"komentarzach dla redaktora)."
+
+msgid "default.groups.abbrev.volumeEditor"
+msgstr "RT"
+
+msgid "default.groups.plural.volumeEditor"
+msgstr "Redaktorzy tomu"
+
+msgid "default.groups.name.volumeEditor"
+msgstr "Redaktor tomu"
+
+msgid "default.groups.abbrev.chapterAuthor"
+msgstr "AR"
+
+msgid "default.groups.plural.chapterAuthor"
+msgstr "Autorzy rozdziału"
+
+msgid "default.groups.name.chapterAuthor"
+msgstr "Autor rozdziału"
+
+msgid "default.groups.abbrev.sectionEditor"
+msgstr "RS"
+
+msgid "default.groups.plural.sectionEditor"
+msgstr "Redaktorzy serii"
+
+msgid "default.groups.name.sectionEditor"
+msgstr "Redaktor serii"
+
+msgid "default.groups.abbrev.editor"
+msgstr "RW"
+
+msgid "default.groups.plural.editor"
+msgstr "Redaktorzy wydawniczy"
+
+msgid "default.groups.name.editor"
+msgstr "Redaktor wydawniczy"
+
+msgid "default.groups.abbrev.manager"
+msgstr "MW"
+
+msgid "default.groups.plural.manager"
+msgstr "Menadżerowie wydawnictwa"
+
+msgid "default.groups.name.manager"
+msgstr "Menadżer wydawnictwa"
+
+msgid "default.genres.other"
+msgstr "Inne"
+
+msgid "default.genres.illustration"
+msgstr "Ilustracja"
+
+msgid "default.genres.photo"
+msgstr "Zdjęcie"
+
+msgid "default.genres.figure"
+msgstr "Rysunek"
+
+msgid "default.genres.table"
+msgstr "Tabela"
+
+msgid "default.genres.prospectus"
+msgstr "Konspekt"
+
+msgid "default.genres.preface"
+msgstr "Wstęp"
+
+msgid "default.genres.index"
+msgstr "Indeks"
+
+msgid "default.genres.glossary"
+msgstr "Glosariusz"
+
+msgid "default.genres.chapter"
+msgstr "Rozdział manuskryptu"

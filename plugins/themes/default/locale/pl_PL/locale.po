@@ -1,0 +1,73 @@
+msgid ""
+msgstr ""
+"PO-Revision-Date: 2020-07-18 15:47+0000\n"
+"Last-Translator: rl <biuro@fimagis.pl>\n"
+"Language-Team: Polish <http://translate.pkp.sfu.ca/projects/omp/"
+"themes-default/pl_PL/>\n"
+"Language: pl_PL\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=3; plural=n==1 ? 0 : n%10>=2 && n%10<=4 && (n%100<10 "
+"|| n%100>=20) ? 1 : 2;\n"
+"X-Generator: Weblate 3.9.1\n"
+
+msgid "plugins.themes.default.option.useHomepageImageAsHeader.option"
+msgstr "Pokazuj obraz strony głównej jako tło nagłówka."
+
+msgid "plugins.themes.default.option.useHomepageImageAsHeader.description"
+msgstr ""
+"Kiedy obraz strony głównej zostanie załadowany, wyświetl w tle nagłówka ("
+"zamiast jego tradycyjnego miejsca na stronie głównej)."
+
+msgid "plugins.themes.default.option.useHomepageImageAsHeader.label"
+msgstr "Obraz tła nagłówka"
+
+msgid "plugins.themes.default.option.colour.description"
+msgstr "Wybierz kolor dla nagłówka."
+
+msgid "plugins.themes.default.option.colour.label"
+msgstr "Kolor"
+
+msgid "plugins.themes.default.option.typography.lora_openSans"
+msgstr ""
+"Lora/Open Sans: Komplementarne parowanie szeryfowych nagłówków i "
+"bezszeryfowego tekstu."
+
+msgid "plugins.themes.default.option.typography.lora"
+msgstr ""
+"Lora: Szeryfowa czcionka z szerokimi odstępami odpowiednia do czytania "
+"online."
+
+msgid "plugins.themes.default.option.typography.lato"
+msgstr "Lato: Powszechna, nowoczesna, bezszeryfowa czcionka."
+
+msgid "plugins.themes.default.option.typography.notoSans_notoSerif"
+msgstr ""
+"Noto Serif/Noto Sans: Komplementarne parowanie  bezszeryfowych nagłówków i "
+"szeryfowego tekstu."
+
+msgid "plugins.themes.default.option.typography.notoSerif_notoSans"
+msgstr ""
+"Noto Serif/Noto Sans: Komplementarne parowanie  szeryfowych nagłówków i "
+"bezszeryfowego tekstu."
+
+msgid "plugins.themes.default.option.typography.notoSerif"
+msgstr "Noto Serif: Szeryfowy wariant natywnej cyfrowej czcionki Google."
+
+msgid "plugins.themes.default.option.typography.notoSans"
+msgstr ""
+"Noto Sans: Cyfrowa czcionka natywnie zaprojektowana przez Google do "
+"rozszerzenia obsługi językowej."
+
+msgid "plugins.themes.default.option.typography.description"
+msgstr "Wybierz odpowiednią kombinacją czcionki dla tego pisma."
+
+msgid "plugins.themes.default.option.typography.label"
+msgstr "Typografia"
+
+msgid "plugins.themes.default.description"
+msgstr "Ten motyw wdraża motyw domyślny."
+
+msgid "plugins.themes.default.name"
+msgstr "Motyw domyślny"
