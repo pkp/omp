@@ -158,6 +158,7 @@ class DefaultThemePlugin extends ThemePlugin {
 			$additionalLessVariables[] = '@bg-base:' . $this->getOption('baseColour') . ';';
 			if (!$this->isColourDark($this->getOption('baseColour'))) {
 				$additionalLessVariables[] = '@text-bg-base:rgba(0,0,0,0.84);';
+				$additionalLessVariables[] = '@bg-base-border-color:rgba(0,0,0,0.2);';
 			}
 		}
 
@@ -186,7 +187,7 @@ class DefaultThemePlugin extends ThemePlugin {
 
 			$publicFileManager = new PublicFileManager();
 			$publicFilesDir = $request->getBaseUrl() . '/' . $publicFileManager->getContextFilesPath($context->getId());
-			
+
 			$homepageImage = $context->getLocalizedData('homepageImage');
 
 			$homepageImageUrl = $publicFilesDir . '/' . $homepageImage['uploadName'];
