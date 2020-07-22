@@ -33,7 +33,14 @@ class SubmissionSubmitStep1Form extends PKPSubmissionSubmitStep1Form {
 
 		// Get series for this context
 		$seriesDao = DAORegistry::getDAO('SeriesDAO'); /* @var $seriesDao SeriesDAO */
-		$seriesOptions = array('' => __('submission.submit.selectSeries')) + $seriesDao->getTitlesByPressId($this->context->getId(), true);
+		$activeSeries = array();
+		$seriesIterator = $seriesDao->getByContextId($this->context->getId(), null, !$canSubmitAll);
+		while ($series = $seriesIterator->next()) {
+			if (!$series->getIsInactive()) {
+				$activeSeries[$series->getId()] = $series->getLocalizedTitle();
+			}
+		}
+		$seriesOptions = array('' => __('submission.submit.selectSeries')) + $activeSeries;
 		$templateMgr->assign('seriesOptions', $seriesOptions);
 
 		return parent::fetch($request, $template, $display);
@@ -75,5 +82,3 @@ class SubmissionSubmitStep1Form extends PKPSubmissionSubmitStep1Form {
 		parent::setSubmissionData($submission);
 	}
 }
-
-

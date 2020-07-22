@@ -284,6 +284,23 @@ class Series extends PKPSection {
 
 		return $str;
 	}
+
+	/**
+	 * Return boolean indicating if series should be inactivated.
+	 * @return int
+	 */
+	function getIsInactive() {
+		return $this->getData('isInactive');
+	}
+
+	/**
+	 * Set if series should be inactivated.
+	 * @param $isInactive int
+	 */
+	function setIsInactive($isInactive) {
+		$this->setData('isInactive', $isInactive);
+	}
+
 }
 
 

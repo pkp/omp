@@ -87,6 +87,7 @@ class SeriesDAO extends PKPSectionDAO {
 		$series->setFeatured($row['featured']);
 		$series->setImage(unserialize($row['image']));
 		$series->setPath($row['path']);
+		$series->setIsInactive($row['is_inactive']);
 
 		$this->getDataObjectSettings('series_settings', 'series_id', $row['series_id'], $series);
 
@@ -138,9 +139,9 @@ class SeriesDAO extends PKPSectionDAO {
 	function insertObject($series) {
 		$this->update(
 			'INSERT INTO series
-				(press_id, seq, featured, path, image, editor_restricted)
+				(press_id, seq, featured, path, image, editor_restricted, is_inactive)
 			VALUES
-				(?, ?, ?, ?, ?, ?)',
+				(?, ?, ?, ?, ?, ?, ?)',
 			array(
 				(int) $series->getPressId(),
 				(float) $series->getSequence(),
@@ -148,6 +149,7 @@ class SeriesDAO extends PKPSectionDAO {
 				(string) $series->getPath(),
 				serialize($series->getImage() ? $series->getImage() : array()),
 				(int) $series->getEditorRestricted(),
+				(int) $series->getIsInactive() ? 1 : 0,
 			)
 		);
 
@@ -168,7 +170,8 @@ class SeriesDAO extends PKPSectionDAO {
 				featured = ?,
 				path = ?,
 				image = ?,
-				editor_restricted = ?
+				editor_restricted = ?,
+				is_inactive = ?
 			WHERE	series_id = ?',
 			array(
 				(int) $series->getPressId(),
@@ -177,6 +180,7 @@ class SeriesDAO extends PKPSectionDAO {
 				(string) $series->getPath(),
 				serialize($series->getImage() ? $series->getImage() : array()),
 				(int) $series->getEditorRestricted(),
+				(int) $series->getIsInactive(),
 				(int) $series->getId(),
 			)
 		);

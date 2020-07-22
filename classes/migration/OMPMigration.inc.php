@@ -113,6 +113,7 @@ class OMPMigration extends Migration {
 			$table->tinyInteger('editor_restricted')->default(0);
 			$table->string('path', 255);
 			$table->text('image')->nullable();
+			$table->tinyInteger('is_inactive')->default(0);
 			$table->index(['press_id'], 'series_press_id');
 			$table->unique(['press_id', 'path'], 'series_path');
 		});

@@ -21,6 +21,12 @@
 		</div>
 	{/if}
 
+	{if $currentContext->getData('disableSubmissions')}
+		<notification>
+			{translate key="manager.setup.disableSubmissions.notAccepting"}
+		</notification>
+	{/if}
+
 	<tabs>
 		<tab id="masthead" label="{translate key="manager.setup.masthead"}">
 			{help file="settings/context-settings" class="pkp_help_tab"}
