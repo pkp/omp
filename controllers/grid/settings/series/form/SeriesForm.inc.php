@@ -116,7 +116,7 @@ class SeriesForm extends PKPSectionForm {
 			$context = $request->getContext();
 			$seriesId = $this->getSeriesId();
 
-			$seriesDao = DAORegistry::getDAO('SeriesDAO'); /* @var $seriesDao SectionDAO */
+			$seriesDao = DAORegistry::getDAO('SeriesDAO'); /* @var $seriesDao SeriesDAO */
 			$seriesIterator = $seriesDao->getByContextId($context->getId());
 			$activeSeriesCount = 0;
 			while ($series = $seriesIterator->next()) {

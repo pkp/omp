@@ -907,7 +907,7 @@ msgid "manager.setup.reviewProcessEmailDescription"
 msgstr "Editors send\tReviewers the request to review with the submission attached to the email. Reviewers email editors their assent (or regrets), as well as the review and recommendation. Editors enter Reviewers' assent (or regrets), as well as the review and recommendation on the submission's Review page, to record the review process."
 
 msgid "manager.setup.disableSubmissions.notAccepting"
-msgstr "This press is not accepting submissions at this time. Visit the <i>workflow settings</i> to allow submissions."	
+msgstr "This press is not accepting submissions at this time. Visit the workflow settings to allow submissions."
 
 msgid "manager.setup.disableSubmissions.description"
 msgstr "Prevent users from submitting new articles to the press. Submissions can be disabled for individual press series on the <a href="{$url}">press series</a> settings page."

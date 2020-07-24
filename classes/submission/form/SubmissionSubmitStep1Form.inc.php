@@ -62,6 +62,25 @@ class SubmissionSubmitStep1Form extends PKPSubmissionSubmitStep1Form {
 	}
 
 	/**
+	 * Perform additional validation checks
+	 * @copydoc PKPSubmissionSubmitStep1Form::validate
+	 */
+	function validate() {
+		if (!parent::validate($callHooks)) return false;
+
+		$request = Application::get()->getRequest();
+		$context = $request->getContext();
+
+		// Ensure that submissions are enabled and the assigned series is activated
+		$seriesId = $this->getData('seriesId');
+		$seriesDao = DAORegistry::getDAO('SeriesDAO'); /* @var $seriesDao SeriesDAO */
+		$series = $seriesDao->getById($seriesId);
+		if ($context->getData('disableSubmissions') || $series->getIsInactive()) {
+			return false;
+		}
+	}
+
+	/**
 	 * Assign form data to user-submitted data.
 	 */
 	function readInputData() {

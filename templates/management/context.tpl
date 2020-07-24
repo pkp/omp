@@ -42,7 +42,7 @@
 				@set="set"
 			/>
 		</tab>
-		<tab id="series" label="{translate key="series.series"}">
+		<tab id="sections" label="{translate key="series.series"}">
 			{help file="settings/context-settings" class="pkp_help_tab"}
 			{capture assign=seriesGridUrl}{url router=$smarty.const.ROUTE_COMPONENT component="grid.settings.series.SeriesGridHandler" op="fetchGrid" escape=false}{/capture}
 			{load_url_in_div id="seriesGridContainer" url=$seriesGridUrl}
