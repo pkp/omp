@@ -10,6 +10,9 @@
  * @uses $monograph Monograph The monograph to be displayed
  * @uses $isFeatured bool Is this a featured monograph?
  *}
+{if !$heading}
+	{assign var="heading" value="h3"}
+{/if}
 <div class="obj_monograph_summary{if $isFeatured} is_featured{/if}">
 		<a {if $press}href="{url press=$press->getPath() page="catalog" op="book" path=$monograph->getBestId()}"{else}href="{url page="catalog" op="book" path=$monograph->getBestId()}"{/if} class="cover">
 			{assign var="coverImage" value=$monograph->getCurrentPublication()->getLocalizedData('coverImage')}
