@@ -76,8 +76,11 @@ class BackendSubmissionsHandler extends PKPBackendSubmissionsHandler {
 
 		$originalParams = $slimRequest->getQueryParams();
 
+		// Bring in orderby constants
+		import('lib.pkp.classes.submission.PKPSubmissionDAO');
+		import('classes.submission.SubmissionDAO');
+
 		// Add allowed order by options for OMP
-		import('lib.pkp.classes.submission.PKPSubmissionDAO'); // orderby constants
 		if (isset($originalParams['orderBy']) && in_array($originalParams['orderBy'], array(ORDERBY_DATE_PUBLISHED, ORDERBY_SERIES_POSITION))) {
 			$params['orderBy'] = $originalParams['orderBy'];
 		}
