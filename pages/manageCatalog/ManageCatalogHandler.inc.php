@@ -69,6 +69,7 @@ class ManageCatalogHandler extends Handler {
 		$context = $request->getContext();
 
 		// Catalog list
+		import('lib.pkp.classes.submission.PKPSubmissionDAO'); // ORDERBY_DATE_PUBLISHED constants
 		list($catalogSortBy, $catalogSortDir) = explode('-', $context->getData('catalogSortOption'));
 		$catalogSortBy = empty($catalogSortBy) ? ORDERBY_DATE_PUBLISHED : $catalogSortBy;
 		$catalogSortDir = $catalogSortDir == SORT_DIRECTION_ASC ? 'ASC' : 'DESC';
