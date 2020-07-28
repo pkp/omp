@@ -313,6 +313,7 @@ class ManageSpotlightsGridHandler extends GridHandler {
 		// get the items that match.
 		$matches = array();
 
+		import('lib.pkp.classes.submission.PKPSubmission'); // STATUS_PUBLISHED
 		$args = [
 			'status' => STATUS_PUBLISHED,
 			'contextId' => $press->getId(),
