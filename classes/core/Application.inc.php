@@ -177,36 +177,6 @@ class Application extends PKPApplication {
 	}
 
 	/**
-	 * returns the name of the context column in plugin_settings
-	 */
-	public static function getPluginSettingsContextColumnName() {
-		if (defined('SESSION_DISABLE_INIT')) {
-			$pluginSettingsDao = DAORegistry::getDAO('PluginSettingsDAO'); /* @var $pluginSettingsDao PluginSettingsDAO */
-			$driver = $pluginSettingsDao->getDriver();
-			switch ($driver) {
-				case 'mysql':
-				case 'mysqli':
-					$checkResult = $pluginSettingsDao->retrieve('SHOW COLUMNS FROM plugin_settings LIKE ?', array('context_id'));
-					if ($checkResult->NumRows() == 0) {
-						return 'press_id';
-					}
-					break;
-				case 'postgres':
-				case 'postgres64':
-				case 'postgres7':
-				case 'postgres8':
-				case 'postgres9':
-					$checkResult = $pluginSettingsDao->retrieve('SELECT column_name FROM information_schema.columns WHERE table_name= ? AND column_name= ?', array('plugin_settings', 'context_id'));
-					if ($checkResult->NumRows() == 0) {
-						return 'press_id';
-					}
-					break;
-			}
-		}
-		return 'context_id';
-	}
-
-	/**
 	 * Get the stages used by the application.
 	 */
 	public static function getApplicationStages() {
