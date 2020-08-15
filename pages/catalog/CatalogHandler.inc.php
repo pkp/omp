@@ -179,6 +179,26 @@ class CatalogHandler extends PKPCatalogHandler {
 
 		return $templateMgr->display('frontend/pages/catalogSeries.tpl');
 	}
+	
+	/** Show an index of the available series.
+	 * @param $args array
+	 * @param $request PKPRequest
+	 * @return string
+	 */
+
+	 function seriesIndex($args, $request) {
+		$templateMgr = TemplateManager::getManager($request);
+		$this->setupTemplate($request);
+		$press = $request->getPress();
+
+			// Provide a list of series to browse
+			$seriesDao = DAORegistry::getDAO('SeriesDAO');
+			$series = $seriesDao->getByPressId($press->getId());
+			$templateMgr->assign('browseSeriesFactory', $series);
+
+			// Display
+			$templateMgr->display('frontend/pages/catalogSeriesIndex.tpl');
+		}
 
 	/**
 	 * @deprecated Since OMP 3.2.1, use pages/search instead.
