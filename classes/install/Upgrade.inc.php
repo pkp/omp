@@ -740,13 +740,11 @@ class Upgrade extends Installer {
 
 		$submissionDao = DAORegistry::getDAO('SubmissionDAO'); /* @var $submissionDao SubmissionDAO */
 		$result = $submissionDao->retrieve(
-			'SELECT
-				ps.submission_id as submission_id,
+			'SELECT	ps.submission_id as submission_id,
 				ps.cover_image as cover_image,
 				s.context_id as context_id
-			FROM published_submissions ps
-			LEFT JOIN submissions s ON (s.submission_id = ps.submission_id)
-			GROUP BY ps.submission_id'
+			FROM	published_submissions ps
+			LEFT JOIN	submissions s ON (s.submission_id = ps.submission_id)'
 		);
 		while (!$result->EOF) {
 			$row = $result->getRowAssoc(false);
