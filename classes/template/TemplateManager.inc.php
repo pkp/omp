@@ -43,10 +43,10 @@ class TemplateManager extends PKPTemplateManager {
 			$this->assign('publicFilesDir', $siteFilesDir); // May be overridden by press
 
 			// Pass app-specific details to template
-			$this->assign(array(
+			$this->assign([
 				'brandImage' => 'templates/images/omp_brand.png',
 				'packageKey' => 'common.software',
-			));
+			]);
 
 			// Get a count of unread tasks.
 			if ($user = $request->getUser()) {
@@ -78,9 +78,7 @@ class TemplateManager extends PKPTemplateManager {
 					$this->addStyleSheet(
 						'contextStylesheet',
 						$request->getBaseUrl() . '/' . $publicFileManager->getContextFilesPath($context->getId()) . '/' . $contextStyleSheet['uploadName'],
-						array(
-							'priority' => STYLE_SEQUENCE_LAST
-						)
+						['priority' => STYLE_SEQUENCE_LAST]
 					);
 				}
 
@@ -89,14 +87,14 @@ class TemplateManager extends PKPTemplateManager {
 				// Check if registration is open for any contexts
 				$contextDao = Application::getContextDAO();
 				$contexts = $contextDao->getAll(true)->toArray();
-				$contextsForRegistration = array();
+				$contextsForRegistration = [];
 				foreach($contexts as $context) {
 					if (!$context->getData('disableUserReg')) {
 						$contextsForRegistration[] = $context;
 					}
 				}
 
-				$this->assign(array(
+				$this->assign([
 					'contexts' => $contextsForRegistration,
 					'disableUserReg' => empty($contextsForRegistration),
 					'displayPageHeaderTitle' => $site->getLocalizedPageHeaderTitle(),
@@ -105,8 +103,7 @@ class TemplateManager extends PKPTemplateManager {
 					'primaryLocale' => $site->getPrimaryLocale(),
 					'supportedLocales' => $site->getSupportedLocaleNames(),
 					'pageFooter' => $site->getLocalizedData('pageFooter'),
-				));
-
+				]);
 			}
 		}
 	}
