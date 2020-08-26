@@ -138,7 +138,7 @@ class PublicationDate extends DataObject {
 	 */
 	function getReadableDates() {
 		$format = $this->dateFormats[$this->getDateFormat()];
-		$dateFormatShort = Config::getVar('general', 'date_format_short');
+		$dateFormatShort = \Application::get()->getRequest()->getContext()->getLocalizedDateFormatShort();
 
 		if ($this->isHijriCalendar()) {
 			$format = preg_replace('/\s*\(H\)/i', '', $format);
