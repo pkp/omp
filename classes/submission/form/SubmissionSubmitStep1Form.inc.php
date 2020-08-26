@@ -72,9 +72,9 @@ class SubmissionSubmitStep1Form extends PKPSubmissionSubmitStep1Form {
 		$context = $request->getContext();
 		$seriesDao = DAORegistry::getDAO('SeriesDAO'); /* @var $seriesDao SeriesDAO */
 		$series = $seriesDao->getById($this->getData('seriesId'), $context->getId());
-
+		$seriesIsInactive = ($series && $series->getIsInactive()) ? true : false;
 		// Ensure that submissions are enabled and the assigned series is activated
-		if ($context->getData('disableSubmissions') || $series->getIsInactive()) {
+		if ($context->getData('disableSubmissions') || $seriesIsInactive) {
 			return false;
 		}
 
