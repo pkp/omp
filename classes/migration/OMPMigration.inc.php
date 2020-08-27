@@ -44,7 +44,7 @@ class OMPMigration extends Migration {
 			$table->bigInteger('publication_format_id');
 			$table->string('type', 40);
 			//   ROW is 'rest of world'. ROW sales types have no territories assigned to them 
-			$table->tinyInteger('row_setting')->default(0);
+			$table->smallInteger('row_setting')->default(0);
 			$table->text('countries_included')->nullable();
 			$table->text('countries_excluded')->nullable();
 			$table->text('regions_included')->nullable();
@@ -83,7 +83,7 @@ class OMPMigration extends Migration {
 			$table->string('phone', 255)->nullable();
 			$table->string('email', 255)->nullable();
 			$table->string('url', 2047)->nullable();
-			$table->tinyInteger('is_supplier')->default(1);
+			$table->boolean('is_supplier')->default(1);
 			$table->index(['representative_id', 'submission_id'], 'format_representatives_pkey');
 		});
 
@@ -109,11 +109,11 @@ class OMPMigration extends Migration {
 			$table->bigInteger('review_form_id')->nullable();
 			//  NOTNULL not included for the sake of 1.1 upgrade, which didn't include this column 
 			$table->float('seq', 8, 2)->default(0)->nullable();
-			$table->tinyInteger('featured')->default(0);
-			$table->tinyInteger('editor_restricted')->default(0);
+			$table->boolean('featured')->default(0);
+			$table->boolean('editor_restricted')->default(0);
 			$table->string('path', 255);
 			$table->text('image')->nullable();
-			$table->tinyInteger('is_inactive')->default(0);
+			$table->boolean('is_inactive')->default(0);
 			$table->index(['press_id'], 'series_press_id');
 			$table->unique(['press_id', 'path'], 'series_path');
 		});
@@ -149,7 +149,7 @@ class OMPMigration extends Migration {
 			$table->bigInteger('series_id')->nullable();
 			$table->string('series_position', 255)->nullable();
 			$table->bigInteger('submission_id');
-			$table->tinyInteger('status')->default(1);
+			$table->smallInteger('status')->default(1);
 			$table->string('url_path', 64)->nullable();
 			$table->bigInteger('version')->nullable();
 			$table->index(['submission_id'], 'publications_submission_id');
@@ -162,7 +162,7 @@ class OMPMigration extends Migration {
 			$table->bigInteger('publication_id');
 			//  DEPRECATED: Held over for the OJS 2.x to 3. upgrade process pkp/pkp-lib#3572 
 			$table->bigInteger('submission_id')->nullable();
-			$table->tinyInteger('physical_format')->default(1)->nullable();
+			$table->boolean('physical_format')->default(1)->nullable();
 			$table->string('entry_key', 64)->nullable();
 			$table->float('seq', 8, 2)->default(0);
 			$table->string('file_size', 255)->nullable();
@@ -185,8 +185,8 @@ class OMPMigration extends Migration {
 			$table->string('returnable_indicator_code', 255)->nullable();
 			$table->string('remote_url', 2047)->nullable();
 			$table->string('url_path', 64)->nullable();
-			$table->tinyInteger('is_approved')->default(0);
-			$table->tinyInteger('is_available')->default(0);
+			$table->boolean('is_approved')->default(0);
+			$table->boolean('is_available')->default(0);
 			$table->index(['submission_id'], 'publication_format_submission_id');
 		});
 
@@ -224,7 +224,7 @@ class OMPMigration extends Migration {
 		Capsule::schema()->create('submission_chapter_authors', function (Blueprint $table) {
 			$table->bigInteger('author_id');
 			$table->bigInteger('chapter_id');
-			$table->tinyInteger('primary_contact')->default(0);
+			$table->boolean('primary_contact')->default(0);
 			$table->float('seq', 8, 2)->default(0);
 			$table->unique(['author_id', 'chapter_id'], 'chapter_authors_pkey');
 		});
@@ -235,7 +235,7 @@ class OMPMigration extends Migration {
 			$table->string('path', 32);
 			$table->float('seq', 8, 2)->default(0);
 			$table->string('primary_locale', 14);
-			$table->tinyInteger('enabled')->default(1);
+			$table->boolean('enabled')->default(1);
 			$table->unique(['path'], 'press_path');
 		});
 
