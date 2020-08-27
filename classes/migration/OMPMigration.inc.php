@@ -83,7 +83,7 @@ class OMPMigration extends Migration {
 			$table->string('phone', 255)->nullable();
 			$table->string('email', 255)->nullable();
 			$table->string('url', 2047)->nullable();
-			$table->boolean('is_supplier')->default(1);
+			$table->boolean('is_supplier')->default(true);
 			$table->index(['representative_id', 'submission_id'], 'format_representatives_pkey');
 		});
 
@@ -109,11 +109,11 @@ class OMPMigration extends Migration {
 			$table->bigInteger('review_form_id')->nullable();
 			//  NOTNULL not included for the sake of 1.1 upgrade, which didn't include this column 
 			$table->float('seq', 8, 2)->default(0)->nullable();
-			$table->boolean('featured')->default(0);
-			$table->boolean('editor_restricted')->default(0);
+			$table->boolean('featured')->default(false);
+			$table->boolean('editor_restricted')->default(false);
 			$table->string('path', 255);
 			$table->text('image')->nullable();
-			$table->boolean('is_inactive')->default(0);
+			$table->boolean('is_inactive')->default(false);
 			$table->index(['press_id'], 'series_press_id');
 			$table->unique(['press_id', 'path'], 'series_path');
 		});
@@ -162,7 +162,7 @@ class OMPMigration extends Migration {
 			$table->bigInteger('publication_id');
 			//  DEPRECATED: Held over for the OJS 2.x to 3. upgrade process pkp/pkp-lib#3572 
 			$table->bigInteger('submission_id')->nullable();
-			$table->boolean('physical_format')->default(1)->nullable();
+			$table->boolean('physical_format')->default(true)->nullable();
 			$table->string('entry_key', 64)->nullable();
 			$table->float('seq', 8, 2)->default(0);
 			$table->string('file_size', 255)->nullable();
@@ -185,8 +185,8 @@ class OMPMigration extends Migration {
 			$table->string('returnable_indicator_code', 255)->nullable();
 			$table->string('remote_url', 2047)->nullable();
 			$table->string('url_path', 64)->nullable();
-			$table->boolean('is_approved')->default(0);
-			$table->boolean('is_available')->default(0);
+			$table->boolean('is_approved')->default(false);
+			$table->boolean('is_available')->default(false);
 			$table->index(['submission_id'], 'publication_format_submission_id');
 		});
 
@@ -224,7 +224,7 @@ class OMPMigration extends Migration {
 		Capsule::schema()->create('submission_chapter_authors', function (Blueprint $table) {
 			$table->bigInteger('author_id');
 			$table->bigInteger('chapter_id');
-			$table->boolean('primary_contact')->default(0);
+			$table->boolean('primary_contact')->default(false);
 			$table->float('seq', 8, 2)->default(0);
 			$table->unique(['author_id', 'chapter_id'], 'chapter_authors_pkey');
 		});
@@ -235,7 +235,7 @@ class OMPMigration extends Migration {
 			$table->string('path', 32);
 			$table->float('seq', 8, 2)->default(0);
 			$table->string('primary_locale', 14);
-			$table->boolean('enabled')->default(1);
+			$table->boolean('enabled')->default(true);
 			$table->unique(['path'], 'press_path');
 		});
 
