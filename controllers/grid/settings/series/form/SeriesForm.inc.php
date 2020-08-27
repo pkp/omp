@@ -82,6 +82,7 @@ class SeriesForm extends PKPSectionForm {
 				'subtitle' => $series->getSubtitle(null),
 				'image' => $series->getImage(),
 				'restricted' => $series->getEditorRestricted(),
+				'isInactive' => $series->getIsInactive(),
 				'onlineIssn' => $series->getOnlineISSN(),
 				'printIssn' => $series->getPrintISSN(),
 				'sortOption' => $sortOption,
@@ -108,6 +109,26 @@ class SeriesForm extends PKPSectionForm {
 				return false;
 			}
 		}
+
+		// Validate if it can be inactive
+		if ($this->getData('isInactive')) {
+			$request = Application::get()->getRequest();
+			$context = $request->getContext();
+			$seriesId = $this->getSeriesId();
+
+			$seriesDao = DAORegistry::getDAO('SeriesDAO'); /* @var $seriesDao SeriesDAO */
+			$seriesIterator = $seriesDao->getByContextId($context->getId());
+			$activeSeriesCount = 0;
+			while ($series = $seriesIterator->next()) {
+				if (!$series->getIsInactive() && ($seriesId != $series->getId())) {
+					$activeSeriesCount++;
+				}
+			}
+			if ($activeSeriesCount < 1 && $this->getData('isInactive')) {
+				$this->addError('isInactive', __('manager.series.confirmDeactivateSeries.error'));
+			}
+		}
+
 		return parent::validate($callHooks);
 	}
 
@@ -173,7 +194,7 @@ class SeriesForm extends PKPSectionForm {
 	 */
 	function readInputData() {
 		parent::readInputData();
-		$this->readUserVars(array('seriesId', 'path', 'featured', 'restricted', 'description', 'categories', 'prefix', 'subtitle', 'temporaryFileId', 'onlineIssn', 'printIssn', 'sortOption'));
+		$this->readUserVars(array('seriesId', 'path', 'featured', 'restricted', 'description', 'categories', 'prefix', 'subtitle', 'temporaryFileId', 'onlineIssn', 'printIssn', 'sortOption', 'isInactive'));
 		// For path duplicate checking; excuse the current path.
 		if ($seriesId = $this->getSeriesId()) {
 			$seriesDao = DAORegistry::getDAO('SeriesDAO'); /* @var $seriesDao SeriesDAO */
@@ -208,6 +229,7 @@ class SeriesForm extends PKPSectionForm {
 		$series->setPrefix($this->getData('prefix'), null); // Localized
 		$series->setSubtitle($this->getData('subtitle'), null); // Localized
 		$series->setEditorRestricted($this->getData('restricted'));
+		$series->setIsInactive($this->getData('isInactive') ? 1 : 0);
 		$series->setOnlineISSN($this->getData('onlineIssn'));
 		$series->setPrintISSN($this->getData('printIssn'));
 		$series->setSortOption($this->getData('sortOption'));

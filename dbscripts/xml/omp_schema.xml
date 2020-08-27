@@ -250,6 +250,10 @@
 			<NOTNULL />
 		</field>
 		<field name="image" type="X"/>
+		<field name="is_inactive" type="I1">
+			<NOTNULL/>
+			<DEFAULT VALUE="0"/>
+		</field>
 		<descr>Press series.</descr>
 		<index name="series_press_id">
 			<col>press_id</col>

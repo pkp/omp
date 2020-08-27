@@ -33,7 +33,14 @@ class SubmissionSubmitStep1Form extends PKPSubmissionSubmitStep1Form {
 
 		// Get series for this context
 		$seriesDao = DAORegistry::getDAO('SeriesDAO'); /* @var $seriesDao SeriesDAO */
-		$seriesOptions = array('' => __('submission.submit.selectSeries')) + $seriesDao->getTitlesByPressId($this->context->getId(), true);
+		$activeSeries = array();
+		$seriesIterator = $seriesDao->getByContextId($this->context->getId(), null, !$canSubmitAll);
+		while ($series = $seriesIterator->next()) {
+			if (!$series->getIsInactive()) {
+				$activeSeries[$series->getId()] = $series->getLocalizedTitle();
+			}
+		}
+		$seriesOptions = array('' => __('submission.submit.selectSeries')) + $activeSeries;
 		$templateMgr->assign('seriesOptions', $seriesOptions);
 
 		return parent::fetch($request, $template, $display);
@@ -52,6 +59,26 @@ class SubmissionSubmitStep1Form extends PKPSubmissionSubmitStep1Form {
 		} else {
 			parent::initData();
 		}
+	}
+
+	/**
+	 * Perform additional validation checks
+	 * @copydoc PKPSubmissionSubmitStep1Form::validate
+	 */
+	function validate() {
+		if (!parent::validate($callHooks)) return false;
+
+		$request = Application::get()->getRequest();
+		$context = $request->getContext();
+		$seriesDao = DAORegistry::getDAO('SeriesDAO'); /* @var $seriesDao SeriesDAO */
+		$series = $seriesDao->getById($this->getData('seriesId'), $context->getId());
+		$seriesIsInactive = ($series && $series->getIsInactive()) ? true : false;
+		// Ensure that submissions are enabled and the assigned series is activated
+		if ($context->getData('disableSubmissions') || $seriesIsInactive) {
+			return false;
+		}
+
+		return true;
 	}
 
 	/**
@@ -75,5 +102,3 @@ class SubmissionSubmitStep1Form extends PKPSubmissionSubmitStep1Form {
 		parent::setSubmissionData($submission);
 	}
 }
-
-

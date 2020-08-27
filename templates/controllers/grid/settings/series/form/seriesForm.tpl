@@ -67,6 +67,7 @@
 		{/fbvFormSection}
 
 		{fbvFormSection list="true"}
+			{fbvElement type="checkbox" id="isInactive" value=1 checked=$isInactive label="manager.sections.form.deactivateSection"}
 			{fbvElement type="checkbox" id="restricted" value=1 label="manager.series.restricted" checked=$restricted}
 		{/fbvFormSection}
 

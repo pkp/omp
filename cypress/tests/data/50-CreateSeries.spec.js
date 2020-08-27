@@ -13,7 +13,7 @@ describe('Data suite tests', function() {
 		cy.get('a').contains('admin').click();
 		cy.get('a').contains('Dashboard').click();
 		cy.get('.app__nav a').contains('Press').click();
-		cy.get('button[id="series-button"]').click();
+		cy.get('button[id="sections-button"]').click();
 
 		// Create a new "Library & Information Studies" series
 		cy.get('a[id^=component-grid-settings-series-seriesgrid-addSeries-button-]').click();

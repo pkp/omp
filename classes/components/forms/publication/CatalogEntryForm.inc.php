@@ -51,7 +51,7 @@ class CatalogEntryForm extends FormComponent {
 			$series = $result->next();
 			$seriesOptions[] = [
 				'value' => (int) $series->getId(),
-				'label' => $series->getLocalizedTitle(),
+				'label' => (($series->getIsInactive())?  __('publication.inactiveSeries', ['series' => $series->getLocalizedTitle()]) : $series->getLocalizedTitle()),
 			];
 		}
 
