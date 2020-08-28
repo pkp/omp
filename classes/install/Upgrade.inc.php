@@ -801,8 +801,8 @@ class Upgrade extends Installer {
 					$submissionDao = DAORegistry::getDAO('SubmissionDAO');
 					/* @var $submissionDao SubmissionDAO */
 					$submissionDao->update(
-						'INSERT INTO submission_settings (submission_id, setting_name, setting_value, locale)
-						VALUES (?, ?, ?, ?)',
+						'INSERT INTO submission_settings (submission_id, setting_name, setting_value, setting_type, locale)
+						VALUES (?, ?, ?, ?, ?)',
 						[
 							$row['submission_id'],
 							'coverImage',
@@ -811,6 +811,7 @@ class Upgrade extends Installer {
 								'dateUploaded' => $coverImage['dateUploaded'],
 								'altText' => '',
 							]),
+							'object',
 							$localeKey,
 						]
 					);
