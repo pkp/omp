@@ -39,11 +39,11 @@
 			{fbvElement type="text" id="representativeIdValue" label="grid.catalogEntry.representativeIdValue" value=$representativeIdValue size=$fbvStyles.size.MEDIUM inline="true"}
 		{/fbvFormSection}
 		{fbvFormSection}
-			{fbvElement type="text" id="phone" label="grid.catalogEntry.representativePhone" value=$phone size=$fbvStyles.size.MEDIUM}
+			{fbvElement type="tel" id="phone" label="grid.catalogEntry.representativePhone" value=$phone size=$fbvStyles.size.MEDIUM}
 		{/fbvFormSection}
 		{fbvFormSection}
-			{fbvElement type="text" id="email" label="grid.catalogEntry.representativeEmail" value=$email size=$fbvStyles.size.MEDIUM inline="true"}
-			{fbvElement type="text" id="url" label="grid.catalogEntry.representativeWebsite" value=$url size=$fbvStyles.size.MEDIUM inline="true"}
+			{fbvElement type="email" id="email" label="grid.catalogEntry.representativeEmail" value=$email size=$fbvStyles.size.MEDIUM inline="true"}
+			{fbvElement type="url" id="url" label="grid.catalogEntry.representativeWebsite" value=$url size=$fbvStyles.size.MEDIUM inline="true"}
 		{/fbvFormSection}
 		{fbvFormButtons}
 	{/fbvFormArea}

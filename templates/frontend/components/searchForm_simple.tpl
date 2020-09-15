@@ -18,7 +18,7 @@
 			<input type="hidden" name="{$paramKey|escape}" value="{$paramValue|escape}"/>
 		{/foreach}
 		{block name=searchQuerySimple}
-			<input name="query" value="{$searchQuery|escape}" type="text" aria-label="{translate|escape key="common.searchQuery"}">
+			<input name="query" value="{$searchQuery|escape}" type="search" aria-label="{translate|escape key="common.searchQuery"}">
 		{/block}
 
 		<button type="submit">
