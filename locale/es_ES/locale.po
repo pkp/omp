@@ -796,6 +796,9 @@ msgstr "Identificar los intereses de la revisión (áreas sustantivas y métodos
 msgid "user.register.form.userGroupRequired"
 msgstr "Debe seleccionar por lo menos un rol"
 
+msgid "site.noPresses"
+msgstr "No hay editoriales disponibles."
+
 msgid "site.pressView"
 msgstr "Ver página web de la editorial"
 

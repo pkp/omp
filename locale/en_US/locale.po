@@ -977,6 +977,9 @@ msgstr "Identify reviewing interests (substantive areas and research methods):"
 msgid "user.register.form.userGroupRequired"
 msgstr "You must select at least one role"
 
+msgid "site.noPresses"
+msgstr "There are no presses available."
+
 msgid "site.pressView"
 msgstr "View Press Website"
 
