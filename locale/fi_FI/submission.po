@@ -2,14 +2,17 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"Last-Translator: \n"
-"Language-Team: \n"
+"POT-Creation-Date: 2020-02-13T19:56:53+00:00\n"
+"PO-Revision-Date: 2020-09-17 17:58+0000\n"
+"Last-Translator: Antti-Jussi Nygård <ajnyga@gmail.com>\n"
+"Language-Team: Finnish <http://translate.pkp.sfu.ca/projects/omp/submission/"
+"fi_FI/>\n"
+"Language: fi_FI\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"POT-Creation-Date: 2020-02-13T19:56:53+00:00\n"
-"PO-Revision-Date: 2020-02-13T19:56:53+00:00\n"
-"Language: \n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: Weblate 3.9.1\n"
 
 msgid "submission.submit.title"
 msgstr "Lähetä käsikirjoitus"
@@ -30,7 +33,10 @@ msgid "submission.workflowType"
 msgstr "Käsikirjoitustyyppi"
 
 msgid "submission.workflowType.description"
-msgstr "Erillisteos on yhden tai useamman kirjoittajan kokonaan kirjoittama teos. Toimitetussa teoksessa jokaisella luvulla on eri kirjoittaja (lukujen tiedot syötetään myöhemmin)."
+msgstr ""
+"Erillisteos on yhden tai useamman kirjoittajan kokonaan kirjoittama teos. "
+"Toimitetussa teoksessa jokaisella luvulla on eri kirjoittaja (lukujen tiedot "
+"syötetään myöhemmin.)"
 
 msgid "submission.workflowType.editedVolume"
 msgstr "Toimitettu teos: Jokaisella luvulla on eri kirjoittaja."
@@ -126,7 +132,7 @@ msgid "submission.submit"
 msgstr "Uuden kirjan lähetys"
 
 msgid "submission.submit.newSubmissionMultiple"
-msgstr "Uuden käsikirjoituksen lähetys painolle:"
+msgstr "Aloita käsikirjoituksen lähetys julkaisijalle"
 
 msgid "submission.submit.newSubmissionSingle"
 msgstr "Uusi käsikirjoitus"
@@ -309,7 +315,7 @@ msgid "workflow.review.externalReview"
 msgstr "Ulkopuolinen arviointi"
 
 msgid "editor.submission.decision.sendExternalReview"
-msgstr "Lähetä ulkopuoliseen arviointiin."
+msgstr "Lähetä ulkopuoliseen arviointiin"
 
 msgid "submission.upload.fileContents"
 msgstr "Käsikirjoituksen osa"
@@ -343,3 +349,53 @@ msgstr "Vedä ja pudota tai napauta ylös- ja alas-painikkeita muuttaaksesi koht
 
 msgid "submission.list.saveFeatureOrder"
 msgstr "Tallenna järjestys"
+
+msgid "publication.scheduledIn"
+msgstr "Tullaan julkaisemaan <a href=\"{$issueUrl}\">{$issueName}</a>."
+
+msgid "publication.publish.confirmation"
+msgstr ""
+"Kaikki julkaisuun liittyvät vaatimukset täyttyvät. Haluatko julkaista "
+"teoksen?"
+
+msgid "publication.publishedIn"
+msgstr "Julkaistu <a href=\"{$issueUrl}\">{$issueName}</a>."
+
+msgid "publication.required.issue"
+msgstr "Julkaisu pitää lisätä numeroon ennen kuin sen von julkaista."
+
+msgid "publication.invalidSeries"
+msgstr "Sarjaa ei löytynyt."
+
+msgid "publication.catalogEntry.success"
+msgstr "Luettelomerkinnän tiedot on päivitetty."
+
+msgid "publication.catalogEntry"
+msgstr "Luettelomerkintä"
+
+msgid "catalog.browseTitles"
+msgstr "{$numTitles} nimikettä"
+
+msgid "submission.catalogEntry.enableChapterPublicationDates"
+msgstr "Jokaisella luvulla voi olla oma julkaisupäivä."
+
+msgid "submission.catalogEntry.disableChapterPublicationDates"
+msgstr "Kaikki luvut käyttävät teoksen julkaisupäivää."
+
+msgid "submission.catalogEntry.chapterPublicationDates"
+msgstr "Julkaisupäivät"
+
+msgid "submission.submit.noContext"
+msgstr "Käsikirjoitusta vastaavaa painoa ei löytynyt."
+
+msgid "author.isVolumeEditor"
+msgstr "Merkitse tämä tekijä teoksen toimittajaksi."
+
+msgid "submission.chapter.pages"
+msgstr "Sivut"
+
+msgid "submission.workflowType.change"
+msgstr "Vaihda"
+
+msgid "submission.workflowType.editedVolume.label"
+msgstr "Toimitettu teos"
