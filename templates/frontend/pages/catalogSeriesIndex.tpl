@@ -59,6 +59,7 @@
 									</div>
 								{/if}	
 							</div>								
+						</div>
 					</li>
 				{/iterate}
 			{/if}
