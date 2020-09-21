@@ -842,7 +842,7 @@ msgstr ""
 "\n"
 "<h4>Actualiza</h4>\n"
 "\n"
-"<p>Si esteu actualitzant una instal·lació existent de l'OMP 0.x, <a href=\"{$upgradeUrl}\">feu clic aquí</a> per continuar.</p>"
+"<p>Si esteu actualitzant una instal·lació existent de l'OMP, <a href=\"{$upgradeUrl}\">feu clic aquí</a> per continuar.</p>"
 
 msgid "installer.preInstallationInstructionsTitle"
 msgstr "Passos previs a la instal·lació"

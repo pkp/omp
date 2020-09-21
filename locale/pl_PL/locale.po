@@ -432,7 +432,7 @@ msgstr ""
 "\n"
 "<h4>Upgrade</h4>\n"
 "\n"
-"<p> Jeśli aktualizujesz istniejącą instalację OMP 0.x.  <a href=\""
+"<p> Jeśli aktualizujesz istniejącą instalację OMP.  <a href=\""
 "{$upgradeUrl}\">kliknij tutaj</a> aby kontynuować.</p>"
 
 msgid "installer.allowFileUploads"

@@ -1091,7 +1091,7 @@ msgstr ""
 "\n"
 "<h4>Upgradér</h4>\n"
 "\n"
-"<p>Hvis du opgraderer en eksisterende installation af OMP 0.x, <a href=\""
+"<p>Hvis du opgraderer en eksisterende installation af OMP, <a href=\""
 "{$upgradeUrl}\">klik her</a> for at fortsætte. </p>"
 
 msgid "installer.preInstallationInstructionsTitle"
