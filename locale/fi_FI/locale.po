@@ -1080,7 +1080,7 @@ msgstr ""
 "\n"
 "<h4>Päivitys</h4>\n"
 "\n"
-"<p>Jos olet päivittämässä OMP 0.x -järjestelmän aiempaa asennusta, <a href=\"{$upgradeUrl}\">klikkaa tästä</a> edetäksesi.</p>"
+"<p>Jos olet päivittämässä OMP -järjestelmän aiempaa asennusta, <a href=\"{$upgradeUrl}\">klikkaa tästä</a> edetäksesi.</p>"
 
 msgid "installer.preInstallationInstructionsTitle"
 msgstr "Esiasennuksen vaiheet"

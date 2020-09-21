@@ -990,7 +990,7 @@ msgstr ""
 "\n"
 "<h4>Upgrade</h4>\n"
 "\n"
-"<p>Wenn Sie eine bestehende Installation von OMP 0.x upgraden möchten, klicken Sie <a href=\"{$upgradeUrl}\"> hier</a> um fortzufahren.</p>"
+"<p>Wenn Sie eine bestehende Installation von OMP upgraden möchten, klicken Sie <a href=\"{$upgradeUrl}\"> hier</a> um fortzufahren.</p>"
 
 msgid "installer.preInstallationInstructionsTitle"
 msgstr "Pre-Installation Steps"

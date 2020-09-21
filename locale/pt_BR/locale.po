@@ -931,7 +931,7 @@ msgstr ""
 "\n"
 "<h4>Atualização</h4>\n"
 "\n"
-"<p>Caso esteja atualizando uma versão existente no OMP 0.x, <a href=\"{$upgradeUrl}\">clique aqui</a> para proceder.</p>"
+"<p>Caso esteja atualizando uma versão existente no OMP, <a href=\"{$upgradeUrl}\">clique aqui</a> para proceder.</p>"
 
 msgid "installer.preInstallationInstructionsTitle"
 msgstr "Antes de instalar"

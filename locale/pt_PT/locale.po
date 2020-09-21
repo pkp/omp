@@ -919,7 +919,7 @@ msgstr ""
 "\n"
 "<h4>Atualização</h4>\n"
 "\n"
-"<p>Se está a atualizar uma instalação existente do OMP 0.x, <a href=\""
+"<p>Se está a atualizar uma instalação existente do OMP, <a href=\""
 "{$upgradeUrl}\">clique aqio</a> para continuar.</p>"
 
 msgid "installer.installApplication"
