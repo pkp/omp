@@ -796,6 +796,12 @@ msgstr "Identificar los intereses de la revisión (áreas sustantivas y métodos
 msgid "user.register.form.userGroupRequired"
 msgstr "Debe seleccionar por lo menos un rol"
 
+msgid "user.register.form.privacyConsentThisContext"
+msgstr ""
+"Sí, acepto que mis datos sean recopilados y almacenados según la <a href=\""
+"{$privacyUrl}\" target=\"_blank\">declaración de privacidad</a> de esta "
+"editorial."
+
 msgid "site.noPresses"
 msgstr "No hay editoriales disponibles."
 
