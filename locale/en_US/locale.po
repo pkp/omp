@@ -977,6 +977,9 @@ msgstr "Identify reviewing interests (substantive areas and research methods):"
 msgid "user.register.form.userGroupRequired"
 msgstr "You must select at least one role"
 
+msgid "user.register.form.privacyConsentThisContext"
+msgstr "Yes, I agree to have my data collected and stored according to this press's <a href=\"{$privacyUrl}\" target=\"_blank\">privacy statement</a>."
+
 msgid "site.noPresses"
 msgstr "There are no presses available."
 
