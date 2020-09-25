@@ -41,12 +41,6 @@ msgstr "Redigeret værk: Forfattere er knyttet til deres eget kapitel."
 msgid "submission.workflowType.authoredWork"
 msgstr "Monografi: Forfattere er forbundet med bogen som helhed."
 
-msgid "submission.workflowType.editedVolume.selectEditors"
-msgstr "Vælg redaktører"
-
-msgid "submission.workflowType.editedVolume.selectEditors.description"
-msgstr "Vælg de forfattere, der skal identificeres som redaktører for hele værket."
-
 msgid "submission.editorName"
 msgstr "{$editorName} (ed)"
 
@@ -225,9 +219,6 @@ msgstr "Kapitler"
 
 msgid "grid.copyediting.deleteCopyeditorResponse"
 msgstr "Slet upload fra manuskriptredaktør"
-
-msgid "submission.catalogEntry"
-msgstr "Katalogindgang"
 
 msgid "submission.complete"
 msgstr "Godkendt"
