@@ -134,12 +134,6 @@ msgstr "Lugar que ocupa dentro de esta serie, colección, ... (por ejemplo, Libr
 msgid "submission.submit.form.localeRequired"
 msgstr "Selecciona una lengua para la propuesta."
 
-msgid "submission.submit.submissionChecklist"
-msgstr "Lista de comprobación de la presentación"
-
-msgid "submission.submit.submissionChecklistDescription"
-msgstr "Tienen que completarse y marcarse las siguientes exigencias para la propuesta a esta editorial antes de continuar (se pueden añadir a continuación comentarios al editor) ."
-
 msgid "submission.submit.privacyStatement"
 msgstr "Declaración de privacidad"
 
@@ -298,9 +292,6 @@ msgstr "Guardar orden"
 
 msgid "submission.editorName"
 msgstr "{$editorName} (ed)"
-
-msgid "submission.editorSeparator"
-msgstr ","
 
 msgid "submission.authorListSeparator"
 msgstr "; "

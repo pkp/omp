@@ -137,12 +137,6 @@ msgstr "Beispiel: Buch 2, Band 2"
 msgid "submission.submit.form.localeRequired"
 msgstr "Bitte wählen Sie die Sprache des Manuskripts aus."
 
-msgid "submission.submit.submissionChecklist"
-msgstr "Checkliste für den Einreichungsprozess"
-
-msgid "submission.submit.submissionChecklistDescription"
-msgstr "Die eingereichten Manuskripte müssen den folgenden Vorgaben entsprechen. Um fortfahren zu können, müssen Sie die Erfüllung der Vorgaben bestätigen (Kommentare an die Redaktion können unten hinzugefügt werden)."
-
 msgid "submission.submit.privacyStatement"
 msgstr "Datenschutzerklärung"
 

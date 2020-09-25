@@ -143,12 +143,6 @@ msgstr "Livros em séries são normalmente mantidos na ordem inversa em que são
 msgid "submission.submit.form.localeRequired"
 msgstr "Escolha o idioma da submissão."
 
-msgid "submission.submit.submissionChecklist"
-msgstr "Itens de verificação para submissão"
-
-msgid "submission.submit.submissionChecklistDescription"
-msgstr "É necessário concluir os seguintes requisitos para submissão a esta editora, assim como marcá-los antes de prosseguir (comentários ao editor podem ser inluídos a seguir)."
-
 msgid "submission.submit.privacyStatement"
 msgstr "Declaração de Privacidade"
 

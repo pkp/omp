@@ -38,12 +38,6 @@ msgstr "Toimitettu teos: Jokaisella luvulla on eri kirjoittaja."
 msgid "submission.workflowType.authoredWork"
 msgstr "Erillisteos: Yhden tai useamman kirjoittajan kokonaan kirjoittama teos."
 
-msgid "submission.workflowType.editedVolume.selectEditors"
-msgstr "Valitse niteen toimittajat"
-
-msgid "submission.workflowType.editedVolume.selectEditors.description"
-msgstr "Valitse kirjoittajat, jotka ovat toimittaneet koko niteen."
-
 msgid "submission.editorName"
 msgstr "{$editorName} (toim.)"
 
@@ -226,9 +220,6 @@ msgstr "Luvut"
 
 msgid "grid.copyediting.deleteCopyeditorResponse"
 msgstr "Poista teknisen toimittajan lataus"
-
-msgid "submission.catalogEntry"
-msgstr "Luettelomerkintä"
 
 msgid "submission.complete"
 msgstr "Hyväksytty"

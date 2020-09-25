@@ -131,12 +131,6 @@ msgstr "Position dans cette série (ex: livre 2 ou Volume 2)"
 msgid "submission.submit.form.localeRequired"
 msgstr "Veuillez choisir une langue pour la soumission."
 
-msgid "submission.submit.submissionChecklist"
-msgstr "Liste de vérification pour la soumission"
-
-msgid "submission.submit.submissionChecklistDescription"
-msgstr "Les exigences suivantes en ce qui concerne les soumissions à cette presse doivent être cochées avant de poursuivre la procédure (les commentaires à l'intention du rédacteur en chef seront ajoutés ci-dessous)."
-
 msgid "submission.submit.privacyStatement"
 msgstr "Énoncé de confidentialité"
 

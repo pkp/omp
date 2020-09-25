@@ -148,12 +148,6 @@ msgstr "Posizione occupata nella collana (cio?, Libro 2, o Volume 2)"
 msgid "submission.submit.form.localeRequired"
 msgstr "Per favore, scegli la lingua del caricamento."
 
-msgid "submission.submit.submissionChecklist"
-msgstr "Checklist per il caricamento"
-
-msgid "submission.submit.submissionChecklistDescription"
-msgstr "Prima di procedere, occorre completare e verificare i seguenti requisiti per l'immissione (i commenti all'editor possono essere aggiunti subito dopo)."
-
 msgid "submission.submit.privacyStatement"
 msgstr "Informativa sulla privacy"
 
@@ -234,9 +228,6 @@ msgstr "Capitoli"
 
 msgid "grid.copyediting.deleteCopyeditorResponse"
 msgstr "Cancella il caricamento del Copyeditor"
-
-msgid "submission.catalogEntry"
-msgstr "Catalogo"
 
 msgid "submission.editCatalogEntry"
 msgstr "Accesso"

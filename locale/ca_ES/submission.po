@@ -137,12 +137,6 @@ msgstr "Posició dins aquesta sèrie (p. ex. Llibre 2 o Volum 2)"
 msgid "submission.submit.form.localeRequired"
 msgstr "Seleccioneu la llengua per a la tramesa."
 
-msgid "submission.submit.submissionChecklist"
-msgstr "Llista de verificació de la tramesa"
-
-msgid "submission.submit.submissionChecklistDescription"
-msgstr "Completeu i marqueu els següents requisits per fer trameses a aquesta publicació per poder continuar (podeu afegir-hi comentaris a l'editor/a a sota)."
-
 msgid "submission.submit.privacyStatement"
 msgstr "Declaració de privacitat"
 
