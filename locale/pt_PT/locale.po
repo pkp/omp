@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
-"PO-Revision-Date: 2020-07-14 16:40+0000\n"
-"Last-Translator: Carla Marques <carla.marques@sdum.uminho.pt>\n"
+"PO-Revision-Date: 2020-09-29 10:49+0000\n"
+"Last-Translator: Carla Marques <carla.marques@usdb.uminho.pt>\n"
 "Language-Team: Portuguese (Portugal) <http://translate.pkp.sfu.ca/projects/"
 "omp/locale/pt_PT/>\n"
 "Language: pt_PT\n"
@@ -1159,3 +1159,442 @@ msgstr "Link para os Novos Lançamentos."
 
 msgid "navigation.navigationMenus.newRelease"
 msgstr "Novos lançamentos"
+
+msgid "catalog.coverImageTitle"
+msgstr "Capa"
+
+msgid "user.authorization.invalidPublishedSubmission"
+msgstr "Não foi especificada uma submissão publicada válida."
+
+msgid "submission.round"
+msgstr "Ronda&nbsp;{$round}"
+
+msgid "user.profile.form.hideOtherContexts"
+msgstr "Esconder outras editoras"
+
+msgid "user.profile.form.showOtherContexts"
+msgstr "Registar-se em outras editoras"
+
+msgid "submission.pdf.download"
+msgstr "Transferir PDF"
+
+msgid "rt.metadata.pkp.dctype"
+msgstr "Livro"
+
+msgid "debug.notes.helpMappingLoad"
+msgstr ""
+"Ficheiro XML de ajuda de mapeamento recarregado {$filename} na procura por "
+"{$id}."
+
+msgid "debug.notes.currencyListLoad"
+msgstr "Lista de moeadas carregadas do ficheiro XML \"{$filename}\""
+
+msgid "payment.directSales.monograph.description"
+msgstr ""
+"Esta transação refere-se à compra do download direto de apenas uma "
+"monografia ou um capítulo de monografia."
+
+msgid "payment.directSales.monograph.name"
+msgstr "Comprar Monografia ou Capítulo"
+
+msgid "payment.directSales.download"
+msgstr "Transferir {$format}"
+
+msgid "payment.directSales.purchase"
+msgstr "Comprar {$format} ({$amount} {$currency})"
+
+msgid "payment.directSales.validPriceRequired"
+msgstr "É obrigatório inserir um preço com valor numérico."
+
+msgid "payment.directSales.price.description"
+msgstr ""
+"Formatos de ficheiros podem estar disponíveis para download através do site "
+"da editora em acesso aberto sem custos para os leitores ou vendas diretas ("
+"utilizando um processador de pagamentos online, configurado em Distribuição)"
+". Indique a forma de acesso a este ficheiro."
+
+msgid "payment.directSales.openAccess"
+msgstr "Acesso Aberto"
+
+msgid "payment.directSales.notSet"
+msgstr "Não definido"
+
+msgid "payment.directSales.notAvailable"
+msgstr "Indisponível"
+
+msgid "payment.directSales.amount"
+msgstr "{$amount} ({$currency})"
+
+msgid "payment.directSales.directSales"
+msgstr "Venda Direta"
+
+msgid "payment.directSales.numericOnly"
+msgstr "Preços devem ser apenas numéricos. Não inclua símbolos monetários."
+
+msgid "payment.directSales.priceCurrency"
+msgstr "Preço ({$currency})"
+
+msgid "payment.directSales.approved"
+msgstr "Aprovado"
+
+msgid "payment.directSales.catalog"
+msgstr "Catálogo"
+
+msgid "payment.directSales.availability"
+msgstr "Disponibilidade"
+
+msgid "payment.directSales.price"
+msgstr "Preço"
+
+msgid "payment.directSales"
+msgstr "Download através do Website da Editora"
+
+msgid "user.authorization.workflowStageSettingMissing"
+msgstr ""
+"Acesso negado! O grupo de utilizadores em que se encontra não foi designado "
+"a esta etapa do fluxo de trabalho. Verifique as configurações da editora."
+
+msgid "user.authorization.workflowStageAssignmentMissing"
+msgstr "Acesso negado! Não foi designado e esta etapa do fluxo de trabalho."
+
+msgid "user.authorization.seriesAssignment"
+msgstr "Está a tentar aceder a uma monografia que não faz parte da sua série."
+
+msgid "user.authorization.noContext"
+msgstr "Nenhuma editora neste contexto!"
+
+msgid "user.authorization.invalidMonograph"
+msgstr "Monografia inválida ou nenhum monografia solicitada!"
+
+msgid "user.authorization.monographFile"
+msgstr "Foi-lhe negado o acesso a este ficheiro específico da monografia."
+
+msgid "user.authorization.monographReviewer"
+msgstr ""
+"Foi-lhe negado o acesso porque não é um revisor designado para esta "
+"monografia."
+
+msgid "user.authorization.monographAuthor"
+msgstr "Foi-lhe negado o acesso à submissão porque não é o autor da monografia."
+
+msgid "user.authorization.invalidReviewAssignment"
+msgstr ""
+"Foi-lhe negado acesso porque não parece ser um revisor válido para esta "
+"monografia."
+
+msgid "notification.type.visitCatalog"
+msgstr ""
+"A monografia foi aprovada. Visite o Catálogo para gerir os detalhes do "
+"catálogo, utilizando o link de catálogo logo acima."
+
+msgid "notification.type.visitCatalogTitle"
+msgstr "Gestão do Catálogo"
+
+msgid "notification.type.configurePaymentMethod"
+msgstr ""
+"Um método de pagamento configurado é necessário antes de definir as "
+"configurações de e-commerce."
+
+msgid "notification.type.configurePaymentMethod.title"
+msgstr "Não existem formas de pagamento configuradas."
+
+msgid "notification.type.formatNeedsApprovedSubmission"
+msgstr ""
+"A monografia não ficará listada no catálogo até ser publicada. Para "
+"adicionar este livro ao catálogo, clique no separador da Publicação."
+
+msgid "notification.type.approveSubmissionTitle"
+msgstr "A aguardar aprovação."
+
+msgid "notification.type.approveSubmission"
+msgstr ""
+"Esta submissão encontra-se de momento a aguardar aprovação na ferramenta de "
+"entrada do Catálogo antes de aparecer no catálogo público."
+
+msgid "notification.type.editorDecisionInternalReview"
+msgstr "Processo de revisão interna iniciado."
+
+msgid "notification.type.indexRequest"
+msgstr "Foi-lhe solicitado que criasse um índice de \"{$title}\"."
+
+msgid "notification.type.layouteditorRequest"
+msgstr "Foi-lhe solicitado que reveja o design de \"{$title}\"."
+
+msgid "notification.type.copyeditorRequest"
+msgstr "Foi-lhe solicitado que realize a edição de texto de \"{$file}\"."
+
+msgid "notification.type.editorAssignmentTask"
+msgstr ""
+"Uma nova monografia foi submetida e necessita de ser designada a um editor."
+
+msgid "notification.type.public"
+msgstr "Notícias Públicas"
+
+msgid "notification.type.userComment"
+msgstr "Um leitor fez um comentário sobre \"{$title}\"."
+
+msgid "notification.type.submissions"
+msgstr "Eventos da Submissão"
+
+msgid "notification.type.site"
+msgstr "Eventos do site"
+
+msgid "notification.type.reviewing"
+msgstr "Eventos da Revisão"
+
+msgid "notification.type.editing"
+msgstr "Eventos da Edição"
+
+msgid "notification.type.submissionSubmitted"
+msgstr "Uma nova monografia, \"{$title}\", foi submetida."
+
+msgid "notification.removedSubmission"
+msgstr "Submissão eliminada."
+
+msgid "notification.proofsApproved"
+msgstr "Provas aprovadas."
+
+msgid "notification.savedPublicationFormatMetadata"
+msgstr "Metadados do formato de publicação guardados."
+
+msgid "notification.savedCatalogMetadata"
+msgstr "Metadados do catálogo guardados."
+
+msgid "notification.removedMarket"
+msgstr "Mercado removido."
+
+msgid "notification.editedMarket"
+msgstr "Mercado editado."
+
+msgid "notification.addedMarket"
+msgstr "Mercado adicionado."
+
+msgid "notification.removedRepresentative"
+msgstr "Representante removido."
+
+msgid "notification.editedRepresentative"
+msgstr "Representante editado."
+
+msgid "notification.addedRepresentative"
+msgstr "Representante adicionado."
+
+msgid "notification.removedSalesRights"
+msgstr "Direitos de Venda removidos."
+
+msgid "notification.editedSalesRights"
+msgstr "Direitos de Venda editados."
+
+msgid "notification.addedSalesRights"
+msgstr "Direitos de Venda adicionados."
+
+msgid "notification.removedPublicationFormat"
+msgstr "Formato de Publicação removido."
+
+msgid "notification.editedPublicationFormat"
+msgstr "Formato de Publicação editado."
+
+msgid "notification.addedPublicationFormat"
+msgstr "Formato de Publicação adicionado."
+
+msgid "notification.removedPublicationDate"
+msgstr "Data de Publicação removida."
+
+msgid "notification.editedPublicationDate"
+msgstr "Data de Publicação editada."
+
+msgid "notification.addedPublicationDate"
+msgstr "Data de Publicação adicionada."
+
+msgid "notification.removedIdentificationCode"
+msgstr "Código de Identificação removido."
+
+msgid "notification.editedIdentificationCode"
+msgstr "Código de Identificação editado."
+
+msgid "notification.addedIdentificationCode"
+msgstr "Código de Identificação adicionado."
+
+msgid "log.imported"
+msgstr "{$userName} importou a monografia {$submissionId}."
+
+msgid "log.proofread.complete"
+msgstr "{$proofreaderName} submeteu {$submissionId} para agendamento."
+
+msgid "log.proofread.assign"
+msgstr ""
+"{$assignerName} designou {$proofreaderName} para realizar a leitura de "
+"provas da submissão {$submissionId}."
+
+msgid "log.editor.editorAssigned"
+msgstr "{$editorName} foi designado como editor à submissão {$submissionId}."
+
+msgid "log.editor.restored"
+msgstr "A submissão {$submissionId} foi restaurada para a fila."
+
+msgid "log.editor.archived"
+msgstr "A submissão {$submissionId} foi arquivada."
+
+msgid "log.editor.recommendation"
+msgstr ""
+"A recomendação do editor ({$decision}) para a monografia {$submissionId} foi "
+"registada por {$editorName}."
+
+msgid "log.editor.decision"
+msgstr ""
+"A decisão editorial ({$decision}) para a monografia {$submissionId} foi "
+"registada por {$editorName}."
+
+msgid "log.review.reviewUnconsidered"
+msgstr ""
+"{$editorName} marcou a {$round} ronda de revisão da submissão {$submissionId}"
+" como não considerada."
+
+msgid "log.review.reviewAccepted"
+msgstr ""
+"{$reviewerName} aceitou a {$round} ronda de revisão da submissão "
+"{$submissionId}."
+
+msgid "log.review.reviewDeclined"
+msgstr ""
+"{$reviewerName} rejeitou a {$round} de revisão da submissão {$submissionId}."
+
+msgid "log.review.reviewDueDateSet"
+msgstr ""
+"A data prevista para a {$round} ronda de revisão da submissão {$submissionId}"
+" atribuída a {$reviewerName} foi definida para {$dueDate}."
+
+msgid "installer.upgradeComplete"
+msgstr ""
+"<p>Atualização do OMP para a versão {$version} concluída com sucesso.</p>\n"
+"<p>Não se esqueça de configurar como \"instalado\" no seu ficheiro de "
+"configuração config.inc.php de volta para <em>Ativo</em>.</p>\n"
+"<p>Se ainda não se registou e deseja receber notícias e novidades, <strong"
+">registe-se em <a href=\"http://pkp.sfu.ca/omp/register\" target=\"_blank\""
+">http://pkp.sfu.ca/omp/register</a>.</strong> Se tiver questões ou "
+"comentários, visite o <a href=\"http://forum.pkp.sfu.ca\" target=\"_blank\">"
+"fórum de suporte</a>.</p>"
+
+msgid "installer.installationComplete"
+msgstr ""
+"<p>Instalação do OMP concluída com sucesso.</p>\n"
+"<p>Para começar a utilizar o sistema, <a href=\"{$loginUrl}\">aceda</a> com "
+"o nome de utilizador e senha inseridos na página anterior.</p>\n"
+"<p>Se desejar receber notícias e novidades, <strong>registe-se<a href=\""
+"http://pkp.sfu.ca/omp/register\" target=\"_blank\">http://pkp.sfu.ca/omp/"
+"register</a>.</strong> Se tiver questões ou comentários, visite o <a href=\""
+"http://forum.pkp.sfu.ca\" target=\"_blank\">fórum de suporte</a>.</p>"
+
+msgid "installer.overwriteConfigFileInstructions"
+msgstr ""
+"<h4>IMPORTANTE!</h4>\n"
+"<p>O instalador não pode alterar automaticamente o ficheiro de configuração. "
+"Antes de tentar usar o sistema, abra <tt>config.inc.php</tt> num editor de "
+"texto e substitua os seus conteúdos pelos do campo de texto abaixo. .</p>"
+
+msgid "installer.upgradeApplication"
+msgstr "Atualizar Open Monograph Press"
+
+msgid "installer.databaseSettingsInstructions"
+msgstr ""
+"O OMP necessita de acesso à base de dados SQL para armazenar os dados. Veja "
+"os requisitos de sistema abaixo com a lista de bases de dados suportadas. "
+"Nos campos abaixo, forneça as configurações a ser usadas para conectar à "
+"base de dados."
+
+msgid "installer.filesDirInstructions"
+msgstr ""
+"Insira o caminho completo para uma pasta existente onde os ficheiros "
+"transferidos serão guardados. Esta pasta não deve ser acessível diretamente "
+"através da web. <strong>Assegure-se que esta pasta existe e é editável antes "
+"da instalação.</strong> Caminhos Windows devem usar barra, ex. \"C:/mypress/"
+"files\"."
+
+msgid "installer.additionalLocalesInstructions"
+msgstr ""
+"Selecione qualquer idioma adicional para utilizar neste sistema. Estes "
+"idiomas estarão disponíveis para utilização das editoras alojadas neste "
+"site. Idiomas adicionais podem ser instalados a qualquer momento através da "
+"interface de administração. Idiomas marcados com * podem estar incompletos."
+
+msgid "installer.localeInstructions"
+msgstr ""
+"Idioma principal para uso neste sistema. Consulte a documentação do OMP se "
+"estiver interessado em apoio em outros idiomas que não estejam nesta lista."
+
+msgid "installer.maxFileUploadSize"
+msgstr ""
+"O seu servidor de momento permite-lhe a transferência de ficheiro com "
+"tamanho máximo de: <strong>{$maxFileUploadSize}</strong>"
+
+msgid "installer.allowFileUploads"
+msgstr ""
+"O seu servidor de momento permite transferências de ficheiros: "
+"<strong>{$allowFileUploads}</strong>"
+
+msgid "installer.localeSettingsInstructions"
+msgstr ""
+"Para apoio completo Unicode (UTF-8), selecione UTF-8 para todos as "
+"configurações de conjuntos de caracteres. Note que este apoio de momento "
+"necessita de um servidor de base de dados MySQL >= 4.1.1 ou PostgreSQL >= "
+"9.1.5. Note também que o apoio completo Unicode necessita de uma biblioteca <"
+"a href=\"http://www.php.net/mbstring\" target=\"_blank\">mbstring</a> ("
+"ativada por padrão em na maioria das instalações recente de PHP). Pode "
+"experienciar problemas ao usar conjuntos de caracteres extensos se o seu "
+"servidor não cumprir os seguintes requisitos.\n"
+"<br /><br />\n"
+"O seu servidor de momento suporta mbstring: "
+"<strong>{$supportsMBString}</strong>"
+
+msgid "installer.upgradeInstructions"
+msgstr ""
+"<h4>Versão do OMP {$version}</h4>\n"
+"\n"
+"<p>Obrigada por transferir o software do Public Knowledge Project <strong>"
+"Open Monograph Press</strong>. Antes de continuar, por favor leia o <a href="
+"\"{$baseUrl}/docs/README\">README</a> e <a href=\"{$baseUrl}/docs/UPGRADE\""
+">UPGRADE</a> os ficheiros incluídos neste software. Para mais informações "
+"sobre o Public Knowledge Project e os seus projetos de software, visite o <a "
+"href=\"http://pkp.sfu.ca/\" target=\"_blank\">website do PKP</a>. Se tiver "
+"relatórios de erros ou questões de suporte técnicos sobre o Open Monograph "
+"Press, visite o <a href=\"http://forum.pkp.sfu.ca\" target=\"_blank\">fórum "
+"de suporte</a> ou visite o <a href=\"http://pkp.sfu.ca/bugzilla/\" target=\""
+"_blank\">sistema de comunicação de erros</a> online do PKP. Apesar do fórum "
+"de suporte ser o método de contacto preferencial, também pode enviar e-mail "
+"para a equipa através do e-mail <a href=\"mailto:pkp.contact@gmail.com\""
+">pkp.contact@gmail.com</a>.</p>\n"
+"<p>É <strong>altamente recomendado</strong> que faça backups da sua base de "
+"dados, diretório de ficheiros, e do diretório da instalação do OMP antes de "
+"proceder.</p>\n"
+"<p>Se está a correr em <a href=\"http://www.php.net/features.safe-mode\" "
+"target=\"_blank\">Modo Seguro de PHP</a>, assegure-se que a diretiva "
+"max_execution_time no seu ficheiro de configuração php.ini está configurado "
+"para um limite alto. Se este ou outro limite de tempo (ex. diretiva Apache's "
+"\"Timeout\") for alcançado e o processo for interrompido, é necessária "
+"intervenção manual.</p>"
+
+msgid "installer.preInstallationInstructions"
+msgstr ""
+"<p>1. Os seguintes ficheiros e diretórios (e os seus conteúdos) devem ser "
+"editáveis:</p>\n"
+"<ul>\n"
+"\t<li><tt>config.inc.php</tt> é editável (opcional): {$writable_config}</li>"
+"\n"
+"\t<li><tt>public/</tt> é editável: {$writable_public}</li>\n"
+"\t<li><tt>cache/</tt> é editável: {$writable_cache}</li>\n"
+"\t<li><tt>cache/t_cache/</tt> é editável: {$writable_templates_cache}</li>\n"
+"\t<li><tt>cache/t_compile/</tt> é editável: "
+"{$writable_templates_compile}</li>\n"
+"\t<li><tt>cache/_db</tt> é editável: {$writable_db_cache}</li>\n"
+"</ul>\n"
+"\n"
+"<p>2. Um diretório para armazenar ficheiros deve ser criado e tornado "
+"editável (ver \"Configurações Ficheiro\" abaixo).</p>"
+
+msgid "site.noPresses"
+msgstr "Não existem editoras disponíveis."
+
+msgid "user.register.form.privacyConsentThisContext"
+msgstr ""
+"Sim, concordo em ter os meus dados recolhidos e armazenados de acordo com a  "
+"<a href=\"{$privacyUrl}\" target=\"_blank\">política de privacidade</a> da "
+"editora."
