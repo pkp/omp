@@ -67,7 +67,7 @@ abstract class PubIdPlugin extends PKPPubIdPlugin {
 				$submission = Services::get('submission')->get($publication->getData('submissionId'));
 			} else {
 				assert(is_a($pubObject, 'SubmissionFile'));
-				$submission = Services::get('submission')->get($pubObject->getSubmissionId());
+				$submission = Services::get('submission')->get($pubObject->getData('submissionId'));
 			}
 			if (!$submission) return null;
 			// Now we can identify the context.
@@ -123,7 +123,7 @@ abstract class PubIdPlugin extends PKPPubIdPlugin {
 
 				if ($submissionFile) {
 					// %s - file id
-					$pubIdSuffix = PKPString::regexp_replace('/%s/', $submissionFile->getFileId(), $pubIdSuffix);
+					$pubIdSuffix = PKPString::regexp_replace('/%s/', $submissionFile->getId(), $pubIdSuffix);
 				}
 
 				break;
@@ -144,7 +144,7 @@ abstract class PubIdPlugin extends PKPPubIdPlugin {
 				}
 
 				if ($submissionFile) {
-					$pubIdSuffix .= '.' . $submissionFile->getFileId();
+					$pubIdSuffix .= '.' . $submissionFile->getId();
 				}
 		}
 		if (empty($pubIdSuffix)) return null;

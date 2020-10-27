@@ -56,17 +56,22 @@ class Upgrade extends Installer {
 		$site = $siteDao->getSite();
 		$adminEmail = $site->getLocalizedContactEmail();
 
-		import('lib.pkp.classes.file.SubmissionFileManager');
-
 		$contexts = $pressDao->getAll();
 		while ($context = $contexts->next()) {
 			$submissions = $submissionDao->getByContextId($context->getId());
 			while ($submission = $submissions->next()) {
-				$submissionFileManager = new SubmissionFileManager($context->getId(), $submission->getId());
-				$submissionFiles = $submissionFileDao->getBySubmissionId($submission->getId());
-				foreach ($submissionFiles as $submissionFile) {
+				$submissionFilesIterator = Services::get('submissionFile')->getMany([
+					'submissionIds' => [$submission->getId()],
+					'includeDependentFiles' => true,
+				]);
+				foreach ($submissionFilesIterator as $submissionFile) {
 					$generatedFilename = $submissionFile->getServerFileName();
-					$basePath = $submissionFileManager->getBasePath() . $submissionFile->_fileStageToPath($submissionFile->getFileStage()) . '/';
+					$basePath = sprintf(
+						'%s/%s/%s/',
+						Config::getVar('files', 'files_dir'),
+						Services::get('submissionFile')->getSubmissionDir($context->getId(), $submission->getId()),
+						$this->_fileStageToPath($submissionFile->getFileStage())
+					);
 					$globPattern = $submissionFile->getSubmissionId() . '-' .
 						'*' . '-' . // Genre name and designation globbed (together)
 						$submissionFile->getFileId() . '-' .
@@ -730,7 +735,6 @@ class Upgrade extends Installer {
 	 *    is created.
 	 */
 	function migrateSubmissionCoverImages() {
-		import('lib.pkp.classes.file.BaseSubmissionFileManager');
 		import('lib.pkp.classes.file.FileManager');
 		import('classes.file.PublicFileManager');
 
@@ -763,10 +767,10 @@ class Upgrade extends Installer {
 			}
 
 			// Get existing image paths
-			$baseSubmissionFileManager = new BaseSubmissionFileManager($row['context_id'], $row['submission_id']);
-			$coverPath = $baseSubmissionFileManager->getBasePath() . 'simple/' . $coverImage['name'];
+			$basePath = Services::get('submissionFile')->getSubmissionDir($row['context_id'], $row['submission_id']);
+			$coverPath = $basePath . '/simple/' . $coverImage['name'];
 			$coverPathInfo = pathinfo($coverPath);
-			$thumbPath = $baseSubmissionFileManager->getBasePath() . 'simple/' . $coverImage['thumbnailName'];
+			$thumbPath = $basePath . '/simple/' . $coverImage['thumbnailName'];
 			$thumbPathInfo = pathinfo($thumbPath);
 
 			// Copy the files to the public directory
@@ -828,6 +832,36 @@ class Upgrade extends Installer {
 
 
 		return true;
+	}
+
+	/**
+	 * Get the directory of a file based on its file stage
+	 *
+	 * @param int $fileStage ONe of SUBMISSION_FILE_ constants
+	 * @return string
+	 */
+	function _fileStageToPath($fileStage) {
+		import('lib.pkp.classes.submission.SubmissionFile');
+		static $fileStagePathMap = [
+			SUBMISSION_FILE_SUBMISSION => 'submission',
+			SUBMISSION_FILE_NOTE => 'note',
+			SUBMISSION_FILE_REVIEW_FILE => 'submission/review',
+			SUBMISSION_FILE_REVIEW_ATTACHMENT => 'submission/review/attachment',
+			SUBMISSION_FILE_REVIEW_REVISION => 'submission/review/revision',
+			SUBMISSION_FILE_FINAL => 'submission/final',
+			SUBMISSION_FILE_COPYEDIT => 'submission/copyedit',
+			SUBMISSION_FILE_DEPENDENT => 'submission/proof',
+			SUBMISSION_FILE_PROOF => 'submission/proof',
+			SUBMISSION_FILE_PRODUCTION_READY => 'submission/productionReady',
+			SUBMISSION_FILE_ATTACHMENT => 'attachment',
+			SUBMISSION_FILE_QUERY => 'submission/query',
+		];
+
+		if (!isset($fileStagePathMap[$fileStage])) {
+			throw new Exception('A file assigned to the file stage ' . $fileStage . ' could not be migrated.');
+		}
+
+		return $fileStagePathMap[$fileStage];
 	}
 }
 

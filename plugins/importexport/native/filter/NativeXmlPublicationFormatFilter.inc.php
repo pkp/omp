@@ -71,7 +71,7 @@ class NativeXmlPublicationFormatFilter extends NativeXmlRepresentationFilter {
 		if ($node->getAttribute('available') == 'true') $representation->setIsAvailable(true);
 		if ($node->getAttribute('physical_format') == 'true') $representation->setPhysicalFormat(true);
 		if ($node->getAttribute('entry_key')) $representation->setEntryKey($node->getAttribute('entry_key'));
-		
+
 
 		$representationDao = Application::getRepresentationDAO();
 		$representationDao->insertObject($representation);
@@ -98,12 +98,11 @@ class NativeXmlPublicationFormatFilter extends NativeXmlRepresentationFilter {
 	 */
 	function _processFileRef($node, $deployment, &$representation) {
 		$fileId = $node->getAttribute('id');
-		$revisionId = $node->getAttribute('revision');
-		$DBId = $deployment->getFileDBId($fileId, $revisionId);
+		$DBId = $deployment->getFileDBId($fileId);
 		if ($DBId) {
 			// Update the submission file.
 			$submissionFileDao = DAORegistry::getDAO('SubmissionFileDAO'); /* @var $submissionFileDao SubmissionFileDAO */
-			$submissionFile = $submissionFileDao->getRevision($DBId, $revisionId);
+			$submissionFile = Services::get('submissionFile')->get($DBId);
 			$submissionFile->setAssocType(ASSOC_TYPE_REPRESENTATION);
 			$submissionFile->setAssocId($representation->getId());
 			$submissionFileDao->updateObject($submissionFile);

@@ -97,7 +97,12 @@ class PublicationFormatCategoryGridDataProvider extends SubmissionFilesCategoryG
 		/** @var $categoryDataElement Representation */
 		assert(is_a($categoryDataElement, "Representation"));
 
-		$submissionFiles = $categoryDataElement->getRepresentationFiles($this->getFileStage());
+		$submissionFiles = Services::get('submissionFile')->getMany([
+			'submissionIds' => [$this->getPublication()->getData('submissionId')],
+			'assocTypes' => [ASSOC_TYPE_REPRESENTATION],
+			'assocIds' => [$categoryDataElement->getId()],
+			'fileStages' => [$this->getFileStage()],
+		]);
 
 		// if it is a remotely hosted content, don't provide the files rows
 		$remoteURL = $categoryDataElement->getRemoteURL();

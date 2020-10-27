@@ -253,12 +253,13 @@ class PublicationFormat extends Representation {
 	function getCalculatedFileSize() {
 		$fileSize = 0;
 		$publication = Services::get('publication')->get($this->getData('publicationId'));
-		$submissionFileDao = DAORegistry::getDAO('SubmissionFileDAO'); /* @var $submissionFileDao SubmissionFileDAO */
 		import('lib.pkp.classes.submission.SubmissionFile'); // File constants
-		$stageMonographFiles = $submissionFileDao->getLatestRevisionsByAssocId(
-			ASSOC_TYPE_PUBLICATION_FORMAT, $this->getId(),
-			$publication->getData('submissionId'), SUBMISSION_FILE_PROOF
-		);
+		$stageMonographFiles = Services::get('submissionFile')->getMany([
+			'submissionIds' => [$publication->getData('submissionId')],
+			'fileStages' => [SUBMISSION_FILE_PROOF],
+			'assocTypes' => [ASSOC_TYPE_PUBLICATION_FORMAT],
+			'assocIds' => [$this->getId()],
+		]);
 
 		foreach ($stageMonographFiles as $monographFile) {
 			if ($monographFile->getViewable()) {

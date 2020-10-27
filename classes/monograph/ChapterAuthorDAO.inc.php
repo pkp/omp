@@ -39,9 +39,10 @@ class ChapterAuthorDAO extends DAO {
 				sca.primary_contact,
 				sca.seq,
 				ug.show_title,
-				p.locale AS submission_locale
+				s.locale AS submission_locale
 			FROM	authors a
 				JOIN publications p ON (p.publication_id = a.publication_id)
+				JOIN submissions s ON (s.submission_id = p.submission_id)
 				JOIN submission_chapter_authors sca ON (a.author_id = sca.author_id)
 				JOIN user_groups ug ON (a.user_group_id = ug.user_group_id)' .
 			( (count($params)> 0)?' WHERE':'' ) .

@@ -31,6 +31,8 @@ class OMPv3_3_0UpgradeMigration extends Migration {
 		});
 
 		$this->_settingsAsJSON();
+
+		$this->_migrateSubmissionFiles();
 	}
 
 	/**
@@ -46,7 +48,7 @@ class OMPv3_3_0UpgradeMigration extends Migration {
 
 	/**
 	 * @return void
-	 * @bried reset serialized arrays and convert array and objects to JSON for serialization, see pkp/pkp-lib#5772
+	 * @brief reset serialized arrays and convert array and objects to JSON for serialization, see pkp/pkp-lib#5772
 	 */
 	private function _settingsAsJSON() {
 
@@ -154,5 +156,47 @@ class OMPv3_3_0UpgradeMigration extends Migration {
 		}
 
 		return true;
+	}
+
+	/**
+	 * Complete submission file migrations specific to OMP
+	 *
+	 * The main submission file migration is done in
+	 * PKPv3_3_0UpgradeMigration and that migration must
+	 * be run before this one.
+	 */
+	private function _migrateSubmissionFiles() {
+
+		// Update file stage for all internal review files
+		Capsule::table('submission_files as sf')
+			->leftJoin('review_round_files as rrf', 'sf.submission_file_id', '=', 'rrf.submission_file_id')
+			->where('sf.file_stage', '=', SUBMISSION_FILE_REVIEW_FILE)
+			->where('rrf.stage_id', '=', WORKFLOW_STAGE_ID_INTERNAL_REVIEW)
+			->update(['sf.file_stage' => SUBMISSION_FILE_INTERNAL_REVIEW_FILE]);
+		Capsule::table('submission_files as sf')
+			->leftJoin('review_round_files as rrf', 'sf.submission_file_id', '=', 'rrf.submission_file_id')
+			->where('sf.file_stage', '=', SUBMISSION_FILE_REVIEW_REVISION)
+			->where('rrf.stage_id', '=', WORKFLOW_STAGE_ID_INTERNAL_REVIEW)
+			->update(['sf.file_stage' => SUBMISSION_FILE_INTERNAL_REVIEW_REVISION]);
+
+		// Update the fileStage property for all event logs where the
+		// file has been moved to an internal review file stage
+		$internalStageIds = [
+			SUBMISSION_FILE_INTERNAL_REVIEW_FILE,
+			SUBMISSION_FILE_INTERNAL_REVIEW_REVISION,
+		];
+		foreach ($internalStageIds as $internalStageId) {
+			$submissionIds = Capsule::table('submission_files')
+				->where('file_stage', '=', $internalStageId)
+				->pluck('submission_file_id');
+			$logIdsToChange = Capsule::table('event_log_settings')
+				->where('setting_name', '=', 'submissionFileId')
+				->whereIn('setting_value', $submissionIds)
+				->pluck('log_id');
+			Capsule::table('event_log_settings')
+				->whereIn('log_id', $logIdsToChange)
+				->where('setting_name', '=', 'fileStage')
+				->update(['setting_value' => $internalStageId]);
+		}
 	}
 }

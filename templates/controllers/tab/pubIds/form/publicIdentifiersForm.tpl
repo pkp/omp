@@ -43,11 +43,10 @@
 {elseif $pubObject instanceof SubmissionFile}
 	<form class="pkp_form" id="publicIdentifiersForm" method="post" action="{url component="api.file.ManageFileApiHandler" op="updateIdentifiers" escape=false}">
 		{include file="controllers/notification/inPlaceNotification.tpl" notificationId="fileIdentifiersFormFieldsNotification"}
-		<input type="hidden" name="fileId" value="{$pubObject->getFileId()|escape}" />
-		<input type="hidden" name="revision" value="{$pubObject->getRevision()|escape}" />
-		<input type="hidden" name="submissionId" value="{$pubObject->getSubmissionId()|escape}" />
+		<input type="hidden" name="submissionFileId" value="{$pubObject->getId()|escape}" />
+		<input type="hidden" name="submissionId" value="{$pubObject->getData('submissionId')|escape}" />
 		<input type="hidden" name="stageId" value="{$stageId|escape}" />
-		<input type="hidden" name="fileStageId" value="{$pubObject->getFileStage()|escape}" />
+		<input type="hidden" name="fileStageId" value="{$pubObject->getData('submissionId')|escape}" />
 
 {/if}
 

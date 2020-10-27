@@ -158,19 +158,23 @@ class CatalogBookHandler extends Handler {
 		$pubIdPlugins = PluginRegistry::loadCategory('pubIds', true);
 		$templateMgr->assign('pubIdPlugins', $pubIdPlugins);
 
-		$availableFiles = array_filter(
-			DAORegistry::getDAO('SubmissionFileDAO')->getLatestRevisions($submission->getId(), null, null),
-			function($a) {
-				return $a->getDirectSalesPrice() !== null && $a->getAssocType() == ASSOC_TYPE_PUBLICATION_FORMAT;
+		$pubFormatFiles = Services::get('submissionFile')->getMany([
+			'submissionIds' => [$submission->getId()],
+			'assocTypes' => [ASSOC_TYPE_PUBLICATION_FORMAT]
+		]);
+		$availableFiles = [];
+		foreach ($pubFormatFiles as $pubFormatFile) {
+			if ($pubFormatFile->getDirectSalesPrice() !== null) {
+				$availableFiles[] = $pubFormatFile;
 			}
-		);
+		}
 
 		// Only pass files in pub formats that are also available
 		$filteredAvailableFiles = array();
-		foreach ($availableFiles as $file) {
+		foreach ($availableFiles as $submissionFile) {
 			foreach ($availablePublicationFormats as $format) {
-				if ($file->getAssocId() == $format->getId()) {
-					$filteredAvailableFiles[] = $file;
+				if ($submissionFile->getData('assocId') == $format->getId()) {
+					$filteredAvailableFiles[] = $submissionFile;
 					break;
 				}
 			}
@@ -258,22 +262,17 @@ class CatalogBookHandler extends Handler {
 		$submissionFile = DAORegistry::getDAO('SubmissionFileDAO')->getByBestId($bestFileId, $submission->getId());
 		if (!$submissionFile) $dispatcher->handle404();
 
-		$fileIdAndRevision = $submissionFile->getFileIdAndRevision();
-		list($fileId, $revision) = array_map(function($a) {
-			return (int) $a;
-		}, preg_split('/-/', $fileIdAndRevision));
-		import('lib.pkp.classes.file.SubmissionFileManager');
-		$monographFileManager = new SubmissionFileManager($submission->getData('contextId'), $submission->getId());
-
-		switch ($submissionFile->getAssocType()) {
+		$path = Services::get('file')->getPath($submissionFile->getData('fileId'));
+		$filename = Services::get('file')->formatFilename($path, $submissionFile->getLocalizedData('name'));
+		switch ($submissionFile->getData('assocType')) {
 			case ASSOC_TYPE_PUBLICATION_FORMAT: // Publication format file
-				if ($submissionFile->getAssocId() != $publicationFormat->getId() || $submissionFile->getDirectSalesPrice() === null) $dispatcher->handle404();
+				if ($submissionFile->getData('assocId') != $publicationFormat->getId() || $submissionFile->getDirectSalesPrice() === null) $dispatcher->handle404();
 				break;
 			case ASSOC_TYPE_SUBMISSION_FILE: // Dependent file
 				$genreDao = DAORegistry::getDAO('GenreDAO'); /* @var $genreDao GenreDAO */
 				$genre = $genreDao->getById($submissionFile->getGenreId());
 				if (!$genre->getDependent()) $dispatcher->handle404();
-				return $monographFileManager->downloadById($fileId, $revision);
+				return Services::get('file')->download($path, $filename);
 				break;
 			default: $dispatcher->handle404();
 		}
@@ -298,7 +297,7 @@ class CatalogBookHandler extends Handler {
 
 		$ompCompletedPaymentDao = DAORegistry::getDAO('OMPCompletedPaymentDAO'); /* @var $ompCompletedPaymentDao OMPCompletedPaymentDAO */
 		$user = $request->getUser();
-		if ($submissionFile->getDirectSalesPrice() === '0' || ($user && $ompCompletedPaymentDao->hasPaidPurchaseFile($user->getId(), $fileIdAndRevision))) {
+		if ($submissionFile->getDirectSalesPrice() === '0' || ($user && $ompCompletedPaymentDao->hasPaidPurchaseFile($user->getId(), $submissionFile->getId()))) {
 			// Paid purchase or open access.
 			if (!$user && $press->getData('restrictMonographAccess')) {
 				// User needs to register first.
@@ -319,7 +318,7 @@ class CatalogBookHandler extends Handler {
 				// If the plugin handled the hook, prevent further default activity.
 				exit();
 			}
-			return $monographFileManager->downloadById($fileId, $revision, $inline);
+			return Services::get('file')->download($path, $filename, $inline);
 		}
 
 		// Fall-through: user needs to pay for purchase.
@@ -338,7 +337,7 @@ class CatalogBookHandler extends Handler {
 			$request,
 			PAYMENT_TYPE_PURCHASE_FILE,
 			$user->getId(),
-			$fileIdAndRevision,
+			$submissionFile->getId(),
 			$submissionFile->getDirectSalesPrice(),
 			$press->getData('currency')
 		);

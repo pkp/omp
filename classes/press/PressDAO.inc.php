@@ -59,9 +59,9 @@ class PressDAO extends ContextDAO {
 			$dao = DAORegistry::getDAO($daoName);
 			$dao->deleteAllPubIds($pressId, $pubIdType);
 		}
-		import('lib.pkp.classes.submission.SubmissionFileDAODelegate');
-		$submissionFileDaoDelegate = new SubmissionFileDAODelegate();
-		$submissionFileDaoDelegate->deleteAllPubIds($pressId, $pubIdType);
+		import('lib.pkp.classes.submission.SubmissionFileDAO');
+		$submissionFileDao = new SubmissionFileDAO();
+		$submissionFileDao->deleteAllPubIds($pressId, $pubIdType);
 	}
 
 

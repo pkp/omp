@@ -22,7 +22,7 @@
 	{csrf}
 	{include file="controllers/notification/inPlaceNotification.tpl" notificationId="approvedProofFormNotification"}
 	{fbvFormArea id="approvedProofInfo"}
-		<input type="hidden" name="fileId" value="{$fileId|escape}" />
+		<input type="hidden" name="submissionFileId" value="{$submissionFileId|escape}" />
 		<input type="hidden" name="submissionId" value="{$submissionId|escape}" />
 		<input type="hidden" name="representationId" value="{$representationId|escape}" />
 		<input type="hidden" name="publicationId" value="{$publicationId|escape}" />

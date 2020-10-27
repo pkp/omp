@@ -164,17 +164,15 @@ class ChapterForm extends Form {
 		]);
 
 		if ($this->getChapter()) {
-			$submissionFiles = DAORegistry::getDAO('SubmissionFileDAO')->getLatestRevisions($this->getMonograph()->getId());
+			$submissionFiles = Services::get('submissionFile')->getMany(['submissionIds' => [$this->getMonograph()->getId()]]);
 			$chapterFileOptions = [];
-			foreach ($submissionFiles as $submissionFile) {
-				if (!$submissionFile->getData('chapterId') || $submissionFile->getData('chapterId') == $this->getChapter()->getId()) {
-					$chapterFileOptions[$submissionFile->getFileId()] = $submissionFile->getLocalizedName();
-				}
-			}
 			$selectedChapterFiles = [];
 			foreach ($submissionFiles as $submissionFile) {
+				if (!$submissionFile->getData('chapterId') || $submissionFile->getData('chapterId') == $this->getChapter()->getId()) {
+					$chapterFileOptions[$submissionFile->getId()] = $submissionFile->getLocalizedData('name');
+				}
 				if ($submissionFile->getData('chapterId') == $this->getChapter()->getId()) {
-					$selectedChapterFiles[] = $submissionFile->getFileId();
+					$selectedChapterFiles[] = $submissionFile->getId();
 				}
 			}
 			$templateMgr = TemplateManager::getManager($request);
@@ -204,7 +202,6 @@ class ChapterForm extends Form {
 
 		$chapterDao = DAORegistry::getDAO('ChapterDAO'); /* @var $chapterDao ChapterDAO */
 		$chapter = $this->getChapter();
-		$request = Application::get()->getRequest();
 		$isEdit = !!$chapter;
 
 		if ($chapter) {
@@ -238,18 +235,7 @@ class ChapterForm extends Form {
 		// Save the chapter file associations
 		if ($isEdit) {
 			$selectedFiles = (array) $this->getData('files');
-			$allFiles = DAORegistry::getDAO('SubmissionFileDAO')->getLatestRevisions($this->getMonograph()->getId());
-			foreach ($allFiles as $file) {
-				$revisions = DAORegistry::getDAO('SubmissionFileDAO')->getAllRevisions($file->getId(), null, $this->getMonograph()->getId());
-				foreach ($revisions as $revision) {
-					if (in_array($revision->getFileId(), $selectedFiles)) {
-						$revision->setData('chapterId', $this->getChapter()->getId());
-					} elseif ($revision->getData('chapterId') == $chapter->getId()) {
-						$revision->setData('chapterId', null);
-					}
-					DAORegistry::getDAO('SubmissionFileDAO')->updateObject($revision);
-				}
-			}
+			DAORegistry::getDAO('SubmissionFileDAO')->updateChapterFiles($selectedFiles, $this->getChapter()->getId());
 		}
 
 		return true;

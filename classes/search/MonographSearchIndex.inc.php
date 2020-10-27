@@ -51,20 +51,19 @@ class MonographSearchIndex extends SubmissionSearchIndex {
 	 * Add a file to the search index.
 	 * @param $monographId int
 	 * @param $type int
-	 * @param $fileId int
+	 * @param $submissionFileId int
 	 */
-	public function updateFileIndex($monographId, $type, $fileId) {
-		$submissionFileDao = DAORegistry::getDAO('SubmissionFileDAO'); /* @var $submissionFileDao SubmissionFileDAO */
-		$file = $submissionFileDao->getLatestRevision($fileId);
+	public function updateFileIndex($monographId, $type, $submissionFileId) {
+		$submisssionFile = Services::get('submissionFile')->get($submissionFileId);
 
-		if (isset($file)) {
-			$parser = SearchFileParser::fromFile($file);
+		if (isset($submisssionFile)) {
+			$parser = SearchFileParser::fromFile($submisssionFile);
 		}
 
 		if (isset($parser)) {
 			if ($parser->open()) {
 				$searchDao = DAORegistry::getDAO('MonographSearchDAO'); /* @var $searchDao MonographSearchDAO */
-				$objectId = $searchDao->insertObject($monographId, $type, $fileId);
+				$objectId = $searchDao->insertObject($monographId, $type, $submissionFileId);
 
 				$position = 0;
 				while(($text = $parser->read()) !== false) {
@@ -126,15 +125,15 @@ class MonographSearchIndex extends SubmissionSearchIndex {
 	 */
 	public function submissionFilesChanged($monograph) {
 		// Index galley files
-		$submissionFileDao = DAORegistry::getDAO('SubmissionFileDAO'); /* @var $submissionFileDao SubmissionFileDAO */
 		import('lib.pkp.classes.submission.SubmissionFile'); // Constants
 		import('classes.search.MonographSearch'); // Constants
-		$files = $submissionFileDao->getLatestRevisions($monograph->getId(), SUBMISSION_FILE_PROOF);
+		$submissionFiles = Services::get('submissionFile')->getMany([
+			'submissionIds' => [$monograph->getId()],
+			'fileStages' => [SUBMISSION_FILE_PROOF],
+		]);
 
-		foreach ($files as $file) {
-			if ($file->getFileId()) {
-				$this->updateFileIndex($monograph->getId(), SUBMISSION_SEARCH_GALLEY_FILE, $file->getFileId());
-			}
+		foreach ($submissionFiles as $submissionFile) {
+			$this->updateFileIndex($monograph->getId(), SUBMISSION_SEARCH_GALLEY_FILE, $submissionFile->getId());
 		}
 	}
 

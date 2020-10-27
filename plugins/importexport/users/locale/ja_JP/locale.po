@@ -89,9 +89,6 @@ msgstr "全ユーザのエクスポート"
 msgid "plugins.importexport.users.export.errorsOccurred"
 msgstr "エクスポート処理中にエラーが発生しました"
 
-msgid "plugins.importexport.users.export.couldNotWriteFile"
-msgstr "ファイル \"{$fileName}\" に書き込むことができませんでした。"
-
 msgid "plugins.importexport.users.import.warning"
 msgstr "警告"
 

@@ -93,9 +93,6 @@ msgstr "Export All"
 msgid "plugins.importexport.users.export.errorsOccurred"
 msgstr "Errors occurred during the export"
 
-msgid "plugins.importexport.users.export.couldNotWriteFile"
-msgstr "Could not write to the file \"{$fileName}\"."
-
 msgid "plugins.importexport.users.import.warning"
 msgstr "Cảnh báo"
 

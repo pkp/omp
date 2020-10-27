@@ -1180,9 +1180,6 @@ msgstr "Αγορά Λήψης Αρχείου Μονογραφίας ή  Κεφα
 msgid "payment.directSales.monograph.description"
 msgstr "Αυτή η συναλλαγή αφορά την αγορά άμεσης λήψης μιας μονογραφίας ή ενός κεφαλαίου μιας μονογραφίας."
 
-msgid "debug.notes.currencyListLoad"
-msgstr "Η λίστα νομισματικών μονάδων \"{$filename}\" φορτώθηκε από XML"
-
 msgid "debug.notes.helpMappingLoad"
 msgstr "Η επαναφόρτωση XML βοηθάει τη χαρτογράφηση του αρχείου {$filename} για την αναζήτηση {$id}."
 

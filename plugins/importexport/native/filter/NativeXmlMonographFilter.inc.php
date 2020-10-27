@@ -66,7 +66,7 @@ class NativeXmlMonographFilter extends NativeXmlSubmissionFilter {
 
 		$workType = $node->getAttribute('work_type');
 		$submission->setData('workType', $workType);
-		
+
 		return parent::populateObject($submission, $node);
 	}
 
@@ -77,10 +77,6 @@ class NativeXmlMonographFilter extends NativeXmlSubmissionFilter {
 	 */
 	function handleChildElement($n, $submission) {
 		switch ($n->tagName) {
-			case 'artwork_file':
-			case 'supplementary_file':
-				$this->parseSubmissionFile($n, $submission);
-				break;
 			case 'publication':
 				$this->parsePublication($n, $submission);
 				break;
@@ -101,12 +97,6 @@ class NativeXmlMonographFilter extends NativeXmlSubmissionFilter {
 		switch ($elementName) {
 			case 'submission_file':
 				$importClass='SubmissionFile';
-				break;
-			case 'artwork_file':
-				$importClass='SubmissionArtworkFile';
-				break;
-			case 'supplementary_file':
-				$importClass='SupplementaryFile';
 				break;
 			case 'publication':
 				$importClass='Publication';
@@ -133,7 +123,7 @@ class NativeXmlMonographFilter extends NativeXmlSubmissionFilter {
 
 		$existingDeployment = $this->getDeployment();
 		$request = Application::get()->getRequest();
-		
+
 		$importFilter->setDeployment($existingDeployment);
 		$formatDoc = new DOMDocument();
 		$formatDoc->appendChild($formatDoc->importNode($n, true));

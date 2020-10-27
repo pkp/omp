@@ -50,7 +50,9 @@ class GoogleScholarPlugin extends GenericPlugin {
 		$publicationFormat =& $args[2];
 		$submissionFile =& $args[3];
 
-		if ($submissionFile->getFileType() == 'application/pdf') {
+		$path = Services::get('file')->getPath($submissionFile->getData('fileId'));
+		$mimetype = Services::get('file')->fs->getMimetype($path);
+		if ($mimetype == 'application/pdf') {
 			$request = Application::get()->getRequest();
 			$templateMgr = TemplateManager::getManager($request);
 			$press = $request->getContext();
@@ -109,7 +111,7 @@ class GoogleScholarPlugin extends GenericPlugin {
 				foreach ($keywordLocale as $gsKeyword) $templateMgr->addHeader('googleScholarKeyword' . $i++, '<meta name="citation_keywords" xml:lang="' . htmlspecialchars(substr($locale, 0, 2)) . '" content="' . htmlspecialchars($gsKeyword) . '"/>');
 			}
 
-			$templateMgr->addHeader('googleScholarPdfUrl' . $i++, '<meta name="citation_pdf_url" content="' . $request->url(null, 'catalog', 'download', array($monograph->getBestId(), $publicationFormat->getId(), $submissionFile->getFileIdAndRevision())) . '"/>');
+			$templateMgr->addHeader('googleScholarPdfUrl' . $i++, '<meta name="citation_pdf_url" content="' . $request->url(null, 'catalog', 'download', array($monograph->getBestId(), $publicationFormat->getId(), $submissionFile->getId())) . '"/>');
 		}
 
 		return false;

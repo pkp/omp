@@ -875,6 +875,9 @@ msgstr "Current Press:"
 msgid "context.select"
 msgstr "Switch to another press:"
 
+msgid "user.authorization.representationNotFound"
+msgstr "The requested publication format could not be found."
+
 msgid "user.noRoles.selectUsersWithoutRoles"
 msgstr "Include users with no roles in this press."
 
@@ -1408,9 +1411,6 @@ msgstr "Purchase Monograph or Chapter Download"
 
 msgid "payment.directSales.monograph.description"
 msgstr "This transaction is for the purchase of a direct download of a single monograph or monograph chapter."
-
-msgid "debug.notes.currencyListLoad"
-msgstr "Loaded currency list \"{$filename}\" from XML"
 
 msgid "debug.notes.helpMappingLoad"
 msgstr "Reloaded XML help mapping file {$filename} in search of {$id}."

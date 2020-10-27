@@ -89,18 +89,16 @@ class PublicationFormatNativeXmlFilter extends RepresentationNativeXmlFilter {
 	/**
 	 * Get the available submission files for a representation
 	 * @param $representation Representation
-	 * @return array
+	 * @return Iterator
 	 */
 	function getFiles($representation) {
 		$deployment = $this->getDeployment();
 		$submission = $deployment->getSubmission();
-		$submissionFileDao = DAORegistry::getDAO('SubmissionFileDAO'); /* @var $submissionFileDao SubmissionFileDAO */
-		return array_filter(
-			$submissionFileDao->getLatestRevisions($submission->getId()),
-			function($a) use ($representation) {
-				return $a->getAssocType() == ASSOC_TYPE_PUBLICATION_FORMAT && $a->getAssocId() == $representation->getId();
-			}
-		);
+		return Services::get('submissionFile')->getMany([
+			'submissionIds' => [$submission->getId()],
+			'assocTypes' => [ASSOC_TYPE_PUBLICATION_FORMAT],
+			'assocIds' => [$representation->getId()],
+		]);
 	}
 }
 

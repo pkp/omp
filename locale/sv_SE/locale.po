@@ -941,9 +941,6 @@ msgstr "Registrera dig vid andra pressar"
 msgid "submission.pdf.download"
 msgstr "Ladda ned denna PDF-fil"
 
-msgid "debug.notes.currencyListLoad"
-msgstr "Valutalista \"{$filename}\" från XML"
-
 msgid "payment.directSales.monograph.description"
 msgstr ""
 "Denna transaktion gäller för köp av en direktnedladdning av en enskild bok "

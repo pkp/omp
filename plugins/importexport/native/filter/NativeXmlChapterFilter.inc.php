@@ -95,8 +95,8 @@ class NativeXmlChapterFilter extends NativeImportFilter {
 				if (empty($locale)) $locale = $context->getLocale();
 				$chapter->setData('subtitle', $n->textContent, $locale);
 				break;
-			case 'pages': 
-				$chapter->setData('pages', $n->textContent); 
+			case 'pages':
+				$chapter->setData('pages', $n->textContent);
 				break;
 			case 'chapterAuthor':
 				$this->parseAuthor($n, $chapter);
@@ -107,7 +107,7 @@ class NativeXmlChapterFilter extends NativeImportFilter {
 		}
 
 		$chapterDao->updateObject($chapter);
-		
+
 		return $chapter;
 	}
 
@@ -124,7 +124,7 @@ class NativeXmlChapterFilter extends NativeImportFilter {
 		$authorId = $deployment->getAuthorDBId($n->getAttribute('author_id'));
 		$primaryContact = $n->getAttribute('primary_contact');
 		$seq = $n->getAttribute('seq');
-			
+
 		$chapterAuthorDao->insertChapterAuthor($authorId, $chapter->getId(), $primaryContact, $seq);
 	}
 
@@ -140,16 +140,15 @@ class NativeXmlChapterFilter extends NativeImportFilter {
 		$publication = $deployment->getPublication();
 
 		$fileId = $n->getAttribute('id');
-		$fileRevision = $n->getAttribute('revision');
-			
-		$sourceFileId = $deployment->getFileDBId($fileId, $fileRevision);
+
+		$sourceFileId = $deployment->getFileDBId($fileId);
 		if ($sourceFileId) {
-			$submissionFileDao = DAORegistry::getDAO('SubmissionFileDAO'); /** @var $submissionFileDao SubmissionFileDAO */
-			$submissionFile = $submissionFileDao->getRevision($sourceFileId, $fileRevision);
+			$submissionFile = Services::get('submissionFile')->get($fileId);
 
 			if ($submissionFile) {
 				$submissionFile->setData('chapterId', $chapter->getId());
 
+				$submissionFileDao = DAORegistry::getDAO('SubmissionFileDAO'); /** @var $submissionFileDao SubmissionFileDAO */
 				$submissionFileDao->updateObject($submissionFile);
 			}
 		}

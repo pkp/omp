@@ -382,7 +382,7 @@
 											{foreach from=$pubFormatFiles item=file}
 												<li>
 													<span class="name">
-														{$file->getLocalizedName()|escape}
+														{$file->getLocalizedData('name')|escape}
 													</span>
 													<span class="link">
 														{include file="frontend/components/downloadLink.tpl" downloadFile=$file monograph=$monograph publication=$publication publicationFormat=$format currency=$currency useFilename=true}

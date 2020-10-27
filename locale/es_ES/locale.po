@@ -1233,9 +1233,6 @@ msgstr "Comprar monografía o descargar capítulo"
 msgid "payment.directSales.monograph.description"
 msgstr "Esta transacción es relativa a la compra de una descarga directa de una monografía sola o un capítulo de una monografía."
 
-msgid "debug.notes.currencyListLoad"
-msgstr "Listado de monedas \"{$filename}\" cargado desde XML"
-
 msgid "debug.notes.helpMappingLoad"
 msgstr "El archivo {$filename} de asignación de ayuda XML se volvió a cargar en busca de {$id}."
 

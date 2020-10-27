@@ -24,9 +24,6 @@ msgstr ""
 "nie są jeszcze w użyciu zostały importowane, razem z towarzyszącymi grupami "
 "użytkowników."
 
-msgid "plugins.importexport.users.export.couldNotWriteFile"
-msgstr "Nie dało się wpisać do pliku  \"{$fileName}\"."
-
 msgid "plugins.importexport.users.export.errorsOccurred"
 msgstr "W trakcie eksportu wystąpił błąd"
 
