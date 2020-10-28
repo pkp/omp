@@ -43,7 +43,7 @@ describe('Data suite tests', function() {
 		// Find and view the review
 		cy.findSubmissionAsEditor('dbarnes', null, 'Brower');
 		cy.waitJQuery();
-		cy.get('span:contains("Adela Gallego")').parent().parent().find('a[title="Read this review"]:visible').click();
+		cy.get('span:contains("Adela Gallego")').parent().parent().find('a:contains("Read Review")').click();
 
 		// There should not be a visible CI statement.
 		cy.get('h3:contains("Reviewer Comments")');
@@ -95,7 +95,7 @@ describe('Data suite tests', function() {
 		// Find and view the review
 		cy.findSubmissionAsEditor('dbarnes', null, 'Brower');
 		cy.waitJQuery();
-		cy.get('span:contains("Al Zacharia")').parent().parent().find('a[title="Read this review"]:visible').click();
+		cy.get('span:contains("Al Zacharia")').parent().parent().find('a:contains("Read Review")').click();
 
 		// There should be a visible CI statement.
 		cy.get('h3:contains("Reviewer Comments")');
@@ -118,7 +118,7 @@ describe('Data suite tests', function() {
 		// The CI statement entered previously should still be visible.
 		cy.findSubmissionAsEditor('dbarnes', null, 'Brower');
 		cy.waitJQuery();
-		cy.get('span:contains("Al Zacharia")').parent().parent().find('a[title="Read this review"]:visible').click();
+		cy.get('span:contains("Al Zacharia")').parent().parent().find('a:contains("Read Review")').click();
 		cy.get('h3:contains("Reviewer Comments")');
 		cy.get('p').contains(competingInterests);
 	});
