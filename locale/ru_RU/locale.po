@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
-"PO-Revision-Date: 2020-03-04 09:36+0000\n"
+"PO-Revision-Date: 2020-11-03 13:50+0000\n"
 "Last-Translator: Sergei Yukhimets <y_s_n@mail.ru>\n"
-"Language-Team: Russian <http://translate.pkp.sfu.ca/projects/omp/locale/ru_RU/>"
+"Language-Team: Russian <http://translate.pkp.sfu.ca/projects/omp/locale/ru/>"
 "\n"
 "Language: ru_RU\n"
 "MIME-Version: 1.0\n"
@@ -17,3 +17,53 @@ msgstr "Раунд&nbsp;{$round}"
 
 msgid "monograph.audience"
 msgstr "Аудитория"
+
+#, fuzzy
+msgid "monograph.proofReadingDescription"
+msgstr ""
+"Верстальщик загружает сюда полностью готовые файлы, которые подготовлены для "
+"публикации. Используйте <em>Назначить аудитора</em>, чтобы определить "
+"авторов и других пользователей для корректуры гранок, с загрузкой "
+"откорректированных файлов и их одобрением перед публикацией."
+
+msgid "submission.pageProofs"
+msgstr "Страница гранок"
+
+msgid "monograph.type"
+msgstr "Тип подачи"
+
+msgid "monograph.carousel.publicationFormats"
+msgstr "Форматы:"
+
+msgid "monograph.miscellaneousDetails"
+msgstr "Детали об этой монографии"
+
+msgid "monograph.publicationFormatDetails"
+msgstr "Детали о доступных форматах изданий: {$format}"
+
+msgid "monograph.publicationFormat"
+msgstr "Формат"
+
+msgid "monograph.publicationFormats"
+msgstr "Форматы публикации"
+
+msgid "monograph.languages"
+msgstr "Языки (Английский, Французский, Испанский)"
+
+msgid "monograph.audience.rangeExact"
+msgstr "Диапазон Аудитории (от)"
+
+msgid "monograph.audience.rangeTo"
+msgstr "Диапазон Аудитории (до)"
+
+msgid "monograph.audience.rangeFrom"
+msgstr "Диапазон Аудитории (от)"
+
+msgid "monograph.audience.rangeQualifier"
+msgstr "Определитель Диапазона Аудитории"
+
+msgid "monograph.coverImage"
+msgstr "Изображение Обложки"
+
+msgid "monograph.audience.success"
+msgstr "Детали аудитории сохранены."
