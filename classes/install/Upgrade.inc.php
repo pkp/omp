@@ -12,6 +12,7 @@
  *
  * @brief Perform system upgrade.
  */
+use Illuminate\Database\Capsule\Manager as Capsule;
 
 
 import('lib.pkp.classes.install.Installer');
@@ -50,35 +51,46 @@ class Upgrade extends Installer {
 	function fixFilenames($upgrade, $params, $dryrun = false) {
 		$pressDao = DAORegistry::getDAO('PressDAO'); /* @var $pressDao PressDAO */
 		$submissionDao = DAORegistry::getDAO('SubmissionDAO'); /* @var $submissionDao SubmissionDAO */
-		$submissionFileDao = DAORegistry::getDAO('SubmissionFileDAO'); /* @var $submissionFileDao SubmissionFileDAO */
 		DAORegistry::getDAO('GenreDAO'); // Load constants
 		$siteDao = DAORegistry::getDAO('SiteDAO'); /* @var $siteDao SiteDAO */
 		$site = $siteDao->getSite();
 		$adminEmail = $site->getLocalizedContactEmail();
+		import('lib.pkp.classes.submission.SubmissionFile'); // SUBMISSION_FILE_ constants
+		import('lib.pkp.classes.file.FileManager');
+		$fileManager = new FileManager();
 
 		$contexts = $pressDao->getAll();
 		while ($context = $contexts->next()) {
 			$submissions = $submissionDao->getByContextId($context->getId());
 			while ($submission = $submissions->next()) {
-				$submissionFilesIterator = Services::get('submissionFile')->getMany([
-					'submissionIds' => [$submission->getId()],
-					'includeDependentFiles' => true,
-				]);
-				foreach ($submissionFilesIterator as $submissionFile) {
-					$generatedFilename = $submissionFile->getServerFileName();
+				$submissionDir = Services::get('submissionFile')->getSubmissionDir($context->getId(), $submission->getId());
+				$rows = Capsule::table('submission_files')
+					->where('submission_id', '=', $submission->getId())
+					->get();
+				foreach ($rows as $row) {
+					$generatedFilename = sprintf(
+						'%d-%s-%d-%d-%d-%s.%s',
+						$row->submission_id,
+						$row->genre_id,
+						$row->file_id,
+						$row->revision,
+						$row->file_stage,
+						date('Ymd', strtotime($row->date_uploaded)),
+						strtolower_codesafe($fileManager->parseFileExtension($row->original_file_name))
+					);
 					$basePath = sprintf(
 						'%s/%s/%s/',
 						Config::getVar('files', 'files_dir'),
-						Services::get('submissionFile')->getSubmissionDir($context->getId(), $submission->getId()),
-						$this->_fileStageToPath($submissionFile->getFileStage())
+						$submissionDir,
+						$this->_fileStageToPath($row->file_stage)
 					);
-					$globPattern = $submissionFile->getSubmissionId() . '-' .
+					$globPattern = $$row->submission_id . '-' .
 						'*' . '-' . // Genre name and designation globbed (together)
-						$submissionFile->getFileId() . '-' .
-						$submissionFile->getRevision() . '-' .
-						$submissionFile->getFileStage() . '-' .
-						date('Ymd', strtotime($submissionFile->getDateUploaded())) .
-						'.' . strtolower_codesafe($submissionFile->getExtension());
+						$row->file_id . '-' .
+						$row->revision . '-' .
+						$row->file_stage . '-' .
+						date('Ymd', strtotime($row->date_uploaded)) .
+						'.' . strtolower_codesafe($fileManager->parseFileExtension($row->original_file_name));
 
 					$matchedResults = glob($basePath . $globPattern);
 					if (count($matchedResults)>1) {
@@ -270,7 +282,7 @@ class Upgrade extends Installer {
 		import('lib.pkp.classes.submission.SubmissionFile');
 
 		$filesResult = $submissionFileDao->retrieve(
-			'SELECT DISTINCT sf.file_id, sf.assoc_type, sf.assoc_id, s.symbolic, s.date_notified, s.date_completed, s.user_id, s.signoff_id FROM submission_files sf, signoffs s WHERE s.assoc_type=? AND s.assoc_id=sf.file_id AND s.symbolic IN (?, ?)',
+			'SELECT DISTINCT sf.file_id, sf.assoc_type, sf.assoc_id, sf.submission_id, sf.original_file_name, sf.revision, s.symbolic, s.date_notified, s.date_completed, s.user_id, s.signoff_id FROM submission_files sf, signoffs s WHERE s.assoc_type=? AND s.assoc_id=sf.file_id AND s.symbolic IN (?, ?)',
 			array(ASSOC_TYPE_SUBMISSION_FILE, 'SIGNOFF_COPYEDITING', 'SIGNOFF_PROOFING')
 		);
 
@@ -295,33 +307,45 @@ class Upgrade extends Installer {
 			$signoffId = $row['signoff_id'];
 			$fileAssocType = $row['assoc_type'];
 			$fileAssocId = $row['assoc_id'];
+			$submissionId = $row['submission_id'];
+			$originalFileName = $row['original_file_name'];
+			$revision = $row['revision'];
 			$filesResult->MoveNext();
 
-			$submissionFiles = $submissionFileDao->getAllRevisions($fileId);
-			assert(count($submissionFiles)>0);
-			$anyFile = end($submissionFiles);
+			// Reproduces removed SubmissionFile::getFileLabel() method
+			$label = $originalFileName;
+			$filename = Capsule::table('submission_file_settings')
+				->where('file_id', '=', $fileId)
+				->where('setting_name', '=', 'name')
+				->first();
+			if ($filename) {
+				$label = $filename->setting_value;
+			}
+			if ($revision) {
+				$label .= '(' . $revision . ')';
+			}
 
 			$assocType = $assocId = $query = null; // Prevent PHP scrutinizer warnings
 			switch ($symbolic) {
 				case 'SIGNOFF_COPYEDITING':
 					$query = $queryDao->newDataObject();
 					$query->setAssocType($assocType = ASSOC_TYPE_SUBMISSION);
-					$query->setAssocId($assocId = $anyFile->getSubmissionId());
+					$query->setAssocId($assocId = $submissionId);
 					$query->setStageId(WORKFLOW_STAGE_ID_EDITING);
 					break;
 				case 'SIGNOFF_PROOFING':
 					// We've already migrated a signoff for this file; add this user to it too.
-					if ($anyFile->getAssocType() == ASSOC_TYPE_NOTE) {
-						$note = $noteDao->getById($anyFile->getAssocId());
+					if ($fileAssocType == ASSOC_TYPE_NOTE) {
+						$note = $noteDao->getById($fileAssocId);
 						assert($note && $note->getAssocType() == ASSOC_TYPE_QUERY);
-						if (count($queryDao->getParticipantIds($note->getAssocId(), $userId))==0) $queryDao->insertParticipant($anyFile->getAssocId(), $userId);
+						if (count($queryDao->getParticipantIds($note->getAssocId(), $userId))==0) $queryDao->insertParticipant($fileAssocId, $userId);
 						$this->_transferSignoffData($signoffId, $note->getAssocId());
 						continue 2;
 					}
 					$query = $queryDao->newDataObject();
-					assert($anyFile->getAssocType()==ASSOC_TYPE_REPRESENTATION);
+					assert($fileAssocType==ASSOC_TYPE_REPRESENTATION);
 					$query->setAssocType($assocType = ASSOC_TYPE_SUBMISSION);
-					$query->setAssocId($assocId = $anyFile->getSubmissionId());
+					$query->setAssocId($assocId = $submissionId);
 					$query->setStageId(WORKFLOW_STAGE_ID_PRODUCTION);
 					break;
 				default: assert(false);
@@ -335,7 +359,7 @@ class Upgrade extends Installer {
 			$user = $userDao->getById($userId);
 			$assignedUserIds = array($userId);
 			foreach (array(ROLE_ID_MANAGER, ROLE_ID_SUB_EDITOR, ROLE_ID_ASSISTANT) as $roleId) {
-				$stageAssignments = $stageAssignmentDao->getBySubmissionAndRoleId($anyFile->getSubmissionId(), $roleId, $query->getStageId());
+				$stageAssignments = $stageAssignmentDao->getBySubmissionAndRoleId($submissionId, $roleId, $query->getStageId());
 				while ($stageAssignment = $stageAssignments->next()) {
 					$assignedUserIds[] = $stageAssignment->getUserId();
 				}
@@ -351,12 +375,12 @@ class Upgrade extends Installer {
 			$headNote->setAssocId($query->getId());
 			switch($symbolic) {
 				case 'SIGNOFF_COPYEDITING':
-					$headNote->setTitle('Copyediting for "' . $anyFile->getFileLabel() . '"');
-					$headNote->setContents('Auditing assignment for the file "' . htmlspecialchars($anyFile->getFileLabel()) . '" (Signoff ID: ' . $signoffId . ')');
+					$headNote->setTitle('Copyediting for "' . $label . '"');
+					$headNote->setContents('Auditing assignment for the file "' . htmlspecialchars($label) . '" (Signoff ID: ' . $signoffId . ')');
 					break;
 				case 'SIGNOFF_PROOFING':
-					$headNote->setTitle('Proofreading for ' . $anyFile->getFileLabel());
-					$headNote->setContents('Proofing assignment for the file "' . htmlspecialchars($anyFile->getFileLabel()) . '" (Signoff ID: ' . $signoffId . ')');
+					$headNote->setTitle('Proofreading for ' . $label);
+					$headNote->setContents('Proofing assignment for the file "' . htmlspecialchars($label) . '" (Signoff ID: ' . $signoffId . ')');
 					break;
 				default: assert(false);
 			}
@@ -516,11 +540,12 @@ class Upgrade extends Installer {
 			$noteDao->updateObject($note);
 
 			// Convert any attached files
-			$submissionFiles = $submissionFileDao->getAllRevisionsByAssocId(ASSOC_TYPE_NOTE, $note->getId());
-			foreach ($submissionFiles as $submissionFile) {
-				$submissionFile->setAssocType(ASSOC_TYPE_NOTE);
-				$submissionFile->setAssocId($note->getId());
-				$submissionFile->setFileStage(SUBMISSION_FILE_QUERY);
+			$submissionFilesIterator = Services::get('submissionFile')->getMany([
+				'assocTypes' => [ASSOC_TYPE_NOTE],
+				'assocIds' => [$note->getId()],
+			]);
+			foreach ($submissionFilesIterator as $submissionFile) {
+				$submissionFile->setData('fileStage', SUBMISSION_FILE_QUERY);
 				$submissionFileDao->updateObject($submissionFile);
 			}
 		}
