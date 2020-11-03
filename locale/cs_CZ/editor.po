@@ -155,3 +155,6 @@ msgstr "Zrušit požadavek"
 
 msgid "editor.submissionArchive"
 msgstr "Archiv příspěvků"
+
+msgid "editor.monograph.proofs"
+msgstr "Korekturní výtisky"
