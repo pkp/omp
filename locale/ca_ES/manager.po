@@ -633,9 +633,6 @@ msgstr ""
 "funcionalitat sigui compatible (cosa que pot no ser possible en tots els "
 "servidors), tal com s'indica en la documentació de l'OMP."
 
-msgid "manager.setup.reviewOptions.blindReview"
-msgstr "Avaluació anònima"
-
 msgid "manager.setup.reviewOptions.onQuality"
 msgstr "Després de cada revisió, els editors/ores han de puntuar els revisors/ores segons una escala de qualitat de cinc punts."
 
@@ -650,9 +647,6 @@ msgstr "Valoració dels revisors/ores"
 
 msgid "manager.setup.reviewOptions.reviewerReminders"
 msgstr "Recordatoris per a la revisió"
-
-msgid "manager.setup.reviewOptions.showEnsuringLink"
-msgstr "Afegiu enllaços a informació sobre com fer una avaluació anònima en pàgines on els autors/ores i revisors/ores carreguen fitxers."
 
 msgid "manager.setup.reviewPolicy"
 msgstr "Política de revisió"

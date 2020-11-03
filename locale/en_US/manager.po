@@ -730,9 +730,6 @@ msgstr "Automated Email Reminders"
 msgid "manager.setup.reviewOptions.automatedRemindersDisabled"
 msgstr "To activate these options, the site administrator must enable the <tt>scheduled_tasks</tt> option in the OMP configuration file. Additional server configuration may be required to support this functionality (which may not be possible on all servers), as indicated in the OMP documentation."
 
-msgid "manager.setup.reviewOptions.blindReview"
-msgstr "Blind Review"
-
 msgid "manager.setup.reviewOptions.onQuality"
 msgstr "Editors will rate reviewers on a five-point quality scale after each review."
 
@@ -759,9 +756,6 @@ msgstr "Reviewer Ratings"
 
 msgid "manager.setup.reviewOptions.reviewerReminders"
 msgstr "Reviewer Reminders"
-
-msgid "manager.setup.reviewOptions.showEnsuringLink"
-msgstr "Provide links about ensuring a blind review on pages where authors and reviewers upload files."
 
 msgid "manager.setup.reviewPolicy"
 msgstr "Review Policy"

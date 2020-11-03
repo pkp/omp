@@ -626,9 +626,6 @@ msgstr "Samodejni e-poštni opomniki"
 msgid "manager.setup.reviewOptions.automatedRemindersDisabled"
 msgstr "Za aktivacijo teh možnosti mora administrator spletišča omogočiti nastavitev <tt>scheduled_tasks</tt> v nastavitveni datoteki OMP. Za podporo te možnosti so morda potrebne dodatne nastavitve strežnika (ki morda niso na voljo na vseh strežnikih), kot je navedeno v dokumentaciji OMP."
 
-msgid "manager.setup.reviewOptions.blindReview"
-msgstr "Slepa recenzija"
-
 msgid "manager.setup.reviewOptions.onQuality"
 msgstr "Po opravljeni posamezni recenziji bodo uredniki ocenjevali delo recenzenta z oceno od 1 do 5."
 
@@ -643,9 +640,6 @@ msgstr "Ocene recenzentov"
 
 msgid "manager.setup.reviewOptions.reviewerReminders"
 msgstr "Opomniki recenzentom"
-
-msgid "manager.setup.reviewOptions.showEnsuringLink"
-msgstr "Na strani, kamor avtorji in recenzenti nalagajo datoteke, navedite povezave o zagotavljanju slepe recenzije."
 
 msgid "manager.setup.reviewPolicy"
 msgstr "Recenzijska politika"

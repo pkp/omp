@@ -624,9 +624,6 @@ msgstr "Automatisierte E-Mail-Erinnerungen (verfügbar in den Standard-E-Mails v
 msgid "manager.setup.reviewOptions.automatedRemindersDisabled"
 msgstr "<strong>Bitte beachten Sie:</strong> Um diese Optionen zu aktivieren, muss der Administrator/die Administratorin die <tt>scheduled_tasks</tt>-Option in der OMP-Konfigurationdatei freigeben. Eventuell ist eine weitere Konfiguration des Servers nötig, um diese Funktionalität zu unterstützen (dies ist unter Umständen nicht auf allen Servern möglich). Nähere Informationen dazu finden Sie in der OMP-Dokumentation."
 
-msgid "manager.setup.reviewOptions.blindReview"
-msgstr "Blind Review"
-
 msgid "manager.setup.reviewOptions.onQuality"
 msgstr "Nach Abschluss der Begutachtung bewerten die Herausgeber/innen die Gutachter/innen auf einer Fünf-Punkte-Qualitätsskala bewerten."
 
@@ -641,9 +638,6 @@ msgstr "Gutachterbewertungen"
 
 msgid "manager.setup.reviewOptions.reviewerReminders"
 msgstr "Gutachtererinnerungen"
-
-msgid "manager.setup.reviewOptions.showEnsuringLink"
-msgstr "Provide links about ensuring a blind review on pages where authors and reviewers upload files."
 
 msgid "manager.setup.reviewPolicy"
 msgstr "Begutachtungsleitlinien"

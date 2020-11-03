@@ -764,9 +764,6 @@ msgstr "Automaattiset sähköpostimuistutukset"
 msgid "manager.setup.reviewOptions.automatedRemindersDisabled"
 msgstr "Aktivoidakseen nämä valinnat sivuston ylläpitäjän täytyy ottaa käyttöön <tt>scheduled_tasks</tt> -valinta OMP:n määritystiedostossa. Palvelimen lisämäärityksiä saatetaan edellyttää tämän toiminnon tukemiseksi (joka ei välttämättä ole mahdollista kaikilla palvelimilla), kuten OMP:n käyttöohjeissa mainitaan."
 
-msgid "manager.setup.reviewOptions.blindReview"
-msgstr "Sokkoarviointi"
-
 msgid "manager.setup.reviewOptions.onQuality"
 msgstr "Toimittajat arvostelevat arvioijat viisiportaisella laatuasteikolla jokaisen arviointitapahtuman jälkeen."
 
@@ -791,9 +788,6 @@ msgstr "Arvioijien arvostelu"
 
 msgid "manager.setup.reviewOptions.reviewerReminders"
 msgstr "Arvioijan muistutukset"
-
-msgid "manager.setup.reviewOptions.showEnsuringLink"
-msgstr "Anna linkkejä sokkoarvioinnin varmistamiseen liittyen sellaisilla sivuilla, joissa kirjoittajat ja arvioijat lataavat tiedostoja."
 
 msgid "manager.setup.reviewPolicy"
 msgstr "Arviointiperiaatteet"

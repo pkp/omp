@@ -705,9 +705,6 @@ msgstr "Lembretes automáticos (disponíveis nos modelos de mensagens do OMP) po
 msgid "manager.setup.reviewOptions.automatedRemindersDisabled"
 msgstr "<strong>Nota:</strong> Para ativar estas opções, o administrador do site deve habilitar a opção <tt>scheduled_tasks</tt> no arquivo de configuração do OMP. Configurações adicionais no servidor podem ser necessárias para oferecer suporte à funcionalidade (que pode não ser possível em todos os servidores), conforme indicado na documentação do OMP."
 
-msgid "manager.setup.reviewOptions.blindReview"
-msgstr "Avaliação cega"
-
 msgid "manager.setup.reviewOptions.noteOnModification"
 msgstr "Os valores padrão podem ser alterados para qualquer submissão durante o processo editorial."
 
@@ -728,9 +725,6 @@ msgstr "Lembretes ao avaliador"
 
 msgid "manager.setup.reviewOptions.reviewTime"
 msgstr "Tempo de avaliação"
-
-msgid "manager.setup.reviewOptions.showEnsuringLink"
-msgstr "Oferecer links sobre como assegurar uma avaliação cega segura a autores e avaliadores ao enviar arquivos."
 
 msgid "manager.setup.reviewPolicy"
 msgstr "Política de avaliação"
