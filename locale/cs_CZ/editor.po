@@ -1,6 +1,6 @@
 msgid ""
 msgstr ""
-"PO-Revision-Date: 2020-11-03 13:50+0000\n"
+"PO-Revision-Date: 2020-11-03 20:25+0000\n"
 "Last-Translator: Radek Gomola <gomola@press.muni.cz>\n"
 "Language-Team: Czech <http://translate.pkp.sfu.ca/projects/omp/editor/cs_CZ/>"
 "\n"
@@ -158,3 +158,42 @@ msgstr "Archiv příspěvků"
 
 msgid "editor.monograph.proofs"
 msgstr "Korekturní výtisky"
+
+msgid "editor.submission.proof.manageProofFilesDescription"
+msgstr ""
+"Jakékoliv soubory, které byly nahrány do některé fáze příspěvku mohoou být "
+"přídány do seznamu souborů určených ke korektuře pomocí zaškrnutí "
+"zaškrtávacího políčka níže a kliknutím na tlačítko vyhledat: všechny "
+"dostupné soubory budou vypsány a je možné je vybrat a přiložit."
+
+msgid "editor.publicIdentificationExistsForTheSameType"
+msgstr ""
+"Veřejný identifikátor '{$publicIdentifier}' pro jiný objekt stejného typu. "
+"Prosím vyberte unikátní identifikátor pro objekt stejného typu."
+
+msgid "editor.monograph.proof.addNote"
+msgstr "Přidat odpověď"
+
+msgid "editor.monograph.approvedProofs.edit.linkTitle"
+msgstr "Nastavit podmínky"
+
+msgid "editor.monograph.approvedProofs.edit"
+msgstr "Nastavit podmínky stahování"
+
+msgid "editor.monograph.production.publicationFormatDescription"
+msgstr ""
+"Přidejte publikační formáty (např. digitální formát, měkká vazba), pro které "
+"má grafický editor sazby stránek ke korektuře Před tím, než může být daný "
+"formát označen <em>Dostupný</em> (tj. publikovaný), sekce <em>Korektura</em>"
+"musí být označena jako dokončená a <em>katalogová položka</em> musí být "
+"zveřejněna."
+
+msgid "editor.monograph.production.approvalAndPublishingDescription"
+msgstr ""
+"Prostřednictvím sekce Publikační formáty níže mohou být nahrány různé "
+"formáty publikace (jako je pevná vazba, měkká vazba, digitální formát). "
+"Tabulku publikačních formátů níže můžete využít jako kontrolní seznam kroků, "
+"které je třeba před publikací daného formátu dokončit."
+
+msgid "editor.monograph.production.approvalAndPublishing"
+msgstr "Schválení a publikace"
