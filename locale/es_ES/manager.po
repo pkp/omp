@@ -917,9 +917,6 @@ msgstr ""
 "con esta funcionalidad (que puede no estar disponible en todos los "
 "servidores), como se indica en la documentación de OMP."
 
-msgid "manager.setup.reviewOptions.blindReview"
-msgstr "Evaluación anónima"
-
 msgid "manager.setup.reviewOptions.noteOnModification"
 msgstr "Los valores por defectos se pueden modificar en cualquier envío durante el proceso editorial."
 
@@ -940,9 +937,6 @@ msgstr "Recordatorios para los revisores/as"
 
 msgid "manager.setup.reviewOptions.reviewTime"
 msgstr "Plazo para la revisión"
-
-msgid "manager.setup.reviewOptions.showEnsuringLink"
-msgstr "Proporcione enlaces para asegurar la revisión anónima en páginas donde los autores/as y revisores/as suben archivos."
 
 msgid "manager.setup.reviewPolicy"
 msgstr "Política de evaluación"

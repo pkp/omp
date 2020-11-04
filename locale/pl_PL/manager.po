@@ -460,11 +460,6 @@ msgstr "Proces recenzji"
 msgid "manager.setup.reviewPolicy"
 msgstr "Polityka recenzji"
 
-msgid "manager.setup.reviewOptions.showEnsuringLink"
-msgstr ""
-"Dostarcz linki zapewniający o ślepej recenzji na stronach, gdzie autorzy i "
-"recenzenci ładują pliki."
-
 msgid "manager.setup.reviewOptions.reviewerReminders"
 msgstr "Przypomnienia dla recenzentów"
 
@@ -497,9 +492,6 @@ msgstr "Plik o ograniczonym dostępie"
 msgid "manager.setup.reviewOptions.onQuality"
 msgstr ""
 "Redaktorzy ocenią recenzentów w skali pięciopunktowej po każdej recenzji."
-
-msgid "manager.setup.reviewOptions.blindReview"
-msgstr "Ślepa recenzja"
 
 msgid "manager.setup.reviewOptions.automatedRemindersDisabled"
 msgstr ""

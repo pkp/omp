@@ -321,7 +321,7 @@ class ReviewerSubmission extends Submission {
 	}
 
 	/**
-	 * Get the method of the review (open, blind, or double-blind).
+	 * Get the method of the review (open, anonymous, or double-anonymous).
 	 * @return int
 	 */
 	public function getReviewMethod() {

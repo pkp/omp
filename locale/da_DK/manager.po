@@ -460,11 +460,6 @@ msgstr "Bedømmelsesproces"
 msgid "manager.setup.reviewPolicy"
 msgstr "Bedømmelsespolitik"
 
-msgid "manager.setup.reviewOptions.showEnsuringLink"
-msgstr ""
-"Indsæt link til \"Sikring af blind review\" på sider hvor forfattere og "
-"bedømmere uploader filer."
-
 msgid "manager.setup.reviewOptions.reviewerReminders"
 msgstr "Påmindelser om bedømmelse"
 
@@ -506,9 +501,6 @@ msgstr ""
 "Understøttelse af denne funktionalitet (som eventuelt ikke er muligt på alle "
 "servere) kan kræve yderligere konfiguration af serveren som angivet i "
 "dokumentationen til OMP."
-
-msgid "manager.setup.reviewOptions.blindReview"
-msgstr "Blind review"
 
 msgid "manager.setup.reviewOptions.automatedReminders"
 msgstr "Automatiske e-mail-påmindelser"
