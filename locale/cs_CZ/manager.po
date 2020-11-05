@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
-"PO-Revision-Date: 2020-11-05 06:50+0000\n"
-"Last-Translator: Jiří Dlouhý <jiri.dlouhy@czp.cuni.cz>\n"
+"PO-Revision-Date: 2020-11-06 10:50+0000\n"
+"Last-Translator: Radek Gomola <gomola@press.muni.cz>\n"
 "Language-Team: Czech <http://translate.pkp.sfu.ca/projects/omp/manager/cs_CZ/"
 ">\n"
 "Language: cs_CZ\n"
@@ -13,3 +13,9 @@ msgstr ""
 
 msgid "manager.setup.lists.success"
 msgstr "Tento seznam nastavení pro tento časopis byl aktualizován."
+
+msgid "manager.series.indexed"
+msgstr "Indexované"
+
+msgid "manager.series.open"
+msgstr "Otevřít příspěvky"
