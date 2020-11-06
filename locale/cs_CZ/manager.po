@@ -1,6 +1,6 @@
 msgid ""
 msgstr ""
-"PO-Revision-Date: 2020-11-06 10:50+0000\n"
+"PO-Revision-Date: 2020-11-07 03:36+0000\n"
 "Last-Translator: Radek Gomola <gomola@press.muni.cz>\n"
 "Language-Team: Czech <http://translate.pkp.sfu.ca/projects/omp/manager/cs_CZ/"
 ">\n"
@@ -19,3 +19,16 @@ msgstr "Indexované"
 
 msgid "manager.series.open"
 msgstr "Otevřít příspěvky"
+
+msgid "manager.languages.primaryLocaleInstructions"
+msgstr "Toto bude výchozí jazyk pro stránky vašeho nakladatelství."
+
+msgid "manager.languages.noneAvailable"
+msgstr ""
+"Promiňte, žádné další jazyky nejsou dostupné. Pokud chcete v nakladatelství "
+"používat další jazyky, kontaktujte svého administrátora stránek."
+
+msgid "manager.language.confirmDefaultSettingsOverwrite"
+msgstr ""
+"Toto nahradí všechna nastavení specifická pro danou lokalizaci v "
+"nakladatelství"
