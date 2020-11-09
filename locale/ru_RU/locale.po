@@ -1,6 +1,6 @@
 msgid ""
 msgstr ""
-"PO-Revision-Date: 2020-11-03 13:50+0000\n"
+"PO-Revision-Date: 2020-11-09 19:48+0000\n"
 "Last-Translator: Sergei Yukhimets <y_s_n@mail.ru>\n"
 "Language-Team: Russian <http://translate.pkp.sfu.ca/projects/omp/locale/ru/>"
 "\n"
@@ -18,13 +18,12 @@ msgstr "Раунд&nbsp;{$round}"
 msgid "monograph.audience"
 msgstr "Аудитория"
 
-#, fuzzy
 msgid "monograph.proofReadingDescription"
 msgstr ""
 "Верстальщик загружает сюда полностью готовые файлы, которые подготовлены для "
-"публикации. Используйте <em>Назначить аудитора</em>, чтобы определить "
-"авторов и других пользователей для корректуры гранок, с загрузкой "
-"откорректированных файлов и их одобрением перед публикацией."
+"публикации. Используйте <em>+Назначить</em>, чтобы определить авторов и "
+"других пользователей для корректуры гранок, с загрузкой откорректированных "
+"файлов и их одобрением перед публикацией."
 
 msgid "submission.pageProofs"
 msgstr "Страница гранок"
@@ -67,3 +66,174 @@ msgstr "Изображение Обложки"
 
 msgid "monograph.audience.success"
 msgstr "Детали аудитории сохранены."
+
+msgid "grid.catalogEntry.availableRepresentation.removeMessage"
+msgstr ""
+"<p>Этот формат будет <em> недоступен для читателей </em>. Любые загружаемые "
+"файлы или другие дистрибутивы больше не будут появляться в записи каталога "
+"книги.</p>"
+
+msgid "grid.catalogEntry.availableRepresentation.message"
+msgstr ""
+"<p>Сделайте этот формат <em>доступным для читателей</em>. Загружаемые файлы "
+"и любые другие дистрибутивы появятся в записи каталога книги.</p>"
+
+msgid "grid.catalogEntry.availableRepresentation.title"
+msgstr "Доступность формата"
+
+msgid "grid.catalogEntry.approvedRepresentation.removeMessage"
+msgstr "<p>Указывает, что метаданные для этого формата не были утверждены.</p>"
+
+msgid "grid.catalogEntry.approvedRepresentation.message"
+msgstr ""
+"<p>Утвердите метаданные для этого формата. Метаданные можно проверить на "
+"панели «Редактирование» для каждого формата.</p>"
+
+msgid "grid.catalogEntry.approvedRepresentation.title"
+msgstr "Утверждение формата"
+
+msgid "grid.catalogEntry.proof"
+msgstr "Корректура"
+
+msgid "grid.catalogEntry.isNotAvailable"
+msgstr "Не доступно"
+
+msgid "grid.catalogEntry.isAvailable"
+msgstr "Доступно"
+
+msgid "grid.catalogEntry.availability"
+msgstr "Доступность"
+
+msgid "grid.catalogEntry.publicationFormatRequired"
+msgstr "Формат публикации должен быть выбран."
+
+msgid "grid.catalogEntry.monographRequired"
+msgstr "Требуется идентификатор монографии."
+
+msgid "grid.catalogEntry.remoteURL"
+msgstr "URL удаленного контента"
+
+msgid "grid.catalogEntry.remotelyHostedContent"
+msgstr "Этот формат будет доступен на отдельном сайте"
+
+msgid "grid.catalogEntry.physicalFormat"
+msgstr "Физический формат"
+
+msgid "grid.catalogEntry.publicationFormatDetails"
+msgstr "Детали формата"
+
+msgid "grid.catalogEntry.validPriceRequired"
+msgstr "Требуется действительная цена."
+
+msgid "grid.catalogEntry.nameRequired"
+msgstr "Требуется имя."
+
+msgid "grid.catalogEntry.publicationFormatType"
+msgstr "Формат публикации"
+
+msgid "monograph.publicationFormat.openTab"
+msgstr "Откройте вкладку формата публикации."
+
+msgid "monograph.publicationFormat.formatDoesNotExist"
+msgstr ""
+"<p>Выбранный вами формат публикации больше не существует для этой "
+"монографии.</p>"
+
+msgid "monograph.publicationFormat.missingONIXFields"
+msgstr "Отсутствуют некоторые поля метаданных."
+
+msgid "monograph.publicationFormat.noCodesAssigned"
+msgstr "Отсутствует идентификационный код."
+
+msgid "monograph.publicationFormat.noMarketsAssigned"
+msgstr "Пропущены рынки и цены."
+
+msgid "monograph.publicationFormat.isApproved"
+msgstr "Включить метаданные этого типа издания в каталоге для этой книги."
+
+msgid "monograph.publicationFormat.taxType"
+msgstr "Тип налогообложения"
+
+msgid "monograph.publicationFormat.taxRate"
+msgstr "Процент налогообложения"
+
+msgid "monograph.publicationFormat.productRegion"
+msgstr "Район распространения продукции"
+
+msgid "monograph.publicationFormat.technicalProtection"
+msgstr "Цифровая техническая защита"
+
+msgid "monograph.publicationFormat.countryOfManufacture"
+msgstr "Страна производства"
+
+msgid "monograph.publicationFormat.productWidth"
+msgstr "Ширина"
+
+msgid "monograph.publicationFormat.productWeight"
+msgstr "Вес"
+
+msgid "monograph.publicationFormat.productThickness"
+msgstr "Толщина"
+
+msgid "monograph.publicationFormat.productHeight"
+msgstr "Высота"
+
+msgid "monograph.publicationFormat.productFileSize.override"
+msgstr "Ввести собственное значение размера файла?"
+
+msgid "monograph.publicationFormat.productFileSize"
+msgstr "Размер файла в Мб"
+
+msgid "monograph.publicationFormat.productDimensionsSeparator"
+msgstr " - x - "
+
+msgid "monograph.publicationFormat.productDimensions"
+msgstr "Физические размеры"
+
+msgid "monograph.publicationFormat.digitalInformation"
+msgstr "Цифровая информация"
+
+msgid "monograph.publicationFormat.returnInformation"
+msgstr "Индикатор возможности возврата"
+
+msgid "monograph.publicationFormat.productAvailability"
+msgstr "Наличие издания"
+
+msgid "monograph.publicationFormat.discountAmount"
+msgstr "Процент скидки, если применимо"
+
+msgid "monograph.publicationFormat.priceType"
+msgstr "Тип цены"
+
+msgid "monograph.publicationFormat.priceRequired"
+msgstr "Цена долюна быть указана."
+
+msgid "monograph.publicationFormat.price"
+msgstr "Цена"
+
+msgid "monograph.publicationFormat.productIdentifierType"
+msgstr "Идентификация издания"
+
+msgid "monograph.publicationFormat.productFormDetailCode"
+msgstr "Детали издания (не обязательно)"
+
+msgid "monograph.publicationFormat.productComposition"
+msgstr "Структура издания"
+
+msgid "monograph.publicationFormat.backMatterCount"
+msgstr "Сравочный аппарат книги"
+
+msgid "monograph.publicationFormat.frontMatterCount"
+msgstr "Титульные элементы книги"
+
+msgid "monograph.publicationFormat.pageCounts"
+msgstr "Число страниц"
+
+msgid "monograph.publicationFormat.imprint"
+msgstr "Выходные сведения (название бренда)"
+
+msgid "monograph.accessLogoOpen.altText"
+msgstr "Открытый доступ (Open Access)"
+
+msgid "monograph.task.addNote"
+msgstr "Добавить к задаче"
