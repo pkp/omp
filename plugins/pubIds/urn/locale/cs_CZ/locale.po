@@ -1,0 +1,243 @@
+msgid ""
+msgstr ""
+"PO-Revision-Date: 2020-11-05 09:46+0000\n"
+"Last-Translator: Radek Gomola <gomola@press.muni.cz>\n"
+"Language-Team: Czech <http://translate.pkp.sfu.ca/projects/omp/pubIds-urn/"
+"cs_CZ/>\n"
+"Language: cs_CZ\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=3; plural=(n==1) ? 0 : (n>=2 && n<=4) ? 1 : 2;\n"
+"X-Generator: Weblate 3.9.1\n"
+
+msgid "plugins.pubIds.urn.editor.preview.objects"
+msgstr "Položka"
+
+msgid "plugins.pubIds.urn.editor.preview.galleys"
+msgstr "Sazebnice: {$galleyLabel}"
+
+msgid "plugins.pubIds.urn.editor.preview.publication.none"
+msgstr "K této publikaci nebylo přiřazeno URN."
+
+msgid "plugins.pubIds.urn.editor.preview.publication"
+msgstr "URN pro tuto publikaci bude {$urn}."
+
+msgid "plugins.pubIds.urn.editor.missingPrefix"
+msgstr "URN musí začínat {$urnPrefix}."
+
+msgid "plugins.pubIds.urn.editor.missingParts"
+msgstr ""
+"Nelze vygenerovat URN, protože v jedné nebo více částech vzoru URN chybí "
+"data. Možná budete muset publikaci přiřadit problém, nastavit ID vydavatele "
+"nebo zadat čísla stránek."
+
+msgid "plugins.pubIds.urn.editor.missingIssue"
+msgstr ""
+"Dokud nebude tato publikace přiřazena k číslu, nemůžete vygenerovat URN."
+
+msgid "plugins.pubIds.urn.editor.urn.assignUrn"
+msgstr "Přidělit"
+
+msgid "plugins.pubIds.urn.editor.urn.description"
+msgstr "URN musí začínat {$prefix}."
+
+msgid "plugins.pubIds.urn.form.checkNoRequired"
+msgstr "Kontrolní číslo chybí."
+
+msgid "plugins.pubIds.urn.editor.assignURN.assigned"
+msgstr "URN {$pubId} bylo přiřazeno."
+
+msgid "plugins.pubIds.urn.editor.assignURN.pattern"
+msgstr "URN {$pubId} nelze přiřadit, protože obsahuje neplatný vzor."
+
+msgid "plugins.pubIds.urn.editor.assignURN.emptySuffix"
+msgstr "URN nemůže být přiděleno, protože chybí vlastní suffix."
+
+msgid "plugins.pubIds.urn.editor.assignURN"
+msgstr "Přiřadit URN {$pubId} tomuto {$pubObjectType}"
+
+msgid "plugins.pubIds.urn.editor.addCheckNo"
+msgstr "Přidat kontrolní číslo"
+
+msgid "plugins.pubIds.urn.editor.clearObjectsURN.confirm"
+msgstr "Jste si jisti, že chcete smazat existující URN?"
+
+msgid "plugins.pubIds.urn.editor.clearObjectsURN"
+msgstr "Smazat URN"
+
+msgid "plugins.pubIds.urn.editor.urnSuffixCustomIdentifierNotUnique"
+msgstr ""
+"Uvedený suffix URN se již používá pro další publikovanou položku. Pro každou "
+"položku zadejte jedinečný suffix URN."
+
+msgid "plugins.pubIds.urn.editor.assigned"
+msgstr "Tomuto {$pubObjectType} bylo přiděleno URN."
+
+msgid "plugins.pubIds.urn.editor.canBeAssigned"
+msgstr ""
+"To co vidíte, je náhled URN. Vyberte zaškrtávací políčko a uložte formulář "
+"pro přiřazení URN."
+
+msgid "plugins.pubIds.urn.editor.patternNotResolved"
+msgstr "URN nemůže být přiděleno, protože obsahuje neplatný vzorec."
+
+msgid "plugins.pubIds.urn.editor.customSuffixMissing"
+msgstr "URN nemůže být přiděleno, protože chybí vlastní suffix."
+
+msgid "plugins.pubIds.urn.editor.urnObjectTypeSubmissionFile"
+msgstr "soubor"
+
+msgid "plugins.pubIds.urn.editor.urnObjectTypeRepresentation"
+msgstr "publikační formát"
+
+msgid "plugins.pubIds.urn.editor.urnObjectTypeChapter"
+msgstr "kapitola"
+
+msgid "plugins.pubIds.urn.editor.urnObjectTypeSubmission"
+msgstr "monografie"
+
+msgid "plugins.pubIds.urn.editor.urn"
+msgstr "URN"
+
+msgid "plugins.pubIds.urn.manager.settings.urnReassign.confirm"
+msgstr "Jste si jisti, že chcete smazat všechny existující URN?"
+
+msgid "plugins.pubIds.urn.manager.settings.urnReassign.description"
+msgstr ""
+"Změníte-li konfiguraci URN, URN, které již byly přiřazeny, nebudou "
+"ovlivněny. Jakmile je konfigurace URN uložena, použijte toto tlačítko pro "
+"vymazání všech stávajících URN tak, aby se nová nastavení projevila i u "
+"stávajících objektů."
+
+msgid "plugins.pubIds.urn.manager.settings.urnReassign"
+msgstr "Znovu přidělit URN"
+
+msgid "plugins.pubIds.urn.manager.settings.form.urnResolverRequired"
+msgstr "Vložte, prosím, URL adresu překladače."
+
+msgid "plugins.pubIds.urn.manager.settings.urnResolver.description"
+msgstr "(např.. http://nbn-resolving.de/)"
+
+msgid "plugins.pubIds.urn.manager.settings.urnResolver"
+msgstr "Webová adresa překladače"
+
+msgid "plugins.pubIds.urn.manager.settings.namespace.description"
+msgstr ""
+"Pro registraci (obvykle u Deutsche Nationalbibliothek) je obvykle potřebný "
+"jmenný prostor pro trvalý identifikátor."
+
+msgid "plugins.pubIds.urn.manager.settings.namespace.choose"
+msgstr "Zvolte"
+
+msgid "plugins.pubIds.urn.manager.settings.namespace"
+msgstr "Jmenný prostor"
+
+msgid "plugins.pubIds.urn.manager.settings.checkNo.label"
+msgstr ""
+"Kontrolní číslo bude automaticky vypočteno a přidáno na konec, jako poslední "
+"číslice URN."
+
+msgid "plugins.pubIds.urn.manager.settings.checkNo"
+msgstr "Kontrolní číslo"
+
+msgid "plugins.pubIds.urn.manager.settings.urnSubmissionFileSuffixPatternRequired"
+msgstr "Zadejte, prosím, vzor URN pro soubory."
+
+msgid "plugins.pubIds.urn.manager.settings.urnRepresentationSuffixPatternRequired"
+msgstr "Zadejte, prosím, vzor URN pro publikační formáty."
+
+msgid "plugins.pubIds.urn.manager.settings.urnChapterSuffixPatternRequired"
+msgstr "Zadejte, prosím, vzor URN pro kapitoly."
+
+msgid "plugins.pubIds.urn.manager.settings.urnPublicationSuffixPatternRequired"
+msgstr "Zadejte, prosím, vzor URN pro monografie."
+
+msgid "plugins.pubIds.urn.manager.settings.urnSuffixCustomIdentifier"
+msgstr ""
+"Pro každou publikovanou položku zadejte individuální suffix URN. Na stránce "
+"metadat dat každé položky naleznete vstupní pole pro zadání přípony URN."
+
+msgid "plugins.pubIds.urn.manager.settings.urnSuffixDefault.description"
+msgstr ""
+"%p.%m pro monografie<br />%p.%m.c%c pro kapitoly<br />%p.%m.%f pro "
+"publikační formáty<br />%p.%m.%f.%s pro soubory."
+
+msgid "plugins.pubIds.urn.manager.settings.urnSuffixDefault"
+msgstr "Použít výchozí vzory."
+
+msgid "plugins.pubIds.urn.manager.settings.urnSuffixPattern.files"
+msgstr "pro soubory"
+
+msgid "plugins.pubIds.urn.manager.settings.urnSuffixPattern.representations"
+msgstr "pro publikační formáty"
+
+msgid "plugins.pubIds.urn.manager.settings.urnSuffixPattern.chapters"
+msgstr "pro kapitoly"
+
+msgid "plugins.pubIds.urn.manager.settings.urnSuffixPattern.submissions"
+msgstr "pro monografie"
+
+msgid "plugins.pubIds.urn.manager.settings.urnSuffixPattern.example"
+msgstr "Například, press%ppub%r vytvoří URN sufix \"pressESPpub100\"."
+
+msgid "plugins.pubIds.urn.manager.settings.urnSuffixPattern"
+msgstr ""
+"Pro generování URN suffixu použijte následující vzor. Použijte %p pro "
+"iniciály nakladatelsví, %m pro ID monografie, %c pro ID kapitoly, %f pro ID "
+"publikačního formátu, %s pro ID souboru a %x pro \"Vlastní identifikátor\"."
+
+msgid "plugins.pubIds.urn.manager.settings.urnSuffix.description"
+msgstr ""
+"URN suffix může mít jakoukoli formu, ale musí být jedinečný u všech "
+"publikačních objektů se stejným URN prefixem:"
+
+msgid "plugins.pubIds.urn.manager.settings.urnSuffix"
+msgstr "Suffix URN"
+
+msgid "plugins.pubIds.urn.manager.settings.form.urnPrefixPattern"
+msgstr ""
+"Vzor URN prefixu musí odpovídat formátu \"urn:\"&lt;NID&gt;\":\"&lt;NSS&gt;."
+
+msgid "plugins.pubIds.urn.manager.settings.urnPrefix.description"
+msgstr ""
+"Prefix URN je pevná, nikdy se neměnící část URN (např. \"urn:nbn:de:0000-\")."
+
+msgid "plugins.pubIds.urn.manager.settings.urnPrefix"
+msgstr "Prefix URN"
+
+msgid "plugins.pubIds.urn.manager.settings.enableSubmissionFileURN"
+msgstr "Soubory"
+
+msgid "plugins.pubIds.urn.manager.settings.enableRepresentationURN"
+msgstr "Publikační formáty"
+
+msgid "plugins.pubIds.urn.manager.settings.enableChapterURN"
+msgstr "Kapitoly"
+
+msgid "plugins.pubIds.urn.manager.settings.enablePublicationURN"
+msgstr "Monografie"
+
+msgid "plugins.pubIds.urn.manager.settings.explainURNs"
+msgstr ""
+"Zvolte, prosím, objekty k publikování, které budou mít přiřazena Uniform "
+"Resource Names (URN):"
+
+msgid "plugins.pubIds.urn.manager.settings.urnObjectsRequired"
+msgstr "Zvolte, prosím objekty, které mají mít přiřazeno URN."
+
+msgid "plugins.pubIds.urn.manager.settings.urnObjects"
+msgstr "Obsah nakladatelství"
+
+msgid "plugins.pubIds.urn.manager.settings.description"
+msgstr ""
+"Nakonfigurujte, prosím URN plugin, aby bylo možné spravovat a používat URN v "
+"rámci OMP:"
+
+msgid "plugins.pubIds.urn.description"
+msgstr ""
+"Tento plugin umožňuje přiřazení jednotných názvů zdrojů (Uniform Resource "
+"Names) k monografiím, kapitolám, publikačním formátům a souborům v OMP."
+
+msgid "plugins.pubIds.urn.displayName"
+msgstr "URN"

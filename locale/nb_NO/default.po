@@ -1,0 +1,183 @@
+msgid ""
+msgstr ""
+"PO-Revision-Date: 2020-11-05 09:46+0000\n"
+"Last-Translator: Eirik Hanssen <eirikh@oslomet.no>\n"
+"Language-Team: Norwegian Bokmål <http://translate.pkp.sfu.ca/projects/omp/"
+"default/nb_NO/>\n"
+"Language: nb_NO\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: Weblate 3.9.1\n"
+
+msgid "default.groups.abbrev.externalReviewer"
+msgstr "EF"
+
+msgid "default.groups.plural.externalReviewer"
+msgstr "Eksterne fagfeller"
+
+msgid "default.groups.name.externalReviewer"
+msgstr "Ekstern fagfelle"
+
+msgid "default.contextSettings.forLibrarians"
+msgstr ""
+"Vi oppfordrer forskningsbibliotekarer til å katalogisere dette forlaget på "
+"listen over bibliotekets beholdning av elektroniske utgivere. Denne "
+"utgiverens open source-publiseringssystem er også egnet for biblioteker, som "
+"kan være vert for fakultetsmedlemmene som deretter kan bruke det til "
+"utgiverne de hjelper til med å redigere (se <a href = \"http://pkp.sfu.ca/"
+"omp\">Open Monograph Press</a>)."
+
+msgid "default.contextSettings.forAuthors"
+msgstr ""
+"Er du interessert i å sende inn en innlevering til denne utgiveren? Vi "
+"anbefaler at du går gjennom siden <a href=\"{$indexUrl}{$contextPath}/about\""
+"> Om utgiveren </a>, der du finner retningslinjene for utgiverens seksjoner, "
+"samt <a href = \"{$indexUrl}/{$contextPath}/about/submissions#"
+"authorGuidelines\">Retningslinjer for forfattere</a>. Forfattere må <a href="
+"\"{$indexUrl}/{$contextPath}/user/register\"> registrere seg </a> for "
+"utgiveren før de kan sende inn en innlevering. Hvis de allerede er logget "
+"på, kan de ganske enkelt <a href=\"{$indexUrl}/index/login\"> logge på </a> "
+"og begynne 5-trinnsprosessen."
+
+msgid "default.contextSettings.forReaders"
+msgstr ""
+"Vi oppfordrer leserne til å registrere seg for nyhetstjenesten vedrørende "
+"publikasjoner fra denne utgiveren. Bruk <a href=\"{$indexUrl}/{$contextPath}/"
+"user/register\"> Registrer</a>-lenken øverst på utgiverens nettsted. Denne "
+"registreringen betyr at leseren mottar innholdsfortegnelsen fra hver nye "
+"monografi på e-post. Denne listen lar også utgiveren hevde å ha et visst "
+"nivå av støtte eller et visst antall lesere. Se forlagets <a href=\""
+"{$indexUrl}/{$contextPath}/about/submissions#privacyStatement\"> "
+"personvernerklæring </a>, som garanterer leserne at navn og e-postadresser "
+"ikke blir brukt for andre formål."
+
+msgid "default.contextSettings.emailSignature"
+msgstr ""
+"<br/>\n"
+"________________________________________________________________________<br/>"
+"\n"
+"<a href=\"{$ldelim}$contextUrl{$rdelim}\">{$ldelim}$contextName{$rdelim}</a>"
+
+msgid "default.contextSettings.openAccessPolicy"
+msgstr ""
+"Denne utgiveren gir øyeblikkelig åpen tilgang til innholdet sitt basert på "
+"prinsippet om å gjøre forskning fritt tilgjengelig for publikum for å støtte "
+"en større global kunnskapsutveksling."
+
+msgid "default.contextSettings.privacyStatement"
+msgstr ""
+"<p>Navn og e-postadresser som er lagt ut på denne utgiverens nettsted, vil "
+"kun brukes til de formål som er oppgitt av utgiveren, og vil ikke bli gjort "
+"tilgjengelig for noe annet formål eller for noen annen part. </p>"
+
+msgid "default.contextSettings.checklist.bibliographicRequirements"
+msgstr ""
+"Teksten oppfyller de stilistiske og bibliografiske kravene som er angitt i <"
+"a href=\"{$indexUrl}/{$contextPath}/about/submissions#authorGuidelines\" "
+"target=\"_blank\"> Forfatterveiledninger </a> under 'Om utgiveren '."
+
+msgid "default.contextSettings.checklist.submissionAppearance"
+msgstr ""
+"Teksten er skrevet uten ekstra linjeavstand; bruker en 12-punkts font; "
+"bruker kursiv i stedet for å understreke (unntatt URL-er); og alle "
+"illustrasjoner, figurer og tabeller er plassert i teksten på de aktuelle "
+"stedene i stedet for på slutten."
+
+msgid "default.contextSettings.checklist.addressesLinked"
+msgstr "Der det er tilgjengelig, oppgis URL-er til referansene."
+
+msgid "default.contextSettings.checklist.fileFormat"
+msgstr ""
+"Innleveringsfilen er i Microsoft Word, RTF eller OpenDocument filformat."
+
+msgid "default.contextSettings.checklist.notPreviouslyPublished"
+msgstr ""
+"Innleveringen er ikke tidligere publisert, og den er heller ikke sendt til "
+"gjennomgang til en annen utgiver (eller så er redegjørelse gitt i "
+"kommentarfeltet til redaktøren)."
+
+msgid "default.groups.abbrev.volumeEditor"
+msgstr "VR"
+
+msgid "default.groups.plural.volumeEditor"
+msgstr "Volumredaktører"
+
+msgid "default.groups.name.volumeEditor"
+msgstr "Volumredaktør"
+
+msgid "default.groups.abbrev.chapterAuthor"
+msgstr "KF"
+
+msgid "default.groups.plural.chapterAuthor"
+msgstr "Kapittelforfattere"
+
+msgid "default.groups.name.chapterAuthor"
+msgstr "Kapittelforfatter"
+
+msgid "default.groups.abbrev.sectionEditor"
+msgstr "SRed"
+
+msgid "default.groups.plural.sectionEditor"
+msgstr "Serieredaktører"
+
+msgid "default.groups.name.sectionEditor"
+msgstr "Serieredaktør"
+
+msgid "default.groups.abbrev.editor"
+msgstr "Red"
+
+msgid "default.groups.plural.editor"
+msgstr "Redaktører"
+
+msgid "default.groups.name.editor"
+msgstr "Redaktør"
+
+msgid "default.groups.abbrev.manager"
+msgstr "RL"
+
+msgid "default.groups.plural.manager"
+msgstr "Redaksjonsledere"
+
+msgid "default.groups.name.manager"
+msgstr "Redaksjonsleder"
+
+msgid "default.genres.other"
+msgstr "Andre"
+
+msgid "default.genres.illustration"
+msgstr "Illustrasjon"
+
+msgid "default.genres.photo"
+msgstr "Foto"
+
+msgid "default.genres.figure"
+msgstr "Figur"
+
+msgid "default.genres.table"
+msgstr "Tabell"
+
+msgid "default.genres.prospectus"
+msgstr "Prospekt"
+
+msgid "default.genres.preface"
+msgstr "Forord"
+
+msgid "default.genres.index"
+msgstr "Indeks"
+
+msgid "default.genres.glossary"
+msgstr "Ordliste"
+
+msgid "default.genres.chapter"
+msgstr "Kapittelmanuskript"
+
+msgid "default.genres.manuscript"
+msgstr "Bokmanuskript"
+
+msgid "default.genres.bibliography"
+msgstr "Bibliografi"
+
+msgid "default.genres.appendix"
+msgstr "Appendiks"

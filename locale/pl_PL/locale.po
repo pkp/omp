@@ -1,6 +1,6 @@
 msgid ""
 msgstr ""
-"PO-Revision-Date: 2020-07-17 11:47+0000\n"
+"PO-Revision-Date: 2020-11-11 12:51+0000\n"
 "Last-Translator: rl <biuro@fimagis.pl>\n"
 "Language-Team: Polish <http://translate.pkp.sfu.ca/projects/omp/locale/pl_PL/"
 ">\n"
@@ -1593,3 +1593,11 @@ msgstr "Zmień wyróżnioną pozycję"
 
 msgid "grid.content.spotlights.locationRequired"
 msgstr "Proszę wybierz lokalizację dla wyróżnionej pozycji."
+
+msgid "site.noPresses"
+msgstr "Brak dostępnych wydawnictw."
+
+msgid "user.register.form.privacyConsentThisContext"
+msgstr ""
+"Wyrażam zgodę na przechowywanie i przetwarzanie moich danych na potrzeby "
+"tego wydawnictwa <a href=\"{$privacyUrl}\" target=\"_blank\"></a>."
