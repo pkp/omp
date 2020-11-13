@@ -1,0 +1,214 @@
+msgid ""
+msgstr ""
+"PO-Revision-Date: 2020-11-05 09:46+0000\n"
+"Last-Translator: Radek Gomola <gomola@press.muni.cz>\n"
+"Language-Team: Czech <http://translate.pkp.sfu.ca/projects/omp/pubIds-doi/"
+"cs_CZ/>\n"
+"Language: cs_CZ\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=3; plural=(n==1) ? 0 : (n>=2 && n<=4) ? 1 : 2;\n"
+"X-Generator: Weblate 3.9.1\n"
+
+msgid "plugins.pubIds.doi.editor.preview.objects"
+msgstr "Položka"
+
+msgid "plugins.pubIds.doi.editor.preview.files"
+msgstr "Soubor: {$title}"
+
+msgid "plugins.pubIds.doi.editor.preview.publicationFormats"
+msgstr "Publikační formát: {$title}"
+
+msgid "plugins.pubIds.doi.editor.preview.chapters"
+msgstr "Kapitola: {$title}"
+
+msgid "plugins.pubIds.doi.editor.preview.publication.none"
+msgstr "Do této publikace nebyl přiřazen DOI."
+
+msgid "plugins.pubIds.doi.editor.preview.publication"
+msgstr "DOI pro tuto publikaci bude {$doi}."
+
+msgid "plugins.pubIds.doi.editor.missingPrefix"
+msgstr "DOI musí začínat {$doiPrefix}."
+
+msgid "plugins.pubIds.doi.editor.assignDoi.assigned"
+msgstr "DOI  {$pubId} bylo přiřazeno."
+
+msgid "plugins.pubIds.doi.editor.assignDoi.pattern"
+msgstr "DOI {$pubId} nelze přiřadit, protože obsahuje neplatný vzor."
+
+msgid "plugins.pubIds.doi.editor.assignDoi.emptySuffix"
+msgstr "DOI nelze přiřadit, protože chybí vlastní suffix."
+
+msgid "plugins.pubIds.doi.editor.assignDoi"
+msgstr "Přiřadit {$pubId} tomuto {$pubObjectType}"
+
+msgid "plugins.pubIds.doi.editor.clearObjectsDoi.confirm"
+msgstr "Jste si jisti, že chcete smazat existující DOI?"
+
+msgid "plugins.pubIds.doi.editor.clearObjectsDoi"
+msgstr "Vymazat DOI"
+
+msgid "plugins.pubIds.doi.editor.doiSuffixCustomIdentifierNotUnique"
+msgstr ""
+"Uvedený suffix DOI se již používá pro další publikovanou položku. Pro každou "
+"položku zadejte jedinečný suffix DOI."
+
+msgid "plugins.pubIds.doi.editor.assigned"
+msgstr "Tomuto {$pubObjectType} bylo přiděleno DOI."
+
+msgid "plugins.pubIds.doi.editor.canBeAssigned"
+msgstr ""
+"To co vidíte, je náhled DOI. Vyberte zaškrtávací políčko a uložte formulář "
+"pro přiřazení DOI."
+
+msgid "plugins.pubIds.doi.editor.patternNotResolved"
+msgstr "DOI nemůže být přiděleno, protože obsahuje neplatný vzorec."
+
+msgid "plugins.pubIds.doi.editor.missingParts"
+msgstr ""
+"Není možné vygenerovat DOI, protože jedné nebo více součástem ze vzoru pro "
+"sufix DOI chybí data."
+
+msgid "plugins.pubIds.doi.editor.customSuffixMissing"
+msgstr "DOI nelze přiřadit, protože chybí vlastní suffix."
+
+msgid "plugins.pubIds.doi.editor.doiObjectTypeSubmissionFile"
+msgstr "soubor"
+
+msgid "plugins.pubIds.doi.editor.doiObjectTypeRepresentation"
+msgstr "publikační formát"
+
+msgid "plugins.pubIds.doi.editor.doiObjectTypeChapter"
+msgstr "kapitola"
+
+msgid "plugins.pubIds.doi.editor.doiObjectTypeSubmission"
+msgstr "monografie"
+
+msgid "plugins.pubIds.doi.editor.doi.assignDoi"
+msgstr "Přidělit"
+
+msgid "plugins.pubIds.doi.editor.doi.description"
+msgstr "DOI musí začínat {$prefix}."
+
+msgid "plugins.pubIds.doi.editor.doi"
+msgstr "DOI"
+
+msgid "plugins.pubIds.doi.manager.settings.doiReassign.confirm"
+msgstr "Jste si jisti, že chcete smazat všechny existující identifikátory DOI?"
+
+msgid "plugins.pubIds.doi.manager.settings.doiReassign.description"
+msgstr ""
+"Změníte-li konfiguraci DOI, DOI, které již byly přiřazeny, nebudou "
+"ovlivněny. Jakmile je konfigurace DOI uložena, použijte toto tlačítko pro "
+"vymazání všech stávajících DOI tak, aby se nová nastavení projevila i u "
+"stávajících objektů."
+
+msgid "plugins.pubIds.doi.manager.settings.doiReassign"
+msgstr "Znovu přidělit DOI"
+
+msgid "plugins.pubIds.doi.manager.settings.doiSubmissionFileSuffixPatternRequired"
+msgstr "Zadejte, prosím, vzor sufixu DOI pro soubory."
+
+msgid "plugins.pubIds.doi.manager.settings.doiRepresentationSuffixPatternRequired"
+msgstr "Zadejte, prosím, vzor sufixu DOI pro publikační formáty."
+
+msgid "plugins.pubIds.doi.manager.settings.doiChapterSuffixPatternRequired"
+msgstr "Zadejte, prosím, vzor sufixu DOI pro kapitoly."
+
+msgid "plugins.pubIds.doi.manager.settings.doiPublicationSuffixPatternRequired"
+msgstr "Zadejte, prosím, vzor sufixu DOI pro monografie."
+
+msgid "plugins.pubIds.doi.manager.settings.doiSuffixCustomIdentifier"
+msgstr ""
+"Pro každou publikovanou položku zadejte individuální suffix DOI. Na stránce "
+"metadat dat každé položky naleznete vstupní pole pro zadání přípony DOI."
+
+msgid "plugins.pubIds.doi.manager.settings.doiSuffixDefault.description"
+msgstr ""
+"%p.%m pro monografie<br />%p.%m.c%c pro kapitoly<br />%p.%m.%f pro "
+"publikační formáty<br />%p.%m.%f.%s pro soubory."
+
+msgid "plugins.pubIds.doi.manager.settings.doiSuffixDefault"
+msgstr "Použít výchozí vzor."
+
+msgid "plugins.pubIds.doi.manager.settings.doiSuffixPattern.files"
+msgstr "pro soubory"
+
+msgid "plugins.pubIds.doi.manager.settings.doiSuffixPattern.representations"
+msgstr "pro publikační formáty"
+
+msgid "plugins.pubIds.doi.manager.settings.doiSuffixPattern.chapters"
+msgstr "pro kapitoly"
+
+msgid "plugins.pubIds.doi.manager.settings.doiSuffixPattern.submissions"
+msgstr "pro monografie"
+
+msgid "plugins.pubIds.doi.manager.settings.doiSuffixPattern.example"
+msgstr "Například, press%ppub%r vytvoří DOI ve tvaru 10.1234/pressESPpub100"
+
+msgid "plugins.pubIds.doi.manager.settings.doiSuffixPattern"
+msgstr ""
+"Pro generování DOI suffixu použijte následující vzor. Použijte %p pro "
+"iniciály nakladatelsví, %m pro ID monografie, %c pro ID kapitoly, %f pro ID "
+"publikačního formátu, %s pro ID souboru a %x pro \"Vlastní identifikátor\"."
+
+msgid "plugins.pubIds.doi.manager.settings.doiSuffix.description"
+msgstr ""
+"Suffix DOI může mít jakoukoli formu, ale musí být jedinečný mezi všemi "
+"publikovanými objekty se stejným prefixem DOI:"
+
+msgid "plugins.pubIds.doi.manager.settings.doiSuffix"
+msgstr "Suffix DOI"
+
+msgid "plugins.pubIds.doi.manager.settings.doiPrefixPattern"
+msgstr "Prefix DOI je povinný a musí být ve formátu 10.xxxx."
+
+msgid "plugins.pubIds.doi.manager.settings.doiPrefix.description"
+msgstr ""
+"Prefix DOI je přidělován registračními agenturami (např. <a href=\""
+"http://www.crossref.org\" target=\"_new\">CrossRef</a>) a je ve formátu "
+"10.xxxx (např. 10.1234):"
+
+msgid "plugins.pubIds.doi.manager.settings.doiPrefix"
+msgstr "Prefix DOI"
+
+msgid "plugins.pubIds.doi.manager.settings.enableSubmissionFileDoi"
+msgstr "Soubory"
+
+msgid "plugins.pubIds.doi.manager.settings.enableRepresentationDoi"
+msgstr "Publikační formáty"
+
+msgid "plugins.pubIds.doi.manager.settings.enableChapterDoi"
+msgstr "Kapitoly"
+
+msgid "plugins.pubIds.doi.manager.settings.enablePublicationDoi"
+msgstr "Monografie"
+
+msgid "plugins.pubIds.doi.manager.settings.explainDois"
+msgstr ""
+"Zvolte, prosím, publikační objekty, které mají mít přiděleny Digital Object "
+"Identifiers (DOI):"
+
+msgid "plugins.pubIds.doi.manager.settings.doiObjectsRequired"
+msgstr "Zvolte, prosím, které objekty mají mít přiděleno DOI."
+
+msgid "plugins.pubIds.doi.manager.settings.doiObjects"
+msgstr "Obsah nakladatelství"
+
+msgid "plugins.pubIds.doi.manager.settings.description"
+msgstr ""
+"Naonfigurujte, prosím, plugin DOI, abyste mohli spravovat a používat DOI v "
+"OMP:"
+
+msgid "plugins.pubIds.doi.readerDisplayName"
+msgstr "DOI:"
+
+msgid "plugins.pubIds.doi.description"
+msgstr ""
+"Tento plugin umožňuje přiřazení identifikátorů digitálních objektů DOI k "
+"monografiím, kapitolám, publikačním formátům a souborům v OMP."
+
+msgid "plugins.pubIds.doi.displayName"
+msgstr "DOI"
