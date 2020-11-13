@@ -21,15 +21,8 @@
 			<input name="query" value="{$searchQuery|escape}" type="search" aria-label="{translate|escape key="common.searchQuery"}">
 		{/block}
 
-		<button type="submit">
+		<button class="cmp_button" type="submit">
 			{translate key="common.search"}
 		</button>
-		<div class="search_controls" aria-hidden="true">
-			<a href="{url page="search" op="search"}" class="headerSearchPrompt search_prompt" aria-hidden="true">
-				{translate key="common.search"}
-			</a>
-			<a href="#" class="search_cancel headerSearchCancel" aria-hidden="true"></a>
-			<span class="search_loading" aria-hidden="true"></span>
-		</div>
 	</form>
 {/if}

@@ -27,7 +27,7 @@
 
 	{* No published titles *}
 	{elseif $results->getCount() == 0}
-		<div class="search_results">
+		<div class="search_results" role="status">
 			{translate key="catalog.noTitlesSearch" searchQuery=$searchQuery|escape}
 			<a href="#search-form">
 				{translate key="search.searchAgain"}
@@ -36,7 +36,7 @@
 
 	{* Monograph List *}
 	{else}
-		<div class="search_results">
+		<div class="search_results" role="status">
 			{if $results->getCount() > 1}
 				{translate key="catalog.foundTitlesSearch" searchQuery=$searchQuery|escape number=$results->getCount()}
 			{else}
