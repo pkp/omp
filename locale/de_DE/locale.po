@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2019-09-30T06:23:43-07:00\n"
-"PO-Revision-Date: 2020-11-13 13:52+0000\n"
+"PO-Revision-Date: 2020-11-13 14:49+0000\n"
 "Last-Translator: Gabriele Höfler <gabriele.hoefler@univie.ac.at>\n"
 "Language-Team: German <http://translate.pkp.sfu.ca/projects/omp/locale/de/>\n"
 "Language: de_DE\n"
@@ -1411,3 +1411,26 @@ msgstr "Zugewiesene Redakteur/innen"
 
 msgid "monograph.audience.success"
 msgstr "Die Angaben zur Zielgruppe wurden aktualisiert."
+
+msgid "catalog.coverImageTitle"
+msgstr "Umschlagbild"
+
+msgid "user.authorization.invalidPublishedSubmission"
+msgstr "Die angegbene veröffentlichte Einreichung ist ungültig."
+
+msgid "about.onlineSubmissions.viewSubmissions"
+msgstr "ausständige Einreichungen einsehen"
+
+msgid "about.onlineSubmissions.newSubmission"
+msgstr "Eine neue Einreichung anlegen"
+
+msgid "about.onlineSubmissions.submissionActions"
+msgstr "{$newSubmission} oder {$viewSubmissions}."
+
+msgid "user.register.otherContextRoles"
+msgstr "Die folgenden Rollen anfragen."
+
+msgid "user.reviewerPrompt.optin"
+msgstr ""
+"Ja, ich möchte Anfragen zugeschickt bekommen, wenn Reviews zu Einreichungen "
+"dieses Verlag ausständig sind."
