@@ -87,9 +87,6 @@ msgstr "Alle exportieren"
 msgid "plugins.importexport.users.export.errorsOccurred"
 msgstr "Während des Exports sind Fehler aufgetreten"
 
-msgid "plugins.importexport.users.export.couldNotWriteFile"
-msgstr "Konnte in Datei \"{$fileName}\" nicht schreiben."
-
 msgid "plugins.importexport.users.importComplete"
 msgstr "Der Import wurde erfolgreich beendet. Noch nicht im System existierende Benutzer/innen wurden mit Benutzernamen und E-Mail-Adresse und mitsamt ihren Rollen importiert."
 

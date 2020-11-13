@@ -440,7 +440,7 @@ class PublicationFormatGridHandler extends CategoryGridHandler {
 		$representation = $this->getAuthorizedContextObject(ASSOC_TYPE_REPRESENTATION);
 
 		import('controllers.grid.files.proof.form.ApprovedProofForm');
-		$approvedProofForm = new ApprovedProofForm($submission, $representation, $request->getUserVar('fileId'));
+		$approvedProofForm = new ApprovedProofForm($submission, $representation, $request->getUserVar('submissionFileId'));
 		$approvedProofForm->initData();
 
 		return new JSONMessage(true, $approvedProofForm->fetch($request));
@@ -457,7 +457,7 @@ class PublicationFormatGridHandler extends CategoryGridHandler {
 		$representation = $this->getAuthorizedContextObject(ASSOC_TYPE_REPRESENTATION);
 
 		import('controllers.grid.files.proof.form.ApprovedProofForm');
-		$approvedProofForm = new ApprovedProofForm($submission, $representation, $request->getUserVar('fileId'));
+		$approvedProofForm = new ApprovedProofForm($submission, $representation, $request->getUserVar('submissionFileId'));
 		$approvedProofForm->readInputData();
 
 		if ($approvedProofForm->validate()) {
@@ -518,19 +518,16 @@ class PublicationFormatGridHandler extends CategoryGridHandler {
 	 */
 	function setProofFileCompletion($args, $request) {
 		$submission = $this->getSubmission();
-		$submissionFileDao = DAORegistry::getDAO('SubmissionFileDAO'); /* @var $submissionFileDao SubmissionFileDAO */
 		import('lib.pkp.classes.submission.SubmissionFile'); // Constants
-		$submissionFile = $submissionFileDao->getRevision(
-			$request->getUserVar('fileId'),
-			$request->getUserVar('revision'),
-			SUBMISSION_FILE_PROOF,
-			$submission->getId()
-		);
+		$submissionFile = Services::get('submissionFile')->get($request->getUserVar('submissionFileId'));
+		if ($submissionFile->getData('fileStage') !== SUBMISSION_FILE_PROOF || $submissionFile->getData('submissionId') != $submission->getId()) {
+			return new JSONMessage(false);
+		}
 		$confirmationText = __('editor.submission.proofreading.confirmRemoveCompletion');
 		if ($request->getUserVar('approval')) {
 			$confirmationText = __('editor.submission.proofreading.confirmCompletion');
 		}
-		if ($submissionFile && $submissionFile->getAssocType()==ASSOC_TYPE_REPRESENTATION) {
+		if ($submissionFile && $submissionFile->getData('assocType')==ASSOC_TYPE_REPRESENTATION) {
 			import('lib.pkp.controllers.grid.pubIds.form.PKPAssignPublicIdentifiersForm');
 			$formTemplate = $this->getAssignPublicIdentifiersFormTemplate();
 			$assignPublicIdentifiersForm = new PKPAssignPublicIdentifiersForm($formTemplate, $submissionFile, $request->getUserVar('approval'), $confirmationText);
@@ -545,14 +542,14 @@ class PublicationFormatGridHandler extends CategoryGridHandler {
 				$assignPublicIdentifiersForm->execute();
 			}
 			// Update the approval flag
-			$submissionFile->setViewable($request->getUserVar('approval')?1:0);
-			$submissionFileDao->updateObject($submissionFile);
+			$params = ['viewable' => (bool) $request->getUserVar('approval')];
+			$submissionFile = Services::get('submissionFile')->edit($submissionFile, $params, $request);
 
 			// Log the event
 			import('lib.pkp.classes.log.SubmissionFileLog');
 			import('lib.pkp.classes.log.SubmissionFileEventLogEntry'); // constants
 			$user = $request->getUser();
-			SubmissionFileLog::logEvent($request, $submissionFile, SUBMISSION_LOG_FILE_SIGNOFF_SIGNOFF, 'submission.event.signoffSignoff', array('file' => $submissionFile->getOriginalFileName(), 'name' => $user->getFullName(), 'username' => $user->getUsername()));
+			SubmissionFileLog::logEvent($request, $submissionFile, SUBMISSION_LOG_FILE_SIGNOFF_SIGNOFF, 'submission.event.signoffSignoff', array('file' => $submissionFile->getLocalizedData('name'), 'name' => $user->getFullName(), 'username' => $user->getUsername()));
 
 			return DAO::getDataChangedEvent();
 		}
@@ -669,14 +666,11 @@ class PublicationFormatGridHandler extends CategoryGridHandler {
 	 */
 	function dependentFiles($args, $request) {
 		$submission = $this->getSubmission();
-		$submissionFileDao = DAORegistry::getDAO('SubmissionFileDAO'); /* @var $submissionFileDao SubmissionFileDAO */
 		import('lib.pkp.classes.submission.SubmissionFile'); // Constants
-		$submissionFile = $submissionFileDao->getRevision(
-			$request->getUserVar('fileId'),
-			$request->getUserVar('revision'),
-			SUBMISSION_FILE_PROOF,
-			$submission->getId()
-		);
+		$submissionFile = Services::get('submissionFile')->get($request->getUserVar('submissionFileId'));
+		if ($submissionFile->getData('fileStage') !== SUBMISSION_FILE_PROOF || $submissionFile->getData('submissionId') != $submission->getId()) {
+			return new JSONMessage(false);
+		}
 
 		// Check if this is a remote galley
 		$templateMgr = TemplateManager::getManager($request);

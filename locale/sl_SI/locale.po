@@ -1323,9 +1323,6 @@ msgstr "Nakup monografske publikacije ali prenos poglavja"
 msgid "payment.directSales.monograph.description"
 msgstr "Prenos sredstev je za nakup direktnega prenosa ene monografske publikacije ali njenega poglavja."
 
-msgid "debug.notes.currencyListLoad"
-msgstr "Seznam valut je bil prebran iz XML datoteke \"{$filename}\""
-
 msgid "debug.notes.helpMappingLoad"
 msgstr "XML datoteka preslikav pomoči {$filename} za iskanje {$id} je bila ponovno naložena."
 

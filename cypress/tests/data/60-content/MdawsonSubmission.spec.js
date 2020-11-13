@@ -82,7 +82,7 @@ describe('Data suite tests', function() {
 					'fileTitle': 'The Canadian Nutrient File: Nutrient Value of Some Common Foods',
 					'fileName': 'The Canadian Nutrient File: Nutrient Value of Some Common Foods'.substr(0, 40) + '.pdf',
 					'file': 'dummy.pdf',
-					'genre': 'Other',
+					'genre': 'Table',
 					'metadata': {
 						'creator-en_US': 'Health Canada',
 						'publisher-en_US': 'Health Canada',

@@ -47,16 +47,15 @@ class OMPPaymentManager extends PaymentManager {
 
 	 	switch ($type) {
 			case PAYMENT_TYPE_PURCHASE_FILE:
-				$submissionFileDao = DAORegistry::getDAO('SubmissionFileDAO'); /* @var $submissionFileDao SubmissionFileDAO */
-				list($fileId, $revision) = array_map(function($a) {
-					return (int) $a;
-				}, explode('-', $assocId));
 				import('lib.pkp.classes.submission.SubmissionFile'); // const
-				$submissionFile = $submissionFileDao->getRevision($fileId, $revision, SUBMISSION_FILE_PROOF);
+				$submissionFile = Services::get('submissionFile')->get($assocId);
+				if ($submissionFile->getData('fileStage') != SUBMISSION_FILE_PROOF) {
+					throw new Exception('The submission file for this queued payment is not in the correct file stage.');
+				}
 				assert($submissionFile);
 				$payment->setRequestUrl($request->url(null, 'catalog', 'view', array(
-					$submissionFile->getSubmissionId(),
-					$submissionFile->getAssocId(),
+					$submissionFile->getData('submissionId'),
+					$submissionFile->getData('assocId'),
 					$assocId
 				)));
 				break;
@@ -138,13 +137,12 @@ class OMPPaymentManager extends PaymentManager {
 	function getPaymentName($payment) {
 		switch ($payment->getType()) {
 			case PAYMENT_TYPE_PURCHASE_FILE:
-				list($fileId, $revision) = explode('-', $payment->getAssocId());
-				assert($fileId && $revision);
-				$submissionFileDao = DAORegistry::getDAO('SubmissionFileDAO'); /* @var $submissionFileDao SubmissionFileDAO */
-				$submissionFile = $submissionFileDao->getRevision($fileId, $revision, SUBMISSION_FILE_PROOF);
-				if (!$submissionFile || $submissionFile->getAssocType() !== ASSOC_TYPE_PUBLICATION_FORMAT) return false;
+				$submissionFile = Services::get('submissionFile')->get($payment->getAssocId());
+				if (!$submissionFile || $submissionFile->getData('assocType') !== ASSOC_TYPE_PUBLICATION_FORMAT) {
+					return false;
+				}
 
-				return $submissionFile->getLocalizedName();
+				return $submissionFile->getLocalizedData('name');
 			default:
 				// Invalid payment type
 				assert(false);

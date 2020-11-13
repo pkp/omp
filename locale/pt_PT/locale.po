@@ -1186,9 +1186,6 @@ msgstr ""
 "Ficheiro XML de ajuda de mapeamento recarregado {$filename} na procura por "
 "{$id}."
 
-msgid "debug.notes.currencyListLoad"
-msgstr "Lista de moeadas carregadas do ficheiro XML \"{$filename}\""
-
 msgid "payment.directSales.monograph.description"
 msgstr ""
 "Esta transação refere-se à compra do download direto de apenas uma "

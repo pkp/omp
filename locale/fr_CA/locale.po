@@ -1210,9 +1210,6 @@ msgstr "Acheter la monographie ou le chapitre téléchargeable"
 msgid "payment.directSales.monograph.description"
 msgstr "Cette transaction représente l'achat d'un téléchargement direct d'une seule monographie ou d'un chapitre."
 
-msgid "debug.notes.currencyListLoad"
-msgstr "La liste des devises \"{$filename}\" fut téléchargée à partir de XML"
-
 msgid "debug.notes.helpMappingLoad"
 msgstr "Le fichier de mappage d'aide XML {$filename} a été téléchargé à nouveau pour trouver {$id}."
 

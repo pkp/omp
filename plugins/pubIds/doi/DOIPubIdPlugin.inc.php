@@ -433,12 +433,16 @@ class DOIPubIdPlugin extends PubIdPlugin {
 			}
 			if ($submissionFileDoiEnabled) {
 				foreach ((array) $form->publication->getData('publicationFormats') as $publicationFormat) {
-					$files = (array) $publicationFormat->getRepresentationFiles();
-					foreach ($files as $file) {
+					$filesIterator = Services::get('submissionFile')->getMany([
+						'submissionIds' => [$submission->getId()],
+						'assocTypes' => [ASSOC_TYPE_REPRESENTATION],
+						'assocIds' => [$publicationFormat->getId()],
+					]);
+					foreach ($filesIterator as $file) {
 						if ($file->getStoredPubId('doi')) {
-							$doiTableRows[] = [$file->getStoredPubId('doi'), __('plugins.pubIds.doi.editor.preview.files', ['title' => $file->getLocalizedName()])];
+							$doiTableRows[] = [$file->getStoredPubId('doi'), __('plugins.pubIds.doi.editor.preview.files', ['title' => $file->getLocalizedData('name')])];
 						} else {
-							$doiTableRows[] = [$warningIconHtml . __('submission.status.unassigned'),__('plugins.pubIds.doi.editor.preview.files', ['title' => $file->getLocalizedName()])];
+							$doiTableRows[] = [$warningIconHtml . __('submission.status.unassigned'),__('plugins.pubIds.doi.editor.preview.files', ['title' => $file->getLocalizedData('name')])];
 						}
 					}
 				}

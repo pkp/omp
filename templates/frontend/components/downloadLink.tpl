@@ -24,9 +24,9 @@
 {/if}
 
 {* Display the download link *}
-<a href="{$downloadUrl}" class="cmp_download_link {$downloadFile->getDocumentType()}">
+<a href="{$downloadUrl}" class="cmp_download_link">
 	{if $useFilename}
-		{$downloadFile->getLocalizedName()}
+		{$downloadFile->getLocalizedData('name')}
 	{else}
 		{if $downloadFile->getDirectSalesPrice() && $currency}{$downloadFile->getDirectSalesPrice()}
 			{translate key="payment.directSales.purchase" format=$publicationFormat->getLocalizedName() amount=$downloadFile->getDirectSalesPrice() currency=$currency->getLetterCode()}

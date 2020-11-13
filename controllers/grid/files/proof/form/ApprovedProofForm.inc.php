@@ -29,17 +29,14 @@ class ApprovedProofForm extends Form {
 	 * Constructor
 	 * @param $monograph Monograph
 	 * @param $publicationFormat PublicationFormat
-	 * @param $fileId string fileId-revision
+	 * @param $submissionFileId int
 	 */
-	public function __construct($monograph, $publicationFormat, $fileIdAndRevision) {
+	public function __construct($monograph, $publicationFormat, $submissionFileId) {
 		parent::__construct('controllers/grid/files/proof/form/approvedProofForm.tpl');
 
 		$this->monograph = $monograph;
 		$this->publicationFormat = $publicationFormat;
-
-		$submissionFileDao = DAORegistry::getDAO('SubmissionFileDAO'); /* @var $submissionFileDao SubmissionFileDAO */
-		list($fileId, $revision) = explode('-', $fileIdAndRevision);
-		$this->approvedProof = $submissionFileDao->getRevision($fileId, $revision, SUBMISSION_FILE_PROOF, $this->monograph->getId());
+		$this->approvedProof = Services::get('submissionFile')->get($submissionFileId);
 
 		// matches currencies like:  1,500.50 1500.50 1,112.15 5,99 .99
 		$this->addCheck(new FormValidatorRegExp($this, 'price', 'optional', 'grid.catalogEntry.validPriceRequired', '/^(([1-9]\d{0,2}(,\d{3})*|[1-9]\d*|0|)(.\d{2})?|([1-9]\d{0,2}(,\d{3})*|[1-9]\d*|0|)(.\d{2})?)$/'));
@@ -56,7 +53,7 @@ class ApprovedProofForm extends Form {
 	 */
 	public function fetch($request, $template = null, $display = false) {
 		$templateMgr = TemplateManager::getManager($request);
-		$templateMgr->assign('fileId', $this->approvedProof->getFileIdAndRevision());
+		$templateMgr->assign('submissionFileId', $this->approvedProof->getId());
 		$templateMgr->assign('submissionId', $this->monograph->getId());
 		$templateMgr->assign('representationId', $this->publicationFormat->getId());
 		$templateMgr->assign('publicationId', $this->publicationFormat->getData('publicationId'));
@@ -109,7 +106,7 @@ class ApprovedProofForm extends Form {
 		$this->approvedProof->setSalesType($salesType);
 		$submissionFileDao->updateObject($this->approvedProof);
 
-		return $this->approvedProof->getFileIdAndRevision();
+		return $this->approvedProof->getId();
 	}
 }
 

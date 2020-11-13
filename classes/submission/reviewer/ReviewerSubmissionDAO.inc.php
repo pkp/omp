@@ -21,7 +21,6 @@ class ReviewerSubmissionDAO extends SubmissionDAO {
 	var $authorDao;
 	var $userDao;
 	var $reviewAssignmentDao;
-	var $submissionFileDao;
 	var $submissionCommentDao;
 
 	/**
@@ -32,7 +31,6 @@ class ReviewerSubmissionDAO extends SubmissionDAO {
 		$this->authorDao = DAORegistry::getDAO('AuthorDAO');
 		$this->userDao = DAORegistry::getDAO('UserDAO');
 		$this->reviewAssignmentDao = DAORegistry::getDAO('ReviewAssignmentDAO');
-		$this->submissionFileDao = DAORegistry::getDAO('SubmissionFileDAO');
 		$this->submissionCommentDao = DAORegistry::getDAO('SubmissionCommentDAO');
 	}
 

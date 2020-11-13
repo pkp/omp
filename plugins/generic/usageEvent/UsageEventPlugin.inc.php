@@ -112,7 +112,7 @@ class UsageEventPlugin extends PKPUsageEventPlugin {
 					$publicationFormat = $hookArgs[2];
 					// if file is not a publication format file (e.g. CSS or images), there is no usage event.
 					if ($pubObject->getAssocId() != $publicationFormat->getId()) return false;
-					$canonicalUrlParams = array($submission->getId(), $pubObject->getAssocId(), $pubObject->getFileId() . '-' . $pubObject->getRevision());
+					$canonicalUrlParams = array($submission->getId(), $pubObject->getAssocId(), $pubObject->getId());
 					$idParams = array('m' . $submission->getId(), 'f' . $pubObject->getId());
 					$downloadSuccess = false;
 					break;

@@ -1226,9 +1226,6 @@ msgstr "Acquista la monografia o scarica un capitolo"
 msgid "payment.directSales.monograph.description"
 msgstr "Questa operazione è per l'acquisto del download di una singola monografia o capitolo di monografia."
 
-msgid "debug.notes.currencyListLoad"
-msgstr "Lista delle valute \"{$filename}\" caricate da XML"
-
 msgid "debug.notes.helpMappingLoad"
 msgstr "Reloaded XML help mapping file {$filename} in search of {$id}."
 

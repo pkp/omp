@@ -1427,9 +1427,6 @@ msgstr "Osta kirjan tai luvun lataus"
 msgid "payment.directSales.monograph.description"
 msgstr "Tämä tapahtuma liittyy kirjan tai kirjan luvun suoralatauksen ostoon."
 
-msgid "debug.notes.currencyListLoad"
-msgstr "XML-muodosta ladattu valuuttaluettelo \"{$filename}\""
-
 msgid "debug.notes.helpMappingLoad"
 msgstr "XML-tiedosto {$filename} ladattiin uudelleen haulla {$id}."
 

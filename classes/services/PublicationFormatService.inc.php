@@ -14,8 +14,8 @@
 namespace APP\Services;
 
 use \Application;
-use \Services;
 use \DAORegistry;
+use \Services;
 
 class PublicationFormatService {
 
@@ -38,6 +38,16 @@ class PublicationFormatService {
 				$object = $result->next();
 				DAORegistry::getDAO($metadataDao)->deleteObject($object);
 			}
+		}
+
+		// Delete submission files for this publication format
+		$submissionFiles = Services::get('submissionFile')->getMany([
+			'submissionIds' => [$submission->getId()],
+			'assocTypes' => [ASSOC_TYPE_REPRESENTATION],
+			'assocIds' => $publicationFormat->getId(),
+		]);
+		foreach ($submissionFiles as $submissionFile) {
+			Services::get('submissionFile')->delete($submissionFile);
 		}
 
 		// Create a tombstone for this publication format.

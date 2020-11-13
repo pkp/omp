@@ -1457,9 +1457,6 @@ msgstr "Køb download af monografi eller kapitel"
 msgid "payment.directSales.monograph.description"
 msgstr "Denne transaktion er til køb af et direkte download af en enkelt monografi eller et monografi-kapitel."
 
-msgid "debug.notes.currencyListLoad"
-msgstr "Indlæst valutaliste \"{$filename}\" fra XML"
-
 msgid "debug.notes.helpMappingLoad"
 msgstr "Genindlæst XML-hjælp til at kortlægge fil {$filename} på søgning efter {$id}."
 

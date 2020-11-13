@@ -66,7 +66,9 @@ class HtmlMonographFilePlugin extends GenericPlugin {
 		$inline =& $params[4];
 		$request = Application::get()->getRequest();
 
-		if ($submissionFile && $submissionFile->getFileType() == 'text/html') {
+		$path = Services::get('file')->getPath($submissionFile->getData('fileId'));
+		$mimetype = Services::get('file')->fs->getMimetype($path);
+		if ($submissionFile && $mimetype == 'text/html') {
 			foreach ($submission->getData('publications') as $publication) {
 				if ($publication->getId() === $publicationFormat->getData('publicationId')) {
 					$filePublication = $publication;
@@ -101,7 +103,9 @@ class HtmlMonographFilePlugin extends GenericPlugin {
 		$inline =& $params[4];
 		$request = Application::get()->getRequest();
 
-		if ($submissionFile && $submissionFile->getFileType() == 'text/html') {
+		$path = Services::get('file')->getPath($submissionFile->getData('fileId'));
+		$mimetype = Services::get('file')->fs->getMimetype($path);
+		if ($submissionFile && $mimetype == 'text/html') {
 			if (!HookRegistry::call('HtmlMonographFilePlugin::monographDownload', array(&$this, &$submission, &$publicationFormat, &$submissionFile, &$inline))) {
 				echo $this->_getHTMLContents($request, $submission, $publicationFormat, $submissionFile);
 				$returner = true;
@@ -122,19 +126,29 @@ class HtmlMonographFilePlugin extends GenericPlugin {
 	 * @return string
 	 */
 	function _getHTMLContents($request, $monograph, $publicationFormat, $submissionFile) {
-		$contents = file_get_contents($submissionFile->getFilePath());
+		$path = Services::get('file')->getPath($submissionFile->getData('fileId'));
+		$contents = Services::get('file')->fs->read($path);
 
 		// Replace media file references
-		$submissionFileDao = DAORegistry::getDAO('SubmissionFileDAO'); /* @var $submissionFileDao SubmissionFileDAO */
 		import('lib.pkp.classes.submission.SubmissionFile'); // Constants
+		$proofFiles = Services::get('submissionFile')->getMany([
+			'submissionIds' => [$monograph->getId()],
+			'fileStages' => [SUBMISSION_FILE_PROOF],
+		]);
+		$dependentFiles = Services::get('submissionFile')->getMany([
+			'submissionIds' => [$monograph->getId()],
+			'fileStages' => [SUBMISSION_FILE_DEPENDENT],
+			'assocTypes' => [ASSOC_TYPE_SUBMISSION_FILE],
+			'assocIds' => [$submissionFile->getId()],
+		]);
 		$embeddableFiles = array_merge(
-			$submissionFileDao->getLatestRevisions($submissionFile->getSubmissionId(), SUBMISSION_FILE_PROOF),
-			$submissionFileDao->getLatestRevisionsByAssocId(ASSOC_TYPE_SUBMISSION_FILE, $submissionFile->getFileId(), $submissionFile->getSubmissionId(), SUBMISSION_FILE_DEPENDENT)
+			iterator_to_array($proofFiles),
+			iterator_to_array($dependentFiles)
 		);
 
 		foreach ($embeddableFiles as $embeddableFile) {
 			$fileUrl = $request->url(null, 'catalog', 'download', array($monograph->getBestId(), $publicationFormat->getBestId(), $embeddableFile->getBestId()), array('inline' => true));
-			$pattern = preg_quote($embeddableFile->getOriginalFileName());
+			$pattern = preg_quote($embeddableFile->getLocalizedData('name'));
 
 			$contents = preg_replace(
 					'/([Ss][Rr][Cc]|[Hh][Rr][Ee][Ff]|[Dd][Aa][Tt][Aa])\s*=\s*"([^"]*' . $pattern . ')"/',

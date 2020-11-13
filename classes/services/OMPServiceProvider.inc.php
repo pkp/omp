@@ -23,9 +23,11 @@ use \APP\Services\PublicationFormatService;
 use \APP\Services\PublicationService;
 use \APP\Services\StatsEditorialService;
 use \APP\Services\StatsService;
+use \APP\Services\SubmissionFileService;
 use \PKP\Services\PKPAnnouncementService;
 use \PKP\Services\PKPAuthorService;
 use \PKP\Services\PKPEmailTemplateService;
+use \PKP\Services\PKPFileService;
 use \PKP\Services\PKPSchemaService;
 use \PKP\Services\PKPSiteService;
 use \PKP\Services\PKPUserService;
@@ -42,6 +44,11 @@ class OMPServiceProvider implements \Pimple\ServiceProviderInterface {
 		// Announcement service
 		$pimple['announcement'] = function() {
 			return new PKPAnnouncementService();
+		};
+
+		// File service
+		$pimple['file'] = function() {
+			return new PKPFileService();
 		};
 
 		// Submission service
@@ -77,6 +84,11 @@ class OMPServiceProvider implements \Pimple\ServiceProviderInterface {
 		// Context service
 		$pimple['context'] = function() {
 			return new ContextService();
+		};
+
+		// Submission file service
+		$pimple['submissionFile'] = function() {
+			return new SubmissionFileService();
 		};
 
 		// Email Template service

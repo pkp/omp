@@ -66,9 +66,6 @@ msgstr "Exporta'ls tots"
 msgid "plugins.importexport.users.export.errorsOccurred"
 msgstr "S'han produït errors durant l'exportació"
 
-msgid "plugins.importexport.users.export.couldNotWriteFile"
-msgstr "No es pot escriure al fitxer \"{$fileName}\"."
-
 msgid "plugins.importexport.users.importComplete"
 msgstr "La importació s'ha completat amb èxit. Els usuaris i els correus que no existien a la base de dades s'han afegit, als corresponents grups."
 

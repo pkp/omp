@@ -1149,9 +1149,6 @@ msgstr "Compra la monografia o descarrega'n un capítol"
 msgid "payment.directSales.monograph.description"
 msgstr "Aquesta transacció implica la compra o la descàrrega directa d'una monografia o d'un capítol de la monografia."
 
-msgid "debug.notes.currencyListLoad"
-msgstr "S'ha carregat la llista de monedes «{$filename}» des d'XML"
-
 msgid "debug.notes.helpMappingLoad"
 msgstr "S'ha tornat a carregar el fitxer de mapatge d'ajuda XML {$filename} a la cerca de {$id}."
 

@@ -248,7 +248,7 @@ class PublicationService extends PKPPublicationService {
 
 		// Publication Formats (and all associated objects)
 		$oldPublicationFormats = $oldPublication->getData('publicationFormats');
-		$newFiles = [];
+		$newSubmissionFiles = [];
 		foreach ($oldPublicationFormats as $oldPublicationFormat) {
 			$newPublicationFormat = clone $oldPublicationFormat;
 			$newPublicationFormat->setData('id', null);
@@ -269,26 +269,29 @@ class PublicationService extends PKPPublicationService {
 			}
 
 			// Duplicate publication format files
-			$files = DAORegistry::getDAO('SubmissionFileDAO')->getLatestRevisionsByAssocId(
-				ASSOC_TYPE_REPRESENTATION,
-				$oldPublicationFormat->getId(),
-				$oldPublication->getData('submissionId')
-			);
-			foreach ($files as $file) {
-				$newFile = clone $file;
-				$newFile->setFileId(null);
-				$newFile->setData('assocId', $newPublicationFormat->getId());
-				$newFiles[] = DAORegistry::getDAO('SubmissionFileDAO')->insertObject($newFile, $file->getFilePath());
+			$submissionFiles = Services::get('submissionFile')->getMany([
+				'submissionIds' => [$oldPublication->getData('submissionId')],
+				'assocTypes' => [ASSOC_TYPE_REPRESENTATION],
+				'assocIds' => $oldPublicationFormat->getId(),
+			]);
+			foreach ($submissionFiles as $submissionFile) {
+				$newSubmissionFile = clone $submissionFile;
+				$newSubmissionFile->setData('id', null);
+				$newSubmissionFile->setData('assocId', $newPublicationFormat->getId());
+				$newSubmissionFile = Services::get('submissionFile')->add($newSubmissionFile, $request);
+				$newSubmissionFiles[] = $newSubmissionFile;
 
-				$dependentFiles = DAORegistry::getDAO('SubmissionFileDAO')->getLatestRevisionsByAssocId(
-					ASSOC_TYPE_SUBMISSION_FILE,
-					$file->getFileId(),
-					$file->getData('publicationId')
-				);
+				$dependentFiles = Services::get('submissionFile')->getMany([
+					'fileStages' => [SUBMISSION_FILE_DEPENDENT],
+					'assocTypes' => [ASSOC_TYPE_SUBMISSION_FILE],
+					'assocIds' => $submissionFile->getId(),
+					'includeDependentFiles' => true,
+				]);
 				foreach ($dependentFiles as $dependentFile) {
 					$newDependentFile = clone $dependentFile;
-					$newDependentFile->setFileId(null);
-					DAORegistry::getDAO('SubmissionFileDAO')->insertObject($newDependentFile, $dependentFile->getFilePath());
+					$newDependentFile->setData('id', null);
+					$newDependentFile->setData('assocId', $newSubmissionFile->getId());
+					Services::get('submissionFile')->add($newDependentFile, $request);
 				}
 			}
 		}
@@ -308,10 +311,9 @@ class PublicationService extends PKPPublicationService {
 			$newChapter = DAORegistry::getDAO('ChapterDAO')->getChapter($newChapterId);
 
 			// Update file chapter associations for new files
-			foreach ($newFiles as $newFile) {
-				if ($newFile->getChapterId() == $oldChapter->getId()) {
-					$newFile->setChapterId($newChapter->getId());
-					DAORegistry::getDAO('SubmissionFileDAO')->updateObject($newFile);
+			foreach ($newSubmissionFiles as $newSubmissionFile) {
+				if ($newSubmissionFile->getChapterId() == $oldChapter->getId()) {
+					Services::get('submissionFile')->edit($newSubmissionFile, ['chapterId' => $newChapter->getId()], $request);
 				}
 			}
 

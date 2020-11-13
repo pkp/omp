@@ -26,9 +26,6 @@ msgstr ""
 msgid "rt.metadata.pkp.dctype"
 msgstr "Książka"
 
-msgid "debug.notes.currencyListLoad"
-msgstr "Załadowano listę walut  \"{$filename}\" z XML"
-
 msgid "payment.directSales.monograph.description"
 msgstr ""
 "Ta transakcja została przeprowadzona, aby nabyć pojedynczą monografię lub "

@@ -1246,9 +1246,6 @@ msgstr "Adquirir monografia ou capítulo para baixar"
 msgid "payment.directSales.monograph.description"
 msgstr "Esta transação é para a compra direta de um arquivo para baixar de uma única mongrafia ou capítulo."
 
-msgid "debug.notes.currencyListLoad"
-msgstr "Lista de moedas carregadas do arquivo XML \"{$filename}\""
-
 msgid "debug.notes.helpMappingLoad"
 msgstr "Arquivo de mapeamento de ajuda XML {$filename} recarregado, na busca por {$id}."
 

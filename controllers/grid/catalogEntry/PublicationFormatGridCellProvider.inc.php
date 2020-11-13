@@ -220,10 +220,10 @@ class PublicationFormatGridCellProvider extends DataObjectGridCellProvider {
 						'editApprovedProof',
 						new AjaxModal(
 							$router->url($request, null, null, 'editApprovedProof', null, array(
-								'fileId' => $submissionFile->getFileId() . '-' . $submissionFile->getRevision(),
-								'submissionId' => $submissionFile->getSubmissionId(),
+								'submissionFileId' => $submissionFile->getId(),
+								'submissionId' => $submissionFile->getData('submissionId'),
 								'publicationId' => $this->getPublicationId(),
-								'representationId' => $submissionFile->getAssocId(),
+								'representationId' => $submissionFile->getData('assocId'),
 							)),
 							__('editor.monograph.approvedProofs.edit'),
 							'edit'
@@ -246,11 +246,10 @@ class PublicationFormatGridCellProvider extends DataObjectGridCellProvider {
 								$request, null, null, 'setProofFileCompletion',
 								null,
 								array(
-									'submissionId' => $submissionFile->getSubmissionId(),
+									'submissionId' => $submissionFile->getData('submissionId'),
 									'publicationId' => $this->getPublicationId(),
-									'fileId' => $submissionFile->getFileId(),
-									'revision' => $submissionFile->getRevision(),
-									'approval' => !$submissionFile->getViewable(),
+									'submissionFileId' => $submissionFile->getId(),
+									'approval' => !$submissionFile->getData('viewable'),
 								)
 							),
 							$title,

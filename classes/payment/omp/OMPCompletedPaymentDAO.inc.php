@@ -75,7 +75,7 @@ class OMPCompletedPaymentDAO extends DAO {
 	 */
 	function updateObject($completedPayment) {
 		$returner = false;
-		
+
 		$returner = $this->update(
 			sprintf('UPDATE completed_payments
 			SET
@@ -86,7 +86,7 @@ class OMPCompletedPaymentDAO extends DAO {
 				assoc_id = ?,
 				amount = ?,
 				currency_code_alpha = ?,
-				payment_method_plugin_name = ? 
+				payment_method_plugin_name = ?
 			WHERE completed_payment_id = ?',
 			$this->datetimeToDB($completedPayment->getTimestamp())),
 			array(
@@ -115,15 +115,15 @@ class OMPCompletedPaymentDAO extends DAO {
 	/**
 	 * Look for a completed PURCHASE_PUBLICATION_FORMAT payment matching the article ID
 	 * @param $userId int
-	 * @param string $fileIdAndRevision
+	 * @param $submissionFileId int
 	 */
-	function hasPaidPurchaseFile ($userId, $fileIdAndRevision) {
+	function hasPaidPurchaseFile ($userId, $submissionFileId) {
 		$result = $this->retrieve(
 			'SELECT count(*) FROM completed_payments WHERE payment_type = ? AND user_id = ? AND assoc_id = ?',
 			array(
 				PAYMENT_TYPE_PURCHASE_FILE,
 				(int) $userId,
-				$fileIdAndRevision
+				$submissionFileId
 			)
 		);
 
