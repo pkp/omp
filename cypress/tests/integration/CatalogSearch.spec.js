@@ -12,23 +12,23 @@ describe('Data suite tests', function() {
 	it('Searches for something that should exist', function() {
 		// Search for "bomb"
 		cy.visit('');
-		cy.get('div.search_controls:visible').click();
-		cy.get('form.pkp_search input[name="query"]:visible').type('bomb', {delay: 0});
-		cy.get('form.pkp_search a:contains("Search"):visible').click();
+		cy.get('a').contains('Search').click();
+		cy.get('input[name="query"]').type('bomb', {delay: 0});
+		cy.get('button:contains("Search")').click();
 
 		// Should be 1 result
-		cy.get('div:contains("1 Titles")');
-		cy.get('a:contains("Bomb Canada and Other Unkind Remarks in the American Media")');
+		cy.get('div[role="status"]').contains('One title was found');
+		cy.get('a').contains("Bomb Canada and Other Unkind Remarks in the American Media");
 	});
 
 	it('Searches for something that should not exist', function() {
 		// Search for "zorg"
 		cy.visit('');
-		cy.get('div.search_controls:visible').click();
-		cy.get('form.pkp_search input[name="query"]:visible').type('zorg', {delay: 0});
-		cy.get('form.pkp_search a:contains("Search"):visible').click();
+		cy.get('a').contains('Search').click();
+		cy.get('input[name="query"]').type('zorg', {delay: 0});
+		cy.get('button:contains("Search")').click();
 
 		// Should be 0 results
-		cy.get('div:contains("0 Titles")');
+		cy.get('div[role="status"]').contains('No titles were found');
 	});
 });
