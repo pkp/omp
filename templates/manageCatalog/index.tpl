@@ -18,7 +18,7 @@
 		{assign var="isManager" value=true}
 	{/if}
 
-	<tabs>
+	<tabs :track-history="true">
 		<tab id="monographs" label="{translate key="navigation.catalog.allMonographs"}">
 			{help file="catalog" class="pkp_help_tab"}
 			<catalog-list-panel
