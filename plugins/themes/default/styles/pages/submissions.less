@@ -10,7 +10,7 @@
  */
 .page_submissions {
 
-	.submission_checklist {
+	.submission_sections, .submission_checklist {
 
 		ul {
 			margin: @double 0 0;
@@ -37,6 +37,7 @@
 	}
 
 	.submission_checklist {
+
 		li {
 			padding: @double;
 
@@ -51,23 +52,31 @@
 				position: absolute;
 				font-size: @font-lead;
 				color: @yes;
-			}			
+			}
 		}
 	}
 
 	@media(min-width: @screen-phone) {
 
-		.submission_checklist {
+		.submission_sections {
+			li {
+				.fa {
+					top: 22px;
+					left: calc(~"@{double} - 3px");
+				}
+			}
+		}
 
+		.submission_sections, .submission_checklist {
 			ul {
 				border: @bg-border;
 				border-bottom: none;
 			}
 
 			li {
-				padding: @double @double @double (@double * 2);
+				padding: @double @double @double @quadruple;
 				border-bottom: @bg-border;
-				
+
 				.fa {
 					left: @double;
 				}
