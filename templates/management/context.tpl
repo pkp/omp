@@ -27,7 +27,7 @@
 		</notification>
 	{/if}
 
-	<tabs>
+	<tabs :track-history="true">
 		<tab id="masthead" label="{translate key="manager.setup.masthead"}">
 			{help file="settings/context-settings" class="pkp_help_tab"}
 			<pkp-form
