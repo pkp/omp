@@ -22,7 +22,7 @@ class PublicationFormatDAO extends RepresentationDAO implements PKPPubIdPluginDA
 	 * @copydoc RepresentationDAO::getById()
 	 */
 	function getById($representationId, $publicationId = null, $contextId = null) {
-		$params = array((int) $representationId);
+		$params = [(int) $representationId];
 		if ($publicationId) $params[] = (int) $publicationId;
 		if ($contextId) $params[] = (int) $contextId;
 
@@ -37,14 +37,8 @@ class PublicationFormatDAO extends RepresentationDAO implements PKPPubIdPluginDA
 			($contextId?' AND s.context_id = ?':''),
 			$params
 		);
-
-		$returner = null;
-		if ($result->RecordCount() != 0) {
-			$returner = $this->_fromRow($result->GetRowAssoc(false));
-		}
-
-		$result->Close();
-		return $returner;
+		$row = $result->current();
+		return $row ? $this->_fromRow((array) $row) : null;
 	}
 
 	/**
@@ -56,8 +50,7 @@ class PublicationFormatDAO extends RepresentationDAO implements PKPPubIdPluginDA
 	 * @return array The publication formats identified by setting.
 	 */
 	function getBySetting($settingName, $settingValue, $publicationId = null, $pressId = null) {
-		$params = array($settingName);
-
+		$params = [$settingName];
 
 		$sql = 'SELECT	pf.*
 			FROM	publication_formats pf ';
@@ -88,13 +81,10 @@ class PublicationFormatDAO extends RepresentationDAO implements PKPPubIdPluginDA
 		$sql .= ' ORDER BY ' . $orderByContextId . 'pf.seq, pf.publication_format_id';
 		$result = $this->retrieve($sql, $params);
 
-		$publicationFormats = array();
-		while (!$result->EOF) {
-			$publicationFormats[] = $this->_fromRow($result->GetRowAssoc(false));
-			$result->MoveNext();
+		$publicationFormats = [];
+		foreach ($result as $row) {
+			$publicationFormats[] = $this->_fromRow((array) $row);
 		}
-		$result->Close();
-
 		return $publicationFormats;
 	}
 
@@ -109,15 +99,9 @@ class PublicationFormatDAO extends RepresentationDAO implements PKPPubIdPluginDA
 	 * @return PublicationFormat|null
 	 */
 	function getByPubId($pubIdType, $pubId, $publicationId = null, $pressId = null) {
-		$publicationFormat = null;
-		if (!empty($pubId)) {
-			$publicationFormats = $this->getBySetting('pub-id::'.$pubIdType, $pubId, $publicationId, $pressId);
-			if (!empty($publicationFormats)) {
-				assert(count($publicationFormats) == 1);
-				$publicationFormat = $publicationFormats[0];
-			}
-		}
-		return $publicationFormat;
+		if (empty($pubId)) return null;
+		$publicationFormats = $this->getBySetting('pub-id::'.$pubIdType, $pubId, $publicationId, $pressId);
+		return array_shift($publicationFormats);
 	}
 
 	/**
@@ -128,7 +112,6 @@ class PublicationFormatDAO extends RepresentationDAO implements PKPPubIdPluginDA
 	 * @return PublicationFormat|null
 	 */
 	function getByBestId($representationId, $publicationId) {
-
 		$result = $this->retrieve(
 			'SELECT pf.*
 			FROM	publication_formats pf
@@ -139,22 +122,19 @@ class PublicationFormatDAO extends RepresentationDAO implements PKPPubIdPluginDA
 				$publicationId,
 			]
 		);
-
-		if ($result->RecordCount() != 0) {
-			$publicationFormat = $this->_fromRow($result->GetRowAssoc(false));
+		if ($row = $result->current()) {
+			return $this->_fromRow((array) $row);
 		} elseif (is_int($representationId) || ctype_digit($representationId)) {
-			$publicationFormat = $this->getById($representationId);
+			return $this->getById($representationId);
 		}
-		$result->Close();
-
-		return $publicationFormat ?? null;
+		return null;
 	}
 
 	/**
 	 * @copydoc RepresentationDAO::getByPublicationId()
 	 */
 	function getByPublicationId($publicationId, $contextId = null) {
-		$params = array((int) $publicationId);
+		$params = [(int) $publicationId];
 		if ($contextId) $params[] = (int) $contextId;
 
 		return new DAOResultFactory(
@@ -181,18 +161,19 @@ class PublicationFormatDAO extends RepresentationDAO implements PKPPubIdPluginDA
 	 * @return DAOResultFactory (PublicationFormat)
 	 */
 	function getByContextId($pressId) {
-		$params = array((int) $pressId);
-		$result = $this->retrieve(
-			'SELECT pf.*
-			FROM	publication_formats pf
-			JOIN	publications p ON (p.publication_id = pf.publication_id)
-			JOIN	submissions s ON (s.submission_id = p.submission_id)
-			WHERE	s.context_id = ?
-			ORDER BY pf.seq',
-			$params
+		return new DAOResultFactory(
+			$this->retrieve(
+				'SELECT pf.*
+				FROM	publication_formats pf
+				JOIN	publications p ON (p.publication_id = pf.publication_id)
+				JOIN	submissions s ON (s.submission_id = p.submission_id)
+				WHERE	s.context_id = ?
+				ORDER BY pf.seq',
+				[(int) $pressId]
+			),
+			$this,
+			'_fromRow'
 		);
-
-		return new DAOResultFactory($result, $this, '_fromRow');
 	}
 
 	/**
@@ -201,17 +182,17 @@ class PublicationFormatDAO extends RepresentationDAO implements PKPPubIdPluginDA
 	 * @return DAOResultFactory (PublicationFormat)
 	 */
 	function getApprovedByPublicationId($publicationId) {
-		$params = array((int) $publicationId);
-
-		$result = $this->retrieve(
-			'SELECT *
-			FROM	publication_formats
-			WHERE	publication_id = ? AND is_approved=1
-			ORDER BY seq',
-			$params
+		return new DAOResultFactory(
+			$this->retrieve(
+				'SELECT *
+				FROM	publication_formats
+				WHERE	publication_id = ? AND is_approved=1
+				ORDER BY seq',
+				[(int) $publicationId]
+			),
+			$this,
+			'_fromRow'
 		);
-
-		return new DAOResultFactory($result, $this, '_fromRow');
 	}
 
 	/**
@@ -219,9 +200,8 @@ class PublicationFormatDAO extends RepresentationDAO implements PKPPubIdPluginDA
 	 * @param $representationId int
 	 */
 	function deleteById($representationId) {
-		// remove settings, then the association itself.
-		$this->update('DELETE FROM publication_format_settings WHERE publication_format_id = ?', (int) $representationId);
-		return $this->update('DELETE FROM publication_formats WHERE publication_format_id = ?', (int) $representationId);
+		$this->update('DELETE FROM publication_format_settings WHERE publication_format_id = ?', [(int) $representationId]);
+		$this->update('DELETE FROM publication_formats WHERE publication_format_id = ?', [(int) $representationId]);
 	}
 
 	/**
@@ -232,7 +212,7 @@ class PublicationFormatDAO extends RepresentationDAO implements PKPPubIdPluginDA
 		$this->updateDataObjectSettings(
 			'publication_format_settings',
 			$publicationFormat,
-			array('publication_format_id' => $publicationFormat->getId())
+			['publication_format_id' => $publicationFormat->getId()]
 		);
 	}
 
@@ -289,7 +269,7 @@ class PublicationFormatDAO extends RepresentationDAO implements PKPPubIdPluginDA
 			$publicationFormat
 		);
 
-		if ($callHooks) HookRegistry::call('PublicationFormatDAO::_fromRow', array(&$publicationFormat, &$row));
+		if ($callHooks) HookRegistry::call('PublicationFormatDAO::_fromRow', [&$publicationFormat, &$row]);
 
 		return $publicationFormat;
 	}
@@ -305,7 +285,7 @@ class PublicationFormatDAO extends RepresentationDAO implements PKPPubIdPluginDA
 				(is_approved, entry_key, physical_format, publication_id, seq, file_size, front_matter, back_matter, height, height_unit_code, width, width_unit_code, thickness, thickness_unit_code, weight, weight_unit_code, product_composition_code, product_form_detail_code, country_manufacture_code, imprint, product_availability_code, technical_protection_code, returnable_indicator_code, remote_url, url_path, is_available)
 			VALUES
 				(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)',
-			array(
+			[
 				(int) $publicationFormat->getIsApproved(),
 				$publicationFormat->getEntryKey(),
 				(int) $publicationFormat->getPhysicalFormat(),
@@ -332,7 +312,7 @@ class PublicationFormatDAO extends RepresentationDAO implements PKPPubIdPluginDA
 				$publicationFormat->getRemoteURL(),
 				$publicationFormat->getData('urlPath'),
 				(int) $publicationFormat->getIsAvailable(),
-			)
+			]
 		);
 
 		$publicationFormat->setId($this->_getInsertId('publication_formats', 'publication_format_id'));
@@ -374,7 +354,7 @@ class PublicationFormatDAO extends RepresentationDAO implements PKPPubIdPluginDA
 				url_path = ?,
 				is_available = ?
 			WHERE	publication_format_id = ?',
-			array(
+			[
 				(int) $publicationFormat->getIsApproved(),
 				$publicationFormat->getEntryKey(),
 				(int) $publicationFormat->getPhysicalFormat(),
@@ -401,7 +381,7 @@ class PublicationFormatDAO extends RepresentationDAO implements PKPPubIdPluginDA
 				$publicationFormat->getData('urlPath'),
 				(int) $publicationFormat->getIsAvailable(),
 				(int) $publicationFormat->getId()
-			)
+			]
 		);
 
 		$this->updateLocaleFields($publicationFormat);
@@ -412,7 +392,7 @@ class PublicationFormatDAO extends RepresentationDAO implements PKPPubIdPluginDA
 	 * @return array
 	 */
 	function getLocaleFieldNames() {
-		return array('name');
+		return ['name'];
 	}
 
 	/**
@@ -429,7 +409,7 @@ class PublicationFormatDAO extends RepresentationDAO implements PKPPubIdPluginDA
 	 */
 	function pubIdExists($pubIdType, $pubId, $excludePubObjectId, $contextId) {
 		$result = $this->retrieve(
-			'SELECT COUNT(*)
+			'SELECT COUNT(*) AS row_count
 			FROM publication_format_settings pft
 			INNER JOIN publication_formats pf ON pft.publication_format_id = pf.publication_format_id
 			INNER JOIN publications p ON p.publication_id = pf.publication_id
@@ -438,46 +418,41 @@ class PublicationFormatDAO extends RepresentationDAO implements PKPPubIdPluginDA
 			AND pft.setting_value = ?
 			AND pf.publication_format_id <> ?
 			AND s.context_id = ?',
-			array(
-				'pub-id::'.$pubIdType,
+			[
+				'pub-id::' . $pubIdType,
 				$pubId,
 				(int) $excludePubObjectId,
 				(int) $contextId
-			)
+			]
 		);
-		$returner = $result->fields[0] ? true : false;
-		$result->Close();
-		return $returner;
+		$row = $result->current();
+		return $row && $row->row_count;
 	}
 
 	/**
 	 * @copydoc PKPPubIdPluginDAO::changePubId()
 	 */
 	function changePubId($pubObjectId, $pubIdType, $pubId) {
-		$idFields = array(
-				'publication_format_id', 'locale', 'setting_name'
-		);
-		$updateArray = array(
+		$this->replace(
+			'publication_format_settings',
+			[
 				'publication_format_id' => (int) $pubObjectId,
 				'locale' => '',
 				'setting_name' => 'pub-id::'.$pubIdType,
 				'setting_type' => 'string',
 				'setting_value' => (string)$pubId
+			],
+			['publication_format_id', 'locale', 'setting_name']
 		);
-		$this->replace('publication_format_settings', $updateArray, $idFields);
 	}
 
 	/**
 	 * @copydoc PKPPubIdPluginDAO::deletePubId()
 	 */
 	function deletePubId($pubObjectId, $pubIdType) {
-		$settingName = 'pub-id::'.$pubIdType;
 		$this->update(
 			'DELETE FROM publication_format_settings WHERE setting_name = ? AND publication_format_id = ?',
-			array(
-				$settingName,
-				(int)$pubObjectId
-			)
+			['pub-id::' . $pubIdType, (int)$pubObjectId]
 		);
 		$this->flushCache();
 	}
@@ -486,16 +461,11 @@ class PublicationFormatDAO extends RepresentationDAO implements PKPPubIdPluginDA
 	 * @copydoc PKPPubIdPluginDAO::deleteAllPubIds()
 	 */
 	function deleteAllPubIds($contextId, $pubIdType) {
-		$settingName = 'pub-id::'.$pubIdType;
-
 		$formats = $this->getByContextId($contextId);
 		while ($format = $formats->next()) {
 			$this->update(
 				'DELETE FROM publication_format_settings WHERE setting_name = ? AND publication_format_id = ?',
-				array(
-					$settingName,
-					(int)$format->getId()
-				)
+				['pub-id::' . $pubIdType, (int)$format->getId()]
 			);
 		}
 		$this->flushCache();

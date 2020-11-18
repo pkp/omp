@@ -18,29 +18,17 @@ import('classes.spotlight.Spotlight');
 
 class SpotlightDAO extends DAO {
 	/**
-	 * Constructor
-	 */
-	function __construct() {
-		parent::__construct();
-	}
-
-	/**
 	 * Retrieve a spotlight by spotlight ID.
 	 * @param $spotlightId int
-	 * @return Spotlight
+	 * @return Spotlight|null
 	 */
 	function getById($spotlightId) {
 		$result = $this->retrieve(
 			'SELECT * FROM spotlights WHERE spotlight_id = ?',
-			(int) $spotlightId
+			[(int) $spotlightId]
 		);
-
-		$returner = null;
-		if ($result->RecordCount() != 0) {
-			$returner = $this->_fromRow($result->GetRowAssoc(false));
-		}
-		$result->Close();
-		return $returner;
+		$row = $result->current();
+		return $row ? $this->_fromRow((array) $row) : null;
 	}
 
 	/**
@@ -51,12 +39,10 @@ class SpotlightDAO extends DAO {
 	function getSpotlightAssocId($spotlightId) {
 		$result = $this->retrieve(
 			'SELECT assoc_id FROM spotlights WHERE spotlight_id = ?',
-			(int) $spotlightId
+			[(int) $spotlightId]
 		);
-
-		$returner = isset($result->fields[0]) ? $result->fields[0] : 0;
-		$result->Close();
-		return $returner;
+		$row = $result->current();
+		return $row ? $row->assoc_id : 0;
 	}
 
 	/**
@@ -67,12 +53,10 @@ class SpotlightDAO extends DAO {
 	function getSpotlightAssocType($spotlightId) {
 		$result = $this->retrieve(
 			'SELECT assoc_type FROM spotlights WHERE spotlight_id = ?',
-			(int) $spotlightId
+			[(int) $spotlightId]
 		);
-
-		$returner = isset($result->fields[0]) ? $result->fields[0] : 0;
-		$result->Close();
-		return $returner;
+		$row = $result->current();
+		return $row ? $row->assoc_type : 0;
 	}
 
 	/**
@@ -80,7 +64,7 @@ class SpotlightDAO extends DAO {
 	 * @return array
 	 */
 	function getLocaleFieldNames() {
-		return array('title', 'description');
+		return ['title', 'description'];
 	}
 
 	/**
@@ -112,10 +96,12 @@ class SpotlightDAO extends DAO {
 	 * Update the settings for this object
 	 * @param $spotlight object
 	 */
-	function updateLocaleFields(&$spotlight) {
-		$this->updateDataObjectSettings('spotlight_settings', $spotlight, array(
-			'spotlight_id' => $spotlight->getId()
-		));
+	function updateLocaleFields($spotlight) {
+		$this->updateDataObjectSettings(
+			'spotlight_settings',
+			$spotlight,
+			['spotlight_id' => $spotlight->getId()]
+		);
 	}
 
 	/**
@@ -129,11 +115,11 @@ class SpotlightDAO extends DAO {
 				(assoc_type, assoc_id, press_id)
 				VALUES
 				(?, ?, ?)',
-			array(
+			[
 				(int) $spotlight->getAssocType(),
 				(int) $spotlight->getAssocId(),
 				(int) $spotlight->getPressId(),
-			)
+			]
 		);
 		$spotlight->setId($this->getInsertId());
 		$this->updateLocaleFields($spotlight);
@@ -153,12 +139,12 @@ class SpotlightDAO extends DAO {
 					assoc_id = ?,
 					press_id = ?
 				WHERE spotlight_id = ?',
-			array(
+			[
 				(int) $spotlight->getAssocType(),
 				(int) $spotlight->getAssocId(),
 				(int) $spotlight->getPressId(),
 				(int) $spotlight->getId()
-			)
+			]
 		);
 		$this->updateLocaleFields($spotlight);
 		return $returner;
@@ -176,11 +162,10 @@ class SpotlightDAO extends DAO {
 	/**
 	 * Delete an spotlight by spotlight ID.
 	 * @param $spotlightId int
-	 * @return boolean
 	 */
 	function deleteById($spotlightId) {
-		$this->update('DELETE FROM spotlight_settings WHERE spotlight_id = ?', (int) $spotlightId);
-		return $this->update('DELETE FROM spotlights WHERE spotlight_id = ?', (int) $spotlightId);
+		$this->update('DELETE FROM spotlight_settings WHERE spotlight_id = ?', [(int) $spotlightId]);
+		$this->update('DELETE FROM spotlights WHERE spotlight_id = ?', [(int) $spotlightId]);
 	}
 
 	/**
@@ -205,7 +190,6 @@ class SpotlightDAO extends DAO {
 		while ($spotlight = $spotlights->next()) {
 			$this->deleteById($spotlight->getId());
 		}
-		return true;
 	}
 
 	/**
@@ -219,21 +203,16 @@ class SpotlightDAO extends DAO {
 			FROM spotlights
 			WHERE press_id = ?
 			ORDER BY spotlight_id DESC',
-			array((int) $pressId),
+			[(int) $pressId],
 			$rangeInfo
 		);
-
-		$spotlightFactory = new DAOResultFactory($result, $this, '_fromRow');
-		$returner = array();
-
-		// Avoid spotlights without items.
-		while ($spotlight = $spotlightFactory->next()) {
-			$spotlightItem = $spotlight->getSpotlightItem();
-			if ($spotlightItem) {
+		$returner = [];
+		foreach ($result as $row) {
+			$spotlight = $this->_fromRow((array) $row);
+			if ($spotlight->getSpotlightItem()) {
 				$returner[$spotlight->getId()] = $spotlight;
 			}
 		}
-
 		return $returner;
 	}
 
@@ -277,16 +256,18 @@ class SpotlightDAO extends DAO {
 	 * @return object DAOResultFactory containing matching Spotlights
 	 */
 	function getByAssoc($assocType, $assocId, $rangeInfo = null) {
-		$result = $this->retrieveRange(
-			'SELECT *
-			FROM spotlights
-			WHERE assoc_type = ? AND assoc_id = ?
-			ORDER BY spotlight_id DESC',
-			array((int) $assocType, (int) $assocId),
-			$rangeInfo
+		return new DAOResultFactory(
+			$this->retrieveRange(
+				'SELECT *
+				FROM spotlights
+				WHERE assoc_type = ? AND assoc_id = ?
+				ORDER BY spotlight_id DESC',
+				[(int) $assocType, (int) $assocId],
+				$rangeInfo
+			),
+			$this,
+			'_fromRow'
 		);
-
-		return new DAOResultFactory($result, $this, '_fromRow');
 	}
 
 	/**
@@ -295,23 +276,25 @@ class SpotlightDAO extends DAO {
 	 * @return object DAOResultFactory containing matching Spotlights
 	 */
 	function getNumSpotlightsByAssoc($assocType, $assocId, $rangeInfo = null) {
-		$result = $this->retrieveRange(
-			'SELECT *
-			FROM spotlights
-			WHERE assoc_type = ?
-				AND assoc_id = ?
-			ORDER BY spotlight_id DESC',
-			array((int) $assocType, (int) $assocId),
-			$rangeInfo
+		return new DAOResultFactory(
+			$this->retrieveRange(
+				'SELECT *
+				FROM spotlights
+				WHERE assoc_type = ?
+					AND assoc_id = ?
+				ORDER BY spotlight_id DESC',
+				[(int) $assocType, (int) $assocId],
+				$rangeInfo
+			),
+			$this,
+			'_fromRow'
 		);
-
-		return new DAOResultFactory($result, $this, '_fromRow');
 	}
 
 	/**
 	 * Retrieve most recent spotlight by Assoc ID.
 	 * @param $assocType int
-	 * @return Spotlight
+	 * @return Spotlight|null
 	 */
 	function getMostRecentSpotlightByAssoc($assocType, $assocId) {
 		$result = $this->retrieve(
@@ -320,15 +303,10 @@ class SpotlightDAO extends DAO {
 			WHERE assoc_type = ?
 				AND assoc_id = ?
 			ORDER BY spotlight_id DESC LIMIT 1',
-			array((int) $assocType, (int) $assocId)
+			[(int) $assocType, (int) $assocId]
 		);
-
-		$returner = null;
-		if ($result->RecordCount() != 0) {
-			$returner = $this->_fromRow($result->GetRowAssoc(false));
-		}
-		$result->Close();
-		return $returner;
+		$row = $result->current();
+		return $row ? $this->_fromRow((array) $row) : null;
 	}
 
 	/**

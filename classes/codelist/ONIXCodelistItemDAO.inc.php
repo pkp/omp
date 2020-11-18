@@ -41,7 +41,7 @@ class ONIXCodelistItemDAO extends DAO {
 			$cacheManager = CacheManager::getManager();
 			$cache = $cacheManager->getFileCache(
 				$this->getListName() . '_codelistItems', $locale,
-				array($this, '_cacheMiss')
+				[$this, '_cacheMiss']
 			);
 			$cacheTime = $cache->getCacheTime();
 			if ($cacheTime !== null && $cacheTime < filemtime($this->getFilename($locale))) {
@@ -62,7 +62,7 @@ class ONIXCodelistItemDAO extends DAO {
 				$locale = AppLocale::getLocale();
 			}
 			$filename = $this->getFilename($locale);
-			$notes[] = array('debug.notes.codelistItemListLoad', array('filename' => $filename));
+			$notes[] = ['debug.notes.codelistItemListLoad', ['filename' => $filename]];
 
 			// Reload locale registry file
 			$xmlDao = new XMLDAO();
@@ -83,7 +83,7 @@ class ONIXCodelistItemDAO extends DAO {
 
 			$tmpName = tempnam($tmpDir, 'ONX');
 			$xslTransformer = new XSLTransformer();
-			$xslTransformer->setParameters(array('listName' => $listName));
+			$xslTransformer->setParameters(['listName' => $listName]);
 			$xslTransformer->setRegisterPHPFunctions(true);
 
 			$xslFile = 'lib/pkp/xml/onixFilter.xsl';
@@ -102,7 +102,7 @@ class ONIXCodelistItemDAO extends DAO {
 				fatalError('misconfigured directory permissions on: ' . $tmpDir);
 			}
 
-			// Build array with ($charKey => array(stuff))
+			// Build array with ($charKey => [stuff])
 
 			if (isset($data[$listName])) {
 				foreach ($data[$listName] as $code => $codelistData) {
@@ -169,7 +169,7 @@ class ONIXCodelistItemDAO extends DAO {
 	function &getCodelistItems($list, $locale = null) {
 		$this->setListName($list);
 		$cache =& $this->_getCache($locale);
-		$returner = array();
+		$returner = [];
 		foreach ($cache->getContents() as $code => $entry) {
 			$returner[] =& $this->_fromRow($code, $entry);
 		}
@@ -184,10 +184,10 @@ class ONIXCodelistItemDAO extends DAO {
 	 * @param $locale an optional locale to use
 	 * @return array of CodelistItem names
 	 */
-	function &getCodes($list, $codesToExclude = array(), $codesFilter = null, $locale = null) {
+	function &getCodes($list, $codesToExclude = [], $codesFilter = null, $locale = null) {
 		$this->setListName($list);
 		$cache =& $this->_getCache($locale);
-		$returner = array();
+		$returner = [];
 		$cacheContents =& $cache->getContents();
 		if (is_array($cacheContents)) {
 			foreach ($cache->getContents() as $code => $entry) {
@@ -232,7 +232,7 @@ class ONIXCodelistItemDAO extends DAO {
 		$codelistItem->setCode($code);
 		$codelistItem->setText($entry[0]);
 
-		HookRegistry::call('ONIXCodelistItemDAO::_fromRow', array(&$codelistItem, &$code, &$entry));
+		HookRegistry::call('ONIXCodelistItemDAO::_fromRow', [&$codelistItem, &$code, &$entry]);
 
 		return $codelistItem;
 	}

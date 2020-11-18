@@ -81,14 +81,14 @@ class OAIDAO extends PKPOAIDAO {
 	 */
 	function getSets($pressId = null, $offset, $limit, &$total) {
 		if (isset($pressId)) {
-			$presses = array($this->getPress($pressId));
+			$presses = [$this->getPress($pressId)];
 		} else {
 			$pressFactory = $this->_pressDao->getAll();
 			$presses = $pressFactory->toArray();
 		}
 
 		// FIXME Set descriptions
-		$sets = array();
+		$sets = [];
 		foreach ($presses as $press) {
 			$title = $press->getLocalizedName();
 			$abbrev = $press->getPath();
@@ -110,7 +110,7 @@ class OAIDAO extends PKPOAIDAO {
 			}
 		}
 
-		HookRegistry::call('OAIDAO::getSets', array(&$this, $pressId, $offset, $limit, $total, &$sets));
+		HookRegistry::call('OAIDAO::getSets', [&$this, $pressId, $offset, $limit, $total, &$sets]);
 
 		$total = count($sets);
 		$sets = array_slice($sets, $offset, $limit);
@@ -128,7 +128,7 @@ class OAIDAO extends PKPOAIDAO {
 	function getSetPressSeriesId($pressSpec, $seriesSpec, $restrictPressId = null) {
 		$press = $this->_pressDao->getByPath($pressSpec);
 		if (!isset($press) || (isset($restrictPressId) && $press->getId() != $restrictPressId)) {
-			return array(0, 0);
+			return [0, 0];
 		}
 
 		$pressId = $press->getId();
@@ -143,7 +143,7 @@ class OAIDAO extends PKPOAIDAO {
 			}
 		}
 
-		return array($pressId, $seriesId);
+		return [$pressId, $seriesId];
 	}
 
 
@@ -159,7 +159,7 @@ class OAIDAO extends PKPOAIDAO {
 		$publicationFormatId = $row['data_object_id'];
 
 		$record->identifier = $this->oai->publicationFormatIdToIdentifier($publicationFormatId);
-		$record->sets = array(urlencode($press->getPath()) . ($series?':' . urlencode($series->getPath()):''));
+		$record->sets = [urlencode($press->getPath()) . ($series?':' . urlencode($series->getPath()):'')];
 
 		if ($isRecord) {
 			$publicationFormat = $this->_publicationFormatDao->getById($publicationFormatId);
@@ -189,7 +189,7 @@ class OAIDAO extends PKPOAIDAO {
 		$pressId = array_shift($setIds);
 		$seriesId = array_shift($setIds);
 
-		$params = array();
+		$params = [];
 		if ($pressId) $params[] = (int) $pressId;
 		if ($seriesId) $params[] = (int) $seriesId;
 		if ($submissionId) $params[] = (int) $submissionId;
@@ -199,7 +199,7 @@ class OAIDAO extends PKPOAIDAO {
 		if ($submissionId) $params[] = (int) $submissionId;
 
 		import('lib.pkp.classes.submission.PKPSubmission'); // STATUS_DECLINED
-		$result = $this->retrieve(
+		return $this->retrieve(
 			'SELECT	ms.last_modified AS last_modified,
 				pf.publication_format_id AS data_object_id,
 				p.press_id AS press_id,
@@ -241,8 +241,6 @@ class OAIDAO extends PKPOAIDAO {
 			ORDER BY ' . $orderBy,
 			$params
 		);
-
-		return $result;
 	}
 }
 

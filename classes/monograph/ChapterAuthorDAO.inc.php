@@ -28,31 +28,35 @@ class ChapterAuthorDAO extends DAO {
 	 * @return DAOResultFactory
 	 */
 	function getAuthors($publicationId = null, $chapterId = null) {
-		$params = array();
+		$params = [];
 		if (isset($publicationId)) $params[] = (int) $publicationId;
 		if (isset($chapterId)) $params[] = (int) $chapterId;
 		// get all the monograph_author fields,
 		// but replace the primary_contact and seq with submission_chapter_authors.primary_contact
-
-		$sql = 'SELECT	a.*,
+		return new DAOResultFactory(
+			$this->retrieve(
+				'SELECT	a.*,
 				sca.chapter_id,
 				sca.primary_contact,
 				sca.seq,
 				ug.show_title,
 				s.locale AS submission_locale
-			FROM	authors a
-				JOIN publications p ON (p.publication_id = a.publication_id)
-				JOIN submissions s ON (s.submission_id = p.submission_id)
-				JOIN submission_chapter_authors sca ON (a.author_id = sca.author_id)
-				JOIN user_groups ug ON (a.user_group_id = ug.user_group_id)' .
-			( (count($params)> 0)?' WHERE':'' ) .
-			(  isset($publicationId)?' a.publication_id = ?':'' ) .
-			(  (isset($publicationId) && isset($chapterId))?' AND':'' ) .
-			(  isset($chapterId)?' sca.chapter_id = ?':'' ) .
-			' ORDER BY sca.chapter_id, sca.seq';
-
-		$result = $this->retrieve($sql, $params);
-		return new DAOResultFactory($result, $this, '_fromRow', array('id'));
+				FROM	authors a
+					JOIN publications p ON (p.publication_id = a.publication_id)
+					JOIN submissions s ON (s.submission_id = p.submission_id)
+					JOIN submission_chapter_authors sca ON (a.author_id = sca.author_id)
+					JOIN user_groups ug ON (a.user_group_id = ug.user_group_id)' .
+				( (count($params) > 0) ? ' WHERE' : '' ) .
+				(  isset($publicationId) ? ' a.publication_id = ?' : '' ) .
+				(  (isset($publicationId) && isset($chapterId)) ? ' AND' : '' ) .
+				(  isset($chapterId) ? ' sca.chapter_id = ?' : '' ) .
+				' ORDER BY sca.chapter_id, sca.seq',
+				$params
+			),
+			$this,
+			'_fromRow',
+			['id']
+		);
 	}
 
 	/**
@@ -61,23 +65,14 @@ class ChapterAuthorDAO extends DAO {
 	 * @return array
 	 */
 	function getAuthorIdsByChapterId($chapterId) {
-
 		$result = $this->retrieve(
 			'SELECT author_id
 			FROM submission_chapter_authors
 			WHERE chapter_id = ?',
 			[(int) $chapterId]
 		);
-
-		$authorIds = array();
-		while (!$result->EOF) {
-			$authorIds[] = $result->fields[0];
-			$result->MoveNext();
-		}
-
-		$result->Close();
-		unset($result);
-
+		$authorIds = [];
+		foreach ($result as $row) $authorIds[] = $row->author_id;
 		return $authorIds;
 	}
 
@@ -94,12 +89,12 @@ class ChapterAuthorDAO extends DAO {
 				(author_id, chapter_id, primary_contact, seq)
 				VALUES
 				(?, ?, ?, ?)',
-			array(
+			[
 				(int) $authorId,
 				(int) $chapterId,
 				(int) $isPrimary,
 				(int) $sequence
-			)
+			]
 		);
 	}
 
@@ -108,7 +103,7 @@ class ChapterAuthorDAO extends DAO {
 	 * @param $chapterId int
 	 */
 	function deleteChapterAuthorById($authorId, $chapterId = null) {
-		$params = array((int) $authorId);
+		$params = [(int) $authorId];
 		if ($chapterId) $params[] = (int) $chapterId;
 
 		$this->update(

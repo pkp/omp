@@ -16,32 +16,21 @@
 
 class FeatureDAO extends DAO {
 	/**
-	 * Constructor
-	 */
-	function __construct() {
-		parent::__construct();
-	}
-
-	/**
 	 * Get monograph IDs by association.
 	 * @param $assocType int ASSOC_TYPE_...
 	 * @param $assocId int
 	 * @return array Associative array seq => monograph ID
 	 */
 	function getMonographIdsByAssoc($assocType, $assocId) {
-		$returner = array();
 		$result = $this->retrieve(
 			'SELECT submission_id, seq FROM features WHERE assoc_type = ? AND assoc_id = ? ORDER BY seq',
-			array((int) $assocType, (int) $assocId)
+			[(int) $assocType, (int) $assocId]
 		);
 
-		while (!$result->EOF) {
-			list($monographId, $seq) = $result->fields;
-			$returner[$seq] = $monographId;
-			$result->MoveNext();
+		$returner = [];
+		foreach ($result as $row) {
+			$returner[$row->seq] = $row->submission_id;
 		}
-
-		$result->Close();
 		return $returner;
 	}
 
@@ -68,12 +57,12 @@ class FeatureDAO extends DAO {
 				(submission_id, assoc_type, assoc_id, seq)
 				VALUES
 				(?, ?, ?, ?)',
-			array(
+			[
 				(int) $monographId,
 				(int) $assocType,
 				(int) $assocId,
 				(int) $seq
-			)
+			]
 		);
 	}
 
@@ -85,7 +74,7 @@ class FeatureDAO extends DAO {
 	function deleteByMonographId($monographId) {
 		$this->update(
 			'DELETE FROM features WHERE submission_id = ?',
-			(int) $monographId
+			[(int) $monographId]
 		);
 	}
 
@@ -97,7 +86,7 @@ class FeatureDAO extends DAO {
 	function deleteByAssoc($assocType, $assocId) {
 		$this->update(
 			'DELETE FROM features WHERE assoc_type = ? AND assoc_id = ?',
-			array((int) $assocType, (int) $assocId)
+			[(int) $assocType, (int) $assocId]
 		);
 	}
 
@@ -113,11 +102,11 @@ class FeatureDAO extends DAO {
 			WHERE	submission_id = ? AND
 				assoc_type = ? AND
 				assoc_id = ?',
-			array(
+			[
 				(int) $monographId,
 				(int) $assocType,
 				(int) $assocId
-			)
+			]
 		);
 	}
 
@@ -134,13 +123,9 @@ class FeatureDAO extends DAO {
 	function isFeatured($monographId, $assocType, $assocId) {
 		$result = $this->retrieve(
 			'SELECT submission_id FROM features WHERE submission_id = ? AND assoc_type = ? AND assoc_id = ?',
-			array((int) $monographId, (int) $assocType, (int) $assocId)
+			[(int) $monographId, (int) $assocType, (int) $assocId]
 		);
-		if ($result->RecordCount() > 0) {
-			return true;
-		}
-
-		return false;
+		return (boolean) $result->current();
 	}
 
 	/**
@@ -151,19 +136,17 @@ class FeatureDAO extends DAO {
 	function getFeaturedAll($monographId) {
 		$result = $this->retrieve(
 			'SELECT assoc_type, assoc_id, seq FROM features WHERE submission_id = ?',
-			array((int) $monographId)
+			[(int) $monographId]
 		);
 
-		$featured = array();
-		while (!$result->EOF) {
+		$featured = [];
+		foreach ($result as $row) {
 			$featured[] = array(
-				'assoc_type' => (int) $result->fields['assoc_type'],
-				'assoc_id' => (int) $result->fields['assoc_id'],
-				'seq' => (int) $result->fields['seq'],
+				'assoc_type' => (int) $row->assoc_type,
+				'assoc_id' => (int) $row->assoc_id,
+				'seq' => (int) $row->seq,
 			);
-			$result->MoveNext();
 		}
-
 		return $featured;
 	}
 
@@ -178,19 +161,16 @@ class FeatureDAO extends DAO {
 	function getSequencePosition($monographId, $assocType, $assocId) {
 		$result = $this->retrieve(
 			'SELECT seq FROM features WHERE submission_id = ? AND assoc_type = ? AND assoc_id = ?',
-			array((int) $monographId, (int) $assocType, (int) $assocId)
+			[(int) $monographId, (int) $assocType, (int) $assocId]
 		);
-		if ($result->RecordCount() > 0) {
-			return current($result->fields);
-		}
-
-		return false;
+		$row = $result->current();
+		return $row ? $row->seq : false;
 	}
 
 	function setSequencePosition($monographId, $assocType, $assocId, $sequencePosition) {
 		$this->update(
 			'UPDATE features SET seq = ? WHERE submission_id = ? AND assoc_type = ? AND assoc_id = ?',
-			array((int) $sequencePosition, (int) $monographId, (int) $assocType, (int) $assocId)
+			[(int) $sequencePosition, (int) $monographId, (int) $assocType, (int) $assocId]
 		);
 	}
 
@@ -202,29 +182,26 @@ class FeatureDAO extends DAO {
 	 * @return array Associative array of id => seq for resequenced set
 	 */
 	function resequenceByAssoc($assocType, $assocId) {
-		$returner = array();
 		$result = $this->retrieve(
 			'SELECT submission_id FROM features WHERE assoc_type = ? AND assoc_id = ? ORDER BY seq',
-			array((int) $assocType, (int) $assocId)
+			[(int) $assocType, (int) $assocId]
 		);
 
-		for ($i=2; !$result->EOF; $i+=2) {
-			list($monographId) = $result->fields;
+		$returner = [];
+		$i=2;
+		foreach ($result as $row) {
 			$this->update(
 				'UPDATE features SET seq = ? WHERE submission_id = ? AND assoc_type = ? AND assoc_id = ?',
-				array(
+				[
 					$i,
-					$monographId,
+					$row->submission_id,
 					(int) $assocType,
 					(int) $assocId
-				)
+				]
 			);
-			$returner[$monographId] = $i;
-
-			$result->MoveNext();
+			$returner[$row->submission_id] = $i;
+			$i += 2;
 		}
-
-		$result->Close();
 		return $returner;
 	}
 }

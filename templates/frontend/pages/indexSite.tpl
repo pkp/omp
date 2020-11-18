@@ -22,11 +22,11 @@
 		<h2>
 			{translate key="context.contexts"}
 		</h2>
-		{if $presses->wasEmpty()}
+		{if !$presses|@count}
 			{translate key="site.noPresses"}
 		{else}
 			<ul>
-				{iterate from=presses item=press}
+				{foreach from=$presses item=press}
 					{capture assign="url"}{url press=$press->getPath()}{/capture}
 					{assign var="thumb" value=$press->getLocalizedData('pressThumbnail')}
 					{assign var="description" value=$press->getLocalizedDescription()}
@@ -59,7 +59,7 @@
 							</ul>
 						</div>
 					</li>
-				{/iterate}
+				{/foreach}
 			</ul>
 		{/if}
 	</div>

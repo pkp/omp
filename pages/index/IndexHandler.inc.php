@@ -30,12 +30,12 @@ class IndexHandler extends PKPIndexHandler {
 		$press = $request->getPress();
 
 		if (!$press) {
-			$press = $this->getTargetContext($request, $pressesCount);
+			$press = $this->getTargetContext($request, $hasNoContexts);
 			if ($press) {
 				// There's a target context but no press in the current request. Redirect.
 				$request->redirect($press->getPath());
 			}
-			if ($pressesCount === 0 && Validation::isSiteAdmin()) {
+			if ($hasNoContexts && Validation::isSiteAdmin()) {
 				// No contexts created, and this is the admin.
 				$request->redirect(null, 'admin', 'contexts');
 			}
@@ -75,7 +75,7 @@ class IndexHandler extends PKPIndexHandler {
 			'pageTitleTranslated' => $site->getLocalizedTitle(),
 			'about' => $site->getLocalizedAbout(),
 			'pressesFilesPath' => $request->getBaseUrl() . '/' . Config::getVar('files', 'public_files_dir') . '/presses/',
-			'presses' => $pressDao->getAll(true),
+			'presses' => $pressDao->getAll(true)->toArray(),
 			'site' => $site,
 		));
 		$templateMgr->setCacheability(CACHEABILITY_PUBLIC);

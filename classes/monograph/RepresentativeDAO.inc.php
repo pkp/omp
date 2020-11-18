@@ -21,13 +21,11 @@ class RepresentativeDAO extends DAO {
 	 * Retrieve a representative entry by id.
 	 * @param $representativeId int
 	 * @param $monographId optional int
-	 * @return Representative
+	 * @return Representative|null
 	 */
-	function getById($representativeId, $monographId = null){
-		$sqlParams = array((int) $representativeId);
-		if ($monographId) {
-			$sqlParams[] = (int) $monographId;
-		}
+	function getById($representativeId, $monographId = null) {
+		$params = [(int) $representativeId];
+		if ($monographId) $params[] = (int) $monographId;
 
 		$result = $this->retrieve(
 			'SELECT r.*
@@ -35,15 +33,10 @@ class RepresentativeDAO extends DAO {
 			JOIN submissions s ON (r.submission_id = s.submission_id)
 			WHERE r.representative_id = ?
 				' . ($monographId?' AND s.submission_id = ?':''),
-			$sqlParams
+			$params
 		);
-
-		$returner = null;
-		if ($result->RecordCount() != 0) {
-			$returner = $this->_fromRow($result->GetRowAssoc(false));
-		}
-		$result->Close();
-		return $returner;
+		$row = $result->current();
+		return $row ? $this->_fromRow((array) $row) : null;
 	}
 
 	/**
@@ -52,10 +45,14 @@ class RepresentativeDAO extends DAO {
 	 * @return DAOResultFactory containing matching representatives.
 	 */
 	function getSuppliersByMonographId($monographId) {
-		$result = $this->retrieveRange(
-			'SELECT * FROM representatives WHERE submission_id = ? AND is_supplier = ?', array((int) $monographId, 1));
-
-		return new DAOResultFactory($result, $this, '_fromRow');
+		return new DAOResultFactory(
+			$this->retrieveRange(
+				'SELECT * FROM representatives WHERE submission_id = ? AND is_supplier = ?',
+				[(int) $monographId, 1]
+			),
+			$this,
+			'_fromRow'
+		);
 	}
 
 	/**
@@ -64,10 +61,14 @@ class RepresentativeDAO extends DAO {
 	 * @return DAOResultFactory containing matching representatives.
 	 */
 	function getAgentsByMonographId($monographId) {
-		$result = $this->retrieveRange(
-				'SELECT * FROM representatives WHERE submission_id = ? AND is_supplier = ?', array((int) $monographId, 0));
-
-		return new DAOResultFactory($result, $this, '_fromRow');
+		return new DAOResultFactory(
+			$this->retrieveRange(
+				'SELECT * FROM representatives WHERE submission_id = ? AND is_supplier = ?',
+				[(int) $monographId, 0]
+			),
+			$this,
+			'_fromRow'
+		);
 	}
 
 	/**
@@ -112,7 +113,7 @@ class RepresentativeDAO extends DAO {
 				(submission_id, role, representative_id_type, representative_id_value, name, phone, email, url, is_supplier)
 			VALUES
 				(?, ?, ?, ?, ?, ?, ?, ?, ?)',
-			array(
+			[
 				(int) $representative->getMonographId(),
 				$representative->getRole(),
 				$representative->getRepresentativeIdType(),
@@ -122,7 +123,7 @@ class RepresentativeDAO extends DAO {
 				$representative->getEmail(),
 				$representative->getUrl(),
 				(int) $representative->getIsSupplier()
-			)
+			]
 		);
 
 		$representative->setId($this->getInsertId());
@@ -145,7 +146,7 @@ class RepresentativeDAO extends DAO {
 				url = ?,
 				is_supplier = ?
 			WHERE representative_id = ?',
-			array(
+			[
 				$representative->getRole(),
 				$representative->getRepresentativeIdType(),
 				$representative->getRepresentativeIdValue(),
@@ -155,7 +156,7 @@ class RepresentativeDAO extends DAO {
 				$representative->getUrl(),
 				(int) $representative->getIsSupplier(),
 				(int) $representative->getId()
-			)
+			]
 		);
 	}
 
@@ -173,7 +174,7 @@ class RepresentativeDAO extends DAO {
 	 */
 	function deleteById($entryId) {
 		return $this->update(
-			'DELETE FROM representatives WHERE representative_id = ?', (int) $entryId
+			'DELETE FROM representatives WHERE representative_id = ?', [(int) $entryId]
 		);
 	}
 

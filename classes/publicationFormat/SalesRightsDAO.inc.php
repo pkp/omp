@@ -18,23 +18,14 @@ import('classes.publicationFormat.SalesRights');
 
 class SalesRightsDAO extends DAO {
 	/**
-	 * Constructor
-	 */
-	function __construct() {
-		parent::__construct();
-	}
-
-	/**
 	 * Retrieve a sales rights entry by type id.
 	 * @param $salesRightsId int
 	 * @param $publicationId optional int
-	 * @return SalesRights
+	 * @return SalesRights|null
 	 */
 	function getById($salesRightsId, $publicationId = null){
-		$sqlParams = array((int) $salesRightsId);
-		if ($publicationId) {
-			$sqlParams[] = (int) $publicationId;
-		}
+		$params = [(int) $salesRightsId];
+		if ($publicationId) $params[] = (int) $publicationId;
 
 		$result = $this->retrieve(
 			'SELECT	s.*
@@ -42,15 +33,10 @@ class SalesRightsDAO extends DAO {
 				JOIN publication_formats pf ON (s.publication_format_id = pf.publication_format_id)
 			WHERE s.sales_rights_id = ?
 				' . ($publicationId?' AND pf.publication_id = ?':''),
-			$sqlParams
+			$params
 		);
-
-		$returner = null;
-		if ($result->RecordCount() != 0) {
-			$returner = $this->_fromRow($result->GetRowAssoc(false));
-		}
-		$result->Close();
-		return $returner;
+		$row = $result->current();
+		return $row ? $this->_fromRow((array) $row) : null;
 	}
 
 	/**
@@ -59,29 +45,28 @@ class SalesRightsDAO extends DAO {
 	 * @return DAOResultFactory containing matching sales rights.
 	 */
 	function getByPublicationFormatId($publicationFormatId) {
-		$result = $this->retrieveRange(
-			'SELECT * FROM sales_rights WHERE publication_format_id = ?', (int) $publicationFormatId);
-
-		return new DAOResultFactory($result, $this, '_fromRow');
+		return new DAOResultFactory(
+			$this->retrieveRange(
+				'SELECT * FROM sales_rights WHERE publication_format_id = ?',
+				[(int) $publicationFormatId]
+			),
+			$this,
+			'_fromRow'
+		);
 	}
 
 	/**
 	 * Retrieve the specific Sales Rights instance for which ROW is set to true.  There should only be one per format.
 	 * @param $publicationFormatId int
-	 * @return SalesRights
+	 * @return SalesRights|null
 	 */
 	function getROWByPublicationFormatId($publicationFormatId) {
 		$result = $this->retrieve(
 			'SELECT * FROM sales_rights WHERE row_setting = ? AND publication_format_id = ?',
-			array(1, (int) $publicationFormatId)
+			[1, (int) $publicationFormatId]
 		);
-
-		$returner = null;
-		if ($result->RecordCount() != 0) {
-			$returner = $this->_fromRow($result->GetRowAssoc(false));
-		}
-		$result->Close();
-		return $returner;
+		$row = $result->current();
+		return $row ? $this->_fromRow((array) $row) : null;
 	}
 
 	/**
@@ -125,7 +110,7 @@ class SalesRightsDAO extends DAO {
 				(publication_format_id, type, row_setting, countries_included, countries_excluded, regions_included, regions_excluded)
 			VALUES
 				(?, ?, ?, ?, ?, ?, ?)',
-			array(
+			[
 				(int) $salesRights->getPublicationFormatId(),
 				$salesRights->getType(),
 				$salesRights->getROWSetting(),
@@ -133,7 +118,7 @@ class SalesRightsDAO extends DAO {
 				serialize($salesRights->getCountriesExcluded() ? $salesRights->getCountriesExcluded() : array()),
 				serialize($salesRights->getRegionsIncluded() ? $salesRights->getRegionsIncluded() : array()),
 				serialize($salesRights->getRegionsExcluded() ? $salesRights->getRegionsExcluded() : array())
-			)
+			]
 		);
 
 		$salesRights->setId($this->getInsertId());
@@ -154,7 +139,7 @@ class SalesRightsDAO extends DAO {
 				regions_included = ?,
 				regions_excluded = ?
 			WHERE sales_rights_id = ?',
-			array(
+			[
 				$salesRights->getType(),
 				$salesRights->getROWSetting(),
 				serialize($salesRights->getCountriesIncluded() ? $salesRights->getCountriesIncluded() : array()),
@@ -162,7 +147,7 @@ class SalesRightsDAO extends DAO {
 				serialize($salesRights->getRegionsIncluded() ? $salesRights->getRegionsIncluded() : array()),
 				serialize($salesRights->getRegionsExcluded() ? $salesRights->getRegionsExcluded() : array()),
 				(int) $salesRights->getId()
-			)
+			]
 		);
 	}
 
@@ -179,9 +164,7 @@ class SalesRightsDAO extends DAO {
 	 * @param $entryId int
 	 */
 	function deleteById($entryId) {
-		return $this->update(
-			'DELETE FROM sales_rights WHERE sales_rights_id = ?', array((int) $entryId)
-		);
+		$this->update('DELETE FROM sales_rights WHERE sales_rights_id = ?', [(int) $entryId]);
 	}
 
 	/**

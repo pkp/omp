@@ -23,26 +23,18 @@ class ChapterDAO extends DAO implements PKPPubIdPluginDAO {
 	 * Retrieve a chapter by ID.
 	 * @param $chapterId int
 	 * @param $publicationId int optional
-	 * @return Chapter
+	 * @return Chapter|null
 	 */
 	function getChapter($chapterId, $publicationId = null) {
-		$params = array((int) $chapterId);
-		if ($publicationId !== null) {
-			$params[] = (int) $publicationId;
-		}
-
+		$params = [(int) $chapterId];
+		if ($publicationId !== null) $params[] = (int) $publicationId;
 		$result = $this->retrieve(
 			'SELECT * FROM submission_chapters WHERE chapter_id = ?'
 			. ($publicationId !== null?' AND publication_id = ? ':''),
 			$params
 		);
-
-		$returner = null;
-		if ($result->RecordCount() != 0) {
-			$returner = $this->_fromRow($result->GetRowAssoc(false));
-		}
-		$result->Close();
-		return $returner;
+		$row = $result->current();
+		return $row ? $this->_fromRow((array) $row) : null;
 	}
 
 	/**
@@ -52,16 +44,18 @@ class ChapterDAO extends DAO implements PKPPubIdPluginDAO {
 	 * @return DAOResultFactory
 	 */
 	function getByPublicationId($publicationId, $orderBySequence = true) {
-		$result = $this->retrieve(
-			'SELECT	spc.*
-			FROM submission_chapters spc
-			INNER JOIN publications p ON (spc.publication_id = p.publication_id)
-			WHERE p.publication_id = ?'
-			. ($orderBySequence ? ' ORDER BY spc.seq ASC' : ''),
-			(int) $publicationId
+		return new DAOResultFactory(
+			$this->retrieve(
+				'SELECT	spc.*
+				FROM submission_chapters spc
+				INNER JOIN publications p ON (spc.publication_id = p.publication_id)
+				WHERE p.publication_id = ?'
+				. ($orderBySequence ? ' ORDER BY spc.seq ASC' : ''),
+				[(int) $publicationId]
+			),
+			$this,
+			'_fromRow'
 		);
-
-		return new DAOResultFactory($result, $this, '_fromRow');
 	}
 
 	/**
@@ -70,16 +64,18 @@ class ChapterDAO extends DAO implements PKPPubIdPluginDAO {
 	 * @return DAOResultFactory
 	 */
 	function getByContextId($pressId) {
-		$result = $this->retrieve(
-			'SELECT	spc.*
-			FROM submission_chapters spc
-			INNER JOIN publications p ON (spc.publication_id = p.publication_id)
-			INNER JOIN submissions s ON (p.submission_id = s.submission_id)
-			WHERE s.context_id = ?',
-			(int) $pressId
+		return new DAOResultFactory(
+			$this->retrieve(
+				'SELECT	spc.*
+				FROM submission_chapters spc
+				INNER JOIN publications p ON (spc.publication_id = p.publication_id)
+				INNER JOIN submissions s ON (p.submission_id = s.submission_id)
+				WHERE s.context_id = ?',
+				[(int) $pressId]
+			),
+			$this,
+			'_fromRow'
 		);
-
-		return new DAOResultFactory($result, $this, '_fromRow');
 	}
 
 	/**
@@ -87,7 +83,7 @@ class ChapterDAO extends DAO implements PKPPubIdPluginDAO {
 	 * @return array
 	 */
 	function getLocaleFieldNames() {
-		return array('title', 'subtitle','abstract');
+		return ['title', 'subtitle','abstract'];
 	}
 
 	/**
@@ -135,9 +131,11 @@ class ChapterDAO extends DAO implements PKPPubIdPluginDAO {
 	 * @param $chapter object
 	 */
 	function updateLocaleFields($chapter) {
-		$this->updateDataObjectSettings('submission_chapter_settings', $chapter, array(
-			'chapter_id' => $chapter->getId()
-		));
+		$this->updateDataObjectSettings(
+			'submission_chapter_settings',
+			$chapter,
+			['chapter_id' => $chapter->getId()]
+		);
 	}
 
 	/**
@@ -150,10 +148,10 @@ class ChapterDAO extends DAO implements PKPPubIdPluginDAO {
 				(publication_id, seq)
 				VALUES
 				(?, ?)',
-			array(
+			[
 				(int) $chapter->getData('publicationId'),
 				(int) $chapter->getSequence(),
-			)
+			]
 		);
 
 		$chapter->setId($this->getInsertId());
@@ -172,11 +170,11 @@ class ChapterDAO extends DAO implements PKPPubIdPluginDAO {
 					seq = ?
 				WHERE
 					chapter_id = ?',
-			array(
+			[
 				(int) $chapter->getData('publicationId'),
 				(int) $chapter->getSequence(),
 				(int) $chapter->getId()
-			)
+			]
 		);
 		$this->updateLocaleFields($chapter);
 	}
@@ -194,9 +192,9 @@ class ChapterDAO extends DAO implements PKPPubIdPluginDAO {
 	 * @param $chapterId int
 	 */
 	function deleteById($chapterId) {
-		$this->update('DELETE FROM submission_chapter_authors WHERE chapter_id = ?', (int) $chapterId);
-		$this->update('DELETE FROM submission_chapter_settings WHERE chapter_id = ?', (int) $chapterId);
-		$this->update('DELETE FROM submission_chapters WHERE chapter_id = ?', (int) $chapterId);
+		$this->update('DELETE FROM submission_chapter_authors WHERE chapter_id = ?', [(int) $chapterId]);
+		$this->update('DELETE FROM submission_chapter_settings WHERE chapter_id = ?', [(int) $chapterId]);
+		$this->update('DELETE FROM submission_chapters WHERE chapter_id = ?', [(int) $chapterId]);
 		$this->update('DELETE FROM submission_file_settings WHERE setting_name = ? AND setting_value = ?', ['chapterId', (int) $chapterId]);
 	}
 
@@ -205,10 +203,8 @@ class ChapterDAO extends DAO implements PKPPubIdPluginDAO {
 	 * @param $publicationId int
 	 */
 	function resequenceChapters($publicationId) {
-		$params = array();
-		if ($publicationId !== null) {
-			$params[] = (int) $publicationId;
-		}
+		$params = [];
+		if ($publicationId !== null) $params[] = (int) $publicationId;
 
 		$result = $this->retrieve(
 			'SELECT chapter_id FROM submission_chapters
@@ -218,20 +214,13 @@ class ChapterDAO extends DAO implements PKPPubIdPluginDAO {
 			$params
 		);
 
-		for ($i=1; !$result->EOF; $i++) {
-			list($chapterId) = $result->fields;
+		$i=0;
+		foreach ($result as $row) {
 			$this->update(
 				'UPDATE submission_chapters SET seq = ? WHERE chapter_id = ?',
-				array(
-					(int) $i,
-					(int) $chapterId
-				)
+				[++$i, $row->chapter_id]
 			);
-
-			$result->MoveNext();
 		}
-
-		$result->Close();
 	}
 
 	/**
@@ -247,7 +236,7 @@ class ChapterDAO extends DAO implements PKPPubIdPluginDAO {
 	 */
 	function pubIdExists($pubIdType, $pubId, $excludePubObjectId, $contextId) {
 		$result = $this->retrieve(
-			'SELECT COUNT(*)
+			'SELECT COUNT(*) AS row_count
 			FROM submission_chapter_settings scs
 			INNER JOIN submission_chapters sc ON scs.chapter_id = sc.chapter_id
 			INNER JOIN publications p ON sc.publication_id = p.publication_id
@@ -256,46 +245,44 @@ class ChapterDAO extends DAO implements PKPPubIdPluginDAO {
 			AND scs.setting_value = ?
 			AND sc.chapter_id <> ?
 			AND s.context_id = ?',
-			array(
-				'pub-id::'.$pubIdType,
+			[
+				'pub-id::' . $pubIdType,
 				$pubId,
 				(int) $excludePubObjectId,
 				(int) $contextId
-			)
+			]
 		);
-		$returner = $result->fields[0] ? true : false;
-		$result->Close();
-		return $returner;
+		$row = $result->current();
+		return $row ? (boolean) $row->row_count : false;
 	}
 
 	/**
 	 * @copydoc PKPPubIdPluginDAO::changePubId()
 	 */
 	function changePubId($pubObjectId, $pubIdType, $pubId) {
-		$idFields = array(
-			'chapter_id', 'locale', 'setting_name'
+		$this->replace(
+			'submission_chapter_settings',
+			[
+				'chapter_id' => (int) $pubObjectId,
+				'locale' => '',
+				'setting_name' => 'pub-id::' . $pubIdType,
+				'setting_type' => 'string',
+				'setting_value' => (string) $pubId
+			],
+			['chapter_id', 'locale', 'setting_name']
 		);
-		$updateArray = array(
-			'chapter_id' => (int) $pubObjectId,
-			'locale' => '',
-			'setting_name' => 'pub-id::'.$pubIdType,
-			'setting_type' => 'string',
-			'setting_value' => (string)$pubId
-		);
-		$this->replace('submission_chapter_settings', $updateArray, $idFields);
 	}
 
 	/**
 	 * @copydoc PKPPubIdPluginDAO::deletePubId()
 	 */
 	function deletePubId($pubObjectId, $pubIdType) {
-		$settingName = 'pub-id::'.$pubIdType;
 		$this->update(
 			'DELETE FROM submission_chapter_settings WHERE setting_name = ? AND chapter_id = ?',
-			array(
-				$settingName,
-				(int)$pubObjectId
-			)
+			[
+				'pub-id::' . $pubIdType,
+				(int) $pubObjectId
+			]
 		);
 		$this->flushCache();
 	}
@@ -304,16 +291,14 @@ class ChapterDAO extends DAO implements PKPPubIdPluginDAO {
 	 * @copydoc PKPPubIdPluginDAO::deleteAllPubIds()
 	 */
 	function deleteAllPubIds($contextId, $pubIdType) {
-		$settingName = 'pub-id::'.$pubIdType;
-
 		$chapters = $this->getByContextId($contextId);
 		while ($chapter = $chapters->next()) {
 			$this->update(
 				'DELETE FROM submission_chapter_settings WHERE setting_name = ? AND chapter_id = ?',
-				array(
-					$settingName,
-					(int)$chapter->getId()
-				)
+				[
+					'pub-id::' . $pubIdType,
+					(int) $chapter->getId()
+				]
 			);
 		}
 		$this->flushCache();

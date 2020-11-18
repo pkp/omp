@@ -19,13 +19,6 @@ import('classes.log.MonographFileEmailLogEntry');
 
 class MonographFileEmailLogDAO extends EmailLogDAO {
 	/**
-	 * Constructor
-	 */
-	function __construct() {
-		parent::__construct();
-	}
-
-	/**
 	 * Instantiate and return a MonographFileEmailLogEntry.
 	 * @return MonographFileEmailLogEntry
 	 */
