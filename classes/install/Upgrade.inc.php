@@ -141,8 +141,8 @@ class Upgrade extends Installer {
 	 */
 	function syncSeriesAssocType() {
 		// Can be any DAO.
-		$dao =& DAORegistry::getDAO('UserDAO'); /* @var $dao DAO */
-		$tablesToUpdate = array(
+		$dao = DAORegistry::getDAO('UserDAO'); /* @var $dao DAO */
+		$tablesToUpdate = [
 			'features',
 			'data_object_tombstone_oai_set_objects',
 			'new_releases',
@@ -155,7 +155,8 @@ class Upgrade extends Installer {
 			'email_log',
 			'metadata_descriptions',
 			'notes',
-			'item_views');
+			'item_views'
+		];
 
 		foreach ($tablesToUpdate as $tableName) {
 			$dao->update('UPDATE ' . $tableName . ' SET assoc_type = ' . ASSOC_TYPE_SERIES . ' WHERE assoc_type = 526');
@@ -177,13 +178,11 @@ class Upgrade extends Installer {
 			FROM	author_settings
 			WHERE	(setting_name = ? OR setting_name = ?)
 				AND setting_type = ?',
-			array('affiliation', 'biography', 'object')
+			['affiliation', 'biography', 'object']
 		);
 
-		while (!$result->EOF) {
-			$row = $result->getRowAssoc(false);
-			$authorId = $row['author_id'];
-			$result->MoveNext();
+		foreach ($result as $row) {
+			$authorId = $row->author_id;
 
 			$author = $authorDao->getById($authorId);
 			if (!$author) continue; // Bonehead check (DB integrity)
@@ -201,8 +200,6 @@ class Upgrade extends Installer {
 			}
 			$authorDao->updateObject($author);
 		}
-
-		$result->Close();
 		return true;
 	}
 
@@ -215,8 +212,7 @@ class Upgrade extends Installer {
 
 		// Convert the email templates in email_templates_data to localized
 		$result = $emailTemplateDao->retrieve('SELECT * FROM email_templates_data');
-		while (!$result->EOF) {
-			$row = $result->getRowAssoc(false);
+		foreach ($result as $row) {
 			$emailTemplateDao->update(
 				'UPDATE	email_templates_data
 				SET	body = ?
@@ -224,43 +220,38 @@ class Upgrade extends Installer {
 					locale = ? AND
 					assoc_type = ? AND
 					assoc_id = ?',
-				array(
-					preg_replace('/{\$[a-zA-Z]+Url}/', '<a href="\0">\0</a>', nl2br($row['body'])),
-					$row['email_key'],
-					$row['locale'],
-					$row['assoc_type'],
-					$row['assoc_id']
-				)
+				[
+					preg_replace('/{\$[a-zA-Z]+Url}/', '<a href="\0">\0</a>', nl2br($row->body)),
+					$row->email_key,
+					$row->locale,
+					$row->assoc_type,
+					$row->assoc_id
+				]
 			);
-			$result->MoveNext();
 		}
-		$result->Close();
 
 		// Convert the email templates in email_templates_default_data to localized
 		$result = $emailTemplateDao->retrieve('SELECT * FROM email_templates_default_data');
-		while (!$result->EOF) {
-			$row = $result->getRowAssoc(false);
+		foreach ($result as $row) {
 			$emailTemplateDao->update(
 				'UPDATE	email_templates_default_data
 				SET	body = ?
 				WHERE	email_key = ? AND
 					locale = ?',
-				array(
-					preg_replace('/{\$[a-zA-Z]+Url}/', '<a href="\0">\0</a>', nl2br($row['body'])),
-					$row['email_key'],
-					$row['locale'],
-				)
+				[
+					preg_replace('/{\$[a-zA-Z]+Url}/', '<a href="\0">\0</a>', nl2br($row->body)),
+					$row->email_key,
+					$row->locale,
+				]
 			);
-			$result->MoveNext();
 		}
-		$result->Close();
 
 		// Localize the email header and footer fields.
 		$contextDao = DAORegistry::getDAO('PressDAO'); /* @var $contextDao PressDAO */
 		$settingsDao = DAORegistry::getDAO('PressSettingsDAO'); /* @var $settingsDao PressSettingsDAO */
 		$contexts = $contextDao->getAll();
 		while ($context = $contexts->next()) {
-			foreach (array('emailFooter', 'emailSignature') as $settingName) {
+			foreach (['emailFooter', 'emailSignature'] as $settingName) {
 				$settingsDao->updateSetting(
 					$context->getId(),
 					$settingName,
@@ -283,7 +274,7 @@ class Upgrade extends Installer {
 
 		$filesResult = $submissionFileDao->retrieve(
 			'SELECT DISTINCT sf.file_id, sf.assoc_type, sf.assoc_id, sf.submission_id, sf.original_file_name, sf.revision, s.symbolic, s.date_notified, s.date_completed, s.user_id, s.signoff_id FROM submission_files sf, signoffs s WHERE s.assoc_type=? AND s.assoc_id=sf.file_id AND s.symbolic IN (?, ?)',
-			array(ASSOC_TYPE_SUBMISSION_FILE, 'SIGNOFF_COPYEDITING', 'SIGNOFF_PROOFING')
+			[ASSOC_TYPE_SUBMISSION_FILE, 'SIGNOFF_COPYEDITING', 'SIGNOFF_PROOFING']
 		);
 
 		$queryDao = DAORegistry::getDAO('QueryDAO'); /* @var $queryDao QueryDAO */
@@ -296,21 +287,18 @@ class Upgrade extends Installer {
 		// Queries should be created per file and users should be consolidated
 		// from potentially multiple audit assignments into fewer queries.
 		//
-
-		while (!$filesResult->EOF) {
-			$row = $filesResult->getRowAssoc(false);
-			$fileId = $row['file_id'];
-			$symbolic = $row['symbolic'];
-			$dateNotified = $row['date_notified']?strtotime($row['date_notified']):null;
-			$dateCompleted = $row['date_completed']?strtotime($row['date_completed']):null;
-			$userId = $row['user_id'];
-			$signoffId = $row['signoff_id'];
-			$fileAssocType = $row['assoc_type'];
-			$fileAssocId = $row['assoc_id'];
-			$submissionId = $row['submission_id'];
-			$originalFileName = $row['original_file_name'];
-			$revision = $row['revision'];
-			$filesResult->MoveNext();
+		foreach ($filesResult as $row) {
+			$fileId = $row->file_id;
+			$symbolic = $row->symbolic;
+			$dateNotified = $row->date_notified?strtotime($row->date_notified):null;
+			$dateCompleted = $row->date_completed?strtotime($row->date_completed):null;
+			$userId = $row->user_id;
+			$signoffId = $row->signoff_id;
+			$fileAssocType = $row->assoc_type;
+			$fileAssocId = $row->assoc_id;
+			$submissionId = $row->submission_id;
+			$originalFileName = $row->original_file_name;
+			$revision = $row->revision;
 
 			// Reproduces removed SubmissionFile::getFileLabel() method
 			$label = $originalFileName;
@@ -357,8 +345,8 @@ class Upgrade extends Installer {
 
 			// Build a list of all users who should be involved in the query
 			$user = $userDao->getById($userId);
-			$assignedUserIds = array($userId);
-			foreach (array(ROLE_ID_MANAGER, ROLE_ID_SUB_EDITOR, ROLE_ID_ASSISTANT) as $roleId) {
+			$assignedUserIds = [$userId];
+			foreach ([ROLE_ID_MANAGER, ROLE_ID_SUB_EDITOR, ROLE_ID_ASSISTANT] as $roleId) {
 				$stageAssignments = $stageAssignmentDao->getBySubmissionAndRoleId($submissionId, $roleId, $query->getStageId());
 				while ($stageAssignment = $stageAssignments->next()) {
 					$assignedUserIds[] = $stageAssignment->getUserId();
@@ -404,7 +392,6 @@ class Upgrade extends Installer {
 
 			$this->_transferSignoffData($signoffId, $query->getId());
 		}
-		$filesResult->Close();
 		return true;
 	}
 
@@ -427,18 +414,15 @@ class Upgrade extends Installer {
 			LEFT JOIN queries qs ON (qs.assoc_type = ?)
 			WHERE q.assoc_type = ? OR q.assoc_type = ?
 			ORDER BY query_id',
-			array((int) ASSOC_TYPE_REPRESENTATION, (int) WORKFLOW_STAGE_ID_PRODUCTION, (int) ASSOC_TYPE_SUBMISSION, (int) ASSOC_TYPE_SUBMISSION, (int) ASSOC_TYPE_REPRESENTATION)
+			[(int) ASSOC_TYPE_REPRESENTATION, (int) WORKFLOW_STAGE_ID_PRODUCTION, (int) ASSOC_TYPE_SUBMISSION, (int) ASSOC_TYPE_SUBMISSION, (int) ASSOC_TYPE_REPRESENTATION]
 		);
-		$allQueries = array();
-		while (!$allQueriesResult->EOF) {
-			$row = $allQueriesResult->getRowAssoc(false);
-			$allQueries[$row['submission_id']]['queries'][] = $query = $queryDao->_fromRow($row);
+		$allQueries = [];
+		foreach ($allQueriesResult as $row) {
+			$allQueries[$row->submission_id]['queries'][] = $query = $queryDao->_fromRow((array) $row);
 			// mark if this submission queries should be fixed
-			$fix = array_key_exists('fix', $allQueries[$row['submission_id']]) ? $allQueries[$row['submission_id']]['fix'] : false;
-			$allQueries[$row['submission_id']]['fix'] = ($query->getAssocType() == ASSOC_TYPE_REPRESENTATION) || $fix;
-			$allQueriesResult->MoveNext();
+			$fix = array_key_exists('fix', $allQueries[$row->submission_id]) ? $allQueries[$row->submission_id]['fix'] : false;
+			$allQueries[$row->submission_id]['fix'] = ($query->getAssocType() == ASSOC_TYPE_REPRESENTATION) || $fix;
 		}
-		$allQueriesResult->Close();
 		foreach ($allQueries as $submissionId => $queriesBySubmission) {
 			// Touch i.e. fix and resequence only the submission queries that contained assoc_type = ASSOC_TYPE_REPRESENTATION
 			if ($allQueries[$submissionId]['fix']) {
@@ -475,47 +459,44 @@ class Upgrade extends Installer {
 			FROM submissions_tmp s
 			WHERE s.comments_to_ed IS NOT NULL AND s.comments_to_ed != \'\''
 		);
-		while (!$commentsResult->EOF) {
-			$row = $commentsResult->getRowAssoc(false);
-			$comments_to_ed = PKPString::stripUnsafeHtml($row['comments_to_ed']);
-			if ($comments_to_ed != ""){
-				$userId = null;
-				$authorAssignmentsResult = $stageAssignmetDao->getBySubmissionAndRoleId($row['submission_id'], ROLE_ID_AUTHOR);
-				if ($authorAssignmentsResult->getCount() != 0) {
-					// We assume the results are ordered by stage_assignment_id i.e. first author assignemnt is first
-					$userId = $authorAssignmentsResult->next()->getUserId();
-				} else {
-					$managerUserGroup = $userGroupDao->getDefaultByRoleId($row['context_id'], ROLE_ID_MANAGER);
-					$managerUsers = $userGroupDao->getUsersById($managerUserGroup->getId(), $row['context_id']);
-					$userId = $managerUsers->next()->getId();
-				}
-				assert($userId);
+		foreach ($commentsResult as $row) {
+			$commentsToEd = PKPString::stripUnsafeHtml($row->comments_to_ed);
+			if ($commentsToEd == '') continue;
 
-				$query = $queryDao->newDataObject();
-				$query->setAssocType(ASSOC_TYPE_SUBMISSION);
-				$query->setAssocId($row['submission_id']);
-				$query->setStageId(WORKFLOW_STAGE_ID_SUBMISSION);
-				$query->setSequence(REALLY_BIG_NUMBER);
-
-				$queryDao->insertObject($query);
-				$queryDao->resequence(ASSOC_TYPE_SUBMISSION, $row['submission_id']);
-				$queryDao->insertParticipant($query->getId(), $userId);
-
-				$queryId = $query->getId();
-
-				$note = $noteDao->newDataObject();
-				$note->setUserId($userId);
-				$note->setAssocType(ASSOC_TYPE_QUERY);
-				$note->setTitle('Cover Note to Editor');
-				$note->setContents($comments_to_ed);
-				$note->setDateCreated(strtotime($row['date_submitted']));
-				$note->setDateModified(strtotime($row['date_submitted']));
-				$note->setAssocId($queryId);
-				$noteDao->insertObject($note);
+			$userId = null;
+			$authorAssignmentsResult = $stageAssignmetDao->getBySubmissionAndRoleId($row['submission_id'], ROLE_ID_AUTHOR);
+			if ($authorAssignmentsResult->getCount() != 0) {
+				// We assume the results are ordered by stage_assignment_id i.e. first author assignemnt is first
+				$userId = $authorAssignmentsResult->next()->getUserId();
+			} else {
+				$managerUserGroup = $userGroupDao->getDefaultByRoleId($row['context_id'], ROLE_ID_MANAGER);
+				$managerUsers = $userGroupDao->getUsersById($managerUserGroup->getId(), $row['context_id']);
+				$userId = $managerUsers->next()->getId();
 			}
-			$commentsResult->MoveNext();
+			assert($userId);
+
+			$query = $queryDao->newDataObject();
+			$query->setAssocType(ASSOC_TYPE_SUBMISSION);
+			$query->setAssocId($row['submission_id']);
+			$query->setStageId(WORKFLOW_STAGE_ID_SUBMISSION);
+			$query->setSequence(REALLY_BIG_NUMBER);
+
+			$queryDao->insertObject($query);
+			$queryDao->resequence(ASSOC_TYPE_SUBMISSION, $row['submission_id']);
+			$queryDao->insertParticipant($query->getId(), $userId);
+
+			$queryId = $query->getId();
+
+			$note = $noteDao->newDataObject();
+			$note->setUserId($userId);
+			$note->setAssocType(ASSOC_TYPE_QUERY);
+			$note->setTitle('Cover Note to Editor');
+			$note->setContents($commentsToEd);
+			$note->setDateCreated(strtotime($row['date_submitted']));
+			$note->setDateModified(strtotime($row['date_submitted']));
+			$note->setAssocId($queryId);
+			$noteDao->insertObject($note);
 		}
-		$commentsResult->Close();
 
 		// remove temporary table
 		$submissionDao->update('DROP TABLE submissions_tmp');
@@ -553,14 +534,12 @@ class Upgrade extends Installer {
 		// Transfer signoff signoffs into notes
 		$signoffsResult = $submissionFileDao->retrieve(
 			'SELECT * FROM signoffs WHERE symbolic = ? AND assoc_type = ? AND assoc_id = ?',
-			array('SIGNOFF_SIGNOFF', 1048582 /* ASSOC_TYPE_SIGNOFF */, $signoffId)
+			['SIGNOFF_SIGNOFF', 1048582 /* ASSOC_TYPE_SIGNOFF */, $signoffId]
 		);
-		while (!$signoffsResult->EOF) {
-			$row = $signoffsResult->getRowAssoc(false);
-			$metaSignoffId = $row['signoff_id'];
-			$userId = $row['user_id'];
-			$dateCompleted = $row['date_completed']?strtotime($row['date_completed']):null;
-			$signoffsResult->MoveNext();
+		foreach ($signoffResult as $row) {
+			$metaSignoffId = $row->signoff_id;
+			$userId = $row->user_id;
+			$dateCompleted = $row->date_completed ? strtotime($row->date_completed) : null;
 
 			if ($dateCompleted) {
 				$user = $userDao->getById($userId);
@@ -573,11 +552,10 @@ class Upgrade extends Installer {
 				$note->setDateCreated(Core::getCurrentDate());
 				$noteDao->updateObject($note);
 			}
-			$submissionFileDao->update('DELETE FROM signoffs WHERE signoff_id=?', array($metaSignoffId));
+			$submissionFileDao->update('DELETE FROM signoffs WHERE signoff_id=?', [$metaSignoffId]);
 		}
-		$signoffsResult->Close();
 
-		$submissionFileDao->update('DELETE FROM signoffs WHERE signoff_id=?', array($signoffId));
+		$submissionFileDao->update('DELETE FROM signoffs WHERE signoff_id=?', [$signoffId]);
 	}
 
 	/**
@@ -618,31 +596,30 @@ class Upgrade extends Installer {
 		$userDao = DAORegistry::getDAO('UserDAO'); /* @var $userDao UserDAO */
 		import('lib.pkp.classes.identity.Identity'); // IDENTITY_SETTING_...
 		// the user names will be saved in the site's primary locale
-		$userDao->update("INSERT INTO user_settings (user_id, locale, setting_name, setting_value, setting_type) SELECT DISTINCT u.user_id, s.primary_locale, ?, u.first_name, 'string' FROM users_tmp u, site s", array(IDENTITY_SETTING_GIVENNAME));
-		$userDao->update("INSERT INTO user_settings (user_id, locale, setting_name, setting_value, setting_type) SELECT DISTINCT u.user_id, s.primary_locale, ?, u.last_name, 'string' FROM users_tmp u, site s", array(IDENTITY_SETTING_FAMILYNAME));
+		$userDao->update("INSERT INTO user_settings (user_id, locale, setting_name, setting_value, setting_type) SELECT DISTINCT u.user_id, s.primary_locale, ?, u.first_name, 'string' FROM users_tmp u, site s", [IDENTITY_SETTING_GIVENNAME]);
+		$userDao->update("INSERT INTO user_settings (user_id, locale, setting_name, setting_value, setting_type) SELECT DISTINCT u.user_id, s.primary_locale, ?, u.last_name, 'string' FROM users_tmp u, site s", [IDENTITY_SETTING_FAMILYNAME]);
 		// the author names will be saved in the submission's primary locale
-		$userDao->update("INSERT INTO author_settings (author_id, locale, setting_name, setting_value, setting_type) SELECT DISTINCT a.author_id, s.locale, ?, a.first_name, 'string' FROM authors_tmp a, submissions s WHERE s.submission_id = a.submission_id", array(IDENTITY_SETTING_GIVENNAME));
-		$userDao->update("INSERT INTO author_settings (author_id, locale, setting_name, setting_value, setting_type) SELECT DISTINCT a.author_id, s.locale, ?, a.last_name, 'string' FROM authors_tmp a, submissions s WHERE s.submission_id = a.submission_id", array(IDENTITY_SETTING_FAMILYNAME));
+		$userDao->update("INSERT INTO author_settings (author_id, locale, setting_name, setting_value, setting_type) SELECT DISTINCT a.author_id, s.locale, ?, a.first_name, 'string' FROM authors_tmp a, submissions s WHERE s.submission_id = a.submission_id", [IDENTITY_SETTING_GIVENNAME]);
+		$userDao->update("INSERT INTO author_settings (author_id, locale, setting_name, setting_value, setting_type) SELECT DISTINCT a.author_id, s.locale, ?, a.last_name, 'string' FROM authors_tmp a, submissions s WHERE s.submission_id = a.submission_id", [IDENTITY_SETTING_FAMILYNAME]);
 
 		// middle name will be migrated to the given name
 		// note that given names are already migrated to the settings table
-		$driver = $userDao->getDriver();
-		switch ($driver) {
+		switch (Config::getVar('database', 'driver')) {
 			case 'mysql':
 			case 'mysqli':
 				// the alias for _settings table cannot be used for some reason -- syntax error
-				$userDao->update("UPDATE user_settings, users_tmp u SET user_settings.setting_value = CONCAT(user_settings.setting_value, ' ', u.middle_name) WHERE user_settings.setting_name = ? AND u.user_id = user_settings.user_id AND u.middle_name IS NOT NULL AND u.middle_name <> ''", array(IDENTITY_SETTING_GIVENNAME));
-				$userDao->update("UPDATE author_settings, authors_tmp a SET author_settings.setting_value = CONCAT(author_settings.setting_value, ' ', a.middle_name) WHERE author_settings.setting_name = ? AND a.author_id = author_settings.author_id AND a.middle_name IS NOT NULL AND a.middle_name <> ''", array(IDENTITY_SETTING_GIVENNAME));
+				$userDao->update("UPDATE user_settings, users_tmp u SET user_settings.setting_value = CONCAT(user_settings.setting_value, ' ', u.middle_name) WHERE user_settings.setting_name = ? AND u.user_id = user_settings.user_id AND u.middle_name IS NOT NULL AND u.middle_name <> ''", [IDENTITY_SETTING_GIVENNAME]);
+				$userDao->update("UPDATE author_settings, authors_tmp a SET author_settings.setting_value = CONCAT(author_settings.setting_value, ' ', a.middle_name) WHERE author_settings.setting_name = ? AND a.author_id = author_settings.author_id AND a.middle_name IS NOT NULL AND a.middle_name <> ''", [IDENTITY_SETTING_GIVENNAME]);
 				break;
 			case 'postgres':
 			case 'postgres64':
 			case 'postgres7':
 			case 'postgres8':
 			case 'postgres9':
-				$userDao->update("UPDATE user_settings SET setting_value = CONCAT(setting_value, ' ', u.middle_name) FROM users_tmp u WHERE user_settings.setting_name = ? AND u.user_id = user_settings.user_id AND u.middle_name IS NOT NULL AND u.middle_name <> ''", array(IDENTITY_SETTING_GIVENNAME));
-				$userDao->update("UPDATE author_settings SET setting_value = CONCAT(setting_value, ' ', a.middle_name) FROM authors_tmp a WHERE author_settings.setting_name = ? AND a.author_id = author_settings.author_id AND a.middle_name IS NOT NULL AND a.middle_name <> ''", array(IDENTITY_SETTING_GIVENNAME));
+				$userDao->update("UPDATE user_settings SET setting_value = CONCAT(setting_value, ' ', u.middle_name) FROM users_tmp u WHERE user_settings.setting_name = ? AND u.user_id = user_settings.user_id AND u.middle_name IS NOT NULL AND u.middle_name <> ''", [IDENTITY_SETTING_GIVENNAME]);
+				$userDao->update("UPDATE author_settings SET setting_value = CONCAT(setting_value, ' ', a.middle_name) FROM authors_tmp a WHERE author_settings.setting_name = ? AND a.author_id = author_settings.author_id AND a.middle_name IS NOT NULL AND a.middle_name <> ''", [IDENTITY_SETTING_GIVENNAME]);
 				break;
-			default: fatalError('Unknown database type!');
+			default: throw new Exception('Unknown database type!');
 		}
 
 		// salutation and suffix will be migrated to the preferred public name
@@ -650,67 +627,65 @@ class Upgrade extends Installer {
 		$siteDao = DAORegistry::getDAO('SiteDAO'); /* @var $siteDao SiteDAO */
 		$site = $siteDao->getSite();
 		$supportedLocales = $site->getSupportedLocales();
-		$userResult = $userDao->retrieve("
-			SELECT user_id, first_name, last_name, middle_name, salutation, suffix FROM users_tmp
+		$userResult = $userDao->retrieve(
+			"SELECT user_id, first_name, last_name, middle_name, salutation, suffix FROM users_tmp
 			WHERE (salutation IS NOT NULL AND salutation <> '') OR
-				(suffix IS NOT NULL AND suffix <> '')
-		");
-		while (!$userResult->EOF) {
-			$row = $userResult->GetRowAssoc(false);
-			$userId = $row['user_id'];
-			$firstName = $row['first_name'];
-			$lastName = $row['last_name'];
-			$middleName = $row['middle_name'];
-			$salutation = $row['salutation'];
-			$suffix = $row['suffix'];
+				(suffix IS NOT NULL AND suffix <> '')"
+		);
+		foreach ($userResult as $row) {
+			$userId = $row->user_id;
+			$firstName = $row->first_name;
+			$lastName = $row->last_name;
+			$middleName = $row->middle_name;
+			$salutation = $row->salutation;
+			$suffix = $row->suffix;
 			foreach ($supportedLocales as $siteLocale) {
 				$preferredPublicName = ($salutation != '' ? "$salutation " : '') . "$firstName " . ($middleName != '' ? "$middleName " : '') . $lastName . ($suffix != '' ? ", $suffix" : '');
 				if (AppLocale::isLocaleWithFamilyFirst($siteLocale)) {
 					$preferredPublicName = "$lastName, " . ($salutation != '' ? "$salutation " : '') . $firstName . ($middleName != '' ? " $middleName" : '');
 				}
-				$params = array((int) $userId, $siteLocale, $preferredPublicName);
-				$userDao->update("INSERT INTO user_settings (user_id, locale, setting_name, setting_value, setting_type) VALUES (?, ?, 'preferredPublicName', ?, 'string')", $params);
+				$userDao->update(
+					"INSERT INTO user_settings (user_id, locale, setting_name, setting_value, setting_type) VALUES (?, ?, 'preferredPublicName', ?, 'string')",
+					[(int) $userId, $siteLocale, $preferredPublicName]
+				);
 			}
-			$userResult->MoveNext();
 		}
-		$userResult->Close();
 
 		// author suffix will be migrated to the author preferred public name
 		// author preferred public names will be inserted for each press supported locale
 		// get supported locales for the press (there shold actually be only one press)
 		$pressDao = DAORegistry::getDAO('PressDAO'); /* @var $pressDao PressDAO */
 		$presses = $pressDao->getAll();
-		$pressessSupportedLocales = array();
+		$pressessSupportedLocales = [];
 		while ($press = $presses->next()) {
 			$pressessSupportedLocales[$press->getId()] = $press->getSupportedLocales();
 		}
 		// get all authors with a suffix
-		$authorResult = $userDao->retrieve("
-			SELECT a.author_id, a.first_name, a.last_name, a.middle_name, a.suffix, p.press_id FROM authors_tmp a
+		$authorResult = $userDao->retrieve(
+			"SELECT a.author_id, a.first_name, a.last_name, a.middle_name, a.suffix, p.press_id FROM authors_tmp a
 			LEFT JOIN submissions s ON (s.submission_id = a.submission_id)
 			LEFT JOIN presses p ON (p.press_id = s.context_id)
-			WHERE suffix IS NOT NULL AND suffix <> ''
-		");
-		while (!$authorResult->EOF) {
-			$row = $authorResult->GetRowAssoc(false);
-			$authorId = $row['author_id'];
-			$firstName = $row['first_name'];
-			$lastName = $row['last_name'];
-			$middleName = $row['middle_name'];
-			$suffix = $row['suffix'];
-			$pressId = $row['press_id'];
+			WHERE suffix IS NOT NULL AND suffix <> ''"
+		);
+		foreach ($authorResult as $row) {
+			$authorId = $row->author_id;
+			$firstName = $row->first_name;
+			$lastName = $row->last_name;
+			$middleName = $row->middle_name;
+			$suffix = $row->suffix;
+			$pressId = $row->press_id;
 			$supportedLocales = $pressessSupportedLocales[$pressId];
 			foreach ($supportedLocales as $locale) {
 				$preferredPublicName = "$firstName " . ($middleName != '' ? "$middleName " : '') . $lastName . ($suffix != '' ? ", $suffix" : '');
 				if (AppLocale::isLocaleWithFamilyFirst($locale)) {
 					$preferredPublicName = "$lastName, " . $firstName . ($middleName != '' ? " $middleName" : '');
 				}
-				$params = array((int) $authorId, $locale, $preferredPublicName);
-				$userDao->update("INSERT INTO author_settings (author_id, locale, setting_name, setting_value, setting_type) VALUES (?, ?, 'preferredPublicName', ?, 'string')", $params);
+				$userDao->update(
+					"INSERT INTO author_settings (author_id, locale, setting_name, setting_value, setting_type) VALUES (?, ?, 'preferredPublicName', ?, 'string')",
+					[(int) $authorId, $locale, $preferredPublicName]
+				);
 			}
-			$authorResult->MoveNext();
 		}
-		$authorResult->Close();
 
 		// remove temporary table
 		$siteDao->update('DROP TABLE users_tmp');
@@ -731,7 +706,7 @@ class Upgrade extends Installer {
 		$roleString = '(' . implode(",", $roles) . ')';
 
 		$userGroupDao->update('UPDATE user_groups SET permit_metadata_edit = 1 WHERE role_id IN ' . $roleString);
-		switch ($userGroupDao->getDriver()) {
+		switch (Config::getVar('database', 'driver')) {
 			case 'mysql':
 			case 'mysqli':
 				$stageAssignmentDao->update('UPDATE stage_assignments sa JOIN user_groups ug on sa.user_group_id = ug.user_group_id SET sa.can_change_metadata = 1 WHERE ug.role_id IN ' . $roleString);
@@ -743,7 +718,7 @@ class Upgrade extends Installer {
 			case 'postgres9':
 				$stageAssignmentDao->update('UPDATE stage_assignments SET can_change_metadata=1 FROM stage_assignments sa JOIN user_groups ug ON (sa.user_group_id = ug.user_group_id) WHERE ug.role_id IN ' . $roleString);
 				break;
-			default: fatalError("Unknown database type!");
+			default: throw new Exception("Unknown database type!");
 			}
 
 		return true;
@@ -775,24 +750,15 @@ class Upgrade extends Installer {
 			FROM	published_submissions ps
 			LEFT JOIN	submissions s ON (s.submission_id = ps.submission_id)'
 		);
-		while (!$result->EOF) {
-			$row = $result->getRowAssoc(false);
-			if (empty($row['cover_image'])) {
-				$result->MoveNext();
-				continue;
-			}
-			$coverImage = unserialize($row['cover_image']);
-			if (empty($coverImage)) {
-				$result->MoveNext();
-				continue;
-			}
-			$context = $contexts[$row['context_id']];
-			if (empty($context)) {
-				$context = Services::get('context')->get($row['context_id']);
-			}
+		foreach ($result as $row) {
+			if (empty($row->cover_image)) continue;
+			$coverImage = unserialize($row->cover_image);
+			if (empty($coverImage)) continue;
+
+			$context = $contexts[$row->context_id] ??= Services::get('context')->get($row->context_id);
 
 			// Get existing image paths
-			$basePath = Services::get('submissionFile')->getSubmissionDir($row['context_id'], $row['submission_id']);
+			$basePath = Services::get('submissionFile')->getSubmissionDir($row->context_id, $row->submission_id);
 			$coverPath = $basePath . '/simple/' . $coverImage['name'];
 			$coverPathInfo = pathinfo($coverPath);
 			$thumbPath = $basePath . '/simple/' . $coverImage['thumbnailName'];
@@ -801,24 +767,24 @@ class Upgrade extends Installer {
 			// Copy the files to the public directory
 			$newCoverPath = join('_', [
 				'submission',
-				$row['submission_id'],
-				$row['submission_id'],
+				$row->submission_id,
+				$row->submission_id,
 				'coverImage',
 			]) . '.' . $coverPathInfo['extension'];
 			$publicFileManager->copyContextFile(
-				$row['context_id'],
+				$row->context_id,
 				$coverPath,
 				$newCoverPath
 			);
 			$newThumbPath = join('_', [
 				'submission',
-				$row['submission_id'],
-				$row['submission_id'],
+				$row->submission_id,
+				$row->submission_id,
 				'coverImage',
 				't'
 			]) . '.' . $thumbPathInfo['extension'];
 			$publicFileManager->copyContextFile(
-				$row['context_id'],
+				$row->context_id,
 				$thumbPath,
 				$newThumbPath
 			);
@@ -850,11 +816,7 @@ class Upgrade extends Installer {
 			// Delete the old images
 			$fileManager->deleteByPath($coverPath);
 			$fileManager->deleteByPath($thumbPath);
-
-			$result->MoveNext();
 		}
-		$result->Close();
-
 
 		return true;
 	}
