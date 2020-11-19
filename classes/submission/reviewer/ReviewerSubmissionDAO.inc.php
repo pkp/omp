@@ -38,7 +38,7 @@ class ReviewerSubmissionDAO extends SubmissionDAO {
 	 * Retrieve a reviewer submission by monograph ID.
 	 * @param $monographId int
 	 * @param $reviewerId int
-	 * @return ReviewerSubmission
+	 * @return ReviewerSubmission|null
 	 */
 	function getReviewerSubmission($reviewId) {
 		$primaryLocale = AppLocale::getPrimaryLocale();
@@ -54,20 +54,14 @@ class ReviewerSubmissionDAO extends SubmissionDAO {
 				LEFT JOIN series_settings stpl ON (s.series_id = stpl.series_id AND stpl.setting_name = ? AND stpl.locale = ?)
 				LEFT JOIN series_settings stl ON (s.series_id = stl.series_id AND stl.setting_name = ? AND stl.locale = ?)
 			WHERE	r.review_id = ?',
-			array(
+			[
 				'title', $primaryLocale, // Series title
 				'title', $locale, // Series title
 				(int) $reviewId
-			)
+			]
 		);
-
-		$returner = null;
-		if ($result->RecordCount() != 0) {
-			$returner = $this->_fromRow($result->GetRowAssoc(false));
-		}
-
-		$result->Close();
-		return $returner;
+		$row = $result->current();
+		return $row ? $this->_fromRow((array) $row) : null;
 	}
 
 	/**
@@ -151,7 +145,7 @@ class ReviewerSubmissionDAO extends SubmissionDAO {
 				$this->datetimeToDB($reviewerSubmission->getDateAcknowledged()),
 				$this->datetimeToDB($reviewerSubmission->getDateDue()),
 				$this->datetimeToDB($reviewerSubmission->getDateResponseDue())),
-			array(
+			[
 				(int) $reviewerSubmission->getId(),
 				(int) $reviewerSubmission->getReviewerId(),
 				(int) $reviewerSubmission->getStageId(),
@@ -164,7 +158,7 @@ class ReviewerSubmissionDAO extends SubmissionDAO {
 				(int) $reviewerSubmission->getCancelled(),
 				(int) $reviewerSubmission->getQuality(),
 				(int) $reviewerSubmission->getReviewId()
-			)
+			]
 		);
 	}
 }

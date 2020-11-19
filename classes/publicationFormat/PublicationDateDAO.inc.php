@@ -18,23 +18,14 @@ import('classes.publicationFormat.PublicationDate');
 
 class PublicationDateDAO extends DAO {
 	/**
-	 * Constructor
-	 */
-	function __construct() {
-		parent::__construct();
-	}
-
-	/**
 	 * Retrieve a publication date by type id.
 	 * @param $publicationDateId int
 	 * @param $publicationId optional int
-	 * @return PublicationDate
+	 * @return PublicationDate|null
 	 */
-	function getById($publicationDateId, $publicationId = null){
-		$sqlParams = array((int) $publicationDateId);
-		if ($publicationId) {
-			$sqlParams[] = (int) $publicationId;
-		}
+	function getById($publicationDateId, $publicationId = null) {
+		$params = [(int) $publicationDateId];
+		if ($publicationId) $params[] = (int) $publicationId;
 
 		$result = $this->retrieve(
 			'SELECT p.*
@@ -42,15 +33,10 @@ class PublicationDateDAO extends DAO {
 				JOIN publication_formats pf ON (p.publication_format_id = pf.publication_format_id)
 			WHERE p.publication_date_id = ?
 				' . ($publicationId?' AND pf.publication_id = ?':''),
-			$sqlParams
+			$params
 		);
-
-		$returner = null;
-		if ($result->RecordCount() != 0) {
-			$returner = $this->_fromRow($result->GetRowAssoc(false));
-		}
-		$result->Close();
-		return $returner;
+		$row = $result->current();
+		return $row ? $this->_fromRow((array) $row) : null;
 	}
 
 	/**
@@ -59,12 +45,14 @@ class PublicationDateDAO extends DAO {
 	 * @return DAOResultFactory containing matching publication dates
 	 */
 	function getByPublicationFormatId($representationId) {
-		$result = $this->retrieveRange(
-			'SELECT * FROM publication_dates WHERE publication_format_id = ?',
-			(int) $representationId
+		return new DAOResultFactory(
+			$this->retrieveRange(
+				'SELECT * FROM publication_dates WHERE publication_format_id = ?',
+				[(int) $representationId]
+			),
+			$this,
+			'_fromRow'
 		);
-
-		return new DAOResultFactory($result, $this, '_fromRow');
 	}
 
 	/**
@@ -89,7 +77,7 @@ class PublicationDateDAO extends DAO {
 		$publicationDate->setDate($row['date']);
 		$publicationDate->setPublicationFormatId($row['publication_format_id']);
 
-		if ($callHooks) HookRegistry::call('PublicationDateDAO::_fromRow', array(&$publicationDate, &$row));
+		if ($callHooks) HookRegistry::call('PublicationDateDAO::_fromRow', [&$publicationDate, &$row]);
 
 		return $publicationDate;
 	}
@@ -104,12 +92,12 @@ class PublicationDateDAO extends DAO {
 				(publication_format_id, role, date_format, date)
 			VALUES
 				(?, ?, ?, ?)',
-			array(
+			[
 				(int) $publicationDate->getPublicationFormatId(),
 				$publicationDate->getRole(),
 				$publicationDate->getDateFormat(),
 				$publicationDate->getDate()
-			)
+			]
 		);
 
 		$publicationDate->setId($this->getInsertId());
@@ -125,12 +113,12 @@ class PublicationDateDAO extends DAO {
 			'UPDATE publication_dates
 				SET role = ?, date_format =?, date = ?
 			WHERE publication_date_id = ?',
-			array(
+			[
 				$publicationDate->getRole(),
 				$publicationDate->getDateFormat(),
 				$publicationDate->getDate(),
 				(int) $publicationDate->getId()
-			)
+			]
 		);
 	}
 
@@ -147,9 +135,7 @@ class PublicationDateDAO extends DAO {
 	 * @param $entryId int
 	 */
 	function deleteById($entryId) {
-		return $this->update(
-			'DELETE FROM publication_dates WHERE publication_date_id = ?', array((int) $entryId)
-		);
+		$this->update('DELETE FROM publication_dates WHERE publication_date_id = ?', [(int) $entryId]);
 	}
 
 	/**

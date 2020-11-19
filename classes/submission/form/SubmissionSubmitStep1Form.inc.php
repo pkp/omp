@@ -29,18 +29,22 @@ class SubmissionSubmitStep1Form extends PKPSubmissionSubmitStep1Form {
 	 * @copydoc PKPSubmissionSubmitStep1Form::fetch
 	 */
 	function fetch($request, $template = null, $display = false) {
-		$templateMgr = TemplateManager::getManager($request);
+		$roleDao = DAORegistry::getDAO('RoleDAO');
+		$user = $request->getUser();
+		$canSubmitAll = $roleDao->userHasRole($this->context->getId(), $user->getId(), ROLE_ID_MANAGER) ||
+			$roleDao->userHasRole($this->context->getId(), $user->getId(), ROLE_ID_SUB_EDITOR);
 
 		// Get series for this context
 		$seriesDao = DAORegistry::getDAO('SeriesDAO'); /* @var $seriesDao SeriesDAO */
-		$activeSeries = array();
+		$activeSeries = [];
 		$seriesIterator = $seriesDao->getByContextId($this->context->getId(), null, !$canSubmitAll);
 		while ($series = $seriesIterator->next()) {
 			if (!$series->getIsInactive()) {
 				$activeSeries[$series->getId()] = $series->getLocalizedTitle();
 			}
 		}
-		$seriesOptions = array('' => __('submission.submit.selectSeries')) + $activeSeries;
+		$seriesOptions = ['' => __('submission.submit.selectSeries')] + $activeSeries;
+		$templateMgr = TemplateManager::getManager($request);
 		$templateMgr->assign('seriesOptions', $seriesOptions);
 
 		return parent::fetch($request, $template, $display);
@@ -65,7 +69,7 @@ class SubmissionSubmitStep1Form extends PKPSubmissionSubmitStep1Form {
 	 * Perform additional validation checks
 	 * @copydoc PKPSubmissionSubmitStep1Form::validate
 	 */
-	function validate() {
+	function validate($callHooks = true) {
 		if (!parent::validate($callHooks)) return false;
 
 		$request = Application::get()->getRequest();

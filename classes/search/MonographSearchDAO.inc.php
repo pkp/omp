@@ -25,15 +25,11 @@ class MonographSearchDAO extends SubmissionSearchDAO {
 	 * @return array of results (associative arrays)
 	 */
 	function getPhraseResults($press, $phrase, $publishedFrom = null, $publishedTo = null, $type = null, $limit = 500, $cacheHours = 24) {
-		import('lib.pkp.classes.db.DBRowIterator');
-		if (empty($phrase)) {
-			$results = false;
-			return new DBRowIterator($results);
-		}
+		if (empty($phrase)) return array();
 
 		$sqlFrom = '';
 		$sqlWhere = '';
-		$params = array();
+		$params = [];
 
 		for ($i = 0, $count = count($phrase); $i < $count; $i++) {
 			if (!empty($sqlFrom)) {
@@ -61,7 +57,7 @@ class MonographSearchDAO extends SubmissionSearchDAO {
 		import('classes.submission.Submission'); // import STATUS_PUBLISHED constant
 		$params[] = STATUS_PUBLISHED;
 
-		$result = $this->retrieveCached(
+		$result = $this->retrieve(
 			$sql = 'SELECT
 				o.submission_id,
 				s.context_id as press_id,
@@ -82,18 +78,14 @@ class MonographSearchDAO extends SubmissionSearchDAO {
 			3600 * $cacheHours // Cache for 24 hours
 		);
 
-		$returner = array();
-		while (!$result->EOF) {
-			$row = $result->getRowAssoc(false);
-			$returner[$row['submission_id']] = array(
-				'count' => $row['count'],
-				'press_id' => $row['press_id'],
-				'publicationDate' => $this->datetimeFromDB($row['s_pub'])
-			);
-			$result->MoveNext();
+		$returner = [];
+		foreach ($result as $row) {
+			$returner[$row->submission_id] = [
+				'count' => $row->count,
+				'press_id' => $row->press_id,
+				'publicationDate' => $this->datetimeFromDB($row->s_pub)
+			];
 		}
-		$result->Close();
-
 		return $returner;
 	}
 }

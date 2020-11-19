@@ -18,23 +18,14 @@ import('classes.publicationFormat.Market');
 
 class MarketDAO extends DAO {
 	/**
-	 * Constructor
-	 */
-	function __construct() {
-		parent::__construct();
-	}
-
-	/**
 	 * Retrieve a market entry by type id.
 	 * @param $marketId int
 	 * @param $publicationId optional int
-	 * @return Market
+	 * @return Market|null
 	 */
-	function getById($marketId, $publicationId = null){
-		$sqlParams = array((int) $marketId);
-		if ($publicationId) {
-			$sqlParams[] = (int) $publicationId;
-		}
+	function getById($marketId, $publicationId = null) {
+		$params = [(int) $marketId];
+		if ($publicationId) $params[] = (int) $publicationId;
 
 		$result = $this->retrieve(
 			'SELECT	m.*
@@ -42,15 +33,10 @@ class MarketDAO extends DAO {
 				JOIN publication_formats pf ON (m.publication_format_id = pf.publication_format_id)
 			WHERE	m.market_id = ?
 				' . ($publicationId?' AND pf.publication_id = ?':''),
-			$sqlParams
+			$params
 		);
-
-		$returner = null;
-		if ($result->RecordCount() != 0) {
-			$returner = $this->_fromRow($result->GetRowAssoc(false));
-		}
-		$result->Close();
-		return $returner;
+		$row = $result->current();
+		return $row ? $this->_fromRow((array) $row) : null;
 	}
 
 	/**
@@ -59,10 +45,14 @@ class MarketDAO extends DAO {
 	 * @return DAOResultFactory containing matching market.
 	 */
 	function getByPublicationFormatId($publicationFormatId) {
-		$result = $this->retrieveRange(
-			'SELECT * FROM markets WHERE publication_format_id = ?', (int) $publicationFormatId);
-
-		return new DAOResultFactory($result, $this, '_fromRow');
+		return new DAOResultFactory(
+			$this->retrieveRange(
+				'SELECT * FROM markets WHERE publication_format_id = ?',
+				[(int) $publicationFormatId]
+			),
+			$this,
+			'_fromRow'
+		);
 	}
 
 	/**
@@ -99,7 +89,7 @@ class MarketDAO extends DAO {
 		$market->setSupplierId($row['supplier_id']);
 		$market->setPublicationFormatId($row['publication_format_id']);
 
-		if ($callHooks) HookRegistry::call('MarketDAO::_fromRow', array(&$market, &$row));
+		if ($callHooks) HookRegistry::call('MarketDAO::_fromRow', [&$market, &$row]);
 
 		return $market;
 	}
@@ -114,7 +104,7 @@ class MarketDAO extends DAO {
 				(publication_format_id, countries_included, countries_excluded, regions_included, regions_excluded, market_date_role, market_date_format, market_date, price, discount, price_type_code, currency_code, tax_rate_code, tax_type_code, agent_id, supplier_id)
 			VALUES
 				(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)',
-			array(
+			[
 				(int) $market->getPublicationFormatId(),
 				serialize($market->getCountriesIncluded() ? $market->getCountriesIncluded() : array()),
 				serialize($market->getCountriesExcluded() ? $market->getCountriesExcluded() : array()),
@@ -131,7 +121,7 @@ class MarketDAO extends DAO {
 				$market->getTaxTypeCode(),
 				(int) $market->getAgentId(),
 				(int) $market->getSupplierId()
-			)
+			]
 		);
 
 		$market->setId($this->getInsertId());
@@ -161,7 +151,7 @@ class MarketDAO extends DAO {
 				agent_id = ?,
 				supplier_id = ?
 			WHERE market_id = ?',
-			array(
+			[
 				serialize($market->getCountriesIncluded() ? $market->getCountriesIncluded() : array()),
 				serialize($market->getCountriesExcluded() ? $market->getCountriesExcluded() : array()),
 				serialize($market->getRegionsIncluded() ? $market->getRegionsIncluded() : array()),
@@ -178,7 +168,7 @@ class MarketDAO extends DAO {
 				(int) $market->getAgentId(),
 				(int) $market->getSupplierId(),
 				(int) $market->getId()
-			)
+			]
 		);
 	}
 
@@ -195,9 +185,7 @@ class MarketDAO extends DAO {
 	 * @param $entryId int
 	 */
 	function deleteById($entryId) {
-		return $this->update(
-			'DELETE FROM markets WHERE market_id = ?', array((int) $entryId)
-		);
+		$this->update('DELETE FROM markets WHERE market_id = ?', [(int) $entryId]);
 	}
 
 	/**

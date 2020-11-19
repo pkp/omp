@@ -37,10 +37,9 @@ class SettingsPluginGridHandler extends PluginGridHandler {
 
 		$pressDao = DAORegistry::getDAO('PressDAO'); /* @var $pressDao PressDAO */
 		$presses = $pressDao->getAll();
-		$singlePress = false;
-		if ($presses->getCount() == 1) {
-			$singlePress = true;
-		}
+		$firstPress = $presses->next();
+		$secondPress = $presses->next();
+		$singlePress = $firstPress && !$secondPress;
 
 		$userRoles = $this->getAuthorizedContextObject(ASSOC_TYPE_USER_ROLES);
 
@@ -57,7 +56,6 @@ class SettingsPluginGridHandler extends PluginGridHandler {
 				if (!$plugin->isSitePlugin()) {
 					$contextLevelPlugins[$plugin->getName()] = $plugin;
 				}
-				unset($plugin);
 			}
 			return $contextLevelPlugins;
 		}

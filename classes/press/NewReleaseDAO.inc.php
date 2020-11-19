@@ -26,22 +26,18 @@ class NewReleaseDAO extends DAO {
 	 * Get monograph IDs by association.
 	 * @param $assocType int ASSOC_TYPE_...
 	 * @param $assocId int
-	 * @return array monographId
+	 * @return array [monographId => true]
 	 */
 	function getMonographIdsByAssoc($assocType, $assocId) {
-		$returner = array();
 		$result = $this->retrieve(
 			'SELECT submission_id FROM new_releases WHERE assoc_type = ? AND assoc_id = ?',
-			array((int) $assocType, (int) $assocId)
+			[(int) $assocType, (int) $assocId]
 		);
 
-		while (!$result->EOF) {
-			list($monographId) = $result->fields;
-			$returner[$monographId] = true;
-			$result->MoveNext();
+		$returner = [];
+		foreach ($result as $row) {
+			$returner[$row->submission_id] = true;
 		}
-
-		$result->Close();
 		return $returner;
 	}
 
@@ -55,7 +51,7 @@ class NewReleaseDAO extends DAO {
 		// import STATUS_PUBLISHED constant
 		import('classes.submission.Submission');
 		$result = $this->retrieve(
-			'SELECT	n.submission_id
+			'SELECT	n.submission_id AS submission_id
 			FROM	new_releases n,
 				submissions s,
 				publications p
@@ -64,16 +60,13 @@ class NewReleaseDAO extends DAO {
 				AND n.assoc_type = ? AND n.assoc_id = ?
 				AND s.status = ?
 			ORDER BY p.date_published DESC',
-			array((int) $assocType, (int) $assocId, STATUS_PUBLISHED)
+			[(int) $assocType, (int) $assocId, STATUS_PUBLISHED]
 		);
 
-		$returner = array();
-		while (!$result->EOF) {
-			list($monographId) = $result->fields;
-			$returner[] = Services::get('submission')->get($monographId);
-			$result->MoveNext();
+		$returner = [];
+		foreach ($result as $row) {
+			$returner[] = Services::get('submission')->get($row->submission_id);
 		}
-		$result->Close();
 		return $returner;
 	}
 
@@ -89,11 +82,11 @@ class NewReleaseDAO extends DAO {
 				(submission_id, assoc_type, assoc_id)
 				VALUES
 				(?, ?, ?)',
-			array(
+			[
 				(int) $monographId,
 				(int) $assocType,
 				(int) $assocId
-			)
+			]
 		);
 	}
 
@@ -105,7 +98,7 @@ class NewReleaseDAO extends DAO {
 	function deleteByMonographId($monographId) {
 		$this->update(
 			'DELETE FROM new_releases WHERE submission_id = ?',
-			(int) $monographId
+			[(int) $monographId]
 		);
 	}
 
@@ -117,7 +110,7 @@ class NewReleaseDAO extends DAO {
 	function deleteByAssoc($assocType, $assocId) {
 		$this->update(
 			'DELETE FROM new_releases WHERE assoc_type = ? AND assoc_id = ?',
-			array((int) $assocType, (int) $assocId)
+			[(int) $assocType, (int) $assocId]
 		);
 	}
 
@@ -133,11 +126,11 @@ class NewReleaseDAO extends DAO {
 			WHERE	submission_id = ? AND
 				assoc_type = ? AND
 				assoc_id = ?',
-			array(
+			[
 				(int) $monographId,
 				(int) $assocType,
 				(int) $assocId
-			)
+			]
 		);
 	}
 
@@ -154,13 +147,9 @@ class NewReleaseDAO extends DAO {
 	function isNewRelease($monographId, $assocType, $assocId) {
 		$result = $this->retrieve(
 			'SELECT submission_id FROM new_releases WHERE submission_id = ? AND assoc_type = ? AND assoc_id = ?',
-			array((int) $monographId, (int) $assocType, (int) $assocId)
+			[(int) $monographId, (int) $assocType, (int) $assocId]
 		);
-		if ($result->RecordCount() > 0) {
-			return true;
-		}
-
-		return false;
+		return (boolean) $result->current();
 	}
 
 	/**
@@ -172,18 +161,16 @@ class NewReleaseDAO extends DAO {
 	function getNewReleaseAll($monographId) {
 		$result = $this->retrieve(
 			'SELECT assoc_type, assoc_id FROM new_releases WHERE submission_id = ?',
-			array((int) $monographId)
+			[(int) $monographId]
 		);
 
-		$newRelease = array();
-		while (!$result->EOF) {
-			$newRelease[] = array(
-				'assoc_type' => (int) $result->fields['assoc_type'],
-				'assoc_id' => (int) $result->fields['assoc_id'],
-			);
-			$result->MoveNext();
+		$newRelease = [];
+		foreach ($result as $row) {
+			$newRelease[] = [
+				'assoc_type' => (int) $row->assoc_type,
+				'assoc_id' => (int) $row->assoc_id,
+			];
 		}
-
 		return $newRelease;
 	}
 }

@@ -23,24 +23,18 @@ class OMPCompletedPaymentDAO extends DAO {
 	 * Retrieve a ComplatedPayment by its ID.
 	 * @param $completedPaymentId int
 	 * @param $contextId int optional
-	 * @return CompletedPayment
+	 * @return CompletedPayment|null
 	 */
 	function getById($completedPaymentId, $contextId = null) {
-		$params = array((int) $completedPaymentId);
+		$params = [(int) $completedPaymentId];
 		if ($contextId) $params[] = (int) $contextId;
 
 		$result = $this->retrieve(
 			'SELECT * FROM completed_payments WHERE completed_payment_id = ?' . ($contextId?' AND context_id = ?':''),
 			$params
 		);
-
-		$returner = null;
-		if ($result->RecordCount() != 0) {
-			$returner = $this->_fromRow($result->GetRowAssoc(false));
-		}
-
-		$result->Close();
-		return $returner;
+		$row = $result->current();
+		return $row ? $this->_fromRow((array) $row) : null;
 	}
 
 	/**
@@ -54,7 +48,7 @@ class OMPCompletedPaymentDAO extends DAO {
 				VALUES
 				(%s, ?, ?, ?, ?, ?, ?, ?)',
 				$this->datetimeToDB(Core::getCurrentDate())),
-			array(
+			[
 				(int) $completedPayment->getType(),
 				(int) $completedPayment->getContextId(),
 				(int) $completedPayment->getUserId(),
@@ -62,7 +56,7 @@ class OMPCompletedPaymentDAO extends DAO {
 				$completedPayment->getAmount(),
 				$completedPayment->getCurrencyCode(),
 				$completedPayment->getPayMethodPluginName()
-			)
+			]
 		);
 
 		return $this->getInsertId();
@@ -71,12 +65,11 @@ class OMPCompletedPaymentDAO extends DAO {
 	/**
 	 * Update an existing completed payment.
 	 * @param $completedPayment CompletedPayment
-	 * @return boolean
 	 */
 	function updateObject($completedPayment) {
 		$returner = false;
 
-		$returner = $this->update(
+		$this->update(
 			sprintf('UPDATE completed_payments
 			SET
 				timestamp = %s,
@@ -89,7 +82,7 @@ class OMPCompletedPaymentDAO extends DAO {
 				payment_method_plugin_name = ?
 			WHERE completed_payment_id = ?',
 			$this->datetimeToDB($completedPayment->getTimestamp())),
-			array(
+			[
 				(int) $completedPayment->getType(),
 				(int) $completedPayment->getContextId(),
 				(int) $completedPayment->getUserId(),
@@ -98,10 +91,8 @@ class OMPCompletedPaymentDAO extends DAO {
 				$completedPayment->getCurrencyCode(),
 				$completedPayment->getPayMethodPluginName(),
 				(int) $completedPayment->getId()
-			)
+			]
 		);
-
-		return $returner;
 	}
 
 	/**
@@ -116,55 +107,55 @@ class OMPCompletedPaymentDAO extends DAO {
 	 * Look for a completed PURCHASE_PUBLICATION_FORMAT payment matching the article ID
 	 * @param $userId int
 	 * @param $submissionFileId int
+	 * @return boolean
 	 */
 	function hasPaidPurchaseFile ($userId, $submissionFileId) {
 		$result = $this->retrieve(
-			'SELECT count(*) FROM completed_payments WHERE payment_type = ? AND user_id = ? AND assoc_id = ?',
-			array(
+			'SELECT count(*) AS row_count FROM completed_payments WHERE payment_type = ? AND user_id = ? AND assoc_id = ?',
+			[
 				PAYMENT_TYPE_PURCHASE_FILE,
 				(int) $userId,
 				$submissionFileId
-			)
+			]
 		);
-
-		$returner = false;
-		if (isset($result->fields[0]) && $result->fields[0] != 0) {
-			$returner = true;
-		}
-
-		$result->Close();
-		return $returner;
+		$row = $result->current();
+		return $row ? (boolean) $row->row_count : false;
 	}
 
 	/**
 	 * Retrieve an array of payments for a particular context ID.
 	 * @param $contextId int
+	 * @param $rangeInfo DBResultRange|null
 	 * @return object DAOResultFactory containing matching payments
 	 */
 	function getByContextId($contextId, $rangeInfo = null) {
-		$result = $this->retrieveRange(
-			'SELECT * FROM completed_payments WHERE context_id = ? ORDER BY timestamp DESC',
-			(int) $contextId,
-			$rangeInfo
+		return new DAOResultFactory(
+			$this->retrieveRange(
+				'SELECT * FROM completed_payments WHERE context_id = ? ORDER BY timestamp DESC',
+				[(int) $contextId],
+				$rangeInfo
+			),
+			$this,
+			'_fromRow'
 		);
-
-		return new DAOResultFactory($result, $this, '_fromRow');
 	}
 
 	/**
 	 * Retrieve an array of payments for a particular user ID.
 	 * @param $userId int
-	 * @return object DAOResultFactory containing matching payments
+	 * @param $rangeInfo DBResultRange|null
+	 * @return DAOResultFactory Matching payments
 	 */
 	function getByUserId($userId, $rangeInfo = null) {
-		$result =& $this->retrieveRange(
-			'SELECT * FROM completed_payments WHERE user_id = ? ORDER BY timestamp DESC',
-			(int) $userId,
-			$rangeInfo
+		return new DAOResultFactory(
+			$this->retrieveRange(
+				'SELECT * FROM completed_payments WHERE user_id = ? ORDER BY timestamp DESC',
+				[(int) $userId],
+				$rangeInfo
+			),
+			$this,
+			'_returnPaymentFromRow'
 		);
-
-		$returner = new DAOResultFactory($result, $this, '_returnPaymentFromRow');
-		return $returner;
 	}
 
 	/**
