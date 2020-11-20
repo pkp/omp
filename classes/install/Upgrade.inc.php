@@ -463,7 +463,6 @@ class Upgrade extends Installer {
 			$commentsToEd = PKPString::stripUnsafeHtml($row->comments_to_ed);
 			if ($commentsToEd == '') continue;
 
-			$userId = null;
 			$authorAssignmentsResult = $stageAssignmetDao->getBySubmissionAndRoleId($row['submission_id'], ROLE_ID_AUTHOR);
 			if ($authorAssignmentsResult->getCount() != 0) {
 				// We assume the results are ordered by stage_assignment_id i.e. first author assignemnt is first
@@ -536,7 +535,7 @@ class Upgrade extends Installer {
 			'SELECT * FROM signoffs WHERE symbolic = ? AND assoc_type = ? AND assoc_id = ?',
 			['SIGNOFF_SIGNOFF', 1048582 /* ASSOC_TYPE_SIGNOFF */, $signoffId]
 		);
-		foreach ($signoffResult as $row) {
+		foreach ($signoffsResult as $row) {
 			$metaSignoffId = $row->signoff_id;
 			$userId = $row->user_id;
 			$dateCompleted = $row->date_completed ? strtotime($row->date_completed) : null;
