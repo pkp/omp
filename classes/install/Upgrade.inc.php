@@ -755,7 +755,7 @@ class Upgrade extends Installer {
 			$coverImage = unserialize($row->cover_image);
 			if (empty($coverImage)) continue;
 
-			if (!isset($contexts[$row->context_id]) {
+			if (!isset($contexts[$row->context_id])) {
 				$contexts[$row->context_id] = Services::get('context')->get($row->context_id);
 			};
 			$context = $contexts[$row->context_id];
