@@ -34,23 +34,10 @@ class UsageEventPlugin extends PKPUsageEventPlugin {
 		$hooks = parent::getEventHooks();
 		$ompHooks = array(
 			'CatalogBookHandler::view',
-			'CatalogBookHandler::download',
-			'HtmlMonographFilePlugin::monographDownload',
-			'HtmlMonographFilePlugin::monographDownloadFinished',
 		);
 
 		return array_merge($hooks, $ompHooks);
 	}
-
-	/**
-	 * @copydoc PKPUsageEventPlugin::getDownloadFinishedEventHooks()
-	 */
-	protected function getDownloadFinishedEventHooks() {
-		return array_merge(parent::getDownloadFinishedEventHooks(), array(
-			'HtmlMonographFilePlugin::monographDownloadFinished'
-		));
-	}
-
 	/**
 	 * @see PKPUsageEventPlugin::getUsageEventData()
 	 */
@@ -103,18 +90,16 @@ class UsageEventPlugin extends PKPUsageEventPlugin {
 
 					// Publication format file.
 				case 'CatalogBookHandler::view':
-				case 'CatalogBookHandler::download':
-				case 'HtmlMonographFilePlugin::monographDownload':
 					$pubObject = $hookArgs[3];
 					$assocType = ASSOC_TYPE_SUBMISSION_FILE;
 					$canonicalUrlOp = 'download';
 					$submission = $hookArgs[1];
 					$publicationFormat = $hookArgs[2];
 					// if file is not a publication format file (e.g. CSS or images), there is no usage event.
-					if ($pubObject->getAssocId() != $publicationFormat->getId()) return false;
-					$canonicalUrlParams = array($submission->getId(), $pubObject->getAssocId(), $pubObject->getId());
+					if ($pubObject->getData('assocId') != $publicationFormat->getId()) return false;
+					$canonicalUrlParams = array($submission->getId(), $pubObject->getData('assocId'), $pubObject->getId());
 					$idParams = array('m' . $submission->getId(), 'f' . $pubObject->getId());
-					$downloadSuccess = false;
+					$downloadSuccess = true;
 					break;
 				default:
 					// Why are we called from an unknown hook?
