@@ -1,6 +1,6 @@
 msgid ""
 msgstr ""
-"PO-Revision-Date: 2020-06-18 18:39+0000\n"
+"PO-Revision-Date: 2020-11-23 16:11+0000\n"
 "Last-Translator: Magnus Annemark <magnus.annemark@ub.lu.se>\n"
 "Language-Team: Swedish <http://translate.pkp.sfu.ca/projects/omp/manager/"
 "sv_SE/>\n"
@@ -497,3 +497,297 @@ msgstr ""
 
 msgid "manager.setup.addAboutItem"
 msgstr "Lägg till \"Om\"-objekt"
+
+msgid "manager.setup.provideRefLinkInstructions"
+msgstr "Ge instruktioner till layoutredaktörer."
+
+msgid "manager.setup.proofreading"
+msgstr "Korrekturläsare"
+
+msgid "manager.setup.proofingInstructionsDescription"
+msgstr ""
+"Korrekturinstruktionerna blir tillgängliga för korrekturläsare, författare, "
+"layoutredaktörer och sektionsredaktörer in manusredigeringssteget. Nedan är "
+"en uppsättning förinställda instruktioner i HTML-format. Dessa kan redigeras "
+"eller bytas ut när som helst av pressansvarig (i HTML-format eller i "
+"fritext)."
+
+msgid "manager.setup.proofingInstructions"
+msgstr "Instruktioner för korrektur"
+
+msgid "manager.setup.printIssn"
+msgstr "ISSN för fysiskt format"
+
+msgid "manager.setup.contextTitle"
+msgstr "Pressens namn"
+
+msgid "manager.setup.pressThumbnail.description"
+msgstr ""
+"En liten logotyp eller annan bild som kan användas för att representera "
+"pressen i listor."
+
+msgid "manager.setup.pressThumbnail"
+msgstr "Miniatyrbild"
+
+msgid "manager.setup.pressTheme"
+msgstr "Tema"
+
+msgid "manager.setup.styleSheetInvalid"
+msgstr "Ogiltigt format på stilmall. Formatet måste vara \".css\"."
+
+msgid "manager.setup.pressSetupUpdated"
+msgstr "Konfigurationen har uppdaterats."
+
+msgid "manager.setup.pressSetup"
+msgstr "Konfiguration"
+
+msgid "manager.setup.pressPolicies"
+msgstr "Steg 2. Pressens riktlinjer"
+
+msgid "manager.setup.pageHeader"
+msgstr "Sidhuvud"
+
+msgid "manager.setup.layout"
+msgstr "Layout"
+
+msgid "manager.setup.contextInitials"
+msgstr "Förkortning"
+
+msgid "manager.setup.pressHomepageContentDescription"
+msgstr ""
+"Hemsidan har ett antal förinställda navigationslänkar. Ytterligare innehåll "
+"kan läggas till genom att använda något av alternativen nedan."
+
+msgid "manager.setup.pressHomepageContent"
+msgstr "Hemsidans innehåll"
+
+msgid "manager.setup.homepageContentDescription"
+msgstr ""
+"Hemsidan har ett antal förinställda navigationslänkar. Ytterligare innehåll "
+"kan läggas till genom att använda något av alternativen nedan."
+
+msgid "manager.setup.homepageContent"
+msgstr "Hemsidans innehåll"
+
+msgid "manager.setup.pressArchiving"
+msgstr "Arkivering"
+
+msgid "manager.setup.aboutPress.description"
+msgstr ""
+"Information som kan vara av intresse för läsare, eventuella författare eller "
+"granskare. Det kan t.ex. vara er open access-policy, pressens ämnesmässiga "
+"inriktning, upphovsrättspolicy, pressens historik, integritetspolicy."
+
+msgid "manager.setup.pressDescription.description"
+msgstr "En kort beskrivning av pressen."
+
+msgid "manager.setup.pressDescription"
+msgstr "Kort beskrivning av pressen"
+
+msgid "manager.setup.appearanceDescription"
+msgstr ""
+"Olika delar av pressens utseende kan ändras från den här sidan, inklusive "
+"sidhuvud och sidfot, stilmall och tema, och hur listor fungerar."
+
+msgid "manager.setup.privacyStatement.success"
+msgstr "Integritetspolicyn har uppdaterats."
+
+msgid "manager.setup.policies.description"
+msgstr ""
+"Inriktning, kvalitetsgranskning, avdelningar, integritet, säkerhet och "
+"övrigt."
+
+msgid "manager.setup.policies"
+msgstr "Riktlinjer"
+
+msgid "manager.setup.onlineIssn"
+msgstr "Online-ISSN"
+
+msgid "manager.setup.onlineAccessManagement"
+msgstr "Tillgång till pressens innehåll"
+
+msgid "manager.setup.numPageLinks.description"
+msgstr "Begränsa antalet länkar som visas till efterföljande sidor i en lista."
+
+msgid "manager.setup.numPageLinks"
+msgstr "Länkar"
+
+msgid "manager.setup.noUseProofreaders"
+msgstr ""
+"En redaktör eller sektionsredaktör kommer kontrollera publiceringsversionen."
+
+msgid "manager.setup.noUseLayoutEditors"
+msgstr ""
+"En redaktör eller sektionsredaktör kommer iordningställa filen eller filerna "
+"(HTML, PDF, etc.)."
+
+msgid "manager.setup.noUseCopyeditors"
+msgstr "Manusredigering kommer utföras av en redaktör eller sektionsredaktör."
+
+msgid "manager.setup.note"
+msgstr "Anteckning"
+
+msgid "manager.setup.noStyleSheetUploaded"
+msgstr "Ingen stilmall har laddats upp."
+
+msgid "manager.setup.noImageFileUploaded"
+msgstr "Ingen bild har laddats upp."
+
+msgid "manager.setup.masthead.success"
+msgstr "Redaktionsrutan har uppdaterats."
+
+msgid "manager.setup.managingThePress"
+msgstr "Steg 4. Hantera inställningar"
+
+msgid "manager.setup.managingPublishingSetup"
+msgstr "Inställningar"
+
+msgid "manager.setup.managementOfBasicEditorialSteps"
+msgstr "Administration av redaktionellt arbetsflöde"
+
+msgid "manager.setup.management.description"
+msgstr ""
+"Tillgång och säkerhet, schemaläggning, meddelanden, manusredigering, layout "
+"och korrektur."
+
+msgid "manager.setup.settings"
+msgstr "Inställningar"
+
+msgid "manager.setup.look.description"
+msgstr ""
+"Hemsidans rubrik, innehåll, sidhuvud och sidfot, navigationsmeny, och "
+"stilmall."
+
+msgid "manager.setup.look"
+msgstr "Utseende"
+
+msgid "manager.setup.lists"
+msgstr "Listor"
+
+msgid "manager.setup.layoutTemplates.title"
+msgstr "Titel"
+
+msgid "manager.setup.layoutTemplates.file"
+msgstr "Layoutmall"
+
+msgid "manager.setup.layoutTemplatesDescription"
+msgstr ""
+"Layoutmallar i olika filformat (t.ex. pdf, doc, etc.) kan laddas upp, "
+"tillsammans med anteckningar som specificerar typsnitt, textstorlek, "
+"marginaler, etc."
+
+msgid "manager.setup.layoutTemplates"
+msgstr "Layoutmallar"
+
+msgid "manager.setup.layoutInstructionsDescription"
+msgstr ""
+"Layoutinstruktioner kan anges nedan i HTML eller fritext. De blir då "
+"tillgängliga för layout- och sektionsredaktörer på varje bidrags "
+"redigeringssida."
+
+msgid "manager.setup.layoutInstructions"
+msgstr "Layoutinstruktioner"
+
+msgid "manager.setup.layoutAndGalleys"
+msgstr "Layoutredaktörer"
+
+msgid "manager.setup.labelName"
+msgstr "Etikettsnamn"
+
+msgid "manager.setup.keyInfo.description"
+msgstr ""
+"En kort beskrivning av pressen, samt information om redaktörer, "
+"tidskriftsansvariga och andra medlemmar av din redaktion."
+
+msgid "manager.setup.keyInfo"
+msgstr "Översiktsinformation"
+
+msgid "manager.setup.itemsPerPage.description"
+msgstr ""
+"Begränsa antalet objekt (till exempel bidrag, användare, eller uppdrag) i en "
+"lista innan sidbrytning."
+
+msgid "manager.setup.itemsPerPage"
+msgstr "Objekt per sida"
+
+msgid "manager.setup.institution"
+msgstr "Institution"
+
+msgid "manager.setup.information.success"
+msgstr "Pressens information har uppdaterats."
+
+msgid "manager.setup.information.forReaders"
+msgstr "För läsare"
+
+msgid "manager.setup.information.forLibrarians"
+msgstr "För bibliotekarier"
+
+msgid "manager.setup.information.forAuthors"
+msgstr "För författare"
+
+msgid "manager.setup.information.description"
+msgstr ""
+"Korta beskrivningar av pressen för bibliotekarier och eventuella författare "
+"eller läsare. Informationen blir synlig på webbsidans sidomeny när "
+"informationsblocket är tillagt."
+
+msgid "manager.setup.information"
+msgstr "Information"
+
+msgid "manager.setup.identity"
+msgstr "Pressens identitet"
+
+msgid "manager.setup.preparingWorkflow"
+msgstr "Steg 3. Ställ in arbetsflödet"
+
+msgid "manager.setup.guidelines"
+msgstr "Riktlinjer"
+
+msgid "manager.setup.gettingDownTheDetails"
+msgstr "Steg 1. Detaljer"
+
+msgid "manager.setup.generalInformation"
+msgstr "Allmän information"
+
+msgid "manager.setup.form.supportNameRequired"
+msgstr "Supportens namn krävs."
+
+msgid "manager.setup.form.supportEmailRequired"
+msgstr "Supportens e-postadress krävs."
+
+msgid "manager.setup.form.numReviewersPerSubmission"
+msgstr "Antal granskare per bidrag krävs."
+
+msgid "manager.setup.form.contactNameRequired"
+msgstr "Den primära kontaktens namn krävs."
+
+msgid "manager.setup.form.contactEmailRequired"
+msgstr "Den primära kontaktens e-postadress krävs."
+
+msgid "manager.setup.forAuthorsToIndexTheirWorkDescription"
+msgstr ""
+"OMP är anslutet till <a href=\"http://www.openarchives.org/\" target=\""
+"_blank\">Open Archives Initiative</a> Protokoll för Metadata Harvesting, som "
+"är en väletablerad standard som stöder tillgängliggörandet av välindexerad "
+"data i en global kontext. Författare använder ett generellt formulär för att "
+"beskriva bidragets metadata. Den tidskriftsansvarige anger "
+"indexeringskategorier och förse författare med relevanta exempel som kan "
+"vara till hjälp vid indexeringen."
+
+msgid "manager.setup.forAuthorsToIndexTheirWork"
+msgstr "Indexering av innehåll"
+
+msgid "manager.setup.displayInSpotlight.label"
+msgstr "Spotlight"
+
+msgid "manager.setup.displayInSpotlight"
+msgstr "Visa böcker i spotlight på förstasidan"
+
+msgid "manager.setup.displayFeaturedBooks.label"
+msgstr "Utvalda böcker"
+
+msgid "manager.setup.displayFeaturedBooks"
+msgstr "Visa utvalda böcker på förstasidan"
+
+msgid "manager.setup.lists.success"
+msgstr "Pressens inställningar för listor har uppdaterats."
