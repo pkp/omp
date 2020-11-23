@@ -42,7 +42,7 @@ class UsageEventPlugin extends PKPUsageEventPlugin {
 	 * @see PKPUsageEventPlugin::getUsageEventData()
 	 */
 	protected function getUsageEventData($hookName, $hookArgs, $request, $router, $templateMgr, $context) {
-		list($pubObject, $downloadSuccess, $assocType, $idParams, $canonicalUrlPage, $canonicalUrlOp, $canonicalUrlParams) =
+		list($pubObject, $assocType, $idParams, $canonicalUrlPage, $canonicalUrlOp, $canonicalUrlParams) =
 			parent::getUsageEventData($hookName, $hookArgs, $request, $router, $templateMgr, $context);
 
 		if (!$pubObject) {
@@ -59,7 +59,7 @@ class UsageEventPlugin extends PKPUsageEventPlugin {
 
 					$press = $templateMgr->getTemplateVars('currentContext'); /* @var $press Press */
 					$series = $templateMgr->getTemplateVars('series'); /* @var $series Series */
-					$submission = $templateMgr->getTemplateVars('submission');
+					$submission = $templateMgr->getTemplateVars('publishedSubmission');
 
 					// No published objects, no usage event.
 					if (!$press && !$series && !$submission) break;
@@ -84,7 +84,6 @@ class UsageEventPlugin extends PKPUsageEventPlugin {
 						$idParams = array('m' . $pubObject->getId());
 					}
 
-					$downloadSuccess = true;
 					$canonicalUrlOp = $op;
 					break;
 
@@ -99,7 +98,6 @@ class UsageEventPlugin extends PKPUsageEventPlugin {
 					if ($pubObject->getData('assocId') != $publicationFormat->getId()) return false;
 					$canonicalUrlParams = array($submission->getId(), $pubObject->getData('assocId'), $pubObject->getId());
 					$idParams = array('m' . $submission->getId(), 'f' . $pubObject->getId());
-					$downloadSuccess = true;
 					break;
 				default:
 					// Why are we called from an unknown hook?
@@ -116,7 +114,7 @@ class UsageEventPlugin extends PKPUsageEventPlugin {
 				break;
 		}
 
-		return array($pubObject, $downloadSuccess, $assocType, $idParams, $canonicalUrlPage, $canonicalUrlOp, $canonicalUrlParams);
+		return array($pubObject, $assocType, $idParams, $canonicalUrlPage, $canonicalUrlOp, $canonicalUrlParams);
 	}
 
 	/**
