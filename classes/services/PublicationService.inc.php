@@ -272,7 +272,7 @@ class PublicationService extends PKPPublicationService {
 			$submissionFiles = Services::get('submissionFile')->getMany([
 				'submissionIds' => [$oldPublication->getData('submissionId')],
 				'assocTypes' => [ASSOC_TYPE_REPRESENTATION],
-				'assocIds' => $oldPublicationFormat->getId(),
+				'assocIds' => [$oldPublicationFormat->getId()],
 			]);
 			foreach ($submissionFiles as $submissionFile) {
 				$newSubmissionFile = clone $submissionFile;
@@ -284,7 +284,7 @@ class PublicationService extends PKPPublicationService {
 				$dependentFiles = Services::get('submissionFile')->getMany([
 					'fileStages' => [SUBMISSION_FILE_DEPENDENT],
 					'assocTypes' => [ASSOC_TYPE_SUBMISSION_FILE],
-					'assocIds' => $submissionFile->getId(),
+					'assocIds' => [$submissionFile->getId()],
 					'includeDependentFiles' => true,
 				]);
 				foreach ($dependentFiles as $dependentFile) {
