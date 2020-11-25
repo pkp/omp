@@ -1,0 +1,188 @@
+msgid ""
+msgstr ""
+"PO-Revision-Date: 2020-11-16 20:31+0000\n"
+"Last-Translator: Michael Bauer <fios@igaidhlig.net>\n"
+"Language-Team: Gaelic <http://translate.pkp.sfu.ca/projects/omp/default/"
+"gd_GB/>\n"
+"Language: gd_GB\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=4; plural=(n==1 || n==11) ? 0 : (n==2 || n==12) ? 1 : "
+"(n > 2 && n < 20) ? 2 : 3;\n"
+"X-Generator: Weblate 3.9.1\n"
+
+msgid "default.groups.abbrev.sectionEditor"
+msgstr "AcqE"
+
+msgid "default.genres.prospectus"
+msgstr "Prospectus"
+
+msgid "default.contextSettings.forLibrarians"
+msgstr ""
+"Tha sinn a’ brosnachadh leabhar-lannaichean an clò seo a chur am measg iris-"
+"leabhraichean dealain na leabhar-lainn aca. A bharrachd air sin, faodaidh "
+"leabhar-lannan an siostam foillseachaidh a tha stèidhichte air còd fosgailte "
+"aig a’ chlò seo a chur air òstaireachd iad fhèin airson buill nan roinnean "
+"aca a tha an sàs deasachadh chlòthan (<a href=\"http://pkp.sfu.ca/omp\">Open "
+"Monograph Press</a>)."
+
+msgid "default.contextSettings.forAuthors"
+msgstr ""
+"A bheil ùidh agad ann an com-pàirteachas sa chlò seo? Mholamaid dhut sùil a "
+"thoirt air an duilleag <a href=\"{$indexUrl}/{$contextPath}/about\">Mun chlò "
+"seo</a> airson poileasaidh earrannan a’ chlò agus air an <a href=\""
+"{$indexUrl}/{$contextPath}/about/submissions#authorGuidelines\">stiùireadh "
+"do dh’ùghdaran</a>. Feumaidh ùghdaran <a href=\"{$indexUrl}/{$contextPath}/"
+"user/register\">clàradh</a> aig a’ chlò mus cuir iad tagradh no, ma tha iad "
+"clàraichte mu thràth, faodaidh iad <a href=\"{$indexUrl}/index/login\">"
+"clàradh a-steach</a> agus tòiseachadh air na còig ceuman a tha ri "
+"choileanadh."
+
+msgid "default.contextSettings.forReaders"
+msgstr ""
+"Mholamaid do leughadairean clàradh airson seirbheis brathan foillseachadh a’ "
+"chlò seo. Cleachd an ceangal <a href=\"{$indexUrl}/{$contextPath}/user/"
+"register\">Clàraich</a> aig bàrr duilleag-dhachaigh a’ chlò. Ma nì an "
+"leughadair clàradh, gheibh iad clàr-innse gach monograf ùr a’ chlò air a’ "
+"phost-d. Ri linn sin, ’s urrainn dhan chlò tagradh gu bheil ìre de thaic no "
+"luchd-leughaidh aca. Faic <a href=\"{$indexUrl}/{$contextPath}/about/"
+"submissions#privacyStatement\">poileasaidh prìobhaideachd</a> a’ chlò a "
+"dhearbhas dha na leughadairean nach cleachd iad an ainmean is seòlaidhean "
+"puist-d airson adhbhar sam bith eile."
+
+msgid "default.contextSettings.emailSignature"
+msgstr ""
+"<br/>\n"
+"________________________________________________________________________<br/>"
+"\n"
+"<a href=\"{$ldelim}$contextUrl{$rdelim}\">{$ldelim}$contextName{$rdelim}</a>"
+
+msgid "default.contextSettings.privacyStatement"
+msgstr ""
+"<p>Cha chleachdar na h-ainmean is seòlaidhean puist-d a chuirear a-steach "
+"air làrach a’ chlò seo ach airson amasan foillsichte an a’ chlò seo agus cha "
+"chuirear ri làimh pàrtaidh sam bith eile iad no airson adhbhar sam bith "
+"eile.</p>"
+
+msgid "default.contextSettings.checklist.bibliographicRequirements"
+msgstr ""
+"Tha an teacsa seo a’ leantainn nan riaghailtean san <a href=\""
+"{$indexUrl}/{$contextPath}/about/submissions#authorGuidelines\" target=\""
+"_blank\">stiùireadh do dh’ùghdaran</a> a thaobh stoidhle is leabhar-eòlais a "
+"gheibhear fon earrann “Mun chlò”."
+
+msgid "default.genres.appendix"
+msgstr "Eàrr-ràdh"
+
+msgid "default.genres.bibliography"
+msgstr "Leabhar-chlàr"
+
+msgid "default.genres.manuscript"
+msgstr "Sgrìobhainn leabhair"
+
+msgid "default.genres.chapter"
+msgstr "Sgrìobhainn caibideil"
+
+msgid "default.genres.glossary"
+msgstr "Briathrachan"
+
+msgid "default.genres.index"
+msgstr "Clàr-amais"
+
+msgid "default.genres.preface"
+msgstr "Ro-ràdh"
+
+msgid "default.genres.table"
+msgstr "Clàr"
+
+msgid "default.genres.figure"
+msgstr "Figear"
+
+msgid "default.genres.photo"
+msgstr "Dealbh"
+
+msgid "default.genres.illustration"
+msgstr "Sgead-dhealbh"
+
+msgid "default.genres.other"
+msgstr "Eile"
+
+msgid "default.groups.name.manager"
+msgstr "Manaidsear clò"
+
+msgid "default.groups.plural.manager"
+msgstr "Manaidsearan clò"
+
+msgid "default.groups.abbrev.manager"
+msgstr "PM"
+
+msgid "default.groups.name.editor"
+msgstr "Deasaiche clò"
+
+msgid "default.groups.plural.editor"
+msgstr "Deasaichean clò"
+
+msgid "default.groups.abbrev.editor"
+msgstr "PE"
+
+msgid "default.groups.name.sectionEditor"
+msgstr "Deasaiche sreatha"
+
+msgid "default.groups.plural.sectionEditor"
+msgstr "Deasaichean sreatha"
+
+msgid "default.groups.name.chapterAuthor"
+msgstr "Ùghdar caibideil"
+
+msgid "default.groups.plural.chapterAuthor"
+msgstr "Ùghdaran caibideil"
+
+msgid "default.groups.abbrev.chapterAuthor"
+msgstr "CA"
+
+msgid "default.groups.name.volumeEditor"
+msgstr "Deasaiche mòr-thomaid"
+
+msgid "default.groups.plural.volumeEditor"
+msgstr "Deasaichean mòr-thomaid"
+
+msgid "default.groups.abbrev.volumeEditor"
+msgstr "VE"
+
+msgid "default.contextSettings.checklist.notPreviouslyPublished"
+msgstr ""
+"Cha deach an tagradh fhoillseachadh roimhe agus chan eil e aig clò eile "
+"airson beachdachadh (no chaidh mìneachadh a thoirt seachad sna beachdan dhan "
+"deasaiche)."
+
+msgid "default.contextSettings.checklist.fileFormat"
+msgstr ""
+"Tha am faidhle tagraidh san fhòrmat Microsoft Word, RTF no OpenDocument."
+
+msgid "default.contextSettings.checklist.addressesLinked"
+msgstr ""
+"Far a bheil iad ri làimh, chaidh URLaichean airson nan reifreansan a thoirt "
+"seachad."
+
+msgid "default.contextSettings.checklist.submissionAppearance"
+msgstr ""
+"Tha an teacsa air beàrnadh singilte; a’ cleachdadh cruth-clò aig 12 phuing; "
+"a’ cleachdadh clò Eadailteach seach fo-loidhnichean (ach ann an seòlaidhean "
+"URL); agus tha gach dealbh, figear is clàr sna h-àitichean iomchaidh san "
+"teacsa seach aig an deireadh."
+
+msgid "default.contextSettings.openAccessPolicy"
+msgstr ""
+"Tha an clò seo a’ toirt cothrom fosgailte air an t-susbaint ann a chionn ’s "
+"gu bheil sinn dhen bheachd gun tig àrdachadh air eadar-mhalairt eòlais eadar-"
+"nàiseanta ma chuirear rannsachadh ri làimh a’ phobaill gun chuingeachadh."
+
+msgid "default.groups.name.externalReviewer"
+msgstr "Lèirmheasaiche air an taobh a-muigh"
+
+msgid "default.groups.plural.externalReviewer"
+msgstr "Lèirmheasaichean air an taobh a-muigh"
+
+msgid "default.groups.abbrev.externalReviewer"
+msgstr "ER"

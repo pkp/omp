@@ -1,0 +1,417 @@
+msgid ""
+msgstr ""
+"PO-Revision-Date: 2020-11-17 02:12+0000\n"
+"Last-Translator: Michael Bauer <fios@igaidhlig.net>\n"
+"Language-Team: Gaelic <http://translate.pkp.sfu.ca/projects/omp/submission/"
+"gd_GB/>\n"
+"Language: gd_GB\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=4; plural=(n==1 || n==11) ? 0 : (n==2 || n==12) ? 1 : "
+"(n > 2 && n < 20) ? 2 : 3;\n"
+"X-Generator: Weblate 3.9.1\n"
+
+msgid "submission.round"
+msgstr "Cuairt&nbsp;{$round}"
+
+msgid "submission.catalogEntry.catalogMetadata"
+msgstr "Catalog"
+
+msgid "submission.submit.catalog"
+msgstr "Catalog"
+
+msgid "submission.authorListSeparator"
+msgstr "; "
+
+msgid "submission.submit.title"
+msgstr "Cuir monograf"
+
+msgid "submission.upload.selectComponent"
+msgstr "Tagh co-phàirt"
+
+msgid "submission.title"
+msgstr "Tiotal leabhair"
+
+msgid "submission.select"
+msgstr "Tagh tagradh"
+
+msgid "submission.synopsis"
+msgstr "Geàrr-chunntas"
+
+msgid "submission.workflowType"
+msgstr "Seòrsa an tagraidh"
+
+msgid "submission.workflowType.description"
+msgstr ""
+"’S e obair a rinn co-dhiù aon ùghdar a tha ann am monograf. Tha ùghdar eile "
+"aig gach caibideil ann an iom-leabhar deasaichte (le mion-fhiosrachadh nan "
+"caibideilean gan cur a-steach rè ceann thall a’ phròiseis.)"
+
+msgid "submission.workflowType.editedVolume.label"
+msgstr "Iom-leabhar deasaichte"
+
+msgid "submission.workflowType.editedVolume"
+msgstr ""
+"Iom-leabhar deasaichte: Thèid na h-ùghdaran a cho-cheangal ris a’ chaibideil "
+"aca fhèin."
+
+msgid "submission.workflowType.authoredWork"
+msgstr "Monograf: Thèid na h-ùghdaran a cho-cheangal ris an leabhar air fad."
+
+msgid "submission.workflowType.change"
+msgstr "Atharraich"
+
+msgid "submission.editorName"
+msgstr "{$editorName} (deas.)"
+
+msgid "submission.monograph"
+msgstr "Monograf"
+
+msgid "submission.published"
+msgstr "Deiseil airson saothrachadh"
+
+msgid "submission.fairCopy"
+msgstr "Lethbhreac grinn"
+
+msgid "submission.artwork.permissions"
+msgstr "Ceadan"
+
+msgid "submission.chapter"
+msgstr "Caibideil"
+
+msgid "submission.chapters"
+msgstr "Caibideilean"
+
+msgid "submission.chaptersDescription"
+msgstr ""
+"’S urrainn dhut liosta dhe na caibideilean a dhèanamh an-seo agus luchd-"
+"pàirteachaidh iomruineadh on liosta gu h-àrd. ’S urrainn dhan luchd-"
+"phàirteachaidh cothrom fhaighinn air a’ chaibideil rè ceumannan a’ phròiseis "
+"fhoillseachaidh."
+
+msgid "submission.chapter.addChapter"
+msgstr "Cuir caibideil ris"
+
+msgid "submission.chapter.editChapter"
+msgstr "Deasaich a’ chaibideil"
+
+msgid "submission.chapter.pages"
+msgstr "Duilleagan"
+
+msgid "submission.copyedit"
+msgstr "Grinn-deasachadh"
+
+msgid "submission.publicationFormats"
+msgstr "Fòrmatan foillseachaidh"
+
+msgid "submission.proofs"
+msgstr "Dearbhaidhean"
+
+msgid "submission.download"
+msgstr "Luchdaich a-nuas"
+
+msgid "submission.sharing"
+msgstr "Co-roinn seo"
+
+msgid "manuscript.submission"
+msgstr "Tagradh sgrìobhainn"
+
+msgid "submissions.queuedReview"
+msgstr "Fo lèirmheas"
+
+msgid "manuscript.submissions"
+msgstr "Tagraidhean sgrìobhainnean"
+
+msgid "submission.confirmSubmit"
+msgstr ""
+"A bheil thu cinnteach gu bheil thu airson an sgrìobhainn seo a chur dhan "
+"chlò?"
+
+msgid "submission.metadata"
+msgstr "Meata-dàta"
+
+msgid "submission.supportingAgencies"
+msgstr "Buidhnean a tha a’ cur taic ris"
+
+msgid "grid.action.addChapter"
+msgstr "Cruthaich caibideil ùr"
+
+msgid "grid.action.editChapter"
+msgstr "Deasaich a’ chaibideil seo"
+
+msgid "grid.action.deleteChapter"
+msgstr "Sguab a’ chaibideil seo às"
+
+msgid "submission.submit"
+msgstr "Tòisich air tagradh de leabhar ùr"
+
+msgid "submission.submit.newSubmissionMultiple"
+msgstr "Tòisich air tagradh ùr ann an"
+
+msgid "submission.submit.newSubmissionSingle"
+msgstr "Tagradh ùr"
+
+msgid "submission.submit.upload"
+msgstr "Luchdaich an tagradh suas"
+
+msgid "submission.submit.cancelSubmission"
+msgstr ""
+"’S urrainn dhut an tagradh seo a choileanadh uaireigin eile le bhith a’ "
+"taghadh “Tagraidhean gnìomhach” o dhachaigh an ùghdair."
+
+msgid "submission.submit.selectSeries"
+msgstr "Tagh sreath (roghainneil)"
+
+msgid "author.isVolumeEditor"
+msgstr "Comharraich an com-pàirtiche seo mar dheasaiche an iom-leabhair seo."
+
+msgid "author.submit.seriesRequired"
+msgstr "Tha feum air sreath dligheach."
+
+msgid "submission.submit.seriesPosition"
+msgstr "Ionad san t-sreath"
+
+msgid "submission.submit.seriesPosition.description"
+msgstr "Mar eisimpleir: Leabhar 2, Iom-leabhar 2"
+
+msgid "submission.submit.form.localeRequired"
+msgstr "Tagh cànan an tagraidh."
+
+msgid "submission.submit.privacyStatement"
+msgstr "An aithris prìobhaideachd"
+
+msgid "submission.submit.contributorRole"
+msgstr "Dreuchd neach-pàirteachaidh"
+
+msgid "submission.submit.form.authorRequired"
+msgstr "Tha feum air co-dhiù aon ùghdar."
+
+msgid "submission.submit.form.authorRequiredFields"
+msgstr "Tha ainm, sloinneadh is post-d gach ùghdar riatanach."
+
+msgid "submission.submit.form.titleRequired"
+msgstr "Cuir a-steach tiotal a’ mhonograf seo."
+
+msgid "submission.submit.form.abstractRequired"
+msgstr "Cuir a-steach geàrr-chunntas air a’ mhonograf agad."
+
+msgid "submission.submit.form.contributorRoleRequired"
+msgstr "Tagh dreuchd neach-pàirteachaidh."
+
+msgid "submission.submit.submissionFile"
+msgstr "Faidhle tagraidh"
+
+msgid "submission.submit.prepare"
+msgstr "Ullaich"
+
+msgid "submission.submit.metadata"
+msgstr "Meata-dàta"
+
+msgid "submission.submit.finishingUp"
+msgstr "Ga chrìochnachadh"
+
+msgid "submission.submit.confirmation"
+msgstr "Dearbhadh"
+
+msgid "submission.submit.nextSteps"
+msgstr "Na h-ath-cheuman"
+
+msgid "submission.submit.coverNote"
+msgstr "Nòta còmhdachaidh dhan deasaiche"
+
+msgid "submission.submit.generalInformation"
+msgstr "Fiosrachadh coitcheann"
+
+msgid "submission.submit.whatNext.description"
+msgstr ""
+"Chaidh fios mun tagradh agad a chur chun a’ chlòtha agus chaidh post-d a "
+"chur thugad a dhearbhas gun d’fhuair iad e. Turas a rinn an lèirmheasaiche "
+"lèirmheas air an tagradh, cuiridh iad fios thugad."
+
+msgid "submission.submit.checklistErrors"
+msgstr ""
+"Leugh na rudan air liosta-chromagan an tagraidh is cuir cromagan riutha. Tha "
+"uiread a nithean gun chromag fhathast: {$itemsRemaining}."
+
+msgid "submission.submit.placement"
+msgstr "Suidheachadh an tagraidh"
+
+msgid "submission.submit.userGroup"
+msgstr "Cuir e ’s mi nam dhreuchd a leanas…"
+
+msgid "submission.submit.userGroupDescription"
+msgstr ""
+"Ma tha thu a’ cur iom-leabhar deasaichte, bu chòir dhut dreuchd deasaiche "
+"iom-leabhair a thaghadh."
+
+msgid "submission.submit.noContext"
+msgstr "Cha b’ urrainn dhuinn clò an tagraidh seo a lorg."
+
+msgid "grid.chapters.title"
+msgstr "Caibideilean"
+
+msgid "grid.copyediting.deleteCopyeditorResponse"
+msgstr "Sguab às na luchdaich an grinn-deasaiche suas"
+
+msgid "submission.complete"
+msgstr "Air aontachadh"
+
+msgid "submission.incomplete"
+msgstr "A’ feitheamh ri aonta"
+
+msgid "submission.editCatalogEntry"
+msgstr "Innteart"
+
+msgid "submission.catalogEntry.new"
+msgstr "Cuir innteart ris"
+
+msgid "submission.catalogEntry.add"
+msgstr "Cuir na thagh thu ris a’ chatalog"
+
+msgid "submission.catalogEntry.select"
+msgstr "Tagh monografaichean airson an cur ris a’ chatalog"
+
+msgid "submission.catalogEntry.selectionMissing"
+msgstr ""
+"Feumaidh tu co-dhiù aon mhonograf a thaghadh airson a chur ris a’ chatalog."
+
+msgid "submission.catalogEntry.confirm"
+msgstr "Cuir an leabhar seo ris a’ chatalog phoblach"
+
+msgid "submission.catalogEntry.confirm.required"
+msgstr "Dearbh gu bheil an tagradh deiseil airson a chur dhan chatalog."
+
+msgid "submission.catalogEntry.isAvailable"
+msgstr ""
+"Tha am monograf seo deiseil airson a ghabhail a-staigh sa chatalog phoblach."
+
+msgid "submission.catalogEntry.viewSubmission"
+msgstr "Seall an tagradh"
+
+msgid "submission.catalogEntry.chapterPublicationDates"
+msgstr "Chinn-là foillseachaidh"
+
+msgid "submission.catalogEntry.disableChapterPublicationDates"
+msgstr "Cleachdaidh gach caibideil ceann-là foillseachadh a’ mhonograf."
+
+msgid "submission.catalogEntry.enableChapterPublicationDates"
+msgstr "Faodaidh ceann-là foillseachaidh fa leth a bhith aig gach caibideil."
+
+msgid "submission.catalogEntry.monographMetadata"
+msgstr "Monograf"
+
+msgid "submission.catalogEntry.publicationMetadata"
+msgstr "Fòrmat foillseachaidh"
+
+msgid "submission.event.metadataPublished"
+msgstr "Fhuair meata-dàta a’ mhonograf aonta airson foillseachadh."
+
+msgid "submission.event.metadataUnpublished"
+msgstr "Chan eil meata-dàta a’ mhonograf ga fhoillseachadh tuilleadh."
+
+msgid "submission.event.publicationFormatMadeAvailable"
+msgstr ""
+"Chaidh am fòrmat foillseachaidh “{$publicationFormatName}” a chur ri làimh."
+
+msgid "submission.event.publicationFormatMadeUnavailable"
+msgstr ""
+"Chan eil am fòrmat foillseachaidh “{$publicationFormatName}” ri làimh "
+"tuilleadh."
+
+msgid "submission.event.publicationFormatPublished"
+msgstr ""
+"Fhuair am fòrmat foillseachaidh “{$publicationFormatName}” aonta airson "
+"foillseachadh."
+
+msgid "submission.event.publicationFormatUnpublished"
+msgstr ""
+"Chan eil am fòrmat foillseachaidh “{$publicationFormatName}” ga "
+"fhoillseachadh tuilleadh."
+
+msgid "submission.event.catalogMetadataUpdated"
+msgstr "Chaidh meata-dàta a’ chatalog ùrachadh."
+
+msgid "submission.event.publicationMetadataUpdated"
+msgstr "Chaidh meata-dàta an fhòrmait fhoillseachaidh “{$formatName}” ùrachadh."
+
+msgid "submission.event.publicationFormatCreated"
+msgstr "Chaidh am fòrmat foillseachaidh “{$formatName}” a chruthachadh."
+
+msgid "submission.event.publicationFormatRemoved"
+msgstr "Chaidh am fòrmat foillseachaidh “{$formatName}” a thoirt air falbh."
+
+msgid "submission.submit.titleAndSummary"
+msgstr "An tiotal is geàrr-chunntas"
+
+msgid "editor.submission.decision.sendExternalReview"
+msgstr "Cuir airson lèirmheas air an taobh a-muigh"
+
+msgid "workflow.review.externalReview"
+msgstr "Lèirmheas air an taobh a-muigh"
+
+msgid "submission.upload.fileContents"
+msgstr "Co-phàirt tagraidh"
+
+msgid "submission.dependentFiles"
+msgstr "Faidhlichean eisimeileach"
+
+msgid "submission.metadataDescription"
+msgstr ""
+"Tha na riatanasan seo stèidhichte air seata meata-dàta Dublin Core, stannard "
+"eadar-nàiseanta airson tuairisgeul a thoirt air susbaint clòtha."
+
+msgid "section.any"
+msgstr "Sreath sam bith"
+
+msgid "submission.list.monographs"
+msgstr "Monografaichean"
+
+msgid "submission.list.countMonographs"
+msgstr "Monografaichean ({$count})"
+
+msgid "submission.list.itemsOfTotalMonographs"
+msgstr "{$count} dhe na monografaichean uile ({$total})"
+
+msgid "submission.list.orderFeatures"
+msgstr "Gleusan an òrduigh"
+
+msgid "submission.list.orderingFeatures"
+msgstr ""
+"Dèan slaodadh is leigeil às no thoir gnogag air na putanan suas is sìos "
+"airson òrdugh nan gleusan air an duilleag-dhachaigh atharrachadh."
+
+msgid "submission.list.orderingFeaturesSection"
+msgstr ""
+"Dèan slaodadh is leigeil às no thoir gnogag air na putanan suas is sìos "
+"airson òrdugh nan gleusan ann an {$title} atharrachadh."
+
+msgid "submission.list.saveFeatureOrder"
+msgstr "An t-òrdugh sàbhalaidh"
+
+msgid "catalog.browseTitles"
+msgstr "Tiotalan ({$numTitles})"
+
+msgid "publication.catalogEntry"
+msgstr "Innteart a’ chatalog"
+
+msgid "publication.catalogEntry.success"
+msgstr "Chaidh mion-fhiosrachadh an innteirt seo dhen chatalog ùrachadh."
+
+msgid "publication.invalidSeries"
+msgstr "Cha b’ urrainn dhuinn an sreath dhen fhoillseachadh seo a lorg."
+
+msgid "publication.required.issue"
+msgstr "Feumar am foillseachadh iomruineadh do dh’iris mus gabh fhoillseachadh."
+
+msgid "publication.publishedIn"
+msgstr "Air fhoillseachadh ann an <a href=\"{$issueUrl}\">{$issueName}</a>."
+
+msgid "publication.publish.confirmation"
+msgstr ""
+"Chaidh gach riatanas foillseachaidh a choileanadh. A bheil thu cinnteach gu "
+"bheil thu airson an t-innteart seo dhen chatalog a dhèanamh poblach?"
+
+msgid "publication.scheduledIn"
+msgstr ""
+"Gu bhith fhoillseachadh ann an <a href=\"{$issueUrl}\">{$issueName}</a>."
