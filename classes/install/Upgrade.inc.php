@@ -463,10 +463,10 @@ class Upgrade extends Installer {
 			$commentsToEd = PKPString::stripUnsafeHtml($row->comments_to_ed);
 			if ($commentsToEd == '') continue;
 
-			$authorAssignmentsResult = $stageAssignmetDao->getBySubmissionAndRoleId($row['submission_id'], ROLE_ID_AUTHOR);
-			if ($authorAssignmentsResult->getCount() != 0) {
+			$authorAssignments = $stageAssignmetDao->getBySubmissionAndRoleId($row['submission_id'], ROLE_ID_AUTHOR);
+			if ($authorAssignment = $authorAssignments->next()) {
 				// We assume the results are ordered by stage_assignment_id i.e. first author assignemnt is first
-				$userId = $authorAssignmentsResult->next()->getUserId();
+				$userId = $authorAssignment->getUserId();
 			} else {
 				$managerUserGroup = $userGroupDao->getDefaultByRoleId($row['context_id'], ROLE_ID_MANAGER);
 				$managerUsers = $userGroupDao->getUsersById($managerUserGroup->getId(), $row['context_id']);
