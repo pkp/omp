@@ -48,7 +48,7 @@ class PublicationNativeXmlFilter extends PKPPublicationNativeXmlFilter {
 		$entityNode = parent::createEntityNode($doc, $entity);
 
 		$context = $deployment->getContext();
-		
+
 		$deployment->setPublication($entity);
 
 		// Add the series, if one is designated.
@@ -65,11 +65,6 @@ class PublicationNativeXmlFilter extends PKPPublicationNativeXmlFilter {
 		// cover images
 		$coversNode = $this->createPublicationCoversNode($this, $doc, $entity);
 		if ($coversNode) $entityNode->appendChild($coversNode);
-
-		$citationsListNode = $this->createCitationsNode($doc, $deployment, $entity);
-		if ($citationsListNode) {
-			$entityNode->appendChild($citationsListNode);
-		}
 
 		return $entityNode;
 	}
@@ -89,7 +84,7 @@ class PublicationNativeXmlFilter extends PKPPublicationNativeXmlFilter {
 
 		$chapters = $entity->getData('chapters');
 		$chaptersDoc = $exportFilter->execute($chapters);
-		if ($chaptersDoc->documentElement instanceof DOMElement) {
+		if ($chaptersDoc && $chaptersDoc->documentElement instanceof DOMElement) {
 			$clone = $doc->importNode($chaptersDoc->documentElement, true);
 			$entityNode->appendChild($clone);
 		}
@@ -123,7 +118,7 @@ class PublicationNativeXmlFilter extends PKPPublicationNativeXmlFilter {
 				$publicFileManager = new PublicFileManager();
 
 				$contextId = $context->getId();
-				
+
 				$filePath = $publicFileManager->getContextFilesPath($contextId) . '/' . $coverImageName;
 				$embedNode = $doc->createElementNS($deployment->getNamespace(), 'embed', base64_encode(file_get_contents($filePath)));
 				$embedNode->setAttribute('encoding', 'base64');
