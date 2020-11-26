@@ -318,6 +318,8 @@ class CatalogBookHandler extends Handler {
 				// If the plugin handled the hook, prevent further default activity.
 				exit();
 			}
+			$returner = true;
+			HookRegistry::call('FileManager::downloadFileFinished', array(&$returner));
 			return Services::get('file')->download($path, $filename, $inline);
 		}
 
