@@ -1044,6 +1044,7 @@ msgstr ""
 msgid "about.aboutThisPublishingSystem.altText"
 msgstr "OMP redaktions- og publiceringsproces"
 
+#, fuzzy
 msgid "about.aboutOMPPress"
 msgstr ""
 "Dette forlag bruger Open Monograph Press {$ompVersion}, som er open source-"
@@ -1051,6 +1052,7 @@ msgstr ""
 "distribueret af <a href=\"http://pkp.sfu.ca/\">Public Knowledge Project</a> "
 "under GNU General Public License."
 
+#, fuzzy
 msgid "about.aboutOMPSite"
 msgstr ""
 "Dette websted bruger Open Monograph Press {$ompVersion}, som er open source-"

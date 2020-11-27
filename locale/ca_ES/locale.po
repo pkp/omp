@@ -814,9 +814,11 @@ msgstr ""
 msgid "about.aboutThisPublishingSystem.altText"
 msgstr "Procés editorial i de publicació de l'OMP"
 
+#, fuzzy
 msgid "about.aboutOMPPress"
 msgstr "Aquesta publicació utilitza Open Monographic Press {$ompVersion}, un programari de publicació i administració de publicacions de codi obert desenvolupat, acceptat i distribuït de manera gratuïta pel <a href=\"http://pkp.sfu.ca/\">Public Knowledge Project</a> sota la llicència general de GNU."
 
+#, fuzzy
 msgid "about.aboutOMPSite"
 msgstr "Aquest lloc web utilitza Open Monograph Press {$ompVersion}, un programari de publicació i administració de publicacions de codi obert desenvolupat, acceptat i distribuït de manera gratuïta pel <a href=\"http://pkp.sfu.ca/\">Public Knowledge Project</a> sota la llicència general de GNU."
 

@@ -1292,6 +1292,7 @@ msgstr ""
 "<p>Ma tha thu ag àrdachadh stàladh làithreach de OMP, <a href=\"{$upgradeUrl}"
 "\">briog an-seo</a> a leantainn air adhart.</p>"
 
+#, fuzzy
 msgid "about.aboutOMPSite"
 msgstr ""
 "Tha an làrach seo a’ cleachdadh Open Monograph Press {$ompVersion}, bathar-"
@@ -1299,6 +1300,7 @@ msgstr ""
 "a href=\"http://pkp.sfu.ca/\">Public Knowledge Project</a> agus ga "
 "sgaoileadh gu saor fo cheadachas coitcheann poblach GNU."
 
+#, fuzzy
 msgid "about.aboutOMPPress"
 msgstr ""
 "Tha an clò seo a’ cleachdadh Open Monograph Press {$ompVersion}, bathar-bog "

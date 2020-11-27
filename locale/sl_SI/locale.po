@@ -995,9 +995,11 @@ msgstr "O postopku objave"
 msgid "about.aboutThisPublishingSystem.altText"
 msgstr "Uredniški postopek in postopek objave OMP"
 
+#, fuzzy
 msgid "about.aboutOMPPress"
 msgstr "Ta založba uporablja sistem Open Monograph Press {$ompVersion}, ki je odprtokodna programska oprema za založništvo in upravljanje založb, ki jo podpira in distribuira <a href=\"http://pkp.sfu.ca/\">Public Knowledge Project</a> z licenco GNU General Public License."
 
+#, fuzzy
 msgid "about.aboutOMPSite"
 msgstr "To spletišče uporablja sistem Open Monograph Press {$ompVersion}, ki je odprtokodna programska oprema za založništvo in upravljanje založb, ki jo podpira in distribuira <a href=\"http://pkp.sfu.ca/\">Public Knowledge Project</a> z licenco GNU General Public License."
 
