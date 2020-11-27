@@ -475,6 +475,7 @@ msgstr "Otwórz nową stronę, aby zmienić tę informację"
 msgid "help.searchReturnResults"
 msgstr "Wróć do wyników wyszukiwania"
 
+#, fuzzy
 msgid "about.aboutOMPSite"
 msgstr ""
 "Ta strona korzysta z Open Monograph Press {$ompVersion}, które jest otwartym "
@@ -483,6 +484,7 @@ msgstr ""
 "Public Knowledge Project</a> z licencja wolnego i darmowego oprogramowania "
 "GNU."
 
+#, fuzzy
 msgid "about.aboutOMPPress"
 msgstr ""
 "To wydawnictwo korzysta z Open Monograph Press {$ompVersion}, które jest "

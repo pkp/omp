@@ -1247,12 +1247,14 @@ msgstr ""
 msgid "spotlight.title.homePage"
 msgstr "I spotlight"
 
+#, fuzzy
 msgid "about.aboutOMPSite"
 msgstr ""
 "Denna sidan använder Open Monograph Press {$ompVersion}, som är en open "
 "source-programvara för bokpublicering, utvecklat av <a href=\"http://pkp.sfu."
 "ca/\">Public Knowledge Project</a> under GNU General Public License."
 
+#, fuzzy
 msgid "about.aboutOMPPress"
 msgstr ""
 "Denna press använder Open Monograph Press {$ompVersion}, som är en open "

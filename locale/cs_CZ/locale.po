@@ -368,6 +368,7 @@ msgstr "Upravit tyto informace na nové stránce"
 msgid "help.searchReturnResults"
 msgstr "Zpět k výsledkům vyhledávání"
 
+#, fuzzy
 msgid "about.aboutOMPSite"
 msgstr ""
 "Tato stránka využívá systém Open Monograph Press {$ompVersion}, což je open "
@@ -375,6 +376,7 @@ msgstr ""
 "podporovaný a volně šířený v rámci projektu <a href=\"http://pkp.sfu.ca/\">"
 "Public Knowledge Project</a> pod GNU General Public licencí."
 
+#, fuzzy
 msgid "about.aboutOMPPress"
 msgstr ""
 "Toto nakladatelství využívá systém Open Monograph Press {$ompVersion}, což "

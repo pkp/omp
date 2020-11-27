@@ -937,6 +937,7 @@ msgstr "Abrir uma nova página para editar esta informação"
 msgid "help.searchReturnResults"
 msgstr "Voltar aos Resultados de Pesquisa"
 
+#, fuzzy
 msgid "about.aboutOMPSite"
 msgstr ""
 "Este site utiliza o Open Monograph Press {$ompVersion}, um software em open "
@@ -944,6 +945,7 @@ msgstr ""
 "livremente distribuído pelo <a href=\"http://pkp.sfu.ca/\">Public Knowledge "
 "Project</a> sob a Licença Públicar Geral GNU."
 
+#, fuzzy
 msgid "about.aboutOMPPress"
 msgstr ""
 "Esta editora utiliza o Open Monograph Press {$ompVersion}, um software em "

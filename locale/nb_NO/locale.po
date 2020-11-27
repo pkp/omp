@@ -512,6 +512,7 @@ msgstr "Åpne ny side for å redigere disse opplysningene"
 msgid "help.searchReturnResults"
 msgstr "Tilbake til søkeresultat"
 
+#, fuzzy
 msgid "about.aboutOMPSite"
 msgstr ""
 "Dette nettstedet bruker Open Monograph Press {$ompVersion}, som er "
@@ -519,6 +520,7 @@ msgstr ""
 "distribuert fritt av <a href=\"http://pkp.sfu.ca/\">Public Knowledge "
 "Project</a> under GNU General Public License."
 
+#, fuzzy
 msgid "about.aboutOMPPress"
 msgstr ""
 "Denne utgiveren bruker Open Monograph Press {$ompVersion}, som er "

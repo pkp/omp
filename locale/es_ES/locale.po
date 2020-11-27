@@ -888,9 +888,11 @@ msgstr ""
 msgid "about.aboutThisPublishingSystem.altText"
 msgstr "OMP Proceso editorial y publicitario"
 
+#, fuzzy
 msgid "about.aboutOMPPress"
 msgstr "Esta publicación utiliza Open Monograph Press {$ompVersion}, un software de gestión y publicación de publicaciones de código abierto desarrollado, patrocinado y distribuido gratuitamente por <a href=\"http://pkp.sfu.ca/\">Public Knowledge Project</a> de conformidad con la Licencia Pública General (GNU)."
 
+#, fuzzy
 msgid "about.aboutOMPSite"
 msgstr "Esta publicación utiliza Open Monograph Press {$ompVersion}, un software de gestión y publicación de publicaciones de código abierto desarrollado, patrocinado y distribuido gratuitamente por <a href=\"http://pkp.sfu.ca/\">Public Knowledge Project</a> de conformidad con la Licencia Pública General (GNU)."
 

@@ -1018,6 +1018,7 @@ msgstr ""
 "<p>Якщо ви оновлюєте існуючу інсталяцію системи OMP, <a href=\""
 "{$upgradeUrl}\">Натисніть ТУТ</a> щоб продовжити.</p>"
 
+#, fuzzy
 msgid "about.aboutOMPSite"
 msgstr ""
 "Цей сайт використовує Open Monograph Press {$ompVersion} - програмний пакет "
@@ -1026,6 +1027,7 @@ msgstr ""
 "розповсюджується <a href=\"http://pkp.sfu.ca/\">Public Knowledge Project</a> "
 "на умовах ліцензії GNU General Public License."
 
+#, fuzzy
 msgid "about.aboutOMPPress"
 msgstr ""
 "Це видавництво використовує Open Monograph Press {$ompVersion} - програмний "
