@@ -26,9 +26,11 @@ class OMPv3_3_0UpgradeMigration extends Migration {
 			// pkp/pkp-lib#6096 DB field type TEXT is cutting off long content
 			$table->mediumText('setting_value')->nullable()->change();
 		});
-		Capsule::schema()->table('series', function (Blueprint $table) {
-			$table->smallInteger('is_inactive')->default(0);
-		});
+		if (!Capsule::schema()->hasColumn('series', 'is_inactive')) {
+			Capsule::schema()->table('series', function (Blueprint $table) {
+				$table->smallInteger('is_inactive')->default(0);
+			});
+		}
 		Capsule::schema()->table('review_forms', function (Blueprint $table) {
 			$table->bigInteger('assoc_type')->nullable(false)->change();
 			$table->bigInteger('assoc_id')->nullable(false)->change();
