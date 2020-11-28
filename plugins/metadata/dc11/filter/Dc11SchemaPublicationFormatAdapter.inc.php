@@ -78,7 +78,7 @@ class Dc11SchemaPublicationFormatAdapter extends MetadataDataObjectAdapter {
 
 		// Title
 		$titles = array();
-		foreach ($monograph->getTitle(null) as $titleLocale => $title) {
+		foreach ($publication->getData('title') as $titleLocale => $title) {
 			$titles[$titleLocale] = $monograph->getFullTitle($titleLocale);
 		}
 		$this->_addLocalizedElements($dc11Description, 'dc:title', $titles);
@@ -180,8 +180,28 @@ class Dc11SchemaPublicationFormatAdapter extends MetadataDataObjectAdapter {
 		$this->_addLocalizedElements($dc11Description, 'dc:source', $sources);
 
 		// Language
+		$submissionLanguage = $publication->getData('locale');
+		if (!empty($submissionLanguage)) {
+			$dc11Description->addStatement('dc:language', AppLocale::getIso3FromLocale($submissionLanguage));
+		}
 
-		// Relation
+		// Relation   (Add publication file format to monograph / edited volume)
+		$publicationFormats = $publication->getData('publicationFormats');
+		$availableFiles = array_filter(
+			DAORegistry::getDAO('SubmissionFileDAO')->getLatestRevisions($monograph->getId(), null, null),
+			function ($a) {
+				return $a->getDirectSalesPrice() !== null && $a->getAssocType() == ASSOC_TYPE_PUBLICATION_FORMAT;
+			}
+		);
+
+		foreach ($availableFiles as $file) {
+			foreach ($publicationFormats as $format) {
+				if ($file->getAssocId() == $format->getId()) {
+					$relation = $request->url($press->getName(), 'catalog', 'view', array($monograph->getId(), $publicationFormat->getId(), $file->getId() . '-' . $file->getRevision()));
+					$dc11Description->addStatement('dc:relation', $relation);
+				}
+			}
+		}
 
 		// Coverage
 		$coverage = (array) $monograph->getCoverage(null);
