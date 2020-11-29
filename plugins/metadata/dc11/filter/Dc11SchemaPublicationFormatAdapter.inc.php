@@ -78,7 +78,7 @@ class Dc11SchemaPublicationFormatAdapter extends MetadataDataObjectAdapter {
 
 		// Title
 		$titles = array();
-		foreach ($publication->getData('title') as $titleLocale => $title) {
+		foreach ($publication->$monograph->getTitle(null) as $titleLocale => $title) {
 			$titles[$titleLocale] = $monograph->getFullTitle($titleLocale);
 		}
 		$this->_addLocalizedElements($dc11Description, 'dc:title', $titles);
