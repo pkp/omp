@@ -63,9 +63,6 @@ class TemplateManager extends PKPTemplateManager {
 					'publicFilesDir' => $request->getBaseUrl() . '/' . $publicFileManager->getContextFilesPath($context->getId()),
 					'primaryLocale' => $context->getPrimaryLocale(),
 					'supportedLocales' => $context->getSupportedLocaleNames(),
-					'displayPageHeaderTitle' => $context->getLocalizedPageHeaderTitle(),
-					'displayPageHeaderLogo' => $context->getLocalizedPageHeaderLogo(),
-					'displayPageHeaderLogoAltText' => $context->getLocalizedData('pageHeaderLogoImageAltText'),
 					'numPageLinks' => $context->getData('numPageLinks'),
 					'itemsPerPage' => $context->getData('itemsPerPage'),
 					'enableAnnouncements' => $context->getData('enableAnnouncements'),
@@ -97,8 +94,6 @@ class TemplateManager extends PKPTemplateManager {
 				$this->assign([
 					'contexts' => $contextsForRegistration,
 					'disableUserReg' => empty($contextsForRegistration),
-					'displayPageHeaderTitle' => $site->getLocalizedPageHeaderTitle(),
-					'displayPageHeaderLogo' => $site->getLocalizedData('pageHeaderTitleImage'),
 					'siteTitle' => $site->getLocalizedTitle(),
 					'primaryLocale' => $site->getPrimaryLocale(),
 					'supportedLocales' => $site->getSupportedLocaleNames(),
