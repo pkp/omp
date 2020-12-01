@@ -1,6 +1,6 @@
 msgid ""
 msgstr ""
-"PO-Revision-Date: 2020-11-11 12:51+0000\n"
+"PO-Revision-Date: 2020-12-01 14:05+0000\n"
 "Last-Translator: rl <biuro@fimagis.pl>\n"
 "Language-Team: Polish <http://translate.pkp.sfu.ca/projects/omp/locale/pl_PL/"
 ">\n"
@@ -484,14 +484,15 @@ msgstr ""
 "Public Knowledge Project</a> z licencja wolnego i darmowego oprogramowania "
 "GNU."
 
-#, fuzzy
 msgid "about.aboutOMPPress"
 msgstr ""
 "To wydawnictwo korzysta z Open Monograph Press {$ompVersion}, które jest "
 "otwartym oprogramowaniem do zarządzania wydawnictwem i publikowania "
 "rozwijane, wspierane i darmowo dystrybuowane przez  <a href=\"http://pkp.sfu."
-"ca/\">Public Knowledge Project</a> z licencja wolnego i darmowego "
-"oprogramowania GNU."
+"ca/\">dowiedz się więcej o programie</a> z licencja wolnego i darmowego "
+"oprogramowania GNU. Proszę, <a href=\"{$contactUrl}\">skontaktuj się z "
+"wydawnictwem</a> bezpośrednio w razie pytań o wydawnictwo lub zgłoszony do "
+"niego tekst."
 
 msgid "about.aboutThisPublishingSystem.altText"
 msgstr "Proces redakcyjny i wydawniczy OMP"
@@ -1603,3 +1604,18 @@ msgid "user.register.form.privacyConsentThisContext"
 msgstr ""
 "Wyrażam zgodę na przechowywanie i przetwarzanie moich danych na potrzeby "
 "tego wydawnictwa <a href=\"{$privacyUrl}\" target=\"_blank\"></a>."
+
+msgid "about.aboutSoftware"
+msgstr "O Open Monograph Press"
+
+msgid "user.authorization.representationNotFound"
+msgstr "Nie odnaleziono wymaganego formatu publikacji."
+
+msgid "catalog.manage.findSubmissions"
+msgstr "Znajdź monografie, aby je zamieścić w katalogu"
+
+msgid "catalog.manage.submissionsNotFound"
+msgstr "Nie udało się znaleźć zgłoszenia."
+
+msgid "catalog.manage.noSubmissionsSelected"
+msgstr "Nie wybrano żadnego zgłoszenia do umieszczenia w katalogu."
