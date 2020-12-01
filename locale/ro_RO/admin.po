@@ -1,6 +1,6 @@
 msgid ""
 msgstr ""
-"PO-Revision-Date: 2020-12-01 11:47+0000\n"
+"PO-Revision-Date: 2020-12-01 18:10+0000\n"
 "Last-Translator: Vasile Moraru <napocavox@gmail.com>\n"
 "Language-Team: Romanian <http://translate.pkp.sfu.ca/projects/omp/admin/"
 "ro_RO/>\n"
@@ -13,7 +13,7 @@ msgstr ""
 "X-Generator: Weblate 3.9.1\n"
 
 msgid "admin.settings.noPressRedirect"
-msgstr "Nu redirecționați."
+msgstr "Nu redirecționa"
 
 msgid "admin.settings.redirect"
 msgstr "Apăsați pentru redirecționare"
