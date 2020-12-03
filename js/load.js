@@ -20,6 +20,7 @@ import ImportExportPage from '@/components/Container/ImportExportPage.vue';
 import SettingsPage from '@/components/Container/SettingsPage.vue';
 import StatsEditorialPage from '@/components/Container/StatsEditorialPage.vue';
 import StatsPublicationsPage from '@/components/Container/StatsPublicationsPage.vue';
+import StatsUsersPage from '@/components/Container/StatsUsersPage.vue';
 import WorkflowPage from '@/components/Container/WorkflowPageOMP.vue';
 
 import CatalogListPanel from '@/components/ListPanel/submissions/CatalogListPanel.vue';
@@ -39,6 +40,7 @@ window.pkp = Object.assign(PkpLoad, {
 		SettingsPage,
 		StatsEditorialPage,
 		StatsPublicationsPage,
+		StatsUsersPage,
 		WorkflowPage
 	}
 });
