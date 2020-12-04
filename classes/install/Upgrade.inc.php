@@ -463,25 +463,25 @@ class Upgrade extends Installer {
 			$commentsToEd = PKPString::stripUnsafeHtml($row->comments_to_ed);
 			if ($commentsToEd == '') continue;
 
-			$authorAssignments = $stageAssignmetDao->getBySubmissionAndRoleId($row['submission_id'], ROLE_ID_AUTHOR);
+			$authorAssignments = $stageAssignmetDao->getBySubmissionAndRoleId($row->submission_id, ROLE_ID_AUTHOR);
 			if ($authorAssignment = $authorAssignments->next()) {
 				// We assume the results are ordered by stage_assignment_id i.e. first author assignemnt is first
 				$userId = $authorAssignment->getUserId();
 			} else {
-				$managerUserGroup = $userGroupDao->getDefaultByRoleId($row['context_id'], ROLE_ID_MANAGER);
-				$managerUsers = $userGroupDao->getUsersById($managerUserGroup->getId(), $row['context_id']);
+				$managerUserGroup = $userGroupDao->getDefaultByRoleId($row->context_id, ROLE_ID_MANAGER);
+				$managerUsers = $userGroupDao->getUsersById($managerUserGroup->getId(), $row->context_id);
 				$userId = $managerUsers->next()->getId();
 			}
 			assert($userId);
 
 			$query = $queryDao->newDataObject();
 			$query->setAssocType(ASSOC_TYPE_SUBMISSION);
-			$query->setAssocId($row['submission_id']);
+			$query->setAssocId($row->submission_id);
 			$query->setStageId(WORKFLOW_STAGE_ID_SUBMISSION);
 			$query->setSequence(REALLY_BIG_NUMBER);
 
 			$queryDao->insertObject($query);
-			$queryDao->resequence(ASSOC_TYPE_SUBMISSION, $row['submission_id']);
+			$queryDao->resequence(ASSOC_TYPE_SUBMISSION, $row->submission_id);
 			$queryDao->insertParticipant($query->getId(), $userId);
 
 			$queryId = $query->getId();
@@ -491,8 +491,8 @@ class Upgrade extends Installer {
 			$note->setAssocType(ASSOC_TYPE_QUERY);
 			$note->setTitle('Cover Note to Editor');
 			$note->setContents($commentsToEd);
-			$note->setDateCreated(strtotime($row['date_submitted']));
-			$note->setDateModified(strtotime($row['date_submitted']));
+			$note->setDateCreated(strtotime($row->date_submitted));
+			$note->setDateModified(strtotime($row->date_submitted));
 			$note->setAssocId($queryId);
 			$noteDao->insertObject($note);
 		}
@@ -801,7 +801,7 @@ class Upgrade extends Installer {
 						'INSERT INTO submission_settings (submission_id, setting_name, setting_value, setting_type, locale)
 						VALUES (?, ?, ?, ?, ?)',
 						[
-							$row['submission_id'],
+							$row->submission_id,
 							'coverImage',
 							serialize([
 								'uploadName' => $newCoverPathInfo['basename'],
