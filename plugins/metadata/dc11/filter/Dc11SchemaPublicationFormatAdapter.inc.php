@@ -180,8 +180,22 @@ class Dc11SchemaPublicationFormatAdapter extends MetadataDataObjectAdapter {
 		$this->_addLocalizedElements($dc11Description, 'dc:source', $sources);
 
 		// Language
+		$submissionLanguage = $monograph->getData('locale');
+		if (!empty($submissionLanguage)) {
+			$dc11Description->addStatement('dc:language', AppLocale::getIso3FromLocale($submissionLanguage));
+		}
 
-		// Relation
+		// Relation   (Add publication file format to monograph / edited volume)
+		$pubFormatFiles = Services::get('submissionFile')->getMany([
+			'submissionIds' => [$monograph->getId()],
+			'assocTypes' => [ASSOC_TYPE_PUBLICATION_FORMAT]
+		]);
+		foreach ($pubFormatFiles as $file) {
+			{
+				$relation = $request->url($press->getData('urlPath'), 'catalog', 'view', array($monograph->getId(), $publicationFormat->getId(), $file->getId()));
+				$dc11Description->addStatement('dc:relation', $relation);
+			}
+		}
 
 		// Coverage
 		$coverage = (array) $monograph->getCoverage(null);
