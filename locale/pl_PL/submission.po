@@ -403,3 +403,7 @@ msgstr "Funkcje zamawiania"
 
 msgid "submission.list.itemsOfTotalMonographs"
 msgstr "{$count}z {$total} monografii"
+
+msgid "submission.queries.production"
+msgstr "Dyskusja w trakcie realizacji"
+

@@ -1,0 +1,5 @@
+
+
+msgid "submission.status.scheduled"
+msgstr "لە خشتەی کار دانراوە"
+
