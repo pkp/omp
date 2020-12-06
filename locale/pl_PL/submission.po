@@ -409,3 +409,7 @@ msgstr "{$series} (Nieaktywny)"
 
 msgid "submission.list.viewEntry"
 msgstr "Wgląd"
+
+msgid "submission.queries.production"
+msgstr "Dyskusja w trakcie realizacji"
+
