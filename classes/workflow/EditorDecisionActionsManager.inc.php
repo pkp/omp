@@ -39,16 +39,16 @@ class EditorDecisionActionsManager extends PKPEditorDecisionActionsManager {
 
 	/**
 	 * Get decision actions labels.
-	 * @param $request PKPRequest
+	 * @param $context Context
 	 * @param $stageId int
 	 * @param $decisions array
 	 * @return array
 	 */
-	function getActionLabels($request, $stageId, $decisions) {
+	function getActionLabels($context, $submission, $stageId, $decisions) {
 		$allDecisionsData =
-			$this->_submissionStageDecisions($stageId) +
-			$this->_internalReviewStageDecisions() +
-			$this->_externalReviewStageDecisions($request) +
+			$this->_submissionStageDecisions($submission, $stageId) +
+			$this->_internalReviewStageDecisions($context, $submission) +
+			$this->_externalReviewStageDecisions($context, $submission) +
 			$this->_editorialStageDecisions();
 
 		$actionLabels = array();
@@ -75,7 +75,9 @@ class EditorDecisionActionsManager extends PKPEditorDecisionActionsManager {
 		$editorDecisions = $editDecisionDao->getEditorDecisions($reviewRound->getSubmissionId(), $reviewRound->getStageId(), $reviewRound->getRound());
 
 		if (empty($decisions)) {
-			$decisions = array_keys($this->_internalReviewStageDecisions());
+			$submissionDao = DAORegistry::getDAO('SubmissionDAO'); /* @var $submissionDao SubmissionDAO */
+			$submission = $submissionDao->getById($reviewRound->getSubmissionId());
+			$decisions = array_keys($this->_internalReviewStageDecisions($context, $submission));
 		}
 		$takenDecision = false;
 		foreach ($editorDecisions as $decision) {
@@ -91,12 +93,12 @@ class EditorDecisionActionsManager extends PKPEditorDecisionActionsManager {
 	/**
 	 * @copydoc PKPEditorDecisionActionsManager::getStageDecisions()
 	 */
-	public  function getStageDecisions($request, $stageId, $makeDecision = true) {
+	public  function getStageDecisions($context, $submission, $stageId, $makeDecision = true) {
 		switch ($stageId) {
 			case WORKFLOW_STAGE_ID_INTERNAL_REVIEW:
-				return $this->_internalReviewStageDecisions($makeDecision);
+				return $this->_internalReviewStageDecisions($context, $submission, $stageId, $makeDecision);
 		}
-		return parent::getStageDecisions($request, $stageId, $makeDecision);
+		return parent::getStageDecisions($context, $submission, $stageId, $makeDecision);
 	}
 
 	/**
@@ -119,8 +121,8 @@ class EditorDecisionActionsManager extends PKPEditorDecisionActionsManager {
 	/**
 	 * @copydoc PKPEditorDecisionActionsManager::_submissionStageDecisions()
 	 */
-	protected function _submissionStageDecisions($stageId, $makeDecision = true) {
-		$decisions = parent::_submissionStageDecisions($stageId, $makeDecision);
+	protected function _submissionStageDecisions($submission, $stageId, $makeDecision = true) {
+		$decisions = parent::_submissionStageDecisions($submission, $stageId, $makeDecision);
 		$decisions[SUBMISSION_EDITOR_DECISION_INTERNAL_REVIEW] = array(
 			'name' => 'internalReview',
 			'operation' => 'internalReview',
@@ -136,7 +138,7 @@ class EditorDecisionActionsManager extends PKPEditorDecisionActionsManager {
 	 * @param $makeDecision boolean If the user can make decisions
 	 * @return array
 	 */
-	protected function _internalReviewStageDecisions($makeDecision = true) {
+	protected function _internalReviewStageDecisions($context, $submission, $makeDecision = true) {
 		$decisions = array();
 		if ($makeDecision) {
 			$decisions = array(
@@ -165,12 +167,27 @@ class EditorDecisionActionsManager extends PKPEditorDecisionActionsManager {
 					'title' => 'editor.submission.decision.accept',
 					'toStage' => 'submission.copyediting',
 				),
-				SUBMISSION_EDITOR_DECISION_DECLINE => array(
-					'operation' => 'sendReviewsInReview',
-					'name' => 'decline',
-					'title' => 'editor.submission.decision.decline',
-				),
 			);
+
+			if ($submission->getStatus() == STATUS_QUEUED){
+				$decisions = $decisions + array(
+					SUBMISSION_EDITOR_DECISION_DECLINE => array(
+						'operation' => 'sendReviewsInReview',
+						'name' => 'decline',
+						'title' => 'editor.submission.decision.decline',
+					),
+				);
+			}
+			if ($submission->getStatus() == STATUS_DECLINED){
+				$decisions = $decisions + array(
+					SUBMISSION_EDITOR_DECISION_REVERT_DECLINE => array(
+						'name' => 'revert',
+						'operation' => 'revertDecline',
+						'title' => 'editor.submission.decision.revertDecline',
+					),
+				);
+			}
+
 		}
 		return $decisions;
 	}
@@ -179,12 +196,12 @@ class EditorDecisionActionsManager extends PKPEditorDecisionActionsManager {
 	 * Define and return editor decisions for the review stage.
 	 * If the user cannot make decisions i.e. if it is a recommendOnly user,
 	 * there will be no decisions options in the review stage.
-	 * @param $request PKPRequest
+	 * @param $context Context
 	 * @param $makeDecision boolean If the user can make decisions
 	 * @return array
 	 */
-	protected function _externalReviewStageDecisions($request, $makeDecision = true) {
-		$decisions = $this->_internalReviewStageDecisions($makeDecision);
+	protected function _externalReviewStageDecisions($context, $submission, $makeDecision = true) {
+		$decisions = $this->_internalReviewStageDecisions($context, $submission, $makeDecision);
 		unset($decisions[SUBMISSION_EDITOR_DECISION_EXTERNAL_REVIEW]);
 		return $decisions;
 	}
