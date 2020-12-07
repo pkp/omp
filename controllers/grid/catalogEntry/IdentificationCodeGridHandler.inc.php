@@ -155,7 +155,7 @@ class IdentificationCodeGridHandler extends GridHandler {
 		);
 
 		// Basic grid configuration
-		$this->setTitle('submission.publicationFormat.productIdentifierType');
+		$this->setTitle('monograph.publicationFormat.productIdentifierType');
 
 		// Grid actions
 		$router = $request->getRouter();
