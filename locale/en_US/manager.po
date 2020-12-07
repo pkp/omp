@@ -1092,3 +1092,15 @@ msgstr "{$count} of {$total} monographs"
 
 msgid "stats.publications.abstracts"
 msgstr "Catalog Entries"
+
+msgid "plugins.importexport.common.error.noObjectsSelected"
+msgstr "No objects selected."
+
+msgid "plugins.importexport.common.error.validation"
+msgstr "Could not convert selected objects."
+
+msgid "plugins.importexport.common.invalidXML"
+msgstr "Invalid XML:"
+
+msgid "plugins.importexport.native.exportSubmissions"
+msgstr "Export Submissions"
