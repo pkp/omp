@@ -77,7 +77,7 @@ class Dc11SchemaPublicationFormatAdapter extends MetadataDataObjectAdapter {
 		$dc11Description = $this->instantiateMetadataDescription();
 
 		// Title
-		$titles = array();
+		$titles = [];
 		foreach ($monograph->getTitle(null) as $titleLocale => $title) {
 			$titles[$titleLocale] = $monograph->getFullTitle($titleLocale);
 		}
@@ -111,7 +111,7 @@ class Dc11SchemaPublicationFormatAdapter extends MetadataDataObjectAdapter {
 		// Publisher
 		$publisherInstitution = $press->getSetting('publisherInstitution');
 		if (!empty($publisherInstitution)) {
-			$publishers = array($press->getPrimaryLocale() => $publisherInstitution);
+			$publishers = [$press->getPrimaryLocale() => $publisherInstitution];
 		} else {
 			$publishers = $press->getName(null); // Default
 		}
@@ -135,7 +135,7 @@ class Dc11SchemaPublicationFormatAdapter extends MetadataDataObjectAdapter {
 
 		// Type
 		$types = array_merge_recursive(
-			array(AppLocale::getLocale() => __('rt.metadata.pkp.dctype')),
+			[AppLocale::getLocale() => __('rt.metadata.pkp.dctype')],
 			(array) $monograph->getType(null)
 		);
 		$this->_addLocalizedElements($dc11Description, 'dc:type', $types);
@@ -149,9 +149,9 @@ class Dc11SchemaPublicationFormatAdapter extends MetadataDataObjectAdapter {
 		}
 
 		// Identifier: URL
+		$request = Application::get()->getRequest();
 		if (is_a($monograph, 'Submission')) {
-			$request = Application::get()->getRequest();
-			$dc11Description->addStatement('dc:identifier', $request->url($press->getPath(), 'catalog', 'book', array($monograph->getId())));
+			$dc11Description->addStatement('dc:identifier', $request->url($press->getPath(), 'catalog', 'book', [$monograph->getId()]));
 		}
 
 		// Public idntifiers (e.g. DOI, URN)
@@ -192,7 +192,7 @@ class Dc11SchemaPublicationFormatAdapter extends MetadataDataObjectAdapter {
 		]);
 		foreach ($pubFormatFiles as $file) {
 			{
-				$relation = $request->url($press->getData('urlPath'), 'catalog', 'view', array($monograph->getId(), $publicationFormat->getId(), $file->getId()));
+				$relation = $request->url($press->getData('urlPath'), 'catalog', 'view', [$monograph->getId(), $publicationFormat->getId(), $file->getId()]);
 				$dc11Description->addStatement('dc:relation', $relation);
 			}
 		}
@@ -207,7 +207,7 @@ class Dc11SchemaPublicationFormatAdapter extends MetadataDataObjectAdapter {
 			$dc11Description->addStatement('dc:rights', $salesRight->getNameForONIXCode());
 		}
 
-		Hookregistry::call('Dc11SchemaPublicationFormatAdapter::extractMetadataFromDataObject', array(&$this, $monograph, $press, &$dc11Description));
+		Hookregistry::call('Dc11SchemaPublicationFormatAdapter::extractMetadataFromDataObject', [&$this, $monograph, $press, &$dc11Description]);
 
 		return $dc11Description;
 	}
@@ -218,7 +218,7 @@ class Dc11SchemaPublicationFormatAdapter extends MetadataDataObjectAdapter {
 	 */
 	function getDataObjectMetadataFieldNames($translated = true) {
 		// All DC fields are mapped.
-		return array();
+		return [];
 	}
 
 
@@ -233,7 +233,7 @@ class Dc11SchemaPublicationFormatAdapter extends MetadataDataObjectAdapter {
 	 */
 	function _addLocalizedElements(&$description, $propertyName, $localizedValues) {
 		foreach(stripAssocArray((array) $localizedValues) as $locale => $values) {
-			if (is_scalar($values)) $values = array($values);
+			if (is_scalar($values)) $values = [$values];
 			foreach($values as $value) {
 				$description->addStatement($propertyName, $value, $locale);
 				unset($value);
