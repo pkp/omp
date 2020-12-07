@@ -1,6 +1,6 @@
 msgid ""
 msgstr ""
-"PO-Revision-Date: 2020-07-10 19:07+0000\n"
+"PO-Revision-Date: 2020-12-01 14:05+0000\n"
 "Last-Translator: rl <biuro@fimagis.pl>\n"
 "Language-Team: Polish <http://translate.pkp.sfu.ca/projects/omp/"
 "importexport-onix30/pl_PL/>\n"
@@ -22,8 +22,8 @@ msgstr "Adresat (odbiorca) tego eksportu"
 
 msgid "plugins.importexport.onix30.pressMissingFields"
 msgstr ""
-"Brakuje wymaganych informacji. Proszę przejdź do: Ustawienia > Workflow > "
-"Produkcja i uzupełnij brakujące szczegóły."
+"Brakuje wymaganych informacji. Proszę przejdź do <a href=\"{$url}\">"
+"Ustawienia wydania</a>  i uzupełnij brakujące szczegóły."
 
 msgid "plugins.importexport.onix30.formatInvalid"
 msgstr "Nieważny"

@@ -1,0 +1,121 @@
+msgid ""
+msgstr ""
+"PO-Revision-Date: 2020-12-01 18:10+0000\n"
+"Last-Translator: Vasile Moraru <napocavox@gmail.com>\n"
+"Language-Team: Romanian <http://translate.pkp.sfu.ca/projects/omp/admin/"
+"ro_RO/>\n"
+"Language: ro_RO\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=3; plural=n==1 ? 0 : (n==0 || (n%100 > 0 && n%100 < "
+"20)) ? 1 : 2;\n"
+"X-Generator: Weblate 3.9.1\n"
+
+msgid "admin.settings.noPressRedirect"
+msgstr "Nu redirecționa"
+
+msgid "admin.settings.redirect"
+msgstr "Apăsați pentru redirecționare"
+
+msgid "admin.overwriteConfigFileInstructions"
+msgstr ""
+"<h4>NOTĂ!</div>\n"
+"<p>Sistemul nu poate rescrie automat fișierul de configurare. Configurările "
+"pot fi modificate doar dacă se deschide fișierul<tt>config.inc.php</tt> în "
+"cel mai potrivit editor și se înlocuiește conținutul cu cel din rubrica de "
+"mai jos.</p>"
+
+msgid "admin.presses.addPress"
+msgstr "Adaugă editură"
+
+msgid "admin.contexts.contextDescription"
+msgstr "Descrierea editurii"
+
+msgid "admin.contexts.form.edit.success"
+msgstr "{$name} a fost editată cu succes."
+
+msgid "admin.contexts.form.create.success"
+msgstr "{$name} a fost creată cu succes."
+
+msgid "admin.contexts.form.pathExists"
+msgstr "Calea specificată este deja folosită de o altă editură."
+
+msgid "admin.contexts.form.pathAlphaNumeric"
+msgstr ""
+"Calea poate include numai litere, cifre si caracterele _ sau -. Începutul și "
+"finalul trebuie să fie o literă sau un număr."
+
+msgid "admin.contexts.form.titleRequired"
+msgstr "Este necesar să specificați un titlu."
+
+msgid "admin.contexts.form.pathRequired"
+msgstr "Este necesară specificarea unei căi."
+
+msgid "admin.contexts.create"
+msgstr "Creează editură"
+
+msgid "admin.presses.noneCreated"
+msgstr "Nu s-a creat nici o editură."
+
+msgid "admin.presses.pressSettings"
+msgstr "Setările editurii"
+
+msgid "admin.systemConfiguration"
+msgstr "Configurația OMP"
+
+msgid "admin.systemVersion"
+msgstr "Versiunea OMP"
+
+msgid "admin.languages.confirmDisable"
+msgstr ""
+"Sunteți sigur că doriți să eliminați această locație? Această decizie poate "
+"afecta oricare dintre editurile găzduite care utilizează această locație."
+
+msgid "admin.languages.installNewLocalesInstructions"
+msgstr ""
+"Selectați orice locație suplimentară pentru a instala informațiile de suport "
+"în sistem. Locațiile trebuie instalate înainte de a fi utilizate de "
+"editurile găzduite. Vezi documentația OMP legată de adăugarea informațiilor "
+"de suport pentru noile limbi."
+
+msgid "admin.languages.confirmUninstall"
+msgstr ""
+"Sunteți sigur că doriți să eliminați această locație? Această decizie poate "
+"afecta oricare dintre editurile găzduite care utilizează această locație."
+
+msgid "admin.locale.maybeIncomplete"
+msgstr "* E posibil ca locațiile selectate să nu conțină toate datele."
+
+msgid "admin.languages.supportedLocalesInstructions"
+msgstr ""
+"Selectați ca toate locațiile să fie acceptate pe site. Locațiile selectate "
+"vor fi la dispoziția tuturor editurilor găzduite în site și vor apărea în "
+"meniul de selectare a limbii de pe fiecare pagină a site-ului. Opțiunea "
+"poate fi suprimată de anumite pagini specifice ale editurii. Dacă locațiile "
+"multiple nu sunt selectate, selectorul de schimbare a limbii nu va fi "
+"vizibil, iar setările extinse de limbă nu vor fi disponibile pentru edituri."
+
+msgid "admin.languages.primaryLocaleInstructions"
+msgstr ""
+"Aceasta va fi limba oficială a site-ului și a oricărei edituri găzduită de "
+"acesta."
+
+msgid "admin.settings.redirectInstructions"
+msgstr ""
+"Solicitările din site-ul principal vor fi transmise către editură. Poate fi "
+"util atunci când, de exemplu, site-ul găzduiește o singură editură."
+
+msgid "admin.settings.info.success"
+msgstr "Informațiile site-ului au fost actualizate cu succes."
+
+msgid "admin.settings.config.success"
+msgstr "Configurația site-ului a fost actualizată cu succes."
+
+msgid "admin.settings.appearance.success"
+msgstr ""
+"Setările de aspectului de prezentare ale site-ului au fost actualizate cu "
+"succes."
+
+msgid "admin.hostedContexts"
+msgstr "Edituri găzduite"

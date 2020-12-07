@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2019-11-28T15:10:04-08:00\n"
-"PO-Revision-Date: 2020-11-16 09:50+0000\n"
+"PO-Revision-Date: 2020-12-03 08:29+0000\n"
 "Last-Translator: Niels Erik Frederiksen <nef@kb.dk>\n"
 "Language-Team: Danish <http://translate.pkp.sfu.ca/projects/omp/locale/da_DK/"
 ">\n"
@@ -1044,13 +1044,14 @@ msgstr ""
 msgid "about.aboutThisPublishingSystem.altText"
 msgstr "OMP redaktions- og publiceringsproces"
 
-#, fuzzy
 msgid "about.aboutOMPPress"
 msgstr ""
 "Dette forlag bruger Open Monograph Press {$ompVersion}, som er open source-"
-"redigerings- og publiceringssoftware udviklet, understøttet og frit "
-"distribueret af <a href=\"http://pkp.sfu.ca/\">Public Knowledge Project</a> "
-"under GNU General Public License."
+"redigerings- og publiceringssoftware, udviklet, understøttet og frit "
+"distribueret af Public Knowledge Project under GNU General Public License. "
+"Besøg PKP's websted for at <a href=\"http://pkp.sfu.ca/\">lære mere om "
+"softwaren</a>. <a href=\"{$contactUrl}\">Kontakt forlaget</a> direkte med "
+"spørgsmål om forlaget og indsendelser til forlaget."
 
 #, fuzzy
 msgid "about.aboutOMPSite"
@@ -1533,3 +1534,21 @@ msgstr ""
 "Ja, jeg accepterer at få mine data indsamlet og opbevaret i overensstemmelse "
 "med vores  <a href=\"{$privacyUrl}\" target=\"_blank\">Erklæring om "
 "beskyttelse af personlige oplysninger</a>."
+
+msgid "catalog.manage.noSubmissionsSelected"
+msgstr "Ingen indsendelse blev udvalgt til kataloget."
+
+msgid "catalog.manage.findSubmissions"
+msgstr "Find monografier til kataloget"
+
+msgid "user.authorization.representationNotFound"
+msgstr "Det ønskede publiceringsformat blev ikke fundet."
+
+msgid "catalog.manage.submissionsNotFound"
+msgstr "En eller flere af indsendelserne blev ikke fundet."
+
+msgid "about.aboutSoftware"
+msgstr "Om Open Monograph Press"
+
+msgid "common.payments"
+msgstr "Betalinger"

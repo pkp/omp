@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
-"PO-Revision-Date: 2020-11-03 20:25+0000\n"
-"Last-Translator: Radek Gomola <gomola@press.muni.cz>\n"
+"PO-Revision-Date: 2020-11-27 09:21+0000\n"
+"Last-Translator: Jiří Dlouhý <jiri.dlouhy@czp.cuni.cz>\n"
 "Language-Team: Czech <http://translate.pkp.sfu.ca/projects/omp/editor/cs_CZ/>"
 "\n"
 "Language: cs_CZ\n"
@@ -197,3 +197,6 @@ msgstr ""
 
 msgid "editor.monograph.production.approvalAndPublishing"
 msgstr "Schválení a publikace"
+
+msgid "editor.submissions.assignedTo"
+msgstr "Přiřazeno editorovi"

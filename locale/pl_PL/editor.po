@@ -1,6 +1,6 @@
 msgid ""
 msgstr ""
-"PO-Revision-Date: 2020-07-09 17:40+0000\n"
+"PO-Revision-Date: 2020-12-01 14:05+0000\n"
 "Last-Translator: rl <biuro@fimagis.pl>\n"
 "Language-Team: Polish <http://translate.pkp.sfu.ca/projects/omp/editor/pl_PL/"
 ">\n"
@@ -205,3 +205,6 @@ msgstr "Anuluj zapytanie"
 
 msgid "editor.submissionArchive"
 msgstr "Archiwum zgłoszeń"
+
+msgid "editor.submissions.assignedTo"
+msgstr "Przypisano do redaktora"
