@@ -16,14 +16,17 @@
 import('lib.pkp.classes.controllers.grid.GridRow');
 
 class IdentificationCodeGridRow extends GridRow {
-	/** @var Monograph **/
+	/** @var Monograph */
 	var $_monograph;
 
+	/** @var Publication */
+	var $_publication;
 	/**
 	 * Constructor
 	 */
-	function __construct($monograph) {
+	function __construct($monograph, $publication) {
 		$this->_monograph = $monograph;
+		$this->_publication = $publication;
 		parent::__construct();
 	}
 
@@ -44,10 +47,11 @@ class IdentificationCodeGridRow extends GridRow {
 
 		if ($identificationCode != null && is_numeric($identificationCode->getId())) {
 			$router = $request->getRouter();
-			$actionArgs = array(
+			$actionArgs = [
 				'submissionId' => $monograph->getId(),
+				'publicationId' => $this->_publication->getId(),
 				'identificationCodeId' => $identificationCode->getId()
-			);
+			];
 
 			// Add row-level actions
 			import('lib.pkp.classes.linkAction.request.AjaxModal');

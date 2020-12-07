@@ -210,7 +210,7 @@ class SalesRightsForm extends Form {
 			}
 		} else {
 			$existingFormat = true;
-			if ($publicationFormat->getId() !== $salesRights->getPublicationFormatId()) fatalError('Invalid format!');
+			if ($publicationFormat->getId() != $salesRights->getPublicationFormatId()) throw new Exception('Invalid format!');
 		}
 
 		$salesRights->setType($this->getData('type'));

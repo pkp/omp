@@ -40,9 +40,9 @@ class IdentificationCodeGridHandler extends GridHandler {
 	function __construct() {
 		parent::__construct();
 		$this->addRoleAssignment(
-				array(ROLE_ID_MANAGER),
-				array('fetchGrid', 'fetchRow', 'addCode', 'editCode',
-				'updateCode', 'deleteCode'));
+			[ROLE_ID_MANAGER],
+			['fetchGrid', 'fetchRow', 'addCode', 'editCode', 'updateCode', 'deleteCode']
+		);
 	}
 
 
@@ -205,7 +205,7 @@ class IdentificationCodeGridHandler extends GridHandler {
 	 * @return IdentificationCodeGridRow
 	 */
 	function getRowInstance() {
-		return new IdentificationCodeGridRow($this->getSubmission());
+		return new IdentificationCodeGridRow($this->getSubmission(), $this->getPublication());
 	}
 
 	/**
