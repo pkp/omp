@@ -37,6 +37,17 @@ class SettingsHandler extends ManagementHandler {
 	}
 
 	/**
+	 * @copydoc ManagementHandler::website()
+	 */
+	function website($args, $request) {
+		AppLocale::requireComponents(
+			LOCALE_COMPONENT_PKP_SUBMISSION,
+			LOCALE_COMPONENT_APP_SUBMISSION
+		);
+		parent::website($args, $request);
+	}
+
+	/**
 	 * Add the workflow settings page
 	 *
 	 * @param $args array
