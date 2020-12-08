@@ -213,7 +213,7 @@ class MarketsGridHandler extends GridHandler {
 	 * @return MarketsGridRow
 	 */
 	function getRowInstance() {
-		return new MarketsGridRow($this->getSubmission());
+		return new MarketsGridRow($this->getSubmission(), $this->getPublication());
 	}
 
 	/**
