@@ -1,6 +1,6 @@
 msgid ""
 msgstr ""
-"PO-Revision-Date: 2020-12-01 14:05+0000\n"
+"PO-Revision-Date: 2020-12-08 12:59+0000\n"
 "Last-Translator: rl <biuro@fimagis.pl>\n"
 "Language-Team: Polish <http://translate.pkp.sfu.ca/projects/omp/manager/"
 "pl_PL/>\n"
@@ -1379,3 +1379,15 @@ msgid "manager.series.confirmDeactivateSeries.error"
 msgstr ""
 "Przynajmniej jedna seria musi być aktywna. Odwiedź ustawienia workflow, aby "
 "zdezaktywować wszystkie zgłoszenia do tego wydania."
+
+msgid "plugins.importexport.native.exportSubmissions"
+msgstr "Eksportuj zgłoszenia"
+
+msgid "plugins.importexport.common.invalidXML"
+msgstr "Uszkodzony XML:"
+
+msgid "plugins.importexport.common.error.validation"
+msgstr "Wybrane obiekty nie mogą być przywrócone."
+
+msgid "plugins.importexport.common.error.noObjectsSelected"
+msgstr "Nie wybrano żadnej pozycji."
