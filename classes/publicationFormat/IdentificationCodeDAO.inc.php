@@ -36,7 +36,7 @@ class IdentificationCodeDAO extends DAO {
 			$params
 		);
 		$row = $result->current();
-		return $row ? $this->_fromRow((array) $result) : null;
+		return $row ? $this->_fromRow((array) $row) : null;
 	}
 
 	/**
