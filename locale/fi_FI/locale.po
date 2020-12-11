@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2020-02-13T19:56:53+00:00\n"
-"PO-Revision-Date: 2020-10-15 05:36+0000\n"
+"PO-Revision-Date: 2020-12-11 19:15+0000\n"
 "Last-Translator: Antti-Jussi Nygård <ajnyga@gmail.com>\n"
 "Language-Team: Finnish <http://translate.pkp.sfu.ca/projects/omp/locale/"
 "fi_FI/>\n"
@@ -1062,13 +1062,14 @@ msgstr "Tietoja julkaisujärjestelmästä."
 msgid "about.aboutThisPublishingSystem.altText"
 msgstr "OMP:n toimitus- ja julkaisuprosessit"
 
-#, fuzzy
 msgid "about.aboutOMPPress"
 msgstr ""
 "Tämä julkaisija käyttää Open Monograph Press {$ompVersion} -järjestelmää, "
 "joka on <a href=\"http://pkp.sfu.ca/\">Public Knowledge Projectin</a> "
 "kehittämä, tukema ja GNU General Public License -lisenssillä vapaasti jakama "
-"avoimen lähdekoodin toimitus- ja julkaisuohjelmisto."
+"avoimen lähdekoodin toimitus- ja julkaisuohjelmisto. Julkaisijaa ja "
+"käsikirjoituksia koskevissa kysymyksissä tulee olla <a href=\"{$contactUrl}\""
+">yhteydessä suoraan julkaisijaan</a>."
 
 #, fuzzy
 msgid "about.aboutOMPSite"
@@ -1190,7 +1191,9 @@ msgid "log.editor.decision"
 msgstr "Toimittaja {$editorName} on tallentanut toimittajan päätöksen ({$decision}) kirjalle {$submissionId}."
 
 msgid "log.editor.recommendation"
-msgstr "Toimittaja {$editorName} on tallentanut toimittajan suosituksen ({$decision}) kirjalle {$submissionId}."
+msgstr ""
+"Toimittaja {$editorName} on tallentanut toimittajan suosituksen ({$decision})"
+" teokselle {$submissionId}."
 
 msgid "log.editor.archived"
 msgstr "Käsikirjoitus {$submissionId} on arkistoitu."
@@ -1501,3 +1504,21 @@ msgid "user.register.form.privacyConsentThisContext"
 msgstr ""
 "Kyllä, annan luvan tallentaa tietojani tämän julkaisijan <a href=\""
 "{$privacyUrl}\" target=\"_blank\">tietosuojaselosteen</a> kuvaamalla tavalla."
+
+msgid "about.aboutSoftware"
+msgstr "Tietoa Open Monograph Press -järjestelmästä"
+
+msgid "user.authorization.representationNotFound"
+msgstr "Pyydettyä julkaisumuotoa ei löytynyt."
+
+msgid "catalog.manage.findSubmissions"
+msgstr "Etsi teokset, jotka lisätään luetteloon"
+
+msgid "catalog.manage.submissionsNotFound"
+msgstr "Yhtä tai useampaa käsikirjoitusta ei löytynyt."
+
+msgid "catalog.manage.noSubmissionsSelected"
+msgstr "Yhtään käsikirjoitusta ei valittu luetteloon liitettäväksi."
+
+msgid "common.payments"
+msgstr "Maksut"
