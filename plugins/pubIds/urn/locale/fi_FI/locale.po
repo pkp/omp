@@ -1,6 +1,6 @@
 msgid ""
 msgstr ""
-"PO-Revision-Date: 2020-12-11 20:34+0000\n"
+"PO-Revision-Date: 2020-12-12 05:46+0000\n"
 "Last-Translator: Antti-Jussi Nygård <ajnyga@gmail.com>\n"
 "Language-Team: Finnish <http://translate.pkp.sfu.ca/projects/omp/pubIds-urn/"
 "fi_FI/>\n"
@@ -229,3 +229,24 @@ msgstr ""
 
 msgid "plugins.pubIds.urn.displayName"
 msgstr "URN"
+
+msgid "plugins.pubIds.urn.editor.preview.objects"
+msgstr "Kohde"
+
+msgid "plugins.pubIds.urn.editor.preview.galleys"
+msgstr "Julkaistava tiedosto: {$galleyLabel}"
+
+msgid "plugins.pubIds.urn.editor.preview.publication.none"
+msgstr "Tälle julkaistavalle versiolle ei ole annettu URN-tunnusta."
+
+msgid "plugins.pubIds.urn.editor.preview.publication"
+msgstr "Tämän julkaistavan version URN tulee olemaan {$urn}."
+
+msgid "plugins.pubIds.urn.editor.missingPrefix"
+msgstr "URN-tunnuksen alun pitää olla {$urnPrefix}."
+
+msgid "plugins.pubIds.urn.editor.missingParts"
+msgstr ""
+"Et voi luoda DOI-tunnusta, koska jokin tunnuksen loppuosan vaatimista "
+"muuttujista puuttuu. Sinun pitää mahdollisesti liittää julkaistava versio "
+"numeroon, asettaa sille ID-tunnus tai antaa sivunumerot."
