@@ -26,7 +26,7 @@ class SeriesGridCellProvider extends GridCellProvider {
 	function getTemplateVarsFromRowColumn($row, $column) {
 		$element = $row->getData();
 		$columnId = $column->getId();
-		assert(is_a($element, 'Series') && !empty($columnId));
+		assert(!empty($columnId));
 		switch ($columnId) {
 			case 'inactive':
 				return array('selected' => $element['inactive']);

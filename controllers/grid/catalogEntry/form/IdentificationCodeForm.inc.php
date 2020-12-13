@@ -118,14 +118,17 @@ class IdentificationCodeForm extends Form {
 	public function fetch($request, $template = null, $display = false) {
 		$templateMgr = TemplateManager::getManager($request);
 		$submission = $this->getSubmission();
-		$templateMgr->assign('submissionId', $submission->getId());
-		$templateMgr->assign('publicationId', $this->getPublication()->getId());
-		$identificationCode = $this->getIdentificationCode();
+		$templateMgr->assign([
+			'submissionId' => $submission->getId(),
+			'publicationId' => $this->getPublication()->getId()
+		]);
 
-		if ($identificationCode) {
-			$templateMgr->assign('identificationCodeId', $identificationCode->getId());
-			$templateMgr->assign('code', $identificationCode->getCode());
-			$templateMgr->assign('value', $identificationCode->getValue());
+		if ($identificationCode = $this->getIdentificationCode()) {
+			$templateMgr->assign([
+				'identificationCodeId' => $identificationCode->getId(),
+				'code' => $identificationCode->getCode(),
+				'value' => $identificationCode->getValue()
+			]);
 			$representationId = $identificationCode->getPublicationFormatId();
 		} else { // loading a blank form
 			$representationId = (int) $request->getUserVar('representationId');
@@ -193,7 +196,7 @@ class IdentificationCodeForm extends Form {
 			}
 		} else {
 			$existingFormat = true;
-			if ($publicationFormat->getId() !== $identificationCode->getPublicationFormatId()) fatalError('Invalid format!');
+			if ($publicationFormat->getId() != $identificationCode->getPublicationFormatId()) throw new Exception('Invalid format!');
 		}
 
 		$identificationCode->setCode($this->getData('code'));

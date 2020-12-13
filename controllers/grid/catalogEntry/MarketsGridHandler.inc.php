@@ -196,7 +196,7 @@ class MarketsGridHandler extends GridHandler {
 		$this->addColumn(
 			new GridColumn(
 				'price',
-				'submission.publicationFormat.price',
+				'monograph.publicationFormat.price',
 				null,
 				null,
 				$cellProvider
@@ -213,7 +213,7 @@ class MarketsGridHandler extends GridHandler {
 	 * @return MarketsGridRow
 	 */
 	function getRowInstance() {
-		return new MarketsGridRow($this->getSubmission());
+		return new MarketsGridRow($this->getSubmission(), $this->getPublication());
 	}
 
 	/**

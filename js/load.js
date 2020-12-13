@@ -13,12 +13,14 @@ import PkpLoad from '../lib/pkp/js/load.js';
 // Import controllers used by OMP
 import Container from '@/components/Container/Container.vue';
 import Page from '@/components/Container/Page.vue';
+import AccessPage from '@/components/Container/AccessPage.vue';
 import AddContextContainer from '@/components/Container/AddContextContainer.vue';
 import AdminPage from '@/components/Container/AdminPage.vue';
 import ImportExportPage from '@/components/Container/ImportExportPage.vue';
 import SettingsPage from '@/components/Container/SettingsPage.vue';
 import StatsEditorialPage from '@/components/Container/StatsEditorialPage.vue';
 import StatsPublicationsPage from '@/components/Container/StatsPublicationsPage.vue';
+import StatsUsersPage from '@/components/Container/StatsUsersPage.vue';
 import WorkflowPage from '@/components/Container/WorkflowPageOMP.vue';
 
 import CatalogListPanel from '@/components/ListPanel/submissions/CatalogListPanel.vue';
@@ -31,12 +33,14 @@ window.pkp = Object.assign(PkpLoad, {
 	controllers: {
 		Container,
 		Page,
+		AccessPage,
 		AddContextContainer,
 		AdminPage,
 		ImportExportPage,
 		SettingsPage,
 		StatsEditorialPage,
 		StatsPublicationsPage,
+		StatsUsersPage,
 		WorkflowPage
 	}
 });

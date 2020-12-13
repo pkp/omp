@@ -26,13 +26,23 @@ class OMPv3_3_0UpgradeMigration extends Migration {
 			// pkp/pkp-lib#6096 DB field type TEXT is cutting off long content
 			$table->mediumText('setting_value')->nullable()->change();
 		});
-		Capsule::schema()->table('series', function (Blueprint $table) {
-			$table->smallInteger('is_inactive')->default(0);
+		if (!Capsule::schema()->hasColumn('series', 'is_inactive')) {
+			Capsule::schema()->table('series', function (Blueprint $table) {
+				$table->smallInteger('is_inactive')->default(0);
+			});
+		}
+		Capsule::schema()->table('review_forms', function (Blueprint $table) {
+			$table->bigInteger('assoc_type')->nullable(false)->change();
+			$table->bigInteger('assoc_id')->nullable(false)->change();
 		});
 
 		$this->_settingsAsJSON();
 
 		$this->_migrateSubmissionFiles();
+
+		// Delete the old MODS34 filters
+		Capsule::statement("DELETE FROM filters WHERE class_name='plugins.metadata.mods34.filter.Mods34SchemaMonographAdapter'");
+		Capsule::statement("DELETE FROM filter_groups WHERE symbolic IN ('monograph=>mods34', 'mods34=>monograph')");
 	}
 
 	/**

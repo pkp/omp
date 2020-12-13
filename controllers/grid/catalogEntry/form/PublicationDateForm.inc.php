@@ -210,7 +210,7 @@ class PublicationDateForm extends Form {
 			}
 		} else {
 			$existingFormat = true;
-			if ($publicationFormat->getId() !== $publicationDate->getPublicationFormatId()) fatalError('Invalid format!');
+			if ($publicationFormat->getId() != $publicationDate->getPublicationFormatId()) throw new Exception('Invalid format!');
 		}
 
 		$publicationDate->setRole($this->getData('role'));

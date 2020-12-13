@@ -848,9 +848,11 @@ msgstr "Σχετικά με το Open Publishing System"
 msgid "about.aboutThisPublishingSystem.altText"
 msgstr "OMP Διαδικασία Επιμέλειας και Δημοσίευσης"
 
+#, fuzzy
 msgid "about.aboutOMPPress"
 msgstr "Οι εκδόσεις αυτές χρησιμοποιούν το Open Monograph Press {$ompVersion}, το οποίο είναι ένα λογισμικό διαχείρισης και δημοσίευσης εκδόσεων (βιβλίων) ανοικτού κώδικα, που έχει αναπτυχθεί, υποστηρίζεται και διανέμεται ελεύθερα από το <a href=\"http://pkp.sfu.ca/\">Public Knowledge Project</a> κάτω από την αδειοδότηση GNU General Public License."
 
+#, fuzzy
 msgid "about.aboutOMPSite"
 msgstr "Ο ιστότοπος αυτός χρησιμοποιεί το Open Monograph Press {$ompVersion}, το οποίο είναι ένα λογισμικό διαχείρισης και δημοσίευσης εκδόσεων (βιβλίων) ανοικτού κώδικα, που έχει αναπτυχθεί, υποστηρίζεται και διανέμεται ελεύθερα από το <a href=\"http://pkp.sfu.ca/\">Public Knowledge Project</a> κάτω από την αδειοδότηση GNU General Public License."
 

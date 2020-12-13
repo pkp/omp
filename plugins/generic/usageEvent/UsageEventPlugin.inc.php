@@ -60,7 +60,7 @@ class UsageEventPlugin extends PKPUsageEventPlugin {
 
 		if (!$pubObject) {
 			switch ($hookName) {
-				// Press index page, series content page and monograph abstract.
+				// Catalog index page, series content page and monograph abstract.
 				case 'TemplateManager::display':
 					$page = $router->getRequestedPage($request);
 					$op = $router->getRequestedOp($request);
@@ -72,7 +72,7 @@ class UsageEventPlugin extends PKPUsageEventPlugin {
 
 					$press = $templateMgr->getTemplateVars('currentContext'); /* @var $press Press */
 					$series = $templateMgr->getTemplateVars('series'); /* @var $series Series */
-					$submission = $templateMgr->getTemplateVars('submission');
+					$submission = $templateMgr->getTemplateVars('publishedSubmission');
 
 					// No published objects, no usage event.
 					if (!$press && !$series && !$submission) break;
@@ -80,7 +80,6 @@ class UsageEventPlugin extends PKPUsageEventPlugin {
 					if ($press) {
 						$pubObject = $press;
 						$assocType = ASSOC_TYPE_PRESS;
-						$canonicalUrlOp = '';
 					}
 
 					if ($series) {
@@ -101,7 +100,7 @@ class UsageEventPlugin extends PKPUsageEventPlugin {
 					$canonicalUrlOp = $op;
 					break;
 
-					// Publication format file.
+				// Publication format file.
 				case 'CatalogBookHandler::view':
 				case 'CatalogBookHandler::download':
 				case 'HtmlMonographFilePlugin::monographDownload':
@@ -111,8 +110,8 @@ class UsageEventPlugin extends PKPUsageEventPlugin {
 					$submission = $hookArgs[1];
 					$publicationFormat = $hookArgs[2];
 					// if file is not a publication format file (e.g. CSS or images), there is no usage event.
-					if ($pubObject->getAssocId() != $publicationFormat->getId()) return false;
-					$canonicalUrlParams = array($submission->getId(), $pubObject->getAssocId(), $pubObject->getId());
+					if ($pubObject->getData('assocId') != $publicationFormat->getId()) return false;
+					$canonicalUrlParams = array($submission->getId(), $pubObject->getData('assocId'), $pubObject->getId());
 					$idParams = array('m' . $submission->getId(), 'f' . $pubObject->getId());
 					$downloadSuccess = false;
 					break;
@@ -120,15 +119,16 @@ class UsageEventPlugin extends PKPUsageEventPlugin {
 					// Why are we called from an unknown hook?
 					assert(false);
 			}
-		}
 
-		switch ($assocType) {
-			case ASSOC_TYPE_PRESS:
-			case ASSOC_TYPE_SERIES:
-			case ASSOC_TYPE_MONOGRAPH:
-			case ASSOC_TYPE_SUBMISSION_FILE:
-				$canonicalUrlPage = 'catalog';
-				break;
+			switch ($assocType) {
+				case ASSOC_TYPE_PRESS:
+				case ASSOC_TYPE_SERIES:
+				case ASSOC_TYPE_MONOGRAPH:
+				case ASSOC_TYPE_SUBMISSION_FILE:
+					$canonicalUrlPage = 'catalog';
+					break;
+			}
+
 		}
 
 		return array($pubObject, $downloadSuccess, $assocType, $idParams, $canonicalUrlPage, $canonicalUrlOp, $canonicalUrlParams);

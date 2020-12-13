@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2019-09-30T06:23:44-07:00\n"
-"PO-Revision-Date: 2020-06-18 18:39+0000\n"
+"PO-Revision-Date: 2020-11-30 18:48+0000\n"
 "Last-Translator: Jordi LC <jordi.lacruz@uab.cat>\n"
 "Language-Team: Spanish <http://translate.pkp.sfu.ca/projects/omp/locale/"
 "es_ES/>\n"
@@ -889,8 +889,16 @@ msgid "about.aboutThisPublishingSystem.altText"
 msgstr "OMP Proceso editorial y publicitario"
 
 msgid "about.aboutOMPPress"
-msgstr "Esta publicación utiliza Open Monograph Press {$ompVersion}, un software de gestión y publicación de publicaciones de código abierto desarrollado, patrocinado y distribuido gratuitamente por <a href=\"http://pkp.sfu.ca/\">Public Knowledge Project</a> de conformidad con la Licencia Pública General (GNU)."
+msgstr ""
+"Esta publicación utiliza Open Monograph Press {$ompVersion}, que es un "
+"software de publicación y gestión editorial de código abierto desarrollado, "
+"impulsado y distribuido de forma gratuita por Public Knowledge Project bajo "
+"una licencia pública general GNU. Visite la página web de PKP para <a href=\""
+"http://pkp.sfu.ca/\">saber más acerca del software</a>. Por favor, <a href=\""
+"{$contactUrl}\">contacte con la editorial</a> directamente si tiene "
+"preguntas sobre la editorial o acerca de los envíos a la editorial."
 
+#, fuzzy
 msgid "about.aboutOMPSite"
 msgstr "Esta publicación utiliza Open Monograph Press {$ompVersion}, un software de gestión y publicación de publicaciones de código abierto desarrollado, patrocinado y distribuido gratuitamente por <a href=\"http://pkp.sfu.ca/\">Public Knowledge Project</a> de conformidad con la Licencia Pública General (GNU)."
 
@@ -1422,8 +1430,8 @@ msgstr "Ver sus envíos pendientes"
 
 msgid "log.editor.recommendation"
 msgstr ""
-"{$editorName} registró una recomendación editorial ({$decision}) para la "
-"monografía {$submissionId}."
+"{$editorName} ha registrado una recomendación editorial ({$decision}) para "
+"la monografía {$submissionId}."
 
 msgid "notification.type.public"
 msgstr "Anuncios públicos"
@@ -1572,3 +1580,18 @@ msgstr "Los detalles de audiencia han sido actualizados."
 
 msgid "submissionGroup.assignedSubEditors"
 msgstr "Editores/as asignados"
+
+msgid "about.aboutSoftware"
+msgstr "Acerca de Open Monograph Press"
+
+msgid "user.authorization.representationNotFound"
+msgstr "No se ha podido encontrar el formato de publicación solicitado."
+
+msgid "catalog.manage.findSubmissions"
+msgstr "Encontrar monografías para añadirlas al catálogo"
+
+msgid "catalog.manage.submissionsNotFound"
+msgstr "No se ha podido encontrar uno o más envíos."
+
+msgid "catalog.manage.noSubmissionsSelected"
+msgstr "No se ha seleccionado ningún envío para añadirse al catálogo."

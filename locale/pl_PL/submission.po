@@ -1,6 +1,6 @@
 msgid ""
 msgstr ""
-"PO-Revision-Date: 2020-07-18 15:47+0000\n"
+"PO-Revision-Date: 2020-12-01 14:05+0000\n"
 "Last-Translator: rl <biuro@fimagis.pl>\n"
 "Language-Team: Polish <http://translate.pkp.sfu.ca/projects/omp/submission/"
 "pl_PL/>\n"
@@ -403,3 +403,13 @@ msgstr "Funkcje zamawiania"
 
 msgid "submission.list.itemsOfTotalMonographs"
 msgstr "{$count}z {$total} monografii"
+
+msgid "publication.inactiveSeries"
+msgstr "{$series} (Nieaktywny)"
+
+msgid "submission.list.viewEntry"
+msgstr "Wgląd"
+
+msgid "submission.queries.production"
+msgstr "Dyskusja w trakcie realizacji"
+

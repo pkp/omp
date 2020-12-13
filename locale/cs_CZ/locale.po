@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
-"PO-Revision-Date: 2020-11-06 10:50+0000\n"
-"Last-Translator: Radek Gomola <gomola@press.muni.cz>\n"
+"PO-Revision-Date: 2020-11-27 09:21+0000\n"
+"Last-Translator: Jiří Dlouhý <jiri.dlouhy@czp.cuni.cz>\n"
 "Language-Team: Czech <http://translate.pkp.sfu.ca/projects/omp/locale/cs_CZ/>"
 "\n"
 "Language: cs_CZ\n"
@@ -368,6 +368,7 @@ msgstr "Upravit tyto informace na nové stránce"
 msgid "help.searchReturnResults"
 msgstr "Zpět k výsledkům vyhledávání"
 
+#, fuzzy
 msgid "about.aboutOMPSite"
 msgstr ""
 "Tato stránka využívá systém Open Monograph Press {$ompVersion}, což je open "
@@ -375,6 +376,7 @@ msgstr ""
 "podporovaný a volně šířený v rámci projektu <a href=\"http://pkp.sfu.ca/\">"
 "Public Knowledge Project</a> pod GNU General Public licencí."
 
+#, fuzzy
 msgid "about.aboutOMPPress"
 msgstr ""
 "Toto nakladatelství využívá systém Open Monograph Press {$ompVersion}, což "
@@ -1494,3 +1496,15 @@ msgstr "Rozsah publika (od)"
 
 msgid "monograph.audience.rangeQualifier"
 msgstr "Rozsah publika (kvalifikátor)"
+
+msgid "user.authorization.representationNotFound"
+msgstr "Požadovaný publikační formát nejde nalézt."
+
+msgid "catalog.manage.findSubmissions"
+msgstr "Najít monografie, které mají být přidány do katalogu"
+
+msgid "catalog.manage.submissionsNotFound"
+msgstr "Nelze nalézt jeden či více příspěvků."
+
+msgid "catalog.manage.noSubmissionsSelected"
+msgstr "Nebyly vybrány žádné příspěvky k přidání do katalogu."

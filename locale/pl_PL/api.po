@@ -1,6 +1,6 @@
 msgid ""
 msgstr ""
-"PO-Revision-Date: 2020-07-09 17:40+0000\n"
+"PO-Revision-Date: 2020-12-01 14:05+0000\n"
 "Last-Translator: rl <biuro@fimagis.pl>\n"
 "Language-Team: Polish <http://translate.pkp.sfu.ca/projects/omp/api/pl_PL/>\n"
 "Language: pl_PL\n"
@@ -27,3 +27,11 @@ msgstr "Publikacja, o którą poprosiłeś, nie należy do tego zlecenia."
 
 msgid "api.emailTemplates.403.notAllowedChangeContext"
 msgstr "Nie masz pozwolenia, aby zastosować ten szablon dla innego wydawnictwa."
+
+msgid "api.submissions.400.submissionsNotFound"
+msgstr "Nie udało się znaleźć wyszczególnionego  zgłoszenia."
+
+msgid "api.submissions.400.submissionIdsRequired"
+msgstr ""
+"Musisz dostarczyć przynajmniej jeden identyfikator zgłoszenia, aby był "
+"dodany w katalogu."

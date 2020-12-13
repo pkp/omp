@@ -1062,6 +1062,7 @@ msgstr "Tietoja julkaisujärjestelmästä."
 msgid "about.aboutThisPublishingSystem.altText"
 msgstr "OMP:n toimitus- ja julkaisuprosessit"
 
+#, fuzzy
 msgid "about.aboutOMPPress"
 msgstr ""
 "Tämä julkaisija käyttää Open Monograph Press {$ompVersion} -järjestelmää, "
@@ -1069,6 +1070,7 @@ msgstr ""
 "kehittämä, tukema ja GNU General Public License -lisenssillä vapaasti jakama "
 "avoimen lähdekoodin toimitus- ja julkaisuohjelmisto."
 
+#, fuzzy
 msgid "about.aboutOMPSite"
 msgstr "Tämä sivusto käyttää Open Monograph Press {$ompVersion} -järjestelmää, joka on <a href=\"http://pkp.sfu.ca/\">Public Knowledge Projectin</a> kehittämä, tukema ja GNU General Public License -lisenssillä vapaasti jakama avoimen lähdekoodin toimitus- ja julkaisuohjelmisto."
 

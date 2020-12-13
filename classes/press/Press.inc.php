@@ -30,8 +30,8 @@ class Press extends Context {
 
 	/**
 	 * Get "localized" press page title (if applicable).
-	 * param $home boolean get homepage title
-	 * @return string
+	 * @return string|null
+	 * @deprecated 3.3.0, use getLocalizedData() instead
 	 */
 	function getLocalizedPageHeaderTitle() {
 		$titleArray = $this->getData('name');
@@ -51,7 +51,8 @@ class Press extends Context {
 
 	/**
 	 * Get "localized" press page logo (if applicable).
-	 * @return string
+	 * @return array|null
+	 * @deprecated 3.3.0, use getLocalizedData() instead
 	 */
 	function getLocalizedPageHeaderLogo() {
 		$logoArray = $this->getData('pageHeaderLogoImage');
@@ -63,7 +64,7 @@ class Press extends Context {
 
 	/**
 	 * @deprecated Since OMP 3.2.1, use getLocalizedPageHeaderLogo instead.
-	 * @return string
+	 * @return array|null
 	 */
 	function getPageHeaderLogo() {
 		return $this->getLocalizedPageHeaderLogo();

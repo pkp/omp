@@ -971,9 +971,11 @@ msgstr "Über dieses Publikationssystem"
 msgid "about.aboutThisPublishingSystem.altText"
 msgstr "OMP-Redaktions- und Veröffentlichungsprozess"
 
+#, fuzzy
 msgid "about.aboutOMPPress"
 msgstr "Dieser Verlag verwendet Open Monograph Press {$ompVersion}, eine Open-Source-Presse- und Verlagsmanagement-Software, die vom <a href=\"http://pkp.sfu.ca/\">Public Knowledge Project</a> unter der GNU General Public License entwickelt wurde. Support und Vertrieb der Software sind kostenfrei."
 
+#, fuzzy
 msgid "about.aboutOMPSite"
 msgstr "Dieser Verlag verwendet Open Monograph Press {$ompVersion}, eine Open-Source-Presse- und Verlagsmanagement-Software, die vom <a href=\"http://pkp.sfu.ca/\">Public Knowledge Project</a> unter der GNU General Public License entwickelt wurde. Support und Vertrieb der Software sind kostenfrei."
 

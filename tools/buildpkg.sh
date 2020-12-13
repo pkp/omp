@@ -45,6 +45,7 @@ plugins/paymethod/paypal/vendor/omnipay/paypal/tests/					\
 plugins/paymethod/paypal/vendor/guzzle/guzzle/docs/					\
 plugins/paymethod/paypal/vendor/guzzle/guzzle/tests/					\
 plugins/paymethod/paypal/vendor/symfony/http-foundation/Tests/				\
+plugins/paymethod/paypal/vendor/clue/stream-filter/tests/				\
 lib/pkp/plugins/*/*/tests								\
 lib/pkp/tests										\
 .git											\
@@ -77,6 +78,8 @@ lib/pkp/lib/vendor/sebastian/global-state/tests						\
 lib/pkp/lib/vendor/sebastian/comparator/tests						\
 lib/pkp/lib/vendor/sebastian/diff/tests							\
 lib/pkp/lib/vendor/oyejorge/less.php/test						\
+lib/pkp/lib/vendor/dragonmantank/cron-expression/tests/					\
+lib/pkp/lib/vendor/swiftmailer/swiftmailer/tests/					\
 lib/pkp/js/lib/pnotify/build-tools							\
 lib/pkp/lib/vendor/alex198710/pnotify/.git						\
 node_modules										\
