@@ -14,10 +14,10 @@
  */
 namespace APP\Services;
 
-use \Application;
-use \Services;
-use \PKP\Services\PKPPublicationService;
+use Application;
 use DAORegistry;
+use PKP\Services\PKPPublicationService;
+use Services;
 
 class PublicationService extends PKPPublicationService {
 
@@ -120,7 +120,7 @@ class PublicationService extends PKPPublicationService {
 		$props = $args[2];
 
 		// Ensure that the specified series exists
-		if (isset($props['seriesId'])) {
+		if (isset($props['seriesId']) && ($props['seriesId']) > 0) {
 			$series = Application::get()->getSectionDAO()->getById($props['seriesId']);
 			if (!$series) {
 				$errors['seriesId'] = [__('publication.invalidSeries')];
