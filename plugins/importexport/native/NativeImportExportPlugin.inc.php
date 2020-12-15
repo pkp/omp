@@ -49,21 +49,6 @@ class NativeImportExportPlugin extends PKPNativeImportExportPlugin {
 		}
 	}
 
-	/**
-	 * Get the XML for a set of submissions.
-	 * @param $submissionIds array Array of submission IDs
-	 * @param $context Context
-	 * @param $user User|null
-	 * @param $opts array
-	 * @return string XML contents representing the supplied submission IDs.
-	 */
-	function exportSubmissions($submissionIds, $context, $user, $opts = array()) {
-		$deployment = new NativeImportExportDeployment($context, $user);
-		$this->getExportSubmissionsDeployment($submissionIds, $deployment, $opts);
-
-		return $this->exportResultXML($deployment);
-	}
-
 	function getImportFilter($xmlFile) {
 		$filter = 'native-xml=>monograph';
 
@@ -81,89 +66,7 @@ class NativeImportExportPlugin extends PKPNativeImportExportPlugin {
 		return $filter;
 	}
 
-	/**
-	 * @copydoc ImportExportPlugin::executeCLI
-	 */
-	function executeCLI($scriptName, &$args) {
-		$opts = $this->parseOpts($args, ['no-embed', 'use-file-urls']);
-		$command = array_shift($args);
-		$xmlFile = array_shift($args);
-		$pressPath = array_shift($args);
-
-		AppLocale::requireComponents(LOCALE_COMPONENT_APP_MANAGER, LOCALE_COMPONENT_PKP_MANAGER, LOCALE_COMPONENT_PKP_SUBMISSION);
-		$pressDao = DAORegistry::getDAO('PressDAO');
-		$userDao = DAORegistry::getDAO('UserDAO');
-		$press = $pressDao->getByPath($pressPath);
-
-		if (!$press) {
-			if ($pressPath != '') {
-				echo __('plugins.importexport.common.cliError') . "\n";
-				echo __('plugins.importexport.common.error.unknownPress', array('pressPath' => $pressPath)) . "\n\n";
-			}
-			$this->usage($scriptName);
-			return;
-		}
-
-		if ($xmlFile && $this->isRelativePath($xmlFile)) {
-			$xmlFile = PWD . '/' . $xmlFile;
-		}
-
-		switch ($command) {
-			case 'import':
-				$userName = array_shift($args);
-				$user = $userDao->getByUsername($userName);
-
-				if (!$user) {
-					if ($userName != '') {
-						$this->echoCLIError(__('plugins.importexport.native.error.unknownUser', array('userName' => $userName)));
-					}
-					$this->usage($scriptName);
-					return;
-				}
-
-				if (!file_exists($xmlFile)) {
-					$this->echoCLIError(__('plugins.importexport.common.export.error.inputFileNotReadable', array('param' => $xmlFile)));
-
-					$this->usage($scriptName);
-					return;
-				}
-
-				list ($filter, $xmlString) = $this->getImportFilter($xmlFile);
-
-				$deployment = new NativeImportExportDeployment($press, $user);
-				$deployment->setImportPath(dirname($xmlFile));
-
-				$deployment->import($filter, $xmlString);
-
-				$this->getCLIImportResult($deployment);
-				$this->getCLIProblems($deployment);
-				return;
-
-			case 'export':
-				$deployment = new NativeImportExportDeployment($journal, null);
-
-				$outputDir = dirname($xmlFile);
-				if (!is_writable($outputDir) || (file_exists($xmlFile) && !is_writable($xmlFile))) {
-					$this->echoCLIError(__('plugins.importexport.common.export.error.outputFileNotWritable', array('param' => $xmlFile)));
-
-					$this->usage($scriptName);
-					return;
-				}
-				if ($xmlFile != '') switch (array_shift($args)) {
-					case 'monograph':
-					case 'monographs':
-						$this->getExportSubmissionsDeployment(
-							$args,
-							$deployment,
-							$opts
-						);
-
-						$this->getCLIExportResult($deployment, $xmlFile);
-						$this->getCLIProblems($deployment);
-						return;
-				}
-				break;
-		}
-		$this->usage($scriptName);
+	function getAppSpecificDeployment($journal, $user) {
+		return new NativeImportExportDeployment($journal, $user);
 	}
 }
