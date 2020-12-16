@@ -16,15 +16,6 @@
 import('lib.pkp.plugins.importexport.native.filter.NativeXmlSubmissionFilter');
 
 class NativeXmlMonographFilter extends NativeXmlSubmissionFilter {
-	/**
-	 * Constructor
-	 * @param $filterGroup FilterGroup
-	 */
-	function __construct($filterGroup) {
-		parent::__construct($filterGroup);
-	}
-
-
 	//
 	// Implement template methods from PersistableFilter
 	//
@@ -33,26 +24,6 @@ class NativeXmlMonographFilter extends NativeXmlSubmissionFilter {
 	 */
 	function getClassName() {
 		return 'plugins.importexport.native.filter.NativeXmlMonographFilter';
-	}
-
-	/**
-	 * @see Filter::process()
-	 * @param $document DOMDocument|string
-	 * @return array Array of imported documents
-	 */
-	function &process(&$document) {
-		$importedObjects =& parent::process($document);
-
-		// Index imported content
-		$monographSearchIndex = Application::getSubmissionSearchIndex();
-		foreach ($importedObjects as $submission) {
-			assert(is_a($submission, 'Submission'));
-			$monographSearchIndex->submissionMetadataChanged($submission);
-			$monographSearchIndex->submissionFilesChanged($submission);
-		}
-		$monographSearchIndex->submissionChangesFinished();
-
-		return $importedObjects;
 	}
 
 	/**
