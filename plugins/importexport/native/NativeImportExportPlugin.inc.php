@@ -17,9 +17,7 @@ import('lib.pkp.plugins.importexport.native.PKPNativeImportExportPlugin');
 
 class NativeImportExportPlugin extends PKPNativeImportExportPlugin {
 	/**
-	 * Display the plugin.
-	 * @param $args array
-	 * @param $request PKPRequest
+	 * @see ImportExportPlugin::display()
 	 */
 	function display($args, $request) {
 		$context = $request->getContext();
@@ -28,8 +26,6 @@ class NativeImportExportPlugin extends PKPNativeImportExportPlugin {
 
 		$this->setDeployment($deployment);
 
-		$templateMgr = TemplateManager::getManager($request);
-
 		list ($returnString, $managed) = parent::display($args, $request);
 
 		if ($managed) {
@@ -37,18 +33,19 @@ class NativeImportExportPlugin extends PKPNativeImportExportPlugin {
 				return $returnString;
 			}
 
-			return;
+			return false;
 		}
 
-		$templateMgr->assign('plugin', $this);
-
-		switch (array_shift($args)) {
+		switch ($this->opType) {
 			default:
 				$dispatcher = $request->getDispatcher();
 				$dispatcher->handle404();
 		}
 	}
 
+	/**
+	 * @see PKPNativeImportExportPlugin::getImportFilter
+	 */
 	function getImportFilter($xmlFile) {
 		$filter = 'native-xml=>monograph';
 
@@ -57,6 +54,9 @@ class NativeImportExportPlugin extends PKPNativeImportExportPlugin {
 		return array($filter, $xmlString);
 	}
 
+	/**
+	 * @see PKPNativeImportExportPlugin::getExportFilter
+	 */
 	function getExportFilter($exportType) {
 		$filter = false;
 		if ($exportType == 'exportSubmissions') {
@@ -66,6 +66,9 @@ class NativeImportExportPlugin extends PKPNativeImportExportPlugin {
 		return $filter;
 	}
 
+	/**
+	 * @see PKPNativeImportExportPlugin::getAppSpecificDeployment
+	 */
 	function getAppSpecificDeployment($journal, $user) {
 		return new NativeImportExportDeployment($journal, $user);
 	}
