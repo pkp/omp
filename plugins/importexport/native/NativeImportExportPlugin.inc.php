@@ -26,11 +26,11 @@ class NativeImportExportPlugin extends PKPNativeImportExportPlugin {
 
 		$this->setDeployment($deployment);
 
-		list ($returnString, $managed) = parent::display($args, $request);
+		parent::display($args, $request);
 
-		if ($managed) {
-			if ($returnString) {
-				return $returnString;
+		if ($this->isResultManaged) {
+			if ($this->result) {
+				return $this->result;
 			}
 
 			return false;
