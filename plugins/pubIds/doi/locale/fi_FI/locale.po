@@ -1,6 +1,6 @@
 msgid ""
 msgstr ""
-"PO-Revision-Date: 2020-10-18 16:48+0000\n"
+"PO-Revision-Date: 2020-12-11 20:34+0000\n"
 "Last-Translator: Antti-Jussi Nygård <ajnyga@gmail.com>\n"
 "Language-Team: Finnish <http://translate.pkp.sfu.ca/projects/omp/pubIds-doi/"
 "fi_FI/>\n"
@@ -201,7 +201,7 @@ msgid "plugins.pubIds.doi.manager.settings.doiObjectsRequired"
 msgstr "Valitse objektit, joille DOI-tunnisteet tulee määrittää."
 
 msgid "plugins.pubIds.doi.manager.settings.doiObjects"
-msgstr "Julkaisijan yhteystiedot"
+msgstr "Julkaisijan sisällöt"
 
 msgid "plugins.pubIds.doi.manager.settings.description"
 msgstr "Määritä DOI-lisäosa, jotta voit hallinnoida ja käyttää DOI-tunnisteita:"

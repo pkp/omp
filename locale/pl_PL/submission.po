@@ -1,6 +1,6 @@
 msgid ""
 msgstr ""
-"PO-Revision-Date: 2020-12-01 14:05+0000\n"
+"PO-Revision-Date: 2020-12-15 13:16+0000\n"
 "Last-Translator: rl <biuro@fimagis.pl>\n"
 "Language-Team: Polish <http://translate.pkp.sfu.ca/projects/omp/submission/"
 "pl_PL/>\n"
@@ -413,3 +413,91 @@ msgstr "Wgląd"
 msgid "submission.queries.production"
 msgstr "Dyskusja w trakcie realizacji"
 
+msgid "publication.version.details"
+msgstr "Szczegóły publikacji dla wersji {$version}"
+
+msgid "publication.unschedule.confirm"
+msgstr "Na pewno chcesz zdjąć te pozycje z planu publikacji?"
+
+msgid "publication.unpublish.confirm"
+msgstr "Na pewno chcesz aby to było zdjęte z publikacji?"
+
+msgid "publication.unpublish"
+msgstr "Zdejmij z publikacji"
+
+msgid "submission.copyrightOther.description"
+msgstr "Przydziel prawa autorskie do monografii podanemu niżej podmiotowi."
+
+msgid "submission.copyrightHolder.description"
+msgstr "Prawa autorskie zostaną przydzielone automatycznie dla {$copyright}."
+
+msgid "submission.license.description"
+msgstr ""
+"Licencja zostanie ustawiona automatycznie na  <a href='{$licenseUrl}' "
+"target='_blank'>{$licenseName}</a> w momencie publikacji."
+
+msgid "publication.required.reviewStage"
+msgstr ""
+"Aby opublikować zgłoszenie musi być co najmniej w statusie Korekta lub "
+"Produkcja."
+
+msgid "publication.required.declined"
+msgstr "Odrzucone zgłoszenie nie może być opublikowane."
+
+msgid "publication.publish.requirements"
+msgstr "Zanim dojdzie do publikacji trzeba spełnić niniejsze wymagania."
+
+msgid "publication.publish"
+msgstr "Opublikuj"
+
+msgid "publication.invalidSubmission"
+msgstr "Nie można znaleźć zgłoszenia właściwego dla tej publikacji."
+
+msgid "publication.event.versionUnpublished"
+msgstr "Wersja została usunięta z publikacji."
+
+msgid "publication.event.versionScheduled"
+msgstr "Nowa wersja została zaplanowana do publikacji."
+
+msgid "publication.event.versionPublished"
+msgstr "Nowa wersja została upubliczniona."
+
+msgid "publication.event.unpublished"
+msgstr "Zgłoszenie zostało zdjęte z publikacji."
+
+msgid "publication.event.scheduled"
+msgstr "Zgłoszenie zostało zaplanowane do publikacji."
+
+msgid "publication.event.published"
+msgstr "Zgłoszenie zostało opublikowane."
+
+msgid "publication.editDisabled"
+msgstr "Niniejsza wersja jest już opublikowana. Nie można jej edytować."
+
+msgid "publication.datePublished"
+msgstr "Data publikacji"
+
+msgid "publication.copyrightYearBasis.submissionDescription"
+msgstr ""
+"Rok obowiązywania praw autorskich będzie ustawiony automatycznie na "
+"podstawie wybranej daty publikacji."
+
+msgid "publication.copyrightYearBasis.issueDescription"
+msgstr ""
+"Rok obowiązywania praw autorskich będzie ustawiony automatycznie w momencie "
+"publikacji numeru."
+
+msgid "submission.publications"
+msgstr "Publikacje"
+
+msgid "publication.status.unscheduled"
+msgstr "Oczekująca"
+
+msgid "submission.status.scheduled"
+msgstr "Zaplanowana"
+
+msgid "publication.status.published"
+msgstr "Opublikowana"
+
+msgid "submission.publication"
+msgstr "Publikacja"
