@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
-"PO-Revision-Date: 2020-06-16 12:39+0000\n"
-"Last-Translator: Carla Marques <carla.marques@sdum.uminho.pt>\n"
+"PO-Revision-Date: 2020-12-22 20:40+0000\n"
+"Last-Translator: Carla Marques <carla.marques@usdb.uminho.pt>\n"
 "Language-Team: Portuguese (Portugal) <http://translate.pkp.sfu.ca/projects/"
 "omp/editor/pt_PT/>\n"
 "Language: pt_PT\n"
@@ -202,3 +202,6 @@ msgstr "Cancelar Pedido"
 
 msgid "editor.submissionArchive"
 msgstr "Arquivo de Submissões"
+
+msgid "editor.submissions.assignedTo"
+msgstr "Designar a um Editor"
