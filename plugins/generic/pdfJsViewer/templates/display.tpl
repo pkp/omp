@@ -74,7 +74,8 @@
 	<script type="text/javascript">
 		// Creating iframe's src in JS instead of Smarty so that EZProxy-using sites can find our domain in $pdfUrl and do their rewrites on it.
 		$(document).ready(function() {ldelim}
-			var urlBase = "{$pluginUrl}/pdf.js/web/viewer.html?file=";
+			var pluginUrl = {$pluginUrl|json_encode};
+			var urlBase = pluginUrl + '/pdf.js/web/viewer.html?file=';
 			var pdfUrl = {$downloadUrl|json_encode};
 			$("#pdfCanvasContainer > iframe").attr("src", urlBase + encodeURIComponent(pdfUrl));
 		{rdelim});
