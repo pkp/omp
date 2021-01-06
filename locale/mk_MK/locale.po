@@ -1,2 +1,351 @@
 msgid ""
-msgstr "X-Generator: Weblate\nMIME-Version: 1.0\nContent-Type: text/plain; charset=UTF-8\nContent-Transfer-Encoding: 8bit"
+msgstr ""
+"PO-Revision-Date: 2021-01-06 17:52+0000\n"
+"Last-Translator: Blagoja Grozdanovski <blagoja.grozdanovski@gmail.com>\n"
+"Language-Team: Macedonian <http://translate.pkp.sfu.ca/projects/omp/locale/"
+"mk_MK/>\n"
+"Language: mk_MK\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=n==1 || n%10==1 ? 0 : 1;\n"
+"X-Generator: Weblate 3.9.1\n"
+
+msgid "grid.catalogEntry.suppliersCategory"
+msgstr "Добавувачи"
+
+msgid "grid.catalogEntry.agentsCategory"
+msgstr "Агенти"
+
+msgid "grid.catalogEntry.representativeType"
+msgstr "Тип на претставници"
+
+msgid "grid.catalogEntry.representatives"
+msgstr "Претставници"
+
+msgid "grid.catalogEntry.dateRequired"
+msgstr ""
+"Потребен е датум и вредноста на датумот мора да одговара на избраниот формат "
+"на датум."
+
+msgid "grid.catalogEntry.dateFormat"
+msgstr "Формат на датум"
+
+msgid "grid.catalogEntry.dateRole"
+msgstr "Улога"
+
+msgid "grid.catalogEntry.dateValue"
+msgstr "Дата"
+
+msgid "grid.catalogEntry.dateFormatRequired"
+msgstr "Потребен е формат на датум."
+
+msgid "grid.catalogEntry.roleRequired"
+msgstr "Потребна е репрезентативна улога."
+
+msgid "grid.catalogEntry.publicationDates"
+msgstr "Датуми на објавување"
+
+msgid "grid.catalogEntry.marketTerritory"
+msgstr "Територија"
+
+msgid "grid.catalogEntry.markets"
+msgstr "Територии на пазар"
+
+msgid "grid.catalogEntry.excluded"
+msgstr "Исклучени"
+
+msgid "grid.catalogEntry.included"
+msgstr "Вклучени"
+
+msgid "grid.catalogEntry.regions"
+msgstr "Региони"
+
+msgid "grid.catalogEntry.countries"
+msgstr "Држави"
+
+msgid "grid.catalogEntry.oneROWPerFormat"
+msgstr "За овој формат на објавување веќе е дефиниран тип на продажба ROW."
+
+msgid "grid.catalogEntry.salesRightsROW.tip"
+msgstr ""
+"Штиклирајте го ова поле за да го користите овој запис за Правата на "
+"продажбата глобално за вашиот формат. Земјите и регионите не треба да бидат "
+"избрани во овој случај."
+
+msgid "grid.catalogEntry.salesRightsROW"
+msgstr "Остатокот од светот?"
+
+msgid "grid.catalogEntry.salesRightsType"
+msgstr "Тип на продажни права"
+
+msgid "grid.catalogEntry.salesRightsValue"
+msgstr "Вредност на код"
+
+msgid "grid.catalogEntry.salesRights"
+msgstr "Права на продажба"
+
+msgid "grid.catalogEntry.valueRequired"
+msgstr "Потребна е вредност."
+
+msgid "grid.catalogEntry.codeRequired"
+msgstr "Потребен е код за идентификација."
+
+msgid "grid.catalogEntry.identificationCodeType"
+msgstr "ONIX тип на код"
+
+msgid "grid.catalogEntry.identificationCodeValue"
+msgstr "Вредност на код"
+
+msgid "grid.catalogEntry.productCompositionRequired"
+msgstr "Мора да се избере код за состав на производ."
+
+msgid "grid.catalogEntry.productAvailabilityRequired"
+msgstr "Потребен е код за достапност на производот."
+
+msgid "grid.catalogEntry.fileSizeRequired"
+msgstr "Потребна е големина на датотека за дигитални формати."
+
+msgid "grid.catalogEntry.availableRepresentation.notApproved"
+msgstr "Чека одобрување"
+
+msgid "grid.catalogEntry.availableRepresentation.approved"
+msgstr "Одобрено"
+
+msgid "grid.catalogEntry.availableRepresentation.proofNotApproved"
+msgstr "Доказот не е одобрен."
+
+msgid "grid.catalogEntry.availableRepresentation.notApprovedWarning"
+msgstr "Форматот не е во записот на каталогот."
+
+msgid "grid.catalogEntry.availableRepresentation.catalogNotApprovedWarning"
+msgstr "Внесувањето на каталогот не е одобрено."
+
+msgid "grid.catalogEntry.availableRepresentation.removeMessage"
+msgstr ""
+"<p> Овој формат <em> е недостапен за читателите </em>. Сите датотеки што "
+"можат да се преземат или други дистрибуции повеќе нема да се појавуваат во "
+"записот на каталогот на книгата. </p>"
+
+msgid "grid.catalogEntry.availableRepresentation.message"
+msgstr ""
+"<p> Ставете го овој формат <em> достапен за читателите </em>. Датотеките што "
+"може да се преземат и сите други дистрибуции ќе се појават во записот на "
+"каталогот на книгата. </p>"
+
+msgid "grid.catalogEntry.availableRepresentation.title"
+msgstr "Достапност на формат"
+
+msgid "grid.catalogEntry.approvedRepresentation.removeMessage"
+msgstr "<p> Наведете дека метаподатоците за овој формат не се одобрени. </p>"
+
+msgid "grid.catalogEntry.approvedRepresentation.message"
+msgstr ""
+"<p> Одобрете ги метаподатоците за овој формат. Метаподатоците може да се "
+"проверат од панелот Уреди за секој формат. </p>"
+
+msgid "grid.catalogEntry.approvedRepresentation.title"
+msgstr "Одобрување на формат"
+
+msgid "grid.catalogEntry.proof"
+msgstr "Доказ"
+
+msgid "grid.catalogEntry.isNotAvailable"
+msgstr "Не е достапно"
+
+msgid "grid.catalogEntry.isAvailable"
+msgstr "Достапно"
+
+msgid "grid.catalogEntry.availability"
+msgstr "Достапност"
+
+msgid "grid.catalogEntry.publicationFormatRequired"
+msgstr "Формат на објавување мора да биде избран."
+
+msgid "grid.catalogEntry.monographRequired"
+msgstr "Потребна е идентификација за монографија."
+
+msgid "grid.catalogEntry.remoteURL"
+msgstr "URL на далечински хостирана содржина"
+
+msgid "grid.catalogEntry.remotelyHostedContent"
+msgstr "Овој формат ќе биде достапен на посебна веб-страница"
+
+msgid "grid.catalogEntry.physicalFormat"
+msgstr "Физички формат"
+
+msgid "grid.catalogEntry.publicationFormatDetails"
+msgstr "Детали за формат"
+
+msgid "grid.catalogEntry.validPriceRequired"
+msgstr "Потребна е валидна цена."
+
+msgid "grid.catalogEntry.nameRequired"
+msgstr "Потребно е име."
+
+msgid "grid.catalogEntry.publicationFormatType"
+msgstr "Формат на објавување"
+
+msgid "monograph.publicationFormat.openTab"
+msgstr "Отворете го јазичето за формат на објавување."
+
+msgid "monograph.publicationFormat.formatDoesNotExist"
+msgstr ""
+"<p> Форматот на објавување што го избравте повеќе не постои за оваа "
+"монографија. </p>"
+
+msgid "monograph.publicationFormat.missingONIXFields"
+msgstr "Недостасуваат некои полиња за метаподатоци."
+
+msgid "monograph.publicationFormat.noCodesAssigned"
+msgstr "Недостасува код за идентификација."
+
+msgid "monograph.publicationFormat.noMarketsAssigned"
+msgstr "Недостасуваат пазари и цени."
+
+msgid "monograph.publicationFormat.isApproved"
+msgstr ""
+"Внесете ги метаподатоците за овој формат на публикација во записот за "
+"каталог за оваа книга."
+
+msgid "monograph.publicationFormat.taxType"
+msgstr "Тип на данок"
+
+msgid "monograph.publicationFormat.taxRate"
+msgstr "Ставка на данок"
+
+msgid "monograph.publicationFormat.productRegion"
+msgstr "Регион за дистрибуција на производи"
+
+msgid "monograph.publicationFormat.technicalProtection"
+msgstr "Дигитална техничка заштита"
+
+msgid "monograph.publicationFormat.countryOfManufacture"
+msgstr "Држава на производство"
+
+msgid "monograph.publicationFormat.productWidth"
+msgstr "Ширина"
+
+msgid "monograph.publicationFormat.productWeight"
+msgstr "Тежина"
+
+msgid "monograph.publicationFormat.productThickness"
+msgstr "Дебелина"
+
+msgid "monograph.publicationFormat.productHeight"
+msgstr "Висина"
+
+msgid "monograph.publicationFormat.productFileSize.override"
+msgstr "Внесете ја сопствената вредност на големината на датотеката?"
+
+msgid "monograph.publicationFormat.productFileSize"
+msgstr "Големина на датотека во MБајти"
+
+msgid "monograph.publicationFormat.productDimensionsSeparator"
+msgstr " x "
+
+msgid "monograph.publicationFormat.productDimensions"
+msgstr "Физички димензии"
+
+msgid "monograph.publicationFormat.digitalInformation"
+msgstr "Дигитална информација"
+
+msgid "monograph.publicationFormat.returnInformation"
+msgstr "Индикатор за враќање"
+
+msgid "monograph.publicationFormat.productAvailability"
+msgstr "Достапност на производ"
+
+msgid "monograph.publicationFormat.discountAmount"
+msgstr "Процент на попуст, доколку е применливо"
+
+msgid "monograph.publicationFormat.priceType"
+msgstr "Тип на цена"
+
+msgid "monograph.publicationFormat.priceRequired"
+msgstr "Потребна е цена."
+
+msgid "monograph.publicationFormat.price"
+msgstr "Цена"
+
+msgid "monograph.publicationFormat.productIdentifierType"
+msgstr "Идентификација на производот"
+
+msgid "monograph.publicationFormat.productFormDetailCode"
+msgstr "Детали за производот (не е задолжително)"
+
+msgid "monograph.publicationFormat.productComposition"
+msgstr "Состав на производот"
+
+msgid "monograph.publicationFormat.backMatterCount"
+msgstr "Задна материја"
+
+msgid "monograph.publicationFormat.frontMatterCount"
+msgstr "Предна материја"
+
+msgid "monograph.publicationFormat.pageCounts"
+msgstr "Број на страни"
+
+msgid "monograph.publicationFormat.imprint"
+msgstr "Отпечаток (име на бренд)"
+
+msgid "monograph.accessLogoOpen.altText"
+msgstr "Слободен пристап"
+
+msgid "monograph.task.addNote"
+msgstr "Додај во задачата"
+
+msgid "monograph.proofReadingDescription"
+msgstr ""
+"Уредникот за распоред ги поставува датотеките подготвени за производство што "
+"се подготвени за објавување тука. Користете <em> + Додели </em> за да "
+"назначите автори и други за лекторирање на доказите на страницата, со "
+"исправени датотеки подигнати за одобрување пред објавувањето."
+
+msgid "submission.pageProofs"
+msgstr "Докази за страницата"
+
+msgid "monograph.type"
+msgstr "Типови на поднесок"
+
+msgid "monograph.carousel.publicationFormats"
+msgstr "Формати:"
+
+msgid "monograph.miscellaneousDetails"
+msgstr "Детали за оваа монографија"
+
+msgid "monograph.publicationFormatDetails"
+msgstr "Детали за достапниот формат на објавување: {$format}"
+
+msgid "monograph.publicationFormat"
+msgstr "Формат"
+
+msgid "monograph.publicationFormats"
+msgstr "Формати на публикации"
+
+msgid "monograph.languages"
+msgstr "Јазици (Англиски, Француски, Шпански)"
+
+msgid "monograph.audience.rangeExact"
+msgstr "Опсег на публика (точно)"
+
+msgid "monograph.audience.rangeTo"
+msgstr "Опсег на публика (до)"
+
+msgid "monograph.audience.rangeFrom"
+msgstr "Опсег на публика (од)"
+
+msgid "monograph.audience.rangeQualifier"
+msgstr "Квалификатор за опсег на публика"
+
+msgid "monograph.coverImage"
+msgstr "Насловна слика"
+
+msgid "monograph.audience.success"
+msgstr "Деталите за публиката се ажурирани."
+
+msgid "monograph.audience"
+msgstr "Публика"
+
+msgid "common.payments"
+msgstr "Плаќања"
