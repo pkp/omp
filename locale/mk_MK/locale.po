@@ -1,6 +1,6 @@
 msgid ""
 msgstr ""
-"PO-Revision-Date: 2021-01-06 17:52+0000\n"
+"PO-Revision-Date: 2021-01-07 12:42+0000\n"
 "Last-Translator: Blagoja Grozdanovski <blagoja.grozdanovski@gmail.com>\n"
 "Language-Team: Macedonian <http://translate.pkp.sfu.ca/projects/omp/locale/"
 "mk_MK/>\n"
@@ -349,3 +349,371 @@ msgstr "Публика"
 
 msgid "common.payments"
 msgstr "Плаќања"
+
+msgid "catalog.noTitlesNew"
+msgstr "Во моментов нема нови изданија."
+
+msgid "catalog.noTitles"
+msgstr "Сè уште нема објавено наслови."
+
+msgid "catalog.manage.findSubmissions"
+msgstr "Пронајдете монографии за да ги додадете во каталогот"
+
+msgid "catalog.manage.submissionsNotFound"
+msgstr "Еден  или повеќе од поднесоците не може да се најдат."
+
+msgid "catalog.manage.noSubmissionsSelected"
+msgstr "Нема избрани поднесоци за да бидат додадени во каталогот."
+
+msgid "catalog.manage.isNotNewRelease"
+msgstr ""
+"Оваа монографија не е ново издание. Направете ја оваа монографија да е ново "
+"издание."
+
+msgid "catalog.manage.isNewRelease"
+msgstr ""
+"Оваа монографија е ново издание. Направете ја оваа монографија  да не е ново "
+"издание."
+
+msgid "catalog.manage.isNotFeatured"
+msgstr ""
+"Оваа монографија не е претставена. Направете ја оваа монографија избрана."
+
+msgid "catalog.manage.isFeatured"
+msgstr ""
+"Оваа монографија е претставена. Направете ја оваа монографија да не е "
+"прикажана."
+
+msgid "catalog.manage.filter.searchByAuthorOrTitle"
+msgstr "Пребарување по наслов или автор"
+
+msgid "catalog.manage.nonOrderable"
+msgstr "Оваа монографија не е подредлива сè додека не се прикаже."
+
+msgid "catalog.manage.feature.seriesNewRelease"
+msgstr "Ново издание во сериите"
+
+msgid "catalog.manage.feature.categoryNewRelease"
+msgstr "Ново издание во категоријата"
+
+msgid "catalog.manage.feature.newRelease"
+msgstr "Ново издание"
+
+msgid "catalog.manage.notNewReleaseSuccess"
+msgstr "Монографијата не е обележана како ново издание."
+
+msgid "catalog.manage.newReleaseSuccess"
+msgstr "Монографијата е означена како ново издание."
+
+msgid "catalog.manage.notFeaturedSuccess"
+msgstr "Монографијата не е избрана."
+
+msgid "catalog.manage.featuredSuccess"
+msgstr "Монографијата е избрана."
+
+msgid "catalog.manage.seriesFeatured"
+msgstr "Избрана во серии"
+
+msgid "catalog.manage.categoryFeatured"
+msgstr "Избрана во категорија"
+
+msgid "catalog.manage.featured"
+msgstr "Избрана"
+
+msgid "catalog.manage.noMonographs"
+msgstr "Нема доделени монографии."
+
+msgid "catalog.manage.manageCategories"
+msgstr "Управувајте со категории"
+
+msgid "catalog.manage.manageSeries"
+msgstr "Управувајте со серии"
+
+msgid "catalog.manage.newRelease"
+msgstr "Отпушти"
+
+msgid "catalog.manage.placeIntoCarousel"
+msgstr "Вртелешка"
+
+msgid "catalog.manage.seriesDescription"
+msgstr ""
+"Кликнете на „Функција“, а потоа на ѕвездата за да изберете избрана книга за "
+"оваа серија; влечете и пуштајте по нарачка. Сериите се идентификуваат со "
+"уредник (и) и наслов на серија, во категорија или независно."
+
+msgid "catalog.manage.categoryDescription"
+msgstr ""
+"Кликнете на „Функција“, а потоа на ѕвездата за да изберете избрана книга за "
+"оваа категорија; влечете и пуштете по нарачка."
+
+msgid "catalog.manage.homepageDescription"
+msgstr ""
+"Сликата на корицата на избраните книги се појавува кон горниот дел од "
+"почетната страница како сет што може да се движи. Кликнете на „Функција“, а "
+"потоа на ѕвездата за да додадете книга во вртелешката; кликнете на "
+"извичникот за да се прикаже како ново издание; влечете и пуштете по нарачка."
+
+msgid "catalog.selectCategory"
+msgstr "Селектирај категорија"
+
+msgid "catalog.selectSeries"
+msgstr "Селектирај серии"
+
+msgid "catalog.manage.series.printIssn"
+msgstr "Печати ИССН"
+
+msgid "catalog.manage.series.onlineIssn"
+msgstr "Интернет ИССН"
+
+msgid "catalog.manage.series.issn.equalValidation"
+msgstr "ИССН преку Интернет и за печатење не смее да биде исто."
+
+msgid "catalog.manage.series.issn.validation"
+msgstr "Внесете важечки ИССН."
+
+msgid "catalog.manage.series.issn"
+msgstr "ИССН"
+
+msgid "catalog.manage.series"
+msgstr "Серии"
+
+msgid "catalog.manage.category"
+msgstr "Категорија"
+
+msgid "catalog.manage.newReleases"
+msgstr "Нови изданија"
+
+msgid "catalog.manage"
+msgstr "Управување со каталог"
+
+msgid "series.path"
+msgstr "Патека"
+
+msgid "series.featured.description"
+msgstr "Оваа серија ќе се појави на главната навигација"
+
+msgid "series.series"
+msgstr "Серии"
+
+msgid "submissionGroup.assignedSubEditors"
+msgstr "Доделени уредници"
+
+msgid "grid.reviewAttachments.availableFiles"
+msgstr "Достапни датотеки"
+
+msgid "grid.reviewAttachments.add"
+msgstr "Додадете прилог на прегледот"
+
+msgid "grid.action.formatAvailable"
+msgstr "Вклучете и исклучете ја достапноста на овој формат"
+
+msgid "grid.action.availableRepresentation"
+msgstr "Одобри/негирај го овој формат"
+
+msgid "grid.action.proofApproved"
+msgstr "Форматот е докажан"
+
+msgid "grid.action.approveProofs"
+msgstr "Погледнете ја мрежата на докази"
+
+msgid "grid.action.submissionEmail"
+msgstr "Кликнете за да ја прочитате оваа е-пошта"
+
+msgid "grid.action.moreAnnouncements"
+msgstr "Одете на страницата за соопштенија за изданието"
+
+msgid "grid.action.publicationFormatTab"
+msgstr "Покажете го јазичето за формат на објавување"
+
+msgid "grid.action.createContext"
+msgstr "Создадете ново издание"
+
+msgid "grid.action.deleteDate"
+msgstr "Избришете го овој датум"
+
+msgid "grid.action.editDate"
+msgstr "Уредете го овој датум"
+
+msgid "grid.action.addDate"
+msgstr "Додадете датум на објавување"
+
+msgid "grid.action.deleteMarket"
+msgstr "Избришете го овој пазар"
+
+msgid "grid.action.editMarket"
+msgstr "Уредете го овој пазар"
+
+msgid "grid.action.addMarket"
+msgstr "Додај пазар"
+
+msgid "grid.action.deleteRights"
+msgstr "Избришете ги овие права"
+
+msgid "grid.action.editRights"
+msgstr "Уредете ги овие права"
+
+msgid "grid.action.addRights"
+msgstr "Додадете права за продажба"
+
+msgid "grid.action.deleteCode"
+msgstr "Избришете го овој код"
+
+msgid "grid.action.editCode"
+msgstr "Уредете го овој код"
+
+msgid "grid.action.addCode"
+msgstr "Додадете код"
+
+msgid "grid.action.manageSeries"
+msgstr "Конфигурирајте ја серијата за ова издание"
+
+msgid "grid.action.manageCategories"
+msgstr "Конфигурирајте категории за ова издание"
+
+msgid "grid.action.releaseMonograph"
+msgstr "Означете го овој поднесок како „ново издание“"
+
+msgid "grid.action.featureMonograph"
+msgstr "Остави го ова во вртелешката на каталогот"
+
+msgid "grid.action.feature"
+msgstr "Вклучете го приказот на одликата"
+
+msgid "grid.action.publicCatalog"
+msgstr "Погледнете ја оваа ставка во каталогот"
+
+msgid "grid.action.newCatalogEntry"
+msgstr "Нов запис во каталог"
+
+msgid "grid.action.addAnnouncement"
+msgstr "Додајте оглас"
+
+msgid "grid.action.pageProofApproved"
+msgstr "Датотеката со докази за страницата е подготвена за објавување"
+
+msgid "grid.action.approveProof"
+msgstr "Одобри го доказот за индексирање и вклучување во каталогот"
+
+msgid "grid.action.addFormat"
+msgstr "Додадете формат на објавување"
+
+msgid "grid.action.deleteFormat"
+msgstr "Избришете го овој формат"
+
+msgid "grid.action.editFormat"
+msgstr "Уредете го овој формат"
+
+msgid "grid.action.formatInCatalogEntry"
+msgstr "Форматот се појавува во записот на каталогот"
+
+msgid "grid.action.catalogEntry"
+msgstr "Погледнете го формуларот за внес во каталогот"
+
+msgid "grid.libraryFiles.column.files"
+msgstr "Датотеки"
+
+msgid "manager.series.indexed"
+msgstr "Индексирани"
+
+msgid "manager.series.open"
+msgstr "Отворете ги поднесоците"
+
+msgid "grid.action.addSpotlight"
+msgstr "Додадете центар на внимание"
+
+msgid "grid.action.deleteSpotlight"
+msgstr "Избришете го овој центар на внимание"
+
+msgid "grid.action.editSpotlight"
+msgstr "Уредете го овој центар на внимание"
+
+msgid "grid.content.spotlights.locationRequired"
+msgstr "Ве молиме изберете локација за овој центар на внимание."
+
+msgid "grid.content.spotlights.titleRequired"
+msgstr "Наслов на центар на внимание е потребен."
+
+msgid "grid.content.spotlights.itemRequired"
+msgstr "Потребна е ставка."
+
+msgid "grid.content.spotlights.form.type.book"
+msgstr "Книга"
+
+msgid "grid.content.spotlights.form.title"
+msgstr "Наслов на центар на внимание"
+
+msgid "grid.content.spotlights.form.item"
+msgstr "Внесете наслов на центар на внимание(автоматско комплетирање)"
+
+msgid "grid.content.spotlights.form.location"
+msgstr "Локација на центар на внимание"
+
+msgid "grid.content.spotlights.category.homepage"
+msgstr "Домашна страница"
+
+msgid "grid.content.spotlights.spotlightItemTitle"
+msgstr "Предмет на внимание"
+
+msgid "spotlight.author"
+msgstr "Автор, "
+
+msgid "spotlight.title.homePage"
+msgstr "Во центар на внимание"
+
+msgid "spotlight.noneExist"
+msgstr "Во моментов нема рефлектори."
+
+msgid "spotlight.spotlights"
+msgstr "Рефлектори"
+
+msgid "spotlight"
+msgstr "Рефлектор"
+
+msgid "grid.action.deleteRepresentative"
+msgstr "Избришете го овој претставник"
+
+msgid "grid.action.editRepresentative"
+msgstr "Уредете го овој Претставник"
+
+msgid "grid.action.addRepresentative"
+msgstr "Додај претставник"
+
+msgid "grid.catalogEntry.representativesDescription"
+msgstr ""
+"Следниот дел може да го оставите празен ако им дадете свои услуги на вашите "
+"клиенти."
+
+msgid "grid.catalogEntry.representativeIdType"
+msgstr "Тип на репрезентативна идентификација (се препорачува GLN)"
+
+msgid "grid.catalogEntry.representativeIdValue"
+msgstr "Идентификација на претставник"
+
+msgid "grid.catalogEntry.representativeWebsite"
+msgstr "Веб-страница"
+
+msgid "grid.catalogEntry.representativeEmail"
+msgstr "И-мејл адреса"
+
+msgid "grid.catalogEntry.representativePhone"
+msgstr "Телефон"
+
+msgid "grid.catalogEntry.representativeName"
+msgstr "Име"
+
+msgid "grid.catalogEntry.representativeRole"
+msgstr "Улога"
+
+msgid "grid.catalogEntry.representativeRoleChoice"
+msgstr "Одберете улога:"
+
+msgid "grid.catalogEntry.supplier"
+msgstr "Добавувач"
+
+msgid "grid.catalogEntry.agentTip"
+msgstr ""
+"Може да назначите агент да ве претставува на оваа дефинирана територија. Не "
+"е задолжително."
+
+msgid "grid.catalogEntry.agent"
+msgstr "Агент"
