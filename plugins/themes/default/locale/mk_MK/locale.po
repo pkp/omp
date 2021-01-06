@@ -1,6 +1,6 @@
 msgid ""
 msgstr ""
-"PO-Revision-Date: 2021-01-06 17:52+0000\n"
+"PO-Revision-Date: 2021-01-07 12:42+0000\n"
 "Last-Translator: Ivan Lazarevski <shredgod_lobos@hotmail.com>\n"
 "Language-Team: Macedonian <http://translate.pkp.sfu.ca/projects/omp/"
 "themes-default/mk_MK/>\n"
@@ -12,10 +12,10 @@ msgstr ""
 "X-Generator: Weblate 3.9.1\n"
 
 msgid "plugins.themes.default.option.useHomepageImageAsHeader.label"
-msgstr "Заднинска слика на насловот"
+msgstr "Заднинска слика на заглавието"
 
 msgid "plugins.themes.default.option.colour.description"
-msgstr "Одберете боја за насловот."
+msgstr "Одберете боја на заглавието."
 
 msgid "plugins.themes.default.option.colour.label"
 msgstr "Боја"
@@ -56,3 +56,12 @@ msgstr "Оваа функционалност ја имплементира ос
 
 msgid "plugins.themes.default.name"
 msgstr "Основна Тема"
+
+msgid "plugins.themes.default.option.useHomepageImageAsHeader.option"
+msgstr ""
+"Прикажете ја сликата за насловната страница како позадина на заглавието."
+
+msgid "plugins.themes.default.option.useHomepageImageAsHeader.description"
+msgstr ""
+"Кога ќе се прикачи слика за насловната страница, потребно е сликата да се "
+"прикаже во позадината на заглавието наместо вообичаеното место на страницата."
