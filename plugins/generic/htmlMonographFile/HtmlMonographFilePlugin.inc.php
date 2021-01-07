@@ -66,8 +66,7 @@ class HtmlMonographFilePlugin extends GenericPlugin {
 		$inline =& $params[4];
 		$request = Application::get()->getRequest();
 
-		$path = Services::get('file')->getPath($submissionFile->getData('fileId'));
-		$mimetype = Services::get('file')->fs->getMimetype($path);
+		$mimetype = $submissionFile->getData('mimetype');
 		if ($submissionFile && $mimetype == 'text/html') {
 			foreach ($submission->getData('publications') as $publication) {
 				if ($publication->getId() === $publicationFormat->getData('publicationId')) {
@@ -103,8 +102,7 @@ class HtmlMonographFilePlugin extends GenericPlugin {
 		$inline =& $params[4];
 		$request = Application::get()->getRequest();
 
-		$path = Services::get('file')->getPath($submissionFile->getData('fileId'));
-		$mimetype = Services::get('file')->fs->getMimetype($path);
+		$mimetype = $submissionFile->getData('mimetype');
 		if ($submissionFile && $mimetype == 'text/html') {
 			if (!HookRegistry::call('HtmlMonographFilePlugin::monographDownload', array(&$this, &$submission, &$publicationFormat, &$submissionFile, &$inline))) {
 				echo $this->_getHTMLContents($request, $submission, $publicationFormat, $submissionFile);
@@ -126,8 +124,7 @@ class HtmlMonographFilePlugin extends GenericPlugin {
 	 * @return string
 	 */
 	function _getHTMLContents($request, $monograph, $publicationFormat, $submissionFile) {
-		$path = Services::get('file')->getPath($submissionFile->getData('fileId'));
-		$contents = Services::get('file')->fs->read($path);
+		$contents = Services::get('file')->fs->read($submissionFile->getData('path'));
 
 		// Replace media file references
 		import('lib.pkp.classes.submission.SubmissionFile'); // Constants
