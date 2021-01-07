@@ -50,8 +50,7 @@ class GoogleScholarPlugin extends GenericPlugin {
 		$publicationFormat =& $args[2];
 		$submissionFile =& $args[3];
 
-		$path = Services::get('file')->getPath($submissionFile->getData('fileId'));
-		$mimetype = Services::get('file')->fs->getMimetype($path);
+		$mimetype = $submissionFile->getData('mimetype');
 		if ($mimetype == 'application/pdf') {
 			$request = Application::get()->getRequest();
 			$templateMgr = TemplateManager::getManager($request);

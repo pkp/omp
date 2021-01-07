@@ -64,9 +64,7 @@ class PdfJsViewerPlugin extends GenericPlugin {
 		$publicationFormat =& $args[2];
 		$submissionFile =& $args[3];
 
-		$path = Services::get('file')->getPath($submissionFile->getData('fileId'));
-		$mimetype = Services::get('file')->fs->getMimetype($path);
-		if ($mimetype == 'application/pdf') {
+		if ($submissionFile->getData('mimetype') == 'application/pdf') {
 			foreach ($submission->getData('publications') as $publication) {
 				if ($publication->getId() === $publicationFormat->getData('publicationId')) {
 					$filePublication = $publication;
@@ -103,8 +101,7 @@ class PdfJsViewerPlugin extends GenericPlugin {
 		$inline =& $params[4];
 
 		$request = Application::get()->getRequest();
-		$path = Services::get('file')->getPath($submissionFile->getData('fileId'));
-		$mimetype = Services::get('file')->fs->getMimetype($path);
+		$mimetype = $submissionFile->getData('mimetype');
 		if ($mimetype == 'application/pdf' && $request->getUserVar('inline')) {
 			// Turn on the inline flag to ensure that the content
 			// disposition header doesn't foil the PDF embedding

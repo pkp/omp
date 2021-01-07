@@ -262,7 +262,7 @@ class CatalogBookHandler extends Handler {
 		$submissionFile = DAORegistry::getDAO('SubmissionFileDAO')->getByBestId($bestFileId, $submission->getId());
 		if (!$submissionFile) $dispatcher->handle404();
 
-		$path = Services::get('file')->getPath($submissionFile->getData('fileId'));
+		$path = $submissionFile->getData('path');
 		$filename = Services::get('file')->formatFilename($path, $submissionFile->getLocalizedData('name'));
 		switch ($submissionFile->getData('assocType')) {
 			case ASSOC_TYPE_PUBLICATION_FORMAT: // Publication format file

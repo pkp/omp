@@ -261,10 +261,9 @@ class PublicationFormat extends Representation {
 			'assocIds' => [$this->getId()],
 		]);
 
-		$fileService = Services::get('file');
 		foreach ($stageMonographFiles as $monographFile) {
 			if ($monographFile->getViewable()) {
-				$fileSize += (int) $fileService->fs->getSize($fileService->getPath($monographFile->getData('fileId')));
+				$fileSize += (int) Services::get('file')->fs->getSize($monographFile->getData('path'));
 			}
 		}
 
