@@ -338,6 +338,7 @@ msgstr ""
 msgid "notification.type.visitCatalogTitle"
 msgstr "Stiùireadh a’ chatalog"
 
+#, fuzzy
 msgid "notification.type.visitCatalog"
 msgstr ""
 "Fhuair am monograf aonta. Tadhail air a’ chatalog a stiùireadh mion-"

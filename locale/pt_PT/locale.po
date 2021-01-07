@@ -1280,6 +1280,7 @@ msgstr ""
 "Foi-lhe negado acesso porque não parece ser um revisor válido para esta "
 "monografia."
 
+#, fuzzy
 msgid "notification.type.visitCatalog"
 msgstr ""
 "A monografia foi aprovada. Visite o Catálogo para gerir os detalhes do "

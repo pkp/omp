@@ -172,6 +172,7 @@ msgstr ""
 msgid "user.authorization.invalidReviewAssignment"
 msgstr "Du har ikke rettigheter til å få tilgang til denne vurderingen."
 
+#, fuzzy
 msgid "notification.type.visitCatalog"
 msgstr ""
 "Monografien er godkjent. Gå til 'Katalog' for å legge inn "

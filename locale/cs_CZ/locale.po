@@ -111,6 +111,7 @@ msgid "user.authorization.invalidReviewAssignment"
 msgstr ""
 "Přístup byl odepřen. Zdá se, že nejste platným recenzentem tohoto rukopisu."
 
+#, fuzzy
 msgid "notification.type.visitCatalog"
 msgstr ""
 "Monografie byla schválena. Navštivte prosím katalog kliknutím na odkaz výše, "

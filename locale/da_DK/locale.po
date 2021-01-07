@@ -1367,6 +1367,7 @@ msgstr "Der er ikke konfigureret nogen betalingsmetode."
 msgid "notification.type.configurePaymentMethod"
 msgstr "En konfigureret betalingsmetode er påkrævet, før du kan definere indstillinger for e-handel."
 
+#, fuzzy
 msgid "notification.type.visitCatalog"
 msgstr "Monografien er godkendt. Gå til 'Katalog' for at indskrive dets katalogoplysninger ved hjælp af katalog-linket ovenfor."
 

@@ -1138,6 +1138,7 @@ msgstr "Nessun metodo di pagamento configurato."
 msgid "notification.type.configurePaymentMethod"
 msgstr "È necessario definire una modalità di pagamento prima di definire i parametri del commercio elettronico."
 
+#, fuzzy
 msgid "notification.type.visitCatalog"
 msgstr "La monografia è stata approvata. Per favore, visita il Catalogo per gestire i dettagli, usando il link qui sopra."
 

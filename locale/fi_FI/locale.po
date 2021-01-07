@@ -1339,6 +1339,7 @@ msgstr "Maksutapaa ei ole määritetty."
 msgid "notification.type.configurePaymentMethod"
 msgstr "Määritetty maksutapa vaaditaan, ennen kuin voit määritellä verkkokaupan asetukset."
 
+#, fuzzy
 msgid "notification.type.visitCatalog"
 msgstr "Kirja on hyväksytty. Hallinnoidaksesi sen luettelotietoja, siirry Luetteloon yläpuolella olevan luettelolinkin kautta."
 

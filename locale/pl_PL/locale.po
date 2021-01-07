@@ -116,6 +116,7 @@ msgstr "Odmówiono dostępu. Nie jesteś autorem tej monografii."
 msgid "user.authorization.invalidReviewAssignment"
 msgstr "Odmówiono dostępu. Nie jesteś adekwatnym recenzentem do tej monografii."
 
+#, fuzzy
 msgid "notification.type.visitCatalog"
 msgstr ""
 "Monografia została zatwierdzona. Proszę odwiedź katalog, używając powyższego "

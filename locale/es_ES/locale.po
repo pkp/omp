@@ -1513,6 +1513,7 @@ msgstr "Imagen de cubierta"
 msgid "user.authorization.invalidPublishedSubmission"
 msgstr "Se ha especificado un envío publicado no válido."
 
+#, fuzzy
 msgid "notification.type.visitCatalog"
 msgstr ""
 "La monografía ha sido aceptada. Visite el catálogo para gestionar sus "

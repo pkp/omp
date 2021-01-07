@@ -1313,6 +1313,7 @@ msgstr "Registrar amb altres editorials"
 msgid "payment.directSales.numericOnly"
 msgstr "Els preus només poden ser numèrics. No incloeu símbols de moneda."
 
+#, fuzzy
 msgid "notification.type.visitCatalog"
 msgstr ""
 "S'ha acceptat la monografia. Visiteu el catàleg per gestionar-ne els detalls "
