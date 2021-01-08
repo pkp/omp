@@ -76,7 +76,7 @@ class PdfJsViewerPlugin extends GenericPlugin {
 			$dispatcher = $request->getDispatcher();
 			$templateMgr = TemplateManager::getManager($request);
 			$templateMgr->assign(array(
-				'pluginUrl' => $request->getBaseUrl() . DIRECTORY_SEPARATOR . $this->getPluginPath(),
+				'pluginUrl' => $request->getBaseUrl() . '/' . $this->getPluginPath(),
 				'isLatestPublication' => $submission->getData('currentPublicationId') === $publicationFormat->getData('publicationId'),
 				'filePublication' => $filePublication,
 			));
