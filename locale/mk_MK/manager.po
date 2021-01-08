@@ -1,2 +1,43 @@
 msgid ""
-msgstr "X-Generator: Weblate\nMIME-Version: 1.0\nContent-Type: text/plain; charset=UTF-8\nContent-Transfer-Encoding: 8bit"
+msgstr ""
+"PO-Revision-Date: 2021-01-08 14:52+0000\n"
+"Last-Translator: Blagoja Grozdanovski <blagoja.grozdanovski@gmail.com>\n"
+"Language-Team: Macedonian <http://translate.pkp.sfu.ca/projects/omp/manager/"
+"mk_MK/>\n"
+"Language: mk_MK\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=n==1 || n%10==1 ? 0 : 1;\n"
+"X-Generator: Weblate 3.9.1\n"
+
+msgid "manager.series.submissionIndexing"
+msgstr "Нема да бидат вклучени во индексирањето на изданието"
+
+msgid "manager.series.form.reviewFormId"
+msgstr "Ве молиме, проверете дали сте одбрале валидна форма за преглед."
+
+msgid "manager.series.form.mustAllowPermission"
+msgstr ""
+"Ве молиме, проверете дали е проверено најмалку едно поле за избор за секоја "
+"задача на Уредувач на серии."
+
+msgid "manager.languages.primaryLocaleInstructions"
+msgstr "Ова ќе биде стандардниот јазик за страницата за изданието."
+
+msgid "manager.languages.noneAvailable"
+msgstr ""
+"Извинете, не се достапни дополнителни јазици. Контактирајте го вашиот "
+"администратор на страницата ако сакате да користите дополнителни јазици со "
+"ова притискање."
+
+msgid "manager.language.confirmDefaultSettingsOverwrite"
+msgstr ""
+"Ова ќе ги замени сите поставки за изданието специфични за локацијата што сте "
+"ги имале за оваа локација"
+
+msgid "manager.series.indexed"
+msgstr "Индексирани"
+
+msgid "manager.series.open"
+msgstr "Отворете ги поднесоците"
