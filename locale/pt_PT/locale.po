@@ -1,6 +1,6 @@
 msgid ""
 msgstr ""
-"PO-Revision-Date: 2020-09-29 10:49+0000\n"
+"PO-Revision-Date: 2020-12-22 20:40+0000\n"
 "Last-Translator: Carla Marques <carla.marques@usdb.uminho.pt>\n"
 "Language-Team: Portuguese (Portugal) <http://translate.pkp.sfu.ca/projects/"
 "omp/locale/pt_PT/>\n"
@@ -269,7 +269,7 @@ msgstr "Entrada no catálogo não aprovada."
 
 msgid "grid.catalogEntry.availableRepresentation.removeMessage"
 msgstr ""
-"<p>Este formato estará <em> indisponível para os leitores</em>. Qualquer "
+"<p>Este formato estará <em>indisponível para os leitores</em>. Qualquer "
 "ficheiro descarregável ou outras distribuições deixarão de aparecer na "
 "entrada do livro no catálogo .</p>"
 
@@ -306,10 +306,10 @@ msgid "grid.catalogEntry.availability"
 msgstr "Disponibilidade"
 
 msgid "grid.catalogEntry.publicationFormatRequired"
-msgstr "Deve ser escolhido um formato de publicação."
+msgstr "Deve ser selecionado um formato de publicação."
 
 msgid "grid.catalogEntry.monographRequired"
-msgstr "É necessário o id da monoografia."
+msgstr "O ID da monoografia é obrigatório."
 
 msgid "grid.catalogEntry.remoteURL"
 msgstr "URL do conteúdo alojado remotamente"
@@ -324,10 +324,10 @@ msgid "grid.catalogEntry.publicationFormatDetails"
 msgstr "Detalhes do Formato"
 
 msgid "grid.catalogEntry.validPriceRequired"
-msgstr "É necessário um preço válido."
+msgstr "Um preço válido é obrigatório."
 
 msgid "grid.catalogEntry.nameRequired"
-msgstr "É necessário um nome."
+msgstr "O nome é obrigatório."
 
 msgid "grid.catalogEntry.publicationFormatType"
 msgstr "Formato de publicação"
@@ -341,7 +341,7 @@ msgstr ""
 "monografia.</p>"
 
 msgid "monograph.publicationFormat.missingONIXFields"
-msgstr "Faltam alguns campos de metadados."
+msgstr "Faltam alguns metadados."
 
 msgid "monograph.publicationFormat.noCodesAssigned"
 msgstr "Falta um código de identificação."
@@ -361,10 +361,10 @@ msgid "monograph.publicationFormat.taxRate"
 msgstr "Taxa de imposto"
 
 msgid "monograph.publicationFormat.productRegion"
-msgstr "Região de Distribuição de Produto"
+msgstr "Região de Distribuição"
 
 msgid "monograph.publicationFormat.technicalProtection"
-msgstr "Protecção Técnica Digital"
+msgstr "Proteção Técnica Digital"
 
 msgid "monograph.publicationFormat.countryOfManufacture"
 msgstr "País de Produção"
@@ -382,7 +382,7 @@ msgid "monograph.publicationFormat.productHeight"
 msgstr "Altura"
 
 msgid "monograph.publicationFormat.productFileSize.override"
-msgstr "Introduz o valor do tamanho do seu ficheiro?"
+msgstr "Introduzir o tamanho do seu ficheiro?"
 
 msgid "monograph.publicationFormat.productFileSize"
 msgstr "Tamanho do ficheiro em Mbytes"
@@ -409,7 +409,7 @@ msgid "monograph.publicationFormat.priceType"
 msgstr "Tipo de Preço"
 
 msgid "monograph.publicationFormat.priceRequired"
-msgstr "É necessário um preço."
+msgstr "O preço é obrigatório."
 
 msgid "monograph.publicationFormat.price"
 msgstr "Preço"
@@ -424,10 +424,10 @@ msgid "monograph.publicationFormat.productComposition"
 msgstr "Composição do produto"
 
 msgid "monograph.publicationFormat.backMatterCount"
-msgstr "Cólofon"
+msgstr "Páginas finais"
 
 msgid "monograph.publicationFormat.frontMatterCount"
-msgstr "Frontispício"
+msgstr "Páginas iniciais"
 
 msgid "monograph.publicationFormat.pageCounts"
 msgstr "Número de páginas"
@@ -443,13 +443,12 @@ msgstr "Adicionar à tarefa"
 
 msgid "monograph.proofReadingDescription"
 msgstr ""
-"O editor de layout carrega aqui os arquivos prontos para a produção que "
-"foram preparados para publicação. Utilize <em>+Assign</em> para designar "
-"autores e outros para rever as provas de página, com os ficheiros corrigidos "
-"carregados para aprovação antes da publicação."
+"O editor de layout carrega aqui os ficheiros prontos para publicação. "
+"Utilize <em>+Designar</em> para designar autores e outros para rever as "
+"provas, adicionando ficheiros corrigidos para aprovação antes da publicação."
 
 msgid "submission.pageProofs"
-msgstr "Provas de página"
+msgstr "Revisão de provas"
 
 msgid "monograph.type"
 msgstr "Tipo de Submissão"
@@ -473,25 +472,25 @@ msgid "monograph.languages"
 msgstr "Idiomas (Inglês, Francês, Espanhol)"
 
 msgid "monograph.audience.rangeExact"
-msgstr "Alcance de audiência (exato)"
+msgstr "Alcance de público (exato)"
 
 msgid "monograph.audience.rangeTo"
-msgstr "Alcance de audiência (a)"
+msgstr "Alcance de público (a)"
 
 msgid "monograph.audience.rangeFrom"
-msgstr "Alcance de audiência (de)"
+msgstr "Alcance de público (de)"
 
 msgid "monograph.audience.rangeQualifier"
-msgstr "Qualificadores de alcance de audiência"
+msgstr "Qualificadores de alcance de público"
 
 msgid "monograph.coverImage"
 msgstr "Imagem da capa"
 
 msgid "monograph.audience.success"
-msgstr "Os detalhes de audiência foram atualizados."
+msgstr "Os detalhes do público foram atualizados."
 
 msgid "monograph.audience"
-msgstr "Audiência"
+msgstr "Público"
 
 msgid "catalog.manage.newReleases"
 msgstr "Novos Lançamentos"
@@ -1281,6 +1280,7 @@ msgstr ""
 "Foi-lhe negado acesso porque não parece ser um revisor válido para esta "
 "monografia."
 
+#, fuzzy
 msgid "notification.type.visitCatalog"
 msgstr ""
 "A monografia foi aprovada. Visite o Catálogo para gerir os detalhes do "
@@ -1597,3 +1597,21 @@ msgstr ""
 "Sim, concordo em ter os meus dados recolhidos e armazenados de acordo com a  "
 "<a href=\"{$privacyUrl}\" target=\"_blank\">política de privacidade</a> da "
 "editora."
+
+msgid "about.aboutSoftware"
+msgstr "Sobre o Open Monograph Press"
+
+msgid "user.authorization.representationNotFound"
+msgstr "O formato de publicação solicitado não pode ser encontrado."
+
+msgid "catalog.manage.findSubmissions"
+msgstr "Pesquisar monografias para adicionar ao catálogo"
+
+msgid "catalog.manage.submissionsNotFound"
+msgstr "Uma ou mais submissões não foram encontradas."
+
+msgid "catalog.manage.noSubmissionsSelected"
+msgstr "Não existem submissões selecionadas para serem adicionadas ao catálogo."
+
+msgid "common.payments"
+msgstr "Pagamentos"

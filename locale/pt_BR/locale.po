@@ -1342,6 +1342,7 @@ msgstr "Capa"
 msgid "user.authorization.invalidPublishedSubmission"
 msgstr "Uma submissão inválida publicada foi especificada."
 
+#, fuzzy
 msgid "notification.type.visitCatalog"
 msgstr ""
 "A monografia foi aprovada. Visite o Catálogo para gerenciar seus detalhes de "

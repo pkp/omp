@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2020-02-13T19:56:53+00:00\n"
-"PO-Revision-Date: 2020-10-15 05:37+0000\n"
+"PO-Revision-Date: 2020-12-11 20:34+0000\n"
 "Last-Translator: Antti-Jussi Nygård <ajnyga@gmail.com>\n"
 "Language-Team: Finnish <http://translate.pkp.sfu.ca/projects/omp/manager/"
 "fi_FI/>\n"
@@ -1427,3 +1427,31 @@ msgstr ""
 
 msgid "manager.setup.contextAbout"
 msgstr "Tietoa julkaisijasta"
+
+msgid "manager.setup.disableSubmissions.description"
+msgstr ""
+"Estä käyttäjiä lähettämästä uusia teoksia julkaisijalle. Käsikirjoitukset "
+"yksittäisiin julkaisijan sarjoihin voidaan estää <a href=\"{$url}\">"
+"julkaisijan sarjojen</a> asetussivulla."
+
+msgid "manager.setup.disableSubmissions.notAccepting"
+msgstr ""
+"Julkaisija ei ota vastaan käsikirjoituksia tällä hetkellä. Käy työnkulun "
+"asetuksissa sallimassa käsikirjoitukset."
+
+msgid "manager.series.confirmDeactivateSeries.error"
+msgstr ""
+"Vähintään yhden sarjan tulee olla käytössä. Käy työnkulun asetuksissa "
+"estämässä käsikirjoitusten lähettäminen tälle julkaisijalle."
+
+msgid "plugins.importexport.native.exportSubmissions"
+msgstr "Vie käsikirjoituksia"
+
+msgid "plugins.importexport.common.invalidXML"
+msgstr "Virheellinen XML:"
+
+msgid "plugins.importexport.common.error.validation"
+msgstr "Valittuja kohteita ei voitu muuntaa."
+
+msgid "plugins.importexport.common.error.noObjectsSelected"
+msgstr "Yhtään kohdetta ei ole valittu."

@@ -29,7 +29,7 @@ System Requirements
 -------------------
 Recommended server requirements:
 
-	* PHP >= 7.2
+	* PHP >= 7.3
 	* MySQL >= 4.1.1 or PostgreSQL >= 9.1.5
 	* Apache >= 1.3.2x or >= 2.0.4x or Microsoft IIS 6
 	* Operating system: Any OS that supports the above software, including
@@ -80,10 +80,7 @@ To install OMP:
 	       to manually overwrite this file during installation)
 	     * public
 	     * cache
-	     * cache/t_cache
-	     * cache/t_config
-	     * cache/t_compile
-	     * cache/_db
+	     * plugins (for plugin installation via the web interface)
 	
 	3. Create a directory to store uploaded files (submission files, etc.)
 	   and make this directory writeable. It is recommended that this

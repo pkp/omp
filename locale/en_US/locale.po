@@ -1340,7 +1340,7 @@ msgid "notification.type.visitCatalogTitle"
 msgstr "Catalog Management"
 
 msgid "notification.type.visitCatalog"
-msgstr "The monograph has been approved. Please visit Catalog to manage its catalog details, using the catalog link just above."
+msgstr "The monograph has been approved. Please visit Marketing and Publication to manage its catalog details, using the links just above."
 
 msgid "user.authorization.invalidReviewAssignment"
 msgstr "You have been denied access because you do not seem to be a valid reviewer for this monograph."

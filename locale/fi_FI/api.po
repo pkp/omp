@@ -1,6 +1,6 @@
 msgid ""
 msgstr ""
-"PO-Revision-Date: 2020-10-18 16:48+0000\n"
+"PO-Revision-Date: 2020-12-11 17:22+0000\n"
 "Last-Translator: Antti-Jussi Nygård <ajnyga@gmail.com>\n"
 "Language-Team: Finnish <http://translate.pkp.sfu.ca/projects/omp/api/fi_FI/>"
 "\n"
@@ -28,3 +28,10 @@ msgstr "Pyytämäsi julkaistu versio ei kuulu tälle julkaisijalle."
 msgid "api.emailTemplates.403.notAllowedChangeContext"
 msgstr ""
 "Sinulla ei ole lupaa siirtää tätä sähköpostipohjaa toiseen julkaisijaan."
+
+msgid "api.submissions.400.submissionsNotFound"
+msgstr "Yhtä tai useampaa määrittämääsi käsikirjoitusta ei löytynyt."
+
+msgid "api.submissions.400.submissionIdsRequired"
+msgstr ""
+"Anna yhden tai useamman luetteloon lisättävän käsikirjoituksen ID-tunniste."

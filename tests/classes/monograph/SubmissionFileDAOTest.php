@@ -201,7 +201,11 @@ class SubmissionFileDAOTest extends DatabaseTestCase {
 		$submissionFileDao->updateObject($submissionFile2);
 		$submissionFile2 = $submissionFileDao->getById($submissionFile2->getId());
 		self::assertEquals($submissionFile2->getData('fileId'), $fileId3);
-		$revisionFileIds = Services::get('submissionFile')->getRevisionFileIds($submissionFile2->getId());
+		$revisions = $submissionFileDao->getRevisions($submissionFile2->getId());
+		$revisionFileIds = [];
+		foreach ($revisions as $revision) {
+			$revisionFileIds[] = $revision->fileId;
+		}
 		self::assertEquals($revisionFileIds, [$fileId3, $fileId2]);
 
 		// Delete a file

@@ -1,0 +1,184 @@
+msgid ""
+msgstr ""
+"PO-Revision-Date: 2021-01-04 22:32+0000\n"
+"Last-Translator: Blagoja Grozdanovski <blagoja.grozdanovski@gmail.com>\n"
+"Language-Team: Macedonian <http://translate.pkp.sfu.ca/projects/omp/default/"
+"mk_MK/>\n"
+"Language: mk_MK\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=n==1 || n%10==1 ? 0 : 1;\n"
+"X-Generator: Weblate 3.9.1\n"
+
+msgid "default.groups.abbrev.externalReviewer"
+msgstr "НР"
+
+msgid "default.groups.plural.externalReviewer"
+msgstr "Надворешни Рецензенти"
+
+msgid "default.groups.name.externalReviewer"
+msgstr "Надворешен Рецензент"
+
+msgid "default.contextSettings.forLibrarians"
+msgstr ""
+"Ние ги охрабруваме библиотекарите за истражување да го наведат ова издание "
+"меѓу електронските изданија на нивната библиотека. Исто така, овој систем за "
+"објавување со отворен извор е погоден за библиотеки да ги зачувуваат на "
+"нивните членови на факултет за да ги користат со изданието што го вклучуваат "
+"во уредувањето (видете <a href=\"http://pkp.sfu.ca/omp\"> Отвори монографско "
+"издание </a>)."
+
+msgid "default.contextSettings.forAuthors"
+msgstr ""
+"Заинтересирани сте да се пријавите на ова издание? Препорачуваме да ја "
+"прегледате <a href=\"{$indexUrl}/{$contextPath}/about\"> За страницата "
+"„Издание“</a> страницата за политиките на делот за изданието и <a href = \"{$"
+" indexUrl} / { $textPath} / about / submissions # authorGuidelines \"> "
+"Упатства за автори </a> Авторите треба да <a href=\""
+"{$indexUrl}/{$contextPath}/user/register\"> регистрираат </a> со изданието "
+"пред да ги достават, или ако веќе се регистрирани можат едноставно <a href = "
+"\"{$ indexUrl} / index / login \"> најавете се </a> и започнете го процесот "
+"со 5 чекори."
+
+msgid "default.contextSettings.forReaders"
+msgstr ""
+"Ние ги охрабруваме читателите да се пријават на услугата за известување за "
+"објавување за ова издание. Користете ја врската <a href=\""
+"{$indexUrl}/{$contextPath}/user/register\"> Регистрирај се </a> на горниот "
+"дел од почетната страница за изданието. Оваа регистрација ќе резултира со "
+"тоа што читателот ќе ја добие Содржината по е-пошта за секоја нова "
+"монографија на изданието. Оваа листа исто така му овозможува на изданието да "
+"бара одредено ниво на поддршка или читателска публика. Погледнете го "
+"изданието <a href=\"{$indexUrl}/{$contextPath}/about/submissions#"
+"privacyStatement\"> Изјава за приватност </a> што ги уверува читателите дека "
+"нивното име и адреса на е-пошта нема да се користат за други цели."
+
+msgid "default.contextSettings.emailSignature"
+msgstr ""
+"<br/>\n"
+"____________________________________________________________________________ "
+"<br/>\n"
+"<a href=\"{$ldelim}$contextUrl{$rdelim}\"> {$ ldelim} $textName {$ rdelim} "
+"</a>"
+
+msgid "default.contextSettings.openAccessPolicy"
+msgstr ""
+"Ова издание обезбедува непосреден отворен пристап до неговата содржина врз "
+"принципот дека ставањето истражувања слободно достапни за јавноста поддржува "
+"поголема глобална размена на знаење."
+
+msgid "default.contextSettings.privacyStatement"
+msgstr ""
+"<p> Имињата и адресите за е-пошта внесени на оваа страница за изданието ќе "
+"се користат исклучиво за наведените цели на ова издание и нема да бидат "
+"достапни за било која друга цел или на било која друга страна. </p>"
+
+msgid "default.contextSettings.checklist.bibliographicRequirements"
+msgstr ""
+"Текстот се придржува до стилските и библиографските барања наведени во <a "
+"href=\"{$indexUrl}/{$contextPath}/about/submissions#authorGuidelines\" "
+"target=\"_blank\"> Упатства за автори </a>, што се наоѓаат во За Изданието."
+
+msgid "default.contextSettings.checklist.submissionAppearance"
+msgstr ""
+"Текстот е еднопростор; користи фонт бр. 12; применува ракописно пишување, "
+"наместо подвлекување (освен со URL адреси); и сите илустрации, слики и "
+"табели се ставаат во текстот во соодветните точки, наместо на крајот."
+
+msgid "default.contextSettings.checklist.addressesLinked"
+msgstr "Онаму каде што е достапно, обезбедени се URL-адреси за референци."
+
+msgid "default.contextSettings.checklist.fileFormat"
+msgstr ""
+"Датотеката за поднесување е во формат на датотека Microsoft Word, RTF или "
+"OpenDocument."
+
+msgid "default.contextSettings.checklist.notPreviouslyPublished"
+msgstr ""
+"Поднесокот не е објавен претходно, ниту е пред друго издание за разгледување "
+"(или е дадено објаснување во Коментари до уредникот)."
+
+msgid "default.groups.abbrev.volumeEditor"
+msgstr "ВЕ"
+
+msgid "default.groups.plural.volumeEditor"
+msgstr "Уредници на Том"
+
+msgid "default.groups.name.volumeEditor"
+msgstr "Уредник на Том"
+
+msgid "default.groups.abbrev.chapterAuthor"
+msgstr "ЦА"
+
+msgid "default.groups.plural.chapterAuthor"
+msgstr "Автори на Глава"
+
+msgid "default.groups.name.chapterAuthor"
+msgstr "Автор на Глава"
+
+msgid "default.groups.abbrev.sectionEditor"
+msgstr "КкбИ"
+
+msgid "default.groups.plural.sectionEditor"
+msgstr "Уредници на серии"
+
+msgid "default.groups.name.sectionEditor"
+msgstr "Уредник на серии"
+
+msgid "default.groups.abbrev.editor"
+msgstr "ПЕ"
+
+msgid "default.groups.plural.editor"
+msgstr "Уредници на издание"
+
+msgid "default.groups.name.editor"
+msgstr "Уредник на издание"
+
+msgid "default.groups.abbrev.manager"
+msgstr "ПМ"
+
+msgid "default.groups.plural.manager"
+msgstr "Менаџери за издание"
+
+msgid "default.groups.name.manager"
+msgstr "Менаџер за издание"
+
+msgid "default.genres.other"
+msgstr "Останато"
+
+msgid "default.genres.illustration"
+msgstr "Илустрација"
+
+msgid "default.genres.photo"
+msgstr "Фотографија"
+
+msgid "default.genres.figure"
+msgstr "Број"
+
+msgid "default.genres.table"
+msgstr "Содржина"
+
+msgid "default.genres.prospectus"
+msgstr "Проспект"
+
+msgid "default.genres.preface"
+msgstr "Вовед"
+
+msgid "default.genres.index"
+msgstr "Индекс"
+
+msgid "default.genres.glossary"
+msgstr "Речник"
+
+msgid "default.genres.chapter"
+msgstr "Манускрипт на Глава"
+
+msgid "default.genres.manuscript"
+msgstr "Манускрипт на Книга"
+
+msgid "default.genres.bibliography"
+msgstr "Библиографија"
+
+msgid "default.genres.appendix"
+msgstr "Додаток"
