@@ -183,7 +183,7 @@ class OAIDAO extends PKPOAIDAO {
 	 * @param $set string
 	 * @param $submissionId int Optional
 	 * @param $orderBy string UNFILTERED
-	 * @return ADORecordSet
+	 * @return Iterable
 	 */
 	function _getRecordsRecordSet($setIds, $from, $until, $set, $submissionId = null, $orderBy = 'press_id, data_object_id') {
 		$pressId = array_shift($setIds);
