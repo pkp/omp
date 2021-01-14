@@ -1095,7 +1095,7 @@ msgid "installer.installApplication"
 msgstr "Install Open Monograph Press"
 
 msgid "installer.updatingInstructions"
-msgstr "If you are upgrading an existing installation of OJS, <a href=\"{$upgradeUrl}\">click here</a> to proceed."
+msgstr "If you are upgrading an existing installation of OMP, <a href=\"{$upgradeUrl}\">click here</a> to proceed."
 
 msgid "installer.installationInstructions"
 msgstr ""
