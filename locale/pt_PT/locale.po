@@ -900,6 +900,7 @@ msgstr "{$number} títulos correspondem à sua pesquisa por \"{$searchQuery}\"."
 msgid "installer.preInstallationInstructionsTitle"
 msgstr "Passos de Pré-Instalação"
 
+#, fuzzy
 msgid "installer.installationInstructions"
 msgstr ""
 "\n"

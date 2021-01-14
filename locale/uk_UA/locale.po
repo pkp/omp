@@ -996,6 +996,7 @@ msgstr ""
 msgid "installer.preInstallationInstructionsTitle"
 msgstr "Кроки підготовки до встановлення"
 
+#, fuzzy
 msgid "installer.installationInstructions"
 msgstr ""
 "\n"

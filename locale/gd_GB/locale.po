@@ -1271,6 +1271,7 @@ msgstr "Chaidh an còd ID a chur ris."
 msgid "notification.editedIdentificationCode"
 msgstr "Chaidh an còd ID a dheasachadh."
 
+#, fuzzy
 msgid "installer.installationInstructions"
 msgstr ""
 "\n"
