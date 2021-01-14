@@ -43,6 +43,10 @@ class OMPv3_3_0UpgradeMigration extends Migration {
 		// Delete the old MODS34 filters
 		Capsule::statement("DELETE FROM filters WHERE class_name='plugins.metadata.mods34.filter.Mods34SchemaMonographAdapter'");
 		Capsule::statement("DELETE FROM filter_groups WHERE symbolic IN ('monograph=>mods34', 'mods34=>monograph')");
+
+		// pkp/pkp-lib#6604 ONIX filters still refer to Monograph rather than Submission
+		Capsule::statement("UPDATE filter_groups SET input_type = 'class::classes.submission.Submission' WHERE input_type = 'class::classes.monograph.Monograph';");
+		Capsule::statement("UPDATE filter_groups SET output_type = 'class::classes.submission.Submission[]' WHERE input_type = 'class::classes.monograph.Monograph[]';");
 	}
 
 	/**
