@@ -958,6 +958,7 @@ msgstr "Aggiornamento di OMP"
 msgid "installer.installApplication"
 msgstr "Installa Open Monograph Press"
 
+#, fuzzy
 msgid "installer.installationInstructions"
 msgstr "<p>Grazie per aver scaricato <strong>Open Monograph Press {$version}</strong> del Public Knowledge Project. Prima di continuare, leggi il file <a href=\"{$baseUrl}/docs/README\">README</a> incluso in questo software. Per maggiori informazioni sul Public Knowledge Project e i suoi progetti di software, per favore visita il <a href=\"http://pkp.sfu.ca/\" target=\"_blank\">sito web PKP</a>. Se ti imbatti in bug oppure vuoi porre quesiti tecnici su Open Monograph Press, vai sul <a href=\"http://pkp.sfu.ca/support/forum\" target=\"_blank\">forum di supporto</a> oppure visita il <a href=\"http://pkp.sfu.ca/bugzilla/\" target=\"_blank\">sistema di bug reporting</a> online di PKP. Benché il forum di supporto sia il modo preferito per questo tipo di contatti, puoi anche inviare una email al team usando questo indirizzo: <a href=\"mailto:pkp.contact@gmail.com\">pkp.contact@gmail.com</a>.</p><h4>Aggiornamento</h4> <p>Se stai aggiornando una installazione esistente di OMP, <a href=\"{$upgradeUrl}\">clicca qui</a> per procedere.</p>"
 

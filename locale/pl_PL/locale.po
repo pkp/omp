@@ -411,6 +411,7 @@ msgstr ""
 "limiet (e.g. Apache's \"Timeout\" directive) i proces aktualizacji zostanie "
 "przerwany, będzie wymagana konfiguracja manualna.</p>"
 
+#, fuzzy
 msgid "installer.installationInstructions"
 msgstr ""
 "\n"

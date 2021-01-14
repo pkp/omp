@@ -917,6 +917,7 @@ msgstr "Actualización OMP"
 msgid "installer.installApplication"
 msgstr "Instalar Open Monograph Press"
 
+#, fuzzy
 msgid "installer.installationInstructions"
 msgstr ""
 "\n"
