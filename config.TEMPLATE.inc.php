@@ -102,7 +102,8 @@ trust_x_forwarded_for = Off
 
 ; Allow javascript files to be served through a content delivery network (set to
 ; off to use local files)
-enable_cdn = On
+; This setting was deprecated in 3.3, but custom themes may continue to make use of it
+enable_cdn = Off
 
 ; Set the following parameter to off if you want to work with the uncompiled
 ; (non-minified) JavaScript source for debugging or if you are working off a
