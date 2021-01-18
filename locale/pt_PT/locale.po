@@ -1,6 +1,6 @@
 msgid ""
 msgstr ""
-"PO-Revision-Date: 2020-12-22 20:40+0000\n"
+"PO-Revision-Date: 2021-01-18 15:16+0000\n"
 "Last-Translator: Carla Marques <carla.marques@usdb.uminho.pt>\n"
 "Language-Team: Portuguese (Portugal) <http://translate.pkp.sfu.ca/projects/"
 "omp/locale/pt_PT/>\n"
@@ -945,13 +945,15 @@ msgstr ""
 "livremente distribuído pelo <a href=\"http://pkp.sfu.ca/\">Public Knowledge "
 "Project</a> sob a Licença Públicar Geral GNU."
 
-#, fuzzy
 msgid "about.aboutOMPPress"
 msgstr ""
-"Esta editora utiliza o Open Monograph Press {$ompVersion}, um software em "
-"open source para gestão e publicação editorial, desenvolvida, suportada e "
-"gratuitamente distribuída pelo <a href=\"http://pkp.sfu.ca/\">Public "
-"Knowledge Project</a> sob a Lincença Pública geral GNU."
+"Esta editora usa o Open Monograph Press {$ompVersion}, um software em open "
+"source de gestão editorial e publicação para editoras desenvolvido, "
+"suportado, e distribuído gratuitamente pelo Public Knowledge Project sob a "
+"GNU General Public License. Visite o website do PKP para <a href=\""
+"http://pkp.sfu.ca/\">saber mais sobre o software</a>. <a href=\"{$contactUrl}"
+"\">Contacte a editora</a> diretamente para questões sobre a editora e "
+"submissões à editora."
 
 msgid "about.aboutThisPublishingSystem.altText"
 msgstr "Processo Editorial e de Publicação do OMP"
@@ -1616,3 +1618,8 @@ msgstr "Não existem submissões selecionadas para serem adicionadas ao catálog
 
 msgid "common.payments"
 msgstr "Pagamentos"
+
+msgid "installer.updatingInstructions"
+msgstr ""
+"Se está a atualizar uma instalação existente do OMP,  <a href=\"{$upgradeUrl}"
+"\">clique aqui</a> para continuar."
