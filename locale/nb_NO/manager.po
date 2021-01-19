@@ -1,6 +1,6 @@
 msgid ""
 msgstr ""
-"PO-Revision-Date: 2021-01-16 12:53+0000\n"
+"PO-Revision-Date: 2021-01-20 02:01+0000\n"
 "Last-Translator: Eirik Hanssen <eirikh@oslomet.no>\n"
 "Language-Team: Norwegian Bokmål <http://translate.pkp.sfu.ca/projects/omp/"
 "manager/nb_NO/>\n"
@@ -1377,3 +1377,31 @@ msgstr "Tilbakestill monografirettigheter"
 
 msgid "manager.publication.library"
 msgstr "Utgivers bibliotek"
+
+msgid "plugins.importexport.native.exportSubmissions"
+msgstr "Eksporter innleveringer"
+
+msgid "plugins.importexport.common.invalidXML"
+msgstr "Ugyldig XML:"
+
+msgid "plugins.importexport.common.error.validation"
+msgstr "Kunne ikke konvertere valgte objekt."
+
+msgid "plugins.importexport.common.error.noObjectsSelected"
+msgstr "Ingen objekt valgt."
+
+msgid "manager.setup.disableSubmissions.description"
+msgstr ""
+"Forhindre brukere fra å sende inn nye innleveringer til utgiveren. "
+"Innleveringer kan deaktiveres for individuelle serier på siden <a href=\""
+"{$url}\">utgiverserier</a>."
+
+msgid "manager.setup.disableSubmissions.notAccepting"
+msgstr ""
+"Denne utgiveren tar ikke imot innleveringer på nåværende tidspunkt. Gå til "
+"arbeidsflytinnstillingene for å tillate innleveringer."
+
+msgid "manager.series.confirmDeactivateSeries.error"
+msgstr ""
+"Minst en serie må være aktiv. Gå til arbeidsflytinnstillingene for å "
+"deaktivere alle innleveringer til denne utgiveren."
