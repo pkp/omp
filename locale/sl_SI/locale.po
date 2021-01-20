@@ -1018,6 +1018,7 @@ msgstr "Nadgradnja OMP"
 msgid "installer.installApplication"
 msgstr "Namestitev Open Monograph Press"
 
+#, fuzzy
 msgid "installer.installationInstructions"
 msgstr ""
 "\n"

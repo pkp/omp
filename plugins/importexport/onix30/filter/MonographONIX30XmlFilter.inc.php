@@ -374,8 +374,8 @@ class MonographONIX30XmlFilter extends NativeExportFilter {
 		$subjectNode->appendChild($this->_buildTextNode($doc, 'SubjectSchemeIdentifier', '12')); // 12 is BIC subject category code list.
 		$subjectNode->appendChild($this->_buildTextNode($doc, 'SubjectSchemeVersion', '2')); // Version 2 of ^^
 
-		$submissionSubjectDao =& DAORegistry::getDAO('SubmissionSubjectDAO');
-		$allSubjects =& $submissionSubjectDao->getSubjects($publication->getId(),  array_keys(AppLocale::getSupportedFormLocales()));
+		$submissionSubjectDao = DAORegistry::getDAO('SubmissionSubjectDAO');
+		$allSubjects = $submissionSubjectDao->getSubjects($publication->getId(),  array_keys(AppLocale::getSupportedFormLocales()));
 		$uniqueSubjects = array();
 		foreach ($allSubjects as $locale => $subjects) {
 			$uniqueSubjects = array_merge($uniqueSubjects, $subjects);
@@ -712,7 +712,7 @@ class MonographONIX30XmlFilter extends NativeExportFilter {
 	 * @return DOMElement
 	 */
 	function _createMeasurementNode($doc, $deployment, $type, $measurement, $unitCode) {
-		$measureNode =& $doc->createElementNS($deployment->getNamespace(), 'Measure');
+		$measureNode = $doc->createElementNS($deployment->getNamespace(), 'Measure');
 
 		$measureTypeNode = $doc->createElementNS($deployment->getNamespace(), 'MeasureType');
 		$measureTypeNode->appendChild($doc->createTextNode($type));
@@ -740,7 +740,7 @@ class MonographONIX30XmlFilter extends NativeExportFilter {
 	 * @return DOMElement
 	 */
 	function _createExtentNode($doc, $deployment, $type, $extentValue, $extentUnit) {
-		$extentNode =& $doc->createElementNS($deployment->getNamespace(), 'Extent');
+		$extentNode = $doc->createElementNS($deployment->getNamespace(), 'Extent');
 
 		$typeNode = $doc->createElementNS($deployment->getNamespace(), 'ExtentType');
 		$typeNode->appendChild($doc->createTextNode($type));

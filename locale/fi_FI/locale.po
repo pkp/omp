@@ -1090,6 +1090,7 @@ msgstr "OMP:n päivitys"
 msgid "installer.installApplication"
 msgstr "Asenna Open Monograph Press"
 
+#, fuzzy
 msgid "installer.installationInstructions"
 msgstr ""
 "\n"

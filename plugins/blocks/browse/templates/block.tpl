@@ -34,7 +34,7 @@
 				<li class="has_submenu">
 					{translate key="plugins.block.browse.category"}
 					<ul>
-						{foreach from=browseCategories item=browseCategory}
+						{foreach from=$browseCategories item="browseCategory"}
 							<li class="category_{$browseCategory->getId()}{if $browseCategory->getParentId()} is_sub{/if}{if $browseBlockSelectedCategory == $browseCategory->getPath()} current{/if}">
 								<a href="{url router=$smarty.const.ROUTE_PAGE page="catalog" op="category" path=$browseCategory->getPath()|escape}">
 									{$browseCategory->getLocalizedTitle()|escape}
