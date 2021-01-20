@@ -414,13 +414,19 @@ class PublicationService extends PKPPublicationService {
 		$submission = Services::get('submission')->get($newPublication->getData('submissionId'));
 		$submissionContext = Services::get('context')->get($submission->getData('contextId'));
 
-		// Create tombstones for each publication format.
+		// Create tombstones for each published publication format.
 		$publicationFormats = \DAORegistry::getDAO('PublicationFormatDAO')
 			->getByPublicationId($newPublication->getId())
 			->toAssociativeArray();
+		$publishedFormats = [];
+		foreach ($publicationFormats as $publicationFormat) {
+			if ($publicationFormat->getIsAvailable() && $publicationFormat->getIsApproved()) {
+				$publishedFormats[] = $publicationFormat;
+			}
+		}
 		import('classes.publicationFormat.PublicationFormatTombstoneManager');
 		$publicationFormatTombstoneMgr = new \PublicationFormatTombstoneManager();
-		$publicationFormatTombstoneMgr->insertTombstonesByPublicationFormats($publicationFormats, $submissionContext);
+		$publicationFormatTombstoneMgr->insertTombstonesByPublicationFormats($publishedFormats, $submissionContext);
 
 		// Update notification
 		$request = \Application::get()->getRequest();

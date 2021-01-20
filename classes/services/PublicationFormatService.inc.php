@@ -44,16 +44,11 @@ class PublicationFormatService {
 		$submissionFiles = Services::get('submissionFile')->getMany([
 			'submissionIds' => [$submission->getId()],
 			'assocTypes' => [ASSOC_TYPE_REPRESENTATION],
-			'assocIds' => $publicationFormat->getId(),
+			'assocIds' => [$publicationFormat->getId()],
 		]);
 		foreach ($submissionFiles as $submissionFile) {
 			Services::get('submissionFile')->delete($submissionFile);
 		}
-
-		// Create a tombstone for this publication format.
-		import('classes.publicationFormat.PublicationFormatTombstoneManager');
-		$publicationFormatTombstoneMgr = new \PublicationFormatTombstoneManager();
-		$publicationFormatTombstoneMgr->insertTombstoneByPublicationFormat($publicationFormat, $context);
 
 		// Log the deletion of the format.
 		import('lib.pkp.classes.log.SubmissionLog');
