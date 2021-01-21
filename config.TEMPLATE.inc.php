@@ -100,10 +100,6 @@ restful_urls = Off
 ; Warning: This defaults to "On" if unset for backwards compatibility.
 trust_x_forwarded_for = Off
 
-; Allow javascript files to be served through a content delivery network (set to
-; off to use local files)
-enable_cdn = On
-
 ; Set the following parameter to off if you want to work with the uncompiled
 ; (non-minified) JavaScript source for debugging or if you are working off a
 ; development branch without compiled JavaScript.
