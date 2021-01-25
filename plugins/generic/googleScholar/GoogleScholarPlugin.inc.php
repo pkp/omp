@@ -51,7 +51,6 @@ class GoogleScholarPlugin extends GenericPlugin {
 
 		$publication = $submission->getCurrentPublication();
 		$press = $request->getContext();
-		$series = $templateMgr->getTemplateVars('series');
 		$availableFiles = $templateMgr->getTemplateVars('availableFiles');
 
 
@@ -65,8 +64,8 @@ class GoogleScholarPlugin extends GenericPlugin {
 		$templateMgr->addHeader('googleScholarDate', '<meta name="citation_publication_date" content="' . strftime('%Y-%m-%d', strtotime($publication->getData('datePublished'))) . '"/>');
 
 		// Authors in order
-		$authors = $submission->getAuthors();
-		foreach ($authors as $author) {
+		$i = 0;
+		foreach ($submission->getAuthors() as $author) {
 			$templateMgr->addHeader('googleScholarAuthor' . $i++, '<meta name="citation_author" content="' . htmlspecialchars($author->getFullName(false)) . '"/>');
 		}
 
