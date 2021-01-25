@@ -39,7 +39,7 @@ class GoogleScholarPlugin extends GenericPlugin {
 	}
 
 	/**
-	 * Inject Google Scholar metadata into monograph view
+	 * Inject Google Scholar metadata into monograph/edited volume landing page
 	 * @param $hookName string
 	 * @param $args array
 	 * @return boolean
@@ -55,7 +55,7 @@ class GoogleScholarPlugin extends GenericPlugin {
 		$availableFiles = $templateMgr->getTemplateVars('availableFiles');
 
 
-		// Google scholar metadata  verision
+		// Google scholar metadata  revision
 		$templateMgr->addHeader('googleScholarRevision', '<meta name="gs_meta_revision" content="1.1"/>');
 
 		// Book/Edited volume title of the submission
