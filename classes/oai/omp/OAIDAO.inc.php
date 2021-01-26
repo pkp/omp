@@ -198,7 +198,7 @@ class OAIDAO extends PKPOAIDAO {
 		if (isset($set)) $params[] = $set;
 		if ($submissionId) $params[] = (int) $submissionId;
 
-		import('lib.pkp.classes.submission.PKPSubmission'); // STATUS_DECLINED
+		import('lib.pkp.classes.submission.PKPSubmission'); // STATUS_PUBLISHED
 		$result = $this->retrieve(
 			'SELECT	ms.last_modified AS last_modified,
 				pf.publication_format_id AS data_object_id,
@@ -215,7 +215,7 @@ class OAIDAO extends PKPOAIDAO {
 			WHERE	p.enabled = 1
 				' . ($pressId?' AND p.press_id = ?':'') . '
 				' . ($seriesId?' AND pub.series_id = ?':'') . '
-				AND ms.status <> ' . STATUS_DECLINED . '
+				AND ms.status = ' . STATUS_PUBLISHED . '
 				AND pf.is_available = 1
 				AND pub.date_published IS NOT NULL
 				' . ($from?' AND ms.last_modified >= ' . $this->datetimeToDB($from):'') . '
