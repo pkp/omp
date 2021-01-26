@@ -83,7 +83,13 @@ class PublicationFormatTombstoneManager {
 		$submissionsIterator = Services::get('submission')->getMany(['contextId' => $press->getId(), 'status' => STATUS_PUBLISHED, 'count' => 2000]);
 		foreach ($submissionsIterator as $submission) {
 			foreach ($submission->getData('publications') as $publication) {
-				$this->insertTombstonesByPublicationFormats($publication->getData('publicationFormats'), $press);
+				if ($publication->getData('status') === STATUS_PUBLISHED) {
+					foreach ((array) $publication->getData('publicationFormats') as $publicationFormat) {
+						if ($publication->getIsAvailable()) {
+							$this->insertTombstoneByPublicationFormat($publicationFormat, $press);
+						}
+					}
+				}
 			}
 		}
 	}
