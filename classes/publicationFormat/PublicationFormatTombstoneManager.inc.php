@@ -111,6 +111,39 @@ class PublicationFormatTombstoneManager {
 			}
 		}
 	}
+
+	/**
+	 * Delete tombstones for every publication format in a publication
+	 *
+	 * @param int $publicationId
+	 */
+	function deleteTombstonesByPublicationId(int $publicationId) {
+		$publicationFormats = DAORegistry::getDAO('PublicationFormatDAO')
+			->getByPublicationId($publicationId)
+			->toArray();
+		$this->deleteTombstonesByPublicationFormats($publicationFormats);
+	}
+
+	/**
+	 * Insert tombstones for every available publication format in a publication
+	 *
+	 * This method will delete any existing tombstones to ensure that duplicates
+	 * are not created.
+	 *
+	 * @param int $publicationId
+	 * @param Press $context
+	 */
+	function insertTombstonesByPublicationId(int $publicationId, $context) {
+		$this->deleteTombstonesByPublicationId($publicationId);
+		$publicationFormats = DAORegistry::getDAO('PublicationFormatDAO')
+			->getByPublicationId($publicationId)
+			->toArray();
+		foreach ($publicationFormats as $publicationFormat) {
+			if ($publicationFormat->getIsAvailable()) {
+				$this->insertTombstoneByPublicationFormat($publicationFormat, $context);
+			}
+		}
+	}
 }
 
 

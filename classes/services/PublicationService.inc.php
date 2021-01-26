@@ -15,9 +15,9 @@
 namespace APP\Services;
 
 use \Application;
+use \DAORegistry;
 use \Services;
 use \PKP\Services\PKPPublicationService;
-use DAORegistry;
 
 class PublicationService extends PKPPublicationService {
 
@@ -378,13 +378,27 @@ class PublicationService extends PKPPublicationService {
 		$newPublication = $args[0];
 		$submission = $args[2];
 
-		// Remove publication format tombstones.
-		$publicationFormats = \DAORegistry::getDAO('PublicationFormatDAO')
-			->getByPublicationId($newPublication->getId())
-			->toAssociativeArray();
-		import('classes.publicationFormat.PublicationFormatTombstoneManager');
-		$publicationFormatTombstoneMgr = new \PublicationFormatTombstoneManager();
-		$publicationFormatTombstoneMgr->deleteTombstonesByPublicationFormats($publicationFormats);
+		// If this is a new current publication (the "version of record"), then
+		// tombstones must be updated to reflect the new publication format entries
+		// in the OAI feed
+		if ($submission->getData('currentPublicationId') === $newPublication->getId()) {
+			$context = Application::get()->getRequest()->getContext();
+			if (!$context || $context->getId() !== $submission->getData('contextId')) {
+				$context = Services::get('context')->get($submission->getData('contextId'));
+			}
+
+			// Remove publication format tombstones for this publication
+			import('classes.publicationFormat.PublicationFormatTombstoneManager');
+			$publicationFormatTombstoneMgr = new \PublicationFormatTombstoneManager();
+			$publicationFormatTombstoneMgr->deleteTombstonesByPublicationId($newPublication->getId());
+
+			// Create publication format tombstones for any other published versions
+			foreach ($submission->getData('publications') as $publication) {
+				if ($publication->getId() !== $newPublication->getId() && $publication->getData('status') === STATUS_PUBLISHED) {
+					$publicationFormatTombstoneMgr->insertTombstonesByPublicationId($publication->getId(), $context);
+				}
+			}
+		}
 
 		// Update notification
 		$request = \Application::get()->getRequest();
@@ -414,19 +428,23 @@ class PublicationService extends PKPPublicationService {
 		$submission = Services::get('submission')->get($newPublication->getData('submissionId'));
 		$submissionContext = Services::get('context')->get($submission->getData('contextId'));
 
-		// Create tombstones for each published publication format.
-		$publicationFormats = \DAORegistry::getDAO('PublicationFormatDAO')
-			->getByPublicationId($newPublication->getId())
-			->toAssociativeArray();
-		$publishedFormats = [];
-		foreach ($publicationFormats as $publicationFormat) {
-			if ($publicationFormat->getIsAvailable() && $publicationFormat->getIsApproved()) {
-				$publishedFormats[] = $publicationFormat;
-			}
-		}
+		// Create tombstones for this publication
 		import('classes.publicationFormat.PublicationFormatTombstoneManager');
 		$publicationFormatTombstoneMgr = new \PublicationFormatTombstoneManager();
-		$publicationFormatTombstoneMgr->insertTombstonesByPublicationFormats($publishedFormats, $submissionContext);
+		$publicationFormatTombstoneMgr->insertTombstonesByPublicationId($newPublication->getId(), $submissionContext);
+
+		// Delete tombstones for the new current publication
+		$currentPublication = null;
+		foreach ($submission->getData('publications') as $publication) {
+			if ($publication->getId() === $submission->getData('currentPublicationId')) {
+				$currentPublication = $publication;
+				break;
+			}
+		}
+		if ($currentPublication->getData('status') === STATUS_PUBLISHED) {
+			$publicationFormatTombstoneMgr->deleteTombstonesByPublicationId($currentPublication->getId());
+		}
+
 
 		// Update notification
 		$request = \Application::get()->getRequest();
