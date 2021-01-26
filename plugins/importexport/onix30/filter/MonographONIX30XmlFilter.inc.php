@@ -40,33 +40,30 @@ class MonographONIX30XmlFilter extends NativeExportFilter {
 		return 'plugins.importexport.onix30.filter.MonographONIX30XmlFilter';
 	}
 
-
 	//
 	// Implement template methods from Filter
 	//
 	/**
 	 * @see Filter::process()
-	 * @param $monograph Monograph the monograph to export
+	 * @param $submissions Array of the submissions to export
 	 * @return DOMDocument
 	 */
-	function &process(&$monograph) {
-
+	function &process(&$submissions) {
 		// Create the XML document
 		$doc = new DOMDocument('1.0');
+		$doc->preserveWhiteSpace = false;
+		$doc->formatOutput = true;
 		$this->_doc = $doc;
 
 		$deployment = $this->getDeployment();
 
 		// create top level ONIXMessage element
 		$rootNode = $doc->createElementNS($deployment->getNamespace(), 'ONIXMessage');
-		$rootNode->appendChild($this->createHeaderNode($doc, $monograph));
-
-		$publicationFormats = $monograph->getCurrentPublication()->getData('publicationFormats');
-
-		// Append all publication formats as Product nodes.
-		foreach ($publicationFormats as $publicationFormat) {
-			$rootNode->appendChild($this->createProductNode($doc, $monograph, $publicationFormat));
+		$rootNode->appendChild($this->createHeaderNode($doc));
+		foreach ($submissions as $submission) {
+			$this->createSubmissionNode($doc, $rootNode, $submission);
 		}
+
 		$doc->appendChild($rootNode);
 		$rootNode->setAttributeNS('http://www.w3.org/2000/xmlns/', 'xmlns:xsi', 'http://www.w3.org/2001/XMLSchema-instance');
 		$rootNode->setAttribute('xsi:schemaLocation', $deployment->getNamespace() . ' ' . $deployment->getSchemaFilename());
@@ -75,16 +72,24 @@ class MonographONIX30XmlFilter extends NativeExportFilter {
 		return $doc;
 	}
 
+	function createSubmissionNode($doc, $rootNode, $monograph) {
+		$publicationFormats = $monograph->getCurrentPublication()->getData('publicationFormats');
+
+		// Append all publication formats as Product nodes.
+		foreach ($publicationFormats as $publicationFormat) {
+			$rootNode->appendChild($this->createProductNode($doc, $monograph, $publicationFormat));
+		}
+	}
+
 	//
 	// ONIX conversion functions
 	//
 	/**
 	 * Create and return a node representing the ONIX Header metadata for this submission.
 	 * @param $doc DOMDocument
-	 * @param $submission Submission
 	 * @return DOMElement
 	 */
-	function createHeaderNode($doc, $submission) {
+	function createHeaderNode($doc) {
 		$deployment = $this->getDeployment();
 		$context = $deployment->getContext();
 

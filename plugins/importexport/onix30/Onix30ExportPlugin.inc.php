@@ -17,13 +17,6 @@ import('lib.pkp.classes.plugins.ImportExportPlugin');
 
 class Onix30ExportPlugin extends ImportExportPlugin {
 	/**
-	 * Constructor
-	 */
-	function __construct() {
-		parent::__construct();
-	}
-
-	/**
 	 * @copydoc Plugin::register()
 	 */
 	function register($category, $path, $mainContextId = null) {
@@ -147,7 +140,7 @@ class Onix30ExportPlugin extends ImportExportPlugin {
 			$submission = $submissionDao->getById($submissionId, $context->getId());
 			if ($submission) $submissions[] = $submission;
 		}
-		$submissionXml = $exportFilter->execute($submission);
+		$submissionXml = $exportFilter->execute($submissions);
 		if ($submissionXml) $xml = $submissionXml->saveXml();
 		else fatalError('Could not convert submissions.');
 		return $xml;
