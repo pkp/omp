@@ -72,12 +72,18 @@ class MonographONIX30XmlFilter extends NativeExportFilter {
 		return $doc;
 	}
 
-	function createSubmissionNode($doc, $rootNode, $monograph) {
-		$publicationFormats = $monograph->getCurrentPublication()->getData('publicationFormats');
+	/**
+	 * Creates a submission node for each input submission.
+	 * @param $doc DOMDocument The main XML Document object
+	 * @param $rootNode DOMElement The root node of the document, on which the submission node will get attached
+	 * @param $submission Submission The submission we want to export and attach.
+	 */
+	function createSubmissionNode($doc, $rootNode, $submission) {
+		$publicationFormats = $submission->getCurrentPublication()->getData('publicationFormats');
 
 		// Append all publication formats as Product nodes.
 		foreach ($publicationFormats as $publicationFormat) {
-			$rootNode->appendChild($this->createProductNode($doc, $monograph, $publicationFormat));
+			$rootNode->appendChild($this->createProductNode($doc, $submission, $publicationFormat));
 		}
 	}
 
