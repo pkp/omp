@@ -83,7 +83,13 @@ class PublicationFormatTombstoneManager {
 		$submissionsIterator = Services::get('submission')->getMany(['contextId' => $press->getId(), 'status' => STATUS_PUBLISHED, 'count' => 2000]);
 		foreach ($submissionsIterator as $submission) {
 			foreach ($submission->getData('publications') as $publication) {
-				$this->insertTombstonesByPublicationFormats($publication->getData('publicationFormats'), $press);
+				if ($publication->getData('status') === STATUS_PUBLISHED) {
+					foreach ((array) $publication->getData('publicationFormats') as $publicationFormat) {
+						if ($publication->getIsAvailable()) {
+							$this->insertTombstoneByPublicationFormat($publicationFormat, $press);
+						}
+					}
+				}
 			}
 		}
 	}
@@ -108,6 +114,39 @@ class PublicationFormatTombstoneManager {
 		foreach ($submissionsIterator as $submission) {
 			foreach ($submission->getData('publications') as $publication) {
 				$this->deleteTombstonesByPublicationFormats($publication->getData('publicationFormats'));
+			}
+		}
+	}
+
+	/**
+	 * Delete tombstones for every publication format in a publication
+	 *
+	 * @param int $publicationId
+	 */
+	function deleteTombstonesByPublicationId(int $publicationId) {
+		$publicationFormats = DAORegistry::getDAO('PublicationFormatDAO')
+			->getByPublicationId($publicationId)
+			->toArray();
+		$this->deleteTombstonesByPublicationFormats($publicationFormats);
+	}
+
+	/**
+	 * Insert tombstones for every available publication format in a publication
+	 *
+	 * This method will delete any existing tombstones to ensure that duplicates
+	 * are not created.
+	 *
+	 * @param int $publicationId
+	 * @param Press $context
+	 */
+	function insertTombstonesByPublicationId(int $publicationId, $context) {
+		$this->deleteTombstonesByPublicationId($publicationId);
+		$publicationFormats = DAORegistry::getDAO('PublicationFormatDAO')
+			->getByPublicationId($publicationId)
+			->toArray();
+		foreach ($publicationFormats as $publicationFormat) {
+			if ($publicationFormat->getIsAvailable()) {
+				$this->insertTombstoneByPublicationFormat($publicationFormat, $context);
 			}
 		}
 	}
