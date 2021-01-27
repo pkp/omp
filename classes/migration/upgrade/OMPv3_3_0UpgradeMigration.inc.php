@@ -47,6 +47,9 @@ class OMPv3_3_0UpgradeMigration extends Migration {
 		// pkp/pkp-lib#6604 ONIX filters still refer to Monograph rather than Submission
 		Capsule::statement("UPDATE filter_groups SET input_type = 'class::classes.submission.Submission' WHERE input_type = 'class::classes.monograph.Monograph';");
 		Capsule::statement("UPDATE filter_groups SET output_type = 'class::classes.submission.Submission[]' WHERE input_type = 'class::classes.monograph.Monograph[]';");
+
+		// pkp/pkp-lib#6609 ONIX filters does not take array of submissions as input
+		Capsule::statement("UPDATE filter_groups SET input_type = 'class::classes.submission.Submission[]' WHERE symbolic = 'monograph=>onix30-xml';");
 	}
 
 	/**
