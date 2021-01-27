@@ -135,21 +135,21 @@ class Onix30ExportPlugin extends ImportExportPlugin {
 	 * @copydoc ImportExportPlugin::executeCLI($scriptName, $args)
 	 */
 	function executeCLI($scriptName, &$args) {
-		fatalError('Not implemented.');
+		throw new BadMethodCallException();
 	}
 
 	/**
 	 * @copydoc ImportExportPlugin::usage
 	 */
 	function usage($scriptName) {
-		fatalError('Not implemented.');
+		throw new BadMethodCallException();
 	}
 
 	/**
 	 * @see PKPNativeImportExportPlugin::getImportFilter
 	 */
 	function getImportFilter($xmlFile) {
-		fatalError('Not implemented.');
+		throw new BadMethodCallException();
 	}
 
 	/**

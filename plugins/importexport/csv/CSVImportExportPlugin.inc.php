@@ -274,7 +274,7 @@ class CSVImportExportPlugin extends ImportExportPlugin {
 	 * @return array Containing the filter and the xmlString of the imported file
 	 */
 	function getImportFilter($xmlFile) {
-		fatalError('Not implemented.');
+		throw new BadMethodCallException();
 	}
 
 	/**
@@ -285,7 +285,7 @@ class CSVImportExportPlugin extends ImportExportPlugin {
 	 * @return string
 	 */
 	function getExportFilter($exportType) {
-		fatalError('Not implemented.');
+		throw new BadMethodCallException();
 	}
 
 	/**
@@ -297,7 +297,7 @@ class CSVImportExportPlugin extends ImportExportPlugin {
 	 * @return PKPImportExportDeployment
 	 */
 	function getAppSpecificDeployment($context, $user) {
-		fatalError('Not implemented.');
+		throw new BadMethodCallException();
 	}
 }
 

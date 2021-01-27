@@ -34,14 +34,14 @@ class UserImportExportPlugin extends PKPUserImportExportPlugin {
 	 * @copydoc ImportExportPlugin::executeCLI
 	 */
 	function executeCLI($scriptName, &$args) {
-		fatalError('Not implemented.');
+		throw new BadMethodCallException();
 	}
 
 	/**
 	 * @copydoc ImportExportPlugin::usage
 	 */
 	function usage($scriptName) {
-		fatalError('Not implemented.');
+		throw new BadMethodCallException();
 	}
 	/**
 	 * Define the appropriate import filter given the imported XML file path
@@ -51,7 +51,7 @@ class UserImportExportPlugin extends PKPUserImportExportPlugin {
 	 * @return array Containing the filter and the xmlString of the imported file
 	 */
 	function getImportFilter($xmlFile) {
-		fatalError('Not implemented.');
+		throw new BadMethodCallException();
 	}
 
 	/**
@@ -62,7 +62,7 @@ class UserImportExportPlugin extends PKPUserImportExportPlugin {
 	 * @return string
 	 */
 	function getExportFilter($exportType) {
-		fatalError('Not implemented.');
+		throw new BadMethodCallException();
 	}
 
 	/**
@@ -74,7 +74,7 @@ class UserImportExportPlugin extends PKPUserImportExportPlugin {
 	 * @return PKPImportExportDeployment
 	 */
 	function getAppSpecificDeployment($context, $user) {
-		fatalError('Not implemented.');
+		throw new BadMethodCallException();
 	}
 }
 
