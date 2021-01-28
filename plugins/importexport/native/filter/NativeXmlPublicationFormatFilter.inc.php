@@ -112,12 +112,15 @@ class NativeXmlPublicationFormatFilter extends NativeXmlRepresentationFilter {
 	/**
 	 * Process the Product node found inside the publication_format node.  There may be many of these.
 	 * @param $node DOMElement
+	 * @param $deployment PKPImportExportDeployment
 	 * @param $representation PublicationFormat
 	 */
 	function _processProductNode($node, $deployment, &$representation) {
 
 		$request = Application::get()->getRequest();
 		$onixDeployment = new Onix30ExportDeployment($request->getContext(), $request->getUser());
+
+		$submission = $deployment->getSubmission();
 
 		$representation->setProductCompositionCode($this->_extractTextFromNode($node, $onixDeployment, 'ProductComposition'));
 		$representation->setEntryKey($this->_extractTextFromNode($node, $onixDeployment, 'ProductForm'));
@@ -128,11 +131,11 @@ class NativeXmlPublicationFormatFilter extends NativeXmlRepresentationFilter {
 		$this->_extractMeasureContent($node, $onixDeployment, $representation);
 		$this->_extractExtentContent($node, $onixDeployment, $representation);
 
-		$submission = Services::get('submission')->get($representation->getSubmissionId());
 		if ($submission) {
-			$submission->setAudience($this->_extractTextFromNode($node, $onixDeployment, 'AudienceCodeType'));
-			$submission->setAudienceRangeQualifier($this->_extractTextFromNode($node, $onixDeployment, 'AudienceRangeQualifier'));
+			$submission->setData('audience', $this->_extractTextFromNode($node, $onixDeployment, 'AudienceCodeType'));
+			$submission->setData('audienceRangeQualifier', $this->_extractTextFromNode($node, $onixDeployment, 'AudienceRangeQualifier'));
 			$this->_extractAudienceRangeContent($node, $onixDeployment, $representation);
+
 			DAORegistry::getDAO('SubmissionDAO')->updateObject($submission);
 		}
 
@@ -401,9 +404,9 @@ class NativeXmlPublicationFormatFilter extends NativeXmlRepresentationFilter {
 	 * a submission defines a specific range, or a to/from pair.
 	 * @param $node DOMElement
 	 * @param $onixDeployment Onix30ExportDeployment
-	 * @param PublicationFormat $representation
+	 * @param Submission $submission
 	 */
-	function _extractAudienceRangeContent($node, $onixDeployment, &$representation) {
+	function _extractAudienceRangeContent($node, $onixDeployment, &$submission) {
 		$nodeList = $node->getElementsByTagNameNS($onixDeployment->getNamespace(), 'AudienceRange');
 		for ($i = 0 ; $i < $nodeList->length ; $i++) {
 			$n = $nodeList->item($i);
@@ -413,13 +416,13 @@ class NativeXmlPublicationFormatFilter extends NativeXmlRepresentationFilter {
 				case 'AudienceRangeValue':
 					switch ($audienceRangePrecision) {
 						case '01':
-							$representation->setAudienceRangeExact($o->textContent);
+							$submission->setData('audienceRangeExact', $o->textContent);
 							break;
 						case '03':
-							$representation->setAudienceRangeTo($o->textContent);
+							$submission->setData('audienceRangeTo', $o->textContent);
 							break;
 						case '04':
-							$representation->setAudienceRangeFrom($o->textContent);
+							$submission->setData('audienceRangeFrom', $o->textContent);
 							break;
 					}
 					break;
