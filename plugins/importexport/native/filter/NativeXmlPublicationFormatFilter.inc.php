@@ -134,7 +134,7 @@ class NativeXmlPublicationFormatFilter extends NativeXmlRepresentationFilter {
 		if ($submission) {
 			$submission->setData('audience', $this->_extractTextFromNode($node, $onixDeployment, 'AudienceCodeType'));
 			$submission->setData('audienceRangeQualifier', $this->_extractTextFromNode($node, $onixDeployment, 'AudienceRangeQualifier'));
-			$this->_extractAudienceRangeContent($node, $onixDeployment, $representation);
+			$this->_extractAudienceRangeContent($node, $onixDeployment, $submission);
 
 			DAORegistry::getDAO('SubmissionDAO')->updateObject($submission);
 		}
