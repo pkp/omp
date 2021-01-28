@@ -1,0 +1,48 @@
+msgid ""
+msgstr ""
+"PO-Revision-Date: 2021-01-06 17:52+0000\n"
+"Last-Translator: Blagoja Grozdanovski <blagoja.grozdanovski@gmail.com>\n"
+"Language-Team: Macedonian <http://translate.pkp.sfu.ca/projects/omp/"
+"importexport-native/mk_MK/>\n"
+"Language: mk_MK\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=n==1 || n%10==1 ? 0 : 1;\n"
+"X-Generator: Weblate 3.9.1\n"
+
+msgid "plugins.importexport.native.error.unknownSeries"
+msgstr "Непознати серии {$param}"
+
+msgid "plugins.importexport.native.onix30.pressMissingFields"
+msgstr ""
+"На ова издание недостасуваат некои потребни информации за метаподатоците на "
+"ONIX што се користат во овој извоз. Одете на <a href=\"{$url}\"> Притиснете "
+"Поставки </a> и пополнете ги деталите што недостасуваат."
+
+msgid "plugins.importexport.native.importComplete"
+msgstr "Увозот заврши успешно. Увезени се следниве ставки:"
+
+msgid "plugins.inportexport.native.uploadFile"
+msgstr "Поставете датотека под „Увоз“ за да продолжите."
+
+msgid "plugins.importexport.native.results"
+msgstr "Резултати"
+
+msgid "plugins.importexport.native.exportSubmissionsSelect"
+msgstr "Изберете монографии за извоз"
+
+msgid "plugins.importexport.native.export"
+msgstr "Извоз"
+
+msgid "plugins.importexport.native.import.instructions"
+msgstr "Поставете XML-датотека за увоз"
+
+msgid "plugins.importexport.native.import"
+msgstr "Увоз"
+
+msgid "plugins.importexport.native.description"
+msgstr "Увезете и извезувајте книги во мајчин XML формат на ОМП."
+
+msgid "plugins.importexport.native.displayName"
+msgstr "Домашен XML додаток"
