@@ -45,7 +45,7 @@ class MonographONIX30XmlFilter extends NativeExportFilter {
 	//
 	/**
 	 * @see Filter::process()
-	 * @param $submissions Array of the submissions to export
+	 * @param $submissions Submission | array Monographs to export
 	 * @return DOMDocument
 	 */
 	function &process(&$submissions) {
@@ -60,8 +60,13 @@ class MonographONIX30XmlFilter extends NativeExportFilter {
 		// create top level ONIXMessage element
 		$rootNode = $doc->createElementNS($deployment->getNamespace(), 'ONIXMessage');
 		$rootNode->appendChild($this->createHeaderNode($doc));
-		foreach ($submissions as $submission) {
-			$this->createSubmissionNode($doc, $rootNode, $submission);
+
+		if (!is_array($submissions)) {
+			$this->createSubmissionNode($doc, $rootNode, $submissions);
+		} else {
+			foreach ($submissions as $submission) {
+				$this->createSubmissionNode($doc, $rootNode, $submission);
+			}
 		}
 
 		$doc->appendChild($rootNode);
@@ -142,6 +147,8 @@ class MonographONIX30XmlFilter extends NativeExportFilter {
 		$productNode->appendChild($this->_buildTextNode($doc, 'NotificationType', '03'));
 		$productNode->appendChild($this->_buildTextNode($doc, 'RecordSourceType', '04')); // Bibliographic agency
 
+		$identifierGiven = false;
+
 		$identificationCodes = $publicationFormat->getIdentificationCodes();
 
 		while ($code = $identificationCodes->next()) {
@@ -152,6 +159,8 @@ class MonographONIX30XmlFilter extends NativeExportFilter {
 
 			unset($productIdentifierNode);
 			unset($code);
+
+			$identifierGiven = true;
 		}
 
 		// Deal with the possibility of a DOI pubId from the plugin.
@@ -165,11 +174,22 @@ class MonographONIX30XmlFilter extends NativeExportFilter {
 					$productNode->appendChild($productIdentifierNode);
 
 					unset($productIdentifierNode);
+
+					$identifierGiven = true;
 				}
 				unset($plugin);
 			}
 		}
 		unset($pubIdPlugins);
+
+		if (!$identifierGiven) {
+			$productIdentifierNode = $doc->createElementNS($deployment->getNamespace(), 'ProductIdentifier');
+			$productIdentifierNode->appendChild($this->_buildTextNode($doc, 'ProductIDType', '01')); // Id
+			$productIdentifierNode->appendChild($this->_buildTextNode($doc, 'IDTypeName', 'PKID'));
+			$productIdentifierNode->appendChild($this->_buildTextNode($doc, 'IDValue', $publicationFormat->getId()));
+
+			$productNode->appendChild($productIdentifierNode);
+		}
 
 		/* --- Descriptive Detail --- */
 		$descDetailNode = $doc->createElementNS($deployment->getNamespace(), 'DescriptiveDetail');
