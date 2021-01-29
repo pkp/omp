@@ -53,13 +53,13 @@
 			{fbvFormSection for="title" title="common.prefix" inline="true" size=$fbvStyles.size.SMALL}
 				{fbvElement label="common.prefixAndTitle.tip" type="text" multilingual=true name="prefix" id="prefix" value=$prefix}
 			{/fbvFormSection}
-			{fbvFormSection for="title" title="common.title" inline="true" size=$fbvStyles.size.LARGE required=true}
+			{fbvFormSection for="title" for="title" title="common.title" inline="true" size=$fbvStyles.size.LARGE required=true}
 				{fbvElement type="text" multilingual=true name="title" id="title" value=$title required=true}
 			{/fbvFormSection}
 		</div>
 
-		{fbvFormSection for="subtitle" title="common.subtitle"}
-			{fbvElement label="common.subtitle.tip" type="text" multilingual=true name="subtitle" id="subtitle" value=$subtitle maxlength="255"}
+		{fbvFormSection for="subtitle" title="common.subtitle" for="subtitle"}
+			{fbvElement type="text" multilingual=true name="subtitle" id="subtitle" value=$subtitle maxlength="255"}
 		{/fbvFormSection}
 
 		{fbvFormSection title="common.description" for="description"}
