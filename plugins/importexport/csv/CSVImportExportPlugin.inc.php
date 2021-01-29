@@ -266,6 +266,39 @@ class CSVImportExportPlugin extends ImportExportPlugin {
 			'pluginName' => $this->getName()
 		)) . "\n";
 	}
+	/**
+	 * Define the appropriate import filter given the imported XML file path
+	 *
+	 * @param string $xmlFile
+	 *
+	 * @return array Containing the filter and the xmlString of the imported file
+	 */
+	function getImportFilter($xmlFile) {
+		fatalError('Not implemented.');
+	}
+
+	/**
+	 * Define the appropriate export filter given the export operation
+	 *
+	 * @param string $exportType
+	 *
+	 * @return string
+	 */
+	function getExportFilter($exportType) {
+		fatalError('Not implemented.');
+	}
+
+	/**
+	 * Get the application specific deployment object
+	 *
+	 * @param Context $context
+	 * @param User $user
+	 *
+	 * @return PKPImportExportDeployment
+	 */
+	function getAppSpecificDeployment($context, $user) {
+		fatalError('Not implemented.');
+	}
 }
 
 

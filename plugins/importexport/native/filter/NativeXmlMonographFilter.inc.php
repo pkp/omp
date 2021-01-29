@@ -77,7 +77,7 @@ class NativeXmlMonographFilter extends NativeXmlSubmissionFilter {
 		}
 		// Caps on class name for consistency with imports, whose filter
 		// group names are generated implicitly.
-		$currentFilter = NativeImportExportFilter::getFilter('native-xml=>' . $importClass, $this->getDeployment());
+		$currentFilter = PKPImportExportFilter::getFilter('native-xml=>' . $importClass, $this->getDeployment());
 		return $currentFilter;
 	}
 

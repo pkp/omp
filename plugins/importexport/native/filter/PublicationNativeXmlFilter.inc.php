@@ -79,7 +79,7 @@ class PublicationNativeXmlFilter extends PKPPublicationNativeXmlFilter {
 	 * @param $entity Publication
 	 */
 	function addChapters($doc, $entityNode, $entity) {
-		$currentFilter = NativeImportExportFilter::getFilter('chapter=>native-xml', $this->getDeployment());
+		$currentFilter = PKPImportExportFilter::getFilter('chapter=>native-xml', $this->getDeployment());
 
 		$chapters = $entity->getData('chapters');
 		if ($chapters && count($chapters) > 0) {

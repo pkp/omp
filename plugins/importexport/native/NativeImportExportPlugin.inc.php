@@ -44,7 +44,7 @@ class NativeImportExportPlugin extends PKPNativeImportExportPlugin {
 	}
 
 	/**
-	 * @see PKPNativeImportExportPlugin::getImportFilter
+	 * @see ImportExportPlugin::getImportFilter
 	 */
 	function getImportFilter($xmlFile) {
 		$filter = 'native-xml=>monograph';
@@ -55,7 +55,7 @@ class NativeImportExportPlugin extends PKPNativeImportExportPlugin {
 	}
 
 	/**
-	 * @see PKPNativeImportExportPlugin::getExportFilter
+	 * @see ImportExportPlugin::getExportFilter
 	 */
 	function getExportFilter($exportType) {
 		$filter = false;
@@ -67,7 +67,7 @@ class NativeImportExportPlugin extends PKPNativeImportExportPlugin {
 	}
 
 	/**
-	 * @see PKPNativeImportExportPlugin::getAppSpecificDeployment
+	 * @see ImportExportPlugin::getAppSpecificDeployment
 	 */
 	function getAppSpecificDeployment($journal, $user) {
 		return new NativeImportExportDeployment($journal, $user);
