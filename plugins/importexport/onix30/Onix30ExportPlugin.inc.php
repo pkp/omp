@@ -158,7 +158,7 @@ class Onix30ExportPlugin extends ImportExportPlugin {
 	function getExportFilter($exportType) {
 		$filter = false;
 		if ($exportType == 'exportSubmissions') {
-			$filter = 'monograph=>onix30-xml';
+			$filter = 'monographs=>onix30-xml';
 		}
 
 		return $filter;
