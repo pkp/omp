@@ -1,6 +1,6 @@
 msgid ""
 msgstr ""
-"PO-Revision-Date: 2020-10-22 10:19+0000\n"
+"PO-Revision-Date: 2021-01-30 13:53+0000\n"
 "Last-Translator: Eirik Hanssen <eirikh@oslomet.no>\n"
 "Language-Team: Norwegian Bokmål <http://translate.pkp.sfu.ca/projects/omp/"
 "submission/nb_NO/>\n"
@@ -498,3 +498,8 @@ msgstr "Publikasjonsopplysninger i forbindelse med versjon {$version}"
 msgid "submission.queries.production"
 msgstr "Diskusjon av produksjon"
 
+msgid "publication.inactiveSeries"
+msgstr "{$series} (Inaktiv)"
+
+msgid "submission.list.viewEntry"
+msgstr "Se post"
