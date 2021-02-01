@@ -101,6 +101,7 @@ class MonographSearchIndex extends SubmissionSearchIndex {
 				$authorText,
 				array_values((array) $author->getData('givenName')),
 				array_values((array) $author->getData('familyName')),
+				array_values((array) $author->getData('preferredPublicName')),
 				array_values(array_map('strip_tags', (array) $author->getData('affiliation'))),
 				array_values(array_map('strip_tags', (array) $author->getData('biography')))
 			);
@@ -113,7 +114,9 @@ class MonographSearchIndex extends SubmissionSearchIndex {
 		$this->updateTextIndex($submissionId, SUBMISSION_SEARCH_TITLE, $publication->getData('title'));
 		$this->updateTextIndex($submissionId, SUBMISSION_SEARCH_ABSTRACT, $publication->getData('abstract'));
 
-		$this->updateTextIndex($submissionId, SUBMISSION_SEARCH_DISCIPLINE, (array) $publication->getData('disciplines'));
+		$this->updateTextIndex($submissionId, SUBMISSION_SEARCH_SUBJECT, (array) $this->_flattenLocalizedArray($publication->getData('subjects')));
+		$this->updateTextIndex($submissionId, SUBMISSION_SEARCH_KEYWORD, (array) $this->_flattenLocalizedArray($publication->getData('keywords')));
+		$this->updateTextIndex($submissionId, SUBMISSION_SEARCH_DISCIPLINE, (array) $this->_flattenLocalizedArray($publication->getData('disciplines')));
 		$this->updateTextIndex($submissionId, SUBMISSION_SEARCH_TYPE, (array) $publication->getData('type'));
 		$this->updateTextIndex($submissionId, SUBMISSION_SEARCH_COVERAGE, (array) $publication->getData('coverage'));
 		// FIXME Index sponsors too?
@@ -207,6 +210,23 @@ class MonographSearchIndex extends SubmissionSearchIndex {
 
 			if ($log) echo $numIndexed, " monographs indexed\n";
 		}
+	}
+
+	/**
+	 * Flattens array of localized fields to a single, non-associative array of items
+	 *
+	 * @param $arrayWithLocales array Array of localized fields
+	 * @return array
+	 */
+	protected function _flattenLocalizedArray($arrayWithLocales) {
+		$flattenedArray = array();
+		foreach ($arrayWithLocales as $localeArray) {
+			$flattenedArray = array_merge(
+				$flattenedArray,
+				$localeArray
+			);
+		}
+		return $flattenedArray;
 	}
 }
 
