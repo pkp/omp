@@ -278,6 +278,7 @@ class MonographSearch extends SubmissionSearch {
 			SUBMISSION_SEARCH_SUPPLEMENTARY_FILE => 'suppFiles',
 			SUBMISSION_SEARCH_DISCIPLINE => 'discipline',
 			SUBMISSION_SEARCH_SUBJECT => 'subject',
+			SUBMISSION_SEARCH_KEYWORD => 'keyword',
 			SUBMISSION_SEARCH_TYPE => 'type',
 			SUBMISSION_SEARCH_COVERAGE => 'coverage'
 		);
