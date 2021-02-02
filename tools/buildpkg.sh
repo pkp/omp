@@ -52,7 +52,6 @@ lib/pkp/tests										\
 .openshift										\
 .travis.yml										\
 lib/pkp/.git										\
-lib/pkp/lib/vendor/components								\
 lib/pkp/lib/vendor/ezyang/htmlpurifier/art						\
 lib/pkp/lib/vendor/ezyang/htmlpurifier/benchmarks					\
 lib/pkp/lib/vendor/ezyang/htmlpurifier/configdog					\
