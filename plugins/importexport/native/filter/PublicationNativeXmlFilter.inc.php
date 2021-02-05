@@ -60,7 +60,10 @@ class PublicationNativeXmlFilter extends PKPPublicationNativeXmlFilter {
 			$entityNode->setAttribute('series_position', $entity->getData('seriesPosition'));
 		}
 
-		$this->addChapters($doc, $entityNode, $entity);
+		$chapters = $entity->getData('chapters');
+		if ($chapters && count($chapters) > 0) {
+			$this->addChapters($doc, $entityNode, $entity);
+		}
 
 		// cover images
 		$coversNode = $this->createPublicationCoversNode($this, $doc, $entity);
