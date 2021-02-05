@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE data SYSTEM "../../../lib/pkp/dtd/xmlData.dtd">
+
+<!--
+  * dbscripts/xml/upgrade/3.2.0_versioning.xml
+  *
+  * Copyright (c) 2013-2020 Simon Fraser University
+  * Copyright (c) 2003-2020 John Willinsky
+  * Distributed under the GNU GPL v3. For full terms see the file docs/COPYING.
+  *
+  * Added to avoid NOT NULL error when upgrading postgres database.
+  *
+  -->
+
+<data>
+	<sql>
+		<!-- set the publication_id in chapters -->
+		<query driver="postgres,postgres64,postgres7,postgres8,postgres9">ALTER TABLE submission_chapters ADD publication_id BIGINT NOT NULL DEFAULT 1;</query>
+		<!-- set the publication_id in publication formats -->
+		<query driver="postgres,postgres64,postgres7,postgres8,postgres9">ALTER TABLE publication_formats ADD publication_id BIGINT NOT NULL DEFAULT 1;</query>
+	</sql>
+</data>

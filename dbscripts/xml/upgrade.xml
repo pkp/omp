@@ -47,6 +47,7 @@
 		<data file="dbscripts/xml/upgrade/3.2.0_preupdate_versioning.xml" />
 		<data file="dbscripts/xml/upgrade/3.2.0_preupdate_versioning_add_ps_seq.xml" condition="return !$installer->columnExists('temp_published_submissions', 'seq');" />
 		<data file="dbscripts/xml/upgrade/3.2.0_preupdate_last_activity.xml" />
+		<data file="dbscripts/xml/upgrade/3.2.0_preupdate_publication_formats_and_submission_chapters.xml" />
 	</upgrade>
 
 	<upgrade minversion="2.4.0.0" maxversion="3.2.0.9">
@@ -156,6 +157,7 @@
 		<code function="fixLibraryFiles" />
 		<code function="installEmailTemplate" key="STATISTICS_REPORT_NOTIFICATION" locales="ca_ES,da_DK,en_US,es_ES,pt_BR,pt_PT" />
 		<note file="docs/release-notes/README-3.2.0" />
+		<data file="dbscripts/xml/upgrade/3.2.0_publication_formats_and_submission_chapters.xml" />
 	</upgrade>
 
 	<upgrade minversion="2.4.0.0" maxversion="3.2.0.9">
