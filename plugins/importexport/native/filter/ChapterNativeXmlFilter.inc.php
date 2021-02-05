@@ -52,7 +52,7 @@ class ChapterNativeXmlFilter extends NativeExportFilter {
 		$doc->formatOutput = true;
 		$deployment = $this->getDeployment();
 
-		// Multiple authors; wrap in a <authors> element
+		// Multiple authors; wrap in a <chapters> element
 		$rootNode = $doc->createElementNS($deployment->getNamespace(), 'chapters');
 		foreach ($chapters as $chapter) {
 			$rootNode->appendChild($this->createChapterNode($doc, $chapter));
