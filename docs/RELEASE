@@ -1,7 +1,7 @@
-OMP 3.2.1-2 Release Notes
-Git tag: 3_2_1-2
+OMP 3.2.1-4 Release Notes
+Git tag: 3_2_1-4
 
-Release date: November 13, 2020
+Release date: February 5, 2021
 ===============================
 
 See config.TEMPLATE.inc.php for a description and examples of all supported
@@ -13,6 +13,10 @@ New config.inc.php parameters:
 	- email.smtp_suppress_cert_check - True if PHPMailer's certificate check
 		is to be disabled. Not recommended unless you're sure. Default: Off
 	- curl.cainfo - Path to Certificate Authority (CA) bundle.
+
+3.2.1-4 Build
+-------------
+	#6718: SECURITY Revisit Update Illuminate Database library for GHSA-3p32-j457-pg5x (#6632)
 
 3.2.1-3 Build
 -------------
