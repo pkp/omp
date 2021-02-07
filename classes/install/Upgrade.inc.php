@@ -804,7 +804,7 @@ class Upgrade extends Installer {
 					$submissionCoverImage = $submissionDao->retrieve(
 						"SELECT	submission_id from submission_settings WHERE  submission_id = " . $row['submission_id'] .
 						" AND  setting_name = 'coverImage' AND locale = '" . $localeKey . "'");
-					if (is_null($submissionCoverImage)) {
+					if ($submissionCoverImage->NumRows() == 0) {
 						$submissionDao->update(
 							'INSERT INTO submission_settings (submission_id, setting_name, setting_value, setting_type, locale)
 							VALUES (?, ?, ?, ?, ?)',
