@@ -10,7 +10,7 @@
   * Upgrade descriptor file.
   -->
 
-<install version="3.3.0.2">
+<install version="3.4.0.0">
 	<code function="checkPhpVersion" />
 
 	<!-- there are some column and table name changes that need to occur first. -->
@@ -165,6 +165,11 @@
 		<migration class="lib.pkp.classes.migration.upgrade.PKPv3_3_0UpgradeMigration" />
 		<migration class="classes.migration.upgrade.OMPv3_3_0UpgradeMigration" />
 		<note file="docs/release-notes/README-3.3.0" />
+	</upgrade>
+
+	<upgrade minversion="3.0.0.0" maxversion="3.3.9.9">
+		<migration class="lib.pkp.classes.migration.upgrade.PKPv3_4_0UpgradeMigration" />
+		<note file="docs/release-notes/README-3.4.0" />
 	</upgrade>
 
 	<!-- Update plugin configuration - should be done as the final upgrade task -->
