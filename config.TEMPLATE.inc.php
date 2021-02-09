@@ -426,6 +426,9 @@ recaptcha = off
 ; Whether or not to use Captcha on user registration
 captcha_on_register = on
 
+; Whether or not to use Captcha on user login
+captcha_on_login = on
+
 ; Validate the hostname in the ReCaptcha response
 recaptcha_enforce_hostname = Off
 
