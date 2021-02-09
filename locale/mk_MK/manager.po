@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
-"PO-Revision-Date: 2021-01-10 20:53+0000\n"
-"Last-Translator: Blagoja Grozdanovski <blagoja.grozdanovski@gmail.com>\n"
+"PO-Revision-Date: 2021-02-09 22:36+0000\n"
+"Last-Translator: Mirko Spiroski <mspiroski@id-press.eu>\n"
 "Language-Team: Macedonian <http://translate.pkp.sfu.ca/projects/omp/manager/"
 "mk_MK/>\n"
 "Language: mk_MK\n"
@@ -1414,3 +1414,6 @@ msgstr "Дали сте сигурни дека сакате трајно да �
 
 msgid "manager.series.editorRestriction"
 msgstr "Предметите можат да ги доставуваат уредници и уредници на серии."
+
+msgid "manager.setup.pageHeaderDescription"
+msgstr "-"
