@@ -42,6 +42,22 @@
 	<element name="monographs" substitutionGroup="pkp:submissions" />
 	<element name="Product" substitutionGroup="onix:Product" />
 
+	<complexType name="ompseries">
+		<sequence>
+			<element ref="pkp:id" minOccurs="0" maxOccurs="unbounded" />
+			<!-- Metadata -->
+			<element name="title" type="pkp:localizedNode" minOccurs="0" maxOccurs="unbounded" />
+			<element name="subtitle" type="pkp:localizedNode" minOccurs="0" maxOccurs="unbounded" />
+			<element name="description" type="pkp:localizedNode" minOccurs="0" maxOccurs="unbounded" />
+			<element name="printIssn" type="string" minOccurs="0" maxOccurs="1" />
+			<element name="onlineIssn" type="string" minOccurs="0" maxOccurs="1" />
+			<element name="path" type="string" minOccurs="0" maxOccurs="unbounded" />
+			<element name="sequence" type="string" minOccurs="0" maxOccurs="1" />
+		</sequence>
+	</complexType>
+
+	<element name="series" type="pkp:ompseries" />
+
 	<complexType name="ojschapter">
 		<sequence>
 			<element ref="pkp:id" minOccurs="0" maxOccurs="unbounded" />
@@ -81,12 +97,13 @@
 			<complexContent>
 				<extension base="pkp:pkppublication">
 					<sequence>
+						<element ref="pkp:series" maxOccurs="1" minOccurs="0" />
 						<element ref="pkp:chapters" maxOccurs="1" minOccurs="0" />
 						<element ref="pkp:covers" minOccurs="0" maxOccurs="1" />
 						<element ref="pkp:citations" minOccurs="0" maxOccurs="unbounded"/>
 					</sequence>
 					<attribute name="series" type="normalizedString" />
-					<attribute name="series_position" type="normalizedString" />
+					<attribute name="seriesPosition" type="normalizedString" />
 					<attribute name="seq" type="int" />
 					<attribute name="access_status" type="int" />
 				</extension>

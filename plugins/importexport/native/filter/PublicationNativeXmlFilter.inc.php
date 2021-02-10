@@ -52,13 +52,13 @@ class PublicationNativeXmlFilter extends PKPPublicationNativeXmlFilter {
 		$deployment->setPublication($entity);
 
 		// Add the series, if one is designated.
-		if ($seriesId = $entity->getData('seriesId')) {
-			$seriesDao = DAORegistry::getDAO('SeriesDAO'); /** @var $seriesDao SeriesDAO */
-			$series = $seriesDao->getById($seriesId, $context->getId());
+		$seriesNode = $this->createSeriesNode($this, $doc, $entity);
+		if ($seriesNode) {
+			$entityNode->appendChild($seriesNode);
 
-			$entityNode->setAttribute('series', $series->getPath());
-			$entityNode->setAttribute('series_position', $entity->getData('seriesPosition'));
+			$entityNode->setAttribute('seriesPosition', $entity->getData('seriesPosition'));
 		}
+
 
 		$chapters = $entity->getData('chapters');
 		if ($chapters && count($chapters) > 0) {
@@ -130,6 +130,40 @@ class PublicationNativeXmlFilter extends PKPPublicationNativeXmlFilter {
 			}
 		}
 		return $coversNode;
+	}
+
+	/**
+	 * Create and return an object covers node.
+	 * @param $filter NativeExportFilter
+	 * @param $doc DOMDocument
+	 * @param $object Publication
+	 * @return DOMElement
+	 */
+	function createSeriesNode($filter, $doc, $object) {
+		$deployment = $filter->getDeployment();
+
+		$context = $deployment->getContext();
+
+		$seriesNode = null;
+		if ($seriesId = $object->getData('seriesId')) {
+			$seriesDao = DAORegistry::getDAO('SeriesDAO'); /** @var $seriesDao SeriesDAO */
+			$series = $seriesDao->getById($seriesId, $context->getId());
+
+			$seriesNode = $doc->createElementNS($deployment->getNamespace(), 'series');
+
+			// Add metadata
+			$this->createLocalizedNodes($doc, $seriesNode, 'title', $series->getData('title'));
+			$this->createLocalizedNodes($doc, $seriesNode, 'subtitle', $series->getData('subtitle'));
+			$this->createLocalizedNodes($doc, $seriesNode, 'description', $series->getData('description'));
+
+			$seriesNode->appendChild($doc->createElementNS($deployment->getNamespace(), 'printIssn', $series->getData('printIssn')));
+			$seriesNode->appendChild($doc->createElementNS($deployment->getNamespace(), 'onlineIssn', $series->getData('onlineIssn')));
+
+			$seriesNode->appendChild($doc->createElementNS($deployment->getNamespace(), 'path', $series->getData('path')));
+			$seriesNode->appendChild($doc->createElementNS($deployment->getNamespace(), 'sequence', $series->getData('sequence')));
+		}
+
+		return $seriesNode;
 	}
 
 	/**
