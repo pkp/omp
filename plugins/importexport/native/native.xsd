@@ -44,6 +44,7 @@
 
 	<complexType name="ojschapter">
 		<sequence>
+			<element ref="pkp:id" minOccurs="0" maxOccurs="unbounded" />
 			<!-- Metadata -->
 			<element name="title" type="pkp:localizedNode" minOccurs="0" maxOccurs="unbounded" />
 			<element name="abstract" type="pkp:localizedNode" minOccurs="0" maxOccurs="unbounded" />

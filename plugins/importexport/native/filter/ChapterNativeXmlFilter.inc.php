@@ -84,6 +84,8 @@ class ChapterNativeXmlFilter extends NativeExportFilter {
 		$entityNode->setAttribute('seq', $chapter->getSequence());
 		$entityNode->setAttribute('id', $chapter->getId());
 
+		$this->addIdentifiers($doc, $entityNode, $chapter);
+
 		// Add metadata
 		$this->createLocalizedNodes($doc, $entityNode, 'title', $chapter->getData('title'));
 		$this->createLocalizedNodes($doc, $entityNode, 'abstract', $chapter->getData('abstract'));
@@ -128,6 +130,54 @@ class ChapterNativeXmlFilter extends NativeExportFilter {
 		$entityNode->setAttribute('seq', $chapterAuthor->getData('seq'));
 
 		return $entityNode;
+	}
+
+	/**
+	 * Add a single pub ID element for a given plugin to the document.
+	 * @param $doc DOMDocument
+	 * @param $entityNode DOMElement
+	 * @param $entity Chapter
+	 * @param $pubIdPlugin PubIdPlugin
+	 * @return DOMElement|null
+	 */
+	function addPubIdentifier($doc, $entityNode, $entity, $pubIdPlugin) {
+		$pubId = $entity->getStoredPubId($pubIdPlugin->getPubIdType());
+		if ($pubId) {
+			$deployment = $this->getDeployment();
+			$entityNode->appendChild($node = $doc->createElementNS($deployment->getNamespace(), 'id', htmlspecialchars($pubId, ENT_COMPAT, 'UTF-8')));
+			$node->setAttribute('type', $pubIdPlugin->getPubIdType());
+			$node->setAttribute('advice', 'update');
+			return $node;
+		}
+		return null;
+	}
+
+	/**
+	 * Create and add identifier nodes to a submission node.
+	 * @param $doc DOMDocument
+	 * @param $entityNode DOMElement
+	 * @param $entity Chapter
+	 */
+	function addIdentifiers($doc, $entityNode, $entity) {
+		$deployment = $this->getDeployment();
+
+		// Add internal ID
+		$entityNode->appendChild($node = $doc->createElementNS($deployment->getNamespace(), 'id', $entity->getId()));
+		$node->setAttribute('type', 'internal');
+		$node->setAttribute('advice', 'ignore');
+
+		// Add public ID
+		if ($pubId = $entity->getStoredPubId('publisher-id')) {
+			$entityNode->appendChild($node = $doc->createElementNS($deployment->getNamespace(), 'id', htmlspecialchars($pubId, ENT_COMPAT, 'UTF-8')));
+			$node->setAttribute('type', 'public');
+			$node->setAttribute('advice', 'update');
+		}
+
+		// Add pub IDs by plugin
+		$pubIdPlugins = PluginRegistry::loadCategory('pubIds', true, $deployment->getContext()->getId());
+		foreach ($pubIdPlugins as $pubIdPlugin) {
+			$this->addPubIdentifier($doc, $entityNode, $entity, $pubIdPlugin);
+		}
 	}
 }
 
