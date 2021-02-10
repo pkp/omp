@@ -1,6 +1,6 @@
 msgid ""
 msgstr ""
-"PO-Revision-Date: 2020-06-06 02:27+0000\n"
+"PO-Revision-Date: 2021-02-09 01:19+0000\n"
 "Last-Translator: Diego José Macêdo <diegojmacedo@gmail.com>\n"
 "Language-Team: Portuguese (Brazil) <http://translate.pkp.sfu.ca/projects/omp/"
 "importexport-onix30/pt_BR/>\n"
@@ -21,8 +21,8 @@ msgstr "Destinatário (receptor) para esta exportação"
 
 msgid "plugins.importexport.onix30.pressMissingFields"
 msgstr ""
-"Esta editora está faltando algumas informações necessárias. Vá para "
-"Configurações> Fluxo de trabalho> Editoração e preencha os detalhes ausentes."
+"Esta editora está faltando algumas informações necessárias. Vá para <a href="
+"\"{$url}\"> Configurações da Editora</a> e preencha os detalhes ausentes."
 
 msgid "plugins.importexport.onix30.formatInvalid"
 msgstr "Inválido"
