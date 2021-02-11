@@ -34,7 +34,6 @@ class NativeXmlPublicationFilter extends NativeXmlPKPPublicationFilter {
 	 */
 	function populateObject($publication, $node) {
 		$deployment = $this->getDeployment();
-		$context = $deployment->getContext();
 
 		$seriesPosition = $node->getAttribute('series_position');
 		$publication->setData('seriesPosition', $seriesPosition);
@@ -242,7 +241,7 @@ class NativeXmlPublicationFilter extends NativeXmlPKPPublicationFilter {
 
 		$seriesDao = DAORegistry::getDAO('SeriesDAO'); /** @var $seriesDao SeriesDAO */
 		$series = $seriesDao->newDataObject();
-
+		$seriesPath = null;
 		for ($n = $node->firstChild; $n !== null; $n=$n->nextSibling) {
 			if (is_a($n, 'DOMElement')) {
 				switch ($n->tagName) {

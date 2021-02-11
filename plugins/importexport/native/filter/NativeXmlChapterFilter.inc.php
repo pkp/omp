@@ -164,7 +164,6 @@ class NativeXmlChapterFilter extends NativeImportFilter {
 	 */
 	function parseIdentifier($element, $chapter) {
 		$deployment = $this->getDeployment();
-		$submission = $deployment->getSubmission();
 
 		$advice = $element->getAttribute('advice');
 		switch ($element->getAttribute('type')) {
@@ -177,7 +176,7 @@ class NativeXmlChapterFilter extends NativeImportFilter {
 				break;
 			default:
 				if ($advice == 'update') {
-					$pubIdPlugins = PluginRegistry::loadCategory('pubIds', true, $deployment->getContext()->getId());
+					PluginRegistry::loadCategory('pubIds', true, $deployment->getContext()->getId());
 					$chapter->setData('pub-id::'.$element->getAttribute('type'), $element->textContent);
 				}
 		}

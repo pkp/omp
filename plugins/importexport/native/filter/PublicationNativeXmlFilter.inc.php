@@ -47,8 +47,6 @@ class PublicationNativeXmlFilter extends PKPPublicationNativeXmlFilter {
 		$deployment = $this->getDeployment();
 		$entityNode = parent::createEntityNode($doc, $entity);
 
-		$context = $deployment->getContext();
-
 		$deployment->setPublication($entity);
 
 		// Add the series, if one is designated.
