@@ -103,7 +103,7 @@
 						<element ref="pkp:citations" minOccurs="0" maxOccurs="unbounded"/>
 					</sequence>
 					<attribute name="series" type="normalizedString" />
-					<attribute name="seriesPosition" type="normalizedString" />
+					<attribute name="series_position" type="normalizedString" />
 					<attribute name="seq" type="int" />
 					<attribute name="access_status" type="int" />
 				</extension>

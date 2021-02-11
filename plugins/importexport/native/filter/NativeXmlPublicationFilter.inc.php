@@ -36,7 +36,7 @@ class NativeXmlPublicationFilter extends NativeXmlPKPPublicationFilter {
 		$deployment = $this->getDeployment();
 		$context = $deployment->getContext();
 
-		$seriesPosition = $node->getAttribute('seriesPosition');
+		$seriesPosition = $node->getAttribute('series_position');
 		$publication->setData('seriesPosition', $seriesPosition);
 
 		return parent::populateObject($publication, $node);

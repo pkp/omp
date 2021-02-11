@@ -56,7 +56,7 @@ class PublicationNativeXmlFilter extends PKPPublicationNativeXmlFilter {
 		if ($seriesNode) {
 			$entityNode->appendChild($seriesNode);
 
-			$entityNode->setAttribute('seriesPosition', $entity->getData('seriesPosition'));
+			$entityNode->setAttribute('series_position', $entity->getData('seriesPosition'));
 		}
 
 
