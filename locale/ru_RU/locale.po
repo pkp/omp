@@ -1,9 +1,9 @@
 msgid ""
 msgstr ""
-"PO-Revision-Date: 2020-11-09 19:48+0000\n"
+"PO-Revision-Date: 2021-02-11 18:55+0000\n"
 "Last-Translator: Sergei Yukhimets <y_s_n@mail.ru>\n"
-"Language-Team: Russian <http://translate.pkp.sfu.ca/projects/omp/locale/ru/>"
-"\n"
+"Language-Team: Russian <http://translate.pkp.sfu.ca/projects/omp/locale/"
+"ru_RU/>\n"
 "Language: ru_RU\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -237,3 +237,203 @@ msgstr "Открытый доступ (Open Access)"
 
 msgid "monograph.task.addNote"
 msgstr "Добавить к задаче"
+
+msgid "grid.content.spotlights.titleRequired"
+msgstr "Требуется название фокуса внимания."
+
+msgid "grid.content.spotlights.itemRequired"
+msgstr "Требуется элемент."
+
+msgid "grid.content.spotlights.form.type.book"
+msgstr "Книга"
+
+msgid "grid.content.spotlights.form.title"
+msgstr "Название фокуса внимания"
+
+msgid "grid.content.spotlights.form.item"
+msgstr "Введите  название фокуса внимания (автозаполнение)"
+
+msgid "grid.content.spotlights.form.location"
+msgstr "Положение фокуса внимания"
+
+msgid "grid.content.spotlights.category.homepage"
+msgstr "Главная страница"
+
+msgid "grid.content.spotlights.spotlightItemTitle"
+msgstr "Пункт фокуса внимания"
+
+msgid "spotlight.author"
+msgstr "Автор, "
+
+msgid "spotlight.title.homePage"
+msgstr "В фокусе внимания"
+
+msgid "spotlight.noneExist"
+msgstr "Нет текущих фокусов внимания."
+
+msgid "spotlight.spotlights"
+msgstr "Фокусы внимания (Spotlights)"
+
+msgid "spotlight"
+msgstr "Фокус внимания (Spotlight)"
+
+msgid "grid.action.deleteRepresentative"
+msgstr "Удалить представителя"
+
+msgid "grid.action.editRepresentative"
+msgstr "Редактировать этого представителя"
+
+msgid "grid.action.addRepresentative"
+msgstr "Добавить представителя"
+
+msgid "grid.catalogEntry.representativesDescription"
+msgstr ""
+"Вы можете оставить следующий раздел пустым, если вы предоставляете "
+"собственные услуги своим клиентам."
+
+msgid "grid.catalogEntry.representativeIdType"
+msgstr "Идентификационный номер (ID) представителя (рекомендуется GLN)"
+
+msgid "grid.catalogEntry.representativeIdValue"
+msgstr "ID Представителя"
+
+msgid "grid.catalogEntry.representativeWebsite"
+msgstr "Веб-сайт"
+
+msgid "grid.catalogEntry.representativeEmail"
+msgstr "Электронная почта"
+
+msgid "grid.catalogEntry.representativePhone"
+msgstr "Телефон"
+
+msgid "grid.catalogEntry.representativeName"
+msgstr "Имя"
+
+msgid "grid.catalogEntry.representativeRole"
+msgstr "Роль"
+
+msgid "grid.catalogEntry.representativeRoleChoice"
+msgstr "Выберите роль:"
+
+msgid "grid.catalogEntry.supplier"
+msgstr "Поставщик"
+
+msgid "grid.catalogEntry.agentTip"
+msgstr ""
+"Вы можете назначить агента, который будет представлять вас на этой "
+"определенной территории.  Это не обязательно."
+
+msgid "grid.catalogEntry.agent"
+msgstr "Агент"
+
+msgid "grid.catalogEntry.suppliersCategory"
+msgstr "Поставщики"
+
+msgid "grid.catalogEntry.agentsCategory"
+msgstr "Агенты"
+
+msgid "grid.catalogEntry.representativeType"
+msgstr "Тип представителя"
+
+msgid "grid.catalogEntry.representatives"
+msgstr "Представители"
+
+msgid "grid.catalogEntry.dateRequired"
+msgstr ""
+"Требуется дата, и ее значение должно соответствовать выбранному формату даты."
+
+msgid "grid.catalogEntry.dateFormat"
+msgstr "Формат даты"
+
+msgid "grid.catalogEntry.dateRole"
+msgstr "Роль"
+
+msgid "grid.catalogEntry.dateValue"
+msgstr "Дата"
+
+msgid "grid.catalogEntry.dateFormatRequired"
+msgstr "Требуется формат даты."
+
+msgid "grid.catalogEntry.roleRequired"
+msgstr "Требуется представительная роль."
+
+msgid "grid.catalogEntry.publicationDates"
+msgstr "Даты публикации"
+
+msgid "grid.catalogEntry.marketTerritory"
+msgstr "Территория"
+
+msgid "grid.catalogEntry.markets"
+msgstr "Территории рынков"
+
+msgid "grid.catalogEntry.excluded"
+msgstr "Исключая"
+
+msgid "grid.catalogEntry.included"
+msgstr "Включая"
+
+msgid "grid.catalogEntry.regions"
+msgstr "Регионы"
+
+msgid "grid.catalogEntry.countries"
+msgstr "Страны"
+
+msgid "grid.catalogEntry.oneROWPerFormat"
+msgstr ""
+"Для данного формата публикации уже определен тип продаж ROW (Остальной мир)."
+
+msgid "grid.catalogEntry.salesRightsROW.tip"
+msgstr ""
+"Отметьте этот флажок, чтобы использовать эти  \"Права продаж\" для вашего "
+"формата в целом.  В этом случае страны и регионы выбирать не нужно."
+
+msgid "grid.catalogEntry.salesRightsROW"
+msgstr "Остальной мир?"
+
+msgid "grid.catalogEntry.salesRightsType"
+msgstr "Тип прав на продажи"
+
+msgid "grid.catalogEntry.salesRightsValue"
+msgstr "Значение кода"
+
+msgid "grid.catalogEntry.salesRights"
+msgstr "Права на продажи"
+
+msgid "grid.catalogEntry.valueRequired"
+msgstr "Требуется значение."
+
+msgid "grid.catalogEntry.codeRequired"
+msgstr "Требуется идентификационный код."
+
+msgid "grid.catalogEntry.identificationCodeType"
+msgstr "Тип кода ONIX"
+
+msgid "grid.catalogEntry.identificationCodeValue"
+msgstr "Значение кода"
+
+msgid "grid.catalogEntry.productCompositionRequired"
+msgstr "Необходимо выбрать код состава продукта."
+
+msgid "grid.catalogEntry.productAvailabilityRequired"
+msgstr "Требуется код доступности продукта."
+
+msgid "grid.catalogEntry.fileSizeRequired"
+msgstr "Требуется размер файла для цифровых форматов."
+
+msgid "grid.catalogEntry.availableRepresentation.notApproved"
+msgstr "Ожидает утверждения"
+
+msgid "grid.catalogEntry.availableRepresentation.approved"
+msgstr "Утверждено"
+
+msgid "grid.catalogEntry.availableRepresentation.proofNotApproved"
+msgstr "Корректура не утверждена."
+
+msgid "grid.catalogEntry.availableRepresentation.notApprovedWarning"
+msgstr "Формат не включен в каталог."
+
+msgid "grid.catalogEntry.availableRepresentation.catalogNotApprovedWarning"
+msgstr "Запись в каталоге не утверждена."
+
+msgid "common.payments"
+msgstr "Платежи"
