@@ -33,8 +33,6 @@ class NativeXmlPublicationFilter extends NativeXmlPKPPublicationFilter {
 	 * @return Publication
 	 */
 	function populateObject($publication, $node) {
-		$deployment = $this->getDeployment();
-
 		$seriesPosition = $node->getAttribute('series_position');
 		$publication->setData('seriesPosition', $seriesPosition);
 
