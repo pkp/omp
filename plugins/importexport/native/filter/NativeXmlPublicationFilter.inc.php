@@ -36,18 +36,8 @@ class NativeXmlPublicationFilter extends NativeXmlPKPPublicationFilter {
 		$deployment = $this->getDeployment();
 		$context = $deployment->getContext();
 
-		$seriesPath = $node->getAttribute('series');
 		$seriesPosition = $node->getAttribute('series_position');
-		if ($seriesPath !== '') {
-			$seriesDao = DAORegistry::getDAO('SeriesDAO'); /** @var $seriesDao SeriesDAO */
-			$series = $seriesDao->getByPath($seriesPath, $context->getId());
-			if (!$series) {
-				$deployment->addError(ASSOC_TYPE_PUBLICATION, $publication->getId(), __('plugins.importexport.native.error.unknownSeries', array('param' => $seriesPath)));
-			} else {
-				$publication->setData('seriesId', $series->getId());
-				$publication->setData('seriesPosition', $seriesPosition);
-			}
-		}
+		$publication->setData('seriesPosition', $seriesPosition);
 
 		return parent::populateObject($publication, $node);
 	}
@@ -67,6 +57,9 @@ class NativeXmlPublicationFilter extends NativeXmlPKPPublicationFilter {
 				break;
 			case 'covers':
 				$this->parsePublicationCovers($this, $n, $publication);
+				break;
+			case 'series':
+				$this->parseSeries($this, $n, $publication);
 				break;
 			default:
 				parent::handleChildElement($n, $publication);
@@ -111,7 +104,7 @@ class NativeXmlPublicationFilter extends NativeXmlPKPPublicationFilter {
 
 		$existingDeployment = $this->getDeployment();
 		$request = Application::get()->getRequest();
-		
+
 		$onixDeployment = new Onix30ExportDeployment($request->getContext(), $request->getUser());
 		$onixDeployment->setPublication($existingDeployment->getPublication());
 		$onixDeployment->setFileDBIds($existingDeployment->getFileDBIds());
@@ -213,11 +206,11 @@ class NativeXmlPublicationFilter extends NativeXmlPKPPublicationFilter {
 		for ($n = $node->firstChild; $n !== null; $n=$n->nextSibling) {
 			if (is_a($n, 'DOMElement')) {
 				switch ($n->tagName) {
-					case 'cover_image': 
-						$coverImage['uploadName'] = $n->textContent; 
+					case 'cover_image':
+						$coverImage['uploadName'] = $n->textContent;
 						break;
 					case 'cover_image_alt_text':
-						$coverImage['altText'] = $n->textContent; 
+						$coverImage['altText'] = $n->textContent;
 						break;
 					case 'embed':
 						import('classes.file.PublicFileManager');
@@ -234,6 +227,70 @@ class NativeXmlPublicationFilter extends NativeXmlPKPPublicationFilter {
 		$coverImagelocale[$locale] = $coverImage;
 
 		return $coverImagelocale;
+	}
+
+	/**
+	 * Parse out the cover and store it in the object.
+	 * @param $filter NativeExportFilter
+	 * @param $node DOMElement
+	 * @param $object Publication
+	 */
+	function parseSeries($filter, $node, $object) {
+		$deployment = $filter->getDeployment();
+
+		$context = $deployment->getContext(); /** $context Context */
+
+		$seriesDao = DAORegistry::getDAO('SeriesDAO'); /** @var $seriesDao SeriesDAO */
+		$series = $seriesDao->newDataObject();
+
+		for ($n = $node->firstChild; $n !== null; $n=$n->nextSibling) {
+			if (is_a($n, 'DOMElement')) {
+				switch ($n->tagName) {
+					case 'path':
+						$seriesPath = $n->textContent;
+						$series->setData('path', $seriesPath);
+						break;
+					case 'title':
+						$locale = $n->getAttribute('locale');
+						if (empty($locale)) $locale = $context->getPrimaryLocale();
+						$series->setData('title', $n->textContent, $locale);
+						break;
+					case 'description':
+						$locale = $n->getAttribute('locale');
+						if (empty($locale)) $locale = $context->getPrimaryLocale();
+						$series->setData('description', $n->textContent, $locale);
+						break;
+					case 'subtitle':
+						$locale = $n->getAttribute('locale');
+						if (empty($locale)) $locale = $context->getPrimaryLocale();
+						$series->setData('subtitle', $n->textContent, $locale);
+						break;
+					case 'printIssn':
+						$series->setData('printIssn', $n->textContent);
+						break;
+					case 'onlineIssn':
+						$series->setData('onlineIssn', $n->textContent);
+						break;
+					default:
+						$deployment->addWarning(ASSOC_TYPE_PUBLICATION, $object->getId(), __('plugins.importexport.common.error.unknownElement', array('param' => $n->tagName)));
+				}
+			}
+		}
+
+		$seriesId = null;
+		if ($series->getData('path')) {
+			$existingSeries = $seriesDao->getByPath($seriesPath, $context->getId());
+			if (!$existingSeries) {
+				$deployment->addWarning(ASSOC_TYPE_PUBLICATION, $object->getId(), __('plugins.importexport.native.error.unknownSeries', array('param' => $seriesPath)));
+
+				$series->setData('contextId', $context->getId());
+				$seriesId = $seriesDao->insertObject($series);
+			} else {
+				$seriesId = $existingSeries->getId();
+			}
+		}
+
+		$object->setData('seriesId', $seriesId);
 	}
 
 	/**

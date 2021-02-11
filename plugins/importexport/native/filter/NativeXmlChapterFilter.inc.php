@@ -80,6 +80,9 @@ class NativeXmlChapterFilter extends NativeImportFilter {
 
 		// Handle metadata in subelements
 		for ($n = $node->firstChild; $n !== null; $n=$n->nextSibling) if (is_a($n, 'DOMElement')) switch($n->tagName) {
+			case 'id':
+				$this->parseIdentifier($n, $chapter);
+				break;
 			case 'title':
 				$locale = $n->getAttribute('locale');
 				if (empty($locale)) $locale = $context->getLocale();
@@ -151,6 +154,32 @@ class NativeXmlChapterFilter extends NativeImportFilter {
 				$submissionFileDao = DAORegistry::getDAO('SubmissionFileDAO'); /** @var $submissionFileDao SubmissionFileDAO */
 				$submissionFileDao->updateObject($submissionFile);
 			}
+		}
+	}
+
+	/**
+	 * Parse an identifier node and set up the chapter object accordingly
+	 * @param $element DOMElement
+	 * @param $entity PKPPublication
+	 */
+	function parseIdentifier($element, $chapter) {
+		$deployment = $this->getDeployment();
+		$submission = $deployment->getSubmission();
+
+		$advice = $element->getAttribute('advice');
+		switch ($element->getAttribute('type')) {
+			case 'internal':
+				break;
+			case 'public':
+				if ($advice == 'update') {
+					$chapter->setData('pub-id::publisher-id', $element->textContent);
+				}
+				break;
+			default:
+				if ($advice == 'update') {
+					$pubIdPlugins = PluginRegistry::loadCategory('pubIds', true, $deployment->getContext()->getId());
+					$chapter->setData('pub-id::'.$element->getAttribute('type'), $element->textContent);
+				}
 		}
 	}
 }
