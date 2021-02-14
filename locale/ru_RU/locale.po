@@ -1,6 +1,6 @@
 msgid ""
 msgstr ""
-"PO-Revision-Date: 2021-02-14 18:52+0000\n"
+"PO-Revision-Date: 2021-02-15 21:54+0000\n"
 "Last-Translator: Sergei Yukhimets <y_s_n@mail.ru>\n"
 "Language-Team: Russian <http://translate.pkp.sfu.ca/projects/omp/locale/"
 "ru_RU/>\n"
@@ -611,7 +611,6 @@ msgstr ""
 "Решение редакции ({$decision}) по книге {$submissionId} было введено "
 "редактором ({$editorName})."
 
-#, fuzzy
 msgid "log.review.reviewUnconsidered"
 msgstr ""
 "{$editorName} отметил раунд {$round} рецензирования для материала "
@@ -704,7 +703,6 @@ msgstr ""
 "Ваш сервер сейчас разрешает загрузку файлов: "
 "<strong>{$allowFileUploads}</strong>"
 
-#, fuzzy
 msgid "installer.localeSettingsInstructions"
 msgstr ""
 "Для полной поддержки Unicode (UTF-8), выберите UTF-8 для всех настроек "
@@ -720,7 +718,7 @@ msgstr ""
 msgid "installer.installationInstructions"
 msgstr ""
 "\n"
-"Благодарим Вас за скачивание <strong>Open Monograph Press</strong>, "
+"<p>Благодарим Вас за скачивание <strong>Open Monograph Press</strong>, "
 "разработанной в рамках Public Knowledge Project. Перед продолжением, "
 "пожалуйста, прочтите файлы <a href=\"{$baseUrl}/docs/README.md\">README</a> "
 "идущие с этим программным обеспечением. Более подробную информацию о Public "
@@ -1011,7 +1009,6 @@ msgstr ""
 "Да, Я хочу, чтобы ко мне обращались с запросами на рецензирование материалов "
 "для этого издательства."
 
-#, fuzzy
 msgid "user.reviewerPrompt.userGroup"
 msgstr "Да, запросить роль «{$userGroup}»."
 
@@ -1092,9 +1089,8 @@ msgstr "Информация для библиотек"
 msgid "navigation.infoForAuthors.long"
 msgstr "Информация для авторов"
 
-#, fuzzy
 msgid "navigation.infoForLibrarians"
-msgstr "Для библиотек"
+msgstr "Для библиотекарей"
 
 msgid "navigation.infoForAuthors"
 msgstr "Для авторов"
@@ -1126,11 +1122,9 @@ msgstr "Каталог"
 msgid "common.homePageHeader.altText"
 msgstr "Заголовок главной страницы"
 
-#, fuzzy
 msgid "common.omp"
 msgstr "OMP"
 
-#, fuzzy
 msgid "common.software"
 msgstr "Open Monograph Press"
 
@@ -1323,3 +1317,323 @@ msgstr "Управлять Категориями"
 
 msgid "catalog.manage.manageSeries"
 msgstr "Управлять Сериями"
+
+msgid "manager.series.open"
+msgstr "Открыть подачу материала"
+
+msgid "manager.series.indexed"
+msgstr "Индексировано"
+
+msgid "grid.action.approveProof"
+msgstr "Утвердить корректуру для индексирования и включения в каталог"
+
+msgid "catalog.manage.newRelease"
+msgstr "Релиз (версия)"
+
+msgid "catalog.manage.placeIntoCarousel"
+msgstr "Карусель"
+
+msgid "catalog.manage.seriesDescription"
+msgstr ""
+"Нажмите кнопку \" Особенности\", а затем звезду, чтобы выбрать нужную книгу "
+"для этой серии; перетащите ее по порядку. Серия обозначается редактором(ами) "
+"и названием серии, в пределах категории или независимо друг от друга."
+
+msgid "catalog.manage.categoryDescription"
+msgstr ""
+"Нажмите кнопку \" Особенности\", а затем звезду, чтобы выбрать нужную книгу "
+"для этой категории; перетащите ее в нужном порядке."
+
+msgid "catalog.manage.homepageDescription"
+msgstr ""
+"Изображение обложки выбранных книг появляется в верхней части главной "
+"страницы в виде набора с возможностью прокрутки. Нажмите кнопку \" "
+"Особенности\", затем звезду, чтобы добавить книгу к карусели; щелкните "
+"восклицательный знак, чтобы добавить книгу в качестве новой версии; "
+"перетащите по порядку."
+
+msgid "catalog.selectCategory"
+msgstr "Выбрать Категорию"
+
+msgid "catalog.selectSeries"
+msgstr "Выбрать серии"
+
+msgid "catalog.manage.series.printIssn"
+msgstr "ISSN печатной версии"
+
+msgid "catalog.manage.series.onlineIssn"
+msgstr "ISSN онлайн-версии"
+
+msgid "catalog.manage.series.issn.equalValidation"
+msgstr "Онлайн и печатный ISSN не должны быть одинаковыми."
+
+msgid "catalog.manage.series.issn.validation"
+msgstr "Пожалуйста, введите правильный ISSN."
+
+msgid "catalog.manage.series.issn"
+msgstr "ISSN"
+
+msgid "catalog.manage.series"
+msgstr "Серии"
+
+msgid "catalog.manage.category"
+msgstr "Категория"
+
+msgid "catalog.manage.newReleases"
+msgstr "Новые издания"
+
+msgid "catalog.manage"
+msgstr "Управление Каталогом"
+
+msgid "series.path"
+msgstr "Путь"
+
+msgid "series.featured.description"
+msgstr "Эти серии появится в основной навигации"
+
+msgid "series.series"
+msgstr "Серии"
+
+msgid "submissionGroup.assignedSubEditors"
+msgstr "Назначенные редакторы"
+
+msgid "grid.reviewAttachments.availableFiles"
+msgstr "Доступные файлы"
+
+msgid "grid.reviewAttachments.add"
+msgstr "Добавить вложение к рецензии"
+
+msgid "grid.action.formatAvailable"
+msgstr "Включите или выключите доступность этого формата"
+
+msgid "grid.action.availableRepresentation"
+msgstr "Одобрить/отклонить этот формат"
+
+msgid "grid.action.proofApproved"
+msgstr "Формат проверен"
+
+msgid "grid.action.approveProofs"
+msgstr "Просмотреть сетку корректуры"
+
+msgid "grid.action.submissionEmail"
+msgstr "Нажмите чтобы прочитать это письмо"
+
+msgid "grid.action.moreAnnouncements"
+msgstr "Перейти на страницу объявлений издательства"
+
+msgid "grid.action.publicationFormatTab"
+msgstr "Показать вкладку Формат издания"
+
+msgid "grid.action.createContext"
+msgstr "Создать новое Издательство"
+
+msgid "grid.action.deleteDate"
+msgstr "Удалить эту Дату"
+
+msgid "grid.action.editDate"
+msgstr "Редактировать эту Дату"
+
+msgid "grid.action.addDate"
+msgstr "Добавить дату публикации"
+
+msgid "grid.action.deleteMarket"
+msgstr "Удалить этот Рынок"
+
+msgid "grid.action.editMarket"
+msgstr "Редактировать этот Рынок"
+
+msgid "grid.action.addMarket"
+msgstr "Добавить Рынок сбыта"
+
+msgid "grid.action.deleteRights"
+msgstr "Удалить эти права"
+
+msgid "grid.action.editRights"
+msgstr "Редактировать эти права"
+
+msgid "grid.action.addRights"
+msgstr "Добавить Права на продажи"
+
+msgid "grid.action.deleteCode"
+msgstr "Удалить этот Код"
+
+msgid "grid.action.editCode"
+msgstr "Редактировать этот Код"
+
+msgid "grid.action.addCode"
+msgstr "Добавить Код"
+
+msgid "grid.action.manageSeries"
+msgstr "Настройте серии для этого издательства"
+
+msgid "grid.action.manageCategories"
+msgstr "Настройте категории для этого издательства"
+
+msgid "grid.action.releaseMonograph"
+msgstr "Отметьте этот материал  как новое издание"
+
+msgid "grid.action.featureMonograph"
+msgstr "Покажите это в карусели каталога"
+
+msgid "grid.action.feature"
+msgstr "Переключить отображение свойств"
+
+msgid "grid.action.publicCatalog"
+msgstr "Посмотреть этот элемент в каталоге"
+
+msgid "grid.action.newCatalogEntry"
+msgstr "Новый Пункт каталога"
+
+msgid "grid.action.addAnnouncement"
+msgstr "Добавить объявление"
+
+msgid "grid.action.pageProofApproved"
+msgstr "Файл страниц корректуры готов к публикации"
+
+msgid "grid.action.addFormat"
+msgstr "Добавить формат публикации"
+
+msgid "grid.action.deleteFormat"
+msgstr "Удалить этот формат"
+
+msgid "grid.action.editFormat"
+msgstr "Редактировать этот формат"
+
+msgid "grid.action.formatInCatalogEntry"
+msgstr "Формат появился у элемента каталога"
+
+msgid "grid.action.catalogEntry"
+msgstr "Посмотреть форму элемента каталога"
+
+msgid "grid.libraryFiles.column.files"
+msgstr "Файлы"
+
+msgid "grid.action.addSpotlight"
+msgstr "Добавить Фокус внимания"
+
+msgid "grid.action.deleteSpotlight"
+msgstr "Удалить этот Фокус внимания"
+
+msgid "grid.action.editSpotlight"
+msgstr "Редактировать этот Фокус внимания"
+
+msgid "grid.content.spotlights.locationRequired"
+msgstr "Пожалуйста, выберите место для этого Фокуса внимания."
+
+msgid "catalog.coverImageTitle"
+msgstr "Изображение обложки"
+
+msgid "user.authorization.invalidPublishedSubmission"
+msgstr "Был указан недействительный опубликованный материал."
+
+msgid "user.profile.form.hideOtherContexts"
+msgstr "Скрыть другие издательства"
+
+msgid "user.profile.form.showOtherContexts"
+msgstr "Зарегистрироваться в других издательствах"
+
+msgid "submission.pdf.download"
+msgstr "Скачать этот файл PDF"
+
+msgid "rt.metadata.pkp.dctype"
+msgstr "Книга"
+
+msgid "debug.notes.helpMappingLoad"
+msgstr "Перезагружен файл отображения XML-справки {$filename} в поиске {$id}."
+
+msgid "payment.directSales.monograph.description"
+msgstr ""
+"Эта сделка заключается в приобретении отдельной главы, содержащей всю "
+"монографию или ее главу, для непосредственного скачивания."
+
+msgid "payment.directSales.monograph.name"
+msgstr "Купить и загрузить Монографию или Главу"
+
+msgid "payment.directSales.download"
+msgstr "Скачать  {$format}"
+
+msgid "payment.directSales.purchase"
+msgstr "Покупка  {$format} ({$amount} {$currency})"
+
+msgid "payment.directSales.validPriceRequired"
+msgstr "Требуется действительная числовая цена."
+
+msgid "payment.directSales.price.description"
+msgstr ""
+"Форматы файлов могут быть доступны для скачивания с сайта  путем открытого "
+"доступ для читателей без каких-либо затрат или прямых продаж (с "
+"использованием онлайн-процессора оплаты, как настроено в Дистрибутиве). Для "
+"этого файла укажите тип доступа."
+
+msgid "payment.directSales.openAccess"
+msgstr "Открытый доступ"
+
+msgid "payment.directSales.notSet"
+msgstr "Не установлено"
+
+msgid "payment.directSales.notAvailable"
+msgstr "Не доступно"
+
+msgid "payment.directSales.amount"
+msgstr "{$amount}  ({$currency})"
+
+msgid "payment.directSales.directSales"
+msgstr "Прямые продажи"
+
+msgid "payment.directSales.numericOnly"
+msgstr "Цены должны быть только числовыми. Не включайте символы валют."
+
+msgid "payment.directSales.priceCurrency"
+msgstr "Цена ({$currency})"
+
+msgid "payment.directSales.approved"
+msgstr "Утверждено"
+
+msgid "payment.directSales.catalog"
+msgstr "Каталог"
+
+msgid "payment.directSales.availability"
+msgstr "Доступность"
+
+msgid "payment.directSales.price"
+msgstr "Цена"
+
+msgid "payment.directSales"
+msgstr "Скачать с сайта издательства"
+
+msgid "user.authorization.workflowStageSettingMissing"
+msgstr ""
+"Доступ запрещен! Группа пользователей, с которой вы в настоящее время "
+"работаете, не была назначена на эту стадию рабочего процесса. Пожалуйста, "
+"проверьте настройки Вашего издательства."
+
+msgid "user.authorization.workflowStageAssignmentMissing"
+msgstr "Доступ запрещен! Вы не были назначены на этот этап рабочего процесса."
+
+msgid "user.authorization.seriesAssignment"
+msgstr ""
+"Вы пытаетесь получить доступ к книге, которая не относится к Вашей серии."
+
+msgid "user.authorization.noContext"
+msgstr "Нет издательства в контексте!"
+
+msgid "user.authorization.invalidMonograph"
+msgstr "Недействительная монография или она не запрашивалась!"
+
+msgid "user.authorization.monographFile"
+msgstr "Вам было отказано в доступе к указанному файлу монографии."
+
+msgid "user.authorization.monographReviewer"
+msgstr ""
+"Вам было отказано в доступе, потому что вы, скорее всего, не являетесь "
+"назначенным рецензентом на эту монографию."
+
+msgid "user.authorization.monographAuthor"
+msgstr ""
+"Вам было отказано в доступе, потому что вы, скорее всего, не являетесь "
+"автором этой книги."
+
+msgid "user.authorization.invalidReviewAssignment"
+msgstr ""
+"Вам было отказано в доступе, потому что вы, скорее всего, не являетесь "
+"назначенным рецензентом на эту монографию."
