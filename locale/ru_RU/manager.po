@@ -1,2 +1,101 @@
 msgid ""
-msgstr "X-Generator: Weblate\nMIME-Version: 1.0\nContent-Type: text/plain; charset=UTF-8\nContent-Transfer-Encoding: 8bit"
+msgstr ""
+"PO-Revision-Date: 2021-02-15 21:54+0000\n"
+"Last-Translator: Sergei Yukhimets <y_s_n@mail.ru>\n"
+"Language-Team: Russian <http://translate.pkp.sfu.ca/projects/omp/manager/"
+"ru_RU/>\n"
+"Language: ru_RU\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=3; plural=n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%10<="
+"4 && (n%100<10 || n%100>=20) ? 1 : 2;\n"
+"X-Generator: Weblate 3.9.1\n"
+
+msgid "manager.series.noneCreated"
+msgstr "Не создано ни одной серии."
+
+msgid "manager.series.form.titleRequired"
+msgstr "Требуется название для серии."
+
+msgid "manager.series.form.abbrevRequired"
+msgstr "Требуется аббревиатура названия для серии."
+
+#, fuzzy
+msgid "manager.series.unassigned"
+msgstr "Доступные редакторы серий"
+
+msgid "manager.series.hideAbout"
+msgstr "Пропустите эту серию в  \"О нас\"."
+
+msgid "manager.series.seriesEditorInstructions"
+msgstr ""
+"Добавьте редактора серий из доступных редакторов серии. После добавления "
+"укажите, будет ли редактор серии осуществлять Рецензирование и/или "
+"редактирование (литературное, научное, верстку и корректуру) материалов в "
+"этой серии. Редакторы серии создаются нажатием кнопки <a href=\""
+"{$seriesEditorsUrl}\">Редакторы серий</a> в разделе Роли в Управлении "
+"Издательством."
+
+msgid "manager.series.assigned"
+msgstr "Редакторы для этих серий"
+
+msgid "manager.series.policy"
+msgstr "Описание серии"
+
+msgid "manager.series.create"
+msgstr "Создать  серии"
+
+msgid "manager.series.book"
+msgstr "Серия книг"
+
+msgid "manager.series.disableComments"
+msgstr "Отключить комментарии читателей для этой серии."
+
+msgid "manager.series.abstractsNotRequired"
+msgstr "Не требовать аннотации"
+
+msgid "manager.series.submissionsToThisSection"
+msgstr "Рукописи, поданные в эту серию"
+
+msgid "manager.series.submissionReview"
+msgstr "Не будет рецензироваться"
+
+msgid "manager.series.readingTools"
+msgstr "Инструменты читателя"
+
+msgid "manager.series.open"
+msgstr "Открыть подачу материала"
+
+msgid "manager.series.indexed"
+msgstr "Индексировано"
+
+msgid "manager.series.confirmDelete"
+msgstr "Вы уверены, что хотите навсегда удалить эти серии?"
+
+msgid "manager.series.editorRestriction"
+msgstr "Объекты могут отправляться только редакторами и редакторами серий."
+
+msgid "manager.series.submissionIndexing"
+msgstr "Не будет учитываться при индексировании издательства"
+
+msgid "manager.series.form.reviewFormId"
+msgstr "Пожалуйста, убедитесь, что вы выбрали правильную форму рецензии."
+
+msgid "manager.series.form.mustAllowPermission"
+msgstr ""
+"Пожалуйста, убедитесь, что поставлена хотя бы одна галочка для каждого "
+"назначения редактора Серий."
+
+msgid "manager.languages.primaryLocaleInstructions"
+msgstr "Это будет язык по умолчанию для сайта этого издательства."
+
+msgid "manager.languages.noneAvailable"
+msgstr ""
+"Извините, дополнительные языки не доступны. Свяжитесь с администратором "
+"сайта, если вы хотите добавить дополнительные языки в это издательство."
+
+msgid "manager.language.confirmDefaultSettingsOverwrite"
+msgstr ""
+"Это заменит любые специфические настройки печати, которые у вас были для "
+"данной локали."
