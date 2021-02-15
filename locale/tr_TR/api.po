@@ -19,3 +19,6 @@ msgstr "Belirttiğiniz gönderilerden bir veya daha fazlası bulunamadı."
 msgid "api.submissions.400.submissionIdsRequired"
 msgstr ""
 "Fihriste eklenmek için bir veya daha fazla gönderi kimliği sağlamalısınız."
+
+msgid "api.emails.403.disabled"
+msgstr "E-posta bildirim özelliği bu yayınevi için etkinleştirilmemiştir."
