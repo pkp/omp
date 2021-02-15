@@ -1,2 +1,182 @@
 msgid ""
-msgstr "X-Generator: Weblate\nMIME-Version: 1.0\nContent-Type: text/plain; charset=UTF-8\nContent-Transfer-Encoding: 8bit"
+msgstr ""
+"PO-Revision-Date: 2021-02-16 09:32+0000\n"
+"Last-Translator: Uğur Koçak <drugurkocak@icloud.com>\n"
+"Language-Team: Turkish <http://translate.pkp.sfu.ca/projects/omp/default/"
+"tr_TR/>\n"
+"Language: tr_TR\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: Weblate 3.9.1\n"
+
+msgid "default.groups.abbrev.externalReviewer"
+msgstr "HD"
+
+msgid "default.groups.plural.externalReviewer"
+msgstr "Harici Danışmanlar"
+
+msgid "default.groups.name.externalReviewer"
+msgstr "Harici Danışman"
+
+msgid "default.contextSettings.forLibrarians"
+msgstr ""
+"Araştırmacı kütüphanecilere, bu yayınevini elektronik yayınevleri listesine "
+"almaları önerilir. Ayrıca, bu açık kaynaklı yayın sistemi öğretim üyelerinin "
+"düzenlemesinde yer aldıkları eserlerin barındırması için uygundur (bkz. <a "
+"href=\"http://pkp.sfu.ca/omp\"> Open Monograph Press </a>)."
+
+msgid "default.contextSettings.forAuthors"
+msgstr ""
+"Bu yayınevine gönderimde bulunmayı düşünüyorsanız <a href=\""
+"{$indexUrl}/{$contextPath}/about\">Yayınevi Hakkında</a> bağlantısı "
+"araılığıyla yayınevinin yayın politikası ve <a href=\""
+"{$indexUrl}/{$contextPath}/about/submissions#authorGuidelines\">Yazar "
+"Rehberi</a>'ne ulaşabilirsiniz. Yazarlar yayınevine gönderi yapmadan önce <a "
+"href=\"{$indexUrl}/{$contextPath}/user/register\">register</a> üye olmalı, "
+"zaten üye ise giriş yapmalıdır. Gönderi işlemi  <a href=\""
+"{$indexUrl}/{$contextPath}/login\">Üye Giriş</a> bağlantısı aracılığıyla 5 "
+"basamakta yapılır."
+
+msgid "default.contextSettings.forReaders"
+msgstr ""
+"Okuyucuların yayın bildirimi servisine kayıt olmaları önerilir. Yayınevi ana "
+"sayfasının üst kısmında yer alan <a href=\"{$indexUrl}/{$contextPath}/user/"
+"register\">Kayıt</a> bağlantısı aracılığı ile bu işlem gerçekleştirilebilir. "
+"Bu kayıtla her yeni eser yayınlandığında İçindekiler sayfası e-posta "
+"aracılığı ile okuyucuya iletilir. Bu liste aynı zamanda yayınevinin belirli "
+"bir düzeyde destek sunduğu veya okuyucusu olduğunu öne sürmesine izin verir. "
+"Yayınevinin <a href=\"{$indexUrl}/{$contextPath}/about/submissions#"
+"privacyStatement\">Gizlilik kurallarına bakınız</a> yazarların kimlik "
+"bilgileri ve e-posta adresleri hiç bir şekilde başka amaçlar için "
+"kullanılmayacaktır."
+
+msgid "default.contextSettings.emailSignature"
+msgstr ""
+"<br/>\n"
+"________________________________________________________________________<br/>"
+"\n"
+"<a href=\"{$ldelim}$contextUrl{$rdelim}\">{$ldelim}$contextName{$rdelim}</a>"
+
+msgid "default.contextSettings.openAccessPolicy"
+msgstr ""
+"Bu yayınevi, araştırmayı halka ücretsiz olarak sunmanın daha büyük bir "
+"küresel bilgi alışverişini desteklediği ilkesiyle içeriğine anında açık "
+"erişim sağlar."
+
+msgid "default.contextSettings.privacyStatement"
+msgstr ""
+"<p> Bu yayınevi sitesine girilen adlar ve e-posta adresleri, yalnızca bu "
+"yayınevinin belirtilen amaçları için kullanılacak ve başka herhangi bir "
+"amaçla kullanılmayacak veya başka bir tarafa sunulmayacaktır. </p>"
+
+msgid "default.contextSettings.checklist.bibliographicRequirements"
+msgstr ""
+"Metin, Yayınevi Hakkında sayfasında mevcut <a href=\""
+"{$indexUrl}/{$contextPath}/about/submissions#authorGuidelines\" target=\""
+"_blank\">Yazar Rehberi</a>'nde  belirtilen biçimsel ve kaynakça "
+"gereksinimlerine uygundur."
+
+msgid "default.contextSettings.checklist.submissionAppearance"
+msgstr ""
+"Metin tek satırlı, 10 punto, altı çizilme yerine italik olarak vurgulanmış ("
+"URL adresleri hariç) ve tüm şekil, resim ve tablolar sayfa sonu yerine metin "
+"içinde uygun noktalara yerleştirilmiştir."
+
+msgid "default.contextSettings.checklist.addressesLinked"
+msgstr "Mümkün olduğunda, kaynaklar için URL'ler sağlanmıştır."
+
+msgid "default.contextSettings.checklist.fileFormat"
+msgstr ""
+"Gönderi dosyası Microsoft Word, RTF veya OpenDocument dosya biçimindedir."
+
+msgid "default.contextSettings.checklist.notPreviouslyPublished"
+msgstr ""
+"Gönderi daha önce yayımlanmamış, yahut değerlendirilmek üzere başka bir "
+"yayınevine gönderilmemiştir (ya da Editöre Yorumlar bölümünde bir açıklamada "
+"bulunulmuştur)."
+
+msgid "default.groups.abbrev.volumeEditor"
+msgstr "CE"
+
+msgid "default.groups.plural.volumeEditor"
+msgstr "Cilt editörleri"
+
+msgid "default.groups.name.volumeEditor"
+msgstr "Cilt editörü"
+
+msgid "default.groups.abbrev.chapterAuthor"
+msgstr "BY"
+
+msgid "default.groups.plural.chapterAuthor"
+msgstr "Bölüm Yazarları"
+
+msgid "default.groups.name.chapterAuthor"
+msgstr "Bölüm Yazarı"
+
+msgid "default.groups.abbrev.sectionEditor"
+msgstr "AcqE"
+
+msgid "default.groups.plural.sectionEditor"
+msgstr "Dizi editörleri"
+
+msgid "default.groups.name.sectionEditor"
+msgstr "Dizi editörü"
+
+msgid "default.groups.abbrev.editor"
+msgstr "YE"
+
+msgid "default.groups.plural.editor"
+msgstr "Yayınevi editörleri"
+
+msgid "default.groups.name.editor"
+msgstr "Yayınevi editörü"
+
+msgid "default.groups.abbrev.manager"
+msgstr "PM"
+
+msgid "default.groups.plural.manager"
+msgstr "Yayınevi müdürleri"
+
+msgid "default.groups.name.manager"
+msgstr "Yayınevi müdürü"
+
+msgid "default.genres.other"
+msgstr "Diğer"
+
+msgid "default.genres.illustration"
+msgstr "Çizim"
+
+msgid "default.genres.photo"
+msgstr "Resim"
+
+msgid "default.genres.figure"
+msgstr "Şekil"
+
+msgid "default.genres.table"
+msgstr "Tablo"
+
+msgid "default.genres.prospectus"
+msgstr "İzahat"
+
+msgid "default.genres.preface"
+msgstr "Önsöz"
+
+msgid "default.genres.index"
+msgstr "Dizin"
+
+msgid "default.genres.glossary"
+msgstr "Sözlük"
+
+msgid "default.genres.chapter"
+msgstr "Bölüm Taslağı"
+
+msgid "default.genres.manuscript"
+msgstr "Kitap Taslağı"
+
+msgid "default.genres.bibliography"
+msgstr "Kaynakça"
+
+msgid "default.genres.appendix"
+msgstr "Ek"
