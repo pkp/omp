@@ -1,6 +1,6 @@
 msgid ""
 msgstr ""
-"PO-Revision-Date: 2021-02-16 19:22+0000\n"
+"PO-Revision-Date: 2021-02-17 00:16+0000\n"
 "Last-Translator: Sergei Yukhimets <y_s_n@mail.ru>\n"
 "Language-Team: Russian <http://translate.pkp.sfu.ca/projects/omp/manager/"
 "ru_RU/>\n"
@@ -97,7 +97,7 @@ msgstr ""
 msgid "manager.language.confirmDefaultSettingsOverwrite"
 msgstr ""
 "Это заменит любые специфические настройки печати, которые у вас были для "
-"данной локали."
+"данной локали"
 
 msgid "manager.series.restricted"
 msgstr "Не разрешайте авторам посылать материалы непосредственно в эти серии."
@@ -107,3 +107,1323 @@ msgstr "Название серии"
 
 msgid "manager.series.existingUsers"
 msgstr "Существующие пользователи"
+
+msgid "manager.setup.layoutInstructionsDescription"
+msgstr ""
+"Инструкции по верстке могут быть подготовлены для форматирования элементов "
+"публикации в издательстве  и введены ниже в HTML или обычным текстом. Они "
+"будут доступны верстальщику и редактору разделов на странице редактирования "
+"каждого представления. (Поскольку каждое издательство может использовать "
+"собственные форматы файлов, библиографические стандарты, таблицы стилей и "
+"т.д., набор инструкций по умолчанию не предоставляется.)"
+
+msgid "stats.publications.countOfTotal"
+msgstr "{$count} из {$total} монографий(и/я)"
+
+msgid "plugins.importexport.native.exportSubmissions"
+msgstr "Экспортировать подачи материалов"
+
+msgid "plugins.importexport.common.invalidXML"
+msgstr "Неправильный XML:"
+
+msgid "plugins.importexport.common.error.validation"
+msgstr "Невозможно конвертировать выбранные объекты."
+
+msgid "plugins.importexport.common.error.noObjectsSelected"
+msgstr "Нет выбранных объектов."
+
+msgid "stats.publications.abstracts"
+msgstr "Записи  каталога"
+
+msgid "stats.publications.totalGalleyViews.timelineInterval"
+msgstr "Общее число просмотров файлов по датам"
+
+msgid "stats.publications.totalAbstractViews.timelineInterval"
+msgstr "Общее количество просмотров каталога по датам"
+
+msgid "stats.publications.none"
+msgstr ""
+"Не найдено статей со статистикой использования, которая соответствует данным "
+"параметрам."
+
+msgid "stats.publications.details"
+msgstr "Детали монографии"
+
+msgid "stats.publicationStats"
+msgstr "Статистика монографии"
+
+msgid "grid.series.urlWillBe"
+msgstr "URL серии будет: {$sampleUrl}"
+
+msgid "manager.navigationMenus.form.navigationMenuItemCategoryMessage"
+msgstr ""
+"Пожалуйста, выберите категорию, на которую вы хотите сослаться в этом пункте "
+"меню."
+
+msgid "manager.navigationMenus.form.navigationMenuItem.category"
+msgstr "Выбрать Категорию"
+
+msgid "manager.navigationMenus.form.navigationMenuItemSeriesMessage"
+msgstr ""
+"Пожалуйста, выберите серию, на которую вы хотите сослаться в этом пункте "
+"меню."
+
+msgid "manager.navigationMenus.form.navigationMenuItem.series"
+msgstr "Выбрать серии"
+
+msgid "grid.series.pathExists"
+msgstr "Такой путь к серии уже существует. Пожалуйста, введите уникальный путь."
+
+msgid "grid.series.pathAlphaNumeric"
+msgstr "Путь серии должен состоять только из букв и цифр."
+
+msgid "manager.setup.notifications.copyPrimaryContact"
+msgstr ""
+"Отправить копию основному контактному лицу, указанному в настройках "
+"издательства."
+
+msgid "grid.genres.title"
+msgstr "Компоненты монографий"
+
+msgid "grid.genres.title.short"
+msgstr "Компоненты"
+
+msgid "manager.setup.resetPermissions.success"
+msgstr "Разрешения для монографий были успешно сброшены."
+
+msgid "manager.setup.resetPermissions.description"
+msgstr ""
+"Заявление об авторском праве и лицензионная информация будут постоянно "
+"прилагаться к публикуемому контенту, гарантируя, что эти данные не изменятся "
+"в случае изменения политики прессы в отношении новых материалов. Чтобы "
+"сбросить сохраненную информацию о разрешениях, уже прикрепленных к "
+"опубликованному контенту, воспользуйтесь кнопкой, расположенной ниже."
+
+msgid "manager.setup.resetPermissions.confirm"
+msgstr ""
+"Вы уверены, что хотите сбросить данные разрешений, уже назначенные "
+"монографиям?"
+
+msgid "manager.setup.resetPermissions"
+msgstr "Сбросить разрешения для монографий"
+
+msgid "manager.publication.library"
+msgstr "Библиотека издательства"
+
+msgid "manager.setup.referenceLinkingDescription"
+msgstr ""
+"<p>Чтобы дать возможность читателям найти онлайн-версии произведения, "
+"цитируемого автором, доступны следующие опции.</p>.\n"
+"\n"
+"<ol>\n"
+"\t<li><strong>Добавить инструмент чтения</strong><p>Управляющий  может "
+"добавить \"Поиск ссылок\" к инструментам чтения, сопровождающим "
+"опубликованные элементы, что позволяет читателям вставлять заголовок ссылки, "
+"а затем осуществлять поиск в предварительно выбранных научных базах данных "
+"для цитируемой работы.</p></li>.\n"
+"\t<li><strong>Внедрить ссылки в список литературы</strong><p>Верстальщик "
+"может добавить ссылку на источники, которые можно найти в Интернете, "
+"используя следующие инструкции (которые можно редактировать).</p></li>.\n"
+"</ol>"
+
+msgid "manager.setup.basicEditorialStepsDescription"
+msgstr ""
+"Шаги: Очередь материалов &gt; Реценизрование материала &gt; Редактирование "
+"материала &gt; Содержание выпуска.<br /><br />\n"
+"Выберите модель для управления этими аспектами редакционного процесса. ("
+"Чтобы определить выпускающего редактора и редакторов разделов, перейдите в "
+"«Редакторы» в разделе «Управление журналом».)"
+
+msgid "manager.setup.copyrightNotice.sample"
+msgstr ""
+"<h3>Предложенные \"Creative Commons Copyright Notices\"  Уведомления об "
+"авторских правах</h3>\n"
+"<h4>Предложенная политика для издательств, предлагающих открытый доступ</h4>."
+"\n"
+"Авторы, публикующиеся в этой прессе, соглашаются со следующими условиями:\n"
+"<ol type=\"a\">\n"
+"\t<li>Авторы сохраняют авторские права и предоставляют право первой "
+"публикации произведения с одновременной лицензией на <a target=\"_blank\" "
+"href=\"http://creativecommons.org/licenses/by/3.0/\">Лицензия на атрибуцию "
+"Creative Commons</a>, которая позволяет другим лицам делиться произведением "
+"с подтверждением авторства произведения и его первоначальной публикации в "
+"этом издании.</li>.\n"
+"\t<li>Авторы имеют возможность заключать отдельные дополнительные договорные "
+"серии для неэксклюзивного распространения версии произведения, "
+"опубликованной в прессе (например, размещать ее в институциональном "
+"хранилище или публиковать в книге), с подтверждением ее первоначальной "
+"публикации в этой прессе.</li>.\n"
+"\t<li>Авторам разрешается и рекомендуется размещать свои работы в Интернете ("
+"например, в институциональных репозиториях или на своем веб-сайте) до и во "
+"время процесса представления, поскольку это может привести к продуктивному "
+"обмену, а также к более раннему и широкому цитированию опубликованных работ ("
+"см. <a target=\"_blank\" href=\"http://opcit.eprints.org/oacitation-biblio."
+"html\">The Effect of Open Access</a>).</li>.\n"
+"</ol>\n"
+"\n"
+"<h4>Предложенная политика для издательств, предлагающих отложенный открытый "
+"доступ</h4>.\n"
+"Авторы, публикующиеся в этом издательстве, соглашаются со следующими "
+"условиями:\n"
+"<ol type=\"a\">\n"
+"\t<li>Авторы сохраняют авторские права и предоставляют право первой "
+"публикации в издательстве, при этом произведение [SPECIFY PERIOD OF TIME] "
+"после публикации одновременно лицензируется под <a target=\"_blank\" href=\""
+"http://creativecommons.org/licenses/by/3.0/\">Лицензия на атрибуцию Creative "
+"Commons</a>, которая позволяет другим лицам делиться произведением с "
+"подтверждением авторства произведения и его первоначальной публикации в этом "
+"издательстве.</li>.\n"
+"\t <li>Авторы имеют возможность заключать отдельные дополнительные "
+"договорные серии для неэксклюзивного распространения версии произведения, "
+"опубликованной в издательстве (например, размещать ее в институциональном "
+"хранилище или публиковать в книге), с подтверждением ее первоначальной "
+"публикации в здесь.</li>.\n"
+"\t <li>Авторам разрешается и рекомендуется размещать свои работы в Интернете "
+"(например, в институциональных репозиториях или на своем веб-сайте) до и во "
+"время процесса представления, поскольку это может привести к продуктивному "
+"обмену, а также к более раннему и широкому цитированию опубликованных работ ("
+"см. <a target=\"_blank\" href=\"http://opcit.eprints.org/oacitation-biblio."
+"html\">Влияние открытого доступа</a>).</li>.\n"
+"</ol> macos/deepLFree.translatedWithDeepL.text"
+
+msgid "manager.files.note"
+msgstr ""
+"Внимание: файловый менеджер — это дополнительная возможность, которая "
+"позволяет напрямую просматривать и управлять файлами и каталогами, "
+"связанными с этим издательством."
+
+msgid "manager.setup.productionTemplates"
+msgstr "Производственные шаблоны"
+
+msgid "manager.setup.files"
+msgstr "Файлы"
+
+msgid "manager.setup.editorialTeam.description"
+msgstr ""
+"Список редакторов, управляющих директоров и других лиц, связанных с "
+"издательством."
+
+msgid "manager.setup.editorialTeam"
+msgstr "Редакция"
+
+msgid "manager.setup.masthead"
+msgstr "Выходные данные"
+
+msgid "manager.setup.internalReviewRoles"
+msgstr "Роли внутренних рецензентов"
+
+msgid "manager.setup.currentRoles"
+msgstr "Текущие роли"
+
+msgid "manager.setup.availableRoles"
+msgstr "Доступные роли"
+
+msgid "manager.setup.managerialRoles"
+msgstr "Роли управляющих"
+
+msgid "manager.setup.authorRoles"
+msgstr "Роли автора"
+
+msgid "manager.setup.roleType"
+msgstr "Тип роли"
+
+msgid "manager.setup.reviewForms"
+msgstr "Формы рецензии"
+
+msgid "manager.setup.series.description"
+msgstr ""
+"Вы можете создать любое количество серий, чтобы помочь в организации ваших "
+"публикаций. Серия представляет собой специальный набор книг, посвященных "
+"теме или темам, которые кто-то предложил, обычно преподаватель или два, а "
+"затем курирует. Посетители смогут искать и просматривать издания по сериям."
+
+msgid "manager.setup.categories.description"
+msgstr ""
+"Вы можете создать список категорий, которые помогут организовать ваши "
+"публикации. Категории представляют собой группировки книг по тематике, "
+"например, \"Экономика\", \"Литература\", \"Поэзия\" и так далее. Категории "
+"могут быть вложены в \"материнские\" категории: например, материнская "
+"категория \"Экономика\" может включать отдельные категории \"Микроэкономика\""
+" и \"Макроэкономика\". Посетители смогут осуществлять поиск и просматривать "
+"прессу по категориям."
+
+msgid "manager.setup.categoriesAndSeries"
+msgstr "Категории и серии"
+
+msgid "manager.setup.currentFormats"
+msgstr "Текущие форматы"
+
+msgid "manager.setup.issnDescription"
+msgstr ""
+"ISSN (международный стандартный серийный номер) - это восьмизначный номер, "
+"который идентифицирует периодические публикации, включая электронные "
+"серийные издания. Номер можно получить из <a href=\"http://www.issn.org\" "
+"target=\"_blank\">ISSN International Centre</a>."
+
+msgid "manager.setup.submitToSeries"
+msgstr "Разрешить подачу в серии"
+
+msgid "manager.setup.submitToCategories"
+msgstr "Разрешить подачу в категории"
+
+msgid "manager.setup.prospectusDescription"
+msgstr ""
+"Руководство по составлению брошюры - это документ, подготовленный "
+"издательством, который помогает автору описать представленные материалы "
+"таким образом, чтобы редакция могла определить их ценность. Брошюра может "
+"включать множество вопросов - от маркетинговых возможностей до теоретической "
+"ценности; в любом случае, редакция должна создать руководство по составлению "
+"брошюры, которое дополнит план их публикаций."
+
+msgid "manager.setup.prospectus"
+msgstr "Руководство по проспекту(брошюре)"
+
+msgid "manager.setup.restoreDefaults"
+msgstr "Восстановить настройки по умолчанию"
+
+msgid "manager.setup.deleteSelected"
+msgstr "Удалить выбранное"
+
+msgid "manager.setup.newGenreDescription"
+msgstr ""
+"Чтобы создать новый жанр публикации, заполните форму ниже и нажмите кнопку \""
+"Создать\"."
+
+msgid "manager.setup.newGenre"
+msgstr "Новый жанр монографий"
+
+msgid "manager.setup.genres"
+msgstr "Жанры"
+
+msgid "manager.setup.disableSubmissions.description"
+msgstr ""
+"Запрещает пользователям отправлять новые статьи в журнал. Отправка "
+"материалов может быть отключена для отдельных разделов журнала на странице "
+"настроек <a href=\"{$url}\">серии издательства</a>."
+
+msgid "manager.setup.disableSubmissions.notAccepting"
+msgstr ""
+"Этот журнал в данное время не принимает материалы. Зайдите в настройки "
+"рабочего процесса, чтобы разрешить отправку материалов."
+
+msgid "manager.setup.reviewProcessEmailDescription"
+msgstr ""
+"Редакторы отправляют рецензентам запрос на рецензирование с рукописью "
+"приложеной к письму. Рецензенты направляют редакторам по электронной почте "
+"свое согласие (или отказ), а также отзыв и рекомендацию. Редакторы вносят "
+"согласие (или отказ) Рецензентов, а также рецензию и рекомендацию на "
+"странице Рецензирования монографии для записи процесса рецензирования."
+
+msgid "manager.setup.genresDescription"
+msgstr ""
+"Эти жанры используются для именования файлов и представлены в выпадающем "
+"меню при загрузке файлов. Жанры, обозначенные ##, позволяют пользователю "
+"связать файл либо со всей книгой 99Z, либо с отдельной главой по номеру ("
+"например, 02)."
+
+msgid "manager.setup.newPublicationFormatDescription"
+msgstr ""
+"Чтобы создать новый формат публикации, заполните форму ниже и нажмите кнопку "
+"\"Создать\"."
+
+msgid "manager.setup.newPublicationFormat"
+msgstr "Новый формат публикации"
+
+msgid "manager.setup.publicationFormat.inUse"
+msgstr ""
+"Поскольку этот формат публикации в настоящее время используется монографией "
+"в вашем издательстве, его нельзя удалить."
+
+msgid "manager.setup.publicationFormat.physicalFormat"
+msgstr "Это печатный  (нецифровой) формат?"
+
+msgid "manager.setup.publicationFormat.nameRequired"
+msgstr "Вы должны присвоить имя этому формату."
+
+msgid "manager.setup.publicationFormat.codeRequired"
+msgstr "Формат публикации должен быть выбран."
+
+msgid "manager.setup.publicationFormat.code"
+msgstr "Формат"
+
+msgid "manager.setup.volumePerYear"
+msgstr "Томов в год"
+
+msgid "manager.setup.useTextTitle"
+msgstr "Текст заголовка"
+
+msgid "manager.setup.userRegistration"
+msgstr "Регистрация пользователей"
+
+msgid "manager.setup.useProofreaders"
+msgstr ""
+"Для проверки (совместно с авторами) гранок  перед публикацией будет назначен "
+"корректор."
+
+msgid "manager.setup.useLayoutEditors"
+msgstr ""
+"Для подготовки HTML, PDF и т.д. файлов к электронной публикации будет "
+"назначен верстальщик."
+
+msgid "manager.setup.useStyleSheet"
+msgstr "Таблица стилей издательства"
+
+msgid "manager.setup.useImageTitle"
+msgstr "Изображение заголовка"
+
+msgid "manager.setup.useEditorialReviewBoard"
+msgstr ""
+"Издательство будет использовать редакционную коллегию/коллегию рецензентов."
+
+msgid "manager.setup.useCopyeditors"
+msgstr "Будет назначен литературный редактор для каждого материала."
+
+msgid "manager.setup.typeProvideExamples"
+msgstr ""
+"Введите примеры соответствующих типов исследования, методов и подходов для "
+"данной области"
+
+msgid "manager.setup.typeMethodApproach"
+msgstr "Тип (метод/подход)"
+
+msgid "manager.setup.typeExamples"
+msgstr ""
+"(Например, Историческая справка; Квазиэкспериментальный; Литературный анализ;"
+" Исследование/Опрос)"
+
+msgid "manager.setup.submissions.description"
+msgstr ""
+"Руководство для авторов, авторские права и индексирование (включая "
+"регистрацию)."
+
+msgid "manager.setup.workflow"
+msgstr "Рабочий поток"
+
+msgid "maganer.setup.submissionChecklistItemRequired"
+msgstr "Требуется элемент контрольного списка."
+
+msgid "manager.setup.submissionPreparationChecklist"
+msgstr "Контрольный список подготовки материала к отправке"
+
+msgid "manager.setup.submissionGuidelines"
+msgstr "Руководство по отправке материала"
+
+msgid "manager.setup.subjectProvideExamples"
+msgstr ""
+"Введите примеры ключевых слов или тем, на которые могут ориентироваться "
+"авторы"
+
+msgid "manager.setup.subjectKeywordTopic"
+msgstr "Ключевые слова"
+
+msgid "manager.setup.subjectExamples"
+msgstr ""
+"(Например, Фотосинтез; Черные дыры; Проблема четырех красок; Теория Байеса)"
+
+msgid "manager.setup.stepsToPressSite"
+msgstr "Пять шагов к веб-сайту издательства"
+
+msgid "manager.setup.siteAccess.viewContent"
+msgstr "Показывать содержимое монографий"
+
+msgid "manager.setup.siteAccess.view"
+msgstr "Доступ к сайту"
+
+msgid "manager.setup.showGalleyLinksDescription"
+msgstr ""
+"Всегда показывать ссылки на гранки и уведомлять об ограниченном доступе."
+
+msgid "manager.setup.selectSectionDescription"
+msgstr "Раздел издательства, в котором будет рассматриваться данный материал."
+
+msgid "manager.setup.selectEditorDescription"
+msgstr ""
+"Редактор, который будет контролировать прохождение материала через "
+"редакционный процесс."
+
+msgid "manager.setup.securitySettings.note"
+msgstr ""
+"Другие опции, связанные с безопасностью и доступом, могут быть настроены со "
+"страницы <a href=\"{$accessAndSecurityUrl}\" target=\"_blank\" class=\""
+"action\">.Доступ и безопасность</a>."
+
+msgid "manager.setup.securitySettings"
+msgstr "Настройки доступа и безопасности"
+
+msgid "manager.setup.sectionsDescription"
+msgstr ""
+"Для создания или изменения разделов издательства (например, «Монографии», «"
+"Обзоры книг» и т. д.), перейдите в «Управление разделами».<br /><br />Авторы "
+"при отправке материалов смогут выбрать..."
+
+msgid "manager.setup.sectionsDefaultSectionDescription"
+msgstr ""
+"(Если разделы не добавлены, то все отправляемые материалы направляются в "
+"раздел «Монографии» по умолчанию.)"
+
+msgid "manager.setup.sectionsAndSectionEditors"
+msgstr "Разделы и редакторы разделов"
+
+msgid "manager.setup.searchEngineIndexing.success"
+msgstr "Настройки индексирования для поисковых машин были обновлены."
+
+msgid "manager.setup.searchEngineIndexing.description"
+msgstr ""
+"Помогите поисковым машинам вроде Google находить и показывать ваш сайт. "
+"Рекомендуется отправить <a href=\"{$sitemapUrl}\" target=\"_blank\">карту "
+"вашего сайта</a>."
+
+msgid "manager.setup.searchEngineIndexing"
+msgstr "Индексация для поиска"
+
+msgid "manager.setup.searchDescription.description"
+msgstr ""
+"Введите краткое описание (50-300 знаков) издательства, которое будут "
+"отображать поисковые машины, при показе издательства в  результатах выдачи."
+
+msgid "manager.setup.reviewProcessStandardDescription"
+msgstr ""
+"Редакторы высылают по электронной почте выбранным рецензентам название и "
+"аннотацию заявки, а также приглашение войти на сайт прессы для завершения "
+"рецензирования. Рецензенты заходят на сайт прессы, чтобы дать согласие на "
+"рецензирование, загрузить поданные материалы, отправить свои комментарии и "
+"выбрать рекомендацию."
+
+msgid "manager.setup.reviewProcessStandard"
+msgstr "Стандартный процесс рецензирования"
+
+msgid "manager.setup.reviewProcessEmail"
+msgstr "Процесс рецензирования по электронной почте"
+
+msgid "manager.setup.reviewProcessDescription"
+msgstr ""
+"OMP поддерживает две модели управления процессом рецензирования. Стандартный "
+"процесс рецензирования рекомендуется потому, что он проводит рецензентов по "
+"всему процессу, обеспечивает полную историю рецензий для каждой заявки и "
+"использует преимущества автоматического уведомления с напоминанием и "
+"стандартными рекомендациями для рукописей (Принять; Принять с ревизиями; "
+"Отправить на рецензирование; Отправить в другое место; Отказать; См. "
+"комментарии)<br /><br />Выберите одно из следующих решений:"
+
+msgid "manager.setup.reviewProcess"
+msgstr "Процесс рецензирования"
+
+msgid "manager.setup.reviewPolicy"
+msgstr "Правила рецензирования"
+
+msgid "manager.setup.reviewOptions.reviewerReminders"
+msgstr "Напоминания рецензентам"
+
+msgid "manager.setup.reviewOptions.reviewerRatings"
+msgstr "Рейтинги рецензентов"
+
+msgid "manager.setup.reviewOptions.reviewerAccessKeysEnabled.label"
+msgstr "Добавить безопасную ссылку в письмо-приглашение для рецензентов."
+
+msgid "manager.setup.reviewOptions.reviewerAccessKeysEnabled.description"
+msgstr ""
+"Рецензентам может быть отправлена безопасная ссылка в письме-приглашении, по "
+"которой можно получить доступ к рецензированию материала без входа в "
+"систему. Для доступа к другим страницам необходимо будет войти в систему."
+
+msgid "manager.setup.reviewOptions.reviewerAccessKeysEnabled"
+msgstr "Прямой доступ для рецензента"
+
+msgid "manager.setup.reviewOptions.reviewerAccess"
+msgstr "Доступ рецензента"
+
+msgid "manager.setup.reviewOptions.restrictReviewerFileAccess.description"
+msgstr ""
+"Рецензенты будут иметь доступ к файлу рукописи только после того, как они "
+"дадут согласие на рецензирование."
+
+msgid "manager.setup.reviewOptions.restrictReviewerFileAccess"
+msgstr "Ограничить доступ к файлам"
+
+msgid "manager.setup.reviewOptions.onQuality"
+msgstr ""
+"Редакторы будут оценивать качество работы рецензентов по пятибалльной шкале "
+"после каждой рецензии."
+
+msgid "manager.setup.reviewOptions.automatedRemindersDisabled"
+msgstr ""
+"Чтобы активировать эти опции, администратор сайта должен включить в "
+"конфигурационном файле OMP опцию <tt>scheduled_tasks</tt>. Для поддержки "
+"этой функциональности может потребоваться дополнительная конфигурация "
+"сервера (что может быть возможно не на всех серверах), как указано в "
+"документации OMP."
+
+msgid "manager.setup.reviewOptions.automatedReminders"
+msgstr "Автоматические напоминания по электронной почте"
+
+msgid "manager.setup.reviewOptions"
+msgstr "Параметры рецензирования"
+
+msgid "manager.setup.internalReviewGuidelines"
+msgstr "Руководство для внутренних рецензентов"
+
+msgid "manager.setup.reviewGuidelinesDescription"
+msgstr ""
+"Предоставить внешним рецензентам критерии оценки пригодности материала для "
+"публикации, которые могут включать инструкции по подготовке эффективного и "
+"полезного рецензирования. Рецензенты будут иметь возможность предоставить "
+"комментарии, предназначенные для автора и редактора, а также отдельные "
+"комментарии только для редактора."
+
+msgid "manager.setup.reviewGuidelines"
+msgstr "Руководство для рецензентов"
+
+msgid "manager.setup.restrictSiteAccess"
+msgstr ""
+"Пользователи должны быть зарегистрированы и войти в систему под своей "
+"учетной записью, чтобы просматривать сайт издательства."
+
+msgid "manager.setup.restrictMonographAccess"
+msgstr ""
+"Пользователи должны быть зарегистрированы и войти в систему под своей "
+"учетной записью, чтобы просмотреть находящийся в открытом доступе контент."
+
+msgid "manager.setup.refLinkInstructions.description"
+msgstr "Руководство по верстке для ссылок на источники литературы"
+
+msgid "manager.setup.referenceLinking"
+msgstr "Вставка гиперссылок на источники"
+
+msgid "manager.setup.publisherDescription"
+msgstr "Название организации - издателя, оно появится в разделе \"О нас\"."
+
+msgid "manager.setup.publisher"
+msgstr "Издатель"
+
+msgid "manager.setup.publicationScheduleDescription"
+msgstr ""
+"Материалы  могут публиковаться вместе, как часть монографии со своим "
+"собственным содержанием. В качестве альтернативы, отдельные материалы могут "
+"публиковаться по мере готовности, добавляясь в содержание «текущего» тома. "
+"Опишите читателям (на странице «О нас») систему публикации, которую "
+"использует это издательство, и ожидаемую периодичность публикации."
+
+msgid "manager.setup.provideRefLinkInstructions"
+msgstr "Представьте верстальщикам Руководство по верстке."
+
+msgid "manager.setup.proofreading"
+msgstr "Корректоры"
+
+msgid "manager.setup.proofingInstructionsDescription"
+msgstr ""
+"Руководство по корректуре будет доступно корректорам, авторам, верстальщикам "
+"и редакторам разделов на этапе редактирования материала. Ниже приведен набор "
+"инструкций по умолчанию в формате HTML, который может быть в любой момент "
+"изменен или заменен управляющим издательства (в формате HTML или простого "
+"текста)."
+
+msgid "manager.setup.proofingInstructions"
+msgstr "Руководство по корректуре"
+
+msgid "manager.setup.printIssn"
+msgstr "Печатный ISSN"
+
+msgid "manager.setup.contextTitle"
+msgstr "Название издательства"
+
+msgid "manager.setup.pressThumbnail.description"
+msgstr "Маленький логотип, который может использоваться в списке издательств."
+
+msgid "manager.setup.pressThumbnail"
+msgstr "Миниатюра издательства"
+
+msgid "manager.setup.pressTheme"
+msgstr "Тема оформления издательства"
+
+msgid "manager.setup.styleSheetInvalid"
+msgstr "Неверный формат таблицы стилей сайта. Разрешенный формат — .css."
+
+msgid "manager.setup.pressSetupUpdated"
+msgstr "Ваши настройки издательства  был обновлены."
+
+msgid "manager.setup.pressSetup"
+msgstr "Настройки издательства"
+
+msgid "manager.setup.pressPolicies"
+msgstr "Шаг 2. Политики издательства"
+
+msgid "manager.setup.pageHeaderDescription"
+msgstr "Описание верхнего колонтитула страницы"
+
+msgid "manager.setup.pageHeader"
+msgstr "Верхний колонтитул страницы издательства"
+
+msgid "manager.setup.layout"
+msgstr "Макет издательства"
+
+msgid "manager.setup.contextInitials"
+msgstr "Аббревиатура названия издательства"
+
+msgid "manager.setup.pressHomepageContentDescription"
+msgstr ""
+"Главная страница издательства по умолчанию состоит из навигационных ссылок. "
+"Дополнительный контент на главной странице может быть добавлен с помощью "
+"одного или нескольких следующих параметров, которые появятся на странице в "
+"показанном порядке."
+
+msgid "manager.setup.pressHomepageContent"
+msgstr "Контент главной страницы издательства"
+
+msgid "manager.setup.homepageContentDescription"
+msgstr ""
+"Главная страница издательства по умолчанию состоит из навигационных ссылок. "
+"Дополнительный контент на главной странице может быть добавлен с помощью "
+"одного или нескольких следующих параметров, которые появятся на странице в "
+"показанном порядке."
+
+msgid "manager.setup.homepageContent"
+msgstr "Контент главной страницы издательства"
+
+msgid "manager.setup.pressArchiving"
+msgstr "Архивирование издательства"
+
+msgid "manager.setup.aboutPress.description"
+msgstr ""
+"Включите любую информацию о вашем издательстве, которая может быть интересна "
+"читателям, авторам или рецензентам. Сюда может входить ваша политика "
+"открытого доступа, фокус и сфера деятельности издательства, раскрытие "
+"информации о спонсорах, а также его история."
+
+msgid "manager.setup.aboutPress"
+msgstr "О нас"
+
+msgid "manager.setup.pressDescription.description"
+msgstr "Краткое описание вашего издательства."
+
+msgid "manager.setup.pressDescription"
+msgstr "Общая информация об издательстве"
+
+msgid "manager.setup.appearanceDescription"
+msgstr ""
+"С этой страницы можно настроить различные компоненты внешнего вида "
+"издательства, в том числе элементы заголовка и нижнего колонтитула, стиль и "
+"тему, а также то, как пользователям представляются списки информации."
+
+msgid "manager.setup.privacyStatement.success"
+msgstr "Положение о конфиденциальности было обновлено."
+
+msgid "manager.setup.policies.description"
+msgstr ""
+"Концепция издательства, тип рецензирования, разделы, конфиденциальность, "
+"безопасность и дополнительная информация."
+
+msgid "manager.setup.policies"
+msgstr "Политики"
+
+msgid "manager.setup.onlineIssn"
+msgstr "ISSN онлайн-версии"
+
+msgid "manager.setup.onlineAccessManagement"
+msgstr "Доступ к контенту издательства"
+
+msgid "manager.setup.numPageLinks.description"
+msgstr ""
+"Ограничение числа ссылок, показываемых на последующих страницах в списке."
+
+msgid "manager.setup.numPageLinks"
+msgstr "Ссылки на страницы"
+
+msgid "manager.setup.noUseProofreaders"
+msgstr ""
+"Редактор или редактор разделов, назначенный для заявки, проверит гранки."
+
+msgid "manager.setup.noUseLayoutEditors"
+msgstr ""
+"Редактор или редактор разделов, назначенный на рукопись, подготовит HTML, "
+"PDF и т.д., файлы."
+
+msgid "manager.setup.noUseCopyeditors"
+msgstr ""
+"Корректура будет осуществляться редактором или редактором раздела, "
+"назначенным на поданную рукопись."
+
+msgid "manager.setup.notifyAllAuthorsOnDecision"
+msgstr ""
+"При использовании Уведомления автора по электронной почте, укажите адреса "
+"электронной почты всех соавторов для подачи несколькими авторами, а не "
+"только пользователя, подавшего заявку."
+
+msgid "manager.setup.note"
+msgstr "Заметка"
+
+msgid "manager.setup.noStyleSheetUploaded"
+msgstr "Таблица стилей не загружена."
+
+msgid "manager.setup.noImageFileUploaded"
+msgstr "Файл изображения не загружен."
+
+msgid "manager.setup.masthead.success"
+msgstr "Выходные данные этого издательства были обновлены."
+
+msgid "manager.setup.managingThePress"
+msgstr "Шаг 4. Управление настройками"
+
+msgid "manager.setup.managingPublishingSetup"
+msgstr "Управление и настройка процесса публикации"
+
+msgid "manager.setup.managementOfBasicEditorialSteps"
+msgstr "Управление основными шагами редакционного процесса"
+
+msgid "manager.setup.management.description"
+msgstr ""
+"Доступ и безопасность, планирование, объявления, литературное "
+"редактирование, верстка и корректура."
+
+msgid "manager.setup.settings"
+msgstr "Настройки"
+
+msgid "manager.setup.look.description"
+msgstr ""
+"Верхний колонтитул главной страницы, контент, колонтитулы издательства, "
+"панель навигации и таблица стилей."
+
+msgid "manager.setup.look"
+msgstr "Внешний вид"
+
+msgid "manager.setup.lists.success"
+msgstr "Список настроек был обновлен."
+
+msgid "manager.setup.lists"
+msgstr "Списки"
+
+msgid "manager.setup.layoutTemplates.title"
+msgstr "Заголовок"
+
+msgid "manager.setup.layoutTemplates.file"
+msgstr "Файл шаблона"
+
+msgid "manager.setup.layoutTemplatesDescription"
+msgstr ""
+"Шаблоны могут быть загружены в Верстку для каждого из стандартных форматов, "
+"опубликованных в издательстве (например, монография, книжный обзор и т.д.), "
+"с использованием любого формата файла (например, pdf, doc и т.д.), с "
+"добавлением примечаний с указанием шрифта, размера, полей и т.д., чтобы "
+"служить руководством для верстальщиков и корректоров."
+
+msgid "manager.setup.layoutTemplates"
+msgstr "Шаблоны верстки"
+
+msgid "manager.setup.layoutInstructions"
+msgstr "Руководство по верстке"
+
+msgid "manager.setup.layoutAndGalleys"
+msgstr "Верстальщики"
+
+msgid "manager.setup.labelName"
+msgstr "Название метки"
+
+msgid "manager.setup.keyInfo.description"
+msgstr ""
+"Введите краткое описание журнала и укажите редакторов, управляющих и других "
+"членов редколлегии."
+
+msgid "manager.setup.keyInfo"
+msgstr "Ключевая информация"
+
+msgid "manager.setup.itemsPerPage.description"
+msgstr ""
+"Ограничение количества элементов (например, материалов, пользователей или "
+"заданий на редактирование), показываемых в списке. Идущие далее элементы "
+"будут показаны на следующей странице."
+
+msgid "manager.setup.itemsPerPage"
+msgstr "Элементов на странице"
+
+msgid "manager.setup.institution"
+msgstr "Организация"
+
+msgid "manager.setup.information.success"
+msgstr "Информация для этого издательства была обновлена."
+
+msgid "manager.setup.information.forReaders"
+msgstr "Для читателей"
+
+msgid "manager.setup.information.forLibrarians"
+msgstr "Для библиотекарей"
+
+msgid "manager.setup.information.forAuthors"
+msgstr "Для авторов"
+
+msgid "manager.setup.information.description"
+msgstr ""
+"Краткие описания издательства для библиотек, потенциальных авторов и "
+"читателей. Описания будут доступны в боковой панели сайта, когда будет "
+"добавлен блок «Информация»."
+
+msgid "manager.setup.information"
+msgstr "Информация"
+
+msgid "manager.setup.identity"
+msgstr "Идентификация издательства"
+
+msgid "manager.setup.preparingWorkflow"
+msgstr "Шаг 3. Подготовка рабочего процесса"
+
+msgid "manager.setup.guidelines"
+msgstr "Руководство"
+
+msgid "manager.setup.gettingDownTheDetails"
+msgstr "Шаг 1.  Подробнее об издательстве"
+
+msgid "manager.setup.generalInformation"
+msgstr "Общая информация"
+
+msgid "manager.setup.form.supportNameRequired"
+msgstr "Имя лица, обеспечивающего техническую поддержку, обязательно."
+
+msgid "manager.setup.form.supportEmailRequired"
+msgstr ""
+"Адрес электронной почты лица, обеспечивающего техническую поддержку, "
+"обязателен."
+
+msgid "manager.setup.form.numReviewersPerSubmission"
+msgstr "Количество рецензентов для одного материала обязательно."
+
+msgid "manager.setup.form.contactNameRequired"
+msgstr "Имя контактного лица обязательно."
+
+msgid "manager.setup.form.contactEmailRequired"
+msgstr "Адрес электронной почты контактного лица обязателен."
+
+msgid "manager.setup.forAuthorsToIndexTheirWorkDescription"
+msgstr ""
+"OMP поддерживает протокол сбора метаданных <a href=\"http://www.openarchives."
+"org/\" target=\"_blank\">Open Archives Initiative</a>, который становится "
+"стандартом для обеспечения хорошо индексированного доступа к электронным "
+"исследовательским ресурсам в мировом масштабе. Авторы будут использовать "
+"аналогичный шаблон для предоставления метаданных о своем материале. "
+"Управляющий издательством должен выбрать категории для индексирования и "
+"предоставить авторам соответствующие примеры, чтобы помочь в индексировании "
+"их работ."
+
+msgid "manager.setup.forAuthorsToIndexTheirWork"
+msgstr "Для авторов, чтобы проиндексировать их работу"
+
+msgid "manager.setup.focusScopeDescription"
+msgstr "<strong>ПРИМЕР HTML данных</strong>"
+
+msgid "manager.setup.focusScope"
+msgstr "Концепция"
+
+msgid "manager.setup.focusAndScope.description"
+msgstr ""
+"Опишите для авторов, читателей и библиотек диапазон тем и типы монографий и "
+"других материалов, которые будет публиковать издательство."
+
+msgid "manager.setup.focusAndScope"
+msgstr "Концепция издательства"
+
+msgid "manager.setup.enableUserRegistration"
+msgstr "Посетители могут зарегистрировать учетную запись в издательстве."
+
+msgid "manager.setup.enablePublicGalleyId"
+msgstr ""
+"Пользовательские идентификаторы будут использоваться для идентификации "
+"гранок (например, HTML или PDF файлы) для опубликованных элементов."
+
+msgid "manager.setup.enablePublicMonographId"
+msgstr ""
+"Пользовательские идентификаторы будут использоваться для идентификации "
+"опубликованных элементов."
+
+msgid "manager.setup.enablePressInstructions"
+msgstr "Включить показ этого издательства для всех на сайте"
+
+msgid "manager.setup.numAnnouncementsHomepage.description"
+msgstr ""
+"Сколько объявлений показывать на главной странице. Оставьте поле пустым, "
+"если вы не хотите показывать объявления на главной странице."
+
+msgid "manager.setup.numAnnouncementsHomepage"
+msgstr "Показывать на главной странице"
+
+msgid "manager.setup.enableAnnouncements.description"
+msgstr ""
+"Объявления можно публиковать, чтобы информировать читателей о новостях и "
+"событиях издательства. Опубликованные объявления будут появляться на "
+"странице «Объявления»."
+
+msgid "manager.setup.enableAnnouncements.enable"
+msgstr "Включить объявления"
+
+msgid "manager.setup.emailSignature.description"
+msgstr ""
+"Подготовленные письма, отправляемые системой от имени редакции, будут "
+"содержать следующую подпись, добавленную в конце письма."
+
+msgid "manager.setup.emailSignature"
+msgstr "Подпись"
+
+msgid "manager.setup.emails"
+msgstr "Идентификация в письме электронной почты"
+
+msgid "manager.setup.emailBounceAddress.disabled"
+msgstr ""
+"Чтобы отправлять недоставленные письма на адрес для ошибок, администратор "
+"сайта должен включить параметр <code>allow_envelope_sender</code> в "
+"конфигурационном файле сайта. Также может потребоваться настройка сервера, "
+"описание этой настройки приведено в документации OJS."
+
+msgid "manager.setup.emailBounceAddress.description"
+msgstr ""
+"В случае возникновения проблем с доставкой письма электронной почты "
+"сообщение об ошибке будет направлено на этот адрес."
+
+msgid "manager.setup.emailBounceAddress"
+msgstr "Адрес для ошибок"
+
+msgid "manager.setup.editorDecision"
+msgstr "Решение редактора"
+
+msgid "manager.setup.doiPrefixDescription"
+msgstr ""
+"Префикс DOI назначается регистрационными агентствами (например, <a href=\""
+"http://www.crossref.org\" target=\"_new\">Crossref</a>) и представляется в "
+"формате 10.xxxx (например, 10.1234)."
+
+msgid "manager.setup.doiPrefix"
+msgstr "Префикс DOI"
+
+msgid "manager.setup.displayNewReleases.label"
+msgstr "Новые издания"
+
+msgid "manager.setup.displayNewReleases"
+msgstr "Отображаемые новые книги на главной странице"
+
+msgid "manager.setup.displayInSpotlight.label"
+msgstr "Фокус внимания (Spotlight)"
+
+msgid "manager.setup.displayInSpotlight"
+msgstr "Отображение книг в фокусе внимания на главной странице"
+
+msgid "manager.setup.displayFeaturedBooks.label"
+msgstr "Популярные книги"
+
+msgid "manager.setup.displayFeaturedBooks"
+msgstr "Отображаемые книги на главной странице"
+
+msgid "manager.setup.displayOnHomepage"
+msgstr "Контент главной страницы журнала"
+
+msgid "manager.setup.displayCurrentMonograph"
+msgstr "Добавить содержание для текущей книги (если оно доступно)."
+
+msgid "manager.setup.disciplineProvideExamples"
+msgstr ""
+"Приведите примеры соответствующих академических дисциплин для этого "
+"издательства"
+
+msgid "manager.setup.disciplineExamples"
+msgstr ""
+"(Например: История; Образование; Социология; Психология; Культурология; "
+"Право)"
+
+msgid "manager.setup.disciplineDescription"
+msgstr ""
+"Полезно использовать, когда издательство выходит за рамки одной дисциплины и/"
+"или авторы присылают междисциплинарные материалы."
+
+msgid "manager.setup.discipline"
+msgstr "Академические дисциплины и разделы дисциплин"
+
+msgid "manager.setup.disableUserRegistration"
+msgstr ""
+"Управляющий издательством будет регистрировать всех пользователей. Редакторы "
+"или редакторы разделов могут регистрировать учетные записи для рецензентов."
+
+msgid "manager.setup.details.description"
+msgstr "Название издательства, ISSN, контакты, спонсоры и поисковые движки."
+
+msgid "manager.setup.details"
+msgstr "Детали"
+
+msgid "manager.setup.customTagsDescription"
+msgstr ""
+"Пользовательские HTML теги заголовков, которые вставляются в заголовок "
+"каждой страницы (например, META теги)."
+
+msgid "manager.setup.customTags"
+msgstr "Пользовательские теги"
+
+msgid "manager.setup.customizingTheLook"
+msgstr "Шаг 5. Настройка внешнего вида"
+
+msgid "manager.setup.coverThumbnailsMaxWidthHeight.description"
+msgstr ""
+"Изображения будут уменьшены, если они превышают этот размер, но никогда не "
+"будут увеличены или растянуты для подгонки в соответствии с этими размерами."
+
+msgid "manager.setup.coverThumbnailsMaxWidth"
+msgstr "Максимальная ширина изображения обложки"
+
+msgid "manager.setup.coverThumbnailsMaxHeight"
+msgstr "Максимальная высота изображения обложки"
+
+msgid "manager.setup.coverage"
+msgstr "Охват"
+
+msgid "manager.setup.copyrightNotice"
+msgstr "Условия передачи авторских прав"
+
+msgid "manager.setup.copyeditInstructionsDescription"
+msgstr ""
+"Руководство по литературному и научному редактированию будет доступно "
+"редакторам,  авторам и редакторам глав на этапе редактирования поданного "
+"материала. Ниже приведен набор инструкций по умолчанию в формате HTML, "
+"который может быть в любой момент изменен или заменен управляющим журнала (в "
+"формате HTML или простого текста)."
+
+msgid "manager.setup.copyeditInstructions"
+msgstr "Руководство по литературному редактированию"
+
+msgid "manager.setup.copyediting"
+msgstr "Литературные редакторы"
+
+msgid "manager.setup.contextSummary"
+msgstr "Общая информация об издательстве"
+
+msgid "manager.setup.contextAbout.description"
+msgstr ""
+"Включите любую информацию о вашем издательстве, которая может быть интересна "
+"читателям, авторам или рецензентам. Сюда может входить ваша политика "
+"открытого доступа, фокус и сфера деятельности издательства, раскрытие "
+"информации о спонсорах, а также его история."
+
+msgid "manager.setup.contextAbout"
+msgstr "О нас"
+
+msgid "manager.setup.appearInAboutPress"
+msgstr "(появится в разделе «Об издательстве») "
+
+msgid "manager.setup.announcementsIntroduction.description"
+msgstr ""
+"Введите любую дополнительную информацию, которая должна отображаться "
+"читателям на странице Объявления."
+
+msgid "manager.setup.announcementsIntroduction"
+msgstr "Дополнительная информация"
+
+msgid "manager.setup.announcementsDescription"
+msgstr ""
+"Объявления можно публиковать, чтобы информировать читателей о новостях и "
+"событиях издательства. Опубликованные объявления будут появляться на "
+"странице «Объявления»."
+
+msgid "manager.setup.announcements.success"
+msgstr "Настройки объявлений были обновлены."
+
+msgid "manager.setup.announcements"
+msgstr "Объявления"
+
+msgid "manager.setup.addSponsor"
+msgstr "Добавить организацию-спонсора"
+
+msgid "manager.setup.addNavItem"
+msgstr "Добавить элемент"
+
+msgid "manager.setup.addItemtoAboutPress"
+msgstr "Добавить элемент на страницу «Об издательстве»"
+
+msgid "manager.setup.addItem"
+msgstr "Добавить элемент"
+
+msgid "manager.setup.addChecklistItem"
+msgstr "Добавить элемент в контрольный список"
+
+msgid "manager.setup.addAboutItem"
+msgstr "Добавить информацию об издательстве"
+
+msgid "manager.setup.aboutItemContent"
+msgstr "Содержание"
+
+msgid "manager.setup"
+msgstr "Установка"
+
+msgid "manager.pressManagement"
+msgstr "Управление издательством"
+
+msgid "user.authorization.pluginLevel"
+msgstr "Вы не имеете достаточных прав для управления этим плагином."
+
+msgid "manager.system.payments"
+msgstr "Платежи"
+
+msgid "manager.system.readingTools"
+msgstr "Инструменты читателя"
+
+msgid "manager.system.reviewForms"
+msgstr "Формы рецензии"
+
+msgid "manager.system.archiving"
+msgstr "Архивирование"
+
+msgid "manager.system"
+msgstr "Системные настройки"
+
+msgid "manager.people.noAdministrativeRights"
+msgstr ""
+"Извините, у вас нет достаточных административных прав для управления записью "
+"этого пользователя. Возможные причины:\n"
+"\t\t<ul>\n"
+"\t\t\t<li>Этот пользователь является администратором сайта</li>\n"
+"\t\t\t<li>Этот пользователь активен в журналах, которыми вы не можете "
+"управлять</li>\n"
+"\t\t</ul>\n"
+"\tЭта задача должна быть выполнена администратором сайта.\n"
+"\t"
+
+msgid "manager.people.confirmDisable"
+msgstr ""
+"Отключить этого пользователя? Это запретит пользователю входить в систему "
+"под его учетной записью.\n"
+"\n"
+"Вы также (при необходимости) можете указать пользователю причину отключения "
+"его учетной записи."
+
+msgid "manager.people.syncUserDescription"
+msgstr ""
+"Синхронизация назначений запишет всех пользователей, которым назначена "
+"определенная роль в определенном издательстве, на ту же роль в этом "
+"издательстве. Эта функция позволяет синхронизировать общий набор "
+"пользователей (например, рецензентов) между издательствами."
+
+msgid "manager.people.mergeUsers.into.description"
+msgstr ""
+"Выберите пользователя, которому будут переданы авторство предыдущего "
+"пользователя, его редакционные задания и т. д."
+
+msgid "manager.people.mergeUsers.from.description"
+msgstr ""
+"Выберите пользователя (или нескольких) для слияния в другую учетную запись "
+"пользователя (например, когда кто-то завел себе две учетные записи). Учетная "
+"запись (записи), выбранная первой, будет удалена, а все связанные с ней "
+"монографии, редакционные задания и т. д. будут присоединены к второй учетной "
+"записи."
+
+msgid "manager.people.enrollSyncPress"
+msgstr "С издательством"
+
+msgid "manager.people.enrollExistingUser"
+msgstr "Записать существующего пользователя"
+
+msgid "manager.people.confirmRemove"
+msgstr ""
+"Удалить этого пользователя из данного издательства? Это действие отменит все "
+"роли, назначенные этому пользователю в данном издательстве."
+
+msgid "manager.people.allUsers"
+msgstr "Все записанные пользователи"
+
+msgid "manager.people.allSiteUsers"
+msgstr "Записать пользователя с этого сайта в это издательство"
+
+msgid "manager.people.allPresses"
+msgstr "Все издательства"
+
+msgid "manager.people.allEnrolledUsers"
+msgstr "Пользователи, записанные в этом издательстве"
+
+msgid "manager.users.selectRole"
+msgstr "Выбрать роль"
+
+msgid "manager.users.currentRoles"
+msgstr "Текущие роли"
+
+msgid "manager.users.availableRoles"
+msgstr "Доступные роли"
+
+msgid "manager.tools.statistics"
+msgstr ""
+"Инструменты для создания отчетов, связанных со статистикой использования ("
+"просмотр страниц индекса каталога, просмотров абстрактных страниц "
+"монографии, загрузка файлов монографии)"
+
+msgid "manager.tools.importExport"
+msgstr ""
+"Все инструменты, предназначенные для импорта и экспорта данных ("
+"издательства, монографии, пользователи)"
+
+msgid "manager.tools"
+msgstr "Инструменты"
+
+msgid "manager.statistics.reports.filters.byObject.description"
+msgstr ""
+"Сужение результатов по типу объекта (печать, серия, монография, тип файла) и/"
+"или по одному или нескольким идентификаторам объектов."
+
+msgid "manager.statistics.reports.filters.byContext.description"
+msgstr "Сужение результатов по контексту (серия и/или монография)."
+
+msgid "manager.statistics.reports.defaultReport.pressIndexPageViews"
+msgstr "Просмотры главной страницы издательства"
+
+msgid "manager.statistics.reports.defaultReport.seriesIndexPageViews"
+msgstr "Просмотры главной страницы серий"
+
+msgid "manager.statistics.reports.defaultReport.monographAbstractAndDownloads"
+msgstr "Загрузки анотаций и файлов монографии"
+
+msgid "manager.statistics.reports.defaultReport.monographAbstract"
+msgstr "Просмотры страницы аннотации монографии"
+
+msgid "manager.statistics.reports.defaultReport.monographDownloads"
+msgstr "Загрузки файлов монографии"
+
+msgid "manager.settings.distributionDescription"
+msgstr ""
+"Все настройки для процесса распространения (уведомления, индексирование, "
+"архивирование, оплата, инструменты чтения)."
+
+msgid "manager.settings.publisherCodeType.invalid"
+msgstr "Это недействительный тип кода издателя."
+
+msgid "manager.settings.publisherCodeType"
+msgstr "Тип кода издателя"
+
+msgid "manager.settings.publisherCode"
+msgstr "Код Издателя"
+
+msgid "manager.settings.location"
+msgstr "Географическое положение"
+
+msgid "manager.settings.publisher"
+msgstr "Название издателя"
+
+msgid "manager.settings.publisher.identity.description"
+msgstr ""
+"Эти поля необходимы для публикации действительных <a href=\""
+"https://en.wikipedia.org/wiki/ONIX_for_Books\">метаданных ONIX </a>."
+
+msgid "manager.settings.publisher.identity"
+msgstr "Идентификатор Издателя"
+
+msgid "manager.settings.press"
+msgstr "Издательство"
+
+msgid "manager.settings.pressSettings"
+msgstr "Настройки Издательства"
+
+msgid "manager.settings"
+msgstr "Настройки"
+
+msgid "manager.payment.success"
+msgstr "Настройки платежей были обновлены."
+
+msgid "manager.payment.options.enablePayments"
+msgstr ""
+"Платежи будут включены для этого издательства. Обратите внимание, что для "
+"осуществления платежей пользователи должны будут войти на сайт под своей "
+"учетной записью."
+
+msgid "manager.payment.generalOptions"
+msgstr "Общие параметры"
+
+msgid "manager.series.confirmDeactivateSeries.error"
+msgstr ""
+"Минимум одна серия должна быть активна. Зайдите в настройки рабочего "
+"процесса, чтобы отключить отправку материалов в это издательство."
