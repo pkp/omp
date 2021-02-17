@@ -1,6 +1,6 @@
 msgid ""
 msgstr ""
-"PO-Revision-Date: 2021-02-12 18:53+0000\n"
+"PO-Revision-Date: 2021-02-17 23:42+0000\n"
 "Last-Translator: Sergei Yukhimets <y_s_n@mail.ru>\n"
 "Language-Team: Russian <http://translate.pkp.sfu.ca/projects/omp/admin/ru_RU/"
 ">\n"
@@ -103,7 +103,7 @@ msgstr ""
 "Это будет язык по умолчанию для сайта и всех размещенных на нем издательств."
 
 msgid "admin.settings.noPressRedirect"
-msgstr "Не преденаправлять"
+msgstr "Не пeренаправлять"
 
 msgid "admin.settings.redirect"
 msgstr "Перенаправление издательства"
