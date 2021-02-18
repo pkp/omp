@@ -18,13 +18,6 @@ msgstr "Зовнішні Рецензенти"
 msgid "default.groups.name.externalReviewer"
 msgstr "Зовнішній Рецензент"
 
-msgid "default.contextSettings.emailSignature"
-msgstr ""
-"<br/>\n"
-"________________________________________________________________________<br/>"
-"\n"
-"<a href=\"{$ldelim}$contextUrl{$rdelim}\">{$ldelim}$contextName{$rdelim}</a>"
-
 msgid "default.groups.plural.volumeEditor"
 msgstr "Редактори Томів"
 

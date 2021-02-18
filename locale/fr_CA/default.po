@@ -116,13 +116,6 @@ msgstr "<p>Les noms et adresses courriel saisis sur ce site de presse seront uti
 msgid "default.contextSettings.openAccessPolicy"
 msgstr "Cette presse offre un accès libre immédiat à son contenu en partant du principe que la recherche doit être accessible au grand public, car cela favorise un meilleur échange des connaissances à l'échelle mondiale."
 
-msgid "default.contextSettings.emailSignature"
-msgstr ""
-"<br/>\n"
-"________________________________________________________________________<br/>"
-"\n"
-"<a href=\"{$ldelim}$contextUrl{$rdelim}\">{$ldelim}$contextName{$rdelim}</a>"
-
 msgid "default.contextSettings.forReaders"
 msgstr "Nous encourageons les lecteurs à s'abonner au service d'avis de publication de cette presse. Utilisez le lien <a href=\"{$indexUrl}/{$contextPath}/user/register\">d'inscription</a> situé en haut de la page d'accueil de la presse. Cette inscription permettra au lecteur de recevoir la table des matières de chaque nouvelle monographie de cette presse par courriel. Cette liste permet également à la presse d'affirmer qu'elle compte un certain nombre de lecteurs. Consultez <a href=\"{$indexUrl}/{$contextPath}/about/submissions#privacyStatement\">l'énoncé de confidentialité </a> de la presse, lequel stipule que les noms et adresses courriel de ses lecteurs ne seront pas utilisés à d'autres fins."
 
