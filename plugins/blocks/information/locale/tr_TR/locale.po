@@ -1,0 +1,21 @@
+msgid ""
+msgstr ""
+"PO-Revision-Date: 2021-02-16 09:32+0000\n"
+"Last-Translator: Uğur Koçak <drugurkocak@icloud.com>\n"
+"Language-Team: Turkish <http://translate.pkp.sfu.ca/projects/omp/"
+"blocks-information/tr_TR/>\n"
+"Language: tr_TR\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: Weblate 3.9.1\n"
+
+msgid "plugins.block.information.link"
+msgstr "Bilgi"
+
+msgid "plugins.block.information.description"
+msgstr "Bu eklenti yan sütuna bilgi bağlantıları ekler."
+
+msgid "plugins.block.information.displayName"
+msgstr "Bilgi Sütunu"
