@@ -1,2 +1,74 @@
 msgid ""
-msgstr "X-Generator: Weblate\nMIME-Version: 1.0\nContent-Type: text/plain; charset=UTF-8\nContent-Transfer-Encoding: 8bit"
+msgstr ""
+"PO-Revision-Date: 2021-02-20 08:54+0000\n"
+"Last-Translator: Real Academia Galega <reacagal@gmail.com>\n"
+"Language-Team: Galician <http://translate.pkp.sfu.ca/projects/omp/"
+"importexport-onix30/gl_ES/>\n"
+"Language: gl_ES\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: Weblate 3.9.1\n"
+
+msgid "plugins.importexport.onix30.form.addresseeField.tip"
+msgstr ""
+"Pode deixar este campo en branco e crear unha exportación xeral. Isto "
+"provocará que a exportación ONIX non teña &lt;Destinatario&gt; composto. "
+
+msgid "plugins.importexport.onix30.form.addresseeField"
+msgstr "Destinatario/a (receptor/a) desta exportación"
+
+msgid "plugins.importexport.onix30.pressMissingFields"
+msgstr ""
+"A esta editorial faltalle algunha información requirida. Vai a <a href=\""
+"{$url}\">Configuración da Editorial</a> e complete os datos que faltan."
+
+msgid "plugins.importexport.onix30.formatInvalid"
+msgstr "Non válido"
+
+msgid "plugins.importexport.onix30.formatValid"
+msgstr "Válido"
+
+msgid "plugins.importexport.onix30.validityStatus"
+msgstr "Estado ONIX"
+
+msgid "plugins.importexport.onix30.unavailable"
+msgstr "Non dispoñibel"
+
+msgid "plugins.importexport.onix30.exportFormats"
+msgstr "Formatos dispoñibeis"
+
+msgid "plugins.importexport.onix30.exportButton"
+msgstr "Exportar"
+
+msgid "plugins.importexport.onix30.selectMonograph"
+msgstr "Seleccionar unha monografía para exportar:"
+
+msgid "plugins.importexport.onix30.exportSubmissionsSelect"
+msgstr "Seleccionar monografías para exportar"
+
+msgid "plugins.importexport.onix30.noFormats"
+msgstr "Non se amosan monografías sen formatos de publicación."
+
+msgid "plugins.importexport.onix30.export.error.monographNotFound"
+msgstr "Ningunha monografía coincide co ID especificado \"{$monographId}\"."
+
+msgid "plugins.importexport.onix30.export.error.couldNotWrite"
+msgstr "Non se puido escribir no ficheiro \"{$fileName}\"."
+
+msgid "plugins.importexport.onix30.error.unknownPress"
+msgstr "A ruta editorial especificada, \"{$contextPath},\" non existe."
+
+msgid "plugins.importexport.onix30.cliError"
+msgstr "ERROR:"
+
+msgid "plugins.importexport.onix30.cliUsage"
+msgstr ""
+"Uso: {$scriptName} {$pluginName} [xmlFileName] [pressPath] [monographId] "
+
+msgid "plugins.importexport.onix30.description"
+msgstr "Exportar metadatos de monografías no formato ONIX 3.0"
+
+msgid "plugins.importexport.onix30.displayName"
+msgstr "Complemento de exportación de monografías ONIX 3.0"
