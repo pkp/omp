@@ -1,6 +1,6 @@
 msgid ""
 msgstr ""
-"PO-Revision-Date: 2021-02-20 17:54+0000\n"
+"PO-Revision-Date: 2021-02-21 18:54+0000\n"
 "Last-Translator: Uğur Koçak <drugurkocak@icloud.com>\n"
 "Language-Team: Turkish <http://translate.pkp.sfu.ca/projects/omp/submission/"
 "tr_TR/>\n"
@@ -13,3 +13,486 @@ msgstr ""
 
 msgid "submission.round"
 msgstr "{$round}. Tur"
+
+msgid "submission.editorName"
+msgstr "{$editorName} (ed)"
+
+msgid "publication.inactiveSeries"
+msgstr "{$series} (Inactive)"
+
+msgid "submission.authorListSeparator"
+msgstr "; "
+
+msgid "submission.submit.title"
+msgstr "Bir yazı gönderin"
+
+msgid "submission.upload.selectComponent"
+msgstr "Bileşeni Seçin"
+
+msgid "submission.title"
+msgstr "Kitap Başlığı"
+
+msgid "submission.select"
+msgstr "Gönderi Seçin"
+
+msgid "submission.synopsis"
+msgstr "Özet"
+
+msgid "submission.workflowType"
+msgstr "Gönderi Türü"
+
+msgid "submission.workflowType.description"
+msgstr ""
+"Bir kitap, tamamen bir veya daha fazla yazar tarafından yazılmış bir "
+"eserdir. Düzenlenmiş bir cildin (ayrıntıları bu süreçte daha sonra girilen) "
+"her bölüm için farklı yazarları vardır"
+
+msgid "submission.workflowType.editedVolume.label"
+msgstr "Düzenlenmiş Cilt"
+
+msgid "submission.workflowType.editedVolume"
+msgstr "Düzenlenmiş Cilt: Yazarlar kendi bölümleri ile ilişkilendirilir."
+
+msgid "submission.workflowType.authoredWork"
+msgstr "Kitap: Yazarlar bir bütün olarak kitapla ilişkilendirilir."
+
+msgid "submission.workflowType.change"
+msgstr "Değiştir"
+
+msgid "submission.monograph"
+msgstr "Yazı"
+
+msgid "submission.published"
+msgstr "Üretime Hazır"
+
+msgid "submission.fairCopy"
+msgstr "Temiz Nüsha"
+
+msgid "submission.artwork.permissions"
+msgstr "İzinler"
+
+msgid "submission.chapter"
+msgstr "Bölüm"
+
+msgid "submission.chapters"
+msgstr "Bölümler"
+
+msgid "submission.chaptersDescription"
+msgstr ""
+"Bölümleri burada listeleyebilir ve yukarıdaki katkıda bulunanlar listesinden "
+"katılımcı atayabilirsiniz. Bu katılımcılar, yayın sürecinin çeşitli "
+"aşamalarında bölüme erişebilecekler."
+
+msgid "submission.chapter.addChapter"
+msgstr "Bölüm Ekle"
+
+msgid "submission.chapter.editChapter"
+msgstr "Bölümü Düzenle"
+
+msgid "submission.chapter.pages"
+msgstr "Sayfa"
+
+msgid "submission.copyedit"
+msgstr "Sayfa Düzeni"
+
+msgid "submission.publicationFormats"
+msgstr "Yayın Biçimleri"
+
+msgid "submission.proofs"
+msgstr "Provalar"
+
+msgid "submission.download"
+msgstr "İndir"
+
+msgid "submission.sharing"
+msgstr "Paylaş"
+
+msgid "manuscript.submission"
+msgstr "Yazı Taslağı Gönderimi"
+
+msgid "submissions.queuedReview"
+msgstr "Değerlendirmede"
+
+msgid "manuscript.submissions"
+msgstr "Yazı Taslağı Gönderimleri"
+
+msgid "submission.confirmSubmit"
+msgstr "Bu yazı taslağını yayınevine göndermek istediğinizden emin misiniz?"
+
+msgid "submission.metadata"
+msgstr "Üst Veri"
+
+msgid "submission.supportingAgencies"
+msgstr "Destekleyen Kurumlar"
+
+msgid "grid.action.addChapter"
+msgstr "Yeni bir bölüm oluştur"
+
+msgid "grid.action.editChapter"
+msgstr "Bu bölümü düzenleyin"
+
+msgid "grid.action.deleteChapter"
+msgstr "Bu bölümü sil"
+
+msgid "submission.submit"
+msgstr "Yeni Kitap Gönderimine Başlayın"
+
+msgid "submission.submit.newSubmissionMultiple"
+msgstr "Yeni Bir Gönderim Başlatın"
+
+msgid "submission.submit.newSubmissionSingle"
+msgstr "Yeni Gönderi"
+
+msgid "submission.submit.upload"
+msgstr "Gönderi yükle"
+
+msgid "submission.submit.cancelSubmission"
+msgstr ""
+"Yazarın ana sayfasından Etkin Gönderimleri seçerek bu gönderiyi daha sonraki "
+"bir tarihte tamamlayabilirsiniz."
+
+msgid "submission.submit.selectSeries"
+msgstr "Dizi seçin (isteğe bağlı)"
+
+msgid "author.isVolumeEditor"
+msgstr "Bu katılımcıyı bu cildin editörü olarak tanımlayın."
+
+msgid "author.submit.seriesRequired"
+msgstr "Geçerli bir dizi gereklidir."
+
+msgid "submission.submit.seriesPosition"
+msgstr "Dizi Konumu"
+
+msgid "submission.submit.seriesPosition.description"
+msgstr "Örnekler: Kitap 2, Cilt 2"
+
+msgid "submission.submit.form.localeRequired"
+msgstr "Lütfen bir gönderim dili seçin."
+
+msgid "submission.submit.privacyStatement"
+msgstr "Gizlilik Bildirimi"
+
+msgid "submission.submit.contributorRole"
+msgstr "Katkıda bulunan kişinin görevi"
+
+msgid "submission.submit.form.authorRequired"
+msgstr "En az bir yazar gereklidir."
+
+msgid "submission.submit.form.authorRequiredFields"
+msgstr "Her yazarın adı, soyadı ve e-posta adresi gereklidir."
+
+msgid "submission.submit.form.titleRequired"
+msgstr "Lütfen yazınızın başlığını girin."
+
+msgid "submission.submit.form.abstractRequired"
+msgstr "Lütfen yazınızın kısa bir özetini girin."
+
+msgid "submission.submit.form.contributorRoleRequired"
+msgstr "Lütfen katkıda bulunanın görevini seçin."
+
+msgid "submission.submit.submissionFile"
+msgstr "Gönderi Dosyası"
+
+msgid "submission.submit.prepare"
+msgstr "Hazırlayın"
+
+msgid "submission.submit.catalog"
+msgstr "Fihrist"
+
+msgid "submission.submit.metadata"
+msgstr "Üst Veri"
+
+msgid "submission.submit.finishingUp"
+msgstr "Tamamlanıyor"
+
+msgid "submission.submit.confirmation"
+msgstr "Onay"
+
+msgid "submission.submit.nextSteps"
+msgstr "Sonraki Adımlar"
+
+msgid "submission.submit.coverNote"
+msgstr "Editöre Kapak Notu"
+
+msgid "submission.submit.generalInformation"
+msgstr "Genel bilgi"
+
+msgid "submission.submit.whatNext.description"
+msgstr ""
+"Yayınevi gönderiniz konusunda bilgilendirildi ve kayıtlarınız için size bir "
+"onay e-postası gönderildi. Editör gönderiyi inceledikten sonra sizinle "
+"iletişime geçecektir."
+
+msgid "submission.submit.checklistErrors"
+msgstr ""
+"Lütfen gönderim kontrol listesindeki maddeleri okuyun ve işaretleyin. "
+"İşaretlenmemiş {$itemsRemaining} öğe var."
+
+msgid "submission.submit.placement"
+msgstr "Gönderi Yerleştirme"
+
+msgid "submission.submit.userGroup"
+msgstr "Benim görevimde şu olarak gönder..."
+
+msgid "submission.submit.userGroupDescription"
+msgstr ""
+"Düzenlenmiş Cilt gönderiyorsanız, cilt düzenleyici görevini seçmelisiniz."
+
+msgid "submission.submit.noContext"
+msgstr "Bu gönderinin yayınevi bulunamadı."
+
+msgid "grid.chapters.title"
+msgstr "Bölümler"
+
+msgid "grid.copyediting.deleteCopyeditorResponse"
+msgstr "Sayfa Düzeni Editörünün Yüklemesini Sil"
+
+msgid "submission.complete"
+msgstr "Onaylandı"
+
+msgid "submission.incomplete"
+msgstr "Onay Bekliyor"
+
+msgid "submission.editCatalogEntry"
+msgstr "Kayıt"
+
+msgid "submission.catalogEntry.new"
+msgstr "Kayıt Ekle"
+
+msgid "submission.catalogEntry.add"
+msgstr "Seçilenleri Fihriste Ekle"
+
+msgid "submission.catalogEntry.select"
+msgstr "Fihriste eklenecek kitapları bulun"
+
+msgid "submission.catalogEntry.selectionMissing"
+msgstr "Fihriste eklemek için en az bir kitap seçmelisiniz."
+
+msgid "submission.catalogEntry.confirm"
+msgstr "Bu kitabı genel fihriste ekleyin"
+
+msgid "submission.catalogEntry.confirm.required"
+msgstr "Lütfen gönderinin fihriste yerleştirilmeye hazır olduğunu onaylayın."
+
+msgid "submission.catalogEntry.isAvailable"
+msgstr "Bu kitap, genel fihriste eklenmeye hazır."
+
+msgid "submission.catalogEntry.viewSubmission"
+msgstr "Gönderiyi Görüntüle"
+
+msgid "submission.catalogEntry.chapterPublicationDates"
+msgstr "Yayın Tarihleri"
+
+msgid "submission.catalogEntry.disableChapterPublicationDates"
+msgstr "Tüm bölümlerde kitabın yayın tarihi kullanılacaktır."
+
+msgid "submission.catalogEntry.enableChapterPublicationDates"
+msgstr "Her bölümün kendi yayın tarihi olabilir."
+
+msgid "submission.catalogEntry.monographMetadata"
+msgstr "Kitap"
+
+msgid "submission.catalogEntry.catalogMetadata"
+msgstr "Fihrist"
+
+msgid "submission.catalogEntry.publicationMetadata"
+msgstr "Yayın Biçimi"
+
+msgid "submission.event.metadataPublished"
+msgstr "Yazının üst verileri yayınlanmak üzere onaylanmıştır."
+
+msgid "submission.event.metadataUnpublished"
+msgstr "Yazının üst verileri artık yayınlanmamaktadır."
+
+msgid "submission.event.publicationFormatMadeAvailable"
+msgstr "\"{$publishFormatName}\" yayın biçimi kullanıma sunulmuştur."
+
+msgid "submission.event.publicationFormatMadeUnavailable"
+msgstr "\"{$publishFormatName}\" yayın biçimi artık mevcut değil."
+
+msgid "submission.event.publicationFormatPublished"
+msgstr "\"{$publishFormatName}\" yayın biçimi yayınlanmak üzere onaylandı."
+
+msgid "submission.event.publicationFormatUnpublished"
+msgstr "\"{$publishFormatName}\" yayın biçimi artık yayınlanmıyor."
+
+msgid "submission.event.catalogMetadataUpdated"
+msgstr "Fihrist üst verileri güncellendi."
+
+msgid "submission.event.publicationMetadataUpdated"
+msgstr "\"{$formatName}\" için yayın biçimi üst verileri güncellendi."
+
+msgid "submission.event.publicationFormatCreated"
+msgstr "\"{$formatName}\" yayın biçimi oluşturuldu."
+
+msgid "submission.event.publicationFormatRemoved"
+msgstr "\"{$formatName}\" yayın biçimi kaldırıldı."
+
+msgid "submission.submit.titleAndSummary"
+msgstr "Başlık ve Öz"
+
+msgid "editor.submission.decision.sendExternalReview"
+msgstr "Dış Değerlendirmeye Gönder"
+
+msgid "workflow.review.externalReview"
+msgstr "Dış Değerlendirme"
+
+msgid "submission.upload.fileContents"
+msgstr "Gönderi Bileşeni"
+
+msgid "submission.dependentFiles"
+msgstr "Bağımlı Dosyalar"
+
+msgid "submission.metadataDescription"
+msgstr ""
+"Bu özellikler, yayın içeriğini tanımlamak için kullanılan uluslararası bir "
+"standart olan Dublin Core üst veri setine dayanmaktadır."
+
+msgid "section.any"
+msgstr "Herhangi bir Dizi"
+
+msgid "submission.list.monographs"
+msgstr "Yazılar"
+
+msgid "submission.list.countMonographs"
+msgstr "{$count} yazı"
+
+msgid "submission.list.itemsOfTotalMonographs"
+msgstr "{$total} yazıdan {$count} adedi"
+
+msgid "submission.list.orderFeatures"
+msgstr "Özellikleri Sırala"
+
+msgid "submission.list.orderingFeatures"
+msgstr ""
+"Ana sayfadaki özelliklerin sırasını değiştirmek için sürükleyip bırakın veya "
+"yukarı ve aşağı düğmelerine dokunun."
+
+msgid "submission.list.orderingFeaturesSection"
+msgstr ""
+"{$title} içindeki özelliklerin sırasını değiştirmek için sürükleyip bırakın "
+"veya yukarı ve aşağı düğmelerine dokunun."
+
+msgid "submission.list.saveFeatureOrder"
+msgstr "Sıralamayı Order"
+
+msgid "submission.list.viewEntry"
+msgstr "Girişi Görüntüle"
+
+msgid "catalog.browseTitles"
+msgstr "{$numTitles} Başlık"
+
+msgid "publication.catalogEntry"
+msgstr "Fihrist Girişi"
+
+msgid "publication.catalogEntry.success"
+msgstr "Fihrist girişi ayrıntıları güncellendi."
+
+msgid "publication.invalidSeries"
+msgstr "Bu yayına ait dizi bulunamadı."
+
+msgid "publication.required.issue"
+msgstr "Yayın, yayınlanmadan önce bir sayıya atanmalıdır."
+
+msgid "publication.publishedIn"
+msgstr "<a href=\"{$issueUrl}\">{$issueName}</a> içinde yayınlandı."
+
+msgid "publication.publish.confirmation"
+msgstr ""
+"Tüm yayın gereksinimleri karşılanmıştır. Bu fihrist girişini herkese açık "
+"hale getirmek istediğinizden emin misiniz?"
+
+msgid "publication.scheduledIn"
+msgstr ""
+"<a href=\"{$issueUrl}\">{$issueName}</a> içinde yayınlanmak üzere planlandı."
+
+msgid "submission.publication"
+msgstr "Yayın"
+
+msgid "publication.status.published"
+msgstr "Yayınlanan"
+
+msgid "submission.status.scheduled"
+msgstr "Planlanmış"
+
+msgid "publication.status.unscheduled"
+msgstr "Planlanmamış"
+
+msgid "submission.publications"
+msgstr "Yayınlar"
+
+msgid "publication.copyrightYearBasis.issueDescription"
+msgstr ""
+"Bir sayıda yayınlandığında telif hakkı yılı otomatik olarak belirlenecektir."
+
+msgid "publication.copyrightYearBasis.submissionDescription"
+msgstr "Telif hakkı yılı, yayın tarihine göre otomatik olarak belirlenecektir."
+
+msgid "publication.datePublished"
+msgstr "Yayın Tarihi"
+
+msgid "publication.editDisabled"
+msgstr "Bu sürüm yayınlandı ve düzenlenemez."
+
+msgid "publication.event.published"
+msgstr "Gönderi yayınlandı."
+
+msgid "publication.event.scheduled"
+msgstr "Gönderinin yayınlanması planlandı."
+
+msgid "publication.event.unpublished"
+msgstr "Gönderi yayınlanmadı."
+
+msgid "publication.event.versionPublished"
+msgstr "Yeni bir sürüm yayınlandı."
+
+msgid "publication.event.versionScheduled"
+msgstr "Yeni bir sürüm yayınlanmak üzere planlandı."
+
+msgid "publication.event.versionUnpublished"
+msgstr "Yayından bir sürüm kaldırıldı."
+
+msgid "publication.invalidSubmission"
+msgstr "Bu yayına ilişkin gönderi bulunamadı."
+
+msgid "publication.publish"
+msgstr "Yayınla"
+
+msgid "publication.publish.requirements"
+msgstr ""
+"Bunun yayınlanabilmesi için aşağıdaki gereksinimlerin karşılanması gerekir."
+
+msgid "publication.required.declined"
+msgstr "Reddedilen bir gönderi yayınlanamaz."
+
+msgid "publication.required.reviewStage"
+msgstr ""
+"Gönderinin yayınlanabilmesi için Sayfa Düzenleme veya Üretim aşamalarında "
+"olması gerekir."
+
+msgid "submission.license.description"
+msgstr ""
+"Bu yayınlandığında, ruhsat otomatik olarak <a href='{$licenseUrl}' "
+"target='_blank'>{$licenseName}</a> şeklinde ayarlanacaktır."
+
+msgid "submission.copyrightHolder.description"
+msgstr ""
+"Telif hakkı, yayınlandığında otomatik olarak {$copyright} adına atanacaktır."
+
+msgid "submission.copyrightOther.description"
+msgstr "Aşağıdaki tarafa yayınlanan gönderimler için telif hakkı atayın."
+
+msgid "publication.unpublish"
+msgstr "Yayından kaldır"
+
+msgid "publication.unpublish.confirm"
+msgstr "Bunun yayınlanmasını istemediğinizden emin misiniz?"
+
+msgid "publication.unschedule.confirm"
+msgstr "Bunun yayınlanmak üzere planlanmasını istemediğinizden emin misiniz?"
+
+msgid "publication.version.details"
+msgstr "{$version} sürümü için yayın ayrıntıları"
+
+msgid "submission.queries.production"
+msgstr "Üretim Tartışmaları"
