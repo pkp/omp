@@ -1,6 +1,6 @@
 msgid ""
 msgstr ""
-"PO-Revision-Date: 2021-02-20 17:54+0000\n"
+"PO-Revision-Date: 2021-02-21 18:54+0000\n"
 "Last-Translator: Uğur Koçak <drugurkocak@icloud.com>\n"
 "Language-Team: Turkish <http://translate.pkp.sfu.ca/projects/omp/locale/"
 "tr_TR/>\n"
@@ -711,7 +711,7 @@ msgid "grid.action.addSpotlight"
 msgstr "Gündem ekle"
 
 msgid "manager.series.open"
-msgstr "Gönderileri Açın"
+msgstr "Açık Gönderimler"
 
 msgid "manager.series.indexed"
 msgstr "Dizinlenmiş"
