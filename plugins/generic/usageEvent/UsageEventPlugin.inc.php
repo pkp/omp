@@ -72,7 +72,7 @@ class UsageEventPlugin extends PKPUsageEventPlugin {
 
 					$press = $templateMgr->getTemplateVars('currentContext'); /* @var $press Press */
 					$series = $templateMgr->getTemplateVars('series'); /* @var $series Series */
-					$submission = $templateMgr->getTemplateVars('submission');
+					$submission = $templateMgr->getTemplateVars('publishedSubmission');
 
 					// No published objects, no usage event.
 					if (!$press && !$series && !$submission) break;
