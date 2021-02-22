@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
-"PO-Revision-Date: 2021-02-21 18:54+0000\n"
-"Last-Translator: Uğur Koçak <drugurkocak@icloud.com>\n"
+"PO-Revision-Date: 2021-02-23 13:10+0000\n"
+"Last-Translator: Uğur Koçak <ugurkocak@hotmail.com>\n"
 "Language-Team: Turkish <http://translate.pkp.sfu.ca/projects/omp/locale/"
 "tr_TR/>\n"
 "Language: tr_TR\n"
@@ -261,7 +261,7 @@ msgid "catalog.category.heading"
 msgstr "Tüm Kitaplar"
 
 msgid "catalog.newReleases"
-msgstr "Yeni Eklenen Filmler"
+msgstr "Yeni Eklenenler"
 
 msgid "catalog.dateAdded"
 msgstr "Eklendi"
@@ -939,7 +939,7 @@ msgid "navigation.infoForLibrarians.long"
 msgstr "Kütüphaneciler için Bilgi"
 
 msgid "navigation.newReleases"
-msgstr "Yeni Eklenen Filmler"
+msgstr "Yeni Eklenenler"
 
 msgid "navigation.published"
 msgstr "Yayınlanan"
@@ -969,7 +969,7 @@ msgid "navigation.navigationMenus.category.description"
 msgstr "Bir kategoriye bağlantı verin."
 
 msgid "navigation.navigationMenus.newRelease"
-msgstr "Yeni Eklenen Filmler"
+msgstr "Yeni Eklenenler"
 
 msgid "navigation.navigationMenus.newRelease.description"
 msgstr "Yeni Yayınlarınıza bağlantı verin."
