@@ -272,8 +272,7 @@ class CatalogBookHandler extends Handler {
 				$genreDao = DAORegistry::getDAO('GenreDAO'); /* @var $genreDao GenreDAO */
 				$genre = $genreDao->getById($submissionFile->getGenreId());
 				if (!$genre->getDependent()) $dispatcher->handle404();
-				return Services::get('file')->download($path, $filename);
-				break;
+				return Services::get('file')->download($submissionFile->getData('fileId'), $filename);
 			default: $dispatcher->handle404();
 		}
 
@@ -320,7 +319,7 @@ class CatalogBookHandler extends Handler {
 			}
 			$returner = true;
 			HookRegistry::call('FileManager::downloadFileFinished', array(&$returner));
-			return Services::get('file')->download($path, $filename, $inline);
+			return Services::get('file')->download($submissionFile->getData('fileId'), $filename, $inline);
 		}
 
 		// Fall-through: user needs to pay for purchase.
