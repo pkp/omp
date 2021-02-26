@@ -64,11 +64,21 @@ class UsageEventPlugin extends PKPUsageEventPlugin {
 				case 'TemplateManager::display':
 					$page = $router->getRequestedPage($request);
 					$op = $router->getRequestedOp($request);
+					$args = $router->getRequestedArgs($request);
 
 					$wantedPages = array('catalog');
 					$wantedOps = array('index', 'book', 'series');
 
 					if (!in_array($page, $wantedPages) || !in_array($op, $wantedOps)) break;
+
+					// consider book versioning:
+					// if the operation is 'book' and the arguments count > 1
+					// the arguments must be: $submissionId/version/$publicationId.
+					if ($op == 'book' && count($args) > 1) {
+						if ($args[1] !== 'version') break;
+						else if (count($args) != 3) break;
+						$publicationId = (int) $args[2];
+					}
 
 					$press = $templateMgr->getTemplateVars('currentContext'); /* @var $press Press */
 					$series = $templateMgr->getTemplateVars('series'); /* @var $series Series */
@@ -94,6 +104,11 @@ class UsageEventPlugin extends PKPUsageEventPlugin {
 						$assocType = ASSOC_TYPE_MONOGRAPH;
 						$canonicalUrlParams = array($pubObject->getId());
 						$idParams = array('m' . $pubObject->getId());
+						if (isset($publicationId)) {
+							// no need to check if the publication exists (for the submisison),
+							// 404 would be returned and the usage event would not be there
+							$canonicalUrlParams = array($pubObject->getId(), 'version', $publicationId);
+						}
 					}
 
 					$downloadSuccess = true;
