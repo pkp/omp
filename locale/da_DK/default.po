@@ -121,8 +121,10 @@ msgstr "Dette forlag giver øjeblikkelig åben adgang til dets indhold ud fra pr
 
 msgid "default.pressSettings.emailSignature"
 msgstr ""
-"<br/>\n"
-"________________________________________________________________________<br/>\n"
+"<br/>
+\n"
+"________________________________________________________________________<br/>
+\n"
 "<a href=\"{$ldelim}$contextUrl{$rdelim}\">{$ldelim}$contextName{$rdelim}</a>"
 
 msgid "default.pressSettings.forReaders"
@@ -182,13 +184,6 @@ msgstr ""
 "privacyStatement\">Erklæring om beskyttelse af personlige oplysninger</a>, "
 "der garanterer læserne, at deres navne og e-mail-adresser ikke benyttes til "
 "andre formål."
-
-msgid "default.contextSettings.emailSignature"
-msgstr ""
-"<br/>\n"
-"________________________________________________________________________<br/>"
-"\n"
-"<a href=\"{$ldelim}$contextUrl{$rdelim}\">{$ldelim}$contextName{$rdelim}</a>"
 
 msgid "default.contextSettings.openAccessPolicy"
 msgstr ""

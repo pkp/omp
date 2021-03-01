@@ -51,13 +51,6 @@ msgstr ""
 "dhearbhas dha na leughadairean nach cleachd iad an ainmean is seòlaidhean "
 "puist-d airson adhbhar sam bith eile."
 
-msgid "default.contextSettings.emailSignature"
-msgstr ""
-"<br/>\n"
-"________________________________________________________________________<br/>"
-"\n"
-"<a href=\"{$ldelim}$contextUrl{$rdelim}\">{$ldelim}$contextName{$rdelim}</a>"
-
 msgid "default.contextSettings.privacyStatement"
 msgstr ""
 "<p>Cha chleachdar na h-ainmean is seòlaidhean puist-d a chuirear a-steach "

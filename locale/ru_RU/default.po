@@ -140,13 +140,6 @@ msgstr ""
 "которая позволяет читателям убедиться в том, что их имя и адрес электронной "
 "почты не будут использованы для других целей."
 
-msgid "default.contextSettings.emailSignature"
-msgstr ""
-"<br/>\n"
-"________________________________________________________________________ <br/"
-">\n"
-"<a href=\"{$contextUrl}\">{$contextName}</a>"
-
 msgid "default.contextSettings.openAccessPolicy"
 msgstr ""
 "Этот журнал предоставляет непосредственный открытый доступ к своему "

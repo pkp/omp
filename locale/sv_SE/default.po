@@ -168,13 +168,6 @@ msgstr ""
 "dig som läsare att ditt namn eller e-postadress inte kommer användas för "
 "andra syften."
 
-msgid "default.contextSettings.emailSignature"
-msgstr ""
-"<br/>\n"
-"________________________________________________________________________<br/>"
-"\n"
-"<a href=\"{$ldelim}$contextUrl{$rdelim}\">{$ldelim}$contextName{$rdelim}</a>"
-
 msgid "default.contextSettings.openAccessPolicy"
 msgstr ""
 "Den här pressen gör sitt innehåll fritt tillgängligt omedelbart vid "
