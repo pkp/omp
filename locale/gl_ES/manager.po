@@ -1,2 +1,96 @@
 msgid ""
-msgstr "X-Generator: Weblate\nMIME-Version: 1.0\nContent-Type: text/plain; charset=UTF-8\nContent-Transfer-Encoding: 8bit"
+msgstr ""
+"PO-Revision-Date: 2021-03-02 10:12+0000\n"
+"Last-Translator: Real Academia Galega <reacagal@gmail.com>\n"
+"Language-Team: Galician <http://translate.pkp.sfu.ca/projects/omp/manager/"
+"gl_ES/>\n"
+"Language: gl_ES\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: Weblate 3.9.1\n"
+
+msgid "manager.series.form.titleRequired"
+msgstr "É necesario un título para a colección."
+
+msgid "manager.series.form.abbrevRequired"
+msgstr "É necesario un título abreviado para a colección."
+
+msgid "manager.series.unassigned"
+msgstr "Editores de Coleccións dispoñibeis"
+
+msgid "manager.series.hideAbout"
+msgstr "Omite esta colección na páxina Sobre a editorial."
+
+msgid "manager.series.seriesEditorInstructions"
+msgstr ""
+"Engade un editor/a de colección a esta serie dos Editores/as de Colección "
+"dispoñibles. Unha vez engadido, designe se o Editor/a da colección "
+"supervisará a REVISIÓN (revisión por pares) e/ou a EDICIÓN (redacción, "
+"maquetación e corrección de probas) dos envíos a esta colección. Os editores/"
+"as de colección créanse facendo clic en <a href=\"{$seriesEditorsUrl}\">"
+"Editores de Coleccións</a> en Roles na xestión de editorial."
+
+msgid "manager.series.assigned"
+msgstr "Editores desta colección"
+
+msgid "manager.series.policy"
+msgstr "Descrición da colección"
+
+msgid "manager.series.create"
+msgstr "Crear colección"
+
+msgid "manager.series.book"
+msgstr "Coleccións de libros"
+
+msgid "manager.series.disableComments"
+msgstr "Desactiva os comentarios dos lectores/as desta colección."
+
+msgid "manager.series.abstractsNotRequired"
+msgstr "Non se precisan resumos"
+
+msgid "manager.series.submissionsToThisSection"
+msgstr "Envíos feitos a esta colección"
+
+msgid "manager.series.submissionReview"
+msgstr "Non será revisado por pares"
+
+msgid "manager.series.readingTools"
+msgstr "Ferramentas de lectura"
+
+msgid "manager.series.open"
+msgstr "Envíos abertos"
+
+msgid "manager.series.indexed"
+msgstr "Indexado"
+
+msgid "manager.series.confirmDelete"
+msgstr "Seguro que queres eliminar permanentemente esta colección?"
+
+msgid "manager.series.editorRestriction"
+msgstr "Só os Editores/as e os Editores/as de Coleccións poden enviar artigos."
+
+msgid "manager.series.submissionIndexing"
+msgstr "Non se incluirá na indexación da editorial"
+
+msgid "manager.series.form.reviewFormId"
+msgstr "Asegúrese de que escolleu un formulario de revisión válido."
+
+msgid "manager.series.form.mustAllowPermission"
+msgstr ""
+"Asegúrese de que está marcada polo menos unha caixa de verificación para "
+"cada tarefa do Editor de Coleccións."
+
+msgid "manager.languages.primaryLocaleInstructions"
+msgstr "Este será o idioma predeterminado para o sitio da editorial."
+
+msgid "manager.languages.noneAvailable"
+msgstr ""
+"Non hai idiomas adicionais dispoñibles. Póñase en contacto co administrador/"
+"a do sitio se desexa empregar idiomas adicionais con esta editorial."
+
+msgid "manager.language.confirmDefaultSettingsOverwrite"
+msgstr ""
+"Isto substituirá calquera configuración específica de esta editorial para "
+"este idioma"
