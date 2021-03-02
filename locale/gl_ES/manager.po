@@ -1,6 +1,6 @@
 msgid ""
 msgstr ""
-"PO-Revision-Date: 2021-03-02 10:12+0000\n"
+"PO-Revision-Date: 2021-03-03 01:11+0000\n"
 "Last-Translator: Real Academia Galega <reacagal@gmail.com>\n"
 "Language-Team: Galician <http://translate.pkp.sfu.ca/projects/omp/manager/"
 "gl_ES/>\n"
@@ -94,3 +94,285 @@ msgid "manager.language.confirmDefaultSettingsOverwrite"
 msgstr ""
 "Isto substituirá calquera configuración específica de esta editorial para "
 "este idioma"
+
+msgid "manager.setup.coverThumbnailsMaxWidthHeight.description"
+msgstr ""
+"As imaxes reduciranse cando sexan maiores que este tamaño, pero nunca serán "
+"ampliadas ou estiradas para axustalas a estas dimensións."
+
+msgid "manager.setup.coverThumbnailsMaxWidth"
+msgstr "Ancho máximo da imaxe da capa"
+
+msgid "manager.setup.coverThumbnailsMaxHeight"
+msgstr "Altura máxima da imaxe da capa"
+
+msgid "manager.setup.coverage"
+msgstr "Cobertura"
+
+msgid "manager.setup.copyrightNotice"
+msgstr "Aviso de dereitos de autor"
+
+msgid "manager.setup.copyeditInstructionsDescription"
+msgstr ""
+"As instrucións de corrección estarán dispoñibles para correctores/as, "
+"autores/as e editores/as de seccións na fase de edición do envío. A "
+"continuación móstrase un conxunto predeterminado de instrucións en HTML, que "
+"pode ser modificado ou substituído polo xefe editorial en calquera momento ("
+"en HTML ou texto plano)."
+
+msgid "manager.setup.copyeditInstructions"
+msgstr "Instrucións para a corrección dos orixinais"
+
+msgid "manager.setup.copyediting"
+msgstr "Correctores/as"
+
+msgid "manager.setup.contextSummary"
+msgstr "Resumo da publicación"
+
+msgid "manager.setup.contextAbout.description"
+msgstr ""
+"Inclúa calquera información sobre a editorial que poida interesar aos "
+"lectores/as, autores/as ou revisores/as. Isto podería incluír a súa política "
+"de acceso aberto, o enfoque e alcance da mesma, a divulgación do patrocinio "
+"e a historia da editorial."
+
+msgid "manager.setup.contextAbout"
+msgstr "Acerca da publicación"
+
+msgid "manager.setup.appearInAboutPress"
+msgstr "(Para aparecer en Acerca da editorial) "
+
+msgid "manager.setup.announcementsIntroduction.description"
+msgstr ""
+"Introduza calquera información adicional que debe mostrarse aos lectores na "
+"páxina de anuncios."
+
+msgid "manager.setup.announcementsIntroduction"
+msgstr "Información adicional"
+
+msgid "manager.statistics.reports.defaultReport.seriesIndexPageViews"
+msgstr "Visualizacións da páxina principal da colección"
+
+msgid "manager.statistics.reports.defaultReport.monographAbstractAndDownloads"
+msgstr "Resumo e descargas da monografía"
+
+msgid "manager.statistics.reports.defaultReport.monographAbstract"
+msgstr "Visualizacións da páxina do resumo da monografía"
+
+msgid "manager.statistics.reports.defaultReport.monographDownloads"
+msgstr "Descargar o arquivo da monografía"
+
+msgid "manager.settings.distributionDescription"
+msgstr ""
+"Todas as opcións específicas do proceso de distribución (notificación, "
+"indexación, arquivo, pago, ferramentas de lectura)."
+
+msgid "manager.settings.publisherCodeType.invalid"
+msgstr "Este non é un tipo de código editorial válido."
+
+msgid "manager.settings.publisherCodeType"
+msgstr "Tipo de código da editorial"
+
+msgid "manager.settings.publisherCode"
+msgstr "Código da Editorial"
+
+msgid "manager.settings.location"
+msgstr "Localización xeográfica"
+
+msgid "manager.settings.publisher"
+msgstr "Nome da Editorial"
+
+msgid "manager.settings.publisher.identity.description"
+msgstr ""
+"Estes campos son necesarios para publicar <a href=\"https://en.wikipedia.org/"
+"wiki/ONIX_for_Books\">metadatos ONIX</a> válidos."
+
+msgid "manager.settings.publisher.identity"
+msgstr "Identidade da editorial"
+
+msgid "manager.settings.press"
+msgstr "Editorial"
+
+msgid "manager.settings.pressSettings"
+msgstr "Configuraciones da editorial"
+
+msgid "manager.settings"
+msgstr "Configuraciones"
+
+msgid "manager.payment.success"
+msgstr "Actualizáronse as opcións de pagamento."
+
+msgid "manager.payment.options.enablePayments"
+msgstr ""
+"Os pagamentos habilitaranse para esta editorial. Ten en conta que os "
+"usuarios terán que iniciar sesión para realizar pagamentos."
+
+msgid "manager.payment.generalOptions"
+msgstr "Opcións xerais"
+
+msgid "manager.series.confirmDeactivateSeries.error"
+msgstr ""
+"Polo menos unha serie debe estar activa. Visita a configuración do fluxo de "
+"traballo para desactivar todos os envíos a esta editorial."
+
+msgid "manager.series.restricted"
+msgstr "Non permitir aos autores enviar directamente a esta colección."
+
+msgid "manager.series.seriesTitle"
+msgstr "Título da colección"
+
+msgid "manager.series.existingUsers"
+msgstr "Usuarios existentes"
+
+msgid "manager.series.noneCreated"
+msgstr "Non se creou ningunha colección."
+
+msgid "manager.setup.announcementsDescription"
+msgstr ""
+"Pódense publicar anuncios para informar aos lectores de noticias e eventos "
+"da editorial. Os anuncios publicados aparecerán na páxina de anuncios."
+
+msgid "manager.setup.announcements.success"
+msgstr "Actualizáronse os axustes dos anuncios."
+
+msgid "manager.setup.announcements"
+msgstr "Anuncios"
+
+msgid "manager.setup.addSponsor"
+msgstr "Engadir patrocinador"
+
+msgid "manager.setup.addNavItem"
+msgstr "Engadir elemento"
+
+msgid "manager.setup.addItemtoAboutPress"
+msgstr "Engadir elemento para aparecer en \"Acerca da editorial\""
+
+msgid "manager.setup.addItem"
+msgstr "Engadir elemento"
+
+msgid "manager.setup.addChecklistItem"
+msgstr "Engadir un elemento \"Lista de verificación\""
+
+msgid "manager.setup.addAboutItem"
+msgstr "Engadir un elemento \"Acerca de\""
+
+msgid "manager.setup.aboutItemContent"
+msgstr "Contido"
+
+msgid "manager.setup"
+msgstr "Configuración"
+
+msgid "manager.pressManagement"
+msgstr "Administración da editorial"
+
+msgid "user.authorization.pluginLevel"
+msgstr "Non tes privilexios suficientes para xestionar este complemento."
+
+msgid "manager.system.payments"
+msgstr "Pagamentos"
+
+msgid "manager.system.readingTools"
+msgstr "Ferramentas de lectura"
+
+msgid "manager.system.reviewForms"
+msgstr "Formularios de revisión"
+
+msgid "manager.system.archiving"
+msgstr "Arquivado"
+
+msgid "manager.system"
+msgstr "Configuración do sistema"
+
+msgid "manager.people.noAdministrativeRights"
+msgstr ""
+"Non tes dereitos administrativos sobre este usuario/a. Isto pode ser porque:"
+"\n"
+"\t\t<ul>\n"
+"\t\t\t<li>O usuario/a é administrador do sitio</li>\n"
+"\t\t\t<li>O usuario/a está activo en publicacións que ti non xestionas</li>\n"
+"\t\t</ul>\n"
+"\tEsta tarefa debe ser realizada por un administrador do sitio.\n"
+"\t"
+
+msgid "manager.people.confirmDisable"
+msgstr ""
+"Deshabilitar ao usuario/a? Isto evitará que o usuario inicie sesión no "
+"sistema.\n"
+"\n"
+"Opcionalmente, pode proporcionarlle ao usuario unha razón para desactivar a "
+"súa conta."
+
+msgid "manager.people.syncUserDescription"
+msgstr ""
+"A sincronización da inscrición atribuirá a todos os usuarios/as inscritos "
+"nun rol específico na publicación no mesmo rol nesta publicación. Esta "
+"función permite sincronizar un conxunto común de usuarios (por exemplo, "
+"revisores) entre publicacións."
+
+msgid "manager.people.mergeUsers.into.description"
+msgstr ""
+"Seleccione un usuario ao que atribuirlle as autorías do usuario anterior, as "
+"tarefas de edición, etc."
+
+msgid "manager.people.mergeUsers.from.description"
+msgstr ""
+"Selecciona un usuario para fusionalo noutra conta de usuario (por exemplo, "
+"se alguén ten dúas contas). Eliminarase a conta seleccionada primeiro e os "
+"seus envíos, tarefas, etc. atribuiranse á segunda conta."
+
+msgid "manager.people.enrollSyncPress"
+msgstr "Con editorial"
+
+msgid "manager.people.enrollExistingUser"
+msgstr "Inscribir un usuario existente"
+
+msgid "manager.people.confirmRemove"
+msgstr ""
+"Queres eliminar este usuario/a desta publicación? Esta acción cancelará a "
+"inscrición do usuario/a de todos os roles na publicación."
+
+msgid "manager.people.allUsers"
+msgstr "Todos os usuarios inscritos"
+
+msgid "manager.people.allSiteUsers"
+msgstr "Inscriba un usuario deste sitio nesta editorial"
+
+msgid "manager.people.allPresses"
+msgstr "Todas as editoriais"
+
+msgid "manager.people.allEnrolledUsers"
+msgstr "Usuarios/as inscritos/as nesta editorial"
+
+msgid "manager.users.selectRole"
+msgstr "Seleccionar rol"
+
+msgid "manager.users.currentRoles"
+msgstr "Roles actuais"
+
+msgid "manager.users.availableRoles"
+msgstr "Roles dispoñibeis"
+
+msgid "manager.tools.statistics"
+msgstr ""
+"Ferramentas para xerar informes relacionados coas estatísticas de uso ("
+"visualizacións da páxina indice de catálogo, visualizacións da páxina do "
+"resumo de monografía, descargas do arquivo da monografía)"
+
+msgid "manager.tools.importExport"
+msgstr ""
+"Todas as ferramentas específicas para importar e exportar datos ("
+"publicacións, monografías, usuarios)"
+
+msgid "manager.tools"
+msgstr "Ferramentas"
+
+msgid "manager.statistics.reports.filters.byObject.description"
+msgstr ""
+"Restrinxir resultados por tipo de obxecto (publicación, colección, "
+"monografía, tipos de arquivo) e/ou por un ou máis identificadores de obxecto."
+
+msgid "manager.statistics.reports.filters.byContext.description"
+msgstr "Restrinxir resultados por contexto (colección e/ou monografía)."
+
+msgid "manager.statistics.reports.defaultReport.pressIndexPageViews"
+msgstr "Visualizacións da páxina principal da editorial"
