@@ -1,6 +1,6 @@
 msgid ""
 msgstr ""
-"PO-Revision-Date: 2021-03-03 01:11+0000\n"
+"PO-Revision-Date: 2021-03-03 13:52+0000\n"
 "Last-Translator: Real Academia Galega <reacagal@gmail.com>\n"
 "Language-Team: Galician <http://translate.pkp.sfu.ca/projects/omp/manager/"
 "gl_ES/>\n"
@@ -376,3 +376,259 @@ msgstr "Restrinxir resultados por contexto (colección e/ou monografía)."
 
 msgid "manager.statistics.reports.defaultReport.pressIndexPageViews"
 msgstr "Visualizacións da páxina principal da editorial"
+
+msgid "manager.setup.layoutTemplates"
+msgstr "Modelos de maquetación"
+
+msgid "manager.setup.layoutInstructionsDescription"
+msgstr ""
+"As instrucións de maquetación pódense preparar para o formato dos elementos "
+"publicados na editorial e introducirse a continuación en HTML ou texto "
+"plano. Estarán dispoñibles para o maquetador e o editor de sección na páxina "
+"de edición de cada envío. (Como cada editorial pode empregar os seus propios "
+"formatos de arquivo, estándares bibliográficos, follas de estilo, etc., non "
+"se fornece un conxunto de instrucións predeterminado.)"
+
+msgid "manager.setup.layoutInstructions"
+msgstr "Instrucións de maquetación"
+
+msgid "manager.setup.layoutAndGalleys"
+msgstr "Maquetadores"
+
+msgid "manager.setup.labelName"
+msgstr "Nome da etiqueta"
+
+msgid "manager.setup.keyInfo.description"
+msgstr ""
+"Ofrece unha breve descrición da túa editorial e identifica aos membros do "
+"teu equipo editorial."
+
+msgid "manager.setup.keyInfo"
+msgstr "Información clave"
+
+msgid "manager.setup.itemsPerPage.description"
+msgstr ""
+"Limita o número de elementos (por exemplo, envíos, usuarios ou tarefas de "
+"edición) para mostrar nunha lista antes de amosar os elementos posteriores "
+"noutra páxina."
+
+msgid "manager.setup.itemsPerPage"
+msgstr "Elementos por páxina"
+
+msgid "manager.setup.institution"
+msgstr "Institución"
+
+msgid "manager.setup.information.success"
+msgstr "A información desta editorial actualizouse."
+
+msgid "manager.setup.information.forReaders"
+msgstr "Para lectores/as"
+
+msgid "manager.setup.information.forLibrarians"
+msgstr "Para bibliotecarios/as"
+
+msgid "manager.setup.information.forAuthors"
+msgstr "Para autores/as"
+
+msgid "manager.setup.information.description"
+msgstr ""
+"Breves descricións da editorial para bibliotecarios e futuros autores e "
+"lectores. Están dispoñibles na barra lateral do sitio na sección de \""
+"Información\"."
+
+msgid "manager.setup.information"
+msgstr "Información"
+
+msgid "manager.setup.identity"
+msgstr "Identidade da editorial"
+
+msgid "manager.setup.preparingWorkflow"
+msgstr "Paso 3. Preparando o fluxo de traballo"
+
+msgid "manager.setup.guidelines"
+msgstr "Directrices"
+
+msgid "manager.setup.gettingDownTheDetails"
+msgstr "Paso 1. Detalles"
+
+msgid "manager.setup.generalInformation"
+msgstr "Información xeral"
+
+msgid "manager.setup.form.supportNameRequired"
+msgstr "É obrigatorio o nome do soporte técnico."
+
+msgid "manager.setup.form.supportEmailRequired"
+msgstr "É necesario un correo electrónico de soporte técnico."
+
+msgid "manager.setup.form.numReviewersPerSubmission"
+msgstr "É necesario o número de revisores por envío."
+
+msgid "manager.setup.form.contactNameRequired"
+msgstr "O nome do contacto principal é obrigatorio."
+
+msgid "manager.setup.form.contactEmailRequired"
+msgstr "É necesario o correo electrónico do contacto principal."
+
+msgid "manager.setup.forAuthorsToIndexTheirWorkDescription"
+msgstr ""
+"OMP adhírese ao protocolo <a href=\"http://www.openarchives.org/\" target=\""
+"_blank\">Open Archives Initiative</a> para a recolección de metadatos, que é "
+"o estándar emerxente para proporcionar acceso ben indexado a recursos "
+"electrónicos de investigación a escala mundial. Os autores utilizarán un "
+"modelo similar para proporcionar metadatos para o seu envío. O xefe/a "
+"editorial debería seleccionar as categorías para indexar, e presentar aos "
+"autores exemplos relevantes para axudalos a indexar o seu traballo, "
+"separando os termos cun punto e coma (por exemplo, term1; term2). As "
+"entradas deben introducirse como exemplos usando \"P. ex.\" ou \"Por "
+"exemplo\"."
+
+msgid "manager.setup.forAuthorsToIndexTheirWork"
+msgstr "Para que os autores indexen o seu traballo"
+
+msgid "manager.setup.focusScopeDescription"
+msgstr "<strong>EXEMPLO DE DATOS HTML</strong>"
+
+msgid "manager.setup.focusScope"
+msgstr "Enfoque e alcance"
+
+msgid "manager.setup.focusAndScope.description"
+msgstr ""
+"Describa aos autores, lectores e bibliotecarios a temática das monografías e "
+"outros elementos que publicará a editorial."
+
+msgid "manager.setup.focusAndScope"
+msgstr "Enfoque e alcance da editorial"
+
+msgid "manager.setup.enableUserRegistration"
+msgstr "Os visitantes poden rexistrar unha conta de usuario coa editorial."
+
+msgid "manager.setup.enablePublicGalleyId"
+msgstr ""
+"Usaranse identificadores personalizados para identificar as galeradas (por "
+"exemplo, arquivos HTML ou PDF) dos elementos publicados."
+
+msgid "manager.setup.enablePublicMonographId"
+msgstr ""
+"Usaranse identificadores personalizados para identificar os elementos "
+"publicados."
+
+msgid "manager.setup.enablePressInstructions"
+msgstr "Permite que esta editorial apareza publicamente no sitio"
+
+msgid "manager.setup.numAnnouncementsHomepage.description"
+msgstr ""
+"Cantos anuncios se amosan na páxina de inicio. Deixa isto baleiro para non "
+"mostrar ningún."
+
+msgid "manager.setup.numAnnouncementsHomepage"
+msgstr "Amosar na páxina principal"
+
+msgid "manager.setup.enableAnnouncements.description"
+msgstr ""
+"Pódense publicar avisos para informar aos lectores de novas e eventos. Os "
+"anuncios publicados aparecerán na páxina de avisos."
+
+msgid "manager.setup.enableAnnouncements.enable"
+msgstr "Habilitar avisos"
+
+msgid "manager.setup.emailSignature.description"
+msgstr ""
+"Os correos electrónicos predefinidos que o sistema envíe en nome da "
+"editorial engadirán ao final a seguinte sinatura."
+
+msgid "manager.setup.emailSignature"
+msgstr "Sinatura"
+
+msgid "manager.setup.emails"
+msgstr "Identificación de correo electrónico"
+
+msgid "manager.setup.emailBounceAddress.disabled"
+msgstr ""
+"Para enviar os correos electrónicos que non puideron entregarse a un "
+"enderezo de rebote, o administrador do sitio debe habilitar a opción "
+"<code>allow_envelope_sender</code> no arquivo de configuración do sitio. "
+"Pode ser necesaria a configuración do servidor, como se indica na "
+"documentación de OMP."
+
+msgid "manager.setup.emailBounceAddress.description"
+msgstr ""
+"Calquera correo electrónico que non se poida entregar enviará unha mensaxe "
+"de erro a este enderezo."
+
+msgid "manager.setup.emailBounceAddress"
+msgstr "Remitente"
+
+msgid "manager.setup.editorDecision"
+msgstr "Decisión do editor/a"
+
+msgid "manager.setup.doiPrefixDescription"
+msgstr ""
+"O prefixo DOI (Digital Object Identifier) está asignado por <a href=\""
+"http://www.crossref.org\" target=\"_blank\">CrossRef</a> e ten o formato "
+"10.xxxx (por exemplo, 10.1234)."
+
+msgid "manager.setup.doiPrefix"
+msgstr "Prefixo DOI"
+
+msgid "manager.setup.displayNewReleases.label"
+msgstr "Novidades"
+
+msgid "manager.setup.displayNewReleases"
+msgstr "Mostrar novidades na páxina de inicio"
+
+msgid "manager.setup.displayInSpotlight.label"
+msgstr "Destaque"
+
+msgid "manager.setup.displayInSpotlight"
+msgstr "Mostrar libros no destaque na páxina de inicio"
+
+msgid "manager.setup.displayFeaturedBooks.label"
+msgstr "Libros destacados"
+
+msgid "manager.setup.displayFeaturedBooks"
+msgstr "Mostrar libros destacados na páxina de inicio"
+
+msgid "manager.setup.displayOnHomepage"
+msgstr "Contido da páxina de inicio"
+
+msgid "manager.setup.displayCurrentMonograph"
+msgstr "Engade a táboa de contidos da monografía actual (se está dispoñibel)."
+
+msgid "manager.setup.disciplineProvideExamples"
+msgstr ""
+"Proporcione exemplos de disciplinas académicas relevantes para esta editorial"
+
+msgid "manager.setup.disciplineExamples"
+msgstr ""
+"(P.ex., historia; educación; socioloxía; psicoloxía; estudos culturais; "
+"dereito)"
+
+msgid "manager.setup.disciplineDescription"
+msgstr ""
+"Útil cando a editorial traspasa os límites dunha disciplinaria e/ou os "
+"autores/as envían elementos multidisciplinares."
+
+msgid "manager.setup.discipline"
+msgstr "Disciplina académica e subdisciplinas"
+
+msgid "manager.setup.disableUserRegistration"
+msgstr ""
+"O xestor/a editorial rexistrará todas as contas de usuario/a. Os editores/as "
+"ou os editores/as de sección poden rexistrar aos revisores/as."
+
+msgid "manager.setup.details.description"
+msgstr "Nome da editorial, contactos, patrocinadores e motores de busca."
+
+msgid "manager.setup.details"
+msgstr "Detalles"
+
+msgid "manager.setup.customTagsDescription"
+msgstr ""
+"Etiquetas de cabeceira HTML personalizadas que se inserirán na cabeceira de "
+"cada páxina (por exemplo, etiquetas META)."
+
+msgid "manager.setup.customTags"
+msgstr "Etiquetas personalizadas"
+
+msgid "manager.setup.customizingTheLook"
+msgstr "Paso 5. Personalización do aspecto"
