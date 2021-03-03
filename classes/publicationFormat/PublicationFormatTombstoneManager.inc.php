@@ -80,6 +80,7 @@ class PublicationFormatTombstoneManager {
 	 * @param $press
 	 */
 	function insertTombstonesByPress($press) {
+		import('lib.pkp.classes.submission.PKPSubmission');
 		$submissionsIterator = Services::get('submission')->getMany(['contextId' => $press->getId(), 'status' => STATUS_PUBLISHED, 'count' => 2000]);
 		foreach ($submissionsIterator as $submission) {
 			foreach ($submission->getData('publications') as $publication) {
@@ -104,6 +105,7 @@ class PublicationFormatTombstoneManager {
 	 * @param $pressId int
 	 */
 	function deleteTombstonesByPressId($pressId) {
+		import('lib.pkp.classes.submission.PKPSubmission');
 		$submissionsIterator = Services::get('submission')->getMany(['contextId' => $pressId, 'status' => STATUS_PUBLISHED, 'count' => 2000]);
 		foreach ($submissionsIterator as $submission) {
 			foreach ($submission->getData('publications') as $publication) {
