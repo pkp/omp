@@ -1,9 +1,9 @@
 msgid ""
 msgstr ""
-"PO-Revision-Date: 2020-03-03 07:34+0000\n"
+"PO-Revision-Date: 2021-03-03 13:52+0000\n"
 "Last-Translator: Magnus Annemark <magnus.annemark@ub.lu.se>\n"
-"Language-Team: Swedish <http://translate.pkp.sfu.ca/projects/omp/locale/sv/>"
-"\n"
+"Language-Team: Swedish <http://translate.pkp.sfu.ca/projects/omp/locale/"
+"sv_SE/>\n"
 "Language: sv_SE\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -521,7 +521,6 @@ msgstr "Typ av beskattning"
 msgid "monograph.publicationFormat.taxRate"
 msgstr "Beskattningsprocent"
 
-#, fuzzy
 msgid "monograph.publicationFormat.productRegion"
 msgstr "Region för distribution"
 
@@ -1298,3 +1297,12 @@ msgstr ""
 
 msgid "monograph.audience.rangeQualifier"
 msgstr "Kvalificering av publikintervallet"
+
+msgid "submissionGroup.assignedSubEditors"
+msgstr "Tilldelade redaktörer"
+
+msgid "grid.action.featureMonograph"
+msgstr "Visa i katalogkarusellen"
+
+msgid "common.payments"
+msgstr "Betalningar"
