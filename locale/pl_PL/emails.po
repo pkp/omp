@@ -178,6 +178,7 @@ msgstr ""
 "Ta wiadomość jest wysłana do zarejestrowanych użytkowników, którzy poprosili "
 "o przesyłanie im tego rodzaju powiadomień."
 
+#, fuzzy
 msgid "emails.notification.body"
 msgstr ""
 "Masz nowe powiadomienie od {$siteTitle}:<br />\n"

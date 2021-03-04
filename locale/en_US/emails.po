@@ -24,6 +24,8 @@ msgstr ""
 "<br />\n"
 "This is an automatically generated email; please do not reply to this message.<br />\n"
 "{$principalContactSignature}"
+"<hr />"
+"{$unsubscribeLink}"
 
 msgid "emails.notification.description"
 msgstr "The email is sent to registered users that have selected to have this type of notification emailed to them."

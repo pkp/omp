@@ -14,6 +14,7 @@ msgstr ""
 msgid "emails.notification.subject"
 msgstr "Novo obvestilo od {$siteTitle}"
 
+#, fuzzy
 msgid "emails.notification.body"
 msgstr "Imate novo obvestilo od {$siteTitle}: <br /> <br /> {$notificationContents}<br /> <br /> Povezava: <a href=\"{$url}\">{$url}</a><br /> <br /> Ne odgovarjajte na to sporočilo, ker gre za samodejno ustvarjeno sporočilo. <br /> {$principalContactSignature}"
 

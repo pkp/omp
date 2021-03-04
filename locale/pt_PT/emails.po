@@ -80,6 +80,7 @@ msgstr ""
 "Este e-mail é enviado para utilizadores registados que pretendem receber "
 "este tipo de notificação."
 
+#, fuzzy
 msgid "emails.notification.body"
 msgstr ""
 "Tem uma nova notificação de {$siteTitle}:<br />\n"
