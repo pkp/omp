@@ -1,6 +1,6 @@
 msgid ""
 msgstr ""
-"PO-Revision-Date: 2021-03-03 13:52+0000\n"
+"PO-Revision-Date: 2021-03-05 15:09+0000\n"
 "Last-Translator: Real Academia Galega <reacagal@gmail.com>\n"
 "Language-Team: Galician <http://translate.pkp.sfu.ca/projects/omp/manager/"
 "gl_ES/>\n"
@@ -632,3 +632,159 @@ msgstr "Etiquetas personalizadas"
 
 msgid "manager.setup.customizingTheLook"
 msgstr "Paso 5. Personalización do aspecto"
+
+msgid "manager.setup.pageHeader"
+msgstr "Cabeceira da páxina da publicación"
+
+msgid "manager.setup.layout"
+msgstr "Maquetación da publicación"
+
+msgid "manager.setup.contextInitials"
+msgstr "Sigla da editorial"
+
+msgid "manager.setup.pressHomepageContentDescription"
+msgstr ""
+"A páxina de inicio de editorial consiste de forma predeterminada en ligazóns "
+"de navegación. Pódese engadir contido adicional á páxina de inicio usando "
+"unha ou todas as seguintes opcións, que aparecerán na orde mostrada."
+
+msgid "manager.setup.pressHomepageContent"
+msgstr "Contido de páxina de inicio da editorial"
+
+msgid "manager.setup.homepageContentDescription"
+msgstr ""
+"A páxina de inicio de editorial consiste de forma predeterminada en ligazóns "
+"de navegación. Pódese engadir contido adicional á páxina de inicio usando "
+"unha ou todas as seguintes opcións, que aparecerán na orde mostrada."
+
+msgid "manager.setup.homepageContent"
+msgstr "Contido de páxina de inicio da editorial"
+
+msgid "manager.setup.pressArchiving"
+msgstr "Arquivamento da publicación"
+
+msgid "manager.setup.aboutPress.description"
+msgstr ""
+"Inclúe calquera información sobre a túa editorial que poida interesar aos "
+"lectores/as, autores/as ou revisores/as. Isto podería incluír a política de "
+"acceso aberto, a temática e o alcance da editorial, o aviso de copyright, a "
+"divulgación de patrocinios, o historial e unha declaración de privacidade."
+
+msgid "manager.setup.aboutPress"
+msgstr "Sobre a editorial"
+
+msgid "manager.setup.pressDescription.description"
+msgstr "Unha breve descrición da súa editorial."
+
+msgid "manager.setup.pressDescription"
+msgstr "Descrición da editorial"
+
+msgid "manager.setup.appearanceDescription"
+msgstr ""
+"Desde esta páxina pódense configurar varios compoñentes do aspecto da "
+"editorial, incluídos os elementos da cabeceira e pé de páxina, o estilo e o "
+"tema e como se presentan as listas de información aos usuarios/as."
+
+msgid "manager.setup.privacyStatement.success"
+msgstr "A declaración de privacidade actualizouse."
+
+msgid "manager.setup.policies.description"
+msgstr ""
+"Obxecto da publicación, proceso de revisión por pares, seccións, "
+"privacidade, seguridade e outros."
+
+msgid "manager.setup.policies"
+msgstr "Políticas"
+
+msgid "manager.setup.onlineIssn"
+msgstr "ISSN en liña"
+
+msgid "manager.setup.onlineAccessManagement"
+msgstr "Acceso ao contido da editorial"
+
+msgid "manager.setup.numPageLinks.description"
+msgstr ""
+"Limitar o número de ligazóns que se amosarán nas páxinas sucesivas dunha "
+"lista."
+
+msgid "manager.setup.numPageLinks"
+msgstr "Ligazóns da páxina"
+
+msgid "manager.setup.noUseProofreaders"
+msgstr ""
+"Un editor/a ou un editor/a de sección asignado ao envío comprobará as "
+"galeradas."
+
+msgid "manager.setup.noUseLayoutEditors"
+msgstr ""
+"Un editor/a ou editor/a de sección asignado ao envío preparará os ficheiros "
+"HTML, PDF, etc."
+
+msgid "manager.setup.noUseCopyeditors"
+msgstr ""
+"A corrección dos orixinais correrá a cargo dun editor/a ou editor/a de "
+"sección asignado ao envío."
+
+msgid "manager.setup.notifyAllAuthorsOnDecision"
+msgstr ""
+"Ao usar o correo electrónico de Notificación ao autor, inclúe os enderezos "
+"de correo electrónico de todos os coautores, non só o do usuario que fai o "
+"envío."
+
+msgid "manager.setup.note"
+msgstr "Nota"
+
+msgid "manager.setup.noStyleSheetUploaded"
+msgstr "Non se cargou ningunha folla de estilo."
+
+msgid "manager.setup.noImageFileUploaded"
+msgstr "Non se cargou ningún arquivo de imaxe."
+
+msgid "manager.setup.masthead.success"
+msgstr "Actualizáronse os detalles da cabeceira desta editorial."
+
+msgid "manager.setup.managingThePress"
+msgstr "Paso 4. Administración da configuración"
+
+msgid "manager.setup.managingPublishingSetup"
+msgstr "Configuración da administración e publicación"
+
+msgid "manager.setup.managementOfBasicEditorialSteps"
+msgstr "Xestión dos pasos editoriais básicos"
+
+msgid "manager.setup.management.description"
+msgstr ""
+"Acceso e seguridade, programación, anuncios, corrección, maquetación e "
+"corrección de probas."
+
+msgid "manager.setup.settings"
+msgstr "Configuración"
+
+msgid "manager.setup.look.description"
+msgstr ""
+"Cabeceira da páxina de inicio, contido, cabeceira da editorial, pé de "
+"páxina, barra de navegación e folla de estilo."
+
+msgid "manager.setup.look"
+msgstr "Visualización"
+
+msgid "manager.setup.lists.success"
+msgstr "A configuración da lista actualizouse."
+
+msgid "manager.setup.lists"
+msgstr "Listas"
+
+msgid "manager.setup.layoutTemplates.title"
+msgstr "Título"
+
+msgid "manager.setup.layoutTemplates.file"
+msgstr "Arquivo de modelo"
+
+msgid "manager.setup.layoutTemplatesDescription"
+msgstr ""
+"Os modelos pódense cargar para que aparezan na maquetación para cada un dos "
+"formatos estándar publicados na editorial (por exemplo, monografía, revisión "
+"de libros, etc.) empregando calquera formato de arquivo (por exemplo, pdf, "
+"doc, etc.) con anotacións engadidas especificando a fonte, o tamaño , "
+"marxes, etc. para servir de guía para os maquetadores/as e correctores/as de "
+"probas."
