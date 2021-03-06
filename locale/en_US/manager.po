@@ -643,6 +643,9 @@ msgstr "The press homepage consists of navigation links by default. Additional h
 msgid "manager.setup.contextInitials"
 msgstr "Press Initials"
 
+msgid "manager.setup.selectCountry"
+msgstr "Select the country where this press is located, or the country of the mailing address for the press or publisher."
+
 msgid "manager.setup.layout"
 msgstr "Press Layout"
 
