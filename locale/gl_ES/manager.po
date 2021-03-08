@@ -1,6 +1,6 @@
 msgid ""
 msgstr ""
-"PO-Revision-Date: 2021-03-08 10:56+0000\n"
+"PO-Revision-Date: 2021-03-08 13:46+0000\n"
 "Last-Translator: Real Academia Galega <reacagal@gmail.com>\n"
 "Language-Team: Galician <http://translate.pkp.sfu.ca/projects/omp/manager/"
 "gl_ES/>\n"
@@ -1038,3 +1038,216 @@ msgstr "Configuración"
 
 msgid "manager.setup.pressPolicies"
 msgstr "Paso 2. Políticas da editorial"
+
+msgid "manager.files.note"
+msgstr ""
+"Nota: O explorador de arquivos é unha función avanzada que permite ver e "
+"manipular directamente os arquivos e cartafoles asociados a unha editorial."
+
+msgid "manager.setup.productionTemplates"
+msgstr "Modelos de produción"
+
+msgid "manager.setup.files"
+msgstr "Arquivos"
+
+msgid "manager.setup.editorialTeam.description"
+msgstr ""
+"Lista de editores/as, directores/as e outras persoas asociadas á editorial."
+
+msgid "manager.setup.editorialTeam"
+msgstr "Equipo editorial"
+
+msgid "manager.setup.masthead"
+msgstr "Cabeceira"
+
+msgid "manager.setup.internalReviewRoles"
+msgstr "Roles de revisión interna"
+
+msgid "manager.setup.currentRoles"
+msgstr "Roles actuais"
+
+msgid "manager.setup.availableRoles"
+msgstr "Roles dispoñibeis"
+
+msgid "manager.setup.managerialRoles"
+msgstr "Roles administrativos"
+
+msgid "manager.setup.authorRoles"
+msgstr "Roles de autor/a"
+
+msgid "manager.setup.roleType"
+msgstr "Tipo de rol"
+
+msgid "manager.setup.reviewForms"
+msgstr "Formularios de revisión"
+
+msgid "manager.setup.series.description"
+msgstr ""
+"Podes crear calquera número de coleccións para axudarche a organizar as túas "
+"publicacións. Unha colección representa un conxunto especial de libros "
+"dedicados a un tema ou temas. Os visitantes poderán buscar e navegar pola "
+"editorial por coleccións."
+
+msgid "manager.setup.categories.description"
+msgstr ""
+"Podes crear unha lista de categorías para axudarche a organizar as túas "
+"publicacións. As categorías son agrupacións de libros segundo a materia, por "
+"exemplo Economía, Literatura, Poesía, etcétera. As categorías pódense anidar "
+"dentro de categorías \"pais\": por exemplo, unha categoría principal de "
+"Economía pode incluír categorías individuais de Microeconomía e "
+"Macroeconomía. Os visitantes poderán buscar e navegar pola editorial por "
+"categoría."
+
+msgid "manager.setup.categoriesAndSeries"
+msgstr "Categorías e Coleccións"
+
+msgid "manager.setup.currentFormats"
+msgstr "Formatos actuais"
+
+msgid "manager.setup.issnDescription"
+msgstr ""
+"O ISSN (International Standard Serial Number) é un número de oito díxitos "
+"que identifica publicacións incluíndo series electrónicas. Pódese obter un "
+"número no <a href=\"http://www.issn.org\" target=\"_blank\">ISSN "
+"International Center</a>."
+
+msgid "manager.setup.submitToSeries"
+msgstr "Permitir envíos a coleccións"
+
+msgid "manager.setup.submitToCategories"
+msgstr "Permitir envíos por categoría"
+
+msgid "manager.setup.prospectusDescription"
+msgstr ""
+"O folleto guía é un documento preparado pola editorial que axuda ao autor/a "
+"a describir os materiais enviados de xeito que permite a unha editorial "
+"determinar o valor do envío. Un folleto pode incluír moitos elementos, desde "
+"o potencial de mercado ata o valor teórico; en calquera caso, unha editorial "
+"debería crear un folleto guía que complemente a súa axenda de publicación."
+
+msgid "manager.setup.prospectus"
+msgstr "Guía do folleto"
+
+msgid "manager.setup.restoreDefaults"
+msgstr "Restaurar a configuración por defecto"
+
+msgid "manager.setup.deleteSelected"
+msgstr "Eliminar selección"
+
+msgid "manager.setup.newGenreDescription"
+msgstr ""
+"Para crear un novo xénero, enche o seguinte formulario e preme no botón \""
+"Crear\"."
+
+msgid "manager.setup.newGenre"
+msgstr "Novo xénero de monografía"
+
+msgid "manager.setup.genres"
+msgstr "Xéneros"
+
+msgid "manager.setup.disableSubmissions.description"
+msgstr ""
+"Evitar que os usuarios envíen novos artigos á editorial. Os envíos pódense "
+"desactivar para cada serie editorial na páxina de configuración de <a href=\""
+"{$url}\">series editoriais</a>."
+
+msgid "manager.setup.disableSubmissions.notAccepting"
+msgstr ""
+"Esta editorial non acepta envíos neste momento. Visita a configuración do "
+"fluxo de traballo para permitir envíos."
+
+msgid "manager.setup.reviewProcessEmailDescription"
+msgstr ""
+"Os editores/as envían aos revisores/as a solicitude de revisión co envío "
+"adxunto ao correo electrónico. Os revisores/as envían aos editores/as por "
+"correo electrónico o seu consentimento (ou rexeitamento), así como a "
+"revisión e recomendación. Os editores/as introducen o consentimento (ou "
+"rexeitamento) dos revisores, así como a revisión e recomendación na páxina "
+"de revisión do envío, para rexistrar o proceso de revisión."
+
+msgid "manager.setup.genresDescription"
+msgstr ""
+"Estes xéneros úsanse con fins de nomeamento de arquivos e preséntanse nun "
+"menú despregable ao cargarlos. Os xéneros designados ## permiten ao usuario "
+"asociar o arquivo con todo o libro 99Z ou cun capítulo concreto por número ("
+"por exemplo, 02)."
+
+msgid "manager.setup.newPublicationFormatDescription"
+msgstr ""
+"Para crear un novo formato de publicación, enche o seguinte formulario e "
+"preme no botón \"Crear\"."
+
+msgid "manager.setup.newPublicationFormat"
+msgstr "Novo formato de publicación"
+
+msgid "manager.setup.publicationFormat.inUse"
+msgstr ""
+"Debido a que este formato de publicación está a ser usado actualmente por "
+"unha monografía na súa editorial, non se pode eliminar."
+
+msgid "manager.setup.publicationFormat.physicalFormat"
+msgstr "É este un formato físico (non dixital)?"
+
+msgid "manager.setup.publicationFormat.nameRequired"
+msgstr "Debe asignar un nome a este formato."
+
+msgid "manager.setup.publicationFormat.codeRequired"
+msgstr "Debe escollerse un formato."
+
+msgid "manager.setup.publicationFormat.code"
+msgstr "Formato"
+
+msgid "manager.setup.volumePerYear"
+msgstr "Volumes por ano"
+
+msgid "manager.setup.useTextTitle"
+msgstr "Título"
+
+msgid "manager.setup.userRegistration"
+msgstr "Rexistro de usuarios/as"
+
+msgid "manager.setup.useProofreaders"
+msgstr ""
+"Asignarase un corrector/a de probas para comprobar (xunto cos autores/as) as "
+"galeradas antes da publicación."
+
+msgid "manager.setup.useLayoutEditors"
+msgstr ""
+"Asignarase un maquetador para preparar os arquivos HTML, PDF, etc. para a "
+"publicación electrónica."
+
+msgid "manager.setup.useStyleSheet"
+msgstr "Folla de estilo da editorial"
+
+msgid "manager.setup.useImageTitle"
+msgstr "Imaxe do título"
+
+msgid "manager.setup.useEditorialReviewBoard"
+msgstr "A editorial empregará un consello editorial/de revisión."
+
+msgid "manager.setup.useCopyeditors"
+msgstr "Asignarase un corrector/a para traballar con cada envío."
+
+msgid "manager.setup.typeProvideExamples"
+msgstr ""
+"Proporcione exemplos de tipos, métodos e enfoques de investigación "
+"relevantes para este campo"
+
+msgid "manager.setup.typeMethodApproach"
+msgstr "Tipo (método/enfoque)"
+
+msgid "manager.setup.typeExamples"
+msgstr ""
+"(Por exemplo, investigación histórica; case-experimental; análise literaria; "
+"enquisa/entrevista)"
+
+msgid "manager.setup.submissions.description"
+msgstr ""
+"Directrices para o autor/a, dereitos de autor/a e indexación (incluído o "
+"rexistro)."
+
+msgid "manager.setup.workflow"
+msgstr "Fluxo de traballo"
+
+msgid "maganer.setup.submissionChecklistItemRequired"
+msgstr "O elemento da lista de verificación é necesario."
