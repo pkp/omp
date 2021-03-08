@@ -1,6 +1,6 @@
 msgid ""
 msgstr ""
-"PO-Revision-Date: 2021-03-05 15:09+0000\n"
+"PO-Revision-Date: 2021-03-08 10:56+0000\n"
 "Last-Translator: Real Academia Galega <reacagal@gmail.com>\n"
 "Language-Team: Galician <http://translate.pkp.sfu.ca/projects/omp/manager/"
 "gl_ES/>\n"
@@ -788,3 +788,253 @@ msgstr ""
 "doc, etc.) con anotacións engadidas especificando a fonte, o tamaño , "
 "marxes, etc. para servir de guía para os maquetadores/as e correctores/as de "
 "probas."
+
+msgid "manager.setup.submissionPreparationChecklist"
+msgstr "Lista de verificación do envío"
+
+msgid "manager.setup.submissionGuidelines"
+msgstr "Directrices para o envío"
+
+msgid "manager.setup.subjectProvideExamples"
+msgstr ""
+"Proporcione exemplos de palabras clave ou temas como guía para os autores/as"
+
+msgid "manager.setup.subjectKeywordTopic"
+msgstr "Palabras clave"
+
+msgid "manager.setup.subjectExamples"
+msgstr ""
+"(Por exemplo, fotosíntese; buratos negros; Teorema de los cuatro colores; "
+"Teorema de Bayes)"
+
+msgid "manager.setup.stepsToPressSite"
+msgstr "Cinco pasos para crear o sitio web da editorial"
+
+msgid "manager.setup.siteAccess.viewContent"
+msgstr "Ver o contido da monografía"
+
+msgid "manager.setup.siteAccess.view"
+msgstr "Acceso ao sitio"
+
+msgid "manager.setup.showGalleyLinksDescription"
+msgstr ""
+"Amosa sempre as ligazóns das galeradas e indica que o acceso é restrinxido."
+
+msgid "manager.setup.selectSectionDescription"
+msgstr "A sección da publicación para a que se considerará o elemento."
+
+msgid "manager.setup.selectEditorDescription"
+msgstr "O editor/a o verá a través do proceso editorial."
+
+msgid "manager.setup.securitySettings.note"
+msgstr ""
+"Outras opcións relacionadas coa seguridade e o acceso pódense configurar "
+"desde a páxina <a href=\"{$accessAndSecurityUrl}\" target=\"_blank\" class=\""
+"action\">Acceso e seguridade</a>."
+
+msgid "manager.setup.securitySettings"
+msgstr "Configuración de acceso e seguridade"
+
+msgid "manager.setup.sectionsDescription"
+msgstr ""
+"Para crear ou modificar seccións da editorial (por exemplo, monografías, "
+"comentarios de libros, etc.), vaia a Administración de seccións.<br /><br />"
+"Os autores/as que envíen elementos designarán..."
+
+msgid "manager.setup.sectionsDefaultSectionDescription"
+msgstr ""
+"(Se non se engaden seccións, os elementos envíanse á sección Monografías por "
+"defecto.)"
+
+msgid "manager.setup.sectionsAndSectionEditors"
+msgstr "Seccións e editores/as de sección"
+
+msgid "manager.setup.searchEngineIndexing.success"
+msgstr "A configuración da indexación do motor de busca actualizouse."
+
+msgid "manager.setup.searchEngineIndexing.description"
+msgstr ""
+"Axude aos motores de busca como Google a descubrir e amosar o seu sitio. "
+"Animámosche a enviar o teu <a href=\"{$sitemapUrl}\" target=\"_blank\">mapa "
+"do sitio</a>."
+
+msgid "manager.setup.searchEngineIndexing"
+msgstr "Indexación nos motores de busca"
+
+msgid "manager.setup.searchDescription.description"
+msgstr ""
+"Proporcione unha breve descrición (50-300 caracteres) da editorial que os "
+"motores de busca poden mostrar ao listar a nos resultados da busca."
+
+msgid "manager.setup.reviewProcessStandardDescription"
+msgstr ""
+"Os editores/as enviarán por correo electrónico aos revisores/as "
+"seleccionados/as o título e o resumo do envío, así como unha invitación para "
+"iniciar sesión no sitio web da editorial para completar a revisión. Os "
+"revisores/as entran na páxina web da editorial para aceptar facer a "
+"revisión, descargar envíos, enviar os seus comentarios e seleccionar unha "
+"recomendación."
+
+msgid "manager.setup.reviewProcessStandard"
+msgstr "Proceso de revisión estándar"
+
+msgid "manager.setup.reviewProcessEmail"
+msgstr "Proceso de revisión mediante arquivos adxuntos ao correo electrónico"
+
+msgid "manager.setup.reviewProcessDescription"
+msgstr ""
+"OMP admite dous modelos para xestionar o proceso de revisión. Recoméndase o "
+"proceso de revisión estándar porque guía aos revisores durante o proceso, "
+"garante un historial de revisión completo para cada envío e aproveita as "
+"notificacións de recordatorio automático e as recomendacións estándar para "
+"as entregas (Aceptar, Aceptar con revisións, Enviar para revisión, Enviar "
+"noutro lugar, Rexeitar, ver comentarios).<br /> <br />Seleccione un dos "
+"seguintes:"
+
+msgid "manager.setup.reviewProcess"
+msgstr "Proceso de revisión"
+
+msgid "manager.setup.reviewPolicy"
+msgstr "Política de evaluación"
+
+msgid "manager.setup.reviewOptions.reviewerReminders"
+msgstr "Recordatorios para os revisores/as"
+
+msgid "manager.setup.reviewOptions.reviewerRatings"
+msgstr "Calificación dos revisores/as"
+
+msgid "manager.setup.reviewOptions.reviewerAccessKeysEnabled.label"
+msgstr ""
+"Inclúe unha ligazón segura na invitación por correo electrónico aos "
+"revisores/as."
+
+msgid "manager.setup.reviewOptions.reviewerAccessKeysEnabled.description"
+msgstr ""
+"Aos revisores/as pódeselles enviar unha ligazón segura na invitación por "
+"correo electrónico, que lles permitirá acceder á revisión sen iniciar "
+"sesión. Para acceder a outras páxinas, é necesario que inicien sesión."
+
+msgid "manager.setup.reviewOptions.reviewerAccessKeysEnabled"
+msgstr "Acceso do revisor/a cun clic"
+
+msgid "manager.setup.reviewOptions.reviewerAccess"
+msgstr "Acceso para os revisores/as"
+
+msgid "manager.setup.reviewOptions.restrictReviewerFileAccess.description"
+msgstr ""
+"Os revisores/as só terán acceso ao arquivo de envío despois de acordar "
+"revisalo."
+
+msgid "manager.setup.reviewOptions.restrictReviewerFileAccess"
+msgstr "Restrinxir o acceso ao arquivo"
+
+msgid "manager.setup.reviewOptions.onQuality"
+msgstr ""
+"Despois de cada revisión os editores/as valorarán aos revisores/as nunha "
+"escala de cinco puntos."
+
+msgid "manager.setup.reviewOptions.automatedRemindersDisabled"
+msgstr ""
+"Para activar estas opcións, o administrador/a do sitio debe habilitar a "
+"opción <tt>scheduled_tasks</tt> no arquivo de configuración de OMP. É "
+"posible que sexa necesaria unha configuración no servidor para soportar esta "
+"funcionalidade (que pode non ser posible en todos os servidores), como se "
+"indica na documentación OMP."
+
+msgid "manager.setup.reviewOptions.automatedReminders"
+msgstr "Recordatorios de correo electrónico automatizados"
+
+msgid "manager.setup.reviewOptions"
+msgstr "Opcións de revisión"
+
+msgid "manager.setup.internalReviewGuidelines"
+msgstr "Directrices de revisión interna"
+
+msgid "manager.setup.reviewGuidelinesDescription"
+msgstr ""
+"Proporcione aos revisores/as externos/as criterios para xulgar a idoneidade "
+"dun envío para a súa publicación, que poden incluír instrucións para "
+"preparar unha revisión eficaz e útil. Os revisores/as terán a oportunidade "
+"de proporcionar comentarios destinados ao autor/a e ao editor/a, así como "
+"comentarios separados só para o editor/a."
+
+msgid "manager.setup.reviewGuidelines"
+msgstr "Directrices de revisión externa"
+
+msgid "manager.setup.restrictSiteAccess"
+msgstr ""
+"Os usuarios deben estar rexistrados e iniciar sesión para ver o sitio da "
+"editorial."
+
+msgid "manager.setup.restrictMonographAccess"
+msgstr ""
+"Os usuarios/as deben estar rexistrados e iniciar sesión para ver o contido "
+"de acceso aberto."
+
+msgid "manager.setup.refLinkInstructions.description"
+msgstr "Instrucións de maquetación para as ligazóns de referencia"
+
+msgid "manager.setup.referenceLinking"
+msgstr "Ligazóns de referencia"
+
+msgid "manager.setup.publisherDescription"
+msgstr ""
+"O nome da organización que publica aparecerá na páxina Acerca da editorial."
+
+msgid "manager.setup.publisher"
+msgstr "Editor"
+
+msgid "manager.setup.publicationScheduleDescription"
+msgstr ""
+"Os elementos da publicación pódense publicar colectivamente, como parte "
+"dunha monografía coa súa propia táboa de contidos. Como alternativa, pódense "
+"publicar elementos individuais en canto estean listos engadíndoos á táboa de "
+"contidos do volume \"actual\". Proporcione aos lectores, en Acerca da "
+"editorial, unha declaración sobre o sistema que empregará esta prensa e a "
+"súa frecuencia de publicación prevista."
+
+msgid "manager.setup.provideRefLinkInstructions"
+msgstr "Proporcione instrucións aos maquetadores."
+
+msgid "manager.setup.proofreading"
+msgstr "Correctores de probas"
+
+msgid "manager.setup.proofingInstructionsDescription"
+msgstr ""
+"As instrucións de corrección de probas estarán dispoñibles para correctores/"
+"as, autores/as, editores/as na etapa de edición do envío. A continuación "
+"móstrase un conxunto predeterminado de instrucións en HTML, que pode ser "
+"editado ou substituído polo xefe/a editorial en calquera momento (en HTML ou "
+"texto plano)."
+
+msgid "manager.setup.proofingInstructions"
+msgstr "Instrucións  de corrección de probas"
+
+msgid "manager.setup.printIssn"
+msgstr "ISSN de impresión"
+
+msgid "manager.setup.contextTitle"
+msgstr "Nome da editorial"
+
+msgid "manager.setup.pressThumbnail.description"
+msgstr ""
+"Un pequeno logotipo ou representación da editorial que se pode empregar nas "
+"listaxes de editoriais."
+
+msgid "manager.setup.pressThumbnail"
+msgstr "Miniatura da editorial"
+
+msgid "manager.setup.pressTheme"
+msgstr "Tema"
+
+msgid "manager.setup.styleSheetInvalid"
+msgstr "Formato de folla de estilo non válido. O formato aceptado é .css."
+
+msgid "manager.setup.pressSetupUpdated"
+msgstr "A configuración da editorial actualizouse."
+
+msgid "manager.setup.pressSetup"
+msgstr "Configuración"
+
+msgid "manager.setup.pressPolicies"
+msgstr "Paso 2. Políticas da editorial"
