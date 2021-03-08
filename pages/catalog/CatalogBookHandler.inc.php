@@ -196,7 +196,7 @@ class CatalogBookHandler extends Handler {
 		// Ask robots not to index outdated versions and point to the canonical url for the latest version
 		if ($this->publication->getId() !== $submission->getCurrentPublication()->getId()) {
 			$templateMgr->addHeader('noindex', '<meta name="robots" content="noindex">');
-			$url = $request->getDispatcher()->url($request, ROUTE_PAGE, null, 'catalog', 'book', $submission->getBestId());
+			$url = $request->getDispatcher()->url($request, PKPApplication::ROUTE_PAGE, null, 'catalog', 'book', $submission->getBestId());
 			$templateMgr->addHeader('canonical', '<link rel="canonical" href="' . $url . '">');
 		}
 
@@ -291,7 +291,7 @@ class CatalogBookHandler extends Handler {
 			'publicationFormat' => $publicationFormat,
 			'submissionFile' => $submissionFile,
 			'chapter' => $chapterDao->getChapter($submissionFile->getData('chapterId')),
-			'downloadUrl' => $dispatcher->url($request, ROUTE_PAGE, null, null, 'download', $urlPath, array('inline' => true)),
+			'downloadUrl' => $dispatcher->url($request, PKPApplication::ROUTE_PAGE, null, null, 'download', $urlPath, array('inline' => true)),
 		));
 
 		$ompCompletedPaymentDao = DAORegistry::getDAO('OMPCompletedPaymentDAO'); /* @var $ompCompletedPaymentDao OMPCompletedPaymentDAO */

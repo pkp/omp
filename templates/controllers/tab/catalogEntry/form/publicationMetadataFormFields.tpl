@@ -20,7 +20,7 @@
 		);
 	{rdelim});
 </script>
-<form class="pkp_form" id="{$publicationFormId|escape}" method="post" action="{url router=$smarty.const.ROUTE_COMPONENT op="updateFormatMetadata"}">
+<form class="pkp_form" id="{$publicationFormId|escape}" method="post" action="{url router=PKPApplication::ROUTE_COMPONENT op="updateFormatMetadata"}">
 	{csrf}
 	{include file="controllers/notification/inPlaceNotification.tpl" notificationId=$publicationFormId|concat:"-notification" requestOptions=$notificationRequestOptions}
 
@@ -44,7 +44,7 @@
 		{fbvFormSection}
 			<!-- Product Identification Codes -->
 			{assign var="divId" value="identificationCodeGridContainer"|concat:$representationId|escape}
-			{capture assign=identGridUrl}{url router=$smarty.const.ROUTE_COMPONENT component="grid.catalogEntry.IdentificationCodeGridHandler" op="fetchGrid" submissionId=$submissionId publicationId=$publicationId representationId=$representationId escape=false}{/capture}
+			{capture assign=identGridUrl}{url router=PKPApplication::ROUTE_COMPONENT component="grid.catalogEntry.IdentificationCodeGridHandler" op="fetchGrid" submissionId=$submissionId publicationId=$publicationId representationId=$representationId escape=false}{/capture}
 			{load_url_in_div id=$divId url=$identGridUrl}
 		{/fbvFormSection}
 	{/fbvFormArea}
@@ -53,7 +53,7 @@
 		{fbvFormSection}
 			<!-- Sales rights and regions -->
 			{assign var="divId" value="salesRightsGridContainer"|concat:$representationId|escape}
-			{capture assign=salesGridUrl}{url router=$smarty.const.ROUTE_COMPONENT component="grid.catalogEntry.SalesRightsGridHandler" op="fetchGrid" submissionId=$submissionId publicationId=$publicationId representationId=$representationId escape=false}{/capture}
+			{capture assign=salesGridUrl}{url router=PKPApplication::ROUTE_COMPONENT component="grid.catalogEntry.SalesRightsGridHandler" op="fetchGrid" submissionId=$submissionId publicationId=$publicationId representationId=$representationId escape=false}{/capture}
 			{load_url_in_div id=$divId url=$salesGridUrl}
 		{/fbvFormSection}
 	{/fbvFormArea}
@@ -62,7 +62,7 @@
 		{fbvFormSection}
 			<!-- Market regions -->
 			{assign var="divId" value="marketsGridContainer"|concat:$representationId|escape}
-			{capture assign=marketsGridUrl}{url router=$smarty.const.ROUTE_COMPONENT component="grid.catalogEntry.MarketsGridHandler" op="fetchGrid" submissionId=$submissionId publicationId=$publicationId representationId=$representationId escape=false}{/capture}
+			{capture assign=marketsGridUrl}{url router=PKPApplication::ROUTE_COMPONENT component="grid.catalogEntry.MarketsGridHandler" op="fetchGrid" submissionId=$submissionId publicationId=$publicationId representationId=$representationId escape=false}{/capture}
 			{load_url_in_div id=$divId url=$marketsGridUrl}
 		{/fbvFormSection}
 	{/fbvFormArea}
@@ -71,7 +71,7 @@
 		{fbvFormSection}
 			<!-- Product Publication/Embargo dates -->
 			{assign var="divId" value="publicationDateGridContainer"|concat:$representationId|escape}
-			{capture assign=dateGridUrl}{url router=$smarty.const.ROUTE_COMPONENT component="grid.catalogEntry.PublicationDateGridHandler" op="fetchGrid" submissionId=$submissionId publicationId=$publicationId representationId=$representationId escape=false}{/capture}
+			{capture assign=dateGridUrl}{url router=PKPApplication::ROUTE_COMPONENT component="grid.catalogEntry.PublicationDateGridHandler" op="fetchGrid" submissionId=$submissionId publicationId=$publicationId representationId=$representationId escape=false}{/capture}
 			{load_url_in_div id=$divId url=$dateGridUrl}
 		{/fbvFormSection}
 	{/fbvFormArea}

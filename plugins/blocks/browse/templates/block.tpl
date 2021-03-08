@@ -24,7 +24,7 @@
 
 			{if $browseNewReleases}
 				<li>
-					<a href="{url router=$smarty.const.ROUTE_PAGE page="catalog" op="newReleases"}">
+					<a href="{url router=PKPApplication::ROUTE_PAGE page="catalog" op="newReleases"}">
 						{translate key="navigation.newReleases"}
 					</a>
 				</li>
@@ -36,7 +36,7 @@
 					<ul>
 						{foreach from=$browseCategories item="browseCategory"}
 							<li class="category_{$browseCategory->getId()}{if $browseCategory->getParentId()} is_sub{/if}{if $browseBlockSelectedCategory == $browseCategory->getPath()} current{/if}">
-								<a href="{url router=$smarty.const.ROUTE_PAGE page="catalog" op="category" path=$browseCategory->getPath()|escape}">
+								<a href="{url router=PKPApplication::ROUTE_PAGE page="catalog" op="category" path=$browseCategory->getPath()|escape}">
 									{$browseCategory->getLocalizedTitle()|escape}
 								</a>
 							</li>
@@ -51,7 +51,7 @@
 					<ul>
 						{foreach from=$browseSeries item=browseSeriesItem}
 							<li class="series_{$browseSeriesItem->getId()}{if $browseBlockSelectedSeries == $browseSeriesItem->getPath() && $browseBlockSelectedSeries != ''} current{/if}">
-								<a href="{url router=$smarty.const.ROUTE_PAGE page="catalog" op="series" path=$browseSeriesItem->getPath()|escape}">
+								<a href="{url router=PKPApplication::ROUTE_PAGE page="catalog" op="series" path=$browseSeriesItem->getPath()|escape}">
 									{$browseSeriesItem->getLocalizedTitle()|escape}
 								</a>
 							</li>

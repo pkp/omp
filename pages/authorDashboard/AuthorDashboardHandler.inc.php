@@ -53,7 +53,7 @@ class AuthorDashboardHandler extends PKPAuthorDashboardHandler {
 
 		$chaptersGridUrl = $request->getDispatcher()->url(
 			$request,
-			ROUTE_COMPONENT,
+			PKPApplication::ROUTE_COMPONENT,
 			null,
 			'grid.users.chapter.ChapterGridHandler',
 			'fetchGrid',
@@ -108,7 +108,7 @@ class AuthorDashboardHandler extends PKPAuthorDashboardHandler {
 	protected function _getRepresentationsGridUrl($request, $submission) {
 		return $request->getDispatcher()->url(
 			$request,
-			ROUTE_COMPONENT,
+			PKPApplication::ROUTE_COMPONENT,
 			null,
 			'grid.catalogEntry.PublicationFormatGridHandler',
 			'fetchGrid',

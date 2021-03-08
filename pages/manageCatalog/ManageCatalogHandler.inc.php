@@ -83,7 +83,7 @@ class ManageCatalogHandler extends Handler {
 			[
 				'apiUrl' => $request->getDispatcher()->url(
 					$request,
-					ROUTE_API,
+					PKPApplication::ROUTE_API,
 					$context->getPath(),
 					'_submissions'
 				),
