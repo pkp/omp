@@ -37,7 +37,7 @@ class ApproveSubmissionNotificationManager extends PKPApproveSubmissionNotificat
 
 		switch ($notification->getType()) {
 			case NOTIFICATION_TYPE_VISIT_CATALOG:
-				return $dispatcher->url($request, ROUTE_PAGE, $context->getPath(), 'manageCatalog');
+				return $dispatcher->url($request, PKPApplication::ROUTE_PAGE, $context->getPath(), 'manageCatalog');
 		}
 
 		return parent::getNotificationUrl($request, $notification);

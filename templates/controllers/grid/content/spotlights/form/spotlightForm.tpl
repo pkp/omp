@@ -19,7 +19,7 @@
 	{rdelim});
 </script>
 
-<form class="pkp_form" id="spotlightForm" method="post" action="{url router=$smarty.const.ROUTE_COMPONENT component="grid.content.spotlights.ManageSpotlightsGridHandler" op="updateSpotlight"}">
+<form class="pkp_form" id="spotlightForm" method="post" action="{url router=PKPApplication::ROUTE_COMPONENT component="grid.content.spotlights.ManageSpotlightsGridHandler" op="updateSpotlight"}">
 	{csrf}
 	{include file="controllers/notification/inPlaceNotification.tpl" notificationId="spotlightFormNotification"}
 	{fbvFormArea id="spotlightInfo"}

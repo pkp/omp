@@ -30,7 +30,7 @@
 			<tab id="spotlights" label="{translate key="spotlight.spotlights"}">
 				{help file="catalog" section="spotlights" class="pkp_help_tab"}
 				<div class="pkp_content_panel">
-					{capture assign=spotlightsGridUrl}{url router=$smarty.const.ROUTE_COMPONENT component="grid.content.spotlights.ManageSpotlightsGridHandler" op="fetchGrid" escape=false}{/capture}
+					{capture assign=spotlightsGridUrl}{url router=PKPApplication::ROUTE_COMPONENT component="grid.content.spotlights.ManageSpotlightsGridHandler" op="fetchGrid" escape=false}{/capture}
 					{load_url_in_div id="spotlightsGridContainer" url=$spotlightsGridUrl}
 				</div>
 			</tab>

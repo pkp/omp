@@ -13,17 +13,17 @@
 	<div class="content">
 		<ul>
 			<li>
-				<a href="{url router=$smarty.const.ROUTE_PAGE page="gateway" op="plugin" path="WebFeedGatewayPlugin"|to_array:"atom"}">
+				<a href="{url router=PKPApplication::ROUTE_PAGE page="gateway" op="plugin" path="WebFeedGatewayPlugin"|to_array:"atom"}">
 					<img src="{$baseUrl}/plugins/generic/webFeed/templates/images/atom10_logo.gif" alt="{translate key="plugins.generic.webfeed.atom.altText"}">
 				</a>
 			</li>
 			<li>
-				<a href="{url router=$smarty.const.ROUTE_PAGE page="gateway" op="plugin" path="WebFeedGatewayPlugin"|to_array:"rss2"}">
+				<a href="{url router=PKPApplication::ROUTE_PAGE page="gateway" op="plugin" path="WebFeedGatewayPlugin"|to_array:"rss2"}">
 					<img src="{$baseUrl}/plugins/generic/webFeed/templates/images/rss20_logo.gif" alt="{translate key="plugins.generic.webfeed.rss2.altText"}">
 				</a>
 			</li>
 			<li>
-				<a href="{url router=$smarty.const.ROUTE_PAGE page="gateway" op="plugin" path="WebFeedGatewayPlugin"|to_array:"rss"}">
+				<a href="{url router=PKPApplication::ROUTE_PAGE page="gateway" op="plugin" path="WebFeedGatewayPlugin"|to_array:"rss"}">
 					<img src="{$baseUrl}/plugins/generic/webFeed/templates/images/rss10_logo.gif" alt="{translate key="plugins.generic.webfeed.rss1.altText"}">
 				</a>
 			</li>
