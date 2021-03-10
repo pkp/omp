@@ -118,13 +118,13 @@ class CatalogListPanel extends \PKP\components\listPanels\ListPanel {
 		// Get the form to add a new entry
 		$addEntryApiUrl = $request->getDispatcher()->url(
 			$request,
-			PKPApplication::ROUTE_API,
+			\PKPApplication::ROUTE_API,
 			$context->getPath(),
 			'_submissions/addToCatalog'
 		);
 		$searchSubmissionsApiUrl = $request->getDispatcher()->url(
 			$request,
-			PKPApplication::ROUTE_API,
+			\PKPApplication::ROUTE_API,
 			$context->getPath(),
 			'submissions'
 		);

@@ -159,7 +159,7 @@ class NavigationMenuService extends \PKP\Services\PKPNavigationMenuService {
 				case NMI_TYPE_CATALOG:
 					$navigationMenuItem->setUrl($dispatcher->url(
 						$request,
-						PKPApplication::ROUTE_PAGE,
+						\PKPApplication::ROUTE_PAGE,
 						null,
 						'catalog',
 						null,
@@ -169,7 +169,7 @@ class NavigationMenuService extends \PKP\Services\PKPNavigationMenuService {
 				case NMI_TYPE_NEW_RELEASE:
 					$navigationMenuItem->setUrl($dispatcher->url(
 						$request,
-						PKPApplication::ROUTE_PAGE,
+						\PKPApplication::ROUTE_PAGE,
 						null,
 						'catalog',
 						'newReleases',
@@ -180,7 +180,7 @@ class NavigationMenuService extends \PKP\Services\PKPNavigationMenuService {
 					if ($relatedObject) {
 						$navigationMenuItem->setUrl($dispatcher->url(
 							$request,
-							PKPApplication::ROUTE_PAGE,
+							\PKPApplication::ROUTE_PAGE,
 							null,
 							'catalog',
 							'series',
@@ -194,7 +194,7 @@ class NavigationMenuService extends \PKP\Services\PKPNavigationMenuService {
 					if ($relatedObject) {
 						$navigationMenuItem->setUrl($dispatcher->url(
 							$request,
-							PKPApplication::ROUTE_PAGE,
+							\PKPApplication::ROUTE_PAGE,
 							null,
 							'catalog',
 							'category',
