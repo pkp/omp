@@ -1,6 +1,6 @@
 msgid ""
 msgstr ""
-"PO-Revision-Date: 2020-11-23 16:11+0000\n"
+"PO-Revision-Date: 2021-03-11 11:28+0000\n"
 "Last-Translator: Magnus Annemark <magnus.annemark@ub.lu.se>\n"
 "Language-Team: Swedish <http://translate.pkp.sfu.ca/projects/omp/manager/"
 "sv_SE/>\n"
@@ -790,4 +790,4 @@ msgid "manager.setup.displayFeaturedBooks"
 msgstr "Visa utvalda böcker på förstasidan"
 
 msgid "manager.setup.lists.success"
-msgstr "Pressens inställningar för listor har uppdaterats."
+msgstr "Inställningar för listor har uppdaterats."
