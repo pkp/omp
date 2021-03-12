@@ -50,6 +50,9 @@ class OMPv3_3_0UpgradeMigration extends Migration {
 
 		// pkp/pkp-lib#6609 ONIX filters does not take array of submissions as input
 		Capsule::statement("UPDATE filter_groups SET input_type = 'class::classes.submission.Submission[]' WHERE symbolic = 'monograph=>onix30-xml';");
+
+		// pkp/pkp-lib#6807 Make sure all submission last modification dates are set
+		Capsule::statement('UPDATE submissions SET last_modified = NOW() WHERE last_modified IS NULL');
 	}
 
 	/**
