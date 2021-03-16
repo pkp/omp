@@ -66,6 +66,7 @@ class GoogleScholarPlugin extends GenericPlugin {
 
 		// Authors in order
 		$authors = $submission->getAuthors();
+		$i = 0;
 		foreach ($authors as $author) {
 			$templateMgr->addHeader('googleScholarAuthor' . $i++, '<meta name="citation_author" content="' . htmlspecialchars($author->getFullName(false)) . '"/>');
 		}
