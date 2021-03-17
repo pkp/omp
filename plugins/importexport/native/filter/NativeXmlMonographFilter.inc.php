@@ -106,10 +106,8 @@ class NativeXmlMonographFilter extends NativeXmlSubmissionFilter {
 		}
 		// Caps on class name for consistency with imports, whose filter
 		// group names are generated implicitly.
-		$filterDao = DAORegistry::getDAO('FilterDAO'); /* @var $filterDao FilterDAO */
-		$importFilters = $filterDao->getObjectsByGroup('native-xml=>' . $importClass);
-		$importFilter = array_shift($importFilters);
-		return $importFilter;
+		$currentFilter = NativeImportExportFilter::getFilter('native-xml=>' . $importClass, $this->getDeployment());
+		return $currentFilter;
 	}
 
 	/**
@@ -119,12 +117,7 @@ class NativeXmlMonographFilter extends NativeXmlSubmissionFilter {
 	 */
 	function parsePublication($n, $submission) {
 		$importFilter = $this->getImportFilter($n->tagName);
-		assert($importFilter); // There should be a filter
 
-		$existingDeployment = $this->getDeployment();
-		$request = Application::get()->getRequest();
-
-		$importFilter->setDeployment($existingDeployment);
 		$formatDoc = new DOMDocument();
 		$formatDoc->appendChild($formatDoc->importNode($n, true));
 		return $importFilter->execute($formatDoc);

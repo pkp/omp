@@ -77,14 +77,10 @@ class PublicationNativeXmlFilter extends PKPPublicationNativeXmlFilter {
 	 * @param $entity Publication
 	 */
 	function addChapters($doc, $entityNode, $entity) {
-		$filterDao = DAORegistry::getDAO('FilterDAO'); /** @var $filterDao FilterDAO */
-		$nativeExportFilters = $filterDao->getObjectsByGroup('chapter=>native-xml');
-		assert(count($nativeExportFilters)==1); // Assert only a single serialization filter
-		$exportFilter = array_shift($nativeExportFilters);
-		$exportFilter->setDeployment($this->getDeployment());
+		$currentFilter = NativeImportExportFilter::getFilter('chapter=>native-xml', $this->getDeployment());
 
 		$chapters = $entity->getData('chapters');
-		$chaptersDoc = $exportFilter->execute($chapters);
+		$chaptersDoc = $currentFilter->execute($chapters);
 		if ($chaptersDoc && $chaptersDoc->documentElement instanceof DOMElement) {
 			$clone = $doc->importNode($chaptersDoc->documentElement, true);
 			$entityNode->appendChild($clone);
