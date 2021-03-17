@@ -53,7 +53,9 @@ class NativeXmlPublicationFilter extends NativeXmlPKPPublicationFilter {
 				$this->parseChapters($n, $publication);
 				break;
 			case 'covers':
-				$this->parsePublicationCovers($this, $n, $publication);
+				import('pkp.lib.plugins.importexport.native.filter.PKPNativeFilterHelper');
+				$nativeFilterHelper = new PKPNativeFilterHelper();
+				$nativeFilterHelper->parsePublicationCovers($this, $n, $publication);
 				break;
 			case 'series':
 				$this->parseSeries($this, $n, $publication);
