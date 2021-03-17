@@ -87,6 +87,11 @@ class PublicationNativeXmlFilter extends PKPPublicationNativeXmlFilter {
 			if ($chaptersDoc && $chaptersDoc->documentElement instanceof DOMElement) {
 				$clone = $doc->importNode($chaptersDoc->documentElement, true);
 				$entityNode->appendChild($clone);
+			} else {
+				$deployment = $this->getDeployment();
+				$deployment->addError(ASSOC_TYPE_PUBLICATION, $entity->getId(), __('plugins.importexport.chapter.exportFailed'));
+
+				throw new Exception(__('plugins.importexport.chapter.exportFailed'));
 			}
 		}
 	}
