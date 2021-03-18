@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
-"PO-Revision-Date: 2021-01-10 20:52+0000\n"
-"Last-Translator: Ivan Lazarevski <shredgod_lobos@hotmail.com>\n"
+"PO-Revision-Date: 2021-02-19 06:02+0000\n"
+"Last-Translator: Mirko Spiroski <mspiroski@id-press.eu>\n"
 "Language-Team: Macedonian <http://translate.pkp.sfu.ca/projects/omp/"
 "pubIds-urn/mk_MK/>\n"
 "Language: mk_MK\n"
@@ -15,7 +15,7 @@ msgid "plugins.pubIds.urn.editor.preview.objects"
 msgstr "Ставка"
 
 msgid "plugins.pubIds.urn.editor.preview.galleys"
-msgstr "Галија: {$galleyLabel}"
+msgstr "Отпечаток: {$galleyLabel}"
 
 msgid "plugins.pubIds.urn.editor.preview.publication.none"
 msgstr "Ова издание нема доделено URN."
@@ -90,13 +90,13 @@ msgid "plugins.pubIds.urn.editor.urnObjectTypeSubmissionFile"
 msgstr "датотека"
 
 msgid "plugins.pubIds.urn.editor.urnObjectTypeRepresentation"
-msgstr "формат на објавување"
+msgstr "формат за објавување"
 
 msgid "plugins.pubIds.urn.editor.urnObjectTypeChapter"
 msgstr "поглавје"
 
 msgid "plugins.pubIds.urn.editor.urnObjectTypeSubmission"
-msgstr "монограф"
+msgstr "монографија"
 
 msgid "plugins.pubIds.urn.editor.urn"
 msgstr "URN (Униформно име на ресурс)"
@@ -115,10 +115,10 @@ msgid "plugins.pubIds.urn.manager.settings.urnReassign"
 msgstr "Пренамена на URN"
 
 msgid "plugins.pubIds.urn.manager.settings.form.urnResolverRequired"
-msgstr "Внесете URL на resolver."
+msgstr "Внесете URL на ресолвер."
 
 msgid "plugins.pubIds.urn.manager.settings.urnResolver.description"
-msgstr "(пр. http://nbn-resolving.de/)"
+msgstr "(на пр. http://nbn-resolving.de/)"
 
 msgid "plugins.pubIds.urn.manager.settings.urnResolver"
 msgstr "URL на resolver"
@@ -151,7 +151,7 @@ msgid "plugins.pubIds.urn.manager.settings.urnChapterSuffixPatternRequired"
 msgstr "Внесете ја шемата за URN суфикси за поглавја."
 
 msgid "plugins.pubIds.urn.manager.settings.urnPublicationSuffixPatternRequired"
-msgstr "Внесете ја шемата за URN суфикси за монографи."
+msgstr "Внесете ја шемата за URN суфикси за монографии."
 
 msgid "plugins.pubIds.urn.manager.settings.urnSuffixCustomIdentifier"
 msgstr ""
@@ -211,7 +211,7 @@ msgid "plugins.pubIds.urn.manager.settings.enableSubmissionFileURN"
 msgstr "Датотеки"
 
 msgid "plugins.pubIds.urn.manager.settings.enableRepresentationURN"
-msgstr "Формати на објавување"
+msgstr "Формати за објавување"
 
 msgid "plugins.pubIds.urn.manager.settings.enableChapterURN"
 msgstr "Поглавја"
@@ -241,4 +241,4 @@ msgstr ""
 "на публикации и датотеки во ОМП."
 
 msgid "plugins.pubIds.urn.displayName"
-msgstr "URN"
+msgstr "УРН (URN)"

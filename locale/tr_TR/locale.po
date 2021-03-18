@@ -1,2 +1,1611 @@
 msgid ""
-msgstr "X-Generator: Weblate\nMIME-Version: 1.0\nContent-Type: text/plain; charset=UTF-8\nContent-Transfer-Encoding: 8bit"
+msgstr ""
+"PO-Revision-Date: 2021-02-23 13:10+0000\n"
+"Last-Translator: Uğur Koçak <ugurkocak@hotmail.com>\n"
+"Language-Team: Turkish <http://translate.pkp.sfu.ca/projects/omp/locale/"
+"tr_TR/>\n"
+"Language: tr_TR\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: Weblate 3.9.1\n"
+
+msgid "submission.round"
+msgstr "{$round}. Tur"
+
+msgid "payment.directSales.amount"
+msgstr "{$amount}  ({$currency})"
+
+msgid "catalog.manage.placeIntoCarousel"
+msgstr "Dönme Dolap"
+
+msgid "installer.upgradeInstructions"
+msgstr ""
+"<h4>OMP Sürümü {$version}</h4>\n"
+"\n"
+"<p> Kamu Bilgisi Projesi’nin <strong>Açık Kitap Sistemlerini</strong> "
+"indirdiğiniz için teşekkür ederiz. Devam etmeden önce, lütfen bu yazılımla "
+"birlikte gelen <a href=\"{$baseUrl}/docs/README\">BENİOKU</a> ve <a href=\""
+"{$baseUrl}/docs/UPGRADE\">YÜKSELTME</a> dosyalarını okuyun.  Kamu Bilgisi "
+"Projesi ve yazılım projeleri hakkında daha fazla bilgi için lütfen <a href=\""
+"http://pkp.sfu.ca/\" target=\"_blank\">PKP web sitesini</a> ziyaret edin. "
+"Open Monograph Press ile ilgili hata raporlarınız veya teknik destek "
+"sorularınız varsa, <a href=\"http://forum.pkp.sfu.ca\" target=\"_blank\">"
+"destek forumuna bakın</a> veya PKP'nin çevrimiçi <a href=\"http://pkp.sfu.ca/"
+"bugzilla/\" target=\"_blank\">hata raporlama sistemini</a> ziyaret edin. "
+"Destek forumu tercih edilen iletişim yöntemi olsa da ekibe <a href=\""
+"mailto:pkp.contact@gmail.com\">pkp.contact@gmail.com</a> adresinden de e-"
+"posta gönderebilirsiniz.</p>\n"
+"<p> Devam etmeden önce veritabanınızı, dosyalar dizininizi ve OMP kurulum "
+"dizininizi yedeklemeniz <strong>şiddetle tavsiye</strong> edilir.</p>\n"
+"<p><a href=\"http://www.php.net/features.safe-mode\" target=\"_blank\">PHP "
+"Güvenli Mod'da çalışıyorsa</a>, lütfen php.ini yapılandırma dosyanızdaki "
+"max_execution_time yönergesinin yüksek bir değere ayarlandığından emin olun. "
+"Bu veya başka bir zaman sınırına (örneğin Apache'nin \"Zaman Aşımı\" "
+"yönergesi) ulaşılırsa ve yükseltme işlemi kesintiye uğrarsa, elle müdahale "
+"gerekecektir.</p>"
+
+msgid "common.payments"
+msgstr "Ödemeler"
+
+msgid "monograph.audience"
+msgstr "Okuyucu Kitlesi"
+
+msgid "monograph.audience.success"
+msgstr "Okuyucu Kitlesi ayrıntıları güncellendi."
+
+msgid "monograph.coverImage"
+msgstr "Kapak Resmi"
+
+msgid "monograph.audience.rangeQualifier"
+msgstr "Okuyucu Kitle Aralığı Niteleyicisi"
+
+msgid "monograph.audience.rangeFrom"
+msgstr "Okuyucu Kitlesi Aralığı (kimden)"
+
+msgid "monograph.audience.rangeTo"
+msgstr "Okuyucu Kitlesi Aralığı (kime)"
+
+msgid "monograph.audience.rangeExact"
+msgstr "Hedef Okuyucu Kitlesi Aralığı (tam)"
+
+msgid "monograph.languages"
+msgstr "Diller (İngilizce, Fransızca, İspanyolca)"
+
+msgid "monograph.publicationFormats"
+msgstr "Yayın Biçimleri"
+
+msgid "monograph.publicationFormat"
+msgstr "Biçim"
+
+msgid "monograph.publicationFormatDetails"
+msgstr "Mevcut yayın biçimiyle ilgili ayrıntılar: {$format}"
+
+msgid "monograph.miscellaneousDetails"
+msgstr "Bu yazıyla ilgili ayrıntılar"
+
+msgid "monograph.carousel.publicationFormats"
+msgstr "Biçimler:"
+
+msgid "monograph.type"
+msgstr "Gönderi Türü"
+
+msgid "submission.pageProofs"
+msgstr "Sayfa Prova Dizgileri"
+
+msgid "monograph.proofReadingDescription"
+msgstr ""
+"Mizanpaj editörü, burada yayınlanmak üzere hazırlanmış üretime hazır "
+"dosyaları yükler. Yayınlanmadan önce onay için yüklenmiş düzeltilmiş "
+"dosyalar ile sayfa provalarının yeniden okunması için yazarları ve "
+"diğerlerini atamak için <em>+ Ata'yı</em> kullanın."
+
+msgid "monograph.task.addNote"
+msgstr "Göreve ekle"
+
+msgid "monograph.accessLogoOpen.altText"
+msgstr "Açık Erişim"
+
+msgid "monograph.publicationFormat.imprint"
+msgstr "Künye (Marka Adı)"
+
+msgid "monograph.publicationFormat.pageCounts"
+msgstr "Sayfa Sayıları"
+
+msgid "monograph.publicationFormat.frontMatterCount"
+msgstr "Ön Bölüm"
+
+msgid "monograph.publicationFormat.backMatterCount"
+msgstr "Arka Bölüm"
+
+msgid "monograph.publicationFormat.productWeight"
+msgstr "Ağırlık"
+
+msgid "monograph.publicationFormat.productWidth"
+msgstr "Genişlik"
+
+msgid "monograph.publicationFormat.countryOfManufacture"
+msgstr "Üretim Ülkesi"
+
+msgid "catalog.manage.series.issn.validation"
+msgstr "Lütfen geçerli bir ISSN girin."
+
+msgid "catalog.manage.series.issn.equalValidation"
+msgstr "Çevrimiçi ve basılı ISSN aynı olmamalıdır."
+
+msgid "catalog.manage.series.onlineIssn"
+msgstr "Çevrimiçi ISSN"
+
+msgid "catalog.manage.series.printIssn"
+msgstr "ISSN'yi yazdır"
+
+msgid "catalog.selectSeries"
+msgstr "Dizi Seçin"
+
+msgid "catalog.selectCategory"
+msgstr "Bölüm seç"
+
+msgid "catalog.manage.homepageDescription"
+msgstr ""
+"Seçilen kitapların kapak resmi, kaydırılabilir bir takım olarak ana sayfanın "
+"üst kısmında görünür. Atlı karıncaya kitap eklemek için 'Özellik'i ve "
+"ardından yıldızı tıklayın; yeni bir yayın olarak öne çıkarmak için ünlem "
+"işaretini tıklayın; sıralamak için sürükleyin ve bırakın."
+
+msgid "catalog.manage.categoryDescription"
+msgstr ""
+"Bu bölüm için öne çıkan bir kitap seçmek için 'Özellik'i ve ardından yıldızı "
+"tıklayın; sıralamak için sürükleyin ve bırakın."
+
+msgid "catalog.manage.seriesDescription"
+msgstr ""
+"Bu dizi için öne çıkan bir kitap seçmek için 'Özellik'i ve ardından yıldızı "
+"tıklayın; sıralamak için sürükleyin ve bırakın. Diziler, bir bölüm içinde "
+"veya bağımsız olarak bir editör (ler) ve bir dizi başlığı ile tanımlanır."
+
+msgid "catalog.manage.newRelease"
+msgstr "Serbest bırak"
+
+msgid "catalog.manage.manageSeries"
+msgstr "Diziyi Yönet"
+
+msgid "catalog.manage.manageCategories"
+msgstr "Kategorileri Yönetin"
+
+msgid "catalog.manage.noMonographs"
+msgstr "Atanmış yazı yok."
+
+msgid "catalog.manage.featured"
+msgstr "Öne Çıkan"
+
+msgid "catalog.manage.categoryFeatured"
+msgstr "Bölümde öne çıkan"
+
+msgid "catalog.manage.seriesFeatured"
+msgstr "Dizide öne çıkanlar"
+
+msgid "catalog.manage.featuredSuccess"
+msgstr "Yazı öne çıkarıldı."
+
+msgid "catalog.manage.notFeaturedSuccess"
+msgstr "Yazı öne çıkarılmadı."
+
+msgid "catalog.manage.newReleaseSuccess"
+msgstr "Yazı yeni yayın olarak işaretlenmiştir."
+
+msgid "catalog.manage.notNewReleaseSuccess"
+msgstr "Yazı, yeni bir yayın olarak işaretlenmemiş."
+
+msgid "catalog.manage.feature.newRelease"
+msgstr "Yeni yayın"
+
+msgid "catalog.manage.feature.categoryNewRelease"
+msgstr "Bölümdeki yeni yayın"
+
+msgid "catalog.manage.feature.seriesNewRelease"
+msgstr "Dizideki yeni yayın"
+
+msgid "catalog.manage.nonOrderable"
+msgstr "Bu yazı, sergilenene kadar sipariş edilemez."
+
+msgid "catalog.manage.filter.searchByAuthorOrTitle"
+msgstr "Başlığa veya yazara göre ara"
+
+msgid "catalog.manage.isFeatured"
+msgstr "Bu yazı öne çıkarılmıştır. Bu yazı öne çıkarılmasın."
+
+msgid "catalog.manage.isNotFeatured"
+msgstr "Bu yazı öne çıkarılmadı. Bu yazıyı öne çıkar."
+
+msgid "catalog.manage.isNewRelease"
+msgstr "Bu yazı yeni bir yayındır. Bu yazıyı eski bir yayın yapmayın."
+
+msgid "catalog.manage.isNotNewRelease"
+msgstr "Bu yazı yeni bir yayın değil. Bu yazıyı yeni bir yayın yapın."
+
+msgid "catalog.manage.noSubmissionsSelected"
+msgstr "Fihriste eklenmek üzere hiçbir gönderi seçilmedi."
+
+msgid "catalog.manage.submissionsNotFound"
+msgstr "Gönderilerden bir veya daha fazlası bulunamadı."
+
+msgid "catalog.manage.findSubmissions"
+msgstr "Fihriste eklenecek kitapları bulun"
+
+msgid "catalog.noTitles"
+msgstr "Henüz hiçbir eser yayınlanmadı."
+
+msgid "catalog.noTitlesNew"
+msgstr "Şu anda yeni yayın mevcut değil."
+
+msgid "catalog.noTitlesSearch"
+msgstr "\"{$searchQuery}\" aramanızla eşleşen başlık bulunamadı."
+
+msgid "catalog.feature"
+msgstr "Özellik"
+
+msgid "catalog.featured"
+msgstr "Öne Çıkan"
+
+msgid "catalog.featuredBooks"
+msgstr "Öne Çıkan Kitaplar"
+
+msgid "catalog.foundTitleSearch"
+msgstr "\"{$searchQuery}\" aramanızla eşleşen bir başlık bulundu."
+
+msgid "catalog.foundTitlesSearch"
+msgstr "\"{$searchQuery}\" aramanızla eşleşen {$number} başlık bulundu."
+
+msgid "catalog.category.heading"
+msgstr "Tüm Kitaplar"
+
+msgid "catalog.newReleases"
+msgstr "Yeni Eklenenler"
+
+msgid "catalog.dateAdded"
+msgstr "Eklendi"
+
+msgid "catalog.publicationInfo"
+msgstr "Yayın Bilgisi"
+
+msgid "catalog.published"
+msgstr "Yayınlanan"
+
+msgid "catalog.forthcoming"
+msgstr "Gelecek"
+
+msgid "catalog.categories"
+msgstr "Bölümler"
+
+msgid "catalog.parentCategory"
+msgstr "Ana Kategori"
+
+msgid "catalog.category.subcategories"
+msgstr "Alt Kategoriler"
+
+msgid "catalog.aboutTheAuthor"
+msgstr "{$roleName} hakkında"
+
+msgid "catalog.loginRequiredForPayment"
+msgstr ""
+"Lütfen dikkat: Öğeleri satın almak için önce oturum açmanız gereklidir. "
+"Satın almak için bir öğe seçmeniz, sizi giriş sayfasına yönlendirecektir. "
+"Açık Erişim simgesiyle işaretlenmiş herhangi bir öğe, oturum açmadan "
+"ücretsiz olarak indirilebilir."
+
+msgid "catalog.sortBy"
+msgstr "Kitapların sırası"
+
+msgid "catalog.sortBy.seriesDescription"
+msgstr "Bu dizideki kitapların nasıl sipariş edeceğinizi seçin."
+
+msgid "catalog.sortBy.categoryDescription"
+msgstr "Bu bölümdeki kitapların nasıl sipariş edeceğinizi seçin."
+
+msgid "catalog.sortBy.catalogDescription"
+msgstr "Fihristteki kitapların nasıl sipariş edileceğini seçin."
+
+msgid "catalog.sortBy.seriesPositionAsc"
+msgstr "Dizi konumu (önce en düşük)"
+
+msgid "catalog.sortBy.seriesPositionDesc"
+msgstr "Dizi konumu (önce en yüksek)"
+
+msgid "catalog.viewableFile.title"
+msgstr "{$title} dosyasının {$type} görünümü"
+
+msgid "user.authorization.noContext"
+msgstr "Kurulu yayınevi yok!"
+
+msgid "user.authorization.seriesAssignment"
+msgstr "Size ait dizinin parçası olmayan bir yazıya erişmeye çalışıyorsunuz."
+
+msgid "user.authorization.workflowStageAssignmentMissing"
+msgstr "Erişim reddedildi! Bu iş akışı aşamasına atanmadınız."
+
+msgid "user.authorization.workflowStageSettingMissing"
+msgstr ""
+"Erişim reddedildi! Şu anda içinde hareket ettiğiniz kullanıcı grubu bu iş "
+"akışı aşamasına atanmamış. Lütfen yayınevi ayarlarınızı kontrol edin."
+
+msgid "payment.directSales"
+msgstr "Yayınevi Web Sitesinden İndirin"
+
+msgid "payment.directSales.price"
+msgstr "Fiyat"
+
+msgid "payment.directSales.availability"
+msgstr "Kullanılabilirlik"
+
+msgid "payment.directSales.catalog"
+msgstr "Fihrist"
+
+msgid "payment.directSales.approved"
+msgstr "Onaylandı"
+
+msgid "payment.directSales.priceCurrency"
+msgstr "Fiyat ({$currency})"
+
+msgid "payment.directSales.numericOnly"
+msgstr "Fiyatlar yalnızca sayısal olmalıdır. Para birimi simgelerini eklemeyin."
+
+msgid "payment.directSales.directSales"
+msgstr "Doğrudan satış"
+
+msgid "payment.directSales.notAvailable"
+msgstr "Mevcut Değil"
+
+msgid "payment.directSales.notSet"
+msgstr "Ayarlanmadı"
+
+msgid "payment.directSales.openAccess"
+msgstr "Açık Erişim"
+
+msgid "payment.directSales.price.description"
+msgstr ""
+"Dosya biçimleri, okuyuculara ücretsiz olarak açık erişim veya doğrudan satış "
+"yoluyla (Dağıtım'da yapılandırılan bir çevrimiçi ödeme işlemcisi "
+"kullanılarak) yayınevi web sitesinden indirilmek üzere sunulabilir. Bu dosya "
+"için erişim temelini belirtin."
+
+msgid "payment.directSales.validPriceRequired"
+msgstr "Geçerli bir sayısal fiyat gereklidir."
+
+msgid "payment.directSales.purchase"
+msgstr "{$format} ({$amount} {$currency}) satın alın"
+
+msgid "payment.directSales.download"
+msgstr "{$format} dosyasını indirin"
+
+msgid "payment.directSales.monograph.name"
+msgstr "Yazı veya Bölüm İndirmeyi Satın Alın"
+
+msgid "payment.directSales.monograph.description"
+msgstr ""
+"Bu işlem, tek bir kitap veya kitap bölümünün doğrudan indirilmesine yönelik "
+"satın alma içindir."
+
+msgid "debug.notes.helpMappingLoad"
+msgstr "{$id} aramasında {$filename} XML eşleme dosyası yeniden yüklendi."
+
+msgid "rt.metadata.pkp.dctype"
+msgstr "Kitap"
+
+msgid "submission.pdf.download"
+msgstr "Bu PDF dosyasını indirin"
+
+msgid "user.profile.form.showOtherContexts"
+msgstr "Diğer yayınevlerine kaydolun"
+
+msgid "user.profile.form.hideOtherContexts"
+msgstr "Diğer yayınevlerini gizle"
+
+msgid "user.authorization.invalidPublishedSubmission"
+msgstr "Geçersiz bir yayınlanmış gönderi belirtildi."
+
+msgid "catalog.coverImageTitle"
+msgstr "Kapak Resmi"
+
+msgid "monograph.publicationFormat.technicalProtection"
+msgstr "Dijital Teknik Koruma"
+
+msgid "monograph.publicationFormat.productRegion"
+msgstr "Ürün Dağıtım Bölgesi"
+
+msgid "monograph.publicationFormat.taxRate"
+msgstr "Vergilendirme Oranı"
+
+msgid "monograph.publicationFormat.taxType"
+msgstr "Vergilendirme Türü"
+
+msgid "monograph.publicationFormat.isApproved"
+msgstr ""
+"Bu kitap için fihrist girişine bu yayın biçiminin üst verilerini ekleyin."
+
+msgid "monograph.publicationFormat.noMarketsAssigned"
+msgstr "Pazarlar ve fiyatlar eksik."
+
+msgid "monograph.publicationFormat.noCodesAssigned"
+msgstr "Bir tanımlama kodu eksik."
+
+msgid "monograph.publicationFormat.missingONIXFields"
+msgstr "Bazı üst veri alanları eksik."
+
+msgid "monograph.publicationFormat.formatDoesNotExist"
+msgstr "<p>Seçtiğiniz yayın biçimi artık bu yazı için mevcut değil.</p>"
+
+msgid "monograph.publicationFormat.openTab"
+msgstr "Yayın biçimi sekmesini açın."
+
+msgid "grid.catalogEntry.publicationFormatType"
+msgstr "Yayın Biçimi"
+
+msgid "grid.catalogEntry.nameRequired"
+msgstr "Bir isim gereklidir."
+
+msgid "grid.catalogEntry.validPriceRequired"
+msgstr "Geçerli bir fiyat gereklidir."
+
+msgid "grid.catalogEntry.publicationFormatDetails"
+msgstr "Ayrıntıları Biçimlendir"
+
+msgid "grid.catalogEntry.physicalFormat"
+msgstr "Fiziksel biçim"
+
+msgid "grid.catalogEntry.remotelyHostedContent"
+msgstr "Bu biçim ayrı bir web sitesinde mevcut olacak"
+
+msgid "grid.catalogEntry.remoteURL"
+msgstr "Uzakta barındırılan içeriğin URL'si"
+
+msgid "grid.catalogEntry.monographRequired"
+msgstr "Bir yazı kimliği gerekli."
+
+msgid "grid.catalogEntry.publicationFormatRequired"
+msgstr "Bir yayın biçimi seçilmelidir."
+
+msgid "grid.catalogEntry.availability"
+msgstr "Kullanılabilirlik"
+
+msgid "grid.catalogEntry.isAvailable"
+msgstr "Mevcut"
+
+msgid "grid.catalogEntry.isNotAvailable"
+msgstr "Mevcut Değil"
+
+msgid "grid.catalogEntry.proof"
+msgstr "Prova Dizgi"
+
+msgid "grid.catalogEntry.approvedRepresentation.title"
+msgstr "Biçim Onayı"
+
+msgid "grid.catalogEntry.approvedRepresentation.message"
+msgstr ""
+"<p>Bu biçim için üst verileri onaylayın. Üst veriler, her biçim için Düzenle "
+"panelinden kontrol edilebilir.</p>"
+
+msgid "grid.catalogEntry.approvedRepresentation.removeMessage"
+msgstr "<p>Bu format için üst verilerin onaylanmadığını belirtin.</p>"
+
+msgid "grid.catalogEntry.availableRepresentation.title"
+msgstr "Biçim Kullanılabilirliği"
+
+msgid "grid.catalogEntry.availableRepresentation.message"
+msgstr ""
+"<p>Bu biçimi <em>okuyucuların kullanımına sunun</em> . İndirilebilir "
+"dosyalar ve diğer tüm dağıtımlar kitabın fihrist girişinde görünecektir.</p>"
+
+msgid "grid.catalogEntry.availableRepresentation.removeMessage"
+msgstr ""
+"<p>Bu biçim <em>okuyucular tarafından kullanılamayacak</em> . İndirilebilir "
+"dosyalar veya diğer dağıtımlar artık kitabın fihrist girişinde "
+"görünmeyecek.</p>"
+
+msgid "grid.catalogEntry.availableRepresentation.catalogNotApprovedWarning"
+msgstr "Fihrist girişi onaylanmadı."
+
+msgid "grid.catalogEntry.availableRepresentation.notApprovedWarning"
+msgstr "Biçim fihrist girişinde yok."
+
+msgid "grid.catalogEntry.availableRepresentation.proofNotApproved"
+msgstr "Prova dizgi onaylanmadı."
+
+msgid "grid.catalogEntry.availableRepresentation.approved"
+msgstr "Onaylandı"
+
+msgid "grid.catalogEntry.availableRepresentation.notApproved"
+msgstr "Onay Bekliyor"
+
+msgid "grid.catalogEntry.fileSizeRequired"
+msgstr "Dijital biçimler için bir dosya boyutu gereklidir."
+
+msgid "grid.catalogEntry.productAvailabilityRequired"
+msgstr "Bir ürün kullanılabilirlik kodu gereklidir."
+
+msgid "grid.catalogEntry.productCompositionRequired"
+msgstr "Bir ürün kompozisyon kodu seçilmelidir."
+
+msgid "grid.catalogEntry.identificationCodeValue"
+msgstr "Kod Değeri"
+
+msgid "grid.catalogEntry.identificationCodeType"
+msgstr "ONIX Kodu Türü"
+
+msgid "grid.catalogEntry.codeRequired"
+msgstr "Bir kimlik kodu gereklidir."
+
+msgid "grid.catalogEntry.valueRequired"
+msgstr "Bir değer gerekli."
+
+msgid "grid.catalogEntry.salesRights"
+msgstr "Satış Hakları"
+
+msgid "grid.catalogEntry.salesRightsValue"
+msgstr "Kod Değeri"
+
+msgid "grid.catalogEntry.salesRightsType"
+msgstr "Satış Hakları Türü"
+
+msgid "grid.catalogEntry.salesRightsROW"
+msgstr "Dünyanın geri kalanı?"
+
+msgid "grid.catalogEntry.salesRightsROW.tip"
+msgstr ""
+"Bu Satış Hakları girişini biçiminiz için bir bütün olarak kullanmak için bu "
+"kutuyu işaretleyin. Bu durumda ülke ve bölgelerin seçilmesine gerek yoktur."
+
+msgid "grid.catalogEntry.oneROWPerFormat"
+msgstr "Bu yayın biçimi için tanımlanmış bir SATIR satış türü zaten var."
+
+msgid "grid.catalogEntry.countries"
+msgstr "Ülkeler"
+
+msgid "grid.catalogEntry.regions"
+msgstr "Bölgeler"
+
+msgid "grid.catalogEntry.included"
+msgstr "Dahil"
+
+msgid "grid.catalogEntry.excluded"
+msgstr "Dışlanan"
+
+msgid "grid.catalogEntry.markets"
+msgstr "Pazar Bölgeleri"
+
+msgid "grid.catalogEntry.marketTerritory"
+msgstr "Bölge"
+
+msgid "grid.catalogEntry.publicationDates"
+msgstr "Yayın Tarihleri"
+
+msgid "grid.catalogEntry.roleRequired"
+msgstr "Temsilci bir rol gereklidir."
+
+msgid "grid.catalogEntry.dateFormatRequired"
+msgstr "Bir tarih biçimi gerekli."
+
+msgid "grid.catalogEntry.dateValue"
+msgstr "Tarih"
+
+msgid "grid.catalogEntry.dateRole"
+msgstr "Rol"
+
+msgid "grid.catalogEntry.dateFormat"
+msgstr "Tarih Biçimi"
+
+msgid "grid.catalogEntry.dateRequired"
+msgstr ""
+"Bir tarih gereklidir ve tarih değeri, seçilen tarih biçimiyle eşleşmelidir."
+
+msgid "grid.catalogEntry.representatives"
+msgstr "Temsilciler"
+
+msgid "grid.catalogEntry.representativeType"
+msgstr "Temsilci Türü"
+
+msgid "grid.catalogEntry.agentsCategory"
+msgstr "Danışmanlar"
+
+msgid "grid.catalogEntry.suppliersCategory"
+msgstr "Tedarikçiler"
+
+msgid "grid.catalogEntry.agent"
+msgstr "Danışman"
+
+msgid "grid.catalogEntry.agentTip"
+msgstr ""
+"Bu tanımlanmış bölgede sizi temsil etmesi için bir temsilci atayabilirsiniz. "
+"Zorunlu değildir."
+
+msgid "grid.catalogEntry.supplier"
+msgstr "Tedarikçi"
+
+msgid "grid.catalogEntry.representativeRoleChoice"
+msgstr "Bir görev seçin:"
+
+msgid "grid.catalogEntry.representativeRole"
+msgstr "Rol"
+
+msgid "grid.catalogEntry.representativeName"
+msgstr "İsim"
+
+msgid "grid.catalogEntry.representativePhone"
+msgstr "Telefon"
+
+msgid "grid.catalogEntry.representativeEmail"
+msgstr "E-posta Adresi"
+
+msgid "grid.catalogEntry.representativeWebsite"
+msgstr "Website"
+
+msgid "grid.catalogEntry.representativeIdValue"
+msgstr "Temsilci kimliği"
+
+msgid "grid.catalogEntry.representativeIdType"
+msgstr "Temsilci Kimlik Türü (GLN önerilir)"
+
+msgid "grid.catalogEntry.representativesDescription"
+msgstr ""
+"Müşterilerinize hizmetlerinizi kendiniz sağlıyorsanız aşağıdaki bölümü boş "
+"bırakabilirsiniz."
+
+msgid "grid.action.addRepresentative"
+msgstr "Temsilci Ekle"
+
+msgid "grid.action.editRepresentative"
+msgstr "Bu Temsilciyi Düzenle"
+
+msgid "grid.action.deleteRepresentative"
+msgstr "Bu Temsilciyi Sil"
+
+msgid "spotlight"
+msgstr "Gündem"
+
+msgid "spotlight.spotlights"
+msgstr "İlgi çekenler"
+
+msgid "spotlight.noneExist"
+msgstr "Mevcut gündem yok."
+
+msgid "spotlight.title.homePage"
+msgstr "Gündemde"
+
+msgid "spotlight.author"
+msgstr "Yazar, "
+
+msgid "grid.content.spotlights.spotlightItemTitle"
+msgstr "Gündem Öğesi"
+
+msgid "grid.content.spotlights.category.homepage"
+msgstr "Anasayfa"
+
+msgid "grid.content.spotlights.form.location"
+msgstr "Gündem Konumu"
+
+msgid "grid.content.spotlights.form.item"
+msgstr "Gündem başlığını girin (otomatik tamamlama)"
+
+msgid "grid.content.spotlights.form.title"
+msgstr "Gündem başlığı"
+
+msgid "grid.content.spotlights.form.type.book"
+msgstr "Kitap"
+
+msgid "grid.content.spotlights.itemRequired"
+msgstr "Bir öğe gerekli."
+
+msgid "grid.content.spotlights.titleRequired"
+msgstr "Bir gündem başlığı gerekli."
+
+msgid "grid.content.spotlights.locationRequired"
+msgstr "Lütfen bu gündem için bir yer seçin."
+
+msgid "grid.action.editSpotlight"
+msgstr "Bu gündemi düzenleyin"
+
+msgid "grid.action.deleteSpotlight"
+msgstr "Bu gündemi sil"
+
+msgid "grid.action.addSpotlight"
+msgstr "Gündem ekle"
+
+msgid "manager.series.open"
+msgstr "Açık Gönderimler"
+
+msgid "manager.series.indexed"
+msgstr "Dizinlenmiş"
+
+msgid "grid.libraryFiles.column.files"
+msgstr "Dosyalar"
+
+msgid "grid.action.catalogEntry"
+msgstr "Fihrist giriş formunu görüntüleyin"
+
+msgid "grid.action.formatInCatalogEntry"
+msgstr "Fihrist girişinde biçim görünür"
+
+msgid "grid.action.editFormat"
+msgstr "Bu biçimi düzenleyin"
+
+msgid "grid.action.deleteFormat"
+msgstr "Bu biçimi sil"
+
+msgid "grid.action.addFormat"
+msgstr "Yayın biçimi ekle"
+
+msgid "grid.action.approveProof"
+msgstr "Prova dizgilerin dizinleme ve fihriste dahil edilme işlemini onaylayın"
+
+msgid "grid.action.pageProofApproved"
+msgstr "Sayfa prova dosyası yayına hazır"
+
+msgid "grid.action.addAnnouncement"
+msgstr "Duyuru Ekle"
+
+msgid "grid.action.newCatalogEntry"
+msgstr "Yeni Fihrist Girişi"
+
+msgid "grid.action.publicCatalog"
+msgstr "Bu öğeyi fihristte görüntüleyin"
+
+msgid "grid.action.feature"
+msgstr "Özellik görünümünü değiştir"
+
+msgid "grid.action.featureMonograph"
+msgstr "Bunu fihrist gösteriminde öne çıkarın"
+
+msgid "grid.action.releaseMonograph"
+msgstr "Bu gönderiyi 'yeni yayın’ olarak işaretle"
+
+msgid "grid.action.manageCategories"
+msgstr "Bu yayınevi için kategorileri yapılandırın"
+
+msgid "grid.action.manageSeries"
+msgstr "Bu yayınevi için diziyi yapılandırın"
+
+msgid "grid.action.addCode"
+msgstr "Kodu Ekle"
+
+msgid "grid.action.editCode"
+msgstr "Bu Kodu Düzenleyin"
+
+msgid "grid.action.deleteCode"
+msgstr "Bu Kodu Sil"
+
+msgid "grid.action.addRights"
+msgstr "Satış Hakları Ekle"
+
+msgid "grid.action.editRights"
+msgstr "Bu hakları düzenleyin"
+
+msgid "grid.action.deleteRights"
+msgstr "Bu hakları silin"
+
+msgid "grid.action.addMarket"
+msgstr "Pazar Ekle"
+
+msgid "grid.action.editMarket"
+msgstr "Bu Pazarı Düzenleyin"
+
+msgid "grid.action.deleteMarket"
+msgstr "Bu Pazarı Sil"
+
+msgid "grid.action.addDate"
+msgstr "Yayın tarihi ekleyin"
+
+msgid "grid.action.editDate"
+msgstr "Bu Tarihi Düzenle"
+
+msgid "grid.action.deleteDate"
+msgstr "Bu Tarihi Sil"
+
+msgid "grid.action.createContext"
+msgstr "Yeni bir Yayınevi oluştur"
+
+msgid "grid.action.publicationFormatTab"
+msgstr "Yayın biçimi sekmesini göster"
+
+msgid "grid.action.moreAnnouncements"
+msgstr "Yayınevi duyuruları sayfasına gidin"
+
+msgid "grid.action.submissionEmail"
+msgstr "Bu e-postayı okumak için tıklayın"
+
+msgid "grid.action.approveProofs"
+msgstr "Prova ızgarasını görüntüleyin"
+
+msgid "grid.action.proofApproved"
+msgstr "Biçim onaylandı"
+
+msgid "grid.action.availableRepresentation"
+msgstr "Bu biçimi onaylayın/reddedin"
+
+msgid "grid.action.formatAvailable"
+msgstr "Bu biçimin kullanılabilirliğini açın ve kapatın"
+
+msgid "grid.reviewAttachments.add"
+msgstr "Değerlendirmeye Ek Dosya İlave Et"
+
+msgid "grid.reviewAttachments.availableFiles"
+msgstr "Kullanılabilir Dosyalar"
+
+msgid "submissionGroup.assignedSubEditors"
+msgstr "Atanmış editörler"
+
+msgid "series.series"
+msgstr "Dizi"
+
+msgid "series.featured.description"
+msgstr "Bu dizi ana gezinti bölümünde görünecek"
+
+msgid "series.path"
+msgstr "Yol"
+
+msgid "catalog.manage"
+msgstr "Fihrist Yönetimi"
+
+msgid "catalog.manage.newReleases"
+msgstr "Yeni Yayınlar"
+
+msgid "catalog.manage.category"
+msgstr "Kategori"
+
+msgid "catalog.manage.series"
+msgstr "Dizi"
+
+msgid "catalog.manage.series.issn"
+msgstr "ISSN"
+
+msgid "catalog.viewableFile.return"
+msgstr "{$monographTitle} ile ilgili ayrıntıları görüntülemek için geri dönün"
+
+msgid "submission.search"
+msgstr "Kitap Arama"
+
+msgid "common.publication"
+msgstr "Yazı"
+
+msgid "common.publications"
+msgstr "Yazılar"
+
+msgid "common.prefix"
+msgstr "Önek"
+
+msgid "common.preview"
+msgstr "Önizleme"
+
+msgid "common.feature"
+msgstr "Özellik"
+
+msgid "common.searchCatalog"
+msgstr "Fihristte Ara"
+
+msgid "common.moreInfo"
+msgstr "Daha fazla bilgi"
+
+msgid "common.listbuilder.completeForm"
+msgstr "Lütfen formu eksiksiz doldurunuz."
+
+msgid "common.listbuilder.selectValidOption"
+msgstr "Lütfen listeden geçerli bir seçenek seçin."
+
+msgid "common.listbuilder.itemExists"
+msgstr "Aynı öğeyi iki kez ekleyemezsiniz."
+
+msgid "common.software"
+msgstr "Açık Kitap Sistemleri"
+
+msgid "common.omp"
+msgstr "OMP"
+
+msgid "common.homePageHeader.altText"
+msgstr "Ana Sayfa Başlığı"
+
+msgid "navigation.catalog"
+msgstr "Fihrist"
+
+msgid "navigation.competingInterestPolicy"
+msgstr "Çıkar Çatışması Politikası"
+
+msgid "navigation.catalog.allMonographs"
+msgstr "Tüm Yazılar"
+
+msgid "navigation.catalog.manage"
+msgstr "Yönet"
+
+msgid "navigation.catalog.administration.short"
+msgstr "Yönetim"
+
+msgid "navigation.catalog.administration"
+msgstr "Fihrist Yönetimi"
+
+msgid "navigation.catalog.administration.categories"
+msgstr "Bölümler"
+
+msgid "navigation.catalog.administration.series"
+msgstr "Dizi"
+
+msgid "navigation.infoForAuthors"
+msgstr "Yazarlar İçin"
+
+msgid "navigation.infoForLibrarians"
+msgstr "Kütüphaneciler İçin"
+
+msgid "navigation.infoForAuthors.long"
+msgstr "Yazarlar İçin Bilgi"
+
+msgid "navigation.infoForLibrarians.long"
+msgstr "Kütüphaneciler için Bilgi"
+
+msgid "navigation.newReleases"
+msgstr "Yeni Eklenenler"
+
+msgid "navigation.published"
+msgstr "Yayınlanan"
+
+msgid "navigation.wizard"
+msgstr "Sihirbaz"
+
+msgid "navigation.linksAndMedia"
+msgstr "Bağlantılar ve Sosyal Medya"
+
+msgid "navigation.navigationMenus.catalog.description"
+msgstr "Fihristinize bağlantı verin."
+
+msgid "navigation.skip.spotlights"
+msgstr "Gündem maddelerine geçin"
+
+msgid "navigation.navigationMenus.series.generic"
+msgstr "Dizi"
+
+msgid "navigation.navigationMenus.series.description"
+msgstr "Bir diziye bağlantı verin."
+
+msgid "navigation.navigationMenus.category.generic"
+msgstr "Kategori"
+
+msgid "navigation.navigationMenus.category.description"
+msgstr "Bir kategoriye bağlantı verin."
+
+msgid "navigation.navigationMenus.newRelease"
+msgstr "Yeni Eklenenler"
+
+msgid "navigation.navigationMenus.newRelease.description"
+msgstr "Yeni Yayınlarınıza bağlantı verin."
+
+msgid "context.contexts"
+msgstr "Yayınevleri"
+
+msgid "context.context"
+msgstr "Yayınevi"
+
+msgid "context.current"
+msgstr "Mevcut Yayınevi:"
+
+msgid "context.select"
+msgstr "Başka bir yayınevine geçin:"
+
+msgid "user.authorization.representationNotFound"
+msgstr "İstenen yayın biçimi bulunamadı."
+
+msgid "user.noRoles.selectUsersWithoutRoles"
+msgstr "Bu yayınevinde hiçbir rolü olmayan kullanıcıları dahil edin."
+
+msgid "user.noRoles.submitMonograph"
+msgstr "Bir Teklif Gönderin"
+
+msgid "user.noRoles.submitMonographRegClosed"
+msgstr "Bir Yazı Gönderin: Yazar kaydı şu anda devre dışı."
+
+msgid "user.noRoles.regReviewer"
+msgstr "Danışman olarak kaydolun"
+
+msgid "user.noRoles.regReviewerClosed"
+msgstr "Danışman olarak Kaydolun: Danışman kaydı şu anda devre dışıdır."
+
+msgid "user.reviewerPrompt"
+msgstr "Bu yayınevine yapılan gönderileri değerlendirmek ister misiniz?"
+
+msgid "user.reviewerPrompt.userGroup"
+msgstr "Evet, {$userGroup} görevini isteyin."
+
+msgid "user.reviewerPrompt.optin"
+msgstr ""
+"Evet, bu yayınevine yapılan gönderileri gözden geçirme talepleri için "
+"benimle iletişime geçilmesini istiyorum."
+
+msgid "user.register.contextsPrompt"
+msgstr "Bu sitedeki hangi yayınevlerine kaydolmak istersiniz?"
+
+msgid "user.register.otherContextRoles"
+msgstr "Aşağıdaki görevleri talep edin."
+
+msgid "user.register.noContextReviewerInterests"
+msgstr ""
+"Herhangi bir yayınevi için eleştirmen olmayı talep ettiyseniz, lütfen ilgi "
+"alanlarınızı girin."
+
+msgid "user.role.manager"
+msgstr "Yayınevi Müdürü"
+
+msgid "user.role.pressEditor"
+msgstr "Yayınevi Editörü"
+
+msgid "user.role.subEditor"
+msgstr "Dizi Editörü"
+
+msgid "user.role.copyeditor"
+msgstr "Sayfa Düzeni Editörü"
+
+msgid "user.role.proofreader"
+msgstr "Prova Dizgi Okuyucusu"
+
+msgid "user.role.productionEditor"
+msgstr "Üretim Editörü"
+
+msgid "user.role.managers"
+msgstr "Yayınevi Yöneticileri"
+
+msgid "user.role.subEditors"
+msgstr "Dizi Editörleri"
+
+msgid "user.role.editors"
+msgstr "Editörler"
+
+msgid "user.role.copyeditors"
+msgstr "Sayfa Düzeni Editörleri"
+
+msgid "user.role.proofreaders"
+msgstr "Prova Dizgi Okuyucuları"
+
+msgid "user.role.productionEditors"
+msgstr "Üretim Editörleri"
+
+msgid "user.register.selectContext"
+msgstr "Kaydolmak için bir yayınevi seçin:"
+
+msgid "user.register.noContexts"
+msgstr "Bu sitede kayıt olabileceğiniz hiçbir yayınevi yok."
+
+msgid "user.register.privacyStatement"
+msgstr "Gizlilik Bildirimi"
+
+msgid "user.register.registrationDisabled"
+msgstr "Bu yayınevi şu anda kullanıcı kayıtlarını kabul etmiyor."
+
+msgid "user.register.form.passwordLengthTooShort"
+msgstr "Girdiğiniz parola yeterince uzun değil."
+
+msgid "user.register.readerDescription"
+msgstr "Bir yazının yayınlanması üzerine e-posta ile bilgilendirilir."
+
+msgid "user.register.authorDescription"
+msgstr "Yayınevine yazı gönderebilir."
+
+msgid "user.register.reviewerDescriptionNoInterests"
+msgstr ""
+"Basına yapılan başvurular için danışman değerlendirmesi yapmaya istekli."
+
+msgid "user.register.reviewerDescription"
+msgstr ""
+"Siteye yapılan gönderimler için danışman değerlendirmesi yapmaya istekli."
+
+msgid "user.register.reviewerInterests"
+msgstr ""
+"Danışmanlık ilgi alanlarını belirleyin (asli alanlar ve araştırma "
+"yöntemleri):"
+
+msgid "user.register.form.userGroupRequired"
+msgstr "En az bir görev seçmelisiniz"
+
+msgid "user.register.form.privacyConsentThisContext"
+msgstr ""
+"Evet, verilerimin bu yayınevinin <a href=\"{$privacyUrl}\" target=\"_blank\">"
+"gizlilik beyanına</a> göre toplanıp saklanmasını kabul ediyorum."
+
+msgid "site.noPresses"
+msgstr "Hiçbir yayınevi mevcut değil."
+
+msgid "site.pressView"
+msgstr "Yayınevi Web Sitesini Görüntüleyin"
+
+msgid "about.pressContact"
+msgstr "Yayınevi İletişim"
+
+msgid "about.aboutContext"
+msgstr "Yayınevi Hakkında"
+
+msgid "about.editorialTeam"
+msgstr "Yayın Kurulu"
+
+msgid "about.editorialPolicies"
+msgstr "İçerik Politikaları"
+
+msgid "about.focusAndScope"
+msgstr "Odak ve Kapsam"
+
+msgid "about.seriesPolicies"
+msgstr "Dizi ve Kategori Politikaları"
+
+msgid "about.submissions"
+msgstr "Gönderimler"
+
+msgid "about.onlineSubmissions"
+msgstr "Çevrimiçi Gönderiler"
+
+msgid "about.onlineSubmissions.login"
+msgstr "Giriş"
+
+msgid "about.onlineSubmissions.register"
+msgstr "Kayıt Ol"
+
+msgid "about.onlineSubmissions.registrationRequired"
+msgstr "Bir gönderim yapmak için {$login} veya {$register}."
+
+msgid "about.onlineSubmissions.submissionActions"
+msgstr "{$newSubmission} veya {$viewSubmissions}."
+
+msgid "about.onlineSubmissions.newSubmission"
+msgstr "Yeni bir gönderim yapın"
+
+msgid "about.onlineSubmissions.viewSubmissions"
+msgstr "bekleyen gönderimlerinizi görüntüleyin"
+
+msgid "about.authorGuidelines"
+msgstr "Yazar Rehberi"
+
+msgid "about.submissionPreparationChecklist"
+msgstr "Gönderi Hazırlık Kontrol Listesi"
+
+msgid "about.submissionPreparationChecklist.description"
+msgstr ""
+"Gönderi sürecinin bir parçası olarak, yazarların gönderilerinin aşağıdaki "
+"maddelere uygunluğunu kontrol etmeleri gerekir ve bu yönergelere uymayan "
+"yazarlara gönderileri iade edilebilir."
+
+msgid "about.copyrightNotice"
+msgstr "Telif Hakkı Yazısını Göster"
+
+msgid "about.privacyStatement"
+msgstr "Gizlilik Bildirimi"
+
+msgid "about.reviewPolicy"
+msgstr "Danışman Değerlendirme Süreci"
+
+msgid "about.publicationFrequency"
+msgstr "Yayın Sıklığı"
+
+msgid "about.openAccessPolicy"
+msgstr "Açık Erişim Politikası"
+
+msgid "about.pressSponsorship"
+msgstr "Yayınevi Sponsorluğu"
+
+msgid "about.aboutThisPublishingSystem"
+msgstr ""
+"OMP / PKP tarafından yayıncılık sistemi, Platform ve İş Akışı hakkında daha "
+"fazla bilgi."
+
+msgid "about.aboutThisPublishingSystem.altText"
+msgstr "OMP Editoryal ve Yayıncılık Süreci"
+
+msgid "about.aboutSoftware"
+msgstr "Açık Kitap Sistemleri Hakkında"
+
+msgid "about.aboutOMPPress"
+msgstr ""
+"Bu yayınevi, GNU Genel Kamu Lisansı altında Kamu Bilgisi Projesi tarafından "
+"geliştirilen, desteklenen ve serbestçe dağıtılan açık kaynaklı yayınevi "
+"yönetimi ve yayınlama yazılımı olan Açık Kitap Sistemleri {$ompVersion} 'ı "
+"kullanır. <a href=\"http://pkp.sfu.ca/\">Yazılım hakkında daha fazla bilgi "
+"edinmek</a> için PKP'nin web sitesini ziyaret edin. Yayınevi ilgili "
+"sorularınız ve yayınevine yapılan öneriler için lütfen <a href=\""
+"{$contactUrl}\">doğrudan yayınevi ile iletişime</a> geçin."
+
+msgid "about.aboutOMPSite"
+msgstr ""
+"Bu site, GNU Genel Kamu Lisansı altında Kamu Bilgisi Projesi tarafından "
+"geliştirilen, desteklenen ve ücretsiz olarak dağıtılan açık kaynak yayınevi "
+"yönetimi ve yayıncılık yazılımı olan Açık Kitap Sistemleri {$ompVersion} 'ı "
+"kullanır. <a href=\"http://pkp.sfu.ca/\">Yazılım hakkında daha fazla bilgi "
+"edinmek için</a> PKP'nin web sitesini ziyaret edin. Lütfen, yayınevleri "
+"hakkında sorularınız ve yayınevlerine gönderimleriniz için doğrudan site ile "
+"iletişime geçin."
+
+msgid "monograph.publicationFormat.productComposition"
+msgstr "Ürün bileşimi"
+
+msgid "monograph.publicationFormat.productFormDetailCode"
+msgstr "Ürün Detayı (zorunlu değil)"
+
+msgid "monograph.publicationFormat.productIdentifierType"
+msgstr "Ürün Tanımlama"
+
+msgid "monograph.publicationFormat.price"
+msgstr "Fiyat"
+
+msgid "monograph.publicationFormat.priceRequired"
+msgstr "Bir fiyat gerekli."
+
+msgid "monograph.publicationFormat.priceType"
+msgstr "Ödeme Şekli"
+
+msgid "monograph.publicationFormat.discountAmount"
+msgstr "Varsa indirim yüzdesi"
+
+msgid "monograph.publicationFormat.productAvailability"
+msgstr "Ürün Bulunabilirliği"
+
+msgid "monograph.publicationFormat.returnInformation"
+msgstr "İade Edilebileceğine Dair Gösterge"
+
+msgid "monograph.publicationFormat.digitalInformation"
+msgstr "Dijital Bilgi"
+
+msgid "monograph.publicationFormat.productDimensions"
+msgstr "Fiziksel Boyutlar"
+
+msgid "monograph.publicationFormat.productDimensionsSeparator"
+msgstr " x "
+
+msgid "monograph.publicationFormat.productFileSize"
+msgstr "Mbyte cinsinden Dosya Boyutu"
+
+msgid "monograph.publicationFormat.productFileSize.override"
+msgstr "Kendi dosya boyutu değerinizi girin?"
+
+msgid "monograph.publicationFormat.productHeight"
+msgstr "Yükseklik"
+
+msgid "monograph.publicationFormat.productThickness"
+msgstr "Kalınlık"
+
+msgid "help.searchReturnResults"
+msgstr "Arama Sonuçlarına Dön"
+
+msgid "help.goToEditPage"
+msgstr "Bu bilgileri düzenlemek için yeni bir sayfa açın"
+
+msgid "installer.appInstallation"
+msgstr "OMP Kurulumu"
+
+msgid "installer.ompUpgrade"
+msgstr "OMP Yükseltmesi"
+
+msgid "installer.installApplication"
+msgstr "Açık Kitap Sistemlerini kurun"
+
+msgid "installer.updatingInstructions"
+msgstr ""
+"Mevcut bir OMP kurulumunu yükseltiyorsanız, devam etmek için <a href=\""
+"{$upgradeUrl}\">buraya tıklayın</a> ."
+
+msgid "installer.installationInstructions"
+msgstr ""
+"\n"
+"<p>Kamu Bilgisi Projesi’nin <strong>Açık Kitap Sistemleri {$version} "
+"programını</strong> indirdiğiniz için teşekkür ederiz. Devam etmeden önce, "
+"lütfen bu yazılımla birlikte gelen <a href=\"{$baseUrl}/docs/README\""
+">README</a> dosyasını okuyun. Kamu Bilgisi Projesi ve yazılım projeleri "
+"hakkında daha fazla bilgi için lütfen <a href=\"http://pkp.sfu.ca/\" target="
+"\"_blank\">PKP web sitesini</a> ziyaret edin. Açık Kitap Sistemleri ile "
+"ilgili hata raporlarınız veya teknik destek sorularınız varsa, <a href=\""
+"http://forum.pkp.sfu.ca\" target=\"_blank\">destek forumuna bakın</a> veya "
+"PKP'nin çevrimiçi <a href=\"http://pkp.sfu.ca/bugzilla/\" target=\"_blank\">"
+"hata raporlama sistemini</a> ziyaret edin. Destek forumu tercih edilen "
+"iletişim yöntemi olsa da ekibe <a href=\"mailto:pkp.contact@gmail.com\""
+">pkp.contact@gmail.com</a> adresinden de e-posta gönderebilirsiniz.</p>\n"
+
+msgid "installer.preInstallationInstructionsTitle"
+msgstr "Kurulum Öncesi Adımlar"
+
+msgid "installer.preInstallationInstructions"
+msgstr ""
+"<p>1. Aşağıdaki dosyalar ve dizinler (ve içerikleri) yazılabilir hale "
+"getirilmelidir:</p>\n"
+"<ul>\n"
+"\t<li> <tt>config.inc.php</tt> yazılabilir mi (isteğe bağlı): "
+"{$writeable_config}</li>\n"
+"\t<li> <tt>public /</tt> yazılabilir mi : {$writeable_public}</li>\n"
+"\t<li> <tt>önbellek /</tt> yazılabilir mi : {$writeable_cache}</li>\n"
+"\t<li> <tt>önbellek / t_cache /</tt> yazılabilir mi : "
+"{$writeable_templates_cache}</li>\n"
+"\t<li> <tt>cache / t_compile /</tt> yazılabilir mi : "
+"{$writeable_templates_compile}</li>\n"
+"\t<li> <tt>önbellek / _db</tt> yazılabilir mi : {$writeable_db_cache}</li>\n"
+"</ul>\n"
+"\n"
+"<p> 2. Yüklenen dosyaların saklanacağı bir dizin oluşturulmalı ve "
+"yazılabilir hale getirilmelidir (aşağıdaki \"Dosya Ayarları\" bölümüne "
+"bakın).</p>"
+
+msgid "installer.localeSettingsInstructions"
+msgstr ""
+"Tam Unicode (UTF-8) desteği için, tüm karakter kümesi ayarlarında UTF-8'i "
+"seçin. Bu desteğin şu anda bir MySQL> = 4.1.1 veya PostgreSQL> = 9.1.5 "
+"veritabanı sunucusu gerektirdiğini unutmayın. Lütfen tam Unicode desteğinin <"
+"a href=\"http://www.php.net/mbstring\" target=\"_blank\">mbstring</a> "
+"kitaplığını gerektirdiğini unutmayın (en son PHP kurulumlarında varsayılan "
+"olarak etkindir). Sunucunuz bu gereksinimleri karşılamıyorsa, genişletilmiş "
+"karakter kümelerini kullanırken sorunlarla karşılaşabilirsiniz.\n"
+"<br />\\<br />\n"
+"Sunucunuz şu anda mbstring'i destekliyor: "
+"<strong>{$supportsMBString}</strong>"
+
+msgid "installer.allowFileUploads"
+msgstr ""
+"Sunucunuz şu anda dosya yükleye izin veriyor: "
+"<strong>{$allowFileUploads}</strong>"
+
+msgid "installer.maxFileUploadSize"
+msgstr ""
+"Sunucunuzun şu anda izin verdiği en fazla dosya yükleme boyutu: "
+"<strong>{$maxFileUploadSize}</strong>"
+
+msgid "installer.localeInstructions"
+msgstr ""
+"Bu sistem için kullanılacak birincil dil. Burada listelenmeyen dilleri "
+"destekleme konusuyla ilgileniyorsanız lütfen OMP belgelerine başvurun."
+
+msgid "installer.additionalLocalesInstructions"
+msgstr ""
+"Bu sistemde desteklenecek ek dilleri seçin. Bu diller, sitede barındırılan "
+"yayınevleri tarafından kullanılabilecektir. Site yönetimi arayüzünden "
+"herhangi bir zamanda ek diller de yüklenebilir. * İşaretli yerel ayarlar "
+"tamamlanmamış olabilir."
+
+msgid "installer.filesDirInstructions"
+msgstr ""
+"Yüklenen dosyaların saklanacağı mevcut bir dizinin tam yolunu girin. Bu "
+"dizine doğrudan web'den erişilebilir olmamalıdır. <strong>Lütfen bu dizinin "
+"kurulumdan önce mevcut ve yazılabilir olduğundan emin olun.</strong> Windows "
+"yol adları öne eğik çizgi kullanmalıdır, örneğin \"C:/mypress / files\"."
+
+msgid "installer.databaseSettingsInstructions"
+msgstr ""
+"OMP, verilerini depolamak için bir SQL veritabanına erişim gerektirir. "
+"Desteklenen veritabanlarının listesi için yukarıdaki sistem gereksinimlerine "
+"bakın. Aşağıdaki alanlarda veri tabanına bağlanmak için kullanılacak "
+"ayarları sağlayın."
+
+msgid "installer.upgradeApplication"
+msgstr "Open Monograph Press Sürümünü Yükseltin"
+
+msgid "installer.overwriteConfigFileInstructions"
+msgstr ""
+"<h4>ÖNEMLİ!</h4>\n"
+"<p> Kurulum, yapılandırma dosyasının üzerine otomatik olarak yazamadı. "
+"Sistemi kullanmaya başlamadan önce lütfen <tt>config.inc.php</tt> dosyasını "
+"uygun bir metin düzenleyicide açın ve içeriğini aşağıdaki metin alanının "
+"içeriğiyle değiştirin.</p>"
+
+msgid "installer.installationComplete"
+msgstr ""
+"<p>OMP'nin kurulumu başarıyla tamamlandı.</p>\n"
+"<p>Sistemi kullanmaya başlamak için önceki sayfada girilen kullanıcı adı ve "
+"parola ile <a href=\"{$loginUrl}\">giriş yapın</a> .</p>\n"
+"<p> Haberleri ve güncellemeleri almak isterseniz, <strong>lütfen <a href=\""
+"http://pkp.sfu.ca/omp/register\" target=\"_blank\">http://pkp.sfu.ca/omp/"
+"register</a> adresinden kaydolun.</strong> Sorularınız veya yorumlarınız "
+"varsa, lütfen <a href=\"http://forum.pkp.sfu.ca\" target=\"_blank\">destek "
+"forumunu</a> ziyaret edin.</p>"
+
+msgid "installer.upgradeComplete"
+msgstr ""
+"<p>OMP'nin {$version} sürümüne yükseltilmesi başarıyla tamamlandı.</p>\n"
+"<p>Config.inc.php yapılandırma dosyanızdaki \"kurulu\" ayarını tekrar "
+"<em>Açık</em> olarak ayarlamayı unutmayın.</p>\n"
+"<p> Henüz kaydolmadıysanız ve haberleri ve güncellemeleri almak "
+"istiyorsanız, <strong>lütfen <a href=\"http://pkp.sfu.ca/omp/register\" "
+"target=\"_blank\">http://pkp.sfu.ca/omp/register</a> adresinden "
+"kaydolun.</strong> Sorularınız veya yorumlarınız varsa, lütfen <a href=\""
+"http://forum.pkp.sfu.ca\" target=\"_blank\">destek forumunu</a> ziyaret "
+"edin.</p>"
+
+msgid "log.review.reviewDueDateSet"
+msgstr ""
+"{$reviewerName} tarafından yapılan {$submissionId} gönderinin {$round}. tur "
+"değerlendirmesi için son tarih {$dueDate} olarak belirlendi."
+
+msgid "log.review.reviewDeclined"
+msgstr ""
+"{$reviewerName}, {$submissionId} gönderisi için {$round} tur "
+"değerlendirmesini reddetti."
+
+msgid "log.review.reviewAccepted"
+msgstr ""
+"{$reviewerName}, {$submissionId} gönderisi için {$round} tur "
+"değerlendirmesini kabul etti."
+
+msgid "log.review.reviewUnconsidered"
+msgstr ""
+"{$editorName}, {$submissionId} gönderisi için {$round} tur değerlendirmesini "
+"dikkate alınmayacak şeklinde işaretledi."
+
+msgid "log.editor.decision"
+msgstr ""
+"Yazı {$submissionId} için bir editör kararı ({$decision}) {$editorName} "
+"tarafından kaydedildi."
+
+msgid "log.editor.recommendation"
+msgstr ""
+"Yazı {$submissionId} için bir editör önerisi ({$decision}) {$editorName} "
+"tarafından kaydedildi."
+
+msgid "log.editor.archived"
+msgstr "{$SubmissionId} gönderisi arşivlendi."
+
+msgid "log.editor.restored"
+msgstr "{$SubmissionId} gönderisi işlem kuyruğuna geri yüklendi."
+
+msgid "log.editor.editorAssigned"
+msgstr "{$editorName}, {$submissionId} gönderisine editör olarak atandı."
+
+msgid "log.proofread.assign"
+msgstr ""
+"{$assignerName}, {$proofreaderName} 'nı {$submissionId} prova düzeltmesi "
+"için atadı."
+
+msgid "log.proofread.complete"
+msgstr "{$proofreaderName} planlanması için {$submissionId} gönderdi."
+
+msgid "log.imported"
+msgstr "{$userName}, {$submissionId} yazısını içe aktardı."
+
+msgid "notification.addedIdentificationCode"
+msgstr "Kimlik Kodu eklendi."
+
+msgid "notification.editedIdentificationCode"
+msgstr "Kimlik Kodu düzenlendi."
+
+msgid "notification.removedIdentificationCode"
+msgstr "Kimlik Kodu kaldırıldı."
+
+msgid "notification.addedPublicationDate"
+msgstr "Yayın Tarihi eklendi."
+
+msgid "notification.editedPublicationDate"
+msgstr "Yayın Tarihi Düzenlendi."
+
+msgid "notification.removedPublicationDate"
+msgstr "Yayın Tarihi kaldırıldı."
+
+msgid "notification.addedPublicationFormat"
+msgstr "Yayın Biçimi eklendi."
+
+msgid "notification.editedPublicationFormat"
+msgstr "Yayın Biçimi düzenlendi."
+
+msgid "notification.removedPublicationFormat"
+msgstr "Yayın Biçimi kaldırıldı."
+
+msgid "notification.addedSalesRights"
+msgstr "Satış Hakları eklendi."
+
+msgid "notification.editedSalesRights"
+msgstr "Satış Hakları düzenlendi."
+
+msgid "notification.removedSalesRights"
+msgstr "Satış Hakları kaldırıldı."
+
+msgid "notification.addedRepresentative"
+msgstr "Temsilci eklendi."
+
+msgid "notification.editedRepresentative"
+msgstr "Temsilci düzenlendi."
+
+msgid "notification.removedRepresentative"
+msgstr "Temsilci kaldırıldı."
+
+msgid "notification.addedMarket"
+msgstr "Pazar eklendi."
+
+msgid "notification.editedMarket"
+msgstr "Pazar düzenlendi."
+
+msgid "notification.removedMarket"
+msgstr "Pazar kaldırıldı."
+
+msgid "notification.addedSpotlight"
+msgstr "Gündem eklendi."
+
+msgid "notification.editedSpotlight"
+msgstr "Gündem düzenlendi."
+
+msgid "notification.removedSpotlight"
+msgstr "Gündem kaldırıldı."
+
+msgid "notification.savedCatalogMetadata"
+msgstr "Fihrist üst verileri kaydedildi."
+
+msgid "notification.savedPublicationFormatMetadata"
+msgstr "Yayın biçimi üst verileri kaydedildi."
+
+msgid "notification.proofsApproved"
+msgstr "Prova dizgi onaylandı."
+
+msgid "notification.removedSubmission"
+msgstr "Gönderi silindi."
+
+msgid "notification.type.submissionSubmitted"
+msgstr "Yeni bir yazı, \"{$title}\" gönderildi."
+
+msgid "notification.type.editing"
+msgstr "Düzenleme Etkinlikleri"
+
+msgid "notification.type.reviewing"
+msgstr "Değerlendirme Etkinlikleri"
+
+msgid "notification.type.site"
+msgstr "Site Etkinlikleri"
+
+msgid "notification.type.submissions"
+msgstr "Gönderi Etkinlikleri"
+
+msgid "notification.type.userComment"
+msgstr "Bir okuyucu \"{$title}\" hakkında bir yorum yaptı."
+
+msgid "notification.type.public"
+msgstr "Genel Duyurular"
+
+msgid "notification.type.editorAssignmentTask"
+msgstr "Bir editörün atanması gereken yeni bir yazı gönderildi."
+
+msgid "notification.type.copyeditorRequest"
+msgstr "\"{$file}\" için sayfa düzenini gözden geçirmeniz istendi."
+
+msgid "notification.type.layouteditorRequest"
+msgstr "“{$title}” için mizanpaj düzenini gözden geçirmeniz istendi."
+
+msgid "notification.type.indexRequest"
+msgstr "“{$title}” için bir dizin oluşturmanız istendi."
+
+msgid "notification.type.editorDecisionInternalReview"
+msgstr "Dahili değerlendirme süreci başladı."
+
+msgid "notification.type.approveSubmission"
+msgstr ""
+"Bu gönderi şu anda genel fihristte görünmeden önce Fihrist Giriş aracında "
+"onay bekliyor."
+
+msgid "notification.type.approveSubmissionTitle"
+msgstr "Onay bekliyor."
+
+msgid "notification.type.formatNeedsApprovedSubmission"
+msgstr ""
+"Yazı, yayınlanana kadar fihristte listelenmeyecektir. Bu kitabı fihriste "
+"eklemek için Yayın sekmesine tıklayın."
+
+msgid "notification.type.configurePaymentMethod.title"
+msgstr "Hiçbir ödeme yöntemi yapılandırılmadı."
+
+msgid "notification.type.configurePaymentMethod"
+msgstr ""
+"E-ticaret ayarlarını tanımlamadan önce, yapılandırılmış bir ödeme yöntemi "
+"gereklidir."
+
+msgid "notification.type.visitCatalogTitle"
+msgstr "Fihrist Yönetimi"
+
+msgid "notification.type.visitCatalog"
+msgstr ""
+"Yazı onaylandı. Hemen yukarıdaki bağlantıları kullanarak fihrist "
+"ayrıntılarını yönetmek için lütfen Pazarlama ve Yayın sayfasını ziyaret edin."
+
+msgid "user.authorization.invalidReviewAssignment"
+msgstr ""
+"Bu yazı için geçerli bir danışman olmadığınız için erişiminiz reddedildi."
+
+msgid "user.authorization.monographAuthor"
+msgstr "Bu yazının yazarı olarak görünmediğiniz için erişiminiz reddedildi."
+
+msgid "user.authorization.monographReviewer"
+msgstr ""
+"Bu yazının atanmış bir danışmanı olmadığınız için erişiminiz reddedildi."
+
+msgid "user.authorization.monographFile"
+msgstr "Belirtilen yazı dosyasına erişiminiz reddedildi."
+
+msgid "user.authorization.invalidMonograph"
+msgstr "Geçersiz yazı veya hiçbir yazı isteği yapılmadı!"

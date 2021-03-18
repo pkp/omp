@@ -1,0 +1,1401 @@
+msgid ""
+msgstr ""
+"PO-Revision-Date: 2021-02-23 13:10+0000\n"
+"Last-Translator: Uğur Koçak <ugurkocak@hotmail.com>\n"
+"Language-Team: Turkish <http://translate.pkp.sfu.ca/projects/omp/manager/"
+"tr_TR/>\n"
+"Language: tr_TR\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: Weblate 3.9.1\n"
+
+msgid "manager.setup.copyrightNotice.sample"
+msgstr ""
+"<h3>Önerilen Creative Commons Telif Hakkı Bildirimleri</h3>\n"
+"<h4>Açık Erişim Sağlayan Yayınevleri İçin Önerilen Politika</h4>\n"
+"Bu yayınevi ile yayın yapan yazarlar aşağıdaki şartları kabul eder:\n"
+"<ol type=\"a\">\n"
+"\t<li>Yazarlar telif haklarını korurlar ve aynı anda yazara atıfta "
+"bulunulmak ve ilk kez yayınevimizde yayınlandığı belirtilmek kaydı ile "
+"çalışmanın özgürce paylaşılmasına imkan tanıyan <a target=\"_blank\" href=\""
+"http://creativecommons.org/licenses/by/3.0/\">Creative Commons Atıf "
+"Ruhsatı</a> ile ruhsatlandırılması ve çalışmayı ilk kez yayınlama hakkını "
+"verirler.</li>\n"
+"\t<li>Yazarlar, çalışmanın ilk kez yayınevimizde yayınlandığı belirtilmek "
+"kaydı ile, yayınevimizde yayınlanan sürümünün münhasır olmayan şekilde "
+"dağıtılması (Ör., kurumsal bir bilgi havuzuna eklenmesi veya bir kitapta "
+"yayınlanması) için ayrı, ek sözleşmeler yapabilirler.</li>\n"
+"\t<li>Yazarlar, üretken değişimlere yol açabileceğinden ve yayınlanmış "
+"çalışmaların daha erken ve daha fazla alıntılanmasına yol açabileceğinden, "
+"çalışmalarını çevrimiçi olarak (örneğin, kurumsal arşivlerde veya web "
+"sitelerinde) gönderme süreci öncesinde ve sırasında yayınlamalarına izin "
+"verilir ve teşvik edilirler (Bkz <a target=\"_blank\" href=\""
+"http://opcit.eprints.org/oacitation-biblio.html\">Açık Erişimin "
+"Etkisi</a>).</li>\n"
+"</ol>\n"
+"\n"
+"<h4>Gecikmeli Açık Erişim Sunan Yayınevleri için Önerilen Politika</h4>\n"
+"Bu yayınevi ile yayın yapan yazarlar aşağıdaki şartları kabul eder:\n"
+"<ol type=\"a\">\n"
+"\t<li>Yazarlar telif haklarını korurlar ve eserin ilk olarak yayınevi "
+"tarafından yayınlanmasına, ve yayınlandıktan [BEKLEME SÜRESİNİ BELİRTİN, Ör. "
+"2 yıl] sonra eşzamanlı olarak aynı anda yazara atıfta bulunulmak ve ilk kez "
+"yayınevimizde yayınlandığı belirtilmek kaydı ile çalışmanın özgürce "
+"paylaşılmasına imkan tanıyan <a target=\"_blank\" href=\""
+"http://creativecommons.org/licenses/by/3.0/\">Creative Commons Atıf "
+"Ruhsatı</a> ile ruhsatlandırılmasına izin verirler.</li>\n"
+"\t <li>Yazarlar, çalışmanın ilk kez yayınevimizde yayınlandığı belirtilmek "
+"kaydı ile, yayınevimizde yayınlanan sürümünün münhasır olmayan şekilde "
+"dağıtılması (Ör., kurumsal bir bilgi havuzuna eklenmesi veya bir kitapta "
+"yayınlanması) için ayrı, ek sözleşmeler yapabilirler.</li>\n"
+"\t <li>Yazarlar, üretken değişimlere yol açabileceğinden ve yayınlanmış "
+"çalışmaların daha erken ve daha fazla alıntılanmasına yol açabileceğinden, "
+"çalışmalarını çevrimiçi olarak (örneğin, kurumsal arşivlerde veya web "
+"sitelerinde) gönderme süreci öncesinde ve sırasında yayınlamalarına izin "
+"verilir ve teşvik edilirler (Bkz <a target=\"_blank\" href=\""
+"http://opcit.eprints.org/oacitation-biblio.html\"> Açık Erişimin "
+"Etkisi</a>).</li>\n"
+"</ol>"
+
+msgid "manager.series.open"
+msgstr "Açık Gönderimler"
+
+msgid "manager.language.confirmDefaultSettingsOverwrite"
+msgstr ""
+"Bu işlem, bu bölgesel ayar için yaptığınız bölgesel ayara özgü tüm yayınevi "
+"ayarlarını yenisiyle değiştirecektir"
+
+msgid "manager.languages.noneAvailable"
+msgstr ""
+"Üzgünüz, başka ilave dil mevcut değil. Bu yayınevi ile ek diller kullanmak "
+"istiyorsanız site yöneticinizle iletişime geçin."
+
+msgid "manager.languages.primaryLocaleInstructions"
+msgstr "Bu, yayınevi sitesi için varsayılan dil olacaktır."
+
+msgid "manager.series.form.mustAllowPermission"
+msgstr ""
+"Lütfen her Dizi Editörü ataması için en az bir onay kutusunun "
+"işaretlendiğinden emin olun."
+
+msgid "manager.series.form.reviewFormId"
+msgstr "Lütfen geçerli bir değerlendirme formu seçtiğinizden emin olun."
+
+msgid "manager.series.submissionIndexing"
+msgstr "Yayınevinin dizinlenmesinde dahil edilmeyecek"
+
+msgid "manager.series.editorRestriction"
+msgstr "Öğeler yalnızca Editörler ve Dizi Editörleri tarafından gönderilebilir."
+
+msgid "manager.series.confirmDelete"
+msgstr "Bu diziyi kalıcı olarak silmek istediğinizden emin misiniz?"
+
+msgid "manager.series.readingTools"
+msgstr "Okuma Araçları"
+
+msgid "manager.series.submissionReview"
+msgstr "Danışman değerlendirmesinden geçmeyecek"
+
+msgid "manager.series.submissionsToThisSection"
+msgstr "Bu diziye yapılan gönderimler"
+
+msgid "manager.series.abstractsNotRequired"
+msgstr "Özet gerektirmez"
+
+msgid "manager.series.disableComments"
+msgstr "Bu dizi için okuyucu yorumlarını devre dışı bırakın."
+
+msgid "manager.series.book"
+msgstr "Kitap Dizisi"
+
+msgid "manager.series.create"
+msgstr "Dizi Oluştur"
+
+msgid "manager.series.policy"
+msgstr "Dizi açıklaması"
+
+msgid "manager.series.assigned"
+msgstr "Bu Dizinin Editörleri"
+
+msgid "manager.series.seriesEditorInstructions"
+msgstr ""
+"Mevcut Dizi Editörlerinden bu diziye bir Dizi Editörü ekleyin. Eklendikten "
+"sonra, Dizi Editörü'nün bu diziye yapılan gönderimlerin DEĞERLEDİRMESİNİ ("
+"danışman değerlendirmesi) ve/veya DÜZENLENMESİNİ (sayfa düzenleme, mizanpaj "
+"ve prova dizgi okuma) denetleyip denetlemeyeceğini belirleyin. Dizi "
+"Editörleri, Yayınevi Yönetimindeki Görevler altındaki <a href=\""
+"{$seriesEditorsUrl}\">Dizi Editörleri</a> tıklanarak oluşturulur."
+
+msgid "manager.series.hideAbout"
+msgstr "Bu diziyi Yayınevi Hakkında bölümünden çıkarın."
+
+msgid "manager.series.unassigned"
+msgstr "Mevcut Dizi Editörleri"
+
+msgid "manager.series.form.abbrevRequired"
+msgstr "Dizi için kısaltılmış bir başlık gereklidir."
+
+msgid "manager.series.form.titleRequired"
+msgstr "Dizi için bir başlık gereklidir."
+
+msgid "manager.series.noneCreated"
+msgstr "Hiçbir dizi oluşturulmadı."
+
+msgid "manager.series.existingUsers"
+msgstr "Var olan kullanıcılar"
+
+msgid "manager.series.seriesTitle"
+msgstr "Dizi Başlığı"
+
+msgid "manager.series.restricted"
+msgstr "Yazarların doğrudan bu diziye göndermesine izin vermeyin."
+
+msgid "manager.series.confirmDeactivateSeries.error"
+msgstr ""
+"En az bir dizi etkin olmalıdır. Bu yayınevine yapılan tüm gönderimleri devre "
+"dışı bırakmak için iş akışı ayarlarını ziyaret edin."
+
+msgid "manager.payment.generalOptions"
+msgstr "Genel Ayarlar"
+
+msgid "manager.payment.options.enablePayments"
+msgstr ""
+"Bu yayınevi için ödemeler etkinleştirilecektir. Kullanıcıların ödeme yapmak "
+"için giriş yapması gerekeceğini unutmayın."
+
+msgid "manager.payment.success"
+msgstr "Ödeme ayarları güncellendi."
+
+msgid "manager.settings"
+msgstr "Ayarlar"
+
+msgid "manager.settings.pressSettings"
+msgstr "Yayınevi Ayarları"
+
+msgid "manager.settings.press"
+msgstr "Yayınevi"
+
+msgid "manager.settings.publisher.identity"
+msgstr "Yayıncı Kimliği"
+
+msgid "manager.settings.publisher.identity.description"
+msgstr ""
+"Bu alanlar, geçerli <a href=\"https://en.wikipedia.org/wiki/ONIX_for_Books\">"
+"ONIX üst verilerini</a> yayınlamak için gereklidir."
+
+msgid "manager.settings.publisher"
+msgstr "Basın Yayın Kuruluşu Adı"
+
+msgid "manager.settings.location"
+msgstr "Coğrafi konum"
+
+msgid "manager.settings.publisherCode"
+msgstr "Yayıncı Kodu"
+
+msgid "manager.settings.publisherCodeType"
+msgstr "Yayıncı Kodu Türü"
+
+msgid "manager.settings.publisherCodeType.invalid"
+msgstr "Bu geçerli bir Yayıncı Kodu Türü değil."
+
+msgid "manager.setup.subjectProvideExamples"
+msgstr ""
+"Yazarlar için bir kılavuz olarak anahtar kelime veya konu örnekleri sağlayın"
+
+msgid "manager.setup.submissionGuidelines"
+msgstr "Gönderim yönergeleri"
+
+msgid "manager.setup.submissionPreparationChecklist"
+msgstr "Gönderi Hazırlık Kontrol Listesi"
+
+msgid "maganer.setup.submissionChecklistItemRequired"
+msgstr "Kontrol listesi öğesi gerekli."
+
+msgid "manager.setup.workflow"
+msgstr "İş Akışı"
+
+msgid "manager.setup.submissions.description"
+msgstr "Yazar yönergeleri, telif hakkı ve dizinleme (kayıt dahil)."
+
+msgid "manager.setup.typeExamples"
+msgstr "(Örn., Tarihsel Araştırma; Yarı Deneysel; Edebi Tahlil; Anket/Görüşme)"
+
+msgid "manager.setup.typeMethodApproach"
+msgstr "Tür (Yöntem/Yaklaşım)"
+
+msgid "manager.setup.typeProvideExamples"
+msgstr ""
+"Bu alan için ilgili araştırma türleri, yöntemleri ve yaklaşımlarına yönelik "
+"örnekler sağlayın"
+
+msgid "manager.setup.useCopyeditors"
+msgstr "Her gönderi ile çalışmak üzere bir Sayfa Düzeni Editörü atanacaktır."
+
+msgid "manager.setup.useEditorialReviewBoard"
+msgstr "Yayınevi tarafından bir yayın/danışma kurulu kullanılacaktır."
+
+msgid "manager.setup.useImageTitle"
+msgstr "Başlık Resmi"
+
+msgid "manager.setup.useStyleSheet"
+msgstr "Yayınevi stil sayfası"
+
+msgid "manager.setup.useLayoutEditors"
+msgstr ""
+"HTML, PDF vb. dosyaları elektronik yayına hazırlamak için bir Mizanpaj "
+"Editörü atanacaktır."
+
+msgid "manager.setup.useProofreaders"
+msgstr ""
+"Yayınlanmadan önce dizgileri (yazarlar ile birlikte) kontrol etmesi için bir "
+"Prova Dizgi Okuyucusu görevlendirilecektir."
+
+msgid "manager.setup.userRegistration"
+msgstr "Kullanıcı Kaydı"
+
+msgid "manager.setup.useTextTitle"
+msgstr "Başlık Metni"
+
+msgid "manager.setup.volumePerYear"
+msgstr "Yıllık Cilt Sayısı"
+
+msgid "manager.setup.publicationFormat.code"
+msgstr "Biçim"
+
+msgid "manager.setup.publicationFormat.codeRequired"
+msgstr "Bir yayın biçimi seçilmelidir."
+
+msgid "manager.setup.publicationFormat.nameRequired"
+msgstr "Bu biçime bir ad vermelisiniz."
+
+msgid "manager.setup.publicationFormat.physicalFormat"
+msgstr "Bu fiziksel (dijital olmayan) bir biçim mi?"
+
+msgid "manager.setup.publicationFormat.inUse"
+msgstr ""
+"Bu yayın biçimi şu anda yayınevinizdeki bir risale tarafından "
+"kullanıldığından silinemez."
+
+msgid "manager.setup.newPublicationFormat"
+msgstr "Yeni Yayın Biçimi"
+
+msgid "manager.setup.newPublicationFormatDescription"
+msgstr ""
+"Yeni bir yayın biçimi oluşturmak için aşağıdaki formu doldurun ve 'Oluştur' "
+"butonuna tıklayın."
+
+msgid "manager.setup.genresDescription"
+msgstr ""
+"Bu türler, dosya adlandırma amacıyla kullanılır ve dosyaların yüklenmesiyle "
+"ilgili bir açılır menüde sunulur. ## olarak belirtilen türler, kullanıcının "
+"dosyayı 99Z kitabının tamamıyla veya numarasına göre belirli bir bölümle ("
+"ör. 02) ilişkilendirmesine izin verir."
+
+msgid "manager.setup.reviewProcessEmailDescription"
+msgstr ""
+"Editörler, E-postaya eklenen gönderi ile birlikte İnceleyenlere inceleme "
+"isteği gönderir. Danışmanlar, editörlere onaylarının (veya pişmanlıklarının) "
+"yanı sıra inceleme ve önerilere e-posta gönderir. Editörler, inceleme "
+"sürecini kaydetmek için gönderinin Değerlendirme sayfasına Danışmanların "
+"onayını (veya çekincelerini) ve inceleme ve öneriyi girer."
+
+msgid "manager.setup.disableSubmissions.notAccepting"
+msgstr ""
+"Bu yayınevi şu anda başvuruları kabul etmiyor. Gönderimlere izin vermek için "
+"iş akışı ayarlarını ziyaret edin."
+
+msgid "manager.setup.disableSubmissions.description"
+msgstr ""
+"Kullanıcıların yayınevine yeni makaleler göndermesini önleyin. Münferit "
+"yayın dizileri için gönderimler, <a href=\"{$url}\">yayın dizisi</a> "
+"ayarları sayfasından devre dışı bırakılabilir."
+
+msgid "manager.setup.genres"
+msgstr "Türler"
+
+msgid "manager.setup.newGenre"
+msgstr "Yeni Risale Türü"
+
+msgid "manager.setup.newGenreDescription"
+msgstr ""
+"Yeni bir tür oluşturmak için aşağıdaki formu doldurun ve 'Oluştur' düğmesini "
+"tıklayın."
+
+msgid "manager.setup.deleteSelected"
+msgstr "Seçilenleri Sil"
+
+msgid "manager.setup.restoreDefaults"
+msgstr "Ayarları varsayılan duruma getir"
+
+msgid "manager.setup.prospectus"
+msgstr "Tanıtım Rehberi"
+
+msgid "manager.setup.prospectusDescription"
+msgstr ""
+"Tanıtım kılavuzu, yazarın gönderilen materyalleri, bir yayınevinin "
+"gönderinin değerini belirlemesine izin verecek şekilde açıklamasına yardımcı "
+"olan, yayınevince hazırlanmış bir belgedir. Bir tanıtım kitapçığı, pazarlama "
+"potansiyelinden teorik değere kadar pek çok öğe içerebilir; her halükarda, "
+"bir yayınevi yayın gündemini tamamlayan bir tanıtım kılavuzu oluşturmalıdır."
+
+msgid "manager.setup.submitToCategories"
+msgstr "Bölüm gönderimlerine izin ver"
+
+msgid "manager.setup.submitToSeries"
+msgstr "Dizi gönderimlerine izin ver"
+
+msgid "manager.setup.issnDescription"
+msgstr ""
+"ISSN (Uluslararası Standart Sıra Numarası), elektronik diziler de dahil "
+"olmak üzere süreli yayınları tanımlayan sekiz basamaklı bir sayıdır. <a href="
+"\"http://www.issn.org\" target=\"_blank\">Uluslararası ISSN Merkezinden</a> "
+"bir numara alınabilir."
+
+msgid "manager.setup.currentFormats"
+msgstr "Mevcut Biçimler"
+
+msgid "manager.setup.categoriesAndSeries"
+msgstr "Bölümler ve Diziler"
+
+msgid "manager.setup.categories.description"
+msgstr ""
+"Yayınlarınızı düzenlemenize yardımcı olması için bir bölüm listesi "
+"oluşturabilirsiniz. Bölümler, konularına göre kitapların "
+"kümelendirilmesidir, örneğin Ekonomi; Edebiyat; Şiir; ve bunun gibi. "
+"Bölümler, \"ana\" bölümler içinde yuvalanabilir: örneğin, bir Ekonomi ana "
+"bölümü, ayrı ayrı Mikroekonomi ve Makroekonomi bölümlerini içerebilir. "
+"Ziyaretçiler, yayınevini bölümlere göre arayabilecek ve göz atabilecektir."
+
+msgid "manager.setup.series.description"
+msgstr ""
+"Yayınlarınızı düzenlemenize yardımcı olması için istediğiniz sayıda dizi "
+"oluşturabilirsiniz. Bir dizi, genellikle bir veya iki öğretim üyesi olmak "
+"üzere birinin önerdiği ve ardından denetlediği bir konuya veya başlıklara "
+"ayrılmış özel bir kitap kümesini temsil eder. Ziyaretçiler, yayınevini "
+"dizilere göre arayabilecek ve göz atabilecektir."
+
+msgid "manager.setup.reviewForms"
+msgstr "Değerlendirme Formları"
+
+msgid "manager.setup.roleType"
+msgstr "Rol Türü"
+
+msgid "manager.setup.authorRoles"
+msgstr "Yazar Görevleri"
+
+msgid "manager.setup.managerialRoles"
+msgstr "Yönetim Görevleri"
+
+msgid "manager.setup.availableRoles"
+msgstr "Geçerli Görevler"
+
+msgid "manager.setup.currentRoles"
+msgstr "Mevcut Görevler"
+
+msgid "manager.setup.internalReviewRoles"
+msgstr "Dahili Değerlendirme Görevleri"
+
+msgid "manager.setup.masthead"
+msgstr "Künyesi"
+
+msgid "manager.setup.editorialTeam"
+msgstr "Yayın Kurulu"
+
+msgid "manager.setup.editorialTeam.description"
+msgstr ""
+"Editörlerin, yazı işleri müdürleri ve basınla ilişkili diğer kişilerin "
+"listesi."
+
+msgid "manager.setup.files"
+msgstr "Dosyalar"
+
+msgid "manager.setup.productionTemplates"
+msgstr "Üretim Şablonları"
+
+msgid "manager.files.note"
+msgstr ""
+"Not: Dosya Tarayıcısı, bir yayıneviyle ilişkili dosya ve dizinlerin doğrudan "
+"görüntülenmesine ve değiştirilmesine olanak tanıyan gelişmiş bir özelliktir."
+
+msgid "manager.setup.basicEditorialStepsDescription"
+msgstr ""
+"Adımlar: Gönderi Kuyruğu&gt; Gönderi Değerlendirmesi&gt; Gönderi "
+"Düzenleme&gt; İçindekiler.<br /><br />\n"
+"Editoryal sürecin bu yönlerini ele almak için bir model seçin. (Bir Yazı "
+"İşleri Müdürü ve Dizi Editörleri belirlemek için, Yayınevi Yönetiminde "
+"Editörlere gidin.)"
+
+msgid "manager.setup.referenceLinkingDescription"
+msgstr ""
+"<p>Okuyucuların bir yazar tarafından alıntılanan çalışmanın çevrimiçi "
+"sürümlerini bulmasını sağlamak için aşağıdaki seçenekler mevcuttur.</p>\n"
+"\n"
+"<ol>\n"
+"\t<li><strong>Okuma Aracı Ekleme</strong><p> Yayınevi Yöneticisi, yayınlanan "
+"öğelere eşlik eden Okuma Araçlarına \"Kaynak Bul\" ekleyebilir ki bu, "
+"okuyucuların bir kaynağın başlığını yapıştırmasına ve ardından alıntı "
+"yapılan çalışma için önceden seçilmiş bilimsel veritabanlarında arama "
+"yapmasına imkan tanır.</p></li>\n"
+"\t<li> <strong>Kaynaklara Bağlantıları Göm</strong><p> Mizanpaj Editörü, "
+"aşağıdaki talimatlar (düzenlenebilir) kullanılarak çevrimiçi bulunabilen "
+"referanslara bir bağlantı ekleyebilir.</p></li>\n"
+"</ol>"
+
+msgid "manager.publication.library"
+msgstr "Yayınevi Kitaplığı"
+
+msgid "manager.setup.resetPermissions"
+msgstr "Risale İzinlerini Sıfırla"
+
+msgid "manager.setup.resetPermissions.confirm"
+msgstr ""
+"Risalelere önceden eklenmiş olan izin verilerini sıfırlamak istediğinizden "
+"emin misiniz?"
+
+msgid "manager.setup.resetPermissions.description"
+msgstr ""
+"Telif hakkı beyanı ve ruhsat bilgileri, yayınlanan içeriğe kalıcı olarak "
+"eklenecek ve yeni gönderimler için politikalarını değiştiren bir yayınevi "
+"olması durumunda bu verilerin değişmemesini sağlayacak. Yayınlanmış içeriğe "
+"önceden eklenmiş olan saklı izin bilgilerini sıfırlamak için aşağıdaki "
+"düğmeyi kullanın."
+
+msgid "manager.setup.resetPermissions.success"
+msgstr "Risale izinleri başarıyla sıfırlandı."
+
+msgid "grid.genres.title.short"
+msgstr "Bileşenler"
+
+msgid "grid.genres.title"
+msgstr "Risale Bileşenleri"
+
+msgid "manager.setup.notifications.copyPrimaryContact"
+msgstr ""
+"Yayınevi Ayarları'nda belirtilen temel iletişim yetkilisine bir kopya "
+"gönderin."
+
+msgid "grid.series.pathAlphaNumeric"
+msgstr "Dizi yolu yalnızca harflerden ve sayılardan oluşmalıdır."
+
+msgid "grid.series.pathExists"
+msgstr "Dizi yolu zaten kullanımda. Lütfen benzersiz bir yol girin."
+
+msgid "manager.navigationMenus.form.navigationMenuItem.series"
+msgstr "Dizi Seçin"
+
+msgid "manager.navigationMenus.form.navigationMenuItemSeriesMessage"
+msgstr "Lütfen bu menü öğesinin bağlanmasını istediğiniz diziyi seçin."
+
+msgid "manager.navigationMenus.form.navigationMenuItem.category"
+msgstr "Bölüm seç"
+
+msgid "manager.navigationMenus.form.navigationMenuItemCategoryMessage"
+msgstr "Lütfen bu menü öğesinin bağlanmasını istediğiniz bölümü seçin."
+
+msgid "grid.series.urlWillBe"
+msgstr "Dizinin URL'si şu şekilde olacaktır: {$sampleUrl}"
+
+msgid "stats.publicationStats"
+msgstr "Yazı İstatistikleri"
+
+msgid "stats.publications.details"
+msgstr "Yazı Ayrıntıları"
+
+msgid "stats.publications.none"
+msgstr ""
+"Bu parametrelerle eşleşen kullanım istatistiklerine sahip yazı bulunamadı."
+
+msgid "stats.publications.totalAbstractViews.timelineInterval"
+msgstr "Tarihe göre toplam fihrist görüntüleme sayısı"
+
+msgid "stats.publications.totalGalleyViews.timelineInterval"
+msgstr "Tarihe göre toplam dosya görüntüleme sayısı"
+
+msgid "stats.publications.countOfTotal"
+msgstr "{$total} yazıdan {$count} adedi"
+
+msgid "stats.publications.abstracts"
+msgstr "Fihrist Kayıtları"
+
+msgid "plugins.importexport.common.error.noObjectsSelected"
+msgstr "Hiçbir nesne seçilmedi."
+
+msgid "plugins.importexport.common.error.validation"
+msgstr "Seçili nesneler dönüştürülemedi."
+
+msgid "plugins.importexport.common.invalidXML"
+msgstr "Geçersiz XML:"
+
+msgid "plugins.importexport.native.exportSubmissions"
+msgstr "Başvuruları Gönder"
+
+msgid "manager.settings.distributionDescription"
+msgstr ""
+"Dağıtım sürecine özgü tüm ayarlar (bildirim, dizinleme, arşivleme, ödeme, "
+"okuma araçları)."
+
+msgid "manager.statistics.reports.defaultReport.monographDownloads"
+msgstr "Yazı dosyası indirmeleri"
+
+msgid "manager.statistics.reports.defaultReport.monographAbstract"
+msgstr "Yazı özet sayfa görünümleri"
+
+msgid "manager.statistics.reports.defaultReport.monographAbstractAndDownloads"
+msgstr "Yazı özeti ve indirmeler"
+
+msgid "manager.statistics.reports.defaultReport.seriesIndexPageViews"
+msgstr "Dizi ana sayfa görünümleri"
+
+msgid "manager.statistics.reports.defaultReport.pressIndexPageViews"
+msgstr "Yayınevi Ana sayfa görünümleri"
+
+msgid "manager.statistics.reports.filters.byContext.description"
+msgstr "Sonuçları bağlama göre daraltın (dizi ve/veya yazı)."
+
+msgid "manager.statistics.reports.filters.byObject.description"
+msgstr ""
+"Sonuçları nesne türüne (yayın, dizi, yazı, dosya türleri) ve/veya bir veya "
+"daha fazla nesne kimliğine göre daraltın."
+
+msgid "manager.tools"
+msgstr "Araçlar"
+
+msgid "manager.tools.importExport"
+msgstr ""
+"Verilerin içe ve dışa aktarılmasına özel tüm araçlar (yayınlar, yazılar, "
+"kullanıcılar)"
+
+msgid "manager.tools.statistics"
+msgstr ""
+"Kullanım istatistikleriyle ilgili raporlar oluşturmaya yönelik araçlar ("
+"fihrist dizini sayfa görünümü, yazı özet sayfa görünümleri, yazı dosyası "
+"indirmeleri)"
+
+msgid "manager.users.availableRoles"
+msgstr "Mevcut Görevler"
+
+msgid "manager.users.currentRoles"
+msgstr "Geçerli Görevler"
+
+msgid "manager.users.selectRole"
+msgstr "Rolü Seç"
+
+msgid "manager.people.allEnrolledUsers"
+msgstr "Bu Yayınevine Kayıtlı Kullanıcılar"
+
+msgid "manager.people.allPresses"
+msgstr "Tüm Yayınevleri"
+
+msgid "manager.people.allSiteUsers"
+msgstr "Bu Siteden bir Kullanıcıyı bu Yayınevine kaydedin"
+
+msgid "manager.people.allUsers"
+msgstr "Tüm Kayıtlı Kullanıcılar"
+
+msgid "manager.people.confirmRemove"
+msgstr ""
+"Bu kullanıcı bu yayınevinden çıkarılsın mı? Bu işlem, kullanıcının bu "
+"yayınevindeki tüm görevlerinden kaydını silecektir."
+
+msgid "manager.people.enrollExistingUser"
+msgstr "Mevcut Bir Kullanıcıyı Yetkilendir"
+
+msgid "manager.people.enrollSyncPress"
+msgstr "Yayınevi ile"
+
+msgid "manager.people.mergeUsers.from.description"
+msgstr ""
+"Başka bir kullanıcı hesabıyla birleştirmek için bir kullanıcı seçin ("
+"örneğin, birinin iki kullanıcı hesabı olduğunda). İlk seçilen hesap "
+"silinecek ve gönderimleri, atamaları vb. ikinci hesaba aktarılacaktır."
+
+msgid "manager.people.mergeUsers.into.description"
+msgstr ""
+"Önceki kullanıcının yazarlıklarının, düzenleme atamalarının vb. aktarılacağı "
+"bir kullanıcı seçin."
+
+msgid "manager.people.syncUserDescription"
+msgstr ""
+"Kayıt eşleştirme, belirtilen yayınevinde belirtilen göreve kayıtlı tüm "
+"kullanıcıları bu yayınevinde aynı göreve kaydeder. Bu işlev, ortak bir "
+"kullanıcı grubunun (örneğin, Danışmanlar) yayınevleri arasında "
+"eşleştirilmesini sağlar."
+
+msgid "manager.people.confirmDisable"
+msgstr ""
+"Bu kullanıcı devre dışı bırakılsın mı? Bu, kullanıcının sisteme giriş "
+"yapmasını engelleyecektir.\n"
+"\n"
+"Kullanıcıya isteğe bağlı olarak, hesabının neden devre dışı bırakıldığını "
+"belirtebilirsiniz."
+
+msgid "manager.people.noAdministrativeRights"
+msgstr ""
+"Üzgünüz, bu kullanıcı üzerinde yönetici haklarınız yok. Bunun nedeni şunlar "
+"olabilir. Bunun nedeni şunlar olabilir:\n"
+"\t\t<ul>\n"
+"\t\t\t<li>Kullanıcı bir site yöneticisidir</li>\n"
+"\t\t\t<li>Kullanıcı, sizin yönetmediğiniz yayınevlerinde etkindir</li>\n"
+"\t\t</ul>\n"
+"\tBu görev bir site yöneticisi tarafından gerçekleştirilmelidir.\n"
+"\t"
+
+msgid "manager.system"
+msgstr "Sistem Ayarları"
+
+msgid "manager.system.archiving"
+msgstr "Arşivleniyor"
+
+msgid "manager.system.reviewForms"
+msgstr "Değerlendirme Formları"
+
+msgid "manager.system.readingTools"
+msgstr "Okuma Araçları"
+
+msgid "manager.system.payments"
+msgstr "Ödemeler"
+
+msgid "user.authorization.pluginLevel"
+msgstr "Bu eklentiyi yönetmek için yeterli ayrıcalığa sahip değilsiniz."
+
+msgid "manager.pressManagement"
+msgstr "Yayınevi Yönetimi"
+
+msgid "manager.setup"
+msgstr "Kurulum"
+
+msgid "manager.setup.aboutItemContent"
+msgstr "İçerik"
+
+msgid "manager.setup.addAboutItem"
+msgstr "Hakkında Öğesi Ekle"
+
+msgid "manager.setup.addChecklistItem"
+msgstr "Kontrol Listesi Öğesi Ekle"
+
+msgid "manager.setup.addItem"
+msgstr "Öğe Ekle"
+
+msgid "manager.setup.addItemtoAboutPress"
+msgstr "\"Yayınevi Hakkında\" sayfasında Görünecek Öğeyi Ekle"
+
+msgid "manager.setup.addNavItem"
+msgstr "Öğe Ekle"
+
+msgid "manager.setup.addSponsor"
+msgstr "Maddi Destekte Bulunan Kuruluş Ekle"
+
+msgid "manager.setup.announcements"
+msgstr "Duyurular"
+
+msgid "manager.setup.announcements.success"
+msgstr "Duyuru ayarları güncellendi."
+
+msgid "manager.setup.announcementsDescription"
+msgstr ""
+"Okuyucuları yayınevi haberleri ve olaylardan haberdar etmek için duyurular "
+"yayınlanabilir. Yayınlanan duyurular Duyurular sayfasında görünecektir."
+
+msgid "manager.setup.announcementsIntroduction"
+msgstr "Ek Bilgi"
+
+msgid "manager.setup.announcementsIntroduction.description"
+msgstr ""
+"Duyurular sayfasında okuyuculara gösterilmesi gereken ek bilgileri girin."
+
+msgid "manager.setup.appearInAboutPress"
+msgstr "(Yayınevi Hakkında sayfasında görünmesi için) "
+
+msgid "manager.setup.contextAbout"
+msgstr "Yayınevi Hakkında"
+
+msgid "manager.setup.contextAbout.description"
+msgstr ""
+"Okuyucuların, yazarların veya danışmanların ilgisini çekebilecek yayınevi "
+"hakkındaki her türlü bilgiyi dahil edin. Bu, açık erişim politikanızı, "
+"yayınevinin odağını ve kapsamını, maddi destekte bulunanların beyan "
+"edilmesini ve yayınevinin tarihçesini içerebilir."
+
+msgid "manager.setup.contextSummary"
+msgstr "Yayınevi Özeti"
+
+msgid "manager.setup.copyediting"
+msgstr "Sayfa Düzeni Editörleri"
+
+msgid "manager.setup.copyeditInstructions"
+msgstr "Sayfa Düzenleme Talimatları"
+
+msgid "manager.setup.copyeditInstructionsDescription"
+msgstr ""
+"Sayfa Düzenleme Talimatları, Gönderi Düzenleme aşamasında Sayfa Düzeni "
+"Editörlerine, Yazarlara ve Bölüm Editörlerine sunulacaktır. Aşağıda, "
+"Yayınevi Yöneticisi tarafından herhangi bir noktada (HTML veya düz metin "
+"olarak) düzenlenebilen veya değiştirilebilen, HTML biçiminde varsayılan bir "
+"talimatlar dizisi bulunmaktadır."
+
+msgid "manager.setup.copyrightNotice"
+msgstr "Telif Hakkı Bildirimi"
+
+msgid "manager.setup.coverage"
+msgstr "Kapsama"
+
+msgid "manager.setup.coverThumbnailsMaxHeight"
+msgstr "Kapak Resmi için En Fazla Yükseklik"
+
+msgid "manager.setup.coverThumbnailsMaxWidth"
+msgstr "Kapak Resmi için En Fazla Genişlik"
+
+msgid "manager.setup.coverThumbnailsMaxWidthHeight.description"
+msgstr ""
+"Görüntüler bu boyuttan daha büyük olduğunda küçültülecek, ancak bu boyutlara "
+"uyması için asla şişmeyecek veya gerilmeyecek."
+
+msgid "manager.setup.customizingTheLook"
+msgstr "Adım 5. Görünümü ve Hissi Özelleştirme"
+
+msgid "manager.setup.customTags"
+msgstr "Özel etiketler"
+
+msgid "manager.setup.customTagsDescription"
+msgstr ""
+"Her sayfanın başlığına eklenecek özel HTML başlık etiketleri (ör. META "
+"etiketleri)."
+
+msgid "manager.setup.details"
+msgstr "Detaylar"
+
+msgid "manager.setup.details.description"
+msgstr ""
+"Yayınevinin, ilgili kişilerin, maddi destekte bulunanların ve arama "
+"motorlarının adı."
+
+msgid "manager.setup.disableUserRegistration"
+msgstr ""
+"Basın Yöneticisi tüm kullanıcı hesaplarını kaydedecektir. Editörler veya "
+"Bölüm Editörleri, danışmanlar için kullanıcı hesaplarını kaydedebilir."
+
+msgid "manager.setup.discipline"
+msgstr "Bilim Dalı ve Alt Bilim Dalları"
+
+msgid "manager.setup.disciplineDescription"
+msgstr ""
+"Yayınevi disiplin sınırları dışına çıktığında ve/veya yazarlar çok "
+"disiplinli öğeler sunduğunda kullanışlıdır."
+
+msgid "manager.setup.disciplineExamples"
+msgstr "(Ör. Tarih; Eğitim; Sosyoloji; Psikoloji; Kültürel Çalışmalar; Hukuk)"
+
+msgid "manager.setup.disciplineProvideExamples"
+msgstr "Bu yayınevi için ilgili akademik bilim dalları örneklerini sağlayın"
+
+msgid "manager.setup.displayCurrentMonograph"
+msgstr "Mevcut kitabın içindekiler tablosunu ekleyin (varsa)."
+
+msgid "manager.setup.displayOnHomepage"
+msgstr "Ana Sayfa İçeriği"
+
+msgid "manager.setup.displayFeaturedBooks"
+msgstr "Öne çıkan kitapları ana sayfada görüntüleyin"
+
+msgid "manager.setup.displayFeaturedBooks.label"
+msgstr "Öne Çıkan Kitaplar"
+
+msgid "manager.setup.displayInSpotlight"
+msgstr "Gündemdeki kitapları ana sayfada görüntüleyin"
+
+msgid "manager.setup.displayInSpotlight.label"
+msgstr "Gündem"
+
+msgid "manager.setup.displayNewReleases"
+msgstr "Ana sayfada yeni yayınları görüntüleyin"
+
+msgid "manager.setup.displayNewReleases.label"
+msgstr "Yeni Eklenenler"
+
+msgid "manager.setup.doiPrefix"
+msgstr "DOI Ön eki"
+
+msgid "manager.setup.doiPrefixDescription"
+msgstr ""
+"DOI (Dijital Nesne Tanımlayıcı) Öneki <a href=\"http://www.crossref.org\" "
+"target=\"_blank\">CrossRef</a> tarafından atanır ve 10.xxxx biçimindedir ("
+"örn. 10.1234)."
+
+msgid "manager.setup.editorDecision"
+msgstr "Editör Kararı"
+
+msgid "manager.setup.emailBounceAddress"
+msgstr "İade Adresi"
+
+msgid "manager.setup.emailBounceAddress.description"
+msgstr ""
+"Teslim edilemeyen tüm e-postalar, bu adrese bir hata mesajı gönderilmesine "
+"neden olacaktır."
+
+msgid "manager.setup.emailBounceAddress.disabled"
+msgstr ""
+"Teslim edilemeyen e-postaları bir iade adresine göndermek için, site "
+"yöneticisinin site yapılandırma dosyasında <code>allow_envelope_sender</code>"
+" seçeneğini etkinleştirmesi gerekir. OMP belgelerinde belirtildiği gibi "
+"sunucu yapılandırması gerekebilir."
+
+msgid "manager.setup.emails"
+msgstr "E-posta Kimliği"
+
+msgid "manager.setup.emailSignature"
+msgstr "İmza"
+
+msgid "manager.setup.emailSignature.description"
+msgstr ""
+"Sistem tarafından yayınevi adına gönderilen hazır e-postaların sonuna "
+"aşağıdaki imza eklenecektir."
+
+msgid "manager.setup.enableAnnouncements.enable"
+msgstr "Duyuruları etkinleştirin"
+
+msgid "manager.setup.enableAnnouncements.description"
+msgstr ""
+"Okuyucuları haber ve etkinliklerden haberdar etmek için duyurular "
+"yayınlanabilir. Yayınlanan duyurular Duyurular sayfasında görünecektir."
+
+msgid "manager.setup.numAnnouncementsHomepage"
+msgstr "Ana Sayfada Görüntüle"
+
+msgid "manager.setup.numAnnouncementsHomepage.description"
+msgstr ""
+"Ana sayfada kaç duyuru görüntülenecek. Hiçbirini görüntülemek istemiyorsanız "
+"bunu boş bırakın."
+
+msgid "manager.setup.enablePressInstructions"
+msgstr "Bu yayınevinin sitede herkese açık olarak görünmesini etkinleştirin"
+
+msgid "manager.setup.enablePublicMonographId"
+msgstr "Yayınlanan öğeleri tanımlamak için özel tanımlayıcılar kullanılacaktır."
+
+msgid "manager.setup.enablePublicGalleyId"
+msgstr ""
+"Yayınlanan öğeler için dizgi dosyalarını (örneğin HTML veya PDF dosyaları) "
+"tanımlamak için özel tanımlayıcılar kullanılacaktır."
+
+msgid "manager.setup.enableUserRegistration"
+msgstr ""
+"Ziyaretçiler yayınevi aracılığıyla bir kullanıcı hesabı kaydedebilirler."
+
+msgid "manager.setup.focusAndScope"
+msgstr "Yayınevinin Odak Noktası ve Kapsamı"
+
+msgid "manager.setup.focusAndScope.description"
+msgstr ""
+"Yazarlara, okuyuculara ve kütüphanecilere, yayınevinin yayınlayacağı "
+"yazıların yelpazesi ve diğer öğeleri anlatın."
+
+msgid "manager.setup.focusScope"
+msgstr "Odak ve Kapsam"
+
+msgid "manager.setup.focusScopeDescription"
+msgstr "<strong>ÖRNEK HTML VERİLERİ</strong>"
+
+msgid "manager.setup.forAuthorsToIndexTheirWork"
+msgstr "Yazarların Çalışmalarını Dizinleyebilmeleri İçin"
+
+msgid "manager.setup.forAuthorsToIndexTheirWorkDescription"
+msgstr ""
+"OMP, küresel ölçekte elektronik araştırma kaynaklarına iyi dizinlenmiş "
+"erişim sağlamak için ortaya çıkan standart olan Üst Veri Toplama için <a "
+"href=\"http://www.openarchives.org/\" target=\"_blank\">Açık Arşiv "
+"Girişimi</a> Protokolüne bağlıdır. Yazarlar, gönderilerine üst veriler "
+"sağlamak için benzer bir şablon kullanacaklardır. Yayınevi Müdürü, "
+"indeksleme için bölümleri seçmeli ve yazarlara, terimleri noktalı virgülle "
+"ayırmak (örneğin, terim1; terim2) ve çalışmalarını indekslemelerine yardımcı "
+"olmak için ilgili örnekler sunmalıdır. Girişler örnek olarak \"Örn.\" veya \""
+"Örneğin\" kullanılarak tanıtılmalıdır."
+
+msgid "manager.setup.form.contactEmailRequired"
+msgstr "Temel iletişim e-postası gereklidir."
+
+msgid "manager.setup.form.contactNameRequired"
+msgstr "Temel iletişimden sorumlu kişi adı gerekli."
+
+msgid "manager.setup.form.numReviewersPerSubmission"
+msgstr "Gönderi başına danışman sayısı gereklidir."
+
+msgid "manager.setup.form.supportEmailRequired"
+msgstr "Destek e-postası gereklidir."
+
+msgid "manager.setup.form.supportNameRequired"
+msgstr "Destek sorumlusunun adı gerekli."
+
+msgid "manager.setup.generalInformation"
+msgstr "Genel bilgi"
+
+msgid "manager.setup.gettingDownTheDetails"
+msgstr "1. Adım Ayrıntıları Öğrenmek"
+
+msgid "manager.setup.guidelines"
+msgstr "Kurallar"
+
+msgid "manager.setup.preparingWorkflow"
+msgstr "Adım 3. İş akışını hazırlama"
+
+msgid "manager.setup.identity"
+msgstr "Yayınevi Kimliği"
+
+msgid "manager.setup.information"
+msgstr "Bilgi"
+
+msgid "manager.setup.information.description"
+msgstr ""
+"Kütüphaneciler ve gelecekteki muhtemel yazarlar ve okuyucular için "
+"yayınevinin kısa açıklamaları. Bilgi bloğu eklendiğinde bunlar sitenin kenar "
+"çubuğunda kullanıma sunulur."
+
+msgid "manager.setup.information.forAuthors"
+msgstr "Yazarlar İçin"
+
+msgid "manager.setup.information.forLibrarians"
+msgstr "Kütüphaneciler İçin"
+
+msgid "manager.setup.information.forReaders"
+msgstr "Okuyucular İçin"
+
+msgid "manager.setup.information.success"
+msgstr "Bu yayınevi için bilgiler güncellendi."
+
+msgid "manager.setup.institution"
+msgstr "Enstitü"
+
+msgid "manager.setup.itemsPerPage"
+msgstr "Sayfa başına öğe"
+
+msgid "manager.setup.itemsPerPage.description"
+msgstr ""
+"Sonraki öğeleri başka bir sayfada göstermeden önce bir listede gösterilecek "
+"öğe sayısını (örneğin, gönderiler, kullanıcılar veya düzenleme atamaları) "
+"sınırlayın."
+
+msgid "manager.setup.keyInfo"
+msgstr "Anahtar Bilgi"
+
+msgid "manager.setup.keyInfo.description"
+msgstr ""
+"Yayınevinizin kısa bir tanımını verin ve editörleri, yazı işleri müdürleri "
+"ve yayın kurulunuzun diğer üyelerini belirleyin."
+
+msgid "manager.setup.labelName"
+msgstr "Eiket Adı"
+
+msgid "manager.setup.layoutAndGalleys"
+msgstr "Mizanpaj Editörleri"
+
+msgid "manager.setup.layoutInstructions"
+msgstr "Mizanpaj Talimatları"
+
+msgid "manager.setup.layoutInstructionsDescription"
+msgstr ""
+"Yayınevinde yayınlanan yazıların biçimlendirilmesi için Mizanpaj Talimatları "
+"hazırlanabilir ve aşağıya HTML veya düz metin olarak girilebilir. Her "
+"gönderinin Düzenleme sayfasında Mizanpaj Editörü ve Bölüm Editörüne "
+"sunulacaktır. (Her yayınevi kendi dosya biçimlerini, kaynakça "
+"standartlarını, stil sayfalarını vb. kullanabileceğinden, varsayılan bir "
+"talimat dizisi sağlanmamıştır.)"
+
+msgid "manager.setup.layoutTemplates"
+msgstr "Mizanpaj Şablonları"
+
+msgid "manager.setup.layoutTemplatesDescription"
+msgstr ""
+"Şablonlar, Mizanpaj Editörleri ve Prova Dizgi okuyucuları için bir kılavuz "
+"görevi görmesi için herhangi bir dosya biçimi (örn., pdf, doc, vb.) "
+"kullanılarak yayınevinde yayınlanan standart biçimlerin her biri için (örn. "
+"monografi, kitap incelemesi, vb.) yazı tipi, boyut, kenar boşluklarını vb. "
+"belirten ek açıklamalarla birlikte Mizanpajda görünecek şekilde yüklenebilir."
+
+msgid "manager.setup.layoutTemplates.file"
+msgstr "Şablon Dosyası"
+
+msgid "manager.setup.layoutTemplates.title"
+msgstr "Başlık"
+
+msgid "manager.setup.lists"
+msgstr "Listeler"
+
+msgid "manager.setup.lists.success"
+msgstr "Liste ayarları güncellendi."
+
+msgid "manager.setup.look"
+msgstr "Bak & Hisset"
+
+msgid "manager.setup.look.description"
+msgstr ""
+"Ana sayfa başlığı, içerik, yayınevi başlığı, alt bilgi, gezinme çubuğu ve "
+"stil sayfası."
+
+msgid "manager.setup.settings"
+msgstr "Ayarlar"
+
+msgid "manager.setup.management.description"
+msgstr ""
+"Erişim ve güvenlik, planlama, duyurular, sayfa düzenleme, mizanpaj ve prova "
+"dizgi kontrolü."
+
+msgid "manager.setup.managementOfBasicEditorialSteps"
+msgstr "Temel Editörlük Adımlarının Yönetimi"
+
+msgid "manager.setup.managingPublishingSetup"
+msgstr "Kurulumun Yönetim ve Yayınlanması"
+
+msgid "manager.setup.managingThePress"
+msgstr "Adım 4. Ayarları Yönetme"
+
+msgid "manager.setup.masthead.success"
+msgstr "Bu yayınevi için künye ayrıntıları güncellendi."
+
+msgid "manager.setup.noImageFileUploaded"
+msgstr "Hiçbir resim dosyası yüklenmedi."
+
+msgid "manager.setup.noStyleSheetUploaded"
+msgstr "Hiçbir stil sayfası yüklenmedi."
+
+msgid "manager.setup.note"
+msgstr "Not"
+
+msgid "manager.setup.notifyAllAuthorsOnDecision"
+msgstr ""
+"Yazara Bildirim e-postasını kullanırken, yalnızca gönderen kullanıcının "
+"değil, birden çok yazarlı gönderimler için tüm ortak yazarların e-posta "
+"adreslerini dahil edin."
+
+msgid "manager.setup.noUseCopyeditors"
+msgstr ""
+"Sayfa düzenlemesi, gönderiye atanan bir Editör veya Bölüm Editörü tarafından "
+"yapılacaktır."
+
+msgid "manager.setup.noUseLayoutEditors"
+msgstr ""
+"Gönderiye atanan Editör veya Bölüm Editörü HTML, PDF vb. dosyaları "
+"hazırlayacaktır."
+
+msgid "manager.setup.noUseProofreaders"
+msgstr ""
+"Gönderiye atanan bir Editör veya Bölüm Editörü baskı dizgilerini kontrol "
+"edecektir."
+
+msgid "manager.setup.numPageLinks"
+msgstr "Sayfa bağlantıları"
+
+msgid "manager.setup.numPageLinks.description"
+msgstr ""
+"Listedeki sonraki sayfalarda görüntülenecek bağlantıların sayısını "
+"sınırlayın."
+
+msgid "manager.setup.onlineAccessManagement"
+msgstr "Yayınevi İçeriğine Erişim"
+
+msgid "manager.setup.onlineIssn"
+msgstr "Çevrimiçi ISSN"
+
+msgid "manager.setup.policies"
+msgstr "Politikalar"
+
+msgid "manager.setup.policies.description"
+msgstr ""
+"Odaklanma, danışman değerlendirmesi, bölümler, gizlilik, güvenlik ve öğeler "
+"hakkında ek bilgiler."
+
+msgid "manager.setup.privacyStatement.success"
+msgstr "Gizlilik bildirimi güncellendi."
+
+msgid "manager.setup.appearanceDescription"
+msgstr ""
+"Bu sayfadan, başlık ve alt bilgi öğeleri, yayınevi stili ve teması ve bilgi "
+"listelerinin kullanıcılara nasıl sunulduğu dahil olmak üzere yayınevi "
+"görünümünün çeşitli bileşenleri yapılandırılabilir."
+
+msgid "manager.setup.pressDescription"
+msgstr "Yayınevi Özeti"
+
+msgid "manager.setup.pressDescription.description"
+msgstr "Yayınevinizin kısa bir açıklaması."
+
+msgid "manager.setup.aboutPress"
+msgstr "Yayınevi Hakkında"
+
+msgid "manager.setup.aboutPress.description"
+msgstr ""
+"Okuyucuların, yazarların veya danışmanların ilgisini çekebilecek yayınevi "
+"hakkındaki her türlü bilgiyi dahil edin. Bu, açık erişim politikanızı, "
+"yayınevinin odağını ve kapsamını, telif hakkı bildirimini, maddi destekte "
+"bulunanların açıklanmasını, basın tarihçesini ve bir gizlilik bildirimini "
+"içerebilir."
+
+msgid "manager.setup.pressArchiving"
+msgstr "Yayın Arşivleme"
+
+msgid "manager.setup.homepageContent"
+msgstr "Yayınevi Ana Sayfa İçeriği"
+
+msgid "manager.setup.homepageContentDescription"
+msgstr ""
+"Yayınevi ana sayfası varsayılan olarak gezinme bağlantılarından oluşur. Ek "
+"ana sayfa içeriği, aşağıdaki seçeneklerden belirtilen sırayla görünecek olan "
+"biri veya tümü kullanılarak eklenebilir."
+
+msgid "manager.setup.pressHomepageContent"
+msgstr "Yayınevi Ana Sayfa İçeriği"
+
+msgid "manager.setup.pressHomepageContentDescription"
+msgstr ""
+"Yayınevi ana sayfası varsayılan olarak gezinme bağlantılarından oluşur. Ek "
+"ana sayfa içeriği, aşağıdaki seçeneklerden belirtilen sırayla görünecek olan "
+"biri veya tümü kullanılarak eklenebilir."
+
+msgid "manager.setup.contextInitials"
+msgstr "Yayınevinin Baş Harfleri"
+
+msgid "manager.setup.layout"
+msgstr "Yayınevi Sayfa Düzeni"
+
+msgid "manager.setup.pageHeader"
+msgstr "Yayınevi Sayfa Başlığı"
+
+msgid "manager.setup.pressPolicies"
+msgstr "Adım 2. Yayınevi Politikaları"
+
+msgid "manager.setup.pressSetup"
+msgstr "Yayınevi Kurulumu"
+
+msgid "manager.setup.pressSetupUpdated"
+msgstr "Yayınevi kurulumunuz güncellendi."
+
+msgid "manager.setup.styleSheetInvalid"
+msgstr "Geçersiz stil sayfası biçimi. Kabul edilen biçim .css şeklindedir."
+
+msgid "manager.setup.pressTheme"
+msgstr "Yayınevi Teması"
+
+msgid "manager.setup.pressThumbnail"
+msgstr "Yayınevinin Minik Resmi"
+
+msgid "manager.setup.pressThumbnail.description"
+msgstr ""
+"Yayınevi listelerinde kullanılabilecek yayınevinin küçük bir logosu veya "
+"temsili resmi."
+
+msgid "manager.setup.contextTitle"
+msgstr "Yayınevi Adı"
+
+msgid "manager.setup.printIssn"
+msgstr "ISSN'yi yazdır"
+
+msgid "manager.setup.proofingInstructions"
+msgstr "Prova Baskı Talimatları"
+
+msgid "manager.setup.proofingInstructionsDescription"
+msgstr ""
+"Prova dizgi okuma talimatları, Gönderi Düzenleme aşamasında Prova dizgi "
+"okuyucuları, Yazarlar, Mizanpaj Editörleri ve Bölüm Editörlerinin "
+"kullanımına sunulacaktır. Aşağıda, Yayınevi Yöneticisi tarafından herhangi "
+"bir noktada (HTML veya düz metin olarak) düzenlenebilen veya "
+"değiştirilebilen, HTML biçiminde varsayılan bir dizi talimat bulunmaktadır."
+
+msgid "manager.setup.proofreading"
+msgstr "Prova Dizgi Okuyucuları"
+
+msgid "manager.setup.provideRefLinkInstructions"
+msgstr "Mizanpaj Editörlerine talimatları sağlayın."
+
+msgid "manager.setup.publicationScheduleDescription"
+msgstr ""
+"Yayın öğeleri, kendi İçindekiler Tablosu ile birlikte bir kitabın parçası "
+"olarak toplu olarak yayınlanabilir. Bunun yerine, tek tek öğeler \"mevcut\" "
+"cildin İçindekiler Tablosuna eklenerek hazır olur olmaz yayınlanabilir. "
+"Okurlara Yayınevi Hakkında sayfasında bu yayınevinin kullanacağı sistem ve "
+"beklenen yayın sıklığı hakkında bir açıklama sağlayın."
+
+msgid "manager.setup.publisher"
+msgstr "Yayımcı"
+
+msgid "manager.setup.publisherDescription"
+msgstr ""
+"Eseri yayınlayan kuruluşun adı Yayınevi Hakkında bölümünde yer alacaktır."
+
+msgid "manager.setup.referenceLinking"
+msgstr "Kaynak İlişkilendirme"
+
+msgid "manager.setup.refLinkInstructions.description"
+msgstr "Kaynak İlişkilendirme için Mizanpaj Talimatları"
+
+msgid "manager.setup.restrictMonographAccess"
+msgstr ""
+"Açık erişim içeriğini görüntülemek için kullanıcıların kayıt olması ve "
+"oturum açması gerekir."
+
+msgid "manager.setup.restrictSiteAccess"
+msgstr ""
+"Yayınevi sitesini görüntülemek için kullanıcıların kayıt olması ve oturum "
+"açması gerekir."
+
+msgid "manager.setup.reviewGuidelines"
+msgstr "Dış Değerlendirme Yönergeleri"
+
+msgid "manager.setup.reviewGuidelinesDescription"
+msgstr ""
+"Dışarıdan danışmanlara, bir gönderinin yayınevinde yayınlanmaya uygun olup "
+"olmadığına karar vermek için, etkili ve yararlı bir inceleme hazırlamak için "
+"talimatlar içerebilecek kriterler sağlayın. Danışmanlar, yazar ve editöre "
+"yönelik yorumların yanı sıra yalnızca editöre yönelik ayrı yorumlar sağlama "
+"fırsatına sahip olacaklar."
+
+msgid "manager.setup.internalReviewGuidelines"
+msgstr "Dahili Değerlendirme Yönergeleri"
+
+msgid "manager.setup.reviewOptions"
+msgstr "Değerlendirme Seçenekleri"
+
+msgid "manager.setup.reviewOptions.automatedReminders"
+msgstr "Otomatik E-posta Hatırlatıcıları"
+
+msgid "manager.setup.reviewOptions.automatedRemindersDisabled"
+msgstr ""
+"Bu seçenekleri etkinleştirmek için, site yöneticisinin OMP yapılandırma "
+"dosyasında <tt>zamanlanmış görevler</tt> seçeneğini etkinleştirmesi gerekir. "
+"OMP belgelerinde belirtildiği gibi, bu işlevi desteklemek için ek sunucu "
+"yapılandırması gerekebilir (bu tüm sunucularda mümkün olmayabilir)."
+
+msgid "manager.setup.reviewOptions.onQuality"
+msgstr ""
+"Editörler, her incelemeden sonra danışmanları beş puanlık bir kalite "
+"ölçeğine göre derecelendirecektir."
+
+msgid "manager.setup.reviewOptions.restrictReviewerFileAccess"
+msgstr "Dosya Erişimini Kısıtla"
+
+msgid "manager.setup.reviewOptions.restrictReviewerFileAccess.description"
+msgstr ""
+"Danışmanlar, gönderi dosyasına ancak değerlendirmeyi kabul ettikten sonra "
+"erişebilirler."
+
+msgid "manager.setup.reviewOptions.reviewerAccess"
+msgstr "Danışman Erişimi"
+
+msgid "manager.setup.reviewOptions.reviewerAccessKeysEnabled"
+msgstr "Tek Tıkla Danışman Erişimi"
+
+msgid "manager.setup.reviewOptions.reviewerAccessKeysEnabled.description"
+msgstr ""
+"Danışmanlara, e-posta davetinde oturum açmadan incelemeye erişmelerine "
+"olanak tanıyan güvenli bir bağlantı gönderilebilir. Diğer sayfalara erişim, "
+"oturum açmalarını gerektirir."
+
+msgid "manager.setup.reviewOptions.reviewerAccessKeysEnabled.label"
+msgstr "E-posta davetiyesine danışmanlara yönelik güvenli bir bağlantı ekleyin."
+
+msgid "manager.setup.reviewOptions.reviewerRatings"
+msgstr "Danışman Puanları"
+
+msgid "manager.setup.reviewOptions.reviewerReminders"
+msgstr "Danışman Hatırlatıcıları"
+
+msgid "manager.setup.reviewPolicy"
+msgstr "Değerlendirme Politikası"
+
+msgid "manager.setup.reviewProcess"
+msgstr "Danışman Değerlendirme Süreci"
+
+msgid "manager.setup.reviewProcessDescription"
+msgstr ""
+"OMP, inceleme sürecini yönetmek için iki modeli destekler. Standart "
+"Değerlendirme Süreci, danışmanları süreç boyunca adım adım yol gösterdiği, "
+"her gönderi için eksiksiz bir inceleme geçmişi sağladığı ve otomatik "
+"hatırlatma bildiriminden ve gönderimler için standart önerilerden "
+"yararlandığı için önerilir (Kabul Et; Düzeltme Sonrası Kabul Et; "
+"Değerlendirmeye Gönder; Başka bir yerde Gönder; Reddet; Yorumlara bakın).<br "
+"/><br /> Aşağıdakilerden birini seçin:"
+
+msgid "manager.setup.reviewProcessEmail"
+msgstr "E-posta Eki Değerlendirme Süreci"
+
+msgid "manager.setup.reviewProcessStandard"
+msgstr "Standart Değerlendirme Süreci"
+
+msgid "manager.setup.reviewProcessStandardDescription"
+msgstr ""
+"Editörler, seçili Danışmanlara gönderinin başlığını ve özetini e-posta ile "
+"gönderecek ve incelemeyi tamamlamak için yayınevi web sitesinde oturum "
+"açmaları için bir davet gönderecektir. Danışmanlar değerlendirme yapmayı "
+"kabul etmek, gönderimleri indirmek, yorumlarını göndermek ve bir öneri "
+"seçmek için yayınevi web sitesine girerler."
+
+msgid "manager.setup.searchDescription.description"
+msgstr ""
+"Arama sonuçlarında yayınevini listelerken arama motorlarının "
+"görüntüleyebileceği yayınevine ait kısa bir açıklama (50-300 karakter) "
+"sağlayın."
+
+msgid "manager.setup.searchEngineIndexing"
+msgstr "Fihristte Ara"
+
+msgid "manager.setup.searchEngineIndexing.description"
+msgstr ""
+"Google gibi arama motorlarının sitenizi keşfetmesine ve görüntülemesine "
+"yardımcı olun. <a href=\"{$sitemapUrl}\" target=\"_blank\">Site "
+"haritanızı</a> göndermeniz tavsiye edilir."
+
+msgid "manager.setup.searchEngineIndexing.success"
+msgstr "Arama motoru dizin ayarları güncellendi."
+
+msgid "manager.setup.sectionsAndSectionEditors"
+msgstr "Bölümler ve Bölüm Editörleri"
+
+msgid "manager.setup.sectionsDefaultSectionDescription"
+msgstr ""
+"(Bölümler eklenmemişse öğeler varsayılan olarak Yazılar bölümüne gönderilir.)"
+
+msgid "manager.setup.securitySettings"
+msgstr "Erişim ve Güvenlik Ayarları"
+
+msgid "manager.setup.securitySettings.note"
+msgstr ""
+"Güvenlikle ve erişimle ilgili diğer seçenekler <a href=\""
+"{$accessAndSecurityUrl}\" target=\"_blank\" class=\"action\">Erişim ve "
+"Güvenlik</a> sayfasından yapılandırılabilir."
+
+msgid "manager.setup.selectEditorDescription"
+msgstr "Editöryal süreç boyunca görecek yayınevi editörü."
+
+msgid "manager.setup.showGalleyLinksDescription"
+msgstr "Her zaman dizgi bağlantılarını gösterin ve sınırlı erişimi belirtin."
+
+msgid "manager.setup.siteAccess.view"
+msgstr "Site Erişimi"
+
+msgid "manager.setup.siteAccess.viewContent"
+msgstr "Yazı İçeriğini Görüntüle"
+
+msgid "manager.setup.stepsToPressSite"
+msgstr "Bir Yayınevi Web Sitesine Giden Beş Adım"
+
+msgid "manager.setup.subjectExamples"
+msgstr ""
+"(Örneğin, Fotosentez; Kara Delikler; Dört Renkli Harita Problemi; Bayes "
+"Teorisi)"
+
+msgid "manager.setup.subjectKeywordTopic"
+msgstr "Anahtar Kelimeler"
+
+msgid "manager.series.indexed"
+msgstr "Dizinlenmiş"
+
+msgid "manager.setup.pageHeaderDescription"
+msgstr "Sayfa Başlığı Tanımı"
+
+msgid "manager.setup.sectionsDescription"
+msgstr ""
+"Yayınevi için bölümler (örn. Yazılar, Kitap İncelemeleri, vb.) oluşturmak "
+"veya değiştirmek için Bölüm Yönetimi'ne gidin.<br /><br /> Öğeleri "
+"yayınevine gönderen yazarlar belirleyecek…"
+
+msgid "manager.setup.selectSectionDescription"
+msgstr "Öğenin değerlendirileceği yayınevi bölümü."
