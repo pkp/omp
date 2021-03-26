@@ -83,6 +83,10 @@ lib/pkp/lib/vendor/sebastian/global-state/tests						\
 lib/pkp/lib/vendor/sebastian/comparator/tests						\
 lib/pkp/lib/vendor/sebastian/diff/tests							\
 lib/pkp/lib/vendor/oyejorge/less.php/test						\
+lib/pkp/lib/vendor/dragonmantank/cron-expression/tests/					\
+lib/pkp/lib/vendor/cweagans/composer-patches/tests					\
+lib/pkp/lib/vendor/moxiecode/plupload/examples/						\
+lib/pkp/lib/vendor/swiftmailer/swiftmailer/tests/					\
 lib/pkp/js/lib/pnotify/build-tools							\
 lib/pkp/lib/vendor/alex198710/pnotify/.git						\
 node_modules										\
