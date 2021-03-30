@@ -135,9 +135,12 @@ class ChapterForm extends Form {
 	 * @copydoc Form::fetch()
 	 */
 	function fetch($request, $template = null, $display = false) {
-
+		$templateMgr = TemplateManager::getManager($request);
 		$chapterAuthorOptions = [];
 		$selectedChapterAuthors = [];
+		$chapterFileOptions = [];
+		$selectedChapterFiles = [];
+
 		if ($this->getChapter()) {
 			$selectedChapterAuthors = DAORegistry::getDAO('ChapterAuthorDAO')->getAuthors($this->getPublication()->getId(), $this->getChapter()->getId())->toArray();
 			foreach ($selectedChapterAuthors as $selectedChapterAuthor) {
@@ -157,7 +160,6 @@ class ChapterForm extends Form {
 			}
 		}
 
-		$templateMgr = TemplateManager::getManager($request);
 		$templateMgr->assign([
 			'chapterAuthorOptions' => $chapterAuthorOptions,
 			'selectedChapterAuthors' => array_map(function($author) { return $author->getId(); }, $selectedChapterAuthors),
@@ -165,22 +167,25 @@ class ChapterForm extends Form {
 
 		if ($this->getChapter()) {
 			$submissionFiles = Services::get('submissionFile')->getMany(['submissionIds' => [$this->getMonograph()->getId()]]);
-			$chapterFileOptions = [];
-			$selectedChapterFiles = [];
 			foreach ($submissionFiles as $submissionFile) {
-				if (!$submissionFile->getData('chapterId') || $submissionFile->getData('chapterId') == $this->getChapter()->getId()) {
-					$chapterFileOptions[$submissionFile->getId()] = $submissionFile->getLocalizedData('name');
-				}
 				if ($submissionFile->getData('chapterId') == $this->getChapter()->getId()) {
 					$selectedChapterFiles[] = $submissionFile->getId();
 				}
 			}
-			$templateMgr = TemplateManager::getManager($request);
-			$templateMgr->assign([
-				'chapterFileOptions' => $chapterFileOptions,
-				'selectedChapterFiles' => $selectedChapterFiles,
-			]);
 		}
+
+		$submissionFiles = Services::get('submissionFile')->getMany(['submissionIds' => [$this->getMonograph()->getId()]]);
+		foreach ($submissionFiles as $submissionFile) {
+			// Include in list if not used in another chapter OR already selected to this chapter
+			if (!$submissionFile->getData('chapterId') || in_array($submissionFile->getId(), $selectedChapterFiles)) {
+				$chapterFileOptions[$submissionFile->getId()] = $submissionFile->getLocalizedData('name');
+			}
+		}
+		
+		$templateMgr->assign([
+			'chapterFileOptions' => $chapterFileOptions,
+			'selectedChapterFiles' => $selectedChapterFiles,
+		]);
 
 		return parent::fetch($request, $template, $display);
 	}
@@ -202,7 +207,6 @@ class ChapterForm extends Form {
 
 		$chapterDao = DAORegistry::getDAO('ChapterDAO'); /* @var $chapterDao ChapterDAO */
 		$chapter = $this->getChapter();
-		$isEdit = !!$chapter;
 
 		if ($chapter) {
 			$chapter->setTitle($this->getData('title'), null); //Localized
@@ -233,10 +237,8 @@ class ChapterForm extends Form {
 		}
 
 		// Save the chapter file associations
-		if ($isEdit) {
-			$selectedFiles = (array) $this->getData('files');
-			DAORegistry::getDAO('SubmissionFileDAO')->updateChapterFiles($selectedFiles, $this->getChapter()->getId());
-		}
+		$selectedFiles = (array) $this->getData('files');
+		DAORegistry::getDAO('SubmissionFileDAO')->updateChapterFiles($selectedFiles, $this->getChapter()->getId());
 
 		return true;
 	}
