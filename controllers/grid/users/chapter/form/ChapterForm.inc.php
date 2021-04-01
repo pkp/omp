@@ -160,29 +160,25 @@ class ChapterForm extends Form {
 			}
 		}
 
-		$templateMgr->assign([
-			'chapterAuthorOptions' => $chapterAuthorOptions,
-			'selectedChapterAuthors' => array_map(function($author) { return $author->getId(); }, $selectedChapterAuthors),
-		]);
-
-		if ($this->getChapter()) {
-			$submissionFiles = Services::get('submissionFile')->getMany(['submissionIds' => [$this->getMonograph()->getId()]]);
-			foreach ($submissionFiles as $submissionFile) {
-				if ($submissionFile->getData('chapterId') == $this->getChapter()->getId()) {
-					$selectedChapterFiles[] = $submissionFile->getId();
-				}
-			}
-		}
-
 		$submissionFiles = Services::get('submissionFile')->getMany(['submissionIds' => [$this->getMonograph()->getId()]]);
 		foreach ($submissionFiles as $submissionFile) {
+			$isIncluded = false;
+
+			if ($this->getChapter() && $submissionFile->getData('chapterId') == $this->getChapter()->getId()) {
+				$selectedChapterFiles[] = $submissionFile->getId();
+				$isIncluded = true;
+			}
+
 			// Include in list if not used in another chapter OR already selected to this chapter
-			if (!$submissionFile->getData('chapterId') || in_array($submissionFile->getId(), $selectedChapterFiles)) {
+			if (!$submissionFile->getData('chapterId') || $isIncluded) {
 				$chapterFileOptions[$submissionFile->getId()] = $submissionFile->getLocalizedData('name');
 			}
+
 		}
 		
 		$templateMgr->assign([
+			'chapterAuthorOptions' => $chapterAuthorOptions,
+			'selectedChapterAuthors' => array_map(function($author) { return $author->getId(); }, $selectedChapterAuthors),
 			'chapterFileOptions' => $chapterFileOptions,
 			'selectedChapterFiles' => $selectedChapterFiles,
 		]);
