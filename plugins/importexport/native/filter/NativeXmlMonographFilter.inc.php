@@ -36,26 +36,6 @@ class NativeXmlMonographFilter extends NativeXmlSubmissionFilter {
 	}
 
 	/**
-	 * @see Filter::process()
-	 * @param $document DOMDocument|string
-	 * @return array Array of imported documents
-	 */
-	function &process(&$document) {
-		$importedObjects =& parent::process($document);
-
-		// Index imported content
-		$monographSearchIndex = Application::getSubmissionSearchIndex();
-		foreach ($importedObjects as $submission) {
-			assert(is_a($submission, 'Submission'));
-			$monographSearchIndex->submissionMetadataChanged($submission);
-			$monographSearchIndex->submissionFilesChanged($submission);
-		}
-		$monographSearchIndex->submissionChangesFinished();
-
-		return $importedObjects;
-	}
-
-	/**
 	 * Populate the submission object from the node
 	 * @param $submission Submission
 	 * @param $node DOMElement
