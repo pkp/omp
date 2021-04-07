@@ -195,10 +195,10 @@ msgid "grid.catalogEntry.isbn"
 msgstr "ISBN"
 
 msgid "grid.catalogEntry.isbn13.description"
-msgstr "ISBN 13, for example 978-951-98548-9-2"
+msgstr "A 13-digit ISBN code, such as 978-951-98548-9-2."
 
 msgid "grid.catalogEntry.isbn10.description"
-msgstr "ISBN 10, for example 951-98548-9-4"
+msgstr "A 10-digit ISBN code, such as 951-98548-9-4."
 
 msgid "grid.catalogEntry.monographRequired"
 msgstr "A monograph id is required."
