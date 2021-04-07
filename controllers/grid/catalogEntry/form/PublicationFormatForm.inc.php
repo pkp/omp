@@ -199,18 +199,10 @@ class PublicationFormatForm extends Form {
 			$representationId = $publicationFormat->getId();
 		} else {
 			$representationId = $publicationFormatDao->insertObject($publicationFormat);
-			// log the creation of the format.
-			import('lib.pkp.classes.log.SubmissionLog');
-			import('classes.log.SubmissionEventLogEntry');
-			SubmissionLog::logEvent(Application::get()->getRequest(), $this->getMonograph(), SUBMISSION_LOG_PUBLICATION_FORMAT_CREATE, 'submission.event.publicationFormatCreated', array('formatName' => $publicationFormat->getLocalizedName()));
 		}
 
-
-		// Save ISBN identification code
-
+		// Remove existing ISBN-10 or ISBN-13 code
 		$identificationCodeDao = DAORegistry::getDAO('IdentificationCodeDAO'); /* @var $identificationCodeDao IdentificationCodeDAO */
-
-		// Remove existing ISBN-10 or ISBN-13 code 
 		$identificationCodes = $identificationCodeDao->getByPublicationFormatId($representationId);
 		while ($identificationCode = $identificationCodes->next()) {
 			if ($identificationCode->getCode() == "02" || $identificationCode->getCode() == "15") {
@@ -218,13 +210,13 @@ class PublicationFormatForm extends Form {
 			}
 		}
 
-		// Add new ISBN codes
+		// Add new ISBN-10 or ISBN-13 codes
 		if ($this->getData('isbn10') || $this->getData('isbn13')){
 
+			$isbnValues = [];
 			if ($this->getData('isbn10')) { $isbnValues['02'] = $this->getData('isbn10'); }
 			if ($this->getData('isbn13')) { $isbnValues['15'] = $this->getData('isbn13'); }
 
-			// Add a new ISBN Codes
 			foreach ($isbnValues as $isbnCode => $isbnValue) {
 				$identificationCode = $identificationCodeDao->newDataObject();
 				$identificationCode->setPublicationFormatId($representationId);
@@ -233,6 +225,13 @@ class PublicationFormatForm extends Form {
 				$identificationCodeDao->insertObject($identificationCode);
 			}
 
+		}
+
+		if (!$existingFormat) {
+			// log the creation of the format.
+			import('lib.pkp.classes.log.SubmissionLog');
+			import('classes.log.SubmissionEventLogEntry');
+			SubmissionLog::logEvent(Application::get()->getRequest(), $this->getMonograph(), SUBMISSION_LOG_PUBLICATION_FORMAT_CREATE, 'submission.event.publicationFormatCreated', array('formatName' => $publicationFormat->getLocalizedName()));
 		}
 
 		return $representationId;
