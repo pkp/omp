@@ -330,7 +330,6 @@ class ManageSpotlightsGridHandler extends GridHandler {
 		}
 
 		if (!empty($matches)) {
-			$itemList[] = array('label' => PKPString::strtoupper(__('submission.monograph')), 'value' => '');
 			$itemList = array_merge($itemList, $matches);
 		}
 
@@ -345,7 +344,6 @@ class ManageSpotlightsGridHandler extends GridHandler {
 		}
 
 		if (!empty($matches)) {
-			$itemList[] = array('label' => PKPString::strtoupper(__('manager.series.book')), 'value' => '');
 			$itemList = array_merge($itemList, $matches);
 		}
 

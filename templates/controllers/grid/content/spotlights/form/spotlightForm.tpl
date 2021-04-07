@@ -26,12 +26,12 @@
 		{if $spotlight}
 			<input type="hidden" name="spotlightId" value="{$spotlight->getId()|escape}" />
 		{/if}
-
-		{fbvFormSection for="title"}
-			{fbvElement type="autocomplete" id="assocId" required="true" value=$assocTitle autocompleteValue=$assocId label="grid.content.spotlights.form.item" autocompleteUrl=$addSpotlightItemUrl size=$fbvStyles.size.MEDIUM inline="true" disableSync="true"}
-			{fbvElement type="text" multilingual="true" id="title" required="true" label="grid.content.spotlights.form.title" value=$title maxlength="255" size=$fbvStyles.size.MEDIUM inline="true"}
+		{fbvFormSection label="grid.content.spotlights.form.item" for="assocId" required="true"}
+			{fbvElement type="autocomplete" name="assocId" id="assocId" required="true" value=$assocTitle autocompleteValue=$assocId  autocompleteUrl=$addSpotlightItemUrl size=$fbvStyles.size.LARGE  disableSync="true"}
 		{/fbvFormSection}
-
+		{fbvFormSection label="grid.content.spotlights.form.title" for="title" required="true"}
+			{fbvElement type="text" multilingual="true" name="title" id="title" required="true" value=$title maxlength="255" size=$fbvStyles.size.LARGE}
+		{/fbvFormSection}
 		{fbvFormSection label="common.description" for="description"}
 			{fbvElement type="textarea" multilingual=true name="description" id="description" value=$description rich=true height=$fbvStyles.height.SHORT}
 		{/fbvFormSection}
