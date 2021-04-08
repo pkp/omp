@@ -105,10 +105,25 @@ class PublicationFormatForm extends Form {
 		$format = $this->getPublicationFormat();
 
 		if ($format) {
+			$isbn10 = "";
+			$isbn13 = "";
+			$identificationCodeDao = DAORegistry::getDAO('IdentificationCodeDAO'); /* @var $identificationCodeDao IdentificationCodeDAO */
+			$identificationCodes = $identificationCodeDao->getByPublicationFormatId($format->getId());
+			while ($identificationCode = $identificationCodes->next()) {
+				if ($identificationCode->getCode() == "02"){
+					$isbn10 = $identificationCode->getValue();
+				}
+				if ($identificationCode->getCode() == "15") {
+					$isbn13 = $identificationCode->getValue();					
+				}
+			}
+
 			$this->_data = array(
 				'entryKey' => $format->getEntryKey(),
 				'name' => $format->getName(null),
 				'isPhysicalFormat' => $format->getPhysicalFormat()?true:false,
+				'isbn10' => $isbn10,
+				'isbn13' => $isbn13,
 				'remoteURL' => $format->getRemoteURL(),
 				'urlPath' => $format->getData('urlPath'),
 			);
@@ -144,6 +159,8 @@ class PublicationFormatForm extends Form {
 			'name',
 			'entryKey',
 			'isPhysicalFormat',
+			'isbn10',
+			'isbn13',
 			'remoteURL',
 			'urlPath',
 		));
@@ -182,6 +199,35 @@ class PublicationFormatForm extends Form {
 			$representationId = $publicationFormat->getId();
 		} else {
 			$representationId = $publicationFormatDao->insertObject($publicationFormat);
+		}
+
+		// Remove existing ISBN-10 or ISBN-13 code
+		$identificationCodeDao = DAORegistry::getDAO('IdentificationCodeDAO'); /* @var $identificationCodeDao IdentificationCodeDAO */
+		$identificationCodes = $identificationCodeDao->getByPublicationFormatId($representationId);
+		while ($identificationCode = $identificationCodes->next()) {
+			if ($identificationCode->getCode() == "02" || $identificationCode->getCode() == "15") {
+				$identificationCodeDao->deleteById($identificationCode->getId());					
+			}
+		}
+
+		// Add new ISBN-10 or ISBN-13 codes
+		if ($this->getData('isbn10') || $this->getData('isbn13')){
+
+			$isbnValues = [];
+			if ($this->getData('isbn10')) { $isbnValues['02'] = $this->getData('isbn10'); }
+			if ($this->getData('isbn13')) { $isbnValues['15'] = $this->getData('isbn13'); }
+
+			foreach ($isbnValues as $isbnCode => $isbnValue) {
+				$identificationCode = $identificationCodeDao->newDataObject();
+				$identificationCode->setPublicationFormatId($representationId);
+				$identificationCode->setCode($isbnCode);
+				$identificationCode->setValue($isbnValue);
+				$identificationCodeDao->insertObject($identificationCode);
+			}
+
+		}
+
+		if (!$existingFormat) {
 			// log the creation of the format.
 			import('lib.pkp.classes.log.SubmissionLog');
 			import('classes.log.SubmissionEventLogEntry');

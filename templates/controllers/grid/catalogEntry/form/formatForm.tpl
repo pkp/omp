@@ -45,6 +45,10 @@
 		{fbvFormSection id="urlPathSection" title="publication.urlPath"}
 			{fbvElement type="text" label="publication.urlPath.description" value=$urlPath id="urlPath" size=$fbvStyles.size.MEDIUM inline=true}
 		{/fbvFormSection}
+		{fbvFormSection for="isbn" title="grid.catalogEntry.isbn"}
+			{fbvElement type="text" label="grid.catalogEntry.isbn13.description" value=$isbn13 id="isbn13" size=$fbvStyles.size.MEDIUM inline=true}
+			{fbvElement type="text" label="grid.catalogEntry.isbn10.description" value=$isbn10 id="isbn10" size=$fbvStyles.size.MEDIUM inline=true}
+		{/fbvFormSection}
 	{/fbvFormArea}
 	<p><span class="formRequired">{translate key="common.requiredField"}</span></p>
 	{fbvFormButtons}
