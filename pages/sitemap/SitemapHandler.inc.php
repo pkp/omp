@@ -29,7 +29,7 @@ class SitemapHandler extends PKPSitemapHandler {
 
 		// Catalog
 		$root->appendChild($this->_createUrlTree($doc, $request->url($press->getPath(), 'catalog')));
-
+		import('lib.pkp.classes.submission.PKPSubmission'); // STATUS_PUBLISHED
 		$submissionsIterator = Services::get('submission')->getMany(['status' => STATUS_PUBLISHED, 'contextId' => $pressId, 'count' => 1000]);
 		foreach ($submissionsIterator as $submission) {
 			// Book
@@ -41,9 +41,12 @@ class SitemapHandler extends PKPSitemapHandler {
 				// Consider only available publication formats
 				if ($format->getIsAvailable()) {
 					// Consider only available publication format files
-					$submissionDao = DAORegistry::getDAO('SubmissionDAO'); /* @var $submissionDao SubmissionDAO */
 					$availableFiles = array_filter(
-						$submissionDao->getLatestRevisionsByAssocId(ASSOC_TYPE_PUBLICATION_FORMAT, $format->getId(), $submission->getId()),
+						iterator_to_array(Services::get('submissionFile')->getMany([
+							'assocTypes' => [ASSOC_TYPE_PUBLICATION_FORMAT],
+							'assocIds' => [$format->getId()],
+							'submissionIds' => [$submission->getId()],
+						])),
 						function($a) {
 							return $a->getDirectSalesPrice() !== null;
 						}
