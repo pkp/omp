@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
-"PO-Revision-Date: 2021-01-16 12:53+0000\n"
-"Last-Translator: Jovan Jonovski <jonovski@hotmail.com>\n"
+"PO-Revision-Date: 2021-04-09 19:43+0000\n"
+"Last-Translator: Teodora Fildishevska <t.fildishevska@gmail.com>\n"
 "Language-Team: Macedonian <http://translate.pkp.sfu.ca/projects/omp/locale/"
 "mk_MK/>\n"
 "Language: mk_MK\n"
@@ -1645,3 +1645,12 @@ msgid "installer.updatingInstructions"
 msgstr ""
 "Ако ја надградувате постоечката инсталација на OMP, <a href=\"{$upgradeUrl}\""
 "> кликнете овде </a> за да продолжите."
+
+msgid "grid.catalogEntry.isbn10.description"
+msgstr "ISBN код со 10 цифри, како што е 951-98548-9-4."
+
+msgid "grid.catalogEntry.isbn13.description"
+msgstr "ISBN код со 13 цифри, како што е 978-951-98548-9-2."
+
+msgid "grid.catalogEntry.isbn"
+msgstr "ISBN"
