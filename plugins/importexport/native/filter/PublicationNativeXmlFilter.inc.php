@@ -147,18 +147,20 @@ class PublicationNativeXmlFilter extends PKPPublicationNativeXmlFilter {
 			$seriesDao = DAORegistry::getDAO('SeriesDAO'); /** @var $seriesDao SeriesDAO */
 			$series = $seriesDao->getById($seriesId, $context->getId());
 
-			$seriesNode = $doc->createElementNS($deployment->getNamespace(), 'series');
+			if ($series) {
+				$seriesNode = $doc->createElementNS($deployment->getNamespace(), 'series');
 
-			// Add metadata
-			$this->createLocalizedNodes($doc, $seriesNode, 'title', $series->getData('title'));
-			$this->createLocalizedNodes($doc, $seriesNode, 'subtitle', $series->getData('subtitle'));
-			$this->createLocalizedNodes($doc, $seriesNode, 'description', $series->getData('description'));
+				// Add metadata
+				$this->createLocalizedNodes($doc, $seriesNode, 'title', $series->getData('title'));
+				$this->createLocalizedNodes($doc, $seriesNode, 'subtitle', $series->getData('subtitle'));
+				$this->createLocalizedNodes($doc, $seriesNode, 'description', $series->getData('description'));
 
-			$seriesNode->appendChild($doc->createElementNS($deployment->getNamespace(), 'printIssn', $series->getData('printIssn')));
-			$seriesNode->appendChild($doc->createElementNS($deployment->getNamespace(), 'onlineIssn', $series->getData('onlineIssn')));
+				$seriesNode->appendChild($doc->createElementNS($deployment->getNamespace(), 'printIssn', $series->getData('printIssn')));
+				$seriesNode->appendChild($doc->createElementNS($deployment->getNamespace(), 'onlineIssn', $series->getData('onlineIssn')));
 
-			$seriesNode->appendChild($doc->createElementNS($deployment->getNamespace(), 'path', $series->getData('path')));
-			$seriesNode->appendChild($doc->createElementNS($deployment->getNamespace(), 'sequence', $series->getData('sequence')));
+				$seriesNode->appendChild($doc->createElementNS($deployment->getNamespace(), 'path', $series->getData('path')));
+				$seriesNode->appendChild($doc->createElementNS($deployment->getNamespace(), 'sequence', $series->getData('sequence')));
+			}
 		}
 
 		return $seriesNode;
