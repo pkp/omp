@@ -13,7 +13,6 @@
  */
 namespace APP\Services\QueryBuilders;
 
-use Illuminate\Database\Capsule\Manager as Capsule;
 
 class ContextQueryBuilder extends \PKP\Services\QueryBuilders\PKPContextQueryBuilder {
 	/** @copydoc \PKP\Services\QueryBuilders\PKPContextQueryBuilder::$db */

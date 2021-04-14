@@ -14,7 +14,7 @@
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Builder;
 use Illuminate\Database\Schema\Blueprint;
-use Illuminate\Database\Capsule\Manager as Capsule;
+use Illuminate\Support\Facades\Schema;
 
 class OMPMigration extends Migration {
         /**
@@ -22,7 +22,7 @@ class OMPMigration extends Migration {
          * @return void
          */
         public function up() {
-		Capsule::schema()->create('identification_codes', function (Blueprint $table) {
+		Schema::create('identification_codes', function (Blueprint $table) {
 			$table->bigInteger('identification_code_id')->autoIncrement();
 			$table->bigInteger('publication_format_id');
 			$table->string('code', 40);
@@ -30,7 +30,7 @@ class OMPMigration extends Migration {
 			$table->index(['identification_code_id', 'publication_format_id', 'code'], 'identification_codes_key');
 		});
 
-		Capsule::schema()->create('publication_dates', function (Blueprint $table) {
+		Schema::create('publication_dates', function (Blueprint $table) {
 			$table->bigInteger('publication_date_id')->autoIncrement();
 			$table->bigInteger('publication_format_id');
 			$table->string('role', 40);
@@ -39,11 +39,11 @@ class OMPMigration extends Migration {
 			$table->index(['publication_date_id', 'publication_format_id', 'role'], 'format_publication_dates_pkey');
 		});
 
-		Capsule::schema()->create('sales_rights', function (Blueprint $table) {
+		Schema::create('sales_rights', function (Blueprint $table) {
 			$table->bigInteger('sales_rights_id')->autoIncrement();
 			$table->bigInteger('publication_format_id');
 			$table->string('type', 40);
-			//   ROW is 'rest of world'. ROW sales types have no territories assigned to them 
+			//   ROW is 'rest of world'. ROW sales types have no territories assigned to them
 			$table->smallInteger('row_setting')->default(0);
 			$table->text('countries_included')->nullable();
 			$table->text('countries_excluded')->nullable();
@@ -52,7 +52,7 @@ class OMPMigration extends Migration {
 			$table->index(['sales_rights_id', 'publication_format_id'], 'format_sales_rights_pkey');
 		});
 
-		Capsule::schema()->create('markets', function (Blueprint $table) {
+		Schema::create('markets', function (Blueprint $table) {
 			$table->bigInteger('market_id')->autoIncrement();
 			$table->bigInteger('publication_format_id');
 			$table->text('countries_included')->nullable();
@@ -73,7 +73,7 @@ class OMPMigration extends Migration {
 			$table->index(['market_id', 'publication_format_id'], 'format_markets_pkey');
 		});
 
-		Capsule::schema()->create('representatives', function (Blueprint $table) {
+		Schema::create('representatives', function (Blueprint $table) {
 			$table->bigInteger('representative_id')->autoIncrement();
 			$table->bigInteger('submission_id');
 			$table->string('role', 40);
@@ -87,7 +87,7 @@ class OMPMigration extends Migration {
 			$table->index(['representative_id', 'submission_id'], 'format_representatives_pkey');
 		});
 
-		Capsule::schema()->create('features', function (Blueprint $table) {
+		Schema::create('features', function (Blueprint $table) {
 			$table->bigInteger('submission_id');
 			$table->bigInteger('assoc_type');
 			$table->bigInteger('assoc_id');
@@ -95,7 +95,7 @@ class OMPMigration extends Migration {
 			$table->unique(['assoc_type', 'assoc_id', 'submission_id'], 'press_features_pkey');
 		});
 
-		Capsule::schema()->create('new_releases', function (Blueprint $table) {
+		Schema::create('new_releases', function (Blueprint $table) {
 			$table->bigInteger('submission_id');
 			$table->bigInteger('assoc_type');
 			$table->bigInteger('assoc_id');
@@ -103,11 +103,11 @@ class OMPMigration extends Migration {
 		});
 
 		// Press series.
-		Capsule::schema()->create('series', function (Blueprint $table) {
+		Schema::create('series', function (Blueprint $table) {
 			$table->bigInteger('series_id')->autoIncrement();
 			$table->bigInteger('press_id');
 			$table->bigInteger('review_form_id')->nullable();
-			//  NOTNULL not included for the sake of 1.1 upgrade, which didn't include this column 
+			//  NOTNULL not included for the sake of 1.1 upgrade, which didn't include this column
 			$table->float('seq', 8, 2)->default(0)->nullable();
 			$table->smallInteger('featured')->default(0);
 			$table->smallInteger('editor_restricted')->default(0);
@@ -119,7 +119,7 @@ class OMPMigration extends Migration {
 		});
 
 		// Series-specific settings
-		Capsule::schema()->create('series_settings', function (Blueprint $table) {
+		Schema::create('series_settings', function (Blueprint $table) {
 			$table->bigInteger('series_id');
 			$table->string('locale', 14)->default('');
 			$table->string('setting_name', 255);
@@ -129,21 +129,21 @@ class OMPMigration extends Migration {
 		});
 
 		// Associations for categories within a series.
-		Capsule::schema()->create('series_categories', function (Blueprint $table) {
+		Schema::create('series_categories', function (Blueprint $table) {
 			$table->bigInteger('series_id');
 			$table->bigInteger('category_id');
 			$table->unique(['series_id', 'category_id'], 'series_categories_id');
 		});
 
 		// Publications
-		Capsule::schema()->create('publications', function (Blueprint $table) {
+		Schema::create('publications', function (Blueprint $table) {
 			$table->bigInteger('publication_id')->autoIncrement();
 			$table->date('date_published')->nullable();
 			$table->datetime('last_modified')->nullable();
 			$table->string('locale', 14)->nullable();
 			$table->bigInteger('primary_contact_id')->nullable();
 			$table->string('publication_date_type', 32)->default('pub')->nullable();
-			//  PUBLICATION_TYPE_PUBLICATION 
+			//  PUBLICATION_TYPE_PUBLICATION
 			$table->string('publication_type', 32)->default('publication')->nullable();
 			$table->float('seq', 8, 2)->default(0);
 			$table->bigInteger('series_id')->nullable();
@@ -157,10 +157,10 @@ class OMPMigration extends Migration {
 		});
 
 		// Publication formats assigned to published submissions
-		Capsule::schema()->create('publication_formats', function (Blueprint $table) {
+		Schema::create('publication_formats', function (Blueprint $table) {
 			$table->bigInteger('publication_format_id')->autoIncrement();
 			$table->bigInteger('publication_id');
-			//  DEPRECATED: Held over for the OJS 2.x to 3. upgrade process pkp/pkp-lib#3572 
+			//  DEPRECATED: Held over for the OJS 2.x to 3. upgrade process pkp/pkp-lib#3572
 			$table->bigInteger('submission_id')->nullable();
 			$table->smallInteger('physical_format')->default(1)->nullable();
 			$table->string('entry_key', 64)->nullable();
@@ -191,7 +191,7 @@ class OMPMigration extends Migration {
 		});
 
 		// Publication Format metadata.
-		Capsule::schema()->create('publication_format_settings', function (Blueprint $table) {
+		Schema::create('publication_format_settings', function (Blueprint $table) {
 			$table->bigInteger('publication_format_id');
 			$table->string('locale', 14)->default('');
 			$table->string('setting_name', 255);
@@ -201,7 +201,7 @@ class OMPMigration extends Migration {
 			$table->unique(['publication_format_id', 'locale', 'setting_name'], 'publication_format_settings_pkey');
 		});
 
-		Capsule::schema()->create('submission_chapters', function (Blueprint $table) {
+		Schema::create('submission_chapters', function (Blueprint $table) {
 			$table->bigInteger('chapter_id')->autoIncrement();
 			$table->bigInteger('primary_contact_id')->nullable();
 			$table->bigInteger('publication_id');
@@ -211,7 +211,7 @@ class OMPMigration extends Migration {
 		});
 
 		// Language dependent monograph chapter metadata.
-		Capsule::schema()->create('submission_chapter_settings', function (Blueprint $table) {
+		Schema::create('submission_chapter_settings', function (Blueprint $table) {
 			$table->bigInteger('chapter_id');
 			$table->string('locale', 14)->default('');
 			$table->string('setting_name', 255);
@@ -221,7 +221,7 @@ class OMPMigration extends Migration {
 			$table->unique(['chapter_id', 'locale', 'setting_name'], 'submission_chapter_settings_pkey');
 		});
 
-		Capsule::schema()->create('submission_chapter_authors', function (Blueprint $table) {
+		Schema::create('submission_chapter_authors', function (Blueprint $table) {
 			$table->bigInteger('author_id');
 			$table->bigInteger('chapter_id');
 			$table->smallInteger('primary_contact')->default(0);
@@ -230,7 +230,7 @@ class OMPMigration extends Migration {
 		});
 
 		// Presses and basic press settings.
-		Capsule::schema()->create('presses', function (Blueprint $table) {
+		Schema::create('presses', function (Blueprint $table) {
 			$table->bigInteger('press_id')->autoIncrement();
 			$table->string('path', 32);
 			$table->float('seq', 8, 2)->default(0);
@@ -240,7 +240,7 @@ class OMPMigration extends Migration {
 		});
 
 		// Press settings.
-		Capsule::schema()->create('press_settings', function (Blueprint $table) {
+		Schema::create('press_settings', function (Blueprint $table) {
 			$table->bigInteger('press_id');
 			$table->string('locale', 14)->default('');
 			$table->string('setting_name', 255);
@@ -251,7 +251,7 @@ class OMPMigration extends Migration {
 		});
 
 		// Spotlights
-		Capsule::schema()->create('spotlights', function (Blueprint $table) {
+		Schema::create('spotlights', function (Blueprint $table) {
 			$table->bigInteger('spotlight_id')->autoIncrement();
 			$table->smallInteger('assoc_type');
 			$table->smallInteger('assoc_id');
@@ -260,7 +260,7 @@ class OMPMigration extends Migration {
 		});
 
 		// Spotlight metadata.
-		Capsule::schema()->create('spotlight_settings', function (Blueprint $table) {
+		Schema::create('spotlight_settings', function (Blueprint $table) {
 			$table->bigInteger('spotlight_id');
 			$table->string('locale', 14)->default('');
 			$table->string('setting_name', 255);
@@ -271,7 +271,7 @@ class OMPMigration extends Migration {
 		});
 
 		// Logs queued (unfulfilled) payments.
-		Capsule::schema()->create('queued_payments', function (Blueprint $table) {
+		Schema::create('queued_payments', function (Blueprint $table) {
 			$table->bigInteger('queued_payment_id')->autoIncrement();
 			$table->datetime('date_created');
 			$table->datetime('date_modified');
@@ -280,13 +280,13 @@ class OMPMigration extends Migration {
 		});
 
 		// Logs completed (fulfilled) payments.
-		Capsule::schema()->create('completed_payments', function (Blueprint $table) {
+		Schema::create('completed_payments', function (Blueprint $table) {
 			$table->bigInteger('completed_payment_id')->autoIncrement();
 			$table->datetime('timestamp');
 			$table->bigInteger('payment_type');
 			$table->bigInteger('context_id');
 			$table->bigInteger('user_id')->nullable();
-			//  NOTE: assoc_id NOT numeric to incorporate file idents 
+			//  NOTE: assoc_id NOT numeric to incorporate file idents
 			$table->string('assoc_id', 16)->nullable();
 			$table->float('amount', 8, 2);
 			$table->string('currency_code_alpha', 3)->nullable();
@@ -299,28 +299,28 @@ class OMPMigration extends Migration {
 	 * @return void
 	 */
 	public function down() {
-		Capsule::schema()->drop('completed_payments');
-		Capsule::schema()->drop('identification_codes');
-		Capsule::schema()->drop('publication_dates');
-		Capsule::schema()->drop('sales_rights');
-		Capsule::schema()->drop('markets');
-		Capsule::schema()->drop('representatives');
-		Capsule::schema()->drop('features');
-		Capsule::schema()->drop('new_releases');
-		Capsule::schema()->drop('series');
-		Capsule::schema()->drop('series_settings');
-		Capsule::schema()->drop('series_categories');
-		Capsule::schema()->drop('publications');
-		Capsule::schema()->drop('publication_formats');
-		Capsule::schema()->drop('publication_format_settings');
-		Capsule::schema()->drop('submission_chapters');
-		Capsule::schema()->drop('submission_chapter_settings');
-		Capsule::schema()->drop('submission_chapter_authors');
-		Capsule::schema()->drop('presses');
-		Capsule::schema()->drop('press_settings');
-		Capsule::schema()->drop('spotlights');
-		Capsule::schema()->drop('spotlight_settings');
-		Capsule::schema()->drop('queued_payments');
-		Capsule::schema()->drop('completed_payments');
+		Schema::drop('completed_payments');
+		Schema::drop('identification_codes');
+		Schema::drop('publication_dates');
+		Schema::drop('sales_rights');
+		Schema::drop('markets');
+		Schema::drop('representatives');
+		Schema::drop('features');
+		Schema::drop('new_releases');
+		Schema::drop('series');
+		Schema::drop('series_settings');
+		Schema::drop('series_categories');
+		Schema::drop('publications');
+		Schema::drop('publication_formats');
+		Schema::drop('publication_format_settings');
+		Schema::drop('submission_chapters');
+		Schema::drop('submission_chapter_settings');
+		Schema::drop('submission_chapter_authors');
+		Schema::drop('presses');
+		Schema::drop('press_settings');
+		Schema::drop('spotlights');
+		Schema::drop('spotlight_settings');
+		Schema::drop('queued_payments');
+		Schema::drop('completed_payments');
 	}
 }

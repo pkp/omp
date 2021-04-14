@@ -14,7 +14,8 @@
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Builder;
 use Illuminate\Database\Schema\Blueprint;
-use Illuminate\Database\Capsule\Manager as Capsule;
+use Illuminate\Support\Facades\Schema;
+use Illuminate\Support\Facades\DB;
 
 class OMPv3_3_0UpgradeMigration extends Migration {
 	/**
@@ -22,16 +23,16 @@ class OMPv3_3_0UpgradeMigration extends Migration {
 	 * @return void
 	 */
 	public function up() {
-		Capsule::schema()->table('press_settings', function (Blueprint $table) {
+		Schema::table('press_settings', function (Blueprint $table) {
 			// pkp/pkp-lib#6096 DB field type TEXT is cutting off long content
 			$table->mediumText('setting_value')->nullable()->change();
 		});
-		if (!Capsule::schema()->hasColumn('series', 'is_inactive')) {
-			Capsule::schema()->table('series', function (Blueprint $table) {
+		if (!Schema::hasColumn('series', 'is_inactive')) {
+			Schema::table('series', function (Blueprint $table) {
 				$table->smallInteger('is_inactive')->default(0);
 			});
 		}
-		Capsule::schema()->table('review_forms', function (Blueprint $table) {
+		Schema::table('review_forms', function (Blueprint $table) {
 			$table->bigInteger('assoc_type')->nullable(false)->change();
 			$table->bigInteger('assoc_id')->nullable(false)->change();
 		});
@@ -41,18 +42,18 @@ class OMPv3_3_0UpgradeMigration extends Migration {
 		$this->_migrateSubmissionFiles();
 
 		// Delete the old MODS34 filters
-		Capsule::statement("DELETE FROM filters WHERE class_name='plugins.metadata.mods34.filter.Mods34SchemaMonographAdapter'");
-		Capsule::statement("DELETE FROM filter_groups WHERE symbolic IN ('monograph=>mods34', 'mods34=>monograph')");
+		DB::statement("DELETE FROM filters WHERE class_name='plugins.metadata.mods34.filter.Mods34SchemaMonographAdapter'");
+		DB::statement("DELETE FROM filter_groups WHERE symbolic IN ('monograph=>mods34', 'mods34=>monograph')");
 
 		// pkp/pkp-lib#6604 ONIX filters still refer to Monograph rather than Submission
-		Capsule::statement("UPDATE filter_groups SET input_type = 'class::classes.submission.Submission' WHERE input_type = 'class::classes.monograph.Monograph';");
-		Capsule::statement("UPDATE filter_groups SET output_type = 'class::classes.submission.Submission[]' WHERE input_type = 'class::classes.monograph.Monograph[]';");
+		DB::statement("UPDATE filter_groups SET input_type = 'class::classes.submission.Submission' WHERE input_type = 'class::classes.monograph.Monograph';");
+		DB::statement("UPDATE filter_groups SET output_type = 'class::classes.submission.Submission[]' WHERE input_type = 'class::classes.monograph.Monograph[]';");
 
 		// pkp/pkp-lib#6609 ONIX filters does not take array of submissions as input
-		Capsule::statement("UPDATE filter_groups SET input_type = 'class::classes.submission.Submission[]' WHERE symbolic = 'monograph=>onix30-xml';");
+		DB::statement("UPDATE filter_groups SET input_type = 'class::classes.submission.Submission[]' WHERE symbolic = 'monograph=>onix30-xml';");
 
 		// pkp/pkp-lib#6807 Make sure all submission last modification dates are set
-		Capsule::statement('UPDATE submissions SET last_modified = NOW() WHERE last_modified IS NULL');
+		DB::statement('UPDATE submissions SET last_modified = NOW() WHERE last_modified IS NULL');
 	}
 
 	/**
@@ -60,7 +61,7 @@ class OMPv3_3_0UpgradeMigration extends Migration {
 	 * @return void
 	 */
 	public function down() {
-		Capsule::schema()->table('press_settings', function (Blueprint $table) {
+		Schema::table('press_settings', function (Blueprint $table) {
 			// pkp/pkp-lib#6096 DB field type TEXT is cutting off long content
 			$table->text('setting_value')->nullable()->change();
 		});
@@ -93,7 +94,7 @@ class OMPv3_3_0UpgradeMigration extends Migration {
 			foreach ($schema->properties as $propName => $propSchema) {
 				if (empty($propSchema->readOnly)) {
 					if ($propSchema->type === 'array' || $propSchema->type === 'object') {
-						Capsule::table($tableName)->where('setting_name', $propName)->get()->each(function ($row) use ($tableName) {
+						DB::table($tableName)->where('setting_name', $propName)->get()->each(function ($row) use ($tableName) {
 							$this->_toJSON($row, $tableName, ['setting_name', 'locale'], 'setting_value');
 						});
 					}
@@ -102,20 +103,20 @@ class OMPv3_3_0UpgradeMigration extends Migration {
 		}
 
 		// Convert settings where only setting_type column is available
-		$tables = Capsule::connection()->getDoctrineSchemaManager()->listTableNames();
+		$tables = DB::getDoctrineSchemaManager()->listTableNames();
 		foreach ($tables as $tableName) {
 			if (substr($tableName, -9) !== '_settings' || in_array($tableName, $processedTables)) continue;
-			Capsule::table($tableName)->where('setting_type', 'object')->get()->each(function ($row) use ($tableName) {
+			DB::table($tableName)->where('setting_type', 'object')->get()->each(function ($row) use ($tableName) {
 				$this->_toJSON($row, $tableName, ['setting_name', 'locale'], 'setting_value');
 			});
 		}
 
 		// Finally, convert values of other tables dependent from DAO::convertToDB
-		Capsule::table('review_form_responses')->where('response_type', 'object')->get()->each(function ($row) {
+		DB::table('review_form_responses')->where('response_type', 'object')->get()->each(function ($row) {
 			$this->_toJSON($row, 'review_form_responses', ['review_id'], 'response_value');
 		});
 
-		Capsule::table('site')->get()->each(function ($row) {
+		DB::table('site')->get()->each(function ($row) {
 			$localeToConvert = function($localeType) use($row) {
 				$serializedValue = $row->{$localeType};
 				if (@unserialize($serializedValue) === false) return;
@@ -124,7 +125,7 @@ class OMPv3_3_0UpgradeMigration extends Migration {
 				if (is_array($oldLocaleValue) && $this->_isNumerical($oldLocaleValue)) $oldLocaleValue = array_values($oldLocaleValue);
 
 				$newLocaleValue = json_encode($oldLocaleValue, JSON_UNESCAPED_UNICODE);
-				Capsule::table('site')->take(1)->update([$localeType => $newLocaleValue]);
+				DB::table('site')->take(1)->update([$localeType => $newLocaleValue]);
 			};
 
 			$localeToConvert('installed_locales');
@@ -157,7 +158,7 @@ class OMPv3_3_0UpgradeMigration extends Migration {
 			return true;
 		});
 
-		$queryBuilder = Capsule::table($tableName)->where($id, $row->{$id});
+		$queryBuilder = DB::table($tableName)->where($id, $row->{$id});
 		foreach ($searchBy as $key => $column) {
 			$queryBuilder = $queryBuilder->where($column, $row->{$column});
 		}
@@ -189,12 +190,12 @@ class OMPv3_3_0UpgradeMigration extends Migration {
 	private function _migrateSubmissionFiles() {
 
 		// Update file stage for all internal review files
-		Capsule::table('submission_files as sf')
+		DB::table('submission_files as sf')
 			->leftJoin('review_round_files as rrf', 'sf.submission_file_id', '=', 'rrf.submission_file_id')
 			->where('sf.file_stage', '=', SUBMISSION_FILE_REVIEW_FILE)
 			->where('rrf.stage_id', '=', WORKFLOW_STAGE_ID_INTERNAL_REVIEW)
 			->update(['sf.file_stage' => SUBMISSION_FILE_INTERNAL_REVIEW_FILE]);
-		Capsule::table('submission_files as sf')
+		DB::table('submission_files as sf')
 			->leftJoin('review_round_files as rrf', 'sf.submission_file_id', '=', 'rrf.submission_file_id')
 			->where('sf.file_stage', '=', SUBMISSION_FILE_REVIEW_REVISION)
 			->where('rrf.stage_id', '=', WORKFLOW_STAGE_ID_INTERNAL_REVIEW)
@@ -207,14 +208,14 @@ class OMPv3_3_0UpgradeMigration extends Migration {
 			SUBMISSION_FILE_INTERNAL_REVIEW_REVISION,
 		];
 		foreach ($internalStageIds as $internalStageId) {
-			$submissionIds = Capsule::table('submission_files')
+			$submissionIds = DB::table('submission_files')
 				->where('file_stage', '=', $internalStageId)
 				->pluck('submission_file_id');
-			$logIdsToChange = Capsule::table('event_log_settings')
+			$logIdsToChange = DB::table('event_log_settings')
 				->where('setting_name', '=', 'submissionFileId')
 				->whereIn('setting_value', $submissionIds)
 				->pluck('log_id');
-			Capsule::table('event_log_settings')
+			DB::table('event_log_settings')
 				->whereIn('log_id', $logIdsToChange)
 				->where('setting_name', '=', 'fileStage')
 				->update(['setting_value' => $internalStageId]);

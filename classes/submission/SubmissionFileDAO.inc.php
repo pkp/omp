@@ -13,7 +13,7 @@
  *
  * @brief Operations for retrieving and modifying submission files
  */
-use Illuminate\Database\Capsule\Manager as Capsule;
+use Illuminate\Support\Facades\DB;
 
 import('lib.pkp.classes.submission.PKPSubmissionFileDAO');
 
@@ -44,7 +44,7 @@ class SubmissionFileDAO extends PKPSubmissionFileDAO {
 	 * @param int $chapterId
 	 */
 	public function updateChapterFiles($submissionFileIds, $chapterId) {
-		Capsule::table('submission_file_settings')
+		DB::table('submission_file_settings')
 			->where('setting_name', '=', 'chapterId')
 			->where('setting_value', '=', $chapterId)
 			->delete();
@@ -57,7 +57,7 @@ class SubmissionFileDAO extends PKPSubmissionFileDAO {
 					'setting_value' => $chapterId,
 				];
 			}, $submissionFileIds);
-			Capsule::table('submission_file_settings')->insert($insertRows);
+			DB::table('submission_file_settings')->insert($insertRows);
 		}
 	}
 }
