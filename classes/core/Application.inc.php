@@ -15,26 +15,32 @@
  *
  */
 
-import('lib.pkp.classes.core.PKPApplication');
+namespace APP\core;
+
+use \PKP\core\PKPApplication;
 
 define('REQUIRES_XSL', true);
 
-define('ASSOC_TYPE_MONOGRAPH',			ASSOC_TYPE_SUBMISSION);
-define('ASSOC_TYPE_PUBLICATION_FORMAT',		ASSOC_TYPE_REPRESENTATION);
+define('ASSOC_TYPE_MONOGRAPH', PKPApplication::ASSOC_TYPE_SUBMISSION);
+define('ASSOC_TYPE_PUBLICATION_FORMAT', PKPApplication::ASSOC_TYPE_REPRESENTATION);
 
-define('ASSOC_TYPE_PRESS',			0x0000200);
-define('ASSOC_TYPE_SERIES',			ASSOC_TYPE_SECTION);
+define('ASSOC_TYPE_PRESS', 0x0000200);
+define('ASSOC_TYPE_SERIES', PKPApplication::ASSOC_TYPE_SECTION);
 
 define('ASSOC_TYPE_CHAPTER', 0x0000214);
 
-define('CONTEXT_PRESS', 1);
-
-define('LANGUAGE_PACK_DESCRIPTOR_URL', 'http://pkp.sfu.ca/omp/xml/%s/locales.xml');
-define('LANGUAGE_PACK_TAR_URL', 'http://pkp.sfu.ca/omp/xml/%s/%s.tar.gz');
-
 define('METRIC_TYPE_COUNTER', 'omp::counter');
 
-class Application extends PKPApplication {
+class Application extends \PKP\core\PKPApplication {
+	/**
+	 * Constructor
+	 */
+	function __construct() {
+		parent::__construct();
+		if (!PKP_STRICT_MODE) {
+			class_alias('\APP\core\Application', '\Application');
+		}
+	}
 
 	/**
 	 * Get the "context depth" of this application, i.e. the number of
@@ -143,7 +149,7 @@ class Application extends PKPApplication {
 	 * Get the top-level context DAO.
 	 */
 	public static function getContextDAO() {
-		return DAORegistry::getDAO('PressDAO');
+		return \DAORegistry::getDAO('PressDAO');
 	}
 
 	/**
@@ -151,14 +157,14 @@ class Application extends PKPApplication {
 	 * @return SeriesDAO
 	 */
 	public static function getSectionDAO() {
-		return DAORegistry::getDAO('SeriesDAO');
+		return \DAORegistry::getDAO('SeriesDAO');
 	}
 
 	/**
 	 * Get the representation DAO.
 	 */
 	public static function getRepresentationDAO() {
-		return DAORegistry::getDAO('PublicationFormatDAO');
+		return \DAORegistry::getDAO('PublicationFormatDAO');
 	}
 
 	/**
@@ -166,14 +172,14 @@ class Application extends PKPApplication {
 	 */
 	public static function getSubmissionSearchIndex() {
 		import('classes.search.MonographSearchIndex');
-		return new MonographSearchIndex();
+		return new \MonographSearchIndex();
 	}
 
 	/**
 	 * Get a SubmissionSearchDAO instance.
 	 */
 	public static function getSubmissionSearchDAO() {
-		return DAORegistry::getDAO('MonographSearchDAO');
+		return \DAORegistry::getDAO('MonographSearchDAO');
 	}
 
 	/**
@@ -211,6 +217,6 @@ class Application extends PKPApplication {
 	 */
 	public static function getPaymentManager($context) {
 		import('classes.payment.omp.OMPPaymentManager');
-		return new OMPPaymentManager($context);
+		return new \OMPPaymentManager($context);
 	}
 }

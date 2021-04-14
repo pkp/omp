@@ -23,7 +23,8 @@ import('lib.pkp.classes.submission.reviewRound.ReviewRound');
 import('lib.pkp.classes.db.DBResultRange');
 import('lib.pkp.classes.core.PKPRouter');
 import('lib.pkp.classes.core.PKPRequest');
-import('classes.core.Services');
+
+use \APP\core\Services;
 
 // Define test ids.
 define('SUBMISSION_FILE_DAO_TEST_PRESS_ID', 999);

@@ -14,7 +14,8 @@
  */
 
 import('lib.pkp.controllers.grid.navigationMenus.form.PKPNavigationMenuItemsForm');
-import('classes.core.Services');
+
+use \APP\core\Services;
 
 class NavigationMenuItemsForm extends PKPNavigationMenuItemsForm {
 
