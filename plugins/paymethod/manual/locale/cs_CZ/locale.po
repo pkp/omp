@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
-"PO-Revision-Date: 2020-11-05 09:46+0000\n"
-"Last-Translator: Radek Gomola <gomola@press.muni.cz>\n"
+"PO-Revision-Date: 2021-04-14 18:28+0000\n"
+"Last-Translator: Jiří Dlouhý <jiri.dlouhy@czp.cuni.cz>\n"
 "Language-Team: Czech <http://translate.pkp.sfu.ca/projects/omp/"
 "paymethod-manual/cs_CZ/>\n"
 "Language: cs_CZ\n"
@@ -30,10 +30,10 @@ msgid "plugins.paymethod.manual.settings"
 msgstr "Nastavení ruční platby"
 
 msgid "plugins.paymethod.manual"
-msgstr "Ruční platba polatku"
+msgstr "Ruční platba předplatného"
 
 msgid "plugins.paymethod.manual.description"
 msgstr "Manažer ručně zaznamená přijetí platby uživatele (mimo tento software)."
 
 msgid "plugins.paymethod.manual.displayName"
-msgstr "Ruční platba polatku"
+msgstr "Ruční platba předplatného"
