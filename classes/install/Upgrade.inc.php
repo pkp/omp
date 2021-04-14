@@ -12,7 +12,7 @@
  *
  * @brief Perform system upgrade.
  */
-use Illuminate\Database\Capsule\Manager as Capsule;
+use Illuminate\Support\Facades\DB;
 
 
 import('lib.pkp.classes.install.Installer');
@@ -64,7 +64,7 @@ class Upgrade extends Installer {
 			$submissions = $submissionDao->getByContextId($context->getId());
 			while ($submission = $submissions->next()) {
 				$submissionDir = Services::get('submissionFile')->getSubmissionDir($context->getId(), $submission->getId());
-				$rows = Capsule::table('submission_files')
+				$rows = DB::table('submission_files')
 					->where('submission_id', '=', $submission->getId())
 					->get();
 				foreach ($rows as $row) {
@@ -302,7 +302,7 @@ class Upgrade extends Installer {
 
 			// Reproduces removed SubmissionFile::getFileLabel() method
 			$label = $originalFileName;
-			$filename = Capsule::table('submission_file_settings')
+			$filename = DB::table('submission_file_settings')
 				->where('file_id', '=', $fileId)
 				->where('setting_name', '=', 'name')
 				->first();

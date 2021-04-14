@@ -15,7 +15,7 @@
 
 namespace APP\Services\QueryBuilders;
 
-use Illuminate\Database\Capsule\Manager as Capsule;
+use Illuminate\Support\Facades\DB;
 
 class SubmissionQueryBuilder extends \PKP\Services\QueryBuilders\PKPSubmissionQueryBuilder {
 
@@ -108,17 +108,17 @@ class SubmissionQueryBuilder extends \PKP\Services\QueryBuilders\PKPSubmissionQu
 			}
 			$q->leftJoin('features as sf', function($join) use ($assocType, $assocIds) {
 				$join->on('s.submission_id', '=', 'sf.submission_id')
-					->on('sf.assoc_type', '=', Capsule::raw($assocType));
+					->on('sf.assoc_type', '=', DB::raw($assocType));
 				foreach ($assocIds as $assocId) {
-					$join->on('sf.assoc_id', '=', Capsule::raw(intval($assocId)));
+					$join->on('sf.assoc_id', '=', DB::raw(intval($assocId)));
 				}
 			});
 
 			// Featured sorting should be the first sort parameter. We sort by
 			// the seq parameter, with null values last
-			$q->groupBy(Capsule::raw('sf.seq'));
+			$q->groupBy(DB::raw('sf.seq'));
 			$this->columns[] = 'sf.seq';
-			$this->columns[] = Capsule::raw('case when sf.seq is null then 1 else 0 end');
+			$this->columns[] = DB::raw('case when sf.seq is null then 1 else 0 end');
 			array_unshift(
 				$q->orders,
 				array('type' => 'raw', 'sql' => 'case when sf.seq is null then 1 else 0 end'),
