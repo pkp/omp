@@ -14,6 +14,9 @@
  * @brief Test class for SubmissionFileDAO.
  */
 
+import('classes.core.Request'); // Cause mocked Request class to load
+import('classes.i18n.AppLocale'); // Cause mocked AppLocale class to load
+
 import('lib.pkp.tests.DatabaseTestCase');
 import('classes.submission.SubmissionFileDAO');
 import('lib.pkp.classes.submission.SubmissionFile');
@@ -21,8 +24,9 @@ import('classes.submission.SubmissionDAO');
 import('lib.pkp.classes.submission.Genre');
 import('lib.pkp.classes.submission.reviewRound.ReviewRound');
 import('lib.pkp.classes.db.DBResultRange');
-import('lib.pkp.classes.core.PKPRouter');
-import('lib.pkp.classes.core.PKPRequest');
+
+use \PKP\db\DAORegistry;
+use \PKP\core\PKPRouter;
 
 use \APP\core\Services;
 
@@ -31,7 +35,6 @@ define('SUBMISSION_FILE_DAO_TEST_PRESS_ID', 999);
 define('SUBMISSION_FILE_DAO_TEST_SUBMISSION_ID', 9999);
 define('SUBMISSION_FILE_DAO_TEST_DOC_GENRE_ID', 1);
 define('SUBMISSION_FILE_DAO_TEST_ART_GENRE_ID', 2);
-
 
 // Define a temp file location for testing.
 define('TMP_FILES', '/tmp');
@@ -55,7 +58,7 @@ class SubmissionFileDAOTest extends DatabaseTestCase {
 		$press->setId(SUBMISSION_FILE_DAO_TEST_PRESS_ID);
 
 		// Mock a request
-		$mockRequest = $this->getMockBuilder(PKPRequest::class)
+		$mockRequest = $this->getMockBuilder(Request::class)
 			->setMethods(array('getContext'))
 			->getMock();
 		$mockRequest->expects($this->any())
