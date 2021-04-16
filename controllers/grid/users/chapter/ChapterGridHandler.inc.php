@@ -24,6 +24,8 @@ import('controllers.grid.users.chapter.ChapterGridCategoryRow');
 // Link action & modal classes
 import('lib.pkp.classes.linkAction.request.AjaxModal');
 
+use \PKP\core\JSONMessage;
+
 class ChapterGridHandler extends CategoryGridHandler {
 	/** @var boolean */
 	var $_readOnly;

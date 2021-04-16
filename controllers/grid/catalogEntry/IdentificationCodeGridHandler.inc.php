@@ -16,13 +16,14 @@
 // import grid base classes
 import('lib.pkp.classes.controllers.grid.GridHandler');
 
-
 // import format grid specific classes
 import('controllers.grid.catalogEntry.IdentificationCodeGridCellProvider');
 import('controllers.grid.catalogEntry.IdentificationCodeGridRow');
 
 // Link action & modal classes
 import('lib.pkp.classes.linkAction.request.AjaxModal');
+
+use \PKP\core\JSONMessage;
 
 class IdentificationCodeGridHandler extends GridHandler {
 	/** @var Submission */

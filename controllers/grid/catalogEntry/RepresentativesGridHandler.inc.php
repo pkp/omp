@@ -25,6 +25,8 @@ import('controllers.grid.catalogEntry.RepresentativesGridRow');
 // Link action & modal classes
 import('lib.pkp.classes.linkAction.request.AjaxModal');
 
+use \PKP\core\JSONMessage;
+
 class RepresentativesGridHandler extends CategoryGridHandler {
 	/** @var Monograph */
 	var $_monograph;

@@ -24,6 +24,8 @@ import('controllers.grid.catalogEntry.PublicationDateGridRow');
 // Link action & modal classes
 import('lib.pkp.classes.linkAction.request.AjaxModal');
 
+use \PKP\core\JSONMessage;
+
 class PublicationDateGridHandler extends GridHandler {
 	/** @var Submission */
 	var $_submission;

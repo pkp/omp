@@ -15,26 +15,33 @@
  *
  */
 
-import('lib.pkp.classes.core.PKPApplication');
+namespace APP\core;
+
+use \PKP\core\PKPApplication;
+use \PKP\db\DAORegistry;
 
 define('REQUIRES_XSL', true);
 
-define('ASSOC_TYPE_MONOGRAPH',			ASSOC_TYPE_SUBMISSION);
-define('ASSOC_TYPE_PUBLICATION_FORMAT',		ASSOC_TYPE_REPRESENTATION);
+define('ASSOC_TYPE_MONOGRAPH', PKPApplication::ASSOC_TYPE_SUBMISSION);
+define('ASSOC_TYPE_PUBLICATION_FORMAT', PKPApplication::ASSOC_TYPE_REPRESENTATION);
 
-define('ASSOC_TYPE_PRESS',			0x0000200);
-define('ASSOC_TYPE_SERIES',			ASSOC_TYPE_SECTION);
+define('ASSOC_TYPE_PRESS', 0x0000200);
+define('ASSOC_TYPE_SERIES', PKPApplication::ASSOC_TYPE_SECTION);
 
 define('ASSOC_TYPE_CHAPTER', 0x0000214);
 
-define('CONTEXT_PRESS', 1);
-
-define('LANGUAGE_PACK_DESCRIPTOR_URL', 'http://pkp.sfu.ca/omp/xml/%s/locales.xml');
-define('LANGUAGE_PACK_TAR_URL', 'http://pkp.sfu.ca/omp/xml/%s/%s.tar.gz');
-
 define('METRIC_TYPE_COUNTER', 'omp::counter');
 
-class Application extends PKPApplication {
+class Application extends \PKP\core\PKPApplication {
+	/**
+	 * Constructor
+	 */
+	function __construct() {
+		parent::__construct();
+		if (!PKP_STRICT_MODE && !class_exists('\Application')) {
+			class_alias('\APP\core\Application', '\Application');
+		}
+	}
 
 	/**
 	 * Get the "context depth" of this application, i.e. the number of
@@ -166,7 +173,7 @@ class Application extends PKPApplication {
 	 */
 	public static function getSubmissionSearchIndex() {
 		import('classes.search.MonographSearchIndex');
-		return new MonographSearchIndex();
+		return new \MonographSearchIndex();
 	}
 
 	/**
@@ -211,6 +218,6 @@ class Application extends PKPApplication {
 	 */
 	public static function getPaymentManager($context) {
 		import('classes.payment.omp.OMPPaymentManager');
-		return new OMPPaymentManager($context);
+		return new \OMPPaymentManager($context);
 	}
 }

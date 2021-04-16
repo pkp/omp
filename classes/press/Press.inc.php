@@ -18,16 +18,15 @@
  * @brief Basic class describing a press.
  */
 
-import('lib.pkp.classes.context.Context');
+namespace APP\press;
+
+use \PKP\context\Context;
+use \PKP\core\DAORegistry;
+use \PKP\plugins\PluginRegistry;
+
+use \APP\i18n\AppLocale;
 
 class Press extends Context {
-	/**
-	 * Constructor
-	 */
-	function __construct() {
-		parent::__construct();
-	}
-
 	/**
 	 * Get "localized" press page title (if applicable).
 	 * @return string|null
@@ -98,4 +97,8 @@ class Press extends Context {
 	function getDAO() {
 		return DAORegistry::getDAO('PressDAO');
 	}
+}
+
+if (!PKP_STRICT_MODE) {
+	class_alias('\APP\press\Press', '\Press');
 }

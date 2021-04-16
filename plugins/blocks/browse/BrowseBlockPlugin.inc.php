@@ -15,6 +15,8 @@
 
 import('lib.pkp.classes.plugins.BlockPlugin');
 
+use \PKP\core\JSONMessage;
+
 class BrowseBlockPlugin extends BlockPlugin {
 	/**
 	 * Install default settings on press creation.

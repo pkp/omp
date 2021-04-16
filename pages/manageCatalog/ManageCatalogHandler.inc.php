@@ -15,6 +15,8 @@
 
 import('classes.handler.Handler');
 
+use \PKP\core\JSONMessage;
+
 class ManageCatalogHandler extends Handler {
 
 	/** @copydoc PKPHandler::_isBackendPage */

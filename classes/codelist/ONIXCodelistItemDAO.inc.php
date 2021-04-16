@@ -17,6 +17,8 @@
 
 import('classes.codelist.ONIXCodelistItem');
 
+use \PKP\db\XMLDAO;
+
 class ONIXCodelistItemDAO extends DAO {
 
 	/* The name of the codelist we are interested in */

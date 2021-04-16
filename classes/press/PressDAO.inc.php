@@ -13,8 +13,11 @@
  * @brief Operations for retrieving and modifying Press objects.
  */
 
-import('classes.press.Press');
-import('lib.pkp.classes.context.ContextDAO');
+namespace APP\press;
+
+use \PKP\context\ContextDAO;
+
+use \APP\press\Press;
 
 class PressDAO extends ContextDAO {
 	/** @copydoc SchemaDAO::$schemaName */
@@ -103,4 +106,8 @@ class PressDAO extends ContextDAO {
 		}
 		return false;
 	}
+}
+
+if (!PKP_STRICT_MODE) {
+	class_alias('\APP\press\PressDAO', '\PressDAO');
 }
