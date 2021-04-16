@@ -13,7 +13,7 @@
  * @brief Operations for retrieving and modifying press settings.
  */
 
-import('lib.pkp.classes.db.SettingsDAO');
+use \PKP\db\SettingsDAO;
 
 class PressSettingsDAO extends SettingsDAO {
 

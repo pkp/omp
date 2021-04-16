@@ -23,8 +23,8 @@ import('lib.pkp.classes.submission.SubmissionFile');
 import('classes.submission.SubmissionDAO');
 import('lib.pkp.classes.submission.Genre');
 import('lib.pkp.classes.submission.reviewRound.ReviewRound');
-import('lib.pkp.classes.db.DBResultRange');
 
+use \PKP\db\DBResultRange;
 use \PKP\db\DAORegistry;
 use \PKP\core\PKPRouter;
 
