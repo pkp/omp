@@ -124,7 +124,7 @@ class CatalogBookHandler extends Handler {
 		$pubIdPlugins = PluginRegistry::loadCategory('pubIds', true);
 		$templateMgr->assign(array(
 			'pubIdPlugins' => PluginRegistry::loadCategory('pubIds', true),
-			'ccLicenseBadge' => Application::getCCLicenseBadge($this->publication->getData('licenseUrl')),
+			'ccLicenseBadge' => Application::get()->getCCLicenseBadge($this->publication->getData('licenseUrl')),
 		));
 
 		// Categories
