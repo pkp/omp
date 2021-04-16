@@ -28,6 +28,8 @@ import('classes.spotlight.Spotlight');
 // Link action & modal classes
 import('lib.pkp.classes.linkAction.request.AjaxModal');
 
+use \PKP\core\JSONMessage;
+
 class ManageSpotlightsGridHandler extends GridHandler {
 
 	/**

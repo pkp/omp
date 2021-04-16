@@ -16,6 +16,8 @@
 import('lib.pkp.controllers.grid.settings.SetupGridHandler');
 import('controllers.grid.settings.series.SeriesGridRow');
 
+use \PKP\core\JSONMessage;
+
 class SeriesGridHandler extends SetupGridHandler {
 	/**
 	 * Constructor

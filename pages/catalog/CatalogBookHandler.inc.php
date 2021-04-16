@@ -18,7 +18,8 @@ import('classes.handler.Handler');
 
 // import UI base classes
 import('lib.pkp.classes.linkAction.LinkAction');
-import('lib.pkp.classes.core.JSONMessage');
+
+use \PKP\core\JSONMessage;
 
 class CatalogBookHandler extends Handler {
 	/** @var Publication The requested publication */

@@ -17,6 +17,8 @@ use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 use Illuminate\Support\Facades\DB;
 
+use \PKP\services\PKPSchemaService;
+
 class OMPv3_3_0UpgradeMigration extends Migration {
 	/**
 	 * Run the migrations.
@@ -84,7 +86,7 @@ class OMPv3_3_0UpgradeMigration extends Migration {
 				$schema = $schemaService->get($dao->schemaName);
 				$tableName = $dao->settingsTableName;
 			} else if ($daoName === 'SiteDAO') {
-				$schema = $schemaService->get(SCHEMA_SITE);
+				$schema = $schemaService->get(PKPSchemaService::SCHEMA_SITE);
 				$tableName = 'site_settings';
 			} else {
 				continue; // if parent class changes, the table is processed with other settings tables

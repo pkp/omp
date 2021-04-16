@@ -15,8 +15,10 @@
  * <press_id> is assumed to be "index" for top-level site requests.
  */
 
+namespace APP\core;
 
-import('lib.pkp.classes.core.PKPRequest');
+use \PKP\plugins\HookRegistry;
+use \PKP\core\PKPRequest;
 
 class Request extends PKPRequest {
 	/**
