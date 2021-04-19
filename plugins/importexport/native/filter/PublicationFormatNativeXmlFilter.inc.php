@@ -16,15 +16,6 @@
 import('lib.pkp.plugins.importexport.native.filter.RepresentationNativeXmlFilter');
 
 class PublicationFormatNativeXmlFilter extends RepresentationNativeXmlFilter {
-	/**
-	 * Constructor
-	 * @param $filterGroup FilterGroup
-	 */
-	function __construct($filterGroup) {
-		parent::__construct($filterGroup);
-	}
-
-
 	//
 	// Implement template methods from PersistableFilter
 	//
@@ -71,7 +62,7 @@ class PublicationFormatNativeXmlFilter extends RepresentationNativeXmlFilter {
 			if ($onixDoc) { // we do this to ensure validation.
 				// assemble just the Product node we want.
 				$publicationFormatDOMElement = $exportFilter->createProductNode($doc, $submission, $representation);
-				if ($publicationFormatDOMElement instanceof DOMElement) {
+				if ($publicationFormatDOMElement && $publicationFormatDOMElement instanceof DOMElement) {
 					import('lib.pkp.classes.xslt.XSLTransformer');
 					$xslTransformer = new XSLTransformer();
 					$xslFile = 'plugins/importexport/native/onixProduct2NativeXml.xsl';
@@ -80,6 +71,11 @@ class PublicationFormatNativeXmlFilter extends RepresentationNativeXmlFilter {
 					$representationFragment = $doc->createDocumentFragment();
 					$representationFragment->appendXML($filteredXml);
 					$representationNode->appendChild($representationFragment);
+				} else {
+					$deployment = $this->getDeployment();
+					$deployment->addError(ASSOC_TYPE_PUBLICATION, $representation->getId(), __('plugins.importexport.publicationformat.exportFailed'));
+
+					throw new Exception(__('plugins.importexport.publicationformat.exportFailed'));
 				}
 			}
 		}

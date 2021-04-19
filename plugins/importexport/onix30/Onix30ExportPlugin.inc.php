@@ -68,7 +68,11 @@ class Onix30ExportPlugin extends ImportExportPlugin {
 	 */
 	function display($args, $request) {
 		$templateMgr = TemplateManager::getManager($request);
+
 		$context = $request->getContext();
+		$user = $request->getUser();
+		$deployment = $this->getAppSpecificDeployment($context, $user);
+		$this->setDeployment($deployment);
 
 		parent::display($args, $request);
 
@@ -101,18 +105,25 @@ class Onix30ExportPlugin extends ImportExportPlugin {
 				]);
 				$templateMgr->display($this->getTemplateResource('index.tpl'));
 				break;
-			case 'export':
-				$exportXml = $this->exportSubmissions(
-					(array) $request->getUserVar('selectedSubmissions'),
-					$request->getContext(),
-					$request->getUser()
+			case 'exportSubmissionsBounce':
+				$tab = $this->getBounceTab($request,
+					__('plugins.importexport.native.export.submissions.results'),
+						'exportSubmissions',
+						array('selectedSubmissions' => $request->getUserVar('selectedSubmissions'))
 				);
-				import('lib.pkp.classes.file.FileManager');
-				$fileManager = new FileManager();
-				$exportFileName = $this->getExportFileName($this->getExportPath(), 'monographs', $context, '.xml');
-				$fileManager->writeFile($exportFileName, $exportXml);
-				$fileManager->downloadByPath($exportFileName);
-				$fileManager->deleteByPath($exportFileName);
+
+				return $tab;
+			case 'exportSubmissions':
+				$submissionIds = (array) $request->getUserVar('selectedSubmissions');
+
+				$this->getExportSubmissionsDeployment($submissionIds, $this->_childDeployment);
+
+				$result = $this->getExportTemplateResult($this->getDeployment(), $templateMgr, 'submissions');
+
+				return $result;
+			case 'downloadExportFile':
+				$downloadPath = $request->getUserVar('downloadFilePath');
+				$this->downloadExportedFile($downloadPath);
 				break;
 			default:
 				$dispatcher = $request->getDispatcher();
@@ -121,42 +132,42 @@ class Onix30ExportPlugin extends ImportExportPlugin {
 	}
 
 	/**
-	 * Get the XML for a set of submissions.
-	 * @param $submissionIds array Array of submission IDs
-	 * @param $context Context
-	 * @param $user User
-	 * @return string XML contents representing the supplied submission IDs.
-	 */
-	function exportSubmissions($submissionIds, $context, $user) {
-		$submissionDao = DAORegistry::getDAO('SubmissionDAO'); /* @var $submissionDao SubmissionDAO */
-		$xml = '';
-		$filterDao = DAORegistry::getDAO('FilterDAO'); /* @var $filterDao FilterDAO */
-		$nativeExportFilters = $filterDao->getObjectsByGroup('monographs=>onix30-xml');
-		assert(count($nativeExportFilters) == 1); // Assert only a single serialization filter
-		$exportFilter = array_shift($nativeExportFilters);
-		$exportFilter->setDeployment(new Onix30ExportDeployment($context, $user));
-		$submissions = array();
-		foreach ($submissionIds as $submissionId) {
-			$submission = $submissionDao->getById($submissionId, $context->getId());
-			if ($submission) $submissions[] = $submission;
-		}
-		$submissionXml = $exportFilter->execute($submissions);
-		if ($submissionXml) $xml = $submissionXml->saveXml();
-		else fatalError('Could not convert submissions.');
-		return $xml;
-	}
-
-	/**
 	 * @copydoc ImportExportPlugin::executeCLI($scriptName, $args)
 	 */
 	function executeCLI($scriptName, &$args) {
-		fatalError('Not implemented.');
+		throw new BadMethodCallException();
 	}
 
 	/**
 	 * @copydoc ImportExportPlugin::usage
 	 */
 	function usage($scriptName) {
-		fatalError('Not implemented.');
+		throw new BadMethodCallException();
+	}
+
+	/**
+	 * @see PKPNativeImportExportPlugin::getImportFilter
+	 */
+	function getImportFilter($xmlFile) {
+		throw new BadMethodCallException();
+	}
+
+	/**
+	 * @see PKPNativeImportExportPlugin::getExportFilter
+	 */
+	function getExportFilter($exportType) {
+		$filter = false;
+		if ($exportType == 'exportSubmissions') {
+			$filter = 'monographs=>onix30-xml';
+		}
+
+		return $filter;
+	}
+
+	/**
+	 * @see ImportExportPlugin::getAppSpecificDeployment
+	 */
+	function getAppSpecificDeployment($context, $user) {
+		return new Onix30ExportDeployment($context, $user);
 	}
 }
