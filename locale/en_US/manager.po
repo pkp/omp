@@ -1110,3 +1110,15 @@ msgstr "Send a copy of the submission acknowledgement email to this press's prim
 
 msgid "manager.setup.notifications.copySubmissionAckPrimaryContact.disabled.description"
 msgstr "No primary contact has been defined for this press. You can enter a primary contact in the <a href="{$url}">press settings</a>."
+
+msgid "plugins.importexport.common.error.unknownObjects"
+msgstr "The specified objects could not be found."
+
+msgid "plugins.importexport.native.error.unknownUser"
+msgstr "The specified user, \"{$userName}\", does not exist."
+
+msgid "plugins.importexport.publicationformat.exportFailed"
+msgstr "Process failed to parse publicationformats"
+
+msgid "plugins.importexport.chapter.exportFailed"
+msgstr "Process failed to parse chapters"

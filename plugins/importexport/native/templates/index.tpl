@@ -65,10 +65,10 @@
 		<script type="text/javascript">
 			$(function() {ldelim}
 				// Attach the form handler.
-				$('#exportXmlForm').pkpHandler('$.pkp.controllers.form.FormHandler');
+				$('#exportXmlForm').pkpHandler('$.pkp.controllers.form.AjaxFormHandler');
 			{rdelim});
 		</script>
-		<form id="exportXmlForm" class="pkp_form" action="{plugin_url path="export"}" method="post">
+		<form id="exportXmlForm" class="pkp_form" action="{plugin_url path="exportSubmissionsBounce"}" method="post">
 			{csrf}
 			{fbvFormArea id="exportForm"}
 				<submissions-list-panel

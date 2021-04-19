@@ -54,7 +54,6 @@ class MonographONIX30XmlFilter extends NativeExportFilter {
 		$doc->preserveWhiteSpace = false;
 		$doc->formatOutput = true;
 		$this->_doc = $doc;
-
 		$deployment = $this->getDeployment();
 
 		// create top level ONIXMessage element

@@ -34,14 +34,47 @@ class UserImportExportPlugin extends PKPUserImportExportPlugin {
 	 * @copydoc ImportExportPlugin::executeCLI
 	 */
 	function executeCLI($scriptName, &$args) {
-		fatalError('Not implemented.');
+		throw new BadMethodCallException();
 	}
 
 	/**
 	 * @copydoc ImportExportPlugin::usage
 	 */
 	function usage($scriptName) {
-		fatalError('Not implemented.');
+		throw new BadMethodCallException();
+	}
+	/**
+	 * Define the appropriate import filter given the imported XML file path
+	 *
+	 * @param string $xmlFile
+	 *
+	 * @return array Containing the filter and the xmlString of the imported file
+	 */
+	function getImportFilter($xmlFile) {
+		throw new BadMethodCallException();
+	}
+
+	/**
+	 * Define the appropriate export filter given the export operation
+	 *
+	 * @param string $exportType
+	 *
+	 * @return string
+	 */
+	function getExportFilter($exportType) {
+		throw new BadMethodCallException();
+	}
+
+	/**
+	 * Get the application specific deployment object
+	 *
+	 * @param Context $context
+	 * @param User $user
+	 *
+	 * @return PKPImportExportDeployment
+	 */
+	function getAppSpecificDeployment($context, $user) {
+		throw new BadMethodCallException();
 	}
 }
 

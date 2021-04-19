@@ -64,7 +64,9 @@ class PublicationNativeXmlFilter extends PKPPublicationNativeXmlFilter {
 		}
 
 		// cover images
-		$coversNode = $this->createPublicationCoversNode($this, $doc, $entity);
+		import('lib.pkp.plugins.importexport.native.filter.PKPNativeFilterHelper');
+		$nativeFilterHelper = new PKPNativeFilterHelper();
+		$coversNode = $nativeFilterHelper->createPublicationCoversNode($this, $doc, $entity);
 		if ($coversNode) $entityNode->appendChild($coversNode);
 
 		return $entityNode;
@@ -77,57 +79,21 @@ class PublicationNativeXmlFilter extends PKPPublicationNativeXmlFilter {
 	 * @param $entity Publication
 	 */
 	function addChapters($doc, $entityNode, $entity) {
-		$filterDao = DAORegistry::getDAO('FilterDAO'); /** @var $filterDao FilterDAO */
-		$nativeExportFilters = $filterDao->getObjectsByGroup('chapter=>native-xml');
-		assert(count($nativeExportFilters)==1); // Assert only a single serialization filter
-		$exportFilter = array_shift($nativeExportFilters);
-		$exportFilter->setDeployment($this->getDeployment());
+		$currentFilter = PKPImportExportFilter::getFilter('chapter=>native-xml', $this->getDeployment());
 
 		$chapters = $entity->getData('chapters');
-		$chaptersDoc = $exportFilter->execute($chapters);
-		if ($chaptersDoc && $chaptersDoc->documentElement instanceof DOMElement) {
-			$clone = $doc->importNode($chaptersDoc->documentElement, true);
-			$entityNode->appendChild($clone);
-		}
-	}
+		if ($chapters && count($chapters) > 0) {
+			$chaptersDoc = $currentFilter->execute($chapters);
+			if ($chaptersDoc && $chaptersDoc->documentElement instanceof DOMElement) {
+				$clone = $doc->importNode($chaptersDoc->documentElement, true);
+				$entityNode->appendChild($clone);
+			} else {
+				$deployment = $this->getDeployment();
+				$deployment->addError(ASSOC_TYPE_PUBLICATION, $entity->getId(), __('plugins.importexport.chapter.exportFailed'));
 
-	/**
-	 * Create and return an object covers node.
-	 * @param $filter NativeExportFilter
-	 * @param $doc DOMDocument
-	 * @param $object Publication
-	 * @return DOMElement
-	 */
-	function createPublicationCoversNode($filter, $doc, $object) {
-		$deployment = $filter->getDeployment();
-
-		$context = $deployment->getContext();
-
-		$coversNode = null;
-		$coverImages = $object->getData('coverImage');
-		if (!empty($coverImages)) {
-			$coversNode = $doc->createElementNS($deployment->getNamespace(), 'covers');
-			foreach ($coverImages as $locale => $coverImage) {
-				$coverImageName = $coverImage['uploadName'];
-
-				$coverNode = $doc->createElementNS($deployment->getNamespace(), 'cover');
-				$coverNode->setAttribute('locale', $locale);
-				$coverNode->appendChild($node = $doc->createElementNS($deployment->getNamespace(), 'cover_image', htmlspecialchars($coverImageName, ENT_COMPAT, 'UTF-8')));
-				$coverNode->appendChild($node = $doc->createElementNS($deployment->getNamespace(), 'cover_image_alt_text', htmlspecialchars($coverImage['altText'], ENT_COMPAT, 'UTF-8')));
-
-				import('classes.file.PublicFileManager');
-				$publicFileManager = new PublicFileManager();
-
-				$contextId = $context->getId();
-
-				$filePath = $publicFileManager->getContextFilesPath($contextId) . '/' . $coverImageName;
-				$embedNode = $doc->createElementNS($deployment->getNamespace(), 'embed', base64_encode(file_get_contents($filePath)));
-				$embedNode->setAttribute('encoding', 'base64');
-				$coverNode->appendChild($embedNode);
-				$coversNode->appendChild($coverNode);
+				throw new Exception(__('plugins.importexport.chapter.exportFailed'));
 			}
 		}
-		return $coversNode;
 	}
 
 	/**
@@ -147,66 +113,22 @@ class PublicationNativeXmlFilter extends PKPPublicationNativeXmlFilter {
 			$seriesDao = DAORegistry::getDAO('SeriesDAO'); /** @var $seriesDao SeriesDAO */
 			$series = $seriesDao->getById($seriesId, $context->getId());
 
-			$seriesNode = $doc->createElementNS($deployment->getNamespace(), 'series');
+			if ($series) {
+				$seriesNode = $doc->createElementNS($deployment->getNamespace(), 'series');
 
-			// Add metadata
-			$this->createLocalizedNodes($doc, $seriesNode, 'title', $series->getData('title'));
-			$this->createLocalizedNodes($doc, $seriesNode, 'subtitle', $series->getData('subtitle'));
-			$this->createLocalizedNodes($doc, $seriesNode, 'description', $series->getData('description'));
+				// Add metadata
+				$this->createLocalizedNodes($doc, $seriesNode, 'title', $series->getData('title'));
+				$this->createLocalizedNodes($doc, $seriesNode, 'subtitle', $series->getData('subtitle'));
+				$this->createLocalizedNodes($doc, $seriesNode, 'description', $series->getData('description'));
 
-			$seriesNode->appendChild($doc->createElementNS($deployment->getNamespace(), 'printIssn', $series->getData('printIssn')));
-			$seriesNode->appendChild($doc->createElementNS($deployment->getNamespace(), 'onlineIssn', $series->getData('onlineIssn')));
+				$seriesNode->appendChild($doc->createElementNS($deployment->getNamespace(), 'printIssn', $series->getData('printIssn')));
+				$seriesNode->appendChild($doc->createElementNS($deployment->getNamespace(), 'onlineIssn', $series->getData('onlineIssn')));
 
-			$seriesNode->appendChild($doc->createElementNS($deployment->getNamespace(), 'path', $series->getData('path')));
-			$seriesNode->appendChild($doc->createElementNS($deployment->getNamespace(), 'sequence', $series->getData('sequence')));
+				$seriesNode->appendChild($doc->createElementNS($deployment->getNamespace(), 'path', $series->getData('path')));
+				$seriesNode->appendChild($doc->createElementNS($deployment->getNamespace(), 'sequence', $series->getData('sequence')));
+			}
 		}
 
 		return $seriesNode;
-	}
-
-	/**
-	 * Parse out the object covers.
-	 * @param $filter NativeExportFilter
-	 * @param $node DOMElement
-	 * @param $object Publication
-	 * @param $assocType ASSOC_TYPE_PUBLICATION
-	 */
-	function parseCovers($filter, $node, $object, $assocType) {
-		$deployment = $filter->getDeployment();
-		for ($n = $node->firstChild; $n !== null; $n=$n->nextSibling) {
-			if (is_a($n, 'DOMElement')) {
-				switch ($n->tagName) {
-					case 'cover':
-						$this->parseCover($filter, $n, $object, $assocType);
-						break;
-					default:
-						$deployment->addWarning($assocType, $object->getId(), __('plugins.importexport.common.error.unknownElement', array('param' => $n->tagName)));
-				}
-			}
-		}
-	}
-
-	/**
-	 * Create and return a Citations node.
-	 * @param $doc DOMDocument
-	 * @param $deployment
-	 * @param $publication Publication
-	 * @return DOMElement
-	 */
-	private function createCitationsNode($doc, $deployment, $publication) {
-		$citationDao = DAORegistry::getDAO('CitationDAO');
-
-		$nodeCitations = $doc->createElementNS($deployment->getNamespace(), 'citations');
-		$submissionCitations = $citationDao->getByPublicationId($publication->getId());
-		if ($submissionCitations->getCount() != 0) {
-			while ($elementCitation = $submissionCitations->next()) {
-				$rawCitation = $elementCitation->getRawCitation();
-				$nodeCitations->appendChild($node = $doc->createElementNS($deployment->getNamespace(), 'citation', htmlspecialchars($rawCitation, ENT_COMPAT, 'UTF-8')));
-			}
-
-			return $nodeCitations;
-		}
-
-		return null;
 	}
 }

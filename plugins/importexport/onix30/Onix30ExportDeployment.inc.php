@@ -17,15 +17,6 @@
 import('lib.pkp.classes.plugins.importexport.PKPImportExportDeployment');
 
 class Onix30ExportDeployment extends PKPImportExportDeployment {
-	/**
-	 * Constructor
-	 * @param $context Context
-	 * @param $user User
-	 */
-	function __construct($context, $user) {
-		parent::__construct($context, $user);
-	}
-
 	//
 	// Deploymenturation items for subclasses to override
 	//

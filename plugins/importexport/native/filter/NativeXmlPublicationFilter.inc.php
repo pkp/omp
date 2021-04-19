@@ -53,7 +53,9 @@ class NativeXmlPublicationFilter extends NativeXmlPKPPublicationFilter {
 				$this->parseChapters($n, $publication);
 				break;
 			case 'covers':
-				$this->parsePublicationCovers($this, $n, $publication);
+				import('lib.pkp.plugins.importexport.native.filter.PKPNativeFilterHelper');
+				$nativeFilterHelper = new PKPNativeFilterHelper();
+				$nativeFilterHelper->parsePublicationCovers($this, $n, $publication);
 				break;
 			case 'series':
 				$this->parseSeries($this, $n, $publication);
@@ -84,6 +86,7 @@ class NativeXmlPublicationFilter extends NativeXmlPKPPublicationFilter {
 		}
 		// Caps on class name for consistency with imports, whose filter
 		// group names are generated implicitly.
+
 		$filterDao = DAORegistry::getDAO('FilterDAO'); /* @var $filterDao FilterDAO */
 		$importFilters = $filterDao->getObjectsByGroup('native-xml=>' . $importClass);
 		$importFilter = array_shift($importFilters);

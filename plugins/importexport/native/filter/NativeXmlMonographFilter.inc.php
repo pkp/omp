@@ -16,15 +16,6 @@
 import('lib.pkp.plugins.importexport.native.filter.NativeXmlSubmissionFilter');
 
 class NativeXmlMonographFilter extends NativeXmlSubmissionFilter {
-	/**
-	 * Constructor
-	 * @param $filterGroup FilterGroup
-	 */
-	function __construct($filterGroup) {
-		parent::__construct($filterGroup);
-	}
-
-
 	//
 	// Implement template methods from PersistableFilter
 	//
@@ -33,26 +24,6 @@ class NativeXmlMonographFilter extends NativeXmlSubmissionFilter {
 	 */
 	function getClassName() {
 		return 'plugins.importexport.native.filter.NativeXmlMonographFilter';
-	}
-
-	/**
-	 * @see Filter::process()
-	 * @param $document DOMDocument|string
-	 * @return array Array of imported documents
-	 */
-	function &process(&$document) {
-		$importedObjects =& parent::process($document);
-
-		// Index imported content
-		$monographSearchIndex = Application::getSubmissionSearchIndex();
-		foreach ($importedObjects as $submission) {
-			assert(is_a($submission, 'Submission'));
-			$monographSearchIndex->submissionMetadataChanged($submission);
-			$monographSearchIndex->submissionFilesChanged($submission);
-		}
-		$monographSearchIndex->submissionChangesFinished();
-
-		return $importedObjects;
 	}
 
 	/**
@@ -106,10 +77,8 @@ class NativeXmlMonographFilter extends NativeXmlSubmissionFilter {
 		}
 		// Caps on class name for consistency with imports, whose filter
 		// group names are generated implicitly.
-		$filterDao = DAORegistry::getDAO('FilterDAO'); /* @var $filterDao FilterDAO */
-		$importFilters = $filterDao->getObjectsByGroup('native-xml=>' . $importClass);
-		$importFilter = array_shift($importFilters);
-		return $importFilter;
+		$currentFilter = PKPImportExportFilter::getFilter('native-xml=>' . $importClass, $this->getDeployment());
+		return $currentFilter;
 	}
 
 	/**
@@ -119,12 +88,7 @@ class NativeXmlMonographFilter extends NativeXmlSubmissionFilter {
 	 */
 	function parsePublication($n, $submission) {
 		$importFilter = $this->getImportFilter($n->tagName);
-		assert($importFilter); // There should be a filter
 
-		$existingDeployment = $this->getDeployment();
-		$request = Application::get()->getRequest();
-
-		$importFilter->setDeployment($existingDeployment);
 		$formatDoc = new DOMDocument();
 		$formatDoc->appendChild($formatDoc->importNode($n, true));
 		return $importFilter->execute($formatDoc);
