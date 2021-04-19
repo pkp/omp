@@ -1104,3 +1104,9 @@ msgstr "Invalid XML:"
 
 msgid "plugins.importexport.native.exportSubmissions"
 msgstr "Export Submissions"
+
+msgid "manager.setup.notifications.copySubmissionAckPrimaryContact.description"
+msgstr "Send a copy of the submission acknowledgement email to this press's primary contact."
+
+msgid "manager.setup.notifications.copySubmissionAckPrimaryContact.disabled.description"
+msgstr "No primary contact has been defined for this press. You can enter a primary contact in the <a href="{$url}">press settings</a>."
