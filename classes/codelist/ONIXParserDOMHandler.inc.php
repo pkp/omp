@@ -9,6 +9,7 @@
  *
  * @class ONIXParserDOMHandler
  * @ingroup codelist
+ *
  * @see XMLParser
  *
  * @brief This parser extracts a specific xs:simpleType based on a name attribute
@@ -22,112 +23,119 @@
 import('lib.pkp.classes.xml.XMLParserDOMHandler');
 import('lib.pkp.classes.xml.XMLNode');
 
-class ONIXParserDOMHandler extends XMLParserDOMHandler {
+class ONIXParserDOMHandler extends XMLParserDOMHandler
+{
+    /** @var string the list being searched for */
+    public $_listName = null;
 
-	/** @var string the list being searched for */
-	var $_listName = null;
+    /** @var boolean to maintain state */
+    public $_foundRequestedList = false;
 
-	/** @var boolean to maintain state */
-	var $_foundRequestedList = false;
+    /** @var array of items the parser eventually returns */
+    public $_listItems = null;
 
-	/** @var array of items the parser eventually returns */
-	var $_listItems = null;
+    /** @var string to store the current character data  */
+    public $_currentValue = null;
 
-	/** @var string to store the current character data  */
-	var $_currentValue = null;
+    /** @var boolean currently inside an xs:documentation element */
+    public $_insideDocumentation = false;
 
-	/** @var boolean currently inside an xs:documentation element */
-	var $_insideDocumentation = false;
+    /**
+     * Constructor.
+     *
+     * @param $listName string
+     */
+    public function __construct($listName)
+    {
+        parent::__construct();
+        $this->_listName = $listName;
+        $this->_listItems = [];
+    }
 
-	/**
-	 * Constructor.
-	 * @param $listName string
-	 */
-	function __construct($listName) {
-		parent::__construct();
-		$this->_listName = $listName;
-		$this->_listItems = array();
-	}
+    /**
+     * Callback function to act as the start element handler.
+     *
+     * @param $parser XMLParser
+     * @param $tag string
+     * @param $attributes array
+     */
+    public function startElement($parser, $tag, $attributes)
+    {
+        $this->currentData = null;
 
-	/**
-	 * Callback function to act as the start element handler.
-	 * @param $parser XMLParser
-	 * @param $tag string
-	 * @param $attributes array
-	 */
-	function startElement($parser, $tag, $attributes) {
-		$this->currentData = null;
+        switch ($tag) {
+            case 'xs:simpleType':
+                if ($attributes['name'] == $this->_listName) {
+                    $this->_foundRequestedList = true;
+                }
+                break;
+            case 'xs:enumeration':
+                if ($this->_foundRequestedList) {
+                    $this->_currentValue = $attributes['value'];
+                    $this->_listItems[$this->_currentValue] = []; // initialize the array cell
+                }
+                break;
+            case 'xs:documentation':
+                if ($this->_foundRequestedList) {
+                    $this->_insideDocumentation = true;
+                }
+                break;
+        }
 
-		switch ($tag) {
-			case 'xs:simpleType':
-				if ($attributes['name'] == $this->_listName) {
-					$this->_foundRequestedList = true;
-				}
-				break;
-			case 'xs:enumeration':
-				if ($this->_foundRequestedList) {
-					$this->_currentValue = $attributes['value'];
-					$this->_listItems[$this->_currentValue] = array(); // initialize the array cell
-				}
-				break;
-			case 'xs:documentation':
-				if ($this->_foundRequestedList) {
-					$this->_insideDocumentation = true;
-				}
-				break;
-		}
+        $node = new XMLNode($tag);
+        $node->setAttributes($attributes);
+        if (isset($this->currentNode)) {
+            $this->currentNode->addChild($node);
+            $node->setParent($this->currentNode);
+        } else {
+            $this->rootNode = $node;
+        }
 
-		$node = new XMLNode($tag);
-		$node->setAttributes($attributes);
-		if (isset($this->currentNode)) {
-			$this->currentNode->addChild($node);
-			$node->setParent($this->currentNode);
+        $this->currentNode = $node;
+    }
 
-		} else {
-			$this->rootNode = $node;
-		}
+    /**
+     * Callback function to act as the character data handler.
+     *
+     * @param $parser XMLParser
+     * @param $data string
+     */
+    public function characterData($parser, $data)
+    {
+        if ($this->_insideDocumentation) {
+            if (count($this->_listItems[$this->_currentValue]) == 1) {
+                $this->_listItems[$this->_currentValue][0] .= $data;
+            } else {
+                $this->_listItems[$this->_currentValue][0] = $data;
+            }
+        }
+    }
 
-		$this->currentNode = $node;
-	}
+    /**
+     * Callback function to act as the end element handler.
+     *
+     * @param $parser XMLParser
+     * @param $tag string
+     */
+    public function endElement($parser, $tag)
+    {
+        switch ($tag) {
+            case 'xs:simpleType':
+                $this->_foundRequestedList = false;
+                break;
+            case 'xs:documentation':
+                $this->_insideDocumentation = false;
+                break;
+        }
+    }
 
-	/**
-	 * Callback function to act as the character data handler.
-	 * @param $parser XMLParser
-	 * @param $data string
-	 */
-	function characterData($parser, $data) {
-		if ($this->_insideDocumentation) {
-			if (count($this->_listItems[$this->_currentValue]) == 1)
-				$this->_listItems[$this->_currentValue][0] .= $data;
-			else
-				$this->_listItems[$this->_currentValue][0] = $data;
-		}
-	}
-
-	/**
-	 * Callback function to act as the end element handler.
-	 * @param $parser XMLParser
-	 * @param $tag string
-	 */
-	function endElement($parser, $tag) {
-
-		switch ($tag) {
-			case 'xs:simpleType':
-				$this->_foundRequestedList = false;
-				break;
-			case 'xs:documentation':
-				$this->_insideDocumentation = false;
-				break;
-		}
-	}
-
-	/**
-	 * Returns the array of found list items
-	 * @return array
-	 */
-	function getResult() {
-		return array($this->_listName => $this->_listItems);
-	}
+    /**
+     * Returns the array of found list items
+     *
+     * @return array
+     */
+    public function getResult()
+    {
+        return [$this->_listName => $this->_listItems];
+    }
 }
-
-

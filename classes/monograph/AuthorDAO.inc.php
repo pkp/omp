@@ -9,6 +9,7 @@
  *
  * @class AuthorDAO
  * @ingroup monograph
+ *
  * @see Author
  * @see ChapterDAO (uses AuthorDAO)
  *
@@ -21,6 +22,6 @@ import('classes.monograph.Author');
 import('classes.submission.Submission');
 import('lib.pkp.classes.submission.PKPAuthorDAO');
 
-class AuthorDAO extends PKPAuthorDAO {
+class AuthorDAO extends PKPAuthorDAO
+{
 }
-

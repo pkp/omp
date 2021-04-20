@@ -16,17 +16,17 @@
 import('lib.pkp.classes.submission.form.PKPSubmissionSubmitStep3Form');
 import('classes.submission.SubmissionMetadataFormImplementation');
 
-class SubmissionSubmitStep3Form extends PKPSubmissionSubmitStep3Form {
-	/**
-	 * Constructor.
-	 */
-	function __construct($context, $submission) {
-		parent::__construct(
-			$context,
-			$submission,
-			new SubmissionMetadataFormImplementation($this)
-		);
-	}
+class SubmissionSubmitStep3Form extends PKPSubmissionSubmitStep3Form
+{
+    /**
+     * Constructor.
+     */
+    public function __construct($context, $submission)
+    {
+        parent::__construct(
+            $context,
+            $submission,
+            new SubmissionMetadataFormImplementation($this)
+        );
+    }
 }
-
-

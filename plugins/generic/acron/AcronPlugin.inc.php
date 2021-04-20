@@ -17,8 +17,6 @@
 
 import('lib.pkp.plugins.generic.acron.PKPAcronPlugin');
 
-class AcronPlugin extends PKPAcronPlugin {
-
-
+class AcronPlugin extends PKPAcronPlugin
+{
 }
-

@@ -9,6 +9,7 @@
  *
  * @class MonographSearchDAO
  * @ingroup search
+ *
  * @see MonographSearch
  *
  * @brief DAO class for monograph search index.
@@ -17,48 +18,61 @@
 import('classes.search.MonographSearch');
 import('lib.pkp.classes.search.SubmissionSearchDAO');
 
-class MonographSearchDAO extends SubmissionSearchDAO {
-	/**
-	 * Retrieve the top results for a phrases with the given
-	 * limit (default 500 results).
-	 * @param $keywordId int
-	 * @return array of results (associative arrays)
-	 */
-	function getPhraseResults($press, $phrase, $publishedFrom = null, $publishedTo = null, $type = null, $limit = 500, $cacheHours = 24) {
-		if (empty($phrase)) return array();
+class MonographSearchDAO extends SubmissionSearchDAO
+{
+    /**
+     * Retrieve the top results for a phrases with the given
+     * limit (default 500 results).
+     *
+     * @param null|mixed $publishedFrom
+     * @param null|mixed $publishedTo
+     * @param null|mixed $type
+     *
+     * @return array of results (associative arrays)
+     */
+    public function getPhraseResults($press, $phrase, $publishedFrom = null, $publishedTo = null, $type = null, $limit = 500, $cacheHours = 24)
+    {
+        if (empty($phrase)) {
+            return [];
+        }
 
-		$sqlFrom = '';
-		$sqlWhere = '';
-		$params = [];
+        $sqlFrom = '';
+        $sqlWhere = '';
+        $params = [];
 
-		for ($i = 0, $count = count($phrase); $i < $count; $i++) {
-			if (!empty($sqlFrom)) {
-				$sqlFrom .= ', ';
-				$sqlWhere .= ' AND ';
-			}
-			$sqlFrom .= 'submission_search_object_keywords o'.$i.' NATURAL JOIN submission_search_keyword_list k'.$i;
-			if (strstr($phrase[$i], '%') === false) $sqlWhere .= 'k'.$i.'.keyword_text = ?';
-			else $sqlWhere .= 'k'.$i.'.keyword_text LIKE ?';
-			if ($i > 0) $sqlWhere .= ' AND o0.object_id = o'.$i.'.object_id AND o0.pos+'.$i.' = o'.$i.'.pos';
+        for ($i = 0, $count = count($phrase); $i < $count; $i++) {
+            if (!empty($sqlFrom)) {
+                $sqlFrom .= ', ';
+                $sqlWhere .= ' AND ';
+            }
+            $sqlFrom .= 'submission_search_object_keywords o' . $i . ' NATURAL JOIN submission_search_keyword_list k' . $i;
+            if (strstr($phrase[$i], '%') === false) {
+                $sqlWhere .= 'k' . $i . '.keyword_text = ?';
+            } else {
+                $sqlWhere .= 'k' . $i . '.keyword_text LIKE ?';
+            }
+            if ($i > 0) {
+                $sqlWhere .= ' AND o0.object_id = o' . $i . '.object_id AND o0.pos+' . $i . ' = o' . $i . '.pos';
+            }
 
-			$params[] = $phrase[$i];
-		}
+            $params[] = $phrase[$i];
+        }
 
-		if (!empty($type)) {
-			$sqlWhere .= ' AND (o.type & ?) != 0';
-			$params[] = $type;
-		}
+        if (!empty($type)) {
+            $sqlWhere .= ' AND (o.type & ?) != 0';
+            $params[] = $type;
+        }
 
-		if (!empty($press)) {
-			$sqlWhere .= ' AND s.context_id = ?';
-			$params[] = $press->getId();
-		}
+        if (!empty($press)) {
+            $sqlWhere .= ' AND s.context_id = ?';
+            $params[] = $press->getId();
+        }
 
-		import('classes.submission.Submission'); // import STATUS_PUBLISHED constant
-		$params[] = STATUS_PUBLISHED;
+        import('classes.submission.Submission'); // import STATUS_PUBLISHED constant
+        $params[] = STATUS_PUBLISHED;
 
-		$result = $this->retrieve(
-			$sql = 'SELECT
+        $result = $this->retrieve(
+            $sql = 'SELECT
 				o.submission_id,
 				s.context_id as press_id,
 				p.date_published as s_pub,
@@ -74,20 +88,18 @@ class MonographSearchDAO extends SubmissionSearchDAO {
 			GROUP BY o.submission_id, s.context_id, p.date_published
 			ORDER BY count DESC
 			LIMIT ' . $limit,
-			$params,
-			3600 * $cacheHours // Cache for 24 hours
-		);
+            $params,
+            3600 * $cacheHours // Cache for 24 hours
+        );
 
-		$returner = [];
-		foreach ($result as $row) {
-			$returner[$row->submission_id] = [
-				'count' => $row->count,
-				'press_id' => $row->press_id,
-				'publicationDate' => $this->datetimeFromDB($row->s_pub)
-			];
-		}
-		return $returner;
-	}
+        $returner = [];
+        foreach ($result as $row) {
+            $returner[$row->submission_id] = [
+                'count' => $row->count,
+                'press_id' => $row->press_id,
+                'publicationDate' => $this->datetimeFromDB($row->s_pub)
+            ];
+        }
+        return $returner;
+    }
 }
-
-

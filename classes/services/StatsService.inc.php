@@ -11,19 +11,22 @@
  *
  * @brief Helper class that encapsulates statistics business logic
  */
+
 namespace APP\Services;
 
-class StatsService extends \PKP\Services\PKPStatsService {
-	/**
-	 * Process the seriesIds param when getting the query builder
-	 *
-	 * @param array $args
-	 */
-	protected function _getQueryBuilder($args = []) {
-		$statsQB = parent::_getQueryBuilder($args);
-		if (!empty(($args['seriesIds']))) {
-			$statsQB->filterBySections($args['seriesIds']);
-		}
-		return $statsQB;
-	}
+class StatsService extends \PKP\Services\PKPStatsService
+{
+    /**
+     * Process the seriesIds param when getting the query builder
+     *
+     * @param array $args
+     */
+    protected function _getQueryBuilder($args = [])
+    {
+        $statsQB = parent::_getQueryBuilder($args);
+        if (!empty(($args['seriesIds']))) {
+            $statsQB->filterBySections($args['seriesIds']);
+        }
+        return $statsQB;
+    }
 }

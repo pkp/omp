@@ -18,43 +18,45 @@ import('classes.handler.Handler');
 // Import the base class.
 import('lib.pkp.classes.controllers.tab.workflow.PKPReviewRoundTabHandler');
 
-class ReviewRoundTabHandler extends PKPReviewRoundTabHandler {
+class ReviewRoundTabHandler extends PKPReviewRoundTabHandler
+{
+    /**
+     * Constructor
+     */
+    public function __construct()
+    {
+        parent::__construct();
+        $this->addRoleAssignment(
+            [ROLE_ID_SUB_EDITOR, ROLE_ID_MANAGER, ROLE_ID_ASSISTANT],
+            ['internalReviewRound', 'externalReviewRound']
+        );
+    }
 
-	/**
-	 * Constructor
-	 */
-	function __construct() {
-		parent::__construct();
-		$this->addRoleAssignment(
-			array(ROLE_ID_SUB_EDITOR, ROLE_ID_MANAGER, ROLE_ID_ASSISTANT),
-			array('internalReviewRound', 'externalReviewRound')
-		);
-	}
 
+    //
+    // Extended methods from Handler
+    //
+    /**
+     * @see PKPHandler::authorize()
+     */
+    public function authorize($request, &$args, $roleAssignments)
+    {
+        $stageId = (int) $request->getUserVar('stageId'); // This is validated in WorkflowStageAccessPolicy.
 
-	//
-	// Extended methods from Handler
-	//
-	/**
-	 * @see PKPHandler::authorize()
-	 */
-	function authorize($request, &$args, $roleAssignments) {
-		$stageId = (int) $request->getUserVar('stageId'); // This is validated in WorkflowStageAccessPolicy.
+        import('lib.pkp.classes.security.authorization.WorkflowStageAccessPolicy');
+        $this->addPolicy(new WorkflowStageAccessPolicy($request, $args, $roleAssignments, 'submissionId', $stageId));
 
-		import('lib.pkp.classes.security.authorization.WorkflowStageAccessPolicy');
-		$this->addPolicy(new WorkflowStageAccessPolicy($request, $args, $roleAssignments, 'submissionId', $stageId));
+        return parent::authorize($request, $args, $roleAssignments);
+    }
 
-		return parent::authorize($request, $args, $roleAssignments);
-	}
-
-	/**
-	 * JSON fetch the internal review round info (tab).
-	 * @param $args array
-	 * @param $request PKPRequest
-	 */
-	function internalReviewRound($args, $request) {
-		return $this->_reviewRound($args, $request);
-	}
+    /**
+     * JSON fetch the internal review round info (tab).
+     *
+     * @param $args array
+     * @param $request PKPRequest
+     */
+    public function internalReviewRound($args, $request)
+    {
+        return $this->_reviewRound($args, $request);
+    }
 }
-
-

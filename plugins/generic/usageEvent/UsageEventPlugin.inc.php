@@ -15,157 +15,170 @@
 
 import('lib.pkp.plugins.generic.usageEvent.PKPUsageEventPlugin');
 
-class UsageEventPlugin extends PKPUsageEventPlugin {
-	/**
-	 * Constructor
-	 */
-	function __construct() {
-		parent::__construct();
-	}
+class UsageEventPlugin extends PKPUsageEventPlugin
+{
+    /**
+     * Constructor
+     */
+    public function __construct()
+    {
+        parent::__construct();
+    }
 
 
-	//
-	// Protected methods.
-	//
-	/**
-	 * @see PKPUsageEventPlugin::getEventHooks()
-	 */
-	protected function getEventHooks() {
-		$hooks = parent::getEventHooks();
-		$ompHooks = array(
-			'CatalogBookHandler::view',
-			'CatalogBookHandler::download',
-			'HtmlMonographFilePlugin::monographDownload',
-			'HtmlMonographFilePlugin::monographDownloadFinished',
-		);
+    //
+    // Protected methods.
+    //
+    /**
+     * @see PKPUsageEventPlugin::getEventHooks()
+     */
+    protected function getEventHooks()
+    {
+        $hooks = parent::getEventHooks();
+        $ompHooks = [
+            'CatalogBookHandler::view',
+            'CatalogBookHandler::download',
+            'HtmlMonographFilePlugin::monographDownload',
+            'HtmlMonographFilePlugin::monographDownloadFinished',
+        ];
 
-		return array_merge($hooks, $ompHooks);
-	}
+        return array_merge($hooks, $ompHooks);
+    }
 
-	/**
-	 * @copydoc PKPUsageEventPlugin::getDownloadFinishedEventHooks()
-	 */
-	protected function getDownloadFinishedEventHooks() {
-		return array_merge(parent::getDownloadFinishedEventHooks(), array(
-			'HtmlMonographFilePlugin::monographDownloadFinished'
-		));
-	}
+    /**
+     * @copydoc PKPUsageEventPlugin::getDownloadFinishedEventHooks()
+     */
+    protected function getDownloadFinishedEventHooks()
+    {
+        return array_merge(parent::getDownloadFinishedEventHooks(), [
+            'HtmlMonographFilePlugin::monographDownloadFinished'
+        ]);
+    }
 
-	/**
-	 * @see PKPUsageEventPlugin::getUsageEventData()
-	 */
-	protected function getUsageEventData($hookName, $hookArgs, $request, $router, $templateMgr, $context) {
-		list($pubObject, $downloadSuccess, $assocType, $idParams, $canonicalUrlPage, $canonicalUrlOp, $canonicalUrlParams) =
-			parent::getUsageEventData($hookName, $hookArgs, $request, $router, $templateMgr, $context);
+    /**
+     * @see PKPUsageEventPlugin::getUsageEventData()
+     */
+    protected function getUsageEventData($hookName, $hookArgs, $request, $router, $templateMgr, $context)
+    {
+        [$pubObject, $downloadSuccess, $assocType, $idParams, $canonicalUrlPage, $canonicalUrlOp, $canonicalUrlParams] =
+            parent::getUsageEventData($hookName, $hookArgs, $request, $router, $templateMgr, $context);
 
-		if (!$pubObject) {
-			switch ($hookName) {
-				// Catalog index page, series content page and monograph abstract.
-				case 'TemplateManager::display':
-					$page = $router->getRequestedPage($request);
-					$op = $router->getRequestedOp($request);
-					$args = $router->getRequestedArgs($request);
+        if (!$pubObject) {
+            switch ($hookName) {
+                // Catalog index page, series content page and monograph abstract.
+                case 'TemplateManager::display':
+                    $page = $router->getRequestedPage($request);
+                    $op = $router->getRequestedOp($request);
+                    $args = $router->getRequestedArgs($request);
 
-					$wantedPages = array('catalog');
-					$wantedOps = array('index', 'book', 'series');
+                    $wantedPages = ['catalog'];
+                    $wantedOps = ['index', 'book', 'series'];
 
-					if (!in_array($page, $wantedPages) || !in_array($op, $wantedOps)) break;
+                    if (!in_array($page, $wantedPages) || !in_array($op, $wantedOps)) {
+                        break;
+                    }
 
-					// consider book versioning:
-					// if the operation is 'book' and the arguments count > 1
-					// the arguments must be: $submissionId/version/$publicationId.
-					if ($op == 'book' && count($args) > 1) {
-						if ($args[1] !== 'version') break;
-						else if (count($args) != 3) break;
-						$publicationId = (int) $args[2];
-					}
+                    // consider book versioning:
+                    // if the operation is 'book' and the arguments count > 1
+                    // the arguments must be: $submissionId/version/$publicationId.
+                    if ($op == 'book' && count($args) > 1) {
+                        if ($args[1] !== 'version') {
+                            break;
+                        } elseif (count($args) != 3) {
+                            break;
+                        }
+                        $publicationId = (int) $args[2];
+                    }
 
-					$press = $templateMgr->getTemplateVars('currentContext'); /* @var $press Press */
-					$series = $templateMgr->getTemplateVars('series'); /* @var $series Series */
-					$submission = $templateMgr->getTemplateVars('publishedSubmission');
+                    $press = $templateMgr->getTemplateVars('currentContext'); /* @var $press Press */
+                    $series = $templateMgr->getTemplateVars('series'); /* @var $series Series */
+                    $submission = $templateMgr->getTemplateVars('publishedSubmission');
 
-					// No published objects, no usage event.
-					if (!$press && !$series && !$submission) break;
+                    // No published objects, no usage event.
+                    if (!$press && !$series && !$submission) {
+                        break;
+                    }
 
-					if ($press) {
-						$pubObject = $press;
-						$assocType = ASSOC_TYPE_PRESS;
-					}
+                    if ($press) {
+                        $pubObject = $press;
+                        $assocType = ASSOC_TYPE_PRESS;
+                    }
 
-					if ($series) {
-						$pubObject = $series;
-						$assocType = ASSOC_TYPE_SERIES;
-						$canonicalUrlParams = array($series->getPath());
-						$idParams = array('s' . $series->getId());
-					}
+                    if ($series) {
+                        $pubObject = $series;
+                        $assocType = ASSOC_TYPE_SERIES;
+                        $canonicalUrlParams = [$series->getPath()];
+                        $idParams = ['s' . $series->getId()];
+                    }
 
-					if ($submission) {
-						$pubObject = $submission;
-						$assocType = ASSOC_TYPE_MONOGRAPH;
-						$canonicalUrlParams = array($pubObject->getId());
-						$idParams = array('m' . $pubObject->getId());
-						if (isset($publicationId)) {
-							// no need to check if the publication exists (for the submisison),
-							// 404 would be returned and the usage event would not be there
-							$canonicalUrlParams = array($pubObject->getId(), 'version', $publicationId);
-						}
-					}
+                    if ($submission) {
+                        $pubObject = $submission;
+                        $assocType = ASSOC_TYPE_MONOGRAPH;
+                        $canonicalUrlParams = [$pubObject->getId()];
+                        $idParams = ['m' . $pubObject->getId()];
+                        if (isset($publicationId)) {
+                            // no need to check if the publication exists (for the submisison),
+                            // 404 would be returned and the usage event would not be there
+                            $canonicalUrlParams = [$pubObject->getId(), 'version', $publicationId];
+                        }
+                    }
 
-					$downloadSuccess = true;
-					$canonicalUrlOp = $op;
-					break;
+                    $downloadSuccess = true;
+                    $canonicalUrlOp = $op;
+                    break;
 
-				// Publication format file.
-				case 'CatalogBookHandler::view':
-				case 'CatalogBookHandler::download':
-				case 'HtmlMonographFilePlugin::monographDownload':
-					$pubObject = $hookArgs[3];
-					$assocType = ASSOC_TYPE_SUBMISSION_FILE;
-					$canonicalUrlOp = 'download';
-					$submission = $hookArgs[1];
-					$publicationFormat = $hookArgs[2];
-					// if file is not a publication format file (e.g. CSS or images), there is no usage event.
-					if ($pubObject->getData('assocId') != $publicationFormat->getId()) return false;
-					$canonicalUrlParams = array($submission->getId(), $pubObject->getData('assocId'), $pubObject->getId());
-					$idParams = array('m' . $submission->getId(), 'f' . $pubObject->getId());
-					$downloadSuccess = false;
-					break;
-				default:
-					// Why are we called from an unknown hook?
-					assert(false);
-			}
+                // Publication format file.
+                case 'CatalogBookHandler::view':
+                case 'CatalogBookHandler::download':
+                case 'HtmlMonographFilePlugin::monographDownload':
+                    $pubObject = $hookArgs[3];
+                    $assocType = ASSOC_TYPE_SUBMISSION_FILE;
+                    $canonicalUrlOp = 'download';
+                    $submission = $hookArgs[1];
+                    $publicationFormat = $hookArgs[2];
+                    // if file is not a publication format file (e.g. CSS or images), there is no usage event.
+                    if ($pubObject->getData('assocId') != $publicationFormat->getId()) {
+                        return false;
+                    }
+                    $canonicalUrlParams = [$submission->getId(), $pubObject->getData('assocId'), $pubObject->getId()];
+                    $idParams = ['m' . $submission->getId(), 'f' . $pubObject->getId()];
+                    $downloadSuccess = false;
+                    break;
+                default:
+                    // Why are we called from an unknown hook?
+                    assert(false);
+            }
 
-			switch ($assocType) {
-				case ASSOC_TYPE_PRESS:
-				case ASSOC_TYPE_SERIES:
-				case ASSOC_TYPE_MONOGRAPH:
-				case ASSOC_TYPE_SUBMISSION_FILE:
-					$canonicalUrlPage = 'catalog';
-					break;
-			}
+            switch ($assocType) {
+                case ASSOC_TYPE_PRESS:
+                case ASSOC_TYPE_SERIES:
+                case ASSOC_TYPE_MONOGRAPH:
+                case ASSOC_TYPE_SUBMISSION_FILE:
+                    $canonicalUrlPage = 'catalog';
+                    break;
+            }
+        }
 
-		}
+        return [$pubObject, $downloadSuccess, $assocType, $idParams, $canonicalUrlPage, $canonicalUrlOp, $canonicalUrlParams];
+    }
 
-		return array($pubObject, $downloadSuccess, $assocType, $idParams, $canonicalUrlPage, $canonicalUrlOp, $canonicalUrlParams);
-	}
+    /**
+     * @see PKPUsageEventPlugin::getHtmlPageAssocTypes()
+     */
+    protected function getHtmlPageAssocTypes()
+    {
+        return [
+            ASSOC_TYPE_PRESS,
+            ASSOC_TYPE_SERIES,
+            ASSOC_TYPE_MONOGRAPH
+        ];
+    }
 
-	/**
-	 * @see PKPUsageEventPlugin::getHtmlPageAssocTypes()
-	 */
-	protected function getHtmlPageAssocTypes() {
-		return array(
-			ASSOC_TYPE_PRESS,
-			ASSOC_TYPE_SERIES,
-			ASSOC_TYPE_MONOGRAPH
-		);
-	}
-
-	/**
-	 * @see PKPUsageEventPlugin::isPubIdObjectType()
-	 */
-	protected function isPubIdObjectType($pubObject) {
-		return is_a($pubObject, 'Submission');
-	}
+    /**
+     * @see PKPUsageEventPlugin::isPubIdObjectType()
+     */
+    protected function isPubIdObjectType($pubObject)
+    {
+        return is_a($pubObject, 'Submission');
+    }
 }
-
-

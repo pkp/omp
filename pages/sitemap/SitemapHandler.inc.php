@@ -15,72 +15,70 @@
 
 import('lib.pkp.pages.sitemap.PKPSitemapHandler');
 
-class SitemapHandler extends PKPSitemapHandler {
+class SitemapHandler extends PKPSitemapHandler
+{
+    /**
+     * @copydoc PKPSitemapHandler::_createContextSitemap()
+     */
+    public function _createContextSitemap($request)
+    {
+        $doc = parent::_createContextSitemap($request);
+        $root = $doc->documentElement;
 
-	/**
-	 * @copydoc PKPSitemapHandler::_createContextSitemap()
-	 */
-	function _createContextSitemap($request) {
-		$doc = parent::_createContextSitemap($request);
-		$root = $doc->documentElement;
+        $press = $request->getPress();
+        $pressId = $press->getId();
 
-		$press = $request->getPress();
-		$pressId = $press->getId();
+        // Catalog
+        $root->appendChild($this->_createUrlTree($doc, $request->url($press->getPath(), 'catalog')));
+        import('lib.pkp.classes.submission.PKPSubmission'); // STATUS_PUBLISHED
+        $submissionsIterator = Services::get('submission')->getMany(['status' => PKPSubmission::STATUS_PUBLISHED, 'contextId' => $pressId, 'count' => 1000]);
+        foreach ($submissionsIterator as $submission) {
+            // Book
+            $root->appendChild($this->_createUrlTree($doc, $request->url($press->getPath(), 'catalog', 'view', [$submission->getBestId()])));
+            // Files
+            // Get publication formats
+            $publicationFormats = DAORegistry::getDAO('PublicationFormatDAO')->getApprovedByPublicationId($submission->getCurrentPublication()->getId())->toArray();
+            foreach ($publicationFormats as $format) {
+                // Consider only available publication formats
+                if ($format->getIsAvailable()) {
+                    // Consider only available publication format files
+                    $availableFiles = array_filter(
+                        iterator_to_array(Services::get('submissionFile')->getMany([
+                            'assocTypes' => [ASSOC_TYPE_PUBLICATION_FORMAT],
+                            'assocIds' => [$format->getId()],
+                            'submissionIds' => [$submission->getId()],
+                        ])),
+                        function ($a) {
+                            return $a->getDirectSalesPrice() !== null;
+                        }
+                    );
+                    foreach ($availableFiles as $file) {
+                        $root->appendChild($this->_createUrlTree($doc, $request->url($press->getPath(), 'catalog', 'view', [$submission->getBestId(), $format->getBestId(), $file->getBestId()])));
+                    }
+                }
+            }
+        }
 
-		// Catalog
-		$root->appendChild($this->_createUrlTree($doc, $request->url($press->getPath(), 'catalog')));
-		import('lib.pkp.classes.submission.PKPSubmission'); // STATUS_PUBLISHED
-		$submissionsIterator = Services::get('submission')->getMany(['status' => PKPSubmission::STATUS_PUBLISHED, 'contextId' => $pressId, 'count' => 1000]);
-		foreach ($submissionsIterator as $submission) {
-			// Book
-			$root->appendChild($this->_createUrlTree($doc, $request->url($press->getPath(), 'catalog', 'view', array($submission->getBestId()))));
-			// Files
-			// Get publication formats
-			$publicationFormats = DAORegistry::getDAO('PublicationFormatDAO')->getApprovedByPublicationId($submission->getCurrentPublication()->getId())->toArray();
-			foreach ($publicationFormats as $format) {
-				// Consider only available publication formats
-				if ($format->getIsAvailable()) {
-					// Consider only available publication format files
-					$availableFiles = array_filter(
-						iterator_to_array(Services::get('submissionFile')->getMany([
-							'assocTypes' => [ASSOC_TYPE_PUBLICATION_FORMAT],
-							'assocIds' => [$format->getId()],
-							'submissionIds' => [$submission->getId()],
-						])),
-						function($a) {
-							return $a->getDirectSalesPrice() !== null;
-						}
-					);
-					foreach ($availableFiles as $file) {
-						$root->appendChild($this->_createUrlTree($doc, $request->url($press->getPath(), 'catalog', 'view', array($submission->getBestId(), $format->getBestId(), $file->getBestId()))));
-					}
-				}
-			}
-		}
+        // New releases
+        $root->appendChild($this->_createUrlTree($doc, $request->url($press->getPath(), 'catalog', 'newReleases')));
+        // Browse by series
+        $seriesDao = DAORegistry::getDAO('SeriesDAO'); /* @var $seriesDao SeriesDAO */
+        $seriesResult = $seriesDao->getByPressId($pressId);
+        while ($series = $seriesResult->next()) {
+            $root->appendChild($this->_createUrlTree($doc, $request->url($press->getPath(), 'catalog', 'series', $series->getPath())));
+        }
+        // Browse by categories
+        $categoryDao = DAORegistry::getDAO('CategoryDAO'); /* @var $categoryDao CategoryDAO */
+        $categoriesResult = $categoryDao->getByContextId($pressId);
+        while ($category = $categoriesResult->next()) {
+            $root->appendChild($this->_createUrlTree($doc, $request->url($press->getPath(), 'catalog', 'category', $category->getPath())));
+        }
 
-		// New releases
-		$root->appendChild($this->_createUrlTree($doc, $request->url($press->getPath(), 'catalog', 'newReleases')));
-		// Browse by series
-		$seriesDao = DAORegistry::getDAO('SeriesDAO'); /* @var $seriesDao SeriesDAO */
-		$seriesResult = $seriesDao->getByPressId($pressId);
-		while ($series = $seriesResult->next()) {
-			$root->appendChild($this->_createUrlTree($doc, $request->url($press->getPath(), 'catalog', 'series', $series->getPath())));
-		}
-		// Browse by categories
-		$categoryDao = DAORegistry::getDAO('CategoryDAO'); /* @var $categoryDao CategoryDAO */
-		$categoriesResult = $categoryDao->getByContextId($pressId);
-		while ($category = $categoriesResult->next()) {
-			$root->appendChild($this->_createUrlTree($doc, $request->url($press->getPath(), 'catalog', 'category', $category->getPath())));
-		}
+        $doc->appendChild($root);
 
-		$doc->appendChild($root);
+        // Enable plugins to change the sitemap
+        HookRegistry::call('SitemapHandler::createPressSitemap', [&$doc]);
 
-		// Enable plugins to change the sitemap
-		HookRegistry::call('SitemapHandler::createPressSitemap', array(&$doc));
-
-		return $doc;
-	}
-
+        return $doc;
+    }
 }
-
-

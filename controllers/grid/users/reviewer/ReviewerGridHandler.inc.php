@@ -15,6 +15,6 @@
 
 import('lib.pkp.classes.controllers.grid.users.reviewer.PKPReviewerGridHandler');
 
-class ReviewerGridHandler extends PKPReviewerGridHandler { }
-
-
+class ReviewerGridHandler extends PKPReviewerGridHandler
+{
+}

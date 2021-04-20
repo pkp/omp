@@ -9,6 +9,7 @@
  *
  * @class ChapterAuthor
  * @ingroup monograph
+ *
  * @see ChapterAuthorDAO
  * @see AuthorDAO
  *
@@ -17,26 +18,29 @@
 
 import('classes.monograph.Author');
 
-class ChapterAuthor extends Author {
-	//
-	// Get/set methods
-	//
+class ChapterAuthor extends Author
+{
+    //
+    // Get/set methods
+    //
 
-	/**
-	 * Get Chapter ID of this author
-	 * @return int
-	 */
-	function getChapterId() {
-		return $this->getData('chapterId');
-	}
+    /**
+     * Get Chapter ID of this author
+     *
+     * @return int
+     */
+    public function getChapterId()
+    {
+        return $this->getData('chapterId');
+    }
 
-	/**
-	 * Set ID of chapter.
-	 * @param $chapterId int
-	 */
-	function setChapterId($chapterId) {
-		return $this->setData('chapterId', $chapterId);
-	}
+    /**
+     * Set ID of chapter.
+     *
+     * @param $chapterId int
+     */
+    public function setChapterId($chapterId)
+    {
+        return $this->setData('chapterId', $chapterId);
+    }
 }
-
-

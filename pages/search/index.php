@@ -17,11 +17,9 @@
  */
 
 switch ($op) {
-	case 'index':
-	case 'search':
-		define('HANDLER_CLASS', 'SearchHandler');
-		import('pages.search.SearchHandler');
-		break;
+    case 'index':
+    case 'search':
+        define('HANDLER_CLASS', 'SearchHandler');
+        import('pages.search.SearchHandler');
+        break;
 }
-
-

@@ -15,67 +15,75 @@
 
 import('lib.pkp.plugins.importexport.users.PKPUserImportExportPlugin');
 
-class UserImportExportPlugin extends PKPUserImportExportPlugin {
-	/**
-	 * Constructor
-	 */
-	function __construct() {
-		parent::__construct();
-	}
+class UserImportExportPlugin extends PKPUserImportExportPlugin
+{
+    /**
+     * Constructor
+     */
+    public function __construct()
+    {
+        parent::__construct();
+    }
 
-	/**
-	 * @copydoc Plugin::register()
-	 */
-	function register($category, $path, $mainContextId = null) {
-		return parent::register($category, $path, $mainContextId);
-	}
+    /**
+     * @copydoc Plugin::register()
+     *
+     * @param null|mixed $mainContextId
+     */
+    public function register($category, $path, $mainContextId = null)
+    {
+        return parent::register($category, $path, $mainContextId);
+    }
 
-	/**
-	 * @copydoc ImportExportPlugin::executeCLI
-	 */
-	function executeCLI($scriptName, &$args) {
-		throw new BadMethodCallException();
-	}
+    /**
+     * @copydoc ImportExportPlugin::executeCLI
+     */
+    public function executeCLI($scriptName, &$args)
+    {
+        throw new BadMethodCallException();
+    }
 
-	/**
-	 * @copydoc ImportExportPlugin::usage
-	 */
-	function usage($scriptName) {
-		throw new BadMethodCallException();
-	}
-	/**
-	 * Define the appropriate import filter given the imported XML file path
-	 *
-	 * @param string $xmlFile
-	 *
-	 * @return array Containing the filter and the xmlString of the imported file
-	 */
-	function getImportFilter($xmlFile) {
-		throw new BadMethodCallException();
-	}
+    /**
+     * @copydoc ImportExportPlugin::usage
+     */
+    public function usage($scriptName)
+    {
+        throw new BadMethodCallException();
+    }
+    /**
+     * Define the appropriate import filter given the imported XML file path
+     *
+     * @param string $xmlFile
+     *
+     * @return array Containing the filter and the xmlString of the imported file
+     */
+    public function getImportFilter($xmlFile)
+    {
+        throw new BadMethodCallException();
+    }
 
-	/**
-	 * Define the appropriate export filter given the export operation
-	 *
-	 * @param string $exportType
-	 *
-	 * @return string
-	 */
-	function getExportFilter($exportType) {
-		throw new BadMethodCallException();
-	}
+    /**
+     * Define the appropriate export filter given the export operation
+     *
+     * @param string $exportType
+     *
+     * @return string
+     */
+    public function getExportFilter($exportType)
+    {
+        throw new BadMethodCallException();
+    }
 
-	/**
-	 * Get the application specific deployment object
-	 *
-	 * @param Context $context
-	 * @param User $user
-	 *
-	 * @return PKPImportExportDeployment
-	 */
-	function getAppSpecificDeployment($context, $user) {
-		throw new BadMethodCallException();
-	}
+    /**
+     * Get the application specific deployment object
+     *
+     * @param Context $context
+     * @param User $user
+     *
+     * @return PKPImportExportDeployment
+     */
+    public function getAppSpecificDeployment($context, $user)
+    {
+        throw new BadMethodCallException();
+    }
 }
-
-

@@ -16,13 +16,13 @@
 
 import('lib.pkp.plugins.metadata.dc11.PKPDc11MetadataPlugin');
 
-class Dc11MetadataPlugin extends PKPDc11MetadataPlugin {
-	/**
-	 * Constructor
-	 */
-	function __construct() {
-		parent::__construct();
-	}
+class Dc11MetadataPlugin extends PKPDc11MetadataPlugin
+{
+    /**
+     * Constructor
+     */
+    public function __construct()
+    {
+        parent::__construct();
+    }
 }
-
-

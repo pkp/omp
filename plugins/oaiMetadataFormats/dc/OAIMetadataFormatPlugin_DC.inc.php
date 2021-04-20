@@ -9,6 +9,7 @@
  *
  * @class OAIMetadataFormatPlugin_DC
  * @ingroup oai_format
+ *
  * @see OAI
  *
  * @brief dc metadata format plugin for OAI.
@@ -16,13 +17,13 @@
 
 import('lib.pkp.plugins.oaiMetadataFormats.dc.PKPOAIMetadataFormatPlugin_DC');
 
-class OAIMetadataFormatPlugin_DC extends PKPOAIMetadataFormatPlugin_DC {
-	/**
-	 * Constructor
-	 */
-	function __construct() {
-		parent::__construct();
-	}
+class OAIMetadataFormatPlugin_DC extends PKPOAIMetadataFormatPlugin_DC
+{
+    /**
+     * Constructor
+     */
+    public function __construct()
+    {
+        parent::__construct();
+    }
 }
-
-

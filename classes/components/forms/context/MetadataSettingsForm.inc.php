@@ -11,40 +11,43 @@
  *
  * @brief Add OJS-specific fields to the masthead form.
  */
+
 namespace APP\components\forms\context;
-use \PKP\components\forms\context\PKPMetadataSettingsForm;
-use \PKP\components\forms\FieldOptions;
 
-class MetadataSettingsForm extends PKPMetadataSettingsForm {
+use PKP\components\forms\context\PKPMetadataSettingsForm;
+use PKP\components\forms\FieldOptions;
 
-	/**
-	 * @copydoc PKPMetadataSettingsForm::__construct()
-	 */
-	public function __construct($action, $context) {
-		parent::__construct($action, $context);
+class MetadataSettingsForm extends PKPMetadataSettingsForm
+{
+    /**
+     * @copydoc PKPMetadataSettingsForm::__construct()
+     */
+    public function __construct($action, $context)
+    {
+        parent::__construct($action, $context);
 
-		$this->addField(new FieldOptions('enablePublisherId', [
-			'label' => __('submission.publisherId'),
-			'description' => __('submission.publisherId.description'),
-			'options' => [
-				[
-					'value' => 'publication',
-					'label' => __('submission.publisherId.enable', ['objects' => __('common.publications')]),
-				],
-				[
-					'value' => 'chapter',
-					'label' => __('submission.publisherId.enable', ['objects' => __('submission.chapters')]),
-				],
-				[
-					'value' => 'representation',
-					'label' => __('submission.publisherId.enable', ['objects' => __('monograph.publicationFormats')]),
-				],
-				[
-					'value' => 'file',
-					'label' => __('submission.publisherId.enable', ['objects' => __('submission.files')]),
-				],
-			],
-			'value' => $context->getData('enablePublisherId') ? $context->getData('enablePublisherId') : [],
-		]));
-	}
+        $this->addField(new FieldOptions('enablePublisherId', [
+            'label' => __('submission.publisherId'),
+            'description' => __('submission.publisherId.description'),
+            'options' => [
+                [
+                    'value' => 'publication',
+                    'label' => __('submission.publisherId.enable', ['objects' => __('common.publications')]),
+                ],
+                [
+                    'value' => 'chapter',
+                    'label' => __('submission.publisherId.enable', ['objects' => __('submission.chapters')]),
+                ],
+                [
+                    'value' => 'representation',
+                    'label' => __('submission.publisherId.enable', ['objects' => __('monograph.publicationFormats')]),
+                ],
+                [
+                    'value' => 'file',
+                    'label' => __('submission.publisherId.enable', ['objects' => __('submission.files')]),
+                ],
+            ],
+            'value' => $context->getData('enablePublisherId') ? $context->getData('enablePublisherId') : [],
+        ]));
+    }
 }

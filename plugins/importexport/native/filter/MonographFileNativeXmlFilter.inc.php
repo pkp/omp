@@ -15,52 +15,56 @@
 
 import('lib.pkp.plugins.importexport.native.filter.SubmissionFileNativeXmlFilter');
 
-class MonographFileNativeXmlFilter extends SubmissionFileNativeXmlFilter {
-	//
-	// Implement template methods from PersistableFilter
-	//
-	/**
-	 * @copydoc PersistableFilter::getClassName()
-	 */
-	function getClassName() {
-		return 'plugins.importexport.native.filter.MonographFileNativeXmlFilter';
-	}
+class MonographFileNativeXmlFilter extends SubmissionFileNativeXmlFilter
+{
+    //
+    // Implement template methods from PersistableFilter
+    //
+    /**
+     * @copydoc PersistableFilter::getClassName()
+     */
+    public function getClassName()
+    {
+        return 'plugins.importexport.native.filter.MonographFileNativeXmlFilter';
+    }
 
 
-	//
-	// Implement/override functions from SubmissionFileNativeXmlFilter
-	//
-	/**
-	 * Create and return a submissionFile node.
-	 * @param $doc DOMDocument
-	 * @param $submissionFile SubmissionFile
-	 * @return DOMElement
-	 */
-	function createSubmissionFileNode($doc, $submissionFile) {
-		$deployment = $this->getDeployment();
-		$submissionFileNode = parent::createSubmissionFileNode($doc, $submissionFile);
-		
-		if ($submissionFile->getData('directSalesPrice')) {
-			$submissionFileNode->appendChild($doc->createElementNS($deployment->getNamespace(), 'directSalesPrice', $submissionFile->getData('directSalesPrice')));
-		}
+    //
+    // Implement/override functions from SubmissionFileNativeXmlFilter
+    //
+    /**
+     * Create and return a submissionFile node.
+     *
+     * @param $doc DOMDocument
+     * @param $submissionFile SubmissionFile
+     *
+     * @return DOMElement
+     */
+    public function createSubmissionFileNode($doc, $submissionFile)
+    {
+        $deployment = $this->getDeployment();
+        $submissionFileNode = parent::createSubmissionFileNode($doc, $submissionFile);
 
-		if ($submissionFile->getData('salesType')) {
-			$submissionFileNode->appendChild($doc->createElementNS($deployment->getNamespace(), 'salesType', $submissionFile->getData('salesType')));
-		}
+        if ($submissionFile->getData('directSalesPrice')) {
+            $submissionFileNode->appendChild($doc->createElementNS($deployment->getNamespace(), 'directSalesPrice', $submissionFile->getData('directSalesPrice')));
+        }
 
-		// FIXME: is permission file ID implemented?
-		// FIXME: is chapter ID implemented?
-		// FIXME: is contact author ID implemented?
+        if ($submissionFile->getData('salesType')) {
+            $submissionFileNode->appendChild($doc->createElementNS($deployment->getNamespace(), 'salesType', $submissionFile->getData('salesType')));
+        }
 
-		return $submissionFileNode;
-	}
+        // FIXME: is permission file ID implemented?
+        // FIXME: is chapter ID implemented?
+        // FIXME: is contact author ID implemented?
 
-	/**
-	 * Get the submission file element name
-	 */
-	function getSubmissionFileElementName() {
-		return 'submission_file';
-	}
+        return $submissionFileNode;
+    }
+
+    /**
+     * Get the submission file element name
+     */
+    public function getSubmissionFileElementName()
+    {
+        return 'submission_file';
+    }
 }
-
-

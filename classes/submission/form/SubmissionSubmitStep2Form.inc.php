@@ -15,7 +15,6 @@
 
 import('lib.pkp.classes.submission.form.PKPSubmissionSubmitStep2Form');
 
-class SubmissionSubmitStep2Form extends PKPSubmissionSubmitStep2Form {
+class SubmissionSubmitStep2Form extends PKPSubmissionSubmitStep2Form
+{
 }
-
-

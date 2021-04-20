@@ -3,7 +3,7 @@
 /**
  * @defgroup plugins_importexport_onix30 ONIX 3.0 export plugin
  */
- 
+
 /**
  * @file plugins/importexport/onix30/index.php
  *
@@ -19,5 +19,3 @@
 require_once('Onix30ExportPlugin.inc.php');
 
 return new Onix30ExportPlugin();
-
-

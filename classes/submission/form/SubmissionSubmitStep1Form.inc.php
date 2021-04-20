@@ -16,93 +16,108 @@
 import('lib.pkp.classes.submission.form.PKPSubmissionSubmitStep1Form');
 import('classes.submission.Submission'); // WORK_TYPE_... constants for form
 
-class SubmissionSubmitStep1Form extends PKPSubmissionSubmitStep1Form {
-	/**
-	 * Constructor.
-	 */
-	function __construct($context, $submission = null) {
-		parent::__construct($context, $submission);
-		$this->addCheck(new FormValidatorCustom($this, 'seriesId', 'optional', 'author.submit.seriesRequired', array(DAORegistry::getDAO('SeriesDAO'), 'getById'), array($context->getId())));
-	}
+class SubmissionSubmitStep1Form extends PKPSubmissionSubmitStep1Form
+{
+    /**
+     * Constructor.
+     *
+     * @param null|mixed $submission
+     */
+    public function __construct($context, $submission = null)
+    {
+        parent::__construct($context, $submission);
+        $this->addCheck(new FormValidatorCustom($this, 'seriesId', 'optional', 'author.submit.seriesRequired', [DAORegistry::getDAO('SeriesDAO'), 'getById'], [$context->getId()]));
+    }
 
-	/**
-	 * @copydoc PKPSubmissionSubmitStep1Form::fetch
-	 */
-	function fetch($request, $template = null, $display = false) {
-		$roleDao = DAORegistry::getDAO('RoleDAO');
-		$user = $request->getUser();
-		$canSubmitAll = $roleDao->userHasRole($this->context->getId(), $user->getId(), ROLE_ID_MANAGER) ||
-			$roleDao->userHasRole($this->context->getId(), $user->getId(), ROLE_ID_SUB_EDITOR);
+    /**
+     * @copydoc PKPSubmissionSubmitStep1Form::fetch
+     *
+     * @param null|mixed $template
+     */
+    public function fetch($request, $template = null, $display = false)
+    {
+        $roleDao = DAORegistry::getDAO('RoleDAO');
+        $user = $request->getUser();
+        $canSubmitAll = $roleDao->userHasRole($this->context->getId(), $user->getId(), ROLE_ID_MANAGER) ||
+            $roleDao->userHasRole($this->context->getId(), $user->getId(), ROLE_ID_SUB_EDITOR);
 
-		// Get series for this context
-		$seriesDao = DAORegistry::getDAO('SeriesDAO'); /* @var $seriesDao SeriesDAO */
-		$activeSeries = [];
-		$seriesIterator = $seriesDao->getByContextId($this->context->getId(), null, !$canSubmitAll);
-		while ($series = $seriesIterator->next()) {
-			if (!$series->getIsInactive()) {
-				$activeSeries[$series->getId()] = $series->getLocalizedTitle();
-			}
-		}
-		$seriesOptions = ['' => __('submission.submit.selectSeries')] + $activeSeries;
-		$templateMgr = TemplateManager::getManager($request);
-		$templateMgr->assign('seriesOptions', $seriesOptions);
+        // Get series for this context
+        $seriesDao = DAORegistry::getDAO('SeriesDAO'); /* @var $seriesDao SeriesDAO */
+        $activeSeries = [];
+        $seriesIterator = $seriesDao->getByContextId($this->context->getId(), null, !$canSubmitAll);
+        while ($series = $seriesIterator->next()) {
+            if (!$series->getIsInactive()) {
+                $activeSeries[$series->getId()] = $series->getLocalizedTitle();
+            }
+        }
+        $seriesOptions = ['' => __('submission.submit.selectSeries')] + $activeSeries;
+        $templateMgr = TemplateManager::getManager($request);
+        $templateMgr->assign('seriesOptions', $seriesOptions);
 
-		return parent::fetch($request, $template, $display);
-	}
+        return parent::fetch($request, $template, $display);
+    }
 
-	/**
-	 * @copydoc PKPSubmissionSubmitStep1Form::initData
-	 */
-	function initData($data = array()) {
-		if (isset($this->submission)) {
-			parent::initData(array(
-				'seriesId' => $this->submission->getSeriesId(),
-				'seriesPosition' => $this->submission->getSeriesPosition(),
-				'workType' => $this->submission->getWorkType(),
-			));
-		} else {
-			parent::initData();
-		}
-	}
+    /**
+     * @copydoc PKPSubmissionSubmitStep1Form::initData
+     */
+    public function initData($data = [])
+    {
+        if (isset($this->submission)) {
+            parent::initData([
+                'seriesId' => $this->submission->getSeriesId(),
+                'seriesPosition' => $this->submission->getSeriesPosition(),
+                'workType' => $this->submission->getWorkType(),
+            ]);
+        } else {
+            parent::initData();
+        }
+    }
 
-	/**
-	 * Perform additional validation checks
-	 * @copydoc PKPSubmissionSubmitStep1Form::validate
-	 */
-	function validate($callHooks = true) {
-		if (!parent::validate($callHooks)) return false;
+    /**
+     * Perform additional validation checks
+     *
+     * @copydoc PKPSubmissionSubmitStep1Form::validate
+     */
+    public function validate($callHooks = true)
+    {
+        if (!parent::validate($callHooks)) {
+            return false;
+        }
 
-		$request = Application::get()->getRequest();
-		$context = $request->getContext();
-		$seriesDao = DAORegistry::getDAO('SeriesDAO'); /* @var $seriesDao SeriesDAO */
-		$series = $seriesDao->getById($this->getData('seriesId'), $context->getId());
-		$seriesIsInactive = ($series && $series->getIsInactive()) ? true : false;
-		// Ensure that submissions are enabled and the assigned series is activated
-		if ($context->getData('disableSubmissions') || $seriesIsInactive) {
-			return false;
-		}
+        $request = Application::get()->getRequest();
+        $context = $request->getContext();
+        $seriesDao = DAORegistry::getDAO('SeriesDAO'); /* @var $seriesDao SeriesDAO */
+        $series = $seriesDao->getById($this->getData('seriesId'), $context->getId());
+        $seriesIsInactive = ($series && $series->getIsInactive()) ? true : false;
+        // Ensure that submissions are enabled and the assigned series is activated
+        if ($context->getData('disableSubmissions') || $seriesIsInactive) {
+            return false;
+        }
 
-		return true;
-	}
+        return true;
+    }
 
-	/**
-	 * Assign form data to user-submitted data.
-	 */
-	function readInputData() {
-		$this->readUserVars(array(
-			'workType', 'seriesId', 'seriesPosition',
-		));
-		parent::readInputData();
-	}
+    /**
+     * Assign form data to user-submitted data.
+     */
+    public function readInputData()
+    {
+        $this->readUserVars([
+            'workType', 'seriesId', 'seriesPosition',
+        ]);
+        parent::readInputData();
+    }
 
-	/**
-	 * Set the submission data from the form.
-	 * @param $submission Submission
-	 */
-	function setSubmissionData($submission) {
-		$submission->setWorkType($this->getData('workType'));
-		$submission->setSeriesId($this->getData('seriesId'));
-		$submission->setSeriesPosition($this->getData('seriesPosition'));
-		parent::setSubmissionData($submission);
-	}
+    /**
+     * Set the submission data from the form.
+     *
+     * @param $submission Submission
+     */
+    public function setSubmissionData($submission)
+    {
+        $submission->setWorkType($this->getData('workType'));
+        $submission->setSeriesId($this->getData('seriesId'));
+        $submission->setSeriesPosition($this->getData('seriesPosition'));
+        parent::setSubmissionData($submission);
+    }
 }

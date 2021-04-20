@@ -18,38 +18,41 @@ define('SESSION_DISABLE_INIT', 1); // FIXME?
 import('classes.oai.omp.PressOAI');
 import('classes.handler.Handler');
 
-class OAIHandler extends Handler {
-	/**
-	 * Constructor
-	 */
-	function __construct() {
-		parent::__construct();
-	}
+class OAIHandler extends Handler
+{
+    /**
+     * Constructor
+     */
+    public function __construct()
+    {
+        parent::__construct();
+    }
 
-	/**
-	 * @copydoc PKPHandler::authorize
-	 */
-	function authorize($request, &$args, $roleAssignments) {
-		$returner = parent::authorize($request, $args, $roleAssignments);
+    /**
+     * @copydoc PKPHandler::authorize
+     */
+    public function authorize($request, &$args, $roleAssignments)
+    {
+        $returner = parent::authorize($request, $args, $roleAssignments);
 
-		if (!Config::getVar('oai', 'oai')) {
-			return false;
-		} else {
-			return $returner;
-		}
-	}
+        if (!Config::getVar('oai', 'oai')) {
+            return false;
+        } else {
+            return $returner;
+        }
+    }
 
-	/**
-	 * Handle an OAI request.
-	 * @param $args array
-	 * @param $request PKPRequest
-	 */
-	function index($args, $request) {
-		PluginRegistry::loadCategory('oaiMetadataFormats', true);
+    /**
+     * Handle an OAI request.
+     *
+     * @param $args array
+     * @param $request PKPRequest
+     */
+    public function index($args, $request)
+    {
+        PluginRegistry::loadCategory('oaiMetadataFormats', true);
 
-		$oai = new PressOAI(new OAIConfig($request->url(null, 'oai'), Config::getVar('oai', 'repository_id')));
-		$oai->execute();
-	}
+        $oai = new PressOAI(new OAIConfig($request->url(null, 'oai'), Config::getVar('oai', 'repository_id')));
+        $oai->execute();
+    }
 }
-
-

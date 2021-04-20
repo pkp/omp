@@ -9,6 +9,7 @@
  *
  * @class MonographFileEmailLogDAO
  * @ingroup log
+ *
  * @see EmailLogDAO
  *
  * @brief Extension to EmailLogDAO for monograph file specific log entries.
@@ -17,27 +18,31 @@
 import('lib.pkp.classes.log.EmailLogDAO');
 import('classes.log.MonographFileEmailLogEntry');
 
-class MonographFileEmailLogDAO extends EmailLogDAO {
-	/**
-	 * Instantiate and return a MonographFileEmailLogEntry.
-	 * @return MonographFileEmailLogEntry
-	 */
-	function newDataObject() {
-		$returner = new MonographFileEmailLogEntry();
-		$returner->setAssocType(ASSOC_TYPE_SUBMISSION_FILE);
-		return $returner;
-	}
+class MonographFileEmailLogDAO extends EmailLogDAO
+{
+    /**
+     * Instantiate and return a MonographFileEmailLogEntry.
+     *
+     * @return MonographFileEmailLogEntry
+     */
+    public function newDataObject()
+    {
+        $returner = new MonographFileEmailLogEntry();
+        $returner->setAssocType(ASSOC_TYPE_SUBMISSION_FILE);
+        return $returner;
+    }
 
-	/**
-	 * Get monograph file email log entries by file ID and event type.
-	 * @param $fileId int
-	 * @param $eventType int SUBMISSION_EMAIL_...
-	 * @param $userId int optional Return only emails sent to this user.
-	 * @return DAOResultFactory
-	 */
-	function getByEventType($fileId, $eventType, $userId = null) {
-		return parent::_getByEventType(ASSOC_TYPE_SUBMISSION_FILE, $fileId, $eventType, $userId);
-	}
+    /**
+     * Get monograph file email log entries by file ID and event type.
+     *
+     * @param $fileId int
+     * @param $eventType int SUBMISSION_EMAIL_...
+     * @param $userId int optional Return only emails sent to this user.
+     *
+     * @return DAOResultFactory
+     */
+    public function getByEventType($fileId, $eventType, $userId = null)
+    {
+        return parent::_getByEventType(ASSOC_TYPE_SUBMISSION_FILE, $fileId, $eventType, $userId);
+    }
 }
-
-

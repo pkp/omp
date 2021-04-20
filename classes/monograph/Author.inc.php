@@ -9,6 +9,7 @@
  *
  * @class Author
  * @ingroup monograph
+ *
  * @see AuthorDAO
  *
  * @brief Monograph author metadata class.
@@ -17,22 +18,25 @@
 
 import('lib.pkp.classes.submission.PKPAuthor');
 
-class Author extends PKPAuthor {
-	/**
-	 * Get whether or not this author should be displayed as a volume editor
-	 * @return boolean
-	 */
-	public function getIsVolumeEditor() {
-		return $this->getData('isVolumeEditor');
-	}
+class Author extends PKPAuthor
+{
+    /**
+     * Get whether or not this author should be displayed as a volume editor
+     *
+     * @return boolean
+     */
+    public function getIsVolumeEditor()
+    {
+        return $this->getData('isVolumeEditor');
+    }
 
-	/**
-	 * Set whether or not this author should be displayed as a volume editor
-	 * @param $isVolumeEditor boolean
-	 */
-	public function setIsVolumeEditor($isVolumeEditor) {
-		$this->setData('isVolumeEditor', $isVolumeEditor);
-	}
+    /**
+     * Set whether or not this author should be displayed as a volume editor
+     *
+     * @param $isVolumeEditor boolean
+     */
+    public function setIsVolumeEditor($isVolumeEditor)
+    {
+        $this->setData('isVolumeEditor', $isVolumeEditor);
+    }
 }
-
-

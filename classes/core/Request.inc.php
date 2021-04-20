@@ -17,92 +17,129 @@
 
 namespace APP\core;
 
-use \PKP\plugins\HookRegistry;
-use \PKP\core\PKPRequest;
+use PKP\core\PKPRequest;
+use PKP\plugins\HookRegistry;
 
-class Request extends PKPRequest {
-	/**
-	 * Deprecated
-	 * @see PKPPageRouter::getRequestedContextPath()
-	 */
-	public function getRequestedPressPath() {
-		$press = $this->_delegateToRouter('getRequestedContextPath', 1);
-		HookRegistry::call('Request::getRequestedPressPath', array(&$press));
-		return $press;
-	}
+class Request extends PKPRequest
+{
+    /**
+     * Deprecated
+     *
+     * @see PKPPageRouter::getRequestedContextPath()
+     */
+    public function getRequestedPressPath()
+    {
+        $press = $this->_delegateToRouter('getRequestedContextPath', 1);
+        HookRegistry::call('Request::getRequestedPressPath', [&$press]);
+        return $press;
+    }
 
-	/**
-	 * Deprecated
-	 * @see PKPPageRouter::getContext()
-	 */
-	public function &getPress() {
-		$returner = $this->_delegateToRouter('getContext', 1);
-		return $returner;
-	}
+    /**
+     * Deprecated
+     *
+     * @see PKPPageRouter::getContext()
+     */
+    public function &getPress()
+    {
+        $returner = $this->_delegateToRouter('getContext', 1);
+        return $returner;
+    }
 
-	/**
-	 * Deprecated
-	 * @see PKPPageRouter::getRequestedContextPath()
-	 */
-	public function getRequestedContextPath($contextLevel = null) {
-		// Emulate the old behavior of getRequestedContextPath for
-		// backwards compatibility.
-		if (is_null($contextLevel)) {
-			return $this->_delegateToRouter('getRequestedContextPaths');
-		} else {
-			return array($this->_delegateToRouter('getRequestedContextPath', $contextLevel));
-		}
-	}
+    /**
+     * Deprecated
+     *
+     * @see PKPPageRouter::getRequestedContextPath()
+     *
+     * @param null|mixed $contextLevel
+     */
+    public function getRequestedContextPath($contextLevel = null)
+    {
+        // Emulate the old behavior of getRequestedContextPath for
+        // backwards compatibility.
+        if (is_null($contextLevel)) {
+            return $this->_delegateToRouter('getRequestedContextPaths');
+        } else {
+            return [$this->_delegateToRouter('getRequestedContextPath', $contextLevel)];
+        }
+    }
 
-	/**
-	 * Deprecated
-	 * @see PKPPageRouter::getContext()
-	 */
-	public function &getContext($level = 1) {
-		$returner = $this->_delegateToRouter('getContext', $level);
-		return $returner;
-	}
+    /**
+     * Deprecated
+     *
+     * @see PKPPageRouter::getContext()
+     */
+    public function &getContext($level = 1)
+    {
+        $returner = $this->_delegateToRouter('getContext', $level);
+        return $returner;
+    }
 
-	/**
-	 * Deprecated
-	 * @see PKPPageRouter::getContextByName()
-	 */
-	public function &getContextByName($contextName) {
-		$returner = $this->_delegateToRouter('getContextByName', $contextName);
-		return $returner;
-	}
+    /**
+     * Deprecated
+     *
+     * @see PKPPageRouter::getContextByName()
+     */
+    public function &getContextByName($contextName)
+    {
+        $returner = $this->_delegateToRouter('getContextByName', $contextName);
+        return $returner;
+    }
 
-	/**
-	 * Deprecated
-	 * @see PKPPageRouter::url()
-	 */
-	public function url($pressPath = null, $page = null, $op = null, $path = null,
-			$params = null, $anchor = null, $escape = false) {
-		return $this->_delegateToRouter('url', $pressPath, $page, $op, $path,
-			$params, $anchor, $escape);
-	}
+    /**
+     * Deprecated
+     *
+     * @see PKPPageRouter::url()
+     *
+     * @param null|mixed $pressPath
+     * @param null|mixed $page
+     * @param null|mixed $op
+     * @param null|mixed $path
+     * @param null|mixed $params
+     * @param null|mixed $anchor
+     */
+    public function url(
+        $pressPath = null,
+        $page = null,
+        $op = null,
+        $path = null,
+        $params = null,
+        $anchor = null,
+        $escape = false
+    ) {
+        return $this->_delegateToRouter(
+            'url',
+            $pressPath,
+            $page,
+            $op,
+            $path,
+            $params,
+            $anchor,
+            $escape
+        );
+    }
 
-	/**
-	 * Deprecated
-	 * @see PageRouter::redirectHome()
-	 */
-	public function redirectHome() {
-		return $this->_delegateToRouter('redirectHome');
-	}
+    /**
+     * Deprecated
+     *
+     * @see PageRouter::redirectHome()
+     */
+    public function redirectHome()
+    {
+        return $this->_delegateToRouter('redirectHome');
+    }
 
-	/**
-	 * @see PKPRequest::getUserAgent()
-	 */
-	public function getUserAgent() {
-		static $userAgent;
-		$userAgent = parent::getUserAgent();
+    /**
+     * @see PKPRequest::getUserAgent()
+     */
+    public function getUserAgent()
+    {
+        static $userAgent;
+        $userAgent = parent::getUserAgent();
 
-		if (strpos($userAgent, 'Shockwave Flash')) {
-			$userAgent = $_SERVER['HTTP_BROWSER_USER_AGENT'];
-		}
+        if (strpos($userAgent, 'Shockwave Flash')) {
+            $userAgent = $_SERVER['HTTP_BROWSER_USER_AGENT'];
+        }
 
-		return $userAgent;
-	}
+        return $userAgent;
+    }
 }
-
-

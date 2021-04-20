@@ -3,7 +3,7 @@
 /**
  * @defgroup pages_payment Payment page
  */
- 
+
 /**
  * @file pages/payment/index.php
  *
@@ -17,10 +17,8 @@
  */
 
 switch ($op) {
-	case 'plugin':
-		define('HANDLER_CLASS', 'PaymentHandler');
-		import('pages.payment.PaymentHandler');
-		break;
+    case 'plugin':
+        define('HANDLER_CLASS', 'PaymentHandler');
+        import('pages.payment.PaymentHandler');
+        break;
 }
-
-

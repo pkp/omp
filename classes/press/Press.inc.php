@@ -13,6 +13,7 @@
  *
  * @class Press
  * @ingroup press
+ *
  * @see PressDAO
  *
  * @brief Basic class describing a press.
@@ -20,85 +21,105 @@
 
 namespace APP\press;
 
-use \PKP\context\Context;
-use \PKP\core\DAORegistry;
-use \PKP\plugins\PluginRegistry;
+use APP\i18n\AppLocale;
+use PKP\context\Context;
 
-use \APP\i18n\AppLocale;
+use PKP\core\DAORegistry;
 
-class Press extends Context {
-	/**
-	 * Get "localized" press page title (if applicable).
-	 * @return string|null
-	 * @deprecated 3.3.0, use getLocalizedData() instead
-	 */
-	function getLocalizedPageHeaderTitle() {
-		$titleArray = $this->getData('name');
-		foreach (array(AppLocale::getLocale(), AppLocale::getPrimaryLocale()) as $locale) {
-			if (isset($titleArray[$locale])) return $titleArray[$locale];
-		}
-		return null;
-	}
+class Press extends Context
+{
+    /**
+     * Get "localized" press page title (if applicable).
+     *
+     * @return string|null
+     *
+     * @deprecated 3.3.0, use getLocalizedData() instead
+     */
+    public function getLocalizedPageHeaderTitle()
+    {
+        $titleArray = $this->getData('name');
+        foreach ([AppLocale::getLocale(), AppLocale::getPrimaryLocale()] as $locale) {
+            if (isset($titleArray[$locale])) {
+                return $titleArray[$locale];
+            }
+        }
+        return null;
+    }
 
-	/**
-	 * @deprecated Since OMP 3.2.1, use getLocalizedPageHeaderTitle instead.
-	 * @return string
-	 */
-	function getPageHeaderTitle() {
-		return $this->getLocalizedPageHeaderTitle();
-	}
+    /**
+     * @deprecated Since OMP 3.2.1, use getLocalizedPageHeaderTitle instead.
+     *
+     * @return string
+     */
+    public function getPageHeaderTitle()
+    {
+        return $this->getLocalizedPageHeaderTitle();
+    }
 
-	/**
-	 * Get "localized" press page logo (if applicable).
-	 * @return array|null
-	 * @deprecated 3.3.0, use getLocalizedData() instead
-	 */
-	function getLocalizedPageHeaderLogo() {
-		$logoArray = $this->getData('pageHeaderLogoImage');
-		foreach (array(AppLocale::getLocale(), AppLocale::getPrimaryLocale()) as $locale) {
-			if (isset($logoArray[$locale])) return $logoArray[$locale];
-		}
-		return null;
-	}
+    /**
+     * Get "localized" press page logo (if applicable).
+     *
+     * @return array|null
+     *
+     * @deprecated 3.3.0, use getLocalizedData() instead
+     */
+    public function getLocalizedPageHeaderLogo()
+    {
+        $logoArray = $this->getData('pageHeaderLogoImage');
+        foreach ([AppLocale::getLocale(), AppLocale::getPrimaryLocale()] as $locale) {
+            if (isset($logoArray[$locale])) {
+                return $logoArray[$locale];
+            }
+        }
+        return null;
+    }
 
-	/**
-	 * @deprecated Since OMP 3.2.1, use getLocalizedPageHeaderLogo instead.
-	 * @return array|null
-	 */
-	function getPageHeaderLogo() {
-		return $this->getLocalizedPageHeaderLogo();
-	}
+    /**
+     * @deprecated Since OMP 3.2.1, use getLocalizedPageHeaderLogo instead.
+     *
+     * @return array|null
+     */
+    public function getPageHeaderLogo()
+    {
+        return $this->getLocalizedPageHeaderLogo();
+    }
 
-	/**
-	 * Returns true if this press contains the fields required for creating valid
-	 * ONIX export metadata.
-	 * @return boolean
-	 */
-	function hasRequiredOnixHeaderFields() {
-		if ($this->getData('codeType') != '' && $this->getData('codeValue') != '') {
-			return true;
-		} else {
-			return false;
-		}
-	}
+    /**
+     * Returns true if this press contains the fields required for creating valid
+     * ONIX export metadata.
+     *
+     * @return boolean
+     */
+    public function hasRequiredOnixHeaderFields()
+    {
+        if ($this->getData('codeType') != '' && $this->getData('codeValue') != '') {
+            return true;
+        } else {
+            return false;
+        }
+    }
 
-	/**
-	 * Get the association type for this context.
-	 * @return int
-	 */
-	public function getAssocType() {
-		return ASSOC_TYPE_PRESS;
-	}
+    /**
+     * Get the association type for this context.
+     *
+     * @return int
+     */
+    public function getAssocType()
+    {
+        return ASSOC_TYPE_PRESS;
+    }
 
-	/**
-	 * Get the DAO for this context object.
-	 * @return DAO
-	 */
-	function getDAO() {
-		return DAORegistry::getDAO('PressDAO');
-	}
+    /**
+     * Get the DAO for this context object.
+     *
+     * @return DAO
+     */
+    public function getDAO()
+    {
+        return DAORegistry::getDAO('PressDAO');
+    }
 }
 
 if (!PKP_STRICT_MODE) {
-	class_alias('\APP\press\Press', '\Press');
+    class_alias('\APP\press\Press', '\Press');
 }

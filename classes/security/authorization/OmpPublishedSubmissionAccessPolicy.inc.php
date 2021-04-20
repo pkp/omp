@@ -14,21 +14,22 @@
 
 import('lib.pkp.classes.security.authorization.internal.ContextPolicy');
 
-class OmpPublishedSubmissionAccessPolicy extends ContextPolicy {
-	/**
-	 * Constructor
-	 * @param $request PKPRequest
-	 * @param $args array request parameters
-	 * @param $roleAssignments array
-	 * @param $submissionParameterName string the request parameter we
-	 */
-	function __construct($request, $args, $roleAssignments, $submissionParameterName = 'submissionId') {
-		parent::__construct($request);
+class OmpPublishedSubmissionAccessPolicy extends ContextPolicy
+{
+    /**
+     * Constructor
+     *
+     * @param $request PKPRequest
+     * @param $args array request parameters
+     * @param $roleAssignments array
+     * @param $submissionParameterName string the request parameter we
+     */
+    public function __construct($request, $args, $roleAssignments, $submissionParameterName = 'submissionId')
+    {
+        parent::__construct($request);
 
-		// Require published submissions
-		import('classes.security.authorization.OmpPublishedSubmissionRequiredPolicy');
-		$this->addPolicy(new OmpPublishedSubmissionRequiredPolicy($request, $args, $submissionParameterName));
-	}
+        // Require published submissions
+        import('classes.security.authorization.OmpPublishedSubmissionRequiredPolicy');
+        $this->addPolicy(new OmpPublishedSubmissionRequiredPolicy($request, $args, $submissionParameterName));
+    }
 }
-
-

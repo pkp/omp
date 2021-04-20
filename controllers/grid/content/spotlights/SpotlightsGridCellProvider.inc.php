@@ -15,41 +15,44 @@
 
 import('lib.pkp.classes.controllers.grid.DataObjectGridCellProvider');
 
-class SpotlightsGridCellProvider extends DataObjectGridCellProvider {
-	/**
-	 * Constructor
-	 */
-	function __construct() {
-		parent::__construct();
-	}
+class SpotlightsGridCellProvider extends DataObjectGridCellProvider
+{
+    /**
+     * Constructor
+     */
+    public function __construct()
+    {
+        parent::__construct();
+    }
 
-	//
-	// Template methods from GridCellProvider
-	//
-	/**
-	 * Extracts variables for a given column from a data element
-	 * so that they may be assigned to template before rendering.
-	 * @param $row GridRow
-	 * @param $column GridColumn
-	 * @return array
-	 */
-	function getTemplateVarsFromRowColumn($row, $column) {
-		$data =& $row->getData();
-		$element =& $data;
+    //
+    // Template methods from GridCellProvider
+    //
+    /**
+     * Extracts variables for a given column from a data element
+     * so that they may be assigned to template before rendering.
+     *
+     * @param $row GridRow
+     * @param $column GridColumn
+     *
+     * @return array
+     */
+    public function getTemplateVarsFromRowColumn($row, $column)
+    {
+        $data = & $row->getData();
+        $element = & $data;
 
-		$columnId = $column->getId();
-		assert(is_a($element, 'DataObject') && !empty($columnId));
-		switch ($columnId) {
-			case 'type':
-				return array('label' => $element->getLocalizedType());
-			case 'title':
-				return array('label' => $element->getLocalizedTitle());
-			case 'itemTitle': {
-				$item = $element->getSpotlightItem();
-				return array('label' => $item->getLocalizedTitle());
-			}
-		}
-	}
+        $columnId = $column->getId();
+        assert(is_a($element, 'DataObject') && !empty($columnId));
+        switch ($columnId) {
+            case 'type':
+                return ['label' => $element->getLocalizedType()];
+            case 'title':
+                return ['label' => $element->getLocalizedTitle()];
+            case 'itemTitle': {
+                $item = $element->getSpotlightItem();
+                return ['label' => $item->getLocalizedTitle()];
+            }
+        }
+    }
 }
-
-

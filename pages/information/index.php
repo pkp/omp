@@ -17,15 +17,13 @@
  */
 
 switch ($op) {
-	case 'index':
-	case 'readers':
-	case 'authors':
-	case 'librarians':
-	case 'competingInterestPolicy':
-	case 'sampleCopyrightWording':
-		define('HANDLER_CLASS', 'InformationHandler');
-		import('pages.information.InformationHandler');
-		break;
+    case 'index':
+    case 'readers':
+    case 'authors':
+    case 'librarians':
+    case 'competingInterestPolicy':
+    case 'sampleCopyrightWording':
+        define('HANDLER_CLASS', 'InformationHandler');
+        import('pages.information.InformationHandler');
+        break;
 }
-
-

@@ -16,49 +16,57 @@
 
 import('lib.pkp.plugins.importexport.native.PKPNativeImportExportDeployment');
 
-class NativeImportExportDeployment extends PKPNativeImportExportDeployment {
-	/**
-	 * Constructor
-	 * @param $context Context
-	 * @param $user User
-	 */
-	function __construct($context, $user) {
-		parent::__construct($context, $user);
-	}
+class NativeImportExportDeployment extends PKPNativeImportExportDeployment
+{
+    /**
+     * Constructor
+     *
+     * @param $context Context
+     * @param $user User
+     */
+    public function __construct($context, $user)
+    {
+        parent::__construct($context, $user);
+    }
 
-	//
-	// Deploymenturation items for subclasses to override
-	//
-	/**
-	 * Get the submission node name
-	 * @return string
-	 */
-	function getSubmissionNodeName() {
-		return 'monograph';
-	}
+    //
+    // Deploymenturation items for subclasses to override
+    //
+    /**
+     * Get the submission node name
+     *
+     * @return string
+     */
+    public function getSubmissionNodeName()
+    {
+        return 'monograph';
+    }
 
-	/**
-	 * Get the submissions node name
-	 * @return string
-	 */
-	function getSubmissionsNodeName() {
-		return 'monographs';
-	}
+    /**
+     * Get the submissions node name
+     *
+     * @return string
+     */
+    public function getSubmissionsNodeName()
+    {
+        return 'monographs';
+    }
 
-	/**
-	 * Get the representation node name
-	 */
-	function getRepresentationNodeName() {
-		return 'publication_format';
-	}
+    /**
+     * Get the representation node name
+     */
+    public function getRepresentationNodeName()
+    {
+        return 'publication_format';
+    }
 
-	/**
-	 * Get the schema filename.
-	 * @return string
-	 */
-	function getSchemaFilename() {
-		return 'native.xsd';
-	}
+    /**
+     * Get the schema filename.
+     *
+     * @return string
+     */
+    public function getSchemaFilename()
+    {
+        return 'native.xsd';
+    }
 }
-
-

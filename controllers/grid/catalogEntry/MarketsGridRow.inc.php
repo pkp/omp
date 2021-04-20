@@ -15,84 +15,90 @@
 
 import('lib.pkp.classes.controllers.grid.GridRow');
 
-class MarketsGridRow extends GridRow {
-	/** @var Monograph **/
-	var $_monograph;
+class MarketsGridRow extends GridRow
+{
+    /** @var Monograph **/
+    public $_monograph;
 
-	/** @var Publication **/
-	var $_publication;
+    /** @var Publication **/
+    public $_publication;
 
-	/**
-	 * Constructor
-	 */
-	function __construct($monograph, $publication) {
-		$this->_monograph = $monograph;
-		$this->_publication = $publication;
-		parent::__construct();
-	}
+    /**
+     * Constructor
+     */
+    public function __construct($monograph, $publication)
+    {
+        $this->_monograph = $monograph;
+        $this->_publication = $publication;
+        parent::__construct();
+    }
 
-	//
-	// Overridden methods from GridRow
-	//
-	/**
-	 * @copydoc GridRow::initialize()
-	 */
-	function initialize($request, $template = null) {
-		// Do the default initialization
-		parent::initialize($request, $template);
+    //
+    // Overridden methods from GridRow
+    //
+    /**
+     * @copydoc GridRow::initialize()
+     *
+     * @param null|mixed $template
+     */
+    public function initialize($request, $template = null)
+    {
+        // Do the default initialization
+        parent::initialize($request, $template);
 
-		$monograph = $this->getMonograph();
+        $monograph = $this->getMonograph();
 
-		// Is this a new row or an existing row?
-		$market = $this->_data;
+        // Is this a new row or an existing row?
+        $market = $this->_data;
 
-		if ($market != null && is_numeric($market->getId())) {
-			$router = $request->getRouter();
-			$actionArgs = array(
-				'submissionId' => $monograph->getId(),
-				'publicationId' => $this->_publication->getId(),
-				'marketId' => $market->getId()
-			);
+        if ($market != null && is_numeric($market->getId())) {
+            $router = $request->getRouter();
+            $actionArgs = [
+                'submissionId' => $monograph->getId(),
+                'publicationId' => $this->_publication->getId(),
+                'marketId' => $market->getId()
+            ];
 
-			// Add row-level actions
-			import('lib.pkp.classes.linkAction.request.AjaxModal');
-			$this->addAction(
-				new LinkAction(
-					'editMarket',
-					new AjaxModal(
-						$router->url($request, null, null, 'editMarket', null, $actionArgs),
-						__('grid.action.edit'),
-						'modal_edit'
-					),
-					__('grid.action.edit'),
-					'edit'
-				)
-			);
+            // Add row-level actions
+            import('lib.pkp.classes.linkAction.request.AjaxModal');
+            $this->addAction(
+                new LinkAction(
+                    'editMarket',
+                    new AjaxModal(
+                        $router->url($request, null, null, 'editMarket', null, $actionArgs),
+                        __('grid.action.edit'),
+                        'modal_edit'
+                    ),
+                    __('grid.action.edit'),
+                    'edit'
+                )
+            );
 
-			import('lib.pkp.classes.linkAction.request.RemoteActionConfirmationModal');
-			$this->addAction(
-				new LinkAction(
-					'deleteMarket',
-					new RemoteActionConfirmationModal(
-						$request->getSession(),
-						__('common.confirmDelete'),
-						__('common.delete'),
-						$router->url($request, null, null, 'deleteMarket', null, $actionArgs),
-						'modal_delete'
-					),
-					__('grid.action.delete'),
-					'delete'
-				)
-			);
-		}
-	}
+            import('lib.pkp.classes.linkAction.request.RemoteActionConfirmationModal');
+            $this->addAction(
+                new LinkAction(
+                    'deleteMarket',
+                    new RemoteActionConfirmationModal(
+                        $request->getSession(),
+                        __('common.confirmDelete'),
+                        __('common.delete'),
+                        $router->url($request, null, null, 'deleteMarket', null, $actionArgs),
+                        'modal_delete'
+                    ),
+                    __('grid.action.delete'),
+                    'delete'
+                )
+            );
+        }
+    }
 
-	/**
-	 * Get the monograph for this row (already authorized)
-	 * @return Monograph
-	 */
-	function getMonograph() {
-		return $this->_monograph;
-	}
+    /**
+     * Get the monograph for this row (already authorized)
+     *
+     * @return Monograph
+     */
+    public function getMonograph()
+    {
+        return $this->_monograph;
+    }
 }
-

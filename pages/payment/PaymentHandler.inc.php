@@ -15,33 +15,35 @@
 
 import('classes.handler.Handler');
 
-class PaymentHandler extends Handler {
-	/**
-	 * Constructor
-	 */
-	function __construct() {
-		parent::__construct();
-	}
-		 
-	/**
-	 * Pass request to plugin.
-	 * @param $args array
-	 * @param $request PKPRequest
-	 */
-	function plugin($args, $request) {
-		$paymentMethodPlugins = PluginRegistry::loadCategory('paymethod');
-		$paymentMethodPluginName = array_shift($args);
-		if (empty($paymentMethodPluginName) || !isset($paymentMethodPlugins[$paymentMethodPluginName])) {
-			$request->redirect(null, null, 'index');
-		}
+class PaymentHandler extends Handler
+{
+    /**
+     * Constructor
+     */
+    public function __construct()
+    {
+        parent::__construct();
+    }
 
-		$paymentMethodPlugin = $paymentMethodPlugins[$paymentMethodPluginName];
-		if (!$paymentMethodPlugin->isConfigured($request->getContext())) {
-			$request->redirect(null, null, 'index');
-		}
+    /**
+     * Pass request to plugin.
+     *
+     * @param $args array
+     * @param $request PKPRequest
+     */
+    public function plugin($args, $request)
+    {
+        $paymentMethodPlugins = PluginRegistry::loadCategory('paymethod');
+        $paymentMethodPluginName = array_shift($args);
+        if (empty($paymentMethodPluginName) || !isset($paymentMethodPlugins[$paymentMethodPluginName])) {
+            $request->redirect(null, null, 'index');
+        }
 
-		$paymentMethodPlugin->handle($args, $request);
-	}
+        $paymentMethodPlugin = $paymentMethodPlugins[$paymentMethodPluginName];
+        if (!$paymentMethodPlugin->isConfigured($request->getContext())) {
+            $request->redirect(null, null, 'index');
+        }
+
+        $paymentMethodPlugin->handle($args, $request);
+    }
 }
-
-

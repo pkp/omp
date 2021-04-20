@@ -13,21 +13,23 @@
  *
  * @class OAIMetadataFormat_DC
  * @ingroup oai_format_dc
+ *
  * @see OAI
  *
  * @brief OAI metadata format class -- Dublin Core.
  */
 import('lib.pkp.plugins.oaiMetadataFormats.dc.PKPOAIMetadataFormat_DC');
 
-class OAIMetadataFormat_DC extends PKPOAIMetadataFormat_DC {
-
-	/**
-	 * @see lib/pkp/plugins/oaiMetadataFormats/dc/PKPOAIMetadataFormat_DC::toXml()
-	 */
-	function toXml($record, $format = null) {
-		$publicationFormat = $record->getData('publicationFormat');
-		return parent::toXml($publicationFormat, $format);
-	}
+class OAIMetadataFormat_DC extends PKPOAIMetadataFormat_DC
+{
+    /**
+     * @see lib/pkp/plugins/oaiMetadataFormats/dc/PKPOAIMetadataFormat_DC::toXml()
+     *
+     * @param null|mixed $format
+     */
+    public function toXml($record, $format = null)
+    {
+        $publicationFormat = $record->getData('publicationFormat');
+        return parent::toXml($publicationFormat, $format);
+    }
 }
-
-

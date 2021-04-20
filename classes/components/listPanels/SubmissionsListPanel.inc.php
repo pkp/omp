@@ -13,42 +13,44 @@
  */
 
 namespace APP\components\listPanels;
-use \PKP\components\listPanels\PKPSubmissionsListPanel;
 
-class SubmissionsListPanel extends PKPSubmissionsListPanel {
+use PKP\components\listPanels\PKPSubmissionsListPanel;
 
-	/**
-	 * Get an array of workflow stages supported by the current app
-	 *
-	 * @return array
-	 */
-	public function getWorkflowStages() {
-		return array(
-			array(
-				'param' => 'stageIds',
-				'value' => WORKFLOW_STAGE_ID_SUBMISSION,
-				'title' => __('manager.publication.submissionStage'),
-			),
-			array(
-				'param' => 'stageIds',
-				'value' => WORKFLOW_STAGE_ID_INTERNAL_REVIEW,
-				'title' => __('workflow.review.internalReview'),
-			),
-			array(
-				'param' => 'stageIds',
-				'value' => WORKFLOW_STAGE_ID_EXTERNAL_REVIEW,
-				'title' => __('workflow.review.externalReview'),
-			),
-			array(
-				'param' => 'stageIds',
-				'value' => WORKFLOW_STAGE_ID_EDITING,
-				'title' => __('submission.copyediting'),
-			),
-			array(
-				'param' => 'stageIds',
-				'value' => WORKFLOW_STAGE_ID_PRODUCTION,
-				'title' => __('manager.publication.productionStage'),
-			),
-		);
-	}
+class SubmissionsListPanel extends PKPSubmissionsListPanel
+{
+    /**
+     * Get an array of workflow stages supported by the current app
+     *
+     * @return array
+     */
+    public function getWorkflowStages()
+    {
+        return [
+            [
+                'param' => 'stageIds',
+                'value' => WORKFLOW_STAGE_ID_SUBMISSION,
+                'title' => __('manager.publication.submissionStage'),
+            ],
+            [
+                'param' => 'stageIds',
+                'value' => WORKFLOW_STAGE_ID_INTERNAL_REVIEW,
+                'title' => __('workflow.review.internalReview'),
+            ],
+            [
+                'param' => 'stageIds',
+                'value' => WORKFLOW_STAGE_ID_EXTERNAL_REVIEW,
+                'title' => __('workflow.review.externalReview'),
+            ],
+            [
+                'param' => 'stageIds',
+                'value' => WORKFLOW_STAGE_ID_EDITING,
+                'title' => __('submission.copyediting'),
+            ],
+            [
+                'param' => 'stageIds',
+                'value' => WORKFLOW_STAGE_ID_PRODUCTION,
+                'title' => __('manager.publication.productionStage'),
+            ],
+        ];
+    }
 }
