@@ -19,47 +19,50 @@ require(dirname(__FILE__) . '/bootstrap.inc.php');
 
 import('lib.pkp.classes.cliTool.CliTool');
 
-class fixFilenames extends CommandLineTool {
-	/** @var $dryrun boolean True iff the operation should be a "dry run" (no changes made) only. */
-	var $dryrun;
+class fixFilenames extends CommandLineTool
+{
+    /** @var boolean $dryrun True iff the operation should be a "dry run" (no changes made) only. */
+    public $dryrun;
 
-	/**
-	 * Constructor.
-	 * @param $argv array command-line arguments
-	 */
-	function __construct($argv = array()) {
-		parent::__construct($argv);
+    /**
+     * Constructor.
+     *
+     * @param $argv array command-line arguments
+     */
+    public function __construct($argv = [])
+    {
+        parent::__construct($argv);
 
-		if (($arg = array_pop($this->argv)) == '--dry-run') {
-			$this->dryrun = true;
-		} elseif ($arg == '') {
-			$this->dryrun = false;
-		} else {
-			$this->usage();
-			exit();
-		}
-	}
+        if (($arg = array_pop($this->argv)) == '--dry-run') {
+            $this->dryrun = true;
+        } elseif ($arg == '') {
+            $this->dryrun = false;
+        } else {
+            $this->usage();
+            exit();
+        }
+    }
 
-	/**
-	 * Print command usage information.
-	 */
-	function usage() {
-		echo "Command-line tool for fixing potential incorrectly named files in OMP 1.0\n"
-			. "Usage:\n"
-			. "\t{$this->scriptName} [--dry-run]\n"
-			. "\t\tThe --dry-run option can be used to test without making changes.\n";
-	}
+    /**
+     * Print command usage information.
+     */
+    public function usage()
+    {
+        echo "Command-line tool for fixing potential incorrectly named files in OMP 1.0\n"
+            . "Usage:\n"
+            . "\t{$this->scriptName} [--dry-run]\n"
+            . "\t\tThe --dry-run option can be used to test without making changes.\n";
+    }
 
-	/**
-	 * Execute upgrade task
-	 */
-	function execute() {
-		import('classes.install.Upgrade');
-		Upgrade::fixFilenames($this->dryrun);
-	}
+    /**
+     * Execute upgrade task
+     */
+    public function execute()
+    {
+        import('classes.install.Upgrade');
+        Upgrade::fixFilenames($this->dryrun);
+    }
 }
 
-$tool = new fixFilenames(isset($argv) ? $argv : array());
+$tool = new fixFilenames($argv ?? []);
 $tool->execute();
-
-

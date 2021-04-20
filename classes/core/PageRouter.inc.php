@@ -16,22 +16,23 @@
 
 import('lib.pkp.classes.core.PKPPageRouter');
 
-class PageRouter extends PKPPageRouter {
-	/**
-	 * Constructor
-	 */
-	function __construct() {
-		parent::__construct();
-	}
+class PageRouter extends PKPPageRouter
+{
+    /**
+     * Constructor
+     */
+    public function __construct()
+    {
+        parent::__construct();
+    }
 
-	/**
-	 * get the cacheable pages
-	 * @return array
-	 */
-	function getCacheablePages() {
-		return array('about', 'announcement', 'help', 'index', 'information', 'rt', '');
-	}
-
+    /**
+     * get the cacheable pages
+     *
+     * @return array
+     */
+    public function getCacheablePages()
+    {
+        return ['about', 'announcement', 'help', 'index', 'information', 'rt', ''];
+    }
 }
-
-

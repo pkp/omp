@@ -20,5 +20,3 @@
 require_once('BrowseBlockPlugin.inc.php');
 
 return new BrowseBlockPlugin();
-
-

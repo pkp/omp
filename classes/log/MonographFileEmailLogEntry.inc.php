@@ -9,6 +9,7 @@
  *
  * @class MonographFileEmailLogEntry
  * @ingroup log
+ *
  * @see MonographFileEmailLogDAO
  *
  * @brief Describes an entry in the monograph file email log.
@@ -16,22 +17,23 @@
 
 import('lib.pkp.classes.log.EmailLogEntry');
 
-class MonographFileEmailLogEntry extends EmailLogEntry {
-	/**
-	 * Constructor.
-	 */
-	function __construct() {
-		parent::__construct();
-	}
+class MonographFileEmailLogEntry extends EmailLogEntry
+{
+    /**
+     * Constructor.
+     */
+    public function __construct()
+    {
+        parent::__construct();
+    }
 
-	function setFileId($fileId) {
-		return $this->setAssocId($fileId);
-	}
+    public function setFileId($fileId)
+    {
+        return $this->setAssocId($fileId);
+    }
 
-	function getFileId() {
-		return $this->getAssocId();
-	}
-
+    public function getFileId()
+    {
+        return $this->getAssocId();
+    }
 }
-
-

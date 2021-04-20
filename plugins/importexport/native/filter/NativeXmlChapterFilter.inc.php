@@ -15,172 +15,196 @@
 
 import('lib.pkp.plugins.importexport.native.filter.NativeImportFilter');
 
-class NativeXmlChapterFilter extends NativeImportFilter {
-	/**
-	 * Constructor
-	 * @param $filterGroup FilterGroup
-	 */
-	function __construct($filterGroup) {
-		$this->setDisplayName('Native XML Chapter import');
-		parent::__construct($filterGroup);
-	}
+class NativeXmlChapterFilter extends NativeImportFilter
+{
+    /**
+     * Constructor
+     *
+     * @param $filterGroup FilterGroup
+     */
+    public function __construct($filterGroup)
+    {
+        $this->setDisplayName('Native XML Chapter import');
+        parent::__construct($filterGroup);
+    }
 
-	//
-	// Implement template methods from NativeImportFilter
-	//
-	/**
-	 * Return the plural element name
-	 * @return string
-	 */
-	function getPluralElementName() {
-		return 'chapters';
-	}
+    //
+    // Implement template methods from NativeImportFilter
+    //
+    /**
+     * Return the plural element name
+     *
+     * @return string
+     */
+    public function getPluralElementName()
+    {
+        return 'chapters';
+    }
 
-	/**
-	 * Get the singular element name
-	 * @return string
-	 */
-	function getSingularElementName() {
-		return 'chapter';
-	}
+    /**
+     * Get the singular element name
+     *
+     * @return string
+     */
+    public function getSingularElementName()
+    {
+        return 'chapter';
+    }
 
-	//
-	// Implement template methods from PersistableFilter
-	//
-	/**
-	 * @copydoc PersistableFilter::getClassName()
-	 */
-	function getClassName() {
-		return 'plugins.importexport.native.filter.NativeXmlChapterFilter';
-	}
+    //
+    // Implement template methods from PersistableFilter
+    //
+    /**
+     * @copydoc PersistableFilter::getClassName()
+     */
+    public function getClassName()
+    {
+        return 'plugins.importexport.native.filter.NativeXmlChapterFilter';
+    }
 
 
-	/**
-	 * Handle a chapter element
-	 * @param $node DOMElement
-	 * @return Chapter
-	 */
-	function handleElement($node) {
-		$deployment = $this->getDeployment();
-		$context = $deployment->getContext();
+    /**
+     * Handle a chapter element
+     *
+     * @param $node DOMElement
+     *
+     * @return Chapter
+     */
+    public function handleElement($node)
+    {
+        $deployment = $this->getDeployment();
+        $context = $deployment->getContext();
 
-		$publication = $deployment->getPublication();
-		assert(is_a($publication, 'Publication'));
+        $publication = $deployment->getPublication();
+        assert(is_a($publication, 'Publication'));
 
-		// Create the data object
-		$chapterDao = DAORegistry::getDAO('ChapterDAO'); /** @var $chapterDao ChapterDAO */
+        // Create the data object
+        $chapterDao = DAORegistry::getDAO('ChapterDAO'); /** @var ChapterDAO $chapterDao */
 
-		$chapter = $chapterDao->newDataObject();
+        $chapter = $chapterDao->newDataObject();
 
-		$chapter->setData('publicationId', $publication->getId());
-		$chapter->setSequence($node->getAttribute('seq'));
+        $chapter->setData('publicationId', $publication->getId());
+        $chapter->setSequence($node->getAttribute('seq'));
 
-		$chapterId = $chapterDao->insertChapter($chapter);
-		$chapter->setData('id', $chapterId);
+        $chapterId = $chapterDao->insertChapter($chapter);
+        $chapter->setData('id', $chapterId);
 
-		// Handle metadata in subelements
-		for ($n = $node->firstChild; $n !== null; $n=$n->nextSibling) if (is_a($n, 'DOMElement')) switch($n->tagName) {
-			case 'id':
-				$this->parseIdentifier($n, $chapter);
-				break;
-			case 'title':
-				$locale = $n->getAttribute('locale');
-				if (empty($locale)) $locale = $context->getLocale();
-				$chapter->setData('title', $n->textContent, $locale);
-				break;
-			case 'abstract':
-				$locale = $n->getAttribute('locale');
-				if (empty($locale)) $locale = $context->getLocale();
-				$chapter->setData('abstract', $n->textContent, $locale);
-				break;
-			case 'subtitle':
-				$locale = $n->getAttribute('locale');
-				if (empty($locale)) $locale = $context->getLocale();
-				$chapter->setData('subtitle', $n->textContent, $locale);
-				break;
-			case 'pages':
-				$chapter->setData('pages', $n->textContent);
-				break;
-			case 'chapterAuthor':
-				$this->parseAuthor($n, $chapter);
-				break;
-			case 'submission_file_ref':
-				$this->parseSubmissionFileRef($n, $chapter);
-				break;
-		}
+        // Handle metadata in subelements
+        for ($n = $node->firstChild; $n !== null; $n = $n->nextSibling) {
+            if (is_a($n, 'DOMElement')) {
+                switch ($n->tagName) {
+            case 'id':
+                $this->parseIdentifier($n, $chapter);
+                break;
+            case 'title':
+                $locale = $n->getAttribute('locale');
+                if (empty($locale)) {
+                    $locale = $context->getLocale();
+                }
+                $chapter->setData('title', $n->textContent, $locale);
+                break;
+            case 'abstract':
+                $locale = $n->getAttribute('locale');
+                if (empty($locale)) {
+                    $locale = $context->getLocale();
+                }
+                $chapter->setData('abstract', $n->textContent, $locale);
+                break;
+            case 'subtitle':
+                $locale = $n->getAttribute('locale');
+                if (empty($locale)) {
+                    $locale = $context->getLocale();
+                }
+                $chapter->setData('subtitle', $n->textContent, $locale);
+                break;
+            case 'pages':
+                $chapter->setData('pages', $n->textContent);
+                break;
+            case 'chapterAuthor':
+                $this->parseAuthor($n, $chapter);
+                break;
+            case 'submission_file_ref':
+                $this->parseSubmissionFileRef($n, $chapter);
+                break;
+        }
+            }
+        }
 
-		$chapterDao->updateObject($chapter);
+        $chapterDao->updateObject($chapter);
 
-		return $chapter;
-	}
+        return $chapter;
+    }
 
-	/**
-	 * Parse an author and add it to the chapter.
-	 * @param $n DOMElement
-	 * @param $chapter Chapter
-	 */
-	function parseAuthor($n, $chapter) {
-		$deployment = $this->getDeployment();
+    /**
+     * Parse an author and add it to the chapter.
+     *
+     * @param $n DOMElement
+     * @param $chapter Chapter
+     */
+    public function parseAuthor($n, $chapter)
+    {
+        $deployment = $this->getDeployment();
 
-		$chapterAuthorDao = DAORegistry::getDAO('ChapterAuthorDAO'); /** @var $chapterAuthorDao ChapterAuthorDAO */
+        $chapterAuthorDao = DAORegistry::getDAO('ChapterAuthorDAO'); /** @var ChapterAuthorDAO $chapterAuthorDao */
 
-		$authorId = $deployment->getAuthorDBId($n->getAttribute('author_id'));
-		$primaryContact = $n->getAttribute('primary_contact');
-		$seq = $n->getAttribute('seq');
+        $authorId = $deployment->getAuthorDBId($n->getAttribute('author_id'));
+        $primaryContact = $n->getAttribute('primary_contact');
+        $seq = $n->getAttribute('seq');
 
-		$chapterAuthorDao->insertChapterAuthor($authorId, $chapter->getId(), $primaryContact, $seq);
-	}
+        $chapterAuthorDao->insertChapterAuthor($authorId, $chapter->getId(), $primaryContact, $seq);
+    }
 
-	/**
-	 * Parse an author and add it to the chapter.
-	 * @param $n DOMElement
-	 * @param $chapter Chapter
-	 */
-	function parseSubmissionFileRef($n, $chapter) {
-		$deployment = $this->getDeployment();
-		$context = $deployment->getContext();
+    /**
+     * Parse an author and add it to the chapter.
+     *
+     * @param $n DOMElement
+     * @param $chapter Chapter
+     */
+    public function parseSubmissionFileRef($n, $chapter)
+    {
+        $deployment = $this->getDeployment();
+        $context = $deployment->getContext();
 
-		$publication = $deployment->getPublication();
+        $publication = $deployment->getPublication();
 
-		$fileId = $n->getAttribute('id');
+        $fileId = $n->getAttribute('id');
 
-		$sourceFileId = $deployment->getFileDBId($fileId);
-		if ($sourceFileId) {
-			$submissionFile = Services::get('submissionFile')->get($fileId);
+        $sourceFileId = $deployment->getFileDBId($fileId);
+        if ($sourceFileId) {
+            $submissionFile = Services::get('submissionFile')->get($fileId);
 
-			if ($submissionFile) {
-				$submissionFile->setData('chapterId', $chapter->getId());
+            if ($submissionFile) {
+                $submissionFile->setData('chapterId', $chapter->getId());
 
-				$submissionFileDao = DAORegistry::getDAO('SubmissionFileDAO'); /** @var $submissionFileDao SubmissionFileDAO */
-				$submissionFileDao->updateObject($submissionFile);
-			}
-		}
-	}
+                $submissionFileDao = DAORegistry::getDAO('SubmissionFileDAO'); /** @var SubmissionFileDAO $submissionFileDao */
+                $submissionFileDao->updateObject($submissionFile);
+            }
+        }
+    }
 
-	/**
-	 * Parse an identifier node and set up the chapter object accordingly
-	 * @param $element DOMElement
-	 * @param $entity PKPPublication
-	 */
-	function parseIdentifier($element, $chapter) {
-		$deployment = $this->getDeployment();
+    /**
+     * Parse an identifier node and set up the chapter object accordingly
+     *
+     * @param $element DOMElement
+     */
+    public function parseIdentifier($element, $chapter)
+    {
+        $deployment = $this->getDeployment();
 
-		$advice = $element->getAttribute('advice');
-		switch ($element->getAttribute('type')) {
-			case 'internal':
-				break;
-			case 'public':
-				if ($advice == 'update') {
-					$chapter->setData('pub-id::publisher-id', $element->textContent);
-				}
-				break;
-			default:
-				if ($advice == 'update') {
-					PluginRegistry::loadCategory('pubIds', true, $deployment->getContext()->getId());
-					$chapter->setData('pub-id::'.$element->getAttribute('type'), $element->textContent);
-				}
-		}
-	}
+        $advice = $element->getAttribute('advice');
+        switch ($element->getAttribute('type')) {
+            case 'internal':
+                break;
+            case 'public':
+                if ($advice == 'update') {
+                    $chapter->setData('pub-id::publisher-id', $element->textContent);
+                }
+                break;
+            default:
+                if ($advice == 'update') {
+                    PluginRegistry::loadCategory('pubIds', true, $deployment->getContext()->getId());
+                    $chapter->setData('pub-id::' . $element->getAttribute('type'), $element->textContent);
+                }
+        }
+    }
 }
-
-

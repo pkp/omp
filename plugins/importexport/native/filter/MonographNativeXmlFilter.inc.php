@@ -15,45 +15,50 @@
 
 import('lib.pkp.plugins.importexport.native.filter.SubmissionNativeXmlFilter');
 
-class MonographNativeXmlFilter extends SubmissionNativeXmlFilter {
-	//
-	// Implement template methods from PersistableFilter
-	//
-	/**
-	 * @copydoc PersistableFilter::getClassName()
-	 */
-	function getClassName() {
-		return 'plugins.importexport.native.filter.MonographNativeXmlFilter';
-	}
+class MonographNativeXmlFilter extends SubmissionNativeXmlFilter
+{
+    //
+    // Implement template methods from PersistableFilter
+    //
+    /**
+     * @copydoc PersistableFilter::getClassName()
+     */
+    public function getClassName()
+    {
+        return 'plugins.importexport.native.filter.MonographNativeXmlFilter';
+    }
 
 
-	//
-	// Implement abstract methods from SubmissionNativeXmlFilter
-	//
-	/**
-	 * Get the representation export filter group name
-	 * @return string
-	 */
-	function getRepresentationExportFilterGroupName() {
-		return 'publication-format=>native-xml';
-	}
+    //
+    // Implement abstract methods from SubmissionNativeXmlFilter
+    //
+    /**
+     * Get the representation export filter group name
+     *
+     * @return string
+     */
+    public function getRepresentationExportFilterGroupName()
+    {
+        return 'publication-format=>native-xml';
+    }
 
-	//
-	// Submission conversion functions
-	//
-	/**
-	 * Create and return a submission node.
-	 * @param $doc DOMDocument
-	 * @param $submission Submission
-	 * @return DOMElement
-	 */
-	function createSubmissionNode($doc, $submission) {
-		$submissionNode = parent::createSubmissionNode($doc, $submission);
+    //
+    // Submission conversion functions
+    //
+    /**
+     * Create and return a submission node.
+     *
+     * @param $doc DOMDocument
+     * @param $submission Submission
+     *
+     * @return DOMElement
+     */
+    public function createSubmissionNode($doc, $submission)
+    {
+        $submissionNode = parent::createSubmissionNode($doc, $submission);
 
-		$submissionNode->setAttribute('work_type', $submission->getData('workType'));
-		
-		return $submissionNode;
-	}
+        $submissionNode->setAttribute('work_type', $submission->getData('workType'));
+
+        return $submissionNode;
+    }
 }
-
-

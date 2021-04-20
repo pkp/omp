@@ -13,30 +13,33 @@
  * @brief Operations for retrieving and modifying press settings.
  */
 
-use \PKP\db\SettingsDAO;
+use PKP\db\SettingsDAO;
 
-class PressSettingsDAO extends SettingsDAO {
+class PressSettingsDAO extends SettingsDAO
+{
+    /**
+     * Get the settings table name.
+     *
+     * @return string
+     */
+    protected function _getTableName()
+    {
+        return 'press_settings';
+    }
 
-	/**
-	 * Get the settings table name.
-	 * @return string
-	 */
-	protected function _getTableName() {
-		return 'press_settings';
-	}
+    /**
+     * Get the primary key column name.
+     */
+    protected function _getPrimaryKeyColumn()
+    {
+        return 'press_id';
+    }
 
-	/**
-	 * Get the primary key column name.
-	 */
-	protected function _getPrimaryKeyColumn() {
-		return 'press_id';
-	}
-
-	/**
-	 * Get the cache name.
-	 */
-	protected function _getCacheName() {
-		return 'pressSettings';
-	}
-
+    /**
+     * Get the cache name.
+     */
+    protected function _getCacheName()
+    {
+        return 'pressSettings';
+    }
 }

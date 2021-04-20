@@ -16,33 +16,38 @@
 
 import('lib.pkp.classes.plugins.importexport.PKPImportExportDeployment');
 
-class Onix30ExportDeployment extends PKPImportExportDeployment {
-	//
-	// Deploymenturation items for subclasses to override
-	//
-	/**
-	 * Get the submission node name
-	 * @return string
-	 */
-	function getSubmissionNodeName() {
-		return 'ONIXMessage';
-	}
+class Onix30ExportDeployment extends PKPImportExportDeployment
+{
+    //
+    // Deploymenturation items for subclasses to override
+    //
+    /**
+     * Get the submission node name
+     *
+     * @return string
+     */
+    public function getSubmissionNodeName()
+    {
+        return 'ONIXMessage';
+    }
 
-	/**
-	 * Get the schema filename.
-	 * @return string
-	 */
-	function getSchemaFilename() {
-		return 'ONIX_BookProduct_3.0_reference.xsd';
-	}
+    /**
+     * Get the schema filename.
+     *
+     * @return string
+     */
+    public function getSchemaFilename()
+    {
+        return 'ONIX_BookProduct_3.0_reference.xsd';
+    }
 
-	/**
-	 * Get the namespace URN
-	 * @return string
-	 */
-	function getNamespace() {
-		return 'http://ns.editeur.org/onix/3.0/reference';
-	}
+    /**
+     * Get the namespace URN
+     *
+     * @return string
+     */
+    public function getNamespace()
+    {
+        return 'http://ns.editeur.org/onix/3.0/reference';
+    }
 }
-
-

@@ -15,16 +15,16 @@
 
 import('lib.pkp.plugins.importexport.native.filter.NativeXmlSubmissionFileFilter');
 
-class NativeXmlMonographFileFilter extends NativeXmlSubmissionFileFilter {
-	//
-	// Implement template methods from PersistableFilter
-	//
-	/**
-	 * @copydoc PersistableFilter::getClassName()
-	 */
-	function getClassName() {
-		return 'plugins.importexport.native.filter.NativeXmlMonographFileFilter';
-	}
+class NativeXmlMonographFileFilter extends NativeXmlSubmissionFileFilter
+{
+    //
+    // Implement template methods from PersistableFilter
+    //
+    /**
+     * @copydoc PersistableFilter::getClassName()
+     */
+    public function getClassName()
+    {
+        return 'plugins.importexport.native.filter.NativeXmlMonographFileFilter';
+    }
 }
-
-

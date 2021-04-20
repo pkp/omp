@@ -15,85 +15,92 @@
 
 import('lib.pkp.classes.controllers.grid.GridRow');
 
-class PublicationDateGridRow extends GridRow {
-	/** @var Monograph **/
-	var $_monograph;
+class PublicationDateGridRow extends GridRow
+{
+    /** @var Monograph **/
+    public $_monograph;
 
-	/** @var Publication **/
-	var $_publication;
+    /** @var Publication **/
+    public $_publication;
 
-	/**
-	 * Constructor
-	 * @param $monograph Monograph
-	 */
-	function __construct($monograph, $publication) {
-		$this->_monograph = $monograph;
-		$this->_publication = $publication;
-		parent::__construct();
-	}
+    /**
+     * Constructor
+     *
+     * @param $monograph Monograph
+     */
+    public function __construct($monograph, $publication)
+    {
+        $this->_monograph = $monograph;
+        $this->_publication = $publication;
+        parent::__construct();
+    }
 
-	//
-	// Overridden methods from GridRow
-	//
-	/**
-	 * @copydoc GridRow::initialize()
-	 */
-	function initialize($request, $template = null) {
-		// Do the default initialization
-		parent::initialize($request, $template);
+    //
+    // Overridden methods from GridRow
+    //
+    /**
+     * @copydoc GridRow::initialize()
+     *
+     * @param null|mixed $template
+     */
+    public function initialize($request, $template = null)
+    {
+        // Do the default initialization
+        parent::initialize($request, $template);
 
-		$monograph = $this->getMonograph();
+        $monograph = $this->getMonograph();
 
-		// Is this a new row or an existing row?
-		$publicationDate = $this->_data;
+        // Is this a new row or an existing row?
+        $publicationDate = $this->_data;
 
-		if ($publicationDate != null && is_numeric($publicationDate->getId())) {
-			$router = $request->getRouter();
-			$actionArgs = array(
-				'submissionId' => $monograph->getId(),
-				'publicationId' => $this->_publication->getId(),
-				'publicationDateId' => $publicationDate->getId()
-			);
+        if ($publicationDate != null && is_numeric($publicationDate->getId())) {
+            $router = $request->getRouter();
+            $actionArgs = [
+                'submissionId' => $monograph->getId(),
+                'publicationId' => $this->_publication->getId(),
+                'publicationDateId' => $publicationDate->getId()
+            ];
 
-			// Add row-level actions
-			import('lib.pkp.classes.linkAction.request.AjaxModal');
-			$this->addAction(
-				new LinkAction(
-					'editDate',
-					new AjaxModal(
-						$router->url($request, null, null, 'editDate', null, $actionArgs),
-						__('grid.action.edit'),
-						'modal_edit'
-					),
-					__('grid.action.edit'),
-					'edit'
-				)
-			);
+            // Add row-level actions
+            import('lib.pkp.classes.linkAction.request.AjaxModal');
+            $this->addAction(
+                new LinkAction(
+                    'editDate',
+                    new AjaxModal(
+                        $router->url($request, null, null, 'editDate', null, $actionArgs),
+                        __('grid.action.edit'),
+                        'modal_edit'
+                    ),
+                    __('grid.action.edit'),
+                    'edit'
+                )
+            );
 
-			import('lib.pkp.classes.linkAction.request.RemoteActionConfirmationModal');
-			$this->addAction(
-				new LinkAction(
-					'deleteDate',
-					new RemoteActionConfirmationModal(
-						$request->getSession(),
-						__('common.confirmDelete'),
-						__('common.delete'),
-						$router->url($request, null, null, 'deleteDate', null, $actionArgs),
-						'modal_delete'
-					),
-					__('grid.action.delete'),
-					'delete'
-				)
-			);
-		}
-	}
+            import('lib.pkp.classes.linkAction.request.RemoteActionConfirmationModal');
+            $this->addAction(
+                new LinkAction(
+                    'deleteDate',
+                    new RemoteActionConfirmationModal(
+                        $request->getSession(),
+                        __('common.confirmDelete'),
+                        __('common.delete'),
+                        $router->url($request, null, null, 'deleteDate', null, $actionArgs),
+                        'modal_delete'
+                    ),
+                    __('grid.action.delete'),
+                    'delete'
+                )
+            );
+        }
+    }
 
-	/**
-	 * Get the monograph for this row (already authorized)
-	 * @return Monograph
-	 */
-	function getMonograph() {
-		return $this->_monograph;
-	}
+    /**
+     * Get the monograph for this row (already authorized)
+     *
+     * @return Monograph
+     */
+    public function getMonograph()
+    {
+        return $this->_monograph;
+    }
 }
-

@@ -13,6 +13,7 @@
  *
  * @class Qualifier
  * @ingroup codelist
+ *
  * @see QualifierDAO
  *
  * @brief Basic class describing a BIC Qualifier.
@@ -21,26 +22,26 @@
 
 import('classes.codelist.CodelistItem');
 
-class Qualifier extends CodelistItem {
+class Qualifier extends CodelistItem
+{
+    /**
+     * @var int The numerical representation of these Subject Qualifiers in ONIX 3.0
+     */
+    public $_onixSubjectSchemeIdentifier = 17;
 
-	/**
-	 * @var int The numerical representation of these Subject Qualifiers in ONIX 3.0
-	 */
-	var $_onixSubjectSchemeIdentifier = 17;
+    /**
+     * Constructor
+     */
+    public function __construct()
+    {
+        parent::__construct();
+    }
 
-	/**
-	 * Constructor
-	 */
-	function __construct() {
-		parent::__construct();
-	}
-
-	/**
-	 * @return String the numerical value representing this item in the ONIX 3.0 schema
-	 */
-	function getOnixSubjectSchemeIdentifier() {
-		return $this->_onixSubjectSchemeIdentifier;
-	}
+    /**
+     * @return String the numerical value representing this item in the ONIX 3.0 schema
+     */
+    public function getOnixSubjectSchemeIdentifier()
+    {
+        return $this->_onixSubjectSchemeIdentifier;
+    }
 }
-
-

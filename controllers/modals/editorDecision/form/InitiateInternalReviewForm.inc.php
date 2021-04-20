@@ -16,24 +16,27 @@
 
 import('lib.pkp.controllers.modals.editorDecision.form.InitiateReviewForm');
 
-class InitiateInternalReviewForm extends InitiateReviewForm {
-	/**
-	 * Constructor.
-	 * @param $submission Submission
-	 * @param $decision int SUBMISSION_EDITOR_DECISION_...
-	 * @param $stageId int WORKFLOW_STAGE_ID_...
-	 */
-	function __construct($submission, $decision, $stageId) {
-		parent::__construct($submission, $decision, $stageId, 'controllers/modals/editorDecision/form/initiateInternalReviewForm.tpl');
-	}
+class InitiateInternalReviewForm extends InitiateReviewForm
+{
+    /**
+     * Constructor.
+     *
+     * @param $submission Submission
+     * @param $decision int SUBMISSION_EDITOR_DECISION_...
+     * @param $stageId int WORKFLOW_STAGE_ID_...
+     */
+    public function __construct($submission, $decision, $stageId)
+    {
+        parent::__construct($submission, $decision, $stageId, 'controllers/modals/editorDecision/form/initiateInternalReviewForm.tpl');
+    }
 
-	/**
-	 * Get the stage ID constant for the submission to be moved to.
-	 * @return int WORKFLOW_STAGE_ID_...
-	 */
-	function _getStageId() {
-		return WORKFLOW_STAGE_ID_INTERNAL_REVIEW;
-	}
+    /**
+     * Get the stage ID constant for the submission to be moved to.
+     *
+     * @return int WORKFLOW_STAGE_ID_...
+     */
+    public function _getStageId()
+    {
+        return WORKFLOW_STAGE_ID_INTERNAL_REVIEW;
+    }
 }
-
-

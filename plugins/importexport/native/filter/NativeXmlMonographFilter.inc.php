@@ -15,84 +15,94 @@
 
 import('lib.pkp.plugins.importexport.native.filter.NativeXmlSubmissionFilter');
 
-class NativeXmlMonographFilter extends NativeXmlSubmissionFilter {
-	//
-	// Implement template methods from PersistableFilter
-	//
-	/**
-	 * @copydoc PersistableFilter::getClassName()
-	 */
-	function getClassName() {
-		return 'plugins.importexport.native.filter.NativeXmlMonographFilter';
-	}
+class NativeXmlMonographFilter extends NativeXmlSubmissionFilter
+{
+    //
+    // Implement template methods from PersistableFilter
+    //
+    /**
+     * @copydoc PersistableFilter::getClassName()
+     */
+    public function getClassName()
+    {
+        return 'plugins.importexport.native.filter.NativeXmlMonographFilter';
+    }
 
-	/**
-	 * Populate the submission object from the node
-	 * @param $submission Submission
-	 * @param $node DOMElement
-	 * @return Submission
-	 */
-	function populateObject($submission, $node) {
-		$deployment = $this->getDeployment();
+    /**
+     * Populate the submission object from the node
+     *
+     * @param $submission Submission
+     * @param $node DOMElement
+     *
+     * @return Submission
+     */
+    public function populateObject($submission, $node)
+    {
+        $deployment = $this->getDeployment();
 
-		$workType = $node->getAttribute('work_type');
-		$submission->setData('workType', $workType);
+        $workType = $node->getAttribute('work_type');
+        $submission->setData('workType', $workType);
 
-		return parent::populateObject($submission, $node);
-	}
+        return parent::populateObject($submission, $node);
+    }
 
-	/**
-	 * Handle an element whose parent is the submission element.
-	 * @param $n DOMElement
-	 * @param $submission Submission
-	 */
-	function handleChildElement($n, $submission) {
-		switch ($n->tagName) {
-			case 'publication':
-				$this->parsePublication($n, $submission);
-				break;
-			default:
-				parent::handleChildElement($n, $submission);
-		}
-	}
+    /**
+     * Handle an element whose parent is the submission element.
+     *
+     * @param $n DOMElement
+     * @param $submission Submission
+     */
+    public function handleChildElement($n, $submission)
+    {
+        switch ($n->tagName) {
+            case 'publication':
+                $this->parsePublication($n, $submission);
+                break;
+            default:
+                parent::handleChildElement($n, $submission);
+        }
+    }
 
-	/**
-	 * Get the import filter for a given element.
-	 * @param $elementName string Name of XML element
-	 * @return Filter
-	 */
-	function getImportFilter($elementName) {
-		$deployment = $this->getDeployment();
-		$submission = $deployment->getSubmission();
-		$importClass = null; // Scrutinizer
-		switch ($elementName) {
-			case 'submission_file':
-				$importClass='SubmissionFile';
-				break;
-			case 'publication':
-				$importClass='Publication';
-				break;
-			default:
-				$deployment->addError(ASSOC_TYPE_SUBMISSION, $submission->getId(), __('plugins.importexport.common.error.unknownElement', array('param' => $elementName)));
-		}
-		// Caps on class name for consistency with imports, whose filter
-		// group names are generated implicitly.
-		$currentFilter = PKPImportExportFilter::getFilter('native-xml=>' . $importClass, $this->getDeployment());
-		return $currentFilter;
-	}
+    /**
+     * Get the import filter for a given element.
+     *
+     * @param $elementName string Name of XML element
+     *
+     * @return Filter
+     */
+    public function getImportFilter($elementName)
+    {
+        $deployment = $this->getDeployment();
+        $submission = $deployment->getSubmission();
+        $importClass = null; // Scrutinizer
+        switch ($elementName) {
+            case 'submission_file':
+                $importClass = 'SubmissionFile';
+                break;
+            case 'publication':
+                $importClass = 'Publication';
+                break;
+            default:
+                $deployment->addError(ASSOC_TYPE_SUBMISSION, $submission->getId(), __('plugins.importexport.common.error.unknownElement', ['param' => $elementName]));
+        }
+        // Caps on class name for consistency with imports, whose filter
+        // group names are generated implicitly.
+        $currentFilter = PKPImportExportFilter::getFilter('native-xml=>' . $importClass, $this->getDeployment());
+        return $currentFilter;
+    }
 
-	/**
-	 * Parse a publication format and add it to the submission.
-	 * @param $n DOMElement
-	 * @param $submission Submission
-	 */
-	function parsePublication($n, $submission) {
-		$importFilter = $this->getImportFilter($n->tagName);
+    /**
+     * Parse a publication format and add it to the submission.
+     *
+     * @param $n DOMElement
+     * @param $submission Submission
+     */
+    public function parsePublication($n, $submission)
+    {
+        $importFilter = $this->getImportFilter($n->tagName);
 
-		$formatDoc = new DOMDocument();
-		$formatDoc->appendChild($formatDoc->importNode($n, true));
-		return $importFilter->execute($formatDoc);
-	}
+        $formatDoc = new DOMDocument();
+        $formatDoc->appendChild($formatDoc->importNode($n, true));
+        return $importFilter->execute($formatDoc);
+    }
 }
-
-

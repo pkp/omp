@@ -13,6 +13,7 @@
  *
  * @class Subject
  * @ingroup codelist
+ *
  * @see SubjectDAO
  *
  * @brief Basic class describing a BIC Subject.
@@ -21,27 +22,28 @@
 
 import('classes.codelist.CodelistItem');
 
-class Subject extends CodelistItem {
+class Subject extends CodelistItem
+{
+    /**
+     * @var int The numerical representation of these Subject Qualifiers in ONIX 3.0
+     */
+    public $_onixSubjectSchemeIdentifier = 12;
 
-	/**
-	 * @var int The numerical representation of these Subject Qualifiers in ONIX 3.0
-	 */
-	var $_onixSubjectSchemeIdentifier = 12;
+    /**
+     * Constructor
+     */
+    public function __construct()
+    {
+        parent::__construct();
+    }
 
-	/**
-	 * Constructor
-	 */
-	function __construct() {
-		parent::__construct();
-	}
-
-	/**
-	 * Get the ONIX subject scheme identifier.
-	 * @return String the numerical value representing this item in the ONIX 3.0 schema
-	 */
-	function getOnixSubjectSchemeIdentifier() {
-		return $this->_onixSubjectSchemeIdentifier;
-	}
+    /**
+     * Get the ONIX subject scheme identifier.
+     *
+     * @return String the numerical value representing this item in the ONIX 3.0 schema
+     */
+    public function getOnixSubjectSchemeIdentifier()
+    {
+        return $this->_onixSubjectSchemeIdentifier;
+    }
 }
-
-

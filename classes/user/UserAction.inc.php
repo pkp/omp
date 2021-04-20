@@ -9,6 +9,7 @@
  *
  * @class UserAction
  * @ingroup user
+ *
  * @see User
  *
  * @brief UserAction class.
@@ -16,22 +17,25 @@
 
 import('lib.pkp.classes.user.PKPUserAction');
 
-class UserAction extends PKPUserAction {
-	/**
-	 * @copydoc PKPUserAction::mergeUsers()
-	 */
-	public function mergeUsers($oldUserId, $newUserId) {
-		if (!parent::mergeUsers($oldUserId, $newUserId)) return false;
+class UserAction extends PKPUserAction
+{
+    /**
+     * @copydoc PKPUserAction::mergeUsers()
+     */
+    public function mergeUsers($oldUserId, $newUserId)
+    {
+        if (!parent::mergeUsers($oldUserId, $newUserId)) {
+            return false;
+        }
 
-		// Transfer completed payments.
-		$paymentDao = DAORegistry::getDAO('OMPCompletedPaymentDAO'); /* @var $paymentDao OMPCompletedPaymentDAO */
-		$paymentFactory = $paymentDao->getByUserId($oldUserId);
-		while ($payment = $paymentFactory->next()) {
-			$payment->setUserId($newUserId);
-			$paymentDao->updateObject($payment);
-		}
+        // Transfer completed payments.
+        $paymentDao = DAORegistry::getDAO('OMPCompletedPaymentDAO'); /* @var $paymentDao OMPCompletedPaymentDAO */
+        $paymentFactory = $paymentDao->getByUserId($oldUserId);
+        while ($payment = $paymentFactory->next()) {
+            $payment->setUserId($newUserId);
+            $paymentDao->updateObject($payment);
+        }
 
-		return true;
-	}
+        return true;
+    }
 }
-

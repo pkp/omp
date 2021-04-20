@@ -19,5 +19,3 @@
 require_once('GoogleScholarPlugin.inc.php');
 
 return new GoogleScholarPlugin();
-
-

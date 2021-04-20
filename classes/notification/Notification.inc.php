@@ -9,19 +9,20 @@
  *
  * @class Notification
  * @ingroup notification
+ *
  * @see NotificationDAO
  * @brief OMP subclass for Notifications (defines OMP-specific types and icons).
  */
 
 import('lib.pkp.classes.notification.PKPNotification');
 
-class Notification extends PKPNotification {
-	/**
-	 * Constructor.
-	 */
-	function __construct() {
-		parent::__construct();
-	}
+class Notification extends PKPNotification
+{
+    /**
+     * Constructor.
+     */
+    public function __construct()
+    {
+        parent::__construct();
+    }
 }
-
-

@@ -16,7 +16,8 @@
 
 import('lib.pkp.api.v1.stats.editorial.PKPStatsEditorialHandler');
 
-class StatsEditorialHandler extends PKPStatsEditorialHandler {
-  /** @var string The name of the section ids query param for this application */
-  public $sectionIdsQueryParam = 'seriesIds';
+class StatsEditorialHandler extends PKPStatsEditorialHandler
+{
+    /** @var string The name of the section ids query param for this application */
+    public $sectionIdsQueryParam = 'seriesIds';
 }

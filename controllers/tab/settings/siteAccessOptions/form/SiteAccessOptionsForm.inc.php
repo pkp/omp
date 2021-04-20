@@ -15,21 +15,19 @@
 
 import('lib.pkp.classes.controllers.tab.settings.form.ContextSettingsForm');
 
-class SiteAccessOptionsForm extends ContextSettingsForm {
+class SiteAccessOptionsForm extends ContextSettingsForm
+{
+    /**
+     * Constructor.
+     */
+    public function __construct($wizardMode = false)
+    {
+        $settings = [
+            'disableUserReg' => 'bool',
+            'restrictSiteAccess' => 'bool',
+            'restrictMonographAccess' => 'bool',
+        ];
 
-	/**
-	 * Constructor.
-	 */
-	function __construct($wizardMode = false) {
-		$settings = array(
-			'disableUserReg' => 'bool',
-			'restrictSiteAccess' => 'bool',
-			'restrictMonographAccess' => 'bool',
-		);
-
-		parent::__construct($settings, 'controllers/tab/settings/siteAccessOptions/form/siteAccessOptionsForm.tpl', $wizardMode);
-	}
-
+        parent::__construct($settings, 'controllers/tab/settings/siteAccessOptions/form/siteAccessOptionsForm.tpl', $wizardMode);
+    }
 }
-
-

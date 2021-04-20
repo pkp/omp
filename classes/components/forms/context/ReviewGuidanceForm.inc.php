@@ -11,24 +11,27 @@
  *
  * @brief A preset form for configuring the guidance a reviewer should receive.
  */
+
 namespace APP\components\forms\context;
-use \PKP\components\forms\context\PKPReviewGuidanceForm;
-use \PKP\components\forms\FieldRichTextarea;
 
-class ReviewGuidanceForm extends PKPReviewGuidanceForm {
+use PKP\components\forms\context\PKPReviewGuidanceForm;
+use PKP\components\forms\FieldRichTextarea;
 
-	/**
-	 * @copydoc PKPAppearanceSetupForm::__construct()
-	 */
-	public function __construct($action, $locales, $context) {
-		parent::__construct($action, $locales, $context);
+class ReviewGuidanceForm extends PKPReviewGuidanceForm
+{
+    /**
+     * @copydoc PKPAppearanceSetupForm::__construct()
+     */
+    public function __construct($action, $locales, $context)
+    {
+        parent::__construct($action, $locales, $context);
 
-		$this->addField(new FieldRichTextarea('internalReviewGuidelines', [
-				'label' => __('manager.setup.internalReviewGuidelines'),
-				'helpTopic' => 'settings',
-				'helpSection' => 'workflow-review-guidelines',
-				'value' => $context->getData('internalReviewGuidelines'),
-				'isMultilingual' => true,
-			]), [FIELD_POSITION_BEFORE, 'reviewGuidelines']);
-	}
+        $this->addField(new FieldRichTextarea('internalReviewGuidelines', [
+            'label' => __('manager.setup.internalReviewGuidelines'),
+            'helpTopic' => 'settings',
+            'helpSection' => 'workflow-review-guidelines',
+            'value' => $context->getData('internalReviewGuidelines'),
+            'isMultilingual' => true,
+        ]), [FIELD_POSITION_BEFORE, 'reviewGuidelines']);
+    }
 }

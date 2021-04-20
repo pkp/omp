@@ -9,56 +9,66 @@
  *
  * @class ONIXCodelistItem
  * @ingroup codelist
+ *
  * @see ONIXCodelistItemDAO
  *
  * @brief Basic class describing a codelist item.
  *
  */
 
-class ONIXCodelistItem extends DataObject {
-	/**
-	 * Constructor
-	 */
+class ONIXCodelistItem extends DataObject
+{
+    /**
+     * Constructor
+     */
 
-	function __construct() {
-		parent::__construct();
-	}
+    public function __construct()
+    {
+        parent::__construct();
+    }
 
 
-	//
-	// Get/set methods
-	//
+    //
+    // Get/set methods
+    //
 
-	/**
-	 * Get the text component of the codelist.
-	 * @return string
-	 */
-	function getText() {
-		return $this->getData('text');
-	}
+    /**
+     * Get the text component of the codelist.
+     *
+     * @return string
+     */
+    public function getText()
+    {
+        return $this->getData('text');
+    }
 
-	/**
-	 * Set the text component of the codelist.
-	 * @param $text string
-	 */
-	function setText($text) {
-		return $this->setData('text', $text);
-	}
+    /**
+     * Set the text component of the codelist.
+     *
+     * @param $text string
+     */
+    public function setText($text)
+    {
+        return $this->setData('text', $text);
+    }
 
-	/**
-	 * Get codelist code.
-	 * @return string
-	 */
-	function getCode() {
-		return $this->getData('code');
-	}
+    /**
+     * Get codelist code.
+     *
+     * @return string
+     */
+    public function getCode()
+    {
+        return $this->getData('code');
+    }
 
-	/**
-	 * Set codelist code.
-	 * @param $code string
-	 */
-	function setCode($code) {
-		return $this->setData('code', $code);
-	}
+    /**
+     * Set codelist code.
+     *
+     * @param $code string
+     */
+    public function setCode($code)
+    {
+        return $this->setData('code', $code);
+    }
 }
-

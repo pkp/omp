@@ -15,61 +15,66 @@
 
 import('lib.pkp.plugins.importexport.native.PKPNativeImportExportPlugin');
 
-class NativeImportExportPlugin extends PKPNativeImportExportPlugin {
-	/**
-	 * @see ImportExportPlugin::display()
-	 */
-	function display($args, $request) {
-		$context = $request->getContext();
-		$user = $request->getUser();
-		$deployment = new NativeImportExportDeployment($context, $user);
+class NativeImportExportPlugin extends PKPNativeImportExportPlugin
+{
+    /**
+     * @see ImportExportPlugin::display()
+     */
+    public function display($args, $request)
+    {
+        $context = $request->getContext();
+        $user = $request->getUser();
+        $deployment = new NativeImportExportDeployment($context, $user);
 
-		$this->setDeployment($deployment);
+        $this->setDeployment($deployment);
 
-		parent::display($args, $request);
+        parent::display($args, $request);
 
-		if ($this->isResultManaged) {
-			if ($this->result) {
-				return $this->result;
-			}
+        if ($this->isResultManaged) {
+            if ($this->result) {
+                return $this->result;
+            }
 
-			return false;
-		}
+            return false;
+        }
 
-		switch ($this->opType) {
-			default:
-				$dispatcher = $request->getDispatcher();
-				$dispatcher->handle404();
-		}
-	}
+        switch ($this->opType) {
+            default:
+                $dispatcher = $request->getDispatcher();
+                $dispatcher->handle404();
+        }
+    }
 
-	/**
-	 * @see ImportExportPlugin::getImportFilter
-	 */
-	function getImportFilter($xmlFile) {
-		$filter = 'native-xml=>monograph';
+    /**
+     * @see ImportExportPlugin::getImportFilter
+     */
+    public function getImportFilter($xmlFile)
+    {
+        $filter = 'native-xml=>monograph';
 
-		$xmlString = file_get_contents($xmlFile);
+        $xmlString = file_get_contents($xmlFile);
 
-		return array($filter, $xmlString);
-	}
+        return [$filter, $xmlString];
+    }
 
-	/**
-	 * @see ImportExportPlugin::getExportFilter
-	 */
-	function getExportFilter($exportType) {
-		$filter = false;
-		if ($exportType == 'exportSubmissions') {
-			$filter = 'monograph=>native-xml';
-		}
+    /**
+     * @see ImportExportPlugin::getExportFilter
+     */
+    public function getExportFilter($exportType)
+    {
+        $filter = false;
+        if ($exportType == 'exportSubmissions') {
+            $filter = 'monograph=>native-xml';
+        }
 
-		return $filter;
-	}
+        return $filter;
+    }
 
-	/**
-	 * @see ImportExportPlugin::getAppSpecificDeployment
-	 */
-	function getAppSpecificDeployment($journal, $user) {
-		return new NativeImportExportDeployment($journal, $user);
-	}
+    /**
+     * @see ImportExportPlugin::getAppSpecificDeployment
+     */
+    public function getAppSpecificDeployment($journal, $user)
+    {
+        return new NativeImportExportDeployment($journal, $user);
+    }
 }
