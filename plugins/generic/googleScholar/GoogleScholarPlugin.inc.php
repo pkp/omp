@@ -119,10 +119,10 @@ class GoogleScholarPlugin extends GenericPlugin {
 					}
 					switch ($availableFile->getData('mimetype')) {
 						case 'application/pdf':
-							$templateMgr->addHeader('googleScholarPdfUrl' . $i++, '<meta name="citation_pdf_url" content="' . $request->url(null, 'catalog', 'view', array($submission->getData('id'), $availableFile->getData('assocId'), $availableFile->getData('fileId'))) . '"/>');
+							$templateMgr->addHeader('googleScholarPdfUrl' . $i++, '<meta name="citation_pdf_url" content="' . $request->url(null, 'catalog', 'download', array($submission->getData('id'), $availableFile->getData('assocId'), $availableFile->getData('fileId'))) . '"/>');
 							break;
 						case 'text/xml' or 'text/html':
-							$templateMgr->addHeader('googleScholarPdfUrl' . $i++, '<meta name="citation_fulltext_html_url" content="' . $request->url(null, 'catalog', 'view', array($submission->getData('id'), $availableFile->getData('assocId'), $availableFile->getData('fileId'))) . '"/>');
+							$templateMgr->addHeader('googleScholarPdfUrl' . $i++, '<meta name="citation_fulltext_html_url" content="' . $request->url(null, 'catalog', 'download', array($submission->getData('id'), $availableFile->getData('assocId'), $availableFile->getData('fileId'))) . '"/>');
 							break;
 					}
 
