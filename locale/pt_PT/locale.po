@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
-"PO-Revision-Date: 2021-02-16 11:19+0000\n"
-"Last-Translator: Mickael Gomes da Silva <mickael.silva@uc.pt>\n"
+"PO-Revision-Date: 2021-04-09 19:43+0000\n"
+"Last-Translator: Carla Marques <carla.marques@usdb.uminho.pt>\n"
 "Language-Team: Portuguese (Portugal) <http://translate.pkp.sfu.ca/projects/"
 "omp/locale/pt_PT/>\n"
 "Language: pt_PT\n"
@@ -1617,3 +1617,12 @@ msgid "installer.updatingInstructions"
 msgstr ""
 "Se está a atualizar uma instalação existente do OMP,  <a href=\"{$upgradeUrl}"
 "\">clique aqui</a> para continuar."
+
+msgid "grid.catalogEntry.isbn10.description"
+msgstr "Código ISBN com 10 dígitos, tal como 951-98548-9-4."
+
+msgid "grid.catalogEntry.isbn13.description"
+msgstr "Código ISBN com 13 dígitos, tal como 978-951-98548-9-2."
+
+msgid "grid.catalogEntry.isbn"
+msgstr "ISBN"

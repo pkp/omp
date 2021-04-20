@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
-"PO-Revision-Date: 2021-01-06 17:52+0000\n"
-"Last-Translator: Blagoja Grozdanovski <blagoja.grozdanovski@gmail.com>\n"
+"PO-Revision-Date: 2021-04-20 14:03+0000\n"
+"Last-Translator: Teodora Fildishevska <t.fildishevska@gmail.com>\n"
 "Language-Team: Macedonian <http://translate.pkp.sfu.ca/projects/omp/"
 "importexport-native/mk_MK/>\n"
 "Language: mk_MK\n"
@@ -46,3 +46,12 @@ msgstr "Увезете и извезувајте книги во мајчин XM
 
 msgid "plugins.importexport.native.displayName"
 msgstr "Домашен XML додаток"
+
+msgid "plugins.importexport.native.cliUsage"
+msgstr ""
+"Користење: {$scriptName} {$pluginName} [command] ...\n"
+"Команди:\n"
+"\timport [xmlFileName] [press_path] [user_name] ...\n"
+"\texport [xmlFileName] [press_path] monographs [monographId1] [monographId2] "
+"...\n"
+"\texport [xmlFileName] [press_path] monograph [monographId]\n"

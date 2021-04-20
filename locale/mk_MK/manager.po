@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
-"PO-Revision-Date: 2021-02-09 22:36+0000\n"
-"Last-Translator: Mirko Spiroski <mspiroski@id-press.eu>\n"
+"PO-Revision-Date: 2021-04-20 14:03+0000\n"
+"Last-Translator: Teodora Fildishevska <t.fildishevska@gmail.com>\n"
 "Language-Team: Macedonian <http://translate.pkp.sfu.ca/projects/omp/manager/"
 "mk_MK/>\n"
 "Language: mk_MK\n"
@@ -1416,4 +1416,26 @@ msgid "manager.series.editorRestriction"
 msgstr "Предметите можат да ги доставуваат уредници и уредници на серии."
 
 msgid "manager.setup.pageHeaderDescription"
-msgstr "-"
+msgstr ""
+
+msgid "plugins.importexport.chapter.exportFailed"
+msgstr "Процесот не успеа да ги парсира поглавјата"
+
+msgid "plugins.importexport.publicationformat.exportFailed"
+msgstr "Процесот не успеа да ги парсира форматите на објавите"
+
+msgid "plugins.importexport.native.error.unknownUser"
+msgstr "Наведениот корисник, \"{$userName}\", не постои."
+
+msgid "plugins.importexport.common.error.unknownObjects"
+msgstr "Наведените објекти не беа пронајдени."
+
+msgid "manager.setup.notifications.copySubmissionAckPrimaryContact.disabled.description"
+msgstr ""
+"Не е дефинирано главното лице за контакт за ова издание. Можете да внесете "
+"главното лице за контакт во <a href=\"{$url}\">поставките на издание</a>."
+
+msgid "manager.setup.notifications.copySubmissionAckPrimaryContact.description"
+msgstr ""
+"Испратете копија од е-поштата за потврда на поднескот до главното лице за "
+"контакт на ова издание."
