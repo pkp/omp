@@ -13,13 +13,11 @@
  * @brief CLI tool for installing OMP.
  */
 
-
-
 require(dirname(__FILE__) . '/bootstrap.inc.php');
 
 import('lib.pkp.classes.cliTool.InstallTool');
 
-class OMPInstallTool extends InstallTool
+class OMPInstallTool extends \PKP\cliTool\InstallTool
 {
     /**
      * Constructor.

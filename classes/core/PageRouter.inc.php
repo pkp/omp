@@ -13,10 +13,9 @@
  * @brief Class providing OMP-specific page routing.
  */
 
+namespace APP\core;
 
-import('lib.pkp.classes.core.PKPPageRouter');
-
-class PageRouter extends PKPPageRouter
+class PageRouter extends \PKP\core\PKPPageRouter
 {
     /**
      * Constructor
@@ -35,4 +34,8 @@ class PageRouter extends PKPPageRouter
     {
         return ['about', 'announcement', 'help', 'index', 'information', 'rt', ''];
     }
+}
+
+if (!PKP_STRICT_MODE) {
+    class_alias('\APP\core\PageRouter', '\PageRouter');
 }
