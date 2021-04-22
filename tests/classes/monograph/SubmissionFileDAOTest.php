@@ -21,6 +21,7 @@ import('classes.i18n.AppLocale'); // Cause mocked AppLocale class to load
 import('lib.pkp.tests.DatabaseTestCase');
 import('classes.submission.SubmissionFileDAO');
 import('lib.pkp.classes.submission.reviewRound.ReviewRound');
+import('classes.submission.Submission');
 
 use \PKP\core\PKPRouter;
 use \PKP\submission\SubmissionFile;
