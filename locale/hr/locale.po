@@ -1,6 +1,6 @@
 msgid ""
 msgstr ""
-"PO-Revision-Date: 2021-04-22 11:19+0000\n"
+"PO-Revision-Date: 2021-04-22 14:24+0000\n"
 "Last-Translator: Dobrica Pavlinušić <dpavlin@ffzg.hr>\n"
 "Language-Team: Croatian <http://translate.pkp.sfu.ca/projects/omp/locale/"
 "hr_HR/>\n"
@@ -95,3 +95,27 @@ msgstr "Plaćanja"
 
 msgid "catalog.newReleases"
 msgstr "Nova izdanja"
+
+msgid "catalog.manage.newRelease"
+msgstr "Nova izdanja"
+
+msgid "catalog.manage.series.issn"
+msgstr "ISSN"
+
+msgid "catalog.manage.series"
+msgstr "Nizovi"
+
+msgid "catalog.manage.category"
+msgstr "Kategorija"
+
+msgid "catalog.manage.newReleases"
+msgstr "Nova izdanja"
+
+msgid "catalog.manage"
+msgstr "Uređivanje kataloga"
+
+msgid "series.series"
+msgstr "Nizovi"
+
+msgid "catalog.published"
+msgstr "Objavljeno"
