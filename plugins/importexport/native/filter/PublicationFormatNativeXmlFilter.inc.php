@@ -13,6 +13,8 @@
  * @brief Class that converts a PublicationFormat to a Native XML document.
  */
 
+use \PKP\xsl\XSLTransformer;
+
 import('lib.pkp.plugins.importexport.native.filter.RepresentationNativeXmlFilter');
 
 class PublicationFormatNativeXmlFilter extends RepresentationNativeXmlFilter
@@ -68,7 +70,6 @@ class PublicationFormatNativeXmlFilter extends RepresentationNativeXmlFilter
                 // assemble just the Product node we want.
                 $publicationFormatDOMElement = $exportFilter->createProductNode($doc, $submission, $representation);
                 if ($publicationFormatDOMElement && $publicationFormatDOMElement instanceof DOMElement) {
-                    import('lib.pkp.classes.xslt.XSLTransformer');
                     $xslTransformer = new XSLTransformer();
                     $xslFile = 'plugins/importexport/native/onixProduct2NativeXml.xsl';
                     $productXml = $publicationFormatDOMElement->ownerDocument->saveXML($publicationFormatDOMElement);
