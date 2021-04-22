@@ -19,6 +19,8 @@
  * @brief Class for a Submission.
  */
 
+namespace APP\submission;
+
 define('WORK_TYPE_EDITED_VOLUME', 1);
 define('WORK_TYPE_AUTHORED_WORK', 2);
 
@@ -326,4 +328,8 @@ class Submission extends PKPSubmission
     {
         $this->setData('enableChapterPublicationDates', $enableChapterPublicationDates);
     }
+}
+
+if (!PKP_STRICT_MODE) {
+    class_alias('\APP\submission\Submission', '\Submission');
 }

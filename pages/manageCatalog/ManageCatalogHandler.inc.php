@@ -15,7 +15,8 @@
 
 import('classes.handler.Handler');
 
-use PKP\core\JSONMessage;
+use \PKP\core\JSONMessage;
+use \PKP\submission\PKPSubmissionDAO;
 
 class ManageCatalogHandler extends Handler
 {
@@ -82,9 +83,8 @@ class ManageCatalogHandler extends Handler
         $context = $request->getContext();
 
         // Catalog list
-        import('lib.pkp.classes.submission.PKPSubmissionDAO'); // ORDERBY_DATE_PUBLISHED constants
         [$catalogSortBy, $catalogSortDir] = explode('-', $context->getData('catalogSortOption'));
-        $catalogSortBy = empty($catalogSortBy) ? ORDERBY_DATE_PUBLISHED : $catalogSortBy;
+        $catalogSortBy = empty($catalogSortBy) ? PKPSubmissionDAO::ORDERBY_DATE_PUBLISHED : $catalogSortBy;
         $catalogSortDir = $catalogSortDir == SORT_DIRECTION_ASC ? 'ASC' : 'DESC';
         $catalogList = new \APP\components\listPanels\CatalogListPanel(
             'catalog',

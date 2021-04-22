@@ -17,6 +17,8 @@ namespace APP\Services\QueryBuilders;
 
 use Illuminate\Support\Facades\DB;
 
+use \APP\submission\SubmissionDAO;
+
 class SubmissionQueryBuilder extends \PKP\Services\QueryBuilders\PKPSubmissionQueryBuilder
 {
     /** @var int|array Series ID(s) */
@@ -56,7 +58,7 @@ class SubmissionQueryBuilder extends \PKP\Services\QueryBuilders\PKPSubmissionQu
         // Bring in orderby constants
         import('classes.submission.SubmissionDAO');
         switch ($column) {
-            case ORDERBY_SERIES_POSITION:
+            case SubmissionDAO::ORDERBY_SERIES_POSITION:
                 $this->orderColumn = 'po.series_position';
                 break;
             default:

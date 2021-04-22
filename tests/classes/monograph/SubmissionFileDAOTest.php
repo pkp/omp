@@ -28,6 +28,7 @@ use \PKP\submission\SubmissionFile;
 use \PKP\db\DAORegistry;
 use \PKP\submission\Genre;
 use \PKP\submission\SubmissionDAO;
+use \PKP\submission\GenreDAO;
 
 use APP\core\Services;
 
@@ -70,7 +71,7 @@ class SubmissionFileDAOTest extends DatabaseTestCase
         Registry::get('request', true, $mockRequest);
 
         // Register a mock monograph DAO.
-        $submissionDao = $this->getMockBuilder(SubmissionDAO::class)
+        $submissionDao = $this->getMockBuilder(\APP\submission\SubmissionDAO::class)
             ->setMethods(['getById'])
             ->getMock();
         $monograph = new Submission();
@@ -138,7 +139,7 @@ class SubmissionFileDAOTest extends DatabaseTestCase
         $submission->setData('currentPublicationId', $publication->getId());
         $submissionDao->updateObject($submission);
 
-        $submissionDao = $this->getMockBuilder(SubmissionDAO::class)
+        $submissionDao = $this->getMockBuilder(\APP\submission\SubmissionDAO::class)
             ->setMethods(['getById'])
             ->getMock();
         $monograph = new Submission();
