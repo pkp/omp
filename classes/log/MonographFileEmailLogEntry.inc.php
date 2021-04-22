@@ -15,18 +15,12 @@
  * @brief Describes an entry in the monograph file email log.
  */
 
-import('lib.pkp.classes.log.EmailLogEntry');
+namespace APP\log;
+
+use \PKP\log\EmailLogEntry;
 
 class MonographFileEmailLogEntry extends EmailLogEntry
 {
-    /**
-     * Constructor.
-     */
-    public function __construct()
-    {
-        parent::__construct();
-    }
-
     public function setFileId($fileId)
     {
         return $this->setAssocId($fileId);
@@ -37,3 +31,8 @@ class MonographFileEmailLogEntry extends EmailLogEntry
         return $this->getAssocId();
     }
 }
+
+if (!PKP_STRICT_MODE) {
+    class_alias('\APP\log\MonographFileEmailLogEntry', '\MonographFileEmailLogEntry');
+}
+

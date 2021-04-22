@@ -15,8 +15,10 @@
  * @brief Extension to EmailLogDAO for monograph file specific log entries.
  */
 
-import('lib.pkp.classes.log.EmailLogDAO');
-import('classes.log.MonographFileEmailLogEntry');
+namespace PKP\log;
+
+use \PKP\log\EmailLogDAO;
+use \PKP\log\MonographFileEmailLogEntry;
 
 class MonographFileEmailLogDAO extends EmailLogDAO
 {
@@ -45,4 +47,8 @@ class MonographFileEmailLogDAO extends EmailLogDAO
     {
         return parent::_getByEventType(ASSOC_TYPE_SUBMISSION_FILE, $fileId, $eventType, $userId);
     }
+}
+
+if (!PKP_STRICT_MODE) {
+    class_alias('\APP\log\MonographFileEmailLogDAO', '\MonographFileEmailLogDAO');
 }
