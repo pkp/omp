@@ -19,7 +19,7 @@
 import('classes.codelist.ONIXCodelistItem');
 
 use \PKP\db\XMLDAO;
-use \PKP\xsl\XSLTransformer;
+use \PKP\xslt\XSLTransformer;
 
 class ONIXCodelistItemDAO extends DAO
 {
