@@ -13,6 +13,8 @@
  * @brief Handle publication format grid requests.
  */
 
+use \PKP\submission\SubmissionFile;
+
 // import grid base classes
 import('lib.pkp.classes.controllers.grid.CategoryGridHandler');
 
@@ -581,7 +583,7 @@ class PublicationFormatGridHandler extends CategoryGridHandler
         $submission = $this->getSubmission();
         import('lib.pkp.classes.submission.SubmissionFile'); // Constants
         $submissionFile = Services::get('submissionFile')->get($request->getUserVar('submissionFileId'));
-        if ($submissionFile->getData('fileStage') !== SUBMISSION_FILE_PROOF || $submissionFile->getData('submissionId') != $submission->getId()) {
+        if ($submissionFile->getData('fileStage') !== SubmissionFile::SUBMISSION_FILE_PROOF || $submissionFile->getData('submissionId') != $submission->getId()) {
             return new JSONMessage(false);
         }
         $confirmationText = __('editor.submission.proofreading.confirmRemoveCompletion');
@@ -751,7 +753,7 @@ class PublicationFormatGridHandler extends CategoryGridHandler
         $submission = $this->getSubmission();
         import('lib.pkp.classes.submission.SubmissionFile'); // Constants
         $submissionFile = Services::get('submissionFile')->get($request->getUserVar('submissionFileId'));
-        if ($submissionFile->getData('fileStage') !== SUBMISSION_FILE_PROOF || $submissionFile->getData('submissionId') != $submission->getId()) {
+        if ($submissionFile->getData('fileStage') !== SubmissionFile::SUBMISSION_FILE_PROOF || $submissionFile->getData('submissionId') != $submission->getId()) {
             return new JSONMessage(false);
         }
 

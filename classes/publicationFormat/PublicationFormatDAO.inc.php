@@ -14,9 +14,10 @@
  * @brief Operations for retrieving and modifying PublicationFormat objects.
  */
 
+use \PKP\submission\RepresentationDAO;
+use \PKP\plugins\PKPPubIdPluginDAO;
+
 import('classes.publicationFormat.PublicationFormat');
-import('lib.pkp.classes.submission.RepresentationDAO');
-import('lib.pkp.classes.plugins.PKPPubIdPluginDAO');
 
 class PublicationFormatDAO extends RepresentationDAO implements PKPPubIdPluginDAO
 {

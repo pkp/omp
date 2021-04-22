@@ -15,18 +15,11 @@
  * @brief A publication format for a monograph.
  */
 
-import('lib.pkp.classes.submission.Representation');
+use \PKP\submission\SubmissionFile;
+use \PKP\submission\Representation;
 
 class PublicationFormat extends Representation
 {
-    /**
-     * Constructor.
-     */
-    public function __construct()
-    {
-        parent::__construct();
-    }
-
     /**
      * Return the "best" publication format ID -- If a public ID is set,
      * use it; otherwise use the internal ID.
@@ -313,7 +306,7 @@ class PublicationFormat extends Representation
         import('lib.pkp.classes.submission.SubmissionFile'); // File constants
         $stageMonographFiles = Services::get('submissionFile')->getMany([
             'submissionIds' => [$publication->getData('submissionId')],
-            'fileStages' => [SUBMISSION_FILE_PROOF],
+            'fileStages' => [SubmissionFile::SUBMISSION_FILE_PROOF],
             'assocTypes' => [ASSOC_TYPE_PUBLICATION_FORMAT],
             'assocIds' => [$this->getId()],
         ]);

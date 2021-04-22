@@ -12,7 +12,11 @@
  *
  * @brief Perform system upgrade.
  */
+
 use Illuminate\Support\Facades\DB;
+
+use \PKP\identity\Identity;
+use \PKP\submission\SubmissionFile;
 
 import('lib.pkp.classes.install.Installer');
 
@@ -61,7 +65,6 @@ class Upgrade extends Installer
         $siteDao = DAORegistry::getDAO('SiteDAO'); /* @var $siteDao SiteDAO */
         $site = $siteDao->getSite();
         $adminEmail = $site->getLocalizedContactEmail();
-        import('lib.pkp.classes.submission.SubmissionFile'); // SUBMISSION_FILE_ constants
         import('lib.pkp.classes.file.FileManager');
         $fileManager = new FileManager();
 
@@ -557,7 +560,7 @@ class Upgrade extends Installer
                 'assocIds' => [$note->getId()],
             ]);
             foreach ($submissionFilesIterator as $submissionFile) {
-                $submissionFile->setData('fileStage', SUBMISSION_FILE_QUERY);
+                $submissionFile->setData('fileStage', SubmissionFile::SUBMISSION_FILE_QUERY);
                 $submissionFileDao->updateObject($submissionFile);
             }
         }
@@ -629,13 +632,12 @@ class Upgrade extends Installer
     public function migrateUserAndAuthorNames()
     {
         $userDao = DAORegistry::getDAO('UserDAO'); /* @var $userDao UserDAO */
-        import('lib.pkp.classes.identity.Identity'); // IDENTITY_SETTING_...
         // the user names will be saved in the site's primary locale
-        $userDao->update("INSERT INTO user_settings (user_id, locale, setting_name, setting_value, setting_type) SELECT DISTINCT u.user_id, s.primary_locale, ?, u.first_name, 'string' FROM users_tmp u, site s", [IDENTITY_SETTING_GIVENNAME]);
-        $userDao->update("INSERT INTO user_settings (user_id, locale, setting_name, setting_value, setting_type) SELECT DISTINCT u.user_id, s.primary_locale, ?, u.last_name, 'string' FROM users_tmp u, site s", [IDENTITY_SETTING_FAMILYNAME]);
+        $userDao->update("INSERT INTO user_settings (user_id, locale, setting_name, setting_value, setting_type) SELECT DISTINCT u.user_id, s.primary_locale, ?, u.first_name, 'string' FROM users_tmp u, site s", [Identity::IDENTITY_SETTING_GIVENNAME]);
+        $userDao->update("INSERT INTO user_settings (user_id, locale, setting_name, setting_value, setting_type) SELECT DISTINCT u.user_id, s.primary_locale, ?, u.last_name, 'string' FROM users_tmp u, site s", [Identity::IDENTITY_SETTING_FAMILYNAME]);
         // the author names will be saved in the submission's primary locale
-        $userDao->update("INSERT INTO author_settings (author_id, locale, setting_name, setting_value, setting_type) SELECT DISTINCT a.author_id, s.locale, ?, a.first_name, 'string' FROM authors_tmp a, submissions s WHERE s.submission_id = a.submission_id", [IDENTITY_SETTING_GIVENNAME]);
-        $userDao->update("INSERT INTO author_settings (author_id, locale, setting_name, setting_value, setting_type) SELECT DISTINCT a.author_id, s.locale, ?, a.last_name, 'string' FROM authors_tmp a, submissions s WHERE s.submission_id = a.submission_id", [IDENTITY_SETTING_FAMILYNAME]);
+        $userDao->update("INSERT INTO author_settings (author_id, locale, setting_name, setting_value, setting_type) SELECT DISTINCT a.author_id, s.locale, ?, a.first_name, 'string' FROM authors_tmp a, submissions s WHERE s.submission_id = a.submission_id", [Identity::IDENTITY_SETTING_GIVENNAME]);
+        $userDao->update("INSERT INTO author_settings (author_id, locale, setting_name, setting_value, setting_type) SELECT DISTINCT a.author_id, s.locale, ?, a.last_name, 'string' FROM authors_tmp a, submissions s WHERE s.submission_id = a.submission_id", [Identity::IDENTITY_SETTING_FAMILYNAME]);
 
         // middle name will be migrated to the given name
         // note that given names are already migrated to the settings table
@@ -643,16 +645,16 @@ class Upgrade extends Installer
             case 'mysql':
             case 'mysqli':
                 // the alias for _settings table cannot be used for some reason -- syntax error
-                $userDao->update("UPDATE user_settings, users_tmp u SET user_settings.setting_value = CONCAT(user_settings.setting_value, ' ', u.middle_name) WHERE user_settings.setting_name = ? AND u.user_id = user_settings.user_id AND u.middle_name IS NOT NULL AND u.middle_name <> ''", [IDENTITY_SETTING_GIVENNAME]);
-                $userDao->update("UPDATE author_settings, authors_tmp a SET author_settings.setting_value = CONCAT(author_settings.setting_value, ' ', a.middle_name) WHERE author_settings.setting_name = ? AND a.author_id = author_settings.author_id AND a.middle_name IS NOT NULL AND a.middle_name <> ''", [IDENTITY_SETTING_GIVENNAME]);
+                $userDao->update("UPDATE user_settings, users_tmp u SET user_settings.setting_value = CONCAT(user_settings.setting_value, ' ', u.middle_name) WHERE user_settings.setting_name = ? AND u.user_id = user_settings.user_id AND u.middle_name IS NOT NULL AND u.middle_name <> ''", [Identity::IDENTITY_SETTING_GIVENNAME]);
+                $userDao->update("UPDATE author_settings, authors_tmp a SET author_settings.setting_value = CONCAT(author_settings.setting_value, ' ', a.middle_name) WHERE author_settings.setting_name = ? AND a.author_id = author_settings.author_id AND a.middle_name IS NOT NULL AND a.middle_name <> ''", [Identity::IDENTITY_SETTING_GIVENNAME]);
                 break;
             case 'postgres':
             case 'postgres64':
             case 'postgres7':
             case 'postgres8':
             case 'postgres9':
-                $userDao->update("UPDATE user_settings SET setting_value = CONCAT(setting_value, ' ', u.middle_name) FROM users_tmp u WHERE user_settings.setting_name = ? AND u.user_id = user_settings.user_id AND u.middle_name IS NOT NULL AND u.middle_name <> ''", [IDENTITY_SETTING_GIVENNAME]);
-                $userDao->update("UPDATE author_settings SET setting_value = CONCAT(setting_value, ' ', a.middle_name) FROM authors_tmp a WHERE author_settings.setting_name = ? AND a.author_id = author_settings.author_id AND a.middle_name IS NOT NULL AND a.middle_name <> ''", [IDENTITY_SETTING_GIVENNAME]);
+                $userDao->update("UPDATE user_settings SET setting_value = CONCAT(setting_value, ' ', u.middle_name) FROM users_tmp u WHERE user_settings.setting_name = ? AND u.user_id = user_settings.user_id AND u.middle_name IS NOT NULL AND u.middle_name <> ''", [Identity::IDENTITY_SETTING_GIVENNAME]);
+                $userDao->update("UPDATE author_settings SET setting_value = CONCAT(setting_value, ' ', a.middle_name) FROM authors_tmp a WHERE author_settings.setting_name = ? AND a.author_id = author_settings.author_id AND a.middle_name IS NOT NULL AND a.middle_name <> ''", [Identity::IDENTITY_SETTING_GIVENNAME]);
                 break;
             default: throw new Exception('Unknown database type!');
         }
@@ -868,7 +870,7 @@ class Upgrade extends Installer
     /**
      * Get the directory of a file based on its file stage
      *
-     * @param int $fileStage ONe of SUBMISSION_FILE_ constants
+     * @param int $fileStage One of SubmissionFile::SUBMISSION_FILE_ constants
      *
      * @return string
      */
@@ -876,18 +878,18 @@ class Upgrade extends Installer
     {
         import('lib.pkp.classes.submission.SubmissionFile');
         static $fileStagePathMap = [
-            SUBMISSION_FILE_SUBMISSION => 'submission',
-            SUBMISSION_FILE_NOTE => 'note',
-            SUBMISSION_FILE_REVIEW_FILE => 'submission/review',
-            SUBMISSION_FILE_REVIEW_ATTACHMENT => 'submission/review/attachment',
-            SUBMISSION_FILE_REVIEW_REVISION => 'submission/review/revision',
-            SUBMISSION_FILE_FINAL => 'submission/final',
-            SUBMISSION_FILE_COPYEDIT => 'submission/copyedit',
-            SUBMISSION_FILE_DEPENDENT => 'submission/proof',
-            SUBMISSION_FILE_PROOF => 'submission/proof',
-            SUBMISSION_FILE_PRODUCTION_READY => 'submission/productionReady',
-            SUBMISSION_FILE_ATTACHMENT => 'attachment',
-            SUBMISSION_FILE_QUERY => 'submission/query',
+            SubmissionFile::SUBMISSION_FILE_SUBMISSION => 'submission',
+            SubmissionFile::SUBMISSION_FILE_NOTE => 'note',
+            SubmissionFile::SUBMISSION_FILE_REVIEW_FILE => 'submission/review',
+            SubmissionFile::SUBMISSION_FILE_REVIEW_ATTACHMENT => 'submission/review/attachment',
+            SubmissionFile::SUBMISSION_FILE_REVIEW_REVISION => 'submission/review/revision',
+            SubmissionFile::SUBMISSION_FILE_FINAL => 'submission/final',
+            SubmissionFile::SUBMISSION_FILE_COPYEDIT => 'submission/copyedit',
+            SubmissionFile::SUBMISSION_FILE_DEPENDENT => 'submission/proof',
+            SubmissionFile::SUBMISSION_FILE_PROOF => 'submission/proof',
+            SubmissionFile::SUBMISSION_FILE_PRODUCTION_READY => 'submission/productionReady',
+            SubmissionFile::SUBMISSION_FILE_ATTACHMENT => 'attachment',
+            SubmissionFile::SUBMISSION_FILE_QUERY => 'submission/query',
         ];
 
         if (!isset($fileStagePathMap[$fileStage])) {

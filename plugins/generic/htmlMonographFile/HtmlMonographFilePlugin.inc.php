@@ -13,6 +13,8 @@
  * @brief Class for HtmlMonographFile plugin
  */
 
+use \PKP\submission\SubmissionFile;
+
 import('lib.pkp.classes.plugins.GenericPlugin');
 
 class HtmlMonographFilePlugin extends GenericPlugin
@@ -145,11 +147,11 @@ class HtmlMonographFilePlugin extends GenericPlugin
         import('lib.pkp.classes.submission.SubmissionFile'); // Constants
         $proofFiles = Services::get('submissionFile')->getMany([
             'submissionIds' => [$monograph->getId()],
-            'fileStages' => [SUBMISSION_FILE_PROOF],
+            'fileStages' => [SubmissionFile::SUBMISSION_FILE_PROOF],
         ]);
         $dependentFiles = Services::get('submissionFile')->getMany([
             'submissionIds' => [$monograph->getId()],
-            'fileStages' => [SUBMISSION_FILE_DEPENDENT],
+            'fileStages' => [SubmissionFile::SUBMISSION_FILE_DEPENDENT],
             'assocTypes' => [ASSOC_TYPE_SUBMISSION_FILE],
             'assocIds' => [$submissionFile->getId()],
         ]);

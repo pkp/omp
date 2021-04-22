@@ -20,15 +20,15 @@ import('classes.i18n.AppLocale'); // Cause mocked AppLocale class to load
 
 import('lib.pkp.tests.DatabaseTestCase');
 import('classes.submission.SubmissionFileDAO');
-import('lib.pkp.classes.submission.SubmissionFile');
-import('classes.submission.SubmissionDAO');
-import('lib.pkp.classes.submission.Genre');
 import('lib.pkp.classes.submission.reviewRound.ReviewRound');
 
-use APP\core\Services;
-use PKP\core\PKPRouter;
+use \PKP\core\PKPRouter;
+use \PKP\submission\SubmissionFile;
+use \PKP\db\DAORegistry;
+use \PKP\submission\Genre;
+use \PKP\submission\SubmissionDAO;
 
-use PKP\db\DAORegistry;
+use APP\core\Services;
 
 // Define test ids.
 define('SUBMISSION_FILE_DAO_TEST_PRESS_ID', 999);
@@ -157,7 +157,7 @@ class SubmissionFileDAOTest extends DatabaseTestCase
         );
         $submissionFile1 = new SubmissionFile();
         $submissionFile1->setAllData([
-            'fileStage' => SUBMISSION_FILE_SUBMISSION,
+            'fileStage' => SubmissionFile::SUBMISSION_FILE_SUBMISSION,
             'submissionId' => $submissionId,
             'uploaderUserId' => 1,
             'fileId' => $fileId1,
@@ -172,7 +172,7 @@ class SubmissionFileDAOTest extends DatabaseTestCase
         $submissionFile2 = clone $submissionFile1;
         $submissionFile2->setData('assocType', ASSOC_TYPE_REPRESENTATION);
         $submissionFile2->setData('assocId', 1);
-        $submissionFile2->setData('fileStage', SUBMISSION_FILE_PROOF);
+        $submissionFile2->setData('fileStage', SubmissionFile::SUBMISSION_FILE_PROOF);
         $submissionFile2->setData('fileId', $fileId2);
 
         // Persist files and check retrieval
@@ -182,7 +182,7 @@ class SubmissionFileDAOTest extends DatabaseTestCase
         self::assertTrue(is_a($submissionFile1, 'SubmissionFile'));
         self::assertEquals($submissionFile1->getData('assocType'), null);
         self::assertEquals($submissionFile1->getData('assocId'), null);
-        self::assertEquals($submissionFile1->getData('fileStage'), SUBMISSION_FILE_SUBMISSION);
+        self::assertEquals($submissionFile1->getData('fileStage'), SubmissionFile::SUBMISSION_FILE_SUBMISSION);
         self::assertEquals($submissionFile1->getData('submissionId'), $submissionId);
         self::assertEquals($submissionFile1->getData('fileId'), $fileId1);
         self::assertEquals($submissionFile1->getData('genreId'), SUBMISSION_FILE_DAO_TEST_DOC_GENRE_ID);
@@ -194,7 +194,7 @@ class SubmissionFileDAOTest extends DatabaseTestCase
         self::assertTrue(is_a($submissionFile2, 'SubmissionFile'));
         self::assertEquals($submissionFile2->getData('assocType'), ASSOC_TYPE_REPRESENTATION);
         self::assertEquals($submissionFile2->getData('assocId'), 1);
-        self::assertEquals($submissionFile2->getData('fileStage'), SUBMISSION_FILE_PROOF);
+        self::assertEquals($submissionFile2->getData('fileStage'), SubmissionFile::SUBMISSION_FILE_PROOF);
         self::assertEquals($submissionFile2->getData('fileId'), $fileId2);
         self::assertEquals($submissionFile2->getData('genreId'), SUBMISSION_FILE_DAO_TEST_DOC_GENRE_ID);
 

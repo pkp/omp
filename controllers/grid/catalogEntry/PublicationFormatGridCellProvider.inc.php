@@ -13,10 +13,9 @@
  * @brief Base class for a cell provider that can retrieve labels for publication formats
  */
 
-import('lib.pkp.classes.controllers.grid.DataObjectGridCellProvider');
+use \PKP\submission\SubmissionFile;
 
-// Import class which contains the SUBMISSION_FILE_* constants.
-import('lib.pkp.classes.submission.SubmissionFile');
+import('lib.pkp.classes.controllers.grid.DataObjectGridCellProvider');
 
 class PublicationFormatGridCellProvider extends DataObjectGridCellProvider
 {
@@ -185,7 +184,7 @@ class PublicationFormatGridCellProvider extends DataObjectGridCellProvider
                             $this->getSubmissionId(),
                             WORKFLOW_STAGE_ID_PRODUCTION,
                             [ROLE_ID_MANAGER, ROLE_ID_SUB_EDITOR, ROLE_ID_ASSISTANT],
-                            SUBMISSION_FILE_PROOF,
+                            SubmissionFile::SUBMISSION_FILE_PROOF,
                             ASSOC_TYPE_REPRESENTATION,
                             $data->getId()
                         ),
@@ -198,7 +197,7 @@ class PublicationFormatGridCellProvider extends DataObjectGridCellProvider
                                 'representationId' => $data->getId(),
                                 'publicationId' => $this->getPublicationId(),
                                 'stageId' => WORKFLOW_STAGE_ID_PRODUCTION,
-                                'fileStage' => SUBMISSION_FILE_PROOF,
+                                'fileStage' => SubmissionFile::SUBMISSION_FILE_PROOF,
                             ],
                             __('editor.submission.selectFiles')
                         )

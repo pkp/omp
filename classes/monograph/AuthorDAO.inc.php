@@ -16,12 +16,19 @@
  * @brief Operations for retrieving and modifying Author objects.
  */
 
-
+use \PKP\submission\PKPAuthorDAO;
 
 import('classes.monograph.Author');
-import('classes.submission.Submission');
-import('lib.pkp.classes.submission.PKPAuthorDAO');
 
 class AuthorDAO extends PKPAuthorDAO
 {
+    /**
+     * Get a new data object
+     *
+     * @return DataObject
+     */
+    public function newDataObject()
+    {
+        return new Author();
+    }
 }

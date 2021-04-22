@@ -13,6 +13,8 @@
  * @brief Handle requests for the author dashboard.
  */
 
+use \PKP\submission\SubmissionFile;
+
 // Import base class
 import('lib.pkp.pages.authorDashboard.PKPAuthorDashboardHandler');
 
@@ -79,18 +81,18 @@ class AuthorDashboardHandler extends PKPAuthorDashboardHandler
     // Protected helper methods
     //
     /**
-     * Get the SUBMISSION_FILE_... file stage based on the current
+     * Get the SubmissionFile::SUBMISSION_FILE_... file stage based on the current
      * WORKFLOW_STAGE_... workflow stage.
      *
      * @param $currentStage int WORKFLOW_STAGE_...
      *
-     * @return int SUBMISSION_FILE_...
+     * @return int SubmissionFile::SUBMISSION_FILE_...
      */
     protected function _fileStageFromWorkflowStage($currentStage)
     {
         switch ($currentStage) {
             case WORKFLOW_STAGE_ID_INTERNAL_REVIEW:
-                return SUBMISSION_FILE_REVIEW_REVISION;
+                return SubmissionFile::SUBMISSION_FILE_REVIEW_REVISION;
             default:
                 return parent::_fileStageFromWorkflowStage($currentStage);
         }

@@ -16,6 +16,8 @@
  *
  */
 
+use \PKP\submission\SubmissionFile;
+
 import('lib.pkp.classes.payment.QueuedPayment');
 import('lib.pkp.classes.payment.PaymentManager');
 import('lib.pkp.classes.submission.SubmissionFile');
@@ -56,7 +58,7 @@ class OMPPaymentManager extends PaymentManager
             case PAYMENT_TYPE_PURCHASE_FILE:
                 import('lib.pkp.classes.submission.SubmissionFile'); // const
                 $submissionFile = Services::get('submissionFile')->get($assocId);
-                if ($submissionFile->getData('fileStage') != SUBMISSION_FILE_PROOF) {
+                if ($submissionFile->getData('fileStage') != SubmissionFile::SUBMISSION_FILE_PROOF) {
                     throw new Exception('The submission file for this queued payment is not in the correct file stage.');
                 }
                 assert($submissionFile);

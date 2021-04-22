@@ -17,6 +17,7 @@
 import('lib.pkp.controllers.api.file.PKPManageFileApiHandler');
 
 use PKP\core\JSONMessage;
+use \PKP\submission\SubmissionFile;
 
 class ManageFileApiHandler extends PKPManageFileApiHandler
 {
@@ -38,7 +39,7 @@ class ManageFileApiHandler extends PKPManageFileApiHandler
     public function editMetadata($args, $request)
     {
         $submissionFile = $this->getAuthorizedContextObject(ASSOC_TYPE_SUBMISSION_FILE);
-        if ($submissionFile->getFileStage() == SUBMISSION_FILE_PROOF) {
+        if ($submissionFile->getFileStage() == SubmissionFile::SUBMISSION_FILE_PROOF) {
             $publisherIdEnabled = in_array('file', (array) $request->getContext()->getData('enablePublisherId'));
             $pubIdPlugins = PluginRegistry::getPlugins('pubIds');
             $pubIdEnabled = false;

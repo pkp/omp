@@ -13,6 +13,7 @@
  * @brief Provide access to proof files management.
  */
 
+use \PKP\submission\SubmissionFile;
 
 import('lib.pkp.controllers.grid.files.SubmissionFilesCategoryGridDataProvider');
 
@@ -28,7 +29,7 @@ class PublicationFormatCategoryGridDataProvider extends SubmissionFilesCategoryG
     {
         $this->_gridHandler = $gridHandler;
         import('lib.pkp.classes.submission.SubmissionFile');
-        parent::__construct(SUBMISSION_FILE_PROOF);
+        parent::__construct(SubmissionFile::SUBMISSION_FILE_PROOF);
         $this->setStageId(WORKFLOW_STAGE_ID_PRODUCTION);
     }
 

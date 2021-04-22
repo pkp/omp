@@ -13,6 +13,8 @@
  * @brief CSV import/export plugin
  */
 
+use \PKP\submission\SubmissionFile;
+
 import('lib.pkp.classes.plugins.ImportExportPlugin');
 
 class CSVImportExportPlugin extends ImportExportPlugin
@@ -244,7 +246,7 @@ class CSVImportExportPlugin extends ImportExportPlugin
                         $submissionFile->setSubmissionId($submissionId);
                         $submissionFile->setSubmissionLocale($submission->getLocale());
                         $submissionFile->setGenreId($genre->getId());
-                        $submissionFile->setFileStage(SUBMISSION_FILE_PROOF);
+                        $submissionFile->setFileStage(SubmissionFile::SUBMISSION_FILE_PROOF);
                         $submissionFile->setDateUploaded(Core::getCurrentDate());
                         $submissionFile->setDateModified(Core::getCurrentDate());
                         $submissionFile->setAssocType(ASSOC_TYPE_REPRESENTATION);

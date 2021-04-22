@@ -22,7 +22,8 @@
 define('WORK_TYPE_EDITED_VOLUME', 1);
 define('WORK_TYPE_AUTHORED_WORK', 2);
 
-import('lib.pkp.classes.submission.PKPSubmission');
+use \PKP\submission\PKPSubmission;
+
 import('classes.monograph.Author');
 
 class Submission extends PKPSubmission

@@ -14,7 +14,8 @@
 
 namespace APP\Services;
 
-use HookRegistry;
+use \PKP\db\HookRegistry;
+use \PKP\submission\SubmissionFile;
 
 class SubmissionFileService extends \PKP\Services\PKPSubmissionFileService
 {
@@ -25,22 +26,21 @@ class SubmissionFileService extends \PKP\Services\PKPSubmissionFileService
      */
     public function getFileStages()
     {
-        import('lib.pkp.classes.submission.SubmissionFile');
         $stages = [
-            SUBMISSION_FILE_SUBMISSION,
-            SUBMISSION_FILE_NOTE,
-            SUBMISSION_FILE_INTERNAL_REVIEW_FILE,
-            SUBMISSION_FILE_REVIEW_FILE,
-            SUBMISSION_FILE_REVIEW_ATTACHMENT,
-            SUBMISSION_FILE_FINAL,
-            SUBMISSION_FILE_COPYEDIT,
-            SUBMISSION_FILE_PROOF,
-            SUBMISSION_FILE_PRODUCTION_READY,
-            SUBMISSION_FILE_ATTACHMENT,
-            SUBMISSION_FILE_REVIEW_REVISION,
-            SUBMISSION_FILE_INTERNAL_REVIEW_REVISION,
-            SUBMISSION_FILE_DEPENDENT,
-            SUBMISSION_FILE_QUERY,
+            SubmissionFile::SUBMISSION_FILE_SUBMISSION,
+            SubmissionFile::SUBMISSION_FILE_NOTE,
+            SubmissionFile::SUBMISSION_FILE_INTERNAL_REVIEW_FILE,
+            SubmissionFile::SUBMISSION_FILE_REVIEW_FILE,
+            SubmissionFile::SUBMISSION_FILE_REVIEW_ATTACHMENT,
+            SubmissionFile::SUBMISSION_FILE_FINAL,
+            SubmissionFile::SUBMISSION_FILE_COPYEDIT,
+            SubmissionFile::SUBMISSION_FILE_PROOF,
+            SubmissionFile::SUBMISSION_FILE_PRODUCTION_READY,
+            SubmissionFile::SUBMISSION_FILE_ATTACHMENT,
+            SubmissionFile::SUBMISSION_FILE_REVIEW_REVISION,
+            SubmissionFile::SUBMISSION_FILE_INTERNAL_REVIEW_REVISION,
+            SubmissionFile::SUBMISSION_FILE_DEPENDENT,
+            SubmissionFile::SUBMISSION_FILE_QUERY,
         ];
 
         HookRegistry::call('SubmissionFile::fileStages', [&$stages]);

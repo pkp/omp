@@ -16,7 +16,8 @@ use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Schema;
 
-use PKP\services\PKPSchemaService;
+use \PKP\services\PKPSchemaService;
+use \PKP\submission\SubmissionFile;
 
 class OMPv3_3_0UpgradeMigration extends Migration
 {
@@ -217,20 +218,20 @@ class OMPv3_3_0UpgradeMigration extends Migration
         // Update file stage for all internal review files
         DB::table('submission_files as sf')
             ->leftJoin('review_round_files as rrf', 'sf.submission_file_id', '=', 'rrf.submission_file_id')
-            ->where('sf.file_stage', '=', SUBMISSION_FILE_REVIEW_FILE)
+            ->where('sf.file_stage', '=', SubmissionFile::SUBMISSION_FILE_REVIEW_FILE)
             ->where('rrf.stage_id', '=', WORKFLOW_STAGE_ID_INTERNAL_REVIEW)
-            ->update(['sf.file_stage' => SUBMISSION_FILE_INTERNAL_REVIEW_FILE]);
+            ->update(['sf.file_stage' => SubmissionFile::SUBMISSION_FILE_INTERNAL_REVIEW_FILE]);
         DB::table('submission_files as sf')
             ->leftJoin('review_round_files as rrf', 'sf.submission_file_id', '=', 'rrf.submission_file_id')
-            ->where('sf.file_stage', '=', SUBMISSION_FILE_REVIEW_REVISION)
+            ->where('sf.file_stage', '=', SubmissionFile::SUBMISSION_FILE_REVIEW_REVISION)
             ->where('rrf.stage_id', '=', WORKFLOW_STAGE_ID_INTERNAL_REVIEW)
-            ->update(['sf.file_stage' => SUBMISSION_FILE_INTERNAL_REVIEW_REVISION]);
+            ->update(['sf.file_stage' => SubmissionFile::SUBMISSION_FILE_INTERNAL_REVIEW_REVISION]);
 
         // Update the fileStage property for all event logs where the
         // file has been moved to an internal review file stage
         $internalStageIds = [
-            SUBMISSION_FILE_INTERNAL_REVIEW_FILE,
-            SUBMISSION_FILE_INTERNAL_REVIEW_REVISION,
+            SubmissionFile::SUBMISSION_FILE_INTERNAL_REVIEW_FILE,
+            SubmissionFile::SUBMISSION_FILE_INTERNAL_REVIEW_REVISION,
         ];
         foreach ($internalStageIds as $internalStageId) {
             $submissionIds = DB::table('submission_files')

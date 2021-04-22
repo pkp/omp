@@ -13,6 +13,8 @@
  * @brief Class to add content to the monograph search index.
  */
 
+use \PKP\submission\SubmissionFile;
+
 import('lib.pkp.classes.search.SubmissionSearchIndex');
 
 class MonographSearchIndex extends SubmissionSearchIndex
@@ -144,7 +146,7 @@ class MonographSearchIndex extends SubmissionSearchIndex
         import('classes.search.MonographSearch'); // Constants
         $submissionFiles = Services::get('submissionFile')->getMany([
             'submissionIds' => [$monograph->getId()],
-            'fileStages' => [SUBMISSION_FILE_PROOF],
+            'fileStages' => [SubmissionFile::SUBMISSION_FILE_PROOF],
         ]);
 
         foreach ($submissionFiles as $submissionFile) {

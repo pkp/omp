@@ -15,10 +15,12 @@
 
 namespace APP\Services;
 
-use Application;
-use DAORegistry;
-use PKP\Services\PKPPublicationService;
-use Services;
+use \PKP\db\DAORegistry;
+use \PKP\Services\PKPPublicationService;
+use \PKP\submission\SubmissionFile;
+
+use \APP\core\Application;
+use \APP\core\Services;
 
 class PublicationService extends PKPPublicationService
 {
@@ -288,7 +290,7 @@ class PublicationService extends PKPPublicationService
                 $newSubmissionFiles[] = $newSubmissionFile;
 
                 $dependentFiles = Services::get('submissionFile')->getMany([
-                    'fileStages' => [SUBMISSION_FILE_DEPENDENT],
+                    'fileStages' => [SubmissionFile::SUBMISSION_FILE_DEPENDENT],
                     'assocTypes' => [ASSOC_TYPE_SUBMISSION_FILE],
                     'assocIds' => [$submissionFile->getId()],
                     'includeDependentFiles' => true,
