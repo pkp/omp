@@ -13,6 +13,8 @@
  * @brief Manual payment plugin class
  */
 
+use \PKP\mail\MailTemplate;
+
 import('lib.pkp.classes.plugins.PaymethodPlugin');
 
 class ManualPaymentPlugin extends PaymethodPlugin
@@ -160,7 +162,6 @@ class ManualPaymentPlugin extends PaymethodPlugin
 
         switch ($op) {
             case 'notify':
-                import('lib.pkp.classes.mail.MailTemplate');
                 AppLocale::requireComponents(LOCALE_COMPONENT_APP_COMMON);
                 $contactName = $context->getData('contactName');
                 $contactEmail = $context->getData('contactEmail');
