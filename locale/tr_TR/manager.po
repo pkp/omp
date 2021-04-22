@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
-"PO-Revision-Date: 2021-02-23 13:10+0000\n"
-"Last-Translator: Uğur Koçak <ugurkocak@hotmail.com>\n"
+"PO-Revision-Date: 2021-04-21 13:43+0000\n"
+"Last-Translator: Hüseyin Körpeoğlu <yoruyenturk@hotmail.com>\n"
 "Language-Team: Turkish <http://translate.pkp.sfu.ca/projects/omp/manager/"
 "tr_TR/>\n"
 "Language: tr_TR\n"
@@ -1399,3 +1399,25 @@ msgstr ""
 
 msgid "manager.setup.selectSectionDescription"
 msgstr "Öğenin değerlendirileceği yayınevi bölümü."
+
+msgid "plugins.importexport.chapter.exportFailed"
+msgstr "Bölümler çözümlenemedi"
+
+msgid "plugins.importexport.publicationformat.exportFailed"
+msgstr "Yayın biçimleri çözümlenemedi"
+
+msgid "plugins.importexport.native.error.unknownUser"
+msgstr "Belirtilen kullanıcı \"{$userName}\" mevcut değil."
+
+msgid "plugins.importexport.common.error.unknownObjects"
+msgstr "Belirtilen nesneler bulunamadı."
+
+msgid "manager.setup.notifications.copySubmissionAckPrimaryContact.disabled.description"
+msgstr ""
+"Birincil kişi tanımlanmadı. <a href=\"{$url}\">Yayın ayarlarında</a> bir "
+"birincil kişi girebilirsiniz."
+
+msgid "manager.setup.notifications.copySubmissionAckPrimaryContact.description"
+msgstr ""
+"Birincil irtibat kişisine gönderim teşekkür e-postasının bir kopyasını "
+"gönderin."
