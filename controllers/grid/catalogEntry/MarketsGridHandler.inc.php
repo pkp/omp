@@ -3,8 +3,8 @@
 /**
  * @file controllers/grid/catalogEntry/MarketsGridHandler.inc.php
  *
- * Copyright (c) 2014-2020 Simon Fraser University
- * Copyright (c) 2000-2020 John Willinsky
+ * Copyright (c) 2014-2021 Simon Fraser University
+ * Copyright (c) 2000-2021 John Willinsky
  * Distributed under the GNU GPL v3. For full terms see the file docs/COPYING.
  *
  * @class MarketsGridHandler
@@ -23,335 +23,372 @@ import('controllers.grid.catalogEntry.MarketsGridRow');
 // Link action & modal classes
 import('lib.pkp.classes.linkAction.request.AjaxModal');
 
-class MarketsGridHandler extends GridHandler {
-	/** @var Submission */
-	var $_submission;
+use PKP\core\JSONMessage;
 
-	/** @var Publication */
-	var $_publication;
+class MarketsGridHandler extends GridHandler
+{
+    /** @var Submission */
+    public $_submission;
 
-	/** @var PublicationFormat */
-	var $_publicationFormat;
+    /** @var Publication */
+    public $_publication;
 
-	/**
-	 * Constructor
-	 */
-	function __construct() {
-		parent::__construct();
-		$this->addRoleAssignment(
-				array(ROLE_ID_MANAGER),
-				array('fetchGrid', 'fetchRow', 'addMarket', 'editMarket',
-				'updateMarket', 'deleteMarket'));
-	}
+    /** @var PublicationFormat */
+    public $_publicationFormat;
 
-
-	//
-	// Getters/Setters
-	//
-	/**
-	 * Get the submission associated with this grid.
-	 * @return Submission
-	 */
-	function getSubmission() {
-		return $this->_submission;
-	}
-
-	/**
-	 * Set the Submission
-	 * @param Submission
-	 */
-	function setSubmission($submission) {
-		$this->_submission = $submission;
-	}
-
-	/**
-	 * Get the Publication associated with this grid.
-	 * @return Publication
-	 */
-	function getPublication() {
-		return $this->_publication;
-	}
-
-	/**
-	 * Set the Publication
-	 * @param Publication
-	 */
-	function setPublication($publication) {
-		$this->_publication = $publication;
-	}
-
-	/**
-	 * Get the publication format assocated with these markets
-	 * @return PublicationFormat
-	 */
-	function getPublicationFormat() {
-		return $this->_publicationFormat;
-	}
-
-	/**
-	 * Set the publication format
-	 * @param PublicationFormat
-	 */
-	function setPublicationFormat($publicationFormat) {
-		$this->_publicationFormat = $publicationFormat;
-	}
-
-	//
-	// Overridden methods from PKPHandler
-	//
-	/**
-	 * @see PKPHandler::authorize()
-	 * @param $request PKPRequest
-	 * @param $args array
-	 * @param $roleAssignments array
-	 */
-	function authorize($request, &$args, $roleAssignments) {
-		import('lib.pkp.classes.security.authorization.PublicationAccessPolicy');
-		$this->addPolicy(new PublicationAccessPolicy($request, $args, $roleAssignments));
-		return parent::authorize($request, $args, $roleAssignments);
-	}
-
-	/**
-	 * @copydoc GridHandler::initialize()
-	 */
-	function initialize($request, $args = null) {
-		parent::initialize($request, $args);
-
-		// Retrieve the authorized submission.
-		$submission = $this->getAuthorizedContextObject(ASSOC_TYPE_SUBMISSION);
-		$this->setPublication($this->getAuthorizedContextObject(ASSOC_TYPE_PUBLICATION));
-		$this->setSubmission($submission);
-		$publicationFormatDao = DAORegistry::getDAO('PublicationFormatDAO'); /* @var $publicationFormatDao PublicationFormatDAO */
-		$representationId = null;
-
-		// Retrieve the associated publication format for this grid.
-		$marketId = (int) $request->getUserVar('marketId'); // set if editing or deleting a market entry
-
-		if ($marketId != '') {
-			$marketDao = DAORegistry::getDAO('MarketDAO'); /* @var $marketDao MarketDAO */
-			$market = $marketDao->getById($marketId, $this->getPublication()->getId());
-			if ($market) {
-				$representationId = $market->getPublicationFormatId();
-			}
-		} else { // empty form for new Market
-			$representationId = (int) $request->getUserVar('representationId');
-		}
-
-		$publicationFormat = $publicationFormatDao->getById($representationId, $this->getPublication()->getId());
-
-		if ($publicationFormat) {
-			$this->setPublicationFormat($publicationFormat);
-		} else {
-			fatalError('The publication format is not assigned to authorized submission!');
-		}
-
-		// Load submission-specific translations
-		AppLocale::requireComponents(
-			LOCALE_COMPONENT_APP_SUBMISSION,
-			LOCALE_COMPONENT_PKP_SUBMISSION,
-			LOCALE_COMPONENT_PKP_USER,
-			LOCALE_COMPONENT_APP_DEFAULT,
-			LOCALE_COMPONENT_PKP_DEFAULT
-		);
-
-		// Basic grid configuration
-		$this->setTitle('grid.catalogEntry.markets');
-
-		// Grid actions
-		$router = $request->getRouter();
-		$actionArgs = $this->getRequestArgs();
-		$this->addAction(
-			new LinkAction(
-				'addMarket',
-				new AjaxModal(
-					$router->url($request, null, null, 'addMarket', null, $actionArgs),
-					__('grid.action.addMarket'),
-					'modal_add_item'
-				),
-				__('grid.action.addMarket'),
-				'add_item'
-			)
-		);
-
-		// Columns
-		$cellProvider = new MarketsGridCellProvider();
-		$this->addColumn(
-			new GridColumn(
-				'territory',
-				'grid.catalogEntry.marketTerritory',
-				null,
-				null,
-				$cellProvider
-			)
-		);
-		$this->addColumn(
-			new GridColumn(
-				'rep',
-				'grid.catalogEntry.representatives',
-				null,
-				null,
-				$cellProvider
-			)
-		);
-		$this->addColumn(
-			new GridColumn(
-				'price',
-				'monograph.publicationFormat.price',
-				null,
-				null,
-				$cellProvider
-			)
-		);
-	}
+    /**
+     * Constructor
+     */
+    public function __construct()
+    {
+        parent::__construct();
+        $this->addRoleAssignment(
+            [ROLE_ID_MANAGER],
+            ['fetchGrid', 'fetchRow', 'addMarket', 'editMarket',
+                'updateMarket', 'deleteMarket']
+        );
+    }
 
 
-	//
-	// Overridden methods from GridHandler
-	//
-	/**
-	 * @see GridHandler::getRowInstance()
-	 * @return MarketsGridRow
-	 */
-	function getRowInstance() {
-		return new MarketsGridRow($this->getSubmission(), $this->getPublication());
-	}
+    //
+    // Getters/Setters
+    //
+    /**
+     * Get the submission associated with this grid.
+     *
+     * @return Submission
+     */
+    public function getSubmission()
+    {
+        return $this->_submission;
+    }
 
-	/**
-	 * Get the arguments that will identify the data in the grid
-	 * In this case, the submission.
-	 * @return array
-	 */
-	function getRequestArgs() {
-		return [
-			'submissionId' => $this->getSubmission()->getId(),
-			'publicationId' => $this->getPublication()->getId(),
-			'representationId' => $this->getPublicationFormat()->getId()
-		];
-	}
+    /**
+     * Set the Submission
+     *
+     * @param Submission
+     */
+    public function setSubmission($submission)
+    {
+        $this->_submission = $submission;
+    }
 
-	/**
-	 * @copydoc GridHandler::loadData
-	 */
-	function loadData($request, $filter = null) {
-		$publicationFormat = $this->getPublicationFormat();
-		$marketDao = DAORegistry::getDAO('MarketDAO'); /* @var $marketDao MarketDAO */
-		$data = $marketDao->getByPublicationFormatId($publicationFormat->getId());
-		return $data->toArray();
-	}
+    /**
+     * Get the Publication associated with this grid.
+     *
+     * @return Publication
+     */
+    public function getPublication()
+    {
+        return $this->_publication;
+    }
+
+    /**
+     * Set the Publication
+     *
+     * @param Publication
+     */
+    public function setPublication($publication)
+    {
+        $this->_publication = $publication;
+    }
+
+    /**
+     * Get the publication format assocated with these markets
+     *
+     * @return PublicationFormat
+     */
+    public function getPublicationFormat()
+    {
+        return $this->_publicationFormat;
+    }
+
+    /**
+     * Set the publication format
+     *
+     * @param PublicationFormat
+     */
+    public function setPublicationFormat($publicationFormat)
+    {
+        $this->_publicationFormat = $publicationFormat;
+    }
+
+    //
+    // Overridden methods from PKPHandler
+    //
+    /**
+     * @see PKPHandler::authorize()
+     *
+     * @param $request PKPRequest
+     * @param $args array
+     * @param $roleAssignments array
+     */
+    public function authorize($request, &$args, $roleAssignments)
+    {
+        import('lib.pkp.classes.security.authorization.PublicationAccessPolicy');
+        $this->addPolicy(new PublicationAccessPolicy($request, $args, $roleAssignments));
+        return parent::authorize($request, $args, $roleAssignments);
+    }
+
+    /**
+     * @copydoc GridHandler::initialize()
+     *
+     * @param null|mixed $args
+     */
+    public function initialize($request, $args = null)
+    {
+        parent::initialize($request, $args);
+
+        // Retrieve the authorized submission.
+        $submission = $this->getAuthorizedContextObject(ASSOC_TYPE_SUBMISSION);
+        $this->setPublication($this->getAuthorizedContextObject(ASSOC_TYPE_PUBLICATION));
+        $this->setSubmission($submission);
+        $publicationFormatDao = DAORegistry::getDAO('PublicationFormatDAO'); /* @var $publicationFormatDao PublicationFormatDAO */
+        $representationId = null;
+
+        // Retrieve the associated publication format for this grid.
+        $marketId = (int) $request->getUserVar('marketId'); // set if editing or deleting a market entry
+
+        if ($marketId != '') {
+            $marketDao = DAORegistry::getDAO('MarketDAO'); /* @var $marketDao MarketDAO */
+            $market = $marketDao->getById($marketId, $this->getPublication()->getId());
+            if ($market) {
+                $representationId = $market->getPublicationFormatId();
+            }
+        } else { // empty form for new Market
+            $representationId = (int) $request->getUserVar('representationId');
+        }
+
+        $publicationFormat = $publicationFormatDao->getById($representationId, $this->getPublication()->getId());
+
+        if ($publicationFormat) {
+            $this->setPublicationFormat($publicationFormat);
+        } else {
+            fatalError('The publication format is not assigned to authorized submission!');
+        }
+
+        // Load submission-specific translations
+        AppLocale::requireComponents(
+            LOCALE_COMPONENT_APP_SUBMISSION,
+            LOCALE_COMPONENT_PKP_SUBMISSION,
+            LOCALE_COMPONENT_PKP_USER,
+            LOCALE_COMPONENT_APP_DEFAULT,
+            LOCALE_COMPONENT_PKP_DEFAULT
+        );
+
+        // Basic grid configuration
+        $this->setTitle('grid.catalogEntry.markets');
+
+        // Grid actions
+        $router = $request->getRouter();
+        $actionArgs = $this->getRequestArgs();
+        $this->addAction(
+            new LinkAction(
+                'addMarket',
+                new AjaxModal(
+                    $router->url($request, null, null, 'addMarket', null, $actionArgs),
+                    __('grid.action.addMarket'),
+                    'modal_add_item'
+                ),
+                __('grid.action.addMarket'),
+                'add_item'
+            )
+        );
+
+        // Columns
+        $cellProvider = new MarketsGridCellProvider();
+        $this->addColumn(
+            new GridColumn(
+                'territory',
+                'grid.catalogEntry.marketTerritory',
+                null,
+                null,
+                $cellProvider
+            )
+        );
+        $this->addColumn(
+            new GridColumn(
+                'rep',
+                'grid.catalogEntry.representatives',
+                null,
+                null,
+                $cellProvider
+            )
+        );
+        $this->addColumn(
+            new GridColumn(
+                'price',
+                'monograph.publicationFormat.price',
+                null,
+                null,
+                $cellProvider
+            )
+        );
+    }
 
 
-	//
-	// Public  Market Grid Actions
-	//
-	/**
-	 * Add a new market
-	 * @param $args array
-	 * @param $request PKPRequest
-	 */
-	function addMarket($args, $request) {
-		return $this->editMarket($args, $request);
-	}
+    //
+    // Overridden methods from GridHandler
+    //
+    /**
+     * @see GridHandler::getRowInstance()
+     *
+     * @return MarketsGridRow
+     */
+    public function getRowInstance()
+    {
+        return new MarketsGridRow($this->getSubmission(), $this->getPublication());
+    }
 
-	/**
-	 * Edit a markets entry
-	 * @param $args array
-	 * @param $request PKPRequest
-	 * @return JSONMessage JSON object
-	 */
-	function editMarket($args, $request) {
-		// Identify the market entry to be updated
-		$marketId = (int) $request->getUserVar('marketId');
-		$submission = $this->getSubmission();
+    /**
+     * Get the arguments that will identify the data in the grid
+     * In this case, the submission.
+     *
+     * @return array
+     */
+    public function getRequestArgs()
+    {
+        return [
+            'submissionId' => $this->getSubmission()->getId(),
+            'publicationId' => $this->getPublication()->getId(),
+            'representationId' => $this->getPublicationFormat()->getId()
+        ];
+    }
 
-		$marketDao = DAORegistry::getDAO('MarketDAO'); /* @var $marketDao MarketDAO */
-		$market = $marketDao->getById($marketId, $this->getPublication()->getId());
+    /**
+     * @copydoc GridHandler::loadData
+     *
+     * @param null|mixed $filter
+     */
+    public function loadData($request, $filter = null)
+    {
+        $publicationFormat = $this->getPublicationFormat();
+        $marketDao = DAORegistry::getDAO('MarketDAO'); /* @var $marketDao MarketDAO */
+        $data = $marketDao->getByPublicationFormatId($publicationFormat->getId());
+        return $data->toArray();
+    }
 
-		// Form handling
-		import('controllers.grid.catalogEntry.form.MarketForm');
-		$marketForm = new MarketForm($submission, $this->getPublication(), $market);
-		$marketForm->initData();
 
-		return new JSONMessage(true, $marketForm->fetch($request));
-	}
+    //
+    // Public  Market Grid Actions
+    //
+    /**
+     * Add a new market
+     *
+     * @param $args array
+     * @param $request PKPRequest
+     */
+    public function addMarket($args, $request)
+    {
+        return $this->editMarket($args, $request);
+    }
 
-	/**
-	 * Update a markets entry
-	 * @param $args array
-	 * @param $request PKPRequest
-	 * @return JSONMessage JSON object
-	 */
-	function updateMarket($args, $request) {
-		// Identify the market entry to be updated
-		$marketId = $request->getUserVar('marketId');
-		$submission = $this->getSubmission();
+    /**
+     * Edit a markets entry
+     *
+     * @param $args array
+     * @param $request PKPRequest
+     *
+     * @return JSONMessage JSON object
+     */
+    public function editMarket($args, $request)
+    {
+        // Identify the market entry to be updated
+        $marketId = (int) $request->getUserVar('marketId');
+        $submission = $this->getSubmission();
 
-		$marketDao = DAORegistry::getDAO('MarketDAO'); /* @var $marketDao MarketDAO */
-		$market = $marketDao->getById($marketId, $this->getPublication()->getId());
+        $marketDao = DAORegistry::getDAO('MarketDAO'); /* @var $marketDao MarketDAO */
+        $market = $marketDao->getById($marketId, $this->getPublication()->getId());
 
-		// Form handling
-		import('controllers.grid.catalogEntry.form.MarketForm');
-		$marketForm = new MarketForm($submission, $this->getPublication(), $market);
-		$marketForm->readInputData();
-		if ($marketForm->validate()) {
-			$marketId = $marketForm->execute();
+        // Form handling
+        import('controllers.grid.catalogEntry.form.MarketForm');
+        $marketForm = new MarketForm($submission, $this->getPublication(), $market);
+        $marketForm->initData();
 
-			if(!isset($market)) {
-				// This is a new entry
-				$market = $marketDao->getById($marketId, $this->getPublication()->getId());
-				// New added entry action notification content.
-				$notificationContent = __('notification.addedMarket');
-			} else {
-				// entry edit action notification content.
-				$notificationContent = __('notification.editedMarket');
-			}
+        return new JSONMessage(true, $marketForm->fetch($request));
+    }
 
-			// Create trivial notification.
-			$currentUser = $request->getUser();
-			$notificationMgr = new NotificationManager();
-			$notificationMgr->createTrivialNotification($currentUser->getId(), NOTIFICATION_TYPE_SUCCESS, array('contents' => $notificationContent));
+    /**
+     * Update a markets entry
+     *
+     * @param $args array
+     * @param $request PKPRequest
+     *
+     * @return JSONMessage JSON object
+     */
+    public function updateMarket($args, $request)
+    {
+        // Identify the market entry to be updated
+        $marketId = $request->getUserVar('marketId');
+        $submission = $this->getSubmission();
 
-			// Prepare the grid row data
-			$row = $this->getRowInstance();
-			$row->setGridId($this->getId());
-			$row->setId($marketId);
-			$row->setData($market);
-			$row->initialize($request);
+        $marketDao = DAORegistry::getDAO('MarketDAO'); /* @var $marketDao MarketDAO */
+        $market = $marketDao->getById($marketId, $this->getPublication()->getId());
 
-			// Render the row into a JSON response
-			return DAO::getDataChangedEvent();
+        // Form handling
+        import('controllers.grid.catalogEntry.form.MarketForm');
+        $marketForm = new MarketForm($submission, $this->getPublication(), $market);
+        $marketForm->readInputData();
+        if ($marketForm->validate()) {
+            $marketId = $marketForm->execute();
 
-		} else {
-			return new JSONMessage(true, $marketForm->fetch($request));
-		}
-	}
+            if (!isset($market)) {
+                // This is a new entry
+                $market = $marketDao->getById($marketId, $this->getPublication()->getId());
+                // New added entry action notification content.
+                $notificationContent = __('notification.addedMarket');
+            } else {
+                // entry edit action notification content.
+                $notificationContent = __('notification.editedMarket');
+            }
 
-	/**
-	 * Delete a market entry
-	 * @param $args array
-	 * @param $request PKPRequest
-	 * @return JSONMessage JSON object
-	 */
-	function deleteMarket($args, $request) {
+            // Create trivial notification.
+            $currentUser = $request->getUser();
+            $notificationMgr = new NotificationManager();
+            $notificationMgr->createTrivialNotification($currentUser->getId(), NOTIFICATION_TYPE_SUCCESS, ['contents' => $notificationContent]);
 
-		// Identify the markets entry to be deleted
-		$marketId = $request->getUserVar('marketId');
+            // Prepare the grid row data
+            $row = $this->getRowInstance();
+            $row->setGridId($this->getId());
+            $row->setId($marketId);
+            $row->setData($market);
+            $row->initialize($request);
 
-		$marketDao = DAORegistry::getDAO('MarketDAO'); /* @var $marketDao MarketDAO */
-		$market = $marketDao->getById($marketId, $this->getPublication()->getId());
-		if ($market != null) { // authorized
+            // Render the row into a JSON response
+            return DAO::getDataChangedEvent();
+        } else {
+            return new JSONMessage(true, $marketForm->fetch($request));
+        }
+    }
 
-			$result = $marketDao->deleteObject($market);
+    /**
+     * Delete a market entry
+     *
+     * @param $args array
+     * @param $request PKPRequest
+     *
+     * @return JSONMessage JSON object
+     */
+    public function deleteMarket($args, $request)
+    {
 
-			if ($result) {
-				$currentUser = $request->getUser();
-				$notificationMgr = new NotificationManager();
-				$notificationMgr->createTrivialNotification($currentUser->getId(), NOTIFICATION_TYPE_SUCCESS, array('contents' => __('notification.removedMarket')));
-				return DAO::getDataChangedEvent();
-			} else {
-				return new JSONMessage(false, __('manager.setup.errorDeletingItem'));
-			}
-		}
-	}
+        // Identify the markets entry to be deleted
+        $marketId = $request->getUserVar('marketId');
+
+        $marketDao = DAORegistry::getDAO('MarketDAO'); /* @var $marketDao MarketDAO */
+        $market = $marketDao->getById($marketId, $this->getPublication()->getId());
+        if ($market != null) { // authorized
+
+            $result = $marketDao->deleteObject($market);
+
+            if ($result) {
+                $currentUser = $request->getUser();
+                $notificationMgr = new NotificationManager();
+                $notificationMgr->createTrivialNotification($currentUser->getId(), NOTIFICATION_TYPE_SUCCESS, ['contents' => __('notification.removedMarket')]);
+                return DAO::getDataChangedEvent();
+            } else {
+                return new JSONMessage(false, __('manager.setup.errorDeletingItem'));
+            }
+        }
+    }
 }
-
-

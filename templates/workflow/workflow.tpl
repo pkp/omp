@@ -1,8 +1,8 @@
 {**
  * templates/workflow/workflow.tpl
  *
- * Copyright (c) 2014-2020 Simon Fraser University
- * Copyright (c) 2003-2020 John Willinsky
+ * Copyright (c) 2014-2021 Simon Fraser University
+ * Copyright (c) 2003-2021 John Willinsky
  * Distributed under the GNU GPL v3. For full terms see the file docs/COPYING.
  *
  * Display the workflow tab structure.
@@ -121,7 +121,7 @@
 					<pkp-form v-bind="components.{$smarty.const.FORM_AUDIENCE}" @set="set" />
 				</tab>
 				<tab id="representatives" label="{translate key="grid.catalogEntry.representatives"}">
-					{capture assign=representativesGridUrl}{url router=$smarty.const.ROUTE_COMPONENT component="grid.catalogEntry.RepresentativesGridHandler" op="fetchGrid" submissionId=$submission->getId() escape=false}{/capture}
+					{capture assign=representativesGridUrl}{url router=PKPApplication::ROUTE_COMPONENT component="grid.catalogEntry.RepresentativesGridHandler" op="fetchGrid" submissionId=$submission->getId() escape=false}{/capture}
 					{load_url_in_div id="representativesGridContainer" url=$representativesGridUrl}
 				</tab>
 				<tab id="publicationDates" label="{translate key="grid.catalogEntry.publicationDates"}">

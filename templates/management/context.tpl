@@ -1,8 +1,8 @@
 {**
  * templates/management/context.tpl
  *
- * Copyright (c) 2014-2020 Simon Fraser University
- * Copyright (c) 2003-2020 John Willinsky
+ * Copyright (c) 2014-2021 Simon Fraser University
+ * Copyright (c) 2003-2021 John Willinsky
  * Distributed under the GNU GPL v3. For full terms see the file docs/COPYING.
  *
  * The press settings page.
@@ -44,12 +44,12 @@
 		</tab>
 		<tab id="sections" label="{translate key="series.series"}">
 			{help file="settings/context-settings" class="pkp_help_tab"}
-			{capture assign=seriesGridUrl}{url router=$smarty.const.ROUTE_COMPONENT component="grid.settings.series.SeriesGridHandler" op="fetchGrid" escape=false}{/capture}
+			{capture assign=seriesGridUrl}{url router=PKPApplication::ROUTE_COMPONENT component="grid.settings.series.SeriesGridHandler" op="fetchGrid" escape=false}{/capture}
 			{load_url_in_div id="seriesGridContainer" url=$seriesGridUrl}
 		</tab>
 		<tab id="categories" label="{translate key="grid.category.categories"}">
 			{help file="settings/context-settings" class="pkp_help_tab"}
-			{capture assign=categoriesUrl}{url router=$smarty.const.ROUTE_COMPONENT component="grid.settings.category.CategoryCategoryGridHandler" op="fetchGrid" escape=false}{/capture}
+			{capture assign=categoriesUrl}{url router=PKPApplication::ROUTE_COMPONENT component="grid.settings.category.CategoryCategoryGridHandler" op="fetchGrid" escape=false}{/capture}
 			{load_url_in_div id="categoriesContainer" url=$categoriesUrl}
 		</tab>
 	</tabs>

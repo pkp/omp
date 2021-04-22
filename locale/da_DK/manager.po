@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2019-11-28T15:10:04-08:00\n"
-"PO-Revision-Date: 2020-12-14 15:47+0000\n"
+"PO-Revision-Date: 2021-04-20 14:03+0000\n"
 "Last-Translator: Niels Erik Frederiksen <nef@kb.dk>\n"
 "Language-Team: Danish <http://translate.pkp.sfu.ca/projects/omp/manager/"
 "da_DK/>\n"
@@ -1393,3 +1393,25 @@ msgstr "Kunne ikke konvertere valgte objekter."
 
 msgid "plugins.importexport.common.error.noObjectsSelected"
 msgstr "Ingen objekter er blevet valgt."
+
+msgid "plugins.importexport.chapter.exportFailed"
+msgstr "Processen kunne ikke analysere kapitler"
+
+msgid "plugins.importexport.publicationformat.exportFailed"
+msgstr "Processen kunne ikke analysere publikationsformater"
+
+msgid "plugins.importexport.native.error.unknownUser"
+msgstr "Den angivne bruger, \"{$userName}\", findes ikke."
+
+msgid "plugins.importexport.common.error.unknownObjects"
+msgstr "De angivne objekter kunne ikke findes."
+
+msgid "manager.setup.notifications.copySubmissionAckPrimaryContact.disabled.description"
+msgstr ""
+"Der er ikke valgt nogen primær kontakt til dette forlag. Du kan indskrive en "
+"primær kontakt i <a href=\"{$url}\">forlagsindstillinger</a>."
+
+msgid "manager.setup.notifications.copySubmissionAckPrimaryContact.description"
+msgstr ""
+"Send en kopi af bekræftelses-e-mailen i forbindelse med indsendelser til "
+"dette forlags primære kontaktperson."

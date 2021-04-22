@@ -21,12 +21,6 @@ msgstr "Bibliografia"
 msgid "default.genres.appendix"
 msgstr "Załączniki"
 
-msgid "default.contextSettings.emailSignature"
-msgstr ""
-"________________________________________________________________________<br/>"
-"\n"
-"<a href=\"{$ldelim}$contextUrl{$rdelim}\">{$ldelim}$contextName{$rdelim}</a>"
-
 msgid "default.groups.abbrev.externalReviewer"
 msgstr "RZ"
 

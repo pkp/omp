@@ -1,0 +1,142 @@
+msgid ""
+msgstr ""
+"PO-Revision-Date: 2021-04-22 11:19+0000\n"
+"Last-Translator: Dobrica Pavlinušić <dpavlin@ffzg.hr>\n"
+"Language-Team: Croatian <http://translate.pkp.sfu.ca/projects/omp/submission/"
+"hr_HR/>\n"
+"Language: hr\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=3; plural=n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%10<="
+"4 && (n%100<10 || n%100>=20) ? 1 : 2;\n"
+"X-Generator: Weblate 3.9.1\n"
+
+msgid "submission.submit.privacyStatement"
+msgstr "Izjava o privatnosti"
+
+msgid "publication.catalogEntry"
+msgstr "Zapis u katalogu"
+
+msgid "submission.list.itemsOfTotalMonographs"
+msgstr "{$count} od {$total} monografija"
+
+msgid "submission.list.countMonographs"
+msgstr "{$count} monografija"
+
+msgid "submission.list.monographs"
+msgstr "Monografije"
+
+msgid "grid.chapters.title"
+msgstr "Poglavlja"
+
+msgid "submission.submit.metadata"
+msgstr "Metapodaci"
+
+msgid "submission.submit.catalog"
+msgstr "Katalog"
+
+msgid "submission.submit.upload"
+msgstr "Učitaj prijavu"
+
+msgid "submission.submit.newSubmissionSingle"
+msgstr "Nova prijava"
+
+msgid "submission.submit.newSubmissionMultiple"
+msgstr "Započni novu prijavu u"
+
+msgid "submission.submit"
+msgstr "Započni novu prijavu knjige"
+
+msgid "grid.action.deleteChapter"
+msgstr "Obriši ovo poglavlje"
+
+msgid "grid.action.editChapter"
+msgstr "Uredi ovo poglavlje"
+
+msgid "grid.action.addChapter"
+msgstr "Stvori novo poglavlje"
+
+msgid "submission.supportingAgencies"
+msgstr "Tijela koja podupiru izdanje"
+
+msgid "submission.metadata"
+msgstr "Metapodaci"
+
+msgid "manuscript.submissions"
+msgstr "Prijave rukopisa"
+
+msgid "manuscript.submission"
+msgstr "Prijava rukopisa"
+
+msgid "submission.sharing"
+msgstr "Podijeli"
+
+msgid "submission.download"
+msgstr "Preuzmi"
+
+msgid "submission.publicationFormats"
+msgstr "Formati izdanja"
+
+msgid "submission.chapter.editChapter"
+msgstr "Uredi ovo poglavlje"
+
+msgid "submission.chapter.addChapter"
+msgstr "Stvori novo poglavlje"
+
+msgid "submission.chapters"
+msgstr "Poglavlja"
+
+msgid "submission.chapter"
+msgstr "Poglavlje"
+
+msgid "submission.artwork.permissions"
+msgstr "Dopuštenja"
+
+msgid "submission.published"
+msgstr "Spremno za objavu"
+
+msgid "submission.monograph"
+msgstr "Monografija"
+
+msgid "submission.editorName"
+msgstr "{$editorName} (ur)"
+
+msgid "submission.workflowType.change"
+msgstr "Promjeni"
+
+msgid "submission.workflowType.authoredWork"
+msgstr "Monografija: autori su povezani s knjigom kao cjelinom."
+
+msgid "submission.workflowType.editedVolume"
+msgstr "Urednička knjiga: autori su povezani sa svojim zasebnim poglavljima."
+
+msgid "submission.workflowType.editedVolume.label"
+msgstr "Urednička knjiga"
+
+msgid "submission.workflowType.description"
+msgstr ""
+"Monografija je djelo koje je u cjelosti napisao jedan ili više autora. U "
+"uredničkoj knjizi svako poglavlje ima različite  autore (podaci opoglavljima "
+"unose se kasnije tijekom postupka)"
+
+msgid "submission.workflowType"
+msgstr "Vrsta prijave"
+
+msgid "submission.synopsis"
+msgstr "Sažetak"
+
+msgid "submission.select"
+msgstr "Odaberi Prijavu"
+
+msgid "submission.title"
+msgstr "Naslov knjige"
+
+msgid "submission.upload.selectComponent"
+msgstr "Odaberi komponentu"
+
+msgid "submission.submit.title"
+msgstr "Prijavite Monografiju"
+
+msgid "submission.authorListSeparator"
+msgstr "; "

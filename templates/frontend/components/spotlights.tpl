@@ -1,8 +1,8 @@
 {**
  * templates/frontend/components/spotlights.tpl
  *
- * Copyright (c) 2014-2020 Simon Fraser University
- * Copyright (c) 2003-2020 John Willinsky
+ * Copyright (c) 2014-2021 Simon Fraser University
+ * Copyright (c) 2003-2021 John Willinsky
  * Distributed under the GNU GPL v3. For full terms see the file docs/COPYING.
  *
  * @brief Display the spotlights in a list. This file prepares a number of
@@ -31,12 +31,12 @@
 			{if $assocType == $smarty.const.SPOTLIGHT_TYPE_BOOK}
 				{assign var=type value="is_book"}
 				{assign var=coverImage value=$item->getCoverImage()}
-				{capture assign=targetUrl}{url router=$smarty.const.ROUTE_PAGE page="catalog" op="book" path=$item->getBestId()}{/capture}
-				{capture assign=coverImageUrl}{url router=$smarty.const.ROUTE_COMPONENT component="submission.CoverHandler" op="thumbnail" submissionId=$item->getId()}{/capture}
+				{capture assign=targetUrl}{url router=PKPApplication::ROUTE_PAGE page="catalog" op="book" path=$item->getBestId()}{/capture}
+				{capture assign=coverImageUrl}{url router=PKPApplication::ROUTE_COMPONENT component="submission.CoverHandler" op="thumbnail" submissionId=$item->getId()}{/capture}
 			{elseif $assocType == $smarty.const.SPOTLIGHT_TYPE_SERIES}
 				{assign var=type value="is_series"}
 				{assign var=coverImage value=$item->getImage()}
-				{capture assign=targetUrl}{url router=$smarty.const.ROUTE_PAGE page="catalog" op="series" path=$item->getPath()}{/capture}
+				{capture assign=targetUrl}{url router=PKPApplication::ROUTE_PAGE page="catalog" op="series" path=$item->getPath()}{/capture}
 				{capture assign=coverImageUrl}{url page="catalog" op="thumbnail" type="series" id=$item->getId()}{/capture}
 			{/if}
 			{assign var=hasCoverImage value=""}

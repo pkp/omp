@@ -3,8 +3,8 @@
 /**
  * @file pages/catalog/CatalogBookHandler.inc.php
  *
- * Copyright (c) 2014-2020 Simon Fraser University
- * Copyright (c) 2003-2020 John Willinsky
+ * Copyright (c) 2014-2021 Simon Fraser University
+ * Copyright (c) 2003-2021 John Willinsky
  * Distributed under the GNU GPL v3. For full terms see the file docs/COPYING.
  *
  * @class CatalogBookHandler
@@ -18,352 +18,371 @@ import('classes.handler.Handler');
 
 // import UI base classes
 import('lib.pkp.classes.linkAction.LinkAction');
-import('lib.pkp.classes.core.JSONMessage');
-
-class CatalogBookHandler extends Handler {
-	/** @var Publication The requested publication */
-	public $publication;
-
-	/** @var boolean Is this a request for a specific version */
-	public $isVersionRequest = false;
-
-	/**
-	 * Constructor
-	 */
-	function __construct() {
-		parent::__construct();
-	}
 
 
-	//
-	// Overridden functions from PKPHandler
-	//
-	/**
-	 * @see PKPHandler::authorize()
-	 * @param $request PKPRequest
-	 * @param $args array
-	 * @param $roleAssignments array
-	 */
-	function authorize($request, &$args, $roleAssignments) {
-		import('classes.security.authorization.OmpPublishedSubmissionAccessPolicy');
-		$this->addPolicy(new OmpPublishedSubmissionAccessPolicy($request, $args, $roleAssignments));
-		return parent::authorize($request, $args, $roleAssignments);
-	}
+class CatalogBookHandler extends Handler
+{
+    /** @var Publication The requested publication */
+    public $publication;
+
+    /** @var boolean Is this a request for a specific version */
+    public $isVersionRequest = false;
+
+    /**
+     * Constructor
+     */
+    public function __construct()
+    {
+        parent::__construct();
+    }
 
 
-	//
-	// Public handler methods
-	//
-	/**
-	 * Display a published submission in the public catalog.
-	 * @param $args array
-	 * @param $request PKPRequest
-	 */
-	function book($args, $request) {
-		$templateMgr = TemplateManager::getManager($request);
-		$submission = $this->getAuthorizedContextObject(ASSOC_TYPE_SUBMISSION);
-		$this->setupTemplate($request, $submission);
-		AppLocale::requireComponents(LOCALE_COMPONENT_APP_SUBMISSION, LOCALE_COMPONENT_PKP_SUBMISSION); // submission.synopsis; submission.copyrightStatement
+    //
+    // Overridden functions from PKPHandler
+    //
+    /**
+     * @see PKPHandler::authorize()
+     *
+     * @param $request PKPRequest
+     * @param $args array
+     * @param $roleAssignments array
+     */
+    public function authorize($request, &$args, $roleAssignments)
+    {
+        import('classes.security.authorization.OmpPublishedSubmissionAccessPolicy');
+        $this->addPolicy(new OmpPublishedSubmissionAccessPolicy($request, $args, $roleAssignments));
+        return parent::authorize($request, $args, $roleAssignments);
+    }
 
-		// Get the requested publication or default to the current publication
-		$submissionId = array_shift($args);
-		$subPath = empty($args) ? 0 : array_shift($args);
-		if ($subPath === 'version') {
-			$this->isVersionRequest = true;
-			$publicationId = (int) array_shift($args);
-			foreach ($submission->getData('publications') as $publication) {
-				if ($publication->getId() === $publicationId) {
-					$this->publication = $publication;
-				}
-			}
-		} else {
-			$this->publication = $submission->getCurrentPublication();
-		}
 
-		if (!$this->publication || $this->publication->getData('status') !== STATUS_PUBLISHED) {
-			$request->getDispatcher()->handle404();
-		}
+    //
+    // Public handler methods
+    //
+    /**
+     * Display a published submission in the public catalog.
+     *
+     * @param $args array
+     * @param $request PKPRequest
+     */
+    public function book($args, $request)
+    {
+        $templateMgr = TemplateManager::getManager($request);
+        $submission = $this->getAuthorizedContextObject(ASSOC_TYPE_SUBMISSION);
+        $this->setupTemplate($request, $submission);
+        AppLocale::requireComponents(LOCALE_COMPONENT_APP_SUBMISSION, LOCALE_COMPONENT_PKP_SUBMISSION); // submission.synopsis; submission.copyrightStatement
 
-		// If the publication has been reached through an outdated
-		// urlPath, redirect to the latest version
-		if (!ctype_digit((string) $submissionId) && $submissionId !== $this->publication->getData('urlPath') && !$subPath) {
-			$newArgs = $args;
-			$newArgs = $this->publication->getData('urlPath')
-				? $this->publication->getData('urlPath')
-				: $this->publication->getId();
-			$request->redirect(null, $request->getRequestedPage(), $request->getRequestedOp(), $newArgs);
-		}
+        // Get the requested publication or default to the current publication
+        $submissionId = array_shift($args);
+        $subPath = empty($args) ? 0 : array_shift($args);
+        if ($subPath === 'version') {
+            $this->isVersionRequest = true;
+            $publicationId = (int) array_shift($args);
+            foreach ($submission->getData('publications') as $publication) {
+                if ($publication->getId() === $publicationId) {
+                    $this->publication = $publication;
+                }
+            }
+        } else {
+            $this->publication = $submission->getCurrentPublication();
+        }
 
-		$templateMgr->assign([
-			'publishedSubmission' => $submission,
-			'publication' => $this->publication,
-			'firstPublication' => reset($submission->getData('publications')),
-			'currentPublication' => $submission->getCurrentPublication(),
-			'authorString' => $this->publication->getAuthorString(DAORegistry::getDAO('UserGroupDAO')->getByContextId($submission->getData('contextId'))->toArray()),
-		]);
+        if (!$this->publication || $this->publication->getData('status') !== STATUS_PUBLISHED) {
+            $request->getDispatcher()->handle404();
+        }
 
-		// Provide the publication formats to the template
-		$availablePublicationFormats = [];
-		$availableRemotePublicationFormats = [];
-		foreach ($this->publication->getData('publicationFormats') as $format) {
-			if ($format->getIsAvailable()) {
-				$availablePublicationFormats[] = $format;
-				if ($format->getRemoteURL()) {
-					$availableRemotePublicationFormats[] = $format;
-				}
-			}
-		}
-		$templateMgr->assign(array(
-			'publicationFormats' => $availablePublicationFormats,
-			'remotePublicationFormats' => $availableRemotePublicationFormats,
-		));
+        // If the publication has been reached through an outdated
+        // urlPath, redirect to the latest version
+        if (!ctype_digit((string) $submissionId) && $submissionId !== $this->publication->getData('urlPath') && !$subPath) {
+            $newArgs = $args;
+            $newArgs = $this->publication->getData('urlPath')
+                ? $this->publication->getData('urlPath')
+                : $this->publication->getId();
+            $request->redirect(null, $request->getRequestedPage(), $request->getRequestedOp(), $newArgs);
+        }
 
-		// Assign chapters (if they exist)
-		$templateMgr->assign('chapters', DAORegistry::getDAO('ChapterDAO')->getByPublicationId($this->publication->getId())->toAssociativeArray());
+        $templateMgr->assign([
+            'publishedSubmission' => $submission,
+            'publication' => $this->publication,
+            'firstPublication' => reset($submission->getData('publications')),
+            'currentPublication' => $submission->getCurrentPublication(),
+            'authorString' => $this->publication->getAuthorString(DAORegistry::getDAO('UserGroupDAO')->getByContextId($submission->getData('contextId'))->toArray()),
+        ]);
 
-		$pubIdPlugins = PluginRegistry::loadCategory('pubIds', true);
-		$templateMgr->assign(array(
-			'pubIdPlugins' => PluginRegistry::loadCategory('pubIds', true),
-			'ccLicenseBadge' => Application::getCCLicenseBadge($this->publication->getData('licenseUrl')),
-		));
+        // Provide the publication formats to the template
+        $availablePublicationFormats = [];
+        $availableRemotePublicationFormats = [];
+        foreach ($this->publication->getData('publicationFormats') as $format) {
+            if ($format->getIsAvailable()) {
+                $availablePublicationFormats[] = $format;
+                if ($format->getRemoteURL()) {
+                    $availableRemotePublicationFormats[] = $format;
+                }
+            }
+        }
+        $templateMgr->assign([
+            'publicationFormats' => $availablePublicationFormats,
+            'remotePublicationFormats' => $availableRemotePublicationFormats,
+        ]);
 
-		// Categories
-		$templateMgr->assign([
-			'categories' => DAORegistry::getDAO('CategoryDAO')->getByPublicationId($this->publication->getId())->toArray(),
-		]);
+        // Assign chapters (if they exist)
+        $templateMgr->assign('chapters', DAORegistry::getDAO('ChapterDAO')->getByPublicationId($this->publication->getId())->toAssociativeArray());
 
-		// Citations
-		if ($this->publication->getData('citationsRaw')) {
-			$parsedCitations = DAORegistry::getDAO('CitationDAO')->getByPublicationId($this->publication->getId());
-			$templateMgr->assign([
-				'citations' => $parsedCitations->toArray(),
-				'parsedCitations' => $parsedCitations, // compatible with older themes
-			]);
-		}
+        $pubIdPlugins = PluginRegistry::loadCategory('pubIds', true);
+        $templateMgr->assign([
+            'pubIdPlugins' => PluginRegistry::loadCategory('pubIds', true),
+            'ccLicenseBadge' => Application::get()->getCCLicenseBadge($this->publication->getData('licenseUrl')),
+        ]);
 
-		// Retrieve editors for an edited volume
-		$editors = [];
-		if ($submission->getWorkType() == WORK_TYPE_EDITED_VOLUME) {
-			foreach ($this->publication->getData('authors') as $author) {
-				if ($author->getIsVolumeEditor()) {
-					$editors[] = $author;
-				}
-			}
-		}
-		$templateMgr->assign([
-			'editors' => $editors,
-		]);
+        // Categories
+        $templateMgr->assign([
+            'categories' => DAORegistry::getDAO('CategoryDAO')->getByPublicationId($this->publication->getId())->toArray(),
+        ]);
 
-		// Consider public identifiers
-		$pubIdPlugins = PluginRegistry::loadCategory('pubIds', true);
-		$templateMgr->assign('pubIdPlugins', $pubIdPlugins);
+        // Citations
+        if ($this->publication->getData('citationsRaw')) {
+            $parsedCitations = DAORegistry::getDAO('CitationDAO')->getByPublicationId($this->publication->getId());
+            $templateMgr->assign([
+                'citations' => $parsedCitations->toArray(),
+                'parsedCitations' => $parsedCitations, // compatible with older themes
+            ]);
+        }
 
-		$pubFormatFiles = Services::get('submissionFile')->getMany([
-			'submissionIds' => [$submission->getId()],
-			'assocTypes' => [ASSOC_TYPE_PUBLICATION_FORMAT]
-		]);
-		$availableFiles = [];
-		foreach ($pubFormatFiles as $pubFormatFile) {
-			if ($pubFormatFile->getDirectSalesPrice() !== null) {
-				$availableFiles[] = $pubFormatFile;
-			}
-		}
+        // Retrieve editors for an edited volume
+        $editors = [];
+        if ($submission->getWorkType() == WORK_TYPE_EDITED_VOLUME) {
+            foreach ($this->publication->getData('authors') as $author) {
+                if ($author->getIsVolumeEditor()) {
+                    $editors[] = $author;
+                }
+            }
+        }
+        $templateMgr->assign([
+            'editors' => $editors,
+        ]);
 
-		// Only pass files in pub formats that are also available
-		$filteredAvailableFiles = array();
-		foreach ($availableFiles as $submissionFile) {
-			foreach ($availablePublicationFormats as $format) {
-				if ($submissionFile->getData('assocId') == $format->getId()) {
-					$filteredAvailableFiles[] = $submissionFile;
-					break;
-				}
-			}
-		}
-		$templateMgr->assign('availableFiles', $filteredAvailableFiles);
+        // Consider public identifiers
+        $pubIdPlugins = PluginRegistry::loadCategory('pubIds', true);
+        $templateMgr->assign('pubIdPlugins', $pubIdPlugins);
 
-		// Provide the currency to the template, if configured.
-		if ($currencyCode = $request->getContext()->getData('currency')) {
-			$isoCodes = new \Sokil\IsoCodes\IsoCodesFactory();
-			$templateMgr->assign('currency', $isoCodes->getCurrencies()->getByLetterCode($currencyCode));
-		}
+        $pubFormatFiles = Services::get('submissionFile')->getMany([
+            'submissionIds' => [$submission->getId()],
+            'assocTypes' => [ASSOC_TYPE_PUBLICATION_FORMAT]
+        ]);
+        $availableFiles = [];
+        foreach ($pubFormatFiles as $pubFormatFile) {
+            if ($pubFormatFile->getDirectSalesPrice() !== null) {
+                $availableFiles[] = $pubFormatFile;
+            }
+        }
 
-		// Add data for backwards compatibility
-		$templateMgr->assign([
-			'keywords' => $this->publication->getLocalizedData('keywords'),
-			'licenseUrl' => $this->publication->getData('licenseUrl'),
-		]);
+        // Only pass files in pub formats that are also available
+        $filteredAvailableFiles = [];
+        foreach ($availableFiles as $submissionFile) {
+            foreach ($availablePublicationFormats as $format) {
+                if ($submissionFile->getData('assocId') == $format->getId()) {
+                    $filteredAvailableFiles[] = $submissionFile;
+                    break;
+                }
+            }
+        }
+        $templateMgr->assign('availableFiles', $filteredAvailableFiles);
 
-		// Ask robots not to index outdated versions and point to the canonical url for the latest version
-		if ($this->publication->getId() !== $submission->getCurrentPublication()->getId()) {
-			$templateMgr->addHeader('noindex', '<meta name="robots" content="noindex">');
-			$url = $request->getDispatcher()->url($request, ROUTE_PAGE, null, 'catalog', 'book', $submission->getBestId());
-			$templateMgr->addHeader('canonical', '<link rel="canonical" href="' . $url . '">');
-		}
+        // Provide the currency to the template, if configured.
+        if ($currencyCode = $request->getContext()->getData('currency')) {
+            $isoCodes = new \Sokil\IsoCodes\IsoCodesFactory();
+            $templateMgr->assign('currency', $isoCodes->getCurrencies()->getByLetterCode($currencyCode));
+        }
 
-		// Display
-		if (!HookRegistry::call('CatalogBookHandler::book', array(&$request, &$submission))) {
-			return $templateMgr->display('frontend/pages/book.tpl');
-		}
-	}
+        // Add data for backwards compatibility
+        $templateMgr->assign([
+            'keywords' => $this->publication->getLocalizedData('keywords'),
+            'licenseUrl' => $this->publication->getData('licenseUrl'),
+        ]);
 
-	/**
-	 * Use an inline viewer to view a published submission publication
-	 * format file.
-	 * @param $args array
-	 * @param $request PKPRequest
-	 */
-	function view($args, $request) {
-		$this->download($args, $request, true);
-	}
+        // Ask robots not to index outdated versions and point to the canonical url for the latest version
+        if ($this->publication->getId() !== $submission->getCurrentPublication()->getId()) {
+            $templateMgr->addHeader('noindex', '<meta name="robots" content="noindex">');
+            $url = $request->getDispatcher()->url($request, PKPApplication::ROUTE_PAGE, null, 'catalog', 'book', $submission->getBestId());
+            $templateMgr->addHeader('canonical', '<link rel="canonical" href="' . $url . '">');
+        }
 
-	/**
-	 * Download a published submission publication format file.
-	 * @param $args array
-	 * @param $request PKPRequest
-	 * @param $view boolean True iff inline viewer should be used, if available
-	 */
-	function download($args, $request, $view = false) {
-		$dispatcher = $request->getDispatcher();
-		$submission = $this->getAuthorizedContextObject(ASSOC_TYPE_SUBMISSION);
-		$this->setupTemplate($request, $submission);
-		$press = $request->getPress();
-		AppLocale::requireComponents(LOCALE_COMPONENT_APP_SUBMISSION, LOCALE_COMPONENT_PKP_SUBMISSION);
+        // Display
+        if (!HookRegistry::call('CatalogBookHandler::book', [&$request, &$submission])) {
+            return $templateMgr->display('frontend/pages/book.tpl');
+        }
+    }
 
-		$monographId = array_shift($args); // Validated thru auth
-		$subPath = array_shift($args);
-		if ($subPath === 'version') {
-			$publicationId = array_shift($args);
-			$representationId = array_shift($args);
-			$bestFileId = array_shift($args);
-		} else {
-			$publicationId = $submission->getCurrentPublication()->getId();
-			$representationId = $subPath;
-			$bestFileId = array_shift($args);
-		}
+    /**
+     * Use an inline viewer to view a published submission publication
+     * format file.
+     *
+     * @param $args array
+     * @param $request PKPRequest
+     */
+    public function view($args, $request)
+    {
+        $this->download($args, $request, true);
+    }
 
-		$publicationFormat = Application::get()->getRepresentationDAO()->getByBestId($representationId, $publicationId);
-		if (!$publicationFormat || !$publicationFormat->getIsAvailable() || $remoteURL = $publicationFormat->getRemoteURL()) $dispatcher->handle404();
+    /**
+     * Download a published submission publication format file.
+     *
+     * @param $args array
+     * @param $request PKPRequest
+     * @param $view boolean True iff inline viewer should be used, if available
+     */
+    public function download($args, $request, $view = false)
+    {
+        $dispatcher = $request->getDispatcher();
+        $submission = $this->getAuthorizedContextObject(ASSOC_TYPE_SUBMISSION);
+        $this->setupTemplate($request, $submission);
+        $press = $request->getPress();
+        AppLocale::requireComponents(LOCALE_COMPONENT_APP_SUBMISSION, LOCALE_COMPONENT_PKP_SUBMISSION);
 
-		$publication = null;
-		foreach ((array) $submission->getData('publications') as $iPublication) {
-			if ($iPublication->getId() == $publicationId) {
-				$publication = $iPublication;
-				break;
-			}
-		}
+        $monographId = array_shift($args); // Validated thru auth
+        $subPath = array_shift($args);
+        if ($subPath === 'version') {
+            $publicationId = array_shift($args);
+            $representationId = array_shift($args);
+            $bestFileId = array_shift($args);
+        } else {
+            $publicationId = $submission->getCurrentPublication()->getId();
+            $representationId = $subPath;
+            $bestFileId = array_shift($args);
+        }
 
-		if (empty($publication)
-				|| $publication->getData('status') !== STATUS_PUBLISHED
-				|| $publicationFormat->getData('publicationId') !== $publication->getId()) {
-			$dispatcher->handle404();
-		}
+        $publicationFormat = Application::get()->getRepresentationDAO()->getByBestId($representationId, $publicationId);
+        if (!$publicationFormat || !$publicationFormat->getIsAvailable() || $remoteURL = $publicationFormat->getRemoteURL()) {
+            $dispatcher->handle404();
+        }
 
-		import('lib.pkp.classes.submission.SubmissionFile'); // File constants
-		$submissionFile = DAORegistry::getDAO('SubmissionFileDAO')->getByBestId($bestFileId, $submission->getId());
-		if (!$submissionFile) $dispatcher->handle404();
+        $publication = null;
+        foreach ((array) $submission->getData('publications') as $iPublication) {
+            if ($iPublication->getId() == $publicationId) {
+                $publication = $iPublication;
+                break;
+            }
+        }
 
-		$path = $submissionFile->getData('path');
-		$filename = Services::get('file')->formatFilename($path, $submissionFile->getLocalizedData('name'));
-		switch ($submissionFile->getData('assocType')) {
-			case ASSOC_TYPE_PUBLICATION_FORMAT: // Publication format file
-				if ($submissionFile->getData('assocId') != $publicationFormat->getId() || $submissionFile->getDirectSalesPrice() === null) $dispatcher->handle404();
-				break;
-			case ASSOC_TYPE_SUBMISSION_FILE: // Dependent file
-				$genreDao = DAORegistry::getDAO('GenreDAO'); /* @var $genreDao GenreDAO */
-				$genre = $genreDao->getById($submissionFile->getGenreId());
-				if (!$genre->getDependent()) $dispatcher->handle404();
-				return Services::get('file')->download($path, $filename);
-				break;
-			default: $dispatcher->handle404();
-		}
+        if (empty($publication)
+                || $publication->getData('status') !== STATUS_PUBLISHED
+                || $publicationFormat->getData('publicationId') !== $publication->getId()) {
+            $dispatcher->handle404();
+        }
 
-		$urlPath = [$submission->getBestId()];
-		if ($publicationId !== $submission->getCurrentPublication()->getId()) {
-			$urlPath[] = 'version';
-			$urlPath[] = $publicationId;
-		}
-		$urlPath[] = $publicationFormat->getBestId();
-		$urlPath[] = $submissionFile->getBestId();
+        import('lib.pkp.classes.submission.SubmissionFile'); // File constants
+        $submissionFile = DAORegistry::getDAO('SubmissionFileDAO')->getByBestId($bestFileId, $submission->getId());
+        if (!$submissionFile) {
+            $dispatcher->handle404();
+        }
 
-		$chapterDao = DAORegistry::getDAO('ChapterDAO'); /* @var $chapterDao ChapterDAO */
-		$templateMgr = TemplateManager::getManager($request);
-		$templateMgr->assign(array(
-			'publishedSubmission' => $submission,
-			'publicationFormat' => $publicationFormat,
-			'submissionFile' => $submissionFile,
-			'chapter' => $chapterDao->getChapter($submissionFile->getData('chapterId')),
-			'downloadUrl' => $dispatcher->url($request, ROUTE_PAGE, null, null, 'download', $urlPath, array('inline' => true)),
-		));
+        $path = $submissionFile->getData('path');
+        $filename = Services::get('file')->formatFilename($path, $submissionFile->getLocalizedData('name'));
+        switch ($submissionFile->getData('assocType')) {
+            case ASSOC_TYPE_PUBLICATION_FORMAT: // Publication format file
+                if ($submissionFile->getData('assocId') != $publicationFormat->getId() || $submissionFile->getDirectSalesPrice() === null) {
+                    $dispatcher->handle404();
+                }
+                break;
+            case ASSOC_TYPE_SUBMISSION_FILE: // Dependent file
+                $genreDao = DAORegistry::getDAO('GenreDAO'); /* @var $genreDao GenreDAO */
+                $genre = $genreDao->getById($submissionFile->getGenreId());
+                if (!$genre->getDependent()) {
+                    $dispatcher->handle404();
+                }
+                return Services::get('file')->download($submissionFile->getData('fileId'), $filename);
+            default: $dispatcher->handle404();
+        }
 
-		$ompCompletedPaymentDao = DAORegistry::getDAO('OMPCompletedPaymentDAO'); /* @var $ompCompletedPaymentDao OMPCompletedPaymentDAO */
-		$user = $request->getUser();
-		if ($submissionFile->getDirectSalesPrice() === '0' || ($user && $ompCompletedPaymentDao->hasPaidPurchaseFile($user->getId(), $submissionFile->getId()))) {
-			// Paid purchase or open access.
-			if (!$user && $press->getData('restrictMonographAccess')) {
-				// User needs to register first.
-				Validation::redirectLogin();
-			}
+        $urlPath = [$submission->getBestId()];
+        if ($publicationId !== $submission->getCurrentPublication()->getId()) {
+            $urlPath[] = 'version';
+            $urlPath[] = $publicationId;
+        }
+        $urlPath[] = $publicationFormat->getBestId();
+        $urlPath[] = $submissionFile->getBestId();
 
-			if ($view) {
-				if (HookRegistry::call('CatalogBookHandler::view', array(&$this, &$submission, &$publicationFormat, &$submissionFile))) {
-					// If the plugin handled the hook, prevent further default activity.
-					exit();
-				}
-			}
+        $chapterDao = DAORegistry::getDAO('ChapterDAO'); /* @var $chapterDao ChapterDAO */
+        $templateMgr = TemplateManager::getManager($request);
+        $templateMgr->assign([
+            'publishedSubmission' => $submission,
+            'publicationFormat' => $publicationFormat,
+            'submissionFile' => $submissionFile,
+            'chapter' => $chapterDao->getChapter($submissionFile->getData('chapterId')),
+            'downloadUrl' => $dispatcher->url($request, PKPApplication::ROUTE_PAGE, null, null, 'download', $urlPath, ['inline' => true]),
+        ]);
 
-			// Inline viewer not available, or viewing not wanted.
-			// Download or show the file.
-			$inline = $request->getUserVar('inline')?true:false;
-			if (HookRegistry::call('CatalogBookHandler::download', array(&$this, &$submission, &$publicationFormat, &$submissionFile, &$inline))) {
-				// If the plugin handled the hook, prevent further default activity.
-				exit();
-			}
-			$returner = true;
-			HookRegistry::call('FileManager::downloadFileFinished', array(&$returner));
-			return Services::get('file')->download($path, $filename, $inline);
-		}
+        $ompCompletedPaymentDao = DAORegistry::getDAO('OMPCompletedPaymentDAO'); /* @var $ompCompletedPaymentDao OMPCompletedPaymentDAO */
+        $user = $request->getUser();
+        if ($submissionFile->getDirectSalesPrice() === '0' || ($user && $ompCompletedPaymentDao->hasPaidPurchaseFile($user->getId(), $submissionFile->getId()))) {
+            // Paid purchase or open access.
+            if (!$user && $press->getData('restrictMonographAccess')) {
+                // User needs to register first.
+                Validation::redirectLogin();
+            }
 
-		// Fall-through: user needs to pay for purchase.
+            if ($view) {
+                if (HookRegistry::call('CatalogBookHandler::view', [&$this, &$submission, &$publicationFormat, &$submissionFile])) {
+                    // If the plugin handled the hook, prevent further default activity.
+                    exit();
+                }
+            }
 
-		// Users that are not logged in need to register/login first.
-		if (!$user) return $request->redirect(null, 'login', null, null, array('source' => $request->url(null, null, null, array($monographId, $representationId, $bestFileId))));
+            // Inline viewer not available, or viewing not wanted.
+            // Download or show the file.
+            $inline = $request->getUserVar('inline') ? true : false;
+            if (HookRegistry::call('CatalogBookHandler::download', [&$this, &$submission, &$publicationFormat, &$submissionFile, &$inline])) {
+                // If the plugin handled the hook, prevent further default activity.
+                exit();
+            }
+            $returner = true;
+            HookRegistry::call('FileManager::downloadFileFinished', [&$returner]);
+            return Services::get('file')->download($submissionFile->getData('fileId'), $filename, $inline);
+        }
 
-		// They're logged in but need to pay to view.
-		import('classes.payment.omp.OMPPaymentManager');
-		$paymentManager = new OMPPaymentManager($press);
-		if (!$paymentManager->isConfigured()) {
-			$request->redirect(null, 'catalog');
-		}
+        // Fall-through: user needs to pay for purchase.
 
-		$queuedPayment = $paymentManager->createQueuedPayment(
-			$request,
-			PAYMENT_TYPE_PURCHASE_FILE,
-			$user->getId(),
-			$submissionFile->getId(),
-			$submissionFile->getDirectSalesPrice(),
-			$press->getData('currency')
-		);
-		$paymentManager->queuePayment($queuedPayment);
+        // Users that are not logged in need to register/login first.
+        if (!$user) {
+            return $request->redirect(null, 'login', null, null, ['source' => $request->url(null, null, null, [$monographId, $representationId, $bestFileId])]);
+        }
 
-		$paymentForm = $paymentManager->getPaymentForm($queuedPayment);
-		$paymentForm->display($request);
-	}
+        // They're logged in but need to pay to view.
+        import('classes.payment.omp.OMPPaymentManager');
+        $paymentManager = new OMPPaymentManager($press);
+        if (!$paymentManager->isConfigured()) {
+            $request->redirect(null, 'catalog');
+        }
 
-	/**
-	 * Set up common template variables.
-	 * @param $request PKPRequest
-	 * @param $submission Submission
-	 */
-	function setupTemplate($request, $submission = null) {
-		$templateMgr = TemplateManager::getmanager($request);
-		if ($seriesId = $submission->getSeriesId()) {
-			$seriesDao = DAORegistry::getDAO('SeriesDAO'); /* @var $seriesDao SeriesDAO */
-			$series = $seriesDao->getById($seriesId, $submission->getData('contextId'));
-			$templateMgr->assign('series', $series);
-		}
+        $queuedPayment = $paymentManager->createQueuedPayment(
+            $request,
+            PAYMENT_TYPE_PURCHASE_FILE,
+            $user->getId(),
+            $submissionFile->getId(),
+            $submissionFile->getDirectSalesPrice(),
+            $press->getData('currency')
+        );
+        $paymentManager->queuePayment($queuedPayment);
 
-		parent::setupTemplate($request);
-	}
+        $paymentForm = $paymentManager->getPaymentForm($queuedPayment);
+        $paymentForm->display($request);
+    }
+
+    /**
+     * Set up common template variables.
+     *
+     * @param $request PKPRequest
+     * @param $submission Submission
+     */
+    public function setupTemplate($request, $submission = null)
+    {
+        $templateMgr = TemplateManager::getmanager($request);
+        if ($seriesId = $submission->getSeriesId()) {
+            $seriesDao = DAORegistry::getDAO('SeriesDAO'); /* @var $seriesDao SeriesDAO */
+            $series = $seriesDao->getById($seriesId, $submission->getData('contextId'));
+            $templateMgr->assign('series', $series);
+        }
+
+        parent::setupTemplate($request);
+    }
 }
-
-

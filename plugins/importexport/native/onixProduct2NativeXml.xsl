@@ -2,7 +2,7 @@
 <!--
   * plugins/importexport/native/onixProduct2NativeXml.xsl
   *
-  * Copyright (c) 2014-2020 Simon Fraser University
+  * Copyright (c) 2014-2021 Simon Fraser University
   * Distributed under the GNU GPL v3. For full terms see the file docs/COPYING.
   *
   * Converter to take ONIX products into the OMP XML native submission format.

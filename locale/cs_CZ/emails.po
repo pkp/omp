@@ -61,6 +61,7 @@ msgstr ""
 "Tato e-mailová zpráva se zasílá registrovaným uživatelům, kteří se k odběru "
 "oznámení tohoto typu přihlásili."
 
+#, fuzzy
 msgid "emails.notification.body"
 msgstr ""
 "Obdržel jste nové oznámení od {$siteTitle}:<br />\n"

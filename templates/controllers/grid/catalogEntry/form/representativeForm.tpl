@@ -1,8 +1,8 @@
 {**
  * templates/controllers/grid/catalogEntry/form/representativeForm.tpl
  *
- * Copyright (c) 2014-2020 Simon Fraser University
- * Copyright (c) 2003-2020 John Willinsky
+ * Copyright (c) 2014-2021 Simon Fraser University
+ * Copyright (c) 2003-2021 John Willinsky
  * Distributed under the GNU GPL v3. For full terms see the file docs/COPYING.
  *
  * Supplier form.
@@ -15,7 +15,7 @@
 	{rdelim});
 </script>
 
-<form class="pkp_form" id="representativeForm" method="post" action="{url router=$smarty.const.ROUTE_COMPONENT component="grid.catalogEntry.RepresentativesGridHandler" op="updateRepresentative"}">
+<form class="pkp_form" id="representativeForm" method="post" action="{url router=PKPApplication::ROUTE_COMPONENT component="grid.catalogEntry.RepresentativesGridHandler" op="updateRepresentative"}">
 	{csrf}
 	{include file="controllers/notification/inPlaceNotification.tpl" notificationId="representativesFormNotification"}
 	<input type="hidden" name="submissionId" value="{$submissionId|escape}" />

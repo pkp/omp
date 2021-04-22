@@ -4,8 +4,8 @@
 <!--
   * filterConfig.xml
   *
-  * Copyright (c) 2014-2020 Simon Fraser University
-  * Copyright (c) 2003-2020 John Willinsky
+  * Copyright (c) 2014-2021 Simon Fraser University
+  * Copyright (c) 2003-2021 John Willinsky
   * Distributed under the GNU GPL v3. For full terms see the file docs/COPYING.
   *
   * Filter Configuration.
@@ -13,16 +13,16 @@
 <filterConfig>
 	<filterGroups>
 		<filterGroup
-			symbolic="monograph=>onix30-xml"
+			symbolic="monographs=>onix30-xml"
 			displayName="plugins.importexport.onix30.displayName"
 			description="plugins.importexport.onix30.description"
-			inputType="class::classes.submission.Submission"
+			inputType="class::classes.submission.Submission[]"
 			outputType="xml::schema(plugins/importexport/onix30/ONIX_BookProduct_3.0_reference.xsd)" />
 	</filterGroups>
 	<filters>
 		<!-- ONIX 3.0 XML monograph output -->
 		<filter
-			inGroup="monograph=>onix30-xml"
+			inGroup="monographs=>onix30-xml"
 			class="plugins.importexport.onix30.filter.MonographONIX30XmlFilter"
 			isTemplate="0" />
 	</filters>

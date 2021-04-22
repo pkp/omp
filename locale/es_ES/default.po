@@ -114,12 +114,6 @@ msgstr "<p>Los nombres y direcciones de correo electrónico introducidos en esta
 msgid "default.contextSettings.openAccessPolicy"
 msgstr "Esta editorial proporciona acceso abierto inmediato a su contenido bajo el principio de que hacer disponible la investigación, abiertamente al público, fomenta un mayor intercambio de conocimiento global."
 
-msgid "default.contextSettings.emailSignature"
-msgstr ""
-"<br/>\n"
-"________________________________________________________________________<br/>\n"
-"<a href=\"{$ldelim}$contextUrl{$rdelim}\">{$ldelim}$contextName{$rdelim}</a>"
-
 msgid "default.contextSettings.forReaders"
 msgstr "Los lectores pueden darse de alta en el servicio de notificación de novedades. Para ello, utiliza el enlace de <a href=\"{$indexUrl}/{$contextPath}/user/register\">Crear cuenta</a> en la parte superior de la página. Este registro permitirá al lector recibir por correo electrónico la Tabla de Contenidos de cada novedad. Consulta la <a href=\"{$indexUrl}/{$contextPath}/about/submissions#privacyStatement\">Declaración de Privacidad</a> de la editorial que asegura a los lectores que su nombre y dirección de correo electrónico no será utilizada para otros fines."
 

@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2019-09-30T12:00:53-07:00\n"
-"PO-Revision-Date: 2020-06-07 03:39+0000\n"
+"PO-Revision-Date: 2021-04-22 14:24+0000\n"
 "Last-Translator: Diego José Macêdo <diegojmacedo@gmail.com>\n"
 "Language-Team: Portuguese (Brazil) <http://translate.pkp.sfu.ca/projects/omp/"
 "manager/pt_BR/>\n"
@@ -1256,3 +1256,53 @@ msgstr ""
 
 msgid "manager.payment.generalOptions"
 msgstr "Opções gerais"
+
+msgid "plugins.importexport.native.exportSubmissions"
+msgstr "Exportar submissões"
+
+msgid "plugins.importexport.common.invalidXML"
+msgstr "XML inválido:"
+
+msgid "plugins.importexport.common.error.validation"
+msgstr "Não foi possível converter os objetos selecionados."
+
+msgid "plugins.importexport.common.error.noObjectsSelected"
+msgstr "Nenhum objeto selecionado."
+
+msgid "manager.setup.disableSubmissions.description"
+msgstr ""
+"Impedir que os usuários submetem novos artigos para a editora. As submissões "
+"podem ser desabilitadas para séries individuais da editora na página de "
+"configurações da <a href=\"{$url}\"> série da editora </a>."
+
+msgid "manager.setup.disableSubmissions.notAccepting"
+msgstr ""
+"Esta editora não está aceitando submissões no momento. Visite as "
+"configurações do fluxo de trabalho para permitir submissões."
+
+msgid "manager.series.confirmDeactivateSeries.error"
+msgstr ""
+"Pelo menos uma série deve estar ativa. Visite as configurações do fluxo de "
+"trabalho para desativar todas as submissões para esta editora."
+
+msgid "plugins.importexport.chapter.exportFailed"
+msgstr "O processo falhou ao analisar capítulos"
+
+msgid "plugins.importexport.publicationformat.exportFailed"
+msgstr "O processo falhou ao analisar os formatos de publicação"
+
+msgid "plugins.importexport.native.error.unknownUser"
+msgstr "O usuário especificado, \"{$userName}\", não existe."
+
+msgid "plugins.importexport.common.error.unknownObjects"
+msgstr "Os objetos especificados não foram encontrados."
+
+msgid "manager.setup.notifications.copySubmissionAckPrimaryContact.disabled.description"
+msgstr ""
+"Nenhum contato principal foi definido para esta editora. Você pode inserir o "
+"contato principal nas <a href=\"{$url}\">configurações da editora</a>."
+
+msgid "manager.setup.notifications.copySubmissionAckPrimaryContact.description"
+msgstr ""
+"Envie uma cópia do e-mail de confirmação da submissão para o contato "
+"principal desta editora."

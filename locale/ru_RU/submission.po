@@ -1,6 +1,6 @@
 msgid ""
 msgstr ""
-"PO-Revision-Date: 2020-03-05 10:36+0000\n"
+"PO-Revision-Date: 2021-02-17 23:42+0000\n"
 "Last-Translator: Sergei Yukhimets <y_s_n@mail.ru>\n"
 "Language-Team: Russian <http://translate.pkp.sfu.ca/projects/omp/submission/"
 "ru_RU/>\n"
@@ -240,7 +240,7 @@ msgid "submission.workflowType.editedVolume"
 msgstr "Редактируемое издание: Авторы ассоциированы с их главами."
 
 msgid "submission.workflowType.editedVolume.label"
-msgstr "Редактируемое издание"
+msgstr "Редактируемое издание (том)"
 
 msgid "submission.workflowType.description"
 msgstr ""
@@ -486,3 +486,8 @@ msgstr "Информация о публикации для версии {$versi
 msgid "submission.queries.production"
 msgstr "Обсуждения публикации"
 
+msgid "publication.inactiveSeries"
+msgstr "{$series} (неактивно)"
+
+msgid "submission.list.viewEntry"
+msgstr "Просмотр пункта"

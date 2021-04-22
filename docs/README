@@ -1,12 +1,11 @@
 	==================================
 	=== Open Monograph Press
 	=== The Public Knowledge Project
-	=== Version: 3.3.0rc2
-	=== GIT tag: 3_3_0-1
-	=== Release date: December 7, 2020
+	=== Version: 3.3.0
+	=== GIT tag: 3_3_0-2
+	=== Release date: February 1, 2021
 	==================================
 
-THIS IS A RELEASE CANDIDATE AND NOT INTENDED FOR PRODUCTION USE.
 
 About
 -----
@@ -87,35 +86,7 @@ To install OMP:
 	   directory be placed in a non-web-accessible location (or otherwise
 	   protected from direct access, such as via .htaccess rules).
 	   
-	4. Review and apply the patches recommended for your version of OMP.
-
-	   The Public Knowledge Project development team maintains a publicly-
-           available list of recommended patches for each release. These will
-           add no new functionality and will typically consist of small,
-           easy-to-read patches for specific issues. A Recommended Patches list
-           for your version of OMP can be found on the PKP development wiki:
-
-	       <http://pkp.sfu.ca/wiki/index.php/OMP_Recommended_Patches>
-
-	   To apply a recommended patch, open the bug report and download the 
-	   attached patch file(s). (Note that bug reports can quite often
-           include a number of patches, some relevant to the application (ie.
-           OMP) and version you are running, and some not. Ensure that you
-           download all and only the patches specific to your application and
-           version.) For each patch you download, first attempt a dry-run
-           application of the patch, to ensure that it applies cleanly: 
-
-	       $ patch -p1 --dry-run < PATCH_FILE
-
-	   If the patch applies cleanly, then run the following command, which 
-	   will actually apply the patch: 
-
-	       $ patch -p1 < PATCH_FILE
-
-	   "PATCH_FILE" should be replaced with the path to the patch file that 
-	   was downloaded, e.g. "6276-omp.patch".
-
-	5. Open a web browser to <http://yourdomain.com/path/to/omp/> and
+	4. Open a web browser to <http://yourdomain.com/path/to/omp/> and
 	   follow the on-screen installation instructions.
 	   
 	   Alternatively, the command-line installer can be used instead by
@@ -124,7 +95,7 @@ To install OMP:
 	   and uploaded files directories after installation, if the Apache
 	   user is different from the user running the tool.)
 
-	6. Recommended additional steps post-installation:
+	5. Recommended additional steps post-installation:
 	
 	     * Review config.inc.php for additional configuration settings
 	     * Review the FAQ document for frequently asked technical and

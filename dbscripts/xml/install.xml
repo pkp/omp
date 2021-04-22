@@ -3,14 +3,14 @@
 <!--
   * dbscripts/xml/install.xml
   *
-  * Copyright (c) 2014-2020 Simon Fraser University
-  * Copyright (c) 2003-2020 John Willinsky
+  * Copyright (c) 2014-2021 Simon Fraser University
+  * Copyright (c) 2003-2021 John Willinsky
   * Distributed under the GNU GPL v3. For full terms see the file docs/COPYING.
   *
   * Installation descriptor file.
   -->
 
-<install version="3.3.0.1">
+<install version="3.4.0.0">
 	<code function="checkPhpVersion" />
 
 	<code function="createDirectories" />
@@ -31,10 +31,10 @@
 	<migration class="lib.pkp.classes.migration.NotesMigration" />
 	<migration class="lib.pkp.classes.migration.ReviewFormsMigration" />
 	<migration class="lib.pkp.classes.migration.SubmissionFilesMigration" /><!-- before ReviewsMigration so that foreign keys can be defined-->
-	<migration class="lib.pkp.classes.migration.ReviewsMigration" />
 	<migration class="lib.pkp.classes.migration.RolesAndUserGroupsMigration" />
 	<migration class="lib.pkp.classes.migration.ScheduledTasksMigration" />
 	<migration class="lib.pkp.classes.migration.SubmissionsMigration" />
+	<migration class="lib.pkp.classes.migration.ReviewsMigration" />
 	<migration class="lib.pkp.classes.migration.TemporaryFilesMigration" />
 	<migration class="lib.pkp.classes.migration.TombstoneMigration" />
 	<migration class="lib.pkp.classes.migration.ViewsMigration" />

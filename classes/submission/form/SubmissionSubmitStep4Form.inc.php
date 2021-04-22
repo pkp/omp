@@ -3,8 +3,8 @@
 /**
  * @file classes/submission/form/SubmissionSubmitStep4Form.inc.php
  *
- * Copyright (c) 2014-2020 Simon Fraser University
- * Copyright (c) 2003-2020 John Willinsky
+ * Copyright (c) 2014-2021 Simon Fraser University
+ * Copyright (c) 2003-2021 John Willinsky
  * Distributed under the GNU GPL v3. For full terms see the file docs/COPYING.
  *
  * @class SubmissionSubmitStep4Form
@@ -15,91 +15,111 @@
 
 import('lib.pkp.classes.submission.form.PKPSubmissionSubmitStep4Form');
 
-class SubmissionSubmitStep4Form extends PKPSubmissionSubmitStep4Form {
-	/**
-	 * Constructor.
-	 */
-	function __construct($context, $submission) {
-		parent::__construct($context, $submission);
-	}
+class SubmissionSubmitStep4Form extends PKPSubmissionSubmitStep4Form
+{
+    /**
+     * Constructor.
+     */
+    public function __construct($context, $submission)
+    {
+        parent::__construct($context, $submission);
+    }
 
-	/**
-	 * Save changes to submission.
-	 * @return int the submission ID
-	 */
-	function execute(...$functionParams) {
-		parent::execute(...$functionParams);
+    /**
+     * Save changes to submission.
+     *
+     * @return int the submission ID
+     */
+    public function execute(...$functionParams)
+    {
+        parent::execute(...$functionParams);
 
-		// Send author notification email
-		import('classes.mail.MonographMailTemplate');
-		$mail = new MonographMailTemplate($this->submission, 'SUBMISSION_ACK', null, null, false);
-		$authorMail = new MonographMailTemplate($this->submission, 'SUBMISSION_ACK_NOT_USER', null, null, false);
+        // Send author notification email
+        import('classes.mail.MonographMailTemplate');
+        $mail = new MonographMailTemplate($this->submission, 'SUBMISSION_ACK', null, null, false);
+        $authorMail = new MonographMailTemplate($this->submission, 'SUBMISSION_ACK_NOT_USER', null, null, false);
 
-		$request = Application::get()->getRequest();
-		$context = $request->getContext();
-		$router = $request->getRouter();
-		if ($mail->isEnabled()) {
-			// submission ack emails should be from the contact.
-			$mail->setFrom($this->context->getData('contactEmail'), $this->context->getData('contactName'));
-			$authorMail->setFrom($this->context->getData('contactEmail'), $this->context->getData('contactName'));
+        $request = Application::get()->getRequest();
+        $context = $request->getContext();
+        $router = $request->getRouter();
+        if ($mail->isEnabled()) {
+            // submission ack emails should be from the contact.
+            $mail->setFrom($this->context->getData('contactEmail'), $this->context->getData('contactName'));
+            $authorMail->setFrom($this->context->getData('contactEmail'), $this->context->getData('contactName'));
 
-			$user = $request->getUser();
-			$primaryAuthor = $this->submission->getPrimaryAuthor();
-			if (!isset($primaryAuthor)) {
-				$authors = $this->submission->getAuthors();
-				$primaryAuthor = $authors[0];
-			}
-			$mail->addRecipient($user->getEmail(), $user->getFullName());
+            $user = $request->getUser();
+            $primaryAuthor = $this->submission->getPrimaryAuthor();
+            if (!isset($primaryAuthor)) {
+                $authors = $this->submission->getAuthors();
+                $primaryAuthor = $authors[0];
+            }
+            $mail->addRecipient($user->getEmail(), $user->getFullName());
 
-			if ($user->getEmail() != $primaryAuthor->getEmail()) {
-				$authorMail->addRecipient($primaryAuthor->getEmail(), $primaryAuthor->getFullName());
-			}
+            // Add primary contact and e-mail addresses as specified in the press settings
+            if ($this->context->getData('copySubmissionAckPrimaryContact')) {
+                $mail->addBcc(
+                    $context->getData('contactEmail'),
+                    $context->getData('contactName')
+                );
+            }
 
-			$assignedAuthors = $this->submission->getAuthors();
+            $submissionAckAddresses = $this->context->getData('copySubmissionAckAddress');
+            if (!empty($submissionAckAddresses)) {
+                $submissionAckAddressArray = explode(',', $submissionAckAddresses);
+                foreach ($submissionAckAddressArray as $submissionAckAddress) {
+                    $mail->addBcc($submissionAckAddress);
+                }
+            }
 
-			foreach ($assignedAuthors as $author) {
-				$authorEmail = $author->getEmail();
-				// only add the author email if they have not already been added as the primary author
-				// or user creating the submission.
-				if ($authorEmail != $primaryAuthor->getEmail() && $authorEmail != $user->getEmail()) {
-					$authorMail->addRecipient($author->getEmail(), $author->getFullName());
-				}
-			}
-			$mail->bccAssignedSeriesEditors($this->submissionId, WORKFLOW_STAGE_ID_SUBMISSION);
+            if ($user->getEmail() != $primaryAuthor->getEmail()) {
+                $authorMail->addRecipient($primaryAuthor->getEmail(), $primaryAuthor->getFullName());
+            }
 
-			$mail->assignParams(array(
-				'authorName' => $user->getFullName(),
-				'authorUsername' => $user->getUsername(),
-				'editorialContactSignature' => $context->getData('contactName') . "\n" . $context->getLocalizedName(),
-				'submissionUrl' => $router->url($request, null, 'authorDashboard', 'submission', $this->submissionId),
-			));
+            $assignedAuthors = $this->submission->getAuthors();
 
-			$authorMail->assignParams(array(
-				'submitterName' => $user->getFullName(),
-				'editorialContactSignature' => $context->getData('contactName') . "\n" . $context->getLocalizedName(),
-			));
+            foreach ($assignedAuthors as $author) {
+                $authorEmail = $author->getEmail();
+                // only add the author email if they have not already been added as the primary author
+                // or user creating the submission.
+                if ($authorEmail != $primaryAuthor->getEmail() && $authorEmail != $user->getEmail()) {
+                    $authorMail->addRecipient($author->getEmail(), $author->getFullName());
+                }
+            }
+            $mail->bccAssignedSeriesEditors($this->submissionId, WORKFLOW_STAGE_ID_SUBMISSION);
 
-			if (!$mail->send($request)) {
-				import('classes.notification.NotificationManager');
-				$notificationMgr = new NotificationManager();
-				$notificationMgr->createTrivialNotification($request->getUser()->getId(), NOTIFICATION_TYPE_ERROR, array('contents' => __('email.compose.error')));
-			}
+            $mail->assignParams([
+                'authorName' => $user->getFullName(),
+                'authorUsername' => $user->getUsername(),
+                'editorialContactSignature' => $context->getData('contactName') . "\n" . $context->getLocalizedName(),
+                'submissionUrl' => $router->url($request, null, 'authorDashboard', 'submission', $this->submissionId),
+            ]);
 
-			$recipients = $authorMail->getRecipients();
-			if (!empty($recipients)) {
-				if (!$authorMail->send($request)) {
-					import('classes.notification.NotificationManager');
-					$notificationMgr = new NotificationManager();
-					$notificationMgr->createTrivialNotification($request->getUser()->getId(), NOTIFICATION_TYPE_ERROR, array('contents' => __('email.compose.error')));
-				}
-			}
-		}
+            $authorMail->assignParams([
+                'submitterName' => $user->getFullName(),
+                'editorialContactSignature' => $context->getData('contactName') . "\n" . $context->getLocalizedName(),
+            ]);
 
-		// Log submission.
-		import('lib.pkp.classes.log.SubmissionLog');
-		import('classes.log.SubmissionEventLogEntry'); // constants
-		SubmissionLog::logEvent($request, $this->submission, SUBMISSION_LOG_SUBMISSION_SUBMIT, 'submission.event.submissionSubmitted');
+            if (!$mail->send($request)) {
+                import('classes.notification.NotificationManager');
+                $notificationMgr = new NotificationManager();
+                $notificationMgr->createTrivialNotification($request->getUser()->getId(), NOTIFICATION_TYPE_ERROR, ['contents' => __('email.compose.error')]);
+            }
 
-		return $this->submissionId;
-	}
+            $recipients = $authorMail->getRecipients();
+            if (!empty($recipients)) {
+                if (!$authorMail->send($request)) {
+                    import('classes.notification.NotificationManager');
+                    $notificationMgr = new NotificationManager();
+                    $notificationMgr->createTrivialNotification($request->getUser()->getId(), NOTIFICATION_TYPE_ERROR, ['contents' => __('email.compose.error')]);
+                }
+            }
+        }
+
+        // Log submission.
+        import('lib.pkp.classes.log.SubmissionLog');
+        import('classes.log.SubmissionEventLogEntry'); // constants
+        SubmissionLog::logEvent($request, $this->submission, SUBMISSION_LOG_SUBMISSION_SUBMIT, 'submission.event.submissionSubmitted');
+
+        return $this->submissionId;
+    }
 }

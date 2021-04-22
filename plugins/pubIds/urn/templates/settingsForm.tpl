@@ -1,8 +1,8 @@
 {**
  * plugins/pubIds/urn/templates/settingsForm.tpl
  *
- * Copyright (c) 2014-2020 Simon Fraser University
- * Copyright (c) 2003-2020 John Willinsky
+ * Copyright (c) 2014-2021 Simon Fraser University
+ * Copyright (c) 2003-2021 John Willinsky
  * Distributed under the GNU GPL v3. For full terms see the file docs/COPYING.
  *
  * URN plugin settings
@@ -18,7 +18,7 @@
 		$('#urnSettingsForm').pkpHandler('$.pkp.plugins.pubIds.urn.js.URNSettingsFormHandler');
 	{rdelim});
 </script>
-<form class="pkp_form" id="urnSettingsForm" method="post" action="{url router=$smarty.const.ROUTE_COMPONENT op="manage" category="pubIds" plugin=$pluginName verb="save"}">
+<form class="pkp_form" id="urnSettingsForm" method="post" action="{url router=PKPApplication::ROUTE_COMPONENT op="manage" category="pubIds" plugin=$pluginName verb="save"}">
 	{csrf}
 	{include file="common/formErrors.tpl"}
 	{fbvFormArea id="urnObjectsFormArea" title="plugins.pubIds.urn.manager.settings.urnObjects"}

@@ -1,0 +1,509 @@
+msgid ""
+msgstr ""
+"PO-Revision-Date: 2021-02-20 17:54+0000\n"
+"Last-Translator: Real Academia Galega <reacagal@gmail.com>\n"
+"Language-Team: Galician <http://translate.pkp.sfu.ca/projects/omp/submission/"
+"gl_ES/>\n"
+"Language: gl_ES\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: Weblate 3.9.1\n"
+
+msgid "submission.queries.production"
+msgstr "Debates de producción"
+
+msgid "publication.version.details"
+msgstr "Detalles da publicación da versión {$version}"
+
+msgid "publication.unschedule.confirm"
+msgstr "Seguro/a que non queres que isto se programe para a súa publicación?"
+
+msgid "publication.unpublish.confirm"
+msgstr "Seguro/a que non queres que se publique?"
+
+msgid "publication.unpublish"
+msgstr "Retirar da publicación"
+
+msgid "submission.copyrightOther.description"
+msgstr "Asignar dereitos de autor para os envíos publicados á seguinte parte."
+
+msgid "submission.copyrightHolder.description"
+msgstr ""
+"Os dereitos de autor asignaranse automaticamente a {$copyright} cando se "
+"publique."
+
+msgid "submission.license.description"
+msgstr ""
+"A licenza establecerase automaticamente en <a href='{$licenseUrl}' "
+"target='_blank'>{$licenseName}</a> cando se publique."
+
+msgid "publication.required.reviewStage"
+msgstr ""
+"O envío debe estar nas fases de corrección ou produción antes de que poida "
+"ser publicado."
+
+msgid "publication.required.declined"
+msgstr "Non se pode publicar un envío rexeitado."
+
+msgid "publication.publish.requirements"
+msgstr "Para poder publicar isto débense cumprir os seguintes requisitos."
+
+msgid "publication.publish"
+msgstr "Publicar"
+
+msgid "publication.invalidSubmission"
+msgstr "Non se puido atopar o envío desta publicación."
+
+msgid "publication.event.versionUnpublished"
+msgstr "Eliminouse unha versión da publicación."
+
+msgid "publication.event.versionScheduled"
+msgstr "Unha nova versión foi programada para a sua spublicación."
+
+msgid "publication.event.versionPublished"
+msgstr "Publicouse unha nova versión."
+
+msgid "publication.event.unpublished"
+msgstr "O envio retirouse da publicación."
+
+msgid "publication.event.scheduled"
+msgstr "O envío programouse para a súa publicación."
+
+msgid "publication.event.published"
+msgstr "O envío publicouse."
+
+msgid "publication.editDisabled"
+msgstr "Esta versión publicouse e non se pode editar."
+
+msgid "publication.datePublished"
+msgstr "Data de publicación"
+
+msgid "publication.copyrightYearBasis.submissionDescription"
+msgstr ""
+"O ano do copyright establecerase automaticamente en función da data de "
+"publicación."
+
+msgid "publication.copyrightYearBasis.issueDescription"
+msgstr ""
+"O ano dos dereitos de autor establecerase automaticamente cando se publique "
+"nun número."
+
+msgid "submission.publications"
+msgstr "Publicacións"
+
+msgid "publication.status.unscheduled"
+msgstr "Desprogramado"
+
+msgid "submission.status.scheduled"
+msgstr "Programado"
+
+msgid "publication.status.published"
+msgstr "Publicado"
+
+msgid "submission.publication"
+msgstr "Publicación"
+
+msgid "publication.scheduledIn"
+msgstr ""
+"Programado para a súa publicación en <a href=\"{$issueUrl}\""
+">{$issueName}</a>."
+
+msgid "publication.publish.confirmation"
+msgstr ""
+"Cumpríronse todos os requisitos de publicación. Seguro que queres facer "
+"pública esta entrada no catálogo?"
+
+msgid "publication.publishedIn"
+msgstr "Publicado en <a href=\"{$issueUrl}\">{$issueName}</a>."
+
+msgid "publication.required.issue"
+msgstr ""
+"A publicación debe asignarse a un número antes de que poida ser publicada."
+
+msgid "publication.inactiveSeries"
+msgstr "{$series} (Inactivo)"
+
+msgid "publication.invalidSeries"
+msgstr "Non se puido atopar a serie desta publicación."
+
+msgid "publication.catalogEntry.success"
+msgstr "Actualizáronse os detalles da entrada do catálogo."
+
+msgid "publication.catalogEntry"
+msgstr "Catálogo"
+
+msgid "catalog.browseTitles"
+msgstr "{$numTitles} títulos"
+
+msgid "submission.list.viewEntry"
+msgstr "Ver entrada"
+
+msgid "submission.list.saveFeatureOrder"
+msgstr "Gardar la orde"
+
+msgid "submission.list.orderingFeaturesSection"
+msgstr ""
+"Arrastra e solta ou prema os botóns arriba e abaixo para cambiar a orde dos "
+"elementos no {$title}."
+
+msgid "submission.list.orderingFeatures"
+msgstr ""
+"Arrastra e solta ou prema os botóns arriba e abaixo para cambiar a orde dos "
+"elementoss na páxina de inicio."
+
+msgid "submission.list.orderFeatures"
+msgstr "Ordenar elementos"
+
+msgid "submission.list.itemsOfTotalMonographs"
+msgstr "{$count} de {$total} monografías"
+
+msgid "submission.list.countMonographs"
+msgstr "{$count} monografías"
+
+msgid "submission.list.monographs"
+msgstr "Monografías"
+
+msgid "section.any"
+msgstr "Calquera serie"
+
+msgid "submission.metadataDescription"
+msgstr ""
+"Estas especificacións están baseadas no conxunto de metadatos Dublin Core, "
+"un estándar internacional usado para describir o contido editorial."
+
+msgid "submission.dependentFiles"
+msgstr "Arquivos dependentes"
+
+msgid "submission.upload.fileContents"
+msgstr "Compoñente do envío"
+
+msgid "workflow.review.externalReview"
+msgstr "Revisión externa"
+
+msgid "editor.submission.decision.sendExternalReview"
+msgstr "Enviar para revisión externa"
+
+msgid "submission.submit.titleAndSummary"
+msgstr "Título e resumo"
+
+msgid "submission.event.publicationFormatRemoved"
+msgstr "Eliminouse o formato de publicación \"{$formatName}\"."
+
+msgid "submission.event.publicationFormatCreated"
+msgstr "Creouse o formato de publicación \"{$formatName}\"."
+
+msgid "submission.event.publicationMetadataUpdated"
+msgstr ""
+"Actualizáronse os metadatos do formato de publicación \"{$formatName}\"."
+
+msgid "submission.event.catalogMetadataUpdated"
+msgstr "Actualizáronse os metadatos do catálogo."
+
+msgid "submission.event.publicationFormatUnpublished"
+msgstr ""
+"O formato de publicación \"{$publicationFormatName}\" xa non está publicado."
+
+msgid "submission.event.publicationFormatPublished"
+msgstr ""
+"O formato de publicación \"{$publicationFormatName}\" está aprobado para a "
+"súa publicación."
+
+msgid "submission.event.publicationFormatMadeUnavailable"
+msgstr ""
+"O formato de publicación \"{$publicationFormatName}\" xa non está dispoñible."
+
+msgid "submission.event.publicationFormatMadeAvailable"
+msgstr "O formato de publicación \"{$publicationFormatName}\" está dispoñible."
+
+msgid "submission.event.metadataUnpublished"
+msgstr "Os metadatos da monografía xa non están publicados."
+
+msgid "submission.event.metadataPublished"
+msgstr "Os metadatos da monografía están aprobados para a súa publicación."
+
+msgid "submission.catalogEntry.publicationMetadata"
+msgstr "Formato de publicación"
+
+msgid "submission.catalogEntry.catalogMetadata"
+msgstr "Catálogo"
+
+msgid "submission.catalogEntry.monographMetadata"
+msgstr "Monografía"
+
+msgid "submission.catalogEntry.enableChapterPublicationDates"
+msgstr "Cada capítulo pode ter a súa propia data de publicación."
+
+msgid "submission.catalogEntry.disableChapterPublicationDates"
+msgstr "Todos os capítulos utilizarán a data de publicación da monografía."
+
+msgid "submission.catalogEntry.chapterPublicationDates"
+msgstr "Datas de publicación"
+
+msgid "submission.catalogEntry.viewSubmission"
+msgstr "Ver envío"
+
+msgid "submission.catalogEntry.isAvailable"
+msgstr "Esta monografía está lista para ser incluída no catálogo público."
+
+msgid "submission.catalogEntry.confirm.required"
+msgstr "Confirma que o envío está listo para colocarse no catálogo."
+
+msgid "submission.catalogEntry.confirm"
+msgstr "Engade este libro ao catálogo público"
+
+msgid "submission.catalogEntry.selectionMissing"
+msgstr "Debes seleccionar polo menos unha monografía para engadir ao catálogo."
+
+msgid "submission.catalogEntry.select"
+msgstr "Seleccione as monografías a engadir ao catálogo"
+
+msgid "submission.catalogEntry.add"
+msgstr "Engadir os seleccionados ao catálogo"
+
+msgid "submission.catalogEntry.new"
+msgstr "Nova entrada no catálogo"
+
+msgid "submission.editCatalogEntry"
+msgstr "Rexistro"
+
+msgid "submission.incomplete"
+msgstr "Esperando aprobación"
+
+msgid "submission.complete"
+msgstr "Aprobado"
+
+msgid "grid.copyediting.deleteCopyeditorResponse"
+msgstr "Eliminar o arquivo do corrector"
+
+msgid "grid.chapters.title"
+msgstr "Capítulos"
+
+msgid "submission.submit.noContext"
+msgstr "Non se puido atopar a editorial deste envío."
+
+msgid "submission.submit.userGroupDescription"
+msgstr "Se envías unha obra conxunta, debes escoller o rol de Editor de volume."
+
+msgid "submission.submit.userGroup"
+msgstr "Enviar no meu rol de..."
+
+msgid "submission.submit.placement"
+msgstr "Colocación do envío"
+
+msgid "submission.submit.checklistErrors"
+msgstr ""
+"Lea e marque os elementos da lista de verificación do envío. Quedan "
+"{$itemsRemaining} elementos sen marcar."
+
+msgid "submission.submit.whatNext.description"
+msgstr ""
+"A editorial recibiu unha notificación do teu envío e recibiches por correo "
+"electrónico unha confirmación dos teus rexistros. Unha vez que o editor/a "
+"revise o envío, porase en contacto convosco."
+
+msgid "submission.submit.generalInformation"
+msgstr "Información xeral"
+
+msgid "submission.submit.coverNote"
+msgstr "Nota para o Editor"
+
+msgid "submission.submit.nextSteps"
+msgstr "Seguintes pasos"
+
+msgid "submission.submit.confirmation"
+msgstr "Confirmación"
+
+msgid "submission.submit.finishingUp"
+msgstr "Rematar"
+
+msgid "submission.submit.metadata"
+msgstr "Metadatos"
+
+msgid "submission.submit.catalog"
+msgstr "Catálogo"
+
+msgid "submission.submit.prepare"
+msgstr "Preparar"
+
+msgid "submission.submit.submissionFile"
+msgstr "Arquivo do envío"
+
+msgid "submission.submit.form.contributorRoleRequired"
+msgstr "Seleccione o rol do colaborador."
+
+msgid "submission.submit.form.abstractRequired"
+msgstr "Insira un breve resumo da súa monografía."
+
+msgid "submission.submit.form.titleRequired"
+msgstr "Insira o título da súa monografía."
+
+msgid "submission.submit.form.authorRequiredFields"
+msgstr ""
+"É necesario o nome, apelidos e enderezo de correo electrónico de cada autor/"
+"a."
+
+msgid "submission.submit.form.authorRequired"
+msgstr "Requírese polo menos un autor/a."
+
+msgid "submission.submit.contributorRole"
+msgstr "Rol de colaborador"
+
+msgid "submission.submit.privacyStatement"
+msgstr "Declaración de privacidade"
+
+msgid "submission.submit.form.localeRequired"
+msgstr "Selecciona o idioma do envío."
+
+msgid "submission.submit.seriesPosition.description"
+msgstr "Exemplos: libro 2, volumen 2"
+
+msgid "submission.submit.seriesPosition"
+msgstr "Posición na serie"
+
+msgid "author.submit.seriesRequired"
+msgstr "Requírese unha serie válida."
+
+msgid "author.isVolumeEditor"
+msgstr "Identificar a este colaborador/a como editor/a deste volume."
+
+msgid "submission.submit.selectSeries"
+msgstr "Seleccionar serie (opcional)"
+
+msgid "submission.submit.cancelSubmission"
+msgstr ""
+"Podes completar este envío nunha data posterior seleccionando Envíos activos "
+"dende a páxina de inicio do autor."
+
+msgid "submission.submit.upload"
+msgstr "Cargar"
+
+msgid "submission.submit.newSubmissionSingle"
+msgstr "Novo envío"
+
+msgid "submission.submit.newSubmissionMultiple"
+msgstr "Comezar un novo envío a"
+
+msgid "submission.submit"
+msgstr "Comezar o envío dun novo libro"
+
+msgid "grid.action.deleteChapter"
+msgstr "Eliminar este capítulo"
+
+msgid "grid.action.editChapter"
+msgstr "Editar este capítulo"
+
+msgid "grid.action.addChapter"
+msgstr "Crear un novo capítulo"
+
+msgid "submission.supportingAgencies"
+msgstr "Axencias de apoio"
+
+msgid "submission.metadata"
+msgstr "Metadatos"
+
+msgid "submission.confirmSubmit"
+msgstr "Seguro que desexas enviar este manuscrito á editorial?"
+
+msgid "manuscript.submissions"
+msgstr "Envíos de manuscritos"
+
+msgid "submissions.queuedReview"
+msgstr "En revisión"
+
+msgid "submission.round"
+msgstr "Rolda {$round}"
+
+msgid "manuscript.submission"
+msgstr "Proposta de manuscrito"
+
+msgid "submission.sharing"
+msgstr "Compartir"
+
+msgid "submission.download"
+msgstr "Descargar"
+
+msgid "submission.proofs"
+msgstr "Probas"
+
+msgid "submission.publicationFormats"
+msgstr "Formatos de publicación"
+
+msgid "submission.copyedit"
+msgstr "Corrixir o estilo"
+
+msgid "submission.chapter.pages"
+msgstr "Páxinas"
+
+msgid "submission.chapter.editChapter"
+msgstr "Editar capítulo"
+
+msgid "submission.chapter.addChapter"
+msgstr "Engadir capítulo"
+
+msgid "submission.chaptersDescription"
+msgstr ""
+"Podes enumerar os capítulos aquí e asignar colaboradores da lista de "
+"colaboradores arriba. Estes colaboradores poderán acceder ao capítulo "
+"durante varias fases do proceso de publicación."
+
+msgid "submission.chapters"
+msgstr "Capítulos"
+
+msgid "submission.chapter"
+msgstr "Capítulo"
+
+msgid "submission.artwork.permissions"
+msgstr "Permisos"
+
+msgid "submission.authorListSeparator"
+msgstr "; "
+
+msgid "submission.fairCopy"
+msgstr "Copia limpa"
+
+msgid "submission.published"
+msgstr "Preparado para a produción"
+
+msgid "submission.monograph"
+msgstr "Monografía"
+
+msgid "submission.editorName"
+msgstr "{$editorName} (ed)"
+
+msgid "submission.workflowType.change"
+msgstr "Cambiar"
+
+msgid "submission.workflowType.authoredWork"
+msgstr "Monografía: os autores están asociados ao libro completo."
+
+msgid "submission.workflowType.editedVolume"
+msgstr "Obra colectiva: os autores están asociados ao seu propio capítulo."
+
+msgid "submission.workflowType.editedVolume.label"
+msgstr "Obra colectiva"
+
+msgid "submission.workflowType.description"
+msgstr ""
+"Unha monografía é unha obra creada integramente por un ou máis autores. Unha "
+"obra colectiva ten diferentes autores para cada capítulo (os detalles do "
+"capítulo introducense máis adiante neste proceso)."
+
+msgid "submission.workflowType"
+msgstr "Tipo de fluxo de traballo editorial"
+
+msgid "submission.synopsis"
+msgstr "Resumo"
+
+msgid "submission.select"
+msgstr "Seleccionar proposta"
+
+msgid "submission.title"
+msgstr "Título do libro"
+
+msgid "submission.upload.selectComponent"
+msgstr "Seleccionar compoñente"
+
+msgid "submission.submit.title"
+msgstr "Enviar unha monografía"

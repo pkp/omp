@@ -1,0 +1,65 @@
+msgid ""
+msgstr ""
+"PO-Revision-Date: 2021-03-11 11:28+0000\n"
+"Last-Translator: Magnus Annemark <magnus.annemark@ub.lu.se>\n"
+"Language-Team: Swedish <http://translate.pkp.sfu.ca/projects/omp/"
+"importexport-csv/sv_SE/>\n"
+"Language: sv_SE\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: Weblate 3.9.1\n"
+
+msgid "plugins.importexport.csv.import.success.description"
+msgstr "Importen lyckades. Importerade objekt listas nedan."
+
+msgid "plugins.importexport.csv.import.submission"
+msgstr "Bidraget: '{$title}' har importerats."
+
+msgid "plugins.importexport.csv.noSeries"
+msgstr ""
+"Serien {$seriesPath} existerar ej.  Kan ej lägga till informationen i detta "
+"bidrag."
+
+msgid "plugins.importexport.csv.noAuthorGroup"
+msgstr ""
+"Det finns ingen default-författargrupp i pressen {$press}.  Hoppar över "
+"bidraget."
+
+msgid "plugins.importexport.csv.noGenre"
+msgstr "Det finns ingen manuskript-genre.  Avslutar."
+
+msgid "plugins.importexport.csv.unknownPress"
+msgstr "Okänd press: \"{$contextPath}\".  Hoppar över."
+
+msgid "plugins.importexport.csv.unknownLocale"
+msgstr "Okänt språk: \"{$locale}\".  Hoppar över."
+
+msgid "plugins.importexport.csv.unknownUser"
+msgstr "Okänd användare: \"{$username}\".  Avslutar."
+
+msgid "plugins.importexport.csv.fileDoesNotExist"
+msgstr "Filen \"{$filename}\" exusterar ej.  Avslutar."
+
+msgid "plugins.importexport.csv.cliUsage"
+msgstr ""
+"Kommandoradsverktyg för att importera CSV-data till OMP\n"
+"\t\t\tAnvändning:\n"
+"\t\t\t{$scriptName} [--dry-run] filNamn.csv användarnamn\n"
+"\t\t\tTestkörning kan användas för att pröva utan att göra ändringar\n"
+"\t\t\tSpecificera vilket användarnamn du vill tilldela bidragen.\n"
+
+msgid "plugins.importexport.csv.cliOnly"
+msgstr ""
+"\n"
+"\t\t<p>Denna plugin kan bara köras med kommandorader. Gå till\n"
+"\t\t\t<pre>php tools/importExport.php CSVImportExportPlugin</pre>\n"
+"\t\t\t...för mer information.</p>\n"
+"\t"
+
+msgid "plugins.importexport.csv.description"
+msgstr "Importera bidrag till pressen från tabulatorseparerad data."
+
+msgid "plugins.importexport.csv.displayName"
+msgstr "CSV-import plugin"

@@ -1,8 +1,8 @@
 {**
  * templates/controllers/grid/users/chapter/form/chapterForm.tpl
  *
- * Copyright (c) 2014-2020 Simon Fraser University
- * Copyright (c) 2003-2020 John Willinsky
+ * Copyright (c) 2014-2021 Simon Fraser University
+ * Copyright (c) 2003-2021 John Willinsky
  * Distributed under the GNU GPL v3. For full terms see the file docs/COPYING.
  *
  * Chapters grid form
@@ -18,7 +18,7 @@
 	{rdelim});
 </script>
 
-<form class="pkp_form" id="editChapterForm" method="post" action="{url router=$smarty.const.ROUTE_COMPONENT component="grid.users.chapter.ChapterGridHandler" op="updateChapter"}">
+<form class="pkp_form" id="editChapterForm" method="post" action="{url router=PKPApplication::ROUTE_COMPONENT component="grid.users.chapter.ChapterGridHandler" op="updateChapter"}">
 	{csrf}
 	<input type="hidden" name="submissionId" value="{$submissionId|escape}" />
 	<input type="hidden" name="publicationId" value="{$publicationId|escape}" />
@@ -54,13 +54,11 @@
 		{/foreach}
 	{/fbvFormSection}
 
-	{if $chapterId}
-		{fbvFormSection list=true title="submission.files"}
-			{foreach from=$chapterFileOptions item="chapterFile" key="id"}
-				{fbvElement type="checkbox" id="files[]" value=$id checked=in_array($id, $selectedChapterFiles) label=$chapterFile translate=false}
-			{/foreach}
-		{/fbvFormSection}
-	{/if}
+	{fbvFormSection list=true title="submission.files"}
+		{foreach from=$chapterFileOptions item="chapterFile" key="id"}
+			{fbvElement type="checkbox" id="files[]" value=$id checked=in_array($id, $selectedChapterFiles) label=$chapterFile translate=false}
+		{/foreach}
+	{/fbvFormSection}
 
 	<p><span class="formRequired">{translate key="common.requiredField"}</span></p>
 	{fbvFormButtons submitText="common.save"}

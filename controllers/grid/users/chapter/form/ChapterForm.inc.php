@@ -3,8 +3,8 @@
 /**
  * @file controllers/grid/users/chapter/form/ChapterForm.inc.php
  *
- * Copyright (c) 2014-2020 Simon Fraser University
- * Copyright (c) 2003-2020 John Willinsky
+ * Copyright (c) 2014-2021 Simon Fraser University
+ * Copyright (c) 2003-2021 John Willinsky
  * Distributed under the GNU GPL v3. For full terms see the file docs/COPYING.
  *
  * @class ChapterForm
@@ -16,230 +16,249 @@
 
 import('lib.pkp.classes.form.Form');
 
-class ChapterForm extends Form {
-	/** The monograph associated with the chapter being edited **/
-	var $_monograph;
+class ChapterForm extends Form
+{
+    /** The monograph associated with the chapter being edited **/
+    public $_monograph;
 
-	/** The publication associated with the chapter being edited **/
-	var $_publication;
+    /** The publication associated with the chapter being edited **/
+    public $_publication;
 
-	/** Chapter the chapter being edited **/
-	var $_chapter;
+    /** Chapter the chapter being edited **/
+    public $_chapter;
 
-	/**
-	 * Constructor.
-	 * @param $monograph Monograph
-	 * @param $publication Publication
-	 * @param $chapter Chapter
-	 */
-	function __construct($monograph, $publication, $chapter) {
-		parent::__construct('controllers/grid/users/chapter/form/chapterForm.tpl');
-		$this->setMonograph($monograph);
-		$this->setPublication($publication);
-		$this->setDefaultFormLocale($publication->getData('locale'));
+    /**
+     * Constructor.
+     *
+     * @param $monograph Monograph
+     * @param $publication Publication
+     * @param $chapter Chapter
+     */
+    public function __construct($monograph, $publication, $chapter)
+    {
+        parent::__construct('controllers/grid/users/chapter/form/chapterForm.tpl');
+        $this->setMonograph($monograph);
+        $this->setPublication($publication);
+        $this->setDefaultFormLocale($publication->getData('locale'));
 
-		if ($chapter) {
-			$this->setChapter($chapter);
-		}
+        if ($chapter) {
+            $this->setChapter($chapter);
+        }
 
-		// Validation checks for this form
-		$this->addCheck(new FormValidatorLocale($this, 'title', 'required', 'metadata.property.validationMessage.title', $publication->getData('locale')));
-		$this->addCheck(new FormValidatorPost($this));
-		$this->addCheck(new FormValidatorCSRF($this));
-	}
+        // Validation checks for this form
+        $this->addCheck(new FormValidatorLocale($this, 'title', 'required', 'metadata.property.validationMessage.title', $publication->getData('locale')));
+        $this->addCheck(new FormValidatorPost($this));
+        $this->addCheck(new FormValidatorCSRF($this));
+    }
 
 
-	//
-	// Getters/Setters
-	//
-	/**
-	 * Get the monograph associated with this chapter grid.
-	 * @return Monograph
-	 */
-	function getMonograph() {
-		return $this->_monograph;
-	}
+    //
+    // Getters/Setters
+    //
+    /**
+     * Get the monograph associated with this chapter grid.
+     *
+     * @return Monograph
+     */
+    public function getMonograph()
+    {
+        return $this->_monograph;
+    }
 
-	/**
-	 * Set the monograph associated with this chapter grid.
-	 * @param $monograph Monograph
-	 */
-	function setMonograph($monograph) {
-		$this->_monograph = $monograph;
-	}
+    /**
+     * Set the monograph associated with this chapter grid.
+     *
+     * @param $monograph Monograph
+     */
+    public function setMonograph($monograph)
+    {
+        $this->_monograph = $monograph;
+    }
 
-	/**
-	 * Get the publication associated with this chapter grid.
-	 * @return Publication
-	 */
-	function getPublication() {
-		return $this->_publication;
-	}
+    /**
+     * Get the publication associated with this chapter grid.
+     *
+     * @return Publication
+     */
+    public function getPublication()
+    {
+        return $this->_publication;
+    }
 
-	/**
-	 * Set the publication associated with this chapter grid.
-	 * @param $publication Publication
-	 */
-	function setPublication($publication) {
-		$this->_publication = $publication;
-	}
+    /**
+     * Set the publication associated with this chapter grid.
+     *
+     * @param $publication Publication
+     */
+    public function setPublication($publication)
+    {
+        $this->_publication = $publication;
+    }
 
-	/**
-	 * Get the Chapter associated with this form
-	 * @return Chapter
-	 */
-	function getChapter() {
-		return $this->_chapter;
-	}
+    /**
+     * Get the Chapter associated with this form
+     *
+     * @return Chapter
+     */
+    public function getChapter()
+    {
+        return $this->_chapter;
+    }
 
-	/**
-	 * Set the Chapter associated with this form
-	 * @param $chapter Chapter
-	 */
-	function setChapter($chapter) {
-		$this->_chapter = $chapter;
-	}
+    /**
+     * Set the Chapter associated with this form
+     *
+     * @param $chapter Chapter
+     */
+    public function setChapter($chapter)
+    {
+        $this->_chapter = $chapter;
+    }
 
-	//
-	// Overridden template methods
-	//
-	/**
-	 * Initialize form data from the associated chapter.
-	 * @param $chapter Chapter
-	 */
-	function initData() {
-		AppLocale::requireComponents(LOCALE_COMPONENT_APP_DEFAULT, LOCALE_COMPONENT_PKP_SUBMISSION);
+    //
+    // Overridden template methods
+    //
+    /**
+     * Initialize form data from the associated chapter.
+     */
+    public function initData()
+    {
+        AppLocale::requireComponents(LOCALE_COMPONENT_APP_DEFAULT, LOCALE_COMPONENT_PKP_SUBMISSION);
 
-		$this->setData('submissionId', $this->getMonograph()->getId());
-		$this->setData('publicationId', $this->getPublication()->getId());
-		$this->setData('enableChapterPublicationDates', (bool) $this->getMonograph()->getEnableChapterPublicationDates());
+        $this->setData('submissionId', $this->getMonograph()->getId());
+        $this->setData('publicationId', $this->getPublication()->getId());
+        $this->setData('enableChapterPublicationDates', (bool) $this->getMonograph()->getEnableChapterPublicationDates());
 
-		$chapter = $this->getChapter();
-		if ($chapter) {
-			$this->setData('chapterId', $chapter->getId());
-			$this->setData('title', $chapter->getTitle());
-			$this->setData('subtitle', $chapter->getSubtitle());
-			$this->setData('abstract', $chapter->getAbstract());
-			$this->setData('datePublished', $chapter->getDatePublished());
-			$this->setData('pages', $chapter->getPages());
-		} else {
-			$this->setData('title', null);
-			$this->setData('subtitle', null);
-			$this->setData('abstract', null);
-			$this->setData('datePublished', null);
-			$this->setData('pages', null);
-		}
-	}
+        $chapter = $this->getChapter();
+        if ($chapter) {
+            $this->setData('chapterId', $chapter->getId());
+            $this->setData('title', $chapter->getTitle());
+            $this->setData('subtitle', $chapter->getSubtitle());
+            $this->setData('abstract', $chapter->getAbstract());
+            $this->setData('datePublished', $chapter->getDatePublished());
+            $this->setData('pages', $chapter->getPages());
+        } else {
+            $this->setData('title', null);
+            $this->setData('subtitle', null);
+            $this->setData('abstract', null);
+            $this->setData('datePublished', null);
+            $this->setData('pages', null);
+        }
+    }
 
-	/**
-	 * @copydoc Form::fetch()
-	 */
-	function fetch($request, $template = null, $display = false) {
+    /**
+     * @copydoc Form::fetch()
+     *
+     * @param null|mixed $template
+     */
+    public function fetch($request, $template = null, $display = false)
+    {
+        $templateMgr = TemplateManager::getManager($request);
+        $chapterAuthorOptions = [];
+        $selectedChapterAuthors = [];
+        $chapterFileOptions = [];
+        $selectedChapterFiles = [];
 
-		$chapterAuthorOptions = [];
-		$selectedChapterAuthors = [];
-		if ($this->getChapter()) {
-			$selectedChapterAuthors = DAORegistry::getDAO('ChapterAuthorDAO')->getAuthors($this->getPublication()->getId(), $this->getChapter()->getId())->toArray();
-			foreach ($selectedChapterAuthors as $selectedChapterAuthor) {
-				$chapterAuthorOptions[$selectedChapterAuthor->getId()] = $selectedChapterAuthor->getFullName();
-			}
-		}
-		$authorsIterator = Services::get('author')->getMany(['publicationIds' => $this->getPublication()->getId(), 'count' => 1000]);
-		foreach ($authorsIterator as $author) {
-			$isIncluded = false;
-			foreach ($chapterAuthorOptions as $chapterAuthorOptionId => $chapterAuthorOption) {
-				if ($chapterAuthorOptionId === $author->getId()) {
-					$isIncluded = true;
-				}
-			}
-			if (!$isIncluded) {
-				$chapterAuthorOptions[$author->getId()] = $author->getFullName();
-			}
-		}
+        if ($this->getChapter()) {
+            $selectedChapterAuthors = DAORegistry::getDAO('ChapterAuthorDAO')->getAuthors($this->getPublication()->getId(), $this->getChapter()->getId())->toArray();
+            foreach ($selectedChapterAuthors as $selectedChapterAuthor) {
+                $chapterAuthorOptions[$selectedChapterAuthor->getId()] = $selectedChapterAuthor->getFullName();
+            }
+        }
+        $authorsIterator = Services::get('author')->getMany(['publicationIds' => $this->getPublication()->getId(), 'count' => 1000]);
+        foreach ($authorsIterator as $author) {
+            $isIncluded = false;
+            foreach ($chapterAuthorOptions as $chapterAuthorOptionId => $chapterAuthorOption) {
+                if ($chapterAuthorOptionId === $author->getId()) {
+                    $isIncluded = true;
+                }
+            }
+            if (!$isIncluded) {
+                $chapterAuthorOptions[$author->getId()] = $author->getFullName();
+            }
+        }
 
-		$templateMgr = TemplateManager::getManager($request);
-		$templateMgr->assign([
-			'chapterAuthorOptions' => $chapterAuthorOptions,
-			'selectedChapterAuthors' => array_map(function($author) { return $author->getId(); }, $selectedChapterAuthors),
-		]);
+        $submissionFiles = Services::get('submissionFile')->getMany(['submissionIds' => [$this->getMonograph()->getId()]]);
+        foreach ($submissionFiles as $submissionFile) {
+            $isIncluded = false;
 
-		if ($this->getChapter()) {
-			$submissionFiles = Services::get('submissionFile')->getMany(['submissionIds' => [$this->getMonograph()->getId()]]);
-			$chapterFileOptions = [];
-			$selectedChapterFiles = [];
-			foreach ($submissionFiles as $submissionFile) {
-				if (!$submissionFile->getData('chapterId') || $submissionFile->getData('chapterId') == $this->getChapter()->getId()) {
-					$chapterFileOptions[$submissionFile->getId()] = $submissionFile->getLocalizedData('name');
-				}
-				if ($submissionFile->getData('chapterId') == $this->getChapter()->getId()) {
-					$selectedChapterFiles[] = $submissionFile->getId();
-				}
-			}
-			$templateMgr = TemplateManager::getManager($request);
-			$templateMgr->assign([
-				'chapterFileOptions' => $chapterFileOptions,
-				'selectedChapterFiles' => $selectedChapterFiles,
-			]);
-		}
+            if ($this->getChapter() && $submissionFile->getData('chapterId') == $this->getChapter()->getId()) {
+                $selectedChapterFiles[] = $submissionFile->getId();
+                $isIncluded = true;
+            }
 
-		return parent::fetch($request, $template, $display);
-	}
+            // Include in list if not used in another chapter OR already selected to this chapter
+            if (!$submissionFile->getData('chapterId') || $isIncluded) {
+                $chapterFileOptions[$submissionFile->getId()] = $submissionFile->getLocalizedData('name');
+            }
+        }
 
-	/**
-	 * Assign form data to user-submitted data.
-	 * @see Form::readInputData()
-	 */
-	function readInputData() {
-		$this->readUserVars(array('title', 'subtitle', 'authors', 'files','abstract','datePublished','pages'));
-	}
+        $templateMgr->assign([
+            'chapterAuthorOptions' => $chapterAuthorOptions,
+            'selectedChapterAuthors' => array_map(function ($author) {
+                return $author->getId();
+            }, $selectedChapterAuthors),
+            'chapterFileOptions' => $chapterFileOptions,
+            'selectedChapterFiles' => $selectedChapterFiles,
+        ]);
 
-	/**
-	 * Save chapter
-	 * @see Form::execute()
-	 */
-	function execute(...$functionParams) {
-		parent::execute(...$functionParams);
+        return parent::fetch($request, $template, $display);
+    }
 
-		$chapterDao = DAORegistry::getDAO('ChapterDAO'); /* @var $chapterDao ChapterDAO */
-		$chapter = $this->getChapter();
-		$isEdit = !!$chapter;
+    /**
+     * Assign form data to user-submitted data.
+     *
+     * @see Form::readInputData()
+     */
+    public function readInputData()
+    {
+        $this->readUserVars(['title', 'subtitle', 'authors', 'files','abstract','datePublished','pages']);
+    }
 
-		if ($chapter) {
-			$chapter->setTitle($this->getData('title'), null); //Localized
-			$chapter->setSubtitle($this->getData('subtitle'), null); //Localized
-			$chapter->setAbstract($this->getData('abstract'), null); //Localized
-			$chapter->setDatePublished($this->getData('datePublished'));
-			$chapter->setPages($this->getData('pages'));
-			$chapterDao->updateObject($chapter);
-		} else {
-			$chapter = $chapterDao->newDataObject();
-			$chapter->setData('publicationId', $this->getPublication()->getId());
-			$chapter->setTitle($this->getData('title'), null); //Localized
-			$chapter->setSubtitle($this->getData('subtitle'), null); //Localized
-			$chapter->setAbstract($this->getData('abstract'), null); //Localized
-			$chapter->setDatePublished($this->getData('datePublished'));
-			$chapter->setPages($this->getData('pages'));
-			$chapter->setSequence(REALLY_BIG_NUMBER);
-			$chapterDao->insertChapter($chapter);
-			$chapterDao->resequenceChapters($this->getPublication()->getId());
-		}
+    /**
+     * Save chapter
+     *
+     * @see Form::execute()
+     */
+    public function execute(...$functionParams)
+    {
+        parent::execute(...$functionParams);
 
-		$this->setChapter($chapter);
+        $chapterDao = DAORegistry::getDAO('ChapterDAO'); /* @var $chapterDao ChapterDAO */
+        $chapter = $this->getChapter();
 
-		// Save the chapter author aassociations
-		DAORegistry::getDAO('ChapterAuthorDAO')->deleteChapterAuthorsByChapterId($this->getChapter()->getId());
-		foreach ((array) $this->getData('authors') as $seq => $authorId) {
-			DAORegistry::getDAO('ChapterAuthorDAO')->insertChapterAuthor($authorId, $this->getChapter()->getId(), false, $seq);
-		}
+        if ($chapter) {
+            $chapter->setTitle($this->getData('title'), null); //Localized
+            $chapter->setSubtitle($this->getData('subtitle'), null); //Localized
+            $chapter->setAbstract($this->getData('abstract'), null); //Localized
+            $chapter->setDatePublished($this->getData('datePublished'));
+            $chapter->setPages($this->getData('pages'));
+            $chapterDao->updateObject($chapter);
+        } else {
+            $chapter = $chapterDao->newDataObject();
+            $chapter->setData('publicationId', $this->getPublication()->getId());
+            $chapter->setTitle($this->getData('title'), null); //Localized
+            $chapter->setSubtitle($this->getData('subtitle'), null); //Localized
+            $chapter->setAbstract($this->getData('abstract'), null); //Localized
+            $chapter->setDatePublished($this->getData('datePublished'));
+            $chapter->setPages($this->getData('pages'));
+            $chapter->setSequence(REALLY_BIG_NUMBER);
+            $chapterDao->insertChapter($chapter);
+            $chapterDao->resequenceChapters($this->getPublication()->getId());
+        }
 
-		// Save the chapter file associations
-		if ($isEdit) {
-			$selectedFiles = (array) $this->getData('files');
-			DAORegistry::getDAO('SubmissionFileDAO')->updateChapterFiles($selectedFiles, $this->getChapter()->getId());
-		}
+        $this->setChapter($chapter);
 
-		return true;
-	}
+        // Save the chapter author aassociations
+        DAORegistry::getDAO('ChapterAuthorDAO')->deleteChapterAuthorsByChapterId($this->getChapter()->getId());
+        foreach ((array) $this->getData('authors') as $seq => $authorId) {
+            DAORegistry::getDAO('ChapterAuthorDAO')->insertChapterAuthor($authorId, $this->getChapter()->getId(), false, $seq);
+        }
+
+        // Save the chapter file associations
+        $selectedFiles = (array) $this->getData('files');
+        DAORegistry::getDAO('SubmissionFileDAO')->updateChapterFiles($selectedFiles, $this->getChapter()->getId());
+
+        return true;
+    }
 }
-
-

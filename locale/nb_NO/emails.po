@@ -990,6 +990,7 @@ msgstr ""
 "Denne e-posten er sendt til registrerte brukere som har valgt å motta denne "
 "typen meldinger."
 
+#, fuzzy
 msgid "emails.notification.body"
 msgstr ""
 "Du har mottatt en ny melding fra {$siteTitle}: <br />\n"

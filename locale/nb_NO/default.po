@@ -53,13 +53,6 @@ msgstr ""
 "personvernerklæring </a>, som garanterer leserne at navn og e-postadresser "
 "ikke blir brukt for andre formål."
 
-msgid "default.contextSettings.emailSignature"
-msgstr ""
-"<br/>\n"
-"________________________________________________________________________<br/>"
-"\n"
-"<a href=\"{$ldelim}$contextUrl{$rdelim}\">{$ldelim}$contextName{$rdelim}</a>"
-
 msgid "default.contextSettings.openAccessPolicy"
 msgstr ""
 "Denne utgiveren gir øyeblikkelig åpen tilgang til innholdet sitt basert på "

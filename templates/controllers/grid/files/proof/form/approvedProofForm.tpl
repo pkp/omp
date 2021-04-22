@@ -1,8 +1,8 @@
 {**
  * templates/controllers/grid/files/proof/form/approvedProofForm.tpl
  *
- * Copyright (c) 2014-2020 Simon Fraser University
- * Copyright (c) 2003-2020 John Willinsky
+ * Copyright (c) 2014-2021 Simon Fraser University
+ * Copyright (c) 2003-2021 John Willinsky
  * Distributed under the GNU GPL v3. For full terms see the file docs/COPYING.
  *
  * Form to control pricing of approved proofs for direct sales.
@@ -18,7 +18,7 @@
 	{rdelim});
 </script>
 
-<form class="pkp_form" id="approvedProofForm" method="post" action="{url router=$smarty.const.ROUTE_COMPONENT component="grid.catalogEntry.PublicationFormatGridHandler" op="saveApprovedProof"}">
+<form class="pkp_form" id="approvedProofForm" method="post" action="{url router=PKPApplication::ROUTE_COMPONENT component="grid.catalogEntry.PublicationFormatGridHandler" op="saveApprovedProof"}">
 	{csrf}
 	{include file="controllers/notification/inPlaceNotification.tpl" notificationId="approvedProofFormNotification"}
 	{fbvFormArea id="approvedProofInfo"}

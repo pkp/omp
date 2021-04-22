@@ -3,8 +3,8 @@
 /**
  * @file controllers/grid/users/chapter/ChapterGridHandler.inc.php
  *
- * Copyright (c) 2014-2020 Simon Fraser University
- * Copyright (c) 2000-2020 John Willinsky
+ * Copyright (c) 2014-2021 Simon Fraser University
+ * Copyright (c) 2000-2021 John Willinsky
  * Distributed under the GNU GPL v3. For full terms see the file docs/COPYING.
  *
  * @class ChapterGridHandler
@@ -24,476 +24,552 @@ import('controllers.grid.users.chapter.ChapterGridCategoryRow');
 // Link action & modal classes
 import('lib.pkp.classes.linkAction.request.AjaxModal');
 
-class ChapterGridHandler extends CategoryGridHandler {
-	/** @var boolean */
-	var $_readOnly;
+use PKP\core\JSONMessage;
 
-	/**
-	 * Constructor
-	 */
-	function __construct() {
-		parent::__construct();
-		$this->addRoleAssignment(
-			array(ROLE_ID_AUTHOR, ROLE_ID_SUB_EDITOR, ROLE_ID_MANAGER, ROLE_ID_ASSISTANT),
-			array(
-				'fetchGrid', 'fetchRow', 'fetchCategory', 'saveSequence',
-				'addChapter', 'editChapter', 'editChapterTab', 'updateChapter', 'deleteChapter',
-				'addAuthor', 'editAuthor', 'updateAuthor', 'deleteAuthor'
-			)
-		);
-		$this->addRoleAssignment(
-			array(ROLE_ID_SUB_EDITOR, ROLE_ID_MANAGER, ROLE_ID_ASSISTANT),
-			array('identifiers', 'updateIdentifiers', 'clearPubId',)
-		);
-		$this->addRoleAssignment(ROLE_ID_REVIEWER, array('fetchGrid', 'fetchRow'));
-	}
+class ChapterGridHandler extends CategoryGridHandler
+{
+    /** @var boolean */
+    public $_readOnly;
 
-
-	//
-	// Getters and Setters
-	//
-	/**
-	 * Get the monograph associated with this chapter grid.
-	 * @return Monograph
-	 */
-	function getMonograph() {
-		return $this->getAuthorizedContextObject(ASSOC_TYPE_MONOGRAPH);
-	}
-
-	/**
-	 * Get the publication associated with this chapter grid.
-	 * @return Publication
-	 */
-	function getPublication() {
-		return $this->getAuthorizedContextObject(ASSOC_TYPE_PUBLICATION);
-	}
-
-	/**
-	 * Get whether or not this grid should be 'read only'
-	 * @return boolean
-	 */
-	function getReadOnly() {
-		return $this->_readOnly;
-	}
-
-	/**
-	 * Set the boolean for 'read only' status
-	 * @param $readOnly boolean
-	 */
-	function setReadOnly($readOnly) {
-		$this->_readOnly = $readOnly;
-	}
+    /**
+     * Constructor
+     */
+    public function __construct()
+    {
+        parent::__construct();
+        $this->addRoleAssignment(
+            [ROLE_ID_AUTHOR, ROLE_ID_SUB_EDITOR, ROLE_ID_MANAGER, ROLE_ID_ASSISTANT],
+            [
+                'fetchGrid', 'fetchRow', 'fetchCategory', 'saveSequence',
+                'addChapter', 'editChapter', 'editChapterTab', 'updateChapter', 'deleteChapter',
+                'addAuthor', 'editAuthor', 'updateAuthor', 'deleteAuthor'
+            ]
+        );
+        $this->addRoleAssignment(
+            [ROLE_ID_SUB_EDITOR, ROLE_ID_MANAGER, ROLE_ID_ASSISTANT],
+            ['identifiers', 'updateIdentifiers', 'clearPubId',]
+        );
+        $this->addRoleAssignment(ROLE_ID_REVIEWER, ['fetchGrid', 'fetchRow']);
+    }
 
 
-	//
-	// Implement template methods from PKPHandler
-	//
-	/**
-	 * @see PKPHandler::authorize()
-	 * @param $request PKPRequest
-	 * @param $args array
-	 * @param $roleAssignments array
-	 */
-	function authorize($request, &$args, $roleAssignments) {
-		import('lib.pkp.classes.security.authorization.PublicationAccessPolicy');
-		$this->addPolicy(new PublicationAccessPolicy($request, $args, $roleAssignments));
-		return parent::authorize($request, $args, $roleAssignments);
-	}
+    //
+    // Getters and Setters
+    //
+    /**
+     * Get the monograph associated with this chapter grid.
+     *
+     * @return Monograph
+     */
+    public function getMonograph()
+    {
+        return $this->getAuthorizedContextObject(ASSOC_TYPE_MONOGRAPH);
+    }
 
-	/**
-	 * @copydoc CategoryGridHandler::initialize()
-	 */
-	function initialize($request, $args = null) {
-		parent::initialize($request, $args);
+    /**
+     * Get the publication associated with this chapter grid.
+     *
+     * @return Publication
+     */
+    public function getPublication()
+    {
+        return $this->getAuthorizedContextObject(ASSOC_TYPE_PUBLICATION);
+    }
 
-		$this->setTitle('submission.chapters');
+    /**
+     * Get whether or not this grid should be 'read only'
+     *
+     * @return boolean
+     */
+    public function getReadOnly()
+    {
+        return $this->_readOnly;
+    }
 
-		AppLocale::requireComponents(LOCALE_COMPONENT_APP_DEFAULT, LOCALE_COMPONENT_PKP_DEFAULT, LOCALE_COMPONENT_APP_SUBMISSION, LOCALE_COMPONENT_PKP_SUBMISSION);
-
-		if ($this->getPublication()->getData('status') === STATUS_PUBLISHED) {
-			$this->setReadOnly(true);
-		}
-
-		if (!$this->getReadOnly()) {
-			// Grid actions
-			$router = $request->getRouter();
-			$actionArgs = $this->getRequestArgs();
-
-			$this->addAction(
-				new LinkAction(
-					'addChapter',
-					new AjaxModal(
-						$router->url($request, null, null, 'addChapter', null, $actionArgs),
-						__('submission.chapter.addChapter'),
-						'modal_add_item'
-					),
-					__('submission.chapter.addChapter'),
-					'add_item'
-				)
-			);
-		}
-
-		// Columns
-		// reuse the cell providers for the AuthorGrid
-		$cellProvider = new PKPAuthorGridCellProvider($this->getPublication());
-		$this->addColumn(
-			new GridColumn(
-				'name',
-				'author.users.contributor.name',
-				null,
-				null,
-				$cellProvider,
-				array('width' => 50, 'alignment' => COLUMN_ALIGNMENT_LEFT)
-			)
-		);
-		$this->addColumn(
-			new GridColumn(
-				'email',
-				'author.users.contributor.email',
-				null,
-				null,
-				$cellProvider
-			)
-		);
-		$this->addColumn(
-			new GridColumn(
-				'role',
-				'author.users.contributor.role',
-				null,
-				null,
-				$cellProvider
-			)
-		);
-	}
-
-	/**
-	 * @see GridHandler::initFeatures()
-	 */
-	function initFeatures($request, $args) {
-		if ($this->canAdminister($request->getUser())) {
-			$this->setReadOnly(false);
-			import('lib.pkp.classes.controllers.grid.feature.OrderCategoryGridItemsFeature');
-			return array(new OrderCategoryGridItemsFeature(ORDER_CATEGORY_GRID_CATEGORIES_AND_ROWS, true, $this));
-		} else {
-			$this->setReadOnly(true);
-			return array();
-		}
-	}
-
-	/**
-	 * @see GridDataProvider::getRequestArgs()
-	 */
-	function getRequestArgs() {
-		return array_merge(
-			parent::getRequestArgs(),
-			array(
-				'submissionId' => $this->getMonograph()->getId(),
-				'publicationId' => $this->getPublication()->getId(),
-			)
-		);
-	}
-
-	/**
-	 * Determines if there should be add/edit actions on this grid.
-	 * @param $user User
-	 * @return boolean
-	 */
-	function canAdminister($user) {
-		$submission = $this->getMonograph();
-		$publication = $this->getPublication();
-		$userRoles = $this->getAuthorizedContextObject(ASSOC_TYPE_USER_ROLES);
-
-		if ($publication->getData('status') === STATUS_PUBLISHED) {
-			return false;
-		}
-
-		if (in_array(ROLE_ID_SITE_ADMIN, $userRoles)) {
-			return true;
-		}
-
-		// Incomplete submissions can be edited. (Presumably author.)
-		if ($submission->getDateSubmitted() == null) return true;
-
-		// The user may not be allowed to edit the metadata
-		if (Services::get('submission')->canEditPublication($submission->getId(), $user->getId())) {
-			return true;
-		}
-
-		// Default: Read-only.
-		return false;
-	}
-
-	/**
-	 * @see CategoryGridHandler::getCategoryRowIdParameterName()
-	 */
-	function getCategoryRowIdParameterName() {
-		return 'chapterId';
-	}
+    /**
+     * Set the boolean for 'read only' status
+     *
+     * @param $readOnly boolean
+     */
+    public function setReadOnly($readOnly)
+    {
+        $this->_readOnly = $readOnly;
+    }
 
 
-	/**
-	 * @see GridHandler::loadData
-	 */
-	function loadData($request, $filter) {
-		return DAORegistry::getDAO('ChapterDAO')
-			->getByPublicationId($this->getPublication()->getId())
-			->toAssociativeArray();
-	}
+    //
+    // Implement template methods from PKPHandler
+    //
+    /**
+     * @see PKPHandler::authorize()
+     *
+     * @param $request PKPRequest
+     * @param $args array
+     * @param $roleAssignments array
+     */
+    public function authorize($request, &$args, $roleAssignments)
+    {
+        import('lib.pkp.classes.security.authorization.PublicationAccessPolicy');
+        $this->addPolicy(new PublicationAccessPolicy($request, $args, $roleAssignments));
+        return parent::authorize($request, $args, $roleAssignments);
+    }
+
+    /**
+     * @copydoc CategoryGridHandler::initialize()
+     *
+     * @param null|mixed $args
+     */
+    public function initialize($request, $args = null)
+    {
+        parent::initialize($request, $args);
+
+        $this->setTitle('submission.chapters');
+
+        AppLocale::requireComponents(LOCALE_COMPONENT_APP_DEFAULT, LOCALE_COMPONENT_PKP_DEFAULT, LOCALE_COMPONENT_APP_SUBMISSION, LOCALE_COMPONENT_PKP_SUBMISSION);
+
+        if ($this->getPublication()->getData('status') === STATUS_PUBLISHED) {
+            $this->setReadOnly(true);
+        }
+
+        if (!$this->getReadOnly()) {
+            // Grid actions
+            $router = $request->getRouter();
+            $actionArgs = $this->getRequestArgs();
+
+            $this->addAction(
+                new LinkAction(
+                    'addChapter',
+                    new AjaxModal(
+                        $router->url($request, null, null, 'addChapter', null, $actionArgs),
+                        __('submission.chapter.addChapter'),
+                        'modal_add_item'
+                    ),
+                    __('submission.chapter.addChapter'),
+                    'add_item'
+                )
+            );
+        }
+
+        // Columns
+        // reuse the cell providers for the AuthorGrid
+        $cellProvider = new PKPAuthorGridCellProvider($this->getPublication());
+        $this->addColumn(
+            new GridColumn(
+                'name',
+                'author.users.contributor.name',
+                null,
+                null,
+                $cellProvider,
+                ['width' => 50, 'alignment' => COLUMN_ALIGNMENT_LEFT]
+            )
+        );
+        $this->addColumn(
+            new GridColumn(
+                'email',
+                'author.users.contributor.email',
+                null,
+                null,
+                $cellProvider
+            )
+        );
+        $this->addColumn(
+            new GridColumn(
+                'role',
+                'author.users.contributor.role',
+                null,
+                null,
+                $cellProvider
+            )
+        );
+    }
+
+    /**
+     * @see GridHandler::initFeatures()
+     */
+    public function initFeatures($request, $args)
+    {
+        if ($this->canAdminister($request->getUser())) {
+            $this->setReadOnly(false);
+            import('lib.pkp.classes.controllers.grid.feature.OrderCategoryGridItemsFeature');
+            return [new OrderCategoryGridItemsFeature(ORDER_CATEGORY_GRID_CATEGORIES_AND_ROWS, true, $this)];
+        } else {
+            $this->setReadOnly(true);
+            return [];
+        }
+    }
+
+    /**
+     * @see GridDataProvider::getRequestArgs()
+     */
+    public function getRequestArgs()
+    {
+        return array_merge(
+            parent::getRequestArgs(),
+            [
+                'submissionId' => $this->getMonograph()->getId(),
+                'publicationId' => $this->getPublication()->getId(),
+            ]
+        );
+    }
+
+    /**
+     * Determines if there should be add/edit actions on this grid.
+     *
+     * @param $user User
+     *
+     * @return boolean
+     */
+    public function canAdminister($user)
+    {
+        $submission = $this->getMonograph();
+        $publication = $this->getPublication();
+        $userRoles = $this->getAuthorizedContextObject(ASSOC_TYPE_USER_ROLES);
+
+        if ($publication->getData('status') === STATUS_PUBLISHED) {
+            return false;
+        }
+
+        if (in_array(ROLE_ID_SITE_ADMIN, $userRoles)) {
+            return true;
+        }
+
+        // Incomplete submissions can be edited. (Presumably author.)
+        if ($submission->getDateSubmitted() == null) {
+            return true;
+        }
+
+        // The user may not be allowed to edit the metadata
+        if (Services::get('submission')->canEditPublication($submission->getId(), $user->getId())) {
+            return true;
+        }
+
+        // Default: Read-only.
+        return false;
+    }
+
+    /**
+     * @see CategoryGridHandler::getCategoryRowIdParameterName()
+     */
+    public function getCategoryRowIdParameterName()
+    {
+        return 'chapterId';
+    }
 
 
-	//
-	// Extended methods from GridHandler
-	//
-	/**
-	 * @see GridHandler::getDataElementSequence()
-	 */
-	function getDataElementSequence($gridDataElement) {
-		return $gridDataElement->getSequence();
-	}
-
-	/**
-	 * @see GridHandler::setDataElementSequence()
-	 */
-	function setDataElementSequence($request, $chapterId, $chapter, $newSequence) {
-		if (!$this->canAdminister($request->getUser())) return;
-
-		$chapterDao = DAORegistry::getDAO('ChapterDAO'); /* @var $chapterDao ChapterDAO */
-		$chapter->setSequence($newSequence);
-		$chapterDao->updateObject($chapter);
-	}
+    /**
+     * @see GridHandler::loadData
+     */
+    public function loadData($request, $filter)
+    {
+        return DAORegistry::getDAO('ChapterDAO')
+            ->getByPublicationId($this->getPublication()->getId())
+            ->toAssociativeArray();
+    }
 
 
-	//
-	// Implement template methods from CategoryGridHandler
-	//
-	/**
-	 * @see CategoryGridHandler::getCategoryRowInstance()
-	 */
-	function getCategoryRowInstance() {
-		$monograph = $this->getMonograph();
-		$row = new ChapterGridCategoryRow($monograph, $this->getPublication(), $this->getReadOnly());
-		import('controllers.grid.users.chapter.ChapterGridCategoryRowCellProvider');
-		$row->setCellProvider(new ChapterGridCategoryRowCellProvider());
-		return $row;
-	}
+    //
+    // Extended methods from GridHandler
+    //
+    /**
+     * @see GridHandler::getDataElementSequence()
+     */
+    public function getDataElementSequence($gridDataElement)
+    {
+        return $gridDataElement->getSequence();
+    }
 
-	/**
-	 * @see CategoryGridHandler::loadCategoryData()
-	 */
-	function loadCategoryData($request, &$chapter, $filter = null) {
-		$authorFactory = $chapter->getAuthors(); /* @var $authorFactory DAOResultFactory */
-		return $authorFactory->toAssociativeArray();
-	}
+    /**
+     * @see GridHandler::setDataElementSequence()
+     */
+    public function setDataElementSequence($request, $chapterId, $chapter, $newSequence)
+    {
+        if (!$this->canAdminister($request->getUser())) {
+            return;
+        }
 
-	/**
-	 * @see CategoryGridHandler::getDataElementInCategorySequence()
-	 */
-	function getDataElementInCategorySequence($categoryId, &$author) {
-		return $author->getSequence();
-	}
-
-	/**
-	 * @see CategoryGridHandler::setDataElementInCategorySequence()
-	 */
-	function setDataElementInCategorySequence($chapterId, &$author, $newSequence) {
-		if (!$this->canAdminister(Application::get()->getRequest()->getUser())) return;
-
-		$monograph = $this->getMonograph();
-
-		// Remove the chapter author id.
-		$chapterAuthorDao = DAORegistry::getDAO('ChapterAuthorDAO'); /* @var $chapterAuthorDao ChapterAuthorDAO */
-		$chapterAuthorDao->deleteChapterAuthorById($author->getId(), $chapterId);
-
-		// Add it again with the correct sequence value.
-		// FIXME: primary authors not set for chapter authors.
-		$chapterAuthorDao->insertChapterAuthor($author->getId(), $chapterId, false, $newSequence);
-	}
+        $chapterDao = DAORegistry::getDAO('ChapterDAO'); /* @var $chapterDao ChapterDAO */
+        $chapter->setSequence($newSequence);
+        $chapterDao->updateObject($chapter);
+    }
 
 
-	//
-	// Public Chapter Grid Actions
-	//
-	/**
-	 * Edit chapter pub ids
-	 * @param $args array
-	 * @param $request PKPRequest
-	 * @return JSONMessage JSON object
-	 */
-	function identifiers($args, $request) {
-		$chapter = $this->_getChapterFromRequest($request);
+    //
+    // Implement template methods from CategoryGridHandler
+    //
+    /**
+     * @see CategoryGridHandler::getCategoryRowInstance()
+     */
+    public function getCategoryRowInstance()
+    {
+        $monograph = $this->getMonograph();
+        $row = new ChapterGridCategoryRow($monograph, $this->getPublication(), $this->getReadOnly());
+        import('controllers.grid.users.chapter.ChapterGridCategoryRowCellProvider');
+        $row->setCellProvider(new ChapterGridCategoryRowCellProvider());
+        return $row;
+    }
 
-		import('controllers.tab.pubIds.form.PublicIdentifiersForm');
-		$form = new PublicIdentifiersForm($chapter);
-		$form->initData();
-		return new JSONMessage(true, $form->fetch($request));
-	}
+    /**
+     * @see CategoryGridHandler::loadCategoryData()
+     *
+     * @param null|mixed $filter
+     */
+    public function loadCategoryData($request, &$chapter, $filter = null)
+    {
+        $authorFactory = $chapter->getAuthors(); /* @var $authorFactory DAOResultFactory */
+        return $authorFactory->toAssociativeArray();
+    }
 
-	/**
-	 * Update chapter pub ids
-	 * @param $args array
-	 * @param $request PKPRequest
-	 * @return JSONMessage JSON object
-	 */
-	function updateIdentifiers($args, $request) {
-		if (!$this->canAdminister($request->getUser())) return new JSONMessage(false);
+    /**
+     * @see CategoryGridHandler::getDataElementInCategorySequence()
+     */
+    public function getDataElementInCategorySequence($categoryId, &$author)
+    {
+        return $author->getSequence();
+    }
 
-		$chapter = $this->_getChapterFromRequest($request);
+    /**
+     * @see CategoryGridHandler::setDataElementInCategorySequence()
+     */
+    public function setDataElementInCategorySequence($chapterId, &$author, $newSequence)
+    {
+        if (!$this->canAdminister(Application::get()->getRequest()->getUser())) {
+            return;
+        }
 
-		import('controllers.tab.pubIds.form.PublicIdentifiersForm');
-		$form = new PublicIdentifiersForm($chapter);
-		$form->readInputData();
-		if ($form->validate()) {
-			$form->execute();
-			return DAO::getDataChangedEvent();
-		} else {
-			return new JSONMessage(true, $form->fetch($request));
-		}
-	}
+        $monograph = $this->getMonograph();
 
-	/**
-	 * Clear chapter pub id
-	 * @param $args array
-	 * @param $request PKPRequest
-	 * @return JSONMessage JSON object
-	 */
-	function clearPubId($args, $request) {
-		if (!$request->checkCSRF()) return new JSONMessage(false);
-		if (!$this->canAdminister($request->getUser())) return new JSONMessage(false);
+        // Remove the chapter author id.
+        $chapterAuthorDao = DAORegistry::getDAO('ChapterAuthorDAO'); /* @var $chapterAuthorDao ChapterAuthorDAO */
+        $chapterAuthorDao->deleteChapterAuthorById($author->getId(), $chapterId);
 
-		$chapter = $this->_getChapterFromRequest($request);
+        // Add it again with the correct sequence value.
+        // FIXME: primary authors not set for chapter authors.
+        $chapterAuthorDao->insertChapterAuthor($author->getId(), $chapterId, false, $newSequence);
+    }
 
-		import('controllers.tab.pubIds.form.PublicIdentifiersForm');
-		$form = new PublicIdentifiersForm($chapter);
-		$form->clearPubId($request->getUserVar('pubIdPlugIn'));
-		return new JSONMessage(true);
-	}
 
-	/**
-	 * Add a chapter.
-	 * @param $args array
-	 * @param $request Request
-	 */
-	function addChapter($args, $request) {
-		if (!$this->canAdminister($request->getUser())) return new JSONMessage(false);
-		// Calling editChapterTab() with an empty row id will add
-		// a new chapter.
-		return $this->editChapterTab($args, $request);
-	}
+    //
+    // Public Chapter Grid Actions
+    //
+    /**
+     * Edit chapter pub ids
+     *
+     * @param $args array
+     * @param $request PKPRequest
+     *
+     * @return JSONMessage JSON object
+     */
+    public function identifiers($args, $request)
+    {
+        $chapter = $this->_getChapterFromRequest($request);
 
-	/**
-	 * Edit a chapter metadata modal
-	 * @param $args array
-	 * @param $request PKPRequest
-	 * @return JSONMessage JSON object
-	 */
-	function editChapter($args, $request) {
-		if (!$this->canAdminister($request->getUser())) return new JSONMessage(false);
-		$chapter = $this->_getChapterFromRequest($request);
+        import('controllers.tab.pubIds.form.PublicIdentifiersForm');
+        $form = new PublicIdentifiersForm($chapter);
+        $form->initData();
+        return new JSONMessage(true, $form->fetch($request));
+    }
 
-		// Check if this is a remote galley
-		$templateMgr = TemplateManager::getManager($request);
-		$templateMgr->assign(array(
-			'submissionId' => $this->getMonograph()->getId(),
-			'publicationId' => $this->getPublication()->getId(),
-			'chapterId' => $chapter->getId(),
-		));
+    /**
+     * Update chapter pub ids
+     *
+     * @param $args array
+     * @param $request PKPRequest
+     *
+     * @return JSONMessage JSON object
+     */
+    public function updateIdentifiers($args, $request)
+    {
+        if (!$this->canAdminister($request->getUser())) {
+            return new JSONMessage(false);
+        }
 
-		if (array_intersect(array(ROLE_ID_MANAGER, ROLE_ID_SUB_EDITOR, ROLE_ID_ASSISTANT), $this->getAuthorizedContextObject(ASSOC_TYPE_USER_ROLES))) {
-			$publisherIdEnabled = in_array('chapter', (array) $request->getContext()->getData('enablePublisherId'));
-			$pubIdPlugins = PluginRegistry::getPlugins('pubIds');
-			$pubIdEnabled = false;
-			foreach ($pubIdPlugins as $pubIdPlugin) {
-				if ($pubIdPlugin->isObjectTypeEnabled('Chapter', $request->getContext()->getId())) {
-					$pubIdEnabled = true;
-					break;
-				}
-			}
-			$templateMgr->assign('showIdentifierTab', $publisherIdEnabled || $pubIdEnabled);
-		}
+        $chapter = $this->_getChapterFromRequest($request);
 
-		return new JSONMessage(true, $templateMgr->fetch('controllers/grid/users/chapter/editChapter.tpl'));
-	}
+        import('controllers.tab.pubIds.form.PublicIdentifiersForm');
+        $form = new PublicIdentifiersForm($chapter);
+        $form->readInputData();
+        if ($form->validate()) {
+            $form->execute();
+            return DAO::getDataChangedEvent();
+        } else {
+            return new JSONMessage(true, $form->fetch($request));
+        }
+    }
 
-	/**
-	 * Edit a chapter
-	 * @param $args array
-	 * @param $request PKPRequest
-	 * @return JSONMessage JSON object
-	 */
-	function editChapterTab($args, $request) {
-		if (!$this->canAdminister($request->getUser())) return new JSONMessage(false);
-		$chapter = $this->_getChapterFromRequest($request);
+    /**
+     * Clear chapter pub id
+     *
+     * @param $args array
+     * @param $request PKPRequest
+     *
+     * @return JSONMessage JSON object
+     */
+    public function clearPubId($args, $request)
+    {
+        if (!$request->checkCSRF()) {
+            return new JSONMessage(false);
+        }
+        if (!$this->canAdminister($request->getUser())) {
+            return new JSONMessage(false);
+        }
 
-		// Form handling
-		import('controllers.grid.users.chapter.form.ChapterForm');
-		$chapterForm = new ChapterForm($this->getMonograph(), $this->getPublication(), $chapter);
-		$chapterForm->initData();
+        $chapter = $this->_getChapterFromRequest($request);
 
-		return new JSONMessage(true, $chapterForm->fetch($request));
-	}
+        import('controllers.tab.pubIds.form.PublicIdentifiersForm');
+        $form = new PublicIdentifiersForm($chapter);
+        $form->clearPubId($request->getUserVar('pubIdPlugIn'));
+        return new JSONMessage(true);
+    }
 
-	/**
-	 * Update a chapter
-	 * @param $args array
-	 * @param $request PKPRequest
-	 * @return JSONMessage JSON object
-	 */
-	function updateChapter($args, $request) {
-		if (!$this->canAdminister($request->getUser())) return new JSONMessage(false);
-		// Identify the chapter to be updated
-		$chapter = $this->_getChapterFromRequest($request);
+    /**
+     * Add a chapter.
+     *
+     * @param $args array
+     * @param $request Request
+     */
+    public function addChapter($args, $request)
+    {
+        if (!$this->canAdminister($request->getUser())) {
+            return new JSONMessage(false);
+        }
+        // Calling editChapterTab() with an empty row id will add
+        // a new chapter.
+        return $this->editChapterTab($args, $request);
+    }
 
-		// Form initialization
-		import('controllers.grid.users.chapter.form.ChapterForm');
-		$chapterForm = new ChapterForm($this->getMonograph(), $this->getPublication(), $chapter);
-		$chapterForm->readInputData();
+    /**
+     * Edit a chapter metadata modal
+     *
+     * @param $args array
+     * @param $request PKPRequest
+     *
+     * @return JSONMessage JSON object
+     */
+    public function editChapter($args, $request)
+    {
+        if (!$this->canAdminister($request->getUser())) {
+            return new JSONMessage(false);
+        }
+        $chapter = $this->_getChapterFromRequest($request);
 
-		// Form validation
-		if ($chapterForm->validate()) {
-			$notificationMgr = new NotificationManager();
-			$notificationMgr->createTrivialNotification($request->getUser()->getId());
-			$chapterForm->execute();
-			return DAO::getDataChangedEvent($chapterForm->getChapter()->getId());
-		} else {
-			// Return an error
-			return new JSONMessage(false);
-		}
-	}
+        // Check if this is a remote galley
+        $templateMgr = TemplateManager::getManager($request);
+        $templateMgr->assign([
+            'submissionId' => $this->getMonograph()->getId(),
+            'publicationId' => $this->getPublication()->getId(),
+            'chapterId' => $chapter->getId(),
+        ]);
 
-	/**
-	 * Delete a chapter
-	 * @param $args array
-	 * @param $request PKPRequest
-	 * @return JSONMessage JSON object
-	 */
-	function deleteChapter($args, $request) {
-		if (!$this->canAdminister($request->getUser())) return new JSONMessage(false);
-		// Identify the chapter to be deleted
-		$chapter = $this->_getChapterFromRequest($request);
-		$chapterId = $chapter->getId();
+        if (array_intersect([ROLE_ID_MANAGER, ROLE_ID_SUB_EDITOR, ROLE_ID_ASSISTANT], $this->getAuthorizedContextObject(ASSOC_TYPE_USER_ROLES))) {
+            $publisherIdEnabled = in_array('chapter', (array) $request->getContext()->getData('enablePublisherId'));
+            $pubIdPlugins = PluginRegistry::getPlugins('pubIds');
+            $pubIdEnabled = false;
+            foreach ($pubIdPlugins as $pubIdPlugin) {
+                if ($pubIdPlugin->isObjectTypeEnabled('Chapter', $request->getContext()->getId())) {
+                    $pubIdEnabled = true;
+                    break;
+                }
+            }
+            $templateMgr->assign('showIdentifierTab', $publisherIdEnabled || $pubIdEnabled);
+        }
 
-		// remove Authors assigned to this chapter first
-		$chapterAuthorDao = DAORegistry::getDAO('ChapterAuthorDAO'); /* @var $chapterAuthorDao ChapterAuthorDAO */
-		$assignedAuthorIds = $chapterAuthorDao->getAuthorIdsByChapterId($chapterId);
+        return new JSONMessage(true, $templateMgr->fetch('controllers/grid/users/chapter/editChapter.tpl'));
+    }
 
-		foreach ($assignedAuthorIds as $authorId) {
-			$chapterAuthorDao->deleteChapterAuthorById($authorId, $chapterId);
-		}
+    /**
+     * Edit a chapter
+     *
+     * @param $args array
+     * @param $request PKPRequest
+     *
+     * @return JSONMessage JSON object
+     */
+    public function editChapterTab($args, $request)
+    {
+        if (!$this->canAdminister($request->getUser())) {
+            return new JSONMessage(false);
+        }
+        $chapter = $this->_getChapterFromRequest($request);
 
-		$chapterDao = DAORegistry::getDAO('ChapterDAO'); /* @var $chapterDao ChapterDAO */
-		$chapterDao->deleteById($chapterId);
-		return DAO::getDataChangedEvent();
-	}
+        // Form handling
+        import('controllers.grid.users.chapter.form.ChapterForm');
+        $chapterForm = new ChapterForm($this->getMonograph(), $this->getPublication(), $chapter);
+        $chapterForm->initData();
 
-	/**
-	 * Fetch and validate the chapter from the request arguments
-	 */
-	function _getChapterFromRequest($request) {
-		return DAORegistry::getDAO('ChapterDAO')->getChapter(
-				(int) $request->getUserVar('chapterId'),
-				$this->getPublication()->getId()
-			);
-	}
+        return new JSONMessage(true, $chapterForm->fetch($request));
+    }
+
+    /**
+     * Update a chapter
+     *
+     * @param $args array
+     * @param $request PKPRequest
+     *
+     * @return JSONMessage JSON object
+     */
+    public function updateChapter($args, $request)
+    {
+        if (!$this->canAdminister($request->getUser())) {
+            return new JSONMessage(false);
+        }
+        // Identify the chapter to be updated
+        $chapter = $this->_getChapterFromRequest($request);
+
+        // Form initialization
+        import('controllers.grid.users.chapter.form.ChapterForm');
+        $chapterForm = new ChapterForm($this->getMonograph(), $this->getPublication(), $chapter);
+        $chapterForm->readInputData();
+
+        // Form validation
+        if ($chapterForm->validate()) {
+            $notificationMgr = new NotificationManager();
+            $notificationMgr->createTrivialNotification($request->getUser()->getId());
+            $chapterForm->execute();
+            return DAO::getDataChangedEvent($chapterForm->getChapter()->getId());
+        } else {
+            // Return an error
+            return new JSONMessage(false);
+        }
+    }
+
+    /**
+     * Delete a chapter
+     *
+     * @param $args array
+     * @param $request PKPRequest
+     *
+     * @return JSONMessage JSON object
+     */
+    public function deleteChapter($args, $request)
+    {
+        if (!$this->canAdminister($request->getUser())) {
+            return new JSONMessage(false);
+        }
+        // Identify the chapter to be deleted
+        $chapter = $this->_getChapterFromRequest($request);
+        $chapterId = $chapter->getId();
+
+        // remove Authors assigned to this chapter first
+        $chapterAuthorDao = DAORegistry::getDAO('ChapterAuthorDAO'); /* @var $chapterAuthorDao ChapterAuthorDAO */
+        $assignedAuthorIds = $chapterAuthorDao->getAuthorIdsByChapterId($chapterId);
+
+        foreach ($assignedAuthorIds as $authorId) {
+            $chapterAuthorDao->deleteChapterAuthorById($authorId, $chapterId);
+        }
+
+        $chapterDao = DAORegistry::getDAO('ChapterDAO'); /* @var $chapterDao ChapterDAO */
+        $chapterDao->deleteById($chapterId);
+        return DAO::getDataChangedEvent();
+    }
+
+    /**
+     * Fetch and validate the chapter from the request arguments
+     */
+    public function _getChapterFromRequest($request)
+    {
+        return DAORegistry::getDAO('ChapterDAO')->getChapter(
+            (int) $request->getUserVar('chapterId'),
+            $this->getPublication()->getId()
+        );
+    }
 }
-
-

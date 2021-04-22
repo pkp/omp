@@ -11,13 +11,6 @@ msgstr ""
 "Plural-Forms: nplurals=3; plural=(n==1) ? 0 : (n>=2 && n<=4) ? 1 : 2;\n"
 "X-Generator: Weblate 3.9.1\n"
 
-msgid "default.contextSettings.emailSignature"
-msgstr ""
-"<br/>\n"
-"________________________________________________________________________<br/>"
-"\n"
-"<a href=\"{$ldelim}$contextUrl{$rdelim}\">{$ldelim}$contextName{$rdelim}</a>"
-
 msgid "default.contextSettings.forLibrarians"
 msgstr ""
 "Podporujeme, aby zaměstnanci vědeckých knihoven uváděli toto nakladatelství "

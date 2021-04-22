@@ -43,3 +43,12 @@ msgstr "This press is missing some required information for ONIX metadata used i
 
 msgid "plugins.importexport.native.error.unknownSeries"
 msgstr "Unknown series {$param}"
+
+msgid "plugins.importexport.native.cliUsage"
+msgstr ""
+"Usage: {$scriptName} {$pluginName} [command] ...\n"
+"Commands:\n"
+"\timport [xmlFileName] [press_path] [user_name] ...\n"
+"\texport [xmlFileName] [press_path] monographs [monographId1] [monographId2] ...\n"
+"\texport [xmlFileName] [press_path] monograph [monographId]\n"
+""

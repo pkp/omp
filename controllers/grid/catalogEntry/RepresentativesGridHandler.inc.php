@@ -3,8 +3,8 @@
 /**
  * @file controllers/grid/catalogEntry/RepresentativesGridHandler.inc.php
  *
- * Copyright (c) 2014-2020 Simon Fraser University
- * Copyright (c) 2000-2020 John Willinsky
+ * Copyright (c) 2014-2021 Simon Fraser University
+ * Copyright (c) 2000-2021 John Willinsky
  * Distributed under the GNU GPL v3. For full terms see the file docs/COPYING.
  *
  * @class RepresentativesGridHandler
@@ -25,316 +25,347 @@ import('controllers.grid.catalogEntry.RepresentativesGridRow');
 // Link action & modal classes
 import('lib.pkp.classes.linkAction.request.AjaxModal');
 
-class RepresentativesGridHandler extends CategoryGridHandler {
-	/** @var Monograph */
-	var $_monograph;
+use PKP\core\JSONMessage;
 
-	/**
-	 * Constructor
-	 */
-	function __construct() {
-		parent::__construct();
-		$this->addRoleAssignment(
-				array(ROLE_ID_MANAGER, ROLE_ID_SUB_EDITOR, ROLE_ID_ASSISTANT),
-				array('fetchGrid', 'fetchCategory', 'fetchRow', 'addRepresentative', 'editRepresentative',
-				'updateRepresentative', 'deleteRepresentative'));
-	}
+class RepresentativesGridHandler extends CategoryGridHandler
+{
+    /** @var Monograph */
+    public $_monograph;
 
-
-	//
-	// Getters/Setters
-	//
-	/**
-	 * Get the monograph associated with this grid.
-	 * @return Monograph
-	 */
-	function getMonograph() {
-		return $this->_monograph;
-	}
-
-	/**
-	 * Set the Monograph
-	 * @param Monograph
-	 */
-	function setMonograph($monograph) {
-		$this->_monograph = $monograph;
-	}
+    /**
+     * Constructor
+     */
+    public function __construct()
+    {
+        parent::__construct();
+        $this->addRoleAssignment(
+            [ROLE_ID_MANAGER, ROLE_ID_SUB_EDITOR, ROLE_ID_ASSISTANT],
+            ['fetchGrid', 'fetchCategory', 'fetchRow', 'addRepresentative', 'editRepresentative',
+                'updateRepresentative', 'deleteRepresentative']
+        );
+    }
 
 
-	//
-	// Overridden methods from PKPHandler
-	//
-	/**
-	 * @see PKPHandler::authorize()
-	 * @param $request PKPRequest
-	 * @param $args array
-	 * @param $roleAssignments array
-	 */
-	function authorize($request, &$args, $roleAssignments) {
-		import('lib.pkp.classes.security.authorization.SubmissionAccessPolicy');
-		$this->addPolicy(new SubmissionAccessPolicy($request, $args, $roleAssignments));
-		return parent::authorize($request, $args, $roleAssignments);
-	}
+    //
+    // Getters/Setters
+    //
+    /**
+     * Get the monograph associated with this grid.
+     *
+     * @return Monograph
+     */
+    public function getMonograph()
+    {
+        return $this->_monograph;
+    }
 
-	/*
-	 * @copydoc CategoryGridHandler::initialize
-	 */
-	function initialize($request, $args = null) {
-		parent::initialize($request, $args);
-
-		// Retrieve the authorized monograph.
-		$this->setMonograph($this->getAuthorizedContextObject(ASSOC_TYPE_MONOGRAPH));
-
-		$representativeId = (int) $request->getUserVar('representativeId'); // set if editing or deleting a representative entry
-
-		if ($representativeId != '') {
-			$representativeDao = DAORegistry::getDAO('RepresentativeDAO'); /* @var $representativeDao RepresentativeDAO */
-			$representative = $representativeDao->getById($representativeId, $this->getMonograph()->getId());
-			if (!isset($representative)) {
-				fatalError('Representative referenced outside of authorized monograph context!');
-			}
-		}
-
-		// Load submission-specific translations
-		AppLocale::requireComponents(
-			LOCALE_COMPONENT_APP_SUBMISSION,
-			LOCALE_COMPONENT_PKP_SUBMISSION,
-			LOCALE_COMPONENT_PKP_USER,
-			LOCALE_COMPONENT_APP_DEFAULT,
-			LOCALE_COMPONENT_PKP_DEFAULT
-		);
-
-		// Basic grid configuration
-		$this->setTitle('grid.catalogEntry.representatives');
-
-		// Grid actions
-		$router = $request->getRouter();
-		$actionArgs = $this->getRequestArgs();
-		$this->addAction(
-			new LinkAction(
-				'addRepresentative',
-				new AjaxModal(
-					$router->url($request, null, null, 'addRepresentative', null, $actionArgs),
-					__('grid.action.addRepresentative'),
-					'modal_add_item'
-				),
-				__('grid.action.addRepresentative'),
-				'add_item'
-			)
-		);
-
-		// Columns
-		$cellProvider = new RepresentativesGridCellProvider();
-		$this->addColumn(
-			new GridColumn(
-				'name',
-				'grid.catalogEntry.representativeName',
-				null,
-				null,
-				$cellProvider
-			)
-		);
-		$this->addColumn(
-			new GridColumn(
-				'role',
-				'grid.catalogEntry.representativeRole',
-				null,
-				null,
-				$cellProvider
-			)
-		);
-	}
+    /**
+     * Set the Monograph
+     *
+     * @param Monograph
+     */
+    public function setMonograph($monograph)
+    {
+        $this->_monograph = $monograph;
+    }
 
 
-	//
-	// Overridden methods from GridHandler
-	//
-	/**
-	 * @see GridHandler::getRowInstance()
-	 * @return RepresentativesGridRow
-	 */
-	function getRowInstance() {
-		return new RepresentativesGridRow($this->getMonograph());
-	}
+    //
+    // Overridden methods from PKPHandler
+    //
+    /**
+     * @see PKPHandler::authorize()
+     *
+     * @param $request PKPRequest
+     * @param $args array
+     * @param $roleAssignments array
+     */
+    public function authorize($request, &$args, $roleAssignments)
+    {
+        import('lib.pkp.classes.security.authorization.SubmissionAccessPolicy');
+        $this->addPolicy(new SubmissionAccessPolicy($request, $args, $roleAssignments));
+        return parent::authorize($request, $args, $roleAssignments);
+    }
 
-	/**
-	 * @see CategoryGridHandler::getCategoryRowInstance()
-	 * @return RepresentativesGridCategoryRow
-	 */
-	function getCategoryRowInstance() {
-		return new RepresentativesGridCategoryRow();
-	}
+    /*
+     * @copydoc CategoryGridHandler::initialize
+     */
+    public function initialize($request, $args = null)
+    {
+        parent::initialize($request, $args);
 
-	/**
-	 * @see CategoryGridHandler::loadCategoryData()
-	 */
-	function loadCategoryData($request, &$category, $filter = null) {
-		$representativeDao = DAORegistry::getDAO('RepresentativeDAO'); /* @var $representativeDao RepresentativeDAO */
-		if ($category['isSupplier']) {
-			$representatives = $representativeDao->getSuppliersByMonographId($this->getMonograph()->getId());
-		} else {
-			$representatives = $representativeDao->getAgentsByMonographId($this->getMonograph()->getId());
-		}
-		return $representatives->toAssociativeArray();
-	}
+        // Retrieve the authorized monograph.
+        $this->setMonograph($this->getAuthorizedContextObject(ASSOC_TYPE_MONOGRAPH));
 
-	/**
-	 * @see CategoryGridHandler::getCategoryRowIdParameterName()
-	 */
-	function getCategoryRowIdParameterName() {
-		return 'representativeCategoryId';
-	}
+        $representativeId = (int) $request->getUserVar('representativeId'); // set if editing or deleting a representative entry
 
-	/**
-	 * @see CategoryGridHandler::getRequestArgs()
-	 */
-	function getRequestArgs() {
-		$monograph = $this->getMonograph();
-		return array_merge(
-			parent::getRequestArgs(),
-			array('submissionId' => $monograph->getId())
-		);
-	}
+        if ($representativeId != '') {
+            $representativeDao = DAORegistry::getDAO('RepresentativeDAO'); /* @var $representativeDao RepresentativeDAO */
+            $representative = $representativeDao->getById($representativeId, $this->getMonograph()->getId());
+            if (!isset($representative)) {
+                fatalError('Representative referenced outside of authorized monograph context!');
+            }
+        }
 
-	/**
-	 * @see GridHandler::loadData
-	 */
-	function loadData($request, $filter = null) {
-		// set our labels for the two Representative categories
-		$categories = array(
-				array('name' => 'grid.catalogEntry.agentsCategory', 'isSupplier' => false),
-				array('name' => 'grid.catalogEntry.suppliersCategory', 'isSupplier' => true)
-			);
+        // Load submission-specific translations
+        AppLocale::requireComponents(
+            LOCALE_COMPONENT_APP_SUBMISSION,
+            LOCALE_COMPONENT_PKP_SUBMISSION,
+            LOCALE_COMPONENT_PKP_USER,
+            LOCALE_COMPONENT_APP_DEFAULT,
+            LOCALE_COMPONENT_PKP_DEFAULT
+        );
 
-		return $categories;
-	}
+        // Basic grid configuration
+        $this->setTitle('grid.catalogEntry.representatives');
+
+        // Grid actions
+        $router = $request->getRouter();
+        $actionArgs = $this->getRequestArgs();
+        $this->addAction(
+            new LinkAction(
+                'addRepresentative',
+                new AjaxModal(
+                    $router->url($request, null, null, 'addRepresentative', null, $actionArgs),
+                    __('grid.action.addRepresentative'),
+                    'modal_add_item'
+                ),
+                __('grid.action.addRepresentative'),
+                'add_item'
+            )
+        );
+
+        // Columns
+        $cellProvider = new RepresentativesGridCellProvider();
+        $this->addColumn(
+            new GridColumn(
+                'name',
+                'grid.catalogEntry.representativeName',
+                null,
+                null,
+                $cellProvider
+            )
+        );
+        $this->addColumn(
+            new GridColumn(
+                'role',
+                'grid.catalogEntry.representativeRole',
+                null,
+                null,
+                $cellProvider
+            )
+        );
+    }
 
 
-	//
-	// Public Representatives Grid Actions
-	//
+    //
+    // Overridden methods from GridHandler
+    //
+    /**
+     * @see GridHandler::getRowInstance()
+     *
+     * @return RepresentativesGridRow
+     */
+    public function getRowInstance()
+    {
+        return new RepresentativesGridRow($this->getMonograph());
+    }
 
-	function addRepresentative($args, $request) {
-		return $this->editRepresentative($args, $request);
-	}
+    /**
+     * @see CategoryGridHandler::getCategoryRowInstance()
+     *
+     * @return RepresentativesGridCategoryRow
+     */
+    public function getCategoryRowInstance()
+    {
+        return new RepresentativesGridCategoryRow();
+    }
 
-	/**
-	 * Edit a representative entry
-	 * @param $args array
-	 * @param $request PKPRequest
-	 * @return JSONMessage JSON object
-	 */
-	function editRepresentative($args, $request) {
-		// Identify the representative entry to be updated
-		$representativeId = (int) $request->getUserVar('representativeId');
-		$monograph = $this->getMonograph();
+    /**
+     * @see CategoryGridHandler::loadCategoryData()
+     *
+     * @param null|mixed $filter
+     */
+    public function loadCategoryData($request, &$category, $filter = null)
+    {
+        $representativeDao = DAORegistry::getDAO('RepresentativeDAO'); /* @var $representativeDao RepresentativeDAO */
+        if ($category['isSupplier']) {
+            $representatives = $representativeDao->getSuppliersByMonographId($this->getMonograph()->getId());
+        } else {
+            $representatives = $representativeDao->getAgentsByMonographId($this->getMonograph()->getId());
+        }
+        return $representatives->toAssociativeArray();
+    }
 
-		$representativeDao = DAORegistry::getDAO('RepresentativeDAO'); /* @var $representativeDao RepresentativeDAO */
-		$representative = $representativeDao->getById($representativeId, $monograph->getId());
+    /**
+     * @see CategoryGridHandler::getCategoryRowIdParameterName()
+     */
+    public function getCategoryRowIdParameterName()
+    {
+        return 'representativeCategoryId';
+    }
 
-		// Form handling
-		import('controllers.grid.catalogEntry.form.RepresentativeForm');
-		$representativeForm = new RepresentativeForm($monograph, $representative);
-		$representativeForm->initData();
+    /**
+     * @see CategoryGridHandler::getRequestArgs()
+     */
+    public function getRequestArgs()
+    {
+        $monograph = $this->getMonograph();
+        return array_merge(
+            parent::getRequestArgs(),
+            ['submissionId' => $monograph->getId()]
+        );
+    }
 
-		return new JSONMessage(true, $representativeForm->fetch($request));
-	}
+    /**
+     * @see GridHandler::loadData
+     *
+     * @param null|mixed $filter
+     */
+    public function loadData($request, $filter = null)
+    {
+        // set our labels for the two Representative categories
+        $categories = [
+            ['name' => 'grid.catalogEntry.agentsCategory', 'isSupplier' => false],
+            ['name' => 'grid.catalogEntry.suppliersCategory', 'isSupplier' => true]
+        ];
 
-	/**
-	 * Update a representative entry
-	 * @param $args array
-	 * @param $request PKPRequest
-	 * @return JSONMessage JSON object
-	 */
-	function updateRepresentative($args, $request) {
-		// Identify the representative entry to be updated
-		$representativeId = $request->getUserVar('representativeId');
-		$monograph = $this->getMonograph();
+        return $categories;
+    }
 
-		$representativeDao = DAORegistry::getDAO('RepresentativeDAO'); /* @var $representativeDao RepresentativeDAO */
-		$representative = $representativeDao->getById($representativeId, $monograph->getId());
 
-		// Form handling
-		import('controllers.grid.catalogEntry.form.RepresentativeForm');
-		$representativeForm = new RepresentativeForm($monograph, $representative);
-		$representativeForm->readInputData();
-		if ($representativeForm->validate()) {
-			$representativeId = $representativeForm->execute();
+    //
+    // Public Representatives Grid Actions
+    //
 
-			if(!isset($representative)) {
-				// This is a new entry
-				$representative = $representativeDao->getById($representativeId, $monograph->getId());
-				// New added entry action notification content.
-				$notificationContent = __('notification.addedRepresentative');
-			} else {
-				// entry edit action notification content.
-				$notificationContent = __('notification.editedRepresentative');
-			}
+    public function addRepresentative($args, $request)
+    {
+        return $this->editRepresentative($args, $request);
+    }
 
-			// Create trivial notification.
-			$currentUser = $request->getUser();
-			$notificationMgr = new NotificationManager();
-			$notificationMgr->createTrivialNotification($currentUser->getId(), NOTIFICATION_TYPE_SUCCESS, array('contents' => $notificationContent));
+    /**
+     * Edit a representative entry
+     *
+     * @param $args array
+     * @param $request PKPRequest
+     *
+     * @return JSONMessage JSON object
+     */
+    public function editRepresentative($args, $request)
+    {
+        // Identify the representative entry to be updated
+        $representativeId = (int) $request->getUserVar('representativeId');
+        $monograph = $this->getMonograph();
 
-			// Prepare the grid row data
-			$row = $this->getRowInstance();
-			$row->setGridId($this->getId());
-			$row->setId($representativeId);
-			$row->setData($representative);
-			$row->initialize($request);
+        $representativeDao = DAORegistry::getDAO('RepresentativeDAO'); /* @var $representativeDao RepresentativeDAO */
+        $representative = $representativeDao->getById($representativeId, $monograph->getId());
 
-			// Render the row into a JSON response
-			return DAO::getDataChangedEvent($representativeId, (int) $representative->getIsSupplier());
+        // Form handling
+        import('controllers.grid.catalogEntry.form.RepresentativeForm');
+        $representativeForm = new RepresentativeForm($monograph, $representative);
+        $representativeForm->initData();
 
-		} else {
-			return new JSONMessage(true, $representativeForm->fetch($request));
-		}
-	}
+        return new JSONMessage(true, $representativeForm->fetch($request));
+    }
 
-	/**
-	 * Delete a representative entry
-	 * @param $args array
-	 * @param $request PKPRequest
-	 * @return JSONMessage JSON object
-	 */
-	function deleteRepresentative($args, $request) {
-		\AppLocale::requireComponents(LOCALE_COMPONENT_PKP_MANAGER, LOCALE_COMPONENT_APP_MANAGER);
+    /**
+     * Update a representative entry
+     *
+     * @param $args array
+     * @param $request PKPRequest
+     *
+     * @return JSONMessage JSON object
+     */
+    public function updateRepresentative($args, $request)
+    {
+        // Identify the representative entry to be updated
+        $representativeId = $request->getUserVar('representativeId');
+        $monograph = $this->getMonograph();
 
-		// Identify the representative entry to be deleted
-		$representativeId = $request->getUserVar('representativeId');
+        $representativeDao = DAORegistry::getDAO('RepresentativeDAO'); /* @var $representativeDao RepresentativeDAO */
+        $representative = $representativeDao->getById($representativeId, $monograph->getId());
 
-		$representativeDao = DAORegistry::getDAO('RepresentativeDAO'); /* @var $representativeDao RepresentativeDAO */
-		$representative = $representativeDao->getById($representativeId, $this->getMonograph()->getId());
+        // Form handling
+        import('controllers.grid.catalogEntry.form.RepresentativeForm');
+        $representativeForm = new RepresentativeForm($monograph, $representative);
+        $representativeForm->readInputData();
+        if ($representativeForm->validate()) {
+            $representativeId = $representativeForm->execute();
 
-		if (!$representative) {
-			return new JSONMessage(false, __('api.404.resourceNotFound'));
-		}
+            if (!isset($representative)) {
+                // This is a new entry
+                $representative = $representativeDao->getById($representativeId, $monograph->getId());
+                // New added entry action notification content.
+                $notificationContent = __('notification.addedRepresentative');
+            } else {
+                // entry edit action notification content.
+                $notificationContent = __('notification.editedRepresentative');
+            }
 
-		// Don't allow a representative to be deleted if they are associated
-		// with a publication format's market metadata
-		$submission = $this->getAuthorizedContextObject(ASSOC_TYPE_SUBMISSION);
-		foreach ($submission->getData('publications') as $publication) {
-			foreach ($publication->getData('publicationFormats') as $publicationFormat) {
-				$markets = DAORegistry::getDAO('MarketDAO')->getByPublicationFormatId($publicationFormat->getId())->toArray();
-				foreach ($markets as $market) {
-					if (in_array($representative->getId(), [$market->getAgentId(), $market->getSupplierId()])) {
-						return new JSONMessage(false, __('manager.representative.inUse'));
-					}
-				}
-			}
-		}
+            // Create trivial notification.
+            $currentUser = $request->getUser();
+            $notificationMgr = new NotificationManager();
+            $notificationMgr->createTrivialNotification($currentUser->getId(), NOTIFICATION_TYPE_SUCCESS, ['contents' => $notificationContent]);
 
-		$result = $representativeDao->deleteObject($representative);
+            // Prepare the grid row data
+            $row = $this->getRowInstance();
+            $row->setGridId($this->getId());
+            $row->setId($representativeId);
+            $row->setData($representative);
+            $row->initialize($request);
 
-		if ($result) {
-			$currentUser = $request->getUser();
-			$notificationMgr = new NotificationManager();
-			$notificationMgr->createTrivialNotification($currentUser->getId(), NOTIFICATION_TYPE_SUCCESS, array('contents' => __('notification.removedRepresentative')));
-			return DAO::getDataChangedEvent($representative->getId(), (int) $representative->getIsSupplier());
-		} else {
-			return new JSONMessage(false, __('manager.setup.errorDeletingItem'));
-		}
-	}
+            // Render the row into a JSON response
+            return DAO::getDataChangedEvent($representativeId, (int) $representative->getIsSupplier());
+        } else {
+            return new JSONMessage(true, $representativeForm->fetch($request));
+        }
+    }
+
+    /**
+     * Delete a representative entry
+     *
+     * @param $args array
+     * @param $request PKPRequest
+     *
+     * @return JSONMessage JSON object
+     */
+    public function deleteRepresentative($args, $request)
+    {
+        \AppLocale::requireComponents(LOCALE_COMPONENT_PKP_MANAGER, LOCALE_COMPONENT_APP_MANAGER);
+
+        // Identify the representative entry to be deleted
+        $representativeId = $request->getUserVar('representativeId');
+
+        $representativeDao = DAORegistry::getDAO('RepresentativeDAO'); /* @var $representativeDao RepresentativeDAO */
+        $representative = $representativeDao->getById($representativeId, $this->getMonograph()->getId());
+
+        if (!$representative) {
+            return new JSONMessage(false, __('api.404.resourceNotFound'));
+        }
+
+        // Don't allow a representative to be deleted if they are associated
+        // with a publication format's market metadata
+        $submission = $this->getAuthorizedContextObject(ASSOC_TYPE_SUBMISSION);
+        foreach ($submission->getData('publications') as $publication) {
+            foreach ($publication->getData('publicationFormats') as $publicationFormat) {
+                $markets = DAORegistry::getDAO('MarketDAO')->getByPublicationFormatId($publicationFormat->getId())->toArray();
+                foreach ($markets as $market) {
+                    if (in_array($representative->getId(), [$market->getAgentId(), $market->getSupplierId()])) {
+                        return new JSONMessage(false, __('manager.representative.inUse'));
+                    }
+                }
+            }
+        }
+
+        $result = $representativeDao->deleteObject($representative);
+
+        if ($result) {
+            $currentUser = $request->getUser();
+            $notificationMgr = new NotificationManager();
+            $notificationMgr->createTrivialNotification($currentUser->getId(), NOTIFICATION_TYPE_SUCCESS, ['contents' => __('notification.removedRepresentative')]);
+            return DAO::getDataChangedEvent($representative->getId(), (int) $representative->getIsSupplier());
+        } else {
+            return new JSONMessage(false, __('manager.setup.errorDeletingItem'));
+        }
+    }
 }
-
-

@@ -3,12 +3,13 @@
 /**
  * @file classes/install/Install.inc.php
  *
- * Copyright (c) 2014-2020 Simon Fraser University
- * Copyright (c) 2003-2020 John Willinsky
+ * Copyright (c) 2014-2021 Simon Fraser University
+ * Copyright (c) 2003-2021 John Willinsky
  * Distributed under the GNU GPL v3. For full terms see the file docs/COPYING.
  *
  * @class Install
  * @ingroup install
+ *
  * @see Installer, InstallForm
  *
  * @brief Perform system installation.
@@ -25,44 +26,48 @@ define('INSTALLER_DEFAULT_MIN_PASSWORD_LENGTH', 6);
 
 import('lib.pkp.classes.install.PKPInstall');
 
-class Install extends PKPInstall {
+class Install extends PKPInstall
+{
+    /**
+     * Constructor.
+     *
+     * @see install.form.InstallForm for the expected parameters
+     *
+     * @param $params array installer parameters
+     * @param $descriptor string descriptor path
+     * @param $isPlugin boolean true iff a plugin is being installed
+     */
+    public function __construct($params, $descriptor = 'install.xml', $isPlugin = false)
+    {
+        parent::__construct($descriptor, $params, $isPlugin);
+    }
 
-	/**
-	 * Constructor.
-	 * @see install.form.InstallForm for the expected parameters
-	 * @param $params array installer parameters
-	 * @param $descriptor string descriptor path
-	 * @param $isPlugin boolean true iff a plugin is being installed
-	 */
-	function __construct($params, $descriptor = 'install.xml', $isPlugin = false) {
-		parent::__construct($descriptor, $params, $isPlugin);
-	}
+    //
+    // Installer actions
+    //
 
-	//
-	// Installer actions
-	//
+    /**
+     * Get the names of the directories to create.
+     *
+     * @return array
+     */
+    public function getCreateDirectories()
+    {
+        $directories = parent::getCreateDirectories();
+        $directories[] = 'presses';
+        return $directories;
+    }
 
-	/**
-	 * Get the names of the directories to create.
-	 * @return array
-	 */
-	function getCreateDirectories() {
-		$directories = parent::getCreateDirectories();
-		$directories[] = 'presses';
-		return $directories;
-	}
-
-	/**
-	 * Create initial required data.
-	 * @return boolean
-	 */
-	function createData() {
-
-		$createData = parent::createData();
+    /**
+     * Create initial required data.
+     *
+     * @return boolean
+     */
+    public function createData()
+    {
+        $createData = parent::createData();
 
 
-		return $createData;
-	}
+        return $createData;
+    }
 }
-
-

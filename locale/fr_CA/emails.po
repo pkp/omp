@@ -14,6 +14,7 @@ msgstr ""
 msgid "emails.notification.subject"
 msgstr "Nouvelle notification de {$siteTitle}"
 
+#, fuzzy
 msgid "emails.notification.body"
 msgstr ""
 "Vous avez reçu une nouvelle notification de {$siteTitle}:<br />\n"

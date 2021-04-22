@@ -1,4 +1,4 @@
-; <?php exit(); // DO NOT DELETE ?>
+; <?php exit(); // DO NOT DELETE?>
 ; DO NOT DELETE THE ABOVE LINE!!!
 ; Doing so will expose this configuration file through your web site!
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
@@ -7,8 +7,8 @@
 ;
 ; config.TEMPLATE.inc.php
 ;
-; Copyright (c) 2014-2020 Simon Fraser University
-; Copyright (c) 2003-2020 John Willinsky
+; Copyright (c) 2014-2021 Simon Fraser University
+; Copyright (c) 2003-2021 John Willinsky
 ; Distributed under the GNU GPL v3. For full terms see the file docs/COPYING.
 ;
 ; OMP Configuration settings.
@@ -30,6 +30,10 @@ installed = Off
 
 ; The canonical URL to the OMP installation (excluding the trailing slash)
 base_url = "http://pkp.sfu.ca/omp"
+
+; Enable strict mode. This will more aggressively cause errors/warnings when
+; deprecated behaviour exists in the codebase.
+strict = Off
 
 ; Session cookie name
 session_cookie_name = OMPSID
@@ -99,10 +103,6 @@ restful_urls = Off
 ; X_FORWARDED_FOR header.
 ; Warning: This defaults to "On" if unset for backwards compatibility.
 trust_x_forwarded_for = Off
-
-; Allow javascript files to be served through a content delivery network (set to
-; off to use local files)
-enable_cdn = On
 
 ; Set the following parameter to off if you want to work with the uncompiled
 ; (non-minified) JavaScript source for debugging or if you are working off a
@@ -185,10 +185,7 @@ locale = en_US
 client_charset = utf-8
 
 ; Database connection character set
-; Must be set to "Off" if not supported by the database server
-; If enabled, must be the same character set as "client_charset"
-; (although the actual name may differ slightly depending on the server)
-connection_charset = Off
+connection_charset = utf8
 
 
 ;;;;;;;;;;;;;;;;;
@@ -256,6 +253,9 @@ encryption = sha1
 ; The unique salt to use for generating password reset hashes
 salt = "YouMustSetASecretKeyHere!!"
 
+; The unique secret used for encoding and decoding API keys
+api_key_secret = ""
+
 ; The number of seconds before a password reset hash expires (defaults to
 ; 7200 seconds (2 hours)
 reset_seconds = 7200
@@ -303,10 +303,22 @@ allowed_html = "a[href|target|title],em,strong,cite,code,ul,ol,li[class],dl,dt,d
 ; smtp_port = 25
 
 ; Enable SMTP authentication
-; Supported mechanisms: ssl, tls
+; Supported smtp_auth: ssl, tls (see PHPMailer SMTPSecure)
 ; smtp_auth = ssl
 ; smtp_username = username
 ; smtp_password = password
+;
+; Supported smtp_authtype: RAM-MD5, LOGIN, PLAIN, XOAUTH2 (see PHPMailer AuthType)
+; (Leave blank to try them in that order)
+; smtp_authtype =
+
+; The following are required for smtp_authtype = XOAUTH2 (e.g. GMail OAuth)
+; (See https://github.com/PHPMailer/PHPMailer/wiki/Using-Gmail-with-XOAUTH2)
+; smtp_oauth_provider = Google
+; smtp_oauth_email =
+; smtp_oauth_clientid =
+; smtp_oauth_clientsecret =
+; smtp_oauth_refreshtoken =
 
 ; Allow envelope sender to be specified
 ; (may not be possible with some server configurations)
@@ -432,6 +444,9 @@ recaptcha = off
 
 ; Whether or not to use Captcha on user registration
 captcha_on_register = on
+
+; Whether or not to use Captcha on user login
+captcha_on_login = on
 
 ; Validate the hostname in the ReCaptcha response
 recaptcha_enforce_hostname = Off

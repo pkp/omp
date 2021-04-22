@@ -3,8 +3,8 @@
 <!--
   * plugins/importexport/native/native.xsd
   *
-  * Copyright (c) 2014-2020 Simon Fraser University
-  * Copyright (c) 2003-2020 John Willinsky
+  * Copyright (c) 2014-2021 Simon Fraser University
+  * Copyright (c) 2003-2021 John Willinsky
   * Distributed under the GNU GPL v3. For full terms see the file docs/COPYING.
   *
   * Schema describing native XML import/export elements specific to OMP
@@ -42,8 +42,25 @@
 	<element name="monographs" substitutionGroup="pkp:submissions" />
 	<element name="Product" substitutionGroup="onix:Product" />
 
+	<complexType name="ompseries">
+		<sequence>
+			<element ref="pkp:id" minOccurs="0" maxOccurs="unbounded" />
+			<!-- Metadata -->
+			<element name="title" type="pkp:localizedNode" minOccurs="0" maxOccurs="unbounded" />
+			<element name="subtitle" type="pkp:localizedNode" minOccurs="0" maxOccurs="unbounded" />
+			<element name="description" type="pkp:localizedNode" minOccurs="0" maxOccurs="unbounded" />
+			<element name="printIssn" type="string" minOccurs="0" maxOccurs="1" />
+			<element name="onlineIssn" type="string" minOccurs="0" maxOccurs="1" />
+			<element name="path" type="string" minOccurs="0" maxOccurs="unbounded" />
+			<element name="sequence" type="string" minOccurs="0" maxOccurs="1" />
+		</sequence>
+	</complexType>
+
+	<element name="series" type="pkp:ompseries" />
+
 	<complexType name="ojschapter">
 		<sequence>
+			<element ref="pkp:id" minOccurs="0" maxOccurs="unbounded" />
 			<!-- Metadata -->
 			<element name="title" type="pkp:localizedNode" minOccurs="0" maxOccurs="unbounded" />
 			<element name="abstract" type="pkp:localizedNode" minOccurs="0" maxOccurs="unbounded" />
@@ -80,6 +97,7 @@
 			<complexContent>
 				<extension base="pkp:pkppublication">
 					<sequence>
+						<element ref="pkp:series" maxOccurs="1" minOccurs="0" />
 						<element ref="pkp:chapters" maxOccurs="1" minOccurs="0" />
 						<element ref="pkp:covers" minOccurs="0" maxOccurs="1" />
 						<element ref="pkp:citations" minOccurs="0" maxOccurs="unbounded"/>

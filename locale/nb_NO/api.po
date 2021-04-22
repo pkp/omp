@@ -1,6 +1,6 @@
 msgid ""
 msgstr ""
-"PO-Revision-Date: 2020-10-20 14:50+0000\n"
+"PO-Revision-Date: 2021-01-30 13:53+0000\n"
 "Last-Translator: Eirik Hanssen <eirikh@oslomet.no>\n"
 "Language-Team: Norwegian Bokmål <http://translate.pkp.sfu.ca/projects/omp/"
 "api/nb_NO/>\n"
@@ -28,3 +28,14 @@ msgstr "Publikasjonen du ba om er ikke tilgjengelig fra denne utgiveren."
 msgid "api.emailTemplates.403.notAllowedChangeContext"
 msgstr ""
 "Du har ikke tillatelse til å flytte denne e-postmalen til en annen utgiver."
+
+msgid "api.submissions.400.submissionsNotFound"
+msgstr "En eller flere av innleveringene ble ikke funnet."
+
+msgid "api.submissions.400.submissionIdsRequired"
+msgstr ""
+"Du må legge inn en eller flere innleverings ID-er som skal bli lagt til "
+"katalogen."
+
+msgid "api.emails.403.disabled"
+msgstr "E-post utsending har ikke blitt aktiverrt for denne utgiveren."

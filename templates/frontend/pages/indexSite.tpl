@@ -1,8 +1,8 @@
 {**
  * templates/frontend/pages/indexSite.tpl
  *
- * Copyright (c) 2014-2020 Simon Fraser University
- * Copyright (c) 2003-2020 John Willinsky
+ * Copyright (c) 2014-2021 Simon Fraser University
+ * Copyright (c) 2003-2021 John Willinsky
  * Distributed under the GNU GPL v3. For full terms see the file docs/COPYING.
  *
  * Site index.
@@ -14,7 +14,7 @@
 
 	{if $about}
 		<div class="about_site">
-			{$about|nl2br}
+			{$about}
 		</div>
 	{/if}
 
@@ -47,7 +47,7 @@
 							</h3>
 							{if $description}
 								<div class="description">
-									{$description|nl2br}
+									{$description}
 								</div>
 							{/if}
 							<ul class="links">

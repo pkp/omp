@@ -1,8 +1,8 @@
 {**
  * plugins/importexport/native/templates/index.tpl
  *
- * Copyright (c) 2014-2020 Simon Fraser University
- * Copyright (c) 2003-2020 John Willinsky
+ * Copyright (c) 2014-2021 Simon Fraser University
+ * Copyright (c) 2003-2021 John Willinsky
  * Distributed under the GNU GPL v3. For full terms see the file docs/COPYING.
  *
  * List of operations this plugin can perform
@@ -65,10 +65,10 @@
 		<script type="text/javascript">
 			$(function() {ldelim}
 				// Attach the form handler.
-				$('#exportXmlForm').pkpHandler('$.pkp.controllers.form.FormHandler');
+				$('#exportXmlForm').pkpHandler('$.pkp.controllers.form.AjaxFormHandler');
 			{rdelim});
 		</script>
-		<form id="exportXmlForm" class="pkp_form" action="{plugin_url path="export"}" method="post">
+		<form id="exportXmlForm" class="pkp_form" action="{plugin_url path="exportSubmissionsBounce"}" method="post">
 			{csrf}
 			{fbvFormArea id="exportForm"}
 				<submissions-list-panel

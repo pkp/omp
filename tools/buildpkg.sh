@@ -3,8 +3,8 @@
 #
 # buildpkg.sh
 #
-# Copyright (c) 2014-2020 Simon Fraser University
-# Copyright (c) 2003-2020 John Willinsky
+# Copyright (c) 2014-2021 Simon Fraser University
+# Copyright (c) 2003-2021 John Willinsky
 # Distributed under the GNU GPL v3. For full terms see the file docs/COPYING.
 #
 # Script to create an OMP package for distribution.
@@ -52,7 +52,6 @@ lib/pkp/tests										\
 .openshift										\
 .travis.yml										\
 lib/pkp/.git										\
-lib/pkp/lib/vendor/components								\
 lib/pkp/lib/vendor/ezyang/htmlpurifier/art						\
 lib/pkp/lib/vendor/ezyang/htmlpurifier/benchmarks					\
 lib/pkp/lib/vendor/ezyang/htmlpurifier/configdog					\
@@ -79,6 +78,8 @@ lib/pkp/lib/vendor/sebastian/comparator/tests						\
 lib/pkp/lib/vendor/sebastian/diff/tests							\
 lib/pkp/lib/vendor/oyejorge/less.php/test						\
 lib/pkp/lib/vendor/dragonmantank/cron-expression/tests/					\
+lib/pkp/lib/vendor/cweagans/composer-patches/tests					\
+lib/pkp/lib/vendor/moxiecode/plupload/examples/						\
 lib/pkp/lib/vendor/swiftmailer/swiftmailer/tests/					\
 lib/pkp/js/lib/pnotify/build-tools							\
 lib/pkp/lib/vendor/alex198710/pnotify/.git						\

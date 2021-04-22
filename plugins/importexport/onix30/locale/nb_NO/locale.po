@@ -1,6 +1,6 @@
 msgid ""
 msgstr ""
-"PO-Revision-Date: 2020-10-22 10:19+0000\n"
+"PO-Revision-Date: 2021-01-20 02:01+0000\n"
 "Last-Translator: Eirik Hanssen <eirikh@oslomet.no>\n"
 "Language-Team: Norwegian Bokmål <http://translate.pkp.sfu.ca/projects/omp/"
 "importexport-onix30/nb_NO/>\n"
@@ -21,8 +21,8 @@ msgstr "Adressat (mottaker) av denne eksporten"
 
 msgid "plugins.importexport.onix30.pressMissingFields"
 msgstr ""
-"Denne utgiveren mangler nødvendig informasjon. Gå til Innstillinger > "
-"Arbeidsflyt > Produksjon og fyll inn den manglende informasjonen."
+"Denne utgiveren mangler nødvendig informasjon. Gå til <a href=\"{$url}\""
+">Utgiverinnstilliger</a> og legg inn den manglende informasjonen."
 
 msgid "plugins.importexport.onix30.formatInvalid"
 msgstr "Ugyldig"

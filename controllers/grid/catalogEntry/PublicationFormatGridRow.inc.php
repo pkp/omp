@@ -3,8 +3,8 @@
 /**
  * @file controllers/grid/catalogEntry/PublicationFormatGridRow.inc.php
  *
- * Copyright (c) 2014-2020 Simon Fraser University
- * Copyright (c) 2003-2020 John Willinsky
+ * Copyright (c) 2014-2021 Simon Fraser University
+ * Copyright (c) 2003-2021 John Willinsky
  * Distributed under the GNU GPL v3. For full terms see the file docs/COPYING.
  *
  * @class PublicationFormatGridRow
@@ -16,57 +16,59 @@
 import('lib.pkp.controllers.grid.files.SubmissionFilesGridRow');
 import('lib.pkp.classes.controllers.grid.files.FilesGridCapabilities');
 
-class PublicationFormatGridRow extends SubmissionFilesGridRow {
-	/** @var boolean */
-	protected $_canManage;
+class PublicationFormatGridRow extends SubmissionFilesGridRow
+{
+    /** @var boolean */
+    protected $_canManage;
 
-	/**
-	 * Constructor
-	 * @param $canManage boolean
-	 */
-	function __construct($canManage) {
-		$this->_canManage = $canManage;
+    /**
+     * Constructor
+     *
+     * @param $canManage boolean
+     */
+    public function __construct($canManage)
+    {
+        $this->_canManage = $canManage;
 
-		parent::__construct(
-			new FilesGridCapabilities(
-				$canManage?FILE_GRID_ADD|FILE_GRID_DELETE|FILE_GRID_MANAGE|FILE_GRID_EDIT|FILE_GRID_VIEW_NOTES:0
-			),
-			WORKFLOW_STAGE_ID_PRODUCTION
-		);
-	}
+        parent::__construct(
+            new FilesGridCapabilities(
+                $canManage ? FILE_GRID_ADD | FILE_GRID_DELETE | FILE_GRID_MANAGE | FILE_GRID_EDIT | FILE_GRID_VIEW_NOTES : 0
+            ),
+            WORKFLOW_STAGE_ID_PRODUCTION
+        );
+    }
 
 
-	//
-	// Overridden template methods from GridRow
-	//
-	/**
-	 * @copydoc SubmissionFilesGridRow::initialize()
-	 */
-	function initialize($request, $template = 'controllers/grid/gridRow.tpl') {
-		parent::initialize($request, $template);
-		$submissionFileData =& $this->getData();
-		$submissionFile =& $submissionFileData['submissionFile']; /* @var $submissionFile SubmissionFile */
-		import('lib.pkp.classes.linkAction.request.AjaxModal');
-		$router = $request->getRouter();
-		$mimetype = $submissionFile->getData('mimetype');
-		if ($this->_canManage && in_array($mimetype, array('application/xml', 'text/html'))) {
-			$this->addAction(new LinkAction(
-				'dependentFiles',
-				new AjaxModal(
-					$router->url($request, null, null, 'dependentFiles', null, array_merge(
-						$this->getRequestArgs(),
-						array(
-							'submissionFileId' => $submissionFile->getId(),
-						)
-					)),
-					__('submission.dependentFiles'),
-					'modal_edit'
-				),
-				__('submission.dependentFiles'),
-				'edit'
-			));
-		}
-	}
+    //
+    // Overridden template methods from GridRow
+    //
+    /**
+     * @copydoc SubmissionFilesGridRow::initialize()
+     */
+    public function initialize($request, $template = 'controllers/grid/gridRow.tpl')
+    {
+        parent::initialize($request, $template);
+        $submissionFileData = & $this->getData();
+        $submissionFile = & $submissionFileData['submissionFile']; /* @var $submissionFile SubmissionFile */
+        import('lib.pkp.classes.linkAction.request.AjaxModal');
+        $router = $request->getRouter();
+        $mimetype = $submissionFile->getData('mimetype');
+        if ($this->_canManage && in_array($mimetype, ['application/xml', 'text/html'])) {
+            $this->addAction(new LinkAction(
+                'dependentFiles',
+                new AjaxModal(
+                    $router->url($request, null, null, 'dependentFiles', null, array_merge(
+                        $this->getRequestArgs(),
+                        [
+                            'submissionFileId' => $submissionFile->getId(),
+                        ]
+                    )),
+                    __('submission.dependentFiles'),
+                    'modal_edit'
+                ),
+                __('submission.dependentFiles'),
+                'edit'
+            ));
+        }
+    }
 }
-
-

@@ -3,8 +3,8 @@
 /**
  * @file tools/mergeUsers.php
  *
- * Copyright (c) 2014-2020 Simon Fraser University
- * Copyright (c) 2003-2020 John Willinsky
+ * Copyright (c) 2014-2021 Simon Fraser University
+ * Copyright (c) 2003-2021 John Willinsky
  * Distributed under the GNU GPL v3. For full terms see the file docs/COPYING.
  *
  * @class mergeUsers
@@ -17,6 +17,5 @@ require(dirname(__FILE__) . '/bootstrap.inc.php');
 
 import('lib.pkp.classes.cliTool.MergeUsersTool');
 
-$tool = new MergeUsersTool(isset($argv) ? $argv : array());
+$tool = new \PKP\cliTool\MergeUsersTool($argv ?? []);
 $tool->execute();
-

@@ -3,8 +3,8 @@
 /**
  * @file classes/core/PageRouter.inc.php
  *
- * Copyright (c) 2014-2020 Simon Fraser University
- * Copyright (c) 2003-2020 John Willinsky
+ * Copyright (c) 2014-2021 Simon Fraser University
+ * Copyright (c) 2003-2021 John Willinsky
  * Distributed under the GNU GPL v3. For full terms see the file docs/COPYING.
  *
  * @class PageRouter
@@ -13,25 +13,29 @@
  * @brief Class providing OMP-specific page routing.
  */
 
+namespace APP\core;
 
-import('lib.pkp.classes.core.PKPPageRouter');
+class PageRouter extends \PKP\core\PKPPageRouter
+{
+    /**
+     * Constructor
+     */
+    public function __construct()
+    {
+        parent::__construct();
+    }
 
-class PageRouter extends PKPPageRouter {
-	/**
-	 * Constructor
-	 */
-	function __construct() {
-		parent::__construct();
-	}
-
-	/**
-	 * get the cacheable pages
-	 * @return array
-	 */
-	function getCacheablePages() {
-		return array('about', 'announcement', 'help', 'index', 'information', 'rt', '');
-	}
-
+    /**
+     * get the cacheable pages
+     *
+     * @return array
+     */
+    public function getCacheablePages()
+    {
+        return ['about', 'announcement', 'help', 'index', 'information', 'rt', ''];
+    }
 }
 
-
+if (!PKP_STRICT_MODE) {
+    class_alias('\APP\core\PageRouter', '\PageRouter');
+}

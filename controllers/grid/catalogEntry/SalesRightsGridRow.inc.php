@@ -3,8 +3,8 @@
 /**
  * @file controllers/grid/catalogEntry/SalesRightsGridRow.inc.php
  *
- * Copyright (c) 2014-2020 Simon Fraser University
- * Copyright (c) 2000-2020 John Willinsky
+ * Copyright (c) 2014-2021 Simon Fraser University
+ * Copyright (c) 2000-2021 John Willinsky
  * Distributed under the GNU GPL v3. For full terms see the file docs/COPYING.
  *
  * @class SalesRightsGridRow
@@ -15,79 +15,85 @@
 
 import('lib.pkp.classes.controllers.grid.GridRow');
 
-class SalesRightsGridRow extends GridRow {
-	/** @var Monograph **/
-	var $_monograph;
+class SalesRightsGridRow extends GridRow
+{
+    /** @var Monograph **/
+    public $_monograph;
 
-	/**
-	 * Constructor
-	 */
-	function __construct($monograph) {
-		$this->_monograph = $monograph;
-		parent::__construct();
-	}
+    /**
+     * Constructor
+     */
+    public function __construct($monograph)
+    {
+        $this->_monograph = $monograph;
+        parent::__construct();
+    }
 
-	//
-	// Overridden methods from GridRow
-	//
-	/**
-	 * @copydoc GridRow::initialize()
-	 */
-	function initialize($request, $template = null) {
-		// Do the default initialization
-		parent::initialize($request, $template);
+    //
+    // Overridden methods from GridRow
+    //
+    /**
+     * @copydoc GridRow::initialize()
+     *
+     * @param null|mixed $template
+     */
+    public function initialize($request, $template = null)
+    {
+        // Do the default initialization
+        parent::initialize($request, $template);
 
-		$monograph = $this->getMonograph();
+        $monograph = $this->getMonograph();
 
-		// Is this a new row or an existing row?
-		$salesRights = $this->_data;
+        // Is this a new row or an existing row?
+        $salesRights = $this->_data;
 
-		if ($salesRights != null && is_numeric($salesRights->getId())) {
-			$router = $request->getRouter();
-			$actionArgs = array(
-				'submissionId' => $monograph->getId(),
-				'salesRightsId' => $salesRights->getId()
-			);
+        if ($salesRights != null && is_numeric($salesRights->getId())) {
+            $router = $request->getRouter();
+            $actionArgs = [
+                'submissionId' => $monograph->getId(),
+                'salesRightsId' => $salesRights->getId()
+            ];
 
-			// Add row-level actions
-			import('lib.pkp.classes.linkAction.request.AjaxModal');
-			$this->addAction(
-				new LinkAction(
-					'editRights',
-					new AjaxModal(
-						$router->url($request, null, null, 'editRights', null, $actionArgs),
-						__('grid.action.edit'),
-						'modal_edit'
-					),
-					__('grid.action.edit'),
-					'edit'
-				)
-			);
+            // Add row-level actions
+            import('lib.pkp.classes.linkAction.request.AjaxModal');
+            $this->addAction(
+                new LinkAction(
+                    'editRights',
+                    new AjaxModal(
+                        $router->url($request, null, null, 'editRights', null, $actionArgs),
+                        __('grid.action.edit'),
+                        'modal_edit'
+                    ),
+                    __('grid.action.edit'),
+                    'edit'
+                )
+            );
 
-			import('lib.pkp.classes.linkAction.request.RemoteActionConfirmationModal');
-			$this->addAction(
-				new LinkAction(
-					'deleteRights',
-					new RemoteActionConfirmationModal(
-						$request->getSession(),
-						__('common.confirmDelete'),
-						__('common.delete'),
-						$router->url($request, null, null, 'deleteRights', null, $actionArgs),
-						'modal_delete'
-					),
-					__('grid.action.delete'),
-					'delete'
-				)
-			);
-		}
-	}
+            import('lib.pkp.classes.linkAction.request.RemoteActionConfirmationModal');
+            $this->addAction(
+                new LinkAction(
+                    'deleteRights',
+                    new RemoteActionConfirmationModal(
+                        $request->getSession(),
+                        __('common.confirmDelete'),
+                        __('common.delete'),
+                        $router->url($request, null, null, 'deleteRights', null, $actionArgs),
+                        'modal_delete'
+                    ),
+                    __('grid.action.delete'),
+                    'delete'
+                )
+            );
+        }
+    }
 
-	/**
-	 * Get the monograph for this row (already authorized)
-	 * @return Monograph
-	 */
-	function &getMonograph() {
-		return $this->_monograph;
-	}
+    /**
+     * Get the monograph for this row (already authorized)
+     *
+     * @return Monograph
+     */
+    public function &getMonograph()
+    {
+        return $this->_monograph;
+    }
 }
-

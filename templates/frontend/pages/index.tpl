@@ -1,8 +1,8 @@
 {**
  * templates/frontend/pages/index.tpl
  *
- * Copyright (c) 2014-2020 Simon Fraser University
- * Copyright (c) 2003-2020 John Willinsky
+ * Copyright (c) 2014-2021 Simon Fraser University
+ * Copyright (c) 2003-2021 John Willinsky
  * Distributed under the GNU GPL v3. For full terms see the file docs/COPYING.
  *
  * @brief Display the front page of the site
@@ -61,7 +61,7 @@
 				{else}
 					<article class="obj_announcement_summary">
 						<h4>
-							<a href="{url router=$smarty.const.ROUTE_PAGE page="announcement" op="view" path=$announcement->getId()}">
+							<a href="{url router=PKPApplication::ROUTE_PAGE page="announcement" op="view" path=$announcement->getId()}">
 								{$announcement->getLocalizedTitle()|escape}
 							</a>
 						</h4>

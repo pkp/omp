@@ -1,6 +1,6 @@
 msgid ""
 msgstr ""
-"PO-Revision-Date: 2020-10-23 07:07+0000\n"
+"PO-Revision-Date: 2021-01-20 02:01+0000\n"
 "Last-Translator: Eirik Hanssen <eirikh@oslomet.no>\n"
 "Language-Team: Norwegian Bokmål <http://translate.pkp.sfu.ca/projects/omp/"
 "manager/nb_NO/>\n"
@@ -76,8 +76,8 @@ msgstr ""
 "<strong>NB:</strong> For å aktivere denne valgmuligheten, må "
 "nettstedsadministratoren slå på <code>allow_envelope_sender</code> "
 "valgmuligheten i OMP konfigurasjonsfilen. Ytterligere serverkonfigurasjon "
-"kan være påkrevet for å støtte denne funksjonen (som likevel kan være umulig "
-"å bruke på enkelte servere), som oppgitt i OMP-dokumentasjonen."
+"kan være nødvendig for å støtte denne funksjonen (som likevel kan være "
+"umulig å bruke på enkelte servere), som oppgitt i OMP-dokumentasjonen."
 
 msgid "manager.setup.emailBounceAddress.description"
 msgstr ""
@@ -1377,3 +1377,31 @@ msgstr "Tilbakestill monografirettigheter"
 
 msgid "manager.publication.library"
 msgstr "Utgivers bibliotek"
+
+msgid "plugins.importexport.native.exportSubmissions"
+msgstr "Eksporter innleveringer"
+
+msgid "plugins.importexport.common.invalidXML"
+msgstr "Ugyldig XML:"
+
+msgid "plugins.importexport.common.error.validation"
+msgstr "Kunne ikke konvertere valgte objekt."
+
+msgid "plugins.importexport.common.error.noObjectsSelected"
+msgstr "Ingen objekt valgt."
+
+msgid "manager.setup.disableSubmissions.description"
+msgstr ""
+"Forhindre brukere fra å sende inn nye innleveringer til utgiveren. "
+"Innleveringer kan deaktiveres for individuelle serier på siden <a href=\""
+"{$url}\">utgiverserier</a>."
+
+msgid "manager.setup.disableSubmissions.notAccepting"
+msgstr ""
+"Denne utgiveren tar ikke imot innleveringer på nåværende tidspunkt. Gå til "
+"arbeidsflytinnstillingene for å tillate innleveringer."
+
+msgid "manager.series.confirmDeactivateSeries.error"
+msgstr ""
+"Minst en serie må være aktiv. Gå til arbeidsflytinnstillingene for å "
+"deaktivere alle innleveringer til denne utgiveren."

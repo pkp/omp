@@ -1,13 +1,14 @@
 {
   "name": "OMP",
   "description": "Open Monograph Systems (OMP) is a monograph management and publishing system that has been developed by the Public Knowledge Project through its federally funded efforts to expand and improve access to research.",
-  "version": "3.2.0",
+  "version": "3.3.0",
   "author": "Public Knowledge Project",
   "private": true,
   "scripts": {
     "dev": "vue-cli-service build --no-clean --watch",
     "build": "vue-cli-service build --no-clean",
-    "lint": "vue-cli-service lint js/load.js lib/pkp/js/load.js lib/pkp/js/classes/VueRegistry.js"
+    "lint": "vue-cli-service lint js/load.js lib/pkp/js/load.js lib/pkp/js/classes/VueRegistry.js",
+    "fix": "vue-cli-service lint js/load.js lib/pkp/js/load.js lib/pkp/js/classes/VueRegistry.js && php lib/pkp/lib/vendor/bin/php-cs-fixer fix --config .php_cs --allow-risky=yes"
   },
   "dependencies": {
     "@tinymce/tinymce-vue": "^1.1.0",
@@ -15,7 +16,7 @@
     "clone-deep": "^4.0.1",
     "debounce": "^1.2.0",
     "moment": "^2.27.0",
-    "tinymce": "^4.9.11",
+    "tinymce": "^5.7.0",
     "v-tooltip": "^2.0.3",
     "vue": "^2.6.12",
     "vue-autosuggest": "^2.2.0",
@@ -41,6 +42,7 @@
     "eslint": "^5.16.0",
     "eslint-plugin-vue": "^5.2.3",
     "google-closure-compiler-java": "^20200719.0.0",
+    "husky": "^4.3.8",
     "less": "^3.12.2",
     "less-loader": "^4.1.0",
     "lint-staged": "^8.2.1",
@@ -88,6 +90,17 @@
   "browserslist": [
     "> 1%",
     "last 2 versions",
-    "not ie <= 10"
-  ]
+    "ie >= 10"
+  ],
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged"
+    }
+  },
+  "lint-staged": {
+    "**/*.php": [
+      "php lib/pkp/lib/vendor/bin/php-cs-fixer fix --config .php_cs --allow-risky=yes",
+      "php lib/pkp/lib/vendor/bin/php-cs-fixer fix --config .php_cs --allow-risky=yes --dry-run"
+    ]
+  }
 }

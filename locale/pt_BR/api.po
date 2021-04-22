@@ -1,6 +1,6 @@
 msgid ""
 msgstr ""
-"PO-Revision-Date: 2020-06-05 16:39+0000\n"
+"PO-Revision-Date: 2021-02-09 01:19+0000\n"
 "Last-Translator: Diego José Macêdo <diegojmacedo@gmail.com>\n"
 "Language-Team: Portuguese (Brazil) <http://translate.pkp.sfu.ca/projects/omp/"
 "api/pt_BR/>\n"
@@ -27,3 +27,14 @@ msgstr "A publicação solicitada não é parte desta submissão."
 
 msgid "api.publications.403.contextsDidNotMatch"
 msgstr "A publicação solicitada não é parte desta editora."
+
+msgid "api.emails.403.disabled"
+msgstr "O recurso de notificação por e-mail não foi ativado para esta editora."
+
+msgid "api.submissions.400.submissionsNotFound"
+msgstr "Uma ou mais submissões que você especificou não foram encontradas."
+
+msgid "api.submissions.400.submissionIdsRequired"
+msgstr ""
+"Você deve fornecer um ou mais IDs de submissão para serem adicionados ao "
+"catálogo."
