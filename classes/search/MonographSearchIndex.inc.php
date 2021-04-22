@@ -14,8 +14,9 @@
  */
 
 use \PKP\submission\SubmissionFile;
-
-import('lib.pkp.classes.search.SubmissionSearchIndex');
+use \PKP\search\SearchFileParser;
+use \PKP\search\SubmissionSearch;
+use \PKP\search\SubmissionSearchIndex;
 
 class MonographSearchIndex extends SubmissionSearchIndex
 {
@@ -120,17 +121,16 @@ class MonographSearchIndex extends SubmissionSearchIndex
         }
 
         // Update search index
-        import('classes.search.MonographSearch');
         $submissionId = $submission->getId();
-        $this->updateTextIndex($submissionId, SUBMISSION_SEARCH_AUTHOR, $authorText);
-        $this->updateTextIndex($submissionId, SUBMISSION_SEARCH_TITLE, $publication->getData('title'));
-        $this->updateTextIndex($submissionId, SUBMISSION_SEARCH_ABSTRACT, $publication->getData('abstract'));
+        $this->updateTextIndex($submissionId, SubmissionSearch::SUBMISSION_SEARCH_AUTHOR, $authorText);
+        $this->updateTextIndex($submissionId, SubmissionSearch::SUBMISSION_SEARCH_TITLE, $publication->getData('title'));
+        $this->updateTextIndex($submissionId, SubmissionSearch::SUBMISSION_SEARCH_ABSTRACT, $publication->getData('abstract'));
 
-        $this->updateTextIndex($submissionId, SUBMISSION_SEARCH_SUBJECT, (array) $this->_flattenLocalizedArray($publication->getData('subjects')));
-        $this->updateTextIndex($submissionId, SUBMISSION_SEARCH_KEYWORD, (array) $this->_flattenLocalizedArray($publication->getData('keywords')));
-        $this->updateTextIndex($submissionId, SUBMISSION_SEARCH_DISCIPLINE, (array) $this->_flattenLocalizedArray($publication->getData('disciplines')));
-        $this->updateTextIndex($submissionId, SUBMISSION_SEARCH_TYPE, (array) $publication->getData('type'));
-        $this->updateTextIndex($submissionId, SUBMISSION_SEARCH_COVERAGE, (array) $publication->getData('coverage'));
+        $this->updateTextIndex($submissionId, SubmissionSearch::SUBMISSION_SEARCH_SUBJECT, (array) $this->_flattenLocalizedArray($publication->getData('subjects')));
+        $this->updateTextIndex($submissionId, SubmissionSearch::SUBMISSION_SEARCH_KEYWORD, (array) $this->_flattenLocalizedArray($publication->getData('keywords')));
+        $this->updateTextIndex($submissionId, SubmissionSearch::SUBMISSION_SEARCH_DISCIPLINE, (array) $this->_flattenLocalizedArray($publication->getData('disciplines')));
+        $this->updateTextIndex($submissionId, SubmissionSearch::SUBMISSION_SEARCH_TYPE, (array) $publication->getData('type'));
+        $this->updateTextIndex($submissionId, SubmissionSearch::SUBMISSION_SEARCH_COVERAGE, (array) $publication->getData('coverage'));
         // FIXME Index sponsors too?
     }
 
@@ -150,7 +150,7 @@ class MonographSearchIndex extends SubmissionSearchIndex
         ]);
 
         foreach ($submissionFiles as $submissionFile) {
-            $this->updateFileIndex($monograph->getId(), SUBMISSION_SEARCH_GALLEY_FILE, $submissionFile->getId());
+            $this->updateFileIndex($monograph->getId(), SubmissionSearch::SUBMISSION_SEARCH_GALLEY_FILE, $submissionFile->getId());
         }
     }
 
@@ -160,7 +160,7 @@ class MonographSearchIndex extends SubmissionSearchIndex
     public function clearSubmissionFiles($submission)
     {
         $searchDao = DAORegistry::getDAO('MonographSearchDAO'); /* @var $searchDao MonographSearchDAO */
-        $searchDao->deleteSubmissionKeywords($submission->getId(), SUBMISSION_SEARCH_GALLEY_FILE);
+        $searchDao->deleteSubmissionKeywords($submission->getId(), SubmissionSearch::SUBMISSION_SEARCH_GALLEY_FILE);
     }
 
     /**
@@ -202,12 +202,7 @@ class MonographSearchIndex extends SubmissionSearchIndex
             echo 'Clearing index ... ';
         }
         $searchDao = DAORegistry::getDAO('MonographSearchDAO'); /* @var $searchDao MonographSearchDAO */
-        // FIXME Abstract into MonographSearchDAO?
-        $searchDao->update('DELETE FROM submission_search_object_keywords');
-        $searchDao->update('DELETE FROM submission_search_objects');
-        $searchDao->update('DELETE FROM submission_search_keyword_list');
-        $searchDao->setCacheDir(Config::getVar('files', 'files_dir') . '/_db');
-        $searchDao->_dataSource->CacheFlush();
+        $searchDao->clearIndex();
         if ($log) {
             echo "done\n";
         }
