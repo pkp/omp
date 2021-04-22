@@ -15,7 +15,7 @@
  * @brief Describes an entry in the submission history log.
  */
 
-use APP\log;
+namespace APP\log;
 
 use \PKP\log\PKPSubmissionEventLogEntry;
 

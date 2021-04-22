@@ -15,7 +15,7 @@
  * @brief Extension to EmailLogDAO for monograph file specific log entries.
  */
 
-namespace PKP\log;
+namespace APP\log;
 
 use \PKP\log\EmailLogDAO;
 use \PKP\log\MonographFileEmailLogEntry;
