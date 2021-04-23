@@ -16,6 +16,8 @@
 
 import('lib.pkp.classes.form.Form');
 
+use \APP\template\TemplateManager;
+
 class ChapterForm extends Form
 {
     /** The monograph associated with the chapter being edited **/

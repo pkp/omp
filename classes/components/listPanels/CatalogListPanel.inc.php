@@ -19,6 +19,7 @@ use \PKP\submission\PKPSubmission;
 
 use \APP\core\Application;
 use \APP\i18n\AppLocale;
+use \APP\template\TemplateManager;
 
 class CatalogListPanel extends \PKP\components\listPanels\ListPanel
 {

@@ -13,6 +13,8 @@
  *
  */
 
+use \APP\template\TemplateManager;
+
 import('lib.pkp.classes.form.Form');
 
 class PaypalPaymentForm extends Form

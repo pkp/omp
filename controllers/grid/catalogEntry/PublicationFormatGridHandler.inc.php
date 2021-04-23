@@ -26,7 +26,9 @@ import('controllers.grid.catalogEntry.PublicationFormatCategoryGridDataProvider'
 // Link action & modal classes
 import('lib.pkp.classes.linkAction.request.AjaxModal');
 
-use PKP\core\JSONMessage;
+use \PKP\core\JSONMessage;
+
+use \APP\template\TemplateManager;
 
 class PublicationFormatGridHandler extends CategoryGridHandler
 {

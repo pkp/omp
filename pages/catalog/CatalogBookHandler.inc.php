@@ -19,6 +19,8 @@ import('classes.handler.Handler');
 // import UI base classes
 import('lib.pkp.classes.linkAction.LinkAction');
 
+use \APP\template\TemplateManager;
+
 
 class CatalogBookHandler extends Handler
 {

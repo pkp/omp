@@ -15,6 +15,8 @@
 
 use \PKP\submission\SubmissionFile;
 
+use \APP\template\TemplateManager;
+
 import('lib.pkp.classes.plugins.ImportExportPlugin');
 
 class CSVImportExportPlugin extends ImportExportPlugin

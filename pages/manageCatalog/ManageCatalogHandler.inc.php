@@ -18,6 +18,8 @@ import('classes.handler.Handler');
 use \PKP\core\JSONMessage;
 use \PKP\submission\PKPSubmissionDAO;
 
+use \APP\template\TemplateManager;
+
 class ManageCatalogHandler extends Handler
 {
     /** @copydoc PKPHandler::_isBackendPage */

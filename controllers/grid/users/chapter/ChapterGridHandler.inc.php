@@ -26,6 +26,8 @@ import('lib.pkp.classes.linkAction.request.AjaxModal');
 
 use PKP\core\JSONMessage;
 
+use \APP\template\TemplateManager;
+
 class ChapterGridHandler extends CategoryGridHandler
 {
     /** @var boolean */

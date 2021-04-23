@@ -15,20 +15,13 @@
 
 use \PKP\submission\SubmissionFile;
 
+use \APP\template\TemplateManager;
+
 // Import base class
 import('lib.pkp.pages.authorDashboard.PKPAuthorDashboardHandler');
 
 class AuthorDashboardHandler extends PKPAuthorDashboardHandler
 {
-    /**
-     * Constructor
-     */
-    public function __construct()
-    {
-        parent::__construct();
-    }
-
-
     //
     // Public handler operations
     //

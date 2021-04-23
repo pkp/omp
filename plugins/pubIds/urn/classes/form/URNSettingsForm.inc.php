@@ -13,6 +13,8 @@
  * @brief Form for journal managers to setup URN plugin
  */
 
+use \APP\template\TemplateManager;
+
 
 import('lib.pkp.classes.form.Form');
 

@@ -16,6 +16,8 @@
 import('lib.pkp.classes.form.Form');
 import('lib.pkp.classes.plugins.PKPPubIdPluginHelper');
 
+use \APP\template\TemplateManager;
+
 class PublicationFormatMetadataForm extends Form
 {
     /** @var Submission The submission this publication format is related to */

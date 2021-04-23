@@ -19,6 +19,8 @@ import('lib.pkp.pages.catalog.PKPCatalogHandler');
 use \PKP\submission\PKPSubmission;
 use \PKP\submission\PKPSubmissionDAO;
 
+use \APP\template\TemplateManager;
+
 class CatalogHandler extends PKPCatalogHandler
 {
     //

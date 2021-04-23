@@ -16,6 +16,8 @@
 
 import('lib.pkp.controllers.grid.settings.sections.form.PKPSectionForm');
 
+use \APP\template\TemplateManager;
+
 class SeriesForm extends PKPSectionForm
 {
     /** @var int $_pressId */

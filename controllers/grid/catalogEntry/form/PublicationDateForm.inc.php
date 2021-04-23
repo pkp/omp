@@ -15,6 +15,8 @@
 
 import('lib.pkp.classes.form.Form');
 
+use \APP\template\TemplateManager;
+
 class PublicationDateForm extends Form
 {
     /** The submission associated with the format being edited **/

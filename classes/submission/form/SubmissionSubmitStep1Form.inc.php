@@ -16,6 +16,8 @@
 import('lib.pkp.classes.submission.form.PKPSubmissionSubmitStep1Form');
 import('classes.submission.Submission'); // WORK_TYPE_... constants for form
 
+use \APP\template\TemplateManager;
+
 class SubmissionSubmitStep1Form extends PKPSubmissionSubmitStep1Form
 {
     /**

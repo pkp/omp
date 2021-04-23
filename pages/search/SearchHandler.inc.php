@@ -16,6 +16,8 @@
 import('classes.search.MonographSearch');
 import('classes.handler.Handler');
 
+use \APP\template\TemplateManager;
+
 class SearchHandler extends Handler
 {
     /**

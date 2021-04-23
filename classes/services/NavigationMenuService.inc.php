@@ -15,6 +15,8 @@
 
 namespace APP\Services;
 
+use \APP\template\TemplateManager;
+
 /** types for all omp default navigationMenuItems */
 define('NMI_TYPE_CATALOG', 'NMI_TYPE_CATALOG');
 define('NMI_TYPE_SERIES', 'NMI_TYPE_SERIES');

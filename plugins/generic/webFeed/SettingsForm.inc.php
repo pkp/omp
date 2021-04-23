@@ -15,6 +15,8 @@
 
 import('lib.pkp.classes.form.Form');
 
+use \APP\template\TemplateManager;
+
 class SettingsForm extends Form
 {
     /** @var int Associated context ID */

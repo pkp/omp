@@ -15,6 +15,7 @@
  */
 
 use \APP\submission\SubmissionDAO;
+use \APP\template\TemplateManager;
 
 import('lib.pkp.classes.plugins.GatewayPlugin');
 
