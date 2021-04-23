@@ -26,6 +26,8 @@ define('WORK_TYPE_AUTHORED_WORK', 2);
 
 use \PKP\submission\PKPSubmission;
 
+use \APP\core\Services;
+
 import('classes.monograph.Author');
 
 class Submission extends PKPSubmission
