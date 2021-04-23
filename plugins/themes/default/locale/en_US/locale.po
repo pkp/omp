@@ -59,11 +59,11 @@ msgstr "When a homepage image has been uploaded, display it in the background of
 msgid "plugins.themes.default.option.useHomepageImageAsHeader.option"
 msgstr "Show the homepage image as the header background."
 
-msgid "plugins.themes.default.option.showCatalogueSeriesListing.label"
-msgstr "Catalogue Series Listing"
+msgid "plugins.themes.default.option.showCatalogSeriesListing.label"
+msgstr "Catalog Series Listing"
 
-msgid "plugins.themes.default.option.showCatalogueSeriesListing.description"
-msgstr "When enabled a list of existing Series will be shown on the top of the Catalogue page with links leading to the Series archive page."
+msgid "plugins.themes.default.option.showCatalogSeriesListing.description"
+msgstr "When enabled a list of existing Series will be shown on the top of the Catalog page with links leading to the Series archive page."
 
-msgid "plugins.themes.default.option.showCatalogueSeriesListing.option"
-msgstr "Enable Series listing in Catalogue page."
+msgid "plugins.themes.default.option.showCatalogSeriesListing.option"
+msgstr "Enable Series listing in Catalog page."

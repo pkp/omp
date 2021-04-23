@@ -10,26 +10,27 @@
  */
 .page_catalog {
 	.pkp_series_nav_menu{
+
 		border-top: @bg-border;
+		margin: (@triple * 2) -@base;
+		padding: @double;
+		margin-bottom: -(@triple * 2);
+
+		> h2 {
+			font-size: @font-base;
+			font-weight: @bold;
+			display: inline;
+			margin: 0;
+		}
+
 		> ul {
 			display: inline;
 			list-style: none;
 			padding: 0px;
 			> li {
 				display: inline;
-				&::after {
-			 		content: ", ";
-				}
-				&:last-child::after {
-					content: "";
-				}
 			}
-
 		}
-
-		margin: (@triple * 2) -@base;
-		padding: @double;
-		margin-bottom: -(@triple * 2);
 
 		@media(min-width: @screen-phone) {
 			margin-left: -@double;
@@ -41,5 +42,6 @@
 			margin-right: -@triple;
 			padding: @triple;
 		}
+
 	}
 }

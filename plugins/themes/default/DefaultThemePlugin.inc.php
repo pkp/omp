@@ -91,13 +91,13 @@ class DefaultThemePlugin extends ThemePlugin
             'default' => '#1E6292',
         ]);
 
-        $this->addOption('showCatalogueSeriesListing', 'FieldOptions', [
-            'label' => __('plugins.themes.default.option.showCatalogueSeriesListing.label'),
-            'description' => __('plugins.themes.default.option.showCatalogueSeriesListing.description'),
+        $this->addOption('showCatalogSeriesListing', 'FieldOptions', [
+            'label' => __('plugins.themes.default.option.showCatalogSeriesListing.label'),
+            'description' => __('plugins.themes.default.option.showCatalogSeriesListing.description'),
             'options' => [
                 [
                     'value' => true,
-                    'label' => __('plugins.themes.default.option.showCatalogueSeriesListing.option')
+                    'label' => __('plugins.themes.default.option.showCatalogSeriesListing.option')
                 ],
             ],
             'default' => false,

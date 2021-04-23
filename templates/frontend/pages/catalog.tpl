@@ -26,15 +26,15 @@
 	</div>
 
 	{* Series List *}
-	{if $activeTheme->getOption('showCatalogueSeriesListing') && $contextSeries|@count > 1}
-		<nav class="pkp_series_nav_menu" role="navigation" aria-label="Series">
-			<strong>{translate key="series.series"}:</strong>
+	{if $activeTheme->getOption('showCatalogSeriesListing') && $contextSeries|@count > 1}
+		<nav class="pkp_series_nav_menu" role="navigation" aria-label="{translate key="series.series"}">
+			<h2>{translate key="series.series"}:</h2>
 			<ul>
 				{foreach name="seriesListLoop" from=$contextSeries item=series}
 					<li class="series_{$series->getId()}">
 						<a href="{url router=PKPApplication::ROUTE_PAGE page="catalog" op="series" path=$series->getPath()|escape}">
 							{$series->getLocalizedTitle()|escape}
-						</a>
+						</a>{if !$series@last}<span style="pkp_comma_list_separator">{translate key="common.commaListSeparator"}</span>{/if}
 					</li>
 				{/foreach}
 			</ul>
