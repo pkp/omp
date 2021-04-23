@@ -15,6 +15,8 @@
 
 import('lib.pkp.pages.index.PKPIndexHandler');
 
+use \APP\template\TemplateManager;
+
 class IndexHandler extends PKPIndexHandler
 {
     //
@@ -82,7 +84,7 @@ class IndexHandler extends PKPIndexHandler
             'presses' => $pressDao->getAll(true)->toArray(),
             'site' => $site,
         ]);
-        $templateMgr->setCacheability(CACHEABILITY_PUBLIC);
+        $templateMgr->setCacheability(TemplateManager::CACHEABILITY_PUBLIC);
         $templateMgr->display('frontend/pages/indexSite.tpl');
     }
 

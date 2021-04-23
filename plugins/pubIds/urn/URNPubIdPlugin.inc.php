@@ -13,6 +13,7 @@
  * @brief URN plugin class
  */
 
+use \APP\template\TemplateManager;
 
 import('classes.plugins.PubIdPlugin');
 
@@ -508,7 +509,7 @@ class URNPubIdPlugin extends PubIdPlugin
             Application::get()->getRequest()->getBaseUrl() . '/' . $this->getPluginPath() . '/js/FieldUrn.js',
             [
                 'contexts' => 'backend',
-                'priority' => STYLE_SEQUENCE_LAST,
+                'priority' => TemplateManager::STYLE_SEQUENCE_LAST,
             ]
         );
 
@@ -527,7 +528,7 @@ class URNPubIdPlugin extends PubIdPlugin
             [
                 'contexts' => 'backend',
                 'inline' => true,
-                'priority' => STYLE_SEQUENCE_LAST,
+                'priority' => TemplateManager::STYLE_SEQUENCE_LAST,
             ]
         );
     }
