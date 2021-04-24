@@ -17,15 +17,12 @@
 
 namespace APP\template;
 
-use \PKP\template\PKPTemplateManager;
-use \PKP\db\DAORegistry;
+use PKP\template\PKPTemplateManager;
+use PKP\db\DAORegistry;
 
-use \APP\core\Application;
-use \APP\i18n\AppLocale;
-
-// FIXME: Add namespaces
-use \PublicFileManager;
-import('classes.file.PublicFileManager');
+use APP\core\Application;
+use APP\i18n\AppLocale;
+use APP\file\PublicFileManager;
 
 class TemplateManager extends PKPTemplateManager
 {

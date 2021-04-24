@@ -17,14 +17,12 @@
 
 namespace APP\publication;
 
-use \PKP\publication\PKPPublication;
+use PKP\publication\PKPPublication;
 
-use \APP\i18n\AppLocale;
-use \APP\core\Application;
-use \APP\core\Services;
-
-// FIXME: Add namespaces
-use \PublicFileManager;
+use APP\i18n\AppLocale;
+use APP\core\Application;
+use APP\core\Services;
+use APP\file\PublicFileManager;
 
 class Publication extends PKPPublication
 {
@@ -64,7 +62,6 @@ class Publication extends PKPPublication
             return Application::get()->getRequest()->getBaseUrl() . '/templates/images/book-default.png';
         }
 
-        import('classes.file.PublicFileManager');
         $publicFileManager = new PublicFileManager();
 
         return join('/', [

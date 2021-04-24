@@ -15,6 +15,8 @@
  * @brief DAO operations for the OMP OAI interface.
  */
 
+use PKP\submission\PKPSubmission;
+
 import('lib.pkp.classes.oai.PKPOAIDAO');
 
 class OAIDAO extends PKPOAIDAO
@@ -232,7 +234,6 @@ class OAIDAO extends PKPOAIDAO
             $params[] = (int) $submissionId;
         }
 
-        import('lib.pkp.classes.submission.PKPSubmission'); // STATUS_PUBLISHED
         return $this->retrieve(
             'SELECT	ms.last_modified AS last_modified,
 				pf.publication_format_id AS data_object_id,
@@ -249,7 +250,7 @@ class OAIDAO extends PKPOAIDAO
 			WHERE	p.enabled = 1
 				' . ($pressId ? ' AND p.press_id = ?' : '') . '
 				' . ($seriesId ? ' AND pub.series_id = ?' : '') . '
-				AND ms.status = ' . STATUS_PUBLISHED . '
+				AND ms.status = ' . PKPSubmission::STATUS_PUBLISHED . '
 				AND pf.is_available = 1
 				AND pub.date_published IS NOT NULL
 				' . ($from ? ' AND ms.last_modified >= ' . $this->datetimeToDB($from) : '') . '

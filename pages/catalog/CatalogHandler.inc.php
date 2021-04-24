@@ -16,10 +16,11 @@
 
 import('lib.pkp.pages.catalog.PKPCatalogHandler');
 
-use \PKP\submission\PKPSubmission;
-use \PKP\submission\PKPSubmissionDAO;
+use PKP\submission\PKPSubmission;
+use PKP\submission\PKPSubmissionDAO;
+use PKP\file\ContextFileManager;
 
-use \APP\template\TemplateManager;
+use APP\template\TemplateManager;
 
 class CatalogHandler extends PKPCatalogHandler
 {
@@ -239,7 +240,6 @@ class CatalogHandler extends PKPCatalogHandler
         }
 
         if ($imageInfo) {
-            import('lib.pkp.classes.file.ContextFileManager');
             $pressFileManager = new ContextFileManager($press->getId());
             $pressFileManager->downloadByPath($pressFileManager->getBasePath() . $path . $imageInfo['name'], null, true);
         }
@@ -279,7 +279,6 @@ class CatalogHandler extends PKPCatalogHandler
         }
 
         if ($imageInfo) {
-            import('lib.pkp.classes.file.ContextFileManager');
             $pressFileManager = new ContextFileManager($press->getId());
             $pressFileManager->downloadByPath($pressFileManager->getBasePath() . $path . $imageInfo['thumbnailName'], null, true);
         }

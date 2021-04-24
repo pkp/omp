@@ -35,6 +35,8 @@ define('SUBMISSION_EDITOR_DECISION_SEND_TO_PRODUCTION', 7);
 // Editorial stage decision actions.
 import('lib.pkp.classes.workflow.PKPEditorDecisionActionsManager');
 
+use PKP\submission\PKPSubmission;
+
 class EditorDecisionActionsManager extends PKPEditorDecisionActionsManager
 {
     /**
@@ -183,7 +185,7 @@ class EditorDecisionActionsManager extends PKPEditorDecisionActionsManager
                 ],
             ];
 
-            if ($submission->getStatus() == STATUS_QUEUED) {
+            if ($submission->getStatus() == PKPSubmission::STATUS_QUEUED) {
                 $decisions = $decisions + [
                     SUBMISSION_EDITOR_DECISION_DECLINE => [
                         'operation' => 'sendReviewsInReview',
@@ -192,7 +194,7 @@ class EditorDecisionActionsManager extends PKPEditorDecisionActionsManager
                     ],
                 ];
             }
-            if ($submission->getStatus() == STATUS_DECLINED) {
+            if ($submission->getStatus() == PKPSubmission::STATUS_DECLINED) {
                 $decisions = $decisions + [
                     SUBMISSION_EDITOR_DECISION_REVERT_DECLINE => [
                         'name' => 'revert',

@@ -15,10 +15,11 @@
 
 import('classes.handler.Handler');
 
-use \PKP\core\JSONMessage;
-use \PKP\submission\PKPSubmissionDAO;
+use PKP\core\JSONMessage;
+use PKP\submission\PKPSubmissionDAO;
+use PKP\submission\PKPSubmission;
 
-use \APP\template\TemplateManager;
+use APP\template\TemplateManager;
 
 class ManageCatalogHandler extends Handler
 {
@@ -101,7 +102,7 @@ class ManageCatalogHandler extends Handler
                 'catalogSortBy' => $catalogSortBy,
                 'catalogSortDir' => $catalogSortDir,
                 'getParams' => [
-                    'status' => STATUS_PUBLISHED,
+                    'status' => PKPSubmission::STATUS_PUBLISHED,
                     'orderByFeatured' => true,
                     'orderBy' => $catalogSortBy,
                     'orderDirection' => $catalogSortDir,

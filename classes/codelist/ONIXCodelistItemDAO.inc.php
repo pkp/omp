@@ -18,8 +18,10 @@
 
 import('classes.codelist.ONIXCodelistItem');
 
-use \PKP\db\XMLDAO;
-use \PKP\xslt\XSLTransformer;
+use PKP\db\XMLDAO;
+use PKP\xslt\XSLTransformer;
+use PKP\file\TemporaryFileManager;
+use PKP\file\FileManager;
 
 class ONIXCodelistItemDAO extends DAO
 {
@@ -69,9 +71,6 @@ class ONIXCodelistItemDAO extends DAO
             $listName = $this->getListName(); // i.e., 'List30'
             import('classes.codelist.ONIXParserDOMHandler');
             $handler = new ONIXParserDOMHandler($listName);
-
-            import('lib.pkp.classes.file.FileManager');
-            import('lib.pkp.classes.file.TemporaryFileManager');
 
             $temporaryFileManager = new TemporaryFileManager();
             $fileManager = new FileManager();

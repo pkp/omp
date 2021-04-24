@@ -13,9 +13,13 @@
  *  requirements.
  */
 
-namespace APP\Services;
+namespace APP\services;
 
-use Services;
+use PKP\file\FileManager;
+use PKP\file\ContextFileManager;
+
+use APP\services\Services;
+use APP\file\PublicFileManager;
 
 class ContextService extends \PKP\Services\PKPContextService
 {
@@ -143,7 +147,6 @@ class ContextService extends \PKP\Services\PKPContextService
         $newReleaseDao = \DAORegistry::getDAO('NewReleaseDAO');
         $newReleaseDao->deleteByAssoc(ASSOC_TYPE_PRESS, $context->getId());
 
-        import('classes.file.PublicFileManager');
         $publicFileManager = new \PublicFileManager();
         $publicFileManager->rmtree($publicFileManager->getContextFilesPath($context->getId()));
     }
@@ -181,9 +184,6 @@ class ContextService extends \PKP\Services\PKPContextService
      */
     public function resizeCoverThumbnails($context, $maxWidth, $maxHeight)
     {
-        import('lib.pkp.classes.file.FileManager');
-        import('classes.file.PublicFileManager');
-        import('lib.pkp.classes.file.ContextFileManager');
         $fileManager = new \FileManager();
         $publicFileManager = new \PublicFileManager();
         $contextFileManager = new \ContextFileManager($context->getId());

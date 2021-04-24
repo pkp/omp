@@ -25,6 +25,7 @@ import('controllers.grid.users.chapter.ChapterGridCategoryRow');
 import('lib.pkp.classes.linkAction.request.AjaxModal');
 
 use PKP\core\JSONMessage;
+use PKP\submission\PKPSubmission;
 
 use \APP\template\TemplateManager;
 
@@ -129,7 +130,7 @@ class ChapterGridHandler extends CategoryGridHandler
 
         AppLocale::requireComponents(LOCALE_COMPONENT_APP_DEFAULT, LOCALE_COMPONENT_PKP_DEFAULT, LOCALE_COMPONENT_APP_SUBMISSION, LOCALE_COMPONENT_PKP_SUBMISSION);
 
-        if ($this->getPublication()->getData('status') === STATUS_PUBLISHED) {
+        if ($this->getPublication()->getData('status') === PKPSubmission::STATUS_PUBLISHED) {
             $this->setReadOnly(true);
         }
 
@@ -227,7 +228,7 @@ class ChapterGridHandler extends CategoryGridHandler
         $publication = $this->getPublication();
         $userRoles = $this->getAuthorizedContextObject(ASSOC_TYPE_USER_ROLES);
 
-        if ($publication->getData('status') === STATUS_PUBLISHED) {
+        if ($publication->getData('status') === PKPSubmission::STATUS_PUBLISHED) {
             return false;
         }
 

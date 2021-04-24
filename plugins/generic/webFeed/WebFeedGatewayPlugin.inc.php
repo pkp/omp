@@ -14,6 +14,8 @@
  *
  */
 
+use PKP\submission\PKPSubmission;
+
 use \APP\submission\SubmissionDAO;
 use \APP\template\TemplateManager;
 
@@ -123,7 +125,7 @@ class WebFeedGatewayPlugin extends GatewayPlugin
         $context = $request->getContext();
 
         $args = [
-            'status' => STATUS_PUBLISHED,
+            'status' => PKPSubmission::STATUS_PUBLISHED,
             'contextId' => $context->getId(),
             'count' => 1000,
             'orderBy' => SubmissionDAO::ORDERBY_DATE_PUBLISHED,

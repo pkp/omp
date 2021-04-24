@@ -19,6 +19,8 @@ import('classes.handler.Handler');
 // import UI base classes
 import('lib.pkp.classes.linkAction.LinkAction');
 
+use PKP\submission\PKPSubmission;
+
 use \APP\template\TemplateManager;
 
 
@@ -88,7 +90,7 @@ class CatalogBookHandler extends Handler
             $this->publication = $submission->getCurrentPublication();
         }
 
-        if (!$this->publication || $this->publication->getData('status') !== STATUS_PUBLISHED) {
+        if (!$this->publication || $this->publication->getData('status') !== PKPSubmission::STATUS_PUBLISHED) {
             $request->getDispatcher()->handle404();
         }
 
@@ -267,7 +269,7 @@ class CatalogBookHandler extends Handler
         }
 
         if (empty($publication)
-                || $publication->getData('status') !== STATUS_PUBLISHED
+                || $publication->getData('status') !== PKPSubmission::STATUS_PUBLISHED
                 || $publicationFormat->getData('publicationId') !== $publication->getId()) {
             $dispatcher->handle404();
         }

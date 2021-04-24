@@ -15,6 +15,8 @@
  * @brief DAO class for monograph search index.
  */
 
+use PKP\submission\PKPSubmission;
+
 import('classes.search.MonographSearch');
 import('lib.pkp.classes.search.SubmissionSearchDAO');
 
@@ -68,8 +70,7 @@ class MonographSearchDAO extends SubmissionSearchDAO
             $params[] = $press->getId();
         }
 
-        import('classes.submission.Submission'); // import STATUS_PUBLISHED constant
-        $params[] = STATUS_PUBLISHED;
+        $params[] = PKPSubmission::STATUS_PUBLISHED;
 
         $result = $this->retrieve(
             $sql = 'SELECT

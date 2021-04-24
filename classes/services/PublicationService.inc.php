@@ -15,12 +15,14 @@
 
 namespace APP\Services;
 
-use \PKP\db\DAORegistry;
-use \PKP\Services\PKPPublicationService;
-use \PKP\submission\SubmissionFile;
+use PKP\db\DAORegistry;
+use PKP\Services\PKPPublicationService;
+use PKP\submission\SubmissionFile;
+use PKP\submission\PKPSubmission;
 
-use \APP\core\Application;
-use \APP\core\Services;
+use APP\core\Application;
+use APP\core\Services;
+use APP\file\PublicFileManager;
 
 class PublicationService extends PKPPublicationService
 {
@@ -162,7 +164,6 @@ class PublicationService extends PKPPublicationService
                     continue;
                 }
 
-                import('classes.file.PublicFileManager');
                 $publicFileManager = new \PublicFileManager();
                 $coverImage = $publication->getData('coverImage', $localeKey);
                 $coverImageFilePath = $publicFileManager->getContextFilesPath($submissionContext->getId()) . '/' . $coverImage['uploadName'];
@@ -195,7 +196,6 @@ class PublicationService extends PKPPublicationService
 
         // Create or delete the thumbnail of a cover image
         if (array_key_exists('coverImage', $params)) {
-            import('classes.file.PublicFileManager');
             $publicFileManager = new \PublicFileManager();
             $submission = Services::get('submission')->get($newPublication->getData('submissionId'));
 
@@ -369,7 +369,7 @@ class PublicationService extends PKPPublicationService
         // If the publish date is in the future, set the status to scheduled
         $datePublished = $oldPublication->getData('datePublished');
         if ($datePublished && strtotime($datePublished) > strtotime(\Core::getCurrentDate())) {
-            $newPublication->setData('status', STATUS_SCHEDULED);
+            $newPublication->setData('status', PKPSubmission::STATUS_SCHEDULED);
         }
     }
 
@@ -404,7 +404,7 @@ class PublicationService extends PKPPublicationService
 
             // Create publication format tombstones for any other published versions
             foreach ($submission->getData('publications') as $publication) {
-                if ($publication->getId() !== $newPublication->getId() && $publication->getData('status') === STATUS_PUBLISHED) {
+                if ($publication->getId() !== $newPublication->getId() && $publication->getData('status') === PKPSubmission::STATUS_PUBLISHED) {
                     $publicationFormatTombstoneMgr->insertTombstonesByPublicationId($publication->getId(), $context);
                 }
             }
@@ -452,7 +452,7 @@ class PublicationService extends PKPPublicationService
                 break;
             }
         }
-        if ($currentPublication->getData('status') === STATUS_PUBLISHED) {
+        if ($currentPublication->getData('status') === PKPSubmission::STATUS_PUBLISHED) {
             $publicationFormatTombstoneMgr->deleteTombstonesByPublicationId($currentPublication->getId());
         }
 

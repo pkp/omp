@@ -13,7 +13,11 @@
  * @brief Handle publication format grid requests.
  */
 
-use \PKP\submission\SubmissionFile;
+use PKP\submission\SubmissionFile;
+use PKP\submission\PKPSubmission;
+use PKP\core\JSONMessage;
+
+use APP\template\TemplateManager;
 
 // import grid base classes
 import('lib.pkp.classes.controllers.grid.CategoryGridHandler');
@@ -25,10 +29,6 @@ import('controllers.grid.catalogEntry.PublicationFormatCategoryGridDataProvider'
 
 // Link action & modal classes
 import('lib.pkp.classes.linkAction.request.AjaxModal');
-
-use \PKP\core\JSONMessage;
-
-use \APP\template\TemplateManager;
 
 class PublicationFormatGridHandler extends CategoryGridHandler
 {
@@ -149,7 +149,7 @@ class PublicationFormatGridHandler extends CategoryGridHandler
             LOCALE_COMPONENT_APP_EDITOR
         );
 
-        if ($this->getPublication()->getData('status') !== STATUS_PUBLISHED) {
+        if ($this->getPublication()->getData('status') !== PKPSubmission::STATUS_PUBLISHED) {
             // Grid actions
             $router = $request->getRouter();
             $actionArgs = $this->getRequestArgs();

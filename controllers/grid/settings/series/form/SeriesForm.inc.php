@@ -16,7 +16,10 @@
 
 import('lib.pkp.controllers.grid.settings.sections.form.PKPSectionForm');
 
-use \APP\template\TemplateManager;
+use PKP\file\TemporaryFileManager;
+use PKP\file\ContextFileManager;
+
+use APP\template\TemplateManager;
 
 class SeriesForm extends PKPSectionForm
 {
@@ -107,7 +110,6 @@ class SeriesForm extends PKPSectionForm
     public function validate($callHooks = true)
     {
         if ($temporaryFileId = $this->getData('temporaryFileId')) {
-            import('lib.pkp.classes.file.TemporaryFileManager');
             $temporaryFileManager = new TemporaryFileManager();
             $temporaryFileDao = DAORegistry::getDAO('TemporaryFileDAO'); /* @var $temporaryFileDao TemporaryFileDAO */
             $temporaryFile = $temporaryFileDao->getTemporaryFile($temporaryFileId, $this->_userId);
@@ -265,7 +267,6 @@ class SeriesForm extends PKPSectionForm
 
             $temporaryFile = $temporaryFileDao->getTemporaryFile($temporaryFileId, $this->_userId);
             $temporaryFilePath = $temporaryFile->getFilePath();
-            import('lib.pkp.classes.file.ContextFileManager');
             $pressFileManager = new ContextFileManager($press->getId());
             $basePath = $pressFileManager->getBasePath() . '/series/';
 
@@ -326,7 +327,6 @@ class SeriesForm extends PKPSectionForm
             ]);
 
             // Clean up the temporary file
-            import('lib.pkp.classes.file.TemporaryFileManager');
             $temporaryFileManager = new TemporaryFileManager();
             $temporaryFileManager->deleteById($temporaryFileId, $this->_userId);
         }

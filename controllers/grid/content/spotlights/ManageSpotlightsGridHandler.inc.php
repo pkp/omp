@@ -29,6 +29,7 @@ import('classes.spotlight.Spotlight');
 import('lib.pkp.classes.linkAction.request.AjaxModal');
 
 use PKP\core\JSONMessage;
+use PKP\submission\PKPSubmission;
 
 class ManageSpotlightsGridHandler extends GridHandler
 {
@@ -348,9 +349,8 @@ class ManageSpotlightsGridHandler extends GridHandler
         // get the items that match.
         $matches = [];
 
-        import('lib.pkp.classes.submission.PKPSubmission'); // STATUS_PUBLISHED
         $args = [
-            'status' => STATUS_PUBLISHED,
+            'status' => PKPSubmission::STATUS_PUBLISHED,
             'contextId' => $press->getId(),
             'count' => 100
         ];

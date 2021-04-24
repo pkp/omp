@@ -15,8 +15,11 @@
 
 use Illuminate\Support\Facades\DB;
 
-use \PKP\identity\Identity;
-use \PKP\submission\SubmissionFile;
+use PKP\identity\Identity;
+use PKP\submission\SubmissionFile;
+use PKP\file\FileManager;
+
+use APP\file\PublicFileManager;
 
 import('lib.pkp.classes.install.Installer');
 
@@ -65,7 +68,6 @@ class Upgrade extends Installer
         $siteDao = DAORegistry::getDAO('SiteDAO'); /* @var $siteDao SiteDAO */
         $site = $siteDao->getSite();
         $adminEmail = $site->getLocalizedContactEmail();
-        import('lib.pkp.classes.file.FileManager');
         $fileManager = new FileManager();
 
         $contexts = $pressDao->getAll();
@@ -774,9 +776,6 @@ class Upgrade extends Installer
      */
     public function migrateSubmissionCoverImages()
     {
-        import('lib.pkp.classes.file.FileManager');
-        import('classes.file.PublicFileManager');
-
         $fileManager = new \FileManager();
         $publicFileManager = new \PublicFileManager();
         $contexts = [];

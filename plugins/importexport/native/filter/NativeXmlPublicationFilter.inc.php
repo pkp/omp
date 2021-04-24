@@ -15,6 +15,8 @@
 
 import('lib.pkp.plugins.importexport.native.filter.NativeXmlPKPPublicationFilter');
 
+use APP\file\PublicFileManager;
+
 class NativeXmlPublicationFilter extends NativeXmlPKPPublicationFilter
 {
     //
@@ -234,7 +236,6 @@ class NativeXmlPublicationFilter extends NativeXmlPKPPublicationFilter
                         $coverImage['altText'] = $n->textContent;
                         break;
                     case 'embed':
-                        import('classes.file.PublicFileManager');
                         $publicFileManager = new PublicFileManager();
                         $filePath = $publicFileManager->getContextFilesPath($context->getId()) . '/' . $coverImage['uploadName'];
                         file_put_contents($filePath, base64_decode($n->textContent));

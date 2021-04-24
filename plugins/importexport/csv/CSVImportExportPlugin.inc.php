@@ -13,22 +13,17 @@
  * @brief CSV import/export plugin
  */
 
-use \PKP\submission\SubmissionFile;
+use PKP\submission\SubmissionFile;
+use PKP\submission\PKPSubmission;
+use PKP\file\TemoraryFileManager;
+use PKP\file\FileManager;
 
-use \APP\template\TemplateManager;
+use APP\template\TemplateManager;
 
 import('lib.pkp.classes.plugins.ImportExportPlugin');
 
 class CSVImportExportPlugin extends ImportExportPlugin
 {
-    /**
-     * Constructor
-     */
-    public function __construct()
-    {
-        parent::__construct();
-    }
-
     /**
      * @copydoc Plugin::register()
      *
@@ -161,7 +156,7 @@ class CSVImportExportPlugin extends ImportExportPlugin
                         $submission->setContextId($press->getId());
                         $submission->setUserId($user->getId());
                         $submission->stampLastActivity();
-                        $submission->setStatus(STATUS_PUBLISHED);
+                        $submission->setStatus(PKPSubmission::STATUS_PUBLISHED);
                         $submission->setWorkType($isEditedVolume == 1 ? WORK_TYPE_EDITED_VOLUME : WORK_TYPE_AUTHORED_WORK);
                         $submission->setCopyrightNotice($press->getLocalizedSetting('copyrightNotice'), $locale);
                         $submission->setLocale($locale);
@@ -238,9 +233,6 @@ class CSVImportExportPlugin extends ImportExportPlugin
                         $publicationDateDao->insertObject($publicationDate);
 
                         // Submission File.
-                        import('lib.pkp.classes.file.TemporaryFileManager');
-                        import('lib.pkp.classes.file.FileManager');
-
                         $temporaryFileManager = new TemporaryFileManager();
                         $temporaryFilename = tempnam($temporaryFileManager->getBasePath(), 'remote');
                         $temporaryFileManager->copyFile($pdfUrl, $temporaryFilename);
