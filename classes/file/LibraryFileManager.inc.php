@@ -39,7 +39,7 @@ class LibraryFileManager extends PKPLibraryFileManager
     public function &getTypeSuffixMap()
     {
         static $map = [
-            LIBRARY_FILE_TYPE_CONTRACT => 'CON',
+            LibraryFile::LIBRARY_FILE_TYPE_CONTRACT => 'CON',
         ];
         $parent = parent::getTypeSuffixMap();
         $map = array_merge($map, $parent);
@@ -54,7 +54,7 @@ class LibraryFileManager extends PKPLibraryFileManager
     public function &getTypeTitleKeyMap()
     {
         static $map = [
-            LibraryFIle::LIBRARY_FILE_TYPE_CONTRACT => 'settings.libraryFiles.category.contracts',
+            LibraryFile::LIBRARY_FILE_TYPE_CONTRACT => 'settings.libraryFiles.category.contracts',
         ];
         $parent = parent::getTypeTitleKeyMap();
         $map = array_merge($map, $parent);
