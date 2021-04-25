@@ -15,6 +15,8 @@
 
 import('lib.pkp.plugins.importexport.native.filter.NativeXmlSubmissionFilter');
 
+use DOMDocument;
+
 class NativeXmlMonographFilter extends NativeXmlSubmissionFilter
 {
     //
