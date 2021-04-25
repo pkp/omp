@@ -110,10 +110,10 @@ class WorkflowHandler extends PKPWorkflowHandler
         $publicationDatesForm = new APP\components\forms\submission\PublicationDatesForm($submissionApiUrl, $submission);
 
         $templateMgr->setConstants([
-            'FORM_AUDIENCE',
-            'FORM_CATALOG_ENTRY',
-            'WORK_TYPE_AUTHORED_WORK',
-            'WORK_TYPE_EDITED_VOLUME',
+            'FORM_AUDIENCE' => FORM_AUDIENCE,
+            'FORM_CATALOG_ENTRY' => FORM_CATALOG_ENTRY,
+            'WORK_TYPE_AUTHORED_WORK' => WORK_TYPE_AUTHORED_WORK,
+            'WORK_TYPE_EDITED_VOLUME' => WORK_TYPE_EDITED_VOLUME,
         ]);
 
         $components = $templateMgr->getState('components');
