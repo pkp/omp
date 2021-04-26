@@ -32,9 +32,7 @@
 			<ul>
 				{foreach name="seriesListLoop" from=$contextSeries item=series}
 					<li class="series_{$series->getId()}">
-						<a href="{url router=PKPApplication::ROUTE_PAGE page="catalog" op="series" path=$series->getPath()|escape}">
-							{$series->getLocalizedTitle()|escape}
-						</a>{if !$series@last}<span style="pkp_comma_list_separator">{translate key="common.commaListSeparator"}</span>{/if}
+						<a href="{url router=PKPApplication::ROUTE_PAGE page="catalog" op="series" path=$series->getPath()|escape}">{$series->getLocalizedTitle()|escape}</a>{if !$series@last}<span style="pkp_comma_list_separator" aria-hidden="true">{translate key="common.commaListSeparator"}</span>{/if}
 					</li>
 				{/foreach}
 			</ul>
