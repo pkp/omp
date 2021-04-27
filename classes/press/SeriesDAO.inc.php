@@ -15,9 +15,10 @@
  * @brief Operations for retrieving and modifying Series objects.
  */
 
+use PKP\submission\PKPSubmission;
+
 import('classes.press.Series');
 import('lib.pkp.classes.context.PKPSectionDAO');
-import('classes.submission.Submission');
 
 class SeriesDAO extends PKPSectionDAO
 {
@@ -271,7 +272,7 @@ class SeriesDAO extends PKPSectionDAO
     {
         $params = [
             (int) $pressId,
-            '3',
+            PKPSubmission::STATUS_PUBLISHED,
         ];
 
         $result = $this->retrieveRange(
