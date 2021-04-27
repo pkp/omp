@@ -19,11 +19,4 @@ import('lib.pkp.plugins.oaiMetadataFormats.dc.PKPOAIMetadataFormatPlugin_DC');
 
 class OAIMetadataFormatPlugin_DC extends PKPOAIMetadataFormatPlugin_DC
 {
-    /**
-     * Constructor
-     */
-    public function __construct()
-    {
-        parent::__construct();
-    }
 }

@@ -13,18 +13,15 @@
  * @brief Public identifiers plugins common functions
  */
 
-import('lib.pkp.classes.plugins.PKPPubIdPlugin');
+namespace APP\plugins;
+
+use PKP\plugins\PKPPubIdPlugin;
+use PKP\db\DAORegistry;
+use PKP\core\PKPString;
+
+use APP\core\Services;
 
 abstract class PubIdPlugin extends PKPPubIdPlugin {
-
-	/**
-	 * Constructor
-	 */
-	function __construct() {
-		parent::__construct();
-	}
-
-
 	//
 	// Protected template methods from PKPPlubIdPlugin
 	//

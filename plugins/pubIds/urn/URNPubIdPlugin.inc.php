@@ -13,9 +13,10 @@
  * @brief URN plugin class
  */
 
-use \APP\template\TemplateManager;
+use PKP\Services\Interfaces\EntityWriteInterface;
 
-import('classes.plugins.PubIdPlugin');
+use APP\plugins\PubIdPlugin;
+use APP\template\TemplateManager;
 
 class URNPubIdPlugin extends PubIdPlugin
 {
@@ -326,7 +327,7 @@ class URNPubIdPlugin extends PubIdPlugin
             return;
         }
 
-        if ($action === VALIDATE_ACTION_ADD) {
+        if ($action === EntityWriteInterface::VALIDATE_ACTION_ADD) {
             $submission = Services::get('submission')->get($props['submissionId']);
         } else {
             $publication = Services::get('publication')->get($props['id']);

@@ -19,6 +19,8 @@
 import('classes.monograph.Chapter');
 import('classes.monograph.ChapterAuthor');
 
+use PKP\plugins\PKPPubIdPluginDAO;
+
 class ChapterDAO extends DAO implements PKPPubIdPluginDAO
 {
     /**

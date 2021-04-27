@@ -13,8 +13,8 @@
  * @brief DOI plugin class
  */
 
-
-import('classes.plugins.PubIdPlugin');
+use APP\plugins\PubIdPlugin;
+use PKP\Services\Interfaces\EntityWriteInterface;
 
 class DOIPubIdPlugin extends PubIdPlugin
 {
@@ -267,7 +267,7 @@ class DOIPubIdPlugin extends PubIdPlugin
             return;
         }
 
-        if ($action === VALIDATE_ACTION_ADD) {
+        if ($action === EntityWriteInterface::VALIDATE_ACTION_ADD) {
             $submission = Services::get('submission')->get($props['submissionId']);
         } else {
             $publication = Services::get('publication')->get($props['id']);
