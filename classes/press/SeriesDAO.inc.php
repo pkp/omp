@@ -17,6 +17,7 @@
 
 import('classes.press.Series');
 import('lib.pkp.classes.context.PKPSectionDAO');
+import('classes.submission.Submission');
 
 class SeriesDAO extends PKPSectionDAO
 {
@@ -242,39 +243,51 @@ class SeriesDAO extends PKPSectionDAO
     /**
      * Retrieve all series for a press.
      *
-     * @param null|mixed $rangeInfo
+     * @param $pressId int Press ID
+     * @param $rangeInfo DBResultRange optional
+     * @param $submittableOnly boolean optional. Whether to return only series
+     *  that can be submitted to by anyone.
+     * @param $withPublicationsOnly boolean optional
      *
      * @return DAOResultFactory containing Series ordered by sequence
      */
-    public function getByPressId($pressId, $rangeInfo = null)
+    public function getByPressId($pressId, $rangeInfo = null, $submittableOnly = false, $withPublicationsOnly = false)
     {
-        return $this->getByContextId($pressId, $rangeInfo);
+        return $this->getByContextId($pressId, $rangeInfo, $submittableOnly, $withPublicationsOnly);
     }
 
     /**
-     * @copydoc PKPSectionDAO::getByContextId()
+     * Retrieve all series for a press.
      *
-     * @param null|mixed $rangeInfo
+     * @param $pressId int Press ID
+     * @param $rangeInfo DBResultRange optional
+     * @param $submittableOnly boolean optional. Whether to return only series
+     *  that can be submitted to by anyone.
+     * @param $withPublicationsOnly boolean optional
+     *
+     * @return DAOResultFactory containing Series ordered by sequence
      */
-    public function getByContextId($pressId, $rangeInfo = null, $submittableOnly = false)
+    public function getByContextId($pressId, $rangeInfo = null, $submittableOnly = false, $withPublicationsOnly = false)
     {
-        return new DAOResultFactory(
-            $this->retrieveRange(
-                'SELECT s.*, COALESCE(stpl.setting_value, stl.setting_value) AS series_title FROM series s
-				LEFT JOIN series_settings stpl ON (s.series_id = stpl.series_id AND stpl.setting_name = ? AND stpl.locale = ?)
-				LEFT JOIN series_settings stl ON (s.series_id = stl.series_id AND stl.setting_name = ? AND stl.locale = ?)
-				WHERE press_id = ?
-				ORDER BY seq',
-                [
-                    'title', AppLocale::getPrimaryLocale(),
-                    'title', AppLocale::getLocale(),
-                    (int) $pressId
-                ],
-                $rangeInfo
-            ),
-            $this,
-            '_fromRow'
+        $params = [
+            (int) $pressId,
+            '3',
+        ];
+
+        $result = $this->retrieveRange(
+            'SELECT *
+                FROM series AS s
+                ' . ($withPublicationsOnly ? ' LEFT JOIN publications AS p ON p.series_id = s.series_id ' : '') . '
+                WHERE s.press_id = ?
+                ' . ($submittableOnly ? ' AND s.editor_restricted = 0' : '') . '
+                ' . ($withPublicationsOnly ? 'AND  p.status = ? ' : '') . '
+                GROUP BY s.series_id
+                ORDER BY s.seq',
+            $params,
+            $rangeInfo
         );
+
+        return new DAOResultFactory($result, $this, '_fromRow');
     }
 
     /**

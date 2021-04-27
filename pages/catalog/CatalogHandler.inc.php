@@ -92,7 +92,7 @@ class CatalogHandler extends PKPCatalogHandler
         $this->_setupPaginationTemplate($request, count($submissionsIterator), $page, $count, $offset, $total);
 
         $seriesDao = DAORegistry::getDAO('SeriesDAO'); /* @var $seriesDao SeriesDAO */
-        $seriesIterator = $seriesDao->getByContextId($context->getId());
+        $seriesIterator = $seriesDao->getByContextId($context->getId(), null, false, true);
 
         $templateMgr->assign([
             'publishedSubmissions' => iterator_to_array($submissionsIterator),

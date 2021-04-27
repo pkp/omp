@@ -93,7 +93,6 @@ class DefaultThemePlugin extends ThemePlugin
 
         $this->addOption('showCatalogSeriesListing', 'FieldOptions', [
             'label' => __('plugins.themes.default.option.showCatalogSeriesListing.label'),
-            'description' => __('plugins.themes.default.option.showCatalogSeriesListing.description'),
             'options' => [
                 [
                     'value' => true,
