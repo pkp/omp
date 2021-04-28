@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2020-01-22T21:00:04+00:00\n"
-"PO-Revision-Date: 2021-04-28 14:37+0000\n"
+"PO-Revision-Date: 2021-04-28 14:43+0000\n"
 "Last-Translator: Stefano Bolelli Gallevi <stefano.bolelli@unimi.it>\n"
 "Language-Team: Italian <http://translate.pkp.sfu.ca/projects/omp/locale/"
 "it_IT/>\n"
@@ -1533,3 +1533,24 @@ msgstr "Pagamenti"
 #, fuzzy
 msgid "submission.round"
 msgstr "Round&nbsp;{$round}"
+
+msgid "user.register.otherContextRoles"
+msgstr "Richiedere i ruoli seguenti."
+
+msgid "user.register.contextsPrompt"
+msgstr "A quali case editrici di questo sito le piacerebbe registrarsi?"
+
+msgid "user.reviewerPrompt.optin"
+msgstr ""
+"Si, mi piacerebbe che mi contattassero per fare la revisione delle proposte "
+"di questa casa editrice."
+
+msgid "user.reviewerPrompt.userGroup"
+msgstr "Si, richiedere il ruolo di {$userGroup}."
+
+msgid "user.reviewerPrompt"
+msgstr ""
+"Saresti disposto a fare la revisione delle proposte di questa casa editrice?"
+
+msgid "user.authorization.representationNotFound"
+msgstr "Il formato di pubblicazione richiesto non è stato trovato."
