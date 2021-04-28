@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2020-01-22T21:00:04+00:00\n"
-"PO-Revision-Date: 2021-04-28 15:40+0000\n"
+"PO-Revision-Date: 2021-04-28 18:14+0000\n"
 "Last-Translator: Stefano Bolelli Gallevi <stefano.bolelli@unimi.it>\n"
 "Language-Team: Italian <http://translate.pkp.sfu.ca/projects/omp/locale/"
 "it_IT/>\n"
@@ -1319,7 +1319,6 @@ msgstr "Categorie"
 msgid "navigation.catalog.allMonographs"
 msgstr "Tutti i libri"
 
-#, fuzzy
 msgid "common.software"
 msgstr "Open Monograph Press"
 
@@ -1467,7 +1466,7 @@ msgid "grid.catalogEntry.availableRepresentation.notApprovedWarning"
 msgstr "Formato non disponibile nella scheda del catalogo."
 
 msgid "grid.catalogEntry.availableRepresentation.catalogNotApprovedWarning"
-msgstr "Scheda del catalogo non approvata"
+msgstr "Scheda del catalogo non approvata."
 
 msgid "grid.catalogEntry.availableRepresentation.removeMessage"
 msgstr ""
@@ -1532,7 +1531,6 @@ msgstr "I dettagli della audience sono stati aggiornati."
 msgid "common.payments"
 msgstr "Pagamenti"
 
-#, fuzzy
 msgid "submission.round"
 msgstr "Round&nbsp;{$round}"
 
@@ -1623,3 +1621,58 @@ msgid "user.register.noContextReviewerInterests"
 msgstr ""
 "Se hai chiesto di essere revisore di una casa editrice, inserisci i soggetti "
 "di interesse."
+
+msgid "catalog.coverImageTitle"
+msgstr "Immagine di copertina"
+
+msgid "user.authorization.invalidPublishedSubmission"
+msgstr "E' stata specificata una proposta pubblicata non valida."
+
+msgid "user.profile.form.hideOtherContexts"
+msgstr "Nascondere altre case editrici"
+
+msgid "user.profile.form.showOtherContexts"
+msgstr "Registrarsi con altre case editrici"
+
+msgid "payment.directSales.numericOnly"
+msgstr "I prezzi devono essere solo numeri. Non includere simboli di valuta."
+
+msgid "notification.type.public"
+msgstr "Avvisi pubblici"
+
+msgid "log.imported"
+msgstr "{$userName} ha importato il libro {$submissionId}."
+
+msgid "log.proofread.complete"
+msgstr ""
+"{$proofreaderName} ha inviato la proposta {$submissionId} in produzione."
+
+msgid "log.proofread.assign"
+msgstr ""
+"{$assignerName} ha assegnato {$proofreaderName} come correttore di bozze "
+"della proposta {$submissionId}."
+
+msgid "log.editor.editorAssigned"
+msgstr ""
+"{$editorName} è stato assegnato come editor della proposta {$submissionId}."
+
+msgid "log.editor.restored"
+msgstr "La proposta {$submissionId} è stata rimessa in coda."
+
+msgid "log.editor.archived"
+msgstr "La proposta {$submissionId} è stata archiviata."
+
+msgid "log.editor.recommendation"
+msgstr ""
+"Una raccomandazione editoriale ({$decision}) per il libro {$submissionId} è "
+"stata registrata da {$editorName}."
+
+msgid "log.editor.decision"
+msgstr ""
+"Una decisione editoriale ({$decision}) per il libro {$submissionId} è stata "
+"registrata da {$editorName}."
+
+msgid "log.review.reviewUnconsidered"
+msgstr ""
+"{$editorName} ha indicato il round {$round} della revisione per la proposta "
+"{$submissionId} come non considerato."
