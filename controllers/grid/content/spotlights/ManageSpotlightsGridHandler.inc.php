@@ -25,9 +25,8 @@ import('controllers.grid.content.spotlights.form.SpotlightForm');
 // import Spotlight class for class constants
 import('classes.spotlight.Spotlight');
 
-// Link action & modal classes
-import('lib.pkp.classes.linkAction.request.AjaxModal');
-
+use PKP\linkAction\LinkAction;
+use PKP\linkAction\request\AjaxModal;
 use PKP\core\JSONMessage;
 use PKP\submission\PKPSubmission;
 
@@ -161,7 +160,6 @@ class ManageSpotlightsGridHandler extends GridHandler
 
         // Add grid action.
         $router = $request->getRouter();
-        import('lib.pkp.classes.linkAction.request.AjaxModal');
         $this->addAction(
             new LinkAction(
                 'addSpotlight',

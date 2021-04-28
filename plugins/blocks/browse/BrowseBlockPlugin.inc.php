@@ -13,9 +13,10 @@
  * @brief Class for browse block plugin
  */
 
-import('lib.pkp.classes.plugins.BlockPlugin');
-
+use PKP\linkAction\LinkAction;
+use PKP\plugins\BlockPlugin;
 use PKP\core\JSONMessage;
+use PKP\linkAction\request\AjaxModal;
 
 class BrowseBlockPlugin extends BlockPlugin
 {
@@ -53,7 +54,6 @@ class BrowseBlockPlugin extends BlockPlugin
     public function getActions($request, $actionArgs)
     {
         $router = $request->getRouter();
-        import('lib.pkp.classes.linkAction.request.AjaxModal');
         return array_merge(
             $this->getEnabled() ? [
                 new LinkAction(

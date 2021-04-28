@@ -13,7 +13,9 @@
  * @brief Base class for a cell provider that can retrieve labels for publication formats
  */
 
-use \PKP\submission\SubmissionFile;
+use PKP\linkAction\LinkAction;
+use PKP\submission\SubmissionFile;
+use PKP\linkAction\request\AjaxModal;
 
 import('lib.pkp.classes.controllers.grid.DataObjectGridCellProvider');
 
@@ -203,7 +205,6 @@ class PublicationFormatGridCellProvider extends DataObjectGridCellProvider
                         )
                     ];
                 case 'isComplete':
-                    import('lib.pkp.classes.linkAction.request.AjaxModal');
                     return [new LinkAction(
                         'approveRepresentation',
                         new AjaxModal(
@@ -263,7 +264,6 @@ class PublicationFormatGridCellProvider extends DataObjectGridCellProvider
                     return $fileNameColumn->getCellActions($request, $row, $position);
                 case 'isComplete':
                     AppLocale::requireComponents(LOCALE_COMPONENT_PKP_EDITOR);
-                    import('lib.pkp.classes.linkAction.request.AjaxModal');
                     $title = __($submissionFile->getViewable() ? 'editor.submission.proofreading.revokeProofApproval' : 'editor.submission.proofreading.approveProof');
                     return [new LinkAction(
                         $submissionFile->getViewable() ? 'approved' : 'not_approved',

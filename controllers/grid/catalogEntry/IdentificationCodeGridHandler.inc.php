@@ -20,10 +20,9 @@ import('lib.pkp.classes.controllers.grid.GridHandler');
 import('controllers.grid.catalogEntry.IdentificationCodeGridCellProvider');
 import('controllers.grid.catalogEntry.IdentificationCodeGridRow');
 
-// Link action & modal classes
-import('lib.pkp.classes.linkAction.request.AjaxModal');
-
+use PKP\linkAction\request\AjaxModal;
 use PKP\core\JSONMessage;
+use PKP\linkAction\LinkAction;
 
 class IdentificationCodeGridHandler extends GridHandler
 {

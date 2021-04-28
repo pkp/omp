@@ -21,9 +21,8 @@ import('lib.pkp.classes.controllers.grid.GridHandler');
 import('controllers.grid.catalogEntry.SalesRightsGridCellProvider');
 import('controllers.grid.catalogEntry.SalesRightsGridRow');
 
-// Link action & modal classes
-import('lib.pkp.classes.linkAction.request.AjaxModal');
-
+use PKP\linkAction\LinkAction;
+use PKP\linkAction\request\AjaxModal;
 use PKP\core\JSONMessage;
 
 class SalesRightsGridHandler extends GridHandler

@@ -16,6 +16,8 @@
 use PKP\submission\SubmissionFile;
 use PKP\submission\PKPSubmission;
 use PKP\core\JSONMessage;
+use PKP\linkAction\request\AjaxModal;
+use PKP\linkAction\LinkAction;
 
 use APP\template\TemplateManager;
 
@@ -26,9 +28,6 @@ import('lib.pkp.classes.controllers.grid.CategoryGridHandler');
 import('controllers.grid.catalogEntry.PublicationFormatGridRow');
 import('controllers.grid.catalogEntry.PublicationFormatGridCategoryRow');
 import('controllers.grid.catalogEntry.PublicationFormatCategoryGridDataProvider');
-
-// Link action & modal classes
-import('lib.pkp.classes.linkAction.request.AjaxModal');
 
 class PublicationFormatGridHandler extends CategoryGridHandler
 {

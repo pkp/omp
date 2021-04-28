@@ -15,6 +15,10 @@
 
 import('lib.pkp.classes.controllers.grid.GridRow');
 
+use PKP\linkAction\LinkAction;
+use PKP\linkAction\request\AjaxModal;
+use PKP\linkAction\request\RemoteActionConfirmationModal;
+
 class SeriesGridRow extends GridRow
 {
     /**
@@ -44,7 +48,6 @@ class SeriesGridRow extends GridRow
         if (!empty($seriesId) && is_numeric($seriesId)) {
             $router = $request->getRouter();
 
-            import('lib.pkp.classes.linkAction.request.AjaxModal');
             $this->addAction(
                 new LinkAction(
                     'editSeries',
@@ -59,7 +62,6 @@ class SeriesGridRow extends GridRow
                 )
             );
 
-            import('lib.pkp.classes.linkAction.request.RemoteActionConfirmationModal');
             $this->addAction(
                 new LinkAction(
                     'deleteSeries',

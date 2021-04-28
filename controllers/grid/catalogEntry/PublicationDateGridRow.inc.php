@@ -15,6 +15,10 @@
 
 import('lib.pkp.classes.controllers.grid.GridRow');
 
+use PKP\linkAction\LinkAction;
+use PKP\linkAction\request\AjaxModal;
+use PKP\linkAction\request\RemoteActionConfirmationModal;
+
 class PublicationDateGridRow extends GridRow
 {
     /** @var Monograph **/
@@ -62,7 +66,6 @@ class PublicationDateGridRow extends GridRow
             ];
 
             // Add row-level actions
-            import('lib.pkp.classes.linkAction.request.AjaxModal');
             $this->addAction(
                 new LinkAction(
                     'editDate',
@@ -76,7 +79,6 @@ class PublicationDateGridRow extends GridRow
                 )
             );
 
-            import('lib.pkp.classes.linkAction.request.RemoteActionConfirmationModal');
             $this->addAction(
                 new LinkAction(
                     'deleteDate',

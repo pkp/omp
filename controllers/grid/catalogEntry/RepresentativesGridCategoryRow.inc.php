@@ -15,8 +15,7 @@
 
 import('lib.pkp.classes.controllers.grid.GridCategoryRow');
 
-// Link actions
-import('lib.pkp.classes.linkAction.request.AjaxModal');
+use PKP\linkAction\request\AjaxModal;
 
 class RepresentativesGridCategoryRow extends GridCategoryRow
 {

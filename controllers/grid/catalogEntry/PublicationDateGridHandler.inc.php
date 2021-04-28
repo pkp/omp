@@ -21,9 +21,8 @@ import('lib.pkp.classes.controllers.grid.GridHandler');
 import('controllers.grid.catalogEntry.PublicationDateGridCellProvider');
 import('controllers.grid.catalogEntry.PublicationDateGridRow');
 
-// Link action & modal classes
-import('lib.pkp.classes.linkAction.request.AjaxModal');
-
+use PKP\linkAction\LinkAction;
+use PKP\linkAction\request\AjaxModal;
 use PKP\core\JSONMessage;
 
 class PublicationDateGridHandler extends GridHandler

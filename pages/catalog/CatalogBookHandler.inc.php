@@ -16,9 +16,7 @@
 
 import('classes.handler.Handler');
 
-// import UI base classes
-import('lib.pkp.classes.linkAction.LinkAction');
-
+use PKP\linkAction\LinkAction;
 use PKP\submission\PKPSubmission;
 
 use \APP\template\TemplateManager;

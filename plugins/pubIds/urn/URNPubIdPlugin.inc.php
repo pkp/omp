@@ -14,6 +14,8 @@
  */
 
 use PKP\Services\Interfaces\EntityWriteInterface;
+use PKP\linkAction\LinkAction;
+use PKP\linkAction\request\RemoteActionConfirmationModal;
 
 use APP\plugins\PubIdPlugin;
 use APP\template\TemplateManager;
@@ -198,7 +200,6 @@ class URNPubIdPlugin extends PubIdPlugin
     public function getLinkActions($pubObject)
     {
         $linkActions = [];
-        import('lib.pkp.classes.linkAction.request.RemoteActionConfirmationModal');
         $request = Application::get()->getRequest();
         $userVars = $request->getUserVars();
         $userVars['pubIdPlugIn'] = get_class($this);

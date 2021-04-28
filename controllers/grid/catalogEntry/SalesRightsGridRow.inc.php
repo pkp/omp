@@ -15,6 +15,10 @@
 
 import('lib.pkp.classes.controllers.grid.GridRow');
 
+use PKP\linkAction\LinkAction;
+use PKP\linkAction\request\RemoteActionConfirmationModal;
+use PKP\linkAction\request\AjaxModal;
+
 class SalesRightsGridRow extends GridRow
 {
     /** @var Monograph **/
@@ -55,7 +59,6 @@ class SalesRightsGridRow extends GridRow
             ];
 
             // Add row-level actions
-            import('lib.pkp.classes.linkAction.request.AjaxModal');
             $this->addAction(
                 new LinkAction(
                     'editRights',
@@ -69,7 +72,6 @@ class SalesRightsGridRow extends GridRow
                 )
             );
 
-            import('lib.pkp.classes.linkAction.request.RemoteActionConfirmationModal');
             $this->addAction(
                 new LinkAction(
                     'deleteRights',
