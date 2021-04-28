@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2020-01-22T20:59:47+00:00\n"
-"PO-Revision-Date: 2021-04-28 12:44+0000\n"
+"PO-Revision-Date: 2021-04-28 14:37+0000\n"
 "Last-Translator: Stefano Bolelli Gallevi <stefano.bolelli@unimi.it>\n"
 "Language-Team: Italian <http://translate.pkp.sfu.ca/projects/omp/default/"
 "it_IT/>\n"
@@ -21,10 +21,10 @@ msgid "default.genres.bibliography"
 msgstr "Bibliografia"
 
 msgid "default.genres.manuscript"
-msgstr "Libro manoscritto"
+msgstr "Manoscritto del libro"
 
 msgid "default.genres.chapter"
-msgstr "Capitolo manoscritto"
+msgstr "Manoscritto del capitolo"
 
 msgid "default.genres.glossary"
 msgstr "Glossario"
@@ -39,7 +39,7 @@ msgid "default.genres.prospectus"
 msgstr "Prospetto"
 
 msgid "default.genres.table"
-msgstr "Tavola"
+msgstr "Tabella"
 
 msgid "default.genres.figure"
 msgstr "Figura"
@@ -220,3 +220,21 @@ msgstr "Editor di collana"
 
 msgid "default.groups.name.sectionEditor"
 msgstr "Editor di collana"
+
+msgid "default.groups.abbrev.externalReviewer"
+msgstr "RE"
+
+msgid "default.groups.plural.externalReviewer"
+msgstr "Revisori esterni"
+
+msgid "default.groups.name.externalReviewer"
+msgstr "Revisore esterno"
+
+msgid "default.contextSettings.forLibrarians"
+msgstr ""
+"Invitiamo le bibliotecarie e i bibliotecari a prendere in considerazione "
+"questa casa editrice per i fondi di case editrici digitali delle loro "
+"biblioteche. Inoltre, questo sistema di pubblicazione open source si presta "
+"ad essere offerto da parte delle biblioteche ai ricercatori per l'edizione "
+"delle loro pubblicazioni (vedi <a href=\"http://pkp.sfu.ca/omp\">Open "
+"Monograph Press</a>)."
