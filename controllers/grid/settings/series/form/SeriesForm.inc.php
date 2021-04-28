@@ -44,14 +44,14 @@ class SeriesForm extends PKPSectionForm
 
         // Validation checks for this form
         $form = $this;
-        $this->addCheck(new FormValidatorLocale($this, 'title', 'required', 'manager.setup.form.series.nameRequired'));
-        $this->addCheck(new FormValidatorISSN($this, 'onlineIssn', 'optional', 'catalog.manage.series.issn.validation'));
-        $this->addCheck(new FormValidatorISSN($this, 'printIssn', 'optional', 'catalog.manage.series.issn.validation'));
-        $this->addCheck(new FormValidatorCustom($this, 'printIssn', 'optional', 'catalog.manage.series.issn.equalValidation', function ($printIssn) use ($form) {
+        $this->addCheck(new \PKP\form\validation\FormValidatorLocale($this, 'title', 'required', 'manager.setup.form.series.nameRequired'));
+        $this->addCheck(new \PKP\form\validation\FormValidatorISSN($this, 'onlineIssn', 'optional', 'catalog.manage.series.issn.validation'));
+        $this->addCheck(new \PKP\form\validation\FormValidatorISSN($this, 'printIssn', 'optional', 'catalog.manage.series.issn.validation'));
+        $this->addCheck(new \PKP\form\validation\FormValidatorCustom($this, 'printIssn', 'optional', 'catalog.manage.series.issn.equalValidation', function ($printIssn) use ($form) {
             return !($form->getData('onlineIssn') != '' && $form->getData('onlineIssn') == $printIssn);
         }));
-        $this->addCheck(new FormValidatorRegExp($this, 'path', 'required', 'grid.series.pathAlphaNumeric', '/^[a-zA-Z0-9\/._-]+$/'));
-        $this->addCheck(new FormValidatorCustom(
+        $this->addCheck(new \PKP\form\validation\FormValidatorRegExp($this, 'path', 'required', 'grid.series.pathAlphaNumeric', '/^[a-zA-Z0-9\/._-]+$/'));
+        $this->addCheck(new \PKP\form\validation\FormValidatorCustom(
             $this,
             'path',
             'required',

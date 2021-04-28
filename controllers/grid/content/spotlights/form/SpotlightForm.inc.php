@@ -12,10 +12,9 @@
  * @brief Form for reading/creating/editing spotlight items.
  */
 
+use PKP\form\Form;
 
-import('lib.pkp.classes.form.Form');
-
-use \APP\template\TemplateManager;
+use APP\template\TemplateManager;
 
 class SpotlightForm extends Form
 {
@@ -43,13 +42,13 @@ class SpotlightForm extends Form
         $this->_pressId = $pressId;
 
         $form = $this;
-        $this->addCheck(new FormValidatorCustom($this, 'assocId', 'required', 'grid.content.spotlights.itemRequired', function ($assocId) use ($form) {
+        $this->addCheck(new \PKP\form\validation\FormValidatorCustom($this, 'assocId', 'required', 'grid.content.spotlights.itemRequired', function ($assocId) use ($form) {
             [$id, $type] = preg_split('/:/', $assocId);
             return is_numeric($id) && $id > 0 && $form->_isValidSpotlightType($type);
         }));
-        $this->addCheck(new FormValidator($this, 'title', 'required', 'grid.content.spotlights.titleRequired'));
-        $this->addCheck(new FormValidatorPost($this));
-        $this->addCheck(new FormValidatorCSRF($this));
+        $this->addCheck(new \PKP\form\validation\FormValidator($this, 'title', 'required', 'grid.content.spotlights.titleRequired'));
+        $this->addCheck(new \PKP\form\validation\FormValidatorPost($this));
+        $this->addCheck(new \PKP\form\validation\FormValidatorCSRF($this));
     }
 
 

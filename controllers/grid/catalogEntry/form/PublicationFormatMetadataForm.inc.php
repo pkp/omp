@@ -13,8 +13,7 @@
  * @brief Form to edit a publication format's metadata
  */
 
-import('lib.pkp.classes.form.Form');
-
+use PKP\form\Form;
 use PKP\plugins\PKPPubIdPluginHelper;
 
 use APP\template\TemplateManager;
@@ -74,11 +73,11 @@ class PublicationFormatMetadataForm extends Form
         $this->_remoteURL = $remoteURL;
         $this->_formParams = $formParams;
 
-        $this->addCheck(new FormValidator($this, 'productAvailabilityCode', 'required', 'grid.catalogEntry.productAvailabilityRequired'));
-        $this->addCheck(new FormValidatorRegExp($this, 'directSalesPrice', 'optional', 'grid.catalogEntry.validPriceRequired', '/^[0-9]*(\.[0-9]+)?$/'));
-        $this->addCheck(new FormValidator($this, 'productCompositionCode', 'required', 'grid.catalogEntry.productCompositionRequired'));
-        $this->addCheck(new FormValidatorPost($this));
-        $this->addCheck(new FormValidatorCSRF($this));
+        $this->addCheck(new \PKP\form\validation\FormValidator($this, 'productAvailabilityCode', 'required', 'grid.catalogEntry.productAvailabilityRequired'));
+        $this->addCheck(new \PKP\form\validation\FormValidatorRegExp($this, 'directSalesPrice', 'optional', 'grid.catalogEntry.validPriceRequired', '/^[0-9]*(\.[0-9]+)?$/'));
+        $this->addCheck(new \PKP\form\validation\FormValidator($this, 'productCompositionCode', 'required', 'grid.catalogEntry.productCompositionRequired'));
+        $this->addCheck(new \PKP\form\validation\FormValidatorPost($this));
+        $this->addCheck(new \PKP\form\validation\FormValidatorCSRF($this));
     }
 
     /**

@@ -13,9 +13,9 @@
  * @brief Form for adding/editing a format
  */
 
-import('lib.pkp.classes.form.Form');
+use PKP\form\Form;
 
-use \APP\template\TemplateManager;
+use APP\template\TemplateManager;
 
 class PublicationFormatForm extends Form
 {
@@ -39,11 +39,11 @@ class PublicationFormatForm extends Form
         $this->setPublication($publication);
 
         // Validation checks for this form
-        $this->addCheck(new FormValidator($this, 'name', 'required', 'grid.catalogEntry.nameRequired'));
-        $this->addCheck(new FormValidator($this, 'entryKey', 'required', 'grid.catalogEntry.publicationFormatRequired'));
-        $this->addCheck(new FormValidatorRegExp($this, 'urlPath', 'optional', 'validator.alpha_dash', '/^[-_a-z0-9]*$/'));
-        $this->addCheck(new FormValidatorPost($this));
-        $this->addCheck(new FormValidatorCSRF($this));
+        $this->addCheck(new \PKP\form\validation\FormValidator($this, 'name', 'required', 'grid.catalogEntry.nameRequired'));
+        $this->addCheck(new \PKP\form\validation\FormValidator($this, 'entryKey', 'required', 'grid.catalogEntry.publicationFormatRequired'));
+        $this->addCheck(new \PKP\form\validation\FormValidatorRegExp($this, 'urlPath', 'optional', 'validator.alpha_dash', '/^[-_a-z0-9]*$/'));
+        $this->addCheck(new \PKP\form\validation\FormValidatorPost($this));
+        $this->addCheck(new \PKP\form\validation\FormValidatorCSRF($this));
     }
 
     //

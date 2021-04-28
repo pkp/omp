@@ -13,9 +13,9 @@
  *
  */
 
-use \APP\template\TemplateManager;
+use PKP\form\Form;
 
-import('lib.pkp.classes.form.Form');
+use APP\template\TemplateManager;
 
 class PaypalPaymentForm extends Form
 {

@@ -14,9 +14,9 @@
  * stores/retrieves from an associative array
  */
 
-import('lib.pkp.classes.form.Form');
+use PKP\form\Form;
 
-use \APP\template\TemplateManager;
+use APP\template\TemplateManager;
 
 class ChapterForm extends Form
 {
@@ -48,9 +48,9 @@ class ChapterForm extends Form
         }
 
         // Validation checks for this form
-        $this->addCheck(new FormValidatorLocale($this, 'title', 'required', 'metadata.property.validationMessage.title', $publication->getData('locale')));
-        $this->addCheck(new FormValidatorPost($this));
-        $this->addCheck(new FormValidatorCSRF($this));
+        $this->addCheck(new \PKP\form\validation\FormValidatorLocale($this, 'title', 'required', 'metadata.property.validationMessage.title', $publication->getData('locale')));
+        $this->addCheck(new \PKP\form\validation\FormValidatorPost($this));
+        $this->addCheck(new \PKP\form\validation\FormValidatorCSRF($this));
     }
 
 

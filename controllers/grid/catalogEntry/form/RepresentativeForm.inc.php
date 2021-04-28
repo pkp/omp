@@ -13,9 +13,9 @@
  * @brief Form for adding/editing a representative entry
  */
 
-import('lib.pkp.classes.form.Form');
+use PKP\form\Form;
 
-use \APP\template\TemplateManager;
+use APP\template\TemplateManager;
 
 class RepresentativeForm extends Form
 {
@@ -36,7 +36,7 @@ class RepresentativeForm extends Form
 
         // Validation checks for this form
         $form = $this;
-        $this->addCheck(new FormValidatorCustom(
+        $this->addCheck(new \PKP\form\validation\FormValidatorCustom(
             $this,
             'isSupplier',
             'required',
@@ -49,8 +49,8 @@ class RepresentativeForm extends Form
                 return (!$isSupplier && $onixDao->codeExistsInList($agentRole, 'List69')) || ($isSupplier && $onixDao->codeExistsInList($supplierRole, 'List93'));
             }
         ));
-        $this->addCheck(new FormValidatorPost($this));
-        $this->addCheck(new FormValidatorCSRF($this));
+        $this->addCheck(new \PKP\form\validation\FormValidatorPost($this));
+        $this->addCheck(new \PKP\form\validation\FormValidatorCSRF($this));
     }
 
     //

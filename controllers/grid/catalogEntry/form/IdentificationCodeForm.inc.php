@@ -13,9 +13,9 @@
  * @brief Form for adding/editing an identification code
  */
 
-import('lib.pkp.classes.form.Form');
+use PKP\form\Form;
 
-use \APP\template\TemplateManager;
+use APP\template\TemplateManager;
 
 class IdentificationCodeForm extends Form
 {
@@ -39,11 +39,11 @@ class IdentificationCodeForm extends Form
         $this->setIdentificationCode($identificationCode);
 
         // Validation checks for this form
-        $this->addCheck(new FormValidator($this, 'code', 'required', 'grid.catalogEntry.codeRequired'));
-        $this->addCheck(new FormValidator($this, 'value', 'required', 'grid.catalogEntry.valueRequired'));
-        $this->addCheck(new FormValidator($this, 'representationId', 'required', 'grid.catalogEntry.publicationFormatRequired'));
-        $this->addCheck(new FormValidatorPost($this));
-        $this->addCheck(new FormValidatorCSRF($this));
+        $this->addCheck(new \PKP\form\validation\FormValidator($this, 'code', 'required', 'grid.catalogEntry.codeRequired'));
+        $this->addCheck(new \PKP\form\validation\FormValidator($this, 'value', 'required', 'grid.catalogEntry.valueRequired'));
+        $this->addCheck(new \PKP\form\validation\FormValidator($this, 'representationId', 'required', 'grid.catalogEntry.publicationFormatRequired'));
+        $this->addCheck(new \PKP\form\validation\FormValidatorPost($this));
+        $this->addCheck(new \PKP\form\validation\FormValidatorCSRF($this));
     }
 
     //

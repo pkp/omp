@@ -13,8 +13,7 @@
  * @brief Form for press managers to setup Browse block plugin
  */
 
-
-import('lib.pkp.classes.form.Form');
+use PKP\form\Form;
 
 class BrowseBlockSettingsForm extends Form
 {
@@ -44,8 +43,8 @@ class BrowseBlockSettingsForm extends Form
 
         parent::__construct($plugin->getTemplateResource('settingsForm.tpl'));
 
-        $this->addCheck(new FormValidatorPost($this));
-        $this->addCheck(new FormValidatorCSRF($this));
+        $this->addCheck(new \PKP\form\validation\FormValidatorPost($this));
+        $this->addCheck(new \PKP\form\validation\FormValidatorCSRF($this));
 
         $this->setData('pluginName', $plugin->getName());
         $this->setData('pluginJavaScriptPath', $plugin->getPluginPath());

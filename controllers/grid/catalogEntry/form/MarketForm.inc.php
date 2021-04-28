@@ -13,9 +13,9 @@
  * @brief Form for adding/editing a market region entry
  */
 
-import('lib.pkp.classes.form.Form');
+use PKP\form\Form;
 
-use \APP\template\TemplateManager;
+use APP\template\TemplateManager;
 
 class MarketForm extends Form
 {
@@ -36,11 +36,11 @@ class MarketForm extends Form
         $this->setMarket($market);
 
         // Validation checks for this form
-        $this->addCheck(new FormValidator($this, 'representationId', 'required', 'grid.catalogEntry.publicationFormatRequired'));
-        $this->addCheck(new FormValidator($this, 'date', 'required', 'grid.catalogEntry.dateRequired'));
-        $this->addCheck(new FormValidator($this, 'price', 'required', 'grid.catalogEntry.priceRequired'));
-        $this->addCheck(new FormValidatorPost($this));
-        $this->addCheck(new FormValidatorCSRF($this));
+        $this->addCheck(new \PKP\form\validation\FormValidator($this, 'representationId', 'required', 'grid.catalogEntry.publicationFormatRequired'));
+        $this->addCheck(new \PKP\form\validation\FormValidator($this, 'date', 'required', 'grid.catalogEntry.dateRequired'));
+        $this->addCheck(new \PKP\form\validation\FormValidator($this, 'price', 'required', 'grid.catalogEntry.priceRequired'));
+        $this->addCheck(new \PKP\form\validation\FormValidatorPost($this));
+        $this->addCheck(new \PKP\form\validation\FormValidatorCSRF($this));
     }
 
     //

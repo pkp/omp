@@ -13,8 +13,7 @@
  * @brief Form for press managers to setup DOI plugin
  */
 
-
-import('lib.pkp.classes.form.Form');
+use PKP\form\Form;
 
 class DOISettingsForm extends Form
 {
@@ -65,36 +64,36 @@ class DOISettingsForm extends Form
         parent::__construct($plugin->getTemplateResource('settingsForm.tpl'));
 
         $form = $this;
-        $this->addCheck(new FormValidatorCustom($this, 'doiObjects', 'required', 'plugins.pubIds.doi.manager.settings.doiObjectsRequired', function ($enablePublicationDoi) use ($form) {
+        $this->addCheck(new \PKP\form\validation\FormValidatorCustom($this, 'doiObjects', 'required', 'plugins.pubIds.doi.manager.settings.doiObjectsRequired', function ($enablePublicationDoi) use ($form) {
             return $form->getData('enablePublicationDoi') || $form->getData('enableRepresentationDoi') || $form->getData('enableSubmissionFileDoi');
         }));
-        $this->addCheck(new FormValidatorRegExp($this, 'doiPrefix', 'required', 'plugins.pubIds.doi.manager.settings.doiPrefixPattern', '/^10\.[0-9]{4,7}$/'));
-        $this->addCheck(new FormValidatorCustom($this, 'doiPublicationSuffixPattern', 'required', 'plugins.pubIds.doi.manager.settings.doiPublicationSuffixPatternRequired', function ($doiPublicationSuffixPattern) use ($form) {
+        $this->addCheck(new \PKP\form\validation\FormValidatorRegExp($this, 'doiPrefix', 'required', 'plugins.pubIds.doi.manager.settings.doiPrefixPattern', '/^10\.[0-9]{4,7}$/'));
+        $this->addCheck(new \PKP\form\validation\FormValidatorCustom($this, 'doiPublicationSuffixPattern', 'required', 'plugins.pubIds.doi.manager.settings.doiPublicationSuffixPatternRequired', function ($doiPublicationSuffixPattern) use ($form) {
             if ($form->getData('doiSuffix') == 'pattern' && $form->getData('enablePublicationDoi')) {
                 return $doiPublicationSuffixPattern != '';
             }
             return true;
         }));
-        $this->addCheck(new FormValidatorCustom($this, 'doiChapterSuffixPattern', 'required', 'plugins.pubIds.doi.manager.settings.doiChapterSuffixPatternRequired', function ($doiChapterSuffixPattern) use ($form) {
+        $this->addCheck(new \PKP\form\validation\FormValidatorCustom($this, 'doiChapterSuffixPattern', 'required', 'plugins.pubIds.doi.manager.settings.doiChapterSuffixPatternRequired', function ($doiChapterSuffixPattern) use ($form) {
             if ($form->getData('doiSuffix') == 'pattern' && $form->getData('enableChapterDoi')) {
                 return $doiChapterSuffixPattern != '';
             }
             return true;
         }));
-        $this->addCheck(new FormValidatorCustom($this, 'doiRepresentationSuffixPattern', 'required', 'plugins.pubIds.doi.manager.settings.doiRepresentationSuffixPatternRequired', function ($doiRepresentationSuffixPattern) use ($form) {
+        $this->addCheck(new \PKP\form\validation\FormValidatorCustom($this, 'doiRepresentationSuffixPattern', 'required', 'plugins.pubIds.doi.manager.settings.doiRepresentationSuffixPatternRequired', function ($doiRepresentationSuffixPattern) use ($form) {
             if ($form->getData('doiSuffix') == 'pattern' && $form->getData('enableRepresentationDoi')) {
                 return $doiRepresentationSuffixPattern != '';
             }
             return true;
         }));
-        $this->addCheck(new FormValidatorCustom($this, 'doiSubmissionFileSuffixPattern', 'required', 'plugins.pubIds.doi.manager.settings.doiSubmissionFileSuffixPatternRequired', function ($doiSubmissionFileSuffixPattern) use ($form) {
+        $this->addCheck(new \PKP\form\validation\FormValidatorCustom($this, 'doiSubmissionFileSuffixPattern', 'required', 'plugins.pubIds.doi.manager.settings.doiSubmissionFileSuffixPatternRequired', function ($doiSubmissionFileSuffixPattern) use ($form) {
             if ($form->getData('doiSuffix') == 'pattern' && $form->getData('enableSubmissionFileDoi')) {
                 return $doiSubmissionFileSuffixPattern != '';
             }
             return true;
         }));
-        $this->addCheck(new FormValidatorPost($this));
-        $this->addCheck(new FormValidatorCSRF($this));
+        $this->addCheck(new \PKP\form\validation\FormValidatorPost($this));
+        $this->addCheck(new \PKP\form\validation\FormValidatorCSRF($this));
 
         // for DOI reset requests
         import('lib.pkp.classes.linkAction.request.RemoteActionConfirmationModal');

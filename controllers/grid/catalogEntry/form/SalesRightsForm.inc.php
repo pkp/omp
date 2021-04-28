@@ -13,9 +13,9 @@
  * @brief Form for adding/editing a sales rights entry
  */
 
-import('lib.pkp.classes.form.Form');
+use PKP\form\Form;
 
-use \APP\template\TemplateManager;
+use APP\template\TemplateManager;
 
 class SalesRightsForm extends Form
 {
@@ -37,9 +37,9 @@ class SalesRightsForm extends Form
 
         // Validation checks for this form
         $form = $this;
-        $this->addCheck(new FormValidator($this, 'type', 'required', 'grid.catalogEntry.typeRequired'));
-        $this->addCheck(new FormValidator($this, 'representationId', 'required', 'grid.catalogEntry.publicationFormatRequired'));
-        $this->addCheck(new FormValidatorCustom(
+        $this->addCheck(new \PKP\form\validation\FormValidator($this, 'type', 'required', 'grid.catalogEntry.typeRequired'));
+        $this->addCheck(new \PKP\form\validation\FormValidator($this, 'representationId', 'required', 'grid.catalogEntry.publicationFormatRequired'));
+        $this->addCheck(new \PKP\form\validation\FormValidatorCustom(
             $this,
             'ROWSetting',
             'optional',
@@ -52,8 +52,8 @@ class SalesRightsForm extends Form
             }
         ));
 
-        $this->addCheck(new FormValidatorPost($this));
-        $this->addCheck(new FormValidatorCSRF($this));
+        $this->addCheck(new \PKP\form\validation\FormValidatorPost($this));
+        $this->addCheck(new \PKP\form\validation\FormValidatorCSRF($this));
     }
 
     //
