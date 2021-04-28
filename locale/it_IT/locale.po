@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2020-01-22T21:00:04+00:00\n"
-"PO-Revision-Date: 2021-04-28 14:43+0000\n"
+"PO-Revision-Date: 2021-04-28 15:40+0000\n"
 "Last-Translator: Stefano Bolelli Gallevi <stefano.bolelli@unimi.it>\n"
 "Language-Team: Italian <http://translate.pkp.sfu.ca/projects/omp/locale/"
 "it_IT/>\n"
@@ -929,7 +929,9 @@ msgid "about.pressSponsorship"
 msgstr "Sponsorship per questa casa editrice"
 
 msgid "about.aboutThisPublishingSystem"
-msgstr "Informazioni su questo sistema di pubblicazione"
+msgstr ""
+"maggiori informazioni sul sistema di pubblicazione, la piattaforma e il "
+"flusso di lavoro di OMP/PKP."
 
 msgid "about.aboutThisPublishingSystem.altText"
 msgstr "Processo editoriale di OMP"
@@ -1554,3 +1556,70 @@ msgstr ""
 
 msgid "user.authorization.representationNotFound"
 msgstr "Il formato di pubblicazione richiesto non è stato trovato."
+
+msgid "log.review.reviewAccepted"
+msgstr ""
+"{$reviewerName} ha accettato il round {$round} di revisione della proposta "
+"{$submissionId}."
+
+msgid "log.review.reviewDeclined"
+msgstr ""
+"{$reviewerName} ha rifiutato il round {$round} di revisione per la proposta "
+"{$submissionId}."
+
+msgid "log.review.reviewDueDateSet"
+msgstr ""
+"La data di scadenza per il round {$round} di revisione della proposta "
+"{$submissionId} da parte di {$reviewerName} è stata impostata a {$dueDate}."
+
+msgid "installer.updatingInstructions"
+msgstr ""
+"Se stai aggiornando una installazione esistente di OMP, <a href=\""
+"{$upgradeUrl}\">fai click qui</a> per procedere."
+
+msgid "installer.appInstallation"
+msgstr "Installazione di OMP"
+
+msgid "about.aboutSoftware"
+msgstr "Su Open Monograph Press"
+
+msgid "about.onlineSubmissions.register"
+msgstr "Registra"
+
+msgid "site.noPresses"
+msgstr "Non ci sono case editrici disponibili."
+
+msgid "user.register.form.privacyConsentThisContext"
+msgstr ""
+"Si, accetto che i miei dati vengano raccolti e registrati in accordo con la  "
+"<a href=\"{$privacyUrl}\" target=\"_blank\">dichiarazione sulla privacy</a> "
+"della casa editrice."
+
+msgid "user.role.productionEditors"
+msgstr "Editor di produzione"
+
+msgid "user.role.copyeditors"
+msgstr "Copyeditors"
+
+msgid "user.role.editors"
+msgstr "Editors"
+
+msgid "user.role.managers"
+msgstr "Press managers"
+
+msgid "user.role.productionEditor"
+msgstr "Editor di produzione"
+
+msgid "user.role.copyeditor"
+msgstr "Copyeditor"
+
+msgid "user.role.pressEditor"
+msgstr "Press editor"
+
+msgid "user.role.manager"
+msgstr "Press manager"
+
+msgid "user.register.noContextReviewerInterests"
+msgstr ""
+"Se hai chiesto di essere revisore di una casa editrice, inserisci i soggetti "
+"di interesse."
