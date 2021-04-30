@@ -17,8 +17,6 @@ import('lib.pkp.plugins.importexport.native.filter.NativeXmlPKPPublicationFilter
 
 use APP\file\PublicFileManager;
 
-use DOMDocument;
-
 class NativeXmlPublicationFilter extends NativeXmlPKPPublicationFilter
 {
     //
