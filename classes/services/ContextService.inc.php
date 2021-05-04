@@ -20,6 +20,7 @@ use PKP\file\ContextFileManager;
 
 use APP\services\Services;
 use APP\file\PublicFileManager;
+use APP\submission\Submission;
 
 class ContextService extends \PKP\Services\PKPContextService
 {
@@ -196,7 +197,7 @@ class ContextService extends \PKP\Services\PKPContextService
         foreach ($objectDaos as $objectDao) {
             $objects = $objectDao->getByContextId($context->getId());
             while ($object = $objects->next()) {
-                if (is_a($object, 'Submission')) {
+                if ($object instanceof Submission) {
                     foreach ($object->getData('publications') as $publication) {
                         foreach ((array) $publication->getData('coverImage') as $coverImage) {
                             $coverImageFilePath = $publicFileManager->getContextFilesPath($context->getId()) . '/' . $coverImage['uploadName'];
@@ -251,7 +252,7 @@ class ContextService extends \PKP\Services\PKPContextService
                     }
 
                     imagedestroy($thumbnail);
-                    if (is_a($object, 'Submission')) {
+                    if ($object instanceof Submission) {
                         $object->setCoverImage([
                             'name' => $cover['name'],
                             'width' => $cover['width'],

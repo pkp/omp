@@ -19,6 +19,7 @@ use PKP\linkAction\request\RemoteActionConfirmationModal;
 
 use APP\plugins\PubIdPlugin;
 use APP\template\TemplateManager;
+use APP\publication\Publication;
 
 class URNPubIdPlugin extends PubIdPlugin
 {
@@ -302,7 +303,7 @@ class URNPubIdPlugin extends PubIdPlugin
         }
 
         // URNs are already added to property values for Publications and Galleys
-        if (get_class($object) === 'Publication' || get_class($object) === 'ArticleGalley') {
+        if ($object instanceof Publication) {
             return;
         }
 

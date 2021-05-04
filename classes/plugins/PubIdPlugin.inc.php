@@ -30,7 +30,7 @@ abstract class PubIdPlugin extends PKPPubIdPlugin {
 	 */
 	function getPubObjectTypes() {
 		$pubObjectTypes = parent::getPubObjectTypes();
-		array_push($pubObjectTypes, 'Chapter');
+                $pubObjectTypes['Chapter'] = '\Chapter'; // FIXME: Add namespacing
 		return $pubObjectTypes;
 	}
 
@@ -163,7 +163,7 @@ abstract class PubIdPlugin extends PKPPubIdPlugin {
 	 * @copydoc PKPPubIdPlugin::checkDuplicate()
 	 */
 	function checkDuplicate($pubId, $pubObjectType, $excludeId, $contextId) {
-		foreach ($this->getPubObjectTypes() as $type) {
+		foreach ($this->getPubObjectTypes() as $type => $fqcn) {
 			if ($type === 'Chapter') {
 				$excludeTypeId = $type === $pubObjectType ? $excludeId : null;
 				if (DAORegistry::getDAO('ChapterDAO')->pubIdExists($this->getPubIdType(), $pubId, $excludeTypeId, $contextId)) {

@@ -15,6 +15,8 @@
 
 import('lib.pkp.plugins.importexport.native.filter.NativeXmlRepresentationFilter');
 
+use APP\submission\Submission;
+
 class NativeXmlPublicationFormatFilter extends NativeXmlRepresentationFilter
 {
     //
@@ -64,7 +66,7 @@ class NativeXmlPublicationFormatFilter extends NativeXmlRepresentationFilter
         $deployment = $this->getDeployment();
         $context = $deployment->getContext();
         $submission = $deployment->getSubmission();
-        assert(is_a($submission, 'Submission'));
+        assert($submission instanceof Submission);
 
         $representation = parent::handleElement($node);
 
