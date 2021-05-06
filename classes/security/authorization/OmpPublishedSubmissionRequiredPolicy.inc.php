@@ -12,7 +12,6 @@
  * @brief Policy that ensures that the request contains a valid published submission.
  */
 
-use PKP\submission\PKPSubmission;
 
 import('lib.pkp.classes.security.authorization.DataObjectRequiredPolicy');
 
@@ -54,7 +53,7 @@ class OmpPublishedSubmissionRequiredPolicy extends DataObjectRequiredPolicy
         if (!$submission && ctype_digit((string) $submissionId)) {
             $submission = Services::get('submission')->get($submissionId);
         }
-        if (!$submission || $submission->getData('status') !== PKPSubmission::STATUS_PUBLISHED) {
+        if (!$submission) {
             return AUTHORIZATION_DENY;
         }
 

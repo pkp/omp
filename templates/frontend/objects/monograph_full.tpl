@@ -74,6 +74,14 @@
  *}
 <div class="obj_monograph_full">
 
+	{* Indicate if this is only a preview *}
+	{if $publication->getData('status') !== \PKP\submission\PKPSubmission::STATUS_PUBLISHED}
+		<div class="cmp_notification notice">
+			{capture assign="submissionUrl"}{url page="workflow" op="access" path=$monograph->getId()}{/capture}
+			{translate key="submission.viewingPreview" url=$submissionUrl}
+		</div>
+	{/if}
+
 	{* Notification that this is an old version *}
 	{if $currentPublication->getID() !== $publication->getId()}
 		<div class="cmp_notification notice">
