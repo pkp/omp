@@ -91,25 +91,6 @@ class NativeXmlPublicationFormatFilter extends NativeXmlRepresentationFilter {
 	}
 
 	/**
-	 * Process the self_file_ref node found inside the publication_format node.
-	 * @param $node DOMElement
-	 * @param $deployment Onix30ExportDeployment
-	 * @param $representation PublicationFormat
-	 */
-	function _processFileRef($node, $deployment, &$representation) {
-		$fileId = $node->getAttribute('id');
-		$DBId = $deployment->getFileDBId($fileId);
-		if ($DBId) {
-			// Update the submission file.
-			$submissionFileDao = DAORegistry::getDAO('SubmissionFileDAO'); /* @var $submissionFileDao SubmissionFileDAO */
-			$submissionFile = Services::get('submissionFile')->get($DBId);
-			$submissionFile->setAssocType(ASSOC_TYPE_REPRESENTATION);
-			$submissionFile->setAssocId($representation->getId());
-			$submissionFileDao->updateObject($submissionFile);
-		}
-	}
-
-	/**
 	 * Process the Product node found inside the publication_format node.  There may be many of these.
 	 * @param $node DOMElement
 	 * @param $deployment PKPImportExportDeployment
