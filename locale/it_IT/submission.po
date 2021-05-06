@@ -2,41 +2,47 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"Last-Translator: \n"
-"Language-Team: \n"
+"POT-Creation-Date: 2020-01-22T21:00:19+00:00\n"
+"PO-Revision-Date: 2021-04-28 18:14+0000\n"
+"Last-Translator: Stefano Bolelli Gallevi <stefano.bolelli@unimi.it>\n"
+"Language-Team: Italian <http://translate.pkp.sfu.ca/projects/omp/submission/"
+"it_IT/>\n"
+"Language: it_IT\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"POT-Creation-Date: 2020-01-22T21:00:19+00:00\n"
-"PO-Revision-Date: 2020-01-22T21:00:19+00:00\n"
-"Language: \n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: Weblate 3.9.1\n"
 
 msgid "submission.authorListSeparator"
 msgstr "; "
 
 msgid "submission.submit.title"
-msgstr "Seleziona un documento da proporre"
+msgstr "Proponi un libro"
 
 msgid "submission.upload.selectBookElement"
 msgstr "Seleziona un elemento del libro"
 
 msgid "submission.title"
-msgstr "Titolo"
+msgstr "Titolo del libro"
 
 msgid "submission.title.tip"
 msgstr "Puoi scegliere di caricare questi tipi: 'immagine', 'testo' oppure un altro tipo di elemento multimediale scelto tra 'software' o 'interattivo'. Per favore, scegli solo quello che meglio identifica il prodotto da te caricato. Puoi trovare alcuni esempi qui <a target=\"_blank\" href=\"http://dublincore.org/documents/2001/04/12/usageguide/generic.shtml#type\">http://dublincore.org/documents/2001/04/12/usageguide/generic.shtml#type</a>"
 
 msgid "submission.select"
-msgstr "Seleziona il caricamento"
+msgstr "Seleziona la proposta"
 
 msgid "submission.synopsis"
-msgstr "Scheda"
+msgstr "Sinossi"
 
 msgid "submission.workflowType"
 msgstr "Tipo di Libro"
 
 msgid "submission.workflowType.description"
-msgstr "Una Monografia ? un volume scritto interamente da uno o pi? autori. Un volume A cura di ? costituito da capitoli scritti ciascuno da un diverso autore (i dettagli di ogni capitolo verranno inseriti pi? avanti)"
+msgstr ""
+"Un libro è un volume scritto interamente da uno o più autori. Un volume A "
+"cura di è costituito da capitoli scritti ciascuno da un diverso autore (i "
+"dettagli di ogni capitolo verranno inseriti più avanti)"
 
 msgid "submission.workflowType.editedVolume"
 msgstr "Volume A cura di: gli Autori vengono associati solo ai contenuti dei propri Capitoli."
@@ -368,3 +374,159 @@ msgstr "Dettagli di pubblicazione per la versione {$version}"
 msgid "submission.queries.production"
 msgstr "Discussioni durante la produzione"
 
+msgid "submission.copyrightOther.description"
+msgstr "Assegna un copyright per proposte pubblicate nella parte seguente."
+
+msgid "submission.copyrightHolder.description"
+msgstr ""
+"Come copyright sarà indicato automaticamente {$copyright} dopo la "
+"pubblicazione."
+
+msgid "submission.license.description"
+msgstr ""
+"la licenza sarà impostata automaticamente come  <a href='{$licenseUrl}' "
+"target='_blank'>{$licenseName}</a> dopo la pubblicazione."
+
+msgid "publication.copyrightYearBasis.submissionDescription"
+msgstr ""
+"L'anno di copyright sarà ricavato automaticamente dalla data di "
+"pubblicazione."
+
+msgid "submission.publications"
+msgstr "Pubblicazioni"
+
+msgid "publication.scheduledIn"
+msgstr "Pubblicazione programmata in <a href=\"{$issueUrl}\">{$issueName}</a>."
+
+msgid "publication.publish.confirmation"
+msgstr ""
+"Tutti i requisiti per la pubblicazione sono soddisfatti. Sei sicuro di voler "
+"rendere questa scheda di catalogo pubblica?"
+
+msgid "publication.publishedIn"
+msgstr "Pubblicata in <a href=\"{$issueUrl}\">{$issueName}</a>."
+
+msgid "publication.required.issue"
+msgstr ""
+"la pubblicazione deve essere assegnata a un fascicolo prima di poter essere "
+"pubblicata."
+
+msgid "publication.inactiveSeries"
+msgstr "{$series} (Inattiva)"
+
+msgid "publication.invalidSeries"
+msgstr "La collana di questa pubblicazione non si trova."
+
+msgid "publication.catalogEntry.success"
+msgstr "I dettagli della scheda di catalogo sono stati aggiornati."
+
+msgid "publication.catalogEntry"
+msgstr "Scheda di catalogo"
+
+msgid "catalog.browseTitles"
+msgstr "{$numTitles} Titoli"
+
+msgid "submission.list.viewEntry"
+msgstr "Vedi scheda"
+
+msgid "submission.list.saveFeatureOrder"
+msgstr "Salva l'ordine"
+
+msgid "submission.list.orderingFeaturesSection"
+msgstr ""
+"Trascinare oppure usare i pulsanti sopra e sotto per cambiare l'ordine degli "
+"elementi in {$title}."
+
+msgid "submission.list.orderingFeatures"
+msgstr ""
+"Trascinare oppure usare i pulsanti sopra e sotto per cambiare l'ordine degli "
+"elementi in home page."
+
+msgid "submission.list.orderFeatures"
+msgstr "Ordinare gli elementi"
+
+msgid "submission.list.itemsOfTotalMonographs"
+msgstr "{$count} di {$total} libri"
+
+msgid "submission.list.countMonographs"
+msgstr "{$count} libri"
+
+msgid "submission.list.monographs"
+msgstr "Libri"
+
+msgid "section.any"
+msgstr "Qualsiasi collana"
+
+msgid "submission.metadataDescription"
+msgstr ""
+"Queste specifiche sono basate sul set di dati Dublin Core, uno standard "
+"internazionale di descrizione di contenuti editoriali."
+
+msgid "submission.dependentFiles"
+msgstr "File dipendenti"
+
+msgid "submission.upload.fileContents"
+msgstr "Componente della proposta"
+
+msgid "workflow.review.externalReview"
+msgstr "Revisione esterna"
+
+msgid "editor.submission.decision.sendExternalReview"
+msgstr "Inviare in revisione esterna"
+
+msgid "submission.catalogEntry.enableChapterPublicationDates"
+msgstr "Ogni capitolo può avere la propria data di pubblicazione."
+
+msgid "submission.catalogEntry.disableChapterPublicationDates"
+msgstr "Tutti i capitoli avranno la data di pubblicazione del libro."
+
+msgid "submission.catalogEntry.chapterPublicationDates"
+msgstr "Date di pubblicazione"
+
+msgid "submission.catalogEntry.viewSubmission"
+msgstr "Vedi la proposta"
+
+msgid "submission.catalogEntry.selectionMissing"
+msgstr "Devi selezionare almeno un libro da aggiungere al catalogo."
+
+msgid "submission.catalogEntry.select"
+msgstr "Seleziona i libri da aggiungere al catalogo"
+
+msgid "submission.catalogEntry.add"
+msgstr "Aggiungere la selezione al catalgogo"
+
+msgid "submission.incomplete"
+msgstr "In attesa di approvazione"
+
+msgid "submission.complete"
+msgstr "Approvato"
+
+msgid "submission.submit.noContext"
+msgstr "La casa editrice di questa proposta non si trova."
+
+msgid "submission.submit.confirmation"
+msgstr "Conferma"
+
+msgid "submission.submit.seriesPosition.description"
+msgstr "Esempi: Libro 2, Volume 2"
+
+msgid "author.submit.seriesRequired"
+msgstr "E' necessario indicare una collana valida."
+
+msgid "author.isVolumeEditor"
+msgstr "Identifica questo contributore come il curatore del volume."
+
+msgid "submission.chapter.pages"
+msgstr "Pagine"
+
+msgid "submission.editorName"
+msgstr "{$editorName} (a cura di)"
+
+msgid "submission.workflowType.change"
+msgstr "Cambiare"
+
+msgid "submission.workflowType.editedVolume.label"
+msgstr "Curatela"
+
+msgid "submission.upload.selectComponent"
+msgstr "Selezionare un componente"

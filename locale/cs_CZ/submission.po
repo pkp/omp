@@ -1,6 +1,6 @@
 msgid ""
 msgstr ""
-"PO-Revision-Date: 2020-11-27 09:21+0000\n"
+"PO-Revision-Date: 2021-05-03 10:25+0000\n"
 "Last-Translator: Jiří Dlouhý <jiri.dlouhy@czp.cuni.cz>\n"
 "Language-Team: Czech <http://translate.pkp.sfu.ca/projects/omp/submission/"
 "cs_CZ/>\n"
@@ -415,7 +415,7 @@ msgid "submission.status.scheduled"
 msgstr "Naplánováno"
 
 msgid "publication.status.unscheduled"
-msgstr "Neplánovaný"
+msgstr "Není naplánováno vydání"
 
 msgid "submission.publications"
 msgstr "Vydání"
@@ -481,17 +481,16 @@ msgid "submission.copyrightOther.description"
 msgstr "Přiřaďte autorská práva k publikovaným příspěvkům následující straně."
 
 msgid "publication.unpublish"
-msgstr "Nepublikovat"
+msgstr "Ukončit zveřejnění"
 
 msgid "publication.unpublish.confirm"
-msgstr "Opravdu nechcete, aby to bylo zveřejněno?"
+msgstr "Opravdu chcete ukončit zveřejnění tohoto?"
 
 msgid "publication.unschedule.confirm"
 msgstr "Opravdu si nepřejete, aby to bylo naplánováno na zveřejnění?"
 
 msgid "publication.version.details"
-msgstr "Podrobnosti publikace pro verzi {$version}"
+msgstr "Podrobnosti zveřejnění pro verzi {$version}"
 
 msgid "submission.queries.production"
 msgstr "Diskuse během produkčního procesu"
-
