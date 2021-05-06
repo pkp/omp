@@ -164,7 +164,6 @@ class PaypalPaymentPlugin extends PaymethodPlugin
     {
         $context = $request->getContext();
         $queuedPaymentDao = DAORegistry::getDAO('QueuedPaymentDAO'); /* @var $queuedPaymentDao QueuedPaymentDAO */
-        import('classes.payment.omp.OMPPaymentManager'); // Class definition required for unserializing
         try {
             $queuedPayment = $queuedPaymentDao->getById($queuedPaymentId = $request->getUserVar('queuedPaymentId'));
             if (!$queuedPayment) {

@@ -16,8 +16,13 @@
  *
  */
 
-import('classes.payment.omp.OMPPaymentManager'); // PAYMENT_TYPE_... consts
-import('lib.pkp.classes.payment.CompletedPayment');
+namespace APP\payment\omp;
+
+use PKP\payment\CompletedPayment;
+use PKP\db\DAOResultFactory;
+use PKP\core\Core;
+
+use APP\payment\omp\OMPPaymentManager;
 
 class OMPCompletedPaymentDAO extends DAO
 {
@@ -133,7 +138,7 @@ class OMPCompletedPaymentDAO extends DAO
         $result = $this->retrieve(
             'SELECT count(*) AS row_count FROM completed_payments WHERE payment_type = ? AND user_id = ? AND assoc_id = ?',
             [
-                PAYMENT_TYPE_PURCHASE_FILE,
+                OMPPaymentManager::PAYMENT_TYPE_PURCHASE_FILE,
                 (int) $userId,
                 $submissionFileId
             ]
@@ -216,4 +221,8 @@ class OMPCompletedPaymentDAO extends DAO
 
         return $payment;
     }
+}
+
+if (!PKP_STRICT_MODE) {
+    class_alias('\APP\payment\omp\OMPCompletedPaymentDAO', '\OMPCompletedPaymentDAO');
 }

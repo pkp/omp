@@ -14,13 +14,12 @@
  *   catalog.
  */
 
-import('classes.handler.Handler');
-
 use PKP\linkAction\LinkAction;
 use PKP\submission\PKPSubmission;
 
-use \APP\template\TemplateManager;
-
+use APP\handler\Handler;
+use APP\template\TemplateManager;
+use APP\payment\omp\OMPPaymentManager;
 
 class CatalogBookHandler extends Handler
 {
@@ -29,15 +28,6 @@ class CatalogBookHandler extends Handler
 
     /** @var boolean Is this a request for a specific version */
     public $isVersionRequest = false;
-
-    /**
-     * Constructor
-     */
-    public function __construct()
-    {
-        parent::__construct();
-    }
-
 
     //
     // Overridden functions from PKPHandler
@@ -350,7 +340,6 @@ class CatalogBookHandler extends Handler
         }
 
         // They're logged in but need to pay to view.
-        import('classes.payment.omp.OMPPaymentManager');
         $paymentManager = new OMPPaymentManager($press);
         if (!$paymentManager->isConfigured()) {
             $request->redirect(null, 'catalog');
@@ -358,7 +347,7 @@ class CatalogBookHandler extends Handler
 
         $queuedPayment = $paymentManager->createQueuedPayment(
             $request,
-            PAYMENT_TYPE_PURCHASE_FILE,
+            OMPPaymentManager::PAYMENT_TYPE_PURCHASE_FILE,
             $user->getId(),
             $submissionFile->getId(),
             $submissionFile->getDirectSalesPrice(),
