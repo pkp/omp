@@ -166,14 +166,6 @@ class Onix30ExportPlugin extends ImportExportPlugin
     }
 
     /**
-     * @see PKPNativeImportExportPlugin::getImportFilter
-     */
-    public function getImportFilter($xmlFile)
-    {
-        throw new BadMethodCallException();
-    }
-
-    /**
      * @see PKPNativeImportExportPlugin::getExportFilter
      */
     public function getExportFilter($exportType)
