@@ -25,8 +25,9 @@ use PKP\linkAction\LinkAction;
 use PKP\linkAction\request\AjaxModal;
 use PKP\core\JSONMessage;
 use PKP\submission\PKPSubmission;
+use PKP\security\authorization\PublicationAccessPolicy;
 
-use \APP\template\TemplateManager;
+use APP\template\TemplateManager;
 
 class ChapterGridHandler extends CategoryGridHandler
 {
@@ -111,7 +112,6 @@ class ChapterGridHandler extends CategoryGridHandler
      */
     public function authorize($request, &$args, $roleAssignments)
     {
-        import('lib.pkp.classes.security.authorization.PublicationAccessPolicy');
         $this->addPolicy(new PublicationAccessPolicy($request, $args, $roleAssignments));
         return parent::authorize($request, $args, $roleAssignments);
     }

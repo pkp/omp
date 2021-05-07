@@ -29,6 +29,7 @@ use PKP\linkAction\LinkAction;
 use PKP\linkAction\request\AjaxModal;
 use PKP\core\JSONMessage;
 use PKP\submission\PKPSubmission;
+use PKP\security\authorization\ContextAccessPolicy;
 
 class ManageSpotlightsGridHandler extends GridHandler
 {
@@ -85,7 +86,6 @@ class ManageSpotlightsGridHandler extends GridHandler
      */
     public function authorize($request, &$args, $roleAssignments)
     {
-        import('lib.pkp.classes.security.authorization.ContextAccessPolicy');
         $this->addPolicy(new ContextAccessPolicy($request, $roleAssignments));
         $returner = parent::authorize($request, $args, $roleAssignments);
 

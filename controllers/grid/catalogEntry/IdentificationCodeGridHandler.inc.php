@@ -23,6 +23,7 @@ import('controllers.grid.catalogEntry.IdentificationCodeGridRow');
 use PKP\linkAction\request\AjaxModal;
 use PKP\core\JSONMessage;
 use PKP\linkAction\LinkAction;
+use PKP\security\authorization\PublicationAccessPolicy;
 
 class IdentificationCodeGridHandler extends GridHandler
 {
@@ -123,7 +124,6 @@ class IdentificationCodeGridHandler extends GridHandler
      */
     public function authorize($request, &$args, $roleAssignments)
     {
-        import('lib.pkp.classes.security.authorization.PublicationAccessPolicy');
         $this->addPolicy(new PublicationAccessPolicy($request, $args, $roleAssignments));
         return parent::authorize($request, $args, $roleAssignments);
     }

@@ -19,6 +19,7 @@ import('lib.pkp.classes.controllers.modals.editorDecision.PKPEditorDecisionHandl
 import('classes.workflow.EditorDecisionActionsManager');
 
 use PKP\core\JSONMessage;
+use PKP\security\authorization\EditorDecisionAccessPolicy;
 
 class EditorDecisionHandler extends PKPEditorDecisionHandler
 {
@@ -51,7 +52,6 @@ class EditorDecisionHandler extends PKPEditorDecisionHandler
     public function authorize($request, &$args, $roleAssignments)
     {
         $stageId = (int) $request->getUserVar('stageId');
-        import('lib.pkp.classes.security.authorization.EditorDecisionAccessPolicy');
         $this->addPolicy(new EditorDecisionAccessPolicy($request, $args, $roleAssignments, 'submissionId', $stageId));
 
         return parent::authorize($request, $args, $roleAssignments);

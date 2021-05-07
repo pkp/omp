@@ -13,7 +13,9 @@
  * @brief Component serving up cover images for submissions.
  */
 
-import('lib.pkp.classes.handler.PKPHandler');
+use PKP\handler\PKPHandler;
+
+use APP\security\authorization\OmpPublishedSubmissionAccessPolicy;
 
 class CoverHandler extends PKPHandler
 {
@@ -32,7 +34,6 @@ class CoverHandler extends PKPHandler
      */
     public function authorize($request, &$args, $roleAssignments)
     {
-        import('classes.security.authorization.OmpPublishedSubmissionAccessPolicy');
         $this->addPolicy(new OmpPublishedSubmissionAccessPolicy($request, $args, $roleAssignments));
         return parent::authorize($request, $args, $roleAssignments);
     }

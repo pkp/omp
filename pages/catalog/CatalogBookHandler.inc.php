@@ -20,6 +20,7 @@ use PKP\submission\PKPSubmission;
 use APP\handler\Handler;
 use APP\template\TemplateManager;
 use APP\payment\omp\OMPPaymentManager;
+use APP\security\authorization\OmpPublishedSubmissionAccessPolicy;
 
 class CatalogBookHandler extends Handler
 {
@@ -41,7 +42,6 @@ class CatalogBookHandler extends Handler
      */
     public function authorize($request, &$args, $roleAssignments)
     {
-        import('classes.security.authorization.OmpPublishedSubmissionAccessPolicy');
         $this->addPolicy(new OmpPublishedSubmissionAccessPolicy($request, $args, $roleAssignments));
         return parent::authorize($request, $args, $roleAssignments);
     }

@@ -18,6 +18,7 @@ import('classes.handler.Handler');
 use PKP\core\JSONMessage;
 use PKP\submission\PKPSubmissionDAO;
 use PKP\submission\PKPSubmission;
+use PKP\security\authorization\PKPSiteAccessPolicy;
 
 use APP\template\TemplateManager;
 
@@ -52,7 +53,6 @@ class ManageCatalogHandler extends Handler
      */
     public function authorize($request, &$args, $roleAssignments)
     {
-        import('lib.pkp.classes.security.authorization.PKPSiteAccessPolicy');
         $this->addPolicy(new PKPSiteAccessPolicy($request, null, $roleAssignments));
         return parent::authorize($request, $args, $roleAssignments);
     }

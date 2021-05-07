@@ -18,6 +18,8 @@ use PKP\submission\PKPSubmission;
 use PKP\core\JSONMessage;
 use PKP\linkAction\request\AjaxModal;
 use PKP\linkAction\LinkAction;
+use PKP\security\authorization\PublicationAccessPolicy;
+use PKP\security\authorization\internal\RepresentationRequiredPolicy;
 
 use APP\template\TemplateManager;
 
@@ -216,11 +218,9 @@ class PublicationFormatGridHandler extends CategoryGridHandler
      */
     public function authorize($request, &$args, $roleAssignments)
     {
-        import('lib.pkp.classes.security.authorization.PublicationAccessPolicy');
         $this->addPolicy(new PublicationAccessPolicy($request, $args, $roleAssignments));
 
         if ($request->getUserVar('representationId')) {
-            import('lib.pkp.classes.security.authorization.internal.RepresentationRequiredPolicy');
             $this->addPolicy(new RepresentationRequiredPolicy($request, $args));
         }
 

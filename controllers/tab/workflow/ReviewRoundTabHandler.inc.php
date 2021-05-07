@@ -13,10 +13,12 @@
  * @brief Handle AJAX operations for review round tabs on review stages workflow pages.
  */
 
-import('classes.handler.Handler');
+use APP\handler\Handler;
 
 // Import the base class.
 import('lib.pkp.classes.controllers.tab.workflow.PKPReviewRoundTabHandler');
+
+use PKP\security\authorization\WorkflowStageAccessPolicy;
 
 class ReviewRoundTabHandler extends PKPReviewRoundTabHandler
 {
@@ -43,7 +45,6 @@ class ReviewRoundTabHandler extends PKPReviewRoundTabHandler
     {
         $stageId = (int) $request->getUserVar('stageId'); // This is validated in WorkflowStageAccessPolicy.
 
-        import('lib.pkp.classes.security.authorization.WorkflowStageAccessPolicy');
         $this->addPolicy(new WorkflowStageAccessPolicy($request, $args, $roleAssignments, 'submissionId', $stageId));
 
         return parent::authorize($request, $args, $roleAssignments);
