@@ -113,4 +113,30 @@ describe('Data suite tests', function() {
 		// Add to catalog
 		cy.addToCatalog();
 	});
+
+	it('Book is not available when unpublished', function() {
+		cy.findSubmissionAsEditor('dbarnes', null, 'Allan');
+		cy.get('#publication-button').click();
+		cy.get('button').contains('Unpublish').click();
+		cy.contains('Are you sure you don\'t want this to be published?');
+		cy.get('.modal button').contains('Unpublish').click();
+		cy.wait(1000);
+		cy.visit('index.php/publicknowledge/catalog');
+		cy.contains('Bomb Canada and Other Unkind Remarks in the American Media').should('not.exist');
+		cy.logout();
+		cy.request({
+				url: 'index.php/publicknowledge/catalog/book/5',
+				failOnStatusCode: false
+			})
+			.then((response) => {
+				expect(response.status).to.equal(404);
+		});
+
+		// Re-publish it
+		cy.findSubmissionAsEditor('dbarnes', null, 'Allan');
+		cy.get('#publication-button').click();
+		cy.get('.pkpPublication button').contains('Publish').click();
+		cy.contains('All publication requirements have been met.');
+		cy.get('.pkpWorkflow__publishModal button').contains('Publish').click();
+	});
 });
