@@ -14,6 +14,7 @@
  *   catalog.
  */
 
+
 use PKP\linkAction\LinkAction;
 use PKP\submission\PKPSubmission;
 
@@ -41,8 +42,12 @@ class CatalogBookHandler extends Handler
      */
     public function authorize($request, &$args, $roleAssignments)
     {
+        import('lib.pkp.classes.security.authorization.ContextRequiredPolicy');
+        $this->addPolicy(new ContextRequiredPolicy($request));
+
         import('classes.security.authorization.OmpPublishedSubmissionAccessPolicy');
         $this->addPolicy(new OmpPublishedSubmissionAccessPolicy($request, $args, $roleAssignments));
+
         return parent::authorize($request, $args, $roleAssignments);
     }
 
@@ -62,6 +67,11 @@ class CatalogBookHandler extends Handler
         $submission = $this->getAuthorizedContextObject(ASSOC_TYPE_SUBMISSION);
         $this->setupTemplate($request, $submission);
         AppLocale::requireComponents(LOCALE_COMPONENT_APP_SUBMISSION, LOCALE_COMPONENT_PKP_SUBMISSION); // submission.synopsis; submission.copyrightStatement
+        $user = $request->getUser();
+
+        if (!$submission || ($submission->getData('status') !== PKPSubmission::STATUS_PUBLISHED && !Services::get('submission')->canPreview($user, $submission))) {
+            $request->getDispatcher()->handle404();
+        }
 
         // Get the requested publication or default to the current publication
         $submissionId = array_shift($args);
@@ -78,7 +88,7 @@ class CatalogBookHandler extends Handler
             $this->publication = $submission->getCurrentPublication();
         }
 
-        if (!$this->publication || $this->publication->getData('status') !== PKPSubmission::STATUS_PUBLISHED) {
+        if (!$this->publication || ($this->publication->getData('status') !== PKPSubmission::STATUS_PUBLISHED && !Services::get('submission')->canPreview($user, $submission))) {
             $request->getDispatcher()->handle404();
         }
 
