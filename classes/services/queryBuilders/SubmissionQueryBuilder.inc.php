@@ -13,7 +13,7 @@
  * @brief Submission list Query builder
  */
 
-namespace APP\Services\QueryBuilders;
+namespace APP\services\queryBuilders;
 
 use Illuminate\Support\Facades\DB;
 

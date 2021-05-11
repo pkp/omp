@@ -12,7 +12,7 @@
  * @brief Submission file service methods for OMP.
  */
 
-namespace APP\Services;
+namespace APP\services;
 
 use \PKP\db\HookRegistry;
 use \PKP\submission\SubmissionFile;

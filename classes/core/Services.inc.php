@@ -24,7 +24,7 @@ class Services extends \PKP\core\PKPServices
      */
     protected function init()
     {
-        $this->container->register(new \APP\Services\OMPServiceProvider());
+        $this->container->register(new \APP\services\OMPServiceProvider());
     }
 }
 

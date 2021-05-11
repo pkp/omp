@@ -13,12 +13,13 @@
  * @brief Utility class to package all OMP services
  */
 
-namespace APP\Services;
+namespace APP\services;
 
 require_once(dirname(__FILE__) . '/../../lib/pkp/lib/vendor/pimple/pimple/src/Pimple/Container.php');
 require_once(dirname(__FILE__) . '/../../lib/pkp/lib/vendor/pimple/pimple/src/Pimple/ServiceProviderInterface.php');
 
 use Pimple\Container;
+
 use PKP\services\PKPAnnouncementService;
 use PKP\services\PKPAuthorService;
 use PKP\services\PKPEmailTemplateService;

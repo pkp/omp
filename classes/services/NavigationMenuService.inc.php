@@ -13,7 +13,7 @@
  * @brief Helper class that encapsulates NavigationMenu business logic
  */
 
-namespace APP\Services;
+namespace APP\services;
 
 use PKP\db\DAORegistry;
 use PKP\core\PKPApplication;
@@ -233,6 +233,6 @@ if (!PKP_STRICT_MODE) {
         'NMI_TYPE_CATEGORY',
         'NMI_TYPE_NEW_RELEASE',
     ] as $constantName) {
-        define($constantName, constant('\APP\Services\NavigationMenuService::' . $constantName));
+        define($constantName, constant('\APP\services\NavigationMenuService::' . $constantName));
     }
 }
