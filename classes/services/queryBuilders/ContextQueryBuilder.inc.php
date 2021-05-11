@@ -14,14 +14,14 @@
 
 namespace APP\Services\QueryBuilders;
 
-class ContextQueryBuilder extends \PKP\services\QueryBuilders\PKPContextQueryBuilder
+class ContextQueryBuilder extends \PKP\services\queryBuilders\PKPContextQueryBuilder
 {
-    /** @copydoc \PKP\services\QueryBuilders\PKPContextQueryBuilder::$db */
+    /** @copydoc \PKP\services\queryBuilders\PKPContextQueryBuilder::$db */
     protected $db = 'presses';
 
-    /** @copydoc \PKP\services\QueryBuilders\PKPContextQueryBuilder::$dbSettings */
+    /** @copydoc \PKP\services\queryBuilders\PKPContextQueryBuilder::$dbSettings */
     protected $dbSettings = 'press_settings';
 
-    /** @copydoc \PKP\services\QueryBuilders\PKPContextQueryBuilder::$dbIdColumn */
+    /** @copydoc \PKP\services\queryBuilders\PKPContextQueryBuilder::$dbIdColumn */
     protected $dbIdColumn = 'press_id';
 }
