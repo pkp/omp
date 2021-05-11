@@ -20,6 +20,9 @@ use PKP\security\authorization\EditorDecisionAccessPolicy;
 
 use APP\workflow\EditorDecisionActionsManager;
 
+// FIXME: Add namespacing
+import('lib.pkp.classes.notification.PKPNotification');
+
 class EditorDecisionHandler extends PKPEditorDecisionHandler
 {
     /**
