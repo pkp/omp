@@ -13,32 +13,33 @@
  * @brief Wrapper class for create and assign editor decisions actions to template manager.
  */
 
-// Submission stage decision actions.
-define('SUBMISSION_EDITOR_DECISION_INTERNAL_REVIEW', 1);
+namespace APP\workflow;
 
-// Submission and review stages decision actions.
-define('SUBMISSION_EDITOR_DECISION_ACCEPT', 2);
-define('SUBMISSION_EDITOR_DECISION_DECLINE', 6);
-
-// Review stage decisions actions.
-define('SUBMISSION_EDITOR_DECISION_EXTERNAL_REVIEW', 3);
-define('SUBMISSION_EDITOR_DECISION_PENDING_REVISIONS', 4);
-define('SUBMISSION_EDITOR_DECISION_RESUBMIT', 5);
-define('SUBMISSION_EDITOR_DECISION_NEW_ROUND', 16);
-
-// Review stage recommendation actions.
-define('SUBMISSION_EDITOR_RECOMMEND_EXTERNAL_REVIEW', 15);
-
-// Editorial stage decision actions.
-define('SUBMISSION_EDITOR_DECISION_SEND_TO_PRODUCTION', 7);
-
-// Editorial stage decision actions.
-import('lib.pkp.classes.workflow.PKPEditorDecisionActionsManager');
-
+use PKP\workflow\PKPEditorDecisionActionsManager;
 use PKP\submission\PKPSubmission;
+use PKP\db\DAORegistry;
 
 class EditorDecisionActionsManager extends PKPEditorDecisionActionsManager
 {
+    // Submission stage decision actions.
+    public const SUBMISSION_EDITOR_DECISION_INTERNAL_REVIEW = 1;
+
+    // Submission and review stages decision actions.
+    public const SUBMISSION_EDITOR_DECISION_ACCEPT = 2;
+    public const SUBMISSION_EDITOR_DECISION_DECLINE = 6;
+
+    // Review stage decisions actions.
+    public const SUBMISSION_EDITOR_DECISION_EXTERNAL_REVIEW = 3;
+    public const SUBMISSION_EDITOR_DECISION_PENDING_REVISIONS = 4;
+    public const SUBMISSION_EDITOR_DECISION_RESUBMIT = 5;
+    public const SUBMISSION_EDITOR_DECISION_NEW_ROUND = 16;
+
+    // Review stage recommendation actions.
+    public const SUBMISSION_EDITOR_RECOMMEND_EXTERNAL_REVIEW = 15;
+
+    // Editorial stage decision actions.
+    public const SUBMISSION_EDITOR_DECISION_SEND_TO_PRODUCTION = 7;
+
     /**
      * Get decision actions labels.
      *
@@ -122,7 +123,7 @@ class EditorDecisionActionsManager extends PKPEditorDecisionActionsManager
     {
         $recommendationOptions = parent::getRecommendationOptions($stageId);
         if ($stageId == WORKFLOW_STAGE_ID_INTERNAL_REVIEW) {
-            $recommendationOptions[SUBMISSION_EDITOR_RECOMMEND_EXTERNAL_REVIEW] = 'editor.submission.decision.sendExternalReview';
+            $recommendationOptions[self::SUBMISSION_EDITOR_RECOMMEND_EXTERNAL_REVIEW] = 'editor.submission.decision.sendExternalReview';
         }
         return $recommendationOptions;
     }
@@ -136,7 +137,7 @@ class EditorDecisionActionsManager extends PKPEditorDecisionActionsManager
     protected function _submissionStageDecisions($submission, $stageId, $makeDecision = true)
     {
         $decisions = parent::_submissionStageDecisions($submission, $stageId, $makeDecision);
-        $decisions[SUBMISSION_EDITOR_DECISION_INTERNAL_REVIEW] = [
+        $decisions[self::SUBMISSION_EDITOR_DECISION_INTERNAL_REVIEW] = [
             'name' => 'internalReview',
             'operation' => 'internalReview',
             'title' => 'editor.submission.decision.sendInternalReview',
@@ -158,26 +159,26 @@ class EditorDecisionActionsManager extends PKPEditorDecisionActionsManager
         $decisions = [];
         if ($makeDecision) {
             $decisions = [
-                SUBMISSION_EDITOR_DECISION_PENDING_REVISIONS => [
+                self::SUBMISSION_EDITOR_DECISION_PENDING_REVISIONS => [
                     'operation' => 'sendReviewsInReview',
                     'name' => 'requestRevisions',
                     'title' => 'editor.submission.decision.requestRevisions',
                 ],
-                SUBMISSION_EDITOR_DECISION_RESUBMIT => [
+                self::SUBMISSION_EDITOR_DECISION_RESUBMIT => [
                     'name' => 'resubmit',
                     'title' => 'editor.submission.decision.resubmit',
                 ],
-                SUBMISSION_EDITOR_DECISION_NEW_ROUND => [
+                self::SUBMISSION_EDITOR_DECISION_NEW_ROUND => [
                     'name' => 'newround',
                     'title' => 'editor.submission.decision.newRound',
                 ],
-                SUBMISSION_EDITOR_DECISION_EXTERNAL_REVIEW => [
+                self::SUBMISSION_EDITOR_DECISION_EXTERNAL_REVIEW => [
                     'operation' => 'promoteInReview',
                     'name' => 'externalReview',
                     'title' => 'editor.submission.decision.sendExternalReview',
                     'toStage' => 'workflow.review.externalReview',
                 ],
-                SUBMISSION_EDITOR_DECISION_ACCEPT => [
+                self::SUBMISSION_EDITOR_DECISION_ACCEPT => [
                     'operation' => 'promoteInReview',
                     'name' => 'accept',
                     'title' => 'editor.submission.decision.accept',
@@ -187,7 +188,7 @@ class EditorDecisionActionsManager extends PKPEditorDecisionActionsManager
 
             if ($submission->getStatus() == PKPSubmission::STATUS_QUEUED) {
                 $decisions = $decisions + [
-                    SUBMISSION_EDITOR_DECISION_DECLINE => [
+                    self::SUBMISSION_EDITOR_DECISION_DECLINE => [
                         'operation' => 'sendReviewsInReview',
                         'name' => 'decline',
                         'title' => 'editor.submission.decision.decline',
@@ -196,7 +197,7 @@ class EditorDecisionActionsManager extends PKPEditorDecisionActionsManager
             }
             if ($submission->getStatus() == PKPSubmission::STATUS_DECLINED) {
                 $decisions = $decisions + [
-                    SUBMISSION_EDITOR_DECISION_REVERT_DECLINE => [
+                    self::SUBMISSION_EDITOR_DECISION_REVERT_DECLINE => [
                         'name' => 'revert',
                         'operation' => 'revertDecline',
                         'title' => 'editor.submission.decision.revertDecline',
@@ -220,7 +221,7 @@ class EditorDecisionActionsManager extends PKPEditorDecisionActionsManager
     protected function _externalReviewStageDecisions($context, $submission, $makeDecision = true)
     {
         $decisions = $this->_internalReviewStageDecisions($context, $submission, $makeDecision);
-        unset($decisions[SUBMISSION_EDITOR_DECISION_EXTERNAL_REVIEW]);
+        unset($decisions[self::SUBMISSION_EDITOR_DECISION_EXTERNAL_REVIEW]);
         return $decisions;
     }
 
@@ -234,5 +235,22 @@ class EditorDecisionActionsManager extends PKPEditorDecisionActionsManager
         return parent::getStageNotifications() + [
             NOTIFICATION_TYPE_EDITOR_ASSIGNMENT_INTERNAL_REVIEW
         ];
+    }
+}
+
+if (!PKP_STRICT_MODE) {
+    class_alias('\APP\workflow\EditorDecisionActionsManager', '\EditorDecisionActionsManager');
+    foreach ([
+        'SUBMISSION_EDITOR_DECISION_INTERNAL_REVIEW',
+        'SUBMISSION_EDITOR_DECISION_ACCEPT',
+        'SUBMISSION_EDITOR_DECISION_DECLINE',
+        'SUBMISSION_EDITOR_DECISION_EXTERNAL_REVIEW',
+        'SUBMISSION_EDITOR_DECISION_PENDING_REVISIONS',
+        'SUBMISSION_EDITOR_DECISION_RESUBMIT',
+        'SUBMISSION_EDITOR_DECISION_NEW_ROUND',
+        'SUBMISSION_EDITOR_RECOMMEND_EXTERNAL_REVIEW',
+        'SUBMISSION_EDITOR_DECISION_SEND_TO_PRODUCTION',
+    ] as $constantName) {
+        define($constantName, constant('\EditorDecisionActionsManager::' . $constantName));
     }
 }
