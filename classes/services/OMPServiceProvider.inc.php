@@ -19,13 +19,13 @@ require_once(dirname(__FILE__) . '/../../lib/pkp/lib/vendor/pimple/pimple/src/Pi
 require_once(dirname(__FILE__) . '/../../lib/pkp/lib/vendor/pimple/pimple/src/Pimple/ServiceProviderInterface.php');
 
 use Pimple\Container;
-use PKP\Services\PKPAnnouncementService;
-use PKP\Services\PKPAuthorService;
-use PKP\Services\PKPEmailTemplateService;
-use PKP\Services\PKPFileService;
-use PKP\Services\PKPSchemaService;
-use PKP\Services\PKPSiteService;
-use PKP\Services\PKPUserService;
+use PKP\services\PKPAnnouncementService;
+use PKP\services\PKPAuthorService;
+use PKP\services\PKPEmailTemplateService;
+use PKP\services\PKPFileService;
+use PKP\services\PKPSchemaService;
+use PKP\services\PKPSiteService;
+use PKP\services\PKPUserService;
 
 class OMPServiceProvider implements \Pimple\ServiceProviderInterface
 {

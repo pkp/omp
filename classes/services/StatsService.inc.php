@@ -14,7 +14,7 @@
 
 namespace APP\Services;
 
-class StatsService extends \PKP\Services\PKPStatsService
+class StatsService extends \PKP\services\PKPStatsService
 {
     /**
      * Process the seriesIds param when getting the query builder

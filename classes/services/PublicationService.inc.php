@@ -16,7 +16,7 @@
 namespace APP\Services;
 
 use PKP\db\DAORegistry;
-use PKP\Services\PKPPublicationService;
+use PKP\services\PKPPublicationService;
 use PKP\submission\SubmissionFile;
 use PKP\submission\PKPSubmission;
 

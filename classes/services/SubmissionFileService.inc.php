@@ -17,7 +17,7 @@ namespace APP\Services;
 use \PKP\db\HookRegistry;
 use \PKP\submission\SubmissionFile;
 
-class SubmissionFileService extends \PKP\Services\PKPSubmissionFileService
+class SubmissionFileService extends \PKP\services\PKPSubmissionFileService
 {
     /**
      * Get all valid file stages

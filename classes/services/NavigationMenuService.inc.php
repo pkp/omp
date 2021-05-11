@@ -26,7 +26,7 @@ use APP\core\Application;
 // FIXME: Add namespacing
 use \Validation;
 
-class NavigationMenuService extends \PKP\Services\PKPNavigationMenuService
+class NavigationMenuService extends \PKP\services\PKPNavigationMenuService
 {
     /** types for all omp default navigationMenuItems */
     public const NMI_TYPE_CATALOG = 'NMI_TYPE_CATALOG';

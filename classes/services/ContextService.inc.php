@@ -22,9 +22,9 @@ use APP\services\Services;
 use APP\file\PublicFileManager;
 use APP\submission\Submission;
 
-class ContextService extends \PKP\Services\PKPContextService
+class ContextService extends \PKP\services\PKPContextService
 {
-    /** @copydoc \PKP\Services\PKPContextService::$contextsFileDirName */
+    /** @copydoc \PKP\services\PKPContextService::$contextsFileDirName */
     public $contextsFileDirName = 'presses';
 
     /**

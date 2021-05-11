@@ -19,7 +19,7 @@ use Illuminate\Support\Facades\DB;
 
 use \APP\submission\SubmissionDAO;
 
-class SubmissionQueryBuilder extends \PKP\Services\QueryBuilders\PKPSubmissionQueryBuilder
+class SubmissionQueryBuilder extends \PKP\services\QueryBuilders\PKPSubmissionQueryBuilder
 {
     /** @var int|array Series ID(s) */
     protected $seriesIds = null;
