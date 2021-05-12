@@ -204,7 +204,7 @@ class EditorDecisionHandler extends PKPEditorDecisionHandler
      */
     protected function _getReviewNotificationTypes()
     {
-        return [PKPNotification:NOTIFICATION_TYPE_PENDING_INTERNAL_REVISIONS, PKPNotification:NOTIFICATION_TYPE_PENDING_EXTERNAL_REVISIONS];
+        return [PKPNotification::NOTIFICATION_TYPE_PENDING_INTERNAL_REVISIONS, PKPNotification::NOTIFICATION_TYPE_PENDING_EXTERNAL_REVISIONS];
     }
 
     /**
