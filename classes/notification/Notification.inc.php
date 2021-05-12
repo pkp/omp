@@ -14,15 +14,14 @@
  * @brief OMP subclass for Notifications (defines OMP-specific types and icons).
  */
 
-import('lib.pkp.classes.notification.PKPNotification');
+namespace APP\notification;
+
+use PKP\notification\PKPNotification;
 
 class Notification extends PKPNotification
 {
-    /**
-     * Constructor.
-     */
-    public function __construct()
-    {
-        parent::__construct();
-    }
+}
+
+if (!PKP_STRICT_MODE) {
+    class_alias('\APP\notification\Notification', '\Notification');
 }

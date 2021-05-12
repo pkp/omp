@@ -14,20 +14,14 @@
  * submission approval process.
  */
 
-import('lib.pkp.classes.notification.managerDelegate.PKPApproveSubmissionNotificationManager');
+namespace APP\notification\managerDelegate;
+
+use PKP\notification\managerDelegate\PKPApproveSubmissionNotificationManager;
+
+use APP\core\Application;
 
 class ApproveSubmissionNotificationManager extends PKPApproveSubmissionNotificationManager
 {
-    /**
-     * Constructor.
-     *
-     * @param $notificationType int NOTIFICATION_TYPE_...
-     */
-    public function __construct($notificationType)
-    {
-        parent::__construct($notificationType);
-    }
-
     /**
      * @copydoc PKPNotificationOperationManager::getNotificationUrl()
      */
@@ -40,7 +34,7 @@ class ApproveSubmissionNotificationManager extends PKPApproveSubmissionNotificat
 
         switch ($notification->getType()) {
             case NOTIFICATION_TYPE_VISIT_CATALOG:
-                return $dispatcher->url($request, PKPApplication::ROUTE_PAGE, $context->getPath(), 'manageCatalog');
+                return $dispatcher->url($request, Application::ROUTE_PAGE, $context->getPath(), 'manageCatalog');
         }
 
         return parent::getNotificationUrl($request, $notification);
@@ -76,4 +70,8 @@ class ApproveSubmissionNotificationManager extends PKPApproveSubmissionNotificat
 
         return parent::getNotificationMessage($request, $notification);
     }
+}
+
+if (!PKP_STRICT_MODE) {
+    class_alias('\APP\notification\managerDelegate\ApproveSubmissionNotificationManager', '\ApproveSubmissionNotificationManager');
 }

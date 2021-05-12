@@ -15,7 +15,14 @@
  * @brief Class for Notification Manager.
  */
 
-import('lib.pkp.classes.notification.PKPNotificationManager');
+namespace APP\notification;
+
+use PKP\notification\PKPNotificationManager;
+use PKP\notification\managerDelegate\EditorAssignmentNotificationManager;
+use PKP\notification\managerDelegate\EditorDecisionNotificationManager;
+use PKP\notification\managerDelegate\PendingRevisionsNotificationManager;
+
+use APP\notification\managerDelegate\ApproveSubmissionNotificationManager;
 
 class NotificationManager extends PKPNotificationManager
 {
@@ -81,24 +88,24 @@ class NotificationManager extends PKPNotificationManager
         switch ($notificationType) {
             case NOTIFICATION_TYPE_EDITOR_ASSIGNMENT_INTERNAL_REVIEW:
                 assert($assocType == ASSOC_TYPE_SUBMISSION && is_numeric($assocId));
-                import('lib.pkp.classes.notification.managerDelegate.EditorAssignmentNotificationManager');
                 return new EditorAssignmentNotificationManager($notificationType);
             case NOTIFICATION_TYPE_EDITOR_DECISION_INTERNAL_REVIEW:
                 assert($assocType == ASSOC_TYPE_SUBMISSION && is_numeric($assocId));
-                import('lib.pkp.classes.notification.managerDelegate.EditorDecisionNotificationManager');
                 return new EditorDecisionNotificationManager($notificationType);
             case NOTIFICATION_TYPE_PENDING_INTERNAL_REVISIONS:
                 assert($assocType == ASSOC_TYPE_SUBMISSION && is_numeric($assocId));
-                import('lib.pkp.classes.notification.managerDelegate.PendingRevisionsNotificationManager');
                 return new PendingRevisionsNotificationManager($notificationType);
             case NOTIFICATION_TYPE_APPROVE_SUBMISSION:
             case NOTIFICATION_TYPE_FORMAT_NEEDS_APPROVED_SUBMISSION:
             case NOTIFICATION_TYPE_VISIT_CATALOG:
                 assert($assocType == ASSOC_TYPE_SUBMISSION && is_numeric($assocId));
-                import('classes.notification.managerDelegate.ApproveSubmissionNotificationManager');
                 return new ApproveSubmissionNotificationManager($notificationType);
         }
         // Otherwise, fall back on parent class
         return parent::getMgrDelegate($notificationType, $assocType, $assocId);
     }
+}
+
+if (!PKP_STRICT_MODE) {
+    class_alias('\APP\notification\NotificationManager', '\NotificationManager');
 }

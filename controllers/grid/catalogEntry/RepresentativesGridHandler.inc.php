@@ -27,6 +27,8 @@ use PKP\linkAction\LinkAction;
 use PKP\core\JSONMessage;
 use PKP\security\authorization\SubmissionAccessPolicy;
 
+use APP\notification\NotificationManager;
+
 class RepresentativesGridHandler extends CategoryGridHandler
 {
     /** @var Monograph */

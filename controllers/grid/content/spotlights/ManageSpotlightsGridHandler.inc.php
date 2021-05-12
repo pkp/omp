@@ -31,6 +31,8 @@ use PKP\core\JSONMessage;
 use PKP\submission\PKPSubmission;
 use PKP\security\authorization\ContextAccessPolicy;
 
+use APP\notification\NotificationManager;
+
 class ManageSpotlightsGridHandler extends GridHandler
 {
     /**

@@ -25,6 +25,8 @@ use PKP\core\JSONMessage;
 use PKP\linkAction\LinkAction;
 use PKP\security\authorization\PublicationAccessPolicy;
 
+use APP\notification\NotificationManager;
+
 class IdentificationCodeGridHandler extends GridHandler
 {
     /** @var Submission */

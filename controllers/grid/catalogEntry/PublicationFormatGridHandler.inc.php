@@ -22,6 +22,7 @@ use PKP\security\authorization\PublicationAccessPolicy;
 use PKP\security\authorization\internal\RepresentationRequiredPolicy;
 
 use APP\template\TemplateManager;
+use APP\notification\NotificationManager;
 
 // import grid base classes
 import('lib.pkp.classes.controllers.grid.CategoryGridHandler');

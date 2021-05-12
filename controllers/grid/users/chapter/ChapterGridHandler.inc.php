@@ -28,6 +28,7 @@ use PKP\submission\PKPSubmission;
 use PKP\security\authorization\PublicationAccessPolicy;
 
 use APP\template\TemplateManager;
+use APP\notification\NotificationManager;
 
 class ChapterGridHandler extends CategoryGridHandler
 {

@@ -25,6 +25,8 @@ use PKP\linkAction\request\AjaxModal;
 use PKP\core\JSONMessage;
 use PKP\security\authorization\PublicationAccessPolicy;
 
+use APP\notification\NotificationManager;
+
 class MarketsGridHandler extends GridHandler
 {
     /** @var Submission */
