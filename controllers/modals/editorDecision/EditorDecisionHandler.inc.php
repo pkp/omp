@@ -169,22 +169,22 @@ class EditorDecisionHandler extends PKPEditorDecisionHandler
             case EditorDecisionActionsManager::SUBMISSION_EDITOR_DECISION_INTERNAL_REVIEW:
                 return PKPNotification::NOTIFICATION_TYPE_EDITOR_DECISION_INTERNAL_REVIEW;
             case EditorDecisionActionsManager::SUBMISSION_EDITOR_DECISION_ACCEPT:
-                return PKPNotification:NOTIFICATION_TYPE_EDITOR_DECISION_ACCEPT;
+                return PKPNotification::NOTIFICATION_TYPE_EDITOR_DECISION_ACCEPT;
             case EditorDecisionActionsManager::SUBMISSION_EDITOR_DECISION_EXTERNAL_REVIEW:
-                return PKPNotification:NOTIFICATION_TYPE_EDITOR_DECISION_EXTERNAL_REVIEW;
+                return PKPNotification::NOTIFICATION_TYPE_EDITOR_DECISION_EXTERNAL_REVIEW;
             case EditorDecisionActionsManager::SUBMISSION_EDITOR_DECISION_PENDING_REVISIONS:
-                return PKPNotification:NOTIFICATION_TYPE_EDITOR_DECISION_PENDING_REVISIONS;
+                return PKPNotification::NOTIFICATION_TYPE_EDITOR_DECISION_PENDING_REVISIONS;
             case EditorDecisionActionsManager::SUBMISSION_EDITOR_DECISION_RESUBMIT:
-                return PKPNotification:NOTIFICATION_TYPE_EDITOR_DECISION_RESUBMIT;
+                return PKPNotification::NOTIFICATION_TYPE_EDITOR_DECISION_RESUBMIT;
             case EditorDecisionActionsManager::SUBMISSION_EDITOR_DECISION_NEW_ROUND:
-                return PKPNotification:NOTIFICATION_TYPE_EDITOR_DECISION_NEW_ROUND;
+                return PKPNotification::NOTIFICATION_TYPE_EDITOR_DECISION_NEW_ROUND;
             case EditorDecisionActionsManager::SUBMISSION_EDITOR_DECISION_DECLINE:
             case EditorDecisionActionsManager::SUBMISSION_EDITOR_DECISION_INITIAL_DECLINE:
-                return PKPNotification:NOTIFICATION_TYPE_EDITOR_DECISION_DECLINE;
+                return PKPNotification::NOTIFICATION_TYPE_EDITOR_DECISION_DECLINE;
             case EditorDecisionActionsManager::SUBMISSION_EDITOR_DECISION_REVERT_DECLINE:
-                return PKPNotification:NOTIFICATION_TYPE_EDITOR_DECISION_REVERT_DECLINE;
+                return PKPNotification::NOTIFICATION_TYPE_EDITOR_DECISION_REVERT_DECLINE;
             case EditorDecisionActionsManager::SUBMISSION_EDITOR_DECISION_SEND_TO_PRODUCTION:
-                return PKPNotification:NOTIFICATION_TYPE_EDITOR_DECISION_SEND_TO_PRODUCTION;
+                return PKPNotification::NOTIFICATION_TYPE_EDITOR_DECISION_SEND_TO_PRODUCTION;
         }
         throw new Exception('Unknown editor decision.');
     }
