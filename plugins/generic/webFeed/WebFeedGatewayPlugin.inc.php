@@ -14,6 +14,11 @@
  *
  */
 
+use PKP\submission\PKPSubmission;
+
+use \APP\submission\SubmissionDAO;
+use \APP\template\TemplateManager;
+
 import('lib.pkp.classes.plugins.GatewayPlugin');
 
 class WebFeedGatewayPlugin extends GatewayPlugin
@@ -119,14 +124,11 @@ class WebFeedGatewayPlugin extends GatewayPlugin
         $templateMgr = TemplateManager::getManager($request);
         $context = $request->getContext();
 
-        // Bring in orderby constants
-        import('classes.submission.SubmissionDAO');
-
         $args = [
-            'status' => STATUS_PUBLISHED,
+            'status' => PKPSubmission::STATUS_PUBLISHED,
             'contextId' => $context->getId(),
             'count' => 1000,
-            'orderBy' => ORDERBY_DATE_PUBLISHED,
+            'orderBy' => SubmissionDAO::ORDERBY_DATE_PUBLISHED,
         ];
         $recentItems = (int) $this->_parentPlugin->getSetting($context->getId(), 'recentItems');
         if ($recentItems > 0) {

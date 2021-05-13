@@ -15,16 +15,10 @@
 
 import('classes.handler.Handler');
 
+use \APP\template\TemplateManager;
+
 class InformationHandler extends Handler
 {
-    /**
-     * Constructor
-     */
-    public function __construct()
-    {
-        parent::__construct();
-    }
-
     /**
      * Display the information page for the press.
      *
@@ -117,7 +111,7 @@ class InformationHandler extends Handler
         AppLocale::requireComponents(LOCALE_COMPONENT_APP_MANAGER); // FIXME needed?
         if (!$press->getSetting('restrictSiteAccess')) {
             $templateMgr = TemplateManager::getManager($request);
-            $templateMgr->setCacheability(CACHEABILITY_PUBLIC);
+            $templateMgr->setCacheability(TemplateManager::CACHEABILITY_PUBLIC);
         }
     }
 }

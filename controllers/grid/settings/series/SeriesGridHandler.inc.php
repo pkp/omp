@@ -16,7 +16,11 @@
 import('lib.pkp.controllers.grid.settings.SetupGridHandler');
 import('controllers.grid.settings.series.SeriesGridRow');
 
+use PKP\linkAction\LinkAction;
 use PKP\core\JSONMessage;
+use PKP\linkAction\request\AjaxModal;
+
+use APP\notification\NotificationManager;
 
 class SeriesGridHandler extends SetupGridHandler
 {
@@ -104,7 +108,6 @@ class SeriesGridHandler extends SetupGridHandler
 
         // Add grid-level actions
         $router = $request->getRouter();
-        import('lib.pkp.classes.linkAction.request.AjaxModal');
         $this->addAction(
             new LinkAction(
                 'addSeries',

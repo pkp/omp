@@ -19,10 +19,15 @@
  * @brief Class for a Submission.
  */
 
+namespace APP\submission;
+
 define('WORK_TYPE_EDITED_VOLUME', 1);
 define('WORK_TYPE_AUTHORED_WORK', 2);
 
-use \PKP\submission\PKPSubmission;
+use PKP\submission\PKPSubmission;
+use PKP\db\DAORegistry;
+
+use APP\core\Services;
 
 import('classes.monograph.Author');
 
@@ -326,4 +331,8 @@ class Submission extends PKPSubmission
     {
         $this->setData('enableChapterPublicationDates', $enableChapterPublicationDates);
     }
+}
+
+if (!PKP_STRICT_MODE) {
+    class_alias('\APP\submission\Submission', '\Submission');
 }

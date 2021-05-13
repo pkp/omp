@@ -16,6 +16,8 @@
 import('lib.pkp.classes.plugins.PaymethodPlugin');
 require_once(dirname(__FILE__) . '/vendor/autoload.php');
 
+use \APP\template\TemplateManager;
+
 class PaypalPaymentPlugin extends PaymethodPlugin
 {
     /**
@@ -162,7 +164,6 @@ class PaypalPaymentPlugin extends PaymethodPlugin
     {
         $context = $request->getContext();
         $queuedPaymentDao = DAORegistry::getDAO('QueuedPaymentDAO'); /* @var $queuedPaymentDao QueuedPaymentDAO */
-        import('classes.payment.omp.OMPPaymentManager'); // Class definition required for unserializing
         try {
             $queuedPayment = $queuedPaymentDao->getById($queuedPaymentId = $request->getUserVar('queuedPaymentId'));
             if (!$queuedPayment) {

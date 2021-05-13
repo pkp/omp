@@ -76,7 +76,7 @@ class NativeXmlChapterFilter extends NativeImportFilter
         $context = $deployment->getContext();
 
         $publication = $deployment->getPublication();
-        assert(is_a($publication, 'Publication'));
+        assert($publication instanceof \APP\publication\Publication);
 
         // Create the data object
         $chapterDao = DAORegistry::getDAO('ChapterDAO'); /** @var ChapterDAO $chapterDao */

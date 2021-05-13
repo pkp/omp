@@ -91,6 +91,17 @@ class DefaultThemePlugin extends ThemePlugin
             'default' => '#1E6292',
         ]);
 
+        $this->addOption('showCatalogSeriesListing', 'FieldOptions', [
+            'label' => __('plugins.themes.default.option.showCatalogSeriesListing.label'),
+            'options' => [
+                [
+                    'value' => true,
+                    'label' => __('plugins.themes.default.option.showCatalogSeriesListing.option')
+                ],
+            ],
+            'default' => false,
+        ]);
+
         // Load primary stylesheet
         $this->addStyle('stylesheet', 'styles/index.less');
 

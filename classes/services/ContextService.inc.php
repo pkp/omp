@@ -13,13 +13,18 @@
  *  requirements.
  */
 
-namespace APP\Services;
+namespace APP\services;
 
-use Services;
+use PKP\file\FileManager;
+use PKP\file\ContextFileManager;
 
-class ContextService extends \PKP\Services\PKPContextService
+use APP\services\Services;
+use APP\file\PublicFileManager;
+use APP\submission\Submission;
+
+class ContextService extends \PKP\services\PKPContextService
 {
-    /** @copydoc \PKP\Services\PKPContextService::$contextsFileDirName */
+    /** @copydoc \PKP\services\PKPContextService::$contextsFileDirName */
     public $contextsFileDirName = 'presses';
 
     /**
@@ -143,7 +148,6 @@ class ContextService extends \PKP\Services\PKPContextService
         $newReleaseDao = \DAORegistry::getDAO('NewReleaseDAO');
         $newReleaseDao->deleteByAssoc(ASSOC_TYPE_PRESS, $context->getId());
 
-        import('classes.file.PublicFileManager');
         $publicFileManager = new \PublicFileManager();
         $publicFileManager->rmtree($publicFileManager->getContextFilesPath($context->getId()));
     }
@@ -181,9 +185,6 @@ class ContextService extends \PKP\Services\PKPContextService
      */
     public function resizeCoverThumbnails($context, $maxWidth, $maxHeight)
     {
-        import('lib.pkp.classes.file.FileManager');
-        import('classes.file.PublicFileManager');
-        import('lib.pkp.classes.file.ContextFileManager');
         $fileManager = new \FileManager();
         $publicFileManager = new \PublicFileManager();
         $contextFileManager = new \ContextFileManager($context->getId());
@@ -196,7 +197,7 @@ class ContextService extends \PKP\Services\PKPContextService
         foreach ($objectDaos as $objectDao) {
             $objects = $objectDao->getByContextId($context->getId());
             while ($object = $objects->next()) {
-                if (is_a($object, 'Submission')) {
+                if ($object instanceof Submission) {
                     foreach ($object->getData('publications') as $publication) {
                         foreach ((array) $publication->getData('coverImage') as $coverImage) {
                             $coverImageFilePath = $publicFileManager->getContextFilesPath($context->getId()) . '/' . $coverImage['uploadName'];
@@ -251,7 +252,7 @@ class ContextService extends \PKP\Services\PKPContextService
                     }
 
                     imagedestroy($thumbnail);
-                    if (is_a($object, 'Submission')) {
+                    if ($object instanceof Submission) {
                         $object->setCoverImage([
                             'name' => $cover['name'],
                             'width' => $cover['width'],

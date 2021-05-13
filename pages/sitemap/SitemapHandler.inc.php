@@ -15,6 +15,8 @@
 
 import('lib.pkp.pages.sitemap.PKPSitemapHandler');
 
+use PKP\submission\PKPSubmission;
+
 class SitemapHandler extends PKPSitemapHandler
 {
     /**
@@ -30,7 +32,6 @@ class SitemapHandler extends PKPSitemapHandler
 
         // Catalog
         $root->appendChild($this->_createUrlTree($doc, $request->url($press->getPath(), 'catalog')));
-        import('lib.pkp.classes.submission.PKPSubmission'); // STATUS_PUBLISHED
         $submissionsIterator = Services::get('submission')->getMany(['status' => PKPSubmission::STATUS_PUBLISHED, 'contextId' => $pressId, 'count' => 1000]);
         foreach ($submissionsIterator as $submission) {
             // Book

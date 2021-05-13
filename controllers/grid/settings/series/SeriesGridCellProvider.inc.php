@@ -14,6 +14,8 @@
 
 import('lib.pkp.classes.controllers.grid.GridCellProvider');
 
+use PKP\linkAction\LinkAction;
+
 class SeriesGridCellProvider extends GridCellProvider
 {
     /**
@@ -47,7 +49,6 @@ class SeriesGridCellProvider extends GridCellProvider
                 $element = $row->getData(); /* @var $element DataObject */
 
                 $router = $request->getRouter();
-                import('lib.pkp.classes.linkAction.LinkAction');
 
                 if ($element['inactive']) {
                     return [new LinkAction(

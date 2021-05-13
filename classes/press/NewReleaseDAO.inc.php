@@ -15,6 +15,8 @@
  * @brief Operations for setting new release status on various items.
  */
 
+use PKP\submission\PKPSubmission;
+
 class NewReleaseDAO extends DAO
 {
     /**
@@ -57,8 +59,6 @@ class NewReleaseDAO extends DAO
      */
     public function getMonographsByAssoc($assocType, $assocId)
     {
-        // import STATUS_PUBLISHED constant
-        import('classes.submission.Submission');
         $result = $this->retrieve(
             'SELECT	n.submission_id AS submission_id
 			FROM	new_releases n,
@@ -69,7 +69,7 @@ class NewReleaseDAO extends DAO
 				AND n.assoc_type = ? AND n.assoc_id = ?
 				AND s.status = ?
 			ORDER BY p.date_published DESC',
-            [(int) $assocType, (int) $assocId, STATUS_PUBLISHED]
+            [(int) $assocType, (int) $assocId, PKPSubmission::STATUS_PUBLISHED]
         );
 
         $returner = [];

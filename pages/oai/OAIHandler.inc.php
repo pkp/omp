@@ -15,19 +15,13 @@
 
 define('SESSION_DISABLE_INIT', 1); // FIXME?
 
+use PKP\oai\OAIConfig;
+
 import('classes.oai.omp.PressOAI');
 import('classes.handler.Handler');
 
 class OAIHandler extends Handler
 {
-    /**
-     * Constructor
-     */
-    public function __construct()
-    {
-        parent::__construct();
-    }
-
     /**
      * @copydoc PKPHandler::authorize
      */

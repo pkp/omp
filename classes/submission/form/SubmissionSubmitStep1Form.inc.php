@@ -16,6 +16,8 @@
 import('lib.pkp.classes.submission.form.PKPSubmissionSubmitStep1Form');
 import('classes.submission.Submission'); // WORK_TYPE_... constants for form
 
+use \APP\template\TemplateManager;
+
 class SubmissionSubmitStep1Form extends PKPSubmissionSubmitStep1Form
 {
     /**
@@ -26,7 +28,7 @@ class SubmissionSubmitStep1Form extends PKPSubmissionSubmitStep1Form
     public function __construct($context, $submission = null)
     {
         parent::__construct($context, $submission);
-        $this->addCheck(new FormValidatorCustom($this, 'seriesId', 'optional', 'author.submit.seriesRequired', [DAORegistry::getDAO('SeriesDAO'), 'getById'], [$context->getId()]));
+        $this->addCheck(new \PKP\form\validation\FormValidatorCustom($this, 'seriesId', 'optional', 'author.submit.seriesRequired', [DAORegistry::getDAO('SeriesDAO'), 'getById'], [$context->getId()]));
     }
 
     /**

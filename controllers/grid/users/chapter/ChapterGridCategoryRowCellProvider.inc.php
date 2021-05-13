@@ -15,6 +15,8 @@
 
 import('lib.pkp.classes.controllers.grid.GridCellProvider');
 
+use PKP\linkAction\LinkAction;
+
 class ChapterGridCategoryRowCellProvider extends GridCellProvider
 {
     public $_readOnly;

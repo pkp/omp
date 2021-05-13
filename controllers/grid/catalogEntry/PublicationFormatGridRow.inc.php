@@ -16,6 +16,9 @@
 import('lib.pkp.controllers.grid.files.SubmissionFilesGridRow');
 import('lib.pkp.classes.controllers.grid.files.FilesGridCapabilities');
 
+use PKP\linkAction\LinkAction;
+use PKP\linkAction\request\AjaxModal;
+
 class PublicationFormatGridRow extends SubmissionFilesGridRow
 {
     /** @var boolean */
@@ -50,7 +53,6 @@ class PublicationFormatGridRow extends SubmissionFilesGridRow
         parent::initialize($request, $template);
         $submissionFileData = & $this->getData();
         $submissionFile = & $submissionFileData['submissionFile']; /* @var $submissionFile SubmissionFile */
-        import('lib.pkp.classes.linkAction.request.AjaxModal');
         $router = $request->getRouter();
         $mimetype = $submissionFile->getData('mimetype');
         if ($this->_canManage && in_array($mimetype, ['application/xml', 'text/html'])) {

@@ -15,6 +15,10 @@
 
 import('lib.pkp.classes.controllers.grid.GridCategoryRow');
 
+use PKP\linkAction\LinkAction;
+use PKP\linkAction\request\AjaxModal;
+use PKP\linkAction\request\RemoteActionConfirmationModal;
+
 class PublicationFormatGridCategoryRow extends GridCategoryRow
 {
     /** @var Submission **/
@@ -82,7 +86,6 @@ class PublicationFormatGridCategoryRow extends GridCategoryRow
             ];
 
             // Add row-level actions
-            import('lib.pkp.classes.linkAction.request.AjaxModal');
             $this->addAction(
                 new LinkAction(
                     'editFormat',
@@ -96,7 +99,6 @@ class PublicationFormatGridCategoryRow extends GridCategoryRow
                 )
             );
 
-            import('lib.pkp.classes.linkAction.request.RemoteActionConfirmationModal');
             $this->addAction(
                 new LinkAction(
                     'deleteFormat',

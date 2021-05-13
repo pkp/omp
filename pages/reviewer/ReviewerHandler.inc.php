@@ -15,6 +15,8 @@
 
 import('lib.pkp.pages.reviewer.PKPReviewerHandler');
 
+use PKP\security\authorization\SubmissionAccessPolicy;
+
 class ReviewerHandler extends PKPReviewerHandler
 {
     /**
@@ -41,7 +43,6 @@ class ReviewerHandler extends PKPReviewerHandler
      */
     public function authorize($request, &$args, $roleAssignments)
     {
-        import('lib.pkp.classes.security.authorization.SubmissionAccessPolicy');
         $router = $request->getRouter();
         $this->addPolicy(new SubmissionAccessPolicy(
             $request,

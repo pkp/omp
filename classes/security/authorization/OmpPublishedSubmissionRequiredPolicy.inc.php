@@ -12,7 +12,11 @@
  * @brief Policy that ensures that the request contains a valid published submission.
  */
 
-import('lib.pkp.classes.security.authorization.DataObjectRequiredPolicy');
+namespace APP\security\authorization;
+
+use PKP\submission\PKPSubmission;
+
+use APP\security\authorization\DataObjectRequiredPolicy;
 
 class OmpPublishedSubmissionRequiredPolicy extends DataObjectRequiredPolicy
 {
@@ -52,7 +56,7 @@ class OmpPublishedSubmissionRequiredPolicy extends DataObjectRequiredPolicy
         if (!$submission && ctype_digit((string) $submissionId)) {
             $submission = Services::get('submission')->get($submissionId);
         }
-        if (!$submission || $submission->getData('status') !== STATUS_PUBLISHED) {
+        if (!$submission || $submission->getData('status') !== PKPSubmission::STATUS_PUBLISHED) {
             return AUTHORIZATION_DENY;
         }
 
@@ -70,7 +74,7 @@ class OmpPublishedSubmissionRequiredPolicy extends DataObjectRequiredPolicy
         // Identify the data object id.
         $router = $this->_request->getRouter();
         switch (true) {
-            case is_a($router, 'PKPPageRouter'):
+            case $router instanceof \PKP\core\PKPPageRouter:
                 if (ctype_digit((string) $this->_request->getUserVar($this->_parameterName))) {
                     // We may expect a object id in the user vars
                     return (int) $this->_request->getUserVar($this->_parameterName);
@@ -86,4 +90,8 @@ class OmpPublishedSubmissionRequiredPolicy extends DataObjectRequiredPolicy
 
         return false;
     }
+}
+
+if (!PKP_STRICT_MODE) {
+    class_alias('\APP\security\authorization\OmpPublishedSubmissionRequiredPolicy', '\OmpPublishedSubmissionRequiredPolicy');
 }

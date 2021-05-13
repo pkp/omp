@@ -246,7 +246,6 @@ class Application extends \PKP\core\PKPApplication
      */
     public static function getPaymentManager($context)
     {
-        import('classes.payment.omp.OMPPaymentManager');
-        return new \OMPPaymentManager($context);
+        return new \APP\payment\omp\OMPPaymentManager($context);
     }
 }

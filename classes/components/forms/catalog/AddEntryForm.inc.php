@@ -16,8 +16,7 @@ namespace APP\components\forms\catalog;
 
 use PKP\components\forms\FieldSelectSubmissions;
 use PKP\components\forms\FormComponent;
-
-import('classes.submission.Submission'); // load STATUS_ constants
+use PKP\submission\PKPSubmission;
 
 define('FORM_ADD_ENTRY', 'addEntry');
 
@@ -39,7 +38,7 @@ class AddEntryForm extends FormComponent
             'apiUrl' => $apiUrl,
             'getParams' => [
                 'stageIds' => [WORKFLOW_STAGE_ID_EDITING, WORKFLOW_STAGE_ID_PRODUCTION],
-                'status' => [STATUS_QUEUED, STATUS_SCHEDULED],
+                'status' => [PKPSubmission::STATUS_QUEUED, PKPSubmission::STATUS_SCHEDULED],
             ],
         ]));
     }

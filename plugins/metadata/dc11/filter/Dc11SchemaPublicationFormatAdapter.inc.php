@@ -17,22 +17,12 @@
  * into/from a PublicationFormat object.
  */
 
+use PKP\metadata\MetadataDataObjectAdapter;
 
-import('lib.pkp.classes.metadata.MetadataDataObjectAdapter');
+use APP\submission\Submission;
 
 class Dc11SchemaPublicationFormatAdapter extends MetadataDataObjectAdapter
 {
-    /**
-     * Constructor
-     *
-     * @param $filterGroup FilterGroup
-     */
-    public function __construct(&$filterGroup)
-    {
-        parent::__construct($filterGroup);
-    }
-
-
     //
     // Implement template methods from Filter
     //
@@ -139,7 +129,7 @@ class Dc11SchemaPublicationFormatAdapter extends MetadataDataObjectAdapter
         // Date
         // FIXME: should we use the publication dates of the publication format? If yes,
         // in which role preference order?
-        if (is_a($monograph, 'Submission')) {
+        if ($monograph instanceof Submission) {
             if ($monograph->getDatePublished()) {
                 $dc11Description->addStatement('dc:date', date('Y-m-d', strtotime($monograph->getDatePublished())));
             }
@@ -162,7 +152,7 @@ class Dc11SchemaPublicationFormatAdapter extends MetadataDataObjectAdapter
 
         // Identifier: URL
         $request = Application::get()->getRequest();
-        if (is_a($monograph, 'Submission')) {
+        if ($monograph instanceof Submission) {
             $dc11Description->addStatement('dc:identifier', $request->url($press->getPath(), 'catalog', 'book', [$monograph->getId()]));
         }
 

@@ -13,20 +13,17 @@
  * @brief CSV import/export plugin
  */
 
-use \PKP\submission\SubmissionFile;
+use PKP\submission\SubmissionFile;
+use PKP\submission\PKPSubmission;
+use PKP\file\TemoraryFileManager;
+use PKP\file\FileManager;
+
+use APP\template\TemplateManager;
 
 import('lib.pkp.classes.plugins.ImportExportPlugin');
 
 class CSVImportExportPlugin extends ImportExportPlugin
 {
-    /**
-     * Constructor
-     */
-    public function __construct()
-    {
-        parent::__construct();
-    }
-
     /**
      * @copydoc Plugin::register()
      *
@@ -159,7 +156,7 @@ class CSVImportExportPlugin extends ImportExportPlugin
                         $submission->setContextId($press->getId());
                         $submission->setUserId($user->getId());
                         $submission->stampLastActivity();
-                        $submission->setStatus(STATUS_PUBLISHED);
+                        $submission->setStatus(PKPSubmission::STATUS_PUBLISHED);
                         $submission->setWorkType($isEditedVolume == 1 ? WORK_TYPE_EDITED_VOLUME : WORK_TYPE_AUTHORED_WORK);
                         $submission->setCopyrightNotice($press->getLocalizedSetting('copyrightNotice'), $locale);
                         $submission->setLocale($locale);
@@ -236,9 +233,6 @@ class CSVImportExportPlugin extends ImportExportPlugin
                         $publicationDateDao->insertObject($publicationDate);
 
                         // Submission File.
-                        import('lib.pkp.classes.file.TemporaryFileManager');
-                        import('lib.pkp.classes.file.FileManager');
-
                         $temporaryFileManager = new TemporaryFileManager();
                         $temporaryFilename = tempnam($temporaryFileManager->getBasePath(), 'remote');
                         $temporaryFileManager->copyFile($pdfUrl, $temporaryFilename);
@@ -281,41 +275,5 @@ class CSVImportExportPlugin extends ImportExportPlugin
             'scriptName' => $scriptName,
             'pluginName' => $this->getName()
         ]) . "\n";
-    }
-    /**
-     * Define the appropriate import filter given the imported XML file path
-     *
-     * @param string $xmlFile
-     *
-     * @return array Containing the filter and the xmlString of the imported file
-     */
-    public function getImportFilter($xmlFile)
-    {
-        throw new BadMethodCallException();
-    }
-
-    /**
-     * Define the appropriate export filter given the export operation
-     *
-     * @param string $exportType
-     *
-     * @return string
-     */
-    public function getExportFilter($exportType)
-    {
-        throw new BadMethodCallException();
-    }
-
-    /**
-     * Get the application specific deployment object
-     *
-     * @param Context $context
-     * @param User $user
-     *
-     * @return PKPImportExportDeployment
-     */
-    public function getAppSpecificDeployment($context, $user)
-    {
-        throw new BadMethodCallException();
     }
 }

@@ -16,16 +16,21 @@
  *
  */
 
-use \PKP\submission\SubmissionFile;
+namespace APP\payment\omp;
 
-import('lib.pkp.classes.payment.QueuedPayment');
-import('lib.pkp.classes.payment.PaymentManager');
-import('lib.pkp.classes.submission.SubmissionFile');
+use PKP\submission\SubmissionFile;
+use PKP\payment\QueuedPayment;
+use PKP\payment\PaymentManager;
+use PKP\submission\SubmissionFile;
+use PKP\db\DAORegistry;
+use PKP\plugins\PluginRegistry;
 
-define('PAYMENT_TYPE_PURCHASE_FILE', 0x000000001);
+use APP\core\Services;
 
 class OMPPaymentManager extends PaymentManager
 {
+    public const PAYMENT_TYPE_PURCHASE_FILE = 1;
+
     /**
      * Determine whether the payment system is configured.
      *
@@ -55,7 +60,7 @@ class OMPPaymentManager extends PaymentManager
         $payment->setType($type);
 
         switch ($type) {
-            case PAYMENT_TYPE_PURCHASE_FILE:
+            case self::PAYMENT_TYPE_PURCHASE_FILE:
                 import('lib.pkp.classes.submission.SubmissionFile'); // const
                 $submissionFile = Services::get('submissionFile')->get($assocId);
                 if ($submissionFile->getData('fileStage') != SubmissionFile::SUBMISSION_FILE_PROOF) {
@@ -109,7 +114,7 @@ class OMPPaymentManager extends PaymentManager
         $returner = false;
         if ($queuedPayment) {
             switch ($queuedPayment->getType()) {
-            case PAYMENT_TYPE_PURCHASE_FILE:
+            case self::PAYMENT_TYPE_PURCHASE_FILE:
                 $returner = true;
                 break;
             default:
@@ -159,7 +164,7 @@ class OMPPaymentManager extends PaymentManager
     public function getPaymentName($payment)
     {
         switch ($payment->getType()) {
-            case PAYMENT_TYPE_PURCHASE_FILE:
+            case self::PAYMENT_TYPE_PURCHASE_FILE:
                 $submissionFile = Services::get('submissionFile')->get($payment->getAssocId());
                 if (!$submissionFile || $submissionFile->getData('assocType') !== ASSOC_TYPE_PUBLICATION_FORMAT) {
                     return false;
@@ -171,4 +176,9 @@ class OMPPaymentManager extends PaymentManager
                 assert(false);
         }
     }
+}
+
+if (!PKP_STRICT_MODE) {
+    class_alias('\APP\payment\omp\OMPPaymentManager', '\OMPPaymentManager');
+    define('PAYMENT_TYPE_PURCHASE_FILE', \OMPPaymentManager::PAYMENT_TYPE_PURCHASE_FILE);
 }

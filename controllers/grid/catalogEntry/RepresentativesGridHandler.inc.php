@@ -22,10 +22,12 @@ import('controllers.grid.catalogEntry.RepresentativesGridCellProvider');
 import('controllers.grid.catalogEntry.RepresentativesGridCategoryRow');
 import('controllers.grid.catalogEntry.RepresentativesGridRow');
 
-// Link action & modal classes
-import('lib.pkp.classes.linkAction.request.AjaxModal');
-
+use PKP\linkAction\request\AjaxModal;
+use PKP\linkAction\LinkAction;
 use PKP\core\JSONMessage;
+use PKP\security\authorization\SubmissionAccessPolicy;
+
+use APP\notification\NotificationManager;
 
 class RepresentativesGridHandler extends CategoryGridHandler
 {
@@ -82,7 +84,6 @@ class RepresentativesGridHandler extends CategoryGridHandler
      */
     public function authorize($request, &$args, $roleAssignments)
     {
-        import('lib.pkp.classes.security.authorization.SubmissionAccessPolicy');
         $this->addPolicy(new SubmissionAccessPolicy($request, $args, $roleAssignments));
         return parent::authorize($request, $args, $roleAssignments);
     }

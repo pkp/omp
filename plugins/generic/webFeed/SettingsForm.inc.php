@@ -13,7 +13,9 @@
  * @brief Form for managers to modify web feeds plugin settings
  */
 
-import('lib.pkp.classes.form.Form');
+use PKP\form\Form;
+
+use APP\template\TemplateManager;
 
 class SettingsForm extends Form
 {
@@ -35,8 +37,8 @@ class SettingsForm extends Form
         $this->_plugin = $plugin;
 
         parent::__construct($plugin->getTemplateResource('settingsForm.tpl'));
-        $this->addCheck(new FormValidatorPost($this));
-        $this->addCheck(new FormValidatorCSRF($this));
+        $this->addCheck(new \PKP\form\validation\FormValidatorPost($this));
+        $this->addCheck(new \PKP\form\validation\FormValidatorCSRF($this));
     }
 
     /**
@@ -63,7 +65,7 @@ class SettingsForm extends Form
             $this->setData('recentItems', '');
         }
 
-        $this->addCheck(new FormValidator($this, 'recentItems', 'required', 'plugins.generic.webfeed.settings.recentItemsRequired'));
+        $this->addCheck(new \PKP\form\validation\FormValidator($this, 'recentItems', 'required', 'plugins.generic.webfeed.settings.recentItemsRequired'));
     }
 
     /**

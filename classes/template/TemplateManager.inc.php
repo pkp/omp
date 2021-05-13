@@ -15,8 +15,14 @@
  *
  */
 
-import('classes.file.PublicFileManager');
-import('lib.pkp.classes.template.PKPTemplateManager');
+namespace APP\template;
+
+use PKP\template\PKPTemplateManager;
+use PKP\db\DAORegistry;
+
+use APP\core\Application;
+use APP\i18n\AppLocale;
+use APP\file\PublicFileManager;
 
 class TemplateManager extends PKPTemplateManager
 {
@@ -78,7 +84,7 @@ class TemplateManager extends PKPTemplateManager
                     $this->addStyleSheet(
                         'contextStylesheet',
                         $request->getBaseUrl() . '/' . $publicFileManager->getContextFilesPath($context->getId()) . '/' . $contextStyleSheet['uploadName'],
-                        ['priority' => STYLE_SEQUENCE_LAST]
+                        ['priority' => self::STYLE_SEQUENCE_LAST]
                     );
                 }
 
@@ -146,4 +152,8 @@ class TemplateManager extends PKPTemplateManager
 
         $this->setState(['menu' => $menu]);
     }
+}
+
+if (!PKP_STRICT_MODE) {
+    class_alias('\APP\template\TemplateManager', '\TemplateManager');
 }

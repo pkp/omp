@@ -14,9 +14,9 @@
  *  requirements.
  */
 
-namespace APP\Services;
+namespace APP\services;
 
-class SubmissionService extends \PKP\Services\PKPSubmissionService
+class SubmissionService extends \PKP\services\PKPSubmissionService
 {
     /**
      * Initialize hooks for extending PKPSubmissionService

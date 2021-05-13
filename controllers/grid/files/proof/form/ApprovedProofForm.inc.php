@@ -12,8 +12,9 @@
  * @brief Form for editing approved proofs (available for direct sales).
  */
 
+use PKP\form\Form;
 
-import('lib.pkp.classes.form.Form');
+use APP\template\TemplateManager;
 
 class ApprovedProofForm extends Form
 {
@@ -42,9 +43,9 @@ class ApprovedProofForm extends Form
         $this->approvedProof = Services::get('submissionFile')->get($submissionFileId);
 
         // matches currencies like:  1,500.50 1500.50 1,112.15 5,99 .99
-        $this->addCheck(new FormValidatorRegExp($this, 'price', 'optional', 'grid.catalogEntry.validPriceRequired', '/^(([1-9]\d{0,2}(,\d{3})*|[1-9]\d*|0|)(.\d{2})?|([1-9]\d{0,2}(,\d{3})*|[1-9]\d*|0|)(.\d{2})?)$/'));
-        $this->addCheck(new FormValidatorPost($this));
-        $this->addCheck(new FormValidatorCSRF($this));
+        $this->addCheck(new \PKP\form\validation\FormValidatorRegExp($this, 'price', 'optional', 'grid.catalogEntry.validPriceRequired', '/^(([1-9]\d{0,2}(,\d{3})*|[1-9]\d*|0|)(.\d{2})?|([1-9]\d{0,2}(,\d{3})*|[1-9]\d*|0|)(.\d{2})?)$/'));
+        $this->addCheck(new \PKP\form\validation\FormValidatorPost($this));
+        $this->addCheck(new \PKP\form\validation\FormValidatorCSRF($this));
     }
 
 

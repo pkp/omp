@@ -16,6 +16,12 @@
 
 import('lib.pkp.pages.catalog.PKPCatalogHandler');
 
+use PKP\submission\PKPSubmission;
+use PKP\submission\PKPSubmissionDAO;
+use PKP\file\ContextFileManager;
+
+use APP\template\TemplateManager;
+
 class CatalogHandler extends PKPCatalogHandler
 {
     //
@@ -59,10 +65,7 @@ class CatalogHandler extends PKPCatalogHandler
         $this->setupTemplate($request);
         $context = $request->getContext();
 
-        import('classes.submission.Submission'); // STATUS_ constants
-        import('classes.submission.SubmissionDAO'); // ORDERBY_ constants
-
-        $orderOption = $context->getData('catalogSortOption') ? $context->getData('catalogSortOption') : ORDERBY_DATE_PUBLISHED . '-' . SORT_DIRECTION_DESC;
+        $orderOption = $context->getData('catalogSortOption') ? $context->getData('catalogSortOption') : PKPSubmissionDAO::ORDERBY_DATE_PUBLISHED . '-' . SORT_DIRECTION_DESC;
         [$orderBy, $orderDir] = explode('-', $orderOption);
 
         $count = $context->getData('itemsPerPage') ? $context->getData('itemsPerPage') : Config::getVar('interface', 'items_per_page');
@@ -78,7 +81,7 @@ class CatalogHandler extends PKPCatalogHandler
             'orderDirection' => $orderDir == SORT_DIRECTION_ASC ? 'ASC' : 'DESC',
             'count' => $count,
             'offset' => $offset,
-            'status' => STATUS_PUBLISHED,
+            'status' => PKPSubmission::STATUS_PUBLISHED,
         ];
         $submissionsIterator = $submissionService->getMany($params);
         $total = $submissionService->getMax($params);
@@ -88,9 +91,13 @@ class CatalogHandler extends PKPCatalogHandler
 
         $this->_setupPaginationTemplate($request, count($submissionsIterator), $page, $count, $offset, $total);
 
+        $seriesDao = DAORegistry::getDAO('SeriesDAO'); /* @var $seriesDao SeriesDAO */
+        $seriesIterator = $seriesDao->getByContextId($context->getId(), null, false, true);
+
         $templateMgr->assign([
             'publishedSubmissions' => iterator_to_array($submissionsIterator),
             'featuredMonographIds' => $featuredMonographIds,
+            'contextSeries' => $seriesIterator->toArray(),
         ]);
 
         $templateMgr->display('frontend/pages/catalog.tpl');
@@ -145,10 +152,8 @@ class CatalogHandler extends PKPCatalogHandler
         }
 
         $this->setupTemplate($request);
-        import('classes.submission.Submission'); // STATUS_ constants
-        import('classes.submission.SubmissionDAO'); // ORDERBY_ constants
 
-        $orderOption = $series->getSortOption() ? $series->getSortOption() : ORDERBY_DATE_PUBLISHED . '-' . SORT_DIRECTION_DESC;
+        $orderOption = $series->getSortOption() ? $series->getSortOption() : PKPSubmissionDAO::ORDERBY_DATE_PUBLISHED . '-' . SORT_DIRECTION_DESC;
         [$orderBy, $orderDir] = explode('-', $orderOption);
 
         $count = $context->getData('itemsPerPage') ? $context->getData('itemsPerPage') : Config::getVar('interface', 'items_per_page');
@@ -165,7 +170,7 @@ class CatalogHandler extends PKPCatalogHandler
             'orderDirection' => $orderDir == SORT_DIRECTION_ASC ? 'ASC' : 'DESC',
             'count' => $count,
             'offset' => $offset,
-            'status' => STATUS_PUBLISHED,
+            'status' => PKPSubmission::STATUS_PUBLISHED,
         ];
         $submissionsIterator = $submissionService->getMany($params);
         $total = $submissionService->getMax($params);
@@ -239,7 +244,6 @@ class CatalogHandler extends PKPCatalogHandler
         }
 
         if ($imageInfo) {
-            import('lib.pkp.classes.file.ContextFileManager');
             $pressFileManager = new ContextFileManager($press->getId());
             $pressFileManager->downloadByPath($pressFileManager->getBasePath() . $path . $imageInfo['name'], null, true);
         }
@@ -279,7 +283,6 @@ class CatalogHandler extends PKPCatalogHandler
         }
 
         if ($imageInfo) {
-            import('lib.pkp.classes.file.ContextFileManager');
             $pressFileManager = new ContextFileManager($press->getId());
             $pressFileManager->downloadByPath($pressFileManager->getBasePath() . $path . $imageInfo['thumbnailName'], null, true);
         }

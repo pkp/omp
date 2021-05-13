@@ -15,6 +15,8 @@
 
 import('lib.pkp.classes.plugins.ImportExportPlugin');
 
+use \APP\template\TemplateManager;
+
 class Onix30ExportPlugin extends ImportExportPlugin
 {
     /**
@@ -159,14 +161,6 @@ class Onix30ExportPlugin extends ImportExportPlugin
      * @copydoc ImportExportPlugin::usage
      */
     public function usage($scriptName)
-    {
-        throw new BadMethodCallException();
-    }
-
-    /**
-     * @see PKPNativeImportExportPlugin::getImportFilter
-     */
-    public function getImportFilter($xmlFile)
     {
         throw new BadMethodCallException();
     }

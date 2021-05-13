@@ -12,11 +12,11 @@
  * @brief A service class with methods to handle publication formats
  */
 
-namespace APP\Services;
+namespace APP\services;
 
-use Application;
-use DAORegistry;
-use Services;
+use APP\core\Application;
+use PKP\db\DAORegistry;
+use APP\core\Services;
 
 class PublicationFormatService
 {

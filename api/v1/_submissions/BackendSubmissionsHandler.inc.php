@@ -16,6 +16,9 @@
 
 import('lib.pkp.api.v1._submissions.PKPBackendSubmissionsHandler');
 
+use \APP\submission\SubmissionDAO;
+use \APP\submission\Submission;
+
 class BackendSubmissionsHandler extends PKPBackendSubmissionsHandler
 {
     /**
@@ -77,12 +80,8 @@ class BackendSubmissionsHandler extends PKPBackendSubmissionsHandler
 
         $originalParams = $slimRequest->getQueryParams();
 
-        // Bring in orderby constants
-        import('lib.pkp.classes.submission.PKPSubmissionDAO');
-        import('classes.submission.SubmissionDAO');
-
         // Add allowed order by options for OMP
-        if (isset($originalParams['orderBy']) && in_array($originalParams['orderBy'], [ORDERBY_DATE_PUBLISHED, ORDERBY_SERIES_POSITION])) {
+        if (isset($originalParams['orderBy']) && in_array($originalParams['orderBy'], [SubmissionDAO::ORDERBY_DATE_PUBLISHED, SubmissionDAO::ORDERBY_SERIES_POSITION])) {
             $params['orderBy'] = $originalParams['orderBy'];
         }
 
@@ -229,7 +228,7 @@ class BackendSubmissionsHandler extends PKPBackendSubmissionsHandler
                 return $response->withStatus(400)->withJsonError('api.submissions.400.submissionsNotFound');
             }
             $publication = $submission->getCurrentPublication();
-            if ($publication->getData('status') === STATUS_PUBLISHED) {
+            if ($publication->getData('status') === Submission::STATUS_PUBLISHED) {
                 continue;
             }
             $errors = Services::get('publication')->validatePublish($publication, $submission, $allowedLocales, $primaryLocale);

@@ -13,7 +13,16 @@
  * @brief Handle publication format grid requests.
  */
 
-use \PKP\submission\SubmissionFile;
+use PKP\submission\SubmissionFile;
+use PKP\submission\PKPSubmission;
+use PKP\core\JSONMessage;
+use PKP\linkAction\request\AjaxModal;
+use PKP\linkAction\LinkAction;
+use PKP\security\authorization\PublicationAccessPolicy;
+use PKP\security\authorization\internal\RepresentationRequiredPolicy;
+
+use APP\template\TemplateManager;
+use APP\notification\NotificationManager;
 
 // import grid base classes
 import('lib.pkp.classes.controllers.grid.CategoryGridHandler');
@@ -22,11 +31,6 @@ import('lib.pkp.classes.controllers.grid.CategoryGridHandler');
 import('controllers.grid.catalogEntry.PublicationFormatGridRow');
 import('controllers.grid.catalogEntry.PublicationFormatGridCategoryRow');
 import('controllers.grid.catalogEntry.PublicationFormatCategoryGridDataProvider');
-
-// Link action & modal classes
-import('lib.pkp.classes.linkAction.request.AjaxModal');
-
-use PKP\core\JSONMessage;
 
 class PublicationFormatGridHandler extends CategoryGridHandler
 {
@@ -147,7 +151,7 @@ class PublicationFormatGridHandler extends CategoryGridHandler
             LOCALE_COMPONENT_APP_EDITOR
         );
 
-        if ($this->getPublication()->getData('status') !== STATUS_PUBLISHED) {
+        if ($this->getPublication()->getData('status') !== PKPSubmission::STATUS_PUBLISHED) {
             // Grid actions
             $router = $request->getRouter();
             $actionArgs = $this->getRequestArgs();
@@ -215,11 +219,9 @@ class PublicationFormatGridHandler extends CategoryGridHandler
      */
     public function authorize($request, &$args, $roleAssignments)
     {
-        import('lib.pkp.classes.security.authorization.PublicationAccessPolicy');
         $this->addPolicy(new PublicationAccessPolicy($request, $args, $roleAssignments));
 
         if ($request->getUserVar('representationId')) {
-            import('lib.pkp.classes.security.authorization.internal.RepresentationRequiredPolicy');
             $this->addPolicy(new RepresentationRequiredPolicy($request, $args));
         }
 

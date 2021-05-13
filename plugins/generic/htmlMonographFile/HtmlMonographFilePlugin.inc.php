@@ -13,7 +13,10 @@
  * @brief Class for HtmlMonographFile plugin
  */
 
-use \PKP\submission\SubmissionFile;
+use PKP\submission\SubmissionFile;
+
+use APP\template\TemplateManager;
+use APP\file\PublicFileManager;
 
 import('lib.pkp.classes.plugins.GenericPlugin');
 
@@ -248,14 +251,12 @@ class HtmlMonographFilePlugin extends GenericPlugin
                 break;
             case 'sitepublic':
                 array_shift($urlParts);
-                import('classes.file.PublicFileManager');
                 $publicFileManager = new PublicFileManager();
                 $url = $request->getBaseUrl() . '/' . $publicFileManager->getSiteFilesPath() . '/' . implode('/', $urlParts) . ($anchor ? '#' . $anchor : '');
                 break;
             case 'public':
                 array_shift($urlParts);
                 $press = $request->getPress();
-                import('classes.file.PublicFileManager');
                 $publicFileManager = new PublicFileManager();
                 $url = $request->getBaseUrl() . '/' . $publicFileManager->getContextFilesPath($press->getId()) . '/' . implode('/', $urlParts) . ($anchor ? '#' . $anchor : '');
                 break;

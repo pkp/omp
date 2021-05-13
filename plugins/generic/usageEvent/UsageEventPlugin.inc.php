@@ -15,17 +15,11 @@
 
 import('lib.pkp.plugins.generic.usageEvent.PKPUsageEventPlugin');
 
+use APP\template\TemplateManager;
+use APP\submission\Submission;
+
 class UsageEventPlugin extends PKPUsageEventPlugin
 {
-    /**
-     * Constructor
-     */
-    public function __construct()
-    {
-        parent::__construct();
-    }
-
-
     //
     // Protected methods.
     //
@@ -179,6 +173,6 @@ class UsageEventPlugin extends PKPUsageEventPlugin
      */
     protected function isPubIdObjectType($pubObject)
     {
-        return is_a($pubObject, 'Submission');
+        return $pubObject instanceof Submission;
     }
 }

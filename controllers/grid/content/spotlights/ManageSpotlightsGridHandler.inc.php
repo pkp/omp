@@ -25,10 +25,13 @@ import('controllers.grid.content.spotlights.form.SpotlightForm');
 // import Spotlight class for class constants
 import('classes.spotlight.Spotlight');
 
-// Link action & modal classes
-import('lib.pkp.classes.linkAction.request.AjaxModal');
-
+use PKP\linkAction\LinkAction;
+use PKP\linkAction\request\AjaxModal;
 use PKP\core\JSONMessage;
+use PKP\submission\PKPSubmission;
+use PKP\security\authorization\ContextAccessPolicy;
+
+use APP\notification\NotificationManager;
 
 class ManageSpotlightsGridHandler extends GridHandler
 {
@@ -85,7 +88,6 @@ class ManageSpotlightsGridHandler extends GridHandler
      */
     public function authorize($request, &$args, $roleAssignments)
     {
-        import('lib.pkp.classes.security.authorization.ContextAccessPolicy');
         $this->addPolicy(new ContextAccessPolicy($request, $roleAssignments));
         $returner = parent::authorize($request, $args, $roleAssignments);
 
@@ -160,7 +162,6 @@ class ManageSpotlightsGridHandler extends GridHandler
 
         // Add grid action.
         $router = $request->getRouter();
-        import('lib.pkp.classes.linkAction.request.AjaxModal');
         $this->addAction(
             new LinkAction(
                 'addSpotlight',
@@ -348,9 +349,8 @@ class ManageSpotlightsGridHandler extends GridHandler
         // get the items that match.
         $matches = [];
 
-        import('lib.pkp.classes.submission.PKPSubmission'); // STATUS_PUBLISHED
         $args = [
-            'status' => STATUS_PUBLISHED,
+            'status' => PKPSubmission::STATUS_PUBLISHED,
             'contextId' => $press->getId(),
             'count' => 100
         ];

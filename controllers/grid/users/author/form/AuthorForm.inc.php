@@ -15,6 +15,8 @@
 
 import('lib.pkp.controllers.grid.users.author.form.PKPAuthorForm');
 
+use \APP\template\TemplateManager;
+
 class AuthorForm extends PKPAuthorForm
 {
     //

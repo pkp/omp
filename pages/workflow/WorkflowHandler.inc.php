@@ -15,8 +15,8 @@
 
 import('lib.pkp.pages.workflow.PKPWorkflowHandler');
 
-// Access decision actions constants.
-import('classes.workflow.EditorDecisionActionsManager');
+use APP\template\TemplateManager;
+use APP\file\PublicFileManager;
 
 class WorkflowHandler extends PKPWorkflowHandler
 {
@@ -99,7 +99,6 @@ class WorkflowHandler extends PKPWorkflowHandler
             ]
         );
 
-        import('classes.file.PublicFileManager');
         $publicFileManager = new PublicFileManager();
         $baseUrl = $request->getBaseUrl() . '/' . $publicFileManager->getContextFilesPath($submissionContext->getId());
 
@@ -108,10 +107,10 @@ class WorkflowHandler extends PKPWorkflowHandler
         $publicationDatesForm = new APP\components\forms\submission\PublicationDatesForm($submissionApiUrl, $submission);
 
         $templateMgr->setConstants([
-            'FORM_AUDIENCE',
-            'FORM_CATALOG_ENTRY',
-            'WORK_TYPE_AUTHORED_WORK',
-            'WORK_TYPE_EDITED_VOLUME',
+            'FORM_AUDIENCE' => FORM_AUDIENCE,
+            'FORM_CATALOG_ENTRY' => FORM_CATALOG_ENTRY,
+            'WORK_TYPE_AUTHORED_WORK' => WORK_TYPE_AUTHORED_WORK,
+            'WORK_TYPE_EDITED_VOLUME' => WORK_TYPE_EDITED_VOLUME,
         ]);
 
         $components = $templateMgr->getState('components');

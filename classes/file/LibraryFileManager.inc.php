@@ -13,21 +13,13 @@
  * @brief Wrapper class for uploading files to a site/context' library directory.
  */
 
-import('lib.pkp.classes.file.PKPLibraryFileManager');
+namespace APP\file;
+
+use PKP\file\PKPLibraryFileManager;
+use PKP\context\LibraryFile;
 
 class LibraryFileManager extends PKPLibraryFileManager
 {
-    /**
-     * Constructor
-     *
-     * @param $contextId int
-     */
-    public function __construct($contextId)
-    {
-        parent::__construct($contextId);
-    }
-
-
     /**
      * Get the file suffix for the given file type
      *
@@ -47,7 +39,7 @@ class LibraryFileManager extends PKPLibraryFileManager
     public function &getTypeSuffixMap()
     {
         static $map = [
-            LIBRARY_FILE_TYPE_CONTRACT => 'CON',
+            LibraryFile::LIBRARY_FILE_TYPE_CONTRACT => 'CON',
         ];
         $parent = parent::getTypeSuffixMap();
         $map = array_merge($map, $parent);
@@ -62,7 +54,7 @@ class LibraryFileManager extends PKPLibraryFileManager
     public function &getTypeTitleKeyMap()
     {
         static $map = [
-            LIBRARY_FILE_TYPE_CONTRACT => 'settings.libraryFiles.category.contracts',
+            LibraryFile::LIBRARY_FILE_TYPE_CONTRACT => 'settings.libraryFiles.category.contracts',
         ];
         $parent = parent::getTypeTitleKeyMap();
         $map = array_merge($map, $parent);
@@ -77,10 +69,14 @@ class LibraryFileManager extends PKPLibraryFileManager
     public function &getTypeNameMap()
     {
         static $map = [
-            LIBRARY_FILE_TYPE_CONTRACT => 'contacts',
+            LibraryFile::LIBRARY_FILE_TYPE_CONTRACT => 'contacts',
         ];
         $parent = parent::getTypeNameMap();
         $map = array_merge($map, $parent);
         return $map;
     }
+}
+
+if (!PKP_STRICT_MODE) {
+    class_alias('\APP\file\LibraryFileManager', '\LibraryFileManager');
 }

@@ -15,7 +15,10 @@
  * @brief UserAction class.
  */
 
-import('lib.pkp.classes.user.PKPUserAction');
+namespace APP\user;
+
+use \PKP\user\PKPUserAction;
+use \PKP\db\DAORegistry;
 
 class UserAction extends PKPUserAction
 {
@@ -38,4 +41,8 @@ class UserAction extends PKPUserAction
 
         return true;
     }
+}
+
+if (!PKP_STRICT_MODE) {
+    class_alias('\APP\user\UserAction', '\UserAction');
 }

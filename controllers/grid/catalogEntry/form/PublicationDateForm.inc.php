@@ -13,7 +13,9 @@
  * @brief Form for adding/editing a publication date
  */
 
-import('lib.pkp.classes.form.Form');
+use PKP\form\Form;
+
+use APP\template\TemplateManager;
 
 class PublicationDateForm extends Form
 {
@@ -38,10 +40,10 @@ class PublicationDateForm extends Form
 
         // Validation checks for this form
         $form = $this;
-        $this->addCheck(new FormValidator($this, 'role', 'required', 'grid.catalogEntry.roleRequired'));
-        $this->addCheck(new FormValidator($this, 'dateFormat', 'required', 'grid.catalogEntry.dateFormatRequired'));
+        $this->addCheck(new \PKP\form\validation\FormValidator($this, 'role', 'required', 'grid.catalogEntry.roleRequired'));
+        $this->addCheck(new \PKP\form\validation\FormValidator($this, 'dateFormat', 'required', 'grid.catalogEntry.dateFormatRequired'));
 
-        $this->addCheck(new FormValidatorCustom(
+        $this->addCheck(new \PKP\form\validation\FormValidatorCustom(
             $this,
             'date',
             'required',
@@ -65,9 +67,9 @@ class PublicationDateForm extends Form
             }
         ));
 
-        $this->addCheck(new FormValidator($this, 'representationId', 'required', 'grid.catalogEntry.publicationFormatRequired'));
-        $this->addCheck(new FormValidatorPost($this));
-        $this->addCheck(new FormValidatorCSRF($this));
+        $this->addCheck(new \PKP\form\validation\FormValidator($this, 'representationId', 'required', 'grid.catalogEntry.publicationFormatRequired'));
+        $this->addCheck(new \PKP\form\validation\FormValidatorPost($this));
+        $this->addCheck(new \PKP\form\validation\FormValidatorCSRF($this));
     }
 
     //

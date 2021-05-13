@@ -13,8 +13,10 @@
  * @brief Wrapper class for uploading files to a site/press' public directory.
  */
 
+namespace APP\file;
 
-import('lib.pkp.classes.file.PKPPublicFileManager');
+use PKP\file\PKPPublicFileManager;
+use PKP\config\Config;
 
 class PublicFileManager extends PKPPublicFileManager
 {
@@ -25,4 +27,8 @@ class PublicFileManager extends PKPPublicFileManager
     {
         return Config::getVar('files', 'public_files_dir') . '/presses/' . (int) $contextId;
     }
+}
+
+if (!PKP_STRICT_MODE) {
+    class_alias('\APP\file\PublicFileManager', '\PublicFileManager');
 }

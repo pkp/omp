@@ -15,10 +15,12 @@
 
 import('lib.pkp.classes.controllers.modals.editorDecision.PKPEditorDecisionHandler');
 
-// Access decision actions constants.
-import('classes.workflow.EditorDecisionActionsManager');
-
 use PKP\core\JSONMessage;
+use PKP\security\authorization\EditorDecisionAccessPolicy;
+use PKP\notification\PKPNotification;
+
+use APP\workflow\EditorDecisionActionsManager;
+
 
 class EditorDecisionHandler extends PKPEditorDecisionHandler
 {
@@ -51,7 +53,6 @@ class EditorDecisionHandler extends PKPEditorDecisionHandler
     public function authorize($request, &$args, $roleAssignments)
     {
         $stageId = (int) $request->getUserVar('stageId');
-        import('lib.pkp.classes.security.authorization.EditorDecisionAccessPolicy');
         $this->addPolicy(new EditorDecisionAccessPolicy($request, $args, $roleAssignments, 'submissionId', $stageId));
 
         return parent::authorize($request, $args, $roleAssignments);
@@ -82,7 +83,7 @@ class EditorDecisionHandler extends PKPEditorDecisionHandler
             assert(false);
         }
 
-        return $this->_saveEditorDecision($args, $request, 'NewReviewRoundForm', $redirectOp, SUBMISSION_EDITOR_DECISION_NEW_ROUND);
+        return $this->_saveEditorDecision($args, $request, 'NewReviewRoundForm', $redirectOp, EditorDecisionActionsManager::SUBMISSION_EDITOR_DECISION_NEW_ROUND);
     }
 
     /**
@@ -114,7 +115,7 @@ class EditorDecisionHandler extends PKPEditorDecisionHandler
             $request,
             'InitiateInternalReviewForm',
             WORKFLOW_STAGE_PATH_INTERNAL_REVIEW,
-            SUBMISSION_EDITOR_DECISION_INTERNAL_REVIEW
+            EditorDecisionActionsManager::SUBMISSION_EDITOR_DECISION_INTERNAL_REVIEW
         );
     }
 
@@ -136,11 +137,11 @@ class EditorDecisionHandler extends PKPEditorDecisionHandler
 
         $redirectOp = null;
 
-        if ($decision == SUBMISSION_EDITOR_DECISION_ACCEPT) {
+        if ($decision == EditorDecisionActionsManager::SUBMISSION_EDITOR_DECISION_ACCEPT) {
             $redirectOp = WORKFLOW_STAGE_PATH_EDITING;
-        } elseif ($decision == SUBMISSION_EDITOR_DECISION_EXTERNAL_REVIEW) {
+        } elseif ($decision == EditorDecisionActionsManager::SUBMISSION_EDITOR_DECISION_EXTERNAL_REVIEW) {
             $redirectOp = WORKFLOW_STAGE_PATH_EXTERNAL_REVIEW;
-        } elseif ($decision == SUBMISSION_EDITOR_DECISION_SEND_TO_PRODUCTION) {
+        } elseif ($decision == EditorDecisionActionsManager::SUBMISSION_EDITOR_DECISION_SEND_TO_PRODUCTION) {
             $redirectOp = WORKFLOW_STAGE_PATH_PRODUCTION;
         }
 
@@ -165,25 +166,25 @@ class EditorDecisionHandler extends PKPEditorDecisionHandler
     protected function _getNotificationTypeByEditorDecision($decision)
     {
         switch ($decision) {
-            case SUBMISSION_EDITOR_DECISION_INTERNAL_REVIEW:
-                return NOTIFICATION_TYPE_EDITOR_DECISION_INTERNAL_REVIEW;
-            case SUBMISSION_EDITOR_DECISION_ACCEPT:
-                return NOTIFICATION_TYPE_EDITOR_DECISION_ACCEPT;
-            case SUBMISSION_EDITOR_DECISION_EXTERNAL_REVIEW:
-                return NOTIFICATION_TYPE_EDITOR_DECISION_EXTERNAL_REVIEW;
-            case SUBMISSION_EDITOR_DECISION_PENDING_REVISIONS:
-                return NOTIFICATION_TYPE_EDITOR_DECISION_PENDING_REVISIONS;
-            case SUBMISSION_EDITOR_DECISION_RESUBMIT:
-                return NOTIFICATION_TYPE_EDITOR_DECISION_RESUBMIT;
-            case SUBMISSION_EDITOR_DECISION_NEW_ROUND:
-                return NOTIFICATION_TYPE_EDITOR_DECISION_NEW_ROUND;
-            case SUBMISSION_EDITOR_DECISION_DECLINE:
-            case SUBMISSION_EDITOR_DECISION_INITIAL_DECLINE:
-                return NOTIFICATION_TYPE_EDITOR_DECISION_DECLINE;
-            case SUBMISSION_EDITOR_DECISION_REVERT_DECLINE:
-                return NOTIFICATION_TYPE_EDITOR_DECISION_REVERT_DECLINE;
-            case SUBMISSION_EDITOR_DECISION_SEND_TO_PRODUCTION:
-                return NOTIFICATION_TYPE_EDITOR_DECISION_SEND_TO_PRODUCTION;
+            case EditorDecisionActionsManager::SUBMISSION_EDITOR_DECISION_INTERNAL_REVIEW:
+                return PKPNotification::NOTIFICATION_TYPE_EDITOR_DECISION_INTERNAL_REVIEW;
+            case EditorDecisionActionsManager::SUBMISSION_EDITOR_DECISION_ACCEPT:
+                return PKPNotification::NOTIFICATION_TYPE_EDITOR_DECISION_ACCEPT;
+            case EditorDecisionActionsManager::SUBMISSION_EDITOR_DECISION_EXTERNAL_REVIEW:
+                return PKPNotification::NOTIFICATION_TYPE_EDITOR_DECISION_EXTERNAL_REVIEW;
+            case EditorDecisionActionsManager::SUBMISSION_EDITOR_DECISION_PENDING_REVISIONS:
+                return PKPNotification::NOTIFICATION_TYPE_EDITOR_DECISION_PENDING_REVISIONS;
+            case EditorDecisionActionsManager::SUBMISSION_EDITOR_DECISION_RESUBMIT:
+                return PKPNotification::NOTIFICATION_TYPE_EDITOR_DECISION_RESUBMIT;
+            case EditorDecisionActionsManager::SUBMISSION_EDITOR_DECISION_NEW_ROUND:
+                return PKPNotification::NOTIFICATION_TYPE_EDITOR_DECISION_NEW_ROUND;
+            case EditorDecisionActionsManager::SUBMISSION_EDITOR_DECISION_DECLINE:
+            case EditorDecisionActionsManager::SUBMISSION_EDITOR_DECISION_INITIAL_DECLINE:
+                return PKPNotification::NOTIFICATION_TYPE_EDITOR_DECISION_DECLINE;
+            case EditorDecisionActionsManager::SUBMISSION_EDITOR_DECISION_REVERT_DECLINE:
+                return PKPNotification::NOTIFICATION_TYPE_EDITOR_DECISION_REVERT_DECLINE;
+            case EditorDecisionActionsManager::SUBMISSION_EDITOR_DECISION_SEND_TO_PRODUCTION:
+                return PKPNotification::NOTIFICATION_TYPE_EDITOR_DECISION_SEND_TO_PRODUCTION;
         }
         throw new Exception('Unknown editor decision.');
     }
@@ -203,7 +204,7 @@ class EditorDecisionHandler extends PKPEditorDecisionHandler
      */
     protected function _getReviewNotificationTypes()
     {
-        return [NOTIFICATION_TYPE_PENDING_INTERNAL_REVISIONS, NOTIFICATION_TYPE_PENDING_EXTERNAL_REVISIONS];
+        return [PKPNotification::NOTIFICATION_TYPE_PENDING_INTERNAL_REVISIONS, PKPNotification::NOTIFICATION_TYPE_PENDING_EXTERNAL_REVISIONS];
     }
 
     /**

@@ -21,10 +21,12 @@ import('lib.pkp.classes.controllers.grid.GridHandler');
 import('controllers.grid.catalogEntry.SalesRightsGridCellProvider');
 import('controllers.grid.catalogEntry.SalesRightsGridRow');
 
-// Link action & modal classes
-import('lib.pkp.classes.linkAction.request.AjaxModal');
-
+use PKP\linkAction\LinkAction;
+use PKP\linkAction\request\AjaxModal;
 use PKP\core\JSONMessage;
+use PKP\security\authorization\PublicationAccessPolicy;
+
+use APP\notification\NotificationManager;
 
 class SalesRightsGridHandler extends GridHandler
 {
@@ -123,7 +125,6 @@ class SalesRightsGridHandler extends GridHandler
      */
     public function authorize($request, &$args, $roleAssignments)
     {
-        import('lib.pkp.classes.security.authorization.PublicationAccessPolicy');
         $this->addPolicy(new PublicationAccessPolicy($request, $args, $roleAssignments));
         return parent::authorize($request, $args, $roleAssignments);
     }

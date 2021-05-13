@@ -13,12 +13,20 @@
  * @brief Perform system upgrade.
  */
 
+namespace APP\install;
+
 use Illuminate\Support\Facades\DB;
 
-use \PKP\identity\Identity;
-use \PKP\submission\SubmissionFile;
+use PKP\identity\Identity;
+use PKP\submission\SubmissionFile;
+use PKP\file\FileManager;
+use PKP\install\Installer;
+use PKP\db\DAORegistry;
+use PKP\core\PKPString;
 
-import('lib.pkp.classes.install.Installer');
+use APP\core\Application;
+use APP\i18n\AppLocale;
+use APP\file\PublicFileManager;
 
 class Upgrade extends Installer
 {
@@ -65,7 +73,6 @@ class Upgrade extends Installer
         $siteDao = DAORegistry::getDAO('SiteDAO'); /* @var $siteDao SiteDAO */
         $site = $siteDao->getSite();
         $adminEmail = $site->getLocalizedContactEmail();
-        import('lib.pkp.classes.file.FileManager');
         $fileManager = new FileManager();
 
         $contexts = $pressDao->getAll();
@@ -605,7 +612,7 @@ class Upgrade extends Installer
 
             import('plugins.generic.staticPages.classes.StaticPagesDAO');
 
-            $staticPagesDao = new StaticPagesDAO();
+            $staticPagesDao = new \StaticPagesDAO();
 
             $contexts = $contextDao->getAll();
             while ($context = $contexts->next()) {
@@ -774,9 +781,6 @@ class Upgrade extends Installer
      */
     public function migrateSubmissionCoverImages()
     {
-        import('lib.pkp.classes.file.FileManager');
-        import('classes.file.PublicFileManager');
-
         $fileManager = new \FileManager();
         $publicFileManager = new \PublicFileManager();
         $contexts = [];
@@ -899,3 +903,8 @@ class Upgrade extends Installer
         return $fileStagePathMap[$fileStage];
     }
 }
+
+if (!PKP_STRICT_MODE) {
+    class_alias('\APP\install\Upgrade', '\Upgrade');
+}
+

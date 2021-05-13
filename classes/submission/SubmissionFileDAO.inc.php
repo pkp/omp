@@ -14,9 +14,12 @@
  *
  * @brief Operations for retrieving and modifying submission files
  */
-use Illuminate\Support\Facades\DB;
 
-import('lib.pkp.classes.submission.PKPSubmissionFileDAO');
+namespace APP\submission;
+
+use \Illuminate\Support\Facades\DB;
+
+use \PKP\submission\PKPSubmissionFileDAO;
 
 class SubmissionFileDAO extends PKPSubmissionFileDAO
 {
@@ -63,3 +66,8 @@ class SubmissionFileDAO extends PKPSubmissionFileDAO
         }
     }
 }
+
+if (!PKP_STRICT_MODE) {
+    class_alias('\APP\submission\SubmissionFileDAO', '\SubmissionFileDAO');
+}
+

@@ -12,16 +12,16 @@
  * @brief Journal list query builder
  */
 
-namespace APP\Services\QueryBuilders;
+namespace APP\services\queryBuilders;
 
-class ContextQueryBuilder extends \PKP\Services\QueryBuilders\PKPContextQueryBuilder
+class ContextQueryBuilder extends \PKP\services\queryBuilders\PKPContextQueryBuilder
 {
-    /** @copydoc \PKP\Services\QueryBuilders\PKPContextQueryBuilder::$db */
+    /** @copydoc \PKP\services\queryBuilders\PKPContextQueryBuilder::$db */
     protected $db = 'presses';
 
-    /** @copydoc \PKP\Services\QueryBuilders\PKPContextQueryBuilder::$dbSettings */
+    /** @copydoc \PKP\services\queryBuilders\PKPContextQueryBuilder::$dbSettings */
     protected $dbSettings = 'press_settings';
 
-    /** @copydoc \PKP\Services\QueryBuilders\PKPContextQueryBuilder::$dbIdColumn */
+    /** @copydoc \PKP\services\queryBuilders\PKPContextQueryBuilder::$dbIdColumn */
     protected $dbIdColumn = 'press_id';
 }

@@ -14,11 +14,13 @@
  *   catalog.
  */
 
-import('classes.handler.Handler');
+use PKP\linkAction\LinkAction;
+use PKP\submission\PKPSubmission;
 
-// import UI base classes
-import('lib.pkp.classes.linkAction.LinkAction');
-
+use APP\handler\Handler;
+use APP\template\TemplateManager;
+use APP\payment\omp\OMPPaymentManager;
+use APP\security\authorization\OmpPublishedSubmissionAccessPolicy;
 
 class CatalogBookHandler extends Handler
 {
@@ -27,15 +29,6 @@ class CatalogBookHandler extends Handler
 
     /** @var boolean Is this a request for a specific version */
     public $isVersionRequest = false;
-
-    /**
-     * Constructor
-     */
-    public function __construct()
-    {
-        parent::__construct();
-    }
-
 
     //
     // Overridden functions from PKPHandler
@@ -49,7 +42,6 @@ class CatalogBookHandler extends Handler
      */
     public function authorize($request, &$args, $roleAssignments)
     {
-        import('classes.security.authorization.OmpPublishedSubmissionAccessPolicy');
         $this->addPolicy(new OmpPublishedSubmissionAccessPolicy($request, $args, $roleAssignments));
         return parent::authorize($request, $args, $roleAssignments);
     }
@@ -86,7 +78,7 @@ class CatalogBookHandler extends Handler
             $this->publication = $submission->getCurrentPublication();
         }
 
-        if (!$this->publication || $this->publication->getData('status') !== STATUS_PUBLISHED) {
+        if (!$this->publication || $this->publication->getData('status') !== PKPSubmission::STATUS_PUBLISHED) {
             $request->getDispatcher()->handle404();
         }
 
@@ -265,7 +257,7 @@ class CatalogBookHandler extends Handler
         }
 
         if (empty($publication)
-                || $publication->getData('status') !== STATUS_PUBLISHED
+                || $publication->getData('status') !== PKPSubmission::STATUS_PUBLISHED
                 || $publicationFormat->getData('publicationId') !== $publication->getId()) {
             $dispatcher->handle404();
         }
@@ -348,7 +340,6 @@ class CatalogBookHandler extends Handler
         }
 
         // They're logged in but need to pay to view.
-        import('classes.payment.omp.OMPPaymentManager');
         $paymentManager = new OMPPaymentManager($press);
         if (!$paymentManager->isConfigured()) {
             $request->redirect(null, 'catalog');
@@ -356,7 +347,7 @@ class CatalogBookHandler extends Handler
 
         $queuedPayment = $paymentManager->createQueuedPayment(
             $request,
-            PAYMENT_TYPE_PURCHASE_FILE,
+            OMPPaymentManager::PAYMENT_TYPE_PURCHASE_FILE,
             $user->getId(),
             $submissionFile->getId(),
             $submissionFile->getDirectSalesPrice(),

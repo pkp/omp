@@ -16,6 +16,11 @@
 
 import('lib.pkp.controllers.grid.settings.sections.form.PKPSectionForm');
 
+use PKP\file\TemporaryFileManager;
+use PKP\file\ContextFileManager;
+
+use APP\template\TemplateManager;
+
 class SeriesForm extends PKPSectionForm
 {
     /** @var int $_pressId */
@@ -39,14 +44,14 @@ class SeriesForm extends PKPSectionForm
 
         // Validation checks for this form
         $form = $this;
-        $this->addCheck(new FormValidatorLocale($this, 'title', 'required', 'manager.setup.form.series.nameRequired'));
-        $this->addCheck(new FormValidatorISSN($this, 'onlineIssn', 'optional', 'catalog.manage.series.issn.validation'));
-        $this->addCheck(new FormValidatorISSN($this, 'printIssn', 'optional', 'catalog.manage.series.issn.validation'));
-        $this->addCheck(new FormValidatorCustom($this, 'printIssn', 'optional', 'catalog.manage.series.issn.equalValidation', function ($printIssn) use ($form) {
+        $this->addCheck(new \PKP\form\validation\FormValidatorLocale($this, 'title', 'required', 'manager.setup.form.series.nameRequired'));
+        $this->addCheck(new \PKP\form\validation\FormValidatorISSN($this, 'onlineIssn', 'optional', 'catalog.manage.series.issn.validation'));
+        $this->addCheck(new \PKP\form\validation\FormValidatorISSN($this, 'printIssn', 'optional', 'catalog.manage.series.issn.validation'));
+        $this->addCheck(new \PKP\form\validation\FormValidatorCustom($this, 'printIssn', 'optional', 'catalog.manage.series.issn.equalValidation', function ($printIssn) use ($form) {
             return !($form->getData('onlineIssn') != '' && $form->getData('onlineIssn') == $printIssn);
         }));
-        $this->addCheck(new FormValidatorRegExp($this, 'path', 'required', 'grid.series.pathAlphaNumeric', '/^[a-zA-Z0-9\/._-]+$/'));
-        $this->addCheck(new FormValidatorCustom(
+        $this->addCheck(new \PKP\form\validation\FormValidatorRegExp($this, 'path', 'required', 'grid.series.pathAlphaNumeric', '/^[a-zA-Z0-9\/._-]+$/'));
+        $this->addCheck(new \PKP\form\validation\FormValidatorCustom(
             $this,
             'path',
             'required',
@@ -105,7 +110,6 @@ class SeriesForm extends PKPSectionForm
     public function validate($callHooks = true)
     {
         if ($temporaryFileId = $this->getData('temporaryFileId')) {
-            import('lib.pkp.classes.file.TemporaryFileManager');
             $temporaryFileManager = new TemporaryFileManager();
             $temporaryFileDao = DAORegistry::getDAO('TemporaryFileDAO'); /* @var $temporaryFileDao TemporaryFileDAO */
             $temporaryFile = $temporaryFileDao->getTemporaryFile($temporaryFileId, $this->_userId);
@@ -263,7 +267,6 @@ class SeriesForm extends PKPSectionForm
 
             $temporaryFile = $temporaryFileDao->getTemporaryFile($temporaryFileId, $this->_userId);
             $temporaryFilePath = $temporaryFile->getFilePath();
-            import('lib.pkp.classes.file.ContextFileManager');
             $pressFileManager = new ContextFileManager($press->getId());
             $basePath = $pressFileManager->getBasePath() . '/series/';
 
@@ -324,7 +327,6 @@ class SeriesForm extends PKPSectionForm
             ]);
 
             // Clean up the temporary file
-            import('lib.pkp.classes.file.TemporaryFileManager');
             $temporaryFileManager = new TemporaryFileManager();
             $temporaryFileManager->deleteById($temporaryFileId, $this->_userId);
         }

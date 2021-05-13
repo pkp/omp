@@ -14,8 +14,12 @@
 
 namespace APP\components\listPanels;
 
-// Bring in orderby constants
-import('lib.pkp.classes.submission.PKPSubmissionDAO');
+use \PKP\submission\PKPSubmissionDAO;
+use \PKP\submission\PKPSubmission;
+
+use \APP\core\Application;
+use \APP\i18n\AppLocale;
+use \APP\template\TemplateManager;
 
 class CatalogListPanel extends \PKP\components\listPanels\ListPanel
 {
@@ -36,13 +40,13 @@ class CatalogListPanel extends \PKP\components\listPanels\ListPanel
      */
     public function getConfig()
     {
-        \AppLocale::requireComponents(LOCALE_COMPONENT_APP_SUBMISSION);
+        AppLocale::requireComponents(LOCALE_COMPONENT_APP_SUBMISSION);
 
-        $request = \Application::get()->getRequest();
+        $request = Application::get()->getRequest();
         $context = $request->getContext();
 
         [$catalogSortBy, $catalogSortDir] = explode('-', $context->getData('catalogSortOption'));
-        $catalogSortBy = empty($catalogSortBy) ? ORDERBY_DATE_PUBLISHED : $catalogSortBy;
+        $catalogSortBy = empty($catalogSortBy) ? PKPSubmissionDAO::ORDERBY_DATE_PUBLISHED : $catalogSortBy;
         $catalogSortDir = $catalogSortDir == SORT_DIRECTION_ASC ? 'ASC' : 'DESC';
         $config['catalogSortBy'] = $catalogSortBy;
         $config['catalogSortDir'] = $catalogSortDir;
@@ -50,7 +54,7 @@ class CatalogListPanel extends \PKP\components\listPanels\ListPanel
         $this->getParams = array_merge(
             $this->getParams,
             [
-                'status' => STATUS_PUBLISHED,
+                'status' => PKPSubmission::STATUS_PUBLISHED,
                 'orderByFeatured' => true,
                 'orderBy' => $catalogSortBy,
                 'orderDirection' => $catalogSortDir,
@@ -131,7 +135,7 @@ class CatalogListPanel extends \PKP\components\listPanels\ListPanel
             'submissions'
         );
         $supportedFormLocales = $context->getSupportedFormLocales();
-        $localeNames = \AppLocale::getAllLocales();
+        $localeNames = AppLocale::getAllLocales();
         $locales = array_map(function ($localeKey) use ($localeNames) {
             return ['key' => $localeKey, 'label' => $localeNames[$localeKey]];
         }, $supportedFormLocales);
@@ -140,9 +144,9 @@ class CatalogListPanel extends \PKP\components\listPanels\ListPanel
 
         $templateMgr = \TemplateManager::getManager($request);
         $templateMgr->setConstants([
-            'ASSOC_TYPE_PRESS',
-            'ASSOC_TYPE_CATEGORY',
-            'ASSOC_TYPE_SERIES',
+            'ASSOC_TYPE_PRESS' => ASSOC_TYPE_PRESS,
+            'ASSOC_TYPE_CATEGORY' => ASSOC_TYPE_CATEGORY,
+            'ASSOC_TYPE_SERIES' => ASSOC_TYPE_SERIES,
         ]);
 
         $templateMgr->setLocaleKeys([

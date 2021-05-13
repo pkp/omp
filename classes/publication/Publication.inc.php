@@ -14,7 +14,15 @@
  *
  * @brief Class for Publication.
  */
-import('lib.pkp.classes.publication.PKPPublication');
+
+namespace APP\publication;
+
+use PKP\publication\PKPPublication;
+
+use APP\i18n\AppLocale;
+use APP\core\Application;
+use APP\core\Services;
+use APP\file\PublicFileManager;
 
 class Publication extends PKPPublication
 {
@@ -54,7 +62,6 @@ class Publication extends PKPPublication
             return Application::get()->getRequest()->getBaseUrl() . '/templates/images/book-default.png';
         }
 
-        import('classes.file.PublicFileManager');
         $publicFileManager = new PublicFileManager();
 
         return join('/', [
@@ -80,4 +87,8 @@ class Publication extends PKPPublication
             Services::get('publication')->getThumbnailFilename($pathParts['basename']),
         ]);
     }
+}
+
+if (!PKP_STRICT_MODE) {
+    class_alias('\APP\publication\Publication', '\Publication');
 }

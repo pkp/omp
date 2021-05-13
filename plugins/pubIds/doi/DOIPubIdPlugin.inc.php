@@ -13,8 +13,11 @@
  * @brief DOI plugin class
  */
 
+use PKP\linkAction\LinkAction;
+use PKP\services\interfaces\EntityWriteInterface;
+use PKP\linkAction\request\RemoteActionConfirmationModal;
 
-import('classes.plugins.PubIdPlugin');
+use APP\plugins\PubIdPlugin;
 
 class DOIPubIdPlugin extends PubIdPlugin
 {
@@ -166,7 +169,6 @@ class DOIPubIdPlugin extends PubIdPlugin
     public function getLinkActions($pubObject)
     {
         $linkActions = [];
-        import('lib.pkp.classes.linkAction.request.RemoteActionConfirmationModal');
         $request = Application::get()->getRequest();
         $userVars = $request->getUserVars();
         $userVars['pubIdPlugIn'] = get_class($this);
@@ -267,7 +269,7 @@ class DOIPubIdPlugin extends PubIdPlugin
             return;
         }
 
-        if ($action === VALIDATE_ACTION_ADD) {
+        if ($action === EntityWriteInterface::VALIDATE_ACTION_ADD) {
             $submission = Services::get('submission')->get($props['submissionId']);
         } else {
             $publication = Services::get('publication')->get($props['id']);

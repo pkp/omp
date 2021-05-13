@@ -12,7 +12,11 @@
  * @brief Class to control access to published submissions in OMP.
  */
 
-import('lib.pkp.classes.security.authorization.internal.ContextPolicy');
+namespace APP\security\authorization;
+
+use PKP\security\authorization\internal\ContextPolicy;
+
+use APP\security\authorization\OmpPublishedSubmissionRequiredPolicy;
 
 class OmpPublishedSubmissionAccessPolicy extends ContextPolicy
 {
@@ -29,7 +33,10 @@ class OmpPublishedSubmissionAccessPolicy extends ContextPolicy
         parent::__construct($request);
 
         // Require published submissions
-        import('classes.security.authorization.OmpPublishedSubmissionRequiredPolicy');
         $this->addPolicy(new OmpPublishedSubmissionRequiredPolicy($request, $args, $submissionParameterName));
     }
+}
+
+if (!PKP_STRICT_MODE) {
+    class_alias('\APP\security\authorization\OmpPublishedSubmissionAccessPolicy', '\OmpPublishedSubmissionAccessPolicy');
 }

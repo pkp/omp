@@ -16,6 +16,11 @@
 import('classes.handler.Handler');
 
 use PKP\core\JSONMessage;
+use PKP\submission\PKPSubmissionDAO;
+use PKP\submission\PKPSubmission;
+use PKP\security\authorization\PKPSiteAccessPolicy;
+
+use APP\template\TemplateManager;
 
 class ManageCatalogHandler extends Handler
 {
@@ -48,7 +53,6 @@ class ManageCatalogHandler extends Handler
      */
     public function authorize($request, &$args, $roleAssignments)
     {
-        import('lib.pkp.classes.security.authorization.PKPSiteAccessPolicy');
         $this->addPolicy(new PKPSiteAccessPolicy($request, null, $roleAssignments));
         return parent::authorize($request, $args, $roleAssignments);
     }
@@ -82,9 +86,8 @@ class ManageCatalogHandler extends Handler
         $context = $request->getContext();
 
         // Catalog list
-        import('lib.pkp.classes.submission.PKPSubmissionDAO'); // ORDERBY_DATE_PUBLISHED constants
         [$catalogSortBy, $catalogSortDir] = explode('-', $context->getData('catalogSortOption'));
-        $catalogSortBy = empty($catalogSortBy) ? ORDERBY_DATE_PUBLISHED : $catalogSortBy;
+        $catalogSortBy = empty($catalogSortBy) ? PKPSubmissionDAO::ORDERBY_DATE_PUBLISHED : $catalogSortBy;
         $catalogSortDir = $catalogSortDir == SORT_DIRECTION_ASC ? 'ASC' : 'DESC';
         $catalogList = new \APP\components\listPanels\CatalogListPanel(
             'catalog',
@@ -99,7 +102,7 @@ class ManageCatalogHandler extends Handler
                 'catalogSortBy' => $catalogSortBy,
                 'catalogSortDir' => $catalogSortDir,
                 'getParams' => [
-                    'status' => STATUS_PUBLISHED,
+                    'status' => PKPSubmission::STATUS_PUBLISHED,
                     'orderByFeatured' => true,
                     'orderBy' => $catalogSortBy,
                     'orderDirection' => $catalogSortDir,

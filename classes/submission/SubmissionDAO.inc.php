@@ -15,13 +15,17 @@
  * @brief Operations for retrieving and modifying Monograph objects.
  */
 
-import('classes.submission.Submission');
-import('lib.pkp.classes.submission.PKPSubmissionDAO');
+namespace APP\submission;
 
-define('ORDERBY_SERIES_POSITION', 'seriesPosition');
+use \PKP\submission\PKPSubmissionDAO;
+use \PKP\db\DAORegistry;
+
+use \APP\submission\Submission;
+use \APP\core\Application;
 
 class SubmissionDAO extends PKPSubmissionDAO
 {
+    public const ORDERBY_SERIES_POSITION = 'seriesPosition';
     /**
      * Get a new data object representing the monograph.
      *
@@ -64,3 +68,9 @@ class SubmissionDAO extends PKPSubmissionDAO
         ]);
     }
 }
+
+if (!PKP_STRICT_MODE) {
+    class_alias('\APP\submission\SubmissionDAO', '\SubmissionDAO');
+    define('ORDERBY_SERIES_POSITION', SubmissionDAO::ORDERBY_SERIES_POSITION);
+}
+

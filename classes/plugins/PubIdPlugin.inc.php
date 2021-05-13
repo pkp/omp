@@ -13,18 +13,15 @@
  * @brief Public identifiers plugins common functions
  */
 
-import('lib.pkp.classes.plugins.PKPPubIdPlugin');
+namespace APP\plugins;
+
+use PKP\plugins\PKPPubIdPlugin;
+use PKP\db\DAORegistry;
+use PKP\core\PKPString;
+
+use APP\core\Services;
 
 abstract class PubIdPlugin extends PKPPubIdPlugin {
-
-	/**
-	 * Constructor
-	 */
-	function __construct() {
-		parent::__construct();
-	}
-
-
 	//
 	// Protected template methods from PKPPlubIdPlugin
 	//
@@ -33,7 +30,7 @@ abstract class PubIdPlugin extends PKPPubIdPlugin {
 	 */
 	function getPubObjectTypes() {
 		$pubObjectTypes = parent::getPubObjectTypes();
-		array_push($pubObjectTypes, 'Chapter');
+                $pubObjectTypes['Chapter'] = '\Chapter'; // FIXME: Add namespacing
 		return $pubObjectTypes;
 	}
 
@@ -166,7 +163,7 @@ abstract class PubIdPlugin extends PKPPubIdPlugin {
 	 * @copydoc PKPPubIdPlugin::checkDuplicate()
 	 */
 	function checkDuplicate($pubId, $pubObjectType, $excludeId, $contextId) {
-		foreach ($this->getPubObjectTypes() as $type) {
+		foreach ($this->getPubObjectTypes() as $type => $fqcn) {
 			if ($type === 'Chapter') {
 				$excludeTypeId = $type === $pubObjectType ? $excludeId : null;
 				if (DAORegistry::getDAO('ChapterDAO')->pubIdExists($this->getPubIdType(), $pubId, $excludeTypeId, $contextId)) {

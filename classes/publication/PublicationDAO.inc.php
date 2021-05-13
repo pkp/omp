@@ -14,7 +14,13 @@
  * @brief Add OMP-specific functions for PKPPublicationDAO
  */
 
-import('lib.pkp.classes.publication.PKPPublicationDAO');
+namespace APP\publication;
+
+use \PKP\publication\PKPPublicationDAO;
+use \PKP\db\DAORegistry;
+
+use \APP\core\Application;
+
 class PublicationDAO extends PKPPublicationDAO
 {
     /** @copydoc SchemaDAO::$primaryTableColumns */
@@ -46,4 +52,8 @@ class PublicationDAO extends PKPPublicationDAO
 
         return $publication;
     }
+}
+
+if (!PKP_STRICT_MODE) {
+    class_alias('\APP\publication\PublicationDAO', '\PublicationDAO');
 }
