@@ -23,6 +23,7 @@ use PKP\submission\PKPSubmission;
 use APP\core\Application;
 use APP\core\Services;
 use APP\file\PublicFileManager;
+use APP\notification\NotificationManager;
 
 class PublicationService extends PKPPublicationService
 {
