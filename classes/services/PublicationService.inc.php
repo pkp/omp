@@ -19,6 +19,8 @@ use PKP\db\DAORegistry;
 use PKP\services\PKPPublicationService;
 use PKP\submission\SubmissionFile;
 use PKP\submission\PKPSubmission;
+use PKP\plugins\HookRegistry;
+use PKP\core\PKPApplication;
 
 use APP\core\Application;
 use APP\core\Services;
@@ -32,15 +34,15 @@ class PublicationService extends PKPPublicationService
      */
     public function __construct()
     {
-        \HookRegistry::register('Publication::getProperties', [$this, 'getPublicationProperties']);
-        \HookRegistry::register('Publication::validate', [$this, 'validatePublication']);
-        \HookRegistry::register('Publication::add', [$this, 'addPublication']);
-        \HookRegistry::register('Publication::edit', [$this, 'editPublication']);
-        \HookRegistry::register('Publication::version', [$this, 'versionPublication']);
-        \HookRegistry::register('Publication::publish::before', [$this, 'publishPublicationBefore']);
-        \HookRegistry::register('Publication::publish', [$this, 'publishPublication']);
-        \HookRegistry::register('Publication::unpublish', [$this, 'unpublishPublication']);
-        \HookRegistry::register('Publication::delete::before', [$this, 'deletePublicationBefore']);
+        HookRegistry::register('Publication::getProperties', [$this, 'getPublicationProperties']);
+        HookRegistry::register('Publication::validate', [$this, 'validatePublication']);
+        HookRegistry::register('Publication::add', [$this, 'addPublication']);
+        HookRegistry::register('Publication::edit', [$this, 'editPublication']);
+        HookRegistry::register('Publication::version', [$this, 'versionPublication']);
+        HookRegistry::register('Publication::publish::before', [$this, 'publishPublicationBefore']);
+        HookRegistry::register('Publication::publish', [$this, 'publishPublication']);
+        HookRegistry::register('Publication::unpublish', [$this, 'unpublishPublication']);
+        HookRegistry::register('Publication::delete::before', [$this, 'deletePublicationBefore']);
     }
 
     /**
@@ -100,7 +102,7 @@ class PublicationService extends PKPPublicationService
                 case 'urlPublished':
                     $values[$prop] = $dispatcher->url(
                         $request,
-                        \PKPApplication::ROUTE_PAGE,
+                        PKPApplication::ROUTE_PAGE,
                         $submissionContext->getData('urlPath'),
                         'catalog',
                         'book',
@@ -165,7 +167,7 @@ class PublicationService extends PKPPublicationService
                     continue;
                 }
 
-                $publicFileManager = new \PublicFileManager();
+                $publicFileManager = new PublicFileManager();
                 $coverImage = $publication->getData('coverImage', $localeKey);
                 $coverImageFilePath = $publicFileManager->getContextFilesPath($submissionContext->getId()) . '/' . $coverImage['uploadName'];
                 $this->makeThumbnail(
@@ -197,11 +199,11 @@ class PublicationService extends PKPPublicationService
 
         // Create or delete the thumbnail of a cover image
         if (array_key_exists('coverImage', $params)) {
-            $publicFileManager = new \PublicFileManager();
+            $publicFileManager = new PublicFileManager();
             $submission = Services::get('submission')->get($newPublication->getData('submissionId'));
 
             // Get the submission context
-            $submissionContext = \Application::get()->getRequest()->getContext();
+            $submissionContext = Application::get()->getRequest()->getContext();
             if ($submissionContext->getId() !== $submission->getData('contextId')) {
                 $submissionContext = Services::get('context')->get($submission->getData('contextId'));
             }
@@ -412,8 +414,8 @@ class PublicationService extends PKPPublicationService
         }
 
         // Update notification
-        $request = \Application::get()->getRequest();
-        $notificationMgr = new \NotificationManager();
+        $request = Application::get()->getRequest();
+        $notificationMgr = new NotificationManager();
         $notificationMgr->updateNotification(
             $request,
             [NOTIFICATION_TYPE_APPROVE_SUBMISSION],
@@ -459,8 +461,8 @@ class PublicationService extends PKPPublicationService
 
 
         // Update notification
-        $request = \Application::get()->getRequest();
-        $notificationMgr = new \NotificationManager();
+        $request = Application::get()->getRequest();
+        $notificationMgr = new NotificationManager();
         $notificationMgr->updateNotification(
             $request,
             [NOTIFICATION_TYPE_APPROVE_SUBMISSION],
