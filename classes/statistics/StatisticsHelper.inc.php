@@ -14,17 +14,14 @@
 *
 */
 
-import('lib.pkp.classes.statistics.PKPStatisticsHelper');
+namespace APP\statistics;
 
-// Give an OMP name to the section dimension.
-define('STATISTICS_DIMENSION_SERIES_ID', STATISTICS_DIMENSION_PKP_SECTION_ID);
+use PKP\statistics\PKPStatisticsHelper;
 
 class StatisticsHelper extends PKPStatisticsHelper
 {
-    public function __construct()
-    {
-        parent::__construct();
-    }
+    // Give an OMP name to the section dimension.
+    public const STATISTICS_DIMENSION_SERIES_ID = self::STATISTICS_DIMENSION_PKP_SECTION_ID;
 
     /**
      * @see PKPStatisticsHelper::getAppColumnTitle()
@@ -32,11 +29,11 @@ class StatisticsHelper extends PKPStatisticsHelper
     protected function getAppColumnTitle($column)
     {
         switch ($column) {
-            case STATISTICS_DIMENSION_SUBMISSION_ID:
+            case PKPStatisticsHelper::STATISTICS_DIMENSION_SUBMISSION_ID:
                 return __('submission.monograph');
-            case STATISTICS_DIMENSION_SERIES_ID:
+            case self::STATISTICS_DIMENSION_SERIES_ID:
                 return __('series.series');
-            case STATISTICS_DIMENSION_CONTEXT_ID:
+            case PKPStatisticsHelper::STATISTICS_DIMENSION_CONTEXT_ID:
                 return __('context.context');
             default:
                 assert(false);
@@ -58,4 +55,9 @@ class StatisticsHelper extends PKPStatisticsHelper
 
         return $objectTypes;
     }
+}
+
+if (!PKP_STRICT_MODE) {
+    class_alias('\APP\statistics\StatisticsHelper', '\StatisticsHelper');
+    define('STATISTICS_DIMENSION_SERIES_ID', \StatisticsHelper::STATISTICS_DIMENSION_SERIES_ID);
 }
