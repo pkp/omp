@@ -13,25 +13,12 @@
  * @brief CLI tool to execute a set of scheduled tasks.
  */
 
-
-
 require(dirname(__FILE__) . '/bootstrap.inc.php');
 
-import('lib.pkp.classes.cliTool.ScheduledTaskTool');
+use PKP\cliTool\ScheduledTaskTool;
 
 class runScheduledTasks extends ScheduledTaskTool
 {
-    /**
-     * Constructor.
-     *
-     * @param $argv array command-line arguments
-     * 		If specified, the first parameter should be the path to
-     *		a tasks XML descriptor file (other than the default)
-     */
-    public function __construct($argv = [])
-    {
-        parent::__construct($argv);
-    }
 }
 
 $tool = new runScheduledTasks($argv ?? []);
