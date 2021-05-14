@@ -13,12 +13,15 @@
  * @brief Form for Step 4 of author submission.
  */
 
-import('lib.pkp.classes.submission.form.PKPSubmissionSubmitStep4Form');
+namespace APP\submission\form;
 
+use PKP\submission\form\PKPSubmissionSubmitStep4Form;
 use PKP\log\SubmissionLog;
 
 use APP\log\SubmissionEventLogEntry;
 use APP\notification\NotificationManager;
+use APP\mail\MonographMailTemplate;
+use APP\core\Application;
 
 class SubmissionSubmitStep4Form extends PKPSubmissionSubmitStep4Form
 {
@@ -32,7 +35,6 @@ class SubmissionSubmitStep4Form extends PKPSubmissionSubmitStep4Form
         parent::execute(...$functionParams);
 
         // Send author notification email
-        import('classes.mail.MonographMailTemplate');
         $mail = new MonographMailTemplate($this->submission, 'SUBMISSION_ACK', null, null, false);
         $authorMail = new MonographMailTemplate($this->submission, 'SUBMISSION_ACK_NOT_USER', null, null, false);
 
@@ -115,4 +117,8 @@ class SubmissionSubmitStep4Form extends PKPSubmissionSubmitStep4Form
 
         return $this->submissionId;
     }
+}
+
+if (!PKP_STRICT_MODE) {
+    class_alias('\APP\submission\form\SubmissionSubmitStep4Form', '\SubmissionSubmitStep4Form');
 }

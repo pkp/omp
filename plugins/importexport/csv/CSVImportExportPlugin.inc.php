@@ -17,10 +17,10 @@ use PKP\submission\SubmissionFile;
 use PKP\submission\PKPSubmission;
 use PKP\file\TemoraryFileManager;
 use PKP\file\FileManager;
+use PKP\plugins\ImportExportPlugin;
 
 use APP\template\TemplateManager;
-
-import('lib.pkp.classes.plugins.ImportExportPlugin');
+use APP\submission\Submission;
 
 class CSVImportExportPlugin extends ImportExportPlugin
 {
@@ -157,7 +157,7 @@ class CSVImportExportPlugin extends ImportExportPlugin
                         $submission->setUserId($user->getId());
                         $submission->stampLastActivity();
                         $submission->setStatus(PKPSubmission::STATUS_PUBLISHED);
-                        $submission->setWorkType($isEditedVolume == 1 ? WORK_TYPE_EDITED_VOLUME : WORK_TYPE_AUTHORED_WORK);
+                        $submission->setWorkType($isEditedVolume == 1 ? Submission::WORK_TYPE_EDITED_VOLUME : Submission::WORK_TYPE_AUTHORED_WORK);
                         $submission->setCopyrightNotice($press->getLocalizedSetting('copyrightNotice'), $locale);
                         $submission->setLocale($locale);
 

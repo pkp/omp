@@ -21,8 +21,6 @@
 
 namespace APP\submission;
 
-define('WORK_TYPE_EDITED_VOLUME', 1);
-define('WORK_TYPE_AUTHORED_WORK', 2);
 
 use PKP\submission\PKPSubmission;
 use PKP\db\DAORegistry;
@@ -33,6 +31,9 @@ import('classes.monograph.Author');
 
 class Submission extends PKPSubmission
 {
+    public const WORK_TYPE_EDITED_VOLUME = 1;
+    public const WORK_TYPE_AUTHORED_WORK = 2;
+
     /**
      * get press id
      *
@@ -299,7 +300,7 @@ class Submission extends PKPSubmission
      */
     public function getAuthorOrEditorString($preferred = true)
     {
-        if ($this->getWorkType() != WORK_TYPE_EDITED_VOLUME) {
+        if ($this->getWorkType() != self::WORK_TYPE_EDITED_VOLUME) {
             $userGroupIds = array_map(function ($author) {
                 return $author->getData('userGroupId');
             }, $this->getAuthors(true));
@@ -335,4 +336,6 @@ class Submission extends PKPSubmission
 
 if (!PKP_STRICT_MODE) {
     class_alias('\APP\submission\Submission', '\Submission');
+    define('WORK_TYPE_EDITED_VOLUME', \Submission::WORK_TYPE_EDITED_VOLUME);
+    define('WORK_TYPE_AUTHORED_WORK', \Submission::WORK_TYPE_AUTHORED_WORK);
 }

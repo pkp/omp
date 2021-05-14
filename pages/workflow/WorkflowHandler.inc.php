@@ -17,6 +17,7 @@ import('lib.pkp.pages.workflow.PKPWorkflowHandler');
 
 use APP\template\TemplateManager;
 use APP\file\PublicFileManager;
+use APP\submission\Submission;
 
 class WorkflowHandler extends PKPWorkflowHandler
 {
@@ -109,8 +110,8 @@ class WorkflowHandler extends PKPWorkflowHandler
         $templateMgr->setConstants([
             'FORM_AUDIENCE' => FORM_AUDIENCE,
             'FORM_CATALOG_ENTRY' => FORM_CATALOG_ENTRY,
-            'WORK_TYPE_AUTHORED_WORK' => WORK_TYPE_AUTHORED_WORK,
-            'WORK_TYPE_EDITED_VOLUME' => WORK_TYPE_EDITED_VOLUME,
+            'WORK_TYPE_AUTHORED_WORK' => Submission::WORK_TYPE_AUTHORED_WORK,
+            'WORK_TYPE_EDITED_VOLUME' => Submission::WORK_TYPE_EDITED_VOLUME,
         ]);
 
         $components = $templateMgr->getState('components');

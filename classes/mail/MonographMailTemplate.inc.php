@@ -15,7 +15,10 @@
  * This allows for submission-specific functionality like logging, etc.
  */
 
-use \PKP\mail\SubmissionMailTemplate;
+namespace APP\mail;
+
+use PKP\mail\SubmissionMailTemplate;
+use PKP\db\DAORegistry;
 
 class MonographMailTemplate extends SubmissionMailTemplate
 {
@@ -68,4 +71,8 @@ class MonographMailTemplate extends SubmissionMailTemplate
     {
         return $this->bccAssignedSubEditors($submissionId, $stageId);
     }
+}
+
+if (!PKP_STRICT_MODE) {
+    class_alias('\APP\mail\MonographMailTemplate', '\MonographMailTemplate');
 }

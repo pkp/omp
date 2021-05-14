@@ -17,11 +17,11 @@
 
 namespace APP\submission;
 
-use \PKP\submission\PKPSubmissionDAO;
-use \PKP\db\DAORegistry;
+use PKP\submission\PKPSubmissionDAO;
+use PKP\db\DAORegistry;
 
-use \APP\submission\Submission;
-use \APP\core\Application;
+use APP\submission\Submission;
+use APP\core\Application;
 
 class SubmissionDAO extends PKPSubmissionDAO
 {
@@ -71,6 +71,6 @@ class SubmissionDAO extends PKPSubmissionDAO
 
 if (!PKP_STRICT_MODE) {
     class_alias('\APP\submission\SubmissionDAO', '\SubmissionDAO');
-    define('ORDERBY_SERIES_POSITION', SubmissionDAO::ORDERBY_SERIES_POSITION);
+    define('ORDERBY_SERIES_POSITION', \SubmissionDAO::ORDERBY_SERIES_POSITION);
 }
 

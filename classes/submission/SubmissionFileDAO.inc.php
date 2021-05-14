@@ -17,9 +17,9 @@
 
 namespace APP\submission;
 
-use \Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\DB;
 
-use \PKP\submission\PKPSubmissionFileDAO;
+use PKP\submission\PKPSubmissionFileDAO;
 
 class SubmissionFileDAO extends PKPSubmissionFileDAO
 {

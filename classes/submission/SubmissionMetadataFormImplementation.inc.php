@@ -14,20 +14,13 @@
  * implement submission metadata data and form operations.
  */
 
-import('lib.pkp.classes.submission.PKPSubmissionMetadataFormImplementation');
+namespace APP\submission;
+
+use PKP\submission\PKPSubmissionMetadataFormImplementation;
+use PKP\db\DAORegistry;
 
 class SubmissionMetadataFormImplementation extends PKPSubmissionMetadataFormImplementation
 {
-    /**
-     * Constructor.
-     *
-     * @param $parentForm Form A form that can use this form.
-     */
-    public function __construct($parentForm = null)
-    {
-        parent::__construct($parentForm);
-    }
-
     /**
      * Initialize form data from current submission.
      *
@@ -41,4 +34,8 @@ class SubmissionMetadataFormImplementation extends PKPSubmissionMetadataFormImpl
             $this->_parentForm->setData('series', $seriesDao->getById($submission->getSeriesId()));
         }
     }
+}
+
+if (!PKP_STRICT_MODE) {
+    class_alias('\APP\submission\SubmissionMetadataFormImplementation', '\SubmissionMetadataFormImplementation');
 }

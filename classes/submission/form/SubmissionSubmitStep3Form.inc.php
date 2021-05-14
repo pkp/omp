@@ -13,8 +13,11 @@
  * @brief Form for Step 3 of author submission.
  */
 
-import('lib.pkp.classes.submission.form.PKPSubmissionSubmitStep3Form');
-import('classes.submission.SubmissionMetadataFormImplementation');
+namespace APP\submission\form;
+
+use PKP\submission\form\PKPSubmissionSubmitStep3Form;
+
+use APP\submission\SubmissionMetadataFormImplementation;
 
 class SubmissionSubmitStep3Form extends PKPSubmissionSubmitStep3Form
 {
@@ -29,4 +32,8 @@ class SubmissionSubmitStep3Form extends PKPSubmissionSubmitStep3Form
             new SubmissionMetadataFormImplementation($this)
         );
     }
+}
+
+if (!PKP_STRICT_MODE) {
+    class_alias('\APP\submission\form\SubmissionSubmitStep3Form', '\SubmissionSubmitStep3Form');
 }

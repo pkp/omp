@@ -13,21 +13,12 @@
  * @brief Form to notify a user regarding a file
  */
 
-import('classes.mail.MonographMailTemplate');
+use APP\mail\MonographMailTemplate;
+
 import('lib.pkp.controllers.grid.users.stageParticipant.form.PKPStageParticipantNotifyForm');
 
 class StageParticipantNotifyForm extends PKPStageParticipantNotifyForm
 {
-    /**
-     * Constructor.
-     *
-     * @param null|mixed $template
-     */
-    public function __construct($itemId, $itemType, $stageId, $template = null)
-    {
-        parent::__construct($itemId, $itemType, $stageId, $template);
-    }
-
     /**
      * Return app-specific stage templates.
      *

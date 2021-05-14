@@ -141,7 +141,7 @@ class CatalogBookHandler extends Handler
 
         // Retrieve editors for an edited volume
         $editors = [];
-        if ($submission->getWorkType() == WORK_TYPE_EDITED_VOLUME) {
+        if ($submission->getWorkType() == $submission::WORK_TYPE_EDITED_VOLUME) {
             foreach ($this->publication->getData('authors') as $author) {
                 if ($author->getIsVolumeEditor()) {
                     $editors[] = $author;

@@ -13,10 +13,13 @@
  * @brief Form for Step 1 of author submission.
  */
 
-import('lib.pkp.classes.submission.form.PKPSubmissionSubmitStep1Form');
-import('classes.submission.Submission'); // WORK_TYPE_... constants for form
+namespace APP\submission\form;
 
-use \APP\template\TemplateManager;
+use PKP\submission\form\PKPSubmissionSubmitStep1Form;
+use PKP\db\DAORegistry;
+
+use APP\core\Application;
+use APP\template\TemplateManager;
 
 class SubmissionSubmitStep1Form extends PKPSubmissionSubmitStep1Form
 {
@@ -122,4 +125,8 @@ class SubmissionSubmitStep1Form extends PKPSubmissionSubmitStep1Form
         $submission->setSeriesPosition($this->getData('seriesPosition'));
         parent::setSubmissionData($submission);
     }
+}
+
+if (!PKP_STRICT_MODE) {
+    class_alias('\APP\submission\form\SubmissionSubmitStep1Form', '\SubmissionSubmitStep1Form');
 }

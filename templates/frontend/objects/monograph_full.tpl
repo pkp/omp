@@ -101,7 +101,7 @@
 				{assign var="authors" value=$publication->getData('authors')}
 
 				{* Only show editors for edited volumes *}
-				{if $monograph->getWorkType() == $smarty.const.WORK_TYPE_EDITED_VOLUME && $editors|@count}
+				{if $monograph->getWorkType() == $monograph::WORK_TYPE_EDITED_VOLUME && $editors|@count}
 					{assign var="authors" value=$editors}
 					{assign var="identifyAsEditors" value=true}
 				{/if}
