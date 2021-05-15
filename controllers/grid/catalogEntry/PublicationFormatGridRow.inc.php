@@ -14,8 +14,8 @@
  */
 
 import('lib.pkp.controllers.grid.files.SubmissionFilesGridRow');
-import('lib.pkp.classes.controllers.grid.files.FilesGridCapabilities');
 
+use PKP\controllers\grid\files\FilesGridCapabilities;
 use PKP\linkAction\LinkAction;
 use PKP\linkAction\request\AjaxModal;
 

@@ -17,14 +17,6 @@ import('lib.pkp.classes.controllers.grid.DataObjectGridCellProvider');
 
 class MarketsGridCellProvider extends DataObjectGridCellProvider
 {
-    /**
-     * Constructor
-     */
-    public function __construct()
-    {
-        parent::__construct();
-    }
-
     //
     // Template methods from GridCellProvider
     //

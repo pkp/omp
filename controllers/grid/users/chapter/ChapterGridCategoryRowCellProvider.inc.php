@@ -13,8 +13,8 @@
  * @brief Chapter grid category rows cell provider.
  */
 
-import('lib.pkp.classes.controllers.grid.GridCellProvider');
-
+use PKP\controllers\grid\GridCellProvider;
+use PKP\controllers\grid\GridHandler;
 use PKP\linkAction\LinkAction;
 
 class ChapterGridCategoryRowCellProvider extends GridCellProvider
@@ -24,7 +24,7 @@ class ChapterGridCategoryRowCellProvider extends GridCellProvider
     /**
      * @see GridCellProvider::getCellActions()
      */
-    public function getCellActions($request, $row, $column, $position = GRID_ACTION_POSITION_DEFAULT)
+    public function getCellActions($request, $row, $column, $position = GridHandler::GRID_ACTION_POSITION_DEFAULT)
     {
         if ($column->getId() == 'name' && !$row->isReadOnly()) {
             $chapter = $row->getData();

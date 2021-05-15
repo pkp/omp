@@ -16,8 +16,11 @@
 use PKP\linkAction\LinkAction;
 use PKP\submission\SubmissionFile;
 use PKP\linkAction\request\AjaxModal;
+use PKP\controllers\grid\DataObjectGridCellProvider;
+use PKP\controllers\grid\GridHandler;
 
-import('lib.pkp.classes.controllers.grid.DataObjectGridCellProvider');
+// FIXME: Add namespacing
+import('lib.pkp.controllers.grid.files.FileNameGridColumn');
 
 class PublicationFormatGridCellProvider extends DataObjectGridCellProvider
 {
@@ -105,7 +108,6 @@ class PublicationFormatGridCellProvider extends DataObjectGridCellProvider
                 case 'isAvailable':
                     return ['status' => ($proofFile->getSalesType() != null && $proofFile->getDirectSalesPrice() != null) ? 'completed' : 'new'];
                 case 'name':
-                    import('lib.pkp.controllers.grid.files.FileNameGridColumn');
                     $fileNameGridColumn = new FileNameGridColumn(true, WORKFLOW_STAGE_ID_PRODUCTION);
                     return $fileNameGridColumn->getTemplateVarsFromRow($row);
                 case 'isComplete':
@@ -134,7 +136,7 @@ class PublicationFormatGridCellProvider extends DataObjectGridCellProvider
     /**
      * @see GridCellProvider::getCellActions()
      */
-    public function getCellActions($request, $row, $column, $position = GRID_ACTION_POSITION_DEFAULT)
+    public function getCellActions($request, $row, $column, $position = GridHandler::GRID_ACTION_POSITION_DEFAULT)
     {
         $data = $row->getData();
         $router = $request->getRouter();
@@ -259,7 +261,6 @@ class PublicationFormatGridCellProvider extends DataObjectGridCellProvider
                         $salesType
                     )];
                 case 'name':
-                    import('lib.pkp.controllers.grid.files.FileNameGridColumn');
                     $fileNameColumn = new FileNameGridColumn(true, WORKFLOW_STAGE_ID_PRODUCTION, true);
                     return $fileNameColumn->getCellActions($request, $row, $position);
                 case 'isComplete':

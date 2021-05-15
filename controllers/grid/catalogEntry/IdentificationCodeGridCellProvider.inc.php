@@ -13,18 +13,10 @@
  * @brief Base class for a cell provider that can retrieve labels for identification codes
  */
 
-import('lib.pkp.classes.controllers.grid.DataObjectGridCellProvider');
+use PKP\controllers\grid\DataObjectGridCellProvider;
 
 class IdentificationCodeGridCellProvider extends DataObjectGridCellProvider
 {
-    /**
-     * Constructor
-     */
-    public function __construct()
-    {
-        parent::__construct();
-    }
-
     //
     // Template methods from GridCellProvider
     //
@@ -41,7 +33,7 @@ class IdentificationCodeGridCellProvider extends DataObjectGridCellProvider
     {
         $element = $row->getData();
         $columnId = $column->getId();
-        assert(is_a($element, 'DataObject') && !empty($columnId));
+        assert($element instanceof \PKP\core\DataObject && !empty($columnId));
         switch ($columnId) {
             case 'code':
                 return ['label' => $element->getNameForONIXCode()];

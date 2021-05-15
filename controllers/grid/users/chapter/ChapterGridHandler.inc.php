@@ -13,19 +13,19 @@
  * @brief Handle chapter grid requests.
  */
 
-// import grid base classes
-import('lib.pkp.classes.controllers.grid.CategoryGridHandler');
-import('lib.pkp.classes.controllers.grid.DataObjectGridCellProvider');
-
 // import chapter grid specific classes
 import('lib.pkp.controllers.grid.users.author.PKPAuthorGridCellProvider');
 import('controllers.grid.users.chapter.ChapterGridCategoryRow');
 
+use PKP\controllers\grid\CategoryGridHandler;
+use PKP\controllers\grid\GridColumn;
+use PKP\controllers\grid\DataObjectGridCellProvider;
 use PKP\linkAction\LinkAction;
 use PKP\linkAction\request\AjaxModal;
 use PKP\core\JSONMessage;
 use PKP\submission\PKPSubmission;
 use PKP\security\authorization\PublicationAccessPolicy;
+use PKP\controllers\grid\feature\OrderCategoryGridItemsFeature;
 
 use APP\template\TemplateManager;
 use APP\notification\NotificationManager;
@@ -163,7 +163,7 @@ class ChapterGridHandler extends CategoryGridHandler
                 null,
                 null,
                 $cellProvider,
-                ['width' => 50, 'alignment' => COLUMN_ALIGNMENT_LEFT]
+                ['width' => 50, 'alignment' => GridColumn::COLUMN_ALIGNMENT_LEFT]
             )
         );
         $this->addColumn(
@@ -194,7 +194,7 @@ class ChapterGridHandler extends CategoryGridHandler
         if ($this->canAdminister($request->getUser())) {
             $this->setReadOnly(false);
             import('lib.pkp.classes.controllers.grid.feature.OrderCategoryGridItemsFeature');
-            return [new OrderCategoryGridItemsFeature(ORDER_CATEGORY_GRID_CATEGORIES_AND_ROWS, true, $this)];
+            return [new OrderCategoryGridItemsFeature(OrderCategoryGridItemsFeature::ORDER_CATEGORY_GRID_CATEGORIES_AND_ROWS, true, $this)];
         } else {
             $this->setReadOnly(true);
             return [];

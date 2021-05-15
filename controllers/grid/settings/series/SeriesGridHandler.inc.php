@@ -19,6 +19,8 @@ import('controllers.grid.settings.series.SeriesGridRow');
 use PKP\linkAction\LinkAction;
 use PKP\core\JSONMessage;
 use PKP\linkAction\request\AjaxModal;
+use PKP\controllers\grid\GridColumn;
+use PKP\controllers\grid\feature\OrderGridItemsFeature;
 
 use APP\notification\NotificationManager;
 
@@ -140,7 +142,7 @@ class SeriesGridHandler extends SetupGridHandler
                 null,
                 'controllers/grid/common/cell/selectStatusCell.tpl',
                 $seriesGridCellProvider,
-                ['alignment' => COLUMN_ALIGNMENT_CENTER,
+                ['alignment' => GridColumn::COLUMN_ALIGNMENT_CENTER,
                     'width' => 20]
             )
         );
@@ -154,7 +156,6 @@ class SeriesGridHandler extends SetupGridHandler
      */
     public function initFeatures($request, $args)
     {
-        import('lib.pkp.classes.controllers.grid.feature.OrderGridItemsFeature');
         return [new OrderGridItemsFeature()];
     }
 

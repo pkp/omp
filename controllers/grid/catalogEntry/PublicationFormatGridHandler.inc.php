@@ -20,12 +20,12 @@ use PKP\linkAction\request\AjaxModal;
 use PKP\linkAction\LinkAction;
 use PKP\security\authorization\PublicationAccessPolicy;
 use PKP\security\authorization\internal\RepresentationRequiredPolicy;
+use PKP\controllers\grid\GridColumn;
+use PKP\controllers\grid\CategoryGridHandler;
+use PKP\log\SubmissionLog;
 
 use APP\template\TemplateManager;
 use APP\notification\NotificationManager;
-
-// import grid base classes
-import('lib.pkp.classes.controllers.grid.CategoryGridHandler');
 
 // import format grid specific classes
 import('controllers.grid.catalogEntry.PublicationFormatGridRow');
@@ -404,7 +404,6 @@ class PublicationFormatGridHandler extends CategoryGridHandler
         $representationDao->updateObject($representation);
 
         // log the state changing of the format.
-        import('lib.pkp.classes.log.SubmissionLog');
         import('classes.log.SubmissionEventLogEntry');
         SubmissionLog::logEvent(
             $request,
@@ -452,7 +451,6 @@ class PublicationFormatGridHandler extends CategoryGridHandler
         $publicationFormatDao->updateObject($publicationFormat);
 
         // log the state changing of the format.
-        import('lib.pkp.classes.log.SubmissionLog');
         import('classes.log.SubmissionEventLogEntry');
         SubmissionLog::logEvent(
             $request,

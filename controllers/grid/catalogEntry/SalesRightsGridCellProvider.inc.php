@@ -13,18 +13,10 @@
  * @brief Base class for a cell provider that can retrieve labels for sales rights
  */
 
-import('lib.pkp.classes.controllers.grid.DataObjectGridCellProvider');
+use PKP\controllers\grid\DataObjectGridCellProvider;
 
 class SalesRightsGridCellProvider extends DataObjectGridCellProvider
 {
-    /**
-     * Constructor
-     */
-    public function __construct()
-    {
-        parent::__construct();
-    }
-
     //
     // Template methods from GridCellProvider
     //

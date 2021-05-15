@@ -13,15 +13,13 @@
  * @brief Handle publication format grid requests for representatives.
  */
 
-// import grid base classes
-import('lib.pkp.classes.controllers.grid.CategoryGridHandler');
-
-
 // import format grid specific classes
 import('controllers.grid.catalogEntry.RepresentativesGridCellProvider');
 import('controllers.grid.catalogEntry.RepresentativesGridCategoryRow');
 import('controllers.grid.catalogEntry.RepresentativesGridRow');
 
+use PKP\controllers\grid\CategoryGridHandler;
+use PKP\controllers\grid\GridColumn;
 use PKP\linkAction\request\AjaxModal;
 use PKP\linkAction\LinkAction;
 use PKP\core\JSONMessage;

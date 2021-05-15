@@ -13,8 +13,7 @@
  * @brief Representations grid row definition
  */
 
-import('lib.pkp.classes.controllers.grid.GridCategoryRow');
-
+use PKP\controllers\grid\GridCategoryRow;
 use PKP\linkAction\LinkAction;
 use PKP\linkAction\request\AjaxModal;
 use PKP\linkAction\request\RemoteActionConfirmationModal;

@@ -15,8 +15,7 @@
 
 use PKP\security\authorization\ContextAccessPolicy;
 use PKP\security\authorization\PluginAccessPolicy;
-
-import('lib.pkp.classes.controllers.grid.plugins.PluginGridHandler');
+use PKP\controllers\grid\plugins\PluginGridHandler;
 
 class SettingsPluginGridHandler extends PluginGridHandler {
 	/**

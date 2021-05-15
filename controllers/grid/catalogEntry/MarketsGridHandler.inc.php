@@ -13,13 +13,12 @@
  * @brief Handle publication format grid requests for markets.
  */
 
-// import grid base classes
-import('lib.pkp.classes.controllers.grid.GridHandler');
-
 // import format grid specific classes
 import('controllers.grid.catalogEntry.MarketsGridCellProvider');
 import('controllers.grid.catalogEntry.MarketsGridRow');
 
+use PKP\controllers\grid\GridHandler;
+use PKP\controllers\grid\GridColumn;
 use PKP\linkAction\LinkAction;
 use PKP\linkAction\request\AjaxModal;
 use PKP\core\JSONMessage;

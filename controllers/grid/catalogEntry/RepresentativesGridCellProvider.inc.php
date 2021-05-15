@@ -13,18 +13,10 @@
  * @brief Base class for a cell provider that can retrieve labels for representatives
  */
 
-import('lib.pkp.classes.controllers.grid.DataObjectGridCellProvider');
+use PKP\controllers\grid\DataObjectGridCellProvider;
 
 class RepresentativesGridCellProvider extends DataObjectGridCellProvider
 {
-    /**
-     * Constructor
-     */
-    public function __construct()
-    {
-        parent::__construct();
-    }
-
     //
     // Template methods from GridCellProvider
     //

@@ -13,8 +13,7 @@
  * @brief Sales Rights grid row definition
  */
 
-import('lib.pkp.classes.controllers.grid.GridRow');
-
+use PKP\controllers\grid\GridRow;
 use PKP\linkAction\LinkAction;
 use PKP\linkAction\request\RemoteActionConfirmationModal;
 use PKP\linkAction\request\AjaxModal;

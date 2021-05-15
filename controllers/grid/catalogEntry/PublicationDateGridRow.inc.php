@@ -13,8 +13,7 @@
  * @brief Publication Date grid row definition
  */
 
-import('lib.pkp.classes.controllers.grid.GridRow');
-
+use PKP\controllers\grid\GridRow;
 use PKP\linkAction\LinkAction;
 use PKP\linkAction\request\AjaxModal;
 use PKP\linkAction\request\RemoteActionConfirmationModal;

@@ -13,14 +13,12 @@
  * @brief Handle publication format grid requests for publication dates.
  */
 
-// import grid base classes
-import('lib.pkp.classes.controllers.grid.GridHandler');
-
-
 // import format grid specific classes
 import('controllers.grid.catalogEntry.PublicationDateGridCellProvider');
 import('controllers.grid.catalogEntry.PublicationDateGridRow');
 
+use PKP\controllers\grid\GridHandler;
+use PKP\controllers\grid\GridColumn;
 use PKP\linkAction\LinkAction;
 use PKP\linkAction\request\AjaxModal;
 use PKP\core\JSONMessage;
@@ -205,7 +203,7 @@ class PublicationDateGridHandler extends GridHandler
                 null,
                 null,
                 $cellProvider,
-                ['width' => 50, 'alignment' => COLUMN_ALIGNMENT_LEFT]
+                ['width' => 50, 'alignment' => GridColumn::COLUMN_ALIGNMENT_LEFT]
             )
         );
         $this->addColumn(

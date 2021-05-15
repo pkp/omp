@@ -13,14 +13,12 @@
  * @brief Handle publication format grid requests for sales rights.
  */
 
-// import grid base classes
-import('lib.pkp.classes.controllers.grid.GridHandler');
-
-
 // import format grid specific classes
 import('controllers.grid.catalogEntry.SalesRightsGridCellProvider');
 import('controllers.grid.catalogEntry.SalesRightsGridRow');
 
+use PKP\controllers\grid\GridHandler;
+use PKP\controllers\grid\GridColumn;
 use PKP\linkAction\LinkAction;
 use PKP\linkAction\request\AjaxModal;
 use PKP\core\JSONMessage;

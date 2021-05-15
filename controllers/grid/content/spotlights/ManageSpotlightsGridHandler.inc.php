@@ -13,10 +13,6 @@
  * @brief Handle grid requests for spotlights.
  */
 
-// import grid base classes
-import('lib.pkp.classes.controllers.grid.GridHandler');
-
-
 // import format grid specific classes
 import('controllers.grid.content.spotlights.SpotlightsGridCellProvider');
 import('controllers.grid.content.spotlights.SpotlightsGridRow');
@@ -25,6 +21,8 @@ import('controllers.grid.content.spotlights.form.SpotlightForm');
 // import Spotlight class for class constants
 import('classes.spotlight.Spotlight');
 
+use PKP\controllers\grid\GridHandler;
+use PKP\controllers\grid\GridColumn;
 use PKP\linkAction\LinkAction;
 use PKP\linkAction\request\AjaxModal;
 use PKP\core\JSONMessage;

@@ -12,9 +12,9 @@
 * @brief Grid cell provider for series grid
  */
 
-import('lib.pkp.classes.controllers.grid.GridCellProvider');
-
+use PKP\controllers\grid\GridCellProvider;
 use PKP\linkAction\LinkAction;
+use PKP\controllers\grid\GridHandler;
 
 class SeriesGridCellProvider extends GridCellProvider
 {
@@ -42,7 +42,7 @@ class SeriesGridCellProvider extends GridCellProvider
     /**
      * @see GridCellProvider::getCellActions()
      */
-    public function getCellActions($request, $row, $column, $position = GRID_ACTION_POSITION_DEFAULT)
+    public function getCellActions($request, $row, $column, $position = GridHandler::GRID_ACTION_POSITION_DEFAULT)
     {
         switch ($column->getId()) {
             case 'inactive':

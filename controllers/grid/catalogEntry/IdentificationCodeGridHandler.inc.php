@@ -13,9 +13,6 @@
  * @brief Handle publication format grid requests for identification codes.
  */
 
-// import grid base classes
-import('lib.pkp.classes.controllers.grid.GridHandler');
-
 // import format grid specific classes
 import('controllers.grid.catalogEntry.IdentificationCodeGridCellProvider');
 import('controllers.grid.catalogEntry.IdentificationCodeGridRow');
@@ -24,6 +21,8 @@ use PKP\linkAction\request\AjaxModal;
 use PKP\core\JSONMessage;
 use PKP\linkAction\LinkAction;
 use PKP\security\authorization\PublicationAccessPolicy;
+use PKP\controllers\grid\GridHandler;
+use PKP\controllers\grid\GridColumn;
 
 use APP\notification\NotificationManager;
 
@@ -203,7 +202,7 @@ class IdentificationCodeGridHandler extends GridHandler
                 null,
                 null,
                 $cellProvider,
-                ['width' => 50, 'alignment' => COLUMN_ALIGNMENT_LEFT]
+                ['width' => 50, 'alignment' => GridColumn::COLUMN_ALIGNMENT_LEFT]
             )
         );
         $this->addColumn(
