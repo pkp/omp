@@ -16,9 +16,11 @@
  * @brief Operations for retrieving and modifying Author objects.
  */
 
-use \PKP\submission\PKPAuthorDAO;
+namespace APP\monograph;
 
-import('classes.monograph.Author');
+use PKP\submission\PKPAuthorDAO;
+
+use APP\monograph\Author;
 
 class AuthorDAO extends PKPAuthorDAO
 {
@@ -31,4 +33,8 @@ class AuthorDAO extends PKPAuthorDAO
     {
         return new Author();
     }
+}
+
+if (!PKP_STRICT_MODE) {
+    class_alias('\APP\monograph\AuthorDAO', '\AuthorDAO');
 }

@@ -15,9 +15,11 @@
  * @brief Operations for retrieving and modifying Spotlight objects.
  */
 
-import('classes.spotlight.Spotlight');
+namespace APP\spotlight;
 
-class SpotlightDAO extends DAO
+use APP\spotlight\Spotlight;
+
+class SpotlightDAO extends \PKP\db\DAO
 {
     /**
      * Retrieve a spotlight by spotlight ID.
@@ -372,4 +374,8 @@ class SpotlightDAO extends DAO
     {
         return $this->_getInsertId('spotlights', 'spotlight_id');
     }
+}
+
+if (!PKP_STRICT_MODE) {
+    class_alias('\APP\spotlight\SpotlightDAO', '\SpotlightDAO');
 }

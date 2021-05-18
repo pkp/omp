@@ -15,16 +15,12 @@
  * @brief Basic class describing a sales rights composite type (used on the ONIX templates for publication formats)
  */
 
-class SalesRights extends DataObject
-{
-    /**
-     * Constructor
-     */
-    public function __construct()
-    {
-        parent::__construct();
-    }
+namespace APP\publicationFormat;
 
+use PKP\db\DAORegistry;
+
+class SalesRights extends \PKP\core\DataObject
+{
     /**
      * get publication format id
      *
@@ -188,4 +184,8 @@ class SalesRights extends DataObject
     {
         return (trim($value) != '') ? true : false;
     }
+}
+
+if (!PKP_STRICT_MODE) {
+    class_alias('\APP\publicationFormats\SalesRights', '\SalesRights');
 }

@@ -15,18 +15,13 @@
  * @brief Describes basic series properties.
  */
 
-import('lib.pkp.classes.context.PKPSection');
+namespace APP\press;
+
+use PKP\context\PKPSection;
+use PKP\db\DAORegistry;
 
 class Series extends PKPSection
 {
-    /**
-     * Constructor.
-     */
-    public function __construct()
-    {
-        parent::__construct();
-    }
-
     /**
      * Get ID of press.
      *
@@ -365,4 +360,8 @@ class Series extends PKPSection
     {
         $this->setData('isInactive', $isInactive);
     }
+}
+
+if (!PKP_STRICT_MODE) {
+    class_alias('\APP\press\Series', '\Series');
 }

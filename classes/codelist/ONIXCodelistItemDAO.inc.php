@@ -16,14 +16,20 @@
  *
  */
 
-import('classes.codelist.ONIXCodelistItem');
+namespace APP\codelist;
 
 use PKP\db\XMLDAO;
 use PKP\xslt\XSLTransformer;
 use PKP\file\TemporaryFileManager;
 use PKP\file\FileManager;
+use PKP\plugins\HookRegistry;
+use PKP\cache\CacheManager;
+use PKP\core\Registry;
 
-class ONIXCodelistItemDAO extends DAO
+use APP\i18n\AppLocale;
+use APP\codelist\ONIXCodelistItem;
+
+class ONIXCodelistItemDAO extends \PKP\db\DAO
 {
     /* The name of the codelist we are interested in */
     public $_list;
@@ -69,7 +75,6 @@ class ONIXCodelistItemDAO extends DAO
             // Reload locale registry file
             $xmlDao = new XMLDAO();
             $listName = $this->getListName(); // i.e., 'List30'
-            import('classes.codelist.ONIXParserDOMHandler');
             $handler = new ONIXParserDOMHandler($listName);
 
             $temporaryFileManager = new TemporaryFileManager();
@@ -258,4 +263,8 @@ class ONIXCodelistItemDAO extends DAO
 
         return $codelistItem;
     }
+}
+
+if (!PKP_STRICT_MODE) {
+    class_alias('\APP\codelist\ONIXCodelistItemDAO', '\ONIXCodelistItemDAO');
 }

@@ -18,10 +18,15 @@
  *
  */
 
-import('classes.monograph.Chapter');
-import('classes.monograph.ChapterAuthor');
+namespace APP\monograph;
 
-class ChapterAuthorDAO extends DAO
+use PKP\db\DAORegistry;
+use PKP\db\DAOResultFactory;
+
+use APP\monograph\Chapter;
+use APP\monograph\ChapterAuthor;
+
+class ChapterAuthorDAO extends \PKP\db\DAO
 {
     /**
      * Get all authors for a given chapter.
@@ -182,9 +187,12 @@ class ChapterAuthorDAO extends DAO
         // Add additional data that is chapter author specific
         $chapterAuthor->setPrimaryContact($row['primary_contact']);
         $chapterAuthor->setSequence((int) $row['seq']);
-        ;
         $chapterAuthor->setChapterId((int) $row['chapter_id']);
 
         return $chapterAuthor;
     }
+}
+
+if (!PKP_STRICT_MODE) {
+    class_alias('\APP\monograph\ChapterAuthorDAO', '\ChapterAuthorDAO');
 }

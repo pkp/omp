@@ -13,10 +13,17 @@
  * @brief Class to add content to the monograph search index.
  */
 
-use \PKP\submission\SubmissionFile;
-use \PKP\search\SearchFileParser;
-use \PKP\search\SubmissionSearch;
-use \PKP\search\SubmissionSearchIndex;
+namespace APP\search;
+
+use PKP\submission\SubmissionFile;
+use PKP\search\SearchFileParser;
+use PKP\search\SubmissionSearch;
+use PKP\search\SubmissionSearchIndex;
+use PKP\db\DAORegistry;
+use PKP\plugins\HookRegistry;
+use PKP\config\Config;
+
+use APP\core\Services;
 
 class MonographSearchIndex extends SubmissionSearchIndex
 {

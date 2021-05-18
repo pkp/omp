@@ -15,6 +15,12 @@
  * @brief Basic class describing a publication date for a format (used on the ONIX templates for publication formats)
  */
 
+namespace APP\publicationFormat;
+
+use PKP\db\DAORegistry;
+
+use APP\core\Application;
+
 class PublicationDate extends DataObject
 {
     /** @var the $dateFormats formats for this publication date */
@@ -163,7 +169,7 @@ class PublicationDate extends DataObject
     public function getReadableDates()
     {
         $format = $this->dateFormats[$this->getDateFormat()];
-        $dateFormatShort = \Application::get()->getRequest()->getContext()->getLocalizedDateFormatShort();
+        $dateFormatShort = Application::get()->getRequest()->getContext()->getLocalizedDateFormatShort();
 
         if ($this->isHijriCalendar()) {
             $format = preg_replace('/\s*\(H\)/i', '', $format);
@@ -255,4 +261,8 @@ class PublicationDate extends DataObject
         }
         return null;
     }
+}
+
+if (!PKP_STRICT_MODE) {
+    class_alias('\APP\publicationFormat\PublicationDate', '\PublicationDate');
 }

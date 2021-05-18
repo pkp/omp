@@ -15,10 +15,15 @@
  * @brief DAO operations for the OMP OAI interface.
  */
 
-use PKP\submission\PKPSubmission;
+namespace APP\oai\omp;
 
+use PKP\submission\PKPSubmission;
+use PKP\db\DAORegistry;
+use PKP\plugins\HookRegistry;
 use PKP\oai\PKPOAIDAO;
 use PKP\oai\OAISet;
+
+use APP\core\Services;
 
 class OAIDAO extends PKPOAIDAO
 {
@@ -278,4 +283,8 @@ class OAIDAO extends PKPOAIDAO
             $params
         );
     }
+}
+
+if (!PKP_STRICT_MODE) {
+    class_alias('\APP\oai\omp\OAIDAO', '\OAIDAO');
 }

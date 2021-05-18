@@ -20,17 +20,10 @@
  *
  */
 
+namespace APP\codelist;
+
 class CodelistItem extends DataObject
 {
-    /**
-     * Constructor
-     */
-    public function __construct()
-    {
-        parent::__construct();
-    }
-
-
     //
     // Get/set methods
     //
@@ -81,4 +74,8 @@ class CodelistItem extends DataObject
     {
         assert(false); // provided by subclasses
     }
+}
+
+if (!PKP_STRICT_MODE) {
+    class_alias('\APP\codelist\CodelistItem', '\CodelistItem');
 }

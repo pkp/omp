@@ -15,9 +15,14 @@
  * @brief Operations for retrieving and modifying Market objects.
  */
 
-import('classes.publicationFormat.Market');
+namespace APP\publicationFormat;
 
-class MarketDAO extends DAO
+use PKP\plugins\HookRegistry;
+use PKP\db\DAOResultFactory;
+
+use APP\publicationFormat\Market;
+
+class MarketDAO extends \PKP\db\DAO
 {
     /**
      * Retrieve a market entry by type id.

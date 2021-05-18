@@ -16,12 +16,16 @@
  * @brief Operations for retrieving and modifying Chapter objects.
  */
 
-import('classes.monograph.Chapter');
-import('classes.monograph.ChapterAuthor');
+namespace APP\monograph;
 
 use PKP\plugins\PKPPubIdPluginDAO;
+use PKP\plugins\HookRegistry;
+use PKP\db\DAOResultFactory;
 
-class ChapterDAO extends DAO implements PKPPubIdPluginDAO
+use APP\monograph\Chapter;
+use APP\monograph\ChapterAuthor;
+
+class ChapterDAO extends \PKP\db\DAO implements PKPPubIdPluginDAO
 {
     /**
      * Retrieve a chapter by ID.
@@ -347,4 +351,8 @@ class ChapterDAO extends DAO implements PKPPubIdPluginDAO
         }
         $this->flushCache();
     }
+}
+
+if (!PKP_STRICT_MODE) {
+    class_alias('\APP\monograph\ChapterDAO', '\ChapterDAO');
 }

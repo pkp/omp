@@ -17,6 +17,7 @@ namespace APP\services;
 
 use PKP\file\FileManager;
 use PKP\file\ContextFileManager;
+use PKP\db\DAORegistry;
 
 use APP\services\Services;
 use APP\file\PublicFileManager;
@@ -136,19 +137,19 @@ class ContextService extends \PKP\services\PKPContextService
     {
         $context = $args[0];
 
-        $seriesDao = \DAORegistry::getDAO('SeriesDAO');
+        $seriesDao = DAORegistry::getDAO('SeriesDAO');
         $seriesDao->deleteByPressId($context->getId());
 
-        $submissionDao = \DAORegistry::getDAO('SubmissionDAO');
+        $submissionDao = DAORegistry::getDAO('SubmissionDAO');
         $submissionDao->deleteByContextId($context->getId());
 
-        $featureDao = \DAORegistry::getDAO('FeatureDAO');
+        $featureDao = DAORegistry::getDAO('FeatureDAO');
         $featureDao->deleteByAssoc(ASSOC_TYPE_PRESS, $context->getId());
 
-        $newReleaseDao = \DAORegistry::getDAO('NewReleaseDAO');
+        $newReleaseDao = DAORegistry::getDAO('NewReleaseDAO');
         $newReleaseDao->deleteByAssoc(ASSOC_TYPE_PRESS, $context->getId());
 
-        $publicFileManager = new \PublicFileManager();
+        $publicFileManager = new PublicFileManager();
         $publicFileManager->rmtree($publicFileManager->getContextFilesPath($context->getId()));
     }
 
@@ -167,7 +168,7 @@ class ContextService extends \PKP\services\PKPContextService
         $props = $args[2];
 
         if (!empty($props['codeType'])) {
-            if (!\DAORegistry::getDAO('ONIXCodelistItemDAO')->codeExistsInList($props['codeType'], 'List44')) {
+            if (!DAORegistry::getDAO('ONIXCodelistItemDAO')->codeExistsInList($props['codeType'], 'List44')) {
                 $errors['codeType'] = [__('manager.settings.publisherCodeType.invalid')];
             }
         }
@@ -185,14 +186,14 @@ class ContextService extends \PKP\services\PKPContextService
      */
     public function resizeCoverThumbnails($context, $maxWidth, $maxHeight)
     {
-        $fileManager = new \FileManager();
-        $publicFileManager = new \PublicFileManager();
-        $contextFileManager = new \ContextFileManager($context->getId());
+        $fileManager = new FileManager();
+        $publicFileManager = new PublicFileManager();
+        $contextFileManager = new ContextFileManager($context->getId());
 
         $objectDaos = [
-            \DAORegistry::getDAO('CategoryDAO'),
-            \DAORegistry::getDAO('SeriesDAO'),
-            \DAORegistry::getDAO('SubmissionDAO'),
+            DAORegistry::getDAO('CategoryDAO'),
+            DAORegistry::getDAO('SeriesDAO'),
+            DAORegistry::getDAO('SubmissionDAO'),
         ];
         foreach ($objectDaos as $objectDao) {
             $objects = $objectDao->getByContextId($context->getId());

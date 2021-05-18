@@ -15,16 +15,10 @@
  * @brief Basic class describing a Market composite type (used on the ONIX templates for publication formats)
  */
 
+namespace APP\publicationFormat;
+
 class Market extends DataObject
 {
-    /**
-     * Constructor
-     */
-    public function __construct()
-    {
-        parent::__construct();
-    }
-
     /**
      * get publication format id
      *
@@ -396,4 +390,8 @@ class Market extends DataObject
     {
         return (trim($value) != '') ? true : false;
     }
+}
+
+if (!PKP_STRICT_MODE) {
+    class_alias('\APP\publicationFormat\Market', '\Market');
 }

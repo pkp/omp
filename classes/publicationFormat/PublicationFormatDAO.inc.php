@@ -14,10 +14,14 @@
  * @brief Operations for retrieving and modifying PublicationFormat objects.
  */
 
-use \PKP\submission\RepresentationDAO;
-use \PKP\plugins\PKPPubIdPluginDAO;
+namespace APP\publicationFormat;
 
-import('classes.publicationFormat.PublicationFormat');
+use PKP\submission\RepresentationDAO;
+use PKP\plugins\PKPPubIdPluginDAO;
+use PKP\plugins\HookRegistry;
+use PKP\db\DAOResultFactory;
+
+use APP\publicationFormat\PublicationFormat;
 
 class PublicationFormatDAO extends RepresentationDAO implements PKPPubIdPluginDAO
 {
@@ -526,4 +530,8 @@ class PublicationFormatDAO extends RepresentationDAO implements PKPPubIdPluginDA
         }
         $this->flushCache();
     }
+}
+
+if (!PKP_STRICT_MODE) {
+    class_alias('\APP\publicationFormat\PublicationFormatDAO', '\PublicationFormatDAO');
 }

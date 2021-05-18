@@ -15,16 +15,15 @@
  * @brief Describes a monograph chapter (or section)
  */
 
-class Chapter extends DataObject
-{
-    /**
-     * Constructor
-     */
-    public function __construct()
-    {
-        parent::__construct();
-    }
+namespace APP\monograph;
 
+use PKP\db\DAORegistry;
+use PKP\core\PKPString;
+
+use APP\i18n\AppLocale;
+
+class Chapter extends \PKP\core\DataObject
+{
     //
     // Get/set methods
     //
@@ -295,4 +294,8 @@ class Chapter extends DataObject
     {
         $this->setData('pages', $pages);
     }
+}
+
+if (!PKP_STRICT_MODE) {
+    class_alias('\APP\monograph\Chapter', '\Chapter');
 }

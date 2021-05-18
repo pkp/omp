@@ -13,6 +13,8 @@
  * @brief Operations for retrieving and modifying press settings.
  */
 
+namespace APP\press;
+
 use PKP\db\SettingsDAO;
 
 class PressSettingsDAO extends SettingsDAO
@@ -42,4 +44,8 @@ class PressSettingsDAO extends SettingsDAO
     {
         return 'pressSettings';
     }
+}
+
+if (!PKP_STRICT_MODE) {
+    class_alias('\APP\press\PressSettingsDAO', '\PressSettingsDAO');
 }

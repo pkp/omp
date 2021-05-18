@@ -15,16 +15,12 @@
  * @brief Basic class describing an identification code (used on the ONIX templates for publication formats)
  */
 
+namespace APP\publicationFormat;
+
+use PKP\db\DAORegistry;
+
 class IdentificationCode extends DataObject
 {
-    /**
-     * Constructor
-     */
-    public function __construct()
-    {
-        parent::__construct();
-    }
-
     /**
      * get publication format id
      *
@@ -94,4 +90,8 @@ class IdentificationCode extends DataObject
     {
         return $this->getData('value');
     }
+}
+
+if (!PKP_STRICT_MODE) {
+    class_alias('\APP\publicationFormat\IdentificationCode', '\IdentificationCode');
 }

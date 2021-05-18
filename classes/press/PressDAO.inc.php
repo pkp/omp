@@ -17,6 +17,7 @@
 namespace APP\press;
 
 use PKP\context\ContextDAO;
+use PKP\metadata\MetadataTypeDescription;
 
 class PressDAO extends ContextDAO
 {
@@ -92,7 +93,7 @@ class PressDAO extends ContextDAO
         $pressId,
         $pubIdType,
         $pubId,
-        $assocType = ASSOC_TYPE_ANY,
+        $assocType = MetadataTypeDescription::ASSOC_TYPE_ANY,
         $assocId = 0,
         $forSameType = false
     ) {

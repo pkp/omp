@@ -15,7 +15,8 @@
 
 import('lib.pkp.pages.index.PKPIndexHandler');
 
-use \APP\template\TemplateManager;
+use APP\spotlight\Spotlight;
+use APP\template\TemplateManager;
 
 class IndexHandler extends PKPIndexHandler
 {
@@ -132,7 +133,7 @@ class IndexHandler extends PKPIndexHandler
         if ($press->getSetting('displayInSpotlight')) {
             // Include random spotlight items for the press home page.
             $spotlightDao = DAORegistry::getDAO('SpotlightDAO'); /* @var $spotlightDao SpotlightDAO */
-            $spotlights = $spotlightDao->getRandomByPressId($press->getId(), MAX_SPOTLIGHTS_VISIBLE);
+            $spotlights = $spotlightDao->getRandomByPressId($press->getId(), Spotlight::MAX_SPOTLIGHTS_VISIBLE);
             $templateMgr->assign('spotlights', $spotlights);
         }
 

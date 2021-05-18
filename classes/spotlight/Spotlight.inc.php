@@ -15,20 +15,14 @@
  * @brief Basic class describing a spotlight.
  */
 
-// type constants for spotlights
-define('SPOTLIGHT_TYPE_BOOK', 3);
-define('SPOTLIGHT_TYPE_SERIES', 4);
-define('MAX_SPOTLIGHTS_VISIBLE', 3);
+namespace APP\spotlight;
 
 class Spotlight extends DataObject
 {
-    /**
-     * Constructor
-     */
-    public function __construct()
-    {
-        parent::__construct();
-    }
+// type constants for spotlights
+    public const SPOTLIGHT_TYPE_BOOK = 3;
+    public const SPOTLIGHT_TYPE_SERIES = 4;
+    public const MAX_SPOTLIGHTS_VISIBLE = 3;
 
     //
     // Get/set methods
@@ -168,8 +162,8 @@ class Spotlight extends DataObject
     public function getLocalizedType()
     {
         $spotlightTypes = [
-            SPOTLIGHT_TYPE_BOOK => __('grid.content.spotlights.form.type.book'),
-            SPOTLIGHT_TYPE_SERIES => __('series.series'),
+            self::SPOTLIGHT_TYPE_BOOK => __('grid.content.spotlights.form.type.book'),
+            self::SPOTLIGHT_TYPE_SERIES => __('series.series'),
         ];
 
         return $spotlightTypes[$this->getAssocType()];
@@ -183,10 +177,10 @@ class Spotlight extends DataObject
     public function getSpotlightItem()
     {
         switch ($this->getAssocType()) {
-            case SPOTLIGHT_TYPE_BOOK:
+            case self::SPOTLIGHT_TYPE_BOOK:
                 return Services::get('submission')->get($this->getAssocId());
                 break;
-            case SPOTLIGHT_TYPE_SERIES:
+            case self::SPOTLIGHT_TYPE_SERIES:
                 $seriesDao = DAORegistry::getDAO('SeriesDAO'); /* @var $seriesDao SeriesDAO */
                 return $seriesDao->getById($this->getAssocId(), $this->getPressId());
                 break;
@@ -194,5 +188,16 @@ class Spotlight extends DataObject
                 assert(false);
                 break;
         }
+    }
+}
+
+if (!PKP_STRICT_MODE) {
+    class_alias('\APP\spotlight\Spotlight', '\Spotlight');
+    foreach ([
+        'SPOTLIGHT_TYPE_BOOK',
+        'SPOTLIGHT_TYPE_SERIES',
+        'MAX_SPOTLIGHTS_VISIBLE',
+    ] as $constantName) {
+        define($constantName, constant('\Spotlight::' . $constantName));
     }
 }

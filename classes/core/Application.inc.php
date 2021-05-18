@@ -108,33 +108,33 @@ class Application extends \PKP\core\PKPApplication
     public function getDAOMap()
     {
         return array_merge(parent::getDAOMap(), [
-            'AuthorDAO' => 'classes.monograph.AuthorDAO',
-            'ChapterAuthorDAO' => 'classes.monograph.ChapterAuthorDAO',
-            'ChapterDAO' => 'classes.monograph.ChapterDAO',
-            'FeatureDAO' => 'classes.press.FeatureDAO',
-            'IdentificationCodeDAO' => 'classes.publicationFormat.IdentificationCodeDAO',
-            'LayoutAssignmentDAO' => 'submission.layoutAssignment.LayoutAssignmentDAO',
-            'MarketDAO' => 'classes.publicationFormat.MarketDAO',
-            'MetricsDAO' => 'lib.pkp.classes.statistics.PKPMetricsDAO',
-            'SubmissionDAO' => 'classes.submission.SubmissionDAO',
-            'MonographFileEmailLogDAO' => 'classes.log.MonographFileEmailLogDAO',
-            'MonographSearchDAO' => 'classes.search.MonographSearchDAO',
-            'NewReleaseDAO' => 'classes.press.NewReleaseDAO',
-            'OAIDAO' => 'classes.oai.omp.OAIDAO',
-            'OMPCompletedPaymentDAO' => 'classes.payment.omp.OMPCompletedPaymentDAO',
-            'ONIXCodelistItemDAO' => 'classes.codelist.ONIXCodelistItemDAO',
-            'PressDAO' => 'classes.press.PressDAO',
-            'PressSettingsDAO' => 'classes.press.PressSettingsDAO',
-            'ProductionAssignmentDAO' => 'classes.submission.productionAssignment.ProductionAssignmentDAO',
-            'PublicationDateDAO' => 'classes.publicationFormat.PublicationDateDAO',
-            'PublicationFormatDAO' => 'classes.publicationFormat.PublicationFormatDAO',
-            'QualifierDAO' => 'classes.codelist.QualifierDAO',
-            'RepresentativeDAO' => 'classes.monograph.RepresentativeDAO',
-            'ReviewerSubmissionDAO' => 'classes.submission.reviewer.ReviewerSubmissionDAO',
-            'SalesRightsDAO' => 'classes.publicationFormat.SalesRightsDAO',
-            'SeriesDAO' => 'classes.press.SeriesDAO',
-            'SpotlightDAO' => 'classes.spotlight.SpotlightDAO',
-            'SubjectDAO' => 'classes.codelist.SubjectDAO',
+            'AuthorDAO' => 'APP\monograph\AuthorDAO',
+            'ChapterAuthorDAO' => 'APP\monograph\ChapterAuthorDAO',
+            'ChapterDAO' => 'APP\monograph\ChapterDAO',
+            'FeatureDAO' => 'APP\press\FeatureDAO',
+            'IdentificationCodeDAO' => 'APP\publicationFormat\IdentificationCodeDAO',
+            'LayoutAssignmentDAO' => 'submission\layoutAssignment\LayoutAssignmentDAO',
+            'MarketDAO' => 'APP\publicationFormat\MarketDAO',
+            'MetricsDAO' => 'lib\pkp\APP\statistics\PKPMetricsDAO',
+            'SubmissionDAO' => 'APP\submission\SubmissionDAO',
+            'MonographFileEmailLogDAO' => 'APP\log\MonographFileEmailLogDAO',
+            'MonographSearchDAO' => 'APP\search\MonographSearchDAO',
+            'NewReleaseDAO' => 'APP\press\NewReleaseDAO',
+            'OAIDAO' => 'APP\oai\omp\OAIDAO',
+            'OMPCompletedPaymentDAO' => 'APP\payment\omp\OMPCompletedPaymentDAO',
+            'ONIXCodelistItemDAO' => 'APP\codelist\ONIXCodelistItemDAO',
+            'PressDAO' => 'APP\press\PressDAO',
+            'PressSettingsDAO' => 'APP\press\PressSettingsDAO',
+            'ProductionAssignmentDAO' => 'APP\submission\productionAssignment\ProductionAssignmentDAO',
+            'PublicationDateDAO' => 'APP\publicationFormat\PublicationDateDAO',
+            'PublicationFormatDAO' => 'APP\publicationFormat\PublicationFormatDAO',
+            'QualifierDAO' => 'APP\codelist\QualifierDAO',
+            'RepresentativeDAO' => 'APP\monograph\RepresentativeDAO',
+            'ReviewerSubmissionDAO' => 'APP\submission\reviewer\ReviewerSubmissionDAO',
+            'SalesRightsDAO' => 'APP\publicationFormat\SalesRightsDAO',
+            'SeriesDAO' => 'APP\press\SeriesDAO',
+            'SpotlightDAO' => 'APP\spotlight\SpotlightDAO',
+            'SubjectDAO' => 'APP\codelist\SubjectDAO',
         ]);
     }
 
@@ -194,8 +194,7 @@ class Application extends \PKP\core\PKPApplication
      */
     public static function getSubmissionSearchIndex()
     {
-        import('classes.search.MonographSearchIndex');
-        return new \MonographSearchIndex();
+        return new \APP\search\MonographSearchIndex();
     }
 
     /**

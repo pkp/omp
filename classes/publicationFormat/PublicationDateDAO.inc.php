@@ -15,9 +15,14 @@
  * @brief Operations for retrieving and modifying PublicationDate objects.
  */
 
-import('classes.publicationFormat.PublicationDate');
+namespace APP\publicationFormat;
 
-class PublicationDateDAO extends DAO
+use PKP\plugins\HookRegistry;
+use PKP\db\DAOResultFactory;
+
+use APP\publicationFormat\PublicationDate;
+
+class PublicationDateDAO extends \PKP\db\DAO
 {
     /**
      * Retrieve a publication date by type id.
@@ -172,4 +177,8 @@ class PublicationDateDAO extends DAO
     {
         return $this->_getInsertId('publication_dates', 'publication_date_id');
     }
+}
+
+if (!PKP_STRICT_MODE) {
+    class_alias('\APP\publicationFormat\PublicationDateDAO', '\PublicationDateDAO');
 }

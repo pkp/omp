@@ -15,10 +15,16 @@
  * @brief Operations for retrieving and modifying Series objects.
  */
 
-use PKP\submission\PKPSubmission;
+namespace APP\press;
 
-import('classes.press.Series');
-import('lib.pkp.classes.context.PKPSectionDAO');
+use PKP\context\PKPSectionDAO;
+use PKP\submission\PKPSubmission;
+use PKP\plugins\HookRegistry;
+use PKP\db\DAORegistry;
+use PKP\db\DAOResultFactory;
+
+use APP\press\Series;
+use APP\core\Services;
 
 class SeriesDAO extends PKPSectionDAO
 {
@@ -447,4 +453,8 @@ class SeriesDAO extends PKPSectionDAO
         $row = $result->current();
         return $row && $row->row_count;
     }
+}
+
+if (!PKP_STRICT_MODE) {
+    class_alias('\APP\press\SeriesDAO', '\SeriesDAO');
 }

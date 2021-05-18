@@ -16,20 +16,14 @@
  *
  */
 
-import('classes.codelist.Qualifier');
-import('classes.codelist.CodelistItemDAO');
+namespace APP\codelist;
 
+use APP\codelist\Qualifier;
+use APP\codelist\CodelistItemDAO;
+use APP\i18n\AppLocale;
 
 class QualifierDAO extends CodelistItemDAO
 {
-    /**
-     * Constructor.
-     */
-    public function __construct()
-    {
-        parent::__construct();
-    }
-
     /**
      * Get the filename of the qualifier database
      *
@@ -65,4 +59,8 @@ class QualifierDAO extends CodelistItemDAO
     {
         return new Qualifier();
     }
+}
+
+if (!PKP_STRICT_MODE) {
+    class_alias('\APP\codelist\QualifierDAO', '\QualifierDAO');
 }

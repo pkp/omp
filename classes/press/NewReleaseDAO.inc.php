@@ -15,18 +15,14 @@
  * @brief Operations for setting new release status on various items.
  */
 
+namespace APP\press;
+
 use PKP\submission\PKPSubmission;
 
-class NewReleaseDAO extends DAO
-{
-    /**
-     * Constructor
-     */
-    public function __construct()
-    {
-        parent::__construct();
-    }
+use APP\core\Services;
 
+class NewReleaseDAO extends \PKP\db\DAO
+{
     /**
      * Get monograph IDs by association.
      *
@@ -194,4 +190,8 @@ class NewReleaseDAO extends DAO
         }
         return $newRelease;
     }
+}
+
+if (!PKP_STRICT_MODE) {
+    class_alias('\APP\press\NewReleaseDAO', '\NewReleaseDAO');
 }

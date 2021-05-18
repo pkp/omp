@@ -20,7 +20,9 @@
  *
  */
 
-import('classes.codelist.CodelistItem');
+namespace APP\codelist;
+
+use APP\codelist\CodelistItem;
 
 class Subject extends CodelistItem
 {
@@ -28,14 +30,6 @@ class Subject extends CodelistItem
      * @var int The numerical representation of these Subject Qualifiers in ONIX 3.0
      */
     public $_onixSubjectSchemeIdentifier = 12;
-
-    /**
-     * Constructor
-     */
-    public function __construct()
-    {
-        parent::__construct();
-    }
 
     /**
      * Get the ONIX subject scheme identifier.
@@ -46,4 +40,8 @@ class Subject extends CodelistItem
     {
         return $this->_onixSubjectSchemeIdentifier;
     }
+}
+
+if (!PKP_STRICT_MODE) {
+    class_alias('\APP\codelist\Subject', '\Subject');
 }

@@ -16,7 +16,14 @@
  *
  */
 
-import('classes.codelist.CodelistItem');
+namespace APP\codelist;
+
+use PKP\cache\CacheManager;
+use PKP\plugins\HookRegistry;
+use PKP\core\Registry;
+
+use APP\codelist\CodelistItem;
+use APP\i18n\AppLocale;
 
 class CodelistItemDAO extends DAO
 {
@@ -199,4 +206,8 @@ class CodelistItemDAO extends DAO
 
         return $codelistItem;
     }
+}
+
+if (!PKP_STRICT_MODE) {
+    class_alias('\APP\codelist\CodelistItemDAO', '\CodelistItemDAO');
 }

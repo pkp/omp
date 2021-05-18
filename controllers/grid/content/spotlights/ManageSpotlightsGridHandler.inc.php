@@ -18,9 +18,6 @@ import('controllers.grid.content.spotlights.SpotlightsGridCellProvider');
 import('controllers.grid.content.spotlights.SpotlightsGridRow');
 import('controllers.grid.content.spotlights.form.SpotlightForm');
 
-// import Spotlight class for class constants
-import('classes.spotlight.Spotlight');
-
 use PKP\controllers\grid\GridHandler;
 use PKP\controllers\grid\GridColumn;
 use PKP\linkAction\LinkAction;
@@ -30,6 +27,7 @@ use PKP\submission\PKPSubmission;
 use PKP\security\authorization\ContextAccessPolicy;
 use PKP\security\Role;
 
+use APP\spotlight\Spotlight;
 use APP\notification\NotificationManager;
 
 class ManageSpotlightsGridHandler extends GridHandler
@@ -360,7 +358,7 @@ class ManageSpotlightsGridHandler extends GridHandler
 
         $submissionsIterator = Services::get('submission')->getMany($args);
         foreach ($submissionsIterator as $submission) {
-            $matches[] = ['label' => $submission->getLocalizedTitle(), 'value' => $submission->getId() . ':' . SPOTLIGHT_TYPE_BOOK];
+            $matches[] = ['label' => $submission->getLocalizedTitle(), 'value' => $submission->getId() . ':' . Spotlight::SPOTLIGHT_TYPE_BOOK];
         }
 
         if (!empty($matches)) {
@@ -373,7 +371,7 @@ class ManageSpotlightsGridHandler extends GridHandler
         $allSeries = $seriesDao->getByPressId($press->getId());
         while ($series = $allSeries->next()) {
             if ($name == '' || preg_match('/' . preg_quote($name, '/') . '/i', $series->getLocalizedTitle())) {
-                $matches[] = ['label' => $series->getLocalizedTitle(), 'value' => $series->getId() . ':' . SPOTLIGHT_TYPE_SERIES];
+                $matches[] = ['label' => $series->getLocalizedTitle(), 'value' => $series->getId() . ':' . Spotlight::SPOTLIGHT_TYPE_SERIES];
             }
         }
 

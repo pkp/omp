@@ -15,8 +15,13 @@
  * @brief A publication format for a monograph.
  */
 
-use \PKP\submission\SubmissionFile;
-use \PKP\submission\Representation;
+namespace APP\publicationFormat;
+
+use PKP\submission\SubmissionFile;
+use PKP\submission\Representation;
+use PKP\db\DAORegistry;
+
+use APP\core\Services;
 
 class PublicationFormat extends Representation
 {
@@ -624,4 +629,8 @@ class PublicationFormat extends Representation
 
         return join(__('monograph.publicationFormat.productDimensionsSeparator'), $dimensions);
     }
+}
+
+if (!PKP_STRICT_MODE) {
+    class_alias('\APP\publicationFormat\PublicationFormat', '\PublicationFormat');
 }

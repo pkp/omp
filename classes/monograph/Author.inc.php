@@ -15,7 +15,9 @@
  * @brief Monograph author metadata class.
  */
 
-use \PKP\submission\PKPAuthor;
+namespace APP\monograph;
+
+use PKP\submission\PKPAuthor;
 
 class Author extends PKPAuthor
 {
@@ -38,4 +40,8 @@ class Author extends PKPAuthor
     {
         $this->setData('isVolumeEditor', $isVolumeEditor);
     }
+}
+
+if (!PKP_STRICT_MODE) {
+    class_alias('\APP\monograph\Author', '\Author');
 }

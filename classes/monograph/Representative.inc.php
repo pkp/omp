@@ -15,7 +15,11 @@
  * This type is used for both Agents and Suppliers.
  */
 
-class Representative extends DataObject
+namespace APP\monograph;
+
+use PKP\db\DAORegistry;
+
+class Representative extends \PKP\core\DataObject
 {
     /**
      * get monograph id.
@@ -211,4 +215,8 @@ class Representative extends DataObject
     {
         $this->setData('isSupplier', $isSupplier);
     }
+}
+
+if (!PKP_STRICT_MODE) {
+    class_alias('\APP\monograph\Representative', '\Representative');
 }

@@ -16,8 +16,15 @@
  *
  */
 
+namespace APP\search;
+
 use PKP\statistics\PKPStatisticsHelper;
 use PKP\search\SubmissionSearch;
+use PKP\db\DAORegistry;
+use PKP\plugins\HookRegistry;
+
+use APP\core\Services;
+use APP\core\Application;
 
 class MonographSearch extends SubmissionSearch
 {

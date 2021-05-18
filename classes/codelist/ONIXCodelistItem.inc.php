@@ -16,18 +16,10 @@
  *
  */
 
+namespace APP\codelist;
+
 class ONIXCodelistItem extends DataObject
 {
-    /**
-     * Constructor
-     */
-
-    public function __construct()
-    {
-        parent::__construct();
-    }
-
-
     //
     // Get/set methods
     //
@@ -71,4 +63,8 @@ class ONIXCodelistItem extends DataObject
     {
         return $this->setData('code', $code);
     }
+}
+
+if (!PKP_STRICT_MODE) {
+    class_alias('\APP\codelist\ONIXCodelistItem', '\ONIXCodelistItem');
 }

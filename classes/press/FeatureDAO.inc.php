@@ -15,7 +15,9 @@
  * @brief Operations for setting Featured status on various items.
  */
 
-class FeatureDAO extends DAO
+namespace APP\press;
+
+class FeatureDAO extends \PKP\db\DAO
 {
     /**
      * Get monograph IDs by association.
@@ -229,4 +231,8 @@ class FeatureDAO extends DAO
         }
         return $returner;
     }
+}
+
+if (!PKP_STRICT_MODE) {
+    class_alias('\APP\press\FeatureDAO', '\FeatureDAO');
 }

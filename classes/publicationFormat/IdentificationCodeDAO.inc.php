@@ -15,9 +15,13 @@
  * @brief Operations for retrieving and modifying IdentificationCode objects.
  */
 
-import('classes.publicationFormat.IdentificationCode');
+namespace APP\publicationFormat;
 
-class IdentificationCodeDAO extends DAO
+use APP\publicationFormat\IdentificationCode;
+
+use PKP\db\DAOResultFactory;
+
+class IdentificationCodeDAO extends \PKP\db\DAO
 {
     /**
      * Retrieve an identification code by type id.
@@ -172,4 +176,8 @@ class IdentificationCodeDAO extends DAO
     {
         return $this->_getInsertId('identification_codes', 'identification_code_id');
     }
+}
+
+if (!PKP_STRICT_MODE) {
+    class_alias('\APP\publicationFormat\IdentificationCodeDAO', '\IdentificationCodeDAO');
 }

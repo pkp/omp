@@ -16,7 +16,9 @@
  * @brief Adds chapterId to an Author
  */
 
-import('classes.monograph.Author');
+namespace APP\monograph;
+
+use APP\monograph\Author;
 
 class ChapterAuthor extends Author
 {
@@ -43,4 +45,8 @@ class ChapterAuthor extends Author
     {
         return $this->setData('chapterId', $chapterId);
     }
+}
+
+if (!PKP_STRICT_MODE) {
+    class_alias('\APP\monograph\ChapterAuthor', '\ChapterAuthor');
 }

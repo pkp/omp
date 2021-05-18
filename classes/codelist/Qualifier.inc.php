@@ -20,7 +20,9 @@
  *
  */
 
-import('classes.codelist.CodelistItem');
+namespace APP\codelist;
+
+use APP\codelist\CodelistItem;
 
 class Qualifier extends CodelistItem
 {
@@ -30,18 +32,14 @@ class Qualifier extends CodelistItem
     public $_onixSubjectSchemeIdentifier = 17;
 
     /**
-     * Constructor
-     */
-    public function __construct()
-    {
-        parent::__construct();
-    }
-
-    /**
      * @return String the numerical value representing this item in the ONIX 3.0 schema
      */
     public function getOnixSubjectSchemeIdentifier()
     {
         return $this->_onixSubjectSchemeIdentifier;
     }
+}
+
+if (!PKP_STRICT_MODE) {
+    class_alias('\APP\codelist\Qualifier', '\Qualifier');
 }

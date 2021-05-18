@@ -15,10 +15,12 @@
  * @brief DAO class for monograph search index.
  */
 
-use PKP\submission\PKPSubmission;
+namespace APP\search;
 
-import('classes.search.MonographSearch');
-import('lib.pkp.classes.search.SubmissionSearchDAO');
+use APP\search\MonographSearch;
+
+use PKP\submission\PKPSubmission;
+use PKP\search\SubmissionSearchDAO;
 
 class MonographSearchDAO extends SubmissionSearchDAO
 {
@@ -103,4 +105,8 @@ class MonographSearchDAO extends SubmissionSearchDAO
         }
         return $returner;
     }
+}
+
+if (!PKP_STRICT_MODE) {
+    class_alias('\APP\search\MonographSearchDAO', '\MonographSearchDAO');
 }

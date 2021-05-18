@@ -15,9 +15,13 @@
  * @brief Operations for retrieving and modifying Representative (suppliers and agents) objects.
  */
 
-import('classes.monograph.Representative');
+namespace APP\monograph;
 
-class RepresentativeDAO extends DAO
+use PKP\db\DAOResultFactory;
+
+use APP\monograph\Representative;
+
+class RepresentativeDAO extends \PKP\db\DAO
 {
     /**
      * Retrieve a representative entry by id.
@@ -216,4 +220,8 @@ class RepresentativeDAO extends DAO
     {
         return $this->_getInsertId('representatives', 'representative_id');
     }
+}
+
+if (!PKP_STRICT_MODE) {
+    class_alias('\APP\monograph\RepresentativeDAO', '\RepresentativeDAO');
 }

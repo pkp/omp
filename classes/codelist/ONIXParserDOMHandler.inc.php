@@ -20,8 +20,10 @@
  * Example:  <xs:simpleType name="List30">...</xs:simpleType>
  */
 
-import('lib.pkp.classes.xml.XMLParserDOMHandler');
-import('lib.pkp.classes.xml.XMLNode');
+namespace APP\codelist;
+
+use PKP\xml\XMLParserDOMHandler;
+use PKP\xml\XMLNode;
 
 class ONIXParserDOMHandler extends XMLParserDOMHandler
 {
@@ -138,4 +140,8 @@ class ONIXParserDOMHandler extends XMLParserDOMHandler
     {
         return [$this->_listName => $this->_listItems];
     }
+}
+
+if (!PKP_STRICT_MODE) {
+    class_alias('\APP\codelist\ONIXParserDOMHandler', '\ONIXParserDOMHandler');
 }

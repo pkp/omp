@@ -15,9 +15,14 @@
  * @brief Operations for retrieving and modifying SalesRights objects.
  */
 
-import('classes.publicationFormat.SalesRights');
+namespace APP\publicationFormat;
 
-class SalesRightsDAO extends DAO
+use PKP\plugins\HookRegistry;
+use PKP\db\DAOResultFactory;
+
+use APP\publicationFormat\SalesRights;
+
+class SalesRightsDAO extends \PKP\db\DAO
 {
     /**
      * Retrieve a sales rights entry by type id.
@@ -204,4 +209,8 @@ class SalesRightsDAO extends DAO
     {
         return $this->_getInsertId('sales_rights', 'sales_rights_id');
     }
+}
+
+if (!PKP_STRICT_MODE) {
+    class_alias('\APP\publicationFormat\SalesRightsDAO', '\SalesRightsDAO');
 }

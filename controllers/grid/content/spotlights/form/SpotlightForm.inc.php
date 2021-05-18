@@ -15,6 +15,7 @@
 use PKP\form\Form;
 
 use APP\template\TemplateManager;
+use APP\spotlight\Spotlight;
 
 class SpotlightForm extends Form
 {
@@ -164,11 +165,11 @@ class SpotlightForm extends Form
     {
         $returner = null;
         switch ($assocType) {
-            case SPOTLIGHT_TYPE_BOOK:
+            case Spotlight::SPOTLIGHT_TYPE_BOOK:
                 $submission = Services::get('submission')->get($assocId);
                 $returner = isset($submission) ? $submission->getLocalizedTitle() : '';
                 break;
-            case SPOTLIGHT_TYPE_SERIES:
+            case Spotlight::SPOTLIGHT_TYPE_SERIES:
                 $seriesDao = DAORegistry::getDAO('SeriesDAO'); /* @var $seriesDao SeriesDAO */
                 $series = $seriesDao->getById($assocId, $this->getPressId());
                 $returner = isset($series) ? $series->getLocalizedTitle() : '';
@@ -188,7 +189,7 @@ class SpotlightForm extends Form
      */
     public function _isValidSpotlightType($type)
     {
-        $validTypes = [SPOTLIGHT_TYPE_BOOK, SPOTLIGHT_TYPE_SERIES];
+        $validTypes = [Spotlight::SPOTLIGHT_TYPE_BOOK, Spotlight::SPOTLIGHT_TYPE_SERIES];
         return in_array((int) $type, $validTypes);
     }
 }

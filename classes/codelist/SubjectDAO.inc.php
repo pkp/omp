@@ -16,19 +16,14 @@
  *
  */
 
-import('classes.codelist.Subject');
-import('classes.codelist.CodelistItemDAO');
+namespace APP\codelist;
+
+use APP\codelist\Subject;
+use APP\codelist\CodelistItemDAO;
+use APP\i18n\AppLocale;
 
 class SubjectDAO extends CodelistItemDAO
 {
-    /**
-     * Constructor.
-     */
-    public function __construct()
-    {
-        parent::__construct();
-    }
-
     /**
      * Get the filename of the subject database
      *
@@ -64,4 +59,8 @@ class SubjectDAO extends CodelistItemDAO
     {
         return new Subject();
     }
+}
+
+if (!PKP_STRICT_MODE) {
+    class_alias('\APP\codelist\SubjectDAO', '\SubjectDAO');
 }
