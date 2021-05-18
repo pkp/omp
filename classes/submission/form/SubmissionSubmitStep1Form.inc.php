@@ -17,6 +17,7 @@ namespace APP\submission\form;
 
 use PKP\submission\form\PKPSubmissionSubmitStep1Form;
 use PKP\db\DAORegistry;
+use PKP\security\Role;
 
 use APP\core\Application;
 use APP\template\TemplateManager;
@@ -43,8 +44,8 @@ class SubmissionSubmitStep1Form extends PKPSubmissionSubmitStep1Form
     {
         $roleDao = DAORegistry::getDAO('RoleDAO');
         $user = $request->getUser();
-        $canSubmitAll = $roleDao->userHasRole($this->context->getId(), $user->getId(), ROLE_ID_MANAGER) ||
-            $roleDao->userHasRole($this->context->getId(), $user->getId(), ROLE_ID_SUB_EDITOR);
+        $canSubmitAll = $roleDao->userHasRole($this->context->getId(), $user->getId(), Role::ROLE_ID_MANAGER) ||
+            $roleDao->userHasRole($this->context->getId(), $user->getId(), Role::ROLE_ID_SUB_EDITOR);
 
         // Get series for this context
         $seriesDao = DAORegistry::getDAO('SeriesDAO'); /* @var $seriesDao SeriesDAO */

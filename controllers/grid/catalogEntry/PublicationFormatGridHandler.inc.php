@@ -23,6 +23,7 @@ use PKP\security\authorization\internal\RepresentationRequiredPolicy;
 use PKP\controllers\grid\GridColumn;
 use PKP\controllers\grid\CategoryGridHandler;
 use PKP\log\SubmissionLog;
+use PKP\security\Role;
 
 use APP\template\TemplateManager;
 use APP\notification\NotificationManager;
@@ -53,13 +54,13 @@ class PublicationFormatGridHandler extends CategoryGridHandler
     {
         parent::__construct(new PublicationFormatCategoryGridDataProvider($this));
         $this->addRoleAssignment(
-            [ROLE_ID_MANAGER, ROLE_ID_SUB_EDITOR],
+            [Role::ROLE_ID_MANAGER, Role::ROLE_ID_SUB_EDITOR],
             [
                 'setAvailable', 'editApprovedProof', 'saveApprovedProof',
             ]
         );
         $this->addRoleAssignment(
-            [ROLE_ID_MANAGER, ROLE_ID_SUB_EDITOR, ROLE_ID_ASSISTANT],
+            [Role::ROLE_ID_MANAGER, Role::ROLE_ID_SUB_EDITOR, Role::ROLE_ID_ASSISTANT],
             [
                 'addFormat', 'editFormat', 'editFormatTab', 'updateFormat', 'deleteFormat',
                 'setApproved', 'setProofFileCompletion', 'selectFiles',
@@ -68,7 +69,7 @@ class PublicationFormatGridHandler extends CategoryGridHandler
             ]
         );
         $this->addRoleAssignment(
-            [ROLE_ID_AUTHOR, ROLE_ID_MANAGER, ROLE_ID_SUB_EDITOR, ROLE_ID_ASSISTANT],
+            [Role::ROLE_ID_AUTHOR, Role::ROLE_ID_MANAGER, Role::ROLE_ID_SUB_EDITOR, Role::ROLE_ID_ASSISTANT],
             [
                 'fetchGrid', 'fetchRow', 'fetchCategory',
             ]
@@ -156,7 +157,7 @@ class PublicationFormatGridHandler extends CategoryGridHandler
             $router = $request->getRouter();
             $actionArgs = $this->getRequestArgs();
             $userRoles = $this->getAuthorizedContextObject(ASSOC_TYPE_USER_ROLES);
-            $this->_canManage = 0 != count(array_intersect($userRoles, [ROLE_ID_MANAGER, ROLE_ID_SUB_EDITOR, ROLE_ID_ASSISTANT]));
+            $this->_canManage = 0 != count(array_intersect($userRoles, [Role::ROLE_ID_MANAGER, Role::ROLE_ID_SUB_EDITOR, Role::ROLE_ID_ASSISTANT]));
             if ($this->_canManage) {
                 $this->addAction(
                     new LinkAction(

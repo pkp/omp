@@ -23,6 +23,7 @@ use PKP\linkAction\LinkAction;
 use PKP\linkAction\request\AjaxModal;
 use PKP\core\JSONMessage;
 use PKP\security\authorization\PublicationAccessPolicy;
+use PKP\security\Role;
 
 use APP\notification\NotificationManager;
 
@@ -44,7 +45,7 @@ class MarketsGridHandler extends GridHandler
     {
         parent::__construct();
         $this->addRoleAssignment(
-            [ROLE_ID_MANAGER],
+            [Role::ROLE_ID_MANAGER],
             ['fetchGrid', 'fetchRow', 'addMarket', 'editMarket',
                 'updateMarket', 'deleteMarket']
         );

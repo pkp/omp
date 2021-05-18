@@ -18,6 +18,7 @@ use PKP\submission\PKPSubmission;
 use PKP\file\TemoraryFileManager;
 use PKP\file\FileManager;
 use PKP\plugins\ImportExportPlugin;
+use PKP\security\Role;
 
 use APP\template\TemplateManager;
 use APP\submission\Submission;
@@ -138,7 +139,7 @@ class CSVImportExportPlugin extends ImportExportPlugin
                     if (!is_array($supportedLocales) || count($supportedLocales) < 1) {
                         $supportedLocales = [$press->getPrimaryLocale()];
                     }
-                    $authorGroup = $userGroupDao->getDefaultByRoleId($press->getId(), ROLE_ID_AUTHOR);
+                    $authorGroup = $userGroupDao->getDefaultByRoleId($press->getId(), Role::ROLE_ID_AUTHOR);
 
                     // we need a Genre for the files.  Assume a key of MANUSCRIPT as a default.
                     $genre = $genreDao->getByKey('MANUSCRIPT', $press->getId());

@@ -26,6 +26,7 @@ use PKP\core\JSONMessage;
 use PKP\submission\PKPSubmission;
 use PKP\security\authorization\PublicationAccessPolicy;
 use PKP\controllers\grid\feature\OrderCategoryGridItemsFeature;
+use PKP\security\Role;
 
 use APP\template\TemplateManager;
 use APP\notification\NotificationManager;
@@ -42,7 +43,7 @@ class ChapterGridHandler extends CategoryGridHandler
     {
         parent::__construct();
         $this->addRoleAssignment(
-            [ROLE_ID_AUTHOR, ROLE_ID_SUB_EDITOR, ROLE_ID_MANAGER, ROLE_ID_ASSISTANT],
+            [Role::ROLE_ID_AUTHOR, Role::ROLE_ID_SUB_EDITOR, Role::ROLE_ID_MANAGER, Role::ROLE_ID_ASSISTANT],
             [
                 'fetchGrid', 'fetchRow', 'fetchCategory', 'saveSequence',
                 'addChapter', 'editChapter', 'editChapterTab', 'updateChapter', 'deleteChapter',
@@ -50,10 +51,10 @@ class ChapterGridHandler extends CategoryGridHandler
             ]
         );
         $this->addRoleAssignment(
-            [ROLE_ID_SUB_EDITOR, ROLE_ID_MANAGER, ROLE_ID_ASSISTANT],
+            [Role::ROLE_ID_SUB_EDITOR, Role::ROLE_ID_MANAGER, Role::ROLE_ID_ASSISTANT],
             ['identifiers', 'updateIdentifiers', 'clearPubId',]
         );
-        $this->addRoleAssignment(ROLE_ID_REVIEWER, ['fetchGrid', 'fetchRow']);
+        $this->addRoleAssignment(Role::ROLE_ID_REVIEWER, ['fetchGrid', 'fetchRow']);
     }
 
 
@@ -232,7 +233,7 @@ class ChapterGridHandler extends CategoryGridHandler
             return false;
         }
 
-        if (in_array(ROLE_ID_SITE_ADMIN, $userRoles)) {
+        if (in_array(Role::ROLE_ID_SITE_ADMIN, $userRoles)) {
             return true;
         }
 
@@ -463,7 +464,7 @@ class ChapterGridHandler extends CategoryGridHandler
             'chapterId' => $chapter->getId(),
         ]);
 
-        if (array_intersect([ROLE_ID_MANAGER, ROLE_ID_SUB_EDITOR, ROLE_ID_ASSISTANT], $this->getAuthorizedContextObject(ASSOC_TYPE_USER_ROLES))) {
+        if (array_intersect([Role::ROLE_ID_MANAGER, Role::ROLE_ID_SUB_EDITOR, Role::ROLE_ID_ASSISTANT], $this->getAuthorizedContextObject(ASSOC_TYPE_USER_ROLES))) {
             $publisherIdEnabled = in_array('chapter', (array) $request->getContext()->getData('enablePublisherId'));
             $pubIdPlugins = PluginRegistry::getPlugins('pubIds');
             $pubIdEnabled = false;

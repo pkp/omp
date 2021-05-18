@@ -23,6 +23,7 @@ use PKP\linkAction\LinkAction;
 use PKP\security\authorization\PublicationAccessPolicy;
 use PKP\controllers\grid\GridHandler;
 use PKP\controllers\grid\GridColumn;
+use PKP\security\Role;
 
 use APP\notification\NotificationManager;
 
@@ -44,7 +45,7 @@ class IdentificationCodeGridHandler extends GridHandler
     {
         parent::__construct();
         $this->addRoleAssignment(
-            [ROLE_ID_MANAGER],
+            [Role::ROLE_ID_MANAGER],
             ['fetchGrid', 'fetchRow', 'addCode', 'editCode', 'updateCode', 'deleteCode']
         );
     }

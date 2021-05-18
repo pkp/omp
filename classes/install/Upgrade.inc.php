@@ -23,6 +23,7 @@ use PKP\file\FileManager;
 use PKP\install\Installer;
 use PKP\db\DAORegistry;
 use PKP\core\PKPString;
+use PKP\security\Role;
 
 use APP\core\Application;
 use APP\i18n\AppLocale;
@@ -380,7 +381,7 @@ class Upgrade extends Installer
             // Build a list of all users who should be involved in the query
             $user = $userDao->getById($userId);
             $assignedUserIds = [$userId];
-            foreach ([ROLE_ID_MANAGER, ROLE_ID_SUB_EDITOR, ROLE_ID_ASSISTANT] as $roleId) {
+            foreach ([Role::ROLE_ID_MANAGER, Role::ROLE_ID_SUB_EDITOR, Role::ROLE_ID_ASSISTANT] as $roleId) {
                 $stageAssignments = $stageAssignmentDao->getBySubmissionAndRoleId($submissionId, $roleId, $query->getStageId());
                 while ($stageAssignment = $stageAssignments->next()) {
                     $assignedUserIds[] = $stageAssignment->getUserId();
@@ -490,8 +491,6 @@ class Upgrade extends Installer
         $noteDao = DAORegistry::getDAO('NoteDAO'); /* @var $noteDao NoteDAO */
         $userGroupDao = DAORegistry::getDAO('UserGroupDAO'); /* @var $userGroupDao UserGroupDAO */
 
-        import('lib.pkp.classes.security.Role'); // ROLE_ID_...
-
         $commentsResult = $submissionDao->retrieve(
             'SELECT s.submission_id, s.context_id, s.comments_to_ed, s.date_submitted
 			FROM submissions_tmp s
@@ -503,12 +502,12 @@ class Upgrade extends Installer
                 continue;
             }
 
-            $authorAssignments = $stageAssignmetDao->getBySubmissionAndRoleId($row->submission_id, ROLE_ID_AUTHOR);
+            $authorAssignments = $stageAssignmetDao->getBySubmissionAndRoleId($row->submission_id, Role::ROLE_ID_AUTHOR);
             if ($authorAssignment = $authorAssignments->next()) {
                 // We assume the results are ordered by stage_assignment_id i.e. first author assignemnt is first
                 $userId = $authorAssignment->getUserId();
             } else {
-                $managerUserGroup = $userGroupDao->getDefaultByRoleId($row->context_id, ROLE_ID_MANAGER);
+                $managerUserGroup = $userGroupDao->getDefaultByRoleId($row->context_id, Role::ROLE_ID_MANAGER);
                 $managerUsers = $userGroupDao->getUsersById($managerUserGroup->getId(), $row->context_id);
                 $userId = $managerUsers->next()->getId();
             }

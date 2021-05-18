@@ -19,6 +19,7 @@ namespace APP\template;
 
 use PKP\template\PKPTemplateManager;
 use PKP\db\DAORegistry;
+use PKP\security\Role;
 
 use APP\core\Application;
 use APP\i18n\AppLocale;
@@ -133,7 +134,7 @@ class TemplateManager extends PKPTemplateManager
         $menu = (array) $this->getState('menu');
 
         // Add catalog after submissions items
-        if (in_array(ROLE_ID_MANAGER, $userRoles)) {
+        if (in_array(Role::ROLE_ID_MANAGER, $userRoles)) {
             $catalogLink = [
                 'name' => __('navigation.catalog'),
                 'url' => $router->url($request, null, 'manageCatalog'),

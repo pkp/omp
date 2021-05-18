@@ -18,6 +18,7 @@ use PKP\submission\SubmissionFile;
 use PKP\linkAction\request\AjaxModal;
 use PKP\controllers\grid\DataObjectGridCellProvider;
 use PKP\controllers\grid\GridHandler;
+use PKP\security\Role;
 
 // FIXME: Add namespacing
 import('lib.pkp.controllers.grid.files.FileNameGridColumn');
@@ -187,7 +188,7 @@ class PublicationFormatGridCellProvider extends DataObjectGridCellProvider
                             $request,
                             $this->getSubmissionId(),
                             WORKFLOW_STAGE_ID_PRODUCTION,
-                            [ROLE_ID_MANAGER, ROLE_ID_SUB_EDITOR, ROLE_ID_ASSISTANT],
+                            [Role::ROLE_ID_MANAGER, Role::ROLE_ID_SUB_EDITOR, Role::ROLE_ID_ASSISTANT],
                             SubmissionFile::SUBMISSION_FILE_PROOF,
                             ASSOC_TYPE_REPRESENTATION,
                             $data->getId()

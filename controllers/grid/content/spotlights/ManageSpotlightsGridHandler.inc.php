@@ -28,6 +28,7 @@ use PKP\linkAction\request\AjaxModal;
 use PKP\core\JSONMessage;
 use PKP\submission\PKPSubmission;
 use PKP\security\authorization\ContextAccessPolicy;
+use PKP\security\Role;
 
 use APP\notification\NotificationManager;
 
@@ -45,7 +46,7 @@ class ManageSpotlightsGridHandler extends GridHandler
     {
         parent::__construct();
         $this->addRoleAssignment(
-            [ROLE_ID_MANAGER],
+            [Role::ROLE_ID_MANAGER],
             ['fetchGrid', 'fetchRow', 'addSpotlight', 'editSpotlight',
                 'updateSpotlight', 'deleteSpotlight', 'itemAutocomplete']
         );

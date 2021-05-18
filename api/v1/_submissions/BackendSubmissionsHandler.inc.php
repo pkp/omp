@@ -16,8 +16,11 @@
 
 import('lib.pkp.api.v1._submissions.PKPBackendSubmissionsHandler');
 
-use \APP\submission\SubmissionDAO;
-use \APP\submission\Submission;
+use PKP\plugins\HookRegistry;
+use PKP\security\Role;
+
+use APP\submission\SubmissionDAO;
+use APP\submission\Submission;
 
 class BackendSubmissionsHandler extends PKPBackendSubmissionsHandler
 {
@@ -26,7 +29,7 @@ class BackendSubmissionsHandler extends PKPBackendSubmissionsHandler
      */
     public function __construct()
     {
-        \HookRegistry::register('API::_submissions::params', [$this, 'addAppSubmissionsParams']);
+        HookRegistry::register('API::_submissions::params', [$this, 'addAppSubmissionsParams']);
 
         $rootPattern = '/{contextPath}/api/{version}/_submissions';
         $this->_endpoints = [
@@ -35,16 +38,16 @@ class BackendSubmissionsHandler extends PKPBackendSubmissionsHandler
                     'pattern' => "{$rootPattern}/saveDisplayFlags",
                     'handler' => [$this, 'saveDisplayFlags'],
                     'roles' => [
-                        ROLE_ID_SITE_ADMIN,
-                        ROLE_ID_MANAGER,
+                        Role::ROLE_ID_SITE_ADMIN,
+                        Role::ROLE_ID_MANAGER,
                     ],
                 ],
                 [
                     'pattern' => "{$rootPattern}/saveFeaturedOrder",
                     'handler' => [$this, 'saveFeaturedOrder'],
                     'roles' => [
-                        ROLE_ID_SITE_ADMIN,
-                        ROLE_ID_MANAGER,
+                        Role::ROLE_ID_SITE_ADMIN,
+                        Role::ROLE_ID_MANAGER,
                     ],
                 ],
             ],
@@ -53,8 +56,8 @@ class BackendSubmissionsHandler extends PKPBackendSubmissionsHandler
                     'pattern' => "{$rootPattern}/addToCatalog",
                     'handler' => [$this, 'addToCatalog'],
                     'roles' => [
-                        ROLE_ID_SITE_ADMIN,
-                        ROLE_ID_MANAGER,
+                        Role::ROLE_ID_SITE_ADMIN,
+                        Role::ROLE_ID_MANAGER,
                     ],
                 ],
             ],

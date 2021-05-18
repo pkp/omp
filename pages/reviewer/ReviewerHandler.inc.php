@@ -15,6 +15,7 @@
 
 import('lib.pkp.pages.reviewer.PKPReviewerHandler');
 
+use PKP\security\Role;
 use PKP\security\authorization\SubmissionAccessPolicy;
 
 class ReviewerHandler extends PKPReviewerHandler
@@ -26,7 +27,7 @@ class ReviewerHandler extends PKPReviewerHandler
     {
         parent::__construct();
         $this->addRoleAssignment(
-            ROLE_ID_REVIEWER,
+            Role::ROLE_ID_REVIEWER,
             [
                 'submission', 'step', 'saveStep',
                 'showDeclineReview', 'saveDeclineReview', 'downloadFile'

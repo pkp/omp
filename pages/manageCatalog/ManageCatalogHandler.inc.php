@@ -13,14 +13,14 @@
  * @brief Handle requests for catalog management.
  */
 
-import('classes.handler.Handler');
-
 use PKP\core\JSONMessage;
 use PKP\submission\PKPSubmissionDAO;
 use PKP\submission\PKPSubmission;
 use PKP\security\authorization\PKPSiteAccessPolicy;
+use PKP\security\Role;
 
 use APP\template\TemplateManager;
+use APP\handler\Handler;
 
 class ManageCatalogHandler extends Handler
 {
@@ -35,7 +35,7 @@ class ManageCatalogHandler extends Handler
         parent::__construct();
 
         $this->addRoleAssignment(
-            [ROLE_ID_SUB_EDITOR, ROLE_ID_MANAGER],
+            [Role::ROLE_ID_SUB_EDITOR, Role::ROLE_ID_MANAGER],
             ['index']
         );
     }

@@ -13,14 +13,14 @@
  * @brief Handle requests for editors to make a decision
  */
 
-import('lib.pkp.classes.controllers.modals.editorDecision.PKPEditorDecisionHandler');
-
+use PKP\controllers\modals\editorDecision\PKPEditorDecisionHandler;
 use PKP\core\JSONMessage;
 use PKP\security\authorization\EditorDecisionAccessPolicy;
 use PKP\notification\PKPNotification;
+use PKP\security\Role;
+use PKP\workflow\WorkflowStageDAO;
 
 use APP\workflow\EditorDecisionActionsManager;
-
 
 class EditorDecisionHandler extends PKPEditorDecisionHandler
 {
@@ -32,7 +32,7 @@ class EditorDecisionHandler extends PKPEditorDecisionHandler
         parent::__construct();
 
         $this->addRoleAssignment(
-            [ROLE_ID_SUB_EDITOR, ROLE_ID_MANAGER],
+            [Role::ROLE_ID_SUB_EDITOR, Role::ROLE_ID_MANAGER],
             array_merge([
                 'internalReview', 'saveInternalReview',
                 'externalReview', 'saveExternalReview',
@@ -75,9 +75,9 @@ class EditorDecisionHandler extends PKPEditorDecisionHandler
         // FIXME: this can probably all be managed somewhere.
         $stageId = $this->getAuthorizedContextObject(ASSOC_TYPE_WORKFLOW_STAGE);
         if ($stageId == WORKFLOW_STAGE_ID_INTERNAL_REVIEW) {
-            $redirectOp = WORKFLOW_STAGE_PATH_INTERNAL_REVIEW;
+            $redirectOp = WorkflowStageDAO::WORKFLOW_STAGE_PATH_INTERNAL_REVIEW;
         } elseif ($stageId == WORKFLOW_STAGE_ID_EXTERNAL_REVIEW) {
-            $redirectOp = WORKFLOW_STAGE_PATH_EXTERNAL_REVIEW;
+            $redirectOp = WorkflowStageDAO::WORKFLOW_STAGE_PATH_EXTERNAL_REVIEW;
         } else {
             $redirectOp = null; // Suppress warn
             assert(false);
@@ -114,7 +114,7 @@ class EditorDecisionHandler extends PKPEditorDecisionHandler
             $args,
             $request,
             'InitiateInternalReviewForm',
-            WORKFLOW_STAGE_PATH_INTERNAL_REVIEW,
+            WorkflowStageDAO::WORKFLOW_STAGE_PATH_INTERNAL_REVIEW,
             EditorDecisionActionsManager::SUBMISSION_EDITOR_DECISION_INTERNAL_REVIEW
         );
     }
@@ -138,15 +138,14 @@ class EditorDecisionHandler extends PKPEditorDecisionHandler
         $redirectOp = null;
 
         if ($decision == EditorDecisionActionsManager::SUBMISSION_EDITOR_DECISION_ACCEPT) {
-            $redirectOp = WORKFLOW_STAGE_PATH_EDITING;
+            $redirectOp = WorkflowStageDAO::WORKFLOW_STAGE_PATH_EDITING;
         } elseif ($decision == EditorDecisionActionsManager::SUBMISSION_EDITOR_DECISION_EXTERNAL_REVIEW) {
-            $redirectOp = WORKFLOW_STAGE_PATH_EXTERNAL_REVIEW;
+            $redirectOp = WorkflowStageDAO::WORKFLOW_STAGE_PATH_EXTERNAL_REVIEW;
         } elseif ($decision == EditorDecisionActionsManager::SUBMISSION_EDITOR_DECISION_SEND_TO_PRODUCTION) {
-            $redirectOp = WORKFLOW_STAGE_PATH_PRODUCTION;
+            $redirectOp = WorkflowStageDAO::WORKFLOW_STAGE_PATH_PRODUCTION;
         }
 
         // Make sure user has access to the workflow stage.
-        import('lib.pkp.classes.workflow.WorkflowStageDAO');
         $redirectWorkflowStage = WorkflowStageDAO::getIdFromPath($redirectOp);
         $userAccessibleWorkflowStages = $this->getAuthorizedContextObject(ASSOC_TYPE_ACCESSIBLE_WORKFLOW_STAGES);
         if (!array_key_exists($redirectWorkflowStage, $userAccessibleWorkflowStages)) {

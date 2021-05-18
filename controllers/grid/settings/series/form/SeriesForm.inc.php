@@ -18,6 +18,7 @@ import('lib.pkp.controllers.grid.settings.sections.form.PKPSectionForm');
 
 use PKP\file\TemporaryFileManager;
 use PKP\file\ContextFileManager;
+use PKP\security\Role;
 
 use APP\template\TemplateManager;
 
@@ -167,7 +168,7 @@ class SeriesForm extends PKPSectionForm
         // Series Editors
         $usersIterator = Services::get('user')->getMany([
             'contextId' => $context->getId(),
-            'roleIds' => ROLE_ID_SUB_EDITOR,
+            'roleIds' => Role::ROLE_ID_SUB_EDITOR,
         ]);
         $availableSubeditors = [];
         foreach ($usersIterator as $user) {
@@ -177,7 +178,7 @@ class SeriesForm extends PKPSectionForm
         if ($this->getSeriesId()) {
             $assignedToSeries = Services::get('user')->getIds([
                 'contextId' => $context->getId(),
-                'roleIds' => ROLE_ID_SUB_EDITOR,
+                'roleIds' => Role::ROLE_ID_SUB_EDITOR,
                 'assignedToSection' => (int) $this->getSeriesId(),
             ]);
         }
@@ -341,7 +342,7 @@ class SeriesForm extends PKPSectionForm
         if (!empty($subEditors)) {
             $roleDao = DAORegistry::getDAO('RoleDAO'); /* @var $roleDao RoleDAO */
             foreach ($subEditors as $subEditor) {
-                if ($roleDao->userHasRole($series->getContextId(), $subEditor, ROLE_ID_SUB_EDITOR)) {
+                if ($roleDao->userHasRole($series->getContextId(), $subEditor, Role::ROLE_ID_SUB_EDITOR)) {
                     $subEditorsDao->insertEditor($series->getContextId(), $series->getId(), $subEditor, ASSOC_TYPE_SERIES);
                 }
             }

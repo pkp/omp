@@ -13,12 +13,12 @@
  * @brief Handle AJAX operations for review round tabs on review stages workflow pages.
  */
 
-use APP\handler\Handler;
 
-// Import the base class.
-import('lib.pkp.classes.controllers.tab.workflow.PKPReviewRoundTabHandler');
-
+use PKP\controllers\tab\workflow\PKPReviewRoundTabHandler;
+use PKP\security\Role;
 use PKP\security\authorization\WorkflowStageAccessPolicy;
+
+use APP\handler\Handler;
 
 class ReviewRoundTabHandler extends PKPReviewRoundTabHandler
 {
@@ -29,7 +29,7 @@ class ReviewRoundTabHandler extends PKPReviewRoundTabHandler
     {
         parent::__construct();
         $this->addRoleAssignment(
-            [ROLE_ID_SUB_EDITOR, ROLE_ID_MANAGER, ROLE_ID_ASSISTANT],
+            [Role::ROLE_ID_SUB_EDITOR, Role::ROLE_ID_MANAGER, Role::ROLE_ID_ASSISTANT],
             ['internalReviewRound', 'externalReviewRound']
         );
     }

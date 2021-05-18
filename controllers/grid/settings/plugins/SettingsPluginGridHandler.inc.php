@@ -16,13 +16,14 @@
 use PKP\security\authorization\ContextAccessPolicy;
 use PKP\security\authorization\PluginAccessPolicy;
 use PKP\controllers\grid\plugins\PluginGridHandler;
+use PKP\security\Role;
 
 class SettingsPluginGridHandler extends PluginGridHandler {
 	/**
 	 * Constructor
 	 */
 	function __construct() {
-		$roles = array(ROLE_ID_SITE_ADMIN, ROLE_ID_MANAGER);
+		$roles = array(Role::ROLE_ID_SITE_ADMIN, Role::ROLE_ID_MANAGER);
 		$this->addRoleAssignment($roles, array('manage'));
 		parent::__construct($roles);
 	}
@@ -46,7 +47,7 @@ class SettingsPluginGridHandler extends PluginGridHandler {
 		$userRoles = $this->getAuthorizedContextObject(ASSOC_TYPE_USER_ROLES);
 
 		$showSitePlugins = false;
-		if ($singlePress && in_array(ROLE_ID_SITE_ADMIN, $userRoles)) {
+		if ($singlePress && in_array(Role::ROLE_ID_SITE_ADMIN, $userRoles)) {
 			$showSitePlugins = true;
 		}
 

@@ -24,6 +24,7 @@ use PKP\linkAction\request\AjaxModal;
 use PKP\linkAction\LinkAction;
 use PKP\core\JSONMessage;
 use PKP\security\authorization\SubmissionAccessPolicy;
+use PKP\security\Role;
 
 use APP\notification\NotificationManager;
 
@@ -39,7 +40,7 @@ class RepresentativesGridHandler extends CategoryGridHandler
     {
         parent::__construct();
         $this->addRoleAssignment(
-            [ROLE_ID_MANAGER, ROLE_ID_SUB_EDITOR, ROLE_ID_ASSISTANT],
+            [Role::ROLE_ID_MANAGER, Role::ROLE_ID_SUB_EDITOR, Role::ROLE_ID_ASSISTANT],
             ['fetchGrid', 'fetchCategory', 'fetchRow', 'addRepresentative', 'editRepresentative',
                 'updateRepresentative', 'deleteRepresentative']
         );
