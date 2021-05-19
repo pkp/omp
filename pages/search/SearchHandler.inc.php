@@ -13,10 +13,9 @@
  * @brief Handle site index requests.
  */
 
-import('classes.search.MonographSearch');
-import('classes.handler.Handler');
-
-use \APP\template\TemplateManager;
+use APP\search\MonographSearch;
+use APP\handler\Handler;
+use APP\template\TemplateManager;
 
 class SearchHandler extends Handler
 {
