@@ -22,10 +22,10 @@
  */
 
 use PKP\oai\OAI;
+use PKP\oai\OAIResumptionToken;
 use PKP\oai\OAIRepository;
 
-// FIXME: Add namespacing
-import('classes.oai.omp.OAIDAO');
+use APP\oai\omp\OAIDAO;
 
 class PressOAI extends OAI
 {
