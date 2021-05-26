@@ -14,7 +14,7 @@
 
 namespace APP\services;
 
-use \PKP\db\HookRegistry;
+use \PKP\plugins\HookRegistry;
 use \PKP\submission\SubmissionFile;
 
 class SubmissionFileService extends \PKP\services\PKPSubmissionFileService
