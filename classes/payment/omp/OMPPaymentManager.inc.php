@@ -21,7 +21,6 @@ namespace APP\payment\omp;
 use PKP\submission\SubmissionFile;
 use PKP\payment\QueuedPayment;
 use PKP\payment\PaymentManager;
-use PKP\submission\SubmissionFile;
 use PKP\db\DAORegistry;
 use PKP\plugins\PluginRegistry;
 
