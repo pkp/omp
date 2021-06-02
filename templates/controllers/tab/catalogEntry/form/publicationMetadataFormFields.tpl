@@ -32,14 +32,6 @@
 	<input type="hidden" name="displayedInContainer" value="{$formParams.displayedInContainer|escape}" />
 	<input type="hidden" name="tab" value="publication" />
 
-	{if !$pubObject->getRemoteURL()}
-		{foreach from=$pubIdPlugins item=pubIdPlugin}
-			{assign var=pubIdMetadataFile value=$pubIdPlugin->getPubIdMetadataFile()}
-			{assign var=canBeAssigned value=$pubIdPlugin->canBeAssigned($pubObject)}
-			{include file="$pubIdMetadataFile" pubObject=$pubObject canBeAssigned=$canBeAssigned}
-		{/foreach}
-	{/if}
-
 	{fbvFormArea id="productIdentifier"}
 		{fbvFormSection}
 			<!-- Product Identification Codes -->
