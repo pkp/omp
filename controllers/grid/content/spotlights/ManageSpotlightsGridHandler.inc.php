@@ -18,17 +18,18 @@ import('controllers.grid.content.spotlights.SpotlightsGridCellProvider');
 import('controllers.grid.content.spotlights.SpotlightsGridRow');
 import('controllers.grid.content.spotlights.form.SpotlightForm');
 
-use PKP\controllers\grid\GridHandler;
+use APP\facades\Repo;
+use APP\notification\NotificationManager;
+use APP\spotlight\Spotlight;
+use APP\submission\Submission;
 use PKP\controllers\grid\GridColumn;
-use PKP\linkAction\LinkAction;
-use PKP\linkAction\request\AjaxModal;
+use PKP\controllers\grid\GridHandler;
 use PKP\core\JSONMessage;
-use PKP\submission\PKPSubmission;
+use PKP\linkAction\LinkAction;
+
+use PKP\linkAction\request\AjaxModal;
 use PKP\security\authorization\ContextAccessPolicy;
 use PKP\security\Role;
-
-use APP\spotlight\Spotlight;
-use APP\notification\NotificationManager;
 
 class ManageSpotlightsGridHandler extends GridHandler
 {
@@ -346,18 +347,18 @@ class ManageSpotlightsGridHandler extends GridHandler
         // get the items that match.
         $matches = [];
 
-        $args = [
-            'status' => PKPSubmission::STATUS_PUBLISHED,
-            'contextId' => $press->getId(),
-            'count' => 100
-        ];
+        $collector = Repo::submission()
+            ->getCollector()
+            ->filterByContextIds([$press->getId()])
+            ->filterByStatus([Submission::STATUS_PUBLISHED])
+            ->limit(100);
 
         if ($name) {
-            $args['searchPhrase'] = $name;
+            $collector->searchPhrase($name);
         }
 
-        $submissionsIterator = Services::get('submission')->getMany($args);
-        foreach ($submissionsIterator as $submission) {
+        $submissions = Repo::submission()->getMany($collector);
+        foreach ($submissions as $submission) {
             $matches[] = ['label' => $submission->getLocalizedTitle(), 'value' => $submission->getId() . ':' . Spotlight::SPOTLIGHT_TYPE_BOOK];
         }
 

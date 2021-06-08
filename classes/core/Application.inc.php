@@ -18,6 +18,7 @@
 
 namespace APP\core;
 
+use APP\publicationFormat\PublicationFormatDAO;
 use PKP\core\PKPApplication;
 use PKP\db\DAORegistry;
 
@@ -116,7 +117,6 @@ class Application extends \PKP\core\PKPApplication
             'LayoutAssignmentDAO' => 'submission\layoutAssignment\LayoutAssignmentDAO',
             'MarketDAO' => 'APP\publicationFormat\MarketDAO',
             'MetricsDAO' => 'PKP\statistics\PKPMetricsDAO',
-            'SubmissionDAO' => 'APP\submission\SubmissionDAO',
             'MonographFileEmailLogDAO' => 'APP\log\MonographFileEmailLogDAO',
             'MonographSearchDAO' => 'APP\search\MonographSearchDAO',
             'NewReleaseDAO' => 'APP\press\NewReleaseDAO',
@@ -184,7 +184,7 @@ class Application extends \PKP\core\PKPApplication
     /**
      * Get the representation DAO.
      */
-    public static function getRepresentationDAO()
+    public static function getRepresentationDAO(): PublicationFormatDAO
     {
         return DAORegistry::getDAO('PublicationFormatDAO');
     }

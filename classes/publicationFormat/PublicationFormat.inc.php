@@ -17,11 +17,12 @@
 
 namespace APP\publicationFormat;
 
-use PKP\submission\SubmissionFile;
-use PKP\submission\Representation;
+use APP\core\Services;
+use APP\facades\Repo;
 use PKP\db\DAORegistry;
 
-use APP\core\Services;
+use PKP\submission\Representation;
+use PKP\submission\SubmissionFile;
 
 class PublicationFormat extends Representation
 {
@@ -307,7 +308,7 @@ class PublicationFormat extends Representation
     public function getCalculatedFileSize()
     {
         $fileSize = 0;
-        $publication = Services::get('publication')->get($this->getData('publicationId'));
+        $publication = Repo::publication()->get((int) $this->getData('publicationId'));
         import('lib.pkp.classes.submission.SubmissionFile'); // File constants
         $stageMonographFiles = Services::get('submissionFile')->getMany([
             'submissionIds' => [$publication->getData('submissionId')],

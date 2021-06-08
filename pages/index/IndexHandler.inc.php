@@ -15,6 +15,7 @@
 
 import('lib.pkp.pages.index.PKPIndexHandler');
 
+use APP\facades\Repo;
 use APP\spotlight\Spotlight;
 use APP\template\TemplateManager;
 
@@ -123,7 +124,7 @@ class IndexHandler extends PKPIndexHandler
             $featuredMonographs = [];
             if (!empty($featuredMonographIds)) {
                 foreach ($featuredMonographIds as $submissionId => $value) {
-                    $featuredMonographs[] = Services::get('submission')->get($submissionId);
+                    $featuredMonographs[] = Repo::submission()->get($submissionId);
                 }
             }
             $templateMgr->assign('featuredMonographs', $featuredMonographs);

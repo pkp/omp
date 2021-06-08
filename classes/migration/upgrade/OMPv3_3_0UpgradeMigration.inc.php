@@ -16,8 +16,8 @@ use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Schema;
 
-use \PKP\services\PKPSchemaService;
-use \PKP\submission\SubmissionFile;
+use PKP\services\PKPSchemaService;
+use PKP\submission\SubmissionFile;
 
 class OMPv3_3_0UpgradeMigration extends Migration
 {
@@ -77,7 +77,15 @@ class OMPv3_3_0UpgradeMigration extends Migration
     {
 
         // Convert settings where type can be retrieved from schema.json
-        $schemaDAOs = ['SiteDAO', 'AnnouncementDAO', 'AuthorDAO', 'PressDAO', 'EmailTemplateDAO', 'PublicationDAO', 'SubmissionDAO'];
+        $schemaDAOs = [
+            'SiteDAO',
+            \PKP\announcement\DAO::class,
+            'AuthorDAO',
+            'PressDAO',
+            'EmailTemplateDAO',
+            \APP\publication\DAO::class,
+            \APP\submission\DAO::class
+        ];
         $processedTables = [];
         foreach ($schemaDAOs as $daoName) {
             $dao = DAORegistry::getDAO($daoName);

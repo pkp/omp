@@ -17,9 +17,10 @@
  * into/from a PublicationFormat object.
  */
 
-use PKP\metadata\MetadataDataObjectAdapter;
-
+use APP\facades\Repo;
 use APP\submission\Submission;
+
+use PKP\metadata\MetadataDataObjectAdapter;
 
 class Dc11SchemaPublicationFormatAdapter extends MetadataDataObjectAdapter
 {
@@ -70,8 +71,8 @@ class Dc11SchemaPublicationFormatAdapter extends MetadataDataObjectAdapter
         // contains cached entities and avoids extra database access if this
         // adapter is called from an OAI context.
         $oaiDao = DAORegistry::getDAO('OAIDAO'); /* @var $oaiDao OAIDAO */
-        $publication = Services::get('publication')->get($publicationFormat->getData('publicationId'));
-        $monograph = Services::get('submission')->get($publication->getData('submissionId'));
+        $publication = Repo::publication()->get($publicationFormat->getData('publicationId'));
+        $monograph = Repo::submission()->get($publication->getData('submissionId'));
         $press = $oaiDao->getPress($monograph->getPressId());
         $series = $oaiDao->getSeries($monograph->getSeriesId()); /* @var $series Series */
         $dc11Description = $this->instantiateMetadataDescription();

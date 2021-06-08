@@ -13,15 +13,15 @@
  * @brief CSV import/export plugin
  */
 
-use PKP\submission\SubmissionFile;
-use PKP\submission\PKPSubmission;
-use PKP\file\TemoraryFileManager;
+use APP\facades\Repo;
+use APP\submission\Submission;
+use APP\template\TemplateManager;
 use PKP\file\FileManager;
 use PKP\plugins\ImportExportPlugin;
 use PKP\security\Role;
 
-use APP\template\TemplateManager;
-use APP\submission\Submission;
+use PKP\submission\PKPSubmission;
+use PKP\submission\SubmissionFile;
 
 class CSVImportExportPlugin extends ImportExportPlugin
 {
@@ -116,7 +116,6 @@ class CSVImportExportPlugin extends ImportExportPlugin
                 exit();
             }
 
-            $submissionDao = DAORegistry::getDAO('SubmissionDAO'); /* @var $submissionDao SubmissionDAO */
             $authorDao = DAORegistry::getDAO('AuthorDAO'); /* @var $authorDao AuthorDAO */
             $pressDao = Application::getContextDAO();
             $userGroupDao = DAORegistry::getDAO('UserGroupDAO'); /* @var $userGroupDao UserGroupDAO */
@@ -153,7 +152,7 @@ class CSVImportExportPlugin extends ImportExportPlugin
                         continue;
                     }
                     if (in_array($locale, $supportedLocales)) {
-                        $submission = $submissionDao->newDataObject();
+                        $submission = Repo::submission()->newDataObject();
                         $submission->setContextId($press->getId());
                         $submission->setUserId($user->getId());
                         $submission->stampLastActivity();
@@ -169,7 +168,7 @@ class CSVImportExportPlugin extends ImportExportPlugin
                             echo __('plugins.importexport.csv.noSeries', ['seriesPath' => $seriesPath]) . "\n";
                         }
 
-                        $submissionId = $submissionDao->insertObject($submission);
+                        $submissionId = Repo::submission()->dao->insert($submission);
 
                         $contactEmail = $press->getContactEmail();
                         $authorString = trim($authorString, '"'); // remove double quotes if present.
@@ -205,7 +204,7 @@ class CSVImportExportPlugin extends ImportExportPlugin
                         } // Authors done.
 
                         $submission->setTitle($title, $locale);
-                        $submissionDao->updateObject($submission);
+                        Repo::submission()->dao->update($submission);
 
                         // Submission is done.  Create a publication format for it.
                         $publicationFormat = $publicationFormatDao->newDataObject();

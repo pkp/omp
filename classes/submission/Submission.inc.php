@@ -14,18 +14,17 @@
  * @class Submission
  * @ingroup submission
  *
- * @see SubmissionDAO
+ * @see DAO
  *
  * @brief Class for a Submission.
  */
 
 namespace APP\submission;
 
-
-use PKP\submission\PKPSubmission;
+use APP\core\Services;
 use PKP\db\DAORegistry;
 
-use APP\core\Services;
+use PKP\submission\PKPSubmission;
 
 import('classes.monograph.Author');
 

@@ -15,19 +15,19 @@
 
 namespace APP\install;
 
-use Illuminate\Support\Facades\DB;
-
-use PKP\identity\Identity;
-use PKP\submission\SubmissionFile;
-use PKP\file\FileManager;
-use PKP\install\Installer;
-use PKP\db\DAORegistry;
-use PKP\core\PKPString;
-use PKP\security\Role;
-
 use APP\core\Application;
+
+use APP\facades\Repo;
 use APP\i18n\AppLocale;
-use APP\file\PublicFileManager;
+use Illuminate\Support\Facades\DB;
+use PKP\core\PKPString;
+use PKP\db\DAORegistry;
+use PKP\file\FileManager;
+use PKP\identity\Identity;
+
+use PKP\install\Installer;
+use PKP\security\Role;
+use PKP\submission\SubmissionFile;
 
 class Upgrade extends Installer
 {
@@ -69,7 +69,6 @@ class Upgrade extends Installer
     public function fixFilenames($upgrade, $params, $dryrun = false)
     {
         $pressDao = DAORegistry::getDAO('PressDAO'); /* @var $pressDao PressDAO */
-        $submissionDao = DAORegistry::getDAO('SubmissionDAO'); /* @var $submissionDao SubmissionDAO */
         DAORegistry::getDAO('GenreDAO'); // Load constants
         $siteDao = DAORegistry::getDAO('SiteDAO'); /* @var $siteDao SiteDAO */
         $site = $siteDao->getSite();
@@ -78,11 +77,15 @@ class Upgrade extends Installer
 
         $contexts = $pressDao->getAll();
         while ($context = $contexts->next()) {
-            $submissions = $submissionDao->getByContextId($context->getId());
-            while ($submission = $submissions->next()) {
-                $submissionDir = Services::get('submissionFile')->getSubmissionDir($context->getId(), $submission->getId());
+            $submissionIds = Repo::submission()->getIds(
+                Repo::submission()
+                    ->getCollector()
+                    ->filterByContextIds([$context->getId()])
+            );
+            foreach ($submissionIds as $submissionId) {
+                $submissionDir = Services::get('submissionFile')->getSubmissionDir($context->getId(), $submissionId);
                 $rows = DB::table('submission_files')
-                    ->where('submission_id', '=', $submission->getId())
+                    ->where('submission_id', '=', $submissionId)
                     ->get();
                 foreach ($rows as $row) {
                     $generatedFilename = sprintf(
@@ -485,13 +488,12 @@ class Upgrade extends Installer
      */
     public function convertCommentsToEditor()
     {
-        $submissionDao = DAORegistry::getDAO('SubmissionDAO'); /* @var $submissionDao SubmissionDAO */
         $stageAssignmetDao = DAORegistry::getDAO('StageAssignmentDAO'); /* @var $stageAssignmetDao StageAssignmentDAO */
         $queryDao = DAORegistry::getDAO('QueryDAO'); /* @var $queryDao QueryDAO */
         $noteDao = DAORegistry::getDAO('NoteDAO'); /* @var $noteDao NoteDAO */
         $userGroupDao = DAORegistry::getDAO('UserGroupDAO'); /* @var $userGroupDao UserGroupDAO */
 
-        $commentsResult = $submissionDao->retrieve(
+        $commentsResult = Repo::submission()->dao->deprecatedDao->retrieve(
             'SELECT s.submission_id, s.context_id, s.comments_to_ed, s.date_submitted
 			FROM submissions_tmp s
 			WHERE s.comments_to_ed IS NOT NULL AND s.comments_to_ed != \'\''
@@ -537,7 +539,7 @@ class Upgrade extends Installer
         }
 
         // remove temporary table
-        $submissionDao->update('DROP TABLE submissions_tmp');
+        Repo::submission()->dao->deprecatedDao->update('DROP TABLE submissions_tmp');
 
         return true;
     }
@@ -784,8 +786,7 @@ class Upgrade extends Installer
         $publicFileManager = new \PublicFileManager();
         $contexts = [];
 
-        $submissionDao = DAORegistry::getDAO('SubmissionDAO'); /* @var $submissionDao SubmissionDAO */
-        $result = $submissionDao->retrieve(
+        $result = Repo::submission()->dao->deprecatedDao->retrieve(
             'SELECT	ps.submission_id as submission_id,
 				ps.cover_image as cover_image,
 				s.context_id as context_id
@@ -842,9 +843,7 @@ class Upgrade extends Installer
             if (isset($context)) {
                 foreach ($context->getSupportedFormLocales() as $localeKey) {
                     $newCoverPathInfo = pathinfo($newCoverPath);
-                    $submissionDao = DAORegistry::getDAO('SubmissionDAO');
-                    /* @var $submissionDao SubmissionDAO */
-                    $submissionDao->update(
+                    Repo::submission()->dao->deprecatedDao->update(
                         'INSERT INTO submission_settings (submission_id, setting_name, setting_value, setting_type, locale)
 						VALUES (?, ?, ?, ?, ?)',
                         [
@@ -906,4 +905,3 @@ class Upgrade extends Installer
 if (!PKP_STRICT_MODE) {
     class_alias('\APP\install\Upgrade', '\Upgrade');
 }
-

@@ -15,13 +15,13 @@
 
 namespace APP\services;
 
-use PKP\file\FileManager;
-use PKP\file\ContextFileManager;
-use PKP\db\DAORegistry;
-
-use APP\services\Services;
+use APP\facades\Repo;
 use APP\file\PublicFileManager;
 use APP\submission\Submission;
+use PKP\db\DAORegistry;
+
+use PKP\file\ContextFileManager;
+use PKP\file\FileManager;
 
 class ContextService extends \PKP\services\PKPContextService
 {
@@ -140,8 +140,7 @@ class ContextService extends \PKP\services\PKPContextService
         $seriesDao = DAORegistry::getDAO('SeriesDAO');
         $seriesDao->deleteByPressId($context->getId());
 
-        $submissionDao = DAORegistry::getDAO('SubmissionDAO');
-        $submissionDao->deleteByContextId($context->getId());
+        Repo::submission()->deleteByContextId($context->getId());
 
         $featureDao = DAORegistry::getDAO('FeatureDAO');
         $featureDao->deleteByAssoc(ASSOC_TYPE_PRESS, $context->getId());
@@ -193,18 +192,26 @@ class ContextService extends \PKP\services\PKPContextService
         $objectDaos = [
             DAORegistry::getDAO('CategoryDAO'),
             DAORegistry::getDAO('SeriesDAO'),
-            DAORegistry::getDAO('SubmissionDAO'),
+            Repo::submission()->dao,
         ];
         foreach ($objectDaos as $objectDao) {
-            $objects = $objectDao->getByContextId($context->getId());
+            if ($objectDao instanceof \PKP\submission\DAO) {
+                $objects = Repo::submission()->getMany(
+                    Repo::submission()
+                        ->getCollector()
+                        ->filterByContextIds([$context->getId()])
+                );
+            } else {
+                $objects = $objectDao->getByContextId($context->getId());
+            }
             while ($object = $objects->next()) {
                 if ($object instanceof Submission) {
                     foreach ($object->getData('publications') as $publication) {
                         foreach ((array) $publication->getData('coverImage') as $coverImage) {
                             $coverImageFilePath = $publicFileManager->getContextFilesPath($context->getId()) . '/' . $coverImage['uploadName'];
-                            Services::get('publication')->makeThumbnail(
+                            Repo::publication()->makeThumbnail(
                                 $coverImageFilePath,
-                                Services::get('publication')->getThumbnailFileName($coverImage['uploadName']),
+                                Repo::publication()->getThumbnailFileName($coverImage['uploadName']),
                                 $maxWidth,
                                 $maxHeight
                             );

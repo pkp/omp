@@ -1,29 +1,25 @@
 <?php
 /**
- * @file classes/publication/PublicationDAO.inc.php
+ * @file classes/publication/DAO.inc.php
  *
  * Copyright (c) 2014-2021 Simon Fraser University
- * Copyright (c) 2003-2021 John Willinsky
+ * Copyright (c) 2000-2021 John Willinsky
  * Distributed under the GNU GPL v3. For full terms see the file docs/COPYING.
  *
- * @class PublicationDAO
- * @ingroup core
+ * @class publication
  *
- * @see DAO
- *
- * @brief Add OMP-specific functions for PKPPublicationDAO
+ * @brief Read and write publications to the database.
  */
 
 namespace APP\publication;
 
-use \PKP\publication\PKPPublicationDAO;
-use \PKP\db\DAORegistry;
+use APP\core\Application;
+use PKP\db\DAORegistry;
+use stdClass;
 
-use \APP\core\Application;
-
-class PublicationDAO extends PKPPublicationDAO
+class DAO extends \PKP\publication\DAO
 {
-    /** @copydoc SchemaDAO::$primaryTableColumns */
+    /** @copydoc EntityDAO::$primaryTableColumns */
     public $primaryTableColumns = [
         'id' => 'publication_id',
         'accessStatus' => 'access_status',
@@ -43,17 +39,11 @@ class PublicationDAO extends PKPPublicationDAO
     /**
      * @copydoc SchemaDAO::_fromRow()
      */
-    public function _fromRow($primaryRow)
+    public function fromRow(stdClass $primaryRow): Publication
     {
-        $publication = parent::_fromRow($primaryRow);
-
+        $publication = parent::fromRow($primaryRow);
         $publication->setData('publicationFormats', Application::getRepresentationDao()->getByPublicationId($publication->getId())->toArray());
         $publication->setData('chapters', DAORegistry::getDAO('ChapterDAO')->getByPublicationId($publication->getId())->toArray());
-
         return $publication;
     }
-}
-
-if (!PKP_STRICT_MODE) {
-    class_alias('\APP\publication\PublicationDAO', '\PublicationDAO');
 }

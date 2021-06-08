@@ -15,9 +15,10 @@
 
 namespace APP\workflow;
 
-use PKP\workflow\PKPEditorDecisionActionsManager;
-use PKP\submission\PKPSubmission;
+use APP\facades\Repo;
 use PKP\db\DAORegistry;
+use PKP\submission\PKPSubmission;
+use PKP\workflow\PKPEditorDecisionActionsManager;
 
 class EditorDecisionActionsManager extends PKPEditorDecisionActionsManager
 {
@@ -84,8 +85,7 @@ class EditorDecisionActionsManager extends PKPEditorDecisionActionsManager
         $editorDecisions = $editDecisionDao->getEditorDecisions($reviewRound->getSubmissionId(), $reviewRound->getStageId(), $reviewRound->getRound());
 
         if (empty($decisions)) {
-            $submissionDao = DAORegistry::getDAO('SubmissionDAO'); /* @var $submissionDao SubmissionDAO */
-            $submission = $submissionDao->getById($reviewRound->getSubmissionId());
+            $submission = Repo::submission()->get((int) $reviewRound->getSubmissionId());
             $decisions = array_keys($this->_internalReviewStageDecisions($context, $submission));
         }
         $takenDecision = false;

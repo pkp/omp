@@ -17,13 +17,13 @@
 
 namespace APP\oai\omp;
 
-use PKP\submission\PKPSubmission;
+use APP\facades\Repo;
 use PKP\db\DAORegistry;
-use PKP\plugins\HookRegistry;
-use PKP\oai\PKPOAIDAO;
 use PKP\oai\OAISet;
+use PKP\oai\PKPOAIDAO;
+use PKP\plugins\HookRegistry;
 
-use APP\core\Services;
+use PKP\submission\PKPSubmission;
 
 class OAIDAO extends PKPOAIDAO
 {
@@ -188,8 +188,8 @@ class OAIDAO extends PKPOAIDAO
 
         if ($isRecord) {
             $publicationFormat = $this->_publicationFormatDao->getById($publicationFormatId);
-            $publication = Services::get('publication')->get($publicationFormat->getData('publicationId'));
-            $submission = Services::get('submission')->get($publication->getData('submissionId'));
+            $publication = Repo::publication()->get($publicationFormat->getData('publicationId'));
+            $submission = Repo::submission()->get($publication->getData('submissionId'));
             $record->setData('publicationFormat', $publicationFormat);
             $record->setData('monograph', $submission);
             $record->setData('press', $press);

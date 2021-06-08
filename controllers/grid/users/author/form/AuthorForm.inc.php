@@ -15,7 +15,8 @@
 
 import('lib.pkp.controllers.grid.users.author.form.PKPAuthorForm');
 
-use \APP\template\TemplateManager;
+use APP\facades\Repo;
+use APP\template\TemplateManager;
 
 class AuthorForm extends PKPAuthorForm
 {
@@ -41,7 +42,7 @@ class AuthorForm extends PKPAuthorForm
     public function fetch($request, $template = null, $display = false)
     {
         $templateMgr = TemplateManager::getManager($request);
-        $templateMgr->assign('submission', Services::get('submission')->get($this->getPublication()->getData('submissionId')));
+        $templateMgr->assign('submission', Repo::submission()->get($this->getPublication()->getData('submissionId')));
         return parent::fetch($request, $template, $display);
     }
 

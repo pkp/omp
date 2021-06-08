@@ -14,10 +14,10 @@
  *
  */
 
-use PKP\submission\PKPSubmission;
-
-use \APP\submission\SubmissionDAO;
-use \APP\template\TemplateManager;
+use APP\facades\Repo;
+use APP\submission\Collector;
+use APP\submission\Submission;
+use APP\template\TemplateManager;
 
 import('lib.pkp.classes.plugins.GatewayPlugin');
 
@@ -124,17 +124,18 @@ class WebFeedGatewayPlugin extends GatewayPlugin
         $templateMgr = TemplateManager::getManager($request);
         $context = $request->getContext();
 
-        $args = [
-            'status' => PKPSubmission::STATUS_PUBLISHED,
-            'contextId' => $context->getId(),
-            'count' => 1000,
-            'orderBy' => SubmissionDAO::ORDERBY_DATE_PUBLISHED,
-        ];
+        $collector = Repo::submission()
+            ->getCollector()
+            ->filterByContextIds([$context->getId()])
+            ->filterByStatus([Submission::STATUS_PUBLISHED])
+            ->orderBy(Collector::ORDERBY_DATE_PUBLISHED);
+
         $recentItems = (int) $this->_parentPlugin->getSetting($context->getId(), 'recentItems');
         if ($recentItems > 0) {
-            $args['count'] = $recentItems;
+            $collector->limit($recentItems);
         }
-        $templateMgr->assign('submissions', iterator_to_array(Services::get('submission')->getMany($args)));
+        $submissions = Repo::submission()->getMany($collector);
+        $templateMgr->assign('submissions', $submissions->toArray());
 
         $versionDao = DAORegistry::getDAO('VersionDAO'); /* @var $versionDao VersionDAO */
         $version = $versionDao->getCurrentVersion();

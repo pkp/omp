@@ -12,10 +12,11 @@
  * @brief Form for reading/creating/editing spotlight items.
  */
 
-use PKP\form\Form;
+use APP\facades\Repo;
+use APP\spotlight\Spotlight;
 
 use APP\template\TemplateManager;
-use APP\spotlight\Spotlight;
+use PKP\form\Form;
 
 class SpotlightForm extends Form
 {
@@ -166,7 +167,7 @@ class SpotlightForm extends Form
         $returner = null;
         switch ($assocType) {
             case Spotlight::SPOTLIGHT_TYPE_BOOK:
-                $submission = Services::get('submission')->get($assocId);
+                $submission = Repo::submission()->get($assocId);
                 $returner = isset($submission) ? $submission->getLocalizedTitle() : '';
                 break;
             case Spotlight::SPOTLIGHT_TYPE_SERIES:

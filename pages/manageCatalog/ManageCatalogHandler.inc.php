@@ -13,14 +13,17 @@
  * @brief Handle requests for catalog management.
  */
 
-use PKP\core\JSONMessage;
-use PKP\submission\PKPSubmissionDAO;
-use PKP\submission\PKPSubmission;
-use PKP\security\authorization\PKPSiteAccessPolicy;
-use PKP\security\Role;
+use APP\core\Application;
+use APP\facades\Repo;
+use APP\handler\Handler;
+use APP\submission\Collector;
+use APP\submission\Submission;
 
 use APP\template\TemplateManager;
-use APP\handler\Handler;
+use PKP\core\JSONMessage;
+use PKP\db\DAORegistry;
+use PKP\security\authorization\PKPSiteAccessPolicy;
+use PKP\security\Role;
 
 class ManageCatalogHandler extends Handler
 {
@@ -87,22 +90,22 @@ class ManageCatalogHandler extends Handler
 
         // Catalog list
         [$catalogSortBy, $catalogSortDir] = explode('-', $context->getData('catalogSortOption'));
-        $catalogSortBy = empty($catalogSortBy) ? PKPSubmissionDAO::ORDERBY_DATE_PUBLISHED : $catalogSortBy;
-        $catalogSortDir = $catalogSortDir == SORT_DIRECTION_ASC ? 'ASC' : 'DESC';
+        $catalogSortBy = empty($catalogSortBy) ? Collector::ORDERBY_DATE_PUBLISHED : $catalogSortBy;
+        $catalogSortDir = $catalogSortDir == Collector::ORDER_DIR_ASC ? 'ASC' : 'DESC';
         $catalogList = new \APP\components\listPanels\CatalogListPanel(
             'catalog',
             __('submission.list.monographs'),
             [
                 'apiUrl' => $request->getDispatcher()->url(
                     $request,
-                    PKPApplication::ROUTE_API,
+                    Application::ROUTE_API,
                     $context->getPath(),
                     '_submissions'
                 ),
                 'catalogSortBy' => $catalogSortBy,
                 'catalogSortDir' => $catalogSortDir,
                 'getParams' => [
-                    'status' => PKPSubmission::STATUS_PUBLISHED,
+                    'status' => Submission::STATUS_PUBLISHED,
                     'orderByFeatured' => true,
                     'orderBy' => $catalogSortBy,
                     'orderDirection' => $catalogSortDir,
@@ -110,19 +113,21 @@ class ManageCatalogHandler extends Handler
             ]
         );
 
-        $submissionService = \Services::get('submission');
-        $params = array_merge($catalogList->getParams, [
-            'count' => $catalogList->count,
-            'contextId' => $context->getId(),
-        ]);
-        $submissionsIterator = $submissionService->getMany($params);
-        $items = [];
-        foreach ($submissionsIterator as $submission) {
-            $items[] = $submissionService->getBackendListProperties($submission, ['request' => $request]);
-        }
+        $collector = Repo::submission()
+            ->getCollector()
+            ->filterByContextIds([$context->getId()])
+            ->filterByStatus([Submission::STATUS_PUBLISHED])
+            ->orderBy($catalogSortBy, $catalogSortDir)
+            ->orderByFeatured();
+        $total = Repo::submission()->getCount($collector);
+        $submissions = Repo::submission()->getMany($collector->limit($catalogList->count));
+
+        $userGroupDao = DAORegistry::getDAO('UserGroupDAO'); /** @var UserGroupDAO $userGroupDao */
+        $userGroups = $userGroupDao->getByContextId($context->getId())->toArray();
+
         $catalogList->set([
-            'items' => $items,
-            'itemsMax' => $submissionService->getMax($params),
+            'items' => Repo::submission()->getSchemaMap()->mapManyToSubmissionsList($submissions, $userGroups),
+            'itemsMax' => $total,
         ]);
 
         $templateMgr = TemplateManager::getManager($request);

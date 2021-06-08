@@ -17,9 +17,9 @@
 
 namespace APP\press;
 
-use PKP\submission\PKPSubmission;
+use APP\facades\Repo;
 
-use APP\core\Services;
+use PKP\submission\PKPSubmission;
 
 class NewReleaseDAO extends \PKP\db\DAO
 {
@@ -70,7 +70,7 @@ class NewReleaseDAO extends \PKP\db\DAO
 
         $returner = [];
         foreach ($result as $row) {
-            $returner[] = Services::get('submission')->get($row->submission_id);
+            $returner[] = Repo::submission()->get($row->submission_id);
         }
         return $returner;
     }

@@ -15,6 +15,7 @@
 
 import('lib.pkp.plugins.importexport.native.filter.NativeXmlRepresentationFilter');
 
+use APP\facades\Repo;
 use APP\submission\Submission;
 
 class NativeXmlPublicationFormatFilter extends NativeXmlRepresentationFilter
@@ -154,7 +155,7 @@ class NativeXmlPublicationFormatFilter extends NativeXmlRepresentationFilter
             $submission->setData('audienceRangeQualifier', $this->_extractTextFromNode($node, $onixDeployment, 'AudienceRangeQualifier'));
             $this->_extractAudienceRangeContent($node, $onixDeployment, $submission);
 
-            DAORegistry::getDAO('SubmissionDAO')->updateObject($submission);
+            Repo::submission()->dao->update($submission);
         }
 
         // Things below here require a publication format id since they are dependent on the PublicationFormat.

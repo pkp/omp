@@ -17,14 +17,13 @@
 
 namespace APP\press;
 
+use APP\facades\Repo;
 use PKP\context\PKPSectionDAO;
-use PKP\submission\PKPSubmission;
-use PKP\plugins\HookRegistry;
 use PKP\db\DAORegistry;
 use PKP\db\DAOResultFactory;
+use PKP\plugins\HookRegistry;
 
-use APP\press\Series;
-use APP\core\Services;
+use PKP\submission\PKPSubmission;
 
 class SeriesDAO extends PKPSectionDAO
 {
@@ -223,11 +222,18 @@ class SeriesDAO extends PKPSectionDAO
         $subEditorsDao->deleteBySubmissionGroupId($seriesId, ASSOC_TYPE_SECTION, $contextId);
 
         // Remove monographs from this series
-        $submissionsIterator = Services::get('submission')->getMany(['seriesIds' => $seriesId, 'count' => 1000]);
-        foreach ($submissionsIterator as $submission) {
-            foreach ((array) $submission->getData('publications') as $publication) {
-                Services::get('publication')->edit($publication, ['seriesId' => 0]);
-            }
+        $submissionIds = Repo::submission()->getIds(
+            Repo::submission()
+                ->getCollector()
+                ->filterBySeriesIds([$seriesId])
+        );
+        $publications = Repo::publication()->getMany(
+            Repo::publication()
+                ->getCollector()
+                ->filterBySubmissionIds($submissionIds->toArray())
+        );
+        foreach ($publications as $publication) {
+            Repo::publication()->edit($publication, ['seriesId' => 0]);
         }
 
         // Delete the series and settings.
@@ -276,14 +282,13 @@ class SeriesDAO extends PKPSectionDAO
      */
     public function getByContextId($pressId, $rangeInfo = null, $submittableOnly = false, $withPublicationsOnly = false)
     {
-
         $params = [(int) $pressId];
         if ($withPublicationsOnly) {
             $params[] = PKPSubmission::STATUS_PUBLISHED;
         }
 
         $result = $this->retrieveRange(
-            'SELECT *
+            'SELECT s.*
                 FROM series AS s
                 ' . ($withPublicationsOnly ? ' LEFT JOIN publications AS p ON p.series_id = s.series_id ' : '') . '
                 WHERE s.press_id = ?

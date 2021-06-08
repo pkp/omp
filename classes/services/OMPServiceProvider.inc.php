@@ -48,16 +48,6 @@ class OMPServiceProvider implements \Pimple\ServiceProviderInterface
             return new PKPFileService();
         };
 
-        // Submission service
-        $pimple['submission'] = function () {
-            return new SubmissionService();
-        };
-
-        // Publication service
-        $pimple['publication'] = function () {
-            return new PublicationService();
-        };
-
         // PublicationFormat service
         $pimple['publicationFormat'] = function () {
             return new PublicationFormatService();
