@@ -17,9 +17,12 @@
 
 namespace APP\spotlight;
 
+use APP\facades\Repo;
+use PKP\core\DataObject;
+
 class Spotlight extends DataObject
 {
-// type constants for spotlights
+    // type constants for spotlights
     public const SPOTLIGHT_TYPE_BOOK = 3;
     public const SPOTLIGHT_TYPE_SERIES = 4;
     public const MAX_SPOTLIGHTS_VISIBLE = 3;
@@ -178,7 +181,7 @@ class Spotlight extends DataObject
     {
         switch ($this->getAssocType()) {
             case self::SPOTLIGHT_TYPE_BOOK:
-                return Services::get('submission')->get($this->getAssocId());
+                return Repo::submission()->get($this->getAssocId());
                 break;
             case self::SPOTLIGHT_TYPE_SERIES:
                 $seriesDao = DAORegistry::getDAO('SeriesDAO'); /* @var $seriesDao SeriesDAO */

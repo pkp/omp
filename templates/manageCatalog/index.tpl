@@ -14,7 +14,7 @@
 		{translate key="navigation.catalog"}
 	</h1>
 
-	{if array_intersect(array(\APP\role\Role::ROLE_ID_MANAGER), $userRoles)}
+	{if array_intersect(array(\PKP\security\Role::ROLE_ID_MANAGER), $userRoles)}
 		{assign var="isManager" value=true}
 	{/if}
 

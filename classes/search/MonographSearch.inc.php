@@ -18,13 +18,13 @@
 
 namespace APP\search;
 
-use PKP\statistics\PKPStatisticsHelper;
-use PKP\search\SubmissionSearch;
+use APP\core\Application;
+use APP\facades\Repo;
 use PKP\db\DAORegistry;
 use PKP\plugins\HookRegistry;
 
-use APP\core\Services;
-use APP\core\Application;
+use PKP\search\SubmissionSearch;
+use PKP\statistics\PKPStatisticsHelper;
 
 class MonographSearch extends SubmissionSearch
 {
@@ -51,8 +51,6 @@ class MonographSearch extends SubmissionSearch
         // slicing it. So this seems to be the most appropriate place, although we
         // may have to retrieve some objects again when formatting results.
         $orderedResults = [];
-        $authorDao = DAORegistry::getDAO('AuthorDAO'); /* @var $authorDao AuthorDAO */
-        $submissionDao = DAORegistry::getDAO('SubmissionDAO'); /* @var $submissionDao SubmissionDAO */
         $contextDao = Application::getContextDAO();
         $contextTitles = [];
         if ($orderBy == 'popularityAll' || $orderBy == 'popularityMonth') {
@@ -89,12 +87,12 @@ class MonographSearch extends SubmissionSearch
 
             switch ($orderBy) {
                 case 'authors':
-                    $submission = $submissionDao->getById($submissionId);
+                    $submission = Repo::submission()->get($submissionId);
                     $orderKey = $submission->getAuthorString();
                     break;
 
                 case 'title':
-                    $submission = $submissionDao->getById($submissionId);
+                    $submission = Repo::submission()->get($submissionId);
                     $orderKey = '';
                     if (!empty($submission->getCurrentPublication())) {
                         $orderKey = $submission->getCurrentPublication()->getLocalizedData('title');
@@ -261,7 +259,7 @@ class MonographSearch extends SubmissionSearch
         foreach ($results as $monographId) {
             // Get the monograph, storing in cache if necessary.
             if (!isset($monographCache[$monographId])) {
-                $submission = Services::get('submission')->get($monographId);
+                $submission = Repo::submission()->get($monographId);
                 $monographCache[$monographId] = $submission;
                 $publishedSubmissionCache[$monographId] = $submission;
             }

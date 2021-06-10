@@ -14,13 +14,12 @@
  *   catalog.
  */
 
-use PKP\linkAction\LinkAction;
-use PKP\submission\PKPSubmission;
-
 use APP\handler\Handler;
-use APP\template\TemplateManager;
+
 use APP\payment\omp\OMPPaymentManager;
 use APP\security\authorization\OmpPublishedSubmissionAccessPolicy;
+use APP\template\TemplateManager;
+use PKP\submission\PKPSubmission;
 
 class CatalogBookHandler extends Handler
 {
@@ -92,10 +91,15 @@ class CatalogBookHandler extends Handler
             $request->redirect(null, $request->getRequestedPage(), $request->getRequestedOp(), $newArgs);
         }
 
+        // Get the earliest published publication
+        $firstPublication = $submission->getData('publications')->reduce(function ($a, $b) {
+            return empty($a) || strtotime((string) $b->getData('datePublished')) < strtotime((string) $a->getData('datePublished')) ? $b : $a;
+        }, 0);
+
         $templateMgr->assign([
             'publishedSubmission' => $submission,
             'publication' => $this->publication,
-            'firstPublication' => reset($submission->getData('publications')),
+            'firstPublication' => $firstPublication,
             'currentPublication' => $submission->getCurrentPublication(),
             'authorString' => $this->publication->getAuthorString(DAORegistry::getDAO('UserGroupDAO')->getByContextId($submission->getData('contextId'))->toArray()),
         ]);

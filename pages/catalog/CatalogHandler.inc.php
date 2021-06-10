@@ -16,11 +16,12 @@
 
 import('lib.pkp.pages.catalog.PKPCatalogHandler');
 
-use PKP\submission\PKPSubmission;
-use PKP\submission\PKPSubmissionDAO;
-use PKP\file\ContextFileManager;
-
+use APP\facades\Repo;
+use APP\submission\Collector;
+use APP\submission\Submission;
 use APP\template\TemplateManager;
+
+use PKP\file\ContextFileManager;
 
 class CatalogHandler extends PKPCatalogHandler
 {
@@ -65,37 +66,32 @@ class CatalogHandler extends PKPCatalogHandler
         $this->setupTemplate($request);
         $context = $request->getContext();
 
-        $orderOption = $context->getData('catalogSortOption') ? $context->getData('catalogSortOption') : PKPSubmissionDAO::ORDERBY_DATE_PUBLISHED . '-' . SORT_DIRECTION_DESC;
+        $orderOption = $context->getData('catalogSortOption') ? $context->getData('catalogSortOption') : Collector::ORDERBY_DATE_PUBLISHED . '-' . Collector::ORDER_DIR_DESC;
         [$orderBy, $orderDir] = explode('-', $orderOption);
 
         $count = $context->getData('itemsPerPage') ? $context->getData('itemsPerPage') : Config::getVar('interface', 'items_per_page');
         $offset = $page > 1 ? ($page - 1) * $count : 0;
 
-        import('classes.core.Services');
-        $submissionService = Services::get('submission');
+        $collector = Repo::submission()
+            ->getCollector()
+            ->filterByContextIds([$context->getId()])
+            ->filterByStatus([Submission::STATUS_PUBLISHED])
+            ->orderBy($orderBy, $orderDir == SORT_DIRECTION_ASC ? 'ASC' : 'DESC')
+            ->orderByFeatured();
 
-        $params = [
-            'contextId' => $context->getId(),
-            'orderByFeatured' => true,
-            'orderBy' => $orderBy,
-            'orderDirection' => $orderDir == SORT_DIRECTION_ASC ? 'ASC' : 'DESC',
-            'count' => $count,
-            'offset' => $offset,
-            'status' => PKPSubmission::STATUS_PUBLISHED,
-        ];
-        $submissionsIterator = $submissionService->getMany($params);
-        $total = $submissionService->getMax($params);
+        $total = Repo::submission()->getCount($collector);
+        $submissions = Repo::submission()->getMany($collector->limit($count)->offset($offset));
 
         $featureDao = DAORegistry::getDAO('FeatureDAO'); /* @var $featureDao FeatureDAO */
         $featuredMonographIds = $featureDao->getSequencesByAssoc(ASSOC_TYPE_PRESS, $context->getId());
 
-        $this->_setupPaginationTemplate($request, count($submissionsIterator), $page, $count, $offset, $total);
+        $this->_setupPaginationTemplate($request, $submissions->count(), $page, $count, $offset, $total);
 
         $seriesDao = DAORegistry::getDAO('SeriesDAO'); /* @var $seriesDao SeriesDAO */
         $seriesIterator = $seriesDao->getByContextId($context->getId(), null, false, true);
 
         $templateMgr->assign([
-            'publishedSubmissions' => iterator_to_array($submissionsIterator),
+            'publishedSubmissions' => $submissions->toArray(),
             'featuredMonographIds' => $featuredMonographIds,
             'contextSeries' => $seriesIterator->toArray(),
         ]);
@@ -153,27 +149,22 @@ class CatalogHandler extends PKPCatalogHandler
 
         $this->setupTemplate($request);
 
-        $orderOption = $series->getSortOption() ? $series->getSortOption() : PKPSubmissionDAO::ORDERBY_DATE_PUBLISHED . '-' . SORT_DIRECTION_DESC;
+        $orderOption = $series->getSortOption() ? $series->getSortOption() : Collector::ORDERBY_DATE_PUBLISHED . '-' . Collector::ORDER_DIR_DESC;
         [$orderBy, $orderDir] = explode('-', $orderOption);
 
         $count = $context->getData('itemsPerPage') ? $context->getData('itemsPerPage') : Config::getVar('interface', 'items_per_page');
         $offset = $page > 1 ? ($page - 1) * $count : 0;
 
-        import('classes.core.Services');
-        $submissionService = Services::get('submission');
+        $collector = Repo::submission()
+            ->getCollector()
+            ->filterByContextIds([$context->getId()])
+            ->filterBySeriesIds([$series->getId()])
+            ->filterByStatus([Submission::STATUS_PUBLISHED])
+            ->orderBy($orderBy, $orderDir == SORT_DIRECTION_ASC ? 'ASC' : 'DESC')
+            ->orderByFeatured();
 
-        $params = [
-            'contextId' => $context->getId(),
-            'seriesIds' => $series->getId(),
-            'orderByFeatured' => true,
-            'orderBy' => $orderBy,
-            'orderDirection' => $orderDir == SORT_DIRECTION_ASC ? 'ASC' : 'DESC',
-            'count' => $count,
-            'offset' => $offset,
-            'status' => PKPSubmission::STATUS_PUBLISHED,
-        ];
-        $submissionsIterator = $submissionService->getMany($params);
-        $total = $submissionService->getMax($params);
+        $total = Repo::submission()->getCount($collector);
+        $submissions = Repo::submission()->getMany($collector->limit($count)->offset($offset));
 
         $featureDao = DAORegistry::getDAO('FeatureDAO'); /* @var $featureDao FeatureDAO */
         $featuredMonographIds = $featureDao->getSequencesByAssoc(ASSOC_TYPE_SERIES, $series->getId());
@@ -185,11 +176,11 @@ class CatalogHandler extends PKPCatalogHandler
             $newReleases = $newReleaseDao->getMonographsByAssoc(ASSOC_TYPE_SERIES, $series->getId());
         }
 
-        $this->_setupPaginationTemplate($request, count($submissionsIterator), $page, $count, $offset, $total);
+        $this->_setupPaginationTemplate($request, $submissions->count(), $page, $count, $offset, $total);
 
         $templateMgr->assign([
             'series' => $series,
-            'publishedSubmissions' => iterator_to_array($submissionsIterator),
+            'publishedSubmissions' => $submissions->toArray(),
             'featuredMonographIds' => $featuredMonographIds,
             'newReleasesMonographs' => $newReleases,
         ]);

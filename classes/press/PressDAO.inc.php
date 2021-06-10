@@ -16,6 +16,8 @@
 
 namespace APP\press;
 
+use APP\facades\Repo;
+use APP\publication\DAO;
 use PKP\context\ContextDAO;
 use PKP\metadata\MetadataTypeDescription;
 
@@ -62,7 +64,7 @@ class PressDAO extends ContextDAO
      */
     public function deleteAllPubIds($pressId, $pubIdType)
     {
-        $pubObjectDaos = ['PublicationDAO', 'ChapterDAO', 'PublicationFormatDAO'];
+        $pubObjectDaos = ['ChapterDAO', 'PublicationFormatDAO'];
         foreach ($pubObjectDaos as $daoName) {
             $dao = DAORegistry::getDAO($daoName);
             $dao->deleteAllPubIds($pressId, $pubIdType);
@@ -70,6 +72,8 @@ class PressDAO extends ContextDAO
         import('classes.submission.SubmissionFileDAO');
         $submissionFileDao = new SubmissionFileDAO();
         $submissionFileDao->deleteAllPubIds($pressId, $pubIdType);
+
+        Repo::publication()->dao->deleteAllPubIds($pressId, $pubIdType);
     }
 
 
@@ -98,7 +102,7 @@ class PressDAO extends ContextDAO
         $forSameType = false
     ) {
         $pubObjectDaos = [
-            ASSOC_TYPE_SUBMISSION => DAORegistry::getDAO('SubmissionDAO'),
+            ASSOC_TYPE_SUBMISSION => Repo::submission()->dao,
             ASSOC_TYPE_CHAPTER => DAORegistry::getDAO('ChapterDAO'),
             ASSOC_TYPE_REPRESENTATION => Application::getRepresentationDAO(),
             ASSOC_TYPE_SUBMISSION_FILE => DAORegistry::getDAO('SubmissionFileDAO')

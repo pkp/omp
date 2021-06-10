@@ -15,7 +15,9 @@
 
 import('lib.pkp.pages.sitemap.PKPSitemapHandler');
 
-use PKP\submission\PKPSubmission;
+use APP\facades\Repo;
+use APP\submission\Submission;
+use PKP\db\DAORegistry;
 
 class SitemapHandler extends PKPSitemapHandler
 {
@@ -32,8 +34,13 @@ class SitemapHandler extends PKPSitemapHandler
 
         // Catalog
         $root->appendChild($this->_createUrlTree($doc, $request->url($press->getPath(), 'catalog')));
-        $submissionsIterator = Services::get('submission')->getMany(['status' => PKPSubmission::STATUS_PUBLISHED, 'contextId' => $pressId, 'count' => 1000]);
-        foreach ($submissionsIterator as $submission) {
+        $submissions = Repo::submission()->getMany(
+            Repo::submission()
+                ->getCollector()
+                ->filterByContextIds([$pressId])
+                ->filterByStatus([Submission::STATUS_PUBLISHED])
+        );
+        foreach ($submissions as $submission) {
             // Book
             $root->appendChild($this->_createUrlTree($doc, $request->url($press->getPath(), 'catalog', 'view', [$submission->getBestId()])));
             // Files

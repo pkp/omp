@@ -10,19 +10,19 @@
  * @class Publication
  * @ingroup publication
  *
- * @see PublicationDAO
+ * @see DAO
  *
  * @brief Class for Publication.
  */
 
 namespace APP\publication;
 
-use PKP\publication\PKPPublication;
-
-use APP\i18n\AppLocale;
 use APP\core\Application;
-use APP\core\Services;
+
+use APP\facades\Repo;
 use APP\file\PublicFileManager;
+use APP\i18n\AppLocale;
+use PKP\publication\PKPPublication;
 
 class Publication extends PKPPublication
 {
@@ -84,7 +84,7 @@ class Publication extends PKPPublication
         $pathParts = pathinfo($url);
         return join('/', [
             $pathParts['dirname'],
-            Services::get('publication')->getThumbnailFilename($pathParts['basename']),
+            Repo::publication()->getThumbnailFilename($pathParts['basename']),
         ]);
     }
 }

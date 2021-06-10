@@ -17,19 +17,19 @@
 import('lib.pkp.controllers.grid.users.author.PKPAuthorGridCellProvider');
 import('controllers.grid.users.chapter.ChapterGridCategoryRow');
 
+use APP\facades\Repo;
+use APP\notification\NotificationManager;
+use APP\template\TemplateManager;
 use PKP\controllers\grid\CategoryGridHandler;
+use PKP\controllers\grid\feature\OrderCategoryGridItemsFeature;
 use PKP\controllers\grid\GridColumn;
-use PKP\controllers\grid\DataObjectGridCellProvider;
+use PKP\core\JSONMessage;
 use PKP\linkAction\LinkAction;
 use PKP\linkAction\request\AjaxModal;
-use PKP\core\JSONMessage;
-use PKP\submission\PKPSubmission;
 use PKP\security\authorization\PublicationAccessPolicy;
-use PKP\controllers\grid\feature\OrderCategoryGridItemsFeature;
-use PKP\security\Role;
 
-use APP\template\TemplateManager;
-use APP\notification\NotificationManager;
+use PKP\security\Role;
+use PKP\submission\PKPSubmission;
 
 class ChapterGridHandler extends CategoryGridHandler
 {
@@ -243,7 +243,7 @@ class ChapterGridHandler extends CategoryGridHandler
         }
 
         // The user may not be allowed to edit the metadata
-        if (Services::get('submission')->canEditPublication($submission->getId(), $user->getId())) {
+        if (Repo::submission()->canEditPublication($submission->getId(), $user->getId())) {
             return true;
         }
 

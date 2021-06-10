@@ -16,11 +16,12 @@
 
 import('lib.pkp.api.v1._submissions.PKPBackendSubmissionsHandler');
 
-use PKP\plugins\HookRegistry;
-use PKP\security\Role;
-
-use APP\submission\SubmissionDAO;
+use APP\facades\Repo;
+use APP\submission\Collector;
 use APP\submission\Submission;
+use PKP\plugins\HookRegistry;
+
+use PKP\security\Role;
 
 class BackendSubmissionsHandler extends PKPBackendSubmissionsHandler
 {
@@ -66,48 +67,32 @@ class BackendSubmissionsHandler extends PKPBackendSubmissionsHandler
     }
 
     /**
-     * Add omp-specific parameters to the getMany request
-     *
-     * @param $hookName string
-     * @param $args array [
-     * 		@option $params array
-     * 		@option $slimRequest Request Slim request object
-     * 		@option $response Response object
-     * ]
+     * Configure a submission Collector based on the query params
      */
-    public function addAppSubmissionsParams($hookName, $args)
+    protected function getSubmissionCollector(array $queryParams): Collector
     {
-        $params = & $args[0];
-        $slimRequest = $args[1];
-        $response = $args[2];
-
-        $originalParams = $slimRequest->getQueryParams();
+        $collector = parent::getSubmissionCollector($queryParams);
 
         // Add allowed order by options for OMP
-        if (isset($originalParams['orderBy']) && in_array($originalParams['orderBy'], [SubmissionDAO::ORDERBY_DATE_PUBLISHED, SubmissionDAO::ORDERBY_SERIES_POSITION])) {
-            $params['orderBy'] = $originalParams['orderBy'];
+        if (isset($queryParams['orderBy']) && $queryParams['orderBy'] === Collector::ORDERBY_SERIES_POSITION) {
+            $direction = isset($queryParams['orderDirection']) && $queryParams['orderDirection'] === $collector::ORDER_DIR_ASC
+                ? $collector::ORDER_DIR_ASC
+                : $collector::ORDER_DIR_DESC;
+            $collector->orderBy(Collector::ORDERBY_SERIES_POSITION, $direction);
         }
 
         // Add allowed order by option for featured/new releases
-        if (isset($originalParams['orderByFeatured'])) {
-            $params['orderByFeatured'] = true;
+        if (!empty($queryParams['orderByFeatured'])) {
+            $collector->orderByFeatured();
         }
 
-        if (!empty($originalParams['categoryIds'])) {
-            if (is_array($originalParams['categoryIds'])) {
-                $params['categoryIds'] = array_map('intval', $originalParams['categoryIds']);
-            } else {
-                $params['categoryIds'] = [(int) $originalParams['categoryIds']];
-            }
+        if (isset($queryParams['seriesIds'])) {
+            $collector->filterBySeriesIds(
+                array_map('intval', $this->paramToArray($queryParams['seriesIds']))
+            );
         }
 
-        if (!empty($originalParams['seriesIds'])) {
-            if (is_array($originalParams['seriesIds'])) {
-                $params['seriesIds'] = array_map('intval', $originalParams['seriesIds']);
-            } else {
-                $params['seriesIds'] = [(int) $originalParams['seriesIds']];
-            }
-        }
+        return $collector;
     }
 
     /**
@@ -226,7 +211,7 @@ class BackendSubmissionsHandler extends PKPBackendSubmissionsHandler
 
         $validPublications = [];
         foreach ($submissionIds as $submissionId) {
-            $submission = Services::get('submission')->get($submissionId);
+            $submission = Repo::submission()->get($submissionId);
             if (!$submission) {
                 return $response->withStatus(400)->withJsonError('api.submissions.400.submissionsNotFound');
             }
@@ -234,7 +219,7 @@ class BackendSubmissionsHandler extends PKPBackendSubmissionsHandler
             if ($publication->getData('status') === Submission::STATUS_PUBLISHED) {
                 continue;
             }
-            $errors = Services::get('publication')->validatePublish($publication, $submission, $allowedLocales, $primaryLocale);
+            $errors = Repo::publication()->validatePublish($publication, $submission, $allowedLocales, $primaryLocale);
             if (!empty($errors)) {
                 return $response->withStatus(400)->withJson($errors);
             }
@@ -242,7 +227,7 @@ class BackendSubmissionsHandler extends PKPBackendSubmissionsHandler
         }
 
         foreach ($validPublications as $validPublication) {
-            Services::get('publication')->publish($validPublication);
+            Repo::publication()->publish($validPublication);
         }
 
         return $response->withJson(true);

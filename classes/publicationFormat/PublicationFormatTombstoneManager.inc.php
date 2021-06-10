@@ -13,6 +13,8 @@
  * @brief Class defining basic operations for publication format tombstones.
  */
 
+use APP\facades\Repo;
+use APP\submission\Submission;
 use PKP\submission\PKPSubmission;
 
 class PublicationFormatTombstoneManager
@@ -32,9 +34,8 @@ class PublicationFormatTombstoneManager
      */
     public function insertTombstoneByPublicationFormat($publicationFormat, $press)
     {
-        $publication = Services::get('publication')->get($publicationFormat->getData('publicationId'));
-        $submissionDao = DAORegistry::getDAO('SubmissionDAO'); /* @var $submissionDao SubmissionDAO */
-        $monograph = $submissionDao->getById($publication->getData('submissionId'));
+        $publication = Repo::publication()->get($publicationFormat->getData('publicationId'));
+        $monograph = Repo::submission()->get($publication->getData('submissionId'));
         $seriesDao = DAORegistry::getDAO('SeriesDAO'); /* @var $seriesDao SeriesDAO */
         $series = $seriesDao->getById($monograph->getSeriesId());
 
@@ -91,16 +92,16 @@ class PublicationFormatTombstoneManager
      */
     public function insertTombstonesByPress($press)
     {
-        import('lib.pkp.classes.submission.PKPSubmission');
-        $submissionsIterator = Services::get('submission')->getMany(['contextId' => $press->getId(), 'status' => PKPSubmission::STATUS_PUBLISHED, 'count' => 2000]);
-        foreach ($submissionsIterator as $submission) {
+        $submissions = Repo::submission()->getMany(
+            Repo::submission()
+                ->getCollector()
+                ->filterByContextIds([$press->getId()])
+                ->filterByStatus([Submission::STATUS_PUBLISHED])
+        );
+        foreach ($submissions as $submission) {
             foreach ($submission->getData('publications') as $publication) {
                 if ($publication->getData('status') === PKPSubmission::STATUS_PUBLISHED) {
-                    foreach ((array) $publication->getData('publicationFormats') as $publicationFormat) {
-                        if ($publication->getIsAvailable()) {
-                            $this->insertTombstoneByPublicationFormat($publicationFormat, $press);
-                        }
-                    }
+                    $this->insertTombstonesByPublicationId($publication->getId());
                 }
             }
         }
@@ -126,9 +127,13 @@ class PublicationFormatTombstoneManager
      */
     public function deleteTombstonesByPressId($pressId)
     {
-        import('lib.pkp.classes.submission.PKPSubmission');
-        $submissionsIterator = Services::get('submission')->getMany(['contextId' => $pressId, 'status' => PKPSubmission::STATUS_PUBLISHED, 'count' => 2000]);
-        foreach ($submissionsIterator as $submission) {
+        $submissions = Repo::submission()->getMany(
+            Repo::submission()
+                ->getCollector()
+                ->filterByContextIds([$press->getId()])
+                ->filterByStatus([Submission::STATUS_PUBLISHED])
+        );
+        foreach ($submissions as $submission) {
             foreach ($submission->getData('publications') as $publication) {
                 $this->deleteTombstonesByPublicationFormats($publication->getData('publicationFormats'));
             }

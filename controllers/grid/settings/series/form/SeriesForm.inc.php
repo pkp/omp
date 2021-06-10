@@ -16,11 +16,12 @@
 
 import('lib.pkp.controllers.grid.settings.sections.form.PKPSectionForm');
 
-use PKP\file\TemporaryFileManager;
-use PKP\file\ContextFileManager;
-use PKP\security\Role;
-
+use APP\facades\Repo;
 use APP\template\TemplateManager;
+use PKP\file\ContextFileManager;
+use PKP\file\TemporaryFileManager;
+
+use PKP\security\Role;
 
 class SeriesForm extends PKPSectionForm
 {
@@ -85,7 +86,7 @@ class SeriesForm extends PKPSectionForm
         }
 
         if (isset($series)) {
-            $sortOption = $series->getSortOption() ? $series->getSortOption() : DAORegistry::getDAO('SubmissionDAO')->getDefaultSortOption();
+            $sortOption = $series->getSortOption() ? $series->getSortOption() : Repo::submission()->getDefaultSortOption();
             $this->_data = [
                 'seriesId' => $seriesId,
                 'title' => $series->getTitle(null, false),
@@ -163,7 +164,7 @@ class SeriesForm extends PKPSectionForm
         $templateMgr->assign('categoryCount', $categoryCount);
 
         // Sort options.
-        $templateMgr->assign('sortOptions', DAORegistry::getDAO('SubmissionDAO')->getSortSelectOptions());
+        $templateMgr->assign('sortOptions', Repo::submission()->getSortSelectOptions());
 
         // Series Editors
         $usersIterator = Services::get('user')->getMany([

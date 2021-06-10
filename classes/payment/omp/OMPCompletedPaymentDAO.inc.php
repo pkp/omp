@@ -18,11 +18,11 @@
 
 namespace APP\payment\omp;
 
-use PKP\payment\CompletedPayment;
-use PKP\db\DAOResultFactory;
 use PKP\core\Core;
+use PKP\db\DAO;
+use PKP\db\DAOResultFactory;
 
-use APP\payment\omp\OMPPaymentManager;
+use PKP\payment\CompletedPayment;
 
 class OMPCompletedPaymentDAO extends DAO
 {

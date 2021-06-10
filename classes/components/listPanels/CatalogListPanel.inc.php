@@ -14,12 +14,11 @@
 
 namespace APP\components\listPanels;
 
-use \PKP\submission\PKPSubmissionDAO;
-use \PKP\submission\PKPSubmission;
+use APP\core\Application;
 
-use \APP\core\Application;
-use \APP\i18n\AppLocale;
-use \APP\template\TemplateManager;
+use APP\i18n\AppLocale;
+use APP\submission\Collector;
+use PKP\submission\PKPSubmission;
 
 class CatalogListPanel extends \PKP\components\listPanels\ListPanel
 {
@@ -46,8 +45,8 @@ class CatalogListPanel extends \PKP\components\listPanels\ListPanel
         $context = $request->getContext();
 
         [$catalogSortBy, $catalogSortDir] = explode('-', $context->getData('catalogSortOption'));
-        $catalogSortBy = empty($catalogSortBy) ? PKPSubmissionDAO::ORDERBY_DATE_PUBLISHED : $catalogSortBy;
-        $catalogSortDir = $catalogSortDir == SORT_DIRECTION_ASC ? 'ASC' : 'DESC';
+        $catalogSortBy = empty($catalogSortBy) ? Collector::ORDERBY_DATE_PUBLISHED : $catalogSortBy;
+        $catalogSortDir = $catalogSortDir == Collector::ORDER_DIR_ASC ? 'ASC' : 'DESC';
         $config['catalogSortBy'] = $catalogSortBy;
         $config['catalogSortDir'] = $catalogSortDir;
 

@@ -15,15 +15,16 @@
 
 namespace APP\search;
 
-use PKP\submission\SubmissionFile;
-use PKP\search\SearchFileParser;
-use PKP\search\SubmissionSearch;
-use PKP\search\SubmissionSearchIndex;
+use APP\core\Services;
+use APP\facades\Repo;
+use PKP\config\Config;
 use PKP\db\DAORegistry;
 use PKP\plugins\HookRegistry;
-use PKP\config\Config;
+use PKP\search\SearchFileParser;
+use PKP\search\SubmissionSearch;
 
-use APP\core\Services;
+use PKP\search\SubmissionSearchIndex;
+use PKP\submission\SubmissionFile;
 
 class MonographSearchIndex extends SubmissionSearchIndex
 {
@@ -216,7 +217,6 @@ class MonographSearchIndex extends SubmissionSearchIndex
 
         // Build index
         $pressDao = DAORegistry::getDAO('PressDAO'); /* @var $pressDao PressDAO */
-        $submissionDao = DAORegistry::getDAO('SubmissionDAO'); /* @var $submissionDao SubmissionDAO */
 
         $presses = $pressDao->getAll();
         while ($press = $presses->next()) {
@@ -226,7 +226,11 @@ class MonographSearchIndex extends SubmissionSearchIndex
                 echo 'Indexing "', $press->getLocalizedName(), '" ... ';
             }
 
-            $monographs = $submissionDao->getByContextId($press->getId());
+            $monographs = Repo::submission()->getMany(
+                Repo::submission()
+                    ->getCollector()
+                    ->filterByContextIds([$press->getId()])
+            );
             while (!$monographs->eof()) {
                 $monograph = $monographs->next();
                 if ($monograph->getDatePublished()) {

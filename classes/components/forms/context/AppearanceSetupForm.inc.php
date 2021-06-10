@@ -15,6 +15,7 @@
 
 namespace APP\components\forms\context;
 
+use APP\facades\Repo;
 use PKP\components\forms\context\PKPAppearanceSetupForm;
 use PKP\components\forms\FieldOptions;
 use PKP\components\forms\FieldUploadImage;
@@ -28,7 +29,7 @@ class AppearanceSetupForm extends PKPAppearanceSetupForm
     {
         parent::__construct($action, $locales, $context, $baseUrl, $temporaryFileApiUrl, $imageUploadUrl);
 
-        $catalogSortOptions = \DAORegistry::getDAO('SubmissionDAO')->getSortSelectOptions();
+        $catalogSortOptions = Repo::submission()->getSortSelectOptions();
         $catalogSortOptions = array_map(function ($key, $label) {
             return ['value' => $key, 'label' => $label];
         }, array_keys($catalogSortOptions), $catalogSortOptions);
