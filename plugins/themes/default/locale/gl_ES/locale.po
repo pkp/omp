@@ -1,6 +1,6 @@
 msgid ""
 msgstr ""
-"PO-Revision-Date: 2021-02-20 08:54+0000\n"
+"PO-Revision-Date: 2021-06-10 11:45+0000\n"
 "Last-Translator: Real Academia Galega <reacagal@gmail.com>\n"
 "Language-Team: Galician <http://translate.pkp.sfu.ca/projects/omp/"
 "themes-default/gl_ES/>\n"
@@ -69,3 +69,10 @@ msgstr "Este tema implementa o tema predeterminado."
 
 msgid "plugins.themes.default.name"
 msgstr "Tema predeterminado"
+
+msgid "plugins.themes.default.option.showCatalogSeriesListing.option"
+msgstr ""
+"Engada unha listaxe de ligazóns para todas as series na página do catálogo"
+
+msgid "plugins.themes.default.option.showCatalogSeriesListing.label"
+msgstr "Amosar Series"
