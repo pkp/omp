@@ -19,15 +19,16 @@ import('classes.core.Request'); // Cause mocked Request class to load
 import('classes.i18n.AppLocale'); // Cause mocked AppLocale class to load
 
 import('lib.pkp.tests.DatabaseTestCase');
-import('classes.submission.SubmissionFileDAO');
-import('lib.pkp.classes.submission.reviewRound.ReviewRound');
-import('classes.submission.Submission');
 
+use APP\submission\SubmissionFileDAO;
+use APP\submission\Submission;
 use APP\core\Services;
 use APP\facades\Repo;
+use APP\press\Press;
+
+use PKP\submission\reviewRound\ReviewRound;
 use PKP\core\PKPRouter;
 use PKP\db\DAORegistry;
-
 use PKP\submission\GenreDAO;
 use PKP\submission\SubmissionFile;
 
@@ -54,7 +55,6 @@ class SubmissionFileDAOTest extends DatabaseTestCase
         $this->testFile3 = tempnam(TMP_FILES, 'SubmissionFile3');
 
         // Mock a press
-        import('classes.press.Press');
         $press = new Press();
         $press->setPrimaryLocale('en_US');
         $press->setPath('press-path');
@@ -70,8 +70,9 @@ class SubmissionFileDAOTest extends DatabaseTestCase
         Registry::get('request', true, $mockRequest);
 
         // Register a mock monograph DAO.
-        $submissionDao = $this->getMockBuilder(\APP\submission\SubmissionDAO::class)
-            ->setMethods(['getById'])
+        $submissionDao = $this->getMockBuilder(\APP\submission\DAO::class)
+            ->setConstructorArgs([Services::get('schema')])
+            ->setMethods(['get'])
             ->getMock();
         $monograph = new Submission();
         $monograph->setId(SUBMISSION_FILE_DAO_TEST_SUBMISSION_ID);
@@ -120,8 +121,6 @@ class SubmissionFileDAOTest extends DatabaseTestCase
      */
     public function testSubmissionFileCrud()
     {
-        $this->markTestSkipped();
-
         //
         // Create test data.
         //
@@ -130,7 +129,7 @@ class SubmissionFileDAOTest extends DatabaseTestCase
         $submission = Repo::submission()->newDataObject();
         $submission->setPressId(SUBMISSION_FILE_DAO_TEST_PRESS_ID);
         $submission->setLocale('en_US');
-        $submissionId = Repo::submission()->dao->insertObject($submission);
+        $submissionId = Repo::submission()->dao->insert($submission);
 
         $publication = Repo::publication()->newDataObject(['submissionId' => $submissionId]);
         Repo::publication()->dao->insert($publication);
@@ -139,7 +138,7 @@ class SubmissionFileDAOTest extends DatabaseTestCase
         $submissionDao->update($submission);
 
         $submissionDao = $this->getMockBuilder(\APP\submission\SubmissionDAO::class)
-            ->setMethods(['getById'])
+            ->setMethods(['get'])
             ->getMock();
         $monograph = new Submission();
         $monograph->setId($submissionId);
