@@ -1,6 +1,6 @@
 msgid ""
 msgstr ""
-"PO-Revision-Date: 2020-10-19 07:29+0000\n"
+"PO-Revision-Date: 2021-06-12 13:02+0000\n"
 "Last-Translator: Antti-Jussi Nygård <ajnyga@gmail.com>\n"
 "Language-Team: Finnish <http://translate.pkp.sfu.ca/projects/omp/"
 "themes-default/fi_FI/>\n"
@@ -68,3 +68,9 @@ msgstr "Tällä teemalla otetaan käyttöön oletusteema."
 
 msgid "plugins.themes.default.name"
 msgstr "Oletusteema"
+
+msgid "plugins.themes.default.option.showCatalogSeriesListing.option"
+msgstr "Lisää sivuston luettelosivulle sarjojen sivuille johtavat linkit"
+
+msgid "plugins.themes.default.option.showCatalogSeriesListing.label"
+msgstr "Näytä sarja"
