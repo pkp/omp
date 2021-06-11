@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2020-02-13T19:56:53+00:00\n"
-"PO-Revision-Date: 2021-04-08 19:55+0000\n"
+"PO-Revision-Date: 2021-06-12 13:02+0000\n"
 "Last-Translator: Antti-Jussi Nygård <ajnyga@gmail.com>\n"
 "Language-Team: Finnish <http://translate.pkp.sfu.ca/projects/omp/locale/"
 "fi_FI/>\n"
@@ -1527,3 +1527,14 @@ msgstr "Maksut"
 
 msgid "installer.updatingInstructions"
 msgstr ""
+"Jos olet päivittämässä vanhaa OMP-asennusta, <a href=\"{$upgradeUrl}\">"
+"klikkaa tästä</a> päästäksesi eteenpäin."
+
+msgid "grid.catalogEntry.isbn10.description"
+msgstr "10-numeroinen ISBN, esimerkiksi 951-98548-9-4."
+
+msgid "grid.catalogEntry.isbn13.description"
+msgstr "13-numeroinen ISBN, esimerkiksi 978-951-98548-9-2."
+
+msgid "grid.catalogEntry.isbn"
+msgstr "ISBN"
