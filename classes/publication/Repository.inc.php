@@ -151,13 +151,12 @@ class Repository extends \PKP\publication\Repository
         $newAuthors = iterator_to_array(
             Services::get('author')->getMany(['publicationIds' => $newPublication->getId()])
         );
-        while (!$oldChaptersIterator->eof()) {
-            $oldChapter = $result->next();
+        while ($oldChapter = $oldChaptersIterator->next()) {
             $newChapter = clone $oldChapter;
             $newChapter->setData('id', null);
             $newChapter->setData('publicationId', $newPublication->getId());
-            $newChapterId = $chapterAuthorDao->insertChapter($newChapter);
-            $newChapter = $chapterAuthorDao->getChapter($newChapterId);
+            $newChapterId = $chapterDao->insertChapter($newChapter);
+            $newChapter = $chapterDao->getChapter($newChapterId);
 
             // Update file chapter associations for new files
             foreach ($newSubmissionFiles as $newSubmissionFile) {
