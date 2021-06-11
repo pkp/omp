@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2020-02-13T19:56:53+00:00\n"
-"PO-Revision-Date: 2021-01-24 09:55+0000\n"
+"PO-Revision-Date: 2021-06-12 13:02+0000\n"
 "Last-Translator: Antti-Jussi Nygård <ajnyga@gmail.com>\n"
 "Language-Team: Finnish <http://translate.pkp.sfu.ca/projects/omp/manager/"
 "fi_FI/>\n"
@@ -1455,3 +1455,29 @@ msgstr "Valittuja kohteita ei voitu muuntaa."
 
 msgid "plugins.importexport.common.error.noObjectsSelected"
 msgstr "Yhtään kohdetta ei ole valittu."
+
+msgid "plugins.importexport.chapter.exportFailed"
+msgstr "Lukuja ei voitu lukea"
+
+msgid "plugins.importexport.publicationformat.exportFailed"
+msgstr "Julkaisumuotoja ei voitu lukea"
+
+msgid "plugins.importexport.native.error.unknownUser"
+msgstr "Annettua käyttäjää, \"{$userName}\", ei löydy."
+
+msgid "plugins.importexport.common.error.unknownObjects"
+msgstr "Annettuja kohteita ei löytynyt."
+
+msgid "manager.setup.notifications.copySubmissionAckPrimaryContact.disabled.description"
+msgstr ""
+"Julkaisijalle ei ole annettu pääasiallista yhteyshenkilöä. Voit antaa "
+"pääasiallisen yhteyshenkilön tiedot <a href=\"{$url}\">sivuston "
+"asetuksissa</a>."
+
+msgid "manager.setup.notifications.copySubmissionAckPrimaryContact.description"
+msgstr ""
+"Lähetä sähköpostilla tieto uusista käsikirjoituksista julkaisijan "
+"pääasialliselle yhteyshenkilölle."
+
+msgid "manager.setup.selectCountry"
+msgstr "Valitse julkaisijan kotimaa."
