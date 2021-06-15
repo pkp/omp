@@ -20,13 +20,12 @@ import('classes.i18n.AppLocale'); // Cause mocked AppLocale class to load
 
 import('lib.pkp.tests.DatabaseTestCase');
 
-use APP\submission\SubmissionFileDAO;
-use APP\submission\Submission;
 use APP\core\Services;
 use APP\facades\Repo;
 use APP\press\Press;
+use APP\submission\Submission;
+use APP\submission\SubmissionFileDAO;
 
-use PKP\submission\reviewRound\ReviewRound;
 use PKP\core\PKPRouter;
 use PKP\db\DAORegistry;
 use PKP\submission\GenreDAO;

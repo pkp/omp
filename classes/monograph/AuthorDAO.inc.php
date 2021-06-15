@@ -20,8 +20,6 @@ namespace APP\monograph;
 
 use PKP\submission\PKPAuthorDAO;
 
-use APP\monograph\Author;
-
 class AuthorDAO extends PKPAuthorDAO
 {
     /**

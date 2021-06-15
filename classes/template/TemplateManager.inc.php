@@ -17,13 +17,13 @@
 
 namespace APP\template;
 
-use PKP\template\PKPTemplateManager;
+use APP\core\Application;
+use APP\file\PublicFileManager;
+use APP\i18n\AppLocale;
+
 use PKP\db\DAORegistry;
 use PKP\security\Role;
-
-use APP\core\Application;
-use APP\i18n\AppLocale;
-use APP\file\PublicFileManager;
+use PKP\template\PKPTemplateManager;
 
 class TemplateManager extends PKPTemplateManager
 {

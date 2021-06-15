@@ -15,7 +15,7 @@
 
 import('lib.pkp.classes.plugins.GenericPlugin');
 
-use \APP\template\TemplateManager;
+use APP\template\TemplateManager;
 
 class PdfJsViewerPlugin extends GenericPlugin
 {

@@ -15,8 +15,7 @@
 
 import('lib.pkp.controllers.grid.navigationMenus.form.PKPNavigationMenuItemsForm');
 
-use \APP\template\TemplateManager;
-
+use APP\template\TemplateManager;
 
 class NavigationMenuItemsForm extends PKPNavigationMenuItemsForm
 {

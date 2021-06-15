@@ -13,10 +13,10 @@
  * @brief Class for browse block plugin
  */
 
-use PKP\linkAction\LinkAction;
-use PKP\plugins\BlockPlugin;
 use PKP\core\JSONMessage;
+use PKP\linkAction\LinkAction;
 use PKP\linkAction\request\AjaxModal;
+use PKP\plugins\BlockPlugin;
 
 class BrowseBlockPlugin extends BlockPlugin
 {

@@ -22,8 +22,8 @@
 
 namespace APP\codelist;
 
-use PKP\xml\XMLParserDOMHandler;
 use PKP\xml\XMLNode;
+use PKP\xml\XMLParserDOMHandler;
 
 class ONIXParserDOMHandler extends XMLParserDOMHandler
 {

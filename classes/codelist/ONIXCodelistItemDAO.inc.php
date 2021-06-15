@@ -18,16 +18,15 @@
 
 namespace APP\codelist;
 
-use PKP\db\XMLDAO;
-use PKP\xslt\XSLTransformer;
-use PKP\file\TemporaryFileManager;
-use PKP\file\FileManager;
-use PKP\plugins\HookRegistry;
+use APP\i18n\AppLocale;
 use PKP\cache\CacheManager;
 use PKP\core\Registry;
+use PKP\db\XMLDAO;
+use PKP\file\FileManager;
+use PKP\file\TemporaryFileManager;
+use PKP\plugins\HookRegistry;
 
-use APP\i18n\AppLocale;
-use APP\codelist\ONIXCodelistItem;
+use PKP\xslt\XSLTransformer;
 
 class ONIXCodelistItemDAO extends \PKP\db\DAO
 {

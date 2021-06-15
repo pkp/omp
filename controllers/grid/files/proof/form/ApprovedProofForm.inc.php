@@ -12,9 +12,9 @@
  * @brief Form for editing approved proofs (available for direct sales).
  */
 
-use PKP\form\Form;
-
 use APP\template\TemplateManager;
+
+use PKP\form\Form;
 
 class ApprovedProofForm extends Form
 {

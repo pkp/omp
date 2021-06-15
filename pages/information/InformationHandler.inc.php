@@ -15,7 +15,7 @@
 
 import('classes.handler.Handler');
 
-use \APP\template\TemplateManager;
+use APP\template\TemplateManager;
 
 class InformationHandler extends Handler
 {

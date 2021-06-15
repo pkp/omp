@@ -17,7 +17,7 @@
 
 namespace APP\log;
 
-use \PKP\log\PKPSubmissionEventLogEntry;
+use PKP\log\PKPSubmissionEventLogEntry;
 
 /**
  * Log entry event types. All types must be defined here.
@@ -39,4 +39,3 @@ class SubmissionEventLogEntry extends PKPSubmissionEventLogEntry
 if (!PKP_STRICT_MODE) {
     class_alias('\APP\log\SubmissionEventLogEntry', '\SubmissionEventLogEntry');
 }
-

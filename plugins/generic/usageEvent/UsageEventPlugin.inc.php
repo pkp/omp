@@ -15,7 +15,6 @@
 
 import('lib.pkp.plugins.generic.usageEvent.PKPUsageEventPlugin');
 
-use APP\template\TemplateManager;
 use APP\submission\Submission;
 
 class UsageEventPlugin extends PKPUsageEventPlugin

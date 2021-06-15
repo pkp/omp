@@ -23,9 +23,6 @@ namespace APP\monograph;
 use PKP\db\DAORegistry;
 use PKP\db\DAOResultFactory;
 
-use APP\monograph\Chapter;
-use APP\monograph\ChapterAuthor;
-
 class ChapterAuthorDAO extends \PKP\db\DAO
 {
     /**

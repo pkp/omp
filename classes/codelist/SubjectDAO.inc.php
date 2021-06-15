@@ -18,8 +18,6 @@
 
 namespace APP\codelist;
 
-use APP\codelist\Subject;
-use APP\codelist\CodelistItemDAO;
 use APP\i18n\AppLocale;
 
 class SubjectDAO extends CodelistItemDAO

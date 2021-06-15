@@ -13,9 +13,9 @@
  * @brief Component serving up cover images for submissions.
  */
 
-use PKP\handler\PKPHandler;
-
 use APP\security\authorization\OmpPublishedSubmissionAccessPolicy;
+
+use PKP\handler\PKPHandler;
 
 class CoverHandler extends PKPHandler
 {

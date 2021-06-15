@@ -17,7 +17,6 @@ import('lib.pkp.classes.controllers.grid.GridCategoryRow');
 
 // Link actions
 use PKP\linkAction\LinkAction;
-use PKP\linkAction\request\AjaxModal;
 use PKP\linkAction\request\RemoteActionConfirmationModal;
 
 class ChapterGridCategoryRow extends GridCategoryRow

@@ -18,15 +18,15 @@ import('controllers.grid.catalogEntry.RepresentativesGridCellProvider');
 import('controllers.grid.catalogEntry.RepresentativesGridCategoryRow');
 import('controllers.grid.catalogEntry.RepresentativesGridRow');
 
+use APP\notification\NotificationManager;
 use PKP\controllers\grid\CategoryGridHandler;
 use PKP\controllers\grid\GridColumn;
-use PKP\linkAction\request\AjaxModal;
-use PKP\linkAction\LinkAction;
 use PKP\core\JSONMessage;
+use PKP\linkAction\LinkAction;
+use PKP\linkAction\request\AjaxModal;
 use PKP\security\authorization\SubmissionAccessPolicy;
-use PKP\security\Role;
 
-use APP\notification\NotificationManager;
+use PKP\security\Role;
 
 class RepresentativesGridHandler extends CategoryGridHandler
 {

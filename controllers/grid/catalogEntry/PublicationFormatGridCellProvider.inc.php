@@ -13,12 +13,12 @@
  * @brief Base class for a cell provider that can retrieve labels for publication formats
  */
 
-use PKP\linkAction\LinkAction;
-use PKP\submission\SubmissionFile;
-use PKP\linkAction\request\AjaxModal;
 use PKP\controllers\grid\DataObjectGridCellProvider;
 use PKP\controllers\grid\GridHandler;
+use PKP\linkAction\LinkAction;
+use PKP\linkAction\request\AjaxModal;
 use PKP\security\Role;
+use PKP\submission\SubmissionFile;
 
 // FIXME: Add namespacing
 import('lib.pkp.controllers.grid.files.FileNameGridColumn');

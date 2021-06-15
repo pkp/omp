@@ -15,8 +15,8 @@
 namespace APP\services;
 
 use APP\core\Application;
-use PKP\db\DAORegistry;
 use APP\core\Services;
+use PKP\db\DAORegistry;
 
 class PublicationFormatService
 {

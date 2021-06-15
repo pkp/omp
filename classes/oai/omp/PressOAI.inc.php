@@ -21,11 +21,11 @@
  * (based on where the request is directed).
  */
 
+use APP\oai\omp\OAIDAO;
 use PKP\oai\OAI;
-use PKP\oai\OAIResumptionToken;
 use PKP\oai\OAIRepository;
 
-use APP\oai\omp\OAIDAO;
+use PKP\oai\OAIResumptionToken;
 
 class PressOAI extends OAI
 {

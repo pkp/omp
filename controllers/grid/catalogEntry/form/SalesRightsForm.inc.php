@@ -13,9 +13,9 @@
  * @brief Form for adding/editing a sales rights entry
  */
 
-use PKP\form\Form;
-
 use APP\template\TemplateManager;
+
+use PKP\form\Form;
 
 class SalesRightsForm extends Form
 {

@@ -15,16 +15,16 @@
 
 namespace APP\services;
 
-use PKP\db\DAORegistry;
+use APP\core\Application;
+use APP\i18n\AppLocale;
+use APP\template\TemplateManager;
+
 use PKP\core\PKPApplication;
+use PKP\db\DAORegistry;
 use PKP\plugins\HookRegistry;
 
-use APP\template\TemplateManager;
-use APP\i18n\AppLocale;
-use APP\core\Application;
-
 // FIXME: Add namespacing
-use \Validation;
+use Validation;
 
 class NavigationMenuService extends \PKP\services\PKPNavigationMenuService
 {

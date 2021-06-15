@@ -17,8 +17,6 @@
 
 namespace APP\spotlight;
 
-use APP\spotlight\Spotlight;
-
 class SpotlightDAO extends \PKP\db\DAO
 {
     /**

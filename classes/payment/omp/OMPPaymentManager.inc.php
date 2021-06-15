@@ -18,13 +18,13 @@
 
 namespace APP\payment\omp;
 
-use PKP\submission\SubmissionFile;
-use PKP\payment\QueuedPayment;
-use PKP\payment\PaymentManager;
+use APP\core\Services;
 use PKP\db\DAORegistry;
+use PKP\payment\PaymentManager;
+use PKP\payment\QueuedPayment;
 use PKP\plugins\PluginRegistry;
 
-use APP\core\Services;
+use PKP\submission\SubmissionFile;
 
 class OMPPaymentManager extends PaymentManager
 {

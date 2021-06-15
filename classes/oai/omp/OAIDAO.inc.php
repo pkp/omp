@@ -18,13 +18,13 @@
 namespace APP\oai\omp;
 
 use APP\facades\Repo;
+use Illuminate\Support\Facades\DB;
 use PKP\db\DAORegistry;
 use PKP\oai\OAISet;
 use PKP\oai\PKPOAIDAO;
 use PKP\plugins\HookRegistry;
-use PKP\submission\PKPSubmission;
 
-use Illuminate\Support\Facades\DB;
+use PKP\submission\PKPSubmission;
 
 class OAIDAO extends PKPOAIDAO
 {
@@ -202,6 +202,8 @@ class OAIDAO extends PKPOAIDAO
 
     /**
      * @copydoc PKPOAIDAO::_getRecordsRecordSet
+     *
+     * @param null|mixed $submissionId
      */
     public function _getRecordsRecordSetQuery($setIds, $from, $until, $set, $submissionId = null, $orderBy = 'press_id, data_object_id')
     {
@@ -212,76 +214,76 @@ class OAIDAO extends PKPOAIDAO
             ->select([
                 'ms.last_modified AS last_modified',
                 'pf.publication_format_id AS data_object_id',
-		DB::raw('NULL AS tombstone_id'),
-		DB::raw('NULL AS set_spec'),
-		DB::raw('NULL AS oai_identifier'),
+                DB::raw('NULL AS tombstone_id'),
+                DB::raw('NULL AS set_spec'),
+                DB::raw('NULL AS oai_identifier'),
                 'p.press_id AS press_id',
-		'pub.series_id AS series_id',
+                'pub.series_id AS series_id',
             ])
             ->join('publications AS pub', 'pub.publication_id', '=', 'pf.publication_id')
             ->join('submissions AS ms', 'ms.current_publication_id', '=', 'pub.publication_id')
             ->leftJoin('series AS s', 's.series_id', '=', 'pub.series_id')
             ->join('presses AS p', 'p.press_id', '=', 'ms.context_id')
             ->where('p.enabled', '=', 1)
-            ->when($pressId, function($query, $pressId) {
+            ->when($pressId, function ($query, $pressId) {
                 return $query->where('p.press_id', '=', $pressId);
             })
-            ->when($seriesId, function($query, $seriesId) {
+            ->when($seriesId, function ($query, $seriesId) {
                 return $query->where('pub.series_id', '=', $seriesId);
             })
             ->where('ms.status', '=', PKPSubmission::STATUS_PUBLISHED)
             ->where('pf.is_available', '=', 1)
             ->whereNotNull('pub.date_published')
-            ->when($from, function($query, $from) {
+            ->when($from, function ($query, $from) {
                 return $query->where('ms.last_modified', '>=', $this->datetimeToDB($from));
             })
-            ->when($until, function($query, $until) {
+            ->when($until, function ($query, $until) {
                 return $query->where('ms.last_modified', '<=', $this->datetimeToDB($until));
             })
-            ->when($submissionId, function($query, $submissionId) {
+            ->when($submissionId, function ($query, $submissionId) {
                 return $query->where('pf.publication_format_id', '=', $submissionId);
             })
             ->union(
                 DB::table('data_object_tombstones AS dot')
-                ->select([
+                    ->select([
                         'dot.date_deleted AS last_modified',
                         'dot.data_object_id AS data_object_id',
                         'dot.tombstone_id',
                         'dot.set_spec',
                         'dot.oai_identifier',
-                ])
-                ->when(isset($pressId), function($query, $pressId) {
-                    return $query->join('data_object_tombstone_oai_set_objects AS tsop', function($join) use ($pressId) {
+                    ])
+                    ->when(isset($pressId), function ($query, $pressId) {
+                    return $query->join('data_object_tombstone_oai_set_objects AS tsop', function ($join) use ($pressId) {
                         $join->on('tsop.tombstone_id', '=', 'dot.tombstone_id');
                         $join->where('tsop.assoc_type', '=', ASSOC_TYPE_PRESS);
                         $join->where('tsop.assoc_id', '=', (int) $pressId);
                     })->addSelect(['tsop.assoc_id AS press_id']);
-                }, function($query) {
+                }, function ($query) {
                     return $query->addSelect([DB::raw('NULL AS press_id')]);
                 })
-                ->when(isset($seriesId), function($query, $seriesId) {
-                    return $query->join('data_object_tombstone_oai_set_objects AS tsos', function($join) use ($seriesId) {
+                    ->when(isset($seriesId), function ($query, $seriesId) {
+                    return $query->join('data_object_tombstone_oai_set_objects AS tsos', function ($join) use ($seriesId) {
                         $join->on('tsos.tombstone_id', '=', 'dot.tombstone_id');
                         $join->where('tsos.assoc_type', '=', ASSOC_TYPE_SERIES);
                         $join->where('tsos.assoc_id', '=', (int) $seriesId);
                     })->addSelect(['tsos.assoc_id AS series_id']);
-                }, function($query) {
+                }, function ($query) {
                     return $query->addSelect([DB::raw('NULL AS series_id')]);
                 })
-                ->when(isset($set), function($query) use ($set) {
+                    ->when(isset($set), function ($query) use ($set) {
                     return $query->where('dot.set_spec', '=', $set);
                 })
-                ->when($from, function($query, $from) {
+                    ->when($from, function ($query, $from) {
                     return $query->where('dot.date_deleted', '>=', $from);
                 })
-                ->when($until, function($query, $until) {
+                    ->when($until, function ($query, $until) {
                     return $query->where('dot.date_deleted', '<=', $until);
                 })
-                ->when($submissionId, function($query, $submissionId) {
+                    ->when($submissionId, function ($query, $submissionId) {
                     return $query->where('dot.data_object_id', '=', (int) $submissionId);
                 })
             )
-        ->orderBy(DB::raw($orderBy));
+            ->orderBy(DB::raw($orderBy));
     }
 }
 

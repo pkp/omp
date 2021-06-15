@@ -15,13 +15,13 @@
 
 namespace APP\submission\form;
 
-use PKP\submission\form\PKPSubmissionSubmitStep4Form;
-use PKP\log\SubmissionLog;
-
-use APP\log\SubmissionEventLogEntry;
-use APP\notification\NotificationManager;
-use APP\mail\MonographMailTemplate;
 use APP\core\Application;
+use APP\log\SubmissionEventLogEntry;
+
+use APP\mail\MonographMailTemplate;
+use APP\notification\NotificationManager;
+use PKP\log\SubmissionLog;
+use PKP\submission\form\PKPSubmissionSubmitStep4Form;
 
 class SubmissionSubmitStep4Form extends PKPSubmissionSubmitStep4Form
 {
