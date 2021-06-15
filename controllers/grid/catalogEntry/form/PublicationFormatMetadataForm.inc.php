@@ -13,10 +13,10 @@
  * @brief Form to edit a publication format's metadata
  */
 
-use PKP\form\Form;
-use PKP\plugins\PKPPubIdPluginHelper;
-
 use APP\template\TemplateManager;
+use PKP\form\Form;
+
+use PKP\plugins\PKPPubIdPluginHelper;
 
 class PublicationFormatMetadataForm extends Form
 {

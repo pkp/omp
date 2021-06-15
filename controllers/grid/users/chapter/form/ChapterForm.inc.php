@@ -14,9 +14,9 @@
  * stores/retrieves from an associative array
  */
 
-use PKP\form\Form;
-
 use APP\template\TemplateManager;
+
+use PKP\form\Form;
 
 class ChapterForm extends Form
 {

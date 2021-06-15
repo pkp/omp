@@ -13,8 +13,8 @@
  * @brief Handle site index requests.
  */
 
-use APP\search\MonographSearch;
 use APP\handler\Handler;
+use APP\search\MonographSearch;
 use APP\template\TemplateManager;
 
 class SearchHandler extends Handler

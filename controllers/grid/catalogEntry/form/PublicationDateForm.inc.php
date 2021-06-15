@@ -13,9 +13,9 @@
  * @brief Form for adding/editing a publication date
  */
 
-use PKP\form\Form;
-
 use APP\template\TemplateManager;
+
+use PKP\form\Form;
 
 class PublicationDateForm extends Form
 {

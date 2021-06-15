@@ -17,10 +17,8 @@
 
 namespace APP\search;
 
-use APP\search\MonographSearch;
-
-use PKP\submission\PKPSubmission;
 use PKP\search\SubmissionSearchDAO;
+use PKP\submission\PKPSubmission;
 
 class MonographSearchDAO extends SubmissionSearchDAO
 {

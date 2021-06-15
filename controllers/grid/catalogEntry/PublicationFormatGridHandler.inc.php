@@ -13,20 +13,20 @@
  * @brief Handle publication format grid requests.
  */
 
-use PKP\submission\SubmissionFile;
-use PKP\submission\PKPSubmission;
-use PKP\core\JSONMessage;
-use PKP\linkAction\request\AjaxModal;
-use PKP\linkAction\LinkAction;
-use PKP\security\authorization\PublicationAccessPolicy;
-use PKP\security\authorization\internal\RepresentationRequiredPolicy;
-use PKP\controllers\grid\GridColumn;
+use APP\notification\NotificationManager;
+use APP\template\TemplateManager;
 use PKP\controllers\grid\CategoryGridHandler;
+use PKP\controllers\grid\GridColumn;
+use PKP\core\JSONMessage;
+use PKP\linkAction\LinkAction;
+use PKP\linkAction\request\AjaxModal;
 use PKP\log\SubmissionLog;
+use PKP\security\authorization\internal\RepresentationRequiredPolicy;
+use PKP\security\authorization\PublicationAccessPolicy;
 use PKP\security\Role;
 
-use APP\template\TemplateManager;
-use APP\notification\NotificationManager;
+use PKP\submission\PKPSubmission;
+use PKP\submission\SubmissionFile;
 
 // import format grid specific classes
 import('controllers.grid.catalogEntry.PublicationFormatGridRow');

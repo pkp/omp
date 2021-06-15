@@ -17,7 +17,7 @@
 
 namespace APP\log;
 
-use \PKP\log\EmailLogEntry;
+use PKP\log\EmailLogEntry;
 
 class MonographFileEmailLogEntry extends EmailLogEntry
 {
@@ -35,4 +35,3 @@ class MonographFileEmailLogEntry extends EmailLogEntry
 if (!PKP_STRICT_MODE) {
     class_alias('\APP\log\MonographFileEmailLogEntry', '\MonographFileEmailLogEntry');
 }
-

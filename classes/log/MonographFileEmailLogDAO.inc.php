@@ -17,8 +17,8 @@
 
 namespace APP\log;
 
-use \PKP\log\EmailLogDAO;
-use \PKP\log\MonographFileEmailLogEntry;
+use PKP\log\EmailLogDAO;
+use PKP\log\MonographFileEmailLogEntry;
 
 class MonographFileEmailLogDAO extends EmailLogDAO
 {

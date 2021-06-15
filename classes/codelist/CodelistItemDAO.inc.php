@@ -18,12 +18,11 @@
 
 namespace APP\codelist;
 
+use APP\i18n\AppLocale;
 use PKP\cache\CacheManager;
-use PKP\plugins\HookRegistry;
 use PKP\core\Registry;
 
-use APP\codelist\CodelistItem;
-use APP\i18n\AppLocale;
+use PKP\plugins\HookRegistry;
 
 class CodelistItemDAO extends DAO
 {

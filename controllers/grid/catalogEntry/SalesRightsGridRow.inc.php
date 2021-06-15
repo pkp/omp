@@ -15,8 +15,8 @@
 
 use PKP\controllers\grid\GridRow;
 use PKP\linkAction\LinkAction;
-use PKP\linkAction\request\RemoteActionConfirmationModal;
 use PKP\linkAction\request\AjaxModal;
+use PKP\linkAction\request\RemoteActionConfirmationModal;
 
 class SalesRightsGridRow extends GridRow
 {

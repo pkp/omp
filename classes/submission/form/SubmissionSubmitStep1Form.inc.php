@@ -15,12 +15,12 @@
 
 namespace APP\submission\form;
 
-use PKP\submission\form\PKPSubmissionSubmitStep1Form;
-use PKP\db\DAORegistry;
-use PKP\security\Role;
-
 use APP\core\Application;
 use APP\template\TemplateManager;
+use PKP\db\DAORegistry;
+
+use PKP\security\Role;
+use PKP\submission\form\PKPSubmissionSubmitStep1Form;
 
 class SubmissionSubmitStep1Form extends PKPSubmissionSubmitStep1Form
 {

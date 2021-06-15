@@ -13,9 +13,9 @@
  * @brief Form for adding/editing a format
  */
 
-use PKP\form\Form;
-
 use APP\template\TemplateManager;
+
+use PKP\form\Form;
 
 class PublicationFormatForm extends Form
 {

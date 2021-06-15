@@ -18,12 +18,9 @@
 
 namespace APP\monograph;
 
-use PKP\plugins\PKPPubIdPluginDAO;
-use PKP\plugins\HookRegistry;
 use PKP\db\DAOResultFactory;
-
-use APP\monograph\Chapter;
-use APP\monograph\ChapterAuthor;
+use PKP\plugins\HookRegistry;
+use PKP\plugins\PKPPubIdPluginDAO;
 
 class ChapterDAO extends \PKP\db\DAO implements PKPPubIdPluginDAO
 {

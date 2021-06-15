@@ -16,11 +16,11 @@
 // Import the base handler.
 import('lib.pkp.controllers.api.file.PKPManageFileApiHandler');
 
+use APP\template\TemplateManager;
 use PKP\core\JSONMessage;
-use PKP\submission\SubmissionFile;
 use PKP\security\Role;
 
-use APP\template\TemplateManager;
+use PKP\submission\SubmissionFile;
 
 class ManageFileApiHandler extends PKPManageFileApiHandler
 {

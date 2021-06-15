@@ -16,8 +16,6 @@ namespace APP\security\authorization;
 
 use PKP\security\authorization\internal\ContextPolicy;
 
-use APP\security\authorization\OmpPublishedSubmissionRequiredPolicy;
-
 class OmpPublishedSubmissionAccessPolicy extends ContextPolicy
 {
     /**

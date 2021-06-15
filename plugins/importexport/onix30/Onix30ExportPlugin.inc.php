@@ -15,7 +15,7 @@
 
 import('lib.pkp.classes.plugins.ImportExportPlugin');
 
-use \APP\template\TemplateManager;
+use APP\template\TemplateManager;
 
 class Onix30ExportPlugin extends ImportExportPlugin
 {

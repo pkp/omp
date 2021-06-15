@@ -15,9 +15,9 @@
 
 namespace APP\submission\form;
 
-use PKP\submission\form\PKPSubmissionSubmitStep3Form;
-
 use APP\submission\SubmissionMetadataFormImplementation;
+
+use PKP\submission\form\PKPSubmissionSubmitStep3Form;
 
 class SubmissionSubmitStep3Form extends PKPSubmissionSubmitStep3Form
 {

@@ -22,8 +22,6 @@
 
 namespace APP\codelist;
 
-use APP\codelist\CodelistItem;
-
 class Subject extends CodelistItem
 {
     /**

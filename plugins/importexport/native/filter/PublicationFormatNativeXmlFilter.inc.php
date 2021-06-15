@@ -13,7 +13,7 @@
  * @brief Class that converts a PublicationFormat to a Native XML document.
  */
 
-use \PKP\xsl\XSLTransformer;
+use PKP\xsl\XSLTransformer;
 
 import('lib.pkp.plugins.importexport.native.filter.RepresentationNativeXmlFilter');
 

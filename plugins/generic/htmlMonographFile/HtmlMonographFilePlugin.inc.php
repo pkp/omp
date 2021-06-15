@@ -13,10 +13,10 @@
  * @brief Class for HtmlMonographFile plugin
  */
 
-use PKP\submission\SubmissionFile;
+use APP\file\PublicFileManager;
 
 use APP\template\TemplateManager;
-use APP\file\PublicFileManager;
+use PKP\submission\SubmissionFile;
 
 import('lib.pkp.classes.plugins.GenericPlugin');
 

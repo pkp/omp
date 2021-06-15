@@ -13,12 +13,12 @@
  * @brief Web Feeds plugin class
  */
 
-use PKP\linkAction\LinkAction;
-use PKP\plugins\GenericPlugin;
+use APP\template\TemplateManager;
 use PKP\core\JSONMessage;
+use PKP\linkAction\LinkAction;
 use PKP\linkAction\request\AjaxModal;
 
-use APP\template\TemplateManager;
+use PKP\plugins\GenericPlugin;
 
 class WebFeedPlugin extends GenericPlugin
 {

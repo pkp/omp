@@ -17,10 +17,10 @@
 
 namespace APP\monograph;
 
-use PKP\db\DAORegistry;
+use APP\i18n\AppLocale;
 use PKP\core\PKPString;
 
-use APP\i18n\AppLocale;
+use PKP\db\DAORegistry;
 
 class Chapter extends \PKP\core\DataObject
 {

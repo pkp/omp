@@ -17,15 +17,15 @@
 import('controllers.grid.catalogEntry.PublicationDateGridCellProvider');
 import('controllers.grid.catalogEntry.PublicationDateGridRow');
 
-use PKP\controllers\grid\GridHandler;
+use APP\notification\NotificationManager;
 use PKP\controllers\grid\GridColumn;
+use PKP\controllers\grid\GridHandler;
+use PKP\core\JSONMessage;
 use PKP\linkAction\LinkAction;
 use PKP\linkAction\request\AjaxModal;
-use PKP\core\JSONMessage;
 use PKP\security\authorization\PublicationAccessPolicy;
-use PKP\security\Role;
 
-use APP\notification\NotificationManager;
+use PKP\security\Role;
 
 class PublicationDateGridHandler extends GridHandler
 {

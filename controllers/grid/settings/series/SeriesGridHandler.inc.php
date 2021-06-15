@@ -16,14 +16,14 @@
 import('lib.pkp.controllers.grid.settings.SetupGridHandler');
 import('controllers.grid.settings.series.SeriesGridRow');
 
-use PKP\linkAction\LinkAction;
-use PKP\core\JSONMessage;
-use PKP\linkAction\request\AjaxModal;
-use PKP\controllers\grid\GridColumn;
-use PKP\controllers\grid\feature\OrderGridItemsFeature;
-use PKP\security\Role;
-
 use APP\notification\NotificationManager;
+use PKP\controllers\grid\feature\OrderGridItemsFeature;
+use PKP\controllers\grid\GridColumn;
+use PKP\core\JSONMessage;
+use PKP\linkAction\LinkAction;
+use PKP\linkAction\request\AjaxModal;
+
+use PKP\security\Role;
 
 class SeriesGridHandler extends SetupGridHandler
 {

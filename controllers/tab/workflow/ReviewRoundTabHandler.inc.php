@@ -14,11 +14,11 @@
  */
 
 
+use APP\handler\Handler;
 use PKP\controllers\tab\workflow\PKPReviewRoundTabHandler;
-use PKP\security\Role;
 use PKP\security\authorization\WorkflowStageAccessPolicy;
 
-use APP\handler\Handler;
+use PKP\security\Role;
 
 class ReviewRoundTabHandler extends PKPReviewRoundTabHandler
 {

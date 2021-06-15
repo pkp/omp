@@ -19,8 +19,6 @@ namespace APP\monograph;
 
 use PKP\db\DAOResultFactory;
 
-use APP\monograph\Representative;
-
 class RepresentativeDAO extends \PKP\db\DAO
 {
     /**

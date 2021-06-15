@@ -13,9 +13,9 @@
  * @brief Handle requests for the author dashboard.
  */
 
-use \PKP\submission\SubmissionFile;
+use APP\template\TemplateManager;
 
-use \APP\template\TemplateManager;
+use PKP\submission\SubmissionFile;
 
 // Import base class
 import('lib.pkp.pages.authorDashboard.PKPAuthorDashboardHandler');

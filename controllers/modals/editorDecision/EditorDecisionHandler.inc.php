@@ -13,14 +13,14 @@
  * @brief Handle requests for editors to make a decision
  */
 
+use APP\workflow\EditorDecisionActionsManager;
 use PKP\controllers\modals\editorDecision\PKPEditorDecisionHandler;
 use PKP\core\JSONMessage;
-use PKP\security\authorization\EditorDecisionAccessPolicy;
 use PKP\notification\PKPNotification;
+use PKP\security\authorization\EditorDecisionAccessPolicy;
 use PKP\security\Role;
-use PKP\workflow\WorkflowStageDAO;
 
-use APP\workflow\EditorDecisionActionsManager;
+use PKP\workflow\WorkflowStageDAO;
 
 class EditorDecisionHandler extends PKPEditorDecisionHandler
 {

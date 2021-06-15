@@ -17,15 +17,15 @@
 import('controllers.grid.catalogEntry.IdentificationCodeGridCellProvider');
 import('controllers.grid.catalogEntry.IdentificationCodeGridRow');
 
-use PKP\linkAction\request\AjaxModal;
+use APP\notification\NotificationManager;
+use PKP\controllers\grid\GridColumn;
+use PKP\controllers\grid\GridHandler;
 use PKP\core\JSONMessage;
 use PKP\linkAction\LinkAction;
+use PKP\linkAction\request\AjaxModal;
 use PKP\security\authorization\PublicationAccessPolicy;
-use PKP\controllers\grid\GridHandler;
-use PKP\controllers\grid\GridColumn;
-use PKP\security\Role;
 
-use APP\notification\NotificationManager;
+use PKP\security\Role;
 
 class IdentificationCodeGridHandler extends GridHandler
 {

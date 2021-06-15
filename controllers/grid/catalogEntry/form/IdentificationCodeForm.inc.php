@@ -13,9 +13,9 @@
  * @brief Form for adding/editing an identification code
  */
 
-use PKP\form\Form;
-
 use APP\template\TemplateManager;
+
+use PKP\form\Form;
 
 class IdentificationCodeForm extends Form
 {

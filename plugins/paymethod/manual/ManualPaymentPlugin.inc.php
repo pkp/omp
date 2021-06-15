@@ -13,11 +13,11 @@
  * @brief Manual payment plugin class
  */
 
-use PKP\mail\MailTemplate;
-use PKP\form\Form;
-use PKP\plugins\PaymethodPlugin;
-
 use APP\template\TemplateManager;
+use PKP\form\Form;
+use PKP\mail\MailTemplate;
+
+use PKP\plugins\PaymethodPlugin;
 
 class ManualPaymentPlugin extends PaymethodPlugin
 {

@@ -15,8 +15,8 @@
 
 import('lib.pkp.pages.reviewer.PKPReviewerHandler');
 
-use PKP\security\Role;
 use PKP\security\authorization\SubmissionAccessPolicy;
+use PKP\security\Role;
 
 class ReviewerHandler extends PKPReviewerHandler
 {

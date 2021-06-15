@@ -13,10 +13,10 @@
  * @brief Inject Dublin Core meta tags into monograph views to facilitate indexing.
  */
 
-use PKP\plugins\GenericPlugin;
+use APP\submission\Submission;
 
 use APP\template\TemplateManager;
-use APP\submission\Submission;
+use PKP\plugins\GenericPlugin;
 
 class DublinCoreMetaPlugin extends GenericPlugin
 {

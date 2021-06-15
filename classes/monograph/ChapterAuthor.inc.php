@@ -18,8 +18,6 @@
 
 namespace APP\monograph;
 
-use APP\monograph\Author;
-
 class ChapterAuthor extends Author
 {
     //

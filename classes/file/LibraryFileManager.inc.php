@@ -15,8 +15,8 @@
 
 namespace APP\file;
 
-use PKP\file\PKPLibraryFileManager;
 use PKP\context\LibraryFile;
+use PKP\file\PKPLibraryFileManager;
 
 class LibraryFileManager extends PKPLibraryFileManager
 {
