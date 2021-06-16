@@ -253,7 +253,7 @@ class CatalogBookHandler extends Handler
         }
 
         $publication = null;
-        foreach ((array) $submission->getData('publications') as $iPublication) {
+        foreach ($submission->getData('publications') as $iPublication) {
             if ($iPublication->getId() == $publicationId) {
                 $publication = $iPublication;
                 break;
