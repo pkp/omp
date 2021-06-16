@@ -21,9 +21,9 @@
 
 	<p>
 		{if $currentContext}
-			{translate key="about.aboutOMPPress" ojsVersion=$appVersion contactUrl=$contactUrl}
+			{translate key="about.aboutOMPPress" ompVersion=$appVersion contactUrl=$contactUrl}
 		{else}
-			{translate key="about.aboutOMPSite" ojsVersion=$appVersion}
+			{translate key="about.aboutOMPSite" ompVersion=$appVersion}
 		{/if}
 	</p>
 
