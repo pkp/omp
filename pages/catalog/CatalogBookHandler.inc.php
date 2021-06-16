@@ -19,6 +19,8 @@ use APP\handler\Handler;
 use APP\payment\omp\OMPPaymentManager;
 use APP\security\authorization\OmpPublishedSubmissionAccessPolicy;
 use APP\template\TemplateManager;
+use Illuminate\Support\Facades\App;
+use PKP\core\FileService;
 use PKP\submission\PKPSubmission;
 
 class CatalogBookHandler extends Handler
@@ -28,6 +30,8 @@ class CatalogBookHandler extends Handler
 
     /** @var boolean Is this a request for a specific version */
     public $isVersionRequest = false;
+
+    protected FileService $fileService;
 
     //
     // Overridden functions from PKPHandler
@@ -42,6 +46,7 @@ class CatalogBookHandler extends Handler
     public function authorize($request, &$args, $roleAssignments)
     {
         $this->addPolicy(new OmpPublishedSubmissionAccessPolicy($request, $args, $roleAssignments));
+        $this->fileService = App::make(FileService::class);
         return parent::authorize($request, $args, $roleAssignments);
     }
 
@@ -273,7 +278,7 @@ class CatalogBookHandler extends Handler
         }
 
         $path = $submissionFile->getData('path');
-        $filename = Services::get('file')->formatFilename($path, $submissionFile->getLocalizedData('name'));
+        $filename = $this->fileService->formatFilename($path, $submissionFile->getLocalizedData('name'));
         switch ($submissionFile->getData('assocType')) {
             case ASSOC_TYPE_PUBLICATION_FORMAT: // Publication format file
                 if ($submissionFile->getData('assocId') != $publicationFormat->getId() || $submissionFile->getDirectSalesPrice() === null) {
@@ -286,7 +291,7 @@ class CatalogBookHandler extends Handler
                 if (!$genre->getDependent()) {
                     $dispatcher->handle404();
                 }
-                return Services::get('file')->download($submissionFile->getData('fileId'), $filename);
+                return $this->fileService->download($submissionFile->getData('fileId'), $filename);
             default: $dispatcher->handle404();
         }
 
@@ -333,7 +338,7 @@ class CatalogBookHandler extends Handler
             }
             $returner = true;
             HookRegistry::call('FileManager::downloadFileFinished', [&$returner]);
-            return Services::get('file')->download($submissionFile->getData('fileId'), $filename, $inline);
+            return $this->fileService->download($submissionFile->getData('fileId'), $filename, $inline);
         }
 
         // Fall-through: user needs to pay for purchase.
