@@ -1,6 +1,6 @@
 msgid ""
 msgstr ""
-"PO-Revision-Date: 2021-06-10 11:45+0000\n"
+"PO-Revision-Date: 2021-06-19 08:03+0000\n"
 "Last-Translator: Real Academia Galega <reacagal@gmail.com>\n"
 "Language-Team: Galician <http://translate.pkp.sfu.ca/projects/omp/manager/"
 "gl_ES/>\n"
@@ -1415,3 +1415,26 @@ msgid "manager.setup.selectCountry"
 msgstr ""
 "Selecione o país onde está a editorial ou o país do enderezo da "
 "correspondencia."
+
+msgid "plugins.importexport.chapter.exportFailed"
+msgstr "O proceso fallou ao analizar capítulos"
+
+msgid "plugins.importexport.publicationformat.exportFailed"
+msgstr "O proceso fallou ao analizar os formatos de publicación"
+
+msgid "plugins.importexport.native.error.unknownUser"
+msgstr "O usuario \"{$userName}\" non existe."
+
+msgid "plugins.importexport.common.error.unknownObjects"
+msgstr "Non se atoparon os obxectos especificados."
+
+msgid "manager.setup.notifications.copySubmissionAckPrimaryContact.disabled.description"
+msgstr ""
+"Ningún contacto principal foi definido para esta editorial. Vostede pode "
+"inserir o contacto principal na <a href=\"{$url}\">configuración da "
+"editorial</a>."
+
+msgid "manager.setup.notifications.copySubmissionAckPrimaryContact.description"
+msgstr ""
+"Envia unha cópia do correo electrónico de confirmación do envío ao contacto "
+"principal desta editorial."
