@@ -190,10 +190,14 @@ class Dc11SchemaPublicationFormatAdapter extends MetadataDataObjectAdapter {
 			'submissionIds' => [$monograph->getId()],
 			'assocTypes' => [ASSOC_TYPE_PUBLICATION_FORMAT]
 		]);
+
+
 		foreach ($pubFormatFiles as $file) {
 			{
-				$relation = $request->url($press->getData('urlPath'), 'catalog', 'view', [$monograph->getId(), $publicationFormat->getId(), $file->getId()]);
-				$dc11Description->addStatement('dc:relation', $relation);
+				if ($file->getData('assocId') == $publicationFormat->getData('id')) {
+					$relation = $request->url($press->getData('urlPath'), 'catalog', 'view', [$monograph->getId(), $publicationFormat->getId(), $file->getId()]);
+					$dc11Description->addStatement('dc:relation', $relation);
+				}
 			}
 		}
 
