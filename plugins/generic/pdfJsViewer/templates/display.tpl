@@ -48,10 +48,11 @@
 
 	<script type="text/javascript" src="{$pluginUrl}/pdf.js/build/pdf.js"></script>
 	<script type="text/javascript">
+		var pluginUrl = {$pluginUrl|json_encode};
 		{literal}
 			$(document).ready(function() {
-				PDFJS.workerSrc='{/literal}{$pluginUrl}/pdf.js/build/pdf.worker.js{literal}';
-				PDFJS.getDocument({/literal}'{$downloadUrl|escape:"javascript"}'{literal}).then(function(pdf) {
+				pdfjsLib.GlobalWorkerOptions.workerSrc = pluginUrl + '/pdf.js/build/pdf.worker.js';
+				pdfjsLib.getDocument({/literal}'{$downloadUrl|escape:"javascript"}'{literal}).promise.then(function(pdf) {
 					// Using promise to fetch the page
 					pdf.getPage(1).then(function(page) {
 						var pdfCanvasContainer = $('#pdfCanvasContainer');
@@ -73,11 +74,12 @@
 	<script type="text/javascript" src="{$pluginUrl}/pdf.js/web/viewer.js"></script>
 	<script type="text/javascript">
 		// Creating iframe's src in JS instead of Smarty so that EZProxy-using sites can find our domain in $pdfUrl and do their rewrites on it.
-		$(document).ready(function() {ldelim}
-			var urlBase = "{$pluginUrl}/pdf.js/web/viewer.html?file=";
-			var pdfUrl = {$downloadUrl|json_encode};
-			$("#pdfCanvasContainer > iframe").attr("src", urlBase + encodeURIComponent(pdfUrl));
-		{rdelim});
+			$(document).ready(function() {
+				var pluginUrl = {$pluginUrl|json_encode};
+				var urlBase = pluginUrl + '/pdf.js/web/viewer.html?file=';
+				var pdfUrl = {$downloadUrl|json_encode};
+				$("#pdfCanvasContainer > iframe").attr("src", urlBase + encodeURIComponent(pdfUrl));
+			});
 	</script>
 
 	<div id="pdfCanvasContainer" class="viewable_file_frame{if !$isLatestPublication} viewable_file_frame_with_notice{/if}">
