@@ -1,7 +1,8 @@
+# Diego José Macêdo <diegojmacedo@gmail.com>, 2021.
 msgid ""
 msgstr ""
-"PO-Revision-Date: 2021-06-24 09:08+0000\n"
-"Last-Translator: cicilia conceiçao de maria <ccmaria@uem.br>\n"
+"PO-Revision-Date: 2021-06-29 12:03+0000\n"
+"Last-Translator: Diego José Macêdo <diegojmacedo@gmail.com>\n"
 "Language-Team: Portuguese (Brazil) <http://translate.pkp.sfu.ca/projects/omp/"
 "api/pt_BR/>\n"
 "Language: pt_BR\n"
@@ -12,9 +13,7 @@ msgstr ""
 "X-Generator: Weblate 3.9.1\n"
 
 msgid "api.emailTemplates.403.notAllowedChangeContext"
-msgstr ""
-"##manager.setup.aboutPress##\n"
-"##manager.setup.aboutPress.description##"
+msgstr "Não tem permissões para mover este e-mail padrão para outra editora."
 
 msgid "api.submissions.403.contextRequired"
 msgstr ""
