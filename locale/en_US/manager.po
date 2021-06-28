@@ -1,10 +1,11 @@
+# cicilia conceiçao de maria <ccmaria@uem.br>, 2021.
 msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2019-09-30T06:23:43-07:00\n"
-"PO-Revision-Date: 2020-12-11 20:34+0000\n"
-"Last-Translator: Weblate Admin <alec@smecher.bc.ca>\n"
+"PO-Revision-Date: 2021-06-29 12:03+0000\n"
+"Last-Translator: cicilia conceiçao de maria <ccmaria@uem.br>\n"
 "Language-Team: English (United States) <http://translate.pkp.sfu.ca/projects/"
 "omp/manager/en_US/>\n"
 "Language: en_US\n"
@@ -653,7 +654,7 @@ msgid "manager.setup.pageHeader"
 msgstr "Press Page Header"
 
 msgid "manager.setup.pageHeaderDescription"
-msgstr ""
+msgstr "Configuração do cabeçalho da página"
 
 msgid "manager.setup.pressPolicies"
 msgstr "Step 2. Press Policies"
