@@ -16,6 +16,8 @@
 use APP\file\PublicFileManager;
 
 use APP\template\TemplateManager;
+use Illuminate\Support\Facades\App;
+use PKP\core\FileService;
 use PKP\submission\SubmissionFile;
 
 import('lib.pkp.classes.plugins.GenericPlugin');
@@ -144,7 +146,7 @@ class HtmlMonographFilePlugin extends GenericPlugin
      */
     public function _getHTMLContents($request, $monograph, $publicationFormat, $submissionFile)
     {
-        $contents = Services::get('file')->fs->read($submissionFile->getData('path'));
+        $contents = App::make(FileService::class)->fs->read($submissionFile->getData('path'));
 
         // Replace media file references
         import('lib.pkp.classes.submission.SubmissionFile'); // Constants

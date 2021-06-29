@@ -19,6 +19,7 @@ namespace APP\publicationFormat;
 
 use APP\core\Services;
 use APP\facades\Repo;
+use Illuminate\Support\Facades\App;
 use PKP\db\DAORegistry;
 
 use PKP\submission\Representation;
@@ -319,7 +320,7 @@ class PublicationFormat extends Representation
 
         foreach ($stageMonographFiles as $monographFile) {
             if ($monographFile->getViewable()) {
-                $fileSize += (int) Services::get('file')->fs->getSize($monographFile->getData('path'));
+                $fileSize += (int) App::make(\PKP\core\FileService::class)->fs->getSize($monographFile->getData('path'));
             }
         }
 

@@ -25,7 +25,8 @@ use APP\facades\Repo;
 use APP\press\Press;
 use APP\submission\Submission;
 use APP\submission\SubmissionFileDAO;
-
+use Illuminate\Support\Facades\App;
+use PKP\core\FileService;
 use PKP\core\PKPRouter;
 use PKP\db\DAORegistry;
 use PKP\submission\GenreDAO;
@@ -45,9 +46,12 @@ class SubmissionFileDAOTest extends DatabaseTestCase
     private $testFile1;
     private $testFile2;
     private $testFile3;
+    private $fileService;
 
     protected function setUp(): void
     {
+        $this->fileService = App::make(FileService::class);
+
         // Create a test file on the file system.
         $this->testFile1 = tempnam(TMP_FILES, 'SubmissionFile1');
         $this->testFile2 = tempnam(TMP_FILES, 'SubmissionFile2');
@@ -150,7 +154,7 @@ class SubmissionFileDAOTest extends DatabaseTestCase
 
         // Create test files
         $submissionDir = Services::get('submissionFile')->getSubmissionDir(SUBMISSION_FILE_DAO_TEST_PRESS_ID, $submissionId);
-        $fileId1 = Services::get('file')->add(
+        $fileId1 = $this->fileService->add(
             $this->testFile1,
             $submissionDir . '/' . uniqid() . '.txt'
         );
@@ -164,7 +168,7 @@ class SubmissionFileDAOTest extends DatabaseTestCase
             'createdAt' => '2011-12-05 00:00:00',
             'updatedAt' => '2011-12-05 00:00:00',
         ]);
-        $fileId2 = Services::get('file')->add(
+        $fileId2 = $this->fileService->add(
             $this->testFile2,
             $submissionDir . '/' . uniqid() . '.txt'
         );
@@ -204,7 +208,7 @@ class SubmissionFileDAOTest extends DatabaseTestCase
         self::assertEquals($submissionFile2->getData('genreId'), SUBMISSION_FILE_DAO_TEST_ART_GENRE_ID);
 
         // Save a new revision of a submission file
-        $fileId3 = Services::get('file')->add(
+        $fileId3 = $this->fileService->add(
             $this->testFile3,
             $submissionDir . '/' . uniqid() . '.txt'
         );
