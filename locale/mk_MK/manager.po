@@ -1,7 +1,8 @@
+# Mirko Spiroski <mspiroski@id-press.eu>, 2021.
 msgid ""
 msgstr ""
-"PO-Revision-Date: 2021-05-21 13:35+0000\n"
-"Last-Translator: Teodora Fildishevska <t.fildishevska@gmail.com>\n"
+"PO-Revision-Date: 2021-07-01 06:03+0000\n"
+"Last-Translator: Mirko Spiroski <mspiroski@id-press.eu>\n"
 "Language-Team: Macedonian <http://translate.pkp.sfu.ca/projects/omp/manager/"
 "mk_MK/>\n"
 "Language: mk_MK\n"
@@ -1416,7 +1417,7 @@ msgid "manager.series.editorRestriction"
 msgstr "Предметите можат да ги доставуваат уредници и уредници на серии."
 
 msgid "manager.setup.pageHeaderDescription"
-msgstr ""
+msgstr "Конфигурација на насловот на страницата"
 
 msgid "plugins.importexport.chapter.exportFailed"
 msgstr "Процесот не успеа да ги парсира поглавјата"
