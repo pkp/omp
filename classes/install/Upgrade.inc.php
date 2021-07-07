@@ -809,9 +809,9 @@ class Upgrade extends Installer
 
             // Get existing image paths
             $basePath = Services::get('submissionFile')->getSubmissionDir($row->context_id, $row->submission_id);
-            $coverPath = $basePath . '/simple/' . $coverImage['name'];
+            $coverPath = Config::getVar('files', 'files_dir') . '/' . $basePath . '/simple/' . $coverImage['name'];
             $coverPathInfo = pathinfo($coverPath);
-            $thumbPath = $basePath . '/simple/' . $coverImage['thumbnailName'];
+            $thumbPath = Config::getVar('files', 'files_dir') . '/' . $basePath . '/simple/' . $coverImage['thumbnailName'];
             $thumbPathInfo = pathinfo($thumbPath);
 
             // Copy the files to the public directory
