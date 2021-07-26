@@ -21,7 +21,7 @@ use APP\notification\NotificationManager;
 use APP\submission\Submission;
 use PKP\core\Core;
 use PKP\db\DAORegistry;
-use PKP\submission\SubmissionFile;
+use PKP\submissionFile\SubmissionFile;
 
 class Repository extends \PKP\publication\Repository
 {

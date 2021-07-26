@@ -26,7 +26,7 @@ use PKP\security\authorization\PublicationAccessPolicy;
 use PKP\security\Role;
 
 use PKP\submission\PKPSubmission;
-use PKP\submission\SubmissionFile;
+use PKP\submissionFile\SubmissionFile;
 
 // import format grid specific classes
 import('controllers.grid.catalogEntry.PublicationFormatGridRow');

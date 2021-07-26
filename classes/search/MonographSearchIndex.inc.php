@@ -24,7 +24,7 @@ use PKP\search\SearchFileParser;
 use PKP\search\SubmissionSearch;
 
 use PKP\search\SubmissionSearchIndex;
-use PKP\submission\SubmissionFile;
+use PKP\submissionFile\SubmissionFile;
 
 class MonographSearchIndex extends SubmissionSearchIndex
 {

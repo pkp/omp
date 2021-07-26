@@ -22,7 +22,7 @@ use PKP\plugins\ImportExportPlugin;
 use PKP\security\Role;
 
 use PKP\submission\PKPSubmission;
-use PKP\submission\SubmissionFile;
+use PKP\submissionFile\SubmissionFile;
 
 class CSVImportExportPlugin extends ImportExportPlugin
 {

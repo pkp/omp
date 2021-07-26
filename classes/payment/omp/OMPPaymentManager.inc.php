@@ -24,7 +24,7 @@ use PKP\payment\PaymentManager;
 use PKP\payment\QueuedPayment;
 use PKP\plugins\PluginRegistry;
 
-use PKP\submission\SubmissionFile;
+use PKP\submissionFile\SubmissionFile;
 
 class OMPPaymentManager extends PaymentManager
 {

@@ -22,7 +22,7 @@ use APP\facades\Repo;
 use PKP\db\DAORegistry;
 
 use PKP\submission\Representation;
-use PKP\submission\SubmissionFile;
+use PKP\submissionFile\SubmissionFile;
 
 class PublicationFormat extends Representation
 {

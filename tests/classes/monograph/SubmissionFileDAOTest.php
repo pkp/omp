@@ -24,12 +24,11 @@ use APP\core\Services;
 use APP\facades\Repo;
 use APP\press\Press;
 use APP\submission\Submission;
-use APP\submission\SubmissionFileDAO;
 
 use PKP\core\PKPRouter;
 use PKP\db\DAORegistry;
 use PKP\submission\GenreDAO;
-use PKP\submission\SubmissionFile;
+use PKP\submissionFile\SubmissionFile;
 
 // Define test ids.
 define('SUBMISSION_FILE_DAO_TEST_PRESS_ID', 999);

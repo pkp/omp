@@ -16,7 +16,7 @@
 use APP\file\PublicFileManager;
 
 use APP\template\TemplateManager;
-use PKP\submission\SubmissionFile;
+use PKP\submissionFile\SubmissionFile;
 
 import('lib.pkp.classes.plugins.GenericPlugin');
 
