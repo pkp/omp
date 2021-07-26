@@ -19,6 +19,7 @@ use APP\core\Application;
 
 use APP\facades\Repo;
 use APP\i18n\AppLocale;
+use APP\submissionFile\SubmissionFile;
 use Illuminate\Support\Facades\DB;
 use PKP\core\PKPString;
 use PKP\db\DAORegistry;
@@ -27,7 +28,6 @@ use PKP\identity\Identity;
 
 use PKP\install\Installer;
 use PKP\security\Role;
-use PKP\submission\SubmissionFile;
 
 class Upgrade extends Installer
 {

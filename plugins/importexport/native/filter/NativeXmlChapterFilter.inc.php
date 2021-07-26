@@ -14,6 +14,8 @@ use APP\facades\Repo;
  * @brief Base class that converts a Native XML document to a set of authors
  */
 
+use APP\facades\Repo;
+
 import('lib.pkp.plugins.importexport.native.filter.NativeImportFilter');
 
 class NativeXmlChapterFilter extends NativeImportFilter
@@ -169,16 +171,23 @@ class NativeXmlChapterFilter extends NativeImportFilter
         $fileId = $n->getAttribute('id');
 
         $sourceFileId = $deployment->getFileDBId($fileId);
-        if ($sourceFileId) {
-            $submissionFile = Services::get('submissionFile')->get($fileId);
 
-            if ($submissionFile) {
-                $submissionFile->setData('chapterId', $chapter->getId());
-
-                $submissionFileDao = DAORegistry::getDAO('SubmissionFileDAO'); /** @var SubmissionFileDAO $submissionFileDao */
-                $submissionFileDao->updateObject($submissionFile);
-            }
+        if (!$sourceFileId) {
+            return;
         }
+
+        $submissionFile = Repo::submissionFiles()->get($fileId);
+
+        if (!$submissionFile) {
+            return;
+        }
+
+        Repo::submissionFiles()
+            ->dao
+            ->updateChapterFiles(
+                [$submissionFile->getId()],
+                $chapter->getId()
+            );
     }
 
     /**

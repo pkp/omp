@@ -14,6 +14,7 @@
  * stores/retrieves from an associative array
  */
 
+use APP\facades\Repo;
 use APP\template\TemplateManager;
 
 use PKP\form\Form;
@@ -280,7 +281,12 @@ class ChapterForm extends Form
 
         // Save the chapter file associations
         $selectedFiles = (array) $this->getData('files');
-        DAORegistry::getDAO('SubmissionFileDAO')->updateChapterFiles($selectedFiles, $this->getChapter()->getId());
+        Repo::submissionFiles()
+            ->dao
+            ->updateChapterFiles(
+                $selectedFiles,
+                $this->getChapter()->getId()
+            );
 
         return true;
     }

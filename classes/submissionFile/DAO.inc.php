@@ -1,29 +1,25 @@
 <?php
-
 /**
- * @file classes/submission/SubmissionFileDAO.inc.php
+ * @file classes/submissionFile/DAO.inc.php
  *
  * Copyright (c) 2014-2021 Simon Fraser University
- * Copyright (c) 2003-2021 John Willinsky
+ * Copyright (c) 2000-2021 John Willinsky
  * Distributed under the GNU GPL v3. For full terms see the file docs/COPYING.
  *
- * @class SubmissionFileDAO
- * @ingroup submission
+ * @class submission
  *
- * @see SubmissionFile
- *
- * @brief Operations for retrieving and modifying submission files
+ * @brief Read and write submissionFiles to the database.
  */
 
-namespace APP\submission;
+namespace APP\submissionFile;
 
 use Illuminate\Support\Facades\DB;
 
-use PKP\submission\PKPSubmissionFileDAO;
+use PKP\submissionFile\DAO as BaseDAO;
 
-class SubmissionFileDAO extends PKPSubmissionFileDAO
+class DAO extends BaseDAO
 {
-    /** @copydoc SchemaDAO::$primaryTableColumns */
+    /** @copydoc EntityDAO::$primaryTableColumns */
     public $primaryTableColumns = [
         'assocId' => 'assoc_id',
         'assocType' => 'assoc_type',
@@ -65,8 +61,4 @@ class SubmissionFileDAO extends PKPSubmissionFileDAO
             DB::table('submission_file_settings')->insert($insertRows);
         }
     }
-}
-
-if (!PKP_STRICT_MODE) {
-    class_alias('\APP\submission\SubmissionFileDAO', '\SubmissionFileDAO');
 }

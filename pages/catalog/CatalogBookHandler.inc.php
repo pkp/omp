@@ -14,6 +14,7 @@
  *   catalog.
  */
 
+use APP\facades\Repo;
 use APP\handler\Handler;
 
 use APP\payment\omp\OMPPaymentManager;
@@ -321,8 +322,13 @@ class CatalogBookHandler extends Handler
             $dispatcher->handle404();
         }
 
-        import('lib.pkp.classes.submission.SubmissionFile'); // File constants
-        $submissionFile = DAORegistry::getDAO('SubmissionFileDAO')->getByBestId($bestFileId, $submission->getId());
+        import('lib.pkp.classes.submissionFile.SubmissionFile'); // File constants
+        $submissionFile = Repo::submissionFiles()
+            ->dao
+            ->getByBestId(
+                $bestFileId,
+                $submission->getId()
+            );
         if (!$submissionFile) {
             $dispatcher->handle404();
         }
