@@ -13,6 +13,7 @@
  * @brief Handle publication format grid requests.
  */
 
+use APP\facades\Repo;
 use APP\notification\NotificationManager;
 use APP\template\TemplateManager;
 use PKP\controllers\grid\CategoryGridHandler;
@@ -583,7 +584,7 @@ class PublicationFormatGridHandler extends CategoryGridHandler
     {
         $submission = $this->getSubmission();
         import('lib.pkp.classes.submissionFile.SubmissionFile'); // Constants
-        $submissionFile = Services::get('submissionFile')->get($request->getUserVar('submissionFileId'));
+        $submissionFile = Repo::submissionFiles()->get($request->getUserVar('submissionFileId'));
         if ($submissionFile->getData('fileStage') !== SubmissionFile::SUBMISSION_FILE_PROOF || $submissionFile->getData('submissionId') != $submission->getId()) {
             return new JSONMessage(false);
         }
@@ -607,7 +608,8 @@ class PublicationFormatGridHandler extends CategoryGridHandler
             }
             // Update the approval flag
             $params = ['viewable' => (bool) $request->getUserVar('approval')];
-            $submissionFile = Services::get('submissionFile')->edit($submissionFile, $params, $request);
+            $submissionFile = Repo::submissionFiles()
+                ->edit($submissionFile, $params);
 
             // Log the event
             import('lib.pkp.classes.log.SubmissionFileLog');
@@ -753,7 +755,7 @@ class PublicationFormatGridHandler extends CategoryGridHandler
     {
         $submission = $this->getSubmission();
         import('lib.pkp.classes.submissionFile.SubmissionFile'); // Constants
-        $submissionFile = Services::get('submissionFile')->get($request->getUserVar('submissionFileId'));
+        $submissionFile = Repo::submissionFiles()->get($request->getUserVar('submissionFileId'));
         if ($submissionFile->getData('fileStage') !== SubmissionFile::SUBMISSION_FILE_PROOF || $submissionFile->getData('submissionId') != $submission->getId()) {
             return new JSONMessage(false);
         }

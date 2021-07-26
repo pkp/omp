@@ -120,12 +120,16 @@ class Repository extends \PKP\publication\Repository
                 }
             }
 
+            $collector = Repo::submissionFiles()
+                ->getCollector()
+                ->filterBySubmissionIds([$submissionId])
+                ->filterByAssoc(
+                    [Application::ASSOC_TYPE_REPRESENTATION],
+                    [$oldPublicationFormat->getId()]
+                );
+
             // Duplicate publication format files
-            $submissionFiles = Services::get('submissionFile')->getMany([
-                'submissionIds' => [$submissionId],
-                'assocTypes' => [Application::ASSOC_TYPE_REPRESENTATION],
-                'assocIds' => [$oldPublicationFormat->getId()],
-            ]);
+            $submissionFiles = Repo::submissionFiles()->getMany($collector);
             foreach ($submissionFiles as $submissionFile) {
                 $newSubmissionFile = clone $submissionFile;
                 $newSubmissionFile->setData('id', null);
@@ -133,12 +137,16 @@ class Repository extends \PKP\publication\Repository
                 $newSubmissionFile = Services::get('submissionFile')->add($newSubmissionFile, $this->request);
                 $newSubmissionFiles[] = $newSubmissionFile;
 
-                $dependentFiles = Services::get('submissionFile')->getMany([
-                    'fileStages' => [SubmissionFile::SUBMISSION_FILE_DEPENDENT],
-                    'assocTypes' => [Application::ASSOC_TYPE_SUBMISSION_FILE],
-                    'assocIds' => [$submissionFile->getId()],
-                    'includeDependentFiles' => true,
-                ]);
+                $collector = Repo::submissionFiles()
+                    ->getCollector()
+                    ->filterByFileStages([SubmissionFile::SUBMISSION_FILE_DEPENDENT])
+                    ->filterByAssoc(
+                        [Application::ASSOC_TYPE_SUBMISSION_FILE],
+                        [$submissionFile->getId()]
+                    )
+                    ->filterByIncludeDependentFiles(true);
+
+                $dependentFiles = Repo::submissionFiles()->getMany($collector);
                 foreach ($dependentFiles as $dependentFile) {
                     $newDependentFile = clone $dependentFile;
                     $newDependentFile->setData('id', null);
@@ -164,7 +172,10 @@ class Repository extends \PKP\publication\Repository
             // Update file chapter associations for new files
             foreach ($newSubmissionFiles as $newSubmissionFile) {
                 if ($newSubmissionFile->getChapterId() == $oldChapter->getId()) {
-                    Services::get('submissionFile')->edit($newSubmissionFile, ['chapterId' => $newChapter->getId()], $this->request);
+                    Repo::submissionFiles()
+                        ->edit($newSubmissionFile,
+                            ['chapterId' => $newChapter->getId()]
+                        );
                 }
             }
 

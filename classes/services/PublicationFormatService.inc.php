@@ -16,6 +16,7 @@ namespace APP\services;
 
 use APP\core\Application;
 use APP\core\Services;
+use APP\facades\Repo;
 use PKP\db\DAORegistry;
 
 class PublicationFormatService
@@ -41,14 +42,18 @@ class PublicationFormatService
             }
         }
 
+        $collector = Repo::submissionFiles()
+            ->getCollector()
+            ->filterBySubmissionIds([$submission->getId()])
+            ->filterByAssoc(
+                [ASSOC_TYPE_REPRESENTATION],
+                [$publicationFormat->getId()]
+            );
+
         // Delete submission files for this publication format
-        $submissionFiles = Services::get('submissionFile')->getMany([
-            'submissionIds' => [$submission->getId()],
-            'assocTypes' => [ASSOC_TYPE_REPRESENTATION],
-            'assocIds' => [$publicationFormat->getId()],
-        ]);
+        $submissionFiles = Repo::submissionFiles()->getMany($collector);
         foreach ($submissionFiles as $submissionFile) {
-            Services::get('submissionFile')->delete($submissionFile);
+            Repo::submissionFiles()->delete($submissionFile);
         }
 
         // Log the deletion of the format.

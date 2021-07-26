@@ -215,10 +215,13 @@ class CatalogBookHandler extends Handler
         $pubIdPlugins = PluginRegistry::loadCategory('pubIds', true);
         $templateMgr->assign('pubIdPlugins', $pubIdPlugins);
 
-        $pubFormatFiles = Services::get('submissionFile')->getMany([
-            'submissionIds' => [$submission->getId()],
-            'assocTypes' => [ASSOC_TYPE_PUBLICATION_FORMAT],
-        ]);
+        $collector = Repo::submissionFiles()
+            ->getCollector()
+            ->filterBySubmissionIds([$submission->getId()])
+            ->filterByAssoc([ASSOC_TYPE_PUBLICATION_FORMAT]);
+
+        $pubFormatFiles = Repo::submissionFiles()->getMany($collector);
+
         $availableFiles = [];
         foreach ($pubFormatFiles as $pubFormatFile) {
             if ($pubFormatFile->getDirectSalesPrice() !== null) {

@@ -310,12 +310,15 @@ class PublicationFormat extends Representation
         $fileSize = 0;
         $publication = Repo::publication()->get((int) $this->getData('publicationId'));
         import('lib.pkp.classes.submissionFile.SubmissionFile'); // File constants
-        $stageMonographFiles = Services::get('submissionFile')->getMany([
-            'submissionIds' => [$publication->getData('submissionId')],
-            'fileStages' => [SubmissionFile::SUBMISSION_FILE_PROOF],
-            'assocTypes' => [ASSOC_TYPE_PUBLICATION_FORMAT],
-            'assocIds' => [$this->getId()],
-        ]);
+        $collector = Repo::submissionFiles()
+            ->getCollector()
+            ->filterBySubmissionIds([$publication->getData('submissionId')])
+            ->filterByFileStages([SubmissionFile::SUBMISSION_FILE_PROOF])
+            ->filterByAssoc(
+                [ASSOC_TYPE_PUBLICATION_FORMAT],
+                [$this->getId()]
+            );
+        $stageMonographFiles = Repo::submissionFiles()->getMany($collector);
 
         foreach ($stageMonographFiles as $monographFile) {
             if ($monographFile->getViewable()) {

@@ -148,7 +148,8 @@ class SubmissionFileDAOTest extends DatabaseTestCase
         Repo::submission()->dao = $submissionDao;
 
         // Create test files
-        $submissionDir = Services::get('submissionFile')->getSubmissionDir(SUBMISSION_FILE_DAO_TEST_PRESS_ID, $submissionId);
+        $submissionDir = Repo::submissionFiles()
+            ->getSubmissionDir(SUBMISSION_FILE_DAO_TEST_PRESS_ID, $submissionId);
         $fileId1 = Services::get('file')->add(
             $this->testFile1,
             $submissionDir . '/' . uniqid() . '.txt'
@@ -237,15 +238,15 @@ class SubmissionFileDAOTest extends DatabaseTestCase
     private function _cleanFiles($submissionId = null)
     {
         // Delete the test submission's files.
-        $submissionFileDao = DAORegistry::getDAO('SubmissionFileDAO'); /* @var $submissionFileDao SubmissionFileDAO */
         if (!$submissionId) {
             $submissionId = SUBMISSION_FILE_DAO_TEST_SUBMISSION_ID;
         }
-        $submissionFileIds = Services::get('submissionFile')->getIds([
-            'submissionIds' => [$submissionId]
-        ]);
+        $collector = Repo::submissionFiles()
+            ->getCollector()
+            ->filterBySubmissionIds([$submissionId]);
+        $submissionFileIds = Repo::submissionFiles()->getIds($collector);
         foreach ($submissionFileIds as $submissionFileId) {
-            $submissionFileDao->deleteById($submissionFileId);
+            Repo::submissionFiles()->dao->deleteById($submissionFileId);
         }
     }
 }

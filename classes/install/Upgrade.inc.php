@@ -263,7 +263,8 @@ class Upgrade extends Installer
             $context = $contexts[$row->context_id];
 
             // Get existing image paths
-            $basePath = Services::get('submissionFile')->getSubmissionDir($row->context_id, $row->submission_id);
+            $basePath = Repo::submissionFiles()
+                ->getSubmissionDir($row->context_id, $row->submission_id);
             $coverPath = Config::getVar('files', 'files_dir') . '/' . $basePath . '/simple/' . $coverImage['name'];
             $coverPathInfo = pathinfo($coverPath);
             $thumbPath = Config::getVar('files', 'files_dir') . '/' . $basePath . '/simple/' . $coverImage['thumbnailName'];
