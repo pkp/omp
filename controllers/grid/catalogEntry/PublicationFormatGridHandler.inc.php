@@ -582,7 +582,7 @@ class PublicationFormatGridHandler extends CategoryGridHandler
     public function setProofFileCompletion($args, $request)
     {
         $submission = $this->getSubmission();
-        import('lib.pkp.classes.submission.SubmissionFile'); // Constants
+        import('lib.pkp.classes.submissionFile.SubmissionFile'); // Constants
         $submissionFile = Services::get('submissionFile')->get($request->getUserVar('submissionFileId'));
         if ($submissionFile->getData('fileStage') !== SubmissionFile::SUBMISSION_FILE_PROOF || $submissionFile->getData('submissionId') != $submission->getId()) {
             return new JSONMessage(false);
@@ -752,7 +752,7 @@ class PublicationFormatGridHandler extends CategoryGridHandler
     public function dependentFiles($args, $request)
     {
         $submission = $this->getSubmission();
-        import('lib.pkp.classes.submission.SubmissionFile'); // Constants
+        import('lib.pkp.classes.submissionFile.SubmissionFile'); // Constants
         $submissionFile = Services::get('submissionFile')->get($request->getUserVar('submissionFileId'));
         if ($submissionFile->getData('fileStage') !== SubmissionFile::SUBMISSION_FILE_PROOF || $submissionFile->getData('submissionId') != $submission->getId()) {
             return new JSONMessage(false);

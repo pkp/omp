@@ -147,7 +147,7 @@ class HtmlMonographFilePlugin extends GenericPlugin
         $contents = Services::get('file')->fs->read($submissionFile->getData('path'));
 
         // Replace media file references
-        import('lib.pkp.classes.submission.SubmissionFile'); // Constants
+        import('lib.pkp.classes.submissionFile.SubmissionFile'); // Constants
         $proofFiles = Services::get('submissionFile')->getMany([
             'submissionIds' => [$monograph->getId()],
             'fileStages' => [SubmissionFile::SUBMISSION_FILE_PROOF],

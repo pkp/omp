@@ -60,7 +60,7 @@ class OMPPaymentManager extends PaymentManager
 
         switch ($type) {
             case self::PAYMENT_TYPE_PURCHASE_FILE:
-                import('lib.pkp.classes.submission.SubmissionFile'); // const
+                import('lib.pkp.classes.submissionFile.SubmissionFile'); // const
                 $submissionFile = Services::get('submissionFile')->get($assocId);
                 if ($submissionFile->getData('fileStage') != SubmissionFile::SUBMISSION_FILE_PROOF) {
                     throw new Exception('The submission file for this queued payment is not in the correct file stage.');

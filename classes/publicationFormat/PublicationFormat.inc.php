@@ -309,7 +309,7 @@ class PublicationFormat extends Representation
     {
         $fileSize = 0;
         $publication = Repo::publication()->get((int) $this->getData('publicationId'));
-        import('lib.pkp.classes.submission.SubmissionFile'); // File constants
+        import('lib.pkp.classes.submissionFile.SubmissionFile'); // File constants
         $stageMonographFiles = Services::get('submissionFile')->getMany([
             'submissionIds' => [$publication->getData('submissionId')],
             'fileStages' => [SubmissionFile::SUBMISSION_FILE_PROOF],

@@ -143,7 +143,7 @@ class MonographSearchIndex extends SubmissionSearchIndex
     public function submissionFilesChanged($monograph)
     {
         // Index galley files
-        import('lib.pkp.classes.submission.SubmissionFile'); // Constants
+        import('lib.pkp.classes.submissionFile.SubmissionFile'); // Constants
         import('classes.search.MonographSearch'); // Constants
         $submissionFiles = Services::get('submissionFile')->getMany([
             'submissionIds' => [$monograph->getId()],
