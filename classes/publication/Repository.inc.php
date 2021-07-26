@@ -134,7 +134,8 @@ class Repository extends \PKP\publication\Repository
                 $newSubmissionFile = clone $submissionFile;
                 $newSubmissionFile->setData('id', null);
                 $newSubmissionFile->setData('assocId', $newPublicationFormat->getId());
-                $newSubmissionFile = Services::get('submissionFile')->add($newSubmissionFile, $this->request);
+                $newSubmissionFileId = Repo::submissionFiles()->add($newSubmissionFile);
+                $newSubmissionFile = Repo::submissionFiles()->get($newSubmissionFileId);
                 $newSubmissionFiles[] = $newSubmissionFile;
 
                 $collector = Repo::submissionFiles()
@@ -151,7 +152,7 @@ class Repository extends \PKP\publication\Repository
                     $newDependentFile = clone $dependentFile;
                     $newDependentFile->setData('id', null);
                     $newDependentFile->setData('assocId', $newSubmissionFile->getId());
-                    Services::get('submissionFile')->add($newDependentFile, $this->request);
+                    Repo::submissionFiles()->add($newDependentFile);
                 }
             }
         }
