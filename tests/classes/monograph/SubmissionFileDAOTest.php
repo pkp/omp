@@ -175,9 +175,9 @@ class SubmissionFileDAOTest extends DatabaseTestCase
         $submissionFile2->setData('fileId', $fileId2);
 
         // Persist files and check retrieval
-        $submissionFileDao = DAORegistry::getDAO('SubmissionFileDAO'); /* @var $submissionFileDao SubmissionFileDAO */
-        $submissionFile1Id = $submissionFileDao->insertObject($submissionFile1);
-        $submissionFile1 = $submissionFileDao->getById($submissionFile1Id);
+        $submissionFileDao = Repo::submissionFiles()->dao;
+        $submissionFile1Id = $submissionFileDao->insert($submissionFile1);
+        $submissionFile1 = $submissionFileDao->get($submissionFile1Id);
         self::assertTrue(is_a($submissionFile1, 'SubmissionFile'));
         self::assertEquals($submissionFile1->getData('assocType'), null);
         self::assertEquals($submissionFile1->getData('assocId'), null);
@@ -188,8 +188,8 @@ class SubmissionFileDAOTest extends DatabaseTestCase
         self::assertEquals($submissionFile1->getData('createdAt'), '2011-12-05 00:00:00');
         self::assertEquals($submissionFile1->getData('updatedAt'), '2011-12-05 00:00:00');
 
-        $submissionFile2Id = $submissionFileDao->insertObject($submissionFile2);
-        $submissionFile2 = $submissionFileDao->getById($submissionFile2Id);
+        $submissionFile2Id = $submissionFileDao->insert($submissionFile2);
+        $submissionFile2 = $submissionFileDao->get($submissionFile2Id);
         self::assertTrue(is_a($submissionFile2, 'SubmissionFile'));
         self::assertEquals($submissionFile2->getData('assocType'), ASSOC_TYPE_REPRESENTATION);
         self::assertEquals($submissionFile2->getData('assocId'), 1);
@@ -199,8 +199,8 @@ class SubmissionFileDAOTest extends DatabaseTestCase
 
         // Save changes to a file without creating a new revision
         $submissionFile2->setData('genreId', SUBMISSION_FILE_DAO_TEST_ART_GENRE_ID);
-        $submissionFileDao->updateObject($submissionFile2);
-        $submissionFile2 = $submissionFileDao->getById($submissionFile2->getId());
+        $submissionFileDao->update($submissionFile2);
+        $submissionFile2 = $submissionFileDao->get($submissionFile2->getId());
         self::assertEquals($submissionFile2->getData('genreId'), SUBMISSION_FILE_DAO_TEST_ART_GENRE_ID);
 
         // Save a new revision of a submission file
@@ -209,8 +209,8 @@ class SubmissionFileDAOTest extends DatabaseTestCase
             $submissionDir . '/' . uniqid() . '.txt'
         );
         $submissionFile2->setData('fileId', $fileId3);
-        $submissionFileDao->updateObject($submissionFile2);
-        $submissionFile2 = $submissionFileDao->getById($submissionFile2->getId());
+        $submissionFileDao->update($submissionFile2);
+        $submissionFile2 = $submissionFileDao->get($submissionFile2->getId());
         self::assertEquals($submissionFile2->getData('fileId'), $fileId3);
         $revisions = $submissionFileDao->getRevisions($submissionFile2->getId());
         $revisionFileIds = [];
@@ -220,8 +220,8 @@ class SubmissionFileDAOTest extends DatabaseTestCase
         self::assertEquals($revisionFileIds, [$fileId3, $fileId2]);
 
         // Delete a file
-        $submissionFileDao->deleteById($submissionFile2Id);
-        $submissionFile2 = $submissionFileDao->getById($submissionFile2Id);
+        $submissionFileDao->delete($submissionFile2);
+        $submissionFile2 = $submissionFileDao->get($submissionFile2Id);
         self::assertNull($submissionFile2);
 
         $this->_cleanFiles($submissionId);
