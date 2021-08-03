@@ -1,9 +1,10 @@
+# Jordi LC <jordi.lacruz@uab.cat>, 2021.
 msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2019-12-03T14:14:06-08:00\n"
-"PO-Revision-Date: 2020-06-20 09:39+0000\n"
+"PO-Revision-Date: 2021-08-04 11:04+0000\n"
 "Last-Translator: Jordi LC <jordi.lacruz@uab.cat>\n"
 "Language-Team: Spanish <http://translate.pkp.sfu.ca/projects/omp/emails/"
 "es_ES/>\n"
@@ -17,7 +18,6 @@ msgstr ""
 msgid "emails.notification.subject"
 msgstr "Nueva notificación de {$siteTitle}"
 
-#, fuzzy
 msgid "emails.notification.body"
 msgstr ""
 "Tiene una notificación nueva de {$siteTitle}:<br />\n"
@@ -28,7 +28,7 @@ msgstr ""
 "<br />\n"
 "Esto es un correo electrónico generado automáticamente; no responda a este "
 "mensaje.<br />\n"
-"{$principalContactSignature}"
+"{$principalContactSignature}<hr />{$unsubscribeLink}"
 
 msgid "emails.notification.description"
 msgstr "El correo electrónico se envía a los usuarios/as registrados que seleccionaron este tipo de notificación."
