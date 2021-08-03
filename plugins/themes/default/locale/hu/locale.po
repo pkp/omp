@@ -1,2 +1,80 @@
+# Molnár Tamás <molnart@bibl.u-szeged.hu>, 2021.
 msgid ""
-msgstr "X-Generator: Weblate\nMIME-Version: 1.0\nContent-Type: text/plain; charset=UTF-8\nContent-Transfer-Encoding: 8bit"
+msgstr ""
+"PO-Revision-Date: 2021-08-04 11:04+0000\n"
+"Last-Translator: Molnár Tamás <molnart@bibl.u-szeged.hu>\n"
+"Language-Team: Hungarian <http://translate.pkp.sfu.ca/projects/omp/"
+"themes-default/hu/>\n"
+"Language: hu\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: Weblate 3.9.1\n"
+
+msgid "plugins.themes.default.name"
+msgstr "Alapértelmezett téma"
+
+msgid "plugins.themes.default.option.typography.label"
+msgstr "Tipográfia"
+
+msgid "plugins.themes.default.option.showCatalogSeriesListing.option"
+msgstr ""
+"A közreadó összes sorozatára mutató linkek listájának hozzáadása a "
+"katalógusoldalon"
+
+msgid "plugins.themes.default.option.showCatalogSeriesListing.label"
+msgstr "Sorozatok mutatása"
+
+msgid "plugins.themes.default.option.useHomepageImageAsHeader.option"
+msgstr "Mutassa a honlapképet fejlécháttérként."
+
+msgid "plugins.themes.default.option.useHomepageImageAsHeader.description"
+msgstr ""
+"Amikor egy honlapkép fel lett töltve, jelenítse meg a fejléc háttereként, "
+"ahelyett, hogy a szokásos helyén tenné a honlapon."
+
+msgid "plugins.themes.default.option.useHomepageImageAsHeader.label"
+msgstr "Fejléc háttérkép"
+
+msgid "plugins.themes.default.option.colour.description"
+msgstr "Válasszon színt a fejléchez."
+
+msgid "plugins.themes.default.option.colour.label"
+msgstr "Szín"
+
+msgid "plugins.themes.default.option.typography.lora_openSans"
+msgstr ""
+"Lora/Open Sans: egy komplementer páríosítása talpas betűtípusú fejléc, "
+"talpatlan betűtípusú szöveggel."
+
+msgid "plugins.themes.default.option.typography.lora"
+msgstr "Lora: Egy széles szedésű betűtípus, amely jó a képernyőn olvasáshoz."
+
+msgid "plugins.themes.default.option.typography.lato"
+msgstr "Lato: Egy népszerű modern sans-serif (talpnélküi) betűtípus."
+
+msgid "plugins.themes.default.option.typography.notoSans_notoSerif"
+msgstr ""
+"Noto Sans/Noto Serif: Kiegészítő párosítás  sans-serif (talpnélküli) "
+"címsorokkal és serif (talpas) szöveggel."
+
+msgid "plugins.themes.default.option.typography.notoSerif_notoSans"
+msgstr ""
+"Noto Serif/Noto Sans: Kiegészítő párosítás serif (talpas) címsorokkal és "
+"sans-serif (talpnélküli) szöveggel."
+
+msgid "plugins.themes.default.option.typography.notoSerif"
+msgstr ""
+"Noto Serif: A Google digitális-bennszülött betűtípusának egy talpas változata"
+
+msgid "plugins.themes.default.option.typography.notoSans"
+msgstr ""
+"Noto Sans: Digitális-bennszülött  betűtípus, amelyet a Google tervezett "
+"átfogó nyelvi támogatáshoz."
+
+msgid "plugins.themes.default.option.typography.description"
+msgstr "Válassza ki azt a betűkombinációt, amelyik illik ehhez a folyóirathoz."
+
+msgid "plugins.themes.default.description"
+msgstr "Ez a téma az alapértelmezett témát jeleníti meg."
