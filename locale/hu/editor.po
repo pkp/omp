@@ -1,8 +1,51 @@
 # Fülöp Tiffany <tiffany.fulop@ek.szte.hu>, 2021.
 msgid ""
 msgstr ""
+"PO-Revision-Date: 2021-08-10 07:09+0000\n"
+"Last-Translator: Fülöp Tiffany <tiffany.fulop@ek.szte.hu>\n"
+"Language-Team: Hungarian <http://translate.pkp.sfu.ca/projects/omp/editor/"
+"hu_HU/>\n"
 "Language: hu\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Weblate\n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: Weblate 3.9.1\n"
+
+#, fuzzy
+msgid "editor.monograph.enterRecommendation"
+msgstr "Ajánlás elküldése"
+
+msgid "editor.monograph.internalReview"
+msgstr "Belső felülvizsgálat indítása"
+
+msgid "editor.monograph.selectProofreadingFiles"
+msgstr "Korrektúra fájlok"
+
+#, fuzzy
+msgid "editor.monograph.peerReviewOptions"
+msgstr "Szakmai bírálati lehetőségek"
+
+msgid "editor.monograph.uploadReviewForReviewer"
+msgstr "Bírálat feltöltése"
+
+msgid "editor.monograph.editorToEnter"
+msgstr "A szerkesztő javaslatot/hozzászólást írhat a bírálónak."
+
+msgid "editor.monograph.replaceReviewer"
+msgstr "Bíráló cseréje"
+
+msgid "editor.monograph.selectReviewerInstructions"
+msgstr ""
+"Válasszon a fenti bírálók közül, majd a folytatáshoz nyomja meg a \"Bíráló "
+"kiválasztása\" gombot."
+
+msgid "editor.monograph.recommendation"
+msgstr "Ajánlás"
+
+msgid "editor.monograph.cancelReview"
+msgstr "Kérés megszakítása"
+
+#, fuzzy
+msgid "editor.submissionArchive"
+msgstr "Beküldési archívum"
