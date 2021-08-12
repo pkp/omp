@@ -1,7 +1,7 @@
 # Fülöp Tiffany <tiffany.fulop@ek.szte.hu>, 2021.
 msgid ""
 msgstr ""
-"PO-Revision-Date: 2021-08-10 07:09+0000\n"
+"PO-Revision-Date: 2021-08-12 09:51+0000\n"
 "Last-Translator: Fülöp Tiffany <tiffany.fulop@ek.szte.hu>\n"
 "Language-Team: Hungarian <http://translate.pkp.sfu.ca/projects/omp/editor/"
 "hu_HU/>\n"
@@ -49,3 +49,129 @@ msgstr "Kérés megszakítása"
 #, fuzzy
 msgid "editor.submissionArchive"
 msgstr "Beküldési archívum"
+
+#, fuzzy
+msgid "editor.monograph.production.approvalAndPublishingDescription"
+msgstr ""
+"Különböző publikációs formátumok, mint például keménytáblás, puhafedeles és "
+"digitális, tölthetők fel az alábbi Publikációs formátumok részben. Az alábbi "
+"publikációs formátumok rácsot/hálózatot (felületet) használhatja ellenőrző "
+"listaként ahhoz, hogy mit kell még tennie a publikációs formátum "
+"közzétételéhez."
+
+msgid "editor.monograph.production.approvalAndPublishing"
+msgstr "Jóváhagyás és Közzététel"
+
+#, fuzzy
+msgid "editor.monograph.editorial.fairCopy"
+msgstr "Tisztázat"
+
+msgid "editor.submission.introduction"
+msgstr ""
+"A Beküldés szakaszban a szerkesztő a benyújtott fájlokkal való konzultációt "
+"követően kiválasztja a megfelelő műveletet (amely magában foglalja a szerző "
+"értesítését is): Küldés Belső felülvizsgálatra (magában foglalja a fájlok "
+"kiválasztását a Belső felülvizsgálathoz); Küldés Külső felülvizsgálatra ("
+"magában foglalja a fájlok kiválasztását a Külső felülvizsgálathoz); "
+"Beküldött anyag elfogadása (magában foglalja a fájlok kiválasztását a "
+"Szerkesztési szakaszhoz); vagy a Beküldött anyag visszautasítását "
+"(archiválás)."
+
+msgid "editor.monograph.legend.complete"
+msgstr "A művelet befejeződött"
+
+msgid "editor.monograph.legend.in_progress"
+msgstr "A művelet folyamatban van, vagy még nem fejeződött be"
+
+msgid "editor.monograph.legend.delete"
+msgstr "Tétel törlése"
+
+msgid "editor.monograph.legend.edit"
+msgstr "Tétel szerkesztése"
+
+msgid "editor.monograph.legend.notes_new"
+msgstr ""
+"Fájlinformáció: jegyzetek, értesítési lehetőségek és előzmények (Új "
+"megjegyzések hozzáadva az utolsó látogatás óta)"
+
+msgid "editor.monograph.legend.notes"
+msgstr ""
+"Fájlinformáció: jegyzetek, értesítési lehetőségek és előzmények ("
+"Rendelkezésre állnak jegyzetek)"
+
+msgid "editor.monograph.legend.notes_none"
+msgstr ""
+"Fájlinformáció: jegyzetek, értesítési lehetőségek és előzmények (Még "
+"nincsenek jegyzetek hozzáadva)"
+
+msgid "editor.monograph.legend.more_info"
+msgstr "További információ: fájljegyzetek, értesítési lehetőségek és előzmények"
+
+msgid "editor.monograph.legend.settings"
+msgstr ""
+"Megtekintheti és elérheti az elembeállításokat, például az információkat és "
+"a törlési lehetőségeket"
+
+msgid "editor.monograph.legend.add_user"
+msgstr "Felhasználó hozzáadása a szakaszhoz"
+
+msgid "editor.monograph.legend.add"
+msgstr "Fájl feltöltése a szakaszba"
+
+msgid "editor.monograph.legend.participants"
+msgstr ""
+"Megtekintheti és kezelheti a beküldés résztvevőit: szerzőket, szerkesztőket, "
+"tervezőket és egyebeket"
+
+#, fuzzy
+msgid "editor.monograph.legend.catalogEntry"
+msgstr ""
+"Megtekintheti és kezelheti a beküldés katalógus bejegyzését, beleértve a "
+"metaadatokat és a közzétételi formátumokat"
+
+msgid "editor.monograph.legend.bookInfo"
+msgstr ""
+"Megtekintheti és kezelheti a beküldés metaadatait, jegyzeteit, értesítéseit "
+"és előzményeit"
+
+msgid "editor.monograph.legend.itemActionsDescription"
+msgstr "Az egyes fájlokkal kapcsolatos műveletek és lehetőségek."
+
+#, fuzzy
+msgid "editor.monograph.legend.itemActions"
+msgstr "Tételműveletek"
+
+msgid "editor.monograph.legend.sectionActionsDescription"
+msgstr ""
+"Egy adott szakaszhoz tartozó lehetőségek, például fájlok feltöltése vagy "
+"felhasználók hozzáadása."
+
+#, fuzzy
+msgid "editor.monograph.legend.sectionActions"
+msgstr "Szakasz műveletek"
+
+msgid "editor.monograph.legend.submissionActionsDescription"
+msgstr "Általános beküldési műveletek és lehetőségek."
+
+msgid "editor.monograph.legend.submissionActions"
+msgstr "Beküldési műveletek"
+
+msgid "editor.monograph.copyediting.personalMessageToUser"
+msgstr "Üzenet a felhasználónak"
+
+msgid "editor.monograph.copyediting.currentFiles"
+msgstr "Jelenlegi fájlok"
+
+msgid "editor.monograph.final.currentFiles"
+msgstr "Jelenlegi végleges vázlat fájlok"
+
+msgid "editor.monograph.final.selectFinalDraftFiles"
+msgstr "Végleges vázlat fájlok kiválasztása"
+
+msgid "editor.monograph.externalReview"
+msgstr "Külső felülvizsgálta indítása"
+
+msgid "editor.monograph.internalReviewDescription"
+msgstr ""
+"Válassza ki a lent található fájlokat a belső felülvizsgálati szakaszba "
+"történő továbbküldéshez."
