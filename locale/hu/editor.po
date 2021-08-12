@@ -1,10 +1,10 @@
 # Fülöp Tiffany <tiffany.fulop@ek.szte.hu>, 2021.
 msgid ""
 msgstr ""
-"PO-Revision-Date: 2021-08-12 09:51+0000\n"
+"PO-Revision-Date: 2021-08-13 13:04+0000\n"
 "Last-Translator: Fülöp Tiffany <tiffany.fulop@ek.szte.hu>\n"
-"Language-Team: Hungarian <http://translate.pkp.sfu.ca/projects/omp/editor/"
-"hu_HU/>\n"
+"Language-Team: hu (generated) <http://translate.pkp.sfu.ca/projects/omp/"
+"editor/hu/>\n"
 "Language: hu\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -175,3 +175,39 @@ msgid "editor.monograph.internalReviewDescription"
 msgstr ""
 "Válassza ki a lent található fájlokat a belső felülvizsgálati szakaszba "
 "történő továbbküldéshez."
+
+msgid "editor.submissions.assignedTo"
+msgstr "Szerkesztőhöz rendelve"
+
+#, fuzzy
+msgid "editor.publicIdentificationExistsForTheSameType"
+msgstr ""
+"A nyilvános azonosító már létezik egy másik azonos típusú objektumhoz "
+"rendelve. Kérjük, válasszon egyedi azonosítókat az azonos típusú "
+"objektumokhoz."
+
+msgid "editor.submission.proof.manageProofFilesDescription"
+msgstr ""
+"Bármelyik fájlt, amit már feltöltöttek a beküldés valamelyik szakaszában "
+"hozzá lehet adni a Kefelenyomat fájlok listához, ha bejelöli az alábbi "
+"jelölőnégyzetet, és rákattint a Keresés gombra: az összes rendelkezésre álló "
+"fájl megjelenik, és kiválasztható a felvételhez."
+
+msgid "editor.monograph.proof.addNote"
+msgstr "Válasz hozzáadása"
+
+msgid "editor.monograph.approvedProofs.edit.linkTitle"
+msgstr "Feltételek meghatározása"
+
+msgid "editor.monograph.approvedProofs.edit"
+msgstr "Letöltési feltételek beállítása"
+
+#, fuzzy
+msgid "editor.monograph.production.publicationFormatDescription"
+msgstr ""
+"Adjon hozzá olyan publikációs formátumokat (pl.: digitális, papírkötésű), "
+"amelyekhez a elrendezés szerkesztő (?) elkészíti a "
+"kefelenyomatokat(magyarosabban?) lektorálásra. A <em>Kefelenyomatot</em> "
+"ellenőrizni kell, hogy jóváhagyott-e, és a formátum <em>Katalógusban</em> "
+"megjelenő bejegyzést ellenőrizni kell a könyv katalógusbejegyzésében, "
+"mielőtt a formátum <em>Elérhetővé</em> válna (azaz közzétételre kerülne)."
