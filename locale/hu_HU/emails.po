@@ -1,7 +1,7 @@
 # Fülöp Tiffany <tiffany.fulop@ek.szte.hu>, 2021.
 msgid ""
 msgstr ""
-"PO-Revision-Date: 2021-08-16 15:50+0000\n"
+"PO-Revision-Date: 2021-08-17 11:19+0000\n"
 "Last-Translator: Fülöp Tiffany <tiffany.fulop@ek.szte.hu>\n"
 "Language-Team: Hungarian <http://translate.pkp.sfu.ca/projects/omp/emails/"
 "hu_HU/>\n"
@@ -728,3 +728,49 @@ msgstr ""
 
 msgid "emails.reviewCancel.subject"
 msgstr "Bírálati felkérés törölve"
+
+#, fuzzy
+msgid "emails.copyeditRequest.subject"
+msgstr "Korrektúra kérése"
+
+msgid "emails.editorRecommendation.description"
+msgstr ""
+"Az ajánlatot adó Szerkesztő vagy Rovatszerkesztő e-mailben értesíti a "
+"döntéshozó Szerkesztőket vagy Rovatszerkesztőket a beküldött anyagra "
+"vonatkozó végleges ajánlásról."
+
+#, fuzzy
+msgid "emails.editorRecommendation.body"
+msgstr ""
+"{$editors}:<br />\n"
+"<br />\n"
+"A(z) &quot;{$submissionTitle}&quot; című  {$contextName} oldalhoz beküldött "
+"anyagra vonatkozó ajánlás a következő: {$recommendation}"
+
+msgid "emails.editorRecommendation.subject"
+msgstr "Szerkesztői ajánlás"
+
+msgid "emails.editorDecisionDecline.description"
+msgstr ""
+"Ezt az emailt a Szerkesztő vagy a Rovatszerkesztő küldte a Szerzőnek, "
+"jelezve, hogy a kézirattal kapcsolatos döntés (\"Elutasítás\") megszületett."
+
+msgid "emails.editorDecisionDecline.body"
+msgstr ""
+"Tisztelt {$authorName}<br />\n"
+"<br />\n"
+"Elérhető a szerkesztői döntés a(z) {$contextName} oldalhoz beküldött, "
+"&quot;{$submissionTitle}&quot; című kéziratával kapcsolatban.<br />\n"
+"<br />\n"
+"A döntésünk: Kézirat elutasítása<br />\n"
+"<br />\n"
+"Kézirat URL: {$submissionUrl}"
+
+msgid "emails.editorDecisionDecline.subject"
+msgstr "Szerkesztői döntés"
+
+msgid "emails.editorDecisionResubmit.description"
+msgstr ""
+"Ezt az e-mailt a Szerkesztő vagy a Rovatszerkesztő küldte a Szerzőnek, "
+"jelezve, hogy a kézirattal kapcsolatos döntés (\"Új bírálat előírása\") "
+"megszületett."
