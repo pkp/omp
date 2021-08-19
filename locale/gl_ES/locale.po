@@ -1,6 +1,6 @@
 msgid ""
 msgstr ""
-"PO-Revision-Date: 2021-02-23 13:10+0000\n"
+"PO-Revision-Date: 2021-06-10 11:45+0000\n"
 "Last-Translator: Real Academia Galega <reacagal@gmail.com>\n"
 "Language-Team: Galician <http://translate.pkp.sfu.ca/projects/omp/locale/"
 "gl_ES/>\n"
@@ -1627,3 +1627,12 @@ msgstr "Público"
 
 msgid "common.payments"
 msgstr "Pagamentos"
+
+msgid "grid.catalogEntry.isbn10.description"
+msgstr "Código ISBN con 10 díxitos, por exemplo 84-17807-84-2."
+
+msgid "grid.catalogEntry.isbn13.description"
+msgstr "Código ISBN con 13 díxitos, por exemplo 978-84-17807-84-2."
+
+msgid "grid.catalogEntry.isbn"
+msgstr "ISBN"

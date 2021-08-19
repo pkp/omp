@@ -1,9 +1,10 @@
+# Jordi LC <jordi.lacruz@uab.cat>, 2021.
 msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2019-11-28T15:10:03-08:00\n"
-"PO-Revision-Date: 2021-03-05 15:09+0000\n"
+"PO-Revision-Date: 2021-08-03 10:18+0000\n"
 "Last-Translator: Jordi LC <jordi.lacruz@uab.cat>\n"
 "Language-Team: Catalan <http://translate.pkp.sfu.ca/projects/omp/manager/"
 "ca_ES/>\n"
@@ -551,7 +552,7 @@ msgid "manager.setup.pageHeader"
 msgstr "Capçalera de la pàgina de la publicació"
 
 msgid "manager.setup.pageHeaderDescription"
-msgstr "Podeu carregar una versió gràfica del títol i del logotip de la publicació (en format .gif, .jpg o .png), si pot ser d'una mida més petita que la que heu fet servir per a la pàgina inicial, per tal que aparegui a la capçalera de pàgina de la publicació. Aquesta imatge reemplaça el text que es mostra per defecte."
+msgstr "Configuració de la capçalera de la pàgina"
 
 msgid "manager.setup.pressPolicies"
 msgstr "Pas 2. Polítiques de la publicació"
@@ -1199,3 +1200,30 @@ msgid "manager.series.confirmDeactivateSeries.error"
 msgstr ""
 "Com a mínim ha d'estar activa una sèrie. Visiteu la configuració del flux de "
 "treball per desactivar totes les trameses a aquesta editorial."
+
+msgid "plugins.importexport.chapter.exportFailed"
+msgstr "El procés ha fallat en analitzar els capítols"
+
+msgid "plugins.importexport.publicationformat.exportFailed"
+msgstr "El procés ha fallat en analitzar els formats de publicació"
+
+msgid "plugins.importexport.native.error.unknownUser"
+msgstr "L'usuari/ària especificat, \"{$userName}\", no existeix."
+
+msgid "plugins.importexport.common.error.unknownObjects"
+msgstr "Els objectes especificats no es poden trobar."
+
+msgid "manager.setup.notifications.copySubmissionAckPrimaryContact.disabled.description"
+msgstr ""
+"No s'ha definit el contacte principal d'aquesta publicació. Podeu introduir-"
+"lo en la <a href=\"{$url}\">configuració de la publicació</a>."
+
+msgid "manager.setup.notifications.copySubmissionAckPrimaryContact.description"
+msgstr ""
+"Enviar una còpia del correu electrònic d'agraïment per la tramesa al "
+"contacte principal de la publicació."
+
+msgid "manager.setup.selectCountry"
+msgstr ""
+"Seleccioneu el país en que s'ubica l'editorial, o el país de l'adreça postal "
+"de l'editorial o de l'editor/a."

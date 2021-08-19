@@ -1,0 +1,82 @@
+# Fülöp Tiffany <tiffany.fulop@ek.szte.hu>, 2021.
+msgid ""
+msgstr ""
+"PO-Revision-Date: 2021-08-19 14:05+0000\n"
+"Last-Translator: Fülöp Tiffany <tiffany.fulop@ek.szte.hu>\n"
+"Language-Team: Hungarian <http://translate.pkp.sfu.ca/projects/omp/"
+"importexport-onix30/hu_HU/>\n"
+"Language: hu_HU\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: Weblate 3.9.1\n"
+
+#, fuzzy
+msgid "plugins.importexport.onix30.form.addresseeField.tip"
+msgstr ""
+"Ezt a mezőt üresen is hagyhatja, és létrehozhat egy általános exportot.  Ez "
+"azt eredményezi, hogy az ONIX-export nem tartalmaz &lt;Addressee&gt; "
+"összetevőt. "
+
+#, fuzzy
+msgid "plugins.importexport.onix30.form.addresseeField"
+msgstr "Az export címzettje (címzett)"
+
+msgid "plugins.importexport.onix30.pressMissingFields"
+msgstr ""
+"Hiányzik néhány szükséges információ.  Kérjük, menjen a <a href=\"{$url}\">"
+"Közreadó beállítások</a> oldalra, és töltse ki a hiányzó adatokat."
+
+msgid "plugins.importexport.onix30.formatInvalid"
+msgstr "Érvénytelen"
+
+msgid "plugins.importexport.onix30.formatValid"
+msgstr "Érvényes"
+
+msgid "plugins.importexport.onix30.validityStatus"
+msgstr "ONIX státusz"
+
+msgid "plugins.importexport.onix30.unavailable"
+msgstr "Nem elérhető"
+
+msgid "plugins.importexport.onix30.exportFormats"
+msgstr "Elérhető formátumok"
+
+msgid "plugins.importexport.onix30.exportButton"
+msgstr "Exportálás"
+
+msgid "plugins.importexport.onix30.selectMonograph"
+msgstr "Válassza ki az exportálandó monográfiát:"
+
+msgid "plugins.importexport.onix30.exportSubmissionsSelect"
+msgstr "Exportálandó monográfiák kiválasztása"
+
+#, fuzzy
+msgid "plugins.importexport.onix30.noFormats"
+msgstr "A monográfiák, amelyeknek nincs kiadványformátumuk nem jelennek meg."
+
+msgid "plugins.importexport.onix30.export.error.monographNotFound"
+msgstr ""
+"A megadott monográfiaazonosítónak \"{$monographId}\" nem felel meg egyetlen "
+"monográfia sem."
+
+msgid "plugins.importexport.onix30.export.error.couldNotWrite"
+msgstr "Nem sikerült írni a \"{$fileName}\" fájlba."
+
+msgid "plugins.importexport.onix30.error.unknownPress"
+msgstr "A megadott útvonal, \"{$contextPath}\", nem létezik."
+
+msgid "plugins.importexport.onix30.cliError"
+msgstr "HIBA:"
+
+msgid "plugins.importexport.onix30.cliUsage"
+msgstr ""
+"Használat: {$scriptName} {$pluginName} [xmlFileName] [pressPath] "
+"[monographId] "
+
+msgid "plugins.importexport.onix30.description"
+msgstr "Monográfia metaadatok exportálása ONIX 3.0 formátumban"
+
+msgid "plugins.importexport.onix30.displayName"
+msgstr "ONIX 3.0 Monograph Export bővítmény"

@@ -1,6 +1,7 @@
+# Magnus Annemark <magnus.annemark@ub.lu.se>, 2021.
 msgid ""
 msgstr ""
-"PO-Revision-Date: 2021-04-21 13:43+0000\n"
+"PO-Revision-Date: 2021-07-16 16:03+0000\n"
 "Last-Translator: Magnus Annemark <magnus.annemark@ub.lu.se>\n"
 "Language-Team: Swedish <http://translate.pkp.sfu.ca/projects/omp/manager/"
 "sv_SE/>\n"
@@ -796,3 +797,18 @@ msgid "manager.series.confirmDeactivateSeries.error"
 msgstr ""
 "Minst en serie måste vara aktiv. Gå till inställningarna för arbetsflöde för "
 "att inaktivera inskickning av bidrag till denna press."
+
+msgid "manager.setup.productionTemplates"
+msgstr "Produktionsmallar"
+
+msgid "manager.setup.files"
+msgstr "Filer"
+
+msgid "manager.setup.editorialTeam.description"
+msgstr "Lista över redaktörer och annan personal vid pressen."
+
+msgid "manager.setup.editorialTeam"
+msgstr "Redaktion"
+
+msgid "manager.setup.masthead"
+msgstr "Allmänt"

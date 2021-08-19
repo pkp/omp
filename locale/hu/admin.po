@@ -1,0 +1,157 @@
+# Molnár Tamás <molnart@bibl.u-szeged.hu>, 2021.
+msgid ""
+msgstr ""
+"PO-Revision-Date: 2021-08-04 11:04+0000\n"
+"Last-Translator: Molnár Tamás <molnart@bibl.u-szeged.hu>\n"
+"Language-Team: Hungarian <http://translate.pkp.sfu.ca/projects/omp/admin/hu/>"
+"\n"
+"Language: hu\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: Weblate 3.9.1\n"
+
+msgid "admin.settings.redirectInstructions"
+msgstr ""
+"A főoldalra irányuló kérések át lesznek irányítva ehhez a közreadóhoz. Ez "
+"akkor hasznos például, ha a webhely csak egy közreadót szolgál ki."
+
+msgid "admin.settings.redirect"
+msgstr "Közreadó átirányítás"
+
+msgid "admin.settings.info.success"
+msgstr "A webhely információk sikeresen frissítve."
+
+msgid "admin.settings.config.success"
+msgstr "A webhely konfigurációs beállítások sikeresen frissítve."
+
+msgid "admin.settings.appearance.success"
+msgstr "A webhely megjelenítési beállítások sikeresen frissítve."
+
+msgid "admin.locale.maybeIncomplete"
+msgstr "*A jelölt fordítások befejezetlenek lehetnek."
+
+msgid "admin.languages.primaryLocaleInstructions"
+msgstr "Ez lesz az alapértelmezett nyelv a webhely és a közreadók számára."
+
+msgid "admin.settings.noPressRedirect"
+msgstr "Ne irányítsa át"
+
+msgid "admin.hostedContexts"
+msgstr "Tárolt közreadók"
+
+msgid "admin.settings.disableBulkEmailRoles.contextDisabled"
+msgstr ""
+"A tömeges e-mail küldési funkció le lett tiltva ennél a szerkesztőségnél. "
+"Itt lehet engedélyezni ezt a funkciót <a href=\"{$siteSettingsUrl}\""
+">Adminisztráció>Webhelybeállítások</a>"
+
+msgid "admin.settings.disableBulkEmailRoles.description"
+msgstr ""
+"A kozreadó menedzser nem tud tömeges e-maileket küldeni az alább "
+"kiválasztott szerepkörök egyikének sem. Ezzel a beállítással korlátozhatja "
+"az e-mailes értesítési funkcióval való visszaélést. Biztonságosabb lehet "
+"például letiltani a tömeges e-maileket az olvasók, szerzők vagy más nagy "
+"felhasználói csoportok számára, amelyek nem járultak hozzá az ilyen e-mailek "
+"fogadásához.<br><br>A tömeges e-mailek funkció teljesen letiltható a  "
+"szerkesztőség számára a <a href=\"{$siteSettingsUrl}\""
+">Adminisztráció>Webhelybeállítások<<> oldalon.</a>\n"
+"\n"
+"Translated with www.DeepL.com/Translator (free version)"
+
+#, fuzzy
+msgid "admin.settings.enableBulkEmails.description"
+msgstr ""
+"Válassza ki azokat a közreadókat, amelyeknek engedélyezni kell a tömeges e-"
+"mailek küldését. Ha ez a funkció engedélyezve van, a közreadói menedzser "
+"képes lesz e-mailt küldeni a saját regisztrált összes felhasználónak.<br><br>"
+"A funkció kéretlen e-mailek küldésére való használata egyes joghatóságok "
+"spamellenes törvényeit sértheti, és a szerver e-mailjeit spamként "
+"blokkolhatják. Kérjen műszaki tanácsot, mielőtt engedélyezné ezt a funkciót, "
+"és fontolja meg a közreadói menedzserekkel való konzultációt a funkció "
+"megfelelő használatának biztosítása érdekében.<br><br>A funkció további "
+"korlátozásai minden egyes közreadó számára engedélyezhetők a <a href=\""
+"{$hostedContextsUrl}\">Tárolt közredók<> listában található "
+"beállításvarázslóval.\n"
+"\n"
+"Translated with www.DeepL.com/Translator (free version)"
+
+msgid "admin.overwriteConfigFileInstructions"
+msgstr ""
+"<h4>MEGJEGYZÉS!</div>\n"
+"<p>A rendszer nem tudta automatikusan felülírni a konfigurációs fájlt. A "
+"konfigurációs módosítások alkalmazásához meg kell nyitnia a "
+"<tt>config.inc.php</tt> egy megfelelő szövegszerkesztő programban, és "
+"cserélje le ennek tartalmát az alábbi szövegmező tartalmára.</p>"
+
+msgid "admin.languages.confirmDisable"
+msgstr ""
+"Biztosan letiltja ezt a nyelvet? Ez hatással lehet azokra a közreadókra, "
+"akik használják ezt a nyelvet."
+
+msgid "admin.languages.installNewLocalesInstructions"
+msgstr ""
+"Válasszon ki további nyelveket telepítésre a rendszer számára. A nyelveket "
+"telepíteni kell, mielőtt a közreadók használhatnák őket. Lásd az OMP "
+"dokumentációt arról, hogy hogyan lehet új nyelveket telepíteni."
+
+msgid "admin.presses.addPress"
+msgstr "Közreadó hozzáadása"
+
+msgid "admin.contexts.contextDescription"
+msgstr "Közreadó leírása"
+
+msgid "admin.contexts.form.edit.success"
+msgstr "{$name} sikeresen szerkesztve."
+
+msgid "admin.contexts.form.create.success"
+msgstr "{$name} sikeresen létrehozva."
+
+msgid "admin.contexts.form.primaryLocaleNotSupported"
+msgstr ""
+"Az elsődleges nyelvet a közreadó által támogatott nyelvek közül kell "
+"kiválasztani."
+
+msgid "admin.contexts.form.pathExists"
+msgstr "A megadott útvonalat már egy másik közreadó használja."
+
+msgid "admin.contexts.form.pathAlphaNumeric"
+msgstr ""
+"Az útvonal csak betűket számokat, az _ és - karaktereket tartalmazhat. "
+"Betűvel vagy számmal kell kezdődnie és végződnie."
+
+msgid "admin.contexts.form.pathRequired"
+msgstr "Egy útvonal meghatározása szükséges."
+
+msgid "admin.contexts.form.titleRequired"
+msgstr "Egy cím megadása szükséges."
+
+msgid "admin.contexts.create"
+msgstr "Közreadó létrehozása"
+
+msgid "admin.presses.noneCreated"
+msgstr "Nem lettek közreadók létrehozva."
+
+msgid "admin.presses.pressSettings"
+msgstr "Közreadói beállítások"
+
+msgid "admin.systemConfiguration"
+msgstr "OMP konfiguráció"
+
+msgid "admin.systemVersion"
+msgstr "OMP verzió"
+
+msgid "admin.languages.confirmUninstall"
+msgstr ""
+"Biztos, hogy eltávolítja ezt a nyelvet? Ez hatással lesz az összes "
+"közreadónál, ahol használják ezt a nyelvet."
+
+msgid "admin.languages.supportedLocalesInstructions"
+msgstr ""
+"Válassza ki az összes támogatott nyelvet a webhely számára. A kiválasztott "
+"nyelvek elérhetőek lesznek bármelyik közreadó számára, és a nyelválasztó "
+"menüben is megjelennek minden oldalon (ez felülbírálható a közreadói oldalon)"
+". Ha több nyelv nem lesz kiválasztva, akkor a nyelvválasztó menü nem jelenik "
+"meg és a kibővített nyelvi beállítások sem lesznek elérhetőek a közreadók "
+"számára."
