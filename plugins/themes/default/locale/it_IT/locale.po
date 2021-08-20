@@ -1,8 +1,81 @@
 # Alfredo Cosco <alfredo.cosco@gmail.com>, 2021.
 msgid ""
 msgstr ""
+"PO-Revision-Date: 2021-08-20 10:21+0000\n"
+"Last-Translator: Alfredo Cosco <alfredo.cosco@gmail.com>\n"
+"Language-Team: Italian <http://translate.pkp.sfu.ca/projects/omp/"
+"themes-default/it_IT/>\n"
 "Language: it_IT\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Weblate\n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: Weblate 3.9.1\n"
+
+msgid "plugins.themes.default.option.showCatalogSeriesListing.option"
+msgstr ""
+"Aggiungi l'elenco dei collegamenti a tutte le serie della stampa nella "
+"pagina del catalogo"
+
+msgid "plugins.themes.default.option.showCatalogSeriesListing.label"
+msgstr "Mostra le serie"
+
+msgid "plugins.themes.default.option.useHomepageImageAsHeader.option"
+msgstr "Mostra l'immagine della Home Page come sfondo della testata."
+
+msgid "plugins.themes.default.option.useHomepageImageAsHeader.description"
+msgstr ""
+"Quando un'immagine della homepage è stata caricata, mostrala sullo sfondo "
+"dell'intestazione invece della sua posizione abituale sulla homepage."
+
+msgid "plugins.themes.default.option.useHomepageImageAsHeader.label"
+msgstr "Immagine di sfondo della testata"
+
+msgid "plugins.themes.default.option.colour.description"
+msgstr "Scegli un colore per la testata."
+
+msgid "plugins.themes.default.option.colour.label"
+msgstr "Colore"
+
+msgid "plugins.themes.default.option.typography.lora_openSans"
+msgstr ""
+"Lora/Open Sans: un abbinamento complementare con intestazioni serif e corpo "
+"del testo sans-serif."
+
+msgid "plugins.themes.default.option.typography.lora"
+msgstr "Lora: un carattere con grazie ricco e adatto alla lettura online."
+
+msgid "plugins.themes.default.option.typography.lato"
+msgstr "Lato: un carattere senza grazie popolare e moderno."
+
+msgid "plugins.themes.default.option.typography.notoSans_notoSerif"
+msgstr ""
+"Noto Sans/Noto Serif: un abbinamento complementare con intestazioni sans-"
+"serif e corpo del testo con grazie."
+
+msgid "plugins.themes.default.option.typography.notoSerif_notoSans"
+msgstr ""
+"Noto Serif/Noto Sans: Un abbinamento complementare con intestazioni serif e "
+"corpo del testo sans-serif."
+
+msgid "plugins.themes.default.option.typography.notoSerif"
+msgstr ""
+"Noto Serif: una variante con grazie del carattere nativo digitale di Google."
+
+msgid "plugins.themes.default.option.typography.notoSans"
+msgstr ""
+"Noto Sans: un carattere nativo digitale progettato da Google con un ampio "
+"supporto ai differenti alfabeti."
+
+msgid "plugins.themes.default.option.typography.description"
+msgstr ""
+"Scegli una combinazione di caratteri che si adatti a questa pubblicazione."
+
+msgid "plugins.themes.default.option.typography.label"
+msgstr "Carattteri"
+
+msgid "plugins.themes.default.description"
+msgstr "Questo tema implementa il tema predefinito."
+
+msgid "plugins.themes.default.name"
+msgstr "Tema predefinito"
