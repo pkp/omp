@@ -109,8 +109,7 @@ class CSVImportExportPlugin extends ImportExportPlugin
         $data = file($filename);
 
         if (is_array($data) && count($data) > 0) {
-            $userDao = DAORegistry::getDAO('UserDAO'); /* @var $userDao UserDAO */
-            $user = $userDao->getByUsername($username);
+            $user = Repo::user()->getByUsername($username);
             if (!$user) {
                 echo __('plugins.importexport.csv.unknownUser', ['username' => $username]) . "\n";
                 exit();
