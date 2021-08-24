@@ -1,8 +1,57 @@
 # Alfredo Cosco <alfredo.cosco@gmail.com>, 2021.
 msgid ""
 msgstr ""
+"PO-Revision-Date: 2021-08-25 10:05+0000\n"
+"Last-Translator: Alfredo Cosco <alfredo.cosco@gmail.com>\n"
+"Language-Team: Italian <http://translate.pkp.sfu.ca/projects/omp/manager/"
+"it_IT/>\n"
 "Language: it_IT\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Weblate\n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: Weblate 3.9.1\n"
+
+msgid "manager.series.submissionsToThisSection"
+msgstr "Proposte fatte in questa serie"
+
+msgid "manager.series.submissionReview"
+msgstr "Non sarà peer-reviewed"
+
+msgid "manager.series.readingTools"
+msgstr "Strumenti di lettura"
+
+msgid "manager.series.open"
+msgstr "Proposte libere"
+
+msgid "manager.series.indexed"
+msgstr "Indicizzato"
+
+msgid "manager.series.confirmDelete"
+msgstr "Sei sicuro di voler eliminare definitivamente questa serie?"
+
+msgid "manager.series.editorRestriction"
+msgstr ""
+"Le proposte possono essere inviate solo da redattori e redattori di serie."
+
+msgid "manager.series.submissionIndexing"
+msgstr "Non sarà incluso nell'indicizzazione della casa editrice"
+
+msgid "manager.series.form.mustAllowPermission"
+msgstr ""
+"Assicurati che almeno una checkbox sia selezionata per ogni assegnazione del "
+"curatore di serie."
+
+msgid "manager.languages.primaryLocaleInstructions"
+msgstr "Questa sarà la lingua predefinita per il sito della casa editrice."
+
+msgid "manager.languages.noneAvailable"
+msgstr ""
+"Spiacenti, non sono disponibili altre lingue. Contattare l'amministratore "
+"del sito se si desidera utilizzare lingue aggiuntive con questa casa "
+"editrice."
+
+msgid "manager.language.confirmDefaultSettingsOverwrite"
+msgstr ""
+"Questo sostituirà tutte le impostazioni locali specifiche per la casa "
+"editrice già presenti per questa localizzazione"
