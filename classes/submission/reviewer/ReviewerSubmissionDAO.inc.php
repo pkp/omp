@@ -27,7 +27,6 @@ use PKP\plugins\HookRegistry;
 class ReviewerSubmissionDAO extends DAO
 {
     public $authorDao;
-    public $userDao;
     public $reviewAssignmentDao;
     public $submissionCommentDao;
 
@@ -38,7 +37,6 @@ class ReviewerSubmissionDAO extends DAO
     {
         parent::__construct();
         $this->authorDao = DAORegistry::getDAO('AuthorDAO');
-        $this->userDao = DAORegistry::getDAO('UserDAO');
         $this->reviewAssignmentDao = DAORegistry::getDAO('ReviewAssignmentDAO');
         $this->submissionCommentDao = DAORegistry::getDAO('SubmissionCommentDAO');
     }
@@ -96,7 +94,7 @@ class ReviewerSubmissionDAO extends DAO
         $submission = Repo::submission()->dao->fromRow((object) $row);
         $reviewerSubmission = $this->newDataObject();
         $reviewerSubmission->setAllData($submission->getAllData());
-        $reviewer = $this->userDao->getById($row['reviewer_id']);
+        $reviewer = Repo::user()->get($row['reviewer_id']);
 
         // Editor Decisions
         $editDecisionDao = DAORegistry::getDAO('EditDecisionDAO'); /* @var $editDecisionDao EditDecisionDAO */

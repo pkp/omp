@@ -165,7 +165,6 @@ class Upgrade extends Installer
     public function syncSeriesAssocType()
     {
         // Can be any DAO.
-        $dao = DAORegistry::getDAO('UserDAO'); /* @var $dao DAO */
         $tablesToUpdate = [
             'features',
             'data_object_tombstone_oai_set_objects',
@@ -315,7 +314,6 @@ class Upgrade extends Installer
 
         $queryDao = DAORegistry::getDAO('QueryDAO'); /* @var $queryDao QueryDAO */
         $noteDao = DAORegistry::getDAO('NoteDAO'); /* @var $noteDao NoteDAO */
-        $userDao = DAORegistry::getDAO('UserDAO'); /* @var $userDao UserDAO */
         $stageAssignmentDao = DAORegistry::getDAO('StageAssignmentDAO'); /* @var $stageAssignmentDao StageAssignmentDAO */
 
         //
@@ -382,7 +380,7 @@ class Upgrade extends Installer
             $queryDao->resequence($assocType, $assocId);
 
             // Build a list of all users who should be involved in the query
-            $user = $userDao->getById($userId);
+            $user = Repo::user()->get((int) $userId);
             $assignedUserIds = [$userId];
             foreach ([Role::ROLE_ID_MANAGER, Role::ROLE_ID_SUB_EDITOR, Role::ROLE_ID_ASSISTANT] as $roleId) {
                 $stageAssignments = $stageAssignmentDao->getBySubmissionAndRoleId($submissionId, $roleId, $query->getStageId());
@@ -554,7 +552,6 @@ class Upgrade extends Installer
     {
         $noteDao = DAORegistry::getDAO('NoteDAO'); /* @var $noteDao NoteDAO */
         $submissionFileDao = DAORegistry::getDAO('SubmissionFileDAO'); /* @var $submissionFileDao SubmissionFileDAO */
-        $userDao = DAORegistry::getDAO('UserDAO'); /* @var $userDao UserDAO */
 
         $notes = $noteDao->getByAssoc(1048582 /* ASSOC_TYPE_SIGNOFF */, $signoffId);
         while ($note = $notes->next()) {
@@ -584,7 +581,7 @@ class Upgrade extends Installer
             $dateCompleted = $row->date_completed ? strtotime($row->date_completed) : null;
 
             if ($dateCompleted) {
-                $user = $userDao->getById($userId);
+                $user = Repo::user()->get((int) $userId);
                 $note = $noteDao->newDataObject();
                 $note->setAssocType(ASSOC_TYPE_QUERY);
                 $note->setAssocId($queryId);
@@ -639,13 +636,12 @@ class Upgrade extends Installer
      */
     public function migrateUserAndAuthorNames()
     {
-        $userDao = DAORegistry::getDAO('UserDAO'); /* @var $userDao UserDAO */
         // the user names will be saved in the site's primary locale
-        $userDao->update("INSERT INTO user_settings (user_id, locale, setting_name, setting_value, setting_type) SELECT DISTINCT u.user_id, s.primary_locale, ?, u.first_name, 'string' FROM users_tmp u, site s", [Identity::IDENTITY_SETTING_GIVENNAME]);
-        $userDao->update("INSERT INTO user_settings (user_id, locale, setting_name, setting_value, setting_type) SELECT DISTINCT u.user_id, s.primary_locale, ?, u.last_name, 'string' FROM users_tmp u, site s", [Identity::IDENTITY_SETTING_FAMILYNAME]);
+        DB::update("INSERT INTO user_settings (user_id, locale, setting_name, setting_value, setting_type) SELECT DISTINCT u.user_id, s.primary_locale, ?, u.first_name, 'string' FROM users_tmp u, site s", [Identity::IDENTITY_SETTING_GIVENNAME]);
+        DB::update("INSERT INTO user_settings (user_id, locale, setting_name, setting_value, setting_type) SELECT DISTINCT u.user_id, s.primary_locale, ?, u.last_name, 'string' FROM users_tmp u, site s", [Identity::IDENTITY_SETTING_FAMILYNAME]);
         // the author names will be saved in the submission's primary locale
-        $userDao->update("INSERT INTO author_settings (author_id, locale, setting_name, setting_value, setting_type) SELECT DISTINCT a.author_id, s.locale, ?, a.first_name, 'string' FROM authors_tmp a, submissions s WHERE s.submission_id = a.submission_id", [Identity::IDENTITY_SETTING_GIVENNAME]);
-        $userDao->update("INSERT INTO author_settings (author_id, locale, setting_name, setting_value, setting_type) SELECT DISTINCT a.author_id, s.locale, ?, a.last_name, 'string' FROM authors_tmp a, submissions s WHERE s.submission_id = a.submission_id", [Identity::IDENTITY_SETTING_FAMILYNAME]);
+        DB::update("INSERT INTO author_settings (author_id, locale, setting_name, setting_value, setting_type) SELECT DISTINCT a.author_id, s.locale, ?, a.first_name, 'string' FROM authors_tmp a, submissions s WHERE s.submission_id = a.submission_id", [Identity::IDENTITY_SETTING_GIVENNAME]);
+        DB::update("INSERT INTO author_settings (author_id, locale, setting_name, setting_value, setting_type) SELECT DISTINCT a.author_id, s.locale, ?, a.last_name, 'string' FROM authors_tmp a, submissions s WHERE s.submission_id = a.submission_id", [Identity::IDENTITY_SETTING_FAMILYNAME]);
 
         // middle name will be migrated to the given name
         // note that given names are already migrated to the settings table
@@ -653,16 +649,16 @@ class Upgrade extends Installer
             case 'mysql':
             case 'mysqli':
                 // the alias for _settings table cannot be used for some reason -- syntax error
-                $userDao->update("UPDATE user_settings, users_tmp u SET user_settings.setting_value = CONCAT(user_settings.setting_value, ' ', u.middle_name) WHERE user_settings.setting_name = ? AND u.user_id = user_settings.user_id AND u.middle_name IS NOT NULL AND u.middle_name <> ''", [Identity::IDENTITY_SETTING_GIVENNAME]);
-                $userDao->update("UPDATE author_settings, authors_tmp a SET author_settings.setting_value = CONCAT(author_settings.setting_value, ' ', a.middle_name) WHERE author_settings.setting_name = ? AND a.author_id = author_settings.author_id AND a.middle_name IS NOT NULL AND a.middle_name <> ''", [Identity::IDENTITY_SETTING_GIVENNAME]);
+                DB::update("UPDATE user_settings, users_tmp u SET user_settings.setting_value = CONCAT(user_settings.setting_value, ' ', u.middle_name) WHERE user_settings.setting_name = ? AND u.user_id = user_settings.user_id AND u.middle_name IS NOT NULL AND u.middle_name <> ''", [Identity::IDENTITY_SETTING_GIVENNAME]);
+                DB::update("UPDATE author_settings, authors_tmp a SET author_settings.setting_value = CONCAT(author_settings.setting_value, ' ', a.middle_name) WHERE author_settings.setting_name = ? AND a.author_id = author_settings.author_id AND a.middle_name IS NOT NULL AND a.middle_name <> ''", [Identity::IDENTITY_SETTING_GIVENNAME]);
                 break;
             case 'postgres':
             case 'postgres64':
             case 'postgres7':
             case 'postgres8':
             case 'postgres9':
-                $userDao->update("UPDATE user_settings SET setting_value = CONCAT(setting_value, ' ', u.middle_name) FROM users_tmp u WHERE user_settings.setting_name = ? AND u.user_id = user_settings.user_id AND u.middle_name IS NOT NULL AND u.middle_name <> ''", [Identity::IDENTITY_SETTING_GIVENNAME]);
-                $userDao->update("UPDATE author_settings SET setting_value = CONCAT(setting_value, ' ', a.middle_name) FROM authors_tmp a WHERE author_settings.setting_name = ? AND a.author_id = author_settings.author_id AND a.middle_name IS NOT NULL AND a.middle_name <> ''", [Identity::IDENTITY_SETTING_GIVENNAME]);
+                DB::update("UPDATE user_settings SET setting_value = CONCAT(setting_value, ' ', u.middle_name) FROM users_tmp u WHERE user_settings.setting_name = ? AND u.user_id = user_settings.user_id AND u.middle_name IS NOT NULL AND u.middle_name <> ''", [Identity::IDENTITY_SETTING_GIVENNAME]);
+                DB::update("UPDATE author_settings SET setting_value = CONCAT(setting_value, ' ', a.middle_name) FROM authors_tmp a WHERE author_settings.setting_name = ? AND a.author_id = author_settings.author_id AND a.middle_name IS NOT NULL AND a.middle_name <> ''", [Identity::IDENTITY_SETTING_GIVENNAME]);
                 break;
             default: throw new Exception('Unknown database type!');
         }
@@ -672,7 +668,7 @@ class Upgrade extends Installer
         $siteDao = DAORegistry::getDAO('SiteDAO'); /* @var $siteDao SiteDAO */
         $site = $siteDao->getSite();
         $supportedLocales = $site->getSupportedLocales();
-        $userResult = $userDao->retrieve(
+        $userResult = DB::select(
             "SELECT user_id, first_name, last_name, middle_name, salutation, suffix FROM users_tmp
 			WHERE (salutation IS NOT NULL AND salutation <> '') OR
 				(suffix IS NOT NULL AND suffix <> '')"
@@ -689,7 +685,7 @@ class Upgrade extends Installer
                 if (AppLocale::isLocaleWithFamilyFirst($siteLocale)) {
                     $preferredPublicName = "${lastName}, " . ($salutation != '' ? "${salutation} " : '') . $firstName . ($middleName != '' ? " ${middleName}" : '');
                 }
-                $userDao->update(
+                DB::update(
                     "INSERT INTO user_settings (user_id, locale, setting_name, setting_value, setting_type) VALUES (?, ?, 'preferredPublicName', ?, 'string')",
                     [(int) $userId, $siteLocale, $preferredPublicName]
                 );
@@ -706,7 +702,7 @@ class Upgrade extends Installer
             $pressessSupportedLocales[$press->getId()] = $press->getSupportedLocales();
         }
         // get all authors with a suffix
-        $authorResult = $userDao->retrieve(
+        $authorResult = DB::select(
             "SELECT a.author_id, a.first_name, a.last_name, a.middle_name, a.suffix, p.press_id FROM authors_tmp a
 			LEFT JOIN submissions s ON (s.submission_id = a.submission_id)
 			LEFT JOIN presses p ON (p.press_id = s.context_id)
@@ -725,7 +721,7 @@ class Upgrade extends Installer
                 if (AppLocale::isLocaleWithFamilyFirst($locale)) {
                     $preferredPublicName = "${lastName}, " . $firstName . ($middleName != '' ? " ${middleName}" : '');
                 }
-                $userDao->update(
+                DB::update(
                     "INSERT INTO author_settings (author_id, locale, setting_name, setting_value, setting_type) VALUES (?, ?, 'preferredPublicName', ?, 'string')",
                     [(int) $authorId, $locale, $preferredPublicName]
                 );

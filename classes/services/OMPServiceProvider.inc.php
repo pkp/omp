@@ -26,7 +26,6 @@ use PKP\services\PKPEmailTemplateService;
 use PKP\services\PKPFileService;
 use PKP\services\PKPSchemaService;
 use PKP\services\PKPSiteService;
-use PKP\services\PKPUserService;
 
 class OMPServiceProvider implements \Pimple\ServiceProviderInterface
 {
@@ -61,11 +60,6 @@ class OMPServiceProvider implements \Pimple\ServiceProviderInterface
         // Author service
         $pimple['author'] = function () {
             return new PKPAuthorService();
-        };
-
-        // User service
-        $pimple['user'] = function () {
-            return new PKPUserService();
         };
 
         // Context service
