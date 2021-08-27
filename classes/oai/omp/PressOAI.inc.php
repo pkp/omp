@@ -175,7 +175,7 @@ class PressOAI extends OAI {
 	 */
 	function records($metadataPrefix, $from, $until, $set, $offset, $limit, &$total) {
 		$records = null;
-		if (!HookRegistry::call('PressOAI::records', array(&$this, $from, $until, $set, $offset, $limit, $total, &$records))) {
+		if (!HookRegistry::call('PressOAI::records', array(&$this, $from, $until, $set, $offset, $limit, &$total, &$records))) {
 			$seriesId = null;
 			if (isset($set)) {
 				list($pressId, $seriesId) = $this->setSpecToSeriesId($set);
@@ -192,7 +192,7 @@ class PressOAI extends OAI {
 	 */
 	function identifiers($metadataPrefix, $from, $until, $set, $offset, $limit, &$total) {
 		$records = null;
-		if (!HookRegistry::call('PressOAI::identifiers', array(&$this, $from, $until, $set, $offset, $limit, $total, &$records))) {
+		if (!HookRegistry::call('PressOAI::identifiers', array(&$this, $from, $until, $set, $offset, $limit, &$total, &$records))) {
 			$seriesId = null;
 			if (isset($set)) {
 				list($pressId, $seriesId) = $this->setSpecToSeriesId($set);
@@ -209,7 +209,7 @@ class PressOAI extends OAI {
 	 */
 	function sets($offset, $limit, &$total) {
 		$sets = null;
-		if (!HookRegistry::call('PressOAI::sets', array(&$this, $offset, $limit, $total, &$sets))) {
+		if (!HookRegistry::call('PressOAI::sets', array(&$this, $offset, $limit, &$total, &$sets))) {
 			$sets = $this->dao->getSets($this->pressId, $offset, $limit, $total);
 		}
 		return $sets;
