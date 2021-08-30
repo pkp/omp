@@ -109,8 +109,6 @@ class Application extends \PKP\core\PKPApplication
     public function getDAOMap()
     {
         return array_merge(parent::getDAOMap(), [
-            'AuthorDAO' => 'APP\monograph\AuthorDAO',
-            'ChapterAuthorDAO' => 'APP\monograph\ChapterAuthorDAO',
             'ChapterDAO' => 'APP\monograph\ChapterDAO',
             'FeatureDAO' => 'APP\press\FeatureDAO',
             'IdentificationCodeDAO' => 'APP\publicationFormat\IdentificationCodeDAO',

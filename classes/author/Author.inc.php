@@ -1,7 +1,7 @@
 <?php
 
 /**
- * @file classes/monograph/Author.inc.php
+ * @file classes/author/Author.inc.php
  *
  * Copyright (c) 2014-2021 Simon Fraser University
  * Copyright (c) 2003-2021 John Willinsky
@@ -10,16 +10,14 @@
  * @class Author
  * @ingroup monograph
  *
- * @see AuthorDAO
+ * @see DAO
  *
  * @brief Monograph author metadata class.
  */
 
-namespace APP\monograph;
+namespace APP\author;
 
-use PKP\submission\PKPAuthor;
-
-class Author extends PKPAuthor
+class Author extends \PKP\author\Author
 {
     /**
      * Get whether or not this author should be displayed as a volume editor
@@ -40,8 +38,4 @@ class Author extends PKPAuthor
     {
         $this->setData('isVolumeEditor', $isVolumeEditor);
     }
-}
-
-if (!PKP_STRICT_MODE) {
-    class_alias('\APP\monograph\Author', '\Author');
 }

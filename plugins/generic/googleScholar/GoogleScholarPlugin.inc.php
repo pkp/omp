@@ -1,4 +1,5 @@
 <?php
+use APP\facades\Repo;
 
 /**
  * @file plugins/generic/googleScholar/GoogleScholarPlugin.inc.php
@@ -76,7 +77,7 @@ class GoogleScholarPlugin extends GenericPlugin
         $templateMgr->addHeader('googleScholarDate', '<meta name="citation_publication_date" content="' . strftime('%Y-%m-%d', strtotime($publication->getData('datePublished'))) . '"/>');
 
         // Authors in order
-        $authors = $submission->getAuthors();
+        $authors = Repo::author()->getSubmissionAuthors($submission);
         $i = 0;
         foreach ($authors as $author) {
             $templateMgr->addHeader('googleScholarAuthor' . $i++, '<meta name="citation_author" content="' . htmlspecialchars($author->getFullName(false)) . '"/>');

@@ -1,4 +1,5 @@
 <?php
+use APP\facades\Repo;
 
 /**
  * @file plugins/importexport/native/filter/NativeXmlChapterFilter.inc.php
@@ -145,13 +146,11 @@ class NativeXmlChapterFilter extends NativeImportFilter
     {
         $deployment = $this->getDeployment();
 
-        $chapterAuthorDao = DAORegistry::getDAO('ChapterAuthorDAO'); /** @var ChapterAuthorDAO $chapterAuthorDao */
-
         $authorId = $deployment->getAuthorDBId($n->getAttribute('author_id'));
         $primaryContact = $n->getAttribute('primary_contact');
         $seq = $n->getAttribute('seq');
 
-        $chapterAuthorDao->insertChapterAuthor($authorId, $chapter->getId(), $primaryContact, $seq);
+        Repo::author()->addToChapter($authorId, $chapter->getId(), (int) $primaryContact, $seq);
     }
 
     /**

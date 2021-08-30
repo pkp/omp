@@ -195,21 +195,18 @@ class Upgrade extends Installer
      */
     public function fixAuthorSettings()
     {
-        $authorDao = DAORegistry::getDAO('AuthorDAO'); /* @var $authorDao AuthorDAO */
-
-        // Get all authors with broken data
-        $result = $authorDao->retrieve(
+        $result = Repo::author()->dao->retrieve(
             'SELECT DISTINCT author_id
-			FROM	author_settings
-			WHERE	(setting_name = ? OR setting_name = ?)
-				AND setting_type = ?',
+            FROM	author_settings
+            WHERE	(setting_name = ? OR setting_name = ?)
+                AND setting_type = ?',
             ['affiliation', 'biography', 'object']
         );
 
         foreach ($result as $row) {
             $authorId = $row->author_id;
 
-            $author = $authorDao->getById($authorId);
+            $author = Repo::author()->get($authorId);
             if (!$author) {
                 continue;
             } // Bonehead check (DB integrity)
@@ -229,7 +226,7 @@ class Upgrade extends Installer
                     }
                 }
             }
-            $authorDao->updateObject($author);
+            Repo::author()->dao->update($author);
         }
         return true;
     }
@@ -248,11 +245,11 @@ class Upgrade extends Installer
         foreach ($result as $row) {
             $emailTemplateDao->update(
                 'UPDATE	email_templates_data
-				SET	body = ?
-				WHERE	email_key = ? AND
-					locale = ? AND
-					assoc_type = ? AND
-					assoc_id = ?',
+                SET	body = ?
+                WHERE	email_key = ? AND
+                    locale = ? AND
+                    assoc_type = ? AND
+                    assoc_id = ?',
                 [
                     preg_replace('/{\$[a-zA-Z]+Url}/', '<a href="\0">\0</a>', nl2br($row->body)),
                     $row->email_key,
@@ -268,9 +265,9 @@ class Upgrade extends Installer
         foreach ($result as $row) {
             $emailTemplateDao->update(
                 'UPDATE	email_templates_default_data
-				SET	body = ?
-				WHERE	email_key = ? AND
-					locale = ?',
+                SET	body = ?
+                WHERE	email_key = ? AND
+                    locale = ?',
                 [
                     preg_replace('/{\$[a-zA-Z]+Url}/', '<a href="\0">\0</a>', nl2br($row->body)),
                     $row->email_key,
@@ -446,12 +443,12 @@ class Upgrade extends Installer
         $queryDao = DAORegistry::getDAO('QueryDAO'); /* @var $queryDao QueryDAO */
         $allQueriesResult = $queryDao->retrieve(
             'SELECT DISTINCT q.*,
-				COALESCE(pf.submission_id, qs.assoc_id) AS submission_id
-			FROM queries q
-			LEFT JOIN publication_formats pf ON (q.assoc_type = ? AND q.assoc_id = pf.publication_format_id AND q.stage_id = ?)
-			LEFT JOIN queries qs ON (qs.assoc_type = ?)
-			WHERE q.assoc_type = ? OR q.assoc_type = ?
-			ORDER BY query_id',
+                COALESCE(pf.submission_id, qs.assoc_id) AS submission_id
+            FROM queries q
+            LEFT JOIN publication_formats pf ON (q.assoc_type = ? AND q.assoc_id = pf.publication_format_id AND q.stage_id = ?)
+            LEFT JOIN queries qs ON (qs.assoc_type = ?)
+            WHERE q.assoc_type = ? OR q.assoc_type = ?
+            ORDER BY query_id',
             [(int) ASSOC_TYPE_REPRESENTATION, (int) WORKFLOW_STAGE_ID_PRODUCTION, (int) ASSOC_TYPE_SUBMISSION, (int) ASSOC_TYPE_SUBMISSION, (int) ASSOC_TYPE_REPRESENTATION]
         );
         $allQueries = [];
@@ -493,8 +490,8 @@ class Upgrade extends Installer
 
         $commentsResult = Repo::submission()->dao->deprecatedDao->retrieve(
             'SELECT s.submission_id, s.context_id, s.comments_to_ed, s.date_submitted
-			FROM submissions_tmp s
-			WHERE s.comments_to_ed IS NOT NULL AND s.comments_to_ed != \'\''
+            FROM submissions_tmp s
+            WHERE s.comments_to_ed IS NOT NULL AND s.comments_to_ed != \'\''
         );
         foreach ($commentsResult as $row) {
             $commentsToEd = PKPString::stripUnsafeHtml($row->comments_to_ed);
@@ -670,8 +667,8 @@ class Upgrade extends Installer
         $supportedLocales = $site->getSupportedLocales();
         $userResult = DB::select(
             "SELECT user_id, first_name, last_name, middle_name, salutation, suffix FROM users_tmp
-			WHERE (salutation IS NOT NULL AND salutation <> '') OR
-				(suffix IS NOT NULL AND suffix <> '')"
+            WHERE (salutation IS NOT NULL AND salutation <> '') OR
+                (suffix IS NOT NULL AND suffix <> '')"
         );
         foreach ($userResult as $row) {
             $userId = $row->user_id;
@@ -704,9 +701,9 @@ class Upgrade extends Installer
         // get all authors with a suffix
         $authorResult = DB::select(
             "SELECT a.author_id, a.first_name, a.last_name, a.middle_name, a.suffix, p.press_id FROM authors_tmp a
-			LEFT JOIN submissions s ON (s.submission_id = a.submission_id)
-			LEFT JOIN presses p ON (p.press_id = s.context_id)
-			WHERE suffix IS NOT NULL AND suffix <> ''"
+            LEFT JOIN submissions s ON (s.submission_id = a.submission_id)
+            LEFT JOIN presses p ON (p.press_id = s.context_id)
+            WHERE suffix IS NOT NULL AND suffix <> ''"
         );
         foreach ($authorResult as $row) {
             $authorId = $row->author_id;
@@ -784,10 +781,10 @@ class Upgrade extends Installer
 
         $result = Repo::submission()->dao->deprecatedDao->retrieve(
             'SELECT	ps.submission_id as submission_id,
-				ps.cover_image as cover_image,
-				s.context_id as context_id
-			FROM	published_submissions ps
-			LEFT JOIN	submissions s ON (s.submission_id = ps.submission_id)'
+                ps.cover_image as cover_image,
+                s.context_id as context_id
+            FROM	published_submissions ps
+            LEFT JOIN	submissions s ON (s.submission_id = ps.submission_id)'
         );
         foreach ($result as $row) {
             if (empty($row->cover_image)) {
@@ -841,7 +838,7 @@ class Upgrade extends Installer
                     $newCoverPathInfo = pathinfo($newCoverPath);
                     Repo::submission()->dao->deprecatedDao->update(
                         'INSERT INTO submission_settings (submission_id, setting_name, setting_value, setting_type, locale)
-						VALUES (?, ?, ?, ?, ?)',
+                        VALUES (?, ?, ?, ?, ?)',
                         [
                             $row->submission_id,
                             'coverImage',

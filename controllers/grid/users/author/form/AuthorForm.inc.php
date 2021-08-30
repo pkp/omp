@@ -61,10 +61,9 @@ class AuthorForm extends PKPAuthorForm
     public function execute(...$functionParams)
     {
         $authorId = parent::execute(...$functionParams);
-        $author = Services::get('author')->get($authorId);
+        $author = Repo::author()->get($authorId);
         if ($author) {
-            $author->setIsVolumeEditor($this->getData('isVolumeEditor'));
-            DAORegistry::getDAO('AuthorDAO')->updateObject($author);
+            Repo::author()->edit($author, ['isVolumeEditor'=> $this->getData('isVolumeEditor')]);
         }
         return $author->getId();
     }

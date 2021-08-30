@@ -85,8 +85,10 @@ class Repository extends \PKP\publication\Repository
     {
         // Get some data about the publication being versioned before any changes are made
         $oldPublicationFormats = $publication->getData('publicationFormats');
-        $oldAuthors = iterator_to_array(
-            Services::get('author')->getMany(['publicationIds' => $publication->getId()])
+        $oldAuthors = Repo::author()->getMany(
+            Repo::author()
+                ->getCollector()
+                ->filterByPublicationIds([$publication->getId()])
         );
         $chapterDao = DAORegistry::getDAO('ChapterDAO'); /** @var ChapterDAO $chapterDao */
         $oldChaptersIterator = $chapterDao->getByPublicationId($publication->getId());
@@ -147,9 +149,10 @@ class Repository extends \PKP\publication\Repository
         }
 
         // Chapters (and all associated objects)
-        $chapterAuthorDao = DAORegistry::getDAO('ChapterAuthorDAO'); /** @var ChapterAuthorDAO $chapterAuthorDao */
-        $newAuthors = iterator_to_array(
-            Services::get('author')->getMany(['publicationIds' => $newPublication->getId()])
+        $newAuthors = Repo::author()->getMany(
+            Repo::author()
+                ->getCollector()
+                ->filterByPublicationIds([$newPublication->getId()])
         );
         while ($oldChapter = $oldChaptersIterator->next()) {
             $newChapter = clone $oldChapter;
@@ -170,13 +173,19 @@ class Repository extends \PKP\publication\Repository
             // unique for each author to determine which new author is a copy of the
             // old one. We then map the old chapter author associations to the new
             // authors.
-            $oldChapterAuthors = $chapterAuthorDao->getAuthors($oldPublicationId, $oldChapter->getId())->toArray();
+            $oldChapterAuthors = Repo::author()->getMany(
+                Repo::author()
+                    ->getCollector()
+                    ->filterByChapterIds([$oldChapter->getId()])
+                    ->filterByPublicationIds([$oldPublicationId])
+            );
+
             foreach ($newAuthors as $newAuthor) {
                 foreach ($oldAuthors as $oldAuthor) {
                     if ($newAuthor->getData('seq') === $oldAuthor->getData('seq')) {
                         foreach ($oldChapterAuthors as $oldChapterAuthor) {
                             if ($oldChapterAuthor->getId() === $oldAuthor->getId()) {
-                                $chapterAuthorDao->insertChapterAuthor(
+                                Repo::author()->addToChapter(
                                     $newAuthor->getId(),
                                     $newChapter->getId(),
                                     $newAuthor->getId() === $newPublication->getData('primaryContactId'),

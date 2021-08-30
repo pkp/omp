@@ -17,6 +17,7 @@ use APP\core\Application;
 use APP\publication\Publication;
 use PKP\db\DAORegistry;
 use PKP\services\PKPSchemaService;
+use APP\facades\Repo;
 
 class Schema extends \PKP\publication\maps\Schema
 {
@@ -31,12 +32,16 @@ class Schema extends \PKP\publication\maps\Schema
                 if ($anonymize) {
                     $data['authors'] = [];
                 } else {
-                    $data['authors'] = array_map(
-                        function ($chapterAuthor) use ($publication) {
+                    $data['authors'] = Repo::author()
+                        ->getMany(
+                            Repo::author()
+                                ->getCollector()
+                                ->filterByChapterIds([$chapter->getId()])
+                                ->filterByPublicationIds([$publication->getId()])
+                        )
+                        ->map(function($chapterAuthor) {
                             return $chapterAuthor->_data;
-                        },
-                        DAORegistry::getDAO('ChapterAuthorDAO')->getAuthors($publication->getId(), $chapter->getId())->toArray()
-                    );
+                        });
                 }
                 return $data;
             }, $publication->getData('chapters'));

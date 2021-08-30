@@ -21,6 +21,8 @@ use APP\i18n\AppLocale;
 use PKP\core\PKPString;
 
 use PKP\db\DAORegistry;
+use APP\facades\Repo;
+use Illuminate\Support\LazyCollection;
 
 class Chapter extends \PKP\core\DataObject
 {
@@ -165,12 +167,16 @@ class Chapter extends \PKP\core\DataObject
     /**
      * Get all authors of this chapter.
      *
-     * @return DAOResultFactory Iterator of authors
+     * @return LazyCollection Iterator of authors
      */
     public function getAuthors()
     {
-        $chapterAuthorDao = DAORegistry::getDAO('ChapterAuthorDAO'); /* @var $chapterAuthorDao ChapterAuthorDAO */
-        return $chapterAuthorDao->getAuthors($this->getData('publicationId'), $this->getId());
+        return Repo::author()->getMany(
+            Repo::author()
+                ->getCollector()
+                ->filterByChapterIds([$this->getId()])
+                ->filterByPublicationIds([$this->getData('publicationId')])
+        );
     }
 
     /**
@@ -184,7 +190,7 @@ class Chapter extends \PKP\core\DataObject
     {
         $authorNames = [];
         $authors = $this->getAuthors();
-        while ($author = $authors->next()) {
+        foreach ($authors as $author) {
             $authorNames[] = $author->getFullName($preferred);
         }
         return join(', ', $authorNames);
