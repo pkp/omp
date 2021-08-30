@@ -82,7 +82,7 @@ class Dc11SchemaPublicationFormatAdapter extends MetadataDataObjectAdapter
         $this->_addLocalizedElements($dc11Description, 'dc:title', $publication->getFullTitles());
          
         // Creator
-        $authors = $monograph->getAuthors();
+        $authors = Repo::author()->getSubmissionAuthors($monograph);
         foreach ($authors as $author) {
             $authorName = $author->getFullName(false, true);
             $affiliation = $author->getLocalizedAffiliation();

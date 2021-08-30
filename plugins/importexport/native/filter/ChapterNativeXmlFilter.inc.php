@@ -1,4 +1,5 @@
 <?php
+use APP\facades\Repo;
 
 /**
  * @file plugins/importexport/native/filter/ChapterNativeXmlFilter.inc.php
@@ -104,8 +105,12 @@ class ChapterNativeXmlFilter extends NativeExportFilter
         $entityNode->appendChild($doc->createElementNS($deployment->getNamespace(), 'pages', $chapter->getData('pages')));
 
         // Add authors
-        $chapterAuthorDao = DAORegistry::getDAO('ChapterAuthorDAO'); /** @var ChapterAuthorDAO $chapterAuthorDao */
-        $chapterAuthors = $chapterAuthorDao->getAuthors($chapter->getData('publicationId'), $chapter->getId())->toArray();
+        $chapterAuthors = Repo::author()->getMany(
+            Repo::author()
+                ->getCollector()
+                ->filterByChapterIds([$chapter->getId()])
+                ->filterByPublicationIds([$chapter->getData('publicationId')])
+        );
 
         foreach ($chapterAuthors as $chapterAuthor) {
             $entityNode->appendChild($this->createChapterAuthorNode($doc, $chapterAuthor));

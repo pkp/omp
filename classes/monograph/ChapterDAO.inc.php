@@ -11,7 +11,7 @@
  * @ingroup monograph
  *
  * @see Chapter
- * @see AuthorDAO
+ * @see \APP\author\DAO
  *
  * @brief Operations for retrieving and modifying Chapter objects.
  */
