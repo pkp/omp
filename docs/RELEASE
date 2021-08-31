@@ -1,8 +1,8 @@
 OMP 3.3.0 Release Notes
-Git tag: 3_3_0-7
+Git tag: 3_3_0-8
 
-Release date: June 23, 2021
-==============================
+Release date: August 30, 2021
+=============================
 
 Configuration Changes
 ---------------------
@@ -25,6 +25,17 @@ New config.inc.php parameters added for OAuth-based SMTP authorization:
 - email.smtp_oauth_clientid
 - email.smtp_oauth_clientsecret
 - email.smtp_oauth_refreshtoken
+
+3.3.0-8 Build
+-------------
+	#7240: Cancelling a discussion sometimes leaves an empty placeholder
+	#7232: Link to report broken in report plugins
+	#7230: Author's internal review stage broken
+	#7214: OAI resumption token empty after first page of results
+	#7181: Provide OJS/OMP/OPS version number when requesting plugin gallery list
+	#7174: ReCAPTCHA proxy is misconfigured
+	#7173: No cover images after upgrading to 3.3.0.7
+	#7152: Context path of "files" has unexpected behaviour
 
 3.3.0-7 Build
 -------------
