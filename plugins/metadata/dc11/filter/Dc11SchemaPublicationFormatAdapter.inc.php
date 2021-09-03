@@ -78,8 +78,9 @@ class Dc11SchemaPublicationFormatAdapter extends MetadataDataObjectAdapter
         $dc11Description = $this->instantiateMetadataDescription();
 
         // Title
-        $this->_addLocalizedElements($dc11Description, 'dc:title', $monograph->getFullTitle(null));
-
+        $publication = $monograph->getCurrentPublication();
+        $this->_addLocalizedElements($dc11Description, 'dc:title', $publication->getFullTitles());
+         
         // Creator
         $authors = $monograph->getAuthors();
         foreach ($authors as $author) {
