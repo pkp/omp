@@ -143,18 +143,18 @@ class DublinCoreMetaPlugin extends GenericPlugin {
 
 		$templateMgr->addHeader('dublinCoreSchema', '<link rel="schema.DC" href="http://purl.org/dc/elements/1.1/" />');
 
-		$i=0;
+		$i = 0;
 		if ($sponsors = $monograph->getSponsor(null)) foreach ($sponsors as $locale => $sponsor) {
 			$templateMgr->addHeader('dublinCoreSponsor' . $i++, '<meta name="DC.Contributor.Sponsor" xml:lang="' . htmlspecialchars(substr($locale, 0, 2)) . '" content="' . htmlspecialchars(strip_tags($sponsor)) . '"/>');
 		}
 
-		$i=0;
-		if ($coverages = $monograph->getCoverage(null)) foreach($coverages as $locale => $coverage) {
+		$i = 0;
+		if ($coverages = $monograph->getCoverage(null)) foreach ($coverages as $locale => $coverage) {
 			$templateMgr->addHeader('dublinCoreCoverage' . $i++, '<meta name="DC.Coverage" xml:lang="' . htmlspecialchars(substr($locale, 0, 2)) . '" content="' . htmlspecialchars(strip_tags($coverage)) . '"/>');
 		}
 
-		$i=0;
-		foreach ($chapter?$chapter->getAuthors()->toArray():$monograph->getAuthors() as $author) {
+		$i = 0;
+		foreach ($chapter ? $chapter->getAuthors()->toArray() : $monograph->getAuthors() as $author) {
 			$templateMgr->addHeader('dublinCoreAuthor' . $i++, '<meta name="DC.Creator.PersonalName" content="' . htmlspecialchars($author->getFullName(false)) . '"/>');
 		}
 
@@ -163,8 +163,11 @@ class DublinCoreMetaPlugin extends GenericPlugin {
 		}
 		$templateMgr->addHeader('dublinCoreDateSubmitted', '<meta name="DC.Date.dateSubmitted" scheme="ISO8601" content="' . strftime('%Y-%m-%d', strtotime($monograph->getDateSubmitted())) . '"/>');
 		if ($dateModified = $monograph->getData('dateLastActivity')) $templateMgr->addHeader('dublinCoreDateModified', '<meta name="DC.Date.modified" scheme="ISO8601" content="' . strftime('%Y-%m-%d', strtotime($dateModified)) . '"/>');
-		$i=0;
-		if ($abstracts = $monograph->getAbstract(null)) foreach($abstracts as $locale => $abstract) {
+		$i = 0;
+
+		if ($chapter != null) foreach ($chapter->getData('abstract') as $locale => $abstract) {
+			$templateMgr->addHeader('dublinCoreAbstract' . $i++, '<meta name="DC.Description" xml:lang="' . htmlspecialchars(substr($locale, 0, 2)) . '" content="' . htmlspecialchars(strip_tags($abstract)) . '"/>');
+		} elseif ($abstracts = $monograph->getAbstract(null)) foreach ($abstracts as $locale => $abstract) {
 			$templateMgr->addHeader('dublinCoreAbstract' . $i++, '<meta name="DC.Description" xml:lang="' . htmlspecialchars(substr($locale, 0, 2)) . '" content="' . htmlspecialchars(strip_tags($abstract)) . '"/>');
 		}
 
