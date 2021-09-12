@@ -1126,3 +1126,30 @@ msgstr "Process failed to parse publicationformats"
 
 msgid "plugins.importexport.chapter.exportFailed"
 msgstr "Process failed to parse chapters"
+
+msgid "emailTemplate.variable.context.contextName"
+msgstr "The press's name"
+
+msgid "emailTemplate.variable.context.contextUrl"
+msgstr "The URL to the press's homepage"
+
+msgid "emailTemplate.variable.context.contactName"
+msgstr "The name of the press's primary contact"
+
+msgid "emailTemplate.variable.context.principalContactSignature"
+msgstr "The press's email signature for automated emails"
+
+msgid "emailTemplate.variable.context.contactEmail"
+msgstr "The email address of the press's primary contact"
+
+msgid "emailTemplate.variable.queuedPayment.itemName"
+msgstr "The name of the type of payment"
+
+msgid "emailTemplate.variable.queuedPayment.itemCost"
+msgstr "The payment amount"
+
+msgid "emailTemplate.variable.queuedPayment.itemCurrencyCode"
+msgstr "The currency of the payment amount, such as USD"
+
+msgid "emailTemplate.variable.site.siteTitle"
+msgstr "Name of the website when more than one press is hosted"
