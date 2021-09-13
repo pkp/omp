@@ -1,7 +1,7 @@
 # Fülöp Tiffany <tiffany.fulop@ek.szte.hu>, 2021.
 msgid ""
 msgstr ""
-"PO-Revision-Date: 2021-08-19 14:05+0000\n"
+"PO-Revision-Date: 2021-09-14 10:05+0000\n"
 "Last-Translator: Fülöp Tiffany <tiffany.fulop@ek.szte.hu>\n"
 "Language-Team: Hungarian <http://translate.pkp.sfu.ca/projects/omp/"
 "importexport-native/hu_HU/>\n"
@@ -27,7 +27,7 @@ msgstr "Ismeretlen sorozat {$param}"
 msgid "plugins.importexport.native.onix30.pressMissingFields"
 msgstr ""
 "Hiányzik néhány szükséges információ az ebben az exportban használt ONIX "
-"metaadatokhoz. Kérjük, menjen a <a href=\"{$url}\">Közreadó beállítások</a> "
+"metaadatokhoz. Kérjük, menjen a <a href=\"{$url}\">Kiadó beállítások</a> "
 "oldalra, és töltse ki a hiányzó adatokat."
 
 msgid "plugins.importexport.native.importComplete"
