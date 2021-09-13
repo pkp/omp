@@ -1,8 +1,189 @@
 # Fülöp Tiffany <tiffany.fulop@ek.szte.hu>, 2021.
 msgid ""
 msgstr ""
+"PO-Revision-Date: 2021-09-14 10:05+0000\n"
+"Last-Translator: Fülöp Tiffany <tiffany.fulop@ek.szte.hu>\n"
+"Language-Team: Hungarian <http://translate.pkp.sfu.ca/projects/omp/locale/"
+"hu_HU/>\n"
 "Language: hu_HU\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Weblate\n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: Weblate 3.9.1\n"
+
+msgid "monograph.publicationFormat.formatDoesNotExist"
+msgstr ""
+"<p> A kiválasztott publikációs formátum már nem létezik ehhez a "
+"monográfiához. </p>"
+
+msgid "monograph.publicationFormat.missingONIXFields"
+msgstr "Hiányzik néhány metaadatmező."
+
+msgid "monograph.publicationFormat.noCodesAssigned"
+msgstr "Hiányzik az azonosító kód."
+
+msgid "monograph.publicationFormat.noMarketsAssigned"
+msgstr "Hiányzó piacok és árak."
+
+msgid "monograph.publicationFormat.isApproved"
+msgstr ""
+"A könyv katalógusbejegyzésében szerepeltetni kell az adott "
+"kiadványformátumra vonatkozó metaadatokat."
+
+#, fuzzy
+msgid "monograph.publicationFormat.taxType"
+msgstr "Adózás típusa"
+
+#, fuzzy
+msgid "monograph.publicationFormat.taxRate"
+msgstr "Adó mértéke / Adókulcs?"
+
+#, fuzzy
+msgid "monograph.publicationFormat.productRegion"
+msgstr "Termékforgalmazási régió"
+
+msgid "monograph.publicationFormat.technicalProtection"
+msgstr "Digitális technikai védelem"
+
+msgid "monograph.publicationFormat.countryOfManufacture"
+msgstr "Gyártó ország"
+
+msgid "monograph.publicationFormat.productWidth"
+msgstr "Szélesség"
+
+msgid "monograph.publicationFormat.productWeight"
+msgstr "Súly"
+
+msgid "monograph.publicationFormat.productThickness"
+msgstr "Vastagság"
+
+msgid "monograph.publicationFormat.productHeight"
+msgstr "Magasság"
+
+#, fuzzy
+msgid "monograph.publicationFormat.productFileSize.override"
+msgstr "Saját fájlméretet ad meg?"
+
+msgid "monograph.publicationFormat.productFileSize"
+msgstr "A fájl mérete MB-ban"
+
+msgid "monograph.publicationFormat.productDimensionsSeparator"
+msgstr " x "
+
+msgid "monograph.publicationFormat.productDimensions"
+msgstr "Fizikai méretek"
+
+msgid "monograph.publicationFormat.digitalInformation"
+msgstr "Digitális információ"
+
+#, fuzzy
+msgid "monograph.publicationFormat.returnInformation"
+msgstr "Visszaváltható mutató"
+
+msgid "monograph.publicationFormat.productAvailability"
+msgstr "Termék elérhetősége"
+
+#, fuzzy
+msgid "monograph.publicationFormat.discountAmount"
+msgstr "Kedvezmény százalékos aránya, ha alkalmazható"
+
+msgid "monograph.publicationFormat.priceType"
+msgstr "Ár típusa"
+
+msgid "monograph.publicationFormat.priceRequired"
+msgstr "Az ár kötelező."
+
+msgid "monograph.publicationFormat.price"
+msgstr "Ár"
+
+msgid "monograph.publicationFormat.productIdentifierType"
+msgstr "Termék azonosítása"
+
+msgid "monograph.publicationFormat.productFormDetailCode"
+msgstr "Termék részletezése (nem kötelező)"
+
+#, fuzzy
+msgid "monograph.publicationFormat.productComposition"
+msgstr "Termék összetétel"
+
+#, fuzzy
+msgid "monograph.publicationFormat.backMatterCount"
+msgstr "Hátoldalak"
+
+#, fuzzy
+msgid "monograph.publicationFormat.frontMatterCount"
+msgstr "Előzékoldalak"
+
+msgid "monograph.publicationFormat.pageCounts"
+msgstr "Oldalszám"
+
+#, fuzzy
+msgid "monograph.publicationFormat.imprint"
+msgstr "Könyvkiadó (?Impresszum?) (Márkanév)"
+
+msgid "monograph.accessLogoOpen.altText"
+msgstr "Nyílt hozzáférés (Open Access)"
+
+#, fuzzy
+msgid "monograph.task.addNote"
+msgstr "Hozzáadás a feladathoz"
+
+msgid "monograph.proofReadingDescription"
+msgstr ""
+"A tördelőszerkesztő ide tölti fel a megjelentetésre előkészített, gyártásra "
+"kész fájlokat. A <em>Hozzárendelés</em> gomb segítségével kijelölheti a "
+"szerzőket és másokat, hogy korrektúrázzák a kefelenyomatokat, és a javított "
+"fájlokat a közzététel előtt jóváhagyásra feltöltsék."
+
+msgid "submission.pageProofs"
+msgstr "Kefelenyomatok oldala"
+
+#, fuzzy
+msgid "monograph.type"
+msgstr "Beküldés típusa"
+
+msgid "monograph.carousel.publicationFormats"
+msgstr "Formátumok:"
+
+msgid "monograph.miscellaneousDetails"
+msgstr "Részletek a monográfiáról"
+
+msgid "monograph.publicationFormatDetails"
+msgstr "Részletek a rendelkezésre álló publikációs formátumról: {$format}"
+
+msgid "monograph.publicationFormat"
+msgstr "Formátum"
+
+#, fuzzy
+msgid "monograph.publicationFormats"
+msgstr "Kiadványformátumok"
+
+msgid "monograph.languages"
+msgstr "Nyelvek (Angol, Francia, Spanyol)"
+
+msgid "monograph.audience.rangeExact"
+msgstr "Célközönség köre (pontos)"
+
+#, fuzzy
+msgid "monograph.audience.rangeTo"
+msgstr "Célközönség köre (-ig)"
+
+msgid "monograph.audience.rangeFrom"
+msgstr "Célközönség köre (-tól)"
+
+#, fuzzy
+msgid "monograph.audience.rangeQualifier"
+msgstr "Célközönség körének választója"
+
+msgid "monograph.coverImage"
+msgstr "Borítókép"
+
+msgid "monograph.audience.success"
+msgstr "A célközönség adatait frissítettük."
+
+msgid "monograph.audience"
+msgstr "Célközönség"
+
+msgid "common.payments"
+msgstr "Fizetések"
