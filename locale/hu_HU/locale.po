@@ -1,7 +1,7 @@
 # Fülöp Tiffany <tiffany.fulop@ek.szte.hu>, 2021.
 msgid ""
 msgstr ""
-"PO-Revision-Date: 2021-09-14 10:05+0000\n"
+"PO-Revision-Date: 2021-09-14 13:16+0000\n"
 "Last-Translator: Fülöp Tiffany <tiffany.fulop@ek.szte.hu>\n"
 "Language-Team: Hungarian <http://translate.pkp.sfu.ca/projects/omp/locale/"
 "hu_HU/>\n"
@@ -187,3 +187,98 @@ msgstr "Célközönség"
 
 msgid "common.payments"
 msgstr "Fizetések"
+
+msgid "grid.catalogEntry.fileSizeRequired"
+msgstr "A digitális formátumokhoz fájlméret szükséges."
+
+msgid "grid.catalogEntry.availableRepresentation.notApproved"
+msgstr "Jóváhagyásra vár"
+
+msgid "grid.catalogEntry.availableRepresentation.approved"
+msgstr "Jóváhagyva"
+
+msgid "grid.catalogEntry.availableRepresentation.proofNotApproved"
+msgstr "A kefelenyomatot nem hagyták jóvá."
+
+msgid "grid.catalogEntry.availableRepresentation.notApprovedWarning"
+msgstr "A formátum nincs benne a katalógusbejegyzésben."
+
+msgid "grid.catalogEntry.availableRepresentation.catalogNotApprovedWarning"
+msgstr "A katalógusbejegyzést nem hagyták jóvá."
+
+msgid "grid.catalogEntry.availableRepresentation.removeMessage"
+msgstr ""
+"<p>Ez a formátum <em>nem lesz elérhető az olvasók számára</em>. A letölthető "
+"fájlok vagy egyéb terjesztések többé nem jelennek meg a könyv "
+"katalógusbejegyzésében.</p>"
+
+msgid "grid.catalogEntry.availableRepresentation.message"
+msgstr ""
+"<p>Tegye ezt a formátumot <em>elérhetővé az olvasók számára</em>. A "
+"letölthető fájlok és minden más terjesztés megjelenik a könyv "
+"katalógusbejegyzésében.</p>"
+
+msgid "grid.catalogEntry.availableRepresentation.title"
+msgstr "Formátum elérhetősége"
+
+msgid "grid.catalogEntry.approvedRepresentation.removeMessage"
+msgstr "<p>Jelzi, hogy a formátum metaadatait nem hagyták jóvá.</p>"
+
+msgid "grid.catalogEntry.approvedRepresentation.message"
+msgstr ""
+"<p>Hagyja jóvá a formátum metaadatait. A metaadatokat az egyes formátumok "
+"szerkesztési paneljén lehet ellenőrizni.</p>"
+
+msgid "grid.catalogEntry.approvedRepresentation.title"
+msgstr "Formátum jóváhagyása"
+
+msgid "grid.catalogEntry.proof"
+msgstr "Kefelenyomat"
+
+msgid "grid.catalogEntry.isNotAvailable"
+msgstr "Nem érhető el"
+
+msgid "grid.catalogEntry.isAvailable"
+msgstr "Elérhető"
+
+msgid "grid.catalogEntry.availability"
+msgstr "Elérhetőség"
+
+msgid "grid.catalogEntry.publicationFormatRequired"
+msgstr "Ki kell választani a kiadványformátumot."
+
+msgid "grid.catalogEntry.monographRequired"
+msgstr "A monográfia azonosító kötelező."
+
+msgid "grid.catalogEntry.isbn10.description"
+msgstr "10 számjegyű ISBN-kód, például 951-98548-9-4."
+
+msgid "grid.catalogEntry.isbn13.description"
+msgstr "13 számjegyű ISBN-kód, például 978-951-98548-9-2."
+
+msgid "grid.catalogEntry.isbn"
+msgstr "ISBN"
+
+msgid "grid.catalogEntry.remoteURL"
+msgstr "Távoli tárhely tartalmának URL címe"
+
+msgid "grid.catalogEntry.remotelyHostedContent"
+msgstr "Ez a formátum egy külön oldalon lesz elérhető"
+
+msgid "grid.catalogEntry.physicalFormat"
+msgstr "Fizikai formátum"
+
+msgid "grid.catalogEntry.publicationFormatDetails"
+msgstr "Formátum részletek"
+
+msgid "grid.catalogEntry.validPriceRequired"
+msgstr "Érvényes ár szükséges."
+
+msgid "grid.catalogEntry.nameRequired"
+msgstr "Név megadása kötelező."
+
+msgid "grid.catalogEntry.publicationFormatType"
+msgstr "Kiadványformátum"
+
+msgid "monograph.publicationFormat.openTab"
+msgstr "Nyissa meg a kiadványformátumok fület."
