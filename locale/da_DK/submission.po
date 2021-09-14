@@ -1,9 +1,10 @@
+# Niels Erik Frederiksen <nef@kb.dk>, 2021.
 msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2019-11-28T15:10:05-08:00\n"
-"PO-Revision-Date: 2020-11-27 19:05+0000\n"
+"PO-Revision-Date: 2021-09-14 13:16+0000\n"
 "Last-Translator: Niels Erik Frederiksen <nef@kb.dk>\n"
 "Language-Team: Danish <http://translate.pkp.sfu.ca/projects/omp/submission/"
 "da_DK/>\n"
@@ -135,7 +136,7 @@ msgid "submission.submit.cancelSubmission"
 msgstr "Du kan afslutte denne indsendelse på et senere tidspunkt ved at vælge aktive indsendelser fra forfatterens webside."
 
 msgid "submission.submit.selectSeries"
-msgstr "Vælg serie (valgfrit)"
+msgstr "Vælg serie"
 
 msgid "author.submit.seriesRequired"
 msgstr "En gyldig serie er påkrævet."
@@ -485,4 +486,3 @@ msgstr "Publikationsoplysninger i forbindelse med version {$version}"
 
 msgid "submission.queries.production"
 msgstr "Drøftelser under produktion"
-
