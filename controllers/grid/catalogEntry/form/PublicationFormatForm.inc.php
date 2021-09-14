@@ -41,7 +41,7 @@ class PublicationFormatForm extends Form
         // Validation checks for this form
         $this->addCheck(new \PKP\form\validation\FormValidator($this, 'name', 'required', 'grid.catalogEntry.nameRequired'));
         $this->addCheck(new \PKP\form\validation\FormValidator($this, 'entryKey', 'required', 'grid.catalogEntry.publicationFormatRequired'));
-        $this->addCheck(new \PKP\form\validation\FormValidatorRegExp($this, 'urlPath', 'optional', 'validator.alpha_dash', '/^[-_a-z0-9]*$/'));
+        $this->addCheck(new \PKP\form\validation\FormValidatorRegExp($this, 'urlPath', 'optional', 'validator.alpha_dash_period', '/^[a-zA-Z0-9]+([\\.\\-_][a-zA-Z0-9]+)*$/'));
         $this->addCheck(new \PKP\form\validation\FormValidatorPost($this));
         $this->addCheck(new \PKP\form\validation\FormValidatorCSRF($this));
     }
