@@ -1,7 +1,7 @@
 # Fülöp Tiffany <tiffany.fulop@ek.szte.hu>, 2021.
 msgid ""
 msgstr ""
-"PO-Revision-Date: 2021-09-14 13:16+0000\n"
+"PO-Revision-Date: 2021-09-16 13:05+0000\n"
 "Last-Translator: Fülöp Tiffany <tiffany.fulop@ek.szte.hu>\n"
 "Language-Team: Hungarian <http://translate.pkp.sfu.ca/projects/omp/locale/"
 "hu_HU/>\n"
@@ -282,3 +282,197 @@ msgstr "Kiadványformátum"
 
 msgid "monograph.publicationFormat.openTab"
 msgstr "Nyissa meg a kiadványformátumok fület."
+
+msgid "grid.action.addSpotlight"
+msgstr "Kiemelés hozzáadása"
+
+msgid "grid.action.deleteSpotlight"
+msgstr "Kiemelés törlése"
+
+msgid "grid.action.editSpotlight"
+msgstr "Kiemelés szerkesztése"
+
+msgid "grid.content.spotlights.locationRequired"
+msgstr "Kérjük, válasszon egy helyet ennek a kiemelésnek."
+
+msgid "grid.content.spotlights.titleRequired"
+msgstr "A kiemelés címe kötelező."
+
+msgid "grid.content.spotlights.itemRequired"
+msgstr "Egy tétel kötelező."
+
+msgid "grid.content.spotlights.form.type.book"
+msgstr "Könyv"
+
+msgid "grid.content.spotlights.form.title"
+msgstr "Kiemelés címe"
+
+msgid "grid.content.spotlights.form.item"
+msgstr "Adja meg a kiemelni kívánt címet (automatikus kitöltés)"
+
+msgid "grid.content.spotlights.form.location"
+msgstr "Kiemelés helye"
+
+msgid "grid.content.spotlights.category.homepage"
+msgstr "Kezdőoldal"
+
+msgid "grid.content.spotlights.spotlightItemTitle"
+msgstr "Kiemelt tétel"
+
+msgid "spotlight.author"
+msgstr "Szerző "
+
+msgid "spotlight.title.homePage"
+msgstr "Kiemelésben"
+
+msgid "spotlight.noneExist"
+msgstr "Nincsenek aktuális kiemelések."
+
+msgid "spotlight.spotlights"
+msgstr "Kiemelések"
+
+msgid "spotlight"
+msgstr "Kiemelés"
+
+msgid "grid.action.deleteRepresentative"
+msgstr "Képviselő törlése"
+
+msgid "grid.action.editRepresentative"
+msgstr "Képviselő szerkesztése"
+
+msgid "grid.action.addRepresentative"
+msgstr "Képviselő hozzáadása"
+
+msgid "grid.catalogEntry.representativesDescription"
+msgstr ""
+"A következő részt üresen hagyhatja, ha saját szolgáltatásokat nyújt "
+"ügyfeleinek."
+
+msgid "grid.catalogEntry.representativeIdType"
+msgstr "Képviselő azonosító típusa (ajánlott a GLN)"
+
+msgid "grid.catalogEntry.representativeIdValue"
+msgstr "Képviselő azonosítója"
+
+msgid "grid.catalogEntry.representativeWebsite"
+msgstr "Honlap"
+
+msgid "grid.catalogEntry.representativeEmail"
+msgstr "E-mail cím"
+
+msgid "grid.catalogEntry.representativePhone"
+msgstr "Telefon"
+
+msgid "grid.catalogEntry.representativeName"
+msgstr "Név"
+
+msgid "grid.catalogEntry.representativeRole"
+msgstr "Szerepkör"
+
+msgid "grid.catalogEntry.representativeRoleChoice"
+msgstr "Válasszon szerepkört:"
+
+msgid "grid.catalogEntry.supplier"
+msgstr "Beszállító"
+
+msgid "grid.catalogEntry.agentTip"
+msgstr ""
+"Ön hozzárendelhet egy ügynököt, hogy képviselje Önt ezen a meghatározott "
+"területen. Ez nem kötelező."
+
+msgid "grid.catalogEntry.agent"
+msgstr "Ügynök"
+
+msgid "grid.catalogEntry.suppliersCategory"
+msgstr "Beszállítók"
+
+msgid "grid.catalogEntry.agentsCategory"
+msgstr "Ügynökök"
+
+#, fuzzy
+msgid "grid.catalogEntry.representativeType"
+msgstr "Képviselő típusa"
+
+#, fuzzy
+msgid "grid.catalogEntry.representatives"
+msgstr "Képviselők"
+
+msgid "grid.catalogEntry.dateRequired"
+msgstr ""
+"A dátum megadása kötelező, és a dátum értékének meg kell felelnie a "
+"kiválasztott dátumformátumnak."
+
+msgid "grid.catalogEntry.dateRole"
+msgstr "Típus"
+
+msgid "grid.catalogEntry.dateFormat"
+msgstr "Dátumformátum"
+
+msgid "grid.catalogEntry.dateValue"
+msgstr "Dátum"
+
+msgid "grid.catalogEntry.dateFormatRequired"
+msgstr "A dátumformátumot meg kell adni."
+
+#, fuzzy
+msgid "grid.catalogEntry.roleRequired"
+msgstr "Reprezentatív szerepkörre van szükség."
+
+msgid "grid.catalogEntry.publicationDates"
+msgstr "Publikációs dátumok"
+
+msgid "grid.catalogEntry.marketTerritory"
+msgstr "Terület"
+
+msgid "grid.catalogEntry.markets"
+msgstr "Piaci területek"
+
+msgid "grid.catalogEntry.excluded"
+msgstr "Kizárva"
+
+msgid "grid.catalogEntry.included"
+msgstr "Beletartozik"
+
+msgid "grid.catalogEntry.regions"
+msgstr "Régiók"
+
+msgid "grid.catalogEntry.countries"
+msgstr "Országok"
+
+msgid "grid.catalogEntry.oneROWPerFormat"
+msgstr "Ehhez a kiadványformátumhoz már létezik egy ROW értékesítési típus."
+
+#, fuzzy
+msgid "grid.catalogEntry.salesRightsROW.tip"
+msgstr ""
+"Jelölje be ezt a négyzetet, ha ezt az Értékesítési jogot kívánja használni a "
+"formátum gyűjtőcímeként.  Az országokat és régiókat ebben az esetben nem "
+"kell kiválasztani."
+
+#, fuzzy
+msgid "grid.catalogEntry.salesRightsROW"
+msgstr "A világ többi része?"
+
+msgid "grid.catalogEntry.salesRightsType"
+msgstr "Értékesítési jogok típusa"
+
+msgid "grid.catalogEntry.salesRightsValue"
+msgstr "Kód értéke"
+
+msgid "grid.catalogEntry.salesRights"
+msgstr "Értékesítési jogok"
+
+msgid "grid.catalogEntry.valueRequired"
+msgstr "Egy érték megadása kötelező."
+
+msgid "grid.catalogEntry.codeRequired"
+msgstr "Azonosító kód kötelező."
+
+msgid "grid.catalogEntry.identificationCodeType"
+msgstr "Onix kód típusa"
+
+msgid "grid.catalogEntry.productCompositionRequired"
+msgstr "A termék összetételének kódját ki kell választani."
+
+msgid "grid.catalogEntry.productAvailabilityRequired"
+msgstr "A termék elérhetőségének kódja kötelező."
