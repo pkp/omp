@@ -1,7 +1,7 @@
 # Szabolcs Hoczopan <hoci@bibl.u-szeged.hu>, 2021.
 msgid ""
 msgstr ""
-"PO-Revision-Date: 2021-09-16 13:05+0000\n"
+"PO-Revision-Date: 2021-09-16 21:45+0000\n"
 "Last-Translator: Szabolcs Hoczopan <hoci@bibl.u-szeged.hu>\n"
 "Language-Team: Hungarian <http://translate.pkp.sfu.ca/projects/omp/"
 "submission/hu_HU/>\n"
@@ -101,3 +101,110 @@ msgstr "Válassza ki az elemeket"
 
 msgid "submission.submit.title"
 msgstr "Kézirat beküldése"
+
+msgid "submission.submit.generalInformation"
+msgstr "Általános információ"
+
+msgid "submission.submit.coverNote"
+msgstr "Üzenet a szerkesztőnek"
+
+msgid "submission.submit.nextSteps"
+msgstr "Következő"
+
+msgid "submission.submit.confirmation"
+msgstr "Megerősítés"
+
+msgid "submission.submit.finishingUp"
+msgstr "Befejezés"
+
+msgid "submission.submit.metadata"
+msgstr "Metaadat"
+
+msgid "submission.submit.catalog"
+msgstr "Katalógus"
+
+msgid "submission.submit.prepare"
+msgstr "Előkészít"
+
+msgid "submission.submit.submissionFile"
+msgstr "Beadandó file"
+
+msgid "submission.submit.form.contributorRoleRequired"
+msgstr "Kérjük, válassza ki a közreműködő szerepkörét."
+
+msgid "submission.submit.form.abstractRequired"
+msgstr "Kérjük, adja meg a monográfia rövid összefoglalóját."
+
+msgid "submission.submit.form.titleRequired"
+msgstr "Kérjük, adja meg a monográfia címét."
+
+msgid "submission.submit.form.authorRequiredFields"
+msgstr "Minden szerző keresztnevét, vezetéknevét és e-mail címét meg kell adni."
+
+msgid "submission.submit.form.authorRequired"
+msgstr "Legalább egy szerző megadás kötelező."
+
+msgid "submission.submit.contributorRole"
+msgstr "Közreműködő szerepkör"
+
+msgid "submission.submit.privacyStatement"
+msgstr "Adatvédelmi nyilatkozat"
+
+msgid "submission.submit.form.localeRequired"
+msgstr "Válassza ki a beküldés nyelvét."
+
+msgid "submission.submit.seriesPosition.description"
+msgstr "Példa: Könyv 2, Kötet 2"
+
+msgid "submission.submit.seriesPosition"
+msgstr "Sorozat pozíciója"
+
+msgid "author.submit.seriesRequired"
+msgstr "Érvényes sorozat szükséges."
+
+msgid "author.isVolumeEditor"
+msgstr "Ez a közreműködő a kötet szerkesztője."
+
+msgid "submission.submit.selectSeries"
+msgstr "Sorozat megadása (opcionális)"
+
+msgid "submission.submit.cancelSubmission"
+msgstr ""
+"A beküldést később is befejezheti, ha a szerzői honlapon az  'Aktív "
+"beküldések' menüpontot választja."
+
+msgid "submission.submit.upload"
+msgstr "Feltöltés"
+
+msgid "submission.submit.newSubmissionSingle"
+msgstr "Új beküldés"
+
+msgid "submission.submit.newSubmissionMultiple"
+msgstr "Új beküldés indítása"
+
+msgid "submission.submit"
+msgstr "Új könyv beküldése"
+
+msgid "grid.action.deleteChapter"
+msgstr "Fejezet törlése"
+
+msgid "grid.action.editChapter"
+msgstr "Fejezet szerkesztése"
+
+msgid "grid.action.addChapter"
+msgstr "Új fejezet"
+
+msgid "submission.supportingAgencies"
+msgstr "Finanszírozó szervezetek"
+
+msgid "submission.metadata"
+msgstr "Mataadat"
+
+msgid "submission.confirmSubmit"
+msgstr "Biztos benne, hogy ezt a kéziratot be kívánja nyújtani?"
+
+msgid "manuscript.submissions"
+msgstr "Kézirat benyújtás"
+
+msgid "submissions.queuedReview"
+msgstr "Lektorálás alatt"
