@@ -1,8 +1,103 @@
 # Szabolcs Hoczopan <hoci@bibl.u-szeged.hu>, 2021.
 msgid ""
 msgstr ""
+"PO-Revision-Date: 2021-09-16 13:05+0000\n"
+"Last-Translator: Szabolcs Hoczopan <hoci@bibl.u-szeged.hu>\n"
+"Language-Team: Hungarian <http://translate.pkp.sfu.ca/projects/omp/"
+"submission/hu_HU/>\n"
 "Language: hu_HU\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Weblate\n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: Weblate 3.9.1\n"
+
+msgid "manuscript.submission"
+msgstr "Kézirat benyújtása"
+
+msgid "submission.sharing"
+msgstr "Megosztás"
+
+msgid "submission.download"
+msgstr "Letöltés"
+
+msgid "submission.proofs"
+msgstr "Kefelevonatok"
+
+msgid "submission.publicationFormats"
+msgstr "Publikáció formátumok"
+
+msgid "submission.copyedit"
+msgstr "Olvasószerkesztés"
+
+msgid "submission.chapter.pages"
+msgstr "Oldalak"
+
+msgid "submission.chapter.editChapter"
+msgstr "Fejezet szerkesztése"
+
+msgid "submission.chapter.addChapter"
+msgstr "Fejezet hozzáadása"
+
+msgid "submission.chaptersDescription"
+msgstr ""
+"Itt felsorolhatja a fejezeteket és közreműködőket rendelhet a közreműködők "
+"fenti listájából. Ezek a közreműködők hozzáférhetnek a fejezethez a "
+"publikációs folyamat különböző szakaszaiban."
+
+msgid "submission.chapters"
+msgstr "Fejezetek"
+
+msgid "submission.chapter"
+msgstr "Fejezet"
+
+msgid "submission.artwork.permissions"
+msgstr "Engedélyek"
+
+msgid "submission.authorListSeparator"
+msgstr "; "
+
+msgid "submission.fairCopy"
+msgstr "Tisztázat"
+
+msgid "submission.published"
+msgstr "Készültség"
+
+msgid "submission.monograph"
+msgstr "Monográfia"
+
+msgid "submission.workflowType.change"
+msgstr "Változtatás"
+
+msgid "submission.workflowType.authoredWork"
+msgstr "Monográfia: A szerzők a könyv egészéhez vannak rendelve."
+
+msgid "submission.workflowType.editedVolume"
+msgstr "Szerkesztett kötet: A szerzők saját fejezetükhöz vannak rendelve."
+
+msgid "submission.workflowType.editedVolume.label"
+msgstr "Szerkesztett kötet"
+
+msgid "submission.workflowType.description"
+msgstr ""
+"A monográfia olyan mű, amelyet teljes egészében egy vagy több szerző írt. A "
+"szerkesztett kötetben az egyes fejezetek szerzői különbözőek (a fejezetek "
+"adatai később kerülnek be )"
+
+msgid "submission.workflowType"
+msgstr "Benyújtás típusa"
+
+msgid "submission.synopsis"
+msgstr "Szinopszis"
+
+msgid "submission.select"
+msgstr "Benyújtás kiválasztása"
+
+msgid "submission.title"
+msgstr "Könyv címe"
+
+msgid "submission.upload.selectComponent"
+msgstr "Válassza ki az elemeket"
+
+msgid "submission.submit.title"
+msgstr "Kézirat beküldése"
