@@ -1,8 +1,9 @@
 # Fülöp Tiffany <tiffany.fulop@ek.szte.hu>, 2021.
+# Szabolcs Hoczopan <hoci@bibl.u-szeged.hu>, 2021.
 msgid ""
 msgstr ""
-"PO-Revision-Date: 2021-09-16 13:05+0000\n"
-"Last-Translator: Fülöp Tiffany <tiffany.fulop@ek.szte.hu>\n"
+"PO-Revision-Date: 2021-09-17 13:15+0000\n"
+"Last-Translator: Szabolcs Hoczopan <hoci@bibl.u-szeged.hu>\n"
 "Language-Team: Hungarian <http://translate.pkp.sfu.ca/projects/omp/locale/"
 "hu_HU/>\n"
 "Language: hu_HU\n"
@@ -476,3 +477,6 @@ msgstr "A termék összetételének kódját ki kell választani."
 
 msgid "grid.catalogEntry.productAvailabilityRequired"
 msgstr "A termék elérhetőségének kódja kötelező."
+
+msgid "submission.round"
+msgstr "Round&nbsp;{$round}"
