@@ -2,8 +2,8 @@
 # Szabolcs Hoczopan <hoci@bibl.u-szeged.hu>, 2021.
 msgid ""
 msgstr ""
-"PO-Revision-Date: 2021-09-17 13:15+0000\n"
-"Last-Translator: Szabolcs Hoczopan <hoci@bibl.u-szeged.hu>\n"
+"PO-Revision-Date: 2021-09-17 20:32+0000\n"
+"Last-Translator: Fülöp Tiffany <tiffany.fulop@ek.szte.hu>\n"
 "Language-Team: Hungarian <http://translate.pkp.sfu.ca/projects/omp/locale/"
 "hu_HU/>\n"
 "Language: hu_HU\n"
@@ -480,3 +480,22 @@ msgstr "A termék elérhetőségének kódja kötelező."
 
 msgid "submission.round"
 msgstr "Round&nbsp;{$round}"
+
+msgid "grid.action.addFormat"
+msgstr "Kiadványformátum hozzáadása"
+
+msgid "grid.action.deleteFormat"
+msgstr "Formátum törlése"
+
+msgid "grid.action.editFormat"
+msgstr "Formátum szerkesztése"
+
+msgid "grid.action.formatInCatalogEntry"
+msgstr "A formátum megjelenik a katalógusbejegyzésben"
+
+#, fuzzy
+msgid "grid.action.catalogEntry"
+msgstr "Katalógusbejegyzés űrlapjának megtekintése"
+
+msgid "grid.libraryFiles.column.files"
+msgstr "Fájlok"
