@@ -1,7 +1,7 @@
 # Szabolcs Hoczopan <hoci@bibl.u-szeged.hu>, 2021.
 msgid ""
 msgstr ""
-"PO-Revision-Date: 2021-09-17 13:15+0000\n"
+"PO-Revision-Date: 2021-09-17 20:32+0000\n"
 "Last-Translator: Szabolcs Hoczopan <hoci@bibl.u-szeged.hu>\n"
 "Language-Team: Hungarian <http://translate.pkp.sfu.ca/projects/omp/"
 "submission/hu_HU/>\n"
@@ -496,3 +496,8 @@ msgstr ""
 "A szerkesztőséget értesítettük a beadásról, és e-mailben visszaigazolást "
 "küldtünk Önnek.  Amint a szerkesztő átnézte a kéziratot, felveszi Önnel a "
 "kapcsolatot."
+
+msgid "publication.publish.confirmation"
+msgstr ""
+"Minden publikációs elvárásnak megfelelt. Biztos, hogy nyilvános katalógusba "
+"teszi?"
