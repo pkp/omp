@@ -2,7 +2,7 @@
 # Szabolcs Hoczopan <hoci@bibl.u-szeged.hu>, 2021.
 msgid ""
 msgstr ""
-"PO-Revision-Date: 2021-09-17 20:32+0000\n"
+"PO-Revision-Date: 2021-09-22 14:06+0000\n"
 "Last-Translator: Fülöp Tiffany <tiffany.fulop@ek.szte.hu>\n"
 "Language-Team: Hungarian <http://translate.pkp.sfu.ca/projects/omp/locale/"
 "hu_HU/>\n"
@@ -499,3 +499,289 @@ msgstr "Katalógusbejegyzés űrlapjának megtekintése"
 
 msgid "grid.libraryFiles.column.files"
 msgstr "Fájlok"
+
+msgid "navigation.catalog"
+msgstr "Katalógus"
+
+msgid "common.homePageHeader.altText"
+msgstr "Kezdőlap fejléc"
+
+msgid "common.omp"
+msgstr "OMP"
+
+msgid "common.software"
+msgstr "Open Monograph Press"
+
+msgid "common.listbuilder.itemExists"
+msgstr "Ugyanazt az elemet nem adhatja hozzá kétszer."
+
+msgid "common.listbuilder.selectValidOption"
+msgstr "Kérjük, válasszon egy érvényes opciót a listából."
+
+msgid "common.listbuilder.completeForm"
+msgstr "Kérjük, töltse ki teljesen az űrlapot."
+
+msgid "common.moreInfo"
+msgstr "További információk"
+
+msgid "common.searchCatalog"
+msgstr "Keresés a katalógusban"
+
+#, fuzzy
+msgid "common.feature"
+msgstr "Kiemelés"
+
+msgid "common.preview"
+msgstr "Előnézet"
+
+msgid "common.prefix"
+msgstr "Előtag"
+
+msgid "common.publications"
+msgstr "Monográfiák"
+
+msgid "common.publication"
+msgstr "Monográfia"
+
+msgid "submission.search"
+msgstr "Könyv keresés"
+
+#, fuzzy
+msgid "catalog.viewableFile.return"
+msgstr "Visszatérés a {$monographTitle} részleteinek megtekintéséhez"
+
+msgid "catalog.sortBy.seriesPositionDesc"
+msgstr "Sorozati pozíció (legmagasabb elöl)"
+
+msgid "catalog.sortBy.seriesPositionAsc"
+msgstr "Sorozati pozíció (legalacsonyabb elöl)"
+
+msgid "catalog.sortBy.catalogDescription"
+msgstr "Válassza ki, hogyan legyenek sorba rendezve a könyvek a katalógusban."
+
+msgid "catalog.sortBy.categoryDescription"
+msgstr ""
+"Válassza ki, hogyan legyenek sorba rendezve a könyvek ebben a kategóriában."
+
+msgid "catalog.sortBy.seriesDescription"
+msgstr "Válassza ki, hogyan legyenek sorba rendezve a sorozat könyveit."
+
+msgid "catalog.sortBy"
+msgstr "Monográfiák sorrendje"
+
+msgid "catalog.loginRequiredForPayment"
+msgstr ""
+"Kérjük, vegye figyelembe: Ahhoz, hogy termékeket vásárolhasson, először be "
+"kell jelentkeznie. A megvásárolni kívánt tétel kiválasztása a bejelentkezési "
+"oldalra irányítja Önt. Minden Open Access ikonnal jelölt tétel ingyenesen "
+"letölthető bejelentkezés nélkül."
+
+#, fuzzy
+msgid "catalog.aboutTheAuthor"
+msgstr "{$roleName}-ról/-ről"
+
+msgid "catalog.category.subcategories"
+msgstr "Alkategóriák"
+
+msgid "catalog.parentCategory"
+msgstr "Szülő kategória"
+
+msgid "catalog.categories"
+msgstr "Kategóriák"
+
+#, fuzzy
+msgid "catalog.forthcoming"
+msgstr "Megjelenés előtti"
+
+msgid "catalog.published"
+msgstr "Megjelent"
+
+#, fuzzy
+msgid "catalog.publicationInfo"
+msgstr "Publikációs információ"
+
+msgid "catalog.dateAdded"
+msgstr "Hozzáadva"
+
+msgid "catalog.newReleases"
+msgstr "Új megjelenések"
+
+msgid "catalog.category.heading"
+msgstr "Összes könyv"
+
+msgid "catalog.foundTitlesSearch"
+msgstr ""
+"{$number} olyan címet találtunk, amely megfelel a(z) \"{$searchQuery}\" "
+"keresésének."
+
+msgid "catalog.foundTitleSearch"
+msgstr ""
+"Egy olyan címet találtunk, amely megfelel az Ön \"{$searchQuery}\" "
+"keresésének."
+
+msgid "catalog.featuredBooks"
+msgstr "Kiemelt könyvek"
+
+msgid "catalog.featured"
+msgstr "Kiemelt"
+
+#, fuzzy
+msgid "catalog.feature"
+msgstr "Kiemelés"
+
+msgid "catalog.noTitlesSearch"
+msgstr ""
+"Nem találhatóak olyan címek, amelyek megfelelnének a(z) \"{$ searchQuery}\" "
+"kifejezésre."
+
+msgid "catalog.noTitlesNew"
+msgstr "Jelenleg nem állnak rendelkezésre új megjelenések."
+
+msgid "catalog.noTitles"
+msgstr "Még nem kerültek megjelentetésre címek."
+
+msgid "catalog.manage.findSubmissions"
+msgstr "A katalógusba felvehető monográfiák kiválasztása"
+
+msgid "catalog.manage.submissionsNotFound"
+msgstr "Egy vagy több beküldés nem található meg."
+
+msgid "catalog.manage.noSubmissionsSelected"
+msgstr "Egyetlen beküldést sem választottak ki a katalógusba való felvételre."
+
+msgid "catalog.manage.isNotNewRelease"
+msgstr ""
+"Ez a monográfia nincs új megjelenésként megjelölve. Tegye a monográfiára az "
+"új megjelenés jelölőt."
+
+#, fuzzy
+msgid "catalog.manage.nonOrderable"
+msgstr ""
+"Ez a monográfia nem rendelhető/rendezhető sorrendbe, amíg kiemeltként van "
+"megjelölve."
+
+msgid "catalog.manage.isNewRelease"
+msgstr ""
+"Ez a monográfia új megjelenésként van megjelölve. Vegye le a monográfiáról "
+"az új megjelenés jelölőt."
+
+msgid "catalog.manage.isNotFeatured"
+msgstr ""
+"Ez a monográfia nincs kiemeltként megjelölve. Tegye a monográfiát kiemeltté."
+
+msgid "catalog.manage.isFeatured"
+msgstr ""
+"Ez a monográfia kiemeltként van megjelölve. Vegye le a monográfiáról a "
+"kiemelt jelölőt."
+
+msgid "catalog.manage.filter.searchByAuthorOrTitle"
+msgstr "Cím vagy szerző szerinti keresés"
+
+msgid "catalog.manage.feature.seriesNewRelease"
+msgstr "Új megjelenés a sorozatban"
+
+msgid "catalog.selectSeries"
+msgstr "Sorozat kiválasztása"
+
+msgid "catalog.manage.series.printIssn"
+msgstr "Nyomtatott ISSN"
+
+msgid "catalog.manage.series.onlineIssn"
+msgstr "Online ISSN"
+
+msgid "catalog.manage.series.issn.equalValidation"
+msgstr "Az online és a nyomtatott ISSN nem lehet azonos."
+
+msgid "catalog.manage.series.issn.validation"
+msgstr "Kérjük, adjon meg egy érvényes ISSN-t."
+
+msgid "catalog.manage.series.issn"
+msgstr "ISSN"
+
+msgid "catalog.manage.series"
+msgstr "Sorozatok"
+
+msgid "catalog.manage.category"
+msgstr "Kategória"
+
+msgid "catalog.manage.newReleases"
+msgstr "Új megjelenések"
+
+#, fuzzy
+msgid "catalog.manage"
+msgstr "Katalógus kezelése"
+
+msgid "series.path"
+msgstr "Elérési útvonal"
+
+#, fuzzy
+msgid "series.featured.description"
+msgstr "Ez a sorozat a fő navigációban jelenik meg"
+
+msgid "series.series"
+msgstr "Sorozatok"
+
+#, fuzzy
+msgid "submissionGroup.assignedSubEditors"
+msgstr "Hozzárendelt szerkesztők"
+
+msgid "grid.reviewAttachments.availableFiles"
+msgstr "Elérhető fájlok"
+
+#, fuzzy
+msgid "grid.reviewAttachments.add"
+msgstr "Csatolmány hozzáadása a bírálathoz"
+
+msgid "grid.action.formatAvailable"
+msgstr "A formátum elérhetőségének be- és kikapcsolása"
+
+msgid "grid.action.availableRepresentation"
+msgstr "Jóváhagyja/elutasítja ezt a formátumot"
+
+msgid "grid.action.addRights"
+msgstr "Értékesítési jogok hozzáadása"
+
+msgid "grid.action.deleteCode"
+msgstr "Kód törlése"
+
+msgid "grid.action.editCode"
+msgstr "Kód szerkesztése"
+
+msgid "grid.action.addCode"
+msgstr "Kód hozzáadása"
+
+msgid "grid.action.manageSeries"
+msgstr "Sorozatok beállítása ehhez a kiadóhoz"
+
+msgid "grid.action.manageCategories"
+msgstr "Kategóriák beállítása ehhez a kiadóhoz"
+
+msgid "grid.action.releaseMonograph"
+msgstr "Jelölje meg ezt a beküldést mint \"új megjelenés\""
+
+msgid "grid.action.featureMonograph"
+msgstr "Tegye kiemelté ezt a katalógus érdekességei blokkban"
+
+#, fuzzy
+msgid "grid.action.feature"
+msgstr "Váltás a kiemelés megjelenítésre"
+
+msgid "grid.action.publicCatalog"
+msgstr "Tekintse meg ezt az elemet a katalógusban"
+
+msgid "grid.action.newCatalogEntry"
+msgstr "Új katalógusbejegyzés"
+
+msgid "grid.action.addAnnouncement"
+msgstr "Értesítés hozzáadása"
+
+#, fuzzy
+msgid "grid.action.pageProofApproved"
+msgstr "Az oldal kefelenyomat fájljai készen állnak a publikációra"
+
+msgid "grid.action.approveProof"
+msgstr ""
+"Jóváhagyja a kefelenyomatot indexelésre és a katalógusba való felvételre"
+
+msgid "grid.catalogEntry.identificationCodeValue"
+msgstr "Kód értéke"
