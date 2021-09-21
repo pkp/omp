@@ -1,9 +1,10 @@
 # Fülöp Tiffany <tiffany.fulop@ek.szte.hu>, 2021.
 # Szabolcs Hoczopan <hoci@bibl.u-szeged.hu>, 2021.
+# Kiss Jázmin <kissfjazmin@gmail.com>, 2021.
 msgid ""
 msgstr ""
 "PO-Revision-Date: 2021-09-22 14:06+0000\n"
-"Last-Translator: Fülöp Tiffany <tiffany.fulop@ek.szte.hu>\n"
+"Last-Translator: Kiss Jázmin <kissfjazmin@gmail.com>\n"
 "Language-Team: Hungarian <http://translate.pkp.sfu.ca/projects/omp/locale/"
 "hu_HU/>\n"
 "Language: hu_HU\n"
@@ -785,3 +786,11 @@ msgstr ""
 
 msgid "grid.catalogEntry.identificationCodeValue"
 msgstr "Kód értéke"
+
+#, fuzzy
+msgid "manager.series.open"
+msgstr "Beadványok megnyitása"
+
+#, fuzzy
+msgid "manager.series.indexed"
+msgstr "Indexelve"
