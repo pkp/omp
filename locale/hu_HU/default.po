@@ -1,8 +1,9 @@
 # Fülöp Tiffany <tiffany.fulop@ek.szte.hu>, 2021.
+# Molnár Tamás <molnart@bibl.u-szeged.hu>, 2021.
 msgid ""
 msgstr ""
-"PO-Revision-Date: 2021-09-14 10:05+0000\n"
-"Last-Translator: Fülöp Tiffany <tiffany.fulop@ek.szte.hu>\n"
+"PO-Revision-Date: 2021-09-22 14:06+0000\n"
+"Last-Translator: Molnár Tamás <molnart@bibl.u-szeged.hu>\n"
 "Language-Team: Hungarian <http://translate.pkp.sfu.ca/projects/omp/default/"
 "hu_HU/>\n"
 "Language: hu_HU\n"
@@ -121,7 +122,6 @@ msgstr "Sorozat szerkesztők"
 msgid "default.groups.name.sectionEditor"
 msgstr "Sorozat szerkesztő"
 
-#, fuzzy
 msgid "default.groups.abbrev.editor"
 msgstr "KSZ"
 
@@ -129,13 +129,11 @@ msgstr "KSZ"
 msgid "default.groups.abbrev.manager"
 msgstr "KM"
 
-#, fuzzy
 msgid "default.groups.plural.editor"
-msgstr "Kiadó szerkesztők"
+msgstr "Kiadói szerkesztők"
 
-#, fuzzy
 msgid "default.groups.name.editor"
-msgstr "Kiadó szerkesztő"
+msgstr "Kiadói szerkesztő"
 
 msgid "default.groups.plural.manager"
 msgstr "Sajtómenedzserek"
@@ -158,9 +156,8 @@ msgstr "Ábra"
 msgid "default.genres.table"
 msgstr "Táblázat"
 
-#, fuzzy
 msgid "default.genres.prospectus"
-msgstr "Tájékoztató/ismertető?"
+msgstr "Tájékoztató útmutató"
 
 msgid "default.genres.preface"
 msgstr "Előszó"
