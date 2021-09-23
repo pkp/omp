@@ -1,7 +1,7 @@
 # Kiss Jázmin <kissfjazmin@gmail.com>, 2021.
 msgid ""
 msgstr ""
-"PO-Revision-Date: 2021-09-22 14:06+0000\n"
+"PO-Revision-Date: 2021-09-23 23:30+0000\n"
 "Last-Translator: Kiss Jázmin <kissfjazmin@gmail.com>\n"
 "Language-Team: Hungarian <http://translate.pkp.sfu.ca/projects/omp/manager/"
 "hu_HU/>\n"
@@ -1109,3 +1109,261 @@ msgid "manager.language.confirmDefaultSettingsOverwrite"
 msgstr ""
 "Visszaállít minden helyspecifikus beállítást, ami ehhez a kiadóhoz van "
 "hozzárendelve"
+
+msgid "emailTemplate.variable.queuedPayment.itemCurrencyCode"
+msgstr "A fizetendő összeg valutája, például USD"
+
+msgid "emailTemplate.variable.queuedPayment.itemCost"
+msgstr "Fizetendő összeg"
+
+msgid "emailTemplate.variable.queuedPayment.itemName"
+msgstr "A fizetési típus neve"
+
+msgid "emailTemplate.variable.context.contactEmail"
+msgstr "A kiadó elsődleges kapcsolattartójának e-mail címe"
+
+msgid "emailTemplate.variable.context.principalContactSignature"
+msgstr "A kiadó aláírása automatikusan kiküldött e-mailekben"
+
+msgid "emailTemplate.variable.context.contactName"
+msgstr "A kiadó elsődleges kapcsolattartójának neve"
+
+msgid "emailTemplate.variable.context.contextUrl"
+msgstr "A kiadó kezdőoldalára vezető URL"
+
+msgid "emailTemplate.variable.context.contextName"
+msgstr "A kiadó neve"
+
+#, fuzzy
+msgid "plugins.importexport.chapter.exportFailed"
+msgstr "A fejezetek elemzése sikertelen volt"
+
+msgid "plugins.importexport.publicationformat.exportFailed"
+msgstr "A kiadványformátum elemzése sikertelen volt"
+
+msgid "grid.genres.title"
+msgstr "Monográfia alkotóelemei"
+
+#, fuzzy
+msgid "grid.genres.title.short"
+msgstr "Alkotóelemek"
+
+msgid "manager.files.note"
+msgstr ""
+"Megjegyzés: A Fájl Böngésző egy haladó funkció, amely lehetővé teszi "
+"kiadóhoz tartozó fájlok és mappák közvetlen megtekintését és módosítását."
+
+msgid "manager.setup.files"
+msgstr "Fájlok"
+
+msgid "manager.setup.editorialTeam.description"
+msgstr ""
+"A kiadóhoz tartozó szerkesztők, ügyvezető igazgatók, és további személyek "
+"listája."
+
+msgid "manager.setup.editorialTeam"
+msgstr "Szerkesztőség"
+
+msgid "manager.setup.internalReviewRoles"
+msgstr "Belső bírálati szerepkörök"
+
+msgid "manager.setup.currentRoles"
+msgstr "Jelenlegi szerepkörök"
+
+msgid "manager.setup.managerialRoles"
+msgstr "Szerkesztőségi szerepkörök"
+
+#, fuzzy
+msgid "manager.setup.availableRoles"
+msgstr "Rendelkezésre álló szerepkörök / Elérhető szerepkörök"
+
+msgid "manager.setup.authorRoles"
+msgstr "Szerző szerepkörök"
+
+msgid "manager.setup.roleType"
+msgstr "Szerepkör Típus"
+
+msgid "manager.setup.reviewForms"
+msgstr "Bírálati űrlapok"
+
+#, fuzzy
+msgid "manager.setup.categories.description"
+msgstr ""
+"Lehetősége van kategória listák létrehozására, aminek segítségével "
+"rendezheti a kiadványait. A kategóriák tárgykörüknek megfelelően "
+"csoportosítják a könyveket, például: Gazdaság; Irodalom; Költészet; stb.  "
+"Alkategóriák illeszthetők be főkategóriák alá. Például: a Gazdaság "
+"főkategória magába foglalhatja a Mikroökonómia és a Makroökonómia "
+"alkategóriákat. A látogatók kategóriák szerint kereshetik és böngészhetik a "
+"kiadó közleményeit."
+
+msgid "manager.setup.categoriesAndSeries"
+msgstr "Kategóriák és Sorozatok"
+
+msgid "manager.setup.currentFormats"
+msgstr "Jelenlegi formátumok"
+
+msgid "manager.setup.issnDescription"
+msgstr ""
+"Az ISSN (International Standard Serial Number = Nemzetközi Szabványos "
+"Sorozatazonosító) egy nyolc számjegyből álló kód, amely lehetővé teszi az "
+"fizikai és digitális időszaki kiadványok azonosítását. Az ISSN szám a <a "
+"href=\"http://www.issn.org\" target=\"_blank\">ISSN International Centre</a> "
+"oldalon igényelhető."
+
+msgid "manager.setup.submitToSeries"
+msgstr "Sorozat beküldések engedélyezése"
+
+msgid "manager.setup.submitToCategories"
+msgstr "Kategória beküldések engedélyezése"
+
+#, fuzzy
+msgid "manager.setup.prospectusDescription"
+msgstr ""
+"A tájékoztató útmutató egy kiadó által elkészített dokumentum, ami a szerzőt "
+"segíti a beküldött anyagok leírásában, annak érdekében, hogy a kiadó "
+"megtudja becsülni a beérkezett beadványt. A tájékoztató különböző tételeket "
+"tartalmazhat - a piacképességtől kezdve az eszmei értékig; mindenesetre a "
+"kiadó olyan tájékoztatót állítson össze, ami tükrözi a kiadó irányelveit."
+
+msgid "manager.setup.prospectus"
+msgstr "Tájékoztató útmutató"
+
+msgid "manager.setup.restoreDefaults"
+msgstr "Alapértelmezett beállítások visszaállítása"
+
+msgid "manager.setup.deleteSelected"
+msgstr "Kijelöltek Törlése"
+
+msgid "manager.setup.newGenreDescription"
+msgstr ""
+"Új fájl típus létrehozásához töltse ki az alábbi űrlapot és kattintson a "
+"'Létrehozás' gombra."
+
+#, fuzzy
+msgid "manager.setup.newGenre"
+msgstr "Új Monográfia Típus"
+
+#, fuzzy
+msgid "manager.setup.genres"
+msgstr "Típusok"
+
+#, fuzzy
+msgid "manager.setup.disableSubmissions.description"
+msgstr ""
+"Felhasználók megakadályozása, hogy új cikkeket küldjenek be a kiadóhoz. "
+"Beküldések tiltása egyes kiadói sorozatokhoz a <a href=\"{$url}\">kiadói "
+"sorozatok</a> beállítási oldalán kezdeményezhető."
+
+msgid "manager.setup.disableSubmissions.notAccepting"
+msgstr ""
+"Ez a kiadó most nem fogad el új kéziratokat. Látogasson el a munkafolyamat "
+"beállításokhoz, hogy engedélyezze a kéziratok beküldését."
+
+#, fuzzy
+msgid "manager.setup.reviewProcessEmailDescription"
+msgstr ""
+"A Szerkesztők küldenek\ta Bírálók számára felkérést, hogy bíráljanak egy, az "
+"e-mailhez csatolt beadványt. A Bírálók e-mailt küldenek a szerkesztőnek "
+"hozzájárulásukkal (esetleg visszautasításukkal), a bírálattal és "
+"javaslatokkal együtt. A bírálati folyamat nyomon követésének érdekében a "
+"Szerkesztők felviszik a a beadvány Bírálati oldalára a Bírálók "
+"hozzájárulását (esetleg visszautasítását), csakúgy mint a bírálatot és "
+"javaslatokat."
+
+#, fuzzy
+msgid "manager.setup.genresDescription"
+msgstr ""
+"Ezek a típusok fájl elnevezésre használhatóak és a lenyíló menüben jelennek "
+"meg a feltöltött fájlokon. A típusok lehetővé teszik, hogy a felhasználó "
+"társítsa a fájlt egy teljes könyvvel, vagy pedig egy bizonyos fejezettel a "
+"szám megadásával (pl.: 02)."
+
+msgid "manager.setup.newPublicationFormatDescription"
+msgstr ""
+"Új kiadványformátum létrehozásához töltse ki az alábbi űrlapot és kattintson "
+"a 'Létrehozás' gombra."
+
+msgid "manager.setup.newPublicationFormat"
+msgstr "Új Kiadványformátum"
+
+msgid "manager.setup.publicationFormat.inUse"
+msgstr ""
+"A törlés nem lehetséges, mivel ezt a kiadványformátumot egy, a kiadónál "
+"elérhető monográfia használja."
+
+msgid "manager.setup.publicationFormat.physicalFormat"
+msgstr "Ez egy fizikai (nem digitális) formátum?"
+
+msgid "manager.setup.publicationFormat.nameRequired"
+msgstr "Adjon meg nevet ehhez a formátumhoz."
+
+msgid "manager.setup.publicationFormat.codeRequired"
+msgstr "Formátum kiválasztása kötelező."
+
+msgid "manager.setup.publicationFormat.code"
+msgstr "Formátum"
+
+msgid "manager.setup.volumePerYear"
+msgstr "Kötetek évenként"
+
+msgid "manager.setup.useTextTitle"
+msgstr "Cím szövege"
+
+msgid "manager.setup.userRegistration"
+msgstr "Felhasználó regisztráció"
+
+msgid "manager.setup.useProofreaders"
+msgstr ""
+"Közzététel előtt a tördelés ellenőrzésével a Korrektor lesz megbízva  (a "
+"szerzőkkel együtt)."
+
+msgid "manager.setup.useLayoutEditors"
+msgstr ""
+"Az publikáció HTML, PDF, stb. elektronikus fájljainak elkészítésével a "
+"Tördelőszerkesztő lesz megbízva."
+
+msgid "manager.setup.useStyleSheet"
+msgstr "Kiadói stíluslap"
+
+msgid "manager.setup.useEditorialReviewBoard"
+msgstr "A kiadó szerkesztői/bírálói bizottságot alkalmaz."
+
+#, fuzzy
+msgid "manager.setup.useCopyeditors"
+msgstr "Minden beadványhoz rendelve lesz egy Lektor."
+
+msgid "manager.setup.reviewProcessDescription"
+msgstr ""
+"Az OMP két bírálói folyamatot kezelő modellt támogat. Javasolt az Általános "
+"Bírálói Folyamat, mivel a bírálókat végiglépteti az egyes folyamatokon, "
+"biztosítva a teljes bírálói előzmény meglétét minden egyes beadványhoz. "
+"Emellett automatikus emlékeztető értesítésekkel és szabvány javaslatokkal "
+"látja el a bírálót. (Elfogadás; Elfogadás javaslatokkal; Beküldés bírálatra; "
+"Beküldés máshová; Javaslatok megtekintése).<br /><br />Válasszon egyet az "
+"alábbiak közül:"
+
+#, fuzzy
+msgid "manager.setup.reviewGuidelinesDescription"
+msgstr ""
+"Adjon meg a külső bírálóknak kritériumokat a beadvány kiadónál "
+"publikálásához való alkalmasságára vonatkozóan, amely tartalmazhat "
+"útmutatókat egy hatékony és hasznos bírálat elkészítéséhez. A bírálóknak "
+"lehetősége van javaslatokkal szolgálni a szerző és a kiadó felé, valamit "
+"külön javaslatokat adhatnak meg kizárólag csak a szerkesztő számára."
+
+#, fuzzy
+msgid "manager.setup.publicationScheduleDescription"
+msgstr ""
+"Kiadói tételeket együttesen lehet közzétenni egy monográfia részeiként, "
+"saját tartalomjegyzékkel. Továbbá egyedi tételek közzétételére is van "
+"lehetőség az elkészültükkel egy időben, az aktuális kötet "
+"tartalomjegyzékéhez való hozzáadásával. Lássa el az olvasókat a Kiadóról "
+"szóló részben egy nyilatkozattal a kiadó által követett  rendszerről a "
+"kiadványok megjelenésének rendszerességéről."
+
+#, fuzzy
+msgid "manager.setup.selectCountry"
+msgstr ""
+"Válasszon ki egy országot, ahol a kiadó található vagy az kiadóhoz tartotó "
+"ország e-mailcímét."
