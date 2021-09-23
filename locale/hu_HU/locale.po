@@ -3,8 +3,8 @@
 # Kiss Jázmin <kissfjazmin@gmail.com>, 2021.
 msgid ""
 msgstr ""
-"PO-Revision-Date: 2021-09-22 14:06+0000\n"
-"Last-Translator: Kiss Jázmin <kissfjazmin@gmail.com>\n"
+"PO-Revision-Date: 2021-09-23 23:30+0000\n"
+"Last-Translator: Fülöp Tiffany <tiffany.fulop@ek.szte.hu>\n"
 "Language-Team: Hungarian <http://translate.pkp.sfu.ca/projects/omp/locale/"
 "hu_HU/>\n"
 "Language: hu_HU\n"
@@ -794,3 +794,114 @@ msgstr "Beadványok megnyitása"
 #, fuzzy
 msgid "manager.series.indexed"
 msgstr "Indexelve"
+
+#, fuzzy
+msgid "user.reviewerPrompt.userGroup"
+msgstr "Igen, kérje a {$userGroup} szerepet."
+
+msgid "user.reviewerPrompt"
+msgstr "Vállalná a kéziratok bírálatát ennél a kiadónál?"
+
+msgid "user.noRoles.regReviewerClosed"
+msgstr "Regisztráció bírálóként: A bírálói regisztráció jelenleg le van tiltva."
+
+msgid "user.noRoles.regReviewer"
+msgstr "Regisztráció bírálóként"
+
+msgid "user.noRoles.submitMonographRegClosed"
+msgstr "Kötet benyújtása: A szerzői regisztráció jelenleg le van tiltva."
+
+#, fuzzy
+msgid "user.noRoles.submitMonograph"
+msgstr "Javaslat beküldése"
+
+#, fuzzy
+msgid "user.noRoles.selectUsersWithoutRoles"
+msgstr ""
+"A szerepkörrel nem rendelkező felhasználók bevonása/felvétele? a kiadóhoz."
+
+msgid "user.authorization.representationNotFound"
+msgstr "A kért kiadványformátum nem található."
+
+msgid "context.select"
+msgstr "Váltás egy másik kiadóra:"
+
+msgid "context.current"
+msgstr "Aktuális kiadó:"
+
+msgid "context.context"
+msgstr "Kiadó"
+
+msgid "context.contexts"
+msgstr "Kiadók"
+
+msgid "navigation.navigationMenus.newRelease.description"
+msgstr "Link az új megjelenésekhez."
+
+msgid "navigation.navigationMenus.newRelease"
+msgstr "Új megjelenések"
+
+msgid "navigation.navigationMenus.category.description"
+msgstr "Link a kategóriához."
+
+msgid "navigation.navigationMenus.category.generic"
+msgstr "Kategória"
+
+msgid "navigation.navigationMenus.series.description"
+msgstr "Link a sorozathoz."
+
+msgid "navigation.navigationMenus.series.generic"
+msgstr "Sorozatok"
+
+#, fuzzy
+msgid "navigation.skip.spotlights"
+msgstr "Ugrás az ajánlókhoz."
+
+msgid "navigation.navigationMenus.catalog.description"
+msgstr "Link a katalógushoz."
+
+msgid "navigation.linksAndMedia"
+msgstr "Linkek és közösségi média"
+
+#, fuzzy
+msgid "navigation.wizard"
+msgstr "Varázsló"
+
+#, fuzzy
+msgid "navigation.published"
+msgstr "Megjelent"
+
+msgid "navigation.newReleases"
+msgstr "Új megjelenések"
+
+msgid "navigation.infoForLibrarians.long"
+msgstr "Információ a könyvtárosoknak"
+
+msgid "navigation.infoForAuthors.long"
+msgstr "Információ a szerzőknek"
+
+msgid "navigation.infoForLibrarians"
+msgstr "Könyvtárosoknak"
+
+msgid "navigation.infoForAuthors"
+msgstr "Szerzőknek"
+
+#, fuzzy
+msgid "navigation.catalog.administration.series"
+msgstr "Sorozatok"
+
+msgid "navigation.catalog.administration.categories"
+msgstr "Kategóriák"
+
+msgid "navigation.catalog.administration"
+msgstr "Katalógus adminisztráció"
+
+msgid "navigation.catalog.administration.short"
+msgstr "Adminisztráció"
+
+#, fuzzy
+msgid "navigation.catalog.manage"
+msgstr "Kezelés"
+
+msgid "navigation.catalog.allMonographs"
+msgstr "Minden kötet"
