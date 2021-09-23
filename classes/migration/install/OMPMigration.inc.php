@@ -1,7 +1,7 @@
 <?php
 
 /**
- * @file classes/migration/OMPMigration.inc.php
+ * @file classes/migration/install/OMPMigration.inc.php
  *
  * Copyright (c) 2014-2021 Simon Fraser University
  * Copyright (c) 2000-2021 John Willinsky
@@ -11,16 +11,17 @@
  * @brief Describe database table structures.
  */
 
-use Illuminate\Database\Migrations\Migration;
+namespace APP\migration\install;
+
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class OMPMigration extends Migration
+class OMPMigration extends \PKP\migration\Migration
 {
     /**
      * Run the migrations.
      */
-    public function up()
+    public function up(): void
     {
         Schema::create('identification_codes', function (Blueprint $table) {
             $table->bigInteger('identification_code_id')->autoIncrement();
@@ -297,7 +298,7 @@ class OMPMigration extends Migration
     /**
      * Reverse the migration.
      */
-    public function down()
+    public function down(): void
     {
         Schema::drop('completed_payments');
         Schema::drop('identification_codes');
