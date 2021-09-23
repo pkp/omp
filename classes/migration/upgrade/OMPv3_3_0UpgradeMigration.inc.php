@@ -11,8 +11,9 @@
  * @brief Describe database table structures.
  */
 
+namespace APP\migration\upgrade;
+
 use APP\core\Application;
-use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\App;
 use Illuminate\Support\Facades\DB;
@@ -21,7 +22,7 @@ use PKP\core\EntityDAO;
 use PKP\services\PKPSchemaService;
 use PKP\submission\SubmissionFile;
 
-class OMPv3_3_0UpgradeMigration extends Migration
+class OMPv3_3_0UpgradeMigration extends \PKP\migration\Migration
 {
     /**
      * Run the migrations.
