@@ -1,8 +1,9 @@
 # Fülöp Tiffany <tiffany.fulop@ek.szte.hu>, 2021.
+# Molnár Tamás <molnart@bibl.u-szeged.hu>, 2021.
 msgid ""
 msgstr ""
-"PO-Revision-Date: 2021-09-14 10:05+0000\n"
-"Last-Translator: Fülöp Tiffany <tiffany.fulop@ek.szte.hu>\n"
+"PO-Revision-Date: 2021-09-23 23:30+0000\n"
+"Last-Translator: Molnár Tamás <molnart@bibl.u-szeged.hu>\n"
 "Language-Team: Hungarian <http://translate.pkp.sfu.ca/projects/omp/editor/"
 "hu_HU/>\n"
 "Language: hu_HU\n"
@@ -30,7 +31,7 @@ msgid "editor.monograph.uploadReviewForReviewer"
 msgstr "Bírálat feltöltése"
 
 msgid "editor.monograph.editorToEnter"
-msgstr "A szerkesztő javaslatot/hozzászólást írhat a bírálónak."
+msgstr "A szerkesztő javaslatot/hozzászólást írhat a bírálónak"
 
 msgid "editor.monograph.replaceReviewer"
 msgstr "Bíráló cseréje"
@@ -214,3 +215,13 @@ msgstr ""
 #, fuzzy
 msgid "editor.monograph.proofs"
 msgstr "Kefelenyomatok"
+
+msgid "editor.monograph.legend.uploaded"
+msgstr "Fájl feltöltve az oszlopfejlécben megjelölt szerep alapján"
+
+#, fuzzy
+msgid "editor.monograph.enterReviewerRecommendation"
+msgstr "Adjon meg bíráló ajánlást"
+
+msgid "editor.monograph.clearReview"
+msgstr "Bíráló törlése"
