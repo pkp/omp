@@ -13,16 +13,9 @@
 <install version="3.4.0.0">
 	<code function="checkPhpVersion" />
 
-	<!-- there are some column and table name changes that need to occur first. -->
-	<upgrade minversion="0.9.9.0" maxversion="1.0.9.0">
-		<!-- Upgrade prior versions to 1.1.0.0 -->
-		<code function="syncSeriesAssocType" />
-		<data file="dbscripts/xml/upgrade/1.1.0.0_preupdate.xml" condition="return $installer->columnExists('plugin_settings', 'press_id');" />
-	</upgrade>
-
-	<upgrade minversion="0.9.9.0" maxversion="1.1.9.0">
-		<!-- Upgrade prior versions to 1.2.0.0 -->
-		<data file="dbscripts/xml/upgrade/1.2.0.0_preupdate.xml" condition="return $installer->tableExists('series_editors');" />
+	<upgrade minversion="0.9.9.0" maxversion="1.1.9.9">
+		<!-- OMP < 1.2.0 upgrade unsupported -->
+		<code function="abort" message="installer.unsupportedUpgradeError" />
 	</upgrade>
 
 	<upgrade minversion="0.9.9.0" maxversion="1.2.0.9">
@@ -80,37 +73,6 @@
 
 	<upgrade minversion="0.9.9.0" maxversion="3.1.9.9">
 		<code function="migrateUserAndAuthorNames" condition="return $installer->tableExists('users_tmp');" />
-	</upgrade>
-
-	<upgrade minversion="0.9.9.0" maxversion="1.0.9.9">
-		<!-- Upgrade prior versions to 1.1.0.0 -->
-		<data file="dbscripts/xml/upgrade/1.1.0.0_update.xml" />
-		<code function="fixFilenames" />
-		<code function="enableDefaultTheme" />
-	</upgrade>
-
-	<upgrade minversion="0.9.9.0" maxversion="1.0.0.0">
-		<!--
-		 - Upgrade from 1.0.0.0 (excluding 1.0.1.0, which was
-		 - briefly in the omp-stable-1_0 branch).
-		 -->
-		<data file="dbscripts/xml/upgrade/1.1.0.0_update2.xml" />
-	</upgrade>
-
-	<upgrade minversion="0.9.9.0" maxversion="1.1.0.9">
-		<code function="fixAuthorSettings" /><!-- Bug #8663 -->
-		<data file="dbscripts/xml/upgrade/1.1.1.0_update.xml" />
-	</upgrade>
-
-	<upgrade minversion="0.9.9.0" maxversion="1.1.9.9">
-		<code function="htmlifyEmailTemplates" /><!-- Bug #8929 -->
-		<data file="dbscripts/xml/upgrade/1.2.0.0_update.xml" />
-		<code function="convertQueries" />
-		<code function="installEmailTemplate" key="REVIEW_REQUEST_REMIND_AUTO" locales="de_DE,el_GR,en_US,es_ES,fr_CA,pt_BR" />
-		<code function="installEmailTemplate" key="REVIEW_REQUEST_REMIND_AUTO_ONECLICK" locales="de_DE,el_GR,en_US,es_ES,fr_CA,pt_BR" />
-		<data file="dbscripts/xml/upgrade/1.2.0.0_postupdate.xml" />
-		<note file="docs/release-notes/README-BEACON" />
-		<code function="convertCommentsToEditor" condition="return $installer->tableExists('submissions_tmp');" />
 	</upgrade>
 
 	<upgrade minversion="1.2.0.0" maxversion="1.2.0.9">
