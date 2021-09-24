@@ -98,8 +98,8 @@ class Dc11SchemaPublicationFormatAdapter extends MetadataDataObjectAdapter
         $submissionSubjectDao = DAORegistry::getDAO('SubmissionSubjectDAO'); /* @var $submissionSubjectDao SubmissionSubjectDAO */
         $supportedLocales = array_keys(AppLocale::getSupportedFormLocales());
         $subjects = array_merge_recursive(
-            (array) $submissionKeywordDao->getKeywords($monograph->getId(), $supportedLocales),
-            (array) $submissionSubjectDao->getSubjects($monograph->getId(), $supportedLocales)
+            (array) $submissionKeywordDao->getKeywords($publication->getId(), $supportedLocales),
+            (array) $submissionSubjectDao->getSubjects($publication->getId(), $supportedLocales)
         );
         $this->_addLocalizedElements($dc11Description, 'dc:subject', $subjects);
 
