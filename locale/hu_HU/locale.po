@@ -3,7 +3,7 @@
 # Kiss Jázmin <kissfjazmin@gmail.com>, 2021.
 msgid ""
 msgstr ""
-"PO-Revision-Date: 2021-09-23 23:30+0000\n"
+"PO-Revision-Date: 2021-09-24 19:08+0000\n"
 "Last-Translator: Fülöp Tiffany <tiffany.fulop@ek.szte.hu>\n"
 "Language-Team: Hungarian <http://translate.pkp.sfu.ca/projects/omp/locale/"
 "hu_HU/>\n"
@@ -905,3 +905,337 @@ msgstr "Kezelés"
 
 msgid "navigation.catalog.allMonographs"
 msgstr "Minden kötet"
+
+#, fuzzy
+msgid "installer.additionalLocalesInstructions"
+msgstr ""
+"Válassza ki a rendszerben támogatni kívánt további nyelveket. Ezek a nyelvek "
+"a webhelyen elhelyezett kiadók számára lesznek elérhetők. További nyelvek "
+"bármikor telepíthetők a webhely adminisztrációs felületéről is. A *-gal "
+"jelölt nyelvek hiányosak lehetnek."
+
+msgid "installer.localeInstructions"
+msgstr ""
+"A rendszerhez használt elsődleges nyelv. Kérjük, olvassa el az OMP "
+"dokumentációját, ha az itt nem felsorolt nyelvek támogatása érdekli."
+
+msgid "installer.maxFileUploadSize"
+msgstr ""
+"A szervere jelenleg legfeljebb a következő fájlfeltöltési méretet "
+"engedélyezi: <strong>{$maxFileUploadSize}</strong>"
+
+msgid "installer.allowFileUploads"
+msgstr ""
+"A szervere jelenleg engedélyezi a fájlfeltöltést: "
+"<strong>{$allowFileUploads}</strong>"
+
+msgid "installer.localeSettingsInstructions"
+msgstr ""
+"A teljes Unicode (UTF-8) támogatáshoz válassza az UTF-8 beállítást az összes "
+"karakterkészlet beállításához. Vegye figyelembe, hogy ez a támogatás "
+"jelenleg MySQL >= 4.1.1 vagy PostgreSQL >= 9.1.5 verziójú adatbázis szervert "
+"igényel. Kérjük, vegye figyelembe azt is, hogy a teljes Unicode-támogatáshoz "
+"az <a href=\"http://www.php.net/mbstring\" target=\"_blank\">mbstring</a> "
+"könyvtár szükséges (a legújabb PHP-telepítésekben alapértelmezés szerint "
+"engedélyezve). Problémákat okozhat a kiterjesztett karakterkészletek "
+"használata, ha a szervere nem felel meg ezeknek a követelményeknek.\n"
+"<br /><br />\n"
+"Az Ön szervere jelenleg támogatja az mbstringet: "
+"<strong>{$supportsMBString}</strong>"
+
+#, fuzzy
+msgid "installer.upgradeInstructions"
+msgstr ""
+"<h4>OMP verzió  {$version}</h4> \n"
+"\n"
+"<p>Köszönjük, hogy letöltötted a Public Knowledge Project <strong>Open "
+"Monograph Press</strong> szoftverét. Mielőtt folytatná, kérjük, olvassa el a "
+"szoftverhez mellékelt <a href=\"{$baseUrl}/docs/README\">README</a> és <a "
+"href=\"{$baseUrl}/docs/UPGRADE\">FRISSÍTÉS</a> fájlt. A Public Knowledge "
+"Projectről és a szoftverprojektekről további információkat a <a href=\""
+"http://pkp.sfu.ca/\" target=\"_blank\">PKP weboldalán</a> talál. Ha "
+"hibabejelentése vagy technikai támogatási kérdése van az Open Monograph "
+"Press-szel kapcsolatban, keresse fel a <a href=\"http://forum.pkp.sfu.ca\" "
+"target=\"_blank\">támogatási fórumot</a>, vagy látogasson el a PKP online <a "
+"href=\"http://pkp.sfu.ca/bugzilla/\" target=\"_blank\">hibabejelentő "
+"rendszerébe</a>. Bár a támogatási fórum az előnyben részesített "
+"kapcsolattartási mód, a <a href=\"mailto:pkp.contact@gmail.com\""
+">pkp.contact@gmail.com</a> címre is küldhet e-mailt a csapatnak.</p>\n"
+"<p>A folytatás előtt <strong>erősen ajánlott</strong> biztonsági másolatot "
+"készíteni az adatbázisról, a fájlkönyvtárról és az OMP telepítési "
+"könyvtáráról.</p>\n"
+"<p>Ha <a href=\"http://www.php.net/features.safe-mode\" target=\"_blank\">"
+"PHP Safe Mode-ban</a> fut, kérjük, győződjön meg arról, hogy a php.ini "
+"konfigurációs fájlban a max_execution_time direktíva(ÉRTÉK?) magas "
+"határértékre van állítva. Ha ez vagy bármely más időkorlát (pl. Apache's \""
+"Timeout\" directive) elérésre kerül, és a frissítési folyamat megszakad, "
+"kézi beavatkozásra lesz szükség.</p>"
+
+msgid "installer.preInstallationInstructions"
+msgstr ""
+"<p>1. The following files and directories (and their contents) must be made "
+"writable:</p>\n"
+"<ul>\n"
+"\t<li><tt>config.inc.php</tt> is writable (optional): {$writable_config}</li>"
+"\n"
+"\t<li><tt>public/</tt> is writable: {$writable_public}</li>\n"
+"\t<li><tt>cache/</tt> is writable: {$writable_cache}</li>\n"
+"\t<li><tt>cache/t_cache/</tt> is writable: {$writable_templates_cache}</li>\n"
+"\t<li><tt>cache/t_compile/</tt> is writable: "
+"{$writable_templates_compile}</li>\n"
+"\t<li><tt>cache/_db</tt> is writable: {$writable_db_cache}</li>\n"
+"</ul>\n"
+"\n"
+"<p>2. A directory to store uploaded files must be created and made writable ("
+"see \"File Settings\" below).</p>"
+
+msgid "installer.preInstallationInstructionsTitle"
+msgstr "Telepítés előtti lépések"
+
+msgid "installer.installationInstructions"
+msgstr ""
+"\n"
+"<p>Köszönjük, hogy letöltötted a Public Knowledge Project <strong>Open "
+"Monograph Press {$version}</strong> verziójú szoftverét. Mielőtt folytatná, "
+"kérjük, olvassa el a szoftverhez mellékelt <a href=\"{$baseUrl}/docs/README\""
+">README</a> fájlt. A Public Knowledge Projectről és a szoftverprojektekről "
+"további információkat a <a href=\"http://pkp.sfu.ca/\" target=\"_blank\">PKP "
+"weboldalán</a> talál. Ha hibabejelentése vagy technikai támogatási kérdése "
+"van az Open Monograph Press-szel kapcsolatban, keresse fel a <a href=\""
+"http://forum.pkp.sfu.ca\" target=\"_blank\">támogatási fórumot</a>, vagy "
+"látogasson el a PKP online <a href=\"http://pkp.sfu.ca/bugzilla/\" target=\""
+"_blank\">hibabejelentő rendszerébe</a>. Bár a támogatási fórum az előnyben "
+"részesített kapcsolattartási mód, a <a href=\"mailto:pkp.contact@gmail.com\""
+">pkp.contact@gmail.com</a> címre is küldhet e-mailt a csapatnak.</p>\n"
+
+msgid "installer.updatingInstructions"
+msgstr ""
+"Ha az OMP meglévő telepítését frissíti, <a href=\"{$upgradeUrl}\">kattintson "
+"ide</a> a folytatáshoz."
+
+msgid "installer.installApplication"
+msgstr "Open Monograph Press telepítése"
+
+msgid "installer.ompUpgrade"
+msgstr "OMP frissítés"
+
+msgid "installer.appInstallation"
+msgstr "OMP telepítés"
+
+#, fuzzy
+msgid "help.goToEditPage"
+msgstr "Új oldal megnyitása az információ szerkesztéséhez"
+
+msgid "help.searchReturnResults"
+msgstr "Vissza a keresési eredményekhez"
+
+msgid "about.aboutOMPSite"
+msgstr ""
+"Ez az oldal az Open Monograph Press  {$ompVersion} verzióját használja, "
+"amely a Public Knowledge Project által a GNU General Public License alatt "
+"kifejlesztett, támogatott és szabadon terjesztett nyílt forráskódú "
+"sajtómenedzsment és kiadói szoftver. Látogasson el a PKP weboldalára, ha <a "
+"href=\"http://pkp.sfu.ca/\">többet szeretne megtudni a szoftverről</a>. A "
+"kiadókkal kapcsolatos kérdésekkel és a kéziratok beküldésével kapcsolatban "
+"kérjük, forduljon közvetlenül az oldalhoz."
+
+msgid "about.aboutOMPPress"
+msgstr ""
+"Ez a kiadó az Open Monograph Press  {$ompVersion} verzióját használja, amely "
+"a Public Knowledge Project által a GNU General Public License alatt "
+"kifejlesztett, támogatott és szabadon terjesztett nyílt forráskódú "
+"sajtómenedzsment és kiadói szoftver. Látogasson el a PKP weboldalára, ha <a "
+"href=\"http://pkp.sfu.ca/\">többet szeretne megtudni a szoftverről</a>. A "
+"kiadóval kapcsolatos kérdésekkel és a kéziratok beküldésével kapcsolatban "
+"kérjük, <a href=\"{$contactUrl}\">forduljon közvetlenül a kiadóhoz</a>."
+
+msgid "about.aboutSoftware"
+msgstr "Az Open Monograph Pressről"
+
+msgid "about.aboutThisPublishingSystem.altText"
+msgstr "Az OMP szerkesztési és kiadási folyamata"
+
+msgid "about.aboutThisPublishingSystem"
+msgstr ""
+"További információk az OMP/PKP kiadói rendszeréről, platformjáról és "
+"munkafolyamatáról."
+
+#, fuzzy
+msgid "about.pressSponsorship"
+msgstr "Kiadói szponzoráció"
+
+msgid "about.openAccessPolicy"
+msgstr "Nyílt hozzáférési (Open Access) politika"
+
+msgid "about.publicationFrequency"
+msgstr "Megjelenési gyakoriság"
+
+#, fuzzy
+msgid "about.reviewPolicy"
+msgstr "Szakértői bírálati folyamat"
+
+msgid "about.privacyStatement"
+msgstr "Adatvédelmi nyilatkozat"
+
+msgid "about.copyrightNotice"
+msgstr "Szerzői jogi nyilatkozat"
+
+msgid "about.submissionPreparationChecklist.description"
+msgstr ""
+"A beküldési folyamat részeként a szerzőknek be kell jelölniük, hogy a "
+"kéziratuk megfelel-e az alábbi pontoknak, és a kéziratok visszaküldhetők "
+"azoknak a szerzőknek, akik nem tartják be ezeket az irányelveket."
+
+msgid "about.submissionPreparationChecklist"
+msgstr "A beküldés előkészítésének ellenőrzőlistája"
+
+msgid "about.authorGuidelines"
+msgstr "Szerzői útmutatók"
+
+msgid "about.onlineSubmissions.viewSubmissions"
+msgstr "függőben lévő beküldések megtekintése"
+
+msgid "about.onlineSubmissions.newSubmission"
+msgstr "Új beküldés készítése"
+
+msgid "about.onlineSubmissions.submissionActions"
+msgstr "{$newSubmission} vagy {$viewSubmissions}."
+
+msgid "about.onlineSubmissions.registrationRequired"
+msgstr "{$login} vagy {$register} készítése a beküldéshez."
+
+msgid "about.onlineSubmissions.register"
+msgstr "Regisztráció"
+
+msgid "about.onlineSubmissions.login"
+msgstr "Bejelentkezés"
+
+msgid "about.onlineSubmissions"
+msgstr "Online beküldések"
+
+msgid "about.submissions"
+msgstr "Beküldések"
+
+#, fuzzy
+msgid "about.seriesPolicies"
+msgstr "Sorozat- és kategória szabályzat"
+
+#, fuzzy
+msgid "about.focusAndScope"
+msgstr "Fókusz és alkalmazási kör"
+
+msgid "about.editorialPolicies"
+msgstr "Szerkesztési irányelvek"
+
+msgid "about.editorialTeam"
+msgstr "Szerkesztőség"
+
+msgid "about.aboutContext"
+msgstr "A kiadóról"
+
+msgid "about.pressContact"
+msgstr "Kiadó kapcsolat"
+
+msgid "site.pressView"
+msgstr "Kiadó weboldalának megtekintése"
+
+msgid "site.noPresses"
+msgstr "Nincsenek rendelkezésre álló kiadók."
+
+msgid "user.register.form.privacyConsentThisContext"
+msgstr ""
+"Igen, hozzájárulok ahhoz, hogy adataimat a kiadó <a href=\"{$privacyUrl}\" "
+"target=\"_blank\">adatvédelmi nyilatkozatának</a> megfelelően gyűjtsék és "
+"tárolják."
+
+msgid "user.register.form.userGroupRequired"
+msgstr "Legalább egy szerepkört ki kell választani"
+
+#, fuzzy
+msgid "user.register.reviewerInterests"
+msgstr ""
+"A bírálati érdekek/érdeklődés (témakörök és kutatási módszerek) "
+"meghatározása:"
+
+msgid "user.register.reviewerDescription"
+msgstr "Vállalja az oldalra beküldött kéziratok szakértői értékelését."
+
+#, fuzzy
+msgid "user.register.reviewerDescriptionNoInterests"
+msgstr "Vállalja a kiadónak küldött kéziratok szakértői értékelését."
+
+#, fuzzy
+msgid "user.register.authorDescription"
+msgstr "Küldhet be tételeket a kiadóhoz."
+
+msgid "user.register.readerDescription"
+msgstr "E -mailben értesítjük a kötet megjelenéséről."
+
+msgid "user.register.form.passwordLengthTooShort"
+msgstr "A megadott jelszó nem elég hosszú."
+
+msgid "user.register.registrationDisabled"
+msgstr "Ez a kiadó jelenleg nem fogad felhasználói regisztrációkat."
+
+msgid "user.register.privacyStatement"
+msgstr "Adatvédelmi nyilatkozat"
+
+msgid "user.register.noContexts"
+msgstr "Ezen az oldalon nincs olyan kiadó, amelyhez regisztrálhatna."
+
+msgid "user.register.selectContext"
+msgstr "Válasszon ki egy kiadót a regisztrációhoz:"
+
+msgid "user.role.productionEditors"
+msgstr "Megjelentetés szerkesztő"
+
+msgid "user.role.proofreaders"
+msgstr "Korrektorok"
+
+msgid "user.role.copyeditors"
+msgstr "Lektorok"
+
+msgid "user.role.editors"
+msgstr "Szerkesztők"
+
+msgid "user.role.subEditors"
+msgstr "Sorozatszerkesztők"
+
+msgid "user.role.managers"
+msgstr "Kiadó menedzserek"
+
+msgid "user.role.productionEditor"
+msgstr "Megjelentetés szerkesztő"
+
+msgid "user.role.proofreader"
+msgstr "Korrektor"
+
+#, fuzzy
+msgid "user.role.copyeditor"
+msgstr "Lektor"
+
+msgid "user.role.subEditor"
+msgstr "Sorozatszerkesztő"
+
+msgid "user.role.pressEditor"
+msgstr "Kiadó szerkesztő"
+
+msgid "user.role.manager"
+msgstr "Kiadó menedzser"
+
+msgid "user.register.noContextReviewerInterests"
+msgstr ""
+"Ha kérte, hogy valamelyik kiadó bírálója legyen, kérjük, adja meg az "
+"érdeklődési körét."
+
+#, fuzzy
+msgid "user.register.otherContextRoles"
+msgstr "Kérje az alábbi szerepeket."
+
+msgid "user.register.contextsPrompt"
+msgstr "Melyik kiadóknál szeretne regisztrálni ezen az oldalon?"
+
+msgid "user.reviewerPrompt.optin"
+msgstr ""
+"Igen, szeretném, ha megkeresnének, hogy lektoráljam a kiadóhoz benyújtott "
+"kéziratokat."
