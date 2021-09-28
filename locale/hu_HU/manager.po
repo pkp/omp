@@ -1,7 +1,7 @@
 # Kiss Jázmin <kissfjazmin@gmail.com>, 2021.
 msgid ""
 msgstr ""
-"PO-Revision-Date: 2021-09-23 23:30+0000\n"
+"PO-Revision-Date: 2021-09-29 11:06+0000\n"
 "Last-Translator: Kiss Jázmin <kissfjazmin@gmail.com>\n"
 "Language-Team: Hungarian <http://translate.pkp.sfu.ca/projects/omp/manager/"
 "hu_HU/>\n"
@@ -321,8 +321,11 @@ msgstr ""
 msgid "manager.setup.privacyStatement.success"
 msgstr "Az adatvédelmi nyilatkozat frissítésre került."
 
+#, fuzzy
 msgid "manager.setup.policies.description"
 msgstr ""
+"Tudományterület, szakmai bírálat, szakaszok, adatvédelem, biztonság, és "
+"további tételek."
 
 msgid "manager.setup.policies"
 msgstr "Irányelvek"
@@ -798,7 +801,6 @@ msgstr ""
 "kiválasztott fiók törölve lesz és a beadványai, megbízásai, stb. a második "
 "fiókhoz lesznek rendelve."
 
-#, fuzzy
 msgid "manager.people.enrollSyncPress"
 msgstr "Kiadóval"
 
@@ -1367,3 +1369,116 @@ msgid "manager.setup.selectCountry"
 msgstr ""
 "Válasszon ki egy országot, ahol a kiadó található vagy az kiadóhoz tartotó "
 "ország e-mailcímét."
+
+#, fuzzy
+msgid "manager.setup.pressThumbnail"
+msgstr "Kiadó logója"
+
+#, fuzzy
+msgid "manager.setup.productionTemplates"
+msgstr "Megjelentetési sablonok"
+
+msgid "manager.setup.masthead"
+msgstr "Fejléc"
+
+#, fuzzy
+msgid "manager.setup.useImageTitle"
+msgstr "Címkép"
+
+#, fuzzy
+msgid "manager.setup.publisherDescription"
+msgstr "A kiadó szervezet neve a Kiadóról részben fog megjelenni."
+
+#, fuzzy
+msgid "manager.setup.pressThumbnail.description"
+msgstr ""
+"A kiadók listájában megjelenítésre kerülő kiadóhoz tartozó logó vagy jelzés."
+
+#, fuzzy
+msgid "manager.setup.pageHeaderDescription"
+msgstr "Az oldal fejlécének konfigurálása"
+
+#, fuzzy
+msgid "manager.setup.numPageLinks.description"
+msgstr "Az egy oldalon megjelenő linkek számának korlátozása."
+
+#, fuzzy
+msgid "manager.setup.masthead.success"
+msgstr "A kiadó fejlécadatai frissítésre kerültek."
+
+#, fuzzy
+msgid "manager.setup.managingPublishingSetup"
+msgstr "Sajtómenedzsment és Publikációs beállítások"
+
+#, fuzzy
+msgid "manager.setup.layoutTemplatesDescription"
+msgstr ""
+"A kiadó által használt szabvány formátumokhoz sablonokat lehet feltölteni, "
+"amelyek megjelennek a Tördelés oldalon (pl: monográfiák, recenziók, stb.). "
+"Bármilyen fájl formátum feltölthető (pl.: pdf, doc, stb.). A sablon "
+"tartalmazhat betűtípust, betűméretet, margót, stb. meghatározó "
+"megjegyzéseket, amelyek útmutatóként tudnak szolgálni a Tördelőszerkesztők "
+"és Korrektorok számára."
+
+#, fuzzy
+msgid "manager.setup.itemsPerPage.description"
+msgstr ""
+"A listában egy oldalon megjelenő tételek (pl: beadványok, felhasználók, "
+"szerkesztői feladatok) számának meghatározása."
+
+#, fuzzy
+msgid "manager.setup.identity"
+msgstr "Kiadó megnevezése"
+
+#, fuzzy
+msgid "manager.setup.focusScope"
+msgstr "Tudományterület"
+
+#, fuzzy
+msgid "manager.setup.focusAndScope"
+msgstr "A kiadó tudományterületei"
+
+#, fuzzy
+msgid "manager.setup.emailBounceAddress.disabled"
+msgstr ""
+"Amennyiben a sikertelenül kézbesített leveleket egy visszapattanó e-mail "
+"címre szeretné küldeni, az oldal adminisztrátornak engedélyezni kell a "
+"<code>allow_envelope_sender</code> opciót az oldal konfigurációs fájljában. "
+"Ehhez szükség lehet az OMP dokumentációjában feltüntetett "
+"szerverkonfigurációra."
+
+#, fuzzy
+msgid "manager.setup.coverage"
+msgstr "Lefedettség"
+
+#, fuzzy
+msgid "manager.setup.appearInAboutPress"
+msgstr "(Megjelenik a Kiadóról mezőben) "
+
+#, fuzzy
+msgid "manager.setup.addItemtoAboutPress"
+msgstr "Tétel hozzáadása a \"Kiadóról\" mezőben"
+
+#, fuzzy
+msgid "manager.people.syncUserDescription"
+msgstr ""
+"A bejegyzett felhasználók szinkronizációja az összes, kiadónál betöltött "
+"bizonyos szerepkörű  felhasználót fogja fogja a kiadóhoz rendelni, azonos "
+"szerepkörben. Ez a funkció egy megadott felhasználói körnek (Pl.: Bírálók) "
+"kiadók közötti szinkronizációját teszi lehetővé."
+
+#, fuzzy
+msgid "manager.people.enrollExistingUser"
+msgstr "Létező felhasználó bejegyzése"
+
+#, fuzzy
+msgid "manager.people.allUsers"
+msgstr "Összes bejegyzett felhasználó"
+
+#, fuzzy
+msgid "manager.people.allSiteUsers"
+msgstr "Felhasználó bejegyezése az oldalról ehhez a kiadóhoz"
+
+#, fuzzy
+msgid "manager.people.allEnrolledUsers"
+msgstr "Kiadóhoz bejegyzett felhasználók"
