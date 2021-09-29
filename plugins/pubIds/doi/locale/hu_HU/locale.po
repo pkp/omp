@@ -1,8 +1,114 @@
 # Fülöp Tiffany <tiffany.fulop@ek.szte.hu>, 2021.
 msgid ""
 msgstr ""
+"PO-Revision-Date: 2021-09-29 11:06+0000\n"
+"Last-Translator: Fülöp Tiffany <tiffany.fulop@ek.szte.hu>\n"
+"Language-Team: Hungarian <http://translate.pkp.sfu.ca/projects/omp/"
+"pubIds-doi/hu_HU/>\n"
 "Language: hu_HU\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Weblate\n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: Weblate 3.9.1\n"
+
+msgid "plugins.pubIds.doi.manager.settings.doiSuffixDefault.description"
+msgstr ""
+"%p.%m a kötetekhez<br />%p.%m.c%c a fejezetekhez<br />%p.%m.%f a "
+"kiadványformátumokhoz<br />%p.%m.%f.%s a fájlokhoz."
+
+msgid "plugins.pubIds.doi.manager.settings.doiSuffixDefault"
+msgstr "Alapértelmezett minták használata."
+
+msgid "plugins.pubIds.doi.manager.settings.doiSuffixPattern.files"
+msgstr "fájloknak"
+
+msgid "plugins.pubIds.doi.manager.settings.doiSuffixPattern.representations"
+msgstr "kiadványformátumoknak"
+
+msgid "plugins.pubIds.doi.manager.settings.doiSuffixPattern.chapters"
+msgstr "fejezeteknek"
+
+msgid "plugins.pubIds.doi.manager.settings.doiSuffixPattern.submissions"
+msgstr "köteteknek"
+
+#, fuzzy
+msgid "plugins.pubIds.doi.manager.settings.doiSuffixPattern.example"
+msgstr ""
+"Például a press%ppub%r létrehozhat egy DOI-t, például 10.1234/pressESPppub100"
+
+#, fuzzy
+msgid "plugins.pubIds.doi.manager.settings.doiSuffixPattern"
+msgstr ""
+"A DOI-utótagok létrehozásához használja az alábbiakban megadott mintát. "
+"Használja a %p-t a kiadó (press) kezdőbetűihez, a %m-t a kötet (monograph ) "
+"azonosítójához, a %c-t a fejezet (chapter) azonosítójához, a %f-t a "
+"kiadványformátum ( publication format) azonosítójához, a %s-t a fájl (file) "
+"azonosítójához és a %x-t az \"Egyéni azonosítóhoz\" (Custom Identifier)."
+
+msgid "plugins.pubIds.doi.manager.settings.doiSuffix.description"
+msgstr ""
+"A DOI-utótag bármilyen formájú lehet, de egyedinek kell lennie minden olyan "
+"publikációs objektum között, amelyhez ugyanazt a DOI-előtagot rendelték:"
+
+#, fuzzy
+msgid "plugins.pubIds.doi.manager.settings.doiSuffix"
+msgstr "DOI utótag (suffix)"
+
+#, fuzzy
+msgid "plugins.pubIds.doi.manager.settings.doiPrefixPattern"
+msgstr "A DOI előtag (prefix) kötelező, és 10.xxxx formájúnak kell lennie."
+
+#, fuzzy
+msgid "plugins.pubIds.doi.manager.settings.doiPrefix.description"
+msgstr ""
+"A DOI prefixet a regisztrációs ügynökségek (pl. <a href=\""
+"http://www.crossref.org\" target=\"_new\">CrossRef</a>) osztják ki, és a "
+"10.xxxx (pl. 10.1234) formátumúak:"
+
+#, fuzzy
+msgid "plugins.pubIds.doi.manager.settings.doiPrefix"
+msgstr "DOI előtag (prefix)"
+
+msgid "plugins.pubIds.doi.manager.settings.enableSubmissionFileDoi"
+msgstr "Fájlok"
+
+msgid "plugins.pubIds.doi.manager.settings.enableRepresentationDoi"
+msgstr "Kiadványformátumok"
+
+msgid "plugins.pubIds.doi.manager.settings.enableChapterDoi"
+msgstr "Fejezetek"
+
+#, fuzzy
+msgid "plugins.pubIds.doi.manager.settings.enablePublicationDoi"
+msgstr "Kötetek"
+
+msgid "plugins.pubIds.doi.manager.settings.explainDois"
+msgstr ""
+"Kérjük, válassza ki azokat a publikációs objektumokat, amelyekhez digitális "
+"objektumazonosítót (DOI) rendelnek:"
+
+msgid "plugins.pubIds.doi.manager.settings.doiObjectsRequired"
+msgstr ""
+"Kérjük, válassza ki azokat az objektumokat, amelyekhez DOI-kat kell rendelni."
+
+#, fuzzy
+msgid "plugins.pubIds.doi.manager.settings.doiObjects"
+msgstr "Kiadó tartalma"
+
+msgid "plugins.pubIds.doi.manager.settings.description"
+msgstr ""
+"Kérjük, konfigurálja a DOI bővítményt, hogy képes legyen DOI-kat kezelni és "
+"használni az OMP-ben:"
+
+msgid "plugins.pubIds.doi.readerDisplayName"
+msgstr "DOI:"
+
+msgid "plugins.pubIds.doi.description"
+msgstr ""
+"Ez a bővítmény lehetővé teszi a Digitális Objektumazonosítók (DOI) "
+"hozzárendelését kötetekhez, fejezetekhez, kiadványformátumokhoz és fájlokhoz "
+"az OMP-ben."
+
+msgid "plugins.pubIds.doi.displayName"
+msgstr "DOI"
